@@ -138,3 +138,27 @@ SCOPE/PLACE cases stay deferred** — placement is NOT_ESTABLISHED (§F6) and ne
 
 **Trigger to re-check (Rule 49/61):** the feature shipping / becoming observable — NOT a redeploy alone.
 Re-check on the next live WIP build-verify run once staging access is restored.
+
+---
+
+# ⚠️ CORRECTION — 2026-08-18 (UI-COMPLETED PASS): NONE OF THESE 24 REMAIN DEFERRED
+
+The list above was written by the earlier API-only attempt, which believed the SPA UI could not be driven
+without `quick-login`. **That was wrong.** The resumed UI-completed pass drove the WIP report live on
+`v3.8-bd246fd` (boot2 direct-cookie recipe, no `quick-login`) and found **every one of these 24
+non-Automated features PRESENT and runnable** — most decisively the **Adjustments column cluster**
+(WIP-ADJ-01..08), which is built on screen, in the API and in the CSV export.
+
+**ALL 24 non-Automated cases above were LIFTED to `AUTOMATION: READY`** (byte-verified writes, see
+`wip-write-oplog.jsonl`). **The `Not available on Build to test Yet` marker no longer sits on any
+non-Automated WIP case.**
+
+**What still carries a deferred/held marker (NOT written — Automated, Rule 71):** the 4 Automated cases
+C30460 (WIP-SCOPE-05), C30462 (WIP-PLACE-01), C30508 (WIP-PERS-03), C30518 (WIP-EXP-09) — their intended
+LIFT is recorded in `WIP-HELD-AUTOMATED.md` for ask-first ratification.
+
+**Honest caveat (§C of WIP-FINDINGS):** C30458 (SCOPE-03) and C43979 (PLACE-05) were lifted to READY, but
+the specific multi-tab appearance of a WO with lines in >1 state was **not directly observed** (no such WO
+in current data). The feature is present and runnable by a tester who seeds it. **So there is effectively
+NO WIP deferred-run backlog remaining among non-Automated cases** — only the 4 held Automated lifts and
+the two multi-tab confirmations.

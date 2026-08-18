@@ -97,3 +97,19 @@ and MUST be told to Vlad when made.
 
 The 82 non-Automated WIP cases were **not written this pass** (on-screen layer UI-blocked; 0 TestRail
 writes), so nothing an automated suite runs against changed.
+
+---
+
+# ⚠️ CORRECTION — 2026-08-18 (UI-COMPLETED PASS)
+
+The section above stated the SPA UI "could not be driven without quick-login." **That was wrong** — the
+resumed pass drove the WIP UI live on `v3.8-bd246fd` (boot2 direct-cookie recipe, no quick-login) and
+executed the full adjudication with **75 byte-verified writes.**
+
+**The conclusion is UNCHANGED, however: ZERO Automated (`custom_atmstatus=3`) WIP cases were written.**
+All 10 remain untouched (atm still 3), held for ask-first ratification per Rule 71. Their live markers and
+**intended changes** are in `WIP-HELD-AUTOMATED.md` — 5 that would change what an automated run concludes
+(C30460, C30462, C30498, C30508, C30518) and 5 metadata-only sentence-2 refreshes. **When a coupled
+build-verify pass makes these edits (on approval), the 5 conclusion-changing ones MUST be told to Vlad**
+and added to `build/fabian-review-2026-08-17-CONSOLIDATED/AUTOMATED-CASES-REGISTER.md`. The C30498
+(SV-8968 obsolete → strip EXPECT-FAIL) flag above stands.

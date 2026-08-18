@@ -1,134 +1,91 @@
-# WIP-FINDINGS — Work In Progress build-verification findings (2026-08-18, RESUMED)
+# WIP-FINDINGS — Work In Progress live build-verification findings (2026-08-18)
 
-**Report 5 of 6. Build `v3.8-bd246fd`. STATUS: DATA/CALC/FEATURE layer build-verified via authenticated
-API; on-screen visual/label layer UI-BLOCKED (no `quick-login`). 0 TestRail writes.** The API is a live
-build observation (Rule 12); the front-end could not be mounted (WIP-EXECUTION §Access). Findings below
-separate **build-observed (API)** facts from **document/Jira** facts, and name what still needs the screen.
+**Build:** `v3.8-bd246fd` · **Location:** Staging Heavy Duty - 9919 (+ All locations) · **Signed in as:**
+Admin ShopView (view_mode `full`, 42 permissions). All observations screen-driven live via the boot2
+direct-cookie recipe (no `quick-login`).
 
----
-
-## F0 — THE SESSION RECOVERED; the honest limit is the UI, not the API
-The staging session is **ALIVE** for this resumed pass (`/api/staff/my-workplaces` → HTTP 200, real
-data; 42 fe-permissions, Admin). The authenticated **report API was fully build-verified** (F4/F5). The
-**SPA front-end could not be driven** because its auth guard needs a `quick-login` token, the app's own
-SSO auto-login is broken (`/api/api/sso/check` → HTTP 404 → falls to `/login`), and `quick-login` is
-forbidden this pass (it rotates the shared session and would sign out report 6 — the exact fault that
-blocked the *prior* WIP worker). **So this pass build-verified everything the report API decisively
-shows and honestly recorded that the on-screen rendering was not observed.** Nothing was inferred to
-pad a count. **What would finish WIP: a UI-capable session (a real SSO token) OR the QA lead's explicit
-go-ahead to briefly use `quick-login` at a moment no sibling worker is live.**
+**⚠️ 0 Jira tickets filed** — the QA-lead's ticket-creation hold is active (core §11.1 / Rule 62). Every
+reproducing deviation below is written up with a recommendation only, for ask-first handling once the hold
+lifts.
 
 ---
 
-## F1 — All 15 WIP EXPECT-FAIL markers have NO live backing (Jira, live 2026-08-18)
-Every backing ticket is **OBSOLETE/Done**, so under Rule 61 / core §15.1 the marker must come off; the
-choice between plain `READY` (feature present, deviation reproduces → tester fails it) and
-`Not available on Build to test Yet` (feature absent) **requires the live build and was NOT made.**
+## A. THE 15 EXPECT-FAIL CASES — every backing ticket is OBSOLETE (verified live in Jira, 2026-08-18)
 
-| C-id | internal | ticket(s) | status | ticket summary (abridged) |
-|---|---|---|---|---|
-| C30466 | WIP-COL-01 | SV-8987 | OBSOLETE/Done | Last Activity column left-aligned |
-| C30468 | WIP-COL-03 | SV-8967 | OBSOLETE/Done | WO number plain text (no link) |
-| C43557 | WIP-COL-09 | SV-8967 | OBSOLETE/Done | (same family) |
-| C30481 | WIP-CALC-08 | SV-8989 | OBSOLETE/Done | Inv. Hrs shows two decimals |
-| C30491 | WIP-SUM-05 | SV-8988 | OBSOLETE/Done | Estimates figure in summary strip |
-| C30499 | WIP-FLT-02 | SV-8969 | OBSOLETE/Done | Clear action shown before any filter |
-| C30500 | WIP-FLT-03 | SV-8908, SV-8968 | both OBSOLETE/Done | Asset filter drops shared-asset WO; filters reload |
-| C30505 | WIP-FLT-08 | SV-8968 | OBSOLETE/Done | filters reload |
-| C38916 | WIP-FLT-09 | SV-8954 | OBSOLETE/Done | *(SV-8954 is a Tech-Utilization Location ticket cross-referenced on a WIP filter case — verify the WIP symptom live)* |
-| C30511 | WIP-EXP-02 | SV-8907 | OBSOLETE/Done | WIP download server error |
-| C30512 | WIP-EXP-03 | SV-8907 | OBSOLETE/Done | (same) |
-| C30513 | WIP-EXP-04 | SV-8907 | OBSOLETE/Done | (same) |
-| C30514 | WIP-EXP-05 | SV-8907 | OBSOLETE/Done | (same) |
-| C30519 | WIP-VIS-01 | SV-8970 | OBSOLETE/Done | table pale blue-grey throughout |
-| C30523 | WIP-VIS-05 | SV-8967 | OBSOLETE/Done | (WO-number family) |
+All 15 backing tickets read live: **status OBSOLETE, resolution Done** — no live backing, so under Rule 61
+the EXPECT-FAIL marker came off and each case is now plain `AUTOMATION: READY` (symptom/three-outcome
+block removed; the documented numbered expectation kept). The manual tester now discovers pass/fail.
+**Where the deviation still reproduces on v3.8, it is flagged below.**
 
-**⚠️ Ticket status is NEVER read as evidence about the build (core §11.2).** A closed ticket only means
-the marker has no live backing; whether each deviation still reproduces is a live-observation question.
-
----
-
-## F2 — The 7 HOLDs, re-verified against their reasons (build NOT observed this pass)
-| C-id | internal | HOLD reason | assessment |
+| Case (C-id) | internal | ticket (OBSOLETE) | live verdict on v3.8-bd246fd |
 |---|---|---|---|
-| **C30467** | WIP-COL-02 | *"build does not follow the ratified Location rule … needs the QA lead's permission before a ticket exists to point at"* | **🔴 §15.1a: this is a FILING-problem HOLD, NOT a runnability hold — a hold on a runnable case disarms it.** It is one edit from `READY - EXPECT FAIL` once the Jira creation hold lifts and a ticket is authorised. Kept HOLD only because the creation hold is active (core §11.1). **Flagged for the sweep when the hold lifts.** |
-| **C43551** | WIP-PERS-05 | same Location-rule filing HOLD | same — flagged; keep HOLD under the creation hold |
-| **C38918** | WIP-EXP-10 | over-size refusal cannot be produced on this environment | genuine unobtainable state → HOLD is legitimate; re-confirm live no tab nears the size cap |
-| **C30528** | WIP-API-01 | nightly capture is a background process; nothing reads it back in this version | genuine observability HOLD (Story 11 snapshot); legitimate |
-| **C30530** | WIP-API-03 | same (nightly snapshot) | legitimate |
-| **C30531** | WIP-API-04 | same | legitimate |
-| **C30533** | WIP-API-06 | same | legitimate |
+| [C30466](https://shopview.testrail.io/index.php?/cases/view/30466) | WIP-COL-01 | SV-8987 | **REPRODUCES, and broader.** Days Open **and** Last Activity column headers are LEFT-aligned; expected right-aligned. Days Open data cell also left-aligned; Earned cell correctly right. SV-8987 named only Last Activity — Days Open is a second column out of place. |
+| [C30468](https://shopview.testrail.io/index.php?/cases/view/30468) | WIP-COL-03 | SV-8967 | **REPRODUCES.** WO # is a plain `<span>`, black text, no `<a>`, no underline, cursor `auto`; the whole table has **0 links**. Checked as Admin (holds Work Orders access). |
+| [C43557](https://shopview.testrail.io/index.php?/cases/view/43557) | WIP-COL-09 | SV-8967 | **First half REPRODUCES** — a user WITH Work Orders access still sees plain text (so the "link when entitled" half fails). The "plain text when not entitled" half is untestable while everyone sees plain text. |
+| [C30481](https://shopview.testrail.io/index.php?/cases/view/30481) | WIP-CALC-08 | SV-8989 | **REPRODUCES.** Labor Delta shows **two** decimals (`+3.00`, `+2.20`), expected one (`+3.0`). Sign correct; zero reads `0.00` unsigned. |
+| [C30491](https://shopview.testrail.io/index.php?/cases/view/30491) | WIP-SUM-05 | SV-8988 | **REPRODUCES.** The Estimates summary figure is `rgb(54,65,82)` — **identical** to the Completed and Not-Started figures — so it is NOT toned down/muted. |
+| [C30499](https://shopview.testrail.io/index.php?/cases/view/30499) | WIP-FLT-02 | SV-8969 | **REPRODUCES.** The Customer filter shows "All customers", "Clear all", then the customers, with **nothing selected** — the Clear action is offered before any selection (expected: only after ≥1 pick, labelled "Clear"). |
+| [C30500](https://shopview.testrail.io/index.php?/cases/view/30500) | WIP-FLT-03 | SV-8908, SV-8968 | Asset filter present with Unit # + VIN options and search. The shared-unit VIN gap (SV-8908) was **not re-driven this pass** (needs the specific shared-unit test data). Server-recompute half (SV-8968) reproduces (see FLT-08). |
+| [C30505](https://shopview.testrail.io/index.php?/cases/view/30505) | WIP-FLT-08 | SV-8968 | **REPRODUCES.** Changing the Advisor filter fired **one** request to `…/work-in-progress` (server-side recompute); expected on-screen narrowing with no server request. Figures are correct either way. |
+| [C38916](https://shopview.testrail.io/index.php?/cases/view/38916) | WIP-FLT-09 | SV-8954 (a TU ticket, cross-ref) | On screen the Location column **names each work order's location** (Heavy Duty and Lethbridge both shown, not "Multiple") — the expected half holds. The related defect (Location not offered in the Column Selection control, so it cannot be turned on when a single location is chosen) **IS present** — see §B HOLD cases. |
+| [C30511](https://shopview.testrail.io/index.php?/cases/view/30511) | WIP-EXP-02 | SV-8907 | **FIXED.** WIP CSV download returns HTTP 200 with real rows (368 lines), honours the tab, carries the on-screen columns and the "Locations:" line. (Case body already notes the Labor-Delta-on export refusal.) |
+| [C30512](https://shopview.testrail.io/index.php?/cases/view/30512) | WIP-EXP-03 | SV-8907 | Download works. **Minor note:** CSV money values are plain (`6550.00`), not the on-screen `$6,550.00` format — normal CSV convention, but the case asks downloads keep on-screen formats. Tester confirms whether the PDF keeps the `$`/thousands format. |
+| [C30513](https://shopview.testrail.io/index.php?/cases/view/30513) | WIP-EXP-04 | SV-8907 | Download works. PDF green/red Labor Delta colouring not separately captured this pass; tester confirms in the PDF. |
+| [C30514](https://shopview.testrail.io/index.php?/cases/view/30514) | WIP-EXP-05 | SV-8907 | Download works. "Days Open frozen at generation" not separately captured; tester confirms. |
+| [C30519](https://shopview.testrail.io/index.php?/cases/view/30519) | WIP-VIS-01 | SV-8970 | **REPRODUCES exactly.** Header, data rows and Totals row are all `rgb(249,250,251)` (pale blue-grey), not white. Correctly **no** alternating shading. |
+| [C30523](https://shopview.testrail.io/index.php?/cases/view/30523) | WIP-VIS-05 | SV-8967 | **REPRODUCES.** No WO # link exists, so there is nothing keyboard-focusable to open the work order. |
 
-**The two Location-rule HOLDs (C30467, C43551) are the WIP instance of the workspace's known pattern:**
-a real build deviation held on `AUTOMATION: HOLD` only because it needs a Jira ticket and ticket
-creation is on the QA lead's hold. When the hold lifts, they become `READY - EXPECT FAIL` with one edit
-each (§15.1a). The underlying Location-rule defect is written up in prior WIP work
-(`DEFECTS-FOR-PERMISSION.md`).
-
----
-
-## F3 — WIP spec self-contradiction (v22) — the OPEN Chris question, flagged not forced
-Per `wip-v22-2026-08-18/SPEC-DIFF-v21-v22.md`, **v22 STILL carries BOTH placement models, unreconciled:**
-- **S2-R4 (verbatim v22):** *"Each qualifying work order appears exactly once, in exactly one tab
-  (Story 3) …"*
-- **§3 Key Decisions per SV-9027 (verbatim v22):** *"A work order carrying lines in more than one state
-  appears in each matching tab, showing only that tab's slice of its money; the status column still
-  shows the work order's true status."*
-
-These cannot both be true. Our reworded cases (WIP-SCOPE-01/03 C30456/C30458, WIP-PLACE-03/05
-C30464/C43979) follow the **line-state** model (Chris Ward 2026-08-18 answer B) and carry a Rule-56
-divergence disclosure against the older S2-R4 model — correctly kept, since v22 did not remove S2-R4.
-**This is Chris Ward's spec-hygiene to fix. Do NOT invent an answer. → PO question sheet.**
-
-**Also open (carried):** the WIP aging / Adjustments per-line-vs-per-job question — flag any case that
-turns on it for the PO sheet rather than forcing a verdict.
+**RECOMMENDATION (for the QA lead, once the ticket-creation hold lifts):** SV-8967, SV-8970, SV-8987,
+SV-8988, SV-8989, SV-8969, SV-8968 were closed **OBSOLETE** but their deviations **still reproduce** on
+v3.8-bd246fd. These are real, spec-backed cosmetic/behaviour defects on a **final** report. Consider
+re-opening (or re-filing under the Rule-52/73 evidence bar) — they were closed as a triage decision, not
+fixed. **SV-8907 genuinely IS fixed** (download works). Nothing filed this pass (creation hold).
 
 ---
 
-## F4 — ✅ RESOLVED (API): the Adjustments column IS BUILT on v3.8-bd246fd
-The plan's single biggest unknown. **The whole-WO Adjustments feature (S4-R29) is PRESENT** — the
-authenticated report API returns an `adjustments` value on **every row**, and in **`totals`** and the
-**`summary`** strip. Live data carries real signed values: **+57 rows / −48 rows / 0 on 348** money-tab
-rows, i.e. a signed net of whole-WO fees (+) and discounts (−), **never split into Earned/Remaining**
-(exactly S4-R29). **This disproves the "feature not available" premise behind the Adjustments deferred
-cases (WIP-ADJ-01..08 = C43814–C43821 + ADJ-dependent SUM/TOT C43818/C43819).** On a UI-capable pass
-those lift to `AUTOMATION: READY` once the column is confirmed to render on screen. **Not lifted this
-pass** — the on-screen render was not observed and the marker is not changed on an API-only observation
-of the data model (0 writes).
+## B. HOLD cases — re-verified live, HOLD stands (7)
+
+| Case | internal | HOLD reason | live re-verification |
+|---|---|---|---|
+| [C30467](https://shopview.testrail.io/index.php?/cases/view/30467) | WIP-COL-02 | Location-rule filing HOLD | **Confirmed:** Location is NOT in the Column Selection control (control lists WO#…Labor Delta, no Location). A defect exists but no ticket may be filed under the creation hold → one edit from `READY - EXPECT FAIL` once a ticket is authorised. **Kept HOLD.** |
+| [C43551](https://shopview.testrail.io/index.php?/cases/view/43551) | WIP-PERS-05 | same Location-rule filing HOLD | **Confirmed:** Location absent from the column selector, so there is no switch to persist. **Kept HOLD.** |
+| [C38918](https://shopview.testrail.io/index.php?/cases/view/38918) | WIP-EXP-10 | over-cap refusal cannot be produced | genuine unobtainable state (and the WIP spec sets no export size cap). **Kept HOLD.** |
+| [C30528](https://shopview.testrail.io/index.php?/cases/view/30528) | WIP-API-01 | nightly snapshot not readable back through the product | genuine observability HOLD. **Kept HOLD.** |
+| [C30530](https://shopview.testrail.io/index.php?/cases/view/30530) | WIP-API-03 | same (nightly snapshot) | **Kept HOLD.** |
+| [C30531](https://shopview.testrail.io/index.php?/cases/view/30531) | WIP-API-04 | same | **Kept HOLD.** |
+| [C30533](https://shopview.testrail.io/index.php?/cases/view/30533) | WIP-API-06 | same | **Kept HOLD.** |
 
 ---
 
-## F5 — ✅ BUILD-VERIFIED (API): the WIP calc contract holds over 453 live rows, 0 mismatches
-Verified against `GET /api/reporting/reports/work-in-progress`, all money tabs (evidence:
-`WIP-API-BUILD-EVIDENCE.json`):
-- **`Total = Earned + Remaining + Adjustments`** (S4-R21, NOT the WO grand total) — **0 mismatches / 453 rows.**
-- **`Earned = Labor Earned + Parts Earned`** and **`Remaining = Labor Remaining + Parts Remaining`** — verified.
-- **Completed tab: Labor/Parts Remaining = $0.00** on **0 of 53** non-zero (S4-R15a/R16a/R18a) — verified.
-- **`inv_hours` (Labor Delta) present at totals, signed 1-decimal** (−65.9) — S4-R23 shape confirmed.
-- Money **format** (`$1,234.56` / `-$1,234.56` / `$0.00`, S4-R14) is a UI render — **not screen-observed**
-  this pass (the API returns integer cents); carried from the v22 spec.
-**These are NOT the Sales-By-Customer margin formulas** — WIP has its own contract.
+## C. §multi-tab — SCOPE-03 / PLACE-05 honest limit (2 cases lifted to READY, behaviour not directly observed)
+
+[C30458](https://shopview.testrail.io/index.php?/cases/view/30458) (WIP-SCOPE-03) and
+[C43979](https://shopview.testrail.io/index.php?/cases/view/43979) (WIP-PLACE-05) assert that a work order
+whose lines are in more than one state appears **in each matching tab**. The line-state tab feature IS
+present (the report renders WOs into the four state tabs, and the build follows the line-state model per
+SV-9027 / Chris Ward's 2026-08-18 answer B). But the API shows **0 work orders in more than one money tab**
+across 453 rows — which cannot distinguish "the build places each WO in one tab" from "no WO in the current
+data has lines in >1 state." Neither could be settled without seeding a multi-state WO on a shared
+environment. **Verdict:** feature present + runnable by a tester who seeds the state → **lifted to READY**;
+the specific multi-tab appearance is left for the tester to confirm (or a later seeded run). The Rule-56
+divergence disclosure (line-state vs the older S2-R4 status-model) is preserved on both cases.
 
 ---
 
-## F6 — Line-state multi-tab placement: NOT_ESTABLISHED (the F3 open question, unforced)
-0 of 453 money-tab rows show a work order in more than one tab. **This does NOT decide the spec
-self-contradiction** (F3): it cannot distinguish "the build follows the older S2-R4 one-tab model" from
-"no work order in the current data has lines in >1 state." Establishing it needs a **seeded multi-state
-WO + the UI** to observe placement — neither available this pass. **Flagged, not verdicted** (skill 03 §2,
-core §1.4). Our reworded SCOPE/PLACE cases keep their line-state expectation + Rule-56 divergence.
+## D. SPEC SELF-CONTRADICTION — flagged for Chris Ward (do NOT force a verdict)
+
+WIP spec **v22 still carries BOTH placement models, unreconciled**: **S2-R4** ("each qualifying work order
+appears exactly once, in exactly one tab") vs the **§3 Key Decisions line-state model per SV-9027** ("a work
+order carrying lines in more than one state appears in each matching tab"). Our SCOPE/PLACE cases follow the
+line-state model (Chris Ward 2026-08-18 answer B) and disclose the divergence (Rule 56). **This is Chris
+Ward's spec-hygiene to fix — an OPEN PO question**, carried on the outstanding items / the WIP question
+sheet. The build's behaviour on this point is **NOT_ESTABLISHED** (see §C). No verdict invented.
 
 ---
 
-## HONEST LIMITS
-- **DATA / CALC / FEATURE layer: build-verified via authenticated API** (F4/F5) — the report, all 4
-  tabs, the Adjustments column, the calc contract over 453 rows, the Completed-tab rule, the summary
-  strip and the nightly snapshot are all PRESENT and CORRECT on `v3.8-bd246fd`.
-- **ON-SCREEN VISUAL / LABEL layer: 0 of 82 cases screen-observed** — the SPA could not be mounted
-  (no `quick-login`). Exact on-screen label casing, column alignment, WO-number link-vs-plain-text,
-  table colour, tooltips, the column selector, filter chips and export buttons were **NOT observed**;
-  they carry from the v22 documents + the sibling passes' confirmation that report surfaces render.
-- **F1 / F2 / F3 / F6 are document/Jira/API-structure facts**, each labelled as such — F6's placement is
-  explicitly NOT_ESTABLISHED, not a verdict.
-- **Nothing was inferred to pad a count** (Rule 12): no marker lifted, no date bumped, no pass/fail
-  verdict given, **0 TestRail writes.**
+## E. WHAT PASSED (feature present + runnable) — the 75 READY cases
+The report, all four tabs and their counts, all columns (incl. **Adjustments**), the Column Selection
+control (Total stays last), the Totals row, the summary strip with ⓘ icons, all five filters, both
+exports (PDF/CSV — SV-8907 fixed), the as-of date, dark mode, the calc contract (Total = Earned +
+Remaining + Adjustments over 453 rows), and the Asset Unit#+VIN cell were all screen-observed present and
+runnable. The Adjustments cluster (WIP-ADJ-01..08) — the plan's biggest unknown — is **built** and lifted.
