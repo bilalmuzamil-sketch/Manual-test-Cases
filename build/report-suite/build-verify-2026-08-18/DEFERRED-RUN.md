@@ -185,3 +185,21 @@ for ask-first ratification.
 
 **There is NO IV "feature not found" deferred-run backlog** — the Inventory Value report is fully built
 on `v3.8-bd246fd`. The only re-check owed is the 2 Automated lifts (on approval, coupled with Vlad).
+
+---
+## SBC RE-VERIFY SWEEP (2026-08-19, build v3.8-da72171)
+
+**No SBC "feature not found" deferred-run backlog** — the Sales By Customer report is fully built on
+`v3.8-da72171`; every in-scope feature area was driven live present.
+
+**Re-checks owed once the TestRail write path is restored** (writes currently HTML-corrupt the markdown
+fields — see SBC-SWEEP-EXECUTION.md headline; the re-stamp deliverable could not be applied):
+- **Re-stamp (Rule-54 sentence 2 → v3.8-da72171) the 25 verified-PASS manual cases** listed in
+  SBC-SWEEP-FINDINGS.md.
+- **Demark-repair C30133** (collateral of the write bug — content intact, display `<p>`-wrapped).
+- **Drive the 7 not-finished cases:** location-permission negatives **C30101, C43550** (need a
+  single-location reports user), and seeds **C30131** (S-invoice no vehicle), **C30132** (reversed/voided
+  invoice), **C30137** (duplicate asset labels), **C30141** (deleted-invoice not-found), **C43553**
+  (broken-logo fallback).
+- **Invoice-link PO question** (C30100, C30138, C30139, C30140, C43558) — trigger = Chris Ward's answer,
+  not a redeploy.

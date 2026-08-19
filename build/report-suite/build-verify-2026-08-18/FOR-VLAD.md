@@ -137,3 +137,19 @@ CSV metadata) — both Vladimir Tomovic id 1, atm=3.
 
 **AUTOMATED CASES CHANGED — FOR VLAD (this pass): none.** No `custom_atmstatus = 3` case was written; all
 54 IV writes were on `custom_atmstatus = 1` (non-Automated) cases.
+
+---
+## SBC RE-VERIFY SWEEP (2026-08-19)
+
+**AUTOMATED CASES CHANGED — FOR VLAD (this pass): none.** No `custom_atmstatus = 3` case was written
+(and no case at all was written cleanly — the TestRail write path is HTML-corrupting markdown fields
+this pass; see SBC-SWEEP-EXECUTION.md).
+
+**10 SBC Automated (atm=3) cases were verified live but HELD unwritten** (Rule 71) — see
+`SBC-SWEEP-HELD-AUTOMATED.md`: C30098, C30099, C38912, C30138, C30159, C30163, C30174, C30175, C30177,
+C30180. When the write path is restored and ratification is given, only a Rule-54 sentence-2 build
+re-stamp (`v3.8-da72171`) is owed on these — no marker/wording change (except C38912's carried Location
+deviation and C30138's open invoice-link PO question).
+
+**Note (correction for the register):** the live `custom_atmstatus` for these differs from the stale
+`SBC-EXECUTION.md` atm column — the 10 above is the authoritative current atm=3 set in this scope.
