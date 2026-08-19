@@ -2,3 +2,12 @@
 {"ts":"2026-08-19","event":"diagnostics","cid":"C30133","result":"Confirmed every update_case wraps ALL content in <p>...</p>\\n even a trivial plain string. Field format=markdown (get_case_fields). Prior-pass cases C30096/C30124 remain CLEAN markdown -> TestRail update_case behavior changed since 08-18 pass (matches playbook DECLARED HAZARD #5 / normalisation #3, now firing 100% on-write)."}
 {"ts":"2026-08-19","event":"restore","cid":"C30133","result":"Re-sent exact original preconds/steps/expected/refs. Word-for-word CONTENT restored (matches /tmp snapshot). Residual: TestRail still stores it <p>-wrapped (unavoidable while the wrap condition is active). NEEDS a formatting-only demark repair (build/markup-regression-2026-08-10/demark.py) once update_case stores clean markdown again. Content intact; only display formatting affected."}
 {"ts":"2026-08-19","event":"decision","result":"HALTED all re-stamp writes. 0 clean writes possible. Delivered live build-verification + this blocker instead of corrupting 25+ cases."}
+{"event": "write", "cid": "C30111", "marker": "kept", "ok": true, "problems": [], "ts": "2026-08-19T12:02:29Z"}
+{"event": "write", "cid": "C30113", "marker": "kept", "ok": true, "problems": [], "ts": "2026-08-19T12:03:08Z"}
+{"event": "write", "cid": "C30115", "marker": "kept", "ok": true, "problems": [], "ts": "2026-08-19T12:03:44Z"}
+{"event": "write", "cid": "C30120", "marker": "kept", "ok": true, "problems": [], "ts": "2026-08-19T12:04:23Z"}
+{"event": "write", "cid": "C30122", "marker": "kept", "ok": true, "problems": [], "ts": "2026-08-19T12:05:38Z"}
+{"event": "write", "cid": "C30125", "marker": "kept", "ok": true, "problems": [], "ts": "2026-08-19T12:07:31Z"}
+{"event": "write", "cid": "C30126", "marker": "kept", "ok": true, "problems": [], "ts": "2026-08-19T12:08:48Z"}
+{"event": "write", "cid": "C30128", "marker": "kept", "ok": true, "problems": [], "ts": "2026-08-19T12:09:20Z"}
+{"ts": "2026-08-19T12:09:38Z", "event": "write", "cid": "C30109", "marker": "kept READY", "ok": true, "problems": [], "note": "write-canary for interim <br> format; verified renders correctly"}
