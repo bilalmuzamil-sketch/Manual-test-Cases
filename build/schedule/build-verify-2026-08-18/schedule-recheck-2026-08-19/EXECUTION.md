@@ -1,6 +1,19 @@
 # Schedule RE-CHECK vs Stefan V's 2026-08-19 deploy — EXECUTION LOG
 
-**Status: BLOCKED at STEP 0 — staging session dead. 0 TestRail writes, 0 Jira, 0 run writes. NOTHING executed.**
+**Status: BLOCKED at STEP 0 — staging session dead (SECOND attempt, resume cookies also dead). 0 TestRail writes, 0 Jira, 0 run writes. NOTHING executed.**
+
+## RESUME ATTEMPT 2 — 2026-08-19 (fresh cookies supplied) — STILL BLOCKED
+The "fresh" `sv_sso_session` supplied on resume is **also expired**. Confirmed live:
+- Cookie file `/tmp/staging-cookie.txt` intact (3 values, 565 bytes); `cf_clearance` VALID — static assets + `index.html` load HTTP 200.
+- Build marker RE-CONFIRMED live at resume: **`v3.8-d0e135e`**, last-modified **Wed, 19 Aug 2026 13:27:07 GMT**, etag `"aa6ea37f82dd0af1b3fe6da5dfd65573"` — byte-identical to attempt 1 (no redeploy between attempts).
+- API auth (browser-UA + Origin/Referer, all attempted):
+  - `GET /api/staff/my-workplaces` → **HTTP 401 `sso_required`**
+  - `GET /api/auth/me/fe-permissions` → **HTTP 401 `sso_required`**
+  - `GET /api/schedule/color-labels` → **HTTP 401 `sso_required`**
+  - `POST /api/quick-login {key:'admin'}` → **HTTP 401 `{"error":"sso_required","sso_redirect_url":"…auth.staging.shopview.com/login…"}`** — quick-login is itself session-gated, cannot bootstrap a dead session.
+- The dead cookie is **`sv_sso_session`** (and/or `PHPSESSID`). `cf_clearance` is fine.
+
+**Still needed to unblock:** a genuinely live `sv_sso_session` (+ matching `PHPSESSID`) for `api.staging.shopview.com` — captured from a real browser session that is currently authenticated (i.e. after logging in through `auth.staging.shopview.com`), not a value that has since expired. The resume plan below is unchanged and still ready to run the instant a working session lands.
 
 ## Build marker (Rule 49/60) — CAPTURED, live
 - App: `app.staging.shopview.com`
