@@ -777,6 +777,33 @@ with `sv_sso_session` and `cf_clearance` **byte-identical** to the set that was 
   block; a literal `—` is re-escaped only when the render still runs). **All paused text-field writes
   stay HALTED; C30133 is re-wrapped and can only be re-fixed via the UI by the QA lead.** Evidence:
   UPDATE-CASE-WRAP-DIAGNOSIS-2026-08-19.md §8; snapshots `/tmp/c30133-retest/{PRE,POST}.json`.
+  **⏱️ RE-DIAGNOSIS 2026-08-19 ~11:35 UTC — STILL ACTIVE; the visible symptom is now RUN-TOGETHER
+  numbered lines, and the ONLY API format that renders as separate lines is embedded `<br>`.** The QA
+  lead reported C30133 "no longer shows `<p>` but the numbered lines run together (no line break after
+  each numbered item)." **Cause:** the block wraps the WHOLE field in a SINGLE `<p>…</p>`, and inside
+  that one `<p>` HTML block TestRail's markdown render turns **NO** internal whitespace into a line
+  break — not `\n`, not `\r\n`, not a blank line `\n\n` (a full battery on C30133 confirmed each stays
+  in one `<p>`, `\n` preserved verbatim, never `<ol>/<li>`; `\n\n` is NOT split into separate `<p>`).
+  So single-`\n`-joined numbered items collapse onto one visual line. **This corrects §5's imprecise
+  "full markdown→HTML render" wording:** the block never built `<ol>/<li>` — it only escapes
+  `&`/`<`/`>`/`—`, preserves recognised inline HTML (`<br>`, `<p>`), single-`<p>`-wraps, appends `\n`.
+  **The clean pre-block cases (C30016/C30096/C30124) render as separate lines ONLY because they are
+  stored PLAIN with NO `<p>` (markdown builds an `<ol>` from `1.\n2.\n3.`).** "`<p>` no longer shows"
+  just means the field IS markdown-rendered (the `<p>` renders as a paragraph, not shown literally).
+  **THE CORRECT WRITE FORMAT:** (1) the **clean/correct house form stays `1. line\n2. line\n3. line`
+  (plain, single `\n`, NO HTML)** — it renders as separate lines only when stored WITHOUT the `<p>`
+  wrap, so **the true fix is TestRail lifting the wrap block; then no writer change is needed.**
+  (2) **INTERIM workaround that renders line-broken DESPITE the block: join numbered items with a
+  literal `<br>`** (`1. line<br>2. line<br>3. line`) — the block PRESERVES `<br>` (does not escape it)
+  and it renders as a break. **Cost: it stores raw HTML `<br>` (+ `&mdash;`; `---` shows literally, no
+  `<hr>` inside the wrap) — the very markup the house style avoids and the `demark.py`/census tooling
+  strips, and it makes `words()` mis-count list markers. Display workaround, not a clean fix.**
+  **RESUME?** clean-form passes: **NO** (still wrap → run-together) — keep HALTED and escalate the API
+  regression to TestRail support; `<br>` form: functionally yes but stores raw HTML — adopt only if
+  the QA lead accepts it as interim. **C30133 was restored with the `<br>` form (renders line-broken),
+  byte-verified round-trip, 0 collateral, refs intact; a UI Edit→Save would make it byte-clean.**
+  Evidence: UPDATE-CASE-WRAP-DIAGNOSIS-2026-08-19.md §9; snapshots
+  `/tmp/c30133-rediag/{CURRENT-BEFORE,PROBE-RESULTS,PROBE2,RESTORED}.json`.
 - **⚠️ DECLARED NORMALISATION #2c — `case_refs` ON A RUN RESULT IS A STORED SNAPSHOT, NOT A LIVE
   MIRROR (found 2026-08-10, Schedule).** Normalisation #2b called `case_refs` a read-time echo. It is
   better described as a **snapshot that catches up when the case is next written**: on 2026-08-10 it

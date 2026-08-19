@@ -161,3 +161,90 @@ passes REMAIN HALTED** — the sweep and the Filters write must NOT resume.
 
 **Scope of writes this re-test:** C30133 only — **1** idempotent `update_case`. 0 other cases,
 0 add/delete/section/run/result, 0 Jira, 0 staging, runs untouched.
+
+---
+
+## 9. RE-DIAGNOSIS — 2026-08-19 ~11:35 UTC — **VERDICT: WRAP BLOCK STILL ACTIVE; the visible symptom is now RUN-TOGETHER numbered lines, and the ONLY API format that renders as separate lines is embedded `<br>`**
+
+**Prompt:** the QA lead reports C30133 **no longer shows `<p>`** but the **numbered lines now run
+together** (no line break after each numbered item). Re-diagnose and find the correct write format.
+
+### 9.1 Current stored state (get_case/30133, before any probe)
+`updated_on 1787138183 = 2026-08-19T11:16:23Z` — i.e. **unchanged since §8's re-test**; nothing had
+UI-changed it. All three fields still `<p>`-wrapped. Decisive detail: `custom_expected`'s numbered
+items are **space-joined into one `<p>`** (`…order. 2. A cell… 3. The Date…`) — that is *why* it
+renders run-together; `custom_steps` keeps `\r\n` between items but is likewise inside one `<p>`.
+
+### 9.2 Probe battery on C30133 (each: `update_case` → re-GET, stored bytes recorded)
+| sent (custom_steps) | stored | what the block did |
+|---|---|---|
+| `1. Alpha\n2. Bravo\n3. Charlie` | `<p>1. Alpha\n2. Bravo\n3. Charlie</p>\n` | outer `<p>` added; internal `\n` **preserved verbatim** — **NOT** `<ol>/<li>`, **NOT** `<br>` |
+| `1. Alpha  \n2. Bravo  \n3. Charlie` (two-space hard break) | `<p>…Alpha  \n2. Bravo  \n…</p>\n` | trailing two spaces preserved; still one `<p>` |
+| `1. Alpha\n\n2. Bravo\n\n3. Charlie` (blank line) | `<p>1. Alpha\n\n2. Bravo\n\n3. Charlie</p>\n` | `\n\n` preserved but **NOT split into separate `<p>` blocks** — all in ONE `<p>` |
+| `\n1. Alpha\n2. Bravo\n3. Charlie` (leading blank) | `<p>1. Alpha\n2. Bravo\n3. Charlie</p>\n` | leading `\n` stripped; one `<p>` |
+| `a & b < c > d` | `<p>a &amp; b &lt; c &gt; d</p>\n` | entities escaped |
+| `x — y — z` (literal em-dash) | `<p>x &mdash; y &mdash; z</p>\n` | `—` → `&mdash;` |
+| `x &mdash; y` | `<p>x &mdash; y</p>\n` | round-trips (no double-escape) |
+| `1. Alpha<br>2. Bravo<br>3. Charlie` | `<p>1. Alpha<br>2. Bravo<br>3. Charlie</p>\n` | **`<br>` PRESERVED (not escaped)** |
+| `<p>already wrapped</p>` | `<p>already wrapped</p>\n` | idempotent (no double `<p>`) |
+
+**Reference clean cases re-read live (unchanged, written BEFORE the block):** C30016 / C30096 /
+C30124 all still store **PLAIN `1.\n2.\n3.` with NO `<p>`**. That form renders as a proper ordered
+list = separate lines — which is why they display correctly and the QA lead has not flagged them.
+
+### 9.3 What the block actually does (corrects §5's imprecise "full markdown→HTML render" label)
+It is **NOT** full markdown block processing — it never builds `<ol>/<li>` and never splits on blank
+lines. It is a **degenerate render**: **escape `&`/`<`/`>`/`—`, preserve recognised inline HTML tags
+(`<br>`, `<p>`), wrap the WHOLE field in a SINGLE `<p>…</p>`, append a trailing `\n`, strip a leading
+`\n`.** This matches §2's own evidence (internal `\n` preserved, NOT `<ol>/<li>`) — so the block has
+**not changed** since 10:45/11:16; only the QA lead's *description* of the symptom changed (from
+"`<p>` shows" to "lines run together").
+
+### 9.4 Why the lines run together (the mechanism)
+Inside a single `<p>` HTML block, TestRail's markdown render **does not convert internal `\n`,
+`\r\n`, or blank-line `\n\n` into line breaks** — they are insignificant whitespace, so every
+numbered item collapses onto one visual line. The clean cases avoid this **only** because they are
+stored **without** the `<p>` wrap (plain `1.\n2.\n3.` → markdown builds an `<ol>` → separate lines).
+The QA lead's "`<p>` no longer shows" simply means the field **is** markdown-rendered (the `<p>` is
+rendered as a paragraph, not shown as literal text); "run together" is that one paragraph.
+
+### 9.5 Conclusions
+**(i) The `<p>`-wrap block is NOT lifted.** Every `update_case` still wraps the field in one `<p>`
+and escapes entities, regardless of content. UI Edit→Save still stores clean; the **API** path is
+still the regression.
+
+**(ii) The exact correct write format:**
+- **CLEAN / correct house form = `1. line\n2. line\n3. line` (plain, single `\n`, NO HTML).** It
+  renders as separate lines **only when stored WITHOUT the `<p>` wrap.** While the block is active
+  the API adds the wrap and this form renders run-together. **So the true fix is TestRail lifting the
+  wrap block — then NO writer change is needed and the house form works unchanged** (proven by every
+  pre-block clean case).
+- **INTERIM API workaround that renders line-broken DESPITE the block: join numbered items with a
+  literal `<br>` tag** — `1. line<br>2. line<br>3. line`. The block **preserves `<br>`** and, because
+  the field is HTML-rendered, `<br>` renders as a line break. **Cost:** it stores raw HTML `<br>`
+  (+ `&mdash;` for em-dashes; `---` shows literally, since `<hr>` is not produced inside the wrap) —
+  exactly the raw markup the house style avoids, it is what the `demark.py`/census tooling strips
+  (which would re-collapse it), and it makes `words()` mis-count list markers. **A display
+  workaround, not a clean fix.**
+
+**Can the paused text-field passes resume?**
+- **With the clean house form: NO** — still wraps → run-together. Keep HALTED pending TestRail
+  lifting the block; then resume unchanged.
+- **With the `<br>` workaround: functionally YES** (renders correctly) but it stores raw HTML and
+  fights the house tooling — adopt **only** if the QA lead accepts HTML `<br>` in storage as an
+  interim. **Recommendation: escalate the API wrap regression to TestRail support** (UI clean / API
+  dirty), keep clean-form passes halted, and use `<br>` only where line-broken display is needed now.
+
+### 9.6 C30133 final state (this re-diagnosis)
+- **Restored to its real content with `<br>` line breaks** so it renders as separate numbered lines
+  (custom_steps: 2 `<br>` → 3 lines; custom_expected: 9 `<br>`; custom_preconds: single line).
+- **Byte-verified:** all four fields round-trip idempotently (stored == sent, block appends only the
+  trailing `\n` on the three markdown fields); **0 collateral field changes** vs the pre-restore
+  snapshot; text preserved word-for-word (marker-agnostic).
+- `refs` intact: `SV-8605 (SBC spec v20 2026-08-17 Story 7 S7-R8; S7-R9; S7-R10; S7-R15; S7-R16)`.
+- If the QA lead prefers it **byte-clean** (no `<br>`), a **UI Edit→Save** stores it clean (the UI
+  path is unaffected by the block).
+- Snapshots: `/tmp/c30133-rediag/{CURRENT-BEFORE,PROBE-RESULTS,PROBE2,RESTORED}.json`.
+
+**Scope of writes this re-diagnosis:** C30133 only — 10 probe/restore `update_case` writes. 0 other
+cases, 0 add/delete/section/run/result, 0 Jira, 0 staging, runs untouched.
