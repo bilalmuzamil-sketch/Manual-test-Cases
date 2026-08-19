@@ -153,3 +153,13 @@ deviation and C30138's open invoice-link PO question).
 
 **Note (correction for the register):** the live `custom_atmstatus` for these differs from the stale
 `SBC-EXECUTION.md` atm column — the 10 above is the authoritative current atm=3 set in this scope.
+
+---
+
+## RESUME UPDATE 2026-08-19 — interim `<br>` format is now on the 36 manual SBC cases
+The manual (atm=1) SBC cases are written in the **interim `<br>` line-break format** (TestRail API
+still wraps markdown; QA lead accepted `<br>` as interim, verified on C30133). When you automate these,
+note the tester-facing text stores literal `<br>` between numbered lines + the `---` separator + the
+Rule-54 provenance line + the `AUTOMATION:` marker. This is **cleanup debt** — it will be demarked to
+plain numbered text once the TestRail API markdown-wrap regression is fixed. The **10 Automated (atm=3)**
+SBC cases remain HELD (0 writes) pending your ratification — see SBC-SWEEP-HELD-AUTOMATED.md.

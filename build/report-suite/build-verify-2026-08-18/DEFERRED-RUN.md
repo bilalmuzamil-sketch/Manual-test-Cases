@@ -203,3 +203,21 @@ fields — see SBC-SWEEP-EXECUTION.md headline; the re-stamp deliverable could n
   (broken-logo fallback).
 - **Invoice-link PO question** (C30100, C30138, C30139, C30140, C43558) — trigger = Chris Ward's answer,
   not a redeploy.
+
+---
+
+## RESUME UPDATE 2026-08-19 — deferred set RESOLVED down to genuine dependencies
+The interim-`<br>` write pass drove the previously-deferred cases live and cleared most of them:
+- **RESOLVED → READY (written):** C30132 (reverse-invoice exclusion, seeded) · C30137 (duplicate-label
+  `(#1)/(#2)`, seeded) · C30101 (location-access enforcement, verified via Parts-Manager impersonation) ·
+  C43550 (Location never a column-selector toggle; verified structurally + accessible-locations mechanism).
+- **STILL DEFERRED / HOLD (genuine dependencies, re-check trigger stated):**
+  - **C30131** — no-vehicle service WO is **build-blocked** (`work-orders/create` → HTTP 500). Trigger =
+    a build that permits a vehicle-less service WO (may never exist by design).
+  - **C43553** — needs the org logo file **orphaned at the storage layer** (dev/infra). Trigger = a
+    developer producing that state (case sanctions Blocked).
+  - **C43550** — single-location **live LOGIN** not performed (fresh staff unconfirmed; yopmail
+    unreadable via proxy). Trigger = a confirmed single-workplace reports login. Verdict already
+    READY on structural + mechanism evidence.
+  - **C30100/C30139/C30140/C30141/C43558** — invoice-link PO question. Trigger = Chris Ward's answer.
+- **Build note:** redeployed mid-pass `v3.8-da72171` → `v3.8-b7d80dc`; all verdicts PROVISIONAL (Rule 60).

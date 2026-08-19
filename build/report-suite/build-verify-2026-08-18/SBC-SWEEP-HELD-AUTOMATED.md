@@ -27,3 +27,14 @@ set of atm=3 in scope is the 10 below.
 already build-accurate and PASS live (except C38912's carried Location deviation and C30138's PO
 question). When the write path is restored and Rule-71 ratification is given, only a Rule-54 sentence-2
 build re-stamp (`v3.8-da72171`) is owed; no marker or wording change.
+
+---
+
+## RESUME UPDATE 2026-08-19 — still 0 writes (interim-`<br>` write pass did NOT touch these)
+The resume pass wrote all **36 atm=1** cases in the QA-lead-accepted interim `<br>` format, but the
+**10 Automated (atm=3) cases above remain HELD with 0 writes** (Rule 71). They were re-confirmed
+`custom_atmstatus=3` and left untouched. When the QA lead + Vlad ratify, only a Rule-54 sentence-2
+build re-stamp is owed (interim `<br>` form, current build) — no marker or wording change, except
+C38912 (carried Location deviation) and C30138 (invoice-link PO question) which stay as noted.
+**Note:** build redeployed mid-pass `v3.8-da72171` → `v3.8-b7d80dc`; any future re-stamp names the
+build actually observed.

@@ -15,6 +15,34 @@ Source: `build/schedule/build-verify-2026-08-18/{SCHEDULE-PLAN.md, A-EXECUTION.m
 
 ---
 
+## 🆕 2026-08-19 — REPORT SUITE / SBC RE-VERIFY SWEEP COMPLETE: all 36 manual SBC cases WRITTEN in interim `<br>` format
+Source: `build/report-suite/build-verify-2026-08-18/SBC-SWEEP-{EXECUTION,FINDINGS,HELD-AUTOMATED}.md` +
+`sbc-sweep-oplog.jsonl`. The QA lead **accepted the interim `<br>` line-break format** (TestRail API
+still wraps markdown → `<ol>/<li>` cannot be stored; `<br>` renders correctly, verified on C30133). All
+**36 atm=1 SBC cases written + render-verified** (29 READY / 7 HOLD); **10 Automated (atm=3) HELD, 0
+writes**. Four cases newly driven live this run (C30132 reverse-invoice, C30137 dup-label suffix, C30101
+location enforcement, C43550 column-selector). **Run 359 untouched · 0 Jira · 0 foreign.** Build
+redeployed mid-pass `v3.8-da72171` → `v3.8-b7d80dc`; stamps name the observed build; verdicts PROVISIONAL.
+- **SBC-SWEEP-1 — CLEANUP DEBT: 36 SBC cases are written in interim `<br>` format; demark to plain
+  numbered text once the TestRail `update_case` markdown-wrap API regression is fixed** (re-test cheaply
+  by writing a throwaway string to C30133 and re-GET; if no `<p>`, the block has lifted → run
+  `build/markup-regression-2026-08-10/demark.py` + census). Owner: US (on API fix). Since 2026-08-19.
+- **SBC-SWEEP-2 — 5 invoice-link HOLD cases (C30100/C30139/C30140/C30141/C43558)** wait on Chris Ward's
+  answer to the invoice-number link-vs-plain-text question (same as RS-BV-4b). Owner: Chris Ward (via QA
+  lead). Since 2026-08-18.
+- **SBC-SWEEP-3 — 2 genuine-dependency HOLDs:** C30131 (build blocks a no-vehicle service WO → 500;
+  trigger = a build that allows it) · C43553 (broken-logo-file needs storage-layer orphaning, dev/infra;
+  case sanctions Blocked). Owner: dev/build. Since 2026-08-19.
+- **SBC-SWEEP-4 — C43550 single-location live LOGIN not performed** (fresh single-workplace reports staff
+  created but unconfirmed → switch-user 401; yopmail unreadable via proxy). Verdict READY on structural +
+  accessible-locations-mechanism evidence. A confirmed single-location sign-in would close it directly.
+  Owner: QA lead (2nd sign-in, overlaps RS-BV-5). Since 2026-08-19.
+- **Env residue:** 3 ZZAUTOTEST seed WOs left Complete-but-un-invoiced (reversed, so absent from the SBC
+  report) — not fully deletable (Complete-status transition blocked); 1 unconfirmed ZZAUTOTEST staff
+  invite (inert, cannot authenticate). Disposable-env clutter, noted.
+
+---
+
 ## 🆕🆕🆕🆕 2026-08-18, THE SCHEDULE AUG-5 DESIGN-REVIEW RECONCILIATION. **5 CARRYOVER / WHOLE-WO ITEMS THE REVIEW MARKED V1 BUT SPEC v30 IS SILENT ON — NOW ON BRANKO'S FOLLOW-UP SHEET (Qs 4-8), NOT AUTHORED FROM SILENCE.**
 
 Source: `build/schedule/aug5-review-2026-08-17/RECONCILIATION.md`. The 5 August design review

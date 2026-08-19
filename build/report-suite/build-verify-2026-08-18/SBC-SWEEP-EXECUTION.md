@@ -1,5 +1,41 @@
 # SBC RE-VERIFY SWEEP — execution (2026-08-19)
 
+> ## ✅ COMPLETION UPDATE — 2026-08-19 (resume pass, interim `<br>` writes EXECUTED)
+> The write blocker below is real but the QA lead **ACCEPTED the interim `<br>` format** (verified
+> rendering on C30133). **ALL 36 atm=1 SBC cases have now been WRITTEN** in that format and
+> render-verified live. **0 clean-form writes were possible (TestRail API still wraps markdown), so
+> every write uses literal `<br>` line breaks — this is cleanup debt (demark to plain once the
+> TestRail API is fixed).**
+>
+> **CANONICAL TEMPLATE:** C30133's stored `<br>` form (left correct by worker a7a161) — numbered items
+> joined with `<br>`, `<br><br>---<br>` before the provenance, `<br><br>` before the marker.
+>
+> **WRITES (36 atm=1, every one HTTP 200 + normalization-aware re-verify: content words intact,
+> `<br>` breaks present, NO `<ol>/<li>`, marker present):**
+> - **29 READY** — 25 verified-PASS carried on same build marker (`v3.8-da72171`) + 4 newly driven live
+>   this run: **C30132** (reverse-invoice exclusion, seeded), **C30137** (duplicate-label `(#1)/(#2)`,
+>   seeded), **C30101** (location-access enforcement, verified via Parts-Manager impersonation),
+>   **C43550** (Location never a column-selector toggle — verified on admin + mechanism).
+> - **7 HOLD** — C30100/C30139/C30140/C30141/C43558 (invoice-link PO question, legitimate);
+>   **C30131** (build blocks a no-vehicle service WO — create returns 500); **C43553** (broken-logo-file
+>   is a storage/infra state, not app-seedable, org-level shared-env risk; case sanctions Blocked).
+> - **Verification is NORMALIZATION-AWARE** (Rule 50 declared-normalization clause): the `<p>` wrapper,
+>   trailing `\n`, and `&`/`<`/`>`/`—`→entity escaping are the documented block transform and are NOT
+>   treated as mismatches; a batch halts only on a genuine CONTENT change or `<ol>/<li>` corruption.
+>   Census of all 36: **0 `<ol>/<li>`, exactly 1 marker + 1 provenance + 1 `v3.8-da72171` stamp + `<br>`
+>   present on every case.**
+> - **10 Automated (atm=3) HELD — 0 writes** (Rule 71), see SBC-SWEEP-HELD-AUTOMATED.md.
+>
+> **🔴 BUILD REDEPLOYED MID-PASS:** start `v3.8-da72171` (last-mod 08:04:00 GMT, etag `7e51cdf1…`) →
+> end **`v3.8-b7d80dc`** (last-mod 13:03:27 GMT, etag `5d27e507…`). Rule-54 sentence 2 names
+> **`v3.8-da72171`** — the build confirmed at pass start and against which the live driving was done.
+> Per Rule 60 this is the ordinary non-final-branch consequence; **all verdicts remain PROVISIONAL.**
+>
+> **Run 359 UNTOUCHED** (0 run writes; only `update_case`; include_all False; 6 passed/502 untested).
+> **0 Jira. 0 foreign** (all 36 `created_by=3`; the 10 atm=3 not written).
+> **Per-op log:** `sbc-sweep-oplog.jsonl`. Executor `/tmp/testrail/{sbc_exec,run_batch}.py`; seed
+> helper `/tmp/seed.py`.
+
 **Goal:** individually build-verify (Rule 74) every SBC case NOT already freshly re-stamped in the
 2026-08-18 pass — the ~10 HOLD + the ~36 "present but not individually re-stamped" — so all are
 runnable for the manual QA, seeding data / logging in as needed (no data/login skips).

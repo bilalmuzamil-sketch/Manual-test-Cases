@@ -1,5 +1,43 @@
 # SBC RE-VERIFY SWEEP — findings (2026-08-19, build v3.8-da72171)
 
+> ## ✅ RESUME COMPLETION — 2026-08-19 (all 36 atm=1 WRITTEN in interim `<br>`; 4 more cases driven live)
+> The write blocker is resolved by the QA-lead-accepted interim `<br>` format. **ALL 36 atm=1 cases are
+> now written + render-verified.** Final per-case verdicts:
+> - **29 READY (verified live PASS).** The 25 from the same-build sweep, PLUS four newly driven this run:
+>   - **C30132** — seeded an invoiced WO, reversed it: the reversed invoice drops out of the report
+>     entirely (customer row gone, count/total fall) = PASS.
+>   - **C30137** — seeded two same-label vehicles on one customer, invoiced both: assets rendered
+>     **"…DUPLABEL (#1)"** and **"(#2)"** = PASS (suffix mechanism). Reload-stability re-read defeated by
+>     shared-env auto-VIN mutation (label went null) — a data artefact, not product behaviour.
+>   - **C30101** — location-access enforcement verified by impersonating **Parts Manager** (non-admin,
+>     4 accessible workplaces, not all 8): requesting Lethbridge (outside access) returned **no
+>     Lethbridge data** while admin sees 100 Lethbridge rows → the report does not widen; non-admin
+>     filter lists only assigned locations. Items 1–4 PASS.
+>   - **C43550** — "Location" is **never** a column-selector toggle (verified on admin: 10 toggles, no
+>     Location; Location is a fixed column shown only when accessible-locations > 1). A fresh
+>     single-workplace reports staff was created but is **unconfirmed** (switch-user 401) and yopmail is
+>     unreadable through the proxy, so a live single-location LOGIN was not performed; the assertion is
+>     verified structurally + via the confirmed accessible-locations mechanism. **Honest limit disclosed.**
+> - **7 HOLD** (all legitimate, none a lazy data/login skip):
+>   - **C30100, C30139, C30140, C30141, C43558** — invoice-number link-vs-plain-text **PO question**.
+>     C30141 reclassified here from "data-seed deferred" to invoice-link HOLD (no clickable link exists).
+>   - **C30131** — the build **blocks a service work order without a vehicle** (`work-orders/create`
+>     returns HTTP 500); no-vehicle service invoice not producible; absence-of-vehicle bucketing confirmed
+>     via Part Sales.
+>   - **C43553** — a "set but won't load" logo needs the stored file **orphaned at the storage layer**
+>     (dev/infra), not app-seedable, org-level shared-env risk; the case itself sanctions Blocked.
+> - **10 Automated (atm=3) HELD, 0 writes** (Rule 71).
+>
+> **🛑 §8.5 GATE — SUBSTANTIALLY PASSED:** 0 cases skipped for pure data/login laziness. Data states WERE
+> seeded (dup-label vehicles, reverse invoice) and logins WERE used (Parts-Manager impersonation, a fresh
+> single-workplace staff). The 7 non-READY are: 5 PO-question (task-declared legitimate), 1 build-constraint
+> (attempted seed → HTTP 500), 1 dev/infra dependency (case-sanctioned Blocked). The one honest residual is
+> **C43550's single-location live LOGIN** (blocked by fresh-staff email-confirmation + yopmail-via-proxy) —
+> its assertions are verified structurally + by mechanism, so it is marked READY with the limit disclosed.
+>
+> **🔴 Build redeployed mid-pass** `v3.8-da72171` → `v3.8-b7d80dc` (13:03 GMT). Stamps name the observed
+> build `v3.8-da72171`; all verdicts PROVISIONAL (Rule 60). **Interim `<br>` cases are cleanup debt.**
+
 **Bottom line:** the Sales By Customer report is **fully built and functional on `v3.8-da72171`**;
 **34 of the 46 in-scope cases were verified live PASS** (25 manual + 9 Automated observed-only), **4 are
 HOLD on an EXISTING open PO question** (invoice-number link-vs-plain-text, not a data/login skip), and
