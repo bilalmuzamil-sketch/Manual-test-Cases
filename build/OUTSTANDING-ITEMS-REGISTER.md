@@ -71,6 +71,37 @@ untouched (C38923/C43981).**
 
 ---
 
+## 🆕 2026-08-19 — REPORT SUITE / PV RE-VERIFY SWEEP COMPLETE: 36 manual PV cases WRITTEN in interim `<br>` format
+Source: `build/report-suite/build-verify-2026-08-18/PV-SWEEP-{EXECUTION,FINDINGS,HELD-AUTOMATED}.md` +
+`pv-sweep-oplog.jsonl`. Build **`v3.8-d0e135e`** (read live start 13:46Z + write-start 14:04Z + end
+14:12Z, byte-stable; supersedes 8/18's `v3.8-bd246fd`, same-minor bug-fix, Rule 60). The 36 PV cases
+(`created_by=3`, `atm=1`) that carried no fresh build-check were re-stamped in the accepted interim `<br>`
+format + normalization-aware re-verified; **0 anomalies, 0 content changes, 0 marker changes.** Live atm
+re-read found **13 Automated (atm=3), not 8** as the 8/18 doc said — **all 13 HELD, 0 writes** (Rule 71).
+The report was driven live (nav, defaults, all filters + 366-day validation, two-location/special-order
+row model, 20 columns + picker, calc contract Margin%=0-mismatch + movement-vs-billed, CSV export, PDF-500,
+localStorage view, reports gate, dark mode). **Run 359 untouched (508 tests) · 0 Jira (one SV-8818 GET) ·
+3 foreign untouched (C38920/C43567/C43568).**
+- **PV-SWEEP-1 — CLEANUP DEBT: 36 PV cases (+57 SBR +36 SBC) are written in interim `<br>` format; demark
+  to plain once the TestRail `update_case` markdown-wrap API regression is fixed** (re-test via C30133
+  canary; when no `<p>`, run `demark.py` + census). Owner: US (on API fix). Since 2026-08-19.
+- **PV-SWEEP-2 — Ratify the 13 PV Automated (atm=3) cases** (verified live, HELD). Marker changes wanted:
+  C30346 + C30353 lift `Not available`→`READY` (built); C30352 strip stale SV-8938 expect-fail (confirm PO
+  position first); **C30328 needs review** ("All types" vs "Both" + multi-vs-single-select — possible
+  EXPECT-FAIL). Owner: QA lead (Rule 71). Since 2026-08-19.
+- **PV-SWEEP-3 — C30372 (core exclusion) HOLD kept: org has 0 `is_core=true` parts, no part-create
+  endpoint found** (`POST /api/inventory/parts`=405, `/api/catalog/parts`=404). Trigger = a seeded core
+  SKU + movement, NOT a redeploy. Owner: QA lead / seed pass. Since 2026-08-19.
+- **PV-SWEEP-4 — 3 characterized data/integration limits (kept READY, flagged not skipped, Rule 74 §8.5):**
+  C38924 (no fractional-unit sale in data — seed one), C38925 (QuickBooks not confirmably connected —
+  connect QB + fractional sale), C30340 negative branch (no single-location user — admin=8/tech=5; supply
+  one). Owner: QA lead / seed pass. Since 2026-08-19.
+- **PV-SWEEP-5 — 2 EXPECT-FAIL kept (C38885/C43547, SV-8818):** PDF export 500 (CSV works) re-confirmed
+  live; ticket OPEN "TESTING QA" (Jira GET). PDF-content cases (C30382 + PDF sides) blocked by the SV-8818
+  build defect — CSV sides verified. Owner: engineering (SV-8818 fix). Since 2026-08-18.
+
+---
+
 ## 🆕🆕🆕🆕 2026-08-18, THE SCHEDULE AUG-5 DESIGN-REVIEW RECONCILIATION. **5 CARRYOVER / WHOLE-WO ITEMS THE REVIEW MARKED V1 BUT SPEC v30 IS SILENT ON — NOW ON BRANKO'S FOLLOW-UP SHEET (Qs 4-8), NOT AUTHORED FROM SILENCE.**
 
 Source: `build/schedule/aug5-review-2026-08-17/RECONCILIATION.md`. The 5 August design review

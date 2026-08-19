@@ -236,3 +236,26 @@ live. **One case stays deferred** because its feature is not exercisable on this
 Also carried (kept markers, not deferred): C30290/C30320 (SV-8818 over-cap PDF/API row-cap — state not
 reachable at 88 invoices, EXPECT-FAIL kept) and the PO-dependency HOLDs C30310/C30315/C43559
 (invoice-link plain-text-vs-link — trigger = Chris Ward's answer).
+
+---
+
+## PV RE-VERIFY SWEEP 2026-08-19 — 0 genuinely-absent features; 1 HOLD + 3 characterized data/integration limits
+Build `v3.8-d0e135e`. The Parts Velocity report is **fully built** — 0 "feature-not-found" deferrals.
+The sweep re-stamped 36 cases and drove the report live. Cases not driven to their edge state (all
+RUNNABLE; characterized, not skipped — Rule 74 §8.5):
+- **C30372 (PV-CALC-14) — HOLD "no `is_core=true` part exists".** The org has 0 core parts (the 2
+  core-*charge* parts 84-2005/58-12 are `is_core=0` and correctly DO appear); `POST /api/inventory/parts`
+  = 405, `/api/catalog/parts` = 404 (no create endpoint found). **Re-check trigger = a seeded core SKU
+  with movement, NOT a redeploy.**
+- **C38924** — no fractional-unit `units_sold` row in current data. Trigger = a seeded fractional sale
+  (WO/parts-sale line with a fractional qty, invoiced). Kept READY (decimal-preservation feature present).
+- **C38925** — QuickBooks not confirmably connected (`/api/quickbooks/status` + `/api/integrations/
+  quickbooks` = 404). Trigger = a QB-connected org + fractional sale. Kept READY.
+- **C30340 (negative branch)** — no single-location user (admin=8 / tech=5 workplaces; switch-user 400).
+  Trigger = a user with exactly one accessible location. Positive (filter shown) confirmed; kept READY.
+
+Also carried (kept markers, not deferred): C38885/C43547 (SV-8818 PDF-500 — re-confirmed live, ticket
+OPEN "TESTING QA", EXPECT-FAIL kept). PDF-content cases (C30382 + PDF sides of exported-content) blocked
+by the SV-8818 PDF-500 build defect — CSV sides verified.
+- **Build note:** `v3.8-bd246fd` (8/18) → **`v3.8-d0e135e`** (this pass); byte-stable across the pass;
+  all verdicts PROVISIONAL (Rule 60).
