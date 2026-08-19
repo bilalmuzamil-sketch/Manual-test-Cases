@@ -22,4 +22,9 @@ only **coupled with build-verification** + **QA-lead ask-first** (Rule 71 refine
 
 ## Changes this effort made to Automated cases
 
-**none yet** — scoping pass made 0 TestRail writes. Batches append their entries here.
+### Batch A (Navigation · Sidebar · Toolbar · Read-display, 61 cases) — **NONE**
+
+Batch A contained **0 Automated cases** (`custom_atmstatus = 3`). `custom_atmstatus` was captured at
+write time for all 61 (see `a-write-oplog.jsonl`): 40 were `1` (Not Automated), 21 were `4` (Pending),
+0 were `3`. **No Automated case was changed by batch A — nothing to hand to Vlad.** The five Automated
+Schedule cases (C43811, C38847–C38850) are in batches B/C.
