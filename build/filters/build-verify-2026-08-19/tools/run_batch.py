@@ -44,7 +44,9 @@ if __name__=='__main__':
     results=[]
     for item in plan:
         cid=item[0]; action=item[1]; mo=item[2] if len(item)>2 else None
-        ok,rec=process(cid,action,mo)
+        edits=item[3] if len(item)>3 else None
+        if edits: edits={k:tuple(v) for k,v in edits.items()}
+        ok,rec=process(cid,action,mo,edits)
         results.append(rec)
         print(f"C{cid} {action} -> ok={ok} marker={rec['marker'][:45] if rec['marker'] else None} v={rec['v']}")
         if not ok:
