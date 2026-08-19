@@ -279,3 +279,16 @@ Cases kept HOLD as characterized limits (RUNNABLE-in-principle, not skipped — 
 - **C38887 (TU-EXP-09)** — over-cap export refusal: the report is one-row-per-technician (11), so it cannot
   structurally reach the export row cap. Exports verified working at actual size. Trigger = thousands of techs.
 - **Build note:** `v3.8-bd246fd` (8/18) → **`v3.8-d0e135e`** (this pass); byte-stable; verdicts PROVISIONAL.
+
+## WIP RE-VERIFY SWEEP 2026-08-19 — 0 genuinely-absent features; 2 deviation-pending-ticket + 5 characterized limits
+Build `v3.8-d0e135e`. The Work In Progress report is **fully built** (4 tabs, Adjustments column, Column
+Selection, exports) — 0 "feature-not-found" deferrals. 7 HOLD cases re-driven live (RUNNABLE-in-principle,
+characterized, not skipped — Rule 74 §8.5):
+- **C30467 (WIP-COL-02), C43551 (WIP-PERS-05)** — Location is NOT toggleable in the Column Selection control
+  = deviation from the ratified Location rule. HOLD pending a ticket (Jira creation on hold, register H1).
+  One edit from EXPECT-FAIL once authorised.
+- **C30528/C30530/C30531/C30533** — nightly-capture snapshot rows; snapshot-read endpoints all 404, nothing
+  in the product reads the capture back. Trigger = a product surface that reads the snapshot.
+- **C38918** — over-cap download: largest tab is Estimates ~1067 rows, no tab nears the export cap. Trigger =
+  a tab exceeding the export row cap.
+- **Build note:** `v3.8-bd246fd` (8/18) → **`v3.8-d0e135e`** (this pass); byte-stable; verdicts PROVISIONAL.
