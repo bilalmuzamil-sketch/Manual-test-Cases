@@ -735,6 +735,37 @@ with `sv_sso_session` and `cf_clearance` **byte-identical** to the set that was 
   (`custom_mission`, `custom_goals`, `custom_steps_separated`, `custom_testrail_bdd_scenario`) are
   **null on all 753 of our cases**, so they cannot be damaged today — but if any project ever populates
   one, it joins the send-it-every-time list.
+- **🛑🛑 DECLARED HAZARD #6 — `update_case` NOW RENDERS THE MARKDOWN FIELDS TO HTML AND STORES THE HTML
+  ON *EVERY* WRITE — A TESTRAIL-SIDE CHANGE ON 2026-08-19, AND IT IS A HARD BLOCK ON ALL TEXT-FIELD
+  WRITES WHILE ACTIVE (diagnosed 2026-08-19, Report Suite; evidence
+  `build/report-suite/build-verify-2026-08-18/UPDATE-CASE-WRAP-DIAGNOSIS-2026-08-19.md`).**
+  **This is NOT normalisation #3 and NOT hazard #5.** #3 wraps only the fields you OMIT; #5 fires
+  hours later when a run owner works the case in the UI. **This one fires on your OWN write, during
+  the write, on fields you SEND, regardless of content.** `custom_expected` / `custom_preconds` /
+  `custom_steps` (all `format: markdown`, `get_case_fields` HTTP 200) come back **wrapped in
+  `<p>…</p>\n` with `—` escaped to `&mdash;` and `&`/`<`/`>` entity-escaped** — i.e. a full
+  markdown→HTML render, stored.
+  **PROVEN TESTRAIL-SIDE, NOT A METHOD ERROR (this is the important part — do not "fix your payload"):**
+  the **exact Python `tr_client` method that byte-verified CLEAN on 64 Schedule batch-C cases at
+  ~08:30 UTC** (all three text fields sent explicitly, `Content-Type: application/json`, JSON body)
+  **wrapped when re-run at ~10:45 UTC the same day.** A **115-minute change window** is bracketed by
+  the last clean write (C30016, 2026-08-19 08:30:28 UTC) and the first wrapped write (C30133,
+  2026-08-19 10:25:27 UTC). TestRail is hosted (`shopview.testrail.io`); we do not control its version.
+  **NO WRITE METHOD AVOIDS IT — battery on C30133 (the standing canary):** a trivial single word
+  `"plain test line"` → `"<p>plain test line</p>\n"`; a numbered string, hyphens-not-em-dash, and
+  all-three-fields payloads **all wrap**; only sending content that is **already the exact HTML**
+  round-trips idempotently (`"<p>already wrapped</p>"` → unchanged), which just stores the raw-markup
+  defect. So there is **no payload shape that stores the house plain-text form.**
+  **IT IS RENDER-ON-WRITE (STORED), NOT RENDER-ON-READ:** cases not written today (C30016/C30096/
+  C30124) still read back **clean** via the same `get_case`, so the HTML is in storage, not applied at
+  read time — and this project renders the STORED value literally to the manual tester.
+  **WHAT TO DO WHILE IT IS ACTIVE:** **HALT all text-field `update_case` writes** (the SBC sweep's halt
+  was correct, Rule 50). A refs-only or marker-only re-stamp is **also blocked**, because #3 forces you
+  to send all three text fields on every `update_case` and they will wrap. **RE-TEST CHEAPLY before any
+  future write batch:** write a throwaway string to **C30133** and re-GET — if it returns with no
+  `<p>`, the block has lifted; then repair anything wrapped during the block with
+  `build/markup-regression-2026-08-10/demark.py` + a post-batch census (C30133 first). Do not report
+  "0 raw markup" as durable while this is active.
 - **⚠️ DECLARED NORMALISATION #2c — `case_refs` ON A RUN RESULT IS A STORED SNAPSHOT, NOT A LIVE
   MIRROR (found 2026-08-10, Schedule).** Normalisation #2b called `case_refs` a read-time echo. It is
   better described as a **snapshot that catches up when the case is next written**: on 2026-08-10 it
