@@ -27,3 +27,19 @@ marker from the 2026-08-17 authoring pass were **lifted to `AUTOMATION: READY`**
 (C29962 click-to-arm, C43555 Month-view drag) but their features (drag, Month view) ARE built — they
 are recorded as deviations in `B-FINDINGS.md §2`, not as deferred/not-built, and stay `READY` so the
 manual tester runs and records them (§15.1). **Nothing from batch B is on this deferred list.**
+
+---
+
+## Batch C (Events · Conflicts · Capacity · Deletion · Keyboard · Permissions · Edge · Working Hours · Cross-Module · API, 68 cases) — **0 NEW DEFERRED**
+
+Batch C added **no** "feature not found" rows. Every feature area in scope rendered/served live on
+`v3.8-da72171`: events (create-event menu + modal + colored/distinct event cards), conflict detection
+(5 double-booked shifts + `conflicts-pill` + navigable dropdown), capacity bars (bar + OT tag + hover
+breakdown + per-tech detail modal), series-delete scope dialog (3 scopes), undo toast, keyboard
+(Escape/focus-trap), permissions (View tier live via quick-login; tier model via roles API), dark mode,
+responsive panel, business-hours per-day editor, cross-module (WO priority field), and the Schedule API
+(no-pricing + cross-location-404 confirmed). All 64 non-Automated cases were **lifted to / kept
+`AUTOMATION: READY`**. The 4 Automated cases (C38847-50) are HELD (write nothing, `C-HELD-AUTOMATED.md`);
+two of them (C38848/C38849) are **observation-limited by a Staff-admin-table render quirk, which is a
+harness limit — NOT feature absence** (the staff API returns a populated collection), so they are **not**
+deferred/not-built either. **Nothing from batch C is on this deferred list.**

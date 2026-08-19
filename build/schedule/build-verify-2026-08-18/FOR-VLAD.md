@@ -40,3 +40,19 @@ Schedule cases (C43811, C38847–C38850) are in batches B/C.
 The other 65 batch-B cases were `atm=1` (Not Automated) at write time (see `b-write-oplog.jsonl`,
 `atm_at_write` field) — none is Vlad's, so none is a hand-off. **No Automated case was changed by
 batch B.**
+
+### Batch C (Events · Conflicts · Capacity · Deletion · Keyboard · Permissions · Edge · Working Hours · Cross-Module · API, 68 cases)
+
+**Four Automated cases in scope — C38847, C38848, C38849, C38850 — were HELD, NOT changed (write
+nothing).** All four are §5405 Working Hours Settings, flagged `1→3` by Vladimir Tomovic (id 1). A live
+re-check confirmed these are the ONLY `atm=3` cases in batch C.
+
+| C-id | atm (live) | Changed this pass? | Note |
+|---|---|---|---|
+| [C38847](https://shopview.testrail.io/index.php?/cases/view/38847) | 3 (Automated) | **NO — held** | Verified live: business-hours toggle (`toggle_business_hours`) reveals a per-day Mon-Sun From-To editor (`row_business_hours_<day>`, `select_business_hours_from/to_<day>_0`). Marker would lift to `READY` in a coupled ratification pass — **awaiting QA-lead go-ahead** (Rule 71). |
+| [C38848](https://shopview.testrail.io/index.php?/cases/view/38848) | 3 (Automated) | **NO — held** | Per-technician working-hours tab in Edit Staff — could not be driven this session (Staff admin table rendered no rows; staff API returns data → harness limit, not absence). Verify + lift in coupled pass. |
+| [C38849](https://shopview.testrail.io/index.php?/cases/view/38849) | 3 (Automated) | **NO — held** | No-custom-hours inherits shop hours — depends on the per-tech tab (same render limit). Verify + lift in coupled pass. |
+| [C38850](https://shopview.testrail.io/index.php?/cases/view/38850) | 3 (Automated) | **NO — held** | Verified live: `button_add_business_hours_<day>` appends a second range; `button_remove_business_hours_<day>_0` removes it. Marker would lift to `READY` — awaiting go-ahead. |
+
+The other 64 batch-C cases were `atm=1` (Not Automated) at write time (see `c-write-oplog.jsonl`) — none
+is Vlad's, so none is a hand-off. **No Automated case was changed by batch C.**
