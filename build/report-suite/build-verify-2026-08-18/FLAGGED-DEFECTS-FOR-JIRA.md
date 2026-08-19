@@ -10,7 +10,7 @@ Rule-52 eight-item evidence bar. Every ticket named below was read live for stat
 **Count split (your decision column blank on every row):**
 - **26 recommend REOPEN / REFILE** — 25 closed-OBSOLETE tickets that still reproduce on v3.8 + 1 NEW deviation with no ticket.
 - **1 recommend CLOSE-as-fixed (actionable)** — SV-8823 (still OPEN, appears fixed) + a batch of already-closed fixes confirmed.
-- **3 PO QUESTIONS for Chris Ward** — document-vs-document conflicts we will not resolve from the build (Rules 32/57/58).
+- **3 PO QUESTIONS for Chris Ward** — document-vs-document conflicts we will not resolve from the build (Rules 32/57/58). **UPDATE 2026-08-19: Q1 (WIP tab-placement) is RESOLVED by Chris; a new Q4 (WIP per-line aging) is pending — so 3 remain open (Q2, Q3, Q4).**
 - *(Plus **12 cases across PV/IV kept `EXPECT-FAIL (SV-8818)`** — the PDF-export server error, ticket already OPEN; listed at the end, no action beyond confirming SV-8818 stays open.)*
 
 ---
@@ -64,11 +64,14 @@ SV-8880/SV-8972 (Summary/Expanded CSV columns). PV — **SV-8935** (CSV Last Sal
 
 ## CLUSTER 3 — PO QUESTIONS FOR CHRIS WARD (document conflicts — NOT filed as defects)
 
+> **UPDATE 2026-08-19 — Q1 is RESOLVED by Chris Ward** (he tidied the live spec to the line-state model, new S3-R5/S3-R6). A NEW pending-Chris item, **Q4 (WIP per-line aging)**, is added below. Source: `build/report-suite/chris-answers-2026-08-19/WIP-CHRIS-RULINGS-2026-08-19.md`.
+
 | # | Report | The conflict (plain) | Affected C-id(s) | Recommendation | Your decision |
 |---|---|---|---|---|---|
-| Q1 | WIP | **WIP spec self-contradiction:** v22 still carries BOTH placement models — **S2-R4** ("appears once, in one tab") vs the **§3 SV-9027 line-state Key Decision** ("appears in each matching tab"). Our cases follow the line-state model (Chris Ward's 2026-08-18 answer B) + disclose the divergence. Build behaviour NOT_ESTABLISHED (no multi-state WO in data). | [C30456](https://shopview.testrail.io/index.php?/cases/view/30456), [C30458](https://shopview.testrail.io/index.php?/cases/view/30458), [C43979](https://shopview.testrail.io/index.php?/cases/view/43979) | Ask Chris to reconcile S2-R4 / Story 3 to the line-state model (spec hygiene). Register RS-WIP-5. | |
+| Q1 | WIP | ~~**WIP spec self-contradiction:** v22 still carries BOTH placement models — **S2-R4** ("appears once, in one tab") vs the **§3 SV-9027 line-state Key Decision** ("appears in each matching tab").~~ **✅ RESOLVED by Chris Ward 2026-08-19** — he tidied the LIVE Confluence page so Story 3 and S2-R4 now describe the line-state model (new S3-R5, S3-R6). Our cases already follow line-state (his 2026-08-18 answer B); the divergence note can be retired. **Still owed: pull the live page (local baseline v22 is behind) — register RS-WIP-6.** | [C30456](https://shopview.testrail.io/index.php?/cases/view/30456), [C30458](https://shopview.testrail.io/index.php?/cases/view/30458), [C43979](https://shopview.testrail.io/index.php?/cases/view/43979) | ~~Ask Chris to reconcile S2-R4 / Story 3 to the line-state model.~~ Done — RS-WIP-5 cleared. | **✅ RESOLVED 2026-08-19** |
 | Q2 | SBC / SBR | **Invoice number: link or plain text?** The build renders a plain-text span (`text_sbc/sbr_invoice_<id>`, no href), but the spec states BOTH (S9-N2 link-to-access-denied vs S9-R1a plain-text-no-link). | [C30100](https://shopview.testrail.io/index.php?/cases/view/30100), [C43558](https://shopview.testrail.io/index.php?/cases/view/43558), [C30138](https://shopview.testrail.io/index.php?/cases/view/30138) (+ SBR-LINK cases) | Chase the PO for the intended behaviour. | |
 | Q3 | PV | **Parts Velocity Location-column position** is contested: SV-8938 says "leftmost, before Type", but the spec says two different things (S3-R10 access-gated/toggleable vs S2-R12 scope-tied; the 20 picker columns don't list Location). Column sits 6th on screen + in CSV. | [C38914](https://shopview.testrail.io/index.php?/cases/view/38914), [C30352](https://shopview.testrail.io/index.php?/cases/view/30352) *(held Automated)* | Get Chris Ward's answer on the intended position/toggle **before** reopening or refiling SV-8938. | |
+| Q4 | WIP | **WIP per-line aging (NEW pending-Chris, 2026-08-19).** Chris ruled per-line aging *"isn't built. Please don't build it yet — I'm confirming the intent and will come back to you."* Days Open stays whole-job (S4-R12); both rows of a two-row job show the same number; NO per-line aging asserted. Awaiting his follow-up. | [C30472](https://shopview.testrail.io/index.php?/cases/view/30472) | Chase Chris for the per-line-aging intent (do NOT author until pinned). Register RS-WIP-4 (HOLD). | |
 
 ---
 
@@ -90,5 +93,6 @@ beyond confirming SV-8818 stays open.**
 ## OUTSTANDING — what I need from you
 Nothing is filed. When the Jira-creation hold lifts: **reopen/refile the 26 defects (Cluster 1) one at a time
 against the Rule-73 checklist**, **close the money portion of SV-8823 (Cluster 2) after verifying
-column-selection-in-export**, and **forward Chris Ward the 3 PO questions (Cluster 3)**. All logged in
+column-selection-in-export**, and **forward Chris Ward the remaining PO questions (Cluster 3: Q2, Q3, and the
+new Q4 per-line aging — Q1 is RESOLVED as of 2026-08-19)**. All logged in
 `build/OUTSTANDING-ITEMS-REGISTER.md`.
