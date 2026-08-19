@@ -442,7 +442,21 @@ any endpoint/ID not recorded here or in `CLAUDE.md`** — if only partly known, 
   pencil → Reset to Template → Save. If a role RE-DRIFTS mid-run (concurrent session), reset AGAIN and
   continue (persistently, Rule 26a). Leave roles at template when done. Custom-role reset API:
   `POST /api/roles/{id}` (re-PUT template perms).
-- **Impersonate a role holder (PREFERRED live-role test):** `POST /api/switch-user {user_id}` (user_id =
+- **STAGING ACTION RECIPE: multi-login via Technician role-swap (PREFERRED for any case needing a
+  different role/login — Standing Rule 74 multi-login standard, QA lead 2026-08-19):** instead of
+  creating a new user, swap the role on the **Technician quick-login user**. Steps: **(1)** don't create
+  a user; **(2)** RESET the needed role to template/default and SAVE FIRST — Settings → Roles &
+  Permissions → pencil → Reset to Template → Save, or custom-role API `POST /api/roles/{id}` (re-PUT
+  template perms) (Rule 26); **(3)** assign that reset role to Tech: `POST /api/staff/6fb22c1b-.../change
+  {first_name, last_name, email:'tech@shopview.com', workplace_id:'b3c8c820-...', role_id:<the role>}` →
+  201 (EXACT-match email first; invalid `role_id` → 500 no-persist); **(4)** run the test as the Tech
+  quick-login user (`POST /api/quick-login {key:'tech'}`), observe live; **(5)** AFTER all testing,
+  RESTORE Tech to the **Technician role `131b5274-...`** via the same `/change` call (safety-net
+  `staging-restore-tech.mjs`). Re-read the role live before asserting and re-reset if a concurrent actor
+  drifts it (Rule 26a). Role-change forces re-auth (409 "Session has expired" → re-login; poll
+  fe-permissions). `switch-user` impersonation (below) is the simpler fallback. *Source: CLAUDE.md Rule
+  74 multi-login standard + Rule 26/26a.*
+- **Impersonate a role holder (SIMPLER live-role fallback):** `POST /api/switch-user {user_id}` (user_id =
   staff `id` from `GET /api/staff?limit=200`, which lists `role_label` per staff). End impersonation with
   a fresh admin `login()`. *Source: CLAUDE.md Rule 14 self-seed playbook.*
 - **Create a fresh staff per role (alt):** `POST /api/iam/create {email, firstName, lastName, roleId,

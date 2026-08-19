@@ -641,6 +641,31 @@ the multi-login work, or use a **SEPARATE BROWSER CONTEXT / a FRESH STAFF LOGIN*
 disturbed — **but that safeguard may NEVER become the excuse to skip a case.** If no sibling is live,
 log in freely.
 
+### 8.2a MULTI-LOGIN STANDARD PRACTICE — the Technician-role-swap method (PREFERRED)
+
+**For any case needing a DIFFERENT role / login** (permission cases, role-negatives, second-user
+behaviour), the **preferred, recorded standard** is to swap the role on the **Technician quick-login
+user** rather than create a new user. QA lead's directive, 2026-08-19, verbatim: *"instead of creating
+a new user assign a different role (as needed) to technician quick log-in and use it. before applying a
+role to the technician quick log-in make sure to reset that role to default and save the changes and
+then apply that role to technician. once you are done with All the testing, make sure you apply
+technician role again to the technician."* **The five steps, in order:**
+1. **DO NOT create a new user** — use the Technician quick-login user and swap its role.
+2. **RESET the needed role to its template/default and SAVE the change FIRST** (Rule 26 — guarantees
+   spec-default perms, not drift, before the role is applied).
+3. **ASSIGN that reset-to-template role to the Technician quick-login user.**
+4. **RUN the test as the Technician quick-login user** — observe live with evidence (Rules 12/13).
+5. **AFTER ALL testing is complete, RESTORE the Technician ROLE back to the Technician user** — Tech
+   ends on "Technician".
+
+**`switch-user` impersonation of an existing role-holder is an acceptable SIMPLER FALLBACK**, but the
+Technician-role-swap above (reset-to-template first, restore Tech after) is preferred. On the shared
+staging org, **re-read the role live before asserting and re-reset if a concurrent actor drifts it
+mid-run** (Rule 26a). Concrete ids + endpoints: `build/APP-ACTIONS-PLAYBOOK.md` §G ("STAGING ACTION
+RECIPE: multi-login via Technician role-swap"). **This is part of the §8.5 gate: a multi-login case is
+not "done" until step 5 has restored Tech to the Technician role — never report a pass complete with
+Tech left on a swapped role.**
+
 ### 8.3 HARNESS LIMIT ≠ UN-RUNNABLE
 
 If OUR harness cannot perform a gesture (e.g. a mouse drag — see §6.3, C29962) but a **MANUAL QA can**,

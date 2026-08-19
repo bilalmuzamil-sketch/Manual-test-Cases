@@ -6946,6 +6946,33 @@ deliver the 7-tab management report.
     requirement this rule enforces). Operator form: `build/skills/03-RUN-CHECK.md` §8
     ("No present feature left un-build-verified — seed and log in as needed") and §5.3 (seed, do not
     block; log in as whatever role is needed).
+    **⇒ MULTI-LOGIN STANDARD PRACTICE — THE TECHNICIAN-ROLE-SWAP METHOD (added 2026-08-19, QA lead's
+    EXPLICIT directive; Rule 72's "propose before recording" satisfied — he ordered it saved to the
+    rules AND the skills).** USER DIRECTIVE (2026-08-19, verbatim, his typing preserved because Rule 25
+    applies to his instructions as it does to a spec): *"Regarding multi log in, I would suggest instead
+    of creating a new user assign a different role (as needed) to technician quick log-in and use it.
+    before applying a role to the technician quick log-in make sure to reset that role to default and
+    save the changes and then apply that role to technician. once you are done with All the testing,
+    make sure you apply technician role again to the technician. this should be a standard practice for
+    the test cases where multi login is needed. save this in your rules and skills."*
+    **THIS IS THE PREFERRED, RECORDED STANDARD for any test case needing a DIFFERENT role / login** —
+    permission cases, role-negatives, second-user behaviour. It satisfies §(2) above (log in as needed,
+    never block) using the EXISTING Technician quick-login rather than new-user creation (which on
+    staging needs invite-confirmation). **THE FIVE STEPS, IN ORDER:**
+    **(1) DO NOT create a new user** — use the **Technician quick-login user** and swap its role.
+    **(2) RESET the needed role to its TEMPLATE/DEFAULT and SAVE the change FIRST** (ties Rule 26 — this
+    guarantees the role carries its spec-default permissions, not drift, before it is ever applied).
+    **(3) ASSIGN that reset-to-template role to the Technician quick-login user.**
+    **(4) RUN THE TEST as the Technician quick-login user** — observe live, with evidence (Rules 12/13).
+    **(5) AFTER ALL TESTING IS COMPLETE, RESTORE the Technician ROLE back to the Technician user** —
+    Tech must end on "Technician".
+    **`switch-user` impersonation of an existing role-holder remains an acceptable SIMPLER FALLBACK, but
+    the Technician-role-swap above (reset-to-template first, restore Tech after) is the PREFERRED
+    standard.** On the shared staging org, **re-read the role LIVE before asserting and re-reset if a
+    concurrent actor drifts it mid-run (Rule 26a).** Concrete ids + endpoints:
+    `build/APP-ACTIONS-PLAYBOOK.md` §G ("STAGING ACTION RECIPE: multi-login via Technician role-swap").
+    Ties to Standing Rules 26 (reset roles to template first, then observe), 26a (re-reset on mid-run
+    drift, persistently) and 74 (log in as needed — never skip a case for a login).
 
 ## Project purpose (Custom Roles project)
 Manual test-case authoring + live staging (Verify-in-UI) verification + TestRail
