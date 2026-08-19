@@ -1,5 +1,14 @@
 # OUTSTANDING ITEMS REGISTER — everything we are waiting on, across every project
 
+## ✅🆕 2026-08-19 (LATEST) — FILTERS BUILD-VERIFICATION COMPLETE on build v3.8-d0e135e. The 2-day-waiting tester is UNBLOCKED. `build/filters/build-verify-2026-08-19/`
+The Fabian app-wide filter redesign (spec v21) is fully present on staging. **119 of our cases build-verified live and written** (interim `<br>` format), **5 Automated held** (Rule 71). Live census: READY 99 · EXPECT-FAIL 5 · HOLD 18 · DEFERRED 2 (= the 2 held Automated) · READY-TO-AUTOMATE 104 · 0 raw markup. **57 deferred markers lifted to READY; SV-8875 verified fixed (C29624/25 XF→READY).** Outstanding from this pass:
+- **FLT-BV-1 — QA-lead authorization for the 5 Automated held case edits** (C38877/C29600/C29614/C29618/C29623 — all verified PRESENT/PASS live; C29600 + C29623 owe a DEFERRED→READY lift, all 5 owe a build re-stamp). *Blocks:* their markers stay stale until authorised; then hand case numbers to Vlad (Rule 71/65). Owner: QA lead. Since 2026-08-19.
+- **FLT-BV-2 — DEV-1 empty-state deviation (C29607 [C29607], C38897 [C38897]):** the filtered empty state shows a generic "No work orders match your filters" + one "Clear filters" link — it does NOT name the active filters/search nor offer a separate clear-search. *Blocks:* a QA-lead decision — file a defect (post creation-hold) or scope the two cases down. No Jira filed (Rule 62). Owner: QA lead. Since 2026-08-19.
+- **FLT-BV-3 — `<br>` cleanup debt:** all 119 written Filters cases now store the interim raw `<br>` form (TestRail markdown-wrap block active per `build/report-suite/build-verify-2026-08-18/UPDATE-CASE-WRAP-DIAGNOSIS-2026-08-19.md`). *Blocks:* clean plain-text storage — when TestRail lifts the wrap block, run a demark pass to restore clean numbered lists. Owner: us (when block lifts). Since 2026-08-19.
+- **FLT-BV-4 — XF ticket status not re-verifiable this pass:** SV-8832 (C29616/19/20/34) and SV-8912 (C38889) markers kept (deviation broadly persists); SV-8875 appears FIXED (recommend close). Jira was not readable this session. Owner: QA lead / Vlad confirm. Since 2026-08-19.
+- **FLT-BV-5 — spec v21 not re-fetched live this build-verify pass** (confirmed live 2026-08-18, 1 day old, by the sv9279 pass; Atlassian OTP not in hand). Minor currency caveat; build was this pass's focus. Owner: us next currency pass. Since 2026-08-19.
+- (Unchanged, still owed: **Branko's greyed-vs-hidden Status-chip ruling** for C29609/10/12; **Branko's Parts/Reports product write-up** FAB-1/F8 for the 10 Parts/Reports HOLD cases.)
+
 ## 🆕🆕🆕🆕 2026-08-19 (spec-delta capture — PARTS VELOCITY CSV Aug-17 rule + WIP Story-5 Aug-19 design adoption; reconciliation QUEUED **AFTER Filters**)
 Source: `build/report-suite/spec-deltas-2026-08-19/PV-WIP-DELTAS-2026-08-19.md` (DOCS-ONLY — **no
 TestRail / Jira / staging write**; no test case touched). Two Confluence spec changes the QA lead
