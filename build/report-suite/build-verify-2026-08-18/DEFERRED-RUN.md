@@ -292,3 +292,16 @@ characterized, not skipped — Rule 74 §8.5):
 - **C38918** — over-cap download: largest tab is Estimates ~1067 rows, no tab nears the export cap. Trigger =
   a tab exceeding the export row cap.
 - **Build note:** `v3.8-bd246fd` (8/18) → **`v3.8-d0e135e`** (this pass); byte-stable; verdicts PROVISIONAL.
+
+## IV RE-VERIFY SWEEP 2026-08-19 — 0 genuinely-absent features; 6 SV-8818 EXPECT-FAIL kept + 8 characterized limits
+Build `v3.8-d0e135e`. The Inventory Value report is **fully built** — 0 "feature-not-found" deferrals.
+- **SV-8818 PDF-500 (C30587/30590/30591/30593/30595/C43548)** — re-confirmed live (IV PDF export HTTP 500 on
+  the large view, CSV HTTP 200 ~702 KB); ticket Open/Low. EXPECT-FAIL + symptom block kept; sentence-2
+  re-stamped v3.8-d0e135e. Re-check trigger = SV-8818 fixed.
+- **C30547** — no-category part: part-create endpoint 405/absent, parts require a category. Trigger = a
+  no-category part becomes creatable.
+- **C30577** — one-location user: 0 single-workplace staff, switch-user 400. Trigger = a provisioned
+  one-location test user. Positive half (filter shown) confirmed live.
+- **C30605/C30606/C30607/C30609/C30610/C38892** — nightly-capture/retention: snapshot-read endpoints all 404,
+  server-side job unreadable from the app. Trigger = a product surface that reads the snapshot.
+- **Build note:** `v3.8-bd246fd` (8/18) → **`v3.8-d0e135e`** (this pass); byte-stable; verdicts PROVISIONAL.
