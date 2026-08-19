@@ -56,3 +56,11 @@ re-check confirmed these are the ONLY `atm=3` cases in batch C.
 
 The other 64 batch-C cases were `atm=1` (Not Automated) at write time (see `c-write-oplog.jsonl`) — none
 is Vlad's, so none is a hand-off. **No Automated case was changed by batch C.**
+
+---
+
+## 2026-08-19 RE-CHECK (build v3.8-d0e135e)
+No Automated (atm=3) case was changed. The 5 ours (C43811, C38847-C38850) stay HELD (Rule 71) — none
+lifted to READY this pass (C43811's Assign-Work-Order menu item was re-confirmed present live; the 4
+Working-Hours cases were not re-driven). The 4 foreign cases (C43569/43570/43571/43980) are untouched
+(Rule 38). **No hand-off this pass.**
