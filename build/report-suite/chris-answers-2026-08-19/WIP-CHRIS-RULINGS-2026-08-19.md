@@ -138,3 +138,97 @@ respect that.
 - **NEW source-currency item:** pull the LIVE WIP Confluence page (pageId 703660034) — local baseline
   v22 is behind (new S3-R5/S3-R6/S11-R1 line-state) — then run the WIP reconciliation pass. QUEUED
   after the TU + WIP + IV sweep.
+
+---
+
+# Chris Ward — WIP PO 2nd message, 2026-08-19 (captured verbatim + interpreted)
+
+> **DOCS-ONLY.** Nothing written to TestRail / Jira / staging. This is Chris's **SECOND** WIP message
+> of 2026-08-19 and it **SUPERSEDES / FINALISES the earlier "confirming intent, will come back to you"
+> note in Ruling 2 above** (per-line aging). Authoritative source (c) under Standing Rule 57, newest
+> product source (Rule 32).
+>
+> **Spec currency (Rule 31/59): Chris pins the LIVE WIP page at Confluence version 24** — the stray
+> per-line-aging line "is gone as of page v24", and S11-R7 has been rewritten. So the RS-WIP-6 pull is
+> now a **v24** pull (local baseline v22), and the reconciliation must additionally RE-CHECK **S11-R7**.
+
+## 2nd message — verbatim
+
+> **[1]** "Aging is per job, and that's final. Days Open is whole days since the work order's date.
+> On a job that produces two rows — its status tab plus Estimates — both rows show the same number.
+> That's correct behavior, not a bug: the money splits by line state, the clock doesn't. The spec's
+> stray line about unapproved lines ageing from the line's creation date is gone as of page v24, so
+> nothing conflicts now."
+>
+> **[2]** "A separate Quote Age column will come later — SV-9372, Parth's build, and not started yet.
+> Nothing to test there for now; just don't file the shared Days Open value as a defect in the
+> meantime."
+>
+> **[3]** "Worth a look while you're in Story 11: S11-R7 was wrong and is now fixed. It said no screen
+> reads the snapshot. It does — pick any earlier 'as of' date and the report reconstructs that day
+> from the nightly snapshot (S7-R8a). Only the trend view is unbuilt. If you tested against the old
+> wording, that's a real behavior to re-check."
+
+## Plain-English interpretation — what our WIP cases must assert
+
+### [1] AGING = PER JOB, FINAL (this closes the RS-WIP-4 HOLD)
+- **Days Open = whole days since the work order's date, PER JOB** — **FINAL**, no longer "confirming
+  intent".
+- A two-row job (status tab + Estimates) shows the **SAME Days Open number on both rows** — *"the money
+  splits by line state, the clock doesn't."* This shared number is **CORRECT behaviour, not a bug.**
+- **Per-line aging (an unapproved line ageing from its own line date) is GONE from the spec as of
+  page v24** — the stray line is removed, so there is **no conflict to disclose** anymore.
+- **⇒ Any WIP aging case asserts per-job Days Open + both rows the same number, and must NOT flag the
+  shared Days Open value as a defect.** The Rule-56 divergence framing around the stray line is retired.
+- **Maps to (read-only):** **WIP-COL-07 = [C30472](https://shopview.testrail.io/index.php?/cases/view/30472)**
+  — reconciliation adds "both rows of a two-row job show the same Days Open number; this is correct, not
+  a defect", keeps whole-job S4-R12, asserts NO per-line aging.
+
+### [2] QUOTE AGE column = FUTURE (SV-9372, Parth, NOT STARTED)
+- A separate **Quote Age** column is **future work — [SV-9372](https://shopview.atlassian.net/browse/SV-9372),
+  Parth's build, not started.** **Nothing to test now.**
+- **⇒ If any WIP case touches a Quote Age column, mark it feature-not-built / deferred (Rule 69) — do
+  NOT file, and do NOT file the shared Days Open value as a defect in the meantime.** No such case
+  exists in the WIP suite today; if one is ever authored it is Rule-69 deferred until SV-9372 ships.
+  Re-check trigger = SV-9372 shipping, NOT a redeploy (Rule 49/61).
+
+### [3] S11-R7 CORRECTED — a screen DOES read the nightly snapshot
+- **S11-R7 was WRONG and is now FIXED (page v24).** The old wording said *no* screen reads the snapshot.
+  In fact a screen **does**: picking any earlier **"as of" date reconstructs that day from the nightly
+  snapshot (S7-R8a)**. **Only the TREND view is unbuilt.**
+- **⇒ Any WIP snapshot / Story-11 case written to the OLD "no screen reads the snapshot" wording must be
+  RE-CHECKED LIVE and updated** to the corrected behaviour (an "as of" date reads/reconstructs the day
+  from the snapshot; only the trend view is out of scope). *"If you tested against the old wording,
+  that's a real behavior to re-check."*
+- **Maps to (read-only) — WIP snapshot / "as of" / Story-11 cases to re-check against S11-R7/S7-R8a:**
+  - **WIP-TAB-05 = [C30455](https://shopview.testrail.io/index.php?/cases/view/30455)** — *"There is no
+    Trend / over-time tab or chart"* (refs cite **S11-R7**). The no-trend assertion is CONFIRMED (only
+    trend unbuilt), but re-check that it does NOT also carry the old "no screen reads the snapshot"
+    wording.
+  - **WIP-FLT-05 = [C30502](https://shopview.testrail.io/index.php?/cases/view/30502)** — *"The 'as of'
+    date shows the end-of-day position and reloads when changed"* (refs cite **S7-R8a**) — the direct
+    snapshot-read behaviour; re-verify it reconstructs the earlier day.
+  - **WIP-FLT-04 = [C30501](https://shopview.testrail.io/index.php?/cases/view/30501)** — single "as of"
+    date control.
+  - **WIP snapshot / History family:** **WIP-API-01 = [C30528](https://shopview.testrail.io/index.php?/cases/view/30528)**,
+    **WIP-API-03 = [C30530](https://shopview.testrail.io/index.php?/cases/view/30530)**,
+    **WIP-API-04 = [C30531](https://shopview.testrail.io/index.php?/cases/view/30531)**,
+    **WIP-API-06 = [C30533](https://shopview.testrail.io/index.php?/cases/view/30533)**,
+    **WIP-SCOPE-05 = [C30460](https://shopview.testrail.io/index.php?/cases/view/30460)** (no-data on the
+    as-of date). Confirm none asserts the old "no screen reads the snapshot" wording.
+  - **The live re-check is a build-verify step** (Rules 12/13) — QUEUED with the WIP reconciliation, not
+    performed in this docs-only pass.
+
+## Outstanding after the 2nd message (Standing Rule 36)
+
+- **✅ RS-WIP-4 RESOLVED (per-line aging HOLD LIFTED):** Chris says aging is per job and *"that's
+  final"*; the stray per-line line is **gone from the spec as of v24**. → moved to the register's §7
+  Recently-cleared; WIP-COL-07 (C30472) keeps whole-job Days Open + "both rows same number, correct not
+  a defect". **Do NOT file the shared Days Open value as a defect.**
+- **🆕 SV-9372 — Quote Age column = future / not started (Parth):** nothing to test; any case touching it
+  is Rule-69 deferred; do NOT file the shared Days Open value as a defect meanwhile. Owner: engineering
+  (feature ship). Since 2026-08-19.
+- **↺ RS-WIP-6 UPDATED — the WIP page is at v24 (not just "ahead of v22"), and S11-R7 was rewritten:**
+  the queued reconciliation must pull **v24** and additionally **RE-CHECK the S11-R7 snapshot-read
+  behaviour LIVE** (an "as of" date reconstructs the day via S7-R8a; only the trend view unbuilt).
+  Owner: us (queued pass). Since 2026-08-19.
