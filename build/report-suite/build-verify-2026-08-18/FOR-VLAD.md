@@ -193,3 +193,22 @@ still active; QA lead accepted `<br>`). Tester-facing text stores literal `<br>`
 needs review** ("All types" vs "Both" + multi-vs-single-select — possible EXPECT-FAIL). Note the live
 atm=3 set is **13, not the 8** the 8/18 doc recorded (8/18 atm column was stale); 5 are new since 8/18
 (C30322, C30351, C30354, C30375, C30377).
+
+---
+
+## TU + WIP + IV RE-VERIFY SWEEP 2026-08-19 — interim `<br>` on manual cases + Automated held
+Build **`v3.8-d0e135e`**. Manual (atm=1) cases not already freshly build-verified were re-stamped in the
+interim **`<br>`** format (TestRail API markdown-wrap regression still active; QA lead accepted `<br>`) —
+literal `<br>` between numbered lines = **cleanup debt** to demark once the API is fixed.
+
+**Automated (atm=3) cases HELD — 0 writes, pending ask-first ratification (Rule 71). Live counts supersede
+the stale 8/18 atm columns.**
+- **TU: 9 held** (8/18 said 8) — C30398, C30399, C30401, C30404, C30410, C30424, C30429, C30449, **C38915**
+  (C38915 was written 8/18 as EXPECT-FAIL→READY, since re-flagged Automated). Wanted change: **C30429**
+  asserts the Total Hours link works — the link feature is **still absent**, so on ratification it should go
+  to the deferred `Not available on Build to test Yet` treatment, not READY. See `TU-SWEEP-HELD-AUTOMATED.md`.
+- **WIP: 14 held** (8/18 said 10) — C30451, C30452, C30460, C30462, C30488, C30498, C30506, C30507, C30508,
+  C30510, C30511, C30515, C30518, C30527. See `WIP-SWEEP-HELD-AUTOMATED.md`.
+- **IV: 11 held** (8/18 said 5) — C30534, C30535, C30557, C30563, C30569, C30579, C30580, C30583, C30588,
+  C30603, C30604. Note **C30588** carries the SV-8823 column-selection-in-export sub-claim (not re-verified;
+  held). See `IV-SWEEP-HELD-AUTOMATED.md`.

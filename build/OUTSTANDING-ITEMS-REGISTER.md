@@ -1954,3 +1954,23 @@ not authorable"), **Vlad was right on 7 of 12 rather than 6, and question Q3 on 
 sheet may already be answered by his own spec** — the Rule-55 embarrassment we have had once before.
 **Check the requirement's own text across spec versions (Rule 31 trap (c) — never the page version or
 date), correct `ROW-BY-ROW.md`, and pull the question off Branko's sheet BEFORE it is sent.**
+
+## 🆕 2026-08-19 — REPORT SUITE / TU + WIP + IV RE-VERIFY SWEEP COMPLETE (all 6 reports now swept)
+Build **`v3.8-d0e135e`**. TU 16 written · WIP 7 written · IV 14 written — all interim `<br>` format,
+0 anomalies, run 359 untouched, 0 Jira. atm=3 held: TU 9 · WIP 14 · IV 11 (live re-read; 8/18 atm columns
+were stale). Sources: `build/report-suite/build-verify-2026-08-18/{TU,WIP,IV}-SWEEP-*.md`.
+- **RS-SWEEP-CLEANUP — CLEANUP DEBT: the 37 TU+WIP+IV sweep cases are in interim `<br>` format;** demark to
+  plain once the TestRail API markdown-wrap regression is fixed (owner: QA lead / TestRail support). Same
+  debt class as the SBC/SBR/PV sweeps.
+- **RS-SWEEP-ONELOC — a one-location (single-workplace) test user** is needed for **C30446 (TU-LOC-05)** and
+  **C30577 (IV-*)** — 0 of 19 roster staff are single-workplace and `switch-user` returns HTTP 400 on this
+  env, so the "Location filter hidden for a one-location user" negative half cannot be driven. Positive half
+  (filter shown for multi-location users) confirmed live. Owner: QA lead — provision a one-location test user
+  or accept the characterization. (Same recurring blocker as SBC-SWEEP-4 / PV C30340.)
+- **RS-SWEEP-WIPLOC — Location-rule deviation (C30467 WIP-COL-02, C43551 WIP-PERS-05):** Location is NOT
+  toggleable in the WIP Column Selection control, contrary to the ratified Location rule — re-confirmed live.
+  Needs a Jira ticket (creation on hold, register H1); one edit from EXPECT-FAIL once authorised.
+- **RS-SWEEP-TULINK — Total Hours link (SV-9064) still absent** from the build → 5 TU cases deferred
+  (C30428/30430/30432/30433 + C30431 HOLD). Not a defect; re-check when the link ships.
+- **RS-SWEEP-WIPPO — WIP tab-placement PO question** (S2-R4 vs SV-9027 line-state Key Decision) still owed by
+  Chris Ward — not forced from the build (Rules 32/57/58).
