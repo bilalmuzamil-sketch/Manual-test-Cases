@@ -6869,6 +6869,83 @@ deliver the 7-tab management report.
     miss), 48 (a held item quotes the ruling holding it), 51 (API tickets asked separately), 52 (the
     shape + the eight-item bar), 53 (priority `Medium`), 57 (expected behaviour comes from the document,
     never the build) and 62 (the creation hold; per-ask permission).
+74. **NO PRESENT FEATURE IS LEFT UN-BUILD-VERIFIED — SEED DATA AND LOG IN AS NEEDED; THE ONLY
+    UN-VERIFIED CASE IS A GENUINELY ABSENT FEATURE (all projects).**
+    USER DIRECTIVE (2026-08-19, verbatim, his typing preserved exactly because Rule 25 applies to his
+    instructions as it does to a spec): *"why would you skip build verifying any case … specially when I
+    have told you how critically we need all the tests build verified. also, I told you not to block
+    yourself for data seeding issues and seed data the way you want in staging and QA branches because
+    those are all test accounts/branches. also for multi log in blocked test cases again login as needed
+    and dont get yourself blocked at all. there should not be such big negative surprises that fails me
+    and get me bitten for not getting the test cases Runnable for the QA testers. learn from that, add
+    your learning to the rules and also to the skills."* (Rule 72's "propose before recording" is
+    satisfied — he explicitly instructed this be recorded.)
+    **THE RULE, IN ONE LINE: on a build that is on staging/QA, the ONLY acceptable un-build-verified
+    case is one whose FEATURE IS GENUINELY ABSENT FROM THE BUILD. Everything else is driven live, and a
+    data-state or a login is NEVER the reason a case is skipped.**
+    **(1) BUILD VERIFICATION IS INDIVIDUAL AND EXHAUSTIVE (Rule 50).** EVERY case whose feature is
+    present in the build is **driven live and re-stamped** (Rule 54 sentence 2, *"Last checked against
+    build … on …"*). **"The feature area is confirmed present" is NOT a substitute for verifying each
+    case.** **"Present but not individually re-stamped" is NOT an acceptable outcome and must never be
+    reported as a completed pass — it is UNFINISHED WORK** (Rule 50 Part 1: no sampling, no "the area is
+    covered", the honest report is how many cases had EVERY step verified, stated as N of M on which
+    build marker).
+    **(2) NEVER LEAVE A CASE HOLD / NOT-VERIFIED FOR A DATA-STATE THAT CAN BE SEEDED, OR FOR NEEDING A
+    SECOND / DIFFERENT / ROLE-SPECIFIC LOGIN.** Staging and the QA branches are disposable TEST
+    accounts/branches (Rule 6), so both are self-service and NEVER a blocker:
+    · **SEED any data-state yourself (Rule 14)** — work orders, lines, parts, cores, invoices,
+    multi-state records, POs, deliveries, roles. His words: *"seed data the way you want."*
+    · **LOG IN AS WHATEVER USER / ROLE IS NEEDED to observe role / permission / second-user behaviour**
+    — create a fresh staff per role and self-login, OR impersonate via `switch-user`, OR `quick-login`.
+    His words: *"for multi log in blocked test cases again login as needed and dont get yourself blocked
+    at all."*
+    **⚠️ THIS OVERRIDES the earlier shared-session cautions where they would cause a SKIP.** The prior
+    *"avoid `quick-login`/`switch-user` for shared-session safety"* guidance and the *"accept an honest
+    N-of-M when a second sign-in is needed"* stance are **SUPERSEDED for disposable test envs**: on
+    staging/QA you **self-seed and self-login rather than block.** **The safeguard is PRESERVED, not
+    abolished** — do not rotate a session that ANOTHER OF OUR OWN concurrent workers is actively using;
+    **sequence multi-login work, or use a SEPARATE BROWSER CONTEXT / a FRESH STAFF LOGIN, so a sibling
+    is not disturbed** — **but the concurrency safeguard may NEVER become the excuse to skip a case.**
+    (This refines skill `03` G3 / core §6: the constraint is "don't disturb a live sibling", not "don't
+    log in".)
+    **(3) THE ONLY ACCEPTABLE UN-VERIFIED CASE IS ONE WHOSE FEATURE IS GENUINELY ABSENT FROM THE BUILD**
+    → Rule 69 deferred treatment: keep the `AUTOMATION: Not available on Build to test Yet - Last
+    checked <date>` marker, add the under-development line, log it to the project's `DEFERRED-RUN.md`,
+    and re-check when the feature ships. **Absence is a MEASUREMENT, never an inference** (Rule 12; a
+    "not found" counts only if a probe that COULD fire found nothing — skill `03` §2 probes-that-cannot-
+    fail). A data-state or a login is not absence of a feature.
+    **(4) A HARNESS / TOOLING LIMITATION IS NOT THE SAME AS UN-RUNNABLE.** If OUR automation harness
+    cannot perform a gesture (e.g. a mouse drag) but a MANUAL QA can, **the case stays `READY` and
+    build-accurate/runnable** — record our own auto-observation limit SEPARATELY, but NEVER present a
+    harness limit as *"not runnable"* and NEVER leave the case un-verified for it. Build-accurate labels
+    and steps are still corrected from the build so the manual tester can run it (Rule 9).
+    **(5) THE GOAL, STATED: every delivered case is RUNNABLE by a non-technical manual QA — no negative
+    surprises, nothing left non-runnable, because a skipped case FAILS THE QA LEAD PUBLICLY.** His words:
+    *"there should not be such big negative surprises that fails me and get me bitten for not getting the
+    test cases Runnable for the QA testers."* This is the **enforcement teeth** behind Rules 7/9/28's
+    runnability requirement.
+    **CHECKLIST GATE (the operable form): before reporting a build-verify pass complete, CONFIRM 0 cases
+    were skipped for data-seeding or login reasons.** If any were, the pass is NOT complete — seed the
+    data, log in as needed, and finish them; a case may end un-verified ONLY under (3), genuine feature
+    absence.
+    **RATIONALE, 2026-08-19:** the Report Suite build-verify left **157 cases "present but not
+    individually re-stamped"** plus **~30 on `HOLD` for a second sign-in or an "unseedable" data-state**
+    — the product of an over-cautious orchestration instruction (no `quick-login`/`switch-user`; accept
+    an honest N-of-M for data/login). The QA lead required these all be build-verified: on a disposable
+    test env there is no such thing as an un-seedable data-state or an un-obtainable login, so those
+    were never legitimate blockers, and a case left non-runnable for the manual testers is the negative
+    surprise that bites him in front of the organisation. Ties to Standing Rules 5 (self-service test
+    data/roles), 6 (everything except TestRail is a disposable TEST account — act freely), 14 (never
+    mark NOT-VERIFIED for a missing data-state — seed it; the self-seed playbook), 22 (ask for the live
+    check + access up front — and when access is granted, USE it, do not skip), 26 (reset roles to
+    template first, then observe live per role), 49 (the deferred / re-check queue — a genuinely absent
+    feature is its ONLY legitimate occupant here), 50 (verify EXHAUSTIVELY then EXACT — every present
+    case, every field, no sampling; "swept"/"covered by a label pass" is not verified), 60 (live
+    observation over story status; the branches are FINAL, so a gap is a real defect), 69 (the deferred
+    marker and its lift path — the one permitted un-verified state) and 7/9/28 (the runnability
+    requirement this rule enforces). Operator form: `build/skills/03-RUN-CHECK.md` §8
+    ("No present feature left un-build-verified — seed and log in as needed") and §5.3 (seed, do not
+    block; log in as whatever role is needed).
 
 ## Project purpose (Custom Roles project)
 Manual test-case authoring + live staging (Verify-in-UI) verification + TestRail

@@ -389,6 +389,12 @@ element-centre coordinate** for Quasar.
 **Only after all of that genuinely fails is it a blocker — and then it is fully characterised with
 evidence (endpoint + status + requestId), never a bare "NOT VERIFIED".**
 
+**AND LOGGING IN IS SELF-SERVICE TOO (§8.2, Standing Rule 74).** A case that needs a SECOND / DIFFERENT
+/ role-specific login is **NOT** a blocker: **log in as whatever user or role it needs** — create a
+fresh staff per role and self-login, `switch-user` impersonate, or `quick-login`. The only limit is
+**do not disturb a live sibling** (G3 / core §6) — sequence the work, or use a separate browser context
+/ a fresh staff login. **Never leave a case un-verified for want of a login.**
+
 ---
 
 # 6 · WHEN A DEPLOY DOES AND DOES NOT INVALIDATE A PASS
@@ -594,15 +600,91 @@ Standing Rule 69 in `CLAUDE.md`.
 
 ---
 
+# 8 · 🔴 NO PRESENT FEATURE IS LEFT UN-BUILD-VERIFIED — SEED AND LOG IN AS NEEDED (Standing Rule 74, 2026-08-19)
+
+**QA lead, verbatim (2026-08-19): *"why would you skip build verifying any case … specially when I have
+told you how critically we need all the tests build verified. also, I told you not to block yourself
+for data seeding issues and seed data the way you want in staging and QA branches because those are all
+test accounts/branches. also for multi log in blocked test cases again login as needed and dont get
+yourself blocked at all. there should not be such big negative surprises that fails me and get me
+bitten for not getting the test cases Runnable for the QA testers."***
+
+**THE ONE-LINE STANDARD: on a build that is on staging/QA, the ONLY acceptable un-build-verified case
+is one whose FEATURE IS GENUINELY ABSENT from the build (§7 / Rule 69). A data-state or a login is
+NEVER the reason a case is skipped.**
+
+### 8.1 INDIVIDUAL AND EXHAUSTIVE — "the area is present" is not "the case is verified"
+
+**Every case whose feature is present is DRIVEN LIVE and RE-STAMPED (Rule 54 sentence 2), one at a
+time (core §2 / Rule 50 Part 1).** Confirming a report or a screen exists tells you nothing about
+whether each of its cases runs. **"Present but not individually re-stamped" is UNFINISHED WORK — it is
+never reported as a completed pass.** The honest count is **how many cases had EVERY step verified**,
+as **N of M on which build marker** — never *"swept"*, *"covered by a label pass"*, or *"expected to be
+fine"* (§ THE RUNNABILITY TEST, reporting consequence).
+
+### 8.2 A DATA-STATE OR A LOGIN IS NEVER A BLOCKER — SEED IT, LOG IN AS THE ROLE
+
+**Staging and the QA branches are disposable TEST accounts/branches (core §7.1, Rule 6), so both of
+these are self-service (§5.3, core §7.2, Rule 14) and NEVER a skip reason:**
+- **SEED any data-state** — WOs, lines, cored parts, invoices in any state, multi-state records, POs,
+  deliveries, roles. His words: *"seed data the way you want."*
+- **LOG IN AS WHATEVER USER / ROLE THE CASE NEEDS** to observe role / permission / second-user
+  behaviour — **create a fresh staff per role and self-login, OR `switch-user` impersonate, OR
+  `quick-login`.** His words: *"for multi log in blocked test cases again login as needed and dont get
+  yourself blocked at all."*
+
+**⚠️ THIS REFINES G3 / core §6 — the constraint is "DON'T DISTURB A LIVE SIBLING", NOT "DON'T LOG IN".**
+The earlier *"never call `quick-login`/`switch-user`"* caution and the *"accept an honest N-of-M when a
+second sign-in is needed"* stance are **SUPERSEDED where they would cause a SKIP.** The safeguard is
+kept: **do not rotate a session another of OUR OWN concurrent workers is actively using** — sequence
+the multi-login work, or use a **SEPARATE BROWSER CONTEXT / a FRESH STAFF LOGIN**, so a sibling is not
+disturbed — **but that safeguard may NEVER become the excuse to skip a case.** If no sibling is live,
+log in freely.
+
+### 8.3 HARNESS LIMIT ≠ UN-RUNNABLE
+
+If OUR harness cannot perform a gesture (e.g. a mouse drag — see §6.3, C29962) but a **MANUAL QA can**,
+the case stays **plain `AUTOMATION: READY`** and build-accurate. **Record our own auto-observation
+limit SEPARATELY** (in `RUNNABILITY.md` / `FINDINGS.md`), but **never present a harness limit as "not
+runnable" and never leave the case un-verified for it.** Correct its labels/steps from the build so the
+tester can run it (§4, Rule 9).
+
+### 8.4 THE ONLY PERMITTED UN-VERIFIED STATE — genuine feature absence (§7 / Rule 69)
+
+A case ends un-verified ONLY when live observation shows its **feature is not in the build** (§7.2 row
+4): keep the `AUTOMATION: Not available on Build to test Yet` marker, add the under-development line
+(§7.3), log it to `DEFERRED-RUN.md` (§7.4). **Absence is a MEASUREMENT, not an inference** — prove the
+detector could fire first (§2). A data-state or a login is not feature absence.
+
+### 8.5 🛑 THE HARD CHECKLIST GATE — before reporting a build-verify pass complete
+
+**CONFIRM 0 CASES WERE SKIPPED FOR DATA-SEEDING OR LOGIN REASONS.** State it explicitly in the pass's
+`FINDINGS.md`. If any were skipped for those reasons, **the pass is NOT complete** — seed the data, log
+in as needed, and finish them. A case may remain un-verified ONLY under §8.4 (genuine feature absence).
+**The goal is the QA lead's stated one: every delivered case RUNNABLE by a non-technical manual QA, no
+negative surprises** — because a case left non-runnable for the testers is the surprise that bites him
+publicly (Rules 7/9/28).
+
+**RATIONALE, 2026-08-19:** a Report Suite build-verify left **157 cases "present but not individually
+re-stamped"** plus **~30 on `HOLD` for a second sign-in or an "unseedable" data-state** — the product
+of an over-cautious orchestration instruction (no `quick-login`/`switch-user`; accept an honest N-of-M
+for data/login). On a disposable env there is no un-seedable data-state and no un-obtainable login, so
+neither was ever a legitimate blocker. **Ties:** core §6 (access; the sibling constraint), core §7.1/7.2
+(disposable env; seed rather than block), Rules 5/6/14/22/26/49/50/60/69 and 7/9/28. Recorded as
+Standing Rule 74 in `CLAUDE.md`.
+
+---
+
 # THE STEPS
 
 1. **Core §0 pass-start checklist**, then **record the BUILD MARKER**: `<meta name="app-version">`,
    `last-modified`, `etag`, UTC time. **Read it again at the end** and state whether it moved. *(A
    pass proved `index.html` byte-identical by sha256 at three separate reads, so nothing redeployed
    under it — that is the shape of the claim.)*
-2. **Establish the session** — core §6. **Probe the `…api.` host. Never call `quick-login` or
-   `switch-user` while a sibling is live**, and if a permission case therefore goes unobserved, **say
-   that is why** rather than pretending it was seeded around.
+2. **Establish the session** — core §6. **Probe the `…api.` host. LOG IN AS WHATEVER USER / ROLE THE
+   CASES NEED (§8.2, Rule 74)** — fresh staff per role, `switch-user`, or `quick-login`. The only limit
+   is **do not disturb a live sibling** (sequence the work, or use a separate browser context / fresh
+   staff login). **A login is never a reason a case goes unobserved.**
 3. **Take the source position from skill `02`.** Expectations are not yours to decide here.
 4. **Reset roles to template** if any case is permission-gated (§5.2) — and **schedule any destructive
    edit LAST** (core §7.3).
@@ -621,6 +703,9 @@ Standing Rule 69 in `CLAUDE.md`.
     **This skill is the likeliest of all seven to breach it**, because correcting steps against the
     build is exactly the activity in which an expectation quietly follows them.
 11. **The "AUTOMATED CASES CHANGED — FOR VLAD" section** (core §5.3), and **OUTSTANDING** (core §13).
+12. **🛑 THE §8.5 CHECKLIST GATE — before reporting complete, CONFIRM in `FINDINGS.md` that 0 cases
+    were skipped for data-seeding or login reasons** (Rule 74). Any that were → not complete: seed, log
+    in, finish. A case may remain un-verified ONLY under §8.4 (genuine feature absence, §7 / Rule 69).
 
 ---
 
@@ -632,7 +717,7 @@ Standing Rule 69 in `CLAUDE.md`.
 |---|---|
 | **`DIVERGENCES.md`** | **WRITTEN EVEN WHEN EMPTY** — see below |
 | `RUNNABILITY.md` | Per case: the five checks, what made the state one where the thing should appear, **the control that proved the detector could fire**, and the verdict |
-| `FINDINGS.md` | What was observed, **with the build marker on every verdict**, and the honest split: how many were driven **this pass** versus carried forward |
+| `FINDINGS.md` | What was observed, **with the build marker on every verdict**, and the honest split: how many were driven **this pass** versus carried forward; **plus the §8.5 gate line — confirm 0 cases were skipped for data-seeding or login reasons (Rule 74)** |
 | `LABEL-DIFF.md` | Per label: the DOM string, the computed `text-transform`, the visible string, the source's text, and the verdict — with checker artefacts named as such |
 | `CHANGES-MADE.md` | Every case touched and what changed |
 | `testrail-execution-log.md` | op · C-id · HTTP · byte-verification result · **and `custom_atmstatus` at write time** |
@@ -661,7 +746,11 @@ name — that is why it is usable evidence rather than a list of edits) ·
 - **G1 — Never invent a step, a label or a route.** If it cannot be confirmed, flag it.
 - **G2 — Never take an expectation from the build**, in any circumstance, including to break a tie
   (core §11.2).
-- **G3 — Never call `quick-login` or `switch-user` while a sibling worker is live** (core §6).
+- **G3 — Never DISTURB a live sibling's session; but DO log in as needed (§8.2, Standing Rule 74).**
+  The constraint is "don't rotate a session another of OUR OWN workers is actively using" — NOT "don't
+  log in". If a sibling is live, sequence the work or use a **separate browser context / fresh staff
+  login**; if none is live, `quick-login`/`switch-user`/fresh-staff freely (core §6). **A login is
+  never a reason to skip a case.**
 - **G4 — Never grade a case Pass or Fail as though it were our verdict to give** (core §1.6). We
   report what is runnable and what diverges; **the tester marks pass or fail.**
 - **G5 — A destructive edit goes LAST, after everything that depends on the session is committed**

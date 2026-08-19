@@ -754,6 +754,12 @@ has no live holder"* are **not blockers** — they are things to create. The sel
 location you change** — see the carve-out immediately below, which is where that obligation actually
 bites.
 
+**🔴 A DATA-STATE OR A LOGIN IS NEVER A REASON TO SKIP A BUILD-VERIFY CASE (Standing Rule 74,
+2026-08-19).** On staging/QA (disposable test envs) you **seed the data AND log in as whatever
+user/role a case needs** — fresh staff per role, `switch-user`, or `quick-login` — the only limit being
+"don't disturb a live sibling" (§6). The **only** acceptable un-build-verified case is one whose
+feature is **genuinely absent** from the build (Rule 69). Operator form: skill `03` §8.
+
 ### 7.3 🛑 ROLES, STAFF RECORDS AND SETTINGS ARE EXCLUDED FROM "SEED FREELY"
 
 They are excluded for two separate reasons, and both are load-bearing:
