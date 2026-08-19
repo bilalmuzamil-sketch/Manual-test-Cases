@@ -108,3 +108,56 @@ store the raw-markup defect this project shows literally to testers.**
 
 **Scope of writes this diagnostic:** C30133 only (6 experiment writes + 1 restore). 0 other cases,
 0 add/delete/section/run/result, 0 Jira, 0 staging.
+
+---
+
+## 8. DECISIVE RE-TEST — 2026-08-19 11:16 UTC — **VERDICT: STILL-WRAPPED (API block NOT lifted)**
+
+**Prompt:** the QA lead manually Edit→Saved C30133 in the TestRail UI and it stored **clean** (the UI
+path is clean). Question: is the **API** path clean now too — can the paused sweep + Filters writes
+resume?
+
+**Field format re-checked (`get_case_fields`, HTTP 200): unchanged — all three still `format:
+markdown`.** No format switch occurred; the block is not a config change.
+
+**What the QA lead's UI save actually stored (read live before the API write, 11:10:48 UTC):** NOT the
+house "plain numbered markdown" — it is the TestRail rich-text editor's **HTML**: `<p>…</p>`, `<br>`,
+`&nbsp;`, and a **literal `—`** (em-dash), NOT `&mdash;`. In a markdown field this HTML *renders*
+cleanly to the tester, which is why he saw it as "clean." So the UI path stores literal-em-dash HTML;
+it does not re-escape.
+
+**The idempotent API round-trip (send the exact 3 live fields + `refs` back, 1 write, HTTP 200,
+11:16:23 UTC) — byte-compared to the pre-write snapshot:**
+
+| field | pre sha256 | post sha256 | result | what the write did |
+|---|---|---|---|---|
+| `custom_preconds` | `18bdd4b92dd6411b` (122 b) | `7cc092bb859bb472` (123 b) | **CHANGED** | re-wrapped + trailing `\n` appended (tail `…&nbsp;<p><br></p></p>\n`) |
+| `custom_steps` | `f778cca6c4383afc` (276 b) | `ca866f2a7b6f85cf` (277 b) | **CHANGED** | trailing `\n` appended |
+| `custom_expected` | `d43b65f18cd1de87` (1074 b) | `eefa7cfd483610c4` (1087 b) | **CHANGED** | **literal `—` re-escaped to `&mdash;`** (2 em-dashes ×6 b + `\n` = +13 b) |
+| `refs` | `22149e5e6fa74fea` (78 b) | `22149e5e6fa74fea` (78 b) | **IDENTICAL** | non-markdown field, unaffected |
+
+**This is the §5 block signature repeating on a fresh write:** render-on-WRITE, `\n` appended,
+`—`→`&mdash;`. Because the input was already HTML with a literal em-dash, the em-dash escape is the
+decisive discriminator — an idempotent write of *pure* ASCII HTML round-trips (variant E), but a
+literal `—` is re-escaped only when the markdown→HTML render still runs. **It ran. The API block is
+still active.**
+
+**CONCLUSION: UI-clean / API-dirty. The API `update_case` path STILL WRAPS/renders markdown fields on
+write. This is a TestRail API-side regression** (UI Edit→Save stores verbatim; the v2 `update_case`
+endpoint does not) — one for TestRail support, since we do not control the hosted version.
+
+**No further writes attempted** (procedure: on STILL-WRAPPED, stop). **All paused text-field write
+passes REMAIN HALTED** — the sweep and the Filters write must NOT resume.
+
+### C30133 final state after the re-test
+- **It was re-wrapped by this single idempotent write** — `custom_expected` now stores `&mdash;` again
+  and all three fields gained a trailing `\n`. This was the expected, pre-authorised cost of the
+  decisive test (only C30133 was writable).
+- **It must be re-fixed via the TestRail UI — only the QA lead can** (Edit→Save restores the clean
+  stored form, as it did at 11:10:48 UTC). No API write can improve it while the block is active.
+- Snapshots: `/tmp/c30133-retest/PRE.json` (QA-lead UI-saved state) · `/tmp/c30133-retest/POST.json`
+  (post-API-write, re-wrapped) · `/tmp/c30133-retest/oplog.json`.
+- `refs` intact and byte-identical throughout.
+
+**Scope of writes this re-test:** C30133 only — **1** idempotent `update_case`. 0 other cases,
+0 add/delete/section/run/result, 0 Jira, 0 staging, runs untouched.

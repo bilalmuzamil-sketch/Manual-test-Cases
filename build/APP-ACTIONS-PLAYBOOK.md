@@ -766,6 +766,17 @@ with `sv_sso_session` and `cf_clearance` **byte-identical** to the set that was 
   `<p>`, the block has lifted; then repair anything wrapped during the block with
   `build/markup-regression-2026-08-10/demark.py` + a post-batch census (C30133 first). Do not report
   "0 raw markup" as durable while this is active.
+  **⏱️ RE-TEST 2026-08-19 11:16 UTC — STILL ACTIVE (block NOT lifted).** The QA lead manually
+  Edit→Saved C30133 in the TestRail UI and it stored clean (literal `—`, HTML `<p>`/`<br>`/`&nbsp;`
+  that *renders* clean), so the **UI path is clean**. But an **idempotent API `update_case`** of that
+  exact content (1 write, HTTP 200) **re-wrapped it**: trailing `\n` appended to all three fields and
+  the literal `—` re-escaped to `&mdash;` in `custom_expected` (1074→1087 b); `refs` byte-identical
+  (non-markdown). **So it is UI-clean / API-dirty — a TestRail API-side regression, for their
+  support.** Fields are still `format: markdown` (no config switch). The literal-em-dash→`&mdash;`
+  escape is the decisive discriminator (pure-ASCII HTML round-trips idempotently even during the
+  block; a literal `—` is re-escaped only when the render still runs). **All paused text-field writes
+  stay HALTED; C30133 is re-wrapped and can only be re-fixed via the UI by the QA lead.** Evidence:
+  UPDATE-CASE-WRAP-DIAGNOSIS-2026-08-19.md §8; snapshots `/tmp/c30133-retest/{PRE,POST}.json`.
 - **⚠️ DECLARED NORMALISATION #2c — `case_refs` ON A RUN RESULT IS A STORED SNAPSHOT, NOT A LIVE
   MIRROR (found 2026-08-10, Schedule).** Normalisation #2b called `case_refs` a read-time echo. It is
   better described as a **snapshot that catches up when the case is next written**: on 2026-08-10 it
