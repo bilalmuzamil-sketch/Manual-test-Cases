@@ -221,3 +221,18 @@ The interim-`<br>` write pass drove the previously-deferred cases live and clear
     READY on structural + mechanism evidence.
   - **C30100/C30139/C30140/C30141/C43558** — invoice-link PO question. Trigger = Chris Ward's answer.
 - **Build note:** redeployed mid-pass `v3.8-da72171` → `v3.8-b7d80dc`; all verdicts PROVISIONAL (Rule 60).
+
+---
+
+## SBR RE-VERIFY SWEEP 2026-08-19 — 1 genuinely-absent-feature case deferred (Rule 69)
+Build `v3.8-b7d80dc`. The SBR report is fully built; the sweep re-stamped 57 cases and drove the report
+live. **One case stays deferred** because its feature is not exercisable on this build/data:
+- **C30311 (SBR-WO-02) — HOLD "this part of the report is not built yet".** The WO-sales-rep-assignment
+  path needs invoices with an assigned rep; every invoice in this org is Unassigned and no rep-assignment
+  surface was located from the report. **Re-check trigger = the WO-rep-assignment UI shipping / a
+  rep-assigned invoice existing, NOT a redeploy.** FLAGGED for review (skill-03 G10): confirm truly
+  absent vs merely unseeded before leaving it HOLD long-term.
+
+Also carried (kept markers, not deferred): C30290/C30320 (SV-8818 over-cap PDF/API row-cap — state not
+reachable at 88 invoices, EXPECT-FAIL kept) and the PO-dependency HOLDs C30310/C30315/C43559
+(invoice-link plain-text-vs-link — trigger = Chris Ward's answer).

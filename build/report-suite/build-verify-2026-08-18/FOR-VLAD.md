@@ -163,3 +163,17 @@ note the tester-facing text stores literal `<br>` between numbered lines + the `
 Rule-54 provenance line + the `AUTOMATION:` marker. This is **cleanup debt** — it will be demarked to
 plain numbered text once the TestRail API markdown-wrap regression is fixed. The **10 Automated (atm=3)**
 SBC cases remain HELD (0 writes) pending your ratification — see SBC-SWEEP-HELD-AUTOMATED.md.
+
+---
+
+## SBR RE-VERIFY SWEEP 2026-08-19 — interim `<br>` on the 57 manual SBR cases + 14 Automated held
+The 57 manual (atm=1) SBR cases not already freshly build-verified are now re-stamped on
+**`v3.8-b7d80dc`** in the **interim `<br>` line-break format** (TestRail API markdown-wrap regression
+still active; QA lead accepted `<br>`). Tester-facing text stores literal `<br>` between numbered lines,
+`<br><br>---<br>` before the Rule-54 provenance, and `<br><br>` before the `AUTOMATION:` marker — this is
+**cleanup debt**, to be demarked to plain once the TestRail API is fixed.
+
+**14 SBR Automated (atm=3) cases remain HELD (0 writes)** pending ratification — see
+`SBR-SWEEP-HELD-AUTOMATED.md`. **C30221** wants a marker lift (expand-tree now built); the other 13 are
+already `READY`. Note the live atm=3 set is **14, not the 4** the 8/18 doc recorded (8/18 atm column was
+stale).

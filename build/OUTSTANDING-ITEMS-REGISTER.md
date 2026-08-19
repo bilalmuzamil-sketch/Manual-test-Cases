@@ -41,6 +41,32 @@ redeployed mid-pass `v3.8-da72171` → `v3.8-b7d80dc`; stamps name the observed 
   report) — not fully deletable (Complete-status transition blocked); 1 unconfirmed ZZAUTOTEST staff
   invite (inert, cannot authenticate). Disposable-env clutter, noted.
 
+## 🆕 2026-08-19 — REPORT SUITE / SBR RE-VERIFY SWEEP COMPLETE: 57 manual SBR cases WRITTEN in interim `<br>` format
+Source: `build/report-suite/build-verify-2026-08-18/SBR-SWEEP-{EXECUTION,FINDINGS,HELD-AUTOMATED}.md` +
+`sbr-sweep-oplog.jsonl`. Build **`v3.8-b7d80dc`** (read live start+end; supersedes 8/18's `v3.8-bd246fd`,
+same-minor bug-fix, Rule 60). The 57 SBR cases (`created_by=3`, `atm=1`) that carried no fresh build-check
+were re-stamped in the accepted interim `<br>` format + normalization-aware re-verified; **0 anomalies,
+0 content changes, 0 marker changes.** Live atm re-read found **14 Automated (atm=3), not 4** as the 8/18
+doc said — **all 14 HELD, 0 writes** (Rule 71). **Run 359 untouched (508 tests) · 0 Jira · 2 foreign
+untouched (C38923/C43981).**
+- **SBR-SWEEP-1 — CLEANUP DEBT: 57 SBR cases (+36 SBC) are written in interim `<br>` format; demark to
+  plain once the TestRail `update_case` markdown-wrap API regression is fixed** (re-test via C30133
+  canary; when no `<p>`, run `demark.py` + census). Owner: US (on API fix). Since 2026-08-19.
+- **SBR-SWEEP-2 — Ratify the 14 SBR Automated (atm=3) cases** (verified live, HELD). C30221 wants a
+  marker lift (expand-tree built); other 13 already READY. Owner: QA lead (Rule 71). Since 2026-08-19.
+- **SBR-SWEEP-3 — 3 defect reopens/closes flagged (Jira hold H1):** SV-8973 (empty-state wording, C30298)
+  + SV-8975 (icon aria-labels, C30307) still reproduce → reopen/refile; SV-8823 (CSV money, C30287)
+  looks fixed → confirm & close. Owner: QA lead. Since 2026-08-18.
+- **SBR-SWEEP-4 — 1 genuinely-absent-feature deferred (Rule 69):** C30311 (WO-rep-assignment path; no
+  rep-assigned invoices exist). Trigger = the UI shipping / a rep-assigned invoice, NOT a redeploy.
+  FLAGGED: confirm truly absent vs unseeded. Also C30202 HOLD is a 366-day harness limit (runnable
+  manually) — review whether it should be READY. Owner: QA lead. Since 2026-08-19.
+- **SBR-SWEEP-5 — PO-dependency HOLDs (C30310/C30315/C43559)** wait on Chris Ward's invoice-link
+  plain-text-vs-link answer (same as SBC-SWEEP-2 / RS-BV-4b); C43559 also needs the 2nd non-admin
+  sign-in (RS-BV-5). Owner: Chris Ward / QA lead. Since 2026-08-19.
+- **SBR-SWEEP-6 — 2 EXPECT-FAIL kept (C30290/C30320, SV-8818):** over-cap Expanded-PDF / API row-cap not
+  reachable at 88 invoices. Trigger = a > row-cap data size. Owner: seed on a future pass. Since 2026-08-18.
+
 ---
 
 ## 🆕🆕🆕🆕 2026-08-18, THE SCHEDULE AUG-5 DESIGN-REVIEW RECONCILIATION. **5 CARRYOVER / WHOLE-WO ITEMS THE REVIEW MARKED V1 BUT SPEC v30 IS SILENT ON — NOW ON BRANKO'S FOLLOW-UP SHEET (Qs 4-8), NOT AUTHORED FROM SILENCE.**
