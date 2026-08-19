@@ -19,3 +19,18 @@
 {"event": "write", "cid": "C30150", "marker": "kept", "ok": true, "problems": [], "ts": "2026-08-19T12:16:21Z"}
 {"event": "write", "cid": "C30153", "marker": "kept", "ok": true, "problems": [], "ts": "2026-08-19T12:16:48Z"}
 {"event": "write", "cid": "C30164", "marker": "kept", "ok": true, "problems": [], "ts": "2026-08-19T12:17:25Z"}
+{"event": "write", "cid": "C30179", "marker": "kept", "ok": true, "problems": [], "ts": "2026-08-19T12:20:49Z"}
+{"event": "write", "cid": "C30181", "marker": "kept", "ok": true, "problems": [], "ts": "2026-08-19T12:22:16Z"}
+{"event": "write", "cid": "C30184", "marker": "AUTOMATION: READY", "ok": true, "problems": [], "ts": "2026-08-19T12:24:56Z"}
+{"event": "write", "cid": "C30187", "marker": "kept", "ok": true, "problems": [], "ts": "2026-08-19T12:25:26Z"}
+{"event": "write", "cid": "C30188", "marker": "kept", "ok": true, "problems": [], "ts": "2026-08-19T12:33:58Z"}
+{"event": "write", "cid": "C30189", "marker": "kept", "ok": true, "problems": [], "ts": "2026-08-19T12:34:26Z"}
+{"event": "write", "cid": "C43546", "marker": "kept", "ok": true, "problems": [], "ts": "2026-08-19T12:35:01Z"}
+{"event": "write", "cid": "C39447", "marker": "kept", "ok": true, "problems": [], "ts": "2026-08-19T12:36:39Z"}
+{"event": "write", "cid": "C30132", "marker": "AUTOMATION: READY", "ok": true, "problems": [], "ts": "2026-08-19T12:39:32Z"}
+{"event": "write", "cid": "C30137", "marker": "AUTOMATION: READY", "ok": true, "problems": [], "ts": "2026-08-19T12:40:07Z"}
+{"event": "write", "cid": "C30131", "marker": "AUTOMATION: HOLD - a service work order cannot be created without a vehicle on this build (creating one returns an error), so a no-vehicle service invoice cannot be produced; the absence-of-vehicle bucketing is confirmed via Part Sales", "ok": true, "problems": [], "ts": "2026-08-19T12:43:44Z"}
+{"ts": "2026-08-19T12:44:38Z", "event": "seed_verify", "cid": "C30137", "result": "Seeded 2 vehicles same unit ZZAUTOTEST-DUPLABEL on Aachester Partners, invoiced both. assets drilldown showed (#1)/(#2) suffixes on distinct vehicle keys, same subtotal 47201 = PASS (suffix mechanism). Reload-stability re-read defeated by env auto-VIN mutation (label went None); noted. Marker READY."}
+{"ts": "2026-08-19T12:44:38Z", "event": "seed_verify", "cid": "C30132", "result": "Seeded invoiced WO on Aacastle Services: before absent, after invoice count=1 subtotal=47201, after reverse-invoice(id) row GONE = reversed invoice excluded from every row/count/total = PASS. Marker READY."}
+{"ts": "2026-08-19T12:44:38Z", "event": "probe", "cid": "C30131", "result": "No-vehicle WO create returns HTTP 500 (build mandates a vehicle for a service WO). No-vehicle service invoice NOT producible by build design. Kept HOLD with build-constraint reason; absence-of-vehicle bucketing confirmed via Part Sales."}
+{"ts": "2026-08-19T12:44:38Z", "event": "batch", "result": "PASS cases written+verified interim <br>: 25 total (C30104,109,111,113,115,120,122,125,126,128,129,133,134,145,150,153,164,179,181,184,187,188,189,C43546,C39447). All render-verified (br present, no ol/li, marker present, content words intact)."}
