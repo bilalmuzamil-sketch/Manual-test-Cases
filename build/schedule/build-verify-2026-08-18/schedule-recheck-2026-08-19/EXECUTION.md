@@ -1,64 +1,41 @@
 # Schedule RE-CHECK vs Stefan V's 2026-08-19 deploy — EXECUTION LOG
 
-**Status: BLOCKED at STEP 0 — staging session dead (SECOND attempt, resume cookies also dead). 0 TestRail writes, 0 Jira, 0 run writes. NOTHING executed.**
+**Status: EXECUTING (resume attempt 3 — fresh MATCHED cookies, session ALIVE).**
+Live access confirmed: `GET /api/staff/my-workplaces` → HTTP 200 real data; admin `quick-login` 200 with
+full schedule perms; browser reaches `/schedule` and renders on the new build.
 
-## RESUME ATTEMPT 2 — 2026-08-19 (fresh cookies supplied) — STILL BLOCKED
-The "fresh" `sv_sso_session` supplied on resume is **also expired**. Confirmed live:
-- Cookie file `/tmp/staging-cookie.txt` intact (3 values, 565 bytes); `cf_clearance` VALID — static assets + `index.html` load HTTP 200.
-- Build marker RE-CONFIRMED live at resume: **`v3.8-d0e135e`**, last-modified **Wed, 19 Aug 2026 13:27:07 GMT**, etag `"aa6ea37f82dd0af1b3fe6da5dfd65573"` — byte-identical to attempt 1 (no redeploy between attempts).
-- API auth (browser-UA + Origin/Referer, all attempted):
-  - `GET /api/staff/my-workplaces` → **HTTP 401 `sso_required`**
-  - `GET /api/auth/me/fe-permissions` → **HTTP 401 `sso_required`**
-  - `GET /api/schedule/color-labels` → **HTTP 401 `sso_required`**
-  - `POST /api/quick-login {key:'admin'}` → **HTTP 401 `{"error":"sso_required","sso_redirect_url":"…auth.staging.shopview.com/login…"}`** — quick-login is itself session-gated, cannot bootstrap a dead session.
-- The dead cookie is **`sv_sso_session`** (and/or `PHPSESSID`). `cf_clearance` is fine.
+## Build marker (Rule 49/60) — LIVE, read at session start
+- App: `app.staging.shopview.com`, `<meta name="app-version">` = **`v3.8-d0e135e`** (Stefan's 2026-08-19 UI deploy)
+- `last-modified`: **Wed, 19 Aug 2026 13:27:07 GMT**, `etag`: `"aa6ea37f82dd0af1b3fe6da5dfd65573"`
+- Prior batch A/B/C build was `v3.8-bd246fd`/`da72171` → **same v3.8 minor = bug-fix redeploy (Rule 60)**,
+  so all Schedule verdicts remain **PROVISIONAL** and layer-1/layer-2 (labels + verdict) get re-observed.
+- Location = **Staging Heavy Duty - 9919** (`b3c8c820-…`, America/Edmonton), org d55bc308.
 
-**Still needed to unblock:** a genuinely live `sv_sso_session` (+ matching `PHPSESSID`) for `api.staging.shopview.com` — captured from a real browser session that is currently authenticated (i.e. after logging in through `auth.staging.shopview.com`), not a value that has since expired. The resume plan below is unchanged and still ready to run the instant a working session lands.
-
-## Build marker (Rule 49/60) — CAPTURED, live
-- App: `app.staging.shopview.com`
-- `<meta name="app-version">` = **`v3.8-d0e135e`** (the new Stefan deploy; matches the task's expected marker)
-- `last-modified`: **Wed, 19 Aug 2026 13:27:07 GMT**
-- `etag`: `"aa6ea37f82dd0af1b3fe6da5dfd65573"`
-- Read at start AND end of this attempt — **byte-identical both times, no redeploy under the attempt.**
-- vs prior batch build `v3.8-bd246fd`: **same minor (v3.8) = bug-fix redeploy (Rule 60), so all Schedule verdicts remain PROVISIONAL** and every layer-1/layer-2 claim needs re-observation.
-
-## THE BLOCKER (Rule 12 / 22 / 36) — fresh cookies required
-The cookies supplied in the task's STEP 0 are already **expired/invalid**:
-- `GET /api/staff/my-workplaces` (both browser-UA and plain) → **HTTP 401 `{"error":"sso_required"}`**
-- `GET /api/auth/me/fe-permissions` → **HTTP 401 `sso_required`**
-- `GET /api/schedule/color-labels` → **HTTP 401 `sso_required`**
-- `POST /api/quick-login {key:'admin'}` (with browser UA + Origin/Referer) → **HTTP 401 `sso_required`**
-  — quick-login is itself session-gated, so it **cannot bootstrap** a dead SSO session.
-- Static assets DO load (index.html HTTP 200), so `cf_clearance` is fine — the dead cookie is **`sv_sso_session`**.
-
-**Cause:** Stefan's deploy at 13:27 GMT today expired the staging session (staging cookies die on deploy or ~24h), and the provided `sv_sso_session` is stale. This is the same estate-wide `.qa/.staging.shopview.com` blocker that recurs after every deploy.
-
-**What is needed to unblock:** a fresh live `sv_sso_session` (+ `PHPSESSID`) for `api.staging.shopview.com`, captured after the 13:27 GMT deploy. `cf_clearance` in hand is still valid.
-
-## Why nothing was written this pass
-This is a **RE-CHECK-against-the-new-build** pass — its entire premise is live re-verification against `v3.8-d0e135e`. With no live access:
-- Part 1 (Stefan-changed labels/verdicts) — needs live UI. BLOCKED.
-- Part 2 (re-confirm the 4 defect-sheet items — some may now be fixed) — needs live UI. BLOCKED.
-- Part 3 (Priority-filter fix C29945 re-scope / C29942 tweak) — the wording is document-driven (Branko's 2026-08-19 ruling) and decision-ready, BUT the task requires "Verify live: popover shows only Assignment + Status", and Rule 59 requires re-confirming the build marker at write time. Writing now would stamp cases against a build I have not observed and force a re-touch on resume (Rule 41). **Deliberately deferred to the resume, so all edits go in one live-verified pass.**
-- Part 4 (permission tiers via Technician role-swap) — needs live + role-swap. BLOCKED.
-
-No inference was substituted for observation (Rule 12).
-
-## READY TO EXECUTE THE MOMENT COOKIES ARRIVE (resume plan)
-1. Re-read build marker (start), re-auth, `GET /api/auth/me/fe-permissions` (expect scheduleView/CreateAndEdit/Delete).
-2. **Part 1** — map Stefan's changed areas → cases; drive live; correct label drift; re-confirm verdicts; `<br>` re-stamp to `v3.8-d0e135e`. Watch: Month single-line chips/today-circle/+N-more; Day hour-axis; Week today-tint #E9F5FF; dialogs; toolbar "Search schedule…"; sidebar Lucide conflict icon; **SV-9361** WO-number shop-spliced form (e.g. S3-14083) + search both forms; **SV-9357** 90%-zoom edges; event drag to/from dept placeholder skips reassign modal (toast).
-3. **Part 2** — re-confirm 4 items → update Schedule_Defects-for-Testers_2026-08-19.md (+ flag .xlsx):
-   - C30029 conflict amber-vs-red (Lucide icon added — likely affected).
-   - B3 spread "Couldn't read this shop's working hours" (C29979/80/81/82/83/84, C43802, C43804) — spread single-day preview added.
-   - SV-8870 Month-view drag does nothing (C43555) — Month view reworked.
-   - SV-8957 click-to-arm absent (C29962) — likely still reproduces.
-4. **Part 3** — C29945 RE-SCOPE to negative + C29942 TWEAK (exact text in PRIORITY-FILTER-BRANKO-RULING-2026-08-19.md §3/§4); provenance = Branko 2026-08-19 ruling + epic SV-8685 + story SV-8687; Rule-56 divergence (spec v30 §5.1 still lists Priority; latest wins). Verify popover = Assignment + Status only. `AUTOMATION: READY`. (C29946 optional example tidy.)
-5. **Part 4 (LAST)** — permission tiers (§4279, 13 cases + related) via Technician role-swap: per role → reset-to-template + save → assign to Tech quick-login user → quick-login {key:'tech'} → observe View/Edit/Delete/nav-off/WO-dependency → RESTORE Technician role to Tech at END. Do NOT create users.
-6. Automated (atm=3) — C43811, C38847-38850 + any live-re-read atm=3: verify live, WRITE NOTHING → Schedule-RECHECK-HELD-AUTOMATED.md (Rule 71).
-7. `<br>` format (C30133 template), byte/normalization-verify each write (Rule 50), commit+push per sub-batch ≤10 with schedule-recheck-oplog.jsonl. Run 357 UNTOUCHED. 0 Jira. Restore Tech→Technician + location at END.
-
-## Scope reference (read this pass, read-only, no live)
-- Group 4254 "Schedule - 2026": 195 cases, all ours (0 foreign), 5 Automated (C43811, C38847-38850) HELD.
+## Scope reference
+- Group 4254 "Schedule - 2026": **199 cases live · 195 ours (created_by=3) · 4 FOREIGN (Vlad id 1: C43569/43570/43571/43980 — untouched, Rule 38).**
+- **5 OUR Automated (atm=3) HELD, write nothing (Rule 71):** C43811, C38847, C38848, C38849, C38850.
 - Permission section 4279 "Permissions" = 13 cases (Part 4).
 - Spec Confluence v30 CURRENT; epic SV-8685.
+
+## Format / verification
+- Interim **`<br>` format** (TestRail wrap block ACTIVE; C30133 template). Executor: `/tmp/sched-rc/brexec.py`.
+- Rule-50 declared-normalization verify: canonical-equivalence compare (block = wrap `<p>`, escape `&<>—`,
+  preserve `<br>`, append `\n`). **STOP only on real content change or `<ol>/<li>`.** Frozen fields byte-identical.
+- Oplog: `schedule-recheck-oplog.jsonl`. Run 357 UNTOUCHED. 0 Jira (H1 creation hold).
+
+---
+
+## PART 3 — Priority filter fix (Branko APPROVED) — ✅ DONE
+Branko ruling 2026-08-19 verbatim *"Proceed without it, I'll remove that part from the PRD"*.
+**LIVE verified on v3.8-d0e135e:** the sidebar Filters popover offers **only Assignment (Unassigned 107 /
+Assigned 188) + Status (Approved 276 / Declined 0 / In Progress 0 / Ready for Review 19) — NO Priority group,
+no High/Medium/Low.** (evidence `/tmp/sched-rc/filters-popover.png`.)
+- **C29945 (SCH-FILT-04) RE-SCOPED** → negative: "Schedule filter popover offers only Assignment and Status -
+  no Priority group"; `AUTOMATION: READY`; Rule-54 source = Branko ruling + SV-8685 + SV-8687; Rule-56
+  divergence (spec v30 §5.1 still lists Priority, PO removed, latest wins). refs `SV-8687 (§5.1)`.
+- **C29942 (SCH-FILT-01) TWEAKED** → "The 'Filters' button opens Assignment and Status filter groups"; Expected #1
+  now "two groups"; precond drops "and priorities"; same Branko provenance + Rule-56; `AUTOMATION: READY`.
+- **C29946 (SCH-FILT-05)** precond example "Priority filter" → "Status filter" (consistency tidy).
+- All 3 `<br>`-verified (canon-equiv, no `<ol>`), 0 collateral.
+
+## PART 1 / PART 2 / PART 4 — in progress (see FINDINGS.md)
