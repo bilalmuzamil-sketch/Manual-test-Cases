@@ -15,3 +15,15 @@ Build under test at scoping: **`v3.8-bd246fd`** (2026-08-18 19:57:31 GMT).
 | SCH-DAY-05 | [C30005](https://shopview.testrail.io/index.php?/cases/view/30005) | 4267 Day View Timeline | Shift edge-resize (no fc-event-resizer handles) — SV-8694/SV-9244 §4.8 | 8/18/2026 | v3.8-bd246fd |
 | SCH-DAY-08 | [C43812](https://shopview.testrail.io/index.php?/cases/view/43812) | 4267 Day View Timeline | Day-view pixels-per-hour zoom control — SV-9244 §3.2/§4.6/§4.8/§6 | 8/18/2026 | v3.8-bd246fd |
 | SCH-DAY-09 | [C43813](https://shopview.testrail.io/index.php?/cases/view/43813) | 4267 Day View Timeline | Day-view continuation chevron on a clipped block (NOT-ESTABLISHED: mechanism seen in Week view; day-view clip not producible) — SV-9244 §3.2/§4.6/§4.8/§6 | 8/18/2026 | v3.8-bd246fd |
+
+---
+
+## Batch B (Scheduling core — Drag/Scope/Spread/Shift lifecycle, 66 cases) — **0 NEW DEFERRED**
+
+Batch B added **no** "feature not found" rows. Every feature area in scope rendered live on
+`v3.8-bd246fd`, so all 25 batch-B cases that had carried the `Not available on Build to test Yet`
+marker from the 2026-08-17 authoring pass were **lifted to `AUTOMATION: READY`** (see
+`B-EXECUTION.md` "Marker transitions"). Two cases assert behaviour the build does not perform
+(C29962 click-to-arm, C43555 Month-view drag) but their features (drag, Month view) ARE built — they
+are recorded as deviations in `B-FINDINGS.md §2`, not as deferred/not-built, and stay `READY` so the
+manual tester runs and records them (§15.1). **Nothing from batch B is on this deferred list.**

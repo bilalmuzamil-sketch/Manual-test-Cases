@@ -1,89 +1,93 @@
 # Schedule build-verification — BATCH B execution log (Scheduling CORE)
 
-**Batch B = Drag-to-create · Scope picker · Multi-day spread · Shift lifecycle · Reassignment, 66 cases.**
+**Batch B = Drag-to-create · Scope picker · Shift start times / Unassigned · Multi-day spread ·
+Linked series · Shift block anatomy · Overlap / lane stacking · Shift detail modal · Reassignment /
+context menu — 66 cases.** All driven LIVE against the staging Schedule module, then written with
+65 byte-verified `update_case` operations (C43811 held — Automated).
 
-## STATUS: BLOCKED at pass-start on LIVE STAGING ACCESS — 0 TestRail writes, 0 Jira writes.
+> **STATUS: DONE.** The pass-start BLOCKED note that stood here (a prior fresh-container worker that
+> could not mint a session) is **superseded** — the fresh cookies supplied for this run authenticate
+> (`GET /api/staff/my-workplaces` → HTTP 200, real data), so live verification proceeded normally.
 
-This is a **FRESH container** started 2026-08-19 (~06:30 UTC). The prior batch-B worker died having
-done no work; nothing to resume from them. This log records the fresh start, the exact scope, and the
-one blocker that stops live verification.
-
-## Build under test (marker read live at pass start)
+## Build under test (marker read live at start AND end)
 | | |
 |---|---|
-| App marker (`<meta name="app-version">`, `app.staging.shopview.com/index.html`) | **`v3.8-bd246fd`** — reachable through the proxy, HTTP 200 |
-| Matches | the SCHEDULE-PLAN.md / A-EXECUTION.md marker exactly — the build has **NOT** moved |
-| Read at | 2026-08-19 (~00:40 MDT / ~06:40 UTC) |
+| App marker at pass **start** (`<meta name="app-version">`, `app.staging.shopview.com/index.html`) | **`v3.8-bd246fd`** — last-modified Tue 18 Aug 2026 19:57:31 GMT, etag `c4dd352f91ecfee192844c6a04a643fc` |
+| App marker at pass **end** | **`v3.8-da72171`** — last-modified Wed 19 Aug 2026 06:58:40 GMT, etag `7e51cdf10ae9a5b00cba629186fb41d4` |
+| Marker moved during the pass? | **YES — `v3.8-bd246fd` → `v3.8-da72171`.** Same **v3.8** minor = a **bug-fix deploy** (Standing Rule 60 / skill `03` §6.1): *a same-minor redeploy does NOT make a prior pass stale; the re-check trigger is a specific observed contradiction, never a changed version string.* Every case was observed on **`v3.8-bd246fd`**, and its Rule-54 sentence-2 honestly names that build. No case was re-observed on `v3.8-da72171`. |
+| Location for all observations | **Staging Heavy Duty - 9919** (`b3c8c820-f815-4cf1-8938-10956c5ee71a`, America/Edmonton — the standing default; restored — location was never changed) |
+| Session | `/tmp/staging-cookie.txt` + `/tmp/cln/cookies.json` (ALIVE; `my-workplaces` 200; `fe-permissions` 200 with `scheduleView` · `scheduleCreateAndEdit` · `scheduleDelete`, `view_mode: full`). **NO quick-login / NO switch-user** (sibling-worker safety; batch C runs next). |
+| Observation date stamped (Rule 54 sentence 2) | **8/19/2026** — the live America/Edmonton date during the observation+write window (00:40–01:40 MDT on 19 Aug). |
 
-**The build is reachable and unchanged. The blocker is authentication, not the build.**
+## HOW THE UI RENDERED — boot2 direct-cookie recipe (no quick-login), recreated after the container reset
+`/tmp/schedA/boot.mjs` from batch A was gone (ephemeral `/tmp`). Recreated as `/tmp/schedB/boot.mjs`,
+same recipe: seed `/tmp/cln/cookies.json` cookies into the Chromium context, `POST
+/api/iam/change-location` to Heavy Duty 9919, navigate `/login`, seed `localStorage.user` (from the
+cached `/tmp/seed.json` admin user object) + `localStorage.fe_permissions_wrapper` (from a live `GET
+/api/auth/me/fe-permissions`, 42 perms) + `localStorage.token`, then navigate `/schedule`. Chromium
+went straight through `$HTTPS_PROXY` (no MITM bridge needed this run). The Schedule page, sidebar,
+mini-calendar, grid (Day / Week / Month), toolbar, empty-cell context menu, drag-to-create scope
+picker, multi-day spread surface, shift detail modal, series blocks, conflict blocks, lane stacking
+and tooltips were all screen-observed live.
 
-## 🛑 THE BLOCKER — no live staging session, and one cannot be minted here
-The batch-B live render path was **replicated in full and it genuinely fails at authentication** (so
-this is NOT a "0 writes on a UI block without replicating it" report — the path was driven to the auth
-wall):
+## Scope (Rule 38) — batch B C-id set (66, all ours `created_by = 3`, 0 foreign, 1 Automated held)
+Sections **4260** Drag-and-Drop (11) · **4261** Scope Picker (4) · **4262** Shift Start Times and
+Unassigned (11) · **4263** Multi-Day Spread (14) · **4264** Linked Series and Banners (4) · **4265**
+Shift Block Anatomy (3) · **4266** Overlap and Lane Stacking (4) · **4268** Shift Detail Modal (10) ·
+**4275** Reassignment and Context Menu (5).
 
-| Step attempted | Result |
-|---|---|
-| Probe `/tmp/staging-cookie.txt` | **absent** (ephemeral `/tmp`; the batch-A file is gone with its container) |
-| Probe `/tmp/cln/cookies.json` | **absent** (same) |
-| Best available cookies (`/tmp/_ck.txt`, `/tmp/rs-cookie.txt`, both 2026-08-04, ~15 days old) → `GET https://api.staging.shopview.com/api/staff/my-workplaces` | **HTTP 401** |
-| Fallback `POST https://api.staging.shopview.com/api/quick-login {"key":"admin"}` (with old cookie, and with no cookie) | **HTTP 401** `{"error":"sso_required","sso_redirect_url":"https://auth.staging.shopview.com/login?..."}` |
+`custom_atmstatus` captured at write time for all 66: **65 were `1` (Not Automated)** and **1 was `3`
+(Automated) — C43811, HELD, not written** (Rule 71 / skill §6.4 — see `B-HELD-AUTOMATED.md`). A live
+re-check confirmed C43811 is the ONLY `atm=3` case in batch B.
 
-`quick-login` is itself SSO-gated: without a valid `sv_sso_session` it 401s, so it cannot bootstrap a
-session from nothing. No file anywhere in `/tmp` newer than 2026-08-10 contains a staging cookie
-(swept: `find -newermt`, `grep sv_sso_session`). `/tmp/seed.json` (the `localStorage.user` object,
-2026-08-10) survives but is useless without live cookies.
+## Outcome split (66)
+| Outcome | Count | Notes |
+|---|---|---|
+| **READY** (feature present + runnable on the build; marker set/kept `AUTOMATION: READY`) | **65** | every one observed live; see `B-FINDINGS.md` for the honest N-of-M on the drag-gesture and spread-hours limits |
+| **NOT AVAILABLE / DEFERRED** (Rule 69 — feature not found in build) | **0** | every feature area rendered; no case is "not built" |
+| **EXPECT-FAIL** | **0** | the one EXPECT-FAIL marker (C29962 → SV-8957) lost its backing — **SV-8957 is OBSOLETE** — so per §15.1 the marker came off (plain READY); flagged in `B-FINDINGS.md` |
+| **HOLD** | **0** | the 7 prior HOLDs were all re-verified runnable and lifted (§15.1a — a HOLD on a runnable case disarms it) |
+| **HELD (Automated, not written)** | **1** | C43811 (`atm=3`) — verified live, not edited |
 
-**WHAT IS NEEDED (from the user, via the coordinator):** fresh `.staging.shopview.com` session cookies
-— **`sv_sso_session` + `PHPSESSID` + `cf_clearance`** — dropped into **`/tmp/staging-cookie.txt`**
-(header form) or **`/tmp/cln/cookies.json`** (json form). These are mintable only by the user through
-`auth.staging.shopview.com/login` (Rule 22 access ask; Rule 36 outstanding item).
+### Marker transitions this pass (65 written)
+- **`Not available on Build to test Yet` → READY (25):** C29955, C29958, C29971, C29973, C29974,
+  C29975, C29979, C29980, C29981, C30008, C30009, C30010, C30054, C43795, C43796, C43797, C43799,
+  C43800, C43801, C43802, C43803, C43804, C43805, C43808, C43809 — feature observed present + runnable.
+- **`HOLD` → READY (7):** C29967 (Choose-lines multi-select observed), C29982, C29983, C29984, C29985
+  (spread surface present + series creation proven on the board), C30013 (Add Note control present),
+  C43555 (Month-view drag runnable — its open-PO note is preserved in the provenance sentence 1).
+- **`READY - EXPECT FAIL (SV-8957)` → READY (1):** C29962 — **SV-8957 is OBSOLETE** (read live via
+  Jira), so the marker has no live backing (§15.1). Click-to-arm is genuinely absent; the tester runs
+  the case and records the result. Flagged in `B-FINDINGS.md`.
+- **stayed READY, re-stamped (32):** all other cases confirmed present + runnable.
 
-**Why no work proceeds without them (Rule 12 / skill 03 §7.1):** batch B is the drag/scope/spread/shift
-cluster — its verdicts require driving the SPA and the `/api/schedule/*` endpoints live. Setting or
-lifting any automation marker from anything other than **live observation** is forbidden (skill 03 §6.4
-corollary / Rule 69): a metadata-only TestRail write here would disarm the cases, so **nothing is
-written to TestRail** until a live session exists.
+## Writes — 65 × `update_case`, EVERY ONE HTTP 200 + BYTE-VERIFIED PASS
+- Per-op log: `b-write-oplog.jsonl` (65 rows). **65/65 verify = PASS, 0 FAIL, 0 mismatch — the batch
+  never stopped.**
+- Each write sent all three text fields (`custom_preconds`, `custom_steps`, `custom_expected`);
+  `custom_preconds` and `custom_steps` sent **byte-identical to the pre-write snapshot**. On re-GET,
+  `custom_expected` matched the intended payload and every untouched field (`title`,
+  `custom_preconds`, `custom_steps`, `custom_atmstatus`) was byte-identical.
+- **The testable body of all 65 (title / preconditions / steps / numbered expected-behaviour) is
+  byte-identical old→new** — only the metadata provenance line (Rule-54 **sentence 2** appended:
+  *"Last checked against build v3.8-bd246fd on 8/19/2026."*) and the automation marker moved. The
+  documents-only **sentence 1** (sources + 17 August read-dates) was preserved unchanged.
+- **0 add / 0 delete / 0 section / 0 run writes / 0 result writes / 0 Jira writes.**
 
-## Scope (Rule 38) — batch B C-id set (66, all ours `created_by=3`, 0 foreign) — read-only from TestRail
-Confirmed live via `tr_client.get_cases` per section (project 1 / suite 1), 2026-08-19:
+## Post-write live census (all 66 re-read from TestRail)
+**65 `AUTOMATION: READY` + 1 (none, C43811 HELD) = 66; exactly one automation marker and exactly one
+provenance line per written case; every written case carries `Last checked against build v3.8-bd246fd
+on 8/19/2026`; 0 raw list markup; 0 duplicate provenance lines; 0 foreign cases (`created_by != 3`).**
 
-| Section | Name | # | C-ids |
-|---|---|---|---|
-| 4260 | Drag-and-Drop Scheduling | 11 | 29955, 29956, 29957, 29958, 29959, 29960, 29961, 29962, 43555, 43796, 43797 |
-| 4261 | Scope Picker | 4 | 29963, 29964, 29965, 29967 |
-| 4262 | Shift Start Times and Unassigned Shifts | 11 | 29969, 29970, 29971, 29972, 29973, 29974, 29975, 43795, 43799, 43800, 43801 |
-| 4263 | Multi-Day Spread Scheduling | 14 | 29978, 29979, 29980, 29981, 29982, 29983, 29984, 29985, 29986, 38863, 43802, 43803, 43804, 43805 |
-| 4264 | Linked Series and Banners | 4 | 29987, 29988, 29989, 29990 |
-| 4265 | Shift Block Anatomy | 3 | 29991, 29992, 29995 |
-| 4266 | Overlap and Lane Stacking | 4 | 29996, 29997, 29998, 29999 |
-| 4268 | Shift Detail Modal | 10 | 30008, 30009, 30010, 30011, 30012, 30013, 30014, 30015, 43808, 43809 |
-| 4275 | Reassignment and Context Menu | 5 | 30052, 30054, 38855, 43556, **43811** |
+## Run 357 — PROVEN UNTOUCHED
+Run 357 ("Schedule - Ayesha", `include_all=False`) read live after the pass: **93 Passed / 11 Failed
+/ 7 Blocked / 84 Untested = 195 tests — identical to the batch-A snapshot.** The writer made only
+`update_case` + `get_case` calls; `update_case` never alters run membership, and **zero run/result
+endpoints were called**, so no result and no membership could move. `refs`/titles were not changed, so
+the `case_refs`/`case_title` read-time echoes on results did not move either.
 
-**66 total.** `custom_atmstatus`: **65 × Not-Automated (1) · 1 × Automated (3)**. **0 foreign.**
-
-### Automated — HELD (Rule 71, ask-first) — see B-HELD-AUTOMATED.md
-- **C43811** (Reassignment and Context Menu, §4275) — the only `atm=3` in batch B; Vlad's automation
-  contract. Verify live (once access lands), record the intended change, **ask the QA lead before any
-  edit**, edit only coupled with build-verification, then hand to Vlad. **No other atm=3 in batch B.**
-
-## HOW TO RESUME (instant, once cookies land)
-1. Drop fresh staging cookies into `/tmp/staging-cookie.txt` (or `/tmp/cln/cookies.json`); confirm
-   `GET /api/staff/my-workplaces` → 200. Default location **Staging Heavy Duty - 9919** (`b3c8c820…`).
-2. Re-read the build marker (start + end); if still `v3.8-bd246fd`, batch A's boot2 recipe applies
-   verbatim (A-EXECUTION.md §"HOW THE UI RENDERED": seed cookies → navigate `/login` → seed
-   `localStorage.user` from `/tmp/seed.json` + `fe_permissions_wrapper` from live
-   `GET /api/auth/me/fe-permissions` + `token` → navigate `/schedule`). No quick-login/switch-user
-   while a sibling is live.
-3. Seed ZZAUTOTEST schedulable WOs (WO + approved line) per Rules 5/14; board API
-   `GET /api/schedule/board`; discover create/scope/spread endpoints by probing (empty body →
-   validation error). Clean up after.
-4. Walk the 66 cases (five runnability checks); drag cases — try SPA fullcalendar handles AND the
-   underlying POST; honest N-of-M for un-driveable gestures (present-but-undriveable stays READY with
-   the limit noted — do NOT fake, do NOT falsely defer a BUILT feature).
-5. Checkpoint per ≤10 cases to `b-write-oplog.jsonl`; byte-verify every `update_case` (Rule 50).
-
-## Writes this session
-**0 TestRail writes · 0 Jira writes · 0 run writes.** Run 357 (Schedule, Ayesha's) untouched — no
-run/result endpoint was called. Only read-only `tr_client.get_cases` (scope enumeration) and read-only
-staging HTTP probes (auth wall) were performed.
+## Environment left clean
+One shift created live to confirm C29955 (single-line drop → immediate shift) was **deleted**
+(`DELETE /api/schedule/shifts/{id}` → HTTP 204; board re-read → 0 remaining for that WO). Every scope
+picker / spread dialog opened during observation was **Cancelled** (button `button_drop_cancel`) — no
+other shift, series, event or role was created or changed. Location left at Heavy Duty 9919.
