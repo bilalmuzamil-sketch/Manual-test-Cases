@@ -1,5 +1,44 @@
 # OUTSTANDING ITEMS REGISTER — everything we are waiting on, across every project
 
+## 🆕🆕🆕 2026-08-19 (LATEST — docs-only consolidation confirming current state; supersedes stale framings below)
+Sources: `build/BUILD-VERIFICATION-COVERAGE-2026-08-19.md` (refreshed), `build/SPOT-CHECK-SAMPLE-2026-08-19.md`,
+the six `*-SWEEP-*.md`, `build/report-suite/wip-reconciliation-2026-08-19/EXECUTION.md`, and
+`build/schedule/build-verify-2026-08-18/schedule-recheck-2026-08-19/EXECUTION.md`. **DOCS-ONLY — no
+TestRail / Jira / staging write** (Rule 62 creation-hold H1 stands). This block confirms the current
+picture and corrects two stale framings in the older sections below.
+
+- **✅ REPORT SUITE re-verify sweep is COMPLETE across all 6 reports** — SBC 36 + SBR 57 + PV 36 + TU 16 +
+  WIP 7 + IV 14 = **166 cases individually build-verified + written in interim `<br>`** on `v3.8` builds,
+  **PLUS the WIP v24 reconciliation (13 cases, S11-R7 live-confirmed)**. The old "157 not-verified" backlog
+  is CLOSED. Post-sweep Report Suite: **437 build-verified / 71 Automated (atm=3) held / 508 total.**
+- **⚠️ CORRECTION — Schedule build-verify batches B + C are DONE, not waiting.** The stale "134 cases
+  (batches B + C) WAITING" framing in the SCH-BV header and SCH-BV-1 below is from an earlier blocked
+  moment; `B-EXECUTION.md` (65 written) and `C-EXECUTION.md` (64 written) show A/B/C all completed on the
+  earlier build (`v3.8-bd246fd`/`da72171`): **190 build-verified / 5 Automated held / 195 total.** **What
+  is now blocked is the RE-CHECK vs Stefan V's `v3.8-d0e135e` deploy** (SCH-BV-5) + the Priority-filter fix
+  (SCH-BV-4, C29945/C29942) + the permission-tier residual (SCH-BV-2) — all on dead staging cookies.
+- **🔴 STAGING COOKIES DEAD AGAIN (SCH-BV-1) — the #1 cross-project blocker.** Stefan's 13:27 GMT deploy
+  killed the session; re-check task's supplied cookies returned HTTP 401 `sso_required`. Blocks: the
+  Schedule re-check (195 layers 1-2), the Priority fix, the permission tiers, AND the **Filters
+  build-verification (~114 cases) which has NOT STARTED this cycle (queued last).** Need fresh
+  `sv_sso_session` + `PHPSESSID` in `/tmp/staging-cookie.txt` (`cf_clearance` still valid).
+- **🧹 INTERIM `<br>` CLEANUP DEBT — 166 sweep-written + 13 WIP-recon Report Suite cases** carry literal
+  `<br>` line breaks (the TestRail `update_case` markdown-wrap regression, `UPDATE-CASE-WRAP-DIAGNOSIS-2026-08-19.md`).
+  Demark to plain (`build/markup-regression-2026-08-10/demark.py`) once `update_case` stores clean markdown.
+  Owner: US (on API fix).
+- **📄 LIVE v24 WIP CONFLUENCE PAGE EXPORT OWED (RS-WIP-6)** — mirror is at v22; behaviour already applied
+  from Chris's authoritative rulings, but a byte-level v22→v24 diff needs the SSO-walled page body. Owner: user.
+- **🤝 AUTOMATED (atm=3) RATIFICATION — the live-accurate total is 76, NOT 35/39.** The pre-sweep
+  `AUTOMATION-RATIFICATION-LIST.md` (39: 4 already-edited + 35 held) predates the sweeps' LIVE atm re-read,
+  which found MORE atm=3 per report: **Report Suite 71** (SBC 10 · SBR 14 · PV 13 · TU 9 · WIP 14 · IV 11)
+  **+ Schedule 5** (C43811, C38847–C38850) **= 76 held**, all ask-first (Rule 71). Owner: QA-lead ratification.
+- **🎫 FLAGGED DEFECTS still awaiting the QA-lead go-ahead (Rule 62 hold H1)** — 26 closed-but-still-reproducing
+  Report Suite defects + 1 new deviation (`FLAGGED-DEFECTS-FOR-JIRA.md`) + the Schedule defect sheet. Nothing
+  filed/reopened until the creation-hold lifts. The two tester-facing defect `.xlsx` were regenerated
+  2026-08-19 to match their annotated `.md` twins (Chris WIP rulings + Stefan re-verify flags).
+
+---
+
 ## 🆕🆕 2026-08-19 (2nd message) — REPORT SUITE / WIP: Chris Ward's SECOND WIP message. **AGING IS PER JOB AND FINAL → THE PER-LINE-AGING HOLD (RS-WIP-4) IS CLEARED; QUOTE AGE = FUTURE SV-9372; S11-R7 CORRECTED → WIP SNAPSHOT/STORY-11 CASES NEED A LIVE RE-CHECK; WIP SPEC IS NOW v24.**
 Source: `build/report-suite/chris-answers-2026-08-19/WIP-CHRIS-RULINGS-2026-08-19.md` (2nd-message section, verbatim + interpreted; DOCS-ONLY, **no TestRail / Jira / staging write**). This is Chris's SECOND WIP message of 2026-08-19 and it **SUPERSEDES / FINALISES** the earlier "confirming intent, will come back to you" note on per-line aging. Authoritative source (c) under Rule 57, newest product source (Rule 32).
 - **✅ RS-WIP-4 CLEARED (per-line aging HOLD LIFTED)** — Chris [1], verbatim: *"Aging is per job, and that's final. Days Open is whole days since the work order's date. On a job that produces two rows — its status tab plus Estimates — both rows show the same number. That's correct behavior, not a bug: the money splits by line state, the clock doesn't. The spec's stray line about unapproved lines ageing from the line's creation date is gone as of page v24, so nothing conflicts now."* → **WIP-COL-07 = [C30472](https://shopview.testrail.io/index.php?/cases/view/30472)** keeps whole-job Days Open (S4-R12) + gains "both rows of a two-row job show the same number — correct, not a defect"; **NO per-line aging** asserted; **the shared Days Open value must NOT be filed as a defect.** Moved to §7 Recently cleared.
