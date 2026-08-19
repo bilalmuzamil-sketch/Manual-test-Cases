@@ -259,3 +259,23 @@ OPEN "TESTING QA", EXPECT-FAIL kept). PDF-content cases (C30382 + PDF sides of e
 by the SV-8818 PDF-500 build defect — CSV sides verified.
 - **Build note:** `v3.8-bd246fd` (8/18) → **`v3.8-d0e135e`** (this pass); byte-stable across the pass;
   all verdicts PROVISIONAL (Rule 60).
+
+## TU RE-VERIFY SWEEP 2026-08-19 — 1 genuinely-absent feature (Total Hours link); characterized limits
+Build `v3.8-d0e135e`. The Technician Utilization report is **fully built** EXCEPT the **Total Hours link**
+(→ Timesheet Activities), which is **still absent** (Total Hours cells carry no anchor/button, cursor auto,
+on every row). Deferred (marker `Not available on Build to test Yet`, date → 8/19/2026; re-check trigger =
+the link feature/SV-9064 shipping, NOT a redeploy):
+- **C30428 (TU-LINK-01), C30430 (TU-LINK-03), C30432 (TU-LINK-05), C30433 (TU-LINK-06)** — Total Hours link absent.
+
+Cases kept HOLD as characterized limits (RUNNABLE-in-principle, not skipped — Rule 74 §8.5), re-driven live:
+- **C30407/C30408/C30413 (TU-ELL-04/05, TU-SORT-05)** — em-dash ELL needs a location with **no** default
+  labor rate; 0 em-dash rows across all 8 locations; the rate is a per-location config not settable via any
+  endpoint reached. Trigger = a rate-less location + a tech with internal hours there.
+- **C30431 (TU-LINK-04)** — blocked by the absent Total Hours link (+ needs an open clock). Marker kept HOLD
+  (Rule 69 no-overwrite); reason refreshed. Trigger = the link shipping.
+- **C30446 (TU-LOC-05)** — Location filter hidden for a one-location user: **0 of 19 roster staff are
+  single-workplace**; switch-user = HTTP 400 here; tech quick-login is a hidden dev user. Positive half
+  (filter shown for multi-location users) confirmed live. Trigger = a provisioned one-location test user.
+- **C38887 (TU-EXP-09)** — over-cap export refusal: the report is one-row-per-technician (11), so it cannot
+  structurally reach the export row cap. Exports verified working at actual size. Trigger = thousands of techs.
+- **Build note:** `v3.8-bd246fd` (8/18) → **`v3.8-d0e135e`** (this pass); byte-stable; verdicts PROVISIONAL.
