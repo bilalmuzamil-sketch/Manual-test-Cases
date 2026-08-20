@@ -1,0 +1,1413 @@
+{
+ "calls": [
+  {
+   "status": 201,
+   "path": "/api/work-orders/create",
+   "body": "{\"data\":{\"work_order_id\":\"1040d765-e976-4619-b9dc-8e713ddb491c\"}}"
+  },
+  {
+   "status": 200,
+   "path": "/api/work-orders/change-contact",
+   "body": "{\"data\":{\"customer_id\":\"ecb3993a-fc41-4887-acc5-4c3d4fb97c9e\"}}"
+  },
+  {
+   "status": 201,
+   "path": "/api/work-orders/1040d765-e976-4619-b9dc-8e713ddb491c/lines/create-from-canned-line",
+   "body": "{\"data\":{\"line_id\":\"9bcb9341-dcdf-4bf2-9e0a-50f3bc76d64b\"}}"
+  },
+  {
+   "status": 201,
+   "path": "/api/work-orders/lines/change",
+   "body": "{\"data\":{\"line_id\":\"9bcb9341-dcdf-4bf2-9e0a-50f3bc76d64b\"}}"
+  },
+  {
+   "status": 201,
+   "path": "/api/work-orders/part/make-request",
+   "body": "{\"data\":{\"id\":\"07266924-4f6a-4e07-8b66-9f19efc89301\",\"part_request\":{\"id\":\"07266924-4f6a-4e07-8b66-9f19efc89301\",\"work_order_id\":\"1040d765-e976-4619-b9dc-8e713ddb491c\",\"description\":\"ZZ8815 UI Reach P"
+  },
+  {
+   "status": 201,
+   "path": "/api/work-orders/part/perform-request-status-action",
+   "body": "{\"data\":{\"partRequestId\":\"07266924-4f6a-4e07-8b66-9f19efc89301\",\"workOrderId\":\"1040d765-e976-4619-b9dc-8e713ddb491c\",\"lineId\":\"9bcb9341-dcdf-4bf2-9e0a-50f3bc76d64b\",\"statusLabel\":\"Awaiting\",\"status\":\""
+  }
+ ],
+ "seed": {
+  "WO": "1040d765-e976-4619-b9dc-8e713ddb491c",
+  "num": "S-16004",
+  "line": "9bcb9341-dcdf-4bf2-9e0a-50f3bc76d64b",
+  "part": "07266924-4f6a-4e07-8b66-9f19efc89301",
+  "orderId": "176d1868-ccc2-452a-8fce-ce2338ee291b"
+ },
+ "poList": {
+  "url": "/parts/orders",
+  "text": "Skip to main content | Work Orders | Schedule | Customers | Parts | Reports | Search | Ctrl+K | timer | Clock In | notifications | Staging Heavy Duty - 9919 | AS | SALES & SERVICE | sell | Part Sales | PARTS | inventory | Inventory | view_list | Catalog | SUPPLY CHAIN | assignment_return | Returns | add_shopping_cart | Purchase Orders | local_shipping | Vendor Invoices | store | Vendors | Purchase Orders | search | Search | width_normal | New PO | \tWork Orderarrow_drop_up\tPurchase Order Numberarrow_drop_up\tVendor\tOrder Statusarrow_drop_up\tCreated Onarrow_drop_up\tOrdered By\tarrow_drop_upTotal Price\tNotearrow_drop_up\t | \t | S8815-16004 | \t | S8815-16004 | \t | Jehaven Fabricatio... | \tOrdered\tToday\tAdmin ShopView\t$20.00\t-\t | Receive | \t | S8815-16000 | \t | S8815-16000 | \t | Vendor Missing | \tOrdered\tYesterday\tAdmin ShopView\t$30.00\t-\t | Receive | \t | S8815-15982 | \t | S8815-15982 | \t | Jehav",
+  "ids": [
+   "parts_left_menu_nav",
+   "parts_nav_part_sales",
+   "parts_nav_inventory",
+   "parts_nav_catalog",
+   "parts_nav_returns",
+   "parts_nav_orders",
+   "parts_nav_deliveries",
+   "parts_nav_vendors",
+   "page_search_toggle",
+   "button_column_selection",
+   "button_new_po",
+   "checkbox_select_all_orders",
+   "checkbox_select_order_176d1868-ccc2-452a-8fce-ce2338ee291b",
+   "button_receive",
+   "checkbox_select_order_faa9a638-a87c-4976-aabe-b273dbacd54b",
+   "badge_vendor_missing",
+   "checkbox_select_order_ebbd65d9-5cf7-4fcb-83d7-36899e8af02a",
+   "checkbox_select_order_1f7eae42-7c4f-42d8-afb8-0368bf49471c",
+   "checkbox_select_order_c4239d36-5e32-4fd7-916f-625dffd277ef",
+   "checkbox_select_order_bfdc58e8-ded1-4a73-9ba4-a61ab82e93c9",
+   "checkbox_select_order_6b9c5657-ec84-4ae4-a0ba-cb1f5db875fd",
+   "checkbox_select_order_290f23e2-f4b0-47a5-94d5-2675264c78c6",
+   "checkbox_select_order_92da01e6-a9b1-4445-8a90-d5a71c667096",
+   "checkbox_select_order_95f01a33-dd19-4f23-82df-ed7813350331",
+   "checkbox_select_order_2d278e48-4d27-4121-8dad-21f22fead73d",
+   "checkbox_select_order_9d37b7fe-d671-4e22-9d6a-ae165794e71b",
+   "checkbox_select_order_35e5e413-0ce7-4a02-ad70-c46860bac1fd",
+   "checkbox_select_order_cd7c37a2-18a2-4125-9ae9-050de58c85d9",
+   "checkbox_select_order_87ff9f81-a7c9-4307-884b-9f91d9ee0b20",
+   "checkbox_select_order_c36d8d0b-7e8a-4537-97db-3350a97c3074",
+   "checkbox_select_order_99b2f5ca-b4b1-433b-ac38-c36e78ae726b",
+   "checkbox_select_order_086db347-735e-4d48-83ea-ec1427a7d0c1",
+   "checkbox_select_order_9a397e4f-f7cf-4be8-a8a2-977d58337e95",
+   "checkbox_select_order_d32596e9-57e2-4332-9168-c68b9c0ed83a",
+   "checkbox_select_order_a0d75dd4-b1ca-49ec-9870-dbbfaa92aa33",
+   "checkbox_select_order_3526e977-0fa2-4964-a557-e84c9f8b6df0",
+   "checkbox_select_order_0d2c22b2-a006-4e49-9184-6dabcd1be6db",
+   "checkbox_select_order_f5da8cdd-6d5e-4416-b9e6-04d632e0fd85",
+   "checkbox_select_order_98361bf0-dda2-48e3-a55d-c0041dcadfbe",
+   "checkbox_select_order_11b17eaf-6955-47eb-990f-973fd4bd9f2a",
+   "checkbox_select_order_f86b4788-96f5-4151-a0f9-cf11f214fdb0",
+   "checkbox_select_order_2ee5f7b1-728f-4ff3-9197-2bed225be6e9",
+   "checkbox_select_order_42d1bdee-af67-4192-9400-b01e6fddd452",
+   "checkbox_select_order_b81282c5-1137-4381-bce2-0d1d8735a9eb"
+  ],
+  "clickables": [
+   {
+    "t": "Work Orders",
+    "tid": "button_desktop_nav_link",
+    "tag": "A"
+   },
+   {
+    "t": "add_shopping_cart\nPurchase Orders",
+    "tid": "parts_nav_orders",
+    "tag": "A"
+   },
+   {
+    "t": "Ordered",
+    "tid": null,
+    "tag": "TD"
+   },
+   {
+    "t": "Receive",
+    "tid": null,
+    "tag": "TD"
+   },
+   {
+    "t": "Receive",
+    "tid": null,
+    "tag": "A"
+   },
+   {
+    "t": "Receive",
+    "tid": "button_receive",
+    "tag": "BUTTON"
+   },
+   {
+    "t": "Ordered",
+    "tid": null,
+    "tag": "TD"
+   },
+   {
+    "t": "Receive",
+    "tid": null,
+    "tag": "TD"
+   },
+   {
+    "t": "Receive",
+    "tid": null,
+    "tag": "A"
+   },
+   {
+    "t": "Receive",
+    "tid": "button_receive",
+    "tag": "BUTTON"
+   },
+   {
+    "t": "Ordered",
+    "tid": null,
+    "tag": "TD"
+   },
+   {
+    "t": "Receive",
+    "tid": null,
+    "tag": "TD"
+   },
+   {
+    "t": "Receive",
+    "tid": null,
+    "tag": "A"
+   },
+   {
+    "t": "Receive",
+    "tid": "button_receive",
+    "tag": "BUTTON"
+   },
+   {
+    "t": "Ordered",
+    "tid": null,
+    "tag": "TD"
+   },
+   {
+    "t": "Receive",
+    "tid": null,
+    "tag": "TD"
+   },
+   {
+    "t": "Receive",
+    "tid": null,
+    "tag": "A"
+   },
+   {
+    "t": "Receive",
+    "tid": "button_receive",
+    "tag": "BUTTON"
+   },
+   {
+    "t": "Ordered",
+    "tid": null,
+    "tag": "TD"
+   },
+   {
+    "t": "Receive",
+    "tid": null,
+    "tag": "TD"
+   },
+   {
+    "t": "Receive",
+    "tid": null,
+    "tag": "A"
+   },
+   {
+    "t": "Receive",
+    "tid": "button_receive",
+    "tag": "BUTTON"
+   },
+   {
+    "t": "Ordered",
+    "tid": null,
+    "tag": "TD"
+   },
+   {
+    "t": "Receive",
+    "tid": null,
+    "tag": "TD"
+   },
+   {
+    "t": "Receive",
+    "tid": null,
+    "tag": "A"
+   },
+   {
+    "t": "Receive",
+    "tid": "button_receive",
+    "tag": "BUTTON"
+   },
+   {
+    "t": "Ordered",
+    "tid": null,
+    "tag": "TD"
+   },
+   {
+    "t": "Receive",
+    "tid": null,
+    "tag": "TD"
+   },
+   {
+    "t": "Receive",
+    "tid": null,
+    "tag": "A"
+   },
+   {
+    "t": "Receive",
+    "tid": "button_receive",
+    "tag": "BUTTON"
+   },
+   {
+    "t": "Ordered",
+    "tid": null,
+    "tag": "TD"
+   },
+   {
+    "t": "Receive",
+    "tid": null,
+    "tag": "TD"
+   },
+   {
+    "t": "Receive",
+    "tid": null,
+    "tag": "A"
+   },
+   {
+    "t": "Receive",
+    "tid": "button_receive",
+    "tag": "BUTTON"
+   },
+   {
+    "t": "Ordered",
+    "tid": null,
+    "tag": "TD"
+   },
+   {
+    "t": "Receive",
+    "tid": null,
+    "tag": "TD"
+   },
+   {
+    "t": "Receive",
+    "tid": null,
+    "tag": "A"
+   },
+   {
+    "t": "Receive",
+    "tid": "button_receive",
+    "tag": "BUTTON"
+   },
+   {
+    "t": "Ordered",
+    "tid": null,
+    "tag": "TD"
+   },
+   {
+    "t": "Receive",
+    "tid": null,
+    "tag": "TD"
+   },
+   {
+    "t": "Receive",
+    "tid": null,
+    "tag": "A"
+   },
+   {
+    "t": "Receive",
+    "tid": "button_receive",
+    "tag": "BUTTON"
+   },
+   {
+    "t": "Partial Delivery",
+    "tid": null,
+    "tag": "TD"
+   },
+   {
+    "t": "Receive",
+    "tid": null,
+    "tag": "TD"
+   },
+   {
+    "t": "Receive",
+    "tid": null,
+    "tag": "A"
+   },
+   {
+    "t": "Receive",
+    "tid": "button_receive",
+    "tag": "BUTTON"
+   },
+   {
+    "t": "Partial Delivery",
+    "tid": null,
+    "tag": "TD"
+   },
+   {
+    "t": "Receive",
+    "tid": null,
+    "tag": "TD"
+   },
+   {
+    "t": "Receive",
+    "tid": null,
+    "tag": "A"
+   },
+   {
+    "t": "Receive",
+    "tid": "button_receive",
+    "tag": "BUTTON"
+   },
+   {
+    "t": "Partial Delivery",
+    "tid": null,
+    "tag": "TD"
+   },
+   {
+    "t": "Receive",
+    "tid": null,
+    "tag": "TD"
+   },
+   {
+    "t": "Receive",
+    "tid": null,
+    "tag": "A"
+   },
+   {
+    "t": "Receive",
+    "tid": "button_receive",
+    "tag": "BUTTON"
+   },
+   {
+    "t": "Ordered",
+    "tid": null,
+    "tag": "TD"
+   },
+   {
+    "t": "Receive",
+    "tid": null,
+    "tag": "TD"
+   },
+   {
+    "t": "Receive",
+    "tid": null,
+    "tag": "A"
+   },
+   {
+    "t": "Receive",
+    "tid": "button_receive",
+    "tag": "BUTTON"
+   },
+   {
+    "t": "Partial Delivery",
+    "tid": null,
+    "tag": "TD"
+   },
+   {
+    "t": "Receive",
+    "tid": null,
+    "tag": "TD"
+   },
+   {
+    "t": "Receive",
+    "tid": null,
+    "tag": "A"
+   },
+   {
+    "t": "Receive",
+    "tid": "button_receive",
+    "tag": "BUTTON"
+   },
+   {
+    "t": "Partial Delivery",
+    "tid": null,
+    "tag": "TD"
+   },
+   {
+    "t": "Receive",
+    "tid": null,
+    "tag": "TD"
+   },
+   {
+    "t": "Receive",
+    "tid": null,
+    "tag": "A"
+   },
+   {
+    "t": "Receive",
+    "tid": "button_receive",
+    "tag": "BUTTON"
+   },
+   {
+    "t": "Partial Delivery",
+    "tid": null,
+    "tag": "TD"
+   },
+   {
+    "t": "Receive",
+    "tid": null,
+    "tag": "TD"
+   },
+   {
+    "t": "Receive",
+    "tid": null,
+    "tag": "A"
+   },
+   {
+    "t": "Receive",
+    "tid": "button_receive",
+    "tag": "BUTTON"
+   },
+   {
+    "t": "Partial Delivery",
+    "tid": null,
+    "tag": "TD"
+   },
+   {
+    "t": "Receive",
+    "tid": null,
+    "tag": "TD"
+   },
+   {
+    "t": "Receive",
+    "tid": null,
+    "tag": "A"
+   },
+   {
+    "t": "Receive",
+    "tid": "button_receive",
+    "tag": "BUTTON"
+   },
+   {
+    "t": "Partial Delivery",
+    "tid": null,
+    "tag": "TD"
+   },
+   {
+    "t": "Receive",
+    "tid": null,
+    "tag": "TD"
+   },
+   {
+    "t": "Receive",
+    "tid": null,
+    "tag": "A"
+   },
+   {
+    "t": "Receive",
+    "tid": "button_receive",
+    "tag": "BUTTON"
+   },
+   {
+    "t": "Ordered",
+    "tid": null,
+    "tag": "TD"
+   },
+   {
+    "t": "Receive",
+    "tid": null,
+    "tag": "TD"
+   },
+   {
+    "t": "Receive",
+    "tid": null,
+    "tag": "A"
+   },
+   {
+    "t": "Receive",
+    "tid": "button_receive",
+    "tag": "BUTTON"
+   },
+   {
+    "t": "Partial Delivery",
+    "tid": null,
+    "tag": "TD"
+   },
+   {
+    "t": "Receive",
+    "tid": null,
+    "tag": "TD"
+   },
+   {
+    "t": "Receive",
+    "tid": null,
+    "tag": "A"
+   },
+   {
+    "t": "Receive",
+    "tid": "button_receive",
+    "tag": "BUTTON"
+   },
+   {
+    "t": "Partial Delivery",
+    "tid": null,
+    "tag": "TD"
+   },
+   {
+    "t": "Receive",
+    "tid": null,
+    "tag": "TD"
+   },
+   {
+    "t": "Receive",
+    "tid": null,
+    "tag": "A"
+   },
+   {
+    "t": "Receive",
+    "tid": "button_receive",
+    "tag": "BUTTON"
+   },
+   {
+    "t": "Partial Delivery",
+    "tid": null,
+    "tag": "TD"
+   },
+   {
+    "t": "Receive",
+    "tid": null,
+    "tag": "TD"
+   },
+   {
+    "t": "Receive",
+    "tid": null,
+    "tag": "A"
+   },
+   {
+    "t": "Receive",
+    "tid": "button_receive",
+    "tag": "BUTTON"
+   },
+   {
+    "t": "Ordered",
+    "tid": null,
+    "tag": "TD"
+   },
+   {
+    "t": "Receive",
+    "tid": null,
+    "tag": "TD"
+   },
+   {
+    "t": "Receive",
+    "tid": null,
+    "tag": "A"
+   },
+   {
+    "t": "Receive",
+    "tid": "button_receive",
+    "tag": "BUTTON"
+   },
+   {
+    "t": "Ordered",
+    "tid": null,
+    "tag": "TD"
+   },
+   {
+    "t": "Receive",
+    "tid": null,
+    "tag": "TD"
+   },
+   {
+    "t": "Receive",
+    "tid": null,
+    "tag": "A"
+   },
+   {
+    "t": "Receive",
+    "tid": "button_receive",
+    "tag": "BUTTON"
+   },
+   {
+    "t": "Ordered",
+    "tid": null,
+    "tag": "TD"
+   },
+   {
+    "t": "Receive",
+    "tid": null,
+    "tag": "TD"
+   },
+   {
+    "t": "Receive",
+    "tid": null,
+    "tag": "A"
+   },
+   {
+    "t": "Receive",
+    "tid": "button_receive",
+    "tag": "BUTTON"
+   },
+   {
+    "t": "Ordered",
+    "tid": null,
+    "tag": "TD"
+   },
+   {
+    "t": "Receive",
+    "tid": null,
+    "tag": "TD"
+   },
+   {
+    "t": "Receive",
+    "tid": null,
+    "tag": "A"
+   },
+   {
+    "t": "Receive",
+    "tid": "button_receive",
+    "tag": "BUTTON"
+   },
+   {
+    "t": "Ordered",
+    "tid": null,
+    "tag": "TD"
+   },
+   {
+    "t": "Receive",
+    "tid": null,
+    "tag": "TD"
+   },
+   {
+    "t": "Receive",
+    "tid": null,
+    "tag": "A"
+   },
+   {
+    "t": "Receive",
+    "tid": "button_receive",
+    "tag": "BUTTON"
+   },
+   {
+    "t": "Ordered",
+    "tid": null,
+    "tag": "TD"
+   },
+   {
+    "t": "Receive",
+    "tid": null,
+    "tag": "TD"
+   },
+   {
+    "t": "Receive",
+    "tid": null,
+    "tag": "A"
+   },
+   {
+    "t": "Receive",
+    "tid": "button_receive",
+    "tag": "BUTTON"
+   },
+   {
+    "t": "Ordered",
+    "tid": null,
+    "tag": "TD"
+   },
+   {
+    "t": "Receive",
+    "tid": null,
+    "tag": "TD"
+   },
+   {
+    "t": "Receive",
+    "tid": null,
+    "tag": "A"
+   },
+   {
+    "t": "Receive",
+    "tid": "button_receive",
+    "tag": "BUTTON"
+   }
+  ]
+ },
+ "poDetail": {
+  "url": "/parts/orders",
+  "text": "Skip to main content | Work Orders | Schedule | Customers | Parts | Reports | Search | Ctrl+K | timer | Clock In | notifications | Staging Heavy Duty - 9919 | AS | SALES & SERVICE | sell | Part Sales | PARTS | inventory | Inventory | view_list | Catalog | SUPPLY CHAIN | assignment_return | Returns | add_shopping_cart | Purchase Orders | local_shipping | Vendor Invoices | store | Vendors | 1 | Purchase Orders selected | Clear | Purchase Orders | search | Search | width_normal | New PO | \tWork Orderarrow_drop_up\tPurchase Order Numberarrow_drop_up\tVendor\tOrder Statusarrow_drop_up\tCreated Onarrow_drop_up\tOrdered By\tarrow_drop_upTotal Price\tNotearrow_drop_up\t | \t | S8815-16004 | \t | S8815-16004 | \t | Jehaven Fabricatio... | \tOrdered\tToday\tAdmin ShopView\t$20.00\t-\t | Receive | \t | S8815-16000 | \t | S8815-16000 | \t | Vendor Missing | \tOrdered\tYesterday\tAdmin ShopView\t$30.00\t-\t | Receive | \t | S8",
+  "ids": [
+   "parts_left_menu_nav",
+   "parts_nav_part_sales",
+   "parts_nav_inventory",
+   "parts_nav_catalog",
+   "parts_nav_returns",
+   "parts_nav_orders",
+   "parts_nav_deliveries",
+   "parts_nav_vendors",
+   "text_selection_count",
+   "button_clear_selection",
+   "page_search_toggle",
+   "button_column_selection",
+   "button_new_po",
+   "checkbox_select_all_orders",
+   "checkbox_select_order_176d1868-ccc2-452a-8fce-ce2338ee291b",
+   "button_receive",
+   "checkbox_select_order_faa9a638-a87c-4976-aabe-b273dbacd54b",
+   "badge_vendor_missing",
+   "checkbox_select_order_ebbd65d9-5cf7-4fcb-83d7-36899e8af02a",
+   "checkbox_select_order_1f7eae42-7c4f-42d8-afb8-0368bf49471c",
+   "checkbox_select_order_c4239d36-5e32-4fd7-916f-625dffd277ef",
+   "checkbox_select_order_bfdc58e8-ded1-4a73-9ba4-a61ab82e93c9",
+   "checkbox_select_order_6b9c5657-ec84-4ae4-a0ba-cb1f5db875fd",
+   "checkbox_select_order_290f23e2-f4b0-47a5-94d5-2675264c78c6",
+   "checkbox_select_order_92da01e6-a9b1-4445-8a90-d5a71c667096",
+   "checkbox_select_order_95f01a33-dd19-4f23-82df-ed7813350331",
+   "checkbox_select_order_2d278e48-4d27-4121-8dad-21f22fead73d",
+   "checkbox_select_order_9d37b7fe-d671-4e22-9d6a-ae165794e71b",
+   "checkbox_select_order_35e5e413-0ce7-4a02-ad70-c46860bac1fd",
+   "checkbox_select_order_cd7c37a2-18a2-4125-9ae9-050de58c85d9",
+   "checkbox_select_order_87ff9f81-a7c9-4307-884b-9f91d9ee0b20",
+   "checkbox_select_order_c36d8d0b-7e8a-4537-97db-3350a97c3074",
+   "checkbox_select_order_99b2f5ca-b4b1-433b-ac38-c36e78ae726b",
+   "checkbox_select_order_086db347-735e-4d48-83ea-ec1427a7d0c1",
+   "checkbox_select_order_9a397e4f-f7cf-4be8-a8a2-977d58337e95",
+   "checkbox_select_order_d32596e9-57e2-4332-9168-c68b9c0ed83a",
+   "checkbox_select_order_a0d75dd4-b1ca-49ec-9870-dbbfaa92aa33",
+   "checkbox_select_order_3526e977-0fa2-4964-a557-e84c9f8b6df0",
+   "checkbox_select_order_0d2c22b2-a006-4e49-9184-6dabcd1be6db",
+   "checkbox_select_order_f5da8cdd-6d5e-4416-b9e6-04d632e0fd85",
+   "checkbox_select_order_98361bf0-dda2-48e3-a55d-c0041dcadfbe",
+   "checkbox_select_order_11b17eaf-6955-47eb-990f-973fd4bd9f2a",
+   "checkbox_select_order_f86b4788-96f5-4151-a0f9-cf11f214fdb0",
+   "checkbox_select_order_2ee5f7b1-728f-4ff3-9197-2bed225be6e9",
+   "checkbox_select_order_42d1bdee-af67-4192-9400-b01e6fddd452",
+   "checkbox_select_order_b81282c5-1137-4381-bce2-0d1d8735a9eb"
+  ],
+  "clickables": [
+   {
+    "t": "Work Orders",
+    "tid": "button_desktop_nav_link",
+    "tag": "A"
+   },
+   {
+    "t": "add_shopping_cart\nPurchase Orders",
+    "tid": "parts_nav_orders",
+    "tag": "A"
+   },
+   {
+    "t": "Ordered",
+    "tid": null,
+    "tag": "TD"
+   },
+   {
+    "t": "Receive",
+    "tid": null,
+    "tag": "TD"
+   },
+   {
+    "t": "Receive",
+    "tid": null,
+    "tag": "A"
+   },
+   {
+    "t": "Receive",
+    "tid": "button_receive",
+    "tag": "BUTTON"
+   },
+   {
+    "t": "Ordered",
+    "tid": null,
+    "tag": "TD"
+   },
+   {
+    "t": "Receive",
+    "tid": null,
+    "tag": "TD"
+   },
+   {
+    "t": "Receive",
+    "tid": null,
+    "tag": "A"
+   },
+   {
+    "t": "Receive",
+    "tid": "button_receive",
+    "tag": "BUTTON"
+   },
+   {
+    "t": "Ordered",
+    "tid": null,
+    "tag": "TD"
+   },
+   {
+    "t": "Receive",
+    "tid": null,
+    "tag": "TD"
+   },
+   {
+    "t": "Receive",
+    "tid": null,
+    "tag": "A"
+   },
+   {
+    "t": "Receive",
+    "tid": "button_receive",
+    "tag": "BUTTON"
+   },
+   {
+    "t": "Ordered",
+    "tid": null,
+    "tag": "TD"
+   },
+   {
+    "t": "Receive",
+    "tid": null,
+    "tag": "TD"
+   },
+   {
+    "t": "Receive",
+    "tid": null,
+    "tag": "A"
+   },
+   {
+    "t": "Receive",
+    "tid": "button_receive",
+    "tag": "BUTTON"
+   },
+   {
+    "t": "Ordered",
+    "tid": null,
+    "tag": "TD"
+   },
+   {
+    "t": "Receive",
+    "tid": null,
+    "tag": "TD"
+   },
+   {
+    "t": "Receive",
+    "tid": null,
+    "tag": "A"
+   },
+   {
+    "t": "Receive",
+    "tid": "button_receive",
+    "tag": "BUTTON"
+   },
+   {
+    "t": "Ordered",
+    "tid": null,
+    "tag": "TD"
+   },
+   {
+    "t": "Receive",
+    "tid": null,
+    "tag": "TD"
+   },
+   {
+    "t": "Receive",
+    "tid": null,
+    "tag": "A"
+   },
+   {
+    "t": "Receive",
+    "tid": "button_receive",
+    "tag": "BUTTON"
+   },
+   {
+    "t": "Ordered",
+    "tid": null,
+    "tag": "TD"
+   },
+   {
+    "t": "Receive",
+    "tid": null,
+    "tag": "TD"
+   },
+   {
+    "t": "Receive",
+    "tid": null,
+    "tag": "A"
+   },
+   {
+    "t": "Receive",
+    "tid": "button_receive",
+    "tag": "BUTTON"
+   },
+   {
+    "t": "Ordered",
+    "tid": null,
+    "tag": "TD"
+   },
+   {
+    "t": "Receive",
+    "tid": null,
+    "tag": "TD"
+   },
+   {
+    "t": "Receive",
+    "tid": null,
+    "tag": "A"
+   },
+   {
+    "t": "Receive",
+    "tid": "button_receive",
+    "tag": "BUTTON"
+   },
+   {
+    "t": "Ordered",
+    "tid": null,
+    "tag": "TD"
+   },
+   {
+    "t": "Receive",
+    "tid": null,
+    "tag": "TD"
+   },
+   {
+    "t": "Receive",
+    "tid": null,
+    "tag": "A"
+   },
+   {
+    "t": "Receive",
+    "tid": "button_receive",
+    "tag": "BUTTON"
+   },
+   {
+    "t": "Ordered",
+    "tid": null,
+    "tag": "TD"
+   },
+   {
+    "t": "Receive",
+    "tid": null,
+    "tag": "TD"
+   },
+   {
+    "t": "Receive",
+    "tid": null,
+    "tag": "A"
+   },
+   {
+    "t": "Receive",
+    "tid": "button_receive",
+    "tag": "BUTTON"
+   },
+   {
+    "t": "Partial Delivery",
+    "tid": null,
+    "tag": "TD"
+   },
+   {
+    "t": "Receive",
+    "tid": null,
+    "tag": "TD"
+   },
+   {
+    "t": "Receive",
+    "tid": null,
+    "tag": "A"
+   },
+   {
+    "t": "Receive",
+    "tid": "button_receive",
+    "tag": "BUTTON"
+   },
+   {
+    "t": "Partial Delivery",
+    "tid": null,
+    "tag": "TD"
+   },
+   {
+    "t": "Receive",
+    "tid": null,
+    "tag": "TD"
+   },
+   {
+    "t": "Receive",
+    "tid": null,
+    "tag": "A"
+   },
+   {
+    "t": "Receive",
+    "tid": "button_receive",
+    "tag": "BUTTON"
+   },
+   {
+    "t": "Partial Delivery",
+    "tid": null,
+    "tag": "TD"
+   },
+   {
+    "t": "Receive",
+    "tid": null,
+    "tag": "TD"
+   },
+   {
+    "t": "Receive",
+    "tid": null,
+    "tag": "A"
+   },
+   {
+    "t": "Receive",
+    "tid": "button_receive",
+    "tag": "BUTTON"
+   },
+   {
+    "t": "Ordered",
+    "tid": null,
+    "tag": "TD"
+   },
+   {
+    "t": "Receive",
+    "tid": null,
+    "tag": "TD"
+   },
+   {
+    "t": "Receive",
+    "tid": null,
+    "tag": "A"
+   },
+   {
+    "t": "Receive",
+    "tid": "button_receive",
+    "tag": "BUTTON"
+   },
+   {
+    "t": "Partial Delivery",
+    "tid": null,
+    "tag": "TD"
+   },
+   {
+    "t": "Receive",
+    "tid": null,
+    "tag": "TD"
+   },
+   {
+    "t": "Receive",
+    "tid": null,
+    "tag": "A"
+   },
+   {
+    "t": "Receive",
+    "tid": "button_receive",
+    "tag": "BUTTON"
+   },
+   {
+    "t": "Partial Delivery",
+    "tid": null,
+    "tag": "TD"
+   },
+   {
+    "t": "Receive",
+    "tid": null,
+    "tag": "TD"
+   },
+   {
+    "t": "Receive",
+    "tid": null,
+    "tag": "A"
+   },
+   {
+    "t": "Receive",
+    "tid": "button_receive",
+    "tag": "BUTTON"
+   },
+   {
+    "t": "Partial Delivery",
+    "tid": null,
+    "tag": "TD"
+   },
+   {
+    "t": "Receive",
+    "tid": null,
+    "tag": "TD"
+   },
+   {
+    "t": "Receive",
+    "tid": null,
+    "tag": "A"
+   },
+   {
+    "t": "Receive",
+    "tid": "button_receive",
+    "tag": "BUTTON"
+   },
+   {
+    "t": "Partial Delivery",
+    "tid": null,
+    "tag": "TD"
+   },
+   {
+    "t": "Receive",
+    "tid": null,
+    "tag": "TD"
+   },
+   {
+    "t": "Receive",
+    "tid": null,
+    "tag": "A"
+   },
+   {
+    "t": "Receive",
+    "tid": "button_receive",
+    "tag": "BUTTON"
+   },
+   {
+    "t": "Partial Delivery",
+    "tid": null,
+    "tag": "TD"
+   },
+   {
+    "t": "Receive",
+    "tid": null,
+    "tag": "TD"
+   },
+   {
+    "t": "Receive",
+    "tid": null,
+    "tag": "A"
+   },
+   {
+    "t": "Receive",
+    "tid": "button_receive",
+    "tag": "BUTTON"
+   },
+   {
+    "t": "Ordered",
+    "tid": null,
+    "tag": "TD"
+   },
+   {
+    "t": "Receive",
+    "tid": null,
+    "tag": "TD"
+   },
+   {
+    "t": "Receive",
+    "tid": null,
+    "tag": "A"
+   },
+   {
+    "t": "Receive",
+    "tid": "button_receive",
+    "tag": "BUTTON"
+   },
+   {
+    "t": "Partial Delivery",
+    "tid": null,
+    "tag": "TD"
+   },
+   {
+    "t": "Receive",
+    "tid": null,
+    "tag": "TD"
+   },
+   {
+    "t": "Receive",
+    "tid": null,
+    "tag": "A"
+   },
+   {
+    "t": "Receive",
+    "tid": "button_receive",
+    "tag": "BUTTON"
+   },
+   {
+    "t": "Partial Delivery",
+    "tid": null,
+    "tag": "TD"
+   },
+   {
+    "t": "Receive",
+    "tid": null,
+    "tag": "TD"
+   },
+   {
+    "t": "Receive",
+    "tid": null,
+    "tag": "A"
+   },
+   {
+    "t": "Receive",
+    "tid": "button_receive",
+    "tag": "BUTTON"
+   },
+   {
+    "t": "Partial Delivery",
+    "tid": null,
+    "tag": "TD"
+   },
+   {
+    "t": "Receive",
+    "tid": null,
+    "tag": "TD"
+   },
+   {
+    "t": "Receive",
+    "tid": null,
+    "tag": "A"
+   },
+   {
+    "t": "Receive",
+    "tid": "button_receive",
+    "tag": "BUTTON"
+   },
+   {
+    "t": "Ordered",
+    "tid": null,
+    "tag": "TD"
+   },
+   {
+    "t": "Receive",
+    "tid": null,
+    "tag": "TD"
+   },
+   {
+    "t": "Receive",
+    "tid": null,
+    "tag": "A"
+   },
+   {
+    "t": "Receive",
+    "tid": "button_receive",
+    "tag": "BUTTON"
+   },
+   {
+    "t": "Ordered",
+    "tid": null,
+    "tag": "TD"
+   },
+   {
+    "t": "Receive",
+    "tid": null,
+    "tag": "TD"
+   },
+   {
+    "t": "Receive",
+    "tid": null,
+    "tag": "A"
+   },
+   {
+    "t": "Receive",
+    "tid": "button_receive",
+    "tag": "BUTTON"
+   },
+   {
+    "t": "Ordered",
+    "tid": null,
+    "tag": "TD"
+   },
+   {
+    "t": "Receive",
+    "tid": null,
+    "tag": "TD"
+   },
+   {
+    "t": "Receive",
+    "tid": null,
+    "tag": "A"
+   },
+   {
+    "t": "Receive",
+    "tid": "button_receive",
+    "tag": "BUTTON"
+   },
+   {
+    "t": "Ordered",
+    "tid": null,
+    "tag": "TD"
+   },
+   {
+    "t": "Receive",
+    "tid": null,
+    "tag": "TD"
+   },
+   {
+    "t": "Receive",
+    "tid": null,
+    "tag": "A"
+   },
+   {
+    "t": "Receive",
+    "tid": "button_receive",
+    "tag": "BUTTON"
+   },
+   {
+    "t": "Ordered",
+    "tid": null,
+    "tag": "TD"
+   },
+   {
+    "t": "Receive",
+    "tid": null,
+    "tag": "TD"
+   },
+   {
+    "t": "Receive",
+    "tid": null,
+    "tag": "A"
+   },
+   {
+    "t": "Receive",
+    "tid": "button_receive",
+    "tag": "BUTTON"
+   },
+   {
+    "t": "Ordered",
+    "tid": null,
+    "tag": "TD"
+   },
+   {
+    "t": "Receive",
+    "tid": null,
+    "tag": "TD"
+   },
+   {
+    "t": "Receive",
+    "tid": null,
+    "tag": "A"
+   },
+   {
+    "t": "Receive",
+    "tid": "button_receive",
+    "tag": "BUTTON"
+   },
+   {
+    "t": "Ordered",
+    "tid": null,
+    "tag": "TD"
+   },
+   {
+    "t": "Receive",
+    "tid": null,
+    "tag": "TD"
+   },
+   {
+    "t": "Receive",
+    "tid": null,
+    "tag": "A"
+   },
+   {
+    "t": "Receive",
+    "tid": "button_receive",
+    "tag": "BUTTON"
+   }
+  ]
+ },
+ "deliveries": {
+  "url": "/parts/deliveries",
+  "text": "Skip to main content | Work Orders | Schedule | Customers | Parts | Reports | Search | Ctrl+K | timer | Clock In | notifications | Staging Heavy Duty - 9919 | AS | SALES & SERVICE | sell | Part Sales | PARTS | inventory | Inventory | view_list | Catalog | SUPPLY CHAIN | assignment_return | Returns | add_shopping_cart | Purchase Orders | local_shipping | Vendor Invoices | store | Vendors | Vendor Invoices | search | Search | Work Orderarrow_drop_up\tInvoice Numberarrow_drop_up\tOrder Numberarrow_drop_up\tReceived Byarrow_drop_up\tVendor Namearrow_drop_up\tDate Receivedarrow_drop_up\tInvoice Datearrow_drop_up\tDue Datearrow_drop_up\tarrow_drop_upTotal Cost\tNotearrow_drop_up | S8815-16001 | \tZZ8815CTL\t | S8815-16001 | \t | AS | \tJehaven Fabrication\tYesterday\tYesterday\tYesterday\t$31.50\t- | S8815-15999 | \tZZ8815ROW\t | S8815-15999 | \t | AS | \tJehaven Fabrication\tYesterday\tYesterday\tYesterday\t$31.50\t- |",
+  "ids": [
+   "parts_left_menu_nav",
+   "parts_nav_part_sales",
+   "parts_nav_inventory",
+   "parts_nav_catalog",
+   "parts_nav_returns",
+   "parts_nav_orders",
+   "parts_nav_deliveries",
+   "parts_nav_vendors",
+   "page_search_toggle"
+  ],
+  "clickables": [
+   {
+    "t": "Work Orders",
+    "tid": "button_desktop_nav_link",
+    "tag": "A"
+   },
+   {
+    "t": "add_shopping_cart\nPurchase Orders",
+    "tid": "parts_nav_orders",
+    "tag": "A"
+   }
+  ]
+ },
+ "deliveryClick": {
+  "url": "/parts/delivery/d3747727-457f-41ed-bbdd-ab8e779240e0",
+  "text": "Skip to main content | Work Orders | Schedule | Customers | Parts | Reports | Search | Ctrl+K | timer | Clock In | notifications | Staging Heavy Duty - 9919 | AS | Vendor Invoice | edit_note | ZZ8815CTL | Invoice date | Yesterday | Due date | Yesterday | Vendor | Jehaven Fabrication | Delivery Details | S8815-16001 | Date received | Yesterday | Ordered by | Admin ShopView | Received by | Admin ShopView | Work Order Number | S8815-16001 | Delivery items | Description\tPart Number\tManufacturer\tCategory\tCost\tQuantity Delivered\tTotal Cost\tActions | ZZ8815 Return Control Part\tZZ8815CTL\t-\tUncategorized\t$10.00000\t3.00\t$30.00\t | edit_note | \tItems cost:\t | $30.00 | \t | \tTax:\t | $1.50 | \t | \tTotal:\t | $31.50 | \t",
+  "ids": [
+   "delivery_page_view",
+   "button_edit_delivery",
+   "invoice_number_value",
+   "link_delivery_work_order",
+   "delivery_item_table",
+   "button_edit_delivery_item_0741dac0-d0fa-4388-81a4-d9e82f4b0767"
+  ],
+  "clickables": [
+   {
+    "t": "Work Orders",
+    "tid": "button_desktop_nav_link",
+    "tag": "A"
+   }
+  ]
+ }
+}
