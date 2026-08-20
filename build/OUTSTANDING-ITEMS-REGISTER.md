@@ -1,6 +1,55 @@
 # OUTSTANDING ITEMS REGISTER — everything we are waiting on, across every project
 
-## ✅🆕 2026-08-19 (LATEST) — FILTERS BUILD-VERIFICATION COMPLETE on build v3.8-d0e135e. The 2-day-waiting tester is UNBLOCKED. `build/filters/build-verify-2026-08-19/`
+## ✅🆕🆕 2026-08-19 (NEWEST — FINAL CONSOLIDATED STATE across all three projects). **ALL BUILD-VERIFICATION IS DONE; ONE SMALL STAGING TASK REMAINS, BLOCKED ON FRESH COOKIES.** Sources: `build/BUILD-VERIFICATION-COVERAGE-2026-08-19.md`, `build/EXECUTIVE-SUMMARY-2026-08-19.md`, `build/SPOT-CHECK-SAMPLE-2026-08-19.md`.
+This block supersedes the "Schedule re-check blocked / Filters not started" framing further down (which
+was true at an earlier blocked moment; the re-check and the Filters pass both subsequently ran live).
+**DOCS-ONLY — no TestRail / Jira / staging write** (Rule 62 creation-hold H1 stands).
+
+**✅ DONE — build-verified totals (Rule 38 two-number honesty; ours):**
+- **Report Suite (SV-8582): 437 build-verified / 71 Automated held / 508 total.** Full re-verify sweep
+  (166 cases) + WIP v24 reconciliation (13 cases, S11-R7 snapshot-read live-confirmed).
+- **Schedule (SV-8685): 190 build-verified / 5 Automated held / 195 total.** Batches A/B/C + the
+  **re-check vs Stefan V's `v3.8-d0e135e` deploy** (94 cases re-driven live & re-stamped; Priority-filter
+  fix applied per Branko's ruling; all 4 Schedule defects re-confirmed still reproducing; View +
+  Edit/Delete permission tiers observed live).
+- **Filters (SV-8785): 119 build-verified / 5 Automated held / 124 total.** Fabian redesign (spec v21)
+  fully present; 57 deferred markers lifted to READY; SV-8875 verified FIXED; the 2-day-waiting tester
+  is UNBLOCKED.
+- **GRAND TOTAL: 746 build-verified / 81 Automated held / 827 total** (746 + 81 = 827 ✓).
+
+**🔴 THE ONLY STAGING ITEM LEFT — blocked on ONE fresh cookie set:**
+- **RS-PV-1 + RS-WIP-8 — Parts-Velocity CSV number-format rule + WIP Story-5 Summary-Strip design
+  adoption (~15 cases).** Both are Chris Ward spec deltas (already captured below); they need a **live
+  re-check** and then apply verbatim. *What it blocks:* PV CSV cases asserting the plain-number rule (~6);
+  WIP Summary-Strip cases adopting the locked design-review wording (~9). *Unblock:* `sv_sso_session` +
+  `PHPSESSID` for `api.staging.shopview.com` in `/tmp/staging-cookie.txt` (`cf_clearance` still valid).
+  Owner: QA lead (cookies) → us (queued pass). Since 2026-08-19.
+
+**🟡 AWAITING YOUR GO-AHEAD (nothing else is blocked on a live env):**
+- **Ratify the 81 Automated (atm=3) held cases** — Report Suite 71 + Schedule 5 + Filters 5 (Rule 71,
+  ask-first; hand to Vladimir Tomovic on approval). Lists: each pass's `*-HELD-AUTOMATED.md`.
+- **Flagged defects (Jira creation-hold H1, Rule 62):** Report Suite — 26 REOPEN + 1 FILE-NEW + 1
+  CLOSE-AS-FIXED (SV-8823) + 2 PO-QUESTION + 2 RESOLVED; Schedule — 2 CREATE-NEW + 2 REOPEN, **all 4
+  re-confirmed still reproducing on Stefan's build.** Sheets: `FLAGGED-DEFECTS-FOR-JIRA.md`, the two
+  regenerated defect `.xlsx` (regen 2026-08-19 to match their annotated `.md` twins; 0 mismatches).
+- **2 Filters empty-state deviations** — DEV-1 (C29607/C38897) + DEV-2 (C29597/C29599): file post-hold or
+  scope down.
+- **Chris Ward's 2 remaining PO answers** — invoice link-vs-plain-text (SBC+SBR) · PV Location-column
+  position (SV-8938). WIP tab-placement + aging RESOLVED.
+- **A 2nd non-admin (single-location) sign-in** — ~20 permission-negative / one-location cases across all
+  three projects (incl. the 4 Schedule permission-tier residuals).
+- **Interim `<br>` cleanup demark** — 166 + 13 + 94 + 119 written cases; owed once the TestRail
+  `update_case` markdown-wrap regression is fixed.
+- **Export the live WIP Confluence page (v24)** — mirror behind at v22 (RS-WIP-6).
+- **Raw-markup demark (Schedule)** — 3 pre-existing cases C43554/C43806/C43807.
+
+**⚙️ ENV NOTE:** staging sessions die on every deploy and at ~24h; Stefan V deployed twice on 2026-08-19,
+which is why cookies keep expiring. The TestRail `update_case` markdown-wrap regression means every write
+this cycle uses the interim literal-`<br>` format (renders correct, stored HTML; template C30133).
+
+---
+
+## ✅🆕 2026-08-19 — FILTERS BUILD-VERIFICATION COMPLETE on build v3.8-d0e135e. The 2-day-waiting tester is UNBLOCKED. `build/filters/build-verify-2026-08-19/`
 The Fabian app-wide filter redesign (spec v21) is fully present on staging. **119 of our cases build-verified live and written** (interim `<br>` format), **5 Automated held** (Rule 71). Live census: READY 99 · EXPECT-FAIL 5 · HOLD 18 · DEFERRED 2 (= the 2 held Automated) · READY-TO-AUTOMATE 104 · 0 raw markup. **57 deferred markers lifted to READY; SV-8875 verified fixed (C29624/25 XF→READY).** Outstanding from this pass:
 - **FLT-BV-1 — QA-lead authorization for the 5 Automated held case edits** (C38877/C29600/C29614/C29618/C29623 — all verified PRESENT/PASS live; C29600 + C29623 owe a DEFERRED→READY lift, all 5 owe a build re-stamp). *Blocks:* their markers stay stale until authorised; then hand case numbers to Vlad (Rule 71/65). Owner: QA lead. Since 2026-08-19.
 - **FLT-BV-2 — DEV-1 empty-state deviation (C29607 [C29607], C38897 [C38897]):** the filtered empty state shows a generic "No work orders match your filters" + one "Clear filters" link — it does NOT name the active filters/search nor offer a separate clear-search. *Blocks:* a QA-lead decision — file a defect (post creation-hold) or scope the two cases down. No Jira filed (Rule 62). Owner: QA lead. Since 2026-08-19.

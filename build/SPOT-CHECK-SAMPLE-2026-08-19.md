@@ -1,7 +1,10 @@
-# SPOT-CHECK SAMPLE — Report Suite re-verify sweep + WIP reconciliation (2026-08-19)
+# SPOT-CHECK SAMPLE — all three projects (2026-08-19)
 
-**Purpose:** a single list the QA lead can open to **eyeball the rendering** of the cases touched in the
-2026-08-19 Report Suite re-verify sweep + WIP v24 reconciliation. Every case below was written in the
+**Covers:** the Report Suite re-verify sweep + WIP v24 reconciliation, the Schedule re-check vs Stefan
+V's `v3.8-d0e135e` deploy, and the Filters build-verification pass.
+
+**Purpose:** a single list the QA lead can open to **eyeball the rendering** of the cases touched across
+the 2026-08-19 build-verification work. Every case below was written in the
 **interim `<br>` format** (the TestRail `update_case` markdown-wrap regression forced literal `<br>`
 line breaks — accepted by the QA lead, template C30133). **They should render like C30133** — numbered
 items on their own lines, a `---` rule before the provenance line, and the `AUTOMATION:` marker on its
@@ -81,6 +84,27 @@ own line at the end. If any render as raw `<ol>`/`<li>` HTML, flag it.
 
 ---
 
-**Count:** **33 C-ids** (1 reference + 32 nominees: SBC 6, SBR 4, PV 6, TU 4, WIP 7, IV 5) across the
-6 reports + WIP reconciliation.
-All are in the interim `<br>` format and should render like C30133.
+## Schedule (epic SV-8685) — re-check on build `v3.8-d0e135e` (Stefan V's deploy)
+| C-id | Link | What it is |
+|---|---|---|
+| C29945 | https://shopview.testrail.io/index.php?/cases/view/29945 | **RE-SCOPED Priority filter** — now a negative READY case (Filters popover offers only Assignment + Status; Priority removed per Branko's 2026-08-19 ruling). Rule-56 divergence noted. |
+| C30029 | https://shopview.testrail.io/index.php?/cases/view/30029 | Defect re-confirmed — conflicts render AMBER (`text-warning`) with the new Lucide amber alert-triangle icon, NOT red (spec §4.11/§4.12). Still reproduces. |
+| C29979 | https://shopview.testrail.io/index.php?/cases/view/29979 | Defect re-confirmed — multi-day spread dialog still shows "Couldn't read this shop's working hours"; Create shifts disabled. Still reproduces. |
+| C30075 | https://shopview.testrail.io/index.php?/cases/view/30075 | Permission — View tier (scheduleView only): nav present, all lanes shown, empty-cell context menu NONE, shift modal no Delete. Observed live. |
+| C30077 | https://shopview.testrail.io/index.php?/cases/view/30077 | Permission — Edit tier: context menu "Assign Work Order / Create Event / New Work Order" unlocked. Observed live (admin). |
+
+## Filters (epic SV-8785) — build-verify on build `v3.8-d0e135e`
+| C-id | Link | What it is |
+|---|---|---|
+| C29557 | https://shopview.testrail.io/index.php?/cases/view/29557 | Toolbar-row chip layout — chips right-aligned in the toolbar row with the tabs, no separate bar, always visible. Deferred→READY. |
+| C29566 | https://shopview.testrail.io/index.php?/cases/view/29566 | Entity panel — Customer/Lead-Tech/Advisor removed from WO; the Story-16 searchable multi-select panel contract verified. Deferred→READY. |
+| C29595 | https://shopview.testrail.io/index.php?/cases/view/29595 | Active chip label — corrected "Status : Estimate" → "Status: Estimate" (spacing). |
+| C43848 | https://shopview.testrail.io/index.php?/cases/view/43848 | Multi-value chip — multiple selections combine (AND) and render on the chip. Deferred→READY. |
+| C29624 | https://shopview.testrail.io/index.php?/cases/view/29624 | Mobile — SV-8875 verified FIXED; the phone Status sheet defers apply until "Apply filters". EXPECT-FAIL→READY. |
+| C38903 | https://shopview.testrail.io/index.php?/cases/view/38903 | Page-search toolbar — the Search toggle on WO/Parts/Customers pages. Deferred→READY. |
+
+---
+
+**Count:** **44 C-ids** (1 reference + 43 nominees: **Report Suite** SBC 6, SBR 4, PV 6, TU 4, WIP 7, IV 5 =
+32; **Schedule** 5; **Filters** 6) across the 6 reports + WIP reconciliation + the Schedule re-check + the
+Filters build-verify. All are in the interim `<br>` format and should render like C30133.
