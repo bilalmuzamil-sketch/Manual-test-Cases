@@ -168,6 +168,29 @@ etag `a9e66ecc2174eb6d889221f4d976ef24`.
   empty tax field (500 at tax 0 and tax 1). Reported for information only — it is in parts receiving,
   not in this change, and there is no baseline build to compare against.
 
+
+**Every exhibit's source record, so anything here can be re-opened and re-read:**
+
+| Exhibit | What it shows | Work order | id |
+|---|---|---|---|
+| S1 / S2 | the setting itself | **Staging Heavy Duty - 9919 location dialog** | `—` |
+| A1 | case 1, default | **S-15965** | `b79baba7-680c-492e-a4b1-9dc381e67cda` |
+| A2 | case 1, Invoice total | **S-15966** | `9406dbdc-e721-44d4-9b69-f9f0980208ca` |
+| B1 | case 3, default | **S-15990** | `caf51d72-721a-44c4-beef-f1c9d29b4400` |
+| B2 | case 3, Invoice total | **S-15991** | `dcc4bb1b-85bb-4e46-b149-deeceae5fc17` |
+| C1 | case 2, default | **S-15992** | `a1861564-ba60-49a7-96b4-fde01cb74611` |
+| C2 | case 2, Invoice total | **S-15993** | `4458c428-0475-48b6-9630-a4dd0840d54f` |
+| D1 | 3 stacked rates, default | **S-15994** | `bd98d361-6b11-4ae1-8cac-b467c784166d` |
+| D2 | 3 stacked rates, Invoice total | **S-15995** | `7490b37b-8a23-45fa-89af-eaa8fb28adac` |
+| F1 | payment closes to zero | **S-15953** | `54945304-a42b-442d-8a95-133275cd3097` |
+| G1 | location A, Invoice total | **S-15996** | `ece0ad55-98a1-4383-ae81-f82f8e6f9123` |
+| G2 | location B, untouched default | **S-15997** | `ed9cf3ae-8d57-4f53-952a-e44137721e2b` |
+| H1 | issued invoice from Feb 2025 | **S-4802** | `000ffa4d-9517-45c3-b03e-6c37d3c96408` |
+
+All of these except H1 were built and **invoiced** specifically as exhibits, so their figures are
+frozen; H1 is a genuine 2025 customer invoice. Raw measurement logs, the export CSV and both
+invoice documents are in the repo under `build/sv8815-sales-tax-rounding-2026-08-19/`.
+
 **Test data used:** customer *Aaborough Works* (contact *Jeffrey Burns*), asset *2020 Ford Transit*
 VIN `86J8FAC1VALJ43SJY`, location *Staging Heavy Duty - 9919*, labour type *ZZ8815 Unit* at $1.00/hour
 (so a line's amount can be dialled to the cent), tax models created for the run: *ZZ8815 8pct*,
