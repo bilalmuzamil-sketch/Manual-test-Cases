@@ -1,5 +1,19 @@
 # ShopView App Actions Playbook — Proven Per-Action Recipes (NON-SECRET)
 
+> ## ⛔ BEFORE ANY APP ACTION: run the 30-second pre-action check in **§U.0**
+> Five questions — have I done this before · **is there more than one surface for this action and am I
+> on the one the product uses** · whose state am I changing · will I have the evidence · does the setup
+> match what the ticket requires. It exists because a mistake already written down here got repeated
+> anyway (SV-8779 → SV-8815). **§U.0b** lists the four harness traps that eat an hour each.
+>
+> **Looking for a route, a control id, or a limit? → §W, the navigation map.** Routes that work and the
+> four that render but are dead · every `data-test-id` by the action you want · the five reads that lie
+> and what to read instead · the field-name and length limits. **Check §W before hunting the DOM.**
+>
+> **Building evidence or a Jira comment? → §V.** Frozen states, real geometry, the annotation rules,
+> and **§V.9/§V.10**: generate the comment with a script, lift content rather than retyping it,
+> tone-gate it, and **one complete comment instead of a chain of corrections**.
+
 > ## 🟥 READ-FIRST — NEVER RE-DISCOVER
 > **Every test / VIU / staging worker MUST read this playbook (the "STAGING ACTION
 > RECIPES" index directly below) AND `CLAUDE.md` "Durable key facts" BEFORE doing ANY
@@ -2958,6 +2972,17 @@ goes into this file **in the same session** — and when a recipe here turns out
 six-row "already ruled out" table; a confidently wrong recipe is worse than none, because it stops the
 next person looking.
 
+### U.0b THE HARNESS TRAPS — four that cost real time, each with its one-line fix
+
+These are not product behaviour; they are ways the *tooling* wastes an hour. All four hit on 2026-08-19/20.
+
+| Trap | What you see | The fix |
+|---|---|---|
+| **`pkill -f <script>` kills YOUR OWN SHELL** | the command dies mid-way with exit **144**, and a heredoc that was supposed to write a file never wrote it — so the next run fails with `MODULE_NOT_FOUND` on a file you "just created" | the shell's own command line contains the script name, so `-f` matches it. Use a narrower pattern (`pkill -f "node fee_partrow"`), or better, **write files with the Write tool** instead of heredocs in a compound command |
+| **A click that "worked" but changed nothing** | the next step reports the control is missing — on SV-8815 the part row's kebab "did not exist" because the line row had never actually expanded | **click, then PROVE the state changed** (find the part's own description in `document.body.innerText`), **and retry up to ~4 times.** It took 2 attempts every single run. Never let the next step assume the click landed |
+| **Container restart kills the MITM bridge** | every `page.evaluate` fetch dies with `TypeError: Failed to fetch` | relaunch `staging-bridge.mjs`, read the **new** port from its `BRIDGE_LISTENING` line, and **rewrite `bridgeport.txt`** — the port rotates every restart. `/tmp` itself survives, cookies included |
+| **A foreground browser run exceeds the 2-minute Bash default** | the command is killed at 2 min with nothing to show | pass an explicit `timeout` (up to 600000 ms) for foreground runs, or launch with `(… &)` and poll with an `until ! pgrep -f "node <script>"` loop. **`sleep N` chained after another command is blocked** — use the until-loop form |
+
 ---
 
 **Standing rule already in CLAUDE.md: never stop at "a human must do this" or "this needs data
@@ -3125,3 +3150,113 @@ the build marker:
 | "old invoices moved" | a years-old **issued invoice** after the config was changed underneath it |
 | "it leaves a cent behind" | a full payment closing to **exactly $0.00** |
 | "it's an org-wide switch" | two locations, same subtotal, different tax |
+
+### V.9 BUILD THE COMMENT WITH A SCRIPT, NEVER BY RETYPING (proven 2026-08-20, SV-8815)
+
+A QA comment for a passed ticket runs to ~50 KB of ADF with 19 images and three tables. **Typing any of
+it twice is how a figure drifts**, and a drifted figure in a public comment is the one thing that lets a
+developer dismiss the whole thing. So:
+
+1. **Generate the ADF from a committed script** — `evidence/build_single.py` on SV-8815 is the pattern:
+   tiny helpers (`t()` text+marks, `p()`, `h()`, `tbl()`, `img()`, `blist()`, `olist()`), then the
+   document assembled as a Python list. It regenerates byte-for-byte, so a late edit is a one-line change.
+2. **LIFT reusable content out of the previous comment's ADF rather than retyping it.** Walk the stored
+   ADF, pull the tables out as row arrays and the captions out as the `em` paragraph that follows each
+   `mediaSingle`, and feed them straight back in. On SV-8815 that carried an AC table, an
+   open-questions table, **30 check rows and 14 captions** across with zero transcription risk.
+3. **TONE-GATE the rendered text before posting.** Flatten the ADF to plain text and grep for words that
+   must not appear — for a QA result: `wrong`, `correction`, `mistake`, `I was`, `apolog`, `withdraw`,
+   `provisional`. Any hit gets read in context and either justified or removed. *(On SV-8815 the only
+   hit was "the wrong location's tax", a legitimate technical phrase.)*
+4. **`curl` every image URL for a 200** before the write, and **re-read the build marker** at that moment
+   (Rule 59).
+5. **READ THE COMMENT BACK from Jira and check the structure**, not just that the POST returned 201:
+   media-node **count AND order**, table row counts, the first line of text, and a handful of content
+   probes. The write response echoes what you sent; only a re-read proves what was stored.
+
+⚠️ **`getJiraIssue` with `fields:["comment"]` blows the token cap on a ticket with big comments.** The
+result gets written to a file instead — parse that with `python3`/`jq` rather than retrying the call.
+
+### V.10 ONE COMPLETE COMMENT BEATS A CHAIN OF CORRECTIONS (QA lead's ruling, 2026-08-20)
+
+Verbatim: *"Just post one new complete comment and I will delete the older comments. No need to add
+multiple comments like we did."* And on its tone: *"do not post it as you were wrong before and right
+now etc. Just post a comment which with all the evidences proves that why this ticket is QA passed and
+with all annotated screenshots etc like a professional Jira comment for a QA passed ticket."*
+
+**So when findings change after a comment is posted, do NOT stack a correction comment on top.** Rebuild
+**one standalone comment** that carries the whole result — every check, every exhibit, the current
+conclusions — so the QA lead can delete the earlier ones and be left with a single clean record.
+
+**And the tone rule, which matters more than it looks:** a QA comment states **the result**, not the
+tester's journey to it. The PO and the developers need to know what was tested and what it showed. A
+"I said X, actually Y" narrative makes the reader discount everything around it and buries the verdict.
+**Keep the self-review in `LESSONS-*.md` and this playbook, where it does its job; keep Jira for the
+finding.** *(This does not license hiding a defect or overstating a pass — the two genuine gaps and the
+open question for the developer were all stated plainly in that same comment.)*
+
+---
+
+## §W — THE NAVIGATION MAP: routes, controls, and the ones that lie (consolidated 2026-08-20)
+
+**Purpose: stop hunting.** Everything below was observed live. Read this before opening a screen —
+looking a route up here takes seconds; rediscovering it has repeatedly taken an hour.
+**Every `data-test-id` is quoted exactly as the build renders it.**
+
+### W.1 Routes that work, and the ones that look right but do not
+
+| To reach | Route | Notes |
+|---|---|---|
+| work order lines | `/workorders/{id}/lines` | the main working surface |
+| work order finance panel | `/workorders/{id}/finance` | the tester-facing **Financial Info** figures |
+| work order parts | `/workorders/{id}/part-requests` | ⚠️ **`/workorders/{id}/parts` renders an error page** |
+| purchase order list | `/parts/orders` | |
+| **returns + credits** | `/parts/returns` | tabs `tab_returns` / `tab_credits` |
+| process a return into a credit | `/parts/confirm-return?ids=<returnRequestId>&isManualReturn=0` | reached by the Receive Credit button |
+| receive a work-order part | `/order/{poId}?receive=1&returnTo=WorkOrder&returnId=…&vendorIds=…` | ✅ **the live receive path** |
+| vendor invoices | `/parts/deliveries` | ⚠️ titled *Vendor Invoices*; its receive screen is the DEAD one |
+| ❌ dead | `/accept-delivery/{orderId}` | renders and its button enables, but the save 500s — **not the product's path** (§T.8) |
+| ❌ dead | `/parts/credits` | *"Looks like this page took a coffee break… permanently"* — the Credits **tab** on `/parts/returns` is the real one |
+| ❌ dead | `/administration/bookkeeping` | use `/administration/quickbooks` |
+| admin tabs | `/administration/{settings,locations,taxes,quickbooks,…}` | left nav ids are `link_<name>_tab` — e.g. `link_locations_tab`, `link_taxes_tab`, `link_quickbooks_tab`, `link_adjustment_templates_tab` (that last one is the **Fees & Discounts** page) |
+
+### W.2 Controls by the action you want
+
+| Action | Control |
+|---|---|
+| work-order menu | `button_work_order_nav_bar_menu` → `menu_item_audit_log` · `menu_item_timesheets` · `menu_item_add_adjustment` · `menu_item_delete_work_order` |
+| expand a line | `button_line_expand_{lineId}` — ⚠️ **verify it expanded, and retry** (§U.0b) |
+| a part row's menu | `button_requested_part_context_menu_{partRequestId}_line_{lineId}` → *Move* · *Add Part Fee / Discount* (`menu_item_add_adjustment_part_{partRequestId}`) |
+| receive a part | `button_part_request_action` on the part row (renders as **Receive**) |
+| the receive form | `input_invoice_{poId}` · `input_qty_{itemId}` · `button_receive_po_{poId}` |
+| line-level labour adjustment | `button_add_labor_adjustment_{lineId}` |
+| the fee/discount dialog | `dialog_adjustment` — `select_adjustment_template` · `input_adjustment_name` · `select_adjustment_type` · `select_adjustment_calc_type` · `input_adjustment_percent` · `input_adjustment_max_cap` · `select_adjustment_taxable` · `text_adjustment_taxable_note` · `adjustment_preview` · `button_add_adjustment` · `banner_adjustment_mapping_guard` |
+| returns list row | `return_request_checkbox_{id}` · `link_return_work_order_{id}` · `button_manual_return_actions_{id}` · `button_create_return` · `button_receive_credit` (appears once a row is ticked) |
+| process-return form | `select_vendor` · `input_packaging_slip` · `input_credit_memo_number` · `date_input_` · `input_received_quantity_0` · **`input_base` ×2 (restocking fee AND tax — disambiguate by label context)** · `input_return_note` · `button_post_credit` |
+| financial info rows | `item_label_<Name>` / `item_value_<Name>` — the reliable way to read Parts · Labor · Shop Supplies · Subtotal · `<tax name>` · Total · Balance |
+| change location | `profile_menu_button` → `select_location` (click its **right edge** to open the dropdown) |
+| dev quick login | `button_quick_login_admin` on `/login` |
+
+### W.3 Reads that lie, and what to read instead
+
+| Do not trust | Trust |
+|---|---|
+| `GET /api/invoices/{workOrderId}/details` — a **live re-price** | `GET /api/invoices/{invoiceId}/view` — the frozen issued invoice |
+| the **Financial Info** panel on an invoiced work order | the issued invoice document (`/api/invoices/preview?invoice_id=…&type=html`). After a part return the panel shows a **reduced subtotal with the invoiced tax**, so its Total matches neither; **Balance** is the reliable field |
+| `quickBooksConnected: true` from `adjustment-item-mapping-status` | `products-and-services` (400 = not configured) **+** `integration` (an unused OAuth URL) **+** the admin page. Three signals beat one boolean (§T.7) |
+| a route rendering | whether the **product** drives this object through it (§U.0 question 2) |
+| the `workplace_id` you sent to `POST /api/work-orders/create` | the session's **active location** — it wins (§T.1) |
+
+### W.4 Limits and shapes worth not re-learning
+
+- vendor **invoice number: 21 characters max** — over that it is rejected and looks like a receive failure.
+- `POST /api/work-orders/part/make-request` → fields are **`work_order`** and **`line`**, not `…_id`.
+- `POST /api/work-orders/part/make-return-request` → `part_id` is the **part object's** id from
+  `GET /api/work-orders/lines/{WO}` → `collection[].parts[].id`, and **`return_reason` is required**.
+- sales-tax rounding wire value is **`total_rounded`** (`invoice_total` / `total` → 400); read back as
+  `salesTaxRoundingMode`.
+- a vendor credit is taxed at **`workplace_tax`** on the part's **cost** — unrelated to the sales-tax model.
+- `POST /api/credit-memos` takes **`customer_account_id` + `amount` only** — no tax, no lines.
+- `list-unpaid-transaction` nests its rows one level deeper than the siblings:
+  `data.response.collection[]`.
+- Quasar: click by `boundingBox()` centre via `page.mouse.click`, not Playwright actionability clicks.

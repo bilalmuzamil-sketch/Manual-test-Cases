@@ -141,6 +141,20 @@
 >   create WO, add part, adjustments, switch role, change location, endpoints, UI flows,
 >   TestRail). READ IT + "Durable key facts" below BEFORE any staging action; append any NEW
 >   proven recipe immediately (Standing Rule 27).**
+>   **THE FOUR SECTIONS TO REACH FOR FIRST (added/expanded 2026-08-20):**
+>   **§U.0 = THE PRE-ACTION CHECK — five questions, thirty seconds, BEFORE any app action**, whose
+>   question 2 is *"is there more than one surface for this action, and am I on the one the product
+>   uses?"* (it exists because a mistake already recorded in the playbook was repeated anyway,
+>   SV-8779 → SV-8815); **§U.0b = the four harness traps** that each cost an hour (`pkill -f` killing
+>   your own shell · a click that "worked" but changed nothing · the bridge port rotating on container
+>   restart · the 2-minute foreground timeout); **§W = THE NAVIGATION MAP — look a route, control id
+>   or limit up here before hunting the DOM**: routes that work and the four that render but are dead,
+>   every `data-test-id` indexed by the action you want, the five reads that lie and what to read
+>   instead, and the field-name/length limits; **§V = evidence + Jira comments**, including §V.9
+>   (generate the comment with a script, lift content instead of retyping, tone-gate it, read it back)
+>   and §V.10 (one complete comment, never a chain of corrections).
+>   **The mistakes half lives in `build/LESSONS-2026-08-19.md` (11 lessons) — read it before a run that
+>   will produce a public comment or annotated evidence.**
 > - Reusable build-accurate wording + VIU + TestRail-sync method (Standing Rule 9):
 >   build/BUILD-ACCURATE-WORDING-VIU-PROCESS.md — **apply to any project WHEN THE USER ASKS.**
 > - Reusable spec-relevance/obsolescence reconciliation method (keep the WHOLE case
@@ -3939,6 +3953,26 @@ regression / bug-fix re-testing.
   **This repo is PUBLIC, so raw.githubusercontent.com returns 200** — verify with `curl` before
   posting. Comments are updatable via `commentId`, so a wrong post is corrected in place rather than
   duplicated. Canonical example: SV-8781 comment `74580`.
+- **ONE COMPLETE COMMENT, AND IT STATES THE RESULT — NOT THE TESTER'S JOURNEY (QA-lead ruling
+  2026-08-20, verbatim: *"Just post one new complete comment and I will delete the older comments. No
+  need to add multiple comments like we did."* and *"do not post it as you were wrong before and right
+  now etc. Just post a comment which with all the evidences proves that why this ticket is QA passed
+  and with all annotated screenshots etc like a professional Jira comment for a QA passed ticket"*).**
+  When findings change after a comment is posted, **do NOT stack a correction comment on top and do
+  NOT leave a chain** — rebuild **one standalone comment** carrying the whole result (every check,
+  every exhibit, the current conclusions) so the earlier ones can be deleted and a single clean record
+  remains. **No "I said X, actually Y" framing anywhere in it:** the PO and the developers need what
+  was tested and what it showed, and a self-revision narrative makes them discount everything around
+  it and buries the verdict. **Self-review belongs in `build/LESSONS-*.md` and the playbook, where it
+  prevents recurrence; Jira gets the finding.** This is **not** licence to soften a verdict or hide a
+  gap — state every untested area, every observation and every open developer question plainly in that
+  same comment. **Mechanics (playbook §V.9/§V.10):** generate the ADF from a committed script; **lift
+  reusable tables and captions out of the previous comment's stored ADF rather than retyping figures**;
+  **tone-gate the flattened text** against a bar-word list before posting; `curl` every image URL for a
+  200 and re-read the build marker at that moment; then **read the comment back from Jira and verify
+  media count AND order, table row counts and the first line** — the write response only echoes what
+  you sent. Canonical example: SV-8815 comment `75278` (19 exhibits), built by
+  `build/sv8815-sales-tax-rounding-2026-08-19/evidence/build_single.py`.
 - **REPLICATION MUST BE PROVEN BY SCREENSHOT — capture it AT THE MOMENT it reproduces (QA-lead
   ruling 2026-08-10, verbatim: *"when you are able to replicate the issue, you must and must make the
   screenshot which can prove that you were able to replicate the issue"*).** The instant a bug
