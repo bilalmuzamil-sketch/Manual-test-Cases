@@ -22,7 +22,8 @@
 *(35 at the time of posting; +2 on 2026-08-20 when the part-return check turned out not to be blocked
 after all — a part return leaves the issued invoice untouched under each of the two rounding modes.)*
 
-Two things could **not** be tested on this branch, neither of them a defect in this change:
+**Two** things could not be tested on this branch, neither of them a defect in this change — plus one
+item I had wrongly listed as blocked:
 
 1. **Fees and discounts** — **both** entry points the QA lead pointed out were driven on this branch
    (work order → **⋮** → *Add Work Order Fee / Discount*, **and** the part row's **⋮** → *Add Part Fee
@@ -40,7 +41,10 @@ Two things could **not** be tested on this branch, neither of them a defect in t
    **WRONG, corrected 2026-08-20. Receiving a part works.** I had used a dead screen
    (`/accept-delivery`) instead of the part row's **Receive** button. The check has since been run in
    **both** rounding modes and **passes**: returning 1 of 3 parts leaves the issued invoice untouched.
-   The handoff's *credit memo* item also turns out to have no tax in it to pro-rate. See section 9.
+   The **credit** for that returned part was then driven too (Parts → Returns → Receive Credit) — it is
+   a **vendor** credit at the part's cost, taxed at the workplace rate, identical under both modes.
+   See section 9. *(My first answer here — "a credit memo carries no tax at all" — was about
+   `POST /api/credit-memos`, a different feature entirely, and is superseded.)*
 
 > **Correction, and then a correction OF the correction (2026-08-20).** I first wrote that
 > "QuickBooks is not connected", then withdrew that because

@@ -1,0 +1,112 @@
+[
+ {
+  "src": "/tmp/sv8815/shots/RET-F1-fee-dialog-gated.png",
+  "dst": "/home/user/Manual-test-Cases/build/sv8815-sales-tax-rounding-2026-08-19/evidence/EXHIBIT-R6-fee-discount-gated.png",
+  "banner": "S-16003  -  Add Part Fee / Discount, opened from the PART ROW kebab   (build v3.8-1f5fb3c)",
+  "bannercol": [
+   200,
+   120,
+   20
+  ],
+  "boxes": [
+   {
+    "x": 969,
+    "y": 375.578125,
+    "w": 446,
+    "h": 64,
+    "label": "the gate: a QuickBooks Fee item must be mapped",
+    "color": [
+     220,
+     20,
+     20
+    ],
+    "lx": 969,
+    "ly": 285.578125
+   },
+   {
+    "x": 1333.375,
+    "y": 949.125,
+    "w": 81.625,
+    "h": 35.546875,
+    "label": "Add Fee is disabled",
+    "color": [
+     220,
+     20,
+     20
+    ],
+    "lx": 1003.375,
+    "ly": 950.125
+   },
+   {
+    "x": 997,
+    "y": 765.578125,
+    "w": 153,
+    "h": 26,
+    "label": "the Taxable control - what a tax test would need",
+    "color": [
+     20,
+     80,
+     200
+    ],
+    "lx": 1220,
+    "ly": 762.578125
+   }
+  ],
+  "caption": "Both entry points the QA lead named were driven: the work-order kebab AND this one, the part row kebab\n(Move | Add Part Fee / Discount). Both open this dialog with a working live preview, and both leave Add Fee\ndisabled behind the same banner. So the control is not missing - it is gated on a QuickBooks Fee item mapping,\nand that mapping cannot be created here because no QuickBooks company is attached to this org."
+ },
+ {
+  "src": "/tmp/sv8815/shots/RET-F2-credit-screen-crop.png",
+  "dst": "/home/user/Manual-test-Cases/build/sv8815-sales-tax-rounding-2026-08-19/evidence/EXHIBIT-R7-credit-screen-vendor-credit.png",
+  "banner": "S-16001  -  Parts > Returns > Receive Credit > \"Process Return\"   -   this is a VENDOR credit",
+  "bannercol": [
+   20,
+   110,
+   50
+  ],
+  "boxes": [
+   {
+    "x": 1894.53125,
+    "y": 205,
+    "w": 84.1875,
+    "h": 40,
+    "label": "Restocking Fee  -  data-test-id=\"input_base\"",
+    "color": [
+     220,
+     20,
+     20
+    ],
+    "lx": 120,
+    "ly": 440
+   },
+   {
+    "x": 2202.984375,
+    "y": 303,
+    "w": 150,
+    "h": 40,
+    "label": "Tax $0.50 = 5% of COST  -  ALSO data-test-id=\"input_base\"",
+    "color": [
+     220,
+     20,
+     20
+    ],
+    "lx": 120,
+    "ly": 516
+   },
+   {
+    "x": 1865.71875,
+    "y": 250,
+    "w": 201.1875,
+    "h": 48,
+    "label": "Subtotal is the part COST ($10.00), not its $80.00 sell price",
+    "color": [
+     20,
+     140,
+     60
+    ],
+    "lx": 120,
+    "ly": 592
+   }
+  ],
+  "caption": "The credit for a returned part, reached the way the QA lead described. It is priced at the part COST and its\nTax is pre-filled at 5% of that cost from the workplace tax rate - NOT the location sales-tax model, which is\n9.75% here, and not the frozen invoice tax. It read identically under both rounding modes, and posting it left\nthe customer invoice untouched. Note both boxed fields carry the SAME data-test-id=\"input_base\"."
+ }
+]
