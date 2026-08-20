@@ -228,7 +228,7 @@ and Services"`
 |---|---|---|
 | Fees and discounts on a **new** work order (handoff A, C-discount, and the fee/discount half of G) | Adding either is refused with HTTP 409 *"Connect a QuickBooks item for fees before adding a fee."* / *"…for discounts before adding a discount."* **QuickBooks is not connected on this branch** — the QuickBooks admin page offers only a "Connect to QuickBooks" button, the Fees & Discounts template dialog has no QuickBooks-item field, and there is no reachable setting that satisfies the check. This is an environment gate, not a bug in this change. | A QuickBooks-connected organisation, or a branch where that guard is off |
 | The QuickBooks side of the change (the $0.01 open balance the banner warns about) | QuickBooks is not connected | A QuickBooks-connected company — already flagged as a manual-tester task |
-| Credit memo / part return pro-rating (handoff D, third item) | Not yet run — see "Still to do" | — |
+| Credit memo / part return pro-rating (handoff D, third item) | **A part cannot be received on this branch**, so no invoice with a returnable part can be produced. Receiving fails with **HTTP 500** both through the API and through the tester-facing **Receive Parts** screen — with a vendor assigned, a valid invoice number and a valid received quantity (request ids `7b8f7c1c-…`, `b32c9979-…`, `a31d8bdc-…`, `ea4f1863-…`). See the note below. | Someone who can get a part to **Received** on this branch — then the return check is a 5-minute job |
 | "Existing invoices are unchanged **versus the released build**" (handoff G) | Proving *unchanged* needs the same invoice read on a build **without** this change. This branch is the only environment in hand. What **can** be proven here is that issued invoices are frozen and still carry their original tax model and figures — see section 4 above and section 7 below. | Read the same invoice numbers on staging or production and diff |
 
 ---
@@ -300,6 +300,32 @@ declined lines, which is almost certainly the whole explanation).
 diff them against this branch. That is a 20-minute job with a staging session and it is the only
 thing that turns "frozen, and still on its original tax" into "provably identical to the released
 build".
+
+---
+
+### The part-receiving 500 — reported, but NOT raised as a defect against this ticket
+
+Getting a part to **Received** is the gateway to the last unchecked item (return a part against an
+"Invoice total" invoice and check the credited tax is pro-rated). On this branch it does not work:
+
+- **Receive Parts** screen (`/accept-delivery/{orderId}`) → **Receive** → `POST /api/inventory/orders/accept`
+  → **HTTP 500**, generic error body, request id `b32c9979-e714-4fdc-b384-c902c4119723`.
+- Same call made directly, with the same payload the UI sends → **HTTP 500** (`a31d8bdc-…`, `ea4f1863-…`).
+- It is **not** the missing vendor: the purchase order initially showed a **Vendor Missing** badge, so a
+  vendor was assigned (`POST /api/orders/{id}/assign-vendor` → 200, `vendorMissing` went to `false`) and
+  the receive still 500s.
+- It is **not** a missing invoice number either — one was supplied, and the org requires one.
+- The most likely cause on the evidence: **every canned line's part on this branch has a blank part
+  number.** All 8 single-part canned lines tried give `part_number: ""` ("Gear oil", "Transmission
+  fluid", "Wiper blades", "Air filter", "grease", "Tie rod", "Grease"). A blank part number is a known
+  blocker in this area. Adding a numbered inventory part instead was also attempted —
+  `POST /api/work-orders/part/make-request` wants `work_order`, `line`, `description`,
+  `part_source_type`, and then answers *"Inventory part is required when source type is inventory"* for
+  every field name tried for the part itself.
+
+**Why this is not being raised against SV-8815:** it is in parts receiving, not in tax rounding;
+nothing in this change touches it; and there is no baseline build to show it ever worked. It is
+recorded here so whoever picks up the part-return check knows the blocker and does not re-derive it.
 
 ---
 

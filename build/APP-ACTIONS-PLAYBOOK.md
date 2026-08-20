@@ -2567,3 +2567,174 @@ follow-up probes then "confirmed" the absence, each of them looking somewhere it
 Same failure mode, same day, different surface: the part-row Action kebab and the Locations edit icon
 were both "missing" because they sit **off-screen to the right at a 1600px viewport**. Scroll the
 container or read the network payload instead of trusting what rendered.
+
+---
+
+## §T — PER-TICKET QA BRANCHES: the fast seed, and the four traps that eat a night (proven 2026-08-19, SV-8815)
+
+Branch `sv8815.qa.shopview.com` / `sv8815api.qa.shopview.com`, build `v3.8-1f5fb3c`. Everything below
+was executed, not inferred.
+
+### T.1 ⚠️ TRAP 1 — `POST /api/work-orders/create` IGNORES the `workplace_id` you send
+
+It uses **the session's active location**. Get this wrong and three things fail *silently and
+confusingly at once*: the work order picks up a different location's tax, the canned-line dropdown
+shows **"No results"** (canned lines are location-scoped), and **Save & Close no-ops with no error**,
+so you sit there watching lines fail to appear.
+
+**Always pin the active location first, through the profile menu** (`POST /api/iam/change-location`
+alone is not enough — the SPA keeps its own):
+
+```js
+profile_menu_button  ->  read "Change Location: <name>" out of the .q-menu innerText
+                     ->  select_location (click the RIGHT edge, x + width - 30)  ->  pick the option
+```
+Reusable helper: `ensureHD()` in the SV-8815 harness. **Cheap sanity check:** create a throwaway WO
+and read `workplace_id` off `GET /api/work-orders/view/{id}` before trusting a whole run.
+
+### T.2 The FAST line builder — 3 lines in 3 seconds instead of 90
+
+The UI's **Save & Close** on the New Line dialog fires exactly this, so skip the browser:
+
+```
+POST /api/work-orders/{WO}/lines/create-from-canned-line
+     {another:false, canned_line_id, work_order_id, status:'authorized'}     -> 201 {line_id}
+POST /api/work-orders/lines/change
+     {line_id, work_order_id, line_name, tech_story, time_estimate, tech_time, labour_type_id} -> 200
+```
+- **`POST /api/work-orders/lines/create` 500s** ("Labor or fixed prices must be set" first if you send
+  nothing), and a bare `POST .../lines/` **404s**. Use `create-from-canned-line`.
+- **`tech_story` must be ≥ 2 characters** — a 1-char story returns
+  `400 {"techStoryAtLeastTwoCharactersLong": ...}`.
+- **Labour types are per workplace.** A type created at one location answers
+  `400 "Labor type not found for this workplace"` at another. Create one per location you use.
+
+**Dialling a line to an exact dollar amount** (essential for any rounding/tax work): create a labour
+type at **`labour_rate: 1`** — the field is in **DOLLARS**, not cents — then
+`time_estimate = amount × 60` minutes. Labour hours are rounded to 2 dp, so any 2-dp dollar amount is
+reachable exactly. `GET /api/work-orders/canned-lines` returns `total_parts` per line; **filter
+`Number(total_parts) === 0`** (42 of 79 on this branch) so nothing blocks completion.
+
+### T.3 Complete + invoice, entirely by API — the chain that works
+
+```
+POST /api/work-orders/change-mileage      {work_order_id, mileage:'123456'}   -> 201  (STRING)
+POST /api/work-orders/lines/change-story  {line_id, tech_story, work_order_id} -> 201
+POST /api/work-orders/lines/change-status {line_id, work_order_id, status:'complete'} -> 200
+POST /api/work-orders/change-status       {id, status:'complete'}             -> 201  (field is `id`)
+POST /api/invoices/create                 {work_order_id}                     -> 201
+```
+**CORRECTION to §R.7: `POST /api/invoices/create` does NOT 500 on this branch — it returns 201** and
+the work order goes to **Invoiced**, with no browser and no payment dialog to nurse. The contact is
+still mandatory (§R.7a): `POST /api/work-orders/change-contact {work_order_id, vehicle_id, contact_id,
+update_vehicle:false}`, contact ids from `GET /api/customers/view/{companyId}` → `company.contacts[]`.
+
+### T.4 ⚠️ TRAP 2 — the two invoice endpoints are NOT the same thing
+
+- **`GET /api/invoices/{invoiceId}/view` = THE ISSUED INVOICE.** It carries the invoice's own **frozen
+  tax snapshot** (its own rate ids, distinct from the live tax model's), `rates[].amount` at 4 dp plus
+  a rounded `amountTotal`, `shop_supplies_cost`, `paid_balance`, `total_balance`, and the real
+  `created_on`.
+- **`GET /api/invoices/{workOrderId}/details` = A LIVE RE-PRICE of the work order.** Same-shaped
+  payload, so it looks authoritative — but for a February-2025 invoice it returned **today's** date,
+  **today's** location tax model and a different subtotal.
+
+**Anyone asking "did this invoice move?" against `details` will report a false alarm.** Use `/view`.
+List every invoice with **`GET /api/invoices/list?pagination[rowsPerPage]=3000`** (`/api/invoices`
+404s); amounts there are **integer cents** (`subtotal`, `subtotal_with_tax`) beside display strings.
+
+### T.5 Payments by API — read the balance off the screen, not the invoice doc
+
+```
+GET  /api/customer-account/payment-methods           -> {data:{data:[{id,name,code,type}]}}   (/api/payment-methods 404s)
+GET  /api/customer-account/list-unpaid-transaction?accountId=…&pagination[rowsPerPage]=1000
+        -> data.response.collection[]   <-- note the EXTRA `response` level
+POST /api/customer-account/create-customer-payment
+        {account_id, payment_date (ISO), payment_method:'CASH', reference_number:null, description:null,
+         transactions:[<the whole collection row, plus transaction_payment_amount and index:0>],
+         primary_id:null, new_credit:0, new_deposit:0, applied_credits:[], applied_deposits:[],
+         ibs_batch_id:null, payment_amount}                                    -> 201
+```
+`account_id` comes back in the `invoices/create` response as `customer_account_id`. **Send the whole
+transaction row back, not a trimmed object** — an empty-body probe just 500s, so don't try to guess
+the shape from errors.
+
+**Where to read a balance:** the work order's **Financial Info** panel
+(`/workorders/{id}/finance`, `[data-test-id^="item_label_"]` + `item_value_<k>`) gives
+`Parts · Labor · Shop Supplies · Subtotal · <tax model name> · Total · Payments · Balance` — the
+tester-facing truth. The invoice document's `total_balance` is the invoice **amount** and does not
+move when a payment lands.
+
+### T.6 Taxes and locations by API
+
+```
+POST /api/taxes  {name, isEnabledLabor, isEnabledParts, isEnabledShopSupplies, isDefault,
+                  rates:[{name, percentage}]}                                  -> 200
+```
+**`POST /api/taxes/create` 400s with `{"tax":"Invalid UUID"}`** however you shape it — the real route
+is the bare **`POST /api/taxes`**, and it must NOT carry `id`/`tax` fields. Multi-rate is just several
+entries in `rates[]`. Location settings: `POST /api/workplaces/change` per §S.3 — and **`tax` must be
+the `{id,name}` OBJECT**. `bookkeeping_enabled` is **not** writable through it (silently ignored).
+
+### T.7 ⚠️ TRAP 3 — fees and discounts are hard-blocked without QuickBooks
+
+```
+POST /api/work-orders/adjustments/add {kind:'fee'|'discount', …}
+  -> 409 "Connect a QuickBooks item for fees before adding a fee."
+  -> 409 "Connect a QuickBooks item for discounts before adding a discount."
+```
+Unsatisfiable on a branch where QuickBooks is not connected: the QuickBooks admin page offers only a
+**Connect to QuickBooks** button, the **New Fee / Discount** dialog has **no QuickBooks-item field**
+(`select_adjustment_template_type`, `…_calc_type`, `input_…_name`, `input_…_amount`,
+`select_…_taxable`, `checkbox_…_auto_apply`), `PUT /api/bookkeeping/settings {settings:{}}` returns
+`200 {data:[]}` and exposes nothing relevant. **Budget any fee/discount coverage against a
+QuickBooks-connected org, or plan to skip it.**
+
+### T.8 ⚠️ TRAP 4 — receiving a part can be a dead end, and the tell is a blank part number
+
+`POST /api/inventory/orders/accept` **500s** on this branch. What was ruled out: a missing vendor
+(assigned one via `POST /api/orders/{orderId}/assign-vendor {vendorId, orderItemIds}` → 200,
+`vendorMissing` → false), a missing invoice number, and a wrong payload (the exact body the UI sends
+was captured and replayed). **Every one of the 8 single-part canned lines tried has
+`part_number: ""`** — a blank part number is the known blocker in this area.
+
+Useful while digging: **vendors live at `GET /api/parts-catalogue/vendors`** (`/api/vendors` 404s);
+the Receive Parts screen is `/accept-delivery/{orderId}` with
+`input_invoice_number`, `input_delivered_quantity_0`, `input_delivery_note`, `button_receive_delivery`;
+`POST /api/work-orders/part/perform-request-status-action {part_request_id, action:'pick'|'order'}`
+→ 201 moves a request to `waiting_to_receive` and creates the inventory order.
+`POST /api/work-orders/part/make-request` needs **`work_order`, `line`, `description`,
+`part_source_type`** (not `work_order_id`/`line_id`), and then still wants an inventory-part key that
+none of `part_id` / `inventory_part` / `inventory_part_id` / `inventoryPart` satisfied.
+**`/workorders/{id}/parts` renders an error page on this branch** — read parts via
+`GET /api/work-orders/{id}/parts/list-requests-by-line?search=`.
+
+### T.9 The Customer Invoice export carries PER-LINE TAX — this is where you reconcile
+
+`GET /api/reporting/export/customer_invoice?report=customer_invoice&range=today` (§S.10) returns a
+per-line row with **`ItemTaxCode`** and **`ItemTaxAmount`**. Summing `ItemTaxAmount` per `InvoiceNo`
+is the cheapest exact reconciliation available anywhere in the app — it caught the invoice-total
+tax split allocating its residual cent to individual lines (302.81 → 302.78 by shedding a cent from
+three of thirteen lines). **The rendered invoice document does NOT print a per-line tax column**, so
+the export is the only per-line tax surface. Header:
+
+```
+InvoiceNo,Customer,InvoiceDate,DueDate,Terms,Location,Memo,Item(Product/Service),ItemDescription,
+ItemQuantity,ItemRate,ItemAmount,ItemTaxCode,ItemTaxAmount,"ShopView Products and Services"
+```
+⚠️ Amounts over 999 are **comma-formatted inside the CSV** (`2,081.59`) — strip commas before
+`float()`, or a reconciliation script dies on the one row that matters.
+
+### T.10 The tax arithmetic, as observed (both modes, all confirmed live)
+
+Per **tax rate**, over the taxable base (labour + parts + taxable adjustments + shop supplies when the
+tax model has shop supplies enabled):
+
+- **line by line** — round each line's tax to the cent, then add up.
+- **invoice total** — add the taxable lines first, round the tax once.
+- **each rate is rounded on its own base**; the rate rows always sum to the invoice tax, in both modes.
+- rounding is **half away from zero**.
+
+Wire value for the setting is **`total_rounded`** — `invoice_total` and `total` both return
+`400 "Invalid sales tax rounding method."` while the UI calls the option "Invoice total".
+`GET /api/workplaces` reports it back as **`salesTaxRoundingMode`**.
