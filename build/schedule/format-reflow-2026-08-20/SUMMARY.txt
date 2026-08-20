@@ -1,0 +1,22 @@
+SCHEDULE FORMAT-REFLOW — FINALIZE SUMMARY (2026-08-20)
+
+unique_done (union of "id" + "case_id" in DONE.jsonl) = 186
+  note: DONE.jsonl mixes two field names across runs — 64 lines use "id", 169 use "case_id";
+  the prompt's case_id-only formula reports 169. True union of distinct case ids = 186.
+total_lines (DONE.jsonl) = 233
+fails (FAIL.jsonl) = 9
+
+DONE.jsonl status breakdown (grep -ci on DONE.jsonl):
+  reflowed       = 96
+  already-clean  = 117   (log's final run reported clean=73; DONE is the cross-run aggregate)
+  dangerous      = 0
+  automated      = 0     (automated cases were skipped to FAIL.jsonl, not DONE)
+  needs-api-rewrite (in DONE) = 11
+  fixed          = 9
+
+FAIL.jsonl breakdown (9 rows) — none are transient/retryable:
+  hardskip-needs-api (4): C29991, C29997, C30031, C30032
+  automated skip atm=3 (5): C43811, C38847, C38848, C38849, C38850
+
+Log final line: DONE_RUN reflowed=96 clean=73 dangerous=0 automated=5 hardskip=4 fail=0
+  => 0 real (transient/Playwright) failures.

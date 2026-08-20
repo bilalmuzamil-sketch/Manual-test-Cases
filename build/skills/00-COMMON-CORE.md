@@ -903,7 +903,10 @@ babysitting AGENT that dies.** So: **never babysit.**
 does all file/API work; writes a checkpoint file (`DONE.jsonl`) it reads on start to skip completed
 items; writes its own log. It performs the quality steps deterministically and EXHAUSTIVELY (Rule-50
 byte-verify, Rule-41 whole-case re-reads, Rule-71 automation gates, Rule-54 provenance stamping) with
-no context ceiling. Launch it detached: `nohup python3 build/.../work.py >work.log 2>&1 &`.
+no context ceiling. **It creates a run-flag `touch /tmp/<job>.running` at start and `rm -f`s it on
+exit (use `trap 'rm -f /tmp/<job>.running' EXIT` so it clears even on crash)** — this flag, NOT a
+`pgrep` on the script name, is what the committer gates on. Launch it detached:
+`nohup python3 build/.../work.py >work.log 2>&1 &`.
 
 **(2) A PURE-SHELL COMMITTER LOOP CHECKPOINTS — NO LLM, SO IT CANNOT THRASH.** Launch it detached
 alongside the work script. Reusable form:
@@ -911,7 +914,8 @@ alongside the work script. Reusable form:
 ```bash
 nohup bash -c '
   BR=claude/slack-session-0sxnd9
-  while pgrep -f "build/.../work.py" >/dev/null; do
+  # Gate on the run-flag the work script created, NOT on pgrep of the script name.
+  while [ -f /tmp/<job>.running ]; do
     git add -- <explicit paths>
     python3 build/testing-tools/scan_secrets.py --staged || { sleep 300; continue; }
     git commit -q -F /tmp/ckmsg.txt -- <the same paths> 2>/dev/null
@@ -932,6 +936,10 @@ nohup bash -c '
 ```
 
 Keep `git add`/`commit` **path-scoped** (§9) so a sibling worker's staged files are never swept.
+
+**⚠️ NEVER gate the committer on `pgrep -f <scriptname>` — the committer's own command line contains
+`<scriptname>`, so pgrep self-matches and the loop never ends (Rule 29 R5). Use a run-flag file the
+script creates and deletes.**
 
 **(3) THE AGENT LAUNCHES AND EXITS — NO POLL LOOP.** Write the script, launch it + the committer
 detached, confirm both alive with **ONE** `pgrep` (never a pattern matching the watching shell — see
