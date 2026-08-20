@@ -5,7 +5,8 @@ FR='/usr/share/fonts/truetype/dejavu/DejaVuSans.ttf'
 def ann(src, dst, boxes, caption, banner=None, bannercol=(200,30,30)):
     im=Image.open(src).convert('RGB')
     W,H=im.size
-    pad=132 if caption else 0
+    lines_ = caption.split('\n') if caption else []
+    pad=(12+26*len(lines_)+16) if caption else 0   # size to the text: a clipped caption is a wasted exhibit
     top=56 if banner else 0
     out=Image.new('RGB',(W,H+pad+top),(255,255,255))
     out.paste(im,(0,top))

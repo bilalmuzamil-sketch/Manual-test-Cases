@@ -2895,3 +2895,87 @@ payload, field names, `data-test-id`s, the gate, and what was ruled out. **Befor
 that smells familiar, grep this file first** (`§R` staging seed · `§S` staging specifics · `§T`
 per-ticket QA branches · `§J` TestRail · `§M` Figma). Re-deriving a recipe that is already written
 down is the failure this section exists to prevent.
+
+
+---
+
+## §V — EVIDENCE THAT CANNOT BE CHALLENGED: building annotated exhibits for a Jira comment
+
+The bar the QA lead set: *"i dont want any front end or backend developers to challenge me or bite me
+or the client to say that its not fixed."* Everything below was learned by getting it wrong first on
+2026-08-19 (see `build/LESSONS-2026-08-19.md`).
+
+### V.1 Screenshot a FROZEN state, never a live one
+
+**A ShopView work order that has not been invoiced RE-PRICES against its location's current settings.**
+Screenshot one of those as proof of a tax figure and the number changes the moment anybody edits the
+location — the reviewer clicks your link, sees something else, and the whole report is suspect.
+**Invoice the work order first.** An issued invoice keeps its own frozen tax snapshot.
+
+Corollary, and it bites specifically on OLD records: the work order's **Financial Info panel
+recomputes**, while the **issued invoice document** is frozen. On a Feb-2025 invoice the panel read
+`2,833.11 / 2,974.77` and the invoice read `2,833.13 / 2,974.79`. **For any pre-existing invoice,
+annotate the invoice DOCUMENT, not the panel** — and if the panel is visible in the shot, explain it in
+the caption before a reviewer "finds" it.
+
+### V.2 Drive annotations from REAL geometry
+
+```js
+el.getBoundingClientRect()   // -> {x,y,w,h} per target, saved to JSON alongside the .png
+```
+Capture the boxes in the same page visit as the screenshot, write them to a sidecar JSON, and generate
+the annotation spec from that file. **Never estimate coordinates off a scaled screenshot** — it works
+until it silently doesn't.
+
+Two ways to find targets: `[data-test-id^="item_label_"]` + `item_value_<k>` for the Financial Info
+panel (gives label box, value box and a full-row box), and an exact-innerText walk over leaf elements
+for anything in the rendered invoice document.
+
+### V.3 ⚠️ `fullPage` does NOT reach an inner scroll container
+
+The invoice document lives in an inner scroller. Its rect can read `y≈2874` while
+`document.documentElement.scrollHeight` is only `1300` — so a `fullPage: true` screenshot ends long
+before the target and every box lands off-image. **`scrollIntoView({block:'center'})` the target, wait,
+RE-READ the rects, then take a viewport screenshot.**
+
+### V.4 Label placement rules (all three were learned by covering the evidence)
+
+- Put labels in **empty space** — for the WO screen that is the column to the right of the Financial
+  Info panel (x ≈ 430+); for the invoice document it is the gap to its left (x ≈ 470–600).
+- **Spread by index**, not by target y: `ly = anchor + i*52..64`. Document rows can be **19px** apart
+  while a label box is ~36px tall, so anchoring a label to its own row guarantees overlap.
+- **Tight box padding (2px) when rows are close**, or adjacent boxes merge into one unreadable blob.
+
+### V.5 Then LOOK at every rendered image
+
+Every annotation defect on this run was invisible in the code and obvious in the picture. Reading the
+PNG back is the only verification step that works.
+
+### V.6 The generator
+
+`build/sv8769-8814-invoice-rebuild-2026-08-10/annotate.py` — spec-driven (`src`, `dst`, `banner`,
+`bannercol`, `boxes[{x,y,w,h,color,label,lx,ly}]`, `caption`). It draws the box, a white-backed label
+and a connector line, adds a coloured header band, and **sizes the caption strip to the number of
+lines** (a clipped caption is a wasted exhibit). Fonts: `/usr/share/fonts/truetype/dejavu/`.
+
+### V.7 Getting them into Jira
+
+The Atlassian MCP has no attachment upload. Commit the PNGs and embed as **ADF external media** —
+this repo is public, so `raw.githubusercontent.com/<owner>/<repo>/<branch>/<path>.png` returns 200.
+**`curl -o /dev/null -w "%{http_code}"` every URL before posting.** Full comment format (status first
+line, table, inline images, rule, technical detail last) is in CLAUDE.md.
+
+### V.8 The exhibit set that closes the arguments
+
+One exhibit per challenge a reviewer could actually make, each captioned with the work-order number and
+the build marker:
+
+| Challenge | The exhibit that answers it |
+|---|---|
+| "the setting isn't there / has no warning" | the settings dialog, default **and** new value, banner boxed |
+| "you didn't check the real reported case" | the actual reported invoice's figures, both modes |
+| "the tax just goes down" | the case that goes **up** a cent, beside the one that goes down |
+| "you only looked at the total" | the **per-rate breakdown** moving while the total stays identical |
+| "old invoices moved" | a years-old **issued invoice** after the config was changed underneath it |
+| "it leaves a cent behind" | a full payment closing to **exactly $0.00** |
+| "it's an org-wide switch" | two locations, same subtotal, different tax |
