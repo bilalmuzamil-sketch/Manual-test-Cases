@@ -2676,19 +2676,63 @@ is the bare **`POST /api/taxes`**, and it must NOT carry `id`/`tax` fields. Mult
 entries in `rates[]`. Location settings: `POST /api/workplaces/change` per §S.3 — and **`tax` must be
 the `{id,name}` OBJECT**. `bookkeeping_enabled` is **not** writable through it (silently ignored).
 
-### T.7 ⚠️ TRAP 3 — fees and discounts are hard-blocked without QuickBooks
+### T.7 ⚠️ TRAP 3 — fees and discounts: the gate is a QuickBooks ITEM MAPPING, and it is enforced on BOTH sides
+
+**Where the control actually is** (this is the bit worth never re-deriving):
 
 ```
-POST /api/work-orders/adjustments/add {kind:'fee'|'discount', …}
-  -> 409 "Connect a QuickBooks item for fees before adding a fee."
-  -> 409 "Connect a QuickBooks item for discounts before adding a discount."
+WO -> /workorders/{id}/lines  ->  [data-test-id="button_work_order_nav_bar_menu"]   <-- the WO kebab
+                              ->  menu: Audit Log | Timesheets | Add Work Order Fee / Discount | Delete Work Order
+                              ->  [data-test-id="menu_item_add_adjustment"]
+dialog "New Work Order Fee / Discount":
+   select_adjustment_template (Apply From Template) · input_adjustment_name · select_adjustment_type
+   select_adjustment_calc_type · input_adjustment_amount · select_adjustment_taxable
+   adjustment_preview · button_add_adjustment · banner_adjustment_mapping_guard · link_qb_settings
+line level: [data-test-id="button_add_labor_adjustment_<lineId>"] on each line row
 ```
-Unsatisfiable on a branch where QuickBooks is not connected: the QuickBooks admin page offers only a
-**Connect to QuickBooks** button, the **New Fee / Discount** dialog has **no QuickBooks-item field**
-(`select_adjustment_template_type`, `…_calc_type`, `input_…_name`, `input_…_amount`,
-`select_…_taxable`, `checkbox_…_auto_apply`), `PUT /api/bookkeeping/settings {settings:{}}` returns
-`200 {data:[]}` and exposes nothing relevant. **Budget any fee/discount coverage against a
-QuickBooks-connected org, or plan to skip it.**
+The dialog **opens fine**, the template applies, and `adjustment_preview` computes live
+(*"Work-order subtotal $27.81 | Fee +$5.00 | New work-order subtotal $32.81 | Tax is recalculated on
+save."*) — but **`button_add_adjustment` is `disabled` + `aria-disabled="true"`** and the API answers
+**409 `"Connect a QuickBooks item for fees before adding a fee."`** (same for discounts). FE and BE
+enforce the same guard, so this is **not** a Rule-24 FE-only gate.
+
+**THE EXACT GATE — don't guess at it again:**
+
+```
+GET /api/bookkeeping/adjustment-item-mapping-status
+  -> {"data":{"quickBooksConnected":true,"feeItemMapped":false,"discountItemMapped":false}}
+```
+The banner component (`AdjustmentMappingGuardBanner.vue`) defaults both flags to **true** and only
+blocks when the fetch returns false: `isKindBlocked = kind==='discount' ? !discountItemMapped :
+!feeItemMapped`. **So one mapped Fee item and one mapped Discount item is the whole unblock.**
+
+⚠️ **`quickBooksConnected` can be `true` while the QuickBooks settings page shows only a "Connect to
+QuickBooks" button** — that is what happened on sv8815, so **do NOT conclude "QuickBooks is not
+connected" from that page.** The mapping UI is real and rich (`QuickBooks.HlYHSkpv.js` —
+`settings_group_account`, product-and-service options, class/account options) but it cannot render
+here because **`GET /api/bookkeeping/products-and-services` returns 400 `"Bookkeeping is not
+configured"`**. Read the *status* endpoint, not the page.
+
+**What does NOT get you past it** (all tried, all refused): an adjustment **template**
+(`POST /api/adjustment-templates {kind,name,calculationType,defaultAmount,defaultScope,defaultMaxCap,
+autoApply,taxable}` → **201**, no guard on template creation — but applying it still leaves Add
+disabled and the API still 409s); passing `templateId` to `adjustments/add`; the line-level labour
+adjustment button; turning `bookkeeping_enabled` off via `workplaces/change` (silently ignored);
+`PUT /api/bookkeeping/settings {settings:{feeItemMapped:true,…}}` (**500**). The admin
+**New Fee / Discount** template dialog has **no QuickBooks-item field**, so the mapping is not set
+from there.
+
+**The one-step unblock for a tester:** map a Fee item and a Discount item under
+**Settings → QuickBooks** on an org whose bookkeeping is configured, then re-read
+`adjustment-item-mapping-status` and both flags flip to true.
+
+**Related endpoints worth having:** `GET /api/bookkeeping/integration` (auth URL + `toggles` incl.
+`advancedModeEnabled`, `allocateShopSuppliesByClass`, `fallbacks{…fallbackProductId…}`, and a `syncs`
+map of 11 sync switches) · `PUT bookkeeping/settings` = `saveQuickBooksData` ·
+`POST /api/product-and-service/create {name, category}` (category is an enum — `fee`, `discount`,
+`adjustment` are all rejected with *"Selected category is invalid."*; the valid set is in the
+QuickBooks page UI) · `POST /api/product-and-service/{id}/update|delete` ·
+`GET /api/adjustment-templates?pagination[rowsPerPage]=50` → `{data:{templates:[…]}}`.
 
 ### T.8 ⚠️ TRAP 4 — receiving a part can be a dead end, and the tell is a blank part number
 
