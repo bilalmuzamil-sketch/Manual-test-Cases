@@ -2734,24 +2734,67 @@ map of 11 sync switches) · `PUT bookkeeping/settings` = `saveQuickBooksData` ·
 QuickBooks page UI) · `POST /api/product-and-service/{id}/update|delete` ·
 `GET /api/adjustment-templates?pagination[rowsPerPage]=50` → `{data:{templates:[…]}}`.
 
-### T.8 ⚠️ TRAP 4 — receiving a part can be a dead end, and the tell is a blank part number
+### T.8 ⚠️ TRAP 4 — receiving a part 500s on this branch, and here is everything already ruled out
 
-`POST /api/inventory/orders/accept` **500s** on this branch. What was ruled out: a missing vendor
-(assigned one via `POST /api/orders/{orderId}/assign-vendor {vendorId, orderItemIds}` → 200,
-`vendorMissing` → false), a missing invoice number, and a wrong payload (the exact body the UI sends
-was captured and replayed). **Every one of the 8 single-part canned lines tried has
-`part_number: ""`** — a blank part number is the known blocker in this area.
+`POST /api/inventory/orders/accept` returns **HTTP 500** (generic body + requestId) — **including from
+the tester-facing Receive Parts screen**, with the Receive button enabled and no validation complaint.
+Request ids seen: `7b8f7c1c`, `b32c9979`, `a31d8bdc`, `ea4f1863`, `5ead1dce`, `52a43345`.
 
-Useful while digging: **vendors live at `GET /api/parts-catalogue/vendors`** (`/api/vendors` 404s);
-the Receive Parts screen is `/accept-delivery/{orderId}` with
-`input_invoice_number`, `input_delivered_quantity_0`, `input_delivery_note`, `button_receive_delivery`;
-`POST /api/work-orders/part/perform-request-status-action {part_request_id, action:'pick'|'order'}`
-→ 201 moves a request to `waiting_to_receive` and creates the inventory order.
-`POST /api/work-orders/part/make-request` needs **`work_order`, `line`, `description`,
-`part_source_type`** (not `work_order_id`/`line_id`), and then still wants an inventory-part key that
-none of `part_id` / `inventory_part` / `inventory_part_id` / `inventoryPart` satisfied.
-**`/workorders/{id}/parts` renders an error page on this branch** — read parts via
-`GET /api/work-orders/{id}/parts/list-requests-by-line?search=`.
+**DO NOT re-derive these — all six were tested and are NOT the cause:**
+
+| Suspected cause | Ruled out how |
+|---|---|
+| blank part number on the item | built a part with `part_number: "ZZ8815PN"` — still 500 |
+| missing vendor ("Vendor Missing" badge) | `POST /api/orders/{orderId}/assign-vendor {vendorId, orderItemIds}` → 200, `vendorMissing` → false — still 500 |
+| missing invoice number (`requireVendorInvoiceNumber: true`) | supplied one — still 500 |
+| wrong payload shape | captured the UI's **exact** body and replayed it verbatim — same 500 |
+| no bin locations to receive into | **376** bin locations exist, incl. default *General Storage* (`GET /api/inventory/bin-locations`) |
+| tax field empty | 500 with `tax: 0` and with `tax: 1` |
+
+**The exact body the UI sends** (so nobody has to capture it again):
+
+```json
+POST /api/inventory/orders/accept
+{"id":"<orderId>","invoiceNumber":"…","invoiceDate":"2026-08-19T06:00:00.000Z","note":null,
+ "items":"<JSON STRING of the order-item objects, each with quantity_received and total>",
+ "total":21,"orderStatus":"fulfilled","tax":1}
+```
+⚠️ **`items` is a JSON *string*, not an array**, and the item objects must be the **whole** records from
+`GET /api/inventory/orders/{id}` with `quantity_received` + `total` added. An empty/partial body gets a
+**400** naming `id`, `total`, `tax`, `invoice_date`, `order_status` in **snake_case** — misleading, since
+the working body uses camelCase; don't reverse-engineer the shape from those errors.
+
+**Receive Parts screen** = `/accept-delivery/{orderId}` — `input_invoice_number`,
+`date_input_`, `input_delivered_quantity_0` (one per row), `input_base` (tax),
+`input_delivery_note`, `button_receive_delivery`, and `badge_vendor_missing` when no vendor is set.
+
+**Getting a part onto a line — the payload that WORKS** (lifted from `ShopCoachVehicleLineBuilder`, not
+guessed):
+
+```
+POST /api/work-orders/part/make-request
+     {work_order, line, description, quantity, part_source_type:'vendor',
+      is_authorized:false, part_category_id}                                  -> 201
+```
+**The field names are `work_order` and `line`, NOT `work_order_id`/`line_id`** — that mismatch is what
+made this look impossible. `part_category_id` can be the *Uncategorized* category id. For an
+**inventory** part the shape is `{description, part_number, part_category_id, vendor_id:null, cost,
+sell_price, inventory_part_id, part_source_type:'inventory', core_charge}`; for a **catalogue** part
+`{catalogue_part_id, inventory_part_id:null, part_source_type:'vendor', cost:null, sell_price:null}`.
+Then `POST /api/work-orders/part/change-request {id, sell_price, cost, quantity}` → 200 to price it, and
+`perform-request-status-action {part_request_id, action:'order'|'pick'}` → 201 to move it along.
+
+**⚠️ RETURN and the part-row actions are on a RIGHT-CLICK CONTEXT MENU, not a kebab.** From
+`WorkOrderLineParts.Cb2440fQ.js`: the part row renders a Quasar `context-menu` holding **Move** /
+**Return** (staged parts) and **Move** / **Add Part Fee / Discount**
+(`menu_item_add_adjustment_part_context_<partId>`, requested parts). Gating worth knowing:
+**Return is hidden when `inventory_part_id` is set** (inventory parts are deleted, not returned) and
+**disabled when `part_source_type === 'found'`** with the tooltip *"Found parts cannot be returned.
+Please delete."* Requested-part actions need `workOrderLinesCreateAndEdit`.
+
+**The WO Parts tab is `/workorders/{id}/part-requests`** — `/workorders/{id}/parts` renders an error
+page ("The technician says this page is totaled"). Ids there: `table_part_requests`,
+`button_expand_collapse_all`, and the row Actions column.
 
 ### T.9 The Customer Invoice export carries PER-LINE TAX — this is where you reconcile
 
@@ -2782,3 +2825,73 @@ tax model has shop supplies enabled):
 Wire value for the setting is **`total_rounded`** — `invoice_total` and `total` both return
 `400 "Invalid sales tax rounding method."` while the UI calls the option "Invoice total".
 `GET /api/workplaces` reports it back as **`salesTaxRoundingMode`**.
+
+---
+
+## §U — HOW TO UNBLOCK YOURSELF: the ladder, in order (the standing skill, not one project's trick)
+
+**Standing rule already in CLAUDE.md: never stop at "a human must do this" or "this needs data
+seeding".** §U is the *method* behind that rule, written down so it is executed the same way every
+time instead of being reinvented. It was proven on 2026-08-19/20, where it turned two "impossible"
+items into precisely-diagnosed ones in about an hour — after an earlier pass had wrongly reported one
+of them as *"QuickBooks is not connected"*, which was **false**.
+
+**Work the rungs in order. Do not skip to guessing payloads — that is rung 5, and it is the worst one.**
+
+1. **READ WHAT THE SCREEN IS TELLING YOU.** The on-screen message, the tooltip, the validation text,
+   the banner. *"Map a Fee item in Settings → QuickBooks"* named the entire gate, and its
+   `data-test-id` (`banner_adjustment_mapping_guard`) was the string that unlocked everything else.
+2. **ASK THE DOM WHAT EXISTS — never conclude "there is no button" from a screenshot.**
+   `[...new Set([...document.querySelectorAll('[data-test-id]')].map(e=>e.getAttribute('data-test-id')))]`
+   then filter by keyword. This is what found `button_work_order_nav_bar_menu`,
+   `menu_item_add_adjustment` and `button_add_labor_adjustment_<lineId>` after a screenshot had
+   suggested there was no fee control at all. **Controls also hide off-screen right, and inside
+   right-click context menus** (see T.8 — Return is a context menu, and no amount of screenshotting
+   finds it).
+3. **CHECK WHETHER THE CONTROL IS DISABLED, AND WHY.** `{disabled, aria-disabled}` off the element
+   distinguishes *"my click missed"* from *"the product is refusing"* — completely different problems.
+   A disabled button with a banner above it is a **gate**, and a gate has a **condition**.
+4. **READ THE DEPLOYED BUNDLE. This is the highest-yield rung and the most under-used.**
+   Collect the chunk URLs the app actually loads (`page.on('response')` filtered to `.js`), fetch each
+   with `credentials:'include'`, and grep for the message, the `data-test-id`, or the field name. It is
+   *first-party source*: it gives the **exact endpoint**, the **exact field names** and the **exact
+   boolean** that gates the control. Tonight it produced
+   `bookkeeping/adjustment-item-mapping-status` → `{feeItemMapped, discountItemMapped}` (the whole
+   answer), and the working `make-request` body whose fields are `work_order`/`line` and **not**
+   `work_order_id`/`line_id`. **A lazily-loaded dialog's chunk only appears after you open the
+   dialog — open it first, then collect.**
+5. **ONLY NOW probe the endpoint** — empty/partial body, read the validation error, iterate. And treat
+   what it says with suspicion: this API answered in **snake_case** about a body that actually wants
+   **camelCase**, and answered **500** where the real problem was elsewhere entirely.
+6. **CAPTURE THE UI'S OWN REQUEST AND REPLAY IT.** `page.on('request')` + `postData()`. If the replay
+   fails identically, the payload is exonerated and the fault is server-side — which is a *finding*,
+   not a blocker.
+7. **RULE CAUSES OUT ONE AT A TIME, AND WRITE DOWN EACH ONE.** T.8's ruled-out table is worth more
+   than the eventual fix, because the next person's instinct will be to re-test exactly those six
+   things.
+8. **SWITCH SURFACES.** UI ↔ API, and *route casing and spelling matter*: `/workorders/{id}/parts`
+   errors while `/workorders/{id}/part-requests` works; `/api/vendors` 404s while
+   `/api/parts-catalogue/vendors` returns 10.
+9. **SEED IT YOURSELF** (Standing Rules 5/14) — a template, a tax model, a vendor assignment, a fresh
+   staff, a work order. Creating an adjustment **template** took one call and no permission.
+10. **ONLY THEN call it blocked** — and even then, deliver the *exact* gate, the *exact* condition, and
+    **the one step that would clear it**, so a human spends a minute rather than an evening.
+
+**THE TWO HONESTY RULES THAT GO WITH THIS LADDER:**
+
+- **Never report a cause you inferred.** *"QuickBooks is not connected"* was inferred from a page that
+  showed a Connect button; the status endpoint said **`quickBooksConnected: true`**. Read the state,
+  don't read the decoration.
+- **"Blocked" must name the gate.** *"Fees can't be added"* is useless. *"`feeItemMapped:false` from
+  `GET /api/bookkeeping/adjustment-item-mapping-status`; map a Fee item under Settings → QuickBooks"*
+  is actionable, and it is the same amount of typing.
+
+**AND THE RULE THAT MAKES ALL OF IT COMPOUND (QA lead, 2026-08-19, verbatim):** *"once you learned
+save it with you in your rules/playbook/skills/recipe and keep on upskilling yourself as you learn, I
+do not want you to search for the same process from scratch again and again and spend hours to do that
+repeatedly when you once have already found the right path to do it previously."*
+So: **the moment a rung pays off, the recipe goes into this playbook in the same session** — endpoint,
+payload, field names, `data-test-id`s, the gate, and what was ruled out. **Before starting anything
+that smells familiar, grep this file first** (`§R` staging seed · `§S` staging specifics · `§T`
+per-ticket QA branches · `§J` TestRail · `§M` Figma). Re-deriving a recipe that is already written
+down is the failure this section exists to prevent.
