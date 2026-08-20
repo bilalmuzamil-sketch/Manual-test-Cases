@@ -1,0 +1,233 @@
+[
+ {
+  "src": "/tmp/sv8815/shots/RET-R1-part-row-returned.png",
+  "dst": "/home/user/Manual-test-Cases/build/sv8815-sales-tax-rounding-2026-08-19/evidence/EXHIBIT-R1-part-received-then-returned.png",
+  "banner": "S-16001  -  a vendor part WAS received on this branch, then 1 of 3 returned   (build v3.8-1f5fb3c)",
+  "bannercol": [
+   20,
+   110,
+   50
+  ],
+  "boxes": [
+   {
+    "x": 528.625,
+    "y": 358.5625,
+    "w": 71.015625,
+    "h": 18,
+    "label": "the vendor part",
+    "color": [
+     20,
+     80,
+     200
+    ],
+    "lx": 268.625
+   },
+   {
+    "x": 1672.09375,
+    "y": 357.734375,
+    "w": 69.59375,
+    "h": 21.015625,
+    "label": "status after the return",
+    "color": [
+     20,
+     140,
+     60
+    ],
+    "lx": 1801.6875
+   }
+  ],
+  "caption": "CORRECTION to my earlier note: receiving a part is NOT broken. It is done from the Receive button on the part row,\nwhich calls POST /api/orders/receive-requested-parts and returns 200. The /accept-delivery screen I used before is a\ndifferent, dead path. This part reached Received, the work order was invoiced, then 1 of 3 was returned."
+ },
+ {
+  "src": "/tmp/sv8815/shots/RET-R2-invoice-total-frozen-crop.png",
+  "dst": "/home/user/Manual-test-Cases/build/sv8815-sales-tax-rounding-2026-08-19/evidence/EXHIBIT-R2-return-invoice-total-frozen.png",
+  "banner": "S-15999  -  issued invoice AFTER returning 1 of 3 parts   -   rounding mode: Invoice total",
+  "bannercol": [
+   20,
+   110,
+   50
+  ],
+  "boxes": [
+   {
+    "x": 2029.453125,
+    "y": 567.5625,
+    "w": 322.546875,
+    "h": 75.0,
+    "color": [
+     20,
+     140,
+     60
+    ],
+    "label": "subtotal $244.00  -  tax $23.79  -  total $267.79   (unchanged)",
+    "lx": 1180,
+    "ly": 417.5625
+   }
+  ],
+  "caption": "The issued invoice document for S-15999, read AFTER the part return. Subtotal $244.00, tax $23.79, total $267.79 -\nexactly what it was billed. This is the \"Invoice total\" invoice; the other mode gives the identical result, so a part\nreturn does not rewrite an issued invoice under either rounding method (AC6)."
+ },
+ {
+  "src": "/tmp/sv8815/shots/RET-R3-line-by-line-frozen-crop.png",
+  "dst": "/home/user/Manual-test-Cases/build/sv8815-sales-tax-rounding-2026-08-19/evidence/EXHIBIT-R3-return-line-by-line-frozen.png",
+  "banner": "S-16001  -  issued invoice AFTER returning 1 of 3 parts   -   rounding mode: Line by line",
+  "bannercol": [
+   20,
+   110,
+   50
+  ],
+  "boxes": [
+   {
+    "x": 2029.453125,
+    "y": 567.5625,
+    "w": 322.546875,
+    "h": 75.0,
+    "color": [
+     20,
+     140,
+     60
+    ],
+    "label": "subtotal $244.00  -  tax $23.79  -  total $267.79   (unchanged)",
+    "lx": 1180,
+    "ly": 417.5625
+   }
+  ],
+  "caption": "The issued invoice document for S-16001, read AFTER the part return. Subtotal $244.00, tax $23.79, total $267.79 -\nexactly what it was billed. This is the \"Line by line\" invoice; the other mode gives the identical result, so a part\nreturn does not rewrite an issued invoice under either rounding method (AC6)."
+ },
+ {
+  "src": "/tmp/sv8815/shots/RET-R4-wo-screen-invoice-total.png",
+  "dst": "/home/user/Manual-test-Cases/build/sv8815-sales-tax-rounding-2026-08-19/evidence/EXHIBIT-R4-wo-screen-after-return-invoice-total.png",
+  "banner": "S-15999  -  work-order Financial Info AFTER the return   -   rounding mode: Invoice total",
+  "bannercol": [
+   200,
+   120,
+   20
+  ],
+  "boxes": [
+   {
+    "x": 348.8125,
+    "y": 1085.71875,
+    "w": 50.1875,
+    "h": 18,
+    "label": "subtotal DID drop by the $80 part",
+    "color": [
+     220,
+     20,
+     20
+    ],
+    "lx": 430,
+    "ly": 1125.71875
+   },
+   {
+    "x": 348.8125,
+    "y": 1149.71875,
+    "w": 50.1875,
+    "h": 18,
+    "label": "so this Total is neither one nor the other",
+    "color": [
+     220,
+     20,
+     20
+    ],
+    "lx": 430,
+    "ly": 1189.71875
+   },
+   {
+    "x": 348.8125,
+    "y": 1181.71875,
+    "w": 50.1875,
+    "h": 18,
+    "label": "balance correctly still shows the invoiced 267.79",
+    "color": [
+     20,
+     140,
+     60
+    ],
+    "lx": 430,
+    "ly": 1253.71875
+   },
+   {
+    "x": 356.671875,
+    "y": 1117.71875,
+    "w": 42.328125,
+    "h": 18,
+    "label": "tax did NOT move - still the invoiced 23.79",
+    "color": [
+     220,
+     20,
+     20
+    ],
+    "lx": 430,
+    "ly": 1317.71875
+   }
+  ],
+  "caption": "Observation, NOT caused by this ticket. On the invoiced work order S-15999 the panel now shows Subtotal $164.00\nwith the tax line still at $23.79, so its Total reads $187.79 - not the invoiced $267.79 (which the Balance still\nshows correctly) and not a clean recompute of $179.99. Identical on \"Invoice total\" and on the other mode, figure for\nfigure, so the rounding change is not what causes it."
+ },
+ {
+  "src": "/tmp/sv8815/shots/RET-R5-wo-screen-line-by-line.png",
+  "dst": "/home/user/Manual-test-Cases/build/sv8815-sales-tax-rounding-2026-08-19/evidence/EXHIBIT-R5-wo-screen-after-return-line-by-line.png",
+  "banner": "S-16001  -  work-order Financial Info AFTER the return   -   rounding mode: Line by line",
+  "bannercol": [
+   200,
+   120,
+   20
+  ],
+  "boxes": [
+   {
+    "x": 348.8125,
+    "y": 1085.71875,
+    "w": 50.1875,
+    "h": 18,
+    "label": "subtotal DID drop by the $80 part",
+    "color": [
+     220,
+     20,
+     20
+    ],
+    "lx": 430,
+    "ly": 1125.71875
+   },
+   {
+    "x": 348.8125,
+    "y": 1149.71875,
+    "w": 50.1875,
+    "h": 18,
+    "label": "so this Total is neither one nor the other",
+    "color": [
+     220,
+     20,
+     20
+    ],
+    "lx": 430,
+    "ly": 1189.71875
+   },
+   {
+    "x": 348.8125,
+    "y": 1181.71875,
+    "w": 50.1875,
+    "h": 18,
+    "label": "balance correctly still shows the invoiced 267.79",
+    "color": [
+     20,
+     140,
+     60
+    ],
+    "lx": 430,
+    "ly": 1253.71875
+   },
+   {
+    "x": 356.671875,
+    "y": 1117.71875,
+    "w": 42.328125,
+    "h": 18,
+    "label": "tax did NOT move - still the invoiced 23.79",
+    "color": [
+     220,
+     20,
+     20
+    ],
+    "lx": 430,
+    "ly": 1317.71875
+   }
+  ],
+  "caption": "Observation, NOT caused by this ticket. On the invoiced work order S-16001 the panel now shows Subtotal $164.00\nwith the tax line still at $23.79, so its Total reads $187.79 - not the invoiced $267.79 (which the Balance still\nshows correctly) and not a clean recompute of $179.99. Identical on \"Line by line\" and on the other mode, figure for\nfigure, so the rounding change is not what causes it."
+ }
+]

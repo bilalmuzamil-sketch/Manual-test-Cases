@@ -26,7 +26,15 @@ def ann(src, dst, boxes, caption, banner=None, bannercol=(200,30,30)):
             lx=max(6,min(lx,W-tw-16))
             d.rectangle([lx-8,ly-6,lx+tw+8,ly+30],fill=(255,255,255),outline=col,width=3)
             d.text((lx,ly),lbl,font=f,fill=col)
-            d.line([lx+tw+8,ly+12,x-6,y+h//2],fill=col,width=4)
+            # Draw the leader from whichever edge of the label FACES the box. The old code always
+            # used the right edge, so a label placed to the RIGHT of its value drew the line back
+            # through its own text and every caption looked struck through.
+            if lx > x + w:                       # label is to the right of the box
+                d.line([lx-8,ly+12,x+w+6,y+h//2],fill=col,width=4)
+            elif lx + tw < x:                    # label is to the left of the box
+                d.line([lx+tw+8,ly+12,x-6,y+h//2],fill=col,width=4)
+            else:                                # label sits above or below it
+                d.line([lx+tw//2,ly+30 if ly+30<y else ly-6,x+w//2,y-6 if ly+30<y else y+h+6],fill=col,width=4)
     if caption:
         d.rectangle([0,H+top,W,H+top+pad],fill=(248,248,248))
         yy=H+top+12

@@ -1,0 +1,38 @@
+{
+ "probe {}": {
+  "status": 400,
+  "json": {
+   "errors": [
+    {
+     "customer_account_id": "Missing required parameter"
+    },
+    {
+     "amount": "Missing required parameter"
+    }
+   ]
+  }
+ },
+ "probe {\"account_id\":\"ee9ade86-2fa6-4a45-81c6-4370869f2fab\"}": {
+  "status": 400,
+  "json": {
+   "errors": [
+    {
+     "customer_account_id": "Missing required parameter"
+    },
+    {
+     "amount": "Missing required parameter"
+    }
+   ]
+  }
+ },
+ "probe {\"account_id\":\"ee9ade86-2fa6-4a45-81c6-4370869f2fab\",\"amount\":10}": {
+  "status": 400,
+  "json": {
+   "errors": [
+    {
+     "customer_account_id": "Missing required parameter"
+    }
+   ]
+  }
+ }
+}
