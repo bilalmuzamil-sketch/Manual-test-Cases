@@ -2824,6 +2824,40 @@ Please delete."* Requested-part actions need `workOrderLinesCreateAndEdit`.
 page ("The technician says this page is totaled"). Ids there: `table_part_requests`,
 `button_expand_collapse_all`, and the row Actions column.
 
+### T.8b Getting the CREDIT for a returned part — Parts → Returns → Receive Credit (proven 2026-08-20)
+
+**This is the flow that actually credits a returned part, and it is a VENDOR credit — not a customer
+credit and not `POST /api/credit-memos`.** Recorded because I first went looking in the wrong place
+entirely and told the QA lead a credit had no tax in it.
+
+```
+Parts → Returns  (/parts/returns, tabs: tab_returns | tab_credits)
+  tick  return_request_checkbox_<returnRequestId>
+  ->    button_receive_credit  appears top-right
+  ->    /parts/confirm-return?ids=<returnRequestId>&isManualReturn=0   ("Process Return")
+  fields: select_vendor · input_packaging_slip · input_credit_memo_number · date_input_ (Credit Date)
+          input_received_quantity_0 (Accepted Quantity) · input_return_note
+  ->    button_post_credit   ->   POST /api/inventory/returns/create   -> 200
+```
+After posting, the row leaves the Returns tab. `button_manual_return_actions_<id>` is the per-row kebab;
+`button_create_return` makes a manual one.
+
+⚠️ **TWO DIFFERENT FIELDS SHARE `data-test-id="input_base"` on this screen** — the per-row
+**Restocking Fee** and the **Tax** in the totals block. `page.locator(...).first()` picks the
+restocking fee, so a script aiming at Tax silently edits the fee instead (it did, to me). **Disambiguate
+by context, not by id** — read every `input` with its surrounding label text and match on that. This is
+an automation hazard worth a ticket in its own right.
+
+**What the numbers mean** (measured, both rounding modes, identical):
+- **Subtotal = the part's COST**, not its sell price ($10.00, not $80.00).
+- **Tax is pre-filled and editable**, computed as **cost × the workplace tax rate** — the payload
+  carries **`workplace_tax: 5`**, giving $0.50 on $10.00 — **which is NOT the location's sales-tax
+  model** (that was `ZZ8815 9.75pct`). So a vendor credit's tax has nothing to do with the sales-tax
+  rounding setting, and reads the same under both modes.
+- Entering a restocking fee **reduces the subtotal** and the tax recomputes on the reduced base
+  (0.98 fee → subtotal 9.02, tax 0.45, total 9.47).
+- **Posting the credit does NOT move the customer's issued invoice** — verified byte for byte.
+
 ### T.9 The Customer Invoice export carries PER-LINE TAX — this is where you reconcile
 
 `GET /api/reporting/export/customer_invoice?report=customer_invoice&range=today` (§S.10) returns a

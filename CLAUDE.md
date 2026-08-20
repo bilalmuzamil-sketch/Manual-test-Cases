@@ -3632,6 +3632,42 @@ deliver the 7-tab management report.
     questions), 11 (ask which process), 12, 17, 22 (ask up front about what a task needs), 25 (cite
     the document's own words) and 55 (an unclear or mismatched input goes back as a question).
 
+62. **A PER-TICKET QA BRANCH IS FINAL THE MOMENT WE PASS IT — a QA PASS *is* the declaration of
+    finality, and only a FAIL sends the branch back (all projects).**
+    USER DIRECTIVE (2026-08-20, verbatim): *"when I share with you the QA branch always consider it
+    final IF we pass the QA. The branch will only change if we fail the QA for that branch."*
+    **THE RULE, for the per-ticket QA branches (`sv####.qa.shopview.com`):**
+    **(a) VERDICT PASS ⇒ THE BUILD IS FINAL.** The findings are **NOT provisional**, no Rule-49
+    re-check queue is opened, and the report must **NOT** carry a "this branch has not been declared
+    final, every verdict is provisional" caveat. Developers do not rebuild a branch that passed, so
+    there is nothing to re-read. **State the build marker anyway** — it is the record of *what* was
+    passed, not a hedge about it.
+    **(b) VERDICT FAIL ⇒ THE BRANCH WILL BE REBUILT.** *Now* the findings are provisional and
+    **Rule 49 applies in full**: record the build marker, open a `RECHECK-QUEUE.md`, and re-run every
+    row against the new build when it lands. A fail is the only thing that moves the branch.
+    **WHAT THIS RESOLVES:** Rules 49 and 60 were written for the long-lived feature branches
+    (`sv8582`, `sv8685`, `sv8785`) that engineering **never declares final**, where an OPEN queue is
+    the permanent steady state. Those rules were waiting for a finality signal that never came. **This
+    ruling supplies it for the per-ticket branches: our own PASS is the signal.** Rules 49/60 continue
+    to apply unchanged to the never-declared-final feature branches — **do not generalise this rule to
+    them.**
+    **WHAT DOES NOT CHANGE:** a verdict still has to be **live-observed with evidence** (Rules 10/12/13),
+    still **exhaustive** (Rule 50), and the **build marker is still recorded on every case's provenance
+    line** (Rule 54 sentence 2). Finality is about whether the answer needs re-reading later, never
+    about how the answer was reached. And if the branch **does** redeploy after a pass (the marker
+    moves, or a session dies early), that is new information — **say so and re-read**, because the
+    premise of this rule has changed.
+    **RATIONALE, 2026-08-20:** SV-8815 passed 6 of 6 acceptance criteria on `sv8815`
+    (`v3.8-1f5fb3c`), and the report still carried a provisional caveat inherited from Rule 49 —
+    telling the PO and engineering that a passed ticket's verdicts might not hold. That caveat was
+    **noise on a passed branch**: it is a blanket hedge of exactly the kind Rule 60(d) forbids, and it
+    invites the reader to discount a result that is actually settled. Ties to Standing Rules 10, 12
+    (observed, never inferred), 13, 22 (ask for the environment up front), 25, 31 (the build is a
+    source and its marker is recorded), 36 (a genuinely open re-check is an outstanding item; a passed
+    branch is not), 49 (**this rule supplies the finality signal 49 waits for, on per-ticket branches
+    only**), 50, 54 (sentence 2 names the build the case was checked against) and 60 (the
+    never-final-build strategy, which continues to govern the feature branches).
+
 ## Project purpose (Custom Roles project)
 Manual test-case authoring + live staging (Verify-in-UI) verification + TestRail
 management for ShopView **"Custom Roles and Permissions"**, plus related
