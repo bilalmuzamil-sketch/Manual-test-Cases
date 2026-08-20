@@ -13,7 +13,7 @@
 
 ## Overall status
 
-**PASSED so far — 24 of 24 checks that could be run have passed. Nothing is broken.**
+**PASSED — 35 of 35 checks that could be run have passed. Nothing is broken.**
 
 Two things could **not** be tested on this branch, both for the same reason and neither of them a
 defect in this change:
@@ -152,7 +152,23 @@ Balances were read off the tester-facing **Financial Info** panel on the work or
 
 ---
 
-## 6. Every surface agrees (handoff sections A and H)
+## 6. The setting is per location, not per organisation (handoff section F)
+
+Two locations, the **same** tax model (9.75%) and the **same** taxable subtotal (27.81), one work
+order each:
+
+| Location | Its rounding setting | Taxable subtotal | Tax | Result |
+|---|---|---|---|---|
+| **A — Staging Heavy Duty - 9919** | set to **Invoice total** | 27.81 | **2.71** | **PASS** |
+| **B — Staging Lethbridge - 4310** | left untouched on the default | 27.81 | **2.70** | **PASS** |
+
+Only A's invoice used the new rounding. B, which nobody touched, still billed the old way. The two
+locations read back as `total_rounded` and `line_by_line` respectively, so the setting is stored per
+location.
+
+---
+
+## 7. Every surface agrees (handoff sections A and H)
 
 Same work order, read on the invoice screen and on the rendered invoice document, in both modes:
 
@@ -164,9 +180,45 @@ Same work order, read on the invoice screen and on the rendered invoice document
 **PASS — the two surfaces agree figure for figure in both modes.**
 
 One thing to note for whoever writes the test cases: the invoice document prints a **Line Total** per
-line and a **single tax row per rate** at the bottom. It does **not** print a per-line tax column, so
-the handoff's "per-line tax shown on each invoice line" is not a surface that exists on this build's
-invoice document.
+line and a **single tax row per rate** at the bottom. It does **not** print a per-line tax column — so
+the place to check per-line tax is the **Customer Invoice export**, below.
+
+### 7a. The Customer Invoice export — the reconciliation the handoff calls out
+
+The handoff's specific ask: *"open the printed invoice / PDF and add up the tax shown against labor +
+parts + shop supplies. It must come to **exactly 302.78** — not 302.77, not 302.79. Same on the
+customer invoice export."*
+
+Case 1 was rebuilt on both settings, **invoiced**, and pulled through
+**Reports → Export Reports → Customer Invoice**. The export carries a per-line `ItemTaxAmount`.
+
+| Case-1 invoice | Setting | Line amounts add to | 13 per-line tax amounts add to | Expected | Result |
+|---|---|---|---|---|---|
+| S8815-15965 | Line by line | 6,055.65 | **302.81** | 302.81 | **PASS** |
+| S8815-15966 | Invoice total | 6,055.65 | **302.78** | 302.78 | **PASS** |
+
+You can see the tax-split code doing its job. Same 13 lines, and three of them shed a cent under
+"Invoice total" to bring the total down by exactly 3¢:
+
+| | Line by line | Invoice total |
+|---|---|---|
+| the 375.00 line | 34.38 | **34.37** |
+| the 2,081.59 line | 104.08 | **104.07** |
+| the 437.50 line | 21.88 | **21.87** |
+| **all 13 lines** | **302.81** | **302.78** |
+
+And the on-screen figures for case 1 held through invoicing on both settings: subtotal **6,055.65**,
+tax **302.81 / 302.78**, total **6,358.46 / 6,358.43** — the handoff's numbers to the cent.
+
+**Every invoice in the export reconciles.** All 19 invoices this run produced were checked, not a
+sample: each one's per-line tax amounts add up exactly to that invoice's tax — 2.70 for the
+line-by-line ones, 2.71 for the invoice-total ones, and 2.98 / 3.00 for the two with shop supplies
+(where the shop-supplies charge appears as its own export row with its own tax share).
+
+Export header, for the test cases:
+`InvoiceNo, Customer, InvoiceDate, DueDate, Terms, Location, Memo, Item(Product/Service),
+ItemDescription, ItemQuantity, ItemRate, ItemAmount, ItemTaxCode, ItemTaxAmount, "ShopView Products
+and Services"`
 
 ---
 
@@ -181,10 +233,73 @@ invoice document.
 
 ---
 
-## 7. Existing invoices — what was checked at scale
+## 8. Existing invoices and locations (handoff section G)
 
-_(in progress — 1,000 stored invoices are being read and their tax arithmetic classified; results
-and the honest limits of that check will be added here when the scan finishes)_
+### 8a. Every existing location still reads the default — **PASS**
+
+All **7** locations in the organisation report `line_by_line`, including the two long-standing
+Staging locations that nobody has ever edited. **0 locations** sit on anything else unless someone
+deliberately set it.
+
+| Location | Its tax | Rounding setting |
+|---|---|---|
+| Staging Heavy Duty - 9919 | (changed by this run) | `line_by_line` |
+| Staging Lethbridge - 4310 | GST | `line_by_line` |
+| the 5 ZZ8815 test locations created for this run | various | `line_by_line` |
+
+### 8b. All 1,000 existing invoices were read — **no old invoice moved** ✅
+
+Every stored invoice on the branch was read individually (`GET /api/invoices/{invoiceId}/view`) — all
+**1,000**, no sampling.
+
+| What was checked | Result |
+|---|---|
+| Old invoices still carry their **own** tax model, not the location's current one | **993 of 1,000** still read tax model **GST, Federal Tax 5%**. The only **7** that read anything else are the seven **this run created**. Not one pre-existing invoice moved — even though this run changed Heavy Duty's tax model five times (GST → 8% → 9.75% → stacked → GST+PST). |
+| Paid invoices still close to zero | **863** invoices are paid; **all 863** have a paid balance of exactly **0**. No new one-cent residue anywhere in the historical set. |
+| Multi-rate invoices in the historical data | **0** — no existing invoice on this branch has more than one tax rate, so the handoff's "two or more tax rates" category cannot be covered from old data. It **was** covered on new invoices instead (section 3, two rates, and section 2 cases 5a/5b, three stacked rates). |
+| Invoices with a fee or a discount in the historical data | **0** carry an adjustment, so that category cannot be covered from old data either, and fees/discounts cannot be created on this branch (see the blocked list). |
+| Invoices with shop supplies | **811** — covered. |
+| Invoices with declined lines | **290** — present in the data. |
+
+**A stronger proof of the same thing, worth reading twice.** The single most convincing record is
+**S-4802** — an invoice from **12 February 2025**, paid. Its location's tax model has since been
+replaced entirely by this run, and the invoice still reads: tax model **GST**, rate **Federal Tax
+5%**, tax **$141.66**, subtotal **$2,833.13**, total **$2,974.79**, created **2025-02-12**. Issued
+invoices keep their own frozen copy of the tax model. That is exactly what the warning banner
+promises.
+
+### 8c. What this section can and cannot prove — read this before quoting it
+
+The one thing this branch **cannot** prove on its own is the literal wording of the handoff:
+*"nothing here may differ from current released behaviour."* Proving *differ* needs the **same
+invoice read on a build without this change**, and this branch is the only environment in hand.
+
+To get as close as possible, the tax on all 1,000 invoices was **recomputed** from each invoice's own
+lines, rates and shop-supplies charge and compared with the stored figure. The base reconstruction is
+sound — the recomputed taxable base equals the invoice's own printed subtotal on **956 of 1,000**
+invoices — but the tax classification came out mixed: 444 agree with both arithmetics, 106 match
+line-by-line only, 168 match invoice-total only, 282 match neither, with the differences almost all
+**±1 or 2 cents**.
+
+**That mixed result is not evidence of a defect, and must not be reported as one.** Two reasons:
+
+1. The handoff says so itself: *"Across 1018 historical invoices, **162** already have per-line taxes
+   that don't add up to the invoice tax by a cent or two, independent of this change."* Cent-level
+   noise on old invoices is a known pre-existing condition with its own follow-up ticket.
+2. The reconstruction cannot reproduce whatever granularity the original code used — whether tax was
+   rounded per line, per labour row and per part row separately, or per part. It also cannot see
+   line-level tax exemptions, and **290** of these invoices carry declined lines, whose treatment on
+   old invoices differs from today's rule. Of the 282 "neither" invoices, **126** have declined lines.
+
+Three invoices sit further out than a couple of cents and are worth a developer's eye — but with **no
+baseline they are not findings, and nothing here says they are wrong**: **S-5329** (stored 49.56 vs
+59.56 recomputed), **S-4542** (605.81 vs 594.48), **S-5927** (253.81 vs 103.82 — this one has 24
+declined lines, which is almost certainly the whole explanation).
+
+**What would close section G properly:** read the same invoice numbers on staging or production and
+diff them against this branch. That is a 20-minute job with a staging session and it is the only
+thing that turns "frozen, and still on its original tax" into "provably identical to the released
+build".
 
 ---
 
