@@ -56,5 +56,27 @@
 ## Run untouched
 - update_case writes no run results. Run 359 read post-pass: include_all False, 6 passed / 0 failed / 503 untested (509 total) — intact. No run write issued. Runs 357/352 not touched.
 
-## Priority 4 (permission/single-location backlog)
-- Attempted after checkpoint — see below / commit log.
+## Priority 4 (permission/single-location backlog) — ATTEMPTED, DEFERRED (no fabrication, Rule 12)
+
+**4 Schedule permission candidates need NO action — already `AUTOMATION: READY`:** C30076 (Schedule
+nav hidden with Schedule:View OFF), C30078 (Edit without Delete), C30081 (Schedule without WO:View),
+C30614 (WO:View OFF hides WO details). All atm=1, marker already READY — nothing to flip.
+
+**3 reports-access cases NOT observed this session (kept HELD):** C30398 (TU hidden without reports
+access), C30603 (IV opens with ordinary reports access, atm=3 updated_by=1), C30604 (IV absent
+without reports access, atm=3 updated_by=1). Reason:
+- The only way to reach a *no-reports-access* live state was to mutate the shared org's roles: the
+  Tech quick-login user's role (Technician) is currently DRIFTED to include `reportsPageAccess`
+  (13 perms, confirmed live), and active staff hold only Admin / Technician / Senior Service Advisor /
+  Parts Manager — no clean reports-less holder to impersonate read-only.
+- A concurrent worker is active and the org is shared; resetting/assigning roles (Rule 26 mutation)
+  risks disrupting them, so it was NOT done. Impersonation/quick-login also rotates the shared
+  PHPSESSID (it expired the admin cookie mid-pass; recovered by re-minting via quick-login admin +
+  persisting the fresh PHPSESSID).
+- Per Rule 12 the verdict was NOT inferred from `fe_permissions`. These 3 stay HELD; they are the
+  automation-owned "one shared sign-in" cases and are best driven when a dedicated reports-less test
+  login exists.
+
+**No shared-org mutation was made this pass:** no role permission changed, no staff role_id changed.
+Only read-only API calls + quick-login (session-scoped, self-recovered). **Technician role swap: NOT
+performed → nothing to restore (N/A).**
