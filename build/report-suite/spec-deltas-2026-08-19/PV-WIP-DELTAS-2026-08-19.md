@@ -1,8 +1,21 @@
-# Report Suite — PV + WIP spec deltas recorded 2026-08-19 (DOCS-ONLY; reconciliation QUEUED AFTER Filters)
+# Report Suite — PV + WIP spec deltas recorded 2026-08-19 — ✅ EXECUTED 2026-08-20 (Delta A) · B.1/B.2 spot-verified · B.3 HELD+RAISED
 
-> **DOCS-ONLY pass.** Nothing was written to TestRail, Jira or staging in recording these deltas. No
-> test case was touched. This file **captures** two spec changes the QA lead reported on 2026-08-19
-> and **queues** the reconciliation work — it does not perform it.
+> **⚡ STATUS 2026-08-20 — EXECUTED. See `EXECUTION.md` for the run.** Build v3.8-d0e135e (start==end).
+> - **DELTA A (PV CSV rule): DONE** — live-verified on the build (CSV plain numbers, numeric nulls
+>   empty, no `$`/separators/`%`; S6-R10 PDF-only confirmed from the CSV-lacks-it side; PV PDF export
+>   still HTTP 500 = SV-8818). **3 `update_case` (C30380 extended, C30381 confirmed/re-stamped, C30382 →
+>   EXPECT-FAIL SV-8818), all byte-verified.** C30348 + C30371 spot-verified, no change (on-screen only).
+> - **DELTA B.1 + B.2 (grain + line-state): SPOT-VERIFIED LIVE, NO CHANGE** — already at v24 (Chris
+>   rulings 1 & 3, applied by `wip-reconciliation-2026-08-19`); tabs present as documented.
+> - **DELTA B.3 (Story-5 design adoption): 🛑 HELD + RAISED.** The build has fully adopted new figure
+>   names + grouped +/= math + reworded tooltips, but the six new names/tooltips are in NO document held
+>   (v24 spec / Aug-13 design review is SSO-walled) — writing them from the build fails Rules 57/58.
+>   **0 WIP writes.** Needs the v24 page / design-review export (RS-WIP-8 updated).
+> - **0 Jira · 0 foreign · run 359 untouched (508 tests / 535 results, sets equal both ways).**
+>
+> **ORIGINAL (superseded) header, kept dated:** DOCS-ONLY pass. Nothing was written to TestRail, Jira or
+> staging in recording these deltas. No test case was touched. This file **captures** two spec changes
+> the QA lead reported on 2026-08-19 and **queues** the reconciliation work — it does not perform it.
 >
 > **Chris Ward is the Report Suite / Parts Velocity / WIP Product Owner** (never mixed with Branko /
 > Milos). The QA lead relayed these Confluence updates; they are **authoritative source (a) — the

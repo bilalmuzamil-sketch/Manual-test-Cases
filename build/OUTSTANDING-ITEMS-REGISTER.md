@@ -17,13 +17,27 @@ was true at an earlier blocked moment; the re-check and the Filters pass both su
   is UNBLOCKED.
 - **GRAND TOTAL: 746 build-verified / 81 Automated held / 827 total** (746 + 81 = 827 ✓).
 
-**🔴 THE ONLY STAGING ITEM LEFT — blocked on ONE fresh cookie set:**
-- **RS-PV-1 + RS-WIP-8 — Parts-Velocity CSV number-format rule + WIP Story-5 Summary-Strip design
-  adoption (~15 cases).** Both are Chris Ward spec deltas (already captured below); they need a **live
-  re-check** and then apply verbatim. *What it blocks:* PV CSV cases asserting the plain-number rule (~6);
-  WIP Summary-Strip cases adopting the locked design-review wording (~9). *Unblock:* `sv_sso_session` +
-  `PHPSESSID` for `api.staging.shopview.com` in `/tmp/staging-cookie.txt` (`cf_clearance` still valid).
-  Owner: QA lead (cookies) → us (queued pass). Since 2026-08-19.
+**✅ RS-PV-1 — CLEARED 2026-08-20.** Parts-Velocity CSV number-format rule (Delta A) EXECUTED live on
+build v3.8-d0e135e: CSV confirmed plain numbers (no `$`/separators/`%`), numeric nulls empty, S6-R10
+PDF-only (from the CSV-lacks-it side; PV PDF export still HTTP 500 = SV-8818). **C30380 extended, C30381
+confirmed/re-stamped, C30382 → EXPECT-FAIL SV-8818; C30348/C30371 spot-verified no-change.** Byte-verified,
+run 359 untouched. Source: `build/report-suite/spec-deltas-2026-08-19/EXECUTION.md`.
+
+**🔴 RS-WIP-8 — STILL OPEN (narrowed 2026-08-20): B.1/B.2 done, B.3 BLOCKED on the v24 / design-review source.**
+- B.1 (snapshot grain) + B.2 (line-state placement) **spot-verified live, already at v24, no change.**
+- B.3 (Story-5 Summary-Strip design adoption) is **HELD**: the build has fully adopted new figure names
+  ("COMPLETED WORK ON OPEN WORK ORDERS", "WORK ORDERS READY TO INVOICE", "TOTAL COMPLETED WORK", "WORK
+  ORDERS NOT STARTED", "REMAINING WORK ON OPEN WORK ORDERS", "REMAINING WORK", "ESTIMATES") + grouped +/=
+  math (sums verified) + reworded tooltips (the Estimates tooltip matches C30493's locked S5a-R2 wording).
+  **The six new figure names + six tooltips are in NO document held** (repo / Chris rulings file / v22
+  baseline); the v24 spec + Aug-13 design review are SSO-walled and were not fetchable this session.
+  Writing them from the build fails Rules 57/58 (quote-back test) — so **0 WIP writes; 9 cases + 1 atm=3
+  (C30488) HELD**. *What it blocks:* WIP Summary-Strip cases (C30487/89/90/91/93, C43818, C30520, C30524,
+  C43838) adopting the ratified v24 figure names + locked tooltip wording; plus a likely NEW tab-to-figure
+  highlight case (Rule 62 creation-hold H1). *Unblock:* QA lead supplies the **WIP v24 Confluence page +
+  Aug-13 design-review export** (ratified figure names + locked tooltip wording). Owner: QA lead (source)
+  → us (one coupled build-verify pass). Since 2026-08-19; narrowed 2026-08-20. Detail:
+  `build/report-suite/spec-deltas-2026-08-19/{EXECUTION,PV-WIP-RECON-HELD-AUTOMATED}.md`.
 
 **🟡 AWAITING YOUR GO-AHEAD (nothing else is blocked on a live env):**
 - **Ratify the 81 Automated (atm=3) held cases** — Report Suite 71 + Schedule 5 + Filters 5 (Rule 71,
