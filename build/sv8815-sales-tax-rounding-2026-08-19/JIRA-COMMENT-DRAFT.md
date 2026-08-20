@@ -19,6 +19,28 @@ GMT). **35 of 35 checks that could be run on this branch passed.** Two areas cou
 and neither is a defect in this change — QuickBooks is not connected, so fees/discounts cannot be
 added at all, and a part cannot be received, so the part-return check has no data to run on.
 
+### The ticket's own acceptance criteria — 6 of 6 met
+
+| AC | What it asks | Result |
+|---|---|---|
+| 1 | A setting to choose between Line-by-line and Total-rounded | **PASSED** |
+| 2 | Default is Line-by-line for all existing and new shops; nothing changes until it is switched | **PASSED** — 7/7 existing locations, 5/5 new ones, and 993/1000 existing invoices untouched |
+| 3 | Line-by-line: example 1 → **$6.46**, example 2 → **$1.80** | **PASSED** — 6.46 and 1.80 |
+| 4 | Total-rounded: example 1 → **$6.45**, example 2 → **$1.81** | **PASSED** — 6.45 and 1.81 |
+| 5 | Total-rounded shows the QuickBooks $0.01 open-balance warning | **PASSED** |
+| 6 | Applies going forward; does not rewrite already-issued invoices | **PASSED** — flipped in both directions with an invoice already issued |
+
+### And the four open questions, as answered on 18 Aug
+
+| Answer | Build | Result |
+|---|---|---|
+| Two options, "Line by line (default)" and "Invoice total", each with a one-line explanation | exactly that | **PASSED** |
+| Scope = Location | per-location: A billed 2.71 while untouched B billed 2.70 on the same subtotal | **PASSED** |
+| Not-yet-invoiced follows the location's setting; issued invoices keep their billed rounding | both halves confirmed | **PASSED** |
+| Not single-rate — rounds once **per rate** | confirmed on 2 rates and on 3 stacked rates | **PASSED** |
+
+### Everything tested, in detail
+
 | # | Test | Status |
 |---|---|---|
 | 1 | Locations dialog shows **Sales Tax Rounding** = "Line By Line (Default)" on an untouched location, no warning banner | PASSED |

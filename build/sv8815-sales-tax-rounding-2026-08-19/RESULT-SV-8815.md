@@ -27,6 +27,36 @@ defect in this change:
 
 ---
 
+## 0. Against the ticket itself — all 6 acceptance criteria met
+
+The handoff was used as a checklist, but **the ticket is the source of truth**, and its own acceptance
+criteria and worked examples were read and checked directly.
+
+| # | SV-8815 acceptance criterion | Verified | Result |
+|---|---|---|---|
+| 1 | A new setting lets a shop choose between Line-by-line and Total-rounded | Locations dialog, **Sales Tax Rounding**, both options present | **PASS** |
+| 2 | Default for all existing and new shops is Line-by-line; no current tax calculation changes until the setting is changed | 7 of 7 existing locations read the default; 5 of 5 new locations saved as the default; 993 of 1,000 existing invoices still carry their own original tax snapshot | **PASS** |
+| 3 | Line-by-line: **example 1 → $6.46**, **example 2 → $1.80** | built the ticket's own two examples | **PASS** — 6.46 and 1.80 |
+| 4 | Total-rounded: **example 1 → $6.45**, **example 2 → $1.81** | same two examples on the other setting | **PASS** — 6.45 and 1.81 |
+| 5 | Selecting Total-rounded shows the QuickBooks $0.01 open-balance warning | the amber banner, captured | **PASS** |
+| 6 | Applies to invoices going forward; does not retroactively rewrite already-issued invoices | flipped the setting in both directions with an invoice already issued | **PASS** |
+
+**And all four of the ticket's open questions, as Sinisa answered them on 18 August (comment 75226 —
+the newest authoritative statement of what was built), were checked against the build:**
+
+| Answer given | What the build does | Result |
+|---|---|---|
+| *"Two options: **Line by line (default)** and **Invoice total**, each with a one-line explanation under it"* | Exactly that — both options carry their own explanation line under the field | **PASS** |
+| *"**Location**, as built"* | The setting is stored and applied per location: A on Invoice total billed 2.71 while B, untouched, billed 2.70 on the same subtotal | **PASS** |
+| *"anything not yet invoiced follows the location's setting; once an invoice is issued it keeps the rounding it was billed with"* | Both halves confirmed — a not-yet-invoiced work order re-prices to the location's current setting, and an issued invoice does not move when the setting is flipped either way | **PASS** |
+| *"Not single-rate … built to round once **per rate**"* | Confirmed on two rates (GST 5% + PST 7%) and on three stacked rates (4% + 3% + 1%): each rate is rounded once on its own base and the rate rows still add up to the invoice tax | **PASS** |
+
+One small note, not a defect: Chris's earlier answer phrased the second option as *"Rounded on
+total"*; the build follows Sinisa's later wording, **"Invoice total"**. The later statement is what
+was built, so the build is right and only the earlier phrasing is stale.
+
+---
+
 ## 1. The new setting on the Locations screen (handoff section C, first two items)
 
 Administration → Locations → edit a location.
