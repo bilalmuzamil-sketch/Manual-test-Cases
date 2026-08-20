@@ -1,0 +1,54 @@
+{
+ "mode": "total_rounded",
+ "ps": {
+  "num": "P-1343",
+  "sub": "10.20",
+  "tax": "0.51",
+  "total": "10.71",
+  "invoiceId": "8e3566a8-242c-42c4-8c48-599cce42386f",
+  "invoiceStatus": "pending",
+  "status": "Invoiced",
+  "accountId": "48e22c86-963a-46ec-a29f-6fec8c3ba24b",
+  "companyId": "b3aa863a-665d-4096-8a14-b6c0bd9d50ee"
+ },
+ "rows": [
+  "\tDatearrow_drop_up\tTypearrow_drop_up\tNo.arrow_drop_up\tMemo\tTotal\tBalance\tStatus\tAction",
+  "\tAug 20, 2026\tInvoice\t | P9-1343 | \t | - | \t$10.71\t$10.71\tUnpaid\t",
+  "\tAug 20, 2026\tInvoice\t | P9-1341 | \t | - | \t$10.71\t$10.71\tUnpaid\t"
+ ],
+ "checkbox": {
+  "x": 473,
+  "y": 261.515625,
+  "w": 30,
+  "h": 30,
+  "row": "\tAug 20, 2026\tInvoice\t | P9-1343 | \t | - | \t$10.71\t$10.71\tUnpaid\t"
+ },
+ "issueCreditBtn": {
+  "x": 2072.5625,
+  "y": 151.734375,
+  "w": 134.5625,
+  "h": 35.546875,
+  "disabled": null,
+  "text": "Issue Credit"
+ },
+ "dialogText": "Issue Credit\nclose\nInvoice P9-1343\nevent\nCredit Date\nParts are being returned\nOutcome\nIssue Store Credit\nIssue Refund\nReason\nParts to return\nNo parts on this invoice are available for credit.\nCancel\nIssue Credit",
+ "partsCheckbox": {
+  "x": 49,
+  "y": 571.71875,
+  "w": 182.578125,
+  "h": 40
+ },
+ "dialogAfterParts": "Issue Credit\nclose\nInvoice P9-1343\nevent\nCredit Date\nParts are being returned\n$\nAmount\nOutcome\nIssue Store Credit\nIssue Refund\nReason\nCancel\nIssue Credit",
+ "net": [
+  {
+   "status": 500,
+   "url": "/api/part-sales/8e3566a8-242c-42c4-8c48-599cce42386f/list-credit-available-parts",
+   "body": "{\"errors\":[{\"error\":\"An error occurred. We\\u0027re sorry for this inconvenience, please try again a bit later later.\"},{\"requestId\":\"91fa4062-e2db-4d74-b653-c14c34c68256\"}]}"
+  },
+  {
+   "status": 500,
+   "url": "/api/part-sales/8e3566a8-242c-42c4-8c48-599cce42386f/list-credit-available-parts",
+   "body": "{\"errors\":[{\"error\":\"An error occurred. We\\u0027re sorry for this inconvenience, please try again a bit later later.\"},{\"requestId\":\"3197b27f-c077-493b-b60f-ed6cd4499cf2\"}]}"
+  }
+ ]
+}

@@ -1,0 +1,62 @@
+{
+ "tag": "S5",
+ "zeroed": "93256d50-233e-4edc-8822-2c2ee4dd6ed9",
+ "mode": "total_rounded",
+ "ps": {
+  "num": "P-1345",
+  "sub": "10.20",
+  "tax": "0.51",
+  "total": "10.71",
+  "invoiceId": "7e8ff1c6-3f83-4382-984c-fc5e9a23e8ec",
+  "invoiceStatus": "pending",
+  "status": "Invoiced",
+  "accountId": "48e22c86-963a-46ec-a29f-6fec8c3ba24b",
+  "companyId": "b3aa863a-665d-4096-8a14-b6c0bd9d50ee"
+ },
+ "build": "v3.8-0cb5771",
+ "defaultState": {
+  "subtotal": "$10.20",
+  "tax": "$0.51",
+  "total": "$10.71",
+  "rows": [
+   "\tZZAUTOTEST-8815-A\tZZAUTOTEST 8815 part A\t$5.10\t1\t | \t | $ | \t$5.36",
+   "\tZZAUTOTEST-8815-B\tZZAUTOTEST 8815 part B\t$5.10\t1\t | \t | $ | \t$5.35"
+  ]
+ },
+ "zeroBox": {
+  "x": 1797.4375,
+  "y": 614.71875,
+  "w": 213.578125,
+  "h": 40,
+  "val": "1"
+ },
+ "singleState": {
+  "subtotal": "$5.10",
+  "tax": "$0.26",
+  "total": "$5.36",
+  "rows": [
+   "\tZZAUTOTEST-8815-A\tZZAUTOTEST 8815 part A\t$5.10\t1\t | \t | $ | \t$5.36",
+   "\tZZAUTOTEST-8815-B\tZZAUTOTEST 8815 part B\t$5.10\t1\t | Quantity is a required field | \t | $ | \t$0.00"
+  ]
+ },
+ "net": [
+  {
+   "dir": "REQ",
+   "body": "{\"items\":[{\"workOrderPartId\":\"5361e7d2-4bf4-4e18-a113-9920ccab2ed3\",\"quantity\":1},{\"workOrderPartId\":\"93256d50-233e-4edc-8822-2c2ee4dd6ed9\",\"quantity\":1}]}"
+  },
+  {
+   "dir": "RESP",
+   "status": 200,
+   "body": "{\"data\":{\"totalTaxAmount\":0.51,\"items\":[{\"workOrderPartId\":\"5361e7d2-4bf4-4e18-a113-9920ccab2ed3\",\"taxAmount\":26},{\"workOrderPartId\":\"93256d50-233e-4edc-8822-2c2ee4dd6ed9\",\"taxAmount\":25}]}}"
+  },
+  {
+   "dir": "REQ",
+   "body": "{\"items\":[{\"workOrderPartId\":\"5361e7d2-4bf4-4e18-a113-9920ccab2ed3\",\"quantity\":1},{\"workOrderPartId\":\"93256d50-233e-4edc-8822-2c2ee4dd6ed9\",\"quantity\":0}]}"
+  },
+  {
+   "dir": "RESP",
+   "status": 200,
+   "body": "{\"data\":{\"totalTaxAmount\":0.26,\"items\":[{\"workOrderPartId\":\"5361e7d2-4bf4-4e18-a113-9920ccab2ed3\",\"taxAmount\":26},{\"workOrderPartId\":\"93256d50-233e-4edc-8822-2c2ee4dd6ed9\",\"taxAmount\":0}]}}"
+  }
+ ]
+}
