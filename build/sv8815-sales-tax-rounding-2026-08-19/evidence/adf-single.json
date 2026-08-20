@@ -27,7 +27,7 @@
      "content": [
       {
        "type": "text",
-       "text": "All 6 acceptance criteria met, and 33 of 33 checks that could be run on this branch passed. Tested on "
+       "text": "All 6 acceptance criteria met, and 35 of 35 checks that could be run on this branch passed. Tested on "
       },
       {
        "type": "text",
@@ -2647,6 +2647,116 @@
          "content": [
           {
            "type": "text",
+           "text": "34"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "type": "tableCell",
+       "attrs": {},
+       "content": [
+        {
+         "type": "paragraph",
+         "content": [
+          {
+           "type": "text",
+           "text": "END TO END THROUGH THE UI: \"Invoice total\" chosen in the Locations dialog by clicking and saved with the Save button, then a work order invoiced - it bills 2.71, where the default bills 2.70 on the same three lines"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "type": "tableCell",
+       "attrs": {},
+       "content": [
+        {
+         "type": "paragraph",
+         "content": [
+          {
+           "type": "text",
+           "text": "PASSED",
+           "marks": [
+            {
+             "type": "strong"
+            }
+           ]
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "type": "tableRow",
+     "content": [
+      {
+       "type": "tableCell",
+       "attrs": {},
+       "content": [
+        {
+         "type": "paragraph",
+         "content": [
+          {
+           "type": "text",
+           "text": "35"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "type": "tableCell",
+       "attrs": {},
+       "content": [
+        {
+         "type": "paragraph",
+         "content": [
+          {
+           "type": "text",
+           "text": "Receiving is reachable from the UI and works: all 30 Receive links on Parts > Purchase Orders open the same receive screen, and clicking one received the part"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "type": "tableCell",
+       "attrs": {},
+       "content": [
+        {
+         "type": "paragraph",
+         "content": [
+          {
+           "type": "text",
+           "text": "PASSED",
+           "marks": [
+            {
+             "type": "strong"
+            }
+           ]
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "type": "tableRow",
+     "content": [
+      {
+       "type": "tableCell",
+       "attrs": {},
+       "content": [
+        {
+         "type": "paragraph",
+         "content": [
+          {
+           "type": "text",
            "text": "-"
           }
          ]
@@ -3317,6 +3427,64 @@
     {
      "type": "text",
      "text": "19. Add Part Fee / Discount on S-16003, showing the full dialog including the Taxable control, and Add Fee disabled behind the QuickBooks mapping banner. The work-order kebab route behaves identically.",
+     "marks": [
+      {
+       "type": "em"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "type": "mediaSingle",
+   "attrs": {
+    "layout": "full-width"
+   },
+   "content": [
+    {
+     "type": "media",
+     "attrs": {
+      "type": "external",
+      "url": "https://raw.githubusercontent.com/bilalmuzamil-sketch/Manual-test-Cases/claude/heic-upload-iphone-test-sz7h5p/build/sv8815-sales-tax-rounding-2026-08-19/evidence/EXHIBIT-R8-invoice-from-UI-set-setting.png"
+     }
+    }
+   ]
+  },
+  {
+   "type": "paragraph",
+   "content": [
+    {
+     "type": "text",
+     "text": "20. THE END-USER PATH: \"Invoice total\" was chosen in the Locations dialog by clicking and saved with the Save button, then S-16006 was invoiced - it bills tax $2.71. The same three lines under the default bill $2.70, so the setting a user saves on the screen is demonstrably the one that reaches the invoice.",
+     "marks": [
+      {
+       "type": "em"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "type": "mediaSingle",
+   "attrs": {
+    "layout": "full-width"
+   },
+   "content": [
+    {
+     "type": "media",
+     "attrs": {
+      "type": "external",
+      "url": "https://raw.githubusercontent.com/bilalmuzamil-sketch/Manual-test-Cases/claude/heic-upload-iphone-test-sz7h5p/build/sv8815-sales-tax-rounding-2026-08-19/evidence/EXHIBIT-R9-receive-reached-by-clicking.png"
+     }
+    }
+   ]
+  },
+  {
+   "type": "paragraph",
+   "content": [
+    {
+     "type": "text",
+     "text": "21. Where a user lands after clicking Receive on Parts > Purchase Orders. All 30 Receive links on that list open this screen, the part row on a work order leads here too, and both save through the same call. Parts > Vendor Invoices rows open a read-only view with no receive action.",
      "marks": [
       {
        "type": "em"
@@ -4078,7 +4246,33 @@
         },
         {
          "type": "text",
-         "text": " for a work-order part request. That screen is not the path the product drives a work-order part request through (the part row's Receive button above is), so it is not reachable this way in normal use. Request ids if useful: 7b8f7c1c, b32c9979, a31d8bdc, ea4f1863, 5ead1dce, 52a43345."
+         "text": " for a work-order part request. "
+        },
+        {
+         "type": "text",
+         "text": "Checked from the UI: there is no click-path to it.",
+         "marks": [
+          {
+           "type": "strong"
+          }
+         ]
+        },
+        {
+         "type": "text",
+         "text": " Every one of the 30 Receive links on Parts > Purchase Orders points at "
+        },
+        {
+         "type": "text",
+         "text": "/order/{poId}?receive=1",
+         "marks": [
+          {
+           "type": "code"
+          }
+         ]
+        },
+        {
+         "type": "text",
+         "text": ", the part row on a work order opens the same screen, and Parts > Vendor Invoices rows open a read-only /parts/delivery/{id} view with no receive action - so a user cannot reach the failing save by clicking, only by typing that URL. Recorded for information rather than raised. Request ids if useful: 7b8f7c1c, b32c9979, a31d8bdc, ea4f1863, 5ead1dce, 52a43345."
         }
        ]
       }
@@ -4167,6 +4361,50 @@
     {
      "type": "text",
      "text": ". Every exhibit's work order is named in its header band so any figure here can be re-opened and re-read."
+    }
+   ]
+  },
+  {
+   "type": "paragraph",
+   "content": [
+    {
+     "type": "text",
+     "text": "Driven through the UI, and driven by API - stated plainly",
+     "marks": [
+      {
+       "type": "strong"
+      }
+     ]
+    },
+    {
+     "type": "text",
+     "text": " because an end user works on the screen. "
+    },
+    {
+     "type": "text",
+     "text": "The feature under test was exercised on the screen:",
+     "marks": [
+      {
+       "type": "strong"
+      }
+     ]
+    },
+    {
+     "type": "text",
+     "text": " the Locations dialog was opened, both options read from the dropdown, \"Invoice total\" chosen by clicking, the QuickBooks banner observed, saved with the Save button, and the saved value confirmed to survive a reopen and a hard reload - and check 34 then carried that UI-saved setting through to an invoice, which billed 2.71 rather than the default's 2.70. Receiving and the vendor credit were also driven by clicking. "
+    },
+    {
+     "type": "text",
+     "text": "What was driven by API is the scaffolding and the repetition:",
+     "marks": [
+      {
+       "type": "strong"
+      }
+     ]
+    },
+    {
+     "type": "text",
+     "text": " creating each work order and its lines, completing it, raising the invoice, taking payments, and flipping the setting between the many pinned calculation cases. That is a deliberate speed trade-off on a 35-check run, and it is safe here because the tax is computed server-side and every figure quoted above was read back off the screen or the issued invoice document rather than from the call that created it. Worth knowing rather than assuming, so it is stated."
     }
    ]
   },

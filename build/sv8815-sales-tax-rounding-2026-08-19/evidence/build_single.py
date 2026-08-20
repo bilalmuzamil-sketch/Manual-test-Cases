@@ -57,6 +57,8 @@ new_rows=[
  ["31","Return 1 of 3 received parts on an \"Invoice total\" invoice - the issued invoice is unchanged (244.00 / 23.79 / 267.79)","PASSED"],
  ["32","The same return on a \"Line by line\" invoice, run as a control - identical, also unchanged","PASSED"],
  ["33","Post the vendor credit for that returned part - the issued invoice is still unchanged","PASSED"],
+ ["34","END TO END THROUGH THE UI: \"Invoice total\" chosen in the Locations dialog by clicking and saved with the Save button, then a work order invoiced - it bills 2.71, where the default bills 2.70 on the same three lines","PASSED"],
+ ["35","Receiving is reachable from the UI and works: all 30 Receive links on Parts > Purchase Orders open the same receive screen, and clicking one received the part","PASSED"],
 ]
 gap_rows=[
  ["-","Taxable fee or discount on a work order",
@@ -69,7 +71,7 @@ check_rows=[checks[0]]+passed+new_rows+gap_rows
 C=[]
 C.append(panel("success",
   p(t("OVERALL QA STATUS: PASSED",["strong"])),
-  p(t("All 6 acceptance criteria met, and 33 of 33 checks that could be run on this branch passed. Tested on "),
+  p(t("All 6 acceptance criteria met, and 35 of 35 checks that could be run on this branch passed. Tested on "),
     t("sv8815.qa.shopview.com",["code"]),t(", build "),t("v3.8-1f5fb3c",["strong"]),
     t(" (last-modified Wed 19 Aug 2026 14:02:26 GMT, etag a9e66ecc2174eb6d889221f4d976ef24). "
       "Two areas could not be tested on this branch and neither is a defect in this change; both are "
@@ -101,6 +103,10 @@ extra=[
   "18. The credit for a returned part (Parts > Returns > Receive Credit > Process Return). It is a VENDOR credit: priced at the part's $10.00 cost rather than its $80.00 sell price, with Tax pre-filled at 5% of that cost from the workplace rate - not this location's 9.75% sales-tax model. It read identically under both rounding modes, so this setting does not reach it."),
  ("EXHIBIT-R6-fee-discount-gated.png",
   "19. Add Part Fee / Discount on S-16003, showing the full dialog including the Taxable control, and Add Fee disabled behind the QuickBooks mapping banner. The work-order kebab route behaves identically."),
+ ("EXHIBIT-R8-invoice-from-UI-set-setting.png",
+  "20. THE END-USER PATH: \"Invoice total\" was chosen in the Locations dialog by clicking and saved with the Save button, then S-16006 was invoiced - it bills tax $2.71. The same three lines under the default bill $2.70, so the setting a user saves on the screen is demonstrably the one that reaches the invoice."),
+ ("EXHIBIT-R9-receive-reached-by-clicking.png",
+  "21. Where a user lands after clicking Receive on Parts > Purchase Orders. All 30 Receive links on that list open this screen, the part row on a work order leads here too, and both save through the same call. Parts > Vendor Invoices rows open a read-only view with no receive action."),
 ]
 for fn,cap in extra: C+=img(fn,cap)
 
@@ -171,9 +177,14 @@ C.append(blist([
  [t("Noted, not raised: "),t("POST /api/inventory/orders/accept",["code"]),
   t(" - the save behind the Parts > Deliveries / "),t("/accept-delivery",["code"]),
   t(" screen - returns "),t("500",["strong"]),
-  t(" for a work-order part request. That screen is not the path the product drives a work-order part "
-  "request through (the part row's Receive button above is), so it is not reachable this way in normal "
-  "use. Request ids if useful: 7b8f7c1c, b32c9979, a31d8bdc, ea4f1863, 5ead1dce, 52a43345.")],
+  t(" for a work-order part request. "),
+  t("Checked from the UI: there is no click-path to it.",["strong"]),
+  t(" Every one of the 30 Receive links on Parts > Purchase Orders points at "),
+  t("/order/{poId}?receive=1",["code"]),
+  t(", the part row on a work order opens the same screen, and Parts > Vendor Invoices rows open a "
+  "read-only /parts/delivery/{id} view with no receive action - so a user cannot reach the failing save "
+  "by clicking, only by typing that URL. Recorded for information rather than raised. Request ids if "
+  "useful: 7b8f7c1c, b32c9979, a31d8bdc, ea4f1863, 5ead1dce, 52a43345.")],
 ]))
 C.append(p(t("One question rather than a finding",["strong"]),
   t(": the handoff asks that a credit against an \"Invoice total\" invoice pro-rate its credited tax from "
@@ -190,6 +201,20 @@ C.append(p(t("Test data",["strong"]),
   t("3eb92281-9cff-4c4d-9256-02655161aa04",["code"]),t("; the fee/discount one is S-16003 "),
   t("67e72b2d-3234-4779-b395-9f5214f5e536",["code"]),
   t(". Every exhibit's work order is named in its header band so any figure here can be re-opened and re-read.")))
+C.append(p(t("Driven through the UI, and driven by API - stated plainly",["strong"]),
+  t(" because an end user works on the screen. "),
+  t("The feature under test was exercised on the screen:",["strong"]),
+  t(" the Locations dialog was opened, both options read from the dropdown, \"Invoice total\" chosen by "
+  "clicking, the QuickBooks banner observed, saved with the Save button, and the saved value confirmed to "
+  "survive a reopen and a hard reload - and check 34 then carried that UI-saved setting through to an "
+  "invoice, which billed 2.71 rather than the default's 2.70. Receiving and the vendor credit were also "
+  "driven by clicking. "),
+  t("What was driven by API is the scaffolding and the repetition:",["strong"]),
+  t(" creating each work order and its lines, completing it, raising the invoice, taking payments, and "
+  "flipping the setting between the many pinned calculation cases. That is a deliberate speed trade-off "
+  "on a 35-check run, and it is safe here because the tax is computed server-side and every figure quoted "
+  "above was read back off the screen or the issued invoice document rather than from the call that "
+  "created it. Worth knowing rather than assuming, so it is stated.")))
 C.append(p(t("On the build",["strong"]),
   t(": the marker above was read at the start of the run, at the end, and again before this comment - "
   "unchanged each time, so every verdict here belongs to one build.")))
