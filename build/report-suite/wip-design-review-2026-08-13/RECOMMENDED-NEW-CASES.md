@@ -1,10 +1,25 @@
 # WIP design review (13 Aug 2026) — new-coverage recommendations + reconciliation
 
-**Nothing here is created.** Standing Rule 62 + the ACTIVE creation HOLD (register row
-H1) bar `add_case`; these are written up ready for the QA lead to authorise. Source of
-record: `DESIGN-REVIEW-AUG-13.md` (artifact
+**UPDATE 2026-08-20b — TestRail add_case/update_case NOW AUTHORISED (the creation HOLD is
+Jira-only; register row H1 no longer bars TestRail cases). EXECUTED THIS PASS:**
+- **NEW-1 (tab -> widget amber glow): FOLDED IN — not a new case.** C43838 was reworked to
+  the design-correct widget-glow behaviour (below), which fully covers NEW-1, so a separate
+  case would duplicate it (Rule 28). See FLAG-2 resolution below.
+- **NEW-2 (label two-row wrap): CREATED = [C43984](https://shopview.testrail.io/index.php?/cases/view/43984)**
+  in section 4361 (WIP — Visual & Accessibility).
+- **FLAG-1 (C30470 asset placeholder): NO CHANGE NEEDED.** C30470 already asserts "the first
+  line is omitted entirely - no placeholder text - and the cell shows the VIN alone on a single
+  line" — the design-correct behaviour — and its refs already cite the dropped "(no unit #)"
+  placeholder. Left byte-untouched.
+- **FLAG-2 (C43838): RESOLVED by rework** — re-scoped from the tab-element glow to the composing
+  widget glow (NEW-1 mapping), with a Rule-56 divergence note.
+- Both C43838 and C43984 carry `AUTOMATION: HOLD - needs one live build check` (the amber glow
+  and the label wrap were NOT in the prior live evidence and the session was dead) — Rule-49
+  queue `RECHECK-QUEUE.md`.
+
+**Original writeup (source of record): `DESIGN-REVIEW-AUG-13.md` (artifact
 https://claude.ai/code/artifact/42c35f46-2796-467e-9723-7daa5385446e). Live corroboration:
-build v3.8-d0e135e, 2026-08-20.
+build v3.8-d0e135e, 2026-08-20.**
 
 ## Reconciliation table (Rule 43) — every design-review requirement → verdict
 
@@ -23,10 +38,10 @@ build v3.8-d0e135e, 2026-08-20.
 | 11 | F&D Adjustments column on SBC (rows tie out with Adjustments) | **already covered** | C43822 (position), C43823 (signed net of fees/discounts), C43824 (rows tie out) |
 | 12 | WIP date range → single "as of" date picker (range presets hidden), snapshot-backed | **already covered** | C30501, C30502 |
 | 13 | Same "as of" date on Inventory Value | **already covered (out of WIP scope)** | Inventory Value date cases — confirm on the IV pass; not a WIP case |
-| 14 | Tab click puts a faded amber glow behind the composing WIDGET(s) | **new case recommended** | none — see NEW-1 |
-| 15 | Labels wrap to two rows (no mid-word truncation) | **new case recommended** | none — see NEW-2 |
-| 16 | Asset column hides the "(no unit #)" placeholder — VIN alone when no unit # | **existing case, refinement recommended** | C30470 (already says "VIN alone when no unit"; add explicit "placeholder hidden") — see FLAG-1 |
-| — | Active-tab highlight (amber glow) on the tab element itself | **FLAG — needs decision** | C43838 — see FLAG-2 |
+| 14 | Tab click puts a faded amber glow behind the composing WIDGET(s) | **DONE — covered by reworked C43838** | C43838 (reworked to widget glow; NEW-1 folded in) |
+| 15 | Labels wrap to two rows (no mid-word truncation) | **DONE — new case created** | C43984 (add_case, section 4361) |
+| 16 | Asset column hides the "(no unit #)" placeholder — VIN alone when no unit # | **already correct — no change** | C30470 already asserts "first line omitted entirely - no placeholder text - VIN alone" + refs cite the dropped placeholder |
+| — | Active-tab highlight (amber glow) on the tab element itself | **RESOLVED — re-scoped to widget glow** | C43838 (Rule-56 divergence note added) |
 
 ## New cases recommended (NOT created)
 
