@@ -1,0 +1,1349 @@
+{
+ "version": 1,
+ "type": "doc",
+ "content": [
+  {
+   "type": "panel",
+   "attrs": {
+    "panelType": "error"
+   },
+   "content": [
+    {
+     "type": "paragraph",
+     "content": [
+      {
+       "type": "text",
+       "text": "CORRECTION to my QA comment above: receiving a part is NOT broken. I tested it on the wrong screen.",
+       "marks": [
+        {
+         "type": "strong"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "type": "paragraph",
+     "content": [
+      {
+       "type": "text",
+       "text": "Everything about the tax-rounding change stands - all 6 acceptance criteria still PASSED. What was wrong was one "
+      },
+      {
+       "type": "text",
+       "text": "non-tax",
+       "marks": [
+        {
+         "type": "em"
+        }
+       ]
+      },
+      {
+       "type": "text",
+       "text": " note, and it has to be corrected because it is a false statement about the product. My mistake, nobody else's."
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "type": "heading",
+   "attrs": {
+    "level": 3
+   },
+   "content": [
+    {
+     "type": "text",
+     "text": "What I got wrong"
+    }
+   ]
+  },
+  {
+   "type": "paragraph",
+   "content": [
+    {
+     "type": "text",
+     "text": "I reported that receiving a part returns HTTP 500 on this branch, listed six causes I had ruled out, and used that to explain why the last check could not be run. "
+    },
+    {
+     "type": "text",
+     "text": "You then received a part successfully on S-15998 and sent the screenshots.",
+     "marks": [
+      {
+       "type": "strong"
+      }
+     ]
+    },
+    {
+     "type": "text",
+     "text": " I reproduced your path and it works first time."
+    }
+   ]
+  },
+  {
+   "type": "paragraph",
+   "content": [
+    {
+     "type": "text",
+     "text": "There are two Receive surfaces, and I used the one the product no longer drives a work-order part request through:"
+    }
+   ]
+  },
+  {
+   "type": "table",
+   "attrs": {
+    "isNumberColumnEnabled": false,
+    "layout": "default"
+   },
+   "content": [
+    {
+     "type": "tableRow",
+     "content": [
+      {
+       "type": "tableHeader",
+       "attrs": {},
+       "content": [
+        {
+         "type": "paragraph",
+         "content": [
+          {
+           "type": "text",
+           "text": ""
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "type": "tableHeader",
+       "attrs": {},
+       "content": [
+        {
+         "type": "paragraph",
+         "content": [
+          {
+           "type": "text",
+           "text": "The live one - what you used"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "type": "tableHeader",
+       "attrs": {},
+       "content": [
+        {
+         "type": "paragraph",
+         "content": [
+          {
+           "type": "text",
+           "text": "The dead one - what I used"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "type": "tableRow",
+     "content": [
+      {
+       "type": "tableCell",
+       "attrs": {},
+       "content": [
+        {
+         "type": "paragraph",
+         "content": [
+          {
+           "type": "text",
+           "text": "How you get there"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "type": "tableCell",
+       "attrs": {},
+       "content": [
+        {
+         "type": "paragraph",
+         "content": [
+          {
+           "type": "text",
+           "text": "the part row's blue "
+          },
+          {
+           "type": "text",
+           "text": "Receive",
+           "marks": [
+            {
+             "type": "strong"
+            }
+           ]
+          },
+          {
+           "type": "text",
+           "text": " button on the work order's Lines tab"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "type": "tableCell",
+       "attrs": {},
+       "content": [
+        {
+         "type": "paragraph",
+         "content": [
+          {
+           "type": "text",
+           "text": "Parts "
+          },
+          {
+           "type": "text",
+           "text": "\u2192"
+          },
+          {
+           "type": "text",
+           "text": " Deliveries, or /accept-delivery/{orderId}"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "type": "tableRow",
+     "content": [
+      {
+       "type": "tableCell",
+       "attrs": {},
+       "content": [
+        {
+         "type": "paragraph",
+         "content": [
+          {
+           "type": "text",
+           "text": "What it saves with"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "type": "tableCell",
+       "attrs": {},
+       "content": [
+        {
+         "type": "paragraph",
+         "content": [
+          {
+           "type": "text",
+           "text": "POST /api/orders/receive-requested-parts",
+           "marks": [
+            {
+             "type": "code"
+            }
+           ]
+          },
+          {
+           "type": "text",
+           "text": " "
+          },
+          {
+           "type": "text",
+           "text": "\u2192 200",
+           "marks": [
+            {
+             "type": "strong"
+            }
+           ]
+          },
+          {
+           "type": "text",
+           "text": ", part becomes Received"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "type": "tableCell",
+       "attrs": {},
+       "content": [
+        {
+         "type": "paragraph",
+         "content": [
+          {
+           "type": "text",
+           "text": "POST /api/inventory/orders/accept",
+           "marks": [
+            {
+             "type": "code"
+            }
+           ]
+          },
+          {
+           "type": "text",
+           "text": " "
+          },
+          {
+           "type": "text",
+           "text": "\u2192 500",
+           "marks": [
+            {
+             "type": "strong"
+            }
+           ]
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "type": "paragraph",
+   "content": [
+    {
+     "type": "text",
+     "text": "So the 500 was real but it sits on a route no customer can reach through this flow. "
+    },
+    {
+     "type": "text",
+     "text": "Nothing should be filed for it, and I am not asking for a ticket.",
+     "marks": [
+      {
+       "type": "strong"
+      }
+     ]
+    },
+    {
+     "type": "text",
+     "text": " The repro steps I wrote for staging have been replaced with this correction - they pointed at the wrong screen."
+    }
+   ]
+  },
+  {
+   "type": "paragraph",
+   "content": [
+    {
+     "type": "text",
+     "text": "Two things I guessed were the cause were not: ticking "
+    },
+    {
+     "type": "text",
+     "text": "Line Approved",
+     "marks": [
+      {
+       "type": "em"
+      }
+     ]
+    },
+    {
+     "type": "text",
+     "text": " on the New Line dialog, and choosing the vendor inside the New Part Request modal. I tested both - against the dead screen - so both looked like failures. The screen was the variable."
+    }
+   ]
+  },
+  {
+   "type": "mediaSingle",
+   "attrs": {
+    "layout": "full-width"
+   },
+   "content": [
+    {
+     "type": "media",
+     "attrs": {
+      "type": "external",
+      "url": "https://raw.githubusercontent.com/bilalmuzamil-sketch/Manual-test-Cases/claude/heic-upload-iphone-test-sz7h5p/build/sv8815-sales-tax-rounding-2026-08-19/evidence/EXHIBIT-R1-part-received-then-returned.png"
+     }
+    }
+   ]
+  },
+  {
+   "type": "paragraph",
+   "content": [
+    {
+     "type": "text",
+     "text": "1. S-16001 - a vendor part received on this branch through the part row's Receive button, then 1 of 3 returned.",
+     "marks": [
+      {
+       "type": "em"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "type": "rule"
+  },
+  {
+   "type": "heading",
+   "attrs": {
+    "level": 3
+   },
+   "content": [
+    {
+     "type": "text",
+     "text": "The check this unblocked - and it PASSES"
+    }
+   ]
+  },
+  {
+   "type": "paragraph",
+   "content": [
+    {
+     "type": "text",
+     "text": "The item I could not run was: return a part against an invoice raised under \"Invoice total\" and confirm the issued invoice is not rewritten. I ran it, and I ran the same thing on \"Line by line\" as a control so the result cannot be argued with:"
+    }
+   ]
+  },
+  {
+   "type": "table",
+   "attrs": {
+    "isNumberColumnEnabled": false,
+    "layout": "default"
+   },
+   "content": [
+    {
+     "type": "tableRow",
+     "content": [
+      {
+       "type": "tableHeader",
+       "attrs": {},
+       "content": [
+        {
+         "type": "paragraph",
+         "content": [
+          {
+           "type": "text",
+           "text": ""
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "type": "tableHeader",
+       "attrs": {},
+       "content": [
+        {
+         "type": "paragraph",
+         "content": [
+          {
+           "type": "text",
+           "text": "Billed under \"Invoice total\" (S-15999)"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "type": "tableHeader",
+       "attrs": {},
+       "content": [
+        {
+         "type": "paragraph",
+         "content": [
+          {
+           "type": "text",
+           "text": "Billed under \"Line by line\" (S-16001, control)"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "type": "tableRow",
+     "content": [
+      {
+       "type": "tableCell",
+       "attrs": {},
+       "content": [
+        {
+         "type": "paragraph",
+         "content": [
+          {
+           "type": "text",
+           "text": "invoice before the return"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "type": "tableCell",
+       "attrs": {},
+       "content": [
+        {
+         "type": "paragraph",
+         "content": [
+          {
+           "type": "text",
+           "text": "244.00 / 23.79 / 267.79"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "type": "tableCell",
+       "attrs": {},
+       "content": [
+        {
+         "type": "paragraph",
+         "content": [
+          {
+           "type": "text",
+           "text": "244.00 / 23.79 / 267.79"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "type": "tableRow",
+     "content": [
+      {
+       "type": "tableCell",
+       "attrs": {},
+       "content": [
+        {
+         "type": "paragraph",
+         "content": [
+          {
+           "type": "text",
+           "text": "returned 1 of 3 parts at $80"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "type": "tableCell",
+       "attrs": {},
+       "content": [
+        {
+         "type": "paragraph",
+         "content": [
+          {
+           "type": "text",
+           "text": "done"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "type": "tableCell",
+       "attrs": {},
+       "content": [
+        {
+         "type": "paragraph",
+         "content": [
+          {
+           "type": "text",
+           "text": "done"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "type": "tableRow",
+     "content": [
+      {
+       "type": "tableCell",
+       "attrs": {},
+       "content": [
+        {
+         "type": "paragraph",
+         "content": [
+          {
+           "type": "text",
+           "text": "invoice after the return"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "type": "tableCell",
+       "attrs": {},
+       "content": [
+        {
+         "type": "paragraph",
+         "content": [
+          {
+           "type": "text",
+           "text": "244.00 / 23.79 / 267.79 - unchanged",
+           "marks": [
+            {
+             "type": "strong"
+            }
+           ]
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "type": "tableCell",
+       "attrs": {},
+       "content": [
+        {
+         "type": "paragraph",
+         "content": [
+          {
+           "type": "text",
+           "text": "244.00 / 23.79 / 267.79 - unchanged",
+           "marks": [
+            {
+             "type": "strong"
+            }
+           ]
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "type": "paragraph",
+   "content": [
+    {
+     "type": "text",
+     "text": "AC6 holds for part returns under both rounding methods.",
+     "marks": [
+      {
+       "type": "strong"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "type": "mediaSingle",
+   "attrs": {
+    "layout": "full-width"
+   },
+   "content": [
+    {
+     "type": "media",
+     "attrs": {
+      "type": "external",
+      "url": "https://raw.githubusercontent.com/bilalmuzamil-sketch/Manual-test-Cases/claude/heic-upload-iphone-test-sz7h5p/build/sv8815-sales-tax-rounding-2026-08-19/evidence/EXHIBIT-R2-return-invoice-total-frozen.png"
+     }
+    }
+   ]
+  },
+  {
+   "type": "paragraph",
+   "content": [
+    {
+     "type": "text",
+     "text": "2. S-15999, billed under \"Invoice total\" - the issued invoice document read AFTER the return. Subtotal $244.00, tax $23.79, total $267.79: exactly what it was billed.",
+     "marks": [
+      {
+       "type": "em"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "type": "mediaSingle",
+   "attrs": {
+    "layout": "full-width"
+   },
+   "content": [
+    {
+     "type": "media",
+     "attrs": {
+      "type": "external",
+      "url": "https://raw.githubusercontent.com/bilalmuzamil-sketch/Manual-test-Cases/claude/heic-upload-iphone-test-sz7h5p/build/sv8815-sales-tax-rounding-2026-08-19/evidence/EXHIBIT-R3-return-line-by-line-frozen.png"
+     }
+    }
+   ]
+  },
+  {
+   "type": "paragraph",
+   "content": [
+    {
+     "type": "text",
+     "text": "3. The same test on \"Line by line\" (S-16001) - identical result, so a part return does not rewrite an issued invoice under either method.",
+     "marks": [
+      {
+       "type": "em"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "type": "rule"
+  },
+  {
+   "type": "heading",
+   "attrs": {
+    "level": 3
+   },
+   "content": [
+    {
+     "type": "text",
+     "text": "One observation, and it is NOT caused by this ticket"
+    }
+   ]
+  },
+  {
+   "type": "paragraph",
+   "content": [
+    {
+     "type": "text",
+     "text": "On the "
+    },
+    {
+     "type": "text",
+     "text": "invoiced",
+     "marks": [
+      {
+       "type": "em"
+      }
+     ]
+    },
+    {
+     "type": "text",
+     "text": " work order after the return, the Financial Info panel shows a subtotal that dropped by the returned part while the tax line keeps the invoiced figure:"
+    }
+   ]
+  },
+  {
+   "type": "bulletList",
+   "content": [
+    {
+     "type": "listItem",
+     "content": [
+      {
+       "type": "paragraph",
+       "content": [
+        {
+         "type": "text",
+         "text": "Subtotal "
+        },
+        {
+         "type": "text",
+         "text": "$164.00",
+         "marks": [
+          {
+           "type": "strong"
+          }
+         ]
+        },
+        {
+         "type": "text",
+         "text": " (was $244.00 - the $80 part came off)"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "type": "listItem",
+     "content": [
+      {
+       "type": "paragraph",
+       "content": [
+        {
+         "type": "text",
+         "text": "tax "
+        },
+        {
+         "type": "text",
+         "text": "$23.79",
+         "marks": [
+          {
+           "type": "strong"
+          }
+         ]
+        },
+        {
+         "type": "text",
+         "text": " - did not move; that is still the tax on $244.00"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "type": "listItem",
+     "content": [
+      {
+       "type": "paragraph",
+       "content": [
+        {
+         "type": "text",
+         "text": "so Total reads "
+        },
+        {
+         "type": "text",
+         "text": "$187.79",
+         "marks": [
+          {
+           "type": "strong"
+          }
+         ]
+        },
+        {
+         "type": "text",
+         "text": ", which is neither the invoiced $267.79 nor a clean recompute of $179.99"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "type": "listItem",
+     "content": [
+      {
+       "type": "paragraph",
+       "content": [
+        {
+         "type": "text",
+         "text": "Balance "
+        },
+        {
+         "type": "text",
+         "text": "$267.79",
+         "marks": [
+          {
+           "type": "strong"
+          }
+         ]
+        },
+        {
+         "type": "text",
+         "text": " - correct, it still holds what the customer was invoiced"
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "type": "paragraph",
+   "content": [
+    {
+     "type": "text",
+     "text": "I ran the \"Line by line\" control for exactly this reason: it produced "
+    },
+    {
+     "type": "text",
+     "text": "the same six figures, figure for figure",
+     "marks": [
+      {
+       "type": "strong"
+      }
+     ]
+    },
+    {
+     "type": "text",
+     "text": ", so the rounding change is not what causes it. Flagging it for you rather than filing anything - your call whether it deserves its own ticket."
+    }
+   ]
+  },
+  {
+   "type": "mediaSingle",
+   "attrs": {
+    "layout": "full-width"
+   },
+   "content": [
+    {
+     "type": "media",
+     "attrs": {
+      "type": "external",
+      "url": "https://raw.githubusercontent.com/bilalmuzamil-sketch/Manual-test-Cases/claude/heic-upload-iphone-test-sz7h5p/build/sv8815-sales-tax-rounding-2026-08-19/evidence/EXHIBIT-R4-wo-screen-after-return-invoice-total.png"
+     }
+    }
+   ]
+  },
+  {
+   "type": "paragraph",
+   "content": [
+    {
+     "type": "text",
+     "text": "4. S-15999 (\"Invoice total\") work-order panel after the return - subtotal moved, tax did not, Balance still correct.",
+     "marks": [
+      {
+       "type": "em"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "type": "mediaSingle",
+   "attrs": {
+    "layout": "full-width"
+   },
+   "content": [
+    {
+     "type": "media",
+     "attrs": {
+      "type": "external",
+      "url": "https://raw.githubusercontent.com/bilalmuzamil-sketch/Manual-test-Cases/claude/heic-upload-iphone-test-sz7h5p/build/sv8815-sales-tax-rounding-2026-08-19/evidence/EXHIBIT-R5-wo-screen-after-return-line-by-line.png"
+     }
+    }
+   ]
+  },
+  {
+   "type": "paragraph",
+   "content": [
+    {
+     "type": "text",
+     "text": "5. S-16001 (\"Line by line\") - the same six figures. This is the proof it is not the rounding setting.",
+     "marks": [
+      {
+       "type": "em"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "type": "rule"
+  },
+  {
+   "type": "heading",
+   "attrs": {
+    "level": 3
+   },
+   "content": [
+    {
+     "type": "text",
+     "text": "And the handoff item behind all of this turned out to be a non-item"
+    }
+   ]
+  },
+  {
+   "type": "paragraph",
+   "content": [
+    {
+     "type": "text",
+     "text": "The handoff asked that a "
+    },
+    {
+     "type": "text",
+     "text": "credit memo",
+     "marks": [
+      {
+       "type": "strong"
+      }
+     ]
+    },
+    {
+     "type": "text",
+     "text": " against an \"Invoice total\" invoice pro-rate its credited tax from the frozen invoice tax. A credit memo is not a part return - it is its own thing on the customer's account. I created one to see what it carries: "
+    },
+    {
+     "type": "text",
+     "text": "a customer account and an amount, and nothing else",
+     "marks": [
+      {
+       "type": "strong"
+      }
+     ]
+    },
+    {
+     "type": "text",
+     "text": " - no tax, no rate, no lines. So there is no tax in a credit memo for this setting to round or pro-rate. There is nothing there to test, which is a better answer than \"blocked\", and one probe of that endpoint on day one would have given it to me."
+    }
+   ]
+  },
+  {
+   "type": "rule"
+  },
+  {
+   "type": "heading",
+   "attrs": {
+    "level": 3
+   },
+   "content": [
+    {
+     "type": "text",
+     "text": "Technical details for developers"
+    }
+   ]
+  },
+  {
+   "type": "paragraph",
+   "content": [
+    {
+     "type": "text",
+     "text": "Environment unchanged: "
+    },
+    {
+     "type": "text",
+     "text": "sv8815.qa.shopview.com",
+     "marks": [
+      {
+       "type": "code"
+      }
+     ]
+    },
+    {
+     "type": "text",
+     "text": ", build "
+    },
+    {
+     "type": "text",
+     "text": "v3.8-1f5fb3c",
+     "marks": [
+      {
+       "type": "code"
+      }
+     ]
+    },
+    {
+     "type": "text",
+     "text": ", etag a9e66ecc2174eb6d889221f4d976ef24 - re-read immediately before this comment, identical to the original run, so today's results sit on the same build as everything above."
+    }
+   ]
+  },
+  {
+   "type": "bulletList",
+   "content": [
+    {
+     "type": "listItem",
+     "content": [
+      {
+       "type": "paragraph",
+       "content": [
+        {
+         "type": "text",
+         "text": "Receive, working: "
+        },
+        {
+         "type": "text",
+         "text": "POST /api/inventory/orders/receive-view {workOrderId, vendorIds:[...]}",
+         "marks": [
+          {
+           "type": "code"
+          }
+         ]
+        },
+        {
+         "type": "text",
+         "text": " \u2192 200 \u2192 route "
+        },
+        {
+         "type": "text",
+         "text": "/order/{poId}?receive=1&returnTo=WorkOrder&returnId=...&vendorIds=...",
+         "marks": [
+          {
+           "type": "code"
+          }
+         ]
+        },
+        {
+         "type": "text",
+         "text": " \u2192 fill "
+        },
+        {
+         "type": "text",
+         "text": "input_invoice_{poId}",
+         "marks": [
+          {
+           "type": "code"
+          }
+         ]
+        },
+        {
+         "type": "text",
+         "text": " and "
+        },
+        {
+         "type": "text",
+         "text": "input_qty_{itemId}",
+         "marks": [
+          {
+           "type": "code"
+          }
+         ]
+        },
+        {
+         "type": "text",
+         "text": " \u2192 "
+        },
+        {
+         "type": "text",
+         "text": "button_receive_po_{poId}",
+         "marks": [
+          {
+           "type": "code"
+          }
+         ]
+        },
+        {
+         "type": "text",
+         "text": " \u2192 "
+        },
+        {
+         "type": "text",
+         "text": "POST /api/orders/receive-requested-parts",
+         "marks": [
+          {
+           "type": "code"
+          }
+         ]
+        },
+        {
+         "type": "text",
+         "text": " \u2192 200."
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "type": "listItem",
+     "content": [
+      {
+       "type": "paragraph",
+       "content": [
+        {
+         "type": "text",
+         "text": "Putting a part on a line: "
+        },
+        {
+         "type": "text",
+         "text": "POST /api/work-orders/part/make-request",
+         "marks": [
+          {
+           "type": "code"
+          }
+         ]
+        },
+        {
+         "type": "text",
+         "text": " takes "
+        },
+        {
+         "type": "text",
+         "text": "work_order",
+         "marks": [
+          {
+           "type": "code"
+          }
+         ]
+        },
+        {
+         "type": "text",
+         "text": " and "
+        },
+        {
+         "type": "text",
+         "text": "line",
+         "marks": [
+          {
+           "type": "code"
+          }
+         ]
+        },
+        {
+         "type": "text",
+         "text": " as the field names, not work_order_id / line_id. That mismatch is what defeated me earlier."
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "type": "listItem",
+     "content": [
+      {
+       "type": "paragraph",
+       "content": [
+        {
+         "type": "text",
+         "text": "Returning it: "
+        },
+        {
+         "type": "text",
+         "text": "POST /api/work-orders/part/make-return-request {part_id, work_order_id, quantity, return_reason}",
+         "marks": [
+          {
+           "type": "code"
+          }
+         ]
+        },
+        {
+         "type": "text",
+         "text": " \u2192 200. Two traps: "
+        },
+        {
+         "type": "text",
+         "text": "part_id",
+         "marks": [
+          {
+           "type": "code"
+          }
+         ]
+        },
+        {
+         "type": "text",
+         "text": " is the part "
+        },
+        {
+         "type": "text",
+         "text": "object's",
+         "marks": [
+          {
+           "type": "em"
+          }
+         ]
+        },
+        {
+         "type": "text",
+         "text": " id from "
+        },
+        {
+         "type": "text",
+         "text": "GET /api/work-orders/lines/{WO}",
+         "marks": [
+          {
+           "type": "code"
+          }
+         ]
+        },
+        {
+         "type": "text",
+         "text": " (not the part-request id), and "
+        },
+        {
+         "type": "text",
+         "text": "return_reason",
+         "marks": [
+          {
+           "type": "code"
+          }
+         ]
+        },
+        {
+         "type": "text",
+         "text": " is required. The request comes back status \"returned\" straight away - there is no approve step."
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "type": "listItem",
+     "content": [
+      {
+       "type": "paragraph",
+       "content": [
+        {
+         "type": "text",
+         "text": "Credit memos: "
+        },
+        {
+         "type": "text",
+         "text": "POST /api/credit-memos {customer_account_id, amount}",
+         "marks": [
+          {
+           "type": "code"
+          }
+         ]
+        },
+        {
+         "type": "text",
+         "text": " \u2192 201 {creditMemoId, creditNumber, totalAmount, openBalance, status:\"open\", refundPaymentId}. Siblings: /void, /cash-out, /pdf."
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "type": "listItem",
+     "content": [
+      {
+       "type": "paragraph",
+       "content": [
+        {
+         "type": "text",
+         "text": "Also worth knowing: the vendor invoice number field rejects anything over "
+        },
+        {
+         "type": "text",
+         "text": "21 characters",
+         "marks": [
+          {
+           "type": "strong"
+          }
+         ]
+        },
+        {
+         "type": "text",
+         "text": " - a long one reads like a receive failure and is not one."
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "type": "paragraph",
+   "content": [
+    {
+     "type": "text",
+     "text": "Records: S-15999 "
+    },
+    {
+     "type": "text",
+     "text": "dc99ddd7-b85a-4162-91bf-207fd736f7aa",
+     "marks": [
+      {
+       "type": "code"
+      }
+     ]
+    },
+    {
+     "type": "text",
+     "text": " (invoice 6f20bd4e-d55b-4082-b80f-ae179d58d043) and S-16001 "
+    },
+    {
+     "type": "text",
+     "text": "3eb92281-9cff-4c4d-9256-02655161aa04",
+     "marks": [
+      {
+       "type": "code"
+      }
+     ]
+    },
+    {
+     "type": "text",
+     "text": " (invoice f632497e-f9e6-4898-aef2-7735ec4d2054). Both invoiced, so the figures in the exhibits are frozen and can be re-opened and re-read."
+    }
+   ]
+  }
+ ]
+}
