@@ -1,5 +1,9 @@
 # OUTSTANDING ITEMS REGISTER — everything we are waiting on, across every project
 
+## 🔴 2026-08-20 — CURRENT TOP PRIORITY + one deferral (QA lead)
+- **CURRENT TOP PRIORITY (QA lead, 2026-08-20): layman / manual-QA runnability of all 3 projects' cases is the most important thing right now.** Every touched case's Title/Preconditions/Steps/Expected must read plainly for a non-technical manual tester (Rules 7/9); prioritise this over other backlog.
+- **Raw `<ol>`/`<li>` markup in ~14 Filters cases — DEFERRED to Tuesday, to check with them (QA lead 2026-08-20).** Do NOT touch these until then; it is a TestRail write and its own pass, and the QA lead wants to confirm the fix approach first.
+
 ## 🆕 2026-08-20 — FORMAT REFLOW COMPLETE (Steps/Preconditions line breaks). 7 items awaiting the QA lead. Detail: `build/RESUME-2026-08-20-FORMAT-REFLOW.md`
 **DONE:** Filters reflow 124/124 (61 fixed, 60 clean, 3 false-positive already-ok). Schedule reflow
 complete (96 UI-reflowed + 117 clean + 10 API `\n`-variant rewritten, byte-verified; 5 hardcoded skips

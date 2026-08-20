@@ -970,6 +970,31 @@ live content, never a pass's own memory. **Deeper lever, flagged not acted on:**
 (bulk → load-on-demand skills) is the ultimate fix, but it is a QA-lead decision (Rule 72) — never
 unilateral, lest durable memory or authenticity be lost.
 
+## Quota discipline (Standing Rule 76)
+
+Every subagent spawn re-loads the large CLAUDE.md as context (**200–380k tokens each**) — the NUMBER
+of spawns, not the size of the work, is what burns quota. So: **NEVER spawn for a trivial check**
+(`wc -l`, `pgrep`, "is it done", "is the tree clean") — the detached script/committer writes a
+human-readable progress line INTO EACH COMMIT MESSAGE (e.g. "schedule reflow 143/195") + a STATUS
+file, and the orchestrator reads progress from those; **poll-by-spawn is BANNED.** **ONE launch worker
++ at most ONE end-of-job verification worker** per long job (no mid-run checks). **BATCH RUTHLESSLY** —
+one worker does all related steps (do → finalize → diagnose → fix → commit) and edits many cases in one
+scripted run; rule/register/skill edits batch into a single worker. The detached committer handles ALL
+mid-run commits — do NOT spawn a commit worker to answer a stop-hook nag. **On MOST turns, respond in
+TEXT — do not spawn** (the stop-hook fires every turn; a reflexive per-turn spawn is the trap). Kill
+orphan/redundant processes before launching (Rule 75).
+
+## Verification validity window (Standing Rule 77)
+
+A case **build-verified within the last 3 builds counts as BUILD-VERIFIED** (not merely
+provisional/stale) — PROVIDED it shows the **date + build marker** it was last checked against
+(Rule 54 sentence 2). A case **source-verified within the last 3 source versions counts as
+SOURCE-VERIFIED** — showing the **date + version** last checked. **Beyond 3 builds / 3 versions**, it
+reverts to needing re-verification. **Where the intervening-deploy or version count cannot be
+established, treat as OUTSIDE the window (needs re-verify) — never assume inside (Rule 12).** Refines
+Rules 49/60 for never-final, frequently-redeploying branches; honesty is preserved because the claim
+is always *"build-verified, last checked build X on date Y"*, never a bare "verified".
+
 ---
 
 # 9 · GIT ON A SHARED, MOVING BRANCH
