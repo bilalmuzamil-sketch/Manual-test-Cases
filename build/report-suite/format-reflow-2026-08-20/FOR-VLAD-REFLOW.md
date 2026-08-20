@@ -4,3 +4,6 @@ These Automated cases were re-saved via the TestRail UI to fix the interim `<p>/
 
 - [C30162](https://shopview.testrail.io/index.php?/cases/view/30162) — preconditions gained a trailing '.' via the formatting reflow; no semantic change (atm=3 Automated).
 - [C30287](https://shopview.testrail.io/index.php?/cases/view/30287) — preconditions gained a trailing '.' via the formatting reflow; no semantic change (atm=3 Automated).
+- [C30398](https://shopview.testrail.io/index.php?/cases/view/30398) — preconditions gained a trailing '.' via the formatting reflow; no semantic change (atm=3 Automated).
+- [C30604](https://shopview.testrail.io/index.php?/cases/view/30604) — preconditions gained a trailing '.' via the formatting reflow; no semantic change (atm=3 Automated).
+- [C30603](https://shopview.testrail.io/index.php?/cases/view/30603) — preconditions gained a trailing '.' via the formatting reflow; no semantic change (atm=3 Automated).
