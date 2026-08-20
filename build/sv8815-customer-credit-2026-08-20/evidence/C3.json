@@ -1,0 +1,48 @@
+{
+ "mode": "line_by_line",
+ "ps": {
+  "num": "P-1346",
+  "sub": "10.20",
+  "tax": "0.52",
+  "total": "10.72",
+  "invoiceId": "f353dfa7-727e-4afa-8669-72049cc23975",
+  "invoiceStatus": "pending",
+  "status": "Invoiced",
+  "accountId": "48e22c86-963a-46ec-a29f-6fec8c3ba24b",
+  "companyId": "b3aa863a-665d-4096-8a14-b6c0bd9d50ee"
+ },
+ "build": "v3.8-0cb5771",
+ "row": "\tAug 20, 2026\tInvoice\t | P9-1346 | \t | - | \t$10.72\t$10.72\tUnpaid\t",
+ "both": {
+  "subtotal": "$10.20",
+  "tax": "$0.52",
+  "total": "$10.72",
+  "rows": [
+   "\tZZAUTOTEST-8815-C\tZZAUTOTEST 8815 ctrl part C\t$5.10\t1\t | \t | $ | \t$5.36",
+   "\tZZAUTOTEST-8815-D\tZZAUTOTEST 8815 ctrl part D\t$5.10\t1\t | \t | $ | \t$5.36"
+  ]
+ },
+ "checkboxIds": [
+  "checkbox_select_parts_8160c1e7-88b5-4deb-b5c1-1681f7db73ba",
+  "checkbox_select_parts_80aa772f-b6a8-4bca-b478-918e9f7629f6"
+ ],
+ "one": {
+  "subtotal": "$5.10",
+  "tax": "$0.26",
+  "total": "$5.36",
+  "rows": [
+   "\tZZAUTOTEST-8815-C\tZZAUTOTEST 8815 ctrl part C\t$5.10\t1\t\t\t",
+   "\tZZAUTOTEST-8815-D\tZZAUTOTEST 8815 ctrl part D\t$5.10\t1\t | \t | $ | \t$5.36"
+  ]
+ },
+ "net": [
+  {
+   "status": 200,
+   "body": "{\"data\":{\"totalTaxAmount\":0.52,\"items\":[{\"workOrderPartId\":\"80aa772f-b6a8-4bca-b478-918e9f7629f6\",\"taxAmount\":26},{\"workOrderPartId\":\"8160c1e7-88b5-4deb-b5c1-1681f7db73ba\",\"taxAmount\":26}]}}"
+  },
+  {
+   "status": 200,
+   "body": "{\"data\":{\"totalTaxAmount\":0.26,\"items\":[{\"workOrderPartId\":\"80aa772f-b6a8-4bca-b478-918e9f7629f6\",\"taxAmount\":26}]}}"
+  }
+ ]
+}

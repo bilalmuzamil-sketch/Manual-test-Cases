@@ -2903,6 +2903,93 @@ an automation hazard worth a ticket in its own right.
   (0.98 fee → subtotal 9.02, tax 0.45, total 9.47).
 - **Posting the credit does NOT move the customer's issued invoice** — verified byte for byte.
 
+### T.8c The CUSTOMER credit — "Issue Credit" on the customer's Invoices tab (proven 2026-08-20)
+
+**This is the OTHER credit, and it is the one the sales-tax rounding setting engages.** T.8b is the
+**vendor** credit (purchase tax on the part's *cost*). This one credits **the customer** for a part
+on **their invoice**, pro-rated from the **frozen invoice tax**. They are easy to confuse — the
+developer's own test plan mixed them up, which sent a whole QA pass to the wrong screen.
+
+```
+Customer → Invoices tab      (/customers/{companyId}/invoices)
+  tick the checkbox on EXACTLY ONE invoice row
+  ->  button_issue_credit_customer      ("Issue Credit", page header, top right)
+  ->  IssueCreditMemoDialog
+      checkbox_credit_memo_type_parts   ("Parts are being returned")  - ON by default
+      radio_credit_memo_outcome_hold ("Issue Store Credit", default) | ..._refund ("Issue Refund")
+      input_credit_memo_reason          - REQUIRED, submit stays disabled until it has text
+      date_input_credit_memo_date · select_credit_memo_payment_method
+      table_parts_return, per part row:
+        checkbox_select_parts_{workOrderPartId}      <-- see the trap below
+        input_parts_return_quantity_{id}             ("Qty To Credit")
+        input_parts_return_restocking_fee_{id}
+        currency_text_parts_return_total_{id}
+      totals: currency_text_parts_return_{subtotal|tax|total}
+  ->  button_confirm_dialog             ("Issue Credit" INSIDE the dialog)
+        -> POST /api/credit-memos -> 201 {creditMemoId, creditNumber "CM-####", totalAmount (CENTS)}
+```
+
+⚠️ **EVERY PART ROW STARTS TICKED.** The dialog opens with the whole invoice selected, so
+**clicking a row's checkbox DESELECTS it**. To credit one part you untick the others — ticking the
+one you want does the opposite of what it looks like, and the totals quietly follow.
+
+⚠️ **The page header and the dialog both have a button reading exactly "Issue Credit".** Matching on
+the visible text hits the header one, which just reopens the dialog and posts nothing. Use
+**`button_confirm_dialog`**.
+
+**Preconditions the dialog enforces, with its own wording:** the customer must have a customer
+account (button disabled otherwise) · *"Credits can only be issued for one invoice at a time."* ·
+*"Switch to this invoice's location to issue a credit."*
+
+**Where the tax comes from** — server-side, on every quantity change (debounced):
+`POST /api/work-orders/parts/calculate-tax` `{items:[{workOrderPartId, quantity}]}` →
+`{totalTaxAmount, items:[{workOrderPartId, taxAmount}]}`. **`taxAmount` is in CENTS**; the UI
+divides by 100. `totalTaxAmount` is in dollars. Reading these two as the same unit is an easy
+off-by-100.
+
+**What the numbers do** (measured both ways, 2 × $5.10 parts at GST 5%, build `v3.8-0cb5771`):
+- **Invoice total**: invoice tax **0.51** → credit splits **0.26 + 0.25 = 0.51**, rows $5.36/$5.35
+- **Line by line**: invoice tax **0.52** → credit splits **0.26 + 0.26 = 0.52**, rows $5.36/$5.36
+- crediting the whole invoice in **separate** credit memos still sums to the invoice **to the cent**
+  (CM-3574 $5.35 + CM-3575 $5.36 = $10.71) — the residual cent is allocated, never dropped or doubled
+- **`GET /api/part-sales/{INVOICE_id}/list-credit-available-parts`** feeds the table — note it takes
+  the **invoice id**, not the part-sale/work-order id, and returns `[]` for parts that were never
+  received. **It returns HTTP 500 for a part with NO catalogue entry** (i.e. source **"found"**), and
+  the dialog renders that failure as the plausible-but-wrong *"No parts on this invoice are available
+  for credit."* Use **vendor-sourced** or inventory parts and it answers 200.
+
+### T.8d Seeding a clean parts-only invoice (proven 2026-08-20) — the four things that bite
+
+A **part sale** is the cleanest billable-parts shape: no labour, no shop supplies, one `Default`
+line. `POST /api/part-sales {company_id}` → the id **is** a work-order id (`/work-orders/view/{id}`,
+number `P-####`, rendered in grids as **`P9-####`** with the shop-id prefix — match on the digits).
+
+1. **The company needs a CONTACT** or `POST /api/part-sales` answers *"Customer not found"*.
+   `POST /api/contacts/create {company_id, first_name, last_name}`. Same trap as SV-8821.
+2. **The org auto-applies its default fees/discounts to every new part sale** — here **+$50.52 net**
+   on a $10.20 invoice, which makes any tax arithmetic unrecognisable. Strip them:
+   read `work_order.adjustments`, then `POST /api/work-orders/adjustments/remove {adjustmentId,
+   workOrderId}` → 204 each. **They come back when you edit parts, so strip them again immediately
+   before invoicing.**
+3. **The line starts `authorization_required`** and part actions refuse with *"This action can only
+   be performed on the authorized lines."* → `POST /api/work-orders/lines/change-status {line_id,
+   work_order_id, status:'authorized'}`.
+4. **`part_source_type` is one of `inventory | vendor | found`** (`GET /api/work-orders/part/request-sources-list`).
+   Use **`vendor`** — `found` needs no catalogue part and therefore breaks the credit screen (T.8c),
+   and `inventory` needs a real bin allocation at the active location. Recipe:
+   `make-request {line, work_order, description, quantity, part_source_type:'vendor', part_category_id}`
+   → `change-request {id, …, vendor_id, part_number, cost, sell_price}`
+   → `perform-request-status-action {part_request_id, action:'order'}` (creates + links the PO;
+   a hand-built `POST /api/inventory/orders/create` leaves `part_request_id: null` and is useless)
+   → **receive on the screen** (T.8) → `POST /api/invoices/create {work_order_id}`.
+
+⚠️ **A vendor invoice number must be UNIQUE as well as ≤21 chars.** Reusing one returns
+*"There is already invoice with number: …"*, which reads exactly like a receive failure.
+
+⚠️ **Do not hand-build the `receive-requested-parts` body.** The screen sends ~25 fields per item;
+a 5-field version returns **500**. Drive the screen (T.8) — it worked first time — or capture the
+payload from it once and replay that.
+
 ### T.9 The Customer Invoice export carries PER-LINE TAX — this is where you reconcile
 
 `GET /api/reporting/export/customer_invoice?report=customer_invoice&range=today` (§S.10) returns a
@@ -2972,13 +3059,15 @@ goes into this file **in the same session** — and when a recipe here turns out
 six-row "already ruled out" table; a confidently wrong recipe is worse than none, because it stops the
 next person looking.
 
-### U.0b THE HARNESS TRAPS — four that cost real time, each with its one-line fix
+### U.0b THE HARNESS TRAPS — six that cost real time, each with its one-line fix
 
-These are not product behaviour; they are ways the *tooling* wastes an hour. All four hit on 2026-08-19/20.
+These are not product behaviour; they are ways the *tooling* wastes an hour. All hit on 2026-08-19/20.
 
 | Trap | What you see | The fix |
 |---|---|---|
 | **`pkill -f <script>` kills YOUR OWN SHELL** | the command dies mid-way with exit **144**, and a heredoc that was supposed to write a file never wrote it — so the next run fails with `MODULE_NOT_FOUND` on a file you "just created" | the shell's own command line contains the script name, so `-f` matches it. Use a narrower pattern (`pkill -f "node fee_partrow"`), or better, **write files with the Write tool** instead of heredocs in a compound command |
+| **…and its SECOND FORM: the pattern inside the HEREDOC THAT WRITES THE KILL SCRIPT** (found 2026-08-20, after the fix above was already written down) | exit **144** again, from a command whose only job was to *create* a `restart_bridge.sh` — because the pattern sat in the heredoc body, which is part of the caller's argv | `pgrep`/`pkill` match the **whole command line**, heredoc contents included. **Write the script with the Write tool** and assemble the pattern from pieces (`P1='staging-brid'; P2='ge.mjs'`) so it never appears literally in any argv |
+| **`page.mouse.click` uses VIEWPORT coordinates, so a control below the fold is clicked at nothing** | the click "succeeds", **no request is sent at all**, and the stored value never changes — it looks exactly like the product failing to save. The dialog's **Save & Close** sat at y≈**1691** in a 1300-tall viewport | `scrollIntoView({block:'center'})` → **wait** → **RE-MEASURE** → click the new box; and assert `r.y>=0 && r.bottom<=innerHeight` first. Helper: `clickTestId()` in `build/sv8815-customer-credit-2026-08-20/tools/lib.mjs`, which throws rather than clicking blind. This nearly became a false report that the rounding setting does not persist |
 | **A click that "worked" but changed nothing** | the next step reports the control is missing — on SV-8815 the part row's kebab "did not exist" because the line row had never actually expanded | **click, then PROVE the state changed** (find the part's own description in `document.body.innerText`), **and retry up to ~4 times.** It took 2 attempts every single run. Never let the next step assume the click landed |
 | **Container restart kills the MITM bridge** | every `page.evaluate` fetch dies with `TypeError: Failed to fetch` | relaunch `staging-bridge.mjs`, read the **new** port from its `BRIDGE_LISTENING` line, and **rewrite `bridgeport.txt`** — the port rotates every restart. `/tmp` itself survives, cookies included |
 | **A foreground browser run exceeds the 2-minute Bash default** | the command is killed at 2 min with nothing to show | pass an explicit `timeout` (up to 600000 ms) for foreground runs, or launch with `(… &)` and poll with an `until ! pgrep -f "node <script>"` loop. **`sleep N` chained after another command is blocked** — use the until-loop form |
@@ -3221,6 +3310,9 @@ looking a route up here takes seconds; rediscovering it has repeatedly taken an 
 | ❌ dead | `/parts/credits` | *"Looks like this page took a coffee break… permanently"* — the Credits **tab** on `/parts/returns` is the real one |
 | ❌ dead | `/administration/bookkeeping` | use `/administration/quickbooks` |
 | admin tabs | `/administration/{settings,locations,taxes,quickbooks,…}` | left nav ids are `link_<name>_tab` — e.g. `link_locations_tab`, `link_taxes_tab`, `link_quickbooks_tab`, `link_adjustment_templates_tab` (that last one is the **Fees & Discounts** page) |
+| **a customer's invoices — and the CUSTOMER CREDIT** | `/customers/{companyId}/invoices` | tick one row → `button_issue_credit_customer` → the Issue Credit dialog (**§T.8c**). Sibling tabs: `work-orders`, `part-sales`, `contacts`, `vehicles`, `notes`, `payments`, `deposits`, `default-adjustments` |
+| ❌ dead | `/customers/{id}/part-sales-credits` and `/customers/{id}/unpaid-invoices` | both **redirect** to `CustomerInvoicesTab` — not separate screens |
+| ❌ **NOT the customer credit** | `/parts/create-credit` | despite the name, this is the **vendor** credit form (`create_credit_vendor`, `button_post_credit`) — §T.8b |
 
 ### W.2 Controls by the action you want
 
@@ -3241,6 +3333,7 @@ looking a route up here takes seconds; rediscovering it has repeatedly taken an 
 | the sales-tax rounding field | ⚠️ **`select_sales_tax_rounding_mode`** — *with* the `_mode` suffix. Guessing `select_sales_tax_rounding` finds nothing and looks like the field is absent. Its warning banner is `banner_sales_tax_rounding_changed`; open the dropdown by clicking the field's **right edge** |
 | purchase-order list controls | `checkbox_select_order_{orderId}` · `button_receive` (bulk, appears on selection) · `button_new_po` · `button_column_selection` · and the per-row `Receive` **anchor** (no test id — find it by its `Receive` text and read its `href`) |
 | the receive screen's other fields | `link_receive_work_order` · `select_assign_vendor_{poId}` · `date_input_invoice_date_{poId}` · `input_sell_{itemId}` · `input_tax_{poId}` · `input_note_{poId}` · `currency_text_subtotal_{poId}` · `checkbox_item_{itemId}` · `button_back_to_purchase_orders` |
+| **the customer-credit dialog** | `checkbox_credit_memo_type_parts` · `radio_credit_memo_outcome_hold` / `..._refund` · `input_credit_memo_reason` (**required** — submit stays disabled without it) · `date_input_credit_memo_date` · `select_credit_memo_payment_method` · `table_parts_return` · per row `checkbox_select_parts_{partId}` (⚠️ **starts TICKED — clicking DESELECTS**) · `input_parts_return_quantity_{partId}` · `input_parts_return_restocking_fee_{partId}` · `currency_text_parts_return_total_{partId}` · totals `currency_text_parts_return_{subtotal,tax,total}` · **`button_confirm_dialog`** = the dialog's *Issue Credit* (⚠️ the page header has a button with the **same visible text** — matching on text hits the wrong one and posts nothing) |
 
 ### W.3 Reads that lie, and what to read instead
 
@@ -3261,10 +3354,26 @@ looking a route up here takes seconds; rediscovering it has repeatedly taken an 
 - sales-tax rounding wire value is **`total_rounded`** (`invoice_total` / `total` → 400); read back as
   `salesTaxRoundingMode`.
 - a vendor credit is taxed at **`workplace_tax`** on the part's **cost** — unrelated to the sales-tax model.
-- `POST /api/credit-memos` takes **`customer_account_id` + `amount` only** — no tax, no lines.
+- ⚠️ **CORRECTED 2026-08-20** — the old note *"`POST /api/credit-memos` takes `customer_account_id` +
+  `amount` only — no tax, no lines"* is **WRONG**, and it was written from a probe rather than from the
+  screen. What the Issue Credit dialog actually posts:
+  `{customerAccountId, amount, reason, originKind:"invoice", originInvoiceId, originDate,
+  lineItems:[{partNumber, description, quantity, sellPrice, restockingFee, taxAmount,
+  originatingInvoiceLineId}]}` → **201** `{creditMemoId, creditNumber:"CM-####", totalAmount (CENTS),
+  openBalance, status:"open"}`. **Per-line tax is central to it** — it is the whole SV-8815 customer
+  side. *Lesson: a shape learned by probing an endpoint is a guess about the product; capture what the
+  screen sends.*
+- `POST /api/work-orders/parts/calculate-tax` → `{items:[{workOrderPartId, quantity}]}` returns
+  `totalTaxAmount` in **dollars** but per-item `taxAmount` in **CENTS**. Mixed units in one response.
+- `GET /api/part-sales/{id}/list-credit-available-parts` wants the **INVOICE id**, not the part-sale id
+  (part-sale id → 400 `{"invoiceId":"Not found"}`), returns `[]` for unreceived parts, and **500s for a
+  part with no catalogue entry**.
+- part-sale / work-order numbers render in grids with a **shop-id prefix**: API `P-1345` displays as
+  **`P9-1345`**. Match on the digits, never the whole string.
 - `list-unpaid-transaction` nests its rows one level deeper than the siblings:
   `data.response.collection[]`.
-- Quasar: click by `boundingBox()` centre via `page.mouse.click`, not Playwright actionability clicks.
+- Quasar: click by `boundingBox()` centre via `page.mouse.click`, not Playwright actionability clicks —
+  **and scroll it into the viewport first, then re-measure** (§U.0b).
 
 ### W.5 PROVE UI REACHABILITY before you call a failure user-facing — or harmless (proven 2026-08-20)
 

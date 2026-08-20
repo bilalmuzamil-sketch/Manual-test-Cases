@@ -75,22 +75,63 @@ moved **0.52 → 0.51**, and the choice survived a **hard reload** (`S1.json`, `
 
 Evidence: `S5.json`, `S5a-default-both.png`, `S5b-one-part.png`.
 
-**The invariant Sinisa named holds.** Crediting everything on the invoice credits back **exactly**
-the tax that was charged (0.26 + 0.25 = 0.51), which is what *"keeps a credit in step with the
-invoice it credits"* means. Under line-by-line the same invoice freezes at 0.52 and splits 0.26 +
-0.26 — see the control below.
+### The credits were actually POSTED, and they sum exactly
+
+Two separate credit memos were issued against P-1345, one part each, through the dialog:
+
+| credit memo | part | subtotal | tax | total |
+|---|---|---|---|---|
+| **CM-3574** | ZZAUTOTEST-8815-B | 5.10 | **0.25** | **$5.35** |
+| **CM-3575** | ZZAUTOTEST-8815-A | 5.10 | **0.26** | **$5.36** |
+| | | 10.20 | **0.51** | **$10.71** |
+
+**That is the invoice, to the cent** — subtotal 10.20, tax 0.51, total 10.71. Read back off the
+customer account as two `credit` transactions of −5.35 and −5.36. So a customer credited for
+everything on the invoice gets back exactly what they were charged: **no orphan cent, no
+over-credit**. That is what *"keeps a credit in step with the invoice it credits"* means, and it is
+the property that only becomes non-trivial under Invoice total (where the per-part figures do not
+add up to the frozen total on their own).
+
+Posted payload, for the record:
+`POST /api/credit-memos` → **201** — `{originKind:"invoice", originInvoiceId:…,
+lineItems:[{sellPrice:5.1, restockingFee:0, taxAmount:0.25, originatingInvoiceLineId:…}]}`.
+
+### The control: the same parts under "Line by line"
+
+Invoice **P-1346** — same two $5.10 vendor parts, but frozen while the location was set to
+**Line by line**: subtotal 10.20, tax **0.52**, total **10.72**.
+
+| | Invoice total (P-1347) | Line by line (P-1346) |
+|---|---|---|
+| frozen invoice tax | **0.51** | **0.52** |
+| credit, both parts | 0.26 + **0.25** = **0.51** | 0.26 + **0.26** = **0.52** |
+| row totals shown | $5.35 and $5.36 | $5.36 and $5.36 |
+| credit total | **$10.71** | **$10.72** |
+| one part alone | **0.26** | **0.26** |
+
+Annotated pair: `EX-A-invoice-total-annotated.png`, `EX-B-line-by-line-annotated.png` (boxes and
+captions drawn on the real `getBoundingClientRect` geometry, captured in the `*-geom.json` files).
+
+**So the credit follows whichever figure the invoice was actually billed at, in both modes.** The
+behaviour Sinisa described is the behaviour the build has. **Nothing to raise on this path.**
 
 ## Screen vs API — stated plainly
 
-The **feature under test was driven on the screen**: the rounding-mode dropdown was clicked and
-saved with the Save button, and the credit was produced by ticking the invoice row, pressing
-**Issue Credit**, and editing **Qty To Credit** in the dialog. The figures quoted above are the ones
-**rendered to the user**, cross-read against the server's own `calculate-tax` response.
+**Driven on the screen** (the feature under test, and the things a user actually does):
+the **rounding-mode dropdown** — opened, both options read, one clicked, saved with **Save & Close**,
+and re-read after a **hard reload**; **receiving** the ordered parts on the PO screen; and the whole
+**credit**: ticking the invoice row, pressing **Issue Credit**, selecting/deselecting parts with the
+row checkboxes, typing the Reason, and pressing the dialog's **Issue Credit**. Every figure quoted
+above is the one **rendered to the user**, cross-read against the server's own `calculate-tax`
+response.
 
-**Setup was scripted** — creating the part sale, adding the two parts, ordering them, stripping the
-organisation's default fees/discounts, and creating the invoice. Receiving was driven **on the
-screen** (see below). Setup by API is a speed trade-off and does not affect what the screen was
-asked to compute.
+**Scripted** (setup only): creating the part sale, adding the two parts, setting their vendor and
+price, ordering them, stripping the organisation's default fees/discounts, and creating the invoice.
+None of that is what SV-8815 changed, and none of it decides what the screen computes.
+
+**Parts were sourced from a VENDOR**, per the QA lead's instruction that parts must come from the
+list or the vendor dropdown — never "found". That turned out to matter for a second reason: a
+"found" part has no catalogue entry, and the credit screen cannot handle one (see below).
 
 ## Two things found on the way — reported, not filed
 
@@ -115,4 +156,37 @@ asked to compute.
   **work-order** invoices (`invoice-type: workorder`); the tax endpoint is the same
   (`work-orders/parts/calculate-tax`) but a work-order invoice was not driven in this pass.
 - Staging is a **shared** environment. Per the QA lead's 2026-08-20 ruling its data is disposable
-  and needs no cleanup; throwaway records are tagged **ZZAUTOTEST**.
+  and needs no cleanup; throwaway records are tagged **ZZAUTOTEST**. The location's rounding mode
+  was nevertheless put back to **Line by line (default)** at the end — one click, and it stops
+  another tester meeting unexplained cents.
+
+## Records created (all ZZAUTOTEST, staging, disposable)
+
+customer **ZZAUTOTEST SV-8815 Credit** `b3aa863a-665d-4096-8a14-b6c0bd9d50ee` (account
+`48e22c86-963a-46ec-a29f-6fec8c3ba24b`) · part sales **P-1341**, **P-1343**, **P-1345**
+(`0ac0762a-e107-4b0f-b483-36ff445b23fa`, invoice `7e8ff1c6…`), **P-1346**
+(`010ffc81-e126-48d5-8919-7372cce4e663`, invoice `f353dfa7…`), **P-1347**
+(`805ca85a-d2a9-4d72-9f18-dc86d7e36151`, invoice `10047dfa…`) · credit memos **CM-3574**,
+**CM-3575** · vendor invoice numbers `ZZ8815-CRED`, `ZZ8815-CTRL`, `ZZ8815-EF`.
+
+## Reusable knowledge worth keeping
+
+- the customer-credit route and its controls (above) — none of it was in the playbook
+- `POST /api/work-orders/parts/calculate-tax` returns **taxAmount in CENTS**
+- **all rows in the credit dialog start SELECTED** — you *untick* what you don't want to credit;
+  ticking a row is a deselect, which is the opposite of what it looks like
+- `button_confirm_dialog` is the dialog's submit and stays **disabled until a Reason is typed**
+- a **vendor invoice number must be unique** as well as ≤21 chars — reusing one returns
+  *"There is already invoice with number: …"* and reads like a receive failure
+- **the org auto-applies default fees/discounts to every new part sale** (here +$50.52 net); strip
+  them with `POST /api/work-orders/adjustments/remove` or the arithmetic is unrecognisable
+- a part sale needs the company to have a **contact**, or `POST /api/part-sales` answers
+  *"Customer not found"* — the same trap as SV-8821
+- `pgrep -f` matching a pattern that appears **inside a heredoc that writes a script** kills the
+  calling shell (exit 144). Playbook §U.0b trap 1 has a **second form**: write the file with a
+  file-write tool, and assemble the pattern from pieces.
+- `page.mouse.click` uses **viewport** coordinates: the dialog's **Save & Close** sits below the
+  fold at y≈1691 in a 1300-tall viewport, so the click landed on nothing and **sent no request at
+  all**. Scroll into view, then **re-measure**, then click — and check `inViewport` before
+  believing a click happened. This nearly became a false report that "the UI does not save the
+  setting" (the same near-miss as lesson 12).
