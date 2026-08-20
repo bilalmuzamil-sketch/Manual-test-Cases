@@ -19,13 +19,28 @@ steps, navigation and labels — the pass/fail behaviour verdict belongs to the 
 
 ---
 
-## 🔴 BLOCKED — needs ONE fresh staging cookie set
+## ✅ DONE 2026-08-20 — PV+WIP spec-delta reconciliation (was in-flight)
 
-- **Parts-Velocity CSV number-format rule (RS-PV-1) + WIP Story-5 Summary-Strip design adoption
-  (RS-WIP-8) — ~15 cases.** This is the **ONLY staging item left across all three projects.** Both are
-  Chris Ward spec deltas (PV CSV rule updated Aug 17; WIP Story-5 adopts the Aug 13 design review). They
-  need a **live re-check** and then apply verbatim on resume. Supply `sv_sso_session` + `PHPSESSID` for
-  `api.staging.shopview.com` in `/tmp/staging-cookie.txt` (`cf_clearance` still valid).
+- **Parts-Velocity CSV number-format rule (RS-PV-1) — DONE**, live-verified on build `v3.8-d0e135e`:
+  **C30380** extended with the plain-number CSV rule, **C30381** re-stamped, **C30382 → EXPECT-FAIL**
+  against **SV-8818** (the PV **PDF** export still returns HTTP 500). C30348/C30371 spot-verified, no
+  change. Committed `b7a28979`, run 359 untouched, byte-verified. **No tally change** — existing cases
+  modified in place, so the 508 / 437 / 71 Report-Suite figures above are unchanged.
+- **WIP Delta B.1 / B.2 — DONE**: spot-verified at spec v24, no drift, 0 writes.
+- **Flagged (no case change):** the Parts-Velocity Vendor TEXT column renders an em-dash for a null value
+  in the CSV — a QA-lead question, not a case edit.
+
+## 🔴 BLOCKED — the ONE remaining build-verification item, source-blocked (NOT cookie-blocked)
+
+- **WIP Story-5 Summary-Strip design adoption (RS-WIP-8) — 9 cases + 1 Automated held.** The build has
+  shipped the new Summary-Strip (new figure names, grouped +/= math, reworded tooltips), but those exact
+  figure names/tooltip wordings are in **NO document we hold** — only the running build, the SSO-walled
+  **WIP v24 Confluence page**, and the **2026-08-13 design-review export**. We will NOT invent ratified
+  wording from the build (Standing Rules 57/58, quote-back test), so **0 WIP writes; 9 WIP Story-5 cases
+  (C30487/89/90/91/93, C43818, C30520, C30524, C43838) + 1 Automated case (C30488) are HELD.** **This is
+  the ONLY remaining build-verification item across all three projects.** **To unblock:** supply the
+  **WIP v24 Confluence page + the 2026-08-13 design-review export**; then one coupled build-verify pass
+  applies it live (that live re-check step will also need a fresh staging session at that point).
 
 ---
 
@@ -50,8 +65,12 @@ steps, navigation and labels — the pass/fail behaviour verdict belongs to the 
   all three projects (or rule to skip the negatives).
 - **Interim `<br>` cleanup demark** — owed once the TestRail `update_case` markdown-wrap regression is
   fixed (formatting-only pass over 166 + 13 + 94 + 119 written cases).
-- **Export the live WIP Confluence page (v24)** — SSO-walled to this session; the mirror is behind at v22
-  (behaviour already applied from Chris's rulings).
+- **PV CSV Vendor em-dash question** — the Parts-Velocity Vendor TEXT column renders an em-dash for a
+  null value in the CSV export. A QA-lead call (is that the intended rendering, or should it be an empty
+  cell?) — flagged, no case change made.
+- **Export the live WIP Confluence page (v24) + the 2026-08-13 design-review export** — **this is the
+  single remaining build-verification blocker** (see the BLOCKED section above): it clears WIP Story-5
+  (RS-WIP-8) and lets the WIP spec mirror (behind at v22, RS-WIP-6) catch up.
 
 ---
 

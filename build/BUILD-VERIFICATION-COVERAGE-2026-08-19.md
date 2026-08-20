@@ -20,8 +20,41 @@ pass/fail behaviour verdict belongs to the manual tester.** "VIU complete" is de
   and re-stamped**, Priority-filter fix applied, all 4 Schedule defects re-confirmed still reproducing.
 - **Filters build-verify:** `v3.8-d0e135e` (same marker) — **COMPLETE**, 119 cases written.
 
-**⇒ ALL THREE PROJECTS' BUILD-VERIFICATION IS DONE. One small task remains, blocked on fresh cookies:
-the Parts-Velocity CSV rule + WIP Story-5 spec-delta reconciliation (~15 cases).**
+**⇒ ALL THREE PROJECTS' BUILD-VERIFICATION IS NOW CLOSED — with ONE exception: WIP Story-5 (RS-WIP-8),
+which is SOURCE-blocked (not cookie-blocked). See the 2026-08-20 update immediately below.**
+
+---
+
+## ✅ UPDATE 2026-08-20 — PV+WIP spec-delta reconciliation DONE; build-verification CLOSED except WIP Story-5
+
+**Build-verification is now CLOSED for all three projects (Report Suite, Schedule, Filters) EXCEPT ONE
+item: the WIP Story-5 Summary-Strip (RS-WIP-8), which is blocked on a SOURCE the user must supply — the
+WIP v24 Confluence page + the 2026-08-13 design-review export — NOT on staging cookies.**
+
+**Parts-Velocity CSV rule (DELTA A / RS-PV-1) — ✅ DONE, live-verified on build `v3.8-d0e135e`:**
+- **C30380** — extended with the plain-number CSV rule (CSV shows plain numbers: no `$`, no thousands
+  separators, no `%`; numeric nulls are empty cells).
+- **C30381** — confirmed and re-stamped (no behaviour change).
+- **C30382** — moved to EXPECT-FAIL against **SV-8818** (the Parts-Velocity **PDF** export still returns
+  HTTP 500; that ticket is open).
+- C30348 / C30371 spot-verified, no change. Committed `b7a28979`. Run 359 untouched, byte-verified.
+- **Tally effect: NONE.** C30380/81/82 (and C30348/C30371) are existing Parts-Velocity cases already
+  inside the **72 total / 59 build-verified / 13 held-atm=3** counts; DELTA A modified them in place and
+  added/removed no case, so every Parts-Velocity number and the grand total below are UNCHANGED
+  (carried forward from the prior doc).
+
+**WIP Delta B.1 / B.2 — ✅ DONE:** spot-verified at spec v24, no drift, 0 writes.
+
+**WIP Delta B.3 (Story-5 Summary Strip) — 🔴 HELD, source-blocked (Standing Rules 57/58).** The build has
+shipped the new Summary-Strip design (new figure names, grouped +/= math, reworded tooltips), but those
+figure names and tooltip wordings appear in NO document we hold — only in the running build, the
+SSO-walled WIP v24 Confluence page, and the 2026-08-13 design-review export. We will NOT invent ratified
+wording from the build (the quote-back test, Rules 57/58). So **0 WIP writes; 9 WIP Story-5 cases + 1
+Automated (atm=3) case (C30488) are HELD** pending the source. **This is the ONLY remaining
+build-verification item across all three projects.**
+
+**Flagged (no case change): the Parts-Velocity Vendor TEXT column still renders an em-dash for a null
+value in the CSV — a question for the QA lead, not a case edit.**
 
 ---
 
@@ -29,14 +62,17 @@ the Parts-Velocity CSV rule + WIP Story-5 spec-delta reconciliation (~15 cases).
 
 | # | Action for YOU | Plain reason | Priority |
 |---|---|---|---|
-| 1 | **Supply ONE fresh staging session cookie set** — `sv_sso_session` + `PHPSESSID` for `api.staging.shopview.com` (drop into `/tmp/staging-cookie.txt`; `cf_clearance` in hand is still valid). | **The ONLY staging item left is the Parts-Velocity CSV rule + WIP Story-5 spec-delta reconciliation (~15 cases)** — it needs a live re-check and runs verbatim the moment cookies land. Staging sessions die on every deploy, which is why cookies keep expiring. | **HIGH** |
+| 1 | **Supply the WIP v24 Confluence page + the 2026-08-13 design-review export.** | **This is the SINGLE remaining build-verification blocker across all three projects.** The build shipped a new WIP Story-5 Summary-Strip (new figure names, grouped +/= math, reworded tooltips) but those exact figure names/tooltip wordings are in NO document we hold — only the running build + the SSO-walled v24 page + the design-review export. We will NOT invent ratified wording from the build (Rules 57/58), so 9 WIP cases + 1 Automated case are HELD. Supplying this source clears RS-WIP-8 **and** lets the WIP spec mirror (behind at v22) catch up. One coupled build-verify pass then applies it live. | **HIGH** |
 | 2 | **Lift the Jira-creation hold** so the flagged defects can be reopened/refiled. | 26 closed-but-still-reproducing Report Suite defects (+1 new deviation) + the 4 Schedule defects (all re-confirmed still reproducing on Stefan's build) have no live ticket a tester can point at. | HIGH |
 | 3 | **Ratify the Automated (atm=3) held cases + give the flagged-defect go-ahead.** | **81 Automated cases** (Report Suite 71 + Schedule 5 + Filters 5) are HELD unwritten (Rule 71, ask-first — they are Vladimir Tomovic's automation contract). | MED |
 | 4 | **Fix / demark the interim `<br>` cleanup debt** once the TestRail `update_case` markdown-wrap regression is resolved. | The whole Report Suite sweep (166 + 13 WIP-recon), the 94 Schedule re-check writes and all 119 Filters writes were written with literal `<br>` line breaks because `update_case` now HTML-wraps markdown. Renders correctly; a formatting-only demark is owed later. | MED |
 | 5 | **Answer Chris Ward's 2 remaining PO questions** (invoice link-vs-plain-text · PV Location-column position). WIP tab-placement + WIP aging are now RESOLVED. | Document-vs-document conflicts we will not resolve from the build (Rules 32/57/58). | MED |
 | 6 | **Decide the 2 Filters empty-state deviations** (DEV-1 generic empty message · DEV-2 "Clear filters" recovery). | File a defect (post creation-hold) or scope the cases down — a QA-lead call. | MED |
 | 7 | **Supply a 2nd non-admin (single-location) test sign-in** (or rule to skip the negatives). | ~20 permission-negative / one-location cases (all three projects) can't be driven with one admin cookie without rotating the shared session. | MED |
-| 8 | **Export the live WIP Confluence page (v24)** — Chris pinned it but it is SSO-walled to this session. | The local WIP baseline is v22; the v24 page body is owed so the spec mirror can catch up (behaviour already applied from Chris's rulings). | LOW |
+| 8 | **(When resuming the WIP Story-5 pass) supply ONE fresh staging session cookie set** — `sv_sso_session` + `PHPSESSID` for `api.staging.shopview.com` (drop into `/tmp/staging-cookie.txt`; `cf_clearance` in hand is still valid). | Only needed for the live re-check step of the WIP Story-5 pass, AFTER the v24 source (action #1) lands. Staging sessions die on every deploy, so request fresh cookies at that point. | LOW |
+
+**Note (2026-08-20):** the Parts-Velocity CSV rule (RS-PV-1) that used to head this list is **DONE** —
+see the 2026-08-20 update above.
 
 ---
 
@@ -51,12 +87,12 @@ reconcile per project.
 
 | Project / area | Total (ours) | Build-verified | Held atm=3 (for Vlad) | Notes — residual HOLDs inside "build-verified", + what's left |
 |---|---|---|---|---|
-| **REPORT SUITE (epic SV-8582)** | **508** | **437** | **71** | Re-verify sweep COMPLETE across all 6 reports (166 cases written interim `<br>` on `v3.8` builds) **+** WIP v24 reconciliation (13 cases, S11-R7 live-confirmed). The old "157 not-verified" backlog is CLOSED. Residual inside 437: genuine feature-absent + PO-question + unseedable HOLDs (itemised per report) + the interim-`<br>` cleanup debt. **PENDING (blocked on cookies, ~15 cases): the Parts-Velocity CSV number-format rule (RS-PV-1) + WIP Story-5 Summary-Strip design adoption (RS-WIP-8) — the ONE staging item left across all projects.** |
+| **REPORT SUITE (epic SV-8582)** | **508** | **437** | **71** | Re-verify sweep COMPLETE across all 6 reports (166 cases written interim `<br>` on `v3.8` builds) **+** WIP v24 reconciliation (13 cases, S11-R7 live-confirmed). The old "157 not-verified" backlog is CLOSED. Residual inside 437: genuine feature-absent + PO-question + unseedable HOLDs (itemised per report) + the interim-`<br>` cleanup debt. **✅ RS-PV-1 (Parts-Velocity CSV number-format rule) DONE 2026-08-20 — see the 2026-08-20 update above. PENDING (source-blocked, 9 cases + 1 Automated held): WIP Story-5 Summary-Strip design adoption (RS-WIP-8) — needs the WIP v24 Confluence page + 2026-08-13 design-review export; the ONLY remaining build-verification item across all projects.** |
 | — Sales By Customer (SBC) | 96 | 86 | 10 | 8/18 stamped 50 + sweep-written 36 (29 READY: incl. 4 newly driven live — C30132 reverse-invoice exclusion, C30137 duplicate-label, C30101 location-access via Parts-Manager impersonation, C43550 Location-not-a-toggle). Residual HOLD within: 5 invoice-link PO-question (C30100/30139/30140/30141/C43558), C30131 (build blocks a no-vehicle service WO — create 500), C43553 (broken-logo storage state, not app-seedable). |
 | — Sales By Representative (SBR) | 118 | 104 | 14 | 8/18 stamped 47 + sweep-written 57. Residual HOLD within: over-cap Expanded-PDF/API row-cap not reachable at 88 invoices (C30290/C30320 kept EXPECT-FAIL), C30202 (calendar >366-day span not harness-drivable), assignments-CSV BOM endpoint not located. |
-| — Parts Velocity (PV) | 72 | 59 | 13 | 8/18 stamped 23 + sweep-written 36 (driven live: C30327 reports-access-alone opens PV via non-admin Technician; C30331 >366-day range rejected HTTP 400; Units Returned C30361/C30362). Residual HOLD within: C30340 (Location-hidden needs a one-location user), C38885/C43547 EXPECT-FAIL (SV-8818 PDF-500, still open). **PENDING: the CSV plain-number rule (RS-PV-1) — ~6 cases, needs live re-check.** |
+| — Parts Velocity (PV) | 72 | 59 | 13 | 8/18 stamped 23 + sweep-written 36 (driven live: C30327 reports-access-alone opens PV via non-admin Technician; C30331 >366-day range rejected HTTP 400; Units Returned C30361/C30362). Residual HOLD within: C30340 (Location-hidden needs a one-location user), C38885/C43547 EXPECT-FAIL (SV-8818 PDF-500, still open). **✅ RS-PV-1 (CSV plain-number rule) DONE 2026-08-20 on `v3.8-d0e135e` — C30380 extended, C30381 re-stamped, C30382 → EXPECT-FAIL SV-8818 (PV PDF export still 500s); C30348/C30371 spot-verified no-change. Existing cases modified in place → no tally change (72/59/13 carried forward).** |
 | — Technician Utilization (TU) | 61 | 52 | 9 | 8/18 stamped 36 + sweep-written 16 (6 READY driven live + 6 HOLD characterised + 4 deferred). Residual HOLD/deferred within: C30407 (em-dash ELL needs a rate-less location), C30446 (Location-filter negative needs a one-location user — positive confirmed live), 4 Total-Hours-**link** cases (link absent from build — feature-ship trigger). |
-| — Work In Progress (WIP) | 92 | 78 | 14 | 8/18 stamped 71 + sweep-written 7 + **WIP v24 reconciliation applied Chris's rulings to 13 cases**; **S11-R7 snapshot-read behaviour LIVE-CONFIRMED** (`as_of_date`/`has_snapshot` — the old "nothing reads the snapshot back" note DISPROVEN; C30528 HOLD→READY). Residual within: C30467/C43551 (Location built as a default column but NOT in Column Selection — deviation re-confirmed); multi-state WO seeding for placement cases; permission 2nd-sign-in. **PENDING: Story-5 Summary-Strip design adoption (RS-WIP-8) — ~9 cases, needs live re-check.** |
+| — Work In Progress (WIP) | 92 | 78 | 14 | 8/18 stamped 71 + sweep-written 7 + **WIP v24 reconciliation applied Chris's rulings to 13 cases**; **S11-R7 snapshot-read behaviour LIVE-CONFIRMED** (`as_of_date`/`has_snapshot` — the old "nothing reads the snapshot back" note DISPROVEN; C30528 HOLD→READY). Residual within: C30467/C43551 (Location built as a default column but NOT in Column Selection — deviation re-confirmed); multi-state WO seeding for placement cases; permission 2nd-sign-in. **PENDING: Story-5 Summary-Strip design adoption (RS-WIP-8) — 9 cases (C30487/89/90/91/93, C43818, C30520, C30524, C43838) + 1 Automated held (C30488); SOURCE-BLOCKED on the WIP v24 Confluence page + 2026-08-13 design-review export (the build shipped new figure names/tooltip wording that are in no document we hold — Rules 57/58, so 0 WIP writes). The ONLY remaining build-verification item.** B.1/B.2 spot-verified at v24, no drift. |
 | — Inventory Value (IV) | 69 | 58 | 11 | 8/18 stamped 44 + sweep-written 14 (8 HOLD + 6 SV-8818 EXPECT-FAIL re-stamped). Residual HOLD within: SV-8818 large-view PDF 500 (C30587/30590/30591/30593/30595/C43548), C30547 (no-category part — parts require a category on this build), C30577 (one-location user — 0 of 19 roster staff single-workplace), server-side nightly-capture rows not reachable from the app (C30605/30606/30607/30609/30610/C38892). |
 | **SCHEDULE (epic SV-8685)** | **195** | **190** | **5** | **Build-verify A/B/C COMPLETE** (A 61 + B 65 + C 64 = 190; 5 Automated held: C43811, C38847–C38850) **AND the re-check vs Stefan V's `v3.8-d0e135e` deploy is now DONE:** 94 cases re-driven live and re-stamped, **Priority-filter fix applied** (C29945 re-scoped to a negative READY case, C29942 tweaked, C29946 tidied — Branko's 2026-08-19 ruling), **all 4 defect-sheet items re-confirmed STILL REPRODUCING**, and the **View + Edit/Delete permission tiers observed live** (Rule-74 fallback: `quick-login tech` View tier + admin Edit/Delete tier). What's left inside 190: **15 sections carry prior `v3.8-bd246fd/da72171` stamps** (honest N-of-M, bug-fix redeploy — provisional, DEFERRED-RUN.md); **3 pre-existing raw-markup cases** (C43554, C43806, C43807 — demark owed); **4 residual permission tiers** needing a 2nd non-admin / custom-role (C30076 nav-off, C30078 edit-no-delete, C30081/C30614 WO-dependency); feature-absent deferrals (C30005, C43812, C43813 — trigger = feature ships, not a redeploy). |
 | — Batch A (Navigation · Sidebar · Toolbar · Read-display) | 61 | 61 | 0 | Incl. 3 feature-absent, deferred (Rule 69): C30005 shift edge-resize, C43812 day-view zoom, C43813 clipped-block chevron. **C29945 Priority filter was RE-SCOPED (not deferred) to a negative READY case** on Branko's 2026-08-19 ruling to remove Priority from the PRD. |
@@ -79,7 +115,8 @@ HANDS-OFF, Rule 38).
 
 | Reason | Cases affected | Path to resolve | Trigger |
 |---|---|---|---|
-| **PV CSV rule + WIP Story-5 reconciliation** (the ONE staging item left) | ~15 (PV ~6 RS-PV-1 · WIP ~9 RS-WIP-8) | Fresh cookies → live re-check → apply the delta (interim `<br>`) | **QA lead supplies cookies** |
+| **✅ PV CSV rule (RS-PV-1)** | done | DONE 2026-08-20 on `v3.8-d0e135e` — C30380/81/82 executed, committed `b7a28979` | — (cleared) |
+| **WIP Story-5 Summary-Strip (RS-WIP-8)** — the ONE remaining build-verification item | 9 cases + 1 Automated held (C30487/88/89/90/91/93, C43818, C30520, C30524, C43838) | Ingest the v24 figure names + locked tooltip wording → one coupled build-verify pass (needs a live session) → apply the delta | **QA lead supplies the WIP v24 Confluence page + 2026-08-13 design-review export** |
 | **Interim `<br>` cleanup debt** | Report Suite 166 sweep + 13 WIP-recon + Schedule 94 re-check + Filters 119 | Formatting-only demark (`build/markup-regression-2026-08-10/demark.py`) | **TestRail `update_case` stores clean markdown again** |
 | **Automated (atm=3) held for Vlad** | 81 (RS 71 + Schedule 5 + Filters 5) | Ratify → hand case numbers to Vladimir Tomovic (Rule 65 register) | **QA-lead ratification** (each edit coupled with build-verify) |
 | **Feature not found in the build (Rule 69 deferred)** | Schedule 3 (C30005, C43812, C43813) · TU Total-Hours link (4) · SBR WO-rep-assignment UI | Re-check in the separate build-verify run | **The feature shipping** (NOT a redeploy — Rule 49/61) |
@@ -94,8 +131,10 @@ HANDS-OFF, Rule 38).
 ---
 
 ## OUTSTANDING — what I need from you
-1. **Fresh staging cookies** (action #1) — the ONLY staging item left is the PV CSV rule + WIP Story-5
-   reconciliation (~15 cases). Every other build-verification task is DONE.
+1. **The WIP v24 Confluence page + the 2026-08-13 design-review export** (action #1) — **the SINGLE
+   remaining build-verification blocker.** It clears WIP Story-5 (RS-WIP-8: 9 cases + 1 Automated held)
+   and lets the WIP spec mirror (behind at v22) catch up. Every other build-verification task is DONE,
+   including the Parts-Velocity CSV rule (RS-PV-1), which was completed on 2026-08-20.
 2. **Lift the Jira-creation hold** — for the 26 flagged Report Suite defects + 1 new deviation + the 4
    Schedule defects (all re-confirmed still reproducing on Stefan's build).
 3. **Ratify the 81 Automated (atm=3) held cases** + give the flagged-defect go-ahead.
@@ -103,7 +142,10 @@ HANDS-OFF, Rule 38).
 5. **Chris Ward's 2 remaining PO answers** — invoice link-vs-plain-text, PV Location column.
 6. **Decide the 2 Filters empty-state deviations** (DEV-1 / DEV-2).
 7. **A 2nd non-admin sign-in** — for the ~20 permission-negative / one-location cases across all projects.
-8. **Export the live WIP Confluence page (v24)** — the mirror is behind at v22.
+8. **Flagged, no case change:** the Parts-Velocity Vendor TEXT column renders an em-dash for a null value
+   in the CSV export — a QA-lead question (not a defect we will file, and not a case edit).
+9. **Fresh staging cookies** — only needed for the live re-check STEP of the WIP Story-5 pass, once the
+   v24 source (item 1) has landed.
 
 All are logged in `build/OUTSTANDING-ITEMS-REGISTER.md`, and summarised for you in
 `build/EXECUTIVE-SUMMARY-2026-08-19.md`. Nothing else is outstanding for the build-verification work itself.
