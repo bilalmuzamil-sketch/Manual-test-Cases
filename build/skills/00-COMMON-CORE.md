@@ -888,6 +888,71 @@ next one find its exact position from **git alone**?*
 > itself and returns *true* forever, while the batch has **silently never run**. **A liveness check is
 > not evidence of progress — check the work product.**
 
+## Session survival — the detached-process architecture (Rule 75)
+
+**The context-thrash failure is PERMANENT and structural:** this CLAUDE.md is large and is injected
+into every agent, so headroom is small. An agent that reads large files, takes large tool outputs, or
+**STAYS ALIVE POLLING a long job** refills context faster than autocompact can keep up, and dies —
+seen as *"autocompact thrashing 3 times in 3 turns."* **The detached WORK survives; it is the
+babysitting AGENT that dies.** So: **never babysit.**
+
+**THE THREE-PART PATTERN — mandatory for any job over ~1–2 min or more than a handful of cases
+(reflows, VIU / build-verify passes, sweeps, multi-case pushes, audits):**
+
+**(1) THE WORK = ONE DETACHED, IDEMPOTENT, RESUMABLE SCRIPT** — never per-item agent tool-calls. It
+does all file/API work; writes a checkpoint file (`DONE.jsonl`) it reads on start to skip completed
+items; writes its own log. It performs the quality steps deterministically and EXHAUSTIVELY (Rule-50
+byte-verify, Rule-41 whole-case re-reads, Rule-71 automation gates, Rule-54 provenance stamping) with
+no context ceiling. Launch it detached: `nohup python3 build/.../work.py >work.log 2>&1 &`.
+
+**(2) A PURE-SHELL COMMITTER LOOP CHECKPOINTS — NO LLM, SO IT CANNOT THRASH.** Launch it detached
+alongside the work script. Reusable form:
+
+```bash
+nohup bash -c '
+  BR=claude/slack-session-0sxnd9
+  while pgrep -f "build/.../work.py" >/dev/null; do
+    git add -- <explicit paths>
+    python3 build/testing-tools/scan_secrets.py --staged || { sleep 300; continue; }
+    git commit -q -F /tmp/ckmsg.txt -- <the same paths> 2>/dev/null
+    for i in 1 2 3 4; do
+      git push origin HEAD:"$BR" && break
+      git fetch origin "$BR" && git rebase "origin/$BR" || break
+    done
+    sleep 300
+  done
+  # final flush after the work script exits
+  git add -- <explicit paths>
+  python3 build/testing-tools/scan_secrets.py --staged && git commit -q -F /tmp/ckmsg.txt -- <paths> 2>/dev/null
+  for i in 1 2 3 4; do git push origin HEAD:"$BR" && break; git fetch origin "$BR" && git rebase "origin/$BR" || break; done
+  grep -c "^" DONE.jsonl > SUMMARY.txt   # tally into a committed SUMMARY
+  git add -- SUMMARY.txt && git commit -q -m "work SUMMARY" -- SUMMARY.txt; git push origin HEAD:"$BR"
+  touch WORK-COMPLETE.sentinel
+' >committer.log 2>&1 &
+```
+
+Keep `git add`/`commit` **path-scoped** (§9) so a sibling worker's staged files are never swept.
+
+**(3) THE AGENT LAUNCHES AND EXITS — NO POLL LOOP.** Write the script, launch it + the committer
+detached, confirm both alive with **ONE** `pgrep` (never a pattern matching the watching shell — see
+the warning above), then **END THE TURN.** Verification + the final tally happen LATER in a **FRESH,
+SHORT-LIVED agent that runs ONCE**: it reads the `WORK-COMPLETE.sentinel` + `SUMMARY.txt` (or computes
+its own `grep -c` tally against live/committed evidence, never a self-report — Rules 29/50), reports,
+and exits.
+
+**PROHIBITIONS — each is a way an agent has actually died:**
+- **Never keep an agent in a poll/watch loop** waiting on a job (even `tail`/`wc` polls accumulate).
+- **Never `Read`/`cat` a large file into an agent** — inspect only with `wc -l` / `head -n 5` /
+  `grep -c` / `tail -n 20`, sparingly.
+- **Never let a tool dump a large blob into the agent** — redirect to a file, read a bounded slice.
+- **Never hand an agent a huge inline blob to hold across turns.**
+
+**QUALITY IS PRESERVED, NOT TRADED:** the heavy work is more rigorous in a script (exhaustive,
+deterministic, byte-verified) than in agent tool-calls, and verification reads COMMITTED EVIDENCE +
+live content, never a pass's own memory. **Deeper lever, flagged not acted on:** a smaller CLAUDE.md
+(bulk → load-on-demand skills) is the ultimate fix, but it is a QA-lead decision (Rule 72) — never
+unilateral, lest durable memory or authenticity be lost.
+
 ---
 
 # 9 · GIT ON A SHARED, MOVING BRANCH
