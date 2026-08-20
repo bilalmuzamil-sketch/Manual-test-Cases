@@ -1,11 +1,19 @@
 # FILTERS — cases needing API rewrite BEFORE reflow (2026-08-20)
 
-DANGER variant (coordinator warning 2026-08-20): these cases store line breaks as raw \n
-INSIDE a <p> block with NO <br>. The TestRail UI Edit→"."→Save collapses those \n into
-spaces, producing a single RUN-ON line with the AUTOMATION marker inline — WORSE than before,
-and the "." reflow CANNOT fix it. They are SKIPPED by the reflow driver and listed here so they
-can be rewritten via API into clean <br> form first, then reflowed. NOT TOUCHED by this run.
+DANGER variant (coordinator warning 2026-08-20): flagged as storing line breaks as raw \n
+INSIDE a <p> block with NO <br>, which the "." UI reflow would collapse into a run-on line.
 
-- [C29603](https://shopview.testrail.io/index.php?/cases/view/29603) — field(s) steps store line breaks as raw \n inside <p> with NO <br>; the "." reflow would collapse them into a run-on line. Rewrite via API into <br> form first, then reflow. (atm=1)
-- [C43590](https://shopview.testrail.io/index.php?/cases/view/43590) — field(s) steps store line breaks as raw \n inside <p> with NO <br>; the "." reflow would collapse them into a run-on line. Rewrite via API into <br> form first, then reflow. (atm=1)
-- [C38876](https://shopview.testrail.io/index.php?/cases/view/38876) — field(s) preconds store line breaks as raw \n inside <p> with NO <br>; the "." reflow would collapse them into a run-on line. Rewrite via API into <br> form first, then reflow. (atm=1)
+## RESOLVED 2026-08-20 — all 3 checked via API, none needed a rewrite
+C29603, C43590, C38876 were fetched live via the TestRail API and inspected field-by-field:
+- All three have atmstatus=1 (Not Automated) — Rule 71 gate passed.
+- Every field already uses `<br>` where a line break is needed (the multi-line
+  preconds/steps/expected fields), and the ONLY newline in each field is a harmless
+  trailing `\n` after the closing `</p>`. There are ZERO mid-text bare newlines.
+- The original flag was a heuristic false positive: the flagged field in each case
+  (steps for C29603/C43590, preconds for C38876) is a SINGLE-LINE `<p>…</p>\n`, which
+  legitimately has no `<br>`.
+- Byte-verified: fields render correctly as-is. No `update_case` was performed
+  (a no-op write is unnecessary and a spurious `<br>` on the trailing `\n` would add a
+  blank line). Recorded in DONE.jsonl with status "already-br-form".
+
+None outstanding. Nothing to rewrite; these are safe and need no "." reflow.
