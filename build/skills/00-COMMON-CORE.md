@@ -651,6 +651,18 @@ content edit.* Ties to Rules 38, 69 (content-vs-metadata refinement), 71 (build-
 **CONTEXT:** the 2026-08-17/18 currency passes edited content on **44 of our own Automated-flagged
 cases without asking**; the QA lead ruled **KEEP them** and set this ask-first rule going forward.
 
+**⇒ 2026-08-20 REFINEMENT — WHEN AN AUTOMATED CASE IS UPDATED + THE MANDATORY "FOR VLAD" HAND-OFF (Rule
+71, QA lead; full treatment in skill `03` §6.4).** Verbatim: *"they need to be changed ONLY if they are
+build verified and something in their title/preconditions/steps of reproduction/Epected behavior
+changed ... update them with the sources references so that those changes do not bite me and then I have
+to share the test case numbers with Vlad ... any test cases which we update/create and that goes to Vlad
+and his automation fails we will be blamed for that."* In short: **update an Automated case ONLY if it
+is build-verified AND its Title/Preconditions/Steps/Expected genuinely changed** (build-verified +
+unchanged → leave it); **every such update carries its source references** (Rule 20); and **every
+created/updated case bound for Vlad goes on the FOR VLAD hand-off list** (C-id + what changed + source
+ref) — the pass's "AUTOMATED CASES CHANGED — FOR VLAD" section (§5.3) and the standing register — because
+**a change that breaks his automation is blamed on us.**
+
 ---
 
 # 6 · ACCESS MECHANICS — the five traps that produce a FALSE "dead session"

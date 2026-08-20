@@ -33,6 +33,15 @@
 >   for now the Jira ticket creation is still on hold."* — SO THE HOLD IS STILL ACTIVE AS OF 2026-08-12
 >   AND THE NEW BAR (Standing Rule 52, amended) IS EXPRESSLY FOR THE FUTURE, NOT A SIGNAL THAT FILING
 >   HAS RESUMED.**
+>   **🔴 RE-CONFIRMED BY HIM 2026-08-20 — NEW TEST-CASE CREATION IS NOT HELD FOR ANY PROJECT.** Verbatim:
+>   ***"SOrry new case creation is not held for any project at all, see if you confused Hold on Jira
+>   ticket creation with Hold on New test case creation."*** This settles the 2026-08-11 scope
+>   correction beyond doubt: **`add_case` (new TestRail test cases) is PERMITTED for ALL projects**, and
+>   the hold covers **Jira ticket creation ONLY** (which stays barred per Rule 62 until his next order).
+>   The **live "safe reading" is therefore: no Jira ticket** — `add_case` and `update_case` are both
+>   permitted. **(Superseded 2026-08-10 encoding, kept visible and dated above: it listed "no new
+>   TestRail case (`add_case`)" — that half was OUR over-broad reading, corrected 2026-08-11 and again
+>   here 2026-08-20.)**
 > - **🔴 THREE RULINGS RECORDED 2026-08-12 — read them before any ticket, question sheet or
 >   tech-plan-vs-spec judgement.** **(1) DEFECT TICKETS MUST BE UNCHALLENGEABLE — Standing Rule 52's new
 >   EIGHT-ITEM EVIDENCE BAR** (verbatim: *"the defects you create can not be challenged and should not
@@ -5892,6 +5901,14 @@ deliver the 7-tab management report.
     (a) build verification proves them runnable AND (b) he allows ticket creation** — register row
     **H1** still governs. Ties to Rules 61 (the expect-fail marker), 69 (the transitional marker that
     waits on build verification) and 62's own per-ask permission requirement.
+    **⏳ DATED NOTE, 2026-08-20 — THE QA LEAD RE-CONFIRMED THE HOLD IS JIRA-TICKET-CREATION ONLY; NEW
+    TEST-CASE CREATION IS NOT HELD FOR ANY PROJECT.** Verbatim: *"SOrry new case creation is not held
+    for any project at all, see if you confused Hold on Jira ticket creation with Hold on New test case
+    creation."* **So `add_case` (new TestRail test cases) is PERMITTED for ALL projects** — the
+    2026-08-10 "anything" that a prior session encoded to include `add_case` was OUR over-broad reading
+    (corrected 2026-08-11, and re-confirmed by him here). **Jira ticket creation STAYS HELD** until his
+    next order (the LIFT CONDITION above). This is a clarification of how we RECORDED his ruling, not a
+    reversal by him.
 63. **WHEN HIS INSTRUCTION CONFLICTS WITH A RECORDED RULE, STOP AND SURFACE THE CONFLICT BEFORE
     ACTING — state both sides and ask which to follow (all projects).**
     USER DIRECTIVE (2026-08-11, verbatim, his typing preserved exactly as he wrote it because Rule 25
@@ -6784,6 +6801,34 @@ deliver the 7-tab management report.
       Standing Rules 38 (foreign/Automated cases hands-off — this is the narrow permitted-correction
       carve-out), 69 (the content-vs-metadata refinement that classifies what changed), 71 (the
       build-verify coupling for content edits) and B (the POST-BUILD-VERIFY Vlad hand-off).
+    **⇒ DATED REFINEMENT, 2026-08-20 (QA lead) — THE ANSWER TO "WHEN IS AN AUTOMATED CASE UPDATED?",
+    PLUS THE MANDATORY "FOR VLAD" HAND-OFF. This ANSWERS Rule 71's ask-first gate; it does not remove
+    it — the ask-first origin above stands as history.**
+    USER DIRECTIVE (2026-08-20, verbatim): *"I see maybe you are referring to hold the test case writing
+    for the ones having the AUTOMATED marker, yes, they need to be changed ONLY if they are build
+    verified and something in their title/preconditions/steps of reproduction/Epected behavior changed -
+    If yes then we need to also update them with the sources references so that those changes do not bite
+    me and then I have to share the test case numbers with Vlad who is very critical about test cases
+    failure to update his auotmations accordingly, note that any test cases which we update/create and
+    that goes to Vlad and his automation fails we will be blamed for that and it will bite us."*
+    - **UPDATE AN AUTOMATED CASE (`custom_atmstatus = 3`) ONLY IF BOTH ARE TRUE:** **(a)** it is
+      **build-verified** in the same pass (the edit-and-build-verify coupling above), AND **(b)**
+      something in its **Title / Preconditions / Steps of reproduction / Expected behaviour genuinely
+      changed.** **If it is build-verified and NOTHING in that content changed — LEAVE IT. Do not churn
+      it.**
+    - **ANY Automated case we update — and ANY case (new or updated) that goes to Vlad's automation —
+      MUST carry its SOURCE REFERENCES** (Rule 20: `<ticket> (<spec/design anchor>)`), so the change is
+      traceable and "does not bite" us later.
+    - **THE "FOR VLAD" HAND-OFF IS MANDATORY.** Every created or updated case bound for Vlad's
+      automation goes on a **FOR VLAD** hand-off list: the **C-id + exactly what changed (which field)
+      + the source reference.** The standing durable artifact is
+      `build/fabian-review-2026-08-17-CONSOLIDATED/AUTOMATED-CASES-REGISTER.md`, plus each pass's
+      "AUTOMATED CASES CHANGED — FOR VLAD" section. **The hand-off list is a REQUIRED deliverable of any
+      pass that touches Automated cases.**
+    - **WHY (his words):** Vlad (Vladimir Tomovic, id 1) is **very critical about test-case failures**;
+      **any case we update/create that reaches his automation and makes it fail is blamed on us.** An
+      un-communicated change that breaks his automation is our fault — so a change is communicated with
+      its source reference, or it is not made.
 72. **PROPOSE SKILL / RULE CHANGES BEFORE RECORDING THEM — never add to the Skills or CLAUDE.md
     autonomously (all projects).**
     USER DIRECTIVE (2026-08-17/18, verbatim, explicitly approved with *"Add"*): *"make/update the rules

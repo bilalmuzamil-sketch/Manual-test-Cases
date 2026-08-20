@@ -531,6 +531,25 @@ cases had the deferred marker wrongly applied on a metadata-only re-stamp; the Q
 reverting their markers because content was untouched — a correction, not a content edit.* Ties to Rules
 38, 69 (content-vs-metadata), 71 (build-verify coupling for CONTENT) and §6.4's Vlad hand-off.
 
+**⇒ 2026-08-20 REFINEMENT — WHEN AN AUTOMATED CASE IS UPDATED, AND THE MANDATORY "FOR VLAD" HAND-OFF
+(Standing Rule 71 dated refinement, QA lead).** Verbatim: *"they need to be changed ONLY if they are
+build verified and something in their title/preconditions/steps of reproduction/Epected behavior changed
+- If yes then we need to also update them with the sources references so that those changes do not bite
+me and then I have to share the test case numbers with Vlad ... any test cases which we update/create and
+that goes to Vlad and his automation fails we will be blamed for that and it will bite us."*
+- **UPDATE an Automated case (`custom_atmstatus = 3`) ONLY IF BOTH: (a) it is build-verified in this
+  pass, AND (b) something in its Title / Preconditions / Steps / Expected genuinely changed.** If
+  build-verified and its content is unchanged → **LEAVE IT, do not churn it.**
+- **Any Automated case we update — and ANY case (new or updated) that reaches Vlad's automation — MUST
+  carry its SOURCE REFERENCES** (Rule 20: `<ticket> (<spec/design anchor>)`) so the change is traceable
+  and does not bite us.
+- **THE "FOR VLAD" HAND-OFF IS A REQUIRED DELIVERABLE of any pass that touches Automated cases:** per
+  case, the **C-id + exactly what changed (which field) + the source reference** — in this pass's
+  "AUTOMATED CASES CHANGED — FOR VLAD" section (core §5.3, step 11) **and** the standing register
+  `build/fabian-review-2026-08-17-CONSOLIDATED/AUTOMATED-CASES-REGISTER.md`.
+- **WHY:** Vlad is very critical of test-case failures; **any change that reaches his automation and
+  breaks it is blamed on us.** A change is communicated with its source reference, or it is not made.
+
 ---
 
 # 7 · PROJECT WHOSE FEATURES ARE NOT YET COMPLETE (Standing Rule 69, dated addition 2026-08-18)
