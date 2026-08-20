@@ -2706,12 +2706,43 @@ The banner component (`AdjustmentMappingGuardBanner.vue`) defaults both flags to
 blocks when the fetch returns false: `isKindBlocked = kind==='discount' ? !discountItemMapped :
 !feeItemMapped`. **So one mapped Fee item and one mapped Discount item is the whole unblock.**
 
-⚠️ **`quickBooksConnected` can be `true` while the QuickBooks settings page shows only a "Connect to
-QuickBooks" button** — that is what happened on sv8815, so **do NOT conclude "QuickBooks is not
-connected" from that page.** The mapping UI is real and rich (`QuickBooks.HlYHSkpv.js` —
-`settings_group_account`, product-and-service options, class/account options) but it cannot render
-here because **`GET /api/bookkeeping/products-and-services` returns 400 `"Bookkeeping is not
-configured"`**. Read the *status* endpoint, not the page.
+**BOTH ENTRY POINTS EXIST AND BOTH HIT THE SAME GATE** (confirmed 2026-08-20 after the QA lead pointed
+out the second one):
+
+```
+(a) WO kebab      button_work_order_nav_bar_menu -> menu_item_add_adjustment
+(b) PART ROW kebab button_requested_part_context_menu_<partRequestId>_line_<lineId>
+                  -> menu: Move | Add Part Fee / Discount
+                  -> menu_item_add_adjustment_part_<partRequestId>
+```
+Both open `dialog_adjustment` (`select_adjustment_template`, `input_adjustment_name`,
+`select_adjustment_type`, `select_adjustment_calc_type`, `input_adjustment_percent`,
+`input_adjustment_max_cap`, `select_adjustment_taxable`, `text_adjustment_taxable_note`,
+`adjustment_preview`), and both leave `button_add_adjustment` **disabled** behind
+`banner_adjustment_mapping_guard`. ⚠️ **The part row must actually be EXPANDED first, and the expand
+click does not always take on the first attempt** — click `button_line_expand_<lineId>`, then **PROVE
+the part row rendered** by finding the part's own description in `document.body.innerText`, and retry
+if it did not. Assuming the expand worked is what made this path look absent.
+
+⚠️ **`quickBooksConnected: true` FROM THAT ENDPOINT IS NOT TRUSTWORTHY — read all three signals.**
+An earlier version of this section said to trust the status endpoint over the page. **That was wrong,
+and it made me tell the QA lead QuickBooks was connected when it is not.** On sv8815 the three signals
+disagree, and the endpoint is the odd one out:
+
+| signal | says |
+|---|---|
+| `GET /api/bookkeeping/adjustment-item-mapping-status` | `quickBooksConnected: **true**` |
+| `GET /api/bookkeeping/products-and-services` | **400 `"Bookkeeping is not configured"`** |
+| `GET /api/bookkeeping/integration` | **200 with an Intuit OAuth `authUrl`** — i.e. still waiting to be connected |
+| the admin page | only `button_quickbooks_connect`, no mapping fields |
+
+Three of the four say not connected. **So the org genuinely has no QuickBooks company attached, the
+`true` flag is misleading, and the item mapping CANNOT be created from inside ShopView** — the mapping
+UI (`QuickBooks.HlYHSkpv.js` — `settings_group_account`, product-and-service options) has nothing to
+populate itself from. That makes this a **genuine external dependency** (an Intuit account we do not
+have), which is the one permitted non-seedable blocker under Standing Rule 14. **The lesson: a single
+boolean is not "reading the state" — correcting an inference with another inference is how you get it
+wrong twice.**
 
 **What does NOT get you past it** (all tried, all refused): an adjustment **template**
 (`POST /api/adjustment-templates {kind,name,calculationType,defaultAmount,defaultScope,defaultMaxCap,

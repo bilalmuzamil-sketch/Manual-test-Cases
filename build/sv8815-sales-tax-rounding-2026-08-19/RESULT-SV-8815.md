@@ -5,9 +5,14 @@
 **Reference used:** the developer's auto-generated QA handoff (*beta — used as a reference point, not as the specification*)
 **Posted to Jira on the QA lead's approval** — comment **75272**, 2026-08-19 23:28 -0500, with 14 annotated exhibits inline. QA verdict: **PASSED**.
 
-> ⚠️ **This is a QA branch and has not been declared final.** Every verdict below is **provisional**
-> and tied to the build marker above. If the branch redeploys, the on-screen labels and the
-> pass/fail verdicts have to be re-read (Standing Rules 49 / 60).
+> **This branch is treated as FINAL because we passed it (Standing Rule 62, QA lead's ruling
+> 2026-08-20: *"always consider it final IF we pass the QA. The branch will only change if we fail the
+> QA for that branch."*).** The verdicts below are **not provisional** and no re-check queue is open.
+> The build marker above is recorded as the record of *what* was passed, not as a hedge about it — and
+> it was re-read on 2026-08-20 (same version, same etag) after the follow-up work in section 9.
+> *(The earlier version of this line said the opposite. Rules 49/60 still govern the long-lived
+> feature branches that engineering never declares final; they do not govern a passed per-ticket
+> branch.)*
 
 ---
 
@@ -19,12 +24,17 @@ after all — a part return leaves the issued invoice untouched under each of th
 
 Two things could **not** be tested on this branch, neither of them a defect in this change:
 
-1. **Fees and discounts** — the control is exactly where the QA lead said it is (work order → **⋮** →
-   **Add Work Order Fee / Discount**), the dialog opens, a template applies and the live preview
-   computes — but the **Add Fee** button is hard-disabled and the API refuses with
-   *"Connect a QuickBooks item for fees before adding a fee."* The gate is a **QuickBooks Fee /
-   Discount item mapping**, i.e. QuickBooks configuration — the one area already excluded. Exact gate
-   and the one-step unblock are below.
+1. **Fees and discounts** — **both** entry points the QA lead pointed out were driven on this branch
+   (work order → **⋮** → *Add Work Order Fee / Discount*, **and** the part row's **⋮** → *Add Part Fee
+   / Discount*, which I had not tried before). Both open the full dialog — template, name, type, calc
+   type, percent, cap, **Taxable**, live preview — and **both leave Add Fee hard-disabled** behind the
+   same banner, *"Map a Fee item in Settings → QuickBooks before adding a fee."*, with the API
+   refusing identically. **This is not a one-step unblock as I first reported:** the mapping cannot be
+   created from inside ShopView because no QuickBooks company is attached to this org (see the
+   correction below), so it is a genuine external dependency on an Intuit account.
+   **Why it does not weaken the tax verdict:** a taxable fee would be a fourth taxable component, and
+   **shop supplies already exercise exactly that** — enabled, invoiced, and reconciling to the cent in
+   both modes with no ±1¢ drift (section 3).
 2. **QuickBooks itself** — as expected, and as the QA lead already flagged.
 3. ~~**The part-return check** — blocked by a reproducible HTTP 500 when receiving a part.~~
    **WRONG, corrected 2026-08-20. Receiving a part works.** I had used a dead screen
@@ -32,10 +42,19 @@ Two things could **not** be tested on this branch, neither of them a defect in t
    **both** rounding modes and **passes**: returning 1 of 3 parts leaves the issued invoice untouched.
    The handoff's *credit memo* item also turns out to have no tax in it to pro-rate. See section 9.
 
-> **Correction to my earlier note in this file: I wrote that "QuickBooks is not connected" on this
-> branch. That was wrong.** It was inferred from the QuickBooks admin page showing a "Connect to
-> QuickBooks" button. The status endpoint actually reports **`quickBooksConnected: true`** — only the
-> Fee and Discount **item mappings** are missing.
+> **Correction, and then a correction OF the correction (2026-08-20).** I first wrote that
+> "QuickBooks is not connected", then withdrew that because
+> `GET /api/bookkeeping/adjustment-item-mapping-status` reports **`quickBooksConnected: true`**.
+> **On a full read of the state, the original statement was closer to right and my withdrawal was
+> wrong.** Three other signals all say not connected:
+> `GET /api/bookkeeping/products-and-services` → **400 "Bookkeeping is not configured"**,
+> `GET /api/bookkeeping/integration` → **200 with an Intuit OAuth `authUrl` still waiting to be used**,
+> and the admin page offers only a Connect button with no mapping fields. **So this org has no
+> QuickBooks company attached, the `true` flag is misleading, and the Fee/Discount item mapping cannot
+> be created from inside ShopView at all** — which makes it a genuine external dependency, not a
+> one-step unblock as I previously said. The misleading flag is worth a developer's glance in its own
+> right. **My own lesson: I corrected an inference with another inference from a single boolean
+> instead of reading all of the state, and so got it wrong twice.**
 
 ---
 
@@ -438,6 +457,47 @@ instead of a night spent on a receiving screen.
 `POST /api/work-orders/part/make-request` takes **`work_order`** and **`line`**, not
 `work_order_id`/`line_id` — and the return call's own two traps: `part_id` is the **part object's** id
 from `GET /api/work-orders/lines/{WO}` (not the part-request id), and **`return_reason` is required**.
+
+
+### The credit for a returned part — found, driven, and it is a VENDOR credit (2026-08-20)
+
+The QA lead pointed out where the credit actually lives: **Parts → Returns → tick the returned part →
+Receive Credit**. Driven end to end on both returns:
+
+```
+/parts/returns  ->  tick return_request_checkbox_<id>  ->  button_receive_credit
+   ->  /parts/confirm-return?ids=<id>&isManualReturn=0   ("Process Return")
+   ->  button_post_credit  ->  POST /api/inventory/returns/create  ->  200
+```
+
+**What it is, and why the rounding setting cannot reach it:**
+
+| | observed |
+|---|---|
+| Subtotal | **the part's COST — $10.00**, not its $80.00 sell price |
+| Tax | pre-filled **$0.50**, editable — that is **5% of cost**, from `workplace_tax: 5` in the payload |
+| the location's **sales** tax model | **ZZ8815 9.75pct** — a different rate entirely |
+| under both rounding modes | **identical: subtotal $10.00, total $10.50** |
+| after posting the credit | the customer's issued invoice **unchanged**, byte for byte |
+
+So a returned part's credit is a **vendor** credit priced at cost, taxed at the workplace rate — not
+the customer's sales tax and not the frozen invoice tax. **The sales-tax rounding setting does not
+touch it**, which is why it reads the same under both modes. Entering a restocking fee reduces the
+subtotal and the tax recomputes on the reduced base ($0.98 fee → subtotal $9.02, tax $0.45, total
+$9.47), so the tax *is* computed — just from the wrong rate to matter here.
+
+**Where this leaves the handoff's wording.** The handoff asked that the credited tax be *"pro-rated
+from the frozen invoice tax"*. That is **not what the build does** — it charges the workplace rate on
+cost. The ticket itself says nothing about credits, so per our own rule the expected behaviour has no
+document behind it and this is **a question for the developer, not a defect call**: is the vendor
+credit meant to carry the workplace purchase tax (as built), or the customer's frozen sales tax (as
+the handoff line reads)?
+
+**A defect in our own path, worth reporting:** on the Process Return screen **two different fields
+share `data-test-id="input_base"`** — the per-row **Restocking Fee** and the **Tax** in the totals
+block. Any script targeting "the tax field" silently edits the restocking fee instead; it did exactly
+that to me. That is an automation hazard rather than a customer-facing bug, but it will bite the
+automation engineer.
 
 ---
 
