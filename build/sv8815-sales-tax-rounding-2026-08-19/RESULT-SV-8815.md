@@ -15,15 +15,23 @@
 
 **PASSED — 35 of 35 checks that could be run have passed. Nothing is broken.**
 
-Two things could **not** be tested on this branch, both for the same reason and neither of them a
-defect in this change:
+Two things could **not** be tested on this branch, neither of them a defect in this change:
 
-1. **Fees and discounts cannot be added at all** on this branch. Adding either one is refused with
-   *"Connect a QuickBooks item for fees before adding a fee."* / *"…for discounts before adding a
-   discount."*, and QuickBooks is **not connected** here (the QuickBooks admin page shows only a
-   "Connect to QuickBooks" button). So every checklist item that needs a fee or a discount on a
-   **new** work order is blocked. See "What could not be tested" below.
+1. **Fees and discounts** — the control is exactly where the QA lead said it is (work order → **⋮** →
+   **Add Work Order Fee / Discount**), the dialog opens, a template applies and the live preview
+   computes — but the **Add Fee** button is hard-disabled and the API refuses with
+   *"Connect a QuickBooks item for fees before adding a fee."* The gate is a **QuickBooks Fee /
+   Discount item mapping**, i.e. QuickBooks configuration — the one area already excluded. Exact gate
+   and the one-step unblock are below.
 2. **QuickBooks itself** — as expected, and as the QA lead already flagged.
+3. **The part-return check** — blocked by a **reproducible HTTP 500 when receiving a part**, through
+   the tester-facing screen as well as the API. Six request ids, and six candidate causes ruled out
+   one by one. Details below.
+
+> **Correction to my earlier note in this file: I wrote that "QuickBooks is not connected" on this
+> branch. That was wrong.** It was inferred from the QuickBooks admin page showing a "Connect to
+> QuickBooks" button. The status endpoint actually reports **`quickBooksConnected: true`** — only the
+> Fee and Discount **item mappings** are missing.
 
 ---
 
@@ -256,7 +264,7 @@ and Services"`
 
 | Item | Why | What would unblock it |
 |---|---|---|
-| Fees and discounts on a **new** work order (handoff A, C-discount, and the fee/discount half of G) | Adding either is refused with HTTP 409 *"Connect a QuickBooks item for fees before adding a fee."* / *"…for discounts before adding a discount."* **QuickBooks is not connected on this branch** — the QuickBooks admin page offers only a "Connect to QuickBooks" button, the Fees & Discounts template dialog has no QuickBooks-item field, and there is no reachable setting that satisfies the check. This is an environment gate, not a bug in this change. | A QuickBooks-connected organisation, or a branch where that guard is off |
+| Fees and discounts on a **new** work order (handoff A, C-discount, and the fee/discount half of G) | The control is reachable and the dialog works, but the **Add** button is disabled and the API 409s on a **QuickBooks item-mapping** gate. See the section below for the exact condition. | **Map a Fee item and a Discount item under Settings → QuickBooks** — one step, on an org whose bookkeeping is configured |
 | The QuickBooks side of the change (the $0.01 open balance the banner warns about) | QuickBooks is not connected | A QuickBooks-connected company — already flagged as a manual-tester task |
 | Credit memo / part return pro-rating (handoff D, third item) | **A part cannot be received on this branch**, so no invoice with a returnable part can be produced. Receiving fails with **HTTP 500** both through the API and through the tester-facing **Receive Parts** screen — with a vendor assigned, a valid invoice number and a valid received quantity (request ids `7b8f7c1c-…`, `b32c9979-…`, `a31d8bdc-…`, `ea4f1863-…`). See the note below. | Someone who can get a part to **Received** on this branch — then the return check is a 5-minute job |
 | "Existing invoices are unchanged **versus the released build**" (handoff G) | Proving *unchanged* needs the same invoice read on a build **without** this change. This branch is the only environment in hand. What **can** be proven here is that issued invoices are frozen and still carry their original tax model and figures — see section 4 above and section 7 below. | Read the same invoice numbers on staging or production and diff |
@@ -333,25 +341,76 @@ build".
 
 ---
 
+### Fees and discounts — the control is there; the gate is a QuickBooks item mapping
+
+You were right that this is reachable from the work order section, and I had been looking in the wrong
+place. The path is:
+
+> Work order → **⋮** (`button_work_order_nav_bar_menu`) → **Add Work Order Fee / Discount** →
+> the *New Work Order Fee / Discount* dialog
+
+The dialog works properly: the **Apply From Template** picker lists templates, the fields fill, and the
+live preview computes — *"Work-order subtotal $27.81 · Fee +$5.00 · New work-order subtotal $32.81 ·
+Tax is recalculated on save."* There is also a per-line control, `button_add_labor_adjustment_<lineId>`.
+
+What stops it is a single guard, and it is enforced on **both** sides — so it is not a front-end-only
+gate that could be waved through:
+
+- the **Add Fee** button renders `disabled` with `aria-disabled="true"`, under an amber banner reading
+  *"Map a Fee item in Settings → QuickBooks before adding a fee."*
+- `POST /api/work-orders/adjustments/add` answers **409** with the same message.
+
+**The exact condition**, read from the guard component and confirmed live:
+
+```
+GET /api/bookkeeping/adjustment-item-mapping-status
+  -> {"quickBooksConnected": true, "feeItemMapped": false, "discountItemMapped": false}
+```
+
+The banner defaults both flags to *true* and only blocks when the fetch returns false. **So mapping one
+Fee item and one Discount item under Settings → QuickBooks is the whole unblock.**
+
+Things I tried that do **not** get past it, so nobody repeats them: creating an adjustment **template**
+(`POST /api/adjustment-templates` → **201**, no guard there — but applying it still leaves Add disabled
+and the API still 409s); passing `templateId` straight to `adjustments/add`; the line-level labour
+adjustment button; turning `bookkeeping_enabled` off on the location (silently ignored);
+`PUT /api/bookkeeping/settings {settings:{feeItemMapped:true}}` (**500**). The admin *New Fee /
+Discount* template dialog has no QuickBooks-item field, so the mapping is not set from there either.
+
+**Why the mapping cannot be done from here:** the QuickBooks settings page has a full mapping UI in the
+code, but it cannot render on this org because `GET /api/bookkeeping/products-and-services` returns
+**400 "Bookkeeping is not configured"** — even though the status endpoint says QuickBooks is connected.
+Those two disagree, which is itself worth a developer's glance.
+
+---
+
 ### The part-receiving 500 — reported, but NOT raised as a defect against this ticket
 
 Getting a part to **Received** is the gateway to the last unchecked item (return a part against an
-"Invoice total" invoice and check the credited tax is pro-rated). On this branch it does not work:
+"Invoice total" invoice and check the credited tax is pro-rated). On this branch it does not work, and
+it is not for want of trying:
 
-- **Receive Parts** screen (`/accept-delivery/{orderId}`) → **Receive** → `POST /api/inventory/orders/accept`
-  → **HTTP 500**, generic error body, request id `b32c9979-e714-4fdc-b384-c902c4119723`.
-- Same call made directly, with the same payload the UI sends → **HTTP 500** (`a31d8bdc-…`, `ea4f1863-…`).
-- It is **not** the missing vendor: the purchase order initially showed a **Vendor Missing** badge, so a
-  vendor was assigned (`POST /api/orders/{id}/assign-vendor` → 200, `vendorMissing` went to `false`) and
-  the receive still 500s.
-- It is **not** a missing invoice number either — one was supplied, and the org requires one.
-- The most likely cause on the evidence: **every canned line's part on this branch has a blank part
-  number.** All 8 single-part canned lines tried give `part_number: ""` ("Gear oil", "Transmission
-  fluid", "Wiper blades", "Air filter", "grease", "Tie rod", "Grease"). A blank part number is a known
-  blocker in this area. Adding a numbered inventory part instead was also attempted —
-  `POST /api/work-orders/part/make-request` wants `work_order`, `line`, `description`,
-  `part_source_type`, and then answers *"Inventory part is required when source type is inventory"* for
-  every field name tried for the part itself.
+- `POST /api/inventory/orders/accept` returns **HTTP 500** with a generic body — from the tester-facing
+  **Receive Parts** screen (`/accept-delivery/{orderId}`) as well as from a direct call. The Receive
+  button is **enabled** and no validation complaint is shown; it just fails. Six request ids:
+  `7b8f7c1c`, `b32c9979`, `a31d8bdc`, `ea4f1863`, `5ead1dce`, `52a43345`.
+
+**Six candidate causes, each tested and each ruled out:**
+
+| Suspected cause | How it was ruled out |
+|---|---|
+| the part has a blank part number | built a part carrying `ZZ8815PN` — still 500 |
+| the purchase order has no vendor | assigned one (`assign-vendor` → 200, "Vendor Missing" badge gone) — still 500 |
+| no vendor invoice number (the org requires one) | supplied one — still 500 |
+| my payload was the wrong shape | captured the UI's **exact** request and replayed it verbatim — same 500 |
+| nowhere to receive the stock into | **376** bin locations exist, including a default *General Storage* |
+| the tax field was empty | 500 with tax 0 **and** with tax 1 |
+
+Along the way I did find the correct way to put a part on a line, which was the thing that had defeated
+me earlier: `POST /api/work-orders/part/make-request` takes **`work_order`** and **`line`** — not
+`work_order_id`/`line_id` — plus `description`, `quantity`, `part_source_type` and `part_category_id`.
+That now works first time and is written into the playbook. I also found that **Return is on a
+right-click context menu** on the part row, not a kebab, which is why it looked absent.
 
 **Why this is not being raised against SV-8815:** it is in parts receiving, not in tax rounding;
 nothing in this change touches it; and there is no baseline build to show it ever worked. It is
