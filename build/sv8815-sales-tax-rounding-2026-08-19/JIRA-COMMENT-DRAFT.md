@@ -3,12 +3,39 @@
 **NOT POSTED.** Held for the QA lead's approval, per his instruction:
 *"Do not post the results/comment in the ticket without my approval."*
 
-When approved, this goes on <https://shopview.atlassian.net/browse/SV-8815> in the house format —
-overall status first line, then the table of everything tested, then inline annotated images, then a
-rule, then the technical detail last. The two images to embed are already committed and public:
+When approved, this goes on <https://shopview.atlassian.net/browse/SV-8815> in the house format:
+overall status on the first line, then the table of everything tested, then the inline annotated
+images, then a rule, then the technical detail last.
 
-- `https://raw.githubusercontent.com/bilalmuzamil-sketch/Manual-test-Cases/claude/heic-upload-iphone-test-sz7h5p/build/sv8815-sales-tax-rounding-2026-08-19/evidence/ANNOTATED-01-BEFORE-default-line-by-line.png`
-- `https://raw.githubusercontent.com/bilalmuzamil-sketch/Manual-test-Cases/claude/heic-upload-iphone-test-sz7h5p/build/sv8815-sales-tax-rounding-2026-08-19/evidence/ANNOTATED-02-AFTER-invoice-total-warning.png`
+**14 annotated exhibits, one per challenge a reviewer could make.** Every one carries the work-order
+number and the build marker in its header band, boxes drawn from real element geometry, and a caption
+explaining what it proves. **Every figure shown is on an INVOICED work order, so it is frozen** — a
+developer clicking the link tomorrow sees the same number. All 14 URLs verified HTTP 200.
+
+| Order | Exhibit | Closes the challenge |
+|---|---|---|
+| 1 | `EXHIBIT-S1-setting-DEFAULT-line-by-line.png` | "the setting isn't there" |
+| 2 | `EXHIBIT-S2-setting-INVOICE-TOTAL-warning.png` | "there's no QuickBooks warning" (AC5) |
+| 3 | `EXHIBIT-A1-case1-DEFAULT-302.81.png` | "you didn't test the real reported invoice" |
+| 4 | `EXHIBIT-A2-case1-INVOICE-TOTAL-302.78.png` | the same invoice on the new setting |
+| 5 | `EXHIBIT-B1-case3-DEFAULT-6.46.png` | AC3, the ticket's own example 1 |
+| 6 | `EXHIBIT-B2-case3-INVOICE-TOTAL-6.45.png` | AC4, example 1 — one cent DOWN |
+| 7 | `EXHIBIT-C1-case2-DEFAULT-1.80.png` | AC3, the ticket's own example 2 |
+| 8 | `EXHIBIT-C2-case2-INVOICE-TOTAL-1.81.png` | AC4, example 2 — one cent **UP**: "the tax just goes down" is wrong |
+| 9 | `EXHIBIT-D1-stacked-DEFAULT-breakdown.png` | three stacked rates, default breakdown |
+| 10 | `EXHIBIT-D2-stacked-INVOICE-TOTAL-breakdown.png` | "you only looked at the total" — the rate rows move, the total does not |
+| 11 | `EXHIBIT-F1-payment-closes-to-zero.png` | "it leaves a cent behind" |
+| 12 | `EXHIBIT-G1-locationA-INVOICE-TOTAL-2.71.png` | per-location, side A |
+| 13 | `EXHIBIT-G2-locationB-DEFAULT-2.70.png` | "it's an org-wide switch" — untouched location still bills 2.70 |
+| 14 | `EXHIBIT-H1-invoice-from-Feb-2025-untouched.png` | "old invoices moved" |
+
+Embed each with `contentFormat:"adf"` as external media:
+
+```json
+{"type":"mediaSingle","attrs":{"layout":"full-width"},
+ "content":[{"type":"media","attrs":{"type":"external",
+   "url":"https://raw.githubusercontent.com/bilalmuzamil-sketch/Manual-test-Cases/claude/heic-upload-iphone-test-sz7h5p/build/sv8815-sales-tax-rounding-2026-08-19/evidence/<FILENAME>"}}]}
+```
 
 ---
 
