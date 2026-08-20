@@ -47,8 +47,17 @@ Identical - which is also why the "Line by line" control read the same, and why 
 the setting does not reach a credit. **A distinguishing case needs amounts where the rounding of the
 pro-rata and the rounding of the recompute disagree by a cent.**
 
-## Standing instruction attached to this answer
+## Standing instruction that arrived with this answer — from the QA LEAD, not from Sinisa
+
+⚠️ **ATTRIBUTION CORRECTED 2026-08-20.** This line was appended by **the QA lead (Bilal)** when he
+relayed Sinisa's answer. It is **his** instruction, not part of Sinisa's message — I first recorded it
+as Sinisa's and he corrected me:
 
 > Do not comment in the ticket without my permission.
 
-So: no Jira write of any kind on SV-8815 until the QA lead says so.
+So: no Jira write of any kind on SV-8815 until **the QA lead** says so.
+
+**Worth keeping as a lesson:** when a message *quotes* someone and then adds a line, the added line
+belongs to the sender. Attribute by **who typed it**, not by proximity to the quote — this project
+already treats mixed-up attributions as a defect (per-project PO attributions, Standing Rule 33's
+precedence order), and a relayed developer answer is the easiest place to get it wrong.
