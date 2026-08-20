@@ -609,6 +609,15 @@ ASK (per case or per batch)** and proceed only with permission. **Read the flag 
 (C29600 went `1→3→1→3`) — and **do not infer authorship from a gap in a set** (§5.3): our own tooling
 once hardcoded `3` on 31 Schedule cases nobody had automated.
 
+**⇒ NEVER BLANKET-SKIP AN AUTOMATED CASE — READ-ASSESS FIRST (Rule 71 dated refinement, 2026-08-20).**
+Ask-first governs EDITING; it does NOT license skipping the case unexamined. Automated (`atm=3`) cases:
+**NEVER blanket-skip. Always READ-ASSESS (read-only, which Rule 71 permits) whether the case needs the
+change, REPORT the finding (needs X / already fine), then HOLD for the QA lead's yes/no. Only on "yes"
+edit (coupled with build-verify for content changes) + notify Vlad (Rule 65).** Rationale 2026-08-20:
+a format pass blanket-skipped 5 `atm=3` Schedule cases (C43811/C38847/C38848/C38849/C38850) without
+checking; a read-only check found all 5 render collapsed and DO need the fix — the QA lead required the
+read-assessment ALWAYS happen first so he decides with the facts, not a blind skip.
+
 **HOW THE THREE RULES COMPOSE:** **ask before (this rule) → do only with permission → tell Vlad after
 (§5.3 / Rule 65)**; deletion additionally carries Rule 64's automation precondition.
 
