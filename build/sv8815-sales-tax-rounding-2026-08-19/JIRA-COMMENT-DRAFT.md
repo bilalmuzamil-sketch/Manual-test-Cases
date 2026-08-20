@@ -73,8 +73,8 @@ added at all, and a part cannot be received, so the part-return check has no dat
 | 28 | All **7** existing locations read "Line by line (default)" without anyone setting them | PASSED |
 | 29 | All **1,000** existing invoices read individually — **993** still carry their own GST 5% snapshot; the only 7 that do not are the ones this run created | PASSED |
 | 30 | All **863** paid invoices still sit at a zero balance — no new one-cent residue | PASSED |
-| — | Fee / discount on a new work order | NOT TESTABLE — QuickBooks not connected on this branch |
-| — | Part return / credit memo pro-rating | NOT TESTABLE — a part cannot be received on this branch |
+| — | Fee / discount on a new work order | NOT TESTABLE — the control is reachable (WO ⋮ → Add Work Order Fee / Discount) but Add is disabled and the API 409s until a **QuickBooks Fee/Discount item is mapped** |
+| — | Part return / credit memo pro-rating | NOT TESTABLE — receiving a part returns HTTP 500 on this branch (6 causes ruled out) |
 | — | The QuickBooks side (the $0.01 open balance the banner warns about) | NOT TESTABLE — for a manual tester on a QuickBooks-connected company |
 
 ### The most convincing single record
@@ -118,18 +118,26 @@ etag `a9e66ecc2174eb6d889221f4d976ef24`.
 
 **Blockers hit, with request ids, in case they are useful:**
 
-- Fee: `POST /api/work-orders/adjustments/add {kind:"fee"}` → **409 "Connect a QuickBooks item for
-  fees before adding a fee."** Discount: the same with *"…for discounts before adding a discount."*
-  QuickBooks is not connected (the admin page offers only "Connect to QuickBooks"), the Fees &
-  Discounts template dialog has no QuickBooks-item field, and `PUT /api/bookkeeping/settings` exposes
-  nothing that satisfies the guard.
-- Receiving a part: `POST /api/inventory/orders/accept` → **HTTP 500** both from the Receive Parts
-  screen and directly, with a vendor assigned and an invoice number supplied. Request ids
-  `b32c9979-e714-4fdc-b384-c902c4119723`, `a31d8bdc-e3de-463e-a66c-bf67a2453b27`,
-  `ea4f1863-5a99-4669-bc76-68ee5d281041`, `7b8f7c1c-af6b-4fdc-8bb2-a69ae62a5114`. Every one of the 8
-  single-part canned lines tried carries a **blank part number**, which is the likeliest cause.
-  Reported for information only — it is in parts receiving, not in this change, and there is no
-  baseline build to compare against.
+- **Fees / discounts.** The control is at WO **⋮** → *Add Work Order Fee / Discount*; the dialog and
+  its live preview work. The blocker is one guard, enforced on both sides: `button_add_adjustment`
+  renders `disabled`/`aria-disabled`, and `POST /api/work-orders/adjustments/add` answers **409
+  "Connect a QuickBooks item for fees before adding a fee."** The condition is
+  `GET /api/bookkeeping/adjustment-item-mapping-status` →
+  `{"quickBooksConnected":true,"feeItemMapped":false,"discountItemMapped":false}` — so **mapping a Fee
+  item and a Discount item under Settings → QuickBooks is the whole unblock.** Note QuickBooks **is**
+  connected per that endpoint, while the QuickBooks settings page still shows a "Connect" button
+  because `GET /api/bookkeeping/products-and-services` returns **400 "Bookkeeping is not
+  configured"** — those two disagree and may be worth a look. Ruled out as bypasses: an adjustment
+  template (created fine, 201; still blocked), `templateId` on the add call, the line-level labour
+  adjustment button, and `PUT /api/bookkeeping/settings` (500).
+- **Receiving a part:** `POST /api/inventory/orders/accept` → **HTTP 500**, from the tester-facing
+  Receive Parts screen as well as directly, with the button enabled and no validation message. Request
+  ids `7b8f7c1c`, `b32c9979`, `a31d8bdc`, `ea4f1863`, `5ead1dce`, `52a43345`. Six causes tested and
+  ruled out: blank part number (built one carrying `ZZ8815PN` — still 500), missing vendor (assigned,
+  badge cleared — still 500), missing vendor invoice number (supplied), wrong payload (the UI's exact
+  body replayed verbatim), nowhere to receive into (376 bin locations exist incl. a default), and an
+  empty tax field (500 at tax 0 and tax 1). Reported for information only — it is in parts receiving,
+  not in this change, and there is no baseline build to compare against.
 
 **Test data used:** customer *Aaborough Works* (contact *Jeffrey Burns*), asset *2020 Ford Transit*
 VIN `86J8FAC1VALJ43SJY`, location *Staging Heavy Duty - 9919*, labour type *ZZ8815 Unit* at $1.00/hour
