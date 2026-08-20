@@ -10,3 +10,6 @@ worker owns the TestRail web-UI session).
 |---|---|---|---|
 | C43838 | Work In Progress | 2026-08-20 | HOLD→READY glow VIU; expected rewritten in <br> interim format |
 | C43984 | Work In Progress | 2026-08-20 | HOLD→READY label-wrap VIU; expected rewritten in <br> interim format |
+| C30398 | Technician Utilization | 2026-08-20 | HOLD→READY reports-access VIU (role-swap negative); all 3 fields written in <br> interim format |
+| C30604 | Inventory Value | 2026-08-20 | HOLD→READY reports-access VIU (role-swap negative); all 3 fields written in <br> interim format |
+| C30603 | Inventory Value | 2026-08-20 | HOLD→READY reports-access VIU (switch-user positive); all 3 fields written in <br> interim format (em-dash stored as &mdash;) |

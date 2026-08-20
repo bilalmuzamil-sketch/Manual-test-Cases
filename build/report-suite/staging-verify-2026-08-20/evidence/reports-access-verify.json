@@ -1,0 +1,33 @@
+{
+ "build": "v3.8-d0e135e",
+ "last_modified": "Wed, 19 Aug 2026 13:27:07 GMT",
+ "etag": "aa6ea37f82dd0af1b3fe6da5dfd65573",
+ "observed_utc": "2026-08-20T07:00Z",
+ "org": "d55bc308-e61a-438d-b5f1-c7a73c89d49f",
+ "method": {
+  "negatives": "Technician role 50bf6a0d edited: dropped reportsPageAccess (13->12 perms) via PUT /api/roles, confirmed on tech quick-login session, restored byte-exact after (13 perms, 10 fields identical)",
+  "positive": "switch-user impersonation of Parts Manager holder mudassir.qamar+pm (id 071a4e52), zero role mutation"
+ },
+ "baseline_admin": {
+  "technician-utilization": "200 / 38 rows",
+  "inventory-value": "200 / 100 rows"
+ },
+ "C30398_TU_negative": {
+  "be_endpoint": "GET /api/reporting/reports/technician-utilization -> HTTP 403 Access denied",
+  "fe_nav": "no Reports in top nav; /reports/technician-utilization redirects to /workorders; 0 /reports DOM links",
+  "verdict": "PASS -> AUTOMATION: READY"
+ },
+ "C30604_IV_negative": {
+  "be_endpoint": "GET /api/reporting/reports/inventory-value -> HTTP 403 Access denied",
+  "fe_nav": "no Reports in top nav; /reports/inventory-value redirects to /workorders",
+  "verdict": "PASS -> AUTOMATION: READY"
+ },
+ "C30603_IV_positive": {
+  "subject": "Parts Manager (reportsPageAccess=true, 31 perms, non-admin)",
+  "be_endpoint": "GET /api/reporting/reports/inventory-value -> HTTP 200 / 100 rows",
+  "csv_export": "GET .../inventory-value/export?format=csv&variant=summary -> HTTP 200, 699071 bytes, line1 \"As of: 2026-08-20\"",
+  "fe_admin_nav": "Inventory Value + Technician Utilization present in reports nav (admin render)",
+  "verdict": "PASS -> AUTOMATION: READY"
+ },
+ "tech_role_drift_finding": "Technician role 50bf6a0d was found DRIFTED to 13 perms including reportsPageAccess (canonical template=6 perms). Restored byte-exact to the as-found 13-perm state (do-no-harm on shared org). Drift is a pre-existing finding for the shared-org owner to reset to template."
+}
