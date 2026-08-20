@@ -7047,6 +7047,16 @@ deliver the 7-tab management report.
     **MECHANICS:** the ≤3-builds test needs the CURRENT build marker vs the case's marker (count intervening deploys); the ≤3-versions test compares the case's cited spec version vs the live version. **Where the count cannot be established, treat as OUTSIDE the window (needs re-verify) — never assume inside (Rule 12).**
     Ties to Standing Rules 12, 31 (source currency), 49/60 (provisional → windowed), 54 (the date/build/version already lives on the case).
 
+78. **PIGGYBACK CHEAP CHECKS ONTO THE NEXT SUBSTANTIVE WORKER — never spend a dedicated spawn on a cheap verification (all projects; EFFECTIVE FROM TUESDAY 2026-08-25).**
+    USER DIRECTIVE (2026-08-20): liked and ruled permanent the idea of folding a cheap check into the next real work instead of a dedicated spawn; *"apply it from tuesday"*.
+    **THE RULE:** when a cheap, non-urgent verification is needed — *"is the current build ≤3 builds from this case's marker?"* (Rule 77), *"did the spec version move?"*, *"is the tree clean?"* — do **NOT** spawn a dedicated worker for it. **Append it as an extra sub-task to the NEXT substantive worker you were already going to spawn**, so it costs no extra spawn. Keep a short **"pending cheap checks"** list and **drain it opportunistically into real work.** Only if a cheap check is genuinely BLOCKING and no substantive worker is imminent may it earn its own minimal spawn — and then **batch every pending cheap check into that one.** Operational corollary of Rule 76; the canonical example is Rule 77's ≤3-build / ≤3-version window check.
+    Ties to Standing Rules 12, 29, 75, 76, 77.
+
+79. **STRATEGY-FIRST — BEFORE STARTING ANY TASK, DEVISE (OR RECALL) THE SMARTEST QUOTA-EFFICIENT PLAN, AND ONLY THEN BEGIN (all projects, permanent).**
+    USER DIRECTIVE (2026-08-20, verbatim): *"before starting with a new task you have to first make the smartest strategy about how to complete that task without extra burning the hourly weekly Quota, once done with that starategy or reminding yourself of an already built strategy only then start on a task. With the time keep on making this strategy better and more effecient."*
+    **THE RULE:** the FIRST action of EVERY task is a brief **STRATEGY step** — either **(a) RECALL** an existing proven strategy for this task type (from build/skills/*, Rules 75–78, build/PROCESS-CATALOG.md) or **(b) DEVISE** the most quota-efficient plan: fewest spawns, batched work, one detached self-reporting script, piggybacked cheap checks (Rule 78), no poll-by-spawn, answer-in-text where possible (Rule 76). **Execution begins ONLY after the strategy is set.** **CONTINUOUSLY IMPROVE IT** — when a task reveals a cheaper method, refine the strategy in the skills (rule-level changes via Rule 72). This is the UMBRELLA over Rules 75 (detached architecture), 76 (minimize spawns), 77 (validity window) and 78 (piggyback cheap checks); those are its current toolbox and are expected to grow.
+    Ties to Standing Rules 29, 72, 75, 76, 77, 78.
+
 ## Project purpose (Custom Roles project)
 Manual test-case authoring + live staging (Verify-in-UI) verification + TestRail
 management for ShopView **"Custom Roles and Permissions"**, plus related

@@ -995,6 +995,14 @@ established, treat as OUTSIDE the window (needs re-verify) — never assume insi
 Rules 49/60 for never-final, frequently-redeploying branches; honesty is preserved because the claim
 is always *"build-verified, last checked build X on date Y"*, never a bare "verified".
 
+## Piggyback cheap checks (Standing Rule 78)
+
+Rule 78 — piggyback cheap checks onto the next substantive worker; keep a pending-cheap-checks list; effective Tue 2026-08-25. Never spend a dedicated spawn on a cheap, non-urgent verification (build/version/tree checks); append it as an extra sub-task to the next real worker and drain the list opportunistically. Canonical example: Rule 77's ≤3-build / ≤3-version window check.
+
+## Strategy-first (Standing Rule 79)
+
+Rule 79 (permanent) — STRATEGY-FIRST: before any task, recall or devise the smartest quota-efficient plan (fewest spawns, batch, detached self-report, piggyback checks, answer-in-text) THEN begin; keep improving it. Umbrella over Rules 75–78.
+
 ---
 
 # 9 · GIT ON A SHARED, MOVING BRANCH
