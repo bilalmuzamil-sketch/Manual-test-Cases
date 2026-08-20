@@ -3,7 +3,7 @@
 **Environment:** `https://sv8815.qa.shopview.com` (API `https://sv8815api.qa.shopview.com`)
 **Build marker:** `v3.8-1f5fb3c` — `index.html` last-modified **Wed 19 Aug 2026 14:02:26 GMT**, etag `a9e66ecc2174eb6d889221f4d976ef24`
 **Reference used:** the developer's auto-generated QA handoff (*beta — used as a reference point, not as the specification*)
-**Nothing has been posted to Jira.** Results are held for the QA lead's approval.
+**Posted to Jira on the QA lead's approval** — comment **75272**, 2026-08-19 23:28 -0500, with 14 annotated exhibits inline. QA verdict: **PASSED**.
 
 > ⚠️ **This is a QA branch and has not been declared final.** Every verdict below is **provisional**
 > and tied to the build marker above. If the branch redeploys, the on-screen labels and the
@@ -266,7 +266,7 @@ and Services"`
 |---|---|---|
 | Fees and discounts on a **new** work order (handoff A, C-discount, and the fee/discount half of G) | The control is reachable and the dialog works, but the **Add** button is disabled and the API 409s on a **QuickBooks item-mapping** gate. See the section below for the exact condition. | **Map a Fee item and a Discount item under Settings → QuickBooks** — one step, on an org whose bookkeeping is configured |
 | The QuickBooks side of the change (the $0.01 open balance the banner warns about) | QuickBooks is not connected | A QuickBooks-connected company — already flagged as a manual-tester task |
-| Credit memo / part return pro-rating (handoff D, third item) | **A part cannot be received on this branch**, so no invoice with a returnable part can be produced. Receiving fails with **HTTP 500** both through the API and through the tester-facing **Receive Parts** screen — with a vendor assigned, a valid invoice number and a valid received quantity (request ids `7b8f7c1c-…`, `b32c9979-…`, `a31d8bdc-…`, `ea4f1863-…`). See the note below. | Someone who can get a part to **Received** on this branch — then the return check is a 5-minute job |
+| Credit memo / part return pro-rating (handoff D, third item) — **repro steps for staging are in `REPRO-part-receiving-500.md`** | **A part cannot be received on this branch**, so no invoice with a returnable part can be produced. Receiving fails with **HTTP 500** both through the API and through the tester-facing **Receive Parts** screen — with a vendor assigned, a valid invoice number and a valid received quantity (request ids `7b8f7c1c-…`, `b32c9979-…`, `a31d8bdc-…`, `ea4f1863-…`). See the note below. | Someone who can get a part to **Received** on this branch — then the return check is a 5-minute job |
 | "Existing invoices are unchanged **versus the released build**" (handoff G) | Proving *unchanged* needs the same invoice read on a build **without** this change. This branch is the only environment in hand. What **can** be proven here is that issued invoices are frozen and still carry their original tax model and figures — see section 4 above and section 7 below. | Read the same invoice numbers on staging or production and diff |
 
 ---

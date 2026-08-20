@@ -1,7 +1,19 @@
-# SV-8815 — Jira comment, DRAFT ONLY
+# SV-8815 — Jira comment (POSTED)
 
-**NOT POSTED.** Held for the QA lead's approval, per his instruction:
-*"Do not post the results/comment in the ticket without my approval."*
+**POSTED 2026-08-19 23:28:52 -0500 on the QA lead's approval** — comment id **75272** on
+<https://shopview.atlassian.net/browse/SV-8815>.
+
+Verified after posting by reading the comment back in ADF: the success panel is stored, and all
+**14 `mediaSingle` nodes** are stored as `type: "external"` with the correct
+`raw.githubusercontent.com` URLs (all verified HTTP 200 immediately before posting). The build marker
+was re-read immediately before the write and was unchanged at `v3.8-1f5fb3c`.
+
+**QA verdict given to the QA lead before posting: PASSED** — all 6 acceptance criteria met, with two
+named coverage gaps (taxable fee/discount, and credit-memo / part-return tax pro-rating), neither a
+failure. The second is the one worth closing before release because the handoff calls that pro-rating
+new behaviour.
+
+The text below is what was posted.
 
 When approved, this goes on <https://shopview.atlassian.net/browse/SV-8815> in the house format:
 overall status on the first line, then the table of everything tested, then the inline annotated
