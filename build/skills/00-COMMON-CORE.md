@@ -1009,7 +1009,7 @@ Rule 80 (permanent) — before build-verify / source-verify / VIU / any ordered 
 
 ## Source-verify precedes build-verify (Standing Rule 81)
 
-Rule 81 (permanent) — source-verify FIRST (make the source current, Rule 31; fold deltas, Rule 43), THEN build-verify/VIU against the now-current source; a build-verify against a stale source is INVALID (expected behaviour comes from the source, Rule 57).
+Rule 81 (permanent, refined 2026-08-20) — source should be current before build-verify/VIU, BUT do NOT auto-run source verification: tell the QA lead the task needs source-current cases, state the last source-verify date (+version), ASK proceed WITH or WITHOUT source verification, and WAIT for his answer (aligns with Rule 80).
 
 ---
 
