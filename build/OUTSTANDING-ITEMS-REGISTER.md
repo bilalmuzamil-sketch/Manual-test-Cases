@@ -1,5 +1,22 @@
 # OUTSTANDING ITEMS REGISTER — everything we are waiting on, across every project
 
+## 🆕 2026-08-20 — FORMAT REFLOW COMPLETE (Steps/Preconditions line breaks). 7 items awaiting the QA lead. Detail: `build/RESUME-2026-08-20-FORMAT-REFLOW.md`
+**DONE:** Filters reflow 124/124 (61 fixed, 60 clean, 3 false-positive already-ok). Schedule reflow
+complete (96 UI-reflowed + 117 clean + 10 API `\n`-variant rewritten, byte-verified; 5 hardcoded skips
+were false positives already-ok). Report Suite C30162/C30287 confirmed already-ok. Standing Rule 75
+(detached-process anti-thrash) + skills/00-COMMON-CORE session-survival recorded; committer self-match
+bug fixed; `push.err` removed + gitignored. **DOCS/format-only — run 352/357/359 untouched.**
+
+| # | Project | What YOU (QA lead) do | What it blocks | Since |
+|---|---------|----------------------|----------------|-------|
+| FR20-1 | Schedule | Give A/B go-ahead to line-break-reflow 5 automated (atm=3) cases C43811, C38847, C38848, C38849, C38850 (render collapsed in Steps+Preconds; words unchanged; would notify Vlad per Rule 65) | Reflow of those 5 — Rule 71 holds them (ask-first) | 2026-08-20 |
+| FR20-2 | Schedule/RS | Decide on 4 flagged automated cases C30328, C30352, C30429, C43811 (C43811 = item FR20-1) | Any change to those atm=3 cases (ask-first, Rule 71) | 2026-08-20 |
+| FR20-3 | Report Suite | Supply the WIP v24 Confluence export | RS-WIP-6 spec-mirror diff (mirror behind at v22) | 2026-08-19 |
+| FR20-4 | Report Suite | Supply current Parts Velocity + WIP spec content | Per-requirement reconciliation of PV + WIP (Rules 31/43) | 2026-08-20 |
+| FR20-5 | RS + Filters/Sched | Say when to SEND the PO question sheets — Chris Ward (2 Qs) + Branko (3 Qs), WRITTEN + HELD (Rule 66) | Nothing (held deliberately); ask before sending | 2026-08-20 |
+| FR20-6 | Report Suite | Authorize SV-9069 marker-ordering fix on C30162/C30287 (AUTOMATION marker not last) | Marker-position compliance on those 2 | 2026-08-20 |
+| FR20-7 | All | Jira ticket creation stays on hold (Rule 62) — nothing filed | All held defect/expect-fail tickets | 2026-08-10 |
+
 ## ✅🆕🆕 2026-08-19 (updated 2026-08-20 — FINAL CONSOLIDATED STATE across all three projects). **ALL BUILD-VERIFICATION IS DONE EXCEPT ONE ITEM — WIP Story-5 (RS-WIP-8), which is SOURCE-blocked (the WIP v24 Confluence page + the 2026-08-13 design-review export), NOT cookie-blocked. The Parts-Velocity CSV rule (RS-PV-1) was completed 2026-08-20.** Sources: `build/BUILD-VERIFICATION-COVERAGE-2026-08-19.md`, `build/EXECUTIVE-SUMMARY-2026-08-19.md`, `build/SPOT-CHECK-SAMPLE-2026-08-19.md`.
 This block supersedes the "Schedule re-check blocked / Filters not started" framing further down (which
 was true at an earlier blocked moment; the re-check and the Filters pass both subsequently ran live).
