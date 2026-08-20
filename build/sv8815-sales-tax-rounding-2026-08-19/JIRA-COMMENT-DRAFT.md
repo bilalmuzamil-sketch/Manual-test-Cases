@@ -16,8 +16,10 @@ rule, then the technical detail last. The two images to embed are already commit
 
 Tested on `sv8815.qa.shopview.com`, build **v3.8-1f5fb3c** (last-modified Wed 19 Aug 2026 14:02:26
 GMT). **35 of 35 checks that could be run on this branch passed.** Two areas could not be tested here
-and neither is a defect in this change — QuickBooks is not connected, so fees/discounts cannot be
-added at all, and a part cannot be received, so the part-return check has no data to run on.
+and neither is a defect in this change: fees and discounts need a **QuickBooks Fee/Discount item
+mapped** before the Add button enables, and a part cannot be **received** on this branch (HTTP 500),
+so the part-return check has no data to run on. Both are pinned down precisely in the technical
+section.
 
 ### The ticket's own acceptance criteria — 6 of 6 met
 
