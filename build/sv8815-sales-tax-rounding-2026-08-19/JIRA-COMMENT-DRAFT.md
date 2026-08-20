@@ -1,3 +1,12 @@
+> **POSTED.** Comment **75272** (2026-08-19 23:28 -0500, 14 exhibits, "OVERALL QA STATUS: PASSED").
+> **A follow-up CORRECTION was posted as comment 75277** (2026-08-20 01:23 -0500, 5 exhibits) — see
+> `evidence/adf-correction.json`. Per the QA lead's instruction *"leave the comment which says QA
+> passed at the top"*, **comment 75272 was NOT edited** — its `updated` timestamp is unchanged at
+> 2026-08-19 23:36:28 and it still carries all 14 exhibits. **So three statements inside it remain as
+> originally written and are answered by 75277 below it, not overwritten:** the receiving-500 claim,
+> the "QuickBooks is connected" note, and the "not declared final / provisional" caveat. The prepared
+> in-place patch is kept unused at `evidence/adf-corrected.json` in case that changes.
+
 # SV-8815 — Jira comment (POSTED)
 
 **POSTED 2026-08-19 23:28:52 -0500 on the QA lead's approval** — comment id **75272** on
