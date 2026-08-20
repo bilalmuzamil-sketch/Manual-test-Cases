@@ -42,3 +42,24 @@ markdown-wrap hazard #6.)
 ## Status
 - Recorded in `DONE.jsonl` with `status: atm3-variant-DAMAGED-needs-review`.
 - NOT counted as cleanly fixed. The 161 atm=1 cases were reflowed and render clean.
+
+## RESOLUTION — 2026-08-20 (Expected line-breaks restored via API)
+Both cases' **Expected** field was rebuilt via TestRail API `update_case` (Basic auth; the concurrent
+worker's web-UI session was NOT touched), restoring `<br>` line breaks in the C30133 interim format.
+- **Word-identical, order-preserved, zero wording/semantic change** (Rule 50): the reconstruction was
+  built by inserting `<br>` at the item / separator / provenance / marker boundaries of the run-on and
+  proven token-for-token identical to the run-on BEFORE writing. Byte-verified after the write: the only
+  differences from intended were the **declared** server transforms — em-dash → `&mdash;` (both),
+  `≤` → `&le;` (C30287) and a trailing `\n`. **0 collateral field changes.** Preconditions/Steps were
+  already fine (`<ol><li>` form) and were left untouched.
+  - C30162: tokens 168/168, 1 marker, 1 provenance line, 11 `<br>`.
+  - C30287: tokens 270/270, 1 marker, 1 provenance line, 13 `<br>`.
+- **⚠️ Marker not literally last:** each Expected ends with the pre-existing SV-9069 explanatory note
+  (*"SV-9069 superseded the one-decimal wording: …"*) which sits **after** `AUTOMATION: READY`. This
+  ordering predates the reflow damage (present in the collapsed run-on; the collapse only removed line
+  breaks, it did not reorder words), so it was preserved as-is. Relocating it to make the marker last
+  is a word reorder / semantic edit beyond a line-break repair and is left for the QA lead / Vlad to
+  authorize. The Rule-56 "divergence note before the marker" house form would require that move.
+- Still in `<br>` interim form ⇒ appended to `NEEDS-REFLOW-STAGING.md` (with a re-render-VERIFY caveat,
+  since the plain "." trick previously failed on these) and to
+  `automated-review-2026-08-20/FOR-VLAD-CONSOLIDATED.md`.
