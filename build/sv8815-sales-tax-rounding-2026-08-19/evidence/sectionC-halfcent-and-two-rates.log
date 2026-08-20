@@ -1,0 +1,16 @@
+location: {"was":"Staging Heavy Duty - 9919","now":"Staging Heavy Duty - 9919","switched":false}
+Ca_line_by_line  cfg={"status":201,"mode":"line_by_line","tax":"ZZ8815 9.75pct","supplies":0}  lines=3/3
+   S-15929 tax="ZZ8815 9.75pct" labor=27.81 supplies=0 sub=27.81 TAX=2.70 total=30.51
+   rates: ZZ9 9.75% 9.75% = 2.7   sum=2.70  rateSum==tax: true
+Ca_total_rounded  cfg={"status":201,"mode":"total_rounded","tax":"ZZ8815 9.75pct","supplies":0}  lines=3/3
+   S-15930 tax="ZZ8815 9.75pct" labor=27.81 supplies=0 sub=27.81 TAX=2.71 total=30.52
+   rates: ZZ9 9.75% 9.75% = 2.71   sum=2.71  rateSum==tax: true
+  EXPECT Ca: line_by_line 2.70 (0.90x3) ; total_rounded 2.71 (27.81 x 9.75% = 2.711475)
+
+Cb_line_by_line  cfg={"status":201,"mode":"line_by_line","tax":"ZZ8815 GSTPST","supplies":0}  lines=3/3
+   S-15931 tax="ZZ8815 GSTPST" labor=27.81 supplies=0 sub=27.81 TAX=3.33 total=31.14
+   rates: ZZG GST 5% 5% = 1.38 | ZZP PST 7% 7% = 1.95   sum=3.33  rateSum==tax: true
+Cb_total_rounded  cfg={"status":201,"mode":"total_rounded","tax":"ZZ8815 GSTPST","supplies":0}  lines=3/3
+   S-15932 tax="ZZ8815 GSTPST" labor=27.81 supplies=0 sub=27.81 TAX=3.34 total=31.15
+   rates: ZZG GST 5% 5% = 1.39 | ZZP PST 7% 7% = 1.95   sum=3.34  rateSum==tax: true
+  EXPECT Cb: line_by_line GST 1.38 + PST 1.95 = 3.33 ; total_rounded GST 1.39 + PST 1.95 = 3.34
