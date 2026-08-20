@@ -13,7 +13,7 @@
      "content": [
       {
        "type": "text",
-       "text": "CORRECTION to my QA comment above: receiving a part is NOT broken. I tested it on the wrong screen.",
+       "text": "CORRECTION to my QA comment above. Three things in it were wrong, all of them mine.",
        "marks": [
         {
          "type": "strong"
@@ -27,11 +27,11 @@
      "content": [
       {
        "type": "text",
-       "text": "Everything about the tax-rounding change stands - all 6 acceptance criteria still PASSED. What was wrong was one "
+       "text": "The tax-rounding verdict is unchanged - all 6 acceptance criteria still PASSED, and one check I had "
       },
       {
        "type": "text",
-       "text": "non-tax",
+       "text": "wrongly",
        "marks": [
         {
          "type": "em"
@@ -40,7 +40,7 @@
       },
       {
        "type": "text",
-       "text": " note, and it has to be corrected because it is a false statement about the product. My mistake, nobody else's."
+       "text": " reported as blocked has since been run and also passed. What was wrong was the non-tax notes around it."
       }
      ]
     }
@@ -54,7 +54,7 @@
    "content": [
     {
      "type": "text",
-     "text": "What I got wrong"
+     "text": "1. Receiving a part is NOT broken - I tested it on the wrong screen"
     }
    ]
   },
@@ -63,11 +63,11 @@
    "content": [
     {
      "type": "text",
-     "text": "I reported that receiving a part returns HTTP 500 on this branch, listed six causes I had ruled out, and used that to explain why the last check could not be run. "
+     "text": "I reported that receiving a part returns HTTP 500, listed six causes I had ruled out, and used that to explain why the last check could not be run. "
     },
     {
      "type": "text",
-     "text": "You then received a part successfully on S-15998 and sent the screenshots.",
+     "text": "You then received a part on S-15998 and sent the screenshots.",
      "marks": [
       {
        "type": "strong"
@@ -76,16 +76,7 @@
     },
     {
      "type": "text",
-     "text": " I reproduced your path and it works first time."
-    }
-   ]
-  },
-  {
-   "type": "paragraph",
-   "content": [
-    {
-     "type": "text",
-     "text": "There are two Receive surfaces, and I used the one the product no longer drives a work-order part request through:"
+     "text": " I reproduced your path and it works first time. There are two Receive surfaces and I used the one the product no longer drives a work-order part request through:"
     }
    ]
   },
@@ -158,7 +149,7 @@
          "content": [
           {
            "type": "text",
-           "text": "How you get there"
+           "text": "how you get there"
           }
          ]
         }
@@ -186,7 +177,7 @@
           },
           {
            "type": "text",
-           "text": " button on the work order's Lines tab"
+           "text": " button on the Lines tab"
           }
          ]
         }
@@ -201,15 +192,7 @@
          "content": [
           {
            "type": "text",
-           "text": "Parts "
-          },
-          {
-           "type": "text",
-           "text": "\u2192"
-          },
-          {
-           "type": "text",
-           "text": " Deliveries, or /accept-delivery/{orderId}"
+           "text": "Parts \u2192 Deliveries, or /accept-delivery/{orderId}"
           }
          ]
         }
@@ -229,7 +212,7 @@
          "content": [
           {
            "type": "text",
-           "text": "What it saves with"
+           "text": "what it saves with"
           }
          ]
         }
@@ -253,20 +236,7 @@
           },
           {
            "type": "text",
-           "text": " "
-          },
-          {
-           "type": "text",
-           "text": "\u2192 200",
-           "marks": [
-            {
-             "type": "strong"
-            }
-           ]
-          },
-          {
-           "type": "text",
-           "text": ", part becomes Received"
+           "text": " \u2192 200, part becomes Received"
           }
          ]
         }
@@ -290,16 +260,7 @@
           },
           {
            "type": "text",
-           "text": " "
-          },
-          {
-           "type": "text",
-           "text": "\u2192 500",
-           "marks": [
-            {
-             "type": "strong"
-            }
-           ]
+           "text": " \u2192 500"
           }
          ]
         }
@@ -314,11 +275,11 @@
    "content": [
     {
      "type": "text",
-     "text": "So the 500 was real but it sits on a route no customer can reach through this flow. "
+     "text": "So the 500 sits on a route no customer can reach through this flow. "
     },
     {
      "type": "text",
-     "text": "Nothing should be filed for it, and I am not asking for a ticket.",
+     "text": "Nothing should be filed for it and I am not asking for a ticket.",
      "marks": [
       {
        "type": "strong"
@@ -327,29 +288,7 @@
     },
     {
      "type": "text",
-     "text": " The repro steps I wrote for staging have been replaced with this correction - they pointed at the wrong screen."
-    }
-   ]
-  },
-  {
-   "type": "paragraph",
-   "content": [
-    {
-     "type": "text",
-     "text": "Two things I guessed were the cause were not: ticking "
-    },
-    {
-     "type": "text",
-     "text": "Line Approved",
-     "marks": [
-      {
-       "type": "em"
-      }
-     ]
-    },
-    {
-     "type": "text",
-     "text": " on the New Line dialog, and choosing the vendor inside the New Part Request modal. I tested both - against the dead screen - so both looked like failures. The screen was the variable."
+     "text": " Two things I had guessed were the cause were not - ticking Line Approved, and setting the vendor in the New Part Request modal. I tested both against the dead screen, so both looked like failures. The screen was the variable."
     }
    ]
   },
@@ -373,7 +312,7 @@
    "content": [
     {
      "type": "text",
-     "text": "1. S-16001 - a vendor part received on this branch through the part row's Receive button, then 1 of 3 returned.",
+     "text": "1. S-16001 - a vendor part received through the part row's Receive button, then 1 of 3 returned.",
      "marks": [
       {
        "type": "em"
@@ -393,16 +332,7 @@
    "content": [
     {
      "type": "text",
-     "text": "The check this unblocked - and it PASSES"
-    }
-   ]
-  },
-  {
-   "type": "paragraph",
-   "content": [
-    {
-     "type": "text",
-     "text": "The item I could not run was: return a part against an invoice raised under \"Invoice total\" and confirm the issued invoice is not rewritten. I ran it, and I ran the same thing on \"Line by line\" as a control so the result cannot be argued with:"
+     "text": "2. The check that unblocked - and it PASSES, in both modes"
     }
    ]
   },
@@ -525,57 +455,7 @@
          "content": [
           {
            "type": "text",
-           "text": "returned 1 of 3 parts at $80"
-          }
-         ]
-        }
-       ]
-      },
-      {
-       "type": "tableCell",
-       "attrs": {},
-       "content": [
-        {
-         "type": "paragraph",
-         "content": [
-          {
-           "type": "text",
-           "text": "done"
-          }
-         ]
-        }
-       ]
-      },
-      {
-       "type": "tableCell",
-       "attrs": {},
-       "content": [
-        {
-         "type": "paragraph",
-         "content": [
-          {
-           "type": "text",
-           "text": "done"
-          }
-         ]
-        }
-       ]
-      }
-     ]
-    },
-    {
-     "type": "tableRow",
-     "content": [
-      {
-       "type": "tableCell",
-       "attrs": {},
-       "content": [
-        {
-         "type": "paragraph",
-         "content": [
-          {
-           "type": "text",
-           "text": "invoice after the return"
+           "text": "invoice after returning 1 of 3 parts"
           }
          ]
         }
@@ -628,6 +508,10 @@
   {
    "type": "paragraph",
    "content": [
+    {
+     "type": "text",
+     "text": "I ran the \"Line by line\" control deliberately, so the result cannot be argued with. "
+    },
     {
      "type": "text",
      "text": "AC6 holds for part returns under both rounding methods.",
@@ -659,7 +543,7 @@
    "content": [
     {
      "type": "text",
-     "text": "2. S-15999, billed under \"Invoice total\" - the issued invoice document read AFTER the return. Subtotal $244.00, tax $23.79, total $267.79: exactly what it was billed.",
+     "text": "2. S-15999 (\"Invoice total\") - the issued invoice read AFTER the return: subtotal $244.00, tax $23.79, total $267.79, exactly as billed.",
      "marks": [
       {
        "type": "em"
@@ -688,7 +572,7 @@
    "content": [
     {
      "type": "text",
-     "text": "3. The same test on \"Line by line\" (S-16001) - identical result, so a part return does not rewrite an issued invoice under either method.",
+     "text": "3. The same test on \"Line by line\" - identical, so a return does not rewrite an issued invoice under either method.",
      "marks": [
       {
        "type": "em"
@@ -708,7 +592,7 @@
    "content": [
     {
      "type": "text",
-     "text": "One observation, and it is NOT caused by this ticket"
+     "text": "3. The credit for a returned part - thank you, that was the piece I had wrong"
     }
    ]
   },
@@ -717,20 +601,33 @@
    "content": [
     {
      "type": "text",
-     "text": "On the "
+     "text": "I had said \"a credit memo carries no tax at all\". That was about "
     },
     {
      "type": "text",
-     "text": "invoiced",
+     "text": "POST /api/credit-memos",
      "marks": [
       {
-       "type": "em"
+       "type": "code"
       }
      ]
     },
     {
      "type": "text",
-     "text": " work order after the return, the Financial Info panel shows a subtotal that dropped by the returned part while the tax line keeps the invoiced figure:"
+     "text": ", a customer-account instrument - the wrong feature entirely. Following your steps (Parts \u2192 Returns \u2192 tick the part \u2192 Receive Credit) gets to the real thing, \"Process Return\", and I drove it end to end. It is a "
+    },
+    {
+     "type": "text",
+     "text": "vendor",
+     "marks": [
+      {
+       "type": "strong"
+      }
+     ]
+    },
+    {
+     "type": "text",
+     "text": " credit:"
     }
    ]
   },
@@ -745,11 +642,11 @@
        "content": [
         {
          "type": "text",
-         "text": "Subtotal "
+         "text": "Subtotal is the part's "
         },
         {
          "type": "text",
-         "text": "$164.00",
+         "text": "COST - $10.00",
          "marks": [
           {
            "type": "strong"
@@ -758,7 +655,7 @@
         },
         {
          "type": "text",
-         "text": " (was $244.00 - the $80 part came off)"
+         "text": ", not its $80.00 sell price."
         }
        ]
       }
@@ -772,11 +669,11 @@
        "content": [
         {
          "type": "text",
-         "text": "tax "
+         "text": "Tax is pre-filled "
         },
         {
          "type": "text",
-         "text": "$23.79",
+         "text": "$0.50, which is 5% of that cost",
          "marks": [
           {
            "type": "strong"
@@ -785,7 +682,7 @@
         },
         {
          "type": "text",
-         "text": " - did not move; that is still the tax on $244.00"
+         "text": " - the workplace tax rate, carried in the payload as workplace_tax:5."
         }
        ]
       }
@@ -799,11 +696,24 @@
        "content": [
         {
          "type": "text",
-         "text": "so Total reads "
+         "text": "This location's "
         },
         {
          "type": "text",
-         "text": "$187.79",
+         "text": "sales",
+         "marks": [
+          {
+           "type": "em"
+          }
+         ]
+        },
+        {
+         "type": "text",
+         "text": " tax model is "
+        },
+        {
+         "type": "text",
+         "text": "9.75%",
          "marks": [
           {
            "type": "strong"
@@ -812,7 +722,7 @@
         },
         {
          "type": "text",
-         "text": ", which is neither the invoiced $267.79 nor a clean recompute of $179.99"
+         "text": " - a different rate. So the credit is not taxed at the customer's sales tax, and not at the frozen invoice tax either."
         }
        ]
       }
@@ -826,11 +736,11 @@
        "content": [
         {
          "type": "text",
-         "text": "Balance "
+         "text": "It read "
         },
         {
          "type": "text",
-         "text": "$267.79",
+         "text": "identically under both rounding modes",
          "marks": [
           {
            "type": "strong"
@@ -839,7 +749,34 @@
         },
         {
          "type": "text",
-         "text": " - correct, it still holds what the customer was invoiced"
+         "text": " (subtotal $10.00, total $10.50), and posting it left the customer's issued invoice untouched."
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "type": "listItem",
+     "content": [
+      {
+       "type": "paragraph",
+       "content": [
+        {
+         "type": "text",
+         "text": "A restocking fee reduces the subtotal and the tax recomputes on the reduced base ($0.98 fee \u2192 $9.02 / $0.45 / $9.47), so the tax "
+        },
+        {
+         "type": "text",
+         "text": "is",
+         "marks": [
+          {
+           "type": "em"
+          }
+         ]
+        },
+        {
+         "type": "text",
+         "text": " computed - just from a rate this setting does not govern."
         }
        ]
       }
@@ -852,11 +789,11 @@
    "content": [
     {
      "type": "text",
-     "text": "I ran the \"Line by line\" control for exactly this reason: it produced "
+     "text": "Conclusion: the sales-tax rounding setting does not reach a returned part's credit, which is why both modes agree. "
     },
     {
      "type": "text",
-     "text": "the same six figures, figure for figure",
+     "text": "But the handoff line said the credited tax should be \"pro-rated from the frozen invoice tax\", and that is not what the build does",
      "marks": [
       {
        "type": "strong"
@@ -865,34 +802,14 @@
     },
     {
      "type": "text",
-     "text": ", so the rounding change is not what causes it. Flagging it for you rather than filing anything - your call whether it deserves its own ticket."
-    }
-   ]
-  },
-  {
-   "type": "mediaSingle",
-   "attrs": {
-    "layout": "full-width"
-   },
-   "content": [
-    {
-     "type": "media",
-     "attrs": {
-      "type": "external",
-      "url": "https://raw.githubusercontent.com/bilalmuzamil-sketch/Manual-test-Cases/claude/heic-upload-iphone-test-sz7h5p/build/sv8815-sales-tax-rounding-2026-08-19/evidence/EXHIBIT-R4-wo-screen-after-return-invoice-total.png"
-     }
-    }
-   ]
-  },
-  {
-   "type": "paragraph",
-   "content": [
+     "text": " - it charges the workplace purchase rate on cost. The ticket itself says nothing about credits, so I am not calling that a defect. "
+    },
     {
      "type": "text",
-     "text": "4. S-15999 (\"Invoice total\") work-order panel after the return - subtotal moved, tax did not, Balance still correct.",
+     "text": "It is a question for Sinisa: is the vendor credit meant to carry the workplace purchase tax as built, or the customer's frozen sales tax as the handoff reads?",
      "marks": [
       {
-       "type": "em"
+       "type": "strong"
       }
      ]
     }
@@ -908,7 +825,7 @@
      "type": "media",
      "attrs": {
       "type": "external",
-      "url": "https://raw.githubusercontent.com/bilalmuzamil-sketch/Manual-test-Cases/claude/heic-upload-iphone-test-sz7h5p/build/sv8815-sales-tax-rounding-2026-08-19/evidence/EXHIBIT-R5-wo-screen-after-return-line-by-line.png"
+      "url": "https://raw.githubusercontent.com/bilalmuzamil-sketch/Manual-test-Cases/claude/heic-upload-iphone-test-sz7h5p/build/sv8815-sales-tax-rounding-2026-08-19/evidence/EXHIBIT-R7-credit-screen-vendor-credit.png"
      }
     }
    ]
@@ -918,7 +835,7 @@
    "content": [
     {
      "type": "text",
-     "text": "5. S-16001 (\"Line by line\") - the same six figures. This is the proof it is not the rounding setting.",
+     "text": "4. The Process Return credit screen. Note both boxed inputs carry the SAME data-test-id=\"input_base\" - one is the Restocking Fee and one is the Tax, which is how I edited the wrong one. That will bite the automation.",
      "marks": [
       {
        "type": "em"
@@ -938,7 +855,7 @@
    "content": [
     {
      "type": "text",
-     "text": "And the handoff item behind all of this turned out to be a non-item"
+     "text": "4. Fees and discounts - both your paths work, and the gate is real"
     }
    ]
   },
@@ -947,11 +864,101 @@
    "content": [
     {
      "type": "text",
-     "text": "The handoff asked that a "
+     "text": "You are right that both entry points exist, and I had only driven one. I drove both on this branch:"
+    }
+   ]
+  },
+  {
+   "type": "bulletList",
+   "content": [
+    {
+     "type": "listItem",
+     "content": [
+      {
+       "type": "paragraph",
+       "content": [
+        {
+         "type": "text",
+         "text": "work order "
+        },
+        {
+         "type": "text",
+         "text": "\u22ee",
+         "marks": [
+          {
+           "type": "strong"
+          }
+         ]
+        },
+        {
+         "type": "text",
+         "text": " \u2192 "
+        },
+        {
+         "type": "text",
+         "text": "Add Work Order Fee / Discount",
+         "marks": [
+          {
+           "type": "strong"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "type": "listItem",
+     "content": [
+      {
+       "type": "paragraph",
+       "content": [
+        {
+         "type": "text",
+         "text": "the part row "
+        },
+        {
+         "type": "text",
+         "text": "\u22ee",
+         "marks": [
+          {
+           "type": "strong"
+          }
+         ]
+        },
+        {
+         "type": "text",
+         "text": " \u2192 "
+        },
+        {
+         "type": "text",
+         "text": "Add Part Fee / Discount",
+         "marks": [
+          {
+           "type": "strong"
+          }
+         ]
+        },
+        {
+         "type": "text",
+         "text": " - the one I had never tried"
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "type": "paragraph",
+   "content": [
+    {
+     "type": "text",
+     "text": "Both open the full dialog - template, name, type, calculation type, percent, cap, "
     },
     {
      "type": "text",
-     "text": "credit memo",
+     "text": "Taxable",
      "marks": [
       {
        "type": "strong"
@@ -960,11 +967,11 @@
     },
     {
      "type": "text",
-     "text": " against an \"Invoice total\" invoice pro-rate its credited tax from the frozen invoice tax. A credit memo is not a part return - it is its own thing on the customer's account. I created one to see what it carries: "
+     "text": ", live preview - and both leave "
     },
     {
      "type": "text",
-     "text": "a customer account and an amount, and nothing else",
+     "text": "Add Fee",
      "marks": [
       {
        "type": "strong"
@@ -973,7 +980,191 @@
     },
     {
      "type": "text",
-     "text": " - no tax, no rate, no lines. So there is no tax in a credit memo for this setting to round or pro-rate. There is nothing there to test, which is a better answer than \"blocked\", and one probe of that endpoint on day one would have given it to me."
+     "text": " hard-disabled behind the same banner: "
+    },
+    {
+     "type": "text",
+     "text": "\"Map a Fee item in Settings \u2192 QuickBooks before adding a fee.\"",
+     "marks": [
+      {
+       "type": "em"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "type": "paragraph",
+   "content": [
+    {
+     "type": "text",
+     "text": "And a correction of my own correction: I had said QuickBooks "
+    },
+    {
+     "type": "text",
+     "text": "is",
+     "marks": [
+      {
+       "type": "em"
+      }
+     ]
+    },
+    {
+     "type": "text",
+     "text": " connected here and only the item mappings were missing. On a full read of the state that is wrong. "
+    },
+    {
+     "type": "text",
+     "text": "adjustment-item-mapping-status",
+     "marks": [
+      {
+       "type": "code"
+      }
+     ]
+    },
+    {
+     "type": "text",
+     "text": " reports quickBooksConnected:true, but "
+    },
+    {
+     "type": "text",
+     "text": "products-and-services",
+     "marks": [
+      {
+       "type": "code"
+      }
+     ]
+    },
+    {
+     "type": "text",
+     "text": " returns 400 \"Bookkeeping is not configured\", "
+    },
+    {
+     "type": "text",
+     "text": "integration",
+     "marks": [
+      {
+       "type": "code"
+      }
+     ]
+    },
+    {
+     "type": "text",
+     "text": " returns an Intuit OAuth URL still waiting to be used, and the admin page offers only a Connect button. "
+    },
+    {
+     "type": "text",
+     "text": "Three signals out of four say no QuickBooks company is attached",
+     "marks": [
+      {
+       "type": "strong"
+      }
+     ]
+    },
+    {
+     "type": "text",
+     "text": ", so the mapping cannot be created from inside ShopView at all - it is a genuine external dependency, not the one-step unblock I described. The flag reading true while nothing is connected is worth a developer's glance in its own right."
+    }
+   ]
+  },
+  {
+   "type": "paragraph",
+   "content": [
+    {
+     "type": "text",
+     "text": "Why this does not weaken the tax verdict: a taxable fee would be a fourth taxable component, and "
+    },
+    {
+     "type": "text",
+     "text": "shop supplies already exercise exactly that",
+     "marks": [
+      {
+       "type": "strong"
+      }
+     ]
+    },
+    {
+     "type": "text",
+     "text": " - enabled, invoiced, and reconciling to the cent in both modes with no one-cent drift."
+    }
+   ]
+  },
+  {
+   "type": "mediaSingle",
+   "attrs": {
+    "layout": "full-width"
+   },
+   "content": [
+    {
+     "type": "media",
+     "attrs": {
+      "type": "external",
+      "url": "https://raw.githubusercontent.com/bilalmuzamil-sketch/Manual-test-Cases/claude/heic-upload-iphone-test-sz7h5p/build/sv8815-sales-tax-rounding-2026-08-19/evidence/EXHIBIT-R6-fee-discount-gated.png"
+     }
+    }
+   ]
+  },
+  {
+   "type": "paragraph",
+   "content": [
+    {
+     "type": "text",
+     "text": "5. Add Part Fee / Discount, opened from the part row kebab on S-16003. Full dialog including the Taxable control; Add Fee disabled behind the mapping banner.",
+     "marks": [
+      {
+       "type": "em"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "type": "rule"
+  },
+  {
+   "type": "heading",
+   "attrs": {
+    "level": 3
+   },
+   "content": [
+    {
+     "type": "text",
+     "text": "5. And the caveat comes off - per your ruling today"
+    }
+   ]
+  },
+  {
+   "type": "paragraph",
+   "content": [
+    {
+     "type": "text",
+     "text": "My comment above ended with \"this is a QA branch and has not been declared final, so every verdict is provisional\". "
+    },
+    {
+     "type": "text",
+     "text": "Per your ruling of 20 August - a QA branch is final if we pass it, and only changes if we fail it - that caveat is wrong and is withdrawn.",
+     "marks": [
+      {
+       "type": "strong"
+      }
+     ]
+    },
+    {
+     "type": "text",
+     "text": " These verdicts are not provisional. I have re-read the build marker today: "
+    },
+    {
+     "type": "text",
+     "text": "v3.8-1f5fb3c",
+     "marks": [
+      {
+       "type": "code"
+      }
+     ]
+    },
+    {
+     "type": "text",
+     "text": ", etag a9e66ecc2174eb6d889221f4d976ef24 - same as the original run, so today's work sits on the same build as everything above. The marker is recorded as what was passed, not as a hedge about it."
     }
    ]
   },
@@ -993,41 +1184,6 @@
    ]
   },
   {
-   "type": "paragraph",
-   "content": [
-    {
-     "type": "text",
-     "text": "Environment unchanged: "
-    },
-    {
-     "type": "text",
-     "text": "sv8815.qa.shopview.com",
-     "marks": [
-      {
-       "type": "code"
-      }
-     ]
-    },
-    {
-     "type": "text",
-     "text": ", build "
-    },
-    {
-     "type": "text",
-     "text": "v3.8-1f5fb3c",
-     "marks": [
-      {
-       "type": "code"
-      }
-     ]
-    },
-    {
-     "type": "text",
-     "text": ", etag a9e66ecc2174eb6d889221f4d976ef24 - re-read immediately before this comment, identical to the original run, so today's results sit on the same build as everything above."
-    }
-   ]
-  },
-  {
    "type": "bulletList",
    "content": [
     {
@@ -1038,7 +1194,7 @@
        "content": [
         {
          "type": "text",
-         "text": "Receive, working: "
+         "text": "Receive: "
         },
         {
          "type": "text",
@@ -1051,11 +1207,11 @@
         },
         {
          "type": "text",
-         "text": " \u2192 200 \u2192 route "
+         "text": " \u2192 200 \u2192 "
         },
         {
          "type": "text",
-         "text": "/order/{poId}?receive=1&returnTo=WorkOrder&returnId=...&vendorIds=...",
+         "text": "/order/{poId}?receive=1&returnTo=WorkOrder&returnId=...",
          "marks": [
           {
            "type": "code"
@@ -1077,7 +1233,7 @@
         },
         {
          "type": "text",
-         "text": " and "
+         "text": " + "
         },
         {
          "type": "text",
@@ -1130,7 +1286,7 @@
        "content": [
         {
          "type": "text",
-         "text": "Putting a part on a line: "
+         "text": "Part onto a line: "
         },
         {
          "type": "text",
@@ -1169,7 +1325,7 @@
         },
         {
          "type": "text",
-         "text": " as the field names, not work_order_id / line_id. That mismatch is what defeated me earlier."
+         "text": " as field names, not work_order_id / line_id."
         }
        ]
       }
@@ -1183,7 +1339,7 @@
        "content": [
         {
          "type": "text",
-         "text": "Returning it: "
+         "text": "Return: "
         },
         {
          "type": "text",
@@ -1196,7 +1352,7 @@
         },
         {
          "type": "text",
-         "text": " \u2192 200. Two traps: "
+         "text": " \u2192 200. "
         },
         {
          "type": "text",
@@ -1235,7 +1391,7 @@
         },
         {
          "type": "text",
-         "text": " (not the part-request id), and "
+         "text": ", not the part-request id, and "
         },
         {
          "type": "text",
@@ -1248,7 +1404,7 @@
         },
         {
          "type": "text",
-         "text": " is required. The request comes back status \"returned\" straight away - there is no approve step."
+         "text": " is required. Status comes back \"returned\" immediately - no approve step."
         }
        ]
       }
@@ -1262,11 +1418,11 @@
        "content": [
         {
          "type": "text",
-         "text": "Credit memos: "
+         "text": "Credit: Parts \u2192 Returns \u2192 tick "
         },
         {
          "type": "text",
-         "text": "POST /api/credit-memos {customer_account_id, amount}",
+         "text": "return_request_checkbox_<id>",
          "marks": [
           {
            "type": "code"
@@ -1275,7 +1431,59 @@
         },
         {
          "type": "text",
-         "text": " \u2192 201 {creditMemoId, creditNumber, totalAmount, openBalance, status:\"open\", refundPaymentId}. Siblings: /void, /cash-out, /pdf."
+         "text": " \u2192 "
+        },
+        {
+         "type": "text",
+         "text": "button_receive_credit",
+         "marks": [
+          {
+           "type": "code"
+          }
+         ]
+        },
+        {
+         "type": "text",
+         "text": " \u2192 "
+        },
+        {
+         "type": "text",
+         "text": "/parts/confirm-return?ids=<id>&isManualReturn=0",
+         "marks": [
+          {
+           "type": "code"
+          }
+         ]
+        },
+        {
+         "type": "text",
+         "text": " \u2192 "
+        },
+        {
+         "type": "text",
+         "text": "button_post_credit",
+         "marks": [
+          {
+           "type": "code"
+          }
+         ]
+        },
+        {
+         "type": "text",
+         "text": " \u2192 "
+        },
+        {
+         "type": "text",
+         "text": "POST /api/inventory/returns/create",
+         "marks": [
+          {
+           "type": "code"
+          }
+         ]
+        },
+        {
+         "type": "text",
+         "text": " \u2192 200."
         }
        ]
       }
@@ -1289,7 +1497,34 @@
        "content": [
         {
          "type": "text",
-         "text": "Also worth knowing: the vendor invoice number field rejects anything over "
+         "text": "Automation hazard: on that screen the Restocking Fee input and the Tax input "
+        },
+        {
+         "type": "text",
+         "text": "share data-test-id=\"input_base\"",
+         "marks": [
+          {
+           "type": "strong"
+          }
+         ]
+        },
+        {
+         "type": "text",
+         "text": " - a script targeting \"the tax field\" silently edits the fee."
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "type": "listItem",
+     "content": [
+      {
+       "type": "paragraph",
+       "content": [
+        {
+         "type": "text",
+         "text": "The vendor invoice number field rejects anything over "
         },
         {
          "type": "text",
@@ -1328,7 +1563,7 @@
     },
     {
      "type": "text",
-     "text": " (invoice 6f20bd4e-d55b-4082-b80f-ae179d58d043) and S-16001 "
+     "text": ", S-16001 "
     },
     {
      "type": "text",
@@ -1341,7 +1576,20 @@
     },
     {
      "type": "text",
-     "text": " (invoice f632497e-f9e6-4898-aef2-7735ec4d2054). Both invoiced, so the figures in the exhibits are frozen and can be re-opened and re-read."
+     "text": ", S-16003 "
+    },
+    {
+     "type": "text",
+     "text": "67e72b2d-3234-4779-b395-9f5214f5e536",
+     "marks": [
+      {
+       "type": "code"
+      }
+     ]
+    },
+    {
+     "type": "text",
+     "text": ". The two return work orders are invoiced, so the exhibit figures are frozen and can be re-opened and re-read."
     }
    ]
   }

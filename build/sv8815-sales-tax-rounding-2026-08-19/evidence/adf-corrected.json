@@ -3466,7 +3466,7 @@
     },
     {
      "type": "text",
-     "text": " \u2014 so mapping a Fee item and a Discount item under Settings \u2192 QuickBooks is the whole unblock. Note QuickBooks "
+     "text": " . CORRECTED 2026-08-20: I called this a one-step unblock, and it is not. The mapping cannot be created inside ShopView at all, because no QuickBooks company is attached to this org - GET /api/bookkeeping/integration returns an Intuit OAuth URL still waiting to be used, and the admin page offers only a Connect button. So this is a genuine external dependency, and the quickBooksConnected:true above is misleading: three other signals say not connected. Also note "
     },
     {
      "type": "text",
@@ -3492,7 +3492,7 @@
     },
     {
      "type": "text",
-     "text": " returns 400 \"Bookkeeping is not configured\" \u2014 those two disagree and may be worth a look. Ruled out as bypasses: an adjustment template (creates fine, 201; still blocked), "
+     "text": " returns 400 \"Bookkeeping is not configured\", which agrees with the OAuth URL and the Connect button and contradicts the flag - the flag reading true while nothing is connected is worth a developer's glance. Both entry points were driven on 2026-08-20 and behave identically: the work-order kebab and the PART ROW kebab (Move | Add Part Fee / Discount). Ruled out as bypasses: an adjustment template (creates fine, 201; still blocked), "
     },
     {
      "type": "text",
@@ -3595,7 +3595,7 @@
     },
     {
      "type": "text",
-     "text": ": this is a QA branch and has not been declared final, so every verdict is tied to build v3.8-1f5fb3c and would need re-reading after a redeploy. The handoff also asks that existing invoices \"not differ from current released behaviour\" \u2014 proving "
+     "text": ": per your ruling of 2026-08-20, this branch is treated as FINAL because it passed, so these verdicts are not provisional. The build marker v3.8-1f5fb3c is recorded as what was passed, and it was re-read on 2026-08-20 - same version, same etag. The handoff also asks that existing invoices \"not differ from current released behaviour\" - proving "
     },
     {
      "type": "text",
