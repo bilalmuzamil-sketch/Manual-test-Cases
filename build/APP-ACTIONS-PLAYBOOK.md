@@ -3210,7 +3210,9 @@ looking a route up here takes seconds; rediscovering it has repeatedly taken an 
 | work order lines | `/workorders/{id}/lines` | the main working surface |
 | work order finance panel | `/workorders/{id}/finance` | the tester-facing **Financial Info** figures |
 | work order parts | `/workorders/{id}/part-requests` | ⚠️ **`/workorders/{id}/parts` renders an error page** |
-| purchase order list | `/parts/orders` | |
+| purchase order list | `/parts/orders` | ✅ **every "Ordered" row carries its own `Receive` LINK** whose href is `/order/{poId}?receive=1` — this is a real user route into receiving |
+| a received vendor invoice | `/parts/delivery/{deliveryId}` | read-only (`delivery_page_view`, `button_edit_delivery`) — reached by clicking a Vendor Invoices row; **no receive action here** |
+| admin locations | `/administration/locations` | rows carry `button_edit_workplace`; the dialog is `dialog_base` / `dialog_title` / `button_close_dialog` / **`button_save_workplace`** |
 | **returns + credits** | `/parts/returns` | tabs `tab_returns` / `tab_credits` |
 | process a return into a credit | `/parts/confirm-return?ids=<returnRequestId>&isManualReturn=0` | reached by the Receive Credit button |
 | receive a work-order part | `/order/{poId}?receive=1&returnTo=WorkOrder&returnId=…&vendorIds=…` | ✅ **the live receive path** |
@@ -3236,6 +3238,9 @@ looking a route up here takes seconds; rediscovering it has repeatedly taken an 
 | financial info rows | `item_label_<Name>` / `item_value_<Name>` — the reliable way to read Parts · Labor · Shop Supplies · Subtotal · `<tax name>` · Total · Balance |
 | change location | `profile_menu_button` → `select_location` (click its **right edge** to open the dropdown) |
 | dev quick login | `button_quick_login_admin` on `/login` |
+| the sales-tax rounding field | ⚠️ **`select_sales_tax_rounding_mode`** — *with* the `_mode` suffix. Guessing `select_sales_tax_rounding` finds nothing and looks like the field is absent. Its warning banner is `banner_sales_tax_rounding_changed`; open the dropdown by clicking the field's **right edge** |
+| purchase-order list controls | `checkbox_select_order_{orderId}` · `button_receive` (bulk, appears on selection) · `button_new_po` · `button_column_selection` · and the per-row `Receive` **anchor** (no test id — find it by its `Receive` text and read its `href`) |
+| the receive screen's other fields | `link_receive_work_order` · `select_assign_vendor_{poId}` · `date_input_invoice_date_{poId}` · `input_sell_{itemId}` · `input_tax_{poId}` · `input_note_{poId}` · `currency_text_subtotal_{poId}` · `checkbox_item_{itemId}` · `button_back_to_purchase_orders` |
 
 ### W.3 Reads that lie, and what to read instead
 
@@ -3260,3 +3265,50 @@ looking a route up here takes seconds; rediscovering it has repeatedly taken an 
 - `list-unpaid-transaction` nests its rows one level deeper than the siblings:
   `data.response.collection[]`.
 - Quasar: click by `boundingBox()` centre via `page.mouse.click`, not Playwright actionability clicks.
+
+### W.5 PROVE UI REACHABILITY before you call a failure user-facing — or harmless (proven 2026-08-20)
+
+**The question that decides whether a broken endpoint is a defect: can a user get there by CLICKING?**
+An end user never types a URL. So a 500 on a route nothing links to is not a customer-facing defect —
+and a 500 on a route every list row links to is a serious one. **Both claims need the same test, and
+neither may be asserted without it.** I had described `/accept-delivery` as "not reachable in normal
+use" from having reached it by typing the URL, which proves nothing either way.
+
+**THE METHOD — enumerate the click-paths, do not click blindly:**
+
+1. **Seed the object in the state that offers the action** (here: a part `Ordered` but not received —
+   otherwise the row shows nothing to click and you learn nothing).
+2. **READ THE `href` OF EVERY CANDIDATE LINK RATHER THAN CLICKING IT.** One `page.evaluate` over
+   `document.querySelectorAll('a')`, filtered by the link's own text, gives you every destination at
+   once — 30 rows answered in one call. Clicking each would take an hour and tell you less.
+   ```js
+   [...document.querySelectorAll('a')].filter(a=>a.innerText.trim()==='Receive')
+     .map(a=>({href:a.getAttribute('href'), row:a.closest('tr').innerText.slice(0,80)}))
+   ```
+3. **Walk every menu that could offer it** — the object's own row, the list page, the sibling list
+   pages (`Parts > Deliveries` looked like a receive route and turned out to be read-only).
+4. **Then click one for real and watch the network**, to confirm the destination's save is the working
+   call and not the failing one.
+5. **State the result as a count, not an impression**: *"all 30 Receive links point at X"* is
+   checkable; *"the UI uses X"* is not.
+
+**Verdict wording that follows from it:** reachable-and-broken → **a defect, raise it**;
+unreachable-and-broken → *"recorded for information; there is no click-path to it"*, and say how you
+established that. **Never the phrase "not reachable in normal use" without the enumeration behind it.**
+
+### W.6 THE END-USER PATH IS ITS OWN CHECK — drive the FEATURE by hand even when the scaffolding is API
+
+Driving setup by API is a legitimate speed trade-off on a long run; **driving the thing under test by
+API is a coverage gap**, because the screen is where the customer lives and the screen can send a
+different payload than you do. Split it explicitly:
+
+- **By hand, always:** the setting/control the ticket is about — open the dialog, read the options,
+  click the value, observe any banner, press **Save**, confirm it survives a reopen **and a hard
+  reload**, and then **carry that saved state through to the outcome** (on SV-8815: dialog-set
+  "Invoice total" → invoice billed 2.71 where the default bills 2.70). That last step is the one that
+  proves the UI's save reaches the calculation.
+- **By API, fine:** creating work orders and lines, completing, invoicing, payments, and repeating a
+  pinned case dozens of times.
+- **Then SAY WHICH WAS WHICH in the report** (CLAUDE.md deliverable convention) — a reader who assumes
+  everything was clicked, and a reader who assumes everything was scripted, both draw wrong
+  conclusions about coverage.

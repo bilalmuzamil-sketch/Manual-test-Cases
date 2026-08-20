@@ -3973,6 +3973,21 @@ regression / bug-fix re-testing.
   media count AND order, table row counts and the first line** — the write response only echoes what
   you sent. Canonical example: SV-8815 comment `75278` (19 exhibits), built by
   `build/sv8815-sales-tax-rounding-2026-08-19/evidence/build_single.py`.
+- **SAY WHICH PARTS WERE DRIVEN ON THE SCREEN AND WHICH BY API — the end user works in the UI (QA-lead
+  ruling 2026-08-20, verbatim: *"for the end user they are supposed to use this feature from the
+  UI"*).** Driving **setup** by API is a legitimate speed trade-off on a long run; driving **the thing
+  under test** by API is a **coverage gap**, because the screen can send a different payload than you
+  do. So: **exercise the feature itself by hand** — open the control, read the options, click the
+  value, observe any banner, press Save, confirm it survives a reopen **and a hard reload**, and then
+  **carry that saved state through to the outcome** (the step that proves the UI's save reaches the
+  calculation). Scaffolding and repetition may be scripted. **Then state the split plainly in the
+  report**, with the reason it is safe — a reader who assumes everything was clicked, and one who
+  assumes everything was scripted, both misjudge the coverage. Method: playbook **§W.6**.
+  **AND BEFORE CALLING A BROKEN ENDPOINT USER-FACING *OR* HARMLESS, PROVE THE CLICK-PATH (§W.5):**
+  enumerate every candidate link's `href` in one pass rather than clicking blindly, walk the sibling
+  list pages too, and report a **count** (*"all 30 Receive links point at X"*), never an impression.
+  **The phrase "not reachable in normal use" is barred without that enumeration behind it** — reaching
+  a route by typing its URL proves nothing either way. Canonical example: SV-8815 checks 34 and 35.
 - **REPLICATION MUST BE PROVEN BY SCREENSHOT — capture it AT THE MOMENT it reproduces (QA-lead
   ruling 2026-08-10, verbatim: *"when you are able to replicate the issue, you must and must make the
   screenshot which can prove that you were able to replicate the issue"*).** The instant a bug
