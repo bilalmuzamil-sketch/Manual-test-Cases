@@ -13,7 +13,9 @@
 
 ## Overall status
 
-**PASSED — 35 of 35 checks that could be run have passed. Nothing is broken.**
+**PASSED — 37 of 37 checks that could be run have passed. Nothing is broken.**
+*(35 at the time of posting; +2 on 2026-08-20 when the part-return check turned out not to be blocked
+after all — a part return leaves the issued invoice untouched under each of the two rounding modes.)*
 
 Two things could **not** be tested on this branch, neither of them a defect in this change:
 
@@ -24,9 +26,11 @@ Two things could **not** be tested on this branch, neither of them a defect in t
    Discount item mapping**, i.e. QuickBooks configuration — the one area already excluded. Exact gate
    and the one-step unblock are below.
 2. **QuickBooks itself** — as expected, and as the QA lead already flagged.
-3. **The part-return check** — blocked by a **reproducible HTTP 500 when receiving a part**, through
-   the tester-facing screen as well as the API. Six request ids, and six candidate causes ruled out
-   one by one. Details below.
+3. ~~**The part-return check** — blocked by a reproducible HTTP 500 when receiving a part.~~
+   **WRONG, corrected 2026-08-20. Receiving a part works.** I had used a dead screen
+   (`/accept-delivery`) instead of the part row's **Receive** button. The check has since been run in
+   **both** rounding modes and **passes**: returning 1 of 3 parts leaves the issued invoice untouched.
+   The handoff's *credit memo* item also turns out to have no tax in it to pro-rate. See section 9.
 
 > **Correction to my earlier note in this file: I wrote that "QuickBooks is not connected" on this
 > branch. That was wrong.** It was inferred from the QuickBooks admin page showing a "Connect to
@@ -266,7 +270,7 @@ and Services"`
 |---|---|---|
 | Fees and discounts on a **new** work order (handoff A, C-discount, and the fee/discount half of G) | The control is reachable and the dialog works, but the **Add** button is disabled and the API 409s on a **QuickBooks item-mapping** gate. See the section below for the exact condition. | **Map a Fee item and a Discount item under Settings → QuickBooks** — one step, on an org whose bookkeeping is configured |
 | The QuickBooks side of the change (the $0.01 open balance the banner warns about) | QuickBooks is not connected | A QuickBooks-connected company — already flagged as a manual-tester task |
-| Credit memo / part return pro-rating (handoff D, third item) — **repro steps for staging are in `REPRO-part-receiving-500.md`** | **A part cannot be received on this branch**, so no invoice with a returnable part can be produced. Receiving fails with **HTTP 500** both through the API and through the tester-facing **Receive Parts** screen — with a vendor assigned, a valid invoice number and a valid received quantity (request ids `7b8f7c1c-…`, `b32c9979-…`, `a31d8bdc-…`, `ea4f1863-…`). See the note below. | Someone who can get a part to **Received** on this branch — then the return check is a 5-minute job |
+| ~~Credit memo / part return pro-rating (handoff D, third item)~~ | **RESOLVED 2026-08-20 — this was never blocked; I was using the wrong screen.** The part return was run in both modes and the issued invoice does not move; and a credit memo turns out to carry no tax at all. See section 9 below and `CORRECTION-part-receiving-works.md`. | nothing — closed |
 | "Existing invoices are unchanged **versus the released build**" (handoff G) | Proving *unchanged* needs the same invoice read on a build **without** this change. This branch is the only environment in hand. What **can** be proven here is that issued invoices are frozen and still carry their original tax model and figures — see section 4 above and section 7 below. | Read the same invoice numbers on staging or production and diff |
 
 ---
@@ -384,37 +388,56 @@ Those two disagree, which is itself worth a developer's glance.
 
 ---
 
-### The part-receiving 500 — reported, but NOT raised as a defect against this ticket
+### CORRECTED 2026-08-20 — receiving a part is NOT broken, and the last gap is closed
 
-Getting a part to **Received** is the gateway to the last unchecked item (return a part against an
-"Invoice total" invoice and check the credited tax is pro-rated). On this branch it does not work, and
-it is not for want of trying:
+**An earlier version of this section said receiving a part returned HTTP 500 on this branch and listed
+six ruled-out causes. That was wrong.** The QA lead received a part successfully on **S-15998**; I then
+reproduced his path and it works first time.
 
-- `POST /api/inventory/orders/accept` returns **HTTP 500** with a generic body — from the tester-facing
-  **Receive Parts** screen (`/accept-delivery/{orderId}`) as well as from a direct call. The Receive
-  button is **enabled** and no validation complaint is shown; it just fails. Six request ids:
-  `7b8f7c1c`, `b32c9979`, `a31d8bdc`, `ea4f1863`, `5ead1dce`, `52a43345`.
+**There are two Receive surfaces and I used the dead one.**
 
-**Six candidate causes, each tested and each ruled out:**
+| | ✅ the live one — what the product uses | ❌ the one I used |
+|---|---|---|
+| entry point | the part row's blue **Receive** button on the work order's Lines tab | **Parts → Deliveries**, or `/accept-delivery/{orderId}` |
+| save call | **`POST /api/orders/receive-requested-parts`** → **200**, part → `received` | `POST /api/inventory/orders/accept` → **500** |
 
-| Suspected cause | How it was ruled out |
-|---|---|
-| the part has a blank part number | built a part carrying `ZZ8815PN` — still 500 |
-| the purchase order has no vendor | assigned one (`assign-vendor` → 200, "Vendor Missing" badge gone) — still 500 |
-| no vendor invoice number (the org requires one) | supplied one — still 500 |
-| my payload was the wrong shape | captured the UI's **exact** request and replayed it verbatim — same 500 |
-| nowhere to receive the stock into | **376** bin locations exist, including a default *General Storage* |
-| the tax field was empty | 500 with tax 0 **and** with tax 1 |
+The 500 was real, but on a route the product no longer drives a work-order part request through — so it
+is not a defect a customer can reach, and reporting it as one was a mistake. **Nothing has been filed,
+and nothing should be.** Neither of the two differences I had guessed at from his screenshots mattered
+(ticking *Line Approved*; setting the vendor in the New Part Request modal) — the *screen* was the
+variable, and I had tested both against the wrong one. Full write-up, including the working recipe:
+`CORRECTION-part-receiving-works.md`. The playbook's §T.8 has been rewritten rather than annotated.
 
-Along the way I did find the correct way to put a part on a line, which was the thing that had defeated
-me earlier: `POST /api/work-orders/part/make-request` takes **`work_order`** and **`line`** — not
-`work_order_id`/`line_id` — plus `description`, `quantity`, `part_source_type` and `part_category_id`.
-That now works first time and is written into the playbook. I also found that **Return is on a
-right-click context menu** on the part row, not a kebab, which is why it looked absent.
+**The check this unblocked — a part return against an issued invoice, in BOTH modes:**
 
-**Why this is not being raised against SV-8815:** it is in parts receiving, not in tax rounding;
-nothing in this change touches it; and there is no baseline build to show it ever worked. It is
-recorded here so whoever picks up the part-return check knows the blocker and does not re-derive it.
+| | billed under **Invoice total** — S-15999 | billed under **Line by line** — S-16001 (control) |
+|---|---|---|
+| invoice before | 244.00 / 23.79 / 267.79 | 244.00 / 23.79 / 267.79 |
+| return 1 of 3 parts at $80 | `make-return-request` → 200, status `returned` | → 200, status `returned` |
+| **invoice after** | **244.00 / 23.79 / 267.79 — unchanged** | **244.00 / 23.79 / 267.79 — unchanged** |
+| work-order panel after | Subtotal 164.00 · tax 23.79 · Total 187.79 · Balance 267.79 | **identical, figure for figure** |
+
+Exhibits `EXHIBIT-R1`…`EXHIBIT-R5`. **AC6 holds for part returns under both rounding methods.**
+
+**An observation, and it is NOT this ticket's:** on the invoiced work order after the return, the
+Financial Info panel's **Subtotal drops by the returned part while the tax line keeps the invoiced
+figure**, so its Total ($187.79) is neither the invoiced total ($267.79 — which the **Balance** still
+shows correctly) nor a clean recompute ($179.99). The *Line by line* control produced the same six
+figures byte for byte, so **the rounding change is not what causes it.** Reported, not filed — filing
+is the QA lead's call.
+
+**And the handoff item itself is a non-item.** It asked about a **credit memo**, which is not a part
+return: `POST /api/credit-memos` takes **`customer_account_id` and `amount` and nothing else**. Probing
+with a partial body returns exactly those two as required; the created record is
+`{creditMemoId, creditNumber:"CM-100", totalAmount:8000, openBalance:8000, status:"open",
+refundPaymentId:null}` — **no tax field, no rate, no line items.** So there is no tax in a credit memo
+for the rounding setting to pro-rate. One 30-second probe on day one would have established that
+instead of a night spent on a receiving screen.
+
+**Two things worth keeping from the wrong turn:** the correct way to put a part on a line —
+`POST /api/work-orders/part/make-request` takes **`work_order`** and **`line`**, not
+`work_order_id`/`line_id` — and the return call's own two traps: `part_id` is the **part object's** id
+from `GET /api/work-orders/lines/{WO}` (not the part-request id), and **`return_reason` is required**.
 
 ---
 

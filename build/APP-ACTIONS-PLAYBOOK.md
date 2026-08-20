@@ -2734,39 +2734,67 @@ map of 11 sync switches) · `PUT bookkeeping/settings` = `saveQuickBooksData` ·
 QuickBooks page UI) · `POST /api/product-and-service/{id}/update|delete` ·
 `GET /api/adjustment-templates?pagination[rowsPerPage]=50` → `{data:{templates:[…]}}`.
 
-### T.8 ⚠️ TRAP 4 — receiving a part 500s on this branch, and here is everything already ruled out
+### T.8 ⚠️ TRAP 4 — THERE ARE TWO RECEIVE SURFACES AND ONE OF THEM IS DEAD (corrected 2026-08-20)
 
-`POST /api/inventory/orders/accept` returns **HTTP 500** (generic body + requestId) — **including from
-the tester-facing Receive Parts screen**, with the Receive button enabled and no validation complaint.
-Request ids seen: `7b8f7c1c`, `b32c9979`, `a31d8bdc`, `ea4f1863`, `5ead1dce`, `52a43345`.
+**Receiving a part WORKS.** An earlier version of this section said it returned HTTP 500 and listed six
+ruled-out causes. **That was wrong, and the ruled-out table was worse than useless — it told the next
+reader to stop looking.** The 500 was real but it came from a screen the product does not drive a
+work-order part request through any more. **This is the same mistake as SV-8779** (see the pre-action
+check in §U.0): both times I reached for `/accept-delivery` and the live path was the part row.
 
-**DO NOT re-derive these — all six were tested and are NOT the cause:**
+| | ✅ THE LIVE ONE — use this | ❌ THE DEAD ONE — do not use |
+|---|---|---|
+| how you get there | work order → **Lines** tab → the part row's blue **Receive** button, `button_part_request_action` | **Parts → Deliveries**, or `/accept-delivery/{orderId}` |
+| first call | `POST /api/inventory/orders/receive-view` `{workOrderId, vendorIds:[…]}` → **200** | — |
+| lands on | `/order/{poId}?receive=1&returnTo=WorkOrder&returnId=…&returnLineId=…&vendorIds=…` | `/accept-delivery/{orderId}` |
+| fields | `input_invoice_{poId}`, `input_qty_{itemId}` | `input_invoice_number`, `date_input_`, `input_delivered_quantity_0`, `input_base`, `input_delivery_note`, `badge_vendor_missing` |
+| save | **`POST /api/orders/receive-requested-parts`** → **200**, part → `received` | `button_receive_delivery` → `POST /api/inventory/orders/accept` → **500** |
 
-| Suspected cause | Ruled out how |
-|---|---|
-| blank part number on the item | built a part with `part_number: "ZZ8815PN"` — still 500 |
-| missing vendor ("Vendor Missing" badge) | `POST /api/orders/{orderId}/assign-vendor {vendorId, orderItemIds}` → 200, `vendorMissing` → false — still 500 |
-| missing invoice number (`requireVendorInvoiceNumber: true`) | supplied one — still 500 |
-| wrong payload shape | captured the UI's **exact** body and replayed it verbatim — same 500 |
-| no bin locations to receive into | **376** bin locations exist, incl. default *General Storage* (`GET /api/inventory/bin-locations`) |
-| tax field empty | 500 with `tax: 0` and with `tax: 1` |
+**The working recipe, proven twice** (S-15999 and S-16001, build `v3.8-1f5fb3c`):
 
-**The exact body the UI sends** (so nobody has to capture it again):
-
-```json
-POST /api/inventory/orders/accept
-{"id":"<orderId>","invoiceNumber":"…","invoiceDate":"2026-08-19T06:00:00.000Z","note":null,
- "items":"<JSON STRING of the order-item objects, each with quantity_received and total>",
- "total":21,"orderStatus":"fulfilled","tax":1}
 ```
-⚠️ **`items` is a JSON *string*, not an array**, and the item objects must be the **whole** records from
-`GET /api/inventory/orders/{id}` with `quantity_received` + `total` added. An empty/partial body gets a
-**400** naming `id`, `total`, `tax`, `invoice_date`, `order_status` in **snake_case** — misleading, since
-the working body uses camelCase; don't reverse-engineer the shape from those errors.
+1. active location == the work order's own location            (T.1)
+2. POST /api/work-orders/part/make-request  {work_order, line, description, part_number,
+       quantity, part_source_type:'vendor', is_authorized:false, part_category_id,
+       cost, sell_price, vendor_id}                                            -> 201
+3. POST /api/work-orders/part/perform-request-status-action
+       {part_request_id, action:'order'}                                       -> 201   (part = Awaiting)
+4. click  [data-test-id="button_part_request_action"]   ("Receive" on the part row)
+5. type into  input_invoice_{poId}   and   input_qty_{itemId}
+6. click  button_receive_po_{poId}   ->  POST /api/orders/receive-requested-parts -> 200
+```
+⚠️ **Keep the vendor invoice number short — there is a 21-character limit** (a longer one is rejected
+and reads like a receive failure; cost time on SV-8781).
 
-**Receive Parts screen** = `/accept-delivery/{orderId}` — `input_invoice_number`,
-`date_input_`, `input_delivered_quantity_0` (one per row), `input_base` (tax),
-`input_delivery_note`, `button_receive_delivery`, and `badge_vendor_missing` when no vendor is set.
+**Two things that are NOT the variable** — I tested both against the dead screen and they changed
+nothing, because the *screen* was the variable: ticking **Line Approved** on the New Line dialog, and
+choosing the **vendor inside the New Part Request modal**.
+
+**RETURNING a received part** — `POST /api/work-orders/part/make-return-request`
+`{part_id, work_order_id, quantity, return_reason}` → 200. Two traps in one call:
+**`part_id` is the PART OBJECT's id** from `GET /api/work-orders/lines/{WO}` →
+`collection[].parts[].id` (match on `part_request_id`) — *not* the part-request id; and
+**`return_reason` is required** (e.g. `Incorrect`). Get either wrong and it is a 400 reading
+`{part_id:"Not found", return_reason:"Missing required parameter"}`. The request comes back with
+`status: "returned"` immediately — there is no approve step.
+
+**What a return does and does not do** (measured in both rounding modes, 2026-08-20):
+the **issued invoice does not move** (correct), but on the **invoiced** work order the Financial Info
+panel shows a subtotal reduced by the returned part **with the tax line still at the invoiced figure**
+— so its Total is neither the invoiced total nor a clean recompute, while **Balance** correctly still
+holds the invoiced amount. Identical on both modes, so it is not a rounding-setting effect.
+
+**A credit memo is NOT a part return.** `POST /api/credit-memos` takes **`customer_account_id` and
+`amount` only** — no tax, no rate, no lines (`{creditMemoId, creditNumber:"CM-100", totalAmount,
+openBalance, status:"open", refundPaymentId}`). Siblings: `credit-memos/{id}/void`,
+`credit-memos/{id}/cash-out`, `credit-memos/{id}/pdf`. So there is **no tax in a credit memo to
+pro-rate** — worth knowing before anyone spends a night trying to test tax on one.
+
+**For the record, the dead screen's payload** (kept only so nobody re-captures it):
+`POST /api/inventory/orders/accept` `{"id","invoiceNumber","invoiceDate","note","items":"<JSON
+STRING of whole order-item records + quantity_received + total>","total","orderStatus":"fulfilled","tax"}`
+— `items` is a JSON *string*, and a partial body 400s in **snake_case** while the working body is
+camelCase, so don't reverse-engineer the shape from those errors.
 
 **Getting a part onto a line — the payload that WORKS** (lifted from `ShopCoachVehicleLineBuilder`, not
 guessed):
@@ -2829,6 +2857,43 @@ Wire value for the setting is **`total_rounded`** — `invoice_total` and `total
 ---
 
 ## §U — HOW TO UNBLOCK YOURSELF: the ladder, in order (the standing skill, not one project's trick)
+
+### U.0 ⛔ THE PRE-ACTION CHECK — run this BEFORE the action, not after the mistake
+
+**QA lead, 2026-08-20, verbatim:** *"SO keep on making your skills/rules/recipe/Playbook so that you go
+through them for each action before performing that action so that you do not make similar mistakes."*
+He said it because I **repeated an SV-8779 mistake on SV-8815 even though it was already written down**
+— written down is worthless if it is only read afterwards. This checklist is the fix: **five questions,
+about thirty seconds, before any app action.**
+
+1. **Have I done this before?** `grep -in "<the action>" build/APP-ACTIONS-PLAYBOOK.md` — §R staging
+   seed · §S staging specifics · §T per-ticket QA branches · §J TestRail · §K production · §M Figma.
+   If there is a recipe, **use it verbatim**; do not re-derive it.
+2. **⚠️ IS THERE MORE THAN ONE SURFACE FOR THIS ACTION, AND AM I ON THE ONE THE PRODUCT USES?**
+   *This is the named trap. It has now cost two tickets.* Before driving a screen, confirm the product
+   actually routes this object through it — start from the **object's own row/page** (the part row, the
+   work-order line, the invoice) and follow the button the user would press. A stale route can still
+   render, still enable its button, and still answer — with a 500.
+   **Known instances: receiving a part** (part row's Receive → `receive-requested-parts` ✅ · the
+   Deliveries / `/accept-delivery` screen ❌ — SV-8779 *and* SV-8815, see T.8) — **and the same class
+   of thing on reads: `GET /api/invoices/{id}/view` is the issued invoice while
+   `GET /api/invoices/{woId}/details` is a live re-price** (T.4).
+3. **Whose state am I about to change, and is it disposable?** Per-ticket `sv####.qa` branch → no
+   cleanup needed. Shared `app.staging` / `qb` / **production** → snapshot first, restore after.
+   **TestRail and Jira are real** — nothing written without the QA lead's explicit go-ahead.
+4. **What will I claim from this, and will I have the evidence?** If the outcome is a verdict, plan the
+   **before AND after** capture now (§V) — a frozen record, real geometry, annotated. A replication
+   without a screenshot taken *at the moment it reproduced* is an assertion, not evidence.
+5. **Does what I have been asked to set up match what the ticket/spec actually requires?** If not, say
+   so in one sentence and ask, before building it (Standing Rule 61).
+
+**And the closing half of the same discipline:** the moment an action succeeds in a new way, the recipe
+goes into this file **in the same session** — and when a recipe here turns out to be **wrong**, it is
+**corrected, not appended to**. T.8 spent a day telling readers that receiving was broken with a
+six-row "already ruled out" table; a confidently wrong recipe is worse than none, because it stops the
+next person looking.
+
+---
 
 **Standing rule already in CLAUDE.md: never stop at "a human must do this" or "this needs data
 seeding".** §U is the *method* behind that rule, written down so it is executed the same way every
@@ -2945,6 +3010,14 @@ RE-READ the rects, then take a viewport screenshot.**
 - **Spread by index**, not by target y: `ly = anchor + i*52..64`. Document rows can be **19px** apart
   while a label box is ~36px tall, so anchoring a label to its own row guarantees overlap.
 - **Tight box padding (2px) when rows are close**, or adjacent boxes merge into one unreadable blob.
+- **When targets are only ~15px apart, draw ONE box around the whole block and label it once.** Three
+  boxes 15px apart overlap each other and the leaders tangle; a single box round the totals block with
+  the figures spelled out in the label reads instantly.
+- ⚠️ **The leader must leave the label from the edge that FACES the box.** `annotate.py` used to always
+  draw from the label's right edge, so a label placed to the **right** of its value drew the line back
+  **through its own text** and every caption came out looking struck through — on an exhibit whose
+  entire job was to show numbers clearly. **Fixed 2026-08-20**; it now picks left/right/vertical from
+  the label's position. If you copy an older annotate.py, copy this fix with it.
 
 ### V.5 Check the geometry automatically, THEN look at the images
 
@@ -2954,8 +3027,10 @@ annotate.py's own label maths and fails the build if any label covers the value 
 another label. That catches the commonest defect across every exhibit in one second.
 
 Then **still open the images**. The guard cannot see a box drawn off-image (V.3), a caption that
-contradicts what is on screen, or a label pointing at the wrong row. Every annotation defect on this
-run was invisible in the code and obvious in the picture.
+contradicts what is on screen, a label pointing at the wrong row, **or a leader line drawn through
+its own label** — the guard passed all five exhibits on 2026-08-20 while every label was struck
+through by its own arrow, because the guard checks label/box *rectangles* and not the *line*. **The
+guard is a filter, never the sign-off. Look at every image you are about to publish.**
 
 ### V.6 The generator
 
