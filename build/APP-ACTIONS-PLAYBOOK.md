@@ -2946,10 +2946,16 @@ RE-READ the rects, then take a viewport screenshot.**
   while a label box is ~36px tall, so anchoring a label to its own row guarantees overlap.
 - **Tight box padding (2px) when rows are close**, or adjacent boxes merge into one unreadable blob.
 
-### V.5 Then LOOK at every rendered image
+### V.5 Check the geometry automatically, THEN look at the images
 
-Every annotation defect on this run was invisible in the code and obvious in the picture. Reading the
-PNG back is the only verification step that works.
+Two steps, and both are needed. First run the collision guard —
+`build/sv8815-sales-tax-rounding-2026-08-19/check-annotations.py <annspec.json>` — which reproduces
+annotate.py's own label maths and fails the build if any label covers the value it points at or
+another label. That catches the commonest defect across every exhibit in one second.
+
+Then **still open the images**. The guard cannot see a box drawn off-image (V.3), a caption that
+contradicts what is on screen, or a label pointing at the wrong row. Every annotation defect on this
+run was invisible in the code and obvious in the picture.
 
 ### V.6 The generator
 
