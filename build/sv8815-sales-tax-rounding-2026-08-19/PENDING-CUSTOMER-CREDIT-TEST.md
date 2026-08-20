@@ -1,6 +1,21 @@
 # READY TO RUN: the customer-credit check — the one in-scope path SV-8815 never exercised
 
-**Status: BLOCKED ON ENVIRONMENT, not on design.** The test below is worked out and needs one run.
+> ## ✅ CLOSED 2026-08-20 — THE TEST WAS RUN AND IT PASSES
+> The `sv8815` branch merged into staging and self-destructed, so it was run on
+> **`app.staging.shopview.com`, build `v3.8-0cb5771`**, where `salesTaxRoundingMode` is present.
+> **Result: the credit is pro-rated from the frozen invoice tax, in both modes.** Two $5.10 parts at
+> GST 5% — Invoice total froze at **0.51** and the credit split **0.26 + 0.25 = 0.51**; the
+> line-by-line control froze at **0.52** and split **0.26 + 0.26 = 0.52**; two separately posted
+> credit memos summed to **$10.71**, the invoice exactly. **Nothing to raise.**
+> Full write-up, annotated evidence and the reusable route:
+> **`build/sv8815-customer-credit-2026-08-20/FINDINGS.md`**.
+>
+> Two corrections to the plan below, for the record: the rate is **5% (GST)** on staging, not 9.75%,
+> so the distinguishing amounts became **2 × $5.10** rather than 2 × $10.00; and the screen is
+> **Customer → Invoices → Issue Credit**, which this document had not located.
+
+**Status when written: BLOCKED ON ENVIRONMENT, not on design.** The test below is worked out and needs
+one run.
 
 ## Why this test exists
 
