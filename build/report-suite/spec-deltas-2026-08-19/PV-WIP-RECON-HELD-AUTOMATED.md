@@ -1,5 +1,13 @@
 # PV + WIP reconciliation — HELD cases (Automated atm=3 + source-blocked) — 2026-08-20
 
+> **✅ RESOLVED 2026-08-20 (WIP Story-5): the design source is in hand** —
+> `build/report-suite/wip-design-review-2026-08-13/DESIGN-REVIEW-AUG-13.md` (Aug-13 Claude
+> design review). **9 of the 10 held WIP Story-5 cases UPDATED + byte-verified** (C30487,
+> C30488 [atm=3, QA-lead authorised], C30489, C30490, C30491, C30493, C43818, C30520,
+> C30524). **C43838 left HELD/flagged** (design review reassigns the amber glow to widgets,
+> not the tab element — see `wip-design-review-2026-08-13/RECOMMENDED-NEW-CASES.md` FLAG-2).
+> Run 359 untouched. Vlad hand-off: `wip-design-review-2026-08-13/FOR-VLAD.md`.
+
 **Rule 71 (Automated cases are ask-first, HELD on a docs/currency pass) + Rules 57/58 (source not in
 hand → HOLD, never write from the build).** No write was performed to any case listed here.
 
