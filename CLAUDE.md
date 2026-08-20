@@ -7057,6 +7057,16 @@ deliver the 7-tab management report.
     **THE RULE:** the FIRST action of EVERY task is a brief **STRATEGY step** — either **(a) RECALL** an existing proven strategy for this task type (from build/skills/*, Rules 75–78, build/PROCESS-CATALOG.md) or **(b) DEVISE** the most quota-efficient plan: fewest spawns, batched work, one detached self-reporting script, piggybacked cheap checks (Rule 78), no poll-by-spawn, answer-in-text where possible (Rule 76). **Execution begins ONLY after the strategy is set.** **CONTINUOUSLY IMPROVE IT** — when a task reveals a cheaper method, refine the strategy in the skills (rule-level changes via Rule 72). This is the UMBRELLA over Rules 75 (detached architecture), 76 (minimize spawns), 77 (validity window) and 78 (piggyback cheap checks); those are its current toolbox and are expected to grow.
     Ties to Standing Rules 29, 72, 75, 76, 77, 78.
 
+80. **TELL THE LAST-DONE DATE AND ASK BEFORE RE-RUNNING any verification / VIU / ordered task (all projects, permanent).**
+    USER DIRECTIVE (2026-08-20, verbatim): *"when you do the build verification or if I ask you to do that and same for the source verification or for VIU or for anything when I order you to do, you must first tell me the date when the same was last done and ask me if I still want to run it again."*
+    **THE RULE:** before starting **build verification, source verification, a VIU pass, or ANY task the QA lead orders** that may already have been done recently, the FIRST response STATES **when it was last done** (date + build marker and/or spec version, sourced from the committed records) and **ASKS whether he still wants it re-run.** **Never auto-run** a verification/VIU that was recently done without confirming. Where the last-done date cannot be found, say so and ask. Only proceed once he confirms. Pairs with Rule 77 (a check within 3 builds/3 versions still COUNTS, so a re-run may be unnecessary) and Rule 79 (strategy-first).
+    Ties to Standing Rules 12, 31, 49, 54, 77, 79, 81.
+
+81. **SOURCE VERIFICATION PRECEDES BUILD VERIFICATION / VIU — make the source current FIRST (all projects, permanent).**
+    USER DIRECTIVE (2026-08-20, verbatim): *"when you are asked to do the build verification the logic says that before that build verification you do the source verification so that you first have the source current with you for each project and then you start build verification or viu on that."*
+    **THE RULE:** whenever **build verification (or a VIU pass) is ordered**, FIRST run the **source verification / currency check** (Rule 31 pre-flight: spec version, epic + child stories, designs, tech plan, PO answers), **fold in any deltas** (Rule 43), and **ONLY THEN** begin build verification / VIU against the now-current source. **A build-verification run against a STALE source is INVALID** — expected behaviour comes from the source (Rule 57), so the source must be current before the build is observed. Source-verification is therefore a **mandatory precursor step of every build-verification / VIU order**, not an optional extra.
+    Ties to Standing Rules 10, 31, 43, 57, 80.
+
 ## Project purpose (Custom Roles project)
 Manual test-case authoring + live staging (Verify-in-UI) verification + TestRail
 management for ShopView **"Custom Roles and Permissions"**, plus related

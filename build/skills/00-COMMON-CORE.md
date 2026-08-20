@@ -1003,6 +1003,14 @@ Rule 78 — piggyback cheap checks onto the next substantive worker; keep a pend
 
 Rule 79 (permanent) — STRATEGY-FIRST: before any task, recall or devise the smartest quota-efficient plan (fewest spawns, batch, detached self-report, piggyback checks, answer-in-text) THEN begin; keep improving it. Umbrella over Rules 75–78.
 
+## Ask before re-running (Standing Rule 80)
+
+Rule 80 (permanent) — before build-verify / source-verify / VIU / any ordered task, STATE when it was last done (date + build/version, from committed records) and ASK before re-running; never auto-re-run a recently-done verification. Pairs with Rule 77 (a check within 3 builds/3 versions still counts — a re-run may be unnecessary).
+
+## Source-verify precedes build-verify (Standing Rule 81)
+
+Rule 81 (permanent) — source-verify FIRST (make the source current, Rule 31; fold deltas, Rule 43), THEN build-verify/VIU against the now-current source; a build-verify against a stale source is INVALID (expected behaviour comes from the source, Rule 57).
+
 ---
 
 # 9 · GIT ON A SHARED, MOVING BRANCH
