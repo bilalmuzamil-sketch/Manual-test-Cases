@@ -28,6 +28,17 @@ python3 build/testing-tools/scan_secrets.py --staged        # exit 1 = BLOCKED
 file holding a cookie is invisible to `--tracked`) · `--all` / `--tracked` = every
 tracked file · `--diff FILE` · **`--selftest`** = prove detection fires.
 
+**FIRST, AT SESSION START:** run `python3 build/testing-tools/make_secret_fingerprints.py`
+so the scanner runs in **FULL mode** (structural patterns **plus** the SHA-256 of the
+credentials we actually hold — the only thing that catches a secret with no recognisable
+shape, such as a short password). **The file it writes lives in `/tmp` and is never
+committed** — a hash of a weak secret is brute-forceable, so even hashes stay out of this
+PUBLIC repo; it is in `.gitignore` as a second guard. `/tmp` is ephemeral, so **re-run it
+in every fresh container**, and again whenever new cookies arrive. Without it the scanner
+prints *"no /tmp/secret-fingerprints.json; structural patterns only"* on every run —
+which is a **narrower** gate than the one you are about to claim you passed. Preflight
+detail: `build/skills/14-ACCESS-RESILIENCE.md` §0.
+
 **If the scanner is missing, that is a FINDING — report it and restore it.** Do **not**
 substitute an ad-hoc `grep` and do **not** report *"scan clean"*. The hook fails the
 commit when the scanner is absent, deliberately: **a guardrail that silently no-ops is

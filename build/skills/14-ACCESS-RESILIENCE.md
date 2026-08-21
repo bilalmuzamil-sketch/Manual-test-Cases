@@ -36,6 +36,23 @@ timestamp UTC).
 | ShopView QA / staging / prod | `GET /index.html` | HTTP 200 + `<meta name="app-version">` captured |
 | Figma | `/v1/files/<key>/nodes?ids=<one node>` | HTTP 200 with node JSON |
 | Slack / Gmail / Drive / Calendar / Fireflies | list/search one item | any 200 — **absence is not a fault** |
+| **Secret scanner (FULL mode)** | `python3 build/testing-tools/make_secret_fingerprints.py` | *"wrote N fingerprints to /tmp/secret-fingerprints.json"* |
+
+**RUN `make_secret_fingerprints.py` AT SESSION START so the scanner runs in FULL mode.** Without
+`/tmp/secret-fingerprints.json` the scanner matches **structural patterns only** — *"this looks like a
+64-hex session cookie"* — and says so on every run: *"no /tmp/secret-fingerprints.json; structural
+patterns only"*. With it, the scanner also matches the **SHA-256 of the actual credentials we hold**,
+which is the only thing that catches a secret with no recognisable shape — a short password, a
+hand-typed key. Proven, not asserted: the tool's `--selftest` plants a deliberately boring fake
+password, and structural-only mode **misses it** while full mode **flags it**.
+
+**The file lives in `/tmp` and is NEVER committed.** A SHA-256 of a short or weak secret is
+brute-forceable offline, so even the hashes must stay out of this PUBLIC repo — the tool **refuses any
+output path outside `/tmp`**, and `secret-fingerprints.json` is in `.gitignore` as a second guard.
+**`/tmp` is ephemeral, so this is a per-container step: re-run it in every fresh session**, and re-run
+it after the QA lead supplies new cookies (new credentials mean new fingerprints). If no credential
+files exist in `/tmp` yet, the tool says so plainly and the scanner stays in structural-only mode —
+that is the honest outcome, not a failure to work around.
 
 **If a preflight FAILS:** do not retry-loop. Drop to the fallback ladder for that system. If the whole
 ladder is exhausted, follow **§7 the unattended BLOCKED protocol** — and keep working on everything
