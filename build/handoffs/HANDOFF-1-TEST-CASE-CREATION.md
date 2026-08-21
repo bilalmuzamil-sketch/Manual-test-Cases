@@ -236,3 +236,5 @@ Write in **plain layman words**, in the simple status format, under these headin
 
 Always name cases as **internal ID + C-ID + link**, and state the **TestRail update status
 explicitly** even when it is "nothing pushed".
+
+Also read build/skills/13-CROSS-SESSION-SAFETY.md (Rules 82–87: real secret-scan gate, lane locks, tester-readiness gate, no-build-yet honesty, verify-from-committed-evidence, case-body snapshots).

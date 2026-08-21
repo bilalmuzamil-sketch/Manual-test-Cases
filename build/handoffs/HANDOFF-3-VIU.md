@@ -253,3 +253,5 @@ Plain layman words, simple status format, these headings:
 
 **Always state the TestRail update status explicitly**, give the honest observed-versus-carried-forward
 split in numbers, and name the build marker every verdict rests on.
+
+Also read build/skills/13-CROSS-SESSION-SAFETY.md (Rules 82–87: real secret-scan gate, lane locks, tester-readiness gate, no-build-yet honesty, verify-from-committed-evidence, case-body snapshots).

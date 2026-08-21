@@ -241,3 +241,5 @@ Plain layman words, simple status format, these headings:
 
 Always **state the TestRail update status explicitly**, even when it is "nothing pushed", and always
 name the build marker the verdicts rest on.
+
+Also read build/skills/13-CROSS-SESSION-SAFETY.md (Rules 82–87: real secret-scan gate, lane locks, tester-readiness gate, no-build-yet honesty, verify-from-committed-evidence, case-body snapshots).

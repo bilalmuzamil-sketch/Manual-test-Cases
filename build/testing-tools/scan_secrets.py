@@ -169,6 +169,16 @@ RULES = [
         "or an environment variable at runtime is not flagged, and neither is a "
         "documentation placeholder such as \"<password>\" or \"your-key-here\".",
     ),
+    (
+        "literal_credential_shape",
+        "MEDIUM",
+        re.compile(r"\b[A-Za-z]{2,}[0-9][A-Za-z]*~[0-9]{3,}"),
+        "A value in the house shape of a real ShopView login credential "
+        "(letters, a digit, a tilde, then digits). This rule exists because a "
+        "credential of exactly this shape is not caught by any keyword rule: it "
+        "carries no 'password' or 'token' label, so it can be pasted into a note, "
+        "a runbook or a step list and every other pattern here will pass it.",
+    ),
 ]
 
 # Binary / vendored content that would only ever produce noise.
@@ -416,6 +426,8 @@ def main():
     ap.add_argument("paths", nargs="*", help="files or directories to scan")
     ap.add_argument("--staged", action="store_true", help="scan the staged diff")
     ap.add_argument("--tracked", action="store_true", help="scan every tracked file")
+    ap.add_argument("--all", action="store_true", dest="all_tracked",
+                    help="alias for --tracked (scan every tracked file)")
     ap.add_argument("--diff", metavar="FILE", help="scan a unified diff ('-' for stdin)")
     ap.add_argument("--selftest", action="store_true", help="prove detection both ways")
     ap.add_argument("--build-fingerprints", action="store_true",
@@ -442,7 +454,7 @@ def main():
                                                         errors="replace").read()
         findings = scan_diff(d, fingerprints)
         what = f"diff {a.diff}"
-    elif a.tracked:
+    elif a.tracked or a.all_tracked:
         files = [f for f in subprocess.run(["git", "ls-files"], capture_output=True,
                                            text=True).stdout.split("\n") if f]
         findings = scan_paths(files, fingerprints)
@@ -451,8 +463,17 @@ def main():
         findings = scan_paths(a.paths, fingerprints)
         what = f"{len(a.paths)} path(s)"
     else:
-        ap.print_help()
-        return 2
+        # No flag = the WORKING TREE: tracked files plus untracked-but-not-ignored
+        # ones. A brand-new file holding a cookie is the likeliest way a secret
+        # reaches this repo, and it is invisible to --tracked until it is added.
+        tracked = subprocess.run(["git", "ls-files"], capture_output=True,
+                                 text=True).stdout.split("\n")
+        untracked = subprocess.run(
+            ["git", "ls-files", "--others", "--exclude-standard"],
+            capture_output=True, text=True).stdout.split("\n")
+        files = [f for f in tracked + untracked if f]
+        findings = scan_paths(files, fingerprints)
+        what = f"{len(files)} working-tree files (tracked + untracked)"
 
     if not fingerprints and not a.quiet:
         print(f"note: no {FINGERPRINT_FILE}; structural patterns only. "

@@ -94,3 +94,21 @@ never mistaken for a live hazard — and never copied.
 **NEVER commit `/tmp/cln/cookies.json` or `/tmp/testrail/creds.json`** — they hold
 live cookies / passwords / API keys and must live only under `/tmp`. The scripts
 in this folder contain no secret values; keep it that way.
+
+### Install the pre-commit secret-scan hook (once per clone)
+
+```sh
+cp build/testing-tools/pre-commit .git/hooks/pre-commit && chmod +x .git/hooks/pre-commit
+```
+
+The hook runs `scan_secrets.py --staged` and **blocks the commit on exit 1**. This
+repository is **PUBLIC**, so a credential that reaches a commit is disclosed the
+moment it is pushed — and rewriting history does not un-disclose it, the value has
+to be rotated. **If the scanner file is missing the hook FAILS the commit rather
+than passing quietly** (Standing Rule 82: a guardrail that silently no-ops is worse
+than none, because it gets reported as having run).
+
+Modes: `--staged` (what git will commit) · no flag (the whole working tree,
+tracked **and** untracked) · `--all` / `--tracked` (every tracked file) ·
+`--diff FILE` · `--selftest` (proves detection fires and that clean text passes).
+Genuine false positives are marked on the line with `scan-secrets:allow`.

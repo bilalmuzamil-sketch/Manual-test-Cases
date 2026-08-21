@@ -369,3 +369,5 @@ what you need.
   merge, do not delete. **One disagreement is already known:** `00-COMMON-CORE.md` §16 states all
   three branches are **FINAL**, while this file carries Rule 60's "never declared final" plus the
   2026-08-10 **per-report** finality ruling — a source-currency question for him.
+
+Also read build/skills/13-CROSS-SESSION-SAFETY.md (Rules 82–87: real secret-scan gate, lane locks, tester-readiness gate, no-build-yet honesty, verify-from-committed-evidence, case-body snapshots).

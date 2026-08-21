@@ -1811,3 +1811,12 @@ Go to these rather than trusting this summary.
 | How a process doc must be written | `build/PROCESS-AUTHORING-STANDARD.md` |
 | Every callable process and its trigger | `build/PROCESS-CATALOG.md` |
 | Per-project cold-resume snapshots | `build/<project>/PROJECT-STATE.md` |
+
+## BEFORE YOUR FIRST WRITE — read `build/skills/13-CROSS-SESSION-SAFETY.md`
+
+Four sessions share one TestRail project, one branch, one staging login and one weekly
+quota, and **a collision between them is silent**. Skill 13 is the operator form of
+**Standing Rules 82–87**: the real secret-scan gate (`scan_secrets.py` + the
+`pre-commit` hook), the lane-lock protocol in `build/LOCKS/`, the tester-readiness gate,
+the "SOURCE-VERIFIED ONLY — NO BUILD EXISTS YET" sentence, verify-from-committed-evidence,
+and the case-body snapshots that make a foreign edit diffable.

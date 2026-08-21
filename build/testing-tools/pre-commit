@@ -1,0 +1,39 @@
+#!/bin/sh
+# pre-commit — refuse the commit if a credential is in the staged diff.
+#
+# INSTALL (once per clone):
+#   cp build/testing-tools/pre-commit .git/hooks/pre-commit && chmod +x .git/hooks/pre-commit
+#
+# This repository is PUBLIC. A credential that reaches a commit is disclosed the
+# moment it is pushed, and rewriting history does not un-disclose it — the value
+# must be rotated. The whole point of this hook is that the cheap moment to stop
+# a secret is BEFORE the commit object exists.
+#
+# Standing Rule 82: the scan gate must be REAL and EXECUTABLE. If the scanner is
+# missing, this hook FAILS THE COMMIT rather than passing quietly — a guardrail
+# that silently no-ops is worse than none, because it is reported as having run.
+
+set -e
+
+REPO_ROOT=$(git rev-parse --show-toplevel)
+SCANNER="$REPO_ROOT/build/testing-tools/scan_secrets.py"
+
+if [ ! -f "$SCANNER" ]; then
+    echo "pre-commit: BLOCKED — $SCANNER is missing." >&2
+    echo "The secret-scan gate cannot run, so this commit is not safe to make." >&2
+    echo "Restore the scanner, or bypass deliberately with --no-verify and say so." >&2
+    exit 1
+fi
+
+if ! python3 "$SCANNER" --staged; then
+    echo "" >&2
+    echo "pre-commit: BLOCKED — a possible credential is in the staged diff." >&2
+    echo "Redact at the point of capture: keep the header/key NAME, replace the VALUE." >&2
+    echo "Secrets belong in /tmp and are read at runtime — never committed." >&2
+    echo "" >&2
+    echo "If this is a genuine false positive, add the marker 'scan-secrets:allow'" >&2
+    echo "to that line and explain why in the commit message." >&2
+    exit 1
+fi
+
+exit 0
