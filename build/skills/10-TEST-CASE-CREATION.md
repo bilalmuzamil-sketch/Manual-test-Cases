@@ -79,6 +79,10 @@ Full texts: `build/rules/RULES-01-20.md` · `RULES-21-40.md` · `RULES-41-60.md`
 
 ## 4 · ALSO MANDATORY FOR THIS SESSION
 
+- **`15-NEW-PROJECT-INTAKE.md`** — **read it the moment the QA lead NAMES a project** (Rules 92/93):
+  the required input set, the committed PRESENT/MISSING intake checklist, the source-currency block, the
+  scaffolding pointer, and the **REVIVAL** path — an existing project starts as a RECONCILIATION of its
+  cases against the current sources, never a fresh authoring run.
 - **`14-ACCESS-RESILIENCE.md`** — read **before the first access call** (Rule 89): primary paths,
   fallback ladders, failure signatures, the **five MCP-hygiene hard rules** (above all: **never edit
   or "repair" shared MCP config to fix a connection**), and the unattended **BLOCKED** protocol.

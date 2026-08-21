@@ -280,6 +280,7 @@ job.** Each file is a complete cold-start specification.
 | `build/skills/12-VIU.md` | **ROUTER** — VIU lane. Points at `00` → `02` → `03` → `01` → `04` → `06`. **No procedure of its own** |
 | `build/skills/13-CROSS-SESSION-SAFETY.md` | Before the first write of any lane session (Rules 82–87 as commands) |
 | `build/skills/14-ACCESS-RESILIENCE.md` | Keeping a working path to TestRail / Jira / ShopView / Figma; MCP hygiene (Rule 89) |
+| `build/skills/15-NEW-PROJECT-INTAKE.md` | **The moment a project is NAMED** — required input set, PRESENT/MISSING intake checklist, source-currency block, and the REVIVAL path (Rules 92–93) |
 | `build/skills/COVERAGE-MATRIX.md` | Checking that a session learning is actually carried by a skill |
 | `build/skills/STATE.md` | Resuming work ON the skills themselves |
 | `build/handoffs/README.md` | Three copy-paste lane briefings for a fresh session |

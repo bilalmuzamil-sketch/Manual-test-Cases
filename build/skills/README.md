@@ -57,6 +57,7 @@ stopped there, which left six files undocumented)
 | [`00-COMMON-CORE.md`](00-COMMON-CORE.md) | **The shared core — read it first, always.** Its own routing table says which section covers what. **§16.0 = the CURRENT finality position (the branches are NOT final); §16.1 = the superseded 2026-08-11 "FINAL" text, kept dated** |
 | [`13-CROSS-SESSION-SAFETY.md`](13-CROSS-SESSION-SAFETY.md) | **Rules 82–87** — the real secret-scan gate, lane write locks, the tester-readiness gate, no-build-yet honesty, verify-from-committed-evidence, case-body snapshots. **Read it when more than one session is live** |
 | [`14-ACCESS-RESILIENCE.md`](14-ACCESS-RESILIENCE.md) | **Rule 89** — primary path and fallback ladder per system, the session-start preflight, failure signatures, the **five MCP-hygiene hard rules**, the unattended **BLOCKED** protocol. **Read it BEFORE the first access call** |
+| [`15-NEW-PROJECT-INTAKE.md`](15-NEW-PROJECT-INTAKE.md) | **Rules 92–93** — the project-agnostic intake for ANY newly named project: the required 7-input set, the committed PRESENT/MISSING checklist, the source-currency block, the scaffolding pointer, and the **REVIVAL** variant (an existing project starts as a RECONCILIATION, never fresh authoring). **Read it the moment the QA lead names a project** |
 | [`COVERAGE-MATRIX.md`](COVERAGE-MATRIX.md) | The completeness proof skill `01` owes — the requirement→case map, both directions |
 | [`STATE.md`](STATE.md) | Where this skill set itself stands |
 
