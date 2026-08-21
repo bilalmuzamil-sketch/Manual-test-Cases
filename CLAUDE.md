@@ -20,8 +20,8 @@ The previous CLAUDE.md was **738 KB / roughly 183,000 tokens**, and it was **TRU
 AT RULE 62**. Sessions were therefore running with **Rules 63–88 SILENTLY ABSENT** while believing
 they had read the whole file. A rule you have never seen is a rule you will break.
 
-**THEREFORE: NEVER ASSUME YOU HAVE SEEN ALL THE RULES.** There are **88 numbered Standing Rules**
-(89 and 90 land in the same files as they are written). Count them in the index below. If you are
+**THEREFORE: NEVER ASSUME YOU HAVE SEEN ALL THE RULES.** There are **90 numbered Standing Rules**.
+Count them in the index below. If you are
 about to apply a rule, open its file and read it. **NEVER read
 `build/rules/CLAUDE-FULL-ARCHIVE-2026-08-21.md` whole** — it will exhaust your context exactly as the
 old file did; grep it, or read the relevant `RULES-*.md`.
@@ -86,7 +86,7 @@ These are stated here **in full** because a session that gets only this far must
 
 ---
 
-## 2 · THE RULE INDEX — all 88 rules, and where each one lives
+## 2 · THE RULE INDEX — all 90 rules, and where each one lives
 
 **Read the rule in its file before applying it.** One line per rule; the line is a locator, not the
 rule. Generated from the split files' own headers.
@@ -167,7 +167,7 @@ rule. Generated from the split files' own headers.
 | **59** | RE-READ THE SOURCES IMMEDIATELY BEFORE THE WRITES BEGIN — a second currency check, not only the |
 | **60** | THE BUILD WILL NEVER BE DECLARED FINAL — SEPARATE WHAT DEPENDS ON THE BUILD FROM WHAT DOES NOT |
 
-### `build/rules/RULES-61-90.md` — rules 61–88
+### `build/rules/RULES-61-90.md` — rules 61–90
 
 | # | Rule (short title) |
 |---|---|
@@ -199,8 +199,12 @@ rule. Generated from the split files' own headers.
 | **86** | CROSS-SESSION TRUST — VERIFY FROM COMMITTED EVIDENCE, NEVER FROM A SESSION'S SELF-REPORT; AND... |
 | **87** | SNAPSHOT CASE BODIES SO A FOREIGN EDIT IS ALWAYS DIFFABLE (all projects, permanent) |
 | **88** | LANE-SESSION CONTEXT DISCIPLINE — a session WITH direct tools must never bulk-read; script it |
+| **89** | ACCESS RESILIENCE AND MCP HYGIENE — every session keeps a working path to every source, and |
+| **90** | SHARED-QUOTA BUDGET ALLOCATION ACROSS SESSIONS (all projects) |
 
-**Rules 89 and 90** are recorded in `build/rules/RULES-61-90.md` alongside 61–88 (see §6 below).
+**Rules 89 (access resilience + MCP hygiene) and 90 (shared-quota budget allocation)** were added
+2026-08-21 and live in `build/rules/RULES-61-90.md` with 61–88. Rule 89's operator form is
+`build/skills/14-ACCESS-RESILIENCE.md`.
 
 ---
 

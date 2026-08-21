@@ -1,6 +1,6 @@
 # ShopView QA — Standing Rules 61–90
 
-This file holds the FULL, VERBATIM text of Standing Rules 61–88 (rules 89–90 are added in later passes).
+This file holds the FULL, VERBATIM text of Standing Rules 61–90.
 
 Full archive: build/rules/CLAUDE-FULL-ARCHIVE-2026-08-21.md
 Index: CLAUDE.md (rule index table). Other rule files: build/rules/RULES-01-20.md, build/rules/RULES-21-40.md, build/rules/RULES-41-60.md, build/rules/RULES-61-90.md
@@ -1561,3 +1561,117 @@ Index: CLAUDE.md (rule index table). Other rule files: build/rules/RULES-01-20.m
     it is not skipped), 75 (the detached long-job pattern), 76 (**the orchestrator's minimise-spawns
     discipline, which this rule deliberately INVERTS for a lane**), 78 (context is a budget), 79 (one
     pass, then exit) and 86 (report the spend).
+89. **ACCESS RESILIENCE AND MCP HYGIENE — every session keeps a working path to every source, and
+    never corrupts a connector (all projects, permanent).**
+    USER DIRECTIVE (2026-08-21, verbatim): *"all the sessions will have to run unattended, and they
+    would need access to Jira/testrail/Shopview QA and Staging and Production environment and other
+    sources like Figma etc, it happene din this session that the MCP connection were broken and we
+    could not again reconnect and we had to use the workarounds, make sure that the other sessions
+    remains capable of using workarounds to connect to Jira/figma/Testrail and Shopview environments
+    etc but at the same time the MC connector method never goes corrupt in those sessions for any
+    connection."*
+    **THE RULE HAS TWO HALVES AND THEY ARE EQUALLY BINDING: (1) NEVER BE BLOCKED — every system has a
+    PRIMARY path AND a FALLBACK ladder, and a session drops down the ladder rather than downing tools;
+    (2) NEVER CORRUPT THE CONNECTOR — no session may edit, delete or "repair" shared MCP configuration
+    to fix a connection.** The second half is the one that outlives your session: a broken connection
+    is recoverable in minutes, **a mutated config stays corrupt for every future session.**
+    **THE OPERATOR FORM IS `build/skills/14-ACCESS-RESILIENCE.md`** — the per-system ladders, the
+    preflight commands, the failure signatures and the traps live there and are NOT duplicated here.
+    Read that file before the first access call of any session.
+    **(a) THE SESSION-START PREFLIGHT IS MANDATORY.** Run the one-call preflight for **every** system
+    the session will need, **at session start**, and **RECORD the results** (system · path used ·
+    verdict · UTC timestamp) in the session's findings file. It is cheap, and it converts a mid-run
+    surprise into a known starting condition. **TestRail** `get_case` → 200 · **Jira/Confluence** a
+    known key/page → 200 · **ShopView** `index.html` → 200 **plus the `<meta name="app-version">`,
+    `last-modified` and `etag`** (which is also the Rule-49 build marker, so this preflight is never
+    wasted) · **Figma** one `nodes` call → 200 · the **Slack/Gmail/Drive/Calendar/Fireflies**
+    connectors, one list/search — **and their ABSENCE is expected, not a fault.**
+    **(b) THE PRIMARY / FALLBACK LADDERS, in one line each (detail in skill 14).** **TestRail** —
+    PRIMARY the REST API v2 with Basic auth from `/tmp` (**no MCP is involved, which is why it is the
+    sturdiest access we own**), FALLBACK the web UI driven by Playwright for what the API cannot do.
+    **Jira/Confluence** — PRIMARY the Atlassian MCP tools, FALLBACK the live browser login of
+    `build/ATLASSIAN-JIRA-ACCESS-METHOD.md` (**the MFA race is the crux: each password submit
+    invalidates the previous OTP, so hold ONE detached session parked at the prompt and NEVER start a
+    fresh run to retry**); ShopView/Cloudflare cookies do **not** authenticate `atlassian.net`.
+    **ShopView QA/staging/production** — PRIMARY `/tmp` cookies plus `POST /api/quick-login`, FALLBACK
+    the API and the UI substituting for each other in either direction, with production's own gotchas
+    in `build/APP-ACTIONS-PLAYBOOK.md` §K; Playwright needs a **FRESH MITM bridge per run** (the port
+    rotates — read `$HTTPS_PROXY` live) and the **`boot2` hydration pattern**. **Figma** — PRIMARY the
+    Figma MCP tools, FALLBACK REST `/v1/files/.../nodes` and `/v1/images` with the token from
+    `/tmp/figma-token`, and a **429 opens the Rule-35 queue with DUE-AT = error time + 9 h, repeated
+    until 100 % of the frames are down.**
+    **(c) THE FAILURE SIGNATURE THAT IS MOST OFTEN MISREAD: ShopView `HTTP 401 sso_required` means
+    EITHER the cookies died (~24 h) OR A DEPLOY HAPPENED — check the build marker BEFORE concluding
+    expiry.** The whole `.qa.shopview.com` estate dies together, so one project's cookie failing
+    against another project's API is ordinary expiry, not that project's problem.
+    **(d) THE FIVE MCP-HYGIENE HARD RULES.** **(1) NEVER EDIT, DELETE OR "REPAIR" SHARED MCP
+    CONFIGURATION TO FIX A CONNECTION** — not a server definition, not `settings.json`, not an env var a
+    connector reads; if a config genuinely looks wrong, **report it with the evidence and let the QA
+    lead decide** (Rules 6/72 — propose, never self-authorise). **(2) IF AN MCP TOOL IS MISSING OR
+    ERRORING, RE-DISCOVER IT WITH `ToolSearch` FIRST** — deferred tools are name-only until their schema
+    is fetched, so *"not in my list"* usually means *"not yet loaded"* — **and only THEN fall back.**
+    **(3) DO NOT RETRY-LOOP** — repeated identical calls burn quota for nothing and can trip a rate
+    limit that then blocks the fallback too. **(4) NEVER DISABLE TLS VERIFICATION AND NEVER UNSET
+    `HTTPS_PROXY`** — on a TLS failure or a 403/405/407 from the proxy, read `/root/.ccr/README.md` and
+    run `curl -sS "$HTTPS_PROXY/__agentproxy/status"`; weakening transport security to make a call
+    succeed is never an acceptable workaround. **(5) AN INTERACTIVELY-AUTHENTICATED MCP SERVER MAY
+    SIMPLY BE ABSENT IN A HEADLESS/UNATTENDED RUN — THAT IS EXPECTED, NOT BREAKAGE:** do not attempt to
+    re-authenticate it or script an OAuth flow; the fallback path is the answer. **AND RECORD EVERY
+    CONNECTOR FAILURE PLUS THE WORKAROUND USED** in the session's findings file — the books are the only
+    channel between sessions (Rule 27), so an unrecorded failure is one the next session re-hits.
+    **(e) THE UNATTENDED PROTOCOL — degrade honestly, never stall and never invent.** If a credential is
+    missing or expires mid-run, write **`BLOCKED-<system>.md`** naming exactly what is needed, what it
+    blocks with the named cases (internal ID + C-id + link, Rule 8), what is **not** blocked, and the
+    steps to resume; **COMMIT it** (Rule 29); **then continue with the work that does not need that
+    system** — a blocker blocks only what it actually blocks (Rule 68); and report it under
+    **"OUTSTANDING — what I need from you"** (Rule 36). **NEVER fabricate a result, never infer an
+    observation, never mark verified what was not observed** (Rule 12): the honest sentence is *"N of M
+    observed on build `<marker>`; the remaining M−N carry their last recorded check"*, never *"the suite
+    is current"* (Rule 60). **Secrets stay in `/tmp` at `chmod 600` and are NEVER committed — not in a
+    log, not in an error paste, not in a `BLOCKED-*.md`**: name the credential you need, never quote its
+    value, and run the real scanner before every commit (Rule 82).
+    **RATIONALE, 2026-08-21:** in a live session the **MCP connections broke and could not be
+    reconnected**, and the work finished only because documented workarounds existed. Two lessons came
+    out of it. First, **an unattended session cannot ask for help**, so the ladder has to be written
+    down in advance — which is why the preflight is mandatory rather than advisory. Second, and the
+    reason for the hygiene half: the instinct when a connector fails is to *fix the config*, and that is
+    precisely the move that turns a one-session outage into a permanent one for every session that
+    follows. Ties to Standing Rules 6 (nothing written to a system of record without permission), 12
+    (observed, never inferred), 22 (ask for the live-build check and its access UP FRONT), 27 (reuse the
+    recorded recipe; record a new one immediately — the books are the shared brain), 29 (no work loss —
+    the `BLOCKED-*.md` is committed), 35 (the Figma retry queue), 36 (an access gap is an OUTSTANDING
+    item), 49 (the build marker comes free with the ShopView preflight), 50 (exhaustive and exact), 68
+    (prove the blocker; it blocks only what it blocks), 72 (propose a change, never self-authorise it),
+    76 (do not spend spawns or quota retry-looping), 82 (the real secret-scan gate), 83 (lane write
+    locks — never steal a shared login) and 88 (script the bulk work rather than reading it).
+90. **SHARED-QUOTA BUDGET ALLOCATION ACROSS SESSIONS (all projects).**
+    **THE WEEKLY QUOTA IS ONE POOL, SHARED BY THE MAIN SESSION AND EVERY LANE.** There is no per-session
+    allowance that a lane can spend freely: every token a lane burns is a token the orchestrator and the
+    other lanes no longer have. A lane that treats its own budget as private is spending someone else's.
+    **THE DEFAULT ALLOCATION — adjustable by the QA lead at any time:** **main / orchestrator 15 %** ·
+    **each lane session 25 %** · **10 % reserve.** The main session's share is deliberately the smallest
+    because its job is to plan, delegate and synthesise (Rule 76 — minimise spawns; Rule 79 —
+    strategy-first), not to do the bulk work itself.
+    **EVERY LANE REPORTS ITS SPEND WITH ITS WORK** (Rule 86) — the report states what was consumed
+    against what was produced, so the orchestrator can re-allocate on evidence instead of impression.
+    **THE TRIPWIRE, AT 50 % OF A LANE'S OWN BUDGET (Rule 88's discipline made numeric):** the lane
+    **compares spend against work completed**, and **if spend is outpacing progress it STOPS AND
+    REPORTS** rather than pressing on. Stopping at half-spend with an honest position is recoverable;
+    discovering at 100 % that the budget bought a third of the job is not.
+    **THE MAIN SESSION MAY RE-ALLOCATE** between lanes as work demands — that is the point of holding
+    the pool centrally.
+    **THE RESERVE IS NOT AVAILABLE TO A LANE ON ITS OWN INITIATIVE: a lane must NEVER consume the 10 %
+    reserve without the QA lead's say-so.** The reserve exists for recovery — finishing an interrupted
+    write sequence, a genuine emergency, a re-check that cannot wait — and a reserve quietly absorbed
+    into ordinary work is not a reserve at all.
+    **HONESTY CLAUSE:** a percentage is a budget, not a target. Under-spending a lane's share while
+    delivering the job is a **good** outcome, and a lane that finishes early says so rather than finding
+    more work to fill the allowance. Equally, a lane must not smuggle an over-spend past the tripwire by
+    redefining what "progress" meant at the start — the comparison is against the work the lane was
+    briefed to do.
+    Ties to Standing Rules 29 (no work loss — a stop at the tripwire is a checkpoint, not an
+    abandonment), 75 (the detached long-job pattern is what makes a lane's spend predictable), 76 (every
+    spawn pays the full context tax), 78 (context is a budget, and this rule makes the budget explicit),
+    79 (devise the quota-efficient plan BEFORE starting), 86 (report the spend; verify from committed
+    evidence, never from a session's self-report) and 88 (a lane scripts its bulk work precisely so its
+    share buys work rather than reading).

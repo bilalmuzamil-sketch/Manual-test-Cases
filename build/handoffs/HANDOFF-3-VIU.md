@@ -259,3 +259,21 @@ Also read build/skills/13-CROSS-SESSION-SAFETY.md (Rules 82–87: real secret-sc
 ---
 
 **Rule 88 — LANE-SESSION CONTEXT DISCIPLINE:** never read `CLAUDE.md` end-to-end (grep it); never bulk-read case bodies or CSVs into context (script it to a file, read a bounded summary); batch writes in a script; long jobs use the Rule-75 detached pattern with progress in commit messages; do NOT spawn subagents for work you can do directly; stop and report at the budget tripwire.
+
+---
+
+## ACCESS + QUOTA — added 2026-08-21 (Standing Rules 89 & 90)
+
+> **🔴 [`../skills/14-ACCESS-RESILIENCE.md`](../skills/14-ACCESS-RESILIENCE.md) — read it BEFORE the first access call of
+> this session.** It carries **Standing Rule 89**: the PRIMARY path and FALLBACK ladder for TestRail,
+> Jira/Confluence, ShopView QA/staging/production and Figma; the **mandatory session-start preflight**;
+> the failure signatures (notably **ShopView `401 sso_required` = dead cookies OR a deploy — check the
+> build marker first**); the **five MCP-hygiene hard rules** (above all: **never edit, delete or
+> "repair" shared MCP configuration to fix a connection** — a mutated config stays corrupt for every
+> future session); and the **unattended BLOCKED protocol** (write and commit `BLOCKED-<system>.md`,
+> keep working on what is not blocked, never fabricate a result).
+>
+> **Standing Rule 90 — the weekly quota is ONE shared pool:** main/orchestrator **15 %** · each lane
+> **25 %** · **10 % reserve**. **Report your spend with your work**; at **50 % of your own budget**
+> compare spend against work completed and **STOP AND REPORT if spend is outpacing progress**; **never
+> consume the reserve without the QA lead's say-so.** Full texts: `build/rules/RULES-61-90.md`.
