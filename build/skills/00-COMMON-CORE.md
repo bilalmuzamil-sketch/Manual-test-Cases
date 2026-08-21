@@ -40,7 +40,7 @@
 | **13** | finish any deliverable |
 | **14** | stamp a provenance line — **the read-date every source now carries** |
 | **15** | set, move or trust an `AUTOMATION:` marker — **including §15.1a, where a HOLD disarms a runnable case** |
-| **16** | describe a branch as final, or a finding as provisional |
+| **16** | describe a branch as final, or a finding as provisional — **§16.0 is current (NOT final, until release day); §16.1 is SUPERSEDED**, and §16.0 carries the Rule-91 badge scheme |
 | **17** | **do anything at all on a named project** — the identifiers, so nothing is guessed |
 
 ---
@@ -1702,10 +1702,72 @@ behind an old one.** **Ticket status is NEVER read as evidence about the build.*
 
 ---
 
-# 16 · FINALITY — all three branches are FINAL, and what that does and does not mean
+# 16 · FINALITY — the branches are **NOT** final; they are updated until release day
 
-**⚠️ THIS SUPERSEDES THE LONG-STANDING "the branches will never be declared final" POSITION. The old
-wording is kept dated in `CLAUDE.md` rather than deleted; do not quote it.**
+## 16.0 · THE CURRENT POSITION (2026-08-21) — THIS IS THE ONE TO APPLY
+
+**⚠️ THE 2026-08-11 "the branches are FINAL" POSITION AT §16.1 BELOW IS SUPERSEDED FROM 2026-08-21.
+It is kept visible and dated rather than deleted — the Rules 32/33 pattern, latest wins and the
+earlier ruling stays readable — but it is NOT the position to apply, and it must not be quoted as
+current.**
+
+**QA-LEAD DIRECTIVE (2026-08-21, verbatim, his typing preserved because Rule 25 applies to his
+instructions as it does to a spec):** *"The branches are continuously being updated as the adhoc
+desiions are being made they it looks like they will never be final until the release day- So when we
+say that our test cases are Build verified asay that with a sheck mark green and date to tell if they
+were recently build verified and orange if they were build verified but the dat eis like a week old
+and red if the build verified was more than 2 weeks old tell the date with that and a X croxx if the
+build verification has not been done."*
+
+**SO, PLAINLY: THE BRANCHES ARE NOT FINAL.** They are **continuously updated as ad-hoc decisions are
+made**, and **they will not be final until release day.** Consequences, and they are the exact
+reverse of §16.1:
+
+- **RULES 49 AND 60 APPLY IN FULL.** Rule 60's never-final strategy is **back in force**, and Rule
+  49's provisional-findings discipline with it.
+- **FINDINGS ARE PROVISIONAL AGAIN.** A verdict is recorded with its build marker and stays
+  **PROVISIONAL** until the branch is final — which is now expected only at release.
+- **A GAP IS TREATED AS POSSIBLY-UNFINISHED, NOT AUTOMATICALLY A DEFECT.** This is the substantive
+  reversal: §16.1 removed that ambiguity, and this ruling puts it back. Where a feature is absent or
+  incomplete, the honest reading is *"this may not be finished yet"*, and it is written that way.
+- **THE "AN OPEN QUEUE IS THE NORMAL STEADY STATE" FRAMING IS REINSTATED** — §16.1 retired it on the
+  premise that finality had arrived; that premise is withdrawn. An OPEN Rule-49 queue is again the
+  ordinary condition of an active project, a living work list rather than a failure. **The close
+  condition is unchanged and is NOT lowered:** a queue closes only when 100 % of its rows are
+  re-verified with fresh evidence, and Rule 60 may never be cited to close a queue with rows
+  unverified.
+- **EVERY VERIFICATION CLAIM NOW CARRIES A FRESHNESS BADGE — Standing Rule 91**, the other half of
+  this same directive: **✅ ≤ 7 days · 🟠 8–14 days · 🔴 > 14 days · ❌ never build-verified**, always
+  with the **date** and the **build marker** (or, for source verification, the **spec version**). **A
+  bare tick is non-compliant** (Rule 12 — a claim carries its evidence). Tool:
+  `build/testing-tools/verification_badge.py` (requires an explicit `--today`).
+- **RULE 91 DOES NOT WEAKEN RULE 77.** Rule 77 remains the **VALIDITY** test (a check within the last
+  3 builds / 3 source versions still **counts**); Rule 91 is the **VISIBILITY** layer. A case can be
+  inside Rule 77's window and still show 🟠 or 🔴 — intended honesty, not a contradiction.
+
+**⚠️ ONE NUANCE, RECORDED AS FACT AND NOT RESOLVED BEYOND HIS WORDS: HAND-OFF STATUS AND BRANCH
+FINALITY ARE TWO SEPARATE DIMENSIONS.** The **2026-08-10 per-report ruling** recorded that three
+Report Suite reports — **WORK IN PROGRESS · TECHNICIAN UTILIZATION · SALES BY CUSTOMER** — had been
+**HANDED OFF to QA**, and the 2026-08-11 ruling then reported all six handed off. **Hand-off is a
+statement about which features have reached QA; branch finality is a statement about whether the code
+has stopped changing.** **Today's ruling governs BRANCH FINALITY, and it says: not final until
+release day.** It says nothing about hand-off, and nothing here withdraws the hand-off record. **What
+follows from that for a report handed off but on a non-final branch is NOT stated by him and is NOT
+decided here** — where a case turns on the difference, it is **held and asked** (Rules 6/11/63), never
+inferred.
+
+---
+
+## 16.1 · SUPERSEDED 2026-08-21 — the 2026-08-11 "all three branches are FINAL" position
+
+**🛑 SUPERSEDED. KEPT FOR THE RECORD ONLY — DO NOT APPLY, DO NOT QUOTE AS CURRENT. Read §16.0 above.**
+It is preserved because a silently-erased ruling is how a session re-derives a withdrawn position and
+presents it confidently; the reversal itself is part of the record.
+
+**⚠️ [AS WRITTEN 2026-08-11] THIS SUPERSEDES THE LONG-STANDING "the branches will never be declared
+final" POSITION. The old wording is kept dated in `CLAUDE.md` rather than deleted; do not quote it.**
+*(That sentence is itself now overtaken — the "never final" position it superseded is, in substance,
+what §16.0 restores.)*
 
 **Sequence, both rulings verbatim:** on **2026-08-11** the QA lead confirmed *"note that ALL 6 reports
 have been handed off now."*, making the **Report Suite** branch final; **later the same day** he said
@@ -1737,6 +1799,14 @@ trigger is **a specific observed contradiction, never a changed app-version stri
 · Parts Velocity 71 · Inventory Value 68) — against **331 build-verified**, and **433 + 331 = 764**,
 the three suites in full. *(Those figures are as recorded on that date and move; derive live before
 quoting — §1.7. The arithmetic correction behind them is at §1.5a.)*
+
+**— END OF THE SUPERSEDED 2026-08-11 POSITION. The position in force is §16.0: the branches are NOT
+final until release day, findings are PROVISIONAL, a gap is possibly-unfinished, and every
+verification claim carries a Rule-91 badge with its date. Note that ONE part of §16.1 survives
+unchanged and is NOT superseded — the caveat that a redeploy still invalidates the on-screen labels
+and the pass/fail verdict (Rule 60 layers 1–2), together with the bug-fix-deploy amendment in skill
+`03` §6.1: the re-check trigger is a specific observed contradiction, never a changed app-version
+string. That was true under finality and is true without it.**
 
 ---
 
