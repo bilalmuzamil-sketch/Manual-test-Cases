@@ -844,6 +844,29 @@ with `sv_sso_session` and `cf_clearance` **byte-identical** to the set that was 
   projects render that markup LITERALLY to the manual tester**, who then cannot follow the case.
   Converter + evidence: `build/markup-regression-2026-08-10/` (`TRACE.md`, `demark.py`,
   `exec_repair.py`); 40 cases repaired 2026-08-10, census afterwards **0 of 282**.
+- **🔧 REPAIR RECIPE — THE BARE-`\n`-INSIDE-`<p>` COLLAPSE, AND THE TWO WAYS TO FIX IT (proven
+  2026-08-21; this is the *repair* half of hazard #5 and of the wrap-block bullet above, both of which
+  describe the defect but not how to undo it).**
+  **THE DEFECT, in one line:** a text field stored as `<p>…</p>` containing **bare `\n` and NO `<br>`**
+  renders to the manual tester as **ONE COLLAPSED RUN-ON PARAGRAPH** — numbered steps arrive as a wall
+  of text. Inside a single `<p>` block TestRail turns **no** internal whitespace into a line break, so
+  `\n`, `\r\n` and `\n\n` all collapse. **The fix is `<br>` tags.**
+  **PATH (a) — API `update_case`.** Rewrite the field with explicit `<br>` where the breaks belong.
+  **Change ONLY the line breaks — never a word of the wording** (Rule 57: a reflow is formatting, not
+  a re-authoring). Send all three text fields + `refs` on the payload (normalisation #3) and byte-verify.
+  **PATH (b) — THE UI "." TRICK**, for a field the API cannot clean while the wrap block is active:
+  open `https://shopview.testrail.io/index.php?/cases/edit/<id>` → **append `.` to the Title** → Save
+  (this pushes the whole case through TestRail's HTML pipeline, converting `\n` → `<br>`) → reopen →
+  **remove the `.`** → Save. Two writes, title back to byte-identical.
+  **⚠️ DANGER — THE "." TRICK *COLLAPSES* A FIELD THAT IS ALREADY BARE-`\n`-INSIDE-`<p>`-WITH-NO-`<br>`.**
+  On such a field the pipeline preserves the single `<p>` and the `\n`s, so the trick makes the run-on
+  paragraph **permanent** instead of fixing it. **Those cases must be API-rewritten (path a) FIRST**,
+  then the trick is safe on the rest. **DETECT before choosing a path**, on **MID-TEXT** newlines only:
+  `('\n' in text and '<p' in text.lower() and '<br' not in text.lower())`.
+  **⚠️ FALSE POSITIVE THAT COST TWO WASTED PASSES (2026-08-21) — A LONE *TRAILING* `\n` AFTER `</p>` ON
+  A SINGLE-LINE FIELD IS HARMLESS.** There is no mid-text break to lose, nothing renders wrong, and
+  **rewriting it INJECTS A SPURIOUS BLANK LINE** the tester then sees. **Leave it alone.** Strip the
+  trailing newline before applying the detector, or it flags every clean single-line field in the suite.
 - **🛑 DECLARED HAZARD #4 — EDITING A JIRA DESCRIPTION *DESTROYS* ANY PASTED IMAGE WHOSE MEDIA NODE
   YOU DO NOT CARRY INTO THE NEW BODY, AND THE DELETION IS NOT IN THE CHANGELOG (proven the hard way
   2026-08-06, Report Suite ticket reformat).** This one is in §J rather than the Jira section because

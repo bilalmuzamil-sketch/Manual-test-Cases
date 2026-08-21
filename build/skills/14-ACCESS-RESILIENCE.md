@@ -91,7 +91,20 @@ HTTP 429 ⇒ back off; do not hammer.
   ≤ 248 chars. Verify under `','.join(p.strip() for p in s.split(','))`.
 - **`get_sections` NEEDS PAGING.** 625 sections exist; an unpaged call returns 250 and **silently finds
   ZERO** of a project's sections. Page it, always.
-- **`add_case` REQUIRES** `custom_atmstatus: 3` + `custom_automation_type: 0`.
+- **`add_case` MUST SEND** `custom_atmstatus: 1` (= "Not Automated") + `custom_automation_type: 0`.
+  **NEVER `3`** — `3` is *Automated*, Vladimir Tomovic's own flag, and a case born `3` corrupts the
+  Rule-65 tell-Vlad signal. (Corrected 2026-08-21; this line previously said `3`, matching the wrong
+  instruction the playbook corrected on 2026-08-11.)
+- **BARE `\n` INSIDE `<p>` WITH NO `<br>` RENDERS AS ONE COLLAPSED RUN-ON PARAGRAPH** — unreadable to
+  the tester. **The fix is `<br>` tags**, by either API `update_case` (rewrite the breaks only, never
+  the wording) or the **UI "." trick** (edit the case, append `.` to the Title, Save, reopen, remove
+  the `.`, Save — which puts the text through TestRail's HTML pipeline). **⚠️ The "." trick COLLAPSES a
+  field that is already bare-`\n`-in-`<p>`-with-no-`<br>`, so those must be API-rewritten first**;
+  detect on **mid-text** newlines with
+  `('\n' in text and '<p' in text.lower() and '<br' not in text.lower())`. **⚠️ A lone TRAILING `\n`
+  after `</p>` on a single-line field is HARMLESS — rewriting it injects a spurious blank line, so
+  leave it.** Full recipe: `build/APP-ACTIONS-PLAYBOOK.md` §J "REPAIR RECIPE — THE BARE-`\n`-INSIDE-`<p>`
+  COLLAPSE".
 - **`update_run` REPLACES the run's selection** — a partial `case_ids` list **DELETES the omitted tests
   AND their recorded results**. **Union only** (Rule 34/47), snapshot `get_tests` +
   `get_results_for_run` before, verify every prior result present BY ID after.
