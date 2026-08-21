@@ -2143,3 +2143,12 @@ were stale). Sources: `build/report-suite/build-verify-2026-08-18/{TU,WIP,IV}-SW
   (C30428/30430/30432/30433 + C30431 HOLD). Not a defect; re-check when the link ships.
 - **RS-SWEEP-WIPPO — WIP tab-placement PO question** (S2-R4 vs SV-9027 line-state Key Decision) still owed by
   Chris Ward — not forced from the build (Rules 32/57/58).
+
+---
+## Invoice UI Refresh — intake 2026-08-21 (test-case creation lane)
+| # | What is missing | Who owes it | What it BLOCKS | Since |
+|---|---|---|---|---|
+| IUR-1 | **Authoring go-ahead** — permission to begin authoring cases from the v38 spec | QA lead | All case authoring. Input set is complete enough (5/7); Rule 1 satisfied | 2026-08-21 |
+| IUR-2 | **TestRail target section** for Invoice UI Refresh (confirm proposed new section, or name one) | QA lead | Staging any TestRail import/push. Not authoring | 2026-08-21 |
+| IUR-3 | **TestRail credentials** at `/tmp/testrail/creds.json` | QA lead | Greenfield-confirmation read + any push | 2026-08-21 |
+| IUR-4 | **QA branch / env + feature-flag state** (or confirm "no build yet") | QA lead / dev (Stefan? — dev not named) | Build verification. Cases are source-verified-only (Rule 85) until then | 2026-08-21 |
