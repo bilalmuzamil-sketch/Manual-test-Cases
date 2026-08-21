@@ -1,5 +1,25 @@
 # OUTSTANDING ITEMS REGISTER — everything we are waiting on, across every project
 
+## 🆕 2026-08-21 — PROJECT INDEX LIVE REFRESH. **THE CLAUDE.md INDEX NUMBERS WERE CARRIED OVER, NOT MEASURED — AND SIX OF THEM WERE WRONG. TWO EPICS WE RECORDED AS NON-EXISTENT EXIST. EVERY PROJECT'S SPEC HAS MOVED.** Evidence: `build/PROJECT-INDEX-REFRESH-2026-08-21.md`
+
+**Live this pass:** TestRail API (200) · Atlassian MCP Confluence + Jira (200) · unauthenticated
+`index.html` build markers. **0 writes anywhere** (no TestRail, no Jira, no app driving).
+
+| ID | What is missing / found | Who owes it | What it BLOCKS | Since |
+|---|---|---|---|---|
+| **R1** | **Fresh app cookies** (`sv_sso_session` 64-hex · `PHPSESSID` 32-hex · `cf_clearance`), naming the host. All stored sets return **HTTP 401**. | QA lead | **Every live verdict on every project.** Only unauthenticated build-marker reads were possible today. `build/BLOCKED-shopview-app-session.md` | 2026-08-21 (re-raise) |
+| **R2** | **Is Global Search still POSTPONED?** Its epic now exists — **[SV-9160](https://shopview.atlassian.net/browse/SV-9160)**, Open, created **2026-08-12**, **24 children** (verified two ways) — and its PRD page moved **2026-08-20**. Our record said "Epic key NOT AVAILABLE YET". | QA lead | Whether its **86 live cases** (group 4094, all ours — they ARE in TestRail, contrary to our record) get a build badge at all. They are **❌ never build-verified**. `build/BLOCKED-global-search-build.md` | 2026-08-21 |
+| **R3** | **The 12 Confluence version integers.** Access is fine; the only version-bearing MCP call returns the whole page body (~8k tokens each). Measured one: **Inventory Value = v10** against our recorded **v5**. | us (a dedicated pass) **or** an Atlassian API token in `/tmp` from the QA lead | Rule-42 `refs` pins and Rule-54 provenance lines cannot name the live version; the six Report Suite spec diffs cannot be scoped. `build/BLOCKED-confluence-version-integers.md` | 2026-08-21 |
+| **R4** | **Is `sv8582.qa.shopview.com` retired?** → **HTTP 502, three attempts**. Report Suite verification has in fact moved to `app.staging.shopview.com` (reachable, 200). | QA lead (one sentence) | Only a historic build marker; **no working lane is blocked**. `build/BLOCKED-qa-branch-sv8582.md` | 2026-08-21 |
+| **R5** | **Every project's spec page has moved since our last source check** — Filters, Schedule and Global Search **yesterday (2026-08-20)**; all six Report Suite specs on **2026-08-13 or 2026-08-20**. No diff was attempted this pass. | us, on the QA lead's go-ahead | Rule-43 per-requirement reconciliation on all three active projects. Source badges: Report Suite 🟠 · Schedule 🟠 · Filters ✅-but-moved-since. | 2026-08-21 |
+| **R6** | **Two id-map / live mismatches on COMPLETED projects**, reported not investigated: Simple Flow local **189** vs live-ours **185**; Fees & Discounts local **203** vs live-ours **200**. And **Custom Roles has no `testrail-id-map.csv` at all** against **515** live cases of ours. | us (low priority) | Nothing active. Recorded so it cannot be re-discovered as new. | 2026-08-21 |
+
+**Also settled, no longer outstanding:** the **Filters canonical spec page id is `572030978`** (space
+`SHOPVIEW`) — CLAUDE.md and `build/filters/PROJECT-STATE.md` have carried *"TO CONFIRM"* since
+2026-07-16. Its in-body field reads *"Version: 1.8"*, the Rule-31(a) trap; the real integer was **21**.
+And the **Fees & Discounts epic is [SV-7387](https://shopview.atlassian.net/browse/SV-7387)** (Done, 24
+children) — a record correction on a completed project.
+
 ## 🔴 2026-08-20 — CURRENT TOP PRIORITY + one deferral (QA lead)
 - **CURRENT TOP PRIORITY (QA lead, 2026-08-20): layman / manual-QA runnability of all 3 projects' cases is the most important thing right now.** Every touched case's Title/Preconditions/Steps/Expected must read plainly for a non-technical manual tester (Rules 7/9); prioritise this over other backlog.
 - **Raw `<ol>`/`<li>` markup in ~14 Filters cases — DEFERRED to Tuesday, to check with them (QA lead 2026-08-20).** Do NOT touch these until then; it is a TestRail write and its own pass, and the QA lead wants to confirm the fix approach first.

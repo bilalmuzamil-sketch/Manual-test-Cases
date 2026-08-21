@@ -218,19 +218,35 @@ spec version). Tool: `build/testing-tools/verification_badge.py` (requires `--to
 
 ## 3 · PROJECT INDEX
 
-Two or three lines each — **the detail lives in each project's own `PROJECT-STATE.md`**, and the long
+Two to four lines each — **the detail lives in each project's own `PROJECT-STATE.md`**, and the long
 status histories are in `build/rules/PROJECT-HISTORY-ARCHIVE.md`. **Keep each project's memory
 SEPARATE; reuse only the shared infrastructure.** Never mix PO attributions.
 
-| Project | Status | PO | Canonical resume doc |
-|---|---|---|---|
-| **Report Suite** (6 reports, epic SV-8582) | **ACTIVE** — 476 cases, run 359. Branch final for **Work In Progress · Technician Utilization · Sales By Customer** only; SBR/PV/IV not final (Rule 49 amendment 2026-08-10) | Chris Ward | `build/report-suite/PROJECT-STATE.md` |
-| **Schedule** (epic SV-8685) | **ACTIVE** — 168 cases, run 357. Rule-49 queue OPEN; verdicts PROVISIONAL | Branko | `build/schedule/PROJECT-STATE.md` |
-| **Filters** (epic SV-8785) | **ACTIVE** — 114 cases, run 352. Rule-49 queue OPEN; verdicts PROVISIONAL | Branko | `build/filters/PROJECT-STATE.md` |
-| **Global Search** | **POSTPONED** (2026-07-27 ruling) — 86 cases authored, never pushed | Branko | `build/global-search/PROJECT-STATE.md` |
-| **Simple Flow** (epic SV-7301) | **COMPLETED** (2026-07-27 ruling) — docs retained | Milos | `build/simple-flow/PROJECT-STATE.md` |
-| **Fees & Discounts V1** | **COMPLETED** (2026-07-27 ruling) — docs retained | Chris Ward | `build/fees-discounts/PROJECT-STATE.md` |
-| **Custom Roles & Permissions** (epic SV-7388) | **RECURRING** — re-run the 4-layer permission VIU after EVERY feature release (it regresses when other features ship) | — | `build/custom-roles-run/release-regression-2026-07-27/RELEASE-REGRESSION-STATE-2026-07-27.md` |
+**🔴 EVERY FIGURE BELOW WAS RE-DERIVED LIVE ON 2026-08-21 — full evidence
+`build/PROJECT-INDEX-REFRESH-2026-08-21.md`. The rows it replaced were carried over from the previous
+CLAUDE.md and had never been measured; six of them were wrong.** Case counts are **ours only**
+(`created_by = 3`), from a fully-paged `get_cases` (627 sections / 4,170 cases in the estate — an
+unpaged call returns 250 sections and silently finds zero). Epic child counts are verified **two ways**
+(`parent =` and `"Epic Link" =`), agreeing on every epic with no paging remainder. Badges are Rule 91
+(`verification_badge.py --today 2026-08-21`; ✅ ≤7 d · 🟠 8–14 d · 🔴 >14 d · ❌ never).
+**A GREEN source badge means the last CHECK was recent, NOT that the source is current** — every
+project's spec page has in fact moved since its last check (§3 of the evidence file).
+
+| Project | Status (live 2026-08-21) | Build badge | Source badge | PO · resume doc |
+|---|---|---|---|---|
+| **Report Suite** (6 reports, epic **SV-8582** — **114** children, was 105) | **ACTIVE** — **509 cases ours** (live 523 incl. 14 foreign; CLAUDE.md said 476), run 359. Branch final for **WIP · Technician Utilization · Sales By Customer** only; SBR/PV/IV not final (Rule 49 amendment 2026-08-10). Verified on **staging**, not on `sv8582` (that host → **HTTP 502**) | ✅ **2026-08-20** (`v3.8-d0e135e`; staging now `v3.10-49b5fe3`) | 🟠 **2026-08-11** — **all six specs moved since** (2026-08-13 / 2026-08-20); Inventory Value measured at **Confluence v10** vs our v5 | Chris Ward · `build/report-suite/PROJECT-STATE.md` |
+| **Schedule** (epic **SV-8685** — **40** children, was 24) | **ACTIVE** — **195 cases** (0 foreign; CLAUDE.md said 168), run 357. Rule-49 queue OPEN; verdicts PROVISIONAL | ✅ **2026-08-20** (`v3.8-d0e135e`, staging; own branch `sv8685` = `v3.8-bc7508a`) | 🟠 **2026-08-11** (Confluence **v27**) — **page moved 2026-08-20, uningested** | Branko · `build/schedule/PROJECT-STATE.md` |
+| **Filters** (epic **SV-8785** — **34** children, unchanged) | **ACTIVE** — **124 cases ours** (live 129 incl. 5 foreign; CLAUDE.md said 114), run 352. Rule-49 queue OPEN; verdicts PROVISIONAL | ✅ **2026-08-19** (`v3.8-d0e135e`, staging; own branch `sv8785` = `v3.7-6e2d301`) | ✅ **2026-08-18** (Confluence **v21**) — **but the page moved 2026-08-20, so the badge is fresh and the source is behind**. Spec page id **`572030978`** (was "TO CONFIRM"); in-body "1.8" is the Rule-31(a) trap | Branko · `build/filters/PROJECT-STATE.md` |
+| **Global Search** (epic **SV-9160** — **24** children; **epic EXISTS since 2026-08-12**, our record said "not available") | **POSTPONED** (2026-07-27 ruling) — **but all 86 cases ARE LIVE in TestRail** (group 4094, every one ours). The old line *"authored, never pushed"* is **false**. No QA branch exists, so nothing has ever been observed | ❌ **NEVER build-verified** | 🔴 **2026-07-16** — PRD moved **2026-08-20**; the epic also carries 4 open questions + 2 PRD corrections (PRD says PostgreSQL/`pg_trgm`, stack is **MySQL on Aurora**; says "React context", app is **Vue 3 + Quasar**) | Branko · `build/global-search/PROJECT-STATE.md` |
+| **Simple Flow** (epic **SV-7301** — **25** children) | **COMPLETED** (2026-07-27 ruling) — docs retained. **185 cases ours** live (2 foreign); local id-map says 189 — **4-case mismatch, reported not investigated** | 🔴 **2026-07-29** (`sv7301` = `v2.320-44e5b70`) | 🔴 **2026-07-17** (V2.6) — spec page unchanged since 2026-07-16 | Milos · `build/simple-flow/PROJECT-STATE.md` |
+| **Fees & Discounts V1** (epic **SV-7387**, Done — **24** children) | **COMPLETED** (2026-07-27 ruling) — docs retained. **200 cases ours** live (2 foreign); local id-map says 203 — **3-case mismatch, reported not investigated** | 🔴 **2026-07-22** (`qb` = `v3.1-4eaa076`) | 🔴 **2026-07-20** (V1_3) — spec page unchanged since 2026-07-14 | Chris Ward · `build/fees-discounts/PROJECT-STATE.md` |
+| **Custom Roles & Permissions** (epic **SV-7388** — **269** children) | **RECURRING** — re-run the 4-layer permission VIU after EVERY feature release (it regresses when other features ship). **515 cases ours** live under group 3527 (714 total, **199 foreign**) and **no `testrail-id-map.csv` exists**, so current scope cannot be reconciled locally | 🔴 **2026-07-27** (staging now `v3.10-49b5fe3`) | 🔴 **2026-07-27** — spec page unchanged since 2026-07-17 | **PO UNKNOWN — must be asked** (spec owner is Sasha Grosman) · `build/custom-roles-run/release-regression-2026-07-27/RELEASE-REGRESSION-STATE-2026-07-27.md` |
+
+**BLOCKED, with the exact ask in each file (all in `build/OUTSTANDING-ITEMS-REGISTER.md` as R1–R6):**
+`BLOCKED-shopview-app-session.md` (every stored cookie → **HTTP 401**; blocks every live verdict) ·
+`BLOCKED-confluence-version-integers.md` (12 of 13 version integers unread — access is fine, the only
+version-bearing MCP call returns the whole page body) · `BLOCKED-qa-branch-sv8582.md` (**HTTP 502** ×3)
+· `BLOCKED-global-search-build.md`.
 
 **Active test runs (Rule 47 scope — keep these COMPLETE, ignore every other run):** Filters **352** ·
 Schedule **357** · Report Suite **359**. Union-only when syncing (Rule 34): a partial `case_ids` list
