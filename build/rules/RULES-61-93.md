@@ -1,9 +1,9 @@
-# ShopView QA — Standing Rules 61–91
+# ShopView QA — Standing Rules 61–93
 
-This file holds the FULL, VERBATIM text of Standing Rules 61–91.
+This file holds the FULL, VERBATIM text of Standing Rules 61–93.
 
 Full archive: build/rules/CLAUDE-FULL-ARCHIVE-2026-08-21.md
-Index: CLAUDE.md (rule index table). Other rule files: build/rules/RULES-01-20.md, build/rules/RULES-21-40.md, build/rules/RULES-41-60.md, build/rules/RULES-61-91.md
+Index: CLAUDE.md (rule index table). Other rule files: build/rules/RULES-01-20.md, build/rules/RULES-21-40.md, build/rules/RULES-41-60.md, build/rules/RULES-61-93.md
 
 **Read the rule you are about to apply here, in full — the index is not the rule.**
 
@@ -1734,3 +1734,118 @@ Index: CLAUDE.md (rule index table). Other rule files: build/rules/RULES-01-20.m
     without weakening), 80 (tell the last-done date and ask before re-running — the badge IS that date,
     shown by default), 84 (the tester-readiness gate reads the badge) and 85 (a project with no QA build
     shows ❌ for the build badge and a real date for the source badge).
+
+---
+
+92. **A LANE SESSION IS A PROJECT-AGNOSTIC ENGINE — IT WORKS ONLY ON THE PROJECT IT IS GIVEN, AND
+    EXISTING PROJECT STATE IS REFERENCE, NOT A BACKLOG (all projects, permanent).**
+    USER DIRECTIVE (2026-08-21, verbatim, his typing preserved exactly because Rule 25 applies to his
+    instructions as it does to a spec): *"I just want them to be ready for new projects and those
+    projects will keep on changing, all the sessions will learn from the previous project and add
+    rules/skills etc to be more trained and mature for coming projects."*
+    **THE RULE — THE SCOPE GATE.** Every lane session (test-case creation · build verification · VIU)
+    is a **PROJECT-AGNOSTIC ENGINE**. It works on **exactly one project at a time, and ONLY the project
+    the QA lead NAMES**. It arrives with **no project and no backlog.**
+    **EVERYTHING IT READS ABOUT EXISTING PROJECTS IS REFERENCE MATERIAL AND HISTORY — Custom Roles,
+    Fees & Discounts, Simple Flow, Global Search, Filters, Schedule, Report Suite. It is other
+    sessions' work. IT IS NOT A TASK LIST.** A lane does not start, continue, audit, verify,
+    re-verify, reconcile or report on any of it unless the QA lead **explicitly names that project and
+    asks**.
+    **🔴 THE CLAUDE.md PROJECT INDEX AND `build/OUTSTANDING-ITEMS-REGISTER.md` ARE REFERENCE, NOT A
+    BACKLOG. READING AN OPEN ITEM THERE DOES NOT AUTHORISE ACTING ON IT.** This is the clause that
+    matters, because both documents are **written in the register of a work queue** — the index lists
+    statuses and badges, the register lists open asks with owners and dates — and a session that reads
+    either one as an assignment is making an entirely reasonable mistake. **They exist so that a
+    session which HAS been given a project can orient itself, and so the QA lead can see what is
+    outstanding. Neither is an instruction to anybody.**
+    **THE STARTUP PROTOCOL — DO THIS, THEN STOP.** On startup a lane session: **(1)** confirms its lane
+    and its boundaries · **(2)** confirms its reading list · **(3)** states the inputs it will need
+    once a project is assigned · **(4)** states its access preflight (Rule 89), its lock claim (Rule
+    83) and its budget (Rule 90) · **(5)** **WAITS for the QA lead to name a project.** **It does no
+    project work before that**, and "getting a head start" on a project nobody assigned is not
+    initiative — it is a collision waiting to happen.
+    **WHEN A PROJECT IS ASSIGNED:** claim its **lock** (Rule 83) · run the **Rule-31 source-currency
+    pre-flight for THAT project only** · follow **`build/skills/15-NEW-PROJECT-INTAKE.md`** · and
+    **stay inside it.** **ONE PROJECT AT A TIME.** Intake for a second does not begin until the first
+    is handed back.
+    **CROSS-PROJECT AND CROSS-LANE FINDINGS ARE REPORTED, NEVER ACTIONED UNILATERALLY (Rule 83).** A
+    lane that notices, while working project A, that project B looks stale or that another lane's case
+    is wrong, **writes it down and hands it to the main session.** It does not fix it, does not open the
+    other project's folder to "just check", and does not add it to its own scope. The temptation is
+    strongest exactly when the finding looks obvious and cheap — and that is when a second session is
+    most likely to be mid-write on it.
+    **HONESTY CLAUSE — WHAT THIS RULE IS NOT.** It is **not** permission to be incurious or to ignore a
+    real problem. A lane still **reads** the reference material (it must, to know the conventions and
+    the history), still **reports** what it notices, and still refuses to proceed on a half input set
+    (Rule 1). What it may not do is **convert reading into doing** without the QA lead naming the
+    project. **The distinction is between KNOWING about work and OWNING it.**
+    **RATIONALE (2026-08-21):** a freshly-created test-case-creation lane session immediately began
+    **pulling the entire Schedule project** — its spec, its epic, its cases — because CLAUDE.md's
+    project index and the outstanding register read like an assignment, and the handoff's own reading
+    list pointed straight at them. Nobody had named Schedule. **The cost of that failure mode is
+    threefold and all three are real:** it **burns shared quota** on work nobody asked for (Rules
+    76/90); it **risks colliding** with the session that actually owns that project, on one TestRail,
+    one branch and one login (Rule 83); and it **can act on superseded state**, because a project's
+    stored status line is frequently wrong and the sources have moved since — the very failure Rule 31
+    exists for. **A session that adopts stale work is worse than an idle one**, because its output
+    looks authoritative and carries a fresh date. Ties to Standing Rules 1 (never proceed without the
+    complete input set), 6 (nothing written to a system of record without permission), 31 (source
+    currency — for the assigned project only), 36 (the register is a list of asks, not a list of
+    orders), 76 (quota discipline), 79 (strategy first), 83 (lane ownership and write locks), 88
+    (context discipline — do not bulk-read a project you were not given) and 90 (shared-quota budget).
+
+---
+
+93. **THE LEARNING LOOP — EVERY PROJECT ENDS WITH A RETRO THAT PROPOSES RULE AND SKILL IMPROVEMENTS
+    (all projects, permanent).**
+    USER DIRECTIVE (2026-08-21, verbatim — the learning half of the same instruction): *"all the
+    sessions will learn from the previous project and add rules/skills etc to be more trained and
+    mature for coming projects."*
+    **THE RULE.** At the **END of each project** — and **after any significant failure or surprise**,
+    without waiting for the project to finish — the lane session writes
+    **`build/<project-slug>/RETRO-<date>.md`** containing:
+    **(1) WHAT WORKED** — named, with the evidence, so it can be reused rather than rediscovered
+    (Rule 27's logic: a proven recipe recorded once must never be re-derived).
+    **(2) WHAT WENT WRONG, AND ITS ROOT CAUSE** — **five-whys, not a symptom.** *"The count was wrong"*
+    is a symptom; *"we measured from a stale checkout because no rule required a fetch first"* is a
+    root cause. A retro that stops at the symptom produces a rule that prevents nothing.
+    **(3) WHAT AN OUTSIDER COULD HAVE CAUGHT THAT WE DID NOT** — the Rule-45 outside-in question, asked
+    of ourselves: what would an automation engineer working from the running build, or a hostile
+    reviewer, have seen here? **This is the section that has historically found the real gaps**, and it
+    is also the most uncomfortable to write, which is precisely why it is mandatory.
+    **(4) THE EXACT RULE OR SKILL TEXT IT PROPOSES** — **quoted ready to paste**, not described. A
+    proposal phrased as *"we should be more careful about X"* is not actionable; a proposal phrased as
+    the sentence that would go into the rule body is.
+    **(5) THE EVIDENCE FOR IT** — what happened, when, with the file paths, commit SHAs, case ids or
+    ticket keys that prove it. **A proposal with no evidence is an opinion** (Rule 12).
+    **🔴 IT PROPOSES; IT NEVER EDITS THE RULES OR SKILLS ITSELF.** That is the QA lead's call via
+    **Rule 72** — no addition to the Standing Rules or the Skills is recorded without his go-ahead —
+    and **the main session records the approved changes** in `build/rules/` and `build/skills/`, keeping
+    the CLAUDE.md index row consistent. **A lane session that edits the rules on its own initiative has
+    broken Rule 72 even if its proposal was correct**, because the rules are the shared brain across
+    sessions and a unilateral edit is indistinguishable from a drift.
+    **A RETRO WITH NO PROPOSAL SAYS SO PLAINLY.** *"Nothing new was learned that is worth a rule"* is a
+    **legitimate and welcome outcome**, and it is far better than a manufactured one. **Never invent a
+    proposal for form's sake** — a rule added to fill a template dilutes the set, and the set only works
+    because every rule in it was paid for by a real failure.
+    **THE PURPOSE, PLAINLY: EACH PROJECT MAKES THE NEXT ONE CHEAPER AND SAFER.** The engines are meant
+    to get **more mature, not just busier.** A lane that has run five projects and proposed nothing has
+    either been extraordinarily lucky or has not been looking; a lane that has folded five projects'
+    lessons into its skills starts the sixth project already knowing where the traps are.
+    **RELATIONSHIP TO THE OTHER CLOSING OBLIGATIONS.** This is **not** a replacement for the Rule-67
+    per-project completion table (what was done, for the QA lead) or the Rule-46 deliberate-decisions
+    register (what we chose, and why). **Rule 67 reports the WORK; Rule 46 defends the DECISIONS; Rule
+    93 improves the MACHINE.** All three ship; none substitutes for another.
+    **RATIONALE (2026-08-21):** the QA lead's instruction has two halves, and the second half is the
+    one with compounding value — the sessions are not merely to be ready for new projects, they are to
+    **learn from each one and mature.** The evidence that this needs to be a rule rather than a habit is
+    the workspace's own history: the most valuable rules in the set — 40 through 46, 57, 58 — were each
+    written **after** a failure that had already cost real money, and several of them were only written
+    because somebody outside our own work spotted the gap first. **A standing retro turns that from luck
+    into process.** Ties to Standing Rules 21 (the process-authoring standard — a proposed process is
+    written to it), 27 (record the proven recipe so it is never re-derived), 29 (no work loss — the
+    retro is committed to git, the only durable store), 33 (a proposal is an INPUT, judged on its
+    evidence, not an override), 45 (the outside-in hunt supplies section 3), 46 (the
+    deliberate-decisions register is its sibling, not its substitute), 67 (the completion table reports
+    the work; this reports the lessons), 72 (**PROPOSE, never self-record**) , 76 (quota discipline — a
+    cheaper next project is the point) and 92 (the engines this loop matures).

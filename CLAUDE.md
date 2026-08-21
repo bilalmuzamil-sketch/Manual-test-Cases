@@ -20,7 +20,7 @@ The previous CLAUDE.md was **738 KB / roughly 183,000 tokens**, and it was **TRU
 AT RULE 62**. Sessions were therefore running with **Rules 63–88 SILENTLY ABSENT** while believing
 they had read the whole file. A rule you have never seen is a rule you will break.
 
-**THEREFORE: NEVER ASSUME YOU HAVE SEEN ALL THE RULES.** There are **91 numbered Standing Rules**.
+**THEREFORE: NEVER ASSUME YOU HAVE SEEN ALL THE RULES.** There are **93 numbered Standing Rules**.
 Count them in the index below. If you are
 about to apply a rule, open its file and read it. **NEVER read
 `build/rules/CLAUDE-FULL-ARCHIVE-2026-08-21.md` whole** — it will exhaust your context exactly as the
@@ -86,7 +86,7 @@ These are stated here **in full** because a session that gets only this far must
 
 ---
 
-## 2 · THE RULE INDEX — all 91 rules, and where each one lives
+## 2 · THE RULE INDEX — all 93 rules, and where each one lives
 
 **Read the rule in its file before applying it.** One line per rule; the line is a locator, not the
 rule. Generated from the split files' own headers.
@@ -167,7 +167,7 @@ rule. Generated from the split files' own headers.
 | **59** | RE-READ THE SOURCES IMMEDIATELY BEFORE THE WRITES BEGIN — a second currency check, not only the |
 | **60** | THE BUILD WILL NEVER BE DECLARED FINAL — SEPARATE WHAT DEPENDS ON THE BUILD FROM WHAT DOES NOT |
 
-### `build/rules/RULES-61-91.md` — rules 61–91
+### `build/rules/RULES-61-93.md` — rules 61–93
 
 | # | Rule (short title) |
 |---|---|
@@ -202,9 +202,11 @@ rule. Generated from the split files' own headers.
 | **89** | ACCESS RESILIENCE AND MCP HYGIENE — every session keeps a working path to every source, and |
 | **90** | SHARED-QUOTA BUDGET ALLOCATION ACROSS SESSIONS (all projects) |
 | **91** | THE VERIFICATION FRESHNESS BADGE — every build/source verification claim is shown with a COLOUR |
+| **92** | A LANE SESSION IS A PROJECT-AGNOSTIC ENGINE — IT WORKS ONLY ON THE PROJECT IT IS GIVEN, AND EXISTING PROJECT STATE IS REFERENCE, NOT A BACKLOG |
+| **93** | THE LEARNING LOOP — EVERY PROJECT ENDS WITH A RETRO THAT PROPOSES RULE AND SKILL IMPROVEMENTS (it PROPOSES; Rule 72 records) |
 
 **Rules 89 (access resilience + MCP hygiene) and 90 (shared-quota budget allocation)** were added
-2026-08-21 and live in `build/rules/RULES-61-91.md` with 61–88. Rule 89's operator form is
+2026-08-21 and live in `build/rules/RULES-61-93.md` with 61–88. Rule 89's operator form is
 `build/skills/14-ACCESS-RESILIENCE.md`.
 
 **Rule 91 (the verification freshness badge)** was added 2026-08-21 in the same file. **Its second
@@ -392,7 +394,7 @@ Compact form — **the rule named in brackets is the authority; read it before r
 | Standing Rules 1–20 (full text) | `build/rules/RULES-01-20.md` |
 | Standing Rules 21–40 (full text) | `build/rules/RULES-21-40.md` |
 | Standing Rules 41–60 (full text) | `build/rules/RULES-41-60.md` |
-| Standing Rules 61–91 (full text) | `build/rules/RULES-61-91.md` |
+| Standing Rules 61–93 (full text) | `build/rules/RULES-61-93.md` |
 | Per-project narrative history (projects 1–7) | `build/rules/PROJECT-HISTORY-ARCHIVE.md` |
 | Byte-verification hashes for the split | `build/rules/INTEGRITY.md` |
 | Staging/QA/prod action recipes, TestRail traps | `build/APP-ACTIONS-PLAYBOOK.md` |

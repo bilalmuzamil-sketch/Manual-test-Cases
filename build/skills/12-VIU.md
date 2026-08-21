@@ -84,7 +84,7 @@ actioned here.
 | **11** | **ALWAYS ASK which process(es) to run** — wording+VIU, or the spec-relevance reconciliation, or both |
 | **22** | Ask for the **live-build check and the access** up front |
 
-Full texts: `build/rules/RULES-01-20.md` · `RULES-21-40.md` · `RULES-41-60.md` · `RULES-61-91.md`.
+Full texts: `build/rules/RULES-01-20.md` · `RULES-21-40.md` · `RULES-41-60.md` · `RULES-61-93.md`.
 **Read the rule you are about to apply, in full. An index is not a rule.**
 
 ---

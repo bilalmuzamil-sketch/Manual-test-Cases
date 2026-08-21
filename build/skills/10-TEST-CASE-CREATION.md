@@ -72,7 +72,7 @@ not action it, and it does not enter another lane's territory to fix it.
 | **11** | **ASK which process(es) to run** on any new or updated source |
 | **1** | Never start on a half-spec — **stop and ask** for the missing inputs |
 
-Full texts: `build/rules/RULES-01-20.md` · `RULES-21-40.md` · `RULES-41-60.md` · `RULES-61-91.md`.
+Full texts: `build/rules/RULES-01-20.md` · `RULES-21-40.md` · `RULES-41-60.md` · `RULES-61-93.md`.
 **Read the rule you are about to apply, in full. An index is not a rule.**
 
 ---
