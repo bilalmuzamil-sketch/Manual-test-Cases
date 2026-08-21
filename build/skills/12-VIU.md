@@ -30,6 +30,23 @@
 - **WHEN A PROJECT IS ASSIGNED:** claim its lock (Rule 83), run the Rule-31 source-currency pre-flight
   **for that project only**, follow `build/skills/15-NEW-PROJECT-INTAKE.md`, and **stay inside it**.
 
+### 📖 READING RULE — the startup list is for STARTUP, not a ceiling
+
+- **At startup, read ONLY your ordered reading list.** That is what keeps your context clean, and it
+  is the entire purpose of the list.
+- **AFTERWARDS you MAY and SHOULD consult ANY document the task in hand needs** —
+  `build/APP-ACTIONS-PLAYBOOK.md`, any `build/*-PROCESS.md`, `build/PROCESS-CATALOG.md`, a project's
+  `PROJECT-STATE.md`, `build/rules/RULES-01-20.md` / `RULES-21-40.md` / `RULES-41-60.md` /
+  `RULES-61-93.md`, a past findings or audit file. **No document is off-limits to you.**
+- **BUT ALWAYS IN A TARGETED, BOUNDED WAY:** `grep -n` for the exact thing you need, or `sed -n
+  '<start>,<end>p'` a bounded slice. **NEVER a bulk read "to get oriented" · NEVER a whole large
+  file · NEVER `CLAUDE.md` end to end · NEVER `build/rules/CLAUDE-FULL-ARCHIVE-2026-08-21.md`.**
+- **THE DISTINCTION, PLAINLY: KNOWLEDGE IS NEVER OFF-LIMITS; ONLY BULK READING IS.** Looking a recipe
+  up is cheap and correct; swallowing a file to orient yourself is what burns the context.
+- **AND THE SCOPE GATE ABOVE REMOVES YOUR WORK BACKLOG, NOT YOUR KNOWLEDGE.** Every rule, skill,
+  playbook recipe and past lesson stays yours to use on the project you are given. The one thing you
+  must not do is **adopt another project's open items as your own tasks**.
+
 ---
 
 ## 1 · MISSION AND BOUNDARIES
