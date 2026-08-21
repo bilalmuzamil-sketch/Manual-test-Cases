@@ -2152,3 +2152,10 @@ were stale). Sources: `build/report-suite/build-verify-2026-08-18/{TU,WIP,IV}-SW
 | IUR-2 | **TestRail target section** for Invoice UI Refresh (confirm proposed new section, or name one) | QA lead | Staging any TestRail import/push. Not authoring | 2026-08-21 |
 | IUR-3 | **TestRail credentials** at `/tmp/testrail/creds.json` | QA lead | Greenfield-confirmation read + any push | 2026-08-21 |
 | IUR-4 | **QA branch / env + feature-flag state** (or confirm "no build yet") | QA lead / dev (Stefan? — dev not named) | Build verification. Cases are source-verified-only (Rule 85) until then | 2026-08-21 |
+
+### Invoice UI Refresh — update 2026-08-21 (authoring pass complete)
+- **IUR-1 CLEARED** — authoring go-ahead given ("1"); full suite of 87 cases authored, coverage 110/110, import file produced.
+- **IUR-2 OPEN** — TestRail target section still needed before any push (proposed: new "Invoice UI Refresh" section, suite 1).
+- **IUR-3 OPEN** — TestRail credentials needed for the greenfield-confirmation read + push.
+- **NEW PO-1** — Chris Ward: Credit Invoice Balance — spec S11-R6a (open balance) vs the stale Terminology §6 line (flat $0.00); confirm S11-R6a and fix the terminology line. Blocks nothing (authored to S11-R6a); a documentation-correctness question.
+- **NEW PO-2** — Chris Ward: the spec shows a v38 edit dated 2026-08-13 that the change log (last entry 2026-08-12) does not describe; confirm nothing material changed, or point us at it.
