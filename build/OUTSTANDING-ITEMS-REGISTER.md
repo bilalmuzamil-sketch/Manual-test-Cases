@@ -2159,3 +2159,11 @@ were stale). Sources: `build/report-suite/build-verify-2026-08-18/{TU,WIP,IV}-SW
 - **IUR-3 OPEN** — TestRail credentials needed for the greenfield-confirmation read + push.
 - **NEW PO-1** — Chris Ward: Credit Invoice Balance — spec S11-R6a (open balance) vs the stale Terminology §6 line (flat $0.00); confirm S11-R6a and fix the terminology line. Blocks nothing (authored to S11-R6a); a documentation-correctness question.
 - **NEW PO-2** — Chris Ward: the spec shows a v38 edit dated 2026-08-13 that the change log (last entry 2026-08-12) does not describe; confirm nothing material changed, or point us at it.
+
+### Simple Flow V2 — intake 2026-08-21 (test-case creation lane)
+| # | What is missing | Who owes it | What it BLOCKS | Since |
+|---|---|---|---|---|
+| SFV2-1 | TestRail target section (confirm proposed "Simple Flow V2" section, suite 1) | QA lead | Staging any push. Not authoring | 2026-08-21 |
+| SFV2-2 | TestRail credentials at /tmp/testrail/creds.json | QA lead | Greenfield-confirmation read + push | 2026-08-21 |
+| SFV2-3 | QA environment (stated "Not yet available") | QA lead / dev | Build verification; cases source-verified-only (Rule 85) until then | 2026-08-21 |
+| SFV2-4 | Engineering tech plan (standalone) — folded into spec per change log; remind (Rule 30) | QA lead / dev | Edge cases/API contracts; informs not overrules; non-blocking | 2026-08-21 |
