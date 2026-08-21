@@ -7115,6 +7115,61 @@ deliver the 7-tab management report.
     **RATIONALE:** when **Ahtasham Amjad said in a Jira comment that he had edited our own [C29557](https://shopview.testrail.io/index.php?/cases/view/29557)** — the case at the centre of the entire expected-behaviour correction, the one whose waiver note started the Rule-57 audit — **we could not establish what he had altered.** No before/after snapshot existed, and `updated_by` / `updated_on` recorded only the **last** writer, which **our own later passes had since overwritten**. The honest position we were forced into was that the case *"has been edited by someone else at least once and the change is not reconstructable from what we hold"*. **That is a position no amount of later diligence can recover from — only a snapshot taken beforehand prevents it.**
     Ties to Standing Rules 29, 38, 39, 41, 50.
 
+88. **LANE-SESSION CONTEXT DISCIPLINE — a session WITH direct tools must never bulk-read; script it
+    instead (all projects, permanent).**
+    USER DIRECTIVE (2026-08-20, verbatim): *"every session should also always ensure that we never
+    face the same thrash/context issue or burn our quota fast like we did by mistake in this session
+    ... make our new 3 dedicated session smartest ever"*.
+    **🔴 THE KEY DISTINCTION, STATED FIRST, BECAUSE COPYING THE ORCHESTRATOR'S RULES INTO A LANE
+    SESSION WOULD BE EXACTLY WRONG.** The **MAIN / ORCHESTRATOR session has NO file tools**, so it
+    must **spawn** to do anything — and **every spawn re-loads `CLAUDE.md`, observed at 200–380k
+    tokens per spawn**. Its discipline is therefore **"MINIMISE SPAWNS"** (Rule 76). A **LANE SESSION
+    HAS DIRECT TOOLS**, so its **cheap path is doing the work IN-CONTEXT**, and it should **barely
+    spawn at all**. **Its danger is the OPPOSITE ONE: pulling bulk into its own context and
+    thrashing** — the failure that **killed three workers on 2026-08-20**, recorded verbatim:
+    *"Autocompact is thrashing — the context refilled to the limit within 3 turns of the previous
+    compact, 3 times in a row"*. **A lane session that obeys Rule 76 as though it were the
+    orchestrator will spawn needlessly and burn the quota it was created to protect.**
+    **THE LANE RULES — SEVEN, AND ALL SEVEN APPLY FROM THE FIRST TURN:**
+    **(1) NEVER READ `CLAUDE.md` END-TO-END — `grep -n` IT FOR THE RULE YOU NEED.** It is **tens of
+    thousands of tokens** and it **auto-loads already**. **AND THE CORROLLARY THAT COST US TODAY:
+    the auto-load TRUNCATES, so a rule missing from what you were given is NOT missing from the
+    file** — **absence in context is never absence on disk**; confirm with
+    `grep -cE '^NN\. \*\*' CLAUDE.md` before concluding anything is absent (Rule 12 — never infer).
+    **(2) NEVER PULL BULK DATA INTO CONTEXT** — hundreds of case bodies, an id-map CSV, a large API
+    response. **Have a SCRIPT fetch it to a FILE, then read a BOUNDED SUMMARY.** Inspect with
+    `wc -l` / `head -n 20` / `grep -c` only. **A file you wrote is not free to read back** (Rule 78).
+    **(3) BATCH WRITES IN A SCRIPT, NOT ONE TOOL CALL PER CASE** — and **the script performs the
+    Rule-50 byte-verify itself and writes a per-operation log**, so the evidence lives in a file
+    rather than in a transcript nobody can re-read.
+    **(4) LONG JOBS USE THE RULE-75 PATTERN** — **one detached, idempotent, resumable script** plus a
+    **pure-shell committer gated on a RUN-FLAG FILE** — **never `pgrep -f <scriptname>`, which
+    SELF-MATCHES** and reports the job alive forever — with **progress SELF-REPORTED IN COMMIT
+    MESSAGES so nobody has to poll it.**
+    **(5) DO NOT SPAWN SUBAGENTS FOR WORK YOU CAN DO DIRECTLY.** This is **the INVERSE of Rule 76 for
+    a lane session, and it matters**: every spawn re-pays the whole `CLAUDE.md` load for work the lane
+    could have done in a few tool calls.
+    **(6) BUDGET TRIPWIRE.** Each lane gets an **explicit token budget from the QA lead** and
+    **reports its spend with its work** (Rule 86). **At ~50% of budget it compares SPEND against WORK
+    COMPLETED, and if spend is outpacing progress it STOPS AND REPORTS** rather than grinding to zero.
+    **Discovering at 100% that a job was not affordable is the same as not doing it** — except the
+    quota is gone.
+    **(7) OPENING RITUAL.** Read **only your own lane skill + `build/skills/00-COMMON-CORE.md`**, then
+    **`grep` for specifics**. **Never bulk-read to "get oriented"** — orientation by reading is how a
+    lane spends a third of its budget before its first useful action.
+    **RATIONALE, 2026-08-20:** the session that produced this rule **thrashed autocompact three times
+    in a row** and burned quota that three dedicated lane sessions were then created to conserve. The
+    cause was **not** a hard job; it was **bulk reading and needless spawning by a session that had
+    direct tools all along**. **The remedy is cheap and mechanical** — grep instead of read, script
+    instead of loop, file instead of context — which is why it is written as seven flat rules rather
+    than a judgement call.
+    Ties to Standing Rules 12 (observed, never inferred — including never inferring that a rule is
+    absent because the auto-load omitted it), 29 (no work loss — the script and its log are committed,
+    the transcript is not durable), 50 (exhaustive and exact — the byte-verify moves into the script,
+    it is not skipped), 75 (the detached long-job pattern), 76 (**the orchestrator's minimise-spawns
+    discipline, which this rule deliberately INVERTS for a lane**), 78 (context is a budget), 79 (one
+    pass, then exit) and 86 (report the spend).
+
 ## Project purpose (Custom Roles project)
 Manual test-case authoring + live staging (Verify-in-UI) verification + TestRail
 management for ShopView **"Custom Roles and Permissions"**, plus related

@@ -1820,3 +1820,7 @@ quota, and **a collision between them is silent**. Skill 13 is the operator form
 `pre-commit` hook), the lane-lock protocol in `build/LOCKS/`, the tester-readiness gate,
 the "SOURCE-VERIFIED ONLY — NO BUILD EXISTS YET" sentence, verify-from-committed-evidence,
 and the case-body snapshots that make a foreign edit diffable.
+
+---
+
+**Rule 88 — LANE-SESSION CONTEXT DISCIPLINE:** never read `CLAUDE.md` end-to-end (grep it); never bulk-read case bodies or CSVs into context (script it to a file, read a bounded summary); batch writes in a script; long jobs use the Rule-75 detached pattern with progress in commit messages; do NOT spawn subagents for work you can do directly; stop and report at the budget tripwire.

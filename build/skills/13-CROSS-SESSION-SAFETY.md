@@ -198,3 +198,7 @@ Rule-62 creation hold.
 
 **Ties to Standing Rules** 6, 12, 29, 38, 39, 41, 49, 50, 54, 60, 62, 69, 75, 76, 77,
 79, 80 — and 82–87, which this skill operationalises.
+
+---
+
+**Rule 88 — LANE-SESSION CONTEXT DISCIPLINE:** never read `CLAUDE.md` end-to-end (grep it); never bulk-read case bodies or CSVs into context (script it to a file, read a bounded summary); batch writes in a script; long jobs use the Rule-75 detached pattern with progress in commit messages; do NOT spawn subagents for work you can do directly; stop and report at the budget tripwire.
