@@ -2167,3 +2167,9 @@ were stale). Sources: `build/report-suite/build-verify-2026-08-18/{TU,WIP,IV}-SW
 | SFV2-2 | TestRail credentials at /tmp/testrail/creds.json | QA lead | Greenfield-confirmation read + push | 2026-08-21 |
 | SFV2-3 | QA environment (stated "Not yet available") | QA lead / dev | Build verification; cases source-verified-only (Rule 85) until then | 2026-08-21 |
 | SFV2-4 | Engineering tech plan (standalone) — folded into spec per change log; remind (Rule 30) | QA lead / dev | Edge cases/API contracts; informs not overrules; non-blocking | 2026-08-21 |
+
+### Simple Flow V2 — update 2026-08-21 (authoring pass complete)
+- **Suite authored:** 61 cases, coverage 21/21 stories, import file produced.
+- **PO-SF-1 OPEN** — Milos Vasic: is the SV-8726 PO column rename 'Total Price'->'Total Cost' in scope for V2? (PO questions sheet sent.)
+- **PO-SF-2 OPEN** — Milos Vasic: is the SV-8183 permission map final (its ticket is Blocked)? (PO questions sheet sent.)
+- **SFV2-1/2/3 OPEN** — TestRail target section, TestRail creds, QA env (all as intake).
