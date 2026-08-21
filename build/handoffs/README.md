@@ -10,9 +10,9 @@
 
 | # | File | The session is for | Its skill | Its primary deliverable |
 |---|---|---|---|---|
-| 1 | `HANDOFF-1-TEST-CASE-CREATION.md` | **Authoring NEW test cases** from the spec/PRD, epic stories, designs, tech plan and PO answers — plus the coverage verdict table, surface matrix, deliberate-decisions register and the TestRail import. Closes with the Ruthless Usefulness Audit. | `build/skills/10-TEST-CASE-CREATION.md` | The case source + `testrail-import/<project>-v1-testrail-import.csv` + the coverage and audit outputs |
-| 2 | `HANDOFF-2-BUILD-VERIFICATION.md` | **Driving existing cases live against the running build** to produce observed PASS / DEVIATION / HOLD verdicts with evidence, plus the re-check queue. | `build/skills/11-BUILD-VERIFICATION.md` | `<Project>_Defects-for-Testers_<date>.xlsx` + `FINDINGS.md` + `RECHECK-QUEUE.md` |
-| 3 | `HANDOFF-3-VIU.md` | **The full VIU pass** — capture the real labels live, rewrite the wording, verify behaviour, push to TestRail with a per-case audit log, re-stamp provenance, regenerate deliverables. | `build/skills/12-VIU.md` | Corrected cases live in TestRail + the execution log + regenerated import/tracker/workbook |
+| 1 | `HANDOFF-1-TEST-CASE-CREATION.md` | **Authoring NEW test cases** from the spec/PRD, epic stories, designs, tech plan and PO answers — plus the coverage verdict table, surface matrix, deliberate-decisions register and the TestRail import. Closes with the Ruthless Usefulness Audit. | `build/skills/10-TEST-CASE-CREATION.md` (**router** → `00`/`02`/`01`) | The case source + `testrail-import/<project>-v1-testrail-import.csv` + the coverage and audit outputs |
+| 2 | `HANDOFF-2-BUILD-VERIFICATION.md` | **Driving existing cases live against the running build** to produce observed PASS / DEVIATION / HOLD verdicts with evidence, plus the re-check queue. | `build/skills/11-BUILD-VERIFICATION.md` (**router** → `00`/`02`/`03`/`04`/`06`) | `<Project>_Defects-for-Testers_<date>.xlsx` + `FINDINGS.md` + `RECHECK-QUEUE.md` |
+| 3 | `HANDOFF-3-VIU.md` | **The full VIU pass** — capture the real labels live, rewrite the wording, verify behaviour, push to TestRail with a per-case audit log, re-stamp provenance, regenerate deliverables. | `build/skills/12-VIU.md` (**router** → `00`/`02`/`03`/`01`/`04`/`06`) | Corrected cases live in TestRail + the execution log + regenerated import/tracker/workbook |
 
 ---
 
@@ -84,3 +84,24 @@ finality ruling — a source-currency question for the QA lead.
 attributions are never mixed or guessed. **Global Search already exists here** — 86 cases authored,
 previously postponed, resume doc `build/global-search/PROJECT-STATE.md` — so it is a **revival to
 reconcile**, not a greenfield build.
+
+
+---
+
+## ⚠️ REFRESHED 2026-08-21 — SKILLS `10` / `11` / `12` ARE NOW THIN ROUTERS
+
+They were full standalone skills; they duplicated `01`/`02`/`03`/`04`/`06`, and **duplicated content
+drifts** (the two copies were already disagreeing about whether the branches were final). **The
+canonical procedure now lives in the `00`–`08` set and is maintained there only** — each router names
+the exact canonical files and sections its lane needs. **Nothing was lost:** new-project onboarding →
+`01` §11 · the `Defects-for-Testers` workbook → `04` §6.1 · the `API-ASK.md` naming fact → `06`.
+
+**TWO THINGS EVERY LANE NOW OWES IN ITS REPORT:**
+
+1. **FINALITY — read `00-COMMON-CORE.md` §16.0, not §16.1.** The QA lead ruled on 2026-08-21 that
+   **the branches are NOT final** — continuously updated by ad-hoc decisions until release day — so
+   **Rules 49 and 60 apply in full, findings stay PROVISIONAL, and a gap is possibly-unfinished rather
+   than automatically a defect.** §16.1 is the superseded 2026-08-11 "FINAL" text, kept dated.
+2. **RULE 91 — every verification claim carries a freshness badge and its date:** **✅ ≤ 7 days ·
+   🟠 8–14 days · 🔴 > 14 days · ❌ never verified**, with the build marker (or spec version). **A bare
+   tick is non-compliant.** Tool: `build/testing-tools/verification_badge.py` (requires `--today`).

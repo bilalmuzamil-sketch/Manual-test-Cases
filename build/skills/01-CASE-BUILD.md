@@ -418,6 +418,34 @@ do not make sense"*. **No suite we deliver may ever substantiate that claim** �
 
 ---
 
+### 11 · NEW-PROJECT ONBOARDING — the folder a brand-new project gets before any case is written
+
+*(Migrated here 2026-08-21 from the test-case-creation lane file, which is now a router. It applies
+when a project arrives that has no `build/<project-slug>/` folder yet — do NOT invent project details
+ahead of the spec arriving.)*
+
+Create `build/<project-slug>/` containing:
+
+- **`PROJECT-STATE.md`** — the canonical cold-resume doc: case inventory + status breakdown, TestRail
+  state, deliverables index, open threads, env/access facts, and an **ordered** how-to-resume.
+- **`requirements.md`** — the COMPLETE spec, built from what the QA lead provides. Keep the Confluence
+  URL as a **reference pointer** only.
+- **`cases/`** — the authored case source, internal IDs `<PREFIX>-<AREA>-NN`. **Never reuse an ID that
+  has been used before** (§6 above — a resync once overwrote a retired record).
+- **`testrail-id-map.csv`** — the internal ID ↔ TestRail C-ID map, **with a `refs` column** (Rules
+  8/20).
+- **Record the canonical spec URL and the PO's name.** **Never mix PO attributions across projects** —
+  that error produces a confidently-wrong case, because the wrong PO's answer reads as authority.
+- **The ENGINEERING TECH PLAN is part of the required input set (Rule 30)** — if it has not been
+  supplied by the time authoring begins, **remind the QA lead**; do not quietly proceed without it.
+- Then add a per-project entry to `CLAUDE.md` with a STATUS line **pointing at that
+  `PROJECT-STATE.md`** as the canonical resume doc.
+
+**Then, before authoring: Rule 1.** If the spec, designs, epic or tech plan are incomplete, **STOP and
+ask for the missing pieces** rather than part-proceeding on a half-spec.
+
+---
+
 ## REUSABLE TOOLING
 
 | Tool | What it does |

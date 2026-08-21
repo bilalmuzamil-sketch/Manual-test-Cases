@@ -354,6 +354,14 @@ outstanding — never quietly dropped, never re-decided by us.
 *Canonical example: `build/report-suite/defect-pack-2026-08-04/` (`TICKET-1…6*.md`, `API-SPLIT.md`,
 `FILED.md`, `repro-sv8821/`).*
 
+**⚠️ ONE NAMING FACT, so the two conventions are not mistaken for two different artefacts (recorded
+2026-08-21 while merging the lane files):** a **VIU** pass and a **build-verification** pass write the
+Rule-51 split into their own dated pass folder as **`API-ASK.md`**, not `API-SPLIT.md` — e.g.
+`build/schedule/full-viu-2026-08-05/API-ASK.md`, `build/filters/full-viu-2026-08-05/API-ASK.md`.
+**Same content, same obligation, different filename by folder type.** When looking for whether an
+API-only finding was already written up, **search for both names** — a finding that exists under the
+other name and is not found reads as unrecorded, and gets asked about twice.
+
 ---
 
 ## THE STEPS

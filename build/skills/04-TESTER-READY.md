@@ -239,6 +239,31 @@ run test counts, and the set-equality proof.
 run"* says how many are runnable — **not** that 680 requirements are covered, and **not** that anything
 passed.
 
+### 6.1 · THE COMPANION DELIVERABLE — the `Defects-for-Testers` workbook
+
+*(Migrated here 2026-08-21 from the build-verification lane file, which is now a router. This is the
+plain-language list of everything that did NOT pass, and it is what a manual tester acts on when a
+case is expected to fail.)*
+
+`build/<project>/build-verify-<date>/<Project>_Defects-for-Testers_<date>.xlsx`
+— human-readable filename, full project name, never an abbreviation (Rule 19); layout mirrored 1:1
+from the established workbooks (Rule 16): **a tab per verdict status plus a Summary tab.**
+
+**One row per non-passed case, with these columns:** internal ID · **C-ID** · **TestRail link** (Rule
+8) · case title · **what the document requires**, with its anchor and version · **what the build
+actually does**, observed, with the evidence reference · verdict (**DEVIATION / HOLD / NOT OBSERVED**)
+· ticket key if one exists · **the Rule-91 freshness badge with its date and build marker** · and a
+plain **"What needs to be done"** in words a non-technical QA can act on.
+
+**🛑 NEVER LEAVE A BARE `DEVIATION` / `Failed` / `Blocked` WITHOUT THAT PLAIN NEXT STEP.** A status with
+no next step tells the tester that something is wrong and nothing about what to do, which is how a
+finding sits untouched for a week.
+
+**HONEST NOTE, carried over with the content:** as at 2026-08-21 **no `*Defects-for-Testers*.xlsx`
+existed anywhere in the repo**, so **the first one produced sets the template** — build it in the
+established shape above rather than inventing a layout. The closest existing canonical folder to model
+the surrounding artefacts on is `build/report-suite/build-verify-2026-08-10/`.
+
 ---
 
 ## THE STEPS

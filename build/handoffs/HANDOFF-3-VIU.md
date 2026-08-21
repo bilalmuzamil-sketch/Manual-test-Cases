@@ -27,48 +27,53 @@ work, not something you author mid-pass.
 ## 2. READ THESE FIRST, IN THIS ORDER
 
 1. **`build/skills/12-VIU.md`** — your own skill. Read it fully.
-2. **`build/skills/00-COMMON-CORE.md`** — **READ IT.** It is the shared core for the pre-existing
-   skill set (`00`–`08`) and carries the honesty bar, TestRail write discipline and hazards, run sync,
+2. **`build/skills/00-COMMON-CORE.md`** — **READ IT, ALL OF IT ONCE**, then use its own routing
+   table. It is the shared core: the honesty bar, TestRail write discipline and hazards, run sync,
    foreign cases, access mechanics, environment, session survival, git on a shared branch, secrets,
-   authority, the reader-facing standards, the provenance line, the `AUTOMATION:` marker, the project
-   fact sheet (§17) and finality (§16).
-   **⚠️ CORRECTION, recorded 2026-08-21:** an earlier draft of this handoff said this file did not
-   exist. **It does** — `build/skills/` was empty in this session's first inventory and the whole
-   `00`–`08` set arrived from another worker on the next fetch. The claim is corrected rather than
-   deleted so nobody re-derives it.
-   **⚠️ AND THERE IS OVERLAP TO BE AWARE OF, NOT RESOLVED BY YOU:** the pre-existing set already
-   contains **`01-CASE-BUILD.md`** (authoring), **`02-SOURCE-CHECK.md`** (source currency),
-   **`03-RUN-CHECK.md`** (driving the build), **`04-TESTER-READY.md`** (handover) and
-   **`06-DEFECT-PREP.md`** (ticket prep). Skills `10`/`11`/`12` were written as dedicated per-process
-   skills and **partly cover the same ground**. Read both for your lane; **where they disagree, STOP
-   and ask the QA lead** — do not pick a side and do not merge or delete either file.
-   **One known disagreement already:** `00-COMMON-CORE.md` §16 states all three branches are
-   **FINAL**, while skill `11`/`12` carry Rule 60's "never declared final" plus the 2026-08-10
-   **per-report** finality ruling. That is a source-currency question for him, not for you.
-3. **`build/BUILD-ACCURATE-WORDING-VIU-PROCESS.md`** — **the method you are executing.** Read it in
+   authority, the reader-facing standards, **§14** the provenance line, **§15** the `AUTOMATION:`
+   marker, **§16 FINALITY** and **§17** the project fact sheet.
+   **⚠️ ON FINALITY, READ §16.0 AND ONLY §16.0.** As of **2026-08-21** the QA lead has ruled the
+   branches are **NOT final** — they are continuously updated as ad-hoc decisions are made and will
+   not be final until release day — so **Rules 49 and 60 apply in full, findings stay PROVISIONAL, and
+   a gap is possibly-unfinished rather than automatically a defect.** **§16.1 is the superseded
+   2026-08-11 "the branches are FINAL" text, kept visible and dated; do not apply it.**
+   **⚠️ THE OVERLAP THAT USED TO BE FLAGGED HERE IS RESOLVED — skill `12-VIU.md` is now a THIN
+   ROUTER.** It holds no procedure: the canonical VIU procedure lives in the `00`–`08` set and is
+   maintained there only. The earlier instruction to "read both and stop if they disagree" is
+   therefore spent, and the one disagreement it named — finality — is settled above. Nothing was
+   deleted in the merge: each router names where its unique content went.
+3. **THE CANONICAL SKILLS FOR THIS LANE, in this order:** **`02-SOURCE-CHECK.md`** (source current first — Rule 81; Rule 59 re-reads it again immediately
+   before the writes begin) · **`03-RUN-CHECK.md`** (driving the build live; roles and `reset to
+   template`) · **`01-CASE-BUILD.md`** (the wording/structure/traceability standards a re-worded
+   case must still satisfy, and **§10** push + run sync) · **`04-TESTER-READY.md`** **§6 + §6.1** ·
+   **`06-DEFECT-PREP.md`**
+4. **`build/BUILD-ACCURATE-WORDING-VIU-PROCESS.md`** — **the method you are executing.** Read it in
    full before anything else in this list.
-4. **`build/VIU-ACCESS-METHOD.md`** — live access: egress, the three session cookies, the MITM bridge,
+5. **`build/VIU-ACCESS-METHOD.md`** — live access: egress, the three session cookies, the MITM bridge,
    the `boot2` hydration pattern.
-5. **`build/APP-ACTIONS-PLAYBOOK.md`** — the indexed **STAGING ACTION RECIPES** plus **§J** (TestRail
+6. **`build/APP-ACTIONS-PLAYBOOK.md`** — the indexed **STAGING ACTION RECIPES** plus **§J** (TestRail
    and API declared facts / normalisations). **Rule 27: reuse, never re-discover; append a new proven
    recipe immediately.**
-6. **`build/SPEC-RELEVANCE-RECONCILIATION-PROCESS.md`** — the Rule-11 companion process; you may be
+7. **`build/SPEC-RELEVANCE-RECONCILIATION-PROCESS.md`** — the Rule-11 companion process; you may be
    asked for this instead of, or alongside, the VIU.
-7. **`build/MISSING-TRACEABILITY-PROCESS.md`** — a standard sub-step of any VIU pass.
-8. **`build/CUSTOM-ROLES-PERMISSION-VIU-PROCESS.md`** — the 4-layer live method if the pass touches
+8. **`build/MISSING-TRACEABILITY-PROCESS.md`** — a standard sub-step of any VIU pass.
+9. **`build/CUSTOM-ROLES-PERMISSION-VIU-PROCESS.md`** — the 4-layer live method if the pass touches
    roles or permissions.
-9. **`build/RUTHLESS-USEFULNESS-AUDIT-PROCESS.md`** — required if the wording changes are extensive
+10. **`build/RUTHLESS-USEFULNESS-AUDIT-PROCESS.md`** — required if the wording changes are extensive
    enough to count as an authoring pass (Rule 28).
-10. **`build/TESTING-RUNBOOK.md`** and **`build/NO-WORK-LOSS-STRATEGY.md`**.
-11. **`build/PROCESS-CATALOG.md`** — the index of every callable process.
-12. **`build/OUTSTANDING-ITEMS-REGISTER.md`** — what we are already waiting on.
-13. The target project's **`build/<project>/PROJECT-STATE.md`**, then its newest dated pass folder and
+11. **`build/TESTING-RUNBOOK.md`** and **`build/NO-WORK-LOSS-STRATEGY.md`**.
+12. **`build/PROCESS-CATALOG.md`** — the index of every callable process.
+13. **`build/OUTSTANDING-ITEMS-REGISTER.md`** — what we are already waiting on.
+14. The target project's **`build/<project>/PROJECT-STATE.md`**, then its newest dated pass folder and
     every **`RECHECK-QUEUE.md`**.
 
-**⚠️ DO NOT read `CLAUDE.md` end to end** — roughly 5,000 lines; reading it whole causes context thrash
-and will cost you the session. `grep -n` for what you need. Note that **CLAUDE.md's numbered Standing
-Rules stop at Rule 62**; the higher-numbered rules quoted in your skill come from the QA lead's later
-instructions and are recorded in the skill file, not in CLAUDE.md.
+**⚠️ DO NOT read `CLAUDE.md` end to end** (Rule 88) — `grep -n` for what you need.
+**⚠️ CORRECTED 2026-08-21: `CLAUDE.md` IS NOW A SMALL INDEX (~28 KB), AND ITS RULE INDEX RUNS TO
+RULE 91 — NOT 62.** The full, verbatim rule texts live in **`build/rules/RULES-01-20.md` ·
+`RULES-21-40.md` · `RULES-41-60.md` · `RULES-61-91.md`**, and **that is where you read the rule you
+are about to apply — the index is not the rule.** The two claims previously here — that CLAUDE.md is
+"roughly 5,000 lines" and that its "Standing Rules stop at Rule 62" — were true when written and are
+both stale; they are corrected rather than deleted so nobody re-derives them.
 
 **At session start also run the standing queue checks:**
 `ls build/*/design-*/PENDING-FIGMA-FETCH.md` (Rule 35) and `ls build/*/*/RECHECK-QUEUE.md` (Rule 49).
@@ -253,6 +258,32 @@ Plain layman words, simple status format, these headings:
 
 **Always state the TestRail update status explicitly**, give the honest observed-versus-carried-forward
 split in numbers, and name the build marker every verdict rests on.
+
+**🔑 EVERY VERIFICATION CLAIM CARRIES A RULE-91 FRESHNESS BADGE AND ITS DATE — in the report, in every
+table, and in every workbook you produce (including the `Defects-for-Testers` workbook).** The scheme,
+measured from the last-checked date to today:
+
+| Badge | Meaning |
+|---|---|
+| **✅ GREEN** | build/source-verified, **current** — age **≤ 7 days** |
+| **🟠 ORANGE** | build/source-verified, **ageing** — age **8–14 days** |
+| **🔴 RED** | build/source-verified, **stale** — age **> 14 days** |
+| **❌ CROSS** | **NOT verified** — never observed on any build |
+
+**The badge ALWAYS carries the date, and the build marker where known** — e.g.
+`✅ Build-verified 2026-08-18 (v3.8-bd246fd)`; for source verification the **spec version** —
+`🟠 Source-verified 2026-08-06 (spec v19)`. **A BARE TICK IS NON-COMPLIANT** (Rule 12 — a claim
+carries its evidence). **Report BOTH badges** (build and source); they often disagree, and collapsing
+them into one "verified" hides whichever half is out of date.
+
+**Rule 91 is the VISIBILITY layer; Rule 77 is the VALIDITY test.** A case inside Rule 77's 3-build
+window may still show 🟠 or 🔴 — **that is intended honesty, not a contradiction.** Neither rule may
+be used to suppress the other. **And because the branches are NOT final (core §16.0), a green badge
+still describes a PROVISIONAL verdict** — freshness is not finality.
+
+Tool: **`build/testing-tools/verification_badge.py`** — read-only, and it **requires an explicit
+`--today YYYY-MM-DD`**, because a freshness figure computed off an implicit clock cannot be reproduced
+by the next reader.
 
 Also read build/skills/13-CROSS-SESSION-SAFETY.md (Rules 82–87: real secret-scan gate, lane locks, tester-readiness gate, no-build-yet honesty, verify-from-committed-evidence, case-body snapshots).
 

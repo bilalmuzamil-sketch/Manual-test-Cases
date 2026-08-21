@@ -20,7 +20,7 @@ The previous CLAUDE.md was **738 KB / roughly 183,000 tokens**, and it was **TRU
 AT RULE 62**. Sessions were therefore running with **Rules 63–88 SILENTLY ABSENT** while believing
 they had read the whole file. A rule you have never seen is a rule you will break.
 
-**THEREFORE: NEVER ASSUME YOU HAVE SEEN ALL THE RULES.** There are **90 numbered Standing Rules**.
+**THEREFORE: NEVER ASSUME YOU HAVE SEEN ALL THE RULES.** There are **91 numbered Standing Rules**.
 Count them in the index below. If you are
 about to apply a rule, open its file and read it. **NEVER read
 `build/rules/CLAUDE-FULL-ARCHIVE-2026-08-21.md` whole** — it will exhaust your context exactly as the
@@ -86,7 +86,7 @@ These are stated here **in full** because a session that gets only this far must
 
 ---
 
-## 2 · THE RULE INDEX — all 90 rules, and where each one lives
+## 2 · THE RULE INDEX — all 91 rules, and where each one lives
 
 **Read the rule in its file before applying it.** One line per rule; the line is a locator, not the
 rule. Generated from the split files' own headers.
@@ -259,14 +259,27 @@ job.** Each file is a complete cold-start specification.
 | `build/skills/06-DEFECT-PREP.md` | Building an unchallengeable defect ticket — then stopping at the button |
 | `build/skills/07-PO-QUESTIONS.md` | One PO question sheet, plain words, sent LAST |
 | `build/skills/08-RECOVER.md` | Establishing what a killed pass actually landed, by content, and finishing it |
-| `build/skills/10-TEST-CASE-CREATION.md` | Lane: authoring |
-| `build/skills/11-BUILD-VERIFICATION.md` | Lane: verifying existing cases against the running build |
-| `build/skills/12-VIU.md` | Lane: the full build-accurate wording + Verify-In-UI pass |
+| `build/skills/10-TEST-CASE-CREATION.md` | **ROUTER** — authoring lane. Points at `00` → `02` → `01` → `COVERAGE-MATRIX`. **No procedure of its own** |
+| `build/skills/11-BUILD-VERIFICATION.md` | **ROUTER** — build-verification lane. Points at `00` → `02` §1 → `03` → `04` §6/§6.1 → `06`. **No procedure of its own** |
+| `build/skills/12-VIU.md` | **ROUTER** — VIU lane. Points at `00` → `02` → `03` → `01` → `04` → `06`. **No procedure of its own** |
 | `build/skills/13-CROSS-SESSION-SAFETY.md` | Before the first write of any lane session (Rules 82–87 as commands) |
 | `build/skills/14-ACCESS-RESILIENCE.md` | Keeping a working path to TestRail / Jira / ShopView / Figma; MCP hygiene (Rule 89) |
 | `build/skills/COVERAGE-MATRIX.md` | Checking that a session learning is actually carried by a skill |
 | `build/skills/STATE.md` | Resuming work ON the skills themselves |
 | `build/handoffs/README.md` | Three copy-paste lane briefings for a fresh session |
+
+**⚠️ `10` / `11` / `12` BECAME THIN ROUTERS ON 2026-08-21.** They were full standalone skills that
+duplicated `01`/`02`/`03`/`04`/`06`, and **duplicated content drifts** — the two copies were already
+disagreeing about whether the branches were final, and one carried a second copy of the Rule-50 write
+discipline. **The canonical procedure now lives in the `00`–`08` set and is maintained there only.**
+**Nothing was lost in the merge:** new-project onboarding → **`01` §11** · the `Defects-for-Testers`
+workbook → **`04` §6.1** · the `API-ASK.md` naming fact → **`06`**. A router holds no substance, so it
+cannot drift; **procedure found inside one is a bug in that router.**
+
+**FINALITY LIVES IN `00-COMMON-CORE.md` §16 — READ §16.0, NOT §16.1.** §16.0 (2026-08-21) is current:
+**the branches are NOT final**, they are updated by ad-hoc decisions until release day, so Rules 49
+and 60 apply in full and findings stay PROVISIONAL. §16.1 is the superseded 2026-08-11 "the branches
+are FINAL" text, kept visible and dated.
 
 **Other standing infrastructure docs:** `build/PROCESS-CATALOG.md` (every callable process) ·
 `build/APP-ACTIONS-PLAYBOOK.md` (proven staging/QA action recipes — **read before any staging

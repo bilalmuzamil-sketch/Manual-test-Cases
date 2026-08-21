@@ -1,4 +1,4 @@
-# Skills — the eight jobs this workspace does, written to be run cold
+# Skills — the eight jobs this workspace does, plus the support files and the lane routers
 
 > **Each file below is a complete specification for one job, written for a session with NO memory of
 > this workspace.** They exist because the QA lead asked for them in these words (2026-08-12):
@@ -7,7 +7,7 @@
 > lost and things start to bite me and cost me my job due to this."***
 >
 > ## 🔴 START WITH [`00-COMMON-CORE.md`](00-COMMON-CORE.md), ALWAYS
-> Every skill points at it instead of repeating it, so a fix lands in **one** place instead of eight.
+> Every skill points at it instead of repeating it, so a fix lands in **one** place instead of eleven.
 > It carries the honesty bar · TestRail write discipline and hazards · runs · foreign cases · access
 > mechanics · environment · session survival · git on a shared branch · secrets · authority ·
 > reader-facing standards · the OUTSTANDING section every deliverable ends with · **the provenance
@@ -31,7 +31,7 @@
 
 ---
 
-## THE EIGHT
+## THE EIGHT CORE JOBS — one skill per job, and the canonical procedure lives here
 
 | # | Skill | Trigger word | What it does, in one line |
 |---|---|---|---|
@@ -46,6 +46,48 @@
 
 **Call one like this:** *"Run **RUN-CHECK** for **Schedule**."* Each file opens with a kickoff prompt
 to fill in.
+
+---
+
+## EVERY OTHER FILE IN THIS FOLDER (refreshed 2026-08-21 — the header used to say "eight" and
+stopped there, which left six files undocumented)
+
+| File | What it is |
+|---|---|
+| [`00-COMMON-CORE.md`](00-COMMON-CORE.md) | **The shared core — read it first, always.** Its own routing table says which section covers what. **§16.0 = the CURRENT finality position (the branches are NOT final); §16.1 = the superseded 2026-08-11 "FINAL" text, kept dated** |
+| [`13-CROSS-SESSION-SAFETY.md`](13-CROSS-SESSION-SAFETY.md) | **Rules 82–87** — the real secret-scan gate, lane write locks, the tester-readiness gate, no-build-yet honesty, verify-from-committed-evidence, case-body snapshots. **Read it when more than one session is live** |
+| [`14-ACCESS-RESILIENCE.md`](14-ACCESS-RESILIENCE.md) | **Rule 89** — primary path and fallback ladder per system, the session-start preflight, failure signatures, the **five MCP-hygiene hard rules**, the unattended **BLOCKED** protocol. **Read it BEFORE the first access call** |
+| [`COVERAGE-MATRIX.md`](COVERAGE-MATRIX.md) | The completeness proof skill `01` owes — the requirement→case map, both directions |
+| [`STATE.md`](STATE.md) | Where this skill set itself stands |
+
+### THE THREE LANE ROUTERS — **thin pointers, NOT procedure**
+
+| Router | Lane | Points at |
+|---|---|---|
+| [`10-TEST-CASE-CREATION.md`](10-TEST-CASE-CREATION.md) | authoring new cases | `00` → `02` → `01` → `COVERAGE-MATRIX` |
+| [`11-BUILD-VERIFICATION.md`](11-BUILD-VERIFICATION.md) | verifying cases against the running build | `00` → `02` §1 → `03` → `04` §6/§6.1 → `06` |
+| [`12-VIU.md`](12-VIU.md) | the full wording + Verify-In-UI pass | `00` → `02` → `03` → `01` → `04` → `06` |
+
+**Each was a full standalone skill until 2026-08-21, when they were converted to routers** because
+they duplicated `01`/`02`/`03`/`04`/`06` and **duplicated content drifts** — the two copies were
+already disagreeing about whether the branches were final, and one held a second copy of the Rule-50
+write discipline, which is the last material that should ever exist twice. **Nothing was lost:** the
+unique content was migrated first — **new-project onboarding → `01` §11**, the
+**`Defects-for-Testers` workbook → `04` §6.1**, the **`API-ASK.md` naming fact → `06`**. **A router
+holds no substance, so it cannot drift.** If you find procedure in one, that is a bug in the router.
+
+**The lane handoffs that call these routers:** `build/handoffs/HANDOFF-1-TEST-CASE-CREATION.md` ·
+`HANDOFF-2-BUILD-VERIFICATION.md` · `HANDOFF-3-VIU.md`.
+
+---
+
+## RULE 91 — THE FRESHNESS BADGE APPLIES TO EVERY SKILL'S OUTPUT (added 2026-08-21)
+
+Any deliverable that claims something is build-verified or source-verified shows a **badge with its
+date**: **✅ ≤ 7 days · 🟠 8–14 days · 🔴 > 14 days · ❌ never verified** — plus the build marker (or
+spec version). **A bare tick is non-compliant.** Rule 91 is the **visibility** layer; **Rule 77** is
+the **validity** test, so a case inside Rule 77's 3-build window may still show 🟠 or 🔴 — intended,
+not a contradiction. Tool: `build/testing-tools/verification_badge.py` (requires `--today`).
 
 ---
 
