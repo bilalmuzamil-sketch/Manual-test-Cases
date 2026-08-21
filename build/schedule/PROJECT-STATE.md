@@ -1878,7 +1878,9 @@ role-based. No API endpoints appear in the spec.
 - **Import format template:** any existing `testrail-import/<project>-testrail-import.csv`
   + that project's `gen_import.py` (Standing Rule 16 — mirror 1:1).
 - TestRail: project **1** / single suite **1 "Master"**; API v2 Basic auth; `add_case`
-  requires `custom_atmstatus:3` + `custom_automation_type:0`; result statuses 1 Passed
+  sends `custom_atmstatus:1` (= "Not Automated") + `custom_automation_type:0` — **never
+  `3`** (corrected 2026-08-21: 3 = Automated and would corrupt the automation signal;
+  authored cases are created Not Automated = 1); result statuses 1 Passed
   / 2 Blocked / 3 Untested / 4 Retest / 5 Failed. **Standing Rule 4:** any case
   touching API endpoints/methods/status codes → a TestRail section whose title includes
   'API' (NOTE: the Schedule spec currently has NO API content).

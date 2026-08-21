@@ -272,7 +272,9 @@ placeholder but is OUT OF SCOPE for V1 per the Figma.
   Parts access must not see Parts results).
 - **Permissions assessment:** `build/PERMISSIONS-ASSESSMENT.md`.
 - TestRail: project **1** / single suite **1 "Master"**; API v2 Basic auth;
-  `add_case` requires `custom_atmstatus:3` + `custom_automation_type:0`; result
+  `add_case` sends `custom_atmstatus:1` (= "Not Automated") + `custom_automation_type:0`
+  — **never `3`** (corrected 2026-08-21: 3 = Automated and would corrupt the automation
+  signal; authored cases are created Not Automated = 1); result
   statuses 1 Passed / 2 Blocked / 3 Untested / 4 Retest / 5 Failed. **Standing Rule 4:
   any case touching API endpoints/methods/status codes → a TestRail section whose
   title includes 'API'** (relevant here — `GET /api/search`, recent-entities

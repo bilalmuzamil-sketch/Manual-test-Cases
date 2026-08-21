@@ -398,7 +398,20 @@ do not make sense"*. **No suite we deliver may ever substantiate that claim** �
 
 ### 10 · Push, then SYNC THE RUN
 
-**Only with explicit permission, per ask** (core §2). Then **immediately**:
+**Only with explicit permission, per ask** (core §2).
+
+**🛑 EVERY `add_case` SENDS `custom_atmstatus: 1` ("Not Automated") + `custom_automation_type: 0` —
+NEVER `3`** (core §3.1; QA-lead-confirmed 2026-08-17, verbatim *"1 is correct"*). **WHY: `3` means
+"Automated" — it is TestRail's own field and Vladimir Tomovic's record of what HE has automated, so a
+case born `3` claims to be automated when nobody automated it and corrupts the Rule-65 hand-off signal
+to Vlad** (it both tells him he automated something he never touched and pollutes the flag Rule 65
+reads). The field is `is_required: true` on project 1 but its `default_value` is `"1"`, so `3` was
+never required by anything. **Use `build/testing-tools/testrail_add_case.py`** (sets `1`, raises on
+`3`) and **run `build/testing-tools/check_add_case_payloads.py` before committing.** (corrected
+2026-08-21: 3 = Automated and would corrupt the automation signal; authored cases are created Not
+Automated = 1.)
+
+Then **immediately**:
 - **Run-sync, union-only** (core §4) — a fixed-selection run **never auto-picks up new cases**, and a
   partial `case_ids` list **deletes tests and their results**.
 - **Re-run the foreign-case checker** on the group to catch new foreign cases and new overlaps the

@@ -280,8 +280,13 @@ the real cause is usually a blank/missing part number.
 ### Case fields in use
 - `template_id 1` (Test Case (Text)), `type_id 6` (Functional).
 - Populated free-text: `custom_preconds`, `custom_steps`, `custom_expected`.
-- **Creating a case REQUIRES** `custom_atmstatus: 3` and
-  `custom_automation_type: 0` — otherwise `add_case` returns **400**.
+- **Creating a case sends** `custom_atmstatus: 1` (= "Not Automated") and
+  `custom_automation_type: 0`. **NEVER `3`.** (corrected 2026-08-21: 3 = Automated
+  and would corrupt the automation signal; authored cases are created Not Automated
+  = 1. `custom_atmstatus` is `is_required: true` on project 1 but its `default_value`
+  is `"1"`, so `3` was never required by anything — the field is Vladimir Tomovic's
+  own record of what HE has automated, and Standing Rule 65's tell-Vlad duty keys off
+  it. Use `build/testing-tools/testrail_add_case.py`, which sets `1` and raises on `3`.)
 - Use **REAL newline characters** in text fields (not literal `\n`) so Markdown
   lists render.
 
