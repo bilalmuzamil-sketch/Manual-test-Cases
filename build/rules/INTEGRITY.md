@@ -30,3 +30,31 @@ CLAUDE.md into `build/rules/`. Nothing was deleted; the whole former file is arc
 - `build/rules/RULES-61-91.md` — rules 61-88 (28 rules)
 - `build/rules/PROJECT-HISTORY-ARCHIVE.md` — the 7 per-project narrative blocks
 - `CLAUDE.md` — rewritten as a loadable INDEX (see its READ THIS FIRST header)
+
+---
+
+## SIZE GUARD — CLAUDE.md is an INDEX and MUST stay under 60,000 bytes
+
+`CLAUDE.md` is an **index**, not the rule book. Its legitimate size is ~28–40 KB.
+**If `wc -c CLAUDE.md` exceeds 60,000 bytes it has been RE-INFLATED** — the usual causes are
+(a) a rebase or merge resurrecting the pre-restructure content, (b) a worker re-appending full rule
+bodies into the index instead of editing `build/rules/`, or (c) a project-index refresh rewriting the
+whole file from a stale copy. **Do not commit it.** Repair it from `build/rules/`: the full rule texts
+live in `RULES-01-20.md` / `RULES-21-40.md` / `RULES-41-60.md` / `RULES-61-91.md`, the per-project
+narratives in `PROJECT-HISTORY-ARCHIVE.md`, and the verbatim pre-split file in
+`CLAUDE-FULL-ARCHIVE-2026-08-21.md` (sha256 recorded above — verify it before relying on it).
+
+**Before overwriting CLAUDE.md, assert first that nothing would be lost:** every rule 1..91 has a body
+in a `RULES-*.md` file (both directions), and the archive's sha256 still matches the value recorded
+above. If either check fails, STOP and report rather than overwrite.
+
+### Diagnosis of 2026-08-21 (the "459,549 bytes" report)
+
+**There was no re-inflation.** A session reported `CLAUDE.md` as 459,549 bytes; the file in the working
+tree, at `HEAD` and on `origin` was **34,164 bytes** in correct index form (0 full rule bodies, 91 index
+rows). 459,549 is the exact size of `CLAUDE.md` at commit **`c044768d` (2026-08-10, "Record three QA-lead
+rulings of 2026-08-10")** — pre-restructure, 69 full rule bodies, highest rule 62, and **693 commits
+behind `HEAD`** — i.e. the figure came from a **stale session-context snapshot of the file, not from the
+repository.** **Lesson: measure `CLAUDE.md` with `wc -c` on disk before concluding it has grown** — an
+injected or cached copy of the file is not evidence about its current state, and "repairing" on that
+basis would have discarded 693 commits of legitimate work.

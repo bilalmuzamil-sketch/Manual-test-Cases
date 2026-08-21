@@ -231,3 +231,14 @@ Rule-62 creation hold.
 > **25 %** · **10 % reserve**. **Report your spend with your work**; at **50 % of your own budget**
 > compare spend against work completed and **STOP AND REPORT if spend is outpacing progress**; **never
 > consume the reserve without the QA lead's say-so.** Full texts: `build/rules/RULES-61-91.md`.
+
+## CLAUDE.md size guard
+
+**Before committing an edit to `CLAUDE.md`, run `wc -c CLAUDE.md` — it must stay under 60,000 bytes; a
+larger file means re-inflation, repair from `build/rules/` instead of committing.** `CLAUDE.md` is an
+INDEX (~28–40 KB); the full rule texts live in `build/rules/RULES-*.md` and the verbatim pre-split
+archive. Re-inflation comes from a rebase resurrecting pre-restructure content, a worker re-appending
+rule bodies into the index, or a refresh rewriting the file from a stale copy. **And measure it on
+disk** — on 2026-08-21 a session reported 459,549 bytes from a stale context snapshot while the real
+file was 34,164; a "repair" on that reading would have discarded 693 commits. Guard + diagnosis:
+`build/rules/INTEGRITY.md` § SIZE GUARD.
