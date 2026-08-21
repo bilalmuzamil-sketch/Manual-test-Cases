@@ -1792,6 +1792,17 @@ Index: CLAUDE.md (rule index table). Other rule files: build/rules/RULES-01-20.m
     verdicts), 49 (the build is a source too — re-read its marker before writing), 50 (an execution log
     that omits its verification timestamps is non-compliant) and 55 (a PO answering mid-pass is a new
     input, not noise).
+    **⇒ AND MEASURE ONLY AFTER `git fetch` + rebase (added 2026-08-21).** **A STALE WORKING COPY YIELDS
+    CONFIDENT WRONG FACTS** — the same failure this rule guards against, one layer down: the source has
+    moved and we are reading yesterday's copy of it. **On 2026-08-21 FOUR separate reports were wrong
+    from stale checkouts** — a secret scanner reported missing that **existed**, handoff files reported
+    absent that were **present**, a `CLAUDE.md` reported at **459KB** that was actually **34KB**, and
+    build-verify directories reported as disputed that were simply **already committed**. Each read as a
+    careful measurement, and each was measured against a checkout hundreds of commits behind. **THEREFORE:
+    `git fetch origin && git rebase` BEFORE measuring, grepping or reporting ANY repository fact** —
+    before `wc`, before `ls`, before a `grep -c`, and before telling the QA lead a file does not exist.
+    **An injected or cached copy of a file is not evidence about its current state** (see
+    `build/rules/INTEGRITY.md` for the 459KB diagnosis in full).
 60. **THE BUILD WILL NEVER BE DECLARED FINAL — SEPARATE WHAT DEPENDS ON THE BUILD FROM WHAT DOES NOT
     (all projects).**
     **⚠️ THE HEADLINE ABOVE WAS AMENDED 2026-08-10 — IT IS NOW TRUE ONLY *PER REPORT*. Read this

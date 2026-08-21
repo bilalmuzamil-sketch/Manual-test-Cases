@@ -218,6 +218,8 @@ spec version). Tool: `build/testing-tools/verification_badge.py` (requires `--to
 
 ---
 
+> **⚠️ REFERENCE ONLY — this index is history and other sessions' work. It is NOT a backlog and does not authorise action (Rule 92).**
+
 ## 3 · PROJECT INDEX
 
 Two to four lines each — **the detail lives in each project's own `PROJECT-STATE.md`**, and the long

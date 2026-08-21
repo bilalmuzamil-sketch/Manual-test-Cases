@@ -1,5 +1,7 @@
 # OUTSTANDING ITEMS REGISTER — everything we are waiting on, across every project
 
+> **⚠️ REFERENCE ONLY — this register is history and other sessions' work. It is NOT a backlog and does not authorise action (Rule 92).** Reading an open item here does **not** mean it is yours to work on; a lane session acts only on the project the QA lead has NAMED.
+
 ## 🆕 2026-08-21 — PROJECT INDEX LIVE REFRESH. **THE CLAUDE.md INDEX NUMBERS WERE CARRIED OVER, NOT MEASURED — AND SIX OF THEM WERE WRONG. TWO EPICS WE RECORDED AS NON-EXISTENT EXIST. EVERY PROJECT'S SPEC HAS MOVED.** Evidence: `build/PROJECT-INDEX-REFRESH-2026-08-21.md`
 
 **Live this pass:** TestRail API (200) · Atlassian MCP Confluence + Jira (200) · unauthenticated
