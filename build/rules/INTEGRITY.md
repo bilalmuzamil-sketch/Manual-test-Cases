@@ -27,6 +27,6 @@ CLAUDE.md into `build/rules/`. Nothing was deleted; the whole former file is arc
 - `build/rules/RULES-01-20.md` — rules 1-20 (20 rules)
 - `build/rules/RULES-21-40.md` — rules 21-40 (20 rules)
 - `build/rules/RULES-41-60.md` — rules 41-60 (20 rules)
-- `build/rules/RULES-61-90.md` — rules 61-88 (28 rules)
+- `build/rules/RULES-61-91.md` — rules 61-88 (28 rules)
 - `build/rules/PROJECT-HISTORY-ARCHIVE.md` — the 7 per-project narrative blocks
 - `CLAUDE.md` — rewritten as a loadable INDEX (see its READ THIS FIRST header)

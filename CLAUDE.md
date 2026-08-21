@@ -167,7 +167,7 @@ rule. Generated from the split files' own headers.
 | **59** | RE-READ THE SOURCES IMMEDIATELY BEFORE THE WRITES BEGIN — a second currency check, not only the |
 | **60** | THE BUILD WILL NEVER BE DECLARED FINAL — SEPARATE WHAT DEPENDS ON THE BUILD FROM WHAT DOES NOT |
 
-### `build/rules/RULES-61-90.md` — rules 61–90
+### `build/rules/RULES-61-91.md` — rules 61–91
 
 | # | Rule (short title) |
 |---|---|
@@ -201,10 +201,18 @@ rule. Generated from the split files' own headers.
 | **88** | LANE-SESSION CONTEXT DISCIPLINE — a session WITH direct tools must never bulk-read; script it |
 | **89** | ACCESS RESILIENCE AND MCP HYGIENE — every session keeps a working path to every source, and |
 | **90** | SHARED-QUOTA BUDGET ALLOCATION ACROSS SESSIONS (all projects) |
+| **91** | THE VERIFICATION FRESHNESS BADGE — every build/source verification claim is shown with a COLOUR |
 
 **Rules 89 (access resilience + MCP hygiene) and 90 (shared-quota budget allocation)** were added
-2026-08-21 and live in `build/rules/RULES-61-90.md` with 61–88. Rule 89's operator form is
+2026-08-21 and live in `build/rules/RULES-61-91.md` with 61–88. Rule 89's operator form is
 `build/skills/14-ACCESS-RESILIENCE.md`.
+
+**Rule 91 (the verification freshness badge)** was added 2026-08-21 in the same file. **Its second
+half is a CORRECTION: the branches are NOT final** — they are continuously updated as ad-hoc
+decisions are made and will not be final until release day, so **Rules 49 and 60 remain in force**
+and a gap is **possibly-unfinished** rather than automatically a defect. Badges: **✅ ≤7 days ·
+🟠 8–14 days · 🔴 >14 days · ❌ never build-verified**, always with the date (and build marker or
+spec version). Tool: `build/testing-tools/verification_badge.py` (requires `--today`).
 
 ---
 
@@ -354,7 +362,7 @@ Compact form — **the rule named in brackets is the authority; read it before r
 | Standing Rules 1–20 (full text) | `build/rules/RULES-01-20.md` |
 | Standing Rules 21–40 (full text) | `build/rules/RULES-21-40.md` |
 | Standing Rules 41–60 (full text) | `build/rules/RULES-41-60.md` |
-| Standing Rules 61–90 (full text) | `build/rules/RULES-61-90.md` |
+| Standing Rules 61–91 (full text) | `build/rules/RULES-61-91.md` |
 | Per-project narrative history (projects 1–7) | `build/rules/PROJECT-HISTORY-ARCHIVE.md` |
 | Byte-verification hashes for the split | `build/rules/INTEGRITY.md` |
 | Staging/QA/prod action recipes, TestRail traps | `build/APP-ACTIONS-PLAYBOOK.md` |

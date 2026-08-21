@@ -276,4 +276,4 @@ Also read build/skills/13-CROSS-SESSION-SAFETY.md (Rules 82–87: real secret-sc
 > **Standing Rule 90 — the weekly quota is ONE shared pool:** main/orchestrator **15 %** · each lane
 > **25 %** · **10 % reserve**. **Report your spend with your work**; at **50 % of your own budget**
 > compare spend against work completed and **STOP AND REPORT if spend is outpacing progress**; **never
-> consume the reserve without the QA lead's say-so.** Full texts: `build/rules/RULES-61-90.md`.
+> consume the reserve without the QA lead's say-so.** Full texts: `build/rules/RULES-61-91.md`.

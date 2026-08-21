@@ -1,9 +1,9 @@
-# ShopView QA — Standing Rules 61–90
+# ShopView QA — Standing Rules 61–91
 
-This file holds the FULL, VERBATIM text of Standing Rules 61–90.
+This file holds the FULL, VERBATIM text of Standing Rules 61–91.
 
 Full archive: build/rules/CLAUDE-FULL-ARCHIVE-2026-08-21.md
-Index: CLAUDE.md (rule index table). Other rule files: build/rules/RULES-01-20.md, build/rules/RULES-21-40.md, build/rules/RULES-41-60.md, build/rules/RULES-61-90.md
+Index: CLAUDE.md (rule index table). Other rule files: build/rules/RULES-01-20.md, build/rules/RULES-21-40.md, build/rules/RULES-41-60.md, build/rules/RULES-61-91.md
 
 **Read the rule you are about to apply here, in full — the index is not the rule.**
 
@@ -1675,3 +1675,62 @@ Index: CLAUDE.md (rule index table). Other rule files: build/rules/RULES-01-20.m
     79 (devise the quota-efficient plan BEFORE starting), 86 (report the spend; verify from committed
     evidence, never from a session's self-report) and 88 (a lane scripts its bulk work precisely so its
     share buys work rather than reading).
+
+91. **THE VERIFICATION FRESHNESS BADGE — every build/source verification claim is shown with a COLOUR
+    and its DATE (all projects, permanent).**
+    USER DIRECTIVE (2026-08-21, verbatim): *"The branches are continuously being updated as the adhoc
+    desiions are being made they it looks like they will never be final until the release day- So when
+    we say that our test cases are Build verified asay that with a sheck mark green and date to tell if
+    they were recently build verified and orange if they were build verified but the dat eis like a week
+    old and red if the build verified was more than 2 weeks old tell the date with that and a X croxx if
+    the build verification has not been done."*
+    **THE SCHEME — four badges, and the thresholds are EXACT. Age is measured from the case's
+    last-checked DATE to TODAY, in whole days:**
+    · **✅ GREEN — build-verified, current: age <= 7 days.**
+    · **🟠 ORANGE — build-verified, ageing: age 8–14 days.**
+    · **🔴 RED — build-verified, stale: age > 14 days.**
+    · **❌ CROSS — NOT build-verified: never observed on any build.**
+    **THE BADGE ALWAYS CARRIES THE DATE, and the build marker where known** — e.g.
+    `✅ Build-verified 2026-08-18 (v3.8-bd246fd)`. **A BARE TICK IS NON-COMPLIANT** (Rule 12 — a claim
+    must carry its evidence): a colour on its own tells the reader that somebody was once satisfied, and
+    nothing about when or against what, which is precisely the ambiguity this badge exists to remove.
+    **THE SAME SCHEME APPLIES TO SOURCE VERIFICATION**, per his earlier ruling that the same logic
+    governs source verification — the badge carries the **date and the spec version**, e.g.
+    `🟠 Source-verified 2026-08-06 (spec v19)`. **A PROJECT THEREFORE SHOWS TWO BADGES**, one for the
+    build and one for the source, and they will often disagree: a suite can be source-current and
+    build-stale, or the reverse, and collapsing them into a single "verified" hides exactly the half
+    that is out of date.
+    **WHERE IT APPEARS:** **every** status report, chat update, project table, `PROJECT-STATE.md`,
+    handover sheet and Defects-for-Testers workbook — **anywhere a verification claim is made.** There
+    is no context in which "build-verified" may be written without its badge and date.
+    **RELATIONSHIP TO RULE 77 — THEY ARE COMPLEMENTARY, NOT CONFLICTING, and this is the clause a
+    future session is most likely to misread.** **Rule 77 is the VALIDITY test**: a check within the
+    last 3 builds (or 3 source versions) still **COUNTS** as verified. **Rule 91 is the VISIBILITY
+    layer**: how **FRESH** that counting check is. **A case can be INSIDE Rule 77's window and still
+    show 🟠 or 🔴, and that is the intended outcome, not a contradiction** — it counts, and the ageing
+    is visible. Neither rule may be cited to suppress the other: Rule 77 never licenses hiding a red
+    badge, and a red badge never licenses calling a case unverified when Rule 77 says it counts.
+    **FINALITY CONTEXT — the other half of the same directive, and it is a correction.** This ruling
+    establishes that **the branches are CONTINUOUSLY UPDATED as ad-hoc decisions are made and will NOT
+    be final until release day.** Therefore **Rule 60's never-final strategy and Rule 49's
+    provisional-findings discipline REMAIN IN FORCE**, and **a gap is treated as POSSIBLY-UNFINISHED
+    rather than automatically a defect.** Any earlier statement that the branches are final is
+    **superseded from 2026-08-21** — kept visible and dated, never silently overwritten (the Rules
+    32/33 pattern).
+    **HONEST CAVEAT — WHAT THE BADGE IS NOT.** It is a **freshness indicator, not a verdict**: a green
+    badge says the case was checked recently, **not** that it passed, and **not** that the expectation
+    is right. The pass/fail verdict is a separate layer (Rule 60 layer 2) and the expectation comes from
+    documents only (Rule 57). A green badge on a case whose expectation was never sourced is still an
+    unsourced case.
+    **TOOLING:** `build/testing-tools/verification_badge.py` computes the badge for a project, a list
+    of case ids or a section, parsing the Rule-54 sentence-2 line and the cited spec version. It takes
+    `--today YYYY-MM-DD` **explicitly and refuses to run without it** — a badge computed off an
+    implicit clock is unreproducible, and a freshness claim that cannot be recomputed is not evidence.
+    Ties to Standing Rules 12 (observed, never inferred — and a claim carries its evidence, which is why
+    a bare tick fails), 49 (a non-final build yields PROVISIONAL findings — the badge is how the
+    provisionality becomes visible per case), 54 (sentence 2 is where the build marker and date live on
+    the case, so the badge is DERIVED from the case rather than remembered), 60 (the never-final
+    strategy, re-confirmed by this same directive), 77 (the validity window this badge makes visible
+    without weakening), 80 (tell the last-done date and ask before re-running — the badge IS that date,
+    shown by default), 84 (the tester-readiness gate reads the badge) and 85 (a project with no QA build
+    shows ❌ for the build badge and a real date for the source badge).
