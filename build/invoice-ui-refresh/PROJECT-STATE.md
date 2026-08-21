@@ -17,10 +17,16 @@
 - Epic children: 12 named (SV-9140–9151) + SV-9195 (Story 13) + SV-9193 (batch/imported, **deferred**) +
   5 "Verify:" plan Tasks (SV-9207–9211, not test requirements).
 
-## Status — 2026-08-21
-- **INTAKE COMPLETE. 5 of 7 inputs PRESENT.** Authoring **HELD** for the QA lead's go-ahead.
-- **NO cases authored. NO TestRail writes. NO Jira.** Greenfield (no prior Invoice-UI-Refresh footprint).
-- **Rule-85 project:** SOURCE-VERIFIED ONLY — NO BUILD EXISTS YET.
+## Status — 2026-08-21 (authoring pass complete)
+- **INTAKE COMPLETE + FULL SUITE AUTHORED: 87 cases** across 14 areas (13 spec stories + Authorizer WO-UI).
+- **Coverage: 110 of 110 spec rule IDs covered, both directions, 0 uncovered, 0 orphan anchors** (coverage-matrix.md).
+- **Deliverables:** requirements.md (v38) · coverage-matrix.md · intake-2026-08-21/{INTAKE, SOURCE-CURRENCY, SURFACE-MATRIX, DELIBERATE-DECISIONS, OUTSIDE-IN-GAP-HUNT, quality-audit/AUDIT.md} · cases/ · testrail-id-map.csv · testrail-import/Invoice-UI-Refresh_testrail-import.{csv,xlsx}.
+- **Ruthless Usefulness Audit:** 87/87 KEEP (2 WEAK-KEEP), 0 CUT, 0 NONSENSE, 0 unresolved contradictions.
+- **Rule-85 project:** every case SOURCE-VERIFIED ONLY - NO BUILD EXISTS YET (deferred automation marker).
+- **NO TestRail writes. NO Jira. Nothing pushed** (id-map C-IDs blank). Import file ready for the QA lead.
+- **Open PO questions:** PO-1 (Credit Balance S11-R6a vs stale Terminology §6) · PO-2 (un-logged spec v38 edit 2026-08-13).
+- **Reconciliation:** local active 87 = id-map 87 = import 87; id-map refs 87/87; set-equal both ways.
+
 
 ## How to resume (ordered)
 1. `git fetch` + `merge --ff-only` on `claude/slack-session-0sxnd9`; claim the lock.

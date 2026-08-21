@@ -1,0 +1,964 @@
+Title,Section,Type,Priority,Preconditions,Steps,Expected Result,References,,
+Masthead shows the shop location's full identity details,Masthead and Letterhead,Functional,High,"1. You are signed in to ShopView.
+2. A work order exists whose shop location has a name, street address, city, state or province, postal code, and phone number all set.","1. Open the work order and generate (or preview) its Invoice document.
+2. Look at the masthead (the header block at the top of the document).","1. The masthead shows the shop location's name.
+2. It shows the shop location's street address, city, state or province, postal code, and phone number.
+3. All of these identity details read exactly as they are entered for the shop location.
+
+---
+This is the expected behaviour as per epic SV-8218 and story SV-9140 (Story 1, Masthead and Letterhead) and the Invoice UI Refresh specification version 38, section S1-R1, read on 21 August 2026.
+
+AUTOMATION: Not available on Build to test Yet - Last checked 8/21/2026
+",SV-9140 (S1-R1),,
+Shop logo shows when set; nothing (no placeholder) shows when unset,Masthead and Letterhead,Functional,Medium,"1. You are signed in to ShopView.
+2. You can reach one shop that has a logo set and one shop that has no logo set (or you can add then remove a logo on a test shop).","1. Generate a document for the shop that HAS a logo set and look at the masthead.
+2. Generate a document for the shop that has NO logo set and look at the masthead.","1. When the shop has a logo set, the masthead shows that logo.
+2. When the shop has no logo set, the masthead shows no logo at all — and no placeholder image, box or 'no logo' text appears in its place.
+
+---
+This is the expected behaviour as per epic SV-8218 and story SV-9140 (Story 1, Masthead and Letterhead) and the Invoice UI Refresh specification version 38, section S1-R2, read on 21 August 2026.
+
+AUTOMATION: Not available on Build to test Yet - Last checked 8/21/2026
+",SV-9140 (S1-R2),,
+Document label names the type before the number on each document,Masthead and Letterhead,Functional,High,"1. You are signed in to ShopView.
+2. You can generate an Estimate, an Invoice, and a Credit Invoice for known documents.","1. Generate an Estimate and read its masthead document label.
+2. Generate an Invoice and read its masthead document label.
+3. Generate a Credit Invoice and read its masthead document label.","1. The Estimate label reads exactly ""Estimate: {number}"", for example ""Estimate: EST-4176"".
+2. The Invoice label reads exactly ""Invoice: {number}"", for example ""Invoice: INV-4176"".
+3. The Credit Invoice label reads exactly ""Credit: {number}"", for example ""Credit: CM-2202"".
+4. In every case the number always includes its type prefix (EST-, INV-, or CM-), and the type word comes before the number.
+
+---
+This is the expected behaviour as per epic SV-8218 and story SV-9140 (Story 1, Masthead and Letterhead) and the Invoice UI Refresh specification version 38, sections S1-R3 and S1-R4, read on 21 August 2026.
+
+AUTOMATION: Not available on Build to test Yet - Last checked 8/21/2026
+",SV-9140 (S1-R3; S1-R4),,
+No status pill appears in the masthead on any document,Masthead and Letterhead,Functional,Medium,"1. You are signed in to ShopView.
+2. You can generate an Estimate, an Invoice (including a fully paid one), and a Credit Invoice.","1. Generate each document type, including a fully paid Invoice and a Credit Invoice in various states.
+2. Look at the masthead of each.","1. No status label or pill (for example ""PAID"", ""PAID IN FULL"", ""DRAFT"", ""VOIDED"") appears anywhere in the masthead of any document.
+2. The only place a status indicator appears is with the content that proves it: the Paid banner's pill (on portal-generated Invoice PDFs) and the Status column in the Credit Invoice's status table.
+
+---
+This is the expected behaviour as per epic SV-8218 and story SV-9140 (Story 1, Masthead and Letterhead) and the Invoice UI Refresh specification version 38, section S1-R5, read on 21 August 2026.
+
+AUTOMATION: Not available on Build to test Yet - Last checked 8/21/2026
+",SV-9140 (S1-R5),,
+No money figure in the masthead; headline figure is the boxed total,Masthead and Letterhead,Functional,High,"1. You are signed in to ShopView.
+2. You can generate an Estimate, an Invoice, and a Credit Invoice that have monetary totals.","1. Generate an Estimate and look at the masthead, then at the end of the totals block.
+2. Generate an Invoice and do the same.
+3. Generate a Credit Invoice and do the same.","1. No monetary amount appears anywhere in the masthead of any document.
+2. On the Estimate the single headline figure appears once, as the boxed figure at the end of the totals block, labeled ""Estimated Total"".
+3. On the Invoice the boxed headline figure at the end of the totals block is labeled ""Balance"".
+4. The Credit Invoice has no boxed headline figure; its masthead carries only ""Credit: {number}"" and ""Issue date: {date}"", and its key figure (Total Credit) sits in the totals block.
+
+---
+This is the expected behaviour as per epic SV-8218 and story SV-9140 (Story 1, Masthead and Letterhead) and the Invoice UI Refresh specification version 38, section S1-R6, read on 21 August 2026.
+
+AUTOMATION: Not available on Build to test Yet - Last checked 8/21/2026
+",SV-9140 (S1-R6),,
+Masthead date labels read correctly for each document type,Masthead and Letterhead,Functional,High,"1. You are signed in to ShopView.
+2. You can generate an Estimate, an unpaid Invoice, a fully paid Invoice, and a Credit Invoice.","1. Generate an Estimate and read its masthead date label(s).
+2. Generate an unpaid Invoice and read its masthead date label(s).
+3. Generate a fully paid Invoice and read its masthead date label(s).
+4. Generate a Credit Invoice and read its masthead date label(s).","1. The Estimate masthead shows ""Estimate date: {date}"" and no due date.
+2. The unpaid Invoice masthead shows ""Invoice date: {date}"" and ""Due date: {date}"".
+3. The fully paid Invoice masthead shows ""Invoice date: {date}"" and ""Paid date: {date}"" (Paid date replaces Due date).
+4. The Credit Invoice masthead shows ""Issue date: {date}"".
+5. Every date reads in the fixed format, for example ""Jan 5, 2026"".
+
+---
+This is the expected behaviour as per epic SV-8218 and story SV-9140 (Story 1, Masthead and Letterhead) and the Invoice UI Refresh specification version 38, sections S1-R7 and G-R1, read on 21 August 2026. The paid-date swap detail is in S10-R4 (see the Estimate and Invoice Specifics cases).
+
+AUTOMATION: Not available on Build to test Yet - Last checked 8/21/2026
+",SV-9140 (S1-R7; G-R1),,
+Masthead identity fields each hide when empty,Masthead and Letterhead,Negative,Medium,"1. You are signed in to ShopView.
+2. You can reach (or set up) a shop location that is missing one or more of: street address, city, state or province, postal code, phone number.","1. Generate a document for a shop location that is missing one or more masthead identity fields.
+2. Look at the masthead.","1. Each missing field among the street address, city, state or province, postal code, and phone number is hidden — no blank line and no empty label is left where it would have been.
+2. The fields that do have values still show normally.
+
+---
+This is the expected behaviour as per epic SV-8218 and story SV-9140 (Story 1, Masthead and Letterhead) and the Invoice UI Refresh specification version 38, section S1-N1, read on 21 August 2026.
+
+AUTOMATION: Not available on Build to test Yet - Last checked 8/21/2026
+",SV-9140 (S1-N1),,
+Bill To block shows the customer name and address,Addresses,Functional,High,"1. You are signed in to ShopView.
+2. A document exists for a customer that has a company name (or personal name) and a full address.","1. Generate the Estimate or Invoice.
+2. Look at the addresses area.","1. A block labeled exactly ""Bill To"" is shown.
+2. It shows the customer's name — the company name when the customer has one, otherwise the customer's personal name.
+3. It shows the customer's street address, city, state or province, and postal code.
+
+---
+This is the expected behaviour as per epic SV-8218 and story SV-9141 (Story 2, Addresses) and the Invoice UI Refresh specification version 38, section S2-R1, read on 21 August 2026.
+
+AUTOMATION: Not available on Build to test Yet - Last checked 8/21/2026
+",SV-9141 (S2-R1),,
+Remit Payment To shows when a payee is configured (both mechanisms),Addresses,Functional,High,"1. You are signed in to ShopView.
+2. You can reach a document whose shop uses integrated-billing remit-to, and another whose location has its own remit-to setting (remit to another location or a custom address).","1. Generate an Estimate or Invoice where the shop's integrated-billing remit-to is configured; look at the addresses area.
+2. Generate an Estimate or Invoice where the location's own remit-to setting is configured; look at the addresses area.","1. A block labeled exactly ""Remit Payment To"" is shown, holding the payee address.
+2. The payee resolves from either mechanism: the shop's integrated-billing remit-to, or the location's own remit-to setting.
+3. The block appears on the Estimate and Invoice (not on the Credit Invoice).
+
+---
+This is the expected behaviour as per epic SV-8218 and story SV-9141 (Story 2, Addresses) and the Invoice UI Refresh specification version 38, section S2-R2, read on 21 August 2026.
+
+AUTOMATION: Not available on Build to test Yet - Last checked 8/21/2026
+",SV-9141 (S2-R2),,
+Bill To spans full width when Remit Payment To is absent,Addresses,Functional,Medium,"1. You are signed in to ShopView.
+2. You can reach a document that has no remit-to payee configured (neither mechanism).","1. Generate an Estimate or Invoice with no remit-to payee configured.
+2. Look at the addresses area and note the width of the Bill To block.
+3. For comparison, generate a document that does have a remit-to payee.","1. When there is no Remit Payment To block, the Bill To block spans the full width of the addresses area (it does not stay at half width).
+2. When a Remit Payment To block is present, Bill To and Remit Payment To sit side by side.
+3. On the Credit Invoice, where Remit Payment To never appears, the Credit To block is always full width.
+
+---
+This is the expected behaviour as per epic SV-8218 and story SV-9141 (Story 2, Addresses) and the Invoice UI Refresh specification version 38, section S2-R3, read on 21 August 2026.
+
+AUTOMATION: Not available on Build to test Yet - Last checked 8/21/2026
+",SV-9141 (S2-R3),,
+Remit Payment To is hidden when no payee is configured,Addresses,Negative,Medium,"1. You are signed in to ShopView.
+2. You can reach a document whose shop has neither integrated-billing remit-to nor a location remit-to setting configured.","1. Generate an Estimate or Invoice with no remit-to payee configured.
+2. Look at the addresses area.","1. No ""Remit Payment To"" block is shown.
+2. The shop's own address is NOT printed as a fallback remit-to (this fallback has been removed).
+
+---
+This is the expected behaviour as per epic SV-8218 and story SV-9141 (Story 2, Addresses) and the Invoice UI Refresh specification version 38, sections S2-N2 and S2-R2, read on 21 August 2026.
+
+AUTOMATION: Not available on Build to test Yet - Last checked 8/21/2026
+",SV-9141 (S2-N2; S2-R2),,
+Bill To address fields hide when empty; the name line always shows,Addresses,Negative,Medium,"1. You are signed in to ShopView.
+2. You can reach a document for a customer missing one or more of: street address, city, state or province, postal code.","1. Generate an Estimate or Invoice for a customer missing one or more Bill To address fields.
+2. Look at the Bill To block.","1. Each missing field among the street address, city, state or province, and postal code is hidden — no blank line is left.
+2. The name line is always shown, even when the address fields are empty.
+
+---
+This is the expected behaviour as per epic SV-8218 and story SV-9141 (Story 2, Addresses) and the Invoice UI Refresh specification version 38, section S2-N1, read on 21 August 2026.
+
+AUTOMATION: Not available on Build to test Yet - Last checked 8/21/2026
+",SV-9141 (S2-N1),,
+Order reference fields show in the fixed order with no label punctuation,Order Reference Fields,Functional,High,"1. You are signed in to ShopView.
+2. A document exists whose work order has a work order number, a customer PO, an authorizer, an approval code, and payment terms all set.","1. Generate the Estimate or Invoice.
+2. Look at the order reference fields area.","1. Up to five fields can appear, in this exact order: ""Work Order"", ""Customer PO"", ""Authorizer"", ""Approval Code"", ""Terms"".
+2. Each field label has no punctuation after it (no colon).
+3. The labels read exactly as listed.
+
+---
+This is the expected behaviour as per epic SV-8218 and story SV-9142 (Story 3, Order Reference Fields) and the Invoice UI Refresh specification version 38, section S3-R1, read on 21 August 2026.
+
+AUTOMATION: Not available on Build to test Yet - Last checked 8/21/2026
+",SV-9142 (S3-R1),,
+"Terms field always shows, even when no terms are set",Order Reference Fields,Functional,Medium,"1. You are signed in to ShopView.
+2. You can reach a document whose work order HAS payment terms and one that has NONE.","1. Generate an Estimate or Invoice whose work order has payment terms set; look at the Terms field.
+2. Generate one whose work order has no payment terms set; look at the Terms field.","1. When terms are set, the Terms field shows the value (for example ""Net 30"").
+2. When no terms are set, the field still shows: the text reads exactly ""Terms"" with an empty value area — no colon, and no placeholder text.
+3. Terms is the one order reference field that always shows (all others hide when empty).
+
+---
+This is the expected behaviour as per epic SV-8218 and story SV-9142 (Story 3, Order Reference Fields) and the Invoice UI Refresh specification version 38, sections S3-R2 and S3-N4, read on 21 August 2026.
+
+AUTOMATION: Not available on Build to test Yet - Last checked 8/21/2026
+",SV-9142 (S3-R2; S3-N4),,
+Authorizer field shows the selected authorizer's full name,Order Reference Fields,Functional,High,"1. You are signed in to ShopView.
+2. A document exists whose work order has an Authorizer selected (a customer contact with 'Approves Work' enabled).","1. Generate the Estimate or Invoice.
+2. Look at the Authorizer field in the order reference area.","1. The Authorizer field shows the full name of the work order's selected authorizer.
+2. The name matches the selected 'Approves Work' contact on the work order.
+
+---
+This is the expected behaviour as per epic SV-8218 and story SV-9142 (Story 3, Order Reference Fields) and the Invoice UI Refresh specification version 38, section S3-R3, read on 21 August 2026.
+
+AUTOMATION: Not available on Build to test Yet - Last checked 8/21/2026
+",SV-9142 (S3-R3),,
+Approval Code field shows the integrated-billing approval code,Order Reference Fields,Functional,Medium,"1. You are signed in to ShopView.
+2. A document exists whose work order has an integrated-billing approval code.","1. Generate the Estimate or Invoice.
+2. Look at the Approval Code field in the order reference area.","1. The Approval Code field shows the work order's integrated-billing approval code, in its own field labeled exactly ""Approval Code"".
+2. The approval code is no longer shown under the ""Authorizer"" label (net-new placement).
+
+---
+This is the expected behaviour as per epic SV-8218 and story SV-9142 (Story 3, Order Reference Fields) and the Invoice UI Refresh specification version 38, section S3-R4, read on 21 August 2026.
+
+AUTOMATION: Not available on Build to test Yet - Last checked 8/21/2026
+",SV-9142 (S3-R4),,
+Work Order field hides when it equals the document number's trailing digits,Order Reference Fields,Negative,Medium,"1. You are signed in to ShopView.
+2. You can reach one document where the work order number equals the trailing digits of the document number (for example document """" with work order ""24914""), and one where it does not (work order ""24915"").","1. Generate the document where the work order number equals the document number's trailing digits; look at the order reference area.
+2. Generate the document where they differ; look at the order reference area.","1. When the work order number equals the unbroken digits at the end of the document number, the Work Order field is hidden.
+2. When they differ, the Work Order field is shown with its value.
+3. Trailing digits example: ""4176"" in ""INV-4176""; ""24914"" in """".
+
+---
+This is the expected behaviour as per epic SV-8218 and story SV-9142 (Story 3, Order Reference Fields) and the Invoice UI Refresh specification version 38, section S3-N1, read on 21 August 2026.
+
+AUTOMATION: Not available on Build to test Yet - Last checked 8/21/2026
+",SV-9142 (S3-N1),,
+"Customer PO, Authorizer and Approval Code each hide when empty",Order Reference Fields,Negative,Medium,"1. You are signed in to ShopView.
+2. You can reach a document whose work order has no Customer PO, no Authorizer selected, and no approval code.","1. Generate an Estimate or Invoice whose work order is missing Customer PO, Authorizer and approval code.
+2. Look at the order reference area.","1. The Customer PO field is hidden (no label, no empty value).
+2. The Authorizer field is hidden — no label and no empty value area; an empty authorizer never prints on any document.
+3. The Approval Code field is hidden (no label, no empty value area).
+4. Terms still shows (it is the always-show exception).
+
+---
+This is the expected behaviour as per epic SV-8218 and story SV-9142 (Story 3, Order Reference Fields) and the Invoice UI Refresh specification version 38, sections S3-N2, S3-N3 and S3-N5, read on 21 August 2026.
+
+AUTOMATION: Not available on Build to test Yet - Last checked 8/21/2026
+",SV-9142 (S3-N2; S3-N3; S3-N5),,
+Authorizer is selected in the work order customer contact card,Authorizer Entry (Work Order),Functional,High,"1. You are signed in to ShopView with access to work orders.
+2. A work order exists for a customer that has at least one contact with 'Approves Work' enabled, and other contacts without it.","1. Open the work order.
+2. Look at the customer contact card on the left side of the work order, below the Contact and Phone values.
+3. Select the ""Authorizer"" row and look at the list of choices offered.","1. An ""Authorizer"" row appears in the customer contact card, directly below the Contact and Phone values, in the same label-and-value style.
+2. Selecting the row opens a list of only the customer's contacts that have ""Approves Work"" enabled.
+3. No other contact is offered, and no free-typed name can be entered.
+4. This is the only place the Authorizer can be selected.
+
+---
+This is the expected behaviour as per epic SV-8218 and story SV-9142 (Story 3, Order Reference Fields) and the Invoice UI Refresh specification version 38, section S3-R5, read on 21 August 2026.
+
+AUTOMATION: Not available on Build to test Yet - Last checked 8/21/2026
+",SV-9142 (S3-R5),,
+Authorizer is optional and can be cleared with 'No authorizer',Authorizer Entry (Work Order),Functional,Medium,"1. You are signed in to ShopView.
+2. A work order exists whose customer has 'Approves Work' contacts.","1. Open a work order with no Authorizer selected and look at the Authorizer row.
+2. Open the Authorizer list and note the options.
+3. Select an authorizer, then reopen the list and choose ""No authorizer"".","1. The Authorizer is not required and defaults to empty on a new work order.
+2. The Authorizer list includes a ""No authorizer"" option.
+3. Choosing ""No authorizer"" clears the selection back to empty.
+
+---
+This is the expected behaviour as per epic SV-8218 and story SV-9142 (Story 3, Order Reference Fields) and the Invoice UI Refresh specification version 38, section S3-R6, read on 21 August 2026.
+
+AUTOMATION: Not available on Build to test Yet - Last checked 8/21/2026
+",SV-9142 (S3-R6),,
+Authorizer's phone shows below the name when the contact has one,Authorizer Entry (Work Order),Functional,Low,"1. You are signed in to ShopView.
+2. A work order's customer has one 'Approves Work' contact WITH a phone number and one WITHOUT.","1. Open the work order and select the authorizer whose contact has a phone number; look at the contact card.
+2. Select the authorizer whose contact has no phone number; look at the contact card.","1. When the selected authorizer's contact record has a phone number, the phone shows in the card directly below the authorizer's name, styled like the Contact's phone.
+2. When the contact record has no phone number, no phone row is shown under the authorizer's name.
+
+---
+This is the expected behaviour as per epic SV-8218 and story SV-9142 (Story 3, Order Reference Fields) and the Invoice UI Refresh specification version 38, section S3-R7, read on 21 August 2026.
+
+AUTOMATION: Not available on Build to test Yet - Last checked 8/21/2026
+",SV-9142 (S3-R7),,
+Authorizer is locked once the work order is invoiced,Authorizer Entry (Work Order),Functional,Medium,"1. You are signed in to ShopView.
+2. A work order that has been invoiced exists, with (or without) an Authorizer selected.","1. Open the invoiced work order.
+2. Try to change the Authorizer in the customer contact card.","1. Once the work order is invoiced, the Authorizer row is locked and its value cannot be changed.
+2. Before invoicing the row is editable; from the point of invoicing it is read-only.
+
+---
+This is the expected behaviour as per epic SV-8218 and story SV-9142 (Story 3, Order Reference Fields) and the Invoice UI Refresh specification version 38, section S3-R8, read on 21 August 2026.
+
+AUTOMATION: Not available on Build to test Yet - Last checked 8/21/2026
+",SV-9142 (S3-R8),,
+A new 'Approves Work' contact becomes selectable immediately,Authorizer Entry (Work Order),Functional,Medium,"1. You are signed in to ShopView.
+2. A work order is open for a customer, and you can edit that customer's contacts.","1. On the customer's contacts page, create or edit a contact and enable ""Approves Work"".
+2. Return to the open work order without refreshing or re-saving it.
+3. Open the Authorizer list.","1. The newly enabled contact appears in the work order's Authorizer list.
+2. It becomes selectable without any refresh or re-save of the work order.
+
+---
+This is the expected behaviour as per epic SV-8218 and story SV-9142 (Story 3, Order Reference Fields) and the Invoice UI Refresh specification version 38, section S3-R9, read on 21 August 2026.
+
+AUTOMATION: Not available on Build to test Yet - Last checked 8/21/2026
+",SV-9142 (S3-R9),,
+Asset section shows Asset name and VIN / Serial when present,Asset Section,Functional,High,"1. You are signed in to ShopView.
+2. A document exists whose work order has an asset attached, and that asset has a VIN (and a separate asset has only a serial number).","1. Generate an Estimate or Invoice whose work order has an asset with a VIN; look at the asset section.
+2. Generate one whose asset has only a serial number (no VIN); look at the asset section.","1. The asset section shows the asset name, labeled exactly ""Asset"".
+2. When the asset has a VIN, one value labeled exactly ""VIN / Serial"" shows the VIN.
+3. When the asset has no VIN but has a serial number, the ""VIN / Serial"" value shows the serial number.
+4. The VIN is preferred when both exist.
+
+---
+This is the expected behaviour as per epic SV-8218 and story SV-9143 (Story 4, Asset Section) and the Invoice UI Refresh specification version 38, section S4-R1, read on 21 August 2026.
+
+AUTOMATION: Not available on Build to test Yet - Last checked 8/21/2026
+",SV-9143 (S4-R1),,
+"Asset section can show Unit, Plate, Mileage and Eng Hrs",Asset Section,Functional,Medium,"1. You are signed in to ShopView.
+2. A document exists whose work order has an asset with Unit, Plate, Mileage and Eng Hrs all set.","1. Generate the Estimate or Invoice.
+2. Look at the asset section.","1. The asset section shows fields labeled exactly ""Unit"", ""Plate"", ""Mileage"", and ""Eng Hrs"" with their values.
+
+---
+This is the expected behaviour as per epic SV-8218 and story SV-9143 (Story 4, Asset Section) and the Invoice UI Refresh specification version 38, section S4-R2, read on 21 August 2026.
+
+AUTOMATION: Not available on Build to test Yet - Last checked 8/21/2026
+",SV-9143 (S4-R2),,
+"Unit, Plate, Mileage and Eng Hrs each hide when empty",Asset Section,Negative,Medium,"1. You are signed in to ShopView.
+2. A document exists whose asset is missing one or more of Unit, Plate, Mileage, Eng Hrs.","1. Generate an Estimate or Invoice whose asset is missing some of these fields.
+2. Look at the asset section.","1. Each of Unit, Plate, Mileage and Eng Hrs is hidden when it has no value — no blank label is left.
+2. The fields that do have values still show.
+
+---
+This is the expected behaviour as per epic SV-8218 and story SV-9143 (Story 4, Asset Section) and the Invoice UI Refresh specification version 38, section S4-N1, read on 21 August 2026.
+
+AUTOMATION: Not available on Build to test Yet - Last checked 8/21/2026
+",SV-9143 (S4-N1),,
+VIN / Serial hides when the asset has neither; Asset name still shows,Asset Section,Negative,Medium,"1. You are signed in to ShopView.
+2. A document exists whose attached asset has no VIN and no serial number.","1. Generate the Estimate or Invoice.
+2. Look at the asset section.","1. The ""VIN / Serial"" field is hidden when the asset has neither a VIN nor a serial number.
+2. The Asset name still shows.
+
+---
+This is the expected behaviour as per epic SV-8218 and story SV-9143 (Story 4, Asset Section) and the Invoice UI Refresh specification version 38, section S4-N2, read on 21 August 2026.
+
+AUTOMATION: Not available on Build to test Yet - Last checked 8/21/2026
+",SV-9143 (S4-N2),,
+Asset section shows whenever the work order has an asset (parts sales too),Asset Section,Functional,High,"1. You are signed in to ShopView.
+2. You can reach: a service work order with an asset, a parts sale with an asset attached, and a work order with no asset attached.","1. Generate a document for a service work order with an asset; check whether the asset section shows.
+2. Generate a document for a parts sale that has an asset attached; check whether the asset section shows.
+3. Generate a document for a work order with no asset attached; check whether the asset section shows.","1. The asset section shows whenever the work order has an asset attached — including on part sales, treated the same as service work orders.
+2. When the work order has no asset attached, the asset section is hidden entirely.
+
+---
+This is the expected behaviour as per epic SV-8218 and story SV-9143 (Story 4, Asset Section) and the Invoice UI Refresh specification version 38, sections S4-N3 and the Story 4 prerequisite, read on 21 August 2026.
+
+AUTOMATION: Not available on Build to test Yet - Last checked 8/21/2026
+",SV-9143 (S4-N3; Story 4 prerequisite),,
+Work heading is 'Work Summary' on Estimate and 'Work Performed' on Invoice,Work Section,Functional,High,"1. You are signed in to ShopView.
+2. You can generate an Estimate and an Invoice for work orders that have work lines.","1. Generate an Estimate and read the work section heading.
+2. Generate an Invoice and read the work section heading.","1. On the Estimate the work section heading reads exactly ""Work Summary"".
+2. On the Invoice the same section heading reads exactly ""Work Performed"".
+
+---
+This is the expected behaviour as per epic SV-8218 and story SV-9144 (Story 5, Work Section) and the Invoice UI Refresh specification version 38, section S5-R1, read on 21 August 2026.
+
+AUTOMATION: Not available on Build to test Yet - Last checked 8/21/2026
+",SV-9144 (S5-R1),,
+Work line numbers are sequential and zero-padded to two digits,Work Section,Functional,Medium,"1. You are signed in to ShopView.
+2. You can reach a work order with several work lines, and (ideally) one with 100 or more lines.","1. Generate a document for a work order with multiple lines; read the line numbers.
+2. If available, generate a document for a work order with 100 or more lines; read the line numbers.","1. Line numbers are sequential with no gaps.
+2. Lines 1 to 99 are zero-padded to two digits: 01, 02 ... 10, 11.
+3. When the document has 100 or more lines, lines 1-99 still show two digits and lines 100 and above show three digits (100, 101 ...).
+
+---
+This is the expected behaviour as per epic SV-8218 and story SV-9144 (Story 5, Work Section) and the Invoice UI Refresh specification version 38, section S5-R2, read on 21 August 2026.
+
+AUTOMATION: Not available on Build to test Yet - Last checked 8/21/2026
+",SV-9144 (S5-R2),,
+"Each work line shows name, and description and scope-of-work note when present",Work Section,Functional,High,"1. You are signed in to ShopView.
+2. A work order has a line with a name, a description, and a scope-of-work note; and another line with a name only.","1. Generate the document.
+2. Read the line that has a description and a scope-of-work note.
+3. Read the line that has a name only.","1. Each work line shows its name.
+2. A line shows its description when a description is present.
+3. A line shows its scope-of-work note when a scope-of-work note is present (shown below the description).
+4. A line with no description and no scope-of-work note shows just its name (no empty rows).
+
+---
+This is the expected behaviour as per epic SV-8218 and story SV-9144 (Story 5, Work Section) and the Invoice UI Refresh specification version 38, sections S5-R3, S5-R4 and S5-R5, read on 21 August 2026.
+
+AUTOMATION: Not available on Build to test Yet - Last checked 8/21/2026
+",SV-9144 (S5-R3; S5-R4; S5-R5),,
+Labor and Part entries are labeled exactly 'Labor' and 'Part',Work Section,Functional,Medium,"1. You are signed in to ShopView.
+2. A work order line has both a labor entry and a parts entry.","1. Generate the document.
+2. Read the entry labels within a work line.","1. A labor entry within a line is labeled exactly ""Labor"".
+2. A parts entry within a line is labeled exactly ""Part"" (singular).
+
+---
+This is the expected behaviour as per epic SV-8218 and story SV-9144 (Story 5, Work Section) and the Invoice UI Refresh specification version 38, section S5-R6, read on 21 August 2026.
+
+AUTOMATION: Not available on Build to test Yet - Last checked 8/21/2026
+",SV-9144 (S5-R6),,
+Invoice Details settings show or hide the per-entry figures,Work Section,Functional,High,"1. You are signed in to ShopView.
+2. You can change the document settings under Administration > Invoice Details for a shop, and generate a document for that shop.","1. Under Administration > Invoice Details, turn each of ""Labor hours"", ""Labor rate"", ""Labor price"", ""Part quantity"", ""Part price"" on, generate a document, and read a work line.
+2. Turn each setting off, generate again, and read the same line.","1. When ""Labor hours"", ""Labor rate"", ""Labor price"", ""Part quantity"" and ""Part price"" are on, each figure shows on its labor/part entry.
+2. Turning a setting off hides its per-entry figure.
+3. Turning ""Labor price"" off also hides the line footer's ""Labor"" figure; turning ""Part price"" off also hides the line footer's ""Parts"" figure.
+4. The itemized labor and parts entries themselves are never collapsed or hidden by any setting; ""Line total"" and the financial summary always show their amounts.
+
+---
+This is the expected behaviour as per epic SV-8218 and story SV-9144 (Story 5, Work Section) and the Invoice UI Refresh specification version 38, section S5-R7, read on 21 August 2026.
+
+AUTOMATION: Not available on Build to test Yet - Last checked 8/21/2026
+",SV-9144 (S5-R7),,
+Line-level fee shows as a plain amount; discount shows in parentheses,Work Section,Functional,High,"1. You are signed in to ShopView.
+2. A work order has a line with a line-level fee and a line with a line-level discount.","1. Generate the document.
+2. Read the line that has a line-level fee.
+3. Read the line that has a line-level discount.","1. A fee that applies to a single labor or parts line is shown with that line as a plain amount.
+2. A discount that applies to a single line is shown with that line in parentheses (the accounting convention for a subtraction).
+3. The parentheses are required wording, not styling.
+
+---
+This is the expected behaviour as per epic SV-8218 and story SV-9144 (Story 5, Work Section) and the Invoice UI Refresh specification version 38, section S5-R8, read on 21 August 2026.
+
+AUTOMATION: Not available on Build to test Yet - Last checked 8/21/2026
+",SV-9144 (S5-R8),,
+"Line footer shows Labor, Parts and Line total with the divider rule",Work Section,Functional,High,"1. You are signed in to ShopView.
+2. You can set ""Summarize labor total"" and ""Summarize parts total"" under Administration > Invoice Details, and reach lines with and without visible Labor/Parts figures.","1. With both summarize settings on, generate a document and read a line footer that has Labor and Parts amounts.
+2. Turn the summarize settings off and read the footer again.
+3. Read a footer on a line where neither a Labor nor a Parts figure is visible.","1. Each work line has a footer with figures labeled exactly ""Labor"", ""Parts"", and ""Line total"".
+2. The Labor and Parts figures are that line's own totals after its line-level fees and discounts; ""Line total"" is their sum.
+3. A ""Labor"" or ""Parts"" footer figure shows only when its summarize setting is on; it is hidden when that setting is off, when its value is $0.00, or when its matching price setting is off (a negative value is shown with its sign).
+4. The vertical divider before ""Line total"" shows only when at least one Labor or Parts figure is visible; when neither is, ""Line total"" stands alone with no divider.
+5. ""Line total"" always shows, appears once per line, and shows even when it reads $0.00.
+
+---
+This is the expected behaviour as per epic SV-8218 and story SV-9144 (Story 5, Work Section) and the Invoice UI Refresh specification version 38, sections S5-R7, S5-R9 and S5-R10, read on 21 August 2026.
+
+AUTOMATION: Not available on Build to test Yet - Last checked 8/21/2026
+",SV-9144 (S5-R7; S5-R9; S5-R10),,
+Empty work section shows heading; Summary divider still precedes summary,Work Section,Negative,Low,"1. You are signed in to ShopView.
+2. You can reach a document whose work order has no work lines.","1. Generate the document for a work order with no work lines.
+2. Look at the work section and what follows it.","1. The work section shows its heading with no lines beneath it.
+2. The ""Summary"" divider still appears and precedes the financial summary.
+
+---
+This is the expected behaviour as per epic SV-8218 and story SV-9144 (Story 5, Work Section) and the Invoice UI Refresh specification version 38, section S5-N1, read on 21 August 2026.
+
+AUTOMATION: Not available on Build to test Yet - Last checked 8/21/2026
+",SV-9144 (S5-N1),,
+Declined Work shows in its own section with names and descriptions only,Declined Work,Functional,Medium,"1. You are signed in to ShopView.
+2. A document exists whose work order has declined work lines (with names, descriptions, and internal scope-of-work notes), and the ""Show declined work"" option is enabled.","1. Generate the Estimate or Invoice.
+2. Find the Declined Work section and read its lines.","1. Declined work appears in its own section headed exactly ""Declined Work"", separate from the main work section.
+2. Each declined line shows its name, and its description when a description is present.
+3. A declined line never shows a scope-of-work note (the technician's internal write-up) - that note does not print for declined work on any customer document.
+
+---
+This is the expected behaviour as per epic SV-8218 and story SV-9145 (Story 6, Declined Work) and the Invoice UI Refresh specification version 38, sections S6-R1 and S6-R2, read on 21 August 2026.
+
+AUTOMATION: Not available on Build to test Yet - Last checked 8/21/2026
+",SV-9145 (S6-R1; S6-R2),,
+"Declined lines show no prices, no line numbers, and no status pill",Declined Work,Functional,Medium,"1. You are signed in to ShopView.
+2. A document exists with declined work lines and ""Show declined work"" enabled.","1. Generate the document.
+2. Read the Declined Work section and check the totals elsewhere on the document.","1. Declined lines show no prices, no labor totals, and no parts totals.
+2. Declined lines are never included in any total on the document.
+3. Declined lines do not show a line number.
+4. No status pill is shown on declined lines; the ""Declined Work"" heading is the only indicator of declined status.
+
+---
+This is the expected behaviour as per epic SV-8218 and story SV-9145 (Story 6, Declined Work) and the Invoice UI Refresh specification version 38, sections S6-R3, S6-R4 and S6-R5, read on 21 August 2026.
+
+AUTOMATION: Not available on Build to test Yet - Last checked 8/21/2026
+",SV-9145 (S6-R3; S6-R4; S6-R5),,
+Declined Work section hidden when nothing declined or option off,Declined Work,Negative,Low,"1. You are signed in to ShopView.
+2. You can reach a document with no declined lines, and one that has declined lines but with ""Show declined work"" turned off.","1. Generate a document with no declined lines; look for a Declined Work section.
+2. Generate a document that has declined lines but with ""Show declined work"" off; look for a Declined Work section.","1. When there are no declined lines, the Declined Work section is not shown.
+2. When the ""Show declined work"" option is off, the Declined Work section is not shown even if declined lines exist.
+
+---
+This is the expected behaviour as per epic SV-8218 and story SV-9145 (Story 6, Declined Work) and the Invoice UI Refresh specification version 38, section S6-N1, read on 21 August 2026.
+
+AUTOMATION: Not available on Build to test Yet - Last checked 8/21/2026
+",SV-9145 (S6-N1),,
+'Summary' divider precedes the financial summary,Financial Summary,Functional,Low,"1. You are signed in to ShopView.
+2. You can generate an Estimate or Invoice.","1. Generate the document.
+2. Find where the work section ends and the financial summary begins.","1. A divider labeled exactly ""Summary"" precedes the financial summary.
+
+---
+This is the expected behaviour as per epic SV-8218 and story SV-9146 (Story 7, Financial Summary) and the Invoice UI Refresh specification version 38, section S7-R1, read on 21 August 2026.
+
+AUTOMATION: Not available on Build to test Yet - Last checked 8/21/2026
+",SV-9146 (S7-R1),,
+"Summary shows gross Labor and Parts rows, and Shop supplies when charged",Financial Summary,Functional,High,"1. You are signed in to ShopView.
+2. A document exists with labor charges, parts charges, and a shop-supplies charge.","1. Generate the document.
+2. Read the financial summary rows for Labor, Parts and Shop supplies.","1. The summary shows a row labeled exactly ""Labor"" and a row labeled exactly ""Parts"".
+2. Each shows the gross amount - before any fees or discounts.
+3. A row labeled exactly ""Shop supplies"" shows only when a shop-supplies charge applies.
+
+---
+This is the expected behaviour as per epic SV-8218 and story SV-9146 (Story 7, Financial Summary) and the Invoice UI Refresh specification version 38, sections S7-R2 and S7-R6, read on 21 August 2026.
+
+AUTOMATION: Not available on Build to test Yet - Last checked 8/21/2026
+",SV-9146 (S7-R2; S7-R6),,
+Shop supplies shows its percentage when the location setting is enabled,Financial Summary,Functional,Low,"1. You are signed in to ShopView.
+2. You can reach a document whose location has ""Show % on Estimates and Invoices"" enabled and shop supplies charged as a percentage of labor, and one with the setting disabled.","1. Generate a document with the setting enabled and read the Shop supplies row.
+2. Generate one with the setting disabled and read the Shop supplies row.","1. When the location's ""Show % on Estimates and Invoices"" setting is enabled and shop supplies are charged as a percentage of labor, the percentage is shown alongside the shop supplies amount.
+2. Otherwise the shop supplies amount is shown alone.
+
+---
+This is the expected behaviour as per epic SV-8218 and story SV-9146 (Story 7, Financial Summary) and the Invoice UI Refresh specification version 38, section S7-R3, read on 21 August 2026.
+
+AUTOMATION: Not available on Build to test Yet - Last checked 8/21/2026
+",SV-9146 (S7-R3),,
+Adjustments group shows rollup Labor/Parts then each work-order-wide row,Financial Summary,Functional,High,"1. You are signed in to ShopView.
+2. A document exists with line-level labor and parts fees/discounts and two or more work-order-wide adjustments added in a known order.","1. Generate the document.
+2. Read the Adjustments group in the financial summary, top to bottom.","1. Fees and discounts are grouped under a heading labeled exactly ""Adjustments"", which carries no amount of its own.
+2. Under it, in this order: a rollup row labeled ""Labor"" totaling all line-level labor fees and discounts, a rollup row labeled ""Parts"" totaling all line-level parts fees and discounts, then each work-order-wide fee or discount as its own named row in the order it was added.
+3. A ""Labor"" or ""Parts"" rollup row shows only when its total is not zero; a negative rollup shows in parentheses, a positive rollup as a plain amount.
+4. A work-order-wide discount shows in parentheses; a work-order-wide fee shows as a plain amount.
+5. There are intentionally two ""Labor"" rows and two ""Parts"" rows in the summary; the Adjustments pair is distinguished by sitting under the Adjustments heading.
+
+---
+This is the expected behaviour as per epic SV-8218 and story SV-9146 (Story 7, Financial Summary) and the Invoice UI Refresh specification version 38, sections S7-R4 and S7-R5, read on 21 August 2026.
+
+AUTOMATION: Not available on Build to test Yet - Last checked 8/21/2026
+",SV-9146 (S7-R4; S7-R5),,
+"Summary shows Subtotal, one row per tax, and the grand Total",Financial Summary,Functional,High,"1. You are signed in to ShopView.
+2. A document exists with one or more applicable taxes.","1. Generate the document.
+2. Read the Subtotal, tax rows, and Total in the summary.","1. The summary shows a row labeled exactly ""Subtotal"".
+2. It shows one tax row per applicable tax, each labeled with the tax name and its rate.
+3. It shows the grand total labeled exactly ""Total"".
+4. Every row that contributes to the Subtotal is displayed; no contributing summary row is hidden.
+5. The visible math holds: gross Labor + gross Parts + Shop supplies + all Adjustments rows = Subtotal.
+
+---
+This is the expected behaviour as per epic SV-8218 and story SV-9146 (Story 7, Financial Summary) and the Invoice UI Refresh specification version 38, sections S7-R7, S7-R8, S7-R9 and S7-R10, read on 21 August 2026.
+
+AUTOMATION: Not available on Build to test Yet - Last checked 8/21/2026
+",SV-9146 (S7-R7; S7-R8; S7-R9; S7-R10),,
+Adjustments heading and tax rows hide when nothing applies,Financial Summary,Negative,Medium,"1. You are signed in to ShopView.
+2. You can reach a document with no work-order-wide adjustments and both rollup totals zero, and one with no applicable tax.","1. Generate a document with no adjustments and zero rollups; look for the Adjustments heading.
+2. Generate a document with no applicable tax; look for a tax row.","1. The Adjustments heading is not shown when there is nothing to list under it (no work-order-wide fees or discounts and both rollup totals at zero).
+2. When no tax applies, no tax row is shown.
+
+---
+This is the expected behaviour as per epic SV-8218 and story SV-9146 (Story 7, Financial Summary) and the Invoice UI Refresh specification version 38, sections S7-N1 and S7-N2, read on 21 August 2026.
+
+AUTOMATION: Not available on Build to test Yet - Last checked 8/21/2026
+",SV-9146 (S7-N1; S7-N2),,
+Payments heading and each applied payment row show correctly,"Paid Banner, Payments and Balance",Functional,High,"1. You are signed in to ShopView.
+2. An Invoice exists with two or more applied payments made on different dates by different methods.","1. Generate the Invoice.
+2. Find the Payments section and read each payment row.","1. The Invoice shows a heading labeled exactly ""Payments"".
+2. Each applied payment shows as a row reading ""{date} - {method}"" (for example ""Jul 30, 2026 - Cash""), where the hyphen is a literal character.
+3. The amount shown is the applied amount when present, otherwise the payment amount.
+4. Rows list applied payments only, ordered by date; a fully reversed payment does not appear.
+
+---
+This is the expected behaviour as per epic SV-8218 and story SV-9147 (Story 8, Paid Banner, Payments and Balance) and the Invoice UI Refresh specification version 38, section S8-R2, read on 21 August 2026.
+
+AUTOMATION: Not available on Build to test Yet - Last checked 8/21/2026
+",SV-9147 (S8-R1; S8-R2),,
+Payment method name resolves per rule (SHOPPAY shows 'Online'),"Paid Banner, Payments and Balance",Functional,Medium,"1. You are signed in to ShopView.
+2. An Invoice has a payment with a shop-configured method name, one with an unconfigured code (for example credit_card), and one made online (SHOPPAY).","1. Generate the Invoice.
+2. Read the method name on each payment row.","1. A payment's method shows the shop-configured payment-method name when configured.
+2. When not configured, it shows the payment code with each underscore replaced by a space (for example credit_card shows as ""credit card"").
+3. The ""SHOPPAY"" code shows as ""Online"".
+
+---
+This is the expected behaviour as per epic SV-8218 and story SV-9147 (Story 8, Paid Banner, Payments and Balance) and the Invoice UI Refresh specification version 38, section S8-R3, read on 21 August 2026.
+
+AUTOMATION: Not available on Build to test Yet - Last checked 8/21/2026
+",SV-9147 (S8-R3),,
+Deposit and applied customer-account credit show as labeled payment rows,"Paid Banner, Payments and Balance",Functional,Medium,"1. You are signed in to ShopView.
+2. An Invoice has a deposit applied and an applied customer-account credit (with a CM- number).","1. Generate the Invoice.
+2. Read the deposit row and the applied-credit row in the Payments section.","1. A deposit shows as a payment row labeled ""(Deposit) {date} - {method}"", where {date} is the date the deposit was collected.
+2. An applied customer-account credit shows as a payment row labeled ""(Credit) {date} - {credit number}"", where {credit number} is the full CM-prefixed number and {date} is the date the credit was applied.
+
+---
+This is the expected behaviour as per epic SV-8218 and story SV-9147 (Story 8, Paid Banner, Payments and Balance) and the Invoice UI Refresh specification version 38, section S8-R4, read on 21 August 2026.
+
+AUTOMATION: Not available on Build to test Yet - Last checked 8/21/2026
+",SV-9147 (S8-R4),,
+Excess payment sub-line reads exactly per the credited/ to-be-credited rule,"Paid Banner, Payments and Balance",Functional,Medium,"1. You are signed in to ShopView.
+2. An Invoice has a payment (or deposit) whose amount exceeds the amount applied to this invoice - one where the excess became a numbered credit, and one where it has not yet.","1. Generate the Invoice.
+2. Read the sub-line beneath the over-applied payment or deposit row.","1. When the excess has become a customer-account credit with a number, the sub-line reads exactly ""of {full amount} - {excess} -> Credit {credit number}"" (for example ""of $500.00 - $150.00 -> Credit CM-1042"").
+2. Otherwise it reads exactly ""of {full amount} - {excess} will be credited"".
+3. {full amount} is the payment's or deposit's full amount; {excess} is the full amount minus the amount applied to this invoice.
+4. The em dash and the arrow are literal separator characters, not subtraction.
+
+---
+This is the expected behaviour as per epic SV-8218 and story SV-9147 (Story 8, Paid Banner, Payments and Balance) and the Invoice UI Refresh specification version 38, section S8-R5, read on 21 August 2026.
+
+AUTOMATION: Not available on Build to test Yet - Last checked 8/21/2026
+",SV-9147 (S8-R5),,
+"Balance equals Total minus all applied amounts, floored at $0.00","Paid Banner, Payments and Balance",Functional,High,"1. You are signed in to ShopView.
+2. You can reach an unpaid Invoice, a partially paid Invoice, a fully paid Invoice, and an overpaid Invoice.","1. Generate each Invoice and read the ""Balance"" row.","1. The Invoice shows a row labeled exactly ""Balance"".
+2. Balance equals the Total minus all applied payments (any method), applied deposits, and applied customer-account credits.
+3. Balance is floored at $0.00: an overpaid invoice shows ""Balance"" with ""$0.00"" - never a negative amount and never a hidden row.
+
+---
+This is the expected behaviour as per epic SV-8218 and story SV-9147 (Story 8, Paid Banner, Payments and Balance) and the Invoice UI Refresh specification version 38, section S8-R6, read on 21 August 2026.
+
+AUTOMATION: Not available on Build to test Yet - Last checked 8/21/2026
+",SV-9147 (S8-R6),,
+"Paid banner appears only on portal-generated Invoice PDFs, before all content","Paid Banner, Payments and Balance",Functional,High,"1. You are signed in to ShopView.
+2. You can obtain an Invoice PDF generated by the customer portal (with portal payments) and an Invoice PDF generated in the shop app for the same invoice.","1. Obtain the portal-generated Invoice PDF and look at the very top of the document.
+2. Obtain the shop-app-generated Invoice PDF for the same invoice and look for the banner.
+3. Check a portal-generated PDF that has shop-recorded (non-portal) payments too.","1. On the portal-generated PDF the paid banner appears before all other invoice content, including the masthead.
+2. The banner lists only portal-processed payments; shop-recorded payments appear only in the Payments section.
+3. An Invoice PDF generated in the shop app never carries the banner, whether or not portal payments exist.
+4. The banner shows a fixed status pill: exactly ""PAID IN FULL"" when the invoice is fully paid at generation time, otherwise exactly ""PARTIALLY PAID"".
+5. The banner title reads exactly ""Payment Receipt (Batch) - Payments by ShopView"" when every listed payment was part of a batch, otherwise exactly ""Payment Receipt - Payments by ShopView"".
+
+---
+This is the expected behaviour as per epic SV-8218 and story SV-9147 (Story 8, Paid Banner, Payments and Balance) and the Invoice UI Refresh specification version 38, section S8-R8, read on 21 August 2026.
+
+AUTOMATION: Not available on Build to test Yet - Last checked 8/21/2026
+",SV-9147 (S8-R8),,
+Each banner payment shows its labeled fields and conditional fees/marker,"Paid Banner, Payments and Balance",Functional,Medium,"1. You are signed in to ShopView.
+2. You can obtain a portal-generated Invoice PDF with a single payment, and one paid as part of a batch, ideally with convenience/late fees.","1. Obtain the portal-generated PDF and read each banner payment's fields.
+2. Compare a single-payment banner with a batch-payment banner.","1. Each banner payment shows fields labeled exactly: ""Date / Time"", ""Paid By"", ""Method"", ""Invoice Amount"", and ""Total Charged"".
+2. ""Total Charged"" is labeled ""Total Charged (Batch)"" for a batch payment and then covers the whole batch.
+3. ""Convenience Fee"" and ""Late Fee"" each show only when the portal charged one (a non-zero amount).
+4. ""Remaining Balance"" shows only when the balance immediately after that payment was greater than $0.00.
+5. In a batch, each payment carries a ""Payment X of Y - Batch"" marker.
+6. ""Date / Time"" reads in the format ""Jan 5, 2026 - 2:41 PM MST"" (date, then time with timezone).
+
+---
+This is the expected behaviour as per epic SV-8218 and story SV-9147 (Story 8, Paid Banner, Payments and Balance) and the Invoice UI Refresh specification version 38, sections S8-R9 and G-R1, read on 21 August 2026.
+
+AUTOMATION: Not available on Build to test Yet - Last checked 8/21/2026
+",SV-9147 (S8-R9; G-R1),,
+$0.00 payment rows hidden; no-payments state shows heading with Balance = Total,"Paid Banner, Payments and Balance",Negative,Low,"1. You are signed in to ShopView.
+2. You can reach an Invoice with a $0.00 payment recorded, and an Invoice with no payments/deposits/credits applied.","1. Generate the Invoice that has a $0.00 payment; check the Payments rows.
+2. Generate the Invoice with nothing applied; read the Payments heading and the Balance.","1. A payment row whose amount is $0.00 is not shown.
+2. When no payments, deposits or customer-account credits have been applied, the Payments heading shows with no rows and the Balance equals the Total.
+
+---
+This is the expected behaviour as per epic SV-8218 and story SV-9147 (Story 8, Paid Banner, Payments and Balance) and the Invoice UI Refresh specification version 38, sections S8-R7 and S8-N1, read on 21 August 2026.
+
+AUTOMATION: Not available on Build to test Yet - Last checked 8/21/2026
+",SV-9147 (S8-R7; S8-N1),,
+No paid banner when the invoice has no portal-processed payment,"Paid Banner, Payments and Balance",Negative,Medium,"1. You are signed in to ShopView.
+2. You can obtain an Invoice PDF for an invoice paid only by a shop-recorded method (for example cash at the counter), and a shop-app-generated PDF.","1. Obtain the PDF for the invoice with only shop-recorded payments; look for a paid banner.
+2. Obtain a shop-app-generated PDF; look for a paid banner.","1. When the invoice has no portal-processed payment, the paid banner is not shown - a shop-recorded payment never produces the banner.
+2. An Invoice PDF generated in the shop app shows no banner in any case.
+
+---
+This is the expected behaviour as per epic SV-8218 and story SV-9147 (Story 8, Paid Banner, Payments and Balance) and the Invoice UI Refresh specification version 38, section S8-N2, read on 21 August 2026.
+
+AUTOMATION: Not available on Build to test Yet - Last checked 8/21/2026
+",SV-9147 (S8-N2),,
+"Shop disclaimer shows with no heading, identical on every document","Disclaimer, Signature and Footer",Functional,Medium,"1. You are signed in to ShopView.
+2. A shop has a configured disclaimer, and you can generate an Estimate, Invoice and Credit Invoice for it.","1. Generate each document type for the shop.
+2. Find the disclaimer text on each.","1. Each document shows the shop's configured disclaimer text, with no heading above it.
+2. The disclaimer is identical on every document that carries it.
+
+---
+This is the expected behaviour as per epic SV-8218 and story SV-9148 (Story 9, Disclaimer, Signature and Footer) and the Invoice UI Refresh specification version 38, section S9-R1, read on 21 August 2026.
+
+AUTOMATION: Not available on Build to test Yet - Last checked 8/21/2026
+",SV-9148 (S9-R1),,
+Signature area has exactly three labeled lines and no acknowledgment sentence,"Disclaimer, Signature and Footer",Functional,Medium,"1. You are signed in to ShopView.
+2. You can generate an Estimate, Invoice and Credit Invoice.","1. Generate each document type.
+2. Find the signature area on each and read its lines.","1. The signature area shows three lines labeled exactly ""Customer Signature"", ""Printed Name"", and ""Date"".
+2. The three lines are identical on every document that carries the area.
+3. The signature area contains no authorization or acknowledgment sentence - only the three lines.
+
+---
+This is the expected behaviour as per epic SV-8218 and story SV-9148 (Story 9, Disclaimer, Signature and Footer) and the Invoice UI Refresh specification version 38, sections S9-R2 and S9-R3, read on 21 August 2026.
+
+AUTOMATION: Not available on Build to test Yet - Last checked 8/21/2026
+",SV-9148 (S9-R2; S9-R3),,
+"Footer shows the shop tax identifier exactly, with no added label","Disclaimer, Signature and Footer",Functional,Medium,"1. You are signed in to ShopView.
+2. A shop has a tax identifier configured (for example ""GST# 812694966 RT0001"").","1. Generate a document for the shop.
+2. Read the footer tax identifier.","1. The footer shows the shop's tax identifier exactly as the shop entered it.
+2. No label is added in front of it (the shop types its own label into the field).
+
+---
+This is the expected behaviour as per epic SV-8218 and story SV-9148 (Story 9, Disclaimer, Signature and Footer) and the Invoice UI Refresh specification version 38, section S9-R4, read on 21 August 2026.
+
+AUTOMATION: Not available on Build to test Yet - Last checked 8/21/2026
+",SV-9148 (S9-R4),,
+Disclaimer and footer tax identifier hide when not configured,"Disclaimer, Signature and Footer",Negative,Low,"1. You are signed in to ShopView.
+2. You can reach a shop with no configured disclaimer and no tax identifier.","1. Generate a document for that shop.
+2. Look where the disclaimer and the footer tax identifier would be.","1. When the shop has no configured disclaimer, the disclaimer area is not shown.
+2. When the shop has no tax identifier configured, the footer tax identifier is not shown.
+
+---
+This is the expected behaviour as per epic SV-8218 and story SV-9148 (Story 9, Disclaimer, Signature and Footer) and the Invoice UI Refresh specification version 38, sections S9-N1 and S9-N2, read on 21 August 2026.
+
+AUTOMATION: Not available on Build to test Yet - Last checked 8/21/2026
+",SV-9148 (S9-N1; S9-N2),,
+Estimate and Invoice differ only as Section 3 specifies,Estimate and Invoice Specifics,Functional,Medium,"1. You are signed in to ShopView.
+2. You can generate an Estimate and an Invoice from the same underlying work order.","1. Generate the Estimate and the Invoice.
+2. Compare them section by section.","1. The Estimate and Invoice carry the same content, differing only in: the document label, the dates, the work-section heading, the headline figure label, and the presence of the Paid banner and the Payments and Balance sections on the Invoice.
+
+---
+This is the expected behaviour as per epic SV-8218 and story SV-9149 (Story 10, Estimate and Invoice Specifics) and the Invoice UI Refresh specification version 38, section S10-R1, read on 21 August 2026.
+
+AUTOMATION: Not available on Build to test Yet - Last checked 8/21/2026
+",SV-9149 (S10-R1),,
+"Estimate shows 'Work Summary', 'Estimated Total', and 'Estimate date'",Estimate and Invoice Specifics,Functional,Medium,"1. You are signed in to ShopView.
+2. You can generate an Estimate.","1. Generate the Estimate.
+2. Read the work-section heading, the boxed headline figure label, and the masthead date.","1. The work-section heading reads ""Work Summary"".
+2. The boxed headline figure is labeled ""Estimated Total"".
+3. The masthead shows ""Estimate date: {date}"".
+4. No validity or expiry date is shown; no due-date line is shown.
+5. The signature area's ""Date"" line is unaffected.
+
+---
+This is the expected behaviour as per epic SV-8218 and story SV-9149 (Story 10, Estimate and Invoice Specifics) and the Invoice UI Refresh specification version 38, section S10-R2, read on 21 August 2026.
+
+AUTOMATION: Not available on Build to test Yet - Last checked 8/21/2026
+",SV-9149 (S10-R2),,
+"Invoice shows 'Work Performed', 'Balance', 'Invoice date' and 'Due date'",Estimate and Invoice Specifics,Functional,Medium,"1. You are signed in to ShopView.
+2. You can generate an unpaid Invoice.","1. Generate the (not fully paid) Invoice.
+2. Read the work-section heading, the boxed headline figure label, and the masthead dates.","1. The work-section heading reads ""Work Performed"".
+2. The boxed headline figure is labeled ""Balance"".
+3. The masthead shows ""Invoice date: {date}"" and ""Due date: {date}"".
+
+---
+This is the expected behaviour as per epic SV-8218 and story SV-9149 (Story 10, Estimate and Invoice Specifics) and the Invoice UI Refresh specification version 38, section S10-R3, read on 21 August 2026.
+
+AUTOMATION: Not available on Build to test Yet - Last checked 8/21/2026
+",SV-9149 (S10-R3),,
+Fully paid Invoice stays an Invoice; 'Paid date' replaces 'Due date',Estimate and Invoice Specifics,Functional,High,"1. You are signed in to ShopView.
+2. You can reach an Invoice that is fully paid (Balance $0.00 with at least one payment/deposit/credit applied), and can reverse a payment on it.","1. Generate the fully paid Invoice; read the document label, the masthead date labels, the Balance, and the Payments.
+2. Reverse a payment so the Balance becomes greater than $0.00; regenerate and read the masthead date labels.","1. The fully paid Invoice keeps the label ""Invoice: {number}"" - it is never renamed to ""Receipt""; no separate receipt document exists.
+2. It lists its payments and shows a Balance of $0.00.
+3. ""Paid date: {date}"" replaces ""Due date: {date}"" in the masthead; the paid date is the most recent date among the applied payment, deposit and credit rows.
+4. If a later change (payment reversal, voided credit, or edit) makes the Balance greater than $0.00, the invoice is no longer fully paid and ""Due date: {date}"" returns.
+5. A paid date earlier than the invoice date (for example a deposit collected before invoicing) is shown as-is.
+
+---
+This is the expected behaviour as per epic SV-8218 and story SV-9149 (Story 10, Estimate and Invoice Specifics) and the Invoice UI Refresh specification version 38, section S10-R4, read on 21 August 2026.
+
+AUTOMATION: Not available on Build to test Yet - Last checked 8/21/2026
+",SV-9149 (S10-R4),,
+Invoice with no due date shows no Due date line; paid swap still applies,Estimate and Invoice Specifics,Negative,Low,"1. You are signed in to ShopView.
+2. You can reach an Invoice that has no due date set, and can make it fully paid.","1. Generate the Invoice with no due date; read the masthead date lines.
+2. Make it fully paid; regenerate and read the masthead date lines.","1. An Invoice with no due date set shows ""Invoice date: {date}"" and no ""Due date"" line (the old quirk of rendering a null due date as today's date is retired).
+2. When such an invoice becomes fully paid, ""Paid date: {date}"" is shown.
+
+---
+This is the expected behaviour as per epic SV-8218 and story SV-9149 (Story 10, Estimate and Invoice Specifics) and the Invoice UI Refresh specification version 38, section S10-N1, read on 21 August 2026.
+
+AUTOMATION: Not available on Build to test Yet - Last checked 8/21/2026
+",SV-9149 (S10-N1),,
+"Credit Invoice masthead shows 'Credit: {number}' and 'Issue date', no money",Credit Invoice,Functional,Medium,"1. You are signed in to ShopView.
+2. You can generate a Credit Invoice (credit number carries the CM- prefix).","1. Generate the Credit Invoice.
+2. Read the masthead.","1. The masthead shows ""Credit: {number}"", where the credit number carries the ""CM-"" prefix (for example ""Credit: CM-2202"").
+2. The masthead shows ""Issue date: {date}"".
+3. The masthead shows no money figure and no boxed headline figure.
+
+---
+This is the expected behaviour as per epic SV-8218 and story SV-9150 (Story 11, Credit Invoice) and the Invoice UI Refresh specification version 38, sections S11-R1 and S1-R6, read on 21 August 2026.
+
+AUTOMATION: Not available on Build to test Yet - Last checked 8/21/2026
+",SV-9150 (S11-R1; S1-R6),,
+Customer address block is labeled 'Credit To' on the Credit Invoice,Credit Invoice,Functional,Medium,"1. You are signed in to ShopView.
+2. You can generate a Credit Invoice for a customer with an address.","1. Generate the Credit Invoice.
+2. Read the customer address block label and its width.","1. The customer address block is labeled exactly ""Credit To"" (not ""Bill To"").
+2. Every other address rule applies to it unchanged (name always shown, address fields hide when empty).
+3. Remit Payment To never appears on the Credit Invoice, so the Credit To block is always full width.
+
+---
+This is the expected behaviour as per epic SV-8218 and story SV-9150 (Story 11, Credit Invoice) and the Invoice UI Refresh specification version 38, sections S11-R2, S2-R1 and S2-R3, read on 21 August 2026.
+
+AUTOMATION: Not available on Build to test Yet - Last checked 8/21/2026
+",SV-9150 (S11-R2; S2-R1; S2-R3),,
+"Status table shows Credit Number, Status, Invoice Number correctly",Credit Invoice,Functional,Medium,"1. You are signed in to ShopView.
+2. You can reach Credit Invoices in different states (Unapplied, Partially applied, Applied, Refunded, Voided), including an account-level credit with no origin invoice.","1. Generate a Credit Invoice tied to an originating invoice; read the status table.
+2. Generate an account-level credit with no origin invoice; read the status table.","1. A status table shows three columns labeled exactly ""Credit Number"", ""Status"", and ""Invoice Number"".
+2. Status shows the credit's current state: one of ""Unapplied"", ""Partially applied"", ""Applied"", ""Refunded"", or ""Voided"".
+3. Invoice Number shows the originating invoice's full document number (for example """").
+4. For an account-level credit with no origin invoice, the whole Invoice Number column is hidden.
+
+---
+This is the expected behaviour as per epic SV-8218 and story SV-9150 (Story 11, Credit Invoice) and the Invoice UI Refresh specification version 38, section S11-R3, read on 21 August 2026.
+
+AUTOMATION: Not available on Build to test Yet - Last checked 8/21/2026
+",SV-9150 (S11-R3),,
+Credited items table shows returned parts and money-only lines correctly,Credit Invoice,Functional,High,"1. You are signed in to ShopView.
+2. A Credit Invoice exists mixing a returned-part line (with a restocking fee) and a money-only credit line.","1. Generate the Credit Invoice.
+2. Read the credited items table.","1. The credited items appear in a table with columns labeled exactly ""Description"", ""Quantity"", ""Rate"", ""Restocking Fee"", and ""Total"".
+2. A returned part shows its actual quantity as a negative number, and its rate.
+3. A money-only credit line shows ""--"" for Quantity and Rate.
+4. The Restocking Fee column is always shown, reading ""$0.00"" when there is no fee.
+5. Totals are negative, formatted with a leading minus (for example ""-$100.00"") - not the parentheses convention used for discounts.
+6. A money-only line's Description comes from the credit's reason if entered, otherwise the memo text, otherwise ""Refund"".
+
+---
+This is the expected behaviour as per epic SV-8218 and story SV-9150 (Story 11, Credit Invoice) and the Invoice UI Refresh specification version 38, sections S11-R4 and S11-R5, read on 21 August 2026.
+
+AUTOMATION: Not available on Build to test Yet - Last checked 8/21/2026
+",SV-9150 (S11-R4; S11-R5),,
+Restocking fee reduces a returned-part credit total as specified,Credit Invoice,Functional,Medium,"1. You are signed in to ShopView.
+2. A Credit Invoice has a returned part: quantity -2 at rate $50.00 with a $10.00 restocking fee.","1. Generate the Credit Invoice.
+2. Read the returned-part line's Total.","1. The restocking fee reduces the credit: quantity -2 at rate $50.00 with a $10.00 restocking fee produces Total -$90.00.
+2. For a money-only line, Total is the credited amount.
+
+---
+This is the expected behaviour as per epic SV-8218 and story SV-9150 (Story 11, Credit Invoice) and the Invoice UI Refresh specification version 38, section S11-R5, read on 21 August 2026.
+
+AUTOMATION: Not available on Build to test Yet - Last checked 8/21/2026
+",SV-9150 (S11-R5),,
+Totals block rows and Balance follow the credit's status,Credit Invoice,Functional,High,"1. You are signed in to ShopView.
+2. You can reach Credit Invoices in each status: Unapplied, Partially applied, Applied, Refunded (with a refund payment), and Voided.","1. Generate a Credit Invoice in each status.
+2. Read the totals block rows and the Payments/Balance content for each.","1. The totals block shows rows labeled exactly: ""Subtotal"" (sum of item totals, negative), ""Tax"" (one row; negative when tax applies, ""$0.00"" when none), ""Total Credit"" (negative, the document's key figure), ""Payments"", and ""Balance"".
+2. Unapplied: Payments shows the label with no rows; Balance shows the full credit amount, positive (its open balance).
+3. Partially applied: Payments shows the label with no rows; Balance shows the open balance, positive (original minus amounts applied to invoices).
+4. Applied: Payments shows the label with no rows; Balance reads $0.00.
+5. Refunded: one row per refund payment reading ""{date} - {method}"" with the refunded amount (negative); Balance reads $0.00 once fully consumed, otherwise the open balance, positive.
+6. Voided: Payments shows the label with no rows; Balance reads $0.00.
+
+---
+This is the expected behaviour as per epic SV-8218 and story SV-9150 (Story 11, Credit Invoice) and the Invoice UI Refresh specification version 38, sections S11-R6 and S11-R6a, read on 21 August 2026.
+
+AUTOMATION: Not available on Build to test Yet - Last checked 8/21/2026
+",SV-9150 (S11-R6; S11-R6a),,
+Credit Invoice shows the disclaimer and standard signature area,Credit Invoice,Functional,Low,"1. You are signed in to ShopView.
+2. You can generate a Credit Invoice for a shop with a configured disclaimer.","1. Generate the Credit Invoice.
+2. Find the disclaimer and the signature area.","1. The Credit Invoice shows the shop's configured disclaimer.
+2. It shows the standard signature area with the three lines ""Customer Signature"", ""Printed Name"", and ""Date"".
+
+---
+This is the expected behaviour as per epic SV-8218 and story SV-9150 (Story 11, Credit Invoice) and the Invoice UI Refresh specification version 38, sections S11-R7 and S9-R2, read on 21 August 2026.
+
+AUTOMATION: Not available on Build to test Yet - Last checked 8/21/2026
+",SV-9150 (S11-R7; S9-R2),,
+Document layout matches the Design Document structure,Document Visual Standard,Functional,Medium,"1. You are signed in to ShopView.
+2. You can generate an Estimate, Invoice and Credit Invoice, on screen and as PDF.","1. Generate each document type on screen and as a PDF.
+2. Compare each against the Design Document's structure.","1. The document layout follows the Design Document exactly: masthead with the shop letterhead left, the shop logo center, and the document block right over a 2px ink rule; a bordered Addresses row; the asset band; the order reference chips; numbered work lines; the ""Summary"" break bar; a two-column tail with the disclaimer left and the totals right; the boxed headline figure; the three-line signature row; the single-line footer.
+
+---
+This is the expected behaviour as per epic SV-8218 and story SV-9151 (Story 12, Document Visual Standard) and the Invoice UI Refresh specification version 38, section S12-R1, and the Design Document, read on 21 August 2026.
+
+AUTOMATION: Not available on Build to test Yet - Last checked 8/21/2026
+",SV-9151 (S12-R1),,
+Only the closed palette colours appear on any document,Document Visual Standard,Functional,Medium,"1. You are signed in to ShopView.
+2. You can inspect the colours used in a rendered document (on screen or PDF).","1. Generate a document.
+2. Check every colour used against the allowed set.","1. The only colours on any document are: ink #121926, body text #364152, muted text #697586, faint labels #9AA4B2, hairlines #E3E8EF, row dividers #EEF2F6, accent #257CFF, negative #B42318, paper #FFFFFF.
+2. No colour outside this closed set appears.
+
+---
+This is the expected behaviour as per epic SV-8218 and story SV-9151 (Story 12, Document Visual Standard) and the Invoice UI Refresh specification version 38, section S12-R2, and the Design Document, read on 21 August 2026.
+
+AUTOMATION: Not available on Build to test Yet - Last checked 8/21/2026
+",SV-9151 (S12-R2),,
+Accent colour appears only on line numbers and the footer 'ShopView',Document Visual Standard,Functional,Low,"1. You are signed in to ShopView.
+2. You can inspect where the accent colour #257CFF is used on a document.","1. Generate a document that has work lines.
+2. Find every place the accent #257CFF is used.","1. The accent #257CFF appears only on the work line numbers and on the word ""ShopView"" in the footer.
+2. Nothing else on the document uses the accent.
+
+---
+This is the expected behaviour as per epic SV-8218 and story SV-9151 (Story 12, Document Visual Standard) and the Invoice UI Refresh specification version 38, section S12-R3, and the Design Document, read on 21 August 2026.
+
+AUTOMATION: Not available on Build to test Yet - Last checked 8/21/2026
+",SV-9151 (S12-R3),,
+Typography uses Inter with the specified weights,Document Visual Standard,Functional,Low,"1. You are signed in to ShopView.
+2. You can inspect the fonts and weights used on a rendered document.","1. Generate a document.
+2. Check the typeface and the weight of body text, emphasis/totals, in-job section labels, and the shop name/document label/headline figure/line numbers.","1. The typeface is Inter with a system sans-serif fallback.
+2. Weight 400 for body text; 600 and 700 for emphasis and totals; 750 for the in-job section labels; 800 for the shop name, the document label, the headline figure, and the line numbers.
+3. Uppercase micro-labels carry letterspacing as in the Design Document.
+
+---
+This is the expected behaviour as per epic SV-8218 and story SV-9151 (Story 12, Document Visual Standard) and the Invoice UI Refresh specification version 38, section S12-R4, and the Design Document, read on 21 August 2026.
+
+AUTOMATION: Not available on Build to test Yet - Last checked 8/21/2026
+",SV-9151 (S12-R4),,
+Print/PDF ink floor keeps text and rules dark enough,Document Visual Standard,Functional,Medium,"1. You are signed in to ShopView.
+2. You can obtain a document's print/PDF output and inspect its ink values.","1. Obtain the PDF (or print output) of a document.
+2. Check the darkness of text and hairline rules.","1. In print and PDF output, no text renders lighter than #4B5565.
+2. Text smaller than 10px renders no lighter than #364152.
+3. Hairline rules render no lighter than #CDD5DF.
+
+---
+This is the expected behaviour as per epic SV-8218 and story SV-9151 (Story 12, Document Visual Standard) and the Invoice UI Refresh specification version 38, section S12-R5, and the Design Document, read on 21 August 2026.
+
+AUTOMATION: Not available on Build to test Yet - Last checked 8/21/2026
+",SV-9151 (S12-R5),,
+Every document is fully legible in grayscale,Document Visual Standard,Functional,Low,"1. You are signed in to ShopView.
+2. You can print or render a document in grayscale.","1. Render or print a document in grayscale.
+2. Check that all meaning is still clear without colour.","1. Every document is fully legible printed in grayscale.
+2. Colour is never the only signal: credit amounts also carry the leading minus, and discounts also carry parentheses.
+
+---
+This is the expected behaviour as per epic SV-8218 and story SV-9151 (Story 12, Document Visual Standard) and the Invoice UI Refresh specification version 38, section S12-R6, and the Design Document, read on 21 August 2026.
+
+AUTOMATION: Not available on Build to test Yet - Last checked 8/21/2026
+",SV-9151 (S12-R6),,
+Prototype chrome does not appear on any real document,Document Visual Standard,Negative,Medium,"1. You are signed in to ShopView.
+2. You can generate a real document (not the Design Document prototype).","1. Generate a real Estimate, Invoice or Credit Invoice.
+2. Look for any prototype demo tooling.","1. The Design Document's control strips (the document and field toggles, the settings menu, the POC badge, the theme controls) do not appear on any real document.
+2. Only the white sheet is the document.
+3. The PDF output carries no drop shadow and no rounded sheet corners (those are screen-prototype presentation only).
+
+---
+This is the expected behaviour as per epic SV-8218 and story SV-9151 (Story 12, Document Visual Standard) and the Invoice UI Refresh specification version 38, sections S12-R7 and S12-N1, read on 21 August 2026.
+
+AUTOMATION: Not available on Build to test Yet - Last checked 8/21/2026
+",SV-9151 (S12-R7; S12-N1),,
+Work-section rules and dividers follow the specified treatment,Document Visual Standard,Functional,Low,"1. You are signed in to ShopView.
+2. You can generate a document with several work lines, at least one having fee/discount adjustment rows.","1. Generate the document.
+2. Inspect the rules and dividers in the work section.","1. The work section opens with a 2px ink rule under the section label.
+2. Numbered jobs are separated by a 1px ink (#121926) rule.
+3. Charge rows inside a job are separated by #EEF2F6 row dividers.
+4. The ""Labor"" and ""Parts"" sub-section labels carry no underline rule.
+5. When a line has fee or discount adjustment rows, the row divider follows the line's last adjustment row - never between the line and its adjustments - so the line and its adjustments read as one group.
+
+---
+This is the expected behaviour as per epic SV-8218 and story SV-9151 (Story 12, Document Visual Standard) and the Invoice UI Refresh specification version 38, section S12-R8, and the Design Document, read on 21 August 2026.
+
+AUTOMATION: Not available on Build to test Yet - Last checked 8/21/2026
+",SV-9151 (S12-R8),,
+Section labels use the three-tier hierarchy with exact sizes and inks,Document Visual Standard,Functional,Low,"1. You are signed in to ShopView.
+2. You can inspect text sizes, weights and colours on a rendered document.","1. Generate a document with work lines.
+2. Inspect the document section label, the 'Scope of work' label, and the in-job 'Labor'/'Parts' labels.","1. The document section label (""Work Summary"" / ""Work Performed"" / ""Parts"") is 11px weight 700 in muted ink #697586.
+2. ""Scope of work"" is 10px weight 750 in body ink #364152.
+3. The in-job ""Labor"" and ""Parts"" labels are 10.5px weight 750 in full ink #121926.
+4. All three sit visually below the 16px weight-700 job titles, with letterspacing per the Design Document.
+
+---
+This is the expected behaviour as per epic SV-8218 and story SV-9151 (Story 12, Document Visual Standard) and the Invoice UI Refresh specification version 38, section S12-R9, and the Design Document, read on 21 August 2026.
+
+AUTOMATION: Not available on Build to test Yet - Last checked 8/21/2026
+",SV-9151 (S12-R9),,
+Parts Sale documents behave as the Estimate/Invoice except as stated,Parts Sale Estimate and Invoice,Functional,High,"1. You are signed in to ShopView.
+2. You can generate a Parts Sale Estimate and a Parts Sale Invoice.","1. Generate a Parts Sale Estimate and a Parts Sale Invoice.
+2. Check masthead, dates, addresses, Remit Payment To, asset section, financial summary, payments/Balance, paid banner, disclaimer/signature, and visual standard.","1. The Parts Sale Estimate behaves as the Estimate, and the Parts Sale Invoice as the Invoice, throughout the spec: masthead and date labels (including ""Estimate date"" and the Due/Paid date swap), addresses and Remit Payment To, asset section, financial summary, payments and Balance, the paid banner rule, disclaimer and signature, and the visual standard - except as Story 13 states.
+
+---
+This is the expected behaviour as per epic SV-8218 and story SV-9195 (Story 13, Parts Sale Estimate and Invoice) and the Invoice UI Refresh specification version 38, section S13-R1, read on 21 August 2026.
+
+AUTOMATION: Not available on Build to test Yet - Last checked 8/21/2026
+",SV-9195 (S13-R1),,
+"Parts Sale body is a single flat 'Parts' section, no jobs",Parts Sale Estimate and Invoice,Functional,High,"1. You are signed in to ShopView.
+2. A Parts Sale Estimate or Invoice exists with several part lines.","1. Generate the Parts Sale document.
+2. Read the body section.","1. The body is a single section headed ""Parts"".
+2. It shows flat part lines, each with part number, description, quantity, rate, and amount.
+3. There are no job blocks, no ""Scope of work"", no Labor section, and no Declined Work section on a parts sale document.
+
+---
+This is the expected behaviour as per epic SV-8218 and story SV-9195 (Story 13, Parts Sale Estimate and Invoice) and the Invoice UI Refresh specification version 38, section S13-R2, read on 21 August 2026.
+
+AUTOMATION: Not available on Build to test Yet - Last checked 8/21/2026
+",SV-9195 (S13-R2),,
+Parts Sale line-level fees/discounts render as on the Invoice,Parts Sale Estimate and Invoice,Functional,Medium,"1. You are signed in to ShopView.
+2. A Parts Sale document has a part line with a line-level fee or discount.","1. Generate the Parts Sale document.
+2. Read the part line that has an adjustment.","1. Line-level fees and discounts render exactly as on the Invoice: indented under their part line.
+2. The row divider follows the part's last adjustment row, rather than sitting between the part and its adjustments.
+
+---
+This is the expected behaviour as per epic SV-8218 and story SV-9195 (Story 13, Parts Sale Estimate and Invoice) and the Invoice UI Refresh specification version 38, sections S13-R3 and S12-R8, read on 21 August 2026.
+
+AUTOMATION: Not available on Build to test Yet - Last checked 8/21/2026
+",SV-9195 (S13-R3; S12-R8),,
+Parts Sale document number keeps parts-sale numbering,Parts Sale Estimate and Invoice,Functional,Low,"1. You are signed in to ShopView.
+2. You can generate a Parts Sale Estimate and Invoice with parts-sale numbering.","1. Generate the Parts Sale Estimate and read its masthead label.
+2. Generate the Parts Sale Invoice and read its masthead label.","1. The document number uses the parts-sale numbering through the existing document numbering.
+2. For example the Estimate reads ""Estimate: EST-P2-1088"" and the Invoice reads ""Invoice: INV-P2-1088"".
+
+---
+This is the expected behaviour as per epic SV-8218 and story SV-9195 (Story 13, Parts Sale Estimate and Invoice) and the Invoice UI Refresh specification version 38, section S13-R4, read on 21 August 2026.
+
+AUTOMATION: Not available on Build to test Yet - Last checked 8/21/2026
+",SV-9195 (S13-R4),,
+Parts Sale reference fields drop Work Order and Approval Code,Parts Sale Estimate and Invoice,Functional,Medium,"1. You are signed in to ShopView.
+2. You can generate a Parts Sale document with a Customer PO, Terms, and an Authorizer set.","1. Generate the Parts Sale document.
+2. Read the order reference fields area.","1. The Work Order field and the Approval Code field are not shown on a parts sale document.
+2. Customer PO and Terms are unchanged (Terms always shows).
+3. Authorizer follows the parts-sale Authorizer treatment (S13-R6).
+
+---
+This is the expected behaviour as per epic SV-8218 and story SV-9195 (Story 13, Parts Sale Estimate and Invoice) and the Invoice UI Refresh specification version 38, section S13-R5, read on 21 August 2026.
+
+AUTOMATION: Not available on Build to test Yet - Last checked 8/21/2026
+",SV-9195 (S13-R5),,
+Parts sale receives the Authorizer treatment (net-new),Parts Sale Estimate and Invoice,Functional,Medium,"1. You are signed in to ShopView with access to parts sales.
+2. A parts sale exists for a customer with 'Approves Work' contacts.","1. Open the parts sale record and find the Authorizer field.
+2. Select an authorizer from the offered list, then invoice the parts sale and try to change it.
+3. Generate the Parts Sale document and read the Authorizer reference field.","1. The parts sale has an Authorizer field offering the customer's ""Approves Work"" contacts, empty by default, filled by the user.
+2. It is locked once the parts sale is invoiced.
+3. When set, the authorizer's name prints in the document's Authorizer reference field.
+
+---
+This is the expected behaviour as per epic SV-8218 and story SV-9195 (Story 13, Parts Sale Estimate and Invoice) and the Invoice UI Refresh specification version 38, section S13-R6, read on 21 August 2026.
+
+AUTOMATION: Not available on Build to test Yet - Last checked 8/21/2026
+",SV-9195 (S13-R6),,
+Parts Sale financial summary shows no Labor and no Shop supplies row,Parts Sale Estimate and Invoice,Functional,Medium,"1. You are signed in to ShopView.
+2. A Parts Sale Invoice exists with parts charges, adjustments, tax and payments.","1. Generate the Parts Sale Invoice.
+2. Read the financial summary.","1. The financial summary shows no ""Labor"" row and no ""Shop supplies"" row.
+2. The ""Parts"" row, the adjustment rows, ""Subtotal"", ""Tax"", ""Total"", ""Payments"", and ""Balance"" are identical to the Invoice.
+
+---
+This is the expected behaviour as per epic SV-8218 and story SV-9195 (Story 13, Parts Sale Estimate and Invoice) and the Invoice UI Refresh specification version 38, section S13-R7, read on 21 August 2026.
+
+AUTOMATION: Not available on Build to test Yet - Last checked 8/21/2026
+",SV-9195 (S13-R7),,
+Batch and imported invoices are out of scope (kept on current templates),Parts Sale Estimate and Invoice,Negative,Low,"1. You are signed in to ShopView.
+2. You can generate a batch invoice and an imported invoice.","1. Generate a batch invoice and an imported invoice.
+2. Confirm they are not restyled by this project.","1. Batch invoices and imported invoices are not part of Story 13 or this spec.
+2. They keep their current templates until the follow-up ticket (SV-9193) ships.
+3. Restyling shared template partials must not half-restyle these deferred templates.
+
+---
+This is the expected behaviour as per epic SV-8218 and story SV-9195 (Story 13, Parts Sale Estimate and Invoice) and the Invoice UI Refresh specification version 38, section S13-N1, and story SV-9193 (deferred), read on 21 August 2026.
+
+AUTOMATION: Not available on Build to test Yet - Last checked 8/21/2026
+",SV-9195 (S13-N1); SV-9193 (deferred),,
