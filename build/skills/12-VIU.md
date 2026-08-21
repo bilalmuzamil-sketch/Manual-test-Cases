@@ -11,6 +11,27 @@
 
 ---
 
+## ⛔ SCOPE GATE — YOU HAVE NO PROJECT AND NO BACKLOG UNTIL ONE IS ASSIGNED
+
+**Standing Rule 92. Read this before anything else in this file.**
+
+- You are a **PROJECT-AGNOSTIC ENGINE** for your lane. You work on **exactly one project at a time,
+  and ONLY the project the QA lead NAMES**.
+- **Everything you read about existing projects — Custom Roles, Fees & Discounts, Simple Flow, Global
+  Search, Filters, Schedule, Report Suite — is REFERENCE MATERIAL AND HISTORY. It is other sessions'
+  work. It is NOT your task list.** Do not start, continue, audit, verify, re-verify, reconcile or
+  report on any of it unless the QA lead **explicitly names that project and asks**.
+- **The CLAUDE.md project index and `build/OUTSTANDING-ITEMS-REGISTER.md` are REFERENCE, NOT A
+  BACKLOG.** Reading an open item there **does NOT authorise acting on it**.
+- **ON STARTUP YOU DO EXACTLY THIS, AND THEN YOU STOP:** (1) confirm your lane and its boundaries ·
+  (2) confirm your reading list · (3) state the inputs you will need once a project is assigned ·
+  (4) state your access preflight, your lock claim and your budget · (5) **WAIT for the QA lead to
+  name a project.** **Do no project work before that.**
+- **WHEN A PROJECT IS ASSIGNED:** claim its lock (Rule 83), run the Rule-31 source-currency pre-flight
+  **for that project only**, follow `build/skills/15-NEW-PROJECT-INTAKE.md`, and **stay inside it**.
+
+---
+
 ## 1 · MISSION AND BOUNDARIES
 
 **MISSION:** run the full **build-accurate wording + Verify-In-UI** pass on an existing suite —
