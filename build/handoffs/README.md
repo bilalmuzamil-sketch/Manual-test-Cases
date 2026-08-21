@@ -52,10 +52,21 @@ docs, the playbook) and the other lanes pick them up.
    the QA lead's later instructions and are **recorded in the skill files, not in CLAUDE.md**. If a
    decision turns on one of them, ask him to confirm the wording.
 
-**Also missing, and worth knowing:** `build/skills/00-COMMON-CORE.md` does **not** exist. The shared
-core block (session survival, quota discipline, strategy-first, secrets, no-work-loss, IDs,
-outstanding) is reproduced at the head of **each** of the three skills, so nothing is lost — but if
-that common file is ever created, the handoffs' read-order lists point at the right place for it.
+**Also read `build/skills/00-COMMON-CORE.md` — it EXISTS and it is the shared core of the
+pre-existing `00`–`08` skill set.** *(Correction recorded 2026-08-21: an earlier draft of these
+handoffs said it did not exist. `build/skills/` was empty at this session's first inventory and the
+whole set arrived from another worker on the next fetch. The wrong claim is corrected, not erased.)*
+
+**⚠️ OVERLAP THE QA LEAD NEEDS TO SETTLE — not for a lane session to resolve.** The pre-existing set
+already covers much of this ground: **`01-CASE-BUILD.md`** (authoring) · **`02-SOURCE-CHECK.md`**
+(source currency) · **`03-RUN-CHECK.md`** (driving the build) · **`04-TESTER-READY.md`** (handover) ·
+**`06-DEFECT-PREP.md`** (ticket prep), with `COVERAGE-MATRIX.md` as its completeness proof. The three
+dedicated per-process skills (`10-TEST-CASE-CREATION.md`, `11-BUILD-VERIFICATION.md`, `12-VIU.md`)
+were written to the QA lead's per-process framing and **partly duplicate** it. Nothing has been merged
+or deleted. **A lane session reads both files for its lane and, where they disagree, STOPS and asks.**
+**One disagreement is already known:** `00-COMMON-CORE.md` §16 says all three branches are **FINAL**,
+while skills `11`/`12` carry Rule 60's "never declared final" plus the 2026-08-10 **per-report**
+finality ruling — a source-currency question for the QA lead.
 
 ---
 

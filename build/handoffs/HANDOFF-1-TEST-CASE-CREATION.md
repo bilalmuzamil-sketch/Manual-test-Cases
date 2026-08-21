@@ -27,10 +27,24 @@ get wrong, or a case belonging to another lane that looks stale, **write it down
 
 1. **`build/skills/10-TEST-CASE-CREATION.md`** — your own skill. Read it fully; it is the operating
    manual for this lane.
-2. **`build/skills/00-COMMON-CORE.md`** — **⚠️ this file DOES NOT EXIST as of 2026-08-21 (checked).**
-   Nothing is lost: the shared core block (session survival, quota discipline, strategy-first,
-   secrets, no-work-loss, IDs, outstanding) is reproduced at the head of your skill file. If the file
-   is created later, read it at this point in the order.
+2. **`build/skills/00-COMMON-CORE.md`** — **READ IT.** It is the shared core for the pre-existing
+   skill set (`00`–`08`) and carries the honesty bar, TestRail write discipline and hazards, run sync,
+   foreign cases, access mechanics, environment, session survival, git on a shared branch, secrets,
+   authority, the reader-facing standards, the provenance line, the `AUTOMATION:` marker, the project
+   fact sheet (§17) and finality (§16).
+   **⚠️ CORRECTION, recorded 2026-08-21:** an earlier draft of this handoff said this file did not
+   exist. **It does** — `build/skills/` was empty in this session's first inventory and the whole
+   `00`–`08` set arrived from another worker on the next fetch. The claim is corrected rather than
+   deleted so nobody re-derives it.
+   **⚠️ AND THERE IS OVERLAP TO BE AWARE OF, NOT RESOLVED BY YOU:** the pre-existing set already
+   contains **`01-CASE-BUILD.md`** (authoring), **`02-SOURCE-CHECK.md`** (source currency),
+   **`03-RUN-CHECK.md`** (driving the build), **`04-TESTER-READY.md`** (handover) and
+   **`06-DEFECT-PREP.md`** (ticket prep). Skills `10`/`11`/`12` were written as dedicated per-process
+   skills and **partly cover the same ground**. Read both for your lane; **where they disagree, STOP
+   and ask the QA lead** — do not pick a side and do not merge or delete either file.
+   **One known disagreement already:** `00-COMMON-CORE.md` §16 states all three branches are
+   **FINAL**, while skill `11`/`12` carry Rule 60's "never declared final" plus the 2026-08-10
+   **per-report** finality ruling. That is a source-currency question for him, not for you.
 3. **`build/PROCESS-AUTHORING-STANDARD.md`** — the required shape of any process/deliverable you
    produce.
 4. **`build/RUTHLESS-USEFULNESS-AUDIT-PROCESS.md`** — the mandatory closing gate of every authoring

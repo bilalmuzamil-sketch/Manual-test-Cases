@@ -263,3 +263,23 @@ What needs to be done / Other actions"*, **always state the TestRail update stat
   `build/OUTSTANDING-ITEMS-REGISTER.md` · `build/PROCESS-CATALOG.md`.
 
 **Do NOT read `CLAUDE.md` end to end** — ~5,000 lines, context thrash. `grep -n` for what you need.
+
+---
+
+## ⚠️ RELATIONSHIP TO THE PRE-EXISTING `00`–`08` SKILL SET (recorded 2026-08-21)
+
+`build/skills/` was **empty** when this file was written and the mature, adversarially-audited
+`00`–`08` set arrived from another worker on the next fetch. **Nothing has been merged or deleted.**
+
+- **`build/skills/00-COMMON-CORE.md` EXISTS and should be read** — it is the shared core for that set
+  (honesty bar · TestRail write discipline and hazards · runs · foreign cases · access mechanics ·
+  environment · session survival · git on a shared branch · secrets · authority · reader-facing
+  standards · the provenance line · the `AUTOMATION:` marker · the project fact sheet §17 · finality
+  §16).
+- **Overlapping siblings:** `01-CASE-BUILD.md` (authoring) · `02-SOURCE-CHECK.md` (source currency) ·
+  `03-RUN-CHECK.md` (driving the build) · `04-TESTER-READY.md` (handover) · `06-DEFECT-PREP.md`
+  (ticket prep), with `COVERAGE-MATRIX.md` as that set's completeness proof.
+- **Where this file and its sibling disagree, STOP and ask the QA lead.** Do not pick a side, do not
+  merge, do not delete. **One disagreement is already known:** `00-COMMON-CORE.md` §16 states all
+  three branches are **FINAL**, while this file carries Rule 60's "never declared final" plus the
+  2026-08-10 **per-report** finality ruling — a source-currency question for him.
