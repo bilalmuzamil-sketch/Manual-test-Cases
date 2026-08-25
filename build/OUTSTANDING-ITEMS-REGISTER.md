@@ -2173,3 +2173,12 @@ were stale). Sources: `build/report-suite/build-verify-2026-08-18/{TU,WIP,IV}-SW
 - **PO-SF-1 OPEN** — Milos Vasic: is the SV-8726 PO column rename 'Total Price'->'Total Cost' in scope for V2? (PO questions sheet sent.)
 - **PO-SF-2 OPEN** — Milos Vasic: is the SV-8183 permission map final (its ticket is Blocked)? (PO questions sheet sent.)
 - **SFV2-1/2/3 OPEN** — TestRail target section, TestRail creds, QA env (all as intake).
+
+### Digital Inspections V2 — intake 2026-08-21 (test-case creation lane)
+- Assigned under header "Simple Flow V2" but is **Digital Inspections V2** (SV-8181) — confirm name.
+- **DINV-1 OPEN** — TestRail target section (proposed "Digital Inspections V2", suite 1).
+- **DINV-2 OPEN** — TestRail credentials at /tmp/testrail/creds.json.
+- **DINV-3 OPEN** — QA env exists (sv8181) but QA lead said do not touch; source-verified-only until cleared (Rule 85).
+- **DINV-4 OPEN** — engineering tech plan (Tech Design "TBD"); reminded (Rule 30).
+- **PO-DI-1 OPEN** — Milos: S12-R4 drum/disc-check-on-Brake-and-Axle-starting-point contradicts the fill-time Drum/Disc Key Decision (spec Open item 11). Case HELD.
+- **PO-DI-2 OPEN** — Milos: release cut-off for "needs a work order" on historical inspections (spec Open item 1) — affects S5 counts.
