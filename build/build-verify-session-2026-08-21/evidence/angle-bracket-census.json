@@ -1,0 +1,75 @@
+[
+ {
+  "slug": "global-search",
+  "internal_id": "GS-NORES-01",
+  "local_title": "No matches shows 'No results for <query>' plus the three quick-create buttons",
+  "placeholders": {
+   "title": [
+    "<query>"
+   ],
+   "refs": [
+    "<query>"
+   ],
+   "expected": [
+    "<query>"
+   ]
+  },
+  "live_cid": 44864,
+  "live_title": "No matches shows 'No results for ' plus the three quick-create buttons",
+  "live_refs": "requirements.md 5.2 State 4 (No results for  + quick-create chips)",
+  "live_expected": "1. A centered message reads 'No results for \\'S1- 56438\\'' (the exact query is echoed in quotes).\n2. The three quick-create buttons are shown: 'New work order', 'New customer', 'New inventory part'.\n3. The footer keyboard legend is still visible.\n\n---\nThis is the expected behaviour as per the Global Search PRD (Confluence page 576978945), section 5.2 State 4 (No results for  + quick-create chips), read on 16 July 2026, and epic SV-9160, read on 21 August 2026.\n\nAUTOMATION: Not available on Build to test Yet - Last checked 8/21/2026",
+  "live_steps": "1. Type a query with no matches (for example 'S1- 56438').\n2. Read the centered message and the buttons.",
+  "live_preconds": "1. The palette is open.\n2. You will type a query that matches nothing (for example 'S1- 56438')."
+ },
+ {
+  "slug": "global-search",
+  "internal_id": "GS-LIST-02",
+  "local_title": "'Clear search' restores the full in-page Work Orders list",
+  "placeholders": {
+   "expected": [
+    "<q>"
+   ],
+   "preconditions": [
+    "<q>"
+   ]
+  },
+  "live_cid": 44875,
+  "live_title": "'Clear search' restores the full in-page Work Orders list",
+  "live_refs": "design-notes screenshot 1",
+  "live_expected": "1. The filter is removed and the full Work Orders list is shown again.\n2. The 'Showing N work orders matching ' banner is removed.\n\n---\nThis is the expected behaviour as per the Global Search PRD (Confluence page 576978945), section design-notes screenshot 1, read on 16 July 2026, and epic SV-9160, read on 21 August 2026.\n\nAUTOMATION: Not available on Build to test Yet - Last checked 8/21/2026",
+  "live_steps": "1. Click the 'Clear search' link in the banner.\n2. Read the list and the banner.",
+  "live_preconds": "1. The Work Orders list is filtered by an in-page search (banner 'Showing N work orders matching ' is visible)."
+ },
+ {
+  "slug": "global-search",
+  "internal_id": "GS-API-10",
+  "local_title": "The context parameter biases GET /api/search ranking to the current page",
+  "placeholders": {
+   "steps": [
+    "<that customer>"
+   ]
+  },
+  "live_cid": 44892,
+  "live_title": "The context parameter biases GET /api/search ranking to the current page",
+  "live_refs": "requirements.md 6.3 (contextual bias); 10 Phase 1 (context parameter)",
+  "live_expected": "1. With the customer context, assets and work orders owned by that customer are boosted in the ranking versus the no-context call.\n2. The context parameter takes an optional {type, id} for page-context bias.\n\n---\nThis is the expected behaviour as per the Global Search PRD (Confluence page 576978945), section 6.3 (contextual bias); 10 Phase 1 (context parameter), read on 16 July 2026, and epic SV-9160, read on 21 August 2026.\n\nAUTOMATION: Not available on Build to test Yet - Last checked 8/21/2026",
+  "live_steps": "1. Send GET /api/search with q set and no context, and note the ranking of assets/work orders.\n2. Send GET /api/search with q set and context set to {type: customer, id: }.\n3. Compare the rankings.",
+  "live_preconds": "1. You can call the backend search endpoint.\n2. A specific customer owns some assets/work orders; other customers have similar matches."
+ },
+ {
+  "slug": "inline-add-edit-parts",
+  "internal_id": "IAEP-FADD-20",
+  "local_title": "Typeahead offers Create as a new part for Full View users only",
+  "placeholders": {
+   "expected": [
+    "<typed text>"
+   ]
+  },
+  "live_cid": 45055,
+  "live_title": "Typeahead offers Create as a new part for Full View users only",
+  "live_refs": "SV-9319 (S4-R20)",
+  "live_expected": "1. The typeahead ends with a \u201cCreate  as a new part\u201d action that opens the part details modal with the typed description carried over.\n2. This action is shown to Full View users only and is not displayed in Tech View.\n\n---\nThis is the expected behaviour as per epic SV-9315 and story SV-9319 (Story 4, Inline Add Part - Full View) and the Inline Add and Edit Parts on Work Order Lines specification version 13, section S4-R20, read on 25 August 2026.\n\nAUTOMATION: Not available on Build to test Yet - Last checked 8/25/2026",
+  "live_steps": "Type text that has no catalog match into the part number field and view the typeahead options.\nSelect the \u201cCreate ... as a new part\u201d action.\nConfirm the same action is absent in Tech View.",
+  "live_preconds": "A work order is open with status Estimate, Approved, In Progress, or Review.\nYou have the 'Work Order Line - Create and Edit' setting enabled.\nYour 'Work Orders \u2192 Work Order View Mode' permission is set to Full View."
+ }
+]
