@@ -372,3 +372,5 @@ placeholder but is OUT OF SCOPE for V1 per the Figma.
 - Suite **97 -> 109**: quick actions (8) MOVED to an Out-of-V1 section (footer-stamped with the §5.4/§2 reference, kept not deleted); Show-all restored to V1 (3); wording aligned (3); PO/VI entity cases fixed (2); **12 new V1 cases** (Clear all, Contacts/PO/VI tabs, mobile §5.6, new-entity ranking). All 109 re-pinned to v1.2.
 - Open PO questions: **PO-GS-5** (telemetry in v1?), **PO-GS-6** (vendor-invoice badge 2 vs 3 states). Detail: reconcile-2026-08-25/RECONCILE-2026-08-25.md.
 - Apply: re-import GS (109) -> re-backfill C-IDs -> union-sync run R415 -> re-assign R415 to Bilal. Nothing pushed by us.
+
+- **APPLIED to TestRail 2026-08-25:** 110 cases live (97 updated in place, 13 added, 8 moved to Out-of-V1); id-map 110/110; run R415 = 110, all assigned to Bilal. Lossless, nothing deleted.

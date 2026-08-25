@@ -30,7 +30,7 @@
 - Mobile §5.6 (full-screen, Cancel, chip row, uncapped/sticky, states, deferrals): GS-MOB-01..06. ✅
 - AI removed: existing no-AI negatives retained as V1 guards. ✅
 
-## Applying to TestRail (nothing pushed by us)
+## Applied to TestRail 2026-08-25 (authorized by the QA lead)
 The live run R415 holds the OLD 97 cases (assigned to Bilal). Recommended apply: re-import Global
 Search from the 109-row file (as before), then (1) re-backfill C-IDs into testrail-id-map.csv,
 (2) union-sync run R415 (`sync_runs.py --apply`), (3) re-assign R415 to Bilal (now 109). No results
@@ -41,3 +41,11 @@ exist yet, so nothing is lost.
   the epic's SV-9167 is in Board Backlog and our earlier D20 deferred telemetry. In or out for v1?
 - **PO-GS-6 (vendor-invoice badge):** PRD §5.3 says Paid/Unpaid (binary); our tech-plan-based case had
   tri-state (Unpaid/Partially paid/Paid). Cases now follow the PRD; confirm the build's actual states.
+
+
+## APPLIED 2026-08-25 (lossless, in place)
+- 97 existing cases **updated in place by C-ID** (IDs preserved); 8 quick-action cases **moved** to a
+  new 'Out of V1 Scope' section; **13 new V1 cases added**; new 'Search Telemetry' section created.
+- id-map re-backfilled: **110/110** live C-IDs. Run **R415 union-synced to 110** and **re-assigned to
+  Bilal** (all Untested). Verified live: group 110 cases, 0 duplicate titles, 8 Out-of-V1.
+- Nothing deleted; no results existed, so nothing lost. Tool: build/global-search/apply_to_testrail.py
