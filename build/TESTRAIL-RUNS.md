@@ -28,3 +28,19 @@ Workflow after any source-verification pass that adds cases:
 
 Config (run↔folder map, no secrets): `build/testing-tools/testrail_runs.json`.
 Credentials: `/tmp/shopview-creds.env` (Rule 82 — never committed).
+
+## Milestone (created 2026-08-25)
+
+**M3 — "Feature Squad - DI V2, Global Search V2, Simple Flow V2, Invoice UI Refresh, Inline Add/Edit
+Parts, Printer Friendly WO - August 2026"** — https://shopview.testrail.io/index.php?/milestones/view/3
+
+Contains all six runs (R414–R419), per the ShopView TestRail Milestone Guide (one milestone per
+feature squad). **Not yet started** — pending handoff/target dates from the QA lead (guide step 18:
+Start Milestone after dates are set and runs verified). Dates to set on the milestone AND each run
+(guide steps 7 & 13). Description carries `[handoff date]` / `[end date]` placeholders until then.
+
+**Assignment model chosen (2026-08-25):** run owner + bulk-assign all tests in each run to that owner.
+Pending inputs: which QA engineer owns each run, and their TestRail user IDs (the API key lacks admin
+rights to enumerate users — `get_users` returns 403 — so assignment needs each engineer's user ID, or
+it can be done in the UI via select-all → Assign To). Future: large runs may be split across multiple
+engineers (per-test assignment already supports this).
