@@ -354,3 +354,10 @@ placeholder but is OUT OF SCOPE for V1 per the Figma.
   VIU-confirm exact on-screen text.
 - Confirm whether the "Refresh" link (screenshot 3) is in V1 scope (spec §2 lists a
   data-freshness/refresh indicator as a NON-GOAL).
+
+## 2026-08-21 — REVIVED as v2 (test-case creation lane)
+- QA lead assigned Global Search with the v2 Unified Search Framework tech plan, epic SV-9160 (24 children), current PRD (Confluence v8 / in-body v1.1). PO Branko Cicovic.
+- **11 v2 delta cases authored** (new entities Contacts/Purchase Orders/Vendor Invoices; tabs-only; D16 group order; D18 quick actions; 9-entity permissions + price masking; recent-entities API; page-search cutover; mobile). Total suite **97** (86 v1 + 11 v2). Import + id-map regenerated; all C-IDs blank (never pushed).
+- **13 v1 cases flagged SUPERSEDED/UPDATE** (Show-all, ask-a-question, catalogue, 6-entity perm/group/tab) — retire/rewrite is the QA lead's call (PO-GS-4).
+- Full detail: revival-2026-08-21/REVIVAL-RECONCILIATION.md. PO questions: questions-2026-08-21/ (PO-GS-1..4).
+- Rule-85 SOURCE-VERIFIED ONLY (no QA branch). NO TestRail/Jira writes.

@@ -21,7 +21,7 @@
   "design_ref": "requirements.md 9 (role-based access)",
   "spec_ref": "requirements.md 9 (all result fields respect role-based-access checks)",
   "viu_status": "VIU-Pending",
-  "notes": "Positive permission case; pair with the negative GS-PERM-02. Requires role setup at VIU time - assign the test user a role WITH Parts access, then restore afterward (Standing Rule 5).",
+  "notes": "Positive permission case; pair with the negative GS-PERM-02. Requires role setup at VIU time - assign the test user a role WITH Parts access, then restore afterward (Standing Rule 5). [⚠ v2 REVIVAL 2026-08-21: SUPERSEDED for scope by GS-PERM-06 (v2 nine-entity bundle mapping + price masking, NFR-004/005). Retire/rewrite is the QA lead's call - see revival report.]",
   "api_related": false
  },
  {
@@ -47,7 +47,7 @@
   "design_ref": "requirements.md 9 (technician without Parts access does not see Parts results)",
   "spec_ref": "requirements.md 9 (a technician without Parts access does not see Parts results)",
   "viu_status": "VIU-Pending",
-  "notes": "Spec's explicit negative example. Requires role setup at VIU time - assign the test user a role WITHOUT Parts access, verify, then restore (Standing Rule 5). VIU-confirm whether the 'Parts' scope tab is hidden entirely or shows empty.",
+  "notes": "Spec's explicit negative example. Requires role setup at VIU time - assign the test user a role WITHOUT Parts access, verify, then restore (Standing Rule 5). VIU-confirm whether the 'Parts' scope tab is hidden entirely or shows empty. [⚠ v2 REVIVAL 2026-08-21: SUPERSEDED for scope by GS-PERM-06 (v2 nine-entity bundle mapping). Retire/rewrite is the QA lead's call - see revival report.]",
   "api_related": false
  },
  {
@@ -72,7 +72,7 @@
   "design_ref": "requirements.md 9 (role-based access, all entity types)",
   "spec_ref": "requirements.md 9 (all result fields respect role-based-access checks)",
   "viu_status": "VIU-Pending",
-  "notes": "Second negative permission example (a different entity). Requires role setup + restore at VIU time (Standing Rule 5).",
+  "notes": "Second negative permission example (a different entity). Requires role setup + restore at VIU time (Standing Rule 5). [⚠ v2 REVIVAL 2026-08-21: SUPERSEDED for scope by GS-PERM-06 (v2 nine-entity bundle mapping). Retire/rewrite is the QA lead's call - see revival report.]",
   "api_related": false
  },
  {
@@ -97,7 +97,7 @@
   "design_ref": "requirements.md 9 (tenant-isolation)",
   "spec_ref": "requirements.md 9 (all result fields respect existing tenant-isolation checks)",
   "viu_status": "VIU-Pending",
-  "notes": "Cross-tenant data setup needed at VIU time.",
+  "notes": "Cross-tenant data setup needed at VIU time. [⚠ v2 REVIVAL 2026-08-21: SUPERSEDED for scope by GS-PERM-06 (v2 nine-entity bundle mapping). Retire/rewrite is the QA lead's call - see revival report.]",
   "api_related": false
  },
  {
@@ -124,7 +124,7 @@
   "design_ref": "requirements.md 9 (must work for a single-tenant dataset where any entity type is empty)",
   "spec_ref": "requirements.md 9 (must work for a single-tenant dataset where any entity type is empty, e.g. no part sales yet)",
   "viu_status": "VIU-Pending",
-  "notes": "Sparse-data / empty-entity coverage. Requires a sparse-data setup at VIU time - use a tenant/user whose data set has zero records of one entity type (for example no Part Sales), or seed the environment to that state (Standing Rule 14). VIU-confirm whether the empty entity type's scope tab is hidden entirely or shows an empty-state message.",
+  "notes": "Sparse-data / empty-entity coverage. Requires a sparse-data setup at VIU time - use a tenant/user whose data set has zero records of one entity type (for example no Part Sales), or seed the environment to that state (Standing Rule 14). VIU-confirm whether the empty entity type's scope tab is hidden entirely or shows an empty-state message. [⚠ v2 REVIVAL 2026-08-21: SUPERSEDED for scope by GS-PERM-06 (v2 nine-entity bundle mapping). Retire/rewrite is the QA lead's call - see revival report.]",
   "api_related": false
  },
  {

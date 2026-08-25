@@ -2187,3 +2187,11 @@ were stale). Sources: `build/report-suite/build-verify-2026-08-18/{TU,WIP,IV}-SW
 - Spec re-verified v21->v23: only Story 7 changed (SFV2-BULK-02 updated); all 61 cases re-pinned to v23. Tech plan folded in (confirms cases; clears the old MISSING-tech-plan flag SFV2-4).
 - **PO-SF-3 OPEN** — Milos: Story 19 Uncomplete block — tech plan says SERVICE work orders block at 'complete' (one status earlier), spec says invoiced/paid. Case SFV2-MENU-01 follows the spec; disclosed.
 - PO-SF-1, PO-SF-2, SFV2-1 (TestRail target), SFV2-2 (creds) remain open.
+
+### Global Search — revival 2026-08-21 (test-case creation lane)
+- Revived as v2: 11 delta cases authored (97 total); 13 v1 cases flagged superseded. Import regenerated.
+- **PO-GS-1** — Branko: Purchase Order number format (design 'PO-3241' vs confirmed spliced 'S12-1234'). Authored to the data format.
+- **PO-GS-2** — Branko: confirm Vendor Invoice tri-state badge + dropping 'Invoice/Sublet' for v1.
+- **PO-GS-3** — Branko: mobile 4 open layout points (FR-022); GS-MOB-01 HELD.
+- **PO-GS-4** — Branko: rewrite/retire the 13 superseded v1 cases now, or wait for the PRD body to be finalised?
+- GS TestRail target section + creds remain open (as all projects).
