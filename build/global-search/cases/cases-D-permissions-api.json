@@ -297,11 +297,11 @@
    "1. Send GET /api/search with q set and scope set to 'all'.",
    "2. Inspect the order of the groups and the per-item score/rank fields in the response."
   ],
-  "expected": "1. Groups are returned in the order Work Orders, Customers, Assets, Parts, Vendors, Part Sales.\n2. Within each group items are ordered by score descending.\n3. Each item carries the metadata needed to render its row (entity type, primary/secondary fields, status/quantity, score) without extra fetches.\n\n---\nThis is the expected behaviour as per the Global Search PRD (Confluence page 576978945), section 6.2 (group order); 10 Phase 1 (per-item metadata), read on 16 July 2026, and epic SV-9160, read on 21 August 2026.\n\nAUTOMATION: Not available on Build to test Yet - Last checked 8/21/2026\n",
+  "expected": "1. Groups are returned in the v2 nine-entity order: Work Orders, Customers, Contacts, Assets, Parts, Vendors, Part Sales, Purchase Orders, Vendor Invoices (D16).\n2. Within each group items are ordered by score descending; ties break by recency.\n3. Each item carries the metadata needed to render its row (entity type, primary/secondary fields, badges/quantity, score) without extra fetches, and true per-group totals.\n\n---\nThis is the expected behaviour as per the Global Search PRD (Confluence page 576978945), section 6.2 (group order); 10 Phase 1 (per-item metadata), read on 16 July 2026, and epic SV-9160, read on 21 August 2026.\n\nAUTOMATION: Not available on Build to test Yet - Last checked 8/21/2026\n",
   "design_ref": "requirements.md 6.1, 6.2, 10 Phase 1 (grouped, ranked, scored payload; group order)",
   "spec_ref": "requirements.md 6.2 (group order); 10 Phase 1 (per-item metadata)",
   "viu_status": "VIU-Pending",
-  "notes": "",
+  "notes": " [v2 CONTENT UPDATED 2026-08-21 to the current authoritative design/tech-plan.]",
   "api_related": true,
   "refs": "SV-9160 (PRD 6.2 (group order); 10 Phase 1 (per-item metadata))"
  },

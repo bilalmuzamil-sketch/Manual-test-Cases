@@ -60,11 +60,11 @@
    "1. Type the query.",
    "2. Look at the bottom of the Work Orders group."
   ],
-  "expected": "1. A link appears at the bottom of the group, worded like 'Show all work orders' (or 'Show all 12 work orders').\n2. The link only appears when there are more matches than the rows shown.\n\n---\nThis is the expected behaviour as per the Global Search PRD (Confluence page 576978945), section 5.2 State 3 ('Show all N work orders' link), read on 16 July 2026, and epic SV-9160, read on 21 August 2026.\n\nAUTOMATION: Not available on Build to test Yet - Last checked 8/21/2026\n",
+  "expected": "1. There is NO 'Show all N' link in v2 (dropped by D15/FR-013).\n2. In the All view a group shows up to 5 rows with its true total in the heading (for example 'Work Orders (12)').\n3. To see more than 5, the user opens that entity's scope tab (see the Scope Tabs cases).\n\n---\nThis is the expected behaviour as per the Global Search PRD (Confluence page 576978945), section 5.2 State 3 ('Show all N work orders' link), read on 16 July 2026, and epic SV-9160, read on 21 August 2026.\n\nAUTOMATION: Not available on Build to test Yet - Last checked 8/21/2026\n",
   "design_ref": "design-notes.md screenshot 2 ('Show all work orders'); requirements.md 5.2",
   "spec_ref": "requirements.md 5.2 State 3 ('Show all N work orders' link)",
   "viu_status": "VIU-Pending",
-  "notes": "design-notes screenshot 2 shows 'Show all work orders'; spec prose shows 'Show all N work orders' - VIU-confirm whether the count N is included in the on-screen link text. [⚠ v2 REVIVAL 2026-08-21: SUPERSEDED by GS-TAB-09 (v2 D15/FR-013: Show-all link dropped, tabs-only). Retire/rewrite is the QA lead's call - see revival report.]",
+  "notes": "design-notes screenshot 2 shows 'Show all work orders'; spec prose shows 'Show all N work orders' - VIU-confirm whether the count N is included in the on-screen link text. [⚠ v2 REVIVAL 2026-08-21: SUPERSEDED by GS-TAB-09 (v2 D15/FR-013: Show-all link dropped, tabs-only). Retire/rewrite is the QA lead's call - see revival report.] [v2 CONTENT UPDATED 2026-08-21 to the current authoritative design/tech-plan.]",
   "api_related": false,
   "refs": "SV-9160 (PRD 5.2 State 3 ('Show all N work orders' link))"
  },
@@ -82,11 +82,11 @@
    "1. Click the 'Show all work orders' link.",
    "2. Watch the palette."
   ],
-  "expected": "1. The palette stays open and switches to the 'Work Orders' scope tab.\n2. The full list of matching Work Orders for the current query is shown, scoped to Work Orders only.\n3. The palette does not leave to a separate full page (the recommended behavior is the scoped tab within the modal).\n\n---\nThis is the expected behaviour as per the Global Search PRD (Confluence page 576978945), section 5.2 (Show all switches to the scope tab - recommended); Open Question OQ-SPEC-1, read on 16 July 2026, and epic SV-9160, read on 21 August 2026.\n\nAUTOMATION: Not available on Build to test Yet - Last checked 8/21/2026\n",
+  "expected": "1. Opening an entity's scope tab (not a 'Show all' link, which no longer exists) shows that entity's full result list within the modal.\n2. The scoped list loads a default page (25) with cursor-based load-more inside the modal.\n3. The modal does not navigate away to a separate full page.\n\n---\nThis is the expected behaviour as per the Global Search PRD (Confluence page 576978945), section 5.2 (Show all switches to the scope tab - recommended); Open Question OQ-SPEC-1, read on 16 July 2026, and epic SV-9160, read on 21 August 2026.\n\nAUTOMATION: Not available on Build to test Yet - Last checked 8/21/2026\n",
   "design_ref": "requirements.md 5.2 'Show all link behavior'; 11 OQ-SPEC-1",
   "spec_ref": "requirements.md 5.2 (Show all switches to the scope tab - recommended); Open Question OQ-SPEC-1",
   "viu_status": "VIU-Pending",
-  "notes": "Open Question OQ-SPEC-1: the spec RECOMMENDS scoped-tab-within-modal but the final decision (scoped tab vs full-page filtered list) is to be closed in Phase 0. VIU-confirm the shipped behavior; if it navigates to a full page instead, mark deviation-vs-recommendation not a defect. [⚠ v2 REVIVAL 2026-08-21: SUPERSEDED by GS-TAB-09 (v2 D15/FR-013: Show-all link dropped, tabs-only). Retire/rewrite is the QA lead's call - see revival report.]",
+  "notes": "Open Question OQ-SPEC-1: the spec RECOMMENDS scoped-tab-within-modal but the final decision (scoped tab vs full-page filtered list) is to be closed in Phase 0. VIU-confirm the shipped behavior; if it navigates to a full page instead, mark deviation-vs-recommendation not a defect. [⚠ v2 REVIVAL 2026-08-21: SUPERSEDED by GS-TAB-09 (v2 D15/FR-013: Show-all link dropped, tabs-only). Retire/rewrite is the QA lead's call - see revival report.] [v2 CONTENT UPDATED 2026-08-21 to the current authoritative design/tech-plan.]",
   "api_related": false,
   "refs": "SV-9160 (PRD 5.2 (Show all switches to the scope tab - recommended); Open Question OQ-SPEC-1)"
  },
@@ -105,11 +105,11 @@
    "1. Type the query on the 'All' tab.",
    "2. Read the group headings top to bottom."
   ],
-  "expected": "1. The groups appear top to bottom in this order: Work Orders, Customers, Assets, Parts, Vendors, Part Sales.\n2. The order does not change based on how many matches each group has.\n\n---\nThis is the expected behaviour as per the Global Search PRD (Confluence page 576978945), section 6.2 (group display order in 'All'), read on 16 July 2026, and epic SV-9160, read on 21 August 2026.\n\nAUTOMATION: Not available on Build to test Yet - Last checked 8/21/2026\n",
+  "expected": "1. The groups appear top to bottom in this v2 nine-entity order: Work Orders, Customers, Contacts, Assets, Parts, Vendors, Part Sales, Purchase Orders, Vendor Invoices (D16).\n2. The order does not change based on how many matches each group has.\n\n---\nThis is the expected behaviour as per the Global Search PRD (Confluence page 576978945), section 6.2 (group display order in 'All'), read on 16 July 2026, and epic SV-9160, read on 21 August 2026.\n\nAUTOMATION: Not available on Build to test Yet - Last checked 8/21/2026\n",
   "design_ref": "design-notes.md cross-reference; requirements.md 6.2",
   "spec_ref": "requirements.md 6.2 (group display order in 'All')",
   "viu_status": "VIU-Pending",
-  "notes": "Exception: when a single result scores above 0.95 (an exact ID match) it is pinned above all groups - see GS-RANK-01.",
+  "notes": "Exception: when a single result scores above 0.95 (an exact ID match) it is pinned above all groups - see GS-RANK-01. [v2 CONTENT UPDATED 2026-08-21 to the current authoritative design/tech-plan.]",
   "api_related": false,
   "refs": "SV-9160 (PRD 6.2 (group display order in 'All'))"
  },

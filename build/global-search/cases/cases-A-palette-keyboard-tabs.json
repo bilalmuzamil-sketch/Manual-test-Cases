@@ -15,11 +15,11 @@
    "1. Without clicking anything, press K together with the Command key (Ctrl+K on Windows), as shown in the header search field.",
    "2. Watch the screen."
   ],
-  "expected": "1. A centered search box (a modal overlay) opens on top of the page.\n2. The page behind the box is dimmed.\n3. The search input is focused so you can type right away.\n4. The placeholder reads 'Search or ask a question'.\n5. The footer keyboard legend is visible: 'Navigate' with up/down arrows, 'Select' with the enter symbol, and 'Close esc'.\n\n---\nThis is the expected behaviour as per the Global Search PRD (Confluence page 576978945), section 5.1 Trigger and Surface; 8 Functional Requirements, read on 16 July 2026, and epic SV-9160, read on 21 August 2026.\n\nAUTOMATION: Not available on Build to test Yet - Last checked 8/21/2026\n",
+  "expected": "1. A centered search box (a modal overlay) opens on top of the page.\n2. The page behind the box is dimmed.\n3. The search input is focused so you can type right away.\n4. The placeholder reads a plain search placeholder (no 'ask a question' / AI wording in v1 - exact copy per the v2 design).\n5. The footer keyboard legend is visible: 'Navigate' with up/down arrows, 'Select' with the enter symbol, and 'Close esc'.\n\n---\nThis is the expected behaviour as per the Global Search PRD (Confluence page 576978945), section 5.1 Trigger and Surface; 8 Functional Requirements, read on 16 July 2026, and epic SV-9160, read on 21 August 2026.\n\nAUTOMATION: Not available on Build to test Yet - Last checked 8/21/2026\n",
   "design_ref": "design-notes.md screenshots 4, 5, 9; requirements.md 5.1",
   "spec_ref": "requirements.md 5.1 Trigger and Surface; 8 Functional Requirements",
   "viu_status": "VIU-Pending",
-  "notes": "Wording taken from design-notes (placeholder 'Search or ask a question'; footer legend). Footer legend order differs slightly between Figma captures and spec prose - VIU-confirm exact on-screen footer text once the feature is on a QA env. [⚠ v2 REVIVAL 2026-08-21: v2 UPDATE (D5/FR-011): placeholder is plain search copy, no 'ask a question' (no AI in v1). Retire/rewrite is the QA lead's call - see revival report.]",
+  "notes": "Wording taken from design-notes (placeholder 'Search or ask a question'; footer legend). Footer legend order differs slightly between Figma captures and spec prose - VIU-confirm exact on-screen footer text once the feature is on a QA env. [⚠ v2 REVIVAL 2026-08-21: v2 UPDATE (D5/FR-011): placeholder is plain search copy, no 'ask a question' (no AI in v1). Retire/rewrite is the QA lead's call - see revival report.] [v2 CONTENT UPDATED 2026-08-21 to the current authoritative design/tech-plan.]",
   "api_related": false,
   "refs": "SV-9160 (PRD 5.1 Trigger and Surface; 8 Functional Requirements)"
  },
@@ -38,11 +38,11 @@
    "1. Click the search field in the app header.",
    "2. Watch the screen."
   ],
-  "expected": "1. The centered search box (modal overlay) opens, anchored to the header search field.\n2. The page behind is dimmed.\n3. The input is focused and shows the placeholder 'Search or ask a question'.\n4. The footer keyboard legend is visible.\n\n---\nThis is the expected behaviour as per the Global Search PRD (Confluence page 576978945), section 5.1 Trigger and Surface, read on 16 July 2026, and epic SV-9160, read on 21 August 2026.\n\nAUTOMATION: Not available on Build to test Yet - Last checked 8/21/2026\n",
+  "expected": "1. The centered search box (modal overlay) opens, anchored to the header search field.\n2. The page behind is dimmed.\n3. The input is focused and shows the placeholder a plain search placeholder (no 'ask a question' / AI wording in v1 - exact copy per the v2 design).\n4. The footer keyboard legend is visible.\n\n---\nThis is the expected behaviour as per the Global Search PRD (Confluence page 576978945), section 5.1 Trigger and Surface, read on 16 July 2026, and epic SV-9160, read on 21 August 2026.\n\nAUTOMATION: Not available on Build to test Yet - Last checked 8/21/2026\n",
   "design_ref": "design-notes.md screenshots 5, 9; requirements.md 5.1",
   "spec_ref": "requirements.md 5.1 Trigger and Surface",
   "viu_status": "VIU-Pending",
-  "notes": "Entry-point placement itself: the header component in design-notes screenshot 8 is labelled OUT OF SCOPE (proposed placement). Confirm the ACTUAL entry-point placement against the shipped build at VIU time.",
+  "notes": "Entry-point placement itself: the header component in design-notes screenshot 8 is labelled OUT OF SCOPE (proposed placement). Confirm the ACTUAL entry-point placement against the shipped build at VIU time. [v2 CONTENT UPDATED 2026-08-21 to the current authoritative design/tech-plan.]",
   "api_related": false,
   "refs": "SV-9160 (PRD 5.1 Trigger and Surface)"
  },
@@ -244,11 +244,11 @@
   "steps": [
    "1. Read the horizontal tab strip directly under the search input, left to right."
   ],
-  "expected": "1. The tabs read, in this exact left-to-right order: All, Work Orders, Customers, Assets, Parts, Vendors, Part Sales.\n2. The 'All' tab is selected by default.\n\n---\nThis is the expected behaviour as per the Global Search PRD (Confluence page 576978945), section 5.2 State 3 (tab strip); design-notes cross-reference, read on 16 July 2026, and epic SV-9160, read on 21 August 2026.\n\nAUTOMATION: Not available on Build to test Yet - Last checked 8/21/2026\n",
+  "expected": "1. The tabs read, in this exact left-to-right order: All, Work Orders, Customers, Contacts, Assets, Parts, Vendors, Part Sales, Purchase Orders, Vendor Invoices (v2 nine entities, D16).\n2. The 'All' tab is selected by default.\n3. A tab is shown only for an entity type the user has permission to see (permission-scoped).\n\n---\nThis is the expected behaviour as per the Global Search PRD (Confluence page 576978945), section 5.2 State 3 (tab strip); design-notes cross-reference, read on 16 July 2026, and epic SV-9160, read on 21 August 2026.\n\nAUTOMATION: Not available on Build to test Yet - Last checked 8/21/2026\n",
   "design_ref": "design-notes.md screenshots 2, 9; requirements.md 5.2",
   "spec_ref": "requirements.md 5.2 State 3 (tab strip); design-notes cross-reference",
   "viu_status": "VIU-Pending",
-  "notes": " [⚠ v2 REVIVAL 2026-08-21: v2: entity set is nine (adds Contacts, Purchase Orders, Vendor Invoices); tabs are permission-scoped. Retire/rewrite is the QA lead's call - see revival report.]",
+  "notes": " [⚠ v2 REVIVAL 2026-08-21: v2: entity set is nine (adds Contacts, Purchase Orders, Vendor Invoices); tabs are permission-scoped. Retire/rewrite is the QA lead's call - see revival report.] [v2 CONTENT UPDATED 2026-08-21 to the current authoritative design/tech-plan.]",
   "api_related": false,
   "refs": "SV-9160 (PRD 5.2 State 3 (tab strip); design-notes cross-reference)"
  },
@@ -268,11 +268,11 @@
    "2. Type the query (for example 'Fib').",
    "3. Read the grouped results."
   ],
-  "expected": "1. Results from every matching entity type appear, each under its own group heading with a count (for example 'Work orders (12)', 'Customers (2)').\n2. Groups appear in the order Work Orders, Customers, Assets, Parts, Vendors, Part Sales.\n\n---\nThis is the expected behaviour as per the Global Search PRD (Confluence page 576978945), section 5.2 State 3; 6.2 group order, read on 16 July 2026, and epic SV-9160, read on 21 August 2026.\n\nAUTOMATION: Not available on Build to test Yet - Last checked 8/21/2026\n",
+  "expected": "1. Results from every matching entity type appear, each under its own group heading with a true count (for example 'Work Orders (12)', 'Customers (2)').\n2. Groups appear in the v2 nine-entity order: Work Orders, Customers, Contacts, Assets, Parts, Vendors, Part Sales, Purchase Orders, Vendor Invoices (D16).\n\n---\nThis is the expected behaviour as per the Global Search PRD (Confluence page 576978945), section 5.2 State 3; 6.2 group order, read on 16 July 2026, and epic SV-9160, read on 21 August 2026.\n\nAUTOMATION: Not available on Build to test Yet - Last checked 8/21/2026\n",
   "design_ref": "design-notes.md screenshot 2; requirements.md 5.2, 6.2",
   "spec_ref": "requirements.md 5.2 State 3; 6.2 group order",
   "viu_status": "VIU-Pending",
-  "notes": "",
+  "notes": " [v2 CONTENT UPDATED 2026-08-21 to the current authoritative design/tech-plan.]",
   "api_related": false,
   "refs": "SV-9160 (PRD 5.2 State 3; 6.2 group order)"
  },

@@ -14,11 +14,11 @@
    "1. Open the palette without typing anything.",
    "2. Read the placeholder, the helper text, and the buttons."
   ],
-  "expected": "1. The input shows the placeholder 'Search or ask a question'.\n2. Helper text below the input reads 'Type to start searching for work orders, parts, customers and more'.\n3. Three quick-create buttons are shown: 'New work order', 'New customer', 'New inventory part'.\n4. The footer keyboard legend is visible.\n\n---\nThis is the expected behaviour as per the Global Search PRD (Confluence page 576978945), section 5.2 State 1 (First-time search), read on 16 July 2026, and epic SV-9160, read on 21 August 2026.\n\nAUTOMATION: Not available on Build to test Yet - Last checked 8/21/2026\n",
+  "expected": "1. The input shows the placeholder a plain search placeholder (no 'ask a question' / AI wording in v1 - exact copy per the v2 design).\n2. Helper text below the input reads 'Type to start searching for work orders, parts, customers and more'.\n3. Three quick-create buttons are shown: 'New work order', 'New customer', 'New inventory part'.\n4. The footer keyboard legend is visible.\n\n---\nThis is the expected behaviour as per the Global Search PRD (Confluence page 576978945), section 5.2 State 1 (First-time search), read on 16 July 2026, and epic SV-9160, read on 21 August 2026.\n\nAUTOMATION: Not available on Build to test Yet - Last checked 8/21/2026\n",
   "design_ref": "design-notes.md screenshot 5; requirements.md 5.2 State 1",
   "spec_ref": "requirements.md 5.2 State 1 (First-time search)",
   "viu_status": "VIU-Pending",
-  "notes": "The placeholder 'Search or ask a question' implies an AI capability but AI is OUT OF SCOPE for V1 (design-notes screenshot 7). OQ-3 open: confirm with the user whether this placeholder wording still ships in V1. [⚠ v2 REVIVAL 2026-08-21: v2 UPDATE (D5/FR-011): placeholder plain; helper text 'Type to start searching for work orders, parts, customers and more'; chips + New work order / + New customer / + New inventory part. Retire/rewrite is the QA lead's call - see revival report.]",
+  "notes": "The placeholder 'Search or ask a question' implies an AI capability but AI is OUT OF SCOPE for V1 (design-notes screenshot 7). OQ-3 open: confirm with the user whether this placeholder wording still ships in V1. [⚠ v2 REVIVAL 2026-08-21: v2 UPDATE (D5/FR-011): placeholder plain; helper text 'Type to start searching for work orders, parts, customers and more'; chips + New work order / + New customer / + New inventory part. Retire/rewrite is the QA lead's call - see revival report.] [v2 CONTENT UPDATED 2026-08-21 to the current authoritative design/tech-plan.]",
   "api_related": false,
   "refs": "SV-9160 (PRD 5.2 State 1 (First-time search))"
  },
@@ -173,11 +173,11 @@
    "1. Click the clear (x) button at the right of the input.",
    "2. Look at the input and the results."
   ],
-  "expected": "1. The input is cleared to empty.\n2. The results clear and the palette returns to the empty / recent-activity state (placeholder 'Search or ask a question').\n3. The persisted query is removed from the header field.\n\n---\nThis is the expected behaviour as per the Global Search PRD (Confluence page 576978945), section 5.2 State 5; design-notes screenshot 9 (clearable via the x button), read on 16 July 2026, and epic SV-9160, read on 21 August 2026.\n\nAUTOMATION: Not available on Build to test Yet - Last checked 8/21/2026\n",
+  "expected": "1. The input is cleared to empty.\n2. The results clear and the palette returns to the empty / recent-activity state (placeholder a plain search placeholder (no 'ask a question' / AI wording in v1 - exact copy per the v2 design)).\n3. The persisted query is removed from the header field.\n\n---\nThis is the expected behaviour as per the Global Search PRD (Confluence page 576978945), section 5.2 State 5; design-notes screenshot 9 (clearable via the x button), read on 16 July 2026, and epic SV-9160, read on 21 August 2026.\n\nAUTOMATION: Not available on Build to test Yet - Last checked 8/21/2026\n",
   "design_ref": "design-notes.md screenshot 9 (clear x button); requirements.md 5.2 State 5",
   "spec_ref": "requirements.md 5.2 State 5; design-notes screenshot 9 (clearable via the x button)",
   "viu_status": "VIU-Pending",
-  "notes": "",
+  "notes": " [v2 CONTENT UPDATED 2026-08-21 to the current authoritative design/tech-plan.]",
   "api_related": false,
   "refs": "SV-9160 (PRD 5.2 State 5; design-notes screenshot 9 (clearable via the x button))"
  },
@@ -311,11 +311,11 @@
    "1. Move the pointer over a catalog part row (for example 'P2-58 Toboro Industries').",
    "2. Look at the right side of the row."
   ],
-  "expected": "1. An 'Add part' button appears on hover.\n2. The action is non-destructive.\n\n---\nThis is the expected behaviour as per the Global Search PRD (Confluence page 576978945), section 5.4 (Part -> 'Add part' when not currently editing a WO), read on 16 July 2026, and epic SV-9160, read on 21 August 2026.\n\nAUTOMATION: Not available on Build to test Yet - Last checked 8/21/2026\n",
+  "expected": "1. On hover a Part quick action appears: \"Add to work order\" when you are currently editing a work order, otherwise \"Add part\".\n2. The Part row navigates to INVENTORY (not the catalogue).\n3. The action is non-destructive.\n\n---\nThis is the expected behaviour as per the Global Search PRD (Confluence page 576978945), section 5.4 (Part -> 'Add part' when not currently editing a WO), read on 16 July 2026, and epic SV-9160, read on 21 August 2026.\n\nAUTOMATION: Not available on Build to test Yet - Last checked 8/21/2026\n",
   "design_ref": "design-notes.md screenshot 10 ('Add part'); requirements.md 5.4",
   "spec_ref": "requirements.md 5.4 (Part -> 'Add part' when not currently editing a WO)",
   "viu_status": "VIU-Pending",
-  "notes": "'Add part' vs 'Add to work order' depends on whether you are currently editing a WO (spec 5.4). VIU-confirm the conditional live. [⚠ v2 REVIVAL 2026-08-21: v2 UPDATE (FR-014/FR-021): Part quick action 'Add to work order' (editing a WO) / 'Add part'; navigates to inventory. Retire/rewrite is the QA lead's call - see revival report.]",
+  "notes": "'Add part' vs 'Add to work order' depends on whether you are currently editing a WO (spec 5.4). VIU-confirm the conditional live. [⚠ v2 REVIVAL 2026-08-21: v2 UPDATE (FR-014/FR-021): Part quick action 'Add to work order' (editing a WO) / 'Add part'; navigates to inventory. Retire/rewrite is the QA lead's call - see revival report.] [v2 CONTENT UPDATED 2026-08-21 to the current authoritative design/tech-plan.]",
   "api_related": false,
   "refs": "SV-9160 (PRD 5.4 (Part -> 'Add part' when not currently editing a WO))"
  },
