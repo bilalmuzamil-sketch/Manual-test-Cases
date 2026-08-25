@@ -1,460 +1,460 @@
 [
- {
-  "id": "GS-EMPTY-01",
-  "area": "Empty and First-Time State",
-  "title": "First-time empty state shows the placeholder, helper text and three quick-create buttons",
-  "priority": "High",
-  "type": "Functional",
-  "permissions_required": "Any signed-in user (a new user with no recent activity).",
-  "preconditions": [
-   "1. You are signed in as a user with no recent search activity.",
-   "2. The palette is open and the input is empty."
-  ],
-  "steps": [
-   "1. Open the palette without typing anything.",
-   "2. Read the placeholder, the helper text, and the buttons."
-  ],
-  "expected": "1. The input shows the placeholder a plain search placeholder (no 'ask a question' / AI wording in v1 - exact copy per the v2 design).\n2. Helper text below the input reads 'Type to start searching for work orders, parts, customers and more'.\n3. Three quick-create buttons are shown: 'New work order', 'New customer', 'New inventory part'.\n4. The footer keyboard legend is visible.\n\n---\nThis is the expected behaviour as per the Global Search PRD (Confluence page 576978945), section 5.2 State 1 (First-time search), read on 16 July 2026, and epic SV-9160, read on 21 August 2026.\n\nAUTOMATION: Not available on Build to test Yet - Last checked 8/21/2026\n",
-  "design_ref": "design-notes.md screenshot 5; requirements.md 5.2 State 1",
-  "spec_ref": "requirements.md 5.2 State 1 (First-time search)",
-  "viu_status": "VIU-Pending",
-  "notes": "The placeholder 'Search or ask a question' implies an AI capability but AI is OUT OF SCOPE for V1 (design-notes screenshot 7). OQ-3 open: confirm with the user whether this placeholder wording still ships in V1. [⚠ v2 REVIVAL 2026-08-21: v2 UPDATE (D5/FR-011): placeholder plain; helper text 'Type to start searching for work orders, parts, customers and more'; chips + New work order / + New customer / + New inventory part. Retire/rewrite is the QA lead's call - see revival report.] [v2 CONTENT UPDATED 2026-08-21 to the current authoritative design/tech-plan.]",
-  "api_related": false,
-  "refs": "SV-9160 (PRD 5.2 State 1 (First-time search))"
- },
- {
-  "id": "GS-EMPTY-02",
-  "area": "Empty and First-Time State",
-  "title": "The quick-create buttons in the empty state start the matching create flow",
-  "priority": "Medium",
-  "type": "Functional",
-  "permissions_required": "A user with permission to create work orders, customers and inventory parts.",
-  "preconditions": [
-   "1. The palette is open in the empty state showing the three quick-create buttons."
-  ],
-  "steps": [
-   "1. Click 'New work order' and observe.",
-   "2. Reopen the palette, click 'New customer' and observe.",
-   "3. Reopen the palette, click 'New inventory part' and observe."
-  ],
-  "expected": "1. 'New work order' starts the create-work-order flow.\n2. 'New customer' starts the create-customer flow.\n3. 'New inventory part' starts the create-inventory-part flow.\n4. None of the buttons perform a destructive action.\n\n---\nThis is the expected behaviour as per the Global Search PRD (Confluence page 576978945), section 5.2 State 1 (quick-create chips), read on 16 July 2026, and epic SV-9160, read on 21 August 2026.\n\nAUTOMATION: Not available on Build to test Yet - Last checked 8/21/2026\n",
-  "design_ref": "design-notes.md screenshot 5; requirements.md 5.2 State 1",
-  "spec_ref": "requirements.md 5.2 State 1 (quick-create chips)",
-  "viu_status": "VIU-Pending",
-  "notes": "VIU-confirm the exact create-flow each button opens (modal vs page) against the build.",
-  "api_related": false,
-  "refs": "SV-9160 (PRD 5.2 State 1 (quick-create chips))"
- },
- {
-  "id": "GS-REC-01",
-  "area": "Recent Activity Default State",
-  "title": "Recent activity is grouped under Today, Yesterday, Past week and Past 30 days",
-  "priority": "High",
-  "type": "Functional",
-  "permissions_required": "A returning user with recent activity.",
-  "preconditions": [
-   "1. You are signed in as a user who has recently opened several records (across different days).",
-   "2. The palette is open and the input is empty."
-  ],
-  "steps": [
-   "1. Open the palette without typing anything.",
-   "2. Read the group headings and the rows under them."
-  ],
-  "expected": "1. Instead of the first-time helper text, the palette shows your recent activity.\n2. Rows are grouped under time headings: 'Today', 'Yesterday', 'Past week', 'Past 30 days'.\n3. Each row is a previously opened record (not just a previous search word).\n\n---\nThis is the expected behaviour as per the Global Search PRD (Confluence page 576978945), section 5.2 State 2 (Recent searches grouped by interval); 8 (persist recent-entity-views 30 days), read on 16 July 2026, and epic SV-9160, read on 21 August 2026.\n\nAUTOMATION: Not available on Build to test Yet - Last checked 8/21/2026\n",
-  "design_ref": "design-notes.md screenshots 4, 10; requirements.md 5.2 State 2",
-  "spec_ref": "requirements.md 5.2 State 2 (Recent searches grouped by interval); 8 (persist recent-entity-views 30 days)",
-  "viu_status": "VIU-Pending",
-  "notes": "Recent entity views persist for 30 days per spec.",
-  "api_related": false,
-  "refs": "SV-9160 (PRD 5.2 State 2 (Recent searches grouped by interval); 8 (persist recent-entity-views 30 days))"
- },
- {
-  "id": "GS-REC-02",
-  "area": "Recent Activity Default State",
-  "title": "Recent activity mixes different entity types using the same row template",
-  "priority": "Medium",
-  "type": "Functional",
-  "permissions_required": "A returning user with recent activity across entity types.",
-  "preconditions": [
-   "1. You have recently opened records of different types (work orders, assets, customers, parts, part sales, vendors).",
-   "2. The palette is open and empty."
-  ],
-  "steps": [
-   "1. Open the palette without typing.",
-   "2. Read the recent rows across the time groups."
-  ],
-  "expected": "1. Recent rows include a mix of entity types (for example a Work Order, an Asset, a Customer, a Part, a Vendor).\n2. Each recent row uses the same row template as a normal result row (icon, primary line, secondary line, status/quantity cluster).\n3. Example rows: WO 'S1-644 Fisquare Farms' [Approved], Asset '2025 Freightliner M2 - Bryan Smith', Customer 'Adale Transport' with a doc chip, Part 'Rear Shock 65547' [72], Vendor 'Report Beverages'.\n\n---\nThis is the expected behaviour as per the Global Search PRD (Confluence page 576978945), section 5.2 State 2 (same row template as a result row), read on 16 July 2026, and epic SV-9160, read on 21 August 2026.\n\nAUTOMATION: Not available on Build to test Yet - Last checked 8/21/2026\n",
-  "design_ref": "design-notes.md screenshots 4, 10; requirements.md 5.2 State 2",
-  "spec_ref": "requirements.md 5.2 State 2 (same row template as a result row)",
-  "viu_status": "VIU-Pending",
-  "notes": "",
-  "api_related": false,
-  "refs": "SV-9160 (PRD 5.2 State 2 (same row template as a result row))"
- },
- {
-  "id": "GS-REC-03",
-  "area": "Recent Activity Default State",
-  "title": "Clicking a recent item opens that record",
-  "priority": "Medium",
-  "type": "Functional",
-  "permissions_required": "A returning user with recent activity.",
-  "preconditions": [
-   "1. The palette is open and empty, showing recent activity."
-  ],
-  "steps": [
-   "1. Click a recent item (for example the Work Order 'S1-644 Fisquare Farms').",
-   "2. Watch the screen."
-  ],
-  "expected": "1. The palette closes and the clicked record opens.\n2. Opening the record refreshes its position in recent activity (it is 'touched').\n\n---\nThis is the expected behaviour as per the Global Search PRD (Confluence page 576978945), section 10 Phase 4 (records a touch on every result click / entity-page visit), read on 16 July 2026, and epic SV-9160, read on 21 August 2026.\n\nAUTOMATION: Not available on Build to test Yet - Last checked 8/21/2026\n",
-  "design_ref": "design-notes.md screenshots 4, 10; requirements.md 5.2 State 2; 10 Phase 4",
-  "spec_ref": "requirements.md 10 Phase 4 (records a touch on every result click / entity-page visit)",
-  "viu_status": "VIU-Pending",
-  "notes": "",
-  "api_related": false,
-  "refs": "SV-9160 (PRD 10 Phase 4 (records a touch on every result click / entity-page visit))"
- },
- {
-  "id": "GS-PERS-01",
-  "area": "Persisting Query",
-  "title": "The typed query is retained in the header search field after the palette closes",
-  "priority": "High",
-  "type": "Functional",
-  "permissions_required": "Any signed-in user.",
-  "preconditions": [
-   "1. The palette is open.",
-   "2. You have typed a query (for example 'Fibridge') that returns results."
-  ],
-  "steps": [
-   "1. Type 'Fibridge' so results appear.",
-   "2. Close the palette (press Esc or click a result).",
-   "3. Look at the header search field."
-  ],
-  "expected": "1. After closing, the header search field still shows the last query 'Fibridge' as plain text.\n2. A small count badge (for example '1') is shown beside the persisted query.\n\n---\nThis is the expected behaviour as per the Global Search PRD (Confluence page 576978945), section 5.2 State 5 (Persisting search); 8 (persist last query, rehydrate on reopen), read on 16 July 2026, and epic SV-9160, read on 21 August 2026.\n\nAUTOMATION: Not available on Build to test Yet - Last checked 8/21/2026\n",
-  "design_ref": "design-notes.md screenshot 9; requirements.md 5.2 State 5",
-  "spec_ref": "requirements.md 5.2 State 5 (Persisting search); 8 (persist last query, rehydrate on reopen)",
-  "viu_status": "VIU-Pending",
-  "notes": "Persisting query stored in sessionStorage per tab (spec Phase 4). Count badge '1' captured in design-notes screenshot 9 - VIU-confirm what the badge counts.",
-  "api_related": false,
-  "refs": "SV-9160 (PRD 5.2 State 5 (Persisting search); 8 (persist last query, rehydrate on reopen))"
- },
- {
-  "id": "GS-PERS-02",
-  "area": "Persisting Query",
-  "title": "Reopening the palette restores the last query, scope tab and result list",
-  "priority": "High",
-  "type": "Functional",
-  "permissions_required": "Any signed-in user.",
-  "preconditions": [
-   "1. You have just searched (for example 'Fibridge'), selected a scope tab, and closed the palette (the query persists in the header field)."
-  ],
-  "steps": [
-   "1. Click the header search field again (or press Cmd+K).",
-   "2. Look at the input, the scope tab, and the results."
-  ],
-  "expected": "1. The palette reopens with the last query 'Fibridge' already in the input.\n2. The previously selected scope tab is restored.\n3. The result list for that query is shown again.\n4. The query text may appear selected/highlighted in the input so it can be replaced by typing.\n\n---\nThis is the expected behaviour as per the Global Search PRD (Confluence page 576978945), section 5.2 State 5 (Reopening restores the query, the scope tab, and the result list), read on 16 July 2026, and epic SV-9160, read on 21 August 2026.\n\nAUTOMATION: Not available on Build to test Yet - Last checked 8/21/2026\n",
-  "design_ref": "design-notes.md screenshot 9; requirements.md 5.2 State 5",
-  "spec_ref": "requirements.md 5.2 State 5 (Reopening restores the query, the scope tab, and the result list)",
-  "viu_status": "VIU-Pending",
-  "notes": "Figma info bubble: 'We always save search. When user clicks on this field it opens up the modal with their last search.'",
-  "api_related": false,
-  "refs": "SV-9160 (PRD 5.2 State 5 (Reopening restores the query, the scope tab, and the result list))"
- },
- {
-  "id": "GS-PERS-03",
-  "area": "Persisting Query",
-  "title": "The persisted query can be cleared with the clear (x) button",
-  "priority": "Medium",
-  "type": "Functional",
-  "permissions_required": "Any signed-in user.",
-  "preconditions": [
-   "1. The palette is open with a persisted query (for example 'Fibridge') in the input and a clear (x) button at the right of the input."
-  ],
-  "steps": [
-   "1. Click the clear (x) button at the right of the input.",
-   "2. Look at the input and the results."
-  ],
-  "expected": "1. The input is cleared to empty.\n2. The results clear and the palette returns to the empty / recent-activity state (placeholder a plain search placeholder (no 'ask a question' / AI wording in v1 - exact copy per the v2 design)).\n3. The persisted query is removed from the header field.\n\n---\nThis is the expected behaviour as per the Global Search PRD (Confluence page 576978945), section 5.2 State 5; design-notes screenshot 9 (clearable via the x button), read on 16 July 2026, and epic SV-9160, read on 21 August 2026.\n\nAUTOMATION: Not available on Build to test Yet - Last checked 8/21/2026\n",
-  "design_ref": "design-notes.md screenshot 9 (clear x button); requirements.md 5.2 State 5",
-  "spec_ref": "requirements.md 5.2 State 5; design-notes screenshot 9 (clearable via the x button)",
-  "viu_status": "VIU-Pending",
-  "notes": " [v2 CONTENT UPDATED 2026-08-21 to the current authoritative design/tech-plan.]",
-  "api_related": false,
-  "refs": "SV-9160 (PRD 5.2 State 5; design-notes screenshot 9 (clearable via the x button))"
- },
- {
-  "id": "GS-NORES-01",
-  "area": "No-Results State",
-  "title": "No matches shows 'No results for [query]' plus the three quick-create buttons",
-  "priority": "High",
-  "type": "Functional",
-  "permissions_required": "Any signed-in user.",
-  "preconditions": [
-   "1. The palette is open.",
-   "2. You will type a query that matches nothing (for example 'S1- 56438')."
-  ],
-  "steps": [
-   "1. Type a query with no matches (for example 'S1- 56438').",
-   "2. Read the centered message and the buttons."
-  ],
-  "expected": "1. A centered message reads 'No results for \\'S1- 56438\\'' (the exact query is echoed in quotes).\n2. The three quick-create buttons are shown: 'New work order', 'New customer', 'New inventory part'.\n3. The footer keyboard legend is still visible.\n\n---\nThis is the expected behaviour as per the Global Search PRD (Confluence page 576978945), section 5.2 State 4 (No results for [query] + quick-create chips), read on 16 July 2026, and epic SV-9160, read on 21 August 2026.\n\nAUTOMATION: Not available on Build to test Yet - Last checked 8/21/2026\n",
-  "design_ref": "design-notes.md screenshot 6; requirements.md 5.2 State 4",
-  "spec_ref": "requirements.md 5.2 State 4 (No results for [query] + quick-create chips)",
-  "viu_status": "VIU-Pending",
-  "notes": "Query is echoed verbatim in the message per design-notes screenshot 6.",
-  "api_related": false,
-  "refs": "SV-9160 (PRD 5.2 State 4 (No results for [query] + quick-create chips))"
- },
- {
-  "id": "GS-NORES-02",
-  "area": "No-Results State",
-  "title": "A quick-create button in the no-results state starts the create flow",
-  "priority": "Medium",
-  "type": "Functional",
-  "permissions_required": "A user with permission to create work orders / customers / inventory parts.",
-  "preconditions": [
-   "1. The palette is showing the no-results state with the three quick-create buttons."
-  ],
-  "steps": [
-   "1. Click 'New work order' (or 'New customer' / 'New inventory part').",
-   "2. Watch the screen."
-  ],
-  "expected": "1. The matching create flow starts (create work order / customer / inventory part).\n2. No destructive action occurs.\n\n---\nThis is the expected behaviour as per the Global Search PRD (Confluence page 576978945), section 5.2 State 4, read on 16 July 2026, and epic SV-9160, read on 21 August 2026.\n\nAUTOMATION: Not available on Build to test Yet - Last checked 8/21/2026\n",
-  "design_ref": "design-notes.md screenshot 6; requirements.md 5.2 State 4",
-  "spec_ref": "requirements.md 5.2 State 4",
-  "viu_status": "VIU-Pending",
-  "notes": "",
-  "api_related": false,
-  "refs": "SV-9160 (PRD 5.2 State 4)"
- },
- {
-  "id": "GS-HOVER-01",
-  "area": "Hover Quick-Actions",
-  "title": "Hovering a Work Order result shows an 'Add new line' action",
-  "priority": "Medium",
-  "type": "Functional",
-  "permissions_required": "A user with Work Orders access who can add lines.",
-  "preconditions": [
-   "1. The palette is open showing at least one Work Order row (in results or in recent activity).",
-   "2. A pointer (mouse) is available."
-  ],
-  "steps": [
-   "1. Move the pointer over a Work Order row (for example 'S1-644 Fisquare Farms').",
-   "2. Look at the right side of the row."
-  ],
-  "expected": "1. A right-aligned 'Add new line' button appears on hover.\n2. The action is non-destructive.\n\n---\nThis is the expected behaviour as per the Global Search PRD (Confluence page 576978945), section 5.4 (Work Order -> 'Add new line', only when currently editing a WO elsewhere), read on 16 July 2026, and epic SV-9160, read on 21 August 2026.\n\nAUTOMATION: Not available on Build to test Yet - Last checked 8/21/2026\n",
-  "design_ref": "design-notes.md screenshots 4, 10; requirements.md 5.4",
-  "spec_ref": "requirements.md 5.4 (Work Order -> 'Add new line', only when currently editing a WO elsewhere)",
-  "viu_status": "VIU-Pending",
-  "notes": "Spec 5.4 says WO 'Add new line' shows only when the user is currently editing a WO elsewhere; the Figma captures show it on recent items regardless. VIU-confirm the exact conditional visibility live.",
-  "api_related": false,
-  "refs": "SV-9160 (PRD 5.4 (Work Order -> 'Add new line', only when currently editing a WO elsewhere))"
- },
- {
-  "id": "GS-HOVER-02",
-  "area": "Hover Quick-Actions",
-  "title": "Hovering an Asset result shows 'New work order' plus history and checklist icons",
-  "priority": "Medium",
-  "type": "Functional",
-  "permissions_required": "A user with Assets and Work Orders access.",
-  "preconditions": [
-   "1. The palette is open showing at least one Asset row.",
-   "2. A pointer is available."
-  ],
-  "steps": [
-   "1. Move the pointer over an Asset row (for example '2025 Freightliner M2 - Fisquare Farms').",
-   "2. Look at the right side of the row."
-  ],
-  "expected": "1. A 'New work order' button appears on hover.\n2. Two secondary icon buttons appear: a clock/history icon and a checklist/tasks icon.\n3. The actions are non-destructive.\n\n---\nThis is the expected behaviour as per the Global Search PRD (Confluence page 576978945), section 5.4 (Asset -> 'New work order' + clock (history) and Invoice icons), read on 16 July 2026, and epic SV-9160, read on 21 August 2026.\n\nAUTOMATION: Not available on Build to test Yet - Last checked 8/21/2026\n",
-  "design_ref": "design-notes.md screenshot 10; requirements.md 5.4",
-  "spec_ref": "requirements.md 5.4 (Asset -> 'New work order' + clock (history) and Invoice icons)",
-  "viu_status": "VIU-Pending",
-  "notes": "Spec 5.4 describes the second icon as Invoice/Invoices; design-notes screenshot 10 describes a checklist/tasks icon - VIU-confirm the exact secondary icons and their labels.",
-  "api_related": false,
-  "refs": "SV-9160 (PRD 5.4 (Asset -> 'New work order' + clock (history) and Invoice icons))"
- },
- {
-  "id": "GS-HOVER-03",
-  "area": "Hover Quick-Actions",
-  "title": "Hovering a Customer result shows 'New work order' (and 'New contact')",
-  "priority": "Medium",
-  "type": "Functional",
-  "permissions_required": "A user with Customers and Work Orders access.",
-  "preconditions": [
-   "1. The palette is open showing at least one Customer row.",
-   "2. A pointer is available."
-  ],
-  "steps": [
-   "1. Move the pointer over a Customer row (for example 'Adale Transport').",
-   "2. Look at the right side of the row."
-  ],
-  "expected": "1. A 'New work order' button appears on hover.\n2. A 'New contact' action is available for the customer (per spec).\n3. The actions are non-destructive.\n\n---\nThis is the expected behaviour as per the Global Search PRD (Confluence page 576978945), section 5.4 (Customer -> 'New work order', 'New contact'), read on 16 July 2026, and epic SV-9160, read on 21 August 2026.\n\nAUTOMATION: Not available on Build to test Yet - Last checked 8/21/2026\n",
-  "design_ref": "design-notes.md screenshot 10 ('New work order'); requirements.md 5.4",
-  "spec_ref": "requirements.md 5.4 (Customer -> 'New work order', 'New contact')",
-  "viu_status": "VIU-Pending",
-  "notes": "design-notes screenshot 10 captures only 'New work order' on the customer row; spec 5.4 also lists 'New contact' - VIU-confirm whether 'New contact' also appears.",
-  "api_related": false,
-  "refs": "SV-9160 (PRD 5.4 (Customer -> 'New work order', 'New contact'))"
- },
- {
-  "id": "GS-HOVER-04",
-  "area": "Hover Quick-Actions",
-  "title": "Hovering a catalog part result shows 'Add part'",
-  "priority": "Medium",
-  "type": "Functional",
-  "permissions_required": "A user with Parts access.",
-  "preconditions": [
-   "1. The palette is open showing a catalog part-style row.",
-   "2. You are NOT currently editing a work order.",
-   "3. A pointer is available."
-  ],
-  "steps": [
-   "1. Move the pointer over a catalog part row (for example 'P2-58 Toboro Industries').",
-   "2. Look at the right side of the row."
-  ],
-  "expected": "1. On hover a Part quick action appears: \"Add to work order\" when you are currently editing a work order, otherwise \"Add part\".\n2. The Part row navigates to INVENTORY (not the catalogue).\n3. The action is non-destructive.\n\n---\nThis is the expected behaviour as per the Global Search PRD (Confluence page 576978945), section 5.4 (Part -> 'Add part' when not currently editing a WO), read on 16 July 2026, and epic SV-9160, read on 21 August 2026.\n\nAUTOMATION: Not available on Build to test Yet - Last checked 8/21/2026\n",
-  "design_ref": "design-notes.md screenshot 10 ('Add part'); requirements.md 5.4",
-  "spec_ref": "requirements.md 5.4 (Part -> 'Add part' when not currently editing a WO)",
-  "viu_status": "VIU-Pending",
-  "notes": "'Add part' vs 'Add to work order' depends on whether you are currently editing a WO (spec 5.4). VIU-confirm the conditional live. [⚠ v2 REVIVAL 2026-08-21: v2 UPDATE (FR-014/FR-021): Part quick action 'Add to work order' (editing a WO) / 'Add part'; navigates to inventory. Retire/rewrite is the QA lead's call - see revival report.] [v2 CONTENT UPDATED 2026-08-21 to the current authoritative design/tech-plan.]",
-  "api_related": false,
-  "refs": "SV-9160 (PRD 5.4 (Part -> 'Add part' when not currently editing a WO))"
- },
- {
-  "id": "GS-HOVER-05",
-  "area": "Hover Quick-Actions",
-  "title": "Hovering a Vendor result shows 'Add contact'",
-  "priority": "Medium",
-  "type": "Functional",
-  "permissions_required": "A user with Vendors access.",
-  "preconditions": [
-   "1. The palette is open showing at least one Vendor row.",
-   "2. A pointer is available."
-  ],
-  "steps": [
-   "1. Move the pointer over a Vendor row (for example 'Report Beverages').",
-   "2. Look at the right side of the row."
-  ],
-  "expected": "1. An 'Add contact' button appears on hover.\n2. The action is non-destructive.\n\n---\nThis is the expected behaviour as per the Global Search PRD (Confluence page 576978945), section 5.4 (Vendor -> 'Add contact'), read on 16 July 2026, and epic SV-9160, read on 21 August 2026.\n\nAUTOMATION: Not available on Build to test Yet - Last checked 8/21/2026\n",
-  "design_ref": "design-notes.md screenshot 10 ('Add contact'); requirements.md 5.4",
-  "spec_ref": "requirements.md 5.4 (Vendor -> 'Add contact')",
-  "viu_status": "VIU-Pending",
-  "notes": "",
-  "api_related": false,
-  "refs": "SV-9160 (PRD 5.4 (Vendor -> 'Add contact'))"
- },
- {
-  "id": "GS-HOVER-06",
-  "area": "Hover Quick-Actions",
-  "title": "Hovering an inventory part while editing a work order shows 'Add to work order'",
-  "priority": "Medium",
-  "type": "Functional",
-  "permissions_required": "A user with Parts and Work Orders access.",
-  "preconditions": [
-   "1. You are currently editing a work order.",
-   "2. The palette is open showing an inventory part row (for example 'Rear Shock 65547' with a '72' quantity chip).",
-   "3. A pointer is available."
-  ],
-  "steps": [
-   "1. Move the pointer over an inventory part row.",
-   "2. Look at the right side of the row."
-  ],
-  "expected": "1. An 'Add to work order' button appears on hover.\n2. Using it adds the part to the work order you are editing (an inline add, non-destructive).\n\n---\nThis is the expected behaviour as per the Global Search PRD (Confluence page 576978945), section 5.4 (Part -> 'Add to work order' only when currently editing a WO), read on 16 July 2026, and epic SV-9160, read on 21 August 2026.\n\nAUTOMATION: Not available on Build to test Yet - Last checked 8/21/2026\n",
-  "design_ref": "design-notes.md screenshot 10 ('Add to work order'); requirements.md 5.4",
-  "spec_ref": "requirements.md 5.4 (Part -> 'Add to work order' only when currently editing a WO)",
-  "viu_status": "VIU-Pending",
-  "notes": "Conditional visibility ('If you are currently editing WO') must be VIU-confirmed live.",
-  "api_related": false,
-  "refs": "SV-9160 (PRD 5.4 (Part -> 'Add to work order' only when currently editing a WO))"
- },
- {
-  "id": "GS-HOVER-07",
-  "area": "Hover Quick-Actions",
-  "title": "Hover quick-actions never trigger a destructive operation",
-  "priority": "Medium",
-  "type": "Functional",
-  "permissions_required": "A user with access to the relevant entity types.",
-  "preconditions": [
-   "1. The palette is open with rows across several entity types."
-  ],
-  "steps": [
-   "1. Hover each entity row type and review the available quick-action buttons.",
-   "2. Note that every quick action is an add/create-style action."
-  ],
-  "expected": "1. No quick action deletes, voids, or otherwise destroys data.\n2. Every action offered by a quick action is also reachable from the entity's full record (hover is non-essential).\n\n---\nThis is the expected behaviour as per the Global Search PRD (Confluence page 576978945), section 5.4 (Quick actions never trigger destructive operations; hover state non-essential), read on 16 July 2026, and epic SV-9160, read on 21 August 2026.\n\nAUTOMATION: Not available on Build to test Yet - Last checked 8/21/2026\n",
-  "design_ref": "requirements.md 5.4",
-  "spec_ref": "requirements.md 5.4 (Quick actions never trigger destructive operations; hover state non-essential)",
-  "viu_status": "VIU-Pending",
-  "notes": "",
-  "api_related": false,
-  "refs": "SV-9160 (PRD 5.4 (Quick actions never trigger destructive operations; hover state non-essential))"
- },
- {
-  "id": "GS-LIST-01",
-  "area": "In-Page Work Orders List Search",
-  "title": "Searching the in-page Work Orders list filters the list and shows a matching banner",
-  "priority": "Medium",
-  "type": "Functional",
-  "permissions_required": "A user with Work Orders access.",
-  "preconditions": [
-   "1. You are on the Work Orders list page (not the global search palette).",
-   "2. Work Orders exist whose text contains 'Fib'."
-  ],
-  "steps": [
-   "1. Type 'Fib' into the in-page Work Orders list search field.",
-   "2. Read the list and the banner above it."
-  ],
-  "expected": "1. The Work Orders list filters to only rows matching 'Fib'.\n2. A blue banner reads 'Showing 12 work orders matching \\'Fib\\'' (the count reflects the number of matches).\n3. A 'Clear search' link appears on the right of the banner.\n4. The list columns remain: On Site, Status, Number, Customer, Asset, Unit, VIN/Serial #, Progress, Service Advisor, Lead Technician, Clocked In, Lines, Total Price.\n\n---\nThis is the expected behaviour as per the Global Search PRD (Confluence page 576978945), section design-notes screenshot 1 (in-page Work Orders list search banner), read on 16 July 2026, and epic SV-9160, read on 21 August 2026.\n\nAUTOMATION: Not available on Build to test Yet - Last checked 8/21/2026\n",
-  "design_ref": "design-notes.md screenshot 1; requirements.md 5 (in-page list filter is distinct from the palette)",
-  "spec_ref": "design-notes screenshot 1 (in-page Work Orders list search banner)",
-  "viu_status": "VIU-Pending",
-  "notes": "This is the in-page list filter, distinct from the global search palette. Banner + columns captured verbatim from design-notes screenshot 1.",
-  "api_related": false,
-  "refs": "SV-9160 (PRD design-notes screenshot 1 (in-page Work Orders list search banner))"
- },
- {
-  "id": "GS-LIST-02",
-  "area": "In-Page Work Orders List Search",
-  "title": "'Clear search' restores the full in-page Work Orders list",
-  "priority": "Low",
-  "type": "Functional",
-  "permissions_required": "A user with Work Orders access.",
-  "preconditions": [
-   "1. The Work Orders list is filtered by an in-page search (banner 'Showing N work orders matching [q]' is visible)."
-  ],
-  "steps": [
-   "1. Click the 'Clear search' link in the banner.",
-   "2. Read the list and the banner."
-  ],
-  "expected": "1. The filter is removed and the full Work Orders list is shown again.\n2. The 'Showing N work orders matching [q]' banner is removed.\n\n---\nThis is the expected behaviour as per the Global Search PRD (Confluence page 576978945), section design-notes screenshot 1, read on 16 July 2026, and epic SV-9160, read on 21 August 2026.\n\nAUTOMATION: Not available on Build to test Yet - Last checked 8/21/2026\n",
-  "design_ref": "design-notes.md screenshot 1 ('Clear search')",
-  "spec_ref": "design-notes screenshot 1",
-  "viu_status": "VIU-Pending",
-  "notes": "",
-  "api_related": false,
-  "refs": "SV-9160 (PRD design-notes screenshot 1)"
- },
- {
-  "id": "GS-ERR-01",
-  "area": "Error State",
-  "title": "A search failure shows the 'Search unavailable, retry' banner",
-  "priority": "Medium",
-  "type": "Negative",
-  "permissions_required": "Any signed-in user.",
-  "preconditions": [
-   "1. The palette is open.",
-   "2. A network/backend failure of the search request can be simulated (for example offline the network or block the search endpoint)."
-  ],
-  "steps": [
-   "1. With the search backend unreachable, type a query.",
-   "2. Read the message shown in the palette.",
-   "3. Restore connectivity and use the retry affordance."
-  ],
-  "expected": "1. An inline banner reads 'Search unavailable, retry'.\n2. The palette degrades gracefully - it does not crash or show a blank screen.\n3. Retrying after connectivity is restored re-runs the search and shows results.\n\n---\nThis is the expected behaviour as per the Global Search PRD (Confluence page 576978945), section 8 (tolerate offline/network failures with an inline 'Search unavailable, retry' banner), read on 16 July 2026, and epic SV-9160, read on 21 August 2026.\n\nAUTOMATION: Not available on Build to test Yet - Last checked 8/21/2026\n",
-  "design_ref": "requirements.md 8 ('Search unavailable, retry' banner); PROJECT-STATE.md open threads",
-  "spec_ref": "requirements.md 8 (tolerate offline/network failures with an inline 'Search unavailable, retry' banner)",
-  "viu_status": "VIU-Pending",
-  "notes": "The error state was NOT captured in the Figma screenshots - the exact banner wording/placement and the retry affordance must be VIU-confirmed live.",
-  "api_related": false,
-  "refs": "SV-9160 (PRD 8 (tolerate offline/network failures with an inline 'Search unavailable, retry' banner))"
- }
+  {
+    "id": "GS-EMPTY-01",
+    "area": "Empty and First-Time State",
+    "title": "First-time empty state shows the placeholder, helper text and three quick-create buttons",
+    "priority": "High",
+    "type": "Functional",
+    "permissions_required": "Any signed-in user (a new user with no recent activity).",
+    "preconditions": [
+      "1. You are signed in as a user with no recent search activity.",
+      "2. The palette is open and the input is empty."
+    ],
+    "steps": [
+      "1. Open the palette without typing anything.",
+      "2. Read the placeholder, the helper text, and the buttons."
+    ],
+    "expected": "1. The input shows the placeholder a plain search placeholder (no 'ask a question' / AI wording in v1 - exact copy per the v2 design).\n2. Helper text below the input reads 'Type to start searching for work orders, parts, customers and more'.\n3. Three quick-create buttons are shown: 'New work order', 'New customer', 'New inventory part'.\n4. The footer keyboard legend is visible.\n\n---\nThis is the expected behaviour as per the Global Search PRD (Confluence page 576978945), section 5.2 State 1 (First-time search), read on 16 July 2026, and epic SV-9160, read on 21 August 2026.\n\nAUTOMATION: Not available on Build to test Yet - Last checked 8/21/2026\n",
+    "design_ref": "design-notes.md screenshot 5; requirements.md 5.2 State 1",
+    "spec_ref": "requirements.md 5.2 State 1 (First-time search)",
+    "viu_status": "VIU-Pending",
+    "notes": "The placeholder 'Search or ask a question' implies an AI capability but AI is OUT OF SCOPE for V1 (design-notes screenshot 7). OQ-3 open: confirm with the user whether this placeholder wording still ships in V1. [⚠ v2 REVIVAL 2026-08-21: v2 UPDATE (D5/FR-011): placeholder plain; helper text 'Type to start searching for work orders, parts, customers and more'; chips + New work order / + New customer / + New inventory part. Retire/rewrite is the QA lead's call - see revival report.] [v2 CONTENT UPDATED 2026-08-21 to the current authoritative design/tech-plan.]",
+    "api_related": false,
+    "refs": "SV-9160 (PRD 5.2 State 1 (First-time search))"
+  },
+  {
+    "id": "GS-EMPTY-02",
+    "area": "Empty and First-Time State",
+    "title": "The quick-create buttons in the empty state start the matching create flow",
+    "priority": "Medium",
+    "type": "Functional",
+    "permissions_required": "A user with permission to create work orders, customers and inventory parts.",
+    "preconditions": [
+      "1. The palette is open in the empty state showing the three quick-create buttons."
+    ],
+    "steps": [
+      "1. Click 'New work order' and observe.",
+      "2. Reopen the palette, click 'New customer' and observe.",
+      "3. Reopen the palette, click 'New inventory part' and observe."
+    ],
+    "expected": "1. 'New work order' starts the create-work-order flow.\n2. 'New customer' starts the create-customer flow.\n3. 'New inventory part' starts the create-inventory-part flow.\n4. None of the buttons perform a destructive action.\n\n---\nThis is the expected behaviour as per the Global Search PRD (Confluence page 576978945), section 5.2 State 1 (quick-create chips), read on 16 July 2026, and epic SV-9160, read on 21 August 2026.\n\nAUTOMATION: Not available on Build to test Yet - Last checked 8/21/2026\n",
+    "design_ref": "design-notes.md screenshot 5; requirements.md 5.2 State 1",
+    "spec_ref": "requirements.md 5.2 State 1 (quick-create chips)",
+    "viu_status": "VIU-Pending",
+    "notes": "VIU-confirm the exact create-flow each button opens (modal vs page) against the build.",
+    "api_related": false,
+    "refs": "SV-9160 (PRD 5.2 State 1 (quick-create chips))"
+  },
+  {
+    "id": "GS-REC-01",
+    "area": "Recent Activity Default State",
+    "title": "Recent activity is grouped under Today, Yesterday, Past week and Past 30 days",
+    "priority": "High",
+    "type": "Functional",
+    "permissions_required": "A returning user with recent activity.",
+    "preconditions": [
+      "1. You are signed in as a user who has recently opened several records (across different days).",
+      "2. The palette is open and the input is empty."
+    ],
+    "steps": [
+      "1. Open the palette without typing anything.",
+      "2. Read the group headings and the rows under them."
+    ],
+    "expected": "1. Instead of the first-time helper text, the palette shows your recent activity.\n2. Rows are grouped under time headings: 'Today', 'Yesterday', 'Past week', 'Past 30 days'.\n3. Each row is a previously opened record (not just a previous search word).\n\n---\nThis is the expected behaviour as per the Global Search PRD (Confluence page 576978945), section 5.2 State 2 (Recent searches grouped by interval); 8 (persist recent-entity-views 30 days), read on 16 July 2026, and epic SV-9160, read on 21 August 2026.\n\nAUTOMATION: Not available on Build to test Yet - Last checked 8/21/2026\n",
+    "design_ref": "design-notes.md screenshots 4, 10; requirements.md 5.2 State 2",
+    "spec_ref": "requirements.md 5.2 State 2 (Recent searches grouped by interval); 8 (persist recent-entity-views 30 days)",
+    "viu_status": "VIU-Pending",
+    "notes": "Recent entity views persist for 30 days per spec.",
+    "api_related": false,
+    "refs": "SV-9160 (PRD 5.2 State 2 (Recent searches grouped by interval); 8 (persist recent-entity-views 30 days))"
+  },
+  {
+    "id": "GS-REC-02",
+    "area": "Recent Activity Default State",
+    "title": "Recent activity mixes different entity types using the same row template",
+    "priority": "Medium",
+    "type": "Functional",
+    "permissions_required": "A returning user with recent activity across entity types.",
+    "preconditions": [
+      "1. You have recently opened records of different types (work orders, assets, customers, parts, part sales, vendors).",
+      "2. The palette is open and empty."
+    ],
+    "steps": [
+      "1. Open the palette without typing.",
+      "2. Read the recent rows across the time groups."
+    ],
+    "expected": "1. Recent rows include a mix of entity types (for example a Work Order, an Asset, a Customer, a Part, a Vendor).\n2. Each recent row uses the same row template as a normal result row (icon, primary line, secondary line, status/quantity cluster).\n3. Example rows: WO 'S1-644 Fisquare Farms' [Approved], Asset '2025 Freightliner M2 - Bryan Smith', Customer 'Adale Transport' with a doc chip, Part 'Rear Shock 65547' [72], Vendor 'Report Beverages'.\n\n---\nThis is the expected behaviour as per the Global Search PRD (Confluence page 576978945), section 5.2 State 2 (same row template as a result row), read on 16 July 2026, and epic SV-9160, read on 21 August 2026.\n\nAUTOMATION: Not available on Build to test Yet - Last checked 8/21/2026\n",
+    "design_ref": "design-notes.md screenshots 4, 10; requirements.md 5.2 State 2",
+    "spec_ref": "requirements.md 5.2 State 2 (same row template as a result row)",
+    "viu_status": "VIU-Pending",
+    "notes": "",
+    "api_related": false,
+    "refs": "SV-9160 (PRD 5.2 State 2 (same row template as a result row))"
+  },
+  {
+    "id": "GS-REC-03",
+    "area": "Recent Activity Default State",
+    "title": "Clicking a recent item opens that record",
+    "priority": "Medium",
+    "type": "Functional",
+    "permissions_required": "A returning user with recent activity.",
+    "preconditions": [
+      "1. The palette is open and empty, showing recent activity."
+    ],
+    "steps": [
+      "1. Click a recent item (for example the Work Order 'S1-644 Fisquare Farms').",
+      "2. Watch the screen."
+    ],
+    "expected": "1. The palette closes and the clicked record opens.\n2. Opening the record refreshes its position in recent activity (it is 'touched').\n\n---\nThis is the expected behaviour as per the Global Search PRD (Confluence page 576978945), section 10 Phase 4 (records a touch on every result click / entity-page visit), read on 16 July 2026, and epic SV-9160, read on 21 August 2026.\n\nAUTOMATION: Not available on Build to test Yet - Last checked 8/21/2026\n",
+    "design_ref": "design-notes.md screenshots 4, 10; requirements.md 5.2 State 2; 10 Phase 4",
+    "spec_ref": "requirements.md 10 Phase 4 (records a touch on every result click / entity-page visit)",
+    "viu_status": "VIU-Pending",
+    "notes": "",
+    "api_related": false,
+    "refs": "SV-9160 (PRD 10 Phase 4 (records a touch on every result click / entity-page visit))"
+  },
+  {
+    "id": "GS-PERS-01",
+    "area": "Persisting Query",
+    "title": "The typed query is retained in the header search field after the palette closes",
+    "priority": "High",
+    "type": "Functional",
+    "permissions_required": "Any signed-in user.",
+    "preconditions": [
+      "1. The palette is open.",
+      "2. You have typed a query (for example 'Fibridge') that returns results."
+    ],
+    "steps": [
+      "1. Type 'Fibridge' so results appear.",
+      "2. Close the palette (press Esc or click a result).",
+      "3. Look at the header search field."
+    ],
+    "expected": "1. After closing, the header search field still shows the last query 'Fibridge' as plain text.\n2. A small count badge (for example '1') is shown beside the persisted query.\n\n---\nThis is the expected behaviour as per the Global Search PRD (Confluence page 576978945), section 5.2 State 5 (Persisting search); 8 (persist last query, rehydrate on reopen), read on 16 July 2026, and epic SV-9160, read on 21 August 2026.\n\nAUTOMATION: Not available on Build to test Yet - Last checked 8/21/2026\n",
+    "design_ref": "design-notes.md screenshot 9; requirements.md 5.2 State 5",
+    "spec_ref": "requirements.md 5.2 State 5 (Persisting search); 8 (persist last query, rehydrate on reopen)",
+    "viu_status": "VIU-Pending",
+    "notes": "Persisting query stored in sessionStorage per tab (spec Phase 4). Count badge '1' captured in design-notes screenshot 9 - VIU-confirm what the badge counts.",
+    "api_related": false,
+    "refs": "SV-9160 (PRD 5.2 State 5 (Persisting search); 8 (persist last query, rehydrate on reopen))"
+  },
+  {
+    "id": "GS-PERS-02",
+    "area": "Persisting Query",
+    "title": "Reopening the palette restores the last query, scope tab and result list",
+    "priority": "High",
+    "type": "Functional",
+    "permissions_required": "Any signed-in user.",
+    "preconditions": [
+      "1. You have just searched (for example 'Fibridge'), selected a scope tab, and closed the palette (the query persists in the header field)."
+    ],
+    "steps": [
+      "1. Click the header search field again (or press Cmd+K).",
+      "2. Look at the input, the scope tab, and the results."
+    ],
+    "expected": "1. The palette reopens with the last query 'Fibridge' already in the input.\n2. The previously selected scope tab is restored.\n3. The result list for that query is shown again.\n4. The query text may appear selected/highlighted in the input so it can be replaced by typing.\n\n---\nThis is the expected behaviour as per the Global Search PRD (Confluence page 576978945), section 5.2 State 5 (Reopening restores the query, the scope tab, and the result list), read on 16 July 2026, and epic SV-9160, read on 21 August 2026.\n\nAUTOMATION: Not available on Build to test Yet - Last checked 8/21/2026\n",
+    "design_ref": "design-notes.md screenshot 9; requirements.md 5.2 State 5",
+    "spec_ref": "requirements.md 5.2 State 5 (Reopening restores the query, the scope tab, and the result list)",
+    "viu_status": "VIU-Pending",
+    "notes": "Figma info bubble: 'We always save search. When user clicks on this field it opens up the modal with their last search.'",
+    "api_related": false,
+    "refs": "SV-9160 (PRD 5.2 State 5 (Reopening restores the query, the scope tab, and the result list))"
+  },
+  {
+    "id": "GS-PERS-03",
+    "area": "Persisting Query",
+    "title": "The persisted query can be cleared with the clear (x) button",
+    "priority": "Medium",
+    "type": "Functional",
+    "permissions_required": "Any signed-in user.",
+    "preconditions": [
+      "1. The palette is open with a persisted query (for example 'Fibridge') in the input and a clear (x) button at the right of the input."
+    ],
+    "steps": [
+      "1. Click the clear (x) button at the right of the input.",
+      "2. Look at the input and the results."
+    ],
+    "expected": "1. The input is cleared to empty.\n2. The results clear and the palette returns to the empty / recent-activity state (placeholder a plain search placeholder (no 'ask a question' / AI wording in v1 - exact copy per the v2 design)).\n3. The persisted query is removed from the header field.\n\n---\nThis is the expected behaviour as per the Global Search PRD (Confluence page 576978945), section 5.2 State 5; design-notes screenshot 9 (clearable via the x button), read on 16 July 2026, and epic SV-9160, read on 21 August 2026.\n\nAUTOMATION: Not available on Build to test Yet - Last checked 8/21/2026\n",
+    "design_ref": "design-notes.md screenshot 9 (clear x button); requirements.md 5.2 State 5",
+    "spec_ref": "requirements.md 5.2 State 5; design-notes screenshot 9 (clearable via the x button)",
+    "viu_status": "VIU-Pending",
+    "notes": " [v2 CONTENT UPDATED 2026-08-21 to the current authoritative design/tech-plan.]",
+    "api_related": false,
+    "refs": "SV-9160 (PRD 5.2 State 5; design-notes screenshot 9 (clearable via the x button))"
+  },
+  {
+    "id": "GS-NORES-01",
+    "area": "No-Results State",
+    "title": "No matches shows 'No results for [query]' plus the three quick-create buttons",
+    "priority": "High",
+    "type": "Functional",
+    "permissions_required": "Any signed-in user.",
+    "preconditions": [
+      "1. The palette is open.",
+      "2. You will type a query that matches nothing (for example 'S1- 56438')."
+    ],
+    "steps": [
+      "1. Type a query with no matches (for example 'S1- 56438').",
+      "2. Read the centered message and the buttons."
+    ],
+    "expected": "1. A centered message reads 'No results for \\'S1- 56438\\'' (the exact query is echoed in quotes).\n2. The three quick-create buttons are shown: 'New work order', 'New customer', 'New inventory part'.\n3. The footer keyboard legend is still visible.\n\n---\nThis is the expected behaviour as per the Global Search PRD (Confluence page 576978945), section 5.2 State 4 (No results for [query] + quick-create chips), read on 16 July 2026, and epic SV-9160, read on 21 August 2026.\n\nAUTOMATION: Not available on Build to test Yet - Last checked 8/21/2026\n",
+    "design_ref": "design-notes.md screenshot 6; requirements.md 5.2 State 4",
+    "spec_ref": "requirements.md 5.2 State 4 (No results for [query] + quick-create chips)",
+    "viu_status": "VIU-Pending",
+    "notes": "Query is echoed verbatim in the message per design-notes screenshot 6.",
+    "api_related": false,
+    "refs": "SV-9160 (PRD 5.2 State 4 (No results for [query] + quick-create chips))"
+  },
+  {
+    "id": "GS-NORES-02",
+    "area": "No-Results State",
+    "title": "A quick-create button in the no-results state starts the create flow",
+    "priority": "Medium",
+    "type": "Functional",
+    "permissions_required": "A user with permission to create work orders / customers / inventory parts.",
+    "preconditions": [
+      "1. The palette is showing the no-results state with the three quick-create buttons."
+    ],
+    "steps": [
+      "1. Click 'New work order' (or 'New customer' / 'New inventory part').",
+      "2. Watch the screen."
+    ],
+    "expected": "1. The matching create flow starts (create work order / customer / inventory part).\n2. No destructive action occurs.\n\n---\nThis is the expected behaviour as per the Global Search PRD (Confluence page 576978945), section 5.2 State 4, read on 16 July 2026, and epic SV-9160, read on 21 August 2026.\n\nAUTOMATION: Not available on Build to test Yet - Last checked 8/21/2026\n",
+    "design_ref": "design-notes.md screenshot 6; requirements.md 5.2 State 4",
+    "spec_ref": "requirements.md 5.2 State 4",
+    "viu_status": "VIU-Pending",
+    "notes": "",
+    "api_related": false,
+    "refs": "SV-9160 (PRD 5.2 State 4)"
+  },
+  {
+    "id": "GS-HOVER-01",
+    "area": "Hover Quick-Actions",
+    "title": "Hovering a Work Order result shows an 'Add new line' action",
+    "priority": "Medium",
+    "type": "Functional",
+    "permissions_required": "A user with Work Orders access who can add lines.",
+    "preconditions": [
+      "1. The palette is open showing at least one Work Order row (in results or in recent activity).",
+      "2. A pointer (mouse) is available."
+    ],
+    "steps": [
+      "1. Move the pointer over a Work Order row (for example 'S1-644 Fisquare Farms').",
+      "2. Look at the right side of the row."
+    ],
+    "expected": "1. A right-aligned 'Add new line' button appears on hover.\n2. The action is non-destructive.\n\n---\nThis is the expected behaviour as per the Global Search PRD (Confluence page 576978945), section 5.4 (Work Order -> 'Add new line', only when currently editing a WO elsewhere), read on 16 July 2026, and epic SV-9160, read on 21 August 2026.\n\nAUTOMATION: Not available on Build to test Yet - Last checked 8/21/2026\n",
+    "design_ref": "design-notes.md screenshots 4, 10; requirements.md 5.4",
+    "spec_ref": "requirements.md 5.4 (Work Order -> 'Add new line', only when currently editing a WO elsewhere)",
+    "viu_status": "VIU-Pending",
+    "notes": "Spec 5.4 says WO 'Add new line' shows only when the user is currently editing a WO elsewhere; the Figma captures show it on recent items regardless. VIU-confirm the exact conditional visibility live.",
+    "api_related": false,
+    "refs": "SV-9160 (PRD 5.4 (Work Order -> 'Add new line', only when currently editing a WO elsewhere))"
+  },
+  {
+    "id": "GS-HOVER-02",
+    "area": "Hover Quick-Actions",
+    "title": "Hovering an Asset result shows 'New work order' plus history and checklist icons",
+    "priority": "Medium",
+    "type": "Functional",
+    "permissions_required": "A user with Assets and Work Orders access.",
+    "preconditions": [
+      "1. The palette is open showing at least one Asset row.",
+      "2. A pointer is available."
+    ],
+    "steps": [
+      "1. Move the pointer over an Asset row (for example '2025 Freightliner M2 - Fisquare Farms').",
+      "2. Look at the right side of the row."
+    ],
+    "expected": "1. A 'New work order' button appears on hover.\n2. Two secondary icon buttons appear: a clock/history icon and a checklist/tasks icon.\n3. The actions are non-destructive.\n\n---\nThis is the expected behaviour as per the Global Search PRD (Confluence page 576978945), section 5.4 (Asset -> 'New work order' + clock (history) and Invoice icons), read on 16 July 2026, and epic SV-9160, read on 21 August 2026.\n\nAUTOMATION: Not available on Build to test Yet - Last checked 8/21/2026\n",
+    "design_ref": "design-notes.md screenshot 10; requirements.md 5.4",
+    "spec_ref": "requirements.md 5.4 (Asset -> 'New work order' + clock (history) and Invoice icons)",
+    "viu_status": "VIU-Pending",
+    "notes": "Spec 5.4 describes the second icon as Invoice/Invoices; design-notes screenshot 10 describes a checklist/tasks icon - VIU-confirm the exact secondary icons and their labels.",
+    "api_related": false,
+    "refs": "SV-9160 (PRD 5.4 (Asset -> 'New work order' + clock (history) and Invoice icons))"
+  },
+  {
+    "id": "GS-HOVER-03",
+    "area": "Hover Quick-Actions",
+    "title": "Hovering a Customer result shows 'New work order' (and 'New contact')",
+    "priority": "Medium",
+    "type": "Functional",
+    "permissions_required": "A user with Customers and Work Orders access.",
+    "preconditions": [
+      "1. The palette is open showing at least one Customer row.",
+      "2. A pointer is available."
+    ],
+    "steps": [
+      "1. Move the pointer over a Customer row (for example 'Adale Transport').",
+      "2. Look at the right side of the row."
+    ],
+    "expected": "1. A 'New work order' button appears on hover.\n2. A 'New contact' action is available for the customer (per spec).\n3. The actions are non-destructive.\n\n---\nThis is the expected behaviour as per the Global Search PRD (Confluence page 576978945), section 5.4 (Customer -> 'New work order', 'New contact'), read on 16 July 2026, and epic SV-9160, read on 21 August 2026.\n\nAUTOMATION: Not available on Build to test Yet - Last checked 8/21/2026\n",
+    "design_ref": "design-notes.md screenshot 10 ('New work order'); requirements.md 5.4",
+    "spec_ref": "requirements.md 5.4 (Customer -> 'New work order', 'New contact')",
+    "viu_status": "VIU-Pending",
+    "notes": "design-notes screenshot 10 captures only 'New work order' on the customer row; spec 5.4 also lists 'New contact' - VIU-confirm whether 'New contact' also appears.",
+    "api_related": false,
+    "refs": "SV-9160 (PRD 5.4 (Customer -> 'New work order', 'New contact'))"
+  },
+  {
+    "id": "GS-HOVER-04",
+    "area": "Hover Quick-Actions",
+    "title": "Hovering a catalog part result shows 'Add part'",
+    "priority": "Medium",
+    "type": "Functional",
+    "permissions_required": "A user with Parts access.",
+    "preconditions": [
+      "1. The palette is open showing a catalog part-style row.",
+      "2. You are NOT currently editing a work order.",
+      "3. A pointer is available."
+    ],
+    "steps": [
+      "1. Move the pointer over a catalog part row (for example 'P2-58 Toboro Industries').",
+      "2. Look at the right side of the row."
+    ],
+    "expected": "1. On hover a Part quick action appears: \"Add to work order\" when you are currently editing a work order, otherwise \"Add part\".\n2. The Part row navigates to INVENTORY (not the catalogue).\n3. The action is non-destructive.\n\n---\nThis is the expected behaviour as per the Global Search PRD (Confluence page 576978945), section 5.4 (Part -> 'Add part' when not currently editing a WO), read on 16 July 2026, and epic SV-9160, read on 21 August 2026.\n\nAUTOMATION: Not available on Build to test Yet - Last checked 8/21/2026\n",
+    "design_ref": "design-notes.md screenshot 10 ('Add part'); requirements.md 5.4",
+    "spec_ref": "requirements.md 5.4 (Part -> 'Add part' when not currently editing a WO)",
+    "viu_status": "VIU-Pending",
+    "notes": "'Add part' vs 'Add to work order' depends on whether you are currently editing a WO (spec 5.4). VIU-confirm the conditional live. [⚠ v2 REVIVAL 2026-08-21: v2 UPDATE (FR-014/FR-021): Part quick action 'Add to work order' (editing a WO) / 'Add part'; navigates to inventory. Retire/rewrite is the QA lead's call - see revival report.] [v2 CONTENT UPDATED 2026-08-21 to the current authoritative design/tech-plan.]",
+    "api_related": false,
+    "refs": "SV-9160 (PRD 5.4 (Part -> 'Add part' when not currently editing a WO))"
+  },
+  {
+    "id": "GS-HOVER-05",
+    "area": "Hover Quick-Actions",
+    "title": "Hovering a Vendor result shows 'Add contact'",
+    "priority": "Medium",
+    "type": "Functional",
+    "permissions_required": "A user with Vendors access.",
+    "preconditions": [
+      "1. The palette is open showing at least one Vendor row.",
+      "2. A pointer is available."
+    ],
+    "steps": [
+      "1. Move the pointer over a Vendor row (for example 'Report Beverages').",
+      "2. Look at the right side of the row."
+    ],
+    "expected": "1. An 'Add contact' button appears on hover.\n2. The action is non-destructive.\n\n---\nThis is the expected behaviour as per the Global Search PRD (Confluence page 576978945), section 5.4 (Vendor -> 'Add contact'), read on 16 July 2026, and epic SV-9160, read on 21 August 2026.\n\nAUTOMATION: Not available on Build to test Yet - Last checked 8/21/2026\n",
+    "design_ref": "design-notes.md screenshot 10 ('Add contact'); requirements.md 5.4",
+    "spec_ref": "requirements.md 5.4 (Vendor -> 'Add contact')",
+    "viu_status": "VIU-Pending",
+    "notes": "",
+    "api_related": false,
+    "refs": "SV-9160 (PRD 5.4 (Vendor -> 'Add contact'))"
+  },
+  {
+    "id": "GS-HOVER-06",
+    "area": "Hover Quick-Actions",
+    "title": "Hovering an inventory part while editing a work order shows 'Add to work order'",
+    "priority": "Medium",
+    "type": "Functional",
+    "permissions_required": "A user with Parts and Work Orders access.",
+    "preconditions": [
+      "1. You are currently editing a work order.",
+      "2. The palette is open showing an inventory part row (for example 'Rear Shock 65547' with a '72' quantity chip).",
+      "3. A pointer is available."
+    ],
+    "steps": [
+      "1. Move the pointer over an inventory part row.",
+      "2. Look at the right side of the row."
+    ],
+    "expected": "1. An 'Add to work order' button appears on hover.\n2. Using it adds the part to the work order you are editing (an inline add, non-destructive).\n\n---\nThis is the expected behaviour as per the Global Search PRD (Confluence page 576978945), section 5.4 (Part -> 'Add to work order' only when currently editing a WO), read on 16 July 2026, and epic SV-9160, read on 21 August 2026.\n\nAUTOMATION: Not available on Build to test Yet - Last checked 8/21/2026\n",
+    "design_ref": "design-notes.md screenshot 10 ('Add to work order'); requirements.md 5.4",
+    "spec_ref": "requirements.md 5.4 (Part -> 'Add to work order' only when currently editing a WO)",
+    "viu_status": "VIU-Pending",
+    "notes": "Conditional visibility ('If you are currently editing WO') must be VIU-confirmed live.",
+    "api_related": false,
+    "refs": "SV-9160 (PRD 5.4 (Part -> 'Add to work order' only when currently editing a WO))"
+  },
+  {
+    "id": "GS-HOVER-07",
+    "area": "Hover Quick-Actions",
+    "title": "Hover quick-actions never trigger a destructive operation",
+    "priority": "Medium",
+    "type": "Functional",
+    "permissions_required": "A user with access to the relevant entity types.",
+    "preconditions": [
+      "1. The palette is open with rows across several entity types."
+    ],
+    "steps": [
+      "1. Hover each entity row type and review the available quick-action buttons.",
+      "2. Note that every quick action is an add/create-style action."
+    ],
+    "expected": "1. No quick action deletes, voids, or otherwise destroys data.\n2. Every action offered by a quick action is also reachable from the entity's full record (hover is non-essential).\n\n---\nThis is the expected behaviour as per the Global Search PRD (Confluence page 576978945), section 5.4 (Quick actions never trigger destructive operations; hover state non-essential), read on 16 July 2026, and epic SV-9160, read on 21 August 2026.\n\nAUTOMATION: Not available on Build to test Yet - Last checked 8/21/2026\n",
+    "design_ref": "requirements.md 5.4",
+    "spec_ref": "requirements.md 5.4 (Quick actions never trigger destructive operations; hover state non-essential)",
+    "viu_status": "VIU-Pending",
+    "notes": "",
+    "api_related": false,
+    "refs": "SV-9160 (PRD 5.4 (Quick actions never trigger destructive operations; hover state non-essential))"
+  },
+  {
+    "id": "GS-LIST-01",
+    "area": "In-Page Work Orders List Search",
+    "title": "Searching the in-page Work Orders list filters the list and shows a matching banner",
+    "priority": "Medium",
+    "type": "Functional",
+    "permissions_required": "A user with Work Orders access.",
+    "preconditions": [
+      "1. You are on the Work Orders list page (not the global search palette).",
+      "2. Work Orders exist whose text contains 'Fib'."
+    ],
+    "steps": [
+      "1. Type 'Fib' into the in-page Work Orders list search field.",
+      "2. Read the list and the banner above it."
+    ],
+    "expected": "1. The Work Orders list filters to only rows matching 'Fib'.\n2. A blue banner reads 'Showing 12 work orders matching \"Fib\"' (the count reflects the number of matches).\n3. A 'Clear search' link appears on the right of the banner.\n4. The list columns remain: On Site, Status, Number, Customer, Asset, Unit, VIN/Serial #, Progress, Service Advisor, Lead Technician, Clocked In, Lines, Total Price.\n\n---\nThis is the expected behaviour as per the Global Search PRD (Confluence page 576978945), section design-notes screenshot 1 (in-page Work Orders list search banner), read on 16 July 2026, and epic SV-9160, read on 21 August 2026.\n\nAUTOMATION: Not available on Build to test Yet - Last checked 8/21/2026\n",
+    "design_ref": "design-notes.md screenshot 1; requirements.md 5 (in-page list filter is distinct from the palette)",
+    "spec_ref": "design-notes screenshot 1 (in-page Work Orders list search banner)",
+    "viu_status": "VIU-Pending",
+    "notes": "This is the in-page list filter, distinct from the global search palette. Banner + columns captured verbatim from design-notes screenshot 1.",
+    "api_related": false,
+    "refs": "SV-9160 (PRD design-notes screenshot 1 (in-page Work Orders list search banner))"
+  },
+  {
+    "id": "GS-LIST-02",
+    "area": "In-Page Work Orders List Search",
+    "title": "'Clear search' restores the full in-page Work Orders list",
+    "priority": "Low",
+    "type": "Functional",
+    "permissions_required": "A user with Work Orders access.",
+    "preconditions": [
+      "1. The Work Orders list is filtered by an in-page search (banner 'Showing N work orders matching [q]' is visible)."
+    ],
+    "steps": [
+      "1. Click the 'Clear search' link in the banner.",
+      "2. Read the list and the banner."
+    ],
+    "expected": "1. The filter is removed and the full Work Orders list is shown again.\n2. The 'Showing N work orders matching [q]' banner is removed.\n\n---\nThis is the expected behaviour as per the Global Search PRD (Confluence page 576978945), section design-notes screenshot 1, read on 16 July 2026, and epic SV-9160, read on 21 August 2026.\n\nAUTOMATION: Not available on Build to test Yet - Last checked 8/21/2026\n",
+    "design_ref": "design-notes.md screenshot 1 ('Clear search')",
+    "spec_ref": "design-notes screenshot 1",
+    "viu_status": "VIU-Pending",
+    "notes": "",
+    "api_related": false,
+    "refs": "SV-9160 (PRD design-notes screenshot 1)"
+  },
+  {
+    "id": "GS-ERR-01",
+    "area": "Error State",
+    "title": "A search failure shows the 'Search unavailable, retry' banner",
+    "priority": "Medium",
+    "type": "Negative",
+    "permissions_required": "Any signed-in user.",
+    "preconditions": [
+      "1. The palette is open.",
+      "2. A network/backend failure of the search request can be simulated (for example offline the network or block the search endpoint)."
+    ],
+    "steps": [
+      "1. With the search backend unreachable, type a query.",
+      "2. Read the message shown in the palette.",
+      "3. Restore connectivity and use the retry affordance."
+    ],
+    "expected": "1. An inline banner reads 'Search unavailable, retry'.\n2. The palette degrades gracefully - it does not crash or show a blank screen.\n3. Retrying after connectivity is restored re-runs the search and shows results.\n\n---\nThis is the expected behaviour as per the Global Search PRD (Confluence page 576978945), section 8 (tolerate offline/network failures with an inline 'Search unavailable, retry' banner), read on 16 July 2026, and epic SV-9160, read on 21 August 2026.\n\nAUTOMATION: Not available on Build to test Yet - Last checked 8/21/2026\n",
+    "design_ref": "requirements.md 8 ('Search unavailable, retry' banner); PROJECT-STATE.md open threads",
+    "spec_ref": "requirements.md 8 (tolerate offline/network failures with an inline 'Search unavailable, retry' banner)",
+    "viu_status": "VIU-Pending",
+    "notes": "The error state was NOT captured in the Figma screenshots - the exact banner wording/placement and the retry affordance must be VIU-confirmed live.",
+    "api_related": false,
+    "refs": "SV-9160 (PRD 8 (tolerate offline/network failures with an inline 'Search unavailable, retry' banner))"
+  }
 ]
