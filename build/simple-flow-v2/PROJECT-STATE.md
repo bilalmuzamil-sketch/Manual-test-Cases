@@ -32,3 +32,6 @@ Part rows/menus + reordering (19-20) · Permissions (21). Story 10 (bulk delete)
 1. `git fetch` + `merge --ff-only`; claim lock.
 2. Read intake-2026-08-21/{INTAKE, SOURCE-CURRENCY}; cases/; coverage-matrix.md.
 3. On a QA build: build-verify sync (skill 03) lifts the deferred markers.
+
+## TestRail run (2026-08-25)
+- **Full-suite run R416** — all 61 cases — https://shopview.testrail.io/index.php?/runs/view/416. C-IDs backfilled into testrail-id-map.csv. New cases: append via `build/testing-tools/sync_runs.py --apply` (union-only, Rule 34).

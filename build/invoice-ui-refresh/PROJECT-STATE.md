@@ -35,3 +35,6 @@
 1. `git fetch` + `merge --ff-only` on `claude/slack-session-0sxnd9`; claim the lock.
 2. Read `intake-2026-08-21/INTAKE-2026-08-21.md` + `SOURCE-CURRENCY.md`.
 3. On go-ahead: run the **v36→v38 + log-vs-body diff** first (Rule 59), then author per skill 01.
+
+## TestRail run (2026-08-25)
+- **Full-suite run R417** — all 87 cases — https://shopview.testrail.io/index.php?/runs/view/417. C-IDs backfilled into testrail-id-map.csv. New cases: append via `build/testing-tools/sync_runs.py --apply` (union-only, Rule 34).

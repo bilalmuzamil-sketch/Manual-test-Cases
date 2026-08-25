@@ -362,3 +362,6 @@ placeholder but is OUT OF SCOPE for V1 per the Figma.
 - **13 v1 cases flagged SUPERSEDED/UPDATE** (Show-all, ask-a-question, catalogue, 6-entity perm/group/tab) — retire/rewrite is the QA lead's call (PO-GS-4).
 - Full detail: revival-2026-08-21/REVIVAL-RECONCILIATION.md. PO questions: questions-2026-08-21/ (PO-GS-1..4).
 - Rule-85 SOURCE-VERIFIED ONLY (no QA branch). NO TestRail/Jira writes.
+
+## TestRail run (2026-08-25)
+- **Full-suite run R415** — all 97 cases — https://shopview.testrail.io/index.php?/runs/view/415. C-IDs backfilled into testrail-id-map.csv. New cases: append via `build/testing-tools/sync_runs.py --apply` (union-only, Rule 34).

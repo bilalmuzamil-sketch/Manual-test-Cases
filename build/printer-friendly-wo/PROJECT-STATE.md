@@ -27,3 +27,6 @@
   cases/ · testrail-id-map.csv · testrail-import/Printer-Friendly-Work-Orders_testrail-import.{csv,xlsx}
   · questions-2026-08-25/.
 - **Reconciliation:** authored 44 = import 44 = id-map 44; set-equal both ways.
+
+## TestRail run (2026-08-25)
+- **Full-suite run R419** — all 44 cases — https://shopview.testrail.io/index.php?/runs/view/419. C-IDs backfilled into testrail-id-map.csv. New cases: append via `build/testing-tools/sync_runs.py --apply` (union-only, Rule 34).

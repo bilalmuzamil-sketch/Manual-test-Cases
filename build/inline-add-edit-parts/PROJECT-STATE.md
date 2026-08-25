@@ -32,3 +32,6 @@
 ## How to resume
 1. On go-ahead from Sasha's answers: fold PO-IAEP-1/2 outcomes into IAEP-TEDIT-12 and IAEP-BTN-06/07.
 2. When a QA build exists: run skill 03/11 build verification; re-stamp AUTOMATION markers.
+
+## TestRail run (2026-08-25)
+- **Full-suite run R418** — all 96 cases — https://shopview.testrail.io/index.php?/runs/view/418. C-IDs backfilled into testrail-id-map.csv. New cases: append via `build/testing-tools/sync_runs.py --apply` (union-only, Rule 34).
