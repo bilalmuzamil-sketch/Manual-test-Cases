@@ -1,0 +1,96 @@
+internal_id,proposed_testrail_case_id,title
+GS-KEY-01,44804,Open the global search palette with the keyboard shortcut (K / Cmd+K)
+GS-KEY-02,44805,Open the global search palette by clicking the header search field
+GS-KEY-03,44806,Close the palette with the Esc key
+GS-KEY-04,44807,Toggle the palette closed by pressing the shortcut again (Cmd+K)
+GS-KEY-05,44808,Close the palette by clicking the dimmed page behind it
+GS-KEY-06,44809,"Move through result rows with the Up and Down arrow keys, skipping group headers"
+GS-KEY-07,44810,Open the highlighted result in the same tab by pressing Enter
+GS-KEY-08,44811,Open the highlighted result in a new browser tab with Cmd+Enter (Ctrl+Enter)
+GS-KEY-09,44812,"Move focus to the scope tab strip with Tab, then cycle tabs with Left and Right arrows"
+GS-KEY-10,44813,The keyboard shortcut legend stays visible in the footer at all times
+GS-TAB-01,44814,The scope tab strip lists All plus the six entity tabs in the exact order
+GS-TAB-02,44815,The 'All' tab shows results from every entity group together
+GS-TAB-03,44816,The 'Work Orders' tab shows only Work Order results
+GS-TAB-04,44817,The 'Customers' tab shows only Customer results
+GS-TAB-05,44818,The 'Assets' tab shows only Asset (vehicle) results
+GS-TAB-06,44819,The 'Parts' tab shows only Part (inventory) results
+GS-TAB-07,44820,The 'Vendors' tab shows only Vendor results
+GS-TAB-08,44821,The 'Part Sales' tab shows only Part Sales results
+GS-GRP-01,44823,Each result group shows a heading with the total match count
+GS-GRP-02,44824,A group shows up to five results (raised from three)
+GS-GRP-03,44825,A 'Show all N' link appears when a group has more matches than are shown
+GS-GRP-04,44826,Clicking 'Show all N' switches the palette into that entity's scope tab
+GS-GRP-05,44827,"Groups appear in the fixed order Work Orders, Customers, Assets, Parts, Vendors, Part Sales"
+GS-GRP-06,44828,The typed text is highlighted inside each matching result
+GS-GRP-07,44829,A screen reader announces the results count when it changes
+GS-ENT-01,44831,"A Work Order result shows number, customer, status badge, assignee and date"
+GS-ENT-02,44832,"A Customer result shows name, address and an open work-order count chip"
+GS-ENT-03,44833,An Asset result shows year/make/model and the owning customer
+GS-ENT-04,44834,"A Part result shows description, part number and a quantity chip colored by stock level"
+GS-ENT-05,44835,A Vendor result shows the vendor name and address
+GS-ENT-06,44836,"A Part Sale result shows the P-number, customer, status badge, total price and date"
+GS-ENT-07,44837,A customer or vendor matched on a phone or email shows 'Contact/info match'
+GS-ENT-08,44838,Work Order status badges use the correct colors
+GS-FUZ-01,44839,A misspelled name still finds the record - 'Petersn' finds 'Peterson'
+GS-FUZ-02,44840,A misspelled name still finds the record - 'Abrige' finds 'Aabridge'
+GS-FUZ-03,44841,A transposed-letters query still finds the record - 'frieghtliner' finds 'Freightliner'
+GS-FUZ-04,44842,A phonetically-similar name still finds the record - 'Filbridge' finds 'Fibridge'
+GS-FUZ-05,44843,A Work Order number matches exactly with or without the dash or a space
+GS-FUZ-06,44844,A VIN / serial number requires an exact match after normalization
+GS-FUZ-07,44845,"A telephone number matches on digits only, ignoring formatting"
+GS-FUZ-08,44846,A part number requires an exact match after normalization
+GS-FUZ-09,44847,Typos in identifier fields do NOT return fuzzy matches
+GS-FUZ-10,44848,A soft (fuzzy) match is visually indicated
+GS-FUZ-11,44849,A Part Sale P-number requires an exact match (no fuzzy typo tolerance)
+GS-RANK-01,44850,An exact identifier match is pinned as a single row at the very top
+GS-RANK-02,44851,"Within a group, more relevant results appear first"
+GS-RANK-03,44852,In-stock parts rank above out-of-stock parts (out-of-stock not hidden)
+GS-RANK-04,44853,"On a Customer page, that customer's assets and work orders are boosted"
+GS-RANK-05,44854,"On a Work Order page, parts already on that work order are pushed down"
+GS-EMPTY-01,44855,"First-time empty state shows the placeholder, helper text and three quick-create buttons"
+GS-EMPTY-02,44856,The quick-create buttons in the empty state start the matching create flow
+GS-REC-01,44857,"Recent activity is grouped under Today, Yesterday, Past week and Past 30 days"
+GS-REC-02,44858,Recent activity mixes different entity types using the same row template
+GS-REC-03,44859,Clicking a recent item opens that record
+GS-PERS-01,44861,The typed query is retained in the header search field after the palette closes
+GS-PERS-02,44862,"Reopening the palette restores the last query, scope tab and result list"
+GS-PERS-03,44863,The persisted query can be cleared with the clear (x) button
+GS-NORES-02,44865,A quick-create button in the no-results state starts the create flow
+GS-HOVER-01,44866,Hovering a Work Order result shows an 'Add new line' action
+GS-HOVER-02,44867,Hovering an Asset result shows 'New work order' plus history and checklist icons
+GS-HOVER-03,44868,Hovering a Customer result shows 'New work order' (and 'New contact')
+GS-HOVER-04,44869,Hovering a catalog part result shows 'Add part'
+GS-HOVER-05,44870,Hovering a Vendor result shows 'Add contact'
+GS-HOVER-06,44871,Hovering an inventory part while editing a work order shows 'Add to work order'
+GS-HOVER-07,44872,Hover quick-actions never trigger a destructive operation
+GS-LIST-01,44874,Searching the in-page Work Orders list filters the list and shows a matching banner
+GS-LIST-02,44875,'Clear search' restores the full in-page Work Orders list
+GS-ERR-01,44876,"A search failure shows the 'Search unavailable, retry' banner"
+GS-PERM-01,44877,A user WITH Parts access sees Parts results in the palette
+GS-PERM-02,44878,A technician WITHOUT Parts access does NOT see Parts results
+GS-PERM-03,44879,A user WITHOUT Work Orders access does NOT see Work Order results
+GS-PERM-04,44880,Results are limited to the signed-in user's own tenant
+GS-PERM-05,44881,An entity type with no accessible records shows no group (and its scope tab shows the empty state)
+GS-API-01,44883,GET /api/search returns grouped results for scope=all
+GS-API-02,44884,The scope parameter restricts GET /api/search to a single entity type
+GS-API-03,44885,GET /api/search caps each group at the limit (default 5) and returns per-group totals
+GS-API-04,44886,GET /api/search matches identifier fields exactly after normalization
+GS-API-05,44887,GET /api/search does NOT apply fuzzy matching to identifier fields
+GS-API-06,44888,GET /api/search enforces role-based access on the server (no forbidden entity results)
+GS-API-07,44889,GET /api/search returns an error response the UI can degrade on
+GS-API-08,44890,GET /api/search groups results in the fixed group order with ranking metadata
+GS-API-09,44891,GET /api/search supports cursor pagination for a scoped tab
+GS-API-10,44892,The context parameter biases GET /api/search ranking to the current page
+GS-API-11,44893,Recent-entities endpoints record and return recent activity
+GS-API-12,44894,Search input is debounced before the backend is queried
+GS-CON-01,44895,Contacts are a searchable entity with their own result row and tab
+GS-PO-01,44899,Purchase Orders searchable; real number format; Receive quick action
+GS-VI-01,44900,Vendor Invoices searchable; tri-state payment badge; no quick action
+GS-PERM-06,44882,Nine-entity permission bundles hide rows and counts; price fields masked
+GS-TAB-09,44822,Scoped tab shows the full result list with load-more; no Show-all link (v2)
+GS-GRP-08,44830,Group order follows the v2 nine-entity sequence; pinned top hit above groups
+GS-HOVER-08,44873,Quick actions per entity include PO Receive and Part Sale Add part (v2)
+GS-RECAPI-01,44860,"Recent-entities API records views and serves a deduped, permission-filtered list"
+GS-CUT-01,44896,"WO, Inventory Parts and Customers list search served by the unified engine"
+GS-MOB-01,44898,Global search works on mobile/tablet viewports per the mobile design

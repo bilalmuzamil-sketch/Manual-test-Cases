@@ -1,0 +1,88 @@
+internal_id,proposed_testrail_case_id,title
+INV-MAST-01,44901,Masthead shows the shop location's full identity details
+INV-MAST-02,44902,Shop logo shows when set; nothing (no placeholder) shows when unset
+INV-MAST-03,44903,Document label names the type before the number on each document
+INV-MAST-04,44904,No status pill appears in the masthead on any document
+INV-MAST-05,44905,No money figure in the masthead; headline figure is the boxed total
+INV-MAST-06,44906,Masthead date labels read correctly for each document type
+INV-MAST-07,44907,Masthead identity fields each hide when empty
+INV-ADDR-01,44908,Bill To block shows the customer name and address
+INV-ADDR-02,44909,Remit Payment To shows when a payee is configured (both mechanisms)
+INV-ADDR-03,44910,Bill To spans full width when Remit Payment To is absent
+INV-ADDR-04,44911,Remit Payment To is hidden when no payee is configured
+INV-ADDR-05,44912,Bill To address fields hide when empty; the name line always shows
+INV-OREF-01,44913,Order reference fields show in the fixed order with no label punctuation
+INV-OREF-02,44914,"Terms field always shows, even when no terms are set"
+INV-OREF-03,44915,Authorizer field shows the selected authorizer's full name
+INV-OREF-04,44916,Approval Code field shows the integrated-billing approval code
+INV-OREF-05,44917,Work Order field hides when it equals the document number's trailing digits
+INV-OREF-06,44918,"Customer PO, Authorizer and Approval Code each hide when empty"
+INV-AUTH-01,44919,Authorizer is selected in the work order customer contact card
+INV-AUTH-02,44920,Authorizer is optional and can be cleared with 'No authorizer'
+INV-AUTH-03,44921,Authorizer's phone shows below the name when the contact has one
+INV-AUTH-04,44922,Authorizer is locked once the work order is invoiced
+INV-AUTH-05,44923,A new 'Approves Work' contact becomes selectable immediately
+INV-ASST-01,44924,Asset section shows Asset name and VIN / Serial when present
+INV-ASST-02,44925,"Asset section can show Unit, Plate, Mileage and Eng Hrs"
+INV-ASST-03,44926,"Unit, Plate, Mileage and Eng Hrs each hide when empty"
+INV-ASST-04,44927,VIN / Serial hides when the asset has neither; Asset name still shows
+INV-ASST-05,44928,Asset section shows whenever the work order has an asset (parts sales too)
+INV-WORK-01,44929,Work heading is 'Work Summary' on Estimate and 'Work Performed' on Invoice
+INV-WORK-02,44930,Work line numbers are sequential and zero-padded to two digits
+INV-WORK-03,44931,"Each work line shows name, and description and scope-of-work note when present"
+INV-WORK-04,44932,Labor and Part entries are labeled exactly 'Labor' and 'Part'
+INV-WORK-05,44933,Invoice Details settings show or hide the per-entry figures
+INV-WORK-06,44934,Line-level fee shows as a plain amount; discount shows in parentheses
+INV-WORK-07,44935,"Line footer shows Labor, Parts and Line total with the divider rule"
+INV-WORK-08,44936,Empty work section shows heading; Summary divider still precedes summary
+INV-DECL-01,44937,Declined Work shows in its own section with names and descriptions only
+INV-DECL-02,44938,"Declined lines show no prices, no line numbers, and no status pill"
+INV-DECL-03,44939,Declined Work section hidden when nothing declined or option off
+INV-FSUM-01,44940,'Summary' divider precedes the financial summary
+INV-FSUM-02,44941,"Summary shows gross Labor and Parts rows, and Shop supplies when charged"
+INV-FSUM-03,44942,Shop supplies shows its percentage when the location setting is enabled
+INV-FSUM-04,44943,Adjustments group shows rollup Labor/Parts then each work-order-wide row
+INV-FSUM-05,44944,"Summary shows Subtotal, one row per tax, and the grand Total"
+INV-FSUM-06,44945,Adjustments heading and tax rows hide when nothing applies
+INV-PAID-01,44946,Payments heading and each applied payment row show correctly
+INV-PAID-02,44947,Payment method name resolves per rule (SHOPPAY shows 'Online')
+INV-PAID-03,44948,Deposit and applied customer-account credit show as labeled payment rows
+INV-PAID-04,44949,Excess payment sub-line reads exactly per the credited/ to-be-credited rule
+INV-PAID-05,44950,"Balance equals Total minus all applied amounts, floored at $0.00"
+INV-PAID-06,44951,"Paid banner appears only on portal-generated Invoice PDFs, before all content"
+INV-PAID-07,44952,Each banner payment shows its labeled fields and conditional fees/marker
+INV-PAID-08,44953,$0.00 payment rows hidden; no-payments state shows heading with Balance = Total
+INV-PAID-09,44954,No paid banner when the invoice has no portal-processed payment
+INV-FOOT-01,44955,"Shop disclaimer shows with no heading, identical on every document"
+INV-FOOT-02,44956,Signature area has exactly three labeled lines and no acknowledgment sentence
+INV-FOOT-03,44957,"Footer shows the shop tax identifier exactly, with no added label"
+INV-FOOT-04,44958,Disclaimer and footer tax identifier hide when not configured
+INV-EIS-01,44959,Estimate and Invoice differ only as Section 3 specifies
+INV-EIS-02,44960,"Estimate shows 'Work Summary', 'Estimated Total', and 'Estimate date'"
+INV-EIS-03,44961,"Invoice shows 'Work Performed', 'Balance', 'Invoice date' and 'Due date'"
+INV-EIS-04,44962,Fully paid Invoice stays an Invoice; 'Paid date' replaces 'Due date'
+INV-EIS-05,44963,Invoice with no due date shows no Due date line; paid swap still applies
+INV-CRED-01,44964,"Credit Invoice masthead shows 'Credit: {number}' and 'Issue date', no money"
+INV-CRED-02,44965,Customer address block is labeled 'Credit To' on the Credit Invoice
+INV-CRED-03,44966,"Status table shows Credit Number, Status, Invoice Number correctly"
+INV-CRED-04,44967,Credited items table shows returned parts and money-only lines correctly
+INV-CRED-05,44968,Restocking fee reduces a returned-part credit total as specified
+INV-CRED-06,44969,Totals block rows and Balance follow the credit's status
+INV-CRED-07,44970,Credit Invoice shows the disclaimer and standard signature area
+INV-VIS-01,44971,Document layout matches the Design Document structure
+INV-VIS-02,44972,Only the closed palette colours appear on any document
+INV-VIS-03,44973,Accent colour appears only on line numbers and the footer 'ShopView'
+INV-VIS-04,44974,Typography uses Inter with the specified weights
+INV-VIS-05,44975,Print/PDF ink floor keeps text and rules dark enough
+INV-VIS-06,44976,Every document is fully legible in grayscale
+INV-VIS-07,44977,Prototype chrome does not appear on any real document
+INV-VIS-08,44978,Work-section rules and dividers follow the specified treatment
+INV-VIS-09,44979,Section labels use the three-tier hierarchy with exact sizes and inks
+INV-PART-01,44980,Parts Sale documents behave as the Estimate/Invoice except as stated
+INV-PART-02,44981,"Parts Sale body is a single flat 'Parts' section, no jobs"
+INV-PART-03,44982,Parts Sale line-level fees/discounts render as on the Invoice
+INV-PART-04,44983,Parts Sale document number keeps parts-sale numbering
+INV-PART-05,44984,Parts Sale reference fields drop Work Order and Approval Code
+INV-PART-06,44985,Parts sale receives the Authorizer treatment (net-new)
+INV-PART-07,44986,Parts Sale financial summary shows no Labor and no Shop supplies row
+INV-PART-08,44987,Batch and imported invoices are out of scope (kept on current templates)

@@ -1,0 +1,62 @@
+internal_id,proposed_testrail_case_id,title
+SFV2-SET-01,44549,"Settings page shows the four Require settings under Workflow, Line, Parts groups"
+SFV2-SET-02,44550,Auto-pick setting renamed to 'Require picking inventory parts' (inversion)
+SFV2-SET-03,44551,'Require ordering parts' is a new setting; on by default reproduces today
+SFV2-SET-04,44552,Require picking and Require receiving control their actions and defaults
+SFV2-SET-05,44553,Turning a Require setting on later does not retro-act on existing parts
+SFV2-SET-06,44554,"A settings change applies to every open work order, not just new ones"
+SFV2-SET-07,44555,Each settings-change record is written to the audit log with its cause
+SFV2-SET-08,44556,Invoiced/paid work orders and declined lines are excluded from the sweep
+SFV2-SET-09,44557,"Changing a setting opens a confirmation naming the setting, direction and count"
+SFV2-SET-10,44558,Cancelling a settings change leaves the setting and records unchanged
+SFV2-SET-11,44559,A large settings change blocks the app until every record is changed
+SFV2-SET-12,44560,A partially applied settings change is never left visible
+SFV2-COMP-01,44561,An approved line completes whatever the state of its parts
+SFV2-COMP-02,44562,Other line requirements still apply when their setting is on
+SFV2-COMP-03,44563,A line reaches Complete only through the defined paths
+SFV2-COMP-04,44564,Clock-out modal: two complete buttons; line-completed tick box hidden
+SFV2-COMP-05,44565,Complete is never disabled for a parts reason; reopen returns line to Approved
+SFV2-ACT-01,44566,Line actions offered match the line's status
+SFV2-ACT-02,44567,Decline is disabled while a line holds received or picked parts
+SFV2-ACT-03,44568,Part actions offered match the part's state (seven states)
+SFV2-ACT-04,44569,Ordering precedes receiving; Receive placement follows the setting
+SFV2-ACT-05,44570,Declining or sending back a line returns only not-yet-arrived parts to Quoted
+SFV2-BULK-01,44571,Bulk bar replaces the column headers and lists actions by one rule
+SFV2-BULK-02,44572,Primary slots fill in a fixed order; More holds the rest
+SFV2-BULK-03,44573,Bulk actions confirm/undo per their kind and give one toast each
+SFV2-BULK-04,44574,Bulk bar hidden without permission; empty/zero states handled
+SFV2-BULK-05,44575,Bulk approve/decline judges each line and never sweeps a declined line
+SFV2-BULK-06,44576,Bulk approve/decline skips ineligible lines and hides at zero count
+SFV2-BULK-07,44577,Bulk complete labels and counts follow the selection of Approved lines
+SFV2-BULK-08,44578,Bulk delete lines is out of scope this release (no delete action in the bar)
+SFV2-BULK-09,44579,Bulk order raises a purchase order per vendor and confirms first
+SFV2-BULK-10,44580,Bulk order skips already-ordered and non-vendor-sourced parts
+SFV2-BULK-11,44581,Bulk pick runs the existing pick atomically for in-stock unpicked parts
+SFV2-BULK-12,44582,Bulk pick action hidden without Pick Parts permission
+SFV2-RCV-01,44583,Receive opens a modal (no navigation) with contents depending on entry point
+SFV2-RCV-02,44584,"Receive requires vendor, invoice number and invoice date; cost and tax prefilled"
+SFV2-RCV-03,44585,"Vendor-missing card requires Assign vendor first, applied to ticked parts"
+SFV2-RCV-04,44586,"One invoice number belongs to one PO; two POs make two bills, same number"
+SFV2-RCV-05,44587,A user without See Financial Data can still receive; money fields removed
+SFV2-RCV-06,44588,"Receive modal rejects invalid parts, unordered/unapproved, and post-invoice"
+SFV2-PO-01,44589,"Purchase orders group by vendor, missing vendors first, collapsed"
+SFV2-PO-02,44590,A panel expands per purchase order with per-PO vendor-side fields
+SFV2-PO-03,44591,Receive validity on the PO page matches the modal; money hidden without the atom
+SFV2-RL-01,44592,"Receive becomes a split button offering Received later, chosen per part"
+SFV2-RL-02,44593,"Without the permission or the setting, no Received later option appears"
+SFV2-WIZ-01,44594,The wizard opens only from defined entry points when something is collectable
+SFV2-WIZ-02,44595,The wizard shows only outstanding steps in a fixed order
+SFV2-WIZ-03,44596,Each wizard step's own action saves and advances; no Continue button
+SFV2-WIZ-04,44597,Where a wizard run ends depends on what opened it
+SFV2-WIZ-05,44598,"Wizard handles not-required steps, mid-run completion and server errors"
+SFV2-FIN-01,44599,The header offers only the one finish action that is genuinely next
+SFV2-FIN-02,44600,"Create invoice runs the wizard if needed, then invoices and opens payment"
+SFV2-FIN-03,44601,"Finish-action negatives: reviewer, invoice lock, declined-only, no permission"
+SFV2-MENU-01,44602,Part and line ... menus contain the actions that belong to them
+SFV2-MENU-02,44603,"Menu negatives: Request part, Uncomplete, Receive part visibility"
+SFV2-ORD-01,44604,Parts can be dragged to reorder within a line and the invoice follows
+SFV2-ORD-02,44605,"Reordering negatives: cross-line moves, invoiced WO, concurrent edits"
+SFV2-PERM-01,44606,"'Received later' is the one new permission, off by default, per role"
+SFV2-PERM-02,44607,Every Simple Flow action is gated by its mapped existing atom
+SFV2-PERM-03,44608,Money follows See Financial Data; work follows View mode
+SFV2-PERM-04,44609,A user without an atom never sees the action; hidden values are not sent
