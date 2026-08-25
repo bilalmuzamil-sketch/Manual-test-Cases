@@ -652,7 +652,7 @@ AUTOMATION: Not available on Build to test Yet - Last checked 8/25/2026",require
 Searching the in-page Work Orders list filters the list and shows a matching banner,In-Page Work Orders List Search,Functional,Medium,"1. You are on the Work Orders list page (not the global search palette).
 2. Work Orders exist whose text contains 'Fib'.","1. Type 'Fib' into the in-page Work Orders list search field.
 2. Read the list and the banner above it.","1. The Work Orders list filters to only rows matching 'Fib'.
-2. A blue banner reads 'Showing 12 work orders matching \'Fib\'' (the count reflects the number of matches).
+2. A blue banner reads 'Showing 12 work orders matching ""Fib""' (the count reflects the number of matches).
 3. A 'Clear search' link appears on the right of the banner.
 4. The list columns remain: On Site, Status, Number, Customer, Asset, Unit, VIN/Serial #, Progress, Service Advisor, Lead Technician, Clocked In, Lines, Total Price.
 
@@ -1053,11 +1053,23 @@ Purchase Orders searchable; real number format; Receive quick action,Purchase Or
 This is the expected behaviour as per epic SV-9160 and the Global Search - Product Requirements specification version 1.2 (Confluence page 576978945, Confluence version 11), section 5.3 / 6.1 (Purchase Orders row), read on 25 August 2026.
 
 AUTOMATION: Not available on Build to test Yet - Last checked 8/25/2026",section 5.3 / 6.1 (Purchase Orders row),,
+Search impressions and clicks are recorded (search-event telemetry),Search Telemetry,Functional,Medium,The global search palette is available and returns results.,"Run a query so results are shown (impressions).
+Click a result.
+Have engineering/QA confirm the search-event log.","1. Each result impression is logged with the query, result entity type, result id and position.
+2. A click on a result is logged as was_clicked for that result.
+3. This is mechanism/schema only - no ML ranking model is expected in v1.
+4. SCOPE NOTE (PO-GS-5): the owning story SV-9167 is currently in the backlog. If event logging is not present on the build, record it as a deviation to raise with Product - do not silently pass or ignore it.
+
+---
+This is the expected behaviour as per epic SV-9160 and the Global Search - Product Requirements specification version 1.2 (Confluence page 576978945, Confluence version 11), section 8 (functional requirements) / 6.4 (telemetry schema), read on 25 August 2026.
+
+AUTOMATION: Not available on Build to test Yet - Last checked 8/25/2026",section 8 / 6.4 (telemetry),,
 Vendor Invoices searchable; tri-state payment badge; no quick action,Vendor Invoices Entity (v2),Functional,High,"1. You are signed in with Vendor & Order Management access.
 2. Vendor invoices exist in unpaid, partially paid and paid states.","1. Open global search and search for a vendor invoice.
 2. Look at the Vendor Invoices group, the row and its payment badge.","1. Vendor Invoices appear as their own searchable entity, grouped under a 'Vendor Invoices' heading with a true count and a scope tab (subject to permission).
-2. A vendor-invoice row carries the file-text icon; the primary line shows the invoice number + vendor, with a status badge (Paid / Unpaid), the total, the invoice date, and the type (Invoice / Sublet).
-3. Vendor Invoice results are gated by Vendor & Order Management: View, and the invoice total is masked for a user without See Financial Data.
+2. A vendor-invoice row carries the file-text icon; the primary line shows the invoice number + vendor, with the total, the invoice date, and the type (Invoice / Sublet).
+3. The payment status badge per the spec (section 5.3) is Paid or Unpaid. KNOWN VARIANCE (PO-GS-6): if the build shows a third 'Partially paid' state, treat it as an expected variance to confirm with Product - do NOT fail the case on it.
+4. Vendor Invoice results are gated by Vendor & Order Management: View, and the invoice total is masked for a user without See Financial Data.
 
 ---
 This is the expected behaviour as per epic SV-9160 and the Global Search - Product Requirements specification version 1.2 (Confluence page 576978945, Confluence version 11), section 5.3 / 6.1 (Vendor Invoices row), read on 25 August 2026.

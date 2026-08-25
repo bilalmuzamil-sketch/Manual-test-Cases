@@ -214,5 +214,25 @@
     "refs": "SV-9160 (PRD 6.1 Contact ranking)",
     "viu_status": "source-verified-only",
     "notes": ""
+  },
+  {
+    "id": "GS-TEL-01",
+    "area": "Search Telemetry",
+    "title": "Search impressions and clicks are recorded (search-event telemetry)",
+    "priority": "Medium",
+    "type": "Functional",
+    "permissions_required": "View Global Search",
+    "preconditions": "The global search palette is available and returns results.",
+    "steps": [
+      "Run a query so results are shown (impressions).",
+      "Click a result.",
+      "Have engineering/QA confirm the search-event log."
+    ],
+    "expected": "1. Each result impression is logged with the query, result entity type, result id and position.\n2. A click on a result is logged as was_clicked for that result.\n3. This is mechanism/schema only - no ML ranking model is expected in v1.\n4. SCOPE NOTE (PO-GS-5): the owning story SV-9167 is currently in the backlog. If event logging is not present on the build, record it as a deviation to raise with Product - do not silently pass or ignore it.\n\n---\nThis is the expected behaviour as per epic SV-9160 and the Global Search - Product Requirements specification version 1.2 (Confluence page 576978945, Confluence version 11), section 8 (functional requirements) / 6.4 (telemetry schema), read on 25 August 2026.\n\nAUTOMATION: Not available on Build to test Yet - Last checked 8/25/2026",
+    "design_ref": "No user-facing design (backend logging).",
+    "spec_ref": "section 8 / 6.4 (telemetry)",
+    "refs": "SV-9167 (PRD 8 6.4 telemetry)",
+    "viu_status": "source-verified-only",
+    "notes": "PO-GS-5 open: confirm telemetry in v1 scope."
   }
 ]
