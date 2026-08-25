@@ -1,4 +1,5 @@
 # Global Search — PROJECT STATE (canonical cold-resume doc)
+- **TestRail parent folder (group):** group_id **6720**, suite 1 — cases live in the sub-sections inside it, not directly in the folder. Link: https://shopview.testrail.io/index.php?/suites/view/1&group_by=cases:section_id&group_order=asc&display=compact&display_deleted_cases=0&group_id=6720 (recorded 2026-08-25)
 
 > **Read this first to resume the Global Search project.** Single authoritative
 > snapshot. Keep this project's memory SEPARATE from other projects; reuse shared

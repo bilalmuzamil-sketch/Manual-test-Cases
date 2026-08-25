@@ -9,7 +9,7 @@
 - **Tech plan:** `intake-2026-08-21/sources/tech-plan-2026-08-12.md` (Symfony/Twig→WeasyPrint + Vue/Quasar)
 - **Git dev branch (theirs):** `project/invoice-ui-refresh` · **QA env:** none yet (feature Not started)
 - **Case source:** `build/invoice-ui-refresh/cases/` · internal ID prefix **INV** (`INV-<AREA>-NN`)
-- **TestRail target:** **UNCONFIRMED** — proposed: new "Invoice UI Refresh" section, suite 1
+- **TestRail parent folder (group):** group_id **6559**, suite 1 — cases live in the sub-sections inside it, not directly in the folder. Link: https://shopview.testrail.io/index.php?/suites/view/1&group_by=cases:section_id&group_order=asc&display=compact&display_deleted_cases=0&group_id=6559 (recorded 2026-08-25)
 
 ## Scope (from spec v39; unchanged from v38)
 - **13 stories**, **109 rule IDs** (S1–S13 + G-R1). Documents: Estimate · Invoice (paid = receipt) ·

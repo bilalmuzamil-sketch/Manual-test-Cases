@@ -7,7 +7,7 @@
 - **Design:** Claude 'Digital Inspections V2' 0c2be389 + DVI-V2 bundle (intake-2026-08-21/sources/)
 - **QA env:** sv8181.qa.shopview.com — **DO NOT TOUCH** (QA lead) → treated as no-build, Rule-85
 - **Case source:** build/digital-inspections-v2/cases/ · prefix **DINV** (DINV-<AREA>-NN)
-- **TestRail target:** UNCONFIRMED — proposed new "Digital Inspections V2" section, suite 1
+- **TestRail parent folder (group):** group_id **6658**, suite 1 — cases live in the sub-sections inside it, not directly in the folder. Link: https://shopview.testrail.io/index.php?/suites/view/1&group_by=cases:section_id&group_order=asc&display=compact&display_deleted_cases=0&group_id=6658 (recorded 2026-08-25)
 - Extends the released Digital Inspections; behind the existing DI feature flag.
 
 ## Scope (spec v18): 14 in-scope stories

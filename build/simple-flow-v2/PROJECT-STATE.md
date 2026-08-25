@@ -10,7 +10,7 @@
 - **Tech plan:** none standalone (folded into spec 2026-08-20) — reminded
 - **QA env:** none ("Not yet available") — Rule-85 source-verified-only
 - **Case source:** `build/simple-flow-v2/cases/` · internal ID prefix **SFV2** (`SFV2-<AREA>-NN`)
-- **TestRail target:** UNCONFIRMED — proposed new "Simple Flow V2" section, suite 1
+- **TestRail parent folder (group):** group_id **6665**, suite 1 — cases live in the sub-sections inside it, not directly in the folder. Link: https://shopview.testrail.io/index.php?/suites/view/1&group_by=cases:section_id&group_order=asc&display=compact&display_deleted_cases=0&group_id=6665 (recorded 2026-08-25)
 - **NOT the completed Simple Flow (SV-7301)** — this is a new V2 epic.
 
 ## Scope (spec v21): 21 stories
