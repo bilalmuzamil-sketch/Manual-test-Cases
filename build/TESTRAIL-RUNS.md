@@ -44,3 +44,21 @@ Pending inputs: which QA engineer owns each run, and their TestRail user IDs (th
 rights to enumerate users — `get_users` returns 403 — so assignment needs each engineer's user ID, or
 it can be done in the UI via select-all → Assign To). Future: large runs may be split across multiple
 engineers (per-test assignment already supports this).
+
+## Milestone M3 — final state (2026-08-25)
+- **Name:** "ShopView Manual QA - Aug 2026 Feature Cycle" · **Started** 2026-08-25 · **Due** 2026-09-21
+  (3 weeks from Mon 2026-08-31) · URL https://shopview.testrail.io/index.php?/milestones/view/3
+- Contains R414–R419. (TestRail runs have no date fields — dates live on the milestone only; the
+  guide's "set run dates" step does not apply via API.)
+
+### QA engineer TestRail user IDs (resolved 2026-08-25; emails held in /tmp only, not committed)
+| Engineer | TestRail user id |
+|---|---|
+| Bilal Muzamil (QA lead) | 3 |
+| Nebojsa Glavinic | 2 |
+| Viktoria Videnovic | 4 |
+| Mudassir Qamar | 6 |
+| Ahtasham Amjad | 7 |
+
+**Assignment pending the run→owner mapping** (5 engineers, 6 runs — the QA lead assigns). Once given:
+set each run's `assignedto_id` + bulk-assign every test in the run to that id (union-safe), via the API.
