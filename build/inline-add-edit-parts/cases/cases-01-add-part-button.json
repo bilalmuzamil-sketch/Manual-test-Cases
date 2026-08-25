@@ -1,0 +1,221 @@
+[
+  {
+    "id": "IAEP-BTN-01",
+    "area": "Inline Add and Edit Parts - Add Part Button and Edit Control",
+    "title": "Add Part button appears in the Parts section of each work order line",
+    "priority": "Medium",
+    "type": "Functional",
+    "permissions_required": "Work Order Line - Create and Edit; Work Order View Mode",
+    "preconditions": [
+      "A work order is open with status Estimate, Approved, In Progress, or Review.",
+      "You have the 'Work Order Line - Create and Edit' setting enabled.",
+      "The work order has at least one work order line."
+    ],
+    "steps": [
+      "Open the work order and look at each work order line's Parts section.",
+      "Look at a work order line that has no parts on it yet."
+    ],
+    "expected": "1. Each work order line displays an “Add Part” button in its Parts section.\n2. The “Add Part” button is shown even on a work order line that has no parts yet.\n\n---\nThis is the expected behaviour as per epic SV-9315 and story SV-9316 (Story 1, Add Part Button on Work Order Lines) and the Inline Add and Edit Parts on Work Order Lines specification version 13, section S1-R1, S1-E1, read on 25 August 2026.\n\nAUTOMATION: Not available on Build to test Yet - Last checked 8/25/2026",
+    "design_ref": "Claude Design “Add Part” artifact 561657da (binding visual reference), as exported 2026-08-25.",
+    "spec_ref": "requirements.md (Inline Add and Edit Parts spec v13)",
+    "refs": "SV-9316 (S1-R1; S1-E1)",
+    "viu_status": "source-verified-only",
+    "notes": ""
+  },
+  {
+    "id": "IAEP-BTN-02",
+    "area": "Inline Add and Edit Parts - Add Part Button and Edit Control",
+    "title": "Add Part opens an inline row above existing parts with cursor in description",
+    "priority": "Medium",
+    "type": "Functional",
+    "permissions_required": "Work Order Line - Create and Edit; Work Order View Mode",
+    "preconditions": [
+      "A work order is open with status Estimate, Approved, In Progress, or Review.",
+      "You have the 'Work Order Line - Create and Edit' setting enabled."
+    ],
+    "steps": [
+      "Select “Add Part” on a work order line."
+    ],
+    "expected": "1. An editable inline row opens directly below the Add Part control and above the line's existing parts.\n2. The cursor is placed in the description field automatically.\n\n---\nThis is the expected behaviour as per epic SV-9315 and story SV-9316 (Story 1, Add Part Button on Work Order Lines) and the Inline Add and Edit Parts on Work Order Lines specification version 13, section S1-R2, S1-R3, read on 25 August 2026.\n\nAUTOMATION: Not available on Build to test Yet - Last checked 8/25/2026",
+    "design_ref": "Claude Design “Add Part” artifact 561657da (binding visual reference), as exported 2026-08-25.",
+    "spec_ref": "requirements.md (Inline Add and Edit Parts spec v13)",
+    "refs": "SV-9316 (S1-R2; S1-R3)",
+    "viu_status": "source-verified-only",
+    "notes": ""
+  },
+  {
+    "id": "IAEP-BTN-03",
+    "area": "Inline Add and Edit Parts - Add Part Button and Edit Control",
+    "title": "Inline add row content follows the user's view mode",
+    "priority": "Medium",
+    "type": "Functional",
+    "permissions_required": "Work Order Line - Create and Edit; Work Order View Mode",
+    "preconditions": [
+      "A work order is open with status Estimate, Approved, In Progress, or Review.",
+      "You have the 'Work Order Line - Create and Edit' setting enabled."
+    ],
+    "steps": [
+      "As a Tech View user, select “Add Part” and note the fields shown.",
+      "As a Full View user, select “Add Part” and note the fields shown."
+    ],
+    "expected": "1. For a Tech View user the inline row follows Story 2 (three fields).\n2. For a Full View user the inline row follows Story 4 (six fields).\n\n---\nThis is the expected behaviour as per epic SV-9315 and story SV-9316 (Story 1, Add Part Button on Work Order Lines) and the Inline Add and Edit Parts on Work Order Lines specification version 13, section S1-R4, S1-R5, read on 25 August 2026.\n\nAUTOMATION: Not available on Build to test Yet - Last checked 8/25/2026",
+    "design_ref": "Claude Design “Add Part” artifact 561657da (binding visual reference), as exported 2026-08-25.",
+    "spec_ref": "requirements.md (Inline Add and Edit Parts spec v13)",
+    "refs": "SV-9316 (S1-R4; S1-R5)",
+    "viu_status": "source-verified-only",
+    "notes": ""
+  },
+  {
+    "id": "IAEP-BTN-04",
+    "area": "Inline Add and Edit Parts - Add Part Button and Edit Control",
+    "title": "Edit control is revealed on hover and on keyboard focus of a part line",
+    "priority": "Medium",
+    "type": "Functional",
+    "permissions_required": "Work Order Line - Create and Edit; Work Order View Mode",
+    "preconditions": [
+      "A work order is open with status Estimate, Approved, In Progress, or Review.",
+      "You have the 'Work Order Line - Create and Edit' setting enabled.",
+      "The work order line already has at least one part on it."
+    ],
+    "steps": [
+      "Hover the mouse over an existing part line.",
+      "Move keyboard focus onto the part line (Tab to it) without using the mouse."
+    ],
+    "expected": "1. An Edit control is displayed on the part line when you hover over it.\n2. The Edit control is also revealed when the part line receives keyboard focus, so it can be reached without a mouse.\n\n---\nThis is the expected behaviour as per epic SV-9315 and story SV-9316 (Story 1, Add Part Button on Work Order Lines) and the Inline Add and Edit Parts on Work Order Lines specification version 13, section S1-R6, S1-R7, read on 25 August 2026.\n\nAUTOMATION: Not available on Build to test Yet - Last checked 8/25/2026",
+    "design_ref": "Claude Design “Add Part” artifact 561657da (binding visual reference), as exported 2026-08-25.",
+    "spec_ref": "requirements.md (Inline Add and Edit Parts spec v13)",
+    "refs": "SV-9316 (S1-R6; S1-R7)",
+    "viu_status": "source-verified-only",
+    "notes": ""
+  },
+  {
+    "id": "IAEP-BTN-05",
+    "area": "Inline Add and Edit Parts - Add Part Button and Edit Control",
+    "title": "Edit routing follows the user's view mode",
+    "priority": "Medium",
+    "type": "Functional",
+    "permissions_required": "Work Order Line - Create and Edit; Work Order View Mode",
+    "preconditions": [
+      "A work order is open with status Estimate, Approved, In Progress, or Review.",
+      "You have the 'Work Order Line - Create and Edit' setting enabled.",
+      "The work order line already has at least one part on it."
+    ],
+    "steps": [
+      "As a Tech View user, select Edit on an existing part line.",
+      "As a Full View user, select Edit on an existing part line."
+    ],
+    "expected": "1. For a Tech View user, selecting Edit follows Story 3 (inline edit row).\n2. For a Full View user, selecting Edit follows Story 5 (part details modal).\n\n---\nThis is the expected behaviour as per epic SV-9315 and story SV-9316 (Story 1, Add Part Button on Work Order Lines) and the Inline Add and Edit Parts on Work Order Lines specification version 13, section S1-R8, read on 25 August 2026.\n\nAUTOMATION: Not available on Build to test Yet - Last checked 8/25/2026",
+    "design_ref": "Claude Design “Add Part” artifact 561657da (binding visual reference), as exported 2026-08-25.",
+    "spec_ref": "requirements.md (Inline Add and Edit Parts spec v13)",
+    "refs": "SV-9316 (S1-R8)",
+    "viu_status": "source-verified-only",
+    "notes": ""
+  },
+  {
+    "id": "IAEP-BTN-06",
+    "area": "Inline Add and Edit Parts - Add Part Button and Edit Control",
+    "title": "Add Part button hidden on Complete, Invoiced, Paid, Declined or Imported",
+    "priority": "Medium",
+    "type": "Functional",
+    "permissions_required": "Work Order Line - Create and Edit; Work Order View Mode",
+    "preconditions": [
+      "You have the 'Work Order Line - Create and Edit' setting enabled.",
+      "You can view a work order whose status is Complete, Invoiced, Paid, Declined, or Imported."
+    ],
+    "steps": [
+      "Open a work order in each of those statuses and look at the Parts section of its lines."
+    ],
+    "expected": "1. The “Add Part” button is not displayed on any work order line when the status is Complete, Invoiced, Paid, Declined, or Imported.\n\n---\nThis is the expected behaviour as per epic SV-9315 and story SV-9316 (Story 1, Add Part Button on Work Order Lines) and the Inline Add and Edit Parts on Work Order Lines specification version 13, section S1-N1, read on 25 August 2026.\n\nAUTOMATION: Not available on Build to test Yet - Last checked 8/25/2026",
+    "design_ref": "Claude Design “Add Part” artifact 561657da (binding visual reference), as exported 2026-08-25.",
+    "spec_ref": "requirements.md (Inline Add and Edit Parts spec v13)",
+    "refs": "SV-9316 (S1-N1)",
+    "viu_status": "source-verified-only",
+    "notes": ""
+  },
+  {
+    "id": "IAEP-BTN-07",
+    "area": "Inline Add and Edit Parts - Add Part Button and Edit Control",
+    "title": "Edit control hidden on Complete, Invoiced, Paid, Declined or Imported",
+    "priority": "Medium",
+    "type": "Functional",
+    "permissions_required": "Work Order Line - Create and Edit; Work Order View Mode",
+    "preconditions": [
+      "You have the 'Work Order Line - Create and Edit' setting enabled.",
+      "You can view a work order whose status is Complete, Invoiced, Paid, Declined, or Imported and that has parts."
+    ],
+    "steps": [
+      "Open a work order in each of those statuses and hover/focus its existing part lines."
+    ],
+    "expected": "1. The Edit control is not displayed on part lines when the status is Complete, Invoiced, Paid, Declined, or Imported.\n\n---\nThis is the expected behaviour as per epic SV-9315 and story SV-9316 (Story 1, Add Part Button on Work Order Lines) and the Inline Add and Edit Parts on Work Order Lines specification version 13, section S1-N2, read on 25 August 2026.\n\nAUTOMATION: Not available on Build to test Yet - Last checked 8/25/2026",
+    "design_ref": "Claude Design “Add Part” artifact 561657da (binding visual reference), as exported 2026-08-25.",
+    "spec_ref": "requirements.md (Inline Add and Edit Parts spec v13)",
+    "refs": "SV-9316 (S1-N2)",
+    "viu_status": "source-verified-only",
+    "notes": ""
+  },
+  {
+    "id": "IAEP-BTN-08",
+    "area": "Inline Add and Edit Parts - Add Part Button and Edit Control",
+    "title": "Add Part and Edit hidden without the Create and Edit setting",
+    "priority": "Medium",
+    "type": "Functional",
+    "permissions_required": "Work Order Line - Create and Edit; Work Order View Mode",
+    "preconditions": [
+      "A work order is open with status Estimate, Approved, In Progress, or Review.",
+      "Your 'Work Order Line - Create and Edit' setting is NOT enabled.",
+      "The work order line already has at least one part on it."
+    ],
+    "steps": [
+      "Open the work order and look at the Parts section and existing part lines."
+    ],
+    "expected": "1. The “Add Part” button is not displayed.\n2. The Edit control is not displayed on part lines.\n\n---\nThis is the expected behaviour as per epic SV-9315 and story SV-9316 (Story 1, Add Part Button on Work Order Lines) and the Inline Add and Edit Parts on Work Order Lines specification version 13, section S1-N3, read on 25 August 2026.\n\nAUTOMATION: Not available on Build to test Yet - Last checked 8/25/2026",
+    "design_ref": "Claude Design “Add Part” artifact 561657da (binding visual reference), as exported 2026-08-25.",
+    "spec_ref": "requirements.md (Inline Add and Edit Parts spec v13)",
+    "refs": "SV-9316 (S1-N3)",
+    "viu_status": "source-verified-only",
+    "notes": ""
+  },
+  {
+    "id": "IAEP-BTN-09",
+    "area": "Inline Add and Edit Parts - Add Part Button and Edit Control",
+    "title": "Add Part and Edit hidden when the work order is not editable otherwise",
+    "priority": "Medium",
+    "type": "Functional",
+    "permissions_required": "Work Order Line - Create and Edit; Work Order View Mode",
+    "preconditions": [
+      "You have the 'Work Order Line - Create and Edit' setting enabled.",
+      "You can view a work order that is not editable for some other existing reason (matching today's behaviour)."
+    ],
+    "steps": [
+      "Open that work order and look at the Parts section and existing part lines."
+    ],
+    "expected": "1. The “Add Part” button and the Edit control are not displayed, matching today's behaviour for a non-editable work order.\n\n---\nThis is the expected behaviour as per epic SV-9315 and story SV-9316 (Story 1, Add Part Button on Work Order Lines) and the Inline Add and Edit Parts on Work Order Lines specification version 13, section S1-N4, read on 25 August 2026.\n\nAUTOMATION: Not available on Build to test Yet - Last checked 8/25/2026",
+    "design_ref": "Claude Design “Add Part” artifact 561657da (binding visual reference), as exported 2026-08-25.",
+    "spec_ref": "requirements.md (Inline Add and Edit Parts spec v13)",
+    "refs": "SV-9316 (S1-N4)",
+    "viu_status": "source-verified-only",
+    "notes": ""
+  },
+  {
+    "id": "IAEP-BTN-10",
+    "area": "Inline Add and Edit Parts - Add Part Button and Edit Control",
+    "title": "Add Part on another line while a row is open triggers the guard",
+    "priority": "Medium",
+    "type": "Functional",
+    "permissions_required": "Work Order Line - Create and Edit; Work Order View Mode",
+    "preconditions": [
+      "A work order is open with status Estimate, Approved, In Progress, or Review.",
+      "You have the 'Work Order Line - Create and Edit' setting enabled.",
+      "An inline row is already open somewhere on the work order and contains entered data."
+    ],
+    "steps": [
+      "Select “Add Part” on a different work order line."
+    ],
+    "expected": "1. The unsaved-data confirmation from S6-R5 is shown before the requested row opens.\n\n---\nThis is the expected behaviour as per epic SV-9315 and story SV-9316 (Story 1, Add Part Button on Work Order Lines) and the Inline Add and Edit Parts on Work Order Lines specification version 13, section S1-E2, read on 25 August 2026.\n\nAUTOMATION: Not available on Build to test Yet - Last checked 8/25/2026",
+    "design_ref": "Claude Design “Add Part” artifact 561657da (binding visual reference), as exported 2026-08-25.",
+    "spec_ref": "requirements.md (Inline Add and Edit Parts spec v13)",
+    "refs": "SV-9316 (S1-E2)",
+    "viu_status": "source-verified-only",
+    "notes": ""
+  }
+]

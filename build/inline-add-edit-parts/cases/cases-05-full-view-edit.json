@@ -1,0 +1,143 @@
+[
+  {
+    "id": "IAEP-FEDIT-01",
+    "area": "Inline Add and Edit Parts - Full View Edit",
+    "title": "Full View Edit opens the part details modal pre-populated",
+    "priority": "Medium",
+    "type": "Functional",
+    "permissions_required": "Work Order Line - Create and Edit; Work Order View Mode",
+    "preconditions": [
+      "A work order is open with status Estimate, Approved, In Progress, or Review.",
+      "You have the 'Work Order Line - Create and Edit' setting enabled.",
+      "Your 'Work Orders → Work Order View Mode' permission is set to Full View.",
+      "The work order line already has at least one part on it."
+    ],
+    "steps": [
+      "Select Edit on an existing part line."
+    ],
+    "expected": "1. The part details modal opens, pre-populated with the part's current values.\n\n---\nThis is the expected behaviour as per epic SV-9315 and story SV-9320 (Story 5, Edit Part - Full View) and the Inline Add and Edit Parts on Work Order Lines specification version 13, section S5-R1, read on 25 August 2026.\n\nAUTOMATION: Not available on Build to test Yet - Last checked 8/25/2026",
+    "design_ref": "Claude Design “Add Part” artifact 561657da (binding visual reference), as exported 2026-08-25.",
+    "spec_ref": "requirements.md (Inline Add and Edit Parts spec v13)",
+    "refs": "SV-9320 (S5-R1)",
+    "viu_status": "source-verified-only",
+    "notes": ""
+  },
+  {
+    "id": "IAEP-FEDIT-02",
+    "area": "Inline Add and Edit Parts - Full View Edit",
+    "title": "Full View has no inline edit row",
+    "priority": "Medium",
+    "type": "Functional",
+    "permissions_required": "Work Order Line - Create and Edit; Work Order View Mode",
+    "preconditions": [
+      "A work order is open with status Estimate, Approved, In Progress, or Review.",
+      "You have the 'Work Order Line - Create and Edit' setting enabled.",
+      "Your 'Work Orders → Work Order View Mode' permission is set to Full View.",
+      "The work order line already has at least one part on it."
+    ],
+    "steps": [
+      "Select Edit on an existing part line and observe the part line."
+    ],
+    "expected": "1. There is no inline edit row for Full View users; the part line is not replaced by an editable row.\n\n---\nThis is the expected behaviour as per epic SV-9315 and story SV-9320 (Story 5, Edit Part - Full View) and the Inline Add and Edit Parts on Work Order Lines specification version 13, section S5-R2, read on 25 August 2026.\n\nAUTOMATION: Not available on Build to test Yet - Last checked 8/25/2026",
+    "design_ref": "Claude Design “Add Part” artifact 561657da (binding visual reference), as exported 2026-08-25.",
+    "spec_ref": "requirements.md (Inline Add and Edit Parts spec v13)",
+    "refs": "SV-9320 (S5-R2)",
+    "viu_status": "source-verified-only",
+    "notes": ""
+  },
+  {
+    "id": "IAEP-FEDIT-03",
+    "area": "Inline Add and Edit Parts - Full View Edit",
+    "title": "Saving from the modal updates the part line and opens no inline row",
+    "priority": "Medium",
+    "type": "Functional",
+    "permissions_required": "Work Order Line - Create and Edit; Work Order View Mode",
+    "preconditions": [
+      "A work order is open with status Estimate, Approved, In Progress, or Review.",
+      "You have the 'Work Order Line - Create and Edit' setting enabled.",
+      "Your 'Work Orders → Work Order View Mode' permission is set to Full View.",
+      "The work order line already has at least one part on it.",
+      "The part details modal is open via Edit."
+    ],
+    "steps": [
+      "Change a value and save from the modal."
+    ],
+    "expected": "1. The part line is updated and the modal closes.\n2. No inline row opens afterward.\n\n---\nThis is the expected behaviour as per epic SV-9315 and story SV-9320 (Story 5, Edit Part - Full View) and the Inline Add and Edit Parts on Work Order Lines specification version 13, section S5-R3, read on 25 August 2026.\n\nAUTOMATION: Not available on Build to test Yet - Last checked 8/25/2026",
+    "design_ref": "Claude Design “Add Part” artifact 561657da (binding visual reference), as exported 2026-08-25.",
+    "spec_ref": "requirements.md (Inline Add and Edit Parts spec v13)",
+    "refs": "SV-9320 (S5-R3)",
+    "viu_status": "source-verified-only",
+    "notes": ""
+  },
+  {
+    "id": "IAEP-FEDIT-04",
+    "area": "Inline Add and Edit Parts - Full View Edit",
+    "title": "Edit control not displayed without the Create and Edit setting",
+    "priority": "Medium",
+    "type": "Functional",
+    "permissions_required": "Work Order Line - Create and Edit; Work Order View Mode",
+    "preconditions": [
+      "A work order is open with status Estimate, Approved, In Progress, or Review.",
+      "Your 'Work Orders → Work Order View Mode' permission is set to Full View.",
+      "The work order line already has at least one part on it.",
+      "Your 'Work Order Line - Create and Edit' setting is NOT enabled."
+    ],
+    "steps": [
+      "Hover or focus an existing part line."
+    ],
+    "expected": "1. The Edit control is not displayed.\n\n---\nThis is the expected behaviour as per epic SV-9315 and story SV-9320 (Story 5, Edit Part - Full View) and the Inline Add and Edit Parts on Work Order Lines specification version 13, section S5-N1, read on 25 August 2026.\n\nAUTOMATION: Not available on Build to test Yet - Last checked 8/25/2026",
+    "design_ref": "Claude Design “Add Part” artifact 561657da (binding visual reference), as exported 2026-08-25.",
+    "spec_ref": "requirements.md (Inline Add and Edit Parts spec v13)",
+    "refs": "SV-9320 (S5-N1)",
+    "viu_status": "source-verified-only",
+    "notes": ""
+  },
+  {
+    "id": "IAEP-FEDIT-05",
+    "area": "Inline Add and Edit Parts - Full View Edit",
+    "title": "Cancelling the modal discards changes and leaves the part unchanged",
+    "priority": "Medium",
+    "type": "Functional",
+    "permissions_required": "Work Order Line - Create and Edit; Work Order View Mode",
+    "preconditions": [
+      "A work order is open with status Estimate, Approved, In Progress, or Review.",
+      "You have the 'Work Order Line - Create and Edit' setting enabled.",
+      "Your 'Work Orders → Work Order View Mode' permission is set to Full View.",
+      "The work order line already has at least one part on it.",
+      "The part details modal is open via Edit and changes were made."
+    ],
+    "steps": [
+      "Cancel the modal."
+    ],
+    "expected": "1. The changes are discarded and the part line is left unchanged.\n\n---\nThis is the expected behaviour as per epic SV-9315 and story SV-9320 (Story 5, Edit Part - Full View) and the Inline Add and Edit Parts on Work Order Lines specification version 13, section S5-N2, read on 25 August 2026.\n\nAUTOMATION: Not available on Build to test Yet - Last checked 8/25/2026",
+    "design_ref": "Claude Design “Add Part” artifact 561657da (binding visual reference), as exported 2026-08-25.",
+    "spec_ref": "requirements.md (Inline Add and Edit Parts spec v13)",
+    "refs": "SV-9320 (S5-N2)",
+    "viu_status": "source-verified-only",
+    "notes": ""
+  },
+  {
+    "id": "IAEP-FEDIT-06",
+    "area": "Inline Add and Edit Parts - Full View Edit",
+    "title": "Edit while an inline add row is open triggers the guard first",
+    "priority": "Medium",
+    "type": "Functional",
+    "permissions_required": "Work Order Line - Create and Edit; Work Order View Mode",
+    "preconditions": [
+      "A work order is open with status Estimate, Approved, In Progress, or Review.",
+      "You have the 'Work Order Line - Create and Edit' setting enabled.",
+      "Your 'Work Orders → Work Order View Mode' permission is set to Full View.",
+      "The work order line already has at least one part on it.",
+      "An inline add row is open on the work order and contains data."
+    ],
+    "steps": [
+      "Select Edit on an existing part line."
+    ],
+    "expected": "1. The S6-R5 confirmation applies before the part details modal opens.\n\n---\nThis is the expected behaviour as per epic SV-9315 and story SV-9320 (Story 5, Edit Part - Full View) and the Inline Add and Edit Parts on Work Order Lines specification version 13, section S5-E1, read on 25 August 2026.\n\nAUTOMATION: Not available on Build to test Yet - Last checked 8/25/2026",
+    "design_ref": "Claude Design “Add Part” artifact 561657da (binding visual reference), as exported 2026-08-25.",
+    "spec_ref": "requirements.md (Inline Add and Edit Parts spec v13)",
+    "refs": "SV-9320 (S5-E1)",
+    "viu_status": "source-verified-only",
+    "notes": ""
+  }
+]

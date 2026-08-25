@@ -1,0 +1,334 @@
+[
+  {
+    "id": "IAEP-GUARD-01",
+    "area": "Inline Add and Edit Parts - Unsaved Data Protection",
+    "title": "Closing a populated add row shows the discard-part confirmation",
+    "priority": "Medium",
+    "type": "Functional",
+    "permissions_required": "Work Order Line - Create and Edit; Work Order View Mode",
+    "preconditions": [
+      "A work order is open with status Estimate, Approved, In Progress, or Review.",
+      "You have the 'Work Order Line - Create and Edit' setting enabled.",
+      "An inline ADD row is open and contains data the user entered."
+    ],
+    "steps": [
+      "Select X or press Escape on the populated add row."
+    ],
+    "expected": "1. A confirmation is displayed — Title: “Discard this part?”, Body: “The details you entered will be lost.”, Actions: “Keep Editing” and “Discard Part”.\n2. “Keep Editing” is the default focused action.\n\n---\nThis is the expected behaviour as per epic SV-9315 and story SV-9321 (Story 6, Protecting Unsaved Part Data) and the Inline Add and Edit Parts on Work Order Lines specification version 13, section S6-R1, read on 25 August 2026.\n\nAUTOMATION: Not available on Build to test Yet - Last checked 8/25/2026",
+    "design_ref": "Claude Design “Add Part” artifact 561657da (binding visual reference), as exported 2026-08-25.",
+    "spec_ref": "requirements.md (Inline Add and Edit Parts spec v13)",
+    "refs": "SV-9321 (S6-R1)",
+    "viu_status": "source-verified-only",
+    "notes": ""
+  },
+  {
+    "id": "IAEP-GUARD-02",
+    "area": "Inline Add and Edit Parts - Unsaved Data Protection",
+    "title": "Closing a changed edit row shows the discard-changes confirmation",
+    "priority": "Medium",
+    "type": "Functional",
+    "permissions_required": "Work Order Line - Create and Edit; Work Order View Mode",
+    "preconditions": [
+      "A work order is open with status Estimate, Approved, In Progress, or Review.",
+      "You have the 'Work Order Line - Create and Edit' setting enabled.",
+      "An inline EDIT row is open and at least one field differs from the saved value."
+    ],
+    "steps": [
+      "Select X or press Escape on the changed edit row."
+    ],
+    "expected": "1. The same confirmation is shown with edit wording — Title: “Discard these changes?”, Body: “The changes you made will be lost.”\n2. Actions and default focus are unchanged: “Keep Editing” (default) and “Discard Part”.\n\n---\nThis is the expected behaviour as per epic SV-9315 and story SV-9321 (Story 6, Protecting Unsaved Part Data) and the Inline Add and Edit Parts on Work Order Lines specification version 13, section S6-R1, read on 25 August 2026.\n\nAUTOMATION: Not available on Build to test Yet - Last checked 8/25/2026",
+    "design_ref": "Claude Design “Add Part” artifact 561657da (binding visual reference), as exported 2026-08-25.",
+    "spec_ref": "requirements.md (Inline Add and Edit Parts spec v13)",
+    "refs": "SV-9321 (S6-R1)",
+    "viu_status": "source-verified-only",
+    "notes": ""
+  },
+  {
+    "id": "IAEP-GUARD-03",
+    "area": "Inline Add and Edit Parts - Unsaved Data Protection",
+    "title": "Keep Editing returns to the row with data intact",
+    "priority": "Medium",
+    "type": "Functional",
+    "permissions_required": "Work Order Line - Create and Edit; Work Order View Mode",
+    "preconditions": [
+      "A work order is open with status Estimate, Approved, In Progress, or Review.",
+      "You have the 'Work Order Line - Create and Edit' setting enabled.",
+      "The discard confirmation is displayed."
+    ],
+    "steps": [
+      "Select “Keep Editing”."
+    ],
+    "expected": "1. The confirmation closes and the user is returned to the inline row with all entered data intact.\n\n---\nThis is the expected behaviour as per epic SV-9315 and story SV-9321 (Story 6, Protecting Unsaved Part Data) and the Inline Add and Edit Parts on Work Order Lines specification version 13, section S6-R2, read on 25 August 2026.\n\nAUTOMATION: Not available on Build to test Yet - Last checked 8/25/2026",
+    "design_ref": "Claude Design “Add Part” artifact 561657da (binding visual reference), as exported 2026-08-25.",
+    "spec_ref": "requirements.md (Inline Add and Edit Parts spec v13)",
+    "refs": "SV-9321 (S6-R2)",
+    "viu_status": "source-verified-only",
+    "notes": ""
+  },
+  {
+    "id": "IAEP-GUARD-04",
+    "area": "Inline Add and Edit Parts - Unsaved Data Protection",
+    "title": "Discard Part closes the row and restores saved values on edit",
+    "priority": "Medium",
+    "type": "Functional",
+    "permissions_required": "Work Order Line - Create and Edit; Work Order View Mode",
+    "preconditions": [
+      "A work order is open with status Estimate, Approved, In Progress, or Review.",
+      "You have the 'Work Order Line - Create and Edit' setting enabled.",
+      "The discard confirmation is displayed."
+    ],
+    "steps": [
+      "Select “Discard Part” on an add row.",
+      "Repeat on an edit row."
+    ],
+    "expected": "1. On an add row the inline row closes without saving.\n2. On an edit row the part line returns to its previously saved values.\n\n---\nThis is the expected behaviour as per epic SV-9315 and story SV-9321 (Story 6, Protecting Unsaved Part Data) and the Inline Add and Edit Parts on Work Order Lines specification version 13, section S6-R3, read on 25 August 2026.\n\nAUTOMATION: Not available on Build to test Yet - Last checked 8/25/2026",
+    "design_ref": "Claude Design “Add Part” artifact 561657da (binding visual reference), as exported 2026-08-25.",
+    "spec_ref": "requirements.md (Inline Add and Edit Parts spec v13)",
+    "refs": "SV-9321 (S6-R3)",
+    "viu_status": "source-verified-only",
+    "notes": ""
+  },
+  {
+    "id": "IAEP-GUARD-05",
+    "area": "Inline Add and Edit Parts - Unsaved Data Protection",
+    "title": "Navigating away with data shows the leave-without-saving confirmation",
+    "priority": "Medium",
+    "type": "Functional",
+    "permissions_required": "Work Order Line - Create and Edit; Work Order View Mode",
+    "preconditions": [
+      "A work order is open with status Estimate, Approved, In Progress, or Review.",
+      "You have the 'Work Order Line - Create and Edit' setting enabled.",
+      "An inline row is open and contains data."
+    ],
+    "steps": [
+      "Trigger navigation away from the work order via browser back, browser forward, or in-app navigation."
+    ],
+    "expected": "1. A confirmation is displayed — Title: “Leave without saving?”, Body: “This part hasn't been added to the work order yet. Leaving will discard it.”, Actions: “Stay on Work Order” and “Leave”.\n2. “Stay on Work Order” is the default focused action.\n\n---\nThis is the expected behaviour as per epic SV-9315 and story SV-9321 (Story 6, Protecting Unsaved Part Data) and the Inline Add and Edit Parts on Work Order Lines specification version 13, section S6-R4, read on 25 August 2026.\n\nAUTOMATION: Not available on Build to test Yet - Last checked 8/25/2026",
+    "design_ref": "Claude Design “Add Part” artifact 561657da (binding visual reference), as exported 2026-08-25.",
+    "spec_ref": "requirements.md (Inline Add and Edit Parts spec v13)",
+    "refs": "SV-9321 (S6-R4)",
+    "viu_status": "source-verified-only",
+    "notes": ""
+  },
+  {
+    "id": "IAEP-GUARD-06",
+    "area": "Inline Add and Edit Parts - Unsaved Data Protection",
+    "title": "Opening another row with data prompts, then swaps or keeps",
+    "priority": "Medium",
+    "type": "Functional",
+    "permissions_required": "Work Order Line - Create and Edit; Work Order View Mode",
+    "preconditions": [
+      "A work order is open with status Estimate, Approved, In Progress, or Review.",
+      "You have the 'Work Order Line - Create and Edit' setting enabled.",
+      "An inline row is open and contains data."
+    ],
+    "steps": [
+      "Select “Add Part” on another work order line, or Edit on another part line.",
+      "Try both Discard Part and Keep Editing on the confirmation."
+    ],
+    "expected": "1. The S6-R1 confirmation is displayed.\n2. Selecting “Discard Part” closes the current row and opens the requested one.\n3. Selecting “Keep Editing” cancels the request and leaves the current row open and focused.\n\n---\nThis is the expected behaviour as per epic SV-9315 and story SV-9321 (Story 6, Protecting Unsaved Part Data) and the Inline Add and Edit Parts on Work Order Lines specification version 13, section S6-R5, read on 25 August 2026.\n\nAUTOMATION: Not available on Build to test Yet - Last checked 8/25/2026",
+    "design_ref": "Claude Design “Add Part” artifact 561657da (binding visual reference), as exported 2026-08-25.",
+    "spec_ref": "requirements.md (Inline Add and Edit Parts spec v13)",
+    "refs": "SV-9321 (S6-R5)",
+    "viu_status": "source-verified-only",
+    "notes": ""
+  },
+  {
+    "id": "IAEP-GUARD-07",
+    "area": "Inline Add and Edit Parts - Unsaved Data Protection",
+    "title": "Only one inline row can be open on a work order at a time",
+    "priority": "Medium",
+    "type": "Functional",
+    "permissions_required": "Work Order Line - Create and Edit; Work Order View Mode",
+    "preconditions": [
+      "A work order is open with status Estimate, Approved, In Progress, or Review.",
+      "You have the 'Work Order Line - Create and Edit' setting enabled.",
+      "An inline row is open."
+    ],
+    "steps": [
+      "Attempt to open a second inline row elsewhere on the work order."
+    ],
+    "expected": "1. Only one inline row may be open on a work order at any time; opening another goes through the S6-R5 handling rather than opening a second row.\n\n---\nThis is the expected behaviour as per epic SV-9315 and story SV-9321 (Story 6, Protecting Unsaved Part Data) and the Inline Add and Edit Parts on Work Order Lines specification version 13, section S6-R6, read on 25 August 2026.\n\nAUTOMATION: Not available on Build to test Yet - Last checked 8/25/2026",
+    "design_ref": "Claude Design “Add Part” artifact 561657da (binding visual reference), as exported 2026-08-25.",
+    "spec_ref": "requirements.md (Inline Add and Edit Parts spec v13)",
+    "refs": "SV-9321 (S6-R6)",
+    "viu_status": "source-verified-only",
+    "notes": ""
+  },
+  {
+    "id": "IAEP-GUARD-08",
+    "area": "Inline Add and Edit Parts - Unsaved Data Protection",
+    "title": "Empty row closes with no confirmation",
+    "priority": "Medium",
+    "type": "Functional",
+    "permissions_required": "Work Order Line - Create and Edit; Work Order View Mode",
+    "preconditions": [
+      "A work order is open with status Estimate, Approved, In Progress, or Review.",
+      "You have the 'Work Order Line - Create and Edit' setting enabled.",
+      "An inline row is open and contains no data."
+    ],
+    "steps": [
+      "Select X or press Escape."
+    ],
+    "expected": "1. The row closes immediately with no confirmation.\n\n---\nThis is the expected behaviour as per epic SV-9315 and story SV-9321 (Story 6, Protecting Unsaved Part Data) and the Inline Add and Edit Parts on Work Order Lines specification version 13, section S6-N1, read on 25 August 2026.\n\nAUTOMATION: Not available on Build to test Yet - Last checked 8/25/2026",
+    "design_ref": "Claude Design “Add Part” artifact 561657da (binding visual reference), as exported 2026-08-25.",
+    "spec_ref": "requirements.md (Inline Add and Edit Parts spec v13)",
+    "refs": "SV-9321 (S6-N1)",
+    "viu_status": "source-verified-only",
+    "notes": ""
+  },
+  {
+    "id": "IAEP-GUARD-09",
+    "area": "Inline Add and Edit Parts - Unsaved Data Protection",
+    "title": "Navigating away from an empty row proceeds with no confirmation",
+    "priority": "Medium",
+    "type": "Functional",
+    "permissions_required": "Work Order Line - Create and Edit; Work Order View Mode",
+    "preconditions": [
+      "A work order is open with status Estimate, Approved, In Progress, or Review.",
+      "You have the 'Work Order Line - Create and Edit' setting enabled.",
+      "An inline row is open and contains no data."
+    ],
+    "steps": [
+      "Navigate away from the work order."
+    ],
+    "expected": "1. Navigation proceeds immediately with no confirmation.\n\n---\nThis is the expected behaviour as per epic SV-9315 and story SV-9321 (Story 6, Protecting Unsaved Part Data) and the Inline Add and Edit Parts on Work Order Lines specification version 13, section S6-N2, read on 25 August 2026.\n\nAUTOMATION: Not available on Build to test Yet - Last checked 8/25/2026",
+    "design_ref": "Claude Design “Add Part” artifact 561657da (binding visual reference), as exported 2026-08-25.",
+    "spec_ref": "requirements.md (Inline Add and Edit Parts spec v13)",
+    "refs": "SV-9321 (S6-N2)",
+    "viu_status": "source-verified-only",
+    "notes": ""
+  },
+  {
+    "id": "IAEP-GUARD-10",
+    "area": "Inline Add and Edit Parts - Unsaved Data Protection",
+    "title": "Unchanged edit row closes or navigates with no confirmation",
+    "priority": "Medium",
+    "type": "Functional",
+    "permissions_required": "Work Order Line - Create and Edit; Work Order View Mode",
+    "preconditions": [
+      "A work order is open with status Estimate, Approved, In Progress, or Review.",
+      "You have the 'Work Order Line - Create and Edit' setting enabled.",
+      "An edit row is open and nothing has been changed."
+    ],
+    "steps": [
+      "Close the edit row, or navigate away."
+    ],
+    "expected": "1. Closing it or navigating away proceeds immediately with no confirmation.\n\n---\nThis is the expected behaviour as per epic SV-9315 and story SV-9321 (Story 6, Protecting Unsaved Part Data) and the Inline Add and Edit Parts on Work Order Lines specification version 13, section S6-N3, read on 25 August 2026.\n\nAUTOMATION: Not available on Build to test Yet - Last checked 8/25/2026",
+    "design_ref": "Claude Design “Add Part” artifact 561657da (binding visual reference), as exported 2026-08-25.",
+    "spec_ref": "requirements.md (Inline Add and Edit Parts spec v13)",
+    "refs": "SV-9321 (S6-N3)",
+    "viu_status": "source-verified-only",
+    "notes": ""
+  },
+  {
+    "id": "IAEP-GUARD-11",
+    "area": "Inline Add and Edit Parts - Unsaved Data Protection",
+    "title": "Navigation is unaffected when no inline row is open",
+    "priority": "Medium",
+    "type": "Functional",
+    "permissions_required": "Work Order Line - Create and Edit; Work Order View Mode",
+    "preconditions": [
+      "A work order is open with status Estimate, Approved, In Progress, or Review.",
+      "You have the 'Work Order Line - Create and Edit' setting enabled.",
+      "No inline row is open."
+    ],
+    "steps": [
+      "Navigate away from the work order."
+    ],
+    "expected": "1. Navigation is unaffected; no confirmation is shown.\n\n---\nThis is the expected behaviour as per epic SV-9315 and story SV-9321 (Story 6, Protecting Unsaved Part Data) and the Inline Add and Edit Parts on Work Order Lines specification version 13, section S6-N4, read on 25 August 2026.\n\nAUTOMATION: Not available on Build to test Yet - Last checked 8/25/2026",
+    "design_ref": "Claude Design “Add Part” artifact 561657da (binding visual reference), as exported 2026-08-25.",
+    "spec_ref": "requirements.md (Inline Add and Edit Parts spec v13)",
+    "refs": "SV-9321 (S6-N4)",
+    "viu_status": "source-verified-only",
+    "notes": ""
+  },
+  {
+    "id": "IAEP-GUARD-12",
+    "area": "Inline Add and Edit Parts - Unsaved Data Protection",
+    "title": "Clicking outside never triggers a leave confirmation",
+    "priority": "Medium",
+    "type": "Functional",
+    "permissions_required": "Work Order Line - Create and Edit; Work Order View Mode",
+    "preconditions": [
+      "A work order is open with status Estimate, Approved, In Progress, or Review.",
+      "You have the 'Work Order Line - Create and Edit' setting enabled.",
+      "An inline row is open and contains data."
+    ],
+    "steps": [
+      "Click somewhere on the page outside the inline row."
+    ],
+    "expected": "1. Clicking outside is not treated as navigating away and never triggers a confirmation; the row stays open with its data intact.\n\n---\nThis is the expected behaviour as per epic SV-9315 and story SV-9321 (Story 6, Protecting Unsaved Part Data) and the Inline Add and Edit Parts on Work Order Lines specification version 13, section S6-N5, read on 25 August 2026.\n\nAUTOMATION: Not available on Build to test Yet - Last checked 8/25/2026",
+    "design_ref": "Claude Design “Add Part” artifact 561657da (binding visual reference), as exported 2026-08-25.",
+    "spec_ref": "requirements.md (Inline Add and Edit Parts spec v13)",
+    "refs": "SV-9321 (S6-N5)",
+    "viu_status": "source-verified-only",
+    "notes": ""
+  },
+  {
+    "id": "IAEP-GUARD-13",
+    "area": "Inline Add and Edit Parts - Unsaved Data Protection",
+    "title": "Untouched follow-on empty row after a save prompts nothing",
+    "priority": "Medium",
+    "type": "Functional",
+    "permissions_required": "Work Order Line - Create and Edit; Work Order View Mode",
+    "preconditions": [
+      "A work order is open with status Estimate, Approved, In Progress, or Review.",
+      "You have the 'Work Order Line - Create and Edit' setting enabled."
+    ],
+    "steps": [
+      "Save an inline row so the follow-on empty row opens.",
+      "Leave the empty row untouched and navigate away or dismiss it."
+    ],
+    "expected": "1. The untouched follow-on empty row does not trigger any confirmation; navigation and dismissal proceed freely.\n\n---\nThis is the expected behaviour as per epic SV-9315 and story SV-9321 (Story 6, Protecting Unsaved Part Data) and the Inline Add and Edit Parts on Work Order Lines specification version 13, section S6-E1, read on 25 August 2026.\n\nAUTOMATION: Not available on Build to test Yet - Last checked 8/25/2026",
+    "design_ref": "Claude Design “Add Part” artifact 561657da (binding visual reference), as exported 2026-08-25.",
+    "spec_ref": "requirements.md (Inline Add and Edit Parts spec v13)",
+    "refs": "SV-9321 (S6-E1)",
+    "viu_status": "source-verified-only",
+    "notes": ""
+  },
+  {
+    "id": "IAEP-GUARD-14",
+    "area": "Inline Add and Edit Parts - Unsaved Data Protection",
+    "title": "Leave discards the entered part and completes navigation",
+    "priority": "Medium",
+    "type": "Functional",
+    "permissions_required": "Work Order Line - Create and Edit; Work Order View Mode",
+    "preconditions": [
+      "A work order is open with status Estimate, Approved, In Progress, or Review.",
+      "You have the 'Work Order Line - Create and Edit' setting enabled.",
+      "The navigate-away confirmation is displayed."
+    ],
+    "steps": [
+      "Select “Leave”."
+    ],
+    "expected": "1. The entered part is discarded and the navigation the user requested is completed.\n\n---\nThis is the expected behaviour as per epic SV-9315 and story SV-9321 (Story 6, Protecting Unsaved Part Data) and the Inline Add and Edit Parts on Work Order Lines specification version 13, section S6-E2, read on 25 August 2026.\n\nAUTOMATION: Not available on Build to test Yet - Last checked 8/25/2026",
+    "design_ref": "Claude Design “Add Part” artifact 561657da (binding visual reference), as exported 2026-08-25.",
+    "spec_ref": "requirements.md (Inline Add and Edit Parts spec v13)",
+    "refs": "SV-9321 (S6-E2)",
+    "viu_status": "source-verified-only",
+    "notes": ""
+  },
+  {
+    "id": "IAEP-GUARD-15",
+    "area": "Inline Add and Edit Parts - Unsaved Data Protection",
+    "title": "Stay on Work Order cancels navigation and refocuses the row",
+    "priority": "Medium",
+    "type": "Functional",
+    "permissions_required": "Work Order Line - Create and Edit; Work Order View Mode",
+    "preconditions": [
+      "A work order is open with status Estimate, Approved, In Progress, or Review.",
+      "You have the 'Work Order Line - Create and Edit' setting enabled.",
+      "The navigate-away confirmation is displayed."
+    ],
+    "steps": [
+      "Select “Stay on Work Order”."
+    ],
+    "expected": "1. The navigation is cancelled, the user stays on the work order, and focus returns to the inline row with data intact.\n\n---\nThis is the expected behaviour as per epic SV-9315 and story SV-9321 (Story 6, Protecting Unsaved Part Data) and the Inline Add and Edit Parts on Work Order Lines specification version 13, section S6-E3, read on 25 August 2026.\n\nAUTOMATION: Not available on Build to test Yet - Last checked 8/25/2026",
+    "design_ref": "Claude Design “Add Part” artifact 561657da (binding visual reference), as exported 2026-08-25.",
+    "spec_ref": "requirements.md (Inline Add and Edit Parts spec v13)",
+    "refs": "SV-9321 (S6-E3)",
+    "viu_status": "source-verified-only",
+    "notes": ""
+  }
+]
