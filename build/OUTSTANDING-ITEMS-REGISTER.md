@@ -2182,3 +2182,8 @@ were stale). Sources: `build/report-suite/build-verify-2026-08-18/{TU,WIP,IV}-SW
 - **DINV-4 OPEN** — engineering tech plan (Tech Design "TBD"); reminded (Rule 30).
 - **PO-DI-1 OPEN** — Milos: S12-R4 drum/disc-check-on-Brake-and-Axle-starting-point contradicts the fill-time Drum/Disc Key Decision (spec Open item 11). Case HELD.
 - **PO-DI-2 OPEN** — Milos: release cut-off for "needs a work order" on historical inspections (spec Open item 1) — affects S5 counts.
+
+### Simple Flow V2 — reconciliation 2026-08-21 (designs + tech plan folded in)
+- Spec re-verified v21->v23: only Story 7 changed (SFV2-BULK-02 updated); all 61 cases re-pinned to v23. Tech plan folded in (confirms cases; clears the old MISSING-tech-plan flag SFV2-4).
+- **PO-SF-3 OPEN** — Milos: Story 19 Uncomplete block — tech plan says SERVICE work orders block at 'complete' (one status earlier), spec says invoiced/paid. Case SFV2-MENU-01 follows the spec; disclosed.
+- PO-SF-1, PO-SF-2, SFV2-1 (TestRail target), SFV2-2 (creds) remain open.

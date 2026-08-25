@@ -1,6 +1,6 @@
-# Coverage Matrix — Simple Flow V2 (spec v21)
+# Coverage Matrix — Simple Flow V2 (spec v23)
 
-**Re-derived 2026-08-21 from spec v21 (21 stories) + permission map SV-8183, and the 61 authored cases, BOTH directions. No C-IDs yet (nothing pushed).**
+**Re-derived 2026-08-21 from spec v23 (21 stories) + permission map SV-8183, and the 61 authored cases, BOTH directions. No C-IDs yet (nothing pushed).**
 
 | Story | Title | Verdict | Covered by (internal ID) |
 |---|---|---|---|

@@ -4,7 +4,7 @@
 
 ## Identity
 - **Epic:** SV-8683 (assignee/PM Milos Vasic) · **PO:** Milos Vasic
-- **Spec:** Confluence **771391574**, live **v21** (2026-08-21)
+- **Spec:** Confluence **771391574**, live **v23** (reconciled 2026-08-21; authored at v21)
 - **Permission map:** SV-8183 (existing Custom Roles atoms; one new "Received later")
 - **Designs:** Claude "Shopview App" 0c2ed95b + "Purchase Order Details" d2b4d45e (+ Work Order PRD, matrices) — static exports in intake-2026-08-21/sources/
 - **Tech plan:** none standalone (folded into spec 2026-08-20) — reminded

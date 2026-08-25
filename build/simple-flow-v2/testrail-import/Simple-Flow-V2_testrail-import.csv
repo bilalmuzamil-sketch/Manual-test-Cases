@@ -6,7 +6,7 @@ Title,Section,Type,Priority,Preconditions,Steps,Expected Result,References,,
 3. Every label reads in the ""Require..."" form, so turning one on always means more work.
 
 ---
-This is the expected behaviour as per epic SV-8683 and story SV-9247 (Story 1, Work Order settings page) and the Simple Flow V2 specification version 21, read on 21 August 2026.
+This is the expected behaviour as per epic SV-8683 and story SV-9247 (Story 1, Work Order settings page) and the Simple Flow V2 specification version 23, read on 21 August 2026.
 
 AUTOMATION: Not available on Build to test Yet - Last checked 8/21/2026
 ",SV-9247 (Story 1),,
@@ -18,7 +18,7 @@ Auto-pick setting renamed to 'Require picking inventory parts' (inversion),Work 
 3. The shop keeps exactly the picking behaviour it had before the rename.
 
 ---
-This is the expected behaviour as per epic SV-8683 and story SV-9247 (Story 1, Work Order settings page) and the Simple Flow V2 specification version 21, read on 21 August 2026.
+This is the expected behaviour as per epic SV-8683 and story SV-9247 (Story 1, Work Order settings page) and the Simple Flow V2 specification version 23, read on 21 August 2026.
 
 AUTOMATION: Not available on Build to test Yet - Last checked 8/21/2026
 ",SV-9247 (Story 1),,
@@ -30,7 +30,7 @@ AUTOMATION: Not available on Build to test Yet - Last checked 8/21/2026
 3. Because it defaults to on and nothing orders parts automatically today, an upgraded shop sees no change.
 
 ---
-This is the expected behaviour as per epic SV-8683 and story SV-9247 (Story 1, Work Order settings page) and the Simple Flow V2 specification version 21, read on 21 August 2026.
+This is the expected behaviour as per epic SV-8683 and story SV-9247 (Story 1, Work Order settings page) and the Simple Flow V2 specification version 23, read on 21 August 2026.
 
 AUTOMATION: Not available on Build to test Yet - Last checked 8/21/2026
 ",SV-9247 (Story 1),,
@@ -41,7 +41,7 @@ Require picking and Require receiving control their actions and defaults,Work Or
 3. Both default to on (their behaviour today).
 
 ---
-This is the expected behaviour as per epic SV-8683 and story SV-9247 (Story 1, Work Order settings page) and the Simple Flow V2 specification version 21, read on 21 August 2026.
+This is the expected behaviour as per epic SV-8683 and story SV-9247 (Story 1, Work Order settings page) and the Simple Flow V2 specification version 23, read on 21 August 2026.
 
 AUTOMATION: Not available on Build to test Yet - Last checked 8/21/2026
 ",SV-9247 (Story 1),,
@@ -52,7 +52,7 @@ Turning a Require setting on later does not retro-act on existing parts,Work Ord
 3. No shop's behaviour changes at the moment this ships.
 
 ---
-This is the expected behaviour as per epic SV-8683 and story SV-9247 (Story 1, Work Order settings page) and the Simple Flow V2 specification version 21, read on 21 August 2026.
+This is the expected behaviour as per epic SV-8683 and story SV-9247 (Story 1, Work Order settings page) and the Simple Flow V2 specification version 23, read on 21 August 2026.
 
 AUTOMATION: Not available on Build to test Yet - Last checked 8/21/2026
 ",SV-9247 (Story 1),,
@@ -68,7 +68,7 @@ AUTOMATION: Not available on Build to test Yet - Last checked 8/21/2026
 6. Statuses change in the underlying records, not only in the interface; invoicing checks the same state.
 
 ---
-This is the expected behaviour as per epic SV-8683 and story SV-9248 (Story 2, Settings apply to every work order) and the Simple Flow V2 specification version 21, read on 21 August 2026.
+This is the expected behaviour as per epic SV-8683 and story SV-9248 (Story 2, Settings apply to every work order) and the Simple Flow V2 specification version 23, read on 21 August 2026.
 
 AUTOMATION: Not available on Build to test Yet - Last checked 8/21/2026
 ",SV-9248 (Story 2),,
@@ -78,7 +78,7 @@ Each settings-change record is written to the audit log with its cause,Work Orde
 2. Each entry is attributed to the system and names the cause, for example ""Line approved because Require approval for new lines was turned off"".
 
 ---
-This is the expected behaviour as per epic SV-8683 and story SV-9248 (Story 2, Settings apply to every work order) and the Simple Flow V2 specification version 21, read on 21 August 2026.
+This is the expected behaviour as per epic SV-8683 and story SV-9248 (Story 2, Settings apply to every work order) and the Simple Flow V2 specification version 23, read on 21 August 2026.
 
 AUTOMATION: Not available on Build to test Yet - Last checked 8/21/2026
 ",SV-9248 (Story 2),,
@@ -90,7 +90,7 @@ Invoiced/paid work orders and declined lines are excluded from the sweep,Work Or
 4. If the run fails part way, re-running finishes the remainder without repeating what was already done.
 
 ---
-This is the expected behaviour as per epic SV-8683 and story SV-9248 (Story 2, Settings apply to every work order) and the Simple Flow V2 specification version 21, read on 21 August 2026.
+This is the expected behaviour as per epic SV-8683 and story SV-9248 (Story 2, Settings apply to every work order) and the Simple Flow V2 specification version 23, read on 21 August 2026.
 
 AUTOMATION: Not available on Build to test Yet - Last checked 8/21/2026
 ",SV-9248 (Story 2),,
@@ -102,7 +102,7 @@ AUTOMATION: Not available on Build to test Yet - Last checked 8/21/2026
 5. When the affected count is large, the confirmation also advises making the change outside working hours and states the app will be unavailable while it runs.
 
 ---
-This is the expected behaviour as per epic SV-8683 and story SV-9249 (Story 3, Confirmation before a settings change) and the Simple Flow V2 specification version 21, read on 21 August 2026.
+This is the expected behaviour as per epic SV-8683 and story SV-9249 (Story 3, Confirmation before a settings change) and the Simple Flow V2 specification version 23, read on 21 August 2026.
 
 AUTOMATION: Not available on Build to test Yet - Last checked 8/21/2026
 ",SV-9249 (Story 3),,
@@ -111,7 +111,7 @@ Cancelling a settings change leaves the setting and records unchanged,Work Order
 2. Cancel it.","1. Cancelling leaves the setting as it was and changes no records.
 
 ---
-This is the expected behaviour as per epic SV-8683 and story SV-9249 (Story 3, Confirmation before a settings change) and the Simple Flow V2 specification version 21, read on 21 August 2026.
+This is the expected behaviour as per epic SV-8683 and story SV-9249 (Story 3, Confirmation before a settings change) and the Simple Flow V2 specification version 23, read on 21 August 2026.
 
 AUTOMATION: Not available on Build to test Yet - Last checked 8/21/2026
 ",SV-9249 (Story 3),,
@@ -121,7 +121,7 @@ A large settings change blocks the app until every record is changed,Work Order 
 2. The user is not returned to the settings page until every affected record has been changed.
 
 ---
-This is the expected behaviour as per epic SV-8683 and story SV-9250 (Story 4, Applying a settings change at scale) and the Simple Flow V2 specification version 21, read on 21 August 2026.
+This is the expected behaviour as per epic SV-8683 and story SV-9250 (Story 4, Applying a settings change at scale) and the Simple Flow V2 specification version 23, read on 21 August 2026.
 
 AUTOMATION: Not available on Build to test Yet - Last checked 8/21/2026
 ",SV-9250 (Story 4),,
@@ -131,7 +131,7 @@ A partially applied settings change is never left visible,Work Order Settings,Ne
 2. If the run fails, either the change completes or the setting reverts, and the user is told which.
 
 ---
-This is the expected behaviour as per epic SV-8683 and story SV-9250 (Story 4, Applying a settings change at scale) and the Simple Flow V2 specification version 21, read on 21 August 2026.
+This is the expected behaviour as per epic SV-8683 and story SV-9250 (Story 4, Applying a settings change at scale) and the Simple Flow V2 specification version 23, read on 21 August 2026.
 
 AUTOMATION: Not available on Build to test Yet - Last checked 8/21/2026
 ",SV-9250 (Story 4),,
@@ -145,7 +145,7 @@ An approved line completes whatever the state of its parts,Completing a Line,Fun
 5. Completing a line changes nothing about its parts — they keep whatever status the settings gave them.
 
 ---
-This is the expected behaviour as per epic SV-8683 and story SV-9251 (Story 5, Parts no longer block completing a line) and the Simple Flow V2 specification version 21, read on 21 August 2026.
+This is the expected behaviour as per epic SV-8683 and story SV-9251 (Story 5, Parts no longer block completing a line) and the Simple Flow V2 specification version 23, read on 21 August 2026.
 
 AUTOMATION: Not available on Build to test Yet - Last checked 8/21/2026
 ",SV-9251 (Story 5),,
@@ -156,7 +156,7 @@ Other line requirements still apply when their setting is on,Completing a Line,F
 3. Satisfying the last outstanding requirement makes a line completable — it does not complete it by itself.
 
 ---
-This is the expected behaviour as per epic SV-8683 and story SV-9251 (Story 5, Parts no longer block completing a line) and the Simple Flow V2 specification version 21, read on 21 August 2026.
+This is the expected behaviour as per epic SV-8683 and story SV-9251 (Story 5, Parts no longer block completing a line) and the Simple Flow V2 specification version 23, read on 21 August 2026.
 
 AUTOMATION: Not available on Build to test Yet - Last checked 8/21/2026
 ",SV-9251 (Story 5),,
@@ -169,7 +169,7 @@ A line reaches Complete only through the defined paths,Completing a Line,Functio
 3. Mark as reviewed is NOT on that list: it becomes available only once every line is already complete, so there is never an open line for it to close.
 
 ---
-This is the expected behaviour as per epic SV-8683 and story SV-9251 (Story 5, Parts no longer block completing a line) and the Simple Flow V2 specification version 21, read on 21 August 2026.
+This is the expected behaviour as per epic SV-8683 and story SV-9251 (Story 5, Parts no longer block completing a line) and the Simple Flow V2 specification version 23, read on 21 August 2026.
 
 AUTOMATION: Not available on Build to test Yet - Last checked 8/21/2026
 ",SV-9251 (Story 5),,
@@ -181,7 +181,7 @@ Clock-out modal: two complete buttons; line-completed tick box hidden,Completing
 4. The clock-out modal is otherwise unchanged.
 
 ---
-This is the expected behaviour as per epic SV-8683 and story SV-9251 (Story 5, Parts no longer block completing a line) and the Simple Flow V2 specification version 21, read on 21 August 2026.
+This is the expected behaviour as per epic SV-8683 and story SV-9251 (Story 5, Parts no longer block completing a line) and the Simple Flow V2 specification version 23, read on 21 August 2026.
 
 AUTOMATION: Not available on Build to test Yet - Last checked 8/21/2026
 ",SV-9251 (Story 5),,
@@ -193,7 +193,7 @@ Complete is never disabled for a parts reason; reopen returns line to Approved,C
 3. A Technician in Tech View cannot complete (they cannot approve), but can still pick parts.
 
 ---
-This is the expected behaviour as per epic SV-8683 and story SV-9251 (Story 5, Parts no longer block completing a line) and the Simple Flow V2 specification version 21, read on 21 August 2026.
+This is the expected behaviour as per epic SV-8683 and story SV-9251 (Story 5, Parts no longer block completing a line) and the Simple Flow V2 specification version 23, read on 21 August 2026.
 
 AUTOMATION: Not available on Build to test Yet - Last checked 8/21/2026
 ",SV-9251 (Story 5),,
@@ -207,7 +207,7 @@ Line actions offered match the line's status,Line and Part Actions,Functional,Hi
 6. Complete is not offered on a Needs Approval line and Approve is not offered on an already-Approved line (both do nothing).
 
 ---
-This is the expected behaviour as per epic SV-8683 and story SV-9252 (Story 6, Which actions appear on a line and on a part) and the Simple Flow V2 specification version 21, read on 21 August 2026.
+This is the expected behaviour as per epic SV-8683 and story SV-9252 (Story 6, Which actions appear on a line and on a part) and the Simple Flow V2 specification version 23, read on 21 August 2026.
 
 AUTOMATION: Not available on Build to test Yet - Last checked 8/21/2026
 ",SV-9252 (Story 6),,
@@ -216,7 +216,7 @@ Decline is disabled while a line holds received or picked parts,Line and Part Ac
 2. The disabled reason reads ""Return this line's received parts before declining it"".
 
 ---
-This is the expected behaviour as per epic SV-8683 and story SV-9252 (Story 6, Which actions appear on a line and on a part) and the Simple Flow V2 specification version 21, read on 21 August 2026.
+This is the expected behaviour as per epic SV-8683 and story SV-9252 (Story 6, Which actions appear on a line and on a part) and the Simple Flow V2 specification version 23, read on 21 August 2026.
 
 AUTOMATION: Not available on Build to test Yet - Last checked 8/21/2026
 ",SV-9252 (Story 6),,
@@ -229,7 +229,7 @@ Part actions offered match the part's state (seven states),Line and Part Actions
 6. Received or picked: nothing (finished). Returned: nothing (sent back, stays visible on the line and in returns).
 
 ---
-This is the expected behaviour as per epic SV-8683 and story SV-9252 (Story 6, Which actions appear on a line and on a part) and the Simple Flow V2 specification version 21, read on 21 August 2026.
+This is the expected behaviour as per epic SV-8683 and story SV-9252 (Story 6, Which actions appear on a line and on a part) and the Simple Flow V2 specification version 23, read on 21 August 2026.
 
 AUTOMATION: Not available on Build to test Yet - Last checked 8/21/2026
 ",SV-9252 (Story 6),,
@@ -240,7 +240,7 @@ Ordering precedes receiving; Receive placement follows the setting,Line and Part
 3. Ordering a Requested part only does something when the part is vendor-sourced (including a vendorless part marked Vendor missing); an inventory/found part or one with no source needs its details completed first.
 
 ---
-This is the expected behaviour as per epic SV-8683 and story SV-9252 (Story 6, Which actions appear on a line and on a part) and the Simple Flow V2 specification version 21, read on 21 August 2026.
+This is the expected behaviour as per epic SV-8683 and story SV-9252 (Story 6, Which actions appear on a line and on a part) and the Simple Flow V2 specification version 23, read on 21 August 2026.
 
 AUTOMATION: Not available on Build to test Yet - Last checked 8/21/2026
 ",SV-9252 (Story 6),,
@@ -253,7 +253,7 @@ Declining or sending back a line returns only not-yet-arrived parts to Quoted,Li
 5. A part action the user's role does not carry is absent even when the part's state qualifies (Pick follows Pick Parts, Order follows Order Parts).
 
 ---
-This is the expected behaviour as per epic SV-8683 and story SV-9252 (Story 6, Which actions appear on a line and on a part) and the Simple Flow V2 specification version 21, read on 21 August 2026.
+This is the expected behaviour as per epic SV-8683 and story SV-9252 (Story 6, Which actions appear on a line and on a part) and the Simple Flow V2 specification version 23, read on 21 August 2026.
 
 AUTOMATION: Not available on Build to test Yet - Last checked 8/21/2026
 ",SV-9252 (Story 6),,
@@ -266,7 +266,7 @@ Bulk bar replaces the column headers and lists actions by one rule,Bulk Action B
 5. Line actions count lines and parts actions count parts (""Receive 5 parts"" may come from two lines); a count never includes what the action would skip.
 
 ---
-This is the expected behaviour as per epic SV-8683 and story SV-9253 (Story 7, The bulk action bar) and the Simple Flow V2 specification version 21, read on 21 August 2026.
+This is the expected behaviour as per epic SV-8683 and story SV-9253 (Story 7, The bulk action bar) and the Simple Flow V2 specification version 23, read on 21 August 2026.
 
 AUTOMATION: Not available on Build to test Yet - Last checked 8/21/2026
 ",SV-9253 (Story 7),,
@@ -274,11 +274,11 @@ Primary slots fill in a fixed order; More holds the rest,Bulk Action Bar,Functio
 2. A selection qualifies for several actions including the finish action.","1. Select lines that cover every open line (and hold orderable/receivable/pickable parts).
 2. Read the order of the primary buttons and the contents of More.","1. Primary slots fill in this order and do not change as parts progress: the finish action (when the selection covers every open line), then Complete lines, then Approve, then the parts actions as Order, Receive, Pick.
 2. Decline is always in More, never in a primary slot.
-3. More contains, in order: Authorization required, Split to new work order, Create invoice, Decline.
+3. More contains, in order: Authorization required, Split to new work order, Decline. Create invoice is not enumerated in this ordered list; it is described next and disappears once an invoice exists.
 4. Create invoice acts on the whole work order whatever is selected, carries no count, and disappears once an invoice exists.
 
 ---
-This is the expected behaviour as per epic SV-8683 and story SV-9253 (Story 7, The bulk action bar) and the Simple Flow V2 specification version 21, read on 21 August 2026.
+This is the expected behaviour as per epic SV-8683 and story SV-9253 (Story 7, The bulk action bar) and the Simple Flow V2 specification version 23, read on 21 August 2026.
 
 AUTOMATION: Not available on Build to test Yet - Last checked 8/21/2026
 ",SV-9253 (Story 7),,
@@ -291,7 +291,7 @@ Bulk actions confirm/undo per their kind and give one toast each,Bulk Action Bar
 4. One toast per bulk action, summarising the result.
 
 ---
-This is the expected behaviour as per epic SV-8683 and story SV-9253 (Story 7, The bulk action bar) and the Simple Flow V2 specification version 21, read on 21 August 2026.
+This is the expected behaviour as per epic SV-8683 and story SV-9253 (Story 7, The bulk action bar) and the Simple Flow V2 specification version 23, read on 21 August 2026.
 
 AUTOMATION: Not available on Build to test Yet - Last checked 8/21/2026
 ",SV-9253 (Story 7),,
@@ -304,7 +304,7 @@ Bulk bar hidden without permission; empty/zero states handled,Bulk Action Bar,Ne
 5. Delete lines is not in the bar this release; Mark as reviewed is never in the bulk bar (it acts on the whole work order).
 
 ---
-This is the expected behaviour as per epic SV-8683 and story SV-9253 (Story 7, The bulk action bar) and the Simple Flow V2 specification version 21, read on 21 August 2026.
+This is the expected behaviour as per epic SV-8683 and story SV-9253 (Story 7, The bulk action bar) and the Simple Flow V2 specification version 23, read on 21 August 2026.
 
 AUTOMATION: Not available on Build to test Yet - Last checked 8/21/2026
 ",SV-9253 (Story 7),,
@@ -319,7 +319,7 @@ Bulk approve/decline judges each line and never sweeps a declined line,Bulk Acti
 6. Undo restores only the lines that changed, to the status they held.
 
 ---
-This is the expected behaviour as per epic SV-8683 and story SV-9254 (Story 8, Bulk approve and decline) and the Simple Flow V2 specification version 21, read on 21 August 2026.
+This is the expected behaviour as per epic SV-8683 and story SV-9254 (Story 8, Bulk approve and decline) and the Simple Flow V2 specification version 23, read on 21 August 2026.
 
 AUTOMATION: Not available on Build to test Yet - Last checked 8/21/2026
 ",SV-9254 (Story 8),,
@@ -330,7 +330,7 @@ Bulk approve/decline skips ineligible lines and hides at zero count,Bulk Action 
 3. A selection made up entirely of declined lines shows no Approve button at all (the count would be zero).
 
 ---
-This is the expected behaviour as per epic SV-8683 and story SV-9254 (Story 8, Bulk approve and decline) and the Simple Flow V2 specification version 21, read on 21 August 2026.
+This is the expected behaviour as per epic SV-8683 and story SV-9254 (Story 8, Bulk approve and decline) and the Simple Flow V2 specification version 23, read on 21 August 2026.
 
 AUTOMATION: Not available on Build to test Yet - Last checked 8/21/2026
 ",SV-9254 (Story 8),,
@@ -344,7 +344,7 @@ Bulk complete labels and counts follow the selection of Approved lines,Bulk Acti
 5. With review required, this is the action that makes Mark as reviewed appear (review needs every line complete first).
 
 ---
-This is the expected behaviour as per epic SV-8683 and story SV-9255 (Story 9, Bulk complete lines) and the Simple Flow V2 specification version 21, read on 21 August 2026.
+This is the expected behaviour as per epic SV-8683 and story SV-9255 (Story 9, Bulk complete lines) and the Simple Flow V2 specification version 23, read on 21 August 2026.
 
 AUTOMATION: Not available on Build to test Yet - Last checked 8/21/2026
 ",SV-9255 (Story 9),,
@@ -355,7 +355,7 @@ Bulk delete lines is out of scope this release (no delete action in the bar),Bul
 3. Single-line delete is unchanged from V1.
 
 ---
-This is the expected behaviour as per epic SV-8683 and story SV-9256 (Story 10, Bulk delete lines - out of scope) and the Simple Flow V2 specification version 21, read on 21 August 2026.
+This is the expected behaviour as per epic SV-8683 and story SV-9256 (Story 10, Bulk delete lines - out of scope) and the Simple Flow V2 specification version 23, read on 21 August 2026.
 
 AUTOMATION: Not available on Build to test Yet - Last checked 8/21/2026
 ",SV-9256 (Story 10 deferred),,
@@ -368,7 +368,7 @@ Bulk order raises a purchase order per vendor and confirms first,Bulk Action Bar
 5. Ordering asks for confirmation first because a purchase order is a commitment to a supplier and cannot be undone.
 
 ---
-This is the expected behaviour as per epic SV-8683 and story SV-9257 (Story 11, Bulk order parts) and the Simple Flow V2 specification version 21, read on 21 August 2026.
+This is the expected behaviour as per epic SV-8683 and story SV-9257 (Story 11, Bulk order parts) and the Simple Flow V2 specification version 23, read on 21 August 2026.
 
 AUTOMATION: Not available on Build to test Yet - Last checked 8/21/2026
 ",SV-9257 (Story 11),,
@@ -379,7 +379,7 @@ Bulk order skips already-ordered and non-vendor-sourced parts,Bulk Action Bar,Ne
 3. A user without Order Parts does not see the action, in the bulk bar or on the row.
 
 ---
-This is the expected behaviour as per epic SV-8683 and story SV-9257 (Story 11, Bulk order parts) and the Simple Flow V2 specification version 21, read on 21 August 2026.
+This is the expected behaviour as per epic SV-8683 and story SV-9257 (Story 11, Bulk order parts) and the Simple Flow V2 specification version 23, read on 21 August 2026.
 
 AUTOMATION: Not available on Build to test Yet - Last checked 8/21/2026
 ",SV-9257 (Story 11),,
@@ -391,7 +391,7 @@ Bulk pick runs the existing pick atomically for in-stock unpicked parts,Bulk Act
 4. A picked part asks its core question at the moment it is picked, exactly as today (gated by WO Lines: Create & Edit).
 
 ---
-This is the expected behaviour as per epic SV-8683 and story SV-9258 (Story 12, Bulk pick parts) and the Simple Flow V2 specification version 21, read on 21 August 2026.
+This is the expected behaviour as per epic SV-8683 and story SV-9258 (Story 12, Bulk pick parts) and the Simple Flow V2 specification version 23, read on 21 August 2026.
 
 AUTOMATION: Not available on Build to test Yet - Last checked 8/21/2026
 ",SV-9258 (Story 12),,
@@ -399,7 +399,7 @@ Bulk pick action hidden without Pick Parts permission,Bulk Action Bar,Negative,L
 2. A selection holds pickable parts.",1. Select the parts and look for the Pick action.,"1. A user without Pick Parts does not see the Pick action.
 
 ---
-This is the expected behaviour as per epic SV-8683 and story SV-9258 (Story 12, Bulk pick parts) and the Simple Flow V2 specification version 21, read on 21 August 2026.
+This is the expected behaviour as per epic SV-8683 and story SV-9258 (Story 12, Bulk pick parts) and the Simple Flow V2 specification version 23, read on 21 August 2026.
 
 AUTOMATION: Not available on Build to test Yet - Last checked 8/21/2026
 ",SV-9258 (Story 12),,
@@ -415,7 +415,7 @@ Receive opens a modal (no navigation) with contents depending on entry point,Rec
 6. One card per vendor showing vendor name, part count and total; Vendor missing sorts first.
 
 ---
-This is the expected behaviour as per epic SV-8683 and story SV-9259 (Story 13, Receiving from the work order) and the Simple Flow V2 specification version 21, read on 21 August 2026.
+This is the expected behaviour as per epic SV-8683 and story SV-9259 (Story 13, Receiving from the work order) and the Simple Flow V2 specification version 23, read on 21 August 2026.
 
 AUTOMATION: Not available on Build to test Yet - Last checked 8/21/2026
 ",SV-9259 (Story 13),,
@@ -430,7 +430,7 @@ AUTOMATION: Not available on Build to test Yet - Last checked 8/21/2026
 6. Quantity received must be greater than zero, may include decimals, and may exceed what was ordered (the excess is shown but not blocked; the PO absorbs it). Changing cost shows a note that the sell price will update.
 
 ---
-This is the expected behaviour as per epic SV-8683 and story SV-9259 (Story 13, Receiving from the work order) and the Simple Flow V2 specification version 21, read on 21 August 2026.
+This is the expected behaviour as per epic SV-8683 and story SV-9259 (Story 13, Receiving from the work order) and the Simple Flow V2 specification version 23, read on 21 August 2026.
 
 AUTOMATION: Not available on Build to test Yet - Last checked 8/21/2026
 ",SV-9259 (Story 13),,
@@ -443,7 +443,7 @@ AUTOMATION: Not available on Build to test Yet - Last checked 8/21/2026
 4. The cursor starts in the vendor invoice number field when the vendor is known, and in the vendor field when it is not; tab order is identical in both states.
 
 ---
-This is the expected behaviour as per epic SV-8683 and story SV-9259 (Story 13, Receiving from the work order) and the Simple Flow V2 specification version 21, read on 21 August 2026.
+This is the expected behaviour as per epic SV-8683 and story SV-9259 (Story 13, Receiving from the work order) and the Simple Flow V2 specification version 23, read on 21 August 2026.
 
 AUTOMATION: Not available on Build to test Yet - Last checked 8/21/2026
 ",SV-9259 (Story 13),,
@@ -455,7 +455,7 @@ AUTOMATION: Not available on Build to test Yet - Last checked 8/21/2026
 4. Receiving uses the existing pipeline, so the vendor bill reaches the accounting system as it does today.
 
 ---
-This is the expected behaviour as per epic SV-8683 and story SV-9259 (Story 13, Receiving from the work order) and the Simple Flow V2 specification version 21, read on 21 August 2026.
+This is the expected behaviour as per epic SV-8683 and story SV-9259 (Story 13, Receiving from the work order) and the Simple Flow V2 specification version 23, read on 21 August 2026.
 
 AUTOMATION: Not available on Build to test Yet - Last checked 8/21/2026
 ",SV-9259 (Story 13),,
@@ -466,7 +466,7 @@ A user without See Financial Data can still receive; money fields removed,Receiv
 3. The user can complete the receive.
 
 ---
-This is the expected behaviour as per epic SV-8683 and story SV-9259 (Story 13, Receiving from the work order) and the Simple Flow V2 specification version 21, read on 21 August 2026.
+This is the expected behaviour as per epic SV-8683 and story SV-9259 (Story 13, Receiving from the work order) and the Simple Flow V2 specification version 23, read on 21 August 2026.
 
 AUTOMATION: Not available on Build to test Yet - Last checked 8/21/2026
 ",SV-9259 (Story 13),,
@@ -483,7 +483,7 @@ AUTOMATION: Not available on Build to test Yet - Last checked 8/21/2026
 6. If the work order is invoiced mid-session, receiving is refused with the reason; the empty state reads ""Nothing to receive"".
 
 ---
-This is the expected behaviour as per epic SV-8683 and story SV-9259 (Story 13, Receiving from the work order) and the Simple Flow V2 specification version 21, read on 21 August 2026.
+This is the expected behaviour as per epic SV-8683 and story SV-9259 (Story 13, Receiving from the work order) and the Simple Flow V2 specification version 23, read on 21 August 2026.
 
 AUTOMATION: Not available on Build to test Yet - Last checked 8/21/2026
 ",SV-9259 (Story 13),,
@@ -496,7 +496,7 @@ AUTOMATION: Not available on Build to test Yet - Last checked 8/21/2026
 5. Missing-vendor groups carry an amber treatment and a ""Vendor missing"" label in both states; once resolved they show the vendor name with an edit affordance.
 
 ---
-This is the expected behaviour as per epic SV-8683 and story SV-9260 (Story 14, The receive page and PO bulk receive) and the Simple Flow V2 specification version 21, read on 21 August 2026.
+This is the expected behaviour as per epic SV-8683 and story SV-9260 (Story 14, The receive page and PO bulk receive) and the Simple Flow V2 specification version 23, read on 21 August 2026.
 
 AUTOMATION: Not available on Build to test Yet - Last checked 8/21/2026
 ",SV-9260 (Story 14),,
@@ -511,7 +511,7 @@ A panel expands per purchase order with per-PO vendor-side fields,Purchase Order
 6. Sell price is shown here and only here, read-only, on every purchase order.
 
 ---
-This is the expected behaviour as per epic SV-8683 and story SV-9260 (Story 14, The receive page and PO bulk receive) and the Simple Flow V2 specification version 21, read on 21 August 2026.
+This is the expected behaviour as per epic SV-8683 and story SV-9260 (Story 14, The receive page and PO bulk receive) and the Simple Flow V2 specification version 23, read on 21 August 2026.
 
 AUTOMATION: Not available on Build to test Yet - Last checked 8/21/2026
 ",SV-9260 (Story 14),,
@@ -525,7 +525,7 @@ Receive validity on the PO page matches the modal; money hidden without the atom
 5. A Vendor & Order Mgmt: View-only user (e.g. Office) can open the page but cannot receive.
 
 ---
-This is the expected behaviour as per epic SV-8683 and story SV-9260 (Story 14, The receive page and PO bulk receive) and the Simple Flow V2 specification version 21, read on 21 August 2026.
+This is the expected behaviour as per epic SV-8683 and story SV-9260 (Story 14, The receive page and PO bulk receive) and the Simple Flow V2 specification version 23, read on 21 August 2026.
 
 AUTOMATION: Not available on Build to test Yet - Last checked 8/21/2026
 ",SV-9260 (Story 14),,
@@ -540,7 +540,7 @@ AUTOMATION: Not available on Build to test Yet - Last checked 8/21/2026
 6. Deferring several at once applies straight away with a toast stating how many were deferred; a deferred part keeps counting in the Waiting on Parts column.
 
 ---
-This is the expected behaviour as per epic SV-8683 and story SV-9261 (Story 15, Receive later) and the Simple Flow V2 specification version 21, read on 21 August 2026.
+This is the expected behaviour as per epic SV-8683 and story SV-9261 (Story 15, Receive later) and the Simple Flow V2 specification version 23, read on 21 August 2026.
 
 AUTOMATION: Not available on Build to test Yet - Last checked 8/21/2026
 ",SV-9261 (Story 15),,
@@ -553,7 +553,7 @@ AUTOMATION: Not available on Build to test Yet - Last checked 8/21/2026
 4. Deferring does not create a vendor bill, move stock or touch the accounting system - it records that the paperwork is outstanding and nothing else.
 
 ---
-This is the expected behaviour as per epic SV-8683 and story SV-9261 (Story 15, Receive later) and the Simple Flow V2 specification version 21, read on 21 August 2026.
+This is the expected behaviour as per epic SV-8683 and story SV-9261 (Story 15, Receive later) and the Simple Flow V2 specification version 23, read on 21 August 2026.
 
 AUTOMATION: Not available on Build to test Yet - Last checked 8/21/2026
 ",SV-9261 (Story 15),,
@@ -567,7 +567,7 @@ The wizard opens only from defined entry points when something is collectable,Co
 6. A step the user's role cannot perform is not shown; where that step is the only outstanding work, the action fails with the reason instead of opening an empty wizard.
 
 ---
-This is the expected behaviour as per epic SV-8683 and story SV-9262 (Story 16, When the completion wizard opens) and the Simple Flow V2 specification version 21, read on 21 August 2026.
+This is the expected behaviour as per epic SV-8683 and story SV-9262 (Story 16, When the completion wizard opens) and the Simple Flow V2 specification version 23, read on 21 August 2026.
 
 AUTOMATION: Not available on Build to test Yet - Last checked 8/21/2026
 ",SV-9262 (Story 16),,
@@ -581,7 +581,7 @@ The wizard shows only outstanding steps in a fixed order,Completion Wizard,Funct
 6. Resolve cores is unchanged and appears only when a part in the run carries an unresolved core.
 
 ---
-This is the expected behaviour as per epic SV-8683 and story SV-9263 (Story 17, The completion wizard) and the Simple Flow V2 specification version 21, read on 21 August 2026.
+This is the expected behaviour as per epic SV-8683 and story SV-9263 (Story 17, The completion wizard) and the Simple Flow V2 specification version 23, read on 21 August 2026.
 
 AUTOMATION: Not available on Build to test Yet - Last checked 8/21/2026
 ",SV-9263 (Story 17),,
@@ -595,7 +595,7 @@ Each wizard step's own action saves and advances; no Continue button,Completion 
 5. Closing the wizard keeps everything already done; reopening shows only what is left.
 
 ---
-This is the expected behaviour as per epic SV-8683 and story SV-9263 (Story 17, The completion wizard) and the Simple Flow V2 specification version 21, read on 21 August 2026.
+This is the expected behaviour as per epic SV-8683 and story SV-9263 (Story 17, The completion wizard) and the Simple Flow V2 specification version 23, read on 21 August 2026.
 
 AUTOMATION: Not available on Build to test Yet - Last checked 8/21/2026
 ",SV-9263 (Story 17),,
@@ -607,7 +607,7 @@ Where a wizard run ends depends on what opened it,Completion Wizard,Functional,M
 3. Create invoice: the invoice is created, the Finance tab and the payment screen open.
 
 ---
-This is the expected behaviour as per epic SV-8683 and story SV-9263 (Story 17, The completion wizard) and the Simple Flow V2 specification version 21, read on 21 August 2026.
+This is the expected behaviour as per epic SV-8683 and story SV-9263 (Story 17, The completion wizard) and the Simple Flow V2 specification version 23, read on 21 August 2026.
 
 AUTOMATION: Not available on Build to test Yet - Last checked 8/21/2026
 ",SV-9263 (Story 17),,
@@ -619,7 +619,7 @@ AUTOMATION: Not available on Build to test Yet - Last checked 8/21/2026
 3. A server error mid-step leaves the step open with the entered values intact.
 
 ---
-This is the expected behaviour as per epic SV-8683 and story SV-9263 (Story 17, The completion wizard) and the Simple Flow V2 specification version 21, read on 21 August 2026.
+This is the expected behaviour as per epic SV-8683 and story SV-9263 (Story 17, The completion wizard) and the Simple Flow V2 specification version 23, read on 21 August 2026.
 
 AUTOMATION: Not available on Build to test Yet - Last checked 8/21/2026
 ",SV-9263 (Story 17),,
@@ -638,7 +638,7 @@ The header offers only the one finish action that is genuinely next,Finish Actio
 7. Only one finish action is ever on screen, and only ever one the user can actually press.
 
 ---
-This is the expected behaviour as per epic SV-8683 and story SV-9264 (Story 18, Create invoice as the finish action) and the Simple Flow V2 specification version 21, read on 21 August 2026.
+This is the expected behaviour as per epic SV-8683 and story SV-9264 (Story 18, Create invoice as the finish action) and the Simple Flow V2 specification version 23, read on 21 August 2026.
 
 AUTOMATION: Not available on Build to test Yet - Last checked 8/21/2026
 ",SV-9264 (Story 18),,
@@ -652,7 +652,7 @@ AUTOMATION: Not available on Build to test Yet - Last checked 8/21/2026
 5. Everything that happens today when an invoice is created still happens from every entry point: a deposit applying, an over-payment becoming a credit, the customer being locked, the accounting sync and the snapshot.
 
 ---
-This is the expected behaviour as per epic SV-8683 and story SV-9264 (Story 18, Create invoice as the finish action) and the Simple Flow V2 specification version 21, read on 21 August 2026.
+This is the expected behaviour as per epic SV-8683 and story SV-9264 (Story 18, Create invoice as the finish action) and the Simple Flow V2 specification version 23, read on 21 August 2026.
 
 AUTOMATION: Not available on Build to test Yet - Last checked 8/21/2026
 ",SV-9264 (Story 18),,
@@ -669,7 +669,7 @@ AUTOMATION: Not available on Build to test Yet - Last checked 8/21/2026
 6. A user who may review but not invoice sees Mark as reviewed then nothing further; a complete-only user sees nothing in the header; a user without See Financial Data does not see Create invoice at all.
 
 ---
-This is the expected behaviour as per epic SV-8683 and story SV-9264 (Story 18, Create invoice as the finish action) and the Simple Flow V2 specification version 21, read on 21 August 2026.
+This is the expected behaviour as per epic SV-8683 and story SV-9264 (Story 18, Create invoice as the finish action) and the Simple Flow V2 specification version 23, read on 21 August 2026.
 
 AUTOMATION: Not available on Build to test Yet - Last checked 8/21/2026
 ",SV-9264 (Story 18),,
@@ -680,7 +680,7 @@ Part and line ... menus contain the actions that belong to them,Part Rows and Me
 3. Uncomplete is existing behaviour and is already blocked once the work order is invoiced or paid; the same block applies in the bulk action bar so the two cannot drift apart.
 
 ---
-This is the expected behaviour as per epic SV-8683 and story SV-9265 (Story 19, Part rows and menus) and the Simple Flow V2 specification version 21, read on 21 August 2026.
+This is the expected behaviour as per epic SV-8683 and story SV-9265 (Story 19, Part rows and menus) and the Simple Flow V2 specification version 23, read on 21 August 2026.
 
 AUTOMATION: Not available on Build to test Yet - Last checked 8/21/2026
 ",SV-9265 (Story 19),,
@@ -692,7 +692,7 @@ AUTOMATION: Not available on Build to test Yet - Last checked 8/21/2026
 3. Receive part is absent for a user without Order Parts, whatever the setting.
 
 ---
-This is the expected behaviour as per epic SV-8683 and story SV-9265 (Story 19, Part rows and menus) and the Simple Flow V2 specification version 21, read on 21 August 2026.
+This is the expected behaviour as per epic SV-8683 and story SV-9265 (Story 19, Part rows and menus) and the Simple Flow V2 specification version 23, read on 21 August 2026.
 
 AUTOMATION: Not available on Build to test Yet - Last checked 8/21/2026
 ",SV-9265 (Story 19),,
@@ -704,7 +704,7 @@ Parts can be dragged to reorder within a line and the invoice follows,Reordering
 3. Reordering on either side moves the other, and the line numbers move with the rows rather than staying where they were.
 
 ---
-This is the expected behaviour as per epic SV-8683 and story SV-9266 (Story 20, Reordering parts on a line) and the Simple Flow V2 specification version 21, read on 21 August 2026.
+This is the expected behaviour as per epic SV-8683 and story SV-9266 (Story 20, Reordering parts on a line) and the Simple Flow V2 specification version 23, read on 21 August 2026.
 
 AUTOMATION: Not available on Build to test Yet - Last checked 8/21/2026
 ",SV-9266 (Story 20),,
@@ -716,7 +716,7 @@ AUTOMATION: Not available on Build to test Yet - Last checked 8/21/2026
 3. Where two people reorder at once, the last write wins and the invoice follows what was stored.
 
 ---
-This is the expected behaviour as per epic SV-8683 and story SV-9266 (Story 20, Reordering parts on a line) and the Simple Flow V2 specification version 21, read on 21 August 2026.
+This is the expected behaviour as per epic SV-8683 and story SV-9266 (Story 20, Reordering parts on a line) and the Simple Flow V2 specification version 23, read on 21 August 2026.
 
 AUTOMATION: Not available on Build to test Yet - Last checked 8/21/2026
 ",SV-9266 (Story 20),,
@@ -728,7 +728,7 @@ AUTOMATION: Not available on Build to test Yet - Last checked 8/21/2026
 4. It is the only atom this release adds; everything else reuses an existing atom.
 
 ---
-This is the expected behaviour as per epic SV-8683 and story SV-9267 (Story 21, Permissions on the new surfaces) and the Simple Flow V2 specification version 21, and the permission map SV-8183, read on 21 August 2026.
+This is the expected behaviour as per epic SV-8683 and story SV-9267 (Story 21, Permissions on the new surfaces) and the Simple Flow V2 specification version 23, and the permission map SV-8183, read on 21 August 2026.
 
 AUTOMATION: Not available on Build to test Yet - Last checked 8/21/2026
 ",SV-9267 (Story 21; SV-8183),,
@@ -741,7 +741,7 @@ Every Simple Flow action is gated by its mapped existing atom,Permissions,Functi
 6. The bulk version of an action is governed by exactly the same atom as the single version - no bulk action introduces a gate of its own.
 
 ---
-This is the expected behaviour as per epic SV-8683 and story SV-9267 (Story 21, Permissions on the new surfaces) and the permission map SV-8183, read on 21 August 2026.
+This is the expected behaviour as per epic SV-8683 and story SV-9267 (Story 21, Permissions on the new surfaces) and the Simple Flow V2 specification version 23 and the permission map SV-8183, read on 21 August 2026.
 
 AUTOMATION: Not available on Build to test Yet - Last checked 8/21/2026
 ",SV-9267 (Story 21; SV-8183),,
@@ -752,7 +752,7 @@ Money follows See Financial Data; work follows View mode,Permissions,Functional,
 3. Where a user cannot see money, those fields are removed rather than masked, and no text that reveals a price by implication is rendered (such as a cost-vs-sell warning).
 
 ---
-This is the expected behaviour as per epic SV-8683 and story SV-9267 (Story 21, Permissions on the new surfaces) and the permission map SV-8183, read on 21 August 2026.
+This is the expected behaviour as per epic SV-8683 and story SV-9267 (Story 21, Permissions on the new surfaces) and the Simple Flow V2 specification version 23 and the permission map SV-8183, read on 21 August 2026.
 
 AUTOMATION: Not available on Build to test Yet - Last checked 8/21/2026
 ",SV-9267 (Story 21; SV-8183),,
@@ -763,7 +763,7 @@ A user without an atom never sees the action; hidden values are not sent,Permiss
 3. Creating a new vendor keeps the existing vendor-management permission wherever it is offered.
 
 ---
-This is the expected behaviour as per epic SV-8683 and story SV-9267 (Story 21, Permissions on the new surfaces) and the permission map SV-8183, read on 21 August 2026.
+This is the expected behaviour as per epic SV-8683 and story SV-9267 (Story 21, Permissions on the new surfaces) and the Simple Flow V2 specification version 23 and the permission map SV-8183, read on 21 August 2026.
 
 AUTOMATION: Not available on Build to test Yet - Last checked 8/21/2026
 ",SV-9267 (Story 21; SV-8183),,
