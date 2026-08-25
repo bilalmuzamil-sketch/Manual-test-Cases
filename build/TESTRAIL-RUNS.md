@@ -70,8 +70,8 @@ set each run's `assignedto_id` + bulk-assign every test in the run to that id (u
 | R415 | Global Search V2 | Bilal Muzamil | 3 | 97/97 | 2026-08-25 |
 | R414 | Digital Inspections V2 | — pending — | | | |
 | R417 | Invoice UI Refresh | Mudassir Qamar | 6 | 87/87 | 2026-08-25 |
-| R418 | Inline Add and Edit Parts | — pending (same engineer as R419) — | | | |
-| R419 | Printer Friendly WO | — pending (same engineer as R418) — | | | |
+| R418 | Inline Add and Edit Parts | Viktoria Videnovic | 4 | 96/96 | 2026-08-25 |
+| R419 | Printer Friendly WO | Viktoria Videnovic | 4 | 44/44 | 2026-08-25 |
 
 Assignment method: run `assignedto_id` set + every test bulk-assigned via `add_results_for_cases`
 (assignedto_id only — status left Untested). Runs remain in milestone M3. Ayesha Khan (id 5) resolved
