@@ -696,6 +696,31 @@ with `sv_sso_session` and `cf_clearance` **byte-identical** to the set that was 
   whole-record compare will otherwise report a false "results changed" and stop a clean batch. Confirmed by
   reading a live run-359 result record whose `case_refs` reproduced its case's full Rule-20 reference
   string verbatim.
+- **🛑 DECLARED NORMALISATION #3a — AND THE "SENT EXPLICITLY IS STORED VERBATIM" HALF OF #3 IS FALSE.
+  PROVEN 2026-08-25 (Global Search / Digital Inspections).** Three normalisations fire on `update_case`
+  **even when every field is sent explicitly at its exact snapshot value.** They are recorded here, with
+  their evidence, **because Standing Rule 50 forbids relying on an undeclared normalisation** — and a
+  pass that byte-compares without knowing these will stop a correct batch, while a pass that shrugs them
+  off will miss real damage. **Compare on the RENDERED text** — tags stripped, entities decoded,
+  whitespace collapsed — **and treat byte-equality as reportable but unattainable.**
+
+  | # | What TestRail does on write | Evidence |
+  |---|---|---|
+  | **3a-i** | **Plain multi-line text is wrapped in `<p>…</p>` with the newlines left BARE** — producing the run-on-paragraph collapse. **A plain-text case is therefore DAMAGED by any write that does not pre-empt it.** Mitigation: insert `<br>` before each newline **in the same payload**. | C44864: three fields sent byte-identical, all three returned `<p>`-wrapped; case had been plain text |
+  | **3a-ii** | **Characters are entity-encoded** — `—` → `&mdash;`. Renders identically, so it is a true normalisation, not damage. | C44506 `custom_preconds` |
+  | **3a-iii** | **🔴 BLOCK MARKUP IS RE-PARSED AND A LIST'S CLOSING TAG IS RELOCATED TO THE END OF THE FIELD.** `<ol>…</ol><hr /><p>prov</p><p>marker</p>` comes back as `<ol>…<hr><p>prov</p><p>marker</p></ol>` — the provenance and marker end up **nested inside the ordered list**, and `<hr />` becomes `<hr>`. **This is NOT recoverable by writing the correct HTML back:** two attempts, one with the original bytes and one with the blocks made contiguous (no newlines between them), both re-parsed the same way. | C44506, three writes |
+
+  **⇒ THE OPERATIONAL CONSEQUENCE, AND IT IS A REASON NOT TO WRITE:** a case created by **CSV import**
+  holds clean block HTML that `update_case` **cannot reproduce**. So **touching such a case costs its
+  markup structure permanently**, for the rendering gain of nothing. **Do not write to a case unless the
+  write fixes something a tester can actually see.** *(Scar: a batch built on a faulty "collapse"
+  detector wrote to C44506 believing it was repairing a run-on paragraph. The field had been correct
+  block HTML all along; the write nested its provenance inside the list and could not be undone. The
+  detector had flagged any field holding `<p>` + a newline + no `<br>` — which is the NORMAL import
+  shape. The correct test is narrower: a **single `<p>` whose own inner text contains a newline**.
+  Re-derived across all 428 August cases with the corrected test: **0 genuinely collapsed cases** —
+  against 16 the faulty one claimed.)*
+
 - **🛑 DECLARED NORMALISATION #3 — `update_case` RE-RENDERS ANY TEXT FIELD YOU *OMIT* FROM THE PAYLOAD
   (found the hard way 2026-08-05, Filters).** Send a partial payload — say only `custom_expected` — and
   TestRail may push the fields you did **not** send back through its HTML pipeline: `custom_preconds`
