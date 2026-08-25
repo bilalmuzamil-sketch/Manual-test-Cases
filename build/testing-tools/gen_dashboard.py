@@ -49,7 +49,7 @@ def paged(path, key):
 
 # --- known engineers (ids resolved 2026-08-25); fallback to "User <id>" ---
 USERS = {3: "Bilal Muzamil", 2: "Nebojsa Glavinic", 4: "Viktoria Videnovic",
-         6: "Mudassir Qamar", 7: "Ahtasham Amjad"}
+         6: "Mudassir Qamar", 7: "Ahtasham Amjad", 5: "Ayesha Khan"}
 def uname(uid):
     if not uid: return "Unassigned"
     return USERS.get(uid, f"User {uid}")

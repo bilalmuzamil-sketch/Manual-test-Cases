@@ -62,3 +62,18 @@ engineers (per-test assignment already supports this).
 
 **Assignment pending the run→owner mapping** (5 engineers, 6 runs — the QA lead assigns). Once given:
 set each run's `assignedto_id` + bulk-assign every test in the run to that id (union-safe), via the API.
+
+## Run ownership & assignment (assigned as confirmed)
+| Run | Suite | Owner | Owner id | Tests assigned | Assigned on |
+|---|---|---|---|---|---|
+| R416 | Simple Flow V2 | Ayesha Khan | 5 | 61/61 | 2026-08-25 |
+| R415 | Global Search V2 | Bilal Muzamil | 3 | 97/97 | 2026-08-25 |
+| R414 | Digital Inspections V2 | — pending — | | | |
+| R417 | Invoice UI Refresh | — pending — | | | |
+| R418 | Inline Add and Edit Parts | — pending (same engineer as R419) — | | | |
+| R419 | Printer Friendly WO | — pending (same engineer as R418) — | | | |
+
+Assignment method: run `assignedto_id` set + every test bulk-assigned via `add_results_for_cases`
+(assignedto_id only — status left Untested). Runs remain in milestone M3. Ayesha Khan (id 5) resolved
+from the existing "Simple Flow - Ayesha Khan" run R325. NOTE: TestRail milestones have no assignee
+field — a run is placed in a milestone; ownership lives on the run + its tests.
