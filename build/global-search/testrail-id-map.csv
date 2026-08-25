@@ -1,90 +1,90 @@
 internal_id,testrail_case_id,title,section,refs
-GS-KEY-01,,Open the global search palette with the keyboard shortcut (K / Cmd+K),"Palette Open, Close and Keyboard",
-GS-KEY-02,,Open the global search palette by clicking the header search field,"Palette Open, Close and Keyboard",
-GS-KEY-03,,Close the palette with the Esc key,"Palette Open, Close and Keyboard",
-GS-KEY-04,,Toggle the palette closed by pressing the shortcut again (Cmd+K),"Palette Open, Close and Keyboard",
-GS-KEY-05,,Close the palette by clicking the dimmed page behind it,"Palette Open, Close and Keyboard",
-GS-KEY-06,,"Move through result rows with the Up and Down arrow keys, skipping group headers","Palette Open, Close and Keyboard",
-GS-KEY-07,,Open the highlighted result in the same tab by pressing Enter,"Palette Open, Close and Keyboard",
-GS-KEY-08,,Open the highlighted result in a new browser tab with Cmd+Enter (Ctrl+Enter),"Palette Open, Close and Keyboard",
-GS-KEY-09,,"Move focus to the scope tab strip with Tab, then cycle tabs with Left and Right arrows","Palette Open, Close and Keyboard",
-GS-KEY-10,,The keyboard shortcut legend stays visible in the footer at all times,"Palette Open, Close and Keyboard",
-GS-TAB-01,,The scope tab strip lists All plus the six entity tabs in the exact order,Scope Tabs,
-GS-TAB-02,,The 'All' tab shows results from every entity group together,Scope Tabs,
-GS-TAB-03,,The 'Work Orders' tab shows only Work Order results,Scope Tabs,
-GS-TAB-04,,The 'Customers' tab shows only Customer results,Scope Tabs,
-GS-TAB-05,,The 'Assets' tab shows only Asset (vehicle) results,Scope Tabs,
-GS-TAB-06,,The 'Parts' tab shows only Part (inventory) results,Scope Tabs,
-GS-TAB-07,,The 'Vendors' tab shows only Vendor results,Scope Tabs,
-GS-TAB-08,,The 'Part Sales' tab shows only Part Sales results,Scope Tabs,
-GS-GRP-01,,Each result group shows a heading with the total match count,Grouped Results and Counts,
-GS-GRP-02,,A group shows up to five results (raised from three),Grouped Results and Counts,
-GS-GRP-03,,A 'Show all N' link appears when a group has more matches than are shown,Grouped Results and Counts,
-GS-GRP-04,,Clicking 'Show all N' switches the palette into that entity's scope tab,Grouped Results and Counts,
-GS-GRP-05,,"Groups appear in the fixed order Work Orders, Customers, Assets, Parts, Vendors, Part Sales",Grouped Results and Counts,
-GS-GRP-06,,The typed text is highlighted inside each matching result,Grouped Results and Counts,
-GS-GRP-07,,A screen reader announces the results count when it changes,Grouped Results and Counts,
-GS-ENT-01,,"A Work Order result shows number, customer, status badge, assignee and date",Per-Entity Result Shape,
-GS-ENT-02,,"A Customer result shows name, address and an open work-order count chip",Per-Entity Result Shape,
-GS-ENT-03,,An Asset result shows year/make/model and the owning customer,Per-Entity Result Shape,
-GS-ENT-04,,"A Part result shows description, part number and a quantity chip colored by stock level",Per-Entity Result Shape,
-GS-ENT-05,,A Vendor result shows the vendor name and address,Per-Entity Result Shape,
-GS-ENT-06,,"A Part Sale result shows the P-number, customer, status badge, total price and date",Per-Entity Result Shape,
-GS-ENT-07,,A customer or vendor matched on a phone or email shows 'Contact/info match',Per-Entity Result Shape,
-GS-ENT-08,,Work Order status badges use the correct colors,Per-Entity Result Shape,
-GS-FUZ-01,,A misspelled name still finds the record - 'Petersn' finds 'Peterson',Fuzzy Matching,
-GS-FUZ-02,,A misspelled name still finds the record - 'Abrige' finds 'Aabridge',Fuzzy Matching,
-GS-FUZ-03,,A transposed-letters query still finds the record - 'frieghtliner' finds 'Freightliner',Fuzzy Matching,
-GS-FUZ-04,,A phonetically-similar name still finds the record - 'Filbridge' finds 'Fibridge',Fuzzy Matching,
-GS-FUZ-05,,A Work Order number matches exactly with or without the dash or a space,Fuzzy Matching,
-GS-FUZ-06,,A VIN / serial number requires an exact match after normalization,Fuzzy Matching,
-GS-FUZ-07,,"A telephone number matches on digits only, ignoring formatting",Fuzzy Matching,
-GS-FUZ-08,,A part number requires an exact match after normalization,Fuzzy Matching,
-GS-FUZ-09,,Typos in identifier fields do NOT return fuzzy matches,Fuzzy Matching,
-GS-FUZ-10,,A soft (fuzzy) match is visually indicated,Fuzzy Matching,
-GS-FUZ-11,,A Part Sale P-number requires an exact match (no fuzzy typo tolerance),Fuzzy Matching,
-GS-RANK-01,,An exact identifier match is pinned as a single row at the very top,Ranking and Prioritization,
-GS-RANK-02,,"Within a group, more relevant results appear first",Ranking and Prioritization,
-GS-RANK-03,,In-stock parts rank above out-of-stock parts (out-of-stock not hidden),Ranking and Prioritization,
-GS-RANK-04,,"On a Customer page, that customer's assets and work orders are boosted",Ranking and Prioritization,
-GS-RANK-05,,"On a Work Order page, parts already on that work order are pushed down",Ranking and Prioritization,
-GS-EMPTY-01,,"First-time empty state shows the placeholder, helper text and three quick-create buttons",Empty and First-Time State,
-GS-EMPTY-02,,The quick-create buttons in the empty state start the matching create flow,Empty and First-Time State,
-GS-REC-01,,"Recent activity is grouped under Today, Yesterday, Past week and Past 30 days",Recent Activity Default State,
-GS-REC-02,,Recent activity mixes different entity types using the same row template,Recent Activity Default State,
-GS-REC-03,,Clicking a recent item opens that record,Recent Activity Default State,
-GS-PERS-01,,The typed query is retained in the header search field after the palette closes,Persisting Query,
-GS-PERS-02,,"Reopening the palette restores the last query, scope tab and result list",Persisting Query,
-GS-PERS-03,,The persisted query can be cleared with the clear (x) button,Persisting Query,
-GS-NORES-01,,No matches shows 'No results for <query>' plus the three quick-create buttons,No-Results State,
-GS-NORES-02,,A quick-create button in the no-results state starts the create flow,No-Results State,
-GS-HOVER-01,,Hovering a Work Order result shows an 'Add new line' action,Hover Quick-Actions,
-GS-HOVER-02,,Hovering an Asset result shows 'New work order' plus history and checklist icons,Hover Quick-Actions,
-GS-HOVER-03,,Hovering a Customer result shows 'New work order' (and 'New contact'),Hover Quick-Actions,
-GS-HOVER-04,,Hovering a catalog part result shows 'Add part',Hover Quick-Actions,
-GS-HOVER-05,,Hovering a Vendor result shows 'Add contact',Hover Quick-Actions,
-GS-HOVER-06,,Hovering an inventory part while editing a work order shows 'Add to work order',Hover Quick-Actions,
-GS-HOVER-07,,Hover quick-actions never trigger a destructive operation,Hover Quick-Actions,
-GS-LIST-01,,Searching the in-page Work Orders list filters the list and shows a matching banner,In-Page Work Orders List Search,
-GS-LIST-02,,'Clear search' restores the full in-page Work Orders list,In-Page Work Orders List Search,
-GS-ERR-01,,"A search failure shows the 'Search unavailable, retry' banner",Error State,
-GS-PERM-01,,A user WITH Parts access sees Parts results in the palette,Permissions and Role-Based Scoping,
-GS-PERM-02,,A technician WITHOUT Parts access does NOT see Parts results,Permissions and Role-Based Scoping,
-GS-PERM-03,,A user WITHOUT Work Orders access does NOT see Work Order results,Permissions and Role-Based Scoping,
-GS-PERM-04,,Results are limited to the signed-in user's own tenant,Permissions and Role-Based Scoping,
-GS-PERM-05,,An entity type with no accessible records shows no group (and its scope tab shows the empty state),Permissions and Role-Based Scoping,
-GS-API-01,,GET /api/search returns grouped results for scope=all,API - Global Search Endpoint,
-GS-API-02,,The scope parameter restricts GET /api/search to a single entity type,API - Global Search Endpoint,
-GS-API-03,,GET /api/search caps each group at the limit (default 5) and returns per-group totals,API - Global Search Endpoint,
-GS-API-04,,GET /api/search matches identifier fields exactly after normalization,API - Global Search Endpoint,
-GS-API-05,,GET /api/search does NOT apply fuzzy matching to identifier fields,API - Global Search Endpoint,
-GS-API-06,,GET /api/search enforces role-based access on the server (no forbidden entity results),API - Global Search Endpoint,
-GS-API-07,,GET /api/search returns an error response the UI can degrade on,API - Global Search Endpoint,
-GS-API-08,,GET /api/search groups results in the fixed group order with ranking metadata,API - Global Search Endpoint,
-GS-API-09,,GET /api/search supports cursor pagination for a scoped tab,API - Global Search Endpoint,
-GS-API-10,,The context parameter biases GET /api/search ranking to the current page,API - Global Search Endpoint,
-GS-API-11,,Recent-entities endpoints record and return recent activity,API - Global Search Endpoint,
-GS-API-12,,Search input is debounced before the backend is queried,API - Global Search Endpoint,
+GS-KEY-01,,Open the global search palette with the keyboard shortcut (K / Cmd+K),"Palette Open, Close and Keyboard",SV-9160 (PRD 5.1 Trigger and Surface; 8 Functional Requirements)
+GS-KEY-02,,Open the global search palette by clicking the header search field,"Palette Open, Close and Keyboard",SV-9160 (PRD 5.1 Trigger and Surface)
+GS-KEY-03,,Close the palette with the Esc key,"Palette Open, Close and Keyboard",SV-9160 (PRD 5.1; 5.5 Keyboard Navigation)
+GS-KEY-04,,Toggle the palette closed by pressing the shortcut again (Cmd+K),"Palette Open, Close and Keyboard","SV-9160 (PRD 5.1 (Esc, clicking underlay, or Cmd+K again closes it))"
+GS-KEY-05,,Close the palette by clicking the dimmed page behind it,"Palette Open, Close and Keyboard",SV-9160 (PRD 5.1 (clicking the page underlay closes it))
+GS-KEY-06,,"Move through result rows with the Up and Down arrow keys, skipping group headers","Palette Open, Close and Keyboard","SV-9160 (PRD 5.5 (Up/Down moves focus through visible rows, skipping group headers))"
+GS-KEY-07,,Open the highlighted result in the same tab by pressing Enter,"Palette Open, Close and Keyboard",SV-9160 (PRD 5.5 (Enter opens the focused row in the same tab))
+GS-KEY-08,,Open the highlighted result in a new browser tab with Cmd+Enter (Ctrl+Enter),"Palette Open, Close and Keyboard",SV-9160 (PRD 5.5 (Cmd+Enter or Ctrl+Enter opens in a new browser tab))
+GS-KEY-09,,"Move focus to the scope tab strip with Tab, then cycle tabs with Left and Right arrows","Palette Open, Close and Keyboard",SV-9160 (PRD 5.5 (Tab moves focus to the scope tab strip; Left/Right cycles tabs when focus is on the tab strip))
+GS-KEY-10,,The keyboard shortcut legend stays visible in the footer at all times,"Palette Open, Close and Keyboard",SV-9160 (PRD 5.1 (footer always shows the keyboard legend))
+GS-TAB-01,,The scope tab strip lists All plus the six entity tabs in the exact order,Scope Tabs,SV-9160 (PRD 5.2 State 3 (tab strip); design-notes cross-reference)
+GS-TAB-02,,The 'All' tab shows results from every entity group together,Scope Tabs,SV-9160 (PRD 5.2 State 3; 6.2 group order)
+GS-TAB-03,,The 'Work Orders' tab shows only Work Order results,Scope Tabs,SV-9160 (PRD 5.2 State 3 (selecting a tab scopes the query to that entity type))
+GS-TAB-04,,The 'Customers' tab shows only Customer results,Scope Tabs,SV-9160 (PRD 5.2 State 3)
+GS-TAB-05,,The 'Assets' tab shows only Asset (vehicle) results,Scope Tabs,SV-9160 (PRD 5.2 State 3)
+GS-TAB-06,,The 'Parts' tab shows only Part (inventory) results,Scope Tabs,SV-9160 (PRD 5.2 State 3)
+GS-TAB-07,,The 'Vendors' tab shows only Vendor results,Scope Tabs,SV-9160 (PRD 5.2 State 3)
+GS-TAB-08,,The 'Part Sales' tab shows only Part Sales results,Scope Tabs,SV-9160 (PRD 4 (Part Sales is a NEW searchable entity); 5.2 State 3)
+GS-GRP-01,,Each result group shows a heading with the total match count,Grouped Results and Counts,SV-9160 (PRD 5.2 State 3 (results grouped by entity type with a count))
+GS-GRP-02,,A group shows up to five results (raised from three),Grouped Results and Counts,SV-9160 (PRD 1 (old = 3 per category); 5.2 State 3 (up to 5 results))
+GS-GRP-03,,A 'Show all N' link appears when a group has more matches than are shown,Grouped Results and Counts,SV-9160 (PRD 5.2 State 3 ('Show all N work orders' link))
+GS-GRP-04,,Clicking 'Show all N' switches the palette into that entity's scope tab,Grouped Results and Counts,SV-9160 (PRD 5.2 (Show all switches to the scope tab - recommended); Open Question OQ-SPEC-1)
+GS-GRP-05,,"Groups appear in the fixed order Work Orders, Customers, Assets, Parts, Vendors, Part Sales",Grouped Results and Counts,SV-9160 (PRD 6.2 (group display order in 'All'))
+GS-GRP-06,,The typed text is highlighted inside each matching result,Grouped Results and Counts,SV-9160 (PRD 5.3 (matched substring highlighted))
+GS-GRP-07,,A screen reader announces the results count when it changes,Grouped Results and Counts,SV-9160 (PRD 9 Non-Functional (screen-reader announcements when results count changes; focus rings))
+GS-ENT-01,,"A Work Order result shows number, customer, status badge, assignee and date",Per-Entity Result Shape,"SV-9160 (PRD 4 Work Orders (Displayed: WO number + customer, status badge, lead technician, asset/unit, date))"
+GS-ENT-02,,"A Customer result shows name, address and an open work-order count chip",Per-Entity Result Shape,"SV-9160 (PRD 4 Customers (Displayed: name, address line, open WO count badge, telephone on hover))"
+GS-ENT-03,,An Asset result shows year/make/model and the owning customer,Per-Entity Result Shape,"SV-9160 (PRD 4 Assets (Displayed: year + make + model primary, customer name secondary))"
+GS-ENT-04,,"A Part result shows description, part number and a quantity chip colored by stock level",Per-Entity Result Shape,"SV-9160 (PRD 4 Parts (Displayed: description, part number, total quantity with stock-status color))"
+GS-ENT-05,,A Vendor result shows the vendor name and address,Per-Entity Result Shape,"SV-9160 (PRD 4 Vendors (Displayed: vendor name primary, address line secondary))"
+GS-ENT-06,,"A Part Sale result shows the P-number, customer, status badge, total price and date",Per-Entity Result Shape,"SV-9160 (PRD 4 Part Sales (Displayed: P-number + customer primary, status badge, total price + created date))"
+GS-ENT-07,,A customer or vendor matched on a phone or email shows 'Contact/info match',Per-Entity Result Shape,SV-9160 (PRD 4 (secondary line shows 'Contact/info match'))
+GS-ENT-08,,Work Order status badges use the correct colors,Per-Entity Result Shape,"SV-9160 (PRD 5.3 (status badge colors, same tokens as the WO list))"
+GS-FUZ-01,,A misspelled name still finds the record - 'Petersn' finds 'Peterson',Fuzzy Matching,SV-9160 (PRD 7 (token n-gram / trigram matching catches Petersn -> Peterson))
+GS-FUZ-02,,A misspelled name still finds the record - 'Abrige' finds 'Aabridge',Fuzzy Matching,SV-9160 (PRD 1 + 10 Phase 5 (fuzzy query 'Abrige'))
+GS-FUZ-03,,A transposed-letters query still finds the record - 'frieghtliner' finds 'Freightliner',Fuzzy Matching,SV-9160 (PRD 7 (Damerau-Levenshtein; freihgtliner -> freightliner))
+GS-FUZ-04,,A phonetically-similar name still finds the record - 'Filbridge' finds 'Fibridge',Fuzzy Matching,SV-9160 (PRD 7 (phonetic fallback catches Filbridge -> Fibridge))
+GS-FUZ-05,,A Work Order number matches exactly with or without the dash or a space,Fuzzy Matching,SV-9160 (PRD 7 (S2-15276 = s215276); identifier fields are exact-only)
+GS-FUZ-06,,A VIN / serial number requires an exact match after normalization,Fuzzy Matching,"SV-9160 (PRD 7 (What is NOT fuzzy: VIN, WO number, P-number, part number - exact match after normalization))"
+GS-FUZ-07,,"A telephone number matches on digits only, ignoring formatting",Fuzzy Matching,SV-9160 (PRD 7 (phone normalization); 4 (Contact/info match affordance))
+GS-FUZ-08,,A part number requires an exact match after normalization,Fuzzy Matching,SV-9160 (PRD 7 (What is NOT fuzzy: part number))
+GS-FUZ-09,,Typos in identifier fields do NOT return fuzzy matches,Fuzzy Matching,SV-9160 (PRD 7 (exact identifier fields bypass fuzzy logic))
+GS-FUZ-10,,A soft (fuzzy) match is visually indicated,Fuzzy Matching,"SV-9160 (PRD 7 (fuzzy soft-match highlight treatment - design polish, confirm with design))"
+GS-FUZ-11,,A Part Sale P-number requires an exact match (no fuzzy typo tolerance),Fuzzy Matching,"SV-9160 (PRD 7 (What is NOT fuzzy: VIN, WO number, P-number, part number - exact match after normalization))"
+GS-RANK-01,,An exact identifier match is pinned as a single row at the very top,Ranking and Prioritization,SV-9160 (PRD 6.2 (ID match > 0.95 pinned at top))
+GS-RANK-02,,"Within a group, more relevant results appear first",Ranking and Prioritization,"SV-9160 (PRD 6.1 Work Orders signals (open status +0.30, recency, assigned/viewed, old-closed demoted))"
+GS-RANK-03,,In-stock parts rank above out-of-stock parts (out-of-stock not hidden),Ranking and Prioritization,SV-9160 (PRD 6.1 Parts signals)
+GS-RANK-04,,"On a Customer page, that customer's assets and work orders are boosted",Ranking and Prioritization,SV-9160 (PRD 6.3 Contextual bias)
+GS-RANK-05,,"On a Work Order page, parts already on that work order are pushed down",Ranking and Prioritization,SV-9160 (PRD 6.3 Contextual bias)
+GS-EMPTY-01,,"First-time empty state shows the placeholder, helper text and three quick-create buttons",Empty and First-Time State,SV-9160 (PRD 5.2 State 1 (First-time search))
+GS-EMPTY-02,,The quick-create buttons in the empty state start the matching create flow,Empty and First-Time State,SV-9160 (PRD 5.2 State 1 (quick-create chips))
+GS-REC-01,,"Recent activity is grouped under Today, Yesterday, Past week and Past 30 days",Recent Activity Default State,SV-9160 (PRD 5.2 State 2 (Recent searches grouped by interval); 8 (persist recent-entity-views 30 days))
+GS-REC-02,,Recent activity mixes different entity types using the same row template,Recent Activity Default State,SV-9160 (PRD 5.2 State 2 (same row template as a result row))
+GS-REC-03,,Clicking a recent item opens that record,Recent Activity Default State,SV-9160 (PRD 10 Phase 4 (records a touch on every result click / entity-page visit))
+GS-PERS-01,,The typed query is retained in the header search field after the palette closes,Persisting Query,"SV-9160 (PRD 5.2 State 5 (Persisting search); 8 (persist last query, rehydrate on reopen))"
+GS-PERS-02,,"Reopening the palette restores the last query, scope tab and result list",Persisting Query,"SV-9160 (PRD 5.2 State 5 (Reopening restores the query, the scope tab, and the result list))"
+GS-PERS-03,,The persisted query can be cleared with the clear (x) button,Persisting Query,SV-9160 (PRD 5.2 State 5; design-notes screenshot 9 (clearable via the x button))
+GS-NORES-01,,No matches shows 'No results for <query>' plus the three quick-create buttons,No-Results State,SV-9160 (PRD 5.2 State 4 (No results for <query> + quick-create chips))
+GS-NORES-02,,A quick-create button in the no-results state starts the create flow,No-Results State,SV-9160 (PRD 5.2 State 4)
+GS-HOVER-01,,Hovering a Work Order result shows an 'Add new line' action,Hover Quick-Actions,"SV-9160 (PRD 5.4 (Work Order -> 'Add new line', only when currently editing a WO elsewhere))"
+GS-HOVER-02,,Hovering an Asset result shows 'New work order' plus history and checklist icons,Hover Quick-Actions,SV-9160 (PRD 5.4 (Asset -> 'New work order' + clock (history) and Invoice icons))
+GS-HOVER-03,,Hovering a Customer result shows 'New work order' (and 'New contact'),Hover Quick-Actions,"SV-9160 (PRD 5.4 (Customer -> 'New work order', 'New contact'))"
+GS-HOVER-04,,Hovering a catalog part result shows 'Add part',Hover Quick-Actions,SV-9160 (PRD 5.4 (Part -> 'Add part' when not currently editing a WO))
+GS-HOVER-05,,Hovering a Vendor result shows 'Add contact',Hover Quick-Actions,SV-9160 (PRD 5.4 (Vendor -> 'Add contact'))
+GS-HOVER-06,,Hovering an inventory part while editing a work order shows 'Add to work order',Hover Quick-Actions,SV-9160 (PRD 5.4 (Part -> 'Add to work order' only when currently editing a WO))
+GS-HOVER-07,,Hover quick-actions never trigger a destructive operation,Hover Quick-Actions,SV-9160 (PRD 5.4 (Quick actions never trigger destructive operations; hover state non-essential))
+GS-LIST-01,,Searching the in-page Work Orders list filters the list and shows a matching banner,In-Page Work Orders List Search,SV-9160 (PRD design-notes screenshot 1 (in-page Work Orders list search banner))
+GS-LIST-02,,'Clear search' restores the full in-page Work Orders list,In-Page Work Orders List Search,SV-9160 (PRD design-notes screenshot 1)
+GS-ERR-01,,"A search failure shows the 'Search unavailable, retry' banner",Error State,"SV-9160 (PRD 8 (tolerate offline/network failures with an inline 'Search unavailable, retry' banner))"
+GS-PERM-01,,A user WITH Parts access sees Parts results in the palette,Permissions and Role-Based Scoping,SV-9160 (PRD 9 (all result fields respect role-based-access checks))
+GS-PERM-02,,A technician WITHOUT Parts access does NOT see Parts results,Permissions and Role-Based Scoping,SV-9160 (PRD 9 (a technician without Parts access does not see Parts results))
+GS-PERM-03,,A user WITHOUT Work Orders access does NOT see Work Order results,Permissions and Role-Based Scoping,SV-9160 (PRD 9 (all result fields respect role-based-access checks))
+GS-PERM-04,,Results are limited to the signed-in user's own tenant,Permissions and Role-Based Scoping,SV-9160 (PRD 9 (all result fields respect existing tenant-isolation checks))
+GS-PERM-05,,An entity type with no accessible records shows no group (and its scope tab shows the empty state),Permissions and Role-Based Scoping,"SV-9160 (PRD 9 (must work for a single-tenant dataset where any entity type is empty, e.g. no part sales yet))"
+GS-API-01,,GET /api/search returns grouped results for scope=all,API - Global Search Endpoint,SV-9160 (PRD 10 Phase 1 (GET /api/search; scope=all))
+GS-API-02,,The scope parameter restricts GET /api/search to a single entity type,API - Global Search Endpoint,SV-9160 (PRD 10 Phase 1 (scope parameter))
+GS-API-03,,GET /api/search caps each group at the limit (default 5) and returns per-group totals,API - Global Search Endpoint,SV-9160 (PRD 10 Phase 1 (limit default 5; response includes per-group totals))
+GS-API-04,,GET /api/search matches identifier fields exactly after normalization,API - Global Search Endpoint,SV-9160 (PRD 7 (identifier normalization); 6.2 (ID match pinned))
+GS-API-05,,GET /api/search does NOT apply fuzzy matching to identifier fields,API - Global Search Endpoint,SV-9160 (PRD 7 (What is NOT fuzzy))
+GS-API-06,,GET /api/search enforces role-based access on the server (no forbidden entity results),API - Global Search Endpoint,SV-9160 (PRD 9 (results respect role-based-access checks - enforced server-side))
+GS-API-07,,GET /api/search returns an error response the UI can degrade on,API - Global Search Endpoint,SV-9160 (PRD 8 (offline/network failure handling))
+GS-API-08,,GET /api/search groups results in the fixed group order with ranking metadata,API - Global Search Endpoint,SV-9160 (PRD 6.2 (group order); 10 Phase 1 (per-item metadata))
+GS-API-09,,GET /api/search supports cursor pagination for a scoped tab,API - Global Search Endpoint,SV-9160 (PRD 10 Phase 1 (cursor parameter))
+GS-API-10,,The context parameter biases GET /api/search ranking to the current page,API - Global Search Endpoint,SV-9160 (PRD 6.3 (contextual bias); 10 Phase 1 (context parameter))
+GS-API-11,,Recent-entities endpoints record and return recent activity,API - Global Search Endpoint,SV-9160 (PRD 8 (persist recent-entity-views 30 days); 10 Phase 4)
+GS-API-12,,Search input is debounced before the backend is queried,API - Global Search Endpoint,SV-9160 (PRD 8 (debounce input at 150ms; render within 200ms p95))
 GS-CON-01,,Contacts are a searchable entity with their own result row and tab,Contacts Entity (v2),SV-9162 (FR-002); SV-9170 (FR-014)
 GS-PO-01,,Purchase Orders searchable; real number format; Receive quick action,Purchase Orders Entity (v2),SV-9162 (FR-002); SV-9173 (FR-021)
 GS-VI-01,,Vendor Invoices searchable; tri-state payment badge; no quick action,Vendor Invoices Entity (v2),SV-9162 (FR-002); SV-9170 (FR-014)

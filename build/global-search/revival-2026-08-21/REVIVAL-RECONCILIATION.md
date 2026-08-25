@@ -42,3 +42,11 @@ Cicovic**.
 1. Confirm the **retire/rewrite set** for the 13 flagged v1 cases (Show-all, ask-a-question, 6-entity
    scope) so I can finish the rewrite in one pass.
 2. Answer the PO questions (PO-GS-1..4) — several are Product's own pending edits.
+
+## Correction 2026-08-21 (QA-lead caught)
+The 86 legacy cases (authored 2026-07-16, before the provenance/marker conventions existed) were shipped
+WITHOUT the Rule-54 provenance line or the Rule-15 `AUTOMATION:` marker — only the 11 new v2 cases had
+them. Fixed: all 86 stamped with a two-sentence-safe provenance line (PRD page 576978945 section <anchor>
+read 16 July 2026; epic SV-9160 read 21 August 2026) and the Rule-85 deferred marker; missing `refs`
+backfilled to `SV-9160 (PRD <anchor>)`. All 97 now carry provenance + exactly one marker + refs. Import +
+id-map regenerated. (Content-level v1->v2 rewrite of the 13 superseded cases remains PO-GS-4.)
