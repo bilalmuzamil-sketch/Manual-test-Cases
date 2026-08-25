@@ -4,14 +4,14 @@
 
 ## Identity
 - **Epic:** SV-8218 (owner/assignee Chris Ward) · **PO:** Chris Ward
-- **Spec:** Confluence **755990532**, live **v38** (as of 2026-08-21); tech plan built against **v36**
+- **Spec:** Confluence **755990532**, live **v39** (as of 2026-08-25; authored at v38, re-verified at v39 — delta non-substantive); tech plan built against **v36**
 - **Design:** Claude artifact `c88ee207-3197-4f54-8cb9-bac3deb84354` (binding visual reference; static export held)
 - **Tech plan:** `intake-2026-08-21/sources/tech-plan-2026-08-12.md` (Symfony/Twig→WeasyPrint + Vue/Quasar)
 - **Git dev branch (theirs):** `project/invoice-ui-refresh` · **QA env:** none yet (feature Not started)
 - **Case source:** `build/invoice-ui-refresh/cases/` · internal ID prefix **INV** (`INV-<AREA>-NN`)
 - **TestRail target:** **UNCONFIRMED** — proposed: new "Invoice UI Refresh" section, suite 1
 
-## Scope (from spec v38)
+## Scope (from spec v39; unchanged from v38)
 - **13 stories**, **109 rule IDs** (S1–S13 + G-R1). Documents: Estimate · Invoice (paid = receipt) ·
   Credit Invoice · Parts Sale Estimate · Parts Sale Invoice.
 - Epic children: 12 named (SV-9140–9151) + SV-9195 (Story 13) + SV-9193 (batch/imported, **deferred**) +
@@ -24,8 +24,11 @@
 - **Ruthless Usefulness Audit:** 87/87 KEEP (2 WEAK-KEEP), 0 CUT, 0 NONSENSE, 0 unresolved contradictions.
 - **Rule-85 project:** every case SOURCE-VERIFIED ONLY - NO BUILD EXISTS YET (deferred automation marker).
 - **NO TestRail writes. NO Jira. Nothing pushed** (id-map C-IDs blank). Import file ready for the QA lead.
-- **Open PO questions:** PO-1 (Credit Balance S11-R6a vs stale Terminology §6) · PO-2 (un-logged spec v38 edit 2026-08-13).
+- **Open PO questions:** PO-1 (Credit Balance S11-R6a vs stale Terminology §6) · PO-2 (un-logged spec edits 2026-08-13 [v38] and ~2026-08-25 [v39]; the v39 one verified cosmetic). Refreshed sheet: questions-2026-08-25/.
 - **Reconciliation:** local active 87 = id-map 87 = import 87; id-map refs 87/87; set-equal both ways.
+
+## Status — 2026-08-25 (reconciliation pass)
+- Re-supplied design + tech plan are IDENTICAL to authoring inputs (design content byte-identical; tech plan md5-identical). PRD moved **v38→v39**, delta non-substantive (Slack-link row only). **No case content changed**; provenance re-stamped v38→v39 on all 87; import regenerated (0 shredded, 87/87). Detail: reconcile-2026-08-25/RECONCILIATION-2026-08-25.md.
 
 
 ## How to resume (ordered)

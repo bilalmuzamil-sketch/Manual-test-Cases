@@ -1,13 +1,3 @@
-# Invoice UI Refresh — Requirements (ingested)
-
-**Source:** Confluence page 755990532, **version 39** (live as of 2026-08-25), read 2026-08-21 at v38 and re-verified 2026-08-25 at v39.
-**Epic:** SV-8218 · **PO:** Chris Ward · **Tech plan:** built against v36 (2026-08-12) — v36→v38 delta reconciled at authoring start; v38→v39 delta reconciled 2026-08-25 (non-substantive: Slack-channel link added to header table; no story/rule/wording change).
-**Design:** Claude Design Document artifact c88ee207-3197-4f54-8cb9-bac3deb84354 (binding visual reference; static export held in intake-2026-08-21/sources/).
-
-The complete spec body as ingested at v38 follows verbatim (unchanged in v39 except a Slack-channel link in the header table; the v39 body is stored at intake-2026-08-21/sources/spec-body-confluence-v39-755990532.md).
-
----
-
 |  |  |
 | --- | --- |
 | **Epic** | [SV-8218](https://shopview.atlassian.net/browse/SV-8218) |
@@ -15,6 +5,7 @@ The complete spec body as ingested at v38 follows verbatim (unchanged in v39 exc
 | **Status** | Ready to build |
 | **Documents covered** | Estimate, Invoice (a fully paid Invoice serves as the receipt), Credit Invoice |
 | **Design** | [Design Document](https://claude.ai/code/artifact/c88ee207-3197-4f54-8cb9-bac3deb84354) |
+| **Slack Channel** | <custom data-type="smartlink" data-id="id-0">https://shopview.slack.com/archives/C0BRRDKH10W</custom>  |
 
 # Customer Documents — Product Spec
 
@@ -566,4 +557,3 @@ _\* Context note: the Credit Invoice does not carry the asset, order, or work in
 | 2026-08-12 | @claude | Follow-up ticket for the batch and imported invoice templates created and linked: [SV-9193](https://shopview.atlassian.net/browse/SV-9193) (Story under SV-8218, spec-first with the shared-partials guardrail). | Closes the "follow-up ticket to come" loose end. |
 | 2026-08-12 | @chris / @claude | Credit Invoice Balance finalized with engineering: Balance reads the open balance (original minus refunded minus applied) in every status, $0.00 once consumed or voided (S11-R6a and the status table rewritten; the engineering confirmation clause resolved). Showing the open balance on no-refund memos is deliberate net-new; production prints $0.00 there today. Story 13 Jira placeholder pointed at SV-9195. | Milan reply, 2026-08-12; option (b) chosen. |
 | 2026-08-12 | @chris / @claude | Visual standard locked to the reviewed Design Document (CEO pass): new S12-R8 (work-section rules: 2px ink opener, 1px ink between jobs, #EEF2F6 row dividers, no underline under Labor/Parts labels, divider follows a line's last adjustment row) and S12-R9 (three-tier section-label hierarchy with exact sizes/weights/inks); S12-R2 palette gains the #EEF2F6 row-divider grey and S12-R4 gains the 750 label weight so both closed sets stay accurate. | Design review with CEO, 2026-08-12. |
-
