@@ -1,0 +1,124 @@
+[
+  {
+    "id": "PFWO-FMT-01",
+    "area": "Printer Friendly Work Orders - Print Formatting",
+    "title": "All interactive and navigation elements are hidden on the printout",
+    "priority": "Medium",
+    "type": "Functional",
+    "permissions_required": "View Work Order (no new permission introduced)",
+    "preconditions": [
+      "You have triggered Print Work Order from the work order detail view (print view rendered)."
+    ],
+    "steps": [
+      "Inspect the printout for application chrome and interactive controls."
+    ],
+    "expected": "1. The following are hidden: application navigation (sidebar, top bar, breadcrumbs); all action buttons (Print, New Line, Reviewed, Send to Portal, etc.); tab navigation (Lines, Part Requests, Notes, Time Sheets, etc.); context menus and dropdown triggers; status change buttons and workflow actions on line items; clock in/out buttons; the Progress column and progress bars; the Action column; and any floating UI elements (tooltips, popovers, modals).\n\n---\nThis is the expected behaviour as per epic SV-9383 and story SV-9388 (Story 5, Print Formatting - Screen Elements Hidden) and the Printer Friendly Work Orders specification version 8, section S5-R1, read on 25 August 2026.\n\nAUTOMATION: Not available on Build to test Yet - Last checked 8/25/2026",
+    "design_ref": "No design exists yet (PRD marks Design: TBD on every story); authored from PRD text.",
+    "spec_ref": "requirements.md (Printer Friendly Work Orders spec v8)",
+    "refs": "SV-9388 (S5-R1)",
+    "viu_status": "source-verified-only",
+    "notes": ""
+  },
+  {
+    "id": "PFWO-FMT-02",
+    "area": "Printer Friendly Work Orders - Print Formatting",
+    "title": "Printout uses black text on white regardless of theme",
+    "priority": "Medium",
+    "type": "Functional",
+    "permissions_required": "View Work Order (no new permission introduced)",
+    "preconditions": [
+      "You have triggered Print Work Order from the work order detail view (print view rendered).",
+      "Your app theme is set to dark mode."
+    ],
+    "steps": [
+      "Trigger print and review the rendered print view."
+    ],
+    "expected": "1. The printout uses black text on a white background regardless of the user's theme.\n\n---\nThis is the expected behaviour as per epic SV-9383 and story SV-9388 (Story 5, Print Formatting - Screen Elements Hidden) and the Printer Friendly Work Orders specification version 8, section S5-R2, read on 25 August 2026.\n\nAUTOMATION: Not available on Build to test Yet - Last checked 8/25/2026",
+    "design_ref": "No design exists yet (PRD marks Design: TBD on every story); authored from PRD text.",
+    "spec_ref": "requirements.md (Printer Friendly Work Orders spec v8)",
+    "refs": "SV-9388 (S5-R2)",
+    "viu_status": "source-verified-only",
+    "notes": ""
+  },
+  {
+    "id": "PFWO-FMT-03",
+    "area": "Printer Friendly Work Orders - Print Formatting",
+    "title": "Text is sized for comfortable reading on paper",
+    "priority": "Medium",
+    "type": "Functional",
+    "permissions_required": "View Work Order (no new permission introduced)",
+    "preconditions": [
+      "You have triggered Print Work Order from the work order detail view (print view rendered)."
+    ],
+    "steps": [
+      "Review the text size on the printout."
+    ],
+    "expected": "1. Text is sized for comfortable reading on paper (no smaller than a 10pt equivalent).\n\n---\nThis is the expected behaviour as per epic SV-9383 and story SV-9388 (Story 5, Print Formatting - Screen Elements Hidden) and the Printer Friendly Work Orders specification version 8, section S5-R3, read on 25 August 2026.\n\nAUTOMATION: Not available on Build to test Yet - Last checked 8/25/2026",
+    "design_ref": "No design exists yet (PRD marks Design: TBD on every story); authored from PRD text.",
+    "spec_ref": "requirements.md (Printer Friendly Work Orders spec v8)",
+    "refs": "SV-9388 (S5-R3)",
+    "viu_status": "source-verified-only",
+    "notes": ""
+  },
+  {
+    "id": "PFWO-FMT-04",
+    "area": "Printer Friendly Work Orders - Print Formatting",
+    "title": "Layout is optimized for portrait US Letter or A4",
+    "priority": "Medium",
+    "type": "Functional",
+    "permissions_required": "View Work Order (no new permission introduced)",
+    "preconditions": [
+      "You have triggered Print Work Order from the work order detail view (print view rendered)."
+    ],
+    "steps": [
+      "Print with portrait orientation on US Letter or A4 paper and review the layout."
+    ],
+    "expected": "1. The layout is optimized for portrait orientation on US Letter or A4 paper.\n\n---\nThis is the expected behaviour as per epic SV-9383 and story SV-9388 (Story 5, Print Formatting - Screen Elements Hidden) and the Printer Friendly Work Orders specification version 8, section S5-R4, read on 25 August 2026.\n\nAUTOMATION: Not available on Build to test Yet - Last checked 8/25/2026",
+    "design_ref": "No design exists yet (PRD marks Design: TBD on every story); authored from PRD text.",
+    "spec_ref": "requirements.md (Printer Friendly Work Orders spec v8)",
+    "refs": "SV-9388 (S5-R4)",
+    "viu_status": "source-verified-only",
+    "notes": ""
+  },
+  {
+    "id": "PFWO-FMT-05",
+    "area": "Printer Friendly Work Orders - Print Formatting",
+    "title": "Status badges print as plain text labels not colored chips",
+    "priority": "Medium",
+    "type": "Functional",
+    "permissions_required": "View Work Order (no new permission introduced)",
+    "preconditions": [
+      "You have triggered Print Work Order from the work order detail view (print view rendered).",
+      "The work order has at least one line item."
+    ],
+    "steps": [
+      "Inspect the status badges on the printout."
+    ],
+    "expected": "1. Status badges print as plain text labels (not colored chips) to ensure readability on black-and-white printers.\n\n---\nThis is the expected behaviour as per epic SV-9383 and story SV-9388 (Story 5, Print Formatting - Screen Elements Hidden) and the Printer Friendly Work Orders specification version 8, section S5-R5, read on 25 August 2026.\n\nAUTOMATION: Not available on Build to test Yet - Last checked 8/25/2026",
+    "design_ref": "No design exists yet (PRD marks Design: TBD on every story); authored from PRD text.",
+    "spec_ref": "requirements.md (Printer Friendly Work Orders spec v8)",
+    "refs": "SV-9388 (S5-R5)",
+    "viu_status": "source-verified-only",
+    "notes": ""
+  },
+  {
+    "id": "PFWO-FMT-06",
+    "area": "Printer Friendly Work Orders - Print Formatting",
+    "title": "Landscape orientation remains readable without clipping",
+    "priority": "Medium",
+    "type": "Functional",
+    "permissions_required": "View Work Order (no new permission introduced)",
+    "preconditions": [
+      "You have triggered Print Work Order from the work order detail view (print view rendered)."
+    ],
+    "steps": [
+      "Manually select landscape orientation in the browser print dialog and review the layout."
+    ],
+    "expected": "1. The layout remains readable; content does not overflow or clip.\n\n---\nThis is the expected behaviour as per epic SV-9383 and story SV-9388 (Story 5, Print Formatting - Screen Elements Hidden) and the Printer Friendly Work Orders specification version 8, section S5-E1, read on 25 August 2026.\n\nAUTOMATION: Not available on Build to test Yet - Last checked 8/25/2026",
+    "design_ref": "No design exists yet (PRD marks Design: TBD on every story); authored from PRD text.",
+    "spec_ref": "requirements.md (Printer Friendly Work Orders spec v8)",
+    "refs": "SV-9388 (S5-E1)",
+    "viu_status": "source-verified-only",
+    "notes": ""
+  }
+]

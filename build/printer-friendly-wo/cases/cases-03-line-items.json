@@ -1,0 +1,275 @@
+[
+  {
+    "id": "PFWO-LINE-01",
+    "area": "Printer Friendly Work Orders - Print Layout Line Items",
+    "title": "Each line shows number, description, status, time, story and techs",
+    "priority": "Medium",
+    "type": "Functional",
+    "permissions_required": "View Work Order (no new permission introduced)",
+    "preconditions": [
+      "You have triggered Print Work Order from the work order detail view (print view rendered).",
+      "The work order has at least one line item."
+    ],
+    "steps": [
+      "Read a line item on the printout."
+    ],
+    "expected": "1. Each line item displays: line number; line description (name); line status; actual time / estimated time; tech story (if one exists); and assigned technician(s) (if assigned).\n\n---\nThis is the expected behaviour as per epic SV-9383 and story SV-9386 (Story 3, Print Layout - Line Items) and the Printer Friendly Work Orders specification version 8, section S3-R1, read on 25 August 2026.\n\nAUTOMATION: Not available on Build to test Yet - Last checked 8/25/2026",
+    "design_ref": "No design exists yet (PRD marks Design: TBD on every story); authored from PRD text.",
+    "spec_ref": "requirements.md (Printer Friendly Work Orders spec v8)",
+    "refs": "SV-9386 (S3-R1)",
+    "viu_status": "source-verified-only",
+    "notes": ""
+  },
+  {
+    "id": "PFWO-LINE-02",
+    "area": "Printer Friendly Work Orders - Print Layout Line Items",
+    "title": "Parts under a line show description, part number and quantity",
+    "priority": "Medium",
+    "type": "Functional",
+    "permissions_required": "View Work Order (no new permission introduced)",
+    "preconditions": [
+      "You have triggered Print Work Order from the work order detail view (print view rendered).",
+      "A line on the work order has parts."
+    ],
+    "steps": [
+      "Read the parts listed under a line on the printout."
+    ],
+    "expected": "1. Parts associated with each line are listed showing: part description, part number, and quantity.\n\n---\nThis is the expected behaviour as per epic SV-9383 and story SV-9386 (Story 3, Print Layout - Line Items) and the Printer Friendly Work Orders specification version 8, section S3-R2, read on 25 August 2026.\n\nAUTOMATION: Not available on Build to test Yet - Last checked 8/25/2026",
+    "design_ref": "No design exists yet (PRD marks Design: TBD on every story); authored from PRD text.",
+    "spec_ref": "requirements.md (Printer Friendly Work Orders spec v8)",
+    "refs": "SV-9386 (S3-R2)",
+    "viu_status": "source-verified-only",
+    "notes": ""
+  },
+  {
+    "id": "PFWO-LINE-03",
+    "area": "Printer Friendly Work Orders - Print Layout Line Items",
+    "title": "Pricing is never shown on line items",
+    "priority": "Medium",
+    "type": "Functional",
+    "permissions_required": "View Work Order (no new permission introduced)",
+    "preconditions": [
+      "You have triggered Print Work Order from the work order detail view (print view rendered).",
+      "The work order has at least one line item."
+    ],
+    "steps": [
+      "Inspect the line items and parts on the printout for any pricing."
+    ],
+    "expected": "1. No pricing is shown — no labor rates, margins, line totals, part sell prices, or part margins.\n2. The Rate, Margin, and Total columns are removed entirely.\n\n---\nThis is the expected behaviour as per epic SV-9383 and story SV-9386 (Story 3, Print Layout - Line Items) and the Printer Friendly Work Orders specification version 8, section S3-R3, read on 25 August 2026.\n\nAUTOMATION: Not available on Build to test Yet - Last checked 8/25/2026",
+    "design_ref": "No design exists yet (PRD marks Design: TBD on every story); authored from PRD text.",
+    "spec_ref": "requirements.md (Printer Friendly Work Orders spec v8)",
+    "refs": "SV-9386 (S3-R3)",
+    "viu_status": "source-verified-only",
+    "notes": ""
+  },
+  {
+    "id": "PFWO-LINE-04",
+    "area": "Printer Friendly Work Orders - Print Layout Line Items",
+    "title": "Action and Progress columns are removed from the printout",
+    "priority": "Medium",
+    "type": "Functional",
+    "permissions_required": "View Work Order (no new permission introduced)",
+    "preconditions": [
+      "You have triggered Print Work Order from the work order detail view (print view rendered).",
+      "The work order has at least one line item."
+    ],
+    "steps": [
+      "Inspect the line items on the printout."
+    ],
+    "expected": "1. The Action column (Approve, Decline, Complete buttons) and the Progress column (progress bars) are removed; the line status text column is present instead.\n\n---\nThis is the expected behaviour as per epic SV-9383 and story SV-9386 (Story 3, Print Layout - Line Items) and the Printer Friendly Work Orders specification version 8, section S3-R4, read on 25 August 2026.\n\nAUTOMATION: Not available on Build to test Yet - Last checked 8/25/2026",
+    "design_ref": "No design exists yet (PRD marks Design: TBD on every story); authored from PRD text.",
+    "spec_ref": "requirements.md (Printer Friendly Work Orders spec v8)",
+    "refs": "SV-9386 (S3-R4)",
+    "viu_status": "source-verified-only",
+    "notes": ""
+  },
+  {
+    "id": "PFWO-LINE-05",
+    "area": "Printer Friendly Work Orders - Print Layout Line Items",
+    "title": "Lines print in the same order as on screen",
+    "priority": "Medium",
+    "type": "Functional",
+    "permissions_required": "View Work Order (no new permission introduced)",
+    "preconditions": [
+      "You have triggered Print Work Order from the work order detail view (print view rendered).",
+      "The work order has multiple lines."
+    ],
+    "steps": [
+      "Compare the line order on the printout with the on-screen order."
+    ],
+    "expected": "1. Lines are printed in the same order they appear on screen (by line number).\n\n---\nThis is the expected behaviour as per epic SV-9383 and story SV-9386 (Story 3, Print Layout - Line Items) and the Printer Friendly Work Orders specification version 8, section S3-R5, read on 25 August 2026.\n\nAUTOMATION: Not available on Build to test Yet - Last checked 8/25/2026",
+    "design_ref": "No design exists yet (PRD marks Design: TBD on every story); authored from PRD text.",
+    "spec_ref": "requirements.md (Printer Friendly Work Orders spec v8)",
+    "refs": "SV-9386 (S3-R5)",
+    "viu_status": "source-verified-only",
+    "notes": ""
+  },
+  {
+    "id": "PFWO-LINE-06",
+    "area": "Printer Friendly Work Orders - Print Layout Line Items",
+    "title": "Cancelled lines still print if visible on screen",
+    "priority": "Medium",
+    "type": "Functional",
+    "permissions_required": "View Work Order (no new permission introduced)",
+    "preconditions": [
+      "You have triggered Print Work Order from the work order detail view (print view rendered).",
+      "The work order has a line with a Cancelled status that is visible on screen."
+    ],
+    "steps": [
+      "Read the printout for the cancelled line."
+    ],
+    "expected": "1. Line items with a status of “Cancelled” still appear on the printout if they are visible on screen, with their status clearly indicated.\n\n---\nThis is the expected behaviour as per epic SV-9383 and story SV-9386 (Story 3, Print Layout - Line Items) and the Printer Friendly Work Orders specification version 8, section S3-R6, read on 25 August 2026.\n\nAUTOMATION: Not available on Build to test Yet - Last checked 8/25/2026",
+    "design_ref": "No design exists yet (PRD marks Design: TBD on every story); authored from PRD text.",
+    "spec_ref": "requirements.md (Printer Friendly Work Orders spec v8)",
+    "refs": "SV-9386 (S3-R6)",
+    "viu_status": "source-verified-only",
+    "notes": ""
+  },
+  {
+    "id": "PFWO-LINE-07",
+    "area": "Printer Friendly Work Orders - Print Layout Line Items",
+    "title": "Line groups are separated by a thick border and note space",
+    "priority": "Medium",
+    "type": "Functional",
+    "permissions_required": "View Work Order (no new permission introduced)",
+    "preconditions": [
+      "You have triggered Print Work Order from the work order detail view (print view rendered).",
+      "The work order has multiple lines."
+    ],
+    "steps": [
+      "Look at the separation between one line group and the next on the printout."
+    ],
+    "expected": "1. Each work order line group (main line plus its sub-rows for tech story, labor, parts, inspections) is visually separated from the next by a thick border and blank space below, giving room to write notes per line.\n\n---\nThis is the expected behaviour as per epic SV-9383 and story SV-9386 (Story 3, Print Layout - Line Items) and the Printer Friendly Work Orders specification version 8, section S3-R7, read on 25 August 2026.\n\nAUTOMATION: Not available on Build to test Yet - Last checked 8/25/2026",
+    "design_ref": "No design exists yet (PRD marks Design: TBD on every story); authored from PRD text.",
+    "spec_ref": "requirements.md (Printer Friendly Work Orders spec v8)",
+    "refs": "SV-9386 (S3-R7)",
+    "viu_status": "source-verified-only",
+    "notes": ""
+  },
+  {
+    "id": "PFWO-LINE-08",
+    "area": "Printer Friendly Work Orders - Print Layout Line Items",
+    "title": "Empty tech story row is omitted with no placeholder",
+    "priority": "Medium",
+    "type": "Functional",
+    "permissions_required": "View Work Order (no new permission introduced)",
+    "preconditions": [
+      "You have triggered Print Work Order from the work order detail view (print view rendered).",
+      "At least one line has no tech story."
+    ],
+    "steps": [
+      "Read a line that has no tech story on the printout."
+    ],
+    "expected": "1. The tech story row is omitted entirely — no placeholder text (for example “Add tech story for this line”) appears.\n\n---\nThis is the expected behaviour as per epic SV-9383 and story SV-9386 (Story 3, Print Layout - Line Items) and the Printer Friendly Work Orders specification version 8, section S3-R8, S3-N3, read on 25 August 2026.\n\nAUTOMATION: Not available on Build to test Yet - Last checked 8/25/2026",
+    "design_ref": "No design exists yet (PRD marks Design: TBD on every story); authored from PRD text.",
+    "spec_ref": "requirements.md (Printer Friendly Work Orders spec v8)",
+    "refs": "SV-9386 (S3-R8; S3-N3)",
+    "viu_status": "source-verified-only",
+    "notes": ""
+  },
+  {
+    "id": "PFWO-LINE-09",
+    "area": "Printer Friendly Work Orders - Print Layout Line Items",
+    "title": "No line items prints an explicit placeholder",
+    "priority": "Medium",
+    "type": "Functional",
+    "permissions_required": "View Work Order (no new permission introduced)",
+    "preconditions": [
+      "You have triggered Print Work Order from the work order detail view (print view rendered).",
+      "The work order has no line items."
+    ],
+    "steps": [
+      "Read the line items section of the printout."
+    ],
+    "expected": "1. The line items section displays “No lines on this work order”.\n\n---\nThis is the expected behaviour as per epic SV-9383 and story SV-9386 (Story 3, Print Layout - Line Items) and the Printer Friendly Work Orders specification version 8, section S3-N1, read on 25 August 2026.\n\nAUTOMATION: Not available on Build to test Yet - Last checked 8/25/2026",
+    "design_ref": "No design exists yet (PRD marks Design: TBD on every story); authored from PRD text.",
+    "spec_ref": "requirements.md (Printer Friendly Work Orders spec v8)",
+    "refs": "SV-9386 (S3-N1)",
+    "viu_status": "source-verified-only",
+    "notes": ""
+  },
+  {
+    "id": "PFWO-LINE-10",
+    "area": "Printer Friendly Work Orders - Print Layout Line Items",
+    "title": "A line with no parts shows no parts section",
+    "priority": "Medium",
+    "type": "Functional",
+    "permissions_required": "View Work Order (no new permission introduced)",
+    "preconditions": [
+      "You have triggered Print Work Order from the work order detail view (print view rendered).",
+      "At least one line has no parts."
+    ],
+    "steps": [
+      "Read a line that has no parts on the printout."
+    ],
+    "expected": "1. No parts section appears for a line that has no parts.\n\n---\nThis is the expected behaviour as per epic SV-9383 and story SV-9386 (Story 3, Print Layout - Line Items) and the Printer Friendly Work Orders specification version 8, section S3-N2, read on 25 August 2026.\n\nAUTOMATION: Not available on Build to test Yet - Last checked 8/25/2026",
+    "design_ref": "No design exists yet (PRD marks Design: TBD on every story); authored from PRD text.",
+    "spec_ref": "requirements.md (Printer Friendly Work Orders spec v8)",
+    "refs": "SV-9386 (S3-N2)",
+    "viu_status": "source-verified-only",
+    "notes": ""
+  },
+  {
+    "id": "PFWO-LINE-11",
+    "area": "Printer Friendly Work Orders - Print Layout Line Items",
+    "title": "A line with no assigned technicians omits the technician area",
+    "priority": "Medium",
+    "type": "Functional",
+    "permissions_required": "View Work Order (no new permission introduced)",
+    "preconditions": [
+      "You have triggered Print Work Order from the work order detail view (print view rendered).",
+      "At least one line has no assigned technicians."
+    ],
+    "steps": [
+      "Read a line with no assigned technicians on the printout."
+    ],
+    "expected": "1. The technician area is omitted for a line that has no assigned technicians.\n\n---\nThis is the expected behaviour as per epic SV-9383 and story SV-9386 (Story 3, Print Layout - Line Items) and the Printer Friendly Work Orders specification version 8, section S3-N4, read on 25 August 2026.\n\nAUTOMATION: Not available on Build to test Yet - Last checked 8/25/2026",
+    "design_ref": "No design exists yet (PRD marks Design: TBD on every story); authored from PRD text.",
+    "spec_ref": "requirements.md (Printer Friendly Work Orders spec v8)",
+    "refs": "SV-9386 (S3-N4)",
+    "viu_status": "source-verified-only",
+    "notes": ""
+  },
+  {
+    "id": "PFWO-LINE-12",
+    "area": "Printer Friendly Work Orders - Print Layout Line Items",
+    "title": "Many lines flow across pages without splitting a line if avoidable",
+    "priority": "Medium",
+    "type": "Functional",
+    "permissions_required": "View Work Order (no new permission introduced)",
+    "preconditions": [
+      "You have triggered Print Work Order from the work order detail view (print view rendered).",
+      "The work order has 10 or more lines."
+    ],
+    "steps": [
+      "Print and review the multi-page output."
+    ],
+    "expected": "1. The printout flows across multiple pages with line items continuing naturally.\n2. No line item is split mid-way across a page break if it can be avoided.\n\n---\nThis is the expected behaviour as per epic SV-9383 and story SV-9386 (Story 3, Print Layout - Line Items) and the Printer Friendly Work Orders specification version 8, section S3-E1, read on 25 August 2026.\n\nAUTOMATION: Not available on Build to test Yet - Last checked 8/25/2026",
+    "design_ref": "No design exists yet (PRD marks Design: TBD on every story); authored from PRD text.",
+    "spec_ref": "requirements.md (Printer Friendly Work Orders spec v8)",
+    "refs": "SV-9386 (S3-E1)",
+    "viu_status": "source-verified-only",
+    "notes": ""
+  },
+  {
+    "id": "PFWO-LINE-13",
+    "area": "Printer Friendly Work Orders - Print Layout Line Items",
+    "title": "A very long tech story wraps and prints in full",
+    "priority": "Medium",
+    "type": "Functional",
+    "permissions_required": "View Work Order (no new permission introduced)",
+    "preconditions": [
+      "You have triggered Print Work Order from the work order detail view (print view rendered).",
+      "A line has a tech story of 500+ characters."
+    ],
+    "steps": [
+      "Read the long tech story on the printout."
+    ],
+    "expected": "1. The tech story wraps and prints in full; it is not truncated.\n\n---\nThis is the expected behaviour as per epic SV-9383 and story SV-9386 (Story 3, Print Layout - Line Items) and the Printer Friendly Work Orders specification version 8, section S3-E2, read on 25 August 2026.\n\nAUTOMATION: Not available on Build to test Yet - Last checked 8/25/2026",
+    "design_ref": "No design exists yet (PRD marks Design: TBD on every story); authored from PRD text.",
+    "spec_ref": "requirements.md (Printer Friendly Work Orders spec v8)",
+    "refs": "SV-9386 (S3-E2)",
+    "viu_status": "source-verified-only",
+    "notes": ""
+  }
+]

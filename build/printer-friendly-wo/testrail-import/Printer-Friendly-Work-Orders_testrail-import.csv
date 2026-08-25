@@ -1,0 +1,304 @@
+Title,Section,Type,Priority,Preconditions,Steps,Expected Result,References,,
+Print Work Order appears in the More menu,Printer Friendly Work Orders - Print Option in More Menu,Functional,Medium,You are on the work order detail view and can view the work order.,Open the More (overflow/actions) menu on the work order toolbar.,"1. A “Print Work Order” option appears in the More menu.
+
+---
+This is the expected behaviour as per epic SV-9383 and story SV-9384 (Story 1, Print Option in More Menu) and the Printer Friendly Work Orders specification version 8, section S1-R1, read on 25 August 2026.
+
+AUTOMATION: Not available on Build to test Yet - Last checked 8/25/2026",SV-9384 (S1-R1),,
+Print menu item is labelled Print Work Order with no icon,Printer Friendly Work Orders - Print Option in More Menu,Functional,Medium,You are on the work order detail view and can view the work order.,Open the More menu and inspect the Print item.,"1. The menu item displays the label “Print Work Order”.
+2. It is text only, with no icon, consistent with the other More menu items.
+
+---
+This is the expected behaviour as per epic SV-9383 and story SV-9384 (Story 1, Print Option in More Menu) and the Printer Friendly Work Orders specification version 8, section S1-R2, read on 25 August 2026.
+
+AUTOMATION: Not available on Build to test Yet - Last checked 8/25/2026",SV-9384 (S1-R2),,
+Print item sits below Timesheets and above Delete Work Order,Printer Friendly Work Orders - Print Option in More Menu,Functional,Medium,You are on the work order detail view and can view the work order.,Open the More menu and note the order of items.,"1. The Print Work Order item is positioned below the Timesheets option and above the Delete Work Order option.
+
+---
+This is the expected behaviour as per epic SV-9383 and story SV-9384 (Story 1, Print Option in More Menu) and the Printer Friendly Work Orders specification version 8, section S1-R3, read on 25 August 2026.
+
+AUTOMATION: Not available on Build to test Yet - Last checked 8/25/2026",SV-9384 (S1-R3),,
+Selecting Print Work Order opens the browser print dialog,Printer Friendly Work Orders - Print Option in More Menu,Functional,Medium,"You are on the work order detail view and can view the work order.
+The work order has at least one line item.",Select “Print Work Order” from the More menu.,"1. The browser's native print dialog opens.
+
+---
+This is the expected behaviour as per epic SV-9383 and story SV-9384 (Story 1, Print Option in More Menu) and the Printer Friendly Work Orders specification version 8, section S1-R4, read on 25 August 2026.
+
+AUTOMATION: Not available on Build to test Yet - Last checked 8/25/2026",SV-9384 (S1-R4),,
+Print option is available on every work order status,Printer Friendly Work Orders - Print Option in More Menu,Functional,Medium,You are on the work order detail view and can view the work order.,"Open work orders with each status: Estimate, Approved, In Progress, Review, Complete, Invoiced, Paid, Hold, Declined, Imported.
+Open the More menu on each.","1. The Print option is available on all of those statuses.
+
+---
+This is the expected behaviour as per epic SV-9383 and story SV-9384 (Story 1, Print Option in More Menu) and the Printer Friendly Work Orders specification version 8, section S1-R5, read on 25 August 2026.
+
+AUTOMATION: Not available on Build to test Yet - Last checked 8/25/2026",SV-9384 (S1-R5),,
+Print option is available on desktop and mobile,Printer Friendly Work Orders - Print Option in More Menu,Functional,Medium,You are on the work order detail view and can view the work order.,"Open the More menu on a desktop view.
+Open the More menu on a mobile view.","1. The Print option is available on both desktop and mobile views.
+
+---
+This is the expected behaviour as per epic SV-9383 and story SV-9384 (Story 1, Print Option in More Menu) and the Printer Friendly Work Orders specification version 8, section S1-R6, read on 25 August 2026.
+
+AUTOMATION: Not available on Build to test Yet - Last checked 8/25/2026",SV-9384 (S1-R6),,
+Users without view permission cannot reach the print option,Printer Friendly Work Orders - Print Option in More Menu,Functional,Medium,You do NOT have permission to view the target work order.,Attempt to open the work order detail page.,"1. You cannot access the work order detail page and therefore cannot reach the print option (enforced by existing access control).
+
+---
+This is the expected behaviour as per epic SV-9383 and story SV-9384 (Story 1, Print Option in More Menu) and the Printer Friendly Work Orders specification version 8, section S1-N1, read on 25 August 2026.
+
+AUTOMATION: Not available on Build to test Yet - Last checked 8/25/2026",SV-9384 (S1-N1),,
+Print is disabled until line item data has loaded,Printer Friendly Work Orders - Print Option in More Menu,Functional,Medium,You are on the work order detail view and can view the work order.,"Open the work order and open the More menu while line item data is still loading (or when no line items exist).
+Observe the Print item as the UI skeleton appears and then as the real data arrives.","1. The Print option is disabled (grayed out and non-clickable) until line item data has finished loading, and while no line items exist.
+2. It does not enable when only the UI skeleton appears — it waits for the actual data to arrive.
+
+---
+This is the expected behaviour as per epic SV-9383 and story SV-9384 (Story 1, Print Option in More Menu) and the Printer Friendly Work Orders specification version 8, section S1-E1, read on 25 August 2026.
+
+AUTOMATION: Not available on Build to test Yet - Last checked 8/25/2026",SV-9384 (S1-E1),,
+Work order number is shown prominently at the top,Printer Friendly Work Orders - Print Layout Header,Functional,Medium,You have triggered Print Work Order from the work order detail view (print view rendered).,Look at the top of the printed page.,"1. The printed page displays the work order number prominently at the top.
+
+---
+This is the expected behaviour as per epic SV-9383 and story SV-9385 (Story 2, Print Layout - Work Order Header) and the Printer Friendly Work Orders specification version 8, section S2-R1, read on 25 August 2026.
+
+AUTOMATION: Not available on Build to test Yet - Last checked 8/25/2026",SV-9385 (S2-R1),,
+Work order status is shown next to the work order number,Printer Friendly Work Orders - Print Layout Header,Functional,Medium,You have triggered Print Work Order from the work order detail view (print view rendered).,Look at the top of the printed page next to the work order number.,"1. The work order status is displayed next to the work order number.
+
+---
+This is the expected behaviour as per epic SV-9383 and story SV-9385 (Story 2, Print Layout - Work Order Header) and the Printer Friendly Work Orders specification version 8, section S2-R2, read on 25 August 2026.
+
+AUTOMATION: Not available on Build to test Yet - Last checked 8/25/2026",SV-9385 (S2-R2),,
+"Header shows customer, vehicle, advisor, lead tech and start date",Printer Friendly Work Orders - Print Layout Header,Functional,Medium,"You have triggered Print Work Order from the work order detail view (print view rendered).
+The work order has a customer, vehicle, service advisor, lead technician and start date set.",Read the header area of the printout.,"1. The header displays: customer name (and company name if present); vehicle year, make, model, VIN, license plate, unit number (if present), mileage, engine hours (if present); service advisor name; lead technician name; and the work order start date.
+
+---
+This is the expected behaviour as per epic SV-9383 and story SV-9385 (Story 2, Print Layout - Work Order Header) and the Printer Friendly Work Orders specification version 8, section S2-R3, read on 25 August 2026.
+
+AUTOMATION: Not available on Build to test Yet - Last checked 8/25/2026",SV-9385 (S2-R3),,
+Header omits fields that have no value rather than showing blanks,Printer Friendly Work Orders - Print Layout Header,Functional,Medium,"You have triggered Print Work Order from the work order detail view (print view rendered).
+The work order is missing some optional fields (e.g. no engine hours, no license plate).",Read the header area of the printout.,"1. Fields that have no value are omitted from the printout rather than displayed as blank.
+
+---
+This is the expected behaviour as per epic SV-9383 and story SV-9385 (Story 2, Print Layout - Work Order Header) and the Printer Friendly Work Orders specification version 8, section S2-R4, read on 25 August 2026.
+
+AUTOMATION: Not available on Build to test Yet - Last checked 8/25/2026",SV-9385 (S2-R4),,
+Header shows the shop or organization name,Printer Friendly Work Orders - Print Layout Header,Functional,Medium,You have triggered Print Work Order from the work order detail view (print view rendered).,Read the header area of the printout.,"1. The shop name or organization name appears in the header area to identify the source of the printout.
+
+---
+This is the expected behaviour as per epic SV-9383 and story SV-9385 (Story 2, Print Layout - Work Order Header) and the Printer Friendly Work Orders specification version 8, section S2-R5, read on 25 August 2026.
+
+AUTOMATION: Not available on Build to test Yet - Last checked 8/25/2026",SV-9385 (S2-R5),,
+No customer assigned prints an explicit placeholder,Printer Friendly Work Orders - Print Layout Header,Functional,Medium,"You have triggered Print Work Order from the work order detail view (print view rendered).
+The work order has no customer assigned.",Read the customer section of the printout.,"1. The customer section displays “No customer assigned”.
+
+---
+This is the expected behaviour as per epic SV-9383 and story SV-9385 (Story 2, Print Layout - Work Order Header) and the Printer Friendly Work Orders specification version 8, section S2-N1, read on 25 August 2026.
+
+AUTOMATION: Not available on Build to test Yet - Last checked 8/25/2026",SV-9385 (S2-N1),,
+No vehicle assigned prints an explicit placeholder,Printer Friendly Work Orders - Print Layout Header,Functional,Medium,"You have triggered Print Work Order from the work order detail view (print view rendered).
+The work order has no vehicle assigned.",Read the vehicle section of the printout.,"1. The vehicle section displays “No vehicle assigned”.
+
+---
+This is the expected behaviour as per epic SV-9383 and story SV-9385 (Story 2, Print Layout - Work Order Header) and the Printer Friendly Work Orders specification version 8, section S2-N2, read on 25 August 2026.
+
+AUTOMATION: Not available on Build to test Yet - Last checked 8/25/2026",SV-9385 (S2-N2),,
+"Each line shows number, description, status, time, story and techs",Printer Friendly Work Orders - Print Layout Line Items,Functional,Medium,"You have triggered Print Work Order from the work order detail view (print view rendered).
+The work order has at least one line item.",Read a line item on the printout.,"1. Each line item displays: line number; line description (name); line status; actual time / estimated time; tech story (if one exists); and assigned technician(s) (if assigned).
+
+---
+This is the expected behaviour as per epic SV-9383 and story SV-9386 (Story 3, Print Layout - Line Items) and the Printer Friendly Work Orders specification version 8, section S3-R1, read on 25 August 2026.
+
+AUTOMATION: Not available on Build to test Yet - Last checked 8/25/2026",SV-9386 (S3-R1),,
+"Parts under a line show description, part number and quantity",Printer Friendly Work Orders - Print Layout Line Items,Functional,Medium,"You have triggered Print Work Order from the work order detail view (print view rendered).
+A line on the work order has parts.",Read the parts listed under a line on the printout.,"1. Parts associated with each line are listed showing: part description, part number, and quantity.
+
+---
+This is the expected behaviour as per epic SV-9383 and story SV-9386 (Story 3, Print Layout - Line Items) and the Printer Friendly Work Orders specification version 8, section S3-R2, read on 25 August 2026.
+
+AUTOMATION: Not available on Build to test Yet - Last checked 8/25/2026",SV-9386 (S3-R2),,
+Pricing is never shown on line items,Printer Friendly Work Orders - Print Layout Line Items,Functional,Medium,"You have triggered Print Work Order from the work order detail view (print view rendered).
+The work order has at least one line item.",Inspect the line items and parts on the printout for any pricing.,"1. No pricing is shown — no labor rates, margins, line totals, part sell prices, or part margins.
+2. The Rate, Margin, and Total columns are removed entirely.
+
+---
+This is the expected behaviour as per epic SV-9383 and story SV-9386 (Story 3, Print Layout - Line Items) and the Printer Friendly Work Orders specification version 8, section S3-R3, read on 25 August 2026.
+
+AUTOMATION: Not available on Build to test Yet - Last checked 8/25/2026",SV-9386 (S3-R3),,
+Action and Progress columns are removed from the printout,Printer Friendly Work Orders - Print Layout Line Items,Functional,Medium,"You have triggered Print Work Order from the work order detail view (print view rendered).
+The work order has at least one line item.",Inspect the line items on the printout.,"1. The Action column (Approve, Decline, Complete buttons) and the Progress column (progress bars) are removed; the line status text column is present instead.
+
+---
+This is the expected behaviour as per epic SV-9383 and story SV-9386 (Story 3, Print Layout - Line Items) and the Printer Friendly Work Orders specification version 8, section S3-R4, read on 25 August 2026.
+
+AUTOMATION: Not available on Build to test Yet - Last checked 8/25/2026",SV-9386 (S3-R4),,
+Lines print in the same order as on screen,Printer Friendly Work Orders - Print Layout Line Items,Functional,Medium,"You have triggered Print Work Order from the work order detail view (print view rendered).
+The work order has multiple lines.",Compare the line order on the printout with the on-screen order.,"1. Lines are printed in the same order they appear on screen (by line number).
+
+---
+This is the expected behaviour as per epic SV-9383 and story SV-9386 (Story 3, Print Layout - Line Items) and the Printer Friendly Work Orders specification version 8, section S3-R5, read on 25 August 2026.
+
+AUTOMATION: Not available on Build to test Yet - Last checked 8/25/2026",SV-9386 (S3-R5),,
+Cancelled lines still print if visible on screen,Printer Friendly Work Orders - Print Layout Line Items,Functional,Medium,"You have triggered Print Work Order from the work order detail view (print view rendered).
+The work order has a line with a Cancelled status that is visible on screen.",Read the printout for the cancelled line.,"1. Line items with a status of “Cancelled” still appear on the printout if they are visible on screen, with their status clearly indicated.
+
+---
+This is the expected behaviour as per epic SV-9383 and story SV-9386 (Story 3, Print Layout - Line Items) and the Printer Friendly Work Orders specification version 8, section S3-R6, read on 25 August 2026.
+
+AUTOMATION: Not available on Build to test Yet - Last checked 8/25/2026",SV-9386 (S3-R6),,
+Line groups are separated by a thick border and note space,Printer Friendly Work Orders - Print Layout Line Items,Functional,Medium,"You have triggered Print Work Order from the work order detail view (print view rendered).
+The work order has multiple lines.",Look at the separation between one line group and the next on the printout.,"1. Each work order line group (main line plus its sub-rows for tech story, labor, parts, inspections) is visually separated from the next by a thick border and blank space below, giving room to write notes per line.
+
+---
+This is the expected behaviour as per epic SV-9383 and story SV-9386 (Story 3, Print Layout - Line Items) and the Printer Friendly Work Orders specification version 8, section S3-R7, read on 25 August 2026.
+
+AUTOMATION: Not available on Build to test Yet - Last checked 8/25/2026",SV-9386 (S3-R7),,
+Empty tech story row is omitted with no placeholder,Printer Friendly Work Orders - Print Layout Line Items,Functional,Medium,"You have triggered Print Work Order from the work order detail view (print view rendered).
+At least one line has no tech story.",Read a line that has no tech story on the printout.,"1. The tech story row is omitted entirely — no placeholder text (for example “Add tech story for this line”) appears.
+
+---
+This is the expected behaviour as per epic SV-9383 and story SV-9386 (Story 3, Print Layout - Line Items) and the Printer Friendly Work Orders specification version 8, section S3-R8, S3-N3, read on 25 August 2026.
+
+AUTOMATION: Not available on Build to test Yet - Last checked 8/25/2026",SV-9386 (S3-R8; S3-N3),,
+No line items prints an explicit placeholder,Printer Friendly Work Orders - Print Layout Line Items,Functional,Medium,"You have triggered Print Work Order from the work order detail view (print view rendered).
+The work order has no line items.",Read the line items section of the printout.,"1. The line items section displays “No lines on this work order”.
+
+---
+This is the expected behaviour as per epic SV-9383 and story SV-9386 (Story 3, Print Layout - Line Items) and the Printer Friendly Work Orders specification version 8, section S3-N1, read on 25 August 2026.
+
+AUTOMATION: Not available on Build to test Yet - Last checked 8/25/2026",SV-9386 (S3-N1),,
+A line with no parts shows no parts section,Printer Friendly Work Orders - Print Layout Line Items,Functional,Medium,"You have triggered Print Work Order from the work order detail view (print view rendered).
+At least one line has no parts.",Read a line that has no parts on the printout.,"1. No parts section appears for a line that has no parts.
+
+---
+This is the expected behaviour as per epic SV-9383 and story SV-9386 (Story 3, Print Layout - Line Items) and the Printer Friendly Work Orders specification version 8, section S3-N2, read on 25 August 2026.
+
+AUTOMATION: Not available on Build to test Yet - Last checked 8/25/2026",SV-9386 (S3-N2),,
+A line with no assigned technicians omits the technician area,Printer Friendly Work Orders - Print Layout Line Items,Functional,Medium,"You have triggered Print Work Order from the work order detail view (print view rendered).
+At least one line has no assigned technicians.",Read a line with no assigned technicians on the printout.,"1. The technician area is omitted for a line that has no assigned technicians.
+
+---
+This is the expected behaviour as per epic SV-9383 and story SV-9386 (Story 3, Print Layout - Line Items) and the Printer Friendly Work Orders specification version 8, section S3-N4, read on 25 August 2026.
+
+AUTOMATION: Not available on Build to test Yet - Last checked 8/25/2026",SV-9386 (S3-N4),,
+Many lines flow across pages without splitting a line if avoidable,Printer Friendly Work Orders - Print Layout Line Items,Functional,Medium,"You have triggered Print Work Order from the work order detail view (print view rendered).
+The work order has 10 or more lines.",Print and review the multi-page output.,"1. The printout flows across multiple pages with line items continuing naturally.
+2. No line item is split mid-way across a page break if it can be avoided.
+
+---
+This is the expected behaviour as per epic SV-9383 and story SV-9386 (Story 3, Print Layout - Line Items) and the Printer Friendly Work Orders specification version 8, section S3-E1, read on 25 August 2026.
+
+AUTOMATION: Not available on Build to test Yet - Last checked 8/25/2026",SV-9386 (S3-E1),,
+A very long tech story wraps and prints in full,Printer Friendly Work Orders - Print Layout Line Items,Functional,Medium,"You have triggered Print Work Order from the work order detail view (print view rendered).
+A line has a tech story of 500+ characters.",Read the long tech story on the printout.,"1. The tech story wraps and prints in full; it is not truncated.
+
+---
+This is the expected behaviour as per epic SV-9383 and story SV-9386 (Story 3, Print Layout - Line Items) and the Printer Friendly Work Orders specification version 8, section S3-E2, read on 25 August 2026.
+
+AUTOMATION: Not available on Build to test Yet - Last checked 8/25/2026",SV-9386 (S3-E2),,
+Summary shows total actual and estimated time,Printer Friendly Work Orders - Print Summary and Footer,Functional,Medium,"You have triggered Print Work Order from the work order detail view (print view rendered).
+The work order has at least one line item.",Read the summary section that appears after all line items.,"1. A summary section appears after all line items, displaying total actual time / total estimated time across all lines.
+
+---
+This is the expected behaviour as per epic SV-9383 and story SV-9387 (Story 4, Print Layout - Summary and Footer) and the Printer Friendly Work Orders specification version 8, section S4-R1, read on 25 August 2026.
+
+AUTOMATION: Not available on Build to test Yet - Last checked 8/25/2026",SV-9387 (S4-R1),,
+Summary never shows pricing,Printer Friendly Work Orders - Print Summary and Footer,Functional,Medium,"You have triggered Print Work Order from the work order detail view (print view rendered).
+The work order has at least one line item.",Inspect the summary section for any pricing.,"1. No pricing is shown in the summary — no parts subtotal, labor subtotal, shop supplies, tax, or grand total. Only time totals are displayed.
+
+---
+This is the expected behaviour as per epic SV-9383 and story SV-9387 (Story 4, Print Layout - Summary and Footer) and the Printer Friendly Work Orders specification version 8, section S4-R2, read on 25 August 2026.
+
+AUTOMATION: Not available on Build to test Yet - Last checked 8/25/2026",SV-9387 (S4-R2),,
+Print timestamp appears at the bottom of the printout,Printer Friendly Work Orders - Print Summary and Footer,Functional,Medium,You have triggered Print Work Order from the work order detail view (print view rendered).,Look at the bottom of the printout.,"1. The print timestamp (date and time of printing) appears at the bottom of the printout.
+
+---
+This is the expected behaviour as per epic SV-9383 and story SV-9387 (Story 4, Print Layout - Summary and Footer) and the Printer Friendly Work Orders specification version 8, section S4-R3, read on 25 August 2026.
+
+AUTOMATION: Not available on Build to test Yet - Last checked 8/25/2026",SV-9387 (S4-R3),,
+Work order number repeats in the footer of each page,Printer Friendly Work Orders - Print Summary and Footer,Functional,Medium,"You have triggered Print Work Order from the work order detail view (print view rendered).
+The printout spans multiple pages.",Review the footer of each printed page.,"1. The work order number repeats in the footer of each printed page for multi-page printouts.
+
+---
+This is the expected behaviour as per epic SV-9383 and story SV-9387 (Story 4, Print Layout - Summary and Footer) and the Printer Friendly Work Orders specification version 8, section S4-R4, read on 25 August 2026.
+
+AUTOMATION: Not available on Build to test Yet - Last checked 8/25/2026",SV-9387 (S4-R4),,
+With no line items the summary shows zero totals,Printer Friendly Work Orders - Print Summary and Footer,Functional,Medium,"You have triggered Print Work Order from the work order detail view (print view rendered).
+The work order has no line items.",Read the summary section of the printout.,"1. The summary shows zero totals rather than being hidden.
+
+---
+This is the expected behaviour as per epic SV-9383 and story SV-9387 (Story 4, Print Layout - Summary and Footer) and the Printer Friendly Work Orders specification version 8, section S4-N1, read on 25 August 2026.
+
+AUTOMATION: Not available on Build to test Yet - Last checked 8/25/2026",SV-9387 (S4-N1),,
+All interactive and navigation elements are hidden on the printout,Printer Friendly Work Orders - Print Formatting,Functional,Medium,You have triggered Print Work Order from the work order detail view (print view rendered).,Inspect the printout for application chrome and interactive controls.,"1. The following are hidden: application navigation (sidebar, top bar, breadcrumbs); all action buttons (Print, New Line, Reviewed, Send to Portal, etc.); tab navigation (Lines, Part Requests, Notes, Time Sheets, etc.); context menus and dropdown triggers; status change buttons and workflow actions on line items; clock in/out buttons; the Progress column and progress bars; the Action column; and any floating UI elements (tooltips, popovers, modals).
+
+---
+This is the expected behaviour as per epic SV-9383 and story SV-9388 (Story 5, Print Formatting - Screen Elements Hidden) and the Printer Friendly Work Orders specification version 8, section S5-R1, read on 25 August 2026.
+
+AUTOMATION: Not available on Build to test Yet - Last checked 8/25/2026",SV-9388 (S5-R1),,
+Printout uses black text on white regardless of theme,Printer Friendly Work Orders - Print Formatting,Functional,Medium,"You have triggered Print Work Order from the work order detail view (print view rendered).
+Your app theme is set to dark mode.",Trigger print and review the rendered print view.,"1. The printout uses black text on a white background regardless of the user's theme.
+
+---
+This is the expected behaviour as per epic SV-9383 and story SV-9388 (Story 5, Print Formatting - Screen Elements Hidden) and the Printer Friendly Work Orders specification version 8, section S5-R2, read on 25 August 2026.
+
+AUTOMATION: Not available on Build to test Yet - Last checked 8/25/2026",SV-9388 (S5-R2),,
+Text is sized for comfortable reading on paper,Printer Friendly Work Orders - Print Formatting,Functional,Medium,You have triggered Print Work Order from the work order detail view (print view rendered).,Review the text size on the printout.,"1. Text is sized for comfortable reading on paper (no smaller than a 10pt equivalent).
+
+---
+This is the expected behaviour as per epic SV-9383 and story SV-9388 (Story 5, Print Formatting - Screen Elements Hidden) and the Printer Friendly Work Orders specification version 8, section S5-R3, read on 25 August 2026.
+
+AUTOMATION: Not available on Build to test Yet - Last checked 8/25/2026",SV-9388 (S5-R3),,
+Layout is optimized for portrait US Letter or A4,Printer Friendly Work Orders - Print Formatting,Functional,Medium,You have triggered Print Work Order from the work order detail view (print view rendered).,Print with portrait orientation on US Letter or A4 paper and review the layout.,"1. The layout is optimized for portrait orientation on US Letter or A4 paper.
+
+---
+This is the expected behaviour as per epic SV-9383 and story SV-9388 (Story 5, Print Formatting - Screen Elements Hidden) and the Printer Friendly Work Orders specification version 8, section S5-R4, read on 25 August 2026.
+
+AUTOMATION: Not available on Build to test Yet - Last checked 8/25/2026",SV-9388 (S5-R4),,
+Status badges print as plain text labels not colored chips,Printer Friendly Work Orders - Print Formatting,Functional,Medium,"You have triggered Print Work Order from the work order detail view (print view rendered).
+The work order has at least one line item.",Inspect the status badges on the printout.,"1. Status badges print as plain text labels (not colored chips) to ensure readability on black-and-white printers.
+
+---
+This is the expected behaviour as per epic SV-9383 and story SV-9388 (Story 5, Print Formatting - Screen Elements Hidden) and the Printer Friendly Work Orders specification version 8, section S5-R5, read on 25 August 2026.
+
+AUTOMATION: Not available on Build to test Yet - Last checked 8/25/2026",SV-9388 (S5-R5),,
+Landscape orientation remains readable without clipping,Printer Friendly Work Orders - Print Formatting,Functional,Medium,You have triggered Print Work Order from the work order detail view (print view rendered).,Manually select landscape orientation in the browser print dialog and review the layout.,"1. The layout remains readable; content does not overflow or clip.
+
+---
+This is the expected behaviour as per epic SV-9383 and story SV-9388 (Story 5, Print Formatting - Screen Elements Hidden) and the Printer Friendly Work Orders specification version 8, section S5-E1, read on 25 August 2026.
+
+AUTOMATION: Not available on Build to test Yet - Last checked 8/25/2026",SV-9388 (S5-E1),,
+Printing logs a Work Order Printed event in audit history,Printer Friendly Work Orders - Audit Trail,Functional,Medium,"You are on the work order detail view and can view the work order.
+The work order has at least one line item.","Select “Print Work Order”.
+Open the work order's audit history.","1. A “Work Order Printed” event is logged in the work order's audit history.
+
+---
+This is the expected behaviour as per epic SV-9383 and story SV-9389 (Story 6, Audit Trail) and the Printer Friendly Work Orders specification version 8, section S6-R1, read on 25 August 2026.
+
+AUTOMATION: Not available on Build to test Yet - Last checked 8/25/2026",SV-9389 (S6-R1),,
+Audit entry records the user and the date and time,Printer Friendly Work Orders - Audit Trail,Functional,Medium,"You are on the work order detail view and can view the work order.
+The work order has at least one line item.",Print the work order and open the audit entry.,"1. The audit log entry records the user who triggered the print and the date/time.
+
+---
+This is the expected behaviour as per epic SV-9383 and story SV-9389 (Story 6, Audit Trail) and the Printer Friendly Work Orders specification version 8, section S6-R2, read on 25 August 2026.
+
+AUTOMATION: Not available on Build to test Yet - Last checked 8/25/2026",SV-9389 (S6-R2),,
+Print event is visible in the History tab like estimate and invoice prints,Printer Friendly Work Orders - Audit Trail,Functional,Medium,"You are on the work order detail view and can view the work order.
+The work order has at least one line item.",Print the work order and open the History tab.,"1. The audit log entry is visible in the work order's History tab, consistent with how estimate and invoice print events are displayed today.
+
+---
+This is the expected behaviour as per epic SV-9383 and story SV-9389 (Story 6, Audit Trail) and the Printer Friendly Work Orders specification version 8, section S6-R3, read on 25 August 2026.
+
+AUTOMATION: Not available on Build to test Yet - Last checked 8/25/2026",SV-9389 (S6-R3),,
+Cancelling the browser print dialog still logs the event,Printer Friendly Work Orders - Audit Trail,Functional,Medium,"You are on the work order detail view and can view the work order.
+The work order has at least one line item.","Select “Print Work Order”, then cancel the browser print dialog without printing.
+Open the audit history.","1. The “Work Order Printed” event is still logged (the system cannot detect whether the print completed from the browser dialog).
+
+---
+This is the expected behaviour as per epic SV-9383 and story SV-9389 (Story 6, Audit Trail) and the Printer Friendly Work Orders specification version 8, section S6-N1, read on 25 August 2026.
+
+AUTOMATION: Not available on Build to test Yet - Last checked 8/25/2026",SV-9389 (S6-N1),,
+Printing multiple times creates a separate entry each time,Printer Friendly Work Orders - Audit Trail,Functional,Medium,"You are on the work order detail view and can view the work order.
+The work order has at least one line item.","Print the same work order three times.
+Open the audit history.","1. Each print action creates a separate audit log entry.
+
+---
+This is the expected behaviour as per epic SV-9383 and story SV-9389 (Story 6, Audit Trail) and the Printer Friendly Work Orders specification version 8, section S6-E1, read on 25 August 2026.
+
+AUTOMATION: Not available on Build to test Yet - Last checked 8/25/2026",SV-9389 (S6-E1),,

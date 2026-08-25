@@ -1,0 +1,166 @@
+[
+  {
+    "id": "PFWO-MENU-01",
+    "area": "Printer Friendly Work Orders - Print Option in More Menu",
+    "title": "Print Work Order appears in the More menu",
+    "priority": "Medium",
+    "type": "Functional",
+    "permissions_required": "View Work Order (no new permission introduced)",
+    "preconditions": [
+      "You are on the work order detail view and can view the work order."
+    ],
+    "steps": [
+      "Open the More (overflow/actions) menu on the work order toolbar."
+    ],
+    "expected": "1. A “Print Work Order” option appears in the More menu.\n\n---\nThis is the expected behaviour as per epic SV-9383 and story SV-9384 (Story 1, Print Option in More Menu) and the Printer Friendly Work Orders specification version 8, section S1-R1, read on 25 August 2026.\n\nAUTOMATION: Not available on Build to test Yet - Last checked 8/25/2026",
+    "design_ref": "No design exists yet (PRD marks Design: TBD on every story); authored from PRD text.",
+    "spec_ref": "requirements.md (Printer Friendly Work Orders spec v8)",
+    "refs": "SV-9384 (S1-R1)",
+    "viu_status": "source-verified-only",
+    "notes": ""
+  },
+  {
+    "id": "PFWO-MENU-02",
+    "area": "Printer Friendly Work Orders - Print Option in More Menu",
+    "title": "Print menu item is labelled Print Work Order with no icon",
+    "priority": "Medium",
+    "type": "Functional",
+    "permissions_required": "View Work Order (no new permission introduced)",
+    "preconditions": [
+      "You are on the work order detail view and can view the work order."
+    ],
+    "steps": [
+      "Open the More menu and inspect the Print item."
+    ],
+    "expected": "1. The menu item displays the label “Print Work Order”.\n2. It is text only, with no icon, consistent with the other More menu items.\n\n---\nThis is the expected behaviour as per epic SV-9383 and story SV-9384 (Story 1, Print Option in More Menu) and the Printer Friendly Work Orders specification version 8, section S1-R2, read on 25 August 2026.\n\nAUTOMATION: Not available on Build to test Yet - Last checked 8/25/2026",
+    "design_ref": "No design exists yet (PRD marks Design: TBD on every story); authored from PRD text.",
+    "spec_ref": "requirements.md (Printer Friendly Work Orders spec v8)",
+    "refs": "SV-9384 (S1-R2)",
+    "viu_status": "source-verified-only",
+    "notes": ""
+  },
+  {
+    "id": "PFWO-MENU-03",
+    "area": "Printer Friendly Work Orders - Print Option in More Menu",
+    "title": "Print item sits below Timesheets and above Delete Work Order",
+    "priority": "Medium",
+    "type": "Functional",
+    "permissions_required": "View Work Order (no new permission introduced)",
+    "preconditions": [
+      "You are on the work order detail view and can view the work order."
+    ],
+    "steps": [
+      "Open the More menu and note the order of items."
+    ],
+    "expected": "1. The Print Work Order item is positioned below the Timesheets option and above the Delete Work Order option.\n\n---\nThis is the expected behaviour as per epic SV-9383 and story SV-9384 (Story 1, Print Option in More Menu) and the Printer Friendly Work Orders specification version 8, section S1-R3, read on 25 August 2026.\n\nAUTOMATION: Not available on Build to test Yet - Last checked 8/25/2026",
+    "design_ref": "No design exists yet (PRD marks Design: TBD on every story); authored from PRD text.",
+    "spec_ref": "requirements.md (Printer Friendly Work Orders spec v8)",
+    "refs": "SV-9384 (S1-R3)",
+    "viu_status": "source-verified-only",
+    "notes": ""
+  },
+  {
+    "id": "PFWO-MENU-04",
+    "area": "Printer Friendly Work Orders - Print Option in More Menu",
+    "title": "Selecting Print Work Order opens the browser print dialog",
+    "priority": "Medium",
+    "type": "Functional",
+    "permissions_required": "View Work Order (no new permission introduced)",
+    "preconditions": [
+      "You are on the work order detail view and can view the work order.",
+      "The work order has at least one line item."
+    ],
+    "steps": [
+      "Select “Print Work Order” from the More menu."
+    ],
+    "expected": "1. The browser's native print dialog opens.\n\n---\nThis is the expected behaviour as per epic SV-9383 and story SV-9384 (Story 1, Print Option in More Menu) and the Printer Friendly Work Orders specification version 8, section S1-R4, read on 25 August 2026.\n\nAUTOMATION: Not available on Build to test Yet - Last checked 8/25/2026",
+    "design_ref": "No design exists yet (PRD marks Design: TBD on every story); authored from PRD text.",
+    "spec_ref": "requirements.md (Printer Friendly Work Orders spec v8)",
+    "refs": "SV-9384 (S1-R4)",
+    "viu_status": "source-verified-only",
+    "notes": ""
+  },
+  {
+    "id": "PFWO-MENU-05",
+    "area": "Printer Friendly Work Orders - Print Option in More Menu",
+    "title": "Print option is available on every work order status",
+    "priority": "Medium",
+    "type": "Functional",
+    "permissions_required": "View Work Order (no new permission introduced)",
+    "preconditions": [
+      "You are on the work order detail view and can view the work order."
+    ],
+    "steps": [
+      "Open work orders with each status: Estimate, Approved, In Progress, Review, Complete, Invoiced, Paid, Hold, Declined, Imported.",
+      "Open the More menu on each."
+    ],
+    "expected": "1. The Print option is available on all of those statuses.\n\n---\nThis is the expected behaviour as per epic SV-9383 and story SV-9384 (Story 1, Print Option in More Menu) and the Printer Friendly Work Orders specification version 8, section S1-R5, read on 25 August 2026.\n\nAUTOMATION: Not available on Build to test Yet - Last checked 8/25/2026",
+    "design_ref": "No design exists yet (PRD marks Design: TBD on every story); authored from PRD text.",
+    "spec_ref": "requirements.md (Printer Friendly Work Orders spec v8)",
+    "refs": "SV-9384 (S1-R5)",
+    "viu_status": "source-verified-only",
+    "notes": ""
+  },
+  {
+    "id": "PFWO-MENU-06",
+    "area": "Printer Friendly Work Orders - Print Option in More Menu",
+    "title": "Print option is available on desktop and mobile",
+    "priority": "Medium",
+    "type": "Functional",
+    "permissions_required": "View Work Order (no new permission introduced)",
+    "preconditions": [
+      "You are on the work order detail view and can view the work order."
+    ],
+    "steps": [
+      "Open the More menu on a desktop view.",
+      "Open the More menu on a mobile view."
+    ],
+    "expected": "1. The Print option is available on both desktop and mobile views.\n\n---\nThis is the expected behaviour as per epic SV-9383 and story SV-9384 (Story 1, Print Option in More Menu) and the Printer Friendly Work Orders specification version 8, section S1-R6, read on 25 August 2026.\n\nAUTOMATION: Not available on Build to test Yet - Last checked 8/25/2026",
+    "design_ref": "No design exists yet (PRD marks Design: TBD on every story); authored from PRD text.",
+    "spec_ref": "requirements.md (Printer Friendly Work Orders spec v8)",
+    "refs": "SV-9384 (S1-R6)",
+    "viu_status": "source-verified-only",
+    "notes": ""
+  },
+  {
+    "id": "PFWO-MENU-07",
+    "area": "Printer Friendly Work Orders - Print Option in More Menu",
+    "title": "Users without view permission cannot reach the print option",
+    "priority": "Medium",
+    "type": "Functional",
+    "permissions_required": "View Work Order (no new permission introduced)",
+    "preconditions": [
+      "You do NOT have permission to view the target work order."
+    ],
+    "steps": [
+      "Attempt to open the work order detail page."
+    ],
+    "expected": "1. You cannot access the work order detail page and therefore cannot reach the print option (enforced by existing access control).\n\n---\nThis is the expected behaviour as per epic SV-9383 and story SV-9384 (Story 1, Print Option in More Menu) and the Printer Friendly Work Orders specification version 8, section S1-N1, read on 25 August 2026.\n\nAUTOMATION: Not available on Build to test Yet - Last checked 8/25/2026",
+    "design_ref": "No design exists yet (PRD marks Design: TBD on every story); authored from PRD text.",
+    "spec_ref": "requirements.md (Printer Friendly Work Orders spec v8)",
+    "refs": "SV-9384 (S1-N1)",
+    "viu_status": "source-verified-only",
+    "notes": ""
+  },
+  {
+    "id": "PFWO-MENU-08",
+    "area": "Printer Friendly Work Orders - Print Option in More Menu",
+    "title": "Print is disabled until line item data has loaded",
+    "priority": "Medium",
+    "type": "Functional",
+    "permissions_required": "View Work Order (no new permission introduced)",
+    "preconditions": [
+      "You are on the work order detail view and can view the work order."
+    ],
+    "steps": [
+      "Open the work order and open the More menu while line item data is still loading (or when no line items exist).",
+      "Observe the Print item as the UI skeleton appears and then as the real data arrives."
+    ],
+    "expected": "1. The Print option is disabled (grayed out and non-clickable) until line item data has finished loading, and while no line items exist.\n2. It does not enable when only the UI skeleton appears — it waits for the actual data to arrive.\n\n---\nThis is the expected behaviour as per epic SV-9383 and story SV-9384 (Story 1, Print Option in More Menu) and the Printer Friendly Work Orders specification version 8, section S1-E1, read on 25 August 2026.\n\nAUTOMATION: Not available on Build to test Yet - Last checked 8/25/2026",
+    "design_ref": "No design exists yet (PRD marks Design: TBD on every story); authored from PRD text.",
+    "spec_ref": "requirements.md (Printer Friendly Work Orders spec v8)",
+    "refs": "SV-9384 (S1-E1)",
+    "viu_status": "source-verified-only",
+    "notes": ""
+  }
+]

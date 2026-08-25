@@ -1,0 +1,110 @@
+[
+  {
+    "id": "PFWO-AUDIT-01",
+    "area": "Printer Friendly Work Orders - Audit Trail",
+    "title": "Printing logs a Work Order Printed event in audit history",
+    "priority": "Medium",
+    "type": "Functional",
+    "permissions_required": "View Work Order (no new permission introduced)",
+    "preconditions": [
+      "You are on the work order detail view and can view the work order.",
+      "The work order has at least one line item."
+    ],
+    "steps": [
+      "Select “Print Work Order”.",
+      "Open the work order's audit history."
+    ],
+    "expected": "1. A “Work Order Printed” event is logged in the work order's audit history.\n\n---\nThis is the expected behaviour as per epic SV-9383 and story SV-9389 (Story 6, Audit Trail) and the Printer Friendly Work Orders specification version 8, section S6-R1, read on 25 August 2026.\n\nAUTOMATION: Not available on Build to test Yet - Last checked 8/25/2026",
+    "design_ref": "No design exists yet (PRD marks Design: TBD on every story); authored from PRD text.",
+    "spec_ref": "requirements.md (Printer Friendly Work Orders spec v8)",
+    "refs": "SV-9389 (S6-R1)",
+    "viu_status": "source-verified-only",
+    "notes": ""
+  },
+  {
+    "id": "PFWO-AUDIT-02",
+    "area": "Printer Friendly Work Orders - Audit Trail",
+    "title": "Audit entry records the user and the date and time",
+    "priority": "Medium",
+    "type": "Functional",
+    "permissions_required": "View Work Order (no new permission introduced)",
+    "preconditions": [
+      "You are on the work order detail view and can view the work order.",
+      "The work order has at least one line item."
+    ],
+    "steps": [
+      "Print the work order and open the audit entry."
+    ],
+    "expected": "1. The audit log entry records the user who triggered the print and the date/time.\n\n---\nThis is the expected behaviour as per epic SV-9383 and story SV-9389 (Story 6, Audit Trail) and the Printer Friendly Work Orders specification version 8, section S6-R2, read on 25 August 2026.\n\nAUTOMATION: Not available on Build to test Yet - Last checked 8/25/2026",
+    "design_ref": "No design exists yet (PRD marks Design: TBD on every story); authored from PRD text.",
+    "spec_ref": "requirements.md (Printer Friendly Work Orders spec v8)",
+    "refs": "SV-9389 (S6-R2)",
+    "viu_status": "source-verified-only",
+    "notes": ""
+  },
+  {
+    "id": "PFWO-AUDIT-03",
+    "area": "Printer Friendly Work Orders - Audit Trail",
+    "title": "Print event is visible in the History tab like estimate and invoice prints",
+    "priority": "Medium",
+    "type": "Functional",
+    "permissions_required": "View Work Order (no new permission introduced)",
+    "preconditions": [
+      "You are on the work order detail view and can view the work order.",
+      "The work order has at least one line item."
+    ],
+    "steps": [
+      "Print the work order and open the History tab."
+    ],
+    "expected": "1. The audit log entry is visible in the work order's History tab, consistent with how estimate and invoice print events are displayed today.\n\n---\nThis is the expected behaviour as per epic SV-9383 and story SV-9389 (Story 6, Audit Trail) and the Printer Friendly Work Orders specification version 8, section S6-R3, read on 25 August 2026.\n\nAUTOMATION: Not available on Build to test Yet - Last checked 8/25/2026",
+    "design_ref": "No design exists yet (PRD marks Design: TBD on every story); authored from PRD text.",
+    "spec_ref": "requirements.md (Printer Friendly Work Orders spec v8)",
+    "refs": "SV-9389 (S6-R3)",
+    "viu_status": "source-verified-only",
+    "notes": ""
+  },
+  {
+    "id": "PFWO-AUDIT-04",
+    "area": "Printer Friendly Work Orders - Audit Trail",
+    "title": "Cancelling the browser print dialog still logs the event",
+    "priority": "Medium",
+    "type": "Functional",
+    "permissions_required": "View Work Order (no new permission introduced)",
+    "preconditions": [
+      "You are on the work order detail view and can view the work order.",
+      "The work order has at least one line item."
+    ],
+    "steps": [
+      "Select “Print Work Order”, then cancel the browser print dialog without printing.",
+      "Open the audit history."
+    ],
+    "expected": "1. The “Work Order Printed” event is still logged (the system cannot detect whether the print completed from the browser dialog).\n\n---\nThis is the expected behaviour as per epic SV-9383 and story SV-9389 (Story 6, Audit Trail) and the Printer Friendly Work Orders specification version 8, section S6-N1, read on 25 August 2026.\n\nAUTOMATION: Not available on Build to test Yet - Last checked 8/25/2026",
+    "design_ref": "No design exists yet (PRD marks Design: TBD on every story); authored from PRD text.",
+    "spec_ref": "requirements.md (Printer Friendly Work Orders spec v8)",
+    "refs": "SV-9389 (S6-N1)",
+    "viu_status": "source-verified-only",
+    "notes": ""
+  },
+  {
+    "id": "PFWO-AUDIT-05",
+    "area": "Printer Friendly Work Orders - Audit Trail",
+    "title": "Printing multiple times creates a separate entry each time",
+    "priority": "Medium",
+    "type": "Functional",
+    "permissions_required": "View Work Order (no new permission introduced)",
+    "preconditions": [
+      "You are on the work order detail view and can view the work order.",
+      "The work order has at least one line item."
+    ],
+    "steps": [
+      "Print the same work order three times.",
+      "Open the audit history."
+    ],
+    "expected": "1. Each print action creates a separate audit log entry.\n\n---\nThis is the expected behaviour as per epic SV-9383 and story SV-9389 (Story 6, Audit Trail) and the Printer Friendly Work Orders specification version 8, section S6-E1, read on 25 August 2026.\n\nAUTOMATION: Not available on Build to test Yet - Last checked 8/25/2026",
+    "design_ref": "No design exists yet (PRD marks Design: TBD on every story); authored from PRD text.",
+    "spec_ref": "requirements.md (Printer Friendly Work Orders spec v8)",
+    "refs": "SV-9389 (S6-E1)",
+    "viu_status": "source-verified-only",
+    "notes": ""
+  }
+]
