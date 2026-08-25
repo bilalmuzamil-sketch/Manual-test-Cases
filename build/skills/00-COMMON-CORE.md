@@ -187,6 +187,34 @@ the same day, 10 Filters cases and 16 Schedule cases had to be repaired for show
 pass sent **469 partial payloads over structurally identical content and was not affected at all.**
 So **treat every partial payload as unsafe.** *(Playbook §J, DECLARED NORMALISATION #3.)*
 
+### 2.1a 🛑 CORRECTION 2026-08-25 — *"A field sent explicitly is stored verbatim"* IS FALSE
+
+**The sentence above, struck through in effect, is the most dangerous line in this file, because it is
+the one that talks a pass out of checking.** Sending all three fields is **NECESSARY BUT NOT
+SUFFICIENT.** *(Correction approved by the QA lead, 2026-08-25; the original wording is kept in place
+above rather than deleted, per the Rules 32/33 pattern.)*
+
+**THE PROOF, and it is our own damage.** A single authorised **title-only** repair on
+[C44864](https://shopview.testrail.io/index.php?/cases/view/44864) sent `custom_preconds`,
+`custom_steps` and `custom_expected` **explicitly, at their exact pre-write snapshot values**, byte
+for byte. It returned **HTTP 200**, and **all three came back wrapped in `<p>…</p>` with their
+newlines left bare and no `<br>`** — the §3.5 collapse pattern. The case had been plain text before
+the write. **So the write did the approved job and simultaneously made the case render as one
+unreadable run-on paragraph for the tester.**
+
+**⇒ THREE THINGS FOLLOW:**
+1. **THE BYTE-CHECK IS NOT OPTIONAL EVEN ON A "SAFE" ONE-FIELD EDIT.** §2.2 is what caught this;
+   §2.1's promise is what would have suppressed it. A pass that trusts the promise and skips the
+   check reports a clean write over a case it has just damaged.
+2. **🔑 PRE-EMPT IT: PUT `<br>` INTO EVERY MULTI-LINE FIELD YOU SEND, ON EVERY WRITE.** Do not wait to
+   see whether the re-render fires. **The repair for the collapse pattern and the prevention of it are
+   the same operation** — insert `<br>` before each newline, changing the breaks only and never the
+   wording. Applied that way, an `update_case` on a plain-text case leaves it rendering correctly
+   instead of collapsed.
+3. **A CASE'S MARKUP STATE IS AN OUTPUT OF YOUR WRITE, NOT A PROPERTY YOU INHERITED.** §3.5 says never
+   report "0 raw markup" as durable; this is the active form of the same fact — **your own write is one
+   of the things that changes it**, so census after writing, not only before.
+
 ### 2.2 Re-GET and byte-compare, field by field, after every write
 
 Compare the live case against **the intended payload**, and prove **every field you did not intend to
@@ -480,6 +508,33 @@ guard and reports the count.**
 
 **Never use `<` or `>` in case text.** `TU-DAY-01 / C30418` imported as *"Expand 's daily breakdown"* —
 the angle-bracket placeholder was swallowed. Sweep any payload for `<` before sending.
+
+**🔴 IT HAPPENED AGAIN ON 2026-08-25, AND THE SWEEP IS NOW MANDATORY, NOT ADVISORY (QA lead approved
+this addition).** Four cases across the six August suites reached TestRail with their placeholders
+destroyed — **7 field instances**, found only by comparing local source against live:
+
+| Case | Placeholder lost | Fields | What the tester was left reading |
+|---|---|---|---|
+| [C44864](https://shopview.testrail.io/index.php?/cases/view/44864) | `<query>` | title · refs · expected | `'No results for ' plus…` — the echoed search term simply gone |
+| [C44875](https://shopview.testrail.io/index.php?/cases/view/44875) | `<q>` | preconds · expected | `banner 'Showing N work orders matching '` |
+| [C44892](https://shopview.testrail.io/index.php?/cases/view/44892) | `<that customer>` | steps | `context set to {type: customer, id: }` — a broken instruction |
+| [C45055](https://shopview.testrail.io/index.php?/cases/view/45055) | `<typed text>` | expected | `“Create  as a new part”` |
+
+**⇒ TWO RULES, AND THE SECOND IS THE ONE THAT ACTUALLY FIXES IT:**
+
+1. **SWEEP EVERY PAYLOAD FOR `<` BEFORE ANY `add_case`, `update_case` OR CSV IMPORT.** Run
+   **`python3 build/testing-tools/check_angle_brackets.py <files-or-dirs>`** (exit 1 on a hit) over the
+   case sources *and* the generated import CSV. **A case that has already been imported cannot be
+   swept — the placeholder is gone and only the local source knows what it said**, which is why this
+   is a pre-flight and not an audit.
+2. **🔑 USE SQUARE BRACKETS FOR PLACEHOLDERS — `[query]`, NOT `<query>`.** Square brackets pass through
+   TestRail's HTML pipeline untouched, so the meaning survives; angle brackets never can. **This is the
+   permanent authoring convention.** *(Proven on 2026-08-25: the four cases above were repaired to
+   `[query]` / `[q]` / `[that customer]` / `[typed text]` and byte-verified intact.)*
+
+**Why "just avoid placeholders" is the wrong lesson:** the placeholder is carrying real information —
+*the message echoes what you typed*. Deleting it to dodge the bug loses the assertion; bracketing it
+keeps it.
 
 ### 3.9 A byte-check is a check on FIDELITY, never on CORRECTNESS
 

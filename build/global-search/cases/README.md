@@ -1,7 +1,7 @@
 # Global Search — Test Cases (AUTHORED 2026-07-16)
 
 **84 cases authored** across 15 sections (14 functional + 1 API). Internal IDs use
-the `GS-<AREA>-NN` scheme. All cases carry `viu_status: "VIU-Pending"` — the feature
+the `GS-[AREA]-NN` scheme. All cases carry `viu_status: "VIU-Pending"` — the feature
 is not yet on a QA environment, so VIU (live build-accurate verification) is deferred.
 
 Files:

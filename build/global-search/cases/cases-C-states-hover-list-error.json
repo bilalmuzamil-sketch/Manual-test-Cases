@@ -184,7 +184,7 @@
  {
   "id": "GS-NORES-01",
   "area": "No-Results State",
-  "title": "No matches shows 'No results for <query>' plus the three quick-create buttons",
+  "title": "No matches shows 'No results for [query]' plus the three quick-create buttons",
   "priority": "High",
   "type": "Functional",
   "permissions_required": "Any signed-in user.",
@@ -196,13 +196,13 @@
    "1. Type a query with no matches (for example 'S1- 56438').",
    "2. Read the centered message and the buttons."
   ],
-  "expected": "1. A centered message reads 'No results for \\'S1- 56438\\'' (the exact query is echoed in quotes).\n2. The three quick-create buttons are shown: 'New work order', 'New customer', 'New inventory part'.\n3. The footer keyboard legend is still visible.\n\n---\nThis is the expected behaviour as per the Global Search PRD (Confluence page 576978945), section 5.2 State 4 (No results for <query> + quick-create chips), read on 16 July 2026, and epic SV-9160, read on 21 August 2026.\n\nAUTOMATION: Not available on Build to test Yet - Last checked 8/21/2026\n",
+  "expected": "1. A centered message reads 'No results for \\'S1- 56438\\'' (the exact query is echoed in quotes).\n2. The three quick-create buttons are shown: 'New work order', 'New customer', 'New inventory part'.\n3. The footer keyboard legend is still visible.\n\n---\nThis is the expected behaviour as per the Global Search PRD (Confluence page 576978945), section 5.2 State 4 (No results for [query] + quick-create chips), read on 16 July 2026, and epic SV-9160, read on 21 August 2026.\n\nAUTOMATION: Not available on Build to test Yet - Last checked 8/21/2026\n",
   "design_ref": "design-notes.md screenshot 6; requirements.md 5.2 State 4",
-  "spec_ref": "requirements.md 5.2 State 4 (No results for <query> + quick-create chips)",
+  "spec_ref": "requirements.md 5.2 State 4 (No results for [query] + quick-create chips)",
   "viu_status": "VIU-Pending",
   "notes": "Query is echoed verbatim in the message per design-notes screenshot 6.",
   "api_related": false,
-  "refs": "SV-9160 (PRD 5.2 State 4 (No results for <query> + quick-create chips))"
+  "refs": "SV-9160 (PRD 5.2 State 4 (No results for [query] + quick-create chips))"
  },
  {
   "id": "GS-NORES-02",
@@ -419,13 +419,13 @@
   "type": "Functional",
   "permissions_required": "A user with Work Orders access.",
   "preconditions": [
-   "1. The Work Orders list is filtered by an in-page search (banner 'Showing N work orders matching <q>' is visible)."
+   "1. The Work Orders list is filtered by an in-page search (banner 'Showing N work orders matching [q]' is visible)."
   ],
   "steps": [
    "1. Click the 'Clear search' link in the banner.",
    "2. Read the list and the banner."
   ],
-  "expected": "1. The filter is removed and the full Work Orders list is shown again.\n2. The 'Showing N work orders matching <q>' banner is removed.\n\n---\nThis is the expected behaviour as per the Global Search PRD (Confluence page 576978945), section design-notes screenshot 1, read on 16 July 2026, and epic SV-9160, read on 21 August 2026.\n\nAUTOMATION: Not available on Build to test Yet - Last checked 8/21/2026\n",
+  "expected": "1. The filter is removed and the full Work Orders list is shown again.\n2. The 'Showing N work orders matching [q]' banner is removed.\n\n---\nThis is the expected behaviour as per the Global Search PRD (Confluence page 576978945), section design-notes screenshot 1, read on 16 July 2026, and epic SV-9160, read on 21 August 2026.\n\nAUTOMATION: Not available on Build to test Yet - Last checked 8/21/2026\n",
   "design_ref": "design-notes.md screenshot 1 ('Clear search')",
   "spec_ref": "design-notes screenshot 1",
   "viu_status": "VIU-Pending",
