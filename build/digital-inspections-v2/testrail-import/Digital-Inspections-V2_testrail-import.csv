@@ -1,0 +1,566 @@
+Title,Section,Type,Priority,Preconditions,Steps,Expected Result,References,,
+"Note-required option on checkbox and per-axle fields, on by default",Capturing Findings,Functional,High,"1. You are signed in with Settings — Service.
+2. You are editing a template with a checkbox field and a per-axle field.","1. Add a new checkbox field and open its authoring options.
+2. Add a per-axle field and open its options.","1. A checkbox field offers an authoring option ""Note required if Monitor / Not OK"".
+2. The option is on by default for newly added checkbox fields.
+3. The same option applies to per-axle measurement fields.
+
+---
+This is the expected behaviour as per epic SV-8181 and story SV-9099 (S1, Require a note on flagged responses) and the Digital Inspections V2 specification version 18, sections S1-R1, S1-R2, S1-R6, read on 21 August 2026.
+
+AUTOMATION: Not available on Build to test Yet - Last checked 8/21/2026
+",SV-9099 (S1-R1; S1-R2; S1-R6),,
+A required note is enforced on submit and listed in outstanding items,Capturing Findings,Functional,High,"1. A template has a checkbox field with 'Note required if Monitor / Not OK' on.
+2. You are filling an inspection (Work Order Lines — Create & Edit.)","1. Mark the field Monitor or Not OK and leave the note empty.
+2. Try to submit.
+3. Check the outstanding-items list before submit.","1. When the option is on and the response is Monitor or Not OK, a note is required before the inspection can be submitted.
+2. The requirement is enforced on submit, not only while filling.
+3. Before submit, the field appears in the outstanding-items list so the technician is not rejected by an avoidable error.
+4. On a per-axle field the requirement triggers when any axle is marked Monitor or Not OK.
+
+---
+This is the expected behaviour as per epic SV-8181 and story SV-9099 (S1, Require a note on flagged responses) and the Digital Inspections V2 specification version 18, sections S1-R3, S1-R4, S1-R5, S1-E5, read on 21 August 2026.
+
+AUTOMATION: Not available on Build to test Yet - Last checked 8/21/2026
+",SV-9099 (S1-R3; S1-R4; S1-R5; S1-E5),,
+"Note rule negatives and edge cases (off, OK/NA, spaces, changed response)",Capturing Findings,Negative,Medium,"1. Templates with the note option on and off exist.
+2. You are filling inspections against them.","1. With the option off, mark Monitor/Not OK with no note and submit.
+2. Mark OK or N/A and submit.
+3. Enter a note of only spaces on a flagged field.
+4. Write a note then change the response to OK.","1. Option off: a Monitor or Not OK response with no note submits successfully.
+2. OK or N/A: no note is required.
+3. A note containing only spaces counts as empty.
+4. If the technician writes a note then changes the response to OK, the note is kept.
+5. Templates created before this release are unaffected until an author opens one and turns the option on; turning it on mid-inspection keeps the rule that inspection started with.
+
+---
+This is the expected behaviour as per epic SV-8181 and story SV-9099 (S1, Require a note on flagged responses) and the Digital Inspections V2 specification version 18, sections S1-N1, S1-N2, S1-E1, S1-E2, S1-E3, S1-E4, read on 21 August 2026.
+
+AUTOMATION: Not available on Build to test Yet - Last checked 8/21/2026
+",SV-9099 (S1-N1; S1-N2; S1-E1..E4),,
+"'Photo required if Not OK' on checkbox fields, on by default, enforced on submit",Capturing Findings,Functional,High,"1. You are signed in with Settings — Service; photo upload is available to the technician.
+2. A template has a checkbox field.","1. Add a checkbox field and open its options.
+2. As technician, mark it Not OK with no photo and try to submit.
+3. Check the outstanding-items list.","1. A checkbox field offers ""Photo required if Not OK"", on by default for newly added checkbox fields.
+2. When on and the response is Not OK, at least one photo is required before submit; enforced on submit, not only while filling.
+3. The field appears in the outstanding-items list before submit.
+4. The option applies to checkbox fields only (a per-axle field records a verdict per position, with no single position a field photo would belong to).
+
+---
+This is the expected behaviour as per epic SV-8181 and story SV-9440 (S17, Require a photo on a Not OK response) and the Digital Inspections V2 specification version 18, sections S17-R1..R6, read on 21 August 2026.
+
+AUTOMATION: Not available on Build to test Yet - Last checked 8/21/2026
+",SV-9440 (S17-R1; S17-R2; S17-R3; S17-R4; S17-R5; S17-R6),,
+Photo-required: interaction with unconditional rule; negatives and edges,Capturing Findings,Negative,Medium,"1. Templates exist with 'Photo required if Not OK' on, both alone and together with the unconditional 'Photo required'.
+2. Photo upload can be made unavailable.","1. Mark OK/Monitor/N/A and submit.
+2. With both photo rules on, read the builder summary sentence.
+3. Attach a photo, satisfy the rule, then remove it and try to submit.
+4. Attach a photo then change the response to OK.
+5. Make photo upload unavailable and observe.","1. Option off: a Not OK response with no photo submits successfully. OK, Monitor and N/A never require a photo (Monitor requires a note, not a photograph).
+2. When both 'Photo required' and 'Photo required if Not OK' are on, the unconditional rule is the one enforced and the builder summary sentence says so.
+3. If the technician satisfies the rule then removes the photo, the field blocks submit again.
+4. A photo attached then response changed to OK is kept.
+5. If photo upload is unavailable, the technician is told why rather than being blocked by a requirement with no visible cause.
+6. Templates created before this release are unaffected until an author turns the option on.
+
+---
+This is the expected behaviour as per epic SV-8181 and story SV-9440 (S17, Require a photo on a Not OK response) and the Digital Inspections V2 specification version 18, sections S17-R7, S17-N1, S17-N2, S17-N3, S17-E1..E4, read on 21 August 2026.
+
+AUTOMATION: Not available on Build to test Yet - Last checked 8/21/2026
+",SV-9440 (S17-R7; S17-N1..N3; S17-E1..E4),,
+"Per axle is its own field type, prefilled with four measurement rows",Capturing Findings,Functional,High,"1. You are signed in with Settings — Service.
+2. You are editing a template.","1. Open the field-type list.
+2. Add a Per axle field and read its default name, rows, units and tire/brake scope.
+3. Check the Measurement field's options.","1. Per axle is its own field type offered alongside Checkbox, Text, Measurement, Photo and Instructions; the Measurement field no longer carries an axle option.
+2. A new per-axle field is named ""New axle set"" and prefilled with four rows: tire pressure, tread depth, brake lining, push-rod travel.
+3. Each row carries an author-set default unit (PSI for tire pressure; inches for tread depth, brake lining, push-rod travel) — a default the technician starts from, not a fixed value.
+4. Each row states whether it is measured on the tire or on the brake: tire pressure and tread depth default to per tire, brake lining and push-rod travel to per brake.
+5. A per-tire row follows the axle's Single/Dual setting at fill time; a per-brake row is always one value per side. The author does not choose how many values a side needs.
+6. The template does not hold a number of axles — the technician adds them while filling.
+
+---
+This is the expected behaviour as per epic SV-8181 and story SV-9106 (S8, Record measurements per axle) and the Digital Inspections V2 specification version 18, sections S8-R1..R5, S8-R9, read on 21 August 2026.
+
+AUTOMATION: Not available on Build to test Yet - Last checked 8/21/2026
+",SV-9106 (S8-R1..R5; S8-R9),,
+"Per-axle rows: rename in place, add/remove, last row protected, reference file",Capturing Findings,Functional,Medium,"1. You are signed in with Settings — Service.
+2. A template has a per-axle field.","1. Rename a row in place (confirm with the check, dismiss with the X).
+2. Add a row and remove a row.
+3. Try to remove the last row.
+4. Attach a reference file to the per-axle field.","1. Rows are renamed in place, confirmed with a check and dismissed with an X, without a dialog.
+2. Rows can be added and removed; the last row cannot be removed.
+3. A per-axle field carries a reference file like any other field (per S11).
+
+---
+This is the expected behaviour as per epic SV-8181 and story SV-9106 (S8, Record measurements per axle) and the Digital Inspections V2 specification version 18, sections S8-R6, S8-R7, S8-R8, read on 21 August 2026.
+
+AUTOMATION: Not available on Build to test Yet - Last checked 8/21/2026
+",SV-9106 (S8-R6; S8-R7; S8-R8),,
+"Filling an axle: Single/Dual, Drum/Disc, per-position values and verdicts",Capturing Findings,Functional,High,"1. You are filling an inspection with a per-axle field (Work Order Lines — Create & Edit.).
+2. An axle is present.","1. Set the axle to Single or Dual, and to Drum or Disc (or leave Drum/Disc blank).
+2. Enter values on a per-tire row on a Dual axle, then a Single axle, and on a per-brake row.
+3. Set a verdict on each value from the field menu.","1. Each axle is set to Single or Dual and to Drum or Disc; Drum or Disc may be left blank when the axle has no brakes.
+2. A per-tire row on a Dual axle records four values (left outer, left inner, right inner, right outer); on a Single axle it records two; a per-brake row always records two.
+3. Every value carries its own verdict — OK, Monitor, Not OK or N/A — chosen from a menu on the field.
+4. The value input is tinted by its verdict and stays neutral while nothing is entered.
+5. Values accept numbers and characters, including the text N/A; nothing is required and an empty value stays empty (never converted to N/A).
+
+---
+This is the expected behaviour as per epic SV-8181 and story SV-9106 (S8, Record measurements per axle) and the Digital Inspections V2 specification version 18, sections S8-R10..R13, S8-R15, S8-R16, read on 21 August 2026.
+
+AUTOMATION: Not available on Build to test Yet - Last checked 8/21/2026
+",SV-9106 (S8-R10..R13; S8-R15; S8-R16),,
+Derived verdicts worst-first; fill-time unit change; Single/Dual preserves,Capturing Findings,Functional,High,"1. You are filling an inspection with a per-axle field.
+2. An axle has several rows with mixed verdicts.","1. Set positions to a mix of OK/Monitor/Not OK and read the row and axle verdicts.
+2. Change a row's unit while filling and check which positions it affects and whether readings convert.
+3. Switch an axle Dual->Single->Dual and check preserved values.","1. A row's verdict is derived from its positions and an axle's from all its positions; worst wins (Not OK over Monitor over OK); neither is chosen directly.
+2. Changing a row's unit while filling applies to that row across the whole axle (every position read in one unit) and does not touch other rows or axles.
+3. Changing a row's unit does NOT convert readings already entered.
+4. Switching an axle between Single and Dual preserves what was entered with no warning: Single keeps the outer readings as left/right, switching back restores the inner readings; preserved values live for the session only.
+
+---
+This is the expected behaviour as per epic SV-8181 and story SV-9106 (S8, Record measurements per axle) and the Digital Inspections V2 specification version 18, sections S8-R14, S8-R27, S8-R17, S8-E7, read on 21 August 2026.
+
+AUTOMATION: Not available on Build to test Yet - Last checked 8/21/2026
+",SV-9106 (S8-R14; S8-R17; S8-R27; S8-E7),,
+"Axle diagram, add/clear/delete axles, expand behaviour",Capturing Findings,Functional,Medium,1. You are filling an inspection with a per-axle field on a multi-axle truck.,"1. Look at the truck diagram and how tires are tinted.
+2. Select a tire in the diagram.
+3. Use the first axle's clear action; delete a later axle; check renumbering.
+4. Expand axles one at a time and all at once.","1. A diagram of the truck shows every axle and tints each tire by the worst verdict of the rows measuring it; a tire stays grey until one of its rows has a verdict.
+2. Selecting a tire in the diagram moves to that axle, row and tire.
+3. The first axle can never be deleted; it carries a clear action that empties its readings and verdicts and leaves the axle in place.
+4. Any axle after the first can be deleted; axles below it move up and the numbering follows.
+5. Axles can be expanded one at a time or all at once; opening one does not collapse another.
+
+---
+This is the expected behaviour as per epic SV-8181 and story SV-9106 (S8, Record measurements per axle) and the Digital Inspections V2 specification version 18, sections S8-R18..R22, read on 21 August 2026.
+
+AUTOMATION: Not available on Build to test Yet - Last checked 8/21/2026
+",SV-9106 (S8-R18; S8-R19; S8-R20; S8-R21; S8-R22),,
+"Per-axle output, per-position counting, and one finding per flagged row",Capturing Findings,Functional,Medium,1. A completed inspection has a per-axle field with flagged rows.,"1. Open the completed read-only view and the report.
+2. Check the counts on the inspection list, report counters and the field summary.
+3. Check what findings reach the work order build.","1. The completed read-only view and the report show each row's values per position with the row's derived verdict.
+2. Counting is per judged position; the inspection list, report counters and the field summary report the same numbers.
+3. Each flagged row produces its own finding for the work order, naming the axle and the row so a line can be traced to the measurement that caused it.
+
+---
+This is the expected behaviour as per epic SV-8181 and story SV-9106 (S8, Record measurements per axle) and the Digital Inspections V2 specification version 18, sections S8-R24, S8-R25, S8-R26, read on 21 August 2026.
+
+AUTOMATION: Not available on Build to test Yet - Last checked 8/21/2026
+",SV-9106 (S8-R24; S8-R25; S8-R26),,
+"Per-axle negatives and edges: unanswered, N/A vs value, free text, road train",Capturing Findings,Negative,Medium,1. You are filling/reviewing inspections with per-axle fields in varied states.,"1. Submit a required per-axle field with no verdict anywhere.
+2. Leave Drum/Disc blank and check the report.
+3. Enter a value with no verdict.
+4. Enter the text 'N/A' as a value AND set verdict N/A.
+5. Fill a 7-axle road train on desktop and phone.
+6. Give an axle a verdict but no measurements.","1. A per-axle field with no verdict anywhere counts as unanswered and blocks submit when the field is required.
+2. If Drum or Disc is left blank, nothing about brake type appears in the report.
+3. A position with a value and no verdict is not counted as a finding and does not block submit.
+4. A value of text 'N/A' and a verdict of N/A are different statements and both survive to the report distinctly.
+5. Free text in a value reaches the report as entered.
+6. An axle with a verdict and no measurements counts as answered. A road train of seven-plus axles stays usable on the diagram and the phone layout.
+
+---
+This is the expected behaviour as per epic SV-8181 and story SV-9106 (S8, Record measurements per axle) and the Digital Inspections V2 specification version 18, sections S8-N1, S8-N2, S8-N3, S8-E1..E4, read on 21 August 2026.
+
+AUTOMATION: Not available on Build to test Yet - Last checked 8/21/2026
+",SV-9106 (S8-N1..N3; S8-E1; S8-E2; S8-E3; S8-E4),,
+Any field holds one 'Attach File' reference; types stated up front,Capturing Findings,Functional,Medium,"1. You are signed in with Settings — Service.
+2. A template has fields of several types.","1. On any field type, open the properties panel and use the Attach File control.
+2. Read the accepted types and size limit shown.
+3. Attach a PDF/image/Word/Excel/HEIC file; check the canvas row.","1. Any question type holds one file attachment; the upload control reads ""Attach File"" on every field type.
+2. PDF, image, Word and Excel files are accepted, including HEIC; video is not accepted.
+3. The accepted file types and size limit are stated in the properties panel before the upload, not after a file is rejected.
+4. The attached file is visible on the canvas on the field's row.
+5. Attached files are available only within the shop that uploaded them.
+
+---
+This is the expected behaviour as per epic SV-8181 and story SV-9109 (S11, Attach a reference file to a question) and the Digital Inspections V2 specification version 18, sections S11-R1, S11-R2, S11-R3, S11-R5, S11-R6, S11-R7, read on 21 August 2026.
+
+AUTOMATION: Not available on Build to test Yet - Last checked 8/21/2026
+",SV-9109 (S11-R1; S11-R2; S11-R3; S11-R5; S11-R6; S11-R7),,
+Technician opens the reference file full-page; survives republish; negatives,Capturing Findings,Functional,Medium,"1. A template field has a reference file.
+2. You are filling an inspection (Work Order Lines — Create & Edit.); 'Work Orders — View' to open the file.","1. While filling, open the attached file.
+2. Republish the template, then open the attachment on an earlier published version.
+3. Try to open a file belonging to another shop; try a removed attachment; try a video upload.","1. The technician sees the attached file while filling and can open it: a full-page view in the same tab, with a close action and a download action, readable without downloading.
+2. After a template is republished, instructions in earlier published versions still open their attachments.
+3. Video files are rejected with a reason; a file belonging to another shop cannot be opened; a removed attachment is no longer seen by the technician.
+
+---
+This is the expected behaviour as per epic SV-8181 and story SV-9109 (S11, Attach a reference file to a question) and the Digital Inspections V2 specification version 18, sections S11-R4, S11-R8, S11-N1, S11-N2, S11-N3, read on 21 August 2026.
+
+AUTOMATION: Not available on Build to test Yet - Last checked 8/21/2026
+",SV-9109 (S11-R4; S11-R8; S11-N1; S11-N2; S11-N3),,
+Build turns every Monitor and Not OK finding into a work order line,Building Work From Findings,Functional,High,"1. The organisation has ShopCoach.
+2. A completed inspection has Monitor and Not OK findings (Work Order Lines — Create & Edit (+ Work Orders — Create & Edit to create a new work order). Building requires ShopCoach (S2-R0).).","1. Start a build from the completed inspection.
+2. Choose a target work order.
+3. Add the lines and inspect them.","1. Every Monitor and Not OK finding is represented by at least one line; ShopCoach composes each line's name, description, time estimate and parts (the label, measured value and note are inputs, not the line text — see S15).
+2. A generated line behaves as an ordinary work order line from that point on, indistinguishable from a typed one.
+3. When added, lines arrive approved or awaiting authorisation per the shop's existing auto-approve setting, exactly as a manually added line does; an Approved work order needs no re-approval (approval applies to lines).
+4. Generated lines resolve labour type as the manual New Line form does (default, else first available), and the rate follows the labour type; the ShopCoach time estimate is carried and editable, defaulting to zero where none is proposed.
+
+---
+This is the expected behaviour as per epic SV-8181 and story SV-9100 (S2, Turn findings into work order lines) and the Digital Inspections V2 specification version 18, sections S2-R1, S2-R2, S2-R7, S2-R8, S2-R9, S2-R10, read on 21 August 2026.
+
+AUTOMATION: Not available on Build to test Yet - Last checked 8/21/2026
+",SV-9100 (S2-R1; S2-R2; S2-R7; S2-R8; S2-R9; S2-R10),,
+Target work order chosen up front; closed WO forces a new one,Building Work From Findings,Functional,High,"1. ShopCoach present; a completed inspection with findings.
+2. You can reach an inspection whose WO is open and one whose WO is closed.","1. Start a build where the inspection's WO is open; observe the target choice.
+2. Start a build where the inspection's WO is closed.
+3. Observe the new-WO customer/asset.","1. The user chooses the target before any drafting starts: the work order the inspection was run on, or a new work order.
+2. The existing work order is offered only while open (Estimate, Approved, In Progress or Review).
+3. When the WO the inspection was run on is closed (Complete, Invoiced, Paid, or an invoice exists), the system creates a new work order without asking.
+4. A new work order is created for the same customer and asset as the original, using their current values.
+5. A closed work order is never modified — the system creates a new one instead.
+
+---
+This is the expected behaviour as per epic SV-8181 and story SV-9100 (S2, Turn findings into work order lines) and the Digital Inspections V2 specification version 18, sections S2-R3, S2-R4, S2-R5, S2-R6, read on 21 August 2026.
+
+AUTOMATION: Not available on Build to test Yet - Last checked 8/21/2026
+",SV-9100 (S2-R3; S2-R4; S2-R5; S2-R6),,
+Navigation precedes drafting; state changes only on Add Lines,Building Work From Findings,Functional,High,1. ShopCoach present; a completed inspection with findings.,"1. Choose the target and observe navigation vs drafting timing.
+2. Watch the lines draft on the Lines tab.
+3. Add the lines; check the inspection's 'needs a work order' state.
+4. Start a second build from the same inspection and press Add Lines.","1. The user arrives on the target work order's Lines tab as soon as the target is chosen, before drafting finishes, and watches it complete there.
+2. Once the lines are added, the inspection no longer counts as needing a work order; drafting alone does not change that state (an abandoned draft left the findings unactioned).
+3. If lines were already added from this inspection, the user is asked to confirm before adding a second set; the check is made when Add Lines is pressed, on the state at that moment.
+
+---
+This is the expected behaviour as per epic SV-8181 and story SV-9100 (S2, Turn findings into work order lines) and the Digital Inspections V2 specification version 18, sections S2-R11, S2-R12, S2-R13, read on 21 August 2026.
+
+AUTOMATION: Not available on Build to test Yet - Last checked 8/21/2026
+",SV-9100 (S2-R11; S2-R12; S2-R13),,
+"Build negatives: no ShopCoach, not completed, no findings, permission gates",Building Work From Findings,Negative,High,"1. You can reach inspections that are not completed, have no findings, and orgs with/without ShopCoach.
+2. Users with and without WO-Lines and WO-Create rights, and without See Financial Data.","1. Try to build without ShopCoach.
+2. Try on a not-completed inspection and one with no Monitor/Not OK findings.
+3. As a user without WO Lines — Create & Edit; then without WO — Create & Edit; then without See Financial Data.","1. Building requires ShopCoach: without it the completed inspection offers only the report and a link to its work order, and no build action at all.
+2. If the inspection is not completed, or has no Monitor/Not OK findings, the build is not offered.
+3. Without WO Lines — Create & Edit the build is unavailable from any entry point.
+4. Without WO — Create & Edit the create-new-work-order option is not shown; only add-lines-to-the-open-WO is offered.
+5. Without See Financial Data the build is still allowed; money on the resulting work order stays hidden by the existing rules.
+
+---
+This is the expected behaviour as per epic SV-8181 and story SV-9100 (S2, Turn findings into work order lines) and the Digital Inspections V2 specification version 18, sections S2-R0, S2-N1, S2-N2, S2-N3, S2-N4, S2-N5, read on 21 August 2026.
+
+AUTOMATION: Not available on Build to test Yet - Last checked 8/21/2026
+",SV-9100 (S2-R0; S2-N1..N5),,
+"Build edge cases: closed-by-another, deleted WO, concurrent, no labour types",Building Work From Findings,Negative,Medium,1. ShopCoach present; inspections whose WOs can change state mid-flow.,"1. Choose add-lines-to-open-WO, then have someone close it, then confirm.
+2. Delete the original WO before confirming.
+3. Have two users draft from the same inspection at once.
+4. Build with a shop that has no labour types; delete a built WO afterward; reverse an invoice.","1. If the chosen open WO was closed by someone else meanwhile, the system tells the user and creates nothing.
+2. If the original WO is deleted before confirm, the build fails without creating a partial result.
+3. Two users drafting at once duplicate nothing by drafting (a draft is not a WO line); duplication happens only if both press Add Lines, which is accepted and recoverable.
+4. With no labour types the build proceeds and labour cost is zero.
+5. If a built work order is later deleted, the inspection counts as needing a work order again; reversing an invoice does not change the inspection's state.
+
+---
+This is the expected behaviour as per epic SV-8181 and story SV-9100 (S2, Turn findings into work order lines) and the Digital Inspections V2 specification version 18, sections S2-E3..E10, read on 21 August 2026.
+
+AUTOMATION: Not available on Build to test Yet - Last checked 8/21/2026
+",SV-9100 (S2-E4; S2-E5; S2-E6; S2-E8; S2-E9; S2-E10),,
+"Build Work Order action on the completed inspection, phone-capable",Building Work From Findings,Functional,Medium,1. ShopCoach present; a completed inspection with findings open in read-only view (Work Order Lines — Create & Edit (+ Work Orders — Create & Edit to create a new work order). Building requires ShopCoach (S2-R0).).,"1. Open the completed inspection.
+2. Use Build Work Order and run the S2 flow, including target choice.
+3. Repeat on a phone.","1. The completed inspection screen offers a Build Work Order action that runs the S2 build, including the target-WO choice.
+2. The action is usable on a phone and the technician can complete the whole flow without switching device.
+
+---
+This is the expected behaviour as per epic SV-8181 and story SV-9101 (S3, Build from a completed inspection) and the Digital Inspections V2 specification version 18, sections S3-R1, S3-R2, S3-R3, read on 21 August 2026.
+
+AUTOMATION: Not available on Build to test Yet - Last checked 8/21/2026
+",SV-9101 (S3-R1; S3-R2; S3-R3),,
+S3 negatives/edges: absent (not disabled) when no findings/rights/ShopCoach,Building Work From Findings,Negative,Medium,"1. Inspections with no findings, not completed, orgs without ShopCoach; users without WO Lines rights.","1. Open a completed inspection with no findings; then not completed; then without the permission; then without ShopCoach.
+2. Delete/reopen the original WO while the screen is open.","1. If there are no Monitor/Not OK findings, if not completed, or if the user lacks WO Lines — Create & Edit, the action is not shown — absent, not disabled.
+2. Without ShopCoach no build action is shown: only View PDF and a link to the work order — absent, not disabled, not behind a tooltip.
+3. If the original WO was deleted, only create-a-new-work-order is offered; if the inspection is reopened while the screen is open, the action disappears.
+
+---
+This is the expected behaviour as per epic SV-8181 and story SV-9101 (S3, Build from a completed inspection) and the Digital Inspections V2 specification version 18, sections S3-N1..N4, S3-E1, S3-E3, read on 21 August 2026.
+
+AUTOMATION: Not available on Build to test Yet - Last checked 8/21/2026
+",SV-9101 (S3-N1..N4; S3-E1; S3-E3),,
+Build action on the work order's inspection report note,Building Work From Findings,Functional,Medium,1. ShopCoach present; a work order has an inspection report note recording Monitor/Not OK findings (Work Order Lines — Create & Edit (+ Work Orders — Create & Edit to create a new work order). Building requires ShopCoach (S2-R0).).,"1. On the work order, find the inspection report note.
+2. Use its Build Work Order action and run S2.
+3. Check the note actions on a phone.","1. The inspection report note offers a Build Work Order action alongside the existing view and download actions, running the S2 build including the target choice.
+2. The S2-R13 double-build confirmation is based on the inspection's CURRENT state, not on the note (the note reflects the inspection as it was when it completed).
+3. All actions on the note remain reachable on a phone, wrapping rather than overflowing.
+
+---
+This is the expected behaviour as per epic SV-8181 and story SV-9102 (S4, Build from the inspection note on a work order) and the Digital Inspections V2 specification version 18, sections S4-R1, S4-R2, S4-R3, S4-R4, read on 21 August 2026.
+
+AUTOMATION: Not available on Build to test Yet - Last checked 8/21/2026
+",SV-9102 (S4-R1; S4-R2; S4-R3; S4-R4),,
+"S4 negatives: passes-only, deleted inspection, history view, no ShopCoach",Building Work From Findings,Negative,Low,"1. Notes exist for pass-only reports, deleted inspections, and in the history view; orgs without ShopCoach.","1. Read a note whose report recorded only passes.
+2. Read a note whose inspection was deleted.
+3. Read a note in the work order's history view.
+4. Read a note without ShopCoach.
+5. Note on a closed work order.","1. Passes-only report: the action is not shown. Deleted inspection: the note remains as a record but the action is not shown.
+2. Without WO Lines — Create & Edit, and in the work order's history view, the action is not shown.
+3. Without ShopCoach the note keeps its view and download actions and offers no build action.
+4. If the work order itself is closed, building creates a new work order (S2-R5) and the note stays where it is.
+
+---
+This is the expected behaviour as per epic SV-8181 and story SV-9102 (S4, Build from the inspection note on a work order) and the Digital Inspections V2 specification version 18, sections S4-N1..N5, S4-E1, read on 21 August 2026.
+
+AUTOMATION: Not available on Build to test Yet - Last checked 8/21/2026
+",SV-9102 (S4-N1..N5; S4-E1),,
+Build from an asset Inspections-tab row via an up-front target menu,Building Work From Findings,Functional,Medium,1. ShopCoach present; the asset Inspections tab is available; a row needs action (Work Order Lines — Create & Edit (+ Work Orders — Create & Edit to create a new work order). Building requires ShopCoach (S2-R0).).,"1. On a needs-action row, use its build action.
+2. Read the target menu options.
+3. Build and watch the row and counts update.","1. A row that needs action offers a build action that presents the target choice up front as a menu (not a dialog), because the user has already decided.
+2. The menu offers ""Build new Work Order"" and ""Add lines to {work order number}""; add-lines is offered only while that work order is open, judged by its status on the row.
+3. The action runs the S2 build; a built-from row shows its outcome instead of the action; after a successful build the row leaves the Needs action filter and the counts and summary update.
+4. What counts as closed here is identical to S2-R5, including Complete.
+
+---
+This is the expected behaviour as per epic SV-8181 and story SV-9104 (S6, Build from the asset Inspections tab) and the Digital Inspections V2 specification version 18, sections S6-R1..R8, read on 21 August 2026.
+
+AUTOMATION: Not available on Build to test Yet - Last checked 8/21/2026
+",SV-9104 (S6-R1..R8),,
+"S6 negatives: closed/deleted WO, no create rights, no ShopCoach, no bulk",Building Work From Findings,Negative,Medium,1. Rows whose WO is closed/deleted; users without WO-Create; orgs without ShopCoach; an asset with several needs-action rows.,"1. As a user without WO — Create & Edit, look for Build new Work Order.
+2. Row whose WO is closed/deleted.
+3. Without WO Lines — Create & Edit.
+4. Without ShopCoach.
+5. A user who can fill but not create WOs, on a row whose WO is closed.","1. Without WO — Create & Edit, ""Build new Work Order"" is not offered anywhere on this tab.
+2. If the WO the inspection was run on is closed or deleted, only ""Build new Work Order"" is offered.
+3. Without WO Lines — Create & Edit, no build action appears on any row; without ShopCoach, neither menu option is offered and no build action appears.
+4. Each row is built separately — there is no bulk build.
+5. A user who can fill but cannot create work orders, on a row whose WO is closed, has no available action: the row shows a dash with a phone-readable explanation that creating a work order requires WO — Create & Edit.
+
+---
+This is the expected behaviour as per epic SV-8181 and story SV-9104 (S6, Build from the asset Inspections tab) and the Digital Inspections V2 specification version 18, sections S6-N1..N5, S6-E1, S6-E2, S6-E3, read on 21 August 2026.
+
+AUTOMATION: Not available on Build to test Yet - Last checked 8/21/2026
+",SV-9104 (S6-N1..N5; S6-E1; S6-E2; S6-E3),,
+Build records a note and an Audit Log entry naming the source inspection,Building Work From Findings,Functional,Medium,"1. A build has completed (S2).
+2. 'View History Logs' to see the Audit Log entry.","1. Open the work order the lines landed on and read the Notes tab.
+2. For a new work order, check the back-link to the original.
+3. Open the Audit Log.","1. A note is added to the work order the lines landed on, stating it was built from the inspection; when the lines went onto a new work order the note links back to the work order the inspection was run on.
+2. The Notes tab count includes the new note immediately.
+3. An Audit Log entry reading ""Built from inspection"" is added, naming the inspection, linking to it, and naming the work order the inspection was run on.
+4. Both records are written however the build was started — from S3, S4 or S6.
+
+---
+This is the expected behaviour as per epic SV-8181 and story SV-9105 (S7, Record where the lines came from) and the Digital Inspections V2 specification version 18, sections S7-R1..R6, read on 21 August 2026.
+
+AUTOMATION: Not available on Build to test Yet - Last checked 8/21/2026
+",SV-9105 (S7-R1..R6),,
+ShopCoach brief is composed from the inspection; user never types a prompt,Building Work From Findings,Functional,High,1. The org has ShopCoach; the S2 conditions are met; the user has chosen the target.,"1. Start a build and observe whether any prompt/query box appears.
+2. Inspect (via the brief contract) what each finding contributes.
+3. Check a per-axle finding's traceability.","1. The system composes the brief from the inspection itself: for each Monitor and Not OK finding it includes the field label, its section, the measured value and unit, the verdict, and the technician's note.
+2. A per-axle finding names its axle and measurement row, so a proposed line traces back to the measurement that caused it.
+3. The brief states what ShopCoach may not do: invent a part it was not given, turn a passing finding into a line, or leave a flagged finding unrepresented.
+4. The user never types anything to get lines — no prompt, no query box, no configuration step anywhere in the flow.
+
+---
+This is the expected behaviour as per epic SV-8181 and story SV-9404 (S15, Draft the lines with ShopCoach) and the Digital Inspections V2 specification version 18, sections S15-R1, S15-R2, S15-R3, S15-R4, read on 21 August 2026.
+
+AUTOMATION: Not available on Build to test Yet - Last checked 8/21/2026
+",SV-9404 (S15-R1; S15-R2; S15-R3; S15-R4),,
+ShopCoach action reads as AI; named once; drafting concurrent with navigation,Building Work From Findings,Functional,Medium,1. ShopCoach present; the build flow is available.,"1. Look at the build action before pressing it (treatment, badge, label).
+2. Note where ShopCoach is named.
+3. Choose the destination and watch drafting; check the skeleton rows; keep using the work order.","1. The action reads as an AI action before it is pressed — purple treatment and AI badge — and the label does not name the product.
+2. ShopCoach is named once, at the destination step, and nowhere else in the flow.
+3. Drafting starts when the destination is chosen, so navigation and drafting happen together.
+4. While drafting, the panel shows one skeleton row per finding (the number of findings is known first); the work order stays usable; cancelling during drafting leaves the work order exactly as it was.
+
+---
+This is the expected behaviour as per epic SV-8181 and story SV-9404 (S15, Draft the lines with ShopCoach) and the Digital Inspections V2 specification version 18, sections S15-R5..R10, read on 21 August 2026.
+
+AUTOMATION: Not available on Build to test Yet - Last checked 8/21/2026
+",SV-9404 (S15-R5; S15-R6; S15-R7; S15-R8; S15-R9; S15-R10),,
+"Proposed lines are selected, editable in place, added only on Add Lines",Building Work From Findings,Functional,High,1. ShopCoach present; a draft of proposed lines is on screen.,"1. Review the proposed lines: selection state, editability, the finding each names.
+2. Edit a title, description, labour figure and part in place.
+3. Deselect every line and check Add Lines.
+4. Press Add Lines.","1. Proposed lines arrive selected, so the default is to accept them; each names the finding it came from.
+2. Every proposed title, description, labour figure and part is editable in place before the lines are added.
+3. Every flagged finding is represented by at least one proposed line however many findings there are; if the assistant cannot draft the whole set in one run, the set is split across runs rather than dropping the surplus.
+4. Nothing reaches the work order until Add Lines is pressed; deselecting every proposed line leaves Add Lines unavailable rather than adding nothing silently.
+
+---
+This is the expected behaviour as per epic SV-8181 and story SV-9404 (S15, Draft the lines with ShopCoach) and the Digital Inspections V2 specification version 18, sections S15-R11..R15, S15-N4, read on 21 August 2026.
+
+AUTOMATION: Not available on Build to test Yet - Last checked 8/21/2026
+",SV-9404 (S15-R11; S15-R12; S15-R13; S15-R14; S15-R15; S15-N4),,
+ShopCoach failure and empty-result are stated plainly; nothing added,Building Work From Findings,Negative,Medium,1. ShopCoach present; the call can return no lines or fail.,"1. Trigger a build where ShopCoach returns no lines.
+2. Trigger a build where the ShopCoach call fails.
+3. Navigate away mid-draft.
+4. Build a finding with an empty note.","1. If ShopCoach returns no lines at all, the user is told so plainly and the work order is unchanged.
+2. If the call fails, the user is told it failed — an empty panel is not acceptable, because there is no non-AI path to fall back to.
+3. If the user navigates away while drafting runs, nothing is added.
+4. A passing finding never becomes a proposed line; no part is proposed that ShopCoach was not given.
+5. A finding with an empty note is still sent and still represented — an empty note is not a reason to drop it.
+
+---
+This is the expected behaviour as per epic SV-8181 and story SV-9404 (S15, Draft the lines with ShopCoach) and the Digital Inspections V2 specification version 18, sections S15-N2, S15-N3, S15-E1..E4, read on 21 August 2026.
+
+AUTOMATION: Not available on Build to test Yet - Last checked 8/21/2026
+",SV-9404 (S15-N2; S15-N3; S15-E1; S15-E2; S15-E3; S15-E4),,
+"Asset record gains an Inspections tab listing every inspection, newest first",Inspection History,Functional,High,"1. You are signed in with Customers — View and Work Orders — View.
+2. An asset reachable from a customer has several inspections.","1. Open the asset record and find the Inspections tab.
+2. Read the list order and the columns on each row.","1. An Inspections tab appears on the asset record, alongside Work Orders, Invoices and Notes.
+2. It lists every inspection linked to that asset, most recently completed first.
+3. Each row shows the inspection, its status, the completion date, the technician who signed it, the findings, the work order it was run on, the report, and an action.
+4. The inspection column shows the template name with its version beneath (what distinguishes repeated runs).
+5. The status column shows the inspection's own progress only, not whether work is pending.
+6. The work order column links to the work order the inspection was run on and shows its status; the report column links to the report when one has been generated.
+
+---
+This is the expected behaviour as per epic SV-8181 and story SV-9103 (S5, Inspection history on the asset record) and the Digital Inspections V2 specification version 18, sections S5-R1..R8, read on 21 August 2026.
+
+AUTOMATION: Not available on Build to test Yet - Last checked 8/21/2026
+",SV-9103 (S5-R1..R8),,
+"Findings column, action states, filter row and 'N of M need a work order'",Inspection History,Functional,High,"1. The asset Inspections tab is open with inspections in mixed states (needs action, done, nothing to do).","1. Read the findings column colours.
+2. Read the action column's three states.
+3. Use the filter row and read its counts and the summary.","1. The findings column shows one item per finding type with a colour, e.g. 1 Not OK in red and 3 Monitor in amber.
+2. The action column has three states: Needs action offers the S6 build; Done shows the outcome and links to the resulting work order, reading ""WO created"" for a new work order and ""Lines added"" when lines went onto the existing one; Nothing to do shows a dash.
+3. A filter row offers All, Needs action, With issues and Not started, each with a count taken from the full list, not the filtered view.
+4. A summary reads ""N of M need a work order"".
+5. An inspection needs action when it is completed, has at least one Monitor or Not OK finding, and has not been built from.
+6. Everything that navigates is a link and everything that changes something is a button.
+
+---
+This is the expected behaviour as per epic SV-8181 and story SV-9103 (S5, Inspection history on the asset record) and the Digital Inspections V2 specification version 18, sections S5-R6, S5-R9..R12, S5-R14, read on 21 August 2026.
+
+AUTOMATION: Not available on Build to test Yet - Last checked 8/21/2026
+",SV-9103 (S5-R6; S5-R9; S5-R10; S5-R11; S5-R12; S5-R14),,
+Counts read the same for everyone; counting definition; phone layout,Inspection History,Functional,Medium,"1. Two users with different permissions can view the same asset.
+2. Inspections include per-axle fields and N/A responses.","1. Compare the counts two users see.
+2. Verify how a response contributes to Pass/Monitor/Needs attention.
+3. Check a per-axle field's contribution.
+4. View the tab on a phone.","1. Two users with different permissions viewing the same asset see identical counts; only the action button differs.
+2. A response contributes one count to exactly one of Pass, Monitor or Needs attention when the field is visible, is a checkbox or measurement, and the response is Pass, Monitor or Not OK; N/A and unanswered contribute nothing.
+3. A per-axle measurement field contributes one count per axle (a field with three axles marked OK, Monitor, Not OK contributes one pass, one monitor, one needs-attention).
+4. The tab is usable on a phone: every column's information stays reachable, the page does not scroll sideways, and the filter row wraps rather than scrolling out of view, keeping its counts.
+
+---
+This is the expected behaviour as per epic SV-8181 and story SV-9103 (S5, Inspection history on the asset record) and the Digital Inspections V2 specification version 18, sections S5-R13, S5-R15..R20, read on 21 August 2026.
+
+AUTOMATION: Not available on Build to test Yet - Last checked 8/21/2026
+",SV-9103 (S5-R13; S5-R15; S5-R16; S5-R17; S5-R19; S5-R20),,
+"S5 negatives and edges: tab gating, empty/edge rows, deleted WO, cutoff",Inspection History,Negative,Medium,"1. Users lacking Work Orders — View and/or Customers — View.
+2. Assets with no inspections, not-started/all-N/A inspections, deleted or reparented WOs.","1. As a user without Work Orders — View, look for the tab; then without Customers — View.
+2. View an asset with no inspections; a not-started inspection; an all-N/A completed inspection.
+3. Delete the WO an inspection was run on; delete a built WO; move the asset to another customer.","1. Without Work Orders — View the Inspections tab does not appear at all (absent, not empty); without Customers — View the asset record is unreachable and so is the tab.
+2. No inspections: an empty state explains so. A not-started inspection shows dashes for date/technician/findings and offers no action. An all-N/A completed inspection reads as no issues and never needs action.
+3. If the WO an inspection was run on is deleted, the column shows a dash (not a broken link) and the row stays usable; if a built WO is deleted, the row returns to Needs action.
+4. If the asset is moved to another customer, all its inspections are still listed. If the template was archived/deleted, the row shows the template name and version as they were, never ""unknown"".
+
+---
+This is the expected behaviour as per epic SV-8181 and story SV-9103 (S5, Inspection history on the asset record) and the Digital Inspections V2 specification version 18, sections S5-N1..N4, S5-E1..E7, read on 21 August 2026.
+
+AUTOMATION: Not available on Build to test Yet - Last checked 8/21/2026
+",SV-9103 (S5-N1; S5-N2; S5-N3; S5-E1; S5-E2; S5-E3; S5-E4; S5-E5; S5-E7),,
+New template shows only the starting-point choice until one is picked,Template Builder,Functional,Medium,"1. You are signed in with Settings — Service on a desktop.
+2. You start a brand-new template.","1. Create a brand-new template and read what the first screen shows.
+2. Choose a starting point or build from scratch.
+3. Look for the signature option.","1. A brand-new template shows only the choice of starting point: start from a template, or build from scratch — no section heading, field count, section menu, signature option or add-section control.
+2. As soon as either option is chosen, the full builder appears.
+3. ""Require technician signature"" is available while building, withheld only on that first empty screen.
+
+---
+This is the expected behaviour as per epic SV-8181 and story SV-9110 (S12, Template builder authoring) and the Digital Inspections V2 specification version 18, sections S12-R1, S12-R2, S12-R3, read on 21 August 2026.
+
+AUTOMATION: Not available on Build to test Yet - Last checked 8/21/2026
+",SV-9110 (S12-R1; S12-R2; S12-R3),,
+"Starting points Brake and Axle, PM Service; later sections = field types",Template Builder,Functional,Medium,"1. You are signed in with Settings — Service.
+2. You are on the new-template first screen.","1. Choose the Brake and Axle starting point and inspect what it creates.
+2. Choose the PM Service starting point and read its sections.
+3. Add a section after the first and see what it offers.","1. A Brake and Axle starting point creates a drum or disc check together with the per-axle brake and tire measurement set.
+2. A PM Service starting point creates a five-section outline: fluids and filters; brakes and tires; electrical; chassis and driveline; diagnostics and finish.
+3. A section added after the first offers field types only, not starting points.
+
+---
+This is the expected behaviour as per epic SV-8181 and story SV-9110 (S12, Template builder authoring) and the Digital Inspections V2 specification version 18, sections S12-R4, S12-R5, S12-R7, read on 21 August 2026.
+
+AUTOMATION: Not available on Build to test Yet - Last checked 8/21/2026
+",SV-9110 (S12-R4; S12-R5; S12-R7),,
+"Field properties panel: per-axle row cards, response options, validation errors",Template Builder,Functional,Medium,"1. You are signed in with Settings — Service.
+2. A template has a per-axle field and a checkbox field.","1. Open a per-axle field's properties and read the row cards.
+2. Add a measurement row.
+3. Open a checkbox field's response options; toggle 'Include Monitor option'.
+4. Clear a response label and a row name and try to publish, then save a draft.","1. Measurement rows appear as cards: the row name reads as text with a rename control (check to confirm, X to dismiss), alongside the unit and whether the row is tire- or brake-measured, with defaults labelled as defaults.
+2. A newly added measurement row opens ready to be renamed; the row list shows how many rows there are and offers a full-width add control.
+3. Response options are editable rows with their colours; an ""Include Monitor option"" control turns the optional amber response on/off and is on by default.
+4. An empty response label shows an error on the row and blocks publishing while still allowing a draft save; an empty measurement row name behaves the same way with the error on the row.
+5. The author is told response labels are theirs to edit but the customer report always uses the standard wording; validation rules are explained on demand, not as permanent panel text.
+
+---
+This is the expected behaviour as per epic SV-8181 and story SV-9110 (S12, Template builder authoring) and the Digital Inspections V2 specification version 18, sections S12-R8..R15, read on 21 August 2026.
+
+AUTOMATION: Not available on Build to test Yet - Last checked 8/21/2026
+",SV-9110 (S12-R8; S12-R9; S12-R10; S12-R11; S12-R12; S12-R13; S12-R14; S12-R15),,
+"Canvas rows, empty-section restraint, and one merged Text field",Template Builder,Functional,Medium,"1. You are signed in with Settings — Service.
+2. A template has checkbox, per-axle and text fields and an empty section.","1. Read a field row on the canvas (type, summary, markers).
+2. Check a checkbox's summary and a per-axle field's summary.
+3. Look at an empty section's options.
+4. Add a Text field and type a long entry; check the field-type list; open a template built with old short/long text fields.","1. A field row shows its type, a summary line and its markers, which wrap rather than being cut off; a checkbox's summary lists its responses; a per-axle field lists its measurement rows and notes that the technician adds axles while filling.
+2. An empty section does not offer duplicate ways to add a field, the option to duplicate itself, or the add-section control until it has content.
+3. A single Text field replaces the separate short and long text fields; it grows as the technician types rather than scrolling within itself; the field-type list offers one text option.
+4. Templates built with the previous short and long text fields keep working unchanged, with nothing to migrate.
+
+---
+This is the expected behaviour as per epic SV-8181 and story SV-9110 (S12, Template builder authoring) and the Digital Inspections V2 specification version 18, sections S12-R16..R23, read on 21 August 2026.
+
+AUTOMATION: Not available on Build to test Yet - Last checked 8/21/2026
+",SV-9110 (S12-R16; S12-R17; S12-R18; S12-R19; S12-R20; S12-R21; S12-R22; S12-R23),,
+"S12 negatives and edges: starting-point limits, empty-label block, deletions",Template Builder,Negative,Low,"1. You are signed in with Settings — Service.
+2. A template already has sections; response labels can be cleared; fields/sections can be deleted.","1. Try to apply a starting point to a template that already has sections.
+2. Clear a response label and try to publish.
+3. Delete the last section; delete a selected field; use very long names.","1. A starting point cannot be applied twice, or to a template that already has sections (offered only on the empty first screen).
+2. If a response label is cleared, publishing is blocked until it is corrected.
+3. If the last section is deleted, the canvas still offers a way to add one back; if a selected field is deleted, the properties panel clears; very long field or section names shorten rather than breaking the layout.
+
+---
+This is the expected behaviour as per epic SV-8181 and story SV-9110 (S12, Template builder authoring) and the Digital Inspections V2 specification version 18, sections S12-N1, S12-N2, S12-E1, S12-E2, S12-E3, read on 21 August 2026.
+
+AUTOMATION: Not available on Build to test Yet - Last checked 8/21/2026
+",SV-9110 (S12-N1; S12-N2; S12-E1; S12-E2; S12-E3),,
+"Report content: title, removed elements, work order number and dates",Customer Report,Functional,Medium,1. A completed inspection exists and a report has been requested.,"1. Generate the report and read the title and header.
+2. Check for the intro paragraph, summary blurbs, advisor row, per-section counts and template version.
+3. Read the work order number and the inspected date.","1. The report title reads ""Inspection results""; the template version does not appear.
+2. The introductory paragraph, the three summary blurbs, the advisor row and the per-section counts are all removed.
+3. The work order number appears without a leading hash in both the header and the running header, includes its branch prefix (S1-2252, not S-2252), and the inspected date shows without a time.
+4. A per-axle field prints each row's values per position, with a status column carrying the row's derived verdict.
+
+---
+This is the expected behaviour as per epic SV-8181 and story SV-9111 (S13, Customer-facing inspection report) and the Digital Inspections V2 specification version 18, sections S13-R0..R8, read on 21 August 2026.
+
+AUTOMATION: Not available on Build to test Yet - Last checked 8/21/2026
+",SV-9111 (S13-R0; S13-R1; S13-R2; S13-R3; S13-R4; S13-R5; S13-R6; S13-R7; S13-R8),,
+"Report addressing, versioning, and negatives/edges",Customer Report,Functional,Medium,"1. Completed inspections exist, including ones with/without a company or contact.","1. Read the Customer block and Contact row.
+2. Check a user-attributed field.
+3. Regenerate the report and check versioning and link resolution.
+4. Republish the template; report a WO with no company / no contact / a name-only company / no answered fields.","1. The Customer block shows the company on the work order (name, address, city, state, postal code, phone); the contact person appears on a separate Contact row; any field attributed to a user shows that person's name.
+2. Regenerating a report produces a new version rather than replacing the previous one; every link resolves to the most recent while earlier versions remain retrievable, so a report already handed to a customer cannot change; republishing the template does not alter an existing report.
+3. No company: the Customer block is omitted (not an empty frame). No contact person: the Contact row is omitted. A name-only company shows only its name with no blank lines or stray punctuation; an inspection with no answered fields produces a report with zero counts rather than failing.
+
+---
+This is the expected behaviour as per epic SV-8181 and story SV-9111 (S13, Customer-facing inspection report) and the Digital Inspections V2 specification version 18, sections S13-R9..R13, S13-N1, S13-N2, S13-E1, S13-E3, read on 21 August 2026.
+
+AUTOMATION: Not available on Build to test Yet - Last checked 8/21/2026
+",SV-9111 (S13-R9; S13-R10; S13-R11; S13-R12; S13-R13; S13-N1; S13-N2; S13-E1; S13-E3),,
+Per-axle and reference-file rendering on a phone; no sideways scroll,Phone Filling,Functional,Medium,"1. You are filling an inspection on a phone (Work Order Lines — Create & Edit).
+2. The template has a per-axle field with a reference file.","1. Fill a per-axle field on the phone and check the layout and tap targets.
+2. Focus a value input.
+3. Move between axles.
+4. Open the reference file and close it.","1. The per-axle field renders one card per measurement row and does not scroll sideways at any width.
+2. Every tap target is large enough for a gloved thumb, including the unit selector and the Drum, Disc, Single and Dual controls; value inputs do not zoom the page on focus.
+3. Moving between axles happens from a header rather than by scrolling, and the primary action advances to the next axle.
+4. A reference file opens across the full screen in the same view and is closable back to the exact position in the inspection.
+
+---
+This is the expected behaviour as per epic SV-8181 and story SV-9397 (S14, Inspection filling on a phone) and the Digital Inspections V2 specification version 18, sections S14-R1..R5, read on 21 August 2026.
+
+AUTOMATION: Not available on Build to test Yet - Last checked 8/21/2026
+",SV-9397 (S14-R1; S14-R2; S14-R3; S14-R4; S14-R5),,
+Outstanding work surfaced on the section action; negatives,Phone Filling,Functional,Medium,1. You are filling an inspection on a phone with required work still outstanding.,"1. Complete a section that still has required work outstanding and read the action.
+2. Select the outstanding item.
+3. Check for horizontal scroll and device-nav overlap; check the back control.","1. Outstanding required work is surfaced on the action that completes the section, carrying a count, rather than as a separate banner competing with the fields.
+2. Selecting an outstanding item moves to the first field that still needs an answer, not to a summary of what is missing.
+3. No screen in the filling flow requires a horizontal scroll to reach a control, and no control is placed where the device's own navigation overlaps it; the layout does not draw its own back control where the device already provides one.
+4. A seven-axle truck stays navigable without scrolling through every one; long labels, row names and file names shorten rather than breaking the layout.
+
+---
+This is the expected behaviour as per epic SV-8181 and story SV-9397 (S14, Inspection filling on a phone) and the Digital Inspections V2 specification version 18, sections S14-R6, S14-R7, S14-R8, S14-N1, S14-N2, S14-E1, S14-E2, read on 21 August 2026.
+
+AUTOMATION: Not available on Build to test Yet - Last checked 8/21/2026
+",SV-9397 (S14-R6; S14-R7; S14-R8; S14-N1; S14-N2; S14-E1; S14-E2),,
