@@ -78,8 +78,14 @@ def clean(s):
     return s
 
 
-def joinlines(lst):
-    return "\n".join(clean(x.rstrip()) for x in (lst or []))
+def joinlines(v):
+    # SHREDDING GUARD (00-core 3.7): a string must be split into lines first,
+    # else iterating it yields one CHARACTER per line.
+    if v is None:
+        return ""
+    if isinstance(v, str):
+        v = v.split("\n")
+    return "\n".join(clean(str(x).rstrip()) for x in v)
 
 
 def load_cases():
