@@ -1,0 +1,16 @@
+C30536 | First visit defaults to today and the active location | get_case HTTP 200
+RULE 71 GATE: custom_atmstatus = 1
+  -> not Automated, the write may proceed.
+  edit: Rule 54 provenance read-date re-stamped to 26 August 2026 (version stays 10 - 10 IS the live version); S5-R1/S5-R7 named alongside the anchors the note already cites
+  NO expectation reworded: every assertion matches live v10 verbatim (see header)
+  custom_expected: before sha=33f4d8378bc9dc5f len=759 -> sending sha=631a2e343089cc7d len=850
+  fields OMITTED (preserved, per the Job 4 finding): custom_preconds, custom_steps
+  update_case HTTP 200
+  re-GET HTTP 200
+  VERIFY custom_preconds: PASS (omitted, preserved) | want sha=a0c74b0c698a6878 got sha=a0c74b0c698a6878
+  VERIFY custom_steps: PASS (omitted, preserved) | want sha=756e23b2e88ca382 got sha=756e23b2e88ca382
+  VERIFY custom_expected: PASS (changed) | want sha=b1b70d11cae020a9 got sha=b1b70d11cae020a9
+  VERIFY custom_atmstatus unchanged: PASS (= 1)
+  VERIFY title unchanged: PASS
+  VERIFY AUTOMATION marker unchanged: PASS | ['AUTOMATION: READY']
+  C30536 OVERALL: PASS
