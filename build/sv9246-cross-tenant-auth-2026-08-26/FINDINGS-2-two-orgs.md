@@ -85,3 +85,21 @@ left reversed. All actions on `sv9246`, a per-ticket QA branch. No production da
 ## No Jira post
 
 This is a FAIL on a security ticket — nothing posted without the QA lead's explicit direction.
+
+## Independently reproduced by the QA lead in-browser (2026-08-26)
+
+The QA lead re-ran the exploit from his own two browser sessions (console `fetch`, each tab's real
+login), confirming it is not a harness artefact:
+
+```
+BEFORE  Org B session is org: ['37aa0f4a-fcb0-4eff-afd1-b7d9a2de04cf']   (sees 0 of Org A's payments)
+switch-user -> 200
+AFTER   session now resolves to org: ['d55bc308-...']  (Org A)
+EXPOSURE Org B now reads Org A's payments: 2
+   03cf06cc  MASTERCARD  278.38  ref 027193
+   cc0a5bcc  MASTERCARD  185.58  ref 016624
+>>> BUG STILL EXISTS: an Org B admin crossed into Org A and read its data.
+```
+
+Same two payments the API run left after reversing db723238 — API and in-browser results agree
+exactly. Verdict stands: **FAIL**.
