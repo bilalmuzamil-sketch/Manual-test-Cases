@@ -1,0 +1,25 @@
+CREATED throwaway case C45162 in section 237, atmstatus=1
+BASELINE (as stored by TestRail after add_case):
+  custom_preconds: sha=853db87501ea1c2a len=179 repr='<p>ZZAUTOTEST-PRE-B1\n1. First precondition line.\n2. Second precondition line.\n\nZZAUTOTEST-PRE-B2 paragraph with *star* and <b>angle</b> characters.\n\n- bullet one\n- bullet two</p>\n'
+  custom_steps: sha=48024bf07f1bb42a len=114 repr='<p>ZZAUTOTEST-STEP-B1\n1. Do the first thing.\n2. Do the second thing.\n\nZZAUTOTEST-STEP-B2 trailing paragraph.\n</p>\n'
+  custom_expected: sha=dca7952b41746c1c len=149 repr='<p>ZZAUTOTEST-EXP-B1\n1. First expectation.\n2. Second expectation.\n\n---\nZZAUTOTEST-EXP-PROVENANCE sentence one. Sentence two.\n\nAUTOMATION: READY\n</p>\n'
+  sent-vs-stored identical for all three: False
+
+=== EXPERIMENT (a): update_case sending ONLY {"title": ...} - all three text fields OMITTED ===
+  update_case HTTP 200
+  re-GET HTTP 200 | title now: 'ZZAUTOTEST field-preservation probe - title changed A'
+  custom_preconds: PRESERVED (byte-identical) | before sha=853db87501ea1c2a after sha=853db87501ea1c2a
+  custom_steps: PRESERVED (byte-identical) | before sha=48024bf07f1bb42a after sha=48024bf07f1bb42a
+  custom_expected: PRESERVED (byte-identical) | before sha=dca7952b41746c1c after sha=dca7952b41746c1c
+  VERDICT (a): OMITTED FIELDS ARE PRESERVED
+
+=== EXPERIMENT (b): update_case sending ALL FOUR fields, text byte-identical to the re-GET ===
+  update_case HTTP 200
+  re-GET HTTP 200 | title now: 'ZZAUTOTEST field-preservation probe - title changed B'
+  custom_preconds: PRESERVED (byte-identical) | sent sha=853db87501ea1c2a after sha=853db87501ea1c2a
+  custom_steps: PRESERVED (byte-identical) | sent sha=48024bf07f1bb42a after sha=48024bf07f1bb42a
+  custom_expected: PRESERVED (byte-identical) | sent sha=dca7952b41746c1c after sha=dca7952b41746c1c
+  VERDICT (b): SENDING ALL FOUR IS LOSSLESS
+
+DELETE throwaway C45162 HTTP 404
+confirm-gone re-GET HTTP 200 (400/404 = deleted)

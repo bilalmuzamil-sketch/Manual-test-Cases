@@ -82,9 +82,20 @@ HTTP 429 ⇒ back off; do not hammer.
 
 **KNOWN TRAPS — these are how sessions damage data by accident (full detail:
 `build/APP-ACTIONS-PLAYBOOK.md` §J):**
-- **`update_case` RE-RENDERS ANY TEXT FIELD YOU OMIT FROM THE PAYLOAD** through its HTML pipeline
-  (wraps in `<p>`, converts `\n` to `\r\n`). **ALWAYS send all four:** `custom_preconds`,
-  `custom_steps`, `custom_expected`, `refs`. A field sent explicitly is stored verbatim.
+- 🔴 **CORRECTED 2026-08-26 — IT IS THE OTHER WAY ROUND. SEND ONLY THE FIELDS YOU ARE CHANGING.**
+  Proved on a throwaway case, both directions, byte-compared (`APP-ACTIONS-PLAYBOOK.md` §J,
+  "CORRECTION, 2026-08-26"): **a field you OMIT is preserved BYTE-IDENTICAL; a field you SEND is put
+  through the HTML pipeline and re-rendered** (wrapped in `<p>…</p>`, `—`→`&mdash;`, trailing `\n`).
+  Sending an unchanged field "for safety" is the *only* way to damage it.
+  **Before any text-field write, check the case's render container** on a logged-in UI session at
+  `index.php?/cases/view/<id>`: `<div class="markdown fr-view">` = safe (value emitted raw); plain
+  `<div class="markdown">` = **DO NOT WRITE via the API** — the wrapper is escaped and the tester
+  literally reads `<p>`. 72 Report Suite cases are in that state from the 2026-08-26 writes.
+  *(Superseded text, kept per Rules 32/33: "`update_case` RE-RENDERS ANY TEXT FIELD YOU OMIT FROM THE
+  PAYLOAD through its HTML pipeline (wraps in `<p>`, converts `\n` to `\r\n`). ALWAYS send all four:
+  `custom_preconds`, `custom_steps`, `custom_expected`, `refs`. A field sent explicitly is stored
+  verbatim." — the first half is unreproducible and the instruction is now the wrong thing to do; the
+  final sentence was already corrected on 2026-08-25.)*
 - **`refs` normalisation:** TestRail splits on commas, trims each entry and rejoins with a bare comma,
   and **rejects any single entry over 248 characters** with HTTP 400 *"Field :refs does not match the
   required pattern."* — a **pattern** error, not a length error. House style: one comma-free entry

@@ -172,8 +172,14 @@ An unexplained gap invites the challenge; an explained one answers it in advance
 > or result without the QA lead's explicit permission (Standing Rule 6).** Permission is **per ask**.
 > Everything else — staging, QA branches, QuickBooks — is disposable.
 
-### 2.1 🔑 Send ALL THREE text fields on EVERY `update_case`
+### 2.1 ~~🔑 Send ALL THREE text fields on EVERY `update_case`~~ — **REVERSED 2026-08-26, see §2.1b**
 
+> **🔴 READ §2.1b FIRST. This heading's instruction is SUPERSEDED and is now the wrong thing to do.**
+> The rule from 2026-08-26 is: **send ONLY the fields whose content you are actually changing.** An
+> omitted field is preserved byte-identical; a *sent* field is the one that gets re-rendered. The
+> original text is kept below, undeleted, per the Rules 32/33 pattern.
+
+*(Superseded text, 2026-08-05 → 2026-08-26:)*
 `custom_preconds` + `custom_steps` + `custom_expected` — **even when you are changing only one**,
 setting the unchanged ones to their exact pre-write snapshot value.
 
@@ -214,6 +220,39 @@ unreadable run-on paragraph for the tester.**
 3. **A CASE'S MARKUP STATE IS AN OUTPUT OF YOUR WRITE, NOT A PROPERTY YOU INHERITED.** §3.5 says never
    report "0 raw markup" as durable; this is the active form of the same fact — **your own write is one
    of the things that changes it**, so census after writing, not only before.
+
+### 2.1b 🔴 CORRECTION 2026-08-26 — SEND ONLY WHAT YOU ARE CHANGING, AND CHECK THE RENDER CONTAINER FIRST
+
+**§2.1 had it backwards.** Settled empirically on a **throwaway `ZZAUTOTEST` case** (never on a real
+one), created, probed both ways and deleted the same hour — script and log:
+`build/report-suite/writes2-2026-08-26/job4_field_preservation.py`, `logs/job4-field-preservation.log`.
+
+| Test | Result, byte-compared on a re-GET |
+|---|---|
+| `update_case` sending **only the title**, all three text fields **OMITTED** | **all three PRESERVED byte-identical** (`853db875…` / `48024bf0…` / `dca7952b…` before *and* after) |
+| `update_case` sending **all four**, text byte-identical to the re-GET | **lossless** |
+| the initial `add_case`, plain text sent | **altered on the way in** — stored `<p>`-wrapped |
+
+**⇒ THE RULE:** a field you **omit is untouched**; a field you **send is re-rendered**. The pipeline
+runs on what you send. **Send only the fields whose content you are actually changing** — sending an
+unchanged field "for safety" is the only way to damage it. §2.2's byte-check is unchanged and still
+mandatory; compare a *sent* field against the sent value **after normalisation** (`—`→`&mdash;`,
+`<p>` wrap unless the value already starts with a block tag, trailing `\n`) and an *omitted* field
+against the pre-write snapshot. Reference: `build/report-suite/writes2-2026-08-26/job1_verify.py`.
+
+**⇒ THE PRE-WRITE GATE, AND IT IS THE IMPORTANT HALF.** The `<p>` wrapper is **unavoidable** (eight
+formulations tried, all wrapped) but whether it **harms the tester** depends on a **per-case render
+container the API does not expose**:
+
+- `<div class="markdown fr-view">` on the case-view page → value emitted **RAW** → wrapper invisible →
+  **safe to write**.
+- plain `<div class="markdown">` → value **markdown-rendered, every tag ESCAPED** → the tester
+  literally reads `<p>` and `</p>` → **DO NOT WRITE via the API**, whatever you send.
+
+Read it from `index.php?/cases/view/<id>` on a logged-in UI session before writing. This is not
+theoretical: **72 Report Suite cases are showing literal `<p>` to testers right now**, all from
+2026-08-26 writes, proven against the same morning's pre-write snapshot, and **they cannot be repaired
+through the API**. Full write-up, C-id list and scanner: `build/APP-ACTIONS-PLAYBOOK.md` §J.
 
 ### 2.2 Re-GET and byte-compare, field by field, after every write
 

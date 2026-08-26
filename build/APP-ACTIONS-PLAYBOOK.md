@@ -760,6 +760,96 @@ with `sv_sso_session` and `cf_clearance` **byte-identical** to the set that was 
   (`custom_mission`, `custom_goals`, `custom_steps_separated`, `custom_testrail_bdd_scenario`) are
   **null on all 753 of our cases**, so they cannot be damaged today — but if any project ever populates
   one, it joins the send-it-every-time list.
+
+- **🔴🔴 CORRECTION, 2026-08-26 — NORMALISATION #3's MITIGATION IS INVERTED AND MUST NOT BE FOLLOWED.
+  OMITTED FIELDS ARE PRESERVED; *SENT* FIELDS ARE THE ONES THAT GET RE-RENDERED. SEND ONLY WHAT YOU
+  ARE CHANGING.** Settled empirically on a **throwaway case**, never on a real one, because the two
+  recorded positions (#3 "always send all three" vs. hazard #6 "every sent field is re-wrapped")
+  cannot both be operational advice. **The old #3 text above is kept visible and is NOT deleted — but
+  its instruction *"on EVERY `update_case`, send ALL THREE text fields"* is SUPERSEDED and is now the
+  wrong thing to do.**
+
+  **THE EXPERIMENT (script `build/report-suite/writes2-2026-08-26/job4_field_preservation.py`, log
+  `logs/job4-field-preservation.log`).** One `ZZAUTOTEST`-prefixed case, `custom_atmstatus: 1`, created
+  in section 237 with distinctive multi-block preconditions/steps/expected, then **deleted** (re-GET
+  after delete → HTTP 400 `"Field :case_id is not a valid test case."` — confirmed gone).
+
+  | Test | What was sent | Result, byte-compared on a re-GET |
+  |---|---|---|
+  | **(a)** | `update_case` with **only `{"title": …}`**, all three text fields **OMITTED** | **ALL THREE PRESERVED BYTE-IDENTICAL.** `custom_preconds` sha `853db875…` before and after; `custom_steps` `48024bf0…`; `custom_expected` `dca7952b…`. **Nothing was re-rendered.** |
+  | **(b)** | `update_case` with **all four fields**, the three text values byte-identical to the re-GET | **LOSSLESS** — all three came back byte-identical to what was sent. |
+  | **(c)** | the **initial `add_case`**, plain text sent | **ALTERED ON THE WAY IN**: `'ZZAUTOTEST-PRE-B1\n1. …'` was stored as `'<p>ZZAUTOTEST-PRE-B1\n1. …</p>\n'` — sent-vs-stored identical = **False**. |
+
+  **⇒ WHICH RULE IS TRUE:** the **last worker is right**. Round-tripping is stable *once* a value has
+  been through TestRail's pipeline — which is why (b) looked lossless — but the pipeline runs on
+  **what you send**, never on what you omit. **A field you omit is untouched. A field you send is
+  re-rendered.** This CONFIRMS hazard #6 and **REFUTES normalisation #3's mitigation**: sending an
+  unchanged field "for safety" is the only way to damage it.
+
+  **⇒ THE RULE, FROM 2026-08-26:** **send ONLY the fields whose content you are actually changing.**
+  Omit the rest. Then byte-verify: the omitted fields must be byte-identical to the pre-write snapshot,
+  and the sent fields must equal the sent value **after normalisation** (`—`→`&mdash;`, `<p>` wrap if
+  the value does not already start with a block tag, trailing `\n`). Reference implementation of that
+  comparison: `build/report-suite/writes2-2026-08-26/job1_verify.py`.
+
+- **🔴🔴 THE `<p>` WRAP IS UNCONDITIONAL — AND WHETHER IT HARMS THE TESTER DEPENDS ON A PER-CASE
+  RENDER FLAG THE API DOES NOT EXPOSE. CHECK THE VIEW PAGE BEFORE ANY TEXT-FIELD WRITE (proven
+  2026-08-26).** This is the missing half of hazard #6 and it explains why some passes "got away with
+  it" and others did not.
+
+  **(i) The wrap cannot be avoided.** Eight formulations were tried on a throwaway — plain, trailing
+  `\n`, leading `\n`, CRLF, blank-line-separated, leading space, markdown bullets — and **all eight
+  came back `<p>…</p>\n`.** The only value stored unwrapped is one that **already begins with a
+  block-level tag** (`<ol>…</ol>` stored as sent, no wrapper added, and `<p>x</p>` is not
+  double-wrapped).
+
+  **(ii) The damage is decided by the container, not by the content.** TestRail's case-view page emits
+  each field into one of two containers:
+
+  | Container in the served view page | Behaviour | Effect of the `<p>` wrapper |
+  |---|---|---|
+  | `<div class="markdown fr-view">` | value emitted **RAW**, HTML renders | **invisible — harmless** |
+  | `<div class="markdown">` | value run through the **markdown renderer**, which **ESCAPES** every tag | **the tester literally reads `<p>` and `</p>`** |
+
+  **The container is a per-case property that `get_case` does not return** — it is not derivable from
+  the value's content (a `<p>`-wrapped plain body renders raw on one case and escaped on another), and
+  it is **not** the field's configured `format: markdown`. **It can only be read from the served view
+  page**, by looking for `markdown fr-view` vs `markdown`. Scanner:
+  `build/report-suite/writes2-2026-08-26/job4_render_path_scan.py`.
+
+  **(iii) THE BLAST RADIUS ALREADY INCURRED — 72 Report Suite cases are showing tag text to testers
+  right now.** All 185 cases touched on 2026-08-26 were scanned: **72 sit in an escaping `markdown`
+  container and now display a literal `<p>` and `</p>`** (three of them a `<br>` as well). **71 were
+  written by the 12:40 write pass; 1 (C30518) by the 13:1x Job 1 rewrite.** Causation is **proven, not
+  assumed**: the pre-write snapshot `build/report-suite/source-verify-2026-08-26/data/live-cases.json`
+  was captured at **11:53, before those writes**, and **all 72 contained no HTML tag at all in any of
+  the three fields at that moment**. C-ids: `build/report-suite/writes2-2026-08-26/logs/job4-damaged-cids.txt`;
+  causation split: `logs/job4-causation.json`.
+
+  **(iv) THEY CANNOT BE REPAIRED THROUGH THE API.** Any API write re-adds the wrapper, and any HTML
+  written instead is escaped by the same renderer — so on an escaping case **every possible API value
+  puts visible tag text on the tester's screen**. Repair needs the **TestRail web editor**. A
+  UI-form-post repair path was investigated and **not attempted**: `index.php?/cases/edit/<id>` does
+  not expose the three text fields as form inputs (they are JS editors) and the form carries a
+  `_token`, so reconstructing the post is not safe to do blind.
+
+  **⇒ THE PRE-WRITE GATE, FROM 2026-08-26 — do this BEFORE any text-field write:** fetch
+  `index.php?/cases/view/<id>` on a logged-in UI session and read the container. **`markdown fr-view`
+  → safe to write. Plain `markdown` → DO NOT WRITE via the API**; the write will damage the case
+  visibly, whatever you send. (Worked example: C30287 and C30536 are `fr-view` and were written safely
+  on 2026-08-26; C30518 is `markdown` and was damaged by an otherwise-correct write.)
+
+- **🔧 `delete_case` — AND EVERY WRITE ENDPOINT — MUST BE A POST WITH A BODY; A GET RETURNS HTTP 404
+  AND THE CASE SURVIVES (2026-08-26).** A helper that only switches to POST when it has a payload will
+  send `delete_case/<id>` as a GET. TestRail answers **404**, which reads like "already gone" — but the
+  case is still there. Send `{}` as the body, and **always confirm with a re-GET**: a genuinely deleted
+  case returns **HTTP 400 `"Field :case_id is not a valid test case."`**, not 404.
+
+- **🔧 `add_case` REQUIRES `custom_automation_type` AS WELL AS `custom_atmstatus` (2026-08-26).**
+  Omitting it returns HTTP 400 `{"error":"Field :custom_automation_type is a required field."}`.
+  Both are required on this instance; `0` = None, and `custom_atmstatus: 1` = Not Automated (**never
+  send `3` on a throwaway** — that is the Automated flag Rule 71 protects).
+
 - **🛑🛑 DECLARED HAZARD #6 — `update_case` NOW RENDERS THE MARKDOWN FIELDS TO HTML AND STORES THE HTML
   ON *EVERY* WRITE — A TESTRAIL-SIDE CHANGE ON 2026-08-19, AND IT IS A HARD BLOCK ON ALL TEXT-FIELD
   WRITES WHILE ACTIVE (diagnosed 2026-08-19, Report Suite; evidence
