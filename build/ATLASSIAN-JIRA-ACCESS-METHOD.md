@@ -10,6 +10,34 @@
 
 ---
 
+## ⚠️ CORRECTION — 2026-08-26: **THERE IS NO OTP ON THIS ACCOUNT.** THE BLOCKER IS A "SECURITY REVIEW" SCREEN
+
+**Proven live 2026-08-26 (`bilal.muzamil@shopview.com`): the account has two-step verification
+switched OFF, so Atlassian NEVER SENDS AN EMAIL CODE.** A session that waits at
+`/tmp/atlassian/otp.txt` for a code will wait forever, and asking the QA lead to relay one wastes
+his time. **Check for the interstitial FIRST; treat the OTP path as the branch that may never fire.**
+
+- After the password is accepted the browser parks on **`id.atlassian.com/login/security-screen`**
+  showing **"Security review"** with three choices: *Enable two-step verification* /
+  **"Continue without two-step verification"** / *Create a passkey*. The Jira board renders behind
+  the modal, which makes it look like the login already succeeded. It has not.
+- **CLICK "Continue without two-step verification".** It only DISMISSES the screen — it changes no
+  account setting. **Until it is clicked the browser never reaches `shopview.atlassian.net`, so
+  `cloud.session.token` is NEVER ISSUED** and every REST call afterwards fails. Selector:
+  `button:has-text("Continue without two-step verification")`. Poll for it up to 3 times; it can
+  also appear AFTER a code step on accounts that do challenge.
+- **THE SECOND TRAP, and it reads like an auth failure but is not:** verifying with
+  `page.evaluate(fetch('https://shopview.atlassian.net/...'))` **while the page is still on the
+  `id.atlassian.com` origin** dies with a bare **`TypeError: Failed to fetch`** — that is the
+  browser's cross-origin block, not a 401. **Navigate to `shopview.atlassian.net` first, THEN
+  capture cookies and call the API.** Assert on a real endpoint: `/rest/api/3/myself` **and** a
+  Confluence page (`/wiki/api/v2/pages/<id>?body-format=storage`), both **200**.
+- Verified end to end on 2026-08-26: 18 cookies captured, `cloud.session.token` present,
+  `myself` → **200**, Confluence page → **200**, and `jira.sh` + `cookies.txt` then works from the
+  shell with no browser. The whole login took **35 seconds** and needed **no human in the loop**.
+
+---
+
 ## ⚠️ CORRECTION — 2026-08-04: THE CODE IS **SIX ALPHANUMERIC CHARACTERS**, NOT "6-DIGIT"
 
 **This doc previously said "6-digit OTP" throughout. That is WRONG, and it will break your login.**
