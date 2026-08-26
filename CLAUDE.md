@@ -3681,6 +3681,57 @@ deliver the 7-tab management report.
     branch is not), 49 (**this rule supplies the finality signal 49 waits for, on per-ticket branches
     only**), 50, 54 (sentence 2 names the build the case was checked against) and 60 (the
     never-final-build strategy, which continues to govern the feature branches).
+63. **BE CHEAP BY DEFAULT — COST COMES FROM BULK DATA PULLED INTO CONTEXT, NOT FROM THOROUGHNESS
+    (all projects).**
+    USER DIRECTIVE (2026-08-26, verbatim): *"Make a rule for yourself to be always cheap"* — given
+    after the SV-7760 pass, and framed by his standing constraint: *"we can not afford burning all the
+    weekly tokens in one day."*
+    **THE CENTRAL INSIGHT, AND IT IS NOT "DO LESS TESTING": what costs money is READING THINGS I DID
+    NOT NEED — bulk data dragged into context — not the number of checks run.** SV-7760 was tested
+    exhaustively in ~10 API calls. The expensive passes were expensive because they downloaded 344 JS
+    chunks to grep them, read a 58 KB file in a single call (**26,000 tokens in ONE tool call**), and
+    printed raw JSON responses instead of verdicts. **Cheapness and rigour are not in tension; sloppy
+    information-gathering is what taxes both.**
+    **THE MECHANICS — in order of how much they save:**
+    **(a) READ THE TICKET/SPEC FIRST AND LET IT CHOOSE THE HARNESS. This is the single biggest
+    multiplier.** An **API-surface** defect (a wrong status code, an org-scoped not-found, a payload
+    contract) needs **no browser at all** — no Chromium, no MITM bridge, no screenshots. A **screen**
+    behaviour (a dialog's arithmetic, a label, a control's presence) genuinely needs the browser.
+    Picking the browser for an API defect can cost 20× and buys nothing. SV-7760 = API, zero browser.
+    SV-8815's credit dialog = screen, browser correctly used.
+    **(b) CHEAPEST DECISIVE CHECK FIRST — ask the question that could END the task.** *Is the fix even
+    deployed? Does a QA branch exist? Is the source current?* One HTTP call can save an entire run.
+    **(c) SCRIPTS PRINT VERDICTS, NOT DATA.** One line per probe, bodies truncated (~130 chars),
+    `| head -N` on every command. **Never `cat` a file, dump a JSON response, or echo a payload into
+    context to "have a look".**
+    **(d) NEVER READ A LARGE FILE WHOLE.** Use a narrow `grep` (with `-n`, a tight pattern and a
+    `head` cap), or a script that reads it and prints a summary. **A file you cannot afford to read is
+    a file to query, not to open.**
+    **(e) NEVER BULK-DOWNLOAD IN ORDER TO SEARCH.** Fetch the one or two artefacts the answer can be
+    in. If the search space is genuinely large, that is a signal to ask the system instead (below).
+    **(f) LET THE SERVER TELL YOU THE SHAPE.** POST an empty or partial body and read the validation
+    error — **one call replaces a guessing loop**, and it is authoritative where guessing is not
+    (`{"id": "Missing required parameter"}` named the field after `payment_id` had failed).
+    **(g) BATCH INDEPENDENT PROBES INTO ONE RUN**, and **reuse recorded recipes (Rule 27)** —
+    re-discovering a known endpoint or click-path is pure cost.
+    **(h) STOP AT THE BLOCKING ANSWER.** When something is blocked (no credentials, not deployed, a
+    dead host), **report it and stop** rather than exploring around it.
+    **THE HONESTY HALF, WHICH OUTRANKS ALL OF THE ABOVE: CHEAP NEVER MEANS LESS VERIFIED.** Standing
+    Rule 50 (exhaustive **and** exact) and Rule 17 (complete data in, complete data out) still bind
+    absolutely. **This rule licenses skipping REDUNDANT READS — never a check, never a case, never a
+    field, never a row.** A sample is still only acceptable when the QA lead asks for one, and it is
+    still labelled as a sample. **If economy and completeness ever genuinely conflict, COMPLETENESS
+    WINS and the cost is stated out loud** — an under-verified result is worth less than nothing,
+    because it is trusted.
+    **SAY THE TRADE-OFF WHEN YOU MAKE ONE**, and **when a task looks genuinely expensive, say so and
+    put the plan up BEFORE spending** (as with the SV-7760 strategy) so the QA lead can redirect while
+    it is still free. **Report the cost honestly afterwards** — including when a pass was expensive.
+    Ties to Standing Rules 1 (complete inputs), 12 (observed, never inferred — economy never converts
+    an unobserved row into a verified one), 17, 22 (ask for the live check + access up front, which is
+    also the cheapest way to avoid a wasted run), 27 (reuse recipes rather than re-derive), 29 (no work
+    loss — a cheap run is also a resumable one), 31/59 (source currency — the cheapest check that can
+    end a task), 49/60 (a redeploy re-checks three layers, not the whole suite — the economical form of
+    a re-check) and 50 (**the rule this one must never be read as weakening**).
 
 ## Project purpose (Custom Roles project)
 Manual test-case authoring + live staging (Verify-in-UI) verification + TestRail

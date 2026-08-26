@@ -3024,6 +3024,24 @@ Wire value for the setting is **`total_rounded`** — `invoice_total` and `total
 
 ## §U — HOW TO UNBLOCK YOURSELF: the ladder, in order (the standing skill, not one project's trick)
 
+### U.00 💰 THE COST CHECK — pick the harness before you build it (Standing Rule 63)
+
+**Ask these three before any test run. They are free, and they decide the whole cost of the pass.**
+
+1. **Is this an API-surface defect or a screen behaviour?** A wrong status code, an org-scoped
+   not-found, a payload contract → **no browser at all**: no Chromium, no bridge, no screenshots.
+   A dialog's arithmetic, a label, a control's presence → the browser is genuinely required.
+   **Choosing the browser for an API defect is the single largest avoidable cost.**
+2. **What is the cheapest check that could END this task?** *Is the fix deployed? Does a QA branch
+   exist? Is the source current?* One HTTP call often ends it.
+3. **How will each probe report?** **One verdict line, body truncated (~130 chars), `| head -N` on
+   every command.** Never `cat` a file, never dump a JSON response, never bulk-download to grep.
+   Ask the server for the shape instead — an empty POST returns the required-field list.
+
+**Cheap never means less verified** — Rule 50 (exhaustive and exact) still binds. This saves
+redundant *reads*, never a check, a case, a field or a row. Worked example of a whole ticket done
+this way: `build/sv7760-reverse-payment-2026-08-26/FINDINGS.md` (~10 API calls, no browser).
+
 ### U.0 ⛔ THE PRE-ACTION CHECK — run this BEFORE the action, not after the mistake
 
 **QA lead, 2026-08-20, verbatim:** *"SO keep on making your skills/rules/recipe/Playbook so that you go
