@@ -236,7 +236,9 @@ change"**, and a **high-collateral-risk silence is escalated as a PO question, n
 (57) — a code-vs-document conflict is a PO DECISION ITEM, never a silent invariant, and the case is HELD
 (58).** Superseded V1 cases are **retired or rewritten, never preserved** (94). The project type is asked
 at intake — **(i) NEW · (ii) V2/UPGRADE · (iii) REVIVAL** — in `build/skills/15-NEW-PROJECT-INTAKE.md`
-§1a, and **type (ii) triggers the skill**.
+§1a, and **type (ii) triggers the skill**. **The source-cited V1 baseline that Step 1 subtracts the
+delta from is built with the companion `build/skills/V1-BASELINE-FROM-SOURCE.md`** (added 2026-08-26;
+worked example `build/global-search/GLOBAL-SEARCH-V1-BASELINE-INVARIANTS.md`).
 
 **Rules 89 (access resilience + MCP hygiene) and 90 (shared-quota budget allocation)** were added
 2026-08-21 and live in `build/rules/RULES-61-96.md` with 61–88. Rule 89's operator form is
@@ -322,6 +324,7 @@ job.** Each file is a complete cold-start specification.
 | `build/skills/14-ACCESS-RESILIENCE.md` | Keeping a working path to TestRail / Jira / ShopView / Figma; MCP hygiene (Rule 89) |
 | `build/skills/15-NEW-PROJECT-INTAKE.md` | **The moment a project is NAMED** — required input set, PRESENT/MISSING intake checklist, source-currency block, and the REVIVAL path (Rules 92–93) |
 | `build/skills/17-REGRESSION-IMPACT-V1-TO-V2.md` | **The project is a V2 / upgrade of an existing feature** (Rule 96) — a V2 spec says only what CHANGES and is SILENT about the rest, so derive the **invariant set** (V1 baseline − changed ∪ removed ∪ replaced), escalate the dangerous silences, retire the superseded V1 cases. No build, no cookies |
+| `build/skills/V1-BASELINE-FROM-SOURCE.md` | **Companion to Skill 17 (Rule 96)** — the method for its Step 1 / §3.3: read the CURRENT product source code and produce a **source-cited V1 behaviour baseline** (invariant register + collateral-risk map + existing-coverage list + self-check, pinned to a commit SHA) for the V2 session to subtract the delta from. Use when you have source read access; it feeds Skill 17, it does not derive invariants or author cases. Worked example: `build/global-search/GLOBAL-SEARCH-V1-BASELINE-INVARIANTS.md` |
 | `build/skills/COVERAGE-MATRIX.md` | Checking that a session learning is actually carried by a skill |
 | `build/skills/STATE.md` | Resuming work ON the skills themselves |
 | `build/handoffs/README.md` | **Four** copy-paste lane briefings for a fresh session |

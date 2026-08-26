@@ -27,7 +27,10 @@ charter; it does not restate it.** Rule text: `build/rules/RULES-61-96.md`.
 
 **Companion files:** authoring itself is `01-CASE-BUILD.md` · source currency is `02-SOURCE-CHECK.md` ·
 intake and the project-type question are `15-NEW-PROJECT-INTAKE.md` · defect admissibility is
-`06-DEFECT-PREP.md` + Rule 94 · PO question sheets are `07-PO-QUESTIONS.md`.
+`06-DEFECT-PREP.md` + Rule 94 · PO question sheets are `07-PO-QUESTIONS.md` · **the source-cited V1
+baseline method (Step 1 / §3.3) is [`V1-BASELINE-FROM-SOURCE.md`](V1-BASELINE-FROM-SOURCE.md)** — use it
+when you have read access to the product source and want the invariant register this skill subtracts the
+V2 delta from.
 
 ---
 

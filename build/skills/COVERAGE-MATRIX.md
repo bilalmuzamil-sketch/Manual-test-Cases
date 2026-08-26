@@ -303,3 +303,17 @@ box above, which this section deliberately does not reopen.)*
 | `build/NO-WORK-LOSS-STRATEGY.md` | The seven requirements and the failures behind them |
 | `build/loss-audit-2026-08-11/`, `build/secret-redaction-2026-08-11/`, `build/automated-*-2026-08-11/` | The audited incidents |
 | `build/OUTSTANDING-ITEMS-REGISTER.md` | What is owed, and by whom |
+
+---
+
+## 7 · POST-AUDIT ADDITIONS — learnings recorded AFTER the 2026-08-13 pass (do NOT fold into the frozen totals above)
+
+> **Why a new section instead of bumping the totals:** §1–§6 are the record of specific dated passes
+> (the coverage transfer + the 2026-08-13 adversarial audit). Retro-editing their counts to include a
+> later learning would falsely claim a past pass found it — the exact overwrite P02 forbids. New
+> learnings are appended here, dated, and get their own row. **The gated totals in §THE TOTALS and §6
+> CORRECTED TOTALS are historical and stay as they are.**
+
+| # | Item | Source | Carried by | Verdict |
+|---|---|---|---|---|
+| **N1** (2026-08-26) | **The source-cited V1 baseline method** — for a V2/upgrade project, read the CURRENT product source and produce an invariant register + collateral-risk map + existing-coverage list + self-check, pinned to a commit SHA, that Skill 17 subtracts the V2 delta from. It is the concrete How for Skill 17 Step 1 / §3.3, kept as a companion (not a new numbered skill) so it cannot drift from Skill 17. | SV-9160 Global Search V2 baseline session (2026-08-26); worked example `build/global-search/GLOBAL-SEARCH-V1-BASELINE-INVARIANTS.md` | `V1-BASELINE-FROM-SOURCE.md`; wired from `17-REGRESSION-IMPACT-V1-TO-V2.md`, `README.md`, `CLAUDE.md` §4 + Rule 96 blurb | PRESENT |
