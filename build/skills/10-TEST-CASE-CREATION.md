@@ -70,9 +70,10 @@ not action it, and it does not enter another lane's territory to fix it.
 | 1 | `00-COMMON-CORE.md` | **All of it once**, then by its own routing table. Non-negotiable: **§16.0 finality (the branches are NOT final)** · §14 the provenance line · §15 the `AUTOMATION:` marker · §17 the project fact sheet · the honesty bar · TestRail write discipline · secrets · reader-facing standards |
 | 2 | `02-SOURCE-CHECK.md` | **First**, before authoring a word — the Rule-31 source-currency pre-flight and the per-requirement reconciliation |
 | 3 | `01-CASE-BUILD.md` | **The authoring procedure itself**, end to end — wording, structure, traceability, the surface matrix, coverage in both directions, §9 the Ruthless Usefulness Audit closing gate, §10 push + run sync, **§11 new-project onboarding** |
-| 4 | `COVERAGE-MATRIX.md` | The completeness proof this lane owes |
-| 5 | `06-DEFECT-PREP.md` | Only if authoring surfaces a **defect** — prepare it, do not file it |
-| 6 | `04-TESTER-READY.md` | Only if the output is going to a manual tester in this pass |
+| 4 | `17-REGRESSION-IMPACT-V1-TO-V2.md` | **Only when the project is a V2 / UPGRADE of an existing feature (intake type ii) — then MANDATORY, and it runs BEFORE or ALONGSIDE authoring, never after** (Rule 96). A V2 spec describes only what CHANGES and is SILENT about the rest; this derives the **invariant set** (V1 baseline − changed ∪ removed ∪ replaced) so a V2 build cannot silently break a V1 behaviour with every case still passing. Needs **no build and no cookies** |
+| 5 | `COVERAGE-MATRIX.md` | The completeness proof this lane owes |
+| 6 | `06-DEFECT-PREP.md` | Only if authoring surfaces a **defect** — prepare it, do not file it |
+| 7 | `04-TESTER-READY.md` | Only if the output is going to a manual tester in this pass |
 
 ---
 
@@ -99,7 +100,8 @@ Full texts: `build/rules/RULES-01-20.md` · `RULES-21-40.md` · `RULES-41-60.md`
 - **`15-NEW-PROJECT-INTAKE.md`** — **read it the moment the QA lead NAMES a project** (Rules 92/93):
   the required input set, the committed PRESENT/MISSING intake checklist, the source-currency block, the
   scaffolding pointer, and the **REVIVAL** path — an existing project starts as a RECONCILIATION of its
-  cases against the current sources, never a fresh authoring run.
+  cases against the current sources, never a fresh authoring run. **Its §1a PROJECT-TYPE question is
+  asked FIRST — (i) NEW · (ii) V2/UPGRADE · (iii) REVIVAL — and type (ii) triggers skill `17`.**
 - **`14-ACCESS-RESILIENCE.md`** — read **before the first access call** (Rule 89): primary paths,
   fallback ladders, failure signatures, the **five MCP-hygiene hard rules** (above all: **never edit
   or "repair" shared MCP config to fix a connection**), and the unattended **BLOCKED** protocol.

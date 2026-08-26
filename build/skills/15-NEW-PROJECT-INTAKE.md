@@ -17,6 +17,8 @@
 |---|---|
 | The QA lead **names a project** and there is no `build/<project-slug>/` folder | **§1–§6 — the NEW-PROJECT path.** |
 | The QA lead **names a project that already exists in this workspace** | **§7 — the REVIVAL path.** It is a **RECONCILIATION**, never a fresh authoring run. |
+| The named project is a **V2 / upgrade / re-work of an existing feature** | **§1a type (ii)** — the intake runs as normal **and TRIGGERS `17-REGRESSION-IMPACT-V1-TO-V2.md` (Rule 96)**, which needs three extra inputs. |
+| **Before any of the above: ASK THE PROJECT TYPE** (input **0**, §1a) | The answer routes the pass. **Never inferred from the project's name.** |
 | No project has been named | **You are not in this skill yet.** Sit at the Rule-92 scope gate and wait. |
 
 **One project at a time.** Claim its lock (Rule 83) before touching anything, and release it when you
@@ -32,6 +34,7 @@ do not invent project details ahead of the spec arriving, and do not fill a gap 
 
 | # | Input | Why it is required | Notes |
 |---|---|---|---|
+| **0** | **PROJECT TYPE — ASK IT FIRST, IT ROUTES EVERYTHING ELSE.** *"Is this (i) a NEW feature, (ii) a V2 / UPGRADE of an existing feature, or (iii) a REVIVAL of an existing workspace project?"* | The three types need **different processes, different inputs and different definitions of done**. Guessing the type is how a V2 gets authored as if it were greenfield — and a greenfield authoring pass has **nothing** that converts a V2 spec's silence about V1 into tests (Rule 96) | **Never inferred from the project name.** *"Global Search V2"*, *"Filters re-work"* and *"Schedule redesign"* all read like new projects. **ASK, and record the answer** in `INTAKE-<date>.md`. See **§1a** for each type's path |
 | 1 | **Spec / PRD** — the canonical **URL** *and* an ingestible copy (export/paste, or a live fetch) | It is the primary source of expected behaviour (Rule 57) | Record the **Confluence version number**, never the in-body "Version" field — that is Rule 31's trap (a) |
 | 2 | **Designs** — a **Claude design** (prototype export or share page), a **Figma** file + node ids, and/or the **technical design** | All three artefact types are authoritative sources of expected behaviour (Rule 57, amended 2026-08-06) | An **undated, editable share link has no date**, so latest-wins cannot be applied to it — cite it as exactly that and escalate (Rule 54) |
 | 3 | **Epic / Jira key** | Rule 20 traceability is not satisfiable without it | Verify the child count **two ways** (`parent =` and `"Epic Link" =`) with no paging remainder (Rule 37 Tier 1) |
@@ -47,6 +50,36 @@ do not invent project details ahead of the spec arriving, and do not fill a gap 
 
 ---
 
+## 1a · THE PROJECT TYPE — the first question asked, and the answer routes the whole pass
+
+**ASK IT BEFORE ANYTHING ELSE, AND RECORD THE ANSWER.** Input **0** above is a required input in
+exactly the same sense as the spec: **work does not start without it** (Rule 1).
+
+| Type | What it is | The path it takes | Extra inputs it demands |
+|---|---|---|---|
+| **(i) NEW feature** | Greenfield. **No shipped predecessor**, nothing existing that a build could regress | §1–§6 of this skill, then the authoring lane: `02-SOURCE-CHECK` → `01-CASE-BUILD` → `COVERAGE-MATRIX` → the Rule-28 audit gate | The standard 7-input set |
+| **(ii) V2 / UPGRADE of an existing feature** | A **new version, re-work or re-design of something already shipped**. The V2 spec describes **only what changes** and is **SILENT about the rest** | **🔴 TRIGGERS `17-REGRESSION-IMPACT-V1-TO-V2.md` — MANDATORY (Rule 96).** It runs **BEFORE or ALONGSIDE** V2 authoring, never after, and it needs **no build and no app cookies**. Then the normal authoring path for the V2 delta | **THREE ADDITIONAL REQUIRED INPUTS — see below** |
+| **(iii) REVIVAL of an existing workspace project** | The **same version** of a project this workspace already holds, with work resuming after a pause | **§7 — the REVIVAL path.** A **RECONCILIATION** of the existing cases against the current sources, never a fresh authoring run | The current source versions + the existing case set + `PROJECT-STATE.md` |
+
+### TYPE (ii) — the three additional required inputs
+
+**A type-(ii) project's input set is NOT complete without all three. A missing one is an ASK, not a
+thing to work around (Rule 1).**
+
+| # | Additional input | Why |
+|---|---|---|
+| **0a** | **The V1 project's SLUG in this workspace** — `build/<v1-slug>/` | Our own repo is a **first-class V1 source** (skill 17 §3.2): the V1 cases, `requirements.md`, spec exports, PO answer files, design reviews and `PROJECT-STATE.md`. Without the slug the baseline is built blind. **If the V1 feature has no workspace folder, say so plainly** — the baseline then rests on documents + code only, and the honest limit grows |
+| **0b** | **The V1 SPEC and its VERSION** | The invariant set is derived **against a pinned V1 document**, not against a memory of one. Record the Confluence version integer (Rule 31 trap (a)) |
+| **0c** | **The EXISTING V1 CASE SET, identified** — suite/group/section, case count **ours vs live total** | Step 1 of skill 17 enumerates the baseline from it, and step 4 of §6 retires the superseded ones. **Foreign cases are identified and excluded from our counts, never edited** (Rule 38) |
+
+**Also worth asking at intake, because it materially improves the pass:** whether this session has
+**read access to the ShopView application repository** (skill 17 §8). If not, it is an **OUTSTANDING
+item raised at intake**, not something discovered halfway through the matrix.
+
+**Record the type and its inputs in `INTAKE-<date>.md`** alongside the PRESENT/MISSING table in §2.
+
+---
+
 ## 2 · THE INTAKE CHECKLIST — filled in, committed, and honest
 
 Write `build/<project-slug>/INTAKE-<date>.md` and **commit it**. One row per input, and the verdict is
@@ -55,6 +88,10 @@ Write `build/<project-slug>/INTAKE-<date>.md` and **commit it**. One row per inp
 ```
 | # | Input            | PRESENT / MISSING | Identifier / where it is        | If MISSING: what it blocks   |
 |---|------------------|-------------------|---------------------------------|------------------------------|
+| 0 | PROJECT TYPE     | PRESENT           | (i) NEW / (ii) V2 / (iii) REVIVAL| everything — §1a             |
+| 0a| V1 project slug  | (type ii only)    | build/<v1-slug>/                | skill 17 baseline            |
+| 0b| V1 spec + version| (type ii only)    | <page id>, Confluence v<N>      | the invariant set            |
+| 0c| V1 case set      | (type ii only)    | group <id>, N ours / M live     | baseline + retire list       |
 | 1 | Spec / PRD       | PRESENT           | <page id>, Confluence v<N>      | —                            |
 | 2 | Designs          | MISSING           | —                               | ~N labels unpinnable         |
 | 3 | Epic / Jira key  | PRESENT           | <KEY>, N children (2 ways)      | —                            |
@@ -160,6 +197,12 @@ confident cases is a failure that only shows up later.
 existing cases against the current sources. It is NEVER a fresh authoring run.** Authoring over the top
 of an existing suite produces duplicates, reuses retired internal IDs, and silently overwrites another
 session's decisions.
+
+> **⚠️ REVIVAL (type iii) IS NOT V2 (type ii) — CHECK WHICH ONE YOU HAVE (§1a).** A revival resumes the
+> **same version** of the feature; a V2 is a **new version of something already shipped**. If the
+> "revival" turns out to be a new version, it is **type (ii)** and
+> **`17-REGRESSION-IMPACT-V1-TO-V2.md` is mandatory** (Rule 96) — a reconciliation does not derive an
+> invariant set, so on its own it will not notice a V2 build breaking a V1 behaviour.
 
 **The procedure, generic:**
 

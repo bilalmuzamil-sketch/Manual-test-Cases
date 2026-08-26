@@ -84,6 +84,15 @@ get wrong, or a case belonging to another lane that looks stale, **write it down
    procedure end to end, including **§9** the Ruthless Usefulness Audit gate, **§10** push + run
    sync and **§11** new-project onboarding) · **`COVERAGE-MATRIX.md`** (the completeness proof) ·
    **`06-DEFECT-PREP.md`** (only if authoring surfaces a defect — prepare it, never file it)
+3a. **`17-REGRESSION-IMPACT-V1-TO-V2.md` — MANDATORY THE MOMENT YOUR PROJECT IS A V2 / UPGRADE of an
+   existing feature (intake type ii, Rule 96).** A V2 spec describes only **what CHANGES** and is
+   **SILENT about everything else**, so without this nothing converts that silence into tests and a
+   V2 build can break a V1 behaviour with every case still passing. It derives the **INVARIANT SET**
+   (V1 baseline − changed ∪ removed ∪ replaced), escalates the **dangerous silences** and every
+   **code-vs-document conflict** as PO decision items, and retires the V1 cases V2 supersedes. It
+   runs **BEFORE or ALONGSIDE** authoring, never after, and needs **no build and no cookies**.
+   **ASK THE PROJECT TYPE FIRST** — `15-NEW-PROJECT-INTAKE.md` §1a: (i) NEW · (ii) V2/UPGRADE ·
+   (iii) REVIVAL. Never infer it from the project's name.
 4. **`build/PROCESS-AUTHORING-STANDARD.md`** — the required shape of any process/deliverable you
    produce.
 5. **`build/RUTHLESS-USEFULNESS-AUDIT-PROCESS.md`** — the mandatory closing gate of every authoring
