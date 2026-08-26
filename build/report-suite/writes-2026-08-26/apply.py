@@ -14,8 +14,11 @@ def apply(updates, logpath, label):
     for cid in sorted(updates, key=lambda x:int(x[1:])):
         u = updates[cid]
         before = fresh[cid]
-        body = {'custom_preconds': u['pre'], 'custom_steps': u['steps'],
-                'custom_expected': u['exp'], 'refs': u['refs']}
+        def nl(t):
+            t = t or ''
+            return t if t.endswith('\n') else t + '\n'
+        body = {'custom_preconds': nl(u['pre']), 'custom_steps': nl(u['steps']),
+                'custom_expected': nl(u['exp']), 'refs': u['refs']}
         if 'title' in u: body['title'] = u['title']
         s, d = call('update_case/'+cid[1:], body)
         if s != 200:
