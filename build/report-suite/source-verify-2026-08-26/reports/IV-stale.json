@@ -1,0 +1,62 @@
+{
+ "report": "IV",
+ "live_version": 10,
+ "held_version": 6,
+ "impacted": 16,
+ "stale": {
+  "C30536": [
+   {
+    "anchor": "S1-R3",
+    "stale_wording": [
+     "range"
+    ],
+    "live_wording": "S1-R3: On the user's first visit (no saved settings \u2014 Story 8), the report defaults to an \"as of\" date of today and the user's currently active location.",
+    "title": "First visit defaults to today and the active location"
+   }
+  ],
+  "C30597": [
+   {
+    "anchor": "S12-R3",
+    "stale_wording": [
+     "date-range"
+    ],
+    "live_wording": "S12-R3: The toolbar filters run, left to right: the \"as of\" date control, the part search, the Category filter, the Vendor filter, and the Location filter (rightmost).",
+    "title": "Toolbar layout: menu leftmost then Column Selection; then the 5 filters"
+   }
+  ],
+  "C30610": [
+   {
+    "anchor": "S5-R5",
+    "stale_wording": [
+     "shown."
+    ],
+    "live_wording": "S5-R5: When the displayed day is an earlier recorded day than the date the user asked for, the date control itself names the day actually shown \u2014 the requested date on its face, and beneath it, inside the same control, the resolved day worded \"As of {date}\". There is no separate \"As of\" indicator anywhere else on the page (Chris, 2026-08-13).",
+    "title": "Thinned history still served by the closest-recorded-day rule"
+   }
+  ]
+ },
+ "stale_cids": [
+  "C30536",
+  "C30597",
+  "C30610"
+ ],
+ "false_alarm_cids": [
+  "C30561",
+  "C30563",
+  "C30564",
+  "C30565",
+  "C30566",
+  "C30570",
+  "C30573",
+  "C30574",
+  "C30581",
+  "C30593",
+  "C30609",
+  "C43548",
+  "C43837"
+ ],
+ "states_both_cids": [
+  "C30566",
+  "C30570"
+ ]
+}

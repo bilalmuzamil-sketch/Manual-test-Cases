@@ -1,0 +1,247 @@
+{
+ "S1-R3": {
+  "held": [
+   "S1-R3: On the user's first visit (no saved settings \u2014 Story 8), the report defaults to the current calendar month date range and the user's currently active location."
+  ],
+  "live": [
+   "S1-R3: On the user's first visit (no saved settings \u2014 Story 8), the report defaults to an \"as of\" date of today and the user's currently active location."
+  ],
+  "cids": [
+   "C30536"
+  ]
+ },
+ "S1-R4": {
+  "held": [
+   "S1-R4: The user can change the date range with the date-range control (Story 5) and the location with the location filter (Story 7)."
+  ],
+  "live": [
+   "S1-R4: The user can change the valuation day with the \"as of\" date control (Story 5) and the location with the location filter (Story 7).",
+   "S1-R4,"
+  ],
+  "cids": [
+   "C30570"
+  ]
+ },
+ "S1-R5": {
+  "held": [
+   "S1-R5: When the user changes the date range, the location selection, the Category filter, the Vendor filter, the part search, or the sort, the report reloads its rows from the server (see"
+  ],
+  "live": [
+   "S1-R5: When the user changes the \"as of\" date, the location selection, the Category filter, the Vendor filter, the part search, or the sort, the report reloads its rows from the server (see",
+   "S1-R5,"
+  ],
+  "cids": [
+   "C30570"
+  ]
+ },
+ "S10-R12": {
+  "held": [
+   "S10-R12: Export size guardrail. To keep a single-shot export renderable, an export is capped at a maximum of 10,000 rows in the filtered set. When the current filtered set exceeds the cap, neither the PDF nor the CSV is produced; instead the user sees the message: \"This report is too large to export. Narrow the date range or filters, then try again.\" [Cap value 10,000 is a proposed default \u2014 confirm the exact suite-standard value with the owner before dev.]",
+   "S10-R12) \"This report is too large to export. Narrow the date range or filters, then try again.\" Blocking notification; no file is produced. A download succeeds \"Inventory Value report exported (PDF)\" / \"Inventory Value report exported (CSV)\" Success notification. A download fails \"Failed to export inventory value report (pdf)\" / \"Failed to export inventory value report (csv)\" Error notification. 8. Change Log Date Reporter Change Notes 2026-07-19 @chris / @claude Initial specification \u2014 per-part on-hand inventory valuation with an as-of date served from nightly history and a live fallback for today; authored from the built code and matched to the suite canonical PRD layout. Owner decisions baked in: value only non-core, positive-quantity stock; unit sell resolved via fixed price then pricing-matrix markup on cost; Margin is the extended (Total Sell \u2212 Total Cost) figure and Margin % its share of Total Sell; Total Cost the pinned bold headline + default sort; per-browser persistence of filters/columns/sort. Known v1 limitations recorded in \u00a72. 2026-07-21 @chris / @claude Moved to server-side data model (per Milan Zivanovic's 2026-07-20 engineering review, mirroring the Parts Velocity resolution): report is server-paginated (\u00a72,"
+  ],
+  "live": [
+   "S10-R12: Export size guardrail. To keep a single-shot export renderable, an export is capped at a maximum of 10,000 rows in the filtered set. When the current filtered set exceeds the cap, neither the PDF nor the CSV is produced; instead the user sees the message: \"This report is too large to export. Narrow the filters, then try again.\" [Cap value 10,000 is a proposed default \u2014 confirm the exact suite-standard value with the owner before dev.]",
+   "S10-R12) \"This report is too large to export. Narrow the filters, then try again.\" Blocking notification; no file is produced. A download succeeds \"Inventory Value report exported (PDF)\" / \"Inventory Value report exported (CSV)\" Success notification. A download fails \"Failed to export inventory value report (pdf)\" / \"Failed to export inventory value report (csv)\" Error notification. Export size-cap wording (decided 2026-08-13): this report's size-cap message reads \"This report is too large to export. Narrow the filters, then try again.\" \u2014 the suite string minus the date-range clause, because this report has no date range. The four suite reports that still offer a date range keep the original wording (\"Narrow the date range or filters\"). Two deliberate variants, not an inconsistency: the message never names a control the user cannot see (Chris, 2026-08-13). 8. Change Log Date Reporter Change Notes 2026-07-19 @chris / @claude Initial specification \u2014 per-part on-hand inventory valuation with an as-of date served from nightly history and a live fallback for today; authored from the built code and matched to the suite canonical PRD layout. Owner decisions baked in: value only non-core, positive-quantity stock; unit sell resolved via fixed price then pricing-matrix markup on cost; Margin is the extended (Total Sell \u2212 Total Cost) figure and Margin % its share of Total Sell; Total Cost the pinned bold headline + default sort; per-browser persistence of filters/columns/sort. Known v1 limitations recorded in \u00a72. 2026-08-13 @chris / @claude Export size-cap message drops the date-range clause on this report, now that it has no date range: \"This report is too large to export. Narrow the filters, then try again.\" (",
+   "S10-R12 and the messages table). The four suite reports that still offer a range keep the original wording \u2014 two deliberate variants so the message never names a control the user cannot see. Chris, 2026-08-13. Resolves the copy question raised the same day. 2026-08-13 @chris / @claude The standalone \"As of\" indicator is removed from the page and rolled into the \"as of\" date control: when the requested day has no snapshot, the control names the resolved day beneath the requested one ("
+  ],
+  "cids": [
+   "C30593",
+   "C43548"
+  ]
+ },
+ "S10-R15a": {
+  "held": [
+   "S10-R15a: The CSV carries the same filter-summary lines as the PDF header, verbatim and in the same order : every filter the PDF header names (the date range, the \"Locations:\" line, and any report-specific filter lines \u2014 including the as-of date) appears as a leading metadata line in the CSV, above the column-header row. A CSV saved or forwarded later is never ambiguous about which filters produced it. (Suite-wide rule, 2026-08-12.) Error Handling:",
+   "S10-R15a). Closes the gap where a saved or forwarded CSV did not say which filters produced it (on SBC, the Product Type line existed in the PDF header only). Vladimir's export review, 2026-08-12."
+  ],
+  "live": [
+   "S10-R15a: The CSV carries the same filter-summary lines as the PDF header, verbatim and in the same order : every filter the PDF header names (the \"as of\" date, the \"Locations:\" line, and any report-specific filter lines) appears as a leading metadata line in the CSV, above the column-header row. A CSV saved or forwarded later is never ambiguous about which filters produced it. (Suite-wide rule, 2026-08-12.) Error Handling:",
+   "S10-R15a). Closes the gap where a saved or forwarded CSV did not say which filters produced it (on SBC, the Product Type line existed in the PDF header only). Vladimir's export review, 2026-08-12."
+  ],
+  "cids": [
+   "C43837"
+  ]
+ },
+ "S10-R8": {
+  "held": [
+   "S10-R8: The PDF header shows the report name \"Inventory Value\", the organization name, the selected period, and an \"as of\" line naming the day the values represent (or a message that no snapshot is available for the period)."
+  ],
+  "live": [
+   "S10-R8,",
+   "S10-R8: The PDF header shows the report name \"Inventory Value\", the organization name, the selected period, and an \"as of\" line naming the day the values represent (or a message that no snapshot is available for the period).",
+   "S10-R8,"
+  ],
+  "cids": [
+   "C30590"
+  ]
+ },
+ "S10-R8a": {
+  "held": [
+   "S10-R8a: The CSV (spreadsheet) export carries the same \"as of\" line as its first line, naming the day the values represent, worded the same as the PDF header."
+  ],
+  "live": [
+   "S10-R8a), because a saved file has no control to read.",
+   "S10-R8a: The CSV (spreadsheet) export carries the same \"as of\" line as its first line, naming the day the values represent, worded the same as the PDF header.",
+   "S10-R8a) because a saved file has no control to read. Chris, 2026-08-13 \u2014 one home for the valuation day. 2026-08-13 @claude Consistency sweep after the \"as of\" change: Known Limitations (nine presets / custom-range calendar), the first-visit default (current calendar month), the Story 6 context note, the CSV filter-summary line, the snapshot-retention rationale (\"longest date preset\") and the Story 12 toolbar order all still described a date range. Export size-cap message left unchanged and flagged as a suite-wide copy question. Follow-up to the same-day decisions wave. 2026-08-13 @chris / @claude Date-range control replaced by the shared single \"as of\" date component ("
+  ],
+  "cids": []
+ },
+ "S11-E1": {
+  "held": [
+   "S11-E1: Because retention thins older history, two adjacent retained captures beyond 13 months can be up to a month apart; the \"closest recorded day on or before\" rule ("
+  ],
+  "live": [
+   "S11-E1: Because retention thins older history, two adjacent retained captures beyond 13 months can be up to a month apart; the \"closest recorded day on or before\" rule (",
+   "S11-E1 cross-reference followed). Exports keep their own \"as of\" line ("
+  ],
+  "cids": [
+   "C30610"
+  ]
+ },
+ "S11-R6": {
+  "held": [
+   "S11-R6: Snapshot retention. Captured snapshots are retained at reducing granularity as they age, measured from the current date: 0\u201313 months old: every daily capture is kept \u2014 full daily per-part detail. This covers the report's longest date preset (366 days / This Year / Last Year) entirely at daily resolution. older than 13 months: reduced to monthly \u2014 only the last capture of each calendar month is retained; the other daily captures in this band are pruned. Pruning runs as part of, or alongside, the nightly capture. The as-of resolution (",
+   "S11-R6): full daily per-part detail for ~13 months, then the last capture of each month beyond that; the \"closest recorded day on or before\" rule serves the thinned history unchanged. Valuation rules (fixed price \u2192 matrix markup \u2192 cost fallback) unchanged \u2014 approved by Milan. 2026-07-29 @chris / @claude Added a per-row Location column (shown only when more than one location is in scope) plus a \"Locations:\" line and a constant-width Location filter. Suite location-column consistency. 2026-08-05 @claude Applied Chris's QA-review decisions (2026-08-04): Location filter hidden for single-location users; Location column changed to an access gate and made toggleable in the column selector (any user with access to more than one location sees it by default; single-location-access users never see it); report access stated as the single reports permission; date picker aligned to nine presets plus a custom-range calendar (no Today, Yesterday, or Custom item); documented that the spreadsheet export also carries the \"as of\" line. QA review workbook (2026-08-04). 2026-08-06 @claude Section 3 tidy-ups (QA review workbook 2026-08-06): reworded the Location-column visibility to the access-gated, column-selector-toggleable rule, matching the decision note already in this spec. QA review workbook (2026-08-06). 2026-08-12 @chris / @claude Suite rule added: the CSV carries the same filter-summary lines as the PDF header, verbatim ("
+  ],
+  "live": [
+   "S11-R6: Snapshot retention. Captured snapshots are retained at reducing granularity as they age, measured from the current date: 0\u201313 months old: every daily capture is kept \u2014 full daily per-part detail. This covers a full 13 months of selectable \"as of\" days entirely at daily resolution. older than 13 months: reduced to monthly \u2014 only the last capture of each calendar month is retained; the other daily captures in this band are pruned. Pruning runs as part of, or alongside, the nightly capture. The as-of resolution (",
+   "S11-R6): full daily per-part detail for ~13 months, then the last capture of each month beyond that; the \"closest recorded day on or before\" rule serves the thinned history unchanged. Valuation rules (fixed price \u2192 matrix markup \u2192 cost fallback) unchanged \u2014 approved by Milan. 2026-07-29 @chris / @claude Added a per-row Location column (shown only when more than one location is in scope) plus a \"Locations:\" line and a constant-width Location filter. Suite location-column consistency. 2026-08-05 @claude Applied Chris's QA-review decisions (2026-08-04): Location filter hidden for single-location users; Location column changed to an access gate and made toggleable in the column selector (any user with access to more than one location sees it by default; single-location-access users never see it); report access stated as the single reports permission; date picker aligned to nine presets plus a custom-range calendar (no Today, Yesterday, or Custom item); documented that the spreadsheet export also carries the \"as of\" line. QA review workbook (2026-08-04). 2026-08-06 @claude Section 3 tidy-ups (QA review workbook 2026-08-06): reworded the Location-column visibility to the access-gated, column-selector-toggleable rule, matching the decision note already in this spec. QA review workbook (2026-08-06). 2026-08-12 @chris / @claude Suite rule added: the CSV carries the same filter-summary lines as the PDF header, verbatim ("
+  ],
+  "cids": [
+   "C30609",
+   "C30610"
+  ]
+ },
+ "S12-R3": {
+  "held": [
+   "S12-R3: The toolbar filters run, left to right: the date-range control, the part search, the Category filter, the Vendor filter, and the Location filter (rightmost).",
+   "S12-R3). Exports are generated server-side against the current filters + sort, with a row-cap guardrail and friendly \"narrow the range or filters\" message ("
+  ],
+  "live": [
+   "S12-R3: The toolbar filters run, left to right: the \"as of\" date control, the part search, the Category filter, the Vendor filter, and the Location filter (rightmost).",
+   "S12-R3). Exports are generated server-side against the current filters + sort, with a row-cap guardrail and friendly \"narrow the range or filters\" message ("
+  ],
+  "cids": [
+   "C30574",
+   "C30597"
+  ]
+ },
+ "S5-R1": {
+  "held": [
+   "S5-R1: The toolbar has a date-range control offering nine presets (\"Last 12 Months\", \"This Year\", \"Last Year\", \"This Quarter\", \"Last Quarter\", \"This Month\", \"Last Month\", \"This Week\", \"Last Week\") plus a calendar for building a custom range (with a live day-count readout and an Apply button). It does not offer \"Today\", \"Yesterday\", a \"Custom\" option, or \"All Time\"."
+  ],
+  "live": [
+   "S5-R1: The toolbar has a single \"as of\" date control \u2014 one calendar day, not a range. It defaults to today and is capped at today (no future date). It offers no presets and no start/end pair.",
+   "S5-R1 and"
+  ],
+  "cids": [
+   "C30536",
+   "C30561",
+   "C30563",
+   "C30564",
+   "C30565",
+   "C30566"
+  ]
+ },
+ "S5-R4": {
+  "held": [
+   "S5-R4: Otherwise, the report replays the closest recorded day on or before the end of the selected range.",
+   "S5-R4, \"closest recorded day on or before\") serves the thinned history unchanged; when the nearest retained capture predates the requested date, the \"As of \" indicator (",
+   "S5-R4) and the \"As of \" indicator ("
+  ],
+  "live": [
+   "S5-R4: Otherwise, the report replays the closest recorded day on or before the end of the selected range.",
+   "S5-R4, \"closest recorded day on or before\") serves the thinned history unchanged; when the nearest retained capture predates the requested date, the \"As of \" indicator (",
+   "S5-R4) and the resolved-day line inside the date control ("
+  ],
+  "cids": [
+   "C30564",
+   "C30610",
+   "C38892"
+  ]
+ },
+ "S5-R5": {
+  "held": [
+   "S5-R5: When the displayed day is an earlier recorded day than the date the user asked for, the report shows an \"As of \" indicator naming the day actually shown.",
+   "S5-R5) names the day actually shown. A requested date whose covering captures have all been pruned resolves to the nearest earlier retained capture, or shows the empty state if none remains (",
+   "S5-R5) handle these gaps unchanged. * Context note: the daily capture recomputes from live truth through the same valuation the report uses, so recorded history cannot drift out of sync with the live report. It runs with no logged-in user and intentionally spans every tenant, binding each location and organization explicitly (a reviewed, documented exception to request-scoped tenant filtering); every read path keeps full tenant scoping. Story 12: Visual Conformance and Accessibility The report conforms to the application's standard all-white reporting theme and layout. Design: TBD Jira: TBD Prerequisites: The report has loaded (Story 1). Requirements \u2014 visual:"
+  ],
+  "live": [
+   "S5-R5: When the displayed day is an earlier recorded day than the date the user asked for, the date control itself names the day actually shown \u2014 the requested date on its face, and beneath it, inside the same control, the resolved day worded \"As of {date}\". There is no separate \"As of\" indicator anywhere else on the page (Chris, 2026-08-13).",
+   "S5-R5) names the day actually shown. A requested date whose covering captures have all been pruned resolves to the nearest earlier retained capture, or shows the empty state if none remains (",
+   "S5-R5) handle these gaps unchanged. * Context note: the daily capture recomputes from live truth through the same valuation the report uses, so recorded history cannot drift out of sync with the live report. It runs with no logged-in user and intentionally spans every tenant, binding each location and organization explicitly (a reviewed, documented exception to request-scoped tenant filtering); every read path keeps full tenant scoping. Story 12: Visual Conformance and Accessibility The report conforms to the application's standard all-white reporting theme and layout. Design: TBD Jira: TBD Prerequisites: The report has loaded (Story 1). Requirements \u2014 visual:",
+   "S5-R5 and",
+   "S5-R5,"
+  ],
+  "cids": [
+   "C30565",
+   "C30610"
+  ]
+ },
+ "S5-R6": {
+  "held": [
+   "S5-R6: When the displayed day matches the date asked for (the common current-view case), the \"As of\" indicator is not shown (the date control already communicates the date)."
+  ],
+  "live": [
+   "S5-R6: When the displayed day matches the date asked for (the common current-view case), the control shows only the selected date, with no \"As of\" line beneath it. The date and the day it resolved to are never stated in two places at once (Chris, 2026-08-13; replaces the standalone left-hand \"As of\" indicator).",
+   "S5-R6 rewritten, new",
+   "S5-R6) is unchanged. Before/after design review (2026-08-13). Same component as Work In Progress. 2026-07-21 @chris / @claude Moved to server-side data model (per Milan Zivanovic's 2026-07-20 engineering review, mirroring the Parts Velocity resolution): report is server-paginated (\u00a72,"
+  ],
+  "cids": [
+   "C30565"
+  ]
+ },
+ "S5-R7": {
+  "held": [
+   "S5-R7: A Custom range lets the user pick a start and end date; the report values as of the picked end date (never a future date \u2014 it is capped at today)."
+  ],
+  "live": [
+   "S5-R7: A date range is not offered on this report. Stock valuation is a point-in-time position, not an amount accumulated over a period, so a range would state something the number cannot mean. The control is the shared single as-of date component also used by Work In Progress (Chris, 2026-08-13; replaces the nine-preset range plus custom start/end specced on 2026-08-04).",
+   "S5-R7 rewritten;"
+  ],
+  "cids": [
+   "C30536",
+   "C30561",
+   "C30563",
+   "C30564",
+   "C30565",
+   "C30566"
+  ]
+ },
+ "S5-R8": {
+  "held": [
+   "S5-R8: Changing the date range reloads the report. Negative Cases:"
+  ],
+  "live": [
+   "S5-R8: Changing the \"as of\" date reloads the report. Negative Cases:",
+   "S5-R8,"
+  ],
+  "cids": [
+   "C30566"
+  ]
+ },
+ "S6-R9": {
+  "held": [
+   "S6-R9: The Date range (Story 5), Location (Story 7), Category, Vendor, and part search combine with AND \u2014 a part must satisfy every active filter and the search to appear. * Context note: every filter on this report is server-side. The Date range (Story 5), Location (Story 7), Category filter, Vendor filter, and part search each reload the report from the server; only the column selection (Story 8) is a purely client-side view choice. Story 7: Location Filter A filter lets the user scope the report to one, several, or all of the locations they have access to. Design: See Story 12 Jira: TBD Prerequisites: The report has loaded (Story 1). Requirements:"
+  ],
+  "live": [
+   "S6-R9: The \"as of\" date (Story 5), Location (Story 7), Category, Vendor, and part search combine with AND \u2014 a part must satisfy every active filter and the search to appear. * Context note: every filter on this report is server-side. The \"as of\" date (Story 5), Location (Story 7), Category filter, Vendor filter, and part search each reload the report from the server; only the column selection (Story 8) is a purely client-side view choice. Story 7: Location Filter A filter lets the user scope the report to one, several, or all of the locations they have access to. Design: See Story 12 Jira: TBD Prerequisites: The report has loaded (Story 1). Requirements:",
+   "S6-R9 and"
+  ],
+  "cids": [
+   "C30573"
+  ]
+ },
+ "S8-R5": {
+  "held": [
+   "S8-R5: The report remembers, in the user's browser, the selected date range, category selection, vendor selection, part search text, location selection, column selection, and sort, and restores them on the user's next visit."
+  ],
+  "live": [
+   "S8-R5: The report remembers, in the user's browser, the selected \"as of\" date, category selection, vendor selection, part search text, location selection, column selection, and sort, and restores them on the user's next visit.",
+   "S8-R5 wording followed). A range over a point-in-time stock valuation states something the number cannot mean. The existing \"As of\" indicator behaviour for days with no snapshot ("
+  ],
+  "cids": [
+   "C30581"
+  ]
+ }
+}
