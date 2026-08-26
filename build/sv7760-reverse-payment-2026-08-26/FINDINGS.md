@@ -85,3 +85,26 @@ that, not the number of tests, is what keeps a run cheap.
 
 QA branch `sv7760` — disposable, no cleanup required per the QA lead's ruling. One real payment was
 reversed as the positive control (recorded above so it is not mistaken for a defect).
+
+## Posted to Jira — comment 75656 (QA lead authorised, 2026-08-26)
+
+Created 2026-08-26T09:37:33-0500 on [SV-7760](https://shopview.atlassian.net/browse/SV-7760).
+
+**Shaped to answer the doubt a reader will actually have.** The QA lead's brief: *"comment with the
+reference to solve the mystery in their mind which will develop when they read the response."* For an
+API result with no screenshots, the doubts are predictable — *did you really hit it? which build?
+isn't a 400 just the endpoint being broken? did you test the real out-of-org case?* — so the comment
+answers each one by construction:
+
+- a **verbatim, timestamped transcript** of one contiguous run, not prose written afterwards, with
+  the **build etag read at both ends** and shown to be identical
+- the **positive control given its own callout** explaining *why* it exists — a real payment reversed
+  (201) and seen to disappear (2 → 1), which is the only thing that proves the 400 discriminates
+- **exact reproduction instructions** including the field-name trap (`id`, not `payment_id`)
+- **links to the committed transcript and this file**, both verified 200 before posting
+- a **"what I did not verify"** section stating the missing second org, the unverifiable AC2, and why
+  there are deliberately no screenshots — the honesty is what makes the rest credible
+
+**Not filed:** the non-string-`id` 500 was raised **in the comment** rather than as a ticket, because
+SV-7760 is still in Code Review and it may be a one-line addition to the open PR. Standing Rule 51
+(never file an API ticket unasked) is satisfied — the developer is offered the choice explicitly.
