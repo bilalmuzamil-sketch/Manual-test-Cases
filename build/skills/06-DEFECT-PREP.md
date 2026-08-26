@@ -2,6 +2,13 @@
 
 > **🔴 READ [`00-COMMON-CORE.md`](00-COMMON-CORE.md) FIRST** — especially **§11.1, the active creation
 > hold**.
+>
+> **🛑 THEN READ [THE ADMISSIBILITY GATE](#-the-admissibility-gate--a-ticket-is-not-filed-until-it-passes-every-check)
+> (Standing Rule 94, added 2026-08-26).** It is the OUTERMOST gate of this skill and it runs **before**
+> the 2026-08-17 quality checklist and the eight-item evidence bar. Those two ask *"is this ticket well
+> built?"*; the admissibility gate asks the prior question — ***"is this a defect at all, and is it
+> still a defect TODAY?"*** It exists because tickets came back refused as **"irrelevant"** and
+> **"obsolete"**, which is a different failure from a badly built ticket.
 
 ---
 
@@ -112,6 +119,319 @@ active — see the top of this skill.)*
 
 **Cross-references: Rule 51 (API tickets asked separately, every time) · Rule 52 (the shape + the
 eight-item bar) · Rule 53 (priority Medium) · Rule 62 (the creation hold; per-ask permission).**
+
+---
+
+# 🛑 THE ADMISSIBILITY GATE — A TICKET IS NOT FILED UNTIL IT PASSES **EVERY** CHECK
+
+**Added 2026-08-26 · Standing Rule 94 · this gate is the OUTERMOST gate of this skill.** It runs
+**before** the 2026-08-17 quality checklist and **before** the eight-item evidence bar, because those
+two ask *"is this ticket well built?"* and this one asks the prior question: **"is this a defect at
+all, and is it still a defect TODAY?"** A beautifully built ticket about something that is not a
+defect is exactly the ticket that comes back refused.
+
+**WHY IT EXISTS — the QA lead, 2026-08-21, verbatim:**
+
+> *"The last time you created the tickets were cause me to get bitten because they refused those
+> tickets saying they are irrelevant and marked them obsolete, though a few of them were accepted as
+> genuine tickets."*
+
+**Read that precisely.** The refusals were **not** *"badly written"* — they were **"irrelevant"** and
+**"obsolete"**. Those two words name four failure modes, and every check below exists to kill one of
+them:
+
+| The refusal word | What actually happened | The check that kills it |
+|---|---|---|
+| **"obsolete"** | The expectation came from a **superseded version** of the spec — true when the case was written, false by the time the ticket landed | **A2** (re-read the source immediately before filing) |
+| **"irrelevant"** | The gap was **unfinished work on a never-final branch**, already owned by an open story | **A3** (the owning-story status check) |
+| **"irrelevant"** | **Already reported** — including reported and closed | **A4** (duplicate search including closed) |
+| **"irrelevant"** | **By design** — most often a Rule-24 front-end block | **A5** (by-design check) |
+
+**THE DELIVERABLE OF THIS LANE IS A SET OF ADMISSIBLE, EVIDENCED CANDIDATES THE QA LEAD CAN APPROVE
+ONE AT A TIME — NOT A PILE OF FILED TICKETS.** Ten admissible candidates he can walk through one by
+one is a good pass. Ten filed tickets, six of which come back marked obsolete, is a bad pass **even if
+four of them were right**, because the four are discredited by the six.
+
+---
+
+## THE CANDIDATE FILE — one per finding, filled in, and COMMITTED as the evidence
+
+**Every candidate defect gets its own file, and the file IS the evidence that the gate ran.** A gate
+you cannot show afterwards did not run.
+
+```
+build/<project>/defect-pack-<date>/DEFECT-CANDIDATE-<id>.md
+```
+
+`<id>` is a short human-readable slug, not a number alone — `DEFECT-CANDIDATE-wip-total-excludes-tax.md`
+(Rule 19). **Commit it when the gate is filled in, whether the verdict is ADMISSIBLE or NOT** — a
+candidate that fails the gate is a valuable record, and the `NOT-FILED.md` entry points at it.
+
+**It sits ALONGSIDE the prepared pack, it does not replace it.** When a candidate passes, it still
+gets its `TICKET-<n>-<short-name>.md` seven-section body and everything else in **THE DELIVERABLE —
+the prepared pack** below. `SELF-CHALLENGE.md` and `DUPLICATE-SEARCH.md` may either stay as pack-level
+files or be folded into the per-candidate files — **say in the pack README which arrangement you
+used**, so a later session finds them.
+
+**The template — copy it verbatim, fill every field, never delete a row to make it pass:**
+
+```markdown
+# DEFECT CANDIDATE — <plain one-line description>
+Project: <project>   ·   Prepared: <date>   ·   Prepared by: <session/lane>
+TestRail case: C##### — https://shopview.testrail.io/index.php?/cases/view/#####   (Rule 8)
+
+## VERDICT: ADMISSIBLE / NOT ADMISSIBLE — <the deciding check, e.g. "fails A3: SV-#### is In Progress">
+
+| # | Check | Verdict | Evidence |
+|---|---|---|---|
+| A1 | Reproduced TWICE on the CURRENT build | ☐ | build marker at start / at end, both runs' timestamps |
+| A2 | Expectation quoted VERBATIM from the CURRENT source version | ☐ | document + version + date + anchor, re-read <timestamp> |
+| A3 | NOT an unfinished feature | ☐ | owning story + its status + sprint; flags; epic scan |
+| A4 | NOT already reported (incl. CLOSED) | ☐ | the JQL, the hits, how each closed one was closed |
+| A5 | NOT by design | ☐ | Rule-24 direction; recorded decisions; PO answers |
+| A6 | NOT environment / data / role | ☐ | env + build marker, role reset, seeded data, clean session |
+| A7 | Correct parent, proved from the epic's children | ☐ | story key + how ownership was established |
+| A8 | Evidence complete | ☐ | annotated screenshots, numbered steps, marker, env, role, time |
+| A9 | Adversarial self-review survived | ☐ | the six refusals argued and defeated, below |
+| A10 | Rule 62 — prepared to the button, not filed | ☐ | the ask, and his answer (or "not yet asked") |
+
+## A9 — THE SIX REFUSALS, ARGUED AND ANSWERED
+1. "This is unbuilt / not finished yet." → <the answer, with evidence>
+2. "The spec changed — this is obsolete." → <the answer>
+3. "Works as designed." → <the answer>
+4. "Cannot reproduce." → <the answer>
+5. "Duplicate." → <the answer>
+6. "Environment / data / your account." → <the answer>
+
+## IF NOT ADMISSIBLE
+What it is instead: <not-yet-built / duplicate of SV-#### / by design / environment>
+Where it was recorded instead: <NOT-FILED.md · RECHECK-QUEUE.md · PO question sheet · expect-fail marker>
+```
+
+---
+
+## THE TEN CHECKS
+
+### A1 · REPRODUCED **TWICE**, ON THE **CURRENT** BUILD
+
+**A defect seen once is not admissible.** One sighting is indistinguishable from a stale cache, a
+half-deployed branch, a race, a leftover session or our own probe.
+
+- **Reproduce it twice, in two separate runs**, from the numbered steps as written — not from memory.
+  The second run is the proof the steps themselves work, which is also what a non-technical PO will do.
+- **Record the build marker (`<meta name="app-version">`) at the START of the first repro and again at
+  the END of the last one, and prove it did not change.** Paste both strings. **If it changed, the
+  branch was redeployed underneath you: the whole repro is void — start again on the new marker.**
+- Record both timestamps. **Prefer two different sessions/browsers** so a stuck client state cannot
+  survive into run two.
+- **If the second run does NOT reproduce it, it is not a defect — it is an intermittent observation.**
+  Say exactly that, keep it in `NOT-FILED.md` with both runs recorded, and take it to the QA lead as an
+  observation. **"Cannot reproduce" is the cheapest refusal there is; never hand it over.**
+
+### A2 · THE EXPECTATION IS QUOTED **VERBATIM** FROM THE **CURRENT VERSION** OF AN AUTHORITATIVE DOCUMENT
+
+This is item (1) of the evidence bar, **hardened with a currency requirement**.
+
+- The source is one of: the **spec/PRD** (with its **Confluence version number** — never the in-body
+  one — plus its date and the **section anchor**), the **owning story's acceptance criteria**, a **PO
+  answer** (file + link + date), or the **design / Figma / technical design**. Rule 57's list is
+  open-ended; the build is **never** a source.
+- **RE-READ THE SOURCE IMMEDIATELY BEFORE FILING (Rule 59).** Not at the start of the pass — **at the
+  end, minutes before the ticket goes to the QA lead.** Record the version you read and the timestamp
+  you read it.
+- **IF THE SPEC MOVED SINCE THE TEST CASE WAS WRITTEN, RE-DERIVE THE EXPECTATION FROM THE NEW VERSION
+  FIRST.** The case may now be wrong, not the build. **A ticket whose expectation comes from a
+  superseded version is the classic "obsolete" refusal, and it is the refusal we actually collected.**
+  When the source moved, say so in the candidate file and state whether the expectation survived.
+- If the newer version made the behaviour **ambiguous**, Rule 58 applies: **hold the case and ask** —
+  never resolve it by looking at the build, and never file on an ambiguity.
+- **No quotable document → NO TICKET.** Absolute, and unchanged.
+
+### A3 · IT IS **NOT AN UNFINISHED FEATURE**
+
+**The single most expensive check in this gate, and the one we did not have.**
+
+**THE BRANCHES ARE NOT FINAL UNTIL RELEASE DAY** — the 2026-08-21 ruling recorded in Rule 91 and in
+`00-COMMON-CORE.md` §16.0. Rules 49 and 60 are in force. **Therefore a gap in the build is
+"possibly-unfinished" by default, and it is OUR job to prove it is a defect — not the developer's job
+to prove it is not.** Filing pending work as a defect is precisely what earns the word *"irrelevant"*.
+
+**Do all four, and record all four:**
+
+1. **CHECK THE OWNING STORY'S STATUS.** If the story that owns this behaviour is **Not Started / To Do
+   / In Progress / in an open sprint** — the gap is **PENDING WORK, NOT A DEFECT.** Record it as
+   *"not yet built"* and move on.
+2. **CHECK FOR A FEATURE FLAG.** Behaviour behind an off flag is not a defect; it is unreleased. Say
+   which flag and what state you observed it in.
+3. **SCAN THE EPIC'S OPEN STORIES for one that covers EXACTLY this behaviour.** Not "the same area" —
+   the same behaviour. If one exists, this is that story's remaining work.
+4. **STATE WHERE THE BEHAVIOUR SHOULD BE DONE.** If the only story that could own it is closed and the
+   behaviour is absent, that is a real defect and it is now much stronger — say so explicitly.
+
+> **A closed ticket is not a spec change.** Where a requirement's ticket was closed *accepted* and the
+> build still fails it, that is a deviation that gets the **expect-fail treatment (Rule 61), not a new
+> ticket** — see item (8) of the evidence bar.
+
+**When A3 fails, the finding is NOT wasted.** Record it as *"not yet built"*, attach the **NOT
+AVAILABLE ON BUILD** treatment to the affected case (Rule 69), and put it in the Rule-49 re-check
+queue so it is re-tested when the story closes. **That is the correct outcome, not a failure.**
+
+### A4 · IT IS **NOT ALREADY REPORTED** — AND CLOSED TICKETS COUNT
+
+Item (5) of the evidence bar, **extended to closed and resolved issues**.
+
+- Search **by area AND by symptom**, in **separate** queries — a symptom search alone misses a ticket
+  worded differently; an area search alone drowns.
+- **Include closed / resolved / done — explicitly.** A default JQL that filters to open issues is the
+  trap: the duplicate we re-filed was closed.
+- **Record every JQL and what each returned**, in the candidate file and in `DUPLICATE-SEARCH.md`.
+- **If a closed one exists, READ HOW IT WAS CLOSED — do not infer it from the status.** *Fixed* /
+  *Won't fix* / *By design* / *Obsolete* / *Cannot reproduce* are five different situations:
+  - **closed BY DESIGN → re-filing it is an INSTANT refusal.** Do not file. If we believe the design
+    decision is wrong, that is a **PO question**, not a defect ticket.
+  - **closed WON'T FIX → not a new ticket either.** Take it to the QA lead as a decision to revisit.
+  - **closed FIXED but it still reproduces → this is filable and strong** — say plainly that it
+    regressed or was closed without a fix, and quote the closing comment.
+  - **closed OBSOLETE but it still reproduces → filable, but tread carefully**: two of ours
+    (SV-8843, SV-8847) reproduced byte-identically after an obsolete closure. Lead with the fresh
+    repro, and quote the closing comment so the reader sees we read it.
+- **Ticket status is never evidence about the build** (a fix shipped while SV-8851 stayed Open). The
+  status tells you how to *argue*; only the build tells you what it *does*.
+
+### A5 · IT IS **NOT BY DESIGN**
+
+- **RULE 24: a control hidden in the front end while the back end still allows the action is a PASSED
+  case, never a bug.** Filing one is the literal definition of a ticket that does not make sense.
+  **The inverse — the front end EXPOSING what the back end blocks — IS a defect** and stays filable.
+  **State which direction you observed**, in those words.
+- **Check the recorded by-design decisions and the PO answers before calling anything a defect** — the
+  project's `PROJECT-STATE.md`, its deliberate-decisions register (Rule 46), the PO answer files, and
+  any closed-by-design ticket found in A4.
+- **If the answer to *"is this even wrong?"* is a PO question, it is a question, not a ticket**
+  (skill `07`). Filing a ticket to ask a question is how a ticket gets marked irrelevant.
+
+### A6 · IT IS **NOT ENVIRONMENT / DATA / ROLE**
+
+Everything in item (3) and item (4) of the evidence bar, run as a deliberate elimination:
+
+- **Correctly seeded data**, named exactly as it appears on screen — **never "any"** unless you have
+  PROVEN it does not matter and said how (**the SV-8821 scar: the real variable was a missing contact
+  person, not the canned line**).
+- **The correct role — RESET THE ROLE TO TEMPLATE/DEFAULT FIRST (Rule 26)** on any shared org, then
+  state the role you were **really** in, not the role the case assumes.
+- **A clean session** — fresh login, no stale cookie, no leftover impersonation.
+- **The right environment and branch**, and **prove the app is the one you think it is via the build
+  marker** — not via the URL, which can point at a redeployed host.
+- **Rule out our own probe and our own instrumentation first** (skill `03`). **More than forty
+  "findings" were caught this way in two days and NOT ONE was a product fault.**
+
+### A7 · THE **CORRECT PARENT**, PROVED — NOT GUESSED
+
+- `issuetype` **`Story Defect`**, `parent` = **the STORY THAT OWNS THE BEHAVIOUR**. **An Epic parent is
+  rejected — `HTTP 400 "Please select valid parent issue."`** Never `Story Defect - Archive`.
+- **VERIFY OWNERSHIP FROM THE EPIC'S CHILDREN, NOT BY GUESSING** — list the epic's stories and identify
+  which one's scope actually contains this behaviour. **Record how you established it.** A defect
+  parented to the wrong story lands in the wrong team's queue and comes back refused as not theirs —
+  which reads as *"irrelevant"* even when the finding is real.
+- **Also link the owning story `relates to`** (it is what makes other people's "Change work type"
+  conversions land correctly).
+- **No standalone tickets. Where there is genuinely no owning story, ASK which story it belongs under.**
+- Full shape, priority and the never-convert rule: **THE SHAPE, ONCE PERMISSION IS GIVEN**, below.
+
+### A8 · THE EVIDENCE IS **COMPLETE**
+
+**Annotated** screenshots to the standard in the next section · **exact numbered steps** a
+non-technical reader can run · the **build marker** · the **environment / URL / API host** · the
+**role and account** · the **date and time observed** · and — **in OUR records, never in the ticket** —
+the **TestRail case C-id and its link** (Rule 8).
+
+> **⚠️ THIS IS WHERE THE BRIEF AND THE REPO DISAGREE, AND THE REPO WINS.** The C-id and TestRail link
+> are **mandatory in the candidate file and in `CASE-IMPACT.md`**, and **BARRED from the Jira ticket
+> body** — see **TWO THINGS THAT MUST NEVER APPEAR IN A TICKET**, below. Putting our case IDs in front
+> of a developer is jargon he did not ask for and cannot use.
+
+### A9 · **ADVERSARIAL SELF-REVIEW** — ARGUE THE TICKET **DOWN** BEFORE FILING
+
+Item (7) of the evidence bar, **made exhaustive**. In the candidate file, **write the strongest case a
+developer could make for refusing this ticket** — all six, each one answered:
+
+1. **"This is unbuilt."** · 2. **"The spec changed."** · 3. **"Works as designed."** ·
+4. **"Cannot reproduce."** · 5. **"Duplicate."** · 6. **"Environment issue."**
+
+> **🛑 IF ANY ONE OF THE SIX IS PLAUSIBLE AND YOU CANNOT DEFEAT IT WITH EVIDENCE — DO NOT FILE.
+> ESCALATE TO THE QA LEAD WITH THE DOUBT STATED IN PLAIN WORDS.** Handing him a doubt is cheap and he
+> can rule on it in a minute. Handing him a refusal costs him credibility he cannot get back.
+
+**Be willing to lose here.** The argument gets made either way: **either we make it first, in private,
+or the engineering manager makes it in public.**
+
+### A10 · **RULE 62 — CREATION IS ON HOLD. PREPARE TO THE BUTTON, THEN ASK.**
+
+- **The 2026-08-10 hold is active** (QA lead, verbatim: *"Do not create anything until my next
+  order."*). It is **TEMPORARY with a lift condition** — **CHECK whether it has lifted; never assume it
+  is standing law, and never assume it is gone.**
+- **Permission is PER ASK.** An earlier batch approval **never** covers a later ticket. **Never file
+  inside a previously-approved batch without asking again.**
+- **A finding being real, sourced and obviously worth filing is NOT permission.** How good the finding
+  is and whether we may file it are two unrelated questions.
+- **API-related findings are asked about SEPARATELY, every time (Rule 51)** — even inside an approved
+  batch. Classify by the reachability test below and split them out.
+- **On resume: ONE TICKET AT A TIME** — create one, he verifies it, only then the next. **Never a
+  batch** (Rules 62/73).
+
+---
+
+# 📸 THE ANNOTATED-SCREENSHOT AND LAYMAN-TICKET STANDARD
+
+**Added 2026-08-26 with the admissibility gate.** It makes concrete what evidence-bar item (2)
+(*annotated screenshots*) and item (6) (*the shape the POs asked for*) require. **It does not replace
+the SEVEN-SECTION FORMAT below — that remains the mechanical layout of the ticket body.**
+
+## Screenshots
+
+| Requirement | Why |
+|---|---|
+| **The FULL relevant screen**, with the **URL and the build/version visible where possible** | It proves *which screen on which build* — the answer to *"that is not what I see"* |
+| **A boxed or arrowed highlight on the EXACT element** | A bare screenshot is not an annotated one. The reader must see the fault **without reproducing it** |
+| **A one-plain-sentence caption on every image**, phrased as **"What you should see"** vs **"What actually happens"** | The caption is what a non-technical PO reads; the image is what proves it |
+| **A before/after pair wherever behaviour differs** — the correct state and the faulty state, same screen, same data | One image shows a claim; two show a difference |
+| **NEVER crop away the context that proves which screen or which build it is** | A tight crop of a number proves nothing and is the easiest thing in the world to dismiss |
+| **Human-readable file names** (Rule 19) — `work-in-progress-total-excludes-tax-actual.png`, not `img3.png` | A later session, and the QA lead, must find them without opening them |
+| **Redact at the point of capture** (core §10) — no customer data, no tokens, no cookies. **This repo is PUBLIC (Rule 82)** | A screenshot is a file in a public repo |
+| **Embedded so they RENDER** — not a file list | See **Inline images — the mechanism that actually works**, below |
+
+## The ticket body — plain layman English
+
+**No jargon. No internal IDs. No endpoints, no HTTP verbs, no case IDs in the reader-facing prose.
+Use the build's EXACT on-screen labels.** Everything technical goes in the LAST section and nowhere
+above it.
+
+| Reader-facing element | What it must contain |
+|---|---|
+| **Summary** | **One plain line.** What is wrong, in the words a PO would use |
+| **Environment** | Build marker · URL / branch · role and account · date and time observed |
+| **Steps to reproduce** | **Numbered, ONE ACTION PER LINE**, runnable by a **non-technical reader**, using the exact on-screen labels, **including the steps that CREATE any data needed**, with **the exact test data named**. **NO API calls** |
+| **What happens now** | Plain words. No interpretation |
+| **What should happen instead** | Plain words |
+| **WHERE THAT COMES FROM** | **The verbatim source quote, in quotation marks**, + the document, **its version**, its date and its link. **A line break separates it from the expected behaviour** |
+| **Evidence** | The annotated screenshots, embedded inline so they render |
+| **Impact** | **Who is affected and how badly** — in plain words, no severity jargon |
+| **What is NOT affected** | **The scope limit.** What we checked and found working. This is what stops a reader assuming we are claiming more than we are, and it is the cheapest credibility in the ticket |
+
+**MAP THESE ONTO THE SEVEN SECTIONS, do not add an eighth:** Summary → §1 Description ·
+Environment → §2 Branch/Environment · Steps → §3 · What should happen + WHERE THAT COMES FROM → §4
+Expected behaviour (the source after a line break) · What happens now → §5 Current behaviour ·
+Evidence → §6 Images · **Impact and What is NOT affected sit in §1** (they are plain-words, reader-facing
+— they must **not** be pushed into §7) · everything technical → §7.
+
+**Field shape, unchanged and non-negotiable:** `issuetype` **`Story Defect`** · `parent` **the owning
+story** · `priority` **`Medium`** (**`High` is barred**) · **`relates to`** the owning story · **no
+Product Area** on this type · **never `Story Defect - Archive`** · **never convert someone else's
+ticket**.
+
+**AND KEEP IT CONCISE (gate item 7).** Every line above earns its place; nothing else does. **A long
+ticket is a ticket nobody finishes reading, and an unread ticket gets closed.**
+
 
 ---
 
@@ -336,7 +656,8 @@ v2**:
 
 | File | Contents |
 |---|---|
-| `TICKET-<n>-<short-name>.md` | The full seven-section body, ready to paste, **with the eight bar items evidenced above it** |
+| `DEFECT-CANDIDATE-<id>.md` | **One per finding.** The **admissibility gate A1–A10** filled in, the six refusals argued, and the VERDICT. **Committed whether the verdict is ADMISSIBLE or NOT** — a failed candidate is a record, not a waste (Rule 94) |
+| `TICKET-<n>-<short-name>.md` | The full seven-section body, ready to paste, **with the eight bar items evidenced above it**. **Only ever written for a candidate whose gate verdict is ADMISSIBLE** |
 | `SELF-CHALLENGE.md` | Per finding: **the strongest argument that this is not a defect**, and our answer |
 | `DUPLICATE-SEARCH.md` | **The JQL queries run**, and what each returned |
 | `API-SPLIT.md` | API-related findings in their own section, **with the reachability reason per item**, and the separate ask |
@@ -374,15 +695,24 @@ other name and is not found reads as unrecorded, and gets asked about twice.
 4. **Rule out our own instrumentation** (skill `03`) — re-run from a **proven-clean baseline** when the
    result surprises you in an area that already has open tickets.
 5. **Find the source and quote it** — item 1. **If you cannot, STOP: there is no ticket.**
+5a. **OPEN A `DEFECT-CANDIDATE-<id>.md` AND RUN THE ADMISSIBILITY GATE (A1–A10) AS YOU GO** — it is not
+    a form filled in at the end. **A3 (unfinished feature) and A4 (already reported, incl. closed) are
+    cheap and kill findings early — do them BEFORE spending a repro on the finding.**
 6. **Reproduce it, naming every piece of data** — item 3 — **and record what you ruled out.**
+6a. **Reproduce it a SECOND time (A1), with the build marker recorded at the start and at the end,
+    proved unchanged.** A defect seen once is not admissible.
 7. **Capture and annotate** — item 2.
 8. **Run the duplicate search and record the JQL** — item 5.
-9. **Write the self-challenge** — item 7. **Be willing to lose here.**
+9. **Write the self-challenge** — item 7 / gate check **A9, all six refusals**. **Be willing to lose
+   here — if any one of the six is plausible and undefeated, DO NOT FILE; escalate with the doubt.**
+9a. **RE-READ THE SOURCE (Rule 59 / A2) — now, minutes before it goes to him**, and re-derive the
+    expectation if the version moved. **This is the check that prevents the "obsolete" refusal.**
 10. **Apply the four nonsense checks** — item 8.
 11. **Classify API vs user-facing** by reachability, and split the pack.
 12. **Write the seven-section body** and the pack.
-13. **Score it against the mandatory gate** (the 2026-08-17 checklist) — **a fail on any item = NOT
-    READY; say which item failed.**
+13. **Score it against BOTH gates** — the **admissibility gate (A1–A10)** first, then the 2026-08-17
+    checklist and the eight-item bar. **A fail on any item = NOT READY; say WHICH item failed**, and
+    record where the finding went instead (`NOT-FILED.md`, the re-check queue, a PO question).
 14. **Report it with the recommendation, and stop.** Log it in the register.
 15. **ON RESUME ONLY (hold lifted + his go-ahead): ONE TICKET AT A TIME** — create one, he verifies it,
     only then the next. **Never a batch** (Standing Rules 62/73).
