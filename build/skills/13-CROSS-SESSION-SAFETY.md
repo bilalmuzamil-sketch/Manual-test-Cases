@@ -212,6 +212,19 @@ Rule-62 creation hold.
 
 ---
 
+## SESSION-START DUTY — READ AND APPLY THE TOKEN DISCIPLINE CHARTER (Rule 95)
+
+**BEFORE the first write of any lane session, and from your FIRST TURN, the
+[`TOKEN-DISCIPLINE-CHARTER.md`](TOKEN-DISCIPLINE-CHARTER.md) is in force** — it is a session-start duty of
+this skill, alongside the pre-write checklist above. Twelve clauses: strategy first (79); never bulk-read,
+script it (88); the reading rule (targeted and bounded, never off-limits); spawn discipline (76/88); never
+poll (75); batch writes; piggyback cheap checks (78); never re-do work (77/80); answer in text; the budget
+(90); the week-start guard; and **clause 12 — quality is never the thing cut.** **Every handoff embeds the
+twelve clauses verbatim; a handoff without them is non-compliant and must not be issued.** Rule text:
+`build/rules/RULES-61-95.md`.
+
+---
+
 **Rule 88 — LANE-SESSION CONTEXT DISCIPLINE:** never read `CLAUDE.md` end-to-end (grep it); never bulk-read case bodies or CSVs into context (script it to a file, read a bounded summary); batch writes in a script; long jobs use the Rule-75 detached pattern with progress in commit messages; do NOT spawn subagents for work you can do directly; stop and report at the budget tripwire.
 
 ---

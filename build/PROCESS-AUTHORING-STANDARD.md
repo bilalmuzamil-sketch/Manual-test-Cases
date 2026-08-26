@@ -57,6 +57,15 @@
     (endpoint + requestId), never bare "NOT VERIFIED"; and only then hand the user a layman
     step-by-step data-setup sheet for the one thing a human/dev must supply.
 
+12. **EVERY HANDOFF EMBEDS THE TOKEN DISCIPLINE CHARTER VERBATIM (Standing Rule 95).** Any session
+    handoff you author or revise MUST carry a section titled **"TOKEN DISCIPLINE CHARTER (mandatory —
+    Rule 95)"** with **all twelve clauses reproduced VERBATIM** — a session must not have to open
+    another file to learn how to spend — plus a pointer to the canonical
+    `build/skills/TOKEN-DISCIPLINE-CHARTER.md`. **A handoff without it is NON-COMPLIANT and MUST NOT
+    BE ISSUED.** Where a handoff already has a token/quota section, **merge into it, never duplicate**.
+    Routers and other skills take the charter **by pointer only**. Authority:
+    `build/rules/RULES-61-95.md`.
+
 ## The one-page checklist (tick every box)
 - [ ] Read the raw transcript; listed every relevant user turn + correction.
 - [ ] Purpose (plain English) + trigger phrases + kickoff prompt.
@@ -68,3 +77,4 @@
 - [ ] Row added to `build/PROCESS-CATALOG.md`.
 - [ ] Indexed in `CLAUDE.md`; durable rules noted (shared with other session).
 - [ ] Told the user the name + how to call it; offered a dry-run.
+- [ ] **If the artefact is a HANDOFF: the Token Discipline Charter's twelve clauses embedded VERBATIM (Rule 95) — without it the handoff must not be issued.**
