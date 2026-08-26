@@ -1,0 +1,159 @@
+Title,Section,Type,Priority,Preconditions,Steps,Expected Result,References,,
+Work Orders results appear only for users with Work Orders access,Global Search V2 - V1 Regression Suite,Regression,High,"Two test users: User A whose role includes 'Work Orders - View'; User B whose role does NOT include it.
+At least one Work Order exists whose number or customer matches the search word you will type.","Sign in as User A and open global search.
+Type a word that matches an existing Work Order.
+Note whether Work Order results appear.
+Sign out, sign in as User B, and repeat the same search.","1. User A sees Work Order results.
+2. User B sees NO Work Order results (the Work Orders group does not appear for them).
+3. No other change to what each user can otherwise see.
+
+---
+This is the expected behaviour based on the EXISTING behaviour BEFORE the V2 deployment (the V1 regression baseline), not on assumption. Traceable source: INV-72 (WO) - ShopView/shopview@5576716 - FetchDataQueryHandler.php:42-67. The V2 spec (Global Search Product Requirements v1.2, Confluence page 576978945, version 12) preserves existing role-based access (section 9), so this behaviour must still hold after V2; if it changes, it is a regression to raise.
+
+AUTOMATION: Not available on Build to test Yet - Last checked 8/26/2026",SV-9160 (INV-72; V1 baseline 5576716),,
+A Part-Sales-only role sees Part Sales but not catalog Parts or Vendors,Global Search V2 - V1 Regression Suite,Regression,High,"A user whose role grants Part Sales access only (no Catalog & Inventory access, no Vendor access).
+Data exists that would match a Part Sale, a catalog Part, and a Vendor for the word you search.","Sign in as this user and open global search.
+Search a word that matches a Part Sale, a catalog Part, and a Vendor.
+Look at which groups appear.","1. Part Sale results appear.
+2. NO catalog Part results appear.
+3. NO Vendor results appear.
+
+---
+This is the expected behaviour based on the EXISTING behaviour BEFORE the V2 deployment (the V1 regression baseline), not on assumption. Traceable source: INV-73 (SV-8412) - ShopView/shopview@5576716 - FetchDataQueryHandler.php:47-53; routingService.ts:84-85. The V2 spec (Global Search Product Requirements v1.2, Confluence page 576978945, version 12) preserves existing role-based access (section 9), so this behaviour must still hold after V2; if it changes, it is a regression to raise.
+
+AUTOMATION: Not available on Build to test Yet - Last checked 8/26/2026",SV-9160 (INV-73; V1 baseline 5576716),,
+Catalog Part results appear only with Catalog & Inventory access,Global Search V2 - V1 Regression Suite,Regression,High,"User A with 'Catalog & Inventory - View'; User B without it.
+A catalog part exists that matches the search word.","As User A, search a word matching a catalog part; note if Part results appear.
+As User B, repeat the same search.","1. User A sees catalog Part results.
+2. User B sees NO Part results.
+
+---
+This is the expected behaviour based on the EXISTING behaviour BEFORE the V2 deployment (the V1 regression baseline), not on assumption. Traceable source: INV-72 / INV-73 (Part) - ShopView/shopview@5576716 - FetchDataQueryHandler.php:47-53. The V2 spec (Global Search Product Requirements v1.2, Confluence page 576978945, version 12) preserves existing role-based access (section 9), so this behaviour must still hold after V2; if it changes, it is a regression to raise.
+
+AUTOMATION: Not available on Build to test Yet - Last checked 8/26/2026",SV-9160 (INV-72; V1 baseline 5576716),,
+Vendor results appear only with Vendor & Order Management access,Global Search V2 - V1 Regression Suite,Regression,High,"User A with 'Vendor & Order Management - View'; User B without it.
+A vendor exists that matches the search word.","As User A, search a word matching a vendor; note if Vendor results appear.
+As User B, repeat the same search.","1. User A sees Vendor results.
+2. User B sees NO Vendor results.
+
+---
+This is the expected behaviour based on the EXISTING behaviour BEFORE the V2 deployment (the V1 regression baseline), not on assumption. Traceable source: INV-72 (Vendor) - ShopView/shopview@5576716 - FetchDataQueryHandler.php:42-67. The V2 spec (Global Search Product Requirements v1.2, Confluence page 576978945, version 12) preserves existing role-based access (section 9), so this behaviour must still hold after V2; if it changes, it is a regression to raise.
+
+AUTOMATION: Not available on Build to test Yet - Last checked 8/26/2026",SV-9160 (INV-72; V1 baseline 5576716),,
+Customer and Asset results both require Customers access,Global Search V2 - V1 Regression Suite,Regression,High,"User A with 'Customers - View'; User B without it.
+A customer and one of its vehicles/assets match the search word.","As User A, search a word matching a customer and its asset; note if Customer and Asset results appear.
+As User B, repeat the same search.","1. User A sees Customer results and Asset results.
+2. User B sees NEITHER Customer nor Asset results.
+
+---
+This is the expected behaviour based on the EXISTING behaviour BEFORE the V2 deployment (the V1 regression baseline), not on assumption. Traceable source: INV-72 (Customer+Vehicle) - ShopView/shopview@5576716 - FetchDataQueryHandler.php:42-67. The V2 spec (Global Search Product Requirements v1.2, Confluence page 576978945, version 12) preserves existing role-based access (section 9), so this behaviour must still hold after V2; if it changes, it is a regression to raise.
+
+AUTOMATION: Not available on Build to test Yet - Last checked 8/26/2026",SV-9160 (INV-72; V1 baseline 5576716),,
+A Time Clock role gets no global search results at all,Global Search V2 - V1 Regression Suite,Regression,PO-REG-2: confirm Time Clock stays excluded in V2.,"A user whose role is Time Clock.
+Data exists that would match the search word for a normal user.","Sign in as the Time Clock user and open global search.
+Search any word that returns results for a normal user.","1. No results of any type are shown to the Time Clock user - the result set is entirely empty.
+
+---
+This is the expected behaviour based on the EXISTING behaviour BEFORE the V2 deployment (the V1 regression baseline), not on assumption. Traceable source: INV-71 - ShopView/shopview@5576716 - FetchDataController.php:50-51. The V2 spec (Global Search Product Requirements v1.2, Confluence page 576978945, version 12) is SILENT on this (a dangerous silence - see PO register), so this behaviour must still hold after V2; if it changes, it is a regression to raise.
+
+AUTOMATION: Not available on Build to test Yet - Last checked 8/26/2026",SV-9160 (INV-71; V1 baseline 5576716),,
+An unrecognised result type is hidden unless explicitly permitted,Global Search V2 - V1 Regression Suite,Regression,Fail-safe: new V2 entities must be explicitly permitted to appear.,"A build where the search can return a result type the permission list does not explicitly allow (ask a developer to confirm/seed, or verify via the new-entity rollout).",Open global search and run a search that could surface an unrecognised/new result type.,"1. Any result type that is not explicitly permitted is NOT shown (the default is hide, not show).
+
+---
+This is the expected behaviour based on the EXISTING behaviour BEFORE the V2 deployment (the V1 regression baseline), not on assumption. Traceable source: INV-74 - ShopView/shopview@5576716 - routingService.ts:78-99; useGlobalSearch.ts:146-150. The V2 spec (Global Search Product Requirements v1.2, Confluence page 576978945, version 12) preserves the fail-safe (permission default) (section 9), so this behaviour must still hold after V2; if it changes, it is a regression to raise.
+
+AUTOMATION: Not available on Build to test Yet - Last checked 8/26/2026",SV-9160 (INV-74; V1 baseline 5576716),,
+Recent items the user can no longer access are hidden,Global Search V2 - V1 Regression Suite,Regression,High,A user who previously opened a record (so it is in recent activity) and whose access to that record has since been removed.,"Sign in as this user and open global search so recent activity shows.
+Look for the record the user can no longer access.","1. The no-longer-permitted record does NOT appear in recent activity.
+
+---
+This is the expected behaviour based on the EXISTING behaviour BEFORE the V2 deployment (the V1 regression baseline), not on assumption. Traceable source: INV-64 - ShopView/shopview@5576716 - useGlobalSearch.ts:21-29. The V2 spec (Global Search Product Requirements v1.2, Confluence page 576978945, version 12) preserves permission filtering of recents (section 9), so this behaviour must still hold after V2; if it changes, it is a regression to raise.
+
+AUTOMATION: Not available on Build to test Yet - Last checked 8/26/2026",SV-9160 (INV-64; V1 baseline 5576716),,
+Results never include another organization's records,Global Search V2 - V1 Regression Suite,Regression,High,"A user in Organization X.
+A matching record exists in a different Organization Y for the same search word.","Sign in as the Org X user and open global search.
+Search a word that matches records in both Org X and Org Y.","1. Only Org X records appear.
+2. No Org Y record is ever shown.
+
+---
+This is the expected behaviour based on the EXISTING behaviour BEFORE the V2 deployment (the V1 regression baseline), not on assumption. Traceable source: INV-80 - ShopView/shopview@5576716 - FetchDataQueryHandler.php:127-335 (OrganizationDecorator). The V2 spec (Global Search Product Requirements v1.2, Confluence page 576978945, version 12) preserves tenant isolation (section 9), so this behaviour must still hold after V2; if it changes, it is a regression to raise.
+
+AUTOMATION: Not available on Build to test Yet - Last checked 8/26/2026",SV-9160 (INV-80; V1 baseline 5576716),,
+Work Orders and Part Sales are limited to the current location,Global Search V2 - V1 Regression Suite,Regression,High,"A user with access to two locations.
+A Work Order and a Part Sale exist at another location (not the current one), matching the search word; and a Customer/Vendor exists org-wide.","While on Location 1, search the word matching those records.
+Note which Work Order / Part Sale results appear.","1. Work Order and Part Sale results are limited to the CURRENT location (Location 1).
+2. Customer, Asset, Vendor and Part results are org-wide (not limited to the current location).
+
+---
+This is the expected behaviour based on the EXISTING behaviour BEFORE the V2 deployment (the V1 regression baseline), not on assumption. Traceable source: INV-81 - ShopView/shopview@5576716 - FetchDataQueryHandler.php:130. The V2 spec (Global Search Product Requirements v1.2, Confluence page 576978945, version 12) preserves location scoping (section 9), so this behaviour must still hold after V2; if it changes, it is a regression to raise.
+
+AUTOMATION: Not available on Build to test Yet - Last checked 8/26/2026",SV-9160 (INV-81; V1 baseline 5576716),,
+Switching location refreshes results to the new location,Global Search V2 - V1 Regression Suite,Regression,High,"A user with access to two locations, each with location-specific Work Orders matching the search word.","Search the word while on Location 1 and note the Work Order results.
+Switch to Location 2.
+Run the same search again.","1. After switching, the Work Order / Part Sale results reflect Location 2, not Location 1.
+
+---
+This is the expected behaviour based on the EXISTING behaviour BEFORE the V2 deployment (the V1 regression baseline), not on assumption. Traceable source: INV-82 - ShopView/shopview@5576716 - useGlobalSearch.ts:286-299. The V2 spec (Global Search Product Requirements v1.2, Confluence page 576978945, version 12) preserves location-switch behaviour (section 9), so this behaviour must still hold after V2; if it changes, it is a regression to raise.
+
+AUTOMATION: Not available on Build to test Yet - Last checked 8/26/2026",SV-9160 (INV-82; V1 baseline 5576716),,
+Selecting each existing result type opens the correct record,Global Search V2 - V1 Regression Suite,Regression,High,"Data exists for each type: Work Order, Part Sale, Customer, Asset (vehicle), Vendor, catalog Part.
+A user permitted to see all of them.","For each type in turn: search a word that matches that record and select it.
+Confirm which page opens.","1. Work Order opens the Work Order page; Part Sale opens the Part Sale page; Customer opens the customer's work-orders page; Asset opens the vehicle's work-orders page; Vendor opens the Vendor page; catalog Part opens the catalogue part page.
+2. For an Asset, the correct owning customer is used.
+
+---
+This is the expected behaviour based on the EXISTING behaviour BEFORE the V2 deployment (the V1 regression baseline), not on assumption. Traceable source: INV-46 - ShopView/shopview@5576716 - GlobalSearch.vue:208-235; useGlobalSearch.ts:95-139. The V2 spec (Global Search Product Requirements v1.2, Confluence page 576978945, version 12) preserves navigation for existing types; new V2 entities add routes (section 5), so this behaviour must still hold after V2; if it changes, it is a regression to raise.
+
+AUTOMATION: Not available on Build to test Yet - Last checked 8/26/2026",SV-9160 (INV-46; V1 baseline 5576716),,
+Selecting the record you are already on does not re-navigate,Global Search V2 - V1 Regression Suite,Regression,High,A user viewing a specific record (for example a Work Order you already have open).,"With that record open, open global search and select the SAME record from the results.","1. The page does not navigate/reload to the same record again (and it is not re-added to recent activity).
+
+---
+This is the expected behaviour based on the EXISTING behaviour BEFORE the V2 deployment (the V1 regression baseline), not on assumption. Traceable source: INV-47 - ShopView/shopview@5576716 - GlobalSearch.vue:223-234. The V2 spec (Global Search Product Requirements v1.2, Confluence page 576978945, version 12) is SILENT on this (invariant), so this behaviour must still hold after V2; if it changes, it is a regression to raise.
+
+AUTOMATION: Not available on Build to test Yet - Last checked 8/26/2026",SV-9160 (INV-47; V1 baseline 5576716),,
+The vehicles group is shown to users as 'Assets',Global Search V2 - V1 Regression Suite,Regression,High,Data exists for a vehicle/asset that matches the search word.,Search a word matching a vehicle and look at the group heading it appears under.,"1. The group is labelled 'Assets' to the user (never the internal name 'Vehicles').
+
+---
+This is the expected behaviour based on the EXISTING behaviour BEFORE the V2 deployment (the V1 regression baseline), not on assumption. Traceable source: INV-20 - ShopView/shopview@5576716 - GlobalSearch.vue:60. The V2 spec (Global Search Product Requirements v1.2, Confluence page 576978945, version 12) preserves the 'Assets' label (section 4 uses 'Assets'), so this behaviour must still hold after V2; if it changes, it is a regression to raise.
+
+AUTOMATION: Not available on Build to test Yet - Last checked 8/26/2026",SV-9160 (INV-20; V1 baseline 5576716),,
+The keyboard shortcut opens global search,Global Search V2 - V1 Regression Suite,Regression,High,"A signed-in user on any page, with the cursor NOT in a text field.",Press Ctrl+K on Windows (or Command+K on Mac).,"1. Global search opens / the search field is focused, ready to type.
+
+---
+This is the expected behaviour based on the EXISTING behaviour BEFORE the V2 deployment (the V1 regression baseline), not on assumption. Traceable source: INV-40 - ShopView/shopview@5576716 - GlobalSearch.vue:243-254. The V2 spec (Global Search Product Requirements v1.2, Confluence page 576978945, version 12) preserves the shortcut (section 5.1 uses the same shortcut), so this behaviour must still hold after V2; if it changes, it is a regression to raise.
+
+AUTOMATION: Not available on Build to test Yet - Last checked 8/26/2026",SV-9160 (INV-40; V1 baseline 5576716),,
+A record that matches more than once appears only once,Global Search V2 - V1 Regression Suite,Regression,High,A record whose name and another field both match the same search word.,"Search a word that matches that record in more than one way.
+Count how many times the record appears.","1. The record appears only once in the results (it is not listed twice).
+
+---
+This is the expected behaviour based on the EXISTING behaviour BEFORE the V2 deployment (the V1 regression baseline), not on assumption. Traceable source: INV-16 - ShopView/shopview@5576716 - useGlobalSearch.ts:182-184. The V2 spec (Global Search Product Requirements v1.2, Confluence page 576978945, version 12) is SILENT on this (invariant), so this behaviour must still hold after V2; if it changes, it is a regression to raise.
+
+AUTOMATION: Not available on Build to test Yet - Last checked 8/26/2026",SV-9160 (INV-16; V1 baseline 5576716),,
+Global search is available with no feature-flag toggle,Global Search V2 - V1 Regression Suite,Regression,High,Any permitted signed-in user.,"Open global search normally, without enabling any setting or flag.","1. Global search is available to every permitted user - there is no feature flag or toggle gating it.
+
+---
+This is the expected behaviour based on the EXISTING behaviour BEFORE the V2 deployment (the V1 regression baseline), not on assumption. Traceable source: INV-90 - ShopView/shopview@5576716 - (no feature flag in code). The V2 spec (Global Search Product Requirements v1.2, Confluence page 576978945, version 12) confirms no feature flag (section 2 / 10), so this behaviour must still hold after V2; if it changes, it is a regression to raise.
+
+AUTOMATION: Not available on Build to test Yet - Last checked 8/26/2026",SV-9160 (INV-90; V1 baseline 5576716),,
+A user with no default workplace does not break search,Global Search V2 - V1 Regression Suite,Regression,High,A user who has NO default workplace set.,Sign in as this user and open global search.,"1. Global search does not error; it simply does not load a result collection for this user (it degrades gracefully).
+
+---
+This is the expected behaviour based on the EXISTING behaviour BEFORE the V2 deployment (the V1 regression baseline), not on assumption. Traceable source: INV-34 - ShopView/shopview@5576716 - GlobalSearch.vue:131-137. The V2 spec (Global Search Product Requirements v1.2, Confluence page 576978945, version 12) is SILENT on this (invariant), so this behaviour must still hold after V2; if it changes, it is a regression to raise.
+
+AUTOMATION: Not available on Build to test Yet - Last checked 8/26/2026",SV-9160 (INV-34; V1 baseline 5576716),,
+Selecting a result records a usage analytics event,Global Search V2 - V1 Regression Suite,Regression,PO-REG-4: confirm the existing analytics event remains alongside V2 telemetry.,Analytics capture is available for verification (ask a developer or use the analytics console).,"Open global search, run a search, and select a result.
+Check that a global-search-usage analytics event was recorded.","1. A usage analytics event is recorded when a result is selected.
+
+---
+This is the expected behaviour based on the EXISTING behaviour BEFORE the V2 deployment (the V1 regression baseline), not on assumption. Traceable source: INV-48 - ShopView/shopview@5576716 - GlobalSearch.vue:211-217. The V2 spec (Global Search Product Requirements v1.2, Confluence page 576978945, version 12) is SILENT on this vs the new telemetry (section 6.4) - see PO register, so this behaviour must still hold after V2; if it changes, it is a regression to raise.
+
+AUTOMATION: Not available on Build to test Yet - Last checked 8/26/2026",SV-9160 (INV-48; V1 baseline 5576716),,
+Search needs at least two characters before it matches,Global Search V2 - V1 Regression Suite,Regression,PO-REG-3: confirm the 2-character minimum for V2.,Any permitted user with data that would match a single letter.,"Open global search and type a single character.
+Then type a second character.","1. With one character, no matching search runs (recent activity may show instead).
+2. Matching begins at two characters.
+
+---
+This is the expected behaviour based on the EXISTING behaviour BEFORE the V2 deployment (the V1 regression baseline), not on assumption. Traceable source: INV-10 - ShopView/shopview@5576716 - useGlobalSearch.ts:69-71. The V2 spec (Global Search Product Requirements v1.2, Confluence page 576978945, version 12) is SILENT on the minimum-character threshold - see PO register, so this behaviour must still hold after V2; if it changes, it is a regression to raise.
+
+AUTOMATION: Not available on Build to test Yet - Last checked 8/26/2026",SV-9160 (INV-10; V1 baseline 5576716),,
