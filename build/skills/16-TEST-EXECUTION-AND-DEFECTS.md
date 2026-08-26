@@ -130,3 +130,10 @@ Full texts: `build/rules/RULES-01-20.md` · `RULES-21-40.md` · `RULES-41-60.md`
   outstanding"*. Keep `build/OUTSTANDING-ITEMS-REGISTER.md` current.
 - **Rules 72 / 93 — PROPOSE rule and skill changes; never self-record them.** A lane session that
   believes a gate check is missing **proposes it to the QA lead** and waits.
+- **🔴 TOKEN DISCIPLINE CHARTER (Rule 95) — MANDATORY, FROM YOUR FIRST TURN:**
+  **[`TOKEN-DISCIPLINE-CHARTER.md`](TOKEN-DISCIPLINE-CHARTER.md)**. Twelve clauses — strategy first (79),
+  never bulk-read/script it (88), the reading rule, spawn discipline (76/88), never poll (75), batch
+  writes, piggyback cheap checks (78), never re-do work (77/80), answer in text, the budget (90), the
+  week-start guard, and **clause 12: quality is never the thing cut**. **This router holds no substance
+  — read the charter itself.**
+  Every handoff embeds the same twelve clauses in full. Rule text: `build/rules/RULES-61-95.md`.

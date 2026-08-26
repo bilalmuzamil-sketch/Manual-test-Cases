@@ -105,12 +105,13 @@ Full texts: `build/rules/RULES-01-20.md` · `RULES-21-40.md` · `RULES-41-60.md`
   or "repair" shared MCP config to fix a connection**), and the unattended **BLOCKED** protocol.
 - **`13-CROSS-SESSION-SAFETY.md`** — Rules 82–87: the real secret-scan gate, lane write locks, the
   tester-readiness gate, no-build-yet honesty, verify-from-committed-evidence, case-body snapshots.
-- **Rule 88** — never bulk-read; grep `CLAUDE.md`, script bulk work to a file and read a bounded
-  summary, batch writes, use the Rule-75 detached pattern for long jobs, do not spawn subagents for
-  work you can do directly.
-- **Rule 90** — one shared weekly quota: main **15 %** · each lane **25 %** · **10 % reserve**.
-  Report your spend with your work; at **50 %** of your own budget compare spend against progress and
-  **STOP AND REPORT** if spend is outpacing it; **never touch the reserve** without the QA lead.
+- **🔴 TOKEN DISCIPLINE CHARTER (Rule 95) — MANDATORY, FROM YOUR FIRST TURN:**
+  **[`TOKEN-DISCIPLINE-CHARTER.md`](TOKEN-DISCIPLINE-CHARTER.md)**. Twelve clauses — strategy first (79),
+  never bulk-read/script it (88), the reading rule, spawn discipline (76/88), never poll (75), batch
+  writes, piggyback cheap checks (78), never re-do work (77/80), answer in text, the budget (90), the
+  week-start guard, and **clause 12: quality is never the thing cut**. **This router holds no substance
+  — read the charter itself; it supersedes the Rule 88 / Rule 90 lines this section used to carry.**
+  Every handoff embeds the same twelve clauses in full. Rule text: `build/rules/RULES-61-95.md`.
 - **Rule 91** — every verification claim in your report carries a **freshness badge with its date**:
   **✅ ≤ 7 days · 🟠 8–14 days · 🔴 > 14 days · ❌ never verified**. A bare tick is non-compliant.
   Tool: `build/testing-tools/verification_badge.py` (requires `--today`).
