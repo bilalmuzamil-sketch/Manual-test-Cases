@@ -1,0 +1,114 @@
+<html><head><meta charset="utf-8"><style>body{font:15px/1.5 Helvetica,Arial,sans-serif;margin:28px;max-width:1180px;color:#222}h1{font-size:20px} h2{font-size:17px;margin-top:26px;border-top:2px solid #ccc;padding-top:12px}.lab{font-size:12px;color:#666;margin:10px 0 3px} code{background:#eee;padding:1px 4px}.box{border:1px solid #bbb;padding:10px 14px;background:#fff}</style></head><body><h1>JOB 3 &mdash; what the TestRail CASE VIEW page serves to a tester (observed 2026-08-26, rendered from the saved served HTML)</h1><h2>C30124 &mdash; Expanding an asset reveals its invoice rows with number link and date - TestRail</h2>
+<div class="lab">Preconditions &nbsp;<code>&lt;div class="markdown fr-view"&gt;</code></div>
+<div class="box">
+                            <ol><li>You have expanded a customer and can see its asset rows.</li></ol>                        </div>
+<div class="lab">Steps &nbsp;<code>&lt;div class="markdown fr-view"&gt;</code></div>
+<div class="box">
+                            <ol><li>Click the chevron on an asset row.</li><li>Read the invoice detail rows that appear.</li></ol>                        </div>
+<div class="lab">Expected Result &nbsp;<code>&lt;div class="markdown fr-view"&gt;</code></div>
+<div class="box">
+                            <ol><li>The invoice detail rows for that asset appear, indented one level deeper than the asset row.</li><li>Each detail row shows the invoice number (as a link if it's created at the current (active) location), the invoice date, and the per-invoice Labor Delta, Labor Invoiced, Labor Margin, Parts Invoiced, Parts Margin, Shop Supplies, Adjustments, Margin, Margin %, and Subtotal.</li><li>The invoice date shows in the format "Mon DD YYYY" — for example, May 14 2026</li></ol><hr><p>This is the expected behaviour as per epic SV-8582 and the Sales By Customer report specification version 20 (S8-R12; S7-R17; S7-R18), both read on 17 August 2026. The column was renamed from "Inv. Hrs" to "Labor Delta" per SV-9071; only the name changed.<br>Last checked against build v3.8-2bf8d14 on 8/18/2026.</p><p>AUTOMATION: READY</p>                        </div>
+<h2>C30143 &mdash; Default sort is Customer name ascending case-insensitive - TestRail</h2>
+<div class="lab">Preconditions &nbsp;<code>&lt;div class="markdown fr-view"&gt;</code></div>
+<div class="box">
+                            <ol>
+<li>No saved view exists (first visit or cleared storage).</li>
+<li>Customer names with mixed upper/lower-case first letters exist in the view (seed ZZAUTOTEST names like "acme test" and "Best Test").</li>
+</ol>
+                        </div>
+<div class="lab">Steps &nbsp;<code>&lt;div class="markdown fr-view"&gt;</code></div>
+<div class="box">
+                            <ol>
+<li>Open the report and read the customer order.</li>
+<li>Click the Subtotal header and read the order again.</li>
+</ol>
+                        </div>
+<div class="lab">Expected Result &nbsp;<code>&lt;div class="markdown fr-view"&gt;</code></div>
+<div class="box">
+                            <ol>
+<li>On first load, rows are ordered by Customer name, ascending, case-insensitive (a lower-case "acme" sorts by letter, not after all capitals).</li>
+<li>Clicking a column header replaces the default with that column's sort.</li>
+</ol>
+
+<hr />
+
+<p>This is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Sales By Customer report specification version 20 (S10-R4, S10-R7), read on 17 August 2026.<br />Last checked against build v3.8-2bf8d14 on 8/18/2026.</p>
+
+<p>AUTOMATION: READY</p>
+                        </div>
+<h2>C30151 &mdash; Labor Delta heading is verbatim; value shows +green / -red / 0.0 on every row - TestRail</h2>
+<div class="lab">Preconditions &nbsp;<code>&lt;div class="markdown fr-view"&gt;</code></div>
+<div class="box">
+                            <ol>
+<li>Invoices exist where billed hours exceed worked hours, where worked exceeds billed, and where they are equal (seed ZZAUTOTEST work orders with clocked time).</li>
+</ol>
+                        </div>
+<div class="lab">Steps &nbsp;<code>&lt;div class="markdown fr-view"&gt;</code></div>
+<div class="box">
+                            <ol>
+<li>Read the column heading.</li>
+<li>Read the Labor Delta value on rows for each of the three seeded situations, at customer, asset, and invoice level.</li>
+</ol>
+                        </div>
+<div class="lab">Expected Result &nbsp;<code>&lt;div class="markdown fr-view"&gt;</code></div>
+<div class="box">
+                            <ol>
+<li>The column heading reads "Labor Delta".</li>
+<li>The value is hours invoiced minus hours worked, rounded to one decimal.</li>
+<li>A positive value shows a leading + sign in the application's standard positive (green) color — for example, +1.5.</li>
+<li>A negative value shows a leading - sign in the standard negative (red) color — for example, -1.5.</li>
+<li>A zero/break-even value shows 0.0 in the default text color.</li>
+<li>The same calculation, label, format, and coloring apply on customer, asset, and invoice rows.</li>
+</ol>
+
+<hr />
+
+<p>This is the expected behaviour as per epic SV-8582 and the Sales By Customer report specification version 20 (S12-R1; S12-R2; S12-R3; S12-R4; S12-R5; S12-R6), both read on 17 August 2026. The column was renamed from "Inv. Hrs" to "Labor Delta" per SV-9071; only the name changed.<br />Last checked against build v3.8-2bf8d14 on 8/18/2026.</p>
+
+<p>AUTOMATION: READY</p>
+                        </div>
+<h2>C30287 &mdash; CSV cells: plain numbers, signed Labor Delta, empty Margin %, (Inactive) - TestRail</h2>
+<div class="lab">Preconditions &nbsp;<code>&lt;div class="markdown fr-view"&gt;</code></div>
+<div class="box">
+                            <ol><li>You have downloaded both report CSVs from a view that includes a negative money value, a row carrying a Shop Supplies charge, a rep whose Margin % shows "&mdash;" on screen (its Margin base &mdash; Labor Invoiced + Parts Invoiced + Adjustments, which is Subtotal minus Shop Supplies &mdash; is 0 or less), and an "(Inactive)" contributor (seed what is missing)..</li></ol>
+                        </div>
+<div class="lab">Steps &nbsp;<code>&lt;div class="markdown fr-view"&gt;</code></div>
+<div class="box">
+                            <ol><li>Open each CSV in a text editor (not a spreadsheet).</li><li>Read a money cell, the Shop Supplies cell, the negative value's cell, an Labor Delta cell, the undefined Margin % cell, and the (Inactive) rep's "Sales Representative" cell.</li></ol>
+                        </div>
+<div class="lab">Expected Result &nbsp;<code>&lt;div class="markdown fr-view"&gt;</code></div>
+<div class="box">
+                            <p>1. Numeric columns are plain numbers &mdash; NO currency symbol, thousands separators, or parentheses; a negative uses a leading minus (for example, -1234.56).<br>2. Money values, including the Shop Supplies column, carry two decimals; Hrs Worked / Hrs Invoiced / Labor Delta carry their full stored precision; Labor Delta keeps its leading + or - sign.<br>3. Margin % is a plain number to TWO decimals (for example, 45.20) with no % sign, and the cell is EMPTY where Margin % is undefined &mdash; that is, where the Margin base (Labor Invoiced + Parts Invoiced + Adjustments, which is Subtotal minus Shop Supplies) is 0 or less.<br>4. The "Sales Representative" name carries the "(Inactive)" tag when applicable; the on-screen (N) count is NOT embedded in the name.<br>5. Text fields are quoted per standard CSV escaping; both CSVs are monochrome (Labor Delta conveys direction only by its sign).<br>6. Note for the tester: the product owner has ruled that the full word "Sales Representative" replaces the short "Sales Rep" everywhere. If the screen or file still shows "Sales Rep", mark this test Failed and report it as the pending rename &mdash; do not change the test.<br><br>---<br>This is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Sales By Representative report specification version 24 (S14-R17, with the Shop Supplies column added by S5-R12 and S5-R13 and carried into both CSVs by S14-R15 and S14-R16), read on 26 August 2026. The column was renamed from "Inv. Hrs" to "Labor Delta" per SV-9071; only the name changed.<br>Last checked against build v3.8-bd246fd on 8/18/2026.<br><br>AUTOMATION: READY</p>
+                        </div>
+<h2>C30518 &mdash; Export notifications: success caption, &quot;Empty export&quot; warning - TestRail</h2>
+<div class="lab">Preconditions &nbsp;<code>&lt;div class="markdown"&gt;</code></div>
+<div class="box">
+							<ol>
+<li>You are signed in to the ShopView App on a desktop browser.</li>
+<li>The report can be put in three states: rows present, no rows visible (filters leave nothing), and (if simulatable) a failing download, for example by disconnecting the network before the download.</li>
+<li>To force the failure this test needs, use the browser&#039;s own developer tools: press F12, open the &quot;Network&quot; tab, and switch the throttling dropdown (it normally reads &quot;No throttling&quot;) to &quot;Offline&quot; to cut the connection, or to &quot;Slow 3G&quot; to slow it down. There is nothing to install. Set it back to &quot;No throttling&quot; when you finish.</li>
+</ol>
+						</div>
+<div class="lab">Steps &nbsp;<code>&lt;div class="markdown"&gt;</code></div>
+<div class="box">
+							<ol>
+<li>With rows present, download the current tab and read the notification.</li>
+<li>Filter the report until no rows are visible, download again, and read the notification.</li>
+<li>If simulatable, force a download failure (for example, drop the network) and read the notification.</li>
+</ol>
+						</div>
+<div class="lab">Expected Result &nbsp;<code>&lt;div class="markdown"&gt;</code></div>
+<div class="box">
+							<p>&lt;p&gt;1. On a successful download, a success notification shows with the caption "Data exported successfully."</p>
+
+<ol>
+<li>When a download yields no rows, a warning notification shows titled &quot;Empty export&quot; with the caption &quot;Export didn&#039;t yield any results&quot;.</li>
+<li>When a download fails, an error notification shows: &quot;An error occurred while exporting the report. Please try again.&quot;</li>
+</ol>
+
+<hr />
+
+<p>This is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Work In Progress report specification version 28 (S9-R11, S9-R12 and S9-R13, under Error handling), read on 26 August 2026. These three requirements are worded identically in version 28 to the version this test was written against, so the expectation above is unchanged. One caution for anyone checking the source: version 28 of that specification still uses the number S9-R11 for two different requirements — one about the 10,000-row limit on downloads, one about the success message. This test rests on the success-message one, under Error handling.</p>
+
+<p>AUTOMATION: Not available on Build to test Yet - Last checked 8/17/2026&lt;/p&gt;</p>
+						</div></body></html>

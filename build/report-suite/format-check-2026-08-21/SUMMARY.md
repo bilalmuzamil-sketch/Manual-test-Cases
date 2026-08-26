@@ -29,8 +29,8 @@ C43570, C43571, C43572, C43573, C43980, C43981, C44505.
 
 | # | Failure type | Cases | Would a tester see something wrong? |
 |---|---|---|---|
-| 2 | `raw-list-markup` — raw `<ol>/<li>/<p>/<hr>` stored in a **markdown** field | **50** | **YES — the tags are shown literally** |
-| 3 | `no-blank-line-before-marker` — AUTOMATION marker not separated | **46** | No (machine-findability / convention) |
+| 2 | `raw-list-markup` — raw `<ol>/<li>/<p>/<hr>` stored in a **markdown** field | **50** | ~~YES — the tags are shown literally~~ → **NO. FALSE POSITIVE, disproven by observation 2026-08-26 — the tags render as a proper list. See `GROUP-D-VERDICT.md`. LEAVE THESE ALONE.** |
+| 3 | `no-blank-line-before-marker` — AUTOMATION marker not separated | **46** | No (machine-findability / convention) — and **not worth a write**: an API write is what damages a case's rendering (`APP-ACTIONS-PLAYBOOK.md` §J) |
 | 3 | `no-automation-marker` — no AUTOMATION line at all | **13** | No (blocks the automation arithmetic gate) |
 | 5 | `title-too-long` (>80 chars) | **3** | Minor — truncation on the case page |
 | 3 | `marker-not-last` | **2** | No |
@@ -39,7 +39,22 @@ C43570, C43571, C43572, C43573, C43980, C43981, C44505.
 **45 of the 46** `no-blank-line-before-marker` cases are the SAME cases as the raw-markup
 50 — the marker sits inside a `<p>` tag, so one repair fixes both.
 
-### Why the raw markup really does render badly
+### ~~Why the raw markup really does render badly~~ — **SUPERSEDED 2026-08-26, THIS WAS WRONG**
+
+> **🔴 CORRECTION — 2026-08-26. The claim below is DISPROVEN BY OBSERVATION. Do not act on it.**
+> The case-view pages for C30124, C30143 and C30151 were logged into and read this day: all
+> three render as **proper numbered lists** and **no tag text is visible to a tester**. The
+> field's configured `format: markdown` does NOT decide the rendering — the container TestRail
+> emits does: `<div class="markdown fr-view">` prints the stored value RAW (HTML renders),
+> `<div class="markdown">` escapes it. These cases are `fr-view`. The `&lt;ol&gt;` entities a
+> whole-page text search finds are in the page's hidden JSON editor payload, not in the visible
+> field blocks — that is the trap this paragraph fell into.
+> **The `raw-list-markup` count of 50 and the `no-blank-line-before-marker` count of 46 are NOT
+> tester-visible defects, and the 96 cases must be LEFT ALONE.** Full evidence, screenshot and
+> verdict: **`GROUP-D-VERDICT.md`** in this folder. The superseded text is kept below, dated and
+> marked, per the never-silently-rewrite rule.
+
+*(Superseded text, 2026-08-26 — retained for the record, NOT current guidance:)*
 `get_case_fields` reports `custom_preconds`, `custom_steps` and `custom_expected` all have
 **`format: markdown`**. A markdown field does not render stored HTML — it shows it. Example
 (C30124, steps field, stored verbatim):
@@ -71,7 +86,7 @@ SBR — Exports (4), TU — Deep Links (4).
 
 | Group | Cases | Repair path | Risk |
 |---|---|---|---|
-| A · raw HTML in markdown fields | 50 | **API `update_case`**: convert `<ol><li>x</li></ol>` → numbered plain lines, `<p>`/`<hr>` → blank lines, `<br>` → newline. Scripted rewrite, one write per case, **body diffed before and after**, per-case audit log (op · C-id · HTTP · verify) per Rule 50 | Rewrites the whole body → **Rule 41 re-verify the whole case** applies |
+| A · raw HTML in markdown fields | 50 | 🔴 **CANCELLED 2026-08-26 — DO NOT EXECUTE.** The defect does not exist (`GROUP-D-VERDICT.md`), and this repair path is itself what damages a case: an API write always adds a `<p>` wrapper (`APP-ACTIONS-PLAYBOOK.md` §J). ~~API `update_case`: convert `<ol><li>x</li></ol>` → numbered plain lines, `<p>`/`<hr>` → blank lines, `<br>` → newline…~~ | Would have broken 50 working cases |
 | B · marker spacing (the 1 case not in A) | 1 | API: insert the blank line before the marker | Low |
 | C · missing AUTOMATION marker | 13 | **NOT a formatting fix** — needs a judgement call READY / EXPECT-FAIL / HOLD per case. Author decision, then one API write each | Medium — changes the automation arithmetic gate |
 | D · titles > 80 chars | 3 | API title shorten, meaning preserved; titles are tester-facing so the QA lead should approve the wording | Low |
