@@ -1,4 +1,18 @@
-# BLOCKED — Report Suite source verification (all six specs) — 2026-08-26
+# ✅ RESOLVED 2026-08-26 — Report Suite source verification (all six specs)
+
+**Status: RESOLVED 2026-08-26. Atlassian login works; all six Report Suite specs were fetched live
+and diffed — evidence in `build/report-suite/source-verify-2026-08-26/reports/`.**
+
+**Cause:** an undismissed Atlassian **"Security review" interstitial** was swallowing the login — it
+was never a credential problem, and the account has **no OTP** because two-step verification is off.
+**Fix:** dismiss the "Security review" interstitial during login, then proceed normally (no OTP is
+issued or needed). Recorded in commit `55b3e979`.
+
+**Everything below is the ORIGINAL 2026-08-26 blocker text, kept verbatim and dated (never deleted).**
+
+---
+
+# BLOCKED — Report Suite source verification (all six specs) — 2026-08-26 *(original text, superseded)*
 
 **Status: BLOCKED AT THE PREFLIGHT GATE. No spec body was fetched. No workaround was attempted
 beyond the documented ladder in `build/skills/14-ACCESS-RESILIENCE.md` (Rule 89 — no retry loop).**
