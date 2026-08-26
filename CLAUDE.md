@@ -20,7 +20,7 @@ The previous CLAUDE.md was **738 KB / roughly 183,000 tokens**, and it was **TRU
 AT RULE 62**. Sessions were therefore running with **Rules 63–88 SILENTLY ABSENT** while believing
 they had read the whole file. A rule you have never seen is a rule you will break.
 
-**THEREFORE: NEVER ASSUME YOU HAVE SEEN ALL THE RULES.** There are **94 numbered Standing Rules**.
+**THEREFORE: NEVER ASSUME YOU HAVE SEEN ALL THE RULES.** There are **95 numbered Standing Rules**.
 Count them in the index below. If you are
 about to apply a rule, open its file and read it. **NEVER read
 `build/rules/CLAUDE-FULL-ARCHIVE-2026-08-21.md` whole** — it will exhaust your context exactly as the
@@ -61,6 +61,11 @@ These are stated here **in full** because a session that gets only this far must
 - **NEVER BULK-READ; SCRIPT THE BULK WORK (88).** A session with direct tools must not read hundreds
   of cases, spec bodies or archives into its own context. Write a script, run it, read its SUMMARY.
   Never read `CLAUDE-FULL-ARCHIVE-2026-08-21.md` (or any 100 KB+ artefact) whole.
+- **THE TOKEN-DISCIPLINE CHARTER BINDS EVERY SESSION FROM ITS FIRST TURN (95).** Twelve clauses in
+  `build/skills/TOKEN-DISCIPLINE-CHARTER.md`, embedded VERBATIM in every handoff: strategy first, never
+  bulk-read, spawn discipline, **never poll**, batch writes, piggyback, never re-do work, answer in text,
+  the budget, the week-start guard — and **clause 12: QUALITY IS NEVER THE THING CUT.** The savings come
+  from HOW work is executed, never from doing less of it. A handoff without the section is non-compliant.
 - **MINIMISE SUBAGENT SPAWNS (76).** Every spawn pays the full context tax. Batch related work into
   one worker; piggyback cheap checks onto the next substantive worker (78) rather than spending a
   dedicated spawn on them.
@@ -86,7 +91,7 @@ These are stated here **in full** because a session that gets only this far must
 
 ---
 
-## 2 · THE RULE INDEX — all 94 rules, and where each one lives
+## 2 · THE RULE INDEX — all 95 rules, and where each one lives
 
 **Read the rule in its file before applying it.** One line per rule; the line is a locator, not the
 rule. Generated from the split files' own headers.
@@ -167,7 +172,7 @@ rule. Generated from the split files' own headers.
 | **59** | RE-READ THE SOURCES IMMEDIATELY BEFORE THE WRITES BEGIN — a second currency check, not only the |
 | **60** | THE BUILD WILL NEVER BE DECLARED FINAL — SEPARATE WHAT DEPENDS ON THE BUILD FROM WHAT DOES NOT |
 
-### `build/rules/RULES-61-94.md` — rules 61–94
+### `build/rules/RULES-61-95.md` — rules 61–95
 
 | # | Rule (short title) |
 |---|---|
@@ -205,9 +210,18 @@ rule. Generated from the split files' own headers.
 | **92** | A LANE SESSION IS A PROJECT-AGNOSTIC ENGINE — IT WORKS ONLY ON THE PROJECT IT IS GIVEN, AND EXISTING PROJECT STATE IS REFERENCE, NOT A BACKLOG |
 | **93** | THE LEARNING LOOP — EVERY PROJECT ENDS WITH A RETRO THAT PROPOSES RULE AND SKILL IMPROVEMENTS (it PROPOSES; Rule 72 records) |
 | **94** | THE DEFECT ADMISSIBILITY GATE — NO TICKET IS FILED UNTIL IT PASSES EVERY CHECK, AND THE LANE'S OUTPUT IS APPROVED CANDIDATES, NOT FILED TICKETS |
+| **95** | THE TOKEN-DISCIPLINE CHARTER IS CARRIED BY EVERY SESSION AND EVERY HANDOFF — AND QUALITY IS NEVER WHAT GETS CUT |
+
+**Rule 95 (the Token-Discipline Charter)** was added 2026-08-26 in `build/rules/RULES-61-95.md`. Its
+canonical one-page operator form is **`build/skills/TOKEN-DISCIPLINE-CHARTER.md`** — twelve clauses
+(strategy first · never bulk-read, script it · the reading rule · spawn discipline · never poll · batch
+writes · piggyback cheap checks · never re-do work · answer in text · the budget · the week-start guard ·
+**quality is never the thing cut**). **EVERY handoff embeds the twelve clauses VERBATIM and every session
+applies them from its first turn; a handoff without them is non-compliant and must not be issued.**
+Routers take it by pointer only.
 
 **Rules 89 (access resilience + MCP hygiene) and 90 (shared-quota budget allocation)** were added
-2026-08-21 and live in `build/rules/RULES-61-94.md` with 61–88. Rule 89's operator form is
+2026-08-21 and live in `build/rules/RULES-61-95.md` with 61–88. Rule 89's operator form is
 `build/skills/14-ACCESS-RESILIENCE.md`.
 
 **Rule 91 (the verification freshness badge)** was added 2026-08-21 in the same file. **Its second
@@ -271,6 +285,7 @@ job.** Each file is a complete cold-start specification.
 | File | Use it when |
 |---|---|
 | `build/skills/README.md` | Index of the skill set — start here |
+| `build/skills/TOKEN-DISCIPLINE-CHARTER.md` | **Always, from your first turn (Rule 95)** — the twelve token-discipline clauses every session and every handoff carries; clause 12 = quality is never the thing cut |
 | `build/skills/00-COMMON-CORE.md` | **Always, first** — the honesty bar, TestRail mechanics, access, session survival |
 | `build/skills/01-CASE-BUILD.md` | Authoring or extending a suite from the sources |
 | `build/skills/02-SOURCE-CHECK.md` | Proving we hold the CURRENT version of every source |
@@ -399,7 +414,7 @@ Compact form — **the rule named in brackets is the authority; read it before r
 | Standing Rules 1–20 (full text) | `build/rules/RULES-01-20.md` |
 | Standing Rules 21–40 (full text) | `build/rules/RULES-21-40.md` |
 | Standing Rules 41–60 (full text) | `build/rules/RULES-41-60.md` |
-| Standing Rules 61–94 (full text) | `build/rules/RULES-61-94.md` |
+| Standing Rules 61–95 (full text) | `build/rules/RULES-61-95.md` |
 | Per-project narrative history (projects 1–7) | `build/rules/PROJECT-HISTORY-ARCHIVE.md` |
 | Byte-verification hashes for the split | `build/rules/INTEGRITY.md` |
 | Staging/QA/prod action recipes, TestRail traps | `build/APP-ACTIONS-PLAYBOOK.md` |

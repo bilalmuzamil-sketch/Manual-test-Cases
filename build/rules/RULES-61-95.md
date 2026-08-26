@@ -1,9 +1,9 @@
-# ShopView QA — Standing Rules 61–94
+# ShopView QA — Standing Rules 61–95
 
-This file holds the FULL, VERBATIM text of Standing Rules 61–94.
+This file holds the FULL, VERBATIM text of Standing Rules 61–95.
 
 Full archive: build/rules/CLAUDE-FULL-ARCHIVE-2026-08-21.md
-Index: CLAUDE.md (rule index table). Other rule files: build/rules/RULES-01-20.md, build/rules/RULES-21-40.md, build/rules/RULES-41-60.md, build/rules/RULES-61-94.md
+Index: CLAUDE.md (rule index table). Other rule files: build/rules/RULES-01-20.md, build/rules/RULES-21-40.md, build/rules/RULES-41-60.md, build/rules/RULES-61-95.md
 
 **Read the rule you are about to apply here, in full — the index is not the rule.**
 
@@ -1951,3 +1951,80 @@ Index: CLAUDE.md (rule index table). Other rule files: build/rules/RULES-01-20.m
     cases held for the QA lead), 73 (the quality checklist this gate runs before, and one ticket at a
     time on resume), 91 (the branches are not final; the freshness badge) and 93 (the learning loop —
     the refusal post-mortem PROPOSES further checks; Rule 72 records them).
+
+95. **THE TOKEN-DISCIPLINE CHARTER IS CARRIED BY EVERY SESSION AND EVERY HANDOFF — AND QUALITY IS
+    NEVER WHAT GETS CUT (all projects, permanent).**
+    **ORIGIN — the QA lead, 2026-08-21, verbatim:** *"Also make sure that this session is smartest one
+    about token usage as I do not want once again the weekly tokens to be burnt at the start of the
+    week. Make it a general rule for all the sessions we create and the hand offs we create for new
+    sessions"*
+    **THE CANONICAL TEXT IS `build/skills/TOKEN-DISCIPLINE-CHARTER.md`** — one page, imperative,
+    copy-pasteable. **EVERY HANDOFF EMBEDS ITS TWELVE CLAUSES VERBATIM** (a session must not have to
+    open another file to learn how to spend) and **EVERY SESSION APPLIES THEM FROM ITS FIRST TURN.**
+    **A handoff without the section titled "TOKEN DISCIPLINE CHARTER (mandatory — Rule 95)" is
+    NON-COMPLIANT AND MUST NOT BE ISSUED**; where a handoff already carries a token/quota section the
+    charter is **MERGED into it, never duplicated**. Routers and other skills take it **by pointer
+    only** — a router holds no substance, so procedure found inside one is a bug in that router.
+    **THE TWELVE CLAUSES, IN BRIEF.**
+    **(1) STRATEGY FIRST (79)** — before ANY task recall or devise the CHEAPEST CORRECT plan, not the
+    first one; for anything large DECLARE AN INTENDED SPEND; then begin, one pass, then exit.
+    **(2) NEVER BULK-READ — SCRIPT IT (88)** — no case bodies, CSVs, API dumps, spec bodies or large
+    files into context; script it to a file and read a BOUNDED SUMMARY; inspect with `wc -l`,
+    `head -n 20`, `grep -c`, `grep -n` and bounded `sed -n 'A,Bp'`; **never read CLAUDE.md end-to-end**
+    (it is an index) and **never read `CLAUDE-FULL-ARCHIVE-2026-08-21.md` or any 100 KB+ artefact
+    whole**.
+    **(3) THE READING RULE** — the startup reading list is FOR STARTUP; afterwards consult **anything
+    the task needs**, always targeted and bounded. **KNOWLEDGE IS NEVER OFF-LIMITS; ONLY BULK READING
+    IS.** Not reading a rule you are about to apply is a worse failure than the tokens it would cost —
+    which is exactly the failure the index restructure was built to prevent.
+    **(4) SPAWN DISCIPLINE (76 / 88)** — an ORCHESTRATOR with no file tools minimises spawns and
+    batches ruthlessly, because every spawn re-loads the whole project context (**observed at
+    200–380 k tokens each**); a LANE SESSION with direct tools DOES THE WORK ITSELF and does NOT spawn
+    for anything it can do directly. **Never spawn for a trivial check** — piggyback it.
+    **(5) NEVER POLL (75)** — long work runs as ONE detached, idempotent, resumable script with a
+    CHECKPOINT FILE, plus a committer loop gated on a **RUN-FLAG FILE**; **never `pgrep -f
+    <scriptname>`**, which matches itself so the loop never exits. Progress is **SELF-REPORTED IN
+    COMMIT MESSAGES**. Launch and exit; verify later in one short pass.
+    **(6) BATCH WRITES** — one scripted run with a PER-OP LOG (operation · C-id · HTTP status ·
+    verification result), never one tool call per case; *"200 OK"* alone is non-compliant (50).
+    **(7) PIGGYBACK CHEAP CHECKS (78)** — fold a cheap verification into the next substantive task and
+    keep a pending-cheap-checks list; never spend a dedicated spawn on one.
+    **(8) NEVER RE-DO WORK (77 / 80)** — before any verification, VIU or ordered task STATE WHEN IT WAS
+    LAST DONE (date + build marker / spec version) and ASK before re-running; a check within the last
+    3 builds or 3 source versions still COUNTS, shown with its date and freshness badge (91).
+    **(9) ANSWER IN TEXT** when a tool call is not needed — a reflexive tool call every turn is a trap.
+    **(10) THE BUDGET (90)** — one shared weekly pool: main/orchestrator **15 %**, each lane **25 %**,
+    **10 % reserve**, adjustable by the QA lead. **Report cumulative spend WITH every piece of work.**
+    At **50 % of your own budget** compare spend against work completed, and **if spend is outpacing
+    progress STOP AND REPORT** — never grind to zero. **Never consume the reserve** without his say-so.
+    **(11) THE WEEK-START GUARD** — the pool resets weekly and was once nearly exhausted in ONE DAY, so
+    **no lane may spend more than its weekly allocation in the first 48 hours of the week** without
+    explicit approval, and **a task that will exceed its declared intended spend STOPS AND REPORTS**
+    rather than continuing.
+    **(12) QUALITY IS NEVER THE THING CUT** — none of clauses 1–11 may be used to justify **sampling
+    instead of full coverage (50)**, **inferring instead of observing (12)**, or **skipping a
+    verification gate (84, 86)**. **THE SAVINGS COME FROM HOW THE WORK IS EXECUTED** — scripts,
+    batching, no polling, no re-doing — **NEVER FROM DOING LESS OF IT, AND NEVER FROM DOING IT LESS
+    RIGOROUSLY.** Where cheap and correct conflict, **correct wins and you report the cost.**
+    **RATIONALE — WHY A CHARTER AND NOT JUST THE EXISTING RULES.** The weekly pool was **nearly
+    exhausted in a single day**. The causes, in order of damage, were **poll-by-spawn status checks**
+    (a subagent spawned merely to ask whether a job was still running, each one re-loading the whole
+    project context), **one tool call per case** instead of a scripted batch, **bulk reads** of case
+    bodies, spec bodies and archives into context, **autocompact thrash** caused by those bulk reads,
+    and **redundant re-verification** of things already verified within the validity window. **NOT ONE
+    OF THOSE PRODUCED ANY QUALITY** — they were pure overhead, and every one of them was already
+    forbidden by a rule that existed. Rules **75, 76, 77, 78, 79, 88 and 90 were correct but
+    SCATTERED**, so nothing guaranteed that a new session, or a newly-authored handoff, actually
+    carried them; a rule a session never sees is a rule it will break. **The charter is the single
+    inherited statement that closes that gap** — one page, always embedded, always applied.
+    **AND THE GUARANTEE THAT MAKES IT SAFE IS CLAUSE 12.** This rule must never become an argument for
+    a smaller sample, a softer verdict or a skipped gate. **Rule 50 (verify exhaustively), Rule 12
+    (verified means observed, never inferred) and Rule 86 (verify from committed evidence) are
+    UNTOUCHED by it** — indeed the charter serves them, because a session that stops polling and starts
+    scripting can afford the FULL pass it could not otherwise finish. **Cheap is a method, never a
+    standard.**
+    Ties to Standing Rules 12 (observed, never inferred), 50 (verify exhaustively — the thing clause 12
+    protects), 75 (detached, self-committing long work), 76 (minimise spawns), 77 (the validity
+    window), 78 (piggyback cheap checks), 79 (strategy first), 80 (say the last-done date and ask), 86
+    (verify from committed evidence, not self-report) , 88 (lane-session context discipline) and 90
+    (the shared-quota budget allocation).
