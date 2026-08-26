@@ -321,7 +321,61 @@ Also read build/skills/13-CROSS-SESSION-SAFETY.md (Rules 82–87: real secret-sc
 > future session); and the **unattended BLOCKED protocol** (write and commit `BLOCKED-<system>.md`,
 > keep working on what is not blocked, never fabricate a result).
 >
-> **Standing Rule 90 — the weekly quota is ONE shared pool:** main/orchestrator **15 %** · each lane
-> **25 %** · **10 % reserve**. **Report your spend with your work**; at **50 % of your own budget**
-> compare spend against work completed and **STOP AND REPORT if spend is outpacing progress**; **never
-> consume the reserve without the QA lead's say-so.** Full texts: `build/rules/RULES-61-94.md`.
+> **THE RULE-90 BUDGET IS NOW CLAUSE 10 OF THE TOKEN DISCIPLINE CHARTER — see the mandatory
+> [TOKEN DISCIPLINE CHARTER (Rule 95)](#token-discipline-charter-mandatory--rule-95) section immediately
+> below, which carries all twelve clauses in full. Full texts: `build/rules/RULES-61-95.md`.
+
+---
+
+## TOKEN DISCIPLINE CHARTER (mandatory — Rule 95)
+
+**This section is MANDATORY in every handoff and binds this session from its FIRST TURN.** Canonical
+copy: [`../skills/TOKEN-DISCIPLINE-CHARTER.md`](../skills/TOKEN-DISCIPLINE-CHARTER.md). Full rule text:
+`build/rules/RULES-61-95.md` (Rule 95, tying Rules 12, 50, 75, 76, 77, 78, 79, 80, 86, 88, 90). The
+twelve clauses are reproduced **in full below** so you never have to open another file to get them.
+
+> **THE QA LEAD, 2026-08-21, VERBATIM:** *"Also make sure that this session is smartest one about token
+> usage as I do not want once again the weekly tokens to be burnt at the start of the week. Make it a
+> general rule for all the sessions we create and the hand offs we create for new sessions"*
+
+**WHY:** the weekly pool was nearly exhausted **in a single day**, through **poll-by-spawn status
+checks, one tool call per case, bulk reads, autocompact thrash and redundant re-verification** — **none
+of which produced any quality.**
+
+1. **STRATEGY FIRST (79).** Before ANY task, recall or devise the **cheapest correct plan**. For
+   anything large, **declare an INTENDED SPEND** in your first reply. Then begin. One pass, then exit.
+2. **NEVER BULK-READ — SCRIPT IT (88).** No case bodies, CSVs, API dumps, spec bodies or large files
+   into context. **Script it to a file, read a bounded summary.** Inspect with `wc -l` / `head -n 20` /
+   `grep -c` / `grep -n` / bounded `sed -n 'A,Bp'`. **Never read CLAUDE.md end-to-end** (it is an index)
+   and **never read `CLAUDE-FULL-ARCHIVE-2026-08-21.md` or any 100 KB+ artefact whole** — grep it.
+3. **THE READING RULE.** The startup list is **for startup**; afterwards consult **anything the task
+   needs**, always **targeted and bounded**. **Knowledge is never off-limits; only BULK reading is.**
+   Not reading a rule you are about to apply is worse than the tokens it would have cost.
+4. **SPAWN DISCIPLINE (76 / 88).** An **ORCHESTRATOR** (no file tools) minimises spawns and **batches
+   ruthlessly** — every spawn re-loads the project context, **observed at 200–380 k tokens each**. A
+   **LANE SESSION** (direct tools) **does the work itself** and does **NOT** spawn for anything it can
+   do directly. **Never spawn for a trivial check.**
+5. **NEVER POLL (75).** Long work runs as **ONE detached, idempotent, resumable script** with a
+   **checkpoint file**, plus a **committer loop gated on a RUN-FLAG FILE** — **never `pgrep -f
+   <scriptname>`** (it self-matches and never exits). Progress is **SELF-REPORTED IN COMMIT MESSAGES**.
+   **Launch and exit**; verify later in one short pass.
+6. **BATCH WRITES.** One **scripted run with a per-op log** (operation · C-id · HTTP status ·
+   verification result) — **never one tool call per case**. *"200 OK"* alone is non-compliant (50).
+7. **PIGGYBACK CHEAP CHECKS (78).** Fold a cheap verification into the **next substantive task**; keep a
+   **pending-cheap-checks list**. **Never spend a dedicated spawn on one.**
+8. **NEVER RE-DO WORK (77 / 80).** Before any verification / VIU / ordered task, **STATE when it was
+   last done** (date + build marker / spec version) and **ASK before re-running**. A check within the
+   **last 3 builds or 3 source versions still COUNTS**, shown with its date and badge (91).
+9. **ANSWER IN TEXT** when a tool call is not needed — a reflexive tool call every turn is a trap.
+10. **THE BUDGET (90).** One shared weekly pool: **main/orchestrator 15 % · each lane 25 % · 10 %
+    reserve**, adjustable by the QA lead. **Report cumulative spend WITH every piece of work.** At
+    **50 % of your own budget**, compare spend against work completed and **STOP AND REPORT if spend is
+    outpacing progress** — never grind to zero. **Never consume the reserve** without his say-so.
+11. **THE WEEK-START GUARD.** The pool resets weekly and was once **nearly exhausted in ONE DAY**. **No
+    lane may spend more than its weekly allocation in the first 48 hours of the week** without explicit
+    approval. **A task that will exceed its declared intended spend STOPS and reports.**
+12. **QUALITY IS NEVER THE THING CUT.** None of clauses 1–11 may justify **sampling instead of full
+    coverage (50)**, **inferring instead of observing (12)**, or **skipping a verification gate**. **The
+    savings come from HOW the work is executed** — scripts, batching, no polling, no re-doing — **never
+    from doing less of it or doing it less rigorously.** If cheap and correct conflict, **correct wins
+    and you report the cost.**
