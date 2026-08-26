@@ -1,0 +1,27 @@
+CREATED C45166
+A) add_case with PURE PLAIN TEXT (no tags anywhere):
+   sent  : '1. The full "Sales By Representative" label renders without crowding.\n2. The label is not shortened to fit — the fix is padding, not the name.\n\n---\nThis is the expected behaviour as per epic SV-8582.\n\nAUTOMATION: READY'
+   stored: '<p>1. The full "Sales By Representative" label renders without crowding.\n2. The label is not shortened to fit &mdash; the fix is padding, not the name.\n\n---\nThis is the expected behaviour as per epic SV-8582.\n\nAUTOMATION: READY</p>\n'
+   IDENTICAL: False
+   steps stored: '<p>1. Step one.\n2. Step two.</p>\n'
+
+B) REPRODUCE the damage (htmlfmt.block -> <p>..<br>..</p>):
+   sent  : '<p>1. The full "Sales By Representative" label renders without crowding.<br>2. The label is not shortened to fit &mdash; the fix is padding, not the name.<br><br>---<br>This is the expected behaviour as per epic SV-8582.<br><br>AUTOMATION: READY</p>\n'
+   stored: '<p>1. The full "Sales By Representative" label renders without crowding.<br>2. The label is not shortened to fit &mdash; the fix is padding, not the name.<br><br>---<br>This is the expected behaviour as per epic SV-8582.<br><br>AUTOMATION: READY</p>\n'
+   damage reproduced (literal <p> present): True
+
+C) REPAIR STRATEGIES (target = the CLEAN string byte-for-byte):
+   [a: send ORIGINAL clean plain text] HTTP 200 -> stored NOT a match | sha=7a6bd2d0e661 len=232
+        stored repr: '<p>1. The full "Sales By Representative" label renders without crowding.\n2. The label is not shortened to fit &mdash; the fix is padding, not the name.\n\n---\nThis is the expected behaviour as per epic SV-8582.\n\nAUTOMATION: READY</p>\n'
+   [b: HTML-unescape the live value once] HTTP 200 -> stored NOT a match | sha=041d3a34ae9d len=250
+        stored repr: '<p>1. The full "Sales By Representative" label renders without crowding.<br>2. The label is not shortened to fit &mdash; the fix is padding, not the name.<br><br>---<br>This is the expected behaviour as per epic SV-8582.<br><br>AUTOMATION: READY</p>\n'
+   [c: strip <p>/</p>, <br>->\n, unescape] HTTP 200 -> stored NOT a match | sha=7a6bd2d0e661 len=232
+        stored repr: '<p>1. The full "Sales By Representative" label renders without crowding.\n2. The label is not shortened to fit &mdash; the fix is padding, not the name.\n\n---\nThis is the expected behaviour as per epic SV-8582.\n\nAUTOMATION: READY</p>\n'
+   [d: send as one plain block, no tags, \n only] HTTP 200 -> stored NOT a match | sha=c25a1aa1892b len=230
+        stored repr: '<p>1. The full "Sales By Representative" label renders without crowding.\n2. The label is not shortened to fit &mdash; the fix is padding, not the name.\n---\nThis is the expected behaviour as per epic SV-8582.\nAUTOMATION: READY</p>\n'
+   [e: send clean text with CRLF line endings] HTTP 200 -> stored NOT a match | sha=b359c8c8f871 len=238
+        stored repr: '<p>1. The full "Sales By Representative" label renders without crowding.\r\n2. The label is not shortened to fit &mdash; the fix is padding, not the name.\r\n\r\n---\r\nThis is the expected behaviour as per epic SV-8582.\r\n\r\nAUTOMATION: READY</p>\n'
+
+D) SUMMARY: {"a_original_plain": false, "b_unescape_once": false, "c_strip_wrapper_unescape": false, "d_single_block_plain": false, "e_crlf": false}
+DELETE C45166 HTTP 404
+confirm-gone re-GET HTTP 200 (400/403/404 = deleted)

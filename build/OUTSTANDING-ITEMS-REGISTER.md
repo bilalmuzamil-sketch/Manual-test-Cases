@@ -2196,3 +2196,10 @@ were stale). Sources: `build/report-suite/build-verify-2026-08-18/{TU,WIP,IV}-SW
 - **PO-GS-3** — Branko: mobile 4 open layout points (FR-022); GS-MOB-01 HELD.
 - **PO-GS-4** — Branko: rewrite/retire the 13 superseded v1 cases now, or wait for the PRD body to be finalised?
 - GS TestRail target section + creds remain open (as all projects).
+
+### Report Suite — TestRail render damage 2026-08-26 (repair approval needed)
+- **72 cases damaged by our own 2026-08-26 write pass** — the API `<p>` wrapper prints as literal text on the case-view page. Full list `build/report-suite/damage-2026-08-26/AFFECTED-CASES.md`; evidence and proof `build/report-suite/damage-2026-08-26/FINDINGS.md`.
+- **RSD-1 OPEN** — QA lead: approval to repair the remaining **71** cases via the proven TestRail **UI** route (no API payload can fix it; strategies a–e all fail, proven on a throwaway and on a real case). Rule 6 — no further writes without go-ahead.
+- **RSD-2 OPEN** — Vlad: **C30518 is Automated** (`custom_atmstatus = 3`) — Rules 65/71 require his separate go-ahead before it is touched, even inside an approved batch.
+- **RSD-3 OPEN** — QA lead: confirm the intended 2026-08-26 content changes (spec version re-stamps + the "Re-checked against the live specification on 26 August 2026" sentence) are **kept** during the repair. C30197 was repaired on that assumption.
+- **CLOSED this pass** — "Playwright/chromium cannot reach any host": WRONG as stated. Chromium cannot TLS through `$HTTPS_PROXY` directly (`net::ERR_CONNECTION_RESET`); it works through the MITM bridge already documented in `build/ATLASSIAN-JIRA-ACCESS-METHOD.md` §1. Verified live on TestRail 2026-08-26.
