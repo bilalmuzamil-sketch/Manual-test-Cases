@@ -32,7 +32,7 @@
 - **AFTERWARDS you MAY and SHOULD consult ANY document the task in hand needs** —
   `build/APP-ACTIONS-PLAYBOOK.md`, any `build/*-PROCESS.md`, `build/PROCESS-CATALOG.md`, a project's
   `PROJECT-STATE.md`, `build/rules/RULES-01-20.md` / `RULES-21-40.md` / `RULES-41-60.md` /
-  `RULES-61-93.md`, a past findings or audit file. **No document is off-limits to you.**
+  `RULES-61-94.md`, a past findings or audit file. **No document is off-limits to you.**
 - **BUT ALWAYS IN A TARGETED, BOUNDED WAY:** `grep -n` for the exact thing you need, or `sed -n
   '<start>,<end>p'` a bounded slice. **NEVER a bulk read "to get oriented" · NEVER a whole large
   file · NEVER `CLAUDE.md` end to end · NEVER `build/rules/CLAUDE-FULL-ARCHIVE-2026-08-21.md`.**
@@ -108,7 +108,7 @@ work, not something you author mid-pass.
 **⚠️ DO NOT read `CLAUDE.md` end to end** (Rule 88) — `grep -n` for what you need.
 **⚠️ CORRECTED 2026-08-21: `CLAUDE.md` IS NOW A SMALL INDEX (~28 KB), AND ITS RULE INDEX RUNS TO
 RULE 91 — NOT 62.** The full, verbatim rule texts live in **`build/rules/RULES-01-20.md` ·
-`RULES-21-40.md` · `RULES-41-60.md` · `RULES-61-93.md`**, and **that is where you read the rule you
+`RULES-21-40.md` · `RULES-41-60.md` · `RULES-61-94.md`**, and **that is where you read the rule you
 are about to apply — the index is not the rule.** The two claims previously here — that CLAUDE.md is
 "roughly 5,000 lines" and that its "Standing Rules stop at Rule 62" — were true when written and are
 both stale; they are corrected rather than deleted so nobody re-derives them.
@@ -345,4 +345,4 @@ Also read build/skills/13-CROSS-SESSION-SAFETY.md (Rules 82–87: real secret-sc
 > **Standing Rule 90 — the weekly quota is ONE shared pool:** main/orchestrator **15 %** · each lane
 > **25 %** · **10 % reserve**. **Report your spend with your work**; at **50 % of your own budget**
 > compare spend against work completed and **STOP AND REPORT if spend is outpacing progress**; **never
-> consume the reserve without the QA lead's say-so.** Full texts: `build/rules/RULES-61-93.md`.
+> consume the reserve without the QA lead's say-so.** Full texts: `build/rules/RULES-61-94.md`.

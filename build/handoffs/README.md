@@ -1,18 +1,19 @@
 # Session handoffs — index
 
-> **What this folder is:** three copy-paste briefings. Open one, paste the whole file into a fresh
+> **What this folder is:** four copy-paste briefings. Open one, paste the whole file into a fresh
 > session, and that session knows what lane it is in, what to read, what rules bind it, what to ask
 > before it starts, and what "done" looks like. Written 2026-08-21.
 
 ---
 
-## The three handoffs
+## The four handoffs
 
 | # | File | The session is for | Its skill | Its primary deliverable |
 |---|---|---|---|---|
 | 1 | `HANDOFF-1-TEST-CASE-CREATION.md` | **Authoring NEW test cases** from the spec/PRD, epic stories, designs, tech plan and PO answers — plus the coverage verdict table, surface matrix, deliberate-decisions register and the TestRail import. Closes with the Ruthless Usefulness Audit. | `build/skills/10-TEST-CASE-CREATION.md` (**router** → `00`/`02`/`01`) | The case source + `testrail-import/<project>-v1-testrail-import.csv` + the coverage and audit outputs |
 | 2 | `HANDOFF-2-BUILD-VERIFICATION.md` | **Driving existing cases live against the running build** to produce observed PASS / DEVIATION / HOLD verdicts with evidence, plus the re-check queue. | `build/skills/11-BUILD-VERIFICATION.md` (**router** → `00`/`02`/`03`/`04`/`06`) | `<Project>_Defects-for-Testers_<date>.xlsx` + `FINDINGS.md` + `RECHECK-QUEUE.md` |
 | 3 | `HANDOFF-3-VIU.md` | **The full VIU pass** — capture the real labels live, rewrite the wording, verify behaviour, push to TestRail with a per-case audit log, re-stamp provenance, regenerate deliverables. | `build/skills/12-VIU.md` (**router** → `00`/`02`/`03`/`01`/`04`/`06`) | Corrected cases live in TestRail + the execution log + regenerated import/tracker/workbook |
+| 4 | `HANDOFF-4-TEST-EXECUTION-AND-DEFECTS.md` | **Executing existing cases against a build and preparing defects that get ACCEPTED** — honest results with evidence, then every candidate defect through the **admissibility gate**. Its FIRST task, before any testing, is the **REFUSAL POST-MORTEM**: read the actual refusal comments on our refused tickets in Jira (**never guess them**) and record what would have caught each one. | `build/skills/16-TEST-EXECUTION-AND-DEFECTS.md` (**router** → `00`/`09`/`03`/`06`/`04`/`13`/`14`) | `REFUSAL-POSTMORTEM-<date>.md` + `execution-<date>/` (log, results, blocked, re-check queue) + `defect-pack-<date>/DEFECT-CANDIDATE-<id>.md` per finding. **Approved candidates, never filed tickets** (Rule 94) |
 
 ---
 
@@ -23,6 +24,9 @@
 - The **VIU** session does not author new cases and **never** changes what a case *expects* — it
   corrects **labels**; if the build differs, the case keeps the documented expectation and becomes a
   deviation.
+- The **test-execution & defect** session does **not** author cases and does **not** run VIU wording
+  passes. It executes and it prepares defects — and it **files nothing**: its output is a set of
+  admissible, evidenced candidates the QA lead approves **one at a time** (Rule 94).
 
 A finding that belongs to another lane is **written up and handed back**, never acted on in place.
 

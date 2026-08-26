@@ -43,6 +43,7 @@
 | **06** | [DEFECT-PREP](06-DEFECT-PREP.md) | **`DEFECT-PREP`** | Build a defect ticket that cannot be challenged — then stop at the button |
 | **07** | [PO-QUESTIONS](07-PO-QUESTIONS.md) | **`PO-QUESTIONS`** | One sheet, in plain words, sent last |
 | **08** | [RECOVER](08-RECOVER.md) | **`RECOVER`** | Establish what a killed pass actually landed, by content, and finish it |
+| **09** | [TEST-EXECUTION](09-TEST-EXECUTION.md) | **`EXECUTE`** | Execute the existing cases against a build and record honest results — the honest-status rule, disciplined Blocked, the retest loop, union-only run sync |
 
 **Call one like this:** *"Run **RUN-CHECK** for **Schedule**."* Each file opens with a kickoff prompt
 to fill in.
@@ -55,9 +56,11 @@ stopped there, which left six files undocumented)
 | File | What it is |
 |---|---|
 | [`00-COMMON-CORE.md`](00-COMMON-CORE.md) | **The shared core — read it first, always.** Its own routing table says which section covers what. **§16.0 = the CURRENT finality position (the branches are NOT final); §16.1 = the superseded 2026-08-11 "FINAL" text, kept dated** |
+| [`09-TEST-EXECUTION.md`](09-TEST-EXECUTION.md) | **The canonical execute-and-record procedure** (created 2026-08-26). Picking the run in Rule-47 scope, pinning the build marker at pass start AND end, **batched** execution (never one tool call per case, Rule 88), per-case evidence, the **honest-status rule** (*a case not actually executed is NEVER marked Passed*), **Blocked — never skip, never guess**, but decomposed per Rule 68, the retest loop, and the **union-only** run sync. **Results are held LOCALLY by default** — core §4.1 bars writing a result to another tester's run. Cross-references `03-RUN-CHECK` rather than duplicating it |
 | [`13-CROSS-SESSION-SAFETY.md`](13-CROSS-SESSION-SAFETY.md) | **Rules 82–87** — the real secret-scan gate, lane write locks, the tester-readiness gate, no-build-yet honesty, verify-from-committed-evidence, case-body snapshots. **Read it when more than one session is live** |
 | [`14-ACCESS-RESILIENCE.md`](14-ACCESS-RESILIENCE.md) | **Rule 89** — primary path and fallback ladder per system, the session-start preflight, failure signatures, the **five MCP-hygiene hard rules**, the unattended **BLOCKED** protocol. **Read it BEFORE the first access call** |
 | [`15-NEW-PROJECT-INTAKE.md`](15-NEW-PROJECT-INTAKE.md) | **Rules 92–93** — the project-agnostic intake for ANY newly named project: the required 7-input set, the committed PRESENT/MISSING checklist, the source-currency block, the scaffolding pointer, and the **REVIVAL** variant (an existing project starts as a RECONCILIATION, never fresh authoring). **Read it the moment the QA lead names a project** |
+| [`16-TEST-EXECUTION-AND-DEFECTS.md`](16-TEST-EXECUTION-AND-DEFECTS.md) | **ROUTER** — the TEST EXECUTION & DEFECT REPORTING lane (created 2026-08-26). Points at `00` → `09` → `03` → `06` → `04` §6.1 → `13` → `14`. **No procedure of its own.** Its lane's output is **admissible, evidenced defect CANDIDATES the QA lead approves one at a time — not filed tickets** (Rule 94) |
 | [`COVERAGE-MATRIX.md`](COVERAGE-MATRIX.md) | The completeness proof skill `01` owes — the requirement→case map, both directions |
 | [`STATE.md`](STATE.md) | Where this skill set itself stands |
 
@@ -68,6 +71,7 @@ stopped there, which left six files undocumented)
 | [`10-TEST-CASE-CREATION.md`](10-TEST-CASE-CREATION.md) | authoring new cases | `00` → `02` → `01` → `COVERAGE-MATRIX` |
 | [`11-BUILD-VERIFICATION.md`](11-BUILD-VERIFICATION.md) | verifying cases against the running build | `00` → `02` §1 → `03` → `04` §6/§6.1 → `06` |
 | [`12-VIU.md`](12-VIU.md) | the full wording + Verify-In-UI pass | `00` → `02` → `03` → `01` → `04` → `06` |
+| [`16-TEST-EXECUTION-AND-DEFECTS.md`](16-TEST-EXECUTION-AND-DEFECTS.md) | executing cases and preparing **admissible** defects | `00` → `09` → `03` → `06` → `04` §6.1 → `13` → `14` |
 
 **Each was a full standalone skill until 2026-08-21, when they were converted to routers** because
 they duplicated `01`/`02`/`03`/`04`/`06` and **duplicated content drifts** — the two copies were

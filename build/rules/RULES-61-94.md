@@ -1,9 +1,9 @@
-# ShopView QA — Standing Rules 61–93
+# ShopView QA — Standing Rules 61–94
 
-This file holds the FULL, VERBATIM text of Standing Rules 61–93.
+This file holds the FULL, VERBATIM text of Standing Rules 61–94.
 
 Full archive: build/rules/CLAUDE-FULL-ARCHIVE-2026-08-21.md
-Index: CLAUDE.md (rule index table). Other rule files: build/rules/RULES-01-20.md, build/rules/RULES-21-40.md, build/rules/RULES-41-60.md, build/rules/RULES-61-93.md
+Index: CLAUDE.md (rule index table). Other rule files: build/rules/RULES-01-20.md, build/rules/RULES-21-40.md, build/rules/RULES-41-60.md, build/rules/RULES-61-94.md
 
 **Read the rule you are about to apply here, in full — the index is not the rule.**
 
@@ -1849,3 +1849,105 @@ Index: CLAUDE.md (rule index table). Other rule files: build/rules/RULES-01-20.m
     deliberate-decisions register is its sibling, not its substitute), 67 (the completion table reports
     the work; this reports the lessons), 72 (**PROPOSE, never self-record**) , 76 (quota discipline — a
     cheaper next project is the point) and 92 (the engines this loop matures).
+
+94. **THE DEFECT ADMISSIBILITY GATE — NO TICKET IS FILED UNTIL IT PASSES EVERY CHECK, AND THE LANE'S
+    OUTPUT IS APPROVED CANDIDATES, NOT FILED TICKETS (all projects, permanent).**
+    **ORIGIN — the QA lead, 2026-08-21, verbatim:** *"The last time you created the tickets were cause
+    me to get bitten because they refused those tickets saying they are irrelevant and marked them
+    obsolete, though a few of them were accepted as genuine tickets."*
+    **READ THOSE TWO WORDS PRECISELY: "IRRELEVANT" AND "OBSOLETE".** They are **not** *"badly
+    written"*. Rule 73's 2026-08-17 quality checklist and skill `06`'s eight-item evidence bar both
+    already answer *"is this ticket well built?"* — and a ticket can pass both, be beautifully built,
+    and **still** come back refused. **This rule answers the PRIOR question: "is this a defect at all,
+    and is it still a defect TODAY?"** It therefore runs **BEFORE** Rule 73's checklist and before the
+    eight-item bar; it does not replace either, and where they overlap they are the same requirement.
+    **THE TEN CHECKS.** Full text and the fill-in template: `build/skills/06-DEFECT-PREP.md`, section
+    **THE ADMISSIBILITY GATE**. In brief:
+    **A1 — REPRODUCED TWICE ON THE CURRENT BUILD.** Two separate runs from the steps as written, with
+    the build marker (`<meta name="app-version">`) recorded at the **start of the first** and the **end
+    of the last** and **proved unchanged**. A marker that moved means the branch was redeployed
+    underneath the repro and the repro is void. **A defect seen once is not admissible** — it is an
+    intermittent observation, and *"cannot reproduce"* is the cheapest refusal there is.
+    **A2 — THE EXPECTATION IS QUOTED VERBATIM FROM THE CURRENT VERSION OF AN AUTHORITATIVE DOCUMENT.**
+    Spec/PRD (with its **Confluence** version, its date and the section anchor), the owning story's
+    acceptance criteria, a PO answer (file + link + date), or the design. **RE-READ THE SOURCE
+    IMMEDIATELY BEFORE FILING (Rule 59)** — at the end of the pass, not the start. **If the spec moved
+    since the case was written, RE-DERIVE the expectation from the new version first**; the case may
+    now be wrong, not the build. **No quotable document → NO TICKET** (Rules 57/25). An ambiguity in
+    the newer version is held and asked about, never resolved by looking at the build (Rule 58).
+    **A3 — IT IS NOT AN UNFINISHED FEATURE.** **The branches are NOT final until release day** (the
+    2026-08-21 ruling in Rule 91; Rules 49 and 60 in force), so a gap is **possibly-unfinished by
+    default and it is OUR job to prove it is a defect.** Check the **owning story's status** — Not
+    Started / To Do / In Progress / in an open sprint means **PENDING WORK, NOT A DEFECT**; check
+    **feature flags**; scan the **epic's open stories** for one covering exactly this behaviour. If so,
+    record it as *"not yet built"*, give the case the Rule-69 **NOT AVAILABLE ON BUILD** treatment, put
+    it in the Rule-49 re-check queue, and move on. **That is the correct outcome, not a failure.**
+    **A4 — IT IS NOT ALREADY REPORTED, AND CLOSED TICKETS COUNT.** Search by **area AND symptom**, in
+    separate queries, **explicitly including closed/resolved** — the default open-only JQL is the trap.
+    Record every query. **If a closed one exists, READ HOW IT WAS CLOSED, never infer it from the
+    status: a re-file of a BY-DESIGN closure is an instant refusal**; *won't fix* is a decision to take
+    back to the QA lead, not a new ticket; *fixed* or *obsolete* that still reproduces **is** filable,
+    led by the fresh repro and quoting the closing comment.
+    **A5 — IT IS NOT BY DESIGN.** **Rule 24: a control hidden in the front end while the back end still
+    allows the action is a PASSED case, never a bug** — filing one is the literal definition of a
+    ticket that does not make sense. **The inverse — the front end EXPOSING what the back end blocks —
+    IS a defect.** Check the recorded by-design decisions (Rule 46) and the PO answers first. **If the
+    answer to "is this even wrong?" is a PO question, it is a question, not a ticket** (skill `07`).
+    **A6 — IT IS NOT ENVIRONMENT, DATA OR ROLE.** Correctly seeded data **named exactly as it appears
+    on screen** (*"any"* only where PROVEN irrelevant, and say how — **the SV-8821 scar**), the correct
+    role with the role **reset to template first** (Rule 26), a clean session, the right
+    environment/branch, and **the app proved to be the one you think it is from the build marker, not
+    the URL**. Rule out our own probe and our own instrumentation first (skill `03`).
+    **A7 — THE CORRECT PARENT, PROVED.** `Story Defect` parented to **the STORY THAT OWNS THE
+    BEHAVIOUR** — an Epic parent is rejected `HTTP 400` — **established from the epic's children, not
+    guessed**, with how it was established recorded; plus the `relates to` link (Rules 52/53). A defect
+    in the wrong team's queue comes back refused as not theirs, which reads as *"irrelevant"* even when
+    the finding is real.
+    **A8 — THE EVIDENCE IS COMPLETE.** Annotated screenshots to skill `06`'s standard, exact numbered
+    steps a non-technical reader can run, the build marker, the environment/URL, the role and account,
+    the timestamp — **and the TestRail C-id with its link (Rule 8) in OUR records, `CASE-IMPACT.md`,
+    NEVER in the ticket body.**
+    **A9 — ADVERSARIAL SELF-REVIEW: ARGUE THE TICKET DOWN BEFORE FILING.** Write, in the candidate
+    file, the strongest case a developer could make for refusing it — **"this is unbuilt" · "the spec
+    changed" · "works as designed" · "cannot reproduce" · "duplicate" · "environment issue"** — and
+    answer each. **IF ANY ONE OF THE SIX IS PLAUSIBLE AND CANNOT BE DEFEATED WITH EVIDENCE, DO NOT
+    FILE: ESCALATE TO THE QA LEAD WITH THE DOUBT STATED.** Be willing to lose here. **The argument gets
+    made either way — either we make it first, in private, or the engineering manager makes it in
+    public.**
+    **A10 — RULE 62: CREATION IS ON HOLD. PREPARE TO THE BUTTON, THEN ASK.** The 2026-08-10 hold
+    (*"Do not create anything until my next order."*) is **temporary with a lift condition — CHECK
+    whether it lifted; assume neither way.** **Permission is PER ASK**; an earlier batch approval never
+    covers a later ticket, and a finding being real, sourced and obviously worth filing **is not
+    permission**. API-related findings are asked about **separately, every time** (Rule 51). On resume,
+    **one ticket at a time** (Rule 73).
+    **THE EVIDENCE THAT THE GATE RAN.** Every candidate gets its own committed
+    `DEFECT-CANDIDATE-<id>.md` in the pass's defect pack — A1–A10 filled in, the six refusals argued,
+    and a VERDICT. **It is committed whether the verdict is ADMISSIBLE or NOT**: a candidate that fails
+    the gate is a valuable record, pointed at from `NOT-FILED.md`. **A gate you cannot show afterwards
+    did not run** (Rules 12/50/86 — verify from committed evidence, never from a self-report).
+    **THE DELIVERABLE IS APPROVED CANDIDATES, NOT FILED TICKETS.** Ten admissible, evidenced candidates
+    the QA lead can walk through one at a time is a **good** pass. Ten filed tickets, six of which come
+    back marked irrelevant or obsolete, is a **bad** pass **even if four of them were right** — because
+    **the four are discredited by the six.** The thing being protected is his credibility, and it is
+    not recoverable by volume.
+    **RATIONALE.** Tickets refused as irrelevant or obsolete cost the QA lead credibility with the
+    people whose queue they land in, and he has said plainly that it bit him. **The commonest causes,
+    in order, are: a SUPERSEDED EXPECTATION (the spec moved after the case was written), an UNFINISHED
+    FEATURE on a branch that is never final, a DUPLICATE of something already reported and often
+    already closed, and BY-DESIGN behaviour** — most often a Rule-24 front-end block read as a bug. Not
+    one of those is a writing problem, which is why Rule 73's checklist could not catch them. Each is
+    cheap to check **before** the evidence budget is spent: **A3 and A4 in particular should be run
+    EARLY, because they kill findings before a repro is paid for.**
+    **AND THE FAILED CANDIDATE IS NOT A WASTED ONE.** A finding that fails A3 becomes a re-check-queue
+    entry that fires when the story closes; one that fails A5 becomes a PO question; one that fails A4
+    becomes a decision to take back to him. **The gate redirects findings, it does not bin them.**
+    Ties to Standing Rules 6 (nothing written without permission), 11 (ask which process to run), 12
+    (verified means observed, never inferred), 24 (FE blocks + BE allows = a PASS), 25 (a deviation
+    cites the verbatim wording), 38 (foreign tickets are hands-off — report, never edit), 49 and 60
+    (non-final builds yield provisional findings; the re-check queue), 51 (API items asked separately),
+    52 and 53 (the ticket shape and Medium priority), 57 (the source is the document, never the build),
+    58 (an ambiguous source is never resolved by looking at the build), 59 (re-read the sources
+    immediately before the writes begin), 62 (the creation hold, per-ask permission), 71 (Automated
+    cases held for the QA lead), 73 (the quality checklist this gate runs before, and one ticket at a
+    time on resume), 91 (the branches are not final; the freshness badge) and 93 (the learning loop —
+    the refusal post-mortem PROPOSES further checks; Rule 72 records them).

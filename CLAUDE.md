@@ -20,7 +20,7 @@ The previous CLAUDE.md was **738 KB / roughly 183,000 tokens**, and it was **TRU
 AT RULE 62**. Sessions were therefore running with **Rules 63–88 SILENTLY ABSENT** while believing
 they had read the whole file. A rule you have never seen is a rule you will break.
 
-**THEREFORE: NEVER ASSUME YOU HAVE SEEN ALL THE RULES.** There are **93 numbered Standing Rules**.
+**THEREFORE: NEVER ASSUME YOU HAVE SEEN ALL THE RULES.** There are **94 numbered Standing Rules**.
 Count them in the index below. If you are
 about to apply a rule, open its file and read it. **NEVER read
 `build/rules/CLAUDE-FULL-ARCHIVE-2026-08-21.md` whole** — it will exhaust your context exactly as the
@@ -86,7 +86,7 @@ These are stated here **in full** because a session that gets only this far must
 
 ---
 
-## 2 · THE RULE INDEX — all 93 rules, and where each one lives
+## 2 · THE RULE INDEX — all 94 rules, and where each one lives
 
 **Read the rule in its file before applying it.** One line per rule; the line is a locator, not the
 rule. Generated from the split files' own headers.
@@ -167,7 +167,7 @@ rule. Generated from the split files' own headers.
 | **59** | RE-READ THE SOURCES IMMEDIATELY BEFORE THE WRITES BEGIN — a second currency check, not only the |
 | **60** | THE BUILD WILL NEVER BE DECLARED FINAL — SEPARATE WHAT DEPENDS ON THE BUILD FROM WHAT DOES NOT |
 
-### `build/rules/RULES-61-93.md` — rules 61–93
+### `build/rules/RULES-61-94.md` — rules 61–94
 
 | # | Rule (short title) |
 |---|---|
@@ -204,9 +204,10 @@ rule. Generated from the split files' own headers.
 | **91** | THE VERIFICATION FRESHNESS BADGE — every build/source verification claim is shown with a COLOUR |
 | **92** | A LANE SESSION IS A PROJECT-AGNOSTIC ENGINE — IT WORKS ONLY ON THE PROJECT IT IS GIVEN, AND EXISTING PROJECT STATE IS REFERENCE, NOT A BACKLOG |
 | **93** | THE LEARNING LOOP — EVERY PROJECT ENDS WITH A RETRO THAT PROPOSES RULE AND SKILL IMPROVEMENTS (it PROPOSES; Rule 72 records) |
+| **94** | THE DEFECT ADMISSIBILITY GATE — NO TICKET IS FILED UNTIL IT PASSES EVERY CHECK, AND THE LANE'S OUTPUT IS APPROVED CANDIDATES, NOT FILED TICKETS |
 
 **Rules 89 (access resilience + MCP hygiene) and 90 (shared-quota budget allocation)** were added
-2026-08-21 and live in `build/rules/RULES-61-93.md` with 61–88. Rule 89's operator form is
+2026-08-21 and live in `build/rules/RULES-61-94.md` with 61–88. Rule 89's operator form is
 `build/skills/14-ACCESS-RESILIENCE.md`.
 
 **Rule 91 (the verification freshness badge)** was added 2026-08-21 in the same file. **Its second
@@ -279,15 +280,17 @@ job.** Each file is a complete cold-start specification.
 | `build/skills/06-DEFECT-PREP.md` | Building an unchallengeable defect ticket — then stopping at the button |
 | `build/skills/07-PO-QUESTIONS.md` | One PO question sheet, plain words, sent LAST |
 | `build/skills/08-RECOVER.md` | Establishing what a killed pass actually landed, by content, and finishing it |
+| `build/skills/09-TEST-EXECUTION.md` | Executing the cases against a build and recording honest results — the honest-status rule, disciplined Blocked, the retest loop, union-only run sync |
 | `build/skills/10-TEST-CASE-CREATION.md` | **ROUTER** — authoring lane. Points at `00` → `02` → `01` → `COVERAGE-MATRIX`. **No procedure of its own** |
 | `build/skills/11-BUILD-VERIFICATION.md` | **ROUTER** — build-verification lane. Points at `00` → `02` §1 → `03` → `04` §6/§6.1 → `06`. **No procedure of its own** |
 | `build/skills/12-VIU.md` | **ROUTER** — VIU lane. Points at `00` → `02` → `03` → `01` → `04` → `06`. **No procedure of its own** |
+| `build/skills/16-TEST-EXECUTION-AND-DEFECTS.md` | **ROUTER** — test-execution & defect lane. Points at `00` → `09` → `03` → `06` → `04` §6.1 → `13` → `14`. **No procedure of its own** |
 | `build/skills/13-CROSS-SESSION-SAFETY.md` | Before the first write of any lane session (Rules 82–87 as commands) |
 | `build/skills/14-ACCESS-RESILIENCE.md` | Keeping a working path to TestRail / Jira / ShopView / Figma; MCP hygiene (Rule 89) |
 | `build/skills/15-NEW-PROJECT-INTAKE.md` | **The moment a project is NAMED** — required input set, PRESENT/MISSING intake checklist, source-currency block, and the REVIVAL path (Rules 92–93) |
 | `build/skills/COVERAGE-MATRIX.md` | Checking that a session learning is actually carried by a skill |
 | `build/skills/STATE.md` | Resuming work ON the skills themselves |
-| `build/handoffs/README.md` | Three copy-paste lane briefings for a fresh session |
+| `build/handoffs/README.md` | **Four** copy-paste lane briefings for a fresh session |
 
 **⚠️ `10` / `11` / `12` BECAME THIN ROUTERS ON 2026-08-21.** They were full standalone skills that
 duplicated `01`/`02`/`03`/`04`/`06`, and **duplicated content drifts** — the two copies were already
@@ -396,7 +399,7 @@ Compact form — **the rule named in brackets is the authority; read it before r
 | Standing Rules 1–20 (full text) | `build/rules/RULES-01-20.md` |
 | Standing Rules 21–40 (full text) | `build/rules/RULES-21-40.md` |
 | Standing Rules 41–60 (full text) | `build/rules/RULES-41-60.md` |
-| Standing Rules 61–93 (full text) | `build/rules/RULES-61-93.md` |
+| Standing Rules 61–94 (full text) | `build/rules/RULES-61-94.md` |
 | Per-project narrative history (projects 1–7) | `build/rules/PROJECT-HISTORY-ARCHIVE.md` |
 | Byte-verification hashes for the split | `build/rules/INTEGRITY.md` |
 | Staging/QA/prod action recipes, TestRail traps | `build/APP-ACTIONS-PLAYBOOK.md` |
