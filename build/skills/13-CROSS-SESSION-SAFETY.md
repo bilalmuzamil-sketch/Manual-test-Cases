@@ -198,6 +198,27 @@ Rule-62 creation hold.
 
 ---
 
+## THE PRODUCT REPOSITORY IS READ-ONLY TO US, ALWAYS
+
+**The ShopView application source repository is READ-ONLY for every QA session.** We read it to
+establish what the system **CURRENTLY DOES** (fact) and to build the collateral-risk map
+(`17-REGRESSION-IMPACT-V1-TO-V2.md` §3.3/§3.5). **That is the ONLY permitted use.**
+
+- **NEVER commit, push, branch, open a pull request, comment on a PR or issue, or modify ANYTHING in
+  the product repository** — not a fix, not a typo, not a test, not a comment. **Our writes go ONLY to
+  the QA workspace repo, path-scoped, on our own branch (Rule 29).**
+- **The installed GitHub App's permissions may PERMIT writing. Permission is not authorisation.** If a
+  task appears to require changing product code, **STOP and report it to the QA lead** — that work
+  belongs to the developers, never to QA.
+- **Reading product code NEVER makes it a source of EXPECTED behaviour (Rule 57).** Code establishes
+  **fact**; documents establish **intent**; a conflict between them is a **PO decision item**
+  (`17-REGRESSION-IMPACT-V1-TO-V2.md` §5), never a silently adopted invariant.
+- **Cite the file paths and the branch/commit you read** whenever you use code as evidence, so any
+  claim about current behaviour is verifiable. **Never paraphrase code you have not actually opened,
+  and never cite a path you have not confirmed exists.**
+
+---
+
 ## THE PRE-WRITE CHECKLIST — six lines, run them in order
 
 1. `git pull --rebase` — fetch other lanes' claims and work.

@@ -58,6 +58,11 @@ These are stated here **in full** because a session that gets only this far must
 - **VERIFIED MEANS OBSERVED, NEVER INFERRED (12).** Only mark Verified / Pass / Fail / present /
   absent if it was observed live, with evidence captured that run. Anything not observed is labelled
   **NOT VERIFIED** or **Blocked-with-reason**. Never fill a gap with inference to look complete.
+- **A V2 / UPGRADE PROJECT MUST DERIVE AND TEST THE INVARIANT SET (96).** What the V2 spec does NOT
+  mention is still a requirement: **silence defaults to "must not change"**, and high-collateral-risk
+  silence is escalated as a PO question rather than assumed. **Documents establish intent; code
+  establishes fact** — and a code-vs-document conflict is a **PO DECISION ITEM, never a silent
+  invariant.** Skill: `build/skills/17-REGRESSION-IMPACT-V1-TO-V2.md`.
 - **NEVER BULK-READ; SCRIPT THE BULK WORK (88).** A session with direct tools must not read hundreds
   of cases, spec bodies or archives into its own context. Write a script, run it, read its SUMMARY.
   Never read `CLAUDE-FULL-ARCHIVE-2026-08-21.md` (or any 100 KB+ artefact) whole.
