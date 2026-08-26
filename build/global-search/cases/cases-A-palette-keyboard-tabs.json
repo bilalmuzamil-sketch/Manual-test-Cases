@@ -15,7 +15,7 @@
       "1. Without clicking anything, press K together with the Command key (Ctrl+K on Windows), as shown in the header search field.",
       "2. Watch the screen."
     ],
-    "expected": "1. A centered search box (a modal overlay) opens on top of the page.\n2. The page behind the box is dimmed.\n3. The search input is focused so you can type right away.\n4. The placeholder reads a plain search placeholder (no 'ask a question' / AI wording in v1 - exact copy per the v2 design).\n5. The footer keyboard legend is visible: 'Navigate' with up/down arrows, 'Select' with the enter symbol, and 'Close esc'.\n\n---\nThis is the expected behaviour as per epic SV-9160 and the Global Search - Product Requirements specification version 1.2 (Confluence page 576978945, Confluence version 11), section 5.1 Trigger and Surface; 8 Functional Requirements, read on 25 August 2026.\n\nAUTOMATION: Not available on Build to test Yet - Last checked 8/25/2026",
+    "expected": "1. A centered search box (a modal overlay) opens on top of the page.\n2. The page behind the box is dimmed.\n3. The search input is focused so you can type right away.\n4. The placeholder reads a plain search placeholder (no 'ask a question' / AI wording in v1 - exact copy per the v2 design).\n5. The footer keyboard legend is visible: 'Navigate' with up/down arrows, 'Select' with the enter symbol, and 'Close esc'.\n\n---\nThis is the expected behaviour as per epic SV-9160 and the Global Search - Product Requirements specification version 1.2 (Confluence page 576978945, Confluence version 12), section 5.1 Trigger and Surface; 8 Functional Requirements, read on 26 August 2026.\n\nAUTOMATION: Not available on Build to test Yet - Last checked 8/25/2026",
     "design_ref": "design-notes.md screenshots 4, 5, 9; requirements.md 5.1",
     "spec_ref": "requirements.md 5.1 Trigger and Surface; 8 Functional Requirements",
     "viu_status": "VIU-Pending",
@@ -38,7 +38,7 @@
       "1. Click the search field in the app header.",
       "2. Watch the screen."
     ],
-    "expected": "1. The centered search box (modal overlay) opens, anchored to the header search field.\n2. The page behind is dimmed.\n3. The input is focused and shows the placeholder a plain search placeholder (no 'ask a question' / AI wording in v1 - exact copy per the v2 design).\n4. The footer keyboard legend is visible.\n\n---\nThis is the expected behaviour as per epic SV-9160 and the Global Search - Product Requirements specification version 1.2 (Confluence page 576978945, Confluence version 11), section 5.1 Trigger and Surface, read on 25 August 2026.\n\nAUTOMATION: Not available on Build to test Yet - Last checked 8/25/2026",
+    "expected": "1. The centered search box (modal overlay) opens, anchored to the header search field.\n2. The page behind is dimmed.\n3. The input is focused and shows the placeholder a plain search placeholder (no 'ask a question' / AI wording in v1 - exact copy per the v2 design).\n4. The footer keyboard legend is visible.\n\n---\nThis is the expected behaviour as per epic SV-9160 and the Global Search - Product Requirements specification version 1.2 (Confluence page 576978945, Confluence version 12), section 5.1 Trigger and Surface, read on 26 August 2026.\n\nAUTOMATION: Not available on Build to test Yet - Last checked 8/25/2026",
     "design_ref": "design-notes.md screenshots 5, 9; requirements.md 5.1",
     "spec_ref": "requirements.md 5.1 Trigger and Surface",
     "viu_status": "VIU-Pending",
@@ -60,7 +60,7 @@
       "1. Press the Esc key.",
       "2. Watch the screen."
     ],
-    "expected": "1. The search box closes.\n2. The dimming is removed and you are back on the page you were on.\n3. Keyboard focus returns to the page (or the header search field).\n\n---\nThis is the expected behaviour as per epic SV-9160 and the Global Search - Product Requirements specification version 1.2 (Confluence page 576978945, Confluence version 11), section 5.1; 5.5 Keyboard Navigation, read on 25 August 2026.\n\nAUTOMATION: Not available on Build to test Yet - Last checked 8/25/2026",
+    "expected": "1. The search box closes.\n2. The dimming is removed and you are back on the page you were on.\n3. Keyboard focus returns to the page (or the header search field).\n\n---\nThis is the expected behaviour as per epic SV-9160 and the Global Search - Product Requirements specification version 1.2 (Confluence page 576978945, Confluence version 12), section 5.1; 5.5 Keyboard Navigation, read on 26 August 2026.\n\nAUTOMATION: Not available on Build to test Yet - Last checked 8/25/2026",
     "design_ref": "design-notes.md footer legend 'Close esc'; requirements.md 5.1, 5.5",
     "spec_ref": "requirements.md 5.1; 5.5 Keyboard Navigation",
     "viu_status": "VIU-Pending",
@@ -82,7 +82,7 @@
       "1. Press K together with the Command key (Ctrl+K on Windows) again.",
       "2. Watch the screen."
     ],
-    "expected": "1. The search box closes.\n2. The dimming is removed and you are back on the page.\n\n---\nThis is the expected behaviour as per epic SV-9160 and the Global Search - Product Requirements specification version 1.2 (Confluence page 576978945, Confluence version 11), section 5.1 (Esc, clicking underlay, or Cmd+K again closes it), read on 25 August 2026.\n\nAUTOMATION: Not available on Build to test Yet - Last checked 8/25/2026",
+    "expected": "1. The search box closes.\n2. The dimming is removed and you are back on the page.\n\n---\nThis is the expected behaviour as per epic SV-9160 and the Global Search - Product Requirements specification version 1.2 (Confluence page 576978945, Confluence version 12), section 5.1 (Esc, clicking underlay, or Cmd+K again closes it), read on 26 August 2026.\n\nAUTOMATION: Not available on Build to test Yet - Last checked 8/25/2026",
     "design_ref": "requirements.md 5.1",
     "spec_ref": "requirements.md 5.1 (Esc, clicking underlay, or Cmd+K again closes it)",
     "viu_status": "VIU-Pending",
@@ -105,7 +105,7 @@
       "1. Click anywhere on the dimmed area of the page (outside the search box).",
       "2. Watch the screen."
     ],
-    "expected": "1. The search box closes.\n2. The dimming is removed and you are back on the page.\n\n---\nThis is the expected behaviour as per epic SV-9160 and the Global Search - Product Requirements specification version 1.2 (Confluence page 576978945, Confluence version 11), section 5.1 (clicking the page underlay closes it), read on 25 August 2026.\n\nAUTOMATION: Not available on Build to test Yet - Last checked 8/25/2026",
+    "expected": "1. The search box closes.\n2. The dimming is removed and you are back on the page.\n\n---\nThis is the expected behaviour as per epic SV-9160 and the Global Search - Product Requirements specification version 1.2 (Confluence page 576978945, Confluence version 12), section 5.1 (clicking the page underlay closes it), read on 26 August 2026.\n\nAUTOMATION: Not available on Build to test Yet - Last checked 8/25/2026",
     "design_ref": "requirements.md 5.1",
     "spec_ref": "requirements.md 5.1 (clicking the page underlay closes it)",
     "viu_status": "VIU-Pending",
@@ -129,7 +129,7 @@
       "2. Then press the Up arrow key several times.",
       "3. Watch which item is highlighted after each press."
     ],
-    "expected": "1. Each Down press moves the highlight to the next result row.\n2. Each Up press moves the highlight to the previous result row.\n3. The highlight moves only across result rows - the group heading lines (for example 'Work orders (12)') are skipped and never get the highlight.\n4. When moving down past the last row of one group, the highlight continues into the first row of the next group.\n\n---\nThis is the expected behaviour as per epic SV-9160 and the Global Search - Product Requirements specification version 1.2 (Confluence page 576978945, Confluence version 11), section 5.5 (Up/Down moves focus through visible rows, skipping group headers), read on 25 August 2026.\n\nAUTOMATION: Not available on Build to test Yet - Last checked 8/25/2026",
+    "expected": "1. Each Down press moves the highlight to the next result row.\n2. Each Up press moves the highlight to the previous result row.\n3. The highlight moves only across result rows - the group heading lines (for example 'Work orders (12)') are skipped and never get the highlight.\n4. When moving down past the last row of one group, the highlight continues into the first row of the next group.\n\n---\nThis is the expected behaviour as per epic SV-9160 and the Global Search - Product Requirements specification version 1.2 (Confluence page 576978945, Confluence version 12), section 5.5 (Up/Down moves focus through visible rows, skipping group headers), read on 26 August 2026.\n\nAUTOMATION: Not available on Build to test Yet - Last checked 8/25/2026",
     "design_ref": "design-notes.md screenshot 2; requirements.md 5.5",
     "spec_ref": "requirements.md 5.5 (Up/Down moves focus through visible rows, skipping group headers)",
     "viu_status": "VIU-Pending",
@@ -152,7 +152,7 @@
       "1. Press the Enter key.",
       "2. Watch the screen."
     ],
-    "expected": "1. The palette closes and the highlighted record opens in the same browser tab.\n2. You land on that record's page (for example the Work Order detail page).\n\n---\nThis is the expected behaviour as per epic SV-9160 and the Global Search - Product Requirements specification version 1.2 (Confluence page 576978945, Confluence version 11), section 5.5 (Enter opens the focused row in the same tab), read on 25 August 2026.\n\nAUTOMATION: Not available on Build to test Yet - Last checked 8/25/2026",
+    "expected": "1. The palette closes and the highlighted record opens in the same browser tab.\n2. You land on that record's page (for example the Work Order detail page).\n\n---\nThis is the expected behaviour as per epic SV-9160 and the Global Search - Product Requirements specification version 1.2 (Confluence page 576978945, Confluence version 12), section 5.5 (Enter opens the focused row in the same tab), read on 26 August 2026.\n\nAUTOMATION: Not available on Build to test Yet - Last checked 8/25/2026",
     "design_ref": "design-notes.md footer legend 'Select enter'; requirements.md 5.5",
     "spec_ref": "requirements.md 5.5 (Enter opens the focused row in the same tab)",
     "viu_status": "VIU-Pending",
@@ -175,7 +175,7 @@
       "1. Press Enter together with the Command key (Ctrl+Enter on Windows).",
       "2. Watch the screen and the browser tabs."
     ],
-    "expected": "1. The highlighted record opens in a NEW browser tab.\n2. The page you were on (and, per build behavior, the palette) remains in the original tab.\n\n---\nThis is the expected behaviour as per epic SV-9160 and the Global Search - Product Requirements specification version 1.2 (Confluence page 576978945, Confluence version 11), section 5.5 (Cmd+Enter or Ctrl+Enter opens in a new browser tab), read on 25 August 2026.\n\nAUTOMATION: Not available on Build to test Yet - Last checked 8/25/2026",
+    "expected": "1. The highlighted record opens in a NEW browser tab.\n2. The page you were on (and, per build behavior, the palette) remains in the original tab.\n\n---\nThis is the expected behaviour as per epic SV-9160 and the Global Search - Product Requirements specification version 1.2 (Confluence page 576978945, Confluence version 12), section 5.5 (Cmd+Enter or Ctrl+Enter opens in a new browser tab), read on 26 August 2026.\n\nAUTOMATION: Not available on Build to test Yet - Last checked 8/25/2026",
     "design_ref": "requirements.md 5.5",
     "spec_ref": "requirements.md 5.5 (Cmd+Enter or Ctrl+Enter opens in a new browser tab)",
     "viu_status": "VIU-Pending",
@@ -200,7 +200,7 @@
       "3. Press the Left arrow key a few times.",
       "4. Watch which tab is focused/active."
     ],
-    "expected": "1. Pressing Tab moves keyboard focus onto the scope tab strip.\n2. Each Right arrow press moves to the next tab to the right; each Left arrow press moves to the previous tab.\n3. Selecting a tab scopes the results to that entity type.\n4. Focus does not leave the palette (focus stays trapped inside the modal).\n\n---\nThis is the expected behaviour as per epic SV-9160 and the Global Search - Product Requirements specification version 1.2 (Confluence page 576978945, Confluence version 11), section 5.5 (Tab moves focus to the scope tab strip; Left/Right cycles tabs when focus is on the tab strip), read on 25 August 2026.\n\nAUTOMATION: Not available on Build to test Yet - Last checked 8/25/2026",
+    "expected": "1. Pressing Tab moves keyboard focus onto the scope tab strip.\n2. Each Right arrow press moves to the next tab to the right; each Left arrow press moves to the previous tab.\n3. Selecting a tab scopes the results to that entity type.\n4. Focus does not leave the palette (focus stays trapped inside the modal).\n\n---\nThis is the expected behaviour as per epic SV-9160 and the Global Search - Product Requirements specification version 1.2 (Confluence page 576978945, Confluence version 12), section 5.5 (Tab moves focus to the scope tab strip; Left/Right cycles tabs when focus is on the tab strip), read on 26 August 2026.\n\nAUTOMATION: Not available on Build to test Yet - Last checked 8/25/2026",
     "design_ref": "design-notes.md screenshots 2, 9; requirements.md 5.5",
     "spec_ref": "requirements.md 5.5 (Tab moves focus to the scope tab strip; Left/Right cycles tabs when focus is on the tab strip)",
     "viu_status": "VIU-Pending",
@@ -223,7 +223,7 @@
       "2. Type a query so results appear, then look at the bottom again.",
       "3. Clear the query and look again."
     ],
-    "expected": "1. The footer keyboard legend is visible in every state: 'Navigate' with up/down arrows, 'Select' with the enter symbol, and 'Close esc'.\n2. The legend does not disappear when results are showing or when the input is empty.\n\n---\nThis is the expected behaviour as per epic SV-9160 and the Global Search - Product Requirements specification version 1.2 (Confluence page 576978945, Confluence version 11), section 5.1 (footer always shows the keyboard legend), read on 25 August 2026.\n\nAUTOMATION: Not available on Build to test Yet - Last checked 8/25/2026",
+    "expected": "1. The footer keyboard legend is visible in every state: 'Navigate' with up/down arrows, 'Select' with the enter symbol, and 'Close esc'.\n2. The legend does not disappear when results are showing or when the input is empty.\n\n---\nThis is the expected behaviour as per epic SV-9160 and the Global Search - Product Requirements specification version 1.2 (Confluence page 576978945, Confluence version 12), section 5.1 (footer always shows the keyboard legend), read on 26 August 2026.\n\nAUTOMATION: Not available on Build to test Yet - Last checked 8/25/2026",
     "design_ref": "design-notes.md screenshots 2, 4, 5, 6; requirements.md 5.1, 5.5",
     "spec_ref": "requirements.md 5.1 (footer always shows the keyboard legend)",
     "viu_status": "VIU-Pending",
@@ -244,7 +244,7 @@
     "steps": [
       "1. Read the horizontal tab strip directly under the search input, left to right."
     ],
-    "expected": "1. The tabs read, in this exact left-to-right order: All, Work Orders, Customers, Contacts, Assets, Parts, Vendors, Part Sales, Purchase Orders, Vendor Invoices.\n2. The 'All' tab is selected by default.\n3. Each tab carries its total result count over the full result set (for example 'All (12)', 'Work Orders (8)').\n4. The strip scrolls horizontally since ten tabs do not fit the 640px modal width.\n5. A tab is shown only for an entity type the user has permission to see.\n\n---\nThis is the expected behaviour as per epic SV-9160 and the Global Search - Product Requirements specification version 1.2 (Confluence page 576978945, Confluence version 11), section 5.2 (tab strip), read on 25 August 2026.\n\nAUTOMATION: Not available on Build to test Yet - Last checked 8/25/2026",
+    "expected": "1. The tabs read, in this exact left-to-right order: All, Work Orders, Customers, Contacts, Assets, Parts, Vendors, Part Sales, Purchase Orders, Vendor Invoices.\n2. The 'All' tab is selected by default.\n3. Each tab carries its total result count over the full result set (for example 'All (12)', 'Work Orders (8)').\n4. The strip scrolls horizontally since ten tabs do not fit the 640px modal width.\n5. A tab is shown only for an entity type the user has permission to see.\n\n---\nThis is the expected behaviour as per epic SV-9160 and the Global Search - Product Requirements specification version 1.2 (Confluence page 576978945, Confluence version 12), section 5.2 (tab strip), read on 26 August 2026.\n\nAUTOMATION: Not available on Build to test Yet - Last checked 8/25/2026",
     "design_ref": "design-notes.md screenshots 2, 9; requirements.md 5.2",
     "spec_ref": "section 5.2 (tab strip)",
     "viu_status": "VIU-Pending",
@@ -268,7 +268,7 @@
       "2. Type the query (for example 'Fib').",
       "3. Read the grouped results."
     ],
-    "expected": "1. Results from every matching entity type appear, each under its own group heading with a true count (for example 'Work Orders (12)', 'Customers (2)').\n2. Groups appear in the v2 nine-entity order: Work Orders, Customers, Contacts, Assets, Parts, Vendors, Part Sales, Purchase Orders, Vendor Invoices (D16).\n\n---\nThis is the expected behaviour as per epic SV-9160 and the Global Search - Product Requirements specification version 1.2 (Confluence page 576978945, Confluence version 11), section 5.2 State 3; 6.2 group order, read on 25 August 2026.\n\nAUTOMATION: Not available on Build to test Yet - Last checked 8/25/2026",
+    "expected": "1. Results from every matching entity type appear, each under its own group heading with a true count (for example 'Work Orders (12)', 'Customers (2)').\n2. Groups appear in the v2 nine-entity order: Work Orders, Customers, Contacts, Assets, Parts, Vendors, Part Sales, Purchase Orders, Vendor Invoices (D16).\n\n---\nThis is the expected behaviour as per epic SV-9160 and the Global Search - Product Requirements specification version 1.2 (Confluence page 576978945, Confluence version 12), section 5.2 State 3; 6.2 group order, read on 26 August 2026.\n\nAUTOMATION: Not available on Build to test Yet - Last checked 8/25/2026",
     "design_ref": "design-notes.md screenshot 2; requirements.md 5.2, 6.2",
     "spec_ref": "requirements.md 5.2 State 3; 6.2 group order",
     "viu_status": "VIU-Pending",
@@ -290,7 +290,7 @@
       "1. Click the 'Work Orders' tab.",
       "2. Read the results."
     ],
-    "expected": "1. Only Work Order results are shown; other entity groups (Customers, Assets, Parts, Vendors, Part Sales) are hidden.\n2. The 'Work Orders' tab appears selected/active.\n\n---\nThis is the expected behaviour as per epic SV-9160 and the Global Search - Product Requirements specification version 1.2 (Confluence page 576978945, Confluence version 11), section 5.2 State 3 (selecting a tab scopes the query to that entity type), read on 25 August 2026.\n\nAUTOMATION: Not available on Build to test Yet - Last checked 8/25/2026",
+    "expected": "1. Only Work Order results are shown; other entity groups (Customers, Assets, Parts, Vendors, Part Sales) are hidden.\n2. The 'Work Orders' tab appears selected/active.\n\n---\nThis is the expected behaviour as per epic SV-9160 and the Global Search - Product Requirements specification version 1.2 (Confluence page 576978945, Confluence version 12), section 5.2 State 3 (selecting a tab scopes the query to that entity type), read on 26 August 2026.\n\nAUTOMATION: Not available on Build to test Yet - Last checked 8/25/2026",
     "design_ref": "design-notes.md screenshots 2, 9; requirements.md 5.2",
     "spec_ref": "requirements.md 5.2 State 3 (selecting a tab scopes the query to that entity type)",
     "viu_status": "VIU-Pending",
@@ -312,7 +312,7 @@
       "1. Click the 'Customers' tab.",
       "2. Read the results."
     ],
-    "expected": "1. Only Customer results are shown; other entity groups are hidden.\n2. The 'Customers' tab appears selected/active.\n\n---\nThis is the expected behaviour as per epic SV-9160 and the Global Search - Product Requirements specification version 1.2 (Confluence page 576978945, Confluence version 11), section 5.2 State 3, read on 25 August 2026.\n\nAUTOMATION: Not available on Build to test Yet - Last checked 8/25/2026",
+    "expected": "1. Only Customer results are shown; other entity groups are hidden.\n2. The 'Customers' tab appears selected/active.\n\n---\nThis is the expected behaviour as per epic SV-9160 and the Global Search - Product Requirements specification version 1.2 (Confluence page 576978945, Confluence version 12), section 5.2 State 3, read on 26 August 2026.\n\nAUTOMATION: Not available on Build to test Yet - Last checked 8/25/2026",
     "design_ref": "design-notes.md screenshot 2; requirements.md 5.2",
     "spec_ref": "requirements.md 5.2 State 3",
     "viu_status": "VIU-Pending",
@@ -334,7 +334,7 @@
       "1. Click the 'Assets' tab.",
       "2. Read the results."
     ],
-    "expected": "1. Only Asset results are shown; other entity groups are hidden.\n2. The 'Assets' tab appears selected/active.\n\n---\nThis is the expected behaviour as per epic SV-9160 and the Global Search - Product Requirements specification version 1.2 (Confluence page 576978945, Confluence version 11), section 5.2 State 3, read on 25 August 2026.\n\nAUTOMATION: Not available on Build to test Yet - Last checked 8/25/2026",
+    "expected": "1. Only Asset results are shown; other entity groups are hidden.\n2. The 'Assets' tab appears selected/active.\n\n---\nThis is the expected behaviour as per epic SV-9160 and the Global Search - Product Requirements specification version 1.2 (Confluence page 576978945, Confluence version 12), section 5.2 State 3, read on 26 August 2026.\n\nAUTOMATION: Not available on Build to test Yet - Last checked 8/25/2026",
     "design_ref": "design-notes.md screenshot 2; requirements.md 5.2",
     "spec_ref": "requirements.md 5.2 State 3",
     "viu_status": "VIU-Pending",
@@ -356,7 +356,7 @@
       "1. Click the 'Parts' tab.",
       "2. Read the results."
     ],
-    "expected": "1. Only Part results are shown; other entity groups are hidden.\n2. The 'Parts' tab appears selected/active.\n\n---\nThis is the expected behaviour as per epic SV-9160 and the Global Search - Product Requirements specification version 1.2 (Confluence page 576978945, Confluence version 11), section 5.2 State 3, read on 25 August 2026.\n\nAUTOMATION: Not available on Build to test Yet - Last checked 8/25/2026",
+    "expected": "1. Only Part results are shown; other entity groups are hidden.\n2. The 'Parts' tab appears selected/active.\n\n---\nThis is the expected behaviour as per epic SV-9160 and the Global Search - Product Requirements specification version 1.2 (Confluence page 576978945, Confluence version 12), section 5.2 State 3, read on 26 August 2026.\n\nAUTOMATION: Not available on Build to test Yet - Last checked 8/25/2026",
     "design_ref": "design-notes.md screenshot 2; requirements.md 5.2",
     "spec_ref": "requirements.md 5.2 State 3",
     "viu_status": "VIU-Pending",
@@ -378,7 +378,7 @@
       "1. Click the 'Vendors' tab.",
       "2. Read the results."
     ],
-    "expected": "1. Only Vendor results are shown; other entity groups are hidden.\n2. The 'Vendors' tab appears selected/active.\n\n---\nThis is the expected behaviour as per epic SV-9160 and the Global Search - Product Requirements specification version 1.2 (Confluence page 576978945, Confluence version 11), section 5.2 State 3, read on 25 August 2026.\n\nAUTOMATION: Not available on Build to test Yet - Last checked 8/25/2026",
+    "expected": "1. Only Vendor results are shown; other entity groups are hidden.\n2. The 'Vendors' tab appears selected/active.\n\n---\nThis is the expected behaviour as per epic SV-9160 and the Global Search - Product Requirements specification version 1.2 (Confluence page 576978945, Confluence version 12), section 5.2 State 3, read on 26 August 2026.\n\nAUTOMATION: Not available on Build to test Yet - Last checked 8/25/2026",
     "design_ref": "design-notes.md screenshot 2; requirements.md 5.2",
     "spec_ref": "requirements.md 5.2 State 3",
     "viu_status": "VIU-Pending",
@@ -401,7 +401,7 @@
       "1. Click the 'Part Sales' tab.",
       "2. Read the results."
     ],
-    "expected": "1. Only Part Sales results are shown; other entity groups are hidden.\n2. The 'Part Sales' tab appears selected/active.\n\n---\nThis is the expected behaviour as per epic SV-9160 and the Global Search - Product Requirements specification version 1.2 (Confluence page 576978945, Confluence version 11), section 4 (Part Sales is a NEW searchable entity); 5.2 State 3, read on 25 August 2026.\n\nAUTOMATION: Not available on Build to test Yet - Last checked 8/25/2026",
+    "expected": "1. Only Part Sales results are shown; other entity groups are hidden.\n2. The 'Part Sales' tab appears selected/active.\n\n---\nThis is the expected behaviour as per epic SV-9160 and the Global Search - Product Requirements specification version 1.2 (Confluence page 576978945, Confluence version 12), section 4 (Part Sales is a NEW searchable entity); 5.2 State 3, read on 26 August 2026.\n\nAUTOMATION: Not available on Build to test Yet - Last checked 8/25/2026",
     "design_ref": "design-notes.md screenshots 2, 9; requirements.md 4 Part Sales, 5.2",
     "spec_ref": "requirements.md 4 (Part Sales is a NEW searchable entity); 5.2 State 3",
     "viu_status": "VIU-Pending",

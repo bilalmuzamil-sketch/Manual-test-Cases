@@ -387,3 +387,6 @@ sequential at the end.
   The remaining 5 may reveal additional states/labels (e.g. error/"Search
   unavailable" banner, the pinned top ID-match row, the scoped-tab pagination, the
   fuzzy "≈" treatment) — confirm before final case authoring.
+
+
+> **Source re-verification 2026-08-26:** PRD moved Confluence v11 -> **v12** (unlogged). Only content change: section 4 Work Orders 'Indexed' dropped `status`. No functional case asserts searching a WO by status, so no case content changed; all 110 re-pinned v11 -> v12 (local + TestRail). WO-status drop = PO-REG-6.

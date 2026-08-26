@@ -10,7 +10,7 @@
     "steps": [
       "Perform the action described and observe the result."
     ],
-    "expected": "1. The first recent-activity group header carries a 'Clear all' action.\n2. Selecting 'Clear all' empties the entire recent-search history.\n3. After clearing, the panel falls back to the first-time state - helper text plus the three quick-create buttons - with no separate empty-history message.\n4. 'Clear all' is present on both web and mobile.\n\n---\nThis is the expected behaviour as per epic SV-9160 and the Global Search - Product Requirements specification version 1.2 (Confluence page 576978945, Confluence version 11), 5.2 / 5.6 / 8 (Clear all), read on 25 August 2026.\n\nAUTOMATION: Not available on Build to test Yet - Last checked 8/25/2026",
+    "expected": "1. The first recent-activity group header carries a 'Clear all' action.\n2. Selecting 'Clear all' empties the entire recent-search history.\n3. After clearing, the panel falls back to the first-time state - helper text plus the three quick-create buttons - with no separate empty-history message.\n4. 'Clear all' is present on both web and mobile.\n\n---\nThis is the expected behaviour as per epic SV-9160 and the Global Search - Product Requirements specification version 1.2 (Confluence page 576978945, Confluence version 12), 5.2 / 5.6 / 8 (Clear all), read on 26 August 2026.\n\nAUTOMATION: Not available on Build to test Yet - Last checked 8/25/2026",
     "design_ref": "Claude 'Global Search' design fac6efcf (Global Search Page.html + Mobile Global Search.html); desktop page changed 2026-08-25, mobile unchanged.",
     "spec_ref": "section 5.2 / 5.6 / 8 (Clear all)",
     "refs": "SV-9160 (PRD 5.2 Clear all)",
@@ -28,7 +28,7 @@
     "steps": [
       "Perform the action described and observe the result."
     ],
-    "expected": "1. Selecting the 'Contacts' tab scopes the query to contacts only.\n2. The tab carries the true contact count; results show contact rows only.\n\n---\nThis is the expected behaviour as per epic SV-9160 and the Global Search - Product Requirements specification version 1.2 (Confluence page 576978945, Confluence version 11), 5.2 (Contacts scope tab), read on 25 August 2026.\n\nAUTOMATION: Not available on Build to test Yet - Last checked 8/25/2026",
+    "expected": "1. Selecting the 'Contacts' tab scopes the query to contacts only.\n2. The tab carries the true contact count; results show contact rows only.\n\n---\nThis is the expected behaviour as per epic SV-9160 and the Global Search - Product Requirements specification version 1.2 (Confluence page 576978945, Confluence version 12), 5.2 (Contacts scope tab), read on 26 August 2026.\n\nAUTOMATION: Not available on Build to test Yet - Last checked 8/25/2026",
     "design_ref": "Claude 'Global Search' design fac6efcf (Global Search Page.html + Mobile Global Search.html); desktop page changed 2026-08-25, mobile unchanged.",
     "spec_ref": "section 5.2 (Contacts scope tab)",
     "refs": "SV-9160 (PRD 5.2 Contacts tab)",
@@ -46,7 +46,7 @@
     "steps": [
       "Perform the action described and observe the result."
     ],
-    "expected": "1. Selecting the 'Purchase Orders' tab scopes the query to purchase orders only.\n2. The tab carries the true PO count; results show PO rows only (subject to permission).\n\n---\nThis is the expected behaviour as per epic SV-9160 and the Global Search - Product Requirements specification version 1.2 (Confluence page 576978945, Confluence version 11), 5.2 (Purchase Orders scope tab), read on 25 August 2026.\n\nAUTOMATION: Not available on Build to test Yet - Last checked 8/25/2026",
+    "expected": "1. Selecting the 'Purchase Orders' tab scopes the query to purchase orders only.\n2. The tab carries the true PO count; results show PO rows only (subject to permission).\n\n---\nThis is the expected behaviour as per epic SV-9160 and the Global Search - Product Requirements specification version 1.2 (Confluence page 576978945, Confluence version 12), 5.2 (Purchase Orders scope tab), read on 26 August 2026.\n\nAUTOMATION: Not available on Build to test Yet - Last checked 8/25/2026",
     "design_ref": "Claude 'Global Search' design fac6efcf (Global Search Page.html + Mobile Global Search.html); desktop page changed 2026-08-25, mobile unchanged.",
     "spec_ref": "section 5.2 (Purchase Orders scope tab)",
     "refs": "SV-9160 (PRD 5.2 Purchase Orders tab)",
@@ -64,7 +64,7 @@
     "steps": [
       "Perform the action described and observe the result."
     ],
-    "expected": "1. Selecting the 'Vendor Invoices' tab scopes the query to vendor invoices only.\n2. The tab carries the true count; results show vendor-invoice rows only (subject to permission).\n\n---\nThis is the expected behaviour as per epic SV-9160 and the Global Search - Product Requirements specification version 1.2 (Confluence page 576978945, Confluence version 11), 5.2 (Vendor Invoices scope tab), read on 25 August 2026.\n\nAUTOMATION: Not available on Build to test Yet - Last checked 8/25/2026",
+    "expected": "1. Selecting the 'Vendor Invoices' tab scopes the query to vendor invoices only.\n2. The tab carries the true count; results show vendor-invoice rows only (subject to permission).\n\n---\nThis is the expected behaviour as per epic SV-9160 and the Global Search - Product Requirements specification version 1.2 (Confluence page 576978945, Confluence version 12), 5.2 (Vendor Invoices scope tab), read on 26 August 2026.\n\nAUTOMATION: Not available on Build to test Yet - Last checked 8/25/2026",
     "design_ref": "Claude 'Global Search' design fac6efcf (Global Search Page.html + Mobile Global Search.html); desktop page changed 2026-08-25, mobile unchanged.",
     "spec_ref": "section 5.2 (Vendor Invoices scope tab)",
     "refs": "SV-9160 (PRD 5.2 Vendor Invoices tab)",
@@ -82,7 +82,7 @@
     "steps": [
       "Perform the action described and observe the result."
     ],
-    "expected": "1. On a phone the search is a full-screen screen that replaces the page, not a centered modal.\n2. The top bar shows a 'Cancel' action next to the input.\n3. The placeholder copy is 'Search everything'.\n4. There is no keyboard-hints footer on mobile.\n\n---\nThis is the expected behaviour as per epic SV-9160 and the Global Search - Product Requirements specification version 1.2 (Confluence page 576978945, Confluence version 11), 5.6 (mobile surface), read on 25 August 2026.\n\nAUTOMATION: Not available on Build to test Yet - Last checked 8/25/2026",
+    "expected": "1. On a phone the search is a full-screen screen that replaces the page, not a centered modal.\n2. The top bar shows a 'Cancel' action next to the input.\n3. The placeholder copy is 'Search everything'.\n4. There is no keyboard-hints footer on mobile.\n\n---\nThis is the expected behaviour as per epic SV-9160 and the Global Search - Product Requirements specification version 1.2 (Confluence page 576978945, Confluence version 12), 5.6 (mobile surface), read on 26 August 2026.\n\nAUTOMATION: Not available on Build to test Yet - Last checked 8/25/2026",
     "design_ref": "Claude 'Global Search' design fac6efcf (Global Search Page.html + Mobile Global Search.html); desktop page changed 2026-08-25, mobile unchanged.",
     "spec_ref": "section 5.6 (mobile surface)",
     "refs": "SV-9160 (PRD 5.6 mobile)",
@@ -100,7 +100,7 @@
     "steps": [
       "Perform the action described and observe the result."
     ],
-    "expected": "1. Scope selection on mobile is a horizontal chip row.\n2. The chip row appears only once there is a query.\n3. It lists only the entity types that actually matched, each with its count, so the row stays short.\n\n---\nThis is the expected behaviour as per epic SV-9160 and the Global Search - Product Requirements specification version 1.2 (Confluence page 576978945, Confluence version 11), 5.6 (mobile scope chips), read on 25 August 2026.\n\nAUTOMATION: Not available on Build to test Yet - Last checked 8/25/2026",
+    "expected": "1. Scope selection on mobile is a horizontal chip row.\n2. The chip row appears only once there is a query.\n3. It lists only the entity types that actually matched, each with its count, so the row stays short.\n\n---\nThis is the expected behaviour as per epic SV-9160 and the Global Search - Product Requirements specification version 1.2 (Confluence page 576978945, Confluence version 12), 5.6 (mobile scope chips), read on 26 August 2026.\n\nAUTOMATION: Not available on Build to test Yet - Last checked 8/25/2026",
     "design_ref": "Claude 'Global Search' design fac6efcf (Global Search Page.html + Mobile Global Search.html); desktop page changed 2026-08-25, mobile unchanged.",
     "spec_ref": "section 5.6 (mobile scope chips)",
     "refs": "SV-9160 (PRD 5.6 mobile scope)",
@@ -118,7 +118,7 @@
     "steps": [
       "Perform the action described and observe the result."
     ],
-    "expected": "1. Results are not capped per group and there is no 'Show all' overflow on mobile.\n2. The user scrolls the full grouped list.\n3. Group headers stick to the top of the list while scrolling.\n4. A tap on a row opens the record.\n\n---\nThis is the expected behaviour as per epic SV-9160 and the Global Search - Product Requirements specification version 1.2 (Confluence page 576978945, Confluence version 11), 5.6 (mobile results), read on 25 August 2026.\n\nAUTOMATION: Not available on Build to test Yet - Last checked 8/25/2026",
+    "expected": "1. Results are not capped per group and there is no 'Show all' overflow on mobile.\n2. The user scrolls the full grouped list.\n3. Group headers stick to the top of the list while scrolling.\n4. A tap on a row opens the record.\n\n---\nThis is the expected behaviour as per epic SV-9160 and the Global Search - Product Requirements specification version 1.2 (Confluence page 576978945, Confluence version 12), 5.6 (mobile results), read on 26 August 2026.\n\nAUTOMATION: Not available on Build to test Yet - Last checked 8/25/2026",
     "design_ref": "Claude 'Global Search' design fac6efcf (Global Search Page.html + Mobile Global Search.html); desktop page changed 2026-08-25, mobile unchanged.",
     "spec_ref": "section 5.6 (mobile results)",
     "refs": "SV-9160 (PRD 5.6 mobile results)",
@@ -136,7 +136,7 @@
     "steps": [
       "Perform the action described and observe the result."
     ],
-    "expected": "1. The first-time, recent-searches and no-results states match the web states.\n2. The quick-create buttons are stacked full-width instead of inline.\n3. 'Clear all' behaves as on web: clearing the history returns the screen to the first-time state.\n\n---\nThis is the expected behaviour as per epic SV-9160 and the Global Search - Product Requirements specification version 1.2 (Confluence page 576978945, Confluence version 11), 5.6 (mobile states), read on 25 August 2026.\n\nAUTOMATION: Not available on Build to test Yet - Last checked 8/25/2026",
+    "expected": "1. The first-time, recent-searches and no-results states match the web states.\n2. The quick-create buttons are stacked full-width instead of inline.\n3. 'Clear all' behaves as on web: clearing the history returns the screen to the first-time state.\n\n---\nThis is the expected behaviour as per epic SV-9160 and the Global Search - Product Requirements specification version 1.2 (Confluence page 576978945, Confluence version 12), 5.6 (mobile states), read on 26 August 2026.\n\nAUTOMATION: Not available on Build to test Yet - Last checked 8/25/2026",
     "design_ref": "Claude 'Global Search' design fac6efcf (Global Search Page.html + Mobile Global Search.html); desktop page changed 2026-08-25, mobile unchanged.",
     "spec_ref": "section 5.6 (mobile states)",
     "refs": "SV-9160 (PRD 5.6 mobile states)",
@@ -154,7 +154,7 @@
     "steps": [
       "Perform the action described and observe the result."
     ],
-    "expected": "1. The full-page result handoff and its banner (the web 'Show all' behaviour) do not apply on mobile in v1 - the mobile lists have no query handoff.\n2. Keyboard navigation does not apply on mobile.\n\n---\nThis is the expected behaviour as per epic SV-9160 and the Global Search - Product Requirements specification version 1.2 (Confluence page 576978945, Confluence version 11), 5.6 (mobile deferrals), read on 25 August 2026.\n\nAUTOMATION: Not available on Build to test Yet - Last checked 8/25/2026",
+    "expected": "1. The full-page result handoff and its banner (the web 'Show all' behaviour) do not apply on mobile in v1 - the mobile lists have no query handoff.\n2. Keyboard navigation does not apply on mobile.\n\n---\nThis is the expected behaviour as per epic SV-9160 and the Global Search - Product Requirements specification version 1.2 (Confluence page 576978945, Confluence version 12), 5.6 (mobile deferrals), read on 26 August 2026.\n\nAUTOMATION: Not available on Build to test Yet - Last checked 8/25/2026",
     "design_ref": "Claude 'Global Search' design fac6efcf (Global Search Page.html + Mobile Global Search.html); desktop page changed 2026-08-25, mobile unchanged.",
     "spec_ref": "section 5.6 (mobile deferrals)",
     "refs": "SV-9160 (PRD 5.6 mobile deferred)",
@@ -172,7 +172,7 @@
     "steps": [
       "Perform the action described and observe the result."
     ],
-    "expected": "1. A Purchase Order that is still Ordered (not yet received) ranks above received ones.\n2. More recently created POs rank above older ones (recency decays over about two weeks).\n3. A PO created by the signed-in user gets a small additional boost.\n\n---\nThis is the expected behaviour as per epic SV-9160 and the Global Search - Product Requirements specification version 1.2 (Confluence page 576978945, Confluence version 11), 6.1 (Purchase Order signals), read on 25 August 2026.\n\nAUTOMATION: Not available on Build to test Yet - Last checked 8/25/2026",
+    "expected": "1. A Purchase Order that is still Ordered (not yet received) ranks above received ones.\n2. More recently created POs rank above older ones (recency decays over about two weeks).\n3. A PO created by the signed-in user gets a small additional boost.\n\n---\nThis is the expected behaviour as per epic SV-9160 and the Global Search - Product Requirements specification version 1.2 (Confluence page 576978945, Confluence version 12), 6.1 (Purchase Order signals), read on 26 August 2026.\n\nAUTOMATION: Not available on Build to test Yet - Last checked 8/25/2026",
     "design_ref": "Claude 'Global Search' design fac6efcf (Global Search Page.html + Mobile Global Search.html); desktop page changed 2026-08-25, mobile unchanged.",
     "spec_ref": "section 6.1 (Purchase Order signals)",
     "refs": "SV-9160 (PRD 6.1 PO ranking)",
@@ -190,7 +190,7 @@
     "steps": [
       "Perform the action described and observe the result."
     ],
-    "expected": "1. An Unpaid vendor invoice ranks above paid ones.\n2. More recent invoice dates rank higher (recency decays over about a month).\n\n---\nThis is the expected behaviour as per epic SV-9160 and the Global Search - Product Requirements specification version 1.2 (Confluence page 576978945, Confluence version 11), 6.1 (Vendor Invoice signals), read on 25 August 2026.\n\nAUTOMATION: Not available on Build to test Yet - Last checked 8/25/2026",
+    "expected": "1. An Unpaid vendor invoice ranks above paid ones.\n2. More recent invoice dates rank higher (recency decays over about a month).\n\n---\nThis is the expected behaviour as per epic SV-9160 and the Global Search - Product Requirements specification version 1.2 (Confluence page 576978945, Confluence version 12), 6.1 (Vendor Invoice signals), read on 26 August 2026.\n\nAUTOMATION: Not available on Build to test Yet - Last checked 8/25/2026",
     "design_ref": "Claude 'Global Search' design fac6efcf (Global Search Page.html + Mobile Global Search.html); desktop page changed 2026-08-25, mobile unchanged.",
     "spec_ref": "section 6.1 (Vendor Invoice signals)",
     "refs": "SV-9160 (PRD 6.1 Vendor Invoice ranking)",
@@ -208,7 +208,7 @@
     "steps": [
       "Perform the action described and observe the result."
     ],
-    "expected": "1. A contact whose owning company has at least one open work order ranks higher.\n2. A contact called or viewed by the signed-in user in the last 7 days gets a boost.\n3. A company's primary contact gets a small additional boost.\n\n---\nThis is the expected behaviour as per epic SV-9160 and the Global Search - Product Requirements specification version 1.2 (Confluence page 576978945, Confluence version 11), 6.1 (Contact signals), read on 25 August 2026.\n\nAUTOMATION: Not available on Build to test Yet - Last checked 8/25/2026",
+    "expected": "1. A contact whose owning company has at least one open work order ranks higher.\n2. A contact called or viewed by the signed-in user in the last 7 days gets a boost.\n3. A company's primary contact gets a small additional boost.\n\n---\nThis is the expected behaviour as per epic SV-9160 and the Global Search - Product Requirements specification version 1.2 (Confluence page 576978945, Confluence version 12), 6.1 (Contact signals), read on 26 August 2026.\n\nAUTOMATION: Not available on Build to test Yet - Last checked 8/25/2026",
     "design_ref": "Claude 'Global Search' design fac6efcf (Global Search Page.html + Mobile Global Search.html); desktop page changed 2026-08-25, mobile unchanged.",
     "spec_ref": "section 6.1 (Contact signals)",
     "refs": "SV-9160 (PRD 6.1 Contact ranking)",
@@ -228,7 +228,7 @@
       "Click a result.",
       "Have engineering/QA confirm the search-event log."
     ],
-    "expected": "1. Each result impression is logged with the query, result entity type, result id and position.\n2. A click on a result is logged as was_clicked for that result.\n3. This is mechanism/schema only - no ML ranking model is expected in v1.\n4. SCOPE NOTE (PO-GS-5): the owning story SV-9167 is currently in the backlog. If event logging is not present on the build, record it as a deviation to raise with Product - do not silently pass or ignore it.\n\n---\nThis is the expected behaviour as per epic SV-9160 and the Global Search - Product Requirements specification version 1.2 (Confluence page 576978945, Confluence version 11), section 8 (functional requirements) / 6.4 (telemetry schema), read on 25 August 2026.\n\nAUTOMATION: Not available on Build to test Yet - Last checked 8/25/2026",
+    "expected": "1. Each result impression is logged with the query, result entity type, result id and position.\n2. A click on a result is logged as was_clicked for that result.\n3. This is mechanism/schema only - no ML ranking model is expected in v1.\n4. SCOPE NOTE (PO-GS-5): the owning story SV-9167 is currently in the backlog. If event logging is not present on the build, record it as a deviation to raise with Product - do not silently pass or ignore it.\n\n---\nThis is the expected behaviour as per epic SV-9160 and the Global Search - Product Requirements specification version 1.2 (Confluence page 576978945, Confluence version 12), section 8 (functional requirements) / 6.4 (telemetry schema), read on 26 August 2026.\n\nAUTOMATION: Not available on Build to test Yet - Last checked 8/25/2026",
     "design_ref": "No user-facing design (backend logging).",
     "spec_ref": "section 8 / 6.4 (telemetry)",
     "refs": "SV-9167 (PRD 8 6.4 telemetry)",

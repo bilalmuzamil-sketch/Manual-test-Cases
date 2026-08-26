@@ -14,7 +14,7 @@
       "1. Open the palette and type a query that matches parts.",
       "2. Read the results (on the 'All' tab and the 'Parts' tab)."
     ],
-    "expected": "1. A 'Parts' group appears with matching part rows.\n2. The 'Parts' scope tab shows the part results.\n\n---\nThis is the expected behaviour as per epic SV-9160 and the Global Search - Product Requirements specification version 1.2 (Confluence page 576978945, Confluence version 11), section 9 (all result fields respect role-based-access checks), read on 25 August 2026.\n\nAUTOMATION: Not available on Build to test Yet - Last checked 8/25/2026",
+    "expected": "1. A 'Parts' group appears with matching part rows.\n2. The 'Parts' scope tab shows the part results.\n\n---\nThis is the expected behaviour as per epic SV-9160 and the Global Search - Product Requirements specification version 1.2 (Confluence page 576978945, Confluence version 12), section 9 (all result fields respect role-based-access checks), read on 26 August 2026.\n\nAUTOMATION: Not available on Build to test Yet - Last checked 8/25/2026",
     "design_ref": "requirements.md 9 (role-based access)",
     "spec_ref": "requirements.md 9 (all result fields respect role-based-access checks)",
     "viu_status": "VIU-Pending",
@@ -37,7 +37,7 @@
       "1. Open the palette and type a query that matches parts.",
       "2. Read the results (on the 'All' tab and check the 'Parts' tab)."
     ],
-    "expected": "1. No 'Parts' group appears and no part rows are shown.\n2. The user cannot see part results they are not permitted to access, even though those parts exist.\n3. Results for entity types the user CAN access still appear normally.\n\n---\nThis is the expected behaviour as per epic SV-9160 and the Global Search - Product Requirements specification version 1.2 (Confluence page 576978945, Confluence version 11), section 9 (a technician without Parts access does not see Parts results), read on 25 August 2026.\n\nAUTOMATION: Not available on Build to test Yet - Last checked 8/25/2026",
+    "expected": "1. No 'Parts' group appears and no part rows are shown.\n2. The user cannot see part results they are not permitted to access, even though those parts exist.\n3. Results for entity types the user CAN access still appear normally.\n\n---\nThis is the expected behaviour as per epic SV-9160 and the Global Search - Product Requirements specification version 1.2 (Confluence page 576978945, Confluence version 12), section 9 (a technician without Parts access does not see Parts results), read on 26 August 2026.\n\nAUTOMATION: Not available on Build to test Yet - Last checked 8/25/2026",
     "design_ref": "requirements.md 9 (technician without Parts access does not see Parts results)",
     "spec_ref": "requirements.md 9 (a technician without Parts access does not see Parts results)",
     "viu_status": "VIU-Pending",
@@ -60,7 +60,7 @@
       "1. Open the palette and type a query that matches Work Orders.",
       "2. Read the results (the 'All' tab and the 'Work Orders' tab)."
     ],
-    "expected": "1. No 'Work orders' group appears and no Work Order rows are shown.\n2. Results for entity types the user CAN access still appear normally.\n\n---\nThis is the expected behaviour as per epic SV-9160 and the Global Search - Product Requirements specification version 1.2 (Confluence page 576978945, Confluence version 11), section 9 (all result fields respect role-based-access checks), read on 25 August 2026.\n\nAUTOMATION: Not available on Build to test Yet - Last checked 8/25/2026",
+    "expected": "1. No 'Work orders' group appears and no Work Order rows are shown.\n2. Results for entity types the user CAN access still appear normally.\n\n---\nThis is the expected behaviour as per epic SV-9160 and the Global Search - Product Requirements specification version 1.2 (Confluence page 576978945, Confluence version 12), section 9 (all result fields respect role-based-access checks), read on 26 August 2026.\n\nAUTOMATION: Not available on Build to test Yet - Last checked 8/25/2026",
     "design_ref": "requirements.md 9 (role-based access, all entity types)",
     "spec_ref": "requirements.md 9 (all result fields respect role-based-access checks)",
     "viu_status": "VIU-Pending",
@@ -83,7 +83,7 @@
       "1. Open the palette and type a query.",
       "2. Read the results."
     ],
-    "expected": "1. Only records belonging to your own tenant/organization are returned.\n2. No records from any other tenant are shown (tenant isolation is respected).\n\n---\nThis is the expected behaviour as per epic SV-9160 and the Global Search - Product Requirements specification version 1.2 (Confluence page 576978945, Confluence version 11), section 9 (all result fields respect existing tenant-isolation checks), read on 25 August 2026.\n\nAUTOMATION: Not available on Build to test Yet - Last checked 8/25/2026",
+    "expected": "1. Only records belonging to your own tenant/organization are returned.\n2. No records from any other tenant are shown (tenant isolation is respected).\n\n---\nThis is the expected behaviour as per epic SV-9160 and the Global Search - Product Requirements specification version 1.2 (Confluence page 576978945, Confluence version 12), section 9 (all result fields respect existing tenant-isolation checks), read on 26 August 2026.\n\nAUTOMATION: Not available on Build to test Yet - Last checked 8/25/2026",
     "design_ref": "requirements.md 9 (tenant-isolation)",
     "spec_ref": "requirements.md 9 (all result fields respect existing tenant-isolation checks)",
     "viu_status": "VIU-Pending",
@@ -107,7 +107,7 @@
       "2. Read the grouped results and confirm the empty entity type has no group.",
       "3. Open the scope tab for the empty entity type (for example the 'Part Sales' tab)."
     ],
-    "expected": "1. On the 'All' tab, no group appears for the entity type that has zero accessible results (the empty group is simply not shown).\n2. Groups for the entity types that do have matches still appear normally.\n3. The empty entity type's scope tab shows its empty / no-results treatment rather than an error.\n\n---\nThis is the expected behaviour as per epic SV-9160 and the Global Search - Product Requirements specification version 1.2 (Confluence page 576978945, Confluence version 11), section 9 (must work for a single-tenant dataset where any entity type is empty, e.g. no part sales yet), read on 25 August 2026.\n\nAUTOMATION: Not available on Build to test Yet - Last checked 8/25/2026",
+    "expected": "1. On the 'All' tab, no group appears for the entity type that has zero accessible results (the empty group is simply not shown).\n2. Groups for the entity types that do have matches still appear normally.\n3. The empty entity type's scope tab shows its empty / no-results treatment rather than an error.\n\n---\nThis is the expected behaviour as per epic SV-9160 and the Global Search - Product Requirements specification version 1.2 (Confluence page 576978945, Confluence version 12), section 9 (must work for a single-tenant dataset where any entity type is empty, e.g. no part sales yet), read on 26 August 2026.\n\nAUTOMATION: Not available on Build to test Yet - Last checked 8/25/2026",
     "design_ref": "requirements.md 9 (must work for a single-tenant dataset where any entity type is empty)",
     "spec_ref": "requirements.md 9 (must work for a single-tenant dataset where any entity type is empty, e.g. no part sales yet)",
     "viu_status": "VIU-Pending",
@@ -130,7 +130,7 @@
       "1. Send GET /api/search with q set to the query and scope set to 'all'.",
       "2. Inspect the HTTP status and the response body."
     ],
-    "expected": "1. The response returns HTTP 200.\n2. The body is a grouped, ranked, scored payload containing groups for the matching entity types.\n3. Each group includes the per-item metadata needed to render rows without extra fetches.\n\n---\nThis is the expected behaviour as per epic SV-9160 and the Global Search - Product Requirements specification version 1.2 (Confluence page 576978945, Confluence version 11), section 10 Phase 1 (GET /api/search; scope=all), read on 25 August 2026.\n\nAUTOMATION: Not available on Build to test Yet - Last checked 8/25/2026",
+    "expected": "1. The response returns HTTP 200.\n2. The body is a grouped, ranked, scored payload containing groups for the matching entity types.\n3. Each group includes the per-item metadata needed to render rows without extra fetches.\n\n---\nThis is the expected behaviour as per epic SV-9160 and the Global Search - Product Requirements specification version 1.2 (Confluence page 576978945, Confluence version 12), section 10 Phase 1 (GET /api/search; scope=all), read on 26 August 2026.\n\nAUTOMATION: Not available on Build to test Yet - Last checked 8/25/2026",
     "design_ref": "requirements.md 10 Phase 1 (GET /api/search); 6 (grouped, ranked, scored)",
     "spec_ref": "requirements.md 10 Phase 1 (GET /api/search; scope=all)",
     "viu_status": "VIU-Pending",
@@ -154,7 +154,7 @@
       "2. Inspect the response.",
       "3. Repeat with scope set to each of 'customers', 'assets', 'parts', 'vendors', 'part_sales'."
     ],
-    "expected": "1. Each call returns HTTP 200.\n2. Each response contains results only for the requested scope's entity type.\n3. The accepted scope values are all, work_orders, customers, assets, parts, vendors, part_sales.\n\n---\nThis is the expected behaviour as per epic SV-9160 and the Global Search - Product Requirements specification version 1.2 (Confluence page 576978945, Confluence version 11), section 10 Phase 1 (scope parameter), read on 25 August 2026.\n\nAUTOMATION: Not available on Build to test Yet - Last checked 8/25/2026",
+    "expected": "1. Each call returns HTTP 200.\n2. Each response contains results only for the requested scope's entity type.\n3. The accepted scope values are all, work_orders, customers, assets, parts, vendors, part_sales.\n\n---\nThis is the expected behaviour as per epic SV-9160 and the Global Search - Product Requirements specification version 1.2 (Confluence page 576978945, Confluence version 12), section 10 Phase 1 (scope parameter), read on 26 August 2026.\n\nAUTOMATION: Not available on Build to test Yet - Last checked 8/25/2026",
     "design_ref": "requirements.md 10 Phase 1 (scope: one of all/work_orders/customers/assets/parts/vendors/part_sales)",
     "spec_ref": "requirements.md 10 Phase 1 (scope parameter)",
     "viu_status": "VIU-Pending",
@@ -178,7 +178,7 @@
       "2. Inspect the number of rows returned for the over-full group and the total field.",
       "3. Repeat with limit set to a smaller value (for example 3)."
     ],
-    "expected": "1. With no limit, each group returns at most 5 rows (the default per-group cap).\n2. Each group reports its full total count (for example total 12) even though only 5 rows are returned.\n3. Setting limit changes the per-group cap accordingly.\n\n---\nThis is the expected behaviour as per epic SV-9160 and the Global Search - Product Requirements specification version 1.2 (Confluence page 576978945, Confluence version 11), section 10 Phase 1 (limit default 5; response includes per-group totals), read on 25 August 2026.\n\nAUTOMATION: Not available on Build to test Yet - Last checked 8/25/2026",
+    "expected": "1. With no limit, each group returns at most 5 rows (the default per-group cap).\n2. Each group reports its full total count (for example total 12) even though only 5 rows are returned.\n3. Setting limit changes the per-group cap accordingly.\n\n---\nThis is the expected behaviour as per epic SV-9160 and the Global Search - Product Requirements specification version 1.2 (Confluence page 576978945, Confluence version 12), section 10 Phase 1 (limit default 5; response includes per-group totals), read on 26 August 2026.\n\nAUTOMATION: Not available on Build to test Yet - Last checked 8/25/2026",
     "design_ref": "requirements.md 10 Phase 1 (limit: per-group cap, default 5; per-group totals)",
     "spec_ref": "requirements.md 10 Phase 1 (limit default 5; response includes per-group totals)",
     "viu_status": "VIU-Pending",
@@ -203,7 +203,7 @@
       "3. Send GET /api/search with q set to 'S2 15276' (with a space).",
       "4. Compare the matched Work Order in each response."
     ],
-    "expected": "1. All three requests return HTTP 200 and match the same Work Order 'S2-15276'.\n2. The identifier is normalized (case, diacritics, non-alphanumerics stripped) before matching.\n3. The exact-match result scores high enough to be flagged as the pinned top match (score above 0.95).\n\n---\nThis is the expected behaviour as per epic SV-9160 and the Global Search - Product Requirements specification version 1.2 (Confluence page 576978945, Confluence version 11), section 7 (identifier normalization); 6.2 (ID match pinned), read on 25 August 2026.\n\nAUTOMATION: Not available on Build to test Yet - Last checked 8/25/2026",
+    "expected": "1. All three requests return HTTP 200 and match the same Work Order 'S2-15276'.\n2. The identifier is normalized (case, diacritics, non-alphanumerics stripped) before matching.\n3. The exact-match result scores high enough to be flagged as the pinned top match (score above 0.95).\n\n---\nThis is the expected behaviour as per epic SV-9160 and the Global Search - Product Requirements specification version 1.2 (Confluence page 576978945, Confluence version 12), section 7 (identifier normalization); 6.2 (ID match pinned), read on 26 August 2026.\n\nAUTOMATION: Not available on Build to test Yet - Last checked 8/25/2026",
     "design_ref": "requirements.md 6.2, 7 (normalization; ID match > 0.95)",
     "spec_ref": "requirements.md 7 (identifier normalization); 6.2 (ID match pinned)",
     "viu_status": "VIU-Pending",
@@ -226,7 +226,7 @@
       "1. Send GET /api/search with q set to 'S2-15286' (one digit off a real WO number).",
       "2. Inspect the response for a Work Order match."
     ],
-    "expected": "1. The real Work Order 'S2-15276' is NOT returned as a fuzzy identifier match.\n2. Identifier fields (VIN, WO number, P-number, part number) require exact match after normalization; fuzzy logic is bypassed for them.\n\n---\nThis is the expected behaviour as per epic SV-9160 and the Global Search - Product Requirements specification version 1.2 (Confluence page 576978945, Confluence version 11), section 7 (What is NOT fuzzy), read on 25 August 2026.\n\nAUTOMATION: Not available on Build to test Yet - Last checked 8/25/2026",
+    "expected": "1. The real Work Order 'S2-15276' is NOT returned as a fuzzy identifier match.\n2. Identifier fields (VIN, WO number, P-number, part number) require exact match after normalization; fuzzy logic is bypassed for them.\n\n---\nThis is the expected behaviour as per epic SV-9160 and the Global Search - Product Requirements specification version 1.2 (Confluence page 576978945, Confluence version 12), section 7 (What is NOT fuzzy), read on 26 August 2026.\n\nAUTOMATION: Not available on Build to test Yet - Last checked 8/25/2026",
     "design_ref": "requirements.md 7 (exact identifier fields bypass fuzzy logic)",
     "spec_ref": "requirements.md 7 (What is NOT fuzzy)",
     "viu_status": "VIU-Pending",
@@ -250,7 +250,7 @@
       "2. Inspect the response for a parts group.",
       "3. Send GET /api/search with scope set to 'parts' as the same restricted user."
     ],
-    "expected": "1. The response contains no parts results for the restricted user (permission filtering is enforced server-side, not just hidden in the UI).\n2. Scoping directly to 'parts' still returns no forbidden parts (empty or a permission-appropriate response).\n3. Entity types the user is allowed to access are still returned.\n\n---\nThis is the expected behaviour as per epic SV-9160 and the Global Search - Product Requirements specification version 1.2 (Confluence page 576978945, Confluence version 11), section 9 (results respect role-based-access checks - enforced server-side), read on 25 August 2026.\n\nAUTOMATION: Not available on Build to test Yet - Last checked 8/25/2026",
+    "expected": "1. The response contains no parts results for the restricted user (permission filtering is enforced server-side, not just hidden in the UI).\n2. Scoping directly to 'parts' still returns no forbidden parts (empty or a permission-appropriate response).\n3. Entity types the user is allowed to access are still returned.\n\n---\nThis is the expected behaviour as per epic SV-9160 and the Global Search - Product Requirements specification version 1.2 (Confluence page 576978945, Confluence version 12), section 9 (results respect role-based-access checks - enforced server-side), read on 26 August 2026.\n\nAUTOMATION: Not available on Build to test Yet - Last checked 8/25/2026",
     "design_ref": "requirements.md 9 (role-based-access checks); 10 Phase 5 (run as low-permission user)",
     "spec_ref": "requirements.md 9 (results respect role-based-access checks - enforced server-side)",
     "viu_status": "VIU-Pending",
@@ -274,7 +274,7 @@
       "2. Inspect the HTTP status and error body.",
       "3. Separately, simulate a backend/search failure and observe the response."
     ],
-    "expected": "1. An invalid request returns an appropriate 4xx status with an error body.\n2. A backend failure returns a 5xx or error payload that the frontend maps to the inline 'Search unavailable, retry' banner (see GS-ERR-01).\n3. The endpoint fails gracefully rather than returning malformed data.\n\n---\nThis is the expected behaviour as per epic SV-9160 and the Global Search - Product Requirements specification version 1.2 (Confluence page 576978945, Confluence version 11), section 8 (offline/network failure handling), read on 25 August 2026.\n\nAUTOMATION: Not available on Build to test Yet - Last checked 8/25/2026",
+    "expected": "1. An invalid request returns an appropriate 4xx status with an error body.\n2. A backend failure returns a 5xx or error payload that the frontend maps to the inline 'Search unavailable, retry' banner (see GS-ERR-01).\n3. The endpoint fails gracefully rather than returning malformed data.\n\n---\nThis is the expected behaviour as per epic SV-9160 and the Global Search - Product Requirements specification version 1.2 (Confluence page 576978945, Confluence version 12), section 8 (offline/network failure handling), read on 26 August 2026.\n\nAUTOMATION: Not available on Build to test Yet - Last checked 8/25/2026",
     "design_ref": "requirements.md 8 (tolerate failures -> 'Search unavailable, retry')",
     "spec_ref": "requirements.md 8 (offline/network failure handling)",
     "viu_status": "VIU-Pending",
@@ -297,7 +297,7 @@
       "1. Send GET /api/search with q set and scope set to 'all'.",
       "2. Inspect the order of the groups and the per-item score/rank fields in the response."
     ],
-    "expected": "1. Groups are returned in the v2 nine-entity order: Work Orders, Customers, Contacts, Assets, Parts, Vendors, Part Sales, Purchase Orders, Vendor Invoices (D16).\n2. Within each group items are ordered by score descending; ties break by recency.\n3. Each item carries the metadata needed to render its row (entity type, primary/secondary fields, badges/quantity, score) without extra fetches, and true per-group totals.\n\n---\nThis is the expected behaviour as per epic SV-9160 and the Global Search - Product Requirements specification version 1.2 (Confluence page 576978945, Confluence version 11), section 6.2 (group order); 10 Phase 1 (per-item metadata), read on 25 August 2026.\n\nAUTOMATION: Not available on Build to test Yet - Last checked 8/25/2026",
+    "expected": "1. Groups are returned in the v2 nine-entity order: Work Orders, Customers, Contacts, Assets, Parts, Vendors, Part Sales, Purchase Orders, Vendor Invoices (D16).\n2. Within each group items are ordered by score descending; ties break by recency.\n3. Each item carries the metadata needed to render its row (entity type, primary/secondary fields, badges/quantity, score) without extra fetches, and true per-group totals.\n\n---\nThis is the expected behaviour as per epic SV-9160 and the Global Search - Product Requirements specification version 1.2 (Confluence page 576978945, Confluence version 12), section 6.2 (group order); 10 Phase 1 (per-item metadata), read on 26 August 2026.\n\nAUTOMATION: Not available on Build to test Yet - Last checked 8/25/2026",
     "design_ref": "requirements.md 6.1, 6.2, 10 Phase 1 (grouped, ranked, scored payload; group order)",
     "spec_ref": "requirements.md 6.2 (group order); 10 Phase 1 (per-item metadata)",
     "viu_status": "VIU-Pending",
@@ -321,7 +321,7 @@
       "2. Take the cursor from the response and send GET /api/search again with that cursor.",
       "3. Compare the two pages of results."
     ],
-    "expected": "1. The first response returns the first page plus a cursor.\n2. Passing the cursor returns the next page of scoped results (no duplicates, no gaps).\n3. Pagination applies to the scoped-tab view.\n\n---\nThis is the expected behaviour as per epic SV-9160 and the Global Search - Product Requirements specification version 1.2 (Confluence page 576978945, Confluence version 11), section 10 Phase 1 (cursor parameter), read on 25 August 2026.\n\nAUTOMATION: Not available on Build to test Yet - Last checked 8/25/2026",
+    "expected": "1. The first response returns the first page plus a cursor.\n2. Passing the cursor returns the next page of scoped results (no duplicates, no gaps).\n3. Pagination applies to the scoped-tab view.\n\n---\nThis is the expected behaviour as per epic SV-9160 and the Global Search - Product Requirements specification version 1.2 (Confluence page 576978945, Confluence version 12), section 10 Phase 1 (cursor parameter), read on 26 August 2026.\n\nAUTOMATION: Not available on Build to test Yet - Last checked 8/25/2026",
     "design_ref": "requirements.md 10 Phase 1 (cursor: scoped-tab pagination)",
     "spec_ref": "requirements.md 10 Phase 1 (cursor parameter)",
     "viu_status": "VIU-Pending",
@@ -345,7 +345,7 @@
       "2. Send GET /api/search with q set and context set to {type: customer, id: [that customer]}.",
       "3. Compare the rankings."
     ],
-    "expected": "1. With the customer context, assets and work orders owned by that customer are boosted in the ranking versus the no-context call.\n2. The context parameter takes an optional {type, id} for page-context bias.\n\n---\nThis is the expected behaviour as per epic SV-9160 and the Global Search - Product Requirements specification version 1.2 (Confluence page 576978945, Confluence version 11), section 6.3 (contextual bias); 10 Phase 1 (context parameter), read on 25 August 2026.\n\nAUTOMATION: Not available on Build to test Yet - Last checked 8/25/2026",
+    "expected": "1. With the customer context, assets and work orders owned by that customer are boosted in the ranking versus the no-context call.\n2. The context parameter takes an optional {type, id} for page-context bias.\n\n---\nThis is the expected behaviour as per epic SV-9160 and the Global Search - Product Requirements specification version 1.2 (Confluence page 576978945, Confluence version 12), section 6.3 (contextual bias); 10 Phase 1 (context parameter), read on 26 August 2026.\n\nAUTOMATION: Not available on Build to test Yet - Last checked 8/25/2026",
     "design_ref": "requirements.md 6.3, 10 Phase 1 (context optional {type,id} for page-context bias)",
     "spec_ref": "requirements.md 6.3 (contextual bias); 10 Phase 1 (context parameter)",
     "viu_status": "VIU-Pending",
@@ -368,7 +368,7 @@
       "2. Send GET /user/recent-entities.",
       "3. Inspect the returned list and its time bucketing."
     ],
-    "expected": "1. POST /user/recent-entities/touch records the touch (HTTP 2xx).\n2. GET /user/recent-entities returns the recently touched records, retained for 30 days.\n3. The results support bucketing into Today / Yesterday / Past week / Past 30 days at render time.\n\n---\nThis is the expected behaviour as per epic SV-9160 and the Global Search - Product Requirements specification version 1.2 (Confluence page 576978945, Confluence version 11), section 8 (persist recent-entity-views 30 days); 10 Phase 4, read on 25 August 2026.\n\nAUTOMATION: Not available on Build to test Yet - Last checked 8/25/2026",
+    "expected": "1. POST /user/recent-entities/touch records the touch (HTTP 2xx).\n2. GET /user/recent-entities returns the recently touched records, retained for 30 days.\n3. The results support bucketing into Today / Yesterday / Past week / Past 30 days at render time.\n\n---\nThis is the expected behaviour as per epic SV-9160 and the Global Search - Product Requirements specification version 1.2 (Confluence page 576978945, Confluence version 12), section 8 (persist recent-entity-views 30 days); 10 Phase 4, read on 26 August 2026.\n\nAUTOMATION: Not available on Build to test Yet - Last checked 8/25/2026",
     "design_ref": "requirements.md 10 Phase 4 (GET /user/recent-entities; POST /user/recent-entities/touch)",
     "spec_ref": "requirements.md 8 (persist recent-entity-views 30 days); 10 Phase 4",
     "viu_status": "VIU-Pending",
@@ -392,7 +392,7 @@
       "2. Observe how many GET /api/search calls are sent while typing.",
       "3. Pause typing and observe."
     ],
-    "expected": "1. The backend is not queried on every keystroke; input is debounced (about 150ms) so a request fires after a short pause.\n2. Grouped results render quickly once the response arrives (target within about 200ms at p95).\n\n---\nThis is the expected behaviour as per epic SV-9160 and the Global Search - Product Requirements specification version 1.2 (Confluence page 576978945, Confluence version 11), section 8 (debounce input at 150ms; render within 200ms p95), read on 25 August 2026.\n\nAUTOMATION: Not available on Build to test Yet - Last checked 8/25/2026",
+    "expected": "1. The backend is not queried on every keystroke; input is debounced (about 150ms) so a request fires after a short pause.\n2. Grouped results render quickly once the response arrives (target within about 200ms at p95).\n\n---\nThis is the expected behaviour as per epic SV-9160 and the Global Search - Product Requirements specification version 1.2 (Confluence page 576978945, Confluence version 12), section 8 (debounce input at 150ms; render within 200ms p95), read on 26 August 2026.\n\nAUTOMATION: Not available on Build to test Yet - Last checked 8/25/2026",
     "design_ref": "requirements.md 8 (debounce input at 150ms); 9 (p95 latency)",
     "spec_ref": "requirements.md 8 (debounce input at 150ms; render within 200ms p95)",
     "viu_status": "VIU-Pending",
