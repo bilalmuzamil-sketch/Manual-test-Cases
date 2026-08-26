@@ -70,3 +70,21 @@ rather than guess, which is the SV-8815 lesson applied.
 QA branch `sv7822` — disposable, no cleanup required. purchase_price on 167846ed was moved 0.01 → 0.02
 → 0.01 (restored). The seeded duplicate `…7822` was **left in place** per Slavcho's note so others can
 still look. No foreign data, no new records.
+
+## Posted to Jira — comment 75665 (2026-08-26), with annotated UI screenshots
+
+Posted a PASS on SV-7822, written in the human QA voice required by Standing Rule 65 (no AI
+fingerprint). Per the QA lead's instruction, the comment **opens with a question to the developer**:
+the failure is no longer reproducible on the QA branch after the fix — can he confirm that deploying
+to production will also resolve it for the client (502 Equipment) given their existing data; if yes,
+move to Ready for Prod.
+
+Contents: the pass result, environment, reproduction steps a manual tester follows to reproduce the
+**success**, three annotated screenshots (the two-row broken state · the Edit Inventory Part dialog
+open on the real row with Catalog part unchanged · the save succeeding with no error), and technical
+details (the `parts/change` 201, PR #2683's targeted check, and the still-working guard).
+
+Screenshots captured live in a headless browser on `sv7822.qa.shopview.com` (a minimal MITM bridge
+tunnelled Chromium through the agent proxy), committed under `evidence/ui/`, embedded as ADF external
+media (raw.githubusercontent URLs verified 200 before posting). This is the first Jira comment done
+under Rule 65's annotated-screenshot requirement.
