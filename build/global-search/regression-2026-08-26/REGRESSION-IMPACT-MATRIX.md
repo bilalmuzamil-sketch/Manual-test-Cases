@@ -69,3 +69,7 @@ questions below — not an assumption that "the rest is fine".
 | Answers to PO-REG-1..6 (PO-DECISION-REGISTER.md) | Branko / PO | firming 5 flagged regression cases + the C-1 collateral risk | 2026-08-26 |
 | Go-ahead to push the regression suite to TestRail (new section + run) | QA lead | putting the 20 cases live for execution | 2026-08-26 |
 | A QA build of GS V2 | — | build-verifying all 20 (Rule 85) | 2026-08-26 |
+
+## APPLIED 2026-08-26
+- 20 regression cases pushed to TestRail section **6769** ("Global Search V2 - V1 Regression Suite", under group 6720); id-map backfilled 20/20.
+- Added into run **R415** (110 -> **130** tests) and assigned to **Bilal Muzamil**. No cases deleted.
