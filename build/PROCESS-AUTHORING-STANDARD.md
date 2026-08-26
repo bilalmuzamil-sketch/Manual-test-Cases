@@ -64,7 +64,7 @@
     `build/skills/TOKEN-DISCIPLINE-CHARTER.md`. **A handoff without it is NON-COMPLIANT and MUST NOT
     BE ISSUED.** Where a handoff already has a token/quota section, **merge into it, never duplicate**.
     Routers and other skills take the charter **by pointer only**. Authority:
-    `build/rules/RULES-61-95.md`.
+    `build/rules/RULES-61-96.md`.
 
 ## The one-page checklist (tick every box)
 - [ ] Read the raw transcript; listed every relevant user turn + correction.

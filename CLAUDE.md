@@ -20,7 +20,7 @@ The previous CLAUDE.md was **738 KB / roughly 183,000 tokens**, and it was **TRU
 AT RULE 62**. Sessions were therefore running with **Rules 63–88 SILENTLY ABSENT** while believing
 they had read the whole file. A rule you have never seen is a rule you will break.
 
-**THEREFORE: NEVER ASSUME YOU HAVE SEEN ALL THE RULES.** There are **95 numbered Standing Rules**.
+**THEREFORE: NEVER ASSUME YOU HAVE SEEN ALL THE RULES.** There are **96 numbered Standing Rules**.
 Count them in the index below. If you are
 about to apply a rule, open its file and read it. **NEVER read
 `build/rules/CLAUDE-FULL-ARCHIVE-2026-08-21.md` whole** — it will exhaust your context exactly as the
@@ -91,7 +91,7 @@ These are stated here **in full** because a session that gets only this far must
 
 ---
 
-## 2 · THE RULE INDEX — all 95 rules, and where each one lives
+## 2 · THE RULE INDEX — all 96 rules, and where each one lives
 
 **Read the rule in its file before applying it.** One line per rule; the line is a locator, not the
 rule. Generated from the split files' own headers.
@@ -172,7 +172,7 @@ rule. Generated from the split files' own headers.
 | **59** | RE-READ THE SOURCES IMMEDIATELY BEFORE THE WRITES BEGIN — a second currency check, not only the |
 | **60** | THE BUILD WILL NEVER BE DECLARED FINAL — SEPARATE WHAT DEPENDS ON THE BUILD FROM WHAT DOES NOT |
 
-### `build/rules/RULES-61-95.md` — rules 61–95
+### `build/rules/RULES-61-96.md` — rules 61–96
 
 | # | Rule (short title) |
 |---|---|
@@ -211,8 +211,9 @@ rule. Generated from the split files' own headers.
 | **93** | THE LEARNING LOOP — EVERY PROJECT ENDS WITH A RETRO THAT PROPOSES RULE AND SKILL IMPROVEMENTS (it PROPOSES; Rule 72 records) |
 | **94** | THE DEFECT ADMISSIBILITY GATE — NO TICKET IS FILED UNTIL IT PASSES EVERY CHECK, AND THE LANE'S OUTPUT IS APPROVED CANDIDATES, NOT FILED TICKETS |
 | **95** | THE TOKEN-DISCIPLINE CHARTER IS CARRIED BY EVERY SESSION AND EVERY HANDOFF — AND QUALITY IS NEVER WHAT GETS CUT |
+| **96** | A V2 / UPGRADE PROJECT MUST DERIVE AND TEST THE INVARIANT SET — WHAT THE SPEC DOES NOT MENTION IS STILL A REQUIREMENT |
 
-**Rule 95 (the Token-Discipline Charter)** was added 2026-08-26 in `build/rules/RULES-61-95.md`. Its
+**Rule 95 (the Token-Discipline Charter)** was added 2026-08-26 in `build/rules/RULES-61-96.md`. Its
 canonical one-page operator form is **`build/skills/TOKEN-DISCIPLINE-CHARTER.md`** — twelve clauses
 (strategy first · never bulk-read, script it · the reading rule · spawn discipline · never poll · batch
 writes · piggyback cheap checks · never re-do work · answer in text · the budget · the week-start guard ·
@@ -220,8 +221,20 @@ writes · piggyback cheap checks · never re-do work · answer in text · the bu
 applies them from its first turn; a handoff without them is non-compliant and must not be issued.**
 Routers take it by pointer only.
 
+**Rule 96 (the V1→V2 invariant set)** was added 2026-08-26 in `build/rules/RULES-61-96.md`, which was
+renamed on the same day from its previous 61-to-95 filename. Operator form:
+**`build/skills/17-REGRESSION-IMPACT-V1-TO-V2.md`**. **A V2 spec describes only what CHANGES and is
+SILENT about everything else, so a V2 build can break a V1 behaviour with every case still passing.**
+Derive **INVARIANTS = V1 baseline − (changed ∪ removed ∪ replaced)**; **silence defaults to "must not
+change"**, and a **high-collateral-risk silence is escalated as a PO question, never assumed**.
+**Documents establish INTENT; product source code establishes FACT and is NEVER a source of expectation
+(57) — a code-vs-document conflict is a PO DECISION ITEM, never a silent invariant, and the case is HELD
+(58).** Superseded V1 cases are **retired or rewritten, never preserved** (94). The project type is asked
+at intake — **(i) NEW · (ii) V2/UPGRADE · (iii) REVIVAL** — in `build/skills/15-NEW-PROJECT-INTAKE.md`
+§1a, and **type (ii) triggers the skill**.
+
 **Rules 89 (access resilience + MCP hygiene) and 90 (shared-quota budget allocation)** were added
-2026-08-21 and live in `build/rules/RULES-61-95.md` with 61–88. Rule 89's operator form is
+2026-08-21 and live in `build/rules/RULES-61-96.md` with 61–88. Rule 89's operator form is
 `build/skills/14-ACCESS-RESILIENCE.md`.
 
 **Rule 91 (the verification freshness badge)** was added 2026-08-21 in the same file. **Its second
@@ -415,7 +428,7 @@ Compact form — **the rule named in brackets is the authority; read it before r
 | Standing Rules 1–20 (full text) | `build/rules/RULES-01-20.md` |
 | Standing Rules 21–40 (full text) | `build/rules/RULES-21-40.md` |
 | Standing Rules 41–60 (full text) | `build/rules/RULES-41-60.md` |
-| Standing Rules 61–95 (full text) | `build/rules/RULES-61-95.md` |
+| Standing Rules 61–96 (full text) | `build/rules/RULES-61-96.md` |
 | Per-project narrative history (projects 1–7) | `build/rules/PROJECT-HISTORY-ARCHIVE.md` |
 | Byte-verification hashes for the split | `build/rules/INTEGRITY.md` |
 | Staging/QA/prod action recipes, TestRail traps | `build/APP-ACTIONS-PLAYBOOK.md` |

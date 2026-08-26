@@ -27,7 +27,7 @@ CLAUDE.md into `build/rules/`. Nothing was deleted; the whole former file is arc
 - `build/rules/RULES-01-20.md` — rules 1-20 (20 rules)
 - `build/rules/RULES-21-40.md` — rules 21-40 (20 rules)
 - `build/rules/RULES-41-60.md` — rules 41-60 (20 rules)
-- `build/rules/RULES-61-95.md` — rules 61-95 (35 rules; 89-90 added 2026-08-21, 91-93 added 2026-08-21, **94 and 95 added 2026-08-26**)
+- `build/rules/RULES-61-96.md` — rules 61-96 (**36 rules**; 89-90 added 2026-08-21, 91-93 added 2026-08-21, **94 and 95 added 2026-08-26, 96 added 2026-08-26**). **The file carried the old 61-to-95 filename until 2026-08-26**, when Rule 96 was appended and it was renamed by `git mv`; every reference in the repo was updated in the same commit, so a grep for the old filename must return nothing.
 - `build/rules/PROJECT-HISTORY-ARCHIVE.md` — the 7 per-project narrative blocks
 - `CLAUDE.md` — rewritten as a loadable INDEX (see its READ THIS FIRST header)
 
@@ -40,11 +40,11 @@ CLAUDE.md into `build/rules/`. Nothing was deleted; the whole former file is arc
 (a) a rebase or merge resurrecting the pre-restructure content, (b) a worker re-appending full rule
 bodies into the index instead of editing `build/rules/`, or (c) a project-index refresh rewriting the
 whole file from a stale copy. **Do not commit it.** Repair it from `build/rules/`: the full rule texts
-live in `RULES-01-20.md` / `RULES-21-40.md` / `RULES-41-60.md` / `RULES-61-95.md`, the per-project
+live in `RULES-01-20.md` / `RULES-21-40.md` / `RULES-41-60.md` / `RULES-61-96.md` (**rules 1..96**), the per-project
 narratives in `PROJECT-HISTORY-ARCHIVE.md`, and the verbatim pre-split file in
 `CLAUDE-FULL-ARCHIVE-2026-08-21.md` (sha256 recorded above — verify it before relying on it).
 
-**Before overwriting CLAUDE.md, assert first that nothing would be lost:** every rule 1..95 has a body
+**Before overwriting CLAUDE.md, assert first that nothing would be lost:** every rule 1..96 has a body
 in a `RULES-*.md` file (both directions), and the archive's sha256 still matches the value recorded
 above. If either check fails, STOP and report rather than overwrite.
 

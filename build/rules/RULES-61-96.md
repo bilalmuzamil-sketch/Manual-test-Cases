@@ -1,9 +1,9 @@
-# ShopView QA — Standing Rules 61–95
+# ShopView QA — Standing Rules 61–96
 
-This file holds the FULL, VERBATIM text of Standing Rules 61–95.
+This file holds the FULL, VERBATIM text of Standing Rules 61–96.
 
 Full archive: build/rules/CLAUDE-FULL-ARCHIVE-2026-08-21.md
-Index: CLAUDE.md (rule index table). Other rule files: build/rules/RULES-01-20.md, build/rules/RULES-21-40.md, build/rules/RULES-41-60.md, build/rules/RULES-61-95.md
+Index: CLAUDE.md (rule index table). Other rule files: build/rules/RULES-01-20.md, build/rules/RULES-21-40.md, build/rules/RULES-41-60.md, build/rules/RULES-61-96.md
 
 **Read the rule you are about to apply here, in full — the index is not the rule.**
 
@@ -2028,3 +2028,113 @@ Index: CLAUDE.md (rule index table). Other rule files: build/rules/RULES-01-20.m
     window), 78 (piggyback cheap checks), 79 (strategy first), 80 (say the last-done date and ask), 86
     (verify from committed evidence, not self-report) , 88 (lane-session context discipline) and 90
     (the shared-quota budget allocation).
+
+96. **A V2 / UPGRADE PROJECT MUST DERIVE AND TEST THE INVARIANT SET — WHAT THE SPEC DOES NOT MENTION
+    IS STILL A REQUIREMENT (all projects, permanent).**
+    **ORIGIN — THE QA LEAD, 2026-08-21, VERBATIM:** *"I have no way to know what should not be changed
+    in V1 due to V2 specially when V2 is not asking to change it."*
+    **AND ON THE CODE-VS-DOCUMENT CONFLICT, VERBATIM:** *"Good Question you should always ask this
+    question. But in this case I will raise a question in the meeting or if we create ticket with the
+    reference that current behavior is this and V2 is changing it in that case the PO can decide which
+    behavior to keep."*
+    **THE PROBLEM IN ONE LINE.** We author cases for **V2 of an existing feature**, but a **V2 spec
+    only describes what CHANGES — it is SILENT about everything else.** Nothing in our process
+    converted that silence into tests, so **a V2 build could silently break a V1 behaviour and every
+    case we hold would still pass.** A green suite would be reporting a regression as success. This is
+    not a gap in diligence; it is a gap in the METHOD, and no amount of care applied to the V2 delta
+    closes it, because the delta is not where the damage is.
+    **THE RULE.** **Whenever the assigned project is a V2, an upgrade, a re-work or a re-design of an
+    existing feature, the pass MUST derive and test the INVARIANT SET before or alongside authoring the
+    V2 delta cases** — never after, because a matrix written after the cases is written to fit them.
+    The operator form is **`build/skills/17-REGRESSION-IMPACT-V1-TO-V2.md`**, and the project type is
+    established at intake by the **§1a PROJECT-TYPE question** of
+    `build/skills/15-NEW-PROJECT-INTAKE.md`: **(i) NEW feature · (ii) V2 / UPGRADE of an existing
+    feature · (iii) REVIVAL of an existing workspace project.** **Type (ii) triggers this rule** and
+    additionally requires the **V1 project's slug**, the **V1 spec with its version**, and the
+    **existing V1 case set** as inputs (Rule 1 — work does not start on a half-set). **The type is
+    ASKED, never inferred from the project's name.** The process needs **NO BUILD and NO APP COOKIES**
+    — it is document + case + code analysis, so a blocked login or a missing QA branch does not block
+    it (Rules 68 and 85).
+    **THE ARITHMETIC — INVARIANTS = V1 BASELINE − (CHANGED ∪ REMOVED ∪ REPLACED).** Enumerate what V1
+    does today; map every V2 statement onto it as **CHANGED / REMOVED / REPLACED / SILENT** with the
+    **verbatim V2 quote wherever V2 speaks** (Rule 25); everything left over is an **INVARIANT — a
+    behaviour that must still work after V2 — and it gets a regression case.**
+    **SILENCE DEFAULTS TO "MUST NOT CHANGE" — AND HIGH-COLLATERAL-RISK SILENCE IS ESCALATED, NEVER
+    ASSUMED.** The default is safe for a behaviour V2 goes nowhere near. It is **not** safe where V2
+    touches the **same screen, component, API, data model, permission check or shared pipeline** — that
+    is a **DANGEROUS SILENCE**, and it is **raised as a PO question**, not silently converted into an
+    assertion we will later defend. Which silences are dangerous is a **factual dependency question**,
+    answerable from the product source code and from the developer: what does V2 touch, and what else
+    depends on it.
+    **DOCUMENTS ESTABLISH INTENT. CODE ESTABLISHES FACT. THEY ANSWER DIFFERENT QUESTIONS AND MUST NOT
+    BE CONFUSED.** **DOCUMENTS** — the V1 spec/PRD with its version, the V1 epic's stories and
+    acceptance criteria, the PO's answers, the designs — are **AUTHORITATIVE for what V1 SHOULD do**
+    (Rule 57). **OUR OWN REPO IS A FIRST-CLASS V1 SOURCE**: the existing V1 TestRail cases and their
+    bodies, `build/<project>/requirements.md`, spec exports, PO answer files, design-review docs and
+    `PROJECT-STATE.md`. **A V1 case DERIVED from V1 documents carries a Rule-54 provenance line, and
+    those count as DOCUMENTED INVARIANTS**; a case whose provenance is **missing or vague is a
+    CANDIDATE invariant only** and must be confirmed (Rule 64). **But our V1 cases are what we TESTED,
+    not everything V1 DOES** — coverage gaps are **invisible invariants**, so the case baseline is
+    **NECESSARY BUT NOT SUFFICIENT**. **PRODUCT SOURCE CODE** — the application repository's current
+    release/develop branch, its composables, components, handlers and existing E2E tests — establishes
+    **what the system CURRENTLY DOES**. It is **excellent** for exhaustively enumerating current
+    behaviour (every branch, permission gate and edge case, far beyond our test coverage) and using it
+    for a **REGRESSION baseline is legitimate**, because a regression baseline is a question of fact.
+    **BUT CODE IS NEVER A SOURCE OF EXPECTATION (Rule 57).** The danger is exact: **if the code contains
+    a bug, code-derived "current behaviour" would become an invariant we actively protect** — a
+    regression case asserting that **the bug must survive V2**. **PRODUCTION OBSERVATION** may surface
+    undocumented behaviours users rely on; those are **CANDIDATE invariants needing PO confirmation,
+    never expectations in themselves.**
+    **A CODE-VS-DOCUMENT CONFLICT IS A PO DECISION ITEM, NEVER A SILENT INVARIANT.** Code **agrees**
+    with the documents ⇒ **STRONG INVARIANT, write the regression case** (citing the document, not the
+    code). Code **contradicts** the documents ⇒ **a FINDING**: it goes to the **PO DECISION REGISTER**
+    with what the system does today (evidence), what the V1 document says (**verbatim + version +
+    link**), what V2 says or that V2 is **SILENT**, the options, and **our recommendation — which is a
+    recommendation, never a decision.** **ASK THIS QUESTION ON EVERY CODE-DERIVED BEHAVIOUR** — that is
+    the QA lead's directive quoted above, and his ruling on the consequence is equally explicit: he
+    raises it in the meeting, or a ticket states that the current behaviour is X and V2 changes it to
+    Y, **and the PO decides which behaviour to keep. WE DO NOT DECIDE IT.** **The affected case is HELD
+    until the decision (Rule 58) and is never resolved by looking at the build.** Once the decision is
+    given the case is written **to the decision** and carries the **Rule-56 divergence sentence**
+    naming the decision, its source and its date.
+    **SUPERSEDED V1 CASES ARE RETIRED OR REWRITTEN, NOT PRESERVED.** Where V2 **deliberately** changes
+    or removes a V1 behaviour, every V1 case asserting the old behaviour is listed by `C#####` + link
+    and proposed for **REWRITE or RETIRE** — a proposal, because nothing is changed or deleted in
+    TestRail without explicit permission (Rule 6), an `Automated` case is held for the QA lead (Rules
+    71/65), a foreign case is reported and never edited (Rule 38), and touching a case means
+    re-verifying the whole case (Rule 41). **WORKED EXAMPLE:** *global search must no longer include
+    page search, because page search has been separated out.* *"Page search results appear in global
+    search"* is therefore **NOT an invariant** — it is REPLACED. A regression case asserting it would
+    **generate a defect against intended behaviour** and be **refused as obsolete**, which is precisely
+    what Rule 94's admissibility gate exists to prevent. **A regression suite that protects what V2 was
+    commissioned to remove is a defect factory, not caution.**
+    **THE HONEST LIMIT, STATED IN THE DELIVERABLE.** **Undocumented, untested, code-invisible
+    behaviours cannot be fully enumerated.** The documents describe intent rather than behaviour, our
+    cases cover what we chose to test, and code analysis surfaces only what the code makes visible. **No
+    baseline built from the three is provably complete, and this rule does not pretend otherwise.**
+    **WHAT PROTECTS US IS THE WRITTEN, PO-REVIEWED INVARIANT LIST PLUS THE DATED QUESTIONS WE ASKED** —
+    the invariants are on paper, they were reviewed by the person entitled to decide them, and every
+    silence we judged dangerous was asked about in writing on a stated date. That is a defensible
+    position; *"we assumed the rest was fine"* is not. **The limit is a DISCLOSURE, never a discount:**
+    it may not be used to justify a thinner baseline, a sampled matrix or a skipped escalation (Rule 50,
+    Rule 95 clause 12).
+    **WHERE THE CODE IS NOT AVAILABLE TO THE SESSION**, say so plainly in the deliverable, mark the
+    code column **NOT AVAILABLE** (never blank, never guessed, never inferred from visible behaviour —
+    Rule 12), and raise it as an **OUTSTANDING** item with the four Rule-36 fields. The pass still runs;
+    the honest limit is correspondingly larger and the deliverable says so.
+    **DELIVERABLES.** `build/<project>/regression-impact-<date>/REGRESSION-IMPACT-MATRIX.md` (one row
+    per V1 behaviour: behaviour in plain words · where V1 guarantees it, doc + version + anchor and/or
+    C-id + link · what the code does today, file → function · V2 says CHANGED/REMOVED/REPLACED/SILENT
+    with the verbatim quote · COLLATERAL RISK HIGH/MED/LOW naming what is shared · DECISION · where it
+    went), `PO-DECISION-REGISTER.md`, `RETIRE-OR-REWRITE-LIST.md`, the regression case set (each marked
+    as a regression case, each tracing to its V1 source in its provenance line), the PO question sheet
+    rows (Rule 66 — the sheet goes last), and an **OUTSTANDING** section (Rule 36).
+    Ties to Standing Rules 1 (never start on a half-set — the three type-(ii) inputs), 12 (verified
+    means observed, never inferred), 20 (every case traceable to its ticket + spec), 25 (verbatim
+    citation on every deviation call), 32 (latest information wins), 40 (a requirement spanning surfaces
+    is traced across every surface), 43 (a per-requirement verdict, never a narrative), 45 (the
+    outside-in gap hunt — the same instinct, pointed at V1), 56 (the divergence sentence), 57 (the
+    source of expectation is the document, never the build — and never the code), 58 (an ambiguous
+    source is never resolved by looking at the build — hold and ask), 64 (every case must have a source;
+    check before concluding it has none), 66 (the PO sheet is the last thing sent) and 94 (the defect
+    admissibility gate — why an obsolete regression case is a liability).

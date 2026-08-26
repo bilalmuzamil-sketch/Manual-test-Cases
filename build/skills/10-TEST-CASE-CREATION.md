@@ -35,7 +35,7 @@
 - **AFTERWARDS you MAY and SHOULD consult ANY document the task in hand needs** —
   `build/APP-ACTIONS-PLAYBOOK.md`, any `build/*-PROCESS.md`, `build/PROCESS-CATALOG.md`, a project's
   `PROJECT-STATE.md`, `build/rules/RULES-01-20.md` / `RULES-21-40.md` / `RULES-41-60.md` /
-  `RULES-61-95.md`, a past findings or audit file. **No document is off-limits to you.**
+  `RULES-61-96.md`, a past findings or audit file. **No document is off-limits to you.**
 - **BUT ALWAYS IN A TARGETED, BOUNDED WAY:** `grep -n` for the exact thing you need, or `sed -n
   '<start>,<end>p'` a bounded slice. **NEVER a bulk read "to get oriented" · NEVER a whole large
   file · NEVER `CLAUDE.md` end to end · NEVER `build/rules/CLAUDE-FULL-ARCHIVE-2026-08-21.md`.**
@@ -90,7 +90,7 @@ not action it, and it does not enter another lane's territory to fix it.
 | **11** | **ASK which process(es) to run** on any new or updated source |
 | **1** | Never start on a half-spec — **stop and ask** for the missing inputs |
 
-Full texts: `build/rules/RULES-01-20.md` · `RULES-21-40.md` · `RULES-41-60.md` · `RULES-61-95.md`.
+Full texts: `build/rules/RULES-01-20.md` · `RULES-21-40.md` · `RULES-41-60.md` · `RULES-61-96.md`.
 **Read the rule you are about to apply, in full. An index is not a rule.**
 
 ---
@@ -113,7 +113,7 @@ Full texts: `build/rules/RULES-01-20.md` · `RULES-21-40.md` · `RULES-41-60.md`
   writes, piggyback cheap checks (78), never re-do work (77/80), answer in text, the budget (90), the
   week-start guard, and **clause 12: quality is never the thing cut**. **This router holds no substance
   — read the charter itself; it supersedes the Rule 88 / Rule 90 lines this section used to carry.**
-  Every handoff embeds the same twelve clauses in full. Rule text: `build/rules/RULES-61-95.md`.
+  Every handoff embeds the same twelve clauses in full. Rule text: `build/rules/RULES-61-96.md`.
 - **Rule 91** — every verification claim in your report carries a **freshness badge with its date**:
   **✅ ≤ 7 days · 🟠 8–14 days · 🔴 > 14 days · ❌ never verified**. A bare tick is non-compliant.
   Tool: `build/testing-tools/verification_badge.py` (requires `--today`).

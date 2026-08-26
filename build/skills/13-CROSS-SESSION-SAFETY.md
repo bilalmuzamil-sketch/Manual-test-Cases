@@ -221,7 +221,7 @@ script it (88); the reading rule (targeted and bounded, never off-limits); spawn
 poll (75); batch writes; piggyback cheap checks (78); never re-do work (77/80); answer in text; the budget
 (90); the week-start guard; and **clause 12 — quality is never the thing cut.** **Every handoff embeds the
 twelve clauses verbatim; a handoff without them is non-compliant and must not be issued.** Rule text:
-`build/rules/RULES-61-95.md`.
+`build/rules/RULES-61-96.md`.
 
 ---
 
@@ -243,7 +243,7 @@ twelve clauses verbatim; a handoff without them is non-compliant and must not be
 > **Standing Rule 90 — the weekly quota is ONE shared pool:** main/orchestrator **15 %** · each lane
 > **25 %** · **10 % reserve**. **Report your spend with your work**; at **50 % of your own budget**
 > compare spend against work completed and **STOP AND REPORT if spend is outpacing progress**; **never
-> consume the reserve without the QA lead's say-so.** Full texts: `build/rules/RULES-61-95.md`.
+> consume the reserve without the QA lead's say-so.** Full texts: `build/rules/RULES-61-96.md`.
 
 ## CLAUDE.md size guard
 
