@@ -3732,6 +3732,42 @@ deliver the 7-tab management report.
     loss — a cheap run is also a resumable one), 31/59 (source currency — the cheapest check that can
     end a task), 49/60 (a redeploy re-checks three layers, not the whole suite — the economical form of
     a re-check) and 50 (**the rule this one must never be read as weakening**).
+64. **EVERY UI TEST SHIPS ANNOTATED BEFORE-AND-AFTER SCREENSHOTS — no exceptions (all projects).**
+    USER DIRECTIVE (2026-08-26, verbatim): *"make sure that you MUST always have the annotated
+    screenshots for the UI testing make it a rule"* — reinforcing his standing instructions across this
+    engagement: *"I always need Before and AFTER screenshots. Only one screenshot would not work for
+    anything"* and *"I need annotated screenshots which tell what the problem is where actually the
+    problem is."*
+    **THE RULE:** whenever a test is verified **through the UI**, the evidence MUST include
+    **annotated screenshots**, and where the test asserts a change (a save, a state flip, a value, a
+    permission gate) it MUST be a **BEFORE and an AFTER** — a single screenshot proves nothing about a
+    change. **Annotated** means boxes/arrows/captions drawn **on the image** pointing at the actual
+    values being evidenced (PIL over real element geometry from `getBoundingClientRect`; captions
+    placed so they never cover the value — see the deliverable-conventions Jira rules and the SV-8815
+    exhibits). A bare screenshot the reader must interpret does not satisfy this.
+    **SCOPE — when it binds and when it doesn't:** it binds to **any verification driven through the
+    screen** (a dialog, a grid, a form, a permission gate, a calculation shown to the user). It does
+    **NOT** manufacture UI work where none is warranted: an **API-surface** defect tested at the
+    endpoint (Rule 63(a)) has no UI step, so its evidence is the **verbatim timestamped transcript**
+    (SV-7760, SV-7822, SV-9246), not invented screenshots — the QA lead himself acknowledged this
+    2026-08-26: *"I know this ticket is about API and not related to the UI."* **Deciding a defect is
+    API-only to skip the browser is a judgement made from the ticket + Rule 63(a), never a shortcut to
+    dodge screenshots** — if a real user reaches the behaviour through a screen, that screen is in
+    scope and owes before/after annotated shots.
+    **A UI verdict delivered without them is INCOMPLETE** — the same standing the Jira comment-format
+    rule already gives inline images as mandatory evidence. Where a genuine before/after needs a second
+    environment (e.g. a fix branch only shows the "after"), say so and either capture the "after" now +
+    obtain the "before" env, or state plainly that the before/after is pending that env — never pass a
+    single-state screenshot off as a before/after.
+    **RATIONALE, 2026-08-26:** across this engagement the QA lead repeatedly required before/after
+    annotated screenshots (SV-8815, SV-8781), and restated it as a permanent rule while unblocking
+    SV-9246. Ties to Standing Rules 7 (plain, reader-usable evidence), 9 (build-accurate labels — the
+    screenshot shows the real screen), 12/13 (observed live, with evidence captured that run), 22 (ask
+    for the live check + access up front — a UI test needs browser access), 25 (annotate the exact
+    values, quoted from the screen), 50 (the evidence is exhaustive and exact) and 63 (be cheap — but
+    never by dropping evidence a UI verdict requires; the cost check picks the harness, it does not
+    excuse a UI test of its screenshots), plus the Jira comment/ticket deliverable-format conventions
+    (inline annotated images mandatory).
 
 ## Project purpose (Custom Roles project)
 Manual test-case authoring + live staging (Verify-in-UI) verification + TestRail

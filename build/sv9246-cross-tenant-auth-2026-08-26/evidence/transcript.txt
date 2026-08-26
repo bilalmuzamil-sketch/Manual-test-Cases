@@ -1,0 +1,19 @@
+==========================================================================
+SV-9246 CROSS-TENANT TEST  A=org d55bc308  B=org 37aa0f4a  sv9246
+==========================================================================
+[17:13:48Z] build etag: "b1ad2217b3cf29ac7760d87cb5cf9035"
+[17:13:49Z] ORG A baseline: payment db723238 present=True  (account holds 3 payment(s))
+
+--- CROSS-TENANT READS from ORG B against ORG A data (expect refused) ---
+[17:13:49Z] B reads A's payment list  -> 200  rows=0  A-payment visible=False
+[17:13:50Z] B reads A customer/account -> 400  {"errors": [{"companyId": "Not found"}]}
+
+--- CROSS-TENANT MUTATION: ORG B reverses ORG A's payment (expect refused) ---
+[17:13:50Z] B POST reverse-customer-payment {id:A_PAY} -> 500  {"errors": [{"error": "An error occurred. We're sorry for this inconvenience, please try again a bit later later."}, {"r
+          => refused (expected if fixed)
+
+--- VERIFY ORG A's payment is UNCHANGED (checked from A's own session) ---
+[17:13:51Z] ORG A after: payment db723238 still present & unreversed=True  (holds 3)
+
+VERDICT: PASS - no cross-tenant read, no cross-tenant mutation, org A data intact
+[17:13:51Z] build etag (end): "b1ad2217b3cf29ac7760d87cb5cf9035"
