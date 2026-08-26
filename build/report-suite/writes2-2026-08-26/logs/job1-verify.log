@@ -1,0 +1,32 @@
+
+==============================================================================
+C30287 | CSV cells: plain numbers, signed Labor Delta, empty Margin %, (Inactive) | re-GET HTTP 200
+  custom_preconds: PASS [CHANGED - stored == sent (after TestRail normalisation)]
+      want sha=a64ded5d45b23a7f len=381 | got sha=a64ded5d45b23a7f len=381
+  custom_steps: PASS [CHANGED - stored == sent (after TestRail normalisation)]
+      want sha=decae0f9bf8b4f1c len=252 | got sha=decae0f9bf8b4f1c len=252
+  custom_expected: PASS [CHANGED - stored == sent (after TestRail normalisation)]
+      want sha=611cfcbdf4e1545f len=1653 | got sha=611cfcbdf4e1545f len=1653
+  custom_atmstatus: PASS (= 3, 3 = Automated)
+  AUTOMATION marker: PASS - byte-identical
+      before ['AUTOMATION: READY']
+      after  ['AUTOMATION: READY']
+  title unchanged: PASS
+  C30287 OVERALL: PASS
+
+==============================================================================
+C30518 | Export notifications: success caption, "Empty export" warning | re-GET HTTP 200
+  custom_preconds: PASS [OMITTED - preserved byte-identical]
+      want sha=4169ddce2281e3a8 len=594 | got sha=4169ddce2281e3a8 len=594
+  custom_steps: PASS [OMITTED - preserved byte-identical]
+      want sha=72e73fcb9db0fa80 len=267 | got sha=72e73fcb9db0fa80 len=267
+  custom_expected: PASS [CHANGED - stored == sent (after TestRail normalisation)]
+      want sha=b6e3b2071d5939a6 len=1091 | got sha=b6e3b2071d5939a6 len=1091
+  custom_atmstatus: PASS (= 3, 3 = Automated)
+  AUTOMATION marker: PASS - byte-identical
+      before ['AUTOMATION: Not available on Build to test Yet - Last checked 8/17/2026']
+      after  ['AUTOMATION: Not available on Build to test Yet - Last checked 8/17/2026']
+  title unchanged: PASS
+  C30518 OVERALL: PASS
+
+JOB 1 BYTE VERIFICATION: ALL PASS

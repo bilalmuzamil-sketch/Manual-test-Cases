@@ -96,3 +96,24 @@ byte-identical to before our write. **—** = we did not touch it this session.
 Vlad has queued them for automation; our later edits preserved the value (we never sent the field). All 20 (all edited by us this session,
 value untouched): C29925, C29927, C29928, C29931, C29932, C29936, C29937, C29939, C29943, C29944,
 C29948, C29950, C29951, C29952, C29954, C30039, C30040, C30042, C30043, C30046.
+
+---
+
+## 2026-08-26 — TWO Automated cases rewritten under the QA lead's explicit per-case approval (Rule 65 / Rule 71)
+
+**For Vladimir Tomovic.** These are the **only two** `custom_atmstatus = 3` cases touched on
+2026-08-26. Both were re-read whole (Rule 41), re-derived from the CURRENT live specification,
+and byte-verified by a re-GET (Rule 50). **`custom_atmstatus` is still 3 on both** and **the
+AUTOMATION marker line was left byte-identical on both** — the marker was not moved, reworded or
+re-flagged. Titles were not changed. **Please re-check the automations for these two.**
+
+| Project | C-id | Link | atmstatus | Marker (unchanged) | What changed, in plain words |
+|---|---|---|---|---|---|
+| Report Suite | C30287 | [open](https://shopview.testrail.io/index.php?/cases/view/30287) | 3 | `AUTOMATION: READY` | Sales By Representative CSV cell formatting. The report gained a **Shop Supplies** money column, and the rule for when the Margin % cell is left empty changed. The test used to say the Margin % cell is empty when **Subtotal** is zero or less; it now says the cell is empty when the **Margin base** (Labor Invoiced + Parts Invoiced + Adjustments, i.e. Subtotal minus Shop Supplies) is zero or less. The preconditions and steps now also ask the tester to read a Shop Supplies cell, and the money-formatting rule is stated to cover that column. The expectation was corrected to the **current specification version 24** (was pinned to version 22). A trailing note about SV-9069 was removed because version 24 now states the two-decimal Margin % itself. |
+| Report Suite | C30518 | [open](https://shopview.testrail.io/index.php?/cases/view/30518) | 3 | `AUTOMATION: Not available on Build to test Yet - Last checked 8/17/2026` | Work In Progress export notifications. **The three expected messages did not change at all** — they are worded identically in version 28 to the version this test was written against, which we confirmed by reading both. Only the record of which specification version the test was checked against was corrected, from **version 21 to the current version 28**, and a wrong version number in the test's own source-caution note ("version 11") was corrected to 28. **Nothing an automation asserts on has changed for this case.** |
+
+**One caution on C30518 — please read before you re-run it.** Saving this case through the
+TestRail API added a visible `<p>` at the start and `</p>` at the end of its Expected Results on
+the case page. That is a TestRail behaviour, newly proven on 2026-08-26 and written up in
+`build/APP-ACTIONS-PLAYBOOK.md` §J, not a wording change by us — the sentences themselves are
+correct. It needs a one-line clean-up in the TestRail web editor. **C30287 is not affected.**
