@@ -839,6 +839,28 @@ with `sv_sso_session` and `cf_clearance` **byte-identical** to the set that was 
   visibly, whatever you send. (Worked example: C30287 and C30536 are `fr-view` and were written safely
   on 2026-08-26; C30518 is `markdown` and was damaged by an otherwise-correct write.)
 
+  **⇒ THE STANDING OPERATIONAL RULE (recorded 2026-08-26, after the repair was approved):**
+  **`update_case` RE-RENDERS ANY FIELD YOU SEND AND PRESERVES ANY FIELD YOU OMIT — SO SEND ONLY THE
+  FIELD YOU ACTUALLY NEED TO CHANGE.** Whether the re-render is **VISIBLE** depends on a **per-case
+  container flag** (`markdown` escapes and shows literal tags to the tester; `markdown fr-view`
+  renders correctly) which **`get_case` DOES NOT EXPOSE**. Therefore: **NEVER bulk-write plain text
+  via the API**, and **where a case's body must change and its container is unknown, prefer the UI
+  editor.** On 2026-08-26 this damaged **72 cases**.
+
+  **⇒ THE REPAIR ROUTE, PROVEN (C30197, then the 70-case batch, 2026-08-26).** The UI editor is
+  driven with **Playwright**, and Playwright needs the **LOCAL MITM BRIDGE** — chromium **cannot TLS
+  through the egress proxy directly** (`net::ERR_CONNECTION_RESET` on every host, `curl` through the
+  same proxy is fine). Start a **fresh** `build/atlassian-login/bridge.mjs` per run (the port rotates;
+  it writes `/tmp/atlassian/bridge-port.txt`) per `build/ATLASSIAN-JIRA-ACCESS-METHOD.md` §1, then
+  `chromium.launch({ proxy: { server: 'http://127.0.0.1:<port>' } })`. **Import playwright as
+  `/opt/node22/lib/node_modules/playwright/index.js` (or `index.mjs`) — a bare `import 'playwright'`
+  fails outside `/opt/node22`.** Never disable TLS verification, never unset `HTTPS_PROXY`.
+  Per case: open `index.php?/cases/edit/<id>`, click the `#custom_<field>_display .fr-element` editor,
+  `Control+A` + `Delete`, **PASTE** the intended text with `keyboard.insertText` (**paste, never
+  re-type** — re-typing introduced curly apostrophes on C30197), click `#accept`, then verify by API
+  re-GET **and** by re-reading the view container. Working script:
+  `build/report-suite/damage-2026-08-26/ui_repair_batch.mjs`.
+
 - **🔧 `delete_case` — AND EVERY WRITE ENDPOINT — MUST BE A POST WITH A BODY; A GET RETURNS HTTP 404
   AND THE CASE SURVIVES (2026-08-26).** A helper that only switches to POST when it has a payload will
   send `delete_case/<id>` as a GET. TestRail answers **404**, which reads like "already gone" — but the

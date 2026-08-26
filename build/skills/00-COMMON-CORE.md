@@ -254,6 +254,26 @@ theoretical: **72 Report Suite cases are showing literal `<p>` to testers right 
 2026-08-26 writes, proven against the same morning's pre-write snapshot, and **they cannot be repaired
 through the API**. Full write-up, C-id list and scanner: `build/APP-ACTIONS-PLAYBOOK.md` §J.
 
+### 2.1c 🔑 THE OPERATIONAL RULE, AND THE UI REPAIR ROUTE (recorded 2026-08-26)
+
+**`update_case` re-renders ANY field you SEND and preserves any field you OMIT — so send ONLY the
+field you actually need to change.** Whether the re-render is **VISIBLE** depends on a **per-case
+container flag** (`markdown` escapes and shows literal tags; `markdown fr-view` renders correctly)
+which **`get_case` does NOT expose**. **Therefore: never bulk-write plain text via the API; where a
+case's body must change and its container is unknown, prefer the UI editor.** On 2026-08-26 this
+damaged **72 cases**.
+
+**THE UI EDITOR IS DRIVEN WITH PLAYWRIGHT, AND PLAYWRIGHT NEEDS THE LOCAL MITM BRIDGE.** Chromium
+**cannot TLS through the egress proxy directly** — every navigation returns `net::ERR_CONNECTION_RESET`
+even though `curl` through the same proxy returns 200. Start a **fresh** `build/atlassian-login/bridge.mjs`
+per run (**the port rotates**; it writes `/tmp/atlassian/bridge-port.txt`) per
+`build/ATLASSIAN-JIRA-ACCESS-METHOD.md` §1 and point chromium at `http://127.0.0.1:<port>`.
+**Import playwright as `/opt/node22/lib/node_modules/playwright/index.js` (or `index.mjs`) — a bare
+`import 'playwright'` fails outside `/opt/node22`.** Never disable TLS verification, never unset
+`HTTPS_PROXY`. **PASTE the text (`keyboard.insertText`), never re-type it** — re-typing introduced
+curly apostrophes on C30197. Full recipe and the working batch script:
+`build/APP-ACTIONS-PLAYBOOK.md` §J · `build/report-suite/damage-2026-08-26/ui_repair_batch.mjs`.
+
 ### 2.2 Re-GET and byte-compare, field by field, after every write
 
 Compare the live case against **the intended payload**, and prove **every field you did not intend to

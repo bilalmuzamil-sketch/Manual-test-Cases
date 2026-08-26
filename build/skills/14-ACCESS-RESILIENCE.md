@@ -96,6 +96,23 @@ HTTP 429 ⇒ back off; do not hammer.
   `custom_preconds`, `custom_steps`, `custom_expected`, `refs`. A field sent explicitly is stored
   verbatim." — the first half is unreproducible and the instruction is now the wrong thing to do; the
   final sentence was already corrected on 2026-08-25.)*
+  **⇒ SAY IT AS ONE RULE (recorded 2026-08-26): `update_case` RE-RENDERS ANY FIELD YOU SEND AND
+  PRESERVES ANY FIELD YOU OMIT — SEND ONLY THE FIELD YOU ACTUALLY NEED TO CHANGE. Whether the
+  re-render is VISIBLE depends on a per-case container flag (`markdown` escapes and shows literal
+  tags; `markdown fr-view` renders correctly) which `get_case` DOES NOT EXPOSE. So NEVER bulk-write
+  plain text via the API, and where a case's body must change and its container is unknown, PREFER
+  THE UI EDITOR.** On 2026-08-26 this damaged 72 cases.
+- **🖥️ THE UI EDITOR ROUTE NEEDS PLAYWRIGHT, AND PLAYWRIGHT NEEDS THE LOCAL MITM BRIDGE (proven
+  2026-08-26).** Chromium **cannot TLS through the egress proxy directly**: every navigation returns
+  `net::ERR_CONNECTION_RESET` (with `proxy:`, with `--proxy-server`, and with no proxy at all) while
+  `curl` through the same proxy returns 200. **Start a FRESH `build/atlassian-login/bridge.mjs` per run
+  — the port rotates and is written to `/tmp/atlassian/bridge-port.txt`** (`build/ATLASSIAN-JIRA-ACCESS-METHOD.md`
+  §1) — then launch chromium with `proxy: { server: 'http://127.0.0.1:<port>' }` and
+  `ignoreHTTPSErrors` on the context only. **Import playwright as
+  `/opt/node22/lib/node_modules/playwright/index.js` (or `index.mjs`); a bare `import 'playwright'`
+  fails outside `/opt/node22`.** **Never disable TLS verification and never unset `HTTPS_PROXY`.**
+  In the editor, **PASTE with `keyboard.insertText` — never re-type**, which introduces curly
+  apostrophes. Working script: `build/report-suite/damage-2026-08-26/ui_repair_batch.mjs`.
 - **`refs` normalisation:** TestRail splits on commas, trims each entry and rejoins with a bare comma,
   and **rejects any single entry over 248 characters** with HTTP 400 *"Field :refs does not match the
   required pattern."* — a **pattern** error, not a length error. House style: one comma-free entry

@@ -1,0 +1,1862 @@
+{
+"30225": {
+"title": "Detail rows run newest first with a numeric invoice-number tie-break",
+"atm": 1,
+"fields": {
+"custom_expected": {
+"blocks": [
+[
+"1. Detail rows order by invoice date descending (newest first).",
+"2. Date ties break by invoice number ascending by the numeric portion after the P/S prefix — numeric, not alphabetical, so S999 precedes S1000.",
+"3. If both the date and the numeric portion tie (e.g., P100 and S100 same day), P (Parts) sorts before S (Service).",
+"4. This order is independent of the rep-row column sort (which reorders summary rows only)."
+],
+[
+"---",
+"This is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Sales By Representative report specification version 24 (S6-R9, S11-R2), read on 17 August 2026.",
+"Last checked against build v3.8-bd246fd on 8/18/2026.",
+"Re-checked against the live specification on 26 August 2026: the requirements this case cites are unchanged, so only the version cited above was updated."
+],
+[
+"AUTOMATION: READY"
+]
+],
+"text": "1. Detail rows order by invoice date descending (newest first).\n2. Date ties break by invoice number ascending by the numeric portion after the P/S prefix — numeric, not alphabetical, so S999 precedes S1000.\n3. If both the date and the numeric portion tie (e.g., P100 and S100 same day), P (Parts) sorts before S (Service).\n4. This order is independent of the rep-row column sort (which reorders summary rows only).\n\n---\nThis is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Sales By Representative report specification version 24 (S6-R9, S11-R2), read on 17 August 2026.\nLast checked against build v3.8-bd246fd on 8/18/2026.\nRe-checked against the live specification on 26 August 2026: the requirements this case cites are unchanged, so only the version cited above was updated.\n\nAUTOMATION: READY"
+}
+}
+},
+"30227": {
+"title": "Badge colors use the canonical payment-status tokens in light and dark",
+"atm": 1,
+"fields": {
+"custom_expected": {
+"blocks": [
+[
+"1. Paid = dark teal text on light teal; Partially Paid = dark orange on light orange; Unpaid = dark red on light red.",
+"2. The badges use the same canonical payment-status color tokens as the invoice list, consistent app-wide.",
+"3. The treatment stays legible and consistent in both light and dark mode."
+],
+[
+"---",
+"This is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Sales By Representative report specification version 24 (S8-R3, S18-R8), read on 17 August 2026.",
+"Last checked against build v3.8-bd246fd on 8/18/2026.",
+"Re-checked against the live specification on 26 August 2026: the requirements this case cites are unchanged, so only the version cited above was updated."
+],
+[
+"AUTOMATION: READY"
+]
+],
+"text": "1. Paid = dark teal text on light teal; Partially Paid = dark orange on light orange; Unpaid = dark red on light red.\n2. The badges use the same canonical payment-status color tokens as the invoice list, consistent app-wide.\n3. The treatment stays legible and consistent in both light and dark mode.\n\n---\nThis is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Sales By Representative report specification version 24 (S8-R3, S18-R8), read on 17 August 2026.\nLast checked against build v3.8-bd246fd on 8/18/2026.\nRe-checked against the live specification on 26 August 2026: the requirements this case cites are unchanged, so only the version cited above was updated.\n\nAUTOMATION: READY"
+}
+}
+},
+"30239": {
+"title": "Mobile shows a simplified totals bar below the table; Subtotal at right",
+"atm": 1,
+"fields": {
+"custom_expected": {
+"blocks": [
+[
+"1. A simplified external totals bar sits directly below the table, outside its horizontal scroll container, showing \"Totals\" on the left and the grand Subtotal on the right (no other metrics).",
+"2. It does not scroll horizontally — it is always fully visible across.",
+"3. During vertical page scroll it sits after the table in normal flow (not pinned to the viewport bottom).",
+"4. It uses the white card surface with a thin top border."
+],
+[
+"---",
+"This is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Sales By Representative report specification version 24 (S10-R5, S17-R4), read on 17 August 2026.",
+"Last checked against build v3.8-bd246fd on 8/18/2026.",
+"Re-checked against the live specification on 26 August 2026: the requirements this case cites are unchanged, so only the version cited above was updated."
+],
+[
+"AUTOMATION: READY"
+]
+],
+"text": "1. A simplified external totals bar sits directly below the table, outside its horizontal scroll container, showing \"Totals\" on the left and the grand Subtotal on the right (no other metrics).\n2. It does not scroll horizontally — it is always fully visible across.\n3. During vertical page scroll it sits after the table in normal flow (not pinned to the viewport bottom).\n4. It uses the white card surface with a thin top border.\n\n---\nThis is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Sales By Representative report specification version 24 (S10-R5, S17-R4), read on 17 August 2026.\nLast checked against build v3.8-bd246fd on 8/18/2026.\nRe-checked against the live specification on 26 August 2026: the requirements this case cites are unchanged, so only the version cited above was updated.\n\nAUTOMATION: READY"
+}
+}
+},
+"30267": {
+"title": "Toggling a column applies at once to summary; detail and Totals rows",
+"atm": 1,
+"fields": {
+"custom_expected": {
+"blocks": [
+[
+"1. The toggle takes effect immediately — no confirm step.",
+"2. Hiding a metric column removes it from rep summary rows, invoice detail rows, and the grand Totals indicator simultaneously; showing restores it everywhere at once."
+],
+[
+"---",
+"This is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Sales By Representative report specification version 24 (S20-R4, S20-R7), read on 17 August 2026.",
+"Last checked against build v3.8-bd246fd on 8/18/2026.",
+"Re-checked against the live specification on 26 August 2026: the requirements this case cites are unchanged, so only the version cited above was updated."
+],
+[
+"AUTOMATION: READY"
+]
+],
+"text": "1. The toggle takes effect immediately — no confirm step.\n2. Hiding a metric column removes it from rep summary rows, invoice detail rows, and the grand Totals indicator simultaneously; showing restores it everywhere at once.\n\n---\nThis is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Sales By Representative report specification version 24 (S20-R4, S20-R7), read on 17 August 2026.\nLast checked against build v3.8-bd246fd on 8/18/2026.\nRe-checked against the live specification on 26 August 2026: the requirements this case cites are unchanged, so only the version cited above was updated.\n\nAUTOMATION: READY"
+}
+}
+},
+"30273": {
+"title": "A stale saved value falls back to its default and never errors",
+"atm": 1,
+"fields": {
+"custom_expected": {
+"blocks": [
+[
+"1. The no-longer-valid location falls back to the default (your active location) rather than being sent to the server.",
+"2. No error occurs — a stale saved setting can never cause an error or an invalid request.",
+"3. Per the spec the same applies to a range or sort column that no longer exists and to a hidden-but-sorted column."
+],
+[
+"---",
+"This is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Sales By Representative report specification version 24 (S23-R3), read on 17 August 2026.",
+"Last checked against build v3.8-bd246fd on 8/18/2026.",
+"Re-checked against the live specification on 26 August 2026: the requirements this case cites are unchanged, so only the version cited above was updated."
+],
+[
+"AUTOMATION: READY"
+]
+],
+"text": "1. The no-longer-valid location falls back to the default (your active location) rather than being sent to the server.\n2. No error occurs — a stale saved setting can never cause an error or an invalid request.\n3. Per the spec the same applies to a range or sort column that no longer exists and to a hidden-but-sorted column.\n\n---\nThis is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Sales By Representative report specification version 24 (S23-R3), read on 17 August 2026.\nLast checked against build v3.8-bd246fd on 8/18/2026.\nRe-checked against the live specification on 26 August 2026: the requirements this case cites are unchanged, so only the version cited above was updated.\n\nAUTOMATION: READY"
+}
+}
+},
+"30281": {
+"title": "PDF footer on every page, default-logo fallback, and deterministic PDF filenames",
+"atm": 1,
+"fields": {
+"custom_expected": {
+"blocks": [
+[
+"1. The files are named exactly \"sales-by-representative-summary.pdf\" and \"sales-by-representative-expanded.pdf\".",
+"2. A footer reading \"Software Powered by ShopView\" appears on EVERY page of both PDFs.",
+"3. With a logo uploaded, that logo appears. If a logo is set but fails to load, the built-in ShopView logo is used instead. If no logo is uploaded at all, NO logo is printed and the text fills the space. The PDF still generates normally either way."
+],
+[
+"---",
+"This is the expected behaviour as per epic SV-8582, read on 17 August 2026, and Chris Ward's decision of 8/5/2026, recorded in his answers in this file: https://docs.google.com/spreadsheets/d/1x8cuYJlFsDHalVZZTh156_ZCq2gcOaGY/edit?usp=sharing&ouid=106388879401921597782&rtpof=true&sd=true, read on 17 August 2026; where the Sales By Representative report specification version 24 (S14-R3a, S14-R4, S14-R11), read on 17 August 2026, differs, his decision is the authority.",
+"Last checked against build v3.8-bd246fd on 8/18/2026.",
+"Re-checked against the live specification on 26 August 2026: the requirements this case cites are unchanged, so only the version cited above was updated."
+],
+[
+"AUTOMATION: READY"
+]
+],
+"text": "1. The files are named exactly \"sales-by-representative-summary.pdf\" and \"sales-by-representative-expanded.pdf\".\n2. A footer reading \"Software Powered by ShopView\" appears on EVERY page of both PDFs.\n3. With a logo uploaded, that logo appears. If a logo is set but fails to load, the built-in ShopView logo is used instead. If no logo is uploaded at all, NO logo is printed and the text fills the space. The PDF still generates normally either way.\n\n---\nThis is the expected behaviour as per epic SV-8582, read on 17 August 2026, and Chris Ward's decision of 8/5/2026, recorded in his answers in this file: https://docs.google.com/spreadsheets/d/1x8cuYJlFsDHalVZZTh156_ZCq2gcOaGY/edit?usp=sharing&ouid=106388879401921597782&rtpof=true&sd=true, read on 17 August 2026; where the Sales By Representative report specification version 24 (S14-R3a, S14-R4, S14-R11), read on 17 August 2026, differs, his decision is the authority.\nLast checked against build v3.8-bd246fd on 8/18/2026.\nRe-checked against the live specification on 26 August 2026: the requirements this case cites are unchanged, so only the version cited above was updated.\n\nAUTOMATION: READY"
+}
+}
+},
+"30285": {
+"title": "Summary CSV: file name, UTF-8 BOM, verbatim headers, one row per rep",
+"atm": 1,
+"fields": {
+"custom_expected": {
+"blocks": [
+[
+"1. The file is named \"sales-by-representative-summary.csv\" and starts with a UTF-8 BOM.",
+"2. With a single location in scope the headers, in order, are: Representative, # Invoices, # Customers, Hrs Worked, Hrs Invoiced, Labor Delta, Labor Invoiced, Labor Margin, Parts Invoiced, Parts Margin, Adjustments, Margin, Margin %, Subtotal. On this build the four hours-related columns - # Invoices, # Customers, Hrs Worked and Hrs Invoiced - are missing by mistake. Record what you see; the four missing columns are with the developers.",
+"3. There is one header row plus one row per rep in the current filtered view, in the report's currently-active order.",
+"4. \"# Invoices\" equals the on-screen (N); \"# Customers\" counts distinct customers across those invoices (de-duplicated across locations when several are selected).",
+"5. The CSV has NO totals row.",
+"6. Note for the tester: the heading in this file reads simply \"Representative\". The product owner has confirmed that is correct and not slang, so do not fail the test for it.",
+"7. When the Location column is shown on screen the file also carries it, immediately after the Representative name and before the money columns; a rep whose invoices span more than one location reads \"Multiple\"."
+],
+[
+"---",
+"This is the expected behaviour as per epic SV-8582 and the Sales By Representative report specification version 24 (S14-R15), both read on 17 August 2026. The column was renamed from \"Inv. Hrs\" to \"Labor Delta\" per SV-9071; only the name changed. Chris Ward's decision of 5 August 2026, recorded in his answers in this file: https://docs.google.com/spreadsheets/d/1x8cuYJlFsDHalVZZTh156_ZCq2gcOaGY/edit?usp=sharing&ouid=106388879401921597782&rtpof=true&sd=true, governs where the specification differs (read on 11 August 2026).",
+"Last checked against build v3.8-bd246fd on 8/18/2026.",
+"Re-checked against the live specification on 26 August 2026: the requirements this case cites are unchanged, so only the version cited above was updated."
+],
+[
+"AUTOMATION: READY"
+]
+],
+"text": "1. The file is named \"sales-by-representative-summary.csv\" and starts with a UTF-8 BOM.\n2. With a single location in scope the headers, in order, are: Representative, # Invoices, # Customers, Hrs Worked, Hrs Invoiced, Labor Delta, Labor Invoiced, Labor Margin, Parts Invoiced, Parts Margin, Adjustments, Margin, Margin %, Subtotal. On this build the four hours-related columns - # Invoices, # Customers, Hrs Worked and Hrs Invoiced - are missing by mistake. Record what you see; the four missing columns are with the developers.\n3. There is one header row plus one row per rep in the current filtered view, in the report's currently-active order.\n4. \"# Invoices\" equals the on-screen (N); \"# Customers\" counts distinct customers across those invoices (de-duplicated across locations when several are selected).\n5. The CSV has NO totals row.\n6. Note for the tester: the heading in this file reads simply \"Representative\". The product owner has confirmed that is correct and not slang, so do not fail the test for it.\n7. When the Location column is shown on screen the file also carries it, immediately after the Representative name and before the money columns; a rep whose invoices span more than one location reads \"Multiple\".\n\n---\nThis is the expected behaviour as per epic SV-8582 and the Sales By Representative report specification version 24 (S14-R15), both read on 17 August 2026. The column was renamed from \"Inv. Hrs\" to \"Labor Delta\" per SV-9071; only the name changed. Chris Ward's decision of 5 August 2026, recorded in his answers in this file: https://docs.google.com/spreadsheets/d/1x8cuYJlFsDHalVZZTh156_ZCq2gcOaGY/edit?usp=sharing&ouid=106388879401921597782&rtpof=true&sd=true, governs where the specification differs (read on 11 August 2026).\nLast checked against build v3.8-bd246fd on 8/18/2026.\nRe-checked against the live specification on 26 August 2026: the requirements this case cites are unchanged, so only the version cited above was updated.\n\nAUTOMATION: READY"
+}
+}
+},
+"30286": {
+"title": "Expanded CSV: file name, verbatim headers, one row per invoice",
+"atm": 1,
+"fields": {
+"custom_expected": {
+"blocks": [
+[
+"1. The file is named \"sales-by-representative-expanded.csv\" and starts with a UTF-8 BOM.",
+"2. With a single location in scope the headers, in order, are: Representative, Date, Invoice #, Customer, Status, Hrs Worked, Hrs Invoiced, Labor Delta, Labor Invoiced, Labor Margin, Parts Invoiced, Parts Margin, Adjustments, Margin, Margin %, Subtotal.",
+"3. There is one header row plus one row per invoice, flattened across all reps in the report's currently-active order, for the current filtered view.",
+"4. Note for the tester: the heading in this file reads simply \"Representative\". The product owner has confirmed that is correct and not slang, so do not fail the test for it.",
+"5. When the Location column is shown on screen the file also carries it immediately after Status — the position it holds on screen — and every row shows that invoice's own exact location, never \"Multiple\"."
+],
+[
+"---",
+"This is the expected behaviour as per epic SV-8582 and the Sales By Representative report specification version 24 (S14-R16), both read on 17 August 2026. The column was renamed from \"Inv. Hrs\" to \"Labor Delta\" per SV-9071; only the name changed. Chris Ward's decision of 5 August 2026, recorded in his answers in this file: https://docs.google.com/spreadsheets/d/1x8cuYJlFsDHalVZZTh156_ZCq2gcOaGY/edit?usp=sharing&ouid=106388879401921597782&rtpof=true&sd=true, governs where the specification differs (read on 11 August 2026).",
+"Last checked against build v3.8-bd246fd on 8/18/2026.",
+"Re-checked against the live specification on 26 August 2026: the requirements this case cites are unchanged, so only the version cited above was updated."
+],
+[
+"AUTOMATION: READY"
+]
+],
+"text": "1. The file is named \"sales-by-representative-expanded.csv\" and starts with a UTF-8 BOM.\n2. With a single location in scope the headers, in order, are: Representative, Date, Invoice #, Customer, Status, Hrs Worked, Hrs Invoiced, Labor Delta, Labor Invoiced, Labor Margin, Parts Invoiced, Parts Margin, Adjustments, Margin, Margin %, Subtotal.\n3. There is one header row plus one row per invoice, flattened across all reps in the report's currently-active order, for the current filtered view.\n4. Note for the tester: the heading in this file reads simply \"Representative\". The product owner has confirmed that is correct and not slang, so do not fail the test for it.\n5. When the Location column is shown on screen the file also carries it immediately after Status — the position it holds on screen — and every row shows that invoice's own exact location, never \"Multiple\".\n\n---\nThis is the expected behaviour as per epic SV-8582 and the Sales By Representative report specification version 24 (S14-R16), both read on 17 August 2026. The column was renamed from \"Inv. Hrs\" to \"Labor Delta\" per SV-9071; only the name changed. Chris Ward's decision of 5 August 2026, recorded in his answers in this file: https://docs.google.com/spreadsheets/d/1x8cuYJlFsDHalVZZTh156_ZCq2gcOaGY/edit?usp=sharing&ouid=106388879401921597782&rtpof=true&sd=true, governs where the specification differs (read on 11 August 2026).\nLast checked against build v3.8-bd246fd on 8/18/2026.\nRe-checked against the live specification on 26 August 2026: the requirements this case cites are unchanged, so only the version cited above was updated.\n\nAUTOMATION: READY"
+}
+}
+},
+"30288": {
+"title": "The Unassigned row appears in both CSV downloads only when the toggle is on",
+"atm": 1,
+"fields": {
+"custom_expected": {
+"blocks": [
+[
+"1. With the toggle ON, the Summary CSV carries one rolled-up row whose \"Sales Representative\" cell reads the literal \"Unassigned\", sorted to the top of the data rows.",
+"2. With the toggle ON, the Expanded CSV rows for those invoices carry \"Sales Representative\" = \"Unassigned\".",
+"3. With the toggle OFF, no Unassigned row and no unassigned invoices appear in EITHER CSV.",
+"4. Note for the tester: the product owner has ruled that the full word \"Sales Representative\" replaces the short \"Sales Rep\" everywhere. If a file still shows \"Sales Rep\", mark this test Failed and report it as the pending rename — do not change the test."
+],
+[
+"---",
+"Scope note: this case covers the CSV only. The same rule applies to both PDF downloads (the Summary PDF grand-totals row aggregates Unassigned; the Expanded PDF gets its own top page-block), but PDF body structure is not observable by the automation suite — see the Deferred PDF-visual cases."
+],
+[
+"This is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Sales By Representative report specification version 24 (S22-R2, S22-R4, S14-R19), read on 17 August 2026.",
+"Last checked against build v3.8-bd246fd on 8/18/2026.",
+"Re-checked against the live specification on 26 August 2026: the requirements this case cites are unchanged, so only the version cited above was updated."
+],
+[
+"AUTOMATION: READY"
+]
+],
+"text": "1. With the toggle ON, the Summary CSV carries one rolled-up row whose \"Sales Representative\" cell reads the literal \"Unassigned\", sorted to the top of the data rows.\n2. With the toggle ON, the Expanded CSV rows for those invoices carry \"Sales Representative\" = \"Unassigned\".\n3. With the toggle OFF, no Unassigned row and no unassigned invoices appear in EITHER CSV.\n4. Note for the tester: the product owner has ruled that the full word \"Sales Representative\" replaces the short \"Sales Rep\" everywhere. If a file still shows \"Sales Rep\", mark this test Failed and report it as the pending rename — do not change the test.\n\n---\nScope note: this case covers the CSV only. The same rule applies to both PDF downloads (the Summary PDF grand-totals row aggregates Unassigned; the Expanded PDF gets its own top page-block), but PDF body structure is not observable by the automation suite — see the Deferred PDF-visual cases.\n\nThis is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Sales By Representative report specification version 24 (S22-R2, S22-R4, S14-R19), read on 17 August 2026.\nLast checked against build v3.8-bd246fd on 8/18/2026.\nRe-checked against the live specification on 26 August 2026: the requirements this case cites are unchanged, so only the version cited above was updated.\n\nAUTOMATION: READY"
+}
+}
+},
+"30291": {
+"title": "An empty-data export still generates with zeroed Summary PDF totals",
+"atm": 1,
+"fields": {
+"custom_expected": {
+"blocks": [
+[
+"1. All four downloads produce a FILE, not an error.",
+"2. The Summary PDF renders the header strip, no data rows, and a grand-totals row showing zeros for the money and Labor Delta columns and \"—\" for Margin %.",
+"3. The Expanded View PDF renders just the header strip with no per-rep blocks (it has no grand-totals row).",
+"4. Both CSVs generate a header-row-only file, still starting with the UTF-8 BOM.",
+"5. No special \"empty\" treatment or message appears inside the files."
+],
+[
+"---",
+"This is the expected behaviour as per epic SV-8582 and the Sales By Representative report specification version 24 (S14-E3), both read on 17 August 2026. The column was renamed from \"Inv. Hrs\" to \"Labor Delta\" per SV-9071; only the name changed.",
+"Last checked against build v3.8-bd246fd on 8/18/2026.",
+"Re-checked against the live specification on 26 August 2026: the requirements this case cites are unchanged, so only the version cited above was updated."
+],
+[
+"AUTOMATION: READY"
+]
+],
+"text": "1. All four downloads produce a FILE, not an error.\n2. The Summary PDF renders the header strip, no data rows, and a grand-totals row showing zeros for the money and Labor Delta columns and \"—\" for Margin %.\n3. The Expanded View PDF renders just the header strip with no per-rep blocks (it has no grand-totals row).\n4. Both CSVs generate a header-row-only file, still starting with the UTF-8 BOM.\n5. No special \"empty\" treatment or message appears inside the files.\n\n---\nThis is the expected behaviour as per epic SV-8582 and the Sales By Representative report specification version 24 (S14-E3), both read on 17 August 2026. The column was renamed from \"Inv. Hrs\" to \"Labor Delta\" per SV-9071; only the name changed.\nLast checked against build v3.8-bd246fd on 8/18/2026.\nRe-checked against the live specification on 26 August 2026: the requirements this case cites are unchanged, so only the version cited above was updated.\n\nAUTOMATION: READY"
+}
+}
+},
+"30298": {
+"title": "Empty state: verbatim message, no grand Totals, toolbar stays interactive",
+"atm": 1,
+"fields": {
+"custom_expected": {
+"blocks": [
+[
+"1. The table shows no data rows and the empty-state message \"No sales activity matches the current filters.\"",
+"2. The grand Totals indicator is NOT shown.",
+"3. The same message appears when no staff member has ever been credited — there is no separate \"no reps configured\" message; the report is contributor-driven.",
+"4. Whenever at least one rep row (or the Unassigned row) IS in the result set, the rep list renders and no empty/error message shows.",
+"5. In the empty state the toolbar — filters, column selector, and the ⋯ exports — stays visible and interactive; widening the range re-fetches and renders the matching reps normally."
+],
+[
+"---",
+"This is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Sales By Representative report specification version 24 (S16-R1, S16-R2, S16-R3, S16-N1, S2-N1, S21-N2), read on 17 August 2026.",
+"Last checked against build v3.8-bd246fd on 8/18/2026.",
+"Re-checked against the live specification on 26 August 2026: the requirements this case cites are unchanged, so only the version cited above was updated."
+],
+[
+"AUTOMATION: READY"
+]
+],
+"text": "1. The table shows no data rows and the empty-state message \"No sales activity matches the current filters.\"\n2. The grand Totals indicator is NOT shown.\n3. The same message appears when no staff member has ever been credited — there is no separate \"no reps configured\" message; the report is contributor-driven.\n4. Whenever at least one rep row (or the Unassigned row) IS in the result set, the rep list renders and no empty/error message shows.\n5. In the empty state the toolbar — filters, column selector, and the ⋯ exports — stays visible and interactive; widening the range re-fetches and renders the matching reps normally.\n\n---\nThis is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Sales By Representative report specification version 24 (S16-R1, S16-R2, S16-R3, S16-N1, S2-N1, S21-N2), read on 17 August 2026.\nLast checked against build v3.8-bd246fd on 8/18/2026.\nRe-checked against the live specification on 26 August 2026: the requirements this case cites are unchanged, so only the version cited above was updated.\n\nAUTOMATION: READY"
+}
+}
+},
+"30304": {
+"title": "Touch targets are at least 44×44 px and touch users get no hover-only tooltips",
+"atm": 1,
+"fields": {
+"custom_expected": {
+"blocks": [
+[
+"1. Each of these interactive controls presents a touch target of at least 44×44 px.",
+"2. Hover-only tooltips are not shown on touch; the icons communicate the action and each icon-only control carries an accessible name."
+],
+[
+"---",
+"This is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Sales By Representative report specification version 24 (S17-R6, S17-N1, S18-R9), read on 17 August 2026.",
+"Last checked against build v3.8-bd246fd on 8/18/2026.",
+"Re-checked against the live specification on 26 August 2026: the requirements this case cites are unchanged, so only the version cited above was updated."
+],
+[
+"AUTOMATION: READY"
+]
+],
+"text": "1. Each of these interactive controls presents a touch target of at least 44×44 px.\n2. Hover-only tooltips are not shown on touch; the icons communicate the action and each icon-only control carries an accessible name.\n\n---\nThis is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Sales By Representative report specification version 24 (S17-R6, S17-N1, S18-R9), read on 17 August 2026.\nLast checked against build v3.8-bd246fd on 8/18/2026.\nRe-checked against the live specification on 26 August 2026: the requirements this case cites are unchanged, so only the version cited above was updated.\n\nAUTOMATION: READY"
+}
+}
+},
+"30305": {
+"title": "Layout: white toolbar; blue-grey page; separator; edge-to-edge white table",
+"atm": 1,
+"fields": {
+"custom_expected": {
+"blocks": [
+[
+"1. The toolbar has a solid white background and its controls sit clear of the edges rather than pressed up against them; the title's left edge lines up with the leftmost data column, and the rightmost toolbar control (the Location filter) lines its right edge up with the rightmost data column.",
+"2. The data area sits on the standard blue-grey page background and runs edge-to-edge against the side navigation — there is no strip of empty space down either side.",
+"3. A thin horizontal separator line sits between the toolbar and the column headers.",
+"4. Column-header cells and all body cells render on white; the pinned Subtotal column matches the row background (not a contrasting strip); the grand Totals indicator renders on the white card surface with a thin top border.",
+"5. Row types are told apart by how heavy and what colour their text is, not by a different background colour.",
+"6. It all looks the same as the other reports in the suite: put another report side by side and nothing should look out of place.",
+"7. Note for the tester: you do not need to measure anything and you do not need any tool. Just say whether the spacing and the alignment look right and consistent with the other reports, and only report it if something looks obviously off. (The exact figures behind this — 32px/24px toolbar padding, 2rem edge padding — are design-token values the design and engineering team check with their own tooling, not by hand.)"
+],
+[
+"---",
+"This is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Sales By Representative report specification version 24 (S18-R1, S18-R2, S18-R3, S18-R4, S18-R5, S18-R7, S18-N1), read on 17 August 2026.",
+"Last checked against build v3.8-bd246fd on 8/18/2026.",
+"Re-checked against the live specification on 26 August 2026: the requirements this case cites are unchanged, so only the version cited above was updated."
+],
+[
+"AUTOMATION: READY"
+]
+],
+"text": "1. The toolbar has a solid white background and its controls sit clear of the edges rather than pressed up against them; the title's left edge lines up with the leftmost data column, and the rightmost toolbar control (the Location filter) lines its right edge up with the rightmost data column.\n2. The data area sits on the standard blue-grey page background and runs edge-to-edge against the side navigation — there is no strip of empty space down either side.\n3. A thin horizontal separator line sits between the toolbar and the column headers.\n4. Column-header cells and all body cells render on white; the pinned Subtotal column matches the row background (not a contrasting strip); the grand Totals indicator renders on the white card surface with a thin top border.\n5. Row types are told apart by how heavy and what colour their text is, not by a different background colour.\n6. It all looks the same as the other reports in the suite: put another report side by side and nothing should look out of place.\n7. Note for the tester: you do not need to measure anything and you do not need any tool. Just say whether the spacing and the alignment look right and consistent with the other reports, and only report it if something looks obviously off. (The exact figures behind this — 32px/24px toolbar padding, 2rem edge padding — are design-token values the design and engineering team check with their own tooling, not by hand.)\n\n---\nThis is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Sales By Representative report specification version 24 (S18-R1, S18-R2, S18-R3, S18-R4, S18-R5, S18-R7, S18-N1), read on 17 August 2026.\nLast checked against build v3.8-bd246fd on 8/18/2026.\nRe-checked against the live specification on 26 August 2026: the requirements this case cites are unchanged, so only the version cited above was updated.\n\nAUTOMATION: READY"
+}
+}
+},
+"30306": {
+"title": "Dark mode: page, toolbar, table; Totals switch to dark equivalents",
+"atm": 1,
+"fields": {
+"custom_expected": {
+"blocks": [
+[
+"1. The page, toolbar, header, body cells, and the grand Totals indicator switch to their dark equivalents.",
+"2. Status badges keep the same canonical payment-status color tokens and stay legible in both modes.",
+"3. Labor Delta green/red use the application's positive/negative tokens, mode-appropriate.",
+"4. PDFs always render in light-mode colors, even when downloaded from dark mode."
+],
+[
+"---",
+"This is the expected behaviour as per epic SV-8582 and the Sales By Representative report specification version 24 (S18-R8), both read on 17 August 2026. The column was renamed from \"Inv. Hrs\" to \"Labor Delta\" per SV-9071; only the name changed.",
+"Last checked against build v3.8-bd246fd on 8/18/2026.",
+"Re-checked against the live specification on 26 August 2026: the requirements this case cites are unchanged, so only the version cited above was updated."
+],
+[
+"AUTOMATION: READY"
+]
+],
+"text": "1. The page, toolbar, header, body cells, and the grand Totals indicator switch to their dark equivalents.\n2. Status badges keep the same canonical payment-status color tokens and stay legible in both modes.\n3. Labor Delta green/red use the application's positive/negative tokens, mode-appropriate.\n4. PDFs always render in light-mode colors, even when downloaded from dark mode.\n\n---\nThis is the expected behaviour as per epic SV-8582 and the Sales By Representative report specification version 24 (S18-R8), both read on 17 August 2026. The column was renamed from \"Inv. Hrs\" to \"Labor Delta\" per SV-9071; only the name changed.\nLast checked against build v3.8-bd246fd on 8/18/2026.\nRe-checked against the live specification on 26 August 2026: the requirements this case cites are unchanged, so only the version cited above was updated.\n\nAUTOMATION: READY"
+}
+}
+},
+"30307": {
+"title": "Every icon-only control carries its specified accessible name",
+"atm": 1,
+"fields": {
+"custom_expected": {
+"blocks": [
+[
+"1. ⋯ exports = \"Report actions\".",
+"2. Column selector = \"Show or hide columns\".",
+"3. Per-row chevron = \"Expand {rep name}\" when collapsed / \"Collapse {rep name}\" when expanded.",
+"4. Header chevron = \"Expand all reps\" / \"Collapse all reps\".",
+"5. Dialog X = \"Close\"."
+],
+[
+"---",
+"This is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Sales By Representative report specification version 24 (S18-R9), read on 17 August 2026.",
+"Last checked against build v3.8-bd246fd on 8/18/2026.",
+"Re-checked against the live specification on 26 August 2026: the requirements this case cites are unchanged, so only the version cited above was updated."
+],
+[
+"AUTOMATION: READY"
+]
+],
+"text": "1. ⋯ exports = \"Report actions\".\n2. Column selector = \"Show or hide columns\".\n3. Per-row chevron = \"Expand {rep name}\" when collapsed / \"Collapse {rep name}\" when expanded.\n4. Header chevron = \"Expand all reps\" / \"Collapse all reps\".\n5. Dialog X = \"Close\".\n\n---\nThis is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Sales By Representative report specification version 24 (S18-R9), read on 17 August 2026.\nLast checked against build v3.8-bd246fd on 8/18/2026.\nRe-checked against the live specification on 26 August 2026: the requirements this case cites are unchanged, so only the version cited above was updated.\n\nAUTOMATION: READY"
+}
+}
+},
+"30309": {
+"title": "The subdued grey of the (N) count and (Inactive) tag meets WCAG AA contrast",
+"atm": 1,
+"fields": {
+"custom_expected": {
+"blocks": [
+[
+"1. In BOTH light mode and dark mode the subdued-grey (N) count and the \"(Inactive)\" tag are easy to read against the surface behind them - the smaller text does not fade into the background.",
+"2. No information is conveyed by color alone: Labor Delta carries its +/- sign, status badges carry their text label, and links carry a hover/focus underline.",
+"3. Note for the tester: you do not need to measure anything and you do not need any tool. Just say whether you can read the grey text easily in both modes, and only report it if you cannot. (The design rule behind this is WCAG AA contrast of at least 4.5:1, which the design and engineering team check with a contrast tool - not by hand.)"
+],
+[
+"---",
+"This is the expected behaviour as per epic SV-8582 and the Sales By Representative report specification version 24 (S18-R11, S18-R12), both read on 17 August 2026. The column was renamed from \"Inv. Hrs\" to \"Labor Delta\" per SV-9071; only the name changed.",
+"Last checked against build v3.8-bd246fd on 8/18/2026.",
+"Re-checked against the live specification on 26 August 2026: the requirements this case cites are unchanged, so only the version cited above was updated."
+],
+[
+"AUTOMATION: READY"
+]
+],
+"text": "1. In BOTH light mode and dark mode the subdued-grey (N) count and the \"(Inactive)\" tag are easy to read against the surface behind them - the smaller text does not fade into the background.\n2. No information is conveyed by color alone: Labor Delta carries its +/- sign, status badges carry their text label, and links carry a hover/focus underline.\n3. Note for the tester: you do not need to measure anything and you do not need any tool. Just say whether you can read the grey text easily in both modes, and only report it if you cannot. (The design rule behind this is WCAG AA contrast of at least 4.5:1, which the design and engineering team check with a contrast tool - not by hand.)\n\n---\nThis is the expected behaviour as per epic SV-8582 and the Sales By Representative report specification version 24 (S18-R11, S18-R12), both read on 17 August 2026. The column was renamed from \"Inv. Hrs\" to \"Labor Delta\" per SV-9071; only the name changed.\nLast checked against build v3.8-bd246fd on 8/18/2026.\nRe-checked against the live specification on 26 August 2026: the requirements this case cites are unchanged, so only the version cited above was updated.\n\nAUTOMATION: READY"
+}
+}
+},
+"30316": {
+"title": "A rep's invoice detail rows are fetched from the server only on the first expand",
+"atm": 1,
+"fields": {
+"custom_expected": {
+"blocks": [
+[
+"1. Invoice detail rows are NOT delivered with the initial summary payload — the first expand of a rep triggers a server fetch for that rep's matching invoices, with a brief row-level loading indicator.",
+"2. A re-expand within the session does not necessarily re-fetch (the expansion state is session-preserved); no rep's details load before its first expand.",
+"3. When a rep's matching-invoice count is large, its detail rows are paginated per rep."
+],
+[
+"---",
+"This is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Sales By Representative report specification version 24 (S6-R2), read on 17 August 2026.",
+"Last checked against build v3.8-bd246fd on 8/18/2026.",
+"Re-checked against the live specification on 26 August 2026: the requirements this case cites are unchanged, so only the version cited above was updated."
+],
+[
+"AUTOMATION: READY"
+]
+],
+"text": "1. Invoice detail rows are NOT delivered with the initial summary payload — the first expand of a rep triggers a server fetch for that rep's matching invoices, with a brief row-level loading indicator.\n2. A re-expand within the session does not necessarily re-fetch (the expansion state is session-preserved); no rep's details load before its first expand.\n3. When a rep's matching-invoice count is large, its detail rows are paginated per rep.\n\n---\nThis is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Sales By Representative report specification version 24 (S6-R2), read on 17 August 2026.\nLast checked against build v3.8-bd246fd on 8/18/2026.\nRe-checked against the live specification on 26 August 2026: the requirements this case cites are unchanged, so only the version cited above was updated.\n\nAUTOMATION: READY"
+}
+}
+},
+"30319": {
+"title": "All four exports are generated server-side against the active filters and sort",
+"atm": 1,
+"fields": {
+"custom_expected": {
+"blocks": [
+[
+"1. Each export is generated by the server, receiving the active filters and sort — the file's contents and order match the screen even for reps never expanded (not built from loaded screen data).",
+"2. A genuine server-side export failure produces NO file and shows the \"Ooooops! An error occured\" toast — never a malformed/partial file.",
+"3. An empty-but-loaded result still produces a valid file (header-row-only CSV / no-rows PDF)."
+],
+[
+"---",
+"This is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Sales By Representative report specification version 24 (S14-R2a, S14-N2, S14-E3), read on 17 August 2026.",
+"Last checked against build v3.8-bd246fd on 8/18/2026.",
+"Re-checked against the live specification on 26 August 2026: the requirements this case cites are unchanged, so only the version cited above was updated."
+],
+[
+"AUTOMATION: READY"
+]
+],
+"text": "1. Each export is generated by the server, receiving the active filters and sort — the file's contents and order match the screen even for reps never expanded (not built from loaded screen data).\n2. A genuine server-side export failure produces NO file and shows the \"Ooooops! An error occured\" toast — never a malformed/partial file.\n3. An empty-but-loaded result still produces a valid file (header-row-only CSV / no-rows PDF).\n\n---\nThis is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Sales By Representative report specification version 24 (S14-R2a, S14-N2, S14-E3), read on 17 August 2026.\nLast checked against build v3.8-bd246fd on 8/18/2026.\nRe-checked against the live specification on 26 August 2026: the requirements this case cites are unchanged, so only the version cited above was updated.\n\nAUTOMATION: READY"
+}
+}
+},
+"30323": {
+"title": "First visit: date range defaults to This Year and data is fetched automatically",
+"atm": 1,
+"fields": {
+"custom_expected": {
+"blocks": [
+[
+"1. The date range selector shows This Year.",
+"2. Report data loads automatically - you do not have to press anything to fetch it.",
+"3. Rows appear ranked by Demand, highest first (the default order)."
+],
+[
+"---",
+"This is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Parts Velocity report specification version 11 (S1-R2, S4-R6), read on 17 August 2026.",
+"Last checked against build v3.8-bd246fd on 8/18/2026.",
+"Re-checked against the live specification on 26 August 2026: the requirements this case cites are unchanged, so only the version cited above was updated."
+],
+[
+"AUTOMATION: READY"
+]
+],
+"text": "1. The date range selector shows This Year.\n2. Report data loads automatically - you do not have to press anything to fetch it.\n3. Rows appear ranked by Demand, highest first (the default order).\n\n---\nThis is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Parts Velocity report specification version 11 (S1-R2, S4-R6), read on 17 August 2026.\nLast checked against build v3.8-bd246fd on 8/18/2026.\nRe-checked against the live specification on 26 August 2026: the requirements this case cites are unchanged, so only the version cited above was updated.\n\nAUTOMATION: READY"
+}
+}
+},
+"30324": {
+"title": "A loading indicator shows and old rows are replaced only when data returns",
+"atm": 1,
+"fields": {
+"custom_expected": {
+"blocks": [
+[
+"1. During the initial load, the table shows a loading indicator.",
+"2. During a filter change, the loading indicator shows again.",
+"3. The rows already on screen are replaced only when the new data comes back - the table does not blank out and rebuild mid-request."
+],
+[
+"---",
+"This is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Parts Velocity report specification version 11 (S1-R3), read on 17 August 2026.",
+"Last checked against build v3.8-bd246fd on 8/18/2026.",
+"Re-checked against the live specification on 26 August 2026: the requirements this case cites are unchanged, so only the version cited above was updated."
+],
+[
+"AUTOMATION: READY"
+]
+],
+"text": "1. During the initial load, the table shows a loading indicator.\n2. During a filter change, the loading indicator shows again.\n3. The rows already on screen are replaced only when the new data comes back - the table does not blank out and rebuild mid-request.\n\n---\nThis is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Parts Velocity report specification version 11 (S1-R3), read on 17 August 2026.\nLast checked against build v3.8-bd246fd on 8/18/2026.\nRe-checked against the live specification on 26 August 2026: the requirements this case cites are unchanged, so only the version cited above was updated.\n\nAUTOMATION: READY"
+}
+}
+},
+"30337": {
+"title": "Location filter is rightmost, defaults to the active location, accessible-only",
+"atm": 1,
+"fields": {
+"custom_expected": {
+"blocks": [
+[
+"1. The Location filter is the rightmost control in the filter row and is multi-select.",
+"2. On a first visit it defaults to the user's currently active location (the one in the global location switcher).",
+"3. The list holds the locations the signed-in user has access to, plus an 'All Locations' option.",
+"4. Each selection reloads the data scoped to the chosen set; 'All Locations' means all locations the user can ACCESS, never beyond - a location the user cannot access is never included.",
+"5. The location scope cascades through every metric like the other filters.",
+"6. With 'All Locations' active you can tell which location each row's data belongs to — a location label or marking is shown."
+],
+[
+"---",
+"This is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Parts Velocity report specification version 11 (S2-R9), read on 17 August 2026; where the wording of that specification differs, the behaviour above follows Chris Ward's later decision, recorded in his answers in this file: https://docs.google.com/spreadsheets/d/1x8cuYJlFsDHalVZZTh156_ZCq2gcOaGY/edit?usp=sharing&ouid=106388879401921597782&rtpof=true&sd=true, read on 17 August 2026, which is the authority.",
+"Last checked against build v3.8-bd246fd on 8/18/2026.",
+"Re-checked against the live specification on 26 August 2026: the requirements this case cites are unchanged, so only the version cited above was updated."
+],
+[
+"AUTOMATION: READY"
+]
+],
+"text": "1. The Location filter is the rightmost control in the filter row and is multi-select.\n2. On a first visit it defaults to the user's currently active location (the one in the global location switcher).\n3. The list holds the locations the signed-in user has access to, plus an 'All Locations' option.\n4. Each selection reloads the data scoped to the chosen set; 'All Locations' means all locations the user can ACCESS, never beyond - a location the user cannot access is never included.\n5. The location scope cascades through every metric like the other filters.\n6. With 'All Locations' active you can tell which location each row's data belongs to — a location label or marking is shown.\n\n---\nThis is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Parts Velocity report specification version 11 (S2-R9), read on 17 August 2026; where the wording of that specification differs, the behaviour above follows Chris Ward's later decision, recorded in his answers in this file: https://docs.google.com/spreadsheets/d/1x8cuYJlFsDHalVZZTh156_ZCq2gcOaGY/edit?usp=sharing&ouid=106388879401921597782&rtpof=true&sd=true, read on 17 August 2026, which is the authority.\nLast checked against build v3.8-bd246fd on 8/18/2026.\nRe-checked against the live specification on 26 August 2026: the requirements this case cites are unchanged, so only the version cited above was updated.\n\nAUTOMATION: READY"
+}
+}
+},
+"30343": {
+"title": "Rows load ranked by Demand descending, indicator on the Demand header",
+"atm": 1,
+"fields": {
+"custom_expected": {
+"blocks": [
+[
+"1. Rows are ranked by Demand, descending - the most-active parts first.",
+"2. Inventory and special-order rows are ranked together in one list.",
+"3. Rows with equal Demand keep inventory-before-special-order order.",
+"4. The Demand header shows the descending sort indicator - this initial order IS the active sort (it is what the remembered view saves until you click another header)."
+],
+[
+"---",
+"This is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Parts Velocity report specification version 11 (S3-R2), read on 17 August 2026.",
+"Last checked against build v3.8-bd246fd on 8/18/2026.",
+"Re-checked against the live specification on 26 August 2026: the requirements this case cites are unchanged, so only the version cited above was updated."
+],
+[
+"AUTOMATION: READY"
+]
+],
+"text": "1. Rows are ranked by Demand, descending - the most-active parts first.\n2. Inventory and special-order rows are ranked together in one list.\n3. Rows with equal Demand keep inventory-before-special-order order.\n4. The Demand header shows the descending sort indicator - this initial order IS the active sort (it is what the remembered view saves until you click another header).\n\n---\nThis is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Parts Velocity report specification version 11 (S3-R2), read on 17 August 2026.\nLast checked against build v3.8-bd246fd on 8/18/2026.\nRe-checked against the live specification on 26 August 2026: the requirements this case cites are unchanged, so only the version cited above was updated.\n\nAUTOMATION: READY"
+}
+}
+},
+"30347": {
+"title": "Description; Category and Vendor truncate on hover; Part # never does",
+"atm": 1,
+"fields": {
+"custom_expected": {
+"blocks": [
+[
+"1. Long Description, Category, and Vendor text is truncated with an ellipsis on screen.",
+"2. The full value shows on native hover (browser tooltip).",
+"3. Part # is NEVER truncated - on screen (and in the exports)."
+],
+[
+"---",
+"This is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Parts Velocity report specification version 11 (S3-R7), read on 17 August 2026.",
+"Last checked against build v3.8-bd246fd on 8/18/2026.",
+"Re-checked against the live specification on 26 August 2026: the requirements this case cites are unchanged, so only the version cited above was updated."
+],
+[
+"AUTOMATION: READY"
+]
+],
+"text": "1. Long Description, Category, and Vendor text is truncated with an ellipsis on screen.\n2. The full value shows on native hover (browser tooltip).\n3. Part # is NEVER truncated - on screen (and in the exports).\n\n---\nThis is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Parts Velocity report specification version 11 (S3-R7), read on 17 August 2026.\nLast checked against build v3.8-bd246fd on 8/18/2026.\nRe-checked against the live specification on 26 August 2026: the requirements this case cites are unchanged, so only the version cited above was updated.\n\nAUTOMATION: READY"
+}
+}
+},
+"30373": {
+"title": "Movement and billed bases may differ; Sold (WO) + Sold (Parts Sale) = billed",
+"atm": 1,
+"fields": {
+"custom_expected": {
+"blocks": [
+[
+"1. On the inventory row, Units Sold (stock movement) DIFFERS from the billed units behind Revenue/Avg Sell - this is CORRECT behavior, not a defect (the Units Sold tooltip calls it out).",
+"2. Sold (WO) + Sold (Parts Sale) together DO equal the billed-units basis (work orders are only Service- or Parts-type) - but neither equals the movement-based Units Sold.",
+"3. On the special-order row, everything reconciles: Units Sold = Sold (WO) + Sold (Parts Sale) = billed units (they share the vendor-request quantity as one source)."
+],
+[
+"---",
+"This is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Parts Velocity report specification version 11 (S5-R7), read on 17 August 2026.",
+"Last checked against build v3.8-bd246fd on 8/18/2026.",
+"Re-checked against the live specification on 26 August 2026: the requirements this case cites are unchanged, so only the version cited above was updated."
+],
+[
+"AUTOMATION: READY"
+]
+],
+"text": "1. On the inventory row, Units Sold (stock movement) DIFFERS from the billed units behind Revenue/Avg Sell - this is CORRECT behavior, not a defect (the Units Sold tooltip calls it out).\n2. Sold (WO) + Sold (Parts Sale) together DO equal the billed-units basis (work orders are only Service- or Parts-type) - but neither equals the movement-based Units Sold.\n3. On the special-order row, everything reconciles: Units Sold = Sold (WO) + Sold (Parts Sale) = billed units (they share the vendor-request quantity as one source).\n\n---\nThis is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Parts Velocity report specification version 11 (S5-R7), read on 17 August 2026.\nLast checked against build v3.8-bd246fd on 8/18/2026.\nRe-checked against the live specification on 26 August 2026: the requirements this case cites are unchanged, so only the version cited above was updated.\n\nAUTOMATION: READY"
+}
+}
+},
+"30374": {
+"title": "Window anchors: movement uses the event date, billed uses the WO date",
+"atm": 1,
+"fields": {
+"custom_expected": {
+"blocks": [
+[
+"1. In W1 (work-order date in window): the billed columns (Revenue, Margin, Avg Cost, Avg Sell, Margin %, Sold (WO), Sold (Parts Sale)) count the sale, while inventory Units Sold / Demand do NOT (their movement event is outside W1).",
+"2. In W2 (movement date in window): Units Sold / Demand count it, the billed columns do not - the two anchors CAN differ for an inventory part and that is intended.",
+"3. The window is the whole-day span inclusive of BOTH the start and end dates, with a floor of 1 day - a single-day range (Today) computes normally (Window = 1 for the Turns / Yr divisor).",
+"4. Last Sale is not windowed at all (all-time)."
+],
+[
+"---",
+"This is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Parts Velocity report specification version 11 (S5-R7), read on 17 August 2026.",
+"Last checked against build v3.8-bd246fd on 8/18/2026.",
+"Re-checked against the live specification on 26 August 2026: the requirements this case cites are unchanged, so only the version cited above was updated."
+],
+[
+"AUTOMATION: READY"
+]
+],
+"text": "1. In W1 (work-order date in window): the billed columns (Revenue, Margin, Avg Cost, Avg Sell, Margin %, Sold (WO), Sold (Parts Sale)) count the sale, while inventory Units Sold / Demand do NOT (their movement event is outside W1).\n2. In W2 (movement date in window): Units Sold / Demand count it, the billed columns do not - the two anchors CAN differ for an inventory part and that is intended.\n3. The window is the whole-day span inclusive of BOTH the start and end dates, with a floor of 1 day - a single-day range (Today) computes normally (Window = 1 for the Turns / Yr divisor).\n4. Last Sale is not windowed at all (all-time).\n\n---\nThis is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Parts Velocity report specification version 11 (S5-R7), read on 17 August 2026.\nLast checked against build v3.8-bd246fd on 8/18/2026.\nRe-checked against the live specification on 26 August 2026: the requirements this case cites are unchanged, so only the version cited above was updated.\n\nAUTOMATION: READY"
+}
+}
+},
+"30376": {
+"title": "Both exports reflect the filters and search active at the time of export",
+"atm": 1,
+"fields": {
+"custom_expected": {
+"blocks": [
+[
+"1. Both files contain only the rows matching the date range, type, category, vendor, bin, location, and search active at export time - not a full unfiltered dump.",
+"2. The exported rows match what the on-screen grid was showing.",
+"3. Each file (PDF and CSV) carries a \"Locations:\" line naming the location(s) the report was scoped to."
+],
+[
+"---",
+"This is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Parts Velocity report specification version 11 (S6-R2, S6-R11), read on 17 August 2026; where the wording of that specification differs, the behaviour above follows Chris Ward's later decision, recorded in his answers in this file: https://docs.google.com/spreadsheets/d/1x8cuYJlFsDHalVZZTh156_ZCq2gcOaGY/edit?usp=sharing&ouid=106388879401921597782&rtpof=true&sd=true, read on 17 August 2026, which is the authority.",
+"Last checked against build v3.8-bd246fd on 8/18/2026.",
+"Re-checked against the live specification on 26 August 2026: the requirements this case cites are unchanged, so only the version cited above was updated."
+],
+[
+"AUTOMATION: READY"
+]
+],
+"text": "1. Both files contain only the rows matching the date range, type, category, vendor, bin, location, and search active at export time - not a full unfiltered dump.\n2. The exported rows match what the on-screen grid was showing.\n3. Each file (PDF and CSV) carries a \"Locations:\" line naming the location(s) the report was scoped to.\n\n---\nThis is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Parts Velocity report specification version 11 (S6-R2, S6-R11), read on 17 August 2026; where the wording of that specification differs, the behaviour above follows Chris Ward's later decision, recorded in his answers in this file: https://docs.google.com/spreadsheets/d/1x8cuYJlFsDHalVZZTh156_ZCq2gcOaGY/edit?usp=sharing&ouid=106388879401921597782&rtpof=true&sd=true, read on 17 August 2026, which is the authority.\nLast checked against build v3.8-bd246fd on 8/18/2026.\nRe-checked against the live specification on 26 August 2026: the requirements this case cites are unchanged, so only the version cited above was updated.\n\nAUTOMATION: READY"
+}
+}
+},
+"30378": {
+"title": "Exports reflect the active sort, including Min/Max and null placement",
+"atm": 1,
+"fields": {
+"custom_expected": {
+"blocks": [
+[
+"1. The default Demand-descending order is exported when the user has not chosen another column.",
+"2. Every column's sort is honored in the export - including Min and Max.",
+"3. The export renders the EXACT server order, including null placement (nulls first on ascending, last on descending) - the export and the on-screen grid match; there is no on-screen-vs-export null-sorting difference."
+],
+[
+"---",
+"This is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Parts Velocity report specification version 11 (S6-R4, S3-R3), read on 17 August 2026.",
+"Last checked against build v3.8-bd246fd on 8/18/2026.",
+"Re-checked against the live specification on 26 August 2026: the requirements this case cites are unchanged, so only the version cited above was updated."
+],
+[
+"AUTOMATION: READY"
+]
+],
+"text": "1. The default Demand-descending order is exported when the user has not chosen another column.\n2. Every column's sort is honored in the export - including Min and Max.\n3. The export renders the EXACT server order, including null placement (nulls first on ascending, last on descending) - the export and the on-screen grid match; there is no on-screen-vs-export null-sorting difference.\n\n---\nThis is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Parts Velocity report specification version 11 (S6-R4, S3-R3), read on 17 August 2026.\nLast checked against build v3.8-bd246fd on 8/18/2026.\nRe-checked against the live specification on 26 August 2026: the requirements this case cites are unchanged, so only the version cited above was updated.\n\nAUTOMATION: READY"
+}
+}
+},
+"30379": {
+"title": "PDF: filename, A3 landscape, title, text truncation, and the shop logo",
+"atm": 1,
+"fields": {
+"custom_expected": {
+"blocks": [
+[
+"1. The file downloads as velocity-report.pdf.",
+"2. The PDF is formatted for A3 landscape and titled Parts Velocity.",
+"3. Description, Category, and Vendor are truncated to 18 characters in the PDF.",
+"4. Part # is NOT truncated.",
+"5. With a logo uploaded, that logo appears. If a logo is set but fails to load, the built-in ShopView logo is used instead. If no logo is uploaded at all, NO logo is printed and the text fills the space. The CSV never includes a logo.",
+"Note for the tester: on this build a report with no uploaded logo still prints the built-in ShopView logo. The product owner has decided it should print no logo at all, so record what you see; the change is with the developers."
+],
+[
+"---",
+"This is the expected behaviour as per epic SV-8582, read on 17 August 2026, and Chris Ward's decision of 8/5/2026, recorded in his answers in this file: https://docs.google.com/spreadsheets/d/1x8cuYJlFsDHalVZZTh156_ZCq2gcOaGY/edit?usp=sharing&ouid=106388879401921597782&rtpof=true&sd=true, read on 17 August 2026; where the Parts Velocity report specification version 11 (S6-R5, S6-R6), read on 17 August 2026, differs, his decision is the authority.",
+"Last checked against build v3.8-bd246fd on 8/18/2026.",
+"Re-checked against the live specification on 26 August 2026: the requirements this case cites are unchanged, so only the version cited above was updated."
+],
+[
+"AUTOMATION: READY"
+]
+],
+"text": "1. The file downloads as velocity-report.pdf.\n2. The PDF is formatted for A3 landscape and titled Parts Velocity.\n3. Description, Category, and Vendor are truncated to 18 characters in the PDF.\n4. Part # is NOT truncated.\n5. With a logo uploaded, that logo appears. If a logo is set but fails to load, the built-in ShopView logo is used instead. If no logo is uploaded at all, NO logo is printed and the text fills the space. The CSV never includes a logo.\nNote for the tester: on this build a report with no uploaded logo still prints the built-in ShopView logo. The product owner has decided it should print no logo at all, so record what you see; the change is with the developers.\n\n---\nThis is the expected behaviour as per epic SV-8582, read on 17 August 2026, and Chris Ward's decision of 8/5/2026, recorded in his answers in this file: https://docs.google.com/spreadsheets/d/1x8cuYJlFsDHalVZZTh156_ZCq2gcOaGY/edit?usp=sharing&ouid=106388879401921597782&rtpof=true&sd=true, read on 17 August 2026; where the Parts Velocity report specification version 11 (S6-R5, S6-R6), read on 17 August 2026, differs, his decision is the authority.\nLast checked against build v3.8-bd246fd on 8/18/2026.\nRe-checked against the live specification on 26 August 2026: the requirements this case cites are unchanged, so only the version cited above was updated.\n\nAUTOMATION: READY"
+}
+}
+},
+"30384": {
+"title": "Export toasts: exact success texts; server or fallback error text on failure",
+"atm": 1,
+"fields": {
+"custom_expected": {
+"blocks": [
+[
+"1. On success the toasts read exactly \"Velocity report exported (CSV)\" / \"Velocity report exported (PDF)\" and auto-fade — UPPERCASE (CSV)/(PDF).",
+"2. An error toast is shown on failure; when the server provides a message, that server message is shown.",
+"3. Otherwise the failure toast reads exactly: \"Failed to export velocity report (csv)\" or \"Failed to export velocity report (pdf)\" — lowercase (csv)/(pdf); the success/failure casing mix is the specified wording (not a bug)."
+],
+[
+"---",
+"This is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Parts Velocity report specification version 11 (S6-R9, S6-N1), read on 17 August 2026.",
+"Last checked against build v3.8-bd246fd on 8/18/2026.",
+"Re-checked against the live specification on 26 August 2026: the requirements this case cites are unchanged, so only the version cited above was updated."
+],
+[
+"AUTOMATION: READY"
+]
+],
+"text": "1. On success the toasts read exactly \"Velocity report exported (CSV)\" / \"Velocity report exported (PDF)\" and auto-fade — UPPERCASE (CSV)/(PDF).\n2. An error toast is shown on failure; when the server provides a message, that server message is shown.\n3. Otherwise the failure toast reads exactly: \"Failed to export velocity report (csv)\" or \"Failed to export velocity report (pdf)\" — lowercase (csv)/(pdf); the success/failure casing mix is the specified wording (not a bug).\n\n---\nThis is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Parts Velocity report specification version 11 (S6-R9, S6-N1), read on 17 August 2026.\nLast checked against build v3.8-bd246fd on 8/18/2026.\nRe-checked against the live specification on 26 August 2026: the requirements this case cites are unchanged, so only the version cited above was updated.\n\nAUTOMATION: READY"
+}
+}
+},
+"30388": {
+"title": "The report is server-paginated - the backend returns one page of rows at a time",
+"atm": 1,
+"fields": {
+"custom_expected": {
+"blocks": [
+[
+"1. The backend returns ONE page of rows at a time - the full result set is not shipped to the browser.",
+"2. Paging is resolved on the server: moving to another page issues a fresh backend request for that page.",
+"3. This keeps the report responsive at scale (organizations can carry 50-60k parts, multiplied across locations)."
+],
+[
+"---",
+"This is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Parts Velocity report specification version 11 (S2-R10), read on 17 August 2026.",
+"Last checked against build v3.8-bd246fd on 8/18/2026.",
+"Re-checked against the live specification on 26 August 2026: the requirements this case cites are unchanged, so only the version cited above was updated."
+],
+[
+"AUTOMATION: READY"
+]
+],
+"text": "1. The backend returns ONE page of rows at a time - the full result set is not shipped to the browser.\n2. Paging is resolved on the server: moving to another page issues a fresh backend request for that page.\n3. This keeps the report responsive at scale (organizations can carry 50-60k parts, multiplied across locations).\n\n---\nThis is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Parts Velocity report specification version 11 (S2-R10), read on 17 August 2026.\nLast checked against build v3.8-bd246fd on 8/18/2026.\nRe-checked against the live specification on 26 August 2026: the requirements this case cites are unchanged, so only the version cited above was updated.\n\nAUTOMATION: READY"
+}
+}
+},
+"30389": {
+"title": "Each filter or search change re-queries the server and returns page one",
+"atm": 1,
+"fields": {
+"custom_expected": {
+"blocks": [
+[
+"1. EACH change (Type, date range, Bin, Location, Category, Vendor, search) triggers a fresh server-side data load.",
+"2. There is no client-side-only narrowing - every filter or search change re-queries the server.",
+"3. Each change returns the FIRST page of the new result set."
+],
+[
+"---",
+"This is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Parts Velocity report specification version 11 (S2-R10), read on 17 August 2026.",
+"Last checked against build v3.8-bd246fd on 8/18/2026.",
+"Re-checked against the live specification on 26 August 2026: the requirements this case cites are unchanged, so only the version cited above was updated."
+],
+[
+"AUTOMATION: READY"
+]
+],
+"text": "1. EACH change (Type, date range, Bin, Location, Category, Vendor, search) triggers a fresh server-side data load.\n2. There is no client-side-only narrowing - every filter or search change re-queries the server.\n3. Each change returns the FIRST page of the new result set.\n\n---\nThis is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Parts Velocity report specification version 11 (S2-R10), read on 17 August 2026.\nLast checked against build v3.8-bd246fd on 8/18/2026.\nRe-checked against the live specification on 26 August 2026: the requirements this case cites are unchanged, so only the version cited above was updated.\n\nAUTOMATION: READY"
+}
+}
+},
+"30391": {
+"title": "The back end serves report data and export on ordinary reports access",
+"atm": 1,
+"fields": {
+"custom_expected": {
+"blocks": [
+[
+"1. The back end returns the report data - the request is not refused.",
+"2. The back end returns the export file - the request is not refused.",
+"3. Both requests succeed with only the ordinary reports access turned on - nothing else had to be enabled.",
+"4. Note for the tester: if the back end refuses either request for a user who has the ordinary reports access, mark this Failed and report it. If an extra Parts or Inventory reports permission exists in the system it must not change these results - the specification allows no per-report permission at all. A per-report permission added on purpose in a later release is a planned change, not a bug, and this test will be updated first."
+],
+[
+"---",
+"This is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Parts Velocity report specification version 11 (S1-R4, S1-N2), read on 17 August 2026.",
+"Last checked against build v3.8-bd246fd on 8/18/2026.",
+"Re-checked against the live specification on 26 August 2026: the requirements this case cites are unchanged, so only the version cited above was updated."
+],
+[
+"AUTOMATION: READY"
+]
+],
+"text": "1. The back end returns the report data - the request is not refused.\n2. The back end returns the export file - the request is not refused.\n3. Both requests succeed with only the ordinary reports access turned on - nothing else had to be enabled.\n4. Note for the tester: if the back end refuses either request for a user who has the ordinary reports access, mark this Failed and report it. If an extra Parts or Inventory reports permission exists in the system it must not change these results - the specification allows no per-report permission at all. A per-report permission added on purpose in a later release is a planned change, not a bug, and this test will be updated first.\n\n---\nThis is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Parts Velocity report specification version 11 (S1-R4, S1-N2), read on 17 August 2026.\nLast checked against build v3.8-bd246fd on 8/18/2026.\nRe-checked against the live specification on 26 August 2026: the requirements this case cites are unchanged, so only the version cited above was updated.\n\nAUTOMATION: READY"
+}
+}
+},
+"30466": {
+"title": "With all toggleable columns on, the fixed column order and alignment hold",
+"atm": 1,
+"fields": {
+"custom_expected": {
+"blocks": [
+[
+"1. The columns appear in this order: WO #, Status, Customer, Asset, VIN, Location, Advisor, Days Open, Last Activity, Labor Earned, Labor Remaining, Parts Earned, Parts Remaining, Earned, Remaining, Adjustments, Labor Delta, Total.",
+"2. WO #, Status, Customer, Asset, VIN, Location, and Advisor are left-aligned.",
+"3. Every other column (Days Open, Last Activity, and all money/number columns through Total) is right-aligned."
+],
+[
+"---",
+"This is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Work In Progress report specification version 28 (S4-R1), read on 18 August 2026. The column was renamed from \"Inv. Hrs\" to \"Labor Delta\" per SV-9071; only the name changed.",
+"Last checked against build v3.8-bd246fd on 8/18/2026.",
+"Re-checked against the live specification on 26 August 2026: the requirements this case cites are unchanged, so only the version cited above was updated."
+],
+[
+"AUTOMATION: READY"
+]
+],
+"text": "1. The columns appear in this order: WO #, Status, Customer, Asset, VIN, Location, Advisor, Days Open, Last Activity, Labor Earned, Labor Remaining, Parts Earned, Parts Remaining, Earned, Remaining, Adjustments, Labor Delta, Total.\n2. WO #, Status, Customer, Asset, VIN, Location, and Advisor are left-aligned.\n3. Every other column (Days Open, Last Activity, and all money/number columns through Total) is right-aligned.\n\n---\nThis is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Work In Progress report specification version 28 (S4-R1), read on 18 August 2026. The column was renamed from \"Inv. Hrs\" to \"Labor Delta\" per SV-9071; only the name changed.\nLast checked against build v3.8-bd246fd on 8/18/2026.\nRe-checked against the live specification on 26 August 2026: the requirements this case cites are unchanged, so only the version cited above was updated.\n\nAUTOMATION: READY"
+}
+}
+},
+"30468": {
+"title": "The WO # is a link that opens the WO in the same browser tab",
+"atm": 1,
+"fields": {
+"custom_expected": {
+"blocks": [
+[
+"1. For a person who has permission to open work orders, the WO # is shown as a link.",
+"2. Clicking it opens that work order in the SAME browser tab (not a new tab).",
+"3. The browser's back navigation returns you to the report."
+],
+[
+"---",
+"This is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Work In Progress report specification version 28 (S4-R5), read on 18 August 2026.",
+"Last checked against build v3.8-bd246fd on 8/18/2026.",
+"Re-checked against the live specification on 26 August 2026: the requirements this case cites are unchanged, so only the version cited above was updated."
+],
+[
+"AUTOMATION: READY"
+]
+],
+"text": "1. For a person who has permission to open work orders, the WO # is shown as a link.\n2. Clicking it opens that work order in the SAME browser tab (not a new tab).\n3. The browser's back navigation returns you to the report.\n\n---\nThis is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Work In Progress report specification version 28 (S4-R5), read on 18 August 2026.\nLast checked against build v3.8-bd246fd on 8/18/2026.\nRe-checked against the live specification on 26 August 2026: the requirements this case cites are unchanged, so only the version cited above was updated.\n\nAUTOMATION: READY"
+}
+}
+},
+"30469": {
+"title": "Status shows as a color-coded badge whose label text is always present",
+"atm": 1,
+"fields": {
+"custom_expected": {
+"blocks": [
+[
+"1. Status is shown as a badge using the status's label: \"Estimate\", \"Approved\", \"In progress\", \"Review\", or \"Complete\".",
+"2. The badge is color-coded per the application's standard status colors.",
+"3. The label text is always present, so color is never the sole signal of the status."
+],
+[
+"---",
+"This is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Work In Progress report specification version 28 (S4-R6, S10-R8), read on 18 August 2026.",
+"Last checked against build v3.8-bd246fd on 8/18/2026.",
+"Re-checked against the live specification on 26 August 2026: the requirements this case cites are unchanged, so only the version cited above was updated."
+],
+[
+"AUTOMATION: READY"
+]
+],
+"text": "1. Status is shown as a badge using the status's label: \"Estimate\", \"Approved\", \"In progress\", \"Review\", or \"Complete\".\n2. The badge is color-coded per the application's standard status colors.\n3. The label text is always present, so color is never the sole signal of the status.\n\n---\nThis is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Work In Progress report specification version 28 (S4-R6, S10-R8), read on 18 August 2026.\nLast checked against build v3.8-bd246fd on 8/18/2026.\nRe-checked against the live specification on 26 August 2026: the requirements this case cites are unchanged, so only the version cited above was updated.\n\nAUTOMATION: READY"
+}
+}
+},
+"30471": {
+"title": "Customer shows the customer's company name",
+"atm": 1,
+"fields": {
+"custom_expected": {
+"blocks": [
+[
+"1. The Customer column shows the customer's company name.",
+"2. The cell is blank when no customer name exists."
+],
+[
+"---",
+"This is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Work In Progress report specification version 28 (S4-R11), read on 18 August 2026.",
+"Last checked against build v3.8-bd246fd on 8/18/2026.",
+"Re-checked against the live specification on 26 August 2026: the requirements this case cites are unchanged, so only the version cited above was updated."
+],
+[
+"AUTOMATION: READY"
+]
+],
+"text": "1. The Customer column shows the customer's company name.\n2. The cell is blank when no customer name exists.\n\n---\nThis is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Work In Progress report specification version 28 (S4-R11), read on 18 August 2026.\nLast checked against build v3.8-bd246fd on 8/18/2026.\nRe-checked against the live specification on 26 August 2026: the requirements this case cites are unchanged, so only the version cited above was updated.\n\nAUTOMATION: READY"
+}
+}
+},
+"30473": {
+"title": "Last Activity shows Today; Xd ago; or an em-dash when there is none",
+"atm": 1,
+"fields": {
+"custom_expected": {
+"blocks": [
+[
+"1. A work order whose most recent activity was today shows \"Today\".",
+"2. Otherwise it shows \"Xd ago\" (for example \"3d ago\").",
+"3. A work order with no recorded activity shows \"—\"."
+],
+[
+"---",
+"This is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Work In Progress report specification version 28 (S4-R13), read on 18 August 2026.",
+"Last checked against build v3.8-bd246fd on 8/18/2026.",
+"Re-checked against the live specification on 26 August 2026: the requirements this case cites are unchanged, so only the version cited above was updated."
+],
+[
+"AUTOMATION: READY"
+]
+],
+"text": "1. A work order whose most recent activity was today shows \"Today\".\n2. Otherwise it shows \"Xd ago\" (for example \"3d ago\").\n3. A work order with no recorded activity shows \"—\".\n\n---\nThis is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Work In Progress report specification version 28 (S4-R13), read on 18 August 2026.\nLast checked against build v3.8-bd246fd on 8/18/2026.\nRe-checked against the live specification on 26 August 2026: the requirements this case cites are unchanged, so only the version cited above was updated.\n\nAUTOMATION: READY"
+}
+}
+},
+"30481": {
+"title": "Labor Delta shows quoted minus worked hours; signed to one decimal",
+"atm": 1,
+"fields": {
+"custom_expected": {
+"blocks": [
+[
+"1. Labor Delta shows the quoted labor hours minus the worked (clocked) labor hours across the approved lines, as a signed number with one decimal place — for example \"+2.0\" or \"-14.0\".",
+"2. On screen it is colored green when positive and red when negative; the overrun job shows a negative red value, the under-estimate job a positive green value.",
+"3. A value of exactly zero shows unsigned as \"0.0\" (never \"+0.0\" or blank) in the default text color."
+],
+[
+"---",
+"This is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Work In Progress report specification version 28 (S4-R23, S4-R24, S4-E2), read on 18 August 2026. The column was renamed from \"Inv. Hrs\" to \"Labor Delta\" per SV-9071; only the name changed.",
+"Last checked against build v3.8-bd246fd on 8/18/2026.",
+"Re-checked against the live specification on 26 August 2026: the requirements this case cites are unchanged, so only the version cited above was updated."
+],
+[
+"AUTOMATION: READY"
+]
+],
+"text": "1. Labor Delta shows the quoted labor hours minus the worked (clocked) labor hours across the approved lines, as a signed number with one decimal place — for example \"+2.0\" or \"-14.0\".\n2. On screen it is colored green when positive and red when negative; the overrun job shows a negative red value, the under-estimate job a positive green value.\n3. A value of exactly zero shows unsigned as \"0.0\" (never \"+0.0\" or blank) in the default text color.\n\n---\nThis is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Work In Progress report specification version 28 (S4-R23, S4-R24, S4-E2), read on 18 August 2026. The column was renamed from \"Inv. Hrs\" to \"Labor Delta\" per SV-9071; only the name changed.\nLast checked against build v3.8-bd246fd on 8/18/2026.\nRe-checked against the live specification on 26 August 2026: the requirements this case cites are unchanged, so only the version cited above was updated.\n\nAUTOMATION: READY"
+}
+}
+},
+"30482": {
+"title": "An open estimate with no approved work shows $0.00 in every money column",
+"atm": 1,
+"fields": {
+"custom_preconds": {
+"blocks": [
+[
+"1. You are signed in to the ShopView App on a desktop browser.",
+"2. All money columns are turned on.",
+"3. A ZZAUTOTEST open estimate exists with no approved line items."
+]
+],
+"text": "1. You are signed in to the ShopView App on a desktop browser.\n2. All money columns are turned on.\n3. A ZZAUTOTEST open estimate exists with no approved line items."
+},
+"custom_steps": {
+"blocks": [
+[
+"1. Open the Work In Progress report and open the Estimates tab.",
+"2. Find the seeded estimate's row and read every money column."
+]
+],
+"text": "1. Open the Work In Progress report and open the Estimates tab.\n2. Find the seeded estimate's row and read every money column."
+},
+"custom_expected": {
+"blocks": [
+[
+"1. Every money column — Labor Earned, Labor Remaining, Parts Earned, Parts Remaining, Earned, Remaining, Adjustments and Total — shows \"$0.00\".",
+"2. The row still appears in the Estimates tab (it is not hidden for having no value)."
+],
+[
+"Note for the tester: this test is about a work order whose status is Estimate, which belongs in the Estimates tab. A work order sitting in another status tab that still carries unapproved lines also shows a second row in the Estimates tab covering only those lines — that is expected, and it is not what this test measures."
+],
+[
+"This is the expected behaviour as per epic SV-8582 and the Work In Progress report specification version 28 (S4-E1; S2-R4; S3-R1), read on 26 August 2026.",
+"Specification version 22 stated that each qualifying work order appears exactly once; version 28 (2026-08-24) allows a work order carrying unapproved lines to appear a second time in the Estimates tab for only those lines, and we take the later version as prevailing.",
+"This expectation has not been checked against any build since the specification change described above."
+],
+[
+"AUTOMATION: READY"
+]
+],
+"text": "1. Every money column — Labor Earned, Labor Remaining, Parts Earned, Parts Remaining, Earned, Remaining, Adjustments and Total — shows \"$0.00\".\n2. The row still appears in the Estimates tab (it is not hidden for having no value).\n\nNote for the tester: this test is about a work order whose status is Estimate, which belongs in the Estimates tab. A work order sitting in another status tab that still carries unapproved lines also shows a second row in the Estimates tab covering only those lines — that is expected, and it is not what this test measures.\n\nThis is the expected behaviour as per epic SV-8582 and the Work In Progress report specification version 28 (S4-E1; S2-R4; S3-R1), read on 26 August 2026.\nSpecification version 22 stated that each qualifying work order appears exactly once; version 28 (2026-08-24) allows a work order carrying unapproved lines to appear a second time in the Estimates tab for only those lines, and we take the later version as prevailing.\nThis expectation has not been checked against any build since the specification change described above.\n\nAUTOMATION: READY"
+}
+}
+},
+"30483": {
+"title": "The initial sort is Days Open with the longest-open work order first",
+"atm": 1,
+"fields": {
+"custom_expected": {
+"blocks": [
+[
+"1. The rows are sorted by Days Open, longest-open first (descending)."
+],
+[
+"---",
+"This is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Work In Progress report specification version 28 (S4-R25), read on 18 August 2026.",
+"Last checked against build v3.8-bd246fd on 8/18/2026.",
+"Re-checked against the live specification on 26 August 2026: the requirements this case cites are unchanged, so only the version cited above was updated."
+],
+[
+"AUTOMATION: READY"
+]
+],
+"text": "1. The rows are sorted by Days Open, longest-open first (descending).\n\n---\nThis is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Work In Progress report specification version 28 (S4-R25), read on 18 August 2026.\nLast checked against build v3.8-bd246fd on 8/18/2026.\nRe-checked against the live specification on 26 August 2026: the requirements this case cites are unchanged, so only the version cited above was updated.\n\nAUTOMATION: READY"
+}
+}
+},
+"30484": {
+"title": "Clicking a header sorts ascending, clicking again toggles descending",
+"atm": 1,
+"fields": {
+"custom_expected": {
+"blocks": [
+[
+"1. The first click sorts the column ascending.",
+"2. The second click toggles it to descending.",
+"3. The third click returns to ascending — there is no third \"cleared\" state.",
+"4. Only one column sorts at a time: clicking another header replaces the previous sort."
+],
+[
+"---",
+"This is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Work In Progress report specification version 28 (S4-R26), read on 18 August 2026.",
+"Last checked against build v3.8-bd246fd on 8/18/2026.",
+"Re-checked against the live specification on 26 August 2026: the requirements this case cites are unchanged, so only the version cited above was updated."
+],
+[
+"AUTOMATION: READY"
+]
+],
+"text": "1. The first click sorts the column ascending.\n2. The second click toggles it to descending.\n3. The third click returns to ascending — there is no third \"cleared\" state.\n4. Only one column sorts at a time: clicking another header replaces the previous sort.\n\n---\nThis is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Work In Progress report specification version 28 (S4-R26), read on 18 August 2026.\nLast checked against build v3.8-bd246fd on 8/18/2026.\nRe-checked against the live specification on 26 August 2026: the requirements this case cites are unchanged, so only the version cited above was updated.\n\nAUTOMATION: READY"
+}
+}
+},
+"30486": {
+"title": "Sorting reorders only the active tab's rows; Totals stays at the bottom",
+"atm": 1,
+"fields": {
+"custom_expected": {
+"blocks": [
+[
+"1. Sorting reorders the rows within the active tab only.",
+"2. The Totals row stays pinned at the bottom, out of the sort.",
+"3. The other tab's order is not changed by the first tab's sort action."
+],
+[
+"---",
+"This is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Work In Progress report specification version 28 (S4-R28), read on 18 August 2026.",
+"Last checked against build v3.8-bd246fd on 8/18/2026.",
+"Re-checked against the live specification on 26 August 2026: the requirements this case cites are unchanged, so only the version cited above was updated."
+],
+[
+"AUTOMATION: READY"
+]
+],
+"text": "1. Sorting reorders the rows within the active tab only.\n2. The Totals row stays pinned at the bottom, out of the sort.\n3. The other tab's order is not changed by the first tab's sort action.\n\n---\nThis is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Work In Progress report specification version 28 (S4-R28), read on 18 August 2026.\nLast checked against build v3.8-bd246fd on 8/18/2026.\nRe-checked against the live specification on 26 August 2026: the requirements this case cites are unchanged, so only the version cited above was updated.\n\nAUTOMATION: READY"
+}
+}
+},
+"30494": {
+"title": "Each tab has a Totals row pinned to the bottom, labeled \"Totals\"",
+"atm": 1,
+"fields": {
+"custom_expected": {
+"blocks": [
+[
+"1. Each tab's table has a Totals row pinned to the bottom, labeled \"Totals\" in its leftmost cell.",
+"2. The Totals row's Total cell is pinned far right and shown in bold, matching the column.",
+"3. The Totals row uses the same number formats as the data rows."
+],
+[
+"---",
+"This is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Work In Progress report specification version 28 (S6-R1, S6-R4, S6-R5), read on 18 August 2026.",
+"Last checked against build v3.8-bd246fd on 8/18/2026.",
+"Re-checked against the live specification on 26 August 2026: the requirements this case cites are unchanged, so only the version cited above was updated."
+],
+[
+"AUTOMATION: READY"
+]
+],
+"text": "1. Each tab's table has a Totals row pinned to the bottom, labeled \"Totals\" in its leftmost cell.\n2. The Totals row's Total cell is pinned far right and shown in bold, matching the column.\n3. The Totals row uses the same number formats as the data rows.\n\n---\nThis is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Work In Progress report specification version 28 (S6-R1, S6-R4, S6-R5), read on 18 August 2026.\nLast checked against build v3.8-bd246fd on 8/18/2026.\nRe-checked against the live specification on 26 August 2026: the requirements this case cites are unchanged, so only the version cited above was updated.\n\nAUTOMATION: READY"
+}
+}
+},
+"30495": {
+"title": "The Totals row sums each visible money column and the Labor Delta column",
+"atm": 1,
+"fields": {
+"custom_expected": {
+"blocks": [
+[
+"1. The Totals row sums each visible money column across the tab's visible jobs, to the cent.",
+"2. The Totals row's Labor Delta shows the sum of the visible jobs' Labor Delta, in the same signed one-decimal format (\"+2.0\" / \"-14.0\" / \"0.0\").",
+"3. The Labor Delta total uses the same green (positive) / red (negative) / default (exactly 0.0) coloring as a data row.",
+"4. Note for the tester: the Labor Delta total can only be checked on screen. On this build a download that includes Labor Delta is refused, so do not try to verify this column from a file."
+],
+[
+"---",
+"This is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Work In Progress report specification version 28 (S6-R2, S6-R3), read on 18 August 2026. The column was renamed from \"Inv. Hrs\" to \"Labor Delta\" per SV-9071; only the name changed.",
+"Last checked against build v3.8-bd246fd on 8/18/2026.",
+"Re-checked against the live specification on 26 August 2026: the requirements this case cites are unchanged, so only the version cited above was updated."
+],
+[
+"AUTOMATION: READY"
+]
+],
+"text": "1. The Totals row sums each visible money column across the tab's visible jobs, to the cent.\n2. The Totals row's Labor Delta shows the sum of the visible jobs' Labor Delta, in the same signed one-decimal format (\"+2.0\" / \"-14.0\" / \"0.0\").\n3. The Labor Delta total uses the same green (positive) / red (negative) / default (exactly 0.0) coloring as a data row.\n4. Note for the tester: the Labor Delta total can only be checked on screen. On this build a download that includes Labor Delta is refused, so do not try to verify this column from a file.\n\n---\nThis is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Work In Progress report specification version 28 (S6-R2, S6-R3), read on 18 August 2026. The column was renamed from \"Inv. Hrs\" to \"Labor Delta\" per SV-9071; only the name changed.\nLast checked against build v3.8-bd246fd on 8/18/2026.\nRe-checked against the live specification on 26 August 2026: the requirements this case cites are unchanged, so only the version cited above was updated.\n\nAUTOMATION: READY"
+}
+}
+},
+"30499": {
+"title": "Customer filter is a type-ahead multi-select reading \"All customers\"",
+"atm": 1,
+"fields": {
+"custom_expected": {
+"blocks": [
+[
+"1. With no customer selected, the filter reads \"All customers\", every job is shown, and no Clear action is offered.",
+"2. Typing narrows the option list (type-ahead); the options are the customers on every open job in what the report is currently showing you — not only the ones on the rows that happen to have loaded.",
+"3. Selecting customers narrows the visible jobs on screen only (no reload); a single \"Clear\" action appears once at least one customer is selected.",
+"4. Clear returns the filter to \"All customers\" and every job is shown again.",
+"5. Pick a customer whose jobs sit a long way down the list — scroll to the bottom of a busy tab to find one — and confirm every one of that customer's jobs is still shown. You must never end up with only the part of the list that had loaded when you opened the filter."
+],
+[
+"---",
+"This is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Work In Progress report specification version 28 (S7-R2, S7-R3), read on 18 August 2026.",
+"Last checked against build v3.8-bd246fd on 8/18/2026.",
+"Re-checked against the live specification on 26 August 2026: the requirements this case cites are unchanged, so only the version cited above was updated."
+],
+[
+"AUTOMATION: READY"
+]
+],
+"text": "1. With no customer selected, the filter reads \"All customers\", every job is shown, and no Clear action is offered.\n2. Typing narrows the option list (type-ahead); the options are the customers on every open job in what the report is currently showing you — not only the ones on the rows that happen to have loaded.\n3. Selecting customers narrows the visible jobs on screen only (no reload); a single \"Clear\" action appears once at least one customer is selected.\n4. Clear returns the filter to \"All customers\" and every job is shown again.\n5. Pick a customer whose jobs sit a long way down the list — scroll to the bottom of a busy tab to find one — and confirm every one of that customer's jobs is still shown. You must never end up with only the part of the list that had loaded when you opened the filter.\n\n---\nThis is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Work In Progress report specification version 28 (S7-R2, S7-R3), read on 18 August 2026.\nLast checked against build v3.8-bd246fd on 8/18/2026.\nRe-checked against the live specification on 26 August 2026: the requirements this case cites are unchanged, so only the version cited above was updated.\n\nAUTOMATION: READY"
+}
+}
+},
+"30500": {
+"title": "Asset filter shows Unit # and VIN and matches text against either one",
+"atm": 1,
+"fields": {
+"custom_expected": {
+"blocks": [
+[
+"1. With no asset selected, the filter reads \"All assets\" and every job is shown.",
+"2. The list offers every asset on every open job in what the report is currently showing you — not only the ones on the rows that happen to have loaded — and each option shows both the asset's Unit # and its VIN.",
+"3. Text you type matches against either the Unit # or the VIN - a match on either one brings the asset up.",
+"4. Selecting assets narrows the visible jobs on screen only (no reload); a single \"Clear\" action appears once at least one asset is selected and returns the filter to \"All assets\".",
+"5. Note for the tester: the field is labelled VIN. For assets that are not vehicles (for example a generator), this is the unit's serial number."
+],
+[
+"---",
+"This is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Work In Progress report specification version 28 (S7-R4, S7-R5), read on 18 August 2026. Chris Ward confirmed it again on 5 August 2026 in his answers in this file: https://docs.google.com/spreadsheets/d/1x8cuYJlFsDHalVZZTh156_ZCq2gcOaGY/edit?usp=sharing&ouid=106388879401921597782&rtpof=true&sd=true, read on 17 August 2026. It differs from an earlier answer he gave us on 29 July 2026, which we now know was given against a question that described this report incorrectly; we follow his latest word, which agrees with the written description.",
+"Last checked against build v3.8-bd246fd on 8/18/2026.",
+"Re-checked against the live specification on 26 August 2026: the requirements this case cites are unchanged, so only the version cited above was updated."
+],
+[
+"AUTOMATION: READY"
+]
+],
+"text": "1. With no asset selected, the filter reads \"All assets\" and every job is shown.\n2. The list offers every asset on every open job in what the report is currently showing you — not only the ones on the rows that happen to have loaded — and each option shows both the asset's Unit # and its VIN.\n3. Text you type matches against either the Unit # or the VIN - a match on either one brings the asset up.\n4. Selecting assets narrows the visible jobs on screen only (no reload); a single \"Clear\" action appears once at least one asset is selected and returns the filter to \"All assets\".\n5. Note for the tester: the field is labelled VIN. For assets that are not vehicles (for example a generator), this is the unit's serial number.\n\n---\nThis is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Work In Progress report specification version 28 (S7-R4, S7-R5), read on 18 August 2026. Chris Ward confirmed it again on 5 August 2026 in his answers in this file: https://docs.google.com/spreadsheets/d/1x8cuYJlFsDHalVZZTh156_ZCq2gcOaGY/edit?usp=sharing&ouid=106388879401921597782&rtpof=true&sd=true, read on 17 August 2026. It differs from an earlier answer he gave us on 29 July 2026, which we now know was given against a question that described this report incorrectly; we follow his latest word, which agrees with the written description.\nLast checked against build v3.8-bd246fd on 8/18/2026.\nRe-checked against the live specification on 26 August 2026: the requirements this case cites are unchanged, so only the version cited above was updated.\n\nAUTOMATION: READY"
+}
+}
+},
+"30503": {
+"title": "Location filter: rightmost multi-select with All locations, reloads on change",
+"atm": 1,
+"fields": {
+"custom_expected": {
+"blocks": [
+[
+"1. The Location filter is the rightmost toolbar filter, a multi-select listing the locations the signed-in user can access, with an \"All locations\" / \"Clear all\" toggle.",
+"2. On a first visit it defaults to the user's currently active location.",
+"3. Selecting one, several, or all locations reloads the report scoped to that set (rows from the added location appear).",
+"4. For a user with access to only one location the Location filter is NOT shown at all — the report simply shows that one location's work orders."
+],
+[
+"---",
+"This is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Work In Progress report specification version 28 (S7-R9, S7-R10), read on 18 August 2026. Chris Ward confirmed this on 8/5/2026 in his answers in this file: https://docs.google.com/spreadsheets/d/1x8cuYJlFsDHalVZZTh156_ZCq2gcOaGY/edit?usp=sharing&ouid=106388879401921597782&rtpof=true&sd=true, read on 17 August 2026",
+"Last checked against build v3.8-bd246fd on 8/18/2026.",
+"Re-checked against the live specification on 26 August 2026: the requirements this case cites are unchanged, so only the version cited above was updated."
+],
+[
+"AUTOMATION: READY"
+]
+],
+"text": "1. The Location filter is the rightmost toolbar filter, a multi-select listing the locations the signed-in user can access, with an \"All locations\" / \"Clear all\" toggle.\n2. On a first visit it defaults to the user's currently active location.\n3. Selecting one, several, or all locations reloads the report scoped to that set (rows from the added location appear).\n4. For a user with access to only one location the Location filter is NOT shown at all — the report simply shows that one location's work orders.\n\n---\nThis is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Work In Progress report specification version 28 (S7-R9, S7-R10), read on 18 August 2026. Chris Ward confirmed this on 8/5/2026 in his answers in this file: https://docs.google.com/spreadsheets/d/1x8cuYJlFsDHalVZZTh156_ZCq2gcOaGY/edit?usp=sharing&ouid=106388879401921597782&rtpof=true&sd=true, read on 17 August 2026\nLast checked against build v3.8-bd246fd on 8/18/2026.\nRe-checked against the live specification on 26 August 2026: the requirements this case cites are unchanged, so only the version cited above was updated.\n\nAUTOMATION: READY"
+}
+}
+},
+"30504": {
+"title": "The location scope never includes an inaccessible location",
+"atm": 1,
+"fields": {
+"custom_expected": {
+"blocks": [
+[
+"1. Only the locations the user can access are offered — a location the user cannot access is never included in the scope.",
+"2. If the selection resolves to none, the report falls back to the user's currently active location rather than showing everything or erroring.",
+"3. A saved selection that no longer resolves also falls back to the active location."
+],
+[
+"---",
+"This is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Work In Progress report specification version 28 (S7-R11, S8-R8), read on 18 August 2026.",
+"Last checked against build v3.8-bd246fd on 8/18/2026.",
+"Re-checked against the live specification on 26 August 2026: the requirements this case cites are unchanged, so only the version cited above was updated."
+],
+[
+"AUTOMATION: READY"
+]
+],
+"text": "1. Only the locations the user can access are offered — a location the user cannot access is never included in the scope.\n2. If the selection resolves to none, the report falls back to the user's currently active location rather than showing everything or erroring.\n3. A saved selection that no longer resolves also falls back to the active location.\n\n---\nThis is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Work In Progress report specification version 28 (S7-R11, S8-R8), read on 18 August 2026.\nLast checked against build v3.8-bd246fd on 8/18/2026.\nRe-checked against the live specification on 26 August 2026: the requirements this case cites are unchanged, so only the version cited above was updated.\n\nAUTOMATION: READY"
+}
+}
+},
+"30505": {
+"title": "Advisor, customer and asset filters AND together and recompute strip and Totals",
+"atm": 1,
+"fields": {
+"custom_expected": {
+"blocks": [
+[
+"1. A job must pass all three filters to remain visible (the filters combine with AND).",
+"2. The summary strip and each tab's Totals row recompute immediately from the still-visible jobs after every advisor, customer, or asset change — on screen, with no page reload.",
+"3. When the combination leaves no visible jobs, every tab shows the no-data message \"Empty bays, endless possibilities. Get Going!\" and no Totals row."
+],
+[
+"---",
+"This is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Work In Progress report specification version 28 (S7-R12, S7-N1, S5-R11, S6-R6), read on 18 August 2026.",
+"Last checked against build v3.8-bd246fd on 8/18/2026.",
+"Re-checked against the live specification on 26 August 2026: the requirements this case cites are unchanged, so only the version cited above was updated."
+],
+[
+"AUTOMATION: READY"
+]
+],
+"text": "1. A job must pass all three filters to remain visible (the filters combine with AND).\n2. The summary strip and each tab's Totals row recompute immediately from the still-visible jobs after every advisor, customer, or asset change — on screen, with no page reload.\n3. When the combination leaves no visible jobs, every tab shows the no-data message \"Empty bays, endless possibilities. Get Going!\" and no Totals row.\n\n---\nThis is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Work In Progress report specification version 28 (S7-R12, S7-N1, S5-R11, S6-R6), read on 18 August 2026.\nLast checked against build v3.8-bd246fd on 8/18/2026.\nRe-checked against the live specification on 26 August 2026: the requirements this case cites are unchanged, so only the version cited above was updated.\n\nAUTOMATION: READY"
+}
+}
+},
+"30509": {
+"title": "A saved setting that is no longer valid falls back to its default",
+"atm": 1,
+"fields": {
+"custom_expected": {
+"blocks": [
+[
+"1. The report loads normally — the invalid saved value falls back to that setting's default rather than breaking the view.",
+"2. All other saved settings are still restored."
+],
+[
+"---",
+"This is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Work In Progress report specification version 28 (S8-R8), read on 18 August 2026.",
+"Last checked against build v3.8-bd246fd on 8/18/2026.",
+"Re-checked against the live specification on 26 August 2026: the requirements this case cites are unchanged, so only the version cited above was updated."
+],
+[
+"AUTOMATION: READY"
+]
+],
+"text": "1. The report loads normally — the invalid saved value falls back to that setting's default rather than breaking the view.\n2. All other saved settings are still restored.\n\n---\nThis is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Work In Progress report specification version 28 (S8-R8), read on 18 August 2026.\nLast checked against build v3.8-bd246fd on 8/18/2026.\nRe-checked against the live specification on 26 August 2026: the requirements this case cites are unchanged, so only the version cited above was updated.\n\nAUTOMATION: READY"
+}
+}
+},
+"30513": {
+"title": "Labor Delta green/red coloring appears on screen and in the PDF; not the CSV",
+"atm": 1,
+"fields": {
+"custom_expected": {
+"blocks": [
+[
+"1. In the PDF, Labor Delta keeps the green (positive) / red (negative) coloring.",
+"2. In the CSV, the Labor Delta column is monochrome — plain signed numbers with no color or markup."
+],
+[
+"---",
+"This is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Work In Progress report specification version 28 (S9-R7), read on 18 August 2026. The column was renamed from \"Inv. Hrs\" to \"Labor Delta\" per SV-9071; only the name changed.",
+"Last checked against build v3.8-bd246fd on 8/18/2026.",
+"Re-checked against the live specification on 26 August 2026: the requirements this case cites are unchanged, so only the version cited above was updated."
+],
+[
+"AUTOMATION: READY"
+]
+],
+"text": "1. In the PDF, Labor Delta keeps the green (positive) / red (negative) coloring.\n2. In the CSV, the Labor Delta column is monochrome — plain signed numbers with no color or markup.\n\n---\nThis is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Work In Progress report specification version 28 (S9-R7), read on 18 August 2026. The column was renamed from \"Inv. Hrs\" to \"Labor Delta\" per SV-9071; only the name changed.\nLast checked against build v3.8-bd246fd on 8/18/2026.\nRe-checked against the live specification on 26 August 2026: the requirements this case cites are unchanged, so only the version cited above was updated.\n\nAUTOMATION: READY"
+}
+}
+},
+"30514": {
+"title": "Days Open in a download is frozen at the moment the file is generated",
+"atm": 1,
+"fields": {
+"custom_expected": {
+"blocks": [
+[
+"1. In the download, Days Open is the whole number of days as of the moment the file is generated.",
+"2. Because the screen computes Days Open live while the file freezes it at generation time, the file can legitimately show a day count one higher than the screen it was generated from — that difference is EXPECTED, not a defect."
+],
+[
+"---",
+"This is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Work In Progress report specification version 28 (S9-R8), read on 18 August 2026.",
+"Last checked against build v3.8-bd246fd on 8/18/2026.",
+"Re-checked against the live specification on 26 August 2026: the requirements this case cites are unchanged, so only the version cited above was updated."
+],
+[
+"AUTOMATION: READY"
+]
+],
+"text": "1. In the download, Days Open is the whole number of days as of the moment the file is generated.\n2. Because the screen computes Days Open live while the file freezes it at generation time, the file can legitimately show a day count one higher than the screen it was generated from — that difference is EXPECTED, not a defect.\n\n---\nThis is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Work In Progress report specification version 28 (S9-R8), read on 18 August 2026.\nLast checked against build v3.8-bd246fd on 8/18/2026.\nRe-checked against the live specification on 26 August 2026: the requirements this case cites are unchanged, so only the version cited above was updated.\n\nAUTOMATION: READY"
+}
+}
+},
+"30516": {
+"title": "Export headers read \"Unit\" and \"Branch\" — documented limitation, do not file",
+"atm": 1,
+"fields": {
+"custom_expected": {
+"blocks": [
+[
+"1. On screen the headers read \"Asset\" and \"Location\".",
+"2. In BOTH the PDF and the CSV, the same two columns are headed \"Unit\" and \"Branch\".",
+"3. This on-screen-vs-export label difference is the EXPECTED, documented v1 behavior.",
+"4. The on-screen Asset cell leads with the Unit #, which is what the export header \"Unit\" already reflects - so no header change is expected here."
+],
+[
+"---",
+"This is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Work In Progress report specification version 28 (S9-E1), read on 18 August 2026. Chris Ward confirmed it again on 5 August 2026 in his answers in this file: https://docs.google.com/spreadsheets/d/1x8cuYJlFsDHalVZZTh156_ZCq2gcOaGY/edit?usp=sharing&ouid=106388879401921597782&rtpof=true&sd=true, read on 17 August 2026. It differs from an earlier answer he gave us on 29 July 2026, which we now know was given against a question that described this report incorrectly; we follow his latest word, which agrees with the written description.",
+"Last checked against build v3.8-bd246fd on 8/18/2026.",
+"Re-checked against the live specification on 26 August 2026: the requirements this case cites are unchanged, so only the version cited above was updated."
+],
+[
+"AUTOMATION: READY"
+]
+],
+"text": "1. On screen the headers read \"Asset\" and \"Location\".\n2. In BOTH the PDF and the CSV, the same two columns are headed \"Unit\" and \"Branch\".\n3. This on-screen-vs-export label difference is the EXPECTED, documented v1 behavior.\n4. The on-screen Asset cell leads with the Unit #, which is what the export header \"Unit\" already reflects - so no header change is expected here.\n\n---\nThis is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Work In Progress report specification version 28 (S9-E1), read on 18 August 2026. Chris Ward confirmed it again on 5 August 2026 in his answers in this file: https://docs.google.com/spreadsheets/d/1x8cuYJlFsDHalVZZTh156_ZCq2gcOaGY/edit?usp=sharing&ouid=106388879401921597782&rtpof=true&sd=true, read on 17 August 2026. It differs from an earlier answer he gave us on 29 July 2026, which we now know was given against a question that described this report incorrectly; we follow his latest word, which agrees with the written description.\nLast checked against build v3.8-bd246fd on 8/18/2026.\nRe-checked against the live specification on 26 August 2026: the requirements this case cites are unchanged, so only the version cited above was updated.\n\nAUTOMATION: READY"
+}
+}
+},
+"30517": {
+"title": "The PDF shows the shop logo at the top when one is set",
+"atm": 1,
+"fields": {
+"custom_expected": {
+"blocks": [
+[
+"1. The PDF shows the shop logo at the top.",
+"2. The CSV never includes a logo (plain data only)."
+],
+[
+"---",
+"This is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Work In Progress report specification version 28 (S9-R10), read on 18 August 2026.",
+"Last checked against build v3.8-bd246fd on 8/18/2026.",
+"Re-checked against the live specification on 26 August 2026: the requirements this case cites are unchanged, so only the version cited above was updated."
+],
+[
+"AUTOMATION: READY"
+]
+],
+"text": "1. The PDF shows the shop logo at the top.\n2. The CSV never includes a logo (plain data only).\n\n---\nThis is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Work In Progress report specification version 28 (S9-R10), read on 18 August 2026.\nLast checked against build v3.8-bd246fd on 8/18/2026.\nRe-checked against the live specification on 26 August 2026: the requirements this case cites are unchanged, so only the version cited above was updated.\n\nAUTOMATION: READY"
+}
+}
+},
+"30521": {
+"title": "The Total column is bold and stays pinned right on sideways scroll",
+"atm": 1,
+"fields": {
+"custom_expected": {
+"blocks": [
+[
+"1. The Total column header is bold and pinned to the far right, matching its cells.",
+"2. The Total column (header and cells, shown in bold) stays fixed to the right edge while the rest of the columns scroll underneath."
+],
+[
+"---",
+"This is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Work In Progress report specification version 28 (S4-R22, S10-R3), read on 18 August 2026.",
+"Last checked against build v3.8-bd246fd on 8/18/2026.",
+"Re-checked against the live specification on 26 August 2026: the requirements this case cites are unchanged, so only the version cited above was updated."
+],
+[
+"AUTOMATION: READY"
+]
+],
+"text": "1. The Total column header is bold and pinned to the far right, matching its cells.\n2. The Total column (header and cells, shown in bold) stays fixed to the right edge while the rest of the columns scroll underneath.\n\n---\nThis is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Work In Progress report specification version 28 (S4-R22, S10-R3), read on 18 August 2026.\nLast checked against build v3.8-bd246fd on 8/18/2026.\nRe-checked against the live specification on 26 August 2026: the requirements this case cites are unchanged, so only the version cited above was updated.\n\nAUTOMATION: READY"
+}
+}
+},
+"30523": {
+"title": "The WO # link is keyboard-focusable and opens the work order",
+"atm": 1,
+"fields": {
+"custom_expected": {
+"blocks": [
+[
+"1. The WO # link can receive keyboard focus.",
+"2. A visible focus indicator shows when it is focused.",
+"3. Activating it opens the work order (in the same browser tab)."
+],
+[
+"---",
+"This is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Work In Progress report specification version 28 (S10-R6), read on 18 August 2026.",
+"Last checked against build v3.8-bd246fd on 8/18/2026.",
+"Re-checked against the live specification on 26 August 2026: the requirements this case cites are unchanged, so only the version cited above was updated."
+],
+[
+"AUTOMATION: READY"
+]
+],
+"text": "1. The WO # link can receive keyboard focus.\n2. A visible focus indicator shows when it is focused.\n3. Activating it opens the work order (in the same browser tab).\n\n---\nThis is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Work In Progress report specification version 28 (S10-R6), read on 18 August 2026.\nLast checked against build v3.8-bd246fd on 8/18/2026.\nRe-checked against the live specification on 26 August 2026: the requirements this case cites are unchanged, so only the version cited above was updated.\n\nAUTOMATION: READY"
+}
+}
+},
+"30525": {
+"title": "In dark mode every table; strip; link and coloring stays legible",
+"atm": 1,
+"fields": {
+"custom_preconds": {
+"blocks": [
+[
+"1. You are signed in to the ShopView App on a desktop browser.",
+"2. The application is switched to dark mode.",
+"3. The report shows rows including positive and negative Labor Delta values, one Asset cell showing a Unit # and one showing a VIN."
+]
+],
+"text": "1. You are signed in to the ShopView App on a desktop browser.\n2. The application is switched to dark mode.\n3. The report shows rows including positive and negative Labor Delta values, one Asset cell showing a Unit # and one showing a VIN."
+},
+"custom_steps": {
+"blocks": [
+[
+"1. Read the table headers and cells in dark mode.",
+"2. Read the summary strip, the WO # link, the Labor Delta colors, and the Asset cell."
+]
+],
+"text": "1. Read the table headers and cells in dark mode.\n2. Read the summary strip, the WO # link, the Labor Delta colors, and the Asset cell."
+},
+"custom_expected": {
+"blocks": [
+[
+"1. The report supports dark mode.",
+"2. The table, the summary strip, the WO # link, the Labor Delta green/red coloring, and the Asset cell all use dark-mode-legible colors meeting contrast."
+],
+[
+"This is the expected behaviour as per epic SV-8582 and the Work In Progress report specification version 28 (S10-R9), read on 26 August 2026. The column was renamed from \"Inv. Hrs\" to \"Labor Delta\" per SV-9071; only the name changed.",
+"Specification version 22 named a two-line asset cell in this requirement; version 28 (2026-08-24) names the single-line Asset cell, and we take the later version as prevailing.",
+"This expectation has not been checked against any build since the specification change described above."
+],
+[
+"AUTOMATION: READY"
+]
+],
+"text": "1. The report supports dark mode.\n2. The table, the summary strip, the WO # link, the Labor Delta green/red coloring, and the Asset cell all use dark-mode-legible colors meeting contrast.\n\nThis is the expected behaviour as per epic SV-8582 and the Work In Progress report specification version 28 (S10-R9), read on 26 August 2026. The column was renamed from \"Inv. Hrs\" to \"Labor Delta\" per SV-9071; only the name changed.\nSpecification version 22 named a two-line asset cell in this requirement; version 28 (2026-08-24) names the single-line Asset cell, and we take the later version as prevailing.\nThis expectation has not been checked against any build since the specification change described above.\n\nAUTOMATION: READY"
+}
+}
+},
+"38890": {
+"title": "A technician still clocked in counts toward Labor Earned, capped at the quote",
+"atm": 1,
+"fields": {
+"custom_expected": {
+"blocks": [
+[
+"1. The running (not-yet-clocked-out) time counts toward Labor Earned — the line's earned share reflects the time clocked up to now, not only closed clock records.",
+"2. After more time accrues, a refresh shows a larger earned share for that line.",
+"3. Labor Earned never exceeds the line's full quoted value, no matter how long the clock keeps running — the per-line cap still applies."
+],
+[
+"---",
+"This is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Work In Progress report specification version 28 (S4-R15), read on 18 August 2026.",
+"Last checked against build v3.8-bd246fd on 8/18/2026.",
+"Re-checked against the live specification on 26 August 2026: the requirements this case cites are unchanged, so only the version cited above was updated."
+],
+[
+"AUTOMATION: READY"
+]
+],
+"text": "1. The running (not-yet-clocked-out) time counts toward Labor Earned — the line's earned share reflects the time clocked up to now, not only closed clock records.\n2. After more time accrues, a refresh shows a larger earned share for that line.\n3. Labor Earned never exceeds the line's full quoted value, no matter how long the clock keeps running — the per-line cap still applies.\n\n---\nThis is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Work In Progress report specification version 28 (S4-R15), read on 18 August 2026.\nLast checked against build v3.8-bd246fd on 8/18/2026.\nRe-checked against the live specification on 26 August 2026: the requirements this case cites are unchanged, so only the version cited above was updated.\n\nAUTOMATION: READY"
+}
+}
+},
+"38914": {
+"title": "Location column: leftmost before Type; own location per row; Multiple on merged",
+"atm": 1,
+"fields": {
+"custom_expected": {
+"blocks": [
+[
+"1. Because you have access to more than one location, a Location column is shown as the LEFTMOST column, before Type.",
+"2. Each inventory row shows its own location's name (an inventory row is one part at one location).",
+"3. The merged Special Order row shows \"Multiple\", because it is summed across the selected locations.",
+"4. A user who can reach only one location never sees the column at all.",
+"5. Whenever the column is shown on screen, both downloads include it in the same position (leftmost, before Type), with the same values — each inventory row's own location, and \"Multiple\" on the merged Special Order row.",
+"Note for the tester: two points about this column are still unsettled for Parts Velocity, and the product owner has been asked. One is whether narrowing the location selection hides it; the other is whether it can be switched off in the column picker and whether it counts toward the fourteen default columns. Whatever you see on those two points, do not raise a bug and do not fail the test for them — record what you see and carry on. The question is here: https://raw.githubusercontent.com/bilalmuzamil-sketch/Manual-test-Cases/claude/slack-session-0sxnd9/build/report-suite/questions-2026-08-06/Questions-for-Chris-Ward_Report-Suite_2026-08-11.xlsx"
+],
+[
+"---",
+"This is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Parts Velocity report specification version 11 (S2-R12, S3-R10, S7-R8, S6-R11), read on 17 August 2026. That specification still says two different things about this column: S3-R10 was rewritten in version 6 to make it access-gated and toggleable in the column picker, while S2-R12 still ties it to the current location scope and S4-R2/S4-R3 list twenty picker columns that do not include it. Chris Ward has been asked which is right, so neither reading is asserted here.",
+"Last checked against build v3.8-bd246fd on 8/18/2026.",
+"Re-checked against the live specification on 26 August 2026: the requirements this case cites are unchanged, so only the version cited above was updated."
+],
+[
+"AUTOMATION: READY"
+]
+],
+"text": "1. Because you have access to more than one location, a Location column is shown as the LEFTMOST column, before Type.\n2. Each inventory row shows its own location's name (an inventory row is one part at one location).\n3. The merged Special Order row shows \"Multiple\", because it is summed across the selected locations.\n4. A user who can reach only one location never sees the column at all.\n5. Whenever the column is shown on screen, both downloads include it in the same position (leftmost, before Type), with the same values — each inventory row's own location, and \"Multiple\" on the merged Special Order row.\nNote for the tester: two points about this column are still unsettled for Parts Velocity, and the product owner has been asked. One is whether narrowing the location selection hides it; the other is whether it can be switched off in the column picker and whether it counts toward the fourteen default columns. Whatever you see on those two points, do not raise a bug and do not fail the test for them — record what you see and carry on. The question is here: https://raw.githubusercontent.com/bilalmuzamil-sketch/Manual-test-Cases/claude/slack-session-0sxnd9/build/report-suite/questions-2026-08-06/Questions-for-Chris-Ward_Report-Suite_2026-08-11.xlsx\n\n---\nThis is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Parts Velocity report specification version 11 (S2-R12, S3-R10, S7-R8, S6-R11), read on 17 August 2026. That specification still says two different things about this column: S3-R10 was rewritten in version 6 to make it access-gated and toggleable in the column picker, while S2-R12 still ties it to the current location scope and S4-R2/S4-R3 list twenty picker columns that do not include it. Chris Ward has been asked which is right, so neither reading is asserted here.\nLast checked against build v3.8-bd246fd on 8/18/2026.\nRe-checked against the live specification on 26 August 2026: the requirements this case cites are unchanged, so only the version cited above was updated.\n\nAUTOMATION: READY"
+}
+}
+},
+"43557": {
+"title": "The WO # is plain text, not a link, without Work Order permission",
+"atm": 1,
+"fields": {
+"custom_expected": {
+"blocks": [
+[
+"1. For the person who CAN open work orders, the WO # is shown as a link.",
+"2. For the person who CANNOT open work orders, the WO # is shown as ordinary plain text — it is not a link, there is nothing to click, and clicking it does nothing.",
+"3. Nothing goes wrong: no page that says you are not allowed in, no blank page, and no error message. The report simply shows the number as text.",
+"4. Everything else about the row is the same for both people — the work order still appears, with its status, customer, asset and money values.",
+"5. The behaviour is the same on all four tabs.",
+"6. Note for the tester: the point of this test is that a person who cannot open a work order should never be given a link that leads nowhere. If you find a link that takes you to a page saying you are not allowed in, that is a failure — report it."
+],
+[
+"---",
+"This is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Work In Progress report specification version 28 (S4-R6), read on 18 August 2026.",
+"Last checked against build v3.8-bd246fd on 8/18/2026.",
+"Re-checked against the live specification on 26 August 2026: the requirements this case cites are unchanged, so only the version cited above was updated."
+],
+[
+"AUTOMATION: READY"
+]
+],
+"text": "1. For the person who CAN open work orders, the WO # is shown as a link.\n2. For the person who CANNOT open work orders, the WO # is shown as ordinary plain text — it is not a link, there is nothing to click, and clicking it does nothing.\n3. Nothing goes wrong: no page that says you are not allowed in, no blank page, and no error message. The report simply shows the number as text.\n4. Everything else about the row is the same for both people — the work order still appears, with its status, customer, asset and money values.\n5. The behaviour is the same on all four tabs.\n6. Note for the tester: the point of this test is that a person who cannot open a work order should never be given a link that leads nowhere. If you find a link that takes you to a page saying you are not allowed in, that is a failure — report it.\n\n---\nThis is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Work In Progress report specification version 28 (S4-R6), read on 18 August 2026.\nLast checked against build v3.8-bd246fd on 8/18/2026.\nRe-checked against the live specification on 26 August 2026: the requirements this case cites are unchanged, so only the version cited above was updated.\n\nAUTOMATION: READY"
+}
+}
+},
+"43814": {
+"title": "Adjustments column appears in the fixed column order and in the first-visit set",
+"atm": 1,
+"fields": {
+"custom_expected": {
+"blocks": [
+[
+"1. On first visit the visible columns include an \"Adjustments\" column, shown between \"Remaining\" and \"Total\".",
+"2. With all columns on, the full left-to-right order is: WO #, Status, Customer, Asset, VIN, Location, Advisor, Days Open, Last Activity, Labor Earned, Labor Remaining, Parts Earned, Parts Remaining, Earned, Remaining, Adjustments, Labor Delta, Total.",
+"3. \"Adjustments\" sits immediately before \"Labor Delta\" and \"Total\"."
+],
+[
+"---",
+"This is the expected behaviour as per epic SV-8582, read on 17 August 2026, and story SV-9282, and the Work In Progress report specification version 28 (S4-R1, S4-R2), read on 18 August 2026.",
+"Last checked against build v3.8-bd246fd on 8/18/2026.",
+"Re-checked against the live specification on 26 August 2026: the requirements this case cites are unchanged, so only the version cited above was updated."
+],
+[
+"AUTOMATION: READY"
+]
+],
+"text": "1. On first visit the visible columns include an \"Adjustments\" column, shown between \"Remaining\" and \"Total\".\n2. With all columns on, the full left-to-right order is: WO #, Status, Customer, Asset, VIN, Location, Advisor, Days Open, Last Activity, Labor Earned, Labor Remaining, Parts Earned, Parts Remaining, Earned, Remaining, Adjustments, Labor Delta, Total.\n3. \"Adjustments\" sits immediately before \"Labor Delta\" and \"Total\".\n\n---\nThis is the expected behaviour as per epic SV-8582, read on 17 August 2026, and story SV-9282, and the Work In Progress report specification version 28 (S4-R1, S4-R2), read on 18 August 2026.\nLast checked against build v3.8-bd246fd on 8/18/2026.\nRe-checked against the live specification on 26 August 2026: the requirements this case cites are unchanged, so only the version cited above was updated.\n\nAUTOMATION: READY"
+}
+}
+},
+"43815": {
+"title": "Adjustments is the signed net of work-order-level fees and discounts",
+"atm": 1,
+"fields": {
+"custom_expected": {
+"blocks": [
+[
+"1. On the work order with a fee, Adjustments shows the fee as a positive amount (for example $500.00).",
+"2. On the work order with a discount, Adjustments shows the discount as a negative amount.",
+"3. Adjustments is one whole-work-order amount - it is never split into an Earned part and a Remaining part."
+],
+[
+"---",
+"This is the expected behaviour as per epic SV-8582, read on 17 August 2026, and story SV-9282, and the Work In Progress report specification version 28 (S4-R29), read on 18 August 2026.",
+"Last checked against build v3.8-bd246fd on 8/18/2026.",
+"Re-checked against the live specification on 26 August 2026: the requirements this case cites are unchanged, so only the version cited above was updated."
+],
+[
+"AUTOMATION: READY"
+]
+],
+"text": "1. On the work order with a fee, Adjustments shows the fee as a positive amount (for example $500.00).\n2. On the work order with a discount, Adjustments shows the discount as a negative amount.\n3. Adjustments is one whole-work-order amount - it is never split into an Earned part and a Remaining part.\n\n---\nThis is the expected behaviour as per epic SV-8582, read on 17 August 2026, and story SV-9282, and the Work In Progress report specification version 28 (S4-R29), read on 18 August 2026.\nLast checked against build v3.8-bd246fd on 8/18/2026.\nRe-checked against the live specification on 26 August 2026: the requirements this case cites are unchanged, so only the version cited above was updated.\n\nAUTOMATION: READY"
+}
+}
+},
+"43816": {
+"title": "A work-order fee or discount moves only Adjustments and Total",
+"atm": 1,
+"fields": {
+"custom_expected": {
+"blocks": [
+[
+"1. The Labor columns and the Parts columns are unchanged.",
+"2. Only the Adjustments value and the Total value change.",
+"3. A line-level fee or discount (one attached to a single line) stays folded into that line's Labor or Parts value and does not appear in Adjustments."
+],
+[
+"---",
+"This is the expected behaviour as per epic SV-8582, read on 17 August 2026, and story SV-9282, and the Work In Progress report specification version 28 (S4-R30), read on 18 August 2026.",
+"Last checked against build v3.8-bd246fd on 8/18/2026.",
+"Re-checked against the live specification on 26 August 2026: the requirements this case cites are unchanged, so only the version cited above was updated."
+],
+[
+"AUTOMATION: READY"
+]
+],
+"text": "1. The Labor columns and the Parts columns are unchanged.\n2. Only the Adjustments value and the Total value change.\n3. A line-level fee or discount (one attached to a single line) stays folded into that line's Labor or Parts value and does not appear in Adjustments.\n\n---\nThis is the expected behaviour as per epic SV-8582, read on 17 August 2026, and story SV-9282, and the Work In Progress report specification version 28 (S4-R30), read on 18 August 2026.\nLast checked against build v3.8-bd246fd on 8/18/2026.\nRe-checked against the live specification on 26 August 2026: the requirements this case cites are unchanged, so only the version cited above was updated.\n\nAUTOMATION: READY"
+}
+}
+},
+"43817": {
+"title": "A row's Total is Earned plus Remaining plus Adjustments",
+"atm": 1,
+"fields": {
+"custom_expected": {
+"blocks": [
+[
+"1. Total equals Earned plus Remaining plus Adjustments.",
+"2. Total is NOT the work order's stored grand total, and it is NOT Earned plus Remaining by itself.",
+"3. A Total that differs from the work order's own grand total is expected, not a data error."
+],
+[
+"---",
+"This is the expected behaviour as per epic SV-8582, read on 17 August 2026, and story SV-9282, and the Work In Progress report specification version 28 (S4-R21), read on 18 August 2026.",
+"Last checked against build v3.8-bd246fd on 8/18/2026.",
+"Re-checked against the live specification on 26 August 2026: the requirements this case cites are unchanged, so only the version cited above was updated."
+],
+[
+"AUTOMATION: READY"
+]
+],
+"text": "1. Total equals Earned plus Remaining plus Adjustments.\n2. Total is NOT the work order's stored grand total, and it is NOT Earned plus Remaining by itself.\n3. A Total that differs from the work order's own grand total is expected, not a data error.\n\n---\nThis is the expected behaviour as per epic SV-8582, read on 17 August 2026, and story SV-9282, and the Work In Progress report specification version 28 (S4-R21), read on 18 August 2026.\nLast checked against build v3.8-bd246fd on 8/18/2026.\nRe-checked against the live specification on 26 August 2026: the requirements this case cites are unchanged, so only the version cited above was updated.\n\nAUTOMATION: READY"
+}
+}
+},
+"43819": {
+"title": "The Totals row sums the Adjustments column across the tab's visible jobs",
+"atm": 1,
+"fields": {
+"custom_expected": {
+"blocks": [
+[
+"1. The Totals row includes an Adjustments cell.",
+"2. It equals the sum of the Adjustments values of the tab's visible jobs.",
+"3. It uses the same signed money format as the column (fees add, discounts subtract)."
+],
+[
+"---",
+"This is the expected behaviour as per epic SV-8582, read on 17 August 2026, and story SV-9282, and the Work In Progress report specification version 28 (S6-R2), read on 18 August 2026.",
+"Last checked against build v3.8-bd246fd on 8/18/2026.",
+"Re-checked against the live specification on 26 August 2026: the requirements this case cites are unchanged, so only the version cited above was updated."
+],
+[
+"AUTOMATION: READY"
+]
+],
+"text": "1. The Totals row includes an Adjustments cell.\n2. It equals the sum of the Adjustments values of the tab's visible jobs.\n3. It uses the same signed money format as the column (fees add, discounts subtract).\n\n---\nThis is the expected behaviour as per epic SV-8582, read on 17 August 2026, and story SV-9282, and the Work In Progress report specification version 28 (S6-R2), read on 18 August 2026.\nLast checked against build v3.8-bd246fd on 8/18/2026.\nRe-checked against the live specification on 26 August 2026: the requirements this case cites are unchanged, so only the version cited above was updated.\n\nAUTOMATION: READY"
+}
+}
+},
+"43828": {
+"title": "Adjustments column appears between Shop Supplies and Margin",
+"atm": 1,
+"fields": {
+"custom_preconds": {
+"blocks": [
+[
+"1. You are signed in to the ShopView App on a desktop browser.",
+"2. A representative has an invoice carrying an invoice-level fee or discount in the selected date range."
+]
+],
+"text": "1. You are signed in to the ShopView App on a desktop browser.\n2. A representative has an invoice carrying an invoice-level fee or discount in the selected date range."
+},
+"custom_steps": {
+"blocks": [
+[
+"1. Open the Sales By Representative report.",
+"2. Look at the columns left to right."
+]
+],
+"text": "1. Open the Sales By Representative report.\n2. Look at the columns left to right."
+},
+"custom_expected": {
+"blocks": [
+[
+"1. The columns appear left-to-right: Date, Invoice, Customer, Status, Labor Delta, Labor Invoiced, Labor Margin, Parts Invoiced, Parts Margin, Shop Supplies, Adjustments, Margin, Margin %, Subtotal (14 columns).",
+"2. \"Adjustments\" sits immediately after \"Shop Supplies\" and immediately before \"Margin\"."
+],
+[
+"This is the expected behaviour as per epic SV-8582, story SV-9281, and the Sales By Representative report specification version 24 (S5-R2), read on 26 August 2026.",
+"Specification version 22 placed Adjustments directly after Parts Margin in a 13-column layout; version 24 (2026-08-24) inserted Shop Supplies between Parts Margin and Adjustments, and we take the later version as prevailing.",
+"This expectation has not been checked against any build since the specification change described above."
+],
+[
+"AUTOMATION: READY"
+]
+],
+"text": "1. The columns appear left-to-right: Date, Invoice, Customer, Status, Labor Delta, Labor Invoiced, Labor Margin, Parts Invoiced, Parts Margin, Shop Supplies, Adjustments, Margin, Margin %, Subtotal (14 columns).\n2. \"Adjustments\" sits immediately after \"Shop Supplies\" and immediately before \"Margin\".\n\nThis is the expected behaviour as per epic SV-8582, story SV-9281, and the Sales By Representative report specification version 24 (S5-R2), read on 26 August 2026.\nSpecification version 22 placed Adjustments directly after Parts Margin in a 13-column layout; version 24 (2026-08-24) inserted Shop Supplies between Parts Margin and Adjustments, and we take the later version as prevailing.\nThis expectation has not been checked against any build since the specification change described above.\n\nAUTOMATION: READY"
+}
+}
+},
+"43829": {
+"title": "Adjustments is the signed net of invoice-level fees and discounts",
+"atm": 1,
+"fields": {
+"custom_expected": {
+"blocks": [
+[
+"1. Adjustments shows the signed net of invoice-level fees and discounts: fees count positive, discounts count negative.",
+"2. A line-level fee or discount stays folded into that line's Labor or Parts value.",
+"3. An invoice-level amount is never allocated into the Labor or Parts columns."
+],
+[
+"---",
+"This is the expected behaviour as per epic SV-8582, read on 17 August 2026, and story SV-9281, and the Sales By Representative report specification version 24 (S5-R11), read on 17 August 2026.",
+"Last checked against build v3.8-bd246fd on 8/18/2026.",
+"Re-checked against the live specification on 26 August 2026: the requirements this case cites are unchanged, so only the version cited above was updated."
+],
+[
+"AUTOMATION: READY"
+]
+],
+"text": "1. Adjustments shows the signed net of invoice-level fees and discounts: fees count positive, discounts count negative.\n2. A line-level fee or discount stays folded into that line's Labor or Parts value.\n3. An invoice-level amount is never allocated into the Labor or Parts columns.\n\n---\nThis is the expected behaviour as per epic SV-8582, read on 17 August 2026, and story SV-9281, and the Sales By Representative report specification version 24 (S5-R11), read on 17 August 2026.\nLast checked against build v3.8-bd246fd on 8/18/2026.\nRe-checked against the live specification on 26 August 2026: the requirements this case cites are unchanged, so only the version cited above was updated.\n\nAUTOMATION: READY"
+}
+}
+},
+"43830": {
+"title": "Every row ties out once Shop Supplies and Adjustments are included",
+"atm": 1,
+"fields": {
+"custom_preconds": {
+"blocks": [
+[
+"1. You are signed in to the ShopView App on a desktop browser.",
+"2. A representative has an invoice carrying shop supplies and an invoice-level fee or discount."
+]
+],
+"text": "1. You are signed in to the ShopView App on a desktop browser.\n2. A representative has an invoice carrying shop supplies and an invoice-level fee or discount."
+},
+"custom_steps": {
+"blocks": [
+[
+"1. Open the Sales By Representative report.",
+"2. On a rep row, add Labor Invoiced, Parts Invoiced, Shop Supplies and Adjustments and compare to Subtotal.",
+"3. Add Labor Margin, Parts Margin and Adjustments and compare to Margin.",
+"4. Repeat on an invoice detail row and the Totals row."
+]
+],
+"text": "1. Open the Sales By Representative report.\n2. On a rep row, add Labor Invoiced, Parts Invoiced, Shop Supplies and Adjustments and compare to Subtotal.\n3. Add Labor Margin, Parts Margin and Adjustments and compare to Margin.\n4. Repeat on an invoice detail row and the Totals row."
+},
+"custom_expected": {
+"blocks": [
+[
+"1. Labor Invoiced + Parts Invoiced + Shop Supplies + Adjustments equals Subtotal.",
+"2. Labor Margin + Parts Margin + Adjustments equals Margin. Shop Supplies is not part of the Margin tie-out.",
+"3. The ties hold on rep summary rows, invoice detail rows and the grand Totals indicator alike."
+],
+[
+"This is the expected behaviour as per epic SV-8582, story SV-9281, and the Sales By Representative report specification version 24 (S5-R12), read on 26 August 2026.",
+"Specification version 22 stated the Subtotal tie-out as Labor Invoiced + Parts Invoiced + Adjustments; version 24 (2026-08-24) added Shop Supplies to that tie-out, and we take the later version as prevailing.",
+"This expectation has not been checked against any build since the specification change described above."
+],
+[
+"AUTOMATION: READY"
+]
+],
+"text": "1. Labor Invoiced + Parts Invoiced + Shop Supplies + Adjustments equals Subtotal.\n2. Labor Margin + Parts Margin + Adjustments equals Margin. Shop Supplies is not part of the Margin tie-out.\n3. The ties hold on rep summary rows, invoice detail rows and the grand Totals indicator alike.\n\nThis is the expected behaviour as per epic SV-8582, story SV-9281, and the Sales By Representative report specification version 24 (S5-R12), read on 26 August 2026.\nSpecification version 22 stated the Subtotal tie-out as Labor Invoiced + Parts Invoiced + Adjustments; version 24 (2026-08-24) added Shop Supplies to that tie-out, and we take the later version as prevailing.\nThis expectation has not been checked against any build since the specification change described above.\n\nAUTOMATION: READY"
+}
+}
+},
+"43833": {
+"title": "CSV export repeats the PDF header's Product Type, status and Locations lines",
+"atm": 1,
+"fields": {
+"custom_expected": {
+"blocks": [
+[
+"1. The CSV carries the same filter-summary lines as the PDF header - the date range, the Product Type and payment-status filter lines, and the \"Locations:\" line - each as a leading metadata row above the column-header row.",
+"2. The lines appear verbatim (the same wording) and in the same order as in the PDF header.",
+"3. A CSV saved or forwarded later is never ambiguous about which filters produced it: every filter the PDF header names is present in the CSV.",
+"4. Note for the tester: this is the suite-wide rule that the CSV must name the same filters as the PDF. If your report shows no narrowed filters, widen or narrow one so at least one filter line appears, then compare again."
+],
+[
+"---",
+"This is the expected behaviour as per epic SV-8582 and the Sales By Representative report specification version 24 (S14-R20a), both read on 17 August 2026. S14-R20a is the suite-wide rule (added 2026-08-12, SV-9283) that the CSV carries every filter-summary line the PDF header names.",
+"Last checked against build v3.8-bd246fd on 8/18/2026.",
+"Re-checked against the live specification on 26 August 2026: the requirements this case cites are unchanged, so only the version cited above was updated."
+],
+[
+"AUTOMATION: READY"
+]
+],
+"text": "1. The CSV carries the same filter-summary lines as the PDF header - the date range, the Product Type and payment-status filter lines, and the \"Locations:\" line - each as a leading metadata row above the column-header row.\n2. The lines appear verbatim (the same wording) and in the same order as in the PDF header.\n3. A CSV saved or forwarded later is never ambiguous about which filters produced it: every filter the PDF header names is present in the CSV.\n4. Note for the tester: this is the suite-wide rule that the CSV must name the same filters as the PDF. If your report shows no narrowed filters, widen or narrow one so at least one filter line appears, then compare again.\n\n---\nThis is the expected behaviour as per epic SV-8582 and the Sales By Representative report specification version 24 (S14-R20a), both read on 17 August 2026. S14-R20a is the suite-wide rule (added 2026-08-12, SV-9283) that the CSV carries every filter-summary line the PDF header names.\nLast checked against build v3.8-bd246fd on 8/18/2026.\nRe-checked against the live specification on 26 August 2026: the requirements this case cites are unchanged, so only the version cited above was updated.\n\nAUTOMATION: READY"
+}
+}
+},
+"43834": {
+"title": "CSV export repeats the PDF header's date range and Locations filter lines",
+"atm": 1,
+"fields": {
+"custom_expected": {
+"blocks": [
+[
+"1. The CSV carries the same filter-summary lines as the PDF header - the date range and the \"Locations:\" line, plus any report-specific filter lines the PDF header names - each as a leading metadata row above the column-header row.",
+"2. The lines appear verbatim (the same wording) and in the same order as in the PDF header.",
+"3. A CSV saved or forwarded later is never ambiguous about which filters produced it: every filter the PDF header names is present in the CSV.",
+"4. Note for the tester: this is the suite-wide rule that the CSV must name the same filters as the PDF. If your report shows no narrowed filters, widen or narrow one so at least one filter line appears, then compare again."
+],
+[
+"---",
+"This is the expected behaviour as per epic SV-8582 and the Parts Velocity report specification version 11 (S6-R11a), both read on 17 August 2026. S6-R11a is the suite-wide rule (added 2026-08-12, SV-9283) that the CSV carries every filter-summary line the PDF header names.",
+"Last checked against build v3.8-bd246fd on 8/18/2026.",
+"Re-checked against the live specification on 26 August 2026: the requirements this case cites are unchanged, so only the version cited above was updated."
+],
+[
+"AUTOMATION: READY"
+]
+],
+"text": "1. The CSV carries the same filter-summary lines as the PDF header - the date range and the \"Locations:\" line, plus any report-specific filter lines the PDF header names - each as a leading metadata row above the column-header row.\n2. The lines appear verbatim (the same wording) and in the same order as in the PDF header.\n3. A CSV saved or forwarded later is never ambiguous about which filters produced it: every filter the PDF header names is present in the CSV.\n4. Note for the tester: this is the suite-wide rule that the CSV must name the same filters as the PDF. If your report shows no narrowed filters, widen or narrow one so at least one filter line appears, then compare again.\n\n---\nThis is the expected behaviour as per epic SV-8582 and the Parts Velocity report specification version 11 (S6-R11a), both read on 17 August 2026. S6-R11a is the suite-wide rule (added 2026-08-12, SV-9283) that the CSV carries every filter-summary line the PDF header names.\nLast checked against build v3.8-bd246fd on 8/18/2026.\nRe-checked against the live specification on 26 August 2026: the requirements this case cites are unchanged, so only the version cited above was updated.\n\nAUTOMATION: READY"
+}
+}
+}
+}
