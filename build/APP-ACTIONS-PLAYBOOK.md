@@ -3034,6 +3034,23 @@ Wire value for the setting is **`total_rounded`** — `invoice_total` and `total
 
 **Seeding to an EXACT total (the reliable pattern):** get a trustworthy baseline while it is still under the cap (here 32) → create in a loop, but **trust only HTTP 201 as "created"** (curl code `0` = transient timeout, may or may not have written — verify, don't assume) → **re-count with the bucket trick, not the counter** → top up the shortfall with **fresh unique names** (continue the numbering, e.g. 301+) so you never collide, retrying transient `0`s up to 3× → re-count to confirm. Reached exactly 300 this way. Names tagged `ZZAUTOTEST` per the disposable-data rule.
 
+
+### T.12 Vendor invoices, receive, split — reproduce a "one invoice across two POs" (proven 2026-08-27, SV-8910)
+
+**Where duplicate/vendor invoices are SEEN:** Parts → Vendors → click the vendor → **Unpaid Invoices** tab = route `/parts/vendor/{vendorId}/unpaid-invoices`. Columns: Date · Type · **No.** (invoice number) · Memo · **Total** · Balance · Status. Tick row checkboxes → a **"Totals selected"** footer sums them (this is how the doubling shows: a $300 invoice's two PO rows each reading $300 → footer $600). The `/parts/deliveries` route is the same data table (label "Vendor Invoices" in the Parts nav points at `/parts/deliveries`); the per-vendor Unpaid Invoices page is the cleaner evidence surface.
+
+**Getting two POs under ONE vendor invoice (the reproduction):** same-vendor parts on the SAME work order **merge into one PO** — so two parts alone will NOT give two POs. You need the first PO **closed to new additions**: order part 1 (qty 2), **partially receive it (1 of 2)**, then **Split work order** the line → new WO; add part 2 (same vendor) on the new WO and order it → now a NEW PO. The new WO's receive screen groups both POs under the vendor into one block → receiving there is one submission spanning two POs. (`receive-view` returns `vendors[].purchaseOrders[].items[]` where each item's own `orderNumber` reveals the real PO.)
+
+**Key endpoints:**
+- Line create: `POST /api/work-orders/lines/create` — needs `{work_order_id, canned_line_id, status:'authorized', line_name, labour_type_id, labour_rate, tech_time, time_estimate}`; a bare `{work_order_id,canned_line_id,status}` **400s** with "Labor or fixed prices must be set." **The UI New Line dialog is more reliable** (`button_new_line` → `select_line_canned_line` type+pick → `checkbox_line_approved` → `button_save_add_line`/`button_save_close`).
+- Authorize a line: `POST /api/work-orders/lines/change-status {work_order_id, line_ids:[...], status:'authorized'}` → 200. (A part order 400s "can only be performed on the authorized lines" until then.)
+- Add part: `POST /api/work-orders/part/make-request {line, work_order, description, quantity, part_source_type:'vendor', part_number, price, part_category_id, vendor_id}` → 201.
+- Order the part (create PO): `POST /api/work-orders/part/perform-request-status-action {part_request_id}` → 201, returns `data.orderId`.
+- **Split work order (UI only):** on `/workorders/{WO}/lines`, hover `line_number_{L}`, click `line_checkbox_{L}`, click `button_line_bulk_action`, then click the **"Split work order" menu item TWICE** (the item itself arms red on the 1st click and the **menu stays open** — click the SAME item again to confirm; do NOT reopen the menu). URL redirects to the new WO.
+- Receive screen: `/order/{PO}?receive=1&workOrderId={WO}` — controls `input_invoice_{PO}`, `input_cost_{itemId}`, `input_qty_{itemId}`, `input_tax_{PO}` (per-PO/block tax), `checkbox_item_{itemId}`, `button_receive_po_{PO}`. **Cost is entered at receive time** (order-item cost defaults to 0; button stays disabled until cost is set). An already-received item shows a locked `currency_text_cost_{itemId}` instead of an input. Submit calls `POST /api/orders/receive-requested-parts` with `{vendor_id, invoice_number, invoice_date, total, tax, items:[...]}`.
+
+**Verify per-PO recording:** `GET /api/inventory/orders/{PO}` → `data.order.deliveries[]`, each with `invoice_number`, `total_price` (= its own part share **+ its own tax share**), and nested `items[]` (`total_cost`). Fixed = each delivery's `total_price` is its own share; the two sum to the true invoice. Broken (SV-8910) = both = the whole submission total. Tax per row = `total_price − sum(items.total_cost)`; the two tax shares sum exactly to the entered tax, larger PO carrying the larger share.
+
 ## §U — HOW TO UNBLOCK YOURSELF: the ladder, in order (the standing skill, not one project's trick)
 
 ### U.00 💰 THE COST CHECK — pick the harness before you build it (Standing Rule 63)
