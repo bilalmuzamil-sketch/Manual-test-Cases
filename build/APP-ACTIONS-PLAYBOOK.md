@@ -3053,6 +3053,18 @@ Wire value for the setting is **`total_rounded`** — `invoice_total` and `total
 
 **Verify per-PO recording:** `GET /api/inventory/orders/{PO}` → `data.order.deliveries[]`, each with `invoice_number`, `total_price` (= its own part share **+ its own tax share**), and nested `items[]` (`total_cost`). Fixed = each delivery's `total_price` is its own share; the two sum to the true invoice. Broken (SV-8910) = both = the whole submission total. Tax per row = `total_price − sum(items.total_cost)`; the two tax shares sum exactly to the entered tax, larger PO carrying the larger share.
 
+### T.13 Complete a WO to the invoice stage — the fast API/UI chain + the status enums (proven 2026-08-27, SV-9087)
+
+When the WO completion settings are permissive (Work Orders settings tab: Require Approval / Require Mileage / Require Tech Story / Require Review / Require Receiving Parts all OFF), a WO drives to `Complete` in a few calls:
+1. `POST /api/iam/change-location {workplace_id, workplace_timezone}` — scope to the workplace, or `/api/work-orders?limit=…` returns 0.
+2. `POST /api/work-orders/create {company_id, vehicle_id, workplace_id, start_date, is_vehicle_here:true}` → `data.work_order_id`.
+3. **Add a labor line via the UI New Line dialog** (`button_new_line` → `select_line_canned_line` type name → pick first `.q-menu .q-item` → `checkbox_line_approved` → `button_save_close`). Direct `POST /api/work-orders/lines/create` is unreliable: bare canned 400s "Labor or fixed prices must be set"; canned+`labour_type_id`+`labour_rate`+`line_name` 500s. Labour types (for rate): `GET /api/labour-types?limit=…` → `{id, name, rate}`.
+4. **Complete the line:** `POST /api/work-orders/lines/change-status {line_id, work_order_id, status:'complete'}` → 200. **Valid line status = `complete`** (`completed`/`done`/`closed` → "Invalid parameter value").
+5. **The WO auto-completes to `Complete` when its last line completes** — no separate WO call needed; `POST /api/work-orders/change-status {id, status:'complete'}` then 400s "Complete work order cannot change its status again." (Valid WO statuses probed: `complete`, `invoiced`, `in_progress`; `completed`/`review`/`done`/`closed` are rejected. WO change-status key is **`id`**, not `work_order_id`.)
+6. Canned-lines list = `GET /api/work-orders/canned-lines?limit=…` (returns ids only; detail endpoints 404 — pick by adding via the UI dialog). Invoice-create = `POST /api/invoices/create {work_order_id, …}`.
+
+**Invoice preview / draft = `GET /api/invoices/{wo}/details?includeDeclined=0` + `POST /api/work-orders/invoices/estimate`** (also `GET /api/invoices/{wo}/settings/view`). The Finance tab's `date_input_invoice_date` field is present even pre-create; **Create Invoice stays disabled until the draft preview renders** — if `/details` 500s, the preview area is blank behind red toasts ("Error fetching draft invoice details", "Error get invoice HTML") and Create Invoice never enables. When diagnosing a 500 there, prove whether it depends on `credit_term` by seeding canonical / mis-spelled / garbage terms (`POST /api/customers/change` with the full record + `credit_term`) and comparing — if all 500 identically it is a preview-infra issue, not the term.
+
 ## §U — HOW TO UNBLOCK YOURSELF: the ladder, in order (the standing skill, not one project's trick)
 
 ### U.00 💰 THE COST CHECK — pick the harness before you build it (Standing Rule 63)
