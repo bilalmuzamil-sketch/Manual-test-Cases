@@ -3822,6 +3822,46 @@ deliver the 7-tab management report.
     for UI testing), plus the "Deliverable conventions the user likes" Jira comment/ticket format
     (first-line overall status, what-was-tested, inline annotated evidence, technical details last).
 
+66. **TEST THE ISSUE AS THE TICKET DESCRIPTION REPORTS IT — the developer's QA handoff is an INPUT,
+    never the authority; be smart enough to catch a (new) developer's misframing (all QA-ticket testing).**
+    USER DIRECTIVE (2026-08-27, verbatim): *"The issue was reported in the description. The developer is
+    new and the developer can be write or wrong both with his comments. We have to be smart to pick
+    developers misleading mistakes too."* and *"read the ticket description and test accordingly with
+    clear annotated screenshot to tell if the issue has been resolved."*
+    **THE RULE:** when QA-testing any ticket, the **PRIMARY SOURCE OF TRUTH for what to reproduce and for
+    what "fixed" means is the TICKET DESCRIPTION** — the reporter's Steps to Reproduce, Expected vs Actual
+    Behavior, and the customer's own words — **together with the ticket COMMENTS** (the reporter's
+    follow-ups and screenshots). **Read these FIRST and reproduce THAT EXACT flow.** The developer's
+    QA handoff / Powertools test plan / "Ready for QA" comment / "highest-value check" is a **SUPPLEMENTARY
+    input** — it tells you files changed, endpoints, seeding, root cause — but it **NEVER defines the
+    test**. A developer, **especially a new one, can simplify, misframe, understate, or misdirect the
+    repro** (honestly or not), and **a green handoff is not evidence the reported symptom is fixed**
+    (this is Rule 33 precedence applied to QA: the reporter's described symptom + the PO/QA-lead outrank
+    the dev's summary; judge the claim, not the claimant — Rule 44).
+    **THE FAILURE THIS PREVENTS (2026-08-27, SV-9087 — our own miss):** the ticket
+    ([SV-9087](https://shopview.atlassian.net/browse/SV-9087)) is titled *"Invoice reversal date cannot be
+    changed, throws an error"* and its Steps to Reproduce are a SPECIFIC flow — **reverse an invoice →
+    re-invoice/recreate after the reversal → try to set the invoice date BACK to the original date (it
+    defaults to today) → the date won't change and an error is shown.** The developer's "Ready for QA"
+    comment reduced this to *"a Complete work order for a NET 30 customer, change the invoice date on the
+    Finance tab,"* and QA tested to that simplified handoff — proving the underlying case-fold fix but
+    **NOT the customer's actual reverse → reinvoice → back-date scenario.** The QA lead caught it: *test
+    the description, not the handoff.*
+    **METHOD:** (1) read the **description + every comment**; extract the reporter's exact steps and the
+    customer's verbatim words; (2) reproduce the **FULL reported flow end-to-end** (here: Complete →
+    Invoiced [badge] → Reversed → re-Invoiced → change the invoice date back to an earlier date),
+    capturing a **clear ANNOTATED screenshot at EACH state** with the value in question visible (here: the
+    **invoice date at each transition**, per Rule 64); (3) the pass/fail criterion is stated as **"the
+    customer's reported scenario now works / still fails,"** in those terms; (4) where the dev's handoff
+    and the description **DIFFER, surface the gap explicitly** and test the description — never silently
+    follow the handoff; (5) if the exact reported flow **cannot** be reproduced, **say so** — never
+    substitute a simpler proxy and call it PASS (Rule 12). Ties to Standing Rules 12 (observed, never
+    inferred), 13 (live feature-by-feature), 22 (ask for the live check + access up front), 25 (cite the
+    source — here the reporter's words), 31 (source currency — re-read the ticket, it gains comments), 33
+    (authority precedence — reporter's symptom + QA lead outrank the dev's summary), 44 (a contradicting
+    input is a bug report against our own understanding until re-derived), 57 (the source of expected
+    behaviour is the document, not a convenient proxy) and 64 (annotated before/after screenshots).
+
 ## Project purpose (Custom Roles project)
 Manual test-case authoring + live staging (Verify-in-UI) verification + TestRail
 management for ShopView **"Custom Roles and Permissions"**, plus related
