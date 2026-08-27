@@ -2310,6 +2310,27 @@ tax model's name** (e.g. `15 percent`), not the word "Tax".
 (invoicing is its own action). After Complete: *"Complete work order cannot change its status
 again."* — so **get everything right BEFORE completing.**
 
+### R.5a ⭐ ADD A LABOR-ONLY LINE VIA THE "NEW LINE" DIALOG — the reliable way, no canned line, no junk parts (proven prod 2026-08-27)
+**Preferred over `create-from-canned-line`**: canned lines on prod carry pre-attached junk part
+requests (`"Line can't be completed with unfulfilled part requests."`) that have **no delete option
+in the part kebab** (only Move / Add Fee), and a QA-test workplace can have **zero** canned lines
+(the picker shows *"No results"*). Build the line by hand instead. **QA-lead rule: never leave any
+field empty** — fill all five.
+1. `/workorders/{id}/lines` → `button_new_line` (a freshly-created WO may auto-open this dialog).
+2. **"What Are You Doing?"** = `select_line_canned_line` — this data-test-id **IS the `<input>`**
+   (a q-select with new-value-mode), not a wrapper. Click it, **type a custom name** (e.g.
+   `ZZAUTOTEST Labor`), press **Enter** to accept it as a new value, then **Escape** to close the
+   menu. It accepts the typed value **even when the dropdown shows "No results"** (0 canned lines);
+   the field's own `.value` reads back empty afterwards but the line is created with that **name**.
+3. **"Why Are You Doing It?"** = `input_line_description` — fill (free text).
+4. **"Labor Rate"** = `select_labour_type` — click, pick the first `.q-menu .q-item` (e.g.
+   `General Labor $135`).
+5. `input_time_estimate` + `input_tech_time` — fill (`1`/`1`); the technician (`Admin ShopView`)
+   is pre-added.
+6. `button_save_close`. → a **labor-only line, 0 part_requests**, `status:"authorized"` —
+   completable without any receiving step. Then set tech story + mileage + complete per R.5.
+Escape any open q-menu before clicking the next field (the menu backdrop swallows clicks — §14d).
+
 ### R.6 Reading and writing what the API won't
 Boot the browser (R.1/R.2) and go to `/workorders/{id}/lines`.
 - **Financial Info** (the numbers that matter) — read the label/value pairs:
