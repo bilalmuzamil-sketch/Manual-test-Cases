@@ -60,13 +60,21 @@ Created the invoice for the `NET 30` customer (`INV-S9087-15890`): the rendered 
 ## Check F — vendor due dates (case-insensitive, BE-computed) : PASS
 Vendor Jehaven Fabrication seeded `credit_term = "NET 30"` → created a WO part order → **Accept Delivery**. The delivery due date came back **30 days out** (invoice_date `2026-08-27` → due_date `2026-09-26`). Before the fix an unrecognised `NET 30` resolved to 0 days. (The other three vendor write paths — receive requested parts, change-delivery-vendor — were not separately driven this run.)
 
-## Not run
-- **G (QuickBooks):** blocked on an environment mismatch (investigated 2026-08-27 with the qb1 cookies provided):
-  - `qb1.qa.shopview.com` serves the SPA but its API host `qb1api.qa.shopview.com` does **not resolve** from this environment (HTTP 000), so the qb1 UI redirects to /login and **cannot be driven for screenshots**. The qb1 bundle points at `sv9087api.qa.shopview.com`, and the qb1 `PHPSESSID` is scoped to `sv9087api` — so qb1's backend is `sv9087api`.
-  - The provided qb1 cookies authenticate against `sv9087api` but resolve to org **`d55bc308` "Staging Heavy Duty - 9919"** — the shared staging org, **not** the **QA 1 CA / QA 1 US** company the handoff pins qb1 to. QuickBooks **is** connected on that org (`/api/bookkeeping/integration` returns mapped Accounts / Products / Taxes; `/api/bookkeeping/unexported-items` shows an active `customer_invoice_create` sync queue).
-  - The handoff says *"qb1 maps to sandbox companies QA 1 CA / QA 1 US. Never cross-check against another env's company."* Running G against `d55bc308` would test the **wrong company**, and writing test invoices would push real Terms into its connected QuickBooks (Terms have no delete path). So G was **not executed** pending confirmation.
-  - The definitive Check-G assertion ("QuickBooks ends up with **one** Term `Net 30`, not two") is verified **inside QuickBooks Online** for that company — which needs a QuickBooks login not available here.
-  - **Needed:** either (a) the correct QA 1 CA/US qb1 environment access, or (b) confirmation that org `d55bc308` is the intended QB target for this test, plus a way to read the resulting QuickBooks Terms (QB Online access, or you verify the Terms list yourself after I trigger the syncs).
+## Check G (QuickBooks) — NOT COMPLETED — needs QuickBooks Online access (investigated 2026-08-27)
+Environment resolved (user confirmed correct for ticket 9087): `qb1.qa.shopview.com` is a QuickBooks-enabled frontend whose backend is **`sv9087api`** (its own `qb1api` host does not resolve from here, so the qb1 UI won't render — I used the working **sv9087** UI instead, same org). Both frontends share org **`d55bc308` "Staging Heavy Duty - 9919"**, and **QuickBooks IS connected** there — confirmed on the QuickBooks admin page (`G-quickbooks-admin.png`): Deposit sync enabled, account/item/tax mappings present, Advanced mapping on.
+
+**Two things block a clean live Check G on this org, both unrelated to the SV-9087 fix:**
+1. **Invoice sync currently fails on a tax-code mismatch.** The QB sync queue (`/api/bookkeeping/unexported-items`) shows my invoice `S9087-15890` failed with: *"Invalid Line TaxCode in the request : Valid line TaxCodes for US should be TAX or NON. Supplied value: 3."* — the org's customers use Canadian GST while this QB company expects US tax codes. The sync fails **before** the credit-term step, so a taxable-customer invoice never reaches term creation. (A tax-exempt customer would send `NON` and bypass this, but see #2.)
+2. **The QB admin page also shows sync PAUSED** for deposits/goodwill credits and for fees/discounts (unmapped items), and the account mappings are clearly test values (Account Receivable → "(Expense) Equipment Rental").
+
+**And the decisive assertion is external anyway:** Check G's core check — "QuickBooks ends up with **one** Term `Net 30`, not two" — lives in the **QuickBooks Online Terms list** for the connected company. The app resolves terms with `getOneByName` against QB directly and **exposes no "list QB terms" endpoint** (all such paths 404), so the dedup cannot be read app-side; the handoff also notes QB Terms have no delete/update path.
+
+**To close G, one of:**
+- **QuickBooks Online access** for the connected sandbox company — then I trigger the Net 30 / NET 30 invoice syncs (via tax-exempt customers to clear the tax-code block) and the vendor `Net30` delivery, and verify one Term `Net 30` results.
+- **You verify the Terms list in QuickBooks Online** after I trigger those syncs.
+- **Accept the dev's unit coverage for the QB half** (handoff: 38 inputs run through the real `CreditTerms` PHP class, `PartSaleCreditSyncService` / vendor-bill / customer-resolver unit tests green) and mark G as unit-covered + live-deferred.
+
+The QB-side credit-term logic (`CreditTerms.php`, the sync services) is the same case-fold proven live on the **customer side (Check C)** and the **vendor due-date side (Check F)**.
 - **F** partial: only the Accept-Delivery path of the four vendor write paths was driven.
 - **E** partial: the created-invoice due date is verified; AR aging + statement PDF agreement not separately pulled.
 
