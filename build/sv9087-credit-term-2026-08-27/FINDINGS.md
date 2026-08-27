@@ -61,7 +61,12 @@ Created the invoice for the `NET 30` customer (`INV-S9087-15890`): the rendered 
 Vendor Jehaven Fabrication seeded `credit_term = "NET 30"` → created a WO part order → **Accept Delivery**. The delivery due date came back **30 days out** (invoice_date `2026-08-27` → due_date `2026-09-26`). Before the fix an unrecognised `NET 30` resolved to 0 days. (The other three vendor write paths — receive requested parts, change-delivery-vendor — were not separately driven this run.)
 
 ## Not run
-- **G (QuickBooks):** must run on `qb1.qa.shopview.com` (QA 1 CA / QA 1 US). Only sv9087 cookies were provided — **needs qb1 access**. Terms persist and can't be deleted, so the existing Terms list must be noted first.
+- **G (QuickBooks):** blocked on an environment mismatch (investigated 2026-08-27 with the qb1 cookies provided):
+  - `qb1.qa.shopview.com` serves the SPA but its API host `qb1api.qa.shopview.com` does **not resolve** from this environment (HTTP 000), so the qb1 UI redirects to /login and **cannot be driven for screenshots**. The qb1 bundle points at `sv9087api.qa.shopview.com`, and the qb1 `PHPSESSID` is scoped to `sv9087api` — so qb1's backend is `sv9087api`.
+  - The provided qb1 cookies authenticate against `sv9087api` but resolve to org **`d55bc308` "Staging Heavy Duty - 9919"** — the shared staging org, **not** the **QA 1 CA / QA 1 US** company the handoff pins qb1 to. QuickBooks **is** connected on that org (`/api/bookkeeping/integration` returns mapped Accounts / Products / Taxes; `/api/bookkeeping/unexported-items` shows an active `customer_invoice_create` sync queue).
+  - The handoff says *"qb1 maps to sandbox companies QA 1 CA / QA 1 US. Never cross-check against another env's company."* Running G against `d55bc308` would test the **wrong company**, and writing test invoices would push real Terms into its connected QuickBooks (Terms have no delete path). So G was **not executed** pending confirmation.
+  - The definitive Check-G assertion ("QuickBooks ends up with **one** Term `Net 30`, not two") is verified **inside QuickBooks Online** for that company — which needs a QuickBooks login not available here.
+  - **Needed:** either (a) the correct QA 1 CA/US qb1 environment access, or (b) confirmation that org `d55bc308` is the intended QB target for this test, plus a way to read the resulting QuickBooks Terms (QB Online access, or you verify the Terms list yourself after I trigger the syncs).
 - **F** partial: only the Accept-Delivery path of the four vendor write paths was driven.
 - **E** partial: the created-invoice due date is verified; AR aging + statement PDF agreement not separately pulled.
 
