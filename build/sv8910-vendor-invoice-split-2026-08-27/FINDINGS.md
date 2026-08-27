@@ -23,6 +23,7 @@ receive-screen tax is split across the POs in proportion to their part costs, su
 | B (zero tax) | Tax empty — both rows no tax, totals match part costs | PASS — $100 + $200, no tax | `EX-A` (INV-ZERO) + API |
 | C1 | Single-PO full receive with tax — recorded total matches screen, tax matches | PASS — 2×$100 + $15 tax; on-screen Total $215.00 = recorded $215.00 | `EX-C1-single-receive-annotated.png` (+ raw `single-receive-screen.png`) + API |
 | C2 | Single-PO partial receive (1 of 2) — total reflects only qty received | PASS — 1×$100 = $100.00 recorded (INV-P) | API-observed delivery record; also visible as a row on `EX-A` |
+| C3 | Single-PO receive of a part with a **core charge** — recorded total still matches screen | PASS — part $100 + "Core for…" line $25 → on-screen Total $125.00 = recorded $125.00 | `EX-C3-core-charge-annotated.png` (+ raw `core-receive-screen.png`) + API |
 
 **Nothing here is inferred.** Every verdict is a value read live from the running build — the on-screen
 receive totals (screenshots) and the stored per-PO delivery records (`GET /api/inventory/orders/{id}`,
@@ -36,11 +37,14 @@ Additional confirming run: a $100/$100 two-PO merged receive with tax 10.01 reco
 ## Not exercised this pass (honest limits)
 - **B (even tax 21.00 two-PO):** not run separately — same split path as the uneven 10.01 case, which
   is the harder "sum exactly" check and passed.
-- **C3 (core charge single-PO):** not exercised — needs a cored catalogue part seeded. The fix derives
-  the delivery total from the parts on the delivery, so a core line is additive to the same subtotal;
-  recommend one core-charge receive as a confirming check when convenient.
 - QuickBooks vendor-bill sync not checked (no QBO connected); the known one-bill-per-multi-PO-invoice
   item is out of scope per the handoff.
+
+## Core-charge seeding note (Rule 27 / T.12)
+No cored part existed on the branch, so one was seeded: `POST /api/work-orders/part/make-request` accepts
+`core_charge` + `is_core` on a **vendor**-source part → the receive screen then shows a separate
+"Core for <part>" line and the delivery total includes it. (An inventory-source cored part is drawn from
+stock and is not vendor-ordered, so use the vendor path for a receivable core.)
 
 ## How it was verified
 Reproduced live via the app (quick-login admin, org d55bc308, workplace HD-9919). Setup via API
