@@ -3022,6 +3022,18 @@ Wire value for the setting is **`total_rounded`** — `invoice_total` and `total
 
 ---
 
+
+### T.11 Labor rates (labour-types): seed at scale + count PAST a capped list (proven 2026-08-27, SV-9194)
+
+**Endpoints** (API host `sv####api.qa.shopview.com`, org/workplace taken from the session):
+- **List:** `GET /api/labour-types` → `{data:{collection[], pagination:{page,rowsPerPage:100,...}}}`. ⚠️ **HARD-CAPPED at 100 and IGNORES every pagination param** — `page`, `offset`, `limit`, `perPage`, `rowsPerPage` all return the same first 100. (This cap *is* the SV-9194 bug surface — the WO Labor Rate dropdown reads this endpoint.)
+- **Create:** `POST /api/labour-types/create {name, labour_rate, is_default}` → **201**. Auto-assigns product/service **"Labor"** (`1e6f9231-…` on the shared org) and the session's workplace/org — no other fields needed. Empty-body probe names the 3 required fields.
+- **Search:** `GET /api/labour-types?search=<term>` — **PRECISE substring match on name**, but ALSO caps at 100. No `/count` endpoint (404).
+
+**Counting a list that caps at N and ignores paging (general trick, not just labor):** if `search` is precise, count with **prefix buckets whose maximum possible size ≤ N**. For rates named `ZZAUTOTEST WO Rate 034..300`: search `"...Rate 0"` (034-099, ≤66), `"...Rate 1"` (100-199, ≤100), `"...Rate 2"` (200-299, ≤100), `"...Rate 30"` (300+, small). Each bucket's max = the cap, so a returned count is unambiguous; sum them. This gave an exact 292→300 total when the list endpoint could only ever show 100.
+
+**Seeding to an EXACT total (the reliable pattern):** get a trustworthy baseline while it is still under the cap (here 32) → create in a loop, but **trust only HTTP 201 as "created"** (curl code `0` = transient timeout, may or may not have written — verify, don't assume) → **re-count with the bucket trick, not the counter** → top up the shortfall with **fresh unique names** (continue the numbering, e.g. 301+) so you never collide, retrying transient `0`s up to 3× → re-count to confirm. Reached exactly 300 this way. Names tagged `ZZAUTOTEST` per the disposable-data rule.
+
 ## §U — HOW TO UNBLOCK YOURSELF: the ladder, in order (the standing skill, not one project's trick)
 
 ### U.00 💰 THE COST CHECK — pick the harness before you build it (Standing Rule 63)
