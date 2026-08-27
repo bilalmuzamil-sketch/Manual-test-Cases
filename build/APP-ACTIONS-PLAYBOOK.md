@@ -3063,7 +3063,14 @@ When the WO completion settings are permissive (Work Orders settings tab: Requir
 5. **The WO auto-completes to `Complete` when its last line completes** — no separate WO call needed; `POST /api/work-orders/change-status {id, status:'complete'}` then 400s "Complete work order cannot change its status again." (Valid WO statuses probed: `complete`, `invoiced`, `in_progress`; `completed`/`review`/`done`/`closed` are rejected. WO change-status key is **`id`**, not `work_order_id`.)
 6. Canned-lines list = `GET /api/work-orders/canned-lines?limit=…` (returns ids only; detail endpoints 404 — pick by adding via the UI dialog). Invoice-create = `POST /api/invoices/create {work_order_id, …}`.
 
-**Invoice preview / draft = `GET /api/invoices/{wo}/details?includeDeclined=0` + `POST /api/work-orders/invoices/estimate`** (also `GET /api/invoices/{wo}/settings/view`). The Finance tab's `date_input_invoice_date` field is present even pre-create; **Create Invoice stays disabled until the draft preview renders** — if `/details` 500s, the preview area is blank behind red toasts ("Error fetching draft invoice details", "Error get invoice HTML") and Create Invoice never enables. When diagnosing a 500 there, prove whether it depends on `credit_term` by seeding canonical / mis-spelled / garbage terms (`POST /api/customers/change` with the full record + `credit_term`) and comparing — if all 500 identically it is a preview-infra issue, not the term.
+**Invoice preview / draft = `GET /api/invoices/{wo}/details?includeDeclined=0` + `POST /api/work-orders/invoices/estimate`** (also `GET /api/invoices/{wo}/settings/view`). The Finance tab's `date_input_invoice_date` field is present even pre-create; **Create Invoice stays disabled until the draft preview renders** — if `/details` 500s, the preview area is blank behind red toasts ("Error fetching draft invoice details", "Error get invoice HTML") and Create Invoice never enables. When diagnosing a 500 there, prove whether it depends on `credit_term` by seeding canonical / mis-spelled / garbage terms (`POST /api/customers/change` with the full record + `credit_term`) and comparing — if all 500 identically it is a preview-infra issue, not the term. **The `/details` 500 was also traced to a missing customer CONTACT** — set one on the WO (or on the customer) and the preview renders.
+
+**Reverse → re-invoice → change date (the SV-9087 reported flow, and how to drive it):** invoice menu `button_wo_invoice_menu` → `menu_item_reverse` → confirm; after reversal the WO returns to `Complete` and the finance draft's invoice-date field **defaults to today**. `Create Invoice` opens the **New Customer Payment** dialog directly (no "confirm create" dialog) and the invoice is created at that moment — close it with `button_close_payment_dialog`. To backdate: change `date_input_invoice_date` **before** clicking Create Invoice; the due date recomputes live from the credit term. A page reload resets the draft date to today, so set the date and create **without** reloading in between.
+
+**⚠️ Test the customer's REAL data path, not just an API-seeded state (SV-9087, ties Standing Rule 66).** When a fix needs "bad" data (here a mis-spelled `credit_term` like `NET 30`), find HOW the customer actually produced it — the dev's root-cause note usually says. Here it is the **Contacts CSV import** (`Imports → Contacts`); the credit-term **dropdown only writes canonical values**, so a customer cannot type a bad term through the customer form. `POST /api/customers/change` reproduces the same stored state as a shortcut, but the airtight, question-answering reproduction is the **Contacts import** itself.
+
+### Session resilience — recover after a container reprovision (budget-friendly)
+`/tmp` is ephemeral: the MITM bridge, cookies, `state.json`, and every `/tmp/<slug>/` harness script are **gone** after a reprovision, and the local git checkout may be sitting on **another session's commit**. Recover cheaply: (1) `git fetch origin <branch>` then `git reset --hard origin/<branch>` — restores committed evidence + any committed scripts (git is the only durable store; commit evidence as you go so this works). (2) Restart the bridge (`node build/testing-tools/staging-bridge.mjs`), read its `BRIDGE_LISTENING` port into `bridgeport.txt`. (3) Rebuild `api.mjs` / `lib.mjs` from this playbook (they carry no secrets). (4) **Re-request fresh cookies from the user** — secrets are never committed and ~24h-lived. To recover a **deleted/edited Jira comment id**, re-fetch `getJiraIssue fields=["comment"]` before updating — an `addCommentToJiraIssue` update to a stale id returns `Can not find a comment for the id`.
 
 ## §U — HOW TO UNBLOCK YOURSELF: the ladder, in order (the standing skill, not one project's trick)
 
@@ -3235,6 +3242,17 @@ until it silently doesn't.
 Two ways to find targets: `[data-test-id^="item_label_"]` + `item_value_<k>` for the Financial Info
 panel (gives label box, value box and a full-row box), and an exact-innerText walk over leaf elements
 for anything in the rendered invoice document.
+
+⚠️ **A LAYOUT SHIFTS BETWEEN STATES — capture geometry PER STATE, never reuse one state's boxes on
+another panel (learned SV-9087 2026-08-27).** A composite that stacks the SAME screen in several states
+(e.g. Complete → Invoiced → Reversed → Invoiced) is the trap: the finance tab's **INVOICED** state has no
+"Estimate/Invoice" toggle row, so the rendered invoice document — and its `Invoice Date:` / `Due date:`
+lines — sits **~40px HIGHER** than in the **draft/Complete** state. Measured live: invoiced-layout dates
+at `y≈223–265`, draft-layout dates `~40px lower`; status badge `y≈134` in both. A single fixed box drawn
+for all panels landed correctly on the draft panels and **below the dates on the invoiced panels** — the
+QA lead caught it. Fix: measure `getBoundingClientRect` in **each** state (or at least once per distinct
+layout) and use per-layout coordinates; then **re-read the finished composite before delivering** to
+confirm every box actually rings its target.
 
 ### V.3 ⚠️ `fullPage` does NOT reach an inner scroll container
 
