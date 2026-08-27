@@ -13,7 +13,7 @@
 | **D** — Charge Account withheld from COD | **PASS** | `EX-D-charge-account-comparison.png`, `D-auto-*.png` |
 | **E** — BE-computed invoice due date +30 | **PASS** | `E-invoice-created-payment.png` |
 | **F** — vendor due dates (4 write paths) | **PASS (Accept Delivery path)** | `F-receive-screen.png` |
-| **G** — QuickBooks | **NOT RUN** — needs `qb1.qa.shopview.com` access | — |
+| **G** — QuickBooks | **UNIT-COVERED, LIVE-DEFERRED** (QA-lead decision 2026-08-27) | `G-quickbooks-admin.png` |
 | **H** — regression (canonical data) | **PASS** (canonical controls verified throughout A/C/D) | — |
 
 All verified LIVE on the branch with evidence captured this run (Standing Rule 12).
@@ -69,12 +69,7 @@ Environment resolved (user confirmed correct for ticket 9087): `qb1.qa.shopview.
 
 **And the decisive assertion is external anyway:** Check G's core check — "QuickBooks ends up with **one** Term `Net 30`, not two" — lives in the **QuickBooks Online Terms list** for the connected company. The app resolves terms with `getOneByName` against QB directly and **exposes no "list QB terms" endpoint** (all such paths 404), so the dedup cannot be read app-side; the handoff also notes QB Terms have no delete/update path.
 
-**To close G, one of:**
-- **QuickBooks Online access** for the connected sandbox company — then I trigger the Net 30 / NET 30 invoice syncs (via tax-exempt customers to clear the tax-code block) and the vendor `Net30` delivery, and verify one Term `Net 30` results.
-- **You verify the Terms list in QuickBooks Online** after I trigger those syncs.
-- **Accept the dev's unit coverage for the QB half** (handoff: 38 inputs run through the real `CreditTerms` PHP class, `PartSaleCreditSyncService` / vendor-bill / customer-resolver unit tests green) and mark G as unit-covered + live-deferred.
-
-The QB-side credit-term logic (`CreditTerms.php`, the sync services) is the same case-fold proven live on the **customer side (Check C)** and the **vendor due-date side (Check F)**.
+**RESOLUTION (QA-lead decision 2026-08-27): option 3 — accept the QB half as UNIT-COVERED, LIVE-DEFERRED.** The dev's coverage stands (handoff: 38 inputs run through the real `CreditTerms` PHP class agreeing exactly with the FE module; `PartSaleCreditSyncService` / vendor-bill `ExternalEntityResolver` / `ExternalCustomerResolver` unit tests green; PR CI 18/18). The QB-side credit-term logic (`CreditTerms.php`, the sync services calling `getOneByName`) is the **same case-fold already proven LIVE** on the customer side (Check C) and the vendor due-date side (Check F). A live QuickBooks Terms-dedup check is deferred until a QB-Online-verifiable env is available; it is not a release blocker for the sv9087-testable scope.
 - **F** partial: only the Accept-Delivery path of the four vendor write paths was driven.
 - **E** partial: the created-invoice due date is verified; AR aging + statement PDF agreement not separately pulled.
 
