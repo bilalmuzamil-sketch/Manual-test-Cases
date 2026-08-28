@@ -306,6 +306,73 @@ lanes pick them up.
 
 ---
 
+## SEARCH BEFORE YOU GIVE UP (mandatory — Rule 97)
+
+**This section is MANDATORY in every handoff.** Full rule text: `build/rules/RULES-61-97.md` (Rule 97,
+tying Rules 27, 29, 59, 68, 76, 79, 86, 88, 89, 93). It is reproduced **in full below** so you never
+have to open another file to get it.
+
+**QA LEAD DIRECTIVE, 2026-08-28, verbatim:** *"I want that session if it is giving up to go and see if
+you ever did something similar and it worked for you and to learn from you then."*
+
+**THE RULE — BEFORE you report ANYTHING as impossible, blocked, unavailable, unreachable or
+unreconstructable, SEARCH THIS WORKSPACE.** It is the accumulated memory of every session before you,
+and most "blockers" have already been hit, diagnosed and written down. **Use the EXACT ERROR TEXT as
+the search key** — the literal string the tool printed, not a paraphrase and not a category. That is
+what finds it, because the session that solved it pasted the same string into the playbook, the skill
+or the BLOCKED file. **If you still cannot find it, REPORT THE SEARCHES YOU RAN** — commands, keys,
+files covered — so the QA lead knows the gap is REAL rather than merely UNSEARCHED.
+
+**THE SEARCH DRILL — run these, substituting your own strings:**
+
+```
+grep -rn "<exact error string>" build/ --include=*.md | head -20
+grep -rn "<endpoint/tool/symptom>" build/APP-ACTIONS-PLAYBOOK.md build/skills/ | head -20
+ls build/BLOCKED-*.md
+ls build/*DIAGNOSIS*.md build/*/FINDINGS.md
+git log --all --oneline --grep="<keyword>" | head -20
+```
+
+**SEVERAL `BLOCKED-*.md` FILES ARE MARKED RESOLVED AND CARRY THE CAUSE** — the name is not proof the
+thing is still blocked; open it and read what happened next. `git log --all --grep=` reaches work that
+landed on another session's branch and is not yet in the document you are reading.
+
+**THE FOUR PLACES, IN THIS ORDER:**
+
+| # | File | What it holds |
+|---|---|---|
+| 1 | `build/APP-ACTIONS-PLAYBOOK.md` | Proven staging/QA/prod action recipes and the traps (§J TestRail, §K production) |
+| 2 | `build/skills/14-ACCESS-RESILIENCE.md` | The primary/fallback ladder and the preflight for each system (Rule 89) |
+| 3 | `build/ATLASSIAN-JIRA-ACCESS-METHOD.md` | Browser, proxy and MITM-bridge mechanics |
+| 4 | `build/rules/RULES-*.md` | **GREP them — never read one end to end** |
+
+**SEARCH IN A TARGETED WAY:** grep, or a bounded slice around a hit — **never bulk-read a file to "get
+oriented"** (Rule 88). Never read `CLAUDE-FULL-ARCHIVE-2026-08-21.md` whole.
+
+**FIVE REAL FALSE BLOCKERS, ALL 2026-08-28 — the answer was in this repo every time:**
+
+1. *"chromium's outbound TCP is reset, Playwright is unusable"* — it needs a **fresh local MITM bridge
+   started per run**, documented in `build/ATLASSIAN-JIRA-ACCESS-METHOD.md` §1.
+2. *"the Atlassian login needs an emailed OTP"* — **no OTP exists** (two-step is off). The real
+   obstacle was an **undismissed "Security review" interstitial**.
+3. *"a foreign edit is unreconstructable"* — **`get_history_for_case` returns per-field old/new values
+   including whole bodies**, and it recovered the **C29557** edit.
+4. *"`build/testing-tools/scan_secrets.py` does not exist"* — **it did**: 479 lines, passing self-test.
+   A **stale checkout** produced the false claim.
+5. *"the 72 damaged cases cannot be repaired"* — the **API** could not; the **TestRail UI editor could,
+   and did.**
+
+**THE COMMON SHAPE:** the session mistook the first path it tried for the only path. **One tool failing
+is a fact about that tool, never about the task** (Rule 68).
+
+**IF YOU SOLVE SOMETHING NEW, WRITE IT DOWN IN THE SAME PASS** — the recipe into
+`build/APP-ACTIONS-PLAYBOOK.md`, the access ladder into the relevant skill — **before you report and
+exit, not "next time"** — and include the exact error string you searched for so the next session's
+grep hits it. **Undocumented knowledge is knowledge the next session pays for again**, out of the same
+shared quota (Rule 90). This is Rule 93's learning loop at the scale of one obstacle.
+
+---
+
 ## TOKEN DISCIPLINE CHARTER (mandatory — Rule 95)
 
 **This section is MANDATORY in every handoff and binds this session from its FIRST TURN.** Canonical

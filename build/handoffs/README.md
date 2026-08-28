@@ -33,6 +33,29 @@ token/quota section, **MERGE into it — never duplicate.** Authority: **Standin
 
 ---
 
+## 🔴 EVERY HANDOFF AUTHORED FROM NOW ON MUST ALSO EMBED "SEARCH BEFORE YOU GIVE UP" (Rule 97)
+
+**REQUIRED SECTION — same treatment as the charter above.** Every handoff in this folder — existing and
+future — carries a section titled **"SEARCH BEFORE YOU GIVE UP (mandatory — Rule 97)"**, **INLINE and in
+full**, because **a session must not have to open another file to learn how to stop giving up.** It
+carries: the QA-lead directive verbatim (2026-08-28); the rule that **nothing is reported as impossible,
+blocked, unavailable or unreconstructable until the workspace has been searched with the EXACT ERROR
+TEXT**; the **search drill** (`grep -rn "<exact error string>" build/ --include=*.md` ·
+`grep -rn "<endpoint/tool/symptom>" build/APP-ACTIONS-PLAYBOOK.md build/skills/` · `ls build/BLOCKED-*.md`
+— **several are marked RESOLVED with the cause** — · `ls build/*DIAGNOSIS*.md build/*/FINDINGS.md` ·
+`git log --all --oneline --grep="<keyword>"`); **the four places in order** (`build/APP-ACTIONS-PLAYBOOK.md`
+· `../skills/14-ACCESS-RESILIENCE.md` · `build/ATLASSIAN-JIRA-ACCESS-METHOD.md` · `build/rules/RULES-*.md`,
+grepped and never read whole); the duty to **report the searches you ran** when the answer genuinely is
+not there; the five real 2026-08-28 false blockers; and the duty to **write a new solution into the
+playbook or the relevant skill IN THE SAME PASS**.
+
+**A HANDOFF WITHOUT IT IS NON-COMPLIANT AND MUST NOT BE ISSUED.** Copy the section from any of the four
+existing handoffs; merge rather than duplicate if a similar section exists. Routers and other skills take
+it **by pointer only**. Authority: **Standing Rule 97** (`build/rules/RULES-61-97.md`); it ties Rules 27,
+29, 59, 68, 76, 79, 86, 88, 89, 93.
+
+---
+
 ## Lanes do not overlap — and that is deliberate
 
 - The **creation** session does not run build verification and does not rewrite existing wording.

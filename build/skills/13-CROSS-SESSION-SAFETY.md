@@ -383,6 +383,21 @@ twelve clauses verbatim; a handoff without them is non-compliant and must not be
 
 ---
 
+## SEARCH BEFORE YOU GIVE UP (Rule 97) — POINTER
+
+**Before reporting ANYTHING as impossible, blocked, unavailable, unreachable or unreconstructable,
+GREP THIS WORKSPACE — using the EXACT ERROR TEXT, which is what actually finds it.** Four places, in
+order: `build/APP-ACTIONS-PLAYBOOK.md` · [`14-ACCESS-RESILIENCE.md`](14-ACCESS-RESILIENCE.md) ·
+`build/ATLASSIAN-JIRA-ACCESS-METHOD.md` · `build/rules/RULES-*.md` (**grep them, never read one end to
+end**). Also `ls build/BLOCKED-*.md` — **several are marked RESOLVED and carry the cause** — and
+`git log --all --oneline --grep="<keyword>"`. **If you still cannot find it, REPORT THE SEARCHES YOU
+RAN**, so the QA lead knows the gap is real rather than unsearched. **One tool failing is a fact about
+that tool, never about the task** (Rule 68). **Solve something new ⇒ write it into the playbook or the
+relevant skill IN THE SAME PASS** (Rule 93). **The full drill — with the five real 2026-08-28 false
+blockers — is INLINE in every handoff and in `build/rules/RULES-61-97.md` (Rule 97).**
+
+---
+
 ## ACCESS + QUOTA — added 2026-08-21 (Standing Rules 89 & 90)
 
 > **🔴 [`14-ACCESS-RESILIENCE.md`](14-ACCESS-RESILIENCE.md) — read it BEFORE the first access call of

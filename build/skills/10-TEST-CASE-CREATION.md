@@ -114,6 +114,15 @@ Full texts: `build/rules/RULES-01-20.md` · `RULES-21-40.md` · `RULES-41-60.md`
   week-start guard, and **clause 12: quality is never the thing cut**. **This router holds no substance
   — read the charter itself; it supersedes the Rule 88 / Rule 90 lines this section used to carry.**
   Every handoff embeds the same twelve clauses in full. Rule text: `build/rules/RULES-61-97.md`.
+- **🔴 SEARCH BEFORE YOU GIVE UP (Rule 97) — POINTER ONLY; the full drill is INLINE in every handoff.**
+  **Before reporting anything as impossible, blocked, unavailable or unreconstructable, GREP THIS
+  WORKSPACE using the EXACT ERROR TEXT** — that is what finds it. Four places, in order:
+  `build/APP-ACTIONS-PLAYBOOK.md` · `14-ACCESS-RESILIENCE.md` · `build/ATLASSIAN-JIRA-ACCESS-METHOD.md`
+  · `build/rules/RULES-*.md` (grep, never read whole). Also `ls build/BLOCKED-*.md` — **several are
+  marked RESOLVED with the cause** — and `git log --all --grep=`. Still not found ⇒ **report the
+  searches you ran**, so the gap is known to be real rather than unsearched. **Solve something new ⇒
+  write it into the playbook or the skill IN THE SAME PASS** (Rule 93). Full text with the five real
+  2026-08-28 false blockers: `build/rules/RULES-61-97.md` (Rule 97).
 - **Rule 91** — every verification claim in your report carries a **freshness badge with its date**:
   **✅ ≤ 7 days · 🟠 8–14 days · 🔴 > 14 days · ❌ never verified**. A bare tick is non-compliant.
   Tool: `build/testing-tools/verification_badge.py` (requires `--today`).

@@ -66,6 +66,23 @@
     Routers and other skills take the charter **by pointer only**. Authority:
     `build/rules/RULES-61-97.md`.
 
+13. **EVERY HANDOFF EMBEDS "SEARCH BEFORE YOU GIVE UP" (Standing Rule 97).** Any session handoff you
+    author or revise MUST carry a section titled **"SEARCH BEFORE YOU GIVE UP (mandatory — Rule 97)"**,
+    **INLINE and in full** — a session must not have to open another file to learn how to stop giving
+    up. It carries the QA-lead directive verbatim (2026-08-28), the rule that **nothing is reported as
+    impossible, blocked, unavailable or unreconstructable until the workspace has been searched with the
+    EXACT ERROR TEXT**, the **search drill** (`grep -rn "<exact error string>" build/ --include=*.md` ·
+    `grep -rn "<endpoint/tool/symptom>" build/APP-ACTIONS-PLAYBOOK.md build/skills/` ·
+    `ls build/BLOCKED-*.md` — several are marked RESOLVED with the cause — ·
+    `ls build/*DIAGNOSIS*.md build/*/FINDINGS.md` · `git log --all --oneline --grep="<keyword>"`), the
+    **four places in order** (`build/APP-ACTIONS-PLAYBOOK.md` · `build/skills/14-ACCESS-RESILIENCE.md` ·
+    `build/ATLASSIAN-JIRA-ACCESS-METHOD.md` · `build/rules/RULES-*.md`, grepped never read whole), the
+    duty to **report the searches you ran** when the answer genuinely is not there, the five real
+    2026-08-28 false blockers, and the duty to **write a new solution into the playbook or the relevant
+    skill IN THE SAME PASS**. **A handoff without it is NON-COMPLIANT and MUST NOT BE ISSUED.** Merge,
+    never duplicate. Routers and other skills take it **by pointer only**. Authority:
+    `build/rules/RULES-61-97.md`.
+
 ## The one-page checklist (tick every box)
 - [ ] Read the raw transcript; listed every relevant user turn + correction.
 - [ ] Purpose (plain English) + trigger phrases + kickoff prompt.
@@ -78,3 +95,4 @@
 - [ ] Indexed in `CLAUDE.md`; durable rules noted (shared with other session).
 - [ ] Told the user the name + how to call it; offered a dry-run.
 - [ ] **If the artefact is a HANDOFF: the Token Discipline Charter's twelve clauses embedded VERBATIM (Rule 95) — without it the handoff must not be issued.**
+- [ ] **If the artefact is a HANDOFF: the "SEARCH BEFORE YOU GIVE UP" section embedded INLINE and in full (Rule 97) — drill + the four places + the write-it-down duty; without it the handoff must not be issued.**
