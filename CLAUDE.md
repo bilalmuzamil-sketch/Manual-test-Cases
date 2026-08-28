@@ -36,13 +36,21 @@ These are stated here **in full** because a session that gets only this far must
   No `add_case` / `update_case` / `delete_case` / run write / result write without the QA lead's
   explicit go-ahead. Everything else (staging, QA, prod test orgs, QuickBooks) is disposable — act
   freely there, tag throwaway data `ZZAUTOTEST`, restore what you change.
-- **NO JIRA TICKET CREATION WITHOUT PERMISSION, AND A CREATION HOLD IS ACTIVE (62).** Permission is
-  **PER ASK** — an earlier batch approval never covers a later ticket, and a finding being real and
-  obviously worth filing is not permission. **ACTIVE HOLD (QA lead, 2026-08-10, verbatim: *"Do not
-  create anything until my next order."*)** — no Jira ticket, no new TestRail case, no new artefact in
-  any external system of record. **`update_case` on EXISTING cases CONTINUES — that is correction, not
-  creation.** **This hold is TEMPORARY with a lift condition (his next order) — a session reading this
-  later must CHECK whether it has been lifted, not assume it is standing law.** Register row **H1**.
+- **NO *JIRA TICKET* CREATION WITHOUT PERMISSION, AND A JIRA CREATION HOLD IS ACTIVE (62).**
+  **🛑 THE HOLD IS JIRA TICKETS ONLY. CREATING TESTRAIL TEST CASES IS *NOT* HELD AND NEVER WAS —
+  `add_case` and `update_case` are PERMITTED AND EXPECTED, on every project.** QA lead — recorded
+  in `build/OUTSTANDING-ITEMS-REGISTER.md` row **H1** on 2026-08-20 and relayed again 2026-08-28 —
+  verbatim: *"SOrry new case creation is not held for any project at all, see if you confused Hold on
+  Jira ticket creation with Hold on New test case creation."* (He first corrected this on 2026-08-11;
+  **two workers have since stalled real work by misreading the hold as blocking TestRail case
+  creation.** If you are about to report a requirement as uncoverable "while the hold stands", you have
+  made that mistake — **write the case**.)
+  For Jira: permission is **PER ASK** — an earlier batch approval never covers a later ticket, and a
+  finding being real and obviously worth filing is not permission. **ACTIVE HOLD (QA lead, 2026-08-10,
+  verbatim: *"Do not create anything until my next order."*)** — **no Jira ticket** of any type, and no
+  new artefact in any other external system of record; **TestRail cases are expressly carved out**.
+  **This hold is TEMPORARY with a lift condition (his next order) — a session reading this later must
+  CHECK whether it has been lifted, not assume it is standing law.** Register row **H1**.
 - **SECRETS: `/tmp` ONLY, `chmod 600`, NEVER COMMITTED — THIS REPO IS PUBLIC (82).** Cookies, tokens,
   passwords, OTP codes live in `/tmp` and nowhere else; never in a log, an error paste, or a commit.
   **Before every commit run the REAL scanner: `python3 build/testing-tools/scan_secrets.py --staged`**
@@ -182,7 +190,7 @@ rule. Generated from the split files' own headers.
 | # | Rule (short title) |
 |---|---|
 | **61** | THE EXPECT-FAIL MARKER IS AN INSTRUCTION, NOT A PREDICTION — NAME THE SYMPTOM, AND LET THE |
-| **62** | NO JIRA TICKET IS EVER CREATED WITHOUT THE QA LEAD'S EXPLICIT PERMISSION, ASKED FOR AND GRANTED |
+| **62** | NO **JIRA TICKET** IS EVER CREATED WITHOUT THE QA LEAD'S EXPLICIT PERMISSION — **JIRA ONLY; CREATING TESTRAIL TEST CASES IS *NOT* HELD AND NEVER WAS** (`add_case`/`update_case` permitted and expected, every project) |
 | **63** | WHEN HIS INSTRUCTION CONFLICTS WITH A RECORDED RULE, STOP AND SURFACE THE CONFLICT BEFORE |
 | **64** | EVERY TEST CASE MUST HAVE A SOURCE — a case with NO source should not exist; but CHECK THE |
 | **65** | CHANGE A CASE THAT TESTRAIL FLAGS AS AUTOMATED → TELL VLAD. Every pass that writes to cases |

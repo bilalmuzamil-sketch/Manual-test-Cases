@@ -147,8 +147,43 @@ Index: CLAUDE.md (rule index table). Other rule files: build/rules/RULES-01-20.m
     build, so that does not make your previous pass as stale."* **UNCHANGED: an expect-fail marker
     still needs LIVE BACKING (this rule's 2026-08-11 amendment) — a fix shipping is a reason to REMOVE
     a marker once reported, never a reason to assert a build fact nobody observed (Rule 12).**
-62. **NO JIRA TICKET IS EVER CREATED WITHOUT THE QA LEAD'S EXPLICIT PERMISSION, ASKED FOR AND GRANTED
-    FIRST (all projects, every ticket type).**
+62. **NO *JIRA TICKET* IS EVER CREATED WITHOUT THE QA LEAD'S EXPLICIT PERMISSION, ASKED FOR AND
+    GRANTED FIRST (all projects, every ticket type).**
+
+    > # 🛑 READ THIS BEFORE ANYTHING ELSE IN RULE 62
+    >
+    > ## THIS RULE AND ITS HOLD COVER **JIRA TICKET CREATION ONLY**.
+    > ## **CREATING TESTRAIL TEST CASES IS *NOT* HELD, AND NEVER WAS.**
+    >
+    > **`add_case` IS PERMITTED AND EXPECTED. So is `update_case`. Authoring a case for an uncovered
+    > requirement is THE JOB — it is not a thing to seek permission for, and a coverage gap is never
+    > a reason to wait or to stop.**
+    >
+    > **USER DIRECTIVE (the QA lead — recorded in `build/OUTSTANDING-ITEMS-REGISTER.md` row H1 on
+    > 2026-08-20 and relayed again on 2026-08-28 — verbatim, his typing preserved exactly as he
+    > wrote it because Rule 25 applies to his instructions as it does to a spec):**
+    >
+    > > *"SOrry new case creation is not held for any project at all, see if you confused Hold on
+    > > Jira ticket creation with Hold on New test case creation."*
+    >
+    > **WHY THIS BANNER EXISTS — THE FAILURE IT FIXES.** This rule already carried the same
+    > correction, made on **2026-08-11**, but it sat **seventy-odd lines down**, *after* a
+    > deliberately-preserved block of **superseded 2026-08-10 wording that says "NO new TestRail
+    > case — `add_case` is barred."* **Two separate workers read the superseded line, believed
+    > TestRail case creation was held, and STALLED REAL WORK.** Keeping a superseded reading visible
+    > is right (the Rules 31/52/53 pattern); letting it be the FIRST thing a reader meets is not.
+    > **The superseded wording below is untouched and still dated — but it is history, not the rule.**
+    >
+    > **SO, IN ONE LINE EACH:**
+    > **· Jira ticket, any type, any project → BARRED until his next order. Prepare it, stop at the
+    > button, ASK.**
+    > **· TestRail test case, new or updated, any project → NOT HELD. Just do it.**
+    > **· Any OTHER new artefact in an external system of record → still barred; TestRail cases are
+    > expressly carved out.**
+    >
+    > **If you find yourself about to report a requirement as "cannot be covered while the hold
+    > stands", you have made this exact mistake. Write the case.**
+
     USER DIRECTIVE (2026-08-10, verbatim): *"Just One NEW rule, DO NOT create the Tickets in Jira but
     ask for my permission first."*
     **THE RULE: no Jira ticket may be created without the QA lead's explicit permission, asked for and
@@ -244,6 +279,12 @@ Index: CLAUDE.md (rule index table). Other rule files: build/rules/RULES-01-20.m
     one encoded, and it is deliberately the broader of the two: · NO Jira ticket, of any type, on any
     project. · **NO new TestRail case — `add_case` is barred.** · NO new artefact created in any
     external system of record."*
+    **🛑 THE LINE YOU JUST READ — "NO new TestRail case — `add_case` is barred" — IS DEAD WORDING
+    FROM 2026-08-10 AND IS QUOTED HERE ONLY AS HISTORY. IT IS NOT THE RULE. IT HAS BEEN WRONG SINCE
+    2026-08-11 AND WAS CONTRADICTED AGAIN BY THE QA LEAD ON 2026-08-28 (see the banner at the top of
+    this rule): *"SOrry new case creation is not held for any project at all, see if you confused
+    Hold on Jira ticket creation with Hold on New test case creation."* CREATING TESTRAIL TEST CASES
+    IS NOT HELD. Two workers have already stalled work by quoting this superseded line.**
     **BE PRECISE ABOUT WHAT HAPPENED: HE CLARIFIED; WE HAD READ HIM TOO BROADLY.** The ambiguity was
     flagged at the time and the broader branch taken — **the over-broad `add_case` bar was OUR
     reading, not his instruction.** **This is a correction to how we RECORDED his ruling, NOT a
