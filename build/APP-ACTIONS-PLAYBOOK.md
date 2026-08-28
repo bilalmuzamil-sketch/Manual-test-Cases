@@ -116,14 +116,26 @@ any endpoint/ID not recorded here or in `CLAUDE.md`** — if only partly known, 
   --no-sandbox --ssl-version-max=tls1.2`.
 - **node-fetch / undici proxy gotcha:** node-fetch IGNORES the proxy → use **undici `ProxyAgent`**
   (or Node global `fetch` with `NODE_USE_ENV_PROXY=1`). *Source: CLAUDE.md Simple Flow env note.*
-- **⭐ PER-TICKET QA BRANCH (`sv####.qa.shopview.com`) SPA LOGIN — the CORRECT bypass = SEED localStorage,
-  NEVER quick-login (corrected SV-8504, 2026-08-28; supersedes the earlier SV-9500 quick-login note):**
-  - **🚫 DO NOT click `button_quick_login_admin`.** The DEV quick-login logs in as a DIFFERENT user
-    (`admin`) and **rotates the server-side session on the shared SSO token — which LOGS OUT the user's own
-    browser** (user-confirmed: "when you start testing it logs out"; two normal browsers coexist fine,
-    quick-login does not). It also made *our* session die in ~10 min. **This was the whole cause of the
-    "session keeps expiring" saga — it was self-inflicted.** The earlier playbook advice to click it was
-    WRONG.
+- **⭐ QUICK-LOGIN ON SHOPVIEW — the CORRECT method (QA-lead ruling, proven sv9500 build v26.35.6-4b694be,
+  2026-08-28). Read this before ever touching quick-login:**
+  1. **PROBE FIRST.** `GET /api/auth/me/fe-permissions` on the API host. **If it returns 200 you are
+     already logged in — DO NOT call quick-login.** (`/api/auth/me` 404s on this build; use fe-permissions.)
+  2. **Call quick-login ONCE per run, and ONLY to CHANGE ROLE.** Every call rotates your session.
+  3. **Take the new `PHPSESSID` from the `Set-Cookie` — INCLUDING when the response is 403.** A 403 from
+     quick-login is **not** a failed login; it still logs you in. **Leave `sv_sso_session` alone; it does
+     NOT rotate.**
+  4. **NEVER reuse a cookie jar after a 409 "Session has expired."** That response hands back a **DEAD
+     PHPSESSID that 409s forever.** **Disable cookie persistence** so a poisoned value can't be stored and
+     reused. (This — not a short TTL — is what made the session "keep dying": a poisoned PHPSESSID kept
+     getting reused.)
+  5. **NEVER call quick-login while another session is using the same account** (e.g. the user's own
+     browser is open on the branch). That is what LOGS THE USER OUT. Two *normal* browsers coexist fine;
+     a quick-login rotates the shared account's session and kicks the others.
+- **⭐ PER-TICKET QA BRANCH (`sv####.qa.shopview.com`) SPA UI — when you DON'T need to change role, SEED
+  localStorage instead of logging in at all (proven SV-8504, 2026-08-28). This is the DEFAULT for testing
+  as the current user, and it never disturbs the user's own session:**
+  - **Do not click `button_quick_login_admin` here** — the user's browser is on the same account, so per
+    rule 5 above it would log them out. (This was the whole cause of the "session keeps expiring" saga.)
   - **The symptom without quick-login:** the raw API works with the cookies (`fe-permissions` → **200**),
     but the *SPA UI* still redirects every route to `/login`, because a fresh headless browser has empty
     `localStorage` and cannot complete the Google-SSO round-trip that a real browser uses to hydrate.
@@ -145,8 +157,10 @@ any endpoint/ID not recorded here or in `CLAUDE.md`** — if only partly known, 
     - The router guard (index chunk): `O=getUser(); U=userHasDefaultWorkplace(); N=O&&has("settingsApp")` →
       `if(O&&N&&!U…)→/administration/locations`; `if(O&&!N&&!U…)→/no-location`; no user → `/login`. So seed
       `user` (with `default_workplace`) + `fe_permissions_wrapper` and all three guards pass.
-  - **Session TTL ≈ 24 h when you DON'T quick-login** (same as a normal browser). The ~10-min death was the
-    quick-login rotating the session — gone once you stop calling it. Still, grab cookies reasonably fresh.
+  - **Session TTL ≈ 24 h when you DON'T quick-login** (same as a normal browser). The "session died in
+    ~10 min" was NOT a short TTL — it was (a) quick-login rotating the shared account's session and
+    (b) reusing a **409-poisoned PHPSESSID** (see quick-login rule 4). Disable cookie persistence and never
+    quick-login here, and the session lasts. Still, grab cookies reasonably fresh.
   - Chromium via the fresh MITM bridge (below); build marker from `<meta name="app-version">`
     (sv8504 was `v26.35.6-3b9cbae`). Canonical script: `build/sv8504-sorting-2026-08-28/` (seed_load3 / SORT_TEST).
 - **fe-permissions read:** `GET /api/auth/me/fe-permissions` → `{data:{fe_permissions:[<codes>],
