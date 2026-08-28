@@ -1,0 +1,23 @@
+==========================================================================
+SV-7822 QA TRANSCRIPT - sv7822api.qa.shopview.com - fix PR #2683
+==========================================================================
+[15:36:19Z] build etag (start): "d58c38a53635b55975d45615edf181ef"
+[15:36:20Z] TWO rows exist for catalogue part 0002-060004 at Staging Heavy Duty - 9919:
+            167846ed-...-614593  qty 2  (real, in use)
+            00000000-...-007822  qty 0  (seeded duplicate) -> this is what makes the save fail on prod code
+
+[15:36:20Z] TEST 1 - no-op save, catalogue part 6d144e96-9767-4213-88a4-26d55c2ffa04 left UNCHANGED (the customer's exact blocked action):
+          POST /inventory/parts/change -> 201  {"data": {"id": "167846ed-d65b-42c5-a382-7189cd614593", "catalogue_part_id": "6d144e96-976
+          => PASS - it SAVED, with the duplicate still present
+
+[15:36:21Z] TEST 2 - a harmless edit persists (nudge purchase_price 0.01 -> 0.02):
+          save -> 201
+          re-GET: purchase_price now 0.02, catalogue_part_id unchanged=True
+          restored purchase_price -> 201
+[15:36:23Z] still 2 rows for 0002-060004 (fix TOLERATES the duplicate; it is not merged or deleted)
+[15:36:23Z] build etag (end): "d58c38a53635b55975d45615edf181ef"
+[15:37:02Z] DISCRIMINATION TEST - re-point 0002-060004 onto another catalogue part already stocked here
+            target catalogue part: 4b4753e0-bed7-40eb-bbd1-c0f9e2ecd5f4 (part P550848, already at HD-9919)
+          POST change (catalog_part_id CHANGED to a stocked one) -> 400  {"errors": [{"error": "Cannot change to part variant that already exists in the system."}]}
+          => PASS - genuine conflict STILL rejected; guard is intact and discriminating
+[15:37:03Z] 0002-060004 catalogue_part_id after = 6d144e96-9767-4213-88a4-26d55c2ffa04 (unchanged: True)

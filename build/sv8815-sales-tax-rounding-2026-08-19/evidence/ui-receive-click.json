@@ -1,0 +1,57 @@
+{
+ "receiveLinks": 30,
+ "hrefSample": [
+  "/order/176d1868-ccc2-452a-8fce-ce2338ee291b?receive=1",
+  "/order/faa9a638-a87c-4976-aabe-b273dbacd54b?receive=1",
+  "/order/ebbd65d9-5cf7-4fcb-83d7-36899e8af02a?receive=1",
+  "/order/1f7eae42-7c4f-42d8-afb8-0368bf49471c?receive=1"
+ ],
+ "myHref": "/order/176d1868-ccc2-452a-8fce-ce2338ee291b?receive=1",
+ "calls": [
+  {
+   "status": 200,
+   "path": "/api/inventory/orders/receive-view",
+   "body": "{\"data\":{\"vendors\":[{\"vendorId\":\"00148557-6609-498f-b440-bb30ef9cef03\",\"vendorName\":\"Jehaven Fabrication\",\"vendorMissing\":false,\"purchaseOrders\":[{\"id\":\"176d1868-ccc2-452a-8fce-ce2338ee291b\",\"orderNumber\":\"S-16004\",\"type\":0,\"workOrderId\":\"1040d765-e976-4619-b9dc-8e713ddb491c\",\"workOrderStatus\":\"appr"
+  },
+  {
+   "status": 200,
+   "path": "/api/orders/receive-requested-parts",
+   "body": "{\"data\":[]}"
+  },
+  {
+   "status": 200,
+   "path": "/api/inventory/orders/receive-view",
+   "body": "{\"data\":{\"vendors\":[]}}"
+  }
+ ],
+ "landedOn": "/order/176d1868-ccc2-452a-8fce-ce2338ee291b?receive=1",
+ "ids": [
+  "button_back_to_purchase_orders",
+  "link_receive_work_order",
+  "select_assign_vendor_176d1868-ccc2-452a-8fce-ce2338ee291b",
+  "input_invoice_176d1868-ccc2-452a-8fce-ce2338ee291b",
+  "date_icon_invoice_date_176d1868-ccc2-452a-8fce-ce2338ee291b",
+  "date_input_invoice_date_176d1868-ccc2-452a-8fce-ce2338ee291b",
+  "checkbox_item_f5456a62-7953-495e-a836-578ccb1504c1",
+  "icon_edit_part_number_f5456a62-7953-495e-a836-578ccb1504c1",
+  "currency_text_cost_f5456a62-7953-495e-a836-578ccb1504c1",
+  "input_sell_f5456a62-7953-495e-a836-578ccb1504c1",
+  "input_qty_f5456a62-7953-495e-a836-578ccb1504c1",
+  "currency_text_line_total_f5456a62-7953-495e-a836-578ccb1504c1",
+  "currency_text_subtotal_176d1868-ccc2-452a-8fce-ce2338ee291b",
+  "input_tax_176d1868-ccc2-452a-8fce-ce2338ee291b",
+  "input_note_176d1868-ccc2-452a-8fce-ce2338ee291b",
+  "button_receive_po_176d1868-ccc2-452a-8fce-ce2338ee291b"
+ ],
+ "fields": {
+  "invId": "input_invoice_176d1868-ccc2-452a-8fce-ce2338ee291b",
+  "qtyId": "input_qty_f5456a62-7953-495e-a836-578ccb1504c1",
+  "btnId": "button_receive_po_176d1868-ccc2-452a-8fce-ce2338ee291b",
+  "legacy": {
+   "inv": false,
+   "btn": false
+  }
+ },
+ "finalUrl": "/parts/orders",
+ "partStatusAfter": "received"
+}

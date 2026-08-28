@@ -1,0 +1,59 @@
+==============================================================================
+SV-7760 QA transcript - sv7760api.qa.shopview.com - build v26.35.4-6aadeec
+==============================================================================
+[14:36:10Z] BUILD MARKER (start): etag "4a3a7ea7020970acd4fce00afe6238df"
+
+--- A. THE TICKET'S CASE: a payment that cannot be resolved for the caller's org
+[14:36:10Z] POST /customer-account/reverse-customer-payment
+          request : {"id": "37a630a6-0936-4715-9688-8f9cd4efeaa5"}
+          response: 400  {"errors": [{"id": "Not found"}]}
+          -> 4xx with a meaningful message. No 'Could not resolve the ... class' 500.
+
+[14:36:11Z] POST /customer-account/reverse-customer-payment
+          request : {"id": "00000000-0000-0000-0000-000000000000"}
+          response: 400  {"errors": [{"id": "Not found"}]}
+
+--- B. INPUT VALIDATION AROUND IT
+[14:36:11Z] POST /customer-account/reverse-customer-payment
+          request : {"id": "not-a-uuid"}
+          response: 400  {"errors": [{"id": "Invalid UUID"}]}
+
+[14:36:11Z] POST /customer-account/reverse-customer-payment
+          request : {}
+          response: 400  {"errors": [{"id": "Missing required parameter"}]}
+
+--- C. POSITIVE CONTROL: a REAL, in-org payment must still reverse.
+       Without this, a blanket 400 on every input would look identical to a pass.
+[14:36:12Z] GET  /customer-payment/list?account_id=934527f3-5ad2-4683-8607-26556ff03017
+          2 payment(s) on the account:
+            03cf06cc-1dc1-44b3-9e0e-f3165668ccc0  ref 027193  MASTERCARD  amount 278.38
+            cc0a5bcc-514c-4ccc-a8f3-4c197eb951d5  ref 016624  MASTERCARD  amount 185.58
+
+[14:36:12Z] POST /customer-account/reverse-customer-payment
+          request : {"id": "03cf06cc-1dc1-44b3-9e0e-f3165668ccc0"}
+          response: 201  {"data": []}
+          -> 201 - the endpoint works; the 400 above is therefore DISCRIMINATING, not universal.
+
+[14:36:13Z] GET  /customer-payment/list?account_id=934527f3-5ad2-4683-8607-26556ff03017
+          1 payment(s) - was 2; target still present: False
+
+--- D. THE SAME id A SECOND TIME: valid before, unresolvable now
+[14:36:13Z] POST /customer-account/reverse-customer-payment
+          request : {"id": "03cf06cc-1dc1-44b3-9e0e-f3165668ccc0"}
+          response: 409  {"errors": [{"error": "This payment has already been reversed."}]}
+          -> another clean client error, not a 500
+
+--- E. STILL A 500: a non-string id (reported separately, NOT filed)
+[14:36:14Z] POST /customer-account/reverse-customer-payment
+          request : {"id": 12345}
+          response: 500  {"errors": [{"error": "An error occurred. We're sorry for this inconvenience, please try again a bit later later."}, {"requestId": "9965c8a5-e321-4d03
+
+[14:36:14Z] POST /customer-account/reverse-customer-payment
+          request : {"id": [1, 2]}
+          response: 500  {"errors": [{"error": "An error occurred. We're sorry for this inconvenience, please try again a bit later later."}, {"requestId": "b9e30779-ad85-40a0
+
+[14:36:14Z] BUILD MARKER (end): etag "4a3a7ea7020970acd4fce00afe6238df"
+
+Every line above is a real request made during this run. Anyone can re-run them:
+  POST https://sv7760api.qa.shopview.com/api/customer-account/reverse-customer-payment
+  body {"id": "<uuid>"}   (the field is 'id' - 'payment_id' returns Missing required parameter)

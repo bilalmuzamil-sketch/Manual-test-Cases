@@ -1,0 +1,60 @@
+SV-9246 — live re-verification of the Bearer-token fix on the fix branch
+========================================================================
+Date: 2026-08-27 (~08:48 UTC)
+Env:  app https://sv9246.qa.shopview.com  |  API https://sv9246api.qa.shopview.com
+Build: app-version v26.35.3-9ccdc12 ; index.html etag "b1ad2217b3cf29ac7760d87cb5cf9035"
+       last-modified Wed 26 Aug 2026 13:43:03 GMT  (same build as the 8/26 test — no redeploy)
+
+Two orgs on the same branch:
+  Org A (victim)  = Staging Foothills Group Inc  org d55bc308-e61a-438d-b5f1-c7a73c89d49f
+                    login Bilal.muzamil@shopview.com
+                    customer Aacrest Works acct 934527f3-5ad2-4683-8607-26556ff03017
+                    active user edward.brown@staging.shopview.local  0201ef09-fc90-43e3-8996-a9fe260e870b
+  Org B (attacker)= Dteem  org 37aa0f4a-fcb0-4eff-afd1-b7d9a2de04cf
+                    login bilal.muzamil+9246admin@shopview.com  (plain single-org Admin, 1 staff, 42 FE perms, none cross-org)
+
+AUTH / ORG RESOLUTION
+  Org A session -> 200, org ['d55bc308...']
+  Org B session -> 200, org ['37aa0f4a...']
+
+Org A baseline (victim): 2 payments, both unreversed
+  03cf06cc-1dc1-44b3-9e0e-f3165668ccc0  278.38  ref 027193
+  cc0a5bcc-514c-4ccc-a8f3-4c197eb951d5  185.58  ref 016624
+
+CHECK 1 — Org B reads Org A payments with its OWN session
+  GET /customer-payment/list?account_id=934527f3 -> http 200, count 0        => BLOCKED (PASS)
+
+CHECK 2 — Org B forces Org A via request headers
+  X-Organization-Id / X-Organization / Organization-Id / X-Org-Id = d55bc308
+  -> http 200, Org A payments visible = 0 for all four                       => IGNORED (PASS)
+
+CHECK 3 — Org B reverses an Org A payment directly (own session)
+  POST /customer-account/reverse-customer-payment {id: 03cf06cc...} -> http 500 (opaque, requestId 6e7fef81...)
+  Payment NOT reversed (Org A still shows count 2, 03cf06cc present)          => NOT PERFORMED (PASS on boundary;
+  NOTE: returns opaque 500 rather than a clean 403/404 — same surfacing as SV-7760)
+
+CHECK 4 — the literal Authorization: Bearer vector (the exact scope of this ticket)
+  POST /api/token (Org A session) -> http 200, data.accessToken = real RS256 JWT
+      (payload: username bilal.muzamil@shopview.com, roles[], org claim)
+  Present that Org-A bearer token from Org B's session:
+    GET /workplaces (Org B cookies + Org A Bearer)
+      -> http 401  {"errors":[{"error":"Bearer token organization does not match the active session"}]}
+    GET /customer-payment/list?account_id=934527f3 (Org B cookies + Org A Bearer)
+      -> http 401  same error
+    Org B org AFTER the bearer call (plain cookie request) = ['37aa0f4a...']  => NO session contamination
+  => FIX CONFIRMED FIRST-HAND: cross-org token rejected (fails closed before any session write). (PASS)
+
+CHECK 5 — switch-user impersonation (SEPARATE mechanism, not the Bearer bug)
+  Org B org before: ['37aa0f4a...']
+  POST /switch-user {user_id: 0201ef09... (Org A user)} -> http 200
+  Org B org after switch: ['d55bc308...']   (crossed into Org A)
+  Org A payments visible AFTER switch: 2    (read-only this pass; nothing reversed)
+  POST /exit-switch-user {} -> http 200
+  Org B org after exit: ['37aa0f4a...']     (returned to Org B; exit endpoint works)
+  => STILL crosses the tenant boundary, but this is the intended internal support-impersonation path,
+     gated to @shopview.com accounts. Controls/audit gap (any @shopview.com can do it; reversed_by NULL;
+     not cleared on session change). Recommend a SEPARATE hardening ticket.
+
+VERDICT: SV-9246 (Bearer-token cross-tenant authorization) = PASS.
+  The exact vector is fixed and verified first-hand; direct/header vectors blocked.
+  switch-user controls = separate ticket. Opaque-500 on cross-org reverse = SV-7760 surfacing.

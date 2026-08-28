@@ -1,0 +1,49 @@
+{
+ "mode": "total_rounded",
+ "ps": {
+  "num": "P-1345",
+  "sub": "10.20",
+  "tax": "0.51",
+  "total": "10.71",
+  "invoiceId": "7e8ff1c6-3f83-4382-984c-fc5e9a23e8ec",
+  "invoiceStatus": "pending",
+  "status": "Invoiced",
+  "accountId": "48e22c86-963a-46ec-a29f-6fec8c3ba24b",
+  "companyId": "b3aa863a-665d-4096-8a14-b6c0bd9d50ee"
+ },
+ "state": {
+  "subtotal": "$5.10",
+  "tax": "$0.26",
+  "total": "$5.36",
+  "submitEnabled": false,
+  "rows": [
+   "\tZZAUTOTEST-8815-A\tZZAUTOTEST 8815 part A\t$5.10\t1\t | \t | $ | \t$5.36"
+  ]
+ },
+ "net": [
+  {
+   "status": 200,
+   "u": "/api/work-orders/parts/calculate-tax",
+   "body": "{\"data\":{\"totalTaxAmount\":0.26,\"items\":[{\"workOrderPartId\":\"5361e7d2-4bf4-4e18-a113-9920ccab2ed3\",\"taxAmount\":26}]}}"
+  },
+  {
+   "status": 201,
+   "u": "/api/credit-memos",
+   "body": "{\"data\":{\"creditMemoId\":\"8a97a0bb-aff1-48aa-87ca-b3c519c1b01d\",\"creditNumber\":\"CM-3575\",\"totalAmount\":536,\"openBalance\":536,\"status\":\"open\",\"refundPaymentId\":null}}"
+  }
+ ],
+ "credits": [
+  {
+   "no": "CM-3574",
+   "amount": -5.35,
+   "balance": -5.35,
+   "type": "credit"
+  },
+  {
+   "no": "CM-3575",
+   "amount": -5.36,
+   "balance": -5.36,
+   "type": "credit"
+  }
+ ]
+}

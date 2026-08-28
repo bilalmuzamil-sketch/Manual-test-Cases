@@ -1,0 +1,659 @@
+{
+ "version": 1,
+ "type": "doc",
+ "content": [
+  {
+   "type": "panel",
+   "attrs": {
+    "panelType": "success"
+   },
+   "content": [
+    {
+     "type": "paragraph",
+     "content": [
+      {
+       "type": "text",
+       "text": "OVERALL QA STATUS: PASSED",
+       "marks": [
+        {
+         "type": "strong"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "type": "paragraph",
+     "content": [
+      {
+       "type": "text",
+       "text": "Unchanged, and now covering the credit question raised on this ticket. Crediting a customer for a part on their invoice pro-rates from the frozen invoice tax, as intended: 3 further checks, all passed. The ticket's branch had already merged and self-destructed, so these ran on app.staging.shopview.com, build v3.8-0cb5771 (last-modified Thu 20 Aug 2026 08:50:55 GMT, etag 050d50362804274b4a2306b076129c1c), where the change is present. Nothing in the earlier result changes."
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "type": "heading",
+   "attrs": {
+    "level": 3
+   },
+   "content": [
+    {
+     "type": "text",
+     "text": "The two credits, and which one this setting reaches"
+    }
+   ]
+  },
+  {
+   "type": "paragraph",
+   "content": [
+    {
+     "type": "text",
+     "text": "There are two different credits in the product and they behave differently. The "
+    },
+    {
+     "type": "text",
+     "text": "vendor credit",
+     "marks": [
+      {
+       "type": "strong"
+      }
+     ]
+    },
+    {
+     "type": "text",
+     "text": " (Parts > Returns > Post credit) carries the workplace purchase tax on the part's cost, and this change does not touch it. The "
+    },
+    {
+     "type": "text",
+     "text": "customer credit",
+     "marks": [
+      {
+       "type": "strong"
+      }
+     ]
+    },
+    {
+     "type": "text",
+     "text": " (Customer > Invoices > tick an invoice > Issue Credit) is the one this setting reaches, and it is the one checked below."
+    }
+   ]
+  },
+  {
+   "type": "heading",
+   "attrs": {
+    "level": 3
+   },
+   "content": [
+    {
+     "type": "text",
+     "text": "What was tested"
+    }
+   ]
+  },
+  {
+   "type": "table",
+   "attrs": {
+    "isNumberColumnEnabled": false,
+    "layout": "default"
+   },
+   "content": [
+    {
+     "type": "tableRow",
+     "content": [
+      {
+       "type": "tableHeader",
+       "attrs": {},
+       "content": [
+        {
+         "type": "paragraph",
+         "content": [
+          {
+           "type": "text",
+           "text": "#"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "type": "tableHeader",
+       "attrs": {},
+       "content": [
+        {
+         "type": "paragraph",
+         "content": [
+          {
+           "type": "text",
+           "text": "Test"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "type": "tableHeader",
+       "attrs": {},
+       "content": [
+        {
+         "type": "paragraph",
+         "content": [
+          {
+           "type": "text",
+           "text": "Status"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "type": "tableRow",
+     "content": [
+      {
+       "type": "tableCell",
+       "attrs": {},
+       "content": [
+        {
+         "type": "paragraph",
+         "content": [
+          {
+           "type": "text",
+           "text": "36"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "type": "tableCell",
+       "attrs": {},
+       "content": [
+        {
+         "type": "paragraph",
+         "content": [
+          {
+           "type": "text",
+           "text": "Under \"Invoice total\", crediting a customer for one part on their invoice takes that part's share of the invoice's FROZEN tax - 0.26 of a frozen 0.51 - rather than recalculating the part on its own, which would give 0.25"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "type": "tableCell",
+       "attrs": {},
+       "content": [
+        {
+         "type": "paragraph",
+         "content": [
+          {
+           "type": "text",
+           "text": "PASSED",
+           "marks": [
+            {
+             "type": "strong"
+            }
+           ]
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "type": "tableRow",
+     "content": [
+      {
+       "type": "tableCell",
+       "attrs": {},
+       "content": [
+        {
+         "type": "paragraph",
+         "content": [
+          {
+           "type": "text",
+           "text": "37"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "type": "tableCell",
+       "attrs": {},
+       "content": [
+        {
+         "type": "paragraph",
+         "content": [
+          {
+           "type": "text",
+           "text": "Crediting every part on that invoice returns exactly the tax that was charged: 0.26 + 0.25 = 0.51, issued as two separate credit memos of $5.35 and $5.36 totalling $10.71, which is the invoice to the cent"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "type": "tableCell",
+       "attrs": {},
+       "content": [
+        {
+         "type": "paragraph",
+         "content": [
+          {
+           "type": "text",
+           "text": "PASSED",
+           "marks": [
+            {
+             "type": "strong"
+            }
+           ]
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "type": "tableRow",
+     "content": [
+      {
+       "type": "tableCell",
+       "attrs": {},
+       "content": [
+        {
+         "type": "paragraph",
+         "content": [
+          {
+           "type": "text",
+           "text": "38"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "type": "tableCell",
+       "attrs": {},
+       "content": [
+        {
+         "type": "paragraph",
+         "content": [
+          {
+           "type": "text",
+           "text": "Control - the same two parts on an invoice frozen under \"Line by line\" carry tax 0.52, and its credit splits 0.26 + 0.26 = 0.52, so the credit follows whichever figure the invoice was actually billed at"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "type": "tableCell",
+       "attrs": {},
+       "content": [
+        {
+         "type": "paragraph",
+         "content": [
+          {
+           "type": "text",
+           "text": "PASSED",
+           "marks": [
+            {
+             "type": "strong"
+            }
+           ]
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "type": "heading",
+   "attrs": {
+    "level": 3
+   },
+   "content": [
+    {
+     "type": "text",
+     "text": "Evidence"
+    }
+   ]
+  },
+  {
+   "type": "paragraph",
+   "content": [
+    {
+     "type": "text",
+     "text": "Both invoices below are issued, so their figures are frozen. Every box is drawn from the real on-screen position of the value it points at."
+    }
+   ]
+  },
+  {
+   "type": "mediaSingle",
+   "attrs": {
+    "layout": "full-width"
+   },
+   "content": [
+    {
+     "type": "media",
+     "attrs": {
+      "type": "external",
+      "url": "https://raw.githubusercontent.com/bilalmuzamil-sketch/Manual-test-Cases/claude/heic-upload-iphone-test-sz7h5p/build/sv8815-customer-credit-2026-08-20/evidence/EX-A-invoice-total-annotated.png"
+     }
+    }
+   ]
+  },
+  {
+   "type": "paragraph",
+   "content": [
+    {
+     "type": "text",
+     "text": "22. Crediting a customer on an invoice frozen under \"Invoice total\" (P9-1347, subtotal $10.20, tax $0.51). The credit splits that frozen $0.51 as 0.26 + 0.25. Recalculating each part on its own would have credited 0.26 + 0.26 and given back a cent more tax than was billed.",
+     "marks": [
+      {
+       "type": "em"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "type": "mediaSingle",
+   "attrs": {
+    "layout": "full-width"
+   },
+   "content": [
+    {
+     "type": "media",
+     "attrs": {
+      "type": "external",
+      "url": "https://raw.githubusercontent.com/bilalmuzamil-sketch/Manual-test-Cases/claude/heic-upload-iphone-test-sz7h5p/build/sv8815-customer-credit-2026-08-20/evidence/EX-B-line-by-line-annotated.png"
+     }
+    }
+   ]
+  },
+  {
+   "type": "paragraph",
+   "content": [
+    {
+     "type": "text",
+     "text": "23. The control - the same two $5.10 parts on an invoice frozen under \"Line by line\" (P9-1346, tax $0.52). Here the credit splits 0.26 + 0.26 = 0.52. Comparing the two exhibits is the point: the credit tracks the invoice it credits.",
+     "marks": [
+      {
+       "type": "em"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "type": "rule"
+  },
+  {
+   "type": "heading",
+   "attrs": {
+    "level": 3
+   },
+   "content": [
+    {
+     "type": "text",
+     "text": "Technical details for developers"
+    }
+   ]
+  },
+  {
+   "type": "paragraph",
+   "content": [
+    {
+     "type": "text",
+     "text": "The tax on a customer credit is computed server side. "
+    },
+    {
+     "type": "text",
+     "text": "POST /api/work-orders/parts/calculate-tax",
+     "marks": [
+      {
+       "type": "code"
+      }
+     ]
+    },
+    {
+     "type": "text",
+     "text": " with "
+    },
+    {
+     "type": "text",
+     "text": "{items:[{workOrderPartId, quantity}]}",
+     "marks": [
+      {
+       "type": "code"
+      }
+     ]
+    },
+    {
+     "type": "text",
+     "text": " returned "
+    },
+    {
+     "type": "text",
+     "text": "totalTaxAmount 0.51",
+     "marks": [
+      {
+       "type": "code"
+      }
+     ]
+    },
+    {
+     "type": "text",
+     "text": " with per-item amounts of "
+    },
+    {
+     "type": "text",
+     "text": "26",
+     "marks": [
+      {
+       "type": "code"
+      }
+     ]
+    },
+    {
+     "type": "text",
+     "text": " and "
+    },
+    {
+     "type": "text",
+     "text": "25",
+     "marks": [
+      {
+       "type": "code"
+      }
+     ]
+    },
+    {
+     "type": "text",
+     "text": " for the Invoice-total invoice, and "
+    },
+    {
+     "type": "text",
+     "text": "0.52",
+     "marks": [
+      {
+       "type": "code"
+      }
+     ]
+    },
+    {
+     "type": "text",
+     "text": " with "
+    },
+    {
+     "type": "text",
+     "text": "26",
+     "marks": [
+      {
+       "type": "code"
+      }
+     ]
+    },
+    {
+     "type": "text",
+     "text": " and "
+    },
+    {
+     "type": "text",
+     "text": "26",
+     "marks": [
+      {
+       "type": "code"
+      }
+     ]
+    },
+    {
+     "type": "text",
+     "text": " for the line-by-line control. Note the mixed units in that response: the total is in dollars, the per-item amounts are in cents."
+    }
+   ]
+  },
+  {
+   "type": "paragraph",
+   "content": [
+    {
+     "type": "text",
+     "text": "Each credit was posted by the dialog as "
+    },
+    {
+     "type": "text",
+     "text": "POST /api/credit-memos",
+     "marks": [
+      {
+       "type": "code"
+      }
+     ]
+    },
+    {
+     "type": "text",
+     "text": " -> 201, carrying "
+    },
+    {
+     "type": "text",
+     "text": "originKind: invoice",
+     "marks": [
+      {
+       "type": "code"
+      }
+     ]
+    },
+    {
+     "type": "text",
+     "text": ", "
+    },
+    {
+     "type": "text",
+     "text": "originInvoiceId",
+     "marks": [
+      {
+       "type": "code"
+      }
+     ]
+    },
+    {
+     "type": "text",
+     "text": " and a "
+    },
+    {
+     "type": "text",
+     "text": "lineItems[]",
+     "marks": [
+      {
+       "type": "code"
+      }
+     ]
+    },
+    {
+     "type": "text",
+     "text": " array with a per-line "
+    },
+    {
+     "type": "text",
+     "text": "taxAmount",
+     "marks": [
+      {
+       "type": "code"
+      }
+     ]
+    },
+    {
+     "type": "text",
+     "text": " (0.25 and 0.26), returning CM-3574 and CM-3575."
+    }
+   ]
+  },
+  {
+   "type": "paragraph",
+   "content": [
+    {
+     "type": "text",
+     "text": "One thing that is worth a look, though it is not this change: "
+    },
+    {
+     "type": "text",
+     "text": "GET /api/part-sales/{invoiceId}/list-credit-available-parts",
+     "marks": [
+      {
+       "type": "code"
+      }
+     ]
+    },
+    {
+     "type": "text",
+     "text": " returns 500 for a part that has no catalogue entry, and the dialog renders that failure as \"No parts on this invoice are available for credit.\" - so the user is told there is nothing to credit rather than that something went wrong. Reproduced three times (requestIds 91fa4062-e2db-4d74-b653-c14c34c68256, 3197b27f-c077-493b-b60f-ed6cd4499cf2, ec16d0ca-d25d-4d7a-83d7-05b3e37e2d1e). The same endpoint answers 200 for ordinary vendor-sourced parts, so it is an edge case rather than a blocker, and it is unrelated to sales-tax rounding."
+    }
+   ]
+  },
+  {
+   "type": "paragraph",
+   "content": [
+    {
+     "type": "text",
+     "text": "Test data: customer ZZAUTOTEST SV-8815 Credit at Staging Heavy Duty - 9919 (tax GST 5%). Two vendor-sourced parts at $5.10 each - ZZAUTOTEST-8815-E and -F on part sale P9-1347, and -C and -D on the control P9-1346. Credit memos CM-3574 and CM-3575 were posted against P9-1345. The organisation's default fees and discounts were removed from each part sale first, so the invoice is only the two parts. The location was returned to \"Line by line (default)\" afterwards."
+    }
+   ]
+  },
+  {
+   "type": "paragraph",
+   "content": [
+    {
+     "type": "text",
+     "text": "Driven on the screen, and driven by API - stated plainly because an end user works on the screen. ",
+     "marks": [
+      {
+       "type": "strong"
+      }
+     ]
+    },
+    {
+     "type": "text",
+     "text": "On the screen: choosing the rounding option in the Locations dialog and saving it with Save & Close, re-reading it after a hard reload, receiving the parts on the Purchase Order screen, and the whole credit - ticking the invoice row, selecting parts, typing the reason and pressing Issue Credit. Every figure quoted above is the one rendered on the screen, cross-read against the server response. By API, as setup only: creating the part sale, pricing and ordering the parts, and issuing the invoice."
+    }
+   ]
+  },
+  {
+   "type": "paragraph",
+   "content": [
+    {
+     "type": "text",
+     "text": "On the build: the marker was read at the start of this run and again immediately before posting - byte-identical both times, so these verdicts belong to one build."
+    }
+   ]
+  }
+ ]
+}

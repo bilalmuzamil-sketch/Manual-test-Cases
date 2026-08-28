@@ -1,0 +1,20 @@
+{
+ "before": "total_rounded",
+ "click": {
+  "before": {
+   "value": "Invoice total",
+   "banner": true
+  },
+  "afterPick": {
+   "value": "Line by line (default)",
+   "banner": false
+  },
+  "sent": [
+   {
+    "sales_tax_rounding_mode": "line_by_line",
+    "keys": 22
+   }
+  ]
+ },
+ "after": "line_by_line"
+}

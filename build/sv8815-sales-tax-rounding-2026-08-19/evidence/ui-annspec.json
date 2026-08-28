@@ -1,0 +1,70 @@
+[
+ {
+  "src": "/tmp/sv8815/shots/RET-UI1-crop.png",
+  "dst": "/home/user/Manual-test-Cases/build/sv8815-sales-tax-rounding-2026-08-19/evidence/EXHIBIT-R8-invoice-from-UI-set-setting.png",
+  "banner": "S-16006  -  billed 2.71 from a setting applied BY CLICKING the Locations dialog   (build v3.8-1f5fb3c)",
+  "bannercol": [
+   20,
+   110,
+   50
+  ],
+  "boxes": [
+   {
+    "x": 2029.453125,
+    "y": 690.125,
+    "w": 322.546875,
+    "h": 75.0,
+    "color": [
+     20,
+     140,
+     60
+    ],
+    "label": "subtotal $27.81  -  tax $2.71  -  total $30.52",
+    "lx": 1150,
+    "ly": 550.125
+   }
+  ],
+  "caption": "The end-to-end path an end user takes: \"Invoice total\" chosen in the Locations dialog by clicking, saved with the\nSave button, then a work order invoiced. It bills $2.71 - the invoice-total figure. The same three lines under the\ndefault bill $2.70, so this proves the setting a user saves from the screen is the one that reaches the invoice."
+ },
+ {
+  "src": "/tmp/sv8815/shots/RET-UI2-receive-from-po-list.png",
+  "dst": "/home/user/Manual-test-Cases/build/sv8815-sales-tax-rounding-2026-08-19/evidence/EXHIBIT-R9-receive-reached-by-clicking.png",
+  "banner": "Reached by clicking \"Receive\" on the Parts > Purchase Orders list   ->   /order/{poId}?receive=1",
+  "bannercol": [
+   20,
+   110,
+   50
+  ],
+  "boxes": [
+   {
+    "x": 355,
+    "y": 305.5,
+    "w": 1974,
+    "h": 50,
+    "label": "the receive form a user actually gets",
+    "color": [
+     20,
+     80,
+     200
+    ],
+    "lx": 2409,
+    "ly": 314.5
+   },
+   {
+    "x": 2230.28125,
+    "y": 906.578125,
+    "w": 93.71875,
+    "h": 35.546875,
+    "label": "this saves via receive-requested-parts, and it works",
+    "color": [
+     20,
+     140,
+     60
+    ],
+    "lx": 1290.28125,
+    "ly": 907.578125
+   }
+  ],
+  "caption": "Where a user ends up when they click Receive. All 30 Receive links on the Purchase Orders list point at this same\nscreen, and the part row on a work order leads here too - both routes save through receive-requested-parts and\nboth work. Parts > Vendor Invoices rows open a read-only view with no receive action, so there is no click-path\nto the older /accept-delivery screen whose save fails."
+ }
+]

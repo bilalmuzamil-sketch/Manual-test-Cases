@@ -1,0 +1,34 @@
+location: {"was":"Staging Heavy Duty - 9919","now":"Staging Heavy Duty - 9919","switched":false}
+Cc_line_by_line cfg={"status":201,"mode":"line_by_line","tax":"ZZ8815 9.75pct","supplies":10.5}
+   S-15933 tax="ZZ8815 9.75pct" labor=27.81 parts=0 supplies=2.92 sub=30.73 TAX=2.98 total=33.71
+   rates: ZZ9 9.75% 9.75% = 2.98  sum=2.98  rateSum==tax: true
+   lines=3/3
+   DUMP {"supplies":2.92,"taxKeys":["tax","total_tax_cost_amount","total_tax_cost","shop_supplies_cost","work_order_shop_supplies_charge","shop_supplies_charge","max_shop_supplies_charge","min_shop_supplies_charge","invoice_shop_supplies_charge","invoice_tax"],"raw":{"tax":{"id":"9f9ef0c2-7299-4a3f-ac2c-c18c9ff22cc8","name":"ZZ8815 9.75pct","isEnabledLabor":true,"isEnabledParts":true,"isEnabledShopSupplies":true,"isDefault":false,"isDeletable":false,"rates":[{"id":"14c76f66-d3f9-405d-8eeb-53991289a3e6","name":"ZZ9 9.75%","percentage":9.75,"amount":2.98}],"rateTotal":9.75,"amountTotal":2.98},"total_tax_cost_amount":2.98,"total_tax_cost":"2.98","shop_supplies_cost":2.92,"work_order_shop_supplies_charge":null,"shop_supplies_charge":10.5,"max_shop_supplies_charge":350,"min_shop_supplies_charge":0,"invoice_shop_supplies_charge":null,"invoice_tax":null}}
+Cc_total_rounded cfg={"status":201,"mode":"total_rounded","tax":"ZZ8815 9.75pct","supplies":10.5}
+   S-15934 tax="ZZ8815 9.75pct" labor=27.81 parts=0 supplies=2.92 sub=30.73 TAX=3.00 total=33.73
+   rates: ZZ9 9.75% 9.75% = 3  sum=3.00  rateSum==tax: true
+   lines=3/3
+  EXPECT Cc: labor 27.81 + supplies 2.92 = base 30.73
+             line_by_line 0.90*3 + 0.28 = 2.98 ; total_rounded 30.73*9.75% = 2.996175 -> 3.00
+
+   discount add -> 409 {"errors":[{"error":"Connect a QuickBooks item for discounts before adding a discount."}]}
+Cd_line_by_line cfg={"status":201,"mode":"line_by_line","tax":"ZZ8815 9.75pct","supplies":0}
+   S-15935 tax="ZZ8815 9.75pct" labor=27.81 parts=0 supplies=0 sub=27.81 TAX=2.70 total=30.51
+   rates: ZZ9 9.75% 9.75% = 2.7  sum=2.70  rateSum==tax: true
+   lines=3/3, flat $5 taxable discount
+   discount add -> 409 {"errors":[{"error":"Connect a QuickBooks item for discounts before adding a discount."}]}
+Cd_total_rounded cfg={"status":201,"mode":"total_rounded","tax":"ZZ8815 9.75pct","supplies":0}
+   S-15936 tax="ZZ8815 9.75pct" labor=27.81 parts=0 supplies=0 sub=27.81 TAX=2.71 total=30.52
+   rates: ZZ9 9.75% 9.75% = 2.71  sum=2.71  rateSum==tax: true
+   lines=3/3, flat $5 taxable discount
+  EXPECT Cd: tax positive, never negative; rate lines still sum to the invoice tax
+
+Ce_line_by_line cfg={"status":201,"mode":"line_by_line","tax":"Zero Tax","supplies":0}
+   S-15937 tax="Zero Tax" labor=27.81 parts=0 supplies=0 sub=27.81 TAX=0.00 total=27.81
+   rates:   sum=0.00  rateSum==tax: true
+   lines=3/3, location tax = Zero Tax (no rates)
+Ce_total_rounded cfg={"status":201,"mode":"total_rounded","tax":"Zero Tax","supplies":0}
+   S-15938 tax="Zero Tax" labor=27.81 parts=0 supplies=0 sub=27.81 TAX=0.00 total=27.81
+   rates:   sum=0.00  rateSum==tax: true
+   lines=3/3, location tax = Zero Tax (no rates)
+  EXPECT Ce: TAX 0.00 in both modes, no crash
