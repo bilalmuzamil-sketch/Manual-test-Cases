@@ -116,27 +116,39 @@ any endpoint/ID not recorded here or in `CLAUDE.md`** — if only partly known, 
   --no-sandbox --ssl-version-max=tls1.2`.
 - **node-fetch / undici proxy gotcha:** node-fetch IGNORES the proxy → use **undici `ProxyAgent`**
   (or Node global `fetch` with `NODE_USE_ENV_PROXY=1`). *Source: CLAUDE.md Simple Flow env note.*
-- **⭐ PER-TICKET QA BRANCH (`sv####.qa.shopview.com`) SPA LOGIN — the reliable bypass (proven SV-9500,
-  2026-08-28; this is the recipe that ends the /login-redirect struggle):**
-  1. **The symptom:** injecting the 3 cookies authenticates the *raw API* briefly (WO-list 200) but the
-     *SPA UI won't load* — `localStorage` `user`/`fe_permissions_wrapper`/`location` stay empty, so
-     EVERY route (`/schedule`, `/workorders/{id}/lines`, …) redirects to `/login`. The tell:
-     `GET /api/auth/me/fe-permissions` → **409 `Session has expired`** even while other endpoints 200.
-  2. **The root cause:** the `sv_sso_session` value is EXPIRED. **A re-sent IDENTICAL sv_sso_session is
-     still expired** — the user must actually re-log-in so the value is *different*. (On SV-9500 the same
-     `8a1a…b8b9e` was sent 3× and kept failing; a genuinely new `b49a…92c6` worked instantly.) `PHPSESSID`
-     and `cf_clearance` can be reused; it's the `sv_sso_session` that must be fresh.
-  3. **The bypass (do this, don't fight it):** with a FRESH `sv_sso_session`, `page.goto('/login')` →
-     click **`[data-test-id="button_quick_login_admin"]`** → wait ~8 s. This completes the DEV quick-login,
-     `fe-permissions` returns **200**, and the SPA hydrates `localStorage` (`user:true`, `fe:true`,
-     `location` set) → it redirects to `/schedule` and **all routes now load**. Verify with
-     `fe-permissions == 200` before proceeding.
-  4. **⏱ SESSION TTL ≈ 5–10 MIN on these branches** — much shorter than the ~24 h shared-staging cookies.
-     **Do the ENTIRE live flow (login → seed/setup via API → the ONE UI action → capture) in a SINGLE
-     script, run within ~3 min of receiving fresh cookies.** Multi-turn / multi-script flows lose the
-     window (a re-login mid-flow will 409). Have the script written and ready BEFORE asking for cookies.
-  5. Chromium via the fresh MITM bridge (below); cookies on domain `.qa.shopview.com`. Build marker read
-     from `<meta name="app-version">` (sv9500 was `v26.35.6-4b694be`).
+- **⭐ PER-TICKET QA BRANCH (`sv####.qa.shopview.com`) SPA LOGIN — the CORRECT bypass = SEED localStorage,
+  NEVER quick-login (corrected SV-8504, 2026-08-28; supersedes the earlier SV-9500 quick-login note):**
+  - **🚫 DO NOT click `button_quick_login_admin`.** The DEV quick-login logs in as a DIFFERENT user
+    (`admin`) and **rotates the server-side session on the shared SSO token — which LOGS OUT the user's own
+    browser** (user-confirmed: "when you start testing it logs out"; two normal browsers coexist fine,
+    quick-login does not). It also made *our* session die in ~10 min. **This was the whole cause of the
+    "session keeps expiring" saga — it was self-inflicted.** The earlier playbook advice to click it was
+    WRONG.
+  - **The symptom without quick-login:** the raw API works with the cookies (`fe-permissions` → **200**),
+    but the *SPA UI* still redirects every route to `/login`, because a fresh headless browser has empty
+    `localStorage` and cannot complete the Google-SSO round-trip that a real browser uses to hydrate.
+  - **✅ THE BYPASS — seed `localStorage` from the live API, no login action at all:**
+    1. Set the 3 cookies (domain `.qa.shopview.com`); `page.goto('/')`; confirm `GET
+       /api/auth/me/fe-permissions` → **200** (session valid). If 409, the `sv_sso_session` is genuinely
+       expired — ask for a freshly-grabbed one (grab within ~seconds of the user viewing the branch).
+    2. Fetch `GET /api/auth/me/fe-permissions` (→ the `data` object) and pick a staff id from
+       `GET /api/staff?...` (any admin). `POST /api/iam/change-location {workplace_id, workplace_timezone}`.
+    3. Seed these keys, then navigate:
+       `localStorage.user = JSON.stringify({data:{details:{user_id:<staffId>, first_name, last_name, email,
+       avatar_url:null, clockable:false, default_workplace:<WP_ID>}, permissions:<fe.fe_permissions>}})` —
+       **`default_workplace` is REQUIRED** (`userHasDefaultWorkplace()` reads it; without it the router
+       bounces to `/administration/locations`); `localStorage.fe_permissions_wrapper = JSON.stringify(<fe
+       data: {fe_permissions,view_mode,cross_toggles,...}>)`; `localStorage.location =
+       JSON.stringify("<WP_ID>")`; `localStorage.current_shop_id = "<shopId>"`; `localStorage.timezone`,
+       `country_code`, `bookkeeping_enabled`. Then `page.goto('/workorders?status=imported')` (etc.) — the
+       app boots, no `/login`, and **the user's browser stays logged in the whole time.**
+    - The router guard (index chunk): `O=getUser(); U=userHasDefaultWorkplace(); N=O&&has("settingsApp")` →
+      `if(O&&N&&!U…)→/administration/locations`; `if(O&&!N&&!U…)→/no-location`; no user → `/login`. So seed
+      `user` (with `default_workplace`) + `fe_permissions_wrapper` and all three guards pass.
+  - **Session TTL ≈ 24 h when you DON'T quick-login** (same as a normal browser). The ~10-min death was the
+    quick-login rotating the session — gone once you stop calling it. Still, grab cookies reasonably fresh.
+  - Chromium via the fresh MITM bridge (below); build marker from `<meta name="app-version">`
+    (sv8504 was `v26.35.6-3b9cbae`). Canonical script: `build/sv8504-sorting-2026-08-28/` (seed_load3 / SORT_TEST).
 - **fe-permissions read:** `GET /api/auth/me/fe-permissions` → `{data:{fe_permissions:[<codes>],
   view_mode, cross_toggles}}` (array of code STRINGS, not a bool map). quick-login is stateful on the
   shared PHPSESSID → probe roles strictly SEQUENTIALLY.
