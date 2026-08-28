@@ -331,3 +331,45 @@ comma-separated entry of the shape `SV-8664 (WIP spec v28 2026-08-24 S8-R5; S8-R
 already in `refs` was removed or rewritten.
 
 Full evidence: `build/report-suite/refs-backfill-2026-08-28/RESULTS.md`.
+
+
+---
+
+## 2026-08-28 (fifth pass) — FOR VLAD: three Automated cases had their LINE BREAKS restored
+
+**QA lead approved 2026-08-28, explicitly including C29955.** This pass repaired 19 cases whose
+Expected Results had been damaged by our own earlier passes. Three of the 19 carry
+`custom_atmstatus = 3` (**Automation status = Automated**) and so are recorded here under Rule 65.
+
+**This was a RESTORATION of line breaks, not a rewrite. No wording, no expectation and no assertion
+was changed on any of the three.** The original text was taken verbatim from each case's own
+`get_history_for_case` record, and the visible words of the restored body are identical, in order, to
+the visible words of the damaged body — only the line separators came back.
+
+**`custom_expected` was the ONLY field sent.** `title`, `custom_preconds`, `custom_steps`, `refs`,
+`custom_atmstatus`, `custom_automation_type`, `section_id`, `priority_id`, `type_id`, `estimate`,
+`milestone_id`, `template_id` and `suite_id` were compared before and after and are **byte-identical**;
+`custom_atmstatus` is **still 3** on all three. The rendered case page was re-read after each write and
+is clean.
+
+| C-id | Project | What was wrong | What changed | Automation status | Rendered check |
+|---|---|---|---|---|---|
+| [C26427](https://shopview.testrail.io/index.php?/cases/view/26427) | Custom Roles | Our 2026-07-20 write hit the multi-block sanitiser trap, so the tester read a literal `<p>…</p>` on screen | The same words, re-emitted as one block with the paragraph break kept as `<br>`. **No wording change.** | still 3 | clean — 2 lines, no literal tags |
+| [C26489](https://shopview.testrail.io/index.php?/cases/view/26489) | Custom Roles | Same trap, same day — two of the three paragraphs were shown to the tester as literal `<p>…</p>` text | The same words, re-emitted as one block with the paragraph breaks kept as `<br>`. **No wording change.** | still 3 | clean — 3 lines, no literal tags |
+| [C29955](https://shopview.testrail.io/index.php?/cases/view/29955) | Schedule | Our **2026-08-20** pass flattened the Expected Results into a single run-together line — the five numbered assertions, the provenance line and the AUTOMATION marker all ran together | Line breaks restored from the pre-damage text in the case's own history. **No wording or assertion change.** | still 3 | clean — 8 lines, marker present once and last |
+
+**Vlad — one thing to know about C29955.** After our damage but before this repair, on **2026-08-27**
+TestRail user 7 (**Ahtasham Amjad**) changed its automation marker from `AUTOMATION: READY` to
+`AUTOMATION: AUTOMATED`. Under Rule 38 a foreign edit is hands-off, so **his marker was preserved, not
+reverted** — the restored case reads `AUTOMATION: AUTOMATED`. If any check of yours matches on
+`AUTOMATION: READY` for C29955, that is why. Note `AUTOMATED` is not one of the three canonical marker
+literals; it is reported to the QA lead, not edited by us.
+
+**Correction to the 2026-08-28 damage sweep:** it stated C29955 was the only Automated case in the
+damaged set, reading `custom_automation_type`. The Automated flag is `custom_atmstatus` (option 3 =
+*Automated*); `custom_automation_type` is *Automation Type* (None / E2E / Functional / Unit). Read
+correctly, **three** of the 19 were Automated — the three above.
+
+Full evidence: `build/report-suite/repair-2026-08-28/RESULTS.md` (per-case audit log:
+`build/report-suite/repair-2026-08-28/REPAIRED.jsonl`, whole-case re-verification:
+`WHOLE-CASE-VERIFY.json`).
