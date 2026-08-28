@@ -130,7 +130,10 @@ any endpoint/ID not recorded here or in `CLAUDE.md`** — if only partly known, 
      getting reused.)
   5. **NEVER call quick-login while another session is using the same account** (e.g. the user's own
      browser is open on the branch). That is what LOGS THE USER OUT. Two *normal* browsers coexist fine;
-     a quick-login rotates the shared account's session and kicks the others.
+     a quick-login rotates the shared account's session and kicks the others. **CONFIRMED LIVE 2026-08-28:
+     the QA lead's own browser on `sv8504.qa.shopview.com` WAS logged out the moment I quick-logged-in on
+     the same account — OBSERVED-MECHANISM, not inferred.** ⇒ For same-user testing where you don't need to
+     change role, use the localStorage-seed bypass below (no rotation, user's browser untouched).
   6. **CAPTURE the rotated PHPSESSID with a DIRECT node fetch (or a network-response listener) — an
      IN-PAGE `page.evaluate(fetch)` CANNOT read `Set-Cookie`,** so the context keeps the OLD (now-dead)
      PHPSESSID and every later call 409s. Proven 2026-08-28: direct-fetch captured PHPSESSID → fe-permissions
