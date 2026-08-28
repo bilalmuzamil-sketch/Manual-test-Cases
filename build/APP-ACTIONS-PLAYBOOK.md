@@ -131,6 +131,12 @@ any endpoint/ID not recorded here or in `CLAUDE.md`** — if only partly known, 
   5. **NEVER call quick-login while another session is using the same account** (e.g. the user's own
      browser is open on the branch). That is what LOGS THE USER OUT. Two *normal* browsers coexist fine;
      a quick-login rotates the shared account's session and kicks the others.
+  6. **CAPTURE the rotated PHPSESSID with a DIRECT node fetch (or a network-response listener) — an
+     IN-PAGE `page.evaluate(fetch)` CANNOT read `Set-Cookie`,** so the context keeps the OLD (now-dead)
+     PHPSESSID and every later call 409s. Proven 2026-08-28: direct-fetch captured PHPSESSID → fe-permissions
+     200 alive end-to-end; in-page fetch → 409. This is the exact mechanism behind the "morning worked, then
+     failed" drift. **How NOT to over-generalize this into "never quick-login": see
+     `build/LEARNING-DISCIPLINE.md`.**
 - **⭐ PER-TICKET QA BRANCH (`sv####.qa.shopview.com`) SPA UI — when you DON'T need to change role, SEED
   localStorage instead of logging in at all (proven SV-8504, 2026-08-28). This is the DEFAULT for testing
   as the current user, and it never disturbs the user's own session:**
