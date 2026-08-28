@@ -687,6 +687,40 @@ with `sv_sso_session` and `cf_clearance` **byte-identical** to the set that was 
   scripts still contain `3` **deliberately** — they are the audit record of what was actually run, and
   rewriting them would make that record lie. Copy from this bullet or from the helper.
 - **Result statuses:** 1 Passed · 2 Blocked · 3 Untested · 4 Retest · 5 Failed.
+- **🛑 CASE-FIELD FORMATTING — THE ONLY SAFE FORMAT IS BLOCK-LEVEL HTML; NEVER INLINE TAGS, NEVER
+  PLAIN NEWLINES (proven live 2026-08-28, C27800 + probe round-trips).** `custom_preconds`,
+  `custom_steps`, `custom_expected` are **`format: markdown`** (read live from `get_case_fields`), but
+  TestRail runs every submitted value through a **sanitiser that WRAPS the whole value in ONE outer
+  `<p>…</p>`** on save. Consequences, all verified by round-trip:
+  - **Plain text with `\n` / `\n\n` LOSES ALL LINE BREAKS.** The blank lines end up *inside* that single
+    outer `<p>`, and a paragraph collapses internal whitespace → every paragraph runs together as one
+    block. **This is the bug that made C27800 show as a wall of text.** (It is also why the earlier
+    "plain text auto-wraps and renders cleanly" note was WRONG — it does wrap, but into ONE `<p>`.)
+  - **Inline HTML tags show LITERALLY or unreliably** — `<b>`, `<i>`, `<code>`, and especially `<br>`
+    were seen printed as text by the tester. **Never use inline tags for formatting.** For line breaks
+    use a **new block**, never `<br>`.
+  - **BLOCK-LEVEL tags are the ONLY thing that renders reliably:** `<p>` (one per paragraph — do NOT
+    put `\n\n` inside a `<p>`), `<ol>/<ul>` with `<li>`, and `<hr />`. The sanitiser strips some closing
+    `</p>` and re-nests the markup (raw read-back looks mangled: `<p>A<p>B</p>…</p>`), **but the browser
+    auto-closes an open `<p>` when the next block starts, so it renders as clean separate blocks.** Do
+    not "fix" the mangled read-back — that is expected and it renders correctly.
+  - **THE RULE WHEN UPDATING ANY CASE (e.g. after source verification): MATCH THE PROVEN-GOOD FORMAT.**
+    Copy the exact block structure of a case known to render well — e.g. Global Search **C44804** — which
+    stores steps/expected as `<ol><li>…</li></ol>` and appends provenance as `<hr /><p>…</p>` after the
+    last item. **One paragraph = one `<p>`; steps = `<ol><li>`; the source block goes BELOW the expected
+    behaviour, separated by `<hr />`, as a `<p>` label + `<ul><li>` list + a final `<p>` with the
+    verification date.** No inline tags anywhere. Never send raw `\n`-separated plain text.
+  - The canonical converters already do this right: `to_ol()` / `expected_html()` in
+    `build/global-search/apply_to_testrail.py` and `.../regression-2026-08-26/push_to_testrail.py` emit
+    block-only HTML — **reuse them; do not hand-author field HTML.**
+  - **🛑 POST-WRITE RENDER SELF-CHECK IS MANDATORY (standing rule, QA lead, 2026-08-28).** After ANY
+    `add_case` / `update_case`, **fetch the case back and confirm it renders correctly for a manual
+    tester before you call the work done.** Never assume the write looks right — verify it. Run
+    **`python3 build/testing-tools/check_case_render.py <C-ID> [<C-ID> ...]`** for every C-ID you
+    touched; it fetches each case live and fails (exit 1) on inline tags, wall-of-text (blank-line
+    paragraphs with no block structure), or multi-line content with no block tags. Push/apply scripts
+    that create or edit cases should call it (or reproduce its checks) as their final step. A green
+    self-check is part of "done"; a case is not finished until it passes.
 - **⚠️ `get_sections` NEEDS PAGING, AND IT FAILS SILENTLY IF YOU FORGET (proven live 2026-08-05,
   Filters).** This project now has **625 sections**. An unpaged `get_sections/1&suite_id=1` returns
   only the **first 250**, with no error and no warning — and because the Filters group is section

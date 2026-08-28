@@ -449,6 +449,20 @@ Compact form — **the rule named in brackets is the authority; read it before r
   needs to be done / Other actions"), action-first, table-form where it helps. [70]
 - **Concise TestRail titles — ≤ ~80 characters**, so nothing truncates on the case page. [ref: title
   convention]
+- **🛑 TESTRAIL CASE-FIELD FORMATTING — BLOCK-LEVEL HTML ONLY, NEVER INLINE TAGS, NEVER PLAIN
+  NEWLINES.** The `preconds`/`steps`/`expected` fields are Markdown but TestRail wraps every submitted
+  value in ONE outer `<p>`, so plain `\n\n` **loses all line breaks** (collapses to a wall of text) and
+  inline tags (`<b>`, `<i>`, `<code>`, `<br>`) **show literally**. Format with block tags only —
+  `<p>` per paragraph, `<ol>/<ul><li>` for lists, `<hr />` for a separator — and put the **source /
+  provenance BELOW the expected behaviour after an `<hr />`**, as a `<p>` label + `<ul><li>` list + a
+  final `<p>` verification date. When editing a case after source verification, **keep formatting 100%
+  intact**: copy the proven-good structure (e.g. Global Search C44804) or reuse the block-only
+  converters in `build/global-search/apply_to_testrail.py`; never hand-author inline HTML. Full trap +
+  round-trip evidence: `build/APP-ACTIONS-PLAYBOOK.md` §J. [proven live 2026-08-28, C27800]
+- **🛑 POST-WRITE RENDER SELF-CHECK — after ANY case create/update, fetch it back and confirm it
+  renders correctly before calling it done.** Never assume the write looks right; verify it. Run
+  `python3 build/testing-tools/check_case_render.py <C-ID> …` (fails on inline tags, wall-of-text, or
+  no block structure). A green self-check is part of "done". [standing rule, 2026-08-28]
 - **Blocked-revisit loop:** a tester marks anything that seems off as **Blocked** (never skips, never
   guesses); every Blocked case gets a manual revisit against the current spec + build and an
   authorised correction.
