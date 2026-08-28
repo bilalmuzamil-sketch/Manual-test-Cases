@@ -696,11 +696,18 @@ with `sv_sso_session` and `cf_clearance` **byte-identical** to the set that was 
     outer `<p>`, and a paragraph collapses internal whitespace → every paragraph runs together as one
     block. **This is the bug that made C27800 show as a wall of text.** (It is also why the earlier
     "plain text auto-wraps and renders cleanly" note was WRONG — it does wrap, but into ONE `<p>`.)
-  - **Inline HTML tags show LITERALLY or unreliably** — `<b>`, `<i>`, `<code>`, and especially `<br>`
-    were seen printed as text by the tester. **Never use inline tags for formatting.** For line breaks
-    use a **new block**, never `<br>`.
-  - **BLOCK-LEVEL tags are the ONLY thing that renders reliably:** `<p>` (one per paragraph — do NOT
-    put `\n\n` inside a `<p>`), `<ol>/<ul>` with `<li>`, and `<hr />`. The sanitiser strips some closing
+  - **STYLING inline tags show LITERALLY** — `<b>`, `<i>`, `<u>`, `<code>`, `<em>`, `<strong>` were seen
+    printed as text by the tester. **Never use styling inline tags for formatting.**
+  - **`<br>` IS THE EXCEPTION — IT RENDERS, AND IT IS THE CORRECT WAY TO DO A TIGHT LINE BREAK inside a
+    `<p>`** (confirmed live 2026-08-28 from the QA lead's own manual edit of C27800's preconditions:
+    `<p>sentence A.<br>sentence B.</p>` renders as two tight lines). Use **`<br>` for a tight break
+    between two closely-related sentences that belong to the same thought**, and a **separate `<p>` for a
+    wider paragraph gap between distinct thoughts.** That is the exact pattern the QA lead wants — mirror
+    it: e.g. preconditions = login line `</p><p>` permission-rule sentence `<br>` its consequence sentence
+    `</p><p>` data-state line.
+  - **BLOCK-LEVEL tags are the ONLY thing that renders reliably (plus `<br>`):** `<p>` (one per paragraph
+    — do NOT put `\n\n` inside a `<p>`), `<ol>/<ul>` with `<li>`, `<hr />`, and `<br>` for tight breaks.
+    The sanitiser strips some closing
     `</p>` and re-nests the markup (raw read-back looks mangled: `<p>A<p>B</p>…</p>`), **but the browser
     auto-closes an open `<p>` when the next block starts, so it renders as clean separate blocks.** Do
     not "fix" the mangled read-back — that is expected and it renders correctly.

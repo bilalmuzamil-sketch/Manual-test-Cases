@@ -5,10 +5,13 @@ After ANY add_case / update_case, run this against the C-IDs you touched. It fet
 each case LIVE and flags the formatting traps that make a case render badly for a manual
 tester (proven live 2026-08-28, C27800):
 
-  1. INLINE tags that show literally or unreliably: <b> <i> <u> <code> <br> <em> <strong>
+  1. STYLING inline tags that show literally: <b> <i> <u> <code> <em> <strong> <font> <span>.
+     (NOTE: <br> is ALLOWED and renders correctly — it is the right way to make a tight
+     single-line break between two related sentences INSIDE one <p>. Do not flag it.)
   2. A "wall of text": prose paragraphs separated by a blank line but NOT split into
      block elements — TestRail wraps the whole value in one <p>, so those blank lines
-     collapse and every paragraph runs together.
+     collapse and every paragraph runs together. (Use separate <p> blocks for wider gaps
+     and <br> for tight breaks; never rely on raw blank lines.)
   3. No block structure at all in a multi-line field.
 
 Exit code is non-zero if any case fails, so it can gate a commit / a push script.
@@ -43,8 +46,10 @@ def get(path):
     r.add_header("Authorization", "Basic " + base64.b64encode(f"{EMAIL}:{KEY}".encode()).decode())
     return json.loads(urllib.request.urlopen(r, context=CTX, timeout=60).read())
 
-INLINE = re.compile(r"</?(b|i|u|em|strong|code|br|font|span)\b", re.I)
-BLOCK = re.compile(r"<(p|ol|ul|li|hr|h[1-6]|table|blockquote)\b", re.I)
+# <br> is deliberately NOT here: it renders correctly and is the right tool for a tight
+# line break inside a <p>. Only the STYLING inline tags show literally in TestRail.
+INLINE = re.compile(r"</?(b|i|u|em|strong|code|font|span)\b", re.I)
+BLOCK = re.compile(r"<(p|ol|ul|li|hr|br|h[1-6]|table|blockquote)\b", re.I)
 
 def check_field(name, val):
     problems = []
