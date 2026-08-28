@@ -373,3 +373,32 @@ correctly, **three** of the 19 were Automated — the three above.
 Full evidence: `build/report-suite/repair-2026-08-28/RESULTS.md` (per-case audit log:
 `build/report-suite/repair-2026-08-28/REPAIRED.jsonl`, whole-case re-verification:
 `WHOLE-CASE-VERIFY.json`).
+
+
+---
+
+## 2026-08-28 (sixth pass) — FOR VLAD: one Automated case had `refs` ONLY changed
+
+**QA lead approved 2026-08-28.** This is the WIP nine-anchor citation repair: eight requirement
+anchors from WIP specification v28 were tested by cases that never named them, so every coverage
+check read them as gaps. The anchors were added to the `refs` of the cases that already test them.
+
+**On the one Automated case, `refs` was the ONLY field sent.** Preconditions, Steps and Expected
+Result were compared before and after and are **byte-identical**; the rendered case page was re-read
+and is clean; `custom_atmstatus` is **still 3**. **Nothing a tester or an automated check reads as
+case CONTENT changed — only the reference list.**
+
+| C-id | Anchor added to `refs` | What else changed |
+|---|---|---|
+| [C30452](https://shopview.testrail.io/index.php?/cases/view/30452) | S5a-R3 — the four tab labels stay as they are even though the summary figures were renamed | nothing |
+
+**Vlad — if any check of yours asserts on this case's `refs` string, C30452 now carries one extra
+comma-separated entry of the shape `SV-8657 (WIP spec v28 2026-08-24 S5a-R3 - …)`.** Nothing already
+in `refs` was removed or rewritten, and the cited spec version on the rest of the string was **not**
+re-pinned.
+
+The other six cases repaired in the same pass (C45205, C30489, C30490, C30493, C30491, C43821) are
+all `custom_atmstatus = 1` and are outside Rule 65.
+
+Full evidence: `build/report-suite/wip-authoring-2026-08-28/CREATED-AND-REPAIRS-2026-08-28.md`
+(per-case audit log: `CITATION-REPAIRS.jsonl`).

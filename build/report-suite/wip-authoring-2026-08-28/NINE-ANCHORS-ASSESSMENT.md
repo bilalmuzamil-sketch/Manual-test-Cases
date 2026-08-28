@@ -274,3 +274,21 @@ written**:
    on them now, or to batch them into the next WIP authoring wave.
 3. **Confirmation that WIP v28 is still current.** It was captured 2026-08-24 and reused here without
    refetching, per your standing instruction not to re-spend quota on source checks unasked.
+
+---
+
+## 6 · CLOSED 2026-08-28 — what was approved and done
+
+**The QA lead approved recommendations 1 and 2 on 2026-08-28. Both are done and verified.**
+
+| Recommendation | Status |
+|---|---|
+| 1 · Three candidate cases (S4a-R3, S4a-N2, S5a-R4) | **DONE** — [C45208](https://shopview.testrail.io/index.php?/cases/view/45208), [C45209](https://shopview.testrail.io/index.php?/cases/view/45209), [C45210](https://shopview.testrail.io/index.php?/cases/view/45210); all three verified on the rendered page and PASS the mechanical readiness gate; all three synced into run 359 union-only |
+| 2 · Eight citation repairs | **DONE** — eight anchors cited across seven cases (C45205, C30489, C30490, C30493, C30491, C30452, C43821); `refs` was the only field sent and all bodies are byte-identical |
+| 3 · Re-run `verify.py` with the lettered-anchor regex fix across every report | **STILL OPEN** — not in this batch |
+
+**All nine anchors are now cited in the WIP suite; before this pass only one was.** The three PARTIAL
+verdicts in §3 are now COVERED: **S4a-R3** by C45208, **S4a-N2** by C45209, **S5a-R4** by C43821
+(affirmative) plus C45210 (the negative invariant).
+
+Full evidence: `CREATED-AND-REPAIRS-2026-08-28.md`.
