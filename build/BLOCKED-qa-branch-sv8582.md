@@ -1,6 +1,37 @@
-# BLOCKED — the Report Suite QA branch host `sv8582.qa.shopview.com`
+# ✅ RESOLVED 2026-08-28 — the Report Suite QA branch host `sv8582.qa.shopview.com` is RETIRED
 
-**Status: BLOCKED as at 2026-08-21.** Raised by `build/PROJECT-INDEX-REFRESH-2026-08-21.md` §4.
+**Status: RESOLVED 2026-08-28 by the QA lead's ruling.** Asked 2026-08-21 (raised by
+`build/PROJECT-INDEX-REFRESH-2026-08-21.md` §4), re-asked by the VIU lane 2026-08-28, **answered the
+same day.**
+
+## THE RULING — QA lead, 2026-08-28, verbatim
+
+> ***"Its done/retired"***
+
+**So the HTTP 502 was never a fault to chase: the branch is gone on purpose.** The question this file
+existed to ask — *"is `sv8582` retired?"* — is **answered YES**, and no further probing, restarting or
+escalation is owed. **A session that finds `sv8582` unreachable should stop here and read no further
+than this heading.**
+
+**What his ruling settles, and what it does not.** It settles that the **branch** is retired. It does
+not, in those words, name a replacement host — but the replacement is already established by evidence
+rather than by inference: **`app.staging.shopview.com`** is where the Report Suite has actually been
+verified since 2026-08-20 (`build/report-suite/staging-verify-2026-08-20/EXECUTION.md`), and Schedule
+likewise (`build/schedule/staging-verify-2026-08-20/`). **Staging was reachable at every probe of this
+session** — `v26.35.6-49e216a` at 2026-08-28T16:44Z.
+
+**⇒ CONSEQUENCE FOR THE RECORDS THAT STILL NAME IT.** `00-COMMON-CORE.md` §17's fact sheet and the
+`CLAUDE.md` project-index row list `sv8582.qa.shopview.com` as the Report Suite QA branch. **They are
+historic, not current** — §17 now carries a dated note saying so. **A Rule-54 sentence 2 that names
+`sv8582` is a record of a real past check and stays exactly as it is** (Rule 57: the build is named
+only as what a case was checked against, and a true historic record is not falsified by the host
+retiring).
+
+---
+
+## THE ORIGINAL RECORD, kept below and dated
+
+**Status when written: BLOCKED as at 2026-08-21.**
 
 ## STILL BLOCKED — re-probed 2026-08-28T16:44Z (VIU lane)
 

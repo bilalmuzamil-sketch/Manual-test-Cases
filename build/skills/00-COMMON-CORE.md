@@ -1953,6 +1953,7 @@ and belong in each `PROJECT-STATE.md`, derived live).
 | **TestRail group** | **4110** | **4254** | **4281** |
 | **Test run** (someone else's) | **352** — Ahtasham Amjad | **357** — Ayesha Khan | **359** — Nebojsa Glavinic / Viktoria Videnovic |
 | **QA branch** | `sv8785.qa.shopview.com` | `sv8685.qa.shopview.com` | `sv8582.qa.shopview.com` |
+| | | | **🛑 RETIRED 2026-08-28 — QA lead, verbatim: *"Its done/retired"*. Historic only; the Report Suite is verified on `app.staging.shopview.com` (`build/report-suite/staging-verify-2026-08-20/`). A 502 here is expected, not a fault. See `build/BLOCKED-qa-branch-sv8582.md`.** |
 | **API host** (probe THIS, §6) | `sv8785api.qa.shopview.com` | `sv8685api.qa.shopview.com` | `sv8582api.qa.shopview.com` |
 | **Confluence spec page** | **572030978** | **713031682** | **six — one per report**, below |
 | **Case source** | `build/filters/cases/` | `build/schedule/cases/` | `build/report-suite/cases/` |

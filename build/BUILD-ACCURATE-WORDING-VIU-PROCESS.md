@@ -39,7 +39,9 @@ Deliver test cases a **new, non-technical manual tester** can run with zero prio
 >
 > **🔗 THE CHAIN HAS THREE LINKS: LEARNED FROM THE SOURCES → VERIFIED RUNNABLE ON THE BUILD →
 > ANY DIVERGENCE RAISED TO THE QA LEAD.** A failing step is **COSMETIC** (correct it and log it)
-> or **SUBSTANTIVE** (the build does not have what the source describes → `AUTOMATION: HOLD`,
+> or **SUBSTANTIVE** (the build does not have what the source describes → the smallest change that
+> stops a tester being stranded, per core §15.1a — `AUTOMATION: HOLD` ONLY where the steps genuinely
+> cannot be executed,
 > "mark BLOCKED, not failed", **and RAISE it**). **The deciding question: *would a reader of the
 > source recognise what the build offers as the same thing?*** Full table in **step (2a)**;
 > deliverable **`DIVERGENCES.md`**. QA lead, verbatim: *"If any precondition learned from the
@@ -107,7 +109,7 @@ Steps come from **what the case exists to test**; this step **verifies them agai
 build** so a tester can actually execute them. **The build is the check, never the author.**
 Fail any one of these and the case is not runnable:
 1. **Is the precondition reachable?** Does the data state exist, or can it be seeded
-   (Standing Rule 14)? If genuinely unreachable → `AUTOMATION: HOLD` with a plain reason
+   (Standing Rule 14)? **If genuinely unreachable — and only then** → `AUTOMATION: HOLD` with a plain reason
    **plus a tester-facing "mark BLOCKED, not failed" line** — never a silent pass.
 2. **Does the navigation path exist?** Every screen, tab and menu the steps name.
 3. **Does each named control exist WHERE THE STEP SAYS IT IS** — not merely somewhere on
@@ -133,7 +135,7 @@ offers as the same thing?***
 | | **(a) COSMETIC** — yes, it is recognisably the same | **(b) SUBSTANTIVE** — no, the source describes something the build does not have |
 |---|---|---|
 | Examples | renamed control · moved menu item · changed label · same route by a slightly different path | the route does not exist · the precondition's state cannot be set up at all, even with seeding (Standing Rule 14) |
-| Handling | **correct it** so the tester can run the case, **and log it** | **NEVER silently rewritten.** Record as a **DIVERGENCE** with **both texts quoted** (Rule 45(e)) + the **C-ids** (Rule 8); apply the **smallest change that stops a tester being stranded** — normally `AUTOMATION: HOLD` with a plain reason **and a "mark BLOCKED, not failed" line** |
+| Handling | **correct it** so the tester can run the case, **and log it** | **NEVER silently rewritten.** Record as a **DIVERGENCE** with **both texts quoted** (Rule 45(e)) + the **C-ids** (Rule 8); apply the **smallest change that stops a tester being stranded** — **and that is RARELY a HOLD: decide from core §15.1a's four-row table, because a HOLD on a case whose steps DO run tells the tester to mark it BLOCKED and so removes its ability to fail** (corrected 2026-08-13; QA lead approved this doc's alignment 2026-08-28). HOLD **only** where the tester genuinely cannot execute the steps, and then with a plain reason **and a "mark BLOCKED, not failed" line** |
 | Escalation | none | **RAISE IT TO THE QA LEAD** and log it in the **OUTSTANDING-ITEMS REGISTER** (Rule 36) |
 
 > **⚠️ A PRECONDITION THE SOURCES REQUIRE BUT THE BUILD CANNOT ACHIEVE IS VERY OFTEN EVIDENCE
@@ -219,13 +221,36 @@ absolutely.)
 
 **(4b) STAMP OR REFRESH EVERY CASE'S PROVENANCE LINE (Standing Rule 54) — part of this push, not a
 later tidy.**
-Each case's Expected Results **ends** with a separator line and one plain sentence saying what the
-expectation is based on. A case verified live in this pass names **the build and the date it was
-tested**, alongside the **specification with its version** and the **requirement reference** — the QA
-lead's wording: *"This is the expected behaviour as per the build tested on 8/4/2026, and as per the
-Sales By Customer report specification version 13 (S4-R13)."* A case **not** live-verified in this
-pass keeps the spec/epic-only form (*"… as per epic SV-8582 and the … specification version 13
-(S4-R13)."*). Rules: **date = ONE generator variable**, spec versions = a **per-report map**;
+> **🛑 CORRECTED 2026-08-28, QA LEAD APPROVED. THE ONE-SENTENCE FORM BELOW IS SUPERSEDED AND MUST NOT
+> BE USED.** It is kept visible and dated (the Rules 32/33 pattern) because a silently-erased shape is
+> how a session re-derives it. **What was wrong with it:** it merged the source and the check into ONE
+> sentence and put **the build first**, as though the build were the source of the expectation. **Rule
+> 54 as amended 2026-08-11 requires TWO SENTENCES THAT ARE NEVER MERGED, and bars the phrase *"as per
+> the build tested on …"* outright** (core §14). Merging them is the exact error that took **748 cases**
+> to undo on 2026-08-05.
+>
+> **SUPERSEDED — DO NOT USE:** *"This is the expected behaviour as per the build tested on 8/4/2026, and
+> as per the Sales By Customer report specification version 13 (S4-R13)."*
+
+**THE FORM IN FORCE — two sentences, never merged (Rule 54, core §14):**
+
+**SENTENCE 1 — THE SOURCE. MANDATORY. NAMES ONLY DOCUMENTS**, each with **the date we read it**
+(Rule 54 as amended 2026-08-11, core §14.1): the specification **with its version** and the
+requirement anchor, and/or the epic and/or the owning story, and/or the PO's answer **with its file
+link and date**, and/or the design or Figma. **THE BUILD IS NEVER NAMED HERE — not as a source, not as
+corroboration, not in passing.** Where a case cites more than one source, **each carries its own
+read-date**; a source this pass did not actually re-read **keeps its previous date** (back-filling
+today's date onto an unopened source is a fabricated observation, Rule 12).
+
+**SENTENCE 2 — THE RECORD OF CHECKING. OPTIONAL. NAMES THE BUILD ONLY AS WHAT THE CASE WAS CHECKED
+AGAINST**, in neutral language: *"Last checked against build v3.5-be42149 on 8/5/2026."* **A case not
+yet checked against any build OMITS sentence 2** entirely — it does not get a hedge, and it never
+claims a check that did not happen. **A case that FAILS on the build must not say "passed" or
+"verified"**; sentence 2 records only that the check occurred.
+
+**Worked example of the form in force:** *"This is the expected behaviour as per epic SV-8582 and the
+Sales By Customer report specification version 13, section S4-R13, read on 4 August 2026. Last checked
+against build v3.5-be42149 on 4 August 2026."* Rules: **date = ONE generator variable**, spec versions = a **per-report map**;
 **IDEMPOTENT — replace the existing line, never append a second**; **never the word "VIU"** or a flag
 name (imports stay VIU-word-free); and where the case deliberately follows a **later product decision**
 instead of the spec text, the line **says so** rather than claiming plain spec agreement (Rule 32 —
@@ -355,7 +380,8 @@ authorized)".
    every case (step 2a) — precondition reachable · path exists · control where the step says
    · steps work in order · labels read from computed style** → VIU + set
    `viu_status`/evidence/`fresh_run` → **classify every failed check COSMETIC (correct + log)
-   or SUBSTANTIVE (HOLD + "mark BLOCKED, not failed" + RAISE) — *would a reader of the source
+   or SUBSTANTIVE (the smallest change per core §15.1a — HOLD **only** if the steps cannot be run at
+   all, + "mark BLOCKED, not failed" + RAISE) — *would a reader of the source
    recognise what the build offers as the same thing?*** → commit by pathspec → push via
    `update_case` (GET→diff→update→200/200; skip no-ops; API-section rule) + audit log → report
    tester-ready **with the honest N-of-M: how many cases had EVERY step verified, on which
