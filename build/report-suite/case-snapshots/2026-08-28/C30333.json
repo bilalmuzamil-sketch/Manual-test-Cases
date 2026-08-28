@@ -1,0 +1,11 @@
+{
+ "id": 30333,
+ "title": "Toolbar search matches part number or description, case-insensitively",
+ "refs": "SV-8642 (PV spec v10 2026-08-17 S2-R6; §3 Key Decisions)",
+ "preconds": "1. You are on the Parts Velocity report with data loaded.\n2. A part exists whose part number you know, and another whose description contains a distinctive word.",
+ "steps": "1. Find the search input in the report's own toolbar (not the application's global search bar).\n2. Type part of a known part number, in the wrong letter case (for example lower case for an upper-case part number).\n3. Clear it and type a distinctive word from a part's description.\n4. Clear it and type a category or vendor name that matches no part number or description.",
+ "expected": "1. The search input is part of the report's toolbar (page-specific), separate from the global search bar.\n2. The part-number search matches despite the different letter case (case-insensitive 'contains' match).\n3. The description search returns rows whose description contains the word.\n4. Category and vendor names are NOT searched - use their dedicated filters instead (deliberate, to avoid false matches on common words).\n\n---\nThis is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Parts Velocity report specification version 10 (S2-R6), read on 17 August 2026.\n\nAUTOMATION: READY",
+ "custom_atmstatus": 3,
+ "updated_on": 1787058427,
+ "created_by": 3
+}

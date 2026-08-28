@@ -1,0 +1,11 @@
+{
+ "id": 26385,
+ "title": "Creating a work order still works when Customers View is OFF",
+ "refs": "SV-7506,SV-7507",
+ "preconds": "<ol>\n<li>A user has a role with Work orders View and Create & Edit ON and Customers View OFF.</li>\n</ol>",
+ "steps": "<ol>\n<li>Log in and look at the top navigation.</li>\n<li>Open Work Orders and click the create-new button.</li>\n<li>Open the Customer selector in the new work order form.</li>\n<li>Search for or scroll to a customer.</li>\n<li>Select the customer.</li>\n<li>Fill the rest and save.</li>\n</ol>",
+ "expected": "<p>Customers is not in the top navigation.</p>\n<p>The customer selector inside the work order form still opens and lists customers (the data is reachable because it is needed to create a work order).</p>\n<p>The customer can be selected and the work order saves.</p>\n",
+ "custom_atmstatus": 3,
+ "updated_on": 1783943604,
+ "created_by": 3
+}

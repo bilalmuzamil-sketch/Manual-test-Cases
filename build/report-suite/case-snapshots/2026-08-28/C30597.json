@@ -1,0 +1,11 @@
+{
+ "id": 30597,
+ "title": "Toolbar layout: menu leftmost then Column Selection; then the 5 filters",
+ "refs": "SV-8679 (IV spec v10 2026-08-24 Story 12 S12-R2; S12-R3 — leftmost filter is the \"as of\" date control rather than a date range)",
+ "preconds": "<p>1. You are signed in to the ShopView App on a desktop browser.<br>2. The Inventory Value report is open.</p>\n",
+ "steps": "<p>1. Look at the toolbar's action cluster and read the order of its controls.<br>2. Read the toolbar filters from left to right.</p>\n",
+ "expected": "<p>1. In the toolbar, the three-dot download menu sits leftmost in the action cluster, followed by the Column Selection control.<br>2. The toolbar filters run, left to right: the \"as of\" date control, the part search, the Category filter, the Vendor filter, and the Location filter (rightmost).<br><br>This is the expected behaviour as per epic SV-8582 and the Inventory Value report specification version 10 (S12-R2; S12-R3), read on 26 August 2026.<br>An earlier version of this specification described a date-range control in this position; version 10 replaced it with the single \"as of\" date control (Chris, 2026-08-13), and we take the later version as prevailing.<br>This expectation has not been checked against any build since the specification change described above.<br><br>AUTOMATION: READY</p>\n",
+ "custom_atmstatus": 1,
+ "updated_on": 1787747121,
+ "created_by": 3
+}

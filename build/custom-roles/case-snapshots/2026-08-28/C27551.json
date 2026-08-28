@@ -1,0 +1,11 @@
+{
+ "id": 27551,
+ "title": "CR-PAY-046 — WO delete + payments",
+ "refs": "SV-7388",
+ "preconds": "<p>Permissions (counted): Work Orders V+E+D + Invoicing V+E. Auto-gate forced ON (not counted): See Fin. View Mode: Full unless noted. All other permissions OFF.</p>",
+ "steps": "<ol>\n<li>Create a custom role with the permissions listed in Preconditions; leave all others OFF.</li>\n<li>Assign the role to a test user and log in.</li>\n<li>Exercise each capability in Expected Result and confirm it succeeds (and that gated pricing is hidden where noted).</li>\n</ol>",
+ "expected": "<p>User CAN: See WOs; create/edit WOs; delete WOs; reverse invoices (no payments); create invoices; process payments; deposits; send to terminal</p><hr/><p><strong>Risk / Rationale:</strong> Positive capability check — confirms this combination grants exactly the listed actions and nothing gated leaks. See Flag / Note.<br/><strong>Spec Ref:</strong> §1a+§1h<br/><strong>Flag / Note:</strong> \\u26a0 reverse via WO Delete; deleting payments still needs Invoicing Delete</p>",
+ "custom_atmstatus": 1,
+ "updated_on": 1782992436,
+ "created_by": 1
+}

@@ -15,6 +15,41 @@ creation hold (row **H1**) is untouched.**
 **Rule 3 reminder — PO attributions must never be mixed.** Chris Ward = Report Suite + Fees & Discounts ·
 Branko = Filters + Schedule + Global Search · Milos = Simple Flow · **Sasha = Custom Roles**.
 
+## 🆕 2026-08-28 — RULE 87 CASE-BODY SNAPSHOTS ARE NOW A REAL TOOL, AND THE FIRST BASELINES EXIST
+
+**Tool:** `build/testing-tools/snapshot_case_bodies.py` — **read-only, GET only**, paged, `--help` and
+`--selftest` (18 offline checks, all passing). One JSON per case (`id`, `title`, `refs`, `preconds`,
+`steps`, `expected`, `custom_atmstatus`, `updated_on`, `created_by`, fixed key order) under
+`build/<project>/case-snapshots/<date>/`, so a re-run over unchanged data produces **no diff at all**.
+When to snapshot and how to diff a foreign edit: `build/skills/13-CROSS-SESSION-SAFETY.md` §6.1–6.4.
+
+| Baseline taken 2026-08-28 | Group | Cases captured |
+|---|---|---|
+| **Custom Roles & Permissions** | `3527` | **714** — 515 ours, **199 foreign** |
+| **Report Suite** | `4281` | **525** — 509 ours, **16 foreign** |
+
+**The gap that prompted this, and the correction that came out of measuring it.** The record said
+Vladimir's **2026-08-27** edits to **C27792 / C27805** *"remain undiffable because no prior snapshot
+existed"*. **Read live on 2026-08-28, that is not true, and the reason is worth recording: TestRail's
+`get_history_for_case` DOES keep per-field history with full `old_value` / `new_value`, including
+whole text bodies** — contradicting the *"TestRail keeps only the last writer"* premise that
+`13-CROSS-SESSION-SAFETY.md` §6 has carried. What he actually did, verbatim from the history:
+
+> **C27792** and **C27805**, both at **2026-08-27 21:28 UTC**, by **user 1 (Vladimir Tomovic)**:
+> `custom_atmstatus: 1 "Not Automated" → 4 "Pending"`. **One field. Exactly one history entry each.
+> Nothing else on either case was touched** — not the title, steps, expectation or refs. Both remain
+> `created_by = 3` (ours).
+
+**`4` is Pending, not `3` Automated, so Rules 65/71 are NOT triggered** — but it signals he has queued
+those two for automation, exactly as with the 20 Schedule cases he moved on 2026-08-17. **Preserve the
+value; never send that field.** Both cases were confirmed CORRECT AS THEY STAND by the 2026-08-28
+Custom Roles audit (`source-verify-2026-08-28/TESTRAIL-UPDATE-CANDIDATES.md`) and were not edited.
+
+**Snapshots are still worth their cost** — a deleted case has no history to fetch, `get_history_for_case`
+is one API call per case (≈714 for one group), the snapshot is committed third-party-verifiable
+evidence (Rule 86), and only a snapshot records which cases *existed* in a group on a date.
+**Going forward the two active groups are baselined; a project with no baseline is still exposed.**
+
 **Open question now routable to Sasha (Custom Roles):** PRD **v54** says three ways that the Service
 Manager **can** reverse a work order invoice (Permission Matrix `V/E/D`, §1a Work Orders → Delete, and
 the 2026-06-28 change-log entry), while the *Behavior Changes for Migrating Users* table still says

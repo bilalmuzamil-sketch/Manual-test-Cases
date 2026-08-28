@@ -1,0 +1,11 @@
+{
+ "id": 30198,
+ "title": "Sales By Representative is visible to anyone who sees another Performance report",
+ "refs": "SV-8619 (SBR spec v22 2026-08-17 Story 1 S1-R1)",
+ "preconds": "<p>1. A test user exists whose role can see another Performance-group report (create/assign a ZZAUTOTEST role if needed; restore afterwards).<br>2. You are signed in as that user..</p>",
+ "steps": "<p>1. Open the Reports navigation and read the Performance group.</p>",
+ "expected": "<p>1. \"Sales By Representative\" appears in the Performance group for this user &mdash; the entry is visible to every user who can see any other report in the same group.<br><br>---<br>This is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Sales By Representative report specification version 24 (S1-R1), read on 17 August 2026.<br>Last checked against build v3.8-b7d80dc on 8/19/2026.<br>Re-checked against the live specification on 26 August 2026: the requirements this case cites are unchanged, so only the version cited above was updated.<br><br>AUTOMATION: READY</p>\n",
+ "custom_atmstatus": 1,
+ "updated_on": 1787747664,
+ "created_by": 3
+}

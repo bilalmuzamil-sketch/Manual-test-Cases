@@ -1,0 +1,11 @@
+{
+ "id": 30288,
+ "title": "The Unassigned row appears in both CSV downloads only when the toggle is on",
+ "refs": "SV-8599 (SBR spec v22 2026-08-17 S22-R2; S22-R4; S14-R19 — Unassigned row in both CSV exports; gated by the Show Unassigned toggle; rescoped from all-four-downloads 2026-08-10 because the suite has no PDF parser)",
+ "preconds": "<ol><li>The current filter set includes at least one invoice with no assigned sales representative (seed one if needed).</li></ol>",
+ "steps": "<ol><li>Turn Show Unassigned ON and download Summary (CSV) and Expanded View (CSV).</li><li>Find the Unassigned entry in each file.</li><li>Turn Show Unassigned OFF and download both CSVs again.</li><li>Search each file for the unassigned invoices.</li></ol>",
+ "expected": "<p>1. With the toggle ON, the Summary CSV carries one rolled-up row whose \"Sales Representative\" cell reads the literal \"Unassigned\", sorted to the top of the data rows.<br>2. With the toggle ON, the Expanded CSV rows for those invoices carry \"Sales Representative\" = \"Unassigned\".<br>3. With the toggle OFF, no Unassigned row and no unassigned invoices appear in EITHER CSV.<br>4. Note for the tester: the product owner has ruled that the full word \"Sales Representative\" replaces the short \"Sales Rep\" everywhere. If a file still shows \"Sales Rep\", mark this test Failed and report it as the pending rename — do not change the test.</p><p>---<br>Scope note: this case covers the CSV only. The same rule applies to both PDF downloads (the Summary PDF grand-totals row aggregates Unassigned; the Expanded PDF gets its own top page-block), but PDF body structure is not observable by the automation suite — see the Deferred PDF-visual cases.</p><p>This is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Sales By Representative report specification version 24 (S22-R2, S22-R4, S14-R19), read on 17 August 2026.<br>Last checked against build v3.8-bd246fd on 8/18/2026.<br>Re-checked against the live specification on 26 August 2026: the requirements this case cites are unchanged, so only the version cited above was updated.</p><p>AUTOMATION: READY</p>",
+ "custom_atmstatus": 1,
+ "updated_on": 1787754763,
+ "created_by": 3
+}

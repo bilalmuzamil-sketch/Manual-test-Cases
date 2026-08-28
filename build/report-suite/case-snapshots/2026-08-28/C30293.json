@@ -1,0 +1,11 @@
+{
+ "id": 30293,
+ "title": "Sales Representative Assignments CSV: file name, headers, success toast",
+ "refs": "SV-8632 (SBR spec v22 2026-08-17 Story 15 S15-R3; S15-R4; §7 — S15-R4 CLOSES the three headers; \"Sales Rep\"→\"Sales Representative\" per Chris Ward 2026-07-31 Q5 [newest-wins]; NOT one of the four report exports so S14-R20 adds no Location)",
+ "preconds": "1. At least one customer in the organization has an assigned sales representative.\n2. The Export Report dialog is open with \"Sales Representative Assignments\" selected.",
+ "steps": "1. Click the Export action.\n2. Note the saved file's name and read the toast.\n3. Open the file in a text editor and read the header row.",
+ "expected": "1. The file downloads as \"sales-representative-assignments.csv\" — the short form \"rep\" is gone from the file name.\n2. A success toast shows \"Success\" with the caption \"Report downloaded.\" and auto-fades after 5 seconds.\n3. The CSV starts with a UTF-8 BOM and its headers, in order, are exactly: Customer Name, Sales Representative, Rep is active?.\n4. Note for the tester: the product owner has ruled that the full word \"Sales Representative\" replaces the short \"Sales Rep\" everywhere. If the screen or file still shows \"Sales Rep\", mark this test Failed and report it as the pending rename — do not change the test.\n5. Note for the tester: this file has only those three columns even if you have several locations in scope. It is a separate customer-to-representative list, not one of the report's four downloads, so it has no Location column - do not fail it for that.\n\n---\nThis is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Sales By Representative report specification version 22 (S15-R3, S15-R4, S14-R20), read on 17 August 2026; where the wording of that specification differs, the behaviour above follows Chris Ward's later decision, recorded in his answers in this file: https://docs.google.com/spreadsheets/d/1x8cuYJlFsDHalVZZTh156_ZCq2gcOaGY/edit?usp=sharing&ouid=106388879401921597782&rtpof=true&sd=true, read on 17 August 2026, which is the authority.\nLast checked against build v3.8-bd246fd on 8/18/2026.\n\nAUTOMATION: READY",
+ "custom_atmstatus": 3,
+ "updated_on": 1787127353,
+ "created_by": 3
+}

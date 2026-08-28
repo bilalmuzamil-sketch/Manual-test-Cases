@@ -1,0 +1,11 @@
+{
+ "id": 30215,
+ "title": "Location selection cascades; an inaccessible location's data is never included",
+ "refs": "SV-8638 (SBR spec v22 2026-08-17 S21-R3; S21-R4; S21-R5; §3 — per-row location identifier in All-Locations view ADDED per kickoff video P10 [ruling 2026-07-28 video-overrides-spec]) + on-screen location-scope indicator per Chris Ward 2026-07-29",
+ "preconds": "<p>1. Rep A has invoices only at location X; rep B at locations X and Y (seed ZZAUTOTEST data).<br>2. The signed-in user has access to X and Y but not to a third location Z which also has data..</p>",
+ "steps": "<p>1. Select only location Y.<br>2. Look for rep A; read rep B's count, totals, and detail rows.<br>3. Select \"All Locations\" and check whether any location-Z data appears.<br>4. With \"All Locations\" active, look at how the rows tell you which location they belong to.</p>",
+ "expected": "<p>1. With only Y selected, rep A disappears (no matching invoice at Y); rep B's metrics reflect only Y invoices &mdash; an invoice's location is that of its originating work order / parts sale.<br>2. Changing the selection re-fetches and re-renders scoped to the chosen set.<br>3. \"All Locations\" means all locations the user can access &mdash; location Z's data is never included.<br>4. With \"All Locations\" active you can tell which location each row's data belongs to &mdash; a location label or marking is shown.<br><br>---<br>This is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Sales By Representative report specification version 24 (S21-R3, S21-R4, S21-R5), read on 17 August 2026; where the wording of that specification differs, the behaviour above follows Chris Ward's later decision, recorded in his answers in this file: https://docs.google.com/spreadsheets/d/1x8cuYJlFsDHalVZZTh156_ZCq2gcOaGY/edit?usp=sharing&amp;ouid=106388879401921597782&amp;rtpof=true&amp;sd=true, read on 17 August 2026, which is the authority.<br>Last checked against build v3.8-b7d80dc on 8/19/2026.<br>Re-checked against the live specification on 26 August 2026: the requirements this case cites are unchanged, so only the version cited above was updated.<br><br>AUTOMATION: READY</p>\n",
+ "custom_atmstatus": 1,
+ "updated_on": 1787747674,
+ "created_by": 3
+}

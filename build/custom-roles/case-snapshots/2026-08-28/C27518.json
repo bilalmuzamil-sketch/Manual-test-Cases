@@ -1,0 +1,11 @@
+{
+ "id": 27518,
+ "title": "CR-PAY-013 — Full invoicing (delete)",
+ "refs": "SV-7388",
+ "preconds": "<p>Permissions (counted): Customer: View; Part Sales V+E+D, Invoicing V+E+D, AP/AR. Auto-gate forced ON (not counted): See Fin. View Mode: Full unless noted. All other permissions OFF.</p>",
+ "steps": "<ol><li>Create a custom role with the permissions listed in Preconditions; leave all others OFF.</li><li>Assign the role to a test user and log in.</li><li>Exercise each capability in Expected Result and confirm it succeeds (and that gated pricing is hidden where noted).</li></ol>",
+ "expected": "<p>User CAN: Process payments; deposits; send to terminal; delete payments (incl customer payments); void transactions;&nbsp;</p><hr><p><strong>Risk / Rationale:</strong> Positive capability check — confirms this combination grants exactly the listed actions and nothing gated leaks. See Flag / Note.<br><strong>Spec Ref:</strong> §1h<br><strong>Flag / Note:</strong> \\u26a0 Delete force-enables AP/AR (gate #2) + See Financial (gate #1)</p>",
+ "custom_atmstatus": 1,
+ "updated_on": 1783359900,
+ "created_by": 1
+}

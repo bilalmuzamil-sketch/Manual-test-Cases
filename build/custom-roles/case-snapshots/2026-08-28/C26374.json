@@ -1,0 +1,11 @@
+{
+ "id": 26374,
+ "title": "Work orders View gives access to the work order list and detail",
+ "refs": "SV-7506,SV-7507",
+ "preconds": "<ol>\n<li>A user has a role with Work orders View only (no Create & Edit, no Delete).</li>\n</ol>",
+ "steps": "<ol>\n<li>Log in as that user and look at the top navigation.</li>\n<li>Click Work Orders.</li>\n<li>Open a work order by clicking a row.</li>\n<li>Look for any create, edit or delete options.</li>\n</ol>",
+ "expected": "<p>Work Orders is in the top navigation.</p>\n<p>The work order list opens.</p>\n<p>The work order detail opens.</p>\n<p>There is no New work order/Create button; fields are read-only; there is no delete option.</p>\n",
+ "custom_atmstatus": 3,
+ "updated_on": 1783943590,
+ "created_by": 3
+}

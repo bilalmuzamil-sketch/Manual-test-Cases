@@ -1,0 +1,11 @@
+{
+ "id": 26558,
+ "title": "AP Aging Summary endpoint requires ROLE_ACCOUNT_PAYABLE_REPORT::VIEW",
+ "refs": "SV-7475,SV-7524",
+ "preconds": "Build with CRP-BE-SEC deployed. User A: system-tech. User B: system-owner.",
+ "steps": "1. Log in as User A. Hit GET on AP Aging Summary (ApAgingSummaryController).\n2. Inspect response.\n3. Log in as User B. Hit same endpoint.",
+ "expected": "User A → 403. User B → 200.",
+ "custom_atmstatus": 3,
+ "updated_on": 1781869304,
+ "created_by": 3
+}

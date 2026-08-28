@@ -1,0 +1,11 @@
+{
+ "id": 30539,
+ "title": "No qualifying parts, day or location: the no-data message shows and no totals",
+ "refs": "SV-8668 (IV spec v10 2026-08-17 Story 1 S1-N2; Story 4 S4-N1; Story 5 S5-N1; Story 7 S7-N2; Story 12; §7 User Feedback Summary)",
+ "preconds": "1. You are signed in to the ShopView App on a desktop browser.\n2. Three causes can be produced: (a) a location you can access holds no in-stock parts, (b) a past range ends entirely before nightly recording began (or its covered dates were pruned by retention), (c) the filters can be set so nothing qualifies.",
+ "steps": "1. Scope the report to the empty location and read the data area.\n2. Set the \"as of\" date to a day before nightly recording began and read the data area and the bottom of the report.\n3. Set the filters so nothing qualifies and re-read.",
+ "expected": "1. In every case the report shows the standard reports no-data message \"Empty bays, endless possibilities. Get Going!\" instead of rows.\n2. No totals row is shown in any of the cases.\n\n---\nThis is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Inventory Value report specification version 10 (S1-N2, S4-N1, S5-N1, S7-N2), read on 17 August 2026.\nLast checked against build v3.8-bd246fd on 8/18/2026.\n\nAUTOMATION: READY",
+ "custom_atmstatus": 1,
+ "updated_on": 1787095648,
+ "created_by": 3
+}

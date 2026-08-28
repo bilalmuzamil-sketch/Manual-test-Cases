@@ -1,0 +1,11 @@
+{
+ "id": 30438,
+ "title": "Downloads always order rows Technician A to Z; the on-screen sort is ignored",
+ "refs": "SV-8654 (TU spec v9 2026-08-17 S7-R10; S7-R10a)",
+ "preconds": "1. Rows exist including a \"—\" Est. Lost Labor value.\n2. The on-screen rows are sorted by something OTHER than Technician A to Z (e.g. Est. Lost Labor descending).",
+ "steps": "1. With the non-default sort applied, download the CSV and a PDF.\n2. Read each file's column order, number formats, and the \"—\" cell.\n3. Read each file's row order.",
+ "expected": "1. The downloaded files use the same column order and number formats as the on-screen report, including the \"—\" rendering for an unknown Est. Lost Labor.\n2. Rows in EVERY download are ordered by Technician name A to Z (the default order) - the on-screen column sort is client-side only and is NOT carried into the export.\n\n---\nThis is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Technician Utilization report specification version 9 (S7-R10, S7-R10a), read on 17 August 2026.\nLast checked against build v3.8-bd246fd on 8/18/2026.\n\nAUTOMATION: READY",
+ "custom_atmstatus": 1,
+ "updated_on": 1787089690,
+ "created_by": 3
+}

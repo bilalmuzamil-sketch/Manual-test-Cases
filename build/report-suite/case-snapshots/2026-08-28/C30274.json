@@ -1,0 +1,11 @@
+{
+ "id": 30274,
+ "title": "First visit or cleared storage yields all defaults; no server-side profile",
+ "refs": "SV-8640 (SBR spec v22 2026-08-17 Story 23 S23-R4; S23-N1; Story 2 S2-R4; S2-R7; Story 21 S21-R2)",
+ "preconds": "1. You have distinctive saved settings, then clear the browser's site data (or use a fresh profile).\n2. You are working in a known active location (the application's location switcher).",
+ "steps": "1. Open the report and read every setting.",
+ "expected": "1. Date range = This Month; Product Type = \"Parts & Service\"; Invoice Status = \"All Statuses\"; Location = your currently active location only (the one location you are working in); Show Unassigned = off; all eight metric columns visible; sort = the A→Z default.\n2. Clearing browser storage fully returns the report to first-visit defaults — no server-side profile brings the old settings back.\n\n---\nThis is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Sales By Representative report specification version 22 (S23-R4, S23-N1, S2-R4, S2-R7, S21-R2), read on 17 August 2026.\nLast checked against build v3.8-bd246fd on 8/18/2026.\n\nAUTOMATION: READY",
+ "custom_atmstatus": 3,
+ "updated_on": 1787127638,
+ "created_by": 3
+}

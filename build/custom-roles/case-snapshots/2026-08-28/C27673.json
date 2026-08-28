@@ -1,0 +1,11 @@
+{
+ "id": 27673,
+ "title": "Parts Manager - J. Reopen a completed inspection",
+ "refs": "SV-7509 SV-8095",
+ "preconds": "<p>Logged in as Parts Manager. A line has a completed inspection.</p>\n",
+ "steps": "<ol>\n<li>Log in.</li>\n<li>Open the line with a completed inspection.</li>\n<li>Click Open against the inspection.</li>\n</ol>\n",
+ "expected": "<p>Step 3: Reopen is NOT available - reopening a completed inspection requires WOL Delete (SV-8095 AC5). A plain Technician cannot reopen unless granted Delete via a custom role.</p>\n",
+ "custom_atmstatus": 3,
+ "updated_on": 1783433068,
+ "created_by": 3
+}

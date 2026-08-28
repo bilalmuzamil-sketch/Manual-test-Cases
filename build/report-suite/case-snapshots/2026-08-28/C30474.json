@@ -1,0 +1,11 @@
+{
+ "id": 30474,
+ "title": "Money columns show US dollars to two decimals with thousands separators",
+ "refs": "SV-8660 (WIP spec v22 2026-08-18 Story 4 S4-R14)",
+ "preconds": "1. You are signed in to the ShopView App on a desktop browser.\n2. All money columns (Labor Earned, Labor Remaining, Parts Earned, Parts Remaining, Earned, Remaining, Total) are turned on.\n3. The report shows rows with values over $1,000, a genuine zero value, and (if producible) a negative value.",
+ "steps": "1. Read a money value over one thousand dollars.\n2. Read a genuine zero money value.\n3. Read a negative money value if one exists.",
+ "expected": "1. Money values show a leading \"$\", two decimal places, and thousands separators — for example \"$1,234.56\".\n2. A negative value shows a leading minus before the \"$\" — for example \"-$1,234.56\".\n3. A genuine zero shows \"$0.00\".\n\n---\nThis is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Work In Progress report specification version 22 (S4-R14), read on 18 August 2026.\nLast checked against build v3.8-bd246fd on 8/18/2026.\n\nAUTOMATION: READY",
+ "custom_atmstatus": 1,
+ "updated_on": 1787093852,
+ "created_by": 3
+}

@@ -1,0 +1,11 @@
+{
+ "id": 30314,
+ "title": "Invoice credit snapshot: WO rep, else customer rep, else unassigned",
+ "refs": "SV-8636 (SBR spec v22 2026-08-17 Story 19 S19-R6; S19-N2; §3 Key Decisions (single-rep snapshot); Story 22 S22-R3)",
+ "preconds": "1. Three throwaway ZZAUTOTEST setups: (a) a WO WITH a Sales Representative assigned; (b) a WO with NO rep whose customer HAS an assigned rep; (c) a WO with NO rep whose customer has NO assigned rep.",
+ "steps": "1. Invoice all three WOs.\n2. On the report (Show Unassigned on, filters covering the invoices), find each invoice and note which row it sits under.\n3. Go back to WO (a), change its Sales Representative to a different rep, and re-check the already-created invoice on the report.",
+ "expected": "1. Invoice (a) is credited to the WO's Sales Representative.\n2. Invoice (b) falls back to the CUSTOMER's assigned rep.\n3. Invoice (c) is unassigned — it appears only under the \"Unassigned\" row.\n4. Changing WO (a)'s Sales Representative afterward does NOT retroactively alter the invoice already created from it — the invoice stays credited to the rep snapshotted at invoice creation.\n\n---\nThis is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Sales By Representative report specification version 22 (S19-R6, S19-N2, S22-R3), read on 17 August 2026.\n\nAUTOMATION: READY",
+ "custom_atmstatus": 3,
+ "updated_on": 1787058852,
+ "created_by": 3
+}

@@ -1,0 +1,11 @@
+{
+ "id": 30334,
+ "title": "All active filters combine with AND logic",
+ "refs": "SV-8642 (PV spec v10 2026-08-17 S2-R7)",
+ "preconds": "<p>1. You are on the Parts Velocity report with data loaded.<br>2. You know one part's type, category, and vendor..</p>",
+ "steps": "<p>1. Set the Type filter to that part's type.<br>2. Add the part's category in the Category filter.<br>3. Add a vendor that is NOT the part's vendor in the Vendor filter.<br>4. Change the Vendor filter to the part's actual vendor.</p>",
+ "expected": "<p>1. After steps 1-2 the part is still listed (it satisfies both filters).<br>2. After step 3 the part disappears - a part must satisfy EVERY active filter to appear (AND logic, not OR).<br>3. After step 4 the part is listed again.<br><br>---<br>This is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Parts Velocity report specification version 11 (S2-R7), read on 17 August 2026.<br>Last checked against build v3.8-d0e135e on 8/19/2026.<br>Re-checked against the live specification on 26 August 2026: the requirements this case cites are unchanged, so only the version cited above was updated.<br><br>AUTOMATION: READY</p>\n",
+ "custom_atmstatus": 1,
+ "updated_on": 1787747771,
+ "created_by": 3
+}

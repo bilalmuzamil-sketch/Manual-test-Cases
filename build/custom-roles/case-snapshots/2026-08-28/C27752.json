@@ -1,0 +1,11 @@
+{
+ "id": 27752,
+ "title": "Verify Administrator can edit mileage, engine hours, license plate, and VIN on a work order line",
+ "refs": "SV-5319",
+ "preconds": "Log in to ShopView as a user assigned the Administrator role. (this role has Work Order Lines: Create and Edit, which gates mileage/engine hours/license plate/VIN edits per spec v33).\nAt least one work order exists that contains labor and part lines with prices entered.",
+ "steps": "1. Open a work order and open one of its lines.\n2. Change the Mileage value and save.\n3. Change the Engine Hours value and save.\n4. Change the License Plate value and save.\n5. Change the VIN value and save.",
+ "expected": "All four fields (Mileage, Engine Hours, License Plate, VIN) are editable and each change saves successfully with no permission error.",
+ "custom_atmstatus": 1,
+ "updated_on": 1783108595,
+ "created_by": 3
+}

@@ -1,0 +1,11 @@
+{
+ "id": 27529,
+ "title": "CR-PAY-024 — Invoice viewer + history",
+ "refs": "SV-7388",
+ "preconds": "<p>Permissions (counted): Invoicing V + History Logs. Auto-gate forced ON (not counted): See Fin. View Mode: Full unless noted. All other permissions OFF.</p>",
+ "steps": "<ol>\n<li>Create a custom role with the permissions listed in Preconditions; leave all others OFF.</li>\n<li>Assign the role to a test user and log in.</li>\n<li>Exercise each capability in Expected Result and confirm it succeeds (and that gated pricing is hidden where noted).</li>\n</ol>",
+ "expected": "<p>User CAN: View invoices + Finance tab; view invoice/payment-related history logs</p><hr/><p><strong>Risk / Rationale:</strong> Positive capability check — confirms this combination grants exactly the listed actions and nothing gated leaks.<br/><strong>Spec Ref:</strong> §1h+§5c</p>",
+ "custom_atmstatus": 1,
+ "updated_on": 1783030724,
+ "created_by": 1
+}

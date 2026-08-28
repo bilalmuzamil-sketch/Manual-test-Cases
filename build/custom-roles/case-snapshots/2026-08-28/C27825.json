@@ -1,0 +1,11 @@
+{
+ "id": 27825,
+ "title": "Verify Technician can enter mileage and engine hours on a new work order line",
+ "refs": "SV-5319",
+ "preconds": "Log in to ShopView as a user assigned the Technician role. (mileage/engine hours are gated by Work Order Lines: Create and Edit per spec v33, which Technician has; Tech View makes EXISTING lines read-only, so test on a NEW line).\nAt least one work order exists.",
+ "steps": "1. Open a work order and add a NEW line.\n2. Enter a Mileage value on the new line and save.\n3. Enter an Engine Hours value and save.\n4. Open an EXISTING (previously saved/approved) line and try the same edits.",
+ "expected": "Step 1: A new line is created.\nStep 2: Mileage saves successfully on the new line.\nStep 3: Engine Hours saves successfully on the new line.\nStep 4: On the existing line the fields are read-only (Tech View caveat) - record the actual behavior for confirmation.",
+ "custom_atmstatus": 1,
+ "updated_on": 1783108595,
+ "created_by": 3
+}

@@ -1,0 +1,11 @@
+{
+ "id": 30231,
+ "title": "No-labor-no-time invoices show 0.0; clocked-unbilled work shows negative",
+ "refs": "SV-8626 (SBR spec v22 2026-08-17 S9-N1; heading renamed to Labor Delta per SV-9071)",
+ "preconds": "<ol>\n<li>A parts-only invoice with no labor and no clocked time exists, AND an invoice whose work order has clocked technician hours but no billed labor line (seed ZZAUTOTEST data).</li>\n</ol>\n",
+ "steps": "<ol>\n<li>Read the parts-only invoice's Labor Delta cell.</li>\n<li>Read the clocked-but-unbilled invoice's Labor Delta cell.</li>\n</ol>\n",
+ "expected": "<ol>\n<li>The invoice with neither billed labor hours nor clocked hours shows Labor Delta 0.0 in the default color — never blank, \"N/A,\" or \"—\".</li>\n<li>The invoice with clocked hours but no billed labor line shows the resulting NEGATIVE delta in red (e.g., -3.0) — the worked-but-unbilled signal is not suppressed to 0.0.</li>\n</ol>\n\n<hr />\n\n<p>This is the expected behaviour as per epic SV-8582 and the Sales By Representative report specification version 22 (S9-N1), both read on 17 August 2026. The column was renamed from \"Inv. Hrs\" to \"Labor Delta\" per SV-9071; only the name changed.<br />Last checked against build v3.8-bd246fd on 8/18/2026.</p>\n\n<p>AUTOMATION: READY</p>\n",
+ "custom_atmstatus": 1,
+ "updated_on": 1787085053,
+ "created_by": 3
+}

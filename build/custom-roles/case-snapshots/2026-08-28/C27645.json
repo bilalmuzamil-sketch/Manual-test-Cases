@@ -1,0 +1,11 @@
+{
+ "id": 27645,
+ "title": "Foreman - H. Remove an incomplete (in-progress) inspection",
+ "refs": "SV-7509 SV-8095",
+ "preconds": "<p>Logged in as Foreman. A line has an in-progress / not-started (incomplete) inspection.</p>\n",
+ "steps": "<ol>\n<li>Log in.</li>\n<li>Open the line with an incomplete inspection.</li>\n<li>Look for / click the bin (remove) icon.</li>\n<li>Confirm removal if prompted.</li>\n</ol>\n",
+ "expected": "<p>Step 3: A confirmation dialog appears: \"Remove inspection - Are you sure you want to remove this inspection?\" (Cancel / Remove).<br />Step 4: On Remove, the incomplete inspection is removed. (Removing an INCOMPLETE inspection is gated by WOL Create and Edit - SV-8095 AC3A, finalized.)</p>\n",
+ "custom_atmstatus": 3,
+ "updated_on": 1783433058,
+ "created_by": 3
+}

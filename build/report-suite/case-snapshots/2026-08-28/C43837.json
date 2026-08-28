@@ -1,0 +1,11 @@
+{
+ "id": 43837,
+ "title": "CSV export shows the PDF header's as-of date and Locations filter lines",
+ "refs": "SV-8677 (IV spec v10 2026-08-17 S10-R15a; suite-wide CSV filter-summary rule SV-9283)",
+ "preconds": "1. You are signed in to the ShopView App on a desktop browser.\n2. The Inventory Value report is open with at least one filter narrowed (for example a chosen date/scope and one or more locations) so the PDF header would show more than one filter line.",
+ "steps": "1. Download the report as a PDF and read the filter-summary lines in its header area.\n2. Download the report as a CSV and open it in a plain text editor or spreadsheet.\n3. Compare the leading rows of the CSV (above the column-header row) with the PDF header lines.",
+ "expected": "1. The CSV carries the same filter-summary lines as the PDF header - the \"as of\" date and the \"Locations:\" line, plus any report-specific filter lines the PDF header names - each as a leading metadata row above the column-header row.\n2. The lines appear verbatim (the same wording) and in the same order as in the PDF header.\n3. A CSV saved or forwarded later is never ambiguous about which filters produced it: every filter the PDF header names is present in the CSV.\n4. Note for the tester: this is the suite-wide rule that the CSV must name the same filters as the PDF. If your report shows no narrowed filters, widen or narrow one so at least one filter line appears, then compare again.\n\n---\nThis is the expected behaviour as per epic SV-8582 and the Inventory Value report specification version 10 (S10-R15a), both read on 17 August 2026. S10-R15a is the suite-wide rule (added 2026-08-12, SV-9283) that the CSV carries every filter-summary line the PDF header names.\nLast checked against build v3.8-bd246fd on 8/18/2026.\n\nAUTOMATION: READY",
+ "custom_atmstatus": 1,
+ "updated_on": 1787095693,
+ "created_by": 3
+}

@@ -1,0 +1,11 @@
+{
+ "id": 30596,
+ "title": "All-white table with no row shading on the standard report backdrop",
+ "refs": "SV-8679 (IV spec v10 2026-08-17 Story 12 S12-R1)",
+ "preconds": "1. You are signed in to the ShopView App on a desktop browser.\n2. The Inventory Value report is open with several rows.",
+ "steps": "1. Look at the column headers and the data cells.\n2. Compare the background of consecutive rows.\n3. Look at the page background around the table.",
+ "expected": "1. The table has white column headers and white data cells, with no alternating row shading.\n2. The table sits on the standard soft blue-grey report backdrop.\n\n---\nThis is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Inventory Value report specification version 10 (S12-R1), read on 17 August 2026.\nLast checked against build v3.8-bd246fd on 8/18/2026.\n\nAUTOMATION: READY",
+ "custom_atmstatus": 1,
+ "updated_on": 1787095767,
+ "created_by": 3
+}

@@ -1,0 +1,11 @@
+{
+ "id": 26585,
+ "title": "Migration --dry-run prints per-user diff in expected format",
+ "refs": "SV-7485,SV-7527",
+ "preconds": "Test tenant with users on all 13 legacy roles. CRP-BE-10 migration command available.",
+ "steps": "1. Run the migration command with --dry-run flag.\n2. Capture stdout.\n3. Verify no DB rows were modified (compare user.role_v2_id before/after by querying the DB or via app).\n4. Inspect the dry-run output format.\n5. Confirm each line has: user email, ' | ', old legacy role, '→', new system role, ' | ', atom count before, '→', atom count after.\n6. Spot-check 5 users against the canonical mapping in tech plan §4g.",
+ "expected": "Step 3: No DB rows modified.\nStep 5: Output format matches 'email | old→new | atom-count before→after'.\nStep 6: All 5 spot-checked mappings match the canonical table.",
+ "custom_atmstatus": 1,
+ "updated_on": 1781700797,
+ "created_by": 3
+}

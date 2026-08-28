@@ -1,0 +1,11 @@
+{
+ "id": 30326,
+ "title": "Without the Manager or Office User role the report entry is not shown",
+ "refs": "SV-8641 (PV spec v10 2026-08-17 S1-N1)",
+ "preconds": "1. You are signed in as a user whose role is neither Manager nor Office User (a role without access to the Reports section).",
+ "steps": "1. Look at the application's main navigation.\n2. Try to find the Reports section and the Parts Velocity entry.",
+ "expected": "1. The user cannot reach the Reports section.\n2. The Parts Velocity navigation entry is not shown (this is the Reports section's own access control, not a report-specific rule).\n\n---\nThis is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Parts Velocity report specification version 10 (S1-N1), read on 17 August 2026.\n\nAUTOMATION: READY",
+ "custom_atmstatus": 3,
+ "updated_on": 1787058414,
+ "created_by": 3
+}

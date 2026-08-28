@@ -1,0 +1,11 @@
+{
+ "id": 30233,
+ "title": "Margin % to one decimal; em dash when Subtotal <= 0; recomputed on rollups",
+ "refs": "SV-8627 (SBR spec v22 2026-08-17 §3 Margin % definition; Story 10 S10-R5)",
+ "preconds": "<ol>\n<li>A rep has two invoices with clearly different Margin % values; if producible, a row with Subtotal ≤ 0 also exists.</li>\n</ol>\n",
+ "steps": "<ol>\n<li>Read Margin % on both detail rows and on the rep's summary row; recompute the summary value as (total Margin ÷ total Subtotal) × 100.</li>\n<li>Read the Subtotal ≤ 0 row's Margin % cell.</li>\n<li>If a negative-margin row exists, read its format.</li>\n</ol>\n",
+ "expected": "<ol>\n<li>Margin % = Margin ÷ Subtotal × 100, to one decimal with a trailing % — e.g., 45.2%; a negative renders -8.4% (leading minus, no parentheses, no + on positives).</li>\n<li>It renders \"—\" when Subtotal ≤ 0 — never \"0.0%\" or a divide-by-zero result.</li>\n<li>On every rolled-up row (rep summary rows and every totals row) Margin % is RECOMPUTED from that row-set's total Margin and total Subtotal — never the sum or average of the child percentages.</li>\n</ol>\n\n<hr />\n\n<p>This is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Sales By Representative report specification version 22 (S10-R5), read on 17 August 2026.<br />Last checked against build v3.8-bd246fd on 8/18/2026.</p>\n\n<p>AUTOMATION: READY</p>\n",
+ "custom_atmstatus": 1,
+ "updated_on": 1787085288,
+ "created_by": 3
+}

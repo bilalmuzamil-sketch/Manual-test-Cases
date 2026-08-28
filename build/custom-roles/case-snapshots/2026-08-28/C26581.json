@@ -1,0 +1,11 @@
+{
+ "id": 26581,
+ "title": "Legacy HIDE_COST_* permissions migrated to positive-grant via seeFinancialData",
+ "refs": "SV-7487,SV-7523",
+ "preconds": "Build with CRP-FE-02 deployed. Pre-migration baseline captured (which users had HIDE_COST_* set).",
+ "steps": "1. From the pre-migration baseline, identify a user who had HIDE_COST_* permissions.\n2. Confirm their new role's seeFinancialData toggle: should be OFF (HIDE_COST_* meant 'hide costs', positive equivalent is seeFinancialData=OFF).\n3. Log in as the user. Inspect every page that should hide pricing.\n4. grep the FE source tree for residual references to HIDE_COST_* or RESTRICT_EDIT_OF_PART_SELL_PRICE.",
+ "expected": "User's role has seeFinancialData=OFF. All pricing is hidden uniformly.\nStep 4: zero residual references to the legacy negative permission strings in the FE codebase.",
+ "custom_atmstatus": 1,
+ "updated_on": 1784013345,
+ "created_by": 3
+}

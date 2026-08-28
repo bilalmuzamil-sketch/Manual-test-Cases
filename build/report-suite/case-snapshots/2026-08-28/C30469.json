@@ -1,0 +1,11 @@
+{
+ "id": 30469,
+ "title": "Status shows as a color-coded badge whose label text is always present",
+ "refs": "SV-8660 (WIP spec v22 2026-08-18 Story 4 S4-R6 + Story 10 S10-R8 — S4-R6 CLOSES the five status labels verbatim (\"Estimate\" ... \"Complete\") and the label-not-colour rule; so the closed list IS the requirement)",
+ "preconds": "<ol><li>You are signed in to the ShopView App on a desktop browser.</li><li>The report shows work orders in several statuses (Estimate, Approved, In progress, Review, Complete).</li></ol>",
+ "steps": "<ol><li>Read the Status column across rows in each tab.</li><li>Compare each badge's color against the application's standard status colors used elsewhere.</li></ol>",
+ "expected": "<p>1. Status is shown as a badge using the status's label: \"Estimate\", \"Approved\", \"In progress\", \"Review\", or \"Complete\".<br>2. The badge is color-coded per the application's standard status colors.<br>3. The label text is always present, so color is never the sole signal of the status.</p><p>---<br>This is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Work In Progress report specification version 28 (S4-R6, S10-R8), read on 18 August 2026.<br>Last checked against build v3.8-bd246fd on 8/18/2026.<br>Re-checked against the live specification on 26 August 2026: the requirements this case cites are unchanged, so only the version cited above was updated.</p><p>AUTOMATION: READY</p>",
+ "custom_atmstatus": 1,
+ "updated_on": 1787754921,
+ "created_by": 3
+}

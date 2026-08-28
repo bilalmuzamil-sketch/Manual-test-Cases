@@ -1,0 +1,11 @@
+{
+ "id": 26462,
+ "title": "Tech view: a line becomes read-only once its authorization is approved",
+ "refs": "SV-7508",
+ "preconds": "<ol>\n<li>A user has a role with View mode set to Tech view.</li>\n<li>A work order has a newly created line whose authorization is still pending.</li>\n</ol>",
+ "steps": "<ol>\n<li>Edit the pending line and confirm the edit works.</li>\n<li>As another user who can approve, approve the line.</li>\n<li>Back as the Tech view user, try to edit the now-approved line.</li>\n</ol>",
+ "expected": "<p>Editing works while the line is pending.</p>\n<p>After it is approved, the line is read-only and cannot be edited.</p>\n",
+ "custom_atmstatus": 3,
+ "updated_on": 1783942457,
+ "created_by": 3
+}

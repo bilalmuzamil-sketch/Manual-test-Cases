@@ -1,0 +1,11 @@
+{
+ "id": 30133,
+ "title": "Every row type renders the same columns in the same order",
+ "refs": "SV-8605 (SBC spec v20 2026-08-17 Story 7 S7-R8; S7-R9; S7-R10; S7-R15; S7-R16)",
+ "preconds": "<p>1. You are on the report with a customer expanded down to invoice rows and the totals row visible.</p>\n",
+ "steps": "<p>1. Compare the columns of a customer row, an asset row, an invoice row, and the totals row left to right.<br>2. Look at the Date cell on the customer and asset rows.<br>3. Look at a customer summary row and compare how heavy its text looks with the invoice rows beneath it.</p>\n",
+ "expected": "<p>1. Every row type &mdash; customer, asset, invoice, totals &mdash; renders the same columns in the same left-to-right order.<br>2. A cell with no value for its row (for example the Date cell on a customer or asset row) is left blank and keeps its column position; no value moves into another column.<br>3. The Date cell on the customer summary row is blank.<br>4. A customer summary row reads as heavier than the invoice rows under it, and its Subtotal cell is the heaviest cell on that row.<br>5. Note for the tester: you do not need to measure anything and you do not need any tool for item 4. Just say whether the summary row stands out from the invoice rows and whether its Subtotal looks the boldest, and only report it if it looks obviously wrong. (The exact weights behind this are design-token values the design and engineering team check with their own tooling.)<br><br>---<br>This is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Sales By Customer report specification version 20 (S7-R8, S7-R9, S7-R10, S7-R15, S7-R16), read on 17 August 2026.<br><br>AUTOMATION: READY</p>\n",
+ "custom_atmstatus": 1,
+ "updated_on": 1787149516,
+ "created_by": 3
+}

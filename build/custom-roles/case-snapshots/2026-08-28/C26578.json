@@ -1,0 +1,11 @@
+{
+ "id": 26578,
+ "title": "seeFinancialData ON for a system-tech user (regression test for legacy 'Time Clock saw pricing' bug)",
+ "refs": "SV-7484,SV-7523,SV-7526",
+ "preconds": "Build with CRP-BE-09 deployed. Test user on system-tech (seeFinancialData=OFF per tech plan §3c).",
+ "steps": "1. Authenticate as test user.\n2. Hit GET on every endpoint a tech can reach: WOs, WO lines, schedule, customers (view only).\n3. Inspect each response for pricing keys.\n4. Also hit any PDF endpoints reachable by Tech.",
+ "expected": "ZERO pricing data anywhere in any payload. The legacy bug does not recur.",
+ "custom_atmstatus": 3,
+ "updated_on": 1781869316,
+ "created_by": 3
+}

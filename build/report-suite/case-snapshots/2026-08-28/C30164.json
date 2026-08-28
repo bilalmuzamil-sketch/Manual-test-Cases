@@ -1,0 +1,11 @@
+{
+ "id": 30164,
+ "title": "Each download item shows a loading state and its own export-failed toast",
+ "refs": "SV-8612; SV-8613 (SBC spec v20 2026-08-17 Story 14 S14-E1; S14-N1; Story 15 S15-E1; S15-N1; §7 — the loading state is now per menu item; four items)",
+ "preconds": "<p>1. You are on the report with a large enough data set that a download takes a visible moment.<br>2. To force the failure this test needs, use the browser's own developer tools: press F12, open the \"Network\" tab, and switch the throttling dropdown (it normally reads \"No throttling\") to \"Offline\" to cut the connection, or to \"Slow 3G\" to slow it down. There is nothing to install. Set it back to \"No throttling\" when you finish..</p>",
+ "steps": "<p>1. Choose \"Download Summary (CSV)\" and immediately look at that menu item.<br>2. To provoke a failure, disconnect the network (or use the browser's offline mode) and choose \"Download Summary (CSV)\" again.<br>3. Repeat both checks for \"Download Expanded View (CSV)\", \"Download Summary (PDF)\" and \"Download Expanded View (PDF)\".</p>",
+ "expected": "<p>1. While a download is in progress, ONLY that menu item shows a loading state and is non-interactive; the other three items are unaffected.<br>2. If a CSV download fails, an error toast is shown: \"CSV export failed.\" (dismissed by the user).<br>3. If a PDF download fails, the toast reads \"PDF export failed.\" — identical behaviour, different wording.<br><br>---<br>This is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Sales By Customer report specification version 20 (S14-E1, S14-N1, S15-E1, S15-N1), read on 17 August 2026.<br>Last checked against build v3.8-da72171 on 8/19/2026.<br><br>AUTOMATION: READY</p>",
+ "custom_atmstatus": 1,
+ "updated_on": 1787209310,
+ "created_by": 3
+}

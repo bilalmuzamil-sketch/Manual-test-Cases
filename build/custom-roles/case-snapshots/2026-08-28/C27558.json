@@ -1,0 +1,11 @@
+{
+ "id": 27558,
+ "title": "CR-BRK-003 — Tech View vs See Financial — triple pricing leak on line form",
+ "refs": "SV-7388; SV-7976 (adjacent)",
+ "preconds": "<p>WO V \\u2713 | WO Lines E \\u2713 | View Mode: Tech | See Financial \\u2713 | Catalog &amp; Inv V \\u2713 | Parts Dept \\u2713 | Invoicing V \\u2713 (View Mode as specified).</p>",
+ "steps": "<ol><li>Configure a custom role per the Setup in Preconditions; assign to a test user and log in.</li><li>Open a WO in Tech View; add/inspect a line; compare labor rate/cost/sell on the line form vs the WO overview.</li></ol>",
+ "expected": "<p>Tech is able to see Labor Rate among other financial info since See Financial Data permissions will override Tech View permission.</p>",
+ "custom_atmstatus": 3,
+ "updated_on": 1783341882,
+ "created_by": 1
+}

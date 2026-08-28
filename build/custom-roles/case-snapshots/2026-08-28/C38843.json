@@ -1,0 +1,11 @@
+{
+ "id": 38843,
+ "title": "Vendors page opens without the Reports permission",
+ "refs": "SV-8682 (Custom Roles & Permissions §Vendor & Order Management — View grants Vendors/Purchase Orders/Deliveries visibility)",
+ "preconds": "<ol>\n<li>You have a role with these permissions turned ON: Vendor & Order Management → View, and See Financial Data.</li>\n<li>The Reports permission is turned OFF for that role.</li>\n<li>A user is signed in with that role.</li>\n</ol>",
+ "steps": "<ol>\n<li>Go to Parts.</li>\n<li>Open the Vendors page.</li>\n</ol>",
+ "expected": "<p>The Vendors page opens normally and shows the vendor list.</p>\n<p>You are NOT sent to an \"Access restricted\" / Access Denied screen.</p>\n<p>Opening Vendors does not require the Reports permission — Vendors access depends only on Vendor & Order Management → View.</p>\n",
+ "custom_atmstatus": 3,
+ "updated_on": 1785175582,
+ "created_by": 3
+}

@@ -1,0 +1,11 @@
+{
+ "id": 26556,
+ "title": "AR PDF endpoint requires ROLE_ACCOUNT_RECEIVABLE_REPORT::VIEW",
+ "refs": "SV-7475,SV-7524",
+ "preconds": "Build with CRP-BE-SEC deployed. User A: system-tech. User B: system-owner.",
+ "steps": "1. Log in as User A. Hit GET on the AR PDF endpoint (AccountReceivablePdfController route).\n2. Inspect response (and confirm no PDF binary returned).\n3. Log in as User B. Hit same endpoint and confirm PDF returned.",
+ "expected": "User A → 403, no PDF. User B → 200 with PDF content-type and binary body.",
+ "custom_atmstatus": 3,
+ "updated_on": 1781869301,
+ "created_by": 3
+}

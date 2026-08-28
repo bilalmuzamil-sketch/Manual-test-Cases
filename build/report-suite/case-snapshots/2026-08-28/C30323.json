@@ -1,0 +1,11 @@
+{
+ "id": 30323,
+ "title": "First visit: date range defaults to This Year and data is fetched automatically",
+ "refs": "SV-8641 (PV spec v10 2026-08-17 S1-R2; S4-R6)",
+ "preconds": "<ol><li>You are signed in as a user allowed to open the report.</li><li>You are using a browser with NO saved view for this report (e.g. a fresh browser profile or after clearing the site's browser storage), so first-visit defaults apply.</li></ol>",
+ "steps": "<ol><li>Open Reports → Parts → Parts Velocity.</li><li>Look at the date range selector and the table without touching anything.</li></ol>",
+ "expected": "<p>1. The date range selector shows This Year.<br>2. Report data loads automatically - you do not have to press anything to fetch it.<br>3. Rows appear ranked by Demand, highest first (the default order).</p><p>---<br>This is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Parts Velocity report specification version 11 (S1-R2, S4-R6), read on 17 August 2026.<br>Last checked against build v3.8-bd246fd on 8/18/2026.<br>Re-checked against the live specification on 26 August 2026: the requirements this case cites are unchanged, so only the version cited above was updated.</p><p>AUTOMATION: READY</p>",
+ "custom_atmstatus": 1,
+ "updated_on": 1787754823,
+ "created_by": 3
+}

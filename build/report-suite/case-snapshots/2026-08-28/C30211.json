@@ -1,0 +1,11 @@
+{
+ "id": 30211,
+ "title": "Filters compose: a rep appears only with an invoice matching ALL active filters",
+ "refs": "SV-8622 (SBR spec v22 2026-08-17 Story 4 S4-R7; S4-R6; S4-N1; Story 3 S3-R8; S3-N1)",
+ "preconds": "<p>1. ZZAUTOTEST invoices exist that each fail exactly one of: date range, product type, invoice status, location — plus one invoice matching all four.<br>2. For the per-filter legs: rep A has only service invoices and rep B both types; rep C has only Paid invoices and rep D a mix (seed ZZAUTOTEST data)..</p>",
+ "steps": "<p>1. Set all four filters (a range, \"Parts only,\" \"Paid,\" one location) and read the rep rows, counts, detail rows, and the grand Totals indicator.<br>2. Product Type leg: select \"Parts only\"; look for rep A and read rep B's (N) count, summary totals, detail rows, and the grand Totals indicator.<br>3. Invoice Status leg: filter to \"Unpaid\"; look for rep C and read rep D's figures.</p>",
+ "expected": "<p>1. Only invoices matching ALL active filters contribute &mdash; every metric reflects the intersection; an invoice failing any single filter contributes nothing anywhere.<br>2. A rep appears only if at least one invoice matches all active filters.<br>3. Parts-only leg: rep A disappears; rep B's summary totals, detail rows, grand Totals, and (N) count reflect only the matching (P) invoices.<br>4. Unpaid leg: rep C disappears; rep D's figures reflect only the Unpaid invoices.<br><br>---<br>This is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Sales By Representative report specification version 24 (S4-R7, S4-R6, S4-N1, S3-R8, S3-N1), read on 17 August 2026.<br>Last checked against build v3.8-b7d80dc on 8/19/2026.<br>Re-checked against the live specification on 26 August 2026: the requirements this case cites are unchanged, so only the version cited above was updated.<br><br>AUTOMATION: READY</p>\n",
+ "custom_atmstatus": 1,
+ "updated_on": 1787747671,
+ "created_by": 3
+}

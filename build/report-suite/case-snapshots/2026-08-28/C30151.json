@@ -1,0 +1,11 @@
+{
+ "id": 30151,
+ "title": "Labor Delta heading is verbatim; value shows +green / -red / 0.0 on every row",
+ "refs": "SV-8610 (SBC spec v20 2026-08-17 S12-R1; S12-R2; S12-R3; S12-R4; S12-R5; S12-R6; renamed to Labor Delta per SV-9071)",
+ "preconds": "<ol>\n<li>Invoices exist where billed hours exceed worked hours, where worked exceeds billed, and where they are equal (seed ZZAUTOTEST work orders with clocked time).</li>\n</ol>\n",
+ "steps": "<ol>\n<li>Read the column heading.</li>\n<li>Read the Labor Delta value on rows for each of the three seeded situations, at customer, asset, and invoice level.</li>\n</ol>\n",
+ "expected": "<ol>\n<li>The column heading reads \"Labor Delta\".</li>\n<li>The value is hours invoiced minus hours worked, rounded to one decimal.</li>\n<li>A positive value shows a leading + sign in the application's standard positive (green) color — for example, +1.5.</li>\n<li>A negative value shows a leading - sign in the standard negative (red) color — for example, -1.5.</li>\n<li>A zero/break-even value shows 0.0 in the default text color.</li>\n<li>The same calculation, label, format, and coloring apply on customer, asset, and invoice rows.</li>\n</ol>\n\n<hr />\n\n<p>This is the expected behaviour as per epic SV-8582 and the Sales By Customer report specification version 20 (S12-R1; S12-R2; S12-R3; S12-R4; S12-R5; S12-R6), both read on 17 August 2026. The column was renamed from \"Inv. Hrs\" to \"Labor Delta\" per SV-9071; only the name changed.<br />Last checked against build v3.8-2bf8d14 on 8/18/2026.</p>\n\n<p>AUTOMATION: READY</p>\n",
+ "custom_atmstatus": 1,
+ "updated_on": 1787082434,
+ "created_by": 3
+}

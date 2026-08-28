@@ -1,0 +1,11 @@
+{
+ "id": 30607,
+ "title": "Nightly snapshot: re-running the capture for a date replaces that date's rows",
+ "refs": "SV-8678 (IV spec v10 2026-08-17 Story 11 S11-R3; Story 11 S11-R5; Story 5 S5-E1)",
+ "preconds": "<p>1. A capture has already run for the current date.<br>2. The capture can be re-run for that date (arrange with the developers).<br>3. To see the information this test asks for you need the browser's own developer tools: press F12 (or Ctrl+Shift+I; on a Mac Cmd+Option+I) and open the \"Network\" tab, then reload the page. There is nothing to install — it is built into Chrome, Edge and Firefox. Where a check also asks you to confirm what is stored on the server, ask a developer to read it back for you — that part cannot be seen from the browser..</p>",
+ "steps": "<p>1. Count the stored rows per location for the date.<br>2. Re-run the capture for the same date.<br>3. Count and inspect the rows again.</p>",
+ "expected": "<p>1. Re-running the capture for a date replaces that date's rows for each location — the existing rows for that location and date are removed, then re-inserted from current data.<br>2. No duplicate rows exist for the same part, location, and date.<br>3. The capture is idempotent and self-healing from current data.<br>4. No rows exist for dates before capture began — there is no backfill.<br>5. A re-run always records current truth under the CURRENT date; it cannot reconstruct a past date.<br>6. A past date's stored rows are unchanged by a current re-run.<br><br>---<br>This is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Inventory Value report specification version 10 (S11-R3, S11-R5, S5-E1), read on 17 August 2026.<br>Last checked against build v3.8-d0e135e on 8/19/2026.<br><br>AUTOMATION: HOLD - the nightly capture job cannot be re-run or inspected from the application</p>",
+ "custom_atmstatus": 1,
+ "updated_on": 1787215821,
+ "created_by": 3
+}

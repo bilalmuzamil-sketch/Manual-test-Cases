@@ -1,0 +1,11 @@
+{
+ "id": 30138,
+ "title": "The invoice number opens the invoice in the same browser tab",
+ "refs": "SV-8607 (SBC spec v20 2026-08-17 Story 9 S9-R1; S9-R2; S9-R2a; S9-R2b)",
+ "preconds": "1. You have expanded an asset and can see at least one S invoice and (under another customer/asset if needed) one P invoice.",
+ "steps": "1. Click a service (S) invoice number link and note where it opens.\n2. Go back, then click a parts (P) invoice number link and note where it opens.",
+ "expected": "1. Each invoice number on a detail row is a clickable link that opens in the SAME browser tab (no new tab).\n2. A service invoice opens the associated work order's Finance tab.\n3. A parts invoice opens the associated part sale's Part Requests tab.\n\n---\nThis is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Sales By Customer report specification version 20 (S9-R1, S9-R2, S9-R2a, S9-R2b), read on 17 August 2026.\n\nAUTOMATION: READY",
+ "custom_atmstatus": 3,
+ "updated_on": 1787058577,
+ "created_by": 3
+}

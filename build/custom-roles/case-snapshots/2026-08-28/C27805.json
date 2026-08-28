@@ -1,0 +1,11 @@
+{
+ "id": 27805,
+ "title": "Verify Foreman cannot delete a work order",
+ "refs": "SV-5319",
+ "preconds": "Log in to ShopView as a user assigned the Foreman role. (this role has Work Orders = View/Create and Edit, NO Delete).\nThe work order is in Uncomplete status (a work order must be Uncomplete before it can be deleted).",
+ "steps": "1. Open the Uncomplete work order.\n2. Open the work order action menu and look for a Delete option; if present, click it.",
+ "expected": "Deleting the work order is BLOCKED: the Delete action is hidden/disabled or returns a permission error.",
+ "custom_atmstatus": 4,
+ "updated_on": 1787866099,
+ "created_by": 3
+}

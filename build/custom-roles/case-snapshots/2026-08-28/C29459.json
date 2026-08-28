@@ -1,0 +1,11 @@
+{
+ "id": 29459,
+ "title": "BUG: Time Clock user CAN create a Customer via API",
+ "refs": null,
+ "preconds": "<ol><li>A user is signed in with the system <strong>Time Clock</strong> role (Work Orders View, Schedule View, Timesheets View; View Mode none; every other permission OFF; read-only, can clock in/out).</li><li>You have a way to send API requests to the backend (api.staging.shopview.com) as that signed-in Time Clock user.</li></ol>",
+ "steps": "<ol><li>Send POST /api/customers/create with a customer name.</li></ol>",
+ "expected": "<p>EXPECTED:&nbsp;</p><p data-pasted=\"true\">Time Clock user creating a Customer via API returns 201, not 403 —</p><p><br></p><p><a data-fr-linked=\"true\" href=\"https://shopview.atlassian.net/browse/SV-7958\" data-pasted=\"true\">https://shopview.atlassian.net/browse/SV-7958</a></p>",
+ "custom_atmstatus": 3,
+ "updated_on": 1784576747,
+ "created_by": 3
+}

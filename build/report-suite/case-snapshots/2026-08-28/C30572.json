@@ -1,0 +1,11 @@
+{
+ "id": 30572,
+ "title": "Part search matches part number or description on the server; case-insensitive",
+ "refs": "SV-8673 (IV spec v10 2026-08-17 Story 6 S6-R8; S6-R5)",
+ "preconds": "1. You are signed in to the ShopView App on a desktop browser.\n2. In-stock parts exist whose part numbers and descriptions you know (including a description containing a distinctive word).",
+ "steps": "1. Find the part search input in the report's own toolbar (not the application's global search bar).\n2. Type part of a part number and read the results.\n3. Clear it and type part of a description, in a DIFFERENT letter case than the stored text.\n4. Type text matching nothing.",
+ "expected": "1. The search field is page-local, in the report's own toolbar — it is not the application's global search bar (the same toolbar-search pattern used elsewhere in the reports suite).\n2. The report narrows to parts whose part number OR description contains the entered text.\n3. Matching is case-insensitive.\n4. The search applies server-side (whole data set, first page returned); a no-match search shows the no-data message.\n\n---\nThis is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Inventory Value report specification version 10 (S6-R8, S6-R5), read on 17 August 2026.\nLast checked against build v3.8-bd246fd on 8/18/2026.\n\nAUTOMATION: READY",
+ "custom_atmstatus": 1,
+ "updated_on": 1787095738,
+ "created_by": 3
+}

@@ -1,0 +1,11 @@
+{
+ "id": 27522,
+ "title": "CR-PAY-017 — Customer billing payments",
+ "refs": "SV-7388",
+ "preconds": "<p>Permissions (counted): Customers V + Invoicing V+E. Auto-gate forced ON (not counted): See Fin. View Mode: Full unless noted. All other permissions OFF.</p>",
+ "steps": "<ol><li>Create a custom role with the permissions listed in Preconditions; leave all others OFF.</li><li>Assign the role to a test user and log in.</li><li>Exercise each capability in Expected Result and confirm it succeeds (and that gated pricing is hidden where noted).</li></ol>",
+ "expected": "<p>User CAN: See customers - only the following tabs: Work Orders | Part Sales | Contacts | Assets | Notes tabs - can NOT edit anything</p><hr><p><strong>Risk / Rationale:</strong> Positive capability check — confirms this combination grants exactly the listed actions and nothing gated leaks.<br><strong>Spec Ref:</strong> §1d+§1h</p>",
+ "custom_atmstatus": 1,
+ "updated_on": 1783360465,
+ "created_by": 1
+}

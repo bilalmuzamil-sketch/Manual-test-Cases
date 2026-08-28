@@ -1,0 +1,11 @@
+{
+ "id": 30442,
+ "title": "The Location filter is the rightmost multi-select; All Locations = select-all",
+ "refs": "SV-8656 (TU spec v9 2026-08-17 S9-R1 — per-row location identifier in All-Locations view ADDED per kickoff video P10 40:58-41:20; user ruling 2026-07-28: video overrides spec (video newer; last-update-wins))",
+ "preconds": "1. You are signed in as a user with access to at least two locations.\n2. You are on the Technician Utilization report.",
+ "steps": "1. Look at the rightmost control in the toolbar and read its label.\n2. Open it and read the listed options.\n3. Choose \"All locations\", then uncheck one individual location.\n4. With every accessible location selected, look at how the report tells you which location the shown data belongs to.",
+ "expected": "1. The toolbar has a location filter labeled \"Location\" - a multi-select and the RIGHTMOST control.\n2. It lists the locations the signed-in user has access to, plus an \"All locations\" option and a \"Clear all\" action. (If you only have access to one location, the \"All locations\" entry is not offered - you see \"Clear all\" and your one location.)\n3. \"All locations\" acts as a select-all shortcut: choosing it selects every accessible location; unchecking one location leaves the remaining specific locations selected - the selection is always the concrete set of checked locations.\n4. With more than one location selected, a Location column appears in the table and each row names its location - or reads \"Multiple\" for a technician whose hours span more than one of them. (Where that column sits on screen is checked by its own test.)\n\n---\nThis is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Technician Utilization report specification version 9 (S9-R1), read on 17 August 2026.\nLast checked against build v3.8-bd246fd on 8/18/2026.\n\nAUTOMATION: READY",
+ "custom_atmstatus": 1,
+ "updated_on": 1787089779,
+ "created_by": 3
+}

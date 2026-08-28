@@ -1,0 +1,11 @@
+{
+ "id": 26543,
+ "title": "Only Office User and Time Clock User are non-editable; every other system role (including Administrator) is editable",
+ "refs": "SV-7499,SV-7501",
+ "preconds": "<ol>\n<li>You are logged in as an admin on the Roles & Permissions list with all system roles visible.</li>\n</ol>",
+ "steps": "<ol>\n<li>Look at the Actions for each system role: Administrator, Service Manager, Senior Service Advisor, Service Advisor, Foreman, Technician, Parts Manager, Parts Technician, Office User, Sales Representative, Time Clock User.</li>\n<li>For Office User and Time Clock User, confirm the lock icon and eye-only action.</li>\n<li>For the others, confirm a pencil (edit) is available.</li>\n</ol>",
+ "expected": "<p>Only Office User and Time Clock User are non-editable (lock icon, eye/View Permissions only).</p>\n<p>Every other system role — including Administrator — is editable (pencil available).</p>\n<p>No system role can be deleted.</p>\n",
+ "custom_atmstatus": 3,
+ "updated_on": 1783943842,
+ "created_by": 3
+}

@@ -1,0 +1,11 @@
+{
+ "id": 30316,
+ "title": "A rep's invoice detail rows are fetched from the server only on the first expand",
+ "refs": "SV-8624 (SBR spec v22 2026-08-17 Story 6 S6-R2)",
+ "preconds": "<ol><li>You are on the report with at least two rep rows, one with a large invoice count if seedable.</li><li>The browser's network panel is open.</li><li>To see the information this test asks for you need the browser's own developer tools: press F12 (or Ctrl+Shift+I; on a Mac Cmd+Option+I) and open the \"Network\" tab, then reload the page. There is nothing to install — it is built into Chrome, Edge and Firefox.</li></ol>",
+ "steps": "<ol><li>Load the report and note which requests deliver the summary rows.</li><li>Expand one rep and watch the network panel; collapse and re-expand it.</li><li>If a rep has many invoices, scroll/page through its expanded detail rows.</li></ol>",
+ "expected": "<p>1. Invoice detail rows are NOT delivered with the initial summary payload — the first expand of a rep triggers a server fetch for that rep's matching invoices, with a brief row-level loading indicator.<br>2. A re-expand within the session does not necessarily re-fetch (the expansion state is session-preserved); no rep's details load before its first expand.<br>3. When a rep's matching-invoice count is large, its detail rows are paginated per rep.</p><p>---<br>This is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Sales By Representative report specification version 24 (S6-R2), read on 17 August 2026.<br>Last checked against build v3.8-bd246fd on 8/18/2026.<br>Re-checked against the live specification on 26 August 2026: the requirements this case cites are unchanged, so only the version cited above was updated.</p><p>AUTOMATION: READY</p>",
+ "custom_atmstatus": 1,
+ "updated_on": 1787754811,
+ "created_by": 3
+}

@@ -1,0 +1,11 @@
+{
+ "id": 30265,
+ "title": "Column selector: eight metric toggles; five always-on columns cannot be hidden",
+ "refs": "SV-8630 (SBR spec v22 2026-08-17 S20-R2; renamed to Labor Delta per SV-9071)",
+ "preconds": "<ol>\n<li>No remembered column preference exists (first visit or cleared storage).</li>\n</ol>\n",
+ "steps": "<ol>\n<li>Click the column selector button in the toolbar.</li>\n<li>Read the toggle list.</li>\n<li>Check the table's visible columns.</li>\n<li>Look for Date, Invoice, Customer, Status, or Subtotal in the toggle list.</li>\n<li>Hide all seven metric columns and read the table and the grand Totals indicator.</li>\n</ol>\n",
+ "expected": "<ol>\n<li>The dropdown lists the eight toggleable metric columns, each with a toggle switch: Labor Delta, Labor Invoiced, Labor Margin, Parts Invoiced, Parts Margin, Adjustments, Margin, Margin %.</li>\n<li>On first visit all eight metric columns are visible.</li>\n<li>The five always-visible columns (Date, Invoice, Customer, Status, Subtotal) do not appear in the dropdown and cannot be hidden.</li>\n<li>With all eight metric columns hidden the table still renders the five always-on columns and the grand Totals indicator — no empty or error state.</li>\n<li>Note for the tester: if you have more than one location in scope you will also see a Location column on the table that is in neither list. That is correct - it appears by itself and is not something you can switch on or off here.</li>\n</ol>\n\n<hr />\n\n<p>This is the expected behaviour as per epic SV-8582 and the Sales By Representative report specification version 22 (S20-R2), both read on 17 August 2026. The column was renamed from \"Inv. Hrs\" to \"Labor Delta\" per SV-9071; only the name changed.<br />Last checked against build v3.8-bd246fd on 8/18/2026.</p>\n\n<p>AUTOMATION: READY</p>\n",
+ "custom_atmstatus": 1,
+ "updated_on": 1787084970,
+ "created_by": 3
+}

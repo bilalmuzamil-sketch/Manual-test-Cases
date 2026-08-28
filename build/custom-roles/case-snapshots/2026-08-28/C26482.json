@@ -1,0 +1,11 @@
+{
+ "id": 26482,
+ "title": "With AP/AR OFF but Reports ON, all 6 AP/AR aging reports are still listed",
+ "refs": "SV-7524",
+ "preconds": "<ol>\n<li>A user has a role with the Reports page access ON and View and Manage AP/AR Data OFF.</li>\n<li>There is some invoice/payment data so the reports have rows.</li>\n</ol>",
+ "steps": "<ol>\n<li>Click Reports in the top navigation.</li>\n<li>Look at the list of reports.</li>\n<li>Find the 6 aging reports: AR Aging Summary, AR Aging Detail, AR Aging Collection, AP Aging Summary, AP Aging Detail, AP Unpaid Invoices.</li>\n<li>Open AR Aging Summary.</li>\n<li>Go back and open each of the other 5 aging reports.</li>\n</ol>",
+ "expected": "<p>The Reports page opens.</p>\n<p>All 6 aging reports are listed even though View and Manage AP/AR Data is off (aging reports follow the Reports page access).</p>\n<p>Each report opens and shows its data with no permission error.</p>\n<p>No aging report is hidden or blocked because AP/AR is off.</p>\n",
+ "custom_atmstatus": 3,
+ "updated_on": 1783942260,
+ "created_by": 3
+}

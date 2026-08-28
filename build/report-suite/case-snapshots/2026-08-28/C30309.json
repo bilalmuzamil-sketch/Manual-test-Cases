@@ -1,0 +1,11 @@
+{
+ "id": 30309,
+ "title": "The subdued grey of the (N) count and (Inactive) tag meets WCAG AA contrast",
+ "refs": "SV-8635 (SBR spec v22 2026-08-17 S18-R11,S18-R12; heading renamed to Labor Delta per SV-9071)",
+ "preconds": "<ol><li>You are on the report with a rep row showing a (N) count and - if arrangeable - an \"(Inactive)\" tag.</li></ol>",
+ "steps": "<ol><li>Read the subdued-grey (N) count and the \"(Inactive)\" tag in light mode, then switch to dark mode and read them again.</li><li>Review how Labor Delta, the status badges, and the links convey their meaning.</li></ol>",
+ "expected": "<p>1. In BOTH light mode and dark mode the subdued-grey (N) count and the \"(Inactive)\" tag are easy to read against the surface behind them - the smaller text does not fade into the background.<br>2. No information is conveyed by color alone: Labor Delta carries its +/- sign, status badges carry their text label, and links carry a hover/focus underline.<br>3. Note for the tester: you do not need to measure anything and you do not need any tool. Just say whether you can read the grey text easily in both modes, and only report it if you cannot. (The design rule behind this is WCAG AA contrast of at least 4.5:1, which the design and engineering team check with a contrast tool - not by hand.)</p><p>---<br>This is the expected behaviour as per epic SV-8582 and the Sales By Representative report specification version 24 (S18-R11, S18-R12), both read on 17 August 2026. The column was renamed from \"Inv. Hrs\" to \"Labor Delta\" per SV-9071; only the name changed.<br>Last checked against build v3.8-bd246fd on 8/18/2026.<br>Re-checked against the live specification on 26 August 2026: the requirements this case cites are unchanged, so only the version cited above was updated.</p><p>AUTOMATION: READY</p>",
+ "custom_atmstatus": 1,
+ "updated_on": 1787754805,
+ "created_by": 3
+}

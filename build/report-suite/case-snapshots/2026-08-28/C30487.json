@@ -1,0 +1,11 @@
+{
+ "id": 30487,
+ "title": "The summary strip shows seven figures in a fixed order as US dollars",
+ "refs": "SV-8661 (WIP Story 5; WIP report design review 2026-08-13 - seven summary figures + grouped math order + US currency; supersedes the v22 figure names)",
+ "preconds": "<p>1. You are signed in to the ShopView App on a desktop browser.<br>2. The Work In Progress report is open with rows loaded..</p>\n",
+ "steps": "<p>1. Read the summary strip across the top of the report, left to right.<br>2. Read each figure's number format.</p>\n",
+ "expected": "<p>1. The strip shows seven figures, grouped as two equations with the Estimates figure apart, in this left-to-right order: Completed Work on Open Work Orders, Work Orders Ready to Invoice, Total Completed Work, Work Orders Not Started, Remaining Work on Open Work Orders, Remaining Work, and Estimates.<br>2. Every figure shows US-dollar currency with a leading \"$\", two decimals, and thousands separators.<br><br>---<br>This is the expected behaviour as per epic SV-8582, the Work In Progress report design review of 13 August 2026 (https://claude.ai/code/artifact/42c35f46-2796-467e-9723-7daa5385446e), and the Work In Progress report specification version 28 (S5-R1; S5-R10), read on 26 August 2026.<br>Last checked against build v3.8-d0e135e on 8/20/2026.<br>The figure names above are the 13 August 2026 design-review names; they replace the earlier specification names (Total Earned, Total Remaining, Not Started, Started - Earned, Started - Remaining, Ready to Invoice), and we have taken the latest design review as prevailing.<br><br>AUTOMATION: READY</p>\n",
+ "custom_atmstatus": 1,
+ "updated_on": 1787747369,
+ "created_by": 3
+}

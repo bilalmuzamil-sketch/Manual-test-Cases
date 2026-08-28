@@ -1,0 +1,11 @@
+{
+ "id": 26584,
+ "title": "Locations page meta routes still work for non-admin users with Locations access",
+ "refs": "SV-7491",
+ "preconds": "Build with CRP-FE-06 deployed. User B: non-admin with genuine Locations page access.",
+ "steps": "1. Log in as User B.\n2. Navigate to the Locations page.\n3. Confirm the page loads.\n4. Confirm the user is NOT routed to admin-only pages anywhere else in the app.",
+ "expected": "Locations page accessible. No admin-area access leakage.",
+ "custom_atmstatus": 3,
+ "updated_on": 1782555092,
+ "created_by": 3
+}

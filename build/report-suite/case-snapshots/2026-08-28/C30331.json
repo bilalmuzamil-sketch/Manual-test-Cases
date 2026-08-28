@@ -1,0 +1,11 @@
+{
+ "id": 30331,
+ "title": "A Custom date range needs valid dates and rejects a span over 366 days",
+ "refs": "SV-8642 (PV spec v10 2026-08-17 S2-R3)",
+ "preconds": "<p>1. You are on the Parts Velocity report with data loaded..</p>",
+ "steps": "<p>1. Open the date range selector and choose Custom.<br>2. Pick only a start date and observe - then pick an end date earlier than the start and observe.<br>3. Pick a valid start and end date (start on or before end, within 366 days).<br>4. Now try a custom span wider than 366 days (for example 400 days).</p>",
+ "expected": "<p>1. A date picker opens requiring both a start and an end date.<br>2. The report does not reload until both dates are valid; a start after the end is not accepted.<br>3. With both valid dates selected, the data reloads for that range.<br>4. A span wider than 366 days (counting both the start and end dates) is rejected - the selection is not applied.<br><br>---<br>This is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Parts Velocity report specification version 11 (S2-R3), read on 17 August 2026.<br>Last checked against build v3.8-d0e135e on 8/19/2026.<br>Re-checked against the live specification on 26 August 2026: the requirements this case cites are unchanged, so only the version cited above was updated.<br><br>AUTOMATION: READY</p>\n",
+ "custom_atmstatus": 1,
+ "updated_on": 1787747769,
+ "created_by": 3
+}

@@ -1,0 +1,11 @@
+{
+ "id": 30219,
+ "title": "A toggled-off or deleted contributor still appears; tagged (Inactive)",
+ "refs": "SV-8623 (SBR spec v22 2026-08-17 Story 5 S5-R9; §3 Key Decisions; §4 Snapshot)",
+ "preconds": "<p>1. Rep A has matching invoices; you then turn rep A's sales-rep toggle OFF (restore afterwards).<br>2. If a rep whose staff record was DELETED but who has invoices in range exists (or can be produced), note it for step 3..</p>",
+ "steps": "<p>1. Refresh the report and find rep A's row.<br>2. Read the name, tag, metrics, and position in the A→Z order; try expanding the row.<br>3. If a deleted-rep contributor exists, read that row's name and sort position.</p>",
+ "expected": "<p>1. Rep A still appears with credit intact; the name is followed by a subdued \"(Inactive)\" tag &mdash; e.g., Mary Smith (Inactive) (12) &mdash; in the same muted grey as the count.<br>2. The tag is display-only: metrics, A&rarr;Z position, and expandability are unchanged; a rep whose toggle is on shows no tag.<br>3. For a deleted staff record, the display name and sort position come from the denormalized rep-name snapshot on the rep's most recent matching invoice (by invoice date, ties by invoice number), so the row still shows a historical name and sorts correctly.<br>4. The grand Totals stay reconciled to the period's invoices &mdash; no revenue silently disappears.<br><br>---<br>This is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Sales By Representative report specification version 24 (S5-R9), read on 17 August 2026.<br>Last checked against build v3.8-b7d80dc on 8/19/2026.<br>Re-checked against the live specification on 26 August 2026: the requirements this case cites are unchanged, so only the version cited above was updated.<br><br>AUTOMATION: READY</p>\n",
+ "custom_atmstatus": 1,
+ "updated_on": 1787747676,
+ "created_by": 3
+}

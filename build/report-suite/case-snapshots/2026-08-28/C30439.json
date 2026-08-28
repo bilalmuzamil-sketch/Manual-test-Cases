@@ -1,0 +1,11 @@
+{
+ "id": 30439,
+ "title": "PDF logo follows the uploaded logo; the spreadsheet never carries one",
+ "refs": "SV-8654 (TU spec v9 2026-08-17 S7-R11; S7-N2; S7-N3 — logo now resolved by the shared resolver: the organization's uploaded logo; else the bundled ShopView default)",
+ "preconds": "<p>1. You can toggle the shop's logo in the shop settings (restore the original state afterwards - shared env)..</p>",
+ "steps": "<p>1. With a shop logo set, download the Summary PDF and the Expanded PDF and look at the top of each.<br>2. Download the CSV and inspect it.<br>3. Remove the shop logo and download both PDFs again.</p>",
+ "expected": "<p>1. With an uploaded logo, BOTH PDF views show that logo at the top of the report.<br>2. The CSV never includes the logo.<br>3. With a logo uploaded, that logo appears. If a logo is set but fails to load, the built-in ShopView logo is used instead. If no logo is uploaded at all, NO logo is printed and the text fills the space.<br>Note for the tester: on this build a report with no uploaded logo still prints the built-in ShopView logo. The product owner has decided it should print no logo at all, so record what you see; the change is with the developers.<br><br>---<br>This is the expected behaviour as per epic SV-8582, read on 17 August 2026, and Chris Ward's decision of 8/5/2026, recorded in his answers in this file: https://docs.google.com/spreadsheets/d/1x8cuYJlFsDHalVZZTh156_ZCq2gcOaGY/edit?usp=sharing&amp;ouid=106388879401921597782&amp;rtpof=true&amp;sd=true, read on 17 August 2026; where the Technician Utilization report specification version 9 (S7-R11, S7-N2, S7-N3), read on 17 August 2026, differs, his decision is the authority.<br>Last checked against build v3.8-d0e135e on 8/19/2026.<br><br>AUTOMATION: READY</p>",
+ "custom_atmstatus": 1,
+ "updated_on": 1787214663,
+ "created_by": 3
+}

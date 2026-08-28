@@ -1,0 +1,11 @@
+{
+ "id": 30116,
+ "title": "Collapsed label reads None, the customer's name, or N selected",
+ "refs": "SV-8616 (SBC spec v20 2026-08-17 Story 18 S18-R5)",
+ "preconds": "1. You are on the Sales By Customer report with at least three customers in the current results.",
+ "steps": "1. Open the Customer filter and use \"Clear all\" to empty the selection; read the collapsed label.\n2. Select exactly one customer; read the collapsed label.\n3. Select a second and third customer; read the collapsed label.\n4. Start typing a search query in the filter field and watch the field text, then clear the query or click away.",
+ "expected": "1. With an empty selection the collapsed label reads \"None.\"\n2. With exactly one customer selected the label shows that customer's name.\n3. With more than one selected the label reads \"N selected\" where N is the number of selected customers (for example \"3 selected\").\n4. While typing, the field shows the query text instead of the summary label; the summary label returns when the query is cleared or the field loses focus.\n\n---\nThis is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Sales By Customer report specification version 20 (S18-R5), read on 17 August 2026.\nLast checked against build v3.8-2bf8d14 on 8/18/2026.\n\nAUTOMATION: READY",
+ "custom_atmstatus": 1,
+ "updated_on": 1787082711,
+ "created_by": 3
+}

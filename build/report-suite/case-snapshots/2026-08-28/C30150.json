@@ -1,0 +1,11 @@
+{
+ "id": 30150,
+ "title": "Margin % is Margin over Subtotal to one decimal; em dash when Subtotal <= 0",
+ "refs": "SV-8605 (SBC spec v20 2026-08-17 Story 7 S7-R11; S7-R12; S7-R13; S7-R14)",
+ "preconds": "<p>1. Rows with a normal positive Subtotal exist, and (if seedable) one row whose Subtotal is zero or below..</p>",
+ "steps": "<p>1. Read Margin % on a customer row, an asset row, and an invoice row; recalculate one by hand (Margin ÷ Subtotal × 100).<br>2. Find (or seed) a row with Subtotal ≤ 0 and read its Margin % cell.<br>3. Look at the Margin % coloring.</p>",
+ "expected": "<p>1. Margin % shows the row's Margin divided by its Subtotal, times 100, to one decimal with a percent sign — for example, 64.7%.<br>2. When the row's Subtotal is zero or below, the Margin % cell shows an em dash (—).<br>3. Margin % is monochrome — no green or red coloring.<br>4. The same calculation and format apply to customer rows, asset rows, and invoice rows.<br><br>---<br>This is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Sales By Customer report specification version 20 (S7-R11, S7-R12, S7-R13, S7-R14), read on 17 August 2026.<br>Last checked against build v3.8-da72171 on 8/19/2026.<br><br>AUTOMATION: READY</p>",
+ "custom_atmstatus": 1,
+ "updated_on": 1787209156,
+ "created_by": 3
+}

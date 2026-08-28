@@ -1,0 +1,11 @@
+{
+ "id": 30141,
+ "title": "An invoice deleted after load shows the not-found state and back returns",
+ "refs": "SV-8607 (SBC spec v20 2026-08-17 Story 9 S9-N1)",
+ "preconds": "<p>1. The report is open with an invoice detail row visible.<br>2. In another tab/session, that invoice is deleted or reversed AFTER the report loaded (do not refresh the report)..</p>",
+ "steps": "<p>1. Back in the report (unrefreshed), click that invoice's number link.<br>2. Read the destination page, then press the browser back button.</p>",
+ "expected": "<p>1. The destination page shows the application's standard \"not found\" state.<br>2. Pressing back returns you to the report.<br><br>---<br>This is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Sales By Customer report specification version 20 (S9-N1), read on 17 August 2026.<br>Last checked against build v3.8-da72171 on 8/19/2026.<br><br>AUTOMATION: HOLD - waiting on the product owner to decide whether the invoice number is a clickable link (it currently shows as plain non-clickable text and the specification is contradictory); this test depends on that decision</p>",
+ "custom_atmstatus": 1,
+ "updated_on": 1787209053,
+ "created_by": 3
+}

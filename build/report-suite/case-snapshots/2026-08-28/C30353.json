@@ -1,0 +1,11 @@
+{
+ "id": 30353,
+ "title": "A re-enabled column returns to its canonical slot, with no reload",
+ "refs": "SV-8644; SV-8643 (PV spec v10 2026-08-17 S4-R4; S4-R5 + Story 3 S3-R10 — canonical column order and immediate re-render; plus the automatic Location column leftmost when shown)",
+ "preconds": "1. You are on the Parts Velocity report with data loaded.",
+ "steps": "1. In the column picker, enable Min, then Units Returned, then Turns/Yr - in that (non-canonical) order.\n2. Watch the table as each toggle is flipped.\n3. Read the resulting header order.",
+ "expected": "1. Each toggle takes effect immediately - the table re-renders without a page reload.\n2. Columns always render in the fixed canonical left-to-right order regardless of the order they were toggled on (with the automatic Location column, when shown, sitting leftmost before Type): Type, Part #, Description, Category, Vendor, Units Sold, Units Returned, Sold (WO), Sold (Parts Sale), Avg Cost, Avg Sell, Revenue, Margin, Margin %, Demand, Last Sale, On Hand, Turns/Yr, Min, Max.\n3. So Units Returned slots in right after Units Sold, Turns/Yr after On Hand, and Min before Max - not appended at the end.\n\n---\nThis is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Parts Velocity report specification version 10 (S4-R4, S4-R5, S3-R10), read on 17 August 2026.\n\nAUTOMATION: Not available on Build to test Yet - Last checked 8/17/2026",
+ "custom_atmstatus": 3,
+ "updated_on": 1787027044,
+ "created_by": 3
+}

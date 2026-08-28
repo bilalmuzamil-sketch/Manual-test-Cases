@@ -1,0 +1,11 @@
+{
+ "id": 30277,
+ "title": "All four downloads respect filters, full result set, and active order",
+ "refs": "SV-8631 (SBR spec v22 2026-08-17 Story 14 S14-R2; S14-R2a; S14-R20 + Story 21 S21-R6 + Story 22 S22-R4 — all four downloads honour the filters; the full result set and the active order; S14-R20 = the \"Locations:\" line in every export)",
+ "preconds": "<ol>\n<li>You are on the report with several reps showing.</li>\n<li>Set a specific date range, Product Type, Invoice Status, and a location selection; turn Show Unassigned on.</li>\n<li>Sort by a financial column (for example, click the Subtotal header).</li>\n<li>Leave at least one rep collapsed (do not expand it).</li>\n</ol>\n",
+ "steps": "<ol>\n<li>Download all four files from the ⋯ menu.</li>\n<li>Compare each file's rows against the on-screen result: which reps appear, which invoices are included, and the row order.</li>\n<li>Check where the Unassigned row sits in each file.</li>\n</ol>\n",
+ "expected": "1. Every file contains only the reps/invoices matching ALL the active filters (date range, product type, invoice status, location, Show Unassigned).\n2. The files reflect the FULL result set for those filters — a collapsed (never-expanded) rep's invoices still appear in the Expanded View files; on-screen expansion state does not matter.\n3. Rep rows appear in the report's currently-active order — the active column sort if one is set, otherwise the A→Z default.\n4. The Unassigned row (Show Unassigned on) is pinned first, ahead of the sorted reps.\n5. Every file (all four downloads, PDF and CSV) carries a \"Locations:\" line naming the location(s) the report was scoped to.\n\n---\nThis is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Sales By Representative report specification version 22 (S14-R2, S14-R2a, S14-R20, S21-R6, S22-R4), read on 17 August 2026.\nLast checked against build v3.8-bd246fd on 8/18/2026.\n\nAUTOMATION: READY",
+ "custom_atmstatus": 3,
+ "updated_on": 1787127617,
+ "created_by": 3
+}

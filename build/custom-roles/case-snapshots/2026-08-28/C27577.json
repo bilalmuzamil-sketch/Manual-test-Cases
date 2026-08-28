@@ -1,0 +1,11 @@
+{
+ "id": 27577,
+ "title": "CR-BRK-022 — Invoicing View only (See Financial ON, no Edit) — action exposure",
+ "refs": "SV-7388",
+ "preconds": "<p>WO V \\u2713 | Invoicing V \\u2713 | See Financial \\u2713 | (no Invoicing Edit) | View Mode: Full (View Mode as specified).</p>",
+ "steps": "<ol>\n<li>Configure a custom role per the Setup in Preconditions; assign to a test user and log in.</li>\n<li>Open the Finance tab; look for create-invoice / take-payment / deposit controls.</li>\n</ol>",
+ "expected": "<p>Can view invoices + the Finance tab (§1h View). Cannot create invoices / process payments / collect deposits / send to terminal (all Edit). Those controls hidden or disabled.</p><hr/><p><strong>Risk / Rationale:</strong> Create/payment actions exposed with Invoicing View only.<br/><strong>Spec Ref:</strong> §1h Invoicing View vs Edit</p>",
+ "custom_atmstatus": 3,
+ "updated_on": 1783321315,
+ "created_by": 1
+}

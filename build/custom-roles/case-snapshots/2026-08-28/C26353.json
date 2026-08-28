@@ -1,0 +1,11 @@
+{
+ "id": 26353,
+ "title": "System roles have no Delete option anywhere",
+ "refs": "SV-7502",
+ "preconds": "<ol>\n<li>You are on the Roles & Permissions list.</li>\n</ol>",
+ "steps": "<ol>\n<li>For each of the 11 system roles, look at the Actions column.</li>\n<li>For the editable system roles that have a three-dot menu (for example Service Manager, Foreman), open the menu.</li>\n<li>Look at the menu options.</li>\n</ol>",
+ "expected": "<p>Administrator, Office User and Time Clock User show only the eye icon (no three-dot menu).</p>\n<p>The other editable system roles show a pencil, an eye and a three-dot menu.</p>\n<p>None of the three-dot menus has a Delete option.</p>\n",
+ "custom_atmstatus": 3,
+ "updated_on": 1783942947,
+ "created_by": 3
+}

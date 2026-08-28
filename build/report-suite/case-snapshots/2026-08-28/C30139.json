@@ -1,0 +1,11 @@
+{
+ "id": 30139,
+ "title": "Browser back from an invoice restores filters; sort and columns; rows shut",
+ "refs": "SV-8607 (SBC spec v20 2026-08-17 Story 9 S9-R3; S9-R4)",
+ "preconds": "<p>1. You are on the report with non-default filters set (for example Last Month + Service only), a non-default sort, and one column hidden.<br>2. You have expanded down to an invoice detail row..</p>",
+ "steps": "<p>1. Watch the browser address bar, then click an invoice number link.<br>2. From the invoice page, press the browser back button.<br>3. Check the report's filters, sort, visible columns, and row expansion.</p>",
+ "expected": "<p>1. Before navigating, the active date range and Product Type are written to the page link.<br>2. Pressing back returns to the report with its filters, sort, and columns restored exactly as set.<br>3. Expanded rows are shown collapsed again — expansion is not restored (this is the specified behavior, not a defect).<br><br>---<br>This is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Sales By Customer report specification version 20 (S9-R3, S9-R4), read on 17 August 2026.<br>Last checked against build v3.8-da72171 on 8/19/2026.<br><br>AUTOMATION: HOLD - waiting on the product owner to decide whether the invoice number is a clickable link (it currently shows as plain non-clickable text and the specification is contradictory); this test depends on that decision</p>",
+ "custom_atmstatus": 1,
+ "updated_on": 1787208951,
+ "created_by": 3
+}

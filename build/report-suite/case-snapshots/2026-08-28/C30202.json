@@ -1,0 +1,11 @@
+{
+ "id": 30202,
+ "title": "A Custom range uses the date-picker and holds a 366-day maximum span",
+ "refs": "SV-8620 (SBR spec v22 2026-08-17 Story 2 S2-R3; S2-R6)",
+ "preconds": "<p>1. You are on the Sales By Representative report..</p>",
+ "steps": "<p>1. Open the date range picker and select a start and end date within 366 days on the calendar shown inside it; apply.<br>2. Open it again and try to select a start-to-end span of more than 366 days (start and end dates inclusive).</p>",
+ "expected": "<p>1. A custom range within the cap applies normally via the date-picker dialog.<br>2. A custom selection whose span exceeds 366 days is not accepted &mdash; the picker holds you to a range of 366 days or fewer.<br><br>---<br>This is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Sales By Representative report specification version 24 (S2-R3, S2-R6), read on 17 August 2026.<br>Last checked against build v3.8-b7d80dc on 8/19/2026.<br>Re-checked against the live specification on 26 August 2026: the requirements this case cites are unchanged, so only the version cited above was updated.<br><br>AUTOMATION: HOLD - needs the calendar driven past a 366-day span, which this harness could not do</p>\n",
+ "custom_atmstatus": 1,
+ "updated_on": 1787747668,
+ "created_by": 3
+}

@@ -1,0 +1,11 @@
+{
+ "id": 30480,
+ "title": "Lines that are not yet approved contribute nothing to any money figure",
+ "refs": "SV-8660 (WIP spec v22 2026-08-18 Story 4 S4-R15 verbatim 'summed across the work order's approved lines' + §2 Relationship to the work order; §4 Terminology Approved line)",
+ "preconds": "<ol>\n<li>You are signed in to the ShopView App on a desktop browser.</li>\n<li>A ZZAUTOTEST open work order exists with known approved lines and known report money values.</li>\n</ol>\n",
+ "steps": "<ol>\n<li>Note the work order's Earned, Remaining, and Total in the report.</li>\n<li>Add a new labor line and a new parts line to the work order WITHOUT approving them (leave them not authorized).</li>\n<li>Reload the Work In Progress report and read the same row's money columns.</li>\n</ol>\n",
+ "expected": "<ol>\n<li>The work order's Labor/Parts Earned, Labor/Parts Remaining, Earned, Remaining, and Total are unchanged.</li>\n<li>Only approved lines (line status authorized or complete) contribute to the report's money — not-yet-approved lines contribute nothing.</li>\n</ol>\n\n<hr />\n\n<p>This is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Work In Progress report specification version 22 (S4-R15), read on 18 August 2026.<br />Last checked against build v3.8-bd246fd on 8/18/2026.</p>\n\n<p>AUTOMATION: READY</p>\n",
+ "custom_atmstatus": 1,
+ "updated_on": 1787093862,
+ "created_by": 3
+}

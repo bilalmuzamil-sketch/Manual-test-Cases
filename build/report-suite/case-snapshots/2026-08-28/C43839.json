@@ -1,0 +1,11 @@
+{
+ "id": 43839,
+ "title": "Long column header labels wrap to two lines instead of being truncated",
+ "refs": "SV-8593 (SBR spec v22 2026-08-17; shell header wrapping per Chris Ward design review 2026-08-17; exact styling to confirm live)",
+ "preconds": "1. You are signed in to the ShopView App on a desktop browser.\n2. A report with several columns and long header labels is open (for example Sales By Representative, which has the most columns).",
+ "steps": "1. Read the column header row.\n2. Find a column whose label is longer than its column is wide (for example a two-word metric heading).\n3. Check whether that label is cut off or shown in full.",
+ "expected": "1. A column header label that is too long for its column width wraps onto a second line and is shown in full.\n2. The label is NOT truncated with an ellipsis (\"...\") and is NOT cut off - the header row grows to two lines tall as needed so every heading is fully readable.\n3. Confirm live against the design/build: confirm live which headings actually wrap on each report and that the two-line header row stays aligned with the data columns beneath it.\n4. Note for the tester: this is the shared reporting-shell header treatment, so it applies on every report.\n\n---\nThis is the expected behaviour as per epic SV-8582, the reporting-shell story SV-8593, and Chris Ward's design-review decisions of 17 August 2026 (the shell header wrapping). The Sales By Representative report specification version 22 does not name this visual treatment, so the exact styling is Loom-sourced and is marked for live confirmation above (read on 17 August 2026).\nLast checked against build v3.8-bd246fd on 8/18/2026.\n\nAUTOMATION: READY",
+ "custom_atmstatus": 1,
+ "updated_on": 1787084994,
+ "created_by": 3
+}

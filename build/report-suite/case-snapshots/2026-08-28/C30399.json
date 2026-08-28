@@ -1,0 +1,11 @@
+{
+ "id": 30399,
+ "title": "Standard no-data message when no time in scope or all technicians cleared",
+ "refs": "SV-8648 (TU spec v9 2026-08-17 S1-N2; S3-N1; S5-N1; S9-N2; §7 — §7 CLOSES the no-data string verbatim (\"Empty bays\" ... \"Get Going!\") as the standard reports no-data label; so the exact string IS the requirement)",
+ "preconds": "1. A date range exists in which no technician clocked any time at the selected location(s), or a selectable location has no clocked time for the range.\n2. For the cleared-filter check: the report can also be loaded with rows showing.",
+ "steps": "1. Select that empty date range (or the empty location) and let the report load.\n2. Read the message in the data area and look for the Summary row.\n3. Separately, with rows loaded, use \"Clear all\" in the Filter by Technician filter and re-read the data area and the Summary row.",
+ "expected": "1. Instead of rows, the data area shows exactly: \"Empty bays, endless possibilities. Get Going!\" (the application's standard reports no-data label).\n2. The Summary row is hidden.\n3. Clearing every technician shows the SAME message and hides the Summary row — this version does not use distinct copy for genuinely-no-data vs a cleared filter.\n\n---\nThis is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Technician Utilization report specification version 9 (S1-N2, S3-N1, S5-N1, S9-N2), read on 17 August 2026.\n\nAUTOMATION: READY",
+ "custom_atmstatus": 3,
+ "updated_on": 1787058876,
+ "created_by": 3
+}

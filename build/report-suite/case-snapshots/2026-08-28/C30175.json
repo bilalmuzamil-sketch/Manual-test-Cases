@@ -1,0 +1,11 @@
+{
+ "id": 30175,
+ "title": "Type-ahead search text, expansion state and scroll position are not saved",
+ "refs": "SV-8604 (SBC spec v20 2026-08-17 Story 6 S6-R3; Story 8 S8-R22)",
+ "preconds": "1. You are on the report with data.",
+ "steps": "1. Type a query in the Customer filter (without changing the selection), expand two customers, and scroll down the table.\n2. Reload the browser page.\n3. Check the Customer filter field, the rows, and the scroll position.",
+ "expected": "1. The type-ahead search text is gone (only the resulting customer selection is saved).\n2. All rows are collapsed — reloading clears all expansion state.\n3. The scroll position is not restored.\n4. This is the specified behavior (expansion is treated as fresh each visit), not a defect.\n\n---\nThis is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Sales By Customer report specification version 20 (S6-R3, S8-R22), read on 17 August 2026.\n\nAUTOMATION: READY",
+ "custom_atmstatus": 3,
+ "updated_on": 1787127577,
+ "created_by": 3
+}

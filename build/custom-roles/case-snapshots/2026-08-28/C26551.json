@@ -1,0 +1,11 @@
+{
+ "id": 26551,
+ "title": "Universal clock in/out works even for a user whose role has (almost) no permissions",
+ "refs": "SV-7516",
+ "preconds": "<ol>\n<li>A user is assigned a custom role that has essentially no permissions.</li>\n</ol>",
+ "steps": "<ol>\n<li>Log in as that user.</li>\n<li>Find the universal clock in/out control.</li>\n<li>Clock in.</li>\n<li>Clock out.</li>\n<li>As an admin, check the entries appear in the user's timesheet.</li>\n</ol>",
+ "expected": "<p>Clock in and clock out both work.</p>\n<p>Even a user with no permissions can track time — universal clock in is not gated by role.</p>\n",
+ "custom_atmstatus": 1,
+ "updated_on": 1784013343,
+ "created_by": 3
+}

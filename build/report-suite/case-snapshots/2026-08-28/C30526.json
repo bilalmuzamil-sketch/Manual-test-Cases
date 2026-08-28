@@ -1,0 +1,11 @@
+{
+ "id": 30526,
+ "title": "Ordinary reports access covers opening and downloading Work In Progress",
+ "refs": "SV-8657 (WIP spec v22 2026-08-18 Story 1 Prerequisites — one reports permission for all six ruled by Chris Ward Q2=A + QA lead 2026-08-03 \"ONE permission FOR NOW\"; the WIP prerequisite now states this outright; so his spec edit is DONE)",
+ "preconds": "1. A test user exists whose role has the ordinary reports access (assign the Tech user a suitable role if needed; restore the original role afterward).\n2. You are signed in as that user on a desktop browser.",
+ "steps": "1. Open the reports navigation and find \"Work In Progress\".\n2. Open the report.\n3. Download the current tab as a CSV.",
+ "expected": "1. The report is listed and opens normally.\n2. The download works with the same permission — the specification allows the one ordinary reports access to cover the report and its downloads, with no new permission for it.\n3. Note for the tester: the specification allows ONE ordinary reports access for all six of these new reports and no per-report permission. If the build demands a separate report permission before this works, mark this Failed and report it — do not change the test.\n\n---\nThis is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Work In Progress report specification version 22 (Story 1 Prerequisites), read on 18 August 2026.\nLast checked against build v3.8-bd246fd on 8/18/2026.\n\nAUTOMATION: READY",
+ "custom_atmstatus": 1,
+ "updated_on": 1787093941,
+ "created_by": 3
+}

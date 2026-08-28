@@ -1,0 +1,11 @@
+{
+ "id": 26343,
+ "title": "Saving an edited role shows 'Role updated successfully.' after a confirmation dialog",
+ "refs": "SV-7501",
+ "preconds": "<ol>\n<li>You are editing an existing custom role.</li>\n</ol>",
+ "steps": "<ol>\n<li>Change one or more permissions.</li>\n<li>Click Save.</li>\n<li>Confirm in the dialog.</li>\n</ol>",
+ "expected": "<p>A confirmation dialog appears listing the added and removed permissions, with a 'don't show this again' option and Cancel/Confirm buttons.</p>\n<p>After confirming, a green success message 'Role updated successfully.' appears and you return to the roles list.</p>\n",
+ "custom_atmstatus": 3,
+ "updated_on": 1783942934,
+ "created_by": 3
+}

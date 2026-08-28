@@ -1,0 +1,11 @@
+{
+ "id": 30123,
+ "title": "Expanding a customer reveals asset rows; chevrons toggle and are independent",
+ "refs": "SV-8606 (SBC spec v20 2026-08-17 Story 8 S8-R1; S8-R2; S8-R5; S8-R5a; S8-R5b; S8-R5c; S8-R15)",
+ "preconds": "1. A customer in the current view has invoices on at least two different vehicles (seed ZZAUTOTEST work orders on two assets if needed).\n2. At least two customers with assets are in the current view.",
+ "steps": "1. Click the chevron control on customer A's summary row and read the rows that appear beneath it.\n2. Expand one of customer A's assets, then expand customer B.\n3. Click customer A's chevron again and check customer B.",
+ "expected": "1. The customer's asset rows appear beneath the summary row — one row per vehicle the customer's invoices were done on.\n2. Each asset row shows a vehicle icon, the asset label, and the asset's invoice count in parentheses.\n3. Each asset row shows the same financial columns as the customer row, rolled up for that asset.\n4. The Date cell is blank on asset rows.\n5. Asset rows are indented one level under the customer.\n6. Each chevron toggles back to collapsed on a second activation.\n7. Collapsing customer A does not affect customer B's expansion; each asset's expansion state is likewise independent.\n\n---\nThis is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Sales By Customer report specification version 20 (S8-R1, S8-R2, S8-R5, S8-R5a, S8-R5b, S8-R5c, S8-R15), read on 17 August 2026.\nLast checked against build v3.8-2bf8d14 on 8/18/2026.\n\nAUTOMATION: READY",
+ "custom_atmstatus": 3,
+ "updated_on": 1787082909,
+ "created_by": 3
+}

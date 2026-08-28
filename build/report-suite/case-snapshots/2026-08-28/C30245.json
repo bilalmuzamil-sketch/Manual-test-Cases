@@ -1,0 +1,11 @@
+{
+ "id": 30245,
+ "title": "Ties keep the A to Z order and an em-dash Margin % sorts as zero",
+ "refs": "SV-8628 (SBR spec v22 2026-08-17 Story 11 S11-R7)",
+ "preconds": "<p>1. Two reps have equal values in a sortable column; if producible, one rep shows \"—\" in Margin % (seed ZZAUTOTEST data)..</p>",
+ "steps": "<p>1. Sort by the column where the two reps tie and read their relative order.<br>2. Sort by Margin % ascending and locate the \"—\" rep.</p>",
+ "expected": "<p>1. Reps with equal values in the sorted column retain the default A&rarr;Z order between them.<br>2. A Margin % cell rendered \"&mdash;\" (undefined) sorts as zero.<br><br>---<br>This is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Sales By Representative report specification version 24 (S11-R7), read on 17 August 2026.<br>Last checked against build v3.8-b7d80dc on 8/19/2026.<br>Re-checked against the live specification on 26 August 2026: the requirements this case cites are unchanged, so only the version cited above was updated.<br><br>AUTOMATION: READY</p>\n",
+ "custom_atmstatus": 1,
+ "updated_on": 1787747686,
+ "created_by": 3
+}

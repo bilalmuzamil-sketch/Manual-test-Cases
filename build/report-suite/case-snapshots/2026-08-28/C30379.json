@@ -1,0 +1,11 @@
+{
+ "id": 30379,
+ "title": "PDF: filename, A3 landscape, title, text truncation, and the shop logo",
+ "refs": "SV-8646 (PV spec v10 2026-08-17 S6-R5; S6-R6 + same-logo-treatment for every report per Chris Ward group message 2026-07-29 (chris-update-2026-07-29/chris-message-2026-07-29.md; NEWEST source; last-update-wins))",
+ "preconds": "<ol><li>You are on the Parts Velocity report with data loaded, including a part with a Description, Category, and Vendor each longer than 18 characters and a long Part #.</li></ol>",
+ "steps": "<ol><li>Download the PDF and check the saved filename.</li><li>Open it and check the page format and title.</li><li>Find the long-text part's row and read Description, Category, Vendor, and Part #.</li></ol>",
+ "expected": "<p>1. The file downloads as velocity-report.pdf.<br>2. The PDF is formatted for A3 landscape and titled Parts Velocity.<br>3. Description, Category, and Vendor are truncated to 18 characters in the PDF.<br>4. Part # is NOT truncated.<br>5. With a logo uploaded, that logo appears. If a logo is set but fails to load, the built-in ShopView logo is used instead. If no logo is uploaded at all, NO logo is printed and the text fills the space. The CSV never includes a logo.<br>Note for the tester: on this build a report with no uploaded logo still prints the built-in ShopView logo. The product owner has decided it should print no logo at all, so record what you see; the change is with the developers.</p><p>---<br>This is the expected behaviour as per epic SV-8582, read on 17 August 2026, and Chris Ward's decision of 8/5/2026, recorded in his answers in this file: https://docs.google.com/spreadsheets/d/1x8cuYJlFsDHalVZZTh156_ZCq2gcOaGY/edit?usp=sharing&amp;ouid=106388879401921597782&amp;rtpof=true&amp;sd=true, read on 17 August 2026; where the Parts Velocity report specification version 11 (S6-R5, S6-R6), read on 17 August 2026, differs, his decision is the authority.<br>Last checked against build v3.8-bd246fd on 8/18/2026.<br>Re-checked against the live specification on 26 August 2026: the requirements this case cites are unchanged, so only the version cited above was updated.</p><p>AUTOMATION: READY</p>",
+ "custom_atmstatus": 1,
+ "updated_on": 1787754876,
+ "created_by": 3
+}

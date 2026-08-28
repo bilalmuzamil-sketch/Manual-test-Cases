@@ -1,0 +1,11 @@
+{
+ "id": 30414,
+ "title": "A pinned Summary row labeled Summary sits at the bottom, stays visible on scroll",
+ "refs": "SV-8650 (TU spec v9 2026-08-17 S3-R1; S3-R2; S3-R6; S3-R7; S8-R5)",
+ "preconds": "1. You are on the Technician Utilization report with enough rows to scroll.",
+ "steps": "1. Look at the bottom of the report.\n2. Scroll the technician rows and watch the Summary row.\n3. Read the Summary row's label and its values' formats.",
+ "expected": "1. A Summary row is pinned to the bottom of the report, labeled \"Summary\".\n2. It stays visible at the bottom while the rows scroll.\n3. It uses the same number formats as the technician rows.\n4. Its values carry NO label prefix such as \"TOTAL:\" or \"AVG:\".\n\n---\nThis is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Technician Utilization report specification version 9 (S3-R1, S3-R2, S3-R6, S3-R7, S8-R5), read on 17 August 2026.\nLast checked against build v3.8-bd246fd on 8/18/2026.\n\nAUTOMATION: READY",
+ "custom_atmstatus": 1,
+ "updated_on": 1787089786,
+ "created_by": 3
+}

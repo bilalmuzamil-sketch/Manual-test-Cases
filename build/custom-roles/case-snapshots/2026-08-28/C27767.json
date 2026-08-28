@@ -1,0 +1,11 @@
+{
+ "id": 27767,
+ "title": "Verify Service Manager can create an invoice on a work order",
+ "refs": "SV-5319",
+ "preconds": "Log in to ShopView as a user assigned the Service Manager role. (this role has Invoicing and Payments: Create and Edit).\nAt least one work order exists.\nThe work order has at least one part line where the part has been RECEIVED and has a part number (parts must be received with a part number before an invoice can be created), and the Review button on the work order has been clicked (an unclicked Review button blocks the Create Invoice button).",
+ "steps": "1. Open the work order and go to the Finance tab.\n2. Click Create Invoice.\n3. Complete the invoice dialog and save.",
+ "expected": "The invoice is created successfully and appears on the Finance tab. The Create Invoice button is enabled (not blocked).",
+ "custom_atmstatus": 1,
+ "updated_on": 1783108595,
+ "created_by": 3
+}

@@ -1,0 +1,11 @@
+{
+ "id": 30583,
+ "title": "Rows are sorted by Total Cost highest first on load and after any reload",
+ "refs": "SV-8676 (IV spec v10 2026-08-17 Story 9 S9-R1; §3 Key Decisions (Total Cost default sort))",
+ "preconds": "1. You are signed in to the ShopView App on a desktop browser that has no saved sort for this report (fresh visit).\n2. In-stock parts with a spread of Total Cost values exist, spanning more than one page.",
+ "steps": "1. Open the Inventory Value report without clicking any header.\n2. Read the Total Cost values from the top row down, across page 1 and page 2.",
+ "expected": "1. The rows are sorted by Total Cost, highest first (descending).\n2. The order holds across pages (page 2 continues below page 1's lowest value) — the server applies the default order over the full set.\n\n---\nThis is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Inventory Value report specification version 10 (S9-R1), read on 17 August 2026.\n\nAUTOMATION: READY",
+ "custom_atmstatus": 3,
+ "updated_on": 1787058383,
+ "created_by": 3
+}

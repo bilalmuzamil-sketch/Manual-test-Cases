@@ -1,0 +1,11 @@
+{
+ "id": 30230,
+ "title": "Labor Delta: +green, -red, 0.0 default; rollups from unrounded deltas",
+ "refs": "SV-8626 (SBR spec v22 2026-08-17 S9-R3,S9-R4,S9-R5,S9-R6,S9-E1,S9-E2; heading renamed to Labor Delta per SV-9071)",
+ "preconds": "<ol>\n<li>Invoices exist under one rep with a positive, a negative, and a break-even labor delta (seed ZZAUTOTEST data).</li>\n<li>If producible, an invoice whose delta is tiny (e.g., +0.04) and one with a small negative delta (e.g., -0.5) also exist.</li>\n</ol>\n",
+ "steps": "<ol>\n<li>Read the three detail rows' Labor Delta values and colors.</li>\n<li>Read the rep summary row's and the Totals row's Labor Delta.</li>\n<li>Recalculate the rollup as the rounded sum of the unrounded per-invoice deltas.</li>\n<li>Read the tiny-delta and small-negative invoices' Labor Delta.</li>\n</ol>\n",
+ "expected": "<ol>\n<li>Positive values show a leading + in green (e.g., +1.5); negative values a leading - in red (e.g., -1.5); zero/break-even shows 0.0 in the default text color.</li>\n<li>The same calculation, label, format, and coloring apply to rep summary rows, invoice detail rows, and the totals row.</li>\n<li>The rep-summary/totals value equals round(sum of unrounded per-invoice deltas).</li>\n<li>A value that rounds to 0.0 (e.g., +0.04) shows 0.0 in the default color — not +0.0 in green; negative values always use an explicit minus and one decimal (e.g., -0.5).</li>\n</ol>\n\n<hr />\n\n<p>This is the expected behaviour as per epic SV-8582 and the Sales By Representative report specification version 22 (S9-R3, S9-R4, S9-R5, S9-R6, S9-E1, S9-E2), both read on 17 August 2026. The column was renamed from \"Inv. Hrs\" to \"Labor Delta\" per SV-9071; only the name changed.<br />Last checked against build v3.8-bd246fd on 8/18/2026.</p>\n\n<p>AUTOMATION: READY</p>\n",
+ "custom_atmstatus": 1,
+ "updated_on": 1787747462,
+ "created_by": 3
+}

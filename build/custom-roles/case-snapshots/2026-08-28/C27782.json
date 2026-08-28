@@ -1,0 +1,11 @@
+{
+ "id": 27782,
+ "title": "Verify Senior Service Advisor can void a transaction",
+ "refs": "SV-5319",
+ "preconds": "Log in to ShopView as a user assigned the Senior Service Advisor role. (this role has Invoicing and Payments: Delete).\nThe work order already has an invoice created on its Finance tab.",
+ "steps": "1. Open the work order's Finance tab and locate a transaction.\n2. Click Void and confirm.",
+ "expected": "The transaction is voided successfully.",
+ "custom_atmstatus": 1,
+ "updated_on": 1783108595,
+ "created_by": 3
+}

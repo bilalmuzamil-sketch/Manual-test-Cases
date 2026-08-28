@@ -1,0 +1,11 @@
+{
+ "id": 27775,
+ "title": "Verify Service Manager can edit mileage, engine hours, license plate, and VIN on a work order line",
+ "refs": "SV-5319",
+ "preconds": "Log in to ShopView as a user assigned the Service Manager role. (these fields are gated by Work Order Lines: Create and Edit per spec v33; this role has it).\nAt least one work order exists that contains labor and part lines with prices entered.",
+ "steps": "1. Open a work order and open a line.\n2. Change Mileage and save.\n3. Change Engine Hours and save.\n4. Change License Plate and save.\n5. Change VIN and save.",
+ "expected": "All four fields are editable and each change saves successfully.",
+ "custom_atmstatus": 1,
+ "updated_on": 1783108595,
+ "created_by": 3
+}

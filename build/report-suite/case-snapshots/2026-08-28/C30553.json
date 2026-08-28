@@ -1,0 +1,11 @@
+{
+ "id": 30553,
+ "title": "Total Cost is bold and pinned far right; it stays put on sideways scroll",
+ "refs": "SV-8670 (IV spec v10 2026-08-17 Story 3 S3-R11; Story 12 S12-R4; §3 Key Decisions)",
+ "preconds": "1. You are signed in to the ShopView App on a desktop browser.\n2. Enough columns are turned on that the table scrolls horizontally.",
+ "steps": "1. Look at the Total Cost column header and its cells.\n2. Scroll the rows sideways and watch the Total Cost column.",
+ "expected": "1. The Total Cost column is pinned to the far right of the row and shown in bold — it is the report's headline column.\n2. The Total Cost column header is bold and pinned, matching its cells.\n3. It stays fixed to the right edge while the other columns scroll underneath.\n\n---\nThis is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Inventory Value report specification version 10 (S3-R11, S12-R4), read on 17 August 2026.\nLast checked against build v3.8-bd246fd on 8/18/2026.\n\nAUTOMATION: READY",
+ "custom_atmstatus": 1,
+ "updated_on": 1787095724,
+ "created_by": 3
+}

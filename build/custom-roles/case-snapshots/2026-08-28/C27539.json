@@ -1,0 +1,11 @@
+{
+ "id": 27539,
+ "title": "CR-PAY-034 — WO + invoice + AP/AR + history",
+ "refs": "SV-7388",
+ "preconds": "<p>Permissions (counted): WO View + Invoicing V + See AP/AR + History Logs. Auto-gate forced ON (not counted): See Fin. View Mode: Full unless noted. All other permissions OFF.</p>",
+ "steps": "<ol><li>Create a custom role with the permissions listed in Preconditions; leave all others OFF.</li><li>Assign the role to a test user and log in.</li><li>Exercise each capability in Expected Result and confirm it succeeds (and that gated pricing is hidden where noted).</li></ol>",
+ "expected": "<p>User CAN: See WOs (full with Finance tab and financial data); view Invoiced and Paid statuses on a WO filter; view WO history logs (audit log); View Story History (right click on the line &gt; Story)</p><hr><p><strong>Risk / Rationale:</strong> Positive capability check — confirms this combination grants exactly the listed actions and nothing gated leaks. See Flag / Note.<br><strong>Spec Ref:</strong> §1a+§1h+§5b+§5c<br><strong>Flag / Note:</strong> \\u26a0 no Invoicing E — bulk payments via AP/AR only (§5b vs §1h)</p>",
+ "custom_atmstatus": 1,
+ "updated_on": 1783361190,
+ "created_by": 1
+}

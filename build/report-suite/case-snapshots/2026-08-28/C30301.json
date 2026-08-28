@@ -1,0 +1,11 @@
+{
+ "id": 30301,
+ "title": "A load failure shows the inline could-not-load message with a Retry",
+ "refs": "SV-8633 (SBR spec v22 2026-08-17 Story 16 S16-R5; §7)",
+ "preconds": "<p>1. You can force a load failure (for example, cut the network and change a filter) — if not forceable, mark Blocked with the reason.<br>2. To force the failure this test needs, use the browser's own developer tools: press F12, open the \"Network\" tab, and switch the throttling dropdown (it normally reads \"No throttling\") to \"Offline\" to cut the connection, or to \"Slow 3G\" to slow it down. There is nothing to install. Set it back to \"No throttling\" when you finish..</p>",
+ "steps": "<p>1. Set several non-default filters.<br>2. Force a load/re-fetch failure and read the data area.<br>3. Restore the network and click \"Retry\".</p>",
+ "expected": "<p>1. The data area shows the inline error message \"Couldn't load the report. Please try again.\" with a \"Retry\" action.<br>2. The filters and toolbar remain interactive, and the failure does NOT clear the filter selections.<br>3. \"Retry\" re-runs the CURRENT request &mdash; the report loads with the same filters still applied.<br><br>---<br>This is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Sales By Representative report specification version 24 (S16-R5), read on 17 August 2026.<br>Last checked against build v3.8-b7d80dc on 8/19/2026.<br>Re-checked against the live specification on 26 August 2026: the requirements this case cites are unchanged, so only the version cited above was updated.<br><br>AUTOMATION: READY</p>\n",
+ "custom_atmstatus": 1,
+ "updated_on": 1787747728,
+ "created_by": 3
+}

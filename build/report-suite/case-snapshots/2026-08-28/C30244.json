@@ -1,0 +1,11 @@
+{
+ "id": 30244,
+ "title": "Sorting reorders rep rows only; Unassigned stays pinned on top",
+ "refs": "SV-8628 (SBR spec v22 2026-08-17 Story 11 S11-R2; Story 22 S22-R4)",
+ "preconds": "<p>1. Show Unassigned is on with a populated Unassigned row; at least one rep is expanded..</p>",
+ "steps": "<p>1. Sort by a financial column.<br>2. Read the Unassigned row's position, the expanded rep's detail rows, and their order.</p>",
+ "expected": "<p>1. Only the rep summary rows reorder.<br>2. Invoice detail rows stay grouped under their parent rep, keeping their own newest-first order.<br>3. The Unassigned row stays pinned to the top regardless of sort.<br><br>---<br>This is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Sales By Representative report specification version 24 (S11-R2, S22-R4), read on 17 August 2026.<br>Last checked against build v3.8-b7d80dc on 8/19/2026.<br>Re-checked against the live specification on 26 August 2026: the requirements this case cites are unchanged, so only the version cited above was updated.<br><br>AUTOMATION: READY</p>\n",
+ "custom_atmstatus": 1,
+ "updated_on": 1787747685,
+ "created_by": 3
+}

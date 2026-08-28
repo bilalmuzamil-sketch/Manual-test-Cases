@@ -1,0 +1,11 @@
+{
+ "id": 30593,
+ "title": "An over-cap set produces no file and shows the too-large-to-export message",
+ "refs": "SV-8677 (IV spec v10 2026-08-17 Story 10 S10-R12; §7 User Feedback Summary)",
+ "preconds": "<p>1. You are signed in to the ShopView App on a desktop browser.<br>2. A filter/location combination exists whose filtered set EXCEEDS the export row cap (seed ZZAUTOTEST parts in bulk if needed, or use the largest available data set)..</p>",
+ "steps": "<p>1. Set the filters so the filtered set exceeds the export row cap.<br>2. Request \"Download (PDF)\" and read what happens.<br>3. Request \"Download (CSV)\" and read what happens.</p>",
+ "expected": "<p>1. Neither the PDF nor the CSV is produced.<br>2. The user sees the message: \"This report is too large to export. Narrow the filters, then try again.\" (a blocking notification; no file).<br>3. After narrowing the filters below the cap, the download works again.<br>4. Note for the tester: on this environment the biggest view you can build is about 9,275 rows, which is under the cap, so you cannot make this message appear here. If the PDF fails with a plain error instead, that is the separate timeout problem - see the Inventory Value export-notification case.<br>What you should see today: the spreadsheet download works and produces a file, but the PDF download of the same view fails with a server error and no file arrives. It depends on how much is in the view, not on which report - filtered down to one or two rows the PDF downloads normally, and on a full unfiltered view of several thousand rows it fails every time. This is a known problem and it is already reported - see https://shopview.atlassian.net/browse/SV-8818<br>- If you see exactly that, mark this test FAILED and do not raise anything new.<br>- If it fails in a DIFFERENT way from what is described above, that is a NEW problem - please report it.<br>- If it PASSES, the fix has shipped: tell the QA lead so the ticket can be closed and this note removed.<br><br>---<br>This is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Inventory Value report specification version 10 (S10-R12), read on 17 August 2026.<br>Last checked against build v3.8-d0e135e on 8/19/2026.<br><br>AUTOMATION: READY - EXPECT FAIL (SV-8818)</p>",
+ "custom_atmstatus": 1,
+ "updated_on": 1787215646,
+ "created_by": 3
+}

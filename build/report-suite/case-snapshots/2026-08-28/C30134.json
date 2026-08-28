@@ -1,0 +1,11 @@
+{
+ "id": 30134,
+ "title": "Asset identified by VIN, falling back to Unit #, then plate",
+ "refs": "SV-8606 (SBC spec v20 2026-08-17 Story 8 S8-R7; S8-R8; S8-R9; S8-R10 - identifier RE-RULED to the VIN chain (VIN -> Unit # -> plate); by Chris Ward 2026-07-29 [newest-wins]; supersedes video P24 serial ruling AND the spec's year/make/model rule)",
+ "preconds": "<p>1. One customer has ZZAUTOTEST assets with invoices in range: (a) one with a VIN recorded, (b) one with no VIN but a Unit # recorded, (c) one with no VIN or Unit # but a plate recorded, (d) one with no VIN, Unit #, or plate (blank the fields as far as the asset form allows).</p>\n",
+ "steps": "<p>1. Expand the customer and read each asset row's label.</p>\n",
+ "expected": "<p>1. Asset (a) is identified by its VIN.<br>2. Asset (b) (no VIN) is identified by its Unit # instead.<br>3. Asset (c) (no VIN or Unit #) is identified by its plate instead.<br>4. For asset (d) (no VIN, Unit #, or plate), the label reads \"Unknown Asset\" when all three are missing.<br>5. Note whether the year/make/model text still appears anywhere in the row - the update says the VIN identifier REPLACES the year/make/model label; confirm the exact rendering in the build.<br><br>---<br>This is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Sales By Customer report specification version 20 (S8-R7, S8-R8, S8-R9, S8-R10), read on 17 August 2026. Chris Ward confirmed this on 8/5/2026 in his answers in this file: https://docs.google.com/spreadsheets/d/1x8cuYJlFsDHalVZZTh156_ZCq2gcOaGY/edit?usp=sharing&amp;ouid=106388879401921597782&amp;rtpof=true&amp;sd=true, read on 17 August 2026<br>Last checked against build v3.8-da72171 on 8/19/2026.<br><br>AUTOMATION: READY</p>\n",
+ "custom_atmstatus": 1,
+ "updated_on": 1787141608,
+ "created_by": 3
+}

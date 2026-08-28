@@ -1,0 +1,11 @@
+{
+ "id": 27824,
+ "title": "Verify global search still returns results for Technician after the empty-results change",
+ "refs": "SV-5319",
+ "preconds": "Log in to ShopView as a user assigned the Technician role.\nCustomers and work orders exist that match the search term.\nContext: a build change makes global search return EMPTY results for the Time Clock role - confirm Technician is not also affected.",
+ "steps": "1. Click the top search bar.\n2. Type the name of an existing customer and press Enter.\n3. Type the number of an existing work order and press Enter.",
+ "expected": "Global search returns the matching customer and work order for Technician (results are NOT empty). Only the Time Clock role should return empty search results.",
+ "custom_atmstatus": 1,
+ "updated_on": 1783108595,
+ "created_by": 3
+}

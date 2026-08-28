@@ -1,0 +1,11 @@
+{
+ "id": 30436,
+ "title": "The CSV is always summary-level, quotes comma-containing values",
+ "refs": "SV-8654 (TU spec v9 2026-08-17 S7-R7; S7-R10; S7-R12)",
+ "preconds": "1. At least one technician's Est. Lost Labor exceeds $1,000 (so a value contains a comma).",
+ "steps": "1. Choose \"Download Summary (CSV)\" and check the filename.\n2. Open the file in a plain-text editor and find the over-$1,000 value.\n3. Check for any day rows in the file.",
+ "expected": "1. The file downloads as \"technician-utilization.csv\" (lower-case as shipped, unlike the Title-Case PDFs).\n2. The CSV shows the technician rows and the Summary row - always this summary-level content; it does NOT vary by the summary/expanded choice (no day rows).\n3. Any value containing a comma (e.g. \"$1,234.50\") is wrapped in double quotes per standard CSV escaping, so the columns parse correctly.\n\n---\nThis is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Technician Utilization report specification version 9 (S7-R7, S7-R10, S7-R12), read on 17 August 2026.\nLast checked against build v3.8-bd246fd on 8/18/2026.\n\nAUTOMATION: READY",
+ "custom_atmstatus": 1,
+ "updated_on": 1787089686,
+ "created_by": 3
+}

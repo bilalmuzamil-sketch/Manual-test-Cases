@@ -1,0 +1,11 @@
+{
+ "id": 27820,
+ "title": "Verify Technician cannot edit work order header fields",
+ "refs": "SV-5319",
+ "preconds": "Log in to ShopView as a user assigned the Technician role. (this role has Work Orders = View only - no Create and Edit).\nAt least one work order exists.",
+ "steps": "1. Open a work order.\n2. Try to change the Lead Technician in the header.\n3. Try to change the Service Advisor.\n4. Try to change the Customer.\n5. Try to change the Asset.",
+ "expected": "All header edits are BLOCKED: the fields are read-only/disabled or attempting a change returns a permission error.",
+ "custom_atmstatus": 1,
+ "updated_on": 1783108595,
+ "created_by": 3
+}

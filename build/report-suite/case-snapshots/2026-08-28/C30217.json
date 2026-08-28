@@ -1,0 +1,11 @@
+{
+ "id": 30217,
+ "title": "A rep row appears only when the rep has a matching non-reversed invoice",
+ "refs": "SV-8623 (SBR spec v22 2026-08-17 Story 5 S5-R1; S5-R4; S5-N1; §3 Key Decisions)",
+ "preconds": "1. Rep A has invoices in the current filtered view; rep B (sales-rep toggle on) has NONE; rep C has only a reversed invoice (seed ZZAUTOTEST data).",
+ "steps": "1. Open the report and read the summary rows.\n2. Look for reps B and C.\n3. Read the count in parentheses after rep A's name.",
+ "expected": "1. Rep A occupies exactly one summary row.\n2. Reps B and C do not appear — there are no blank placeholder rows, and a reversed invoice never satisfies the contributor gate.\n3. The number of contributing invoices shows in parentheses after the rep's name, in a smaller, subdued grey font — e.g., Mary Smith (12) — and is always at least 1.\n4. A staff member with no matching invoice does not appear regardless of toggle state or historical activity.\n\n---\nThis is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Sales By Representative report specification version 22 (S5-R1, S5-R4, S5-N1), read on 17 August 2026.\n\nAUTOMATION: READY",
+ "custom_atmstatus": 3,
+ "updated_on": 1787058688,
+ "created_by": 3
+}

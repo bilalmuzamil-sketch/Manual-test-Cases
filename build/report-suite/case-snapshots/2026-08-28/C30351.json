@@ -1,0 +1,11 @@
+{
+ "id": 30351,
+ "title": "Column picker lists all 20 columns and never offers the internal cost",
+ "refs": "SV-8644 (PV spec v10 2026-08-17 S4-R1; S4-R4; S5-R6)",
+ "preconds": "1. You are on the Parts Velocity report with data loaded.",
+ "steps": "1. Open the column picker from its toolbar button.\n2. Count the columns listed and check each has a toggle.\n3. Look for any on-hand cost / inventory-value entry.",
+ "expected": "1. The picker lists all 20 available columns, each with a toggle: Type, Part #, Description, Category, Vendor, Units Sold, Units Returned, Sold (WO), Sold (Parts Sale), Avg Cost, Avg Sell, Revenue, Margin, Margin %, Demand, Last Sale, On Hand, Turns/Yr, Min, Max.\n2. No on-hand cost column is offered - the report computes one internally but it is never selectable and never displayed.\n\n---\nThis is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Parts Velocity report specification version 10 (S4-R1, S4-R4, S5-R6), read on 17 August 2026.\nLast checked against build v3.8-bd246fd on 8/18/2026.\n\nAUTOMATION: READY",
+ "custom_atmstatus": 3,
+ "updated_on": 1787127454,
+ "created_by": 3
+}

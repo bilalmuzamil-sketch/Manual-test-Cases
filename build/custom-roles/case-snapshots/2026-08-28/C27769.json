@@ -1,0 +1,11 @@
+{
+ "id": 27769,
+ "title": "Verify Service Manager cannot delete a payment",
+ "refs": "SV-5319",
+ "preconds": "Log in to ShopView as a user assigned the Service Manager role. (this role has Invoicing and Payments = View/Create and Edit only - NO Delete).\nThe work order already has an invoice created on its Finance tab.\nA payment has been recorded against the invoice.",
+ "steps": "1. Open the work order's Finance tab and locate the recorded payment.\n2. Look for a Delete option on the payment; if present, click it.",
+ "expected": "Deleting the payment is BLOCKED: the Delete action is hidden or disabled, or clicking it returns a permission error. Record in the test run whether the control is hidden, greyed out, or errors.",
+ "custom_atmstatus": 1,
+ "updated_on": 1783108595,
+ "created_by": 3
+}

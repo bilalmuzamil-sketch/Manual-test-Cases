@@ -1,0 +1,11 @@
+{
+ "id": 30289,
+ "title": "A failed download shows the canonical error toast",
+ "refs": "SV-8631 (SBR spec v22 2026-08-17 Story 14 S14-N1; S14-N2; S14-E1; §7)",
+ "preconds": "<p>1. You are on the report with data showing.<br>2. You can force a download failure (for example, cut the network just after triggering the download) — if not forceable, mark this Blocked with the reason.<br>3. To force the failure this test needs, use the browser's own developer tools: press F12, open the \"Network\" tab, and switch the throttling dropdown (it normally reads \"No throttling\") to \"Offline\" to cut the connection, or to \"Slow 3G\" to slow it down. There is nothing to install. Set it back to \"No throttling\" when you finish..</p>",
+ "steps": "<p>1. Trigger a PDF download and watch the menu action while the file is being generated.<br>2. Force a failure on a download (PDF or CSV) and read the toast.</p>",
+ "expected": "<p>1. While a PDF is generating, the action shows a loading state and is non-interactive until the file is delivered.<br>2. A failed download shows the error toast \"Ooooops! An error occured\" (the typo is as-shipped) &mdash; it persists 120 seconds or until dismissed.<br>3. A genuine failure downloads nothing &mdash; never a malformed file.<br><br>---<br>This is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Sales By Representative report specification version 24 (S14-N1, S14-N2, S14-E1), read on 17 August 2026.<br>Last checked against build v3.8-b7d80dc on 8/19/2026.<br>Re-checked against the live specification on 26 August 2026: the requirements this case cites are unchanged, so only the version cited above was updated.<br><br>AUTOMATION: READY</p>\n",
+ "custom_atmstatus": 1,
+ "updated_on": 1787747715,
+ "created_by": 3
+}

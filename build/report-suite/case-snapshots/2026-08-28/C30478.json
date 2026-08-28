@@ -1,0 +1,11 @@
+{
+ "id": 30478,
+ "title": "Parts Remaining values the not-yet-received quantity at its sell price",
+ "refs": "SV-8660 (WIP spec v22 2026-08-18 Story 4 S4-R18)",
+ "preconds": "<ol>\n<li>You are signed in to the ShopView App on a desktop browser.</li>\n<li>The Parts Remaining column is turned on.</li>\n<li>A ZZAUTOTEST open work order exists with an approved parts line partly received (for example 2 of 4 units received, $50 sell each).</li>\n<li>A second ZZAUTOTEST open work order exists with an approved, not-yet-received parts line for a part that carries a core charge.</li>\n</ol>\n",
+ "steps": "<ol>\n<li>Open the Work In Progress report and find the first work order's row; read Parts Remaining.</li>\n<li>Compare it to the outstanding quantity valued at the sell price (2 outstanding × $50 = $100.00 in the example).</li>\n<li>Find the core-charge work order's row and read its Parts Remaining.</li>\n</ol>\n",
+ "expected": "<ol>\n<li>Parts Remaining equals the sell value of approved-line parts ordered but not yet received (in the example, $100.00).</li>\n<li>For the core-charge part, Parts Remaining values the outstanding quantity at its sell price INCLUDING the core charge.</li>\n</ol>\n\n<hr />\n\n<p>This is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Work In Progress report specification version 22 (S4-R18), read on 18 August 2026.<br />Last checked against build v3.8-bd246fd on 8/18/2026.</p>\n\n<p>AUTOMATION: READY</p>\n",
+ "custom_atmstatus": 1,
+ "updated_on": 1787093860,
+ "created_by": 3
+}

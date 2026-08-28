@@ -1,0 +1,11 @@
+{
+ "id": 27796,
+ "title": "Verify Service Advisor can pick a part on a work order line",
+ "refs": "SV-5319",
+ "preconds": "Log in to ShopView as a user assigned the Service Advisor role. (this role has Pick Parts ON).\nNote: the role may display as 'Junior Service Advisor' in the build (the spec calls it 'Service Advisor').\nAt least one work order exists that contains labor and part lines with prices entered.\nA part is available in inventory to pick. Note: an OVER LIMIT badge on the customer does not block picking parts.",
+ "steps": "1. Open a work order and open a line.\n2. Open the parts actions on the line and click Pick.\n3. Select the part and quantity and confirm.",
+ "expected": "The part is picked onto the line successfully; inventory decrements accordingly.",
+ "custom_atmstatus": 1,
+ "updated_on": 1783108595,
+ "created_by": 3
+}

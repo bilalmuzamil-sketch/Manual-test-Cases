@@ -1,0 +1,11 @@
+{
+ "id": 26553,
+ "title": "AR Aging Summary endpoint returns 403 for users without ROLE_ACCOUNT_RECEIVABLE_REPORT::VIEW",
+ "refs": "SV-7475,SV-7524",
+ "preconds": "<p>Build with CRP-BE-SEC deployed. Two test users: User A on system-tech (no AP/AR access), User B on system-owner (full access).</p>\n",
+ "steps": "<ol>\n<li>Log in as User A. Capture session token / cookie.</li>\n<li>Hit GET on the AR Aging Summary endpoint exposed by AgingSummaryController (see api/src/Reporting/Dashboard/Infrastructure/Controller/AgingSummaryController.php for the routed path).</li>\n<li>Inspect the HTTP response status and body.</li>\n<li>Log in as User B. Hit the same endpoint.</li>\n<li>Inspect status and body.</li>\n</ol>\n",
+ "expected": "<p>Step 3: User A receives HTTP 403 Forbidden with no AR aging data in the body.<br />Step 5: User B receives HTTP 200 with the AR aging data payload. If User A returns 200 with data, the security gap is still live — fail this case and escalate immediately.</p>\n",
+ "custom_atmstatus": 3,
+ "updated_on": 1781869298,
+ "created_by": 3
+}

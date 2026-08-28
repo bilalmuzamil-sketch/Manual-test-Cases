@@ -1,0 +1,11 @@
+{
+ "id": 26530,
+ "title": "QuickBooks settings are hidden when the Integrations sub-toggle is OFF",
+ "refs": "SV-7493",
+ "preconds": "<ol>\n<li>A custom role has Settings ON but the Integrations sub-toggle OFF, with a user assigned.</li>\n</ol>",
+ "steps": "<ol>\n<li>Log in as that user.</li>\n<li>Open the Settings area and look for the Integrations pages.</li>\n<li>Look for QuickBooks.</li>\n<li>Try to open the QuickBooks settings address directly.</li>\n</ol>",
+ "expected": "<p>The Integrations pages (including QuickBooks) are not shown.</p>\n<p>Opening the QuickBooks address directly is refused.</p>\n<p>Build finding: the live build keeps QuickBooks under the Integrations settings (gated by the Integrations sub-toggle) — the 'move QuickBooks to Finance / remove Integrations' premise is not in the build and is stale versus the current spec.</p>\n",
+ "custom_atmstatus": 1,
+ "updated_on": 1783943084,
+ "created_by": 3
+}

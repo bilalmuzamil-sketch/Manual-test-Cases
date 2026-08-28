@@ -1,0 +1,11 @@
+{
+ "id": 30408,
+ "title": "Internal hours split across rated and unrated locations show a part value",
+ "refs": "SV-8649 (TU spec v9 2026-08-17 S2-E4)",
+ "preconds": "<p>1. A technician clocked internal hours at BOTH a location with a configured default labor rate and a location with NO rate, in the range.<br>2. Both locations are selected..</p>",
+ "steps": "<p>1. Read the technician's Internal Hours and Est. Lost Labor.<br>2. Compare the dollar value against rate × (internal hours at the RATED location only).</p>",
+ "expected": "<p>1. Est. Lost Labor is the sum of the valued (rated-location) portions only - the unrated-location hours are excluded from the dollar amount.<br>2. The amount shows as a normal \"$X.XX\" with NO partial-value indicator in this version - so the row's Est. Lost Labor values fewer hours than its Internal Hours column shows.<br>3. This is a documented known limitation (a partial-value indicator is a possible follow-up) - expected behavior, not a defect.<br><br>---<br>This is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Technician Utilization report specification version 9 (S2-E4), read on 17 August 2026.<br>Last checked against build v3.8-d0e135e on 8/19/2026.<br><br>AUTOMATION: HOLD - no location on this environment is set up without a default labor rate, so a part-valued row cannot be produced</p>",
+ "custom_atmstatus": 1,
+ "updated_on": 1787214205,
+ "created_by": 3
+}

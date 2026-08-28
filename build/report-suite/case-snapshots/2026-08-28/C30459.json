@@ -1,0 +1,11 @@
+{
+ "id": 30459,
+ "title": "While loading the standard indicator shows and old rows stay until data",
+ "refs": "SV-8655 (WIP spec v22 2026-08-18 S2-R6; changing the as-of date reloads)",
+ "preconds": "1. You are signed in to the ShopView App on a desktop browser.\n2. The Work In Progress report is open with rows loaded.",
+ "steps": "1. Change the \"as of\" date and watch the data area while the report reloads.\n2. Change the location selection and watch the data area again.",
+ "expected": "1. While the report is loading, the data area shows the standard reports loading indicator.\n2. The existing rows are replaced only when the new data returns (the table does not go blank and stay blank mid-load).\n3. Both a date-range change and a location change reload the report's rows.\n\n---\nThis is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Work In Progress report specification version 22 (S2-R6), read on 18 August 2026.\nLast checked against build v3.8-bd246fd on 8/18/2026.\n\nAUTOMATION: READY",
+ "custom_atmstatus": 1,
+ "updated_on": 1787093959,
+ "created_by": 3
+}

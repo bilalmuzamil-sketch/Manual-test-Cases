@@ -1,0 +1,11 @@
+{
+ "id": 30153,
+ "title": "Invoice subtotals sum to their asset row and asset subtotals to the customer",
+ "refs": "SV-8606 (SBC spec v20 2026-08-17 Story 8 S8-R13)",
+ "preconds": "<p>1. A customer with two or more assets, each with two or more invoices, is in the current view (seed ZZAUTOTEST data)..</p>",
+ "steps": "<p>1. Expand the customer and every asset.<br>2. Sum the invoice-level values by hand for each column and compare with each asset row.<br>3. Sum the asset rows and compare with the customer row.</p>",
+ "expected": "<p>1. An asset's invoice subtotals sum exactly to that asset's row total.<br>2. A customer's asset subtotals sum exactly to the customer's row total.<br>3. This holds for every financial column, not only Subtotal.<br><br>---<br>This is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Sales By Customer report specification version 20 (S8-R13), read on 17 August 2026.<br>Last checked against build v3.8-da72171 on 8/19/2026.<br><br>AUTOMATION: READY</p>",
+ "custom_atmstatus": 1,
+ "updated_on": 1787209207,
+ "created_by": 3
+}

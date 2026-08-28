@@ -1,0 +1,11 @@
+{
+ "id": 30332,
+ "title": "Category and Vendor multi-select filters limit the table to matching parts",
+ "refs": "SV-8642 (PV spec v10 2026-08-17 S2-R4; S2-R5; S2-R10)",
+ "preconds": "<p>1. You are on the Parts Velocity report with data loaded.<br>2. Parts with different categories and different vendors have activity in the range..</p>",
+ "steps": "<p>1. Open the Category filter and select one category; then add a second category.<br>2. Clear the Category filter.<br>3. Open the Vendor filter and select one vendor; then add a second vendor.</p>",
+ "expected": "<p>1. Both filters allow selecting more than one value (multi-select).<br>2. With categories selected, only parts in any of the selected categories are shown.<br>3. With vendors selected, only parts supplied by any of the selected vendors are shown.<br>4. Each change reloads the data from the server.<br><br>---<br>This is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Parts Velocity report specification version 11 (S2-R4, S2-R5, S2-R10), read on 17 August 2026.<br>Last checked against build v3.8-d0e135e on 8/19/2026.<br>Re-checked against the live specification on 26 August 2026: the requirements this case cites are unchanged, so only the version cited above was updated.<br><br>AUTOMATION: READY</p>\n",
+ "custom_atmstatus": 1,
+ "updated_on": 1787747770,
+ "created_by": 3
+}

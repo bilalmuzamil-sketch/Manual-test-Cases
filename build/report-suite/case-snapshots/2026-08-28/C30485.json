@@ -1,0 +1,11 @@
+{
+ "id": 30485,
+ "title": "Columns sort by their underlying values; Asset sorts by the Unit #",
+ "refs": "SV-8660 (WIP spec v22 2026-08-18 Story 4 S4-R27; S4-R9 - Asset sort key RE-RULED to the VIN chain (VIN -> Unit # -> plate) by Chris Ward answer 2026-07-29 [newest-wins]; supersedes video P24 serial ruling AND the spec's 'sorts by unit number' rule)",
+ "preconds": "1. You are signed in to the ShopView App on a desktop browser.\n2. A tab shows several work orders with a spread of money values (including values over $1,000), differing statuses, and differing asset identifiers (VIN, or Unit # / plate where the VIN is missing).",
+ "steps": "1. Sort by a money column (for example Total) and check the order of values like $900.00 vs $1,100.00.\n2. Sort by Days Open and check the order of the day counts.\n3. Sort by Status and check the order against the displayed labels.\n4. Sort by Asset and check the order against the identifiers shown in the Asset cells.\n5. Sort by WO #, Customer, and Advisor and check they order as text.",
+ "expected": "1. Money and numeric columns sort by their underlying numeric value (so $1,100.00 is treated as more than $900.00, not compared as text).\n2. Days Open sorts by its day count.\n3. Status sorts by its displayed label.\n4. The Asset column sorts by the Unit #.\n5. WO #, Customer, Asset, VIN, Location, and Advisor sort as text.\n\n---\nThis is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Work In Progress report specification version 22 (S4-R9, S4-R27), read on 18 August 2026. Chris Ward confirmed it again on 5 August 2026 in his answers in this file: https://docs.google.com/spreadsheets/d/1x8cuYJlFsDHalVZZTh156_ZCq2gcOaGY/edit?usp=sharing&ouid=106388879401921597782&rtpof=true&sd=true, read on 17 August 2026. It differs from an earlier answer he gave us on 29 July 2026, which we now know was given against a question that described this report incorrectly; we follow his latest word, which agrees with the written description.\nLast checked against build v3.8-bd246fd on 8/18/2026.\n\nAUTOMATION: READY",
+ "custom_atmstatus": 1,
+ "updated_on": 1787093892,
+ "created_by": 3
+}

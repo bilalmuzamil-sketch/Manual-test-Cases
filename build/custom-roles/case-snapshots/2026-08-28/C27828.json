@@ -1,0 +1,11 @@
+{
+ "id": 27828,
+ "title": "Verify Technician can edit but cannot delete another user's work order note",
+ "refs": "SV-5319",
+ "preconds": "1. Log in as a user with the Technician role.\n2. The role has Work Orders > View turned ON.\n3. The role has Work Orders > Delete turned OFF.\n4. A work order exists that already has a note written by a DIFFERENT user (e.g., an Admin).",
+ "steps": "1. Open the work order.\n2. Click the Notes tab.\n3. Find the note written by the other user.\n4. Click the note's menu and choose Edit.\n5. Change the text and click Save.\n6. Look for a Delete option on that same note.",
+ "expected": "1. The Edit option is available on the other user's note (Work Orders > View allows editing ANY note for team collaboration).\n2. The edited text saves successfully with no permission error.\n3. There is NO Delete option on the other user's note (deleting another user's note requires Work Orders > Delete, which this role does not have); attempting to delete is blocked.",
+ "custom_atmstatus": 1,
+ "updated_on": 1783273230,
+ "created_by": 3
+}

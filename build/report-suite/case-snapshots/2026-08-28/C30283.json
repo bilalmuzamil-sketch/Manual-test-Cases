@@ -1,0 +1,11 @@
+{
+ "id": 30283,
+ "title": "PDF body font steps down as the longest dollar value grows; no overflow",
+ "refs": "SV-8631 (SBR spec v22 2026-08-17 Story 14 S14-R12; S14-R13)",
+ "preconds": "<p>1. You can produce (or seed) filtered views whose LONGEST formatted positive dollar value — checked across every value in the document, including the totals row — falls in different length brackets (for example, $1,234.56 = 9 characters vs $1,000,000.00 = 13 characters).<br>2. This test reads what is inside a downloaded PDF. Open the file in any PDF viewer and use the viewer's own text search (Ctrl+F) to find the text named below — that is enough. There is nothing to install..</p>",
+ "steps": "<p>1. Download the Summary PDF for a view whose longest positive dollar value is 9 characters or fewer; note the body text size (a relative comparison across files is enough).<br>2. Repeat for views whose longest positive value is 10, 11, and 12-or-more characters (as far as seedable).<br>3. In each file, check whether any value overflows or wraps its column.</p>",
+ "expected": "<p>1. As the longest positive dollar value in the document grows past each length bracket, the PDF body text visibly steps DOWN in size &mdash; the relative step-downs are the pass criterion for this manual test.<br>2. Column widths are fixed for the worst case regardless of tier &mdash; the layout never breaks and no value overflows or wraps its column.<br>3. Both PDF formats adapt the same way.<br><br>---<br>This is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Sales By Representative report specification version 24 (S14-R12, S14-R13), read on 17 August 2026.<br>Last checked against build v3.8-b7d80dc on 8/19/2026.<br>Re-checked against the live specification on 26 August 2026: the requirements this case cites are unchanged, so only the version cited above was updated.<br><br>AUTOMATION: READY</p>\n",
+ "custom_atmstatus": 1,
+ "updated_on": 1787747710,
+ "created_by": 3
+}

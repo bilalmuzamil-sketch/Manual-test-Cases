@@ -1,0 +1,11 @@
+{
+ "id": 26432,
+ "title": "Clock in / clock out is always available, whatever the Timesheets permission",
+ "refs": "SV-7516",
+ "preconds": "<ol>\n<li>A user has a role with both Timesheets boxes off.</li>\n<li>The user is not on the Time Clock User role.</li>\n</ol>",
+ "steps": "<ol>\n<li>Log in as that user.</li>\n<li>Find the clock in / out control.</li>\n<li>Clock in.</li>\n<li>Clock out.</li>\n</ol>",
+ "expected": "<p>The clock in / out control is always available.</p>\n<p>Both actions record an attendance event, regardless of the Timesheets permission.</p>\n",
+ "custom_atmstatus": 3,
+ "updated_on": 1783943079,
+ "created_by": 3
+}

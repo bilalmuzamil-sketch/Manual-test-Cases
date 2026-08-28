@@ -1,0 +1,11 @@
+{
+ "id": 30582,
+ "title": "Defensive restore: a stale saved category or vendor is dropped on load",
+ "refs": "SV-8675 (IV spec v10 2026-08-17 Story 8 S8-R6)",
+ "preconds": "1. You are signed in to the ShopView App on a desktop browser.\n2. The report has saved settings in this browser, including a category or vendor selection that can be made stale (for example, the last in-stock part of a saved category is consumed so the category disappears from the data).",
+ "steps": "1. Make the saved category or vendor no longer present in the data.\n2. Open the Inventory Value report.",
+ "expected": "1. The report loads normally — the saved category or vendor that is no longer present in the data is dropped from the selection instead of breaking the view (the defensive-restore rule applied to the path these steps drive).\n2. All other saved settings are still restored.\n\n---\nThis is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Inventory Value report specification version 10 (S8-R6), read on 17 August 2026.\nLast checked against build v3.8-bd246fd on 8/18/2026.\n\nAUTOMATION: READY",
+ "custom_atmstatus": 1,
+ "updated_on": 1787095681,
+ "created_by": 3
+}

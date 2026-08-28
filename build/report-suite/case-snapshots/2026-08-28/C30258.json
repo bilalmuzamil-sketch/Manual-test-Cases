@@ -1,0 +1,11 @@
+{
+ "id": 30258,
+ "title": "No dialog: toggle off, no assignments, already inactive, or reactivation",
+ "refs": "SV-8630 (SBR spec v22 2026-08-17 Story 13 S13-R2; S13-N2; S13-N3; S13-E3)",
+ "preconds": "<p>1. ZZAUTOTEST staff member X is active WITHOUT the sales-representative toggle; ZZAUTOTEST rep Y (with assignments) is currently inactive; ZZAUTOTEST rep Z is active with the sales-representative toggle ON and NO customers assigned..</p>",
+ "steps": "<p>1. Deactivate X and watch for a dialog.<br>2. Reactivate rep Y via the standard toggle and watch for a dialog; check Y's customer assignments afterwards.<br>3. Deactivate rep Z (sales-representative toggle on, no assignments) and watch for a dialog.</p>",
+ "expected": "<p>1. For a staff member without the sales-representative toggle, the precondition check is skipped and no warning is shown.<br>2. Reactivation never shows the warning dialog (the flow does not apply to an already-inactive member).<br>3. After reactivation the assignments re-surface immediately with no extra action.<br>4. Deactivating a sales representative with NO customer assignments applies silently &mdash; no warning dialog.<br><br>---<br>This is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Sales By Representative report specification version 24 (S13-R2, S13-N2, S13-N3, S13-E3), read on 17 August 2026.<br>Last checked against build v3.8-b7d80dc on 8/19/2026.<br>Re-checked against the live specification on 26 August 2026: the requirements this case cites are unchanged, so only the version cited above was updated.<br><br>AUTOMATION: READY</p>\n",
+ "custom_atmstatus": 1,
+ "updated_on": 1787747693,
+ "created_by": 3
+}

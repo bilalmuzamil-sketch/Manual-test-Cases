@@ -1,0 +1,11 @@
+{
+ "id": 30503,
+ "title": "Location filter: rightmost multi-select with All locations, reloads on change",
+ "refs": "SV-8663 (WIP spec v22 2026-08-18 Story 7 S7-R9; S7-R10 + on-screen location-scope indicator; spec v22 2026-08-18; single-location filter HIDDEN per Chris Ward answer 2026-07-31 Q1=A)",
+ "preconds": "<ol><li>You are signed in to the ShopView App on a desktop browser as a user with access to at least two locations.</li><li>This browser has never saved settings for this report (fresh visit).</li><li>Open work orders exist at two different locations.</li></ol>",
+ "steps": "<ol><li>Open the Work In Progress report and read the Location filter's position and default value.</li><li>Open the Location filter and read its options and its toggle.</li><li>Select a second location and watch the data area.</li><li>Use \"All locations\", then \"Clear all\".</li><li>Then sign in as a user with access to only ONE location, open the report and look for the Location filter again.</li></ol>",
+ "expected": "<p>1. The Location filter is the rightmost toolbar filter, a multi-select listing the locations the signed-in user can access, with an \"All locations\" / \"Clear all\" toggle.<br>2. On a first visit it defaults to the user's currently active location.<br>3. Selecting one, several, or all locations reloads the report scoped to that set (rows from the added location appear).<br>4. For a user with access to only one location the Location filter is NOT shown at all — the report simply shows that one location's work orders.</p><p>---<br>This is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Work In Progress report specification version 28 (S7-R9, S7-R10), read on 18 August 2026. Chris Ward confirmed this on 8/5/2026 in his answers in this file: https://docs.google.com/spreadsheets/d/1x8cuYJlFsDHalVZZTh156_ZCq2gcOaGY/edit?usp=sharing&amp;ouid=106388879401921597782&amp;rtpof=true&amp;sd=true, read on 17 August 2026<br>Last checked against build v3.8-bd246fd on 8/18/2026.<br>Re-checked against the live specification on 26 August 2026: the requirements this case cites are unchanged, so only the version cited above was updated.</p><p>AUTOMATION: READY</p>",
+ "custom_atmstatus": 1,
+ "updated_on": 1787754993,
+ "created_by": 3
+}

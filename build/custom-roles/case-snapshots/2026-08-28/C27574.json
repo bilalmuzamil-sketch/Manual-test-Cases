@@ -1,0 +1,11 @@
+{
+ "id": 27574,
+ "title": "CR-BRK-019 — Reverse part-sales invoice: Part Sales Delete WITHOUT WO Delete — CONTRADICTION",
+ "refs": "SV-7388",
+ "preconds": "<p>Part Sales V/E/D \\u2713 | Parts Dept \\u2713 | See Financial \\u2713 | WO V \\u2713 (no WO Delete) | View Mode: Full (View Mode as specified).</p>",
+ "steps": "<ol>\n<li>Configure a custom role per the Setup in Preconditions; assign to a test user and log in.</li>\n<li>Attempt to reverse a part-sales invoice.</li>\n</ol>",
+ "expected": "<p>CONFLICT — §1e Part Sales Delete says 'reverse part sales invoices,' but Change Log 6/28 moved invoice reversal (incl. part sales) to WO → Delete (OFF here). §1e says allowed; 6/28 says blocked. Needs PM ruling.</p><hr/><p><strong>Risk / Rationale:</strong> Two spec locations conflict on the gate; build could allow or block. Flag which it follows.<br/><strong>Spec Ref:</strong> §1e Part Sales Delete vs Change Log 6/28<br/><strong>Flag / Note:</strong> Spec contradiction</p>",
+ "custom_atmstatus": 1,
+ "updated_on": 1782992507,
+ "created_by": 1
+}

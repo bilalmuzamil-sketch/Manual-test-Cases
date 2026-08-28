@@ -1,0 +1,11 @@
+{
+ "id": 30229,
+ "title": "Labor Delta is hours invoiced minus hours worked; half-up to one decimal",
+ "refs": "SV-8626 (SBR spec v22 2026-08-17 S9-R1; S9-R2; §3; renamed to Labor Delta per SV-9071)",
+ "preconds": "<ol>\n<li>A ZZAUTOTEST work order exists with known billed labor-line hours and known technician clocked (timesheet) hours, invoiced under a rep.</li>\n</ol>\n",
+ "steps": "<ol>\n<li>Read the column heading.</li>\n<li>Expand the rep and read the invoice's Labor Delta value; recalculate by hand.</li>\n</ol>\n",
+ "expected": "<ol>\n<li>The column heading reads \"Labor Delta\".</li>\n<li>The value equals the billed labor hours minus the technician clocked hours, rounded half-up to one decimal.</li>\n</ol>\n\n<hr />\n\n<p>This is the expected behaviour as per epic SV-8582 and the Sales By Representative report specification version 22 (S9-R1; S9-R2; §3), both read on 17 August 2026. The column was renamed from \"Inv. Hrs\" to \"Labor Delta\" per SV-9071; only the name changed.<br />Last checked against build v3.8-bd246fd on 8/18/2026.</p>\n\n<p>AUTOMATION: READY</p>\n",
+ "custom_atmstatus": 1,
+ "updated_on": 1787085050,
+ "created_by": 3
+}

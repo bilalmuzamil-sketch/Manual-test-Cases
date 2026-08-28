@@ -1,0 +1,11 @@
+{
+ "id": 30286,
+ "title": "Expanded CSV: file name, verbatim headers, one row per invoice",
+ "refs": "SV-8631 (SBR spec v22 2026-08-17 S14-R16; renamed to Labor Delta per SV-9071)",
+ "preconds": "<ol><li>You are on the report with at least two reps showing, each with at least one invoice.</li></ol>",
+ "steps": "<ol><li>Choose \"Download Expanded View (CSV)\" from the ⋯ menu and note the saved file's name.</li><li>Open the file in a text editor and read the header row.</li><li>Compare the rows against the on-screen invoices (all reps, expanded).</li></ol>",
+ "expected": "<p>1. The file is named \"sales-by-representative-expanded.csv\" and starts with a UTF-8 BOM.<br>2. With a single location in scope the headers, in order, are: Representative, Date, Invoice #, Customer, Status, Hrs Worked, Hrs Invoiced, Labor Delta, Labor Invoiced, Labor Margin, Parts Invoiced, Parts Margin, Adjustments, Margin, Margin %, Subtotal.<br>3. There is one header row plus one row per invoice, flattened across all reps in the report's currently-active order, for the current filtered view.<br>4. Note for the tester: the heading in this file reads simply \"Representative\". The product owner has confirmed that is correct and not slang, so do not fail the test for it.<br>5. When the Location column is shown on screen the file also carries it immediately after Status — the position it holds on screen — and every row shows that invoice's own exact location, never \"Multiple\".</p><p>---<br>This is the expected behaviour as per epic SV-8582 and the Sales By Representative report specification version 24 (S14-R16), both read on 17 August 2026. The column was renamed from \"Inv. Hrs\" to \"Labor Delta\" per SV-9071; only the name changed. Chris Ward's decision of 5 August 2026, recorded in his answers in this file: https://docs.google.com/spreadsheets/d/1x8cuYJlFsDHalVZZTh156_ZCq2gcOaGY/edit?usp=sharing&amp;ouid=106388879401921597782&amp;rtpof=true&amp;sd=true, governs where the specification differs (read on 11 August 2026).<br>Last checked against build v3.8-bd246fd on 8/18/2026.<br>Re-checked against the live specification on 26 August 2026: the requirements this case cites are unchanged, so only the version cited above was updated.</p><p>AUTOMATION: READY</p>",
+ "custom_atmstatus": 1,
+ "updated_on": 1787754757,
+ "created_by": 3
+}

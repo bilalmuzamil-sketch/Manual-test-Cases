@@ -1,0 +1,11 @@
+{
+ "id": 30535,
+ "title": "One row per in-stock part at the selected locations valued at the resolved date",
+ "refs": "SV-8668 (IV spec v10 2026-08-17 Story 1 S1-R2; S1-R6)",
+ "preconds": "1. You are signed in to the ShopView App on a desktop browser.\n2. Several ZZAUTOTEST parts with positive on-hand quantity exist at your active location.",
+ "steps": "1. Open the Inventory Value report.\n2. Compare the rows shown to the in-stock parts at the selected location(s).\n3. Note the \"as of\" date in the toolbar and which date the values represent.",
+ "expected": "1. The report shows one row for each in-stock part at the selected location(s).\n2. The values are valued as of the resolved date (the current stock when the \"as of\" date is today, or the closest recorded nightly snapshot for an earlier \"as of\" date — see the IV — As-of Date & Snapshots cases).\n\n---\nThis is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Inventory Value report specification version 10 (S1-R2, S1-R6), read on 17 August 2026.\n\nAUTOMATION: Not available on Build to test Yet - Last checked 8/17/2026",
+ "custom_atmstatus": 3,
+ "updated_on": 1787027670,
+ "created_by": 3
+}

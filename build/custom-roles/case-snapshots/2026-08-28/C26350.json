@@ -1,0 +1,11 @@
+{
+ "id": 26350,
+ "title": "A custom role with 0 users can be deleted from the three-dot menu",
+ "refs": "SV-7502",
+ "preconds": "<ol>\n<li>A custom role named 'QA Delete OK' exists and its Users count is 0.</li>\n</ol>",
+ "steps": "<ol>\n<li>Go to Settings > Roles & Permissions.</li>\n<li>Find the 'QA Delete OK' row.</li>\n<li>Click the three-dot menu in the Actions column.</li>\n<li>Click Delete.</li>\n<li>Look at the confirmation dialog.</li>\n<li>Confirm the delete.</li>\n<li>Look at the list and any message.</li>\n</ol>",
+ "expected": "<p>The three-dot menu shows a Delete option.</p>\n<p>A confirmation dialog appears.</p>\n<p>After confirming, the 'QA Delete OK' row is gone from the list.</p>\n",
+ "custom_atmstatus": 3,
+ "updated_on": 1783942943,
+ "created_by": 3
+}

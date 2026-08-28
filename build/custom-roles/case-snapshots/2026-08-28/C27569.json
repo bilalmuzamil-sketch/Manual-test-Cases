@@ -1,0 +1,11 @@
+{
+ "id": 27569,
+ "title": "CR-BRK-014 — Settings sub-setting ON but Settings parent OFF — parent-gate bypass",
+ "refs": "SV-7388",
+ "preconds": "<p>Settings \\u2717 | (App Settings / Finance / Wages set ON underneath) | WO V \\u2713 | View Mode: Full (View Mode as specified).</p>",
+ "steps": "<ol>\n<li>Configure a custom role per the Setup in Preconditions; assign to a test user and log in.</li>\n<li>Confirm Administration nav hidden; attempt direct URL to a settings sub-section.</li>\n</ol>",
+ "expected": "<p>Administration nav hidden; all sub-settings inaccessible (§3 OFF). Sub-settings are hidden in the editor.</p><hr/><p><strong>Risk / Rationale:</strong> A settings sub-section reachable via URL despite the Settings parent being OFF.<br/><strong>Spec Ref:</strong> §3 Settings</p>",
+ "custom_atmstatus": 1,
+ "updated_on": 1783156868,
+ "created_by": 1
+}

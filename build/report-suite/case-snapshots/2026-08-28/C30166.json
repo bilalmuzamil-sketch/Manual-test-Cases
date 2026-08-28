@@ -1,0 +1,11 @@
+{
+ "id": 30166,
+ "title": "PDF page: A4 landscape, uniform margins, ShopView footer and page numbers",
+ "refs": "SV-8613 (SBC spec v20 2026-08-17 Story 15 S15-R5; S15-R6; S15-R7; S15-R8 — A4 landscape; 25px margins; standard font; footer label and page numbers)",
+ "preconds": "1. You have downloaded the PDF for a view with enough rows to span more than one page.",
+ "steps": "1. Open the PDF and check the page setup.\n2. Read the footer on each page.",
+ "expected": "1. The PDF is A4 landscape using the application's standard font; the page margins look uniform on all sides. (The spec's exact 25px margin needs a PDF inspector - check the number only if you have one; otherwise uniform margins pass.)\n2. The footer has a centered \"Software Powered by ShopView\" label and a right-aligned page number \"Page X of Y.\"\n\n---\nThis is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Sales By Customer report specification version 20 (S15-R5, S15-R6, S15-R7, S15-R8), read on 17 August 2026.\nLast checked against build v3.8-2bf8d14 on 8/18/2026.\n\nAUTOMATION: READY",
+ "custom_atmstatus": 1,
+ "updated_on": 1787083108,
+ "created_by": 3
+}

@@ -1,0 +1,11 @@
+{
+ "id": 30362,
+ "title": "Units Returned is windowed by initiation date, ignores invoice status",
+ "refs": "SV-8645 (PV spec v10 2026-08-17 S5-R3)",
+ "preconds": "<p>1. A part sold in a PREVIOUS window whose return is initiated inside the CURRENT window (and the part has current-window activity or stock so its row exists).<br>2. A core-charge return exists for a part in the window.<br>3. The Units Returned column is enabled..</p>",
+ "steps": "<p>1. Select the current window and read the part's Units Returned.<br>2. Select the previous window (when the sale happened) and read Units Returned again.<br>3. Check the part with the core-charge return.</p>",
+ "expected": "<p>1. The return counts in the window of its INITIATION date - so it appears in the current window even though the sale was earlier (a return and its originating sale can fall in different report windows; each uses its own natural event date).<br>2. In the previous window the return does not count (only the sale's own metrics do).<br>3. Core-charge returns are EXCLUDED from Units Returned.<br>4. Units Returned is independent of the work order's current invoice status.<br>5. A part whose ONLY in-window event is a return (no sale, no stock, no revenue) produces no row at all - the rows of this report are built from sales and stock activity, so a return on its own does not create one.<br><br>---<br>This is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Parts Velocity report specification version 11 (S5-R3), read on 17 August 2026.<br>Last checked against build v3.8-d0e135e on 8/19/2026.<br>Re-checked against the live specification on 26 August 2026: the requirements this case cites are unchanged, so only the version cited above was updated.<br><br>AUTOMATION: READY</p>\n",
+ "custom_atmstatus": 1,
+ "updated_on": 1787747805,
+ "created_by": 3
+}

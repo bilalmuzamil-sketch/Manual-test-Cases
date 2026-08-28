@@ -1,0 +1,11 @@
+{
+ "id": 27841,
+ "title": "Verify Parts Technician cannot delete a part",
+ "refs": "SV-5319",
+ "preconds": "Log in to ShopView as a user assigned the Parts Technician role. (this role has NO Catalog: Delete).\nA part exists in the catalog.",
+ "steps": "1. Click Parts and open the Catalog.\n2. Open a part and look for a Delete option; if present, click it.",
+ "expected": "Deleting the part is BLOCKED: the Delete action is hidden/disabled or returns a permission error.",
+ "custom_atmstatus": 1,
+ "updated_on": 1783108595,
+ "created_by": 3
+}

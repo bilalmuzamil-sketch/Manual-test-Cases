@@ -1,0 +1,11 @@
+{
+ "id": 30128,
+ "title": "Header-row chevron expands or collapses every customer on the current page",
+ "refs": "SV-8606 (SBC spec v20 2026-08-17 Story 8 S8-R16; S8-R17; S8-R18; S8-R19)",
+ "preconds": "<p>1. Several customers are visible on the current page..</p>",
+ "steps": "<p>1. Hover the chevron in the table header row and read the tooltip.<br>2. Click it and watch the customer rows.<br>3. Hover it again and read the tooltip, then click it again.</p>",
+ "expected": "<p>1. With at least one visible customer collapsed, the header chevron shows the \"expand\" icon and its tooltip reads \"Expand all.\"<br>2. Clicking it expands every customer on the current page in one action — it acts on the currently visible customers only, not the whole result set.<br>3. With all visible customers expanded, the icon switches to \"collapse\" and the tooltip reads \"Collapse all\"; clicking collapses them all.<br><br>---<br>This is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Sales By Customer report specification version 20 (S8-R16, S8-R17, S8-R18, S8-R19), read on 17 August 2026.<br>Last checked against build v3.8-da72171 on 8/19/2026.<br><br>AUTOMATION: READY</p>",
+ "custom_atmstatus": 1,
+ "updated_on": 1787208710,
+ "created_by": 3
+}

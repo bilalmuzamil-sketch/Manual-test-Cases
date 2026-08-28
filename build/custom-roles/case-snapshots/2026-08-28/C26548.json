@@ -1,0 +1,11 @@
+{
+ "id": 26548,
+ "title": "View off with Create & Edit on is prevented by the tick-cascade",
+ "refs": "SV-7500",
+ "preconds": "<ol>\n<li>You are editing a custom role with the Schedule card visible.</li>\n</ol>",
+ "steps": "<ol>\n<li>Tick Create & Edit on the Schedule card.</li>\n<li>See whether View ticks.</li>\n<li>Try to untick View while Create & Edit is still ticked.</li>\n</ol>",
+ "expected": "<p>Ticking Create & Edit also ticks View.</p>\n<p>Unticking View also unticks Create & Edit and Delete.</p>\n<p>View off with Create & Edit on cannot be saved.</p>\n",
+ "custom_atmstatus": 3,
+ "updated_on": 1783943846,
+ "created_by": 3
+}

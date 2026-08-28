@@ -1,0 +1,11 @@
+{
+ "id": 30254,
+ "title": "Type-YES gate: auto-focus; case-insensitive match; Enter submits",
+ "refs": "SV-8630 (SBR spec v22 2026-08-17 Story 13 S13-R6; S13-R7)",
+ "preconds": "<p>1. The Deactivate dialog is open for a rep with assignments..</p>",
+ "steps": "<p>1. Read the instruction text and check which element holds focus.<br>2. Hover the disabled \"Deactivate\" button and read the tooltip.<br>3. Type \"no\" — check the button; clear and type \"&nbsp;&nbsp;yes&nbsp;&nbsp;\" (with spaces), then \"Yes\", then \"YES\" — check the button each time.<br>4. With a valid entry, press Enter.</p>",
+ "expected": "<p>1. Below the reassurance copy, instruction text reads \"Type YES to confirm\" (with \"YES\" emphasized) above a single auto-focused text input.<br>2. The primary \"Deactivate\" button is disabled until the input matches the confirmation word case-insensitively, ignoring leading/trailing whitespace &mdash; yes, YES, Yes (and padded variants) all enable it; \"no\" does not.<br>3. While disabled, hovering it shows the tooltip \"Type YES above to enable.\"<br>4. Pressing Enter while valid submits.<br><br>---<br>This is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Sales By Representative report specification version 24 (S13-R6, S13-R7), read on 17 August 2026.<br>Last checked against build v3.8-b7d80dc on 8/19/2026.<br>Re-checked against the live specification on 26 August 2026: the requirements this case cites are unchanged, so only the version cited above was updated.<br><br>AUTOMATION: READY</p>\n",
+ "custom_atmstatus": 1,
+ "updated_on": 1787747691,
+ "created_by": 3
+}

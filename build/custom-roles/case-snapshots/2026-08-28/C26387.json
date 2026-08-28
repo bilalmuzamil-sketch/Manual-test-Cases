@@ -1,0 +1,11 @@
+{
+ "id": 26387,
+ "title": "The 'Add Customer' button in the New Work Order flow when Customers Create & Edit is OFF",
+ "refs": "SV-7506,SV-7511",
+ "preconds": "<ol>\n<li>A user has a role with Work orders Create & Edit ON, Customers View ON and Customers Create & Edit OFF.</li>\n</ol>",
+ "steps": "<ol>\n<li>Log in and click New Work Order.</li>\n<li>Go to the customer selection step.</li>\n<li>Look for an Add Customer button in the customer picker.</li>\n</ol>",
+ "expected": "<p>The Add Customer button IS shown in the customer picker, and creating a new customer from the New Work Order flow works.</p>\n<p>Adding a customer here is part of creating a work order, so it is available to anyone who can create a work order (Work Orders: Create &amp; Edit). It does NOT require Customers: Create &amp; Edit — it works even if Customers: View is OFF. The Customers permission only controls the Customers area in the top navigation.</p>",
+ "custom_atmstatus": 3,
+ "updated_on": 1784577442,
+ "created_by": 3
+}

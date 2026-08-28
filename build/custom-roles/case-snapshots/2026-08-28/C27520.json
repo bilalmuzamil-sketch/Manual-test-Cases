@@ -1,0 +1,11 @@
+{
+ "id": 27520,
+ "title": "CR-PAY-015 — Reverse-invoice operator",
+ "refs": "SV-7388",
+ "preconds": "<p>Permissions (counted): Work Orders V+E+D. View Mode: Full unless noted. All other permissions OFF.</p>",
+ "steps": "<ol><li>Create a custom role with the permissions listed in Preconditions; leave all others OFF.</li><li>Assign the role to a test user and log in.</li><li>Exercise each capability in Expected Result and confirm it succeeds (and that gated pricing is hidden where noted).</li></ol>",
+ "expected": "<p>User CAN: See WOs; create/edit WOs; delete WOs.</p><hr><p><strong>Risk / Rationale:</strong> Positive capability check — confirms this combination grants exactly the listed actions and nothing gated leaks. See Flag / Note.<br><strong>Spec Ref:</strong> §1a<br><strong>Flag / Note:</strong> \\u26a0 reverse = WO Delete (6/28); not enough to delete payments</p>",
+ "custom_atmstatus": 1,
+ "updated_on": 1783360269,
+ "created_by": 1
+}

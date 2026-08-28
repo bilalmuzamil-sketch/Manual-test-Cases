@@ -1,0 +1,11 @@
+{
+ "id": 27772,
+ "title": "Verify Service Manager only sees App Settings and Wages in Settings",
+ "refs": "SV-5319,SV-7781",
+ "preconds": "Log in to ShopView as a user assigned the Service Manager role. (this role's Settings sub-toggles allow only App Settings and Wages).\nNote: Departments grouping is under review (SV-7781).",
+ "steps": "1. Click the Settings (cog) icon.\n2. Note which sub-sections are listed.\n3. Open App Settings.\n4. Open Wages.\n5. Look for Service, Parts, Finance, and Data Import sub-sections.",
+ "expected": "Step 1: Settings opens.\nStep 2: Only App Settings and Wages are available.\nStep 3: App Settings opens successfully.\nStep 4: Wages opens successfully.\nStep 5: Service, Parts, Finance, and Data Import do NOT appear (or do not open).",
+ "custom_atmstatus": 1,
+ "updated_on": 1783108595,
+ "created_by": 3
+}

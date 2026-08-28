@@ -1,0 +1,11 @@
+{
+ "id": 27850,
+ "title": "Verify the Send to Portal button is not available for Office",
+ "refs": "SV-5319",
+ "preconds": "Log in to ShopView as a user assigned the Office role. (Office has Full View but cannot approve a work order line - Review WOs is OFF and Work Order Lines is View only - so Send to Portal must not be available).\nAt least one work order exists.",
+ "steps": "1. Open a work order.\n2. Look for the Send to Portal button.",
+ "expected": "The Send to Portal button is NOT available for the Office role.",
+ "custom_atmstatus": 1,
+ "updated_on": 1783108595,
+ "created_by": 3
+}

@@ -1,0 +1,11 @@
+{
+ "id": 30538,
+ "title": "The report is server-paginated: one page of rows at a time",
+ "refs": "SV-8668 (IV spec v10 2026-08-17 Story 1 S1-R8; §2 Scale and data model)",
+ "preconds": "<ol>\n<li>You are signed in to the ShopView App on a desktop browser.</li>\n<li>The selected location(s) hold more in-stock parts than fit on one page (seed ZZAUTOTEST parts if needed).</li>\n</ol>\n",
+ "steps": "<ol>\n<li>Open the Inventory Value report and scroll to the bottom of the rows, then keep scrolling so further rows load.</li>\n<li>Watch that new rows keep arriving as you scroll rather than all of them being present at once.</li>\n<li>After scrolling well down the list, change a server-side filter (for example select a Category), then look at where the list starts.</li>\n<li>Repeat with a part search and with a sort change.</li>\n</ol>\n",
+ "expected": "<ol>\n<li>The server returns one page of rows at a time rather than the whole list at once; further rows keep arriving as you scroll to the bottom.</li>\n<li>Changing any server-side filter (Date, Location, Category, Vendor), the part search, or the sort returns the FIRST page of the new result set - the list jumps back to the top.</li>\n<li>Note for the tester: on the build tested there were no numbered page controls on the screen - the rows loaded as you scrolled. That is a difference from the specification, which asks for the reports suite's standard page controls. Record what you see and carry on.</li>\n</ol>\n\n<hr />\n\n<p>This is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Inventory Value report specification version 10 (S1-R8), read on 17 August 2026.<br />Last checked against build v3.8-bd246fd on 8/18/2026.</p>\n\n<p>AUTOMATION: READY</p>\n",
+ "custom_atmstatus": 1,
+ "updated_on": 1787095695,
+ "created_by": 3
+}

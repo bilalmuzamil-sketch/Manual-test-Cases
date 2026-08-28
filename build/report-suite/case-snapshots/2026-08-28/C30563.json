@@ -1,0 +1,11 @@
+{
+ "id": 30563,
+ "title": "The \"as of\" date today, with today not yet recorded, values live stock",
+ "refs": "SV-8672 (IV spec v10 2026-08-17 Story 5 S5-R3; §3 Key Decisions (live fallback for today))",
+ "preconds": "1. You are signed in to the ShopView App on a desktop browser.\n2. Today's nightly snapshot has not yet been recorded (the normal daytime state).\n3. A ZZAUTOTEST part's on-hand quantity was changed TODAY (after last night's capture).",
+ "steps": "1. Set the \"as of\" date to today.\n2. Find the part whose quantity changed today and read its row.",
+ "expected": "1. The report values the current live stock — the values represent today.\n2. The part's row reflects today's changed quantity (not yesterday's snapshot), proving the live fallback is in use.\nNote for the tester: an earlier version of this report offered a date range with ready-made periods. The current Inventory Value report specification (version 10, S5-R1/S5-R7) replaces that with a single \"as of\" date control - one calendar day, defaulting to today and capped at today - because a stock valuation is a point-in-time position, not an amount over a period. Follow the current specification.\n\n---\nThis is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Inventory Value report specification version 10 (S5-R3), read on 17 August 2026.\n\nAUTOMATION: Not available on Build to test Yet - Last checked 8/17/2026",
+ "custom_atmstatus": 3,
+ "updated_on": 1787027754,
+ "created_by": 3
+}

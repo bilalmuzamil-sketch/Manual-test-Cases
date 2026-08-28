@@ -1,0 +1,11 @@
+{
+ "id": 27863,
+ "title": "Verify Time Clock navigation shows only Work Orders and Schedule as view-only",
+ "refs": "SV-5319",
+ "preconds": "Log in to ShopView as a user assigned the Time Clock role. (per spec v39 amendment: Time Clock has Work Orders = View and Schedule = View; everything else is Off).",
+ "steps": "1. Look at the main navigation and note every visible entry.\n2. Open Work Orders (if visible) and confirm it is view-only.\n3. Open Schedule (if visible) and confirm it is view-only.\n4. Look for Customers, Parts, Reports, and Settings.",
+ "expected": "Step 1: Only Work Orders and Schedule appear (per spec v39).\nStep 2: Work Orders opens in view-only mode - no create/edit/delete actions available.\nStep 3: Schedule opens in view-only mode.\nStep 4: Customers, Parts, Reports, and Settings are all hidden.",
+ "custom_atmstatus": 1,
+ "updated_on": 1783108595,
+ "created_by": 3
+}

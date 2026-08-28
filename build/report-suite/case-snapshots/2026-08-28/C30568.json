@@ -1,0 +1,11 @@
+{
+ "id": 30568,
+ "title": "History accrues forward only; a pre-first-recording date is not shown",
+ "refs": "SV-8672 (IV spec v10 2026-08-17 Story 5 S5-E1; §2 Known Limitations (v1); §2 Out of scope)",
+ "preconds": "1. You are signed in to the ShopView App on a desktop browser.\n2. The date nightly recording began at this organization is known.",
+ "steps": "1. Select a range ending before the first nightly recording.\n2. Read what the report shows.",
+ "expected": "1. The report shows the empty state — there is no way to reconstruct inventory value for a date before recording began, because there is no historical backfill.\n2. This forward-capture-only behavior is the documented v1 boundary, not a defect.\n\n---\nThis is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Inventory Value report specification version 10 (S5-E1), read on 17 August 2026.\nLast checked against build v3.8-bd246fd on 8/18/2026.\n\nAUTOMATION: READY",
+ "custom_atmstatus": 1,
+ "updated_on": 1787095733,
+ "created_by": 3
+}

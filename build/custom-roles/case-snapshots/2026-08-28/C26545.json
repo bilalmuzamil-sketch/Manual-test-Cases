@@ -1,0 +1,11 @@
+{
+ "id": 26545,
+ "title": "A Page Access toggle that is off overrides the add/edit/delete boxes inside it",
+ "refs": "SV-7517",
+ "preconds": "<ol>\n<li>A custom role has the Reports Page Access toggle off.</li>\n<li>A user is assigned that role.</li>\n</ol>",
+ "steps": "<ol>\n<li>Log in as that user.</li>\n<li>Look at the top navigation for Reports.</li>\n<li>Try to open the Reports address directly.</li>\n</ol>",
+ "expected": "<p>Reports is hidden and opening its address is refused.</p>\n<p>The Page Access toggle is checked first — if it is off there is no entry, whatever the boxes inside.</p>\n",
+ "custom_atmstatus": 3,
+ "updated_on": 1783943845,
+ "created_by": 3
+}

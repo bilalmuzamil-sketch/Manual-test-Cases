@@ -1,0 +1,11 @@
+{
+ "id": 27818,
+ "title": "Verify Technician cannot edit an existing work order line",
+ "refs": "SV-5319",
+ "preconds": "Log in to ShopView as a user assigned the Technician role. (Tech View users can only create new lines, not edit existing ones).\nAt least one work order exists that contains labor and part lines with prices entered.",
+ "steps": "1. Open the work order and open an existing line.\n2. Try to edit any field on the line.",
+ "expected": "The existing line is read-only: edits are blocked or the fields are not editable.",
+ "custom_atmstatus": 1,
+ "updated_on": 1783108595,
+ "created_by": 3
+}

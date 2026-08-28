@@ -180,9 +180,122 @@ to learn nothing.
 
 ```sh
 # read-only: get_cases over 100% of the project's cases, committed to git
-python3 build/testing-tools/tr_client.py            # or the project's own sync script
-git add -- build/<project>/cases/ && git commit -m "snapshot: <project> case bodies"
+python3 build/testing-tools/snapshot_case_bodies.py --project <slug> --group <section-id>
+git add -- build/<slug>/case-snapshots/ && git commit -m "snapshot: <slug> case bodies <date>"
 ```
+
+### 6.1 · THE TOOL — `build/testing-tools/snapshot_case_bodies.py` (added 2026-08-28)
+
+**Read-only. GET only. No authorisation needed — it is a read** (not gated by Rule 6, not gated by
+the Rule-62 creation hold).
+
+It writes **one JSON per case** — `id`, `title`, `refs`, `preconds`, `steps`, `expected`,
+`custom_atmstatus`, `updated_on`, `created_by`, always in that order — to
+
+```
+build/<project-slug>/case-snapshots/<YYYY-MM-DD>/C<id>.json
+```
+
+plus a `MANIFEST.json` (counts, section ids, the case-id list). **One file per case is deliberate:**
+`git diff` then shows which cases moved and which fields inside them, instead of one unreadable blob.
+Key order is fixed and non-ASCII is kept literal, so **a re-run over unchanged data produces no diff
+at all** — any diff you see is a real change.
+
+```sh
+python3 build/testing-tools/snapshot_case_bodies.py --selftest     # 18 offline checks, no network
+python3 build/testing-tools/snapshot_case_bodies.py --help
+python3 build/testing-tools/snapshot_case_bodies.py --project report-suite --group 4281 --dry-run
+```
+
+**It captures FOREIGN cases too, by default** (`--mine-only` opts out) — foreign edits are the whole
+point of Rule 87, and a snapshot of only our own cases cannot evidence one.
+
+**⚠️ It pages, and you must not "simplify" that away.** `get_cases` and `get_sections` are paged at
+250 and an **unpaged call silently under-returns** — no error, just a short answer. The estate is
+**684 sections / 4,580 cases**; an unpaged `get_sections` sees 250 sections and then finds zero cases
+in every section it never looked at.
+
+**Baselines that exist (first ones taken 2026-08-28):**
+
+| Project | Group | Cases captured | Path |
+|---|---|---|---|
+| Custom Roles & Permissions | `3527` | **714** (515 ours, **199 foreign**) | `build/custom-roles/case-snapshots/2026-08-28/` |
+| Report Suite | `4281` | **525** (509 ours, **16 foreign**) | `build/report-suite/case-snapshots/2026-08-28/` |
+
+### 6.2 · WHEN TO SNAPSHOT
+
+1. **BEFORE any authorised bulk write** — before the first `update_case` of the pass, never after it
+   has started. A snapshot taken mid-pass proves nothing about what you overwrote.
+2. **AFTER the same pass completes** — the before/after pair is what makes your OWN pass auditable,
+   and it re-baselines the project so the next foreign edit is diffable.
+3. **PERIODICALLY on every active project**, independent of any write — at minimum whenever a project
+   becomes active, and again at the end of a working week. A stale baseline is a blind window.
+4. **BEFORE handing a suite to the manual test team or to the automation engineer**, so a later
+   "this case changed" question has an answer.
+5. **The moment you SUSPECT a foreign edit** — snapshot first, investigate second. Investigating
+   first risks one of our own passes overwriting the evidence.
+
+### 6.3 · HOW TO DIFF A FOREIGN EDIT
+
+```sh
+# what changed between two snapshot dates, per case and per field
+git diff <commit-A>..<commit-B> -- build/<slug>/case-snapshots/
+diff -ru build/<slug>/case-snapshots/2026-08-28 build/<slug>/case-snapshots/2026-09-04
+
+# one case only
+git log -p --follow -- build/<slug>/case-snapshots/*/C27792.json
+```
+
+Read it in this order:
+
+1. **`created_by`** — is the case ours (`3`) at all? If not, it is **hands-off (Rule 38): report,
+   never edit**, and the diff is evidence for the report, not a licence to fix it.
+2. **`updated_on`** — pin *when*. Then `get_history_for_case/<id>` gives *who*, which the snapshot
+   deliberately does not guess at.
+3. **`custom_atmstatus`** — if it is `3`, the case is **Automated: Rules 65/71**. Tell Vlad, and do
+   not change it back without his go-ahead.
+4. **`expected` / `steps` / `preconds`** — the substance. Rule 44: **a contradicting change is a bug
+   report against our suite until disproven**, so establish both sides' sources (Rule 39) before
+   deciding who is right.
+5. **`refs` / `title`** — cheapest to check, and a changed `refs` often explains the rest.
+
+**The honest limit, stated rather than glossed:** a snapshot tells you **what** the body was on a
+date. It does **not** tell you **who** changed it or **why**. `get_history_for_case` supplies the
+who; the why is a conversation.
+
+### 6.4 · A CORRECTION TO THIS SECTION'S OWN PREMISE — measured 2026-08-28
+
+§6's long-standing rationale said *"TestRail keeps only the LAST writer. There is no per-field
+history."* **That is measurably wrong on this instance, and the correction matters more than the
+convenience of leaving it.** `get_history_for_case/<id>` returns **per-change, per-field entries with
+`old_value` and `new_value`** — including the **full previous text** of `custom_expected`,
+`custom_steps`, `custom_preconds`, `title` and `refs`, not a truncation. Verified 2026-08-28 on
+C30518 (5 entries back to 2026-07-30, each carrying whole field bodies).
+
+**Applied to the case the register cites:** Vladimir's 2026-08-27 edits to **C27792** and **C27805**
+are **NOT undiffable**. Read live 2026-08-28, each case has **exactly one** history entry:
+
+> `2026-08-27 21:28 UTC · user 1 (Vladimir Tomovic) · custom_atmstatus: 1 "Not Automated" → 4 "Pending"`
+
+**Nothing else on either case was touched** — not the title, not the steps, not the expectation. Both
+are still `created_by = 3` (ours). This is the same "Pending" move he made on 20 Schedule cases on
+2026-08-17 (see the appendix in `build/fabian-review-2026-08-17-CONSOLIDATED/AUTOMATED-CASES-REGISTER.md`):
+`4` is **not** `3`, so **Rules 65/71 are not triggered** — but it signals he has queued them for
+automation, so **preserve the value and never send that field**.
+
+**So why snapshot at all?** Because history does not cover everything, and four things make the
+snapshot worth its cost:
+
+1. **A DELETED case has no history to fetch** — the snapshot is then the only surviving record.
+2. **`get_history_for_case` is one API call PER CASE.** Diffing a 714-case group through it is ~714
+   calls; the snapshot diffs the same group offline, for free, with `git diff`.
+3. **It is committed, timestamped, third-party-verifiable evidence** — Rule 86 says verify from
+   committed evidence, not from a session's self-report, and that includes TestRail's own report.
+4. **It captures the estate's SHAPE** — which cases existed in a group on a date. History cannot tell
+   you a case has appeared or vanished.
+
+**Do both.** Snapshot for the bulk diff and the durable record; use `get_history_for_case` on the
+specific cases the diff flags, to get the who and the when.
 
 **Why:** **TestRail keeps only the LAST writer.** There is no per-field history, so the
 moment one of our own passes writes a case, any trace of an earlier foreign edit is

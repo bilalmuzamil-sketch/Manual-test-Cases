@@ -1,0 +1,11 @@
+{
+ "id": 30281,
+ "title": "PDF footer on every page, default-logo fallback, and deterministic PDF filenames",
+ "refs": "SV-8631 (SBR spec v22 2026-08-17 Story 14 S14-R3a; S14-R4; S14-R11 — S14-R11 CLOSES both PDF filenames verbatim (\"deterministic\") and S14-R4 closes the footer string; so the exact strings ARE the requirement)",
+ "preconds": "<ol><li>You are on the report with data showing.</li><li>For the fallback check: the organization has NO configured logo (clear it in settings if permitted, and restore afterward).</li></ol>",
+ "steps": "<ol><li>Download both PDFs and note each saved file's name.</li><li>Scroll through every page of both PDFs and read the footer.</li><li>With the organization logo not configured, download a PDF again and look at the header strip's logo region.</li></ol>",
+ "expected": "<p>1. The files are named exactly \"sales-by-representative-summary.pdf\" and \"sales-by-representative-expanded.pdf\".<br>2. A footer reading \"Software Powered by ShopView\" appears on EVERY page of both PDFs.<br>3. With a logo uploaded, that logo appears. If a logo is set but fails to load, the built-in ShopView logo is used instead. If no logo is uploaded at all, NO logo is printed and the text fills the space. The PDF still generates normally either way.</p><p>---<br>This is the expected behaviour as per epic SV-8582, read on 17 August 2026, and Chris Ward's decision of 8/5/2026, recorded in his answers in this file: https://docs.google.com/spreadsheets/d/1x8cuYJlFsDHalVZZTh156_ZCq2gcOaGY/edit?usp=sharing&amp;ouid=106388879401921597782&amp;rtpof=true&amp;sd=true, read on 17 August 2026; where the Sales By Representative report specification version 24 (S14-R3a, S14-R4, S14-R11), read on 17 August 2026, differs, his decision is the authority.<br>Last checked against build v3.8-bd246fd on 8/18/2026.<br>Re-checked against the live specification on 26 August 2026: the requirements this case cites are unchanged, so only the version cited above was updated.</p><p>AUTOMATION: READY</p>",
+ "custom_atmstatus": 1,
+ "updated_on": 1787754745,
+ "created_by": 3
+}

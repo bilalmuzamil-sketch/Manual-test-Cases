@@ -1,0 +1,11 @@
+{
+ "id": 27560,
+ "title": "CR-BRK-005 — See Financial OFF but Part Sales set — financial-gate bypass",
+ "refs": "SV-7388; SV-7959 (Finance tab w/ See Fin OFF)",
+ "preconds": "<p>See Financial \\u2717 | Part Sales V/E \\u2713 | Parts Dept \\u2713 | WO V \\u2713 | View Mode: Full  (state reachable only if the confirm modal is bypassed via template/API) (View Mode as specified).</p>",
+ "steps": "<ol>\n<li>Configure a custom role per the Setup in Preconditions; assign to a test user and log in.</li>\n<li>Attempt to open Part Sales; attempt direct URL; check Finance tab.</li>\n</ol>",
+ "expected": "<p>Part Sales is inaccessible when See Financial is OFF (§5a: 'those areas become inaccessible regardless of their CRUD settings'). Nav hidden / area blocked; no pricing surfaces.</p><hr/><p><strong>Risk / Rationale:</strong> Part Sales / pricing leaks despite See Financial OFF — financial gate enforced only in the editor modal, not at runtime.<br/><strong>Spec Ref:</strong> §5a See Financial</p>",
+ "custom_atmstatus": 3,
+ "updated_on": 1783321313,
+ "created_by": 1
+}

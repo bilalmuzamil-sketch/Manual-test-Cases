@@ -1,0 +1,11 @@
+{
+ "id": 30325,
+ "title": "A user with ordinary reports access can load the report and export it",
+ "refs": "SV-8641 (PV spec v10 2026-08-17 S1-R4 — one reports permission for all six ruled by Chris Ward Q2=A + QA lead 2026-08-03 \"ONE permission FOR NOW\"; PV S1-R4 still names Inventory Reports > View — his spec edit owed)",
+ "preconds": "<ol>\n<li>You are signed in as a user with the Manager or Office User role.</li>\n<li>That user's role has the ordinary reports access (the standard \"can this person see reports\" setting).</li>\n<li>Some parts have sales activity in the selected date range.</li>\n</ol>\n",
+ "steps": "<ol>\n<li>Open Reports → Parts → Parts Velocity.</li>\n<li>Wait for the data to load.</li>\n<li>Open the export menu and download the CSV.</li>\n</ol>\n",
+ "expected": "<ol>\n<li>The report data loads and rows are shown.</li>\n<li>The export downloads successfully — both opening the report and exporting it are allowed by the same ordinary reports access.</li>\n<li>Note for the tester: the specification allows ONE ordinary reports access for all six of these new reports and no per-report permission. If the build demands a separate report permission before this works, mark this Failed and report it — do not change the test.</li>\n</ol>\n\n<hr />\n\n<p>This is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Parts Velocity report specification version 10 (S1-R4), read on 17 August 2026.<br />Last checked against build v3.8-bd246fd on 8/18/2026.</p>\n\n<p>AUTOMATION: READY</p>\n",
+ "custom_atmstatus": 1,
+ "updated_on": 1787087473,
+ "created_by": 3
+}

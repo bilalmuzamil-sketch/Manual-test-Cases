@@ -1,0 +1,11 @@
+{
+ "id": 30523,
+ "title": "The WO # link is keyboard-focusable and opens the work order",
+ "refs": "SV-8666 (WIP spec v22 2026-08-18 Story 10 S10-R6)",
+ "preconds": "<ol><li>You are signed in to the ShopView App on a desktop browser.</li><li>The Work In Progress report is open with rows loaded.</li></ol>",
+ "steps": "<ol><li>Using only the keyboard (Tab key), move focus to a row's WO # link.</li><li>Look for a visible focus indicator on the link.</li><li>Press Enter to activate it.</li></ol>",
+ "expected": "<p>1. The WO # link can receive keyboard focus.<br>2. A visible focus indicator shows when it is focused.<br>3. Activating it opens the work order (in the same browser tab).</p><p>---<br>This is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Work In Progress report specification version 28 (S10-R6), read on 18 August 2026.<br>Last checked against build v3.8-bd246fd on 8/18/2026.<br>Re-checked against the live specification on 26 August 2026: the requirements this case cites are unchanged, so only the version cited above was updated.</p><p>AUTOMATION: READY</p>",
+ "custom_atmstatus": 1,
+ "updated_on": 1787755047,
+ "created_by": 3
+}

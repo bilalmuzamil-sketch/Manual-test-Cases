@@ -1,0 +1,11 @@
+{
+ "id": 30554,
+ "title": "On a first visit the default columns show and the rest stay available",
+ "refs": "SV-8670; SV-8674 (IV spec v10 2026-08-17 Story 3 S3-R12; S3-R13; Story 8 S8-R3 + Story 7 S7-R6 — first-visit default columns; plus the Location column shown by default to a user with access to more than one location)",
+ "preconds": "1. You are signed in to the ShopView App on a desktop browser that has never saved settings for this report (fresh visit).",
+ "steps": "1. Open the Inventory Value report and read the visible column headers.\n2. Open the column-selection control and read which columns are on and off.\n3. Turn Margin and Total Sell on and check they appear.",
+ "expected": "1. On first visit with a single location in scope the visible columns are: Part #, Description, Category, Vendor, Qty, Unit Cost, Unit Sell, Margin %, and Total Cost.\n2. The Margin and Total Sell columns are hidden by default.\n3. Both can be turned on from the column-selection control and then appear in their fixed positions. When it is on, the Location column shows between Vendor and Qty.The question is in the round-3 question sheet: https://raw.githubusercontent.com/bilalmuzamil-sketch/Manual-test-Cases/claude/slack-session-0sxnd9/build/report-suite/rulings-2026-08-05/Questions-for-Chris-Ward_Report-Suite_Round-3_2026-08-05.xlsx\nKnown issue: the product does not currently do this. It has been filed for a fix here: https://shopview.atlassian.net/browse/SV-8927\n\n---\nThis is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Inventory Value report specification version 10 (S3-R12, S3-R13, S8-R3, S7-R6), read on 17 August 2026.\nLast checked against build v3.8-bd246fd on 8/18/2026.\n\nAUTOMATION: READY",
+ "custom_atmstatus": 1,
+ "updated_on": 1787095726,
+ "created_by": 3
+}

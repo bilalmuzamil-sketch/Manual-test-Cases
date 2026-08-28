@@ -1,0 +1,11 @@
+{
+ "id": 30494,
+ "title": "Each tab has a Totals row pinned to the bottom, labeled \"Totals\"",
+ "refs": "SV-8662 (WIP spec v22 2026-08-18 Story 6 S6-R1; S6-R4; S6-R5)",
+ "preconds": "<ol><li>You are signed in to the ShopView App on a desktop browser.</li><li>Each tab has at least one visible job.</li></ol>",
+ "steps": "<ol><li>In each tab, look at the bottom of the table.</li><li>Read the Totals row's leftmost cell and its Total cell.</li><li>Compare the Totals row's number formats to the data rows.</li></ol>",
+ "expected": "<p>1. Each tab's table has a Totals row pinned to the bottom, labeled \"Totals\" in its leftmost cell.<br>2. The Totals row's Total cell is pinned far right and shown in bold, matching the column.<br>3. The Totals row uses the same number formats as the data rows.</p><p>---<br>This is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Work In Progress report specification version 28 (S6-R1, S6-R4, S6-R5), read on 18 August 2026.<br>Last checked against build v3.8-bd246fd on 8/18/2026.<br>Re-checked against the live specification on 26 August 2026: the requirements this case cites are unchanged, so only the version cited above was updated.</p><p>AUTOMATION: READY</p>",
+ "custom_atmstatus": 1,
+ "updated_on": 1787754969,
+ "created_by": 3
+}

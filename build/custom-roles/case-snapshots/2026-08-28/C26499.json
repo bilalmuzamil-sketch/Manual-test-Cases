@@ -1,0 +1,11 @@
+{
+ "id": 26499,
+ "title": "Foreman: role permissions match the expected set",
+ "refs": "SV-7526",
+ "preconds": "<ol>\n<li>A user is assigned the Foreman role.</li>\n</ol>",
+ "steps": "<ol>\n<li>Open the Foreman role's Permission Summary (eye icon on the Roles list).</li>\n<li>Check the add/edit/delete areas, the Page Access toggles, the Work orders sub-settings, the View mode and the Cross-Cutting Toggles.</li>\n<li>Optionally log in as the user and spot-check a few of the role's typical tasks.</li>\n</ol>",
+ "expected": "<p>The Foreman permissions match the expected set: Work orders View/Create & Edit (no Delete); Work order lines Create & Edit/Delete; Schedule full; Customers View/Create & Edit (no Delete); Part sales View only; Catalog and Inventory View/Create & Edit; Vendor and order management View/Create & Edit; Invoicing & payments View/Create & Edit (no Delete); Reports off; Customer portal off; See Financial Data on; View and Manage AP/AR Data off; View mode Full View.</p>\n",
+ "custom_atmstatus": 3,
+ "updated_on": 1783943828,
+ "created_by": 3
+}

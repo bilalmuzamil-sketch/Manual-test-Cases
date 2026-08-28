@@ -1,0 +1,11 @@
+{
+ "id": 27817,
+ "title": "Verify Technician cannot change a work order line status",
+ "refs": "SV-5319",
+ "preconds": "Log in to ShopView as a user assigned the Technician role. (Tech View blocks line status changes).\nAt least one work order exists that contains labor and part lines with prices entered.",
+ "steps": "1. Open the work order and locate a line.\n2. Try to change the line's status.",
+ "expected": "Changing the line status is BLOCKED: the status control is hidden, disabled, or returns a permission error.",
+ "custom_atmstatus": 1,
+ "updated_on": 1783108595,
+ "created_by": 3
+}

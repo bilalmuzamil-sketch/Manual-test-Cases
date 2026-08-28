@@ -1,0 +1,11 @@
+{
+ "id": 30441,
+ "title": "A starting download notifies; a failed one shows the failure message",
+ "refs": "SV-8654 (TU spec v9 2026-08-17 Story 7 Error Handling + §7 notifications table — these CLOSE both strings verbatim (\"Download started\" / \"Failed to download report\"); Story 7 has no S-anchor for them so §7 is the closing reference)",
+ "preconds": "1. You are on the Technician Utilization report with rows loaded.\n2. You can force a download failure (e.g. drop the network connection just before triggering the download).",
+ "steps": "1. Trigger a normal download and read the notification.\n2. Trigger a download under the failure condition and read the notification.",
+ "expected": "1. When a download starts, a success notification reads exactly: \"Download started\".\n2. When a download fails, an error notification reads exactly: \"Failed to download report\".\n\n---\nThis is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Technician Utilization report specification version 9 (§7 notifications table, Story 7 has no S, §7 is the closing reference), read on 17 August 2026.\nLast checked against build v3.8-bd246fd on 8/18/2026.\n\nAUTOMATION: READY",
+ "custom_atmstatus": 1,
+ "updated_on": 1787089694,
+ "created_by": 3
+}

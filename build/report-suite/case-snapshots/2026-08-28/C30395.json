@@ -1,0 +1,11 @@
+{
+ "id": 30395,
+ "title": "Changing the date range reloads the rows; a Custom range is capped at 366 days",
+ "refs": "SV-8648 (TU spec v9 2026-08-17 S1-R4; S1-R5)",
+ "preconds": "1. You are on the Technician Utilization report with rows loaded.",
+ "steps": "1. Change the date range with the report's date-range picker (e.g. to Last Month).\n2. Choose a Custom range within 366 days (start to end).\n3. Try a Custom range wider than 366 days.",
+ "expected": "1. Each range change reloads the report's rows for the new range.\n2. A valid Custom range applies normally.\n3. A Custom span wider than 366 days (matching the largest preset) is rejected - it cannot be applied.\n\n---\nThis is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Technician Utilization report specification version 9 (S1-R4, S1-R5), read on 17 August 2026.\nLast checked against build v3.8-bd246fd on 8/18/2026.\n\nAUTOMATION: READY",
+ "custom_atmstatus": 1,
+ "updated_on": 1787089752,
+ "created_by": 3
+}

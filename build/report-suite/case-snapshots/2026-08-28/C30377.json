@@ -1,0 +1,11 @@
+{
+ "id": 30377,
+ "title": "Exports include only the enabled columns, in the canonical on-screen order",
+ "refs": "SV-8646 (PV spec v10 2026-08-17 S6-R3; S4-R4)",
+ "preconds": "1. You are on the Parts Velocity report with data loaded.",
+ "steps": "1. Hide two default columns (e.g. Category, Margin %) and enable a hidden one (e.g. Units Returned).\n2. Download the CSV and read its column headers in order.\n3. Download the PDF and read its columns in order.",
+ "expected": "1. Both exports contain ONLY the currently enabled columns - the hidden ones are absent.\n2. Columns appear in the CANONICAL order (the fixed on-screen order) - the re-enabled Units Returned sits right after Units Sold, NOT appended at the end.\n3. The export mirrors the visible grid.\n\n---\nThis is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Parts Velocity report specification version 10 (S6-R3, S4-R4), read on 17 August 2026.\nLast checked against build v3.8-bd246fd on 8/18/2026.\n\nAUTOMATION: READY",
+ "custom_atmstatus": 3,
+ "updated_on": 1787127445,
+ "created_by": 3
+}

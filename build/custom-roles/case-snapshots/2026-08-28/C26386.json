@@ -1,0 +1,11 @@
+{
+ "id": 26386,
+ "title": "The customer name shows on the work order header even when Customers View is OFF",
+ "refs": "SV-7506,SV-7507",
+ "preconds": "<ol>\n<li>A user has a role with Work orders View ON and Customers View OFF.</li>\n<li>An existing work order is for a known customer.</li>\n</ol>",
+ "steps": "<ol>\n<li>Log in and confirm Customers is not in the top navigation.</li>\n<li>Open Work Orders and open the work order.</li>\n<li>Look at the work order header for the customer name.</li>\n<li>Try clicking the customer name if it looks like a link.</li>\n</ol>",
+ "expected": "<p>Customers is hidden.</p>\n<p>The customer name shows on the work order header (it is part of the work order record).</p>\n",
+ "custom_atmstatus": 3,
+ "updated_on": 1783943605,
+ "created_by": 3
+}

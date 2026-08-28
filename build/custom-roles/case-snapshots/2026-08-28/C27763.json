@@ -1,0 +1,11 @@
+{
+ "id": 27763,
+ "title": "Verify Administrator can create a work order note and edit or delete their own note",
+ "refs": "SV-5319",
+ "preconds": "Log in to ShopView as a user assigned the Administrator role. (viewing, creating, and editing/deleting your OWN note is gated by Work Orders: View per spec v33).\nAt least one work order exists.",
+ "steps": "1. Open a work order and go to the Notes tab.\n2. Click to add a new note, type \"Admin test note\", and save.\n3. Edit the note you just created, change the text to \"Admin test note - edited\", and save.\n4. Delete the note you just created and confirm.",
+ "expected": "Step 1: The Notes tab opens and existing notes are visible.\nStep 2: The new note is created and appears in the list.\nStep 3: The edit saves and the updated text is shown.\nStep 4: The note is deleted and removed from the list.",
+ "custom_atmstatus": 1,
+ "updated_on": 1783108595,
+ "created_by": 3
+}

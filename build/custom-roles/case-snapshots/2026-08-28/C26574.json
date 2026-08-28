@@ -1,0 +1,11 @@
+{
+ "id": 26574,
+ "title": "BE rejects role create attempting to use a reserved system role key as the name",
+ "refs": "SV-7479,SV-7526",
+ "preconds": "Authenticated.",
+ "steps": "1. POST /api/roles with name='system-owner' and a valid fePermissions list.\n2. Inspect response.",
+ "expected": "Status 400 or 409. Body identifies the reserved-name conflict.",
+ "custom_atmstatus": 3,
+ "updated_on": 1781869313,
+ "created_by": 3
+}

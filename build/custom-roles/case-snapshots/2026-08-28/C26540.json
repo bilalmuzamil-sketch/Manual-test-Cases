@@ -1,0 +1,11 @@
+{
+ "id": 26540,
+ "title": "A role with all permissions off blocks the user from every feature",
+ "refs": "SV-7500,SV-7526",
+ "preconds": "<ol>\n<li>A custom role 'Zero Permissions' has every box and toggle off.</li>\n<li>A user is assigned that role.</li>\n</ol>",
+ "steps": "<ol>\n<li>Log in as that user.</li>\n<li>Look at the landing page.</li>\n<li>Look at the top navigation and the sidebar.</li>\n<li>Try to open Work Orders, Schedule, Customers, Parts and Reports.</li>\n<li>Try opening several feature addresses directly.</li>\n</ol>",
+ "expected": "<p>The landing page is minimal (for example just a profile and clock in/out).</p>\n<p>No feature navigation is available.</p>\n<p>All attempts to reach features are refused.</p>\n",
+ "custom_atmstatus": 1,
+ "updated_on": 1784013341,
+ "created_by": 3
+}

@@ -1,0 +1,11 @@
+{
+ "id": 43594,
+ "title": "Core charges count in parts value and a core decision never moves the figures",
+ "refs": "SV-8660 (WIP spec v22 2026-08-18 §3 Key Decisions — a core charge counts in Parts Remaining and Parts Earned at every stage; marking a returned core OK or Not OK never moves the report's figures; added 2026-08-10 per SV-9057; SV-9058)",
+ "preconds": "1. You are signed in to the ShopView App on a desktop browser.\n2. A ZZAUTOTEST open work order exists with an approved parts line for a part that carries a core charge, and the part has been received so its value has been earned.\n3. The returned core is waiting to be marked OK or Not OK.",
+ "steps": "1. Open the Work In Progress report and write down the work order's Parts Earned, Parts Remaining, Earned, Remaining and Total.\n2. Mark the returned core OK.\n3. Reload the Work In Progress report and read the same five figures again.\n4. On a second work order in the same state, mark the returned core Not OK, reload and read the same five figures again.",
+ "expected": "1. The core charge is counted in the work order's parts money — Parts Earned once the part is received, and Parts Remaining while it is still outstanding.\n2. After marking the core OK all five figures are exactly as they were before.\n3. After marking the core Not OK all five figures are again exactly as they were before.\nNote for the tester: deciding a core is handled when the invoice is raised, which is outside this report, so this report is expected not to move at all. If a figure changes when you mark a core, that is a fault worth reporting.\n\n---\nThis is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Work In Progress report specification version 22 (the Key Decision on core charges added on 2026-08-10 per SV-9057 and SV-9058), read on 18 August 2026.\nLast checked against build v3.8-bd246fd on 8/18/2026.\n\nAUTOMATION: READY",
+ "custom_atmstatus": 1,
+ "updated_on": 1787093949,
+ "created_by": 3
+}

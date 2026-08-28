@@ -1,0 +1,11 @@
+{
+ "id": 26434,
+ "title": "All Timesheets permissions OFF and Reports OFF: no timesheet navigation anywhere",
+ "refs": "SV-7516",
+ "preconds": "<ol>\n<li>A user has a role with both Timesheets boxes OFF and Reports OFF.</li>\n</ol>",
+ "steps": "<ol>\n<li>Log in.</li>\n<li>Look at the top navigation.</li>\n<li>Look at the left sidebar.</li>\n<li>Open a work order and look for a timesheet section.</li>\n</ol>",
+ "expected": "<p>There is no Timesheets entry in the top navigation or the sidebar.</p>\n<p>The work order shows no timesheet edit option.</p>\n<p>The Timesheet activities report is not in Reports (Reports is off).</p>\n",
+ "custom_atmstatus": 3,
+ "updated_on": 1783943082,
+ "created_by": 3
+}

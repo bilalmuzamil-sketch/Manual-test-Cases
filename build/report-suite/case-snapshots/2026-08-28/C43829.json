@@ -1,0 +1,11 @@
+{
+ "id": 43829,
+ "title": "Adjustments is the signed net of invoice-level fees and discounts",
+ "refs": "SV-9281 (SBR spec v22 2026-08-12 S5-R11 — signed net of invoice-level fees/discounts; never allocated into Labor/Parts)",
+ "preconds": "<ol><li>You are signed in to the ShopView App on a desktop browser.</li><li>A representative has invoices with invoice-level fees and discounts in the selected date range.</li></ol>",
+ "steps": "<ol><li>Open the Sales By Representative report.</li><li>Read the Adjustments value on a rep row and an invoice detail row.</li></ol>",
+ "expected": "<p>1. Adjustments shows the signed net of invoice-level fees and discounts: fees count positive, discounts count negative.<br>2. A line-level fee or discount stays folded into that line's Labor or Parts value.<br>3. An invoice-level amount is never allocated into the Labor or Parts columns.</p><p>---<br>This is the expected behaviour as per epic SV-8582, read on 17 August 2026, and story SV-9281, and the Sales By Representative report specification version 24 (S5-R11), read on 17 August 2026.<br>Last checked against build v3.8-bd246fd on 8/18/2026.<br>Re-checked against the live specification on 26 August 2026: the requirements this case cites are unchanged, so only the version cited above was updated.</p><p>AUTOMATION: READY</p>",
+ "custom_atmstatus": 1,
+ "updated_on": 1787880950,
+ "created_by": 3
+}

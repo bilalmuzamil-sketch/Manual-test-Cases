@@ -1,0 +1,11 @@
+{
+ "id": 27750,
+ "title": "Verify Administrator can see all pricing and financial data on a work order",
+ "refs": "SV-5319",
+ "preconds": "<p>Log in to ShopView as a user assigned the Administrator role. (this role has the See Financial Data permission ON).<br />At least one work order exists that contains labor and part lines with prices entered.</p>\n",
+ "steps": "<ol>\n<li>Click Work Orders in the main navigation.</li>\n<li>Open any work order from the list.</li>\n<li>Look at the price field on each work order line.</li>\n<li>Look at the Total, Labor, and Parts columns for the work order.</li>\n<li>Open the Finance card on the work order.</li>\n<li>Open the Stats tab of the work order.</li>\n</ol>\n",
+ "expected": "<p>Step 1: The Work Orders list opens and shows work orders.<br />Step 2: The work order opens.<br />Step 3: Every line price shows an actual dollar amount (not blank or masked).<br />Step 4: The Total, Labor, and Parts columns show dollar amounts.<br />Step 5: The Finance card shows invoice/payment totals.<br />Step 6: The Stats tab shows financial figures. No money value is hidden anywhere on the work order.</p>\n",
+ "custom_atmstatus": 1,
+ "updated_on": 1783108595,
+ "created_by": 3
+}

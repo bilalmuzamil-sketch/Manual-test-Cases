@@ -1,0 +1,11 @@
+{
+ "id": 30259,
+ "title": "A deactivation failure shows the error toast and leaves the status alone",
+ "refs": "SV-8630 (SBR spec v22 2026-08-17 Story 13 S13-N5; §7)",
+ "preconds": "<p>1. The Deactivate dialog is open for a rep with assignments; you can force the request to fail (go offline just before submitting)..</p>",
+ "steps": "<p>1. Type YES, force the failure condition, and submit.<br>2. Read the toast; check the staff member's active status.<br>3. Dismiss, re-open the dialog, and look at the confirmation input.</p>",
+ "expected": "<p>1. An error toast is shown: \"Ooooops! An error occurred\" with the caption \"For more information, please contact support. Include your request ID: [{request-id}] when reaching out for faster assistance.\" &mdash; it persists 120 seconds or until dismissed.<br>2. The active status is unchanged.<br>3. Each fresh dialog open requires a fresh confirmation entry &mdash; the input clears on open.<br><br>---<br>This is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Sales By Representative report specification version 24 (S13-N5), read on 17 August 2026.<br>Last checked against build v3.8-b7d80dc on 8/19/2026.<br>Re-checked against the live specification on 26 August 2026: the requirements this case cites are unchanged, so only the version cited above was updated.<br><br>AUTOMATION: READY</p>\n",
+ "custom_atmstatus": 1,
+ "updated_on": 1787747694,
+ "created_by": 3
+}

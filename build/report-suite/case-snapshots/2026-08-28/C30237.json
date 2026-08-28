@@ -1,0 +1,11 @@
+{
+ "id": 30237,
+ "title": "Subtotal: rightmost, pinned right, bold everywhere; header row sticky on scroll",
+ "refs": "SV-8627 (SBR spec v22 2026-08-17 Story 10 S10-R1; S10-R2; S10-R3; S10-R4; S10-R6; S10-N1; Story 18 S18-R7.5)",
+ "preconds": "<ol>\n<li>You are on the report with data, narrow enough to force horizontal scrolling.</li>\n<li>Enough rows exist to also force vertical scrolling.</li>\n</ol>\n",
+ "steps": "<ol>\n<li>Confirm nothing renders to the right of Subtotal on any row type.</li>\n<li>Scroll horizontally and watch the Subtotal column on summary and detail rows.</li>\n<li>Inspect the Subtotal weight on the header, a summary row, a detail row, and the Totals indicator; check the pinned cell's background.</li>\n<li>Scroll down through the rows and watch the header row; scroll right and watch the Subtotal header cell.</li>\n</ol>\n",
+ "expected": "<ol>\n<li>Subtotal is the rightmost column on every row type.</li>\n<li>On screen it is pinned to the right edge and stays visible during horizontal scroll on every rep summary and invoice detail row.</li>\n<li>Subtotal values are bold across the header, every summary row, every detail row, and the grand Totals indicator.</li>\n<li>The pinned column matches the row's background color (white on body rows) — not a contrasting strip.</li>\n<li>The column-header row stays stuck to the top during vertical scroll; the Subtotal header cell stays visible in BOTH axes (top while scrolling down, pinned right while scrolling sideways).</li>\n</ol>\n\n<hr />\n\n<p>This is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Sales By Representative report specification version 22 (S10-R1, S10-R2, S10-R3, S10-R4, S10-R6, S10-N1, S18-R7), read on 17 August 2026.<br />Last checked against build v3.8-bd246fd on 8/18/2026.</p>\n\n<p>AUTOMATION: READY</p>\n",
+ "custom_atmstatus": 1,
+ "updated_on": 1787085055,
+ "created_by": 3
+}

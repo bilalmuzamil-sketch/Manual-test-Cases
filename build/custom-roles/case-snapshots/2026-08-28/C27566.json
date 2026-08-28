@@ -1,0 +1,11 @@
+{
+ "id": 27566,
+ "title": "CR-BRK-011 — Customer Delete without Invoicing Delete — payment-delete boundary",
+ "refs": "SV-7388",
+ "preconds": "<p>Customers V/E/D \\u2713 | Invoicing \\u2717 | WO V \\u2713 | View Mode: Full (View Mode as specified).</p>",
+ "steps": "<ol>\n<li>Configure a custom role per the Setup in Preconditions; assign to a test user and log in.</li>\n<li>Delete a customer record (allowed); attempt to delete a customer payment (must be blocked).</li>\n</ol>",
+ "expected": "<p>Customer Delete removes customer records only. Deleting a customer's PAYMENT requires Invoicing: Delete (§1d Delete note + §1h note). With no Invoicing, payment deletion must be blocked.</p><hr/><p><strong>Risk / Rationale:</strong> Customer Delete cascades into payment deletion without Invoicing Delete — boundary not enforced.<br/><strong>Spec Ref:</strong> §1d Customer Delete; §1h note</p>",
+ "custom_atmstatus": 3,
+ "updated_on": 1783079893,
+ "created_by": 1
+}

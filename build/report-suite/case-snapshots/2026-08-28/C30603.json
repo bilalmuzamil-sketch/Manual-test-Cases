@@ -1,0 +1,11 @@
+{
+ "id": 30603,
+ "title": "A user with ordinary reports access can open Inventory Value",
+ "refs": "SV-8668 (IV spec v10 2026-08-17 Story 1 Prerequisites — one reports permission for all six ruled by Chris Ward Q2=A + QA lead 2026-08-03 \"ONE permission FOR NOW\"; the IV prerequisite still names the inventory-reports permission — his spec edit owed)",
+ "preconds": "<p>1. A test user exists whose role has the ordinary reports access (assign the Tech user a suitable role if needed; restore the original role afterward).<br>2. You are signed in as that user on a desktop browser..</p>",
+ "steps": "<p>1. Open the reports navigation and find \"Inventory Value\" under the Parts group.<br>2. Open the report and confirm it loads rows.<br>3. Download the current view as a CSV.</p>",
+ "expected": "<p>1. The report is listed and opens normally for a user holding the ordinary reports access.<br>2. No additional report-specific permission is required — the specification allows the one ordinary reports access to cover all six of the new reports.<br>3. Note for the tester: the specification allows ONE ordinary reports access for all six of these new reports and no per-report permission. If the build demands a separate report permission before this works, mark this Failed and report it — do not change the test.<br><br>---<br>This is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Inventory Value report specification version 10 (Story 1 Prerequisites), read on 17 August 2026.<br>Last checked against build v3.8-d0e135e on 8/20/2026.<br><br>AUTOMATION: READY</p>",
+ "custom_atmstatus": 3,
+ "updated_on": 1787217735,
+ "created_by": 3
+}

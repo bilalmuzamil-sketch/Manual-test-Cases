@@ -1,0 +1,11 @@
+{
+ "id": 30566,
+ "title": "The \"as of\" date values stock as of that day; capped at today",
+ "refs": "SV-8672 (IV spec v10 2026-08-17 Story 5 S5-R7; S5-R8)",
+ "preconds": "1. You are signed in to the ShopView App on a desktop browser.\n2. The Inventory Value report is open.",
+ "steps": "1. Open the \"as of\" date control - a single-day calendar (there is no start/end range and no \"Custom\" item).\n2. Pick a start and an end date in the past on that calendar and press Apply.\n3. Try to pick an end date in the future.\n4. Watch the data area when the range is applied.",
+ "expected": "1. The \"as of\" date control lets you pick one calendar day, and the report values stock as of that day.\n2. A future day cannot be chosen — the \"as of\" date is capped at today.\n3. Changing the \"as of\" date reloads the report (the loading indicator shows and the rows re-fetch).\nNote for the tester: an earlier version of this report offered a date range with ready-made periods. The current Inventory Value report specification (version 10, S5-R1/S5-R7) replaces that with a single \"as of\" date control - one calendar day, defaulting to today and capped at today - because a stock valuation is a point-in-time position, not an amount over a period. Follow the current specification.\n\n---\nThis is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Inventory Value report specification version 10 (S5-R7, S5-R8), read on 17 August 2026.\nLast checked against build v3.8-bd246fd on 8/18/2026.\n\nAUTOMATION: READY",
+ "custom_atmstatus": 1,
+ "updated_on": 1787095676,
+ "created_by": 3
+}

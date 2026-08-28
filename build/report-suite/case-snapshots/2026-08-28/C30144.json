@@ -1,0 +1,11 @@
+{
+ "id": 30144,
+ "title": "Missing values sort to the bottom ascending and to the top descending",
+ "refs": "SV-8608 (SBC spec v20 2026-08-17 Story 10 S10-R3)",
+ "preconds": "1. At least one customer row shows an em dash (—) in Margin % (Subtotal zero or below — seed a zero-subtotal case if possible) alongside rows with real Margin % values.",
+ "steps": "1. Sort by Margin % ascending and note where the em-dash row lands.\n2. Sort by Margin % descending and note it again.",
+ "expected": "1. Ascending: the em-dash (missing) row sorts to the bottom.\n2. Descending: the em-dash row sorts to the top.\n\n---\nThis is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Sales By Customer report specification version 20 (S10-R3), read on 17 August 2026.\nLast checked against build v3.8-2bf8d14 on 8/18/2026.\n\nAUTOMATION: READY",
+ "custom_atmstatus": 1,
+ "updated_on": 1787082715,
+ "created_by": 3
+}

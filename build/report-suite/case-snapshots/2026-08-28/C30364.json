@@ -1,0 +1,11 @@
+{
+ "id": 30364,
+ "title": "Demand counts each transaction once; a reversal neither adds nor subtracts",
+ "refs": "SV-8645 (PV spec v10 2026-08-17 S5-R4 (Demand); §4; §3 Key Decisions; S3-E1)",
+ "preconds": "<p>1. An inventory part sold in the window on two invoiced work orders - one for 1 unit, one for 10 units.<br>2. A special-order part with two in-window vendor requests.<br>3. One of the inventory part's in-window sales is then reversed/voided..</p>",
+ "steps": "<p>1. Read the inventory part's Demand before the reversal.<br>2. Reverse/void one of its invoices and re-read Demand.<br>3. Read the special-order part's Demand.</p>",
+ "expected": "<p>1. The inventory part's Demand is 2 - each stock-decrementing invoicing event counts ONCE no matter how many units were on it (1 unit and 10 units each count as one).<br>2. After the reversal, Demand is STILL 2 - a reversal event neither adds to nor subtracts from the count (while Units Sold nets down).<br>3. The special-order part's Demand is 2 - the count of its in-window vendor part requests.<br>4. Demand is the report's default ranking signal (a whole number, never null - 0 when none).<br>5. A part whose single in-window sale is invoiced and then fully reversed shows Demand 1 with Units Sold 0.00 &mdash; the Demand count is not decremented, while the movement nets to zero.<br><br>---<br>This is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Parts Velocity report specification version 11 (S5-R4, S3-E1), read on 17 August 2026.<br>Last checked against build v3.8-d0e135e on 8/19/2026.<br>Re-checked against the live specification on 26 August 2026: the requirements this case cites are unchanged, so only the version cited above was updated.<br><br>AUTOMATION: READY</p>\n",
+ "custom_atmstatus": 1,
+ "updated_on": 1787747807,
+ "created_by": 3
+}

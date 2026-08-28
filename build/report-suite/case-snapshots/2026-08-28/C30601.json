@@ -1,0 +1,11 @@
+{
+ "id": 30601,
+ "title": "Each sortable header exposes its sort state and shows the direction",
+ "refs": "SV-8679 (IV spec v10 2026-08-17 Story 12 S12-R8)",
+ "preconds": "1. You are signed in to the ShopView App on a desktop browser.\n2. The Inventory Value report is open with rows loaded.\n3. Part of this test checks what a blind user would hear, so you need a screen reader. On Windows install NVDA — it is free, from nvaccess.org. On a Mac use VoiceOver, which is already built in (Cmd+F5 turns it on and off). Alternatively the browser's developer tools (F12) have an \"Accessibility\" panel that shows the same names without you having to listen to anything.",
+ "steps": "1. Sort by a column and look at its header for a visual direction indicator.\n2. With the accessibility inspector or screen reader, check what sort state the header exposes.\n3. Toggle the direction and check both again.",
+ "expected": "1. The active sort direction is indicated visually on the header.\n2. Each sortable column header exposes its sort state to assistive technology (for example, ascending/descending/none).\n3. The exposed state updates when the direction toggles.\n\n---\nThis is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Inventory Value report specification version 10 (S12-R8), read on 17 August 2026.\nLast checked against build v3.8-bd246fd on 8/18/2026.\n\nAUTOMATION: READY",
+ "custom_atmstatus": 1,
+ "updated_on": 1787095685,
+ "created_by": 3
+}

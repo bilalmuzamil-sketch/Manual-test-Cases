@@ -1,0 +1,11 @@
+{
+ "id": 30433,
+ "title": "A day row's Total Hours links to that technician's single-day timesheet",
+ "refs": "SV-8653 (TU spec v9 2026-08-17 S6-R5)",
+ "preconds": "<p>1. A technician row is expanded and shows day rows..</p>",
+ "steps": "<p>1. Click the Total Hours value on one day row.<br>2. Read the technician filter and the date range on the opened Timesheet Activities report.</p>",
+ "expected": "<p>1. Timesheet Activities opens filtered to that technician.<br>2. The date range covers ONLY that single day.<br>3. This day-row link appears only under the default active-shop scope (the same scope gate as the technician row, per SV-9064); under any other scope the day row's Total Hours is plain text, not a link.<br>Note for the tester: an earlier version of this report showed Total Hours as a link in every scope. The current Technician Utilization report specification (version 9, S6-R1/S6-R6, per SV-9064) makes it a link ONLY in the default view where the location scope is your active shop; in any other scope it is plain text. Follow the current specification.<br><br>---<br>This is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Technician Utilization report specification version 9 (S6-R5), read on 17 August 2026.<br><br>This test case could not be build-verified on 8/19/2026 because the feature it tests was not found in the build yet — the related story is still under development. It will be re-checked in the separate build-verification run once the feature ships.<br><br>AUTOMATION: Not available on Build to test Yet - Last checked 8/19/2026</p>",
+ "custom_atmstatus": 1,
+ "updated_on": 1787214612,
+ "created_by": 3
+}

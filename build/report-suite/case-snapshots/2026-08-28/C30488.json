@@ -1,0 +1,11 @@
+{
+ "id": 30488,
+ "title": "Total Completed Work is the hero total equal to its two completed-work figures",
+ "refs": "SV-8661 (WIP Story 5; WIP design review 13 Aug 2026 - Total Completed Work hero = Completed Work on Open Work Orders + Work Orders Ready to Invoice; epic SV-8582)",
+ "preconds": "<p>1. You are signed in to the ShopView App on a desktop browser.<br>2. The report shows jobs in the \"Approved - Partially Completed\" tab and the \"Completed\" tab with non-zero completed values..</p>",
+ "steps": "<p>1. Look at how the Total Completed Work figure is presented compared to the other figures.<br>2. Add the Completed Work on Open Work Orders figure to the Work Orders Ready to Invoice figure.<br>3. Compare the sum to the Total Completed Work figure.</p>",
+ "expected": "<p>1. Total Completed Work is the headline (hero) total that the completed-work equation resolves to: Completed Work on Open Work Orders + Work Orders Ready to Invoice = Total Completed Work.<br>2. Total Completed Work equals Completed Work on Open Work Orders plus Work Orders Ready to Invoice, to the cent.<br><br>---<br>This is the expected behaviour as per epic SV-8582, the Work In Progress report design review of 13 August 2026 (https://claude.ai/code/artifact/42c35f46-2796-467e-9723-7daa5385446e), and the Work In Progress report specification.<br>Last checked against build v3.8-d0e135e on 8/20/2026.<br>The figure names above are the 13 August 2026 design-review names, replacing the earlier 'Total Earned', 'Started - Earned' and 'Ready to Invoice'; the earlier 'larger figure with a coloured underline' hero styling is replaced by the grouped-equation layout in which Total Completed Work is the total the completed-work equation resolves to. We have taken the latest design review as prevailing.<br><br>AUTOMATION: READY</p>",
+ "custom_atmstatus": 3,
+ "updated_on": 1787205935,
+ "created_by": 3
+}

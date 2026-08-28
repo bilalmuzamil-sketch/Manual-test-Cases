@@ -1,0 +1,11 @@
+{
+ "id": 30162,
+ "title": "CSV formats: Margin % plain; dates mm-dd-yyyy; currency plain; no color",
+ "refs": "SV-8612 (SBC spec v20 2026-08-17 S14-R9,S14-R10,S14-R11,S14-R12,S14-R13; heading renamed to Labor Delta per SV-9071)",
+ "preconds": "<ol><li>You have downloaded a CSV containing rows with real values, including (if seedable) a row whose Subtotal is zero or below..</li></ol>",
+ "steps": "<ol><li>Read a Margin % cell, a Date cell, and a currency cell in a text editor.</li><li>Check the row whose Subtotal is ≤ 0.</li></ol>",
+ "expected": "<p>1. Margin % is a plain number to TWO decimals with no percent sign (for example, 64.70); it is EMPTY when the row's Subtotal is zero or below.<br>2. Dates export as mm-dd-yyyy &mdash; for example, 05-14-2026.<br>3. Currency values are plain numbers with no dollar sign and no thousands separators.<br>4. The CSV has no color; the signed Labor Delta value still conveys direction.<br><br>---<br>This is the expected behaviour as per epic SV-8582 and the Sales By Customer report specification version 20 (S14-R9, S14-R10, S14-R11, S14-R12, S14-R13), both read on 17 August 2026. The column was renamed from \"Inv. Hrs\" to \"Labor Delta\" per SV-9071; only the name changed.<br>Last checked against build v3.8-2bf8d14 on 8/18/2026.<br><br>AUTOMATION: READY<br><br>SV-9069 superseded the one-decimal wording: Margin % on Sales By Customer and Sales By Representative reads to two decimals in EVERY format &mdash; screen, PDF and CSV &mdash; so the file matches the report it was exported from. Parts Velocity and Inventory Value keep the suite's one-decimal default.</p>\n",
+ "custom_atmstatus": 3,
+ "updated_on": 1787218723,
+ "created_by": 3
+}

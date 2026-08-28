@@ -1,0 +1,11 @@
+{
+ "id": 30264,
+ "title": "No empty Unassigned row is ever rendered",
+ "refs": "SV-8639 (SBR spec v22 2026-08-17 Story 22 S22-N1; Story 6 S6-N2)",
+ "preconds": "<p>1. Scenario A: a filter set with NO matching unassigned invoices (but some rep rows).<br>2. Scenario B: the Unassigned row is populated and expanded..</p>",
+ "steps": "<p>1. Scenario A: turn Show Unassigned on and look for the row; then narrow so no reps match either and read the table.<br>2. Scenario B: with the Unassigned row expanded, turn the toggle off, then back on.</p>",
+ "expected": "<p>1. With the toggle on but no matching unassigned invoices, no Unassigned row is shown &mdash; an empty Unassigned row is never rendered; with no rep rows either, the empty state applies.<br>2. Turning the toggle off removes the expanded row; turning it back on renders it collapsed.<br><br>---<br>This is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Sales By Representative report specification version 24 (S22-N1, S6-N2), read on 17 August 2026.<br>Last checked against build v3.8-b7d80dc on 8/19/2026.<br>Re-checked against the live specification on 26 August 2026: the requirements this case cites are unchanged, so only the version cited above was updated.<br><br>AUTOMATION: READY</p>\n",
+ "custom_atmstatus": 1,
+ "updated_on": 1787747697,
+ "created_by": 3
+}

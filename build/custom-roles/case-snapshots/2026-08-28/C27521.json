@@ -1,0 +1,11 @@
+{
+ "id": 27521,
+ "title": "CR-PAY-016 — WO + customer + invoice view",
+ "refs": "SV-7388",
+ "preconds": "Role: workorders:view + customers:view + invoicing:view,",
+ "steps": "<ol><li>Create a custom role with the permissions listed in Preconditions; leave all others OFF.</li><li>Assign the role to a test user and log in.</li><li>Exercise each capability in Expected Result and confirm it succeeds (and that gated pricing is hidden where noted).</li></ol>",
+ "expected": "The header 'Customers' nav item is present (customers:view) AND the",
+ "custom_atmstatus": 3,
+ "updated_on": 1783341881,
+ "created_by": 1
+}

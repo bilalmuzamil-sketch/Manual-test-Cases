@@ -1,0 +1,11 @@
+{
+ "id": 30359,
+ "title": "Units Sold for an inventory part is net stock movement",
+ "refs": "SV-8645 (PV spec v10 2026-08-17 S5-R1; S5-R4 (Units Sold; inventory); §4)",
+ "preconds": "<p>1. An inventory part with known starting stock.<br>2. You can invoice work orders, reverse/void an invoice, and initiate a part return for that part inside the report window..</p>",
+ "steps": "<p>1. Invoice a work order selling 5 units of the part; reload the report and read Units Sold.<br>2. Reverse/void an invoice that sold 2 units in the window; reload and read Units Sold.<br>3. Initiate a part return for 1 unit of the part; reload and read Units Sold.</p>",
+ "expected": "<p>1. After step 1, Units Sold increases by 5.00 (invoicing a work order adds the units sold - a stock-movement event).<br>2. After step 2, Units Sold decreases by 2.00 (reversing/voiding an invoice adds stock back and is subtracted - Units Sold is net of invoice reversals).<br>3. After step 3, Units Sold is UNCHANGED - part returns do not affect Units Sold (they feed Units Returned instead).<br>4. Units Sold can be 0.00 or negative when reversals exceed sales.<br><br>---<br>This is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Parts Velocity report specification version 11 (S5-R1, S5-R4), read on 17 August 2026.<br>Last checked against build v3.8-d0e135e on 8/19/2026.<br>Re-checked against the live specification on 26 August 2026: the requirements this case cites are unchanged, so only the version cited above was updated.<br><br>AUTOMATION: READY</p>\n",
+ "custom_atmstatus": 1,
+ "updated_on": 1787747801,
+ "created_by": 3
+}

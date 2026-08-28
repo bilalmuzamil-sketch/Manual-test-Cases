@@ -1,0 +1,11 @@
+{
+ "id": 30406,
+ "title": "Zero internal hours - or a configured $0.00 rate - shows $0.00, never an em-dash",
+ "refs": "SV-8649 (TU spec v9 2026-08-17 S2-E2; §5 Assumptions; S2 context note)",
+ "preconds": "1. Technician A has zero internal hours in the range (all time on work orders).\n2. Technician B has internal hours at a location whose default labor rate is configured as exactly $0.00.",
+ "steps": "1. Read technician A's Est. Lost Labor.\n2. Read technician B's Est. Lost Labor.",
+ "expected": "1. Technician A shows \"$0.00\" - there is nothing to value, regardless of whether the location has a rate configured.\n2. Technician B also shows \"$0.00\" - a configured rate of exactly $0.00 is a KNOWN rate that values the hours at $0.00, not \"—\".\n3. \"$0.00\" means 'the rate is known and there is nothing (or $0) to value' - a different state from \"—\" ('the rate is unknown').\n\n---\nThis is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Technician Utilization report specification version 9 (S2-E2), read on 17 August 2026.\nLast checked against build v3.8-bd246fd on 8/18/2026.\n\nAUTOMATION: READY",
+ "custom_atmstatus": 1,
+ "updated_on": 1787089764,
+ "created_by": 3
+}

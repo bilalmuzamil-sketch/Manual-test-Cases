@@ -1,0 +1,11 @@
+{
+ "id": 30426,
+ "title": "Previously deselected technicians stay deselected on the next visit",
+ "refs": "SV-8652 (TU spec v9 2026-08-17 S5-R10; S1-R8; §3)",
+ "preconds": "<p>1. You are on the Technician Utilization report with several technicians listed..</p>",
+ "steps": "<p>1. Deselect two technicians.<br>2. Leave the report (navigate elsewhere), then return; also try a full page reload.<br>3. Check the two technicians' selection state and the other technicians'.</p>",
+ "expected": "<p>1. The two deselected technicians are STILL deselected on return - the deselected set is what persists (saved in this browser, not on the account).<br>2. All other technicians - including any who appear for the first time - are selected.<br>3. The saved date range and location selection are restored alongside.<br><br>---<br>This is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Technician Utilization report specification version 9 (S5-R10, S1-R8), read on 17 August 2026.<br>Last checked against build v3.8-d0e135e on 8/19/2026.<br><br>AUTOMATION: READY</p>",
+ "custom_atmstatus": 1,
+ "updated_on": 1787214357,
+ "created_by": 3
+}

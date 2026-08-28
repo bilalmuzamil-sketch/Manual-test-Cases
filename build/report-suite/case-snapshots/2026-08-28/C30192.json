@@ -1,0 +1,11 @@
+{
+ "id": 30192,
+ "title": "The Customer type-ahead queries the server instead of loading every name",
+ "refs": "SV-8616 (SBC spec v20 2026-08-17 Story 18 S18-R2; S18-R4)",
+ "preconds": "1. You are on the report with the browser's network panel open.\n2. To see the information this test asks for you need the browser's own developer tools: press F12 (or Ctrl+Shift+I; on a Mac Cmd+Option+I) and open the \"Network\" tab, then reload the page. There is nothing to install — it is built into Chrome, Edge and Firefox.",
+ "steps": "1. Open the Customer filter WITHOUT typing and check whether a full customer list was downloaded.\n2. Type a query and watch the network panel.\n3. Change the query and watch again.",
+ "expected": "1. The dropdown does not load the full customer list into the browser up front.\n2. As you type, the browser fetches matching customers from the server — case-insensitive \"contains\" matching on the name, scoped to the active date range, Product Type, and location — and lists the returned customers.\n3. The all-customers state is stored as an explicit state (a flag), not an enumeration of the fetched ids.\n\n---\nThis is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Sales By Customer report specification version 20 (S18-R2, S18-R4), read on 17 August 2026.\nLast checked against build v3.8-2bf8d14 on 8/18/2026.\n\nAUTOMATION: READY",
+ "custom_atmstatus": 1,
+ "updated_on": 1787083047,
+ "created_by": 3
+}

@@ -1,0 +1,11 @@
+{
+ "id": 30429,
+ "title": "The Total Hours link opens Timesheet Activities in the same tab",
+ "refs": "SV-8653 (TU spec v9 2026-08-17 S6-R2; S6-R3; S6-R4)",
+ "preconds": "1. You are on the Technician Utilization report with a non-default date range selected (so the carried range is provable).",
+ "steps": "1. Click a technician's Total Hours link.\n2. Check which browser tab the Timesheet Activities report opened in.\n3. Read the technician filter and the date range on the opened report.",
+ "expected": "1. The Timesheet Activities report opens in the SAME browser tab.\n2. It is already filtered to that technician.\n3. It uses the same date range that was active on the Technician Utilization report.\n\n---\nThis is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Technician Utilization report specification version 9 (S6-R2, S6-R3, S6-R4), read on 17 August 2026.\n\nAUTOMATION: READY",
+ "custom_atmstatus": 3,
+ "updated_on": 1787058921,
+ "created_by": 3
+}

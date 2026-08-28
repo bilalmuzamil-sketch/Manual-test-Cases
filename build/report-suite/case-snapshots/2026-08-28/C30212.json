@@ -1,0 +1,11 @@
+{
+ "id": 30212,
+ "title": "Money columns always show invoiced amounts, never the outstanding balance",
+ "refs": "SV-8622 (SBR spec v22 2026-08-17 Story 4 S4-R8)",
+ "preconds": "<p>1. A partially-paid ZZAUTOTEST invoice exists with a known full Subtotal and a known partial payment..</p>",
+ "steps": "<p>1. Filter to \"Partially Paid,\" expand the owning rep, and read that invoice's money columns.</p>",
+ "expected": "<p>1. The invoice shows its FULL invoiced amounts (its full Subtotal) &mdash; payments are not netted out.<br>2. Filtering to \"Unpaid\" or \"Partially Paid\" changes which invoices are included, never the amounts shown.<br><br>---<br>This is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Sales By Representative report specification version 24 (S4-R8), read on 17 August 2026.<br>Last checked against build v3.8-b7d80dc on 8/19/2026.<br>Re-checked against the live specification on 26 August 2026: the requirements this case cites are unchanged, so only the version cited above was updated.<br><br>AUTOMATION: READY</p>\n",
+ "custom_atmstatus": 1,
+ "updated_on": 1787747672,
+ "created_by": 3
+}

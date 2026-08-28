@@ -1,0 +1,11 @@
+{
+ "id": 30376,
+ "title": "Both exports reflect the filters and search active at the time of export",
+ "refs": "SV-8646 (PV spec v10 2026-08-17 S6-R2; S6-R11; §3 Key Decisions — both exports reflect the filters and search active at export time; S6-R11 = the \"Locations:\" line in both exports [Chris Ward 2026-07-29; newest-wins])",
+ "preconds": "<ol><li>You are on the Parts Velocity report with data loaded across types, categories, and locations.</li></ol>",
+ "steps": "<ol><li>Set a distinctive filter mix: Type = Inventory, a single category, a short date range, and a search string.</li><li>Download the CSV and open it.</li><li>Download the PDF and open it.</li></ol>",
+ "expected": "<p>1. Both files contain only the rows matching the date range, type, category, vendor, bin, location, and search active at export time - not a full unfiltered dump.<br>2. The exported rows match what the on-screen grid was showing.<br>3. Each file (PDF and CSV) carries a \"Locations:\" line naming the location(s) the report was scoped to.</p><p>---<br>This is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Parts Velocity report specification version 11 (S6-R2, S6-R11), read on 17 August 2026; where the wording of that specification differs, the behaviour above follows Chris Ward's later decision, recorded in his answers in this file: https://docs.google.com/spreadsheets/d/1x8cuYJlFsDHalVZZTh156_ZCq2gcOaGY/edit?usp=sharing&amp;ouid=106388879401921597782&amp;rtpof=true&amp;sd=true, read on 17 August 2026, which is the authority.<br>Last checked against build v3.8-bd246fd on 8/18/2026.<br>Re-checked against the live specification on 26 August 2026: the requirements this case cites are unchanged, so only the version cited above was updated.</p><p>AUTOMATION: READY</p>",
+ "custom_atmstatus": 1,
+ "updated_on": 1787754864,
+ "created_by": 3
+}

@@ -1,0 +1,11 @@
+{
+ "id": 26573,
+ "title": "PARTS_DEPARTMENT is a UI-only gate - not exercisable as a server-side fePermission cascade (out of scope)",
+ "refs": "SV-7479,SV-7520",
+ "preconds": "Authenticated.",
+ "steps": "1. GET /api/fe-permissions and confirm the permission catalog. There is NO PARTS_DEPARTMENT (or any parts-department) code - the catalog has 42 fePermission codes and none represents a Parts Department area gate.\n2. POST /api/roles with fe_permissions=['partSalesView'] and cross_toggles.seeFinancialData=true (PARTS_DEPARTMENT cannot be sent - it is not a settable fePermission).\n3. GET /api/roles/{id} and inspect the persisted fe_permissions AND cross_toggles.",
+ "expected": "1. PARTS_DEPARTMENT is confirmed to be a UI-only toggle with NO fePermission bundle (absent from GET /api/fe-permissions), per the ticket own out-of-scope note.\n2. The API returns 201 Created and persists the bundle VERBATIM (partSalesView + cross_toggles.seeFinancialData=true).\n3. No PARTS_DEPARTMENT gate materializes on fetch-back because none exists in the catalog to cascade.\nCONCLUSION: This scenario CANNOT be exercised as a server-side fePermission cascade - there is nothing to cascade to. It is OUT OF SCOPE as a backend cascade check (PARTS_DEPARTMENT gating is enforced only in the UI). Verified live on staging 2026-07-09.",
+ "custom_atmstatus": 3,
+ "updated_on": 1783585009,
+ "created_by": 3
+}

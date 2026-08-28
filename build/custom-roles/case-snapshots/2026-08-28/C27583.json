@@ -1,0 +1,11 @@
+{
+ "id": 27583,
+ "title": "CR-BRK-028 — Delete role with users assigned — guard",
+ "refs": "SV-7388",
+ "preconds": "<p>A custom role with 1+ users assigned; attempt to delete it (View Mode as specified).</p>",
+ "steps": "<ol>\n<li>Configure a custom role per the Setup in Preconditions; assign to a test user and log in.</li>\n<li>Attempt to delete a role that has assigned users.</li>\n</ol>",
+ "expected": "<p>'Cannot Delete' modal appears; the confirm/delete button is disabled until all users are reassigned (Delete Role).</p><hr/><p><strong>Risk / Rationale:</strong> Deletion proceeds and orphans the assigned users.<br/><strong>Spec Ref:</strong> Delete Role</p>",
+ "custom_atmstatus": 3,
+ "updated_on": 1783160420,
+ "created_by": 1
+}

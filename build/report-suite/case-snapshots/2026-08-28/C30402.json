@@ -1,0 +1,11 @@
+{
+ "id": 30402,
+ "title": "Utilization % is WO hours over total hours from unrounded values",
+ "refs": "SV-8649 (TU spec v9 2026-08-17 S2-R6; S2-R7; §3)",
+ "preconds": "<ol><li>A technician whose unrounded WO and total hours produce a checkable percentage - ideally one landing on a rounding tie (e.g. computing to 66.65%).</li></ol>",
+ "steps": "<ol><li>Compute the expected value by hand: work-order hours ÷ total clocked hours × 100, from the UNROUNDED hours.</li><li>Read the technician's Utilization % and compare.</li></ol>",
+ "expected": "<ol><li>Utilization % = work-order hours as a percentage of total clocked hours, computed from the unrounded hours (not from the already-rounded displays).</li><li>It shows two decimal places followed by a percent sign.</li></ol><hr><p>This is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Technician Utilization report specification version 9 (S2-R6, S2-R7), read on 17 August 2026.<br>Last checked against build v3.8-bd246fd on 8/18/2026.</p><p>The change from 1 decimal place to 2 decimal places has been requested, approved, and implemented - ticket number: SV-9059.&nbsp;</p><p>AUTOMATION: READY</p>",
+ "custom_atmstatus": 1,
+ "updated_on": 1787238688,
+ "created_by": 3
+}

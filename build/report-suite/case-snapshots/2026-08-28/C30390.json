@@ -1,0 +1,11 @@
+{
+ "id": 30390,
+ "title": "Header-click sorting re-queries the server; nulls first asc and last desc",
+ "refs": "SV-8643 (PV spec v10 2026-08-17 S3-R3)",
+ "preconds": "1. You are on the Parts Velocity report with data loaded (including rows with null values in a sortable column) and the network tab open.\n2. To see the information this test asks for you need the browser's own developer tools: press F12 (or Ctrl+Shift+I; on a Mac Cmd+Option+I) and open the \"Network\" tab, then reload the page. There is nothing to install — it is built into Chrome, Edge and Firefox.",
+ "steps": "1. Click a column header and watch the network traffic and the returned order.\n2. Click it again (reverse direction) and observe.\n3. Note where the null rows land in the server-returned order for each direction.",
+ "expected": "1. Each header click re-fetches the data from the server, ordered by the chosen column and direction, returning the first page of the re-sorted result set.\n2. Null values are placed FIRST on ascending and LAST on descending - as a server sort semantic, so the same order appears on screen and in the exports.\n3. Ties keep a stable order (no explicit secondary key).\n\n---\nThis is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Parts Velocity report specification version 10 (S3-R3), read on 17 August 2026.\n\nAUTOMATION: READY",
+ "custom_atmstatus": 3,
+ "updated_on": 1787058524,
+ "created_by": 3
+}

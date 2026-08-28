@@ -1,0 +1,11 @@
+{
+ "id": 30348,
+ "title": "Em-dash only in nullable fields; counts and Revenue/Margin are never null",
+ "refs": "SV-8643 (PV spec v10 2026-08-17 S3-R9; S5-R5)",
+ "preconds": "<p>1. You are on the Parts Velocity report with all 20 columns enabled.<br>2. A special-order row is visible, plus an inventory row with no in-window activity that stays in the report via on-hand stock..</p>",
+ "steps": "<p>1. On the special-order row, read On Hand, Turns / Yr, Min, and Max.<br>2. On the no-activity inventory row, read Units Sold, Units Returned, Sold (WO), Sold (Parts Sale), Demand, Revenue, and Margin.</p>",
+ "expected": "<p>1. On Hand, Turns / Yr, Min, and Max show &mdash; (em-dash) on special-order rows - always.<br>2. The count metrics and money totals are NEVER null: Units Sold / Units Returned / Sold (WO) / Sold (Parts Sale) show 0.00, Demand shows 0, Revenue and Margin show $0.00.<br><br>---<br>This is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Parts Velocity report specification version 11 (S3-R9, S5-R5), read on 17 August 2026.<br>Last checked against build v3.8-d0e135e on 8/19/2026.<br>Re-checked against the live specification on 28 August 2026: every requirement this case cites was read again in the live version and the behaviour above still matches it, so only the version cited above was updated.<br><br>AUTOMATION: READY</p>\n",
+ "custom_atmstatus": 1,
+ "updated_on": 1787886514,
+ "created_by": 3
+}

@@ -1,0 +1,11 @@
+{
+ "id": 30396,
+ "title": "The loading indicator shows on load and reload; rows swap only on data",
+ "refs": "SV-8648 (TU spec v9 2026-08-17 S1-R10)",
+ "preconds": "1. You are on the Technician Utilization report with rows loaded.",
+ "steps": "1. Watch the data area during the initial load.\n2. Change the date range and watch the data area during the reload.\n3. While it loads, try interacting with a toolbar control.",
+ "expected": "1. On the initial load and on every reload (date-range or location change), the data area shows the standard reports loading indicator.\n2. The existing rows are replaced only when the new data returns.\n3. The toolbar remains interactive during the load.\n\n---\nThis is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Technician Utilization report specification version 9 (S1-R10), read on 17 August 2026.\nLast checked against build v3.8-bd246fd on 8/18/2026.\n\nAUTOMATION: READY",
+ "custom_atmstatus": 1,
+ "updated_on": 1787089754,
+ "created_by": 3
+}

@@ -1,0 +1,11 @@
+{
+ "id": 30428,
+ "title": "Total Hours is a real link with a non-color affordance and keyboard access",
+ "refs": "SV-8653 (TU spec v9 2026-08-17 S6-R1; S6-N1; S8-R14)",
+ "preconds": "<p>1. You are on the Technician Utilization report with technician rows and the Summary row visible..</p>",
+ "steps": "<p>1. Look at a technician row's Total Hours value.<br>2. Tab to it with the keyboard and check the focus indicator; press Enter.<br>3. Go back and look at the Summary row's Total Hours value.</p>",
+ "expected": "<p>1. A technician row's Total Hours is rendered as a link ONLY when the report's location scope is exactly your active shop (the default view). Under any other scope — a different single location, or multiple locations — the value renders as plain text, styled like the other hour columns (no link).<br>2. The link is distinguished by more than color - it carries an underline (or equivalent non-color affordance), is keyboard-focusable with a visible focus indicator, and activates on Enter.<br>3. The Summary row's Total Hours value is NOT a link.<br>Note for the tester: an earlier version of this report showed Total Hours as a link in every scope. The current Technician Utilization report specification (version 9, S6-R1/S6-R6, per SV-9064) makes it a link ONLY in the default view where the location scope is your active shop; in any other scope it is plain text. Follow the current specification.<br><br>---<br>This is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Technician Utilization report specification version 9 (S6-R1, S6-N1, S8-R14), read on 17 August 2026.<br><br>This test case could not be build-verified on 8/19/2026 because the feature it tests was not found in the build yet — the related story is still under development. It will be re-checked in the separate build-verification run once the feature ships.<br><br>AUTOMATION: Not available on Build to test Yet - Last checked 8/19/2026</p>",
+ "custom_atmstatus": 1,
+ "updated_on": 1787214408,
+ "created_by": 3
+}

@@ -1,0 +1,11 @@
+{
+ "id": 38925,
+ "title": "QuickBooks amount for a part-of-a-unit sale is exact and never inflated",
+ "refs": "SV-8589 (verbatim Tests: 'QB journal amount exact from fractional movement'; Goal: 'QB journal-entry sync multiplies these into dollar amounts'; tech-plan-2026-07-29 Phase 0 / PR-1 D2 - no report spec covers QuickBooks)",
+ "preconds": "<p>1. The test company is connected to QuickBooks.<br>2. The part-of-a-unit sale has been made and invoiced — a ZZAUTOTEST part sold in a quantity such as 2.5, at a known unit cost such as $10.00.<br>3. You can sign in to that QuickBooks company and look at its journal entries.<br>4. This test cannot be run without a company whose QuickBooks account is connected, because it checks what was sent to QuickBooks. If no QuickBooks-connected company is available, mark this test Blocked and say so — do not guess the result..</p>",
+ "steps": "<p>1. Write down the quantity sold and the part's unit cost, and work out the correct amount by hand (2.5 x $10.00 = $25.00).<br>2. Let the invoice go across to QuickBooks the normal way the shop does it.<br>3. In QuickBooks, open the journal entry that was created for that invoice.<br>4. Read the inventory / cost amount on that journal entry.<br>5. Go back to the Parts Velocity report and read the same part's Units Sold value.</p>",
+ "expected": "<p>1. The QuickBooks amount is exactly the hand-worked figure to the cent — $25.00 for 2.5 at $10.00.<br>2. It is NOT a whole-unit amount such as $20.00 or $30.00, and it is NOT a bigger, multiplied figure.<br>3. The quantity behind the QuickBooks amount matches the Units Sold value on the report (2.50) — the two systems agree.<br>4. No second or correcting journal entry is created to patch up a wrong amount.<br><br>---<br>This is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the engineering technical plan, read on 17 August 2026; this point is not covered by any of the six report specifications.<br>Last checked against build v3.8-d0e135e on 8/19/2026.<br><br>AUTOMATION: READY</p>",
+ "custom_atmstatus": 1,
+ "updated_on": 1787216230,
+ "created_by": 3
+}

@@ -1,0 +1,11 @@
+{
+ "id": 30186,
+ "title": "Row surfaces alternate by tree level; header and totals rows stay white",
+ "refs": "SV-8617 (SBC spec v20 2026-08-17 Story 20 S20-R8; S20-R9; S20-R10; S20-R11; S20-R14)",
+ "preconds": "1. You are on the report in light mode with a customer expanded down to invoice rows.\n2. This test names exact colours or sizes. Use the browser's own developer tools: press F12, pick the element with the inspector, and read its colour or size from the \"Styles\" panel. There is nothing to install. If you cannot get a clear reading, mark this test Blocked rather than guessing.",
+ "steps": "1. Inspect the background of the header cells, a customer row, an asset row, an invoice row, and the totals row.\n2. Check the pinned Subtotal cell's background on each row type.\n3. Check the tree indentation levels.",
+ "expected": "1. Column-header cells and customer summary rows use the white surface (#ffffff).\n2. Asset rows and invoice rows use the blue-grey background (#f9fafb).\n3. The totals row uses the white surface with a top border and bold text (white on purpose, matching Technician Efficiency).\n4. The pinned Subtotal cell on any row uses that row's own background — never a contrasting strip.\n5. The three tree levels show by indentation: customer at the base, asset rows one level in (chevron and vehicle icon sit in from the customer), invoice rows one level deeper.\n\n---\nThis is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Sales By Customer report specification version 20 (S20-R8, S20-R9, S20-R10, S20-R11, S20-R14), read on 17 August 2026.\nLast checked against build v3.8-2bf8d14 on 8/18/2026.\n\nAUTOMATION: READY",
+ "custom_atmstatus": 1,
+ "updated_on": 1787082733,
+ "created_by": 3
+}

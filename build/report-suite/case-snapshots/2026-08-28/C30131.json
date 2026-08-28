@@ -1,0 +1,11 @@
+{
+ "id": 30131,
+ "title": "A service (S) invoice with no vehicle also lands in the Parts Sales bucket",
+ "refs": "SV-8606 (SBC spec v20 2026-08-17 Story 8 S8-E3)",
+ "preconds": "<p>1. A customer has an invoice whose number starts with S but whose work order has NO vehicle (seed a ZZAUTOTEST no-vehicle service work order and invoice it, if the app allows)..</p>",
+ "steps": "<p>1. Expand that customer.<br>2. Find which asset row the S invoice sits under.</p>",
+ "expected": "<p>1. The no-vehicle S invoice appears under that customer's \"Parts Sales\" row — the bucket collects work by the ABSENCE of a vehicle, not by the invoice-number prefix.<br><br>---<br>This is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Sales By Customer report specification version 20 (S8-E3), read on 17 August 2026.<br>Last checked against build v3.8-da72171 on 8/19/2026.<br><br>AUTOMATION: HOLD - a service work order cannot be created without a vehicle on this build (creating one returns an error), so a no-vehicle service invoice cannot be produced; the absence-of-vehicle bucketing is confirmed via Part Sales</p>",
+ "custom_atmstatus": 1,
+ "updated_on": 1787208812,
+ "created_by": 3
+}

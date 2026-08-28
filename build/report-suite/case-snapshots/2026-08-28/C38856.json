@@ -1,0 +1,11 @@
+{
+ "id": 38856,
+ "title": "Summary and Expanded View downloads exist for both PDF and CSV",
+ "refs": "SV-8612 (SBC spec v20 2026-08-17 S14-R4; renamed to Labor Delta per SV-9071)",
+ "preconds": "1. You are on the Sales By Customer report with at least one customer and several invoices in the chosen date range.",
+ "steps": "1. Open the download (overflow) menu and read the four items.\n2. Download the Summary version in both formats (Download Summary (PDF) and Download Summary (CSV)) and open the files.\n3. Download the Expanded View version in both formats and compare against the Summary files.",
+ "expected": "1. The menu offers exactly four items: \"Download Summary (PDF)\", \"Download Expanded View (PDF)\", \"Download Summary (CSV)\", \"Download Expanded View (CSV)\".\n2. Each Summary file gives ONE row per customer, without the asset or invoice detail rows.\n3. Each Expanded View file contains the full Customer, then Asset, then Invoice breakdown.\n4. All four files reflect exactly the filtered data shown on screen.\n5. With a single location in scope the Summary files have these eleven columns in this exact order: Customer, Labor Delta, Labor Invoiced, Labor Margin, Parts Invoiced, Parts Margin, Shop Supplies, Adjustments, Margin, Margin %, Subtotal — no Asset, Invoice # or Date columns. When the Location column is shown on screen a Location column is added immediately after the Customer name and before the money columns.\n\n---\nThis is the expected behaviour as per epic SV-8582 and the Sales By Customer report specification version 20 (S14-R4), both read on 17 August 2026. The column was renamed from \"Inv. Hrs\" to \"Labor Delta\" per SV-9071; only the name changed.\nLast checked against build v3.8-2bf8d14 on 8/18/2026.\n\nAUTOMATION: READY",
+ "custom_atmstatus": 3,
+ "updated_on": 1787127537,
+ "created_by": 3
+}

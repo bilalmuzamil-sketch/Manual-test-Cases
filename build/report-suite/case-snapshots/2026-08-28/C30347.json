@@ -1,0 +1,11 @@
+{
+ "id": 30347,
+ "title": "Description; Category and Vendor truncate on hover; Part # never does",
+ "refs": "SV-8643 (PV spec v10 2026-08-17 S3-R7)",
+ "preconds": "<ol><li>A part with a very long description (and a long category and vendor name) has in-window activity.</li><li>A part with a long part number exists.</li><li>You are on the Parts Velocity report with those parts visible.</li></ol>",
+ "steps": "<ol><li>Look at the long Description, Category, and Vendor cells.</li><li>Hover each truncated cell.</li><li>Look at the long Part # cell.</li></ol>",
+ "expected": "<p>1. Long Description, Category, and Vendor text is truncated with an ellipsis on screen.<br>2. The full value shows on native hover (browser tooltip).<br>3. Part # is NEVER truncated - on screen (and in the exports).</p><p>---<br>This is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Parts Velocity report specification version 11 (S3-R7), read on 17 August 2026.<br>Last checked against build v3.8-bd246fd on 8/18/2026.<br>Re-checked against the live specification on 26 August 2026: the requirements this case cites are unchanged, so only the version cited above was updated.</p><p>AUTOMATION: READY</p>",
+ "custom_atmstatus": 1,
+ "updated_on": 1787754846,
+ "created_by": 3
+}

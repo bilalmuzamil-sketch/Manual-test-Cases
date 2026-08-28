@@ -1,0 +1,11 @@
+{
+ "id": 30236,
+ "title": "Half-up rounding at each precision; totals may differ by one last-decimal unit",
+ "refs": "SV-8582 (SBR spec v22 2026-08-17 §3 half; heading renamed to Labor Delta per SV-9071)",
+ "preconds": "1. Several invoices whose money values come from calculations that produce fractions of a cent sit under one rep — seed ZZAUTOTEST invoices whose amounts come from hours × rate or percentage-based lines that do not land on a whole cent (money fields themselves only take two decimals, so the sub-cent amounts must come from the math, not be typed in).",
+ "steps": "1. Read the displayed per-invoice values, sum them by hand, and compare with the rep summary and Totals cells.",
+ "expected": "1. All displayed values round half-up (away from zero) at their stated precision — money to cents; Labor Delta and Margin % to one decimal.\n2. Rolled-up values are computed from UNROUNDED components and then rounded, so a totals cell may differ from the eye-summed displayed rows by one unit in the last decimal.\n3. That one-unit difference is EXPECTED behavior per the spec — it must NOT be filed as a calculation defect.\n\n---\nThis is the expected behaviour as per epic SV-8582 and the Sales By Representative report specification version 22 (§3 half), both read on 17 August 2026. The column was renamed from \"Inv. Hrs\" to \"Labor Delta\" per SV-9071; only the name changed.\nLast checked against build v3.8-bd246fd on 8/18/2026.\n\nAUTOMATION: READY",
+ "custom_atmstatus": 1,
+ "updated_on": 1787084967,
+ "created_by": 3
+}

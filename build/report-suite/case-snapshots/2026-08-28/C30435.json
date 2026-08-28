@@ -1,0 +1,11 @@
+{
+ "id": 30435,
+ "title": "The Summary PDF holds the technician rows plus the Summary",
+ "refs": "SV-8654 (TU spec v9 2026-08-17 S7-R5; S7-R6; S7-R12)",
+ "preconds": "1. You are on the Technician Utilization report with several technicians who have multi-day clock records.",
+ "steps": "1. Choose \"Download Summary (PDF)\" and open the file; check its filename.\n2. Choose \"Download Expanded View (PDF)\" and open the file; check its filename.",
+ "expected": "1. The Summary PDF shows the technician rows and the Summary row (no day rows); it downloads as \"Technician-Utilization-Summary.pdf\".\n2. The Expanded PDF shows the technician rows, EACH technician's per-day breakdown, and the Summary row; it downloads as \"Technician-Utilization-Expanded.pdf\".\n3. The PDF filenames are Title-Case as shipped.\n\n---\nThis is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Technician Utilization report specification version 9 (S7-R5, S7-R6, S7-R12), read on 17 August 2026.\nLast checked against build v3.8-bd246fd on 8/18/2026.\n\nAUTOMATION: READY",
+ "custom_atmstatus": 1,
+ "updated_on": 1787089684,
+ "created_by": 3
+}

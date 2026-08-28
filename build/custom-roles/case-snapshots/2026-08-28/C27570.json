@@ -1,0 +1,11 @@
+{
+ "id": 27570,
+ "title": "CR-BRK-015 — Wages ON, App Settings OFF — sub-setting isolation",
+ "refs": "SV-7388",
+ "preconds": "<p>Settings \\u2713 | Wages \\u2713 | App Settings \\u2717 | (other subs \\u2717) | WO V \\u2713 | View Mode: Full (View Mode as specified).</p>",
+ "steps": "<ol>\n<li>Configure a custom role per the Setup in Preconditions; assign to a test user and log in.</li>\n<li>Open Administration; confirm only Wages visible; confirm Roles/Staff hidden.</li>\n</ol>",
+ "expected": "<p>Administration accessible; only the Wages section visible and wage rates viewable/manageable. App Settings sections (org config, Roles &amp; Permissions, Staff) hidden.</p><hr/><p><strong>Risk / Rationale:</strong> Wages page requires App Settings and breaks, or App Settings content leaks alongside Wages.<br/><strong>Spec Ref:</strong> §3 Settings sub-settings</p>",
+ "custom_atmstatus": 1,
+ "updated_on": 1783156868,
+ "created_by": 1
+}

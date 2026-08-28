@@ -1,0 +1,11 @@
+{
+ "id": 26566,
+ "title": "GET /api/auth/me/fe-permissions reflects the user's actual role bundles (system-tech)",
+ "refs": "SV-7481,SV-7526",
+ "preconds": "User on system-tech role.",
+ "steps": "1. Authenticate as the system-tech user.\n2. Hit GET /api/auth/me/fe-permissions.\n3. Inspect fePermissions array and viewMode field.\n4. Compare against Tech matrix row: WO View only, Lines E (V inherited), Schedule View, Customers View, no parts/invoicing/timesheets, no toggles, WO_PICK_PARTS only sub-setting, viewMode='tech', all cross-toggles OFF.",
+ "expected": "fePermissions contains: WORK_ORDERS_VIEW, WORK_ORDER_LINES_EDIT, SCHEDULE_VIEW, CUSTOMERS_VIEW, WO_PICK_PARTS — and NOTHING ELSE. viewMode='tech'. crossToggles all false.",
+ "custom_atmstatus": 3,
+ "updated_on": 1782555089,
+ "created_by": 3
+}

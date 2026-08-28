@@ -1,0 +1,11 @@
+{
+ "id": 30462,
+ "title": "Status-to-tab mapping: Estimate, Complete, In Progress and Review work orders",
+ "refs": "SV-8656 (WIP spec v21 2026-08-17 S3; status-to-tab mapping on the as-of date)",
+ "preconds": "1. You are signed in to the ShopView App on a desktop browser.\n2. Four ZZAUTOTEST service work orders exist open on the selected \"as of\" date, in the current location: one in Estimate status, one in Complete status, one in In Progress status, and one in Review status.",
+ "steps": "1. Open the Work In Progress report.\n2. Look for each seeded work order in each tab.",
+ "expected": "1. The Estimate work order appears in the \"Estimates\" tab and nowhere else.\n2. The Complete work order appears in the \"Completed\" tab and nowhere else.\n3. The In Progress and Review work orders appear in the \"Approved - Partially Completed\" tab and nowhere else.\n\nNote for the tester: the written description now says two different things about how a work order is placed into a tab. The Story 2 and Story 3 requirements — the ones this test follows — place a whole work order in one tab according to its status. A newer Key Decisions section says placement follows each LINE's state instead, so a work order whose lines are in different states would show in more than one tab, each showing only that tab's share of its money. The product owner has been asked which is right and has not answered. Until he does: if you see a work order in more than one tab, do NOT raise a bug and do NOT fail this test for it — write down what you saw and carry on. The question is here: https://raw.githubusercontent.com/bilalmuzamil-sketch/Manual-test-Cases/claude/slack-session-0sxnd9/build/report-suite/questions-2026-08-06/Questions-for-Chris-Ward_Report-Suite_2026-08-11.xlsx\n\n---\nThis is the expected behaviour as per epic SV-8582 and the Work In Progress report specification version 21 (S3-R1), both read on 17 August 2026.\n\nAUTOMATION: Not available on Build to test Yet - Last checked 8/17/2026",
+ "custom_atmstatus": 3,
+ "updated_on": 1786998007,
+ "created_by": 3
+}

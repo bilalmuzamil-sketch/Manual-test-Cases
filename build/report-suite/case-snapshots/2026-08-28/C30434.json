@@ -1,0 +1,11 @@
+{
+ "id": 30434,
+ "title": "Three-dot menu is leftmost, then Column Selection; four download options",
+ "refs": "SV-8654 (TU spec v9 2026-08-17 S7-R1; S7-R2; S7-R3; S7-R4; S7-R4a; S8-R2 — the spec requires each of the four options by exact label and pins no menu order; S8-R2 gives the three-dot menu leftmost followed by Column Selection)",
+ "preconds": "1. You are on the Technician Utilization report with rows loaded.",
+ "steps": "1. Find the three-dot button in the toolbar and note its position in the action cluster.\n2. Open it and read the options.",
+ "expected": "1. The three-dot download menu sits LEFTMOST in the toolbar's action cluster, with the Column Selection control immediately after it.\n2. The menu holds four download options, labeled exactly: \"Download Summary (PDF)\", \"Download Expanded View (PDF)\", \"Download Summary (CSV)\" and \"Download Expanded View (CSV)\".\n3. The order these four options appear in is NOT part of this check. The specification requires each option to be present with that exact label; it does not fix the order they are listed in. Do not fail this test on the order alone.\n\n---\nThis is the expected behaviour as per epic SV-8582, read on 17 August 2026, and its story SV-8654, read on 17 August 2026, and the Technician Utilization report specification version 9 (S7-R1, S7-R2, S7-R3, S7-R4, S7-R4a, S8-R2), read on 17 August 2026. Chris Ward asked for this menu wording in his answers of 5 August 2026 in this file: https://docs.google.com/spreadsheets/d/1x8cuYJlFsDHalVZZTh156_ZCq2gcOaGY/edit?usp=sharing&ouid=106388879401921597782&rtpof=true&sd=true, read on 17 August 2026; the specification now carries the same wording, so the two agree.\nLast checked against build v3.8-bd246fd on 8/18/2026.\n\nAUTOMATION: READY",
+ "custom_atmstatus": 1,
+ "updated_on": 1787089766,
+ "created_by": 3
+}

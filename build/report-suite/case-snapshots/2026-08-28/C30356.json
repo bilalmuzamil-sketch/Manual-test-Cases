@@ -1,0 +1,11 @@
+{
+ "id": 30356,
+ "title": "A different user signing in on the same browser inherits the saved view",
+ "refs": "SV-8644 (PV spec v10 2026-08-17 S4-R6)",
+ "preconds": "<p>1. User 1 has saved a clearly non-default view on this browser (e.g. Type = Special Order, Last Quarter).<br>2. User 2 can open the report..</p>",
+ "steps": "<p>1. Sign out user 1 and sign in user 2 on the SAME browser.<br>2. Open the Parts Velocity report.</p>",
+ "expected": "<p>1. User 2 sees user 1's saved view (Type = Special Order, Last Quarter, the saved columns and sort).<br>2. This is by design: storage is per browser, not tied to the account - there is no per-account separation.<br><br>---<br>This is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Parts Velocity report specification version 11 (S4-R6), read on 17 August 2026.<br>Last checked against build v3.8-d0e135e on 8/19/2026.<br>Re-checked against the live specification on 26 August 2026: the requirements this case cites are unchanged, so only the version cited above was updated.<br><br>AUTOMATION: READY</p>\n",
+ "custom_atmstatus": 1,
+ "updated_on": 1787747785,
+ "created_by": 3
+}

@@ -1,0 +1,11 @@
+{
+ "id": 27755,
+ "title": "Verify Administrator can delete a parts return",
+ "refs": "SV-5319,SV-7911",
+ "preconds": "Log in to ShopView as a user assigned the Administrator role. (this role has Invoicing & Payments: Delete, which gates deleting a return per spec v33 / SV-7911).\nAt least one parts return record exists under Parts > Returns.",
+ "steps": "1. Click Parts in the main navigation, then open the Returns section.\n2. Open an existing return record.\n3. Click Delete (or Delete Return) and confirm.",
+ "expected": "The return is deleted and no longer appears in the Returns list.",
+ "custom_atmstatus": 1,
+ "updated_on": 1783108595,
+ "created_by": 3
+}

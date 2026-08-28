@@ -1,0 +1,11 @@
+{
+ "id": 27815,
+ "title": "Verify the Estimate column shows Tech Time and labor rates are hidden for Technician",
+ "refs": "SV-5319",
+ "preconds": "Log in to ShopView as a user assigned the Technician role. (this role uses Tech View).\nAt least one work order exists that contains labor and part lines with prices entered.",
+ "steps": "1. Open a work order and open a line.\n2. Look at the Estimate column.\n3. Look for labor rate columns and fields.",
+ "expected": "Step 1: The line opens in Tech View.\nStep 2: The Estimate column shows Tech Time, NOT the estimate money value.\nStep 3: Labor rate columns/fields are hidden.",
+ "custom_atmstatus": 1,
+ "updated_on": 1783108595,
+ "created_by": 3
+}

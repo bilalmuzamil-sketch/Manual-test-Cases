@@ -1,0 +1,11 @@
+{
+ "id": 27855,
+ "title": "Verify Office can see sensitive vendor fields (Credit Terms, Credit Limit, Taxes)",
+ "refs": "SV-5319,SV-8133",
+ "preconds": "Log in to ShopView as a user assigned the Office role. (sensitive vendor fields are gated by Manage AP/AR per spec v33; Office has Manage AP/AR ON).\nAt least one vendor exists with credit terms/limit and tax values set.",
+ "steps": "1. Click Vendors and open a vendor.\n2. Look at the vendor's Overview card.\n3. Open the vendor's Edit view and look for Credit Terms, Credit Limit, and Taxes.",
+ "expected": "Credit Terms, Credit Limit, and Taxes are VISIBLE to Office in both the Overview card and the Edit view. (Known failure SV-8133 was raised when they were hidden - retest.)",
+ "custom_atmstatus": 1,
+ "updated_on": 1783108595,
+ "created_by": 3
+}

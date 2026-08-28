@@ -1,0 +1,11 @@
+{
+ "id": 30235,
+ "title": "Negative dollar values render in accounting parentheses; money columns only",
+ "refs": "SV-8626 (SBR spec v22 2026-08-17 §3 negative money columns; renamed to Labor Delta per SV-9071)",
+ "preconds": "1. A row with a negative money value exists (e.g., a net credit/return invoice, or a negative Labor Margin from cost exceeding billed labor — seed ZZAUTOTEST data).",
+ "steps": "1. Read the negative money cell.\n2. Read a negative Labor Delta cell and a negative Margin % cell for comparison.",
+ "expected": "1. Negative dollar values render in accounting-convention parentheses — ($1,234.56) — on screen, across every money column (Labor Invoiced, Labor Margin, Parts Invoiced, Parts Margin, Adjustments, Margin, Subtotal).\n2. Labor Delta (a signed time value) and Margin % (a signed percentage) are excluded — they use a leading minus, not parentheses.\n\n---\nThis is the expected behaviour as per epic SV-8582 and the Sales By Representative report specification version 22 (§3 negative money columns), both read on 17 August 2026. The column was renamed from \"Inv. Hrs\" to \"Labor Delta\" per SV-9071; only the name changed.\nLast checked against build v3.8-bd246fd on 8/18/2026.\n\nAUTOMATION: READY",
+ "custom_atmstatus": 1,
+ "updated_on": 1787084966,
+ "created_by": 3
+}

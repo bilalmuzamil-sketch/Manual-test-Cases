@@ -1,0 +1,11 @@
+{
+ "id": 30451,
+ "title": "Work In Progress appears in the reports navigation under the Performance group",
+ "refs": "SV-8657 (WIP spec v22 2026-08-18 Story 1 S1-R1; S1-R5 — S1-R5 CLOSES the page title verbatim; Performance group below the named anchor items per the PRD video 2026-07-30; access = the one ordinary reports permission per QA lead 2026-08-03)",
+ "preconds": "1. You are signed in to the ShopView App on a desktop browser.\n2. Your role has the ordinary reports access.",
+ "steps": "1. Open the reports navigation.\n2. Look inside the Performance group of reports.\n3. Click the \"Work In Progress\" entry.\n4. Read the browser tab's page title.",
+ "expected": "1. The reports navigation lists a report labeled \"Work In Progress\" under the Performance group, BELOW the pre-existing entries (Sales, Technician Efficiency, Advisor Analysis, Shop Efficiency).\n2. Clicking it opens the Work In Progress report.\n3. The browser page title is exactly \"Work In Progress - Report | ShopView\" — a plain hyphen with one space on each side.\n\n---\nThis is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Work In Progress report specification version 22 (S1-R1, S1-R5), read on 18 August 2026.\nLast checked against build v3.8-bd246fd on 8/18/2026.\n\nAUTOMATION: READY",
+ "custom_atmstatus": 3,
+ "updated_on": 1787127715,
+ "created_by": 3
+}

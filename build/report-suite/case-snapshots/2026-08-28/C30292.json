@@ -1,0 +1,11 @@
+{
+ "id": 30292,
+ "title": "Report Name dropdown lists Sales Representative Assignments at the bottom",
+ "refs": "SV-8632 (SBR spec v22 2026-08-17 Story 15 S15-R1; S15-R2)",
+ "preconds": "<p>1. You are signed in with Reports access.<br>2. Note the current order of the Report Name dropdown entries before checking..</p>",
+ "steps": "<p>1. In the Reports left sidebar, under the Accounting header, click the \"Export Reports\" entry — a dialog titled \"Export Report\" opens.<br>2. Open the Report Name dropdown and read the list top to bottom.<br>3. Select \"Sales Representative Assignments\" and look at the dialog body.</p>",
+ "expected": "<p>1. \"Sales Representative Assignments\" appears in the Report Name dropdown, appended at the BOTTOM of the list (additive &mdash; no existing entry moved or removed).<br>2. Selecting it HIDES the date range picker.<br>3. The dialog shows the note: \"Snapshot of current sales representative assignments. Both active and inactive reps with assignments are listed.\"<br>4. Note for the tester: the product owner has ruled that the full word \"Sales Representative\" replaces the short \"Sales Rep\" everywhere. If the screen or file still shows \"Sales Rep\", mark this test Failed and report it as the pending rename &mdash; do not change the test.<br><br>---<br>This is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Sales By Representative report specification version 24 (S15-R1, S15-R2), read on 17 August 2026.<br>Last checked against build v3.8-b7d80dc on 8/19/2026.<br>Re-checked against the live specification on 26 August 2026: the requirements this case cites are unchanged, so only the version cited above was updated.<br><br>AUTOMATION: READY</p>\n",
+ "custom_atmstatus": 1,
+ "updated_on": 1787747718,
+ "created_by": 3
+}

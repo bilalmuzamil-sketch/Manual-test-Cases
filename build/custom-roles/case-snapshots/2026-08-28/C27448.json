@@ -1,0 +1,11 @@
+{
+ "id": 27448,
+ "title": "CR-C2-043 — Vendor history viewer",
+ "refs": "SV-7388",
+ "preconds": "<p>Permissions (counted): Vendor &amp; Order V + History Logs. Auto-gate forced ON (not counted): Parts Dept. View Mode: Full unless noted. All other permissions OFF.</p>",
+ "steps": "<ol>\n<li>Create a custom role with the permissions listed in Preconditions; leave all others OFF.</li>\n<li>Assign the role to a test user and log in.</li>\n<li>Exercise each capability in Expected Result and confirm it succeeds (and that gated pricing is hidden where noted).</li>\n</ol>",
+ "expected": "<p>User CAN: View vendors/POs/deliveries; view parts order history logs</p><hr/><p><strong>Risk / Rationale:</strong> Positive capability check — confirms this combination grants exactly the listed actions and nothing gated leaks.<br/><strong>Spec Ref:</strong> §1g+§5c</p>",
+ "custom_atmstatus": 3,
+ "updated_on": 1783336578,
+ "created_by": 1
+}

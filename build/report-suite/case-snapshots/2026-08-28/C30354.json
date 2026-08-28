@@ -1,0 +1,11 @@
+{
+ "id": 30354,
+ "title": "Filters; columns and sort are remembered per browser before the first fetch",
+ "refs": "SV-8644 (PV spec v10 2026-08-17 S4-R6; S1-R2)",
+ "preconds": "1. You are on the Parts Velocity report with data loaded.",
+ "steps": "1. Set a non-default view: Type = Inventory, date range = Last Month, pick a category, enable Turns / Yr, and sort by Revenue descending.\n2. Leave the report (navigate elsewhere), then return to it.\n3. Reload the page (browser refresh) and observe again.",
+ "expected": "1. On return, every saved setting is restored: Type = Inventory, Last Month, the chosen category, the column set including Turns / Yr, and the Revenue-descending sort.\n2. The saved values are applied BEFORE the first data fetch - the report does not flash the defaults and then re-query.\n3. The saved values take precedence over the first-visit defaults (This Year / Both / active location / 14 columns / Demand-descending).\n4. The same holds after a full page reload.\n\n---\nThis is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Parts Velocity report specification version 10 (S4-R6, S1-R2), read on 17 August 2026.\n\nAUTOMATION: READY",
+ "custom_atmstatus": 3,
+ "updated_on": 1787127464,
+ "created_by": 3
+}

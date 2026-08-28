@@ -1,0 +1,11 @@
+{
+ "id": 26588,
+ "title": "Shop notification sent on migration for capability expansions and reductions",
+ "refs": "SV-7485,SV-7527",
+ "preconds": "Migration complete. At least one role with documented capability expansions vs legacy (e.g., legacy SA No Reports → system-ssa which gains Reports access) and at least one with reductions.",
+ "steps": "1. \n2. Identify a user whose role gained capabilities (e.g., legacy SA No Reports → system-ssa).\n3. Log in as that user. Check the in-app banner area for a migration notification.\n4. Check the email inbox associated with that user.\n5. Read the notification text.\n6. Repeat for a user whose role lost capabilities.",
+ "expected": "Notification is delivered via the channel(s) PM chose. The notification text explicitly describes both gains and losses for the user's specific role transition. If no notification is sent: file as P1 bug — SV-7527 explicitly requires this.",
+ "custom_atmstatus": 1,
+ "updated_on": 1784013363,
+ "created_by": 3
+}

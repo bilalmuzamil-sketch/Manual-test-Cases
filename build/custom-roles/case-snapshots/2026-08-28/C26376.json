@@ -1,0 +1,11 @@
+{
+ "id": 26376,
+ "title": "Work orders Delete lets the user delete work orders",
+ "refs": "SV-7506,SV-7507",
+ "preconds": "<ol>\n<li>A user has a role with Work orders View, Create & Edit and Delete.</li>\n</ol>",
+ "steps": "<ol>\n<li>Log in and open a non-critical work order.</li>\n<li>Click the Delete action.</li>\n<li>Confirm.</li>\n<li>Return to the list.</li>\n</ol>",
+ "expected": "<p>The Delete action is shown.</p>\n<p>A confirmation dialog appears.</p>\n<p>The deleted work order is gone from the list.</p>\n",
+ "custom_atmstatus": 3,
+ "updated_on": 1783943592,
+ "created_by": 3
+}

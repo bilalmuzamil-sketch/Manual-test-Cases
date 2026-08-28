@@ -1,0 +1,11 @@
+{
+ "id": 30304,
+ "title": "Touch targets are at least 44×44 px and touch users get no hover-only tooltips",
+ "refs": "SV-8634 (SBR spec v22 2026-08-17 Story 17 S17-R6; S17-N1; Story 18 S18-R9)",
+ "preconds": "<ol><li>The report is open on a touch device or touch emulation (under 1024px).</li><li>This test names exact colours or sizes. Use the browser's own developer tools: press F12, pick the element with the inspector, and read its colour or size from the \"Styles\" panel. There is nothing to install. If you cannot get a clear reading, mark this test Blocked rather than guessing.</li></ol>",
+ "steps": "<ol><li>Measure (device emulation ruler/inspector) the touch targets of a row chevron, the Show Unassigned toggle, the ⋯ button, and — via the staff deactivation dialog if opened — the dialog's X.</li><li>Tap-and-hold the icon controls and watch for tooltips.</li></ol>",
+ "expected": "<p>1. Each of these interactive controls presents a touch target of at least 44×44 px.<br>2. Hover-only tooltips are not shown on touch; the icons communicate the action and each icon-only control carries an accessible name.</p><p>---<br>This is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Sales By Representative report specification version 24 (S17-R6, S17-N1, S18-R9), read on 17 August 2026.<br>Last checked against build v3.8-bd246fd on 8/18/2026.<br>Re-checked against the live specification on 26 August 2026: the requirements this case cites are unchanged, so only the version cited above was updated.</p><p>AUTOMATION: READY</p>",
+ "custom_atmstatus": 1,
+ "updated_on": 1787754781,
+ "created_by": 3
+}

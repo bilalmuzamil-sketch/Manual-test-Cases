@@ -1,0 +1,11 @@
+{
+ "id": 27852,
+ "title": "Verify Office can open AP/AR reports and customer AP/AR tabs",
+ "refs": "SV-5319",
+ "preconds": "1. Log in to ShopView as a user assigned the Office role.\n2. The role has the Reports permission ON (this grants access to the AP/AR aging reports).\n3. The role has Manage Accounts Payable and Receivable ON (this controls the customer/vendor AP/AR tabs: Unpaid Invoices, Payments, Credits).\n4. Invoice/payment data exists so the reports and tabs have content.",
+ "steps": "1. Click Reports in the top navigation.\n2. Open the 6 AP/AR aging reports one at a time: AR Aging Summary, AR Aging Detail, AR Aging Collection, AP Aging Summary, AP Aging Detail, AP Unpaid Invoices.\n3. Click Customers and open a customer record.\n4. Open the Unpaid Invoices, Payments, and Credits tabs on the customer.",
+ "expected": "1. All 6 AP/AR aging reports open with data and no permission error. They are available because the Reports permission is ON (aging reports follow the Reports permission, not Manage AP/AR).\n2. The customer AP/AR tabs (Unpaid Invoices, Payments, Credits) are visible and open successfully. These tabs are controlled by Manage Accounts Payable and Receivable (unchanged by this spec).\n3. The two are gated independently: the aging reports depend on the Reports permission, while the customer/vendor AP/AR tabs depend on Manage AP/AR. Turning Manage AP/AR OFF would hide the tabs but would NOT hide the aging reports.",
+ "custom_atmstatus": 1,
+ "updated_on": 1783273400,
+ "created_by": 3
+}

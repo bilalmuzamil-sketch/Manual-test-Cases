@@ -1,0 +1,11 @@
+{
+ "id": 30137,
+ "title": "Duplicate asset labels get stable (#1)/(#2) suffixes that survive reloads",
+ "refs": "SV-8606 (SBC spec v20 2026-08-17 Story 8 S8-R11)",
+ "preconds": "<p>1. One customer has TWO ZZAUTOTEST assets whose labels come out identical (same year/make/model and same identifier situation), each with an invoice in range.</p>",
+ "steps": "<p>1. Expand the customer and read the two asset labels.<br>2. Note which asset carries \" (#1)\" and which \" (#2)\".<br>3. Reload the page and expand again.</p>",
+ "expected": "<p>1. The duplicate labels are suffixed \" (#1)\" and \" (#2)\" (and so on for more duplicates).<br>2. The numbering is fixed and repeatable — after a reload the same vehicle keeps the same number.<br><br>---<br>This is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Sales By Customer report specification version 20 (S8-R11), read on 17 August 2026.<br>Last checked against build v3.8-da72171 on 8/19/2026..<br><br>AUTOMATION: READY</p>",
+ "custom_atmstatus": 1,
+ "updated_on": 1787146259,
+ "created_by": 3
+}

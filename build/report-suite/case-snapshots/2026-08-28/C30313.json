@@ -1,0 +1,11 @@
+{
+ "id": 30313,
+ "title": "The Sales Representative selector is read-only when Invoiced or Paid",
+ "refs": "SV-8636 (SBR spec v22 2026-08-17 Story 19 S19-R5)",
+ "preconds": "<p>1. One Work Order is in \"Invoiced\" status and one is in \"Paid\" status (drive throwaway ZZAUTOTEST WOs into these states if needed)..</p>",
+ "steps": "<p>1. Open the Invoiced WO and try to change the Sales Representative field.<br>2. Open the Paid WO and try the same.</p>",
+ "expected": "<p>1. On the Invoiced WO the Sales Representative selector is read-only (non-interactive) &mdash; the assignment cannot be changed.<br>2. On the Paid WO the selector is also read-only.<br>3. Note for the tester: the product owner has ruled that the full word \"Sales Representative\" replaces the short \"Sales Rep\" everywhere. If the screen or file still shows \"Sales Rep\", mark this test Failed and report it as the pending rename &mdash; do not change the test.<br>4. Note for the tester: this field is only made read-only on the screen. If you find the sales rep can still be changed another way (through the back-end/API), that is expected &mdash; mark this test PASSED and do not raise it as a bug.<br><br>---<br>This is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Sales By Representative report specification version 24 (S19-R5), read on 17 August 2026.<br>Last checked against build v3.8-b7d80dc on 8/19/2026.<br>Re-checked against the live specification on 26 August 2026: the requirements this case cites are unchanged, so only the version cited above was updated.<br><br>AUTOMATION: READY</p>\n",
+ "custom_atmstatus": 1,
+ "updated_on": 1787747756,
+ "created_by": 3
+}

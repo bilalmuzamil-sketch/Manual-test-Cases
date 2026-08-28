@@ -1,0 +1,11 @@
+{
+ "id": 30477,
+ "title": "Parts Earned is the sell value of approved-line parts already received",
+ "refs": "SV-8660 (WIP spec v22 2026-08-18 Story 4 S4-R17)",
+ "preconds": "<ol>\n<li>You are signed in to the ShopView App on a desktop browser.</li>\n<li>The Parts Earned column is turned on.</li>\n<li>A ZZAUTOTEST open work order exists with an approved parts line of a known quantity and sell price, where part of the quantity has been received (for example 2 of 4 units at $50 sell each).</li>\n</ol>\n",
+ "steps": "<ol>\n<li>Open the Work In Progress report and find the seeded work order's row.</li>\n<li>Read its Parts Earned value.</li>\n<li>Compare it to the received quantity valued at the line's sell price (2 × $50 = $100.00 in the example).</li>\n</ol>\n",
+ "expected": "<ol>\n<li>Parts Earned equals the sell value of the approved-line parts already received (in the example, $100.00).</li>\n<li>Parts not yet received contribute nothing to Parts Earned.</li>\n</ol>\n\n<hr />\n\n<p>This is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Work In Progress report specification version 22 (S4-R17), read on 18 August 2026.<br />Last checked against build v3.8-bd246fd on 8/18/2026.</p>\n\n<p>AUTOMATION: READY</p>\n",
+ "custom_atmstatus": 1,
+ "updated_on": 1787093858,
+ "created_by": 3
+}

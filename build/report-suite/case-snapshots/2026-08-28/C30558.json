@@ -1,0 +1,11 @@
+{
+ "id": 30558,
+ "title": "Totals-row Margin % is recomputed from the totals; not an average of rows",
+ "refs": "SV-8671 (IV spec v10 2026-08-17 Story 4 S4-R3)",
+ "preconds": "1. You are signed in to the ShopView App on a desktop browser.\n2. The filtered set contains parts with clearly different Margin % values (so a recomputed figure differs from a simple average).\n3. The Margin and Total Sell columns are turned on.",
+ "steps": "1. Read the totals row's Margin, Total Sell, and Margin %.\n2. Compute total Margin ÷ total Total Sell × 100 and compare to the shown Margin %.\n3. Also compute the plain average of the row Margin % values and confirm the shown figure is NOT that.",
+ "expected": "1. The totals-row Margin % equals total Margin ÷ total Total Sell × 100 (to one decimal place with a percent sign).\n2. It is NOT the average of the row percentages.\n3. It shows \"—\" when the total Total Sell is zero or negative.\n\n---\nThis is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Inventory Value report specification version 10 (S4-R3), read on 17 August 2026.\nLast checked against build v3.8-bd246fd on 8/18/2026.\n\nAUTOMATION: READY",
+ "custom_atmstatus": 1,
+ "updated_on": 1787095731,
+ "created_by": 3
+}

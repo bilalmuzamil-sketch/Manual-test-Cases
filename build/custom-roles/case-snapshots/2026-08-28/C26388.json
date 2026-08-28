@@ -1,0 +1,11 @@
+{
+ "id": 26388,
+ "title": "The 'Add Asset' button in the New Work Order flow when Customers Create & Edit is OFF",
+ "refs": "SV-7506,SV-7511",
+ "preconds": "<ol>\n<li>A user has a role with Work orders Create & Edit ON, Customers View ON and Customers Create & Edit OFF.</li>\n</ol>",
+ "steps": "<ol>\n<li>Log in and click New Work Order.</li>\n<li>Select an existing customer.</li>\n<li>Go to the asset/vehicle step.</li>\n<li>Look for an Add Asset button in the asset picker.</li>\n</ol>",
+ "expected": "<p>The Add Asset button IS shown, and adding a new asset for the customer from the New Work Order flow works.</p>\n<p>Adding an asset here is part of creating a work order (Work Orders: Create &amp; Edit). It does NOT require Customers: Create &amp; Edit.</p>",
+ "custom_atmstatus": 3,
+ "updated_on": 1784577444,
+ "created_by": 3
+}

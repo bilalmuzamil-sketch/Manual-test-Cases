@@ -1,0 +1,11 @@
+{
+ "id": 30227,
+ "title": "Badge colors use the canonical payment-status tokens in light and dark",
+ "refs": "SV-8625 (SBR spec v22 2026-08-17 Story 8 S8-R3; Story 18 S18-R8)",
+ "preconds": "<ol><li>Detail rows with all three badge values are visible; you can switch to dark mode.</li></ol>",
+ "steps": "<ol><li>Read the color treatment of each badge in light mode and compare with the badges on the application's invoice list.</li><li>Switch to dark mode and compare again.</li></ol>",
+ "expected": "<p>1. Paid = dark teal text on light teal; Partially Paid = dark orange on light orange; Unpaid = dark red on light red.<br>2. The badges use the same canonical payment-status color tokens as the invoice list, consistent app-wide.<br>3. The treatment stays legible and consistent in both light and dark mode.</p><p>---<br>This is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Sales By Representative report specification version 24 (S8-R3, S18-R8), read on 17 August 2026.<br>Last checked against build v3.8-bd246fd on 8/18/2026.<br>Re-checked against the live specification on 26 August 2026: the requirements this case cites are unchanged, so only the version cited above was updated.</p><p>AUTOMATION: READY</p>",
+ "custom_atmstatus": 1,
+ "updated_on": 1787754720,
+ "created_by": 3
+}

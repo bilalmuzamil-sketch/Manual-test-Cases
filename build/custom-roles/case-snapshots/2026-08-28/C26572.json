@@ -1,0 +1,11 @@
+{
+ "id": 26572,
+ "title": "BE persists INVOICING view without See Financial Data (fin-data dependency NOT cascaded server-side)",
+ "refs": "SV-7479,SV-7515,SV-7523",
+ "preconds": "Authenticated.",
+ "steps": "1. POST /api/roles with fe_permissions=['invoicingPaymentsView'] and cross_toggles.seeFinancialData=false (note: seeFinancialData is a CROSS_TOGGLE boolean, not an fePermission id).\n2. Inspect the response status and body.\n3. GET /api/roles/{id} for the returned role id and inspect the persisted fe_permissions AND cross_toggles.",
+ "expected": "1. The API returns 201 Created.\n2. seeFinancialData is NOT auto-added: it stays false. No cascade occurs and no 400 is returned.\n3. Fetching the role back shows the bundle persisted VERBATIM (invoicingPaymentsView only; cross_toggles.seeFinancialData=false).\nNOTE: Unlike the Work-Order CRUD parent chain (which the backend DOES cascade), the See-Financial-Data dependency for Invoicing is a FRONT-END display gate only - it is NOT cascaded or enforced server-side. Verified live on staging 2026-07-09 (POST 201, seeFinancialData persisted false).",
+ "custom_atmstatus": 3,
+ "updated_on": 1783585008,
+ "created_by": 3
+}

@@ -1,0 +1,11 @@
+{
+ "id": 30393,
+ "title": "One row per technician who clocked time in the range at those locations",
+ "refs": "SV-8648 (TU spec v9 2026-08-17 S1-R2)",
+ "preconds": "<ol>\n<li>Technician A clocked time (work-order and/or internal) in the selected date range at the selected location.</li>\n<li>Technician B clocked NO time in that range.</li>\n</ol>\n",
+ "steps": "<ol>\n<li>Open the Technician Utilization report for that range and location.</li>\n<li>Look for rows for technicians A and B.</li>\n</ol>\n",
+ "expected": "<ol>\n<li>Technician A has exactly ONE row.</li>\n<li>Technician B has NO row - only technicians with clocked time in the selected range at the selected location(s) appear.</li>\n</ol>\n\n<hr />\n\n<p>This is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Technician Utilization report specification version 9 (S1-R2), read on 17 August 2026.<br />Last checked against build v3.8-bd246fd on 8/18/2026.</p>\n\n<p>AUTOMATION: READY</p>\n",
+ "custom_atmstatus": 1,
+ "updated_on": 1787089750,
+ "created_by": 3
+}

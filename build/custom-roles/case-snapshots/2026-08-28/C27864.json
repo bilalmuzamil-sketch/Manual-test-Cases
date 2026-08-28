@@ -1,0 +1,11 @@
+{
+ "id": 27864,
+ "title": "Verify no financial data is shown to Time Clock user",
+ "refs": "SV-5319",
+ "preconds": "Log in to ShopView as a user assigned the Time Clock role. (this role has See Financial Data OFF and View Mode Empty).",
+ "steps": "1. Open every screen reachable by the Time Clock user (clock control, and Work Orders/Schedule if visible per spec v39).\n2. Look for any price, total, or other money value.",
+ "expected": "No pricing or financial data is displayed on any screen reachable by the Time Clock user.",
+ "custom_atmstatus": 1,
+ "updated_on": 1783108595,
+ "created_by": 3
+}

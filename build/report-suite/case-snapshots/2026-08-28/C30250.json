@@ -1,0 +1,11 @@
+{
+ "id": 30250,
+ "title": "Invoice links use theme-primary; customer links use the body color",
+ "refs": "SV-8629 (SBR spec v22 2026-08-17 Story 12 S12-R4; S12-R5; S12-R6; S12-N3)",
+ "preconds": "<p>1. Detail rows are visible; at least one invoice and one customer link have been clicked earlier; you can switch to dark mode..</p>",
+ "steps": "<p>1. Inspect an invoice-number link at rest, on hover, on keyboard focus, and after a click.<br>2. Inspect a customer-name link the same way.<br>3. Switch to dark mode and repeat.</p>",
+ "expected": "<p>1. Invoice-number link: theme-primary color, no underline at rest; an underline appears on hover and on keyboard focus (visible focus indicator); it never recolors to browser-purple after a click.<br>2. Customer-name link: inherits the cell's body text color (never theme-blue), no underline at rest; underline on hover and keyboard focus; never browser-purple.<br>3. Both hold in light and dark mode and across return visits.<br>4. Underlined-at-rest links, browser-blue customer names, purple post-click links, and new-tab destinations are all defects.<br><br>---<br>This is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Sales By Representative report specification version 24 (S12-R4, S12-R5, S12-R6, S12-N3), read on 17 August 2026.<br>Last checked against build v3.8-b7d80dc on 8/19/2026.<br>Re-checked against the live specification on 26 August 2026: the requirements this case cites are unchanged, so only the version cited above was updated.<br><br>AUTOMATION: READY</p>\n",
+ "custom_atmstatus": 1,
+ "updated_on": 1787747688,
+ "created_by": 3
+}

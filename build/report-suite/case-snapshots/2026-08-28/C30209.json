@@ -1,0 +1,11 @@
+{
+ "id": 30209,
+ "title": "Status filtering matches on the mapped display value",
+ "refs": "SV-8622 (SBR spec v22 2026-08-17 Story 4 S4-R4; §3 payment-status mapping)",
+ "preconds": "<p>1. ZZAUTOTEST invoices exist under one rep covering the payment situations: fully paid; overpaid; prepaid with zero balance owed; prepaid with a balance still owed; partially paid; unpaid.<br>2. Seed the prepaid-with-zero-balance situation the realistic way: the customer pays a DEPOSIT up front that fully covers the work, so the invoice is created with nothing left to pay..</p>",
+ "steps": "<p>1. Filter to \"Paid\" and read which invoices appear.<br>2. Filter to \"Partially Paid\" and read again.<br>3. Filter to \"Unpaid\" and read again.</p>",
+ "expected": "<p>1. \"Paid\" includes the paid, the overpaid, AND the prepaid-with-zero-balance invoices.<br>2. \"Partially Paid\" includes the partially-paid AND the prepaid-with-a-balance-owed invoices.<br>3. \"Unpaid\" includes only the unpaid invoice.<br>4. The filter matches on the mapped display value, the same mapping the status badge uses &mdash; prepaid is the only state whose display value depends on the balance owed.<br><br>---<br>This is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Sales By Representative report specification version 24 (S4-R4), read on 17 August 2026.<br>Last checked against build v3.8-b7d80dc on 8/19/2026.<br>Re-checked against the live specification on 26 August 2026: the requirements this case cites are unchanged, so only the version cited above was updated.<br><br>AUTOMATION: READY</p>\n",
+ "custom_atmstatus": 1,
+ "updated_on": 1787747670,
+ "created_by": 3
+}

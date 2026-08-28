@@ -1,0 +1,11 @@
+{
+ "id": 30105,
+ "title": "Changing the date range writes it into the page link for sharing",
+ "refs": "SV-8601 (SBC spec v20 2026-08-17 Story 2 S2-R6; S2-R9 (context))",
+ "preconds": "1. You are on the Sales By Customer report.",
+ "steps": "1. Change the date range (for example to \"Last Month\").\n2. Look at the browser's address bar.\n3. Copy the page link, open it in a fresh browser profile with no saved view for this report, and check the date range.",
+ "expected": "1. The chosen date range value is written into the page link.\n2. Opening that link in a browser with no saved view for this report restores the sender's date range.\n\n---\nThis is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Sales By Customer report specification version 20 (S2-R6, S2-R9), read on 17 August 2026.\nLast checked against build v3.8-2bf8d14 on 8/18/2026.\n\nAUTOMATION: READY",
+ "custom_atmstatus": 1,
+ "updated_on": 1787082703,
+ "created_by": 3
+}

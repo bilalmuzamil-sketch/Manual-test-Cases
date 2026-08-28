@@ -1,0 +1,11 @@
+{
+ "id": 26378,
+ "title": "The Work orders sub-toggles are shown but disabled when Work orders View is OFF",
+ "refs": "SV-7506,SV-7507",
+ "preconds": "<ol>\n<li>Open Create Role (or edit a custom role) with Work orders View OFF.</li>\n</ol>",
+ "steps": "<ol>\n<li>Find the Work orders card.</li>\n<li>Find the three sub-toggles Review work orders, Pick parts and Order parts.</li>\n<li>Look at their state.</li>\n<li>Try to click each one.</li>\n</ol>",
+ "expected": "<p>All three sub-toggles are shown inside the Work orders card but appear greyed out / disabled.</p>\n<p>Clicking them does not turn them on.</p>\n",
+ "custom_atmstatus": 3,
+ "updated_on": 1783943595,
+ "created_by": 3
+}

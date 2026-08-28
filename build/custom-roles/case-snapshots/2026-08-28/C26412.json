@@ -1,0 +1,11 @@
+{
+ "id": 26412,
+ "title": "Part sales Delete lets the user delete part sales and reverse part sales invoices",
+ "refs": "SV-7512,SV-7520,SV-8095",
+ "preconds": "<ol>\n<li>A user has a role with Parts Department ON, See Financial Data ON and Part sales View, Create & Edit and Delete.</li>\n</ol>",
+ "steps": "<ol>\n<li>Log in and open a part sale, then delete it.</li>\n<li>Open a part sales invoice and reverse it.</li>\n</ol>",
+ "expected": "<p>The part sale is deleted.</p>\n<p>The part sales invoice is reversed.</p>\n<p>Reversing a part sales invoice is controlled by Part sales Delete, not by Invoicing & payments Delete.</p>\n",
+ "custom_atmstatus": 3,
+ "updated_on": 1783943618,
+ "created_by": 3
+}

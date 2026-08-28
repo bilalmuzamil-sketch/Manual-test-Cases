@@ -1,0 +1,11 @@
+{
+ "id": 30226,
+ "title": "Status badge between Customer and Labor Delta; detail rows show mapped text",
+ "refs": "SV-8625 (SBR spec v22 2026-08-17 S8-R1,S8-R2,S8-R4,S8-R5,S8-R6,S8-N1,S18-R6; heading renamed to Labor Delta per SV-9071)",
+ "preconds": "<ol>\n<li>Invoices exist covering paid, overpaid, prepaid (zero balance), prepaid (balance owed), partially paid, and unpaid.</li>\n<li>The owning rep is expanded.</li>\n</ol>\n",
+ "steps": "<ol>\n<li>Locate the Status column relative to its neighbours.</li>\n<li>Read the badge on each seeded invoice's detail row.</li>\n<li>Look at a badge's vertical position in its cell, read the Status cell on a rep summary row, and check the status is readable from the badge text alone.</li>\n</ol>\n",
+ "expected": "<ol>\n<li>The Status column sits immediately after the Customer column. With a single location in scope the next column to its right is Labor Delta; when the Location column is shown it is inserted immediately after Status, so Labor Delta then follows Location.</li>\n<li>Every detail row renders a small colored badge reading \"Paid,\" \"Partially Paid,\" or \"Unpaid\" — badge rendering is unconditional on detail rows.</li>\n<li>The mapping is: paid → Paid; overpaid → Paid; prepaid with zero balance → Paid; prepaid with a balance owed → Partially Paid; partially_paid → Partially Paid; unpaid → Unpaid.</li>\n<li>Badges are vertically centered in their cells; on rep summary rows the Status cell is blank; the badge's text is the accessible label — status is never conveyed by color alone.</li>\n</ol>\n\n<hr />\n\n<p>This is the expected behaviour as per epic SV-8582 and the Sales By Representative report specification version 22 (S8-R1, S8-R2, S8-R4, S8-R5, S8-R6, S8-N1, S18-R6), both read on 17 August 2026. The column was renamed from \"Inv. Hrs\" to \"Labor Delta\" per SV-9071; only the name changed.<br />Last checked against build v3.8-bd246fd on 8/18/2026.</p>\n\n<p>AUTOMATION: READY</p>\n",
+ "custom_atmstatus": 1,
+ "updated_on": 1787747461,
+ "created_by": 3
+}

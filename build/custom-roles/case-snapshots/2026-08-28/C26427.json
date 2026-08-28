@@ -1,0 +1,11 @@
+{
+ "id": 26427,
+ "title": "The Send to Terminal action needs Invoicing & payments Create & Edit + Customer Portal Enabled",
+ "refs": "SV-7515",
+ "preconds": "<ol><li>See Financial Data ON.</li><li>User A has Invoicing &amp; payments View only; User B has Invoicing &amp; payments Create &amp; Edit and Customer Portal enabled</li></ol>",
+ "steps": "<ol><li>As User A, open an unpaid invoice on a work order and look for a Send to Terminal action.</li><li>As User B, open the same kind of unpaid invoice and look for Send to Terminal.</li><li>Click it and confirm the terminal flow starts.</li></ol>",
+ "expected": "<p>Send to Terminal is not shown for User A (View only).</p><p>&lt;p&gt;Send to Terminal is shown for User B and starts the terminal payment flow.&lt;/p&gt;</p>",
+ "custom_atmstatus": 3,
+ "updated_on": 1784569088,
+ "created_by": 3
+}

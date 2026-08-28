@@ -1,0 +1,11 @@
+{
+ "id": 26527,
+ "title": "Clocking in on a work order line depends on the per-staff Time Clock setting",
+ "refs": null,
+ "preconds": "<ol>\n<li>User C (Technician) has the per-staff Time Clock setting ON.</li>\n<li>User D (Technician) has the per-staff Time Clock setting OFF.</li>\n</ol>",
+ "steps": "<ol>\n<li>Log in as User C, open an assigned work order and find a labor line.</li>\n<li>Click the clock-in control on that line and see what happens.</li>\n<li>Log in as User D, open an assigned work order and find a labor line.</li>\n<li>Look for the clock-in control on that line.</li>\n</ol>",
+ "expected": "<p>User C can clock in on the line and it starts recording time.</p>\n<p>User D has no clock-in control on labor lines (or it is disabled).</p>\n<p>Same role, different per-staff setting, different behavior.</p>\n",
+ "custom_atmstatus": 3,
+ "updated_on": 1784016454,
+ "created_by": 3
+}

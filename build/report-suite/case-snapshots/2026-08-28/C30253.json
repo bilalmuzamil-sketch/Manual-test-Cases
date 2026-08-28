@@ -1,0 +1,11 @@
+{
+ "id": 30253,
+ "title": "Deactivate dialog: counted pluralized headline, reassurance, focus trap",
+ "refs": "SV-8630 (SBR spec v22 2026-08-17 Story 13 S13-R1; S13-R3; S13-R4; S13-R12)",
+ "preconds": "<p>1. ZZAUTOTEST rep \"A\" is active, toggle on, and assigned as sales representative to exactly 1 customer; ZZAUTOTEST rep \"B\" likewise to 3 customers..</p>",
+ "steps": "<p>1. Toggle rep B's active status off and read the dialog before confirming anything.<br>2. Press Tab repeatedly and watch where focus goes; dismiss and watch where focus returns.<br>3. Repeat step 1 for rep A (1 customer) and read the headline's noun.</p>",
+ "expected": "<p>1. A warning dialog titled \"Deactivate {Staff Name}?\" opens BEFORE any change is applied; the deactivation does not commit until confirmed.<br>2. The body shows \"{Staff Name} is the sales representative on {N} customer{s}.\" &mdash; singular for N=1 (\"1 customer\"), plural otherwise (\"3 customers\") &mdash; followed by the reassurance line \"Their customer assignments will stay where they are.\"<br>3. Focus is trapped within the dialog while open and returns to the invoking control on dismiss.<br><br>---<br>This is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Sales By Representative report specification version 24 (S13-R1, S13-R3, S13-R4, S13-R12), read on 17 August 2026.<br>Last checked against build v3.8-b7d80dc on 8/19/2026.<br>Re-checked against the live specification on 26 August 2026: the requirements this case cites are unchanged, so only the version cited above was updated.<br><br>AUTOMATION: READY</p>\n",
+ "custom_atmstatus": 1,
+ "updated_on": 1787747690,
+ "created_by": 3
+}

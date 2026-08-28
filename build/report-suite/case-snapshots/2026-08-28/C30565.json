@@ -1,0 +1,11 @@
+{
+ "id": 30565,
+ "title": "The date control names the resolved day; no separate \"As of\" indicator",
+ "refs": "SV-8672 (IV spec v10 2026-08-17 Story 5 S5-R5; S5-R6)",
+ "preconds": "1. You are signed in to the ShopView App on a desktop browser.\n2. A past date exists that has NO snapshot of its own but has an earlier recorded day before it (for example, a gap day, or a date in the thinned monthly-retention band).",
+ "steps": "1. Set the \"as of\" date to the gap date (a date with no snapshot of its own).\n2. Look for an \"As of\" indicator and read which day it names.\n3. Then select a range ending on a day that IS recorded (or today with live values) and look for the indicator again.",
+ "expected": "1. When the displayed day is an earlier recorded day than the date you asked for, the \"as of\" date control itself names the day actually shown - the requested date on its face, and beneath it, inside the same control, the resolved day worded \"As of {date}\". There is no separate \"As of\" indicator anywhere else on the page.\n2. When the displayed day matches the date you asked for (the common current-view case), the control shows only the selected date, with no \"As of\" line beneath it.\nNote for the tester: an earlier version of this report offered a date range with ready-made periods. The current Inventory Value report specification (version 10, S5-R1/S5-R7) replaces that with a single \"as of\" date control - one calendar day, defaulting to today and capped at today - because a stock valuation is a point-in-time position, not an amount over a period. Follow the current specification.\n\n---\nThis is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Inventory Value report specification version 10 (S5-R5, S5-R6), read on 17 August 2026.\nLast checked against build v3.8-bd246fd on 8/18/2026.\n\nAUTOMATION: READY",
+ "custom_atmstatus": 1,
+ "updated_on": 1787095656,
+ "created_by": 3
+}

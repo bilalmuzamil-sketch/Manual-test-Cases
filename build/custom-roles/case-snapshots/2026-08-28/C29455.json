@@ -1,0 +1,11 @@
+{
+ "id": 29455,
+ "title": "Time Clock user cannot change organization Settings via API",
+ "refs": null,
+ "preconds": "<ol>\n<li>A user is signed in with the system <strong>Time Clock</strong> role (Work Orders View, Schedule View, Timesheets View; View Mode none; every other permission OFF; read-only, can clock in/out).</li>\n<li>You have a way to send API requests to the backend (api.staging.shopview.com) as that signed-in Time Clock user.</li>\n</ol>",
+ "steps": "<ol>\n<li>Send POST /api/organizations/settings/change with a settings field.</li>\n</ol>",
+ "expected": "<p>The request returns <strong>403 Forbidden</strong> (response body: \"Access denied.\").</p>\n<p>Reason: the Time Clock role cannot edit Settings.</p>\n",
+ "custom_atmstatus": 3,
+ "updated_on": 1784006689,
+ "created_by": 3
+}

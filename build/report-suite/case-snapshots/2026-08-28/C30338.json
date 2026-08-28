@@ -1,0 +1,11 @@
+{
+ "id": 30338,
+ "title": "Empty state shows the standard no-data message when no parts match the filters",
+ "refs": "SV-8642 (PV spec v10 2026-08-17 S2-R11; S2-N1; §7 — §7 CLOSES the empty-state string verbatim (\"Empty bays\" ... \"Get Going!\") as the standard reports no-data label; so the exact string IS the requirement)",
+ "preconds": "1. You are on the Parts Velocity report with data loaded.",
+ "steps": "1. Type a nonsense string (for example 'zzqx-no-such-part') into the toolbar search so no part matches.\n2. Read the message shown in the data area.",
+ "expected": "1. The server returns zero rows and the table shows the empty state.\n2. The empty-state label reads exactly: \"Empty bays, endless possibilities. Get Going!\" (the application's standard reports no-data label).\n\n---\nThis is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Parts Velocity report specification version 10 (S2-R11, S2-N1), read on 17 August 2026.\n\nAUTOMATION: READY",
+ "custom_atmstatus": 3,
+ "updated_on": 1787058436,
+ "created_by": 3
+}

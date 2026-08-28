@@ -1,0 +1,11 @@
+{
+ "id": 30431,
+ "title": "Reconcile exception (a): an open clock is snapshotted at each load instant",
+ "refs": "SV-8648 (TU spec v9 2026-08-17 S1-R9(a); S1-E1)",
+ "preconds": "<p>1. A technician is still clocked in (an open, not-yet-clocked-out record) inside the range..</p>",
+ "steps": "<p>1. Load the Technician Utilization report and read the technician's Total Hours; watch whether the value ticks on screen.<br>2. Wait a minute or two, then open Timesheet Activities via the Total Hours link and read its total.<br>3. Compare the two values.</p>",
+ "expected": "<p>1. The open time is counted UP TO THE MOMENT THE REPORT LOADS - a fixed snapshot taken at load, not a value that keeps ticking on screen (matching how Timesheet Activities treats an open record).<br>2. The two reports, loaded at different moments, MAY differ by the elapsed open time - this is a deliberate scope difference of the reconciliation guarantee, EXPECTED and NOT a defect.<br>3. Reloading the Technician Utilization report takes a fresh snapshot (the value grows by the elapsed time).<br><br>---<br>This is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Technician Utilization report specification version 9 (S1-R9, S1-E1), read on 17 August 2026.<br>Last checked against build v3.8-d0e135e on 8/19/2026.<br><br>AUTOMATION: HOLD - the Total Hours link to Timesheet Activities is not present in the build yet, and this reconcile check also needs a technician clocked in at the load instant</p>",
+ "custom_atmstatus": 1,
+ "updated_on": 1787214510,
+ "created_by": 3
+}

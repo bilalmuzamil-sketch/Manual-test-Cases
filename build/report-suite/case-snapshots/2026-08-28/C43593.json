@@ -1,0 +1,11 @@
+{
+ "id": 43593,
+ "title": "A fixed-price line with no invoiced hours earns all at once when it is completed",
+ "refs": "SV-8660 (WIP spec v22 2026-08-18 §3 Key Decisions — with no invoiced hours the full fixed amount stays in Remaining until the line is completed then moves entirely to Earned; a completed WO never leaves value in Remaining; per SV-9028; SV-9035)",
+ "preconds": "1. You are signed in to the ShopView App on a desktop browser.\n2. A ZZAUTOTEST open work order exists with an approved fixed-price line and NO invoiced hours recorded against it.\n3. You are able to mark that line completed.",
+ "steps": "1. Open the Work In Progress report and read the work order's Earned, Remaining and Total.\n2. Mark the fixed-price line completed.\n3. Reload the Work In Progress report and read the same figures again.\n4. Check the work order's Remaining once every line on it is completed.",
+ "expected": "1. Before the line is completed the whole fixed amount sits in Remaining and Earned shows nothing for it — it does not creep up in stages.\n2. After the line is completed the whole fixed amount has moved to Earned and Remaining shows nothing for it.\n3. Total is unchanged throughout — the money moves between Earned and Remaining rather than appearing or disappearing.\n4. Once every line is completed the work order has no value left in Remaining.\nNote for the tester: this all-at-once move is expected when there are no invoiced hours to measure progress with. A fixed-price line that DOES have invoiced hours is shared between Earned and Remaining in proportion instead, and that is a different test.\n\n---\nThis is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Work In Progress report specification version 22 (the Key Decision on fixed-price valuation added on 2026-08-10 per SV-9028, SV-9035, SV-9040 and SV-9044), read on 18 August 2026.\nLast checked against build v3.8-bd246fd on 8/18/2026.\n\nAUTOMATION: READY",
+ "custom_atmstatus": 1,
+ "updated_on": 1787093947,
+ "created_by": 3
+}

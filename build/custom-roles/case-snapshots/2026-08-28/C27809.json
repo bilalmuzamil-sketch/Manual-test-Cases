@@ -1,0 +1,11 @@
+{
+ "id": 27809,
+ "title": "Verify Foreman can pick a part on a work order line",
+ "refs": "SV-5319",
+ "preconds": "Log in to ShopView as a user assigned the Foreman role. (this role has Pick Parts ON).\nAt least one work order exists that contains labor and part lines with prices entered.\nA part is available in inventory to pick. Note: an OVER LIMIT badge on the customer does not block picking parts.",
+ "steps": "1. Open a work order line and open the parts actions.\n2. Click Pick, select the part and quantity, and confirm.",
+ "expected": "The part is picked onto the line successfully.",
+ "custom_atmstatus": 1,
+ "updated_on": 1783108595,
+ "created_by": 3
+}

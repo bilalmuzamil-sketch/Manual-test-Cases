@@ -1,0 +1,11 @@
+{
+ "id": 30385,
+ "title": "The report uses the standard two-tone layout",
+ "refs": "SV-8647 (PV spec v10 2026-08-17 S7-R1; §2)",
+ "preconds": "<p>1. You are on the Parts Velocity report with data loaded, in light mode..</p>",
+ "steps": "<p>1. Look at the page background, the toolbar, and the table surfaces.<br>2. Look at the card corners and the table's horizontal extent.</p>",
+ "expected": "<p>1. White card surfaces (toolbar + table cells) sit on the standard soft blue-grey page background (the application's two-tone report theme).<br>2. There is NO card border-radius - the table runs edge to edge.<br>3. The layout matches the application's other reports.<br><br>---<br>This is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Parts Velocity report specification version 11 (S7-R1), read on 17 August 2026.<br>Last checked against build v3.8-d0e135e on 8/19/2026.<br>Re-checked against the live specification on 26 August 2026: the requirements this case cites are unchanged, so only the version cited above was updated.<br><br>AUTOMATION: READY</p>\n",
+ "custom_atmstatus": 1,
+ "updated_on": 1787747819,
+ "created_by": 3
+}

@@ -1,0 +1,11 @@
+{
+ "id": 26389,
+ "title": "Work order lines are visible whenever Work orders View is ON",
+ "refs": "SV-7509",
+ "preconds": "<ol>\n<li>A user has a role with Work orders View ON and Work order lines Create & Edit and Delete OFF.</li>\n</ol>",
+ "steps": "<ol>\n<li>Log in and open a work order that has lines.</li>\n<li>Look at the lines area.</li>\n<li>Try to edit a line.</li>\n<li>Try to add a new line.</li>\n</ol>",
+ "expected": "<p>The lines are visible (line items, labor, parts).</p>\n<p>The user cannot edit a line.</p>\n<p>There is no Add line option.</p>\n",
+ "custom_atmstatus": 3,
+ "updated_on": 1783943418,
+ "created_by": 3
+}

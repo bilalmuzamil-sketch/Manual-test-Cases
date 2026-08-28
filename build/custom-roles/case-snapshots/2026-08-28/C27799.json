@@ -1,0 +1,11 @@
+{
+ "id": 27799,
+ "title": "Verify Service Advisor cannot delete a parts return",
+ "refs": "SV-5319,SV-7911",
+ "preconds": "Log in to ShopView as a user assigned the Service Advisor role. (deleting a return requires Invoicing & Payments: Delete per spec v33; this role has Invoicing = View/Create and Edit, NO Delete).\nNote: the role may display as 'Junior Service Advisor' in the build (the spec calls it 'Service Advisor').\nAt least one parts return record exists under Parts > Returns.",
+ "steps": "1. Click Parts, open Returns, and open a return record.\n2. Look for a Delete option; if present, click it.",
+ "expected": "Deleting the return is BLOCKED: the Delete Return control is absent or disabled, or clicking it returns a permission error.",
+ "custom_atmstatus": 1,
+ "updated_on": 1783108595,
+ "created_by": 3
+}

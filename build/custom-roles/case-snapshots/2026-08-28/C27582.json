@@ -1,0 +1,11 @@
+{
+ "id": 27582,
+ "title": "CR-BRK-027 — Office / Time Clock edit attempt — non-editable roles",
+ "refs": "SV-7388",
+ "preconds": "<p>In Roles list: click Office; click Time Clock (View Mode as specified).</p>",
+ "steps": "<ol>\n<li>Configure a custom role per the Setup in Preconditions; assign to a test user and log in.</li>\n<li>Click Office and Time Clock in the Roles list.</li>\n</ol>",
+ "expected": "<p>Office and Time Clock cannot be edited — clicking opens a read-only permission summary (Concepts + Roles list).</p><hr/><p><strong>Risk / Rationale:</strong> The editor opens (editable) instead of the read-only summary.<br/><strong>Spec Ref:</strong> Roles &amp; Permissions List; Concepts</p>",
+ "custom_atmstatus": 3,
+ "updated_on": 1783064058,
+ "created_by": 1
+}

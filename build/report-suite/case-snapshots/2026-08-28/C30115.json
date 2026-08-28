@@ -1,0 +1,11 @@
+{
+ "id": 30115,
+ "title": "First load starts in the all-customers state and the report shows every customer",
+ "refs": "SV-8616 (SBC spec v20 2026-08-17 Story 18 S18-R4; S18-R5; S18-R9; S18-E1)",
+ "preconds": "<p>1. Your browser has no saved view for this report.<br>2. Several customers have invoices in the default date range.<br>3. A customer exists that has invoices ONLY in a wider date range than the current one (seed a ZZAUTOTEST invoice dated last month if needed)..</p>",
+ "steps": "<p>1. Open the Sales By Customer report.<br>2. Read the Customer filter's collapsed label.<br>3. Check the customer rows shown.<br>4. Widen the date range so the customer with no matching invoices now has one; re-check the label and the rows.</p>",
+ "expected": "<p>1. The Customer filter's collapsed label reads \"All customers.\"<br>2. The report shows every customer matching the other active filters.<br>3. The all-customers state is an explicit state — while it is active, any customer that appears later (new data) is included automatically.<br>4. After the filter change the filter stays in the all-customers state (label still \"All customers\") and every customer matching the new filters is included — including the newly-appearing one, with no manual re-selection.<br><br>---<br>This is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Sales By Customer report specification version 20 (S18-R4, S18-R5, S18-R9, S18-E1), read on 17 August 2026.<br>Last checked against build v3.8-da72171 on 8/19/2026.<br><br>AUTOMATION: READY</p>",
+ "custom_atmstatus": 1,
+ "updated_on": 1787208454,
+ "created_by": 3
+}

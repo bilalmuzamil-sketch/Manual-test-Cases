@@ -1,0 +1,11 @@
+{
+ "id": 30432,
+ "title": "Reconciliation exception (b): the link passes no location",
+ "refs": "SV-8653 (TU spec v9 2026-08-17 S6-R6; S1-R9(b))",
+ "preconds": "<p>1. A technician has clocked time at TWO locations in the range.<br>2. Both locations are selected in the report's location filter; only one of them is the user's currently active shop..</p>",
+ "steps": "<p>1. Read the technician's pooled Total Hours (both locations).<br>2. Click the Total Hours link and read the total on the opened Timesheet Activities report.<br>3. Compare the two values.</p>",
+ "expected": "<p>1. Total Hours is a link ONLY in the default view where the location scope is your active shop; under that scope the drill-through reconciles to the cent.<br>2. In any other scope — a single location that is not your active shop, or multiple locations — Total Hours is plain text, not a link, so there is no drill-through and no reconciliation mismatch to worry about.<br>3. This resolves the earlier \"reconciliation exception (b)\": because the link no longer appears outside the active-shop scope, the mismatch it described can no longer occur (per SV-9064).<br>Note for the tester: an earlier version of this report showed Total Hours as a link in every scope. The current Technician Utilization report specification (version 9, S6-R1/S6-R6, per SV-9064) makes it a link ONLY in the default view where the location scope is your active shop; in any other scope it is plain text. Follow the current specification.<br><br>---<br>This is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Technician Utilization report specification version 9 (S6-R6, S1-R9), read on 17 August 2026.<br><br>This test case could not be build-verified on 8/19/2026 because the feature it tests was not found in the build yet — the related story is still under development. It will be re-checked in the separate build-verification run once the feature ships.<br><br>AUTOMATION: Not available on Build to test Yet - Last checked 8/19/2026</p>",
+ "custom_atmstatus": 1,
+ "updated_on": 1787214561,
+ "created_by": 3
+}

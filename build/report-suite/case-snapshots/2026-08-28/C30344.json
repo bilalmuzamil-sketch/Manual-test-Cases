@@ -1,0 +1,11 @@
+{
+ "id": 30344,
+ "title": "A header click sorts ascending first, toggles, and places nulls by direction",
+ "refs": "SV-8643 (PV spec v10 2026-08-17 S3-R3)",
+ "preconds": "<p>1. You are on the Parts Velocity report with data loaded.<br>2. Both inventory and special-order rows are present (so a nullable column such as On Hand has both values and — cells)..</p>",
+ "steps": "<p>1. Click the header of a column that is not currently sorted (for example On Hand).<br>2. Click the same header again.<br>3. Watch where the — (null) rows land in each direction.<br>4. Try clicking the headers of several other columns.</p>",
+ "expected": "<p>1. The first click sorts that column ASCENDING; the header shows a direction indicator (an arrow).<br>2. Clicking the active sort column again reverses the direction; the arrow flips.<br>3. Null / &mdash; values are placed FIRST on ascending and LAST on descending.<br>4. Every column is sortable; each header click re-fetches the data (server-resolved) and shows the first page of the re-sorted result; ties keep a stable order.<br><br>---<br>This is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Parts Velocity report specification version 11 (S3-R3), read on 17 August 2026.<br>Last checked against build v3.8-d0e135e on 8/19/2026.<br>Re-checked against the live specification on 26 August 2026: the requirements this case cites are unchanged, so only the version cited above was updated.<br><br>AUTOMATION: READY</p>\n",
+ "custom_atmstatus": 1,
+ "updated_on": 1787747781,
+ "created_by": 3
+}

@@ -1,0 +1,11 @@
+{
+ "id": 30340,
+ "title": "Parts Velocity: the Location filter is hidden for a one-location user",
+ "refs": "SV-8642 (PV spec v10 2026-08-17 S2-E4 — RULED HIDDEN by Chris Ward answer 2026-07-31 Q1=A \"classic spec drift\"; the S2-E4 \"still sees the filter\" note is stale; spec edit pending)",
+ "preconds": "<p>1. You are signed in as a user with access to exactly one location.<br>2. You are on the Parts Velocity report with data loaded..</p>",
+ "steps": "<p>1. Look for the Location filter in the toolbar.<br>2. Then sign in as a user with access to two or more locations and look again.</p>",
+ "expected": "<p>1. For the single-location user the Location filter is NOT shown at all &mdash; the report simply shows that one location's data.<br>2. For the user with access to two or more locations the Location filter IS shown.<br><br>---<br>This is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Parts Velocity report specification version 11 (S2-E4), read on 17 August 2026. Chris Ward confirmed this on 8/5/2026 in his answers in this file: https://docs.google.com/spreadsheets/d/1x8cuYJlFsDHalVZZTh156_ZCq2gcOaGY/edit?usp=sharing&amp;ouid=106388879401921597782&amp;rtpof=true&amp;sd=true, read on 17 August 2026<br>Last checked against build v3.8-d0e135e on 8/19/2026.<br>Re-checked against the live specification on 26 August 2026: the requirements this case cites are unchanged, so only the version cited above was updated.<br><br>AUTOMATION: READY</p>\n",
+ "custom_atmstatus": 1,
+ "updated_on": 1787747777,
+ "created_by": 3
+}

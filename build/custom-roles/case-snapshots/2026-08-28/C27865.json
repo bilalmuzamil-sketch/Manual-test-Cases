@@ -1,0 +1,11 @@
+{
+ "id": 27865,
+ "title": "Verify Time Clock user cannot reach work order notes, returns, or inspections",
+ "refs": "SV-5319",
+ "preconds": "Log in to ShopView as a user assigned the Time Clock role. (Time Clock has Work Orders = View with View Mode empty and everything else Off, so the v33 work-order features are not reachable in practice).",
+ "steps": "1. Check whether any work order detail content (Notes tab, part returns, digital inspections) can be opened.\n2. Check the navigation for Parts > Returns.",
+ "expected": "None of the v33 work-order features (notes, part returns, inspections) are reachable: the screens are hidden or empty for the Time Clock user.",
+ "custom_atmstatus": 1,
+ "updated_on": 1783108595,
+ "created_by": 3
+}

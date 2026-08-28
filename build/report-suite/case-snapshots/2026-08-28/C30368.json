@@ -1,0 +1,11 @@
+{
+ "id": 30368,
+ "title": "Revenue, Margin, Avg Cost, Avg Sell and Margin % use the billed formulas",
+ "refs": "SV-8645 (PV spec v10 2026-08-17 S5-R4a; §4)",
+ "preconds": "<ol>\n<li>A part with known billed lines in the window - e.g. two invoiced work-order part lines: 2 units at $50.00 sell / $30.00 cost, and 1 unit at $40.00 sell / $30.00 cost.</li>\n<li>All five profitability columns are visible.</li>\n</ol>\n",
+ "steps": "<ol>\n<li>Compute the expected values: Revenue = (2×50)+(1×40) = $140.00; COGS = (2×30)+(1×30) = $90.00; billed units = 3; Margin = 140−90 = $50.00; Avg Cost = 90÷3 = $30.00; Avg Sell = 140÷3 = $46.67; Margin % = 50÷140×100 = 35.7%.</li>\n<li>Compare each against the part's displayed row.</li>\n</ol>\n",
+ "expected": "<ol>\n<li>Revenue = the summed billed sell amount (each line's stored sell price × quantity) in the window.</li>\n<li>Margin = Revenue − COGS (the summed billed cost captured at billing time).</li>\n<li>Avg Cost = COGS ÷ billed units; Avg Sell = Revenue ÷ billed units.</li>\n<li>Margin % = (Revenue − COGS) ÷ Revenue × 100, shown to one decimal.</li>\n<li>All five are computed from the RAW (unrounded) Revenue / COGS / billed-units totals and rounded ONCE at the end - not built from already-rounded intermediates.</li>\n<li>The same formulas apply to inventory and special-order rows (for special-order, from the vendor part requests).</li>\n</ol>\n\n<hr />\n\n<p>This is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Parts Velocity report specification version 10 (S5-R4a), read on 17 August 2026.<br />Last checked against build v3.8-bd246fd on 8/18/2026.</p>\n\n<p>AUTOMATION: READY</p>\n",
+ "custom_atmstatus": 1,
+ "updated_on": 1787087428,
+ "created_by": 3
+}

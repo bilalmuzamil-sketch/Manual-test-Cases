@@ -1,0 +1,11 @@
+{
+ "id": 27576,
+ "title": "CR-BRK-021 — Bulk payments via AP/AR without Invoicing Edit — AMBIGUITY",
+ "refs": "SV-7388",
+ "preconds": "<p>Customers V \\u2713 | Manage AP/AR \\u2713 | Invoicing \\u2717 | See Financial \\u2713 | WO V \\u2713 | View Mode: Full (View Mode as specified).</p>",
+ "steps": "<ol>\n<li>Configure a custom role per the Setup in Preconditions; assign to a test user and log in.</li>\n<li>Open a customer Unpaid Invoices tab; attempt a bulk payment.</li>\n</ol>",
+ "expected": "<p>AMBIGUITY — §5b (AP/AR ON) says 'make bulk payments from the Unpaid Invoices tab,' but §1h ties processing payments to Invoicing: Create &amp; Edit, and §5b OFF-row says payment processing needs Invoicing permissions. Unclear whether bulk payments execute on AP/AR alone. Needs PM ruling.</p><hr/><p><strong>Risk / Rationale:</strong> Payment executes with AP/AR only (no Invoicing Edit) — or is blocked. The two sections conflict. Flag.<br/><strong>Spec Ref:</strong> §5b vs §1h<br/><strong>Flag / Note:</strong> Spec ambiguity</p>",
+ "custom_atmstatus": 1,
+ "updated_on": 1784013350,
+ "created_by": 1
+}

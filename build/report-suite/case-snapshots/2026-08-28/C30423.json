@@ -1,0 +1,11 @@
+{
+ "id": 30423,
+ "title": "Filter by Technician starts with every technician selected on a first visit",
+ "refs": "SV-8652 (TU spec v9 2026-08-17 S5-R1; S5-R2)",
+ "preconds": "1. You are on the Technician Utilization report on a first visit (no saved settings), with several technicians in the range.",
+ "steps": "1. Find the toolbar filter labeled \"Technician\" and open it.\n2. Check the selection state of every listed technician.\n3. Try selecting more than one change at once (multi-select).",
+ "expected": "1. The toolbar has a filter labeled \"Filter by Technician\" that allows selecting more than one technician (when several are chosen its label reads, for example, \"2 technicians\").\n2. On the first visit, EVERY technician is selected.\n3. All technicians' rows are shown.\n\n---\nThis is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Technician Utilization report specification version 9 (S5-R1, S5-R2), read on 17 August 2026.\nLast checked against build v3.8-bd246fd on 8/18/2026.\n\nAUTOMATION: READY",
+ "custom_atmstatus": 1,
+ "updated_on": 1787089794,
+ "created_by": 3
+}

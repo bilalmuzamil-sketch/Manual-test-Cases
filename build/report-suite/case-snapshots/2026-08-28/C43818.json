@@ -1,0 +1,11 @@
+{
+ "id": 43818,
+ "title": "The summary strip shows seven figures and no Adjustments figure",
+ "refs": "SV-9282 (WIP Story 5; WIP report design review 2026-08-13 - seven summary figures in grouped order,no Adjustments tile in the strip)",
+ "preconds": "<p>1. You are signed in to the ShopView App on a desktop browser.<br>2. Open work orders with work-order-level fees or discounts appear on the report..</p>\n",
+ "steps": "<p>1. Open the Work In Progress report.<br>2. Read the summary strip at the top of the report.</p>\n",
+ "expected": "<p>1. The summary strip shows exactly seven figures, in this order: Completed Work on Open Work Orders, Work Orders Ready to Invoice, Total Completed Work, Work Orders Not Started, Remaining Work on Open Work Orders, Remaining Work, and Estimates.<br>2. There is no Adjustments figure in the summary strip.<br>3. Work-order-level fees and discounts are carried only by the Adjustments column and the per-tab Totals row, not by a summary figure.<br><br>---<br>This is the expected behaviour as per epic SV-8582, the Work In Progress report design review of 13 August 2026 (https://claude.ai/code/artifact/42c35f46-2796-467e-9723-7daa5385446e), and the Work In Progress report specification version 28 (S5-R1; S5-R13), read on 26 August 2026.<br>Last checked against build v3.8-d0e135e on 8/20/2026.<br>The figure names above are the 13 August 2026 design-review names; they replace the earlier specification names (Total Earned, Total Remaining, Not Started, Started - Earned, Started - Remaining, Ready to Invoice), and we have taken the latest design review as prevailing.<br><br>AUTOMATION: READY</p>\n",
+ "custom_atmstatus": 1,
+ "updated_on": 1787747376,
+ "created_by": 3
+}

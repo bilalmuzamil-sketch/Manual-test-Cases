@@ -1,0 +1,11 @@
+{
+ "id": 43830,
+ "title": "Every row ties out once Shop Supplies and Adjustments are included",
+ "refs": "SV-9281 (SBR spec v24 2026-08-24 S5-R12 — row ties out: Labor+Parts+ShopSupplies+Adjustments=Subtotal; LaborMargin+PartsMargin+Adjustments=Margin)",
+ "preconds": "<p>1. You are signed in to the ShopView App on a desktop browser.<br>2. A representative has an invoice carrying shop supplies and an invoice-level fee or discount.</p>",
+ "steps": "<p>1. Open the Sales By Representative report.<br>2. On a rep row, add Labor Invoiced, Parts Invoiced, Shop Supplies and Adjustments and compare to Subtotal.<br>3. Add Labor Margin, Parts Margin and Adjustments and compare to Margin.<br>4. Repeat on an invoice detail row and the Totals row.</p>",
+ "expected": "<p>1. Labor Invoiced + Parts Invoiced + Shop Supplies + Adjustments equals Subtotal.<br>2. Labor Margin + Parts Margin + Adjustments equals Margin. Shop Supplies is not part of the Margin tie-out.<br>3. The ties hold on rep summary rows, invoice detail rows and the grand Totals indicator alike.</p><p>This is the expected behaviour as per epic SV-8582, story SV-9281, and the Sales By Representative report specification version 24 (S5-R12), read on 26 August 2026.<br>Specification version 22 stated the Subtotal tie-out as Labor Invoiced + Parts Invoiced + Adjustments; version 24 (2026-08-24) added Shop Supplies to that tie-out, and we take the later version as prevailing.<br>This expectation has not been checked against any build since the specification change described above.</p><p>AUTOMATION: READY</p>",
+ "custom_atmstatus": 1,
+ "updated_on": 1787881292,
+ "created_by": 3
+}

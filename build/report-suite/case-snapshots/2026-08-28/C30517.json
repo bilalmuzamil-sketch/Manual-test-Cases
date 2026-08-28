@@ -1,0 +1,11 @@
+{
+ "id": 30517,
+ "title": "The PDF shows the shop logo at the top when one is set",
+ "refs": "SV-8665 (WIP spec v22 2026-08-18 Story 9 S9-R10)",
+ "preconds": "<ol><li>You are signed in to the ShopView App on a desktop browser.</li><li>The shop has a logo set in its settings.</li></ol>",
+ "steps": "<ol><li>Download the current tab as a PDF and look at the top of the document.</li><li>Download the current tab as a CSV and inspect the file.</li></ol>",
+ "expected": "<p>1. The PDF shows the shop logo at the top.<br>2. The CSV never includes a logo (plain data only).</p><p>---<br>This is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Work In Progress report specification version 28 (S9-R10), read on 18 August 2026.<br>Last checked against build v3.8-bd246fd on 8/18/2026.<br>Re-checked against the live specification on 26 August 2026: the requirements this case cites are unchanged, so only the version cited above was updated.</p><p>AUTOMATION: READY</p>",
+ "custom_atmstatus": 1,
+ "updated_on": 1787755035,
+ "created_by": 3
+}

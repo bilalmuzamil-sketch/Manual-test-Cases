@@ -1,0 +1,11 @@
+{
+ "id": 26345,
+ "title": "Changing a role logs an active user out; new permissions apply at next login",
+ "refs": "SV-7501",
+ "preconds": "<ol>\n<li>A test user 'Tester Bob' is assigned the role 'QA Edit Target' and is logged in in a second browser session.</li>\n</ol>",
+ "steps": "<ol>\n<li>As Admin, go to Settings > Roles & Permissions and click the pencil on 'QA Edit Target'.</li>\n<li>In the Work orders card, untick View.</li>\n<li>Confirm Create & Edit and Delete also untick.</li>\n<li>Click Save.</li>\n<li>Switch to Bob's session and try to move around the app.</li>\n<li>Have Bob log back in.</li>\n<li>Look at Bob's top navigation.</li>\n</ol>",
+ "expected": "<p>Create & Edit and Delete untick automatically.</p>\n<p>Save works.</p>\n<p>Bob is sent to the login page (or sees a session-ended message).</p>\n<p>After logging back in, Work Orders is no longer in Bob's top navigation.</p>\n",
+ "custom_atmstatus": 1,
+ "updated_on": 1784013329,
+ "created_by": 3
+}

@@ -1,0 +1,11 @@
+{
+ "id": 30372,
+ "title": "Core parts are excluded from both the inventory and special-order result sets",
+ "refs": "SV-8645 (PV spec v10 2026-08-17 S5-R1; S5-R2; §3 Key Decisions)",
+ "preconds": "<p>1. An inventory part flagged as a core has in-window sales activity and on-hand stock.<br>2. A vendor-sourced core part was requested on an invoiced/paid work order in the window..</p>",
+ "steps": "<p>1. Search the report for the inventory core part (Type = Both).<br>2. Search for the special-order core part.</p>",
+ "expected": "<p>1. The inventory core part does NOT appear in the report despite its activity and stock.<br>2. The special-order core part does NOT appear either.<br>3. Parts flagged as a core are excluded from both result sets by design.<br><br>---<br>This is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Parts Velocity report specification version 11 (S5-R1, S5-R2), read on 17 August 2026.<br>Last checked against build v3.8-d0e135e on 8/19/2026.<br>Re-checked against the live specification on 26 August 2026: the requirements this case cites are unchanged, so only the version cited above was updated.<br><br>AUTOMATION: HOLD - no part in this organisation carries the core flag, so core exclusion cannot be exercised</p>\n",
+ "custom_atmstatus": 1,
+ "updated_on": 1787747810,
+ "created_by": 3
+}

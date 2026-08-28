@@ -1,0 +1,11 @@
+{
+ "id": 30275,
+ "title": "The A to Z default is its own saved value",
+ "refs": "SV-8640 (SBR spec v22 2026-08-17 Story 23 S23-R5; Story 11 S11-R4)",
+ "preconds": "1. You have never clicked a financial column header in this browser session/profile (the report is in the A→Z default).",
+ "steps": "1. Change a few filters (no sort click), leave the report, and return.\n2. Read the row order and the headers.",
+ "expected": "1. The report restores to the A→Z default order by rep display name.\n2. No financial column shows a sort indicator — the saved \"no financial sort\" state restores as A→Z, not as an arbitrary column.\n\n---\nThis is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Sales By Representative report specification version 22 (S23-R5, S11-R4), read on 17 August 2026.\n\nAUTOMATION: READY",
+ "custom_atmstatus": 3,
+ "updated_on": 1787127663,
+ "created_by": 3
+}

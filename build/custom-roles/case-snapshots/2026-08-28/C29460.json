@@ -1,0 +1,11 @@
+{
+ "id": 29460,
+ "title": "Time Clock user Work Order create via API is not gated with 403 (backend does not enforce — accepted by PO)",
+ "refs": null,
+ "preconds": "<ol><li>A user is signed in with the system <strong>Time Clock</strong> role (Work Orders View, Schedule View, Timesheets View; View Mode none; every other permission OFF; read-only, can clock in/out).</li><li>You have a way to send API requests to the backend (api.staging.shopview.com) as that signed-in Time Clock user.</li></ol>",
+ "steps": "<ol><li>Send POST /api/work-orders/create (with and without a valid company_id).</li></ol>",
+ "expected": "<p>EXPECTED:</p><p data-pasted=\"true\">Time Clock user Work Order create is not gated with 403 — accepted per PO.&nbsp;</p><p><a data-fr-linked=\"true\" href=\"https://shopview.atlassian.net/browse/SV-7958\" data-pasted=\"true\">https://shopview.atlassian.net/browse/SV-7958</a></p>",
+ "custom_atmstatus": 3,
+ "updated_on": 1784577446,
+ "created_by": 3
+}

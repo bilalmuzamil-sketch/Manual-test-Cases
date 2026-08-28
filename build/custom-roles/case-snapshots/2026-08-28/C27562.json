@@ -1,0 +1,11 @@
+{
+ "id": 27562,
+ "title": "CR-BRK-007 — WO Lines Edit with WO View OFF — implicit dependency gap",
+ "refs": "SV-7388; SV-7981",
+ "preconds": "<p>WO View \\u2717 | WO Lines E \\u2713 | View Mode: Full  (attempt to configure/save) (View Mode as specified).</p>",
+ "steps": "<ol>\n<li>Configure a custom role per the Setup in Preconditions; assign to a test user and log in.</li>\n<li>Try to reach a WO line; observe login/landing behavior.</li>\n</ol>",
+ "expected": "<p>WO Lines View is inherited from WO View (§1b: no independent View toggle). With WO View OFF, WO nav is hidden and lines are unreachable; WOL Edit must be inert. Ideally the editor prevents/cascades this state.</p><hr/><p><strong>Risk / Rationale:</strong> WOL Edit ON while WO View OFF → Access Restricted or broken state (known defect).<br/><strong>Spec Ref:</strong> §1b WO Lines (View inherited from WO View)</p>",
+ "custom_atmstatus": 3,
+ "updated_on": 1783081811,
+ "created_by": 1
+}

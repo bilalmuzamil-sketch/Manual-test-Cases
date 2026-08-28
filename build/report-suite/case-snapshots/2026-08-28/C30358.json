@@ -1,0 +1,11 @@
+{
+ "id": 30358,
+ "title": "All 20 columns can be hidden; the empty selection is never restored",
+ "refs": "SV-8644 (PV spec v10 2026-08-17 S4-E1; S4-R6)",
+ "preconds": "<p>1. You are on the Parts Velocity report with data loaded..</p>",
+ "steps": "<p>1. In the column picker, switch OFF all 20 columns.<br>2. Trigger a CSV export while zero columns are enabled.<br>3. Leave the report and return to it.</p>",
+ "expected": "<p>1. The picker enforces no minimum - all 20 columns can be switched off, leaving a grid with no data columns for the rest of the session.<br>2. The export produces a file containing only the header/metadata rows and no data columns.<br>3. On the next visit the all-hidden selection is NOT restored - the report falls back to the default 14-column set (the saved column selection returns to the last NON-EMPTY selection; all-hidden is the exception).<br><br>---<br>This is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Parts Velocity report specification version 11 (S4-E1, S4-R6), read on 17 August 2026.<br>Last checked against build v3.8-d0e135e on 8/19/2026.<br>Re-checked against the live specification on 26 August 2026: the requirements this case cites are unchanged, so only the version cited above was updated.<br><br>AUTOMATION: READY</p>\n",
+ "custom_atmstatus": 1,
+ "updated_on": 1787747800,
+ "created_by": 3
+}

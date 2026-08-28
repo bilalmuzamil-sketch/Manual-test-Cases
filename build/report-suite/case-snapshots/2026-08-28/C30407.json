@@ -1,0 +1,11 @@
+{
+ "id": 30407,
+ "title": "Internal hours with no default labor rate anywhere show an em-dash",
+ "refs": "SV-8649 (TU spec v9 2026-08-17 S2-E3; S8-R11; S2-R4)",
+ "preconds": "<p>1. A technician's in-range internal hours were all clocked at location(s) with NO default labor rate configured (rate absent, not $0.00).<br>2. Part of this test checks what a blind user would hear, so you need a screen reader. On Windows install NVDA — it is free, from nvaccess.org. On a Mac use VoiceOver, which is already built in (Cmd+F5 turns it on and off). Alternatively the browser's developer tools (F12) have an \"Accessibility\" panel that shows the same names without you having to listen to anything..</p>",
+ "steps": "<p>1. Read that technician's Est. Lost Labor.<br>2. Inspect the cell with a screen reader or the accessibility tree.</p>",
+ "expected": "<p>1. Est. Lost Labor shows \"—\" (an em-dash), NOT \"$0.00\" - the rate is unknown, so the value cannot be computed.<br>2. The \"—\" cell carries the assistive-technology label \"No default labor rate configured\" (distinguishing it from \"$0.00\", which reads as its dollar value).<br>3. The technician's Internal Hours column still shows all the internal hours (they are counted even though they cannot be valued).<br><br>---<br>This is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Technician Utilization report specification version 9 (S2-E3, S8-R11, S2-R4), read on 17 August 2026.<br>Last checked against build v3.8-d0e135e on 8/19/2026.<br><br>AUTOMATION: HOLD - no location on this environment is set up without a default labor rate, so the em-dash state cannot be produced</p>",
+ "custom_atmstatus": 1,
+ "updated_on": 1787214153,
+ "created_by": 3
+}

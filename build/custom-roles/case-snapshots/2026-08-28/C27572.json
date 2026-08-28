@@ -1,0 +1,11 @@
+{
+ "id": 27572,
+ "title": "CR-BRK-017 — Send to Portal in Tech View — View-Mode gate",
+ "refs": "SV-7388",
+ "preconds": "<p>WO V \\u2713 | WO Lines E \\u2713 | View Mode: Tech (View Mode as specified).</p>",
+ "steps": "<ol>\n<li>Configure a custom role per the Setup in Preconditions; assign to a test user and log in.</li>\n<li>Open a WO in Tech View; look for the Send to Portal button.</li>\n</ol>",
+ "expected": "<p>Send to Portal button NOT visible and action unavailable (§4 Tech View 'Cannot Send to Portal'; 6/10 'controlled by View Mode, must be Full View'; 6/28 Technicians lose Send to Portal).</p><hr/><p><strong>Risk / Rationale:</strong> Send to Portal button appears in Tech View.<br/><strong>Spec Ref:</strong> §4 View Mode; Change Log 6/10 &amp; 6/28; Q6</p>",
+ "custom_atmstatus": 3,
+ "updated_on": 1783321314,
+ "created_by": 1
+}

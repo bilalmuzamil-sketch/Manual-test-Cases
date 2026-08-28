@@ -1,0 +1,11 @@
+{
+ "id": 30579,
+ "title": "Column Selection toggles columns; Total Cost cannot be turned off",
+ "refs": "SV-8675 (IV spec v10 2026-08-17 Story 8 S8-R1; S8-R2)",
+ "preconds": "1. You are signed in to the ShopView App on a desktop browser.\n2. The Inventory Value report is open with rows loaded.",
+ "steps": "1. Hover the column-selection icon button in the toolbar and read its tooltip.\n2. Open the control and toggle a column off, then on again, watching the table.\n3. Look for a way to turn the Total Cost column off.",
+ "expected": "1. The icon button's tooltip reads \"Column Selection\".\n2. Toggling a column off hides it from the table; toggling it on shows it again.\n3. The Total Cost column is always shown and cannot be turned off.\n\n---\nThis is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Inventory Value report specification version 10 (S8-R1, S8-R2), read on 17 August 2026.\nLast checked against build v3.8-bd246fd on 8/18/2026.\n\nAUTOMATION: READY",
+ "custom_atmstatus": 3,
+ "updated_on": 1787127392,
+ "created_by": 3
+}

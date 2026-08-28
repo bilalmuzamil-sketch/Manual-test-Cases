@@ -1,0 +1,11 @@
+{
+ "id": 30261,
+ "title": "Show Unassigned sits between the column selector and the date picker, off",
+ "refs": "SV-8639 (SBR spec v22 2026-08-17 Story 22 S22-R1; S22-R2; Story 18 S18-R7.2)",
+ "preconds": "<p>1. No remembered settings; at least one matching invoice with NO assigned rep exists (seed via a WO with no Sales Representative whose customer also has no rep)..</p>",
+ "steps": "<p>1. Find the \"Show Unassigned\" toggle in the toolbar and note its position and default state.<br>2. With it off, look for an Unassigned row and check the grand Totals against the rep rows only.</p>",
+ "expected": "<p>1. A \"Show Unassigned\" toggle sits between the column selector and the date range picker; it is OFF by default.<br>2. While off, invoices with no assigned rep contribute to nothing &mdash; no row, and not counted in any total.<br><br>---<br>This is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Sales By Representative report specification version 24 (S22-R1, S22-R2, S18-R7), read on 17 August 2026.<br>Last checked against build v3.8-b7d80dc on 8/19/2026.<br>Re-checked against the live specification on 26 August 2026: the requirements this case cites are unchanged, so only the version cited above was updated.<br><br>AUTOMATION: READY</p>\n",
+ "custom_atmstatus": 1,
+ "updated_on": 1787747697,
+ "created_by": 3
+}

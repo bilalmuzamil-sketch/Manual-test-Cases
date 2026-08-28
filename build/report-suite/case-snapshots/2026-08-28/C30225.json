@@ -1,0 +1,11 @@
+{
+ "id": 30225,
+ "title": "Detail rows run newest first with a numeric invoice-number tie-break",
+ "refs": "SV-8624 (SBR spec v22 2026-08-17 Story 6 S6-R9; Story 11 S11-R2)",
+ "preconds": "<ol><li>One rep has invoices allowing the tie-breaks: two invoices on different dates; two on the same date with numeric parts like 999 and 1000; and if producible a P and an S invoice with the same numeric part on the same day (seed ZZAUTOTEST data).</li></ol>",
+ "steps": "<ol><li>Expand the rep and read the detail rows top to bottom.</li><li>Change the rep-row column sort and re-read the detail order.</li></ol>",
+ "expected": "<p>1. Detail rows order by invoice date descending (newest first).<br>2. Date ties break by invoice number ascending by the numeric portion after the P/S prefix — numeric, not alphabetical, so S999 precedes S1000.<br>3. If both the date and the numeric portion tie (e.g., P100 and S100 same day), P (Parts) sorts before S (Service).<br>4. This order is independent of the rep-row column sort (which reorders summary rows only).</p><p>---<br>This is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Sales By Representative report specification version 24 (S6-R9, S11-R2), read on 17 August 2026.<br>Last checked against build v3.8-bd246fd on 8/18/2026.<br>Re-checked against the live specification on 26 August 2026: the requirements this case cites are unchanged, so only the version cited above was updated.</p><p>AUTOMATION: READY</p>",
+ "custom_atmstatus": 1,
+ "updated_on": 1787754658,
+ "created_by": 3
+}

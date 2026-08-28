@@ -1,0 +1,11 @@
+{
+ "id": 30152,
+ "title": "Labor Delta is never blank: no-labor rows and near-zero values both show 0.0",
+ "refs": "SV-8610 (SBC spec v20 2026-08-17 S12-N1,S12-E1,S12-E2; heading renamed to Labor Delta per SV-9071)",
+ "preconds": "1. A parts-only invoice (no labor at all) exists in range; if possible also an invoice whose delta rounds to zero (for example +0.04).",
+ "steps": "1. Read the Labor Delta cell on the parts-only invoice's rows (invoice, asset, customer).\n2. If seeded, read the near-zero row's Labor Delta.",
+ "expected": "1. A customer, asset, or invoice with no labor shows 0.0 in the default color — never blank, \"N/A,\" an em dash, or omitted.\n2. A value that rounds to 0.0 (for example +0.04) is shown as 0.0 in the default text color (not +0.0 in green).\n3. A negative value shows a minus sign and one decimal — for example, -0.5.\n\n---\nThis is the expected behaviour as per epic SV-8582 and the Sales By Customer report specification version 20 (S12-N1, S12-E1, S12-E2), both read on 17 August 2026. The column was renamed from \"Inv. Hrs\" to \"Labor Delta\" per SV-9071; only the name changed.\nLast checked against build v3.8-2bf8d14 on 8/18/2026.\n\nAUTOMATION: READY",
+ "custom_atmstatus": 1,
+ "updated_on": 1787082436,
+ "created_by": 3
+}

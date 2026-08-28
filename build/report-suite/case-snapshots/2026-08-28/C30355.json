@@ -1,0 +1,11 @@
+{
+ "id": 30355,
+ "title": "A saved value that is no longer valid falls back to that setting's default",
+ "refs": "SV-8644 (PV spec v10 2026-08-17 S4-R6)",
+ "preconds": "<p>1. A saved view exists in this browser that includes a location the user can no longer access (e.g. access was removed after the view was saved), or a custom date range that is now malformed..</p>",
+ "steps": "<p>1. Return to the Parts Velocity report with that stale saved view in place.<br>2. Observe which location / date range the report loads with.</p>",
+ "expected": "<p>1. The invalid saved value is NOT sent to the server.<br>2. That one setting falls back to its default (e.g. the location falls back to the active location); the other saved settings still restore normally.<br>3. The report loads without an error.<br><br>---<br>This is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Parts Velocity report specification version 11 (S4-R6), read on 17 August 2026.<br>Last checked against build v3.8-d0e135e on 8/19/2026.<br>Re-checked against the live specification on 26 August 2026: the requirements this case cites are unchanged, so only the version cited above was updated.<br><br>AUTOMATION: READY</p>\n",
+ "custom_atmstatus": 1,
+ "updated_on": 1787747784,
+ "created_by": 3
+}

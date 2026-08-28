@@ -1,0 +1,11 @@
+{
+ "id": 26534,
+ "title": "Deleting a custom role with 0 users shows a confirmation dialog",
+ "refs": "SV-7502",
+ "preconds": "<ol>\n<li>A custom role named 'Copy Test Role 1' has 0 users assigned.</li>\n</ol>",
+ "steps": "<ol>\n<li>On the Roles list, click the three-dot menu on 'Copy Test Role 1'.</li>\n<li>Click Delete.</li>\n<li>Look at the confirmation dialog.</li>\n<li>Read its title, message and the two buttons.</li>\n</ol>",
+ "expected": "<p>A confirmation dialog opens asking you to confirm deleting the role.</p>\n<p>On confirming, a 'Role deleted successfully.' message appears and the role is removed.</p>\n",
+ "custom_atmstatus": 3,
+ "updated_on": 1783943273,
+ "created_by": 3
+}

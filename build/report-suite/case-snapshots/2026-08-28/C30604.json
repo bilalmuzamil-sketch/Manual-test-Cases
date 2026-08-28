@@ -1,0 +1,11 @@
+{
+ "id": 30604,
+ "title": "Without reports access Inventory Value is absent from the navigation",
+ "refs": "SV-8668 (IV spec v10 2026-08-17 Story 1 S1-N1 — the gate is the one ordinary reports access per Chris Ward Q2=A + QA lead 2026-08-03 \"ONE permission FOR NOW\")",
+ "preconds": "<p>1. A test user exists whose role does NOT have reports access (assign the Tech user such a role; restore the original role afterward).<br>2. You are signed in as that user on a desktop browser..</p>",
+ "steps": "<p>1. Open the reports navigation.<br>2. Look for \"Inventory Value\" under the Parts group.</p>",
+ "expected": "<p>1. The report does not appear in the navigation for this user.<br><br>---<br>This is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Inventory Value report specification version 10 (S1-N1), read on 17 August 2026.<br>Last checked against build v3.8-d0e135e on 8/20/2026.<br><br>AUTOMATION: READY</p>",
+ "custom_atmstatus": 3,
+ "updated_on": 1787217683,
+ "created_by": 3
+}

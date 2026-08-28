@@ -1,0 +1,11 @@
+{
+ "id": 30403,
+ "title": "A technician with only internal hours shows 0.0% utilization",
+ "refs": "SV-8649 (TU spec v9 2026-08-17 S2-E1; S2-R7; S2 context note)",
+ "preconds": "1. A technician with internal hours but ZERO work-order hours in the range.\n2. Other technicians with mixed hours for the upper-bound check.",
+ "steps": "1. Read the internal-only technician's Utilization %.\n2. Scan every row's Utilization %.",
+ "expected": "1. The internal-only technician shows \"0.0%\".\n2. No row shows more than 100% - work-order hours are always part of total clocked hours.\n3. The \"—\" (undefined, total = 0) state is unreachable on a rendered technician or day row, because only technicians with clocked time get rows.\n\n---\nThis is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Technician Utilization report specification version 9 (S2-E1, S2-R7), read on 17 August 2026.\nLast checked against build v3.8-bd246fd on 8/18/2026.\n\nAUTOMATION: READY",
+ "custom_atmstatus": 1,
+ "updated_on": 1787089777,
+ "created_by": 3
+}

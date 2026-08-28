@@ -1,0 +1,11 @@
+{
+ "id": 26586,
+ "title": "Migration is idempotent: re-running on an already-migrated tenant is a no-op",
+ "refs": "SV-7485,SV-7527",
+ "preconds": "Test tenant where migration has already completed successfully.",
+ "steps": "1. Capture the current role_v2_id for every user.\n2. Run the migration command (without --dry-run).\n3. Re-capture role_v2_id for every user.\n4. Diff pre- vs post-run.\n5. Spot-check users who were on custom roles before the second run.",
+ "expected": "Step 4: No role_v2_id changes.\nStep 5: Custom-role users are unchanged. Re-running migration is safe.",
+ "custom_atmstatus": 1,
+ "updated_on": 1781700798,
+ "created_by": 3
+}

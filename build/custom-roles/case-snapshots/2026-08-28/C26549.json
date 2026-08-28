@@ -1,0 +1,11 @@
+{
+ "id": 26549,
+ "title": "AP/AR OFF hides the sensitive customer fields on both the Edit Customer window and the customer overview",
+ "refs": "SV-7524,SV-7508",
+ "preconds": "<ol>\n<li>A user has a role with View and Manage AP/AR Data OFF and Customers View and Create & Edit.</li>\n</ol>",
+ "steps": "<ol>\n<li>Open a customer's Edit Customer window.</li>\n<li>Open the customer detail page's overview panel.</li>\n</ol>",
+ "expected": "<p>With AP/AR off, the sensitive customer fields (Credit terms, Credit limit, Default Labor rate, Default Shop Supplies, Min and Max, Taxes, PO is required) are hidden on the Edit Customer window.</p>\n<p>They should also be hidden on the customer overview panel — confirm this live (a prior run flagged the overview panel as needing a re-check).</p>\n",
+ "custom_atmstatus": 3,
+ "updated_on": 1783943847,
+ "created_by": 3
+}

@@ -1,0 +1,11 @@
+{
+ "id": 30416,
+ "title": "Summary Utilization % is the weighted rate; not an average of the rows",
+ "refs": "SV-8650 (TU spec v9 2026-08-17 S3-R4)",
+ "preconds": "1. Two visible technicians with deliberately skewed hours - e.g. tech A: 1.00 total / 1.00 WO (100%); tech B: 9.00 total / 0.00 WO (0.0%) - so the weighted and averaged results differ clearly.",
+ "steps": "1. Compute the weighted rate: summed WO hours ÷ summed clocked hours × 100 (10% in the example).\n2. Compute the naive average of the two row percentages (50% in the example).\n3. Read the Summary Utilization %.",
+ "expected": "1. The Summary Utilization % shows the WEIGHTED rate - the visible technicians' total work-order hours as a percentage of their total clocked hours, from unrounded hours (10.0% in the example).\n2. It is NOT the average of the per-technician percentages (not 50.0%).\n\n---\nThis is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Technician Utilization report specification version 9 (S3-R4), read on 17 August 2026.\nLast checked against build v3.8-bd246fd on 8/18/2026.\n\nAUTOMATION: READY",
+ "custom_atmstatus": 1,
+ "updated_on": 1787089791,
+ "created_by": 3
+}

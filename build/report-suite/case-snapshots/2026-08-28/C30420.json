@@ -1,0 +1,11 @@
+{
+ "id": 30420,
+ "title": "Day rows use the same columns and formats as the technician rows",
+ "refs": "SV-8651 (TU spec v9 2026-08-17 S4-R3; S2-R8; §3)",
+ "preconds": "1. A technician with known per-day clock records (work-order + internal) is expanded.",
+ "steps": "1. Read one day row's Total Hours, WO Hours, Internal Hours, Utilization %, and Est. Lost Labor.\n2. Compare each against that single day's clock records.\n3. Check the number formats against the technician-row formats.",
+ "expected": "1. Each day row shows the same columns, in the same formats, as the technician row - with that day's values.\n2. The day's Est. Lost Labor is valued per location exactly like a technician row (that location's default labor rate × that day's internal hours there).\n3. Hours 2dp / Utilization one decimal + % / dollars with commas - all identical to the row formats, computed from unrounded values and rounded once.\n\n---\nThis is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Technician Utilization report specification version 9 (S4-R3, S2-R8), read on 17 August 2026.\nLast checked against build v3.8-bd246fd on 8/18/2026.\n\nAUTOMATION: READY",
+ "custom_atmstatus": 1,
+ "updated_on": 1787089760,
+ "created_by": 3
+}

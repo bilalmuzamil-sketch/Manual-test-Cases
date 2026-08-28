@@ -1,0 +1,11 @@
+{
+ "id": 27533,
+ "title": "CR-PAY-028 — WO + full invoicing (delete)",
+ "refs": "SV-7388",
+ "preconds": "<p>Permissions (counted): WO View + Invoicing V+E+D. Auto-gate forced ON (not counted): See Fin + AP/AR. View Mode: Full unless noted. All other permissions OFF.</p>",
+ "steps": "<ol><li>Create a custom role with the permissions listed in Preconditions; leave all others OFF.</li><li>Assign the role to a test user and log in.</li><li>Exercise each capability in Expected Result and confirm it succeeds (and that gated pricing is hidden where noted).</li></ol>",
+ "expected": "<p>User CAN: See WOs; process payments; deposits; send to terminal; Issue a credit or refund on WO &gt; Finance tab.</p><hr><p><strong>Risk / Rationale:</strong> Positive capability check — confirms this combination grants exactly the listed actions and nothing gated leaks. See Flag / Note.<br><strong>Spec Ref:</strong> §1a+§1h<br><strong>Flag / Note:</strong> \\u26a0 Delete force-enables AP/AR (gate #2) + See Financial</p>",
+ "custom_atmstatus": 1,
+ "updated_on": 1783360658,
+ "created_by": 1
+}

@@ -1,0 +1,11 @@
+{
+ "id": 30411,
+ "title": "A data reload resets the sort to Technician A to Z",
+ "refs": "SV-8649 (TU spec v9 2026-08-17 S2-R15; §3)",
+ "preconds": "<p>1. You are on the Technician Utilization report with rows loaded..</p>",
+ "steps": "<p>1. Sort by Est. Lost Labor descending.<br>2. Change the date range (a reload) and read the row order.<br>3. Sort by Total Hours, leave the report, and come back.</p>",
+ "expected": "<p>1. After the reload, the rows are back to Technician name A to Z (the sort reset).<br>2. On the return visit, the sort is again Technician A to Z - sort is NOT persisted (unlike the date range, technician selection, and location selection, which are).<br><br>---<br>This is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Technician Utilization report specification version 9 (S2-R15), read on 17 August 2026.<br>Last checked against build v3.8-d0e135e on 8/19/2026.<br><br>AUTOMATION: READY</p>",
+ "custom_atmstatus": 1,
+ "updated_on": 1787214255,
+ "created_by": 3
+}

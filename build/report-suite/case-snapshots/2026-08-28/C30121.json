@@ -1,0 +1,11 @@
+{
+ "id": 30121,
+ "title": "Each customer gets one summary row with its invoice count in parentheses",
+ "refs": "SV-8605 (SBC spec v20 2026-08-17 Story 7 S7-R1; S7-R2; S7-R3; S7-R4; S7-R5)",
+ "preconds": "1. You are on the Sales By Customer report.\n2. A customer has a known number of matching invoices in the current date range (seed ZZAUTOTEST data so the count is predictable).",
+ "steps": "1. Find that customer's row at the top level of the table.\n2. Read the text at the start of the row.\n3. Narrow the date range so fewer of that customer's invoices match, and re-read the count.",
+ "expected": "1. The customer occupies exactly one summary row at the top level of the table.\n2. The customer's name is shown at the start of the row, followed by the number of contributing invoices in parentheses — for example, Acme Corp (5).\n3. The count is the same size as the customer name next to it, in a slightly softer grey, and is easy to read.\n4. The count reflects the active date range, Product Type, and location — it drops when the range is narrowed; it is not a lifetime count.\n5. Note for the tester: you do not need to measure anything and you do not need any tool for item 3. Just say whether the count looks the right size and is easy to read, and only report it if it looks obviously wrong. (The exact colour and weight behind this are design-token values the design and engineering team check with their own tooling.)\n\n---\nThis is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Sales By Customer report specification version 20 (S7-R1, S7-R2, S7-R3, S7-R4, S7-R5), read on 17 August 2026.\nLast checked against build v3.8-2bf8d14 on 8/18/2026.\n\nAUTOMATION: READY",
+ "custom_atmstatus": 3,
+ "updated_on": 1787082906,
+ "created_by": 3
+}

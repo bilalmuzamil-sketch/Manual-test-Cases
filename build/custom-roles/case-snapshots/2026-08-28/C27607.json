@@ -1,0 +1,11 @@
+{
+ "id": 27607,
+ "title": "Service Manager - I. Remove a completed inspection",
+ "refs": "SV-7509 SV-8095",
+ "preconds": "<p>Logged in as Service Manager. Settings ON but Service sub-setting OFF -> cannot configure templates. A line has a completed inspection with a generated PDF report.</p>\n",
+ "steps": "<ol>\n<li>Log in.</li>\n<li>Open the line with a completed inspection.</li>\n<li>Look for / click the bin (remove) icon.</li>\n<li>Confirm removal if prompted.</li>\n</ol>\n",
+ "expected": "<p>Step 3: A confirmation dialog appears: \"Remove inspection - This inspection has a generated PDF report. Are you sure you want to remove it?\" (Cancel / Remove).<br />Step 4: On Remove, the completed inspection is removed. (Deleting a COMPLETED inspection is gated by WOL Delete - SV-8095 AC3B, finalized.)<br />Build note: removal may require the WO line to NOT be marked complete (mark line Uncomplete first).</p>\n",
+ "custom_atmstatus": 3,
+ "updated_on": 1783433041,
+ "created_by": 3
+}

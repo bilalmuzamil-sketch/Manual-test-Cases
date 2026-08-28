@@ -1,0 +1,11 @@
+{
+ "id": 30260,
+ "title": "If the assignment pre-check fails, the warning dialog still opens",
+ "refs": "SV-8630 (SBR spec v22 2026-08-17 Story 13 S13-N4)",
+ "preconds": "<p>1. A staff member is active with the sales-rep toggle on.<br>2. You can force the pre-deactivation assignment check to fail (for example, cut the network exactly when toggling active off) — if not forceable, mark Blocked with the reason..</p>",
+ "steps": "<p>1. Toggle the staff member's active status off while forcing the check to fail.<br>2. Read the dialog that opens.</p>",
+ "expected": "<p>1. The system NEVER silently deactivates &mdash; the warning dialog still opens (fallback), so the type-to-confirm gate still applies.<br>2. Because the customer count is unavailable, the dialog OMITS the count headline and shows only the reassurance line \"Their customer assignments will stay where they are.\" above the \"Type YES to confirm\" gate.<br><br>---<br>This is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Sales By Representative report specification version 24 (S13-N4), read on 17 August 2026.<br>Last checked against build v3.8-b7d80dc on 8/19/2026.<br>Re-checked against the live specification on 26 August 2026: the requirements this case cites are unchanged, so only the version cited above was updated.<br><br>AUTOMATION: READY</p>\n",
+ "custom_atmstatus": 1,
+ "updated_on": 1787747695,
+ "created_by": 3
+}

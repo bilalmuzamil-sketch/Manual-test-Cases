@@ -1,0 +1,11 @@
+{
+ "id": 26577,
+ "title": "seeFinancialData OFF strips pricing from PDF endpoints (LinesDetailProvider path)",
+ "refs": "SV-7484,SV-7523",
+ "preconds": "Build with CRP-BE-09 deployed. Test user with seeFinancialData OFF.",
+ "steps": "1. Authenticate as test user.\n2. Hit GET on a WO PDF download endpoint.\n3. Open the downloaded PDF.\n4. Search the PDF text for any dollar amounts, labor rates, or part costs.",
+ "expected": "PDF renders without any pricing data. No $ amounts, no rate columns, no margins.\nStep 4: search returns no hits for currency.",
+ "custom_atmstatus": 3,
+ "updated_on": 1782887461,
+ "created_by": 3
+}

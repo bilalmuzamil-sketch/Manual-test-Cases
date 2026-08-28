@@ -1,0 +1,11 @@
+{
+ "id": 26325,
+ "title": "Deletion and duplication behavior on the roles list",
+ "refs": "SV-7499",
+ "preconds": "<ol>\n<li>You are on the Roles & Permissions list with both system and custom roles.</li>\n</ol>",
+ "steps": "<ol>\n<li>Open the three-dot menu on a system role.</li>\n<li>Open the three-dot menu on a custom role.</li>\n<li>Look for Delete and for a Duplicate option in each.</li>\n</ol>",
+ "expected": "<p>System roles cannot be deleted (no Delete in their menu).</p>\n<p>Custom roles with 0 users can be deleted.</p>\n<p>The build has a Duplicate Role feature — confirm live where Duplicate appears; the older 'no Duplicate action exists anywhere' expectation may be out of date.</p>\n",
+ "custom_atmstatus": 3,
+ "updated_on": 1783943977,
+ "created_by": 3
+}

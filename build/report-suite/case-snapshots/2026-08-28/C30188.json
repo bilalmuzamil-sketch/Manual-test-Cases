@@ -1,0 +1,11 @@
+{
+ "id": 30188,
+ "title": "On a phone every toolbar control works on touch; the toolbar splits in two",
+ "refs": "SV-8618 (SBC spec v20 2026-08-17 Story 21 S21-R1; S21-R2; S21-R3)",
+ "preconds": "<p>1. You open the report on a phone-sized viewport (real device or browser device emulation).</p>\n",
+ "steps": "<p>1. Try each toolbar control by touch: date range, Product Type, the Customer filter, location, the overflow menu, and the column selector.<br>2. At a width below 1024px, look at the toolbar rows.<br>3. Widen the window to 1024px or more and look again.</p>\n",
+ "expected": "<p>1. Every toolbar control is visible and works on touch.<br>2. Below 1024px the toolbar uses two rows: the action controls (overflow menu and column selector) on the first row, and the filter dropdowns on the second row, stacked at full width.<br>3. At 1024px and above the toolbar uses the desktop single-row layout.<br><br>---<br>This is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Sales By Customer report specification version 20 (S21-R1, S21-R2, S21-R3), read on 17 August 2026.<br>Last checked against build v3.8-da72171 on 8/19/2026.<br><br>AUTOMATION: READY</p>\n",
+ "custom_atmstatus": 1,
+ "updated_on": 1787142824,
+ "created_by": 3
+}

@@ -1,0 +1,11 @@
+{
+ "id": 30600,
+ "title": "In dark mode the page background, toolbar, cells; the \"—\" glyph remain legible",
+ "refs": "SV-8679 (IV spec v10 2026-08-17 Story 12 S12-R7)",
+ "preconds": "1. You are signed in to the ShopView App on a desktop browser.\n2. The application is switched to dark mode.\n3. The report shows rows including a part with an em-dash (\"—\") Category or Vendor cell.",
+ "steps": "1. Read the page background, toolbar, and table cells in dark mode.\n2. Find a \"—\" cell and check its legibility.",
+ "expected": "1. The report supports dark mode: the page background, the toolbar, and the table cells all switch to their dark equivalents rather than staying light.\n2. In dark mode you can read the toolbar text and the cell text at a glance, and the \"—\" glyph in an empty Category or Vendor cell is clearly visible against the dark cell behind it — it does not disappear into the background.\n3. Note for the tester: you do not need to measure anything and you do not need any tool. Just say whether everything is easy to read in dark mode, and only report it if something is hard to see. (The exact colour values behind this are design-token values the design and engineering team check with their own tooling, not by hand.)\n\n---\nThis is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Inventory Value report specification version 10 (S12-R7), read on 17 August 2026.\nLast checked against build v3.8-bd246fd on 8/18/2026.\n\nAUTOMATION: READY",
+ "custom_atmstatus": 1,
+ "updated_on": 1787095772,
+ "created_by": 3
+}

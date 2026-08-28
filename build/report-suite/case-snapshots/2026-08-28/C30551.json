@@ -1,0 +1,11 @@
+{
+ "id": 30551,
+ "title": "With every column on they appear in the fixed order with the set alignment",
+ "refs": "SV-8670; SV-8674 (IV spec v10 2026-08-17 Story 3 S3-R1; S3-R2 + Story 7 S7-R6 — fixed column order and alignment; plus the Location column between Vendor and Qty on Hand when it is shown)",
+ "preconds": "1. You are signed in to the ShopView App on a desktop browser.\n2. The Inventory Value report is open with rows loaded.\n3. Every column (including Margin and Total Sell) is turned on in the column-selection control.",
+ "steps": "1. Read the column headers from left to right.\n2. Look at how the values in each column are aligned.",
+ "expected": "1. With a single location in scope the columns appear in this order: Part #, Description, Category, Vendor, Qty, Unit Cost, Unit Sell, Margin, Margin %, Total Sell, Total Cost.\n2. Part #, Description, Category, and Vendor are left-aligned.\n3. Every other column is right-aligned. When it is on, the Location column appears between Vendor and Qty, and it is right-aligned like the other non-identity columns.The question is in the round-3 question sheet: https://raw.githubusercontent.com/bilalmuzamil-sketch/Manual-test-Cases/claude/slack-session-0sxnd9/build/report-suite/rulings-2026-08-05/Questions-for-Chris-Ward_Report-Suite_Round-3_2026-08-05.xlsx\n\n---\nThis is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Inventory Value report specification version 10 (S3-R1, S3-R2, S7-R6), read on 17 August 2026.\nLast checked against build v3.8-bd246fd on 8/18/2026.\n\nAUTOMATION: READY",
+ "custom_atmstatus": 1,
+ "updated_on": 1787095719,
+ "created_by": 3
+}

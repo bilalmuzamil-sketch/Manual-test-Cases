@@ -1,0 +1,11 @@
+{
+ "id": 30381,
+ "title": "Em-dash in both exports; Last Sale reads \"N days\" in the PDF",
+ "refs": "SV-8646 (PV spec v10 2026-08-17 S6-R7; S6-R8; S3-R9; SV-8823 CSV empty-null rule)",
+ "preconds": "<p>1. Rows with null values exist (a special-order row for On Hand / Turns / Yr / Min / Max; a row with billed units 0 for Avg Cost / Avg Sell; a never-sold row for Last Sale).<br>2. All nullable columns are enabled..</p>",
+ "steps": "<p>1. Download the CSV and locate the null cells.<br>2. Download the PDF and locate the same cells.</p>",
+ "expected": "<p>1. In every nullable numeric field — Avg Cost, Avg Sell, Margin %, On Hand, Turns / Yr, Last Sale, Min, Max — a null value is an EMPTY cell in the CSV (no em-dash), and an em-dash (—) in the PDF. The CSV leaves the cell empty so a spreadsheet can still total the column.<br>2. Revenue, Margin, and the count metrics are never null in the exports either (they show 0.00 / 0.00 / 0).<br>Note for the tester: an earlier version of this report showed the em-dash for empty cells in the CSV as well. The current Parts Velocity report specification (version 10, updated 17 August 2026, per the SV-8823 correction) changes the CSV to leave those cells empty; the PDF still shows the em-dash. Follow the current specification.<br><br>---<br>This is the expected behaviour as per epic SV-8582 and the Parts Velocity report specification version 10 (updated 17 August 2026, S6-R7, S6-R8, S3-R9; CSV empty-null rule per the Dipesh correction on SV-8823).<br>Last checked against build v3.8-d0e135e on 8/20/2026 — CSV numeric null cells confirmed empty live.<br><br>AUTOMATION: READY</p>",
+ "custom_atmstatus": 1,
+ "updated_on": 1787206069,
+ "created_by": 3
+}

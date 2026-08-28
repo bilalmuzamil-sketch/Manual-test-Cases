@@ -1,0 +1,11 @@
+{
+ "id": 30154,
+ "title": "Subtotal is the rightmost column; pinned on scroll and bold everywhere",
+ "refs": "SV-8609 (SBC spec v20 2026-08-17 Story 11 S11-R1; S11-R2; S11-R3; S11-N1)",
+ "preconds": "<ol>\n<li>You are on the report with data, on a window narrow enough to force horizontal scrolling (or with all columns visible).</li>\n</ol>\n",
+ "steps": "<ol>\n<li>Confirm the Subtotal column is the last column on the right.</li>\n<li>Scroll the table sideways and watch the Subtotal column.</li>\n<li>Inspect the font weight of the Subtotal header, a customer row, an asset row, an invoice row, and the totals row.</li>\n</ol>\n",
+ "expected": "<ol>\n<li>Subtotal is the rightmost column in the table.</li>\n<li>It stays visible pinned at the right edge while the table scrolls horizontally.</li>\n<li>Subtotal values are shown in bold on the header, on every customer, asset and invoice row, and on the totals row.</li>\n<li>Check it still holds after two changes: narrow the date range so fewer rows match, then sort by a different column. Subtotal stays the rightmost column, stays pinned, and stays bold both times.</li>\n</ol>\n\n<hr />\n\n<p>This is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Sales By Customer report specification version 20 (S11-R1, S11-R2, S11-R3, S11-N1), read on 17 August 2026.<br />Last checked against build v3.8-2bf8d14 on 8/18/2026.</p>\n\n<p>AUTOMATION: READY</p>\n",
+ "custom_atmstatus": 1,
+ "updated_on": 1787083038,
+ "created_by": 3
+}

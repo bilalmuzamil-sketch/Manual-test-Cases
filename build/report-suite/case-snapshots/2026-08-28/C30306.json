@@ -1,0 +1,11 @@
+{
+ "id": 30306,
+ "title": "Dark mode: page, toolbar, table; Totals switch to dark equivalents",
+ "refs": "SV-8635 (SBR spec v22 2026-08-17 S18-R8; heading renamed to Labor Delta per SV-9071)",
+ "preconds": "<ol><li>You are on the report with data showing, including at least one expanded rep (badges visible) and non-zero Labor Delta values.</li></ol>",
+ "steps": "<ol><li>Switch the application to dark mode.</li><li>Look at the page, toolbar, header, body cells, and the grand Totals indicator.</li><li>Read the status badges and the green/red Labor Delta values.</li><li>Download a PDF while in dark mode and open it.</li></ol>",
+ "expected": "<p>1. The page, toolbar, header, body cells, and the grand Totals indicator switch to their dark equivalents.<br>2. Status badges keep the same canonical payment-status color tokens and stay legible in both modes.<br>3. Labor Delta green/red use the application's positive/negative tokens, mode-appropriate.<br>4. PDFs always render in light-mode colors, even when downloaded from dark mode.</p><p>---<br>This is the expected behaviour as per epic SV-8582 and the Sales By Representative report specification version 24 (S18-R8), both read on 17 August 2026. The column was renamed from \"Inv. Hrs\" to \"Labor Delta\" per SV-9071; only the name changed.<br>Last checked against build v3.8-bd246fd on 8/18/2026.<br>Re-checked against the live specification on 26 August 2026: the requirements this case cites are unchanged, so only the version cited above was updated.</p><p>AUTOMATION: READY</p>",
+ "custom_atmstatus": 1,
+ "updated_on": 1787754793,
+ "created_by": 3
+}

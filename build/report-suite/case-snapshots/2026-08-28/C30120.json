@@ -1,0 +1,11 @@
+{
+ "id": 30120,
+ "title": "A subset customer selection reconciles on a filter change; kept if present",
+ "refs": "SV-8616 (SBC spec v20 2026-08-17 Story 18 S18-R9; S18-E1)",
+ "preconds": "<p>1. You are on the report with three customers A, B, C where: A has invoices in both this month and last month; B has invoices only in this month; C has invoices only in last month (seed ZZAUTOTEST data as needed).<br>2. Date range is This Month; you have selected exactly customers A and B in the Customer filter..</p>",
+ "steps": "<p>1. Change the date range to Last Month.<br>2. Read the table rows and the Customer filter selection.</p>",
+ "expected": "<p>1. Customer A (still present in the new results) stays selected and is shown.<br>2. Customer B (no longer present) is dropped from the selection and not shown; it must be re-selected to appear if it later returns.<br>3. Customer C (newly present) is NOT auto-selected and is not shown.<br>4. The Customer filter selection itself is not cleared by the date change.<br><br>---<br>This is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Sales By Customer report specification version 20 (S18-R9, S18-E1), read on 17 August 2026.<br>Last checked against build v3.8-da72171 on 8/19/2026.<br><br>AUTOMATION: READY</p>",
+ "custom_atmstatus": 1,
+ "updated_on": 1787208505,
+ "created_by": 3
+}

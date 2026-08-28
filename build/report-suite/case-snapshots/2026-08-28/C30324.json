@@ -1,0 +1,11 @@
+{
+ "id": 30324,
+ "title": "A loading indicator shows and old rows are replaced only when data returns",
+ "refs": "SV-8641 (PV spec v10 2026-08-17 S1-R3)",
+ "preconds": "<ol><li>You are signed in as a user allowed to open the report.</li><li>Enough parts data exists that the report visibly takes a moment to load.</li></ol>",
+ "steps": "<ol><li>Open the Parts Velocity report and watch the table area during the initial load.</li><li>After it loads, change any filter that reloads the data from the server (for example the Type filter).</li><li>Watch the table while the new data is being fetched.</li></ol>",
+ "expected": "<p>1. During the initial load, the table shows a loading indicator.<br>2. During a filter change, the loading indicator shows again.<br>3. The rows already on screen are replaced only when the new data comes back - the table does not blank out and rebuild mid-request.</p><p>---<br>This is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Parts Velocity report specification version 11 (S1-R3), read on 17 August 2026.<br>Last checked against build v3.8-bd246fd on 8/18/2026.<br>Re-checked against the live specification on 26 August 2026: the requirements this case cites are unchanged, so only the version cited above was updated.</p><p>AUTOMATION: READY</p>",
+ "custom_atmstatus": 1,
+ "updated_on": 1787754829,
+ "created_by": 3
+}

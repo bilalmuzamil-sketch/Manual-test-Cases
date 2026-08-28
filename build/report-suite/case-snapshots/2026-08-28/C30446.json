@@ -1,0 +1,11 @@
+{
+ "id": 30446,
+ "title": "Technician Utilization: Location filter hidden for a one-location user",
+ "refs": "SV-8656 (TU spec v9 2026-08-17 S9-N1 — RULED HIDDEN by Chris Ward answer 2026-07-31 Q1=A; S9-N1 now reads \"A user with access to only one location does not see the filter; it is hidden\"; so his spec edit is DONE and the note is no longer stale)",
+ "preconds": "<p>1. You are signed in as a user with access to exactly one location.<br>2. You are on the Technician Utilization report..</p>",
+ "steps": "<p>1. Look for the Location filter in the toolbar.<br>2. Then sign in as a user with access to two or more locations and look again.</p>",
+ "expected": "<p>1. For the single-location user the Location filter is NOT shown at all — the report simply shows that one location's data.<br>2. For the user with access to two or more locations the Location filter IS shown.<br><br>---<br>This is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Technician Utilization report specification version 9 (S9-N1), read on 17 August 2026. Chris Ward confirmed this on 8/5/2026 in his answers in this file: https://docs.google.com/spreadsheets/d/1x8cuYJlFsDHalVZZTh156_ZCq2gcOaGY/edit?usp=sharing&amp;ouid=106388879401921597782&amp;rtpof=true&amp;sd=true, read on 17 August 2026<br>Last checked against build v3.8-d0e135e on 8/19/2026.<br><br>AUTOMATION: HOLD - needs a sign-in as a user who can reach only one location; no such user exists on this shared test environment (all staff span three or more locations)</p>",
+ "custom_atmstatus": 1,
+ "updated_on": 1787214816,
+ "created_by": 3
+}

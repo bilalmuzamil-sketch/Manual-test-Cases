@@ -1,0 +1,11 @@
+{
+ "id": 30490,
+ "title": "Each per-stage figure equals the matching tab's money total",
+ "refs": "SV-8661 (WIP Story 5; WIP report design review 2026-08-13 - per-stage figures tie to their tab totals; tab names unchanged this wave)",
+ "preconds": "<p>1. You are signed in to the ShopView App on a desktop browser.<br>2. All four tabs contain at least one job with non-zero money.<br>3. The Earned and Remaining columns are visible..</p>\n",
+ "steps": "<p>1. In the \"Approved - Not Started\" tab, add up each job's Earned + Remaining (its approved value) and compare to the Work Orders Not Started figure.<br>2. In the \"Approved - Partially Completed\" tab, compare the tab's total Earned to the Completed Work on Open Work Orders figure and the tab's total Remaining to the Remaining Work on Open Work Orders figure.<br>3. In the \"Completed\" tab, compare the tab's total Earned to the Work Orders Ready to Invoice figure.</p>\n",
+ "expected": "<p>1. Work Orders Not Started equals the total approved value (earned + remaining) of the jobs in the \"Approved - Not Started\" tab.<br>2. Completed Work on Open Work Orders equals the total Earned of the jobs in the \"Approved - Partially Completed\" tab, and Remaining Work on Open Work Orders equals that tab's total Remaining.<br>3. Work Orders Ready to Invoice equals the total Earned of the jobs in the \"Completed\" tab.<br><br>---<br>This is the expected behaviour as per epic SV-8582, the Work In Progress report design review of 13 August 2026 (https://claude.ai/code/artifact/42c35f46-2796-467e-9723-7daa5385446e), and the Work In Progress report specification version 28 (S5-R4; S5-R5; S5-R6; S5-R7), read on 26 August 2026.<br>Last checked against build v3.8-d0e135e on 8/20/2026.<br>The figure names above are the 13 August 2026 design-review names, replacing the earlier 'Not Started', 'Started - Earned', 'Started - Remaining' and 'Ready to Invoice'; we have taken the latest design review as prevailing. Tab names are unchanged this wave.<br><br>AUTOMATION: READY</p>\n",
+ "custom_atmstatus": 1,
+ "updated_on": 1787747371,
+ "created_by": 3
+}

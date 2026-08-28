@@ -1,0 +1,11 @@
+{
+ "id": 30173,
+ "title": "A no-match export still downloads headers and a zero totals row",
+ "refs": "SV-8616 (SBC spec v20 2026-08-17 Story 18 S18-R10)",
+ "preconds": "1. The Customer filter selection is empty (\"Clear all\") or the filters otherwise match no customers.",
+ "steps": "1. Choose a CSV download - \"Download Summary (CSV)\" or \"Download Expanded View (CSV)\" - and open the file.\n2. Choose a PDF download - \"Download Summary (PDF)\" or \"Download Expanded View (PDF)\" - and open the file.",
+ "expected": "1. The export still downloads — no error and no warning is shown.\n2. The file contains the column headers, a totals row of zeros, and no data rows.\n\n---\nThis is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Sales By Customer report specification version 20 (S18-R10), read on 17 August 2026.\nLast checked against build v3.8-2bf8d14 on 8/18/2026.\n\nAUTOMATION: READY",
+ "custom_atmstatus": 1,
+ "updated_on": 1787082726,
+ "created_by": 3
+}

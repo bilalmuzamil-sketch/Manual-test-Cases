@@ -1,0 +1,11 @@
+{
+ "id": 30272,
+ "title": "Expansion state and scroll position are not remembered and reset on reload",
+ "refs": "SV-8640 (SBR spec v22 2026-08-17 Story 23 S23-R2; §2 Out of Scope)",
+ "preconds": "1. Two reps are expanded and the table is scrolled partway.",
+ "steps": "1. Reload the page.\n2. Check the rows and the scroll position.",
+ "expected": "1. All rows render collapsed and the scroll position resets.\n2. This is the specified behavior (only back-navigation from a drilldown restores expansion/scroll), not a defect.\n\n---\nThis is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Sales By Representative report specification version 22 (S23-R2), read on 17 August 2026.\n\nAUTOMATION: READY",
+ "custom_atmstatus": 3,
+ "updated_on": 1787127645,
+ "created_by": 3
+}

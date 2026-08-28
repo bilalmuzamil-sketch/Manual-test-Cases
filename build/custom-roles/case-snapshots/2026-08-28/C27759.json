@@ -1,0 +1,11 @@
+{
+ "id": 27759,
+ "title": "Verify the roles list loads correctly for Administrator on the Roles & Permissions page",
+ "refs": "SV-5319",
+ "preconds": "Log in to ShopView as a user assigned the Administrator role.\nNote: the roles API response shape changed in this build - watch for a blank or broken list.",
+ "steps": "1. Click the Settings (cog) icon.\n2. Open Roles & Permissions.",
+ "expected": "The page loads and every role (Administrator, Service Manager, Senior Service Advisor, Service Advisor, Foreman, Technician, Parts Manager, Parts Technician, Office, Sales Representative, Time Clock) is listed with its correct name. The list is not blank or broken.",
+ "custom_atmstatus": 1,
+ "updated_on": 1783108595,
+ "created_by": 3
+}

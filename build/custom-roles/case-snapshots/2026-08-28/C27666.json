@@ -1,0 +1,11 @@
+{
+ "id": 27666,
+ "title": "Parts Manager - C. Add multiple inspection templates to one line",
+ "refs": "SV-7509 SV-8095",
+ "preconds": "Logged in as Parts Manager. A work order line exists.",
+ "steps": "1. Log in.\n2. Add an inspection template to a line.\n3. Add a second and third template to the same line.\n4. Attempt to add a fourth.",
+ "expected": "Step 2: First inspection added (\"Inspection added to line.\").\nStep 3: Second and third inspections added to the same line.\nStep 4: VIU - spec does not state a maximum; build observed up to 3 per line. Confirm whether a 4th is prevented.",
+ "custom_atmstatus": 3,
+ "updated_on": 1783433066,
+ "created_by": 3
+}

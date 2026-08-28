@@ -1,0 +1,11 @@
+{
+ "id": 27756,
+ "title": "Verify Administrator can delete a customer payment",
+ "refs": "SV-5319",
+ "preconds": "Log in to ShopView as a user assigned the Administrator role. (this role has Invoicing & Payments: Delete).\nAt least one customer payment has been recorded.",
+ "steps": "1. Click Customers in the main navigation and open a customer that has a recorded payment.\n2. Open the Payments tab on the customer.\n3. Click Delete on a payment and confirm.",
+ "expected": "The payment is deleted and removed from the Payments tab without a permission error.",
+ "custom_atmstatus": 1,
+ "updated_on": 1783108595,
+ "created_by": 3
+}

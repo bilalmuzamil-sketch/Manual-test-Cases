@@ -1,0 +1,11 @@
+{
+ "id": 30365,
+ "title": "Last Sale is whole days since the most recent sale over all-time history",
+ "refs": "SV-8645 (PV spec v10 2026-08-17 S5-R4 (Last Sale); §4; S5-R5; tech-plan-2026-07-29 B3.1 (last-sale re-anchor on reversal — spec-silent))",
+ "preconds": "<p>1. A part whose most recent sale was N days ago, OUTSIDE the currently selected date range (e.g. range = This Month, last sale 42 days ago).<br>2. The part still appears in the report (it has on-hand stock).<br>3. For the location check: the part's most recent sale at location A is more recent than at location B.<br>4. For the reversal check: a ZZAUTOTEST part whose MOST RECENT sale can be reversed, and an older sale of the same part also exists..</p>",
+ "steps": "<p>1. Read the part's Last Sale value with the narrow date range selected.<br>2. Switch the Location filter between location A and location B and re-read Last Sale.<br>3. Reverse the part's most recent sale invoice and re-read Last Sale.</p>",
+ "expected": "<p>1. Last Sale shows the whole days between today and the part's most recent sale measured over ALL-TIME history - it IGNORES the selected date range (e.g. '42 days' even though the range is This Month).<br>2. It IS scoped to the selected location(s): with only location B selected, Last Sale reflects B's own most recent sale.<br>3. Format is 'N days' (e.g. 42 days); a part with no recorded sale ever shows &mdash;.<br>4. For a special-order part, the anchor is its most recent vendor-sourced invoiced/paid request.<br>5. When the most recent sale is reversed, Last Sale re-anchors to the previous remaining sale (the day count grows accordingly); if no other sale remains it shows &mdash;.<br><br>---<br>This is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Parts Velocity report specification version 11 (S5-R4, S5-R5), read on 17 August 2026.<br>Last checked against build v3.8-d0e135e on 8/19/2026.<br>Re-checked against the live specification on 28 August 2026: every requirement this case cites was read again in the live version and the behaviour above still matches it, so only the version cited above was updated.<br><br>AUTOMATION: READY</p>\n",
+ "custom_atmstatus": 1,
+ "updated_on": 1787886516,
+ "created_by": 3
+}

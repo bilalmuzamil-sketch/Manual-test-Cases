@@ -1,0 +1,11 @@
+{
+ "id": 30156,
+ "title": "Column selector is its own toolbar button with ten toggles all on",
+ "refs": "SV-8611 (SBC spec v20 2026-08-17 S13-R4; renamed to Labor Delta per SV-9071)",
+ "preconds": "1. You are on the report with no saved column selection (first visit or cleared storage).",
+ "steps": "1. Find the column selector button in the toolbar's action area, next to the overflow menu.\n2. Hover it and read the tooltip.\n3. Click it and read the toggle list top to bottom.",
+ "expected": "1. The column selector is a separate control next to the overflow menu — it is not an item inside the overflow menu.\n2. Hovering it shows the tooltip \"Column Selection.\"\n3. The panel lists ten toggles, in order: Date, Labor Delta, Labor Invoiced, Labor Margin, Parts Invoiced, Parts Margin, Shop Supplies, Adjustments, Margin, Margin %.\n4. With no saved selection, all ten toggleable columns default to visible.\n5. Note for the tester: this panel lists ten toggles and no Location toggle. The specification is currently inconsistent on this one point - one requirement says a Location toggle should be here for anyone who can reach more than one branch, while the list of nine does not include it. The product owner has been asked which is right and has not answered yet, so do not raise a bug either way - record what you see. The question is in the round-3 question sheet: https://raw.githubusercontent.com/bilalmuzamil-sketch/Manual-test-Cases/claude/slack-session-0sxnd9/build/report-suite/rulings-2026-08-05/Questions-for-Chris-Ward_Report-Suite_Round-3_2026-08-05.xlsx\n\n---\nThis is the expected behaviour as per epic SV-8582 and the Sales By Customer report specification version 20 (S13-R4), both read on 17 August 2026. The column was renamed from \"Inv. Hrs\" to \"Labor Delta\" per SV-9071; only the name changed.\nLast checked against build v3.8-2bf8d14 on 8/18/2026.\n\nAUTOMATION: READY",
+ "custom_atmstatus": 1,
+ "updated_on": 1787082446,
+ "created_by": 3
+}

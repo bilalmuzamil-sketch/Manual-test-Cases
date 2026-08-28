@@ -1,0 +1,11 @@
+{
+ "id": 30562,
+ "title": "The report values inventory as of the END of the selected range",
+ "refs": "SV-8672 (IV spec v10 2026-08-17 Story 5 S5-R2 (+ context note))",
+ "preconds": "<ol>\n<li>You are signed in to the ShopView App on a desktop browser.</li>\n<li>Nightly snapshots exist for past dates at the selected location (recording has been running).</li>\n<li>A part exists that was ALREADY in stock before the selected range started.</li>\n</ol>\n",
+ "steps": "<ol>\n<li>Select a past range (for example \"Last Month\").</li>\n<li>Check which date the displayed values represent.</li>\n<li>Look for the part that was stocked before the range started.</li>\n</ol>\n",
+ "expected": "<ol>\n<li>The report values inventory as of the END of the selected range.</li>\n<li>The date control is an \"as of\" anchor, not a created-date filter — narrowing it does not select \"parts added in that range\"; it shows the whole shelf as it stood on that date, so the part stocked before the range still appears.</li>\n</ol>\n\n<hr />\n\n<p>This is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Inventory Value report specification version 10 (S5-R2), read on 17 August 2026.<br />Last checked against build v3.8-bd246fd on 8/18/2026.</p>\n\n<p>AUTOMATION: READY</p>\n",
+ "custom_atmstatus": 1,
+ "updated_on": 1787095652,
+ "created_by": 3
+}

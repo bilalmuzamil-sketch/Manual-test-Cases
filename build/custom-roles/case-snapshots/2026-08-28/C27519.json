@@ -1,0 +1,11 @@
+{
+ "id": 27519,
+ "title": "CR-PAY-014 — Part-sales + AP/AR (edit)",
+ "refs": "SV-7388",
+ "preconds": "<p>Permissions (counted): Part Sales V+E + See AP/AR. Auto-gate forced ON (not counted): Parts Dept + See Fin. View Mode: Full unless noted. All other permissions OFF.</p>",
+ "steps": "<ol>\n<li>Create a custom role with the permissions listed in Preconditions; leave all others OFF.</li>\n<li>Assign the role to a test user and log in.</li>\n<li>Exercise each capability in Expected Result and confirm it succeeds (and that gated pricing is hidden where noted).</li>\n</ol>",
+ "expected": "<p>User CAN: View/create part sales &amp; returns; process transactions; AP/AR payment tabs; aging; bulk payments from Unpaid Invoices tab</p><hr/><p><strong>Risk / Rationale:</strong> Positive capability check — confirms this combination grants exactly the listed actions and nothing gated leaks. See Flag / Note.<br/><strong>Spec Ref:</strong> §1e+§5b<br/><strong>Flag / Note:</strong> \\u26a0 part-sale payment collection needs Invoicing E; bulk payments via AP/AR (§5b vs §1h)</p>",
+ "custom_atmstatus": 1,
+ "updated_on": 1782992336,
+ "created_by": 1
+}

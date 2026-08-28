@@ -1,0 +1,11 @@
+{
+ "id": 30415,
+ "title": "Summary totals visible technicians from unrounded hours; 0.01 drift expected",
+ "refs": "SV-8650 (TU spec v9 2026-08-17 S3-R3; §3 context note; S5-E1)",
+ "preconds": "1. Several technicians with known clocked hours are visible (all selected in the technician filter).",
+ "steps": "1. Read the Summary Total Hours, WO Hours, and Internal Hours.\n2. Hand-sum the DISPLAYED per-row values and compare with the Summary.\n3. Compare the Summary against the known shop totals for the full range at the selected location(s).",
+ "expected": "1. Each Summary hours value is the total of that column across the VISIBLE technicians, computed from unrounded hours and rounded once for display (round-half-up).\n2. Eye-summing the displayed rows MAY differ from the displayed Summary by 0.01 — one unit in the last decimal (these values are HOURS, not money) — expected in a compute-from-unrounded report, not a defect.\n3. With every technician selected, the Summary row equals the shop totals for the full date range at the selected location(s).\n\n---\nThis is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Technician Utilization report specification version 9 (S3-R3, S5-E1), read on 17 August 2026.\nLast checked against build v3.8-bd246fd on 8/18/2026.\n\nAUTOMATION: READY",
+ "custom_atmstatus": 1,
+ "updated_on": 1787089788,
+ "created_by": 3
+}

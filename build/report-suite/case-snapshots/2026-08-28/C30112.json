@@ -1,0 +1,11 @@
+{
+ "id": 30112,
+ "title": "Customer filter sits between Product Type and Location, carries a search icon",
+ "refs": "SV-8616 (SBC spec v20 2026-08-17 Story 18 S18-R1; S18-R2)",
+ "preconds": "1. You are on the Sales By Customer report with at least one customer in the current results.",
+ "steps": "1. Look at the toolbar filters from left to right.\n2. Open the Customer filter without typing anything.\n3. Read what the dropdown shows before any query is typed.",
+ "expected": "1. A Customer filter labeled \"Customer\" sits between the Product Type filter and the Location filter.\n2. The control carries a search (magnifier) icon marking it as searchable.\n3. Before typing, the dropdown shows the pinned all/clear control at the top and a \"Search customers…\" hint; individual customers are revealed by typing.\n4. The hint yields to the typed query while you are searching.\n\n---\nThis is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Sales By Customer report specification version 20 (S18-R1, S18-R2), read on 17 August 2026.\nLast checked against build v3.8-2bf8d14 on 8/18/2026.\n\nAUTOMATION: READY",
+ "custom_atmstatus": 1,
+ "updated_on": 1787082708,
+ "created_by": 3
+}

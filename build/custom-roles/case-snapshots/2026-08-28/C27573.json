@@ -1,0 +1,11 @@
+{
+ "id": 27573,
+ "title": "CR-BRK-018 — Send to Portal in Full View without WOL-approve ability",
+ "refs": "SV-7388",
+ "preconds": "<p>WO V \\u2713 | View Mode: Full | WO Lines: (no Edit → cannot approve a WOL) (View Mode as specified).</p>",
+ "steps": "<ol>\n<li>Configure a custom role per the Setup in Preconditions; assign to a test user and log in.</li>\n<li>Open a WO in Full View with no WOL-approve ability; look for Send to Portal.</li>\n</ol>",
+ "expected": "<p>Send to Portal requires Full View AND the ability to approve a WOL (Q6: 'can be anyone who can approve a WOL'; approve = 'authorize lines' under WO Lines Edit). Without WOL Edit, Send to Portal should be unavailable even in Full View.</p><hr/><p><strong>Risk / Rationale:</strong> Send to Portal available in Full View despite no WOL-approve capability — over-permission. (Exact gate mildly ambiguous.)<br/><strong>Spec Ref:</strong> §4 View Mode; §1b; Open Q6<br/><strong>Flag / Note:</strong> Spec ambiguity</p>",
+ "custom_atmstatus": 1,
+ "updated_on": 1782992505,
+ "created_by": 1
+}

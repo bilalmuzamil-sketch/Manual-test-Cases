@@ -1,0 +1,11 @@
+{
+ "id": 26464,
+ "title": "Money columns are controlled by See Financial Data, not by View mode",
+ "refs": "SV-7508",
+ "preconds": "<ol>\n<li>User A has View mode Full View and See Financial Data OFF.</li>\n<li>User B has View mode Tech view and See Financial Data ON.</li>\n</ol>",
+ "steps": "<ol>\n<li>User A opens a work order and looks at pricing columns.</li>\n<li>User B opens a work order and looks at parts pricing and labor rate fields.</li>\n</ol>",
+ "expected": "<p>User A sees no money data (pricing is hidden everywhere).</p>\n<p>User B sees parts pricing and totals (See Financial Data is on), but labor rate columns and fields are still hidden because Tech view hides them separately.</p>\n",
+ "custom_atmstatus": 3,
+ "updated_on": 1783942460,
+ "created_by": 3
+}

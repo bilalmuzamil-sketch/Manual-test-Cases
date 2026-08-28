@@ -1,0 +1,11 @@
+{
+ "id": 26488,
+ "title": "View History Logs ON: work order history and line history are visible (work orders only)",
+ "refs": "SV-7525",
+ "preconds": "<ol><li>A user has a role with the View History Logs toggle ON and Work orders View ON.</li><li>A work order has at least one line, and both the work order and the line have some change history.</li></ol><p>Will be updated after a followup ticket is completed for this&nbsp;<a data-fr-linked=\"true\" href=\"https://shopview.atlassian.net/browse/SV-8202\" data-pasted=\"true\">https://shopview.atlassian.net/browse/SV-8202</a></p>",
+ "steps": "<ol><li>Open the work order and find the work order history / audit log.</li><li>Open a line on that work order and find the line's history (its story/history).</li></ol>",
+ "expected": "<p>With View History Logs on, the user can open the work order history and it lists change events.</p><p>The user can also see the line-level history on the line.</p><p>History logs are for work orders only (work-order level and line level) — there is no history log for Part Sales or Purchase Orders.</p>",
+ "custom_atmstatus": 3,
+ "updated_on": 1784571038,
+ "created_by": 3
+}

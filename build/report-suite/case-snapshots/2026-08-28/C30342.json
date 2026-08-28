@@ -1,0 +1,11 @@
+{
+ "id": 30342,
+ "title": "A Special Order part is one merged row summed across selected locations",
+ "refs": "SV-8643 (PV spec v10 2026-08-17 S3-R1a; §3 Key Decisions)",
+ "preconds": "<p>1. The same special-order (vendor-sourced) part was requested on invoiced/paid work orders at two locations the user can access, inside the window.<br>2. You are on the Parts Velocity report with both locations selected..</p>",
+ "steps": "<p>1. Search for the special-order part.<br>2. Count its rows and read its movement and money values.<br>3. Compare against the per-location values with only one location selected at a time.</p>",
+ "expected": "<p>1. The special-order part appears as a SINGLE row (one row per special-order part, merged across the selected locations).<br>2. Its movement and profitability values are the SUM of the per-location values.<br>3. Its inventory-only columns (On Hand, Turns / Yr, Min, Max) show &mdash; (em-dash), because special-order parts are not stocked.<br><br>---<br>This is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Parts Velocity report specification version 11 (S3-R1a), read on 17 August 2026.<br>Last checked against build v3.8-d0e135e on 8/19/2026.<br>Re-checked against the live specification on 26 August 2026: the requirements this case cites are unchanged, so only the version cited above was updated.<br><br>AUTOMATION: READY</p>\n",
+ "custom_atmstatus": 1,
+ "updated_on": 1787747779,
+ "created_by": 3
+}

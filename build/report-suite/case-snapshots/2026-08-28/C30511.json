@@ -1,0 +1,11 @@
+{
+ "id": 30511,
+ "title": "Downloads keep shown columns, honor filters, include the tab's Totals row",
+ "refs": "SV-8665 (WIP spec v22 2026-08-18 S9-R3; S9-R10a; downloads honor the as-of date; heading renamed to Labor Delta per SV-9071)",
+ "preconds": "1. You are signed in to the ShopView App on a desktop browser.\n2. The report is open with a non-default column selection (for example, Labor Delta on and Advisor off), a chosen \"as of\" date and location, and an advisor/customer/asset filter applied that hides some rows.",
+ "steps": "1. Download the current tab as a CSV and open it.\n2. Compare its columns to the screen's visible columns and order.\n3. Compare its rows to the jobs left visible by the filters.\n4. Compare its Totals row to the on-screen Totals row.\n5. Repeat the same checks in the PDF.",
+ "expected": "1. Both downloads include only the columns currently shown, in the same left-to-right order as the screen, with Total last. One exception on this build: if you turn Labor Delta on, the download is refused - that column cannot be exported yet.\n2. Both downloads honor the current \"as of\" date and location filter, and include only the jobs left visible by the advisor, customer, and asset filters.\n3. Both downloads include a Totals row matching the on-screen Totals row for the tab.\n4. Each download (PDF and CSV) carries a \"Locations:\" line naming the location(s) the report was scoped to.\n5. Note for the tester: the file carries the Location column whenever it is showing on screen. In the file it is headed \"Branch\", not \"Location\".\n\n---\nThis is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Work In Progress report specification version 22 (S9-R3; S9-R10a), read on 18 August 2026.\nLast checked against build v3.8-bd246fd on 8/18/2026.\n\nAUTOMATION: READY",
+ "custom_atmstatus": 3,
+ "updated_on": 1787127708,
+ "created_by": 3
+}

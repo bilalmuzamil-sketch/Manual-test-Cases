@@ -1,0 +1,11 @@
+{
+ "id": 27564,
+ "title": "CR-BRK-009 — Pick Parts ON but Parts Dept OFF — over-gating risk",
+ "refs": "SV-7388; SV-7861 (adjacent)",
+ "preconds": "<p>WO V \\u2713 | Pick Parts \\u2713 | Parts Dept \\u2717 | View Mode: Full (View Mode as specified).</p>",
+ "steps": "<ol>\n<li>Configure a custom role per the Setup in Preconditions; assign to a test user and log in.</li>\n<li>Open a WO; attempt to pick a part from inventory onto a line.</li>\n</ol>",
+ "expected": "<p>Pick Parts is a WO sub-setting requiring only WO View (§1a 'sub-settings only require Work Orders: View'). It is NOT gated by Parts Dept, so it must work even with Parts Dept OFF.</p><hr/><p><strong>Risk / Rationale:</strong> System incorrectly hides/blocks Pick Parts because Parts Dept is OFF — over-gating a WO sub-setting.<br/><strong>Spec Ref:</strong> §1a WO sub-settings; §2d</p>",
+ "custom_atmstatus": 3,
+ "updated_on": 1783025698,
+ "created_by": 1
+}

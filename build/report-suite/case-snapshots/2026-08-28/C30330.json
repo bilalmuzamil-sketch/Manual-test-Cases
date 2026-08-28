@@ -1,0 +1,11 @@
+{
+ "id": 30330,
+ "title": "Date range selector offers exactly the eleven bounded options and no All Time",
+ "refs": "SV-8642 (PV spec v10 2026-08-17 S2-R2; §2 Out of Scope — S2-R2 CLOSES it in the spec's own words (\"offering exactly these options\") and rules out \"All Time\"; so the closed list IS the requirement)",
+ "preconds": "<p>1. You are on the Parts Velocity report with data loaded..</p>",
+ "steps": "<p>1. Open the date range selector and read every option.<br>2. Select a non-custom option (for example Last Month).</p>",
+ "expected": "<p>1. The chooser offers nine ready-made periods, in this order: Last 12 Months, This Year, Last Year, This Quarter, Last Quarter, This Month, Last Month, This Week, Last Week. Beside them it shows a month calendar you click dates on to build your own range, a live readout of how many days the range covers, and an Apply button. There is no \"Today\", no \"Yesterday\" and no item called \"Custom\" - you build your own range on the calendar instead. There is no \"All Time\" option.<br>2. The report always operates over a bounded date window, which is why no All-Time period is offered.<br>3. Selecting a non-custom option immediately reloads the report data.<br>4. The named ranges use the application's standard shared calendar boundaries (the same boundaries every report's date picker uses).<br><br>---<br>This is the expected behaviour as per epic SV-8582, read on 17 August 2026, and Chris Ward's decision of 8/5/2026, recorded in his answers in this file: https://docs.google.com/spreadsheets/d/1x8cuYJlFsDHalVZZTh156_ZCq2gcOaGY/edit?usp=sharing&amp;ouid=106388879401921597782&amp;rtpof=true&amp;sd=true, read on 17 August 2026. Where the Parts Velocity report specification version 11 (S2-R2), read on 17 August 2026, says something different, his decision is the later word and is the authority.<br>Last checked against build v3.8-d0e135e on 8/19/2026.<br>Re-checked against the live specification on 26 August 2026: the requirements this case cites are unchanged, so only the version cited above was updated.<br><br>AUTOMATION: READY</p>\n",
+ "custom_atmstatus": 1,
+ "updated_on": 1787747768,
+ "created_by": 3
+}

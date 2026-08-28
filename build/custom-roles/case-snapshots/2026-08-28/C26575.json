@@ -1,0 +1,11 @@
+{
+ "id": 26575,
+ "title": "BE rejects editing one of the 3 uneditable system roles (Admin/Office/Time Clock User flagged uneditable post-Owner-removal)",
+ "refs": "SV-7501,SV-7503",
+ "preconds": "Authenticated as an admin.",
+ "steps": "1. PATCH/PUT the system-office role with a modified bundle list.\n2. Inspect response.\n3. Repeat for system-timeclock.\n4. Repeat for system-owner and system-admin (these may or may not be uneditable — depends on resolution of tech-plan vs screenshot conflict).",
+ "expected": "system-office and system-timeclock edit attempts → 403 (or 400). system-owner and system-admin: behavior tracks current product decision — if uneditable, also 403/400; if editable, 200 with modifications applied.",
+ "custom_atmstatus": 3,
+ "updated_on": 1781869315,
+ "created_by": 3
+}

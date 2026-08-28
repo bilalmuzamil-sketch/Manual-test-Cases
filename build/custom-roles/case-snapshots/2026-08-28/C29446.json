@@ -1,0 +1,11 @@
+{
+ "id": 29446,
+ "title": "Time Clock user CAN read Work Orders via API",
+ "refs": null,
+ "preconds": "<ol>\n<li>A user is signed in with the system <strong>Time Clock</strong> role (Work Orders View, Schedule View, Timesheets View; View Mode none; every other permission OFF; read-only, can clock in/out).</li>\n<li>You have a way to send API requests to the backend (api.staging.shopview.com) as that signed-in Time Clock user.</li>\n</ol>",
+ "steps": "<ol>\n<li>Send GET /api/work-orders?page=1.</li>\n<li>Send GET /api/work-orders/view/{workOrderId} for any work order.</li>\n</ol>",
+ "expected": "<p>Both requests return <strong>200 OK</strong> with the work-order data.</p>\n<p>Reason: the Time Clock role has Work Orders View, so reading work orders is allowed.</p>\n",
+ "custom_atmstatus": 3,
+ "updated_on": 1784006684,
+ "created_by": 3
+}

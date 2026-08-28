@@ -1,0 +1,11 @@
+{
+ "id": 30545,
+ "title": "Unit Sell uses the part's fixed sell price when one is set",
+ "refs": "SV-8670 (IV spec v10 2026-08-17 Story 3 S3-R5 (fixed-price branch); §3 Key Decisions (unit sell resolved like the parts list))",
+ "preconds": "<ol>\n<li>You are signed in to the ShopView App on a desktop browser.</li>\n<li>A ZZAUTOTEST in-stock part exists with a known unit cost, a known FIXED sell price, and a category whose pricing-matrix markup would give a DIFFERENT figure.</li>\n</ol>\n",
+ "steps": "<ol>\n<li>Open the Inventory Value report and find the part's row.</li>\n<li>Read its Unit Sell value.</li>\n<li>Compare it to the part's fixed sell price and to the figure the category markup would have produced.</li>\n</ol>\n",
+ "expected": "<ol>\n<li>Unit Sell equals the part's fixed sell price.</li>\n<li>The pricing-matrix markup is NOT applied when a fixed sell price is set — the fixed price wins.</li>\n</ol>\n\n<hr />\n\n<p>This is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Inventory Value report specification version 10 (S3-R5), read on 17 August 2026.<br />Last checked against build v3.8-bd246fd on 8/18/2026.</p>\n\n<p>AUTOMATION: READY</p>\n",
+ "custom_atmstatus": 1,
+ "updated_on": 1787095701,
+ "created_by": 3
+}

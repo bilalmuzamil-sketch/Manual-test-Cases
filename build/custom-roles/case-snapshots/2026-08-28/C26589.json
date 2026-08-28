@@ -1,0 +1,11 @@
+{
+ "id": 26589,
+ "title": "Migration fails loudly when a legacy role has no mapping target",
+ "refs": "SV-7485,SV-7527",
+ "preconds": "Test tenant with a user assigned to a legacy role that has been removed from the canonical map (simulate via DB injection of an orphan legacy role value).",
+ "steps": "1. Run the migration.\n2. Inspect exit code.\n3. Inspect stderr.\n4. Inspect the orphan user's role_v2_id post-migration.",
+ "expected": "Migration exits non-zero. Stderr identifies the orphan legacy role and the affected user(s). role_v2_id remains NULL (NOT silently set). Operator must fix the mapping before retry.",
+ "custom_atmstatus": 1,
+ "updated_on": 1781700799,
+ "created_by": 3
+}

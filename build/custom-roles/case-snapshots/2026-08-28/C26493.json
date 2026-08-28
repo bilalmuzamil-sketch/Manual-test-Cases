@@ -1,0 +1,11 @@
+{
+ "id": 26493,
+ "title": "If a role change fails, the user keeps their previous role",
+ "refs": "SV-7505",
+ "preconds": "<ol>\n<li>A custom role is assigned to exactly one user.</li>\n</ol>",
+ "steps": "<ol>\n<li>Start changing the user's role.</li>\n<li>Cause or observe a failed save.</li>\n<li>Check the user's role again.</li>\n</ol>",
+ "expected": "<p>The previous role is kept — the user still has their original role and the custom role still shows one assigned user.</p>\n",
+ "custom_atmstatus": 3,
+ "updated_on": 1783943285,
+ "created_by": 3
+}

@@ -1,0 +1,11 @@
+{
+ "id": 30555,
+ "title": "Category and Vendor show their names; an em dash (\"—\") when the part has none",
+ "refs": "SV-8670 (IV spec v10 2026-08-17 Story 3 S3-R14; S3-E1; S3-E2)",
+ "preconds": "1. You are signed in to the ShopView App on a desktop browser.\n2. The report shows a part with a category and a vendor, a part with no category, and a part with no vendor.",
+ "steps": "1. Read the Category and Vendor cells of the fully-populated part.\n2. Read the Category cell of the part with no category.\n3. Read the Vendor cell of the part with no vendor.",
+ "expected": "1. Category shows the part's category name; Vendor shows the part's vendor name.\n2. A part with no category shows an em dash (\"—\") in its Category cell.\n3. A part with no vendor shows an em dash (\"—\") in its Vendor cell.\n4. Note for the tester: on this build a part cannot be saved without a category, so you will not find a part whose Category cell shows \"—\". Check the Vendor half only.\n\n---\nThis is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Inventory Value report specification version 10 (S3-R14, S3-E1, S3-E2), read on 17 August 2026.\nLast checked against build v3.8-bd246fd on 8/18/2026.\n\nAUTOMATION: READY",
+ "custom_atmstatus": 1,
+ "updated_on": 1787095728,
+ "created_by": 3
+}

@@ -1,0 +1,11 @@
+{
+ "id": 30576,
+ "title": "Scoping never includes an inaccessible location",
+ "refs": "SV-8674 (IV spec v10 2026-08-17 Story 7 S7-R4; S7-R5)",
+ "preconds": "1. You are signed in to the ShopView App on a desktop browser as a user who can access some, but not all, of the organization's locations.\n2. The Inventory Value report is open.",
+ "steps": "1. Open the Location filter and read the locations offered.\n2. Use \"Clear all\" so the selection resolves to no location, and watch what the report loads.",
+ "expected": "1. Only the locations the user has access to are offered — a location the user cannot access is never included in the scope.\n2. If the requested location set resolves to none the user can access, the report falls back to the user's currently active location.\n\n---\nThis is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Inventory Value report specification version 10 (S7-R4, S7-R5), read on 17 August 2026.\nLast checked against build v3.8-bd246fd on 8/18/2026.\n\nAUTOMATION: READY",
+ "custom_atmstatus": 1,
+ "updated_on": 1787095742,
+ "created_by": 3
+}

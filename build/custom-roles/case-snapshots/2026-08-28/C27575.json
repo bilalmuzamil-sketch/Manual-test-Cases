@@ -1,0 +1,11 @@
+{
+ "id": 27575,
+ "title": "CR-BRK-020 — Reverse WO invoice with WO Delete but a payment exists — validation",
+ "refs": "SV-7388; SV-7871 (adjacent)",
+ "preconds": "<p>WO V/E/D \\u2713 | See Financial \\u2713 | View Mode: Full (View Mode as specified).</p>",
+ "steps": "<ol>\n<li>Configure a custom role per the Setup in Preconditions; assign to a test user and log in.</li>\n<li>On a WO that has a payment, attempt reverse invoice.</li>\n</ol>",
+ "expected": "<p>WO Delete permits reverse invoice ONLY when validation criteria are met, e.g., no payments made (§1a Delete). With a payment present, reversal must be blocked; WO Delete is 'not enough to delete payments.'</p><hr/><p><strong>Risk / Rationale:</strong> Reversal proceeds despite an existing payment, or it attempts to delete the payment (which WO Delete must not allow).<br/><strong>Spec Ref:</strong> §1a WO Delete</p>",
+ "custom_atmstatus": 1,
+ "updated_on": 1782992511,
+ "created_by": 1
+}

@@ -1,0 +1,11 @@
+{
+ "id": 30561,
+ "title": "\"As of\" date control: a single day, defaults to today, capped at today",
+ "refs": "SV-8672 (IV spec v10 2026-08-17 Story 5 S5-R1; §2 Known Limitations (v1))",
+ "preconds": "1. You are signed in to the ShopView App on a desktop browser.\n2. The Inventory Value report is open.",
+ "steps": "1. Open the \"as of\" date control in the toolbar.\n2. Read what it offers.",
+ "expected": "1. The toolbar has a single \"as of\" date control - one calendar day, not a range. It defaults to today and is capped at today (no future date). It offers no ready-made periods (no \"Last 12 Months\", no \"This Month\", no \"This Week\" and so on), no start-and-end pair, no item called \"Custom\", and no \"All Time\". You pick one day.\n2. Because the report values stock as of a single point in time, a date range or an All-Time period would state something the number cannot mean; a single \"as of\" day is the documented behaviour.\nNote for the tester: an earlier version of this report offered a date range with ready-made periods. The current Inventory Value report specification (version 10, S5-R1/S5-R7) replaces that with a single \"as of\" date control - one calendar day, defaulting to today and capped at today - because a stock valuation is a point-in-time position, not an amount over a period. Follow the current specification.\n\n---\nThis is the expected behaviour as per epic SV-8582, read on 17 August 2026, and Chris Ward's decision of 8/5/2026, recorded in his answers in this file: https://docs.google.com/spreadsheets/d/1x8cuYJlFsDHalVZZTh156_ZCq2gcOaGY/edit?usp=sharing&ouid=106388879401921597782&rtpof=true&sd=true, read on 17 August 2026. Where the Inventory Value report specification version 10 (S5-R1), read on 17 August 2026, says something different, his decision is the later word and is the authority.\nLast checked against build v3.8-bd246fd on 8/18/2026.\n\nAUTOMATION: READY",
+ "custom_atmstatus": 1,
+ "updated_on": 1787095687,
+ "created_by": 3
+}

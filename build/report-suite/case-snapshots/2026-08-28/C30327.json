@@ -1,0 +1,11 @@
+{
+ "id": 30327,
+ "title": "Ordinary reports access alone opens Parts Velocity and its export",
+ "refs": "SV-8641 (PV spec v10 2026-08-17 S1-N2; S1-R4 - RESCOPED 2026-08-03: \"Reports access without Inventory Reports View\" state cannot exist under one permission; Chris Ward Q2=A + \"they can exist and not do anything\"; QA lead \"ONE permission FOR NOW\")",
+ "preconds": "<p>1. You are signed in as a user with the Manager or Office User role.<br>2. That user's role has the ordinary reports access turned on (the standard \"can this person see reports\" setting) and no other reports-related permission turned on..</p>",
+ "steps": "<p>1. Open the Reports section and look for the Parts Velocity entry under Parts.<br>2. Click the Parts Velocity entry.<br>3. Use the export control on the report and download a file.</p>",
+ "expected": "<p>1. The Parts Velocity entry is visible in the Reports navigation under Parts.<br>2. Opening it shows the report data - not an access-denied screen.<br>3. The export downloads.<br>4. Note for the tester: the specification allows ONE ordinary reports access for all six of these new reports and no per-report permission. If an extra Parts or Inventory reports permission does exist and switching it OFF blocks this report or its export, that is wrong - mark this Failed and report it. If a separate per-report permission is ever added on purpose in a later release, this test will be updated first, so treat that as a planned change and not as a bug.<br><br>---<br>This is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Parts Velocity report specification version 11 (S1-N2, S1-R4), read on 17 August 2026.<br>Last checked against build v3.8-d0e135e on 8/19/2026.<br>Re-checked against the live specification on 26 August 2026: the requirements this case cites are unchanged, so only the version cited above was updated.<br><br>AUTOMATION: READY</p>\n",
+ "custom_atmstatus": 1,
+ "updated_on": 1787747767,
+ "created_by": 3
+}

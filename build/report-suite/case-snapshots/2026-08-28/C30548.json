@@ -1,0 +1,11 @@
+{
+ "id": 30548,
+ "title": "Total Sell is quantity × Unit Sell and Total Cost is quantity × Unit Cost",
+ "refs": "SV-8670 (IV spec v10 2026-08-17 Story 3 S3-R6; S3-R7; §4 Terminology)",
+ "preconds": "<ol>\n<li>You are signed in to the ShopView App on a desktop browser.</li>\n<li>A ZZAUTOTEST in-stock part exists with a known on-hand quantity (include a fractional quantity if possible), unit cost, and unit sell.</li>\n<li>The Total Sell column is turned on.</li>\n</ol>\n",
+ "steps": "<ol>\n<li>Open the Inventory Value report and find the part's row.</li>\n<li>Multiply the on-hand quantity by Unit Sell and compare to Total Sell.</li>\n<li>Multiply the on-hand quantity by Unit Cost and compare to Total Cost.</li>\n</ol>\n",
+ "expected": "<ol>\n<li>Total Sell equals the part's on-hand quantity × Unit Sell, shown as US-dollar currency.</li>\n<li>Total Cost equals the part's on-hand quantity × Unit Cost, shown as US-dollar currency.</li>\n</ol>\n\n<hr />\n\n<p>This is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Inventory Value report specification version 10 (S3-R6, S3-R7), read on 17 August 2026.<br />Last checked against build v3.8-bd246fd on 8/18/2026.</p>\n\n<p>AUTOMATION: READY</p>\n",
+ "custom_atmstatus": 1,
+ "updated_on": 1787095713,
+ "created_by": 3
+}

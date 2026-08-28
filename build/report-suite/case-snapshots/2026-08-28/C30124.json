@@ -1,0 +1,11 @@
+{
+ "id": 30124,
+ "title": "Expanding an asset reveals its invoice rows with number link and date",
+ "refs": "SV-8608 (SBC spec v20 2026-08-17 S8-R12; S7-R17; S7-R18; renamed to Labor Delta per SV-9071)",
+ "preconds": "<ol><li>You have expanded a customer and can see its asset rows.</li></ol>",
+ "steps": "<ol><li>Click the chevron on an asset row.</li><li>Read the invoice detail rows that appear.</li></ol>",
+ "expected": "<ol><li>The invoice detail rows for that asset appear, indented one level deeper than the asset row.</li><li>Each detail row shows the invoice number (as a link if it's created at the current (active) location), the invoice date, and the per-invoice Labor Delta, Labor Invoiced, Labor Margin, Parts Invoiced, Parts Margin, Shop Supplies, Adjustments, Margin, Margin %, and Subtotal.</li><li>The invoice date shows in the format \"Mon DD YYYY\" — for example, May 14 2026</li></ol><hr><p>This is the expected behaviour as per epic SV-8582 and the Sales By Customer report specification version 20 (S8-R12; S7-R17; S7-R18), both read on 17 August 2026. The column was renamed from \"Inv. Hrs\" to \"Labor Delta\" per SV-9071; only the name changed.<br>Last checked against build v3.8-2bf8d14 on 8/18/2026.</p><p>AUTOMATION: READY</p>",
+ "custom_atmstatus": 1,
+ "updated_on": 1787226111,
+ "created_by": 3
+}

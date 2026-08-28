@@ -1,0 +1,11 @@
+{
+ "id": 30143,
+ "title": "Default sort is Customer name ascending case-insensitive",
+ "refs": "SV-8608 (SBC spec v20 2026-08-17 Story 10 S10-R4; S10-R7)",
+ "preconds": "<ol>\n<li>No saved view exists (first visit or cleared storage).</li>\n<li>Customer names with mixed upper/lower-case first letters exist in the view (seed ZZAUTOTEST names like \"acme test\" and \"Best Test\").</li>\n</ol>\n",
+ "steps": "<ol>\n<li>Open the report and read the customer order.</li>\n<li>Click the Subtotal header and read the order again.</li>\n</ol>\n",
+ "expected": "<ol>\n<li>On first load, rows are ordered by Customer name, ascending, case-insensitive (a lower-case \"acme\" sorts by letter, not after all capitals).</li>\n<li>Clicking a column header replaces the default with that column's sort.</li>\n</ol>\n\n<hr />\n\n<p>This is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Sales By Customer report specification version 20 (S10-R4, S10-R7), read on 17 August 2026.<br />Last checked against build v3.8-2bf8d14 on 8/18/2026.</p>\n\n<p>AUTOMATION: READY</p>\n",
+ "custom_atmstatus": 1,
+ "updated_on": 1787083036,
+ "created_by": 3
+}

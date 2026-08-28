@@ -1,0 +1,11 @@
+{
+ "id": 27506,
+ "title": "CR-PAY-001 — Payment taker (WO/PS)",
+ "refs": "SV-7388",
+ "preconds": "<p>Permissions (counted):&nbsp;</p><ol><li>WO: V,&nbsp;</li><li>PS: V, &nbsp;</li><li>Invoicing V+E</li></ol><p>+ Auto-gate forced ON (not counted): See Fin.</p><p>View Mode: Full unless noted. All other permissions OFF.</p>",
+ "steps": "<ol><li>Create a custom role with the permissions listed in Preconditions; leave all others OFF.</li><li>Assign the role to a test user and log in.</li><li>Exercise each capability in Expected Result and confirm it succeeds (and that gated pricing is hidden where noted).</li></ol>",
+ "expected": "<p>User CAN: View invoices from WO/part sales + Finance tab; create invoices; process payments; collect deposits; send payments to terminal</p><hr><p><strong>Risk / Rationale:</strong> Positive capability check — confirms this combination grants exactly the listed actions and nothing gated leaks.<br><strong>Spec Ref:</strong> §1h</p>",
+ "custom_atmstatus": 1,
+ "updated_on": 1783358943,
+ "created_by": 1
+}

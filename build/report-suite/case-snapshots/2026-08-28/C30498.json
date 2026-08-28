@@ -1,0 +1,11 @@
+{
+ "id": 30498,
+ "title": "The Advisor filter lists the advisors in the loaded jobs; screen only",
+ "refs": "SV-8663 (WIP spec v21 2026-08-17 Story 7 S7-R1 — the option list covers every open job in the current scope and not only the loaded rows)",
+ "preconds": "1. You are signed in to the ShopView App on a desktop browser.\n2. The report shows jobs for at least two different advisors.",
+ "steps": "1. Open the Advisor filter in the toolbar and read its options.\n2. Select one advisor and watch the rows.\n3. Add a second advisor to the selection.\n4. Scroll to the bottom of a busy tab, note an advisor who only appears down there, then open the filter again and check that advisor is offered.",
+ "expected": "1. The Advisor filter is a multi-select listing the advisors on every open job in what the report is currently showing you — not only the ones on the rows that happen to have loaded.\n2. Selecting one or more advisors narrows the visible jobs to those advisors instantly, on screen only — no reload and no loading indicator.\n3. With two advisors selected, jobs for either advisor are shown.\n4. Pick an advisor whose jobs sit a long way down the list — scroll to the bottom of a busy tab to find one — and confirm every one of that advisor's jobs is still shown. You must never end up with only the part of the list that had loaded when you opened the filter.\nWhat you should see today: ticking an advisor sends a fresh request to the server and the table is rebuilt from the answer, instead of simply hiding the rows on screen. The list of advisors itself is right - it covers the whole scope. This is a known problem and it is already reported - see https://shopview.atlassian.net/browse/SV-8968\n· If you see exactly that, mark this test FAILED and do not raise anything new.\n· If it fails in a DIFFERENT way from what is described above, that is a NEW problem - please report it.\n· If it PASSES, the fix has shipped: tell the QA lead so the ticket can be closed and this note removed.\n\n---\nThis is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Work In Progress report specification version 21 (S7-R1), read on 17 August 2026.\nLast checked against build v3.5-7168d14 on 8/6/2026.\n\nAUTOMATION: READY - EXPECT FAIL (SV-8968)",
+ "custom_atmstatus": 3,
+ "updated_on": 1787026712,
+ "created_by": 3
+}

@@ -1,0 +1,11 @@
+{
+ "id": 27814,
+ "title": "Verify all pricing and financial data is hidden from Technician on a work order",
+ "refs": "SV-5319",
+ "preconds": "<p>Log in to ShopView as a user assigned the Technician role. (this role has See Financial Data OFF).<br />At least one work order exists that contains labor and part lines with prices entered.</p>\n",
+ "steps": "<ol>\n<li>Click Work Orders and open a work order.</li>\n<li>Look at each line's price fields.</li>\n<li>Look at the Total, Labor, and Parts columns.</li>\n<li>Look for the Finance card.</li>\n<li>Look for the Stats tab.</li>\n</ol>\n",
+ "expected": "<p>Step 1: The work order opens.<br />Step 2: Line prices are hidden or blank - no dollar amounts are shown.<br />Step 3: The Total, Labor, and Parts columns show no money values.<br />Step 4: The Finance card shows no financial amounts (or is not shown).<br />Step 5: The Stats tab shows no financial figures (or is not shown). No money value is visible anywhere.</p>\n",
+ "custom_atmstatus": 1,
+ "updated_on": 1783108595,
+ "created_by": 3
+}

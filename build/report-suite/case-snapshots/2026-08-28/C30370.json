@@ -1,0 +1,11 @@
+{
+ "id": 30370,
+ "title": "Avg Cost / Avg Sell and Margin % use independent null triggers",
+ "refs": "SV-8645 (PV spec v10 2026-08-17 S5-R4a (null rules + mixed-row paragraph); S3-R9)",
+ "preconds": "1. Row 1: a part with booked revenue but ZERO billed units in the window (e.g. a credit/adjustment line carrying revenue with no billed quantity).\n2. Row 2: a part with billed units > 0 but Revenue $0.00 (e.g. billed at a $0 sell price).\n3. Row 3: a part with both billed units ≤ 0 and Revenue ≤ 0.",
+ "steps": "1. Read Avg Cost, Avg Sell, Margin %, Revenue, and Margin on row 1.\n2. Read the same columns on row 2.\n3. Read the same columns on row 3.",
+ "expected": "1. Row 1: Avg Cost and Avg Sell show — (billed units ≤ 0) while Revenue and Margin show dollar amounts AND Margin % is still computed from Revenue - a valid mixed row, not a defect.\n2. Row 2: Avg Sell shows $0.00 (a number) while Margin % shows — (Revenue ≤ 0) - also valid.\n3. Row 3: Avg Cost, Avg Sell, and Margin % all show — together - which happens ONLY when both billed units ≤ 0 AND Revenue ≤ 0.\n4. The three triggers are independent: Avg Cost/Avg Sell null on billed units ≤ 0; Margin % null on Revenue ≤ 0.\n\n---\nThis is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Parts Velocity report specification version 10 (S5-R4a, S3-R9), read on 17 August 2026.\nLast checked against build v3.8-bd246fd on 8/18/2026.\n\nAUTOMATION: READY",
+ "custom_atmstatus": 1,
+ "updated_on": 1787087432,
+ "created_by": 3
+}

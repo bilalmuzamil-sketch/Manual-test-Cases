@@ -1,0 +1,11 @@
+{
+ "id": 26352,
+ "title": "After moving the assigned users to another role, the role can be deleted",
+ "refs": "SV-7502",
+ "preconds": "<ol>\n<li>A custom role 'QA Delete Blocked' has exactly 1 user assigned.</li>\n</ol>",
+ "steps": "<ol>\n<li>Go to Settings > Staff and find the user assigned to 'QA Delete Blocked'.</li>\n<li>Open the user's role dropdown.</li>\n<li>Change the user's role to a different one (for example Technician).</li>\n<li>Save.</li>\n<li>Go back to Settings > Roles & Permissions.</li>\n<li>Check the Users count on 'QA Delete Blocked' now reads 0.</li>\n<li>Open the three-dot menu, click Delete and confirm.</li>\n</ol>",
+ "expected": "<p>The reassignment works.</p>\n<p>The Users count shows 0.</p>\n<p>A confirmation dialog appears; after confirming, the role is deleted.</p>\n",
+ "custom_atmstatus": 3,
+ "updated_on": 1783942946,
+ "created_by": 3
+}

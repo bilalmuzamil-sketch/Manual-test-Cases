@@ -1,0 +1,11 @@
+{
+ "id": 26580,
+ "title": "Atom simplification (CRP-BE-03): coarse area atoms do not widen access beyond PRD matrix",
+ "refs": "SV-7478,SV-7483",
+ "preconds": "Build with CRP-BE-03 atom simplification deployed. Atom-diff CLI available.",
+ "steps": "1. Run atom-diff CLI in pre-simplification mode (or against a snapshot captured before BE-03).\n2. Run atom-diff CLI in post-simplification mode.\n3. For each system role and a few representative custom roles, diff atom sets.\n4. Spot-check 5 endpoints whose guarding atom was collapsed: does each role with access pre-collapse still have access? Does each role without access pre-collapse still lack access?",
+ "expected": "No role gains access to any endpoint it didn't have before. No role loses access to any endpoint it should have. Atom simplification is permission-preserving.",
+ "custom_atmstatus": 1,
+ "updated_on": 1781700797,
+ "created_by": 3
+}

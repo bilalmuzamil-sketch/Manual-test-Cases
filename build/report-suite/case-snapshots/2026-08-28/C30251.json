@@ -1,0 +1,11 @@
+{
+ "id": 30251,
+ "title": "An unavailable link destination shows the standard not-found state",
+ "refs": "SV-8629 (SBR spec v22 2026-08-17 Story 12 S12-N1; S12-N2)",
+ "preconds": "<p>1. The report is open with detail rows visible; in another session the target invoice is reversed/deleted (and, for the customer leg, a customer record is made unavailable if the app allows)..</p>",
+ "steps": "<p>1. Without refreshing, click the now-unavailable invoice's link; read the destination, then press back.<br>2. If producible, repeat for an unavailable customer record.</p>",
+ "expected": "<p>1. The tab navigates to the application's standard not-found/access-denied state.<br>2. Pressing back still returns to the report.<br><br>---<br>This is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Sales By Representative report specification version 24 (S12-N1, S12-N2), read on 17 August 2026.<br>Last checked against build v3.8-b7d80dc on 8/19/2026.<br>Re-checked against the live specification on 26 August 2026: the requirements this case cites are unchanged, so only the version cited above was updated.<br><br>AUTOMATION: READY</p>\n",
+ "custom_atmstatus": 1,
+ "updated_on": 1787747689,
+ "created_by": 3
+}

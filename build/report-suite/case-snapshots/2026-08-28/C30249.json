@@ -1,0 +1,11 @@
+{
+ "id": 30249,
+ "title": "Browser back from a drilldown restores expansion and scroll; no reload",
+ "refs": "SV-8629 (SBR spec v22 2026-08-17 Story 12 S12-R3a; Story 23 S23-R2)",
+ "preconds": "<p>1. Non-default filters are set (date range, product type, invoice status, location, Show Unassigned on), two reps are expanded, and the table is scrolled partway down..</p>",
+ "steps": "<p>1. Click an invoice link, then press the browser back button; check every piece of state.<br>2. Repeat via a customer-name link.<br>3. Watch whether the report performs a full reload on back.</p>",
+ "expected": "<p>1. Back returns to the report with ALL state intact &mdash; date range, product type, invoice status, location, Show Unassigned, every rep's expansion state, and scroll position &mdash; exactly as they were.<br>2. Back-navigation does not trigger a full report reload.<br>3. This is deliberately different from a page reload, which restores persisted filters/columns/sort but resets expansion and scroll.<br><br>---<br>This is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Sales By Representative report specification version 24 (S12-R3a, S23-R2), read on 17 August 2026.<br>Last checked against build v3.8-b7d80dc on 8/19/2026.<br>Re-checked against the live specification on 26 August 2026: the requirements this case cites are unchanged, so only the version cited above was updated.<br><br>AUTOMATION: READY</p>\n",
+ "custom_atmstatus": 1,
+ "updated_on": 1787747687,
+ "created_by": 3
+}

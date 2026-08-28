@@ -1,0 +1,11 @@
+{
+ "id": 30592,
+ "title": "Exports are generated server-side over the full filtered set",
+ "refs": "SV-8677 (IV spec v10 2026-08-17 Story 10 S10-R11)",
+ "preconds": "<ol>\n<li>You are signed in to the ShopView App on a desktop browser.</li>\n<li>The current filtered set spans more than one page (but stays under the export row cap).</li>\n</ol>\n",
+ "steps": "<ol>\n<li>From page 1, without visiting the later pages, download the CSV.</li>\n<li>Count the file's data rows and look for parts you know sit on the later pages.</li>\n<li>Compare the file's totals row to the on-screen totals.</li>\n</ol>\n",
+ "expected": "<ol>\n<li>The export contains the FULL filtered set — every qualifying row across all pages, not only the rows loaded in the browser.</li>\n<li>Parts from the later pages are present.</li>\n<li>The export is generated server-side against the current filters, part search, and sort — it is not built from the rows currently in the browser.</li>\n</ol>\n\n<hr />\n\n<p>This is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Inventory Value report specification version 10 (S10-R11), read on 17 August 2026.<br />Last checked against build v3.8-bd246fd on 8/18/2026.</p>\n\n<p>AUTOMATION: READY</p>\n",
+ "custom_atmstatus": 1,
+ "updated_on": 1787095765,
+ "created_by": 3
+}

@@ -1,0 +1,11 @@
+{
+ "id": 27464,
+ "title": "CR-C3-009 — Customer-focused desk",
+ "refs": "SV-7388",
+ "preconds": "<p>Permissions (counted): WO View + Customers V+E. View Mode: Full unless noted. All other permissions OFF.</p>",
+ "steps": "<ol>\n<li>Create a custom role with the permissions listed in Preconditions; leave all others OFF.</li>\n<li>Assign the role to a test user and log in.</li>\n<li>Exercise each capability in Expected Result and confirm it succeeds (and that gated pricing is hidden where noted).</li>\n</ol>",
+ "expected": "<p>User CAN: See WOs; see/create/edit customers; manage contacts &amp; vehicles; add customer in New WO flow</p><hr/><p><strong>Risk / Rationale:</strong> Positive capability check — confirms this combination grants exactly the listed actions and nothing gated leaks.<br/><strong>Spec Ref:</strong> §1a+§1d</p>",
+ "custom_atmstatus": 3,
+ "updated_on": 1783079893,
+ "created_by": 1
+}

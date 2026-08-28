@@ -1,0 +1,11 @@
+{
+ "id": 27568,
+ "title": "CR-BRK-013 — AP/AR OFF — Unpaid/Payments/Credits tabs leak (customer & vendor)",
+ "refs": "SV-7388; SV-8007 (customer) / SV-7925 (vendor)",
+ "preconds": "<p>Customers V \\u2713 | Vendor &amp; Order V \\u2713 | Parts Dept \\u2713 | Manage AP/AR \\u2717 | See Financial \\u2713 | WO V \\u2713 | View Mode: Full (View Mode as specified).</p>",
+ "steps": "<ol>\n<li>Configure a custom role per the Setup in Preconditions; assign to a test user and log in.</li>\n<li>Open a customer detail page and a vendor detail page; confirm all three tabs are absent on each.</li>\n</ol>",
+ "expected": "<p>Unpaid Invoices / Payments / Credits tabs hidden on BOTH customer and vendor detail pages (§5b OFF). AP/AR aging reports hidden from Reports.</p><hr/><p><strong>Risk / Rationale:</strong> Tabs leak on the customer and/or vendor page despite AP/AR OFF.<br/><strong>Spec Ref:</strong> §5b Manage AP/AR</p>",
+ "custom_atmstatus": 3,
+ "updated_on": 1783321314,
+ "created_by": 1
+}

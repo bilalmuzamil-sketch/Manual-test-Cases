@@ -1,0 +1,11 @@
+{
+ "id": 30552,
+ "title": "Value formats: Qty to two decimals; money as US-dollar currency",
+ "refs": "SV-8670 (IV spec v10 2026-08-17 Story 3 S3-R3; S3-R4; S3-R5 (display); S3-R10; §4 Terminology (On-hand quantity))",
+ "preconds": "1. You are signed in to the ShopView App on a desktop browser.\n2. The report shows a part with a fractional quantity (for example 2.50), one with values over $1,000, and (if producible) one with a negative money value.",
+ "steps": "1. Read the Qty cell of the fractional-quantity part.\n2. Read a money value over one thousand dollars (Unit Cost, Unit Sell, Total Sell, or Total Cost).\n3. Read a genuine zero money value and a negative one if present.",
+ "expected": "1. Qty shows the on-hand quantity to two decimal places, with no currency symbol; fractional quantities display correctly.\n2. Unit Cost and Unit Sell show per-unit prices as US-dollar currency.\n3. Money values show a leading \"$\", two decimal places, and thousands separators (for example \"$1,234.56\"); a negative value shows a leading minus before the \"$\" (\"-$1,234.56\"); a genuine zero shows \"$0.00\".\n\n---\nThis is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Inventory Value report specification version 10 (S3-R3, S3-R4, S3-R5, S3-R10), read on 17 August 2026.\nLast checked against build v3.8-bd246fd on 8/18/2026.\n\nAUTOMATION: READY",
+ "custom_atmstatus": 1,
+ "updated_on": 1787095722,
+ "created_by": 3
+}

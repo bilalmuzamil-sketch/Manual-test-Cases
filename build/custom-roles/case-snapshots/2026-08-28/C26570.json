@@ -1,0 +1,11 @@
+{
+ "id": 26570,
+ "title": "BE cascades role create with Delete but no Edit (cascade integrity)",
+ "refs": "SV-7479,SV-7500",
+ "preconds": "Authenticated.",
+ "steps": "1. POST /api/roles with fePermissions=['CUSTOMERS_VIEW', 'CUSTOMERS_DELETE'] (Delete present, Edit absent).\n2. Inspect the response status and body.\n3. GET /api/roles/{id} for the returned role id and inspect the persisted fePermissions.",
+ "expected": "1. The API returns 201 Created (NOT 400).\n2. The missing parent permission is auto-added server-side: CUSTOMERS_EDIT is cascaded in (Delete => Edit => View chain; View was already present).\n3. Fetching the role back shows the cascaded set (CUSTOMERS_VIEW + CUSTOMERS_EDIT + CUSTOMERS_DELETE); the incomplete Delete-without-Edit bundle is NOT persisted verbatim.",
+ "custom_atmstatus": 3,
+ "updated_on": 1783584640,
+ "created_by": 3
+}

@@ -1,0 +1,11 @@
+{
+ "id": 38924,
+ "title": "Units Sold keeps an exact part-of-a-unit quantity and is never rounded off",
+ "refs": "SV-8589 (PV spec v10 2026-08-17 S5-R1 Units Sold net stock movement + S5-R5 two-decimal movement format; tech-plan-2026-07-29 Phase 0 / PR-1 D2; SV-8589 verbatim Tests: 'fractional-quantity round-trip regression')",
+ "preconds": "<p>1. You can sign in with a role that opens the Parts Velocity report.<br>2. A ZZAUTOTEST inventory part is in stock with a known unit cost, and there is enough on the shelf to sell a part-of-a-unit quantity such as 2.5.<br>3. Today's date falls inside the date range you will use on the report..</p>",
+ "steps": "<p>1. Open a ZZAUTOTEST work order and add that part to it with the quantity 2.5.<br>2. Approve the part line, then invoice the work order.<br>3. Sign out and sign back in, so nothing is being read from the browser's memory.<br>4. Open the Parts Velocity report for a date range that includes today and find that part's row.<br>5. Read the Units Sold value, then switch the On Hand column on and read that too.</p>",
+ "expected": "<p>1. Units Sold reads exactly 2.50 &mdash; not 2.00, not 3.00, not blank and not a dash.<br>2. It still reads exactly 2.50 after the sign-out and sign-back-in, which proves the part-of-a-unit quantity was really stored and not just shown once.<br>3. On Hand has gone down by exactly 2.50 from what it was before the sale.<br>4. No value anywhere on the row has been quietly rounded to a whole number.<br><br>---<br>This is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Parts Velocity report specification version 11 (S5-R1, S5-R5), read on 17 August 2026.<br>Last checked against build v3.8-d0e135e on 8/19/2026.<br>Re-checked against the live specification on 28 August 2026: every requirement this case cites was read again in the live version and the behaviour above still matches it, so only the version cited above was updated.<br><br>AUTOMATION: READY</p>\n",
+ "custom_atmstatus": 1,
+ "updated_on": 1787886543,
+ "created_by": 3
+}

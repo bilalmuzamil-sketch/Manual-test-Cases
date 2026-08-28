@@ -1,0 +1,11 @@
+{
+ "id": 26569,
+ "title": "BE cascades role create with Edit but no View (cascade integrity)",
+ "refs": "SV-7479,SV-7500",
+ "preconds": "Authenticated.",
+ "steps": "1. POST /api/roles with name='QA Bad Cascade' and fePermissions=['SCHEDULE_EDIT'] (Edit present, View absent).\n2. Inspect the response status and body.\n3. GET /api/roles/{id} for the returned role id and inspect the persisted fePermissions.",
+ "expected": "1. The API returns 201 Created (NOT 400).\n2. The missing parent permission is auto-added server-side: SCHEDULE_VIEW is cascaded in alongside SCHEDULE_EDIT (Edit => View).\n3. Fetching the role back shows the cascaded set (SCHEDULE_EDIT + SCHEDULE_VIEW); the incomplete Edit-only bundle is NOT persisted verbatim.",
+ "custom_atmstatus": 3,
+ "updated_on": 1783584639,
+ "created_by": 3
+}

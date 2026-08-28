@@ -1,0 +1,11 @@
+{
+ "id": 30380,
+ "title": "CSV is named velocity-report.csv and holds full untruncated text values",
+ "refs": "SV-8646 (PV spec v10 2026-08-17 S6-R5; S6-R6; S6-R8; SV-8823 CSV plain-number/empty-null rule)",
+ "preconds": "<p>1. You are on the Parts Velocity report with data loaded, including a part with a Description longer than 18 characters, a part with a Last Sale value, a money value over 1,000, a Margin % value, and a special-order row whose On Hand / Turns / Yr / Min / Max are empty..</p>",
+ "steps": "<p>1. Download the CSV and check the saved filename.<br>2. Open it and read the long part's Description, Category, and Vendor.<br>3. Read the Last Sale column value.<br>4. Read the money columns (Avg Cost, Avg Sell, Revenue, Margin), a value over 1,000, and the Margin % column.<br>5. Read the numeric cells on the special-order row that have no value (On Hand, Turns / Yr, Min, Max).</p>",
+ "expected": "<p>1. The file downloads as velocity-report.csv.<br>2. The CSV carries the FULL, untruncated Description / Category / Vendor values (unlike the PDF's 18-character cut).<br>3. Last Sale is a raw integer in the CSV (for example 42) &mdash; the 'N days' wording is PDF and on-screen only.<br>4. Every money and numeric column is written as a plain number in the CSV: no dollar sign on Avg Cost / Avg Sell / Revenue / Margin, no thousands separators on any value (a value over one thousand reads like 13544.67, not 13,544.67), and no percent sign on Margin % (it reads like 37.7, not 37.7%).<br>5. A numeric or money cell with no value is left EMPTY in the CSV (not an em-dash), so a spreadsheet can still total the column.<br>Note for the tester: the em-dash for empty values and the aligned / bold / coloured number treatment live in the PDF only; the CSV is clean, plain data.<br><br>---<br>This is the expected behaviour as per epic SV-8582 and the Parts Velocity report specification version 11 (updated 17 August 2026, S6-R5, S6-R6, S6-R8; the CSV plain-number and empty-null rule per the Dipesh correction on SV-8823).<br>Last checked against build v3.8-d0e135e on 8/20/2026.<br>Re-checked against the live specification on 26 August 2026: the requirements this case cites are unchanged, so only the version cited above was updated.<br><br>AUTOMATION: READY</p>\n",
+ "custom_atmstatus": 1,
+ "updated_on": 1787747817,
+ "created_by": 3
+}

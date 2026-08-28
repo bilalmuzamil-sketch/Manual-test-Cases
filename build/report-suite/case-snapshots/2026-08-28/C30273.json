@@ -1,0 +1,11 @@
+{
+ "id": 30273,
+ "title": "A stale saved value falls back to its default and never errors",
+ "refs": "SV-8640 (SBR spec v22 2026-08-17 Story 23 S23-R3)",
+ "preconds": "<ol><li>Your saved settings include a location you are then un-assigned from (restore access afterwards).</li></ol>",
+ "steps": "<ol><li>Return to the report after the access change.</li><li>Read the location filter, the data, and watch for any error.</li></ol>",
+ "expected": "<p>1. The no-longer-valid location falls back to the default (your active location) rather than being sent to the server.<br>2. No error occurs — a stale saved setting can never cause an error or an invalid request.<br>3. Per the spec the same applies to a range or sort column that no longer exists and to a hidden-but-sorted column.</p><p>---<br>This is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Sales By Representative report specification version 24 (S23-R3), read on 17 August 2026.<br>Last checked against build v3.8-bd246fd on 8/18/2026.<br>Re-checked against the live specification on 26 August 2026: the requirements this case cites are unchanged, so only the version cited above was updated.</p><p>AUTOMATION: READY</p>",
+ "custom_atmstatus": 1,
+ "updated_on": 1787754739,
+ "created_by": 3
+}

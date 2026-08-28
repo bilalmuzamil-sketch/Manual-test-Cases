@@ -1,0 +1,11 @@
+{
+ "id": 39447,
+ "title": "No Sales By Customer permission is offered in the role permission editor",
+ "refs": "SV-8598 (SBC spec v20 2026-08-17 S1-R2 — Confluence 577634305 v-2026-07-31 — \"there is no dedicated Sales By Customer View permission\"; Chris Ward Q1=A + his ruling to hide an already-built permission from the front end; SV-8780)",
+ "preconds": "<p>1. You are signed in as an administrator who can edit roles and their permissions.<br>2. Create a throwaway custom role named starting with ZZAUTOTEST to work in, and delete it when you have finished..</p>",
+ "steps": "<p>1. Open the area where a role's permissions are switched on and off.<br>2. Read through the reports-related permissions from top to bottom.<br>3. Search the permission list for \"Sales By Customer\".</p>",
+ "expected": "<p>1. There is NO \"Sales By Customer\" permission anywhere in the list for an administrator to switch on or off.<br>2. The only reports permission offered is the ordinary reports access, and that one covers all six of the new reports.<br>3. Note for the tester: the product owner has ruled that every report in this suite opens with the ordinary reports access, and the written description now says the same. If the build still demands a separate Sales By Customer permission, mark this test Failed and report it against the change already raised with the developers — do not change the test. You may also find a \"Sales By Customer\" permission still listed for an administrator to switch on and off: that should have been hidden from the screen, so please report that too. If it is listed at all, that is a difference from the specification — report that it is still visible.<br><br>---<br>This is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Sales By Customer report specification version 20 (S1-R2), read on 17 August 2026.<br>Last checked against build v3.8-da72171 on 8/19/2026.<br><br>AUTOMATION: READY</p>",
+ "custom_atmstatus": 1,
+ "updated_on": 1787216281,
+ "created_by": 3
+}

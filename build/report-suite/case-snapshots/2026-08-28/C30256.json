@@ -1,0 +1,11 @@
+{
+ "id": 30256,
+ "title": "Valid submit locks the dialog, then deactivates keeping assignments",
+ "refs": "SV-8630 (SBR spec v22 2026-08-17 Story 13 S13-R9; S13-R10; S13-E1)",
+ "preconds": "1. The Deactivate dialog is open for a ZZAUTOTEST rep with known customer assignments.",
+ "steps": "1. Type YES and submit; during the request try Cancel, X, and Escape.\n2. After success, check the staff member's status and each previously assigned customer's Sales Representative.",
+ "expected": "1. The \"Deactivate\" button enters the standard in-flight loading state (non-interactive, in-progress indicator); the dialog stays open and the Cancel and X controls are non-interactive during the request (pressing the \"Esc\" key never closes the dialog at any time).\n2. On success the dialog closes and the change applies.\n3. Customer assignments are NOT modified — every customer stays assigned to this rep; denormalized rep names and past invoice snapshots are preserved.\n4. Deactivation never forces reassignment, blocks on assignments, or auto-reassigns.\n\n---\nThis is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Sales By Representative report specification version 22 (S13-R9, S13-R10, S13-E1), read on 17 August 2026.\n\nAUTOMATION: READY",
+ "custom_atmstatus": 3,
+ "updated_on": 1787127608,
+ "created_by": 3
+}

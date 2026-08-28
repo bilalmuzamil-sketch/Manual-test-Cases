@@ -1,0 +1,11 @@
+{
+ "id": 27651,
+ "title": "Technician - A. View inspections on a work order line",
+ "refs": "SV-7509 SV-8095",
+ "preconds": "<p>Logged in as Technician. Tech View. Per SV-8095 AC4, View Mode is NOT a gate for inspections. A work order line has at least one inspection.</p>\n",
+ "steps": "<ol>\n<li>Log in.</li>\n<li>Open a work order that has an inspection on a line.</li>\n<li>Locate the inspection on the line.</li>\n</ol>\n",
+ "expected": "<p>Step 1: Login succeeds.<br />Step 2: Work order opens.<br />Step 3: Existing inspections on the line are visible. Edit controls appear only if the role has the relevant WOL rights; otherwise read-only. (SV-8095: View = Work Orders: View.)</p>\n",
+ "custom_atmstatus": 3,
+ "updated_on": 1783433059,
+ "created_by": 3
+}

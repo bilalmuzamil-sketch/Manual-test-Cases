@@ -1,0 +1,11 @@
+{
+ "id": 30117,
+ "title": "Changing the customer selection narrows the table and refreshes the totals",
+ "refs": "SV-8616 (SBC spec v20 2026-08-17 Story 18 S18-R5; S18-R11)",
+ "preconds": "1. You are on the Sales By Customer report with at least three customers in the current results.",
+ "steps": "1. Note the customers and the totals row values.\n2. Open the Customer filter, clear all, and select exactly two customers.\n3. Read the table rows and the totals row.",
+ "expected": "1. The report shows only the two selected customers.\n2. The table refreshes as a fresh first page of results.\n3. The totals row updates to cover only the selected customers' matching invoices.\n\n---\nThis is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Sales By Customer report specification version 20 (S18-R5, S18-R11), read on 17 August 2026.\nLast checked against build v3.8-2bf8d14 on 8/18/2026.\n\nAUTOMATION: READY",
+ "custom_atmstatus": 1,
+ "updated_on": 1787083138,
+ "created_by": 3
+}

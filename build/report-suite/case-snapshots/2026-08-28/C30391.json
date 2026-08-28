@@ -1,0 +1,11 @@
+{
+ "id": 30391,
+ "title": "The back end serves report data and export on ordinary reports access",
+ "refs": "SV-8641 (PV spec v10 2026-08-17 S1-R4; S1-N2 - RESCOPED 2026-08-03; same driver as C30327: Chris Ward Q2=A \"single Reports permission\" + \"they can exist and not do anything\"; QA lead \"ONE permission FOR NOW\")",
+ "preconds": "<ol><li>You are signed in as a user whose role has the ordinary reports access turned on and no other reports-related permission turned on.</li><li>Browser devtools (network tab) are open.</li><li>To see the information this test asks for you need the browser's own developer tools: press F12 (or Ctrl+Shift+I; on a Mac Cmd+Option+I) and open the \"Network\" tab, then reload the page. There is nothing to install — it is built into Chrome, Edge and Firefox.</li></ol>",
+ "steps": "<ol><li>Open the Parts Velocity report and observe the backend data request's outcome.</li><li>Attempt the export and observe the backend export request's outcome.</li></ol>",
+ "expected": "<p>1. The back end returns the report data - the request is not refused.<br>2. The back end returns the export file - the request is not refused.<br>3. Both requests succeed with only the ordinary reports access turned on - nothing else had to be enabled.<br>4. Note for the tester: if the back end refuses either request for a user who has the ordinary reports access, mark this Failed and report it. If an extra Parts or Inventory reports permission exists in the system it must not change these results - the specification allows no per-report permission at all. A per-report permission added on purpose in a later release is a planned change, not a bug, and this test will be updated first.</p><p>---<br>This is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Parts Velocity report specification version 11 (S1-R4, S1-N2), read on 17 August 2026.<br>Last checked against build v3.8-bd246fd on 8/18/2026.<br>Re-checked against the live specification on 26 August 2026: the requirements this case cites are unchanged, so only the version cited above was updated.</p><p>AUTOMATION: READY</p>",
+ "custom_atmstatus": 1,
+ "updated_on": 1787754903,
+ "created_by": 3
+}

@@ -1,0 +1,11 @@
+{
+ "id": 26505,
+ "title": "Time Clock User: role permissions match the expected set",
+ "refs": "SV-7526",
+ "preconds": "<ol>\n<li>A user is assigned the Time Clock User role.</li>\n</ol>",
+ "steps": "<ol>\n<li>Open the Time Clock User role's Permission Summary (eye icon on the Roles list).</li>\n<li>Check the add/edit/delete areas, the Page Access toggles, the Work orders sub-settings, the View mode and the Cross-Cutting Toggles.</li>\n<li>Optionally log in as the user and spot-check a few of the role's typical tasks.</li>\n</ol>",
+ "expected": "<p>The Time Clock User permissions match the expected set: exactly three View-only permissions on — Work orders View, Schedule View and Timesheets View. Everything else is off (no Create & Edit or Delete anywhere; Customers, Parts Department, Invoicing & payments, Reports, Settings, See Financial Data and View and Manage AP/AR Data all off). This role is non-editable.</p>\n",
+ "custom_atmstatus": 3,
+ "updated_on": 1783943836,
+ "created_by": 3
+}

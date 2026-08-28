@@ -1,0 +1,11 @@
+{
+ "id": 27858,
+ "title": "Verify Sales Representative can open AP/AR reports",
+ "refs": "SV-5319,SV-8011",
+ "preconds": "1. Log in to ShopView as a user assigned the Sales Representative role.\n2. The role has the Reports permission ON (this is what grants access to the AP/AR aging reports).\n3. Manage Accounts Payable and Receivable may be ON or OFF - it does not affect the aging reports.\n4. Invoice/payment data exists so the reports have content.",
+ "steps": "1. Click Reports in the top navigation.\n2. Open the AR Aging Summary report.\n3. Open the AR Aging Detail report.\n4. Open the AR Aging Collection report.\n5. Open the AP Aging Summary report.\n6. Open the AP Aging Detail report.\n7. Open the AP Unpaid Invoices report.",
+ "expected": "1. All 6 AP/AR aging reports open successfully with no permission error.\n2. The aging reports are available because the Reports permission is ON; access follows the Reports permission (all-or-nothing), not Manage AP/AR.\n3. Manage Accounts Payable and Receivable being ON or OFF does not change the visibility of the aging reports - they would still open with Reports ON.\n4. (Known failure SV-8011 was raised here - retest.)",
+ "custom_atmstatus": 1,
+ "updated_on": 1783273400,
+ "created_by": 3
+}

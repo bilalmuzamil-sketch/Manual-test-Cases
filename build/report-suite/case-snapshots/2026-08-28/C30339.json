@@ -1,0 +1,11 @@
+{
+ "id": 30339,
+ "title": "Parts with no category; vendor or bin are excluded when that filter is on",
+ "refs": "SV-8642 (PV spec v10 2026-08-17 S2-E1; S2-E2; S2-E3)",
+ "preconds": "<p>1. You are on the Parts Velocity report with data loaded.<br>2. A part with in-window activity exists that has NO category assigned; another with NO vendor; an inventory part with NO bin location..</p>",
+ "steps": "<p>1. Confirm the three parts appear with no filters active.<br>2. Activate any Category filter and look for the category-less part.<br>3. Clear it, activate any Vendor filter, and look for the vendor-less part.<br>4. Clear it, activate any Bin filter, and look for the bin-less inventory part.</p>",
+ "expected": "<p>1. The part with no category does not appear when any Category filter is active.<br>2. The part with no vendor does not appear when any Vendor filter is active.<br>3. The inventory part with no bin location does not appear when any Bin filter is active.<br><br>---<br>This is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Parts Velocity report specification version 11 (S2-E1, S2-E2, S2-E3), read on 17 August 2026.<br>Last checked against build v3.8-d0e135e on 8/19/2026.<br>Re-checked against the live specification on 26 August 2026: the requirements this case cites are unchanged, so only the version cited above was updated.<br><br>AUTOMATION: READY</p>\n",
+ "custom_atmstatus": 1,
+ "updated_on": 1787747776,
+ "created_by": 3
+}

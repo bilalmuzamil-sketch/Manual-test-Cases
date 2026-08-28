@@ -1,0 +1,11 @@
+{
+ "id": 30430,
+ "title": "Same range, single location, closed records: Total Hours matches Timesheet",
+ "refs": "SV-8648 (TU spec v9 2026-08-17 S1-R9; §2; §5 Assumptions)",
+ "preconds": "<p>1. A technician has only CLOSED (clocked-out) records in the range - no open clock.<br>2. The report's location filter holds exactly ONE location, and it is the user's currently active shop..</p>",
+ "steps": "<p>1. Read the technician's Total Hours on the Technician Utilization report (two decimals).<br>2. Click the Total Hours link and read the same technician's total on the opened Timesheet Activities report.<br>3. Compare the two, to two decimals.</p>",
+ "expected": "<p>1. The two totals MATCH exactly, to two decimals (these values are hours, not money) - both reports read the same clock records and round the same way (round-half-up, from unrounded values).<br>2. Under this exact scope (same range, same single location, closed records) a mismatch IS a defect.<br>3. The two documented scope differences (open clocks, multi-location drill-through) are covered by separate cases and are NOT defects.<br><br>---<br>This is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Technician Utilization report specification version 9 (S1-R9), read on 17 August 2026.<br><br>This test case could not be build-verified on 8/19/2026 because the feature it tests was not found in the build yet — the related story is still under development. It will be re-checked in the separate build-verification run once the feature ships.<br><br>AUTOMATION: Not available on Build to test Yet - Last checked 8/19/2026</p>",
+ "custom_atmstatus": 1,
+ "updated_on": 1787214459,
+ "created_by": 3
+}

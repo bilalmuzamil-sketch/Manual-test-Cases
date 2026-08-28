@@ -1,0 +1,11 @@
+{
+ "id": 43827,
+ "title": "Each invoice detail row shows a per-invoice Adjustments value",
+ "refs": "SV-9280 (SBC spec v20 2026-08-12 S8-R12 — invoice detail row shows per-invoice Adjustments)",
+ "preconds": "1. You are signed in to the ShopView App on a desktop browser.\n2. A customer asset has an invoice carrying an invoice-level fee or discount.",
+ "steps": "1. Open the Sales By Customer report.\n2. Expand a customer to its assets, and an asset to its invoices.\n3. Read the invoice detail row.",
+ "expected": "1. The invoice detail row shows the invoice number (as a link), the invoice date, and per-invoice Labor Delta, Labor Invoiced, Labor Margin, Parts Invoiced, Parts Margin, Shop Supplies, Adjustments, Margin, Margin % and Subtotal.\n2. The per-invoice Adjustments value is the signed net of that invoice's invoice-level fees and discounts.\n\n---\nThis is the expected behaviour as per epic SV-8582, read on 17 August 2026, and story SV-9280, and the Sales By Customer report specification version 20 (S8-R12), read on 17 August 2026.\nLast checked against build v3.8-2bf8d14 on 8/18/2026.\n\nAUTOMATION: READY",
+ "custom_atmstatus": 1,
+ "updated_on": 1787082429,
+ "created_by": 3
+}

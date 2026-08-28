@@ -1,0 +1,11 @@
+{
+ "id": 27783,
+ "title": "Verify Senior Service Advisor can delete a work order",
+ "refs": "SV-5319",
+ "preconds": "Log in to ShopView as a user assigned the Senior Service Advisor role. (this role has Work Orders: Delete).\nThe work order is in Uncomplete status (a work order must be Uncomplete before it can be deleted).",
+ "steps": "1. Open the Uncomplete work order.\n2. Open the work order action menu and click Delete.\n3. Confirm the deletion.",
+ "expected": "The work order is deleted and no longer appears in the Work Orders list.",
+ "custom_atmstatus": 1,
+ "updated_on": 1783108595,
+ "created_by": 3
+}

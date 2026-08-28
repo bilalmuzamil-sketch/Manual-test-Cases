@@ -1,0 +1,11 @@
+{
+ "id": 26583,
+ "title": "userService.isAdmin() works correctly without has('Locations') proxy",
+ "refs": "SV-7491",
+ "preconds": "Build with CRP-FE-06 deployed. Three test users: User A (Admin), User B (non-admin with Locations access), User C (non-admin without Locations access).",
+ "steps": "1. Log in as User A. In browser dev console (or via a debug view), call userService.isAdmin.\n2. Confirm it returns true.\n3. Log in as User B. Call userService.isAdmin.\n4. Confirm it returns false despite the user having Locations access.\n5. Log in as User C. Call userService.isAdmin. Confirm it returns false.\n6. Verify the four legacy proxy sites still behave correctly: axios.ts:218, useUserImpersonation.ts:43, router/index.ts:129, routingService.ts:18.",
+ "expected": "isAdmin correctly reflects admin capability and is independent of Locations access. All four proxy sites work with the new admin signal. Users with Locations but not admin are not treated as admin anywhere.",
+ "custom_atmstatus": 1,
+ "updated_on": 1784013347,
+ "created_by": 3
+}

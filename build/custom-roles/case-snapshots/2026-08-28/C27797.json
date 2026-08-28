@@ -1,0 +1,11 @@
+{
+ "id": 27797,
+ "title": "Verify Service Advisor can order a part on a work order line",
+ "refs": "SV-5319",
+ "preconds": "Log in to ShopView as a user assigned the Service Advisor role. (this role has Order Parts ON).\nNote: the role may display as 'Junior Service Advisor' in the build (the spec calls it 'Service Advisor').\nAt least one work order exists that contains labor and part lines with prices entered.",
+ "steps": "1. Open a work order and open a line.\n2. Open the parts actions on the line and click Order.\n3. Select the part, vendor, and quantity and confirm the order.",
+ "expected": "The part order is created successfully with no permission error.",
+ "custom_atmstatus": 1,
+ "updated_on": 1783108595,
+ "created_by": 3
+}

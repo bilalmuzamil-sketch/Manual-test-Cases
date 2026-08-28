@@ -1,0 +1,11 @@
+{
+ "id": 38894,
+ "title": "A clock-record edit after invoicing updates Labor Delta; billed money stays put",
+ "refs": "SV-8626 (SBR spec v22 2026-08-17 S9-R2; heading renamed to Labor Delta per SV-9071)",
+ "preconds": "<ol>\n<li>A ZZAUTOTEST invoiced (not reversed, not void) work order exists with billed labor and clocked technician hours, and its invoice row is visible under its rep in the report.</li>\n</ol>\n",
+ "steps": "<ol>\n<li>Note the invoice row's Labor Delta value and its money columns.</li>\n<li>Edit a technician clock record on that work order (change its length), or delete one.</li>\n<li>Reload the report and re-read the same invoice row.</li>\n</ol>\n",
+ "expected": "<ol>\n<li>The worked-hours side updates — Labor Delta (hours invoiced minus hours worked) reflects the edited clock time after the reload.</li>\n<li>The billed SELL values (Labor, Parts, Subtotal) stay unchanged — a clock edit never rewrites what was billed.</li>\n<li>The figures tied to worked time move together consistently (Margin uses the labor cost behind the worked hours, so it may change too) — nothing is left stale.</li>\n</ol>\n\n<hr />\n\n<p>This is the expected behaviour as per epic SV-8582 and the Sales By Representative report specification version 22 (S9-R2), both read on 17 August 2026. The column was renamed from \"Inv. Hrs\" to \"Labor Delta\" per SV-9071; only the name changed.<br />Last checked against build v3.8-bd246fd on 8/18/2026.</p>\n\n<p>AUTOMATION: READY</p>\n",
+ "custom_atmstatus": 1,
+ "updated_on": 1787085054,
+ "created_by": 3
+}

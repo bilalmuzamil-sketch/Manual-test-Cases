@@ -1,0 +1,11 @@
+{
+ "id": 30280,
+ "title": "Expanded View PDF truncates invoice numbers longer than 18 characters",
+ "refs": "SV-8631 (SBR spec v22 2026-08-17 Story 14 S14-R7)",
+ "preconds": "<p>1. At least one invoice in the current view has an invoice number LONGER than 18 characters, and one has a number of 18 characters or fewer (seed data if needed)..</p>",
+ "steps": "<p>1. Expand the rep on screen and read both invoice numbers.<br>2. Download the Expanded View PDF and read the same two invoice numbers.</p>",
+ "expected": "<p>1. On screen, both invoice numbers show in full &mdash; never truncated.<br>2. In the PDF, the long number is cut to its first 18 characters followed by an ellipsis (the ellipsis is not counted toward the 18).<br>3. In the PDF, the 18-character-or-shorter number shows in full with no ellipsis.<br><br>---<br>This is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Sales By Representative report specification version 24 (S14-R7), read on 17 August 2026.<br>Last checked against build v3.8-b7d80dc on 8/19/2026.<br>Re-checked against the live specification on 26 August 2026: the requirements this case cites are unchanged, so only the version cited above was updated.<br><br>AUTOMATION: READY</p>\n",
+ "custom_atmstatus": 1,
+ "updated_on": 1787747707,
+ "created_by": 3
+}

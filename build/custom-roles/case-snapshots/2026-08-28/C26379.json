@@ -1,0 +1,11 @@
+{
+ "id": 26379,
+ "title": "The Review work orders sub-toggle controls the Review action on work orders",
+ "refs": "SV-7506,SV-7507",
+ "preconds": "<ol>\n<li>A user has a role with Work orders View and Create & Edit, View mode Full View, and Review work orders ON.</li>\n</ol>",
+ "steps": "<ol>\n<li>Log in and open a work order where Review applies.</li>\n<li>Look for a Review action.</li>\n<li>As an admin, edit the role and turn Review work orders OFF, then save.</li>\n<li>Have the user log back in and reopen the work order.</li>\n<li>Look for the Review action again.</li>\n</ol>",
+ "expected": "<p>The Review action is shown and works when Review work orders is on.</p>\n<p>After turning it off, the Review action is no longer shown.</p>\n",
+ "custom_atmstatus": 3,
+ "updated_on": 1783943596,
+ "created_by": 3
+}

@@ -1,0 +1,11 @@
+{
+ "id": 30129,
+ "title": "Reload-causing changes collapse expansion; Customer filter typing does not",
+ "refs": "SV-8606 (SBC spec v20 2026-08-17 Story 8 S8-R20; S8-R21; Story 10 S10-R8a; S10-R8b; S10-R8c)",
+ "preconds": "<p>1. You are on the report with at least one customer expanded down to invoice rows.<br>2. Enough customers exist to fill more than one page of results (seed ZZAUTOTEST customers if needed)..</p>",
+ "steps": "<p>1. With rows expanded, open the Customer filter and TYPE a search query (do not change the selection); watch the expanded rows.<br>2. Now change the date range (or Product Type, location, Customer selection, or sort).<br>3. Look at the previously expanded rows, the loading state, and the set of customers on the page.</p>",
+ "expected": "<p>1. Typing in the Customer filter's type-ahead only narrows the dropdown list — the expanded table rows stay expanded.<br>2. A change that re-fetches customer rows (date range, Product Type, location, Customer selection, or sort) collapses all expanded rows.<br>3. While the re-fetch is in flight the table shows the standard loading state; when it clears, the page shows the first page of the newly ordered set — the customers on the page can change.<br><br>---<br>This is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Sales By Customer report specification version 20 (S8-R20, S8-R21, S10-R8a, S10-R8b, S10-R8c), read on 17 August 2026.<br>Last checked against build v3.8-da72171 on 8/19/2026.<br><br>AUTOMATION: READY</p>",
+ "custom_atmstatus": 1,
+ "updated_on": 1787208761,
+ "created_by": 3
+}

@@ -1,0 +1,11 @@
+{
+ "id": 30491,
+ "title": "The Estimates figure is the Estimates tab total, shown at full opacity",
+ "refs": "SV-8661 (WIP Story 5; WIP report design review 2026-08-13 - Estimates counted per line incl. lines awaiting authorization; now shown un-greyed / full opacity)",
+ "preconds": "<p>1. You are signed in to the ShopView App on a desktop browser.<br>2. The Estimates tab contains at least one estimate line that has not yet been approved, with a non-zero value..</p>",
+ "steps": "<p>1. Compare the Estimates figure to the total value of the unapproved estimate lines, including any lines awaiting authorization on open work orders.<br>2. Look at how the Estimates figure is styled compared to the other figures.<br>3. Check whether the Estimates amount is included in Total Completed Work or Remaining Work (their component figures should not contain it).</p>",
+ "expected": "<p>1. The Estimates figure equals the total value of all estimate lines that have not yet been approved, including lines awaiting authorization on open work orders (counted per line, not per work order).<br>2. It is shown at full opacity (un-greyed) - not muted.<br>3. The Estimates figure is excluded from Total Completed Work and from Remaining Work.<br><br>---<br>This is the expected behaviour as per epic SV-8582, the Work In Progress report design review of 13 August 2026 (https://claude.ai/code/artifact/42c35f46-2796-467e-9723-7daa5385446e), and the Work In Progress report specification.<br>Last checked against build v3.8-d0e135e on 8/20/2026.<br>The earlier specification wording had this figure shown muted and counted per work order; the 13 August 2026 design review changed it to full opacity and counted per line (including lines awaiting authorization on open work orders), and we have taken the latest design review as prevailing.<br><br>AUTOMATION: READY</p>",
+ "custom_atmstatus": 1,
+ "updated_on": 1787206112,
+ "created_by": 3
+}

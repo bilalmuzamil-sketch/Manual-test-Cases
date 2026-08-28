@@ -1,0 +1,11 @@
+{
+ "id": 27505,
+ "title": "CR-C3-050 — Audit/finance analyst",
+ "refs": "SV-7388",
+ "preconds": "<p>Permissions (counted): Reports + History Logs + See AP/AR. View Mode: Full unless noted. All other permissions OFF.</p>",
+ "steps": "<ol>\n<li>Create a custom role with the permissions listed in Preconditions; leave all others OFF.</li>\n<li>Assign the role to a test user and log in.</li>\n<li>Exercise each capability in Expected Result and confirm it succeeds (and that gated pricing is hidden where noted).</li>\n</ol>",
+ "expected": "<p>User CAN: Access reports; view history/audit logs; AP/AR aging reports + AP/AR tab visibility</p><hr/><p><strong>Risk / Rationale:</strong> Positive capability check — confirms this combination grants exactly the listed actions and nothing gated leaks. See Flag / Note.<br/><strong>Spec Ref:</strong> §2a+§5c+§5b<br/><strong>Flag / Note:</strong> \\u26a0 AP/AR detail-page tabs need customer/vendor View to surface</p>",
+ "custom_atmstatus": 1,
+ "updated_on": 1782992292,
+ "created_by": 1
+}

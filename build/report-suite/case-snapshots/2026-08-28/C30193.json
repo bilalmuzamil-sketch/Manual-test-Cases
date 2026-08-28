@@ -1,0 +1,11 @@
+{
+ "id": 30193,
+ "title": "Customer rows are server-paginated; the totals row is server-computed",
+ "refs": "SV-8616 (SBC spec v20 2026-08-17 Story 18 S18-R6; S18-R11)",
+ "preconds": "1. Enough customers exist to span more than one page; the browser's network panel is open.\n2. To see the information this test asks for you need the browser's own developer tools: press F12 (or Ctrl+Shift+I; on a Mac Cmd+Option+I) and open the \"Network\" tab, then reload the page. There is nothing to install — it is built into Chrome, Edge and Firefox.",
+ "steps": "1. Load the report and inspect the summary-row response and the totals values.\n2. Change the Customer filter selection and watch the requests.\n3. Move between pages and watch the totals.",
+ "expected": "1. Customer rows arrive page by page from the server (server-paginated), not as one full client-side list.\n2. Changing the Customer selection re-fetches the matching customers as a fresh first page.\n3. The totals are computed on the server over the full set of matching customers — they arrive with the data and do not change as you page.\n\n---\nThis is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Sales By Customer report specification version 20 (S18-R6, S18-R11), read on 17 August 2026.\nLast checked against build v3.8-2bf8d14 on 8/18/2026.\n\nAUTOMATION: READY",
+ "custom_atmstatus": 1,
+ "updated_on": 1787083049,
+ "created_by": 3
+}

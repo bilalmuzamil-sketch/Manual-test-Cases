@@ -1,0 +1,11 @@
+{
+ "id": 30179,
+ "title": "When a saved view and a page-link range clash the saved view wins",
+ "refs": "SV-8601 (SBC spec v20 2026-08-17 Story 2 S2-R9)",
+ "preconds": "<p>1. You have a saved view with a known date range (for example Last Month).<br>2. You have a page link carrying a DIFFERENT date range (for example This Year), captured earlier..</p>",
+ "steps": "<p>1. Open the report using the link with the different range.<br>2. Read the date range picker.</p>",
+ "expected": "<p>1. The saved view is applied (Last Month) and the link value is ignored.<br>2. This is intentional: a shared link restores the sender's range only for a recipient who has no saved range of their own.<br><br>---<br>This is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Sales By Customer report specification version 20 (S2-R9), read on 17 August 2026.<br>Last checked against build v3.8-da72171 on 8/19/2026.<br><br>AUTOMATION: READY</p>",
+ "custom_atmstatus": 1,
+ "updated_on": 1787209361,
+ "created_by": 3
+}

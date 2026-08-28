@@ -1,0 +1,11 @@
+{
+ "id": 27833,
+ "title": "Verify Parts Manager can delete a part sale",
+ "refs": "SV-5319",
+ "preconds": "Part Sales feature ON; role = Part Sales DELETE only\nA fresh part sale with NO received parts exists (seeded via admin)",
+ "steps": "1. Click Part Sales in the main navigation.\n2. Open a part sale, click Delete, and confirm.",
+ "expected": "The delete SUCCEEDS — the app redirects to the Part Sales list",
+ "custom_atmstatus": 3,
+ "updated_on": 1783208772,
+ "created_by": 3
+}

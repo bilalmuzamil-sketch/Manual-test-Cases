@@ -1,0 +1,11 @@
+{
+ "id": 38887,
+ "title": "An over-cap Technician Utilization export is refused with the too-large message",
+ "refs": "SV-8654 (TU spec v9 2026-08-17 S7-R14 — the 10;000-row export cap and its verbatim message are now IN the TU spec; previously spec-silent and sourced from tech-plan-2026-07-29 A3/FR-F4; locked by Chris 2026-07-21)",
+ "preconds": "<p>1. You are signed in to the ShopView App on a desktop browser.<br>2. A range/location combination exists whose filtered set EXCEEDS the export row cap (widest date range + all locations; seed ZZAUTOTEST clock records in bulk if needed, or use the largest available data set)..</p>",
+ "steps": "<p>1. Set the date range and locations so the filtered set exceeds the export row cap.<br>2. Request the CSV download and read what happens.<br>3. Request the PDF download and read what happens.<br>4. Narrow the date range or filters below the cap and request a download again.</p>",
+ "expected": "<p>1. Neither the CSV nor the PDF is produced — no download starts.<br>2. A clear too-large message appears telling the user to narrow the date range or filters, then try again — the standard wording is \"This report is too large to export. Narrow the date range or filters, then try again.\"<br>3. After narrowing below the cap, the downloads work again.<br><br>---<br>This is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Technician Utilization report specification version 9 (S7-R14), read on 17 August 2026, which was added to that specification on 2026-08-06 and states this row limit and its exact message. Before that the specification said nothing about a limit and this expectation came from the engineering plan of 2026-07-29; the written description now says the same thing, so the two agree.<br>Last checked against build v3.8-d0e135e on 8/19/2026.<br><br>AUTOMATION: HOLD - the report shows one row per technician, so it cannot reach the export row cap; the over-cap refusal cannot be produced (exports verified working at actual size)</p>",
+ "custom_atmstatus": 1,
+ "updated_on": 1787216026,
+ "created_by": 3
+}

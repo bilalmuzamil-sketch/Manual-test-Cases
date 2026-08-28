@@ -1,0 +1,11 @@
+{
+ "id": 26542,
+ "title": "A system role cannot be deleted",
+ "refs": "SV-7502",
+ "preconds": "<ol>\n<li>You are on the Roles & Permissions list with at least one system role (for example Service Manager) visible.</li>\n</ol>",
+ "steps": "<ol>\n<li>Find the Service Manager row.</li>\n<li>Look at the Actions column.</li>\n<li>If there is a three-dot menu, open it and look for Delete.</li>\n</ol>",
+ "expected": "<p>A system role cannot be deleted: either it shows only the eye icon (no three-dot menu), or the menu has no Delete, or Delete is disabled.</p>\n",
+ "custom_atmstatus": 3,
+ "updated_on": 1783943841,
+ "created_by": 3
+}

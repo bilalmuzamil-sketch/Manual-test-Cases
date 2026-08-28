@@ -1,0 +1,11 @@
+{
+ "id": 30483,
+ "title": "The initial sort is Days Open with the longest-open work order first",
+ "refs": "SV-8660 (WIP spec v22 2026-08-18 Story 4 S4-R25)",
+ "preconds": "<ol><li>You are signed in to the ShopView App on a desktop browser.</li><li>A tab shows several work orders created on different dates.</li></ol>",
+ "steps": "<ol><li>Open the Work In Progress report without clicking any column header.</li><li>Read the Days Open values from the top row down.</li></ol>",
+ "expected": "<p>1. The rows are sorted by Days Open, longest-open first (descending).</p><p>---<br>This is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Work In Progress report specification version 28 (S4-R25), read on 18 August 2026.<br>Last checked against build v3.8-bd246fd on 8/18/2026.<br>Re-checked against the live specification on 26 August 2026: the requirements this case cites are unchanged, so only the version cited above was updated.</p><p>AUTOMATION: READY</p>",
+ "custom_atmstatus": 1,
+ "updated_on": 1787754951,
+ "created_by": 3
+}

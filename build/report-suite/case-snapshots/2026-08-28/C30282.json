@@ -1,0 +1,11 @@
+{
+ "id": 30282,
+ "title": "PDFs render negative dollars in accounting parentheses, keep the (Inactive) tag",
+ "refs": "SV-8631 (SBR spec v22 2026-08-17 Story 14 S14-R9; S14-R10)",
+ "preconds": "<p>1. The current view includes at least one negative money value (for example, a net-credit/return invoice — seed one if needed) and, if arrangeable, one toggled-off \"(Inactive)\" contributor..</p>",
+ "steps": "<p>1. Download both PDFs.<br>2. Find the negative money value in each and read how it is written.<br>3. Read the rep names in both PDFs.</p>",
+ "expected": "<p>1. Negative dollar values render in accounting parentheses &mdash; for example ($1,234.56) &mdash; in both PDFs, with no extra color treatment.<br>2. The on-screen (N) invoice count does NOT appear next to any rep name in either PDF.<br>3. The \"(Inactive)\" tag DOES render on toggled-off contributors' names in both PDFs; other rep names render plainly.<br><br>---<br>This is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Sales By Representative report specification version 24 (S14-R9, S14-R10), read on 17 August 2026.<br>Last checked against build v3.8-b7d80dc on 8/19/2026.<br>Re-checked against the live specification on 26 August 2026: the requirements this case cites are unchanged, so only the version cited above was updated.<br><br>AUTOMATION: READY</p>\n",
+ "custom_atmstatus": 1,
+ "updated_on": 1787747709,
+ "created_by": 3
+}

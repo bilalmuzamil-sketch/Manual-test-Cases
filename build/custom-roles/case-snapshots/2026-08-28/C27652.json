@@ -1,0 +1,11 @@
+{
+ "id": 27652,
+ "title": "Technician - B. Add inspection to a work order line",
+ "refs": "SV-7509 SV-8095",
+ "preconds": "<p>Logged in as Technician. Tech View. Per SV-8095 AC4, View Mode is NOT a gate for inspections. A work order with at least one line exists.</p>\n",
+ "steps": "<ol>\n<li>Log in.</li>\n<li>Open a work order and locate a line.</li>\n<li>Open the three-dot menu on the line.</li>\n<li>Select Add Inspection and choose a template.</li>\n<li>Repeat on an existing/approved line.</li>\n</ol>\n",
+ "expected": "<p>Step 3: The three-dot menu shows Add Inspection.<br />Step 4: The inspection is added and \"Inspection added to line.\" is shown.<br />Step 5: Adding is ALSO allowed on an existing/approved line. Per SV-8095 AC4, View Mode is not a gate - the read-only-after-approval rule applies to the line's own fields, not attached inspections. Technician has WOL Create and Edit.</p>\n",
+ "custom_atmstatus": 3,
+ "updated_on": 1783433060,
+ "created_by": 3
+}

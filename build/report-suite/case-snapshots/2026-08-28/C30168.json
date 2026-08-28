@@ -1,0 +1,11 @@
+{
+ "id": 30168,
+ "title": "PDF logo is embedded, scales without distortion",
+ "refs": "SV-8613 (SBC spec v20 2026-08-17 Story 15 S15-R12; S15-R13; S15-R14; S15-R15; S15-R16; S15-R17; S15-R18)",
+ "preconds": "1. You can toggle the organization's uploaded logo on/off in administration (restore it afterwards).",
+ "steps": "1. With an uploaded org logo, download the PDF and check the top-right.\n2. Remove the uploaded logo, download again, and check.\n3. Open a PDF while offline to confirm the logo still renders.",
+ "expected": "1. With an uploaded logo, that logo appears pinned to the top-right, scaled to fit its area without distortion.\n2. With a logo uploaded, that logo appears. If a logo is set but fails to load, the built-in ShopView logo is used instead. If no logo is uploaded at all, NO logo is printed and the text fills the space.\n3. When no logo is printed, the logo column is not rendered and the text column fills the full width.\n4. The logo is embedded in the PDF (renders offline, not loaded from a network address).\nNote for the tester: on this build a report with no uploaded logo still prints the built-in ShopView logo. The product owner has decided it should print no logo at all, so record what you see; the change is with the developers.\n\n---\nThis is the expected behaviour as per epic SV-8582, read on 17 August 2026, and Chris Ward's decision of 8/5/2026, recorded in his answers in this file: https://docs.google.com/spreadsheets/d/1x8cuYJlFsDHalVZZTh156_ZCq2gcOaGY/edit?usp=sharing&ouid=106388879401921597782&rtpof=true&sd=true, read on 17 August 2026; where the Sales By Customer report specification version 20 (S15-R12, S15-R13, S15-R14, S15-R15, S15-R16, S15-R17, S15-R18), read on 17 August 2026, differs, his decision is the authority.\nLast checked against build v3.8-2bf8d14 on 8/18/2026.\n\nAUTOMATION: READY",
+ "custom_atmstatus": 1,
+ "updated_on": 1787083142,
+ "created_by": 3
+}

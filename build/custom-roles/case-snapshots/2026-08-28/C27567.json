@@ -1,0 +1,11 @@
+{
+ "id": 27567,
+ "title": "CR-BRK-012 — AP/AR OFF + Customers Edit — sensitive-field leak",
+ "refs": "SV-7388; SV-7925",
+ "preconds": "<p>Customers V/E \\u2713 | Manage AP/AR \\u2717 | WO V \\u2713 | See Financial \\u2713 | View Mode: Full (View Mode as specified).</p>",
+ "steps": "<ol>\n<li>Configure a custom role per the Setup in Preconditions; assign to a test user and log in.</li>\n<li>Open Edit Customer + the Customer Overview panel; confirm each sensitive field is hidden.</li>\n</ol>",
+ "expected": "<p>Sensitive customer fields hidden on the Edit Customer modal AND the Customer Overview panel (§1d + §5b + 6/28): Credit Terms, Credit Limit, Default Labor Rate, Default Shop Supplies, Min/Max, Taxes, PO is Required. Basic fields remain editable.</p><hr/><p><strong>Risk / Rationale:</strong> Sensitive fields leak despite AP/AR OFF — on the modal and/or the overview panel.<br/><strong>Spec Ref:</strong> §1d Sensitive Fields; §5b; Change Log 6/28</p>",
+ "custom_atmstatus": 3,
+ "updated_on": 1783321313,
+ "created_by": 1
+}

@@ -1,0 +1,11 @@
+{
+ "id": 30456,
+ "title": "Every open service WO at a selected location appears in the report",
+ "refs": "SV-8658 (WIP spec v24 per Chris Ward 2026-08-19; Story 2; line-state placement S3-R5,S3-R6 - a work order appears in each tab matching one of its line states)",
+ "preconds": "<p>1. You are signed in to the ShopView App on a desktop browser.<br>2. Five ZZAUTOTEST service work orders exist at your active location, open on the report's \"as of\" date (which defaults to today) &mdash; one in each status: Estimate, Approved, In Progress, Review, and Complete.</p>\n",
+ "steps": "<p>1. Open the Work In Progress report with the seeded work orders open on the selected \"as of\" date.<br>2. Look through all four tabs for each of the five seeded work orders.</p>\n",
+ "expected": "<p>1. All five seeded work orders appear in the report - each one qualifies because it is a service work order, its status is one of Estimate, Approved, In Progress, Review, or Complete, and it belongs to a selected location.<br>2. Each work order appears in every tab that matches one of its line states, showing only that tab's slice of its money - a work order whose lines are in more than one state can appear in more than one tab (see the WIP - Tab Placement cases). The status column still shows the work order's true status.<br><br>---<br>This is the expected behaviour as per epic SV-8582 and story SV-8658 (WIP Story 2), and the Work In Progress report specification version 28, which describes the line-state placement model (S3-R5, S3-R6): the report treats a work order as a sum of its lines, so a work order appears in each tab matching one of its line states, showing only that tab's slice of the money. Chris Ward confirmed this and tidied the specification to the line-state model on 19 August 2026, recorded in his answers in this file: https://raw.githubusercontent.com/bilalmuzamil-sketch/Manual-test-Cases/claude/slack-session-0sxnd9/build/report-suite/chris-answers-2026-08-19/WIP-CHRIS-RULINGS-2026-08-19.md.<br>Last checked against build v3.8-d0e135e on 8/19/2026.<br>Re-checked against the live specification on 26 August 2026: the requirements this case cites are unchanged, so only the version cited above was updated.<br><br>AUTOMATION: READY</p>\n",
+ "custom_atmstatus": 1,
+ "updated_on": 1787747825,
+ "created_by": 3
+}

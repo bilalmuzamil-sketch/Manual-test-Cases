@@ -1,0 +1,11 @@
+{
+ "id": 27798,
+ "title": "Verify Service Advisor cannot see AP/AR tabs on customer and vendor pages",
+ "refs": "SV-5319,SV-8110",
+ "preconds": "Log in to ShopView as a user assigned the Service Advisor role. (this role has Manage Accounts Payable and Receivable OFF).\nNote: the role may display as 'Junior Service Advisor' in the build (the spec calls it 'Service Advisor').\nAt least one customer and one vendor exist.",
+ "steps": "1. Click Customers and open a customer.\n2. Look for Unpaid Invoices, Payments, and Credits tabs on the customer page.\n3. Click Vendors and open a vendor.\n4. Look for the equivalent AP/AR tabs on the vendor page.",
+ "expected": "The Unpaid Invoices, Payments, and Credits tabs are HIDDEN on both the customer page and the vendor page. (Known failure SV-8110 was raised when these were visible - retest.)",
+ "custom_atmstatus": 1,
+ "updated_on": 1783108595,
+ "created_by": 3
+}

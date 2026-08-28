@@ -1,0 +1,11 @@
+{
+ "id": 27639,
+ "title": "Foreman - B. Add inspection to a work order line",
+ "refs": "SV-7509 SV-8095",
+ "preconds": "<p>Logged in as Foreman. A work order with at least one line exists.</p>\n",
+ "steps": "<ol>\n<li>Log in.</li>\n<li>Open a work order and locate a line.</li>\n<li>Open the three-dot menu on the line.</li>\n<li>Select Add Inspection and choose a template.</li>\n</ol>\n",
+ "expected": "<p>Step 3: The three-dot menu shows Add Inspection.<br />Step 4: The inspection template is added and \"Inspection added to line.\" is shown. (Gated by WOL Create and Edit - SV-8095 AC2.)</p>\n",
+ "custom_atmstatus": 3,
+ "updated_on": 1783433055,
+ "created_by": 3
+}

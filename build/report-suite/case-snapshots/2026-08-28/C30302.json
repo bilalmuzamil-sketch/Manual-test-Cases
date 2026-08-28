@@ -1,0 +1,11 @@
+{
+ "id": 30302,
+ "title": "On a phone every toolbar control works on touch",
+ "refs": "SV-8634 (SBR spec v22 2026-08-17 Story 17 S17-R1; S17-R2; S17-R3)",
+ "preconds": "<p>1. Open the report on a phone-sized viewport (real device or browser device emulation, width under 1024px)..</p>",
+ "steps": "<p>1. Find and operate each toolbar control by touch: the ⋯ exports, the column selector, the Show Unassigned toggle, the date range picker, Product Type, Invoice Status, and Location.<br>2. Look at how the controls are laid out.<br>3. Widen the viewport to 1024px or more and compare.</p>",
+ "expected": "<p>1. Every toolbar control is visible and operable on touch.<br>2. Below 1024px the toolbar controls stack vertically at full width; the &#8943; exports button &mdash; the first control of the action cluster &mdash; wraps to a partial row ABOVE the stacked controls.<br>3. At 1024px and above the desktop layout applies.<br><br>---<br>This is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Sales By Representative report specification version 24 (S17-R1, S17-R2, S17-R3), read on 17 August 2026.<br>Last checked against build v3.8-b7d80dc on 8/19/2026.<br>Re-checked against the live specification on 26 August 2026: the requirements this case cites are unchanged, so only the version cited above was updated.<br><br>AUTOMATION: READY</p>\n",
+ "custom_atmstatus": 1,
+ "updated_on": 1787747728,
+ "created_by": 3
+}

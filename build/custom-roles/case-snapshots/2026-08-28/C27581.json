@@ -1,0 +1,11 @@
+{
+ "id": 27581,
+ "title": "CR-BRK-026 — Admin role edited to remove Admin pages — self-lockout protection",
+ "refs": "SV-7388",
+ "preconds": "<p>Edit the Admin system role; attempt to turn OFF App Settings (houses Roles &amp; Permissions) (View Mode as specified).</p>",
+ "steps": "<ol>\n<li>Configure a custom role per the Setup in Preconditions; assign to a test user and log in.</li>\n<li>Open Admin in the editor; attempt to disable App Settings; save.</li>\n</ol>",
+ "expected": "<p>Admin cannot be edited to lose access to the Admin pages (Open Q9: 'Admin system role cannot be edited to lose access to the Admin pages'). The toggle should be prevented/locked.</p><hr/><p><strong>Risk / Rationale:</strong> Admin can remove its own Admin-page access → self-lockout risk.<br/><strong>Spec Ref:</strong> Open Q9; Roles list</p>",
+ "custom_atmstatus": 1,
+ "updated_on": 1783160425,
+ "created_by": 1
+}

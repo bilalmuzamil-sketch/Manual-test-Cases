@@ -1,0 +1,11 @@
+{
+ "id": 43828,
+ "title": "Adjustments column appears between Shop Supplies and Margin",
+ "refs": "SV-9281 (SBR spec v24 2026-08-24 S5-R2 — 14-column order places Adjustments between Shop Supplies and Margin)",
+ "preconds": "<p>1. You are signed in to the ShopView App on a desktop browser.<br>2. A representative has an invoice carrying an invoice-level fee or discount in the selected date range.</p>",
+ "steps": "<p>1. Open the Sales By Representative report.<br>2. Look at the columns left to right.</p>",
+ "expected": "<p>1. The columns appear left-to-right: Date, Invoice, Customer, Status, Labor Delta, Labor Invoiced, Labor Margin, Parts Invoiced, Parts Margin, Shop Supplies, Adjustments, Margin, Margin %, Subtotal (14 columns).<br>2. \"Adjustments\" sits immediately after \"Shop Supplies\" and immediately before \"Margin\".</p><p>This is the expected behaviour as per epic SV-8582, story SV-9281, and the Sales By Representative report specification version 24 (S5-R2), read on 26 August 2026.<br>Specification version 22 placed Adjustments directly after Parts Margin in a 13-column layout; version 24 (2026-08-24) inserted Shop Supplies between Parts Margin and Adjustments, and we take the later version as prevailing.<br>This expectation has not been checked against any build since the specification change described above.</p><p>AUTOMATION: READY</p>",
+ "custom_atmstatus": 1,
+ "updated_on": 1787881167,
+ "created_by": 3
+}

@@ -1,0 +1,11 @@
+{
+ "id": 30140,
+ "title": "Customer name is plain text; the invoice link never turns visited-purple",
+ "refs": "SV-8607 (SBC spec v20 2026-08-17 Story 9 S9-R5; S9-R6; S9-R7; S9-R8)",
+ "preconds": "<p>1. You have expanded down to invoice detail rows and have already clicked at least one invoice link earlier in the session..</p>",
+ "steps": "<p>1. Try clicking the customer NAME on a summary row.<br>2. Look at an invoice number link at rest, on hover, and one you have already visited.</p>",
+ "expected": "<p>1. The customer name on the summary row is plain text, not a link.<br>2. The invoice number link is shown in the application's primary color at rest, on hover, and after it has been clicked.<br>3. The link has no underline at rest, on hover, or after it has been clicked.<br>4. The link never recolors to the browser's visited-link (purple) color.<br><br>---<br>This is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Sales By Customer report specification version 20 (S9-R5, S9-R6, S9-R7, S9-R8), read on 17 August 2026.<br>Last checked against build v3.8-da72171 on 8/19/2026.<br><br>AUTOMATION: HOLD - waiting on the product owner to decide whether the invoice number is a clickable link (it currently shows as plain non-clickable text and the specification is contradictory); this test depends on that decision</p>",
+ "custom_atmstatus": 1,
+ "updated_on": 1787209002,
+ "created_by": 3
+}

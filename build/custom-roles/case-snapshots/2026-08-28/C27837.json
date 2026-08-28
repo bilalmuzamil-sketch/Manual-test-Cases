@@ -1,0 +1,11 @@
+{
+ "id": 27837,
+ "title": "Verify Parts Manager cannot reverse a work order invoice",
+ "refs": "SV-5319",
+ "preconds": "Log in to ShopView as a user assigned the Parts Manager role. (reversing a work order invoice requires Work Orders: Delete per spec v33; this role has NO Work Orders Delete).\nThe work order already has an invoice created on its Finance tab.",
+ "steps": "1. Open the work order's Finance tab.\n2. Look for a Reverse option on the invoice; if present, click it.",
+ "expected": "Reversing the work order invoice is BLOCKED: the action is hidden/disabled or returns a permission error.",
+ "custom_atmstatus": 1,
+ "updated_on": 1783108595,
+ "created_by": 3
+}

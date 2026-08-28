@@ -1,0 +1,11 @@
+{
+ "id": 27761,
+ "title": "Verify Administrator can reverse a Part Sales invoice",
+ "refs": "SV-5319",
+ "preconds": "Log in to ShopView as a user assigned the Administrator role. (this role has Part Sales: Delete, which gates reversing a Part Sales invoice per spec v33).\nAt least one Part Sales invoice exists under Part Sales.",
+ "steps": "1. Click Part Sales in the main navigation.\n2. Open an existing Part Sales invoice.\n3. Click Reverse and confirm.",
+ "expected": "The Part Sales invoice is reversed successfully with no permission error.",
+ "custom_atmstatus": 1,
+ "updated_on": 1783108595,
+ "created_by": 3
+}

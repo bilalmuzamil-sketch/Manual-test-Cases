@@ -1,0 +1,11 @@
+{
+ "id": 30388,
+ "title": "The report is server-paginated - the backend returns one page of rows at a time",
+ "refs": "SV-8642 (PV spec v10 2026-08-17 §2 (server-paginated); S2-R10)",
+ "preconds": "<ol><li>You are on the Parts Velocity report with more rows in the result set than one page holds.</li><li>Browser devtools (network tab) are open to observe the backend requests.</li><li>To see the information this test asks for you need the browser's own developer tools: press F12 (or Ctrl+Shift+I; on a Mac Cmd+Option+I) and open the \"Network\" tab, then reload the page. There is nothing to install — it is built into Chrome, Edge and Firefox.</li></ol>",
+ "steps": "<ol><li>Load the report and observe the backend data request and its response size.</li><li>Move to the next page of rows and observe the traffic.</li></ol>",
+ "expected": "<p>1. The backend returns ONE page of rows at a time - the full result set is not shipped to the browser.<br>2. Paging is resolved on the server: moving to another page issues a fresh backend request for that page.<br>3. This keeps the report responsive at scale (organizations can carry 50-60k parts, multiplied across locations).</p><p>---<br>This is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Parts Velocity report specification version 11 (S2-R10), read on 17 August 2026.<br>Last checked against build v3.8-bd246fd on 8/18/2026.<br>Re-checked against the live specification on 26 August 2026: the requirements this case cites are unchanged, so only the version cited above was updated.</p><p>AUTOMATION: READY</p>",
+ "custom_atmstatus": 1,
+ "updated_on": 1787754888,
+ "created_by": 3
+}

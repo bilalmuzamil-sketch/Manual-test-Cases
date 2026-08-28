@@ -1,0 +1,11 @@
+{
+ "id": 30295,
+ "title": "\"Rep is active?\" tracks the staff-active status, not the toggle",
+ "refs": "SV-8632 (SBR spec v22 2026-08-17 Story 15 S15-R6; Story 13 S13-R11)",
+ "preconds": "<p>1. Arrange (and afterward restore): one assigned rep whose staff record is ACTIVE but whose sales-representative toggle is OFF, and one assigned rep whose staff record is INACTIVE but whose toggle is ON..</p>",
+ "steps": "<p>1. Download the Sales Representative Assignments CSV.<br>2. Read the \"Rep is active?\" value on both reps' customer rows.</p>",
+ "expected": "<p>1. The staff-ACTIVE / toggle-off rep shows \"Rep is active?\" = \"Yes\" &mdash; the toggle does not drive this column.<br>2. The staff-INACTIVE / toggle-on rep shows \"Rep is active?\" = \"No\".<br>3. The value is always \"Yes\" or \"No\" (never \"Deactivated\" or another word).<br><br>---<br>This is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Sales By Representative report specification version 24 (S15-R6, S13-R11), read on 17 August 2026.<br>Last checked against build v3.8-b7d80dc on 8/19/2026.<br>Re-checked against the live specification on 26 August 2026: the requirements this case cites are unchanged, so only the version cited above was updated.<br><br>AUTOMATION: READY</p>\n",
+ "custom_atmstatus": 1,
+ "updated_on": 1787747722,
+ "created_by": 3
+}

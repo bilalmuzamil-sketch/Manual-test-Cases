@@ -1,0 +1,11 @@
+{
+ "id": 30508,
+ "title": "Remembers the \"as of\" date, filter selections, location, columns",
+ "refs": "SV-8664 (WIP spec v21 2026-08-17 S8-R7; report remembers the single as-of date per Chris 2026-08-13)",
+ "preconds": "1. You are signed in to the ShopView App on a desktop browser.\n2. The Work In Progress report is open.",
+ "steps": "1. Change the \"as of\" date, select an advisor, a customer, and an asset, change the location selection, change the column selection, and switch to a different tab.\n2. Navigate away to another screen, then return to the report.\n3. Reload the browser page and check again.\n4. If practical, open the report in a different browser (or private window) and read its settings.",
+ "expected": "1. On return and after a reload, the report restores the saved \"as of\" date, advisor selection, customer selection, asset selection, location selection, column selection, and active tab.\n2. In a different browser the report shows the defaults instead — the settings are saved per browser, not on the user's account.\n\n---\nThis is the expected behaviour as per epic SV-8582 and the Work In Progress report specification version 21 (S8-R7), both read on 17 August 2026.\n\nAUTOMATION: Not available on Build to test Yet - Last checked 8/17/2026",
+ "custom_atmstatus": 3,
+ "updated_on": 1786997991,
+ "created_by": 3
+}

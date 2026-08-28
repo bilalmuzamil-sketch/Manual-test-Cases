@@ -1,0 +1,11 @@
+{
+ "id": 30527,
+ "title": "Without reports access Work In Progress is absent from the navigation",
+ "refs": "SV-8657 (WIP spec v21 2026-08-17 Story 1 S1-N1 — the gate is the one ordinary reports access per Chris Ward Q2=A + QA lead 2026-08-03 \"ONE permission FOR NOW\")",
+ "preconds": "1. A test user exists whose role does NOT have reports access (assign the Tech user such a role; restore the original role afterward).\n2. You are signed in as that user on a desktop browser.",
+ "steps": "1. Open the reports navigation.\n2. Look for \"Work In Progress\" under the Performance group.",
+ "expected": "1. The report does not appear in the navigation for this user.\n\n---\nThis is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Work In Progress report specification version 21 (S1-N1), read on 17 August 2026.\n\nAUTOMATION: READY",
+ "custom_atmstatus": 3,
+ "updated_on": 1787059161,
+ "created_by": 3
+}

@@ -1,0 +1,11 @@
+{
+ "id": 30271,
+ "title": "All filter and view settings are restored before the first data fetch",
+ "refs": "SV-8640 (SBR spec v22 2026-08-17 Story 23 S23-R1; Story 20 S20-R5)",
+ "preconds": "1. You are on the report in a browser you can revisit.",
+ "steps": "1. Set a custom date range, \"Parts only,\" \"Paid,\" a specific location set, Show Unassigned on, hide two metric columns, and sort by Margin descending.\n2. Leave the report and return; also try a full page reload.\n3. Watch what data loads first.",
+ "expected": "1. Every setting is restored: date range (including the custom start/end), product type, invoice status, location, Show Unassigned, column visibility, and the active column sort (column + direction).\n2. The settings are restored BEFORE the first data fetch — the report does not fetch defaults first and then re-fetch.\n\n---\nThis is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Sales By Representative report specification version 22 (S23-R1, S20-R5), read on 17 August 2026.\n\nAUTOMATION: READY",
+ "custom_atmstatus": 3,
+ "updated_on": 1787127655,
+ "created_by": 3
+}

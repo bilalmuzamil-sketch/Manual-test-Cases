@@ -1,0 +1,11 @@
+{
+ "id": 27492,
+ "title": "CR-C3-037 — Customer + portal + reports",
+ "refs": "SV-7388",
+ "preconds": "<p>Permissions (counted): Customers V + Customer Portal + Reports. View Mode: Full unless noted. All other permissions OFF.</p>",
+ "steps": "<ol>\n<li>Create a custom role with the permissions listed in Preconditions; leave all others OFF.</li>\n<li>Assign the role to a test user and log in.</li>\n<li>Exercise each capability in Expected Result and confirm it succeeds (and that gated pricing is hidden where noted).</li>\n</ol>",
+ "expected": "<p>User CAN: See customers; manage customer-facing portal; access reports</p><hr/><p><strong>Risk / Rationale:</strong> Positive capability check — confirms this combination grants exactly the listed actions and nothing gated leaks.<br/><strong>Spec Ref:</strong> §1d+§2b+§2a</p>",
+ "custom_atmstatus": 1,
+ "updated_on": 1782992254,
+ "created_by": 1
+}

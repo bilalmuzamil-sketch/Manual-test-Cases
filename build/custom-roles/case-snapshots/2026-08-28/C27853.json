@@ -1,0 +1,11 @@
+{
+ "id": 27853,
+ "title": "Verify Office can create and edit any work order note",
+ "refs": "SV-5319,SV-8018",
+ "preconds": "1. Log in as a user with the Office role.\n2. The role has Work Orders > View turned ON.\n3. The role has Work Orders > Delete turned OFF.\n4. A work order exists that already has a note written by a DIFFERENT user (e.g., an Admin).",
+ "steps": "1. Open the work order.\n2. Click the Notes tab.\n3. Add a new note with some text and click Save.\n4. Edit the note you just created, change the text, and click Save.\n5. Find the note written by the DIFFERENT user.\n6. Click that note's menu and choose Edit.\n7. Change the text and click Save.",
+ "expected": "1. Your new note is created and appears in the Notes list.\n2. Editing your own note saves successfully and shows the updated text.\n3. The Edit option is also available on the other user's note (Work Orders > View now allows creating and editing ANY note for team collaboration).\n4. The edit to the other user's note saves successfully with no permission error.\n5. Known failure SV-8018 was raised in this area - retest.",
+ "custom_atmstatus": 1,
+ "updated_on": 1783273230,
+ "created_by": 3
+}

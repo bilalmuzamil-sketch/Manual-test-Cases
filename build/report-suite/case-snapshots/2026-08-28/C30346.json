@@ -1,0 +1,11 @@
+{
+ "id": 30346,
+ "title": "Info icons sit on Units Sold, Demand and Turns/Yr with descriptions",
+ "refs": "SV-8643 (PV spec v10 2026-08-17 S3-R6 — S3-R6 CLOSES the set (exactly three columns: Units Sold; Demand; Turns / Yr) and quotes each description verbatim; so the closed set and the exact strings ARE the requirement)",
+ "preconds": "1. You are on the Parts Velocity report with data loaded.\n2. The Turns/Yr column has been enabled via the column picker (it is hidden by default).",
+ "steps": "1. Look immediately to the right of the Units Sold, Demand, and Turns/Yr header labels.\n2. Hover each grey info icon and read the description.\n3. Move focus to an icon with the keyboard (Tab) and check the same text is exposed.\n4. Click/activate an icon and watch whether the column sort changes.",
+ "expected": "1. Each of the three headers carries a grey info icon, shown always (not hover-to-reveal) whenever its column is visible; the Turns/Yr icon appears only once that column is enabled.\n2. Units Sold shows exactly: \"Units taken out of inventory stock on invoiced work orders in this date range. This is stock movement, so it can differ from the units billed behind Revenue and Avg Sell.\"\n3. Demand shows exactly: \"Number of separate transactions (work orders or parts sales) this part appeared on in the selected date range. Each transaction counts once, no matter how many units were sold on it.\"\n4. Turns/Yr shows exactly: \"How many times you sell through this part in a year. Higher is better.\"\n5. The icon is focusable and exposes the same text to assistive technology; activating it does NOT trigger a column sort.\n6. No other column header carries an info icon.\n\n---\nThis is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Parts Velocity report specification version 10 (S3-R6), read on 17 August 2026.\n\nAUTOMATION: Not available on Build to test Yet - Last checked 8/17/2026",
+ "custom_atmstatus": 3,
+ "updated_on": 1787027046,
+ "created_by": 3
+}

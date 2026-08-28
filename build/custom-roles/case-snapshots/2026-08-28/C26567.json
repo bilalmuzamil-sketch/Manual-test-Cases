@@ -1,0 +1,11 @@
+{
+ "id": 26567,
+ "title": "Role create API persists templateId and viewMode columns",
+ "refs": "SV-7479,SV-7481",
+ "preconds": "Build with CRP-BE-04 + CRP-BE-06 deployed.",
+ "steps": "1. POST /api/roles with payload including name, fePermissions[], viewMode='tech', and templateId='system-foreman'.\n2. Inspect response status and body.\n3. GET the created role by ID via the list/view endpoint.\n4. Inspect templateId, viewMode in the returned RoleViewOutputDto.",
+ "expected": "Create returns 201 (or 200 per local convention). Subsequent GET returns templateId='system-foreman' and viewMode='tech' on the role DTO.",
+ "custom_atmstatus": 3,
+ "updated_on": 1781869311,
+ "created_by": 3
+}

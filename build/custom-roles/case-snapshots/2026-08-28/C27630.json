@@ -1,0 +1,11 @@
+{
+ "id": 27630,
+ "title": "Service Advisor - F. Inspection at 100 percent but not submitted shows Open",
+ "refs": "SV-7509 SV-8095",
+ "preconds": "<p>Logged in as Service Advisor. WO = View/Create&amp;Edit (no WO Delete) but WOL = V/E/D -> full inspection rights follow the LINE (SV-8095). An inspection can be filled to 100 percent without submitting.</p>\n",
+ "steps": "<ol>\n<li>Log in.</li>\n<li>Fill all inspection items to 100 percent but do NOT click Submit and Generate Report.</li>\n<li>Observe the inspection status on the line.</li>\n</ol>\n",
+ "expected": "<p>Step 2: All items show filled (100 percent).<br />Step 3: The inspection still shows \"Open\" (not \"Completed\") until Submit and Generate Report is clicked.</p>\n",
+ "custom_atmstatus": 3,
+ "updated_on": 1783433051,
+ "created_by": 3
+}

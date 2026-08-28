@@ -1,0 +1,11 @@
+{
+ "id": 30169,
+ "title": "Expanded CSV body: column set and order, Customer/Asset/Invoice tree, blanks",
+ "refs": "SV-8612 (SBC spec v20 2026-08-17 S14-R5; renamed to Labor Delta per SV-9071)",
+ "preconds": "1. You are on Sales By Customer with a view containing positive and negative Labor Delta values and, if seedable, a row whose Subtotal is zero or below.\n2. Nothing to install — this test reads a downloaded CSV as text.",
+ "steps": "1. Download \"Expanded View (CSV)\" from the ⋯ menu.\n2. Read the header row and compare it against the column list below.\n3. Walk the data rows for one customer: the customer row, its asset rows, and the invoice rows beneath them.\n4. Find a row whose Subtotal is zero or below and read its Margin % cell.",
+ "expected": "1. The Expanded CSV's header row carries the Expanded column set, in this exact order and with these labels — fourteen columns (Customer, Asset, Invoice #, Date, Labor Delta, Labor Invoiced, Labor Margin, Parts Invoiced, Parts Margin, Shop Supplies, Adjustments, Margin, Margin %, Subtotal) when the Location column is not shown on screen, plus the Location column immediately after Date whenever it is shown.\n2. The body contains the full Customer → Asset → Invoice breakdown: one customer row, its asset rows beneath it, and each asset's invoice rows beneath that.\n3. The Date cell is empty on customer rows and on asset rows, and carries the invoice date only on invoice rows — matching the screen.\n4. Margin % is an em dash on any row whose Subtotal is zero or below.\n5. The file carries the \"Locations:\" metadata line above the header row.\n\n---\nThis is the expected behaviour as per epic SV-8582 and the Sales By Customer report specification version 20 (S14-R5), both read on 17 August 2026. The column was renamed from \"Inv. Hrs\" to \"Labor Delta\" per SV-9071; only the name changed.\nLast checked against build v3.8-2bf8d14 on 8/18/2026.\n\nAUTOMATION: READY",
+ "custom_atmstatus": 1,
+ "updated_on": 1787082456,
+ "created_by": 3
+}

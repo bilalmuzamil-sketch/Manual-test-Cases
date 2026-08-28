@@ -1,0 +1,11 @@
+{
+ "id": 27808,
+ "title": "Verify Foreman can order a part on a work order line",
+ "refs": "SV-5319",
+ "preconds": "<p>Log in to ShopView as a user assigned the Foreman role. (this role has Order Parts ON).<br />At least one work order exists that contains labor and part lines with prices entered.</p>\n",
+ "steps": "<ol>\n<li>Open a work order line and open the parts actions.</li>\n<li>Click Order, select part/vendor/quantity, and confirm.</li>\n</ol>\n",
+ "expected": "<p>The part order is created successfully.</p>\n",
+ "custom_atmstatus": 1,
+ "updated_on": 1783108595,
+ "created_by": 3
+}

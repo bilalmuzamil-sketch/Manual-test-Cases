@@ -1,0 +1,11 @@
+{
+ "id": 27826,
+ "title": "Verify Technician can return a part from a work order line",
+ "refs": "SV-5319,SV-7838",
+ "preconds": "Log in to ShopView as a user assigned the Technician role.\nA work order line has a part that has been picked/received onto the line.\nNote: per spec v33, returning a part from a work order requires NO permission. (Distinct from the SV-7838 403 bug on completing returns.)",
+ "steps": "1. Open the work order line that has the part.\n2. Open the part's action menu, click Return, and confirm.",
+ "expected": "The part return completes successfully with no 403/permission error.",
+ "custom_atmstatus": 1,
+ "updated_on": 1783108595,
+ "created_by": 3
+}

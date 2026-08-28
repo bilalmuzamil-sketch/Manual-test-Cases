@@ -1,0 +1,11 @@
+{
+ "id": 30114,
+ "title": "Pinned control toggles All customers and Clear all; clearing shows empty state",
+ "refs": "SV-8616 (SBC spec v20 2026-08-17 Story 18 S18-R3; S18-N1; S17-E1)",
+ "preconds": "1. You are on the Sales By Customer report with several customers in the current results.",
+ "steps": "1. Open the Customer filter while it is in the all-customers state and read the pinned control at the top of the dropdown.\n2. Activate it (\"Clear all\") and read the table body, the totals row, and the filter's collapsed label.\n3. Read the pinned control again and activate it once more.",
+ "expected": "1. In the all-customers state the pinned control reads \"Clear all\"; activating it clears the selection to an empty set.\n2. When the filter is NOT in the all-customers state the pinned control reads \"All customers\"; activating it puts the filter back in the all-customers state.\n3. The control is pinned to the top of the dropdown in both states.\n4. After \"Clear all\": the report shows the empty-state message \"No sales data found for the selected filters.\" The collapsed label reads \"None\", and the totals row shows zeros.\n\n---\nThis is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Sales By Customer report specification version 20 (S18-R3, S18-N1, S17-E1), read on 17 August 2026.\nLast checked against build v3.8-2bf8d14 on 8/18/2026.\n\nAUTOMATION: READY",
+ "custom_atmstatus": 3,
+ "updated_on": 1787082839,
+ "created_by": 3
+}

@@ -1,0 +1,11 @@
+{
+ "id": 30328,
+ "title": "Type filter: single-select, first in row, three options, default Both; reloads",
+ "refs": "SV-8642 (PV spec v10 2026-08-17 S2-R1; S3-R5 — S2-R1 CLOSES the three Type options and the Both default; 'Catalogue'→'Special Order' per Chris Ward 2026-07-29 [newest-wins])",
+ "preconds": "1. You are on the Parts Velocity report with data loaded.\n2. This is a first visit (no saved view), so the first-visit defaults apply.\n3. Both inventory parts and special-order parts (the \"Special Order\" type) have sales activity in the selected date range.",
+ "steps": "1. Look at the first control in the filter row of the toolbar.\n2. Open the Type filter and read its options.\n3. Note which option is selected by default.\n4. Select each Type option in turn and watch the table.",
+ "expected": "1. The Type filter is the first control in the filter row.\n2. It is single-select and offers exactly three choices: Both, Inventory, and Special Order (special-order catalog parts that were never put into stock).\n3. On a first visit the default is Both.\n4. Both is an explicit selection returning inventory and Special Order rows together - a deliberate filter value, not the absence of a filter.\n5. Each selection immediately reloads the report limited to that type (no separate Apply step) - under Inventory every row's Type column reads Inventory; under Special Order every row's Type column reads Special Order; under Both, rows of both kinds appear.\n\n---\nThis is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Parts Velocity report specification version 10 (S2-R1, S3-R5), read on 17 August 2026.\n\nAUTOMATION: READY",
+ "custom_atmstatus": 3,
+ "updated_on": 1787058418,
+ "created_by": 3
+}

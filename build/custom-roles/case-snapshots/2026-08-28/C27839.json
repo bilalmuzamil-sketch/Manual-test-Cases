@@ -1,0 +1,11 @@
+{
+ "id": 27839,
+ "title": "Verify Parts Technician can see pricing on parts and work orders",
+ "refs": "SV-5319",
+ "preconds": "<p>Log in to ShopView as a user assigned the Parts Technician role. (this role has See Financial Data ON).<br />At least one work order exists that contains labor and part lines with prices entered.<br />Parts with prices exist.</p>\n",
+ "steps": "<ol>\n<li>Click Parts, open the Catalog, and check part prices.</li>\n<li>Click Work Orders, open a work order, and check line prices.</li>\n</ol>\n",
+ "expected": "<p>Prices are visible with actual amounts in both places.</p>\n",
+ "custom_atmstatus": 1,
+ "updated_on": 1783108595,
+ "created_by": 3
+}

@@ -1,0 +1,11 @@
+{
+ "id": 43546,
+ "title": "The back end serves SBC report data and export on ordinary reports access",
+ "refs": "SV-8582 (SBC spec v20 2026-08-12 S1-R2; S1-N1 — one reports permission gates both the report data and the download)",
+ "preconds": "<p>1. Two sign-ins are available: one user whose role has the ordinary reports access, and one whose role does not have it (for example a Foreman).<br>2. You need the browser's own developer tools so you can watch the requests the page makes: press F12 (or Ctrl+Shift+I; on a Mac Cmd+Option+I), open the \"Network\" tab, then reload the page. There is nothing to install &mdash; it is built into Chrome, Edge and Firefox. Each request in that list shows a small number that says whether it was allowed or refused.</p>\n",
+ "steps": "<p>1. Sign in as the user WITH ordinary reports access and open the Sales By Customer report; watch the Network tab as the report loads.<br>2. Still as that user, download the report; watch the Network tab again.<br>3. Sign out, sign in as the user WITHOUT reports access, and repeat both actions.</p>\n",
+ "expected": "<p>1. For the user WITH ordinary reports access, the report's data request is allowed (the Network tab shows the success number 200) and the report fills with rows.<br>2. For that same user, the download request is also allowed (success number 200) and a file is produced.<br>3. For the user WITHOUT reports access, the data request is refused (the Network tab shows the refusal number 403) and the screen reads \"Access denied.\" &mdash; no report data comes back.<br>4. For that same user, the download request is refused in the same way &mdash; no file is produced.<br><br>Note for the tester: one single permission controls all four of these. If you find the report data refused but the download allowed, or the other way round, that is a failure &mdash; write down the number shown for both.<br><br>This is the expected behaviour as per epic SV-8582 and the Sales By Customer report specification version 20 (S1-R2; S1-N1), read on 26 August 2026.<br>Last checked against build v3.8-da72171 on 8/19/2026.<br><br>AUTOMATION: READY</p>\n",
+ "custom_atmstatus": 1,
+ "updated_on": 1787747479,
+ "created_by": 3
+}

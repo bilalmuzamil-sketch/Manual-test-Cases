@@ -1,0 +1,11 @@
+{
+ "id": 29454,
+ "title": "Time Clock user is blocked from the Departments API",
+ "refs": null,
+ "preconds": "<ol>\n<li>A user is signed in with the system <strong>Time Clock</strong> role (Work Orders View, Schedule View, Timesheets View; View Mode none; every other permission OFF; read-only, can clock in/out).</li>\n<li>You have a way to send API requests to the backend (api.staging.shopview.com) as that signed-in Time Clock user.</li>\n</ol>",
+ "steps": "<ol>\n<li>Send GET /api/departments.</li>\n</ol>",
+ "expected": "<p>The request returns <strong>403 Forbidden</strong>.</p>\n<p>Reason: the Time Clock role has no Settings access.</p>\n",
+ "custom_atmstatus": 3,
+ "updated_on": 1784006688,
+ "created_by": 3
+}

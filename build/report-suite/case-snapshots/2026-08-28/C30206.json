@@ -1,0 +1,11 @@
+{
+ "id": 30206,
+ "title": "Product Type: three options, Parts & Service default, each option filters right",
+ "refs": "SV-8621 (SBR spec v22 2026-08-17 Story 3 S3-R1; S3-R2; S3-R3; S3-R4; S3-R5; S3-R6; S3-R7 — S3-R2 CLOSES the list itself (\"exactly three options\"); so the closed list IS the requirement)",
+ "preconds": "<ol>\n<li>A rep has both a P (parts) and an S (service) invoice in the range (seed ZZAUTOTEST data via the WO Sales Representative field).</li>\n<li>No remembered settings for this report (first visit or cleared storage), so the default can be read.</li>\n</ol>\n",
+ "steps": "<ol>\n<li>Find the \"Product Type\" dropdown in the toolbar; read its default value, then open it and read the options.</li>\n<li>Select \"Parts only,\" expand the rep, and read the invoice numbers.</li>\n<li>Select \"Service only\" and read them again.</li>\n<li>Select \"Parts &amp; Service.\"</li>\n</ol>\n",
+ "expected": "<ol>\n<li>The dropdown offers exactly three options: \"Parts &amp; Service,\" \"Parts only,\" \"Service only\" — with \"Parts &amp; Service\" as the default on first load.</li>\n<li>\"Parts only\" includes only invoices whose number starts with P.</li>\n<li>\"Service only\" includes only invoices whose number starts with S.</li>\n<li>\"Parts &amp; Service\" applies no product-type filter — both appear again.</li>\n<li>Each change re-fetches and re-renders the report.</li>\n</ol>\n\n<hr />\n\n<p>This is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Sales By Representative report specification version 22 (S3-R1, S3-R2, S3-R3, S3-R4, S3-R5, S3-R6, S3-R7), read on 17 August 2026.<br />Last checked against build v3.8-bd246fd on 8/18/2026.</p>\n\n<p>AUTOMATION: READY</p>\n",
+ "custom_atmstatus": 1,
+ "updated_on": 1787085283,
+ "created_by": 3
+}

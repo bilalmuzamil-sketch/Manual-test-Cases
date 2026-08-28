@@ -1,0 +1,11 @@
+{
+ "id": 26348,
+ "title": "The role name cannot be left empty when editing",
+ "refs": "SV-7501",
+ "preconds": "<ol>\n<li>You are editing an existing role.</li>\n</ol>",
+ "steps": "<ol>\n<li>Clear the Role name field.</li>\n<li>Try to Save.</li>\n</ol>",
+ "expected": "<p>A message 'Role name is a required field' appears under the 'Role name*' label.</p>\n<p>Save is blocked; the role cannot be saved with an empty name.</p>\n",
+ "custom_atmstatus": 3,
+ "updated_on": 1783942940,
+ "created_by": 3
+}

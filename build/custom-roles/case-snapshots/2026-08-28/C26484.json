@@ -1,0 +1,11 @@
+{
+ "id": 26484,
+ "title": "View and Manage AP/AR Data OFF still lets a user create invoices and take payments if Invoicing & payments allows it",
+ "refs": "SV-7524",
+ "preconds": "<ol>\n<li>A user has a role with Invoicing & payments View and Create & Edit, See Financial Data ON, and View and Manage AP/AR Data OFF.</li>\n</ol>",
+ "steps": "<ol>\n<li>Open a work order and create an invoice.</li>\n<li>Take a payment.</li>\n</ol>",
+ "expected": "<p>Both work.</p>\n<p>Only the AP/AR-specific views (tabs, reports, sensitive fields) are hidden; invoicing still works.</p>\n",
+ "custom_atmstatus": 3,
+ "updated_on": 1783942263,
+ "created_by": 3
+}

@@ -1,0 +1,11 @@
+{
+ "id": 27565,
+ "title": "CR-BRK-010 — Pick/Order/Review with WO View only (no WO Edit) — over-gating",
+ "refs": "SV-7388; SV-7861",
+ "preconds": "<p>WO V \\u2713 | Pick Parts \\u2713 | Order Parts \\u2713 | Review WOs \\u2713 | WO Edit \\u2717 | View Mode: Full (View Mode as specified).</p>",
+ "steps": "<ol>\n<li>Configure a custom role per the Setup in Preconditions; assign to a test user and log in.</li>\n<li>Pick a part; place a PO; review a WO — all without WO Edit.</li>\n</ol>",
+ "expected": "<p>All three sub-settings require only WO View, NOT WO Edit (§1a + Key Decision 'WO sub-settings require View, not Edit'). All function without WO Edit.</p><hr/><p><strong>Risk / Rationale:</strong> System demands WO Edit and blocks these actions — over-gating.<br/><strong>Spec Ref:</strong> §1a WO sub-settings; Key Decisions</p>",
+ "custom_atmstatus": 3,
+ "updated_on": 1783156863,
+ "created_by": 1
+}

@@ -1,0 +1,11 @@
+{
+ "id": 30549,
+ "title": "Margin is Total Sell minus Total Cost for the whole on-hand quantity",
+ "refs": "SV-8670 (IV spec v10 2026-08-17 Story 3 S3-R8; §3 Key Decisions (extended margin); §4 Terminology)",
+ "preconds": "1. You are signed in to the ShopView App on a desktop browser.\n2. A ZZAUTOTEST in-stock part exists with a quantity greater than 1 and different unit cost and unit sell values.\n3. The Margin and Total Sell columns are turned on.",
+ "steps": "1. Open the Inventory Value report and find the part's row.\n2. Subtract Total Cost from Total Sell and compare to the Margin cell.\n3. Also compute the per-unit difference (Unit Sell − Unit Cost) and confirm Margin is NOT that per-unit figure.",
+ "expected": "1. Margin equals Total Sell − Total Cost for the part's whole on-hand quantity, shown as US-dollar currency.\n2. Margin is the extended (total) margin, not the per-unit difference.\n\n---\nThis is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Inventory Value report specification version 10 (S3-R8), read on 17 August 2026.\nLast checked against build v3.8-bd246fd on 8/18/2026.\n\nAUTOMATION: READY",
+ "custom_atmstatus": 1,
+ "updated_on": 1787095715,
+ "created_by": 3
+}

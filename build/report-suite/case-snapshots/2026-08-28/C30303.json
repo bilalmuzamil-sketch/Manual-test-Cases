@@ -1,0 +1,11 @@
+{
+ "id": 30303,
+ "title": "On a phone the table scrolls sideways with Subtotal pinned outside it",
+ "refs": "SV-8634 (SBR spec v22 2026-08-17 Story 17 S17-R4; S17-R5; Story 10 S10-R5 (mobile))",
+ "preconds": "<p>1. The report is open on a phone-sized viewport (under 1024px) with at least one rep row..</p>",
+ "steps": "<p>1. Swipe the data table sideways and watch the Subtotal column.<br>2. Look below the table for the totals bar and swipe the table again.<br>3. Tap a rep row's chevron.</p>",
+ "expected": "<p>1. The table scrolls horizontally to expose all columns; the pinned Subtotal column stays visible at the right edge throughout.<br>2. The mobile external totals bar (\"Totals\" left, grand Subtotal right) sits below the table, OUTSIDE the horizontal scroll container &mdash; it does not scroll horizontally and is always fully visible.<br>3. The chevron expands/collapses the rep on touch.<br><br>---<br>This is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Sales By Representative report specification version 24 (S17-R4, S17-R5, S10-R5), read on 17 August 2026.<br>Last checked against build v3.8-b7d80dc on 8/19/2026.<br>Re-checked against the live specification on 26 August 2026: the requirements this case cites are unchanged, so only the version cited above was updated.<br><br>AUTOMATION: READY</p>\n",
+ "custom_atmstatus": 1,
+ "updated_on": 1787747730,
+ "created_by": 3
+}

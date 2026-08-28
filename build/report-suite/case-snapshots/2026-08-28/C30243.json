@@ -1,0 +1,11 @@
+{
+ "id": 30243,
+ "title": "First header click sorts ascending; second descending; no third state",
+ "refs": "SV-8628 (SBR spec v22 2026-08-17 Story 11 S11-R5; Story 23 S23-R5)",
+ "preconds": "<p>1. Several reps are on the report in the A→Z default..</p>",
+ "steps": "<p>1. Click the Subtotal header once and read the order and the direction indicator.<br>2. Click it again.<br>3. Click it a third time.<br>4. Try to get back to the A→Z order using only the column headers.</p>",
+ "expected": "<p>1. The first click sorts Subtotal ASCENDING and shows an ascending direction indicator on the header.<br>2. The second click toggles to DESCENDING.<br>3. There is no third \"cleared\" state &mdash; the third click returns to ascending.<br>4. Via the column headers there is no way back to A&rarr;Z; the A&rarr;Z default shows only when a session carries no valid saved financial sort.<br><br>---<br>This is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Sales By Representative report specification version 24 (S11-R5, S23-R5), read on 17 August 2026.<br>Last checked against build v3.8-b7d80dc on 8/19/2026.<br>Re-checked against the live specification on 26 August 2026: the requirements this case cites are unchanged, so only the version cited above was updated.<br><br>AUTOMATION: READY</p>\n",
+ "custom_atmstatus": 1,
+ "updated_on": 1787747684,
+ "created_by": 3
+}

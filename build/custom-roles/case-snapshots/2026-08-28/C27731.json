@@ -1,0 +1,11 @@
+{
+ "id": 27731,
+ "title": "Legacy 'Owner' users become 'Administrator' after migration (Owner merged into Admin)",
+ "refs": "SV-7527",
+ "preconds": "<ol>\n<li>Migration to the new roles is complete.</li>\n<li>At least one existing user who had the legacy 'Owner' role is present.</li>\n</ol>",
+ "steps": "<ol>\n<li>Go to Settings &gt; Staff and find a user who previously had the 'Owner' role.</li>\n<li>Check the user's assigned role.</li>\n<li>Go to Settings &gt; Roles &amp; Permissions and open the Administrator role.</li>\n</ol>",
+ "expected": "<p>The user's role is 'Administrator'. There is no separate 'Owner' role - Owner is merged into Administrator.</p>\n<p>The Administrator role is editable (it has a pencil icon), except it cannot be changed to lose access to the admin pages.</p>\n<p>Only Office User and Time Clock User are fully non-editable.</p>",
+ "custom_atmstatus": null,
+ "updated_on": 1784013361,
+ "created_by": 3
+}

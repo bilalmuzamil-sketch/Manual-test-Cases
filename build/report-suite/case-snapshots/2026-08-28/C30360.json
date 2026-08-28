@@ -1,0 +1,11 @@
+{
+ "id": 30360,
+ "title": "Special Order Units Sold = in-window request quantity, net of reversals",
+ "refs": "SV-8645 (PV spec v10 2026-08-17 S5-R2; S5-R4 (Units Sold; catalogue); S5-R4b)",
+ "preconds": "<p>1. A special-order (vendor-sourced) part is requested on invoiced or paid work orders in the window - e.g. 3 units on one work order and 2 on another.<br>2. One further in-window sale of the same special-order part has been reversed/voided..</p>",
+ "steps": "<p>1. Find the special-order part's row and read Units Sold.<br>2. Compare against the sum of the in-window vendor-request quantities, leaving out the reversed sale.</p>",
+ "expected": "<p>1. Units Sold equals the total quantity across the part's in-window vendor requests (3 + 2 = 5.00 in the example), summed across the selected locations.<br>2. The reversed/voided sale is EXCLUDED from the total (net of reversals).<br>3. Only requests on work orders at status Invoiced or Paid count; the window is anchored to the work-order date.<br><br>---<br>This is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Parts Velocity report specification version 11 (S5-R2, S5-R4, S5-R4b), read on 17 August 2026.<br>Last checked against build v3.8-d0e135e on 8/19/2026.<br>Re-checked against the live specification on 26 August 2026: the requirements this case cites are unchanged, so only the version cited above was updated.<br><br>AUTOMATION: READY</p>\n",
+ "custom_atmstatus": 1,
+ "updated_on": 1787747803,
+ "created_by": 3
+}

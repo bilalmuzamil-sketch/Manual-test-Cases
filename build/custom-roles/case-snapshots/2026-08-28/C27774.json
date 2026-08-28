@@ -1,0 +1,11 @@
+{
+ "id": 27774,
+ "title": "Verify Service Manager can edit work order header fields",
+ "refs": "SV-5319",
+ "preconds": "Log in to ShopView as a user assigned the Service Manager role. (header fields are gated by Work Orders: Create and Edit per spec v33; this role has it).\nAt least one work order exists.",
+ "steps": "1. Open a work order.\n2. In the header, change the Customer and save.\n3. Change the Asset and save.\n4. Change the Lead Technician and save.",
+ "expected": "All header edits are allowed and save successfully with no permission error.",
+ "custom_atmstatus": 1,
+ "updated_on": 1783108595,
+ "created_by": 3
+}

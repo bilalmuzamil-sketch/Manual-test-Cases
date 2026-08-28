@@ -1,0 +1,11 @@
+{
+ "id": 30109,
+ "title": "Location filter: rightmost, lists accessible locations, All locations on top",
+ "refs": "SV-8603 (SBC spec v20 2026-08-17 Story 4 S4-R1; S4-R2; S4-R3 + single-location filter HIDDEN per Chris Ward answer 2026-07-31 Q1=A; applied suite-wide)",
+ "preconds": "<p>1. You are on the Sales By Customer report as a user with access to two or more locations.</p>\n",
+ "steps": "<p>1. Look at the report toolbar's filters from left to right.<br>2. Open the location filter and read its options.<br>3. Click the \"All locations\" option, then click it again.<br>4. Then sign in as a user with access to only ONE location, open the report and look for the Location filter again.</p>\n",
+ "expected": "<p>1. The location filter is the rightmost filter in the toolbar.<br>2. It lists the locations the signed-in user has access to.<br>3. An \"All locations\" option is pinned to the top.<br>4. Activating \"All locations\" selects every listed location at once; activating it again clears them all at once.<br>5. For a user with access to only one location the Location filter is NOT shown at all &mdash; the report simply shows that one location's data.<br><br>---<br>This is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Sales By Customer report specification version 20 (S4-R1, S4-R2, S4-R3), read on 17 August 2026. Chris Ward confirmed this on 8/5/2026 in his answers in this file: https://docs.google.com/spreadsheets/d/1x8cuYJlFsDHalVZZTh156_ZCq2gcOaGY/edit?usp=sharing&amp;ouid=106388879401921597782&amp;rtpof=true&amp;sd=true, read on 17 August 2026<br>Last checked against build v3.8-da72171 on 8/19/2026.<br><br>AUTOMATION: READY</p>\n",
+ "custom_atmstatus": 1,
+ "updated_on": 1787140858,
+ "created_by": 3
+}

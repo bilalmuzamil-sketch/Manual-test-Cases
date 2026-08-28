@@ -1,0 +1,11 @@
+{
+ "id": 26393,
+ "title": "Work order lines are read-only when Create & Edit is OFF",
+ "refs": "SV-7509",
+ "preconds": "<ol>\n<li>A user has a role with Work orders View and Work order lines Create & Edit OFF.</li>\n</ol>",
+ "steps": "<ol>\n<li>Open a work order.</li>\n<li>Look at the lines; try to edit fields and to add a new line.</li>\n</ol>",
+ "expected": "<p>There is no Add line option.</p>\n<p>Existing line fields are read-only.</p>\n",
+ "custom_atmstatus": 3,
+ "updated_on": 1783943423,
+ "created_by": 3
+}

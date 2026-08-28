@@ -1,0 +1,11 @@
+{
+ "id": 26568,
+ "title": "BE rejects role create with unknown bundle code",
+ "refs": "SV-7479,SV-7500",
+ "preconds": "Authenticated as a user with role-create permission.",
+ "steps": "1. POST /api/roles with name='QA Bad Bundle' and fePermissions=['WORK_ORDERS_VIEW', 'NOT_A_REAL_BUNDLE'].\n2. Inspect response status.\n3. Inspect response body for error detail.",
+ "expected": "Status 400 (or 422). Body identifies 'NOT_A_REAL_BUNDLE' as unknown. Role is NOT created (verify by listing roles).",
+ "custom_atmstatus": 3,
+ "updated_on": 1781869312,
+ "created_by": 3
+}

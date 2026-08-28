@@ -1,0 +1,11 @@
+{
+ "id": 26565,
+ "title": "GET /api/auth/me/fe-permissions reflects the user's actual role bundles (system-admin)",
+ "refs": "SV-7481,SV-7526",
+ "preconds": "User on system-admin role.",
+ "steps": "1. Authenticate as the system-owner user.\n2. Hit GET /api/auth/me/fe-permissions.\n3. Inspect fePermissions array.\n4. Compare against the Administrator matrix row in tech plan §3c (Owner row removed per spec 6/10 — Admin now has the full access matrix): all 9 CRUD areas View/Edit/Delete, WO subs Review/Pick/Order, Page toggles Reports/CustPortal/Billing/PartsDept, Settings + all 6 subs, viewMode='full', all 3 cross-toggles ON.",
+ "expected": "fePermissions contains: WORK_ORDERS_VIEW/EDIT/DELETE, WORK_ORDER_LINES_EDIT/DELETE, SCHEDULE_VIEW/EDIT/DELETE, CUSTOMERS_VIEW/EDIT/DELETE, PART_SALES_VIEW/EDIT/DELETE, CATALOG_INVENTORY_VIEW/EDIT/DELETE, VENDOR_ORDER_VIEW/EDIT/DELETE, INVOICING_VIEW/EDIT/DELETE, TIMESHEETS_VIEW/EDIT, WO_REVIEW, WO_PICK_PARTS, WO_ORDER_PARTS, REPORTS, CUSTOMER_PORTAL, BILLING_PORTAL, PARTS_DEPARTMENT, SETTINGS, SETTINGS_APP/SERVICE/PARTS/FINANCE/DATA_IMPORT/WAGES, SEE_FINANCIAL_DATA, SEE_AP_AR_DATA, VIEW_HISTORY_LOGS. viewMode='full'. crossToggles all true.",
+ "custom_atmstatus": 3,
+ "updated_on": 1782555088,
+ "created_by": 3
+}

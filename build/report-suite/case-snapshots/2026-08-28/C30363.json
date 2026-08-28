@@ -1,0 +1,11 @@
+{
+ "id": 30363,
+ "title": "Sold (WO) counts Service work orders, Sold (Parts Sale) counts Parts",
+ "refs": "SV-8645 (PV spec v10 2026-08-17 S5-R4 (Sold via WO / Sold via Parts Sale); §5 Assumptions)",
+ "preconds": "<p>1. A part sold in the window on an invoiced SERVICE work order (e.g. 4 units) and on an invoiced PARTS SALE / Parts-type work order created in Parts → Parts Sale (e.g. 3 units).<br>2. The Sold (WO) and Sold (Parts Sale) columns are enabled..</p>",
+ "steps": "<p>1. Read the part's Sold (WO) value.<br>2. Read the part's Sold (Parts Sale) value.<br>3. Move the date range so the work orders' end dates fall outside the window and re-read both.</p>",
+ "expected": "<p>1. Sold (WO) shows the total part quantity on Service-type invoiced/paid work orders whose work-order date is in the window (4.00 in the example), net of reversed/voided sales.<br>2. Sold (Parts Sale) shows the total on Parts-type invoiced/paid work orders (counter sales) in the window (3.00), net of reversed/voided sales.<br>3. Both are windowed by the WORK-ORDER date (its end date) - with the range moved off those dates, both drop out.<br>4. Both workflows feed the report - a parts sale is a separate workflow from a service work order but counts fully.<br><br>---<br>This is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Parts Velocity report specification version 11 (S5-R4), read on 17 August 2026.<br>Last checked against build v3.8-d0e135e on 8/19/2026.<br>Re-checked against the live specification on 26 August 2026: the requirements this case cites are unchanged, so only the version cited above was updated.<br><br>AUTOMATION: READY</p>\n",
+ "custom_atmstatus": 1,
+ "updated_on": 1787747806,
+ "created_by": 3
+}

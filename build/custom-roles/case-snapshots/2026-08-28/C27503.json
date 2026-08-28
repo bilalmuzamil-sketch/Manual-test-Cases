@@ -1,0 +1,11 @@
+{
+ "id": 27503,
+ "title": "CR-C3-048 — Parts config + integrations",
+ "refs": "SV-7388",
+ "preconds": "<p>Permissions (counted): Settings + Parts + Integrations (under Settings &gt; Finance). View Mode: Full unless noted. All other permissions OFF.</p>",
+ "steps": "<ol><li>Create a custom role with the permissions listed in Preconditions; leave all others OFF.</li><li>Assign the role to a test user and log in.</li><li>Exercise each capability in Expected Result and confirm it succeeds (and that gated pricing is hidden where noted).</li></ol>",
+ "expected": "<p>User CAN: Access Administration; parts settings; QuickBooks/IBS/Open API</p><hr><p><strong>Risk / Rationale:</strong> Positive capability check — confirms this combination grants exactly the listed actions and nothing gated leaks. See Flag / Note.<br><strong>Spec Ref:</strong> §3<br><strong>Flag / Note:</strong> \\u26a0 Integrations sub-setting new in v31; not yet in matrix sub-toggle table — verify</p>",
+ "custom_atmstatus": 1,
+ "updated_on": 1783357394,
+ "created_by": 1
+}

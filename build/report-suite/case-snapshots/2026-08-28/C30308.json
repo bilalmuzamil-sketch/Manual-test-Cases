@@ -1,0 +1,11 @@
+{
+ "id": 30308,
+ "title": "Chevrons and sortable headers are keyboard-operable and expose their state",
+ "refs": "SV-8635 (SBR spec v22 2026-08-17 Story 18 S18-R10)",
+ "preconds": "<p>1. You are on the report with at least two rep rows; a screen reader or accessibility inspector is available.<br>2. Part of this test checks what a blind user would hear, so you need a screen reader. On Windows install NVDA — it is free, from nvaccess.org. On a Mac use VoiceOver, which is already built in (Cmd+F5 turns it on and off). Alternatively the browser's developer tools (F12) have an \"Accessibility\" panel that shows the same names without you having to listen to anything..</p>",
+ "steps": "<p>1. Tab to a rep row's chevron; press Enter, then Space.<br>2. Tab to a financial column header; press Enter, then Space.<br>3. Inspect what state each control exposes to assistive technology.</p>",
+ "expected": "<p>1. The row chevrons and the sortable column headers are keyboard-focusable and activate on Enter and on Space.<br>2. A chevron exposes its expanded/collapsed state to assistive technology.<br>3. A sortable header exposes its current sort state (unsorted / ascending / descending) to assistive technology.<br><br>---<br>This is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Sales By Representative report specification version 24 (S18-R10), read on 17 August 2026.<br>Last checked against build v3.8-b7d80dc on 8/19/2026.<br>Re-checked against the live specification on 26 August 2026: the requirements this case cites are unchanged, so only the version cited above was updated.<br><br>AUTOMATION: READY</p>\n",
+ "custom_atmstatus": 1,
+ "updated_on": 1787747736,
+ "created_by": 3
+}

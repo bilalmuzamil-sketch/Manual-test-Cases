@@ -1,0 +1,11 @@
+{
+ "id": 27537,
+ "title": "CR-PAY-032 — WO + part-sales + invoice view",
+ "refs": "SV-7388",
+ "preconds": "<p>Permissions (counted): WO View + Part Sales V+E + Invoicing V. Auto-gate forced ON (not counted): Parts Dept + See Fin. View Mode: Full unless noted. All other permissions OFF.</p>",
+ "steps": "<ol><li>Create a custom role with the permissions listed in Preconditions; leave all others OFF.</li><li>Assign the role to a test user and log in.</li><li>Exercise each capability in Expected Result and confirm it succeeds (and that gated pricing is hidden where noted).</li></ol>",
+ "expected": "<p>User CAN: See WOs; part sales; Return Parts on a PS; view Finance tabs on WO and PS with all financial data.</p><hr><p><strong>Risk / Rationale:</strong> Positive capability check — confirms this combination grants exactly the listed actions and nothing gated leaks. See Flag / Note.<br><strong>Spec Ref:</strong> §1a+§1e+§1h<br><strong>Flag / Note:</strong> \\u26a0 payment collection needs Invoicing E (only View here)</p>",
+ "custom_atmstatus": 1,
+ "updated_on": 1783360997,
+ "created_by": 1
+}

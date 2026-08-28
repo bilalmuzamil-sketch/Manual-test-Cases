@@ -1,0 +1,11 @@
+{
+ "id": 30575,
+ "title": "Selecting one, several, or all locations reloads the report scoped to that set",
+ "refs": "SV-8674 (IV spec v10 2026-08-17 Story 7 S7-R3 + on-screen location-scope indicator per Chris Ward group message 2026-07-29 (chris-update-2026-07-29/chris-message-2026-07-29.md; NEWEST source; last-update-wins))",
+ "preconds": "1. You are signed in to the ShopView App on a desktop browser as a user with access to at least two locations.\n2. In-stock parts exist at both locations.",
+ "steps": "1. With one location selected, note the rows and totals.\n2. Add the second location and watch the data area.\n3. Use \"All locations\", then narrow back to one.",
+ "expected": "1. Each selection change reloads the report scoped to the selected set.\n2. With both locations selected, parts from both appear (one row per part per location) and the totals cover both.\n\n---\nThis is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Inventory Value report specification version 10 (S7-R3), read on 17 August 2026.\nLast checked against build v3.8-bd246fd on 8/18/2026.\n\nAUTOMATION: READY",
+ "custom_atmstatus": 1,
+ "updated_on": 1787095740,
+ "created_by": 3
+}

@@ -1,0 +1,11 @@
+{
+ "id": 30481,
+ "title": "Labor Delta shows quoted minus worked hours; signed to one decimal",
+ "refs": "SV-8660 (WIP spec v22 2026-08-18 S4-R23,S4-R24,S4-E2; heading renamed to Labor Delta per SV-9071)",
+ "preconds": "<ol><li>You are signed in to the ShopView App on a desktop browser.</li><li>The Labor Delta column is turned on.</li><li>The report shows: a job under its labor estimate (fewer hours clocked than quoted), a job that has overrun its estimate (more hours clocked than quoted), and a job at exactly its quote.</li></ol>",
+ "steps": "<ol><li>Read the Labor Delta value of the under-estimate job.</li><li>Read the Labor Delta value of the overrun job.</li><li>Read the Labor Delta value of the exactly-on-quote job.</li></ol>",
+ "expected": "<p>1. Labor Delta shows the quoted labor hours minus the worked (clocked) labor hours across the approved lines, as a signed number with one decimal place — for example \"+2.0\" or \"-14.0\".<br>2. On screen it is colored green when positive and red when negative; the overrun job shows a negative red value, the under-estimate job a positive green value.<br>3. A value of exactly zero shows unsigned as \"0.0\" (never \"+0.0\" or blank) in the default text color.</p><p>---<br>This is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Work In Progress report specification version 28 (S4-R23, S4-R24, S4-E2), read on 18 August 2026. The column was renamed from \"Inv. Hrs\" to \"Labor Delta\" per SV-9071; only the name changed.<br>Last checked against build v3.8-bd246fd on 8/18/2026.<br>Re-checked against the live specification on 26 August 2026: the requirements this case cites are unchanged, so only the version cited above was updated.</p><p>AUTOMATION: READY</p>",
+ "custom_atmstatus": 1,
+ "updated_on": 1787754939,
+ "created_by": 3
+}

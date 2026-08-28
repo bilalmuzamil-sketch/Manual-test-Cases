@@ -1,0 +1,11 @@
+{
+ "id": 30599,
+ "title": "Long Description; Category and Vendor truncate on hover; Part # never does",
+ "refs": "SV-8679 (IV spec v10 2026-08-17 Story 12 S12-R6)",
+ "preconds": "1. You are signed in to the ShopView App on a desktop browser.\n2. A ZZAUTOTEST part exists with a very long description (and, if possible, long category/vendor names) and a long part number.",
+ "steps": "1. Narrow the browser window (or turn on more columns) so the text columns overflow.\n2. Read the long Description, Category, and Vendor cells and hover each.\n3. Read the long Part # cell.",
+ "expected": "1. Long text values (Description, Category, Vendor) are truncated with an ellipsis when they overflow their column.\n2. The full value is available on hover.\n3. The Part # is never truncated.\n\n---\nThis is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Inventory Value report specification version 10 (S12-R6), read on 17 August 2026.\nLast checked against build v3.8-bd246fd on 8/18/2026.\n\nAUTOMATION: READY",
+ "custom_atmstatus": 1,
+ "updated_on": 1787095683,
+ "created_by": 3
+}

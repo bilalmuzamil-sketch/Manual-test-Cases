@@ -1,0 +1,11 @@
+{
+ "id": 26375,
+ "title": "Work orders Create & Edit lets the user create and change work orders",
+ "refs": "SV-7506,SV-7507",
+ "preconds": "<ol>\n<li>A user has a role with Work orders View and Create & Edit (no Delete).</li>\n</ol>",
+ "steps": "<ol>\n<li>Log in and open Work Orders.</li>\n<li>Click the create-new button.</li>\n<li>Fill the required fields (customer, asset).</li>\n<li>Save.</li>\n<li>Open the saved work order and change the status, lead technician and service advisor.</li>\n<li>Save.</li>\n<li>Look for a delete option.</li>\n</ol>",
+ "expected": "<p>The Create button is shown.</p>\n<p>The new work order is created.</p>\n<p>The edits are saved.</p>\n<p>There is no delete option.</p>\n",
+ "custom_atmstatus": 3,
+ "updated_on": 1783943591,
+ "created_by": 3
+}

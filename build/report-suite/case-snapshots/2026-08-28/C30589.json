@@ -1,0 +1,11 @@
+{
+ "id": 30589,
+ "title": "Export number formats: money to 2 decimals; Margin % to 1 with em-dash",
+ "refs": "SV-8677 (IV spec v10 2026-08-17 Story 10 S10-R7 (+ context note))",
+ "preconds": "1. You are signed in to the ShopView App on a desktop browser.\n2. The current view includes money values over $1,000 and, if producible, a part whose Margin % is undefined (\"—\").",
+ "steps": "1. Download the CSV and open it in a plain-text editor; read the money and Margin % values.\n2. Download the PDF and read the same values.",
+ "expected": "1. Money uses two decimals and Margin % one decimal in both files; an undefined Margin % shows \"—\".\n2. In the CSV, money values are written as plain numbers with two decimals and NO thousands separators (so they parse cleanly in a spreadsheet).\n3. The PDF uses the same on-screen currency formatting with the \"$\" and thousands separators.\n\n---\nThis is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Inventory Value report specification version 10 (S10-R7), read on 17 August 2026.\nLast checked against build v3.8-bd246fd on 8/18/2026.\n\nAUTOMATION: READY",
+ "custom_atmstatus": 1,
+ "updated_on": 1787095643,
+ "created_by": 3
+}

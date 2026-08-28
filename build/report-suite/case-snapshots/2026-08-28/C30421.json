@@ -1,0 +1,11 @@
+{
+ "id": 30421,
+ "title": "One control in the table header expands or collapses all technician rows",
+ "refs": "SV-8651 (TU spec v9 2026-08-17 S4-R4; S8-R12; S8-R3)",
+ "preconds": "1. You are on the Technician Utilization report with several technician rows loaded.\n2. Part of this test checks what a blind user would hear, so you need a screen reader. On Windows install NVDA — it is free, from nvaccess.org. On a Mac use VoiceOver, which is already built in (Cmd+F5 turns it on and off). Alternatively the browser's developer tools (F12) have an \"Accessibility\" panel that shows the same names without you having to listen to anything.",
+ "steps": "1. Find the expand/collapse-all control in the table's header row (in the Technician column) and read its accessible name.\n2. With all rows collapsed, activate it.\n3. Collapse ONE row manually, then activate the control again.\n4. With every row expanded, activate it once more.",
+ "expected": "1. The control lives in the table's header row (Technician column) - NOT in the toolbar action cluster.\n2. If ANY row is collapsed, activating it expands ALL rows; only when EVERY row is already expanded does it collapse all rows (so step 3's activation re-expands the one collapsed row).\n3. Its accessible name reflects the next action: \"Expand all technicians\" when it will expand, \"Collapse all technicians\" when every row is already expanded.\n4. It is keyboard-focusable, toggles on Enter/Space, and exposes its state to assistive technology.\n\n---\nThis is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Technician Utilization report specification version 9 (S4-R4, S8-R12, S8-R3), read on 17 August 2026.\nLast checked against build v3.8-bd246fd on 8/18/2026.\n\nAUTOMATION: READY",
+ "custom_atmstatus": 1,
+ "updated_on": 1787089702,
+ "created_by": 3
+}

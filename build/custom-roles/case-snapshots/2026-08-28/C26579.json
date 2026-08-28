@@ -1,0 +1,11 @@
+{
+ "id": 26579,
+ "title": "Atom-diff CLI: post-migration atom set is ⊇ matrix-intended (no widening)",
+ "refs": "SV-7483,SV-7527",
+ "preconds": "Test tenant on the pre-migration build. CRP-BE-08 atom-diff CLI script is available.",
+ "steps": "1. Run the atom-diff CLI in pre-migration mode. Capture the per-role atom set output.\n2. Run the migration on the test tenant.\n3. Run the atom-diff CLI in post-migration mode.\n4. For each of the 11 system roles, diff pre vs post.\n5. For each role, compare the post-migration atom set against the tech plan §3c matrix row's intended capability set.\n6. Fail if any role's post-migration set is WIDER than the matrix-intended set (over-grant) or NARROWER than expected for a role that should preserve a legacy capability.",
+ "expected": "Atom-diff CLI completes with exit 0. No role's post-migration set is wider than the matrix-intended set. The CLI's output is captured as a release-gate artifact.",
+ "custom_atmstatus": 1,
+ "updated_on": 1781700796,
+ "created_by": 3
+}

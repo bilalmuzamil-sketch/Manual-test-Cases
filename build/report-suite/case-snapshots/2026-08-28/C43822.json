@@ -1,0 +1,11 @@
+{
+ "id": 43822,
+ "title": "Adjustments column appears between Shop Supplies and Margin",
+ "refs": "SV-9280 (SBC spec v20 2026-08-12 S7-R6 — Adjustments in the financial column order between Shop Supplies and Margin)",
+ "preconds": "1. You are signed in to the ShopView App on a desktop browser.\n2. A customer has at least one invoice carrying an invoice-level fee or discount in the selected date range.",
+ "steps": "1. Open the Sales By Customer report.\n2. Look at the financial columns left to right.",
+ "expected": "1. The financial columns appear in this order: Labor Delta, Labor Invoiced, Labor Margin, Parts Invoiced, Parts Margin, Shop Supplies, Adjustments, Margin, Margin %.\n2. \"Adjustments\" sits between \"Shop Supplies\" and \"Margin\".\n\n---\nThis is the expected behaviour as per epic SV-8582, read on 17 August 2026, and story SV-9280, and the Sales By Customer report specification version 20 (S7-R6), read on 17 August 2026.\nLast checked against build v3.8-2bf8d14 on 8/18/2026.\n\nAUTOMATION: READY",
+ "custom_atmstatus": 1,
+ "updated_on": 1787082439,
+ "created_by": 3
+}

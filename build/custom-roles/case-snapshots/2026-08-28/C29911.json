@@ -1,0 +1,11 @@
+{
+ "id": 29911,
+ "title": "See Financial Data OFF: the WO Fees & Discounts card is hidden entirely",
+ "refs": "SV-8430",
+ "preconds": "<ol>\n<li>The FeesAndDiscounts feature flag is ON for the organization.</li>\n<li>A work order with a whole-WO flat fee exists in the admin's default workplace.</li>\n<li>A user is assigned a custom role that has See Financial Data OFF, View mode set to Full View, and Work orders View.</li>\n</ol>",
+ "steps": "<ol>\n<li>As an admin (See Financial Data ON), confirm the work order carries the fee — the Fees &amp; Discounts card would render for a permitted user.</li>\n<li>Log in as the restricted user and open that work order's Lines tab directly.</li>\n<li>Wait for the work order lines table to render.</li>\n<li>Look for the Fees &amp; Discounts card in the sidebar.</li>\n</ol>",
+ "expected": "<p>The Fees &amp; Discounts card is not rendered at all — no card title, no adjustment names, no rate badges, no amounts. The whole card is gated on See Financial Data (SV-8430), not just its money figures.</p>",
+ "custom_atmstatus": 3,
+ "updated_on": 1784552128,
+ "created_by": 1
+}

@@ -1,0 +1,11 @@
+{
+ "id": 30585,
+ "title": "Money and numeric columns sort by value; text columns sort as text",
+ "refs": "SV-8676 (IV spec v10 2026-08-17 Story 9 S9-R3)",
+ "preconds": "1. You are signed in to the ShopView App on a desktop browser.\n2. In-stock parts exist with money values over and under $1,000 and with text values in mixed letter cases.",
+ "steps": "1. Sort by Total Cost and check the order of values like $900.00 vs $1,100.00.\n2. Sort by Qty and check the numeric order.\n3. Sort by Description (or Vendor) and check how differently-cased values order.",
+ "expected": "1. Money and numeric columns sort by their underlying value (so $1,100.00 is treated as more than $900.00, not compared as text).\n2. Text columns (Part #, Description, Category, Vendor) sort as text, case-insensitively (\"apple\" and \"Apple\" sort together).\n\n---\nThis is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Inventory Value report specification version 10 (S9-R3), read on 17 August 2026.\nLast checked against build v3.8-bd246fd on 8/18/2026.\n\nAUTOMATION: READY",
+ "custom_atmstatus": 1,
+ "updated_on": 1787095760,
+ "created_by": 3
+}

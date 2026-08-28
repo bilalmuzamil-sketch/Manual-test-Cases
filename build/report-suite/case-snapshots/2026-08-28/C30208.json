@@ -1,0 +1,11 @@
+{
+ "id": 30208,
+ "title": "Invoice Status offers exactly four options; All Statuses is the default",
+ "refs": "SV-8622 (SBR spec v22 2026-08-17 Story 4 S4-R1; S4-R2; S4-R3; S4-R5 — S4-R2 CLOSES the list itself (\"exactly four options\"); so the closed list IS the requirement)",
+ "preconds": "<ol>\n<li>You are on the report with no remembered settings.</li>\n</ol>\n",
+ "steps": "<ol>\n<li>Find the \"Invoice Status\" dropdown in the toolbar and read its default value.</li>\n<li>Open it and read the options.</li>\n<li>Change the selection and watch the table.</li>\n</ol>\n",
+ "expected": "<ol>\n<li>An \"Invoice Status\" dropdown is visible in the toolbar.</li>\n<li>It offers exactly four options: \"All Statuses,\" \"Unpaid,\" \"Partially Paid,\" \"Paid.\"</li>\n<li>\"All Statuses\" is the default on first load.</li>\n<li>Changing the selection re-fetches and re-renders the report.</li>\n</ol>\n\n<hr />\n\n<p>This is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Sales By Representative report specification version 22 (S4-R1, S4-R2, S4-R3, S4-R5), read on 17 August 2026.<br />Last checked against build v3.8-bd246fd on 8/18/2026.</p>\n\n<p>AUTOMATION: READY</p>\n",
+ "custom_atmstatus": 1,
+ "updated_on": 1787085284,
+ "created_by": 3
+}

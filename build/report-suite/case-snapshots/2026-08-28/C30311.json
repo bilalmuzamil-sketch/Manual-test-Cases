@@ -1,0 +1,11 @@
+{
+ "id": 30311,
+ "title": "Selector offers only reps whose sales-representative toggle is on",
+ "refs": "SV-8636 (SBR spec v22 2026-08-17 Story 19 S19-R2; S19-R8 — toggle entry path Settings -> Staff -> edit the staff member per the PRD companion video 2026-07-30 09:17-09:41; exact toggle label to confirm live in the build)",
+ "preconds": "<p>1. At least one staff member has the sales-representative toggle ON and at least one has it OFF. To arrange this: open Settings, go to Staff, edit the staff member, and use the sales-representative toggle there (restore both afterward)..</p>",
+ "steps": "<p>1. Open a Work Order and open the \"Sales Representative\" selector.<br>2. Search the option list for both staff members.<br>3. Inspect the selector's accessible name.</p>",
+ "expected": "<p>1. The toggle-ON staff member is offered as a selectable rep.<br>2. The toggle-OFF staff member is NOT offered as a new selection.<br>3. The selector carries the accessible name \"Sales Representative\".<br>4. Note for the tester: the product owner has ruled that the full word \"Sales Representative\" replaces the short \"Sales Rep\" everywhere. If the screen or file still shows \"Sales Rep\", mark this test Failed and report it as the pending rename &mdash; do not change the test.<br><br>---<br>This is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Sales By Representative report specification version 24 (S19-R2, S19-R8), read on 17 August 2026.<br>Last checked against build v3.8-b7d80dc on 8/19/2026.<br>Re-checked against the live specification on 26 August 2026: the requirements this case cites are unchanged, so only the version cited above was updated.<br><br>AUTOMATION: HOLD - this part of the report is not built yet</p>\n",
+ "custom_atmstatus": 1,
+ "updated_on": 1787747753,
+ "created_by": 3
+}

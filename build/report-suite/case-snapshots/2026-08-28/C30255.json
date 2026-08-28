@@ -1,0 +1,11 @@
+{
+ "id": 30255,
+ "title": "Cancel and X dismiss the Deactivate dialog; Escape and clicking outside do not",
+ "refs": "SV-8630 (SBR spec v22 2026-08-17 Story 13 S13-R8)",
+ "preconds": "1. The Deactivate dialog is open for a rep with assignments.",
+ "steps": "1. Click the \"Cancel\" button and watch the dialog; then re-open it.\n2. Click the \"X\" close icon and watch the dialog; then re-open it.\n3. Press the \"Esc\" key on the keyboard and watch the dialog.\n4. Re-open the dialog and click outside it (on the greyed-out background).\n5. After each action, check the staff member's active status.",
+ "expected": "1. The dialog has a \"Cancel\" button (grey) and an \"X\" close icon; the \"Deactivate\" button is the red one.\n2. Clicking \"Cancel\" closes the dialog; clicking the \"X\" icon closes the dialog.\n3. Pressing the \"Esc\" key does NOT close the dialog - it stays open (the app's general rule is that pop-ups do not close with the Esc key).\n4. Clicking outside the dialog does NOT close it.\n5. When the dialog closes via Cancel or X, the staff member's active status is unchanged - no deactivation happens.\n\n---\nThis is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Sales By Representative report specification version 22 (S13-R8), read on 17 August 2026.\n\nAUTOMATION: READY",
+ "custom_atmstatus": 3,
+ "updated_on": 1787127598,
+ "created_by": 3
+}

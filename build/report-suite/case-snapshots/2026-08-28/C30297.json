@@ -1,0 +1,11 @@
+{
+ "id": 30297,
+ "title": "Assignments export failure and nothing-to-export use the dialog's messages",
+ "refs": "SV-8632 (SBR spec v22 2026-08-17 Story 15 S15-R11; S15-N2; §7)",
+ "preconds": "<p>1. For the empty path: no customer in the organization has an assigned rep (or use a state where the export yields zero rows).<br>2. For the failure path: you can force a generation failure (for example, cut the network on Export) — if not forceable, mark that step Blocked with the reason..</p>",
+ "steps": "<p>1. With zero assigned customers, select \"Sales Representative Assignments\" in the Export Report dialog and click Export.<br>2. Read the dialog warning and inspect any downloaded file.<br>3. Force a generation failure and read the toast.</p>",
+ "expected": "<p>1. With zero assigned customers, the CSV downloads with a header row and no data rows, and the dialog shows its empty-export warning: \"There is no data to export for the selected report.\"<br>2. On a generation failure, an error toast reads \"An error occurred while exporting the report. Please try again.\" and auto-fades after 5 seconds.<br><br>---<br>This is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Sales By Representative report specification version 24 (S15-R11, S15-N2), read on 17 August 2026.<br>Last checked against build v3.8-b7d80dc on 8/19/2026.<br>Re-checked against the live specification on 26 August 2026: the requirements this case cites are unchanged, so only the version cited above was updated.<br><br>AUTOMATION: READY</p>\n",
+ "custom_atmstatus": 1,
+ "updated_on": 1787747725,
+ "created_by": 3
+}

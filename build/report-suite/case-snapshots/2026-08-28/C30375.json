@@ -1,0 +1,11 @@
+{
+ "id": 30375,
+ "title": "The overflow button opens Download (PDF) then Download (CSV) in that order",
+ "refs": "SV-8646 (PV spec v10 2026-08-17 S6-R1 — S6-R1 CLOSES it in the spec's own words (\"an export menu with two items ... Download (PDF) and Download (CSV)\"); so the closed list IS the requirement)",
+ "preconds": "1. You are on the Parts Velocity report with data loaded.",
+ "steps": "1. Find the ⋯ overflow button - the leftmost control in the toolbar's action cluster.\n2. Click it and read the menu items top to bottom.",
+ "expected": "1. The ⋯ overflow button sits leftmost in the toolbar's action cluster.\n2. The menu holds exactly two items, in this order: Download (PDF), then Download (CSV).\n\n---\nThis is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Parts Velocity report specification version 10 (S6-R1), read on 17 August 2026.\n\nAUTOMATION: READY",
+ "custom_atmstatus": 3,
+ "updated_on": 1787127434,
+ "created_by": 3
+}

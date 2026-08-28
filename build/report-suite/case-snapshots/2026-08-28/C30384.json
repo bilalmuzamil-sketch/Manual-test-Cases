@@ -1,0 +1,11 @@
+{
+ "id": 30384,
+ "title": "Export toasts: exact success texts; server or fallback error text on failure",
+ "refs": "SV-8646 (PV spec v10 2026-08-17 S6-R9; S6-N1; §7 (casing note) — S6-R9/S6-N1 CLOSE the toast strings verbatim including the shipped UPPERCASE-success / lowercase-failure casing mix; so the exact strings ARE the requirement)",
+ "preconds": "<ol><li>You are on the Parts Velocity report with data loaded.</li><li>You can force an export failure (e.g. drop the network connection just before triggering the download, or induce a server error).</li></ol>",
+ "steps": "<ol><li>Download the CSV and the PDF normally and read each toast.</li><li>Trigger a CSV export under the failure condition and read the toast.</li><li>Trigger a PDF export under the failure condition and read the toast.</li></ol>",
+ "expected": "<p>1. On success the toasts read exactly \"Velocity report exported (CSV)\" / \"Velocity report exported (PDF)\" and auto-fade — UPPERCASE (CSV)/(PDF).<br>2. An error toast is shown on failure; when the server provides a message, that server message is shown.<br>3. Otherwise the failure toast reads exactly: \"Failed to export velocity report (csv)\" or \"Failed to export velocity report (pdf)\" — lowercase (csv)/(pdf); the success/failure casing mix is the specified wording (not a bug).</p><p>---<br>This is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Parts Velocity report specification version 11 (S6-R9, S6-N1), read on 17 August 2026.<br>Last checked against build v3.8-bd246fd on 8/18/2026.<br>Re-checked against the live specification on 26 August 2026: the requirements this case cites are unchanged, so only the version cited above was updated.</p><p>AUTOMATION: READY</p>",
+ "custom_atmstatus": 1,
+ "updated_on": 1787754882,
+ "created_by": 3
+}

@@ -1,0 +1,11 @@
+{
+ "id": 27795,
+ "title": "Verify Service Advisor is blocked from voiding a transaction while Manage AP/AR is OFF",
+ "refs": "SV-5319,SV-7913",
+ "preconds": "Log in to ShopView as a user assigned the Service Advisor role. (Invoicing Delete additionally requires Manage AP/AR ON per spec v33 / SV-7913; this role has Manage AP/AR OFF).\nNote: the role may display as 'Junior Service Advisor' in the build (the spec calls it 'Service Advisor').\nThe work order already has an invoice created on its Finance tab.",
+ "steps": "1. Open the work order's Finance tab and locate a transaction.\n2. Try to void the transaction.",
+ "expected": "Voiding is BLOCKED (configuration prompt or permission block) because Manage AP/AR is OFF. Intended behavior per SV-7913.",
+ "custom_atmstatus": 1,
+ "updated_on": 1783108595,
+ "created_by": 3
+}

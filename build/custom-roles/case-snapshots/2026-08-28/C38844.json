@@ -1,0 +1,11 @@
+{
+ "id": 38844,
+ "title": "Customer detail page loads for AP/AR role (Fees & Discounts on)",
+ "refs": "SV-8701 (Fees & Discounts customer default-adjustments gate,S13-R9: Customers Create & Edit + Manage AP/AR)",
+ "preconds": "<ol>\n<li>The organization has the Fees & Discounts feature turned ON.</li>\n<li>You have a role with these permissions turned ON: Customer Management → Create & Edit, See Financial Data, and Manage AP/AR.</li>\n<li>That role has NO Settings / organization permissions.</li>\n<li>A user is signed in with that role.</li>\n</ol>",
+ "steps": "<ol>\n<li>Open any customer.</li>\n<li>Look at the customer detail page (Work Orders / Payments / Invoices tabs).</li>\n<li>Open the customer's Fees & Discounts tab.</li>\n</ol>",
+ "expected": "<p>The customer detail page opens normally. All tabs (Work Orders, Payments, Invoices) are reachable.</p>\n<p>You are NOT sent to a full-page \"Access restricted\" screen.</p>\n<p>The customer Fees & Discounts tab loads for this role.</p>\n<p>If the same role does NOT have Manage AP/AR, the customer page still opens normally (the Fees & Discounts area is simply hidden) — a background permission check must never lock the whole page.</p>\n",
+ "custom_atmstatus": 3,
+ "updated_on": 1785175583,
+ "created_by": 3
+}

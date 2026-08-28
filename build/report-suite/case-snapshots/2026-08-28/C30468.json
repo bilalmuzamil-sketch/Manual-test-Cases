@@ -1,0 +1,11 @@
+{
+ "id": 30468,
+ "title": "The WO # is a link that opens the WO in the same browser tab",
+ "refs": "SV-8660 (WIP spec v22 2026-08-18 Story 4 S4-R5 (+ context note))",
+ "preconds": "<ol><li>You are signed in to the ShopView App on a desktop browser.</li><li>The Work In Progress report is open with rows loaded.</li></ol>",
+ "steps": "<ol><li>Click a row's WO # link.</li><li>Confirm where the work order opens.</li><li>Use the browser's back navigation.</li></ol>",
+ "expected": "<p>1. For a person who has permission to open work orders, the WO # is shown as a link.<br>2. Clicking it opens that work order in the SAME browser tab (not a new tab).<br>3. The browser's back navigation returns you to the report.</p><p>---<br>This is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Work In Progress report specification version 28 (S4-R5), read on 18 August 2026.<br>Last checked against build v3.8-bd246fd on 8/18/2026.<br>Re-checked against the live specification on 26 August 2026: the requirements this case cites are unchanged, so only the version cited above was updated.</p><p>AUTOMATION: READY</p>",
+ "custom_atmstatus": 1,
+ "updated_on": 1787754915,
+ "created_by": 3
+}

@@ -1,0 +1,11 @@
+{
+ "id": 30444,
+ "title": "The saved location selection restores defensively; bad ones are dropped",
+ "refs": "SV-8656 (TU spec v9 2026-08-17 S9-R6; S1-R8; S9-R2; S9-R7)",
+ "preconds": "<p>1. The user saved a location selection that includes a location their access to was later removed..</p>",
+ "steps": "<p>1. Return to the Technician Utilization report and read the restored location selection.<br>2. Repeat with a saved selection consisting ONLY of now-inaccessible locations.</p>",
+ "expected": "<p>1. Any saved location the user can no longer access is DROPPED from the restored selection; the remaining accessible locations restore normally.<br>2. If the remaining set is empty, the report falls back to the user's currently active location (the first-visit default).<br>3. The report loads without an error in both cases.<br>4. The same fallback happens when you deselect every location by hand in the Location filter — the report loads the currently active location's rows rather than showing nothing.<br><br>---<br>This is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Technician Utilization report specification version 9 (S9-R6, S1-R8, S9-R2, S9-R7), read on 17 August 2026.<br>Last checked against build v3.8-d0e135e on 8/19/2026.<br><br>AUTOMATION: READY</p>",
+ "custom_atmstatus": 1,
+ "updated_on": 1787214765,
+ "created_by": 3
+}

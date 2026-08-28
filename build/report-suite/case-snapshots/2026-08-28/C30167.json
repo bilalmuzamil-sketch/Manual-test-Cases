@@ -1,0 +1,11 @@
+{
+ "id": 30167,
+ "title": "PDF header: title, organization, date range, Product Type and Locations lines",
+ "refs": "SV-8613 (SBC spec v20 2026-08-17 Story 15 S15-R7; S15-R8; S15-R9; S15-R10; S15-R11; S15-R14 + Story 4 S4-R13 — PDF header block; S15-R14/S4-R13 = the \"Locations:\" line in every export [Chris Ward 2026-07-29; newest-wins])",
+ "preconds": "1. You have downloaded the PDF with a known date range, Product Type, and a specific location selected.",
+ "steps": "1. Read the header's text block top to bottom.\n2. Look for any mention of the selected location.",
+ "expected": "1. The header is two columns: a text block on the left (70% width) and the organization logo on the right (30% width).\n2. The text block shows the report title \"Sales By Customer Report\"; the organization name; the date range; and the filter summary line \"Product Type: {value}\" where value is \"Parts & Service,\" \"Parts only,\" or \"Service only.\"\n3. The header date range shows start and end in the format \"Mon D, YYYY,\" joined by an em dash - for example, \"May 1, 2026 - May 31, 2026\" - and always shows both dates (every range is bounded).\n4. The header also carries a \"Locations:\" line naming the location(s) the report was scoped to.\n\n---\nThis is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Sales By Customer report specification version 20 (S15-R7, S15-R8, S15-R9, S15-R10, S15-R11, S15-R14, S4-R13), read on 17 August 2026.\nLast checked against build v3.8-2bf8d14 on 8/18/2026.\n\nAUTOMATION: READY",
+ "custom_atmstatus": 1,
+ "updated_on": 1787082722,
+ "created_by": 3
+}

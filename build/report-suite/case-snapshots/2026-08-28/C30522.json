@@ -1,0 +1,11 @@
+{
+ "id": 30522,
+ "title": "The Totals row stays visible while only the active tab's body scrolls",
+ "refs": "SV-8666 (WIP spec v22 2026-08-18 Story 10 S10-R4; S10-R5)",
+ "preconds": "1. You are signed in to the ShopView App on a desktop browser.\n2. A tab has more rows than fit on the screen.",
+ "steps": "1. Scroll the rows up and down and watch the Totals row.\n2. Look at the page for a second scrollbar outside the table.",
+ "expected": "<p>1. The Totals row stays visible at the bottom while the rows scroll.\n2. The report fills the available height and only the active tab's table body scrolls &mdash; the page itself does not add a second scrollbar.\n\n---\nThis is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Work In Progress report specification version 28 (S10-R4, S10-R5), read on 18 August 2026.\nLast checked against build v3.8-bd246fd on 8/18/2026.\nRe-checked against the live specification on 26 August 2026: the requirements this case cites are unchanged, so only the version cited above was updated.\n\nAUTOMATION: READY\n</p>\n",
+ "custom_atmstatus": 1,
+ "updated_on": 1787747856,
+ "created_by": 3
+}

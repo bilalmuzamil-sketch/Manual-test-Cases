@@ -1,0 +1,11 @@
+{
+ "id": 30178,
+ "title": "With no saved view every setting uses its own default",
+ "refs": "SV-8604 (SBC spec v20 2026-08-17 Story 6 S6-N1; Story 2 S2-R5; Story 4 S4-R4)",
+ "preconds": "1. Clear the browser's site data for the application (or use a fresh browser profile).\n2. You open the report by its plain address with no date range in the page link.\n3. You are working in a known active location (check the application's location switcher).",
+ "steps": "1. Open the Sales By Customer report.\n2. Read every filter, the sort, and the visible columns.",
+ "expected": "1. Date range = This Month (nothing saved and no range in the page link).\n2. Product Type = \"Parts & Service.\"\n3. Location = the single location you are currently working in (your active location) — not all locations.\n4. Customer filter = all customers selected (label \"All customers\").\n5. Sort = Customer name ascending.\n6. All ten toggleable columns visible.\n\n---\nThis is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Sales By Customer report specification version 20 (S6-N1, S2-R5, S4-R4), read on 17 August 2026.\nLast checked against build v3.8-2bf8d14 on 8/18/2026.\n\nAUTOMATION: READY",
+ "custom_atmstatus": 3,
+ "updated_on": 1787127557,
+ "created_by": 3
+}

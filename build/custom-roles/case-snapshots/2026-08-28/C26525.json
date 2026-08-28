@@ -1,0 +1,11 @@
+{
+ "id": 26525,
+ "title": "Changing a user's role logs that user out and forces them to log in again",
+ "refs": "SV-7527,SV-7505",
+ "preconds": "<ol>\n<li>A user is logged in.</li>\n<li>An administrator changes that user's role.</li>\n</ol>",
+ "steps": "<ol>\n<li>With the user logged in, change their role (as an administrator).</li>\n<li>Watch the user's session.</li>\n</ol>",
+ "expected": "<p>Changing the user's role logs the user out.</p>\n<p>The user must log in again, and the new role takes effect at the next login.</p>\n",
+ "custom_atmstatus": 1,
+ "updated_on": 1784013339,
+ "created_by": 3
+}

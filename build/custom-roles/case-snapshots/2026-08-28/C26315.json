@@ -1,0 +1,11 @@
+{
+ "id": 26315,
+ "title": "The Users column shows a clickable count that links to the filtered Staff page",
+ "refs": "SV-7499",
+ "preconds": "<ol>\n<li>You are on the Roles & Permissions list.</li>\n</ol>",
+ "steps": "<ol>\n<li>Look at the Users column for a role that has one or more users.</li>\n<li>Click the count.</li>\n<li>Look at the Users column for a role with zero users.</li>\n</ol>",
+ "expected": "<p>A non-zero count is a clickable link.</p>\n<p>Clicking it opens the Staff page filtered to that role.</p>\n<p>A zero count is shown as a non-clickable '0'.</p>\n",
+ "custom_atmstatus": 3,
+ "updated_on": 1783943965,
+ "created_by": 3
+}

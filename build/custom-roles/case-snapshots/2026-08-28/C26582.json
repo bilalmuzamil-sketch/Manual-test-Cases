@@ -1,0 +1,11 @@
+{
+ "id": 26582,
+ "title": "Legacy RESTRICT_EDIT_OF_PART_SELL_PRICE migrated to positive-grant",
+ "refs": "SV-7487,SV-7523",
+ "preconds": "Build with CRP-FE-02 deployed. Pre-migration baseline.",
+ "steps": "1. Identify a user who had RESTRICT_EDIT_OF_PART_SELL_PRICE pre-migration.\n2. Confirm their new role configuration achieves the same effect via positive-grant semantics (likely PART_SALES_EDIT off, or seeFinancialData off — depends on tech plan implementation).\n3. Log in as user. Try to edit a part's sell price.",
+ "expected": "User cannot edit part sell price. Legacy restriction preserved via positive-grant semantics.",
+ "custom_atmstatus": 1,
+ "updated_on": 1784013346,
+ "created_by": 3
+}

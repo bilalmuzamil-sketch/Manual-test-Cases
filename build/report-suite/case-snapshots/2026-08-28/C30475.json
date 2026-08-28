@@ -1,0 +1,11 @@
+{
+ "id": 30475,
+ "title": "Labor Earned is the clocked share of each approved line's quoted value",
+ "refs": "SV-8660 (WIP spec v22 2026-08-18 Story 4 S4-R15; §4 Terminology (Earned))",
+ "preconds": "<ol>\n<li>You are signed in to the ShopView App on a desktop browser.</li>\n<li>The Labor Earned column is turned on.</li>\n<li>A ZZAUTOTEST open work order exists with one approved labor line quoted at a known time and rate (for example 4.0 hours at $100/hour = $400 quoted), with exactly 1.0 hour clocked to it.</li>\n<li>A second ZZAUTOTEST open work order exists with an approved labor line where MORE time has been clocked than was quoted (for example 5.0 hours clocked against a 4.0-hour quote).</li>\n</ol>\n",
+ "steps": "<ol>\n<li>Open the Work In Progress report and find the first work order's row.</li>\n<li>Read its Labor Earned value and compare to the clocked share of the quoted labor value (1.0 of 4.0 hours = $100.00 in the example).</li>\n<li>Find the second (over-clocked) work order's row and read its Labor Earned.</li>\n</ol>\n",
+ "expected": "<ol>\n<li>Labor Earned equals the share of the approved line's quoted labor value covered by the time clocked to it (in the example, $100.00).</li>\n<li>For the over-clocked line, Labor Earned never exceeds the full quoted value of that line ($400.00 in the example) — the earned share is capped at the quote per line.</li>\n<li>With several approved labor lines, Labor Earned is the sum of each line's capped earned share.</li>\n</ol>\n\n<hr />\n\n<p>This is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Work In Progress report specification version 22 (S4-R15), read on 18 August 2026.<br />Last checked against build v3.8-bd246fd on 8/18/2026.</p>\n\n<p>AUTOMATION: READY</p>\n",
+ "custom_atmstatus": 1,
+ "updated_on": 1787093854,
+ "created_by": 3
+}

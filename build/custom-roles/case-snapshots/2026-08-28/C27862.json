@@ -1,0 +1,11 @@
+{
+ "id": 27862,
+ "title": "Verify global search returns empty results for Time Clock user",
+ "refs": "SV-5319",
+ "preconds": "Log in to ShopView as a user assigned the Time Clock role.\nCustomers and work orders exist in the system that would normally match the search.\nContext: a build change makes the Time Clock role return empty search data (FetchData controller).",
+ "steps": "1. Click the top search bar.\n2. Type the name of an existing customer and press Enter.\n3. Type an existing work order number and press Enter.",
+ "expected": "Global search returns EMPTY results for both searches - no customers, work orders, or other records are returned to the Time Clock user.",
+ "custom_atmstatus": 1,
+ "updated_on": 1783108595,
+ "created_by": 3
+}

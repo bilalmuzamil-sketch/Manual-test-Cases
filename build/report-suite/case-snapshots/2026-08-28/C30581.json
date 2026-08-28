@@ -1,0 +1,11 @@
+{
+ "id": 30581,
+ "title": "The report remembers all filters; columns and sort per browser",
+ "refs": "SV-8675 (IV spec v10 2026-08-17 Story 8 S8-R5 (+ context note); Story 9 S9-R5)",
+ "preconds": "1. You are signed in to the ShopView App on a desktop browser.\n2. The Inventory Value report is open.",
+ "steps": "1. Change the \"as of\" date, select a category and a vendor, type a part search, change the location selection, change the column selection, and sort by a non-default column.\n2. Navigate away to another screen, then return to the report.\n3. Reload the browser page and check again.\n4. If practical, open the report in a different browser (or private window) and read its settings.",
+ "expected": "1. On return and after a reload, the report restores the saved \"as of\" date, category selection, vendor selection, part search text, location selection, column selection, and sort.\n2. In a different browser the report shows the defaults instead — persistence is per browser, not tied to the user's account.\n\n---\nThis is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Inventory Value report specification version 10 (S8-R5, S9-R5), read on 17 August 2026.\nLast checked against build v3.8-bd246fd on 8/18/2026.\n\nAUTOMATION: READY",
+ "custom_atmstatus": 1,
+ "updated_on": 1787095678,
+ "created_by": 3
+}

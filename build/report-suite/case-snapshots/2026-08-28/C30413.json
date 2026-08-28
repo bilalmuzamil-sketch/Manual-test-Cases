@@ -1,0 +1,11 @@
+{
+ "id": 30413,
+ "title": "Sorting Est. Lost Labor keeps em-dash rows last both ways; $0.00 sorts as 0",
+ "refs": "SV-8649 (TU spec v9 2026-08-17 S2-R17)",
+ "preconds": "<p>1. Rows exist with: a normal Est. Lost Labor value, a \"$0.00\" value, and at least two \"—\" values (no rate configured)..</p>",
+ "steps": "<p>1. Sort by Est. Lost Labor ascending and read the bottom rows.<br>2. Sort by Est. Lost Labor descending and read the bottom rows.<br>3. Note where the \"$0.00\" row lands in each direction, and the order of the \"—\" rows among themselves.</p>",
+ "expected": "<p>1. Rows whose Est. Lost Labor is \"—\" sort to the BOTTOM in BOTH ascending and descending order - they are never floated to the top by reversing direction.<br>2. Among themselves, the \"—\" rows are ordered by Technician name A to Z.<br>3. A \"$0.00\" value is a number, not \"—\" - it sorts as zero (lowest ascending, above only the — group).<br><br>---<br>This is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Technician Utilization report specification version 9 (S2-R17), read on 17 August 2026.<br>Last checked against build v3.8-d0e135e on 8/19/2026.<br><br>AUTOMATION: HOLD - no technician on this environment has an em-dash in Est. Lost Labor, because both locations have a default labor rate</p>",
+ "custom_atmstatus": 1,
+ "updated_on": 1787214306,
+ "created_by": 3
+}

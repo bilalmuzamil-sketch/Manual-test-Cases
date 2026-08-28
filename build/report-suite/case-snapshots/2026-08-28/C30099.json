@@ -1,0 +1,11 @@
+{
+ "id": 30099,
+ "title": "Without reports access, Sales By Customer is not listed and cannot open",
+ "refs": "SV-8600 (SBC spec v20 2026-08-17 S1-N1 — Confluence 577634305 v-2026-07-31 — now reads \"A user without reports access does not see the report in navigation and cannot open it by direct link\"; Chris Ward Q1=A; SV-8780 Ready to Fix)",
+ "preconds": "1. A test user exists whose role does NOT have reports access (use/create a ZZAUTOTEST role; restore afterwards).\n2. You know the report's direct page address (copy it from a permitted session first).\n3. You are signed in as the unpermitted user.",
+ "steps": "1. Open the Reports area and look through the left-side navigation.\n2. Paste the report's direct page address into the browser and try to open it.",
+ "expected": "1. \"Sales By Customer\" does not appear in the Reports navigation.\n2. Opening the report by direct link does not show the report (the application blocks it with its standard access-denied handling).\n3. The gate is the ordinary reports access — there is no separate Sales By Customer permission to remove.\n4. Note for the tester: the product owner has ruled that every report in this suite opens with the ordinary reports access, and the written description now says the same. If the build still demands a separate Sales By Customer permission, mark this test Failed and report it against the change already raised with the developers — do not change the test. You may also find a \"Sales By Customer\" permission still listed for an administrator to switch on and off: that should have been hidden from the screen, so please report that too. If it is listed at all, that is a difference from the specification — report that it is still visible.\n\n---\nThis is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Sales By Customer report specification version 20 (S1-N1), read on 17 August 2026.\n\nAUTOMATION: READY",
+ "custom_atmstatus": 3,
+ "updated_on": 1787127504,
+ "created_by": 3
+}

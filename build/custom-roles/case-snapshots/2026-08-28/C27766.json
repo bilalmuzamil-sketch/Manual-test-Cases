@@ -1,0 +1,11 @@
+{
+ "id": 27766,
+ "title": "Verify Service Manager can see all pricing and financial data on a work order",
+ "refs": "SV-5319",
+ "preconds": "<p>Log in to ShopView as a user assigned the Service Manager role. (this role has See Financial Data ON).<br />At least one work order exists that contains labor and part lines with prices entered.</p>\n",
+ "steps": "<ol>\n<li>Click Work Orders and open a work order.</li>\n<li>Check the price on each line and the work order totals.</li>\n<li>Open the Finance card.</li>\n<li>Open the Stats tab.</li>\n</ol>\n",
+ "expected": "<p>All money values are visible: line prices, totals, Finance card amounts, and Stats tab figures show dollar amounts (nothing blank or masked).</p>\n",
+ "custom_atmstatus": 1,
+ "updated_on": 1783108595,
+ "created_by": 3
+}

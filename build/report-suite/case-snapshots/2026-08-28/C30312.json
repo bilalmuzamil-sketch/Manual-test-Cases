@@ -1,0 +1,11 @@
+{
+ "id": 30312,
+ "title": "A new WO opens with Sales Representative unassigned; a change saves at once",
+ "refs": "SV-8636 (SBR spec v22 2026-08-17 Story 19 S19-R3; S19-R4)",
+ "preconds": "<p>1. At least one staff member is offered as a sales representative..</p>",
+ "steps": "<p>1. Create a new Work Order (mark it ZZAUTOTEST) and read the Sales Representative field before touching it.<br>2. Select a rep in the field, then navigate away WITHOUT any explicit save and reopen the WO.<br>3. Repeat the unassigned-open check on a new Part Sale WO.</p>",
+ "expected": "<p>1. The new Work Order opens with the Sales Representative field UNASSIGNED &mdash; it is not pre-filled at creation.<br>2. Changing the Sales Representative persists immediately (save-on-change): the selection survives leaving and reopening the WO with no separate Save step.<br>3. A new Part Sale WO also opens with the field unassigned.<br><br>---<br>This is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Sales By Representative report specification version 24 (S19-R3, S19-R4), read on 17 August 2026.<br>Last checked against build v3.8-b7d80dc on 8/19/2026.<br>Re-checked against the live specification on 26 August 2026: the requirements this case cites are unchanged, so only the version cited above was updated.<br><br>AUTOMATION: READY</p>\n",
+ "custom_atmstatus": 1,
+ "updated_on": 1787747755,
+ "created_by": 3
+}

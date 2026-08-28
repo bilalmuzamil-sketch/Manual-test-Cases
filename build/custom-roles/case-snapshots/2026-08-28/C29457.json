@@ -1,0 +1,11 @@
+{
+ "id": 29457,
+ "title": "Time Clock user reading organization Settings via API returns 200 (backend does not enforce — expected)",
+ "refs": null,
+ "preconds": "<ol><li>A user is signed in with the system <strong>Time Clock</strong> role (Work Orders View, Schedule View, Timesheets View; View Mode none; every other permission OFF; read-only, can clock in/out).</li><li>You have a way to send API requests to the backend (api.staging.shopview.com) as that signed-in Time Clock user.</li></ol>",
+ "steps": "<ol><li>Send GET /api/organizations/settings.</li></ol>",
+ "expected": "<p data-pasted=\"true\">Time Clock user reading org Settings via API returns 200, not 403.<br>PO confirmed backend leaks are EXPECTED (not enforced by design).</p><p><br><a data-fr-linked=\"true\" href=\"https://shopview.atlassian.net/browse/SV-7958\" data-pasted=\"true\">https://shopview.atlassian.net/browse/SV-7958</a></p>",
+ "custom_atmstatus": 3,
+ "updated_on": 1784577445,
+ "created_by": 3
+}

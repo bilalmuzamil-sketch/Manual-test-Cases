@@ -1,0 +1,11 @@
+{
+ "id": 27846,
+ "title": "Verify Parts Technician can create a Part Sales invoice",
+ "refs": "SV-5319,SV-7903",
+ "preconds": "Log in to ShopView as a user assigned the Parts Technician role. (this role's Invoicing: Create and Edit is scoped to the Part Sales invoice path per SV-7903 - works as designed; work order invoices are the Service Advisor's job).\nA customer and a RECEIVED part with a part number exist (parts must be received with a part number before invoicing).",
+ "steps": "1. Click Part Sales in the main navigation.\n2. Click to create a new Part Sales invoice.\n3. Add the part and customer and save the invoice.",
+ "expected": "The Part Sales invoice is created successfully.",
+ "custom_atmstatus": 1,
+ "updated_on": 1783108595,
+ "created_by": 3
+}

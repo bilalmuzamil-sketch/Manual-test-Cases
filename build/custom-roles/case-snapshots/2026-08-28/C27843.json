@@ -1,0 +1,11 @@
+{
+ "id": 27843,
+ "title": "Verify Parts Technician can order a part on a work order line",
+ "refs": "SV-5319",
+ "preconds": "Log in to ShopView as a user assigned the Parts Technician role. (this role has Order Parts ON).\nAt least one work order exists that contains labor and part lines with prices entered.",
+ "steps": "1. Open a work order line and open the parts actions.\n2. Click Order, select part/vendor/quantity, and confirm.",
+ "expected": "The part order is created successfully.",
+ "custom_atmstatus": 1,
+ "updated_on": 1783108595,
+ "created_by": 3
+}

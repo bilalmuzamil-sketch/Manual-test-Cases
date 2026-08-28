@@ -1,0 +1,11 @@
+{
+ "id": 30298,
+ "title": "Empty state: verbatim message, no grand Totals, toolbar stays interactive",
+ "refs": "SV-8633 (SBR spec v22 2026-08-17 Story 16 S16-R1; S16-R2; S16-R3; S16-N1; Story 2 S2-N1; Story 21 S21-N2; §7)",
+ "preconds": "<ol><li>You are on the report.</li></ol>",
+ "steps": "<ol><li>Apply a filter set that matches no invoices for any rep (for example, a date range with no activity), with Show Unassigned OFF or with no matching unassigned invoices either.</li><li>Read the data area and look for the grand Totals indicator.</li><li>If checkable: view an organization/location state where NO staff member has ever been credited with an invoice, and compare the message.</li><li>Look at the toolbar, then change the date range to a period WITH activity.</li></ol>",
+ "expected": "<p>1. The table shows no data rows and the empty-state message \"No sales activity matches the current filters.\"<br>2. The grand Totals indicator is NOT shown.<br>3. The same message appears when no staff member has ever been credited — there is no separate \"no reps configured\" message; the report is contributor-driven.<br>4. Whenever at least one rep row (or the Unassigned row) IS in the result set, the rep list renders and no empty/error message shows.<br>5. In the empty state the toolbar — filters, column selector, and the ⋯ exports — stays visible and interactive; widening the range re-fetches and renders the matching reps normally.</p><p>---<br>This is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Sales By Representative report specification version 24 (S16-R1, S16-R2, S16-R3, S16-N1, S2-N1, S21-N2), read on 17 August 2026.<br>Last checked against build v3.8-bd246fd on 8/18/2026.<br>Re-checked against the live specification on 26 August 2026: the requirements this case cites are unchanged, so only the version cited above was updated.</p><p>AUTOMATION: READY</p>",
+ "custom_atmstatus": 1,
+ "updated_on": 1787754776,
+ "created_by": 3
+}

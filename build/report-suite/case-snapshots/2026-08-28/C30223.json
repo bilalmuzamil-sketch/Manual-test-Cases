@@ -1,0 +1,11 @@
+{
+ "id": 30223,
+ "title": "Each invoice appears under exactly one rep or the Unassigned row",
+ "refs": "SV-8624 (SBR spec v22 2026-08-17 Story 6 S6-R7; §3 Key Decisions)",
+ "preconds": "<p>1. A known ZZAUTOTEST invoice set exists across two reps plus at least one unassigned invoice; Show Unassigned is on..</p>",
+ "steps": "<p>1. Expand every rep and the Unassigned row.<br>2. Search the expanded rows for each seeded invoice number.</p>",
+ "expected": "<p>1. Every invoice appears under exactly one rep (the rep credited at invoicing time) or under the Unassigned row &mdash; never under two rows.<br>2. The sum of all (N) counts equals the number of matching invoices.<br><br>---<br>This is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Sales By Representative report specification version 24 (S6-R7), read on 17 August 2026.<br>Last checked against build v3.8-b7d80dc on 8/19/2026.<br>Re-checked against the live specification on 26 August 2026: the requirements this case cites are unchanged, so only the version cited above was updated.<br><br>AUTOMATION: READY</p>\n",
+ "custom_atmstatus": 1,
+ "updated_on": 1787747678,
+ "created_by": 3
+}

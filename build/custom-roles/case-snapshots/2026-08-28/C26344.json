@@ -1,0 +1,11 @@
+{
+ "id": 26344,
+ "title": "Reset to template restores template defaults; Save is only enabled if something changed",
+ "refs": "SV-7501",
+ "preconds": "<ol>\n<li>Log in as a user who can edit roles.</li>\n<li>At least one custom role (created from a template) exists.</li>\n</ol>",
+ "steps": "<ol>\n<li>Go to Settings > Roles & Permissions.</li>\n<li>Open the custom role with the pencil (Edit) icon.</li>\n<li>Click Reset to template.</li>\n<li>Look at the Save button.</li>\n</ol>",
+ "expected": "<p>If the role's permissions had been changed from the template defaults: Reset to template puts them back to the defaults and enables Save; clicking Save keeps the reset.</p>\n<p>If the role still matched the template defaults: Reset to template changes nothing and Save stays disabled.</p>\n",
+ "custom_atmstatus": 3,
+ "updated_on": 1783942935,
+ "created_by": 3
+}

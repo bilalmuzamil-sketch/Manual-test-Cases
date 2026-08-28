@@ -1,0 +1,11 @@
+{
+ "id": 30546,
+ "title": "With no fixed sell price Unit Sell is the category's pricing-matrix markup",
+ "refs": "SV-8670 (IV spec v10 2026-08-17 Story 3 S3-R5 (matrix branch); §5 Assumptions)",
+ "preconds": "<ol>\n<li>You are signed in to the ShopView App on a desktop browser.</li>\n<li>A ZZAUTOTEST in-stock part exists with a known unit cost, NO fixed sell price, and a category covered by the shop's pricing matrix with a known markup.</li>\n</ol>\n",
+ "steps": "<ol>\n<li>Open the Inventory Value report and find the part's row.</li>\n<li>Read its Unit Sell value.</li>\n<li>Compare it to the pricing-matrix markup applied to the part's cost for its category.</li>\n</ol>\n",
+ "expected": "<ol>\n<li>Unit Sell equals the shop's pricing-matrix markup on cost for that part's category (the same way the parts list resolves it).</li>\n</ol>\n\n<hr />\n\n<p>This is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Inventory Value report specification version 10 (S3-R5), read on 17 August 2026.<br />Last checked against build v3.8-bd246fd on 8/18/2026.</p>\n\n<p>AUTOMATION: READY</p>\n",
+ "custom_atmstatus": 1,
+ "updated_on": 1787095703,
+ "created_by": 3
+}

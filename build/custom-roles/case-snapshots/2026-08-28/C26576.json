@@ -1,0 +1,11 @@
+{
+ "id": 26576,
+ "title": "seeFinancialData OFF strips sellPrice/cost/margin from JSON API responses",
+ "refs": "SV-7484,SV-7523",
+ "preconds": "Build with CRP-BE-09 deployed. Test user on a role with seeFinancialData OFF.",
+ "steps": "1. Authenticate as the test user.\n2. Hit GET on a WO list endpoint and on a WO detail endpoint.\n3. Inspect the JSON response keys.\n4. Look for sellPrice, cost, margin, or other pricing-related keys on WO lines.\n5. Hit GET on Part Sales (if user has PART_SALES_VIEW — note: requires SEE_FINANCIAL_DATA, so configure differently if needed) and Invoicing and Payments endpoints.",
+ "expected": "JSON payloads do NOT include sellPrice/cost/margin keys. Serializer group masking is applied uniformly.",
+ "custom_atmstatus": 3,
+ "updated_on": 1782555092,
+ "created_by": 3
+}

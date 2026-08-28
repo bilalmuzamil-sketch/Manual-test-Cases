@@ -1,0 +1,11 @@
+{
+ "id": 30501,
+ "title": "The \"as of\" date is a single day: defaults to today, capped at today, no range",
+ "refs": "SV-9214 (WIP spec v24 per Chris Ward 2026-08-19; S7-R6; S7-R8 - single \"as of\" date replaces the date-range control)",
+ "preconds": "<p>1. You are signed in to the ShopView App on a desktop browser that has never saved settings for this report (fresh visit)..</p>",
+ "steps": "<p>1. Open the Work In Progress report and read the \"as of\" date control's current value.<br>2. Open the \"as of\" date control and read what it offers.</p>",
+ "expected": "<p>1. On a fresh visit the \"as of\" date defaults to today.<br>2. The control is a single calendar day, not a range: it offers no start-and-end pair, no ready-made periods (no \"Last 12 Months\", \"This Month\", \"This Week\" and so on), no \"Custom\" range, and no \"All Time\". You pick one day.<br>3. The date is capped at today - you cannot choose a future day.<br>4. This is the shared \"as of\" date control that the Inventory Value report also uses.<br><br>Note: the Work In Progress report used to offer a date range with ready-made periods (This Week, This Month and so on) and a build-your-own range. That was replaced by a single \"as of\" date, a product decision by Chris Ward: work in progress is a point-in-time position, so a range over it would state something the number cannot mean. Follow the single \"as of\" date and do not look for the old presets or range.<br><br>---<br>This is the expected behaviour as per epic SV-8582 and the Work In Progress report specification version 28 (S7-R6, S7-R8), as pinned by Chris Ward on 19 August 2026, recorded in his answers in this file: https://raw.githubusercontent.com/bilalmuzamil-sketch/Manual-test-Cases/claude/slack-session-0sxnd9/build/report-suite/chris-answers-2026-08-19/WIP-CHRIS-RULINGS-2026-08-19.md.<br>Last checked against build v3.8-d0e135e on 8/19/2026.<br>Re-checked against the live specification on 28 August 2026: every requirement this case cites was read again in the live version and the behaviour above still matches it, so only the version cited above was updated.<br><br>AUTOMATION: READY</p>\n",
+ "custom_atmstatus": 1,
+ "updated_on": 1787886527,
+ "created_by": 3
+}

@@ -1,0 +1,11 @@
+{
+ "id": 30126,
+ "title": "Asset rows order A to Z with the Parts Sales bucket always last",
+ "refs": "SV-8606 (SBC spec v20 2026-08-17 Story 8 S8-R6; S8-R6a; Story 10 S10-R6)",
+ "preconds": "<p>1. A customer has invoices on at least two vehicles AND at least one no-vehicle invoice (counter/parts sale) in the current view (seed ZZAUTOTEST data)..</p>",
+ "steps": "<p>1. Expand the customer and read the asset rows top to bottom.<br>2. Click a financial column header to change the table sort, and re-read the asset rows.</p>",
+ "expected": "<p>1. The customer's real asset rows are ordered A→Z by their label, case-insensitive.<br>2. The no-vehicle work collects under a single row labeled \"Parts Sales,\" always sorted last among that customer's assets.<br>3. Changing the column sort does not change the asset order — assets stay A→Z with \"Parts Sales\" last.<br><br>---<br>This is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Sales By Customer report specification version 20 (S8-R6, S8-R6a, S10-R6), read on 17 August 2026.<br>Last checked against build v3.8-da72171 on 8/19/2026.<br><br>AUTOMATION: READY</p>",
+ "custom_atmstatus": 1,
+ "updated_on": 1787208658,
+ "created_by": 3
+}

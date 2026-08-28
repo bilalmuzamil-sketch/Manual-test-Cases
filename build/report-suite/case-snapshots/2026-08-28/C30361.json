@@ -1,0 +1,11 @@
+{
+ "id": 30361,
+ "title": "Units Returned counts initiated part returns and parts-sale credits",
+ "refs": "SV-8645 (PV spec v10 2026-08-17 S5-R3; S5-R4 (Units Returned); §3 Key Decisions)",
+ "preconds": "<p>1. A part with in-window sales (so its row exists) and the Units Returned column enabled via the column picker.<br>2. You can initiate a work-order part return, a parts-sale credit, and cancel a return..</p>",
+ "steps": "<p>1. Initiate a work-order part return for 2 units of the part; reload and read Units Returned.<br>2. Create a parts-sale credit returning 1 more unit; reload and read Units Returned.<br>3. Cancel the first return; reload and read Units Returned.<br>4. Reverse/void an unrelated invoice for the part; reload and read Units Returned.</p>",
+ "expected": "<p>1. After step 1, Units Returned increases by 2.00 (the return record is counted when the return is initiated).<br>2. After step 2, it increases by 1.00 more (a parts-sale credit also creates a part-return record).<br>3. After step 3, it decreases by 2.00 - the column reflects the CURRENT state of return records (cancelled returns are excluded), not a snapshot.<br>4. After step 4, Units Returned is UNCHANGED - invoice reversals are not returns (they affect Units Sold instead).<br><br>---<br>This is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Parts Velocity report specification version 11 (S5-R3, S5-R4), read on 17 August 2026.<br>Last checked against build v3.8-d0e135e on 8/19/2026.<br>Re-checked against the live specification on 26 August 2026: the requirements this case cites are unchanged, so only the version cited above was updated.<br><br>AUTOMATION: READY</p>\n",
+ "custom_atmstatus": 1,
+ "updated_on": 1787747804,
+ "created_by": 3
+}

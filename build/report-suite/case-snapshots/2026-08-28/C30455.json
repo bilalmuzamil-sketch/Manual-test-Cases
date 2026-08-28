@@ -1,0 +1,11 @@
+{
+ "id": 30455,
+ "title": "There is no Trend / over-time tab or chart",
+ "refs": "SV-8667 (WIP spec v24 per Chris Ward 2026-08-19; Story 11 S11-R7 corrected - a screen reads the snapshot via the \"as of\" date (S7-R8a); only the trend view is out of scope)",
+ "preconds": "<p>1. You are signed in to the ShopView App on a desktop browser.<br>2. The Work In Progress report is open..</p>",
+ "steps": "<p>1. Look through the report's tabs, toolbar and menus for any trend, history or over-time chart.<br>2. Set the \"as of\" date to an earlier day and confirm the report reconstructs that day's position rather than drawing a trend over time.</p>",
+ "expected": "<p>1. Only the four progress tabs exist - there is no Trend tab and no chart of work-in-progress dollars over time. The trend / over-time view is the only Story 11 piece not built.<br>2. The report DOES read the nightly snapshot: setting the \"as of\" date to an earlier day reconstructs that day's position from the snapshot. What is missing is only a chart of the dollars over time, not the ability to read a past day.<br><br>---<br>This is the expected behaviour as per epic SV-8582 and story SV-8667 (WIP Story 11), and the Work In Progress report specification version 28 (S11-R7, S7-R8a), as pinned and answered by Chris Ward on 19 August 2026, recorded in his answers in this file: https://raw.githubusercontent.com/bilalmuzamil-sketch/Manual-test-Cases/claude/slack-session-0sxnd9/build/report-suite/chris-answers-2026-08-19/WIP-CHRIS-RULINGS-2026-08-19.md.<br>This corrects the older wording (specification version 22, S11-R7), which said no screen reads the nightly snapshot. Chris Ward confirmed on 19 August 2026 that a screen does read it - an earlier \"as of\" date reconstructs that day - and that only the trend view is unbuilt, so that newest source is followed here.<br>Last checked against build v3.8-d0e135e on 8/19/2026.<br>Re-checked against the live specification on 28 August 2026: every requirement this case cites was read again in the live version and the behaviour above still matches it, so only the version cited above was updated.<br><br>AUTOMATION: READY</p>\n",
+ "custom_atmstatus": 1,
+ "updated_on": 1787886524,
+ "created_by": 3
+}

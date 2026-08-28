@@ -1,0 +1,11 @@
+{
+ "id": 30584,
+ "title": "Header clicks sort ascending then descending; no third state; page 1 returns",
+ "refs": "SV-8676 (IV spec v10 2026-08-17 Story 9 S9-R2)",
+ "preconds": "1. You are signed in to the ShopView App on a desktop browser.\n2. The result set spans more than one page.",
+ "steps": "1. From page 2, click the Part # column header and note the order and the page shown.\n2. Click the same header again and note the order.\n3. Click it a third time.\n4. Click a different column header and check whether the previous sort still applies.",
+ "expected": "1. Clicking a column that is not the active sort sorts it ascending; clicking the active sort column again toggles it to descending; there is no third \"cleared\" state.\n2. Each header click re-fetches the data from the server ordered by the chosen column and direction, returning the FIRST page of the re-sorted result set.\n3. Only one column sorts at a time.\n\n---\nThis is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Inventory Value report specification version 10 (S9-R2), read on 17 August 2026.\nLast checked against build v3.8-bd246fd on 8/18/2026.\n\nAUTOMATION: READY",
+ "custom_atmstatus": 1,
+ "updated_on": 1787095758,
+ "created_by": 3
+}

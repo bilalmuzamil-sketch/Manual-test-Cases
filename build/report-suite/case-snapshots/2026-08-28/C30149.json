@@ -1,0 +1,11 @@
+{
+ "id": 30149,
+ "title": "Financial columns run in the specified order with Subtotal and Margin rules",
+ "refs": "SV-8609 (SBC spec v20 2026-08-17 S7-R17; S7-R18; §Terminology Subtotal and Margin include Adjustments; renamed to Labor Delta per SV-9071)",
+ "preconds": "1. A ZZAUTOTEST invoice exists with known labor, parts, and shop-supply amounts and known costs, in the current range.",
+ "steps": "1. Read the column headers left to right.\n2. Expand down to that invoice's detail row and read its values.\n3. Recalculate Subtotal and Margin by hand from the known amounts.",
+ "expected": "1. The financial columns appear in this order: Labor Delta, Labor Invoiced, Labor Margin, Parts Invoiced, Parts Margin, Shop Supplies, Adjustments, Margin, Margin % — with Subtotal as the rightmost column.\n2. Subtotal = Labor Invoiced + Parts Invoiced + Shop Supplies + Adjustments, before tax.\n3. Labor Margin = Labor Invoiced minus labor cost; Parts Margin = Parts Invoiced minus parts cost.\n4. Margin = Labor Margin + Parts Margin + Adjustments — it does NOT include any Shop Supplies amount (shop supplies add to Subtotal but add no profit to Margin). Adjustments (the signed net of invoice-level fees and discounts) is never allocated into Labor or Parts and carries no cost, so its full amount flows into Margin.\n\n---\nThis is the expected behaviour as per epic SV-8582 and the Sales By Customer report specification version 20 (S7-R17; S7-R18; §Terminology Subtotal and Margin include Adjustments), both read on 17 August 2026. The column was renamed from \"Inv. Hrs\" to \"Labor Delta\" per SV-9071; only the name changed.\nLast checked against build v3.8-2bf8d14 on 8/18/2026.\n\nAUTOMATION: READY",
+ "custom_atmstatus": 1,
+ "updated_on": 1787082432,
+ "created_by": 3
+}

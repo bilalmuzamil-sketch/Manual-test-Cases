@@ -1,0 +1,11 @@
+{
+ "id": 30569,
+ "title": "Category and Vendor multi-selects reload the report to matching parts only",
+ "refs": "SV-8673 (IV spec v10 2026-08-17 Story 6 S6-R1; S6-R2; S6-R3; S6-R4)",
+ "preconds": "1. You are signed in to the ShopView App on a desktop browser.\n2. In-stock parts exist across at least two categories and two vendors.",
+ "steps": "1. Open the filter labeled \"Category\" and select one category; watch the data area.\n2. Add a second category to the selection.\n3. Clear the Category filter, open the filter labeled \"Vendor\", and select one vendor; then add a second.",
+ "expected": "1. The toolbar has a Category filter labeled \"Category\" and a Vendor filter labeled \"Vendor\", each allowing one or more selections.\n2. Selecting one or more categories reloads the report to show only parts in the selected categories.\n3. Selecting one or more vendors reloads the report to show only parts supplied by the selected vendors.\n\n---\nThis is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Inventory Value report specification version 10 (S6-R1, S6-R2, S6-R3, S6-R4), read on 17 August 2026.\n\nAUTOMATION: READY",
+ "custom_atmstatus": 3,
+ "updated_on": 1787058365,
+ "created_by": 3
+}

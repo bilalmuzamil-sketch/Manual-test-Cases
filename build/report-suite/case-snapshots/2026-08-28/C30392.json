@@ -1,0 +1,11 @@
+{
+ "id": 30392,
+ "title": "Technician Utilization sits under Performance, below existing report links",
+ "refs": "SV-8648 (TU spec v9 2026-08-17 S1-R1 — below the named anchor items [Sales; Technician Efficiency; Advisor Analysis; Shop Efficiency] per the PRD video 2026-07-30; access = the one ordinary reports permission per QA lead 2026-08-03)",
+ "preconds": "1. You are signed in as a user whose role has the ordinary reports access.",
+ "steps": "1. Open the reports navigation.\n2. Look under the Performance group.\n3. Click the entry labeled Technician Utilization.\n4. Note where the entry sits relative to the report links that existed before this release.",
+ "expected": "1. The report is listed under the Performance group, labeled \"Technician Utilization\".\n2. Clicking it opens the report.\n3. The entry sits BELOW the pre-existing report links — Sales, Technician Efficiency, Advisor Analysis, Shop Efficiency — the new reports are added below those items without moving or disturbing them.\n\n---\nThis is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Technician Utilization report specification version 9 (S1-R1), read on 17 August 2026.\nLast checked against build v3.8-bd246fd on 8/18/2026.\n\nAUTOMATION: READY",
+ "custom_atmstatus": 1,
+ "updated_on": 1787089749,
+ "created_by": 3
+}

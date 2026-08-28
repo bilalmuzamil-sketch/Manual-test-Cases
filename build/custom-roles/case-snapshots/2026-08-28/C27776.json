@@ -1,0 +1,11 @@
+{
+ "id": 27776,
+ "title": "Verify Service Manager can reverse a work order invoice",
+ "refs": "SV-5319,SV-8297",
+ "preconds": "<p>Log in to ShopView as a user assigned the Service Manager role. (this role has Work Orders = View/Create and Edit/Delete, and reversing a work order invoice is controlled by Work Orders: Delete).<br>The work order already has an invoice created on its Finance tab.<br>The invoice meets the validation criteria for reversal — for example, no payments have been made against it.</p>",
+ "steps": "<p>1. Open the work order's Finance tab.<br>2. Click Reverse on the invoice and confirm.</p>",
+ "expected": "<p>The invoice is reversed successfully. The Finance tab shows the invoice as reversed and the work order returns to its pre-invoice financial state.</p><p>Based on the Custom Roles and Permissions specification version 54 (Permission Matrix, Work Orders row; section 1a Work Orders, Delete; Change Log entry of 28 June 2026), read on 28 August 2026, and story SV-8297.<br>Note for the tester: one line in the same specification, in the table of behaviour changes for migrating users, says the Service Manager loses Invoicing: Delete \"(cannot reverse)\". Reversing a work order invoice was moved to Work Orders: Delete on 28 June 2026, so that older line does not apply here; it is an open question for the product owner.</p><p>AUTOMATION: READY</p>",
+ "custom_atmstatus": 1,
+ "updated_on": 1787886516,
+ "created_by": 3
+}

@@ -1,0 +1,11 @@
+{
+ "id": 30238,
+ "title": "Desktop Totals row merges the identifier columns and sticks to the bottom",
+ "refs": "SV-8627 (SBR spec v22 2026-08-17 Story 10 S10-R5; S10-N1; Story 16 S16-R4)",
+ "preconds": "<ol>\n<li>Desktop viewport (1024px or wider); several reps with known amounts are on the report; at least one rep is left collapsed.</li>\n</ol>\n",
+ "steps": "<ol>\n<li>Scroll the table and find the Totals row.</li>\n<li>Read its first cell and the per-metric cells.</li>\n<li>Compare its values against the sum over ALL matching invoices (including collapsed/unloaded reps).</li>\n<li>Empty the results with a no-data filter and look for the indicator; also watch during a re-fetch.</li>\n</ol>\n",
+ "expected": "<ol>\n<li>A Totals row is the last row inside the table, sticky at the bottom of the scroll area, on the white card surface with a thin top border.</li>\n<li>Its first cell is a single merged cell spanning the four leading identifier columns (Date, Invoice, Customer, Status) labeled \"Totals,\" followed by a cell per metric column and its own pinned Subtotal cell.</li>\n<li>The grand totals cover the FULL filtered result set — every matching non-reversed invoice across every rep, independent of which reps are expanded or loaded.</li>\n<li>Money uses accounting parentheses for negatives; Margin % is recomputed; values are round(sum of unrounded).</li>\n<li>The indicator is present whenever at least one summary row exists, and hidden during loading and in the empty state.</li>\n</ol>\n\n<hr />\n\n<p>This is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Sales By Representative report specification version 22 (S10-R5, S10-N1, S16-R4), read on 17 August 2026.<br />Last checked against build v3.8-bd246fd on 8/18/2026.</p>\n\n<p>AUTOMATION: READY</p>\n",
+ "custom_atmstatus": 1,
+ "updated_on": 1787085056,
+ "created_by": 3
+}

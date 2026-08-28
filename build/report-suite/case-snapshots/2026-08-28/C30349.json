@@ -1,0 +1,11 @@
+{
+ "id": 30349,
+ "title": "An inventory part drops out only with no movement, no stock and no revenue",
+ "refs": "SV-8643 (PV spec v10 2026-08-17 S3-N1)",
+ "preconds": "<p>1. Inventory part A: zero stock movement in the window, less than one unit on hand, zero billed revenue in the window.<br>2. Inventory part B: zero stock movement and zero on hand, but billed revenue in the window (e.g. a drop-ship sale billed without a stock decrement)..</p>",
+ "steps": "<p>1. Search for part A in the report.<br>2. Search for part B in the report.</p>",
+ "expected": "<p>1. Part A does NOT appear - it fails all three keep-criteria (no movement, under one on hand, no revenue) so it carries nothing to act on.<br>2. Part B DOES appear - a part with billed Revenue &gt; 0 is always kept even with no stock movement and no on-hand stock.<br>3. (Special Order parts have no such rule: a never-requested special-order part simply produces no row.)<br><br>---<br>This is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Parts Velocity report specification version 11 (S3-N1), read on 17 August 2026.<br>Last checked against build v3.8-d0e135e on 8/19/2026.<br>Re-checked against the live specification on 26 August 2026: the requirements this case cites are unchanged, so only the version cited above was updated.<br><br>AUTOMATION: READY</p>\n",
+ "custom_atmstatus": 1,
+ "updated_on": 1787747783,
+ "created_by": 3
+}

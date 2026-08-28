@@ -1,0 +1,11 @@
+{
+ "id": 30336,
+ "title": "Bin filter excludes special-order rows; Bin plus that Type is empty by design",
+ "refs": "SV-8642 (PV spec v10 2026-08-17 S2-R8 - 'Catalogue' RENAMED to the exact label 'Special Order' per Chris Ward msg 2026-07-29 [newest-wins] [cf video P31])",
+ "preconds": "<p>1. You are on the Parts Velocity report with data loaded.<br>2. Special Order rows are present under Type = Both (a Special Order part has in-window activity)..</p>",
+ "steps": "<p>1. With Type = Both, select any bin in the Bin filter.<br>2. Look for Special Order rows in the result.<br>3. Set the Type filter to Special Order while the Bin filter is still active.</p>",
+ "expected": "<p>1. With any Bin filter active, ALL Special Order rows are excluded (they have no bin location).<br>2. Special Order combined with any Bin filter yields an empty result showing the empty state - this is by design, not a defect.<br><br>---<br>This is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Parts Velocity report specification version 11 (S2-R8), read on 17 August 2026; where the wording of that specification differs, the behaviour above follows Chris Ward's later decision, recorded in his answers in this file: https://docs.google.com/spreadsheets/d/1x8cuYJlFsDHalVZZTh156_ZCq2gcOaGY/edit?usp=sharing&amp;ouid=106388879401921597782&amp;rtpof=true&amp;sd=true, read on 17 August 2026, which is the authority.<br>Last checked against build v3.8-d0e135e on 8/19/2026.<br>Re-checked against the live specification on 26 August 2026: the requirements this case cites are unchanged, so only the version cited above was updated.<br><br>AUTOMATION: READY</p>\n",
+ "custom_atmstatus": 1,
+ "updated_on": 1787747774,
+ "created_by": 3
+}

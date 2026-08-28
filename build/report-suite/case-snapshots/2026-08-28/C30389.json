@@ -1,0 +1,11 @@
+{
+ "id": 30389,
+ "title": "Each filter or search change re-queries the server and returns page one",
+ "refs": "SV-8642 (PV spec v10 2026-08-17 S2-R10)",
+ "preconds": "<ol><li>You are on the Parts Velocity report with data loaded and the browser devtools network tab open.</li><li>To see the information this test asks for you need the browser's own developer tools: press F12 (or Ctrl+Shift+I; on a Mac Cmd+Option+I) and open the \"Network\" tab, then reload the page. There is nothing to install — it is built into Chrome, Edge and Firefox.</li></ol>",
+ "steps": "<ol><li>Change each of these in turn and watch the network traffic: Type, date range, Bin, Location, Category, Vendor, and the toolbar search.</li><li>After a filter change while on a later page, note which page of results is shown.</li></ol>",
+ "expected": "<p>1. EACH change (Type, date range, Bin, Location, Category, Vendor, search) triggers a fresh server-side data load.<br>2. There is no client-side-only narrowing - every filter or search change re-queries the server.<br>3. Each change returns the FIRST page of the new result set.</p><p>---<br>This is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Parts Velocity report specification version 11 (S2-R10), read on 17 August 2026.<br>Last checked against build v3.8-bd246fd on 8/18/2026.<br>Re-checked against the live specification on 26 August 2026: the requirements this case cites are unchanged, so only the version cited above was updated.</p><p>AUTOMATION: READY</p>",
+ "custom_atmstatus": 1,
+ "updated_on": 1787754894,
+ "created_by": 3
+}

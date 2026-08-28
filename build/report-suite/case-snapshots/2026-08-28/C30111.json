@@ -1,0 +1,11 @@
+{
+ "id": 30111,
+ "title": "Selecting locations scopes the data; All locations covers every accessible one",
+ "refs": "SV-8603 (SBC spec v20 2026-08-17 S4-R5; S4-R6 — per-row location identifier in All-locations view ADDED per kickoff video P10 [ruling 2026-07-28 video-overrides-spec]) + on-screen location-scope indicator per Chris Ward 2026-07-29 [newest-wins]",
+ "preconds": "<p>1. At least two accessible locations each have invoices in the chosen date range (seed ZZAUTOTEST data if needed).<br>2. You are on the Sales By Customer report..</p>",
+ "steps": "<p>1. Select only location A in the location filter and note the customers/totals.<br>2. Select locations A and B together and note the change.<br>3. Select \"All locations.\"<br>4. With \"All locations\" active, look at how the rows tell you which location they belong to.</p>",
+ "expected": "<p>1. With one or more locations selected, the report includes only data from those locations.<br>2. Adding a second location adds that location's invoices to the rows and totals.<br>3. With \"All locations,\" the report includes data from every location the user has access to.<br>4. With \"All locations\" active you can tell which location each row's data belongs to — a location label or marking is shown.<br><br>---<br>This is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Sales By Customer report specification version 20 (S4-R5, S4-R6), read on 17 August 2026.<br>Last checked against build v3.8-da72171 on 8/19/2026.<br><br>AUTOMATION: READY</p>",
+ "custom_atmstatus": 1,
+ "updated_on": 1787208351,
+ "created_by": 3
+}

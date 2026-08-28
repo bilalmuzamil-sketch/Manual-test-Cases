@@ -1,0 +1,11 @@
+{
+ "id": 30174,
+ "title": "Filters; sort and visible columns are restored on the next visit",
+ "refs": "SV-8604 (SBC spec v20 2026-08-17 Story 6 S6-R1; S6-R2; S6-R4; Story 2 S2-R8; Story 3 S3-R8; Story 4 S4-R11; Story 10 S10-R9; Story 13 S13-R8)",
+ "preconds": "1. You are on the report in a browser you can revisit.",
+ "steps": "1. Set a non-default date range, Product Type, location selection, a two-customer Customer selection, a non-default sort, and hide one column.\n2. Navigate away to another part of the application, then return to the report.\n3. Watch the report as it loads.",
+ "expected": "1. The saved view is restored: the date range, the Product Type, the location selection, the Customer filter selection, the sort column and direction, and the visible columns.\n2. On load, the report shows the restored view immediately — the default view is never shown first and then replaced.\n\n---\nThis is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Sales By Customer report specification version 20 (S6-R1, S6-R2, S6-R4, S2-R8, S3-R8, S4-R11, S10-R9, S13-R8), read on 17 August 2026.\n\nAUTOMATION: READY",
+ "custom_atmstatus": 3,
+ "updated_on": 1787127563,
+ "created_by": 3
+}

@@ -1,0 +1,11 @@
+{
+ "id": 30547,
+ "title": "With no fixed sell price and no category, Unit Sell equals Unit Cost",
+ "refs": "SV-8670 (IV spec v10 2026-08-17 Story 3 S3-R5 (no-category fallback) + context note; §5 Assumptions)",
+ "preconds": "<p>1. You are signed in to the ShopView App on a desktop browser.<br>2. A ZZAUTOTEST in-stock part exists with a known unit cost, NO fixed sell price, and NO category.<br>3. The Margin and Total Sell columns are turned on.<br>4. Note for the tester: on this build a part cannot be saved without a category, so you may not be able to create the part described in step 2. If you cannot, mark this test Blocked and say so — do not guess the result..</p>",
+ "steps": "<p>1. Open the Inventory Value report and find the part's row.<br>2. Read its Unit Sell and compare to its Unit Cost.<br>3. Read its Margin and Margin % cells.</p>",
+ "expected": "<p>1. A part with no category takes no markup, so its Unit Sell equals its Unit Cost.<br>2. Such a part shows a Margin of $0.00 and a Margin % of 0.0% — the stock is valued at cost.<br>3. Note for the tester: if no part without a category can be created or found, mark this test Blocked rather than Passed or Failed.<br><br>---<br>This is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Inventory Value report specification version 10 (S3-R5), read on 17 August 2026.<br>Last checked against build v3.8-d0e135e on 8/19/2026.<br><br>AUTOMATION: HOLD - a part cannot be saved without a category on this build, so the no-category path cannot be produced</p>",
+ "custom_atmstatus": 1,
+ "updated_on": 1787215392,
+ "created_by": 3
+}

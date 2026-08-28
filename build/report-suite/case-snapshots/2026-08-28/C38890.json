@@ -1,0 +1,11 @@
+{
+ "id": 38890,
+ "title": "A technician still clocked in counts toward Labor Earned, capped at the quote",
+ "refs": "SV-8660 (WIP spec v22 2026-08-18 Story 4 S4-R15; §4 Terminology (Earned) — spec silent on running clocks; tech-plan-2026-07-29 B1.2 open-clock policy)",
+ "preconds": "<ol><li>You are signed in to the ShopView App on a desktop browser.</li><li>The Labor Earned column is turned on.</li><li>A ZZAUTOTEST open work order exists with one approved labor line quoted at a known time and rate (for example 2.0 hours at $100/hour = $200 quoted).</li><li>A technician is CURRENTLY CLOCKED IN on that line and has not clocked out.</li></ol>",
+ "steps": "<ol><li>Read the work order's Labor Earned value while the technician is still clocked in.</li><li>Wait a while (let more time accrue on the running clock), refresh the report, and re-read Labor Earned.</li><li>Leave the clock running well past the line's quoted time (or simulate it), refresh, and re-read.</li></ol>",
+ "expected": "<p>1. The running (not-yet-clocked-out) time counts toward Labor Earned — the line's earned share reflects the time clocked up to now, not only closed clock records.<br>2. After more time accrues, a refresh shows a larger earned share for that line.<br>3. Labor Earned never exceeds the line's full quoted value, no matter how long the clock keeps running — the per-line cap still applies.</p><p>---<br>This is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Work In Progress report specification version 28 (S4-R15), read on 18 August 2026.<br>Last checked against build v3.8-bd246fd on 8/18/2026.<br>Re-checked against the live specification on 26 August 2026: the requirements this case cites are unchanged, so only the version cited above was updated.</p><p>AUTOMATION: READY</p>",
+ "custom_atmstatus": 1,
+ "updated_on": 1787755059,
+ "created_by": 3
+}

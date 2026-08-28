@@ -1,0 +1,11 @@
+{
+ "id": 27484,
+ "title": "CR-C3-029 — Timesheet mgr + reports",
+ "refs": "SV-7388",
+ "preconds": "<p>Permissions (counted): Timesheets V+E + Reports. View Mode: Full unless noted. All other permissions OFF.</p>",
+ "steps": "<ol>\n<li>Create a custom role with the permissions listed in Preconditions; leave all others OFF.</li>\n<li>Assign the role to a test user and log in.</li>\n<li>Exercise each capability in Expected Result and confirm it succeeds (and that gated pricing is hidden where noted).</li>\n</ol>",
+ "expected": "<p>User CAN: View/edit timesheets; adjust hours; manage attendance for all staff; view timesheet activities report; access reports</p><hr/><p><strong>Risk / Rationale:</strong> Positive capability check — confirms this combination grants exactly the listed actions and nothing gated leaks.<br/><strong>Spec Ref:</strong> §1i+§2a</p>",
+ "custom_atmstatus": 3,
+ "updated_on": 1783064059,
+ "created_by": 1
+}

@@ -1,0 +1,11 @@
+{
+ "id": 26465,
+ "title": "Tech view: the 'Send to Portal' button is hidden",
+ "refs": "SV-7508,SV-7518",
+ "preconds": "<ol>\n<li>A user has a role with View mode set to Tech view, the Customer portal toggle ON, and Review work orders ON.</li>\n</ol>",
+ "steps": "<ol>\n<li>Log in as that user.</li>\n<li>Open a work order that has a line eligible to send to the portal.</li>\n<li>Look for a Send to Portal button on the work order and on the line.</li>\n<li>Check the work order header, the action menu, and the line-level actions.</li>\n</ol>",
+ "expected": "<p>The Send to Portal button is not shown anywhere on the work order — not in the header, on the line, or in the action menus.</p>\n",
+ "custom_atmstatus": 3,
+ "updated_on": 1783942461,
+ "created_by": 3
+}

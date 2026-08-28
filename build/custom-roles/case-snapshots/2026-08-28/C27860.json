@@ -1,0 +1,11 @@
+{
+ "id": 27860,
+ "title": "Verify Sales Representative cannot access Vendors or vendor sensitive fields",
+ "refs": "SV-5319",
+ "preconds": "Log in to ShopView as a user assigned the Sales Representative role. (this role has Vendor & Order Management = Off, so vendor sensitive fields are unreachable regardless of the Manage AP/AR gate introduced in spec v33).",
+ "steps": "1. Look at the main navigation for a Vendors entry.\n2. If a Vendors entry exists, try to open it.",
+ "expected": "Vendors is not reachable for Sales Representative, so vendor sensitive fields (Credit Terms, Credit Limit, Taxes) can never be displayed to this role.",
+ "custom_atmstatus": 1,
+ "updated_on": 1783108595,
+ "created_by": 3
+}

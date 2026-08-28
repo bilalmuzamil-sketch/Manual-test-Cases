@@ -1,0 +1,11 @@
+{
+ "id": 30343,
+ "title": "Rows load ranked by Demand descending, indicator on the Demand header",
+ "refs": "SV-8643 (PV spec v10 2026-08-17 S3-R2)",
+ "preconds": "<ol><li>You are on the Parts Velocity report on a first visit (no saved sort).</li><li>Several parts have different Demand counts in the window; at least one inventory and one special-order part share the same Demand count.</li></ol>",
+ "steps": "<ol><li>Let the report load without clicking any header.</li><li>Read the Demand column top to bottom.</li><li>Find the inventory and special-order rows with equal Demand and note their relative order.</li><li>Look at the Demand column header.</li></ol>",
+ "expected": "<p>1. Rows are ranked by Demand, descending - the most-active parts first.<br>2. Inventory and special-order rows are ranked together in one list.<br>3. Rows with equal Demand keep inventory-before-special-order order.<br>4. The Demand header shows the descending sort indicator - this initial order IS the active sort (it is what the remembered view saves until you click another header).</p><p>---<br>This is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Parts Velocity report specification version 11 (S3-R2), read on 17 August 2026.<br>Last checked against build v3.8-bd246fd on 8/18/2026.<br>Re-checked against the live specification on 26 August 2026: the requirements this case cites are unchanged, so only the version cited above was updated.</p><p>AUTOMATION: READY</p>",
+ "custom_atmstatus": 1,
+ "updated_on": 1787754840,
+ "created_by": 3
+}

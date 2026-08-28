@@ -1,0 +1,11 @@
+{
+ "id": 30541,
+ "title": "A part stocked at two selected locations shows as two rows; never merged",
+ "refs": "SV-8669 (IV spec v10 2026-08-17 Story 2 S2-R3; §2 Known Limitations (v1))",
+ "preconds": "1. You are signed in to the ShopView App on a desktop browser as a user with access to at least two locations.\n2. The same ZZAUTOTEST part is in stock (positive quantity) at two of those locations.",
+ "steps": "1. Open the Inventory Value report and select both locations in the Location filter.\n2. Search for the part and count its rows.",
+ "expected": "1. The part appears twice — one row per location, each with that location's own quantity and values.\n2. The rows are NOT merged into one combined row; this is the documented v1 behavior.\n\n---\nThis is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Inventory Value report specification version 10 (S2-R3), read on 17 August 2026.\nLast checked against build v3.8-bd246fd on 8/18/2026.\n\nAUTOMATION: READY",
+ "custom_atmstatus": 1,
+ "updated_on": 1787095699,
+ "created_by": 3
+}

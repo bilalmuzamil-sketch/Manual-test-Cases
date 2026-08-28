@@ -1,0 +1,11 @@
+{
+ "id": 26587,
+ "title": "Migration is per-org transactional: a partial failure rolls back that org cleanly",
+ "refs": "SV-7485,SV-7527",
+ "preconds": "Test tenant with at least 2 orgs. Inject a deliberate failure for one org (e.g., remove a target system role from the DB for that org's run).",
+ "steps": "1. Capture baseline role_v2_id for every user in both orgs.\n2. Run the migration. Expect failure on the broken org.\n3. Inspect the broken org: confirm no users were partially migrated (all role_v2_id still NULL or all preserved).\n4. Inspect the healthy org: confirm migration completed for that org.\n5. Inspect command exit code and stderr.",
+ "expected": "Step 3: Broken org has rolled back cleanly — no half-migrated state.\nStep 4: Healthy org migrated successfully.\nStep 5: Command exits non-zero with a clear error identifying the broken org.",
+ "custom_atmstatus": 1,
+ "updated_on": 1781700798,
+ "created_by": 3
+}

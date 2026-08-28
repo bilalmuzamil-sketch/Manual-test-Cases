@@ -1,0 +1,11 @@
+{
+ "id": 27437,
+ "title": "CR-C2-032 — Billing + pricing",
+ "refs": "SV-7388",
+ "preconds": "<p>Permissions (counted): Billing Portal + See Financial. View Mode: Full unless noted. All other permissions OFF.</p>",
+ "steps": "<ol><li>Create a custom role with the permissions listed in Preconditions; leave all others OFF.</li><li>Assign the role to a test user and log in.</li><li>Exercise each capability in Expected Result and confirm it succeeds (and that gated pricing is hidden where noted).</li></ol>",
+ "expected": "<p>User CAN: Manage billing portal;</p><hr><p><strong>Risk / Rationale:</strong> Positive capability check — confirms this combination grants exactly the listed actions and nothing gated leaks.<br><strong>Spec Ref:</strong> §2c+§5a</p>",
+ "custom_atmstatus": 1,
+ "updated_on": 1783361524,
+ "created_by": 1
+}

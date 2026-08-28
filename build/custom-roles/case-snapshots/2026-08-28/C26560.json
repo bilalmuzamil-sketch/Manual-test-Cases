@@ -1,0 +1,11 @@
+{
+ "id": 26560,
+ "title": "SEE_AP_AR_DATA bundle = presence of both new AP/AR atoms",
+ "refs": "SV-7475,SV-7524",
+ "preconds": "Build with CRP-BE-SEC deployed. Two custom roles created via the API: 'AP/AR On' (SEE_AP_AR_DATA bundle ON) and 'AP/AR Off' (toggle OFF).",
+ "steps": "1. Hit GET /api/auth/me/fe-permissions while authenticated as a user on 'AP/AR On'.\n2. Inspect the returned atom set.\n3. Resolve the atoms for that user via a BE diagnostic.\n4. Confirm ROLE_ACCOUNT_RECEIVABLE_REPORT::VIEW and ROLE_ACCOUNT_PAYABLE_REPORT::VIEW are in the resolved set.\n5. Repeat for the 'AP/AR Off' user; confirm both atoms are absent.",
+ "expected": "AP/AR-On user has both new atoms resolved. AP/AR-Off user has neither. Both atoms travel only via SEE_AP_AR_DATA.",
+ "custom_atmstatus": 3,
+ "updated_on": 1781869306,
+ "created_by": 3
+}

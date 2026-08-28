@@ -1,0 +1,11 @@
+{
+ "id": 27571,
+ "title": "CR-BRK-016 — History Logs OFF — history/audit leak",
+ "refs": "SV-7388",
+ "preconds": "<p>WO V \\u2713 | Part Sales V \\u2713 | Vendor &amp; Order V \\u2713 | Parts Dept \\u2713 | History Logs \\u2717 | See Financial \\u2713 | View Mode: Full (View Mode as specified).</p>",
+ "steps": "<ol>\n<li>Configure a custom role per the Setup in Preconditions; assign to a test user and log in.</li>\n<li>Open a WO / part sale / parts order; confirm no history tab or section renders.</li>\n</ol>",
+ "expected": "<p>History log sections/tabs hidden everywhere (§5c OFF): WO history, part sales history, parts order history.</p><hr/><p><strong>Risk / Rationale:</strong> A history/audit section leaks somewhere despite History Logs OFF.<br/><strong>Spec Ref:</strong> §5c View History Logs</p>",
+ "custom_atmstatus": 3,
+ "updated_on": 1783030515,
+ "created_by": 1
+}

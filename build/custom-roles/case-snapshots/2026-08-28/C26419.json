@@ -1,0 +1,11 @@
+{
+ "id": 26419,
+ "title": "Returning a part to inventory (restocking) is controlled by Vendor and order management",
+ "refs": "SV-7513,SV-7520",
+ "preconds": "<ol>\n<li>A user has a role with Parts Department ON.</li>\n<li>Test with Vendor and order management at View only, then at Create & Edit.</li>\n</ol>",
+ "steps": "<ol>\n<li>Log in as the Create & Edit user and open a part return eligible for return to inventory.</li>\n<li>Find the Return to Inventory action, click it and confirm.</li>\n<li>Check the quantity is added back to stock.</li>\n<li>Log in as the View-only user and open the same kind of part return.</li>\n<li>Look for the Return to Inventory action.</li>\n</ol>",
+ "expected": "<p>With Vendor and order management Create & Edit, the Return to Inventory action works and stock goes up.</p>\n<p>With Vendor and order management View only, the return is not possible.</p>\n",
+ "custom_atmstatus": 3,
+ "updated_on": 1783943626,
+ "created_by": 3
+}

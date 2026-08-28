@@ -1,0 +1,11 @@
+{
+ "id": 30397,
+ "title": "All clock records are day-grouped and windowed in one report-level time zone",
+ "refs": "SV-8648 (TU spec v9 2026-08-17 S1-R7; S1 context notes)",
+ "preconds": "1. A technician has a clock record that starts before the selected range and ends inside it.\n2. A technician has a clock record that crosses midnight.\n3. For the multi-zone check: locations in two different time zones are selected, with clock records at each.",
+ "steps": "1. Open the report and expand the technician with the cross-midnight record; read the two day rows.\n2. Check the technician whose record straddles the range boundary.\n3. With two differently-zoned locations selected, check which day each record lands on.",
+ "expected": "1. A record that crosses midnight is split by day - each day counts only its own hours; the midnight split is evaluated in the active workplace's time zone.\n2. A record that starts before the range (or ends after it) counts only the part inside the range.\n3. EVERY record is day-grouped and windowed in a SINGLE report-level time zone - the active workplace's - regardless of the location where it was clocked (a record's day, the current-month boundary, and the midnight split all use that one zone).\n4. This matches the Timesheet Activities report's single-time-zone grouping.\n\n---\nThis is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Technician Utilization report specification version 9 (S1-R7), read on 17 August 2026.\nLast checked against build v3.8-bd246fd on 8/18/2026.\n\nAUTOMATION: READY",
+ "custom_atmstatus": 1,
+ "updated_on": 1787089755,
+ "created_by": 3
+}

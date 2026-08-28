@@ -1,0 +1,11 @@
+{
+ "id": 30321,
+ "title": "Deactivating a rep first runs a server pre-check returning the count",
+ "refs": "SV-8630 (SBR spec v22 2026-08-17 Story 13 S13-R1; S13-R4)",
+ "preconds": "<p>1. A staff member is active with the sales-representative toggle on and at least one customer assigned (seed a throwaway ZZAUTOTEST assignment if needed).<br>2. The network panel is open.<br>3. To see the information this test asks for you need the browser's own developer tools: press F12 (or Ctrl+Shift+I; on a Mac Cmd+Option+I) and open the \"Network\" tab, then reload the page. There is nothing to install — it is built into Chrome, Edge and Firefox..</p>",
+ "steps": "<p>1. In staff administration, toggle that staff member's active status off and watch the network panel BEFORE the dialog appears.<br>2. Read the pre-check response and compare it with the dialog's \"{N} customer{s}\" headline.<br>3. Cancel the dialog (leave the staff member active).</p>",
+ "expected": "<p>1. A precondition-check request runs FIRST, before any change is applied, returning the count of distinct customers currently assigned to that staff member as their sales representative, plus a flag indicating whether any assignments exist.<br>2. The dialog's \"{Staff Name} is the sales representative on {N} customer{s}.\" headline matches the returned count.<br>3. No deactivation is committed by the pre-check itself &mdash; cancelling leaves the staff member's active status unchanged.<br><br>---<br>This is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Sales By Representative report specification version 24 (S13-R1, S13-R4), read on 17 August 2026.<br>Last checked against build v3.8-b7d80dc on 8/19/2026.<br>Re-checked against the live specification on 26 August 2026: the requirements this case cites are unchanged, so only the version cited above was updated.<br><br>AUTOMATION: READY</p>\n",
+ "custom_atmstatus": 1,
+ "updated_on": 1787747764,
+ "created_by": 3
+}

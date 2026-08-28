@@ -1,0 +1,11 @@
+{
+ "id": 30449,
+ "title": "The per-day breakdown is fetched only when a technician row is expanded",
+ "refs": "SV-8651 (TU spec v9 2026-08-17 S4-R2; S4-R5)",
+ "preconds": "1. You are on the Technician Utilization report with rows loaded and browser devtools (network tab) open.\n2. To see the information this test asks for you need the browser's own developer tools: press F12 (or Ctrl+Shift+I; on a Mac Cmd+Option+I) and open the \"Network\" tab, then reload the page. There is nothing to install — it is built into Chrome, Edge and Firefox.",
+ "steps": "1. Load the report and inspect the initial data response for per-day content.\n2. Expand a technician row and watch the network traffic.\n3. Collapse and re-expand after a data reload.",
+ "expected": "1. The initial report payload does NOT ship the day rows.\n2. Expanding a technician row issues an on-demand backend request that returns that technician's per-day breakdown.\n3. Because expansion state resets (all collapsed) on any data reload, nothing is lost by the lazy loading - re-expanding fetches fresh day data.\n\n---\nThis is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Technician Utilization report specification version 9 (S4-R2, S4-R5), read on 17 August 2026.\n\nAUTOMATION: READY",
+ "custom_atmstatus": 3,
+ "updated_on": 1787059020,
+ "created_by": 3
+}

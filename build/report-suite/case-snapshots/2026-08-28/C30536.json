@@ -1,0 +1,11 @@
+{
+ "id": 30536,
+ "title": "First visit defaults to today and the active location",
+ "refs": "SV-8668 (IV spec v10 2026-08-17 Story 1 S1-R3; Story 7 S7-R2)",
+ "preconds": "1. You are signed in to the ShopView App on a desktop browser that has never saved settings for this report (fresh browser profile or cleared site data).",
+ "steps": "1. Open the Inventory Value report.\n2. Read the \"as of\" date control's value.\n3. Read the Location filter's selection.",
+ "expected": "<p>1. The \"as of\" date defaults to today.\n2. The location defaults to the user's currently active location.\nNote for the tester: an earlier version of this report offered a date range with ready-made periods. The current Inventory Value report specification (version 10, S5-R1/S5-R7) replaces that with a single \"as of\" date control - one calendar day, defaulting to today and capped at today - because a stock valuation is a point-in-time position, not an amount over a period. Follow the current specification.\n\n---\nThis is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Inventory Value report specification version 10 (S1-R3 and S7-R2, with S5-R1 and S5-R7 for the single \"as of\" date control), re-read on 26 August 2026 and still the live version.\nLast checked against build v3.8-bd246fd on 8/18/2026.\n\nAUTOMATION: READY</p>\n",
+ "custom_atmstatus": 1,
+ "updated_on": 1787750999,
+ "created_by": 3
+}

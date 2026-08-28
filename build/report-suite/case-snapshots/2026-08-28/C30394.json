@@ -1,0 +1,11 @@
+{
+ "id": 30394,
+ "title": "First visit defaults to the This Month preset and the user's active location",
+ "refs": "SV-8648 (TU spec v9 2026-08-17 S1-R3; S1-R6; S9-R2)",
+ "preconds": "1. You are using a browser with NO saved settings for this report (fresh profile or cleared site storage).",
+ "steps": "1. Open the Technician Utilization report.\n2. Read the date-range picker value and the location filter value.",
+ "expected": "1. The date range defaults to the current calendar month (the date picker's \"This Month\" preset).\n2. Because a range never extends past now, the current-month default effectively shows the month to date.\n3. The location filter defaults to the user's currently active location (the one in the application's global location switcher).\n\n---\nThis is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Technician Utilization report specification version 9 (S1-R3, S1-R6, S9-R2), read on 17 August 2026.\nLast checked against build v3.8-bd246fd on 8/18/2026.\n\nAUTOMATION: READY",
+ "custom_atmstatus": 1,
+ "updated_on": 1787089680,
+ "created_by": 3
+}

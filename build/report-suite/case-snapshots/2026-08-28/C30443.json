@@ -1,0 +1,11 @@
+{
+ "id": 30443,
+ "title": "Location changes reload with hours pooled into one row per technician",
+ "refs": "SV-8656 (TU spec v9 2026-08-17 S9-R3; S9-R4; S9-R5 + on-screen location-scope indicator per Chris Ward group message 2026-07-29 (chris-update-2026-07-29/chris-message-2026-07-29.md; NEWEST source; last-update-wins))",
+ "preconds": "<p>1. A technician has clocked time at TWO accessible locations in the range.<br>2. You are on the Technician Utilization report..</p>",
+ "steps": "<p>1. Select only location A and read the technician's hours.<br>2. Add location B to the selection and watch the report.<br>3. Count the technician's rows and compare the hours against A + B.<br>4. Expand the technician and check the day rows on a day with time at both locations.</p>",
+ "expected": "<p>1. Selecting one, several, or all locations RELOADS the report scoped to that set (unlike the technician filter, which is on-screen only).<br>2. All metrics (technician rows, per-day rows, and the Summary) reflect only clock records at the selected location(s).<br>3. The technician's hours are POOLED across the selected locations into ONE row (one row per technician, not one per location); per-day rows pool the same way.<br>4. Scoping never goes beyond the user's accessible locations - a location the user cannot access is never included.<br><br>---<br>This is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Technician Utilization report specification version 9 (S9-R3, S9-R4, S9-R5), read on 17 August 2026.<br>Last checked against build v3.8-d0e135e on 8/19/2026.<br><br>AUTOMATION: READY</p>",
+ "custom_atmstatus": 1,
+ "updated_on": 1787214714,
+ "created_by": 3
+}

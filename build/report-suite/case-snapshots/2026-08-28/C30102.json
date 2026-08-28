@@ -1,0 +1,11 @@
+{
+ "id": 30102,
+ "title": "Date range picker offers nine periods in the specified order, no All Time",
+ "refs": "SV-8601 (SBC spec v20 2026-08-17 Story 2 S2-R1; S2-R2 — S2-R2 CLOSES the eleven-option list and its order itself; so the closed list IS the requirement; re-check this case whenever S2-R2 changes)",
+ "preconds": "1. You are on the Sales By Customer report.",
+ "steps": "1. Find the date range picker in the report toolbar.\n2. Open it and read the options from top to bottom.",
+ "expected": "1. A date range picker is visible in the report toolbar.\n2. The chooser offers nine ready-made periods, in this order: Last 12 Months, This Year, Last Year, This Quarter, Last Quarter, This Month, Last Month, This Week, Last Week. Beside them it shows a month calendar you click dates on to build your own range, a live readout of how many days the range covers, and an Apply button. There is no \"Today\", no \"Yesterday\" and no item called \"Custom\" - you build your own range on the calendar instead.\n3. The named periods use the application's standard shared calendar boundaries - this is one shared chooser used by all six reports.\n4. There is no \"All Time\" option.\n\n---\nThis is the expected behaviour as per epic SV-8582, read on 17 August 2026, and Chris Ward's decision of 8/5/2026, recorded in his answers in this file: https://docs.google.com/spreadsheets/d/1x8cuYJlFsDHalVZZTh156_ZCq2gcOaGY/edit?usp=sharing&ouid=106388879401921597782&rtpof=true&sd=true, read on 17 August 2026. Where the Sales By Customer report specification version 20 (S2-R1, S2-R2), read on 17 August 2026, says something different, his decision is the later word and is the authority.\nLast checked against build v3.8-2bf8d14 on 8/18/2026.\n\nAUTOMATION: READY",
+ "custom_atmstatus": 1,
+ "updated_on": 1787082424,
+ "created_by": 3
+}

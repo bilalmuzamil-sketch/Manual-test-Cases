@@ -1,0 +1,11 @@
+{
+ "id": 38845,
+ "title": "Return part & resolve cores allowed with Work Orders: View",
+ "refs": "SV-8541 (Custom Roles & Permissions \"Marking Cores OK/Not Ok is gated by WO→View\"; parent SV-8183 §9 WO/Parts enforcement mapping)",
+ "preconds": "<ol>\n<li>You have a role with Work Orders → View turned ON but Work Order Line: Create & Edit turned OFF.</li>\n<li>A user is signed in with that role.</li>\n<li>A work order has a special-order part that has already been received, and a part with a core to resolve.</li>\n</ol>",
+ "steps": "<ol>\n<li>Open the work order.</li>\n<li>From the part's three-dot menu, return the received special-order part.</li>\n<li>Resolve a core (choose OK or Not OK) for an inventory part and a special-order part.</li>\n</ol>",
+ "expected": "<p>The user IS able to return the received special-order part and resolve the cores.</p>\n<p>These actions are gated by Work Orders → View (not by Work Order Line: Create & Edit) — this matches the current spec (\"Marking Cores OK/Not Ok is gated by WO→View\") and behaves the same on Production.</p>\n",
+ "custom_atmstatus": 3,
+ "updated_on": 1785175583,
+ "created_by": 3
+}

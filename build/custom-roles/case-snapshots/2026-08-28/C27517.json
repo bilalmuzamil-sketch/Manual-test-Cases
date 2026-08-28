@@ -1,0 +1,11 @@
+{
+ "id": 27517,
+ "title": "CR-PAY-012 — Payments + AP/AR",
+ "refs": "SV-7388",
+ "preconds": "<p>Permissions (counted): WO: View, Customer: View; Vendor order and management: View, Invoicing V+E + See AP/AR. Auto-gate forced ON (not counted): See Fin. View Mode: Full unless noted. All other permissions OFF.</p>",
+ "steps": "<ol><li>Create a custom role with the permissions listed in Preconditions; leave all others OFF.</li><li>Assign the role to a test user and log in.</li><li>Exercise each capability in Expected Result and confirm it succeeds (and that gated pricing is hidden where noted).</li></ol>",
+ "expected": "<p>User CAN: Create invoices; process payments; deposits; send to terminal; AP/AR payment tabs (customer &amp; vendor); aging; bulk payments from Unpaid Invoices tab</p><hr><p><strong>Risk / Rationale:</strong> Positive capability check — confirms this combination grants exactly the listed actions and nothing gated leaks.<br><strong>Spec Ref:</strong> §1h+§5b</p>",
+ "custom_atmstatus": 1,
+ "updated_on": 1783359575,
+ "created_by": 1
+}

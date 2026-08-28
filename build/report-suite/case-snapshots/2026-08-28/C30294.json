@@ -1,0 +1,11 @@
+{
+ "id": 30294,
+ "title": "Assignments CSV: one row per assigned customer, sorted customer then rep",
+ "refs": "SV-8632 (SBR spec v22 2026-08-17 Story 15 S15-R5; S15-R7; S15-R10)",
+ "preconds": "<p>1. The organization has several customers with assigned reps and at least one customer with NO assigned rep (seed as needed)..</p>",
+ "steps": "<p>1. Download the Sales Representative Assignments CSV.<br>2. Count the rows against the customers with assigned reps.<br>3. Search for the no-rep customer.<br>4. Read the row order.</p>",
+ "expected": "<p>1. Every customer with an assigned sales representative produces exactly ONE row (single-rep model: one rep per customer).<br>2. Customers with no assigned rep are NOT included.<br>3. Rows are sorted by customer name A&rarr;Z (primary), then rep name A&rarr;Z (secondary).<br><br>---<br>This is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Sales By Representative report specification version 24 (S15-R5, S15-R7, S15-R10), read on 17 August 2026.<br>Last checked against build v3.8-b7d80dc on 8/19/2026.<br>Re-checked against the live specification on 26 August 2026: the requirements this case cites are unchanged, so only the version cited above was updated.<br><br>AUTOMATION: READY</p>\n",
+ "custom_atmstatus": 1,
+ "updated_on": 1787747719,
+ "created_by": 3
+}

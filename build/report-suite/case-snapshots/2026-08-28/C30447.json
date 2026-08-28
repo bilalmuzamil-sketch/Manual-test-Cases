@@ -1,0 +1,11 @@
+{
+ "id": 30447,
+ "title": "All-white table with no row shading; toolbar controls in the fixed order",
+ "refs": "SV-8655 (TU spec v9 2026-08-17 S8-R1; S8-R2; S8-R3 — toolbar order rewritten: Column Selection inserted after the three-dot menu; and the date-range picker now precedes the technician filter)",
+ "preconds": "1. You are on the Technician Utilization report with rows loaded, in light mode.",
+ "steps": "1. Look at the column headers and the data rows' backgrounds.\n2. Read the toolbar controls left to right.\n3. Look for the expand/collapse-all control's position.",
+ "expected": "1. The report uses an all-white table: white column headers and white data cells, with NO alternating row shading.\n2. The toolbar controls run, left to right: the three-dot download menu, the Column Selection control, the date-range picker, the technician filter, and the Location filter (rightmost).\n3. The expand/collapse-all control is NOT a toolbar control - it lives in the table header (in the Technician column).\n\n---\nThis is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Technician Utilization report specification version 9 (S8-R1, S8-R2, S8-R3), read on 17 August 2026.\nLast checked against build v3.8-bd246fd on 8/18/2026.\n\nAUTOMATION: READY",
+ "custom_atmstatus": 1,
+ "updated_on": 1787089796,
+ "created_by": 3
+}

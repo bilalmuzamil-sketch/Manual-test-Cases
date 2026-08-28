@@ -1,0 +1,11 @@
+{
+ "id": 27563,
+ "title": "CR-BRK-008 — Review WOs + Tech View — SPEC CONTRADICTION",
+ "refs": "SV-7388",
+ "preconds": "<p>WO V \\u2713 | Review WOs \\u2713 | View Mode: Tech (View Mode as specified).</p>",
+ "steps": "<ol>\n<li>Configure a custom role per the Setup in Preconditions; assign to a test user and log in.</li>\n<li>Open a WO in Tech View; check whether the Review action is visible/usable.</li>\n</ol>",
+ "expected": "<p>CONFLICT — §4 Tech-View table says 'Cannot review WOs… even if the Review WOs sub-setting is ON,' but Change Log 6/9 says 'Review Work Order always controls the related ability and wins over Full View or Tech View.' Cannot determine expected from spec — needs PM ruling.</p><hr/><p><strong>Risk / Rationale:</strong> The two spec statements contradict; build could go either way. Test both readings and flag which the build follows.<br/><strong>Spec Ref:</strong> §4 View Mode (Tech View) vs Change Log 6/9<br/><strong>Flag / Note:</strong> Spec contradiction — no ticket</p>",
+ "custom_atmstatus": 1,
+ "updated_on": 1784013349,
+ "created_by": 1
+}

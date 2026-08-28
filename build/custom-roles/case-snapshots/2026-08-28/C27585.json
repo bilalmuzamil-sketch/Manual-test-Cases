@@ -1,0 +1,11 @@
+{
+ "id": 27585,
+ "title": "CR-BRK-030 — Timesheets OFF but Reports ON — surface exposure",
+ "refs": "SV-7388",
+ "preconds": "<p>WO V \\u2713 | Timesheets \\u2717 | Reports \\u2713 | View Mode: Full (View Mode as specified).</p>",
+ "steps": "<ol>\n<li>Configure a custom role per the Setup in Preconditions; assign to a test user and log in.</li>\n<li>Confirm Timesheets nav hidden; open Reports → timesheet activities report (should be visible).</li>\n</ol>",
+ "expected": "<p>Timesheets nav hidden, BUT the timesheet activities report is still visible via Reports (§1i View note). Clock in/out remains available to all.</p><hr/><p><strong>Risk / Rationale:</strong> Either the report is wrongly hidden, or timesheet-editing surfaces leak beyond the read-only report.<br/><strong>Spec Ref:</strong> §1i Timesheets; §2a Reports</p>",
+ "custom_atmstatus": 3,
+ "updated_on": 1783064056,
+ "created_by": 1
+}

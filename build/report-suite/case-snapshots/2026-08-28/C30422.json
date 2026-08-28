@@ -1,0 +1,11 @@
+{
+ "id": 30422,
+ "title": "Expansion state is view-only: it resets on any reload and fresh visit",
+ "refs": "SV-8651 (TU spec v9 2026-08-17 S4-R5)",
+ "preconds": "1. You are on the Technician Utilization report with several rows loaded.",
+ "steps": "1. Expand two technician rows, then change the date range.\n2. Expand two rows again, leave the report, and come back.\n3. Expand one technician's row, then deselect and re-select a DIFFERENT technician in the technician filter.",
+ "expected": "1. After the reload (date-range or location change), all rows are collapsed - expansion state resets.\n2. On a fresh visit, all rows start collapsed - expansion is never persisted.\n3. Deselecting and re-selecting a technician (an on-screen operation) does NOT change the expansion state of the other rows - the expanded row stays expanded.\n\n---\nThis is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Technician Utilization report specification version 9 (S4-R5), read on 17 August 2026.\nLast checked against build v3.8-bd246fd on 8/18/2026.\n\nAUTOMATION: READY",
+ "custom_atmstatus": 1,
+ "updated_on": 1787089762,
+ "created_by": 3
+}

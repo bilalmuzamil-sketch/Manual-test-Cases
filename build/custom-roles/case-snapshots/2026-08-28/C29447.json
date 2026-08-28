@@ -1,0 +1,11 @@
+{
+ "id": 29447,
+ "title": "Time Clock user CAN read the Schedule via API",
+ "refs": null,
+ "preconds": "<ol>\n<li>A user is signed in with the system <strong>Time Clock</strong> role (Work Orders View, Schedule View, Timesheets View; View Mode none; every other permission OFF; read-only, can clock in/out).</li>\n<li>You have a way to send API requests to the backend (api.staging.shopview.com) as that signed-in Time Clock user.</li>\n</ol>",
+ "steps": "<ol>\n<li>Send GET /api/calendar?date=<start>&end_date=<end>.</li>\n</ol>",
+ "expected": "<p>The request returns <strong>200 OK</strong> with the schedule/calendar data.</p>\n<p>Reason: the Time Clock role has Schedule View, so reading the schedule is allowed.</p>\n",
+ "custom_atmstatus": 3,
+ "updated_on": 1784006684,
+ "created_by": 3
+}

@@ -1,0 +1,11 @@
+{
+ "id": 30122,
+ "title": "A customer with no matching invoices in the current view is not shown",
+ "refs": "SV-8605 (SBC spec v20 2026-08-17 Story 7 S7-N1)",
+ "preconds": "<p>1. A customer exists whose invoices all fall OUTSIDE the current date range (seed if needed).<br>2. You are on the Sales By Customer report..</p>",
+ "steps": "<p>1. Set a date range that contains none of that customer's invoices.<br>2. Look for the customer in the table.</p>",
+ "expected": "<p>1. The customer is not shown — there are no zero-value placeholder rows.<br><br>---<br>This is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Sales By Customer report specification version 20 (S7-N1), read on 17 August 2026.<br>Last checked against build v3.8-da72171 on 8/19/2026.<br><br>AUTOMATION: READY</p>",
+ "custom_atmstatus": 1,
+ "updated_on": 1787208556,
+ "created_by": 3
+}

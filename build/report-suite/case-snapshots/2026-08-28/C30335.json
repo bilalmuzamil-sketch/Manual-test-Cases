@@ -1,0 +1,11 @@
+{
+ "id": 30335,
+ "title": "The Bin multi-select limits the table to parts stocked in those bins",
+ "refs": "SV-8642 (PV spec v10 2026-08-17 S2-R8)",
+ "preconds": "<p>1. You are on the Parts Velocity report with data loaded.<br>2. Inventory parts are stocked in at least two different bin locations..</p>",
+ "steps": "<p>1. Open the Bin filter and select one bin location.<br>2. Add a second bin location.</p>",
+ "expected": "<p>1. Each selection reloads the data from the server.<br>2. Only inventory parts stocked in ANY of the selected bins are shown.<br>3. The filter allows more than one bin (multi-select).<br><br>---<br>This is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Parts Velocity report specification version 11 (S2-R8), read on 17 August 2026.<br>Last checked against build v3.8-d0e135e on 8/19/2026.<br>Re-checked against the live specification on 26 August 2026: the requirements this case cites are unchanged, so only the version cited above was updated.<br><br>AUTOMATION: READY</p>\n",
+ "custom_atmstatus": 1,
+ "updated_on": 1787747773,
+ "created_by": 3
+}

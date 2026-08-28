@@ -1,0 +1,11 @@
+{
+ "id": 27851,
+ "title": "Verify Office cannot edit a part (catalog is view-only)",
+ "refs": "SV-5319",
+ "preconds": "Log in to ShopView as a user assigned the Office role. (this role has Catalog and Inventory = View only).\nA part exists in the catalog.",
+ "steps": "1. Click Parts and open the Catalog.\n2. Open a part and try to edit any field.",
+ "expected": "Editing is BLOCKED: fields are read-only/disabled or saving returns a permission error. The part details remain viewable.",
+ "custom_atmstatus": 1,
+ "updated_on": 1783108595,
+ "created_by": 3
+}

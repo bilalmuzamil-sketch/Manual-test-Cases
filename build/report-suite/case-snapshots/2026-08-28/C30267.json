@@ -1,0 +1,11 @@
+{
+ "id": 30267,
+ "title": "Toggling a column applies at once to summary; detail and Totals rows",
+ "refs": "SV-8637 (SBR spec v22 2026-08-17 Story 20 S20-R4; S20-R7)",
+ "preconds": "<ol><li>A rep is expanded and the Totals indicator is visible.</li></ol>",
+ "steps": "<ol><li>Toggle \"Parts Margin\" off and immediately check the summary rows, detail rows, and the Totals row.</li><li>Toggle it back on.</li></ol>",
+ "expected": "<p>1. The toggle takes effect immediately — no confirm step.<br>2. Hiding a metric column removes it from rep summary rows, invoice detail rows, and the grand Totals indicator simultaneously; showing restores it everywhere at once.</p><p>---<br>This is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Sales By Representative report specification version 24 (S20-R4, S20-R7), read on 17 August 2026.<br>Last checked against build v3.8-bd246fd on 8/18/2026.<br>Re-checked against the live specification on 26 August 2026: the requirements this case cites are unchanged, so only the version cited above was updated.</p><p>AUTOMATION: READY</p>",
+ "custom_atmstatus": 1,
+ "updated_on": 1787754733,
+ "created_by": 3
+}

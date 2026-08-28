@@ -1,0 +1,11 @@
+{
+ "id": 38892,
+ "title": "A recorded day keeps its category and vendor names after a rename or delete",
+ "refs": "SV-8678 (IV spec v10 2026-08-17 Story 11 S11-R2; Story 5 S5-R4; tech-plan-2026-07-29 B4.1 — names stored with the recorded rows on purpose)",
+ "preconds": "<p>1. You are signed in to the ShopView App on a desktop browser.<br>2. A recorded (overnight-captured) day exists that includes ZZAUTOTEST parts under a known category and a known vendor..</p>",
+ "steps": "<p>1. Rename that part category (and/or rename or delete the vendor) in administration.<br>2. Set the report's \"as of\" date to the earlier recorded day (the date control names that earlier date).<br>3. Read the affected rows' Category and Vendor cells on the recorded day.<br>4. Move the range back to include today (live view) and re-read a renamed category's rows.</p>",
+ "expected": "<p>1. The earlier recorded day still shows the category and vendor names AS THEY WERE RECORDED that day — a recorded day equals what the live report showed that day, even after the rename/delete.<br>2. The rename/delete causes no blank Category/Vendor cells and no dropped rows on the recorded day.<br>3. The live view (window reaching today) shows the NEW name for the renamed category.<br><br>---<br>This is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Inventory Value report specification version 10 (S11-R2, S5-R4), read on 17 August 2026.<br>Last checked against build v3.8-d0e135e on 8/19/2026.<br><br>AUTOMATION: HOLD - needs a recorded earlier day plus the stored capture rows, which are not reachable from the application</p>",
+ "custom_atmstatus": 1,
+ "updated_on": 1787216077,
+ "created_by": 3
+}

@@ -1,0 +1,11 @@
+{
+ "id": 30142,
+ "title": "All columns sortable except chevron; text alphabetical, numbers by value",
+ "refs": "SV-8608 (SBC spec v20 2026-08-17 S10-R1; S10-R2; S10-R6; S13-R4; renamed to Labor Delta per SV-9071)",
+ "preconds": "1. Several customers with differing values are in the current view.\n2. A customer with multiple assets and invoices is in the view.",
+ "steps": "1. Click each column header in turn (Customer, Date, Labor Delta, Labor Invoiced, Labor Margin, Parts Invoiced, Parts Margin, Shop Supplies, Adjustments, Margin, Margin %, Subtotal) and watch the order change.\n2. Try clicking the chevron column's header position.\n3. Compare a text sort (Customer) and a numeric sort (Subtotal) against the values.\n4. Sort by Subtotal descending, expand a customer and an asset, and read the asset and invoice order.",
+ "expected": "1. Every column is sortable except the chevron column.\n2. Text columns sort alphabetically; numeric columns sort by value (not as text).\n3. Sorting reorders only the customer summary rows — asset rows keep their own order (A→Z with \"Parts Sales\" last) and invoice rows keep their order under their asset.\n\n---\nThis is the expected behaviour as per epic SV-8582 and the Sales By Customer report specification version 20 (S10-R1; S10-R2; S10-R6; S13-R4), both read on 17 August 2026. The column was renamed from \"Inv. Hrs\" to \"Labor Delta\" per SV-9071; only the name changed.\nLast checked against build v3.8-2bf8d14 on 8/18/2026.\n\nAUTOMATION: READY",
+ "custom_atmstatus": 1,
+ "updated_on": 1787082713,
+ "created_by": 3
+}

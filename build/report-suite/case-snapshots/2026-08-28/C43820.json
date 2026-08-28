@@ -1,0 +1,11 @@
+{
+ "id": 43820,
+ "title": "Earlier as-of days show no Adjustments value because history is not backfilled",
+ "refs": "SV-9282 (WIP spec v24 per Chris Ward 2026-08-19; S11-R8; S11-R9 - Adjustments captured in its own snapshot column,no history backfill,missing value read as zero)",
+ "preconds": "<p>1. You are signed in to the ShopView App on a desktop browser.<br>2. A nightly snapshot exists for a day before the Adjustments column was introduced..</p>",
+ "steps": "<p>1. Open the Work In Progress report.<br>2. Set the \"as of\" date to a day before the Adjustments column existed.<br>3. Read the Adjustments values on the historical rows.</p>",
+ "expected": "<p>1. Rows for that earlier day show an Adjustments value of $0.00 (a missing snapshot value is read as zero).<br>2. Historical Adjustments values are NOT recomputed from today's data.<br>3. Earned and Remaining on those historical rows are unchanged - their captured values do not move.<br><br>---<br>This is the expected behaviour as per epic SV-8582 and story SV-9282, and the Work In Progress report specification version 24 (S11-R8, S11-R9), as pinned by Chris Ward on 19 August 2026, recorded in his answers in this file: https://raw.githubusercontent.com/bilalmuzamil-sketch/Manual-test-Cases/claude/slack-session-0sxnd9/build/report-suite/chris-answers-2026-08-19/WIP-CHRIS-RULINGS-2026-08-19.md.<br>Last checked against build v3.8-d0e135e on 8/19/2026.<br><br>AUTOMATION: READY</p>",
+ "custom_atmstatus": 1,
+ "updated_on": 1787216740,
+ "created_by": 3
+}

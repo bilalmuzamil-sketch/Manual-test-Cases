@@ -1,0 +1,11 @@
+{
+ "id": 27561,
+ "title": "CR-BRK-006 — Invoicing Delete with AP/AR OFF — gate #2 bypass",
+ "refs": "SV-7388; SV-7812",
+ "preconds": "<p>Invoicing V/E/D \\u2713 | See Financial \\u2713 | Manage AP/AR \\u2717 | WO V \\u2713 | View Mode: Full  (AP/AR forced-on modal bypassed) (View Mode as specified).</p>",
+ "steps": "<ol>\n<li>Configure a custom role per the Setup in Preconditions; assign to a test user and log in.</li>\n<li>Attempt to delete a payment; void a transaction; delete a part-sale return.</li>\n</ol>",
+ "expected": "<p>Per §1h gate #2, Invoicing Delete requires Manage AP/AR ON. With AP/AR OFF, deleting payments / voiding / deleting a part-sale return must be blocked (or the config is invalid).</p><hr/><p><strong>Risk / Rationale:</strong> Payment delete/void succeeds without AP/AR — gate #2 enforced only in the editor modal, not at execution.<br/><strong>Spec Ref:</strong> §1h Invoicing (Delete gate #2); Change Log 6/28</p>",
+ "custom_atmstatus": 1,
+ "updated_on": 1782992467,
+ "created_by": 1
+}

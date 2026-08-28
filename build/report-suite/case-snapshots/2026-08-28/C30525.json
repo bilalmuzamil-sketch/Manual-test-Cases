@@ -1,0 +1,11 @@
+{
+ "id": 30525,
+ "title": "In dark mode every table; strip; link and coloring stays legible",
+ "refs": "SV-8666 (WIP spec v28 2026-08-24 S10-R9; single-line Asset cell; heading renamed to Labor Delta per SV-9071)",
+ "preconds": "<p>1. You are signed in to the ShopView App on a desktop browser.<br>2. The application is switched to dark mode.<br>3. The report shows rows including positive and negative Labor Delta values, one Asset cell showing a Unit # and one showing a VIN.</p>",
+ "steps": "<p>1. Read the table headers and cells in dark mode.<br>2. Read the summary strip, the WO # link, the Labor Delta colors, and the Asset cell.</p>",
+ "expected": "<p>1. The report supports dark mode.<br>2. The table, the summary strip, the WO # link, the Labor Delta green/red coloring, and the Asset cell all use dark-mode-legible colors meeting contrast.</p><p>This is the expected behaviour as per epic SV-8582 and the Work In Progress report specification version 28 (S10-R9), read on 26 August 2026. The column was renamed from \"Inv. Hrs\" to \"Labor Delta\" per SV-9071; only the name changed.<br>Specification version 22 named a two-line asset cell in this requirement; version 28 (2026-08-24) names the single-line Asset cell, and we take the later version as prevailing.<br>This expectation has not been checked against any build since the specification change described above.</p><p>AUTOMATION: READY</p>",
+ "custom_atmstatus": 1,
+ "updated_on": 1787755053,
+ "created_by": 3
+}

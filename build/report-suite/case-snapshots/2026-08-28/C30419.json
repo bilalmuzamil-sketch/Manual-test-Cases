@@ -1,0 +1,11 @@
+{
+ "id": 30419,
+ "title": "Expanding shows one row per clocked day in date order, loaded on demand",
+ "refs": "SV-8651 (TU spec v9 2026-08-17 S4-R2; S4-N1; S9-R4 — one row per clocked day in date order; load-on-expand; no row for an unclocked day; per-day pooling across selected locations; the back-end half is covered by C30449 in \"TU - API\")",
+ "preconds": "1. A technician clocked time on several (but not all) days of the range - including, for the pooling check, time at two selected locations on the same day.",
+ "steps": "1. Before expanding anything, look at the technician's row - there are no day rows under it yet.\n2. Expand the technician's row and watch the data area as the day rows appear.\n3. Read the day rows top to bottom.\n4. Look for rows on days the technician did not clock time.\n5. On the double-location day, count the rows for that date.",
+ "expected": "1. One row appears for each day the technician clocked time in the range, in date order from earliest to latest.\n2. The day rows are not there until you expand the row - they arrive at the moment you expand it (you may briefly see the standard loading indicator in that area), and the rest of the report does not reload.\n3. A day with no clocked time has NO row.\n4. With several locations selected, a day's row POOLS that day's hours across the selected locations - one day row per date, not one per location.\n5. Note for the tester: you do not need developer tools for this test - just watch the screen.\n\n---\nThis is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Technician Utilization report specification version 9 (S4-R2, S4-N1, S9-R4), read on 17 August 2026.\nLast checked against build v3.8-bd246fd on 8/18/2026.\n\nAUTOMATION: READY",
+ "custom_atmstatus": 1,
+ "updated_on": 1787089759,
+ "created_by": 3
+}

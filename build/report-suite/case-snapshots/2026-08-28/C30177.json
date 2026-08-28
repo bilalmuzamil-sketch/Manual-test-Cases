@@ -1,0 +1,11 @@
+{
+ "id": 30177,
+ "title": "The saved view is specific to this report and does not affect any other report",
+ "refs": "SV-8604 (SBC spec v20 2026-08-17 Story 6 S6-R7)",
+ "preconds": "1. You have set a distinctive saved view on Sales By Customer (for example Last Year + Parts only).",
+ "steps": "1. Open another report in the Reports suite and read its filters.\n2. Return to Sales By Customer.",
+ "expected": "1. The other report keeps its own defaults/saved view — the Sales By Customer settings do not leak into it.\n2. Sales By Customer still restores its own saved view.\n\n---\nThis is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Sales By Customer report specification version 20 (S6-R7), read on 17 August 2026.\n\nAUTOMATION: READY",
+ "custom_atmstatus": 3,
+ "updated_on": 1787127569,
+ "created_by": 3
+}

@@ -1,0 +1,11 @@
+{
+ "id": 30602,
+ "title": "The icon-only download and Column Selection buttons carry accessible names",
+ "refs": "SV-8679 (IV spec v10 2026-08-17 Story 12 S12-R9)",
+ "preconds": "1. You are signed in to the ShopView App on a desktop browser.\n2. The Inventory Value report is open.\n3. Part of this test checks what a blind user would hear, so you need a screen reader. On Windows install NVDA — it is free, from nvaccess.org. On a Mac use VoiceOver, which is already built in (Cmd+F5 turns it on and off). Alternatively the browser's developer tools (F12) have an \"Accessibility\" panel that shows the same names without you having to listen to anything.",
+ "steps": "1. Inspect the three-dot download button's accessible name.\n2. Inspect the Column Selection button's accessible name.",
+ "expected": "1. Each icon-only control carries an accessible name exposed to assistive technology (it is not announced as an unnamed button).\n\n---\nThis is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Inventory Value report specification version 10 (S12-R9), read on 17 August 2026.\nLast checked against build v3.8-bd246fd on 8/18/2026.\n\nAUTOMATION: READY",
+ "custom_atmstatus": 1,
+ "updated_on": 1787095774,
+ "created_by": 3
+}

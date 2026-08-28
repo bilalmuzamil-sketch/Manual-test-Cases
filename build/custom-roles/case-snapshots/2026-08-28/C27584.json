@@ -1,0 +1,11 @@
+{
+ "id": 27584,
+ "title": "CR-BRK-029 — Role change — forced logout / stale permissions",
+ "refs": "SV-7388",
+ "preconds": "<p>Change an active (logged-in) user's role (View Mode as specified).</p>",
+ "steps": "<ol>\n<li>Configure a custom role per the Setup in Preconditions; assign to a test user and log in.</li>\n<li>Change a logged-in user's role; observe forced logout and new perms on re-login.</li>\n</ol>",
+ "expected": "<p>The affected user is forced to log out; the new role applies on next login (Staff Page + Key Decision 'Role change = forced logout').</p><hr/><p><strong>Risk / Rationale:</strong> User keeps the old session/permissions until a manual logout — stale permissions persist.<br/><strong>Spec Ref:</strong> Staff Page Updates; Key Decisions</p>",
+ "custom_atmstatus": 3,
+ "updated_on": 1783160420,
+ "created_by": 1
+}

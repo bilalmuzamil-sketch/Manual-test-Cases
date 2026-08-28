@@ -1,0 +1,11 @@
+{
+ "id": 27754,
+ "title": "Verify Administrator can change a work order line status (approve, decline, complete)",
+ "refs": "SV-5319",
+ "preconds": "Log in to ShopView as a user assigned the Administrator role. (this role has Work Order Lines: Create and Edit plus Full View).\nAt least one work order exists that contains labor and part lines with prices entered.",
+ "steps": "1. Open a work order and locate a line.\n2. Change the line status to Approved.\n3. Change the line status to Declined.\n4. Change the line status to Complete.",
+ "expected": "Each status change (Approve, Decline, Complete) is available and saves successfully. The line shows its new status after each change.",
+ "custom_atmstatus": 1,
+ "updated_on": 1783108595,
+ "created_by": 3
+}

@@ -1,0 +1,11 @@
+{
+ "id": 27834,
+ "title": "Verify Parts Manager cannot delete a work order",
+ "refs": "SV-5319",
+ "preconds": "Part Sales feature ON; role = Part Sales DELETE only\nA fresh SERVICE work order exists (seeded via admin)",
+ "steps": "1. Open the Uncomplete work order.\n2. Open the work order action menu and look for a Delete option; if present, click it.",
+ "expected": "The Delete menu item (menu_item_delete_work_order) is ABSENT — a",
+ "custom_atmstatus": 3,
+ "updated_on": 1783263965,
+ "created_by": 3
+}

@@ -1,0 +1,11 @@
+{
+ "id": 30221,
+ "title": "Expanding a rep loads its invoices on demand with a row-level spinner",
+ "refs": "SV-8624 (SBR spec v22 2026-08-17 S6-R1,S6-R2,S6-R3,S6-E1; heading renamed to Labor Delta per SV-9071)",
+ "preconds": "1. A rep with several matching invoices is on the report.",
+ "steps": "1. Click the chevron in the rep's Date cell and watch the row.\n2. Read a detail row left to right.",
+ "expected": "1. The rep's matching invoices appear as detail rows beneath the summary row; a brief row-level loading indicator shows while they load on the first expand.\n2. Each detail row shows, left to right: the invoice's date, the invoice number, the customer name, the payment status badge, and the per-invoice values for Labor Delta and the money columns.\n3. A rep with a single matching invoice can still be expanded — one detail row is shown.\n\n---\nThis is the expected behaviour as per epic SV-8582 and the Sales By Representative report specification version 22 (S6-R1, S6-R2, S6-R3, S6-E1), both read on 17 August 2026. The column was renamed from \"Inv. Hrs\" to \"Labor Delta\" per SV-9071; only the name changed.\n\nAUTOMATION: Not available on Build to test Yet - Last checked 8/17/2026",
+ "custom_atmstatus": 3,
+ "updated_on": 1786997410,
+ "created_by": 3
+}

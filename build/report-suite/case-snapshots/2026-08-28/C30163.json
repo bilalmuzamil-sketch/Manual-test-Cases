@@ -1,0 +1,11 @@
+{
+ "id": 30163,
+ "title": "CSV and PDF hold exactly the customers matching the active filters and sort",
+ "refs": "SV-8601 (SBC spec v20 2026-08-17 Story 2 S2-R7; Story 3 S3-R7; Story 4 S4-R10; Story 14 S14-R3; Story 15 S15-R3; Story 18 S18-R7)",
+ "preconds": "1. Data exists across two locations, both product types, and several customers.",
+ "steps": "1. Set a specific date range, Product Type \"Service only\", one location, a two-customer selection in the Customer filter, and a Subtotal sort.\n2. Download the CSV and the PDF.\n3. Compare each file's contents against the on-screen rows.",
+ "expected": "1. Each export contains exactly the customers matching the active filters — the selected customers, within the active date range, Product Type, and location — in the active sort order.\n2. When every customer is selected, the export contains the full set of customers under those filters.\n3. The chosen date range and Product Type are reflected in both exports.\n\n---\nThis is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Sales By Customer report specification version 20 (S2-R7, S3-R7, S4-R10, S14-R3, S15-R3, S18-R7), read on 17 August 2026.\n\nAUTOMATION: READY",
+ "custom_atmstatus": 3,
+ "updated_on": 1787127550,
+ "created_by": 3
+}

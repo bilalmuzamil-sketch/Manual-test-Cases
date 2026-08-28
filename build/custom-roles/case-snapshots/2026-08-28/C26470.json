@@ -1,0 +1,11 @@
+{
+ "id": 26470,
+ "title": "With See Financial Data OFF, Part sales and Invoicing & payments stay inaccessible even with View, Create & Edit and Delete on",
+ "refs": "SV-7523,SV-7504",
+ "preconds": "<ol>\n<li>A user is assigned a role that has Part sales set to View, Create & Edit and Delete, and Invoicing & payments set to View, Create & Edit and Delete, but See Financial Data is OFF.</li>\n</ol>",
+ "steps": "<ol>\n<li>Log in as that user and try to open Part sales.</li>\n<li>Try to use the invoicing actions on a work order.</li>\n</ol>",
+ "expected": "<p>Both Part sales and Invoicing & payments stay inaccessible even though their permissions are on.</p>\n<p>See Financial Data being OFF overrides those permissions.</p>\n",
+ "custom_atmstatus": 1,
+ "updated_on": 1783942148,
+ "created_by": 3
+}

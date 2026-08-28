@@ -1,0 +1,11 @@
+{
+ "id": 30418,
+ "title": "Each technician row has an accessible expand/collapse control",
+ "refs": "SV-8651 (TU spec v9 2026-08-17 S4-R1; S8-R12)",
+ "preconds": "1. You are on the Technician Utilization report with rows loaded.\n2. Part of this test checks what a blind user would hear, so you need a screen reader. On Windows install NVDA — it is free, from nvaccess.org. On a Mac use VoiceOver, which is already built in (Cmd+F5 turns it on and off). Alternatively the browser's developer tools (F12) have an \"Accessibility\" panel that shows the same names without you having to listen to anything.",
+ "steps": "1. Find the expand control on a technician row and read its accessible name (accessibility tree or screen reader).\n2. Activate it with the keyboard (Enter, then again with Space) and re-read the name and exposed state.\n3. Collapse the row again.",
+ "expected": "1. Each technician row has a control to expand and collapse it.\n2. Its accessible name reflects the NEXT action, scoped to that technician: when collapsed it reads Expand, then that technician's name, then daily breakdown (for example: Expand John Smith's daily breakdown); when expanded it reads Collapse, then the same name and words.\n3. The control is keyboard-focusable, toggles on Enter and Space, and exposes its expanded/collapsed state to assistive technology.\n\n---\nThis is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Technician Utilization report specification version 9 (S4-R1, S8-R12), read on 17 August 2026.\nLast checked against build v3.8-bd246fd on 8/18/2026.\n\nAUTOMATION: READY",
+ "custom_atmstatus": 1,
+ "updated_on": 1787089701,
+ "created_by": 3
+}

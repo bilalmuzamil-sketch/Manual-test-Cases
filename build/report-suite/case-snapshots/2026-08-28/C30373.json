@@ -1,0 +1,11 @@
+{
+ "id": 30373,
+ "title": "Movement and billed bases may differ; Sold (WO) + Sold (Parts Sale) = billed",
+ "refs": "SV-8645 (PV spec v10 2026-08-17 S5-R7; §3 Key Decisions)",
+ "preconds": "<ol><li>An inventory part with a billed sale that produced NO matching stock decrement (e.g. a drop-ship or negative-stock sale) plus normal stocked sales in the window.</li><li>A special-order part with in-window vendor requests.</li><li>Units Sold, Sold (WO), Sold (Parts Sale), and the profitability columns are visible.</li></ol>",
+ "steps": "<ol><li>On the inventory row, compare Units Sold against Revenue ÷ Avg Sell (the billed units).</li><li>On the same row, add Sold (WO) + Sold (Parts Sale) and compare against the billed units.</li><li>On the special-order row, compare Units Sold, Sold (WO) + Sold (Parts Sale), and the billed units.</li></ol>",
+ "expected": "<p>1. On the inventory row, Units Sold (stock movement) DIFFERS from the billed units behind Revenue/Avg Sell - this is CORRECT behavior, not a defect (the Units Sold tooltip calls it out).<br>2. Sold (WO) + Sold (Parts Sale) together DO equal the billed-units basis (work orders are only Service- or Parts-type) - but neither equals the movement-based Units Sold.<br>3. On the special-order row, everything reconciles: Units Sold = Sold (WO) + Sold (Parts Sale) = billed units (they share the vendor-request quantity as one source).</p><p>---<br>This is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Parts Velocity report specification version 11 (S5-R7), read on 17 August 2026.<br>Last checked against build v3.8-bd246fd on 8/18/2026.<br>Re-checked against the live specification on 26 August 2026: the requirements this case cites are unchanged, so only the version cited above was updated.</p><p>AUTOMATION: READY</p>",
+ "custom_atmstatus": 1,
+ "updated_on": 1787754852,
+ "created_by": 3
+}

@@ -1,0 +1,11 @@
+{
+ "id": 27784,
+ "title": "Verify Senior Service Advisor can delete a work order line",
+ "refs": "SV-5319",
+ "preconds": "Log in to ShopView as a user assigned the Senior Service Advisor role. (this role has Work Order Lines: Delete).\nThe work order contains at least one line that is NOT in Complete status (a line can be deleted in any status except Complete).",
+ "steps": "1. Open the work order and locate a line that is not Complete.\n2. Open the line's action menu, click Delete, and confirm.",
+ "expected": "The line is deleted and removed from the work order.",
+ "custom_atmstatus": 1,
+ "updated_on": 1783108595,
+ "created_by": 3
+}

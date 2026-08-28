@@ -1,0 +1,11 @@
+{
+ "id": 26337,
+ "title": "Same name and permissions as an existing role shows a 'Similar role already exists' confirmation",
+ "refs": "SV-7500",
+ "preconds": "<ol>\n<li>You are on the Create Role page and a role with the same name and identical permissions already exists.</li>\n</ol>",
+ "steps": "<ol>\n<li>Enter the same name and identical permissions as the existing role.</li>\n<li>Click Create.</li>\n</ol>",
+ "expected": "<p>Instead of an error, a confirmation appears: 'Similar role already exists', explaining a role with identical permissions already exists, with Cancel and Create Anyway buttons.</p>\n<p>Your entered name and selections are kept.</p>\n",
+ "custom_atmstatus": 3,
+ "updated_on": 1783943818,
+ "created_by": 3
+}

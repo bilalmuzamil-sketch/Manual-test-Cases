@@ -1,0 +1,11 @@
+{
+ "id": 30378,
+ "title": "Exports reflect the active sort, including Min/Max and null placement",
+ "refs": "SV-8646 (PV spec v10 2026-08-17 S6-R4; S3-R3)",
+ "preconds": "<ol><li>You are on the Parts Velocity report with data loaded, including rows with — values in a sortable column (e.g. On Hand on special-order rows).</li><li>Min and Max are enabled.</li></ol>",
+ "steps": "<ol><li>Without clicking any header (default Demand descending), download the CSV and check the row order.</li><li>Sort by Min ascending, export, and check the order including where the — rows land.</li><li>Sort by On Hand descending, export, and check the null placement.</li></ol>",
+ "expected": "<p>1. The default Demand-descending order is exported when the user has not chosen another column.<br>2. Every column's sort is honored in the export - including Min and Max.<br>3. The export renders the EXACT server order, including null placement (nulls first on ascending, last on descending) - the export and the on-screen grid match; there is no on-screen-vs-export null-sorting difference.</p><p>---<br>This is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Parts Velocity report specification version 11 (S6-R4, S3-R3), read on 17 August 2026.<br>Last checked against build v3.8-bd246fd on 8/18/2026.<br>Re-checked against the live specification on 26 August 2026: the requirements this case cites are unchanged, so only the version cited above was updated.</p><p>AUTOMATION: READY</p>",
+ "custom_atmstatus": 1,
+ "updated_on": 1787754870,
+ "created_by": 3
+}

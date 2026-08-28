@@ -1,0 +1,11 @@
+{
+ "id": 27751,
+ "title": "Verify Administrator can edit work order header fields (customer, asset, service advisor, lead technician, status)",
+ "refs": "SV-5319",
+ "preconds": "Log in to ShopView as a user assigned the Administrator role. (this role has Work Orders: Create and Edit, which gates header field edits per spec v33).\nAt least one work order exists.",
+ "steps": "1. Click Work Orders in the main navigation and open a work order.\n2. In the work order header, change the Customer to a different customer and save.\n3. Change the Asset to a different asset and save.\n4. Change the Service Advisor to a different user and save.\n5. Change the Lead Technician to a different user and save.\n6. Change the work order Status and save.\n7. Refresh the page.",
+ "expected": "Every edit in steps 2-6 is allowed and saves without a permission error. After refreshing (step 7), all updated values persist.",
+ "custom_atmstatus": 1,
+ "updated_on": 1783108595,
+ "created_by": 3
+}

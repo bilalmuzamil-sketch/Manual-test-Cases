@@ -1,0 +1,11 @@
+{
+ "id": 30424,
+ "title": "Deselecting a technician hides the row and recalculates the Summary",
+ "refs": "SV-8652 (TU spec v9 2026-08-17 S5-R3; S5-R4; S5-R5 + §3 Key Decisions (\"the technician filter works on screen only and does not reload the report\"); S5 context note — the server half is covered by C30450 in \"TU - API\")",
+ "preconds": "1. Several technician rows are visible and the Summary row shows their totals.\n2. Note the current date range so you can confirm it does not change.",
+ "steps": "1. Note the Summary values, then deselect one technician in the Filter by Technician filter.\n2. Watch the data area and the Summary row.\n3. Re-select the technician.",
+ "expected": "1. The deselected technician's row is hidden.\n2. The Summary row recalculates over the technicians that remain visible.\n3. The report does NOT reload - the technician filter works on screen only: the rows and the Summary update straight away, no loading indicator appears in the data area, and the date range does not change.\n4. Re-selecting the technician shows the row again (and the Summary recalculates back).\n5. Note for the tester: you do not need developer tools for this test - just watch the screen.\nWhat you should see today: items 1, 2 and 4 pass - the row hides, the Summary recalculates and re-selecting brings it back - but item 3 does not: the report reloads from the server when you tick or untick a technician. This is a known problem and it is already reported - see https://shopview.atlassian.net/browse/SV-8946\n· If you see exactly that, mark this test FAILED and do not raise anything new.\n· If it fails in a DIFFERENT way from what is described above, that is a NEW problem - please report it.\n· If it PASSES, the fix has shipped: tell the QA lead so the ticket can be closed and this note removed.\n\n---\nThis is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Technician Utilization report specification version 9 (S5-R3, S5-R4, S5-R5), read on 17 August 2026.\nLast checked against build v3.5-4795eee on 8/10/2026.\n\nAUTOMATION: READY - EXPECT FAIL (SV-8946)",
+ "custom_atmstatus": 3,
+ "updated_on": 1787026592,
+ "created_by": 3
+}

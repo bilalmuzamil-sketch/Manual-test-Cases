@@ -1,0 +1,11 @@
+{
+ "id": 26564,
+ "title": "GET /api/auth/me/fe-permissions returns the expected wrapper shape",
+ "refs": "SV-7474,SV-7481",
+ "preconds": "Build with CRP-BE-06 deployed. Authenticated as any user.",
+ "steps": "1. Hit GET /api/auth/me/fe-permissions with a valid session.\n2. Inspect the response status.\n3. Inspect the JSON body keys at the top level.\n4. Inspect each key's type.\n5. For fePermissions[]: confirm it is an array of strings, each matching one of the canonical bundle codes (WORK_ORDERS_VIEW, INVOICING_EDIT, SEE_FINANCIAL_DATA, SETTINGS_APP, etc.).\n6. For viewMode: confirm it is one of 'tech' or 'full'.\n7. For crossToggles: confirm it has the 3 expected boolean keys (seeFinancialData, seeApArData, viewHistoryLogs).",
+ "expected": "Status 200. Body shape: { fePermissions: string[], viewMode: 'tech'|'full', crossToggles: { seeFinancialData: bool, seeApArData: bool, viewHistoryLogs: bool } }. All bundle codes in fePermissions match the canonical set from tech plan §3a. Tech plan flagged this as a NEW wrapper — the legacy endpoint returned only the flat list.",
+ "custom_atmstatus": 3,
+ "updated_on": 1781869310,
+ "created_by": 3
+}

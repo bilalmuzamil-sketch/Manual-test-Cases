@@ -1,0 +1,11 @@
+{
+ "id": 43817,
+ "title": "A row's Total is Earned plus Remaining plus Adjustments",
+ "refs": "SV-9282 (WIP spec v22 2026-08-18 S4-R21 — Total = Earned + Remaining + Adjustments; not the WO stored grand total)",
+ "preconds": "<ol><li>You are signed in to the ShopView App on a desktop browser.</li><li>An open work order on the report carries a work-order-level fee or discount.</li></ol>",
+ "steps": "<ol><li>Open the Work In Progress report.</li><li>On one row read the Earned value, the Remaining value and the Adjustments value.</li><li>Read the Total value on the same row.</li></ol>",
+ "expected": "<p>1. Total equals Earned plus Remaining plus Adjustments.<br>2. Total is NOT the work order's stored grand total, and it is NOT Earned plus Remaining by itself.<br>3. A Total that differs from the work order's own grand total is expected, not a data error.</p><p>---<br>This is the expected behaviour as per epic SV-8582, read on 17 August 2026, and story SV-9282, and the Work In Progress report specification version 28 (S4-R21), read on 18 August 2026.<br>Last checked against build v3.8-bd246fd on 8/18/2026.<br>Re-checked against the live specification on 26 August 2026: the requirements this case cites are unchanged, so only the version cited above was updated.</p><p>AUTOMATION: READY</p>",
+ "custom_atmstatus": 1,
+ "updated_on": 1787881284,
+ "created_by": 3
+}

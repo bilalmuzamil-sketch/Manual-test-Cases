@@ -1,0 +1,11 @@
+{
+ "id": 30113,
+ "title": "Typing in the Customer filter lists matching customers by contains match",
+ "refs": "SV-8616 (SBC spec v20 2026-08-17 Story 18 S18-R2)",
+ "preconds": "<p>1. You are on the Sales By Customer report.<br>2. At least two customers with distinct names have invoices in the current date range/Product Type/location (seed ZZAUTOTEST customers if needed)..</p>",
+ "steps": "<p>1. Open the Customer filter and type a fragment from the MIDDLE of a customer's name, in different letter case (for example type \"corp\" for \"Acme Corp\").<br>2. Read the list of customers shown.<br>3. Click one listed customer to select it and look at its row in the dropdown.</p>",
+ "expected": "<p>1. As you type, customers whose names contain the typed text appear in the list — matching is case-insensitive and matches anywhere in the name (a \"contains\" match, not starts-with).<br>2. The list is scoped to the active date range, Product Type, and location.<br>3. A selected customer is shown with a checkmark.<br><br>---<br>This is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Sales By Customer report specification version 20 (S18-R2), read on 17 August 2026.<br>Last checked against build v3.8-da72171 on 8/19/2026.<br><br>AUTOMATION: READY</p>",
+ "custom_atmstatus": 1,
+ "updated_on": 1787208402,
+ "created_by": 3
+}

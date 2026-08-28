@@ -1,0 +1,11 @@
+{
+ "id": 30606,
+ "title": "A recorded snapshot day equals what the live report showed that day",
+ "refs": "SV-8678 (IV spec v10 2026-08-18 Story 11 S11-R2; §2 Relationship to nightly history)",
+ "preconds": "<p>1. ZZAUTOTEST parts with known quantities, costs, and sell resolutions (fixed price, matrix markup, and no-category fallback) are in stock and left UNCHANGED across the capture.<br>2. A core-charge part and a zero-quantity part also exist.<br>3. You can read the live report on the capture date and the stored rows afterward.<br>4. To see the information this test asks for you need the browser's own developer tools: press F12 (or Ctrl+Shift+I; on a Mac Cmd+Option+I) and open the \"Network\" tab, then reload the page. There is nothing to install &mdash; it is built into Chrome, Edge and Firefox. Where a check also asks you to confirm what is stored on the server, ask a developer to read it back for you &mdash; that part cannot be seen from the browser.</p>\n",
+ "steps": "<p>1. On the capture date, note the live report's rows and values for the seeded parts.<br>2. After the overnight capture, read the same parts' captured rows.<br>3. Look for the core-charge and zero-quantity parts among the captured rows.<br>4. The next day, view the report as of the captured date and compare to the noted live values.</p>\n",
+ "expected": "<p>1. The captured parts use the same in-stock, non-core scope as the live report (Story 2) &mdash; the core-charge and zero-quantity parts are NOT captured.<br>2. The captured values use the same valuation as the live report (Story 3), including the sell-price fallback chain.<br>3. A recorded day equals what the live report would have shown that day &mdash; the as-of view of the captured date matches the noted live values.<br><br>---<br>This is the expected behaviour as per epic SV-8582 and story SV-8678, read on 18 August 2026, and the Inventory Value report specification version 10 (S11-R2), read on 18 August 2026.<br>Last checked against build v3.8-d0e135e on 8/19/2026.<br><br>AUTOMATION: HOLD - needs the stored nightly capture rows, which are not reachable from the application</p>\n",
+ "custom_atmstatus": 1,
+ "updated_on": 1787157484,
+ "created_by": 3
+}

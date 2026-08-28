@@ -1,0 +1,11 @@
+{
+ "id": 26383,
+ "title": "Without Create & Edit, create/edit options are hidden on work orders",
+ "refs": "SV-7506,SV-7507",
+ "preconds": "<ol>\n<li>A user has a role with Work orders View only.</li>\n</ol>",
+ "steps": "<ol>\n<li>Log in and open the work order list.</li>\n<li>Look for any New work order/Create button.</li>\n<li>Open a work order and try to edit a header field.</li>\n</ol>",
+ "expected": "<p>There is no create button.</p>\n<p>The work order header fields are read-only.</p>\n",
+ "custom_atmstatus": 3,
+ "updated_on": 1783943601,
+ "created_by": 3
+}

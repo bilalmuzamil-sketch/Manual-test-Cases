@@ -1,0 +1,11 @@
+{
+ "id": 30180,
+ "title": "Customer filter restore: all-customers stays all; an id set is intersected",
+ "refs": "SV-8616 (SBC spec v20 2026-08-17 Story 18 S18-R8)",
+ "preconds": "1. Scenario A: leave the report in the all-customers state, then seed a NEW ZZAUTOTEST customer with an invoice in range.\n2. Scenario B: leave the report with two specific customers selected, then remove one of those customers' matching data (or shift the range so one no longer matches).",
+ "steps": "1. Scenario A: return to the report and check the filter state and rows.\n2. Scenario B: return to the report and check the selection and rows.",
+ "expected": "1. Scenario A: the filter restores to the all-customers state and the report shows every present customer — including the customer that appeared since the state was saved.\n2. Scenario B: still-present saved ids are re-selected; a saved id no longer present is dropped (a stale saved id never forces an empty view); a customer that appeared since the set was saved is NOT auto-selected.\n\n---\nThis is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Sales By Customer report specification version 20 (S18-R8), read on 17 August 2026.\n\nAUTOMATION: READY",
+ "custom_atmstatus": 3,
+ "updated_on": 1787127588,
+ "created_by": 3
+}

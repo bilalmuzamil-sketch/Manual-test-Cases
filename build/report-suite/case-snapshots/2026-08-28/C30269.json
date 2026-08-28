@@ -1,0 +1,11 @@
+{
+ "id": 30269,
+ "title": "Hiding the active sort column keeps the sort",
+ "refs": "SV-8637 (SBR spec v22 2026-08-17 Story 20 S20-R9)",
+ "preconds": "<p>1. The report is sorted by a metric column (e.g., Margin descending)..</p>",
+ "steps": "<p>1. Hide that column via the column selector and read the row order.<br>2. Show the column again and look at its header.</p>",
+ "expected": "<p>1. Hiding the active sort column does not clear the sort &mdash; rows stay ordered by the now-hidden metric until another sort is chosen or the A&rarr;Z default is restored.<br>2. Showing the column again reveals the sort indicator on it.<br><br>---<br>This is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Sales By Representative report specification version 24 (S20-R9), read on 17 August 2026.<br>Last checked against build v3.8-b7d80dc on 8/19/2026.<br>Re-checked against the live specification on 26 August 2026: the requirements this case cites are unchanged, so only the version cited above was updated.<br><br>AUTOMATION: READY</p>\n",
+ "custom_atmstatus": 1,
+ "updated_on": 1787747701,
+ "created_by": 3
+}

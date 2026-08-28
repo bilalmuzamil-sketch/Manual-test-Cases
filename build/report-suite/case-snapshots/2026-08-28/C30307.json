@@ -1,0 +1,11 @@
+{
+ "id": 30307,
+ "title": "Every icon-only control carries its specified accessible name",
+ "refs": "SV-8635 (SBR spec v22 2026-08-17 Story 18 S18-R9)",
+ "preconds": "<ol><li>You are on the report with at least one rep row; a screen reader or the browser's accessibility inspector is available.</li><li>Part of this test checks what a blind user would hear, so you need a screen reader. On Windows install NVDA — it is free, from nvaccess.org. On a Mac use VoiceOver, which is already built in (Cmd+F5 turns it on and off). Alternatively the browser's developer tools (F12) have an \"Accessibility\" panel that shows the same names without you having to listen to anything.</li></ol>",
+ "steps": "<ol><li>Inspect the accessible name of: the ⋯ exports button, the column selector button, one rep row's chevron (collapsed, then expanded), and the header chevron.</li><li>Open the staff deactivation dialog (Story 13 flow) and inspect its X close icon.</li></ol>",
+ "expected": "<p>1. ⋯ exports = \"Report actions\".<br>2. Column selector = \"Show or hide columns\".<br>3. Per-row chevron = \"Expand {rep name}\" when collapsed / \"Collapse {rep name}\" when expanded.<br>4. Header chevron = \"Expand all reps\" / \"Collapse all reps\".<br>5. Dialog X = \"Close\".</p><p>---<br>This is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Sales By Representative report specification version 24 (S18-R9), read on 17 August 2026.<br>Last checked against build v3.8-bd246fd on 8/18/2026.<br>Re-checked against the live specification on 26 August 2026: the requirements this case cites are unchanged, so only the version cited above was updated.</p><p>AUTOMATION: READY</p>",
+ "custom_atmstatus": 1,
+ "updated_on": 1787754799,
+ "created_by": 3
+}

@@ -1,0 +1,11 @@
+{
+ "id": 30242,
+ "title": "Default order is plain A to Z by display name, case-insensitive",
+ "refs": "SV-8628 (SBR spec v22 2026-08-17 Story 11 S11-R4; §3 Key Decisions)",
+ "preconds": "<p>1. No remembered sort exists (first visit or cleared storage); contributing reps include an \"(Inactive)\"-tagged rep and mixed-case names..</p>",
+ "steps": "<p>1. Open the report and read the rep order top to bottom.</p>",
+ "expected": "<p>1. Rows render in A&rarr;Z order by display name, case-insensitive.<br>2. There are NO active/inactive tiers &mdash; an \"(Inactive)\" rep sorts by name among the others, not grouped separately.<br><br>---<br>This is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Sales By Representative report specification version 24 (S11-R4), read on 17 August 2026.<br>Last checked against build v3.8-b7d80dc on 8/19/2026.<br>Re-checked against the live specification on 26 August 2026: the requirements this case cites are unchanged, so only the version cited above was updated.<br><br>AUTOMATION: READY</p>\n",
+ "custom_atmstatus": 1,
+ "updated_on": 1787747683,
+ "created_by": 3
+}

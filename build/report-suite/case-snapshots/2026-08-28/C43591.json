@@ -1,0 +1,11 @@
+{
+ "id": 43591,
+ "title": "Clear all leaves neither Product Type toggle on and shows the empty state",
+ "refs": "SV-8602 (SBC spec v20 2026-08-17 Story 3 S3-R6a — new in v17: with neither toggle selected after \"Clear all\" the report shows the Story 17 empty state until a toggle is selected; S3-R2 pins the two action rows; S17-R1 gives the message)",
+ "preconds": "1. You are on the Sales By Customer report with a date range that normally returns rows, so you can tell an empty result from a genuinely empty range.\n2. The Product Type filter is at its default with both toggles selected.",
+ "steps": "1. Open the \"Product Type\" filter and read the two action rows at the top.\n2. Choose \"Clear all\" and read the table body.\n3. Read the toolbar and check the filter still opens.\n4. Switch the \"Parts\" toggle back on and read the table body again.\n5. Choose \"All products\" and read the table body once more.",
+ "expected": "1. The filter pins two action rows at the top — \"All products\" and \"Clear all\" — above the \"Parts\" and \"Services\" toggles.\n2. After \"Clear all\" neither toggle is selected and the table body shows the empty-state message \"No sales data found for the selected filters.\"\n3. The empty state is shown in the table body only — the toolbar stays usable and the filter still opens.\n4. Switching \"Parts\" back on brings rows back straight away, limited to invoices whose number starts with P.\n5. \"All products\" selects both toggles again and the full set of rows returns.\nNote for the tester: an empty report here is the correct result of clearing both toggles, not a fault — it stays empty until you switch a toggle back on.\n\n---\nThis is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Sales By Customer report specification version 20 (S3-R6a, S3-R2, S17-R1), read on 17 August 2026.\nLast checked against build v3.7-4626299 on 12 August 2026.\nLast checked against build v3.8-2bf8d14 on 8/18/2026.\n\nAUTOMATION: READY",
+ "custom_atmstatus": 1,
+ "updated_on": 1787082706,
+ "created_by": 3
+}

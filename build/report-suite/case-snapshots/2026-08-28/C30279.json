@@ -1,0 +1,11 @@
+{
+ "id": 30279,
+ "title": "Expanded View PDF: one page-block per rep with its own totals; no grand",
+ "refs": "SV-8631 (SBR spec v22 2026-08-17 S14-R6; renamed to Labor Delta per SV-9071)",
+ "preconds": "<ol>\n<li>You are on the report with at least two reps showing, each with at least one invoice.</li>\n</ol>\n",
+ "steps": "<ol>\n<li>Choose \"Download Expanded View (PDF)\" from the ⋯ menu and open the file.</li>\n<li>Check how each rep's section starts and what its table contains.</li>\n<li>Read the last row of one rep's block and the end of the document.</li>\n<li>Compare the order of one rep's invoices against the on-screen expanded order.</li>\n</ol>\n",
+ "expected": "<p>1. There is one page-block per rep, in the report's currently-active order, with a page break before each new rep after the first.\n2. Each block shows the header strip (workplace name and address, organization logo, title \"Sales By Representative,\" the selected date range), the rep's name, and a per-invoice table with columns: Date / Invoice / Customer / Status / (Location, whenever that column is shown on screen, carrying that invoice's own location) / Labor Delta / Labor Invoiced / Labor Margin / Parts Invoiced / Parts Margin / Adjustments / Margin / Margin % / Subtotal.\n3. The Status column renders the same colored badge as on screen, vertically centered.\n4. Invoices are ordered newest first (the same order as the on-screen expansion: invoice date descending, numeric invoice-number tie-break).\n5. Each block ends with a per-rep totals row &mdash; \"Totals\" in the Date cell; Invoice/Customer/Status blank; each metric aggregated; Margin % recomputed.\n6. There is NO grand-totals row across all reps at the end of the document.\n\n---\nThis is the expected behaviour as per epic SV-8582 and the Sales By Representative report specification version 24 (S14-R6), both read on 17 August 2026. The column was renamed from \"Inv. Hrs\" to \"Labor Delta\" per SV-9071; only the name changed.\nLast checked against build v3.8-bd246fd on 8/18/2026.\nRe-checked against the live specification on 26 August 2026: the requirements this case cites are unchanged, so only the version cited above was updated.\n\nAUTOMATION: READY\n</p>\n",
+ "custom_atmstatus": 1,
+ "updated_on": 1787747705,
+ "created_by": 3
+}

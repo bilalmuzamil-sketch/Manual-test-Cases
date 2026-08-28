@@ -1,0 +1,11 @@
+{
+ "id": 26340,
+ "title": "The template picker may use shorter role names than the Roles list",
+ "refs": "SV-7500,SV-7526",
+ "preconds": "<ol>\n<li>You are on the Roles list and open the template picker.</li>\n</ol>",
+ "steps": "<ol>\n<li>Read the role names in the template picker.</li>\n<li>Close it.</li>\n<li>Read the role names in the Roles list.</li>\n<li>Compare them.</li>\n</ol>",
+ "expected": "<p>The Roles list uses the full names (Administrator, Parts Technician, Office User, Time Clock User).</p>\n<p>The template picker may show shorter names (for example Admin, Parts Tech, Office, Time Clock) — confirm the exact picker labels live and flag any that differ from the list.</p>\n",
+ "custom_atmstatus": 3,
+ "updated_on": 1783943822,
+ "created_by": 3
+}

@@ -1,0 +1,11 @@
+{
+ "id": 43834,
+ "title": "CSV export repeats the PDF header's date range and Locations filter lines",
+ "refs": "SV-8646 (PV spec v10 2026-08-17 S6-R11a; suite-wide CSV filter-summary rule SV-9283)",
+ "preconds": "<ol><li>You are signed in to the ShopView App on a desktop browser.</li><li>The Parts Velocity report is open with at least one filter narrowed (for example a chosen date/scope and one or more locations) so the PDF header would show more than one filter line.</li></ol>",
+ "steps": "<ol><li>Download the report as a PDF and read the filter-summary lines in its header area.</li><li>Download the report as a CSV and open it in a plain text editor or spreadsheet.</li><li>Compare the leading rows of the CSV (above the column-header row) with the PDF header lines.</li></ol>",
+ "expected": "<p>1. The CSV carries the same filter-summary lines as the PDF header - the date range and the \"Locations:\" line, plus any report-specific filter lines the PDF header names - each as a leading metadata row above the column-header row.<br>2. The lines appear verbatim (the same wording) and in the same order as in the PDF header.<br>3. A CSV saved or forwarded later is never ambiguous about which filters produced it: every filter the PDF header names is present in the CSV.<br>4. Note for the tester: this is the suite-wide rule that the CSV must name the same filters as the PDF. If your report shows no narrowed filters, widen or narrow one so at least one filter line appears, then compare again.</p><p>---<br>This is the expected behaviour as per epic SV-8582 and the Parts Velocity report specification version 11 (S6-R11a), both read on 17 August 2026. S6-R11a is the suite-wide rule (added 2026-08-12, SV-9283) that the CSV carries every filter-summary line the PDF header names.<br>Last checked against build v3.8-bd246fd on 8/18/2026.<br>Re-checked against the live specification on 26 August 2026: the requirements this case cites are unchanged, so only the version cited above was updated.</p><p>AUTOMATION: READY</p>",
+ "custom_atmstatus": 1,
+ "updated_on": 1787881197,
+ "created_by": 3
+}

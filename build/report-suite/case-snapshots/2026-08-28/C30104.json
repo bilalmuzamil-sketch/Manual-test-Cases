@@ -1,0 +1,11 @@
+{
+ "id": 30104,
+ "title": "Building a custom range on the calendar cannot exceed a 366-day span",
+ "refs": "SV-8601 (SBC spec v20 2026-08-17 Story 2 S2-R3; S2-R4; S2-N2)",
+ "preconds": "<p>1. You are on the Sales By Customer report..</p>",
+ "steps": "<p>1. Open the date range picker. A month calendar is shown inside it, which is how a custom start and end date are picked on this build.<br>2. Pick a start and end date less than 366 days apart on that calendar and apply.<br>3. Open the picker again and try to pick a start and end date MORE than 366 days apart.</p>",
+ "expected": "<p>1. The date range picker shows a month calendar inside it — that is how a custom start and end date are chosen. There is no separate \"Custom\" item to choose.<br>2. A range of 366 days or fewer applies normally.<br>3. A range wider than 366 days cannot be applied — the report prevents the selection rather than loading the wider range.<br><br>---<br>This is the expected behaviour as per epic SV-8582, read on 17 August 2026, and Chris Ward's decision of 8/5/2026, recorded in his answers in this file: https://docs.google.com/spreadsheets/d/1x8cuYJlFsDHalVZZTh156_ZCq2gcOaGY/edit?usp=sharing&amp;ouid=106388879401921597782&amp;rtpof=true&amp;sd=true, read on 17 August 2026. Where the Sales By Customer report specification version 20 (S2-R3, S2-R4, S2-N2), read on 17 August 2026, says something different, his decision is the later word and is the authority.<br>Last checked against build v3.8-da72171 on 8/19/2026.<br><br>AUTOMATION: READY</p>",
+ "custom_atmstatus": 1,
+ "updated_on": 1787208233,
+ "created_by": 3
+}

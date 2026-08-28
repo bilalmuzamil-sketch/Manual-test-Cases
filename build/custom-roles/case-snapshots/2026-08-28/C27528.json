@@ -1,0 +1,11 @@
+{
+ "id": 27528,
+ "title": "CR-PAY-023 — Customer AP/AR + reports",
+ "refs": "SV-7388",
+ "preconds": "<p>Permissions (counted): Customers V + See AP/AR + Reports. View Mode: Full unless noted. All other permissions OFF.</p>",
+ "steps": "<ol>\n<li>Create a custom role with the permissions listed in Preconditions; leave all others OFF.</li>\n<li>Assign the role to a test user and log in.</li>\n<li>Exercise each capability in Expected Result and confirm it succeeds (and that gated pricing is hidden where noted).</li>\n</ol>",
+ "expected": "<p>User CAN: See customers; AP/AR payment tabs on customer pages; AP/AR aging reports; bulk payments from Unpaid Invoices tab</p><hr/><p><strong>Risk / Rationale:</strong> Positive capability check — confirms this combination grants exactly the listed actions and nothing gated leaks. See Flag / Note.<br/><strong>Spec Ref:</strong> §1d+§5b+§2a<br/><strong>Flag / Note:</strong> \\u26a0 bulk-payment execution may also need Invoicing E (§5b vs §1h)</p>",
+ "custom_atmstatus": 3,
+ "updated_on": 1783334247,
+ "created_by": 1
+}

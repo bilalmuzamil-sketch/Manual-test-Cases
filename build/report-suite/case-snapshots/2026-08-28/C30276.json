@@ -1,0 +1,11 @@
+{
+ "id": 30276,
+ "title": "The ⋯ overflow menu lists exactly four download actions",
+ "refs": "SV-8631 (SBR spec v22 2026-08-17 Story 14 S14-R1 + Story 17 S17-R3 (position) — S14-R1 CLOSES it in the spec's own words (\"lists exactly four actions\"); so the closed list IS the requirement)",
+ "preconds": "1. You are signed in to the ShopView App on a desktop browser.\n2. You are on the Sales By Representative report.",
+ "steps": "1. Find the ⋯ (three-dot) button in the report toolbar — it is the first control in the toolbar's action cluster.\n2. Click it and read the menu entries top to bottom.",
+ "expected": "1. The menu lists exactly four actions: \"Download Summary (PDF)\", \"Download Expanded View (PDF)\", \"Download Summary (CSV)\", and \"Download Expanded View (CSV)\".\n2. No other entries appear in the menu.\n\n---\nThis is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Sales By Representative report specification version 22 (S14-R1, S17-R3), read on 17 August 2026.\nLast checked against build v3.8-bd246fd on 8/18/2026.\n\nAUTOMATION: READY",
+ "custom_atmstatus": 3,
+ "updated_on": 1787127630,
+ "created_by": 3
+}

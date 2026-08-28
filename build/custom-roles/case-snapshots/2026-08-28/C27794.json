@@ -1,0 +1,11 @@
+{
+ "id": 27794,
+ "title": "Verify Service Advisor is blocked from deleting a payment while Manage AP/AR is OFF",
+ "refs": "SV-5319,SV-7913",
+ "preconds": "Log in to ShopView as a user assigned the Service Advisor role. (this role has Invoicing and Payments: Delete, but Manage Accounts Payable and Receivable is OFF; per spec v33 / SV-7913, Invoicing Delete additionally requires Manage AP/AR ON - this blocking is intended, not a bug).\nNote: the role may display as 'Junior Service Advisor' in the build (the spec calls it 'Service Advisor').\nThe work order already has an invoice created on its Finance tab.\nA payment has been recorded against the invoice.",
+ "steps": "1. Open the work order's Finance tab and locate the payment.\n2. Try to delete the payment.",
+ "expected": "Deleting the payment is BLOCKED (a configuration prompt or permission block appears) because Manage AP/AR is OFF, even though the role has Invoicing Delete. This is the intended behavior per SV-7913.",
+ "custom_atmstatus": 1,
+ "updated_on": 1783108595,
+ "created_by": 3
+}

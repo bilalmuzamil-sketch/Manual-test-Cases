@@ -1,0 +1,11 @@
+{
+ "id": 27605,
+ "title": "Service Manager - G. Inspection status labels display correctly",
+ "refs": "SV-7509 SV-8095",
+ "preconds": "<p>Logged in as Service Manager. Settings ON but Service sub-setting OFF -> cannot configure templates. A line has inspections in different states.</p>\n",
+ "steps": "<ol>\n<li>Open a work order line with inspections in different states.</li>\n<li>Observe the status labels.</li>\n</ol>\n",
+ "expected": "<p>Step 2: A completed inspection shows \"Completed\"; an in-progress inspection shows \"In Progress\" with a percentage of completion.</p>\n",
+ "custom_atmstatus": 3,
+ "updated_on": 1783433040,
+ "created_by": 3
+}

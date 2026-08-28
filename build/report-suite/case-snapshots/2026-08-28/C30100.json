@@ -1,0 +1,11 @@
+{
+ "id": 30100,
+ "title": "Opening an invoice you lack permission for shows access-denied; back works",
+ "refs": "SV-8607 (SBC spec v20 2026-08-17 Story 9 S9-N2)",
+ "preconds": "<p>1. You are signed in as a user who can view the report but lacks permission to open the underlying invoice destination.<br>2. The report shows at least one customer; you have expanded down to an invoice detail row..</p>",
+ "steps": "<p>1. Click the invoice number link on a detail row.<br>2. Look at the destination page.<br>3. Press the browser back button.</p>",
+ "expected": "<p>1. The destination page shows the application's standard access-denied state.<br>2. Pressing back returns you to the Sales By Customer report.<br>3. Note for the tester: the written description now says two different things about this, so do not fail the test on what the invoice number LOOKS like. The part this test was written from says the person clicks the link and lands on a page telling them they are not allowed in. Another part, added on 5 August 2026, says that person is not given a link at all and simply sees the invoice number as ordinary plain text. Both are in the same description today. The product owner has been asked which he wants. Write down exactly what you saw — a link leading to a not-allowed page, or plain text with nothing to click — and carry on. The one thing that would be a real failure is that person actually SEEING the invoice they are not allowed to see.<br><br>---<br>This is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Sales By Customer report specification version 20 (S9-N2), read on 17 August 2026, which states that a user who lacks permission to open the destination invoice is shown the standard access-denied page and can press back to return to the report. The same version's S9-R1a, added on 5 August 2026, instead states that such a user is never given a link and sees the invoice number as plain text; the two have not been reconciled and the product owner has been asked which applies.<br>Last checked against build v3.8-da72171 on 8/19/2026.<br><br>AUTOMATION: HOLD - waiting on one answer from the product owner about whether this person is given a link at all</p>",
+ "custom_atmstatus": 1,
+ "updated_on": 1787206991,
+ "created_by": 3
+}

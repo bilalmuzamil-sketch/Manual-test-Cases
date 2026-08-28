@@ -1,0 +1,11 @@
+{
+ "id": 30417,
+ "title": "Summary Est. Lost Labor sums rated contributions; em-dash only if all are",
+ "refs": "SV-8650 (TU spec v9 2026-08-17 S3-R5)",
+ "preconds": "1. Visible technicians include: one with a normal Est. Lost Labor, one showing \"—\" (no rate anywhere), and (if possible) one partially valued.",
+ "steps": "1. Read the Summary Est. Lost Labor and compare against the sum of the visible rows' valued (rated-location) contributions.\n2. Use the technician filter to leave ONLY \"—\" technicians visible and read the Summary Est. Lost Labor.",
+ "expected": "1. The Summary Est. Lost Labor is computed like a row but over all visible technicians' internal hours: rate × internal hours per contributing rated location, summed at full precision and rounded once.\n2. A visible technician whose value is \"—\" contributes NOTHING to the sum - so the Summary understates true lost labor whenever any visible technician is \"—\" or partially valued (documented, expected).\n3. The Summary shows \"—\" only when EVERY visible technician's Est. Lost Labor is \"—\".\n\n---\nThis is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Technician Utilization report specification version 9 (S3-R5), read on 17 August 2026.\nLast checked against build v3.8-bd246fd on 8/18/2026.\n\nAUTOMATION: READY",
+ "custom_atmstatus": 1,
+ "updated_on": 1787089793,
+ "created_by": 3
+}

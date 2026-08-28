@@ -1,0 +1,11 @@
+{
+ "id": 30159,
+ "title": "The overflow menu holds exactly the four download items - no Print",
+ "refs": "SV-8612; SV-8613 (SBC spec v20 2026-08-17 S14-R1; S14-R2; S15-R1; S15-R2; S20-R16 — these CLOSE the four-item menu and its verbatim labels; menu reshaped + \"Print\" removed per Chris Ward 2026-07-29 [newest-wins])",
+ "preconds": "1. You are on the Sales By Customer report.",
+ "steps": "1. Find the overflow menu in the toolbar's action area and note its position.\n2. Open it and read the items in order.\n3. Look around the toolbar for any separate always-visible export buttons.",
+ "expected": "1. The overflow (export) menu is the leftmost control in the toolbar's action area and is the application's standard overflow-menu control.\n2. The menu items read, in order: \"Download Summary (PDF)\", \"Download Expanded View (PDF)\", \"Download Summary (CSV)\", \"Download Expanded View (CSV)\" - and there is NO \"Print\" item anywhere in the menu.\n3. There are no separate always-visible export buttons - all exports live behind this one menu.\n\n---\nThis is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Sales By Customer report specification version 20 (S14-R1, S14-R2, S15-R1, S15-R2, S20-R16), read on 17 August 2026.\n\nAUTOMATION: READY",
+ "custom_atmstatus": 3,
+ "updated_on": 1787127530,
+ "created_by": 3
+}

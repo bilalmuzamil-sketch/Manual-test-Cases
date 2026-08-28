@@ -1,0 +1,11 @@
+{
+ "id": 27452,
+ "title": "CR-C2-047 — Customer + history",
+ "refs": "SV-7388",
+ "preconds": "<p>Permissions (counted): Customers V + History Logs. View Mode: Full unless noted. All other permissions OFF.</p>",
+ "steps": "<ol>\n<li>Create a custom role with the permissions listed in Preconditions; leave all others OFF.</li>\n<li>Assign the role to a test user and log in.</li>\n<li>Exercise each capability in Expected Result and confirm it succeeds (and that gated pricing is hidden where noted).</li>\n</ol>",
+ "expected": "<p>User CAN: See customers; view change logs</p><hr/><p><strong>Risk / Rationale:</strong> Positive capability check — confirms this combination grants exactly the listed actions and nothing gated leaks. See Flag / Note.<br/><strong>Spec Ref:</strong> §1d+§5c<br/><strong>Flag / Note:</strong> \\u26a0 customer history not explicitly named in §5c</p>",
+ "custom_atmstatus": 3,
+ "updated_on": 1783336579,
+ "created_by": 1
+}

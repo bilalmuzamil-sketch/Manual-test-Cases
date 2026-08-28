@@ -1,0 +1,11 @@
+{
+ "id": 26466,
+ "title": "Full View: a user who can approve lines sees the 'Send to Portal' button",
+ "refs": "SV-7508,SV-7518",
+ "preconds": "<ol>\n<li>A user has a role with View mode set to Full View, the Customer portal toggle ON, and Work order lines Create & Edit ON.</li>\n</ol>",
+ "steps": "<ol>\n<li>Log in as that user.</li>\n<li>Open a work order that has a line eligible to send to the portal.</li>\n<li>Find the Send to Portal button.</li>\n<li>Click it.</li>\n<li>Follow whatever flow appears (send confirmation, customer notification).</li>\n</ol>",
+ "expected": "<p>The Send to Portal button is shown.</p>\n<p>Clicking it starts the Send to Portal flow.</p>\n",
+ "custom_atmstatus": 3,
+ "updated_on": 1783942462,
+ "created_by": 3
+}

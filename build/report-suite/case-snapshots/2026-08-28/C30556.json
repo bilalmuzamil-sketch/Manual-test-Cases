@@ -1,0 +1,11 @@
+{
+ "id": 30556,
+ "title": "Totals row: Total label, blank identity/per-unit cells, pinned bold Total Cost",
+ "refs": "SV-8671 (IV spec v10 2026-08-17 Story 4 S4-R1; S4-R4; S4-R5; S4-R6; S4-R7; Story 12 S12-R5; Story 9 S9-R4)",
+ "preconds": "1. You are signed in to the ShopView App on a desktop browser.\n2. The Inventory Value report is open with rows loaded and all columns turned on.\n3. The page shows more rows than fit on the screen.",
+ "steps": "1. Look at the row at the bottom of the report.\n2. Read its Part # cell, its Description/Category/Vendor cells, and its Unit Cost/Unit Sell cells.\n3. Look at its Total Cost cell and compare the number formats to the data rows.\n4. Scroll the rows up and down and watch the totals row.",
+ "expected": "1. A totals row is shown at the bottom, with the label \"Total\" in the Part # column's cell. In the downloaded files the same row is labelled \"Totals\" — that difference is intended.\n2. The Description, Category, and Vendor cells are blank; the Unit Cost and Unit Sell cells are blank (a per-unit price has no meaningful sum).\n3. The totals-row Total Cost cell is pinned far right and bold, matching the column, and the row uses the same number formats as the data rows.\n4. The totals row stays visible at the bottom while the rows scroll.\n5. Note for the tester: if the label on screen reads \"Totals\" instead of \"Total\", mark this test Failed and report it — do not change the test.\n6. Sorting by any column reorders the data rows only — the totals row stays at the bottom.\n\n---\nThis is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Inventory Value report specification version 10 (S4-R1, S4-R4, S4-R5, S4-R6, S4-R7, S12-R5, S9-R4), read on 17 August 2026.\nLast checked against build v3.8-bd246fd on 8/18/2026.\n\nAUTOMATION: READY",
+ "custom_atmstatus": 1,
+ "updated_on": 1787095650,
+ "created_by": 3
+}

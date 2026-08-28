@@ -1,0 +1,11 @@
+{
+ "id": 30605,
+ "title": "Nightly snapshot records one row per in-stock non-core part per location",
+ "refs": "SV-8678 (IV spec v10 2026-08-17 Story 11 S11-R1; S11-R4)",
+ "preconds": "<p>1. In-stock, non-core parts exist at two or more locations, including a part with non-round cent values.<br>2. A location with NO in-stock parts also exists.<br>3. You can inspect the stored snapshot rows after the nightly capture runs (arrange the verification route with the developers).<br>4. To see the information this test asks for you need the browser's own developer tools: press F12 (or Ctrl+Shift+I; on a Mac Cmd+Option+I) and open the \"Network\" tab, then reload the page. There is nothing to install — it is built into Chrome, Edge and Firefox. Where a check also asks you to confirm what is stored on the server, ask a developer to read it back for you — that part cannot be seen from the browser..</p>",
+ "steps": "<p>1. After the overnight capture, inspect the stored snapshot rows for that calendar date.<br>2. For a known part, read every captured field.<br>3. Check the rows for each location, including the empty one.</p>",
+ "expected": "<p>1. Once per day, overnight, one row per then-in-stock, non-core part is recorded for every location across every organization, under that day's calendar date.<br>2. Each row captures the part's identity (part, category, vendor), on-hand quantity, unit cost, unit sell, total cost, and total sell, stored to the cent.<br>3. A location with no in-stock parts on the date simply has no rows for that date — this is valid, not an error.<br><br>---<br>This is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Inventory Value report specification version 10 (S11-R1, S11-R4), read on 17 August 2026.<br>Last checked against build v3.8-d0e135e on 8/19/2026.<br><br>AUTOMATION: HOLD - the nightly capture is a server-side job and its stored rows are not reachable from the application</p>",
+ "custom_atmstatus": 1,
+ "updated_on": 1787215748,
+ "created_by": 3
+}

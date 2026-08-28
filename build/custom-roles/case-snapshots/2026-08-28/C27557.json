@@ -1,0 +1,11 @@
+{
+ "id": 27557,
+ "title": "CR-BRK-002 — No Reports + everything else ON — login dependency",
+ "refs": "SV-7388; SV-7977 / SV-7983 / SV-7995",
+ "preconds": "<p>Reports \\u2717 | WO V/E \\u2713 | Customers V \\u2713 | Schedule V \\u2713 | See Financial \\u2713 | View Mode: Full (View Mode as specified).</p>",
+ "steps": "<ol>\n<li>Configure a custom role per the Setup in Preconditions; assign to a test user and log in.</li>\n<li>Log in; observe landing page; refresh; navigate.</li>\n</ol>",
+ "expected": "<p>User logs in normally and lands on an accessible page. Reports OFF only hides the Reports nav (§2a OFF = nav hidden). No Access-Restricted screen on login/landing/refresh.</p><hr/><p><strong>Risk / Rationale:</strong> Reports OFF acts as an unintended login/landing dependency → Access Restricted on login/refresh (known defect family).<br/><strong>Spec Ref:</strong> §2a Reports</p>",
+ "custom_atmstatus": 3,
+ "updated_on": 1783031671,
+ "created_by": 1
+}

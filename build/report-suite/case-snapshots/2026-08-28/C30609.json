@@ -1,0 +1,11 @@
+{
+ "id": 30609,
+ "title": "Snapshot retention: daily captures are kept for 0–13 months",
+ "refs": "SV-8678 (IV spec v10 2026-08-17 Story 11 S11-R6)",
+ "preconds": "<p>1. Snapshot history exists (or is seeded/simulated with dev help) spanning both the 0–13-month band and the older-than-13-months band.<br>2. The nightly capture (with its pruning) has run.<br>3. To see the information this test asks for you need the browser's own developer tools: press F12 (or Ctrl+Shift+I; on a Mac Cmd+Option+I) and open the \"Network\" tab, then reload the page. There is nothing to install — it is built into Chrome, Edge and Firefox. Where a check also asks you to confirm what is stored on the server, ask a developer to read it back for you — that part cannot be seen from the browser..</p>",
+ "steps": "<p>1. Inspect the retained captures for dates within the last 13 months.<br>2. Inspect the retained captures for dates older than 13 months.<br>3. Check when pruning runs relative to the nightly capture.</p>",
+ "expected": "<p>1. For ages 0–13 months (measured from the current date), every daily capture is kept — full daily per-part detail, covering a full 13 months of selectable \"as of\" days entirely at daily resolution.<br>2. For ages older than 13 months, only the last capture of each calendar month is retained; the other daily captures in that band are pruned.<br>3. Pruning runs as part of, or alongside, the nightly capture.<br><br>---<br>Note for the tester: this one needs records going back more than a year, and this test system only holds a few days of records so far. If there is nothing old enough to look at, mark this test BLOCKED - do not mark it failed, and do not raise it as a problem.<br><br>---<br>This is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Inventory Value report specification version 10 (S11-R6), read on 17 August 2026.<br>Last checked against build v3.8-d0e135e on 8/19/2026.<br><br>AUTOMATION: HOLD - retention pruning is a server-side job over stored history, not reachable from the application</p>",
+ "custom_atmstatus": 1,
+ "updated_on": 1787215873,
+ "created_by": 3
+}

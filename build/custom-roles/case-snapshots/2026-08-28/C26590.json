@@ -1,0 +1,11 @@
+{
+ "id": 26590,
+ "title": "Permissioned seeder is idempotent and reconciles with existing empty-permission roles",
+ "refs": "SV-7482,SV-7527",
+ "preconds": "Test tenant where the legacy 10 empty-permission roles already exist (pre-migration state). CRP-BE-07 seeder available.",
+ "steps": "1. Capture current count of system roles per org (expect 10).\n2. Run the seeder.\n3. Capture new count.\n4. Inspect a known role (e.g. Administrator) and confirm it now has the matrix-defined bundle set attached, NOT duplicated as a second Administrator row.\n5. Re-run the seeder.\n6. Confirm no further changes — idempotent.",
+ "expected": "Step 3: Count moves from 10 to 11 system roles per org (Sr SA / Jr SA / Sales Rep split; Owner template no longer seeded per spec 6/10). [Note: ticket SV-7482's title still says 10->12 — it pre-dates the 6/10 Owner removal. End state per spec v15 is 11 roles. Flag to Sasha/BE to update the ticket.]\nStep 4: Existing Administrator row was UPDATED with the matrix bundle set (not duplicated).\nStep 6: Second run is a no-op.",
+ "custom_atmstatus": 1,
+ "updated_on": 1781700799,
+ "created_by": 3
+}

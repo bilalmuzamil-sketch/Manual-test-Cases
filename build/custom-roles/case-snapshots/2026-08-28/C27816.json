@@ -1,0 +1,11 @@
+{
+ "id": 27816,
+ "title": "Verify Technician cannot approve or authorize a work order line",
+ "refs": "SV-5319",
+ "preconds": "Log in to ShopView as a user assigned the Technician role. (Tech View users cannot approve work order lines).\nAt least one work order exists that contains labor and part lines with prices entered.\nThe work order has a line awaiting approval.",
+ "steps": "1. Open the work order and locate the line awaiting approval.\n2. Look for an Approve/Authorize action on the line.",
+ "expected": "The Approve/Authorize action is hidden - the Technician has no way to approve or authorize the line.",
+ "custom_atmstatus": 1,
+ "updated_on": 1783108595,
+ "created_by": 3
+}

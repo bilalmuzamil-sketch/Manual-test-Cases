@@ -1,0 +1,11 @@
+{
+ "id": 30197,
+ "title": "The nav entry fits the full Sales By Representative label; no truncation",
+ "refs": "SV-8619 (SBR spec v22 2026-08-17 Story 1 S1-R7; §1 naming note)",
+ "preconds": "<ol><li>You are on the Reports navigation with the entry visible.</li></ol>",
+ "steps": "<ol><li>Look closely at the \"Sales By Representative\" entry's label against the entry's left and right edges.</li><li>Compare its padding with the neighbouring entries.</li></ol>",
+ "expected": "<p>1. The full \"Sales By Representative\" label renders without crowding against the entry’s edges and without truncation.<br>2. The label is not shortened to fit — the fix is the entry’s horizontal padding, not the name.</p><p>---<br>This is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Sales By Representative report specification version 24 (S1-R7), read on 17 August 2026.<br>Last checked against build v3.8-bd246fd on 8/18/2026.<br>Re-checked against the live specification on 26 August 2026: the requirements this case cites are unchanged, so only the version cited above was updated.</p><p>AUTOMATION: READY</p>",
+ "custom_atmstatus": 1,
+ "updated_on": 1787752340,
+ "created_by": 3
+}

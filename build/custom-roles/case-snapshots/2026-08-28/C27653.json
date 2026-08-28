@@ -1,0 +1,11 @@
+{
+ "id": 27653,
+ "title": "Technician - C. Add multiple inspection templates to one line",
+ "refs": "SV-7509 SV-8095",
+ "preconds": "<p>Logged in as Technician. Tech View. Per SV-8095 AC4, View Mode is NOT a gate for inspections. A work order line exists.</p>\n",
+ "steps": "<ol>\n<li>Log in.</li>\n<li>Add an inspection template to a line.</li>\n<li>Add a second and third template to the same line.</li>\n<li>Attempt to add a fourth.</li>\n</ol>\n",
+ "expected": "<p>Step 2: First inspection added (\"Inspection added to line.\").<br />Step 3: Second and third inspections added to the same line.<br />Step 4: VIU - spec does not state a maximum; build observed up to 3 per line. Confirm whether a 4th is prevented.</p>\n",
+ "custom_atmstatus": 3,
+ "updated_on": 1783433060,
+ "created_by": 3
+}

@@ -1,0 +1,11 @@
+{
+ "id": 30367,
+ "title": "Turns / Yr annualizes the sales rate, is 0.00 at zero stock, can be negative",
+ "refs": "SV-8645 (PV spec v10 2026-08-17 S5-R4 (Turns / Yr); S5 Definitions (Window))",
+ "preconds": "<p>1. The Turns / Yr column is enabled.<br>2. Part A: known Units Sold over a known window with On Hand &gt; 0 (e.g. Units Sold 10.00 over a 30-day window with 5 on hand).<br>3. Part B: in-window sales but On Hand now 0.<br>4. Part C: negative Units Sold (reversals exceed sales) with stock on hand..</p>",
+ "steps": "<p>1. Compute the expected value for part A: (Units Sold ÷ Window days × 365) ÷ On Hand - e.g. (10 ÷ 30 × 365) ÷ 5 = 24.33.<br>2. Compare against the displayed Turns / Yr for part A.<br>3. Read Turns / Yr for parts B and C, and for any special-order row.</p>",
+ "expected": "<p>1. Part A's Turns / Yr matches the formula (two decimals, e.g. 24.33); the window is the whole-day span inclusive of both dates with a floor of 1 day.<br>2. Part B shows 0.00 (renders 0.00 when On Hand is 0 - not an error, not &mdash;).<br>3. Part C shows a NEGATIVE Turns / Yr with a leading minus (because Units Sold can be negative).<br>4. Special Order rows always show &mdash; (not applicable).<br><br>---<br>This is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Parts Velocity report specification version 11 (S5-R4), read on 17 August 2026.<br>Last checked against build v3.8-d0e135e on 8/19/2026.<br>Re-checked against the live specification on 26 August 2026: the requirements this case cites are unchanged, so only the version cited above was updated.<br><br>AUTOMATION: READY</p>\n",
+ "custom_atmstatus": 1,
+ "updated_on": 1787747809,
+ "created_by": 3
+}

@@ -1,0 +1,11 @@
+{
+ "id": 30371,
+ "title": "Number formats match the spec per column; rounding is half away from zero",
+ "refs": "SV-8645 (PV spec v10 2026-08-17 S5-R5; S5-R7 (rounding))",
+ "preconds": "1. All 20 columns are enabled and rows exist with large (1,000+), negative, and null values across the column types.",
+ "steps": "1. Read a large count value (Units Sold etc.), a negative count, a large money value, a negative money value, a Margin % value, a Demand value, Min/Max values, and a Last Sale value.\n2. Seed a Margin % that lands exactly on a rounding tie (e.g. computes to 8.45% / -8.45%) and read the display.",
+ "expected": "1. Units Sold, Units Returned, Sold (WO), Sold (Parts Sale), On Hand, Turns / Yr: two decimals with thousands separators (1,250.00); negatives with a leading minus (-3.00).\n2. Avg Cost, Avg Sell, Revenue, Margin: currency with $, two decimals, thousands separators ($1,250.00); negatives with a leading minus and NO parentheses (-$45.00).\n3. Margin %: one decimal with a trailing % (33.8%); negatives with a leading minus, no + on positives (-8.4%).\n4. Demand: whole number. Min, Max: whole numbers (— when null). Last Sale: 'N days' (42 days), — when null.\n5. Rounding is half AWAY from zero: 8.45% displays 8.5% and -8.45% displays -8.5% (a tie rounds up in magnitude); this applies to all money and one-decimal values.\n\n---\nThis is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Parts Velocity report specification version 10 (S5-R5, S5-R7), read on 17 August 2026.\nLast checked against build v3.8-bd246fd on 8/18/2026.\n\nAUTOMATION: READY",
+ "custom_atmstatus": 1,
+ "updated_on": 1787087434,
+ "created_by": 3
+}

@@ -1,0 +1,11 @@
+{
+ "id": 27579,
+ "title": "CR-BRK-024 — Financial Data Confirmation Modal — Cancel path",
+ "refs": "SV-7388; SV-7504",
+ "preconds": "<p>See Financial \\u2717 → enable a Part Sales or Invoicing checkbox → modal appears → Cancel (View Mode as specified).</p>",
+ "steps": "<ol>\n<li>Configure a custom role per the Setup in Preconditions; assign to a test user and log in.</li>\n<li>Trigger the modal by checking Part Sales/Invoicing while See Financial OFF; click Cancel.</li>\n</ol>",
+ "expected": "<p>Cancel reverts the checkbox to its previous state; See Financial stays OFF; the Part Sales/Invoicing checkbox is unchecked (Financial Data Confirmation Modal).</p><hr/><p><strong>Risk / Rationale:</strong> Cancel leaves the checkbox checked, or turns See Financial ON anyway.<br/><strong>Spec Ref:</strong> Financial Data Confirmation Modal</p>",
+ "custom_atmstatus": 1,
+ "updated_on": 1782992524,
+ "created_by": 1
+}

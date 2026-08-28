@@ -1,0 +1,11 @@
+{
+ "id": 30386,
+ "title": "Toolbar and table detail styling matches the suite paddings and borders",
+ "refs": "SV-8647 (PV spec v10 2026-08-17 S7-R2; S7-R3; S7-R4; S7-R5)",
+ "preconds": "<p>1. You are on the Parts Velocity report with data loaded..</p>",
+ "steps": "<p>1. Look at the toolbar strip above the table and at the space between its controls and the edges of the strip.<br>2. Look at the column-header band and at the line between it and the toolbar above it.<br>3. Look at the data cells, and at the space between the first and last columns and the left and right edges of the table.<br>4. Compare all of the above with another report in the suite (for example Inventory Value) opened side by side.</p>",
+ "expected": "<p>1. The toolbar strip is white (dark in dark mode), and its controls sit clear of the edges rather than pressed up against them.<br>2. There is a thin dividing line between the toolbar and the column-header band, and the header band and the data cells are white.<br>3. The first and last columns sit clear of the left and right edges of the table - the text is not touching the edge.<br>4. It all looks the same as the other reports in the suite: put another report side by side and nothing should look out of place.<br>5. Note for the tester: you do not need to measure anything and you do not need any tool. Just say whether the spacing and the dividing line look right and consistent with the other reports, and only report it if something looks obviously off. (The exact figures behind this - 32px/24px toolbar padding, a 1px header border, 2rem edge padding - are design-token values the design and engineering team check with their own tooling, not by hand.)<br><br>---<br>This is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Parts Velocity report specification version 11 (S7-R2, S7-R3, S7-R4, S7-R5), read on 17 August 2026.<br>Last checked against build v3.8-d0e135e on 8/19/2026.<br>Re-checked against the live specification on 26 August 2026: the requirements this case cites are unchanged, so only the version cited above was updated.<br><br>AUTOMATION: READY</p>\n",
+ "custom_atmstatus": 1,
+ "updated_on": 1787747820,
+ "created_by": 3
+}

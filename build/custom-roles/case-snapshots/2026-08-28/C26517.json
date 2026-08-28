@@ -1,0 +1,11 @@
+{
+ "id": 26517,
+ "title": "Legacy 'Technician' users become 'Technician' after migration",
+ "refs": "SV-7527",
+ "preconds": "<ol>\n<li>Migration to the new roles is complete.</li>\n<li>At least one existing 'Technician' user is present.</li>\n</ol>",
+ "steps": "<ol>\n<li>Go to Settings > Staff and find a 'Technician' user.</li>\n<li>Check the user's assigned role.</li>\n<li>Go to Settings > Roles & Permissions and find that role's row.</li>\n<li>Look at the role's read-only Permission Summary (eye icon).</li>\n</ol>",
+ "expected": "<p>The user's role is 'Technician'.</p>\n<p>The role's permissions match the expected set for that role.</p>\n<p>The 'Technician' role is editable (it has a pencil icon).</p>\n<p>The Technician role's View mode is Tech view.</p>\n",
+ "custom_atmstatus": 1,
+ "updated_on": 1784013335,
+ "created_by": 3
+}

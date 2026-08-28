@@ -1,0 +1,11 @@
+{
+ "id": 30155,
+ "title": "The totals row covers the whole filtered set; not just the current page",
+ "refs": "SV-8616 (SBC spec v20 2026-08-17 Story 18 S18-R6)",
+ "preconds": "<ol>\n<li>Enough customers exist to span more than one page of results, with known amounts (seed ZZAUTOTEST data).</li>\n</ol>\n",
+ "steps": "<ol>\n<li>Read the totals row on page 1.</li>\n<li>Move to page 2 and read the totals row again.</li>\n<li>Compare the totals against the sum over ALL matching customers (not just one page).</li>\n</ol>\n",
+ "expected": "<ol>\n<li>The totals row is computed over the full set of customers matching the active filters (date range, Product Type, location, Customer filter).</li>\n<li>The totals do not change when you move between pages — they never reflect only the visible page.</li>\n</ol>\n\n<hr />\n\n<p>This is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Sales By Customer report specification version 20 (S18-R6), read on 17 August 2026.<br />Last checked against build v3.8-2bf8d14 on 8/18/2026.</p>\n\n<p>AUTOMATION: READY</p>\n",
+ "custom_atmstatus": 1,
+ "updated_on": 1787083041,
+ "created_by": 3
+}

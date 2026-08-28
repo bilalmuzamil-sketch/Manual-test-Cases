@@ -1,0 +1,11 @@
+{
+ "id": 30318,
+ "title": "Grand totals are server-computed over the full filtered set",
+ "refs": "SV-8627 (SBR spec v22 2026-08-17 Story 10 S10-R5)",
+ "preconds": "<p>1. You are on the report with several reps, at least one large enough that not all of its detail rows are loaded; the network panel is open.<br>2. To see the information this test asks for you need the browser's own developer tools: press F12 (or Ctrl+Shift+I; on a Mac Cmd+Option+I) and open the \"Network\" tab, then reload the page. There is nothing to install — it is built into Chrome, Edge and Firefox..</p>",
+ "steps": "<p>1. Load the report with everything collapsed and inspect the summary response and the grand Totals indicator.<br>2. Compare the grand totals against the full filtered result (for example, via the Summary CSV), not just the loaded rows.</p>",
+ "expected": "<p>1. The grand totals arrive WITH the summary payload &mdash; the client does not derive them by summing loaded rows.<br>2. The totals cover EVERY matching non-reversed invoice across every rep, independent of which reps are expanded or how many detail rows are loaded.<br>3. The on-screen grand Totals match the export's aggregate for the same filter set.<br><br>---<br>This is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Sales By Representative report specification version 24 (S10-R5), read on 17 August 2026.<br>Last checked against build v3.8-b7d80dc on 8/19/2026.<br>Re-checked against the live specification on 26 August 2026: the requirements this case cites are unchanged, so only the version cited above was updated.<br><br>AUTOMATION: READY</p>\n",
+ "custom_atmstatus": 1,
+ "updated_on": 1787747760,
+ "created_by": 3
+}

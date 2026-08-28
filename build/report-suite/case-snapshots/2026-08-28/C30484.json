@@ -1,0 +1,11 @@
+{
+ "id": 30484,
+ "title": "Clicking a header sorts ascending, clicking again toggles descending",
+ "refs": "SV-8660 (WIP spec v22 2026-08-18 Story 4 S4-R26)",
+ "preconds": "<ol><li>You are signed in to the ShopView App on a desktop browser.</li><li>A tab shows several work orders with differing values.</li></ol>",
+ "steps": "<ol><li>Click the Customer column header and note the order.</li><li>Click the Customer header again and note the order.</li><li>Click the Customer header a third time and note the order.</li><li>Click a different column header (for example Earned) and check whether the Customer sort still applies.</li></ol>",
+ "expected": "<p>1. The first click sorts the column ascending.<br>2. The second click toggles it to descending.<br>3. The third click returns to ascending — there is no third \"cleared\" state.<br>4. Only one column sorts at a time: clicking another header replaces the previous sort.</p><p>---<br>This is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Work In Progress report specification version 28 (S4-R26), read on 18 August 2026.<br>Last checked against build v3.8-bd246fd on 8/18/2026.<br>Re-checked against the live specification on 26 August 2026: the requirements this case cites are unchanged, so only the version cited above was updated.</p><p>AUTOMATION: READY</p>",
+ "custom_atmstatus": 1,
+ "updated_on": 1787754957,
+ "created_by": 3
+}

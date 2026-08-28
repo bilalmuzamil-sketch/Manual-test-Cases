@@ -1,0 +1,11 @@
+{
+ "id": 26463,
+ "title": "View mode only changes the look, not what the user is allowed to do",
+ "refs": "SV-7508",
+ "preconds": "<ol>\n<li>A user has a role with View mode set to Tech view and Work orders View and Create & Edit.</li>\n</ol>",
+ "steps": "<ol>\n<li>Open a work order and add a new line.</li>\n<li>Edit the allowed fields on the new line.</li>\n<li>Save.</li>\n</ol>",
+ "expected": "<p>The user can still edit and save at the data level; only the look of the interface is simpler.</p>\n",
+ "custom_atmstatus": 3,
+ "updated_on": 1783942459,
+ "created_by": 3
+}

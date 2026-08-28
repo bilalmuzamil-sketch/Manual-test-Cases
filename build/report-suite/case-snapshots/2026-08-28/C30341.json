@@ -1,0 +1,11 @@
+{
+ "id": 30341,
+ "title": "A part stocked at two selected locations shows as two per-location rows",
+ "refs": "SV-8643 (PV spec v10 2026-08-17 S3-R1a; §3 Key Decisions)",
+ "preconds": "<p>1. The same part number is stocked as an inventory part at two locations the user can access, with different On Hand / Min / Max values at each.<br>2. You are on the Parts Velocity report with both locations selected in the Location filter.</p>\n",
+ "steps": "<p>1. Search for the part number in the toolbar search.<br>2. Count the rows returned for it and read each row's On Hand, Min, and Max.</p>\n",
+ "expected": "<p>1. The part appears as TWO inventory rows - one per selected location (an inventory part is a per-location stock record).<br>2. Each row carries only that one location's On Hand, Min, and Max.<br>3. On Hand / Min / Max are NEVER summed across locations.<br><br>---<br>This is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Parts Velocity report specification version 11 (S3-R1a), read on 17 August 2026.<br>Last checked against build v3.8-d0e135e on 8/19/2026.<br>Re-checked against the live specification on 26 August 2026: the requirements this case cites are unchanged, so only the version cited above was updated.<br><br>AUTOMATION: READY</p>\n",
+ "custom_atmstatus": 1,
+ "updated_on": 1787747778,
+ "created_by": 3
+}

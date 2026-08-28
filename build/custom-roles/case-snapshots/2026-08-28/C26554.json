@@ -1,0 +1,11 @@
+{
+ "id": 26554,
+ "title": "AR Aging Detail endpoint requires ROLE_ACCOUNT_RECEIVABLE_REPORT::VIEW",
+ "refs": "SV-7475,SV-7524",
+ "preconds": "<p>Build with CRP-BE-SEC deployed. User A: system-tech. User B: system-owner.</p>\n",
+ "steps": "<ol>\n<li>Log in as User A. Hit GET on the AR Aging Detail endpoint (AgingDetailController route).</li>\n<li>Inspect response.</li>\n<li>Log in as User B. Hit the same endpoint.</li>\n</ol>\n",
+ "expected": "<p>User A → 403. User B → 200 with payload.</p>\n",
+ "custom_atmstatus": 3,
+ "updated_on": 1781869299,
+ "created_by": 3
+}

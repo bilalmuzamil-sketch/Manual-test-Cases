@@ -1,0 +1,11 @@
+{
+ "id": 30573,
+ "title": "\"As of\" date, Location, Category, Vendor and part search combine with AND",
+ "refs": "SV-8673 (IV spec v10 2026-08-17 Story 6 S6-R9)",
+ "preconds": "1. You are signed in to the ShopView App on a desktop browser.\n2. In-stock parts exist with a known mix of categories and vendors, so a combined filter isolates a known subset.",
+ "steps": "1. Select a Category, then also a Vendor that only some of those category parts have.\n2. Add a part search matching only one of the remaining parts.\n3. Check the rows and the totals row after each step.",
+ "expected": "1. A part must satisfy EVERY active filter and the search to appear — the \"as of\" date, Location, Category, Vendor, and part search combine with AND.\n2. The totals row matches the combined filtered set after each step.\n\n---\nThis is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Inventory Value report specification version 10 (S6-R9), read on 17 August 2026.\nLast checked against build v3.8-bd246fd on 8/18/2026.\n\nAUTOMATION: READY",
+ "custom_atmstatus": 1,
+ "updated_on": 1787095691,
+ "created_by": 3
+}

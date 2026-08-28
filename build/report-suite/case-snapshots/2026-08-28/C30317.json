@@ -1,0 +1,11 @@
+{
+ "id": 30317,
+ "title": "Sorting is performed server-side and returns the first page",
+ "refs": "SV-8628 (SBR spec v22 2026-08-17 Story 11 S11-R5)",
+ "preconds": "<p>1. You are on the report with several rep rows; the network panel is open.<br>2. To see the information this test asks for you need the browser's own developer tools: press F12 (or Ctrl+Shift+I; on a Mac Cmd+Option+I) and open the \"Network\" tab, then reload the page. There is nothing to install — it is built into Chrome, Edge and Firefox..</p>",
+ "steps": "<p>1. Click a financial column header and watch the network panel.<br>2. Click the same header again (descending) and watch again.</p>",
+ "expected": "<p>1. Each sort change triggers a server re-fetch of the rep summary rows in the requested order (a loading indicator shows during the fetch).<br>2. The returned rows arrive already ordered by the requested column and direction &mdash; the client does not re-sort locally.<br>3. Invoice detail rows continue to load lazily per rep on expand, unaffected by the sort mechanism.<br><br>---<br>This is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Sales By Representative report specification version 24 (S11-R5), read on 17 August 2026.<br>Last checked against build v3.8-b7d80dc on 8/19/2026.<br>Re-checked against the live specification on 26 August 2026: the requirements this case cites are unchanged, so only the version cited above was updated.<br><br>AUTOMATION: READY</p>\n",
+ "custom_atmstatus": 1,
+ "updated_on": 1787747759,
+ "created_by": 3
+}

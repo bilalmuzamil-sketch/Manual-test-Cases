@@ -1,0 +1,11 @@
+{
+ "id": 43825,
+ "title": "The column selector lists ten toggleable columns including Adjustments",
+ "refs": "SV-9280 (SBC spec v20 2026-08-12 S13-R4 — ten toggleable columns including Adjustments)",
+ "preconds": "1. You are signed in to the ShopView App on a desktop browser.",
+ "steps": "1. Open the Sales By Customer report.\n2. Open the column selector.",
+ "expected": "1. The column selector lists ten toggleable columns, in order: Date, Labor Delta, Labor Invoiced, Labor Margin, Parts Invoiced, Parts Margin, Shop Supplies, Adjustments, Margin, Margin %.\n2. \"Adjustments\" is one of the toggleable columns, between Shop Supplies and Margin.\n\n---\nThis is the expected behaviour as per epic SV-8582, read on 17 August 2026, and story SV-9280, and the Sales By Customer report specification version 20 (S13-R4), read on 17 August 2026.\nLast checked against build v3.8-2bf8d14 on 8/18/2026.\n\nAUTOMATION: READY",
+ "custom_atmstatus": 1,
+ "updated_on": 1787082451,
+ "created_by": 3
+}

@@ -1,0 +1,11 @@
+{
+ "id": 30310,
+ "title": "Sales Representative selector shows on WO and Part Sale, not on imported",
+ "refs": "SV-8636 (SBR spec v22 2026-08-17 Story 19 S19-R1; S19-N1)",
+ "preconds": "<p>1. You have: an open standard Work Order, an open Part Sale WO, an imported Work Order, and a way to view a WO in History mode..</p>",
+ "steps": "<p>1. Open the standard Work Order and look at the left panel.<br>2. Open the Part Sale WO and look at the left panel.<br>3. Open the imported Work Order and look for the same field.<br>4. View a WO in History mode and look for the field.</p>",
+ "expected": "<p>1. The left panel includes a \"Sales Representative\" selector on the standard Work Order.<br>2. The left panel includes the same \"Sales Representative\" selector on the Part Sale WO.<br>3. The selector is NOT present on the imported Work Order.<br>4. The selector is NOT present in History mode.<br>5. Note for the tester: the product owner has ruled that the full word \"Sales Representative\" replaces the short \"Sales Rep\" everywhere. If the screen or file still shows \"Sales Rep\", mark this test Failed and report it as the pending rename &mdash; do not change the test.<br><br>---<br>This is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Sales By Representative report specification version 24 (S19-R1, S19-N1), read on 17 August 2026.<br>Last checked against build v3.8-b7d80dc on 8/19/2026.<br>Re-checked against the live specification on 26 August 2026: the requirements this case cites are unchanged, so only the version cited above was updated.<br><br>AUTOMATION: HOLD - waiting on an answer from the product owner</p>\n",
+ "custom_atmstatus": 1,
+ "updated_on": 1787747752,
+ "created_by": 3
+}

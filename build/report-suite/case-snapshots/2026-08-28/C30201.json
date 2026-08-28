@@ -1,0 +1,11 @@
+{
+ "id": 30201,
+ "title": "Date range picker is in the toolbar and offers the standard presets plus Custom",
+ "refs": "SV-8620 (SBR spec v22 2026-08-17 Story 2 S2-R1; S2-R2)",
+ "preconds": "<p>1. You are on the Sales By Representative report..</p>",
+ "steps": "<p>1. Find the date range picker in the report toolbar.<br>2. Open it and read the options.</p>",
+ "expected": "<p>1. A date range picker is visible in the report toolbar.<br>2. The chooser offers nine ready-made periods, in this order: Last 12 Months, This Year, Last Year, This Quarter, Last Quarter, This Month, Last Month, This Week, Last Week. Beside them it shows a month calendar you click dates on to build your own range, a live readout of how many days the range covers, and an Apply button. There is no \"Today\", no \"Yesterday\" and no item called \"Custom\" - you build your own range on the calendar instead. There is no \"All Time\" option.<br>3. The named periods use the application's standard shared calendar boundaries - this is one shared chooser used by all six reports.<br><br>---<br>This is the expected behaviour as per epic SV-8582, read on 17 August 2026, and Chris Ward's decision of 8/5/2026, recorded in his answers in this file: https://docs.google.com/spreadsheets/d/1x8cuYJlFsDHalVZZTh156_ZCq2gcOaGY/edit?usp=sharing&amp;ouid=106388879401921597782&amp;rtpof=true&amp;sd=true, read on 17 August 2026. Where the Sales By Representative report specification version 24 (S2-R1, S2-R2), read on 17 August 2026, says something different, his decision is the later word and is the authority.<br>Last checked against build v3.8-b7d80dc on 8/19/2026.<br>Re-checked against the live specification on 26 August 2026: the requirements this case cites are unchanged, so only the version cited above was updated.<br><br>AUTOMATION: READY</p>\n",
+ "custom_atmstatus": 1,
+ "updated_on": 1787747667,
+ "created_by": 3
+}

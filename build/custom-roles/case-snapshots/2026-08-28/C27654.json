@@ -1,0 +1,11 @@
+{
+ "id": 27654,
+ "title": "Technician - D. Open and fill an in-progress inspection",
+ "refs": "SV-7509 SV-8095",
+ "preconds": "<p>Logged in as Technician. Tech View. Per SV-8095 AC4, View Mode is NOT a gate for inspections. A line has an in-progress inspection (incl. on an approved line for Tech View roles).</p>\n",
+ "steps": "<ol>\n<li>Log in.</li>\n<li>Open an in-progress inspection on a line (click Open).</li>\n<li>Attempt to fill/edit the inspection items.</li>\n</ol>\n",
+ "expected": "<p>Step 2: The inspection opens.<br />Step 3: The Technician can fill/edit inspection items - even on an existing/approved line. Per SV-8095 AC4, inspection fill follows WOL Create and Edit only and is NOT gated by Tech View or line approval.</p>\n",
+ "custom_atmstatus": 3,
+ "updated_on": 1783433061,
+ "created_by": 3
+}

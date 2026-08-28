@@ -1,0 +1,11 @@
+{
+ "id": 27857,
+ "title": "Verify Sales Representative can open reports including financial data",
+ "refs": "SV-5319,SV-7996",
+ "preconds": "Log in to ShopView as a user assigned the Sales Representative role. (this role has Reports ON and See Financial Data ON).\nReport data exists.",
+ "steps": "1. Click Reports in the main navigation.\n2. Open several reports, including the AR Aging report.",
+ "expected": "Reports are accessible and open with financial data visible. No report returns a 403 error. (Known failure SV-7996: AR Aging report threw a 403 - retest.)",
+ "custom_atmstatus": 1,
+ "updated_on": 1783108595,
+ "created_by": 3
+}

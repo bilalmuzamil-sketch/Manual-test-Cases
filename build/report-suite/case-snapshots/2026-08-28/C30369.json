@@ -1,0 +1,11 @@
+{
+ "id": 30369,
+ "title": "A reversed or voided sale is excluded from every billed-line column",
+ "refs": "SV-8645 (PV spec v10 2026-08-17 S5-R4b; S5-R4a; §3 Key Decisions)",
+ "preconds": "1. A part with two in-window billed sales of known amounts, one of which you then reverse/void.\n2. All movement and profitability columns are visible.",
+ "steps": "1. Record the part's Revenue, Margin, Avg Cost, Avg Sell, Margin %, Sold (WO) / Sold (Parts Sale) (and Units Sold for a special-order part).\n2. Reverse/void one of the two sales.\n3. Reload the report and re-read every column.",
+ "expected": "1. After the reversal, ALL the billed-line columns drop to reflect only the remaining sale - the reversed/voided sale is excluded from Revenue, Margin, Avg Cost, Avg Sell, Margin %, Sold (WO), Sold (Parts Sale), and (for special-order) Units Sold.\n2. This netting is consistent with inventory Units Sold, which already nets reversals via the stock add-back.\n3. A voided sale therefore inflates NO column.\n\n---\nThis is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Parts Velocity report specification version 10 (S5-R4b, S5-R4a), read on 17 August 2026.\nLast checked against build v3.8-bd246fd on 8/18/2026.\n\nAUTOMATION: READY",
+ "custom_atmstatus": 1,
+ "updated_on": 1787087430,
+ "created_by": 3
+}

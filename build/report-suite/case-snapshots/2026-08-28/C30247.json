@@ -1,0 +1,11 @@
+{
+ "id": 30247,
+ "title": "Detail-row invoice number and customer name links navigate in the current tab",
+ "refs": "SV-8629 (SBR spec v22 2026-08-17 Story 12 S12-R1; S12-R2; S12-R3)",
+ "preconds": "1. A rep row is expanded with at least one S and one P invoice visible.",
+ "steps": "1. Click a service invoice's number link and note the destination and tab.\n2. Go back, then click a parts invoice's number link.\n3. Click the customer name on a detail row.",
+ "expected": "1. Each invoice number is a clickable link.\n2. Activating it navigates the CURRENT tab to the underlying invoice (work order or parts sale) — never a new tab.\n3. The customer name is likewise a clickable link that navigates the current tab to the customer's record.\n\n---\nThis is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Sales By Representative report specification version 22 (S12-R1, S12-R2, S12-R3), read on 17 August 2026.\n\nAUTOMATION: READY",
+ "custom_atmstatus": 3,
+ "updated_on": 1787127685,
+ "created_by": 3
+}

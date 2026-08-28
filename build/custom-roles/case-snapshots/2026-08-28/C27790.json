@@ -1,0 +1,11 @@
+{
+ "id": 27790,
+ "title": "Verify Senior Service Advisor can edit and delete another user's work order note",
+ "refs": "SV-5319",
+ "preconds": "1. Log in as a user with the Senior Service Advisor role.\n2. The role has Work Orders > View turned ON.\n3. The role has Work Orders > Delete turned ON.\n4. A work order exists that already has a note written by a DIFFERENT user (e.g., an Admin).",
+ "steps": "1. Open the work order.\n2. Click the Notes tab.\n3. Find the note written by the other user.\n4. Click the note's menu and choose Edit.\n5. Change the text and click Save.\n6. Open the note's menu again and choose Delete.\n7. Confirm the deletion.",
+ "expected": "1. The Edit option is available on the other user's note (Work Orders > View allows editing ANY note for team collaboration).\n2. The edited text saves successfully with no permission error.\n3. The Delete option is also available on the other user's note (Work Orders > Delete allows deleting ANY note, including other users').\n4. The other user's note is deleted with no permission error.",
+ "custom_atmstatus": 1,
+ "updated_on": 1783273227,
+ "created_by": 3
+}

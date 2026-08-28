@@ -1,0 +1,11 @@
+{
+ "id": 30588,
+ "title": "Downloads keep shown columns and order, honor filters, and include Totals",
+ "refs": "SV-8677 (IV spec v10 2026-08-18 Story 10 S10-R3; S10-R4; S10-R5; S10-R6; S10-R15 — downloads keep the shown columns and order; honour the filters; include the Totals row; S10-R15 = the \"Locations:\" line and the Location column when shown)",
+ "preconds": "1. You are signed in to the ShopView App on a desktop browser.\n2. The report is open with a non-default column selection, a Category or Vendor filter, a part search, and a non-default sort applied.",
+ "steps": "1. Download the current view as a CSV and open it.\n2. Compare its columns and their order to the screen.\n3. Compare its rows to the current filters, search, and sort.\n4. Compare its totals row to the on-screen totals row.\n5. Repeat the checks in the PDF.",
+ "expected": "1. Both downloads include only the columns currently shown, in the same left-to-right order as the screen, with Total Cost last.\n2. Both downloads honor the current date, category, vendor, location, and part-search filters, and apply the current sort.\n3. Both downloads include a totals row labeled \"Totals\" matching the on-screen totals (the full-filtered-set totals).\n4. Each download (PDF and CSV) carries a \"Locations:\" line naming the location(s) the report was scoped to.\n5. Note for the tester: the files carry the Location column whenever it is showing on screen (it sits between Vendor and Qty).\nOn this build the spreadsheet file ignores the columns you picked and puts them in a different order from the screen, so point 1 above will not match - record what you see and carry on.\nKnown issue: the product does not currently do this. It has been filed for a fix here: https://shopview.atlassian.net/browse/SV-8823\n\n---\nThis is the expected behaviour as per epic SV-8582 and story SV-8677, read on 18 August 2026, and the Inventory Value report specification version 10 (S10-R3, S10-R4, S10-R5, S10-R6, S10-R15), read on 18 August 2026.\nLast checked against build v3.8-bd246fd on 8/18/2026.\n\nAUTOMATION: READY",
+ "custom_atmstatus": 3,
+ "updated_on": 1787127372,
+ "created_by": 3
+}

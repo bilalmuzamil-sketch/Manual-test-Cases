@@ -1,0 +1,11 @@
+{
+ "id": 30199,
+ "title": "Without Reports access: no navigation, no export menu, no Export dialog",
+ "refs": "SV-8619 (SBR spec v22 2026-08-17 Story 1 S1-N1; Story 14 S14-N3; Story 15 S15-N1)",
+ "preconds": "<p>1. A test user exists whose role has no Reports access (use/create a ZZAUTOTEST role; restore afterwards).<br>2. You are signed in as that user..</p>",
+ "steps": "<p>1. Look for the Reports navigation.<br>2. Try to open the report by direct link (address copied from a permitted session).<br>3. Try to reach the Export Reports dialog.</p>",
+ "expected": "<p>1. The entire Reports navigation &mdash; including the \"Sales By Representative\" entry &mdash; is not shown.<br>2. The report (and its &#8943; export menu) is not reachable.<br>3. The Export Reports dialog and the Sales Representative Assignments download are not reachable.<br><br>---<br>This is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Sales By Representative report specification version 24 (S1-N1, S14-N3, S15-N1), read on 17 August 2026.<br>Last checked against build v3.8-b7d80dc on 8/19/2026.<br>Re-checked against the live specification on 26 August 2026: the requirements this case cites are unchanged, so only the version cited above was updated.<br><br>AUTOMATION: READY</p>\n",
+ "custom_atmstatus": 1,
+ "updated_on": 1787747665,
+ "created_by": 3
+}

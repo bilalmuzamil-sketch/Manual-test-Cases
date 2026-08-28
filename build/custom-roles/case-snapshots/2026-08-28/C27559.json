@@ -1,0 +1,11 @@
+{
+ "id": 27559,
+ "title": "CR-BRK-004 — Parts Dept OFF but child CRUD set — parent-gate bypass",
+ "refs": "SV-7388; SV-7965 (Part Sales URL bypass)",
+ "preconds": "<p>Parts Dept \\u2717 | Catalog &amp; Inv V/E/D \\u2713 | Part Sales V/E \\u2713 | Vendor &amp; Order V/E \\u2713 | WO V \\u2713 | See Financial \\u2713 | View Mode: Full (View Mode as specified).</p>",
+ "steps": "<ol>\n<li>Configure a custom role per the Setup in Preconditions; assign to a test user and log in.</li>\n<li>Confirm Parts nav hidden; attempt direct URL to Catalog / Part Sales / Vendor pages.</li>\n</ol>",
+ "expected": "<p>All three Parts child areas inaccessible and the Parts Department nav hidden (§2d OFF). Child CRUD is preserved but inactive. Direct URLs to parts areas must be blocked.</p><hr/><p><strong>Risk / Rationale:</strong> Child CRUD bypasses the Parts Dept parent gate — a parts area is reachable via URL despite the parent being OFF.<br/><strong>Spec Ref:</strong> §2d Parts Department</p>",
+ "custom_atmstatus": 1,
+ "updated_on": 1782992460,
+ "created_by": 1
+}

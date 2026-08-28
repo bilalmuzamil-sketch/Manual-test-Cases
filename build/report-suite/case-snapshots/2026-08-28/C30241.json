@@ -1,0 +1,11 @@
+{
+ "id": 30241,
+ "title": "All ten financial columns are sortable",
+ "refs": "SV-8628 (SBR spec v24 2026-08-24 S11-R1; S11-R6; Shop Supplies added as a tenth sortable column in v24; renamed to Labor Delta per SV-9071)",
+ "preconds": "<p>1. Several reps with differing values are on the report.</p>\n",
+ "steps": "<p>1. Click each financial column header in turn: Labor Delta, Labor Invoiced, Labor Margin, Parts Invoiced, Parts Margin, Shop Supplies, Adjustments, Margin, Margin %, Subtotal.<br>2. Click the Date, Invoice, Customer, and Status headers.</p>\n",
+ "expected": "<p>1. Each of the ten financial columns responds to a header click and reorders the rep rows: Labor Delta, Labor Invoiced, Labor Margin, Parts Invoiced, Parts Margin, Shop Supplies, Adjustments, Margin, Margin %, Subtotal.<br>2. The identifier columns (Date, Invoice, Customer, Status) do not respond to header clicks.<br>3. The Date header carries the expand/collapse-all chevron, not a sort affordance.<br><br>This is the expected behaviour as per epic SV-8582 and the Sales By Representative report specification version 24 (S11-R1; S11-R6), read on 26 August 2026. The column was renamed from \"Inv. Hrs\" to \"Labor Delta\" per SV-9071; only the name changed.<br>Shop Supplies was added to the sortable financial columns in specification version 24 (2026-08-24), taking the count from nine to ten; version 22 listed nine, and we take the later version as prevailing.<br>This expectation has not been checked against any build since the specification change described above.<br><br>AUTOMATION: READY</p>\n",
+ "custom_atmstatus": 1,
+ "updated_on": 1787747102,
+ "created_by": 3
+}

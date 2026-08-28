@@ -1,0 +1,11 @@
+{
+ "id": 30550,
+ "title": "Margin % is Margin over Total Sell to one decimal; em-dash when Sell <= 0",
+ "refs": "SV-8670 (IV spec v10 2026-08-17 Story 3 S3-R9; S3-E3)",
+ "preconds": "1. You are signed in to the ShopView App on a desktop browser.\n2. The report shows: a part with a normal positive margin, a part whose Margin % computes negative (unit sell below unit cost), and — if producible — a part whose Total Sell is zero.",
+ "steps": "1. Read the normal part's Margin % and check it against Margin ÷ Total Sell × 100.\n2. Read the negative-margin part's Margin %.\n3. Read the zero-Total-Sell part's Margin % if one exists.",
+ "expected": "1. Margin % shows Margin as a percentage of Total Sell, to one decimal place followed by a percent sign — for example \"39.7%\".\n2. A Margin % that computes to a real number, including a negative one, shows its signed value.\n3. Margin % shows \"—\" when Total Sell is zero or negative (the percentage is undefined).\n\n---\nThis is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Inventory Value report specification version 10 (S3-R9, S3-E3), read on 17 August 2026.\nLast checked against build v3.8-bd246fd on 8/18/2026.\n\nAUTOMATION: READY",
+ "custom_atmstatus": 1,
+ "updated_on": 1787095717,
+ "created_by": 3
+}

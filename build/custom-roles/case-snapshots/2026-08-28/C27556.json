@@ -1,0 +1,11 @@
+{
+ "id": 27556,
+ "title": "CR-BRK-001 — Reports in isolation — page must not crash",
+ "refs": "SV-7388; SV-7977 (adjacent)",
+ "preconds": "<p>Reports \\u2713 | everything else \\u2717 | View Mode: Full (View Mode as specified).</p>",
+ "steps": "<ol>\n<li>Configure a custom role per the Setup in Preconditions; assign to a test user and log in.</li>\n<li>Log in; open Reports; open each report section.</li>\n</ol>",
+ "expected": "<p>Reports nav appears and the page loads. Reports is all-or-nothing (no per-report granularity), so all sections are reachable; sections may show empty data since no CRUD areas are granted, but the page must NOT crash. Login must succeed.</p><hr/><p><strong>Risk / Rationale:</strong> Reports bypasses the section/data permission gate — page may crash or error when all data areas are OFF, or may surface data the user has no CRUD access to.<br/><strong>Spec Ref:</strong> §2a Reports</p>",
+ "custom_atmstatus": 3,
+ "updated_on": 1783031670,
+ "created_by": 1
+}

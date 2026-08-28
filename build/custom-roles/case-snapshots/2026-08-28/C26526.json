@@ -1,0 +1,11 @@
+{
+ "id": 26526,
+ "title": "Whether a technician can be scheduled depends on their department, not their role",
+ "refs": null,
+ "preconds": "<ol>\n<li>Two users have the same role (for example both Technician).</li>\n<li>User A is in a department that includes scheduling; User B is in a department that does not.</li>\n</ol>",
+ "steps": "<ol>\n<li>Log in as a scheduler (for example Service Manager) and open Schedule.</li>\n<li>Try to schedule work for User A and see if they can be scheduled.</li>\n<li>Try to schedule work for User B.</li>\n<li>Change User B's department to one that includes scheduling, refresh Schedule, and try User B again.</li>\n</ol>",
+ "expected": "<p>User A can be scheduled.</p>\n<p>User B cannot be scheduled at first.</p>\n<p>After the department change, User B can be scheduled.</p>\n<p>So scheduling depends on the department, not the role.</p>\n",
+ "custom_atmstatus": 1,
+ "updated_on": 1783943288,
+ "created_by": 3
+}

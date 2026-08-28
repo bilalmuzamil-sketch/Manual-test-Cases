@@ -1,0 +1,11 @@
+{
+ "id": 30176,
+ "title": "A saved value that is no longer valid is dropped and falls back to default",
+ "refs": "SV-8604 (SBC spec v20 2026-08-17 Story 6 S6-R5; S6-R6)",
+ "preconds": "1. You have a saved view that includes a specific location selection.\n2. An administrator then removes your access to that location (restore afterwards).",
+ "steps": "1. Return to the report after the access change.\n2. Read the location filter and the report data.",
+ "expected": "1. The stale saved location is discarded and the location setting uses its default (your active location) instead.\n2. No error appears and the report loads normally.\n3. Per the spec, the same discard-to-default applies to an unknown date range, a sort column that no longer exists, or a column set that does not match the current columns.\n\n---\nThis is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Sales By Customer report specification version 20 (S6-R5, S6-R6), read on 17 August 2026.\nLast checked against build v3.8-2bf8d14 on 8/18/2026.\n\nAUTOMATION: READY",
+ "custom_atmstatus": 1,
+ "updated_on": 1787082729,
+ "created_by": 3
+}

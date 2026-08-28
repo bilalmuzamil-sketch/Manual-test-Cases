@@ -1,0 +1,11 @@
+{
+ "id": 26494,
+ "title": "A logged-in user is logged out immediately when their role changes",
+ "refs": "SV-7505",
+ "preconds": "<ol>\n<li>A user has an active session.</li>\n</ol>",
+ "steps": "<ol>\n<li>An admin changes that user's role.</li>\n</ol>",
+ "expected": "<p>The user's next action sends them to the login page straight away.</p>\n",
+ "custom_atmstatus": 3,
+ "updated_on": 1783943286,
+ "created_by": 3
+}

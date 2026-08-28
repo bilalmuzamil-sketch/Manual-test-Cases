@@ -1,0 +1,11 @@
+{
+ "id": 30296,
+ "title": "A deleted rep record still exports one row from the stored name, marked No",
+ "refs": "SV-8632 (SBR spec v22 2026-08-17 Story 15 S15-R8; S15-R9)",
+ "preconds": "<p>1. A customer exists whose assigned rep's staff record has been cleared or deleted while the customer still references it (seed and delete a throwaway ZZAUTOTEST rep if needed)..</p>",
+ "steps": "<p>1. Download the Sales Representative Assignments CSV.<br>2. Find that customer's row and read its \"Sales Representative\" and \"Rep is active?\" cells.<br>3. If two customers carry different stored name spellings for the same underlying rep, compare their rows.</p>",
+ "expected": "<p>1. The customer still produces a row &mdash; the export never silently drops it.<br>2. The \"Sales Representative\" name comes from the customer-side stored (denormalized) rep name, and \"Rep is active?\" = \"No\".<br>3. When stored names differ across customers for the same rep (name drift), each customer's row uses its OWN stored name &mdash; drift never adds extra rows for a customer and never overwrites one customer's stored name with another's.<br>4. Note for the tester: the product owner has ruled that the full word \"Sales Representative\" replaces the short \"Sales Rep\" everywhere. If the screen or file still shows \"Sales Rep\", mark this test Failed and report it as the pending rename &mdash; do not change the test.<br><br>---<br>This is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Sales By Representative report specification version 24 (S15-R8, S15-R9), read on 17 August 2026.<br>Last checked against build v3.8-b7d80dc on 8/19/2026.<br>Re-checked against the live specification on 26 August 2026: the requirements this case cites are unchanged, so only the version cited above was updated.<br><br>AUTOMATION: READY</p>\n",
+ "custom_atmstatus": 1,
+ "updated_on": 1787747723,
+ "created_by": 3
+}

@@ -1,0 +1,11 @@
+{
+ "id": 30412,
+ "title": "Sorting reorders only the technician rows",
+ "refs": "SV-8649 (TU spec v9 2026-08-17 S2-R16)",
+ "preconds": "1. You are on the Technician Utilization report with several rows loaded and at least one technician row expanded to its day rows.",
+ "steps": "1. Sort by WO Hours descending.\n2. Look at the Summary row's position.\n3. Look at the expanded technician's day rows.",
+ "expected": "1. Only the technician rows reorder.\n2. The Summary row stays pinned at the bottom.\n3. Each technician's expanded day rows stay under that technician, still in date order (earliest to latest) - they do not re-sort by the clicked column.\n\n---\nThis is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Technician Utilization report specification version 9 (S2-R16), read on 17 August 2026.\nLast checked against build v3.8-bd246fd on 8/18/2026.\n\nAUTOMATION: READY",
+ "custom_atmstatus": 1,
+ "updated_on": 1787089784,
+ "created_by": 3
+}

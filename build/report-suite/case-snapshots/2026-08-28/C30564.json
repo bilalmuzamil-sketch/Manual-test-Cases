@@ -1,0 +1,11 @@
+{
+ "id": 30564,
+ "title": "For a past date the report replays the closest recorded day on or before it",
+ "refs": "SV-8672 (IV spec v10 2026-08-17 Story 5 S5-R4; §2 Relationship to nightly history)",
+ "preconds": "<ol>\n<li>You are signed in to the ShopView App on a desktop browser.</li>\n<li>Nightly snapshots exist for past dates, and a ZZAUTOTEST part's quantity is known to have DIFFERED on a past recorded day from its quantity today.</li>\n</ol>\n",
+ "steps": "<ol>\n<li>Set the \"as of\" date to the past recorded day.</li>\n<li>Find the part and read its quantity and values.</li>\n<li>Compare them to what the part held on that recorded day (not today).</li>\n</ol>\n",
+ "expected": "<ol>\n<li>The report replays the closest recorded day on or before the selected \"as of\" date.</li>\n<li><p>The part's row shows the quantity and values recorded for that day, not today's live stock.<br />Note for the tester: an earlier version of this report offered a date range with ready-made periods. The current Inventory Value report specification (version 10, S5-R1/S5-R7) replaces that with a single \"as of\" date control - one calendar day, defaulting to today and capped at today - because a stock valuation is a point-in-time position, not an amount over a period. Follow the current specification.</p></li>\n</ol>\n\n<hr />\n\n<p>This is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Inventory Value report specification version 10 (S5-R4), read on 17 August 2026.<br />Last checked against build v3.8-bd246fd on 8/18/2026.</p>\n\n<p>AUTOMATION: READY</p>\n",
+ "custom_atmstatus": 1,
+ "updated_on": 1787095654,
+ "created_by": 3
+}

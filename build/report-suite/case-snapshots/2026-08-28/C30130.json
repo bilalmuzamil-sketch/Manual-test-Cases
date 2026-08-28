@@ -1,0 +1,11 @@
+{
+ "id": 30130,
+ "title": "Edge: a single-invoice asset can still be expanded",
+ "refs": "SV-8606 (SBC spec v20 2026-08-17 Story 8 S8-E1; S8-E2)",
+ "preconds": "1. Customer A has an asset with exactly one invoice; customer B has ONLY no-vehicle (counter/parts sale) invoices in the current view (seed ZZAUTOTEST data).",
+ "steps": "1. Expand customer A and click the chevron of the single-invoice asset.\n2. Expand customer B and read its asset rows.",
+ "expected": "1. The single-invoice asset expands and shows exactly one invoice detail row.\n2. Customer B shows a single \"Parts Sales\" row and no vehicle rows.\n\n---\nThis is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Sales By Customer report specification version 20 (S8-E1, S8-E2), read on 17 August 2026.\nLast checked against build v3.8-2bf8d14 on 8/18/2026.\n\nAUTOMATION: READY",
+ "custom_atmstatus": 1,
+ "updated_on": 1787083140,
+ "created_by": 3
+}

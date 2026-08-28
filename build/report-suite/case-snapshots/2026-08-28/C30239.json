@@ -1,0 +1,11 @@
+{
+ "id": 30239,
+ "title": "Mobile shows a simplified totals bar below the table; Subtotal at right",
+ "refs": "SV-8627 (SBR spec v22 2026-08-17 Story 10 S10-R5 (mobile branch) + Story 17 S17-R4 — S10-R5 CLOSES it in the spec's own words: \"Totals\" left and the grand Subtotal right \"(no other metrics)\")",
+ "preconds": "<ol><li>You are on the report with data in a viewport below 1024px.</li></ol>",
+ "steps": "<ol><li>Find the totals bar and read it.</li><li>Swipe the table horizontally and watch the bar.</li><li>Scroll the page vertically and watch the bar.</li></ol>",
+ "expected": "<p>1. A simplified external totals bar sits directly below the table, outside its horizontal scroll container, showing \"Totals\" on the left and the grand Subtotal on the right (no other metrics).<br>2. It does not scroll horizontally — it is always fully visible across.<br>3. During vertical page scroll it sits after the table in normal flow (not pinned to the viewport bottom).<br>4. It uses the white card surface with a thin top border.</p><p>---<br>This is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Sales By Representative report specification version 24 (S10-R5, S17-R4), read on 17 August 2026.<br>Last checked against build v3.8-bd246fd on 8/18/2026.<br>Re-checked against the live specification on 26 August 2026: the requirements this case cites are unchanged, so only the version cited above was updated.</p><p>AUTOMATION: READY</p>",
+ "custom_atmstatus": 1,
+ "updated_on": 1787754727,
+ "created_by": 3
+}

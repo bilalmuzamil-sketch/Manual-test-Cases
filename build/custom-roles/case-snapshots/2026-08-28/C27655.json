@@ -1,0 +1,11 @@
+{
+ "id": 27655,
+ "title": "Technician - E. Complete an inspection (Submit and Generate Report)",
+ "refs": "SV-7509 SV-8095",
+ "preconds": "<p>Logged in as Technician. Tech View. Per SV-8095 AC4, View Mode is NOT a gate for inspections. An inspection is in progress with required fields fillable.</p>\n",
+ "steps": "<ol>\n<li>Log in.</li>\n<li>Open an in-progress inspection.</li>\n<li>Fill all required fields.</li>\n<li>Click Submit and Generate Report.</li>\n</ol>\n",
+ "expected": "<p>Step 3: With no required field outstanding, Submit and Generate Report is visible and clickable - even on an approved line (SV-8095 AC4: not gated by Tech View).<br />Step 4: The inspection is submitted, a report is generated, and status becomes \"Completed\".</p>\n",
+ "custom_atmstatus": 3,
+ "updated_on": 1783433061,
+ "created_by": 3
+}

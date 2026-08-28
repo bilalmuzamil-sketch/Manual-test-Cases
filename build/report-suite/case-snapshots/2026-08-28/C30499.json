@@ -1,0 +1,11 @@
+{
+ "id": 30499,
+ "title": "Customer filter is a type-ahead multi-select reading \"All customers\"",
+ "refs": "SV-8663 (WIP spec v22 2026-08-18 Story 7 S7-R2 and S7-R3 — the option list covers every open job in the current scope and not only the loaded rows)",
+ "preconds": "<ol><li>You are signed in to the ShopView App on a desktop browser.</li><li>The report shows jobs for at least two different customers.</li></ol>",
+ "steps": "<ol><li>Read the Customer filter's label before selecting anything, and check whether a Clear action is offered.</li><li>Open the filter and type part of a customer's name to narrow the list.</li><li>Select one or more customers and watch the rows.</li><li>Use the \"Clear\" action.</li><li>Scroll to the bottom of a busy tab, note a customer who only appears down there, then type that customer's name into the filter and check they are offered.</li></ol>",
+ "expected": "<p>1. With no customer selected, the filter reads \"All customers\", every job is shown, and no Clear action is offered.<br>2. Typing narrows the option list (type-ahead); the options are the customers on every open job in what the report is currently showing you — not only the ones on the rows that happen to have loaded.<br>3. Selecting customers narrows the visible jobs on screen only (no reload); a single \"Clear\" action appears once at least one customer is selected.<br>4. Clear returns the filter to \"All customers\" and every job is shown again.<br>5. Pick a customer whose jobs sit a long way down the list — scroll to the bottom of a busy tab to find one — and confirm every one of that customer's jobs is still shown. You must never end up with only the part of the list that had loaded when you opened the filter.</p><p>---<br>This is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Work In Progress report specification version 28 (S7-R2, S7-R3), read on 18 August 2026.<br>Last checked against build v3.8-bd246fd on 8/18/2026.<br>Re-checked against the live specification on 26 August 2026: the requirements this case cites are unchanged, so only the version cited above was updated.</p><p>AUTOMATION: READY</p>",
+ "custom_atmstatus": 1,
+ "updated_on": 1787754981,
+ "created_by": 3
+}

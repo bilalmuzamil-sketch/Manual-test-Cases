@@ -1,0 +1,11 @@
+{
+ "id": 26422,
+ "title": "Invoicing & payments Delete lets the user delete payments and void transactions (but not reverse invoices)",
+ "refs": "SV-7515,SV-7913",
+ "preconds": "<ol>\n<li>See Financial Data ON and View and Manage AP/AR Data ON.</li>\n<li>A user has a role with Invoicing & payments View, Create & Edit and Delete.</li>\n</ol>",
+ "steps": "<ol>\n<li>Log in and delete a customer payment.</li>\n<li>Void a transaction.</li>\n<li>Try to reverse a work order invoice and a part sales invoice.</li>\n</ol>",
+ "expected": "<p>The per-payment delete option is available and deleting a payment and voiding a transaction work.</p>\n<p>Reversing a work order invoice is controlled by Work orders Delete, and reversing a part sales invoice by Part sales Delete — not by Invoicing & payments Delete.</p>\n",
+ "custom_atmstatus": 3,
+ "updated_on": 1783943630,
+ "created_by": 3
+}

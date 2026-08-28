@@ -1,0 +1,11 @@
+{
+ "id": 30591,
+ "title": "Downloaded files are named inventory-value-report.pdf and .csv",
+ "refs": "SV-8677 (IV spec v10 2026-08-17 Story 10 S10-R10 — S10-R10 CLOSES both file names verbatim; so the exact strings ARE the requirement)",
+ "preconds": "<p>1. You are signed in to the ShopView App on a desktop browser.<br>2. The Inventory Value report is open with rows loaded..</p>",
+ "steps": "<p>1. Download the current view as a PDF and read the saved file's name.<br>2. Download the current view as a CSV and read the saved file's name.</p>",
+ "expected": "<p>1. The PDF is named \"inventory-value-report.pdf\".<br>2. The CSV is named \"inventory-value-report.csv\".<br>What you should see today: the spreadsheet download works and produces a file, but the PDF download of the same view fails with a server error and no file arrives. It depends on how much is in the view, not on which report - filtered down to one or two rows the PDF downloads normally, and on a full unfiltered view of several thousand rows it fails every time. This is a known problem and it is already reported - see https://shopview.atlassian.net/browse/SV-8818<br>- If you see exactly that, mark this test FAILED and do not raise anything new.<br>- If it fails in a DIFFERENT way from what is described above, that is a NEW problem - please report it.<br>- If it PASSES, the fix has shipped: tell the QA lead so the ticket can be closed and this note removed.<br><br>---<br>This is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Inventory Value report specification version 10 (S10-R10), read on 17 August 2026.<br>Last checked against build v3.8-d0e135e on 8/19/2026.<br><br>AUTOMATION: READY - EXPECT FAIL (SV-8818)</p>",
+ "custom_atmstatus": 1,
+ "updated_on": 1787215595,
+ "created_by": 3
+}

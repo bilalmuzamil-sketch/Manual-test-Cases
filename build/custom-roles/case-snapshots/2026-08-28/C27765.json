@@ -1,0 +1,11 @@
+{
+ "id": 27765,
+ "title": "Verify Administrator can set the On Site status of an asset on a work order",
+ "refs": "SV-5319,SV-8021",
+ "preconds": "Log in to ShopView as a user assigned the Administrator role. (setting On Site status is gated by Work Orders: Create and Edit per spec v33 / SV-8021).\nAt least one work order exists.",
+ "steps": "1. Open a work order.\n2. Locate the asset's On Site status control.\n3. Change the On Site status and save.",
+ "expected": "The On Site status control is available, and the change saves successfully.",
+ "custom_atmstatus": 1,
+ "updated_on": 1783108595,
+ "created_by": 3
+}

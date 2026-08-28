@@ -1,0 +1,11 @@
+{
+ "id": 30366,
+ "title": "On Hand shows the row's own location stock",
+ "refs": "SV-8645 (PV spec v10 2026-08-17 S5-R4 (On Hand / Min / Max); §2 Out of Scope; S5-R5)",
+ "preconds": "<p>1. An inventory part with a known on-hand quantity and stored Min / Max reorder thresholds at one location.<br>2. The Min and Max columns are enabled via the column picker..</p>",
+ "steps": "<p>1. Read the part's On Hand, Min, and Max in the report and compare with the inventory record.<br>2. Try clicking / double-clicking the Min and Max cells and look for any edit control or slide-over.</p>",
+ "expected": "<p>1. On Hand equals the part's CURRENT on-hand quantity at that row's location (never summed across locations).<br>2. Min and Max show the stored minimum / maximum reorder thresholds for that location, as whole numbers (&mdash; when not set).<br>3. Min and Max are READ-ONLY display columns - no edit control or slide-over opens; editing part attributes from this report is out of scope in this version.<br><br>---<br>This is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Parts Velocity report specification version 11 (S5-R4, S5-R5), read on 17 August 2026.<br>Last checked against build v3.8-d0e135e on 8/19/2026.<br>Re-checked against the live specification on 28 August 2026: every requirement this case cites was read again in the live version and the behaviour above still matches it, so only the version cited above was updated.<br><br>AUTOMATION: READY</p>\n",
+ "custom_atmstatus": 1,
+ "updated_on": 1787886519,
+ "created_by": 3
+}

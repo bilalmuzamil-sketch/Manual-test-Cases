@@ -1,0 +1,11 @@
+{
+ "id": 27475,
+ "title": "CR-C3-020 — Reporting (fin + AP/AR)",
+ "refs": "SV-7388",
+ "preconds": "<p>Permissions (counted): Reports + See Financial + See AP/AR. View Mode: Full unless noted. All other permissions OFF.</p>",
+ "steps": "<ol>\n<li>Create a custom role with the permissions listed in Preconditions; leave all others OFF.</li>\n<li>Assign the role to a test user and log in.</li>\n<li>Exercise each capability in Expected Result and confirm it succeeds (and that gated pricing is hidden where noted).</li>\n</ol>",
+ "expected": "<p>User CAN: Access all reports incl. financial; AP/AR aging reports; financial figures visible</p><hr/><p><strong>Risk / Rationale:</strong> Positive capability check — confirms this combination grants exactly the listed actions and nothing gated leaks.<br/><strong>Spec Ref:</strong> §2a+§5a+§5b</p>",
+ "custom_atmstatus": 3,
+ "updated_on": 1783031673,
+ "created_by": 1
+}

@@ -1,0 +1,11 @@
+{
+ "id": 26414,
+ "title": "Catalog and Inventory Create & Edit lets the user create/edit items and make adjustments (cost/price shown only with See Financial Data)",
+ "refs": "SV-7513,SV-7520",
+ "preconds": "<ol>\n<li>A user has a role with Parts Department ON and Catalog and Inventory Create & Edit ON.</li>\n<li>Test with See Financial Data both ON and OFF.</li>\n</ol>",
+ "steps": "<ol>\n<li>Create a new catalog/inventory item.</li>\n<li>Edit an existing item.</li>\n<li>Make an inventory adjustment.</li>\n<li>With See Financial Data ON, open the new-item form and look at the cost and price fields.</li>\n<li>With See Financial Data OFF, open the new-item form and look at the cost and price fields.</li>\n</ol>",
+ "expected": "<p>Creating, editing and adjusting all work.</p>\n<p>With See Financial Data ON, the cost and price fields are shown and editable.</p>\n<p>With See Financial Data OFF, the cost and price fields are hidden.</p>\n",
+ "custom_atmstatus": 3,
+ "updated_on": 1783943620,
+ "created_by": 3
+}

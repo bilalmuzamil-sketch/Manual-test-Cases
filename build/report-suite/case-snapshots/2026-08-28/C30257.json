@@ -1,0 +1,11 @@
+{
+ "id": 30257,
+ "title": "After deactivation: toggle unchanged, CSV shows No, report credit intact",
+ "refs": "SV-8630 (SBR spec v22 2026-08-17 Story 13 S13-R11; Story 15 S15-R6; Story 5 S5-R9)",
+ "preconds": "<p>1. A ZZAUTOTEST rep with assignments AND matching invoices was just deactivated via the dialog flow..</p>",
+ "steps": "<p>1. Re-open the staff member and read the sales-representative toggle.<br>2. Download the Sales Representative Assignments CSV and read the rep's rows.<br>3. Open the report and find the rep's row.</p>",
+ "expected": "<p>1. The sales-representative toggle state is unchanged by the deactivation flow.<br>2. In the Sales Representative Assignments CSV the rep's customers show \"Rep is active?\" = \"No\" &mdash; that column is driven by staff-active status, not the toggle.<br>3. In the report the rep still appears with credit intact; the \"(Inactive)\" marker appears only if the sales-representative TOGGLE is off (a separate flag from staff-active status).<br><br>---<br>This is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Sales By Representative report specification version 24 (S13-R11, S15-R6, S5-R9), read on 17 August 2026.<br>Last checked against build v3.8-b7d80dc on 8/19/2026.<br>Re-checked against the live specification on 26 August 2026: the requirements this case cites are unchanged, so only the version cited above was updated.<br><br>AUTOMATION: READY</p>\n",
+ "custom_atmstatus": 1,
+ "updated_on": 1787747692,
+ "created_by": 3
+}

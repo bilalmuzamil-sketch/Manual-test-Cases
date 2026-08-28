@@ -1,0 +1,11 @@
+{
+ "id": 30452,
+ "title": "Four tabs in a fixed order with the partially-completed tab selected",
+ "refs": "SV-8657 (WIP spec v21 2026-08-17 Story 1 S1-R2; S1-R3; §3 Key Decisions (no on-screen status filter) — S1-R2 CLOSES the four tab labels and their order verbatim; so the closed list IS the requirement; Story 1 S1-R4)",
+ "preconds": "1. You are signed in to the ShopView App on a desktop browser.\n2. You have not visited the report before in this browser (no saved active-tab setting).",
+ "steps": "1. Open the Work In Progress report.\n2. Read the tab labels from left to right.\n3. Look at which tab is selected when the report loads.",
+ "expected": "1. Four tabs are shown, labeled in this order: \"Approved - partially completed\", \"Approved - not started\", \"Completed\", and \"Estimates\" - each followed by its count in brackets, for example \"Completed (30)\".\n2. The \"Approved - partially completed\" tab is selected by default on load.\n3. There is NO on-screen status filter — the four tabs take the place of a status filter (the tab a job lands in is derived from its status and whether any work has started).\n4. Each tab's count matches the number of work-order rows actually listed in that tab.\n\n---\nThis is the expected behaviour as per epic SV-8582, read on 17 August 2026, and its story SV-8657, read on 17 August 2026, and the Work In Progress report specification version 21 (S1-R2, S1-R3, S1-R4), read on 17 August 2026.\n\nAUTOMATION: READY",
+ "custom_atmstatus": 3,
+ "updated_on": 1787059024,
+ "created_by": 3
+}

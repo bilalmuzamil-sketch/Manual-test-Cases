@@ -1,0 +1,11 @@
+{
+ "id": 30161,
+ "title": "Expanded View CSV: column order, blank-cell rules, and the Locations line",
+ "refs": "SV-8612 (SBC spec v20 2026-08-17 S14-R5; renamed to Labor Delta per SV-9071)",
+ "preconds": "1. You have downloaded the CSV for a view with at least one customer with several invoices.",
+ "steps": "1. Read the header row.\n2. Read a customer row and an invoice row.\n3. Look for any asset-level rows.",
+ "expected": "1. With a single location in scope the Expanded View CSV has these fourteen columns in this exact order: Customer, Asset, Invoice #, Date, Labor Delta, Labor Invoiced, Labor Margin, Parts Invoiced, Parts Margin, Shop Supplies, Adjustments, Margin, Margin %, Subtotal. When the Location column is shown on screen the file also carries it — immediately after Date, the position it holds on screen — making fifteen.\n2. A customer row fills the Customer cell and leaves Asset, Invoice # and Date blank.\n3. An asset row leaves Customer blank, fills Asset, and leaves Invoice # and Date blank.\n4. An invoice row leaves Customer and Asset blank and fills Invoice # and Date.\n5. Customer names are plain — the \"(N)\" invoice count is not included.\n6. Work with no vehicle appears as an asset row named \"Parts Sales\".\n7. The file carries a \"Locations:\" line naming the location or locations the report was scoped to, or \"All locations\" when every location you can access is selected — as a leading line above the column headers.\n\n---\nThis is the expected behaviour as per epic SV-8582 and the Sales By Customer report specification version 20 (S14-R5), both read on 17 August 2026. The column was renamed from \"Inv. Hrs\" to \"Labor Delta\" per SV-9071; only the name changed.\nLast checked against build v3.8-2bf8d14 on 8/18/2026.\n\nAUTOMATION: READY",
+ "custom_atmstatus": 3,
+ "updated_on": 1787127544,
+ "created_by": 3
+}

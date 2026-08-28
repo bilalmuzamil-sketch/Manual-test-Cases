@@ -1,0 +1,11 @@
+{
+ "id": 26562,
+ "title": "Line History Controller requires ROLE_WORK_ORDER_HISTORY::VIEW",
+ "refs": "SV-7475,SV-7525",
+ "preconds": "Build with CRP-BE-SEC deployed. User A: View History Logs OFF. User B: ON.",
+ "steps": "1. User A: GET line history endpoint (LineHistoryViewController).\n2. Inspect.\n3. User B: same endpoint.",
+ "expected": "User A → 403. User B → 200.",
+ "custom_atmstatus": 3,
+ "updated_on": 1781869309,
+ "created_by": 3
+}

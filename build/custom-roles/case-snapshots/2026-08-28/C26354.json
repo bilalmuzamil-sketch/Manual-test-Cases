@@ -1,0 +1,11 @@
+{
+ "id": 26354,
+ "title": "The assigned-user count is correct when a delete is blocked",
+ "refs": "SV-7502",
+ "preconds": "<ol>\n<li>A custom role is assigned to exactly one user.</li>\n</ol>",
+ "steps": "<ol>\n<li>Reach the delete-blocked state for that role.</li>\n<li>Read the user count shown.</li>\n</ol>",
+ "expected": "<p>The count shown is 1, matching the one assigned user.</p>\n",
+ "custom_atmstatus": 3,
+ "updated_on": 1783942948,
+ "created_by": 3
+}

@@ -1,0 +1,11 @@
+{
+ "id": 30571,
+ "title": "With no category or vendor selected all parts show",
+ "refs": "SV-8673 (IV spec v10 2026-08-17 Story 6 S6-R7)",
+ "preconds": "1. You are signed in to the ShopView App on a desktop browser.\n2. The report has been filtered by category, vendor, and a part search.",
+ "steps": "1. Clear the Category selection and check the rows.\n2. Clear the Vendor selection and check the rows.\n3. Empty the part search and check the rows.",
+ "expected": "1. With no category selected, parts of all categories are shown.\n2. With no vendor selected, parts of all vendors are shown.\n3. With the part search empty, no search narrowing is applied.\n\n---\nThis is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Inventory Value report specification version 10 (S6-R7), read on 17 August 2026.\nLast checked against build v3.8-bd246fd on 8/18/2026.\n\nAUTOMATION: READY",
+ "custom_atmstatus": 1,
+ "updated_on": 1787095736,
+ "created_by": 3
+}

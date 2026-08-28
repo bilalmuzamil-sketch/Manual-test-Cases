@@ -1,0 +1,11 @@
+{
+ "id": 30410,
+ "title": "All six columns sort on screen: ascending first, toggling with no third state",
+ "refs": "SV-8649 (TU spec v9 2026-08-17 S2-R13; S2-R14)",
+ "preconds": "1. You are on the Technician Utilization report with several rows loaded, including two technicians with the same value in one column.",
+ "steps": "1. Click the Technician header (the active sort on load).\n2. Click the Total Hours header, then click it again, then keep clicking.\n3. Repeat one click on each remaining header (WO Hours, Internal Hours, Utilization %, Est. Lost Labor).\n4. Watch the network activity / loading indicator while sorting.\n5. Find two technicians tied in the sorted column and note their order.",
+ "expected": "1. Because Technician-ascending is the active sort on load, the FIRST click on the Technician header sorts it DESCENDING (Z to A).\n2. Clicking a column that is not the active sort sorts it ascending; clicking the active column again toggles to descending; further clicks only ever toggle ascending↔descending - there is NO third 'cleared' state.\n3. All six columns are sortable.\n4. Sorting is applied on screen to the loaded rows - NO reload/server request happens.\n5. Technicians tied in the sorted column are ordered by Technician name A to Z; two technicians sharing the same display name keep a stable order between renders.\n\n---\nThis is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Technician Utilization report specification version 9 (S2-R13, S2-R14), read on 17 August 2026.\n\nAUTOMATION: READY",
+ "custom_atmstatus": 3,
+ "updated_on": 1787058893,
+ "created_by": 3
+}

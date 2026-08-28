@@ -1,0 +1,11 @@
+{
+ "id": 30482,
+ "title": "An open estimate with no approved work shows $0.00 in every money column",
+ "refs": "SV-8660 (WIP spec v28 2026-08-24 Story 4 S4-E1; Story 2 S2-R4; Story 3 S3-R1)",
+ "preconds": "<p>1. You are signed in to the ShopView App on a desktop browser.<br>2. All money columns are turned on.<br>3. A ZZAUTOTEST open estimate exists with no approved line items.</p>",
+ "steps": "<p>1. Open the Work In Progress report and open the Estimates tab.<br>2. Find the seeded estimate's row and read every money column.</p>",
+ "expected": "<p>1. Every money column — Labor Earned, Labor Remaining, Parts Earned, Parts Remaining, Earned, Remaining, Adjustments and Total — shows \"$0.00\".<br>2. The row still appears in the Estimates tab (it is not hidden for having no value).</p><p>Note for the tester: this test is about a work order whose status is Estimate, which belongs in the Estimates tab. A work order sitting in another status tab that still carries unapproved lines also shows a second row in the Estimates tab covering only those lines — that is expected, and it is not what this test measures.</p><p>This is the expected behaviour as per epic SV-8582 and the Work In Progress report specification version 28 (S4-E1; S2-R4; S3-R1), read on 26 August 2026.<br>Specification version 22 stated that each qualifying work order appears exactly once; version 28 (2026-08-24) allows a work order carrying unapproved lines to appear a second time in the Estimates tab for only those lines, and we take the later version as prevailing.<br>This expectation has not been checked against any build since the specification change described above.</p><p>AUTOMATION: READY</p>",
+ "custom_atmstatus": 1,
+ "updated_on": 1787754945,
+ "created_by": 3
+}

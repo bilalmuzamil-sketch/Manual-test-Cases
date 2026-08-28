@@ -1,0 +1,11 @@
+{
+ "id": 26539,
+ "title": "Reassigning a staff member's role updates the row with no success message (billing note in the window)",
+ "refs": "SV-7503,SV-7505",
+ "preconds": "<ol>\n<li>You are on the Staff page changing a user's role via Edit Staff Member.</li>\n</ol>",
+ "steps": "<ol>\n<li>Open Edit Staff Member for a user.</li>\n<li>Choose a new Role and click Save & Close.</li>\n</ol>",
+ "expected": "<p>The Edit Staff Member window shows the Role dropdown with a note beneath it that role changes may impact billing.</p>\n<p>On Save & Close the window closes and the Staff row shows the new role.</p>\n<p>No success message appears for the reassignment (unlike creating or updating a role, which show 'Role created/updated successfully.').</p>\n",
+ "custom_atmstatus": 3,
+ "updated_on": 1783943279,
+ "created_by": 3
+}

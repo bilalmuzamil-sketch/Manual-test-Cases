@@ -1,0 +1,11 @@
+{
+ "id": 27869,
+ "title": "Turning on Order parts while See Financial Data is OFF asks you to also turn on See Financial Data",
+ "refs": null,
+ "preconds": "<ol>\n<li>Open Create Role (or edit a custom role).</li>\n<li>In that role, See Financial Data is OFF and Order parts is OFF.</li>\n</ol>",
+ "steps": "<ol>\n<li>Turn ON the Order parts toggle while See Financial Data is still OFF.</li>\n<li>Look at the prompt that appears.</li>\n<li>Accept the prompt.</li>\n<li>Save the role.</li>\n</ol>",
+ "expected": "<p>Turning on Order parts shows a prompt that See Financial Data must also be turned on (Order parts needs See Financial Data).</p>\n<p>Accepting turns See Financial Data on automatically.</p>\n<p>The role saves with both Order parts and See Financial Data on.</p>\n<p>You cannot end up with Order parts on while See Financial Data is off.</p>\n",
+ "custom_atmstatus": 3,
+ "updated_on": 1784016453,
+ "created_by": 3
+}

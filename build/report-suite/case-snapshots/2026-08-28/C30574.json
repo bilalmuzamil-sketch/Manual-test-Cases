@@ -1,0 +1,11 @@
+{
+ "id": 30574,
+ "title": "The Location filter is a rightmost multi-select with an All locations toggle",
+ "refs": "SV-8674 (IV spec v10 2026-08-17 Story 7 S7-R1; S7-R2; Story 12 S12-R3 — per-row location identifier in All-locations view ADDED per kickoff video P10 40:58-41:20; user ruling 2026-07-28: video overrides spec (video newer; last-update-wins))",
+ "preconds": "1. You are signed in to the ShopView App on a desktop browser as a user with access to at least two locations.\n2. This browser has never saved settings for this report (fresh visit).",
+ "steps": "1. Open the Inventory Value report and find the filter labeled \"Location\".\n2. Read its position in the toolbar and its default selection.\n3. Open it and read its options and its toggle.\n4. Select every accessible location (\"All locations\") and look at how the rows tell you which location they belong to.",
+ "expected": "1. The toolbar has a location filter labeled \"Location\" — a multi-select and the rightmost filter — listing the locations the signed-in user has access to, with an \"All locations\" / \"Clear all\" toggle.\n2. On a first visit it defaults to the user's currently active location.\n3. With \"All locations\" active you can tell which location each row's stock belongs to — a location label or marking is shown.\n\n---\nThis is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Inventory Value report specification version 10 (S7-R1, S7-R2, S12-R3), read on 17 August 2026; where the wording of that specification differs, the behaviour above follows Chris Ward's later decision, recorded in his answers in this file: https://docs.google.com/spreadsheets/d/1x8cuYJlFsDHalVZZTh156_ZCq2gcOaGY/edit?usp=sharing&ouid=106388879401921597782&rtpof=true&sd=true, read on 17 August 2026, which is the authority.\nLast checked against build v3.8-bd246fd on 8/18/2026.\n\nAUTOMATION: READY",
+ "custom_atmstatus": 1,
+ "updated_on": 1787095647,
+ "created_by": 3
+}

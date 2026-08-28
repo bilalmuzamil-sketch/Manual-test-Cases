@@ -1,0 +1,11 @@
+{
+ "id": 30204,
+ "title": "An invoice sits in the range by its own invoice date; endpoints included",
+ "refs": "SV-8620 (SBR spec v22 2026-08-17 Story 2 S2-R5; S2-R8; §3)",
+ "preconds": "<p>1. ZZAUTOTEST invoices exist dated exactly ON the start date and exactly ON the end date of a custom range, plus one dated just outside it..</p>",
+ "steps": "<p>1. Set a custom range whose start and end dates equal those two invoice dates.<br>2. Check which invoices appear (expand the owning rep).<br>3. Download both PDFs (Summary and Expanded View) and read their header strips.</p>",
+ "expected": "<p>1. The invoices dated on the start and end dates are INCLUDED (inclusive endpoints); the invoice outside the range is excluded.<br>2. The date used is the invoice's own date &mdash; the value shown in the Date column.<br>3. The chosen date range is reflected in both PDF exports' header strips.<br><br>---<br>This is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Sales By Representative report specification version 24 (S2-R5, S2-R8), read on 17 August 2026.<br>Last checked against build v3.8-b7d80dc on 8/19/2026.<br>Re-checked against the live specification on 26 August 2026: the requirements this case cites are unchanged, so only the version cited above was updated.<br><br>AUTOMATION: READY</p>\n",
+ "custom_atmstatus": 1,
+ "updated_on": 1787747669,
+ "created_by": 3
+}

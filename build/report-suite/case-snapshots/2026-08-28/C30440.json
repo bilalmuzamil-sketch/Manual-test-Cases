@@ -1,0 +1,11 @@
+{
+ "id": 30440,
+ "title": "Choosing a download with no technician selected is a silent no-op",
+ "refs": "SV-8654 (TU spec v9 2026-08-17 S7-N1; §7 context note)",
+ "preconds": "1. You are on the Technician Utilization report with rows loaded.",
+ "steps": "1. Use \"Clear all\" in the Filter by Technician filter so no technician is selected.\n2. Choose each download option in turn (Summary PDF, Expanded PDF, CSV).\n3. Watch for any file download and any notification.",
+ "expected": "1. Nothing happens: NO file downloads and NO message appears (not even an error).\n2. This silent no-op is the specified behavior for every download option when no technician is selected.\n\n---\nThis is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Technician Utilization report specification version 9 (S7-N1), read on 17 August 2026.\nLast checked against build v3.8-bd246fd on 8/18/2026.\n\nAUTOMATION: READY",
+ "custom_atmstatus": 1,
+ "updated_on": 1787089693,
+ "created_by": 3
+}

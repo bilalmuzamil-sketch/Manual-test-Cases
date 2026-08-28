@@ -1,0 +1,11 @@
+{
+ "id": 30194,
+ "title": "Exports are server-generated and the 10,000-row cap is counted first",
+ "refs": "SV-8612 (SBC spec v20 2026-08-17 Story 14 S14-R3; S14-R14; Story 15 S15-R3; S15-R22)",
+ "preconds": "1. The browser's network panel is open; an over-cap filter combination is available if the environment allows.\n2. To see the information this test asks for you need the browser's own developer tools: press F12 (or Ctrl+Shift+I; on a Mac Cmd+Option+I) and open the \"Network\" tab, then reload the page. There is nothing to install — it is built into Chrome, Edge and Firefox.",
+ "steps": "1. Trigger a CSV download (\"Download Summary (CSV)\" or \"Download Expanded View (CSV)\") and a PDF download (\"Download Summary (PDF)\" or \"Download Expanded View (PDF)\"), and observe where the file content comes from.\n2. If an over-cap set is available, trigger an export and observe the server's refusal.",
+ "expected": "1. The CSV and PDF are generated on the server from the active date range, Product Type, location, Customer filter, and sort — not assembled from the rows already loaded in the browser.\n2. Over the cap, the server does not generate the file (the request comes back as a refusal, not a file) and the browser starts no download — the count the cap checks is the count the file would contain, against the same filters and sort as the screen.\n\n---\nThis is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Sales By Customer report specification version 20 (S14-R3, S14-R14, S15-R3, S15-R22), read on 17 August 2026.\nLast checked against build v3.8-2bf8d14 on 8/18/2026.\n\nAUTOMATION: READY",
+ "custom_atmstatus": 1,
+ "updated_on": 1787082735,
+ "created_by": 3
+}

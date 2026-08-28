@@ -1,0 +1,11 @@
+{
+ "id": 30540,
+ "title": "A part appears only if not a core charge and on-hand quantity is above zero",
+ "refs": "SV-8669 (IV spec v10 2026-08-17 Story 2 S2-R1; S2-R2; S2-N1; S2-N2; §3 Key Decisions; Story 2 context note (no dead-stock exclusion))",
+ "preconds": "<ol>\n<li>You are signed in to the ShopView App on a desktop browser.</li>\n<li>ZZAUTOTEST parts exist at your active location: a normal part with positive on-hand quantity, a core-charge part with a positive quantity, a part with exactly zero on-hand quantity, and (if producible) one with a negative on-hand quantity.</li>\n</ol>\n",
+ "steps": "<ol>\n<li>Open the Inventory Value report scoped to the location.</li>\n<li>Look for the normal in-stock part.</li>\n<li>Search for the core-charge part, the zero-quantity part, and the negative-quantity part by part number; check the totals row.</li>\n</ol>\n",
+ "expected": "<ol>\n<li>The normal, positive-quantity, non-core part appears as one row.</li>\n<li>The core-charge part is never listed — even with a positive quantity — and its value is not counted in the totals row.</li>\n<li>The zero-quantity and negative-quantity parts are not listed — only quantities greater than zero are valued.</li>\n<li>Only parts meeting BOTH conditions — not a core charge, and on-hand quantity greater than zero — are listed.</li>\n<li>A part that has sat without movement for a long time still appears and is still counted — there is no dead-stock exclusion; how long stock has sat makes no difference.</li>\n</ol>\n\n<hr />\n\n<p>This is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Inventory Value report specification version 10 (S2-R1, S2-R2, S2-N1, S2-N2), read on 17 August 2026.<br />Last checked against build v3.8-bd246fd on 8/18/2026.</p>\n\n<p>AUTOMATION: READY</p>\n",
+ "custom_atmstatus": 1,
+ "updated_on": 1787095697,
+ "created_by": 3
+}

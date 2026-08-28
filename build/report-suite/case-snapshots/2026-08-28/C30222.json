@@ -1,0 +1,11 @@
+{
+ "id": 30222,
+ "title": "The header chevron expands every visible rep and its glyph tracks state",
+ "refs": "SV-8624 (SBR spec v22 2026-08-17 Story 6 S6-R5; S6-R6)",
+ "preconds": "<p>1. Several reps are on the report, all collapsed..</p>",
+ "steps": "<p>1. Look at the header-row chevron's glyph.<br>2. Click it; watch the rep rows and the glyph.<br>3. Click it again.</p>",
+ "expected": "<p>1. With at least one rep collapsed the header chevron shows the \"expand\" glyph.<br>2. Clicking expands every visible rep in one action; with every rep expanded the glyph switches to \"collapse.\"<br>3. A second activation collapses them all.<br><br>---<br>This is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Sales By Representative report specification version 24 (S6-R5, S6-R6), read on 17 August 2026.<br>Last checked against build v3.8-b7d80dc on 8/19/2026.<br>Re-checked against the live specification on 26 August 2026: the requirements this case cites are unchanged, so only the version cited above was updated.<br><br>AUTOMATION: READY</p>\n",
+ "custom_atmstatus": 1,
+ "updated_on": 1787747677,
+ "created_by": 3
+}

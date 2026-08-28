@@ -1,0 +1,11 @@
+{
+ "id": 30404,
+ "title": "Est. Lost Labor values internal hours at each location's default rate",
+ "refs": "SV-8649 (TU spec v9 2026-08-17 S2-R8; S2-R9; §3)",
+ "preconds": "1. Location A has default labor rate $R1 and location B has a different default labor rate $R2.\n2. A technician clocked known internal hours at A and known internal hours at B in the range.\n3. Both locations are selected in the location filter.",
+ "steps": "1. Compute by hand: (R1 × internal hours at A) + (R2 × internal hours at B), keeping full precision, rounding only the final total (round-half-up).\n2. Read the technician's Est. Lost Labor and compare.\n3. Repeat with only one location selected.",
+ "expected": "1. Est. Lost Labor = the sum, per contributing location, of that location's default labor rate × the technician's internal hours clocked there - summed at full precision, with the technician's total rounded ONCE (round-half-up).\n2. In a single-location view it is simply that one location's rate × the technician's internal hours.\n3. The value shows as dollars with two decimals and commas between thousands (e.g. \"$1,234.50\").\n\n---\nThis is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Technician Utilization report specification version 9 (S2-R8, S2-R9), read on 17 August 2026.\n\nAUTOMATION: READY",
+ "custom_atmstatus": 3,
+ "updated_on": 1787058884,
+ "created_by": 3
+}

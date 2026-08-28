@@ -1,0 +1,11 @@
+{
+ "id": 26485,
+ "title": "View and Manage AP/AR Data works independently of See Financial Data",
+ "refs": "SV-7524",
+ "preconds": "<ol>\n<li>A user has a role with See Financial Data ON and View and Manage AP/AR Data OFF (like the Service Advisor role).</li>\n</ol>",
+ "steps": "<ol>\n<li>Open a work order and check whether prices are shown.</li>\n<li>Open a customer and check for the AP/AR tabs.</li>\n</ol>",
+ "expected": "<p>Prices are shown on the work order.</p>\n<p>The AP/AR tabs are hidden on the customer.</p>\n<p>The two toggles work independently.</p>\n",
+ "custom_atmstatus": 3,
+ "updated_on": 1783942264,
+ "created_by": 3
+}

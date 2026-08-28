@@ -1,0 +1,11 @@
+{
+ "id": 30224,
+ "title": "Expansion survives filter and sort changes within the session, resets on reload",
+ "refs": "SV-8624 (SBR spec v22 2026-08-17 Story 6 S6-R8; S6-N1; Story 23 S23-R2)",
+ "preconds": "<p>1. Two reps are on the report; one of them stops matching under a stricter filter you can apply and re-remove..</p>",
+ "steps": "<p>1. Expand both reps, then change the sort and a filter that keeps both matching; check the expansion.<br>2. Apply the stricter filter that removes rep B, then remove it again; check rep B.<br>3. Reload the page and check all rows.</p>",
+ "expected": "<p>1. Expanded state is preserved across filter and sort changes within the same session.<br>2. When a filter change removes a rep, the rep and its expansion state are gone; when a later change brings the rep back, the row renders collapsed (it does not auto-re-expand).<br>3. A full page reload resets all expansion.<br><br>---<br>This is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Sales By Representative report specification version 24 (S6-R8, S6-N1, S23-R2), read on 17 August 2026.<br>Last checked against build v3.8-b7d80dc on 8/19/2026.<br>Re-checked against the live specification on 26 August 2026: the requirements this case cites are unchanged, so only the version cited above was updated.<br><br>AUTOMATION: READY</p>\n",
+ "custom_atmstatus": 1,
+ "updated_on": 1787747679,
+ "created_by": 3
+}

@@ -1,0 +1,11 @@
+{
+ "id": 30190,
+ "title": "Asset and invoice rows are fetched on first expand; one call per customer",
+ "refs": "SV-8606 (SBC spec v20 2026-08-17 Story 8 S8-R14; S8-R16)",
+ "preconds": "1. You are on the report with several customers, with the browser's network activity panel open.\n2. To see the information this test asks for you need the browser's own developer tools: press F12 (or Ctrl+Shift+I; on a Mac Cmd+Option+I) and open the \"Network\" tab, then reload the page. There is nothing to install — it is built into Chrome, Edge and Firefox.",
+ "steps": "1. Load the report and note the requests made for the summary rows.\n2. Expand one customer for the first time and watch the network panel.\n3. Collapse and re-expand the same customer without changing filters.\n4. Use the header chevron's expand-all and count the drill-down requests.",
+ "expected": "1. Customer summary rows load WITHOUT the asset/invoice detail — the drill-down data is not preloaded.\n2. The first expand of a customer triggers a server fetch for that customer's asset and invoice rows.\n3. Expand-all triggers at most one drill-down fetch per not-yet-expanded customer on the current page — a bounded number never exceeding the page size; it does not fetch customers beyond the current page or the whole result set.\n\n---\nThis is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Sales By Customer report specification version 20 (S8-R14, S8-R16), read on 17 August 2026.\nLast checked against build v3.8-2bf8d14 on 8/18/2026.\n\nAUTOMATION: READY",
+ "custom_atmstatus": 1,
+ "updated_on": 1787083043,
+ "created_by": 3
+}

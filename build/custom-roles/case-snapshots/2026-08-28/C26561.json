@@ -1,0 +1,11 @@
+{
+ "id": 26561,
+ "title": "WO History Controller requires ROLE_WORK_ORDER_HISTORY::VIEW (atom exists, not applied today)",
+ "refs": "SV-7475,SV-7525",
+ "preconds": "Build with CRP-BE-SEC deployed. User A: View History Logs toggle OFF. User B: toggle ON.",
+ "steps": "1. Log in as User A. Hit GET on a WO history endpoint (WorkOrderHistoryViewController).\n2. Inspect response.\n3. Log in as User B. Hit same endpoint.",
+ "expected": "User A → 403. User B → 200.",
+ "custom_atmstatus": 3,
+ "updated_on": 1781869307,
+ "created_by": 3
+}

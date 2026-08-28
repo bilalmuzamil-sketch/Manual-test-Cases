@@ -1,0 +1,11 @@
+{
+ "id": 30425,
+ "title": "All technicians and Clear all controls set every technician on or off",
+ "refs": "SV-8652 (TU spec v9 2026-08-17 S5-R6; S5-R7; S5-R8; S5-R9)",
+ "preconds": "1. Several technicians are in the current range; a different range exists in which an ADDITIONAL technician (not listed in the current range) has clocked time.",
+ "steps": "1. In the Technician filter, use the control labeled \"Clear all\".\n2. Use the control labeled \"All technicians\".\n3. Deselect one technician, then change the date range to the one containing the additional technician.\n4. Use \"Clear all\" again, then switch to the range where the additional technician newly appears.",
+ "expected": "1. \"Clear all\" sets every currently-listed technician to deselected; \"Select all\" selects all technicians at once.\n2. Selection is tracked as the set of DESELECTED technicians: a technician you have not deselected is selected by default.\n3. After step 3, your deselected technician STAYS deselected across the range change, while the newly-appearing technician is SELECTED (never explicitly deselected).\n4. After step 4, the newly-appearing technician is selected even though you had cleared all - \"Clear all\" only deselected the technicians listed at the time.\n\n---\nThis is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Technician Utilization report specification version 9 (S5-R6, S5-R7, S5-R8, S5-R9), read on 17 August 2026.\nLast checked against build v3.8-bd246fd on 8/18/2026.\n\nAUTOMATION: READY",
+ "custom_atmstatus": 1,
+ "updated_on": 1787089699,
+ "created_by": 3
+}

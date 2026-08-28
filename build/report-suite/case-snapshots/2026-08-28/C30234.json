@@ -1,0 +1,11 @@
+{
+ "id": 30234,
+ "title": "Money columns use the standardized labels and definitions",
+ "refs": "SV-8622 (SBR spec v24 2026-08-24 S5-R2; S5-R12; §3; Shop Supplies added to labels and Subtotal tie-out in v24; Adjustments per SV-9281)",
+ "preconds": "<p>1. A ZZAUTOTEST invoice exists with known billed labor, billed parts, shop supplies, labor cost, parts cost, and tax.</p>\n",
+ "steps": "<p>1. Read the money column headers.<br>2. Read that invoice's row values and recalculate each by hand.</p>\n",
+ "expected": "<p>1. The labels read exactly: Labor Invoiced, Labor Margin, Parts Invoiced, Parts Margin, Shop Supplies, Adjustments, Margin, Margin %, Subtotal.<br>2. Subtotal = Labor Invoiced + Parts Invoiced + Shop Supplies + Adjustments, BEFORE tax.<br>3. Labor Margin = Labor Invoiced &minus; labor cost; Parts Margin = Parts Invoiced &minus; parts cost.<br>4. Margin = Labor Margin + Parts Margin + Adjustments. Shop Supplies is part of the Subtotal tie-out but not of the Margin tie-out.<br>5. The same values appear everywhere the numbers show (screen, and later the exports).<br><br>This is the expected behaviour as per epic SV-8582 and the Sales By Representative report specification version 24 (S5-R2; S5-R12; &sect;3), read on 26 August 2026.<br>The Adjustments column (the signed net of invoice-level fees and discounts) is included in Subtotal and Margin so every row ties out (SV-9281, added 2026-08-12). Shop Supplies was added to the labels and to the Subtotal tie-out in specification version 24 (2026-08-24); version 22 omitted it from both, and we take the later version as prevailing.<br>This expectation has not been checked against any build since the specification change described above.<br><br>AUTOMATION: READY</p>\n",
+ "custom_atmstatus": 1,
+ "updated_on": 1787747101,
+ "created_by": 3
+}

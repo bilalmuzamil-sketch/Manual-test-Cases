@@ -1,0 +1,11 @@
+{
+ "id": 30374,
+ "title": "Window anchors: movement uses the event date, billed uses the WO date",
+ "refs": "SV-8645 (PV spec v10 2026-08-17 S5 Definitions (Window / Work-order date); S5-R7)",
+ "preconds": "<ol><li>A work order whose END date falls in window W1 but whose invoicing (stock-movement event) happened in window W2 for an inventory part.</li><li>Both W1 and W2 are selectable ranges.</li></ol>",
+ "steps": "<ol><li>Select window W1 and read the part's Units Sold / Demand vs its Revenue / Sold (WO).</li><li>Select window W2 and read the same columns.</li><li>Select a single-day range (Today) and check the report still computes (window floor).</li></ol>",
+ "expected": "<p>1. In W1 (work-order date in window): the billed columns (Revenue, Margin, Avg Cost, Avg Sell, Margin %, Sold (WO), Sold (Parts Sale)) count the sale, while inventory Units Sold / Demand do NOT (their movement event is outside W1).<br>2. In W2 (movement date in window): Units Sold / Demand count it, the billed columns do not - the two anchors CAN differ for an inventory part and that is intended.<br>3. The window is the whole-day span inclusive of BOTH the start and end dates, with a floor of 1 day - a single-day range (Today) computes normally (Window = 1 for the Turns / Yr divisor).<br>4. Last Sale is not windowed at all (all-time).</p><p>---<br>This is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Parts Velocity report specification version 11 (S5-R7), read on 17 August 2026.<br>Last checked against build v3.8-bd246fd on 8/18/2026.<br>Re-checked against the live specification on 26 August 2026: the requirements this case cites are unchanged, so only the version cited above was updated.</p><p>AUTOMATION: READY</p>",
+ "custom_atmstatus": 1,
+ "updated_on": 1787754858,
+ "created_by": 3
+}

@@ -1,0 +1,11 @@
+{
+ "id": 26550,
+ "title": "The last Administrator cannot be left with zero users",
+ "refs": "SV-7505,SV-7526",
+ "preconds": "<ol>\n<li>The organization has exactly one user on the Administrator role.</li>\n</ol>",
+ "steps": "<ol>\n<li>Log in as that sole Administrator.</li>\n<li>Go to Settings > Staff and open your own record.</li>\n<li>Try to change your role away from Administrator.</li>\n<li>Try to save.</li>\n</ol>",
+ "expected": "<p>Saving is blocked (the organization must keep at least one Administrator).</p>\n<p>If no such rule exists, raise it as a finding for the product team.</p>\n",
+ "custom_atmstatus": 1,
+ "updated_on": 1784013342,
+ "created_by": 3
+}

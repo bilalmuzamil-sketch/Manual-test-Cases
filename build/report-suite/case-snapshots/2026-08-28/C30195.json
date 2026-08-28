@@ -1,0 +1,11 @@
+{
+ "id": 30195,
+ "title": "Sales By Representative under Performance, below existing links; titles correct",
+ "refs": "SV-8619 (SBR spec v22 2026-08-17 Story 1 S1-R1; S1-R2; S1-R3; S1-R4; S1-R5; S1-R6 — 'at the bottom' = below the four named anchor reports per PRD video 2026-07-30 01:18-02:05; order among the four new reports not important)",
+ "preconds": "<ol>\n<li>You are signed in to the ShopView App on a desktop browser.</li>\n<li>You can see the other reports in the Performance group.</li>\n</ol>\n",
+ "steps": "<ol>\n<li>Open the Reports area and read the Performance group of the left-side navigation top to bottom.</li>\n<li>Click the \"Sales By Representative\" entry.</li>\n<li>Read the page title at the top of the report and the browser tab's title.</li>\n</ol>\n",
+ "expected": "<ol>\n<li>\"Sales By Representative\" appears in the Performance group, BELOW the pre-existing entries (Sales, Technician Efficiency, Advisor Analysis, Shop Efficiency) — the label is the full word \"Representative,\" not a \"Rep\" shorthand. It need not be the very last entry: the other new reports (Technician Utilization, Work In Progress, Sales By Customer) are added in the same below-the-anchors block, in no set order.</li>\n<li>The rest of the navigation matches the previous release: no existing entry is moved, replaced, or reordered — if you can compare against production or an earlier build, the only difference is the added entry.</li>\n<li>Selecting the entry opens the report in the main content area.</li>\n<li>The page title reads \"Sales By Representative\".</li>\n<li>The browser tab title reads \"Sales By Representative - Report | ShopView\".</li>\n</ol>\n\n<hr />\n\n<p>This is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Sales By Representative report specification version 22 (S1-R1, S1-R2, S1-R3, S1-R4, S1-R5, S1-R6), read on 17 August 2026.<br />Last checked against build v3.8-bd246fd on 8/18/2026.</p>\n\n<p>AUTOMATION: READY</p>\n",
+ "custom_atmstatus": 1,
+ "updated_on": 1787085281,
+ "created_by": 3
+}

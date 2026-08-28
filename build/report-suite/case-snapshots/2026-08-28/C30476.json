@@ -1,0 +1,11 @@
+{
+ "id": 30476,
+ "title": "Labor Remaining is the approved labor's quoted value minus Labor Earned",
+ "refs": "SV-8660 (WIP spec v22 2026-08-18 Story 4 S4-R16)",
+ "preconds": "<ol>\n<li>You are signed in to the ShopView App on a desktop browser.</li>\n<li>The Labor Earned and Labor Remaining columns are turned on.</li>\n<li>A ZZAUTOTEST open work order exists with approved labor of a known total quoted value and a known amount of time clocked (for example $400 quoted, $100 earned).</li>\n</ol>\n",
+ "steps": "<ol>\n<li>Open the Work In Progress report and find the seeded work order's row.</li>\n<li>Read Labor Earned and Labor Remaining.</li>\n<li>Add the two together and compare to the total quoted value of the approved labor.</li>\n</ol>\n",
+ "expected": "<ol>\n<li>Labor Remaining equals the total quoted value of the approved labor minus Labor Earned (in the example, $400.00 − $100.00 = $300.00).</li>\n<li>Labor Earned + Labor Remaining always equals the total quoted value of the approved labor.</li>\n</ol>\n\n<hr />\n\n<p>This is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Work In Progress report specification version 22 (S4-R16), read on 18 August 2026.<br />Last checked against build v3.8-bd246fd on 8/18/2026.</p>\n\n<p>AUTOMATION: READY</p>\n",
+ "custom_atmstatus": 1,
+ "updated_on": 1787093856,
+ "created_by": 3
+}

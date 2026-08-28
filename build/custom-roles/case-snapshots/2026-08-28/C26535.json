@@ -1,0 +1,11 @@
+{
+ "id": 26535,
+ "title": "Deleting a custom role that has users is blocked",
+ "refs": "SV-7502",
+ "preconds": "<ol>\n<li>A custom role named 'Copy Test Role 2' has at least one user assigned.</li>\n</ol>",
+ "steps": "<ol>\n<li>On the Roles list, look at the three-dot menu on 'Copy Test Role 2'.</li>\n<li>Try to delete it.</li>\n</ol>",
+ "expected": "<p>Deletion is blocked: the three-dot menu hides the Delete option when the role has users, and in the editor the Delete role button is disabled with the tooltip 'This role is assigned to N user(s). Reassign them to another role before deleting.'</p>\n",
+ "custom_atmstatus": 3,
+ "updated_on": 1783943274,
+ "created_by": 3
+}
