@@ -1,5 +1,26 @@
 # ShopView App Actions Playbook — Proven Per-Action Recipes (NON-SECRET)
 
+> ## 🔎 NEVER GIVE UP ON A BLOCKER WITHOUT SEARCHING THE REPO FIRST (user directive 2026-08-28)
+> Almost every "this is impossible" in this workspace has already been hit, solved, and written down.
+> Before telling the user something cannot be done, spend two minutes searching — **use the EXACT ERROR
+> STRING as the search key; that is what finds it.** Targeted greps / bounded slices only — never bulk-read
+> "to get oriented".
+> ```
+> grep -rn "<exact error string>" build/ --include=*.md | head -20
+> grep -rn "<endpoint | tool | symptom>" build/APP-ACTIONS-PLAYBOOK.md | head -20
+> ls build/*/FINDINGS.md 2>/dev/null            # past per-ticket investigations
+> git log --all --oneline --grep="<keyword>" | head -20   # someone may have fixed it in a commit
+> ```
+> Check, in order: **(1)** this playbook (recipes + traps: TestRail, app, Jira) · **(2)**
+> `build/ATLASSIAN-JIRA-ACCESS-METHOD.md` (browser / proxy / MITM-bridge mechanics) · **(3)** the relevant
+> `build/<ticket>/FINDINGS.md` · **(4)** `git log --all --grep`.
+> **⚠️ Some resources the directive names DO NOT EXIST on this branch** (checked 2026-08-28): there is **no
+> `build/skills/14-ACCESS-RESILIENCE.md`, no `build/rules/RULES-*.md`, no `build/BLOCKED-*.md`, no
+> `*DIAGNOSIS*.md`** here — they may live on another session's branch. Use the four that DO exist above.
+> **If you find the answer: use it and say where.** **If you genuinely can't: state exactly what you
+> searched and tried**, so the gap is known to be real, not unsearched. **If you SOLVE something new: write
+> it into this playbook in the SAME pass** (Standing Rule 27 — undocumented knowledge is knowledge we lose).
+
 > ## ⛔ BEFORE ANY APP ACTION: run the 30-second pre-action check in **§U.0**
 > Five questions — have I done this before · **is there more than one surface for this action and am I
 > on the one the product uses** · whose state am I changing · will I have the evidence · does the setup
