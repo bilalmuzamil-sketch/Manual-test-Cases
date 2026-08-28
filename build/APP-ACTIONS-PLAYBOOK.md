@@ -1034,6 +1034,35 @@ with `sv_sso_session` and `cf_clearance` **byte-identical** to the set that was 
   paragraph **permanent** instead of fixing it. **Those cases must be API-rewritten (path a) FIRST**,
   then the trick is safe on the rest. **DETECT before choosing a path**, on **MID-TEXT** newlines only:
   `('\n' in text and '<p' in text.lower() and '<br' not in text.lower())`.
+  **🔴 CORRECTION 2026-08-25 — THAT DETECTOR IS WRONG AND IT COST A DAMAGED CASE. USE THE REFINED ONE.**
+  The expression above flags **any** field that contains a `<p>` anywhere plus a newline anywhere — which
+  is the **NORMAL, CORRECT shape the CSV import produces**: a field of block elements
+  (`<ol><li>…</ol>` · `<hr />` · `<p>provenance</p>` · `<p>marker</p>`) separated by newlines. Those
+  newlines sit **BETWEEN blocks**, where they are insignificant whitespace, and the field renders
+  perfectly. The prose above says *"MID-TEXT newlines only"*, but **the code as written does not
+  implement that qualifier**, and a session implementing it literally will flag most of a suite.
+  **THE REFINED DETECTOR — a newline inside ONE `<p>`'s own inner text:**
+  ```python
+  P_BLOCK = re.compile(r'<p\b[^>]*>(.*?)</p>', re.S | re.I)
+  def genuine_collapse(t):
+      return any('\n' in inner.strip() and '<br' not in inner.lower()
+                 for inner in P_BLOCK.findall(t or ''))
+  ```
+  **MEASURED BOTH WAYS over the 428 cases of the six August suites: the old detector claimed 16
+  collapsed cases; the refined one finds 0.** All 16 were the normal import shape.
+  **THE SCAR:** a batch built on the old detector wrote `<br>` throughout
+  **[C44506](https://shopview.testrail.io/index.php?/cases/view/44506)**, whose `custom_expected` was
+  correct block HTML. TestRail re-parsed the result and **relocated `</ol>` to the end of the field**, so
+  its provenance and marker paragraphs are now nested inside the ordered list. **Two API attempts to
+  restore it — the original bytes verbatim, then the blocks made contiguous — were both re-parsed the
+  same way** (see DECLARED NORMALISATION #3a-iii). **⇒ VALIDATE A DETECTOR AGAINST A KNOWN-GOOD CASE
+  BEFORE BUILDING A BATCH ON IT.** A detector that cannot distinguish the correct shape from the broken
+  one manufactures work and then damage.
+  **⇒ AND FOR STRUCTURAL DAMAGE OF THIS KIND, PATH (b) IS THE UNTRIED OPTION, NOT "PERMANENT".** The API
+  cannot rebuild the block structure; the **UI "." trick pushes the case through a DIFFERENT pipeline** —
+  the one that produced the clean structure originally. On a case with no bare-`\n`-inside-`<p>` field the
+  danger note above does **not** apply, so the trick is safe to attempt. **Say "not recoverable via the
+  API" — never "permanent" — until path (b) has actually been tried.**
   **⚠️ FALSE POSITIVE THAT COST TWO WASTED PASSES (2026-08-21) — A LONE *TRAILING* `\n` AFTER `</p>` ON
   A SINGLE-LINE FIELD IS HARMLESS.** There is no mid-text break to lose, nothing renders wrong, and
   **rewriting it INJECTS A SPURIOUS BLANK LINE** the tester then sees. **Leave it alone.** Strip the

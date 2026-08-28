@@ -128,8 +128,14 @@ HTTP 429 ⇒ back off; do not hammer.
   the wording) or the **UI "." trick** (edit the case, append `.` to the Title, Save, reopen, remove
   the `.`, Save — which puts the text through TestRail's HTML pipeline). **⚠️ The "." trick COLLAPSES a
   field that is already bare-`\n`-in-`<p>`-with-no-`<br>`, so those must be API-rewritten first**;
-  detect on **mid-text** newlines with
-  `('\n' in text and '<p' in text.lower() and '<br' not in text.lower())`. **⚠️ A lone TRAILING `\n`
+  detect on **mid-text** newlines — **but NOT with the old one-liner
+  `('\n' in text and '<p' in text.lower() and '<br' not in text.lower())`, which is WRONG (corrected
+  2026-08-25).** It flags any field holding a `<p>` anywhere plus a newline anywhere, i.e. **the normal
+  block-HTML shape the CSV import produces**, and over the 428 August cases it claimed **16** collapsed
+  fields where there are **0**. **Use the refined test — a newline inside ONE `<p>`'s own inner text:**
+  `any('\n' in inner.strip() and '<br' not in inner.lower() for inner in re.findall(r'<p\b[^>]*>(.*?)</p>', t, re.S|re.I))`.
+  *The scar: a batch on the old detector damaged C44506's block structure irreversibly-by-API.*
+  **⚠️ A lone TRAILING `\n`
   after `</p>` on a single-line field is HARMLESS — rewriting it injects a spurious blank line, so
   leave it.** Full recipe: `build/APP-ACTIONS-PLAYBOOK.md` §J "REPAIR RECIPE — THE BARE-`\n`-INSIDE-`<p>`
   COLLAPSE".
