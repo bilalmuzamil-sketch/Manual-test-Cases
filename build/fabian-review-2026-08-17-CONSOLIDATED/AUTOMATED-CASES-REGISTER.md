@@ -303,3 +303,31 @@ the cases below. If your checks work from the rendered page, nothing changes for
 | [C30527](https://shopview.testrail.io/index.php?/cases/view/30527) | Work In Progress | v21 → **v28** | web editor | **Only the cited specification version changed. No assertion, precondition or step wording was altered.** | still 3 | rendered page re-read: clean | Expected Result + Preconditions |
 
 **38 rows. Full evidence: `build/report-suite/automated-repin-2026-08-28/RESULTS.md`.**
+
+
+---
+
+## 2026-08-28 (fourth pass) — FOR VLAD: five Automated cases had `refs` ONLY changed
+
+**QA lead approved 2026-08-28.** This is the WIP traceability backfill: the live specification v28
+requirement anchors were recorded on the cases that already test those requirements, because
+`verify.py` only counts a requirement as covered when the anchor string appears on the case.
+
+**On all five, `refs` was the ONLY field sent.** Preconditions, Steps and Expected Result were
+compared before and after and are **byte-identical**; the rendered case page was re-read in a real
+browser and is **character-identical**; `custom_atmstatus` is still `3`. **Nothing a tester or an
+automated check reads as case CONTENT changed on these five — only the reference list.**
+
+| C-id | Anchors added to `refs` | What else changed |
+|---|---|---|
+| [C30460](https://shopview.testrail.io/index.php?/cases/view/30460) | S2-N2 · S6-N1 | nothing |
+| [C30462](https://shopview.testrail.io/index.php?/cases/view/30462) | S3-R2 · S3-R3 | nothing |
+| [C30488](https://shopview.testrail.io/index.php?/cases/view/30488) | S5-R2 | nothing |
+| [C30507](https://shopview.testrail.io/index.php?/cases/view/30507) | S8-R5 · S8-R6 | nothing |
+| [C30511](https://shopview.testrail.io/index.php?/cases/view/30511) | S9-R2 · S9-R4 | nothing |
+
+**Vlad — if any check of yours asserts on a case's `refs` string, these five now carry an extra
+comma-separated entry of the shape `SV-8664 (WIP spec v28 2026-08-24 S8-R5; S8-R6)`.** Nothing
+already in `refs` was removed or rewritten.
+
+Full evidence: `build/report-suite/refs-backfill-2026-08-28/RESULTS.md`.
