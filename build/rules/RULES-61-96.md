@@ -911,6 +911,13 @@ Index: CLAUDE.md (rule index table). Other rule files: build/rules/RULES-01-20.m
     recording a block), 64 (a case held for an open source question is HELD, not deleted — the same
     decomposition) and 67 (**whose "what is left" column is exactly where this failure surfaces, and
     which this rule is the precondition of**).
+    **THE FAST PATH TO CLEARING A BLOCKER (added 2026-08-26, USER DIRECTIVE): SEARCH THE SHARED BRAIN
+    FIRST — using the EXACT ERROR STRING as the search key — before you call anything a blocker.** Almost
+    every *"this is impossible"* here has already been hit, solved and written down by another session.
+    The procedure (four files in order, `git log --grep`, `BLOCKED-*.md`, past FINDINGS, and the "write it
+    down if you solve something new" mandate) is `build/skills/14-ACCESS-RESILIENCE.md` **§0.5**. This is
+    the concrete How for *"clear it yourself before escalating"* above and for practice P09.
+
 69. **A CASE WHOSE STEPS/PRECONDITIONS CANNOT YET BE BUILD-VERIFIED GETS THE "NOT AVAILABLE ON BUILD"
     MARKER, NOT "READY" — an honest deferral, dated, with the documented source still fully cited (all
     projects).**
