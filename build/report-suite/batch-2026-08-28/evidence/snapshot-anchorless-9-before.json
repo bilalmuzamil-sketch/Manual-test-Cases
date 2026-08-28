@@ -1,0 +1,218 @@
+{
+ "30235": {
+  "title": "Negative dollar values render in accounting parentheses; money columns only",
+  "atmstatus": 1,
+  "refs": "SV-8626 (SBR spec v22 2026-08-17 \u00a73 negative money columns; renamed to Labor Delta per SV-9071)",
+  "section_id": 4314,
+  "containers": {
+   "Preconditions": "markdown",
+   "Steps": "markdown",
+   "Expected Result": "markdown"
+  },
+  "blocks": {
+   "custom_preconds": 1,
+   "custom_steps": 1,
+   "custom_expected": 1
+  },
+  "versions_cited": [
+   "22"
+  ],
+  "damage": [],
+  "custom_preconds": "1. A row with a negative money value exists (e.g., a net credit/return invoice, or a negative Labor Margin from cost exceeding billed labor \u2014 seed ZZAUTOTEST data).",
+  "custom_steps": "1. Read the negative money cell.\n2. Read a negative Labor Delta cell and a negative Margin % cell for comparison.",
+  "custom_expected": "1. Negative dollar values render in accounting-convention parentheses \u2014 ($1,234.56) \u2014 on screen, across every money column (Labor Invoiced, Labor Margin, Parts Invoiced, Parts Margin, Adjustments, Margin, Subtotal).\n2. Labor Delta (a signed time value) and Margin % (a signed percentage) are excluded \u2014 they use a leading minus, not parentheses.\n\n---\nThis is the expected behaviour as per epic SV-8582 and the Sales By Representative report specification version 22 (\u00a73 negative money columns), both read on 17 August 2026. The column was renamed from \"Inv. Hrs\" to \"Labor Delta\" per SV-9071; only the name changed.\nLast checked against build v3.8-bd246fd on 8/18/2026.\n\nAUTOMATION: READY",
+  "rendered_expected_html": "\n\t\t\t\t\t\t\t<ol>\n<li>Negative dollar values render in accounting-convention parentheses \u2014 ($1,234.56) \u2014 on screen, across every money column (Labor Invoiced, Labor Margin, Parts Invoiced, Parts Margin, Adjustments, Margin, Subtotal).</li>\n<li>Labor Delta (a signed time value) and Margin % (a signed percentage) are excluded \u2014 they use a leading minus, not parentheses.</li>\n</ol>\n\n<hr />\n\n<p>This is the expected behaviour as per epic SV-8582 and the Sales By Representative report specification version 22 (\u00a73 negative money columns), both read on 17 August 2026. The column was renamed from \"Inv. Hrs\" to \"Labor Delta\" per SV-9071; only the name changed.<br />Last checked against build v3.8-bd246fd on 8/18/2026.</p>\n\n<p>AUTOMATION: READY</p>\n\t\t\t\t\t\t"
+ },
+ "30236": {
+  "title": "Half-up rounding at each precision; totals may differ by one last-decimal unit",
+  "atmstatus": 1,
+  "refs": "SV-8582 (SBR spec v22 2026-08-17 \u00a73 half; heading renamed to Labor Delta per SV-9071)",
+  "section_id": 4314,
+  "containers": {
+   "Preconditions": "markdown",
+   "Steps": "markdown",
+   "Expected Result": "markdown"
+  },
+  "blocks": {
+   "custom_preconds": 1,
+   "custom_steps": 1,
+   "custom_expected": 1
+  },
+  "versions_cited": [
+   "22"
+  ],
+  "damage": [],
+  "custom_preconds": "1. Several invoices whose money values come from calculations that produce fractions of a cent sit under one rep \u2014 seed ZZAUTOTEST invoices whose amounts come from hours \u00d7 rate or percentage-based lines that do not land on a whole cent (money fields themselves only take two decimals, so the sub-cent amounts must come from the math, not be typed in).",
+  "custom_steps": "1. Read the displayed per-invoice values, sum them by hand, and compare with the rep summary and Totals cells.",
+  "custom_expected": "1. All displayed values round half-up (away from zero) at their stated precision \u2014 money to cents; Labor Delta and Margin % to one decimal.\n2. Rolled-up values are computed from UNROUNDED components and then rounded, so a totals cell may differ from the eye-summed displayed rows by one unit in the last decimal.\n3. That one-unit difference is EXPECTED behavior per the spec \u2014 it must NOT be filed as a calculation defect.\n\n---\nThis is the expected behaviour as per epic SV-8582 and the Sales By Representative report specification version 22 (\u00a73 half), both read on 17 August 2026. The column was renamed from \"Inv. Hrs\" to \"Labor Delta\" per SV-9071; only the name changed.\nLast checked against build v3.8-bd246fd on 8/18/2026.\n\nAUTOMATION: READY",
+  "rendered_expected_html": "\n\t\t\t\t\t\t\t<ol>\n<li>All displayed values round half-up (away from zero) at their stated precision \u2014 money to cents; Labor Delta and Margin % to one decimal.</li>\n<li>Rolled-up values are computed from UNROUNDED components and then rounded, so a totals cell may differ from the eye-summed displayed rows by one unit in the last decimal.</li>\n<li>That one-unit difference is EXPECTED behavior per the spec \u2014 it must NOT be filed as a calculation defect.</li>\n</ol>\n\n<hr />\n\n<p>This is the expected behaviour as per epic SV-8582 and the Sales By Representative report specification version 22 (\u00a73 half), both read on 17 August 2026. The column was renamed from \"Inv. Hrs\" to \"Labor Delta\" per SV-9071; only the name changed.<br />Last checked against build v3.8-bd246fd on 8/18/2026.</p>\n\n<p>AUTOMATION: READY</p>\n\t\t\t\t\t\t"
+ },
+ "30526": {
+  "title": "Ordinary reports access covers opening and downloading Work In Progress",
+  "atmstatus": 1,
+  "refs": "SV-8657 (WIP spec v22 2026-08-18 Story 1 Prerequisites \u2014 one reports permission for all six ruled by Chris Ward Q2=A + QA lead 2026-08-03 \"ONE permission FOR NOW\"; the WIP prerequisite now states this outright; so his spec edit is DONE)",
+  "section_id": 4362,
+  "containers": {
+   "Preconditions": "markdown fr-view",
+   "Steps": "markdown fr-view",
+   "Expected Result": "markdown fr-view"
+  },
+  "blocks": {
+   "custom_preconds": 1,
+   "custom_steps": 1,
+   "custom_expected": 1
+  },
+  "versions_cited": [
+   "22"
+  ],
+  "damage": [],
+  "custom_preconds": "1. A test user exists whose role has the ordinary reports access (assign the Tech user a suitable role if needed; restore the original role afterward).\n2. You are signed in as that user on a desktop browser.",
+  "custom_steps": "1. Open the reports navigation and find \"Work In Progress\".\n2. Open the report.\n3. Download the current tab as a CSV.",
+  "custom_expected": "1. The report is listed and opens normally.\n2. The download works with the same permission \u2014 the specification allows the one ordinary reports access to cover the report and its downloads, with no new permission for it.\n3. Note for the tester: the specification allows ONE ordinary reports access for all six of these new reports and no per-report permission. If the build demands a separate report permission before this works, mark this Failed and report it \u2014 do not change the test.\n\n---\nThis is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Work In Progress report specification version 22 (Story 1 Prerequisites), read on 18 August 2026.\nLast checked against build v3.8-bd246fd on 8/18/2026.\n\nAUTOMATION: READY",
+  "rendered_expected_html": "\n                            1. The report is listed and opens normally.\n2. The download works with the same permission \u2014 the specification allows the one ordinary reports access to cover the report and its downloads, with no new permission for it.\n3. Note for the tester: the specification allows ONE ordinary reports access for all six of these new reports and no per-report permission. If the build demands a separate report permission before this works, mark this Failed and report it \u2014 do not change the test.\n\n---\nThis is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Work In Progress report specification version 22 (Story 1 Prerequisites), read on 18 August 2026.\nLast checked against build v3.8-bd246fd on 8/18/2026.\n\nAUTOMATION: READY                        "
+ },
+ "43547": {
+  "title": "A large PDF download fails outright while the CSV of the same view works",
+  "atmstatus": 1,
+  "refs": "SV-8646 (PV spec v10 2026-08-17 Story 6 exports \u2014 the spec is silent on a renderer size limit; tech-plan-2026-07-29 A3/FR-F4 covers only the ten-thousand-row export cap)",
+  "section_id": 4335,
+  "containers": {
+   "Preconditions": "markdown fr-view",
+   "Steps": "markdown fr-view",
+   "Expected Result": "markdown fr-view"
+  },
+  "blocks": {
+   "custom_preconds": 1,
+   "custom_steps": 1,
+   "custom_expected": 1
+  },
+  "versions_cited": [
+   "10"
+  ],
+  "damage": [],
+  "custom_preconds": "<p>1. You are signed in with ordinary reports access, on a desktop browser.<br>2. Parts Velocity is open with a date range that returns a few hundred rows \u2014 narrow with the toolbar search until the list is roughly 300 to 500 rows..</p>",
+  "custom_steps": "<p>1. Narrow the report with the toolbar search so it shows a few hundred rows.<br>2. Open the three-dot menu and choose \"Download (CSV)\". Wait for the file.<br>3. Open the three-dot menu again and choose \"Download (PDF)\". Wait up to a minute.<br>4. Narrow the search further, to a couple of dozen rows, and choose \"Download (PDF)\" again.</p>",
+  "custom_expected": "<p>1. The CSV downloads successfully at that size.<br>2. The PDF also downloads successfully. If instead nothing downloads and a message appears saying something went wrong, that is a failure \u2014 record roughly how many rows were on screen.<br>3. The small PDF downloads successfully, which shows the failure depends on size.<br>4. Note for the tester: a very large view is refused politely with \"This report is too large to export. Narrow the date range or filters, then try again.\" \u2014 that message is expected and is NOT this failure. This test is about a medium-sized view where the CSV works but the PDF errors.<br>What you should see today: the spreadsheet download works and produces a file, but the PDF download of the same view fails with a server error and no file arrives. It depends on how much is in the view, not on which report - filtered down to one or two rows the PDF downloads normally, and on a full unfiltered view of several thousand rows it fails every time. This is a known problem and it is already reported - see https://shopview.atlassian.net/browse/SV-8818<br>- If you see exactly that, mark this test FAILED and do not raise anything new.<br>- If it fails in a DIFFERENT way from what is described above, that is a NEW problem - please report it.<br>- If it PASSES, the fix has shipped: tell the QA lead so the ticket can be closed and this note removed.<br><br>---<br>This is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Parts Velocity report specification version 10 (Story 6 exports), read on 17 August 2026.<br>Last checked against build v3.8-d0e135e on 8/19/2026.<br><br>AUTOMATION: READY - EXPECT FAIL (SV-8818)</p>",
+  "rendered_expected_html": "\n                            <p>1. The CSV downloads successfully at that size.<br>2. The PDF also downloads successfully. If instead nothing downloads and a message appears saying something went wrong, that is a failure \u2014 record roughly how many rows were on screen.<br>3. The small PDF downloads successfully, which shows the failure depends on size.<br>4. Note for the tester: a very large view is refused politely with \"This report is too large to export. Narrow the date range or filters, then try again.\" \u2014 that message is expected and is NOT this failure. This test is about a medium-sized view where the CSV works but the PDF errors.<br>What you should see today: the spreadsheet download works and produces a file, but the PDF download of the same view fails with a server error and no file arrives. It depends on how much is in the view, not on which report - filtered down to one or two rows the PDF downloads normally, and on a full unfiltered view of several thousand rows it fails every time. This is a known problem and it is already reported - see https://shopview.atlassian.net/browse/SV-8818<br>- If you see exactly that, mark this test FAILED and do not raise anything new.<br>- If it fails in a DIFFERENT way from what is described above, that is a NEW problem - please report it.<br>- If it PASSES, the fix has shipped: tell the QA lead so the ticket can be closed and this note removed.<br><br>---<br>This is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Parts Velocity report specification version 10 (Story 6 exports), read on 17 August 2026.<br>Last checked against build v3.8-d0e135e on 8/19/2026.<br><br>AUTOMATION: READY - EXPECT FAIL (SV-8818)</p>                        "
+ },
+ "43592": {
+  "title": "A fixed-price line is valued at its fixed amount, not at picked parts or hours",
+  "atmstatus": 1,
+  "refs": "SV-8660 (WIP spec v22 2026-08-18 \u00a73 Key Decisions \u2014 fixed-price lines are valued at the fixed amounts the customer is billed rather than underlying picked parts or an hourly derivation; added 2026-08-10 per SV-9028; SV-9035; SV-9040; SV-9044)",
+  "section_id": 4354,
+  "containers": {
+   "Preconditions": "markdown",
+   "Steps": "markdown",
+   "Expected Result": "markdown"
+  },
+  "blocks": {
+   "custom_preconds": 1,
+   "custom_steps": 1,
+   "custom_expected": 1
+  },
+  "versions_cited": [
+   "22"
+  ],
+  "damage": [],
+  "custom_preconds": "1. You are signed in to the ShopView App on a desktop browser.\n2. A ZZAUTOTEST open work order exists with an approved line priced as a fixed labor total \u2014 for example a fixed $500.00 \u2014 where the hourly rate multiplied by the quoted hours would give a different number.\n3. A second ZZAUTOTEST open work order exists with an approved line carrying a fixed line total split into a labor portion and a parts portion, where the parts actually picked for it are worth a different amount.",
+  "custom_steps": "1. Open the Work In Progress report and find the first work order's row.\n2. Read its Labor Earned, Labor Remaining and Total, and compare them against the line's fixed labor amount.\n3. Find the second work order's row and read its Parts Earned and Parts Remaining.\n4. Compare those against the fixed parts portion, and separately against the sell value of the parts actually picked for the line.",
+  "custom_expected": "1. The first work order's money comes from the line's fixed labor amount \u2014 the figure the customer is billed \u2014 not from the quoted hours multiplied by an hourly rate.\n2. Labor Earned plus Labor Remaining for that line adds up to the fixed amount.\n3. The second work order's parts money comes from the fixed parts portion of the line total, not from the sell value of the parts picked against it.\n4. Parts Earned plus Parts Remaining for that line adds up to the fixed parts portion.\nNote for the tester: on a fixed-price line the customer pays the agreed figure whatever is actually picked or clocked, so the report is expected to show the agreed figure. A difference between the report and the underlying parts or hours is correct here, not a fault.\n\n---\nThis is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Work In Progress report specification version 22 (the Key Decision on fixed-price valuation added on 2026-08-10 per SV-9028, SV-9035, SV-9040 and SV-9044), read on 18 August 2026.\nLast checked against build v3.8-bd246fd on 8/18/2026.\n\nAUTOMATION: READY",
+  "rendered_expected_html": "\n\t\t\t\t\t\t\t<ol>\n<li>The first work order&#039;s money comes from the line&#039;s fixed labor amount \u2014 the figure the customer is billed \u2014 not from the quoted hours multiplied by an hourly rate.</li>\n<li>Labor Earned plus Labor Remaining for that line adds up to the fixed amount.</li>\n<li>The second work order&#039;s parts money comes from the fixed parts portion of the line total, not from the sell value of the parts picked against it.</li>\n<li><p>Parts Earned plus Parts Remaining for that line adds up to the fixed parts portion.<br />Note for the tester: on a fixed-price line the customer pays the agreed figure whatever is actually picked or clocked, so the report is expected to show the agreed figure. A difference between the report and the underlying parts or hours is correct here, not a fault.</p></li>\n</ol>\n\n<hr />\n\n<p>This is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Work In Progress report specification version 22 (the Key Decision on fixed-price valuation added on 2026-08-10 per SV-9028, SV-9035, SV-9040 and SV-9044), read on 18 August 2026.<br />Last checked against build v3.8-bd246fd on 8/18/2026.</p>\n\n<p>AUTOMATION: READY</p>\n\t\t\t\t\t\t"
+ },
+ "43593": {
+  "title": "A fixed-price line with no invoiced hours earns all at once when it is completed",
+  "atmstatus": 1,
+  "refs": "SV-8660 (WIP spec v22 2026-08-18 \u00a73 Key Decisions \u2014 with no invoiced hours the full fixed amount stays in Remaining until the line is completed then moves entirely to Earned; a completed WO never leaves value in Remaining; per SV-9028; SV-9035)",
+  "section_id": 4354,
+  "containers": {
+   "Preconditions": "markdown",
+   "Steps": "markdown",
+   "Expected Result": "markdown"
+  },
+  "blocks": {
+   "custom_preconds": 1,
+   "custom_steps": 1,
+   "custom_expected": 1
+  },
+  "versions_cited": [
+   "22"
+  ],
+  "damage": [],
+  "custom_preconds": "1. You are signed in to the ShopView App on a desktop browser.\n2. A ZZAUTOTEST open work order exists with an approved fixed-price line and NO invoiced hours recorded against it.\n3. You are able to mark that line completed.",
+  "custom_steps": "1. Open the Work In Progress report and read the work order's Earned, Remaining and Total.\n2. Mark the fixed-price line completed.\n3. Reload the Work In Progress report and read the same figures again.\n4. Check the work order's Remaining once every line on it is completed.",
+  "custom_expected": "1. Before the line is completed the whole fixed amount sits in Remaining and Earned shows nothing for it \u2014 it does not creep up in stages.\n2. After the line is completed the whole fixed amount has moved to Earned and Remaining shows nothing for it.\n3. Total is unchanged throughout \u2014 the money moves between Earned and Remaining rather than appearing or disappearing.\n4. Once every line is completed the work order has no value left in Remaining.\nNote for the tester: this all-at-once move is expected when there are no invoiced hours to measure progress with. A fixed-price line that DOES have invoiced hours is shared between Earned and Remaining in proportion instead, and that is a different test.\n\n---\nThis is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Work In Progress report specification version 22 (the Key Decision on fixed-price valuation added on 2026-08-10 per SV-9028, SV-9035, SV-9040 and SV-9044), read on 18 August 2026.\nLast checked against build v3.8-bd246fd on 8/18/2026.\n\nAUTOMATION: READY",
+  "rendered_expected_html": "\n\t\t\t\t\t\t\t<ol>\n<li>Before the line is completed the whole fixed amount sits in Remaining and Earned shows nothing for it \u2014 it does not creep up in stages.</li>\n<li>After the line is completed the whole fixed amount has moved to Earned and Remaining shows nothing for it.</li>\n<li>Total is unchanged throughout \u2014 the money moves between Earned and Remaining rather than appearing or disappearing.</li>\n<li><p>Once every line is completed the work order has no value left in Remaining.<br />Note for the tester: this all-at-once move is expected when there are no invoiced hours to measure progress with. A fixed-price line that DOES have invoiced hours is shared between Earned and Remaining in proportion instead, and that is a different test.</p></li>\n</ol>\n\n<hr />\n\n<p>This is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Work In Progress report specification version 22 (the Key Decision on fixed-price valuation added on 2026-08-10 per SV-9028, SV-9035, SV-9040 and SV-9044), read on 18 August 2026.<br />Last checked against build v3.8-bd246fd on 8/18/2026.</p>\n\n<p>AUTOMATION: READY</p>\n\t\t\t\t\t\t"
+ },
+ "43594": {
+  "title": "Core charges count in parts value and a core decision never moves the figures",
+  "atmstatus": 1,
+  "refs": "SV-8660 (WIP spec v22 2026-08-18 \u00a73 Key Decisions \u2014 a core charge counts in Parts Remaining and Parts Earned at every stage; marking a returned core OK or Not OK never moves the report's figures; added 2026-08-10 per SV-9057; SV-9058)",
+  "section_id": 4354,
+  "containers": {
+   "Preconditions": "markdown",
+   "Steps": "markdown",
+   "Expected Result": "markdown"
+  },
+  "blocks": {
+   "custom_preconds": 1,
+   "custom_steps": 1,
+   "custom_expected": 1
+  },
+  "versions_cited": [
+   "22"
+  ],
+  "damage": [],
+  "custom_preconds": "1. You are signed in to the ShopView App on a desktop browser.\n2. A ZZAUTOTEST open work order exists with an approved parts line for a part that carries a core charge, and the part has been received so its value has been earned.\n3. The returned core is waiting to be marked OK or Not OK.",
+  "custom_steps": "1. Open the Work In Progress report and write down the work order's Parts Earned, Parts Remaining, Earned, Remaining and Total.\n2. Mark the returned core OK.\n3. Reload the Work In Progress report and read the same five figures again.\n4. On a second work order in the same state, mark the returned core Not OK, reload and read the same five figures again.",
+  "custom_expected": "1. The core charge is counted in the work order's parts money \u2014 Parts Earned once the part is received, and Parts Remaining while it is still outstanding.\n2. After marking the core OK all five figures are exactly as they were before.\n3. After marking the core Not OK all five figures are again exactly as they were before.\nNote for the tester: deciding a core is handled when the invoice is raised, which is outside this report, so this report is expected not to move at all. If a figure changes when you mark a core, that is a fault worth reporting.\n\n---\nThis is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Work In Progress report specification version 22 (the Key Decision on core charges added on 2026-08-10 per SV-9057 and SV-9058), read on 18 August 2026.\nLast checked against build v3.8-bd246fd on 8/18/2026.\n\nAUTOMATION: READY",
+  "rendered_expected_html": "\n\t\t\t\t\t\t\t<ol>\n<li>The core charge is counted in the work order&#039;s parts money \u2014 Parts Earned once the part is received, and Parts Remaining while it is still outstanding.</li>\n<li>After marking the core OK all five figures are exactly as they were before.</li>\n<li><p>After marking the core Not OK all five figures are again exactly as they were before.<br />Note for the tester: deciding a core is handled when the invoice is raised, which is outside this report, so this report is expected not to move at all. If a figure changes when you mark a core, that is a fault worth reporting.</p></li>\n</ol>\n\n<hr />\n\n<p>This is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Work In Progress report specification version 22 (the Key Decision on core charges added on 2026-08-10 per SV-9057 and SV-9058), read on 18 August 2026.<br />Last checked against build v3.8-bd246fd on 8/18/2026.</p>\n\n<p>AUTOMATION: READY</p>\n\t\t\t\t\t\t"
+ },
+ "43821": {
+  "title": "Completed tab: Earned equals Total minus Adjustments, Remaining $0.00",
+  "atmstatus": 1,
+  "refs": "SV-9282 (WIP spec v22 2026-08-18 S4a-R2 \u2014 Completed tab: Earned = Total - Adjustments,Remaining $0.00)",
+  "section_id": 4354,
+  "containers": {
+   "Preconditions": "markdown",
+   "Steps": "markdown",
+   "Expected Result": "markdown"
+  },
+  "blocks": {
+   "custom_preconds": 1,
+   "custom_steps": 1,
+   "custom_expected": 1
+  },
+  "versions_cited": [
+   "22"
+  ],
+  "damage": [],
+  "custom_preconds": "1. You are signed in to the ShopView App on a desktop browser.\n2. A completed work order that carries a work-order-level fee or discount appears on the Completed tab.",
+  "custom_steps": "1. Open the Work In Progress report and go to the Completed tab.\n2. On a completed work order read Earned, Remaining, Adjustments and Total.",
+  "custom_expected": "1. Remaining is $0.00.\n2. Earned equals Total minus Adjustments.\n3. Total still equals Earned plus Remaining plus Adjustments.\n\n---\nThis is the expected behaviour as per epic SV-8582, read on 17 August 2026, and story SV-9282, and the Work In Progress report specification version 22 (S4a-R2), read on 18 August 2026.\nLast checked against build v3.8-bd246fd on 8/18/2026.\n\nAUTOMATION: READY",
+  "rendered_expected_html": "\n\t\t\t\t\t\t\t<ol>\n<li>Remaining is $0.00.</li>\n<li>Earned equals Total minus Adjustments.</li>\n<li>Total still equals Earned plus Remaining plus Adjustments.</li>\n</ol>\n\n<hr />\n\n<p>This is the expected behaviour as per epic SV-8582, read on 17 August 2026, and story SV-9282, and the Work In Progress report specification version 22 (S4a-R2), read on 18 August 2026.<br />Last checked against build v3.8-bd246fd on 8/18/2026.</p>\n\n<p>AUTOMATION: READY</p>\n\t\t\t\t\t\t"
+ },
+ "43839": {
+  "title": "Long column header labels wrap to two lines instead of being truncated",
+  "atmstatus": 1,
+  "refs": "SV-8593 (SBR spec v22 2026-08-17; shell header wrapping per Chris Ward design review 2026-08-17; exact styling to confirm live)",
+  "section_id": 4326,
+  "containers": {
+   "Preconditions": "markdown",
+   "Steps": "markdown",
+   "Expected Result": "markdown"
+  },
+  "blocks": {
+   "custom_preconds": 1,
+   "custom_steps": 1,
+   "custom_expected": 1
+  },
+  "versions_cited": [
+   "22"
+  ],
+  "damage": [],
+  "custom_preconds": "1. You are signed in to the ShopView App on a desktop browser.\n2. A report with several columns and long header labels is open (for example Sales By Representative, which has the most columns).",
+  "custom_steps": "1. Read the column header row.\n2. Find a column whose label is longer than its column is wide (for example a two-word metric heading).\n3. Check whether that label is cut off or shown in full.",
+  "custom_expected": "1. A column header label that is too long for its column width wraps onto a second line and is shown in full.\n2. The label is NOT truncated with an ellipsis (\"...\") and is NOT cut off - the header row grows to two lines tall as needed so every heading is fully readable.\n3. Confirm live against the design/build: confirm live which headings actually wrap on each report and that the two-line header row stays aligned with the data columns beneath it.\n4. Note for the tester: this is the shared reporting-shell header treatment, so it applies on every report.\n\n---\nThis is the expected behaviour as per epic SV-8582, the reporting-shell story SV-8593, and Chris Ward's design-review decisions of 17 August 2026 (the shell header wrapping). The Sales By Representative report specification version 22 does not name this visual treatment, so the exact styling is Loom-sourced and is marked for live confirmation above (read on 17 August 2026).\nLast checked against build v3.8-bd246fd on 8/18/2026.\n\nAUTOMATION: READY",
+  "rendered_expected_html": "\n\t\t\t\t\t\t\t<ol>\n<li>A column header label that is too long for its column width wraps onto a second line and is shown in full.</li>\n<li>The label is NOT truncated with an ellipsis (&quot;...&quot;) and is NOT cut off - the header row grows to two lines tall as needed so every heading is fully readable.</li>\n<li>Confirm live against the design/build: confirm live which headings actually wrap on each report and that the two-line header row stays aligned with the data columns beneath it.</li>\n<li>Note for the tester: this is the shared reporting-shell header treatment, so it applies on every report.</li>\n</ol>\n\n<hr />\n\n<p>This is the expected behaviour as per epic SV-8582, the reporting-shell story SV-8593, and Chris Ward's design-review decisions of 17 August 2026 (the shell header wrapping). The Sales By Representative report specification version 22 does not name this visual treatment, so the exact styling is Loom-sourced and is marked for live confirmation above (read on 17 August 2026).<br />Last checked against build v3.8-bd246fd on 8/18/2026.</p>\n\n<p>AUTOMATION: READY</p>\n\t\t\t\t\t\t"
+ }
+}

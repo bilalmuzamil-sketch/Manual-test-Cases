@@ -167,3 +167,57 @@ exemption. **If approved, Rule 65 then applies — Vladimir must be told**, and 
 row in the section above.
 
 **ASK:** may we apply this one-word correction to C30287?
+
+---
+
+## 2026-08-28 (second pass) — FOR VLAD: two Automated cases changed, 38 held
+
+**Authority:** the QA lead approved, on 2026-08-28, the C30287 typo asked for in the section above,
+and **pin-only** restamps on the 39 Automated cases *"if that does not break automation"*.
+
+**Both changes below were verified on the RENDERED case page immediately after the write.
+`custom_atmstatus` was re-read live before each write, was never sent, and is still `3` on both.
+Title, `refs`, section, priority, type, estimate, milestone, template and `custom_automation_type`
+are unchanged on both.**
+
+| Project | C-id | Link | atmstatus | Marker after (unchanged) | Does an assertion change? | What changed, in plain words |
+|---|---|---|---|---|---|---|
+| Report Suite | **C30287** | [open](https://shopview.testrail.io/index.php?/cases/view/30287) | 3 | `AUTOMATION: READY` | **NO** | **The one-word typo approved above is now done.** In the Steps only, `an Labor Delta cell` reads `a Labor Delta cell`. Grammar only. No label, no value, no column, no expectation, no version and no other field was touched — Preconditions and Expected Results were not even sent. |
+| Report Suite | **C30277** | [open](https://shopview.testrail.io/index.php?/cases/view/30277) | 3 | `AUTOMATION: READY` | **NO** | **The cited specification version only.** In the Expected Results provenance line, *Sales By Representative report specification version 22 … read on 17 August 2026* now reads *version 24 … read on 28 August 2026*. Every requirement the case cites (S14-R2, S14-R2a, S14-R20, S21-R6, S22-R4) was read again in the live version 24 and still says exactly what the case asserts, so **not one word of the five expectations changed**. |
+
+### ⚠️ C30277 — one thing about it you need to know before you re-run anything
+
+**The words did not change, but the way the Expected Results is STORED did.** The field used to hold
+plain text with newline characters. Saving it through the API made TestRail wrap the whole thing in a
+`<p>…</p>`, and inside that wrapper the newlines stopped acting as line breaks — the case page briefly
+showed all five expectations, the provenance line and the marker **run together in one paragraph**.
+It was spotted immediately, the run was stopped, and the case was repaired within the same minute by
+re-storing the same words with `<br>` line breaks.
+
+* **What a tester sees now is identical to what they saw before, line for line, apart from the
+  version number.** That was proved by comparing the rendered page before and after.
+* **What an automated check reading the raw field through the API sees is NOT identical:** the field
+  is now `<p>line one<br>line two…</p>` instead of `line one\nline two…`.
+* **So: if any check of yours parses C30277's Expected Results as raw text and splits it on newlines,
+  it needs updating.** If your checks work from the case's steps, or from the rendered page, nothing
+  changes for you. **Please tell us which, because the answer decides the next item.**
+
+### The other 38 Automated cases were NOT touched, and here is exactly why
+
+The QA lead's approval was **pin-only — the version and date, nothing else** — and conditional on
+*"if that does not break automation"*. When we went to apply it we found that **on these 38 there is
+no route that changes only the version and date**:
+
+* **35 of them** render their text in TestRail's escaping container, so they can only be edited in the
+  **web editor** — and a web-editor save **re-saves every field on the form**, re-storing
+  **Preconditions and Steps** as HTML lists (the same side effect recorded for C30518 above). The
+  approval explicitly excludes changing preconditions and steps.
+* **3 of them** (C30451, C30460, C30506) are stored as plain text like C30277, so an API write would
+  flatten them exactly as it flattened C30277, and repairing that means re-storing the body as HTML.
+
+**They are therefore still pinned to their old specification version and are listed, one per row, in
+`build/report-suite/batch-2026-08-28/AUTOMATED-PIN-ONLY-SPLIT.md`.**
+
+**ASK FOR VLAD:** does any of your automation read a case's Preconditions, Steps or Expected Results
+**as raw text through the TestRail API**? If it does not, we can clear all 38 in one run this week.
+If it does, tell us which cases and we will leave those alone.

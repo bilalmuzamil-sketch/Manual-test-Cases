@@ -103,8 +103,20 @@ for (const p of queue) {
     if (before.custom_atmstatus !== p.expect_atm)
       throw new Error(`custom_atmstatus is ${before.custom_atmstatus}, the plan expects ${p.expect_atm} — STOP`);
 
+    // GATE ADDED 2026-08-28 after C30526 came back FLATTENED. The UI editor loads the
+    // field's RENDERED html. That is safe when the bare `markdown` container has already
+    // turned the stored text into real <ol><li> structure, and safe when the stored value
+    // is already HTML. It is NOT safe for a field that renders `markdown fr-view` while
+    // being stored as BARE TEXT with \n newlines: those newlines have no HTML meaning, the
+    // editor loads one unbroken run of text, and the save writes back a single paragraph —
+    // every line break the tester relied on is gone. Such a field must be re-encoded
+    // through the API instead (\n -> <br> inside one <p>), never opened in the editor.
     const pre = await readView(cid);
     if (pre._count !== 3) throw new Error(`expected 3 case-text containers before the write, found ${pre._count}`);
+    for (const f of FIELDS) {
+      if (/fr-view/.test(pre[f] ? pre[f].cls : '') && !/^\s*<(p|ol|ul|div|h[1-6]|blockquote|pre|table)\b/i.test(before[f] || ''))
+        throw new Error(`${f} renders \`markdown fr-view\` but is stored as BARE TEXT — the editor would flatten its line breaks. Re-encode it through the API instead.`);
+    }
     const preText = {}; for (const f of FIELDS) preText[f] = pre[f] ? pre[f].text : '';
     for (const e of p.edits) {
       const n = preText[field].split(e.find).length - 1;
