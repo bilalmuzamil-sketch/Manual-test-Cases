@@ -117,3 +117,29 @@ TestRail API added a visible `<p>` at the start and `</p>` at the end of its Exp
 the case page. That is a TestRail behaviour, newly proven on 2026-08-26 and written up in
 `build/APP-ACTIONS-PLAYBOOK.md` §J, not a wording change by us — the sentences themselves are
 correct. It needs a one-line clean-up in the TestRail web editor. **C30287 is not affected.**
+
+---
+
+## 2026-08-28 — TWO Automated cases edited under the QA lead's explicit approval (Rule 65 / Rule 71)
+
+**FOR VLADIMIR TOMOVIC.** These are the **only two** `custom_atmstatus = 3` cases touched on
+**2026-08-28**. On both: the atm flag was read **before** anything was written and the field was
+**never sent**, so it is **still 3**; the **title was not changed**; the case was re-read whole
+(Rule 41); and the **rendered case page was re-read after the write** and shows no stray tags.
+**Please re-check the automations for these two — one of them does change an assertion.**
+
+| Project | C-id | Link | atmstatus | Marker after (unchanged) | Does an assertion change? | What changed, in plain words |
+|---|---|---|---|---|---|---|
+| Report Suite | C30518 | [open](https://shopview.testrail.io/index.php?/cases/view/30518) | 3 | `AUTOMATION: Not available on Build to test Yet - Last checked 8/17/2026` | **NO** | Work In Progress export notifications. Two things were fixed, **neither of them a step or an expectation**. (1) The **render damage is gone**: saving this case through the API on 26 August had put a visible `<p>` at the start and `</p>` at the end of its Expected Results on the case page. It was repaired in the TestRail web editor and the page is now clean. (2) The record of which specification the test is pinned to was corrected in the **References** field, from *WIP spec v21 2026-08-17* to *WIP spec v28 2026-08-24*. **No step or expectation wording was altered.** We re-read both specification versions and the three messages this test checks — the success caption, the "Empty export" warning and the export error — are **worded identically in v28 and v21**, so there was nothing to change. |
+| Report Suite | C30287 | [open](https://shopview.testrail.io/index.php?/cases/view/30287) | 3 | `AUTOMATION: READY` | **YES — one column heading** | Sales By Representative CSV cells. The test said the first column of both downloaded files is headed **"Sales Representative"**. The specification (version 24, requirements S14-R15 and S14-R16) gives that heading as the single word **"Representative"**, and the product owner settled it in writing on 5 August 2026 (*""Representative" on its own is fine… We match our tests to it"*). The heading is now **"Representative"** in the steps and in expected point 4. Expected point 6, which told the tester to fail the build over a *pending* rename to "Sales Representative", was rewritten — that rename was settled the other way, so as written it would have failed a correct build. The References field was re-pinned from *SBR spec v22* to *SBR spec v24*, and the provenance line re-dated to 28 August 2026. **Nothing else changed** — not the title, not the preconditions, not points 1, 2, 3 or 5, not the build-check sentence, not the marker. |
+
+**A side effect on C30518 you should know about.** A save through the TestRail **web editor** re-saves
+**every** field on the form, not only the one being edited. C30518's Preconditions and Steps held
+plain text with typed `1.` `2.` `3.` prefixes; the editor recognised the numbering and stored them as
+a real numbered list. **The words are byte-identical and the tester still reads a numbered list** —
+only the numbers changed from typed characters to list markers. If an automation scrapes those two
+fields as raw text, the literal `"1. "` prefixes are no longer in the string. C30287 was edited via the
+API and is **not** affected.
+
+Full evidence: `build/report-suite/damage-2026-08-26/C30518-REPAIR-2026-08-28.md` and
+`build/report-suite/c30287-header-2026-08-28/CSV-COLUMN-HEADER-CORRECTION.md`.
