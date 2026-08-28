@@ -65,6 +65,17 @@ const browser = await chromium.launch({
 });
 const page = await browser.newPage({ ignoreHTTPSErrors: true, viewport: { width: 1500, height: 1400 } });
 page.setDefaultTimeout(60000);
+// The edit form carries a one-shot token that rotates after each successful save. A CACHED edit
+// page therefore POSTs a stale token and the save is silently rejected (the browser just stays on
+// the edit page) — which is why failures ALTERNATED with successes. Force revalidation.
+await page.setExtraHTTPHeaders({ 'Cache-Control': 'no-cache', 'Pragma': 'no-cache' });
+// Capture the save POST so a rejected save is diagnosable instead of being a bare symptom.
+let lastPost = null;
+page.on('response', r => {
+  if (r.request().method() === 'POST' && /cases\/(edit|update|save)/.test(r.url())) {
+    lastPost = `${r.status()} ${r.url().slice(0, 120)}`;
+  }
+});
 
 await page.goto(`${HOST}/index.php?/auth/login/`, { waitUntil: 'domcontentloaded' });
 await page.fill('#name', C.email);
@@ -121,10 +132,22 @@ for (const cid of queue) {
       }
     }
     await page.waitForTimeout(700);
+    lastPost = null;
+    // A DISABLED Save button means the editor sees no change — i.e. the stored content already
+    // equals what we just pasted. That is a no-op, not a failure: fall through to VERIFY, which
+    // re-GETs and re-reads the rendered page and is the real gate either way.
+    if (await page.locator('#accept').isDisabled()) {
+      log(`C${cid} save button disabled — content already matches; verifying`);
+    } else {
     await page.click('#accept', { timeout: 30000 });
     await page.waitForLoadState('networkidle');
-    await page.waitForTimeout(1500);
-    if (/cases\/edit/.test(page.url())) throw new Error('still on the edit page after Save');
+    // Save redirects to the view page, but the redirect can lag `networkidle` by seconds.
+    // PROVEN 2026-08-28: a FIXED 1500ms wait mis-reported ~50% of saves as "still on the edit
+    // page" when the write had in fact landed (the page showed "Successfully updated the test
+    // case"). Poll for the navigation instead of guessing a duration.
+    for (let w = 0; w < 40 && /cases\/edit/.test(page.url()); w++) await page.waitForTimeout(500);
+    if (/cases\/edit/.test(page.url())) throw new Error(`still on the edit page after Save (save POST: ${lastPost || 'none observed'})`);
+    }
 
     // ---- VERIFY ----
     const [st2, after] = await api(`get_case/${cid}`);
