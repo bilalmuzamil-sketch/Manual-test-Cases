@@ -31,7 +31,13 @@ R = {
     "SBC": ("sales-by-customer",        "Sales-By-Customer",       20),
     "TU":  ("technician-utilization",   "Technician-Utilization",   9),
 }
-ANCHOR = re.compile(r"\bS\d+-(?:R|E|N|Q)\d+[a-z]?\b")
+# CORRECTED 2026-08-28 (b) — THE STORY NUMBER CAN CARRY A LETTER. The pattern used to be
+# `\bS\d+-(?:R|E|N|Q)\d+[a-z]?\b`, which cannot match `S4a-R2`, so the WHOLE of live WIP
+# Story 4a — S4a-R1, S4a-R2, S4a-R3, S4a-N1, S4a-N2 — was invisible to every count this tool
+# produced. That is not a cosmetic miss: it made the tool report S4a-R2 as GONE from live v28
+# when it is present and unchanged, and C43821 was very nearly re-cited away from a correct
+# citation on the strength of it. `\d+[a-z]?` on the story side fixes it.
+ANCHOR = re.compile(r"\bS\d+[a-z]?-(?:R|E|N|Q)\d+[a-z]?\b")
 
 
 def flatten(xml):
@@ -102,9 +108,21 @@ def main():
         diffable = hd is not None
         held_a = anchor_texts(flatten(hd)) if diffable else {}
 
+        # CORRECTED 2026-08-28 (a) — AN ANCHOR IS ONLY A REQUIREMENT IF IT IS DEFINED.
+        # `anchor_texts` keeps EVERY occurrence of an anchor string, deliberately, because a
+        # requirement is often cross-referenced before it is defined. But a spec's own CHANGE
+        # LOG mentions anchors too, and those mentions have no `ANCHOR: ...` definition
+        # anywhere on the page. The tool was scoring them as live requirements, so it INVENTED
+        # requirements that do not exist — `S7-R7a` and `S9-E2` on WIP — and reported them as
+        # NOT COVERED, inflating that count and sending an authoring pass hunting for cases to
+        # write against a change-log line. A real `definition()` is now required before an
+        # anchor is scored at all.
+        live_def = {a for a in live_a if definition(live_a, a) is not None}
+        mentions_only = sorted(set(live_a) - live_def)
+
         gone = sorted(set(held_a) - set(live_a)) if diffable else []
-        added = sorted(set(live_a) - set(held_a)) if diffable else sorted(live_a)
-        both = sorted(set(held_a) & set(live_a)) if diffable else []
+        added = sorted(live_def - set(held_a)) if diffable else sorted(live_def)
+        both = sorted(set(held_a) & live_def) if diffable else []
         changed = [a for a in both if definition(held_a, a) != definition(live_a, a)]
         xref_only = [a for a in both
                      if definition(held_a, a) == definition(live_a, a) and held_a[a] != live_a[a]]
@@ -119,9 +137,9 @@ def main():
         for a in cites:
             cites[a].sort()
 
-        # Rule 43 verdicts, per LIVE requirement
+        # Rule 43 verdicts, per LIVE requirement — DEFINED anchors only (see above)
         verdict = {}
-        for a in sorted(live_a):
+        for a in sorted(live_def):
             n = len(cites.get(a, []))
             if n == 0:
                 verdict[a] = "NOT COVERED"
@@ -145,13 +163,15 @@ def main():
             "report": code, "live_version": lver, "live_lastmod": lmod,
             "held_version": hver if diffable else None, "diffable": diffable,
             "cases": len(by_report[code]),
-            "anchors_live": len(live_a), "anchors_held": len(held_a),
+            "anchors_live": len(live_def), "anchors_held": len(held_a),
+            "anchor_strings_live_incl_mentions": len(live_a),
+            "mentions_only_not_scored": mentions_only,
             "unchanged": unchanged, "changed": changed, "xref_only": xref_only,
             "added": added, "gone": gone,
             "verdict_counts": {v: sum(1 for x in verdict.values() if x == v)
                                for v in sorted(set(verdict.values()))},
             "verdicts": verdict,
-            "cites": {a: cites.get(a, []) for a in sorted(set(live_a) | set(gone))},
+            "cites": {a: cites.get(a, []) for a in sorted(live_def | set(gone))},
             "impacted_cids": impacted,
             "mispinned_cids": pin_wrong,
             "safe_cids": safe,

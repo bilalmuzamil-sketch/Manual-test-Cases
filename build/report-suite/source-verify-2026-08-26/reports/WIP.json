@@ -5,8 +5,13 @@
  "held_version": 15,
  "diffable": true,
  "cases": 92,
- "anchors_live": 139,
+ "anchors_live": 146,
  "anchors_held": 131,
+ "anchor_strings_live_incl_mentions": 148,
+ "mentions_only_not_scored": [
+  "S7-R7a",
+  "S9-E2"
+ ],
  "unchanged": [
   "S1-N1",
   "S1-R1",
@@ -80,7 +85,6 @@
   "S7-R3",
   "S7-R4",
   "S7-R5",
-  "S7-R7a",
   "S7-R9",
   "S8-R1",
   "S8-R2",
@@ -90,7 +94,6 @@
   "S8-R6",
   "S8-R8",
   "S9-E1",
-  "S9-E2",
   "S9-R1",
   "S9-R10",
   "S9-R10a",
@@ -157,14 +160,23 @@
   "S4-R15a",
   "S4-R16a",
   "S4-R18a",
+  "S4a-N1",
+  "S4a-N2",
+  "S4a-R1",
+  "S4a-R2",
+  "S4a-R3",
   "S5-R14",
+  "S5a-R1",
+  "S5a-R2",
+  "S5a-R3",
+  "S5a-R4",
   "S7-R8a",
   "S9-R14"
  ],
  "gone": [],
  "verdict_counts": {
-  "COVERED": 82,
-  "NOT COVERED": 33,
+  "COVERED": 83,
+  "NOT COVERED": 39,
   "SUPERSEDED": 24
  },
  "verdicts": {
@@ -243,6 +255,11 @@
   "S4-R7": "SUPERSEDED",
   "S4-R8": "SUPERSEDED",
   "S4-R9": "SUPERSEDED",
+  "S4a-N1": "NOT COVERED",
+  "S4a-N2": "NOT COVERED",
+  "S4a-R1": "NOT COVERED",
+  "S4a-R2": "COVERED",
+  "S4a-R3": "NOT COVERED",
   "S5-R1": "NOT COVERED",
   "S5-R10": "NOT COVERED",
   "S5-R11": "COVERED",
@@ -257,6 +274,10 @@
   "S5-R7": "NOT COVERED",
   "S5-R8": "NOT COVERED",
   "S5-R9": "NOT COVERED",
+  "S5a-R1": "NOT COVERED",
+  "S5a-R2": "NOT COVERED",
+  "S5a-R3": "NOT COVERED",
+  "S5a-R4": "NOT COVERED",
   "S6-N1": "NOT COVERED",
   "S6-R1": "COVERED",
   "S6-R2": "COVERED",
@@ -277,7 +298,6 @@
   "S7-R5": "COVERED",
   "S7-R6": "SUPERSEDED",
   "S7-R7": "SUPERSEDED",
-  "S7-R7a": "NOT COVERED",
   "S7-R8": "SUPERSEDED",
   "S7-R8a": "COVERED",
   "S7-R9": "COVERED",
@@ -290,7 +310,6 @@
   "S8-R7": "SUPERSEDED",
   "S8-R8": "COVERED",
   "S9-E1": "COVERED",
-  "S9-E2": "NOT COVERED",
   "S9-R1": "COVERED",
   "S9-R10": "COVERED",
   "S9-R10a": "COVERED",
@@ -533,6 +552,13 @@
    "C30470",
    "C30485"
   ],
+  "S4a-N1": [],
+  "S4a-N2": [],
+  "S4a-R1": [],
+  "S4a-R2": [
+   "C43821"
+  ],
+  "S4a-R3": [],
   "S5-R1": [],
   "S5-R10": [],
   "S5-R11": [
@@ -549,6 +575,10 @@
   "S5-R7": [],
   "S5-R8": [],
   "S5-R9": [],
+  "S5a-R1": [],
+  "S5a-R2": [],
+  "S5a-R3": [],
+  "S5a-R4": [],
   "S6-N1": [],
   "S6-R1": [
    "C30494"
@@ -608,7 +638,6 @@
   "S7-R7": [
    "C30502"
   ],
-  "S7-R7a": [],
   "S7-R8": [
    "C30501"
   ],
@@ -646,7 +675,6 @@
    "C30516",
    "C38916"
   ],
-  "S9-E2": [],
   "S9-R1": [
    "C30510"
   ],

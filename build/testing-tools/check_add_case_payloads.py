@@ -84,6 +84,35 @@ KNOWN_EXECUTED = {
 ASSIGN = re.compile(
     r"""custom_atmstatus["']?\s*(?::|\]\s*=)\s*3\s*(?=[,}\)]|$)""")
 
+# CORRECTED 2026-08-28. The guard FAILED on build/testing-tools/snapshot_case_bodies.py:335,
+# which creates nothing at all: it is a SELF-TEST FIXTURE — a fake case dict, shaped like a
+# TestRail API RESPONSE, fed to snapshot_record() to prove the field mapping. A guard that
+# cries wolf gets ignored, which is the one failure mode a guard cannot afford (the same
+# reasoning that produced the 2026-08-12 correction above).
+#
+# THE GENERAL RULE, not an allow-list entry: an `add_case` PAYLOAD is what we SEND, so it can
+# never contain a field the server ASSIGNS. A dict literal carrying `id`, `created_by`,
+# `created_on`, `updated_by` or `updated_on` is therefore a case READ BACK from TestRail — a
+# response, a fixture or a snapshot — and not a payload, whatever value of custom_atmstatus it
+# holds. Those hits are reported in their own bucket instead of failing the run.
+#
+# WHY THIS COSTS NO DETECTION POWER: sending any of these keys to add_case is meaningless, so
+# no real hazard can hide behind one. Proven on this repo — with the exemption in place the
+# FAIL bucket loses exactly the one self-test fixture and keeps every other hit.
+RESPONSE_ONLY = re.compile(
+    r"""["']?\b(id|created_by|created_on|updated_by|updated_on)\b["']?\s*:""")
+
+
+def is_response_shape(lines, n):
+    """True if the dict literal around line `n` (1-based) carries a server-assigned field.
+
+    A 3-line window, not a whole-file scan: wide enough for the multi-line dict literals these
+    fixtures are written as, narrow enough that an unrelated `id:` elsewhere in the file cannot
+    excuse a real payload.
+    """
+    return any(RESPONSE_ONLY.search(lines[i])
+               for i in range(max(0, n - 2), min(len(lines), n + 1)))
+
 # A DIFFERENT hazard, and a nastier one: a post-write VERIFIER that treats `3` as the PASS
 # condition. It does not create anything wrong — it declares a correctly-created case a
 # FAILURE, so it would push a future pass back towards `3` to make its own check go green.
@@ -118,12 +147,23 @@ KNOWN_VERIFIERS |= {
     "build/schedule/read-dates-2026-08-11/tools/final_verify.py",
     "build/schedule/read-dates-2026-08-11/tools/snap.py",
 }
+# REGISTERED 2026-08-28, same principle as the 2026-08-11 entries above: each of these
+# compares against 3 in order to HOLD or REPORT an Automated case, never to declare one
+# correctly created. `classify.py` and `repin_write.py` use it as the Rule-71 STOP gate;
+# `api_repin_automated.py` requires 3 because its whole subject is the cases Vlad cleared on
+# 2026-08-28, and it stops if a case is NOT Automated. Removing the comparison would delete
+# the Rule-65/71 protection along with the pattern.
+KNOWN_VERIFIERS |= {
+    "build/report-suite/repin-2026-08-28/classify.py",
+    "build/report-suite/repin-2026-08-28/repin_write.py",
+    "build/report-suite/automated-repin-2026-08-28/api_repin_automated.py",
+}
 SKIP_DIRS = {".git", "__pycache__", "node_modules", ".venv"}
 EXTS = {".py", ".js", ".mjs", ".cjs", ".ts"}
 
 
 def scan(paths):
-    new_hazards, known, verifiers = [], [], []
+    new_hazards, known, verifiers, fixtures = [], [], [], []
     for path in paths:
         rel = os.path.relpath(path, REPO)
         try:
@@ -134,10 +174,15 @@ def scan(paths):
         for n, line in enumerate(lines, 1):
             hit = (rel, n, line.rstrip())
             if ASSIGN.search(line):
-                (known if rel in KNOWN_EXECUTED else new_hazards).append(hit)
+                if rel in KNOWN_EXECUTED:
+                    known.append(hit)
+                elif is_response_shape(lines, n):
+                    fixtures.append(hit)
+                else:
+                    new_hazards.append(hit)
             elif VERIFIER.search(line) and rel not in KNOWN_VERIFIERS:
                 verifiers.append(hit)
-    return new_hazards, known, verifiers
+    return new_hazards, known, verifiers, fixtures
 
 
 def walk(root):
@@ -150,7 +195,16 @@ def walk(root):
 
 def main(argv):
     targets = [os.path.abspath(a) for a in argv[1:]] or list(walk(REPO))
-    new_hazards, known, verifiers = scan(targets)
+    new_hazards, known, verifiers, fixtures = scan(targets)
+
+    if fixtures:
+        print(f"NOTE — {len(fixtures)} hit(s) sit in a dict that also carries a server-assigned "
+              f"field (id / created_by / created_on / updated_by / updated_on), so they are a "
+              f"case READ BACK from TestRail — a fixture, snapshot or response — not an "
+              f"add_case payload:")
+        for rel, n, line in sorted(fixtures):
+            print(f"  {rel}:{n}  {line.strip()[:100]}")
+        print("")
 
     if verifiers:
         print(f"WARN — {len(verifiers)} verifier(s) treat custom_atmstatus == 3 as a PASS "
