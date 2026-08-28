@@ -1,0 +1,22 @@
+[
+ {
+  "cid": 30459,
+  "field": "custom_expected",
+  "expect_atm": 1,
+  "why": "live WIP v28 S2-R6 reloads on the \"as of\" date, and S7-R8 says no date range is offered; item 3 corrected + pin 22 -> 28",
+  "edits": [
+   {
+    "find": "Both a date-range change and a location change reload the report's rows.",
+    "replace": "Both an 'as of' date change and a location change reload the report's rows."
+   },
+   {
+    "find": "specification version 22 (S2-R6), read on 18 August 2026",
+    "replace": "specification version 28 (S2-R6), read on 28 August 2026"
+   },
+   {
+    "find": "Last checked against build v3.8-bd246fd on 8/18/2026.",
+    "replace": "Last checked against build v3.8-bd246fd on 8/18/2026. Re-checked against the live specification on 28 August 2026: item 3 was corrected to the \"as of\" date, which is the only date control this report offers (S7-R8), and the version cited above was updated."
+   }
+  ]
+ }
+]

@@ -1,0 +1,938 @@
+{
+ "30217": {
+  "title": "A rep row appears only when the rep has a matching non-reversed invoice",
+  "atmstatus": 3,
+  "refs": "SV-8623 (SBR spec v22 2026-08-17 Story 5 S5-R1; S5-R4; S5-N1; \u00a73 Key Decisions)",
+  "section_id": 4312,
+  "containers": {
+   "Preconditions": "markdown",
+   "Steps": "markdown",
+   "Expected Result": "markdown"
+  },
+  "blocks": {
+   "custom_preconds": 1,
+   "custom_steps": 1,
+   "custom_expected": 1
+  },
+  "versions_cited": [
+   "22"
+  ],
+  "damage": [],
+  "custom_preconds": "1. Rep A has invoices in the current filtered view; rep B (sales-rep toggle on) has NONE; rep C has only a reversed invoice (seed ZZAUTOTEST data).",
+  "custom_steps": "1. Open the report and read the summary rows.\n2. Look for reps B and C.\n3. Read the count in parentheses after rep A's name.",
+  "custom_expected": "1. Rep A occupies exactly one summary row.\n2. Reps B and C do not appear \u2014 there are no blank placeholder rows, and a reversed invoice never satisfies the contributor gate.\n3. The number of contributing invoices shows in parentheses after the rep's name, in a smaller, subdued grey font \u2014 e.g., Mary Smith (12) \u2014 and is always at least 1.\n4. A staff member with no matching invoice does not appear regardless of toggle state or historical activity.\n\n---\nThis is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Sales By Representative report specification version 22 (S5-R1, S5-R4, S5-N1), read on 17 August 2026.\n\nAUTOMATION: READY",
+  "rendered_expected_html": "\n\t\t\t\t\t\t\t<ol>\n<li>Rep A occupies exactly one summary row.</li>\n<li>Reps B and C do not appear \u2014 there are no blank placeholder rows, and a reversed invoice never satisfies the contributor gate.</li>\n<li>The number of contributing invoices shows in parentheses after the rep&#039;s name, in a smaller, subdued grey font \u2014 e.g., Mary Smith (12) \u2014 and is always at least 1.</li>\n<li>A staff member with no matching invoice does not appear regardless of toggle state or historical activity.</li>\n</ol>\n\n<hr />\n\n<p>This is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Sales By Representative report specification version 22 (S5-R1, S5-R4, S5-N1), read on 17 August 2026.</p>\n\n<p>AUTOMATION: READY</p>\n\t\t\t\t\t\t"
+ },
+ "30221": {
+  "title": "Expanding a rep loads its invoices on demand with a row-level spinner",
+  "atmstatus": 3,
+  "refs": "SV-8624 (SBR spec v22 2026-08-17 S6-R1,S6-R2,S6-R3,S6-E1; heading renamed to Labor Delta per SV-9071)",
+  "section_id": 4312,
+  "containers": {
+   "Preconditions": "markdown",
+   "Steps": "markdown",
+   "Expected Result": "markdown"
+  },
+  "blocks": {
+   "custom_preconds": 1,
+   "custom_steps": 1,
+   "custom_expected": 1
+  },
+  "versions_cited": [
+   "22"
+  ],
+  "damage": [],
+  "custom_preconds": "1. A rep with several matching invoices is on the report.",
+  "custom_steps": "1. Click the chevron in the rep's Date cell and watch the row.\n2. Read a detail row left to right.",
+  "custom_expected": "1. The rep's matching invoices appear as detail rows beneath the summary row; a brief row-level loading indicator shows while they load on the first expand.\n2. Each detail row shows, left to right: the invoice's date, the invoice number, the customer name, the payment status badge, and the per-invoice values for Labor Delta and the money columns.\n3. A rep with a single matching invoice can still be expanded \u2014 one detail row is shown.\n\n---\nThis is the expected behaviour as per epic SV-8582 and the Sales By Representative report specification version 22 (S6-R1, S6-R2, S6-R3, S6-E1), both read on 17 August 2026. The column was renamed from \"Inv. Hrs\" to \"Labor Delta\" per SV-9071; only the name changed.\n\nAUTOMATION: Not available on Build to test Yet - Last checked 8/17/2026",
+  "rendered_expected_html": "\n\t\t\t\t\t\t\t<ol>\n<li>The rep&#039;s matching invoices appear as detail rows beneath the summary row; a brief row-level loading indicator shows while they load on the first expand.</li>\n<li>Each detail row shows, left to right: the invoice&#039;s date, the invoice number, the customer name, the payment status badge, and the per-invoice values for Labor Delta and the money columns.</li>\n<li>A rep with a single matching invoice can still be expanded \u2014 one detail row is shown.</li>\n</ol>\n\n<hr />\n\n<p>This is the expected behaviour as per epic SV-8582 and the Sales By Representative report specification version 22 (S6-R1, S6-R2, S6-R3, S6-E1), both read on 17 August 2026. The column was renamed from \"Inv. Hrs\" to \"Labor Delta\" per SV-9071; only the name changed.</p>\n\n<p>AUTOMATION: Not available on Build to test Yet - Last checked 8/17/2026</p>\n\t\t\t\t\t\t"
+ },
+ "30247": {
+  "title": "Detail-row invoice number and customer name links navigate in the current tab",
+  "atmstatus": 3,
+  "refs": "SV-8629 (SBR spec v22 2026-08-17 Story 12 S12-R1; S12-R2; S12-R3)",
+  "section_id": 4317,
+  "containers": {
+   "Preconditions": "markdown",
+   "Steps": "markdown",
+   "Expected Result": "markdown"
+  },
+  "blocks": {
+   "custom_preconds": 1,
+   "custom_steps": 1,
+   "custom_expected": 1
+  },
+  "versions_cited": [
+   "22"
+  ],
+  "damage": [],
+  "custom_preconds": "1. A rep row is expanded with at least one S and one P invoice visible.",
+  "custom_steps": "1. Click a service invoice's number link and note the destination and tab.\n2. Go back, then click a parts invoice's number link.\n3. Click the customer name on a detail row.",
+  "custom_expected": "1. Each invoice number is a clickable link.\n2. Activating it navigates the CURRENT tab to the underlying invoice (work order or parts sale) \u2014 never a new tab.\n3. The customer name is likewise a clickable link that navigates the current tab to the customer's record.\n\n---\nThis is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Sales By Representative report specification version 22 (S12-R1, S12-R2, S12-R3), read on 17 August 2026.\n\nAUTOMATION: READY",
+  "rendered_expected_html": "\n\t\t\t\t\t\t\t<ol>\n<li>Each invoice number is a clickable link.</li>\n<li>Activating it navigates the CURRENT tab to the underlying invoice (work order or parts sale) \u2014 never a new tab.</li>\n<li>The customer name is likewise a clickable link that navigates the current tab to the customer&#039;s record.</li>\n</ol>\n\n<hr />\n\n<p>This is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Sales By Representative report specification version 22 (S12-R1, S12-R2, S12-R3), read on 17 August 2026.</p>\n\n<p>AUTOMATION: READY</p>\n\t\t\t\t\t\t"
+ },
+ "30255": {
+  "title": "Cancel and X dismiss the Deactivate dialog; Escape and clicking outside do not",
+  "atmstatus": 3,
+  "refs": "SV-8630 (SBR spec v22 2026-08-17 Story 13 S13-R8)",
+  "section_id": 4318,
+  "containers": {
+   "Preconditions": "markdown",
+   "Steps": "markdown",
+   "Expected Result": "markdown"
+  },
+  "blocks": {
+   "custom_preconds": 1,
+   "custom_steps": 1,
+   "custom_expected": 1
+  },
+  "versions_cited": [
+   "22"
+  ],
+  "damage": [],
+  "custom_preconds": "1. The Deactivate dialog is open for a rep with assignments.",
+  "custom_steps": "1. Click the \"Cancel\" button and watch the dialog; then re-open it.\n2. Click the \"X\" close icon and watch the dialog; then re-open it.\n3. Press the \"Esc\" key on the keyboard and watch the dialog.\n4. Re-open the dialog and click outside it (on the greyed-out background).\n5. After each action, check the staff member's active status.",
+  "custom_expected": "1. The dialog has a \"Cancel\" button (grey) and an \"X\" close icon; the \"Deactivate\" button is the red one.\n2. Clicking \"Cancel\" closes the dialog; clicking the \"X\" icon closes the dialog.\n3. Pressing the \"Esc\" key does NOT close the dialog - it stays open (the app's general rule is that pop-ups do not close with the Esc key).\n4. Clicking outside the dialog does NOT close it.\n5. When the dialog closes via Cancel or X, the staff member's active status is unchanged - no deactivation happens.\n\n---\nThis is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Sales By Representative report specification version 22 (S13-R8), read on 17 August 2026.\n\nAUTOMATION: READY",
+  "rendered_expected_html": "\n\t\t\t\t\t\t\t<ol>\n<li>The dialog has a &quot;Cancel&quot; button (grey) and an &quot;X&quot; close icon; the &quot;Deactivate&quot; button is the red one.</li>\n<li>Clicking &quot;Cancel&quot; closes the dialog; clicking the &quot;X&quot; icon closes the dialog.</li>\n<li>Pressing the &quot;Esc&quot; key does NOT close the dialog - it stays open (the app&#039;s general rule is that pop-ups do not close with the Esc key).</li>\n<li>Clicking outside the dialog does NOT close it.</li>\n<li>When the dialog closes via Cancel or X, the staff member&#039;s active status is unchanged - no deactivation happens.</li>\n</ol>\n\n<hr />\n\n<p>This is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Sales By Representative report specification version 22 (S13-R8), read on 17 August 2026.</p>\n\n<p>AUTOMATION: READY</p>\n\t\t\t\t\t\t"
+ },
+ "30256": {
+  "title": "Valid submit locks the dialog, then deactivates keeping assignments",
+  "atmstatus": 3,
+  "refs": "SV-8630 (SBR spec v22 2026-08-17 Story 13 S13-R9; S13-R10; S13-E1)",
+  "section_id": 4318,
+  "containers": {
+   "Preconditions": "markdown",
+   "Steps": "markdown",
+   "Expected Result": "markdown"
+  },
+  "blocks": {
+   "custom_preconds": 1,
+   "custom_steps": 1,
+   "custom_expected": 1
+  },
+  "versions_cited": [
+   "22"
+  ],
+  "damage": [],
+  "custom_preconds": "1. The Deactivate dialog is open for a ZZAUTOTEST rep with known customer assignments.",
+  "custom_steps": "1. Type YES and submit; during the request try Cancel, X, and Escape.\n2. After success, check the staff member's status and each previously assigned customer's Sales Representative.",
+  "custom_expected": "1. The \"Deactivate\" button enters the standard in-flight loading state (non-interactive, in-progress indicator); the dialog stays open and the Cancel and X controls are non-interactive during the request (pressing the \"Esc\" key never closes the dialog at any time).\n2. On success the dialog closes and the change applies.\n3. Customer assignments are NOT modified \u2014 every customer stays assigned to this rep; denormalized rep names and past invoice snapshots are preserved.\n4. Deactivation never forces reassignment, blocks on assignments, or auto-reassigns.\n\n---\nThis is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Sales By Representative report specification version 22 (S13-R9, S13-R10, S13-E1), read on 17 August 2026.\n\nAUTOMATION: READY",
+  "rendered_expected_html": "\n\t\t\t\t\t\t\t<ol>\n<li>The &quot;Deactivate&quot; button enters the standard in-flight loading state (non-interactive, in-progress indicator); the dialog stays open and the Cancel and X controls are non-interactive during the request (pressing the &quot;Esc&quot; key never closes the dialog at any time).</li>\n<li>On success the dialog closes and the change applies.</li>\n<li>Customer assignments are NOT modified \u2014 every customer stays assigned to this rep; denormalized rep names and past invoice snapshots are preserved.</li>\n<li>Deactivation never forces reassignment, blocks on assignments, or auto-reassigns.</li>\n</ol>\n\n<hr />\n\n<p>This is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Sales By Representative report specification version 22 (S13-R9, S13-R10, S13-E1), read on 17 August 2026.</p>\n\n<p>AUTOMATION: READY</p>\n\t\t\t\t\t\t"
+ },
+ "30262": {
+  "title": "Show Unassigned adds one top-pinned Unassigned row that acts like a rep row",
+  "atmstatus": 3,
+  "refs": "SV-8639 (SBR spec v22 2026-08-17 Story 22 S22-R3; S22-R4; S22-R5; S22-R6; Story 6 S6-R1)",
+  "section_id": 4319,
+  "containers": {
+   "Preconditions": "markdown",
+   "Steps": "markdown",
+   "Expected Result": "markdown"
+  },
+  "blocks": {
+   "custom_preconds": 1,
+   "custom_steps": 1,
+   "custom_expected": 1
+  },
+  "versions_cited": [
+   "22"
+  ],
+  "damage": [],
+  "custom_preconds": "1. Matching unassigned invoices exist; the grand Totals with the toggle off are noted.",
+  "custom_steps": "1. Turn \"Show Unassigned\" on and read the new row and its position.\n2. Read the grand Totals indicator.\n3. Read the Unassigned row's columns and (N) count, click its chevron, and look for any \"(Inactive)\" tag.\n4. Turn the toggle off again.",
+  "custom_expected": "1. A single summary row labeled \"Unassigned\" (verbatim) rolls up every matching invoice that has no assigned rep, respecting all other active filters.\n2. The row is pinned to the TOP of the table, above the A\u2192Z reps, and stays pinned regardless of sort.\n3. Toggling re-renders the report and recomputes the grand Totals to include or exclude the Unassigned row accordingly.\n4. The Unassigned row shows the same metric columns and (N) count as any rep summary row, is expandable to its contributing invoices, is included in the grand Totals, and never carries an \"(Inactive)\" tag.\n\n---\nThis is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Sales By Representative report specification version 22 (S22-R3, S22-R4, S22-R5, S22-R6, S6-R1), read on 17 August 2026.\n\nAUTOMATION: READY",
+  "rendered_expected_html": "\n\t\t\t\t\t\t\t<ol>\n<li>A single summary row labeled &quot;Unassigned&quot; (verbatim) rolls up every matching invoice that has no assigned rep, respecting all other active filters.</li>\n<li>The row is pinned to the TOP of the table, above the A\u2192Z reps, and stays pinned regardless of sort.</li>\n<li>Toggling re-renders the report and recomputes the grand Totals to include or exclude the Unassigned row accordingly.</li>\n<li>The Unassigned row shows the same metric columns and (N) count as any rep summary row, is expandable to its contributing invoices, is included in the grand Totals, and never carries an &quot;(Inactive)&quot; tag.</li>\n</ol>\n\n<hr />\n\n<p>This is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Sales By Representative report specification version 22 (S22-R3, S22-R4, S22-R5, S22-R6, S6-R1), read on 17 August 2026.</p>\n\n<p>AUTOMATION: READY</p>\n\t\t\t\t\t\t"
+ },
+ "30271": {
+  "title": "All filter and view settings are restored before the first data fetch",
+  "atmstatus": 3,
+  "refs": "SV-8640 (SBR spec v22 2026-08-17 Story 23 S23-R1; Story 20 S20-R5)",
+  "section_id": 4321,
+  "containers": {
+   "Preconditions": "markdown",
+   "Steps": "markdown",
+   "Expected Result": "markdown"
+  },
+  "blocks": {
+   "custom_preconds": 1,
+   "custom_steps": 1,
+   "custom_expected": 1
+  },
+  "versions_cited": [
+   "22"
+  ],
+  "damage": [],
+  "custom_preconds": "1. You are on the report in a browser you can revisit.",
+  "custom_steps": "1. Set a custom date range, \"Parts only,\" \"Paid,\" a specific location set, Show Unassigned on, hide two metric columns, and sort by Margin descending.\n2. Leave the report and return; also try a full page reload.\n3. Watch what data loads first.",
+  "custom_expected": "1. Every setting is restored: date range (including the custom start/end), product type, invoice status, location, Show Unassigned, column visibility, and the active column sort (column + direction).\n2. The settings are restored BEFORE the first data fetch \u2014 the report does not fetch defaults first and then re-fetch.\n\n---\nThis is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Sales By Representative report specification version 22 (S23-R1, S20-R5), read on 17 August 2026.\n\nAUTOMATION: READY",
+  "rendered_expected_html": "\n\t\t\t\t\t\t\t<ol>\n<li>Every setting is restored: date range (including the custom start/end), product type, invoice status, location, Show Unassigned, column visibility, and the active column sort (column + direction).</li>\n<li>The settings are restored BEFORE the first data fetch \u2014 the report does not fetch defaults first and then re-fetch.</li>\n</ol>\n\n<hr />\n\n<p>This is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Sales By Representative report specification version 22 (S23-R1, S20-R5), read on 17 August 2026.</p>\n\n<p>AUTOMATION: READY</p>\n\t\t\t\t\t\t"
+ },
+ "30272": {
+  "title": "Expansion state and scroll position are not remembered and reset on reload",
+  "atmstatus": 3,
+  "refs": "SV-8640 (SBR spec v22 2026-08-17 Story 23 S23-R2; \u00a72 Out of Scope)",
+  "section_id": 4321,
+  "containers": {
+   "Preconditions": "markdown",
+   "Steps": "markdown",
+   "Expected Result": "markdown"
+  },
+  "blocks": {
+   "custom_preconds": 1,
+   "custom_steps": 1,
+   "custom_expected": 1
+  },
+  "versions_cited": [
+   "22"
+  ],
+  "damage": [],
+  "custom_preconds": "1. Two reps are expanded and the table is scrolled partway.",
+  "custom_steps": "1. Reload the page.\n2. Check the rows and the scroll position.",
+  "custom_expected": "1. All rows render collapsed and the scroll position resets.\n2. This is the specified behavior (only back-navigation from a drilldown restores expansion/scroll), not a defect.\n\n---\nThis is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Sales By Representative report specification version 22 (S23-R2), read on 17 August 2026.\n\nAUTOMATION: READY",
+  "rendered_expected_html": "\n\t\t\t\t\t\t\t<ol>\n<li>All rows render collapsed and the scroll position resets.</li>\n<li>This is the specified behavior (only back-navigation from a drilldown restores expansion/scroll), not a defect.</li>\n</ol>\n\n<hr />\n\n<p>This is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Sales By Representative report specification version 22 (S23-R2), read on 17 August 2026.</p>\n\n<p>AUTOMATION: READY</p>\n\t\t\t\t\t\t"
+ },
+ "30274": {
+  "title": "First visit or cleared storage yields all defaults; no server-side profile",
+  "atmstatus": 3,
+  "refs": "SV-8640 (SBR spec v22 2026-08-17 Story 23 S23-R4; S23-N1; Story 2 S2-R4; S2-R7; Story 21 S21-R2)",
+  "section_id": 4321,
+  "containers": {
+   "Preconditions": "markdown",
+   "Steps": "markdown",
+   "Expected Result": "markdown"
+  },
+  "blocks": {
+   "custom_preconds": 1,
+   "custom_steps": 1,
+   "custom_expected": 1
+  },
+  "versions_cited": [
+   "22"
+  ],
+  "damage": [],
+  "custom_preconds": "1. You have distinctive saved settings, then clear the browser's site data (or use a fresh profile).\n2. You are working in a known active location (the application's location switcher).",
+  "custom_steps": "1. Open the report and read every setting.",
+  "custom_expected": "1. Date range = This Month; Product Type = \"Parts & Service\"; Invoice Status = \"All Statuses\"; Location = your currently active location only (the one location you are working in); Show Unassigned = off; all eight metric columns visible; sort = the A\u2192Z default.\n2. Clearing browser storage fully returns the report to first-visit defaults \u2014 no server-side profile brings the old settings back.\n\n---\nThis is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Sales By Representative report specification version 22 (S23-R4, S23-N1, S2-R4, S2-R7, S21-R2), read on 17 August 2026.\nLast checked against build v3.8-bd246fd on 8/18/2026.\n\nAUTOMATION: READY",
+  "rendered_expected_html": "\n\t\t\t\t\t\t\t<ol>\n<li>Date range = This Month; Product Type = &quot;Parts &amp; Service&quot;; Invoice Status = &quot;All Statuses&quot;; Location = your currently active location only (the one location you are working in); Show Unassigned = off; all eight metric columns visible; sort = the A\u2192Z default.</li>\n<li>Clearing browser storage fully returns the report to first-visit defaults \u2014 no server-side profile brings the old settings back.</li>\n</ol>\n\n<hr />\n\n<p>This is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Sales By Representative report specification version 22 (S23-R4, S23-N1, S2-R4, S2-R7, S21-R2), read on 17 August 2026.<br />Last checked against build v3.8-bd246fd on 8/18/2026.</p>\n\n<p>AUTOMATION: READY</p>\n\t\t\t\t\t\t"
+ },
+ "30275": {
+  "title": "The A to Z default is its own saved value",
+  "atmstatus": 3,
+  "refs": "SV-8640 (SBR spec v22 2026-08-17 Story 23 S23-R5; Story 11 S11-R4)",
+  "section_id": 4321,
+  "containers": {
+   "Preconditions": "markdown",
+   "Steps": "markdown",
+   "Expected Result": "markdown"
+  },
+  "blocks": {
+   "custom_preconds": 1,
+   "custom_steps": 1,
+   "custom_expected": 1
+  },
+  "versions_cited": [
+   "22"
+  ],
+  "damage": [],
+  "custom_preconds": "1. You have never clicked a financial column header in this browser session/profile (the report is in the A\u2192Z default).",
+  "custom_steps": "1. Change a few filters (no sort click), leave the report, and return.\n2. Read the row order and the headers.",
+  "custom_expected": "1. The report restores to the A\u2192Z default order by rep display name.\n2. No financial column shows a sort indicator \u2014 the saved \"no financial sort\" state restores as A\u2192Z, not as an arbitrary column.\n\n---\nThis is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Sales By Representative report specification version 22 (S23-R5, S11-R4), read on 17 August 2026.\n\nAUTOMATION: READY",
+  "rendered_expected_html": "\n\t\t\t\t\t\t\t<ol>\n<li>The report restores to the A\u2192Z default order by rep display name.</li>\n<li>No financial column shows a sort indicator \u2014 the saved &quot;no financial sort&quot; state restores as A\u2192Z, not as an arbitrary column.</li>\n</ol>\n\n<hr />\n\n<p>This is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Sales By Representative report specification version 22 (S23-R5, S11-R4), read on 17 August 2026.</p>\n\n<p>AUTOMATION: READY</p>\n\t\t\t\t\t\t"
+ },
+ "30276": {
+  "title": "The \u22ef overflow menu lists exactly four download actions",
+  "atmstatus": 3,
+  "refs": "SV-8631 (SBR spec v22 2026-08-17 Story 14 S14-R1 + Story 17 S17-R3 (position) \u2014 S14-R1 CLOSES it in the spec's own words (\"lists exactly four actions\"); so the closed list IS the requirement)",
+  "section_id": 4322,
+  "containers": {
+   "Preconditions": "markdown",
+   "Steps": "markdown",
+   "Expected Result": "markdown"
+  },
+  "blocks": {
+   "custom_preconds": 1,
+   "custom_steps": 1,
+   "custom_expected": 1
+  },
+  "versions_cited": [
+   "22"
+  ],
+  "damage": [],
+  "custom_preconds": "1. You are signed in to the ShopView App on a desktop browser.\n2. You are on the Sales By Representative report.",
+  "custom_steps": "1. Find the \u22ef (three-dot) button in the report toolbar \u2014 it is the first control in the toolbar's action cluster.\n2. Click it and read the menu entries top to bottom.",
+  "custom_expected": "1. The menu lists exactly four actions: \"Download Summary (PDF)\", \"Download Expanded View (PDF)\", \"Download Summary (CSV)\", and \"Download Expanded View (CSV)\".\n2. No other entries appear in the menu.\n\n---\nThis is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Sales By Representative report specification version 22 (S14-R1, S17-R3), read on 17 August 2026.\nLast checked against build v3.8-bd246fd on 8/18/2026.\n\nAUTOMATION: READY",
+  "rendered_expected_html": "\n\t\t\t\t\t\t\t<ol>\n<li>The menu lists exactly four actions: &quot;Download Summary (PDF)&quot;, &quot;Download Expanded View (PDF)&quot;, &quot;Download Summary (CSV)&quot;, and &quot;Download Expanded View (CSV)&quot;.</li>\n<li>No other entries appear in the menu.</li>\n</ol>\n\n<hr />\n\n<p>This is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Sales By Representative report specification version 22 (S14-R1, S17-R3), read on 17 August 2026.<br />Last checked against build v3.8-bd246fd on 8/18/2026.</p>\n\n<p>AUTOMATION: READY</p>\n\t\t\t\t\t\t"
+ },
+ "30277": {
+  "title": "All four downloads respect filters, full result set, and active order",
+  "atmstatus": 3,
+  "refs": "SV-8631 (SBR spec v22 2026-08-17 Story 14 S14-R2; S14-R2a; S14-R20 + Story 21 S21-R6 + Story 22 S22-R4 \u2014 all four downloads honour the filters; the full result set and the active order; S14-R20 = the \"Locations:\" line in every export)",
+  "section_id": 4322,
+  "containers": {
+   "Preconditions": "markdown fr-view",
+   "Steps": "markdown fr-view",
+   "Expected Result": "markdown fr-view"
+  },
+  "blocks": {
+   "custom_preconds": 1,
+   "custom_steps": 1,
+   "custom_expected": 1
+  },
+  "versions_cited": [
+   "22"
+  ],
+  "damage": [],
+  "custom_preconds": "<ol>\n<li>You are on the report with several reps showing.</li>\n<li>Set a specific date range, Product Type, Invoice Status, and a location selection; turn Show Unassigned on.</li>\n<li>Sort by a financial column (for example, click the Subtotal header).</li>\n<li>Leave at least one rep collapsed (do not expand it).</li>\n</ol>\n",
+  "custom_steps": "<ol>\n<li>Download all four files from the \u22ef menu.</li>\n<li>Compare each file's rows against the on-screen result: which reps appear, which invoices are included, and the row order.</li>\n<li>Check where the Unassigned row sits in each file.</li>\n</ol>\n",
+  "custom_expected": "1. Every file contains only the reps/invoices matching ALL the active filters (date range, product type, invoice status, location, Show Unassigned).\n2. The files reflect the FULL result set for those filters \u2014 a collapsed (never-expanded) rep's invoices still appear in the Expanded View files; on-screen expansion state does not matter.\n3. Rep rows appear in the report's currently-active order \u2014 the active column sort if one is set, otherwise the A\u2192Z default.\n4. The Unassigned row (Show Unassigned on) is pinned first, ahead of the sorted reps.\n5. Every file (all four downloads, PDF and CSV) carries a \"Locations:\" line naming the location(s) the report was scoped to.\n\n---\nThis is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Sales By Representative report specification version 22 (S14-R2, S14-R2a, S14-R20, S21-R6, S22-R4), read on 17 August 2026.\nLast checked against build v3.8-bd246fd on 8/18/2026.\n\nAUTOMATION: READY",
+  "rendered_expected_html": "\n                            1. Every file contains only the reps/invoices matching ALL the active filters (date range, product type, invoice status, location, Show Unassigned).\n2. The files reflect the FULL result set for those filters \u2014 a collapsed (never-expanded) rep's invoices still appear in the Expanded View files; on-screen expansion state does not matter.\n3. Rep rows appear in the report's currently-active order \u2014 the active column sort if one is set, otherwise the A\u2192Z default.\n4. The Unassigned row (Show Unassigned on) is pinned first, ahead of the sorted reps.\n5. Every file (all four downloads, PDF and CSV) carries a \"Locations:\" line naming the location(s) the report was scoped to.\n\n---\nThis is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Sales By Representative report specification version 22 (S14-R2, S14-R2a, S14-R20, S21-R6, S22-R4), read on 17 August 2026.\nLast checked against build v3.8-bd246fd on 8/18/2026.\n\nAUTOMATION: READY                        "
+ },
+ "30293": {
+  "title": "Sales Representative Assignments CSV: file name, headers, success toast",
+  "atmstatus": 3,
+  "refs": "SV-8632 (SBR spec v22 2026-08-17 Story 15 S15-R3; S15-R4; \u00a77 \u2014 S15-R4 CLOSES the three headers; \"Sales Rep\"\u2192\"Sales Representative\" per Chris Ward 2026-07-31 Q5 [newest-wins]; NOT one of the four report exports so S14-R20 adds no Location)",
+  "section_id": 4323,
+  "containers": {
+   "Preconditions": "markdown",
+   "Steps": "markdown",
+   "Expected Result": "markdown"
+  },
+  "blocks": {
+   "custom_preconds": 1,
+   "custom_steps": 1,
+   "custom_expected": 1
+  },
+  "versions_cited": [
+   "22"
+  ],
+  "damage": [],
+  "custom_preconds": "1. At least one customer in the organization has an assigned sales representative.\n2. The Export Report dialog is open with \"Sales Representative Assignments\" selected.",
+  "custom_steps": "1. Click the Export action.\n2. Note the saved file's name and read the toast.\n3. Open the file in a text editor and read the header row.",
+  "custom_expected": "1. The file downloads as \"sales-representative-assignments.csv\" \u2014 the short form \"rep\" is gone from the file name.\n2. A success toast shows \"Success\" with the caption \"Report downloaded.\" and auto-fades after 5 seconds.\n3. The CSV starts with a UTF-8 BOM and its headers, in order, are exactly: Customer Name, Sales Representative, Rep is active?.\n4. Note for the tester: the product owner has ruled that the full word \"Sales Representative\" replaces the short \"Sales Rep\" everywhere. If the screen or file still shows \"Sales Rep\", mark this test Failed and report it as the pending rename \u2014 do not change the test.\n5. Note for the tester: this file has only those three columns even if you have several locations in scope. It is a separate customer-to-representative list, not one of the report's four downloads, so it has no Location column - do not fail it for that.\n\n---\nThis is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Sales By Representative report specification version 22 (S15-R3, S15-R4, S14-R20), read on 17 August 2026; where the wording of that specification differs, the behaviour above follows Chris Ward's later decision, recorded in his answers in this file: https://docs.google.com/spreadsheets/d/1x8cuYJlFsDHalVZZTh156_ZCq2gcOaGY/edit?usp=sharing&ouid=106388879401921597782&rtpof=true&sd=true, read on 17 August 2026, which is the authority.\nLast checked against build v3.8-bd246fd on 8/18/2026.\n\nAUTOMATION: READY",
+  "rendered_expected_html": "\n\t\t\t\t\t\t\t<ol>\n<li>The file downloads as &quot;sales-representative-assignments.csv&quot; \u2014 the short form &quot;rep&quot; is gone from the file name.</li>\n<li>A success toast shows &quot;Success&quot; with the caption &quot;Report downloaded.&quot; and auto-fades after 5 seconds.</li>\n<li>The CSV starts with a UTF-8 BOM and its headers, in order, are exactly: Customer Name, Sales Representative, Rep is active?.</li>\n<li>Note for the tester: the product owner has ruled that the full word &quot;Sales Representative&quot; replaces the short &quot;Sales Rep&quot; everywhere. If the screen or file still shows &quot;Sales Rep&quot;, mark this test Failed and report it as the pending rename \u2014 do not change the test.</li>\n<li>Note for the tester: this file has only those three columns even if you have several locations in scope. It is a separate customer-to-representative list, not one of the report&#039;s four downloads, so it has no Location column - do not fail it for that.</li>\n</ol>\n\n<hr />\n\n<p>This is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Sales By Representative report specification version 22 (S15-R3, S15-R4, S14-R20), read on 17 August 2026; where the wording of that specification differs, the behaviour above follows Chris Ward's later decision, recorded in his answers in this file: <a href=\"https://docs.google.com/spreadsheets/d/1x8cuYJlFsDHalVZZTh156_ZCq2gcOaGY/edit?usp=sharing&amp;ouid=106388879401921597782&amp;rtpof=true&amp;sd=true,\">https://docs.google.com/spreadsheets/d/1x8cuYJlFsDHalVZZTh156_ZCq2gcOaGY/edit?usp=sharing&amp;ouid=106388879401921597782&amp;rtpof=true&amp;sd=true,</a> read on 17 August 2026, which is the authority.<br />Last checked against build v3.8-bd246fd on 8/18/2026.</p>\n\n<p>AUTOMATION: READY</p>\n\t\t\t\t\t\t"
+ },
+ "30314": {
+  "title": "Invoice credit snapshot: WO rep, else customer rep, else unassigned",
+  "atmstatus": 3,
+  "refs": "SV-8636 (SBR spec v22 2026-08-17 Story 19 S19-R6; S19-N2; \u00a73 Key Decisions (single-rep snapshot); Story 22 S22-R3)",
+  "section_id": 4327,
+  "containers": {
+   "Preconditions": "markdown",
+   "Steps": "markdown",
+   "Expected Result": "markdown"
+  },
+  "blocks": {
+   "custom_preconds": 1,
+   "custom_steps": 1,
+   "custom_expected": 1
+  },
+  "versions_cited": [
+   "22"
+  ],
+  "damage": [],
+  "custom_preconds": "1. Three throwaway ZZAUTOTEST setups: (a) a WO WITH a Sales Representative assigned; (b) a WO with NO rep whose customer HAS an assigned rep; (c) a WO with NO rep whose customer has NO assigned rep.",
+  "custom_steps": "1. Invoice all three WOs.\n2. On the report (Show Unassigned on, filters covering the invoices), find each invoice and note which row it sits under.\n3. Go back to WO (a), change its Sales Representative to a different rep, and re-check the already-created invoice on the report.",
+  "custom_expected": "1. Invoice (a) is credited to the WO's Sales Representative.\n2. Invoice (b) falls back to the CUSTOMER's assigned rep.\n3. Invoice (c) is unassigned \u2014 it appears only under the \"Unassigned\" row.\n4. Changing WO (a)'s Sales Representative afterward does NOT retroactively alter the invoice already created from it \u2014 the invoice stays credited to the rep snapshotted at invoice creation.\n\n---\nThis is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Sales By Representative report specification version 22 (S19-R6, S19-N2, S22-R3), read on 17 August 2026.\n\nAUTOMATION: READY",
+  "rendered_expected_html": "\n\t\t\t\t\t\t\t<ol>\n<li>Invoice (a) is credited to the WO&#039;s Sales Representative.</li>\n<li>Invoice (b) falls back to the CUSTOMER&#039;s assigned rep.</li>\n<li>Invoice (c) is unassigned \u2014 it appears only under the &quot;Unassigned&quot; row.</li>\n<li>Changing WO (a)&#039;s Sales Representative afterward does NOT retroactively alter the invoice already created from it \u2014 the invoice stays credited to the rep snapshotted at invoice creation.</li>\n</ol>\n\n<hr />\n\n<p>This is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Sales By Representative report specification version 22 (S19-R6, S19-N2, S22-R3), read on 17 August 2026.</p>\n\n<p>AUTOMATION: READY</p>\n\t\t\t\t\t\t"
+ },
+ "30322": {
+  "title": "Parts Velocity appears under a new Parts section in the Reports navigation",
+  "atmstatus": 3,
+  "refs": "SV-8641 (PV spec v10 2026-08-17 S1-R1 \u2014 the \"only report\" sentence is superseded: Parts Velocity and Inventory Value BOTH live under Parts per the PRD video 2026-07-30; access = the one ordinary reports permission per QA lead 2026-08-03)",
+  "section_id": 4329,
+  "containers": {
+   "Preconditions": "markdown",
+   "Steps": "markdown",
+   "Expected Result": "markdown"
+  },
+  "blocks": {
+   "custom_preconds": 1,
+   "custom_steps": 1,
+   "custom_expected": 1
+  },
+  "versions_cited": [
+   "10"
+  ],
+  "damage": [],
+  "custom_preconds": "1. You are signed in to the ShopView App as a user with the Manager or Office User role.\n2. Your role has the ordinary reports access.",
+  "custom_steps": "1. Open the Reports section from the main navigation.\n2. Look through the report groupings for a section heading named Parts.\n3. Click the entry labeled Parts Velocity.",
+  "custom_expected": "1. A Parts section heading exists in the Reports navigation (this feature creates it - the application had no Parts reports before).\n2. Under Parts there is an entry labeled Parts Velocity; Inventory Value also lives under Parts. The order of the two inside the Parts section is not fixed \u2014 do not fail the test on which of them comes first.\n3. Clicking it opens the Parts Velocity report.\n\n---\nThis is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Parts Velocity report specification version 10 (S1-R1), read on 17 August 2026; where the wording of that specification differs, the behaviour above follows Chris Ward's later decision, recorded in his answers in this file: https://docs.google.com/spreadsheets/d/1x8cuYJlFsDHalVZZTh156_ZCq2gcOaGY/edit?usp=sharing&ouid=106388879401921597782&rtpof=true&sd=true, read on 17 August 2026, which is the authority.\nLast checked against build v3.8-bd246fd on 8/18/2026.\n\nAUTOMATION: READY",
+  "rendered_expected_html": "\n\t\t\t\t\t\t\t<ol>\n<li>A Parts section heading exists in the Reports navigation (this feature creates it - the application had no Parts reports before).</li>\n<li>Under Parts there is an entry labeled Parts Velocity; Inventory Value also lives under Parts. The order of the two inside the Parts section is not fixed \u2014 do not fail the test on which of them comes first.</li>\n<li>Clicking it opens the Parts Velocity report.</li>\n</ol>\n\n<hr />\n\n<p>This is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Parts Velocity report specification version 10 (S1-R1), read on 17 August 2026; where the wording of that specification differs, the behaviour above follows Chris Ward's later decision, recorded in his answers in this file: <a href=\"https://docs.google.com/spreadsheets/d/1x8cuYJlFsDHalVZZTh156_ZCq2gcOaGY/edit?usp=sharing&amp;ouid=106388879401921597782&amp;rtpof=true&amp;sd=true,\">https://docs.google.com/spreadsheets/d/1x8cuYJlFsDHalVZZTh156_ZCq2gcOaGY/edit?usp=sharing&amp;ouid=106388879401921597782&amp;rtpof=true&amp;sd=true,</a> read on 17 August 2026, which is the authority.<br />Last checked against build v3.8-bd246fd on 8/18/2026.</p>\n\n<p>AUTOMATION: READY</p>\n\t\t\t\t\t\t"
+ },
+ "30326": {
+  "title": "Without the Manager or Office User role the report entry is not shown",
+  "atmstatus": 3,
+  "refs": "SV-8641 (PV spec v10 2026-08-17 S1-N1)",
+  "section_id": 4330,
+  "containers": {
+   "Preconditions": "markdown",
+   "Steps": "markdown",
+   "Expected Result": "markdown"
+  },
+  "blocks": {
+   "custom_preconds": 1,
+   "custom_steps": 1,
+   "custom_expected": 1
+  },
+  "versions_cited": [
+   "10"
+  ],
+  "damage": [],
+  "custom_preconds": "1. You are signed in as a user whose role is neither Manager nor Office User (a role without access to the Reports section).",
+  "custom_steps": "1. Look at the application's main navigation.\n2. Try to find the Reports section and the Parts Velocity entry.",
+  "custom_expected": "1. The user cannot reach the Reports section.\n2. The Parts Velocity navigation entry is not shown (this is the Reports section's own access control, not a report-specific rule).\n\n---\nThis is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Parts Velocity report specification version 10 (S1-N1), read on 17 August 2026.\n\nAUTOMATION: READY",
+  "rendered_expected_html": "\n\t\t\t\t\t\t\t<ol>\n<li>The user cannot reach the Reports section.</li>\n<li>The Parts Velocity navigation entry is not shown (this is the Reports section&#039;s own access control, not a report-specific rule).</li>\n</ol>\n\n<hr />\n\n<p>This is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Parts Velocity report specification version 10 (S1-N1), read on 17 August 2026.</p>\n\n<p>AUTOMATION: READY</p>\n\t\t\t\t\t\t"
+ },
+ "30328": {
+  "title": "Type filter: single-select, first in row, three options, default Both; reloads",
+  "atmstatus": 3,
+  "refs": "SV-8642 (PV spec v10 2026-08-17 S2-R1; S3-R5 \u2014 S2-R1 CLOSES the three Type options and the Both default; 'Catalogue'\u2192'Special Order' per Chris Ward 2026-07-29 [newest-wins])",
+  "section_id": 4331,
+  "containers": {
+   "Preconditions": "markdown",
+   "Steps": "markdown",
+   "Expected Result": "markdown"
+  },
+  "blocks": {
+   "custom_preconds": 1,
+   "custom_steps": 1,
+   "custom_expected": 1
+  },
+  "versions_cited": [
+   "10"
+  ],
+  "damage": [],
+  "custom_preconds": "1. You are on the Parts Velocity report with data loaded.\n2. This is a first visit (no saved view), so the first-visit defaults apply.\n3. Both inventory parts and special-order parts (the \"Special Order\" type) have sales activity in the selected date range.",
+  "custom_steps": "1. Look at the first control in the filter row of the toolbar.\n2. Open the Type filter and read its options.\n3. Note which option is selected by default.\n4. Select each Type option in turn and watch the table.",
+  "custom_expected": "1. The Type filter is the first control in the filter row.\n2. It is single-select and offers exactly three choices: Both, Inventory, and Special Order (special-order catalog parts that were never put into stock).\n3. On a first visit the default is Both.\n4. Both is an explicit selection returning inventory and Special Order rows together - a deliberate filter value, not the absence of a filter.\n5. Each selection immediately reloads the report limited to that type (no separate Apply step) - under Inventory every row's Type column reads Inventory; under Special Order every row's Type column reads Special Order; under Both, rows of both kinds appear.\n\n---\nThis is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Parts Velocity report specification version 10 (S2-R1, S3-R5), read on 17 August 2026.\n\nAUTOMATION: READY",
+  "rendered_expected_html": "\n\t\t\t\t\t\t\t<ol>\n<li>The Type filter is the first control in the filter row.</li>\n<li>It is single-select and offers exactly three choices: Both, Inventory, and Special Order (special-order catalog parts that were never put into stock).</li>\n<li>On a first visit the default is Both.</li>\n<li>Both is an explicit selection returning inventory and Special Order rows together - a deliberate filter value, not the absence of a filter.</li>\n<li>Each selection immediately reloads the report limited to that type (no separate Apply step) - under Inventory every row&#039;s Type column reads Inventory; under Special Order every row&#039;s Type column reads Special Order; under Both, rows of both kinds appear.</li>\n</ol>\n\n<hr />\n\n<p>This is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Parts Velocity report specification version 10 (S2-R1, S3-R5), read on 17 August 2026.</p>\n\n<p>AUTOMATION: READY</p>\n\t\t\t\t\t\t"
+ },
+ "30333": {
+  "title": "Toolbar search matches part number or description, case-insensitively",
+  "atmstatus": 3,
+  "refs": "SV-8642 (PV spec v10 2026-08-17 S2-R6; \u00a73 Key Decisions)",
+  "section_id": 4331,
+  "containers": {
+   "Preconditions": "markdown",
+   "Steps": "markdown",
+   "Expected Result": "markdown"
+  },
+  "blocks": {
+   "custom_preconds": 1,
+   "custom_steps": 1,
+   "custom_expected": 1
+  },
+  "versions_cited": [
+   "10"
+  ],
+  "damage": [],
+  "custom_preconds": "1. You are on the Parts Velocity report with data loaded.\n2. A part exists whose part number you know, and another whose description contains a distinctive word.",
+  "custom_steps": "1. Find the search input in the report's own toolbar (not the application's global search bar).\n2. Type part of a known part number, in the wrong letter case (for example lower case for an upper-case part number).\n3. Clear it and type a distinctive word from a part's description.\n4. Clear it and type a category or vendor name that matches no part number or description.",
+  "custom_expected": "1. The search input is part of the report's toolbar (page-specific), separate from the global search bar.\n2. The part-number search matches despite the different letter case (case-insensitive 'contains' match).\n3. The description search returns rows whose description contains the word.\n4. Category and vendor names are NOT searched - use their dedicated filters instead (deliberate, to avoid false matches on common words).\n\n---\nThis is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Parts Velocity report specification version 10 (S2-R6), read on 17 August 2026.\n\nAUTOMATION: READY",
+  "rendered_expected_html": "\n\t\t\t\t\t\t\t<ol>\n<li>The search input is part of the report&#039;s toolbar (page-specific), separate from the global search bar.</li>\n<li>The part-number search matches despite the different letter case (case-insensitive &#039;contains&#039; match).</li>\n<li>The description search returns rows whose description contains the word.</li>\n<li>Category and vendor names are NOT searched - use their dedicated filters instead (deliberate, to avoid false matches on common words).</li>\n</ol>\n\n<hr />\n\n<p>This is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Parts Velocity report specification version 10 (S2-R6), read on 17 August 2026.</p>\n\n<p>AUTOMATION: READY</p>\n\t\t\t\t\t\t"
+ },
+ "30338": {
+  "title": "Empty state shows the standard no-data message when no parts match the filters",
+  "atmstatus": 3,
+  "refs": "SV-8642 (PV spec v10 2026-08-17 S2-R11; S2-N1; \u00a77 \u2014 \u00a77 CLOSES the empty-state string verbatim (\"Empty bays\" ... \"Get Going!\") as the standard reports no-data label; so the exact string IS the requirement)",
+  "section_id": 4331,
+  "containers": {
+   "Preconditions": "markdown",
+   "Steps": "markdown",
+   "Expected Result": "markdown"
+  },
+  "blocks": {
+   "custom_preconds": 1,
+   "custom_steps": 1,
+   "custom_expected": 1
+  },
+  "versions_cited": [
+   "10"
+  ],
+  "damage": [],
+  "custom_preconds": "1. You are on the Parts Velocity report with data loaded.",
+  "custom_steps": "1. Type a nonsense string (for example 'zzqx-no-such-part') into the toolbar search so no part matches.\n2. Read the message shown in the data area.",
+  "custom_expected": "1. The server returns zero rows and the table shows the empty state.\n2. The empty-state label reads exactly: \"Empty bays, endless possibilities. Get Going!\" (the application's standard reports no-data label).\n\n---\nThis is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Parts Velocity report specification version 10 (S2-R11, S2-N1), read on 17 August 2026.\n\nAUTOMATION: READY",
+  "rendered_expected_html": "\n\t\t\t\t\t\t\t<ol>\n<li>The server returns zero rows and the table shows the empty state.</li>\n<li>The empty-state label reads exactly: &quot;Empty bays, endless possibilities. Get Going!&quot; (the application&#039;s standard reports no-data label).</li>\n</ol>\n\n<hr />\n\n<p>This is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Parts Velocity report specification version 10 (S2-R11, S2-N1), read on 17 August 2026.</p>\n\n<p>AUTOMATION: READY</p>\n\t\t\t\t\t\t"
+ },
+ "30346": {
+  "title": "Info icons sit on Units Sold, Demand and Turns/Yr with descriptions",
+  "atmstatus": 3,
+  "refs": "SV-8643 (PV spec v10 2026-08-17 S3-R6 \u2014 S3-R6 CLOSES the set (exactly three columns: Units Sold; Demand; Turns / Yr) and quotes each description verbatim; so the closed set and the exact strings ARE the requirement)",
+  "section_id": 4332,
+  "containers": {
+   "Preconditions": "markdown",
+   "Steps": "markdown",
+   "Expected Result": "markdown"
+  },
+  "blocks": {
+   "custom_preconds": 1,
+   "custom_steps": 1,
+   "custom_expected": 1
+  },
+  "versions_cited": [
+   "10"
+  ],
+  "damage": [],
+  "custom_preconds": "1. You are on the Parts Velocity report with data loaded.\n2. The Turns/Yr column has been enabled via the column picker (it is hidden by default).",
+  "custom_steps": "1. Look immediately to the right of the Units Sold, Demand, and Turns/Yr header labels.\n2. Hover each grey info icon and read the description.\n3. Move focus to an icon with the keyboard (Tab) and check the same text is exposed.\n4. Click/activate an icon and watch whether the column sort changes.",
+  "custom_expected": "1. Each of the three headers carries a grey info icon, shown always (not hover-to-reveal) whenever its column is visible; the Turns/Yr icon appears only once that column is enabled.\n2. Units Sold shows exactly: \"Units taken out of inventory stock on invoiced work orders in this date range. This is stock movement, so it can differ from the units billed behind Revenue and Avg Sell.\"\n3. Demand shows exactly: \"Number of separate transactions (work orders or parts sales) this part appeared on in the selected date range. Each transaction counts once, no matter how many units were sold on it.\"\n4. Turns/Yr shows exactly: \"How many times you sell through this part in a year. Higher is better.\"\n5. The icon is focusable and exposes the same text to assistive technology; activating it does NOT trigger a column sort.\n6. No other column header carries an info icon.\n\n---\nThis is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Parts Velocity report specification version 10 (S3-R6), read on 17 August 2026.\n\nAUTOMATION: Not available on Build to test Yet - Last checked 8/17/2026",
+  "rendered_expected_html": "\n\t\t\t\t\t\t\t<ol>\n<li>Each of the three headers carries a grey info icon, shown always (not hover-to-reveal) whenever its column is visible; the Turns/Yr icon appears only once that column is enabled.</li>\n<li>Units Sold shows exactly: &quot;Units taken out of inventory stock on invoiced work orders in this date range. This is stock movement, so it can differ from the units billed behind Revenue and Avg Sell.&quot;</li>\n<li>Demand shows exactly: &quot;Number of separate transactions (work orders or parts sales) this part appeared on in the selected date range. Each transaction counts once, no matter how many units were sold on it.&quot;</li>\n<li>Turns/Yr shows exactly: &quot;How many times you sell through this part in a year. Higher is better.&quot;</li>\n<li>The icon is focusable and exposes the same text to assistive technology; activating it does NOT trigger a column sort.</li>\n<li>No other column header carries an info icon.</li>\n</ol>\n\n<hr />\n\n<p>This is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Parts Velocity report specification version 10 (S3-R6), read on 17 August 2026.</p>\n\n<p>AUTOMATION: Not available on Build to test Yet - Last checked 8/17/2026</p>\n\t\t\t\t\t\t"
+ },
+ "30351": {
+  "title": "Column picker lists all 20 columns and never offers the internal cost",
+  "atmstatus": 3,
+  "refs": "SV-8644 (PV spec v10 2026-08-17 S4-R1; S4-R4; S5-R6)",
+  "section_id": 4333,
+  "containers": {
+   "Preconditions": "markdown",
+   "Steps": "markdown",
+   "Expected Result": "markdown"
+  },
+  "blocks": {
+   "custom_preconds": 1,
+   "custom_steps": 1,
+   "custom_expected": 1
+  },
+  "versions_cited": [
+   "10"
+  ],
+  "damage": [],
+  "custom_preconds": "1. You are on the Parts Velocity report with data loaded.",
+  "custom_steps": "1. Open the column picker from its toolbar button.\n2. Count the columns listed and check each has a toggle.\n3. Look for any on-hand cost / inventory-value entry.",
+  "custom_expected": "1. The picker lists all 20 available columns, each with a toggle: Type, Part #, Description, Category, Vendor, Units Sold, Units Returned, Sold (WO), Sold (Parts Sale), Avg Cost, Avg Sell, Revenue, Margin, Margin %, Demand, Last Sale, On Hand, Turns/Yr, Min, Max.\n2. No on-hand cost column is offered - the report computes one internally but it is never selectable and never displayed.\n\n---\nThis is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Parts Velocity report specification version 10 (S4-R1, S4-R4, S5-R6), read on 17 August 2026.\nLast checked against build v3.8-bd246fd on 8/18/2026.\n\nAUTOMATION: READY",
+  "rendered_expected_html": "\n\t\t\t\t\t\t\t<ol>\n<li>The picker lists all 20 available columns, each with a toggle: Type, Part #, Description, Category, Vendor, Units Sold, Units Returned, Sold (WO), Sold (Parts Sale), Avg Cost, Avg Sell, Revenue, Margin, Margin %, Demand, Last Sale, On Hand, Turns/Yr, Min, Max.</li>\n<li>No on-hand cost column is offered - the report computes one internally but it is never selectable and never displayed.</li>\n</ol>\n\n<hr />\n\n<p>This is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Parts Velocity report specification version 10 (S4-R1, S4-R4, S5-R6), read on 17 August 2026.<br />Last checked against build v3.8-bd246fd on 8/18/2026.</p>\n\n<p>AUTOMATION: READY</p>\n\t\t\t\t\t\t"
+ },
+ "30352": {
+  "title": "First visit shows exactly the 14 default columns in the specified order",
+  "atmstatus": 3,
+  "refs": "SV-8644; SV-8646 (PV spec v10 2026-08-17 Story 4 S4-R1; S4-R2; S4-R3 + S3-R10 \u2014 the fourteen first-visit default columns and the six hidden ones; S3-R10 says Location is shown by default which S4-R2 does not list; contested and not asserted)",
+  "section_id": 4333,
+  "containers": {
+   "Preconditions": "markdown",
+   "Steps": "markdown",
+   "Expected Result": "markdown"
+  },
+  "blocks": {
+   "custom_preconds": 1,
+   "custom_steps": 1,
+   "custom_expected": 1
+  },
+  "versions_cited": [
+   "10"
+  ],
+  "damage": [],
+  "custom_preconds": "1. You are on the Parts Velocity report on a first visit (no saved column selection).",
+  "custom_steps": "1. Read the visible column headers left to right without touching the picker.",
+  "custom_expected": "1. With a single location in scope exactly these 14 columns show, in this left-to-right order: Type, Part #, Description, Category, Vendor, Units Sold, Avg Cost, Avg Sell, Revenue, Margin, Margin %, Demand, Last Sale, On Hand.\n2. The other 6 columns start hidden: Units Returned, Sold (WO), Sold (Parts Sale), Turns / Yr, Min, Max.\n3. If your login can reach more than one location the Location column shows as well, leftmost before Type \u2014 15 columns. It is not part of the 14-column default set, so its presence is expected and is not a failure of this test.\nNote for the tester: two points about this column are still unsettled for Parts Velocity, and the product owner has been asked. One is whether narrowing the location selection hides it; the other is whether it can be switched off in the column picker and whether it counts toward the fourteen default columns. Whatever you see on those two points, do not raise a bug and do not fail the test for them \u2014 record what you see and carry on. The question is here: https://raw.githubusercontent.com/bilalmuzamil-sketch/Manual-test-Cases/claude/slack-session-0sxnd9/build/report-suite/questions-2026-08-06/Questions-for-Chris-Ward_Report-Suite_2026-08-11.xlsx\nWhat you should see today: The fourteen default columns and their order are correct, but the Location column is NOT first. It sits sixth, straight after Vendor, so the headings read Type, Part #, Description, Category, Vendor, Location, Units Sold and so on. This is a known problem and it is already reported - see https://shopview.atlassian.net/browse/SV-8938\n- If you see exactly that, mark this test FAILED and do not raise anything new.\n- If it fails in a DIFFERENT way from what is described above, that is a NEW problem - please report it.\n- If it PASSES, the fix has shipped: tell the QA lead so the ticket can be closed and this note removed.\n\n---\nThis is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Parts Velocity report specification version 10 (S4-R1, S4-R2, S4-R3), read on 17 August 2026. That specification still says two different things about the Location column: S3-R10 was rewritten in version 6 to say it is shown by default and toggleable in the picker, while S4-R2 and S4-R3 enumerate twenty picker columns that do not include it. Chris Ward has been asked which is right, so neither reading is asserted here.\n\nAUTOMATION: READY - EXPECT FAIL (SV-8938)",
+  "rendered_expected_html": "\n\t\t\t\t\t\t\t<ol>\n<li>With a single location in scope exactly these 14 columns show, in this left-to-right order: Type, Part #, Description, Category, Vendor, Units Sold, Avg Cost, Avg Sell, Revenue, Margin, Margin %, Demand, Last Sale, On Hand.</li>\n<li>The other 6 columns start hidden: Units Returned, Sold (WO), Sold (Parts Sale), Turns / Yr, Min, Max.</li>\n<li><p>If your login can reach more than one location the Location column shows as well, leftmost before Type \u2014 15 columns. It is not part of the 14-column default set, so its presence is expected and is not a failure of this test.<br />Note for the tester: two points about this column are still unsettled for Parts Velocity, and the product owner has been asked. One is whether narrowing the location selection hides it; the other is whether it can be switched off in the column picker and whether it counts toward the fourteen default columns. Whatever you see on those two points, do not raise a bug and do not fail the test for them \u2014 record what you see and carry on. The question is here: <a href=\"https://raw.githubusercontent.com/bilalmuzamil-sketch/Manual-test-Cases/claude/slack-session-0sxnd9/build/report-suite/questions-2026-08-06/Questions-for-Chris-Ward_Report-Suite_2026-08-11.xlsx\">https://raw.githubusercontent.com/bilalmuzamil-sketch/Manual-test-Cases/claude/slack-session-0sxnd9/build/report-suite/questions-2026-08-06/Questions-for-Chris-Ward_Report-Suite_2026-08-11.xlsx</a><br />What you should see today: The fourteen default columns and their order are correct, but the Location column is NOT first. It sits sixth, straight after Vendor, so the headings read Type, Part #, Description, Category, Vendor, Location, Units Sold and so on. This is a known problem and it is already reported - see <a href=\"https://shopview.atlassian.net/browse/SV-8938\">https://shopview.atlassian.net/browse/SV-8938</a></p></li>\n</ol>\n\n<ul>\n<li>If you see exactly that, mark this test FAILED and do not raise anything new.</li>\n<li>If it fails in a DIFFERENT way from what is described above, that is a NEW problem - please report it.</li>\n<li>If it PASSES, the fix has shipped: tell the QA lead so the ticket can be closed and this note removed.</li>\n</ul>\n\n<hr />\n\n<p>This is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Parts Velocity report specification version 10 (S4-R1, S4-R2, S4-R3), read on 17 August 2026. That specification still says two different things about the Location column: S3-R10 was rewritten in version 6 to say it is shown by default and toggleable in the picker, while S4-R2 and S4-R3 enumerate twenty picker columns that do not include it. Chris Ward has been asked which is right, so neither reading is asserted here.</p>\n\n<p>AUTOMATION: READY - EXPECT FAIL (SV-8938)</p>\n\t\t\t\t\t\t"
+ },
+ "30353": {
+  "title": "A re-enabled column returns to its canonical slot, with no reload",
+  "atmstatus": 3,
+  "refs": "SV-8644; SV-8643 (PV spec v10 2026-08-17 S4-R4; S4-R5 + Story 3 S3-R10 \u2014 canonical column order and immediate re-render; plus the automatic Location column leftmost when shown)",
+  "section_id": 4333,
+  "containers": {
+   "Preconditions": "markdown",
+   "Steps": "markdown",
+   "Expected Result": "markdown"
+  },
+  "blocks": {
+   "custom_preconds": 1,
+   "custom_steps": 1,
+   "custom_expected": 1
+  },
+  "versions_cited": [
+   "10"
+  ],
+  "damage": [],
+  "custom_preconds": "1. You are on the Parts Velocity report with data loaded.",
+  "custom_steps": "1. In the column picker, enable Min, then Units Returned, then Turns/Yr - in that (non-canonical) order.\n2. Watch the table as each toggle is flipped.\n3. Read the resulting header order.",
+  "custom_expected": "1. Each toggle takes effect immediately - the table re-renders without a page reload.\n2. Columns always render in the fixed canonical left-to-right order regardless of the order they were toggled on (with the automatic Location column, when shown, sitting leftmost before Type): Type, Part #, Description, Category, Vendor, Units Sold, Units Returned, Sold (WO), Sold (Parts Sale), Avg Cost, Avg Sell, Revenue, Margin, Margin %, Demand, Last Sale, On Hand, Turns/Yr, Min, Max.\n3. So Units Returned slots in right after Units Sold, Turns/Yr after On Hand, and Min before Max - not appended at the end.\n\n---\nThis is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Parts Velocity report specification version 10 (S4-R4, S4-R5, S3-R10), read on 17 August 2026.\n\nAUTOMATION: Not available on Build to test Yet - Last checked 8/17/2026",
+  "rendered_expected_html": "\n\t\t\t\t\t\t\t<ol>\n<li>Each toggle takes effect immediately - the table re-renders without a page reload.</li>\n<li>Columns always render in the fixed canonical left-to-right order regardless of the order they were toggled on (with the automatic Location column, when shown, sitting leftmost before Type): Type, Part #, Description, Category, Vendor, Units Sold, Units Returned, Sold (WO), Sold (Parts Sale), Avg Cost, Avg Sell, Revenue, Margin, Margin %, Demand, Last Sale, On Hand, Turns/Yr, Min, Max.</li>\n<li>So Units Returned slots in right after Units Sold, Turns/Yr after On Hand, and Min before Max - not appended at the end.</li>\n</ol>\n\n<hr />\n\n<p>This is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Parts Velocity report specification version 10 (S4-R4, S4-R5, S3-R10), read on 17 August 2026.</p>\n\n<p>AUTOMATION: Not available on Build to test Yet - Last checked 8/17/2026</p>\n\t\t\t\t\t\t"
+ },
+ "30354": {
+  "title": "Filters; columns and sort are remembered per browser before the first fetch",
+  "atmstatus": 3,
+  "refs": "SV-8644 (PV spec v10 2026-08-17 S4-R6; S1-R2)",
+  "section_id": 4333,
+  "containers": {
+   "Preconditions": "markdown",
+   "Steps": "markdown",
+   "Expected Result": "markdown"
+  },
+  "blocks": {
+   "custom_preconds": 1,
+   "custom_steps": 1,
+   "custom_expected": 1
+  },
+  "versions_cited": [
+   "10"
+  ],
+  "damage": [],
+  "custom_preconds": "1. You are on the Parts Velocity report with data loaded.",
+  "custom_steps": "1. Set a non-default view: Type = Inventory, date range = Last Month, pick a category, enable Turns / Yr, and sort by Revenue descending.\n2. Leave the report (navigate elsewhere), then return to it.\n3. Reload the page (browser refresh) and observe again.",
+  "custom_expected": "1. On return, every saved setting is restored: Type = Inventory, Last Month, the chosen category, the column set including Turns / Yr, and the Revenue-descending sort.\n2. The saved values are applied BEFORE the first data fetch - the report does not flash the defaults and then re-query.\n3. The saved values take precedence over the first-visit defaults (This Year / Both / active location / 14 columns / Demand-descending).\n4. The same holds after a full page reload.\n\n---\nThis is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Parts Velocity report specification version 10 (S4-R6, S1-R2), read on 17 August 2026.\n\nAUTOMATION: READY",
+  "rendered_expected_html": "\n\t\t\t\t\t\t\t<ol>\n<li>On return, every saved setting is restored: Type = Inventory, Last Month, the chosen category, the column set including Turns / Yr, and the Revenue-descending sort.</li>\n<li>The saved values are applied BEFORE the first data fetch - the report does not flash the defaults and then re-query.</li>\n<li>The saved values take precedence over the first-visit defaults (This Year / Both / active location / 14 columns / Demand-descending).</li>\n<li>The same holds after a full page reload.</li>\n</ol>\n\n<hr />\n\n<p>This is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Parts Velocity report specification version 10 (S4-R6, S1-R2), read on 17 August 2026.</p>\n\n<p>AUTOMATION: READY</p>\n\t\t\t\t\t\t"
+ },
+ "30375": {
+  "title": "The overflow button opens Download (PDF) then Download (CSV) in that order",
+  "atmstatus": 3,
+  "refs": "SV-8646 (PV spec v10 2026-08-17 S6-R1 \u2014 S6-R1 CLOSES it in the spec's own words (\"an export menu with two items ... Download (PDF) and Download (CSV)\"); so the closed list IS the requirement)",
+  "section_id": 4335,
+  "containers": {
+   "Preconditions": "markdown",
+   "Steps": "markdown",
+   "Expected Result": "markdown"
+  },
+  "blocks": {
+   "custom_preconds": 1,
+   "custom_steps": 1,
+   "custom_expected": 1
+  },
+  "versions_cited": [
+   "10"
+  ],
+  "damage": [],
+  "custom_preconds": "1. You are on the Parts Velocity report with data loaded.",
+  "custom_steps": "1. Find the \u22ef overflow button - the leftmost control in the toolbar's action cluster.\n2. Click it and read the menu items top to bottom.",
+  "custom_expected": "1. The \u22ef overflow button sits leftmost in the toolbar's action cluster.\n2. The menu holds exactly two items, in this order: Download (PDF), then Download (CSV).\n\n---\nThis is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Parts Velocity report specification version 10 (S6-R1), read on 17 August 2026.\n\nAUTOMATION: READY",
+  "rendered_expected_html": "\n\t\t\t\t\t\t\t<ol>\n<li>The \u22ef overflow button sits leftmost in the toolbar&#039;s action cluster.</li>\n<li>The menu holds exactly two items, in this order: Download (PDF), then Download (CSV).</li>\n</ol>\n\n<hr />\n\n<p>This is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Parts Velocity report specification version 10 (S6-R1), read on 17 August 2026.</p>\n\n<p>AUTOMATION: READY</p>\n\t\t\t\t\t\t"
+ },
+ "30377": {
+  "title": "Exports include only the enabled columns, in the canonical on-screen order",
+  "atmstatus": 3,
+  "refs": "SV-8646 (PV spec v10 2026-08-17 S6-R3; S4-R4)",
+  "section_id": 4335,
+  "containers": {
+   "Preconditions": "markdown",
+   "Steps": "markdown",
+   "Expected Result": "markdown"
+  },
+  "blocks": {
+   "custom_preconds": 1,
+   "custom_steps": 1,
+   "custom_expected": 1
+  },
+  "versions_cited": [
+   "10"
+  ],
+  "damage": [],
+  "custom_preconds": "1. You are on the Parts Velocity report with data loaded.",
+  "custom_steps": "1. Hide two default columns (e.g. Category, Margin %) and enable a hidden one (e.g. Units Returned).\n2. Download the CSV and read its column headers in order.\n3. Download the PDF and read its columns in order.",
+  "custom_expected": "1. Both exports contain ONLY the currently enabled columns - the hidden ones are absent.\n2. Columns appear in the CANONICAL order (the fixed on-screen order) - the re-enabled Units Returned sits right after Units Sold, NOT appended at the end.\n3. The export mirrors the visible grid.\n\n---\nThis is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Parts Velocity report specification version 10 (S6-R3, S4-R4), read on 17 August 2026.\nLast checked against build v3.8-bd246fd on 8/18/2026.\n\nAUTOMATION: READY",
+  "rendered_expected_html": "\n\t\t\t\t\t\t\t<ol>\n<li>Both exports contain ONLY the currently enabled columns - the hidden ones are absent.</li>\n<li>Columns appear in the CANONICAL order (the fixed on-screen order) - the re-enabled Units Returned sits right after Units Sold, NOT appended at the end.</li>\n<li>The export mirrors the visible grid.</li>\n</ol>\n\n<hr />\n\n<p>This is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Parts Velocity report specification version 10 (S6-R3, S4-R4), read on 17 August 2026.<br />Last checked against build v3.8-bd246fd on 8/18/2026.</p>\n\n<p>AUTOMATION: READY</p>\n\t\t\t\t\t\t"
+ },
+ "30390": {
+  "title": "Header-click sorting re-queries the server; nulls first asc and last desc",
+  "atmstatus": 3,
+  "refs": "SV-8643 (PV spec v10 2026-08-17 S3-R3)",
+  "section_id": 4337,
+  "containers": {
+   "Preconditions": "markdown",
+   "Steps": "markdown",
+   "Expected Result": "markdown"
+  },
+  "blocks": {
+   "custom_preconds": 1,
+   "custom_steps": 1,
+   "custom_expected": 1
+  },
+  "versions_cited": [
+   "10"
+  ],
+  "damage": [],
+  "custom_preconds": "1. You are on the Parts Velocity report with data loaded (including rows with null values in a sortable column) and the network tab open.\n2. To see the information this test asks for you need the browser's own developer tools: press F12 (or Ctrl+Shift+I; on a Mac Cmd+Option+I) and open the \"Network\" tab, then reload the page. There is nothing to install \u2014 it is built into Chrome, Edge and Firefox.",
+  "custom_steps": "1. Click a column header and watch the network traffic and the returned order.\n2. Click it again (reverse direction) and observe.\n3. Note where the null rows land in the server-returned order for each direction.",
+  "custom_expected": "1. Each header click re-fetches the data from the server, ordered by the chosen column and direction, returning the first page of the re-sorted result set.\n2. Null values are placed FIRST on ascending and LAST on descending - as a server sort semantic, so the same order appears on screen and in the exports.\n3. Ties keep a stable order (no explicit secondary key).\n\n---\nThis is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Parts Velocity report specification version 10 (S3-R3), read on 17 August 2026.\n\nAUTOMATION: READY",
+  "rendered_expected_html": "\n\t\t\t\t\t\t\t<ol>\n<li>Each header click re-fetches the data from the server, ordered by the chosen column and direction, returning the first page of the re-sorted result set.</li>\n<li>Null values are placed FIRST on ascending and LAST on descending - as a server sort semantic, so the same order appears on screen and in the exports.</li>\n<li>Ties keep a stable order (no explicit secondary key).</li>\n</ol>\n\n<hr />\n\n<p>This is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Parts Velocity report specification version 10 (S3-R3), read on 17 August 2026.</p>\n\n<p>AUTOMATION: READY</p>\n\t\t\t\t\t\t"
+ },
+ "30451": {
+  "title": "Work In Progress appears in the reports navigation under the Performance group",
+  "atmstatus": 3,
+  "refs": "SV-8657 (WIP spec v22 2026-08-18 Story 1 S1-R1; S1-R5 \u2014 S1-R5 CLOSES the page title verbatim; Performance group below the named anchor items per the PRD video 2026-07-30; access = the one ordinary reports permission per QA lead 2026-08-03)",
+  "section_id": 4350,
+  "containers": {
+   "Preconditions": "markdown fr-view",
+   "Steps": "markdown fr-view",
+   "Expected Result": "markdown fr-view"
+  },
+  "blocks": {
+   "custom_preconds": 1,
+   "custom_steps": 1,
+   "custom_expected": 1
+  },
+  "versions_cited": [
+   "22"
+  ],
+  "damage": [],
+  "custom_preconds": "1. You are signed in to the ShopView App on a desktop browser.\n2. Your role has the ordinary reports access.",
+  "custom_steps": "1. Open the reports navigation.\n2. Look inside the Performance group of reports.\n3. Click the \"Work In Progress\" entry.\n4. Read the browser tab's page title.",
+  "custom_expected": "1. The reports navigation lists a report labeled \"Work In Progress\" under the Performance group, BELOW the pre-existing entries (Sales, Technician Efficiency, Advisor Analysis, Shop Efficiency).\n2. Clicking it opens the Work In Progress report.\n3. The browser page title is exactly \"Work In Progress - Report | ShopView\" \u2014 a plain hyphen with one space on each side.\n\n---\nThis is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Work In Progress report specification version 22 (S1-R1, S1-R5), read on 18 August 2026.\nLast checked against build v3.8-bd246fd on 8/18/2026.\n\nAUTOMATION: READY",
+  "rendered_expected_html": "\n                            1. The reports navigation lists a report labeled \"Work In Progress\" under the Performance group, BELOW the pre-existing entries (Sales, Technician Efficiency, Advisor Analysis, Shop Efficiency).\n2. Clicking it opens the Work In Progress report.\n3. The browser page title is exactly \"Work In Progress - Report | ShopView\" \u2014 a plain hyphen with one space on each side.\n\n---\nThis is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Work In Progress report specification version 22 (S1-R1, S1-R5), read on 18 August 2026.\nLast checked against build v3.8-bd246fd on 8/18/2026.\n\nAUTOMATION: READY                        "
+ },
+ "30452": {
+  "title": "Four tabs in a fixed order with the partially-completed tab selected",
+  "atmstatus": 3,
+  "refs": "SV-8657 (WIP spec v21 2026-08-17 Story 1 S1-R2; S1-R3; \u00a73 Key Decisions (no on-screen status filter) \u2014 S1-R2 CLOSES the four tab labels and their order verbatim; so the closed list IS the requirement; Story 1 S1-R4)",
+  "section_id": 4350,
+  "containers": {
+   "Preconditions": "markdown",
+   "Steps": "markdown",
+   "Expected Result": "markdown"
+  },
+  "blocks": {
+   "custom_preconds": 1,
+   "custom_steps": 1,
+   "custom_expected": 1
+  },
+  "versions_cited": [
+   "21"
+  ],
+  "damage": [],
+  "custom_preconds": "1. You are signed in to the ShopView App on a desktop browser.\n2. You have not visited the report before in this browser (no saved active-tab setting).",
+  "custom_steps": "1. Open the Work In Progress report.\n2. Read the tab labels from left to right.\n3. Look at which tab is selected when the report loads.",
+  "custom_expected": "1. Four tabs are shown, labeled in this order: \"Approved - partially completed\", \"Approved - not started\", \"Completed\", and \"Estimates\" - each followed by its count in brackets, for example \"Completed (30)\".\n2. The \"Approved - partially completed\" tab is selected by default on load.\n3. There is NO on-screen status filter \u2014 the four tabs take the place of a status filter (the tab a job lands in is derived from its status and whether any work has started).\n4. Each tab's count matches the number of work-order rows actually listed in that tab.\n\n---\nThis is the expected behaviour as per epic SV-8582, read on 17 August 2026, and its story SV-8657, read on 17 August 2026, and the Work In Progress report specification version 21 (S1-R2, S1-R3, S1-R4), read on 17 August 2026.\n\nAUTOMATION: READY",
+  "rendered_expected_html": "\n\t\t\t\t\t\t\t<ol>\n<li>Four tabs are shown, labeled in this order: &quot;Approved - partially completed&quot;, &quot;Approved - not started&quot;, &quot;Completed&quot;, and &quot;Estimates&quot; - each followed by its count in brackets, for example &quot;Completed (30)&quot;.</li>\n<li>The &quot;Approved - partially completed&quot; tab is selected by default on load.</li>\n<li>There is NO on-screen status filter \u2014 the four tabs take the place of a status filter (the tab a job lands in is derived from its status and whether any work has started).</li>\n<li>Each tab&#039;s count matches the number of work-order rows actually listed in that tab.</li>\n</ol>\n\n<hr />\n\n<p>This is the expected behaviour as per epic SV-8582, read on 17 August 2026, and its story SV-8657, read on 17 August 2026, and the Work In Progress report specification version 21 (S1-R2, S1-R3, S1-R4), read on 17 August 2026.</p>\n\n<p>AUTOMATION: READY</p>\n\t\t\t\t\t\t"
+ },
+ "30460": {
+  "title": "No qualifying work orders: every tab shows the no-data message and no Totals",
+  "atmstatus": 3,
+  "refs": "SV-8655 (WIP spec v21 2026-08-17 S2-N1; no-data message when nothing was open on the as-of date)",
+  "section_id": 4351,
+  "containers": {
+   "Preconditions": "markdown fr-view",
+   "Steps": "markdown fr-view",
+   "Expected Result": "markdown fr-view"
+  },
+  "blocks": {
+   "custom_preconds": 1,
+   "custom_steps": 1,
+   "custom_expected": 1
+  },
+  "versions_cited": [
+   "21"
+  ],
+  "damage": [],
+  "custom_preconds": "1. You are signed in to the ShopView App on a desktop browser.\n2. The Work In Progress report is open.\n3. Separately, a state can be produced where some tabs have work orders but at least one tab (for example, Completed) has none.",
+  "custom_steps": "1. Set the \"as of\" date and location so that no open work order qualifies (for example, an earlier day on which nothing was open).\n2. Open each of the four tabs and read the data area.\n3. Then, with work orders in some tabs only, open the empty tab and a populated tab.",
+  "custom_expected": "1. Each tab shows the standard reports no-data message \"Empty bays, endless possibilities. Get Going!\" in place of rows.\n2. No tab shows a Totals row.\n3. Every tab label count reads \"(0)\".\n4. When only one tab is empty, that tab shows the no-data message, no Totals row, and a \"(0)\" count while the populated tabs still show their rows normally.\n\n---\nThis is the expected behaviour as per epic SV-8582 and the Work In Progress report specification version 21 (S2-N1), both read on 17 August 2026.\n\nAUTOMATION: Not available on Build to test Yet - Last checked 8/17/2026",
+  "rendered_expected_html": "\n                            1. Each tab shows the standard reports no-data message \"Empty bays, endless possibilities. Get Going!\" in place of rows.\n2. No tab shows a Totals row.\n3. Every tab label count reads \"(0)\".\n4. When only one tab is empty, that tab shows the no-data message, no Totals row, and a \"(0)\" count while the populated tabs still show their rows normally.\n\n---\nThis is the expected behaviour as per epic SV-8582 and the Work In Progress report specification version 21 (S2-N1), both read on 17 August 2026.\n\nAUTOMATION: Not available on Build to test Yet - Last checked 8/17/2026                        "
+ },
+ "30462": {
+  "title": "Status-to-tab mapping: Estimate, Complete, In Progress and Review work orders",
+  "atmstatus": 3,
+  "refs": "SV-8656 (WIP spec v21 2026-08-17 S3; status-to-tab mapping on the as-of date)",
+  "section_id": 4352,
+  "containers": {
+   "Preconditions": "markdown",
+   "Steps": "markdown",
+   "Expected Result": "markdown"
+  },
+  "blocks": {
+   "custom_preconds": 1,
+   "custom_steps": 1,
+   "custom_expected": 1
+  },
+  "versions_cited": [
+   "21"
+  ],
+  "damage": [],
+  "custom_preconds": "1. You are signed in to the ShopView App on a desktop browser.\n2. Four ZZAUTOTEST service work orders exist open on the selected \"as of\" date, in the current location: one in Estimate status, one in Complete status, one in In Progress status, and one in Review status.",
+  "custom_steps": "1. Open the Work In Progress report.\n2. Look for each seeded work order in each tab.",
+  "custom_expected": "1. The Estimate work order appears in the \"Estimates\" tab and nowhere else.\n2. The Complete work order appears in the \"Completed\" tab and nowhere else.\n3. The In Progress and Review work orders appear in the \"Approved - Partially Completed\" tab and nowhere else.\n\nNote for the tester: the written description now says two different things about how a work order is placed into a tab. The Story 2 and Story 3 requirements \u2014 the ones this test follows \u2014 place a whole work order in one tab according to its status. A newer Key Decisions section says placement follows each LINE's state instead, so a work order whose lines are in different states would show in more than one tab, each showing only that tab's share of its money. The product owner has been asked which is right and has not answered. Until he does: if you see a work order in more than one tab, do NOT raise a bug and do NOT fail this test for it \u2014 write down what you saw and carry on. The question is here: https://raw.githubusercontent.com/bilalmuzamil-sketch/Manual-test-Cases/claude/slack-session-0sxnd9/build/report-suite/questions-2026-08-06/Questions-for-Chris-Ward_Report-Suite_2026-08-11.xlsx\n\n---\nThis is the expected behaviour as per epic SV-8582 and the Work In Progress report specification version 21 (S3-R1), both read on 17 August 2026.\n\nAUTOMATION: Not available on Build to test Yet - Last checked 8/17/2026",
+  "rendered_expected_html": "\n\t\t\t\t\t\t\t<ol>\n<li>The Estimate work order appears in the &quot;Estimates&quot; tab and nowhere else.</li>\n<li>The Complete work order appears in the &quot;Completed&quot; tab and nowhere else.</li>\n<li>The In Progress and Review work orders appear in the &quot;Approved - Partially Completed&quot; tab and nowhere else.</li>\n</ol>\n\n<p>Note for the tester: the written description now says two different things about how a work order is placed into a tab. The Story 2 and Story 3 requirements \u2014 the ones this test follows \u2014 place a whole work order in one tab according to its status. A newer Key Decisions section says placement follows each LINE's state instead, so a work order whose lines are in different states would show in more than one tab, each showing only that tab's share of its money. The product owner has been asked which is right and has not answered. Until he does: if you see a work order in more than one tab, do NOT raise a bug and do NOT fail this test for it \u2014 write down what you saw and carry on. The question is here: <a href=\"https://raw.githubusercontent.com/bilalmuzamil-sketch/Manual-test-Cases/claude/slack-session-0sxnd9/build/report-suite/questions-2026-08-06/Questions-for-Chris-Ward_Report-Suite_2026-08-11.xlsx\">https://raw.githubusercontent.com/bilalmuzamil-sketch/Manual-test-Cases/claude/slack-session-0sxnd9/build/report-suite/questions-2026-08-06/Questions-for-Chris-Ward_Report-Suite_2026-08-11.xlsx</a></p>\n\n<hr />\n\n<p>This is the expected behaviour as per epic SV-8582 and the Work In Progress report specification version 21 (S3-R1), both read on 17 August 2026.</p>\n\n<p>AUTOMATION: Not available on Build to test Yet - Last checked 8/17/2026</p>\n\t\t\t\t\t\t"
+ },
+ "30498": {
+  "title": "The Advisor filter lists the advisors in the loaded jobs; screen only",
+  "atmstatus": 3,
+  "refs": "SV-8663 (WIP spec v21 2026-08-17 Story 7 S7-R1 \u2014 the option list covers every open job in the current scope and not only the loaded rows)",
+  "section_id": 4358,
+  "containers": {
+   "Preconditions": "markdown",
+   "Steps": "markdown",
+   "Expected Result": "markdown"
+  },
+  "blocks": {
+   "custom_preconds": 1,
+   "custom_steps": 1,
+   "custom_expected": 1
+  },
+  "versions_cited": [
+   "21"
+  ],
+  "damage": [],
+  "custom_preconds": "1. You are signed in to the ShopView App on a desktop browser.\n2. The report shows jobs for at least two different advisors.",
+  "custom_steps": "1. Open the Advisor filter in the toolbar and read its options.\n2. Select one advisor and watch the rows.\n3. Add a second advisor to the selection.\n4. Scroll to the bottom of a busy tab, note an advisor who only appears down there, then open the filter again and check that advisor is offered.",
+  "custom_expected": "1. The Advisor filter is a multi-select listing the advisors on every open job in what the report is currently showing you \u2014 not only the ones on the rows that happen to have loaded.\n2. Selecting one or more advisors narrows the visible jobs to those advisors instantly, on screen only \u2014 no reload and no loading indicator.\n3. With two advisors selected, jobs for either advisor are shown.\n4. Pick an advisor whose jobs sit a long way down the list \u2014 scroll to the bottom of a busy tab to find one \u2014 and confirm every one of that advisor's jobs is still shown. You must never end up with only the part of the list that had loaded when you opened the filter.\nWhat you should see today: ticking an advisor sends a fresh request to the server and the table is rebuilt from the answer, instead of simply hiding the rows on screen. The list of advisors itself is right - it covers the whole scope. This is a known problem and it is already reported - see https://shopview.atlassian.net/browse/SV-8968\n\u00b7 If you see exactly that, mark this test FAILED and do not raise anything new.\n\u00b7 If it fails in a DIFFERENT way from what is described above, that is a NEW problem - please report it.\n\u00b7 If it PASSES, the fix has shipped: tell the QA lead so the ticket can be closed and this note removed.\n\n---\nThis is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Work In Progress report specification version 21 (S7-R1), read on 17 August 2026.\nLast checked against build v3.5-7168d14 on 8/6/2026.\n\nAUTOMATION: READY - EXPECT FAIL (SV-8968)",
+  "rendered_expected_html": "\n\t\t\t\t\t\t\t<ol>\n<li>The Advisor filter is a multi-select listing the advisors on every open job in what the report is currently showing you \u2014 not only the ones on the rows that happen to have loaded.</li>\n<li>Selecting one or more advisors narrows the visible jobs to those advisors instantly, on screen only \u2014 no reload and no loading indicator.</li>\n<li>With two advisors selected, jobs for either advisor are shown.</li>\n<li><p>Pick an advisor whose jobs sit a long way down the list \u2014 scroll to the bottom of a busy tab to find one \u2014 and confirm every one of that advisor's jobs is still shown. You must never end up with only the part of the list that had loaded when you opened the filter.<br />What you should see today: ticking an advisor sends a fresh request to the server and the table is rebuilt from the answer, instead of simply hiding the rows on screen. The list of advisors itself is right - it covers the whole scope. This is a known problem and it is already reported - see <a href=\"https://shopview.atlassian.net/browse/SV-8968\">https://shopview.atlassian.net/browse/SV-8968</a><br />\u00b7 If you see exactly that, mark this test FAILED and do not raise anything new.<br />\u00b7 If it fails in a DIFFERENT way from what is described above, that is a NEW problem - please report it.<br />\u00b7 If it PASSES, the fix has shipped: tell the QA lead so the ticket can be closed and this note removed.</p></li>\n</ol>\n\n<hr />\n\n<p>This is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Work In Progress report specification version 21 (S7-R1), read on 17 August 2026.<br />Last checked against build v3.5-7168d14 on 8/6/2026.</p>\n\n<p>AUTOMATION: READY - EXPECT FAIL (SV-8968)</p>\n\t\t\t\t\t\t"
+ },
+ "30506": {
+  "title": "Column Selection toggles columns; Total is not offered at all",
+  "atmstatus": 3,
+  "refs": "SV-8664 (WIP spec v22 2026-08-18 Story 8 S8-R1; S8-R2)",
+  "section_id": 4359,
+  "containers": {
+   "Preconditions": "markdown fr-view",
+   "Steps": "markdown fr-view",
+   "Expected Result": "markdown fr-view"
+  },
+  "blocks": {
+   "custom_preconds": 1,
+   "custom_steps": 1,
+   "custom_expected": 1
+  },
+  "versions_cited": [
+   "22"
+  ],
+  "damage": [],
+  "custom_preconds": "1. You are signed in to the ShopView App on a desktop browser.\n2. The Work In Progress report is open with rows loaded.",
+  "custom_steps": "1. Hover the column-selection icon button in the toolbar and read its tooltip.\n2. Open the control and toggle a column off, then on again, watching the table.\n3. Look for the Total column in the control's list.",
+  "custom_expected": "1. The icon button's tooltip reads \"Column Selection\".\n2. Toggling a column off hides it from the table; toggling it on shows it again.\n3. The Total column is always shown and cannot be turned off \u2014 it is not offered in the control at all.\n\n---\nThis is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Work In Progress report specification version 22 (S8-R1, S8-R2), read on 18 August 2026.\nLast checked against build v3.8-bd246fd on 8/18/2026.\n\nAUTOMATION: READY",
+  "rendered_expected_html": "\n                            1. The icon button's tooltip reads \"Column Selection\".\n2. Toggling a column off hides it from the table; toggling it on shows it again.\n3. The Total column is always shown and cannot be turned off \u2014 it is not offered in the control at all.\n\n---\nThis is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Work In Progress report specification version 22 (S8-R1, S8-R2), read on 18 August 2026.\nLast checked against build v3.8-bd246fd on 8/18/2026.\n\nAUTOMATION: READY                        "
+ },
+ "30507": {
+  "title": "Toggling columns never reorders them (Total always last)",
+  "atmstatus": 3,
+  "refs": "SV-8664 (WIP spec v22 2026-08-18 S4-R1; S8-R7; renamed to Labor Delta per SV-9071)",
+  "section_id": 4359,
+  "containers": {
+   "Preconditions": "markdown",
+   "Steps": "markdown",
+   "Expected Result": "markdown"
+  },
+  "blocks": {
+   "custom_preconds": 1,
+   "custom_steps": 1,
+   "custom_expected": 1
+  },
+  "versions_cited": [
+   "22"
+  ],
+  "damage": [],
+  "custom_preconds": "1. You are signed in to the ShopView App on a desktop browser.\n2. The Work In Progress report is open with rows in at least two tabs.",
+  "custom_steps": "1. Turn several optional columns on and off in different orders (for example, turn on Labor Delta, then VIN, then Location).\n2. Read the resulting column order after each change.\n3. Switch to each of the other tabs and read their columns.",
+  "custom_expected": "1. Whatever columns are shown, they always appear in the fixed left-to-right order (WO #, Status, Customer, Asset, VIN, Location, Advisor, Days Open, Last Activity, Labor Earned, Labor Remaining, Parts Earned, Parts Remaining, Earned, Remaining, Adjustments, Labor Delta, Total) \u2014 the order you toggled them in never changes their position.\n2. Total is always the last column.\n3. The column selection applies to every tab at once \u2014 all four tabs show the same set of columns.\n\n---\nThis is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Work In Progress report specification version 22 (S4-R1; S8-R7), read on 18 August 2026. The column was renamed from \"Inv. Hrs\" to \"Labor Delta\" per SV-9071; only the name changed.\nLast checked against build v3.8-bd246fd on 8/18/2026.\n\nAUTOMATION: READY",
+  "rendered_expected_html": "\n\t\t\t\t\t\t\t<ol>\n<li>Whatever columns are shown, they always appear in the fixed left-to-right order (WO #, Status, Customer, Asset, VIN, Location, Advisor, Days Open, Last Activity, Labor Earned, Labor Remaining, Parts Earned, Parts Remaining, Earned, Remaining, Adjustments, Labor Delta, Total) \u2014 the order you toggled them in never changes their position.</li>\n<li>Total is always the last column.</li>\n<li>The column selection applies to every tab at once \u2014 all four tabs show the same set of columns.</li>\n</ol>\n\n<hr />\n\n<p>This is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Work In Progress report specification version 22 (S4-R1; S8-R7), read on 18 August 2026. The column was renamed from \"Inv. Hrs\" to \"Labor Delta\" per SV-9071; only the name changed.<br />Last checked against build v3.8-bd246fd on 8/18/2026.</p>\n\n<p>AUTOMATION: READY</p>\n\t\t\t\t\t\t"
+ },
+ "30508": {
+  "title": "Remembers the \"as of\" date, filter selections, location, columns",
+  "atmstatus": 3,
+  "refs": "SV-8664 (WIP spec v21 2026-08-17 S8-R7; report remembers the single as-of date per Chris 2026-08-13)",
+  "section_id": 4359,
+  "containers": {
+   "Preconditions": "markdown",
+   "Steps": "markdown",
+   "Expected Result": "markdown"
+  },
+  "blocks": {
+   "custom_preconds": 1,
+   "custom_steps": 1,
+   "custom_expected": 1
+  },
+  "versions_cited": [
+   "21"
+  ],
+  "damage": [],
+  "custom_preconds": "1. You are signed in to the ShopView App on a desktop browser.\n2. The Work In Progress report is open.",
+  "custom_steps": "1. Change the \"as of\" date, select an advisor, a customer, and an asset, change the location selection, change the column selection, and switch to a different tab.\n2. Navigate away to another screen, then return to the report.\n3. Reload the browser page and check again.\n4. If practical, open the report in a different browser (or private window) and read its settings.",
+  "custom_expected": "1. On return and after a reload, the report restores the saved \"as of\" date, advisor selection, customer selection, asset selection, location selection, column selection, and active tab.\n2. In a different browser the report shows the defaults instead \u2014 the settings are saved per browser, not on the user's account.\n\n---\nThis is the expected behaviour as per epic SV-8582 and the Work In Progress report specification version 21 (S8-R7), both read on 17 August 2026.\n\nAUTOMATION: Not available on Build to test Yet - Last checked 8/17/2026",
+  "rendered_expected_html": "\n\t\t\t\t\t\t\t<ol>\n<li>On return and after a reload, the report restores the saved &quot;as of&quot; date, advisor selection, customer selection, asset selection, location selection, column selection, and active tab.</li>\n<li>In a different browser the report shows the defaults instead \u2014 the settings are saved per browser, not on the user&#039;s account.</li>\n</ol>\n\n<hr />\n\n<p>This is the expected behaviour as per epic SV-8582 and the Work In Progress report specification version 21 (S8-R7), both read on 17 August 2026.</p>\n\n<p>AUTOMATION: Not available on Build to test Yet - Last checked 8/17/2026</p>\n\t\t\t\t\t\t"
+ },
+ "30510": {
+  "title": "Work In Progress: a three-dot menu holds Download (PDF) and Download (CSV)",
+  "atmstatus": 3,
+  "refs": "SV-8665 (WIP spec v21 2026-08-17 Story 9 S9-R1)",
+  "section_id": 4360,
+  "containers": {
+   "Preconditions": "markdown",
+   "Steps": "markdown",
+   "Expected Result": "markdown"
+  },
+  "blocks": {
+   "custom_preconds": 1,
+   "custom_steps": 1,
+   "custom_expected": 1
+  },
+  "versions_cited": [
+   "21"
+  ],
+  "damage": [],
+  "custom_preconds": "1. You are signed in to the ShopView App on a desktop browser.\n2. The Work In Progress report is open with rows loaded.",
+  "custom_steps": "1. Find and open the three-dot button in the toolbar.\n2. Read the menu options.\n3. Choose \"Download (PDF)\", then repeat with \"Download (CSV)\".",
+  "custom_expected": "1. The menu holds the download options \"Download (PDF)\" and \"Download (CSV)\".\n2. Each option downloads a file of the current tab in the chosen format.\n\n---\nThis is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Work In Progress report specification version 21 (S9-R1), read on 17 August 2026.\n\nAUTOMATION: READY",
+  "rendered_expected_html": "\n\t\t\t\t\t\t\t<ol>\n<li>The menu holds the download options &quot;Download (PDF)&quot; and &quot;Download (CSV)&quot;.</li>\n<li>Each option downloads a file of the current tab in the chosen format.</li>\n</ol>\n\n<hr />\n\n<p>This is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Work In Progress report specification version 21 (S9-R1), read on 17 August 2026.</p>\n\n<p>AUTOMATION: READY</p>\n\t\t\t\t\t\t"
+ },
+ "30511": {
+  "title": "Downloads keep shown columns, honor filters, include the tab's Totals row",
+  "atmstatus": 3,
+  "refs": "SV-8665 (WIP spec v22 2026-08-18 S9-R3; S9-R10a; downloads honor the as-of date; heading renamed to Labor Delta per SV-9071)",
+  "section_id": 4360,
+  "containers": {
+   "Preconditions": "markdown",
+   "Steps": "markdown",
+   "Expected Result": "markdown"
+  },
+  "blocks": {
+   "custom_preconds": 1,
+   "custom_steps": 1,
+   "custom_expected": 1
+  },
+  "versions_cited": [
+   "22"
+  ],
+  "damage": [],
+  "custom_preconds": "1. You are signed in to the ShopView App on a desktop browser.\n2. The report is open with a non-default column selection (for example, Labor Delta on and Advisor off), a chosen \"as of\" date and location, and an advisor/customer/asset filter applied that hides some rows.",
+  "custom_steps": "1. Download the current tab as a CSV and open it.\n2. Compare its columns to the screen's visible columns and order.\n3. Compare its rows to the jobs left visible by the filters.\n4. Compare its Totals row to the on-screen Totals row.\n5. Repeat the same checks in the PDF.",
+  "custom_expected": "1. Both downloads include only the columns currently shown, in the same left-to-right order as the screen, with Total last. One exception on this build: if you turn Labor Delta on, the download is refused - that column cannot be exported yet.\n2. Both downloads honor the current \"as of\" date and location filter, and include only the jobs left visible by the advisor, customer, and asset filters.\n3. Both downloads include a Totals row matching the on-screen Totals row for the tab.\n4. Each download (PDF and CSV) carries a \"Locations:\" line naming the location(s) the report was scoped to.\n5. Note for the tester: the file carries the Location column whenever it is showing on screen. In the file it is headed \"Branch\", not \"Location\".\n\n---\nThis is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Work In Progress report specification version 22 (S9-R3; S9-R10a), read on 18 August 2026.\nLast checked against build v3.8-bd246fd on 8/18/2026.\n\nAUTOMATION: READY",
+  "rendered_expected_html": "\n\t\t\t\t\t\t\t<ol>\n<li>Both downloads include only the columns currently shown, in the same left-to-right order as the screen, with Total last. One exception on this build: if you turn Labor Delta on, the download is refused - that column cannot be exported yet.</li>\n<li>Both downloads honor the current &quot;as of&quot; date and location filter, and include only the jobs left visible by the advisor, customer, and asset filters.</li>\n<li>Both downloads include a Totals row matching the on-screen Totals row for the tab.</li>\n<li>Each download (PDF and CSV) carries a &quot;Locations:&quot; line naming the location(s) the report was scoped to.</li>\n<li>Note for the tester: the file carries the Location column whenever it is showing on screen. In the file it is headed &quot;Branch&quot;, not &quot;Location&quot;.</li>\n</ol>\n\n<hr />\n\n<p>This is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Work In Progress report specification version 22 (S9-R3; S9-R10a), read on 18 August 2026.<br />Last checked against build v3.8-bd246fd on 8/18/2026.</p>\n\n<p>AUTOMATION: READY</p>\n\t\t\t\t\t\t"
+ },
+ "30515": {
+  "title": "The downloaded files are named \"wip-2-report.pdf\" and \"wip-2-report.csv\"",
+  "atmstatus": 3,
+  "refs": "SV-8665 (WIP spec v21 2026-08-17 Story 9 S9-R9 \u2014 S9-R9 CLOSES both file names verbatim including the \"-2-\" segment; so the exact strings ARE the requirement)",
+  "section_id": 4360,
+  "containers": {
+   "Preconditions": "markdown",
+   "Steps": "markdown",
+   "Expected Result": "markdown"
+  },
+  "blocks": {
+   "custom_preconds": 1,
+   "custom_steps": 1,
+   "custom_expected": 1
+  },
+  "versions_cited": [
+   "21"
+  ],
+  "damage": [],
+  "custom_preconds": "1. You are signed in to the ShopView App on a desktop browser.\n2. The Work In Progress report is open with rows loaded.",
+  "custom_steps": "1. Download the current tab as a PDF and read the saved file's name.\n2. Download the current tab as a CSV and read the saved file's name.",
+  "custom_expected": "1. The PDF is named \"wip-2-report.pdf\".\n2. The CSV is named \"wip-2-report.csv\".\n3. These exact names (including the \"-2-\") are the specified current behavior.\n\n---\nThis is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Work In Progress report specification version 21 (S9-R9), read on 17 August 2026.\n\nAUTOMATION: READY",
+  "rendered_expected_html": "\n\t\t\t\t\t\t\t<ol>\n<li>The PDF is named &quot;wip-2-report.pdf&quot;.</li>\n<li>The CSV is named &quot;wip-2-report.csv&quot;.</li>\n<li>These exact names (including the &quot;-2-&quot;) are the specified current behavior.</li>\n</ol>\n\n<hr />\n\n<p>This is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Work In Progress report specification version 21 (S9-R9), read on 17 August 2026.</p>\n\n<p>AUTOMATION: READY</p>\n\t\t\t\t\t\t"
+ },
+ "30527": {
+  "title": "Without reports access Work In Progress is absent from the navigation",
+  "atmstatus": 3,
+  "refs": "SV-8657 (WIP spec v21 2026-08-17 Story 1 S1-N1 \u2014 the gate is the one ordinary reports access per Chris Ward Q2=A + QA lead 2026-08-03 \"ONE permission FOR NOW\")",
+  "section_id": 4362,
+  "containers": {
+   "Preconditions": "markdown",
+   "Steps": "markdown",
+   "Expected Result": "markdown"
+  },
+  "blocks": {
+   "custom_preconds": 1,
+   "custom_steps": 1,
+   "custom_expected": 1
+  },
+  "versions_cited": [
+   "21"
+  ],
+  "damage": [],
+  "custom_preconds": "1. A test user exists whose role does NOT have reports access (assign the Tech user such a role; restore the original role afterward).\n2. You are signed in as that user on a desktop browser.",
+  "custom_steps": "1. Open the reports navigation.\n2. Look for \"Work In Progress\" under the Performance group.",
+  "custom_expected": "1. The report does not appear in the navigation for this user.\n\n---\nThis is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Work In Progress report specification version 21 (S1-N1), read on 17 August 2026.\n\nAUTOMATION: READY",
+  "rendered_expected_html": "\n\t\t\t\t\t\t\t<ol>\n<li>The report does not appear in the navigation for this user.</li>\n</ol>\n\n<hr />\n\n<p>This is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Work In Progress report specification version 21 (S1-N1), read on 17 August 2026.</p>\n\n<p>AUTOMATION: READY</p>\n\t\t\t\t\t\t"
+ }
+}

@@ -1,0 +1,42 @@
+[
+ {
+  "cid": 30345,
+  "field": "custom_expected",
+  "expect_atm": 1,
+  "why": "PV v11 S3-R8 scopes the right-aligned numerics to the PDF only; parenthetical corrected + pin 10 -> 11",
+  "edits": [
+   {
+    "find": "(The exports right-align numerics instead: a deliberate export-only difference.)",
+    "replace": "(The PDF right-aligns numerics instead: a deliberate PDF-only difference; the CSV carries no alignment at all.)"
+   },
+   {
+    "find": "the Parts Velocity report specification version 10 (S3-R4, S3-R5, S3-R8), read on 17 August 2026",
+    "replace": "the Parts Velocity report specification version 11 (S3-R4, S3-R5, S3-R8), read on 28 August 2026"
+   },
+   {
+    "find": "<br><br>AUTOMATION: READY",
+    "replace": "<br>Re-checked against the live specification on 28 August 2026: item 3 was corrected to follow S3-R8 in version 11, which right-aligns the numeric and money columns in the PDF only, and the version cited above was updated.<br><br>AUTOMATION: READY"
+   }
+  ]
+ },
+ {
+  "cid": 30381,
+  "field": "custom_expected",
+  "expect_atm": 1,
+  "why": "content current against live PV v11 S6-R7/S6-R8/S3-R9; the version is named twice and the note's date was stale",
+  "edits": [
+   {
+    "find": "(version 10, updated 17 August 2026, per the SV-8823 correction)",
+    "replace": "(version 11, updated 20 August 2026, per the SV-8823 correction)"
+   },
+   {
+    "find": "the Parts Velocity report specification version 10 (updated 17 August 2026, S6-R7, S6-R8, S3-R9;",
+    "replace": "the Parts Velocity report specification version 11 (updated 20 August 2026, S6-R7, S6-R8, S3-R9;"
+   },
+   {
+    "find": "<br><br>AUTOMATION: READY",
+    "replace": "<br>Re-checked against the live specification on 28 August 2026: every requirement this case cites was read again in version 11 and the behaviour above still matches it, so only the cited version and its publication date were updated.<br><br>AUTOMATION: READY"
+   }
+  ]
+ }
+]
