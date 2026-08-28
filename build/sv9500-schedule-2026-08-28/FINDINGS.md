@@ -24,8 +24,30 @@ Steps (Trucks Hill 2, test org 72b2cc90):
 
 Control check (same WO earlier, when actual 0.2h < estimate 1.0h): drag → `POST /api/schedule/shifts` → **201**, shift created normally. So the block is specifically the actual-≥-estimate condition.
 
-## QA branch fix verification (sv9500)
-PENDING — needs a fresh QA-branch sign-in (the per-ticket SSO session expires quickly). Plan: same setup on sv9500 (labor line, actual > estimate), drag onto the Schedule → **expected PASS = the shift is created with no "Nothing left to schedule" toaster.**
+## QA branch fix verification (sv9500) — FIX CONFIRMED (deployed-code diff)
+
+The QA-branch UI could **not** be driven live from the test environment (the automated cookie session does not complete the app's SSO login handshake — `/api/auth/me/fe-permissions` returns "Session has expired", so every route bounces to `/login`; the user's own browser is unaffected). Instead the fix was verified **in the deployed frontend code**, which is the actual shipped artifact, and diffed against production.
+
+The scheduling drop handler (chunk `Schedule.*.js`, function `sn`) is identical on both builds:
+```
+sn = a => { ...; const r = Xt(a); if(X.value && Qi(a.totalMinutes)){Vr(a);return}  // estimate==0 → "Estimate required"
+            if(r < ga){ Br(); return }  // ga=15; Br() shows the "Nothing left to schedule" toaster
+            ...create shift... }
+```
+The difference is entirely in **`Xt`** (how the remaining schedulable minutes `r` are computed):
+
+| | Production (`Schedule.BrEsg7Ge.js`) — BUG | QA branch (`Schedule.8MUSjh2I.js`) — FIX |
+|---|---|---|
+| `Xt` | `a => Math.round(tu(a.totalMinutes, a.clockedMinutes, Ha(a)))` | `a => Math.round(su(tu(a.totalMinutes, a.clockedMinutes, Ya(a)), a.totalMinutes))` |
+| `su` | — (not applied) | `su = (e,t) => t<=0 ? 0 : Math.max(e>0?e:t, ga)` |
+| `tu` (both) | `(e,t,s) => … Math.max(e - clocked, 0)` | same |
+
+- **Production:** `tu` returns `max(estimate − actual, 0)` = **0** when actual ≥ estimate → `r = 0` → `r < 15` true → `Br()` → **toaster, blocked** (reproduced live above).
+- **QA branch:** the new **`su` wrapper** turns a 0/negative remaining into the **full estimate**: `su(0, estimate) = max(estimate, 15)` → `r = estimate` (≥15) → `r < 15` false → **no toaster, the shift is scheduled** — using the original estimate as the shift size, exactly SV-9497's "allow scheduling when remaining estimated hours are 0/negative **without changing the original line estimate**."
+
+**Verdict: the fix is present in the QA build and absent in production.** Evidence: `evidence/QA-vs-PROD-code-comparison.json`, `evidence/QA-Schedule.8MUSjh2I.js`.
+
+**Live UI confirmation (optional):** on `sv9500`, drag WO `32487af5` (Actual > Estimate) onto a technician's slot on the Schedule → expected: it schedules with a "Shift scheduled." toast and **no** "Nothing left to schedule" toaster.
 
 ## Key endpoints / recipe (also added to APP-ACTIONS-PLAYBOOK.md)
 - New Line dialog fields: `select_line_canned_line`, `input_line_description`, `select_line_roster_add_technician`, `input_time_estimate` (estimate), `input_tech_time`, `button_save_close`.
