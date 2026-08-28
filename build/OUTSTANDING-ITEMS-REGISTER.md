@@ -2,6 +2,25 @@
 
 > **⚠️ REFERENCE ONLY — this register is history and other sessions' work. It is NOT a backlog and does not authorise action (Rule 92).** Reading an open item here does **not** mean it is yours to work on; a lane session acts only on the project the QA lead has NAMED.
 
+## 🆕 2026-08-28 — TWO PO RECORDS CORRECTED (one owner recorded, one project mis-attribution closed)
+
+**Both are record corrections. Nothing was sent to any PO, and no ticket was created — the Rule-62
+creation hold (row **H1**) is untouched.**
+
+| ID | Correction | Where it now lives | Status |
+|---|---|---|---|
+| **PO-1** | **The Custom Roles & Permissions PO is SASHA** — recorded as **Sasha Grosman**, the spelling used throughout this repo for the owner/author of that specification family. CLAUDE.md §3 had carried *"PO UNKNOWN — must be asked"*, which is why the Custom Roles PO question sheet could not be routed. | `build/custom-roles/PROJECT-STATE.md` §2 (**new file — the project had none**), the CLAUDE.md §3 project-index row, and this register | **RECORDED.** ⚠️ **One thing still owed: the surname's spelling.** TestRail user **9** is *"Sasha **Gross**man"* (`product@shopview.com`); every prose reference in this repo says *"Sasha **Gros**man"*. Same person, unconfirmed spelling — **confirm before his name goes on anything he reads.** |
+| **PO-2** | **C30491 is a WORK IN PROGRESS case, not Inventory Value.** The question about what the Estimates summary figure counts was handed to us labelled *"Inventory Value"*. It is not: **C30491** — *"The Estimates figure is the Estimates tab total, shown at full opacity"* — sits live in **section 4356, `Reports Suite > Work In Progress > WIP — Summary Strip`** (`custom_atmstatus = 1`), and `S5-R8` / `S5-R9` / `S5-R12` are **WIP** anchors. Inventory Value v10's own `S5-R8` reads *"Changing the 'as of' date reloads the report"* and has nothing to do with Estimates. | `build/report-suite/questions-2026-08-26/PROJECT-ATTRIBUTION-CORRECTION-2026-08-28.md`, and this register | **CLOSED.** The sheet itself was **already written against the Work In Progress report** and already carried the note for the QA lead, so **no question text needed changing** — the attribution is now confirmed live and recorded so it cannot be re-introduced. |
+
+**Rule 3 reminder — PO attributions must never be mixed.** Chris Ward = Report Suite + Fees & Discounts ·
+Branko = Filters + Schedule + Global Search · Milos = Simple Flow · **Sasha = Custom Roles**.
+
+**Open question now routable to Sasha (Custom Roles):** PRD **v54** says three ways that the Service
+Manager **can** reverse a work order invoice (Permission Matrix `V/E/D`, §1a Work Orders → Delete, and
+the 2026-06-28 change-log entry), while the *Behavior Changes for Migrating Users* table still says
+*"Service Manager Loses Invoicing Delete (cannot reverse)"*. Please confirm that line is residue.
+Detail: `build/custom-roles/source-verify-2026-08-28/C27776-CORRECTION-APPLIED.md` §4.
+
 ## 🆕 2026-08-21 — PROJECT INDEX LIVE REFRESH. **THE CLAUDE.md INDEX NUMBERS WERE CARRIED OVER, NOT MEASURED — AND SIX OF THEM WERE WRONG. TWO EPICS WE RECORDED AS NON-EXISTENT EXIST. EVERY PROJECT'S SPEC HAS MOVED.** Evidence: `build/PROJECT-INDEX-REFRESH-2026-08-21.md`
 
 **Live this pass:** TestRail API (200) · Atlassian MCP Confluence + Jira (200) · unauthenticated
