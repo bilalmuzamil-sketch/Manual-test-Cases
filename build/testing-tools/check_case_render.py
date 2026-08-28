@@ -6,13 +6,19 @@ each case LIVE and flags the formatting traps that make a case render badly for 
 tester (proven live 2026-08-28, C27800):
 
   1. STYLING inline tags that show literally: <b> <i> <u> <code> <em> <strong> <font> <span>.
-     (NOTE: <br> is ALLOWED and renders correctly — it is the right way to make a tight
-     single-line break between two related sentences INSIDE one <p>. Do not flag it.)
   2. A "wall of text": prose paragraphs separated by a blank line but NOT split into
      block elements — TestRail wraps the whole value in one <p>, so those blank lines
-     collapse and every paragraph runs together. (Use separate <p> blocks for wider gaps
-     and <br> for tight breaks; never rely on raw blank lines.)
+     collapse and every paragraph runs together.
   3. No block structure at all in a multi-line field.
+
+WARNING (reported, does NOT fail the check):
+  * <br> — renders when added via the TestRail UI editor, but shows LITERALLY when written
+    via the API. Since our scripts write via the API, do NOT emit <br> in an API payload.
+    Put each line in its own <p>, or use a <ul><li> list. A <br> seen live is usually a
+    human's UI edit (fine, leave it) — but never generate one from a script.
+
+The ONLY tags proven to render when written via the API are BLOCK tags:
+  <p>  <ol>/<ul> + <li>  <hr>.  Use only those.
 
 Exit code is non-zero if any case fails, so it can gate a commit / a push script.
 
@@ -46,21 +52,26 @@ def get(path):
     r.add_header("Authorization", "Basic " + base64.b64encode(f"{EMAIL}:{KEY}".encode()).decode())
     return json.loads(urllib.request.urlopen(r, context=CTX, timeout=60).read())
 
-# <br> is deliberately NOT here: it renders correctly and is the right tool for a tight
-# line break inside a <p>. Only the STYLING inline tags show literally in TestRail.
+# STYLING inline tags show literally when written via the API -> hard fail.
 INLINE = re.compile(r"</?(b|i|u|em|strong|code|font|span)\b", re.I)
+# <br> renders from a UI edit but shows literally from an API write -> WARN, not fail.
+BR = re.compile(r"<br\b", re.I)
+# Block tags that DO render via the API. (<br> counts as structure for the wall-of-text test,
+# even though we warn on it, so a UI-edited <br> field is not double-reported as a wall.)
 BLOCK = re.compile(r"<(p|ol|ul|li|hr|br|h[1-6]|table|blockquote)\b", re.I)
 
 def check_field(name, val):
-    problems = []
+    """Return (problems, warnings). problems fail the check; warnings are reported only."""
+    problems = []; warnings = []
     if not val:
-        return problems
+        return problems, warnings
     if INLINE.search(val):
         tags = sorted(set(m.group(0) for m in INLINE.finditer(val)))
-        problems.append(f"{name}: inline tag(s) present {tags} — they render literally; use block tags only")
-    # Strip block tags, then look for prose split by blank lines that never became blocks.
-    # If the field has multiple non-empty text lines separated by a blank line but < 2 block tags,
-    # it will collapse into a wall of text.
+        problems.append(f"{name}: styling inline tag(s) {tags} — render literally; use block tags only")
+    if BR.search(val):
+        warnings.append(f"{name}: <br> present — renders from a UI edit but shows LITERALLY from an "
+                        f"API write; never emit <br> from a script (use separate <p> or <ul><li>)")
+    # Prose split by blank lines that never became blocks collapses into one paragraph.
     text_lines = [l for l in val.replace("\r", "").split("\n") if l.strip()]
     blank_sep = bool(re.search(r"\S[^\n]*\n\s*\n\s*\S", val))
     nblocks = len(BLOCK.findall(val))
@@ -69,7 +80,7 @@ def check_field(name, val):
                         f"(only {nblocks} block tag) — TestRail will collapse these into one paragraph")
     if len(text_lines) > 1 and nblocks == 0:
         problems.append(f"{name}: multi-line content with no block tags — will not line-break")
-    return problems
+    return problems, warnings
 
 def main():
     ids = [a.lstrip("Cc") for a in sys.argv[1:]]
@@ -81,16 +92,18 @@ def main():
             c = get(f"get_case/{cid}")
         except urllib.error.HTTPError as e:
             print(f"C{cid}: FETCH ERROR HTTP {e.code}"); failed += 1; continue
-        probs = []
+        probs = []; warns = []
         for f in ("custom_preconds", "custom_steps", "custom_expected"):
-            probs += check_field(f, c.get(f))
+            p, w = check_field(f, c.get(f)); probs += p; warns += w
         if probs:
             failed += 1
             print(f"C{cid}  ✗  \"{c.get('title','')[:70]}\"")
-            for p in probs:
-                print("      -", p)
+            for p in probs: print("      -", p)
+            for w in warns: print("      ! (warn)", w)
         else:
-            print(f"C{cid}  ✓  renders clean  \"{c.get('title','')[:60]}\"")
+            mark = "✓  renders clean" if not warns else "✓  renders (with warnings)"
+            print(f"C{cid}  {mark}  \"{c.get('title','')[:60]}\"")
+            for w in warns: print("      ! (warn)", w)
     if failed:
         print(f"\n{failed} case(s) FAILED the render self-check — fix formatting before continuing.")
         sys.exit(1)

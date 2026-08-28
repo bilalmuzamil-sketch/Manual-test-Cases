@@ -698,15 +698,15 @@ with `sv_sso_session` and `cf_clearance` **byte-identical** to the set that was 
     "plain text auto-wraps and renders cleanly" note was WRONG — it does wrap, but into ONE `<p>`.)
   - **STYLING inline tags show LITERALLY** — `<b>`, `<i>`, `<u>`, `<code>`, `<em>`, `<strong>` were seen
     printed as text by the tester. **Never use styling inline tags for formatting.**
-  - **`<br>` IS THE EXCEPTION — IT RENDERS, AND IT IS THE CORRECT WAY TO DO A TIGHT LINE BREAK inside a
-    `<p>`** (confirmed live 2026-08-28 from the QA lead's own manual edit of C27800's preconditions:
-    `<p>sentence A.<br>sentence B.</p>` renders as two tight lines). Use **`<br>` for a tight break
-    between two closely-related sentences that belong to the same thought**, and a **separate `<p>` for a
-    wider paragraph gap between distinct thoughts.** That is the exact pattern the QA lead wants — mirror
-    it: e.g. preconditions = login line `</p><p>` permission-rule sentence `<br>` its consequence sentence
-    `</p><p>` data-state line.
-  - **BLOCK-LEVEL tags are the ONLY thing that renders reliably (plus `<br>`):** `<p>` (one per paragraph
-    — do NOT put `\n\n` inside a `<p>`), `<ol>/<ul>` with `<li>`, `<hr />`, and `<br>` for tight breaks.
+  - **⚠️ `<br>` IS ORIGIN-DEPENDENT — IT SHOWS LITERALLY WHEN WRITTEN VIA THE API (corrected
+    2026-08-28, QA lead observed our API update print `<br>` as text).** The TestRail **UI editor** stores
+    `<br>` in a way that renders (that is why the QA lead's own manual edit of C27800 looks right), but an
+    **API write** of the same `<br>` shows the literal tag. **Because our scripts write via the API, NEVER
+    emit `<br>` (or any inline tag) in an API payload.** To put each statement on its own line via the
+    API, use **separate `<p>` blocks** (wider gap) or a **`<ul><li>` list** (tight lines). A `<br>` seen
+    on a live case is normally a human's UI edit — leave it; just never generate one.
+  - **BLOCK-LEVEL tags are the ONLY thing proven to render when written via the API:** `<p>` (one per
+    paragraph — do NOT put `\n\n` inside a `<p>`), `<ol>/<ul>` with `<li>`, and `<hr />`.
     The sanitiser strips some closing
     `</p>` and re-nests the markup (raw read-back looks mangled: `<p>A<p>B</p>…</p>`), **but the browser
     auto-closes an open `<p>` when the next block starts, so it renders as clean separate blocks.** Do

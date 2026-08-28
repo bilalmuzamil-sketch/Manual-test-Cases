@@ -453,11 +453,11 @@ Compact form — **the rule named in brackets is the authority; read it before r
   NEVER PLAIN NEWLINES.** The `preconds`/`steps`/`expected` fields are Markdown but TestRail wraps every
   submitted value in ONE outer `<p>`, so plain `\n\n` **loses all line breaks** (collapses to a wall of
   text) and **styling** inline tags (`<b>`, `<i>`, `<code>`, `<em>`, `<strong>`) **show literally**.
-  **`<br>` is the EXCEPTION and renders** — it is the QA-lead-preferred way to make a tight line break
-  between related lines inside one `<p>` (his own C27800 edit: `<p>line A.<br>line B.<br>line C.</p>`).
-  Format with: **`<p>` per paragraph, `<br>` for tight line breaks within a paragraph, `<ol>/<ul><li>`
-  for lists, `<hr />` for a separator** — and put the **source / provenance BELOW the expected behaviour
-  after an `<hr />`**, as a `<p>` label + `<ul><li>` list + a final `<p>` verification date. When editing a case after source verification, **keep formatting 100%
+  **`<br>` is ORIGIN-DEPENDENT: it renders from a UI edit but shows LITERALLY when written via the API**
+  — so **never emit `<br>` (or any inline tag) in an API payload**; to put lines on their own rows use
+  separate `<p>` blocks or a `<ul><li>` list. Format with block tags only: **`<p>` per paragraph,
+  `<ol>/<ul><li>` for lists, `<hr />` for a separator** — and put the **source / provenance BELOW the
+  expected behaviour after an `<hr />`**, as a `<p>` label + `<ul><li>` list + a final `<p>` date. When editing a case after source verification, **keep formatting 100%
   intact**: copy the proven-good structure (e.g. Global Search C44804) or reuse the block-only
   converters in `build/global-search/apply_to_testrail.py`; never hand-author inline HTML. Full trap +
   round-trip evidence: `build/APP-ACTIONS-PLAYBOOK.md` §J. [proven live 2026-08-28, C27800]
