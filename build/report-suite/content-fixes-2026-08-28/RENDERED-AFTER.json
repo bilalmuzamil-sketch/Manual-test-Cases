@@ -1,0 +1,44 @@
+{
+ "30235": [
+  {
+   "cls": "markdown fr-view",
+   "text": "A row with a negative money value exists (e.g., a net credit/return invoice, or a negative Labor Margin from cost exceeding billed labor — seed ZZAUTOTEST data)."
+  },
+  {
+   "cls": "markdown fr-view",
+   "text": "Read the negative money cell.\nRead a negative Labor Delta cell and a negative Margin % cell for comparison."
+  },
+  {
+   "cls": "markdown fr-view",
+   "text": "Negative dollar values render in accounting-convention parentheses — ($1,234.56) — on screen and in both PDFs, across every money column (Labor Invoiced, Labor Margin, Parts Invoiced, Parts Margin, Shop Supplies, Adjustments, Margin, Subtotal).\nLabor Delta (a signed time value) and Margin % (a signed percentage) are excluded — they use a leading minus, not parentheses.\n\nThis is the expected behaviour as per epic SV-8582 and the Sales By Representative report specification version 24 (§3 negative money columns), read on 26 August 2026, with the epic read on 17 August 2026. Version 24 adds Shop Supplies to that money-column list and scopes the parentheses to both PDFs as well as the screen; both are carried above. The column was renamed from \"Inv. Hrs\" to \"Labor Delta\" per SV-9071; only the name changed.\nLast checked against build v3.8-bd246fd on 8/18/2026.\n\nAUTOMATION: READY"
+  }
+ ],
+ "30236": [
+  {
+   "cls": "markdown fr-view",
+   "text": "Several invoices whose money values come from calculations that produce fractions of a cent sit under one rep — seed ZZAUTOTEST invoices whose amounts come from hours × rate or percentage-based lines that do not land on a whole cent (money fields themselves only take two decimals, so the sub-cent amounts must come from the math, not be typed in)."
+  },
+  {
+   "cls": "markdown fr-view",
+   "text": "Read the displayed per-invoice values, sum them by hand, and compare with the rep summary and Totals cells."
+  },
+  {
+   "cls": "markdown fr-view",
+   "text": "All displayed values round half-up (away from zero) at their stated precision — money to cents; Labor Delta to one decimal; Margin % to two decimals.\nRolled-up values are computed from UNROUNDED components and then rounded, so a totals cell may differ from the eye-summed displayed rows by one unit in the last decimal.\nThat one-unit difference is EXPECTED behavior per the spec — it must NOT be filed as a calculation defect.\n\nThis is the expected behaviour as per epic SV-8582 and the Sales By Representative report specification version 24 (§3 half), read on 26 August 2026, with the epic read on 17 August 2026. Version 24 states the precisions as money to cents, Labor Delta to one decimal and Margin % to TWO decimals; this case previously said one decimal for Margin % and has been corrected. The column was renamed from \"Inv. Hrs\" to \"Labor Delta\" per SV-9071; only the name changed.\nLast checked against build v3.8-bd246fd on 8/18/2026.\n\nAUTOMATION: READY"
+  }
+ ],
+ "43821": [
+  {
+   "cls": "markdown fr-view",
+   "text": "You are signed in to the ShopView App on a desktop browser.\nA completed work order that carries a work-order-level fee or discount appears on the Completed tab."
+  },
+  {
+   "cls": "markdown fr-view",
+   "text": "Open the Work In Progress report and go to the Completed tab.\nOn a completed work order read Earned, Remaining, Adjustments and Total."
+  },
+  {
+   "cls": "markdown fr-view",
+   "text": "Remaining is $0.00.\nEarned equals Total minus Adjustments.\nTotal still equals Earned plus Remaining plus Adjustments.\n\nThis is the expected behaviour as per epic SV-8582, read on 17 August 2026, and story SV-9282, and the Work In Progress report specification version 28 (S4a-R2), read on 18 August 2026 and re-read on 26 August 2026. S4a-R2 is present and unchanged in version 28 and still reads \"A row on the Completed tab therefore shows Earned equal to its Total less Adjustments, and Remaining of $0.00\", so the citation stands and only the version was updated.\nLast checked against build v3.8-bd246fd on 8/18/2026.\n\nAUTOMATION: READY"
+  }
+ ]
+}
