@@ -20,7 +20,7 @@ The previous CLAUDE.md was **738 KB / roughly 183,000 tokens**, and it was **TRU
 AT RULE 62**. Sessions were therefore running with **Rules 63–88 SILENTLY ABSENT** while believing
 they had read the whole file. A rule you have never seen is a rule you will break.
 
-**THEREFORE: NEVER ASSUME YOU HAVE SEEN ALL THE RULES.** There are **96 numbered Standing Rules**.
+**THEREFORE: NEVER ASSUME YOU HAVE SEEN ALL THE RULES.** There are **97 numbered Standing Rules**.
 Count them in the index below. If you are
 about to apply a rule, open its file and read it. **NEVER read
 `build/rules/CLAUDE-FULL-ARCHIVE-2026-08-21.md` whole** — it will exhaust your context exactly as the
@@ -82,6 +82,15 @@ These are stated here **in full** because a session that gets only this far must
 - **MINIMISE SUBAGENT SPAWNS (76).** Every spawn pays the full context tax. Batch related work into
   one worker; piggyback cheap checks onto the next substantive worker (78) rather than spending a
   dedicated spawn on them.
+- **NEVER DECLARE A BLOCKER WITHOUT SEARCHING THE REPO FIRST (97).** Before reporting anything as
+  impossible, blocked, unavailable or unreconstructable, **grep the workspace using the EXACT ERROR
+  TEXT** — that is what finds it. Four places, in order: `build/APP-ACTIONS-PLAYBOOK.md` ·
+  `build/skills/14-ACCESS-RESILIENCE.md` · `build/ATLASSIAN-JIRA-ACCESS-METHOD.md` ·
+  `build/rules/RULES-*.md` (grep, never read whole). Also `ls build/BLOCKED-*.md` — **several are
+  marked RESOLVED with the cause** — and `git log --all --grep=`. **If you still cannot find it,
+  REPORT THE SEARCHES YOU RAN** so the gap is known to be real rather than unsearched. One tool
+  failing is a fact about that tool, never about the task (68). **Solve something new ⇒ write it into
+  the playbook or the skill IN THE SAME PASS** (93). Five 2026-08-28 false blockers are in the rule.
 - **STRATEGY FIRST (79).** Before starting ANY task, devise or recall the smartest quota-efficient
   plan — then begin. One pass, then exit.
 - **TELL THE LAST-DONE DATE AND ASK BEFORE RE-RUNNING (80).** Never silently repeat a verification,
@@ -104,7 +113,7 @@ These are stated here **in full** because a session that gets only this far must
 
 ---
 
-## 2 · THE RULE INDEX — all 96 rules, and where each one lives
+## 2 · THE RULE INDEX — all 97 rules, and where each one lives
 
 **Read the rule in its file before applying it.** One line per rule; the line is a locator, not the
 rule. Generated from the split files' own headers.
@@ -185,7 +194,7 @@ rule. Generated from the split files' own headers.
 | **59** | RE-READ THE SOURCES IMMEDIATELY BEFORE THE WRITES BEGIN — a second currency check, not only the |
 | **60** | THE BUILD WILL NEVER BE DECLARED FINAL — SEPARATE WHAT DEPENDS ON THE BUILD FROM WHAT DOES NOT |
 
-### `build/rules/RULES-61-96.md` — rules 61–96
+### `build/rules/RULES-61-97.md` — rules 61–97
 
 | # | Rule (short title) |
 |---|---|
@@ -225,8 +234,9 @@ rule. Generated from the split files' own headers.
 | **94** | THE DEFECT ADMISSIBILITY GATE — NO TICKET IS FILED UNTIL IT PASSES EVERY CHECK, AND THE LANE'S OUTPUT IS APPROVED CANDIDATES, NOT FILED TICKETS |
 | **95** | THE TOKEN-DISCIPLINE CHARTER IS CARRIED BY EVERY SESSION AND EVERY HANDOFF — AND QUALITY IS NEVER WHAT GETS CUT |
 | **96** | A V2 / UPGRADE PROJECT MUST DERIVE AND TEST THE INVARIANT SET — WHAT THE SPEC DOES NOT MENTION IS STILL A REQUIREMENT |
+| **97** | NEVER DECLARE A BLOCKER WITHOUT SEARCHING THE REPO FIRST — THE ANSWER IS USUALLY ALREADY WRITTEN DOWN |
 
-**Rule 95 (the Token-Discipline Charter)** was added 2026-08-26 in `build/rules/RULES-61-96.md`. Its
+**Rule 95 (the Token-Discipline Charter)** was added 2026-08-26 in `build/rules/RULES-61-97.md`. Its
 canonical one-page operator form is **`build/skills/TOKEN-DISCIPLINE-CHARTER.md`** — twelve clauses
 (strategy first · never bulk-read, script it · the reading rule · spawn discipline · never poll · batch
 writes · piggyback cheap checks · never re-do work · answer in text · the budget · the week-start guard ·
@@ -234,7 +244,7 @@ writes · piggyback cheap checks · never re-do work · answer in text · the bu
 applies them from its first turn; a handoff without them is non-compliant and must not be issued.**
 Routers take it by pointer only.
 
-**Rule 96 (the V1→V2 invariant set)** was added 2026-08-26 in `build/rules/RULES-61-96.md`, which was
+**Rule 96 (the V1→V2 invariant set)** was added 2026-08-26 in `build/rules/RULES-61-97.md`, which was
 renamed on the same day from its previous 61-to-95 filename. Operator form:
 **`build/skills/17-REGRESSION-IMPACT-V1-TO-V2.md`**. **A V2 spec describes only what CHANGES and is
 SILENT about everything else, so a V2 build can break a V1 behaviour with every case still passing.**
@@ -246,8 +256,16 @@ change"**, and a **high-collateral-risk silence is escalated as a PO question, n
 at intake — **(i) NEW · (ii) V2/UPGRADE · (iii) REVIVAL** — in `build/skills/15-NEW-PROJECT-INTAKE.md`
 §1a, and **type (ii) triggers the skill**.
 
+**Rule 97 (search before you give up)** was added 2026-08-28 in `build/rules/RULES-61-97.md`, which was
+renamed on the same day from its previous 61-to-96 filename. **QA lead, verbatim:** *"I want that
+session if it is giving up to go and see if you ever did something similar and it worked for you and to
+learn from you then."* The **SEARCH BEFORE YOU GIVE UP** drill is carried INLINE by all four handoffs
+(`build/handoffs/`), is a **required section of every future handoff** (`build/handoffs/README.md` and
+`build/PROCESS-AUTHORING-STANDARD.md`, the same treatment Rule 95's charter got), and is pointed at from
+the four routers (`10`/`11`/`12`/`16`), `13-CROSS-SESSION-SAFETY.md` and `00-COMMON-CORE.md`.
+
 **Rules 89 (access resilience + MCP hygiene) and 90 (shared-quota budget allocation)** were added
-2026-08-21 and live in `build/rules/RULES-61-96.md` with 61–88. Rule 89's operator form is
+2026-08-21 and live in `build/rules/RULES-61-97.md` with 61–88. Rule 89's operator form is
 `build/skills/14-ACCESS-RESILIENCE.md`.
 
 **Rule 91 (the verification freshness badge)** was added 2026-08-21 in the same file. **Its second
@@ -441,7 +459,7 @@ Compact form — **the rule named in brackets is the authority; read it before r
 | Standing Rules 1–20 (full text) | `build/rules/RULES-01-20.md` |
 | Standing Rules 21–40 (full text) | `build/rules/RULES-21-40.md` |
 | Standing Rules 41–60 (full text) | `build/rules/RULES-41-60.md` |
-| Standing Rules 61–96 (full text) | `build/rules/RULES-61-96.md` |
+| Standing Rules 61–97 (full text) | `build/rules/RULES-61-97.md` |
 | Per-project narrative history (projects 1–7) | `build/rules/PROJECT-HISTORY-ARCHIVE.md` |
 | Byte-verification hashes for the split | `build/rules/INTEGRITY.md` |
 | Staging/QA/prod action recipes, TestRail traps | `build/APP-ACTIONS-PLAYBOOK.md` |

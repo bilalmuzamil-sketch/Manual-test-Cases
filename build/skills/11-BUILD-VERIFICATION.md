@@ -37,7 +37,7 @@
 - **AFTERWARDS you MAY and SHOULD consult ANY document the task in hand needs** —
   `build/APP-ACTIONS-PLAYBOOK.md`, any `build/*-PROCESS.md`, `build/PROCESS-CATALOG.md`, a project's
   `PROJECT-STATE.md`, `build/rules/RULES-01-20.md` / `RULES-21-40.md` / `RULES-41-60.md` /
-  `RULES-61-96.md`, a past findings or audit file. **No document is off-limits to you.**
+  `RULES-61-97.md`, a past findings or audit file. **No document is off-limits to you.**
 - **BUT ALWAYS IN A TARGETED, BOUNDED WAY:** `grep -n` for the exact thing you need, or `sed -n
   '<start>,<end>p'` a bounded slice. **NEVER a bulk read "to get oriented" · NEVER a whole large
   file · NEVER `CLAUDE.md` end to end · NEVER `build/rules/CLAUDE-FULL-ARCHIVE-2026-08-21.md`.**
@@ -98,7 +98,7 @@ broken run or a foreign edit is **recorded and reported**, not actioned here.
 | **11** | **ASK which process(es) to run** |
 | **22** | Ask for the **live-build check and the access** up front, not when you hit the wall |
 
-Full texts: `build/rules/RULES-01-20.md` · `RULES-21-40.md` · `RULES-41-60.md` · `RULES-61-96.md`.
+Full texts: `build/rules/RULES-01-20.md` · `RULES-21-40.md` · `RULES-41-60.md` · `RULES-61-97.md`.
 **Read the rule you are about to apply, in full. An index is not a rule.**
 
 ---
@@ -122,7 +122,7 @@ Full texts: `build/rules/RULES-01-20.md` · `RULES-21-40.md` · `RULES-41-60.md`
   writes, piggyback cheap checks (78), never re-do work (77/80), answer in text, the budget (90), the
   week-start guard, and **clause 12: quality is never the thing cut**. **This router holds no substance
   — read the charter itself; it supersedes the Rule 88 / Rule 90 lines this section used to carry.**
-  Every handoff embeds the same twelve clauses in full. Rule text: `build/rules/RULES-61-96.md`.
+  Every handoff embeds the same twelve clauses in full. Rule text: `build/rules/RULES-61-97.md`.
 - **Rule 91 — this lane's own output rule.** Every build-verification claim is reported with a
   **freshness badge and its date**: **✅ ≤ 7 days · 🟠 8–14 days · 🔴 > 14 days · ❌ never
   build-verified**, with the build marker. **A bare tick is non-compliant** (Rule 12). Rule 91 is

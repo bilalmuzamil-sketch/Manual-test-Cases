@@ -1,9 +1,9 @@
-# ShopView QA — Standing Rules 61–96
+# ShopView QA — Standing Rules 61–97
 
-This file holds the FULL, VERBATIM text of Standing Rules 61–96.
+This file holds the FULL, VERBATIM text of Standing Rules 61–97.
 
 Full archive: build/rules/CLAUDE-FULL-ARCHIVE-2026-08-21.md
-Index: CLAUDE.md (rule index table). Other rule files: build/rules/RULES-01-20.md, build/rules/RULES-21-40.md, build/rules/RULES-41-60.md, build/rules/RULES-61-96.md
+Index: CLAUDE.md (rule index table). Other rule files: build/rules/RULES-01-20.md, build/rules/RULES-21-40.md, build/rules/RULES-41-60.md, build/rules/RULES-61-97.md
 
 **Read the rule you are about to apply here, in full — the index is not the rule.**
 
@@ -2184,3 +2184,78 @@ Index: CLAUDE.md (rule index table). Other rule files: build/rules/RULES-01-20.m
     source is never resolved by looking at the build — hold and ask), 64 (every case must have a source;
     check before concluding it has none), 66 (the PO sheet is the last thing sent) and 94 (the defect
     admissibility gate — why an obsolete regression case is a liability).
+
+97. **NEVER DECLARE A BLOCKER WITHOUT SEARCHING THE REPO FIRST — THE ANSWER IS USUALLY ALREADY
+    WRITTEN DOWN (all projects, permanent).**
+    **ORIGIN — QA LEAD DIRECTIVE, 2026-08-28, verbatim:** *"I want that session if it is giving up to
+    go and see if you ever did something similar and it worked for you and to learn from you then."*
+    **THE RULE.** **BEFORE reporting ANYTHING as impossible, blocked, unavailable, unreachable or
+    unreconstructable, SEARCH THE WORKSPACE.** This repository is the accumulated memory of every
+    session that came before you, and the great majority of what a session calls a blocker has already
+    been hit, diagnosed and solved — and written down — by an earlier one. **Use the EXACT ERROR TEXT
+    as the search key.** Not a paraphrase, not a category, not "auth problem" — the literal string the
+    tool printed at you. **That is what finds it**, because the session that solved it pasted the same
+    string into the playbook, the skill or the BLOCKED file. Searching for what you *think* the problem
+    is finds nothing; searching for what the machine actually *said* finds the answer.
+    **AND IF YOU STILL CANNOT FIND IT, REPORT THE SEARCHES YOU RAN** — the commands, the keys, the
+    files covered — **so the QA lead knows the gap is REAL rather than merely UNSEARCHED.** A blocker
+    reported without its search record is not a blocker; it is an unfinished investigation, and it
+    costs him a decision he should never have been asked to make.
+    **THE SEARCH DRILL — run these, verbatim, substituting your own strings:**
+    ```
+    grep -rn "<exact error string>" build/ --include=*.md | head -20
+    grep -rn "<endpoint/tool/symptom>" build/APP-ACTIONS-PLAYBOOK.md build/skills/ | head -20
+    ls build/BLOCKED-*.md
+    ls build/*DIAGNOSIS*.md build/*/FINDINGS.md
+    git log --all --oneline --grep="<keyword>" | head -20
+    ```
+    **`ls build/BLOCKED-*.md` matters more than it looks: SEVERAL OF THOSE FILES ARE MARKED RESOLVED
+    AND CARRY THE CAUSE.** A file named `BLOCKED-…` is not proof that the thing is still blocked —
+    open it and read what happened next. And `git log --all --grep=` reaches work that landed on
+    another session's branch and has not yet been merged into the document you are reading.
+    **THE FOUR PLACES, IN THIS ORDER:**
+    1. **`build/APP-ACTIONS-PLAYBOOK.md`** — proven staging/QA/prod action recipes and the traps
+       (§J TestRail traps, §K production access). Read before any staging action anyway (Rule 27).
+    2. **`build/skills/14-ACCESS-RESILIENCE.md`** — the primary/fallback ladder and the preflight for
+       each system. If a system is unreachable, its ladder is here (Rule 89).
+    3. **`build/ATLASSIAN-JIRA-ACCESS-METHOD.md`** — browser, proxy and MITM-bridge mechanics.
+    4. **`build/rules/RULES-*.md`** — **GREP THEM; NEVER READ ONE END TO END.**
+    **SEARCH IN A TARGETED WAY.** Grep, or a bounded slice around a hit — **never bulk-read a file to
+    "get oriented"** (Rule 88). The point of this rule is to spend a hundred tokens finding an answer,
+    not a hundred thousand failing to. Never read `CLAUDE-FULL-ARCHIVE-2026-08-21.md` whole.
+    **THE EVIDENCE — FIVE REAL CASES, ALL FROM 2026-08-28, in which a session concluded something was
+    impossible while the answer was sitting in this repository:**
+    (a) ***"chromium's outbound TCP is reset, Playwright is unusable"*** — it is not. Playwright needs a
+        **fresh local MITM bridge started per run**, documented in `build/ATLASSIAN-JIRA-ACCESS-METHOD.md`
+        §1.
+    (b) ***"the Atlassian login needs an emailed OTP"*** — **no OTP exists**; two-step verification is
+        off on that account. The real obstacle was an **undismissed "Security review" interstitial**.
+        The session invented a blocker out of a screen it had not read.
+    (c) ***"a foreign edit is unreconstructable"*** — **`get_history_for_case` returns the per-field
+        old and new values, including whole field bodies**, and it recovered the **C29557** edit in
+        full. Rule 87 was corrected the same day to say so.
+    (d) ***"`build/testing-tools/scan_secrets.py` does not exist"*** — **it did**: 479 lines with a
+        passing self-test. A **stale checkout** produced the false claim. `git fetch` + `git log --all`
+        would have shown it.
+    (e) ***"the 72 damaged cases cannot be repaired"*** — **the API** could not repair them; **the
+        TestRail UI editor could, and did.** "This tool cannot" is never the same statement as "this
+        cannot be done."
+    **THE COMMON SHAPE OF ALL FIVE:** the session mistook the FIRST PATH IT TRIED for the ONLY PATH,
+    and mistook its own unfamiliarity for the world's impossibility. **One tool failing is a fact about
+    that tool. It is never a fact about the task** (Rule 68 — a blocker must be proved, and it blocks
+    only what it actually blocks).
+    **IF YOU SOLVE SOMETHING NEW, WRITE IT DOWN IN THE SAME PASS** — the recipe into
+    `build/APP-ACTIONS-PLAYBOOK.md`, or the access ladder into the relevant skill — **before you
+    report and exit, not "next time".** Include the exact error string you searched for, so the next
+    session's grep hits it. **Undocumented knowledge is knowledge the next session pays for again**,
+    and it pays for it out of the same shared quota (Rule 90). This is Rule 93's learning loop applied
+    at the scale of a single obstacle rather than a whole project.
+    Ties to Standing Rules **27** (reuse recorded action recipes; never re-discover from scratch —
+    Rule 97 is the enforcement arm of Rule 27, applied at the moment of giving up), **29** (the
+    checkpoint discipline that put the answer in git in the first place), **59** (re-read the sources
+    immediately before the writes begin), **68** (a blocker must be PROVED, and blocks only what it
+    actually blocks), **76** (a spawn spent re-discovering a solved problem is a spawn wasted), **79**
+    (strategy first — the search IS part of the strategy), **86** (verify from committed evidence,
+    never from a session's self-report), **88** (never bulk-read; script it and grep it), **89**
+    (access resilience — every session keeps a working path to every source), **90** (the shared quota
+    that re-discovery burns) and **93** (the learning loop that Rule 97 feeds).
