@@ -1,6 +1,49 @@
 # Global Search — PROJECT STATE (canonical cold-resume doc)
 - **TestRail parent folder (group):** group_id **6720**, suite 1 — cases live in the sub-sections inside it, not directly in the folder. Link: https://shopview.testrail.io/index.php?/suites/view/1&group_by=cases:section_id&group_order=asc&display=compact&display_deleted_cases=0&group_id=6720 (recorded 2026-08-25)
 
+## §0-COUNT-CORRECTION-2026-08-28 (LATEST) — the case count is **118**, not 86
+
+**Approved by the QA lead 2026-08-28.** The CLAUDE.md project index said *"all 86 cases ARE LIVE in
+TestRail (group 4094, every one ours)"*. Re-derived live today from a fully paged `get_cases`:
+
+| Measure | Value |
+|---|---|
+| **Ours (`created_by = 3`)** | **118** — every one inside group **6720** *Global Search V2 (Aug 2026)* |
+| Live total under *Test Cases > Global Search* (section 49) | **126** |
+| Foreign | **8** — all `created_by = 1` (Vladimir Tomovic), sitting directly in section 49, created 2024-07-03 to 2026-07-20. Rule 38: report, never edit |
+
+### WHY it moved from 86 to 118 — what the evidence shows
+
+**It was our own work, not a miscount and not a foreign addition.**
+
+1. **Every one of the 118 has a `created_on` of 2026-08-25 (98 cases) or 2026-08-26 (20 cases)** —
+   both AFTER the 2026-08-21 index refresh that recorded 86. `created_on` does **not** change when a
+   case is moved between sections, so these are genuine creations, not the old 86 relocated.
+2. **`created_by` is `3` (us) on all 118.** No foreign editor added any of them.
+3. **The section the index cited no longer exists** — `get_section/4094` returns HTTP 400
+   *"Field :section_id is not a valid section."*
+4. The two dates match this project's own record: **2026-08-25** is the V2 revival push (§ *"APPLIED
+   to TestRail 2026-08-25: 110 cases live (97 updated in place, 13 added, 8 moved to Out-of-V1)"*)
+   and **2026-08-26** is the 20-case *Global Search V2 - V1 Regression Suite*
+   (`regression-2026-08-26/testrail-id-map.csv`, C45142 onward). **98 mapped + 20 regression = 118.**
+
+So the 86 was a true figure for 2026-08-21 and was superseded four days later by the V2 revival.
+**The project row's status "POSTPONED — never pushed" is also stale: the cases are pushed and live.**
+
+### ⚠️ One thing the evidence does NOT explain — 12 cases are gone
+
+`testrail-id-map.csv` holds 110 rows (C44804–C45140). **12 of them no longer resolve** — `get_case`
+returns HTTP 400 *"not a valid test case"* for **C44883, C44884, C44885, C44886, C44887, C44888,
+C44889, C44890, C44891, C44892, C44893, C44894**. They are contiguous and **all twelve are the API
+cases** (`GET /api/search …`, debounce, recent-entities) — this project's "12 API cases in an API
+section". No live case carries any of their titles.
+
+**This contradicts the 2026-08-25 line *"Lossless, nothing deleted."*** Deleted cases cannot be
+queried, so **who deleted them and when cannot be established from TestRail** and is NOT guessed here.
+**Raised, not resolved** — see `build/OUTSTANDING-ITEMS-REGISTER.md`.
+
+---
+
 > **Read this first to resume the Global Search project.** Single authoritative
 > snapshot. Keep this project's memory SEPARATE from other projects; reuse shared
 > infrastructure (staging/QA access method, harness scripts, TestRail API patterns,

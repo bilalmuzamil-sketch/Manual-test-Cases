@@ -8,7 +8,30 @@
 > Confluence page and case-source path — **so none of them has to be guessed.**
 
 
-## §0-FULL-VIU-2026-08-05 (LATEST) — 32 of 476 driven live; the observation gap is NARROWED, not closed
+## §0-COUNT-CORRECTION-2026-08-28 (LATEST) — the case count is **516**, not 509
+
+**Approved by the QA lead 2026-08-28.** The CLAUDE.md project index and this file both carried
+**509 cases ours**. That figure was wrong. Re-derived live from a **fully paged** `get_cases`
+(an unpaged call silently returns 250 sections and finds almost nothing):
+
+| Measure | Value | How |
+|---|---|---|
+| **Ours (`created_by = 3`)** | **516** | every case whose section is anywhere under group **4281** *Reports Suite* |
+| Live total in the tree | **532** | the same subtree, all authors |
+| Foreign (Rule 38 — report, never edit) | **16** | 532 − 516 |
+| Run **359** | **516 tests · 535 results** | after the union-only sync of 2026-08-28 |
+
+**How 509 became 516.** The estate-wide damage sweep re-derived **513** on the morning of
+2026-08-28 (`build/report-suite/damage-sweep-2026-08-28/DAMAGE-SWEEP.md` §2 — the index's 509 had
+never been measured), and **three new WIP cases C45208–C45210** were authored the same day
+(`build/report-suite/wip-authoring-2026-08-28/CREATED-AND-REPAIRS-2026-08-28.md`). 513 + 3 = 516.
+
+**Older section headings in this file quote 476 and other historical totals. Those are correct for
+their own date and are left alone; this section is the current figure.**
+
+---
+
+## §0-FULL-VIU-2026-08-05 — 32 of 476 driven live; the observation gap is NARROWED, not closed
 
 Resume: `build/report-suite/full-viu-2026-08-05/RESUME.md` -> `FINDINGS.md` -> `testrail-execution-log.md`
 -> `DELIBERATE-DECISIONS.md` -> `FILED.md` -> `API-ASK.md` -> `RECHECK-QUEUE.md`.
