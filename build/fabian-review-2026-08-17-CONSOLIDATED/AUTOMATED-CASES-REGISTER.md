@@ -221,3 +221,85 @@ no route that changes only the version and date**:
 **ASK FOR VLAD:** does any of your automation read a case's Preconditions, Steps or Expected Results
 **as raw text through the TestRail API**? If it does not, we can clear all 38 in one run this week.
 If it does, tell us which cases and we will leave those alone.
+
+
+---
+
+## 2026-08-28 (third pass) — FOR VLAD: the 38 held Automated cases were RE-PINNED
+
+**Vlad cleared this.** Relayed by the QA lead on **2026-08-28**: Vlad checked the already-updated
+Automated case **C30287** and reported that the update *"has not changed the formatting and it still
+looks good on that case"*. That was passed to this pass as the go-ahead for the specification-version
+pin restamps on the cases held in the section above.
+
+**38 cases, not 39** — the 39th, **C30277**, was re-read live and already cites the live version 24, so
+it needed nothing and was not written.
+
+**On every one of the 38: only the cited specification version changed.** No assertion, no
+precondition, no step, no title, no `refs`, no priority, no type. `custom_atmstatus` was read live
+**before** each write (all `3`) and read again **after** it (all still `3`). Every case's **rendered
+page was re-read in a real browser after its own write**, and a final sweep re-read all 38 again at
+the end: **38 clean, 0 problems** (`build/report-suite/automated-repin-2026-08-28/FINAL-SWEEP.json`).
+
+**Two cases came back wrong during the run. Both times the run was STOPPED on that case**, the case
+was repaired, re-verified, and only then did anything else get written:
+
+* **C30451** — stored as bare text; the API's `<p>` wrapper killed its line breaks. Re-stored with
+  `<br>` line breaks, same words, verified line for line.
+* **C30460** — stored as bare text in all three fields; the web-editor Save flattened all three. All
+  three restored from `get_history_for_case` with `<br>` line breaks, verified line for line.
+
+**🔴 THE ONE THING WE NEED FROM VLAD, STILL UNANSWERED.** His answer was about how the case *looks*,
+and the page does look the same. But **the raw value `get_case` returns changed shape on all 38**:
+`custom_expected` moved from plain text with newline characters to HTML (`<p>`/`<br>`, or `<ol><li>`
+where the editor recognised the manual numbering), and on **18 of the 38** `Preconditions` and/or
+`Steps` moved the same way too — because **a web-editor Save re-saves every field on the form**, not
+only the field that was edited. Per-case detail:
+`build/report-suite/automated-repin-2026-08-28/STORAGE-SHAPE-CHANGES.json`.
+
+**Vlad — does any of your automation read a case's Preconditions, Steps or Expected Result as RAW
+TEXT through the TestRail API and split it on newlines?** If it does, those checks need updating for
+the cases below. If your checks work from the rendered page, nothing changes for you.
+
+| C-id | Report | Pin | Route | What changed | `custom_atmstatus` | Verified | Raw storage shape now HTML |
+|---|---|---|---|---|---|---|---|
+| [C30217](https://shopview.testrail.io/index.php?/cases/view/30217) | Sales By Representative | v22 → **v24** | web editor | **Only the cited specification version changed. No assertion, precondition or step wording was altered.** | still 3 | rendered page re-read: clean | Expected Result |
+| [C30221](https://shopview.testrail.io/index.php?/cases/view/30221) | Sales By Representative | v22 → **v24** | web editor | **Only the cited specification version changed. No assertion, precondition or step wording was altered.** | still 3 | rendered page re-read: clean | Expected Result |
+| [C30247](https://shopview.testrail.io/index.php?/cases/view/30247) | Sales By Representative | v22 → **v24** | web editor | **Only the cited specification version changed. No assertion, precondition or step wording was altered.** | still 3 | rendered page re-read: clean | Expected Result + Steps |
+| [C30255](https://shopview.testrail.io/index.php?/cases/view/30255) | Sales By Representative | v22 → **v24** | web editor | **Only the cited specification version changed. No assertion, precondition or step wording was altered.** | still 3 | rendered page re-read: clean | Expected Result + Steps |
+| [C30256](https://shopview.testrail.io/index.php?/cases/view/30256) | Sales By Representative | v22 → **v24** | web editor | **Only the cited specification version changed. No assertion, precondition or step wording was altered.** | still 3 | rendered page re-read: clean | Expected Result + Steps |
+| [C30262](https://shopview.testrail.io/index.php?/cases/view/30262) | Sales By Representative | v22 → **v24** | web editor | **Only the cited specification version changed. No assertion, precondition or step wording was altered.** | still 3 | rendered page re-read: clean | Expected Result + Steps |
+| [C30271](https://shopview.testrail.io/index.php?/cases/view/30271) | Sales By Representative | v22 → **v24** | web editor | **Only the cited specification version changed. No assertion, precondition or step wording was altered.** | still 3 | rendered page re-read: clean | Expected Result |
+| [C30272](https://shopview.testrail.io/index.php?/cases/view/30272) | Sales By Representative | v22 → **v24** | web editor | **Only the cited specification version changed. No assertion, precondition or step wording was altered.** | still 3 | rendered page re-read: clean | Expected Result |
+| [C30274](https://shopview.testrail.io/index.php?/cases/view/30274) | Sales By Representative | v22 → **v24** | web editor | **Only the cited specification version changed. No assertion, precondition or step wording was altered.** | still 3 | rendered page re-read: clean | Expected Result + Preconditions |
+| [C30275](https://shopview.testrail.io/index.php?/cases/view/30275) | Sales By Representative | v22 → **v24** | web editor | **Only the cited specification version changed. No assertion, precondition or step wording was altered.** | still 3 | rendered page re-read: clean | Expected Result |
+| [C30276](https://shopview.testrail.io/index.php?/cases/view/30276) | Sales By Representative | v22 → **v24** | web editor | **Only the cited specification version changed. No assertion, precondition or step wording was altered.** | still 3 | rendered page re-read: clean | Expected Result |
+| [C30293](https://shopview.testrail.io/index.php?/cases/view/30293) | Sales By Representative | v22 → **v24** | web editor | **Only the cited specification version changed. No assertion, precondition or step wording was altered.** | still 3 | rendered page re-read: clean | Expected Result + Preconditions |
+| [C30314](https://shopview.testrail.io/index.php?/cases/view/30314) | Sales By Representative | v22 → **v24** | web editor | **Only the cited specification version changed. No assertion, precondition or step wording was altered.** | still 3 | rendered page re-read: clean | Expected Result + Preconditions + Steps |
+| [C30322](https://shopview.testrail.io/index.php?/cases/view/30322) | Parts Velocity | v10 → **v11** | web editor | **Only the cited specification version changed. No assertion, precondition or step wording was altered.** | still 3 | rendered page re-read: clean | Expected Result + Preconditions |
+| [C30326](https://shopview.testrail.io/index.php?/cases/view/30326) | Parts Velocity | v10 → **v11** | web editor | **Only the cited specification version changed. No assertion, precondition or step wording was altered.** | still 3 | rendered page re-read: clean | Expected Result |
+| [C30328](https://shopview.testrail.io/index.php?/cases/view/30328) | Parts Velocity | v10 → **v11** | web editor | **Only the cited specification version changed. No assertion, precondition or step wording was altered.** | still 3 | rendered page re-read: clean | Expected Result + Preconditions + Steps |
+| [C30333](https://shopview.testrail.io/index.php?/cases/view/30333) | Parts Velocity | v10 → **v11** | web editor | **Only the cited specification version changed. No assertion, precondition or step wording was altered.** | still 3 | rendered page re-read: clean | Expected Result |
+| [C30338](https://shopview.testrail.io/index.php?/cases/view/30338) | Parts Velocity | v10 → **v11** | web editor | **Only the cited specification version changed. No assertion, precondition or step wording was altered.** | still 3 | rendered page re-read: clean | Expected Result |
+| [C30346](https://shopview.testrail.io/index.php?/cases/view/30346) | Parts Velocity | v10 → **v11** | web editor | **Only the cited specification version changed. No assertion, precondition or step wording was altered.** | still 3 | rendered page re-read: clean | Expected Result + Preconditions + Steps |
+| [C30351](https://shopview.testrail.io/index.php?/cases/view/30351) | Parts Velocity | v10 → **v11** | web editor | **Only the cited specification version changed. No assertion, precondition or step wording was altered.** | still 3 | rendered page re-read: clean | Expected Result |
+| [C30352](https://shopview.testrail.io/index.php?/cases/view/30352) | Parts Velocity | v10 → **v11** | web editor | **Only the cited specification version changed. No assertion, precondition or step wording was altered.** | still 3 | rendered page re-read: clean | Expected Result |
+| [C30353](https://shopview.testrail.io/index.php?/cases/view/30353) | Parts Velocity | v10 → **v11** | web editor | **Only the cited specification version changed. No assertion, precondition or step wording was altered.** | still 3 | rendered page re-read: clean | Expected Result + Steps |
+| [C30354](https://shopview.testrail.io/index.php?/cases/view/30354) | Parts Velocity | v10 → **v11** | web editor | **Only the cited specification version changed. No assertion, precondition or step wording was altered.** | still 3 | rendered page re-read: clean | Expected Result |
+| [C30375](https://shopview.testrail.io/index.php?/cases/view/30375) | Parts Velocity | v10 → **v11** | web editor | **Only the cited specification version changed. No assertion, precondition or step wording was altered.** | still 3 | rendered page re-read: clean | Expected Result |
+| [C30377](https://shopview.testrail.io/index.php?/cases/view/30377) | Parts Velocity | v10 → **v11** | web editor | **Only the cited specification version changed. No assertion, precondition or step wording was altered.** | still 3 | rendered page re-read: clean | Expected Result |
+| [C30390](https://shopview.testrail.io/index.php?/cases/view/30390) | Parts Velocity | v10 → **v11** | web editor | **Only the cited specification version changed. No assertion, precondition or step wording was altered.** | still 3 | rendered page re-read: clean | Expected Result + Preconditions |
+| [C30451](https://shopview.testrail.io/index.php?/cases/view/30451) | Work In Progress | v22 → **v28** | API | **Only the cited specification version changed. No assertion, precondition or step wording was altered.** | still 3 | rendered page re-read: clean | Expected Result |
+| [C30452](https://shopview.testrail.io/index.php?/cases/view/30452) | Work In Progress | v21 → **v28** | web editor | **Only the cited specification version changed. No assertion, precondition or step wording was altered.** | still 3 | rendered page re-read: clean | Expected Result |
+| [C30460](https://shopview.testrail.io/index.php?/cases/view/30460) | Work In Progress | v21 → **v28** | API | **Only the cited specification version changed. No assertion, precondition or step wording was altered.** | still 3 | rendered page re-read: clean | Expected Result + Preconditions + Steps |
+| [C30462](https://shopview.testrail.io/index.php?/cases/view/30462) | Work In Progress | v21 → **v28** | web editor | **Only the cited specification version changed. No assertion, precondition or step wording was altered.** | still 3 | rendered page re-read: clean | Expected Result + Preconditions + Steps |
+| [C30498](https://shopview.testrail.io/index.php?/cases/view/30498) | Work In Progress | v21 → **v28** | web editor | **Only the cited specification version changed. No assertion, precondition or step wording was altered.** | still 3 | rendered page re-read: clean | Expected Result + Steps |
+| [C30506](https://shopview.testrail.io/index.php?/cases/view/30506) | Work In Progress | v22 → **v28** | API | **Only the cited specification version changed. No assertion, precondition or step wording was altered.** | still 3 | rendered page re-read: clean | Expected Result |
+| [C30507](https://shopview.testrail.io/index.php?/cases/view/30507) | Work In Progress | v22 → **v28** | web editor | **Only the cited specification version changed. No assertion, precondition or step wording was altered.** | still 3 | rendered page re-read: clean | Expected Result + Steps |
+| [C30508](https://shopview.testrail.io/index.php?/cases/view/30508) | Work In Progress | v21 → **v28** | web editor | **Only the cited specification version changed. No assertion, precondition or step wording was altered.** | still 3 | rendered page re-read: clean | Expected Result + Steps |
+| [C30510](https://shopview.testrail.io/index.php?/cases/view/30510) | Work In Progress | v21 → **v28** | web editor | **Only the cited specification version changed. No assertion, precondition or step wording was altered.** | still 3 | rendered page re-read: clean | Expected Result |
+| [C30511](https://shopview.testrail.io/index.php?/cases/view/30511) | Work In Progress | v22 → **v28** | web editor | **Only the cited specification version changed. No assertion, precondition or step wording was altered.** | still 3 | rendered page re-read: clean | Expected Result + Preconditions |
+| [C30515](https://shopview.testrail.io/index.php?/cases/view/30515) | Work In Progress | v21 → **v28** | web editor | **Only the cited specification version changed. No assertion, precondition or step wording was altered.** | still 3 | rendered page re-read: clean | Expected Result |
+| [C30527](https://shopview.testrail.io/index.php?/cases/view/30527) | Work In Progress | v21 → **v28** | web editor | **Only the cited specification version changed. No assertion, precondition or step wording was altered.** | still 3 | rendered page re-read: clean | Expected Result + Preconditions |
+
+**38 rows. Full evidence: `build/report-suite/automated-repin-2026-08-28/RESULTS.md`.**
