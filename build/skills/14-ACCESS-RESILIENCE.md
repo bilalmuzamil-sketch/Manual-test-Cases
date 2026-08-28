@@ -190,6 +190,16 @@ ticket — conversion is UI-only and silently wipes Product Area (Rule 52).
 - **On a shared estate, `quick-login` and `switch-user` ROTATE THE SESSION.** If a sibling worker
   shares the login, calling either will break them. **Say so and do not call them** rather than
   stealing the session (Rule 83 lane locks).
+- **🔑 "QUICK-LOGIN LOGS ME OUT" — MEASURED AND SETTLED 2026-08-28 on `sv9500`. Read the recipe before
+  you call it: `build/QUICK-LOGIN-DIAGNOSIS-2026-08-28.md`, mirrored in
+  `build/APP-ACTIONS-PLAYBOOK.md` §A.** In one line each: **rotation is CONFIRMED** (old jar → 409
+  `Session has expired.` seconds later, on *every* call) · **only `PHPSESSID` rotates —
+  `sv_sso_session` does NOT** · a **403 `Access denied.` still logged you in**, so take the new
+  `PHPSESSID` from its `Set-Cookie` instead of "recovering" · a **409 hands back a DEAD `PHPSESSID`
+  that 409s forever**, so turn cookie persistence OFF and re-read the jar from `/tmp` after any 409 ·
+  **probe `GET /api/auth/me/fe-permissions` FIRST and if it 200s do NOT call quick-login at all** ·
+  **idle timeout is not a cause** (5 minutes of paging with 60 s gaps: zero 401/409) · on `sv9500`
+  **`cf_clearance` is not needed and there is no Cloudflare in the path** (CloudFront/S3 + bare nginx).
 - Topology: `app.staging.shopview.com` (SPA) / `api.staging.shopview.com` (Symfony JSON). QA branches
   follow `<branch>.qa.shopview.com` / `<branch>api.qa.shopview.com` (**note: no dot before `api`**).
 - **Production** (`app.shopview.com`, prod test org): its own login/session gotchas, canned-line

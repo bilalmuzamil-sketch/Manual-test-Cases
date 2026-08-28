@@ -229,6 +229,40 @@ any endpoint/ID not recorded here or in `CLAUDE.md`** — if only partly known, 
   never invalid.
   **The cheaper lesson: do not probe `{"key":"tech"}` at all on a branch where it has already been shown
   to 403** (`sv8582` is one), because the probe costs you the working session to learn nothing new.
+- **✅ WHY QUICK-LOGIN "LOGS YOU OUT", MEASURED END TO END (controlled diagnostic 2026-08-28 on
+  `sv9500`, build `v26.35.6-4b694be`; full evidence `build/QUICK-LOGIN-DIAGNOSIS-2026-08-28.md`).**
+  **CONFIRMED: every `POST /api/quick-login` rotates the session and the previous jar is dead the same
+  second** (200 at T+0, **409 `Session has expired.`** 7 s later after one call). Two calls → two
+  rotations → two dead jars. Three corrections to what is written above, each observed live:
+  **(a) ONLY `PHPSESSID` ROTATES — `sv_sso_session` NEVER CHANGED** across the whole run. Trap 5's
+  *"rotates the shared `sv_sso_session`"* is the wrong mechanism; the sibling sign-out it warns about is
+  real, but it is the per-branch `PHPSESSID` doing it. Never rebuild the SSO value.
+  **(b) A `403 Access denied.` FROM QUICK-LOGIN IS NOT A FAILED LOGIN.** `{"key":"tech"}` answered 403
+  and the jar it set was a **working Technician session** (`view_mode: "tech"`, 6 permissions). **Take
+  the `PHPSESSID` out of the 403's own `Set-Cookie` and verify with one read — do NOT "recover" with an
+  `admin` quick-login**, which throws away the tech session you were just given. The §A recipe above is
+  still right about *how* to repair (swap only `PHPSESSID`); it is wrong that the 403 login failed.
+  **(c) THE STICKY DEAD-SESSION LATCH — the second, sneakier cause of "logged out".** A **409 response
+  hands back a `PHPSESSID` of its own** (deterministically the same dead value every time) and **that
+  value 409s forever**. Any client with ordinary cookie persistence (browser, `requests.Session()`,
+  `curl -c`) that hits ONE 409 adopts the dead id and never recovers, though a valid session exists.
+  **Turn cookie persistence OFF and re-read the jar from `/tmp` after any 409.**
+  **Also settled on `sv9500`:** the supplied raw cookies read **200 immediately** (so §N's "a raw-cookie
+  read 409s, that is normal" is branch-specific, not a law) · **`GET /api/auth/me` 404s — probe
+  `/api/auth/me/fe-permissions`** · a **five-minute** session of ordinary paging with 20–65 s idle gaps
+  produced **zero** 401/409 and no cookie change, so **idle timeout is NOT a cause** (cookie `Max-Age`
+  86400) · **four concurrent requests on one jar all returned 200** — shared concurrent use evicts
+  nothing · **`cf_clearance` is NOT needed and cannot be the problem on `sv9500`: there is no Cloudflare
+  in the path** (app host = **CloudFront/S3**, API host = bare `nginx/1.30.4`, no `cf-*` headers; an
+  unauthenticated API call returns the app's own JSON `401 sso_required`, not an edge challenge).
+  **THE RECIPE — five lines, verbatim from the diagnosis:** **(1)** probe
+  `GET /api/auth/me/fe-permissions` on the `…api.` host first — **200 ⇒ you are signed in, do NOT call
+  quick-login**; only 409 means you need one, and 401 `sso_required` means ask for a fresh
+  `sv_sso_session` by name. **(2)** call quick-login **at most once per run**, and only to CHANGE ROLE.
+  **(3)** overwrite `PHPSESSID` from the response `Set-Cookie` **even on a 403**, leave `sv_sso_session`
+  alone, and use the new jar for everything after. **(4)** never re-send a jar after a 409 and never keep
+  the `PHPSESSID` a 409 gave you. **(5)** never call quick-login while a sibling worker is live on that
+  branch (Rule 83) — one call logs every one of them out instantly.
 - **WHICH COOKIE IS SHARED, RE-PROVEN ON THREE BRANCHES AT ONCE (2026-08-06):** one supplied set for
   Reports, Filters and Schedule differed **only** in `PHPSESSID`; the `sv_sso_session` and `cf_clearance`
   values were byte-identical across all three, and each set returned **HTTP 200 with 42 permissions**
