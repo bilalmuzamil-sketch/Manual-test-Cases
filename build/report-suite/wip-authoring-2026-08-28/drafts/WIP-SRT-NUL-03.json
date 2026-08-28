@@ -1,0 +1,11 @@
+{
+ "internal_id": "WIP-SRT-NUL-03",
+ "section_id": 4355,
+ "section": "Reports Suite > Work In Progress > WIP - Sorting",
+ "covers": ["S4-R9"],
+ "title": "Sorting by Asset puts rows with no unit number last, never in between",
+ "refs": "SV-8660 (WIP spec v28 2026-08-24 Story 4 S4-R9 - Asset sorts by unit number; rows with no unit number sort last ascending and first reversed; ruled by Chris Ward 2026-08-13; S4-R8 Asset cell fallback)",
+ "preconds": "<p>1. You are signed in to the ShopView App on a desktop browser.<br>2. The Asset column is turned on in the Work In Progress report.<br>3. At least four ZZAUTOTEST open work orders are listed in the same tab: three for assets that have a unit number, and one for an asset that has no unit number, whose Asset cell therefore shows its vehicle identification number instead.</p>",
+ "steps": "<p>1. Open the Work In Progress report and select the tab holding the seeded work orders.<br>2. Click the Asset column header once so the rows sort in ascending order.<br>3. Read the Asset column from top to bottom and note where the row with no unit number sits.<br>4. Click the Asset column header again to reverse the sort.<br>5. Read the Asset column from top to bottom again.</p>",
+ "expected": "<p>1. On the ascending sort the rows that have a unit number are listed in unit-number order.<br>2. On the ascending sort every row with no unit number sits together at the very bottom of the list, after all the rows that have a unit number.<br>3. When the sort is reversed, every row with no unit number moves together to the very top of the list.<br>4. In both directions the rows with no unit number are never mixed in among the rows that have one.<br>5. The order is decided by the unit number itself, not by whatever text the Asset cell falls back to when a unit number is missing.<br><br>---<br>This is the expected behaviour as per the Work In Progress report specification version 28 (Story 4, S4-R9), read on 26 August 2026, under epic SV-8582 and its story SV-8660.<br><br>AUTOMATION: READY</p>"
+}

@@ -1,0 +1,11 @@
+{
+ "internal_id": "WIP-ERN-NEG-01",
+ "section_id": 4354,
+ "section": "Reports Suite > Work In Progress > WIP - Earned & Remaining",
+ "covers": ["S4-E3", "S4-R14"],
+ "title": "A work order discounted below its value shows a negative Total",
+ "refs": "SV-8660 (WIP spec v28 2026-08-24 Story 4 S4-E3; S4-R14 negative money format; S4-R29 Adjustments is the signed net of work-order-level fees and discounts)",
+ "preconds": "<p>1. You are signed in to the ShopView App on a desktop browser.<br>2. The Adjustments and Total columns are turned on in the Work In Progress report.<br>3. A ZZAUTOTEST open work order exists whose approved and unapproved work adds up to a small amount - for example one approved labor line quoted at $100.00 and nothing else.<br>4. That work order carries a work-order-level discount larger than that amount - for example a $250.00 discount - and no work-order-level fee.</p>",
+ "steps": "<p>1. Open the Work In Progress report.<br>2. Find the row for the seeded work order.<br>3. Read its Earned value, its Remaining value and its Adjustments value.<br>4. Read the Total value on the same row.</p>",
+ "expected": "<p>1. The Adjustments value is negative, because the work-order-level discount outweighs the work-order-level fees on that work order.<br>2. The Total value is negative, because the discount is larger than Earned and Remaining added together - in the example Earned plus Remaining is $100.00 against a $250.00 discount, so Total reads -$150.00.<br>3. The negative Total is shown with a leading minus sign in front of the dollar sign, with two decimal places and thousands separators - for example \"-$1,234.56\".<br>4. A negative Total on this row is the expected result, not a data error - do not raise a bug for it.<br><br>---<br>This is the expected behaviour as per the Work In Progress report specification version 28 (Story 4, S4-E3 and S4-R14), read on 26 August 2026, under epic SV-8582 and its story SV-8660.<br><br>AUTOMATION: READY</p>"
+}
