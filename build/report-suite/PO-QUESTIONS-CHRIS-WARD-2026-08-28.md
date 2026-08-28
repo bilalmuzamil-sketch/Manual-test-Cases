@@ -3,6 +3,20 @@
 > **STATUS: WRITTEN AND READY. NOT SENT.** The QA lead approved *preparing* this sheet, not sending
 > it. Under Rule 66 a question sheet goes out only once everything we can do ourselves is finished,
 > and the QA lead sends it.
+>
+> **⚠️ THIS SHEET SUPERSEDES THE UNSENT DRAFT OF 2026-08-26**,
+> `build/report-suite/questions-2026-08-26/Report-Suite_Questions-for-Chris-Ward_2026-08-26.md` and
+> its `.xlsx` twin. **That draft was never sent.** Its two questions — the Sales By Representative
+> nine-versus-eight column count and what the Work In Progress Estimates figure counts — are
+> **questions 1 and 2 here**, carried across with nothing lost, **re-read against the live
+> descriptions on 2026-08-28** (they were written against Sales By Representative v24 and Work In
+> Progress v28 and both still read the same way), and with the live status of every test they touch
+> corrected. Three further questions that were already open elsewhere are added. **Send this one, not
+> the older draft.**
+>
+> **If a spreadsheet is wanted for sending**, the established workbook shape and its QA-only tab are
+> produced by `build/report-suite/questions-2026-08-26/gen_chris_sheet.py`; this file is the
+> plain-language twin, which is what was asked for.
 
 Plain-language product questions only — no test jargon, no case numbers in anything Chris reads, no
 bug reports. Every question below names the **project** and the **report** it belongs to, quotes the

@@ -2,6 +2,35 @@
 
 > **⚠️ REFERENCE ONLY — this register is history and other sessions' work. It is NOT a backlog and does not authorise action (Rule 92).** Reading an open item here does **not** mean it is yours to work on; a lane session acts only on the project the QA lead has NAMED.
 
+## 🆕 2026-08-28 (late) — REPORT SUITE: THE APPROVED BATCH RAN; TWO NEW WRITE TRAPS FOUND; 38 AUTOMATED CASES HELD ON ONE QUESTION FOR VLAD
+
+**Written and verified on the rendered page:** C30345 · C30381 · C30459 (the three approved content
+fixes) · C30526 · C43592 · C43593 · C43594 · C43839 (anchorless cases proved current) · C30277
+(Automated, pin-only) · C30287 (Automated, the approved one-word typo). **No `add_case`, no
+`delete_case`, no run write, no Jira ticket** — the Rule-62 creation hold (**H1**) is untouched.
+Full record: `build/report-suite/batch-2026-08-28/RESULTS.md`.
+
+| ID | What is outstanding | Owner | What it blocks | Since |
+|---|---|---|---|---|
+| **RS-AUTO-1** | **Does any of Vlad's automation read a case's Preconditions, Steps or Expected Results as RAW TEXT through the TestRail API?** Every route that re-pins an Automated case rewrites stored markup — the API adds a `<p>` wrapper that stops newlines rendering as line breaks, and a web-editor save re-stores all three fields. Neither is "the version and date only", which is what was approved. | **Vlad**, via the QA lead | **38 Automated Report Suite cases stay pinned to a superseded specification version** — listed one per row in `build/report-suite/batch-2026-08-28/AUTOMATED-PIN-ONLY-SPLIT.md`. The note to send him is drafted at `build/report-suite/VLAD-NOTE-2026-08-28.md`. | 2026-08-28 |
+| **RS-HOLD-1** | **C30235 and C30236 need CONTENT corrections that live SBR v24 now requires** — C30235's money-column list omits **Shop Supplies** and scopes the parentheses to the screen only, where live says *"on screen and in both PDFs"*; C30236 says Margin % rounds to **one** decimal, where live says **two**. Both are direct quotations, so no PO decision is needed — only a go-ahead. | **QA lead** | Both cases stay pinned at v22 and would fail a correct build on Margin %. | 2026-08-28 |
+| **RS-HOLD-2** | **C43821 cites `S4a-R2`, and that anchor NO LONGER EXISTS in live WIP v28.** The behaviour is still correct and now lives in **S4-R15a, S4-R18a and S4-R21**. Re-pinning it without re-citing would leave it pointing at a requirement that is gone. | **QA lead** | One case un-re-pinned. | 2026-08-28 |
+| **RS-HOLD-3** | **C43547 received two contradicting instructions in the same batch** — *"do NOT re-pin it"* and *"re-pin it if it matches the live text"* (Rule 63). It **was not re-pinned**. Its content is proved current against live PV v11 **S6-R12**. | **QA lead** | One case pinned at v10 unnecessarily. | 2026-08-28 |
+| **RS-FMT-1** | **The C43547 formatting fault could not be reproduced.** Items 1–4 are on four separate lines on both the case page and the tester's view in run 359, screenshotted. The one real snag — the EXPECT-FAIL block abutting item 4 — is the house style on **11 of the 14** EXPECT-FAIL cases, so changing one would break Rule 16. | **QA lead** | Nothing. Asking whether a different case was meant, or whether the blank line should be added to all 14. `build/report-suite/batch-2026-08-28/C43547-FORMATTING-CHECK.md` | 2026-08-28 |
+| **RS-GAP-2** | **WIP v28 §7 now carries THREE empty-state messages and only one has a case** — the 2026-08-24 SV-9452 correction added *"No snapshot is available for this date."* and *"No jobs match this filter on this date…"* alongside *"Empty bays, endless possibilities. Get Going!"*. Also still open from the previous pass: **WIP S4-R9's null-unit-number sort rule has no case**. | **QA lead** | **Three cases cannot be created — Rule 62's creation hold (H1) is recorded as ACTIVE. Has it lifted?** | 2026-08-28 |
+| **RS-PO-4** | **The Chris Ward question sheet is WRITTEN and NOT SENT** — `build/report-suite/PO-QUESTIONS-CHRIS-WARD-2026-08-28.md`, five questions, each naming the project and the report, each quoting the live description verbatim with version and link. It **supersedes the unsent 2026-08-26 draft**. | **QA lead** (to send) → **Chris Ward** | Question 2 also blocks authoring a second Work In Progress case. | 2026-08-28 |
+| **RS-MARK-1** | **C30460's AUTOMATION marker is not a Rule-61 canonical literal** — it reads `AUTOMATION: Not available on Build to test Yet - Last checked 8/17/2026`. Pre-existing, not touched (it is an Automated case). | **QA lead** | Nothing today; it breaks any arithmetic gate that counts READY / EXPECT-FAIL / HOLD. | 2026-08-28 |
+| **RS-LINK-1** | **The invoice-number link-versus-plain-text question looks ANSWERED AT SOURCE** by live SBR v24: *"a clickable link … rendered as a link only when the user has permission to open that target, otherwise plain text."* Three cases are still on `AUTOMATION: HOLD` waiting on it — C30310, C30315, C43559. | **QA lead** | Three held cases that may not need to be held. **May we re-check them against that wording and close the item?** | 2026-08-28 |
+
+**⚠️ TWO WRITE TRAPS DISCOVERED THIS PASS — both cost a damaged case, both repaired within the
+minute, both now closed in the tooling.** (1) **A `markdown fr-view` container renders a BARE-TEXT
+body's newlines as line breaks, and `update_case` adds its own `<p>` wrapper, after which they stop
+breaking** — C30277 flattened into one paragraph. (2) **The same bare-text-in-`fr-view` shape is
+flattened by the WEB EDITOR too**, because the editor loads one unbroken run of text — C30526
+flattened. **The container class alone was never a sufficient safety gate.** The full route table is
+in `build/report-suite/batch-2026-08-28/RESULTS.md` §1; `api_edit.py` and `ui_edit.mjs` now refuse
+the shapes they cannot write safely.
+
 ## 🆕 2026-08-28 — TWO PO RECORDS CORRECTED (one owner recorded, one project mis-attribution closed)
 
 **Both are record corrections. Nothing was sent to any PO, and no ticket was created — the Rule-62

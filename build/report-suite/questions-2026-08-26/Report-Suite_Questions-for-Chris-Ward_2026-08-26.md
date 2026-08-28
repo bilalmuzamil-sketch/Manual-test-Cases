@@ -8,6 +8,14 @@ carries a QA-only tab that must not be forwarded.
 
 **DRAFT - NOT SENT. Nothing has been written to TestRail or Jira.**
 
+> ## ⚠️ SUPERSEDED 2026-08-28 — DO NOT SEND THIS SHEET
+>
+> Both questions on it are carried, unchanged in substance, into
+> **`build/report-suite/PO-QUESTIONS-CHRIS-WARD-2026-08-28.md`**, which re-reads them against the
+> live descriptions of 2026-08-28, corrects the live status of every test they touch, and adds three
+> further questions that were already open. **Send that sheet.** This one is kept as the record of
+> how these two questions were derived — nothing in it was deleted.
+
 Two quick questions - one about the Sales By Representative report, one about the Work In Progress report. Each one is a plain A / B / C. Both are places where your written description says a thing two different ways, and we would rather have your word than pick a side ourselves. Every question names the project and the report, because we know you look after more than one thing here. There are no bugs on this sheet - just two wording decisions. You do not need to open anything to answer. Thank you.
 
 **Two questions in total - one on the Sales By Representative report, one on the Work In
