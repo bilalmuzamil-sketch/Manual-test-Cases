@@ -11,15 +11,26 @@
 > ls build/*/FINDINGS.md 2>/dev/null            # past per-ticket investigations
 > git log --all --oneline --grep="<keyword>" | head -20   # someone may have fixed it in a commit
 > ```
-> Check, in order: **(1)** this playbook (recipes + traps: TestRail, app, Jira) · **(2)**
-> `build/ATLASSIAN-JIRA-ACCESS-METHOD.md` (browser / proxy / MITM-bridge mechanics) · **(3)** the relevant
-> `build/<ticket>/FINDINGS.md` · **(4)** `git log --all --grep`.
-> **⚠️ Some resources the directive names DO NOT EXIST on this branch** (checked 2026-08-28): there is **no
-> `build/skills/14-ACCESS-RESILIENCE.md`, no `build/rules/RULES-*.md`, no `build/BLOCKED-*.md`, no
-> `*DIAGNOSIS*.md`** here — they may live on another session's branch. Use the four that DO exist above.
-> **If you find the answer: use it and say where.** **If you genuinely can't: state exactly what you
-> searched and tried**, so the gap is known to be real, not unsearched. **If you SOLVE something new: write
-> it into this playbook in the SAME pass** (Standing Rule 27 — undocumented knowledge is knowledge we lose).
+> **🔴 STEP 0 IS `git fetch origin` — ALWAYS, before you measure or report ANY repo fact.** A stale
+> checkout answers confidently and WRONGLY with no signal it's stale (on 2026-08-28 it made this very
+> session declare `build/skills/`, `build/rules/`, the `BLOCKED-*` and `*DIAGNOSIS*` files "not on this
+> branch" — **they all exist on `origin/claude/slack-session-0sxnd9`**, the canonical shared-brain branch).
+> **🔴 SEARCH THE CANONICAL BRANCH, NOT ONLY YOUR OWN — you do NOT need to check it out:**
+> ```
+> git fetch origin                                                              # STEP 0, never skipped
+> git ls-tree -r --name-only origin/claude/slack-session-0sxnd9 | grep -E 'skills/|rules/|BLOCKED|DIAGNOSIS'
+> git grep -n "<exact error string>" origin/claude/slack-session-0sxnd9 -- build/ | head -20
+> git show origin/claude/slack-session-0sxnd9:build/skills/14-ACCESS-RESILIENCE.md | sed -n '1,80p'
+> ```
+> **"Not on this branch" is NEVER a reason to conclude something doesn't exist.** The canonical resources:
+> `build/APP-ACTIONS-PLAYBOOK.md` · `build/skills/14-ACCESS-RESILIENCE.md` (access ladders) ·
+> `build/ATLASSIAN-JIRA-ACCESS-METHOD.md` · `build/rules/RULES-*.md` (**grep, never read whole**) ·
+> `ls build/BLOCKED-*.md` (several marked RESOLVED with the cause) · `build/*/FINDINGS.md` ·
+> `git log --all --grep`. **DURABLE FACT: the Standing Rules moved OUT of `CLAUDE.md` into
+> `build/rules/RULES-*.md` on 2026-08-21; `CLAUDE.md` is now an INDEX.** This directive is formal
+> **Standing Rule 97** (in `build/rules/RULES-61-97.md` on the canonical branch), which already cites this
+> session's stale-checkout failure. **Find it → use it, say where. Can't → report the exact searches you
+> ran. Solve something new → write it down the same pass** (Rule 27).
 
 > ## ⛔ BEFORE ANY APP ACTION: run the 30-second pre-action check in **§U.0**
 > Five questions — have I done this before · **is there more than one surface for this action and am I
