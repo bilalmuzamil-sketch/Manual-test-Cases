@@ -200,8 +200,12 @@ All in `build/custom-roles/source-verify-2026-08-28/`:
 ## OUTSTANDING — what I need from you
 
 1. **Go-ahead to correct C27776** — one `update_case`, drafted in §6. Nothing written yet (Rule 6).
-2. **Confirm the PO for Custom Roles.** Still recorded as unknown; needed before any question sheet
-   can go out. The spec's *owner* is Sasha Grosman, which is not the same thing.
+2. ~~**Confirm the PO for Custom Roles.** Still recorded as unknown; needed before any question sheet
+   can go out. The spec's *owner* is Sasha Grosman, which is not the same thing.~~
+   **✅ SUPERSEDED LATER THE SAME DAY (2026-08-28), struck through rather than deleted per Rules
+   32/33.** The PO is recorded as **Sasha Grosman — surname unconfirmed; TestRail user 9 spells it
+   *Grossman***. **All that is still owed is the spelling of the surname**, and it must be confirmed
+   before his name goes on anything he reads.
 3. **A PO question to raise once (2) is answered:** tidy the stale *"(cannot reverse)"* text in the
    spec's Service Manager behaviour-change row.
 4. **Do you want a build re-verification?** The last one for this project was **2026-07-27**, 32 days

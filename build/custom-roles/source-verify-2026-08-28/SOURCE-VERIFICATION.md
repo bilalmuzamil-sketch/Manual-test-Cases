@@ -143,6 +143,13 @@ while the code is correct. It is corroboration for the environment-gap reading i
 - **No PO answer file exists for this project.** CLAUDE.md §3 records **PO UNKNOWN — must be asked**
   (the spec *owner* is Sasha Grosman, which is not the same thing as the PO). This remains open.
 
+> **✅ CORRECTED LATER THE SAME DAY (2026-08-28) — the line above is out of date, kept visible per
+> Rules 32/33.** The PO **is** recorded now: **Sasha Grosman — surname unconfirmed; TestRail user 9
+> spells it *Grossman***. Recorded in `build/custom-roles/PROJECT-STATE.md` §2, the CLAUDE.md §3
+> project-index row and `build/OUTSTANDING-ITEMS-REGISTER.md` row **PO-1**. **What is still owed is
+> only the SPELLING of the surname — confirm it before his name goes on anything he reads.** A PO
+> answer file still does not exist.
+
 ## 7 · Rule-91 badge summary
 
 | Source | Badge | Version / marker | Date |

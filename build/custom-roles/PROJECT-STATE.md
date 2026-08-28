@@ -14,8 +14,8 @@ index, not the authority).
 | **Epic** | **SV-7388** — 269 children |
 | **Specification** | Confluence page **565116952** — *"Custom Roles and Permissions"* |
 | **Spec version now** | **v54**, last edited **2026-07-16**; confirmed live **2026-08-28** |
-| **Spec owner (Confluence)** | Sasha Grosman |
-| **PRODUCT OWNER** | **Sasha Grosman** — see §2 |
+| **Spec owner (Confluence)** | **Sasha Grosman** — surname unconfirmed; TestRail user 9 spells it *Grossman* |
+| **PRODUCT OWNER** | **Sasha Grosman** — surname unconfirmed; TestRail user 9 spells it *Grossman*. See §2 |
 | **TestRail** | group **3527**; **515 cases ours** (`created_by = 3`) of 714 live, **199 foreign** |
 | **Status** | **RECURRING** — the 4-layer permission VIU is re-run after **every** feature release, because it regresses when other features ship |
 | **Prior state doc** | `build/custom-roles-run/release-regression-2026-07-27/RELEASE-REGRESSION-STATE-2026-07-27.md` |
