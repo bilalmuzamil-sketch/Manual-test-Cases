@@ -1,0 +1,44 @@
+{
+ "30457": [
+  {
+   "cls": "markdown fr-view",
+   "text": "1. You are signed in to the ShopView App on a desktop browser.\n2. ZZAUTOTEST work orders exist at your active location open on the selected \"as of\" date: one Invoiced, one Paid, one Declined, and one part-sale work order."
+  },
+  {
+   "cls": "markdown fr-view",
+   "text": "1. Open the Work In Progress report.\n2. Look for the Invoiced, Paid and Declined work orders and the part-sale work order in every tab.\n3. Check the summary strip and each tab's Totals row for their money.\n4. Download the current tab as a CSV and search the file for them."
+  },
+  {
+   "cls": "markdown fr-view",
+   "text": "1. The Invoiced, Paid and Declined work orders do not appear in any tab, any Totals row, the summary strip, or the download.\n2. The part-sale work order does not appear anywhere either.\n3. No excluded work order's money is counted in any figure.\n\n---\nThis is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the Work In Progress report specification version 28 (S2-R2, S2-R3), read on 26 August 2026.\nLast checked against build v3.8-bd246fd on 8/18/2026.\nRe-checked against the live specification on 28 August 2026: this case cited S2-R5, which in version 28 is the loading requirement and not what the case tests; the requirements it actually tests are S2-R2 and S2-R3, and the Declined status that S2-R2 names alongside Invoiced and Paid has been added to the preconditions, the steps and the first expectation.\n\nAUTOMATION: READY"
+  }
+ ],
+ "30528": [
+  {
+   "cls": "markdown fr-view",
+   "text": "1. Open work orders exist across the organization on the day you inspect.\n2. You can open the Work In Progress report and set its \"as of\" date."
+  },
+  {
+   "cls": "markdown fr-view",
+   "text": "1. Open the Work In Progress report and set the \"as of\" date to today (or any day that has a saved snapshot).\n2. Read the rows across all four tabs and note, for each work order, how many rows it has and in which tabs.\n3. Set the \"as of\" date to a different saved day and read the rows again."
+  },
+  {
+   "cls": "markdown fr-view",
+   "text": "1. The snapshot records one row per then-open work order per tab - a work order whose approved lines fall in more than one tab is captured as one row for each matching tab, each row holding only that tab's share of the money, so the saved history reconciles with the on-screen tabs. Rows are keyed by work order, tab and calendar date.\n2. A single work order writes at most TWO rows for a day: its status tab (one of the four state tabs), plus the Estimates tab if it has unapproved lines. Never more than two, and never two rows for the same work order, tab and date together.\n3. Adjustments belong only on the status-tab row (S3-R6); the Estimates row carries no Adjustments value.\n4. Each day has its own rows: a work order open on two days has its rows under each date, and no work order shows a duplicate row for the same tab on the same day.\n5. Each row captures, at minimum: the work order, the tab (line-state bucket), its status, that tab's Earned value and that tab's Remaining value, the Labor earned, Labor remaining, Parts earned and Parts remaining amounts that those two totals are built from, that row's Adjustments value (only the status-tab row carries one, per point 3), the location and organization copied from the work order, and the calendar date.\n\nNote for the tester: you CAN check this from the report. Set the \"as of\" date to a day that has a snapshot and read the rows - the report reconstructs that day from the nightly snapshot. Confirm each work order shows one row per tab (at most two rows: its status tab, plus Estimates if it has unapproved lines) and that Adjustments appears only on the status-tab row.\n\n---\nThis is the expected behaviour as per epic SV-8582 and story SV-8667 (WIP Story 11), and the Work In Progress report specification version 28 (S11-R1, S11-R2, S3-R6), as pinned and answered by Chris Ward on 19 August 2026, recorded in his answers in this file: https://raw.githubusercontent.com/bilalmuzamil-sketch/Manual-test-Cases/claude/slack-session-0sxnd9/build/report-suite/chris-answers-2026-08-19/WIP-CHRIS-RULINGS-2026-08-19.md.\nThis corrects the older wording (specification version 22), which said nothing in the report reads the snapshot back. Chris Ward confirmed on 19 August 2026 that the \"as of\" date reconstructs a past day from the snapshot, so that newest source is followed here.\nLast checked against build v3.8-d0e135e on 8/19/2026.\nRe-checked against the live specification on 28 August 2026: S11-R2 lists the fields each snapshot row captures, and the Labor and Parts earned/remaining amounts behind the Earned and Remaining totals, and the row's Adjustments value, were missing from the list in point 5. They have been added; nothing else changed.\n\nAUTOMATION: READY"
+  }
+ ],
+ "43838": [
+  {
+   "cls": "markdown fr-view",
+   "text": "1. You are signed in to the ShopView App on a desktop browser.\n2. The Work In Progress report is open, showing the summary strip and the four line-state tabs, with money in every bucket."
+  },
+  {
+   "cls": "markdown fr-view",
+   "text": "1. Note the summary strip figures and which tab is active on arrival.\n2. Click the \"Approved - Not Started\" tab and look at the summary figures.\n3. Click each of the other tabs in turn (\"Approved - Partially Completed\", \"Completed\", \"Estimates\") and look at the summary figures each time."
+  },
+  {
+   "cls": "markdown fr-view",
+   "text": "1. Selecting a line-state tab highlights the summary figure(s) that make up that tab's bucket — the highlight is on the figure, not on the tab itself.\n2. The mapping is: the \"Approved - partially completed\" tab highlights both open-work-order figures (Completed Work on Open Work Orders and Remaining Work on Open Work Orders); the \"Approved - not started\" tab highlights Work Orders Not Started; the \"Completed\" tab highlights Work Orders Ready to Invoice; the \"Estimates\" tab highlights Estimates.\n3. Only the selected tab's figure(s) are highlighted at any one time; switching tabs moves the highlight to the new tab's figure(s).\n4. The highlight is a soft violet fill and ring on the figure.\n5. The active tab itself shows in the accent colour at a bolder weight.\n\nThis is the expected behaviour as per epic SV-8582 and the Work In Progress report specification version 28 (S5-R14), read on 26 August 2026.\nThis case previously asserted the glow appeared on the active TAB element itself; the 13 August 2026 design review (https://claude.ai/code/artifact/42c35f46-2796-467e-9723-7daa5385446e) placed it behind the composing summary figures instead, and specification version 28 now states the requirement directly, so we take the specification as prevailing.\nThe design review described the colour as amber and this case previously carried that as an open design-vs-build question. Specification version 28 states the highlight is a soft violet fill and ring, which resolves the question in favour of violet — there is no longer a colour discrepancy to raise.\nLast checked against build v3.8-d0e135e on 8/20/2026.\n\nAUTOMATION: READY"
+  }
+ ]
+}
