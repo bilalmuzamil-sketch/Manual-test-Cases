@@ -297,11 +297,31 @@ snapshot worth its cost:
 **Do both.** Snapshot for the bulk diff and the durable record; use `get_history_for_case` on the
 specific cases the diff flags, to get the who and the when.
 
-**Why:** **TestRail keeps only the LAST writer.** There is no per-field history, so the
-moment one of our own passes writes a case, any trace of an earlier foreign edit is
-**permanently gone**. A committed snapshot turns an **unanswerable question into a
-`git diff`**, and turns a Rule 38/39 dispute into **evidence** — Rule 39 requires both
-sides' sources on the table, which is impossible about an edit we cannot characterise.
+**Why (CORRECTED 2026-08-28):** **`get_history_for_case` IS THE AUTHORITATIVE RECORD OF WHAT A
+FOREIGN EDIT CHANGED** — field by field, with `old_value` and `new_value`, full text bodies included,
+and it survives our own later overwrites. **CHECK IT FIRST. Nothing is called unreconstructable
+until that call has been made and its output recorded.** The committed snapshot stays useful as a
+**fast local diff** and an **offline baseline** (and for the four things §6.4 lists that history
+cannot do), but it is **secondary**. Together they turn a Rule 38/39 dispute into **evidence** —
+Rule 39 requires both sides' sources on the table, and history puts them there.
+
+> **SUPERSEDED 2026-08-28 — kept visible and dated per Rules 32/33, not deleted. This text is FALSE;
+> do not quote or rely on it:** *"**Why:** **TestRail keeps only the LAST writer.** There is no
+> per-field history, so the moment one of our own passes writes a case, any trace of an earlier
+> foreign edit is **permanently gone**. A committed snapshot turns an unanswerable question into a
+> `git diff` …"* — true of `updated_by` / `updated_on`, then wrongly generalised to the whole
+> product. `get_history_for_case` had never been called.
+
+**PROOF, ON THE ORIGINATING CASE (2026-08-28).** [C29557](https://shopview.testrail.io/index.php?/cases/view/29557)
+— the case Rule 87 was written about, and the one our records said we *"could never establish"* —
+returned **17 history entries**, and the foreign edit came back whole: **Ahtasham Amjad (user id 7),
+2026-08-05 13:32 UTC, three fields** (`custom_preconds`, `custom_steps`, `custom_expected`), a
+rich-text-editor save that **wrapped each field in `<p>…</p>`, flattened the line breaks, and on
+Expected Result was LOSSY (687 → 423 chars)** — deleting the "Known and accepted" tester note and
+**truncating the marker to `AUTOMATION: READY -`**. Our own pass restored the field the same day at
+14:18 UTC. Full history: `build/custom-roles/foreign-edit-C29557/HISTORY.json`.
+**Also confirmed: `custom_atmstatus` `4` = `Pending` is DISTINCT from `3` = `Automated`, so a `1 → 4`
+move does not trigger Rules 65/71** (§6.4).
 
 **It also protects the other party:** a diff can equally show that a suspected foreign
 edit never happened, or that ours was the pass at fault.

@@ -207,7 +207,7 @@ rule. Generated from the split files' own headers.
 | **84** | THE TESTER-READINESS GATE — nothing reaches a manual tester until it passes (all projects, pe... |
 | **85** | A PROJECT WITH NO QA BUILD IS REPORTED AS "SOURCE-VERIFIED ONLY — NO BUILD EXISTS YET" (all p... |
 | **86** | CROSS-SESSION TRUST — VERIFY FROM COMMITTED EVIDENCE, NEVER FROM A SESSION'S SELF-REPORT; AND... |
-| **87** | SNAPSHOT CASE BODIES SO A FOREIGN EDIT IS ALWAYS DIFFABLE (all projects, permanent) |
+| **87** | SNAPSHOT CASE BODIES SO A FOREIGN EDIT IS ALWAYS DIFFABLE — **but CHECK `get_history_for_case` FIRST: corrected 2026-08-28, it IS the authoritative per-field record (old + new values, full bodies), so nothing is "unreconstructable" until that call has been made; the snapshot is the fast offline diff, not the only evidence** (all projects, permanent) |
 | **88** | LANE-SESSION CONTEXT DISCIPLINE — a session WITH direct tools must never bulk-read; script it |
 | **89** | ACCESS RESILIENCE AND MCP HYGIENE — every session keeps a working path to every source, and |
 | **90** | SHARED-QUOTA BUDGET ALLOCATION ACROSS SESSIONS (all projects) |

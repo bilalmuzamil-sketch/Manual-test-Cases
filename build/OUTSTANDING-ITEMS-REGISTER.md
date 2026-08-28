@@ -50,6 +50,29 @@ is one API call per case (≈714 for one group), the snapshot is committed third
 evidence (Rule 86), and only a snapshot records which cases *existed* in a group on a date.
 **Going forward the two active groups are baselined; a project with no baseline is still exposed.**
 
+**🔴 2026-08-28 — C29557 IS RECOVERED. THE ORIGINATING "UNRECONSTRUCTABLE" CLAIM IS WITHDRAWN.**
+Rule 87 and Rule 83 were both justified by the position that when **Ahtasham Amjad edited our own
+[C29557](https://shopview.testrail.io/index.php?/cases/view/29557)** we *"could never establish what he
+changed."* **`get_history_for_case/29557` established it in one call — 17 entries, the foreign edit
+among them, with both sides of every field.** What he actually did:
+
+> **2026-08-05 13:32 UTC, user id 7 (Ahtasham Amjad)** — a single save touching **three fields**:
+> `custom_preconds`, `custom_steps`, `custom_expected`. He had the case open in TestRail's rich-text
+> editor, so each field came back **wrapped in `<p>…</p>` with the typed line breaks flattened**. On
+> **Expected Result the save was LOSSY, 687 → 423 characters**: the whole *"Known and accepted: on the
+> build tested the filter buttons sit on the same row as the tabs…"* tester note was **deleted**, and
+> the automation marker was **truncated to `AUTOMATION: READY -`**, losing
+> `EXPECT FAIL (SV-8843 - closed as accepted, will not be fixed)`.
+
+**No live damage remains.** Our own pass restored and rewrote the field the same day at **14:18 UTC**,
+and the 2026-08-17 rewrite has since superseded the case entirely (now `SV-9268 (S1-R1; S1-R4) [spec
+v21 2026-08-14]`, `AUTOMATION: READY`, `custom_atmstatus 1`, `updated_by 3`). **Nothing to fix; this is
+a closed finding, recorded because a whole rule rested on it.** Full history committed at
+`build/custom-roles/foreign-edit-C29557/HISTORY.json`. Rule 87, Rule 83's rationale,
+`13-CROSS-SESSION-SAFETY.md` §6, `APP-ACTIONS-PLAYBOOK.md` §J and the CLAUDE.md index row were all
+corrected on 2026-08-28, old text kept visible and dated (Rules 32/33).
+**The transferable lesson: before recording "X is impossible" as a standing premise, TRY X** (Rule 12).
+
 **Open question now routable to Sasha (Custom Roles):** PRD **v54** says three ways that the Service
 Manager **can** reverse a work order invoice (Permission Matrix `V/E/D`, §1a Work Orders → Delete, and
 the 2026-06-28 change-log entry), while the *Behavior Changes for Migrating Users* table still says

@@ -1223,6 +1223,34 @@ with `sv_sso_session` and `cf_clearance` **byte-identical** to the set that was 
     ours 474 + **foreign 5, all Vladimir Tomovic (user id 1; we are id 3)**; Filters **4110** = 110 =
     ours 110 + **0 foreign**; Schedule **4254** = 165 = ours 165 + **0 foreign**. Output kept at
     `build/gap-rootcause-2026-07-31/REVERSE-DIFF-2026-07-31.md`.
+- **🔴 `get_history_for_case` IS THE AUTHORITATIVE RECORD OF A FOREIGN EDIT — CHECK IT FIRST (proven
+    live 2026-08-28; CORRECTS A STANDING BELIEF).** `GET index.php?/api/v2/get_history_for_case/<case_id>`
+    returns **one entry per save**, each with `id`, `created_on` (unix), `user_id`, `type_id`, and a
+    **`changes[]` array carrying `field`, `old_value` AND `new_value`** — **full text bodies, not
+    truncations**: `title`, `refs`, `custom_preconds`, `custom_steps`, `custom_expected`,
+    `custom_atmstatus`. **It survives our own later overwrites**, so a foreign edit is reconstructable
+    field by field long after the fact. **Nothing may be reported as "we cannot establish what was
+    changed" until this call has been made and its output recorded** (Rule 12). Committed body
+    snapshots (Rule 87) remain useful as a **fast offline diff** and for the things history cannot do —
+    a **deleted** case has no history, history is **one call per case** so it does not scale to a
+    714-case group, and it cannot show that a case **appeared or vanished** — but **history is primary**.
+    **SUPERSEDED, kept visible per Rules 32/33:** the pre-2026-08-28 playbook/rule position that
+    *"TestRail stores only the LAST writer; there is no per-field history"* is **FALSE** — it was true
+    of `updated_by` / `updated_on` only, then wrongly generalised.
+    **Evidence:** **C29557** returned **17 entries** and recovered the 2026-08-05 Ahtasham Amjad
+    (user id 7) edit in full — three fields, a rich-text save that `<p>`-wrapped them and truncated
+    Expected Result 687 → 423 chars (`build/custom-roles/foreign-edit-C29557/HISTORY.json`). **C27792
+    and C27805** returned **exactly one entry each — `custom_atmstatus` `1 → 4 Pending`, no text change**
+    — disproving the claim that an undiffable body edit had happened to them.
+    **`custom_atmstatus` values: `1` Not Automated · `3` Automated · `4` Pending. `4` IS NOT `3`** — a
+    `1 → 4` move does **not** make a case Automated and does **not** trigger Rules 65 / 71, but it means
+    someone has queued it for automation, so **preserve the value and never send that field**.
+- **🔧 ON THE CASE EDIT PAGE, REFERENCES IS `div#refs` — `#requirements_display` IS A DIFFERENT FIELD
+    (DOM-probed 2026-08-28).** The **References** field is the **contenteditable `div#refs`**, backed by
+    the hidden input **`#refs_hidden[name=refs]`** — that hidden input is what actually submits, so a UI
+    edit must land in both. **`#requirements_display` is NOT references**: it is the unrelated **"AI
+    context"** field, and driving it silently edits the wrong thing while appearing to work. Found while
+    repairing C30518; source note `build/report-suite/damage-2026-08-26/C30518-REPAIR-2026-08-28.md` §6.
 
 ## K. PRODUCTION access & fix-verification (SV-8721, proven 2026-07-29)
 One indexed block for verifying a bug fix on PRODUCTION (`app.shopview.com` / `api.shopview.com`).

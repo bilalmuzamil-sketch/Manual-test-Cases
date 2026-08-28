@@ -143,3 +143,27 @@ API and is **not** affected.
 
 Full evidence: `build/report-suite/damage-2026-08-26/C30518-REPAIR-2026-08-28.md` and
 `build/report-suite/c30287-header-2026-08-28/CSV-COLUMN-HEADER-CORRECTION.md`.
+
+---
+
+## 2026-08-28 — PENDING, NOT WRITTEN: one typo on C30287, held for the QA lead's go-ahead (Rule 71)
+
+**NOTHING WAS WRITTEN FOR THIS ITEM.** [C30287](https://shopview.testrail.io/index.php?/cases/view/30287)
+is `custom_atmstatus = 3` (**Automated**), read live 2026-08-28, so **Rule 71 holds it**: no change to
+an Automated case without the QA lead's explicit go-ahead, even a typo. Recorded here so it is not
+lost and not silently fixed by a later pass.
+
+| Field | C-id | atmstatus | Found | Proposed correction (ONE word) | Does an assertion change? |
+|---|---|---|---|---|---|
+| Steps (step 2) | C30287 | **3** | `… the negative value's cell, **an** Labor Delta cell, the undefined Margin % cell …` | `… the negative value's cell, **a** Labor Delta cell, the undefined Margin % cell …` | **No** — grammar only; no label, value, column or expectation changes |
+
+**Exact one-line edit, ready to apply on approval:** in `custom_steps`, replace `an Labor Delta cell`
+with `a Labor Delta cell`. Nothing else on the case is touched; `custom_atmstatus` is **never sent**
+(it stays 3), and the title is not changed.
+
+**Why it is worth doing at all:** the case is tester-facing (Rules 7/9) and this is the only defect in
+it. **Why it is not done now:** it is Automated, and Rule 71 does not have a "too small to matter"
+exemption. **If approved, Rule 65 then applies — Vladimir must be told**, and the change gets its own
+row in the section above.
+
+**ASK:** may we apply this one-word correction to C30287?

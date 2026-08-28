@@ -58,6 +58,16 @@ Separately, **C30518** (also Automated) is still carrying render damage from the
 2026-08-26 pass and still needs its own go-ahead — see
 `build/report-suite/damage-2026-08-26/FINAL-SUMMARY.md` §3.
 
+> **✅ CORRECTED 2026-08-28 — THE LINE ABOVE IS OUT OF DATE, kept visible per Rules 32/33.**
+> **C30518 was REPAIRED at 03:07 UTC on 2026-08-28** by another session, with the go-ahead it names:
+> the render damage is **fixed**, the case was **re-pinned v21 → v28** in the same pass, and
+> `custom_atmstatus` is **still 3 (Automated)** — so it is **no longer damaged and no longer awaiting
+> a go-ahead**, and it is **not** part of the 39 held above. Evidence:
+> `build/report-suite/damage-2026-08-26/C30518-REPAIR-2026-08-28.md`.
+> **Rule 65 applies — Vlad must be told, because an Automated case was changed;** the entry is logged
+> under the 2026-08-28 heading in
+> `build/fabian-review-2026-08-17-CONSOLIDATED/AUTOMATED-CASES-REGISTER.md`.
+
 ## OUTSTANDING — what I need from you
 
 1. Per-case (or blanket) go-ahead to re-pin these 39 Automated cases.
