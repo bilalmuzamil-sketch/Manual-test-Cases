@@ -146,6 +146,20 @@ any endpoint/ID not recorded here or in `CLAUDE.md`** — if only partly known, 
 - **Diagnostic ladder:** no cookies → 401; `sso_required`/only sso+cf → 409; **poisoned shared
   PHPSESSID → 500 on everything** (API root still 200). Fix a poisoned session: re-run quick-login
   `{key:'admin'}` WITHOUT sending the old PHPSESSID → fresh PHPSESSID → all 200 again.
+- **🔑 `POST /api/login {username,password}` DOES NOT WORK ON STAGING OR ON A QA BRANCH — it is SSO-gated
+  (proven 2026-08-28, VIU lane).** Both hosts answer **HTTP 401
+  `{"error":"sso_required","sso_redirect_url":"https://auth.<env>.shopview.com/login?return_to=..."}`**
+  to an empty-body POST: staging → `auth.staging.shopview.com`, QA branch → `auth.qa.shopview.com`.
+  **So the §K PRODUCTION recipe (`POST /api/login` → 200 + a fresh `PHPSESSID`) IS PROD-ONLY AND DOES
+  NOT TRANSFER.** Consequence, and it is the useful half: **a ShopView username and password cannot
+  mint a staging/QA session** — the session must come from a browser SSO login through
+  `auth.<env>.shopview.com`, or from the QA lead as a cookie set. Asking him for "a username and
+  password instead of cookies" is therefore a dead end; ask for the **three cookies** (or for someone
+  to drive the SSO login).
+  **AND `POST /api/quick-login` IS ITSELF SSO-GATED, PROVEN THE SAME WAY:** with no cookies it returns
+  the identical `sso_required` 401 (`sv9500api`, 2026-08-28). It is **not** a recovery route from a
+  genuinely dead shared sign-in — which is exactly what core §6.1 says, now confirmed by probe rather
+  than by inference.
 - **Chromium UI automation (boot2 hydration):** Chromium can't TLS through the egress proxy directly.
   `boot2(roleKey, opts)` in `staging-boot2.mjs` does quick-login → optionally `change-location` →
   reads `GET /api/auth/me/fe-permissions` → seeds cookies + localStorage (`user`,

@@ -165,6 +165,16 @@ deferred tools are listed by name only until their schema is fetched.
 **`build/ATLASSIAN-JIRA-ACCESS-METHOD.md`** — read it rather than re-deriving:
 - headless Chromium through a **fresh MITM bridge** → `id.atlassian.com` → email + password →
   **6-digit EMAIL OTP**, which the **QA lead supplies on request**.
+- **🛑 CORRECTED 2026-08-26 — THERE IS NO OTP ON THIS ACCOUNT, AND THE OTP WORDING ABOVE IS
+  SUPERSEDED.** `build/BLOCKED-confluence-source-verify.md` is marked **RESOLVED 2026-08-26**: the
+  Atlassian login failure was **an undismissed "Security review" interstitial swallowing the login**,
+  **never a credential problem**, and the account has **no OTP because two-step verification is off**.
+  **THE FIX: dismiss the "Security review" interstitial during login, then proceed normally — no OTP
+  is issued, none is needed, and none should be requested from the QA lead.** Recorded in commit
+  `55b3e979`; all six Report Suite specs were then fetched live
+  (`build/report-suite/source-verify-2026-08-26/reports/`). **The two bullets above are kept visible
+  and dated rather than deleted (the Rules 32/33 pattern) — do not apply them, and do not ask him for
+  a 6-digit code.**
 - **THE MFA RACE IS THE CRUX:** each password submit emails a NEW code and **invalidates all prior
   ones**. Hold **ONE detached session parked at the OTP prompt**, polling the code file in `/tmp`.
   **NEVER start a fresh run to retry** — that invalidates the code the QA lead just sent you.

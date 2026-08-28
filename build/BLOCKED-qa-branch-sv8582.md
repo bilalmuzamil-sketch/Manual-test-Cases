@@ -2,6 +2,20 @@
 
 **Status: BLOCKED as at 2026-08-21.** Raised by `build/PROJECT-INDEX-REFRESH-2026-08-21.md` §4.
 
+## STILL BLOCKED — re-probed 2026-08-28T16:44Z (VIU lane)
+
+`GET https://sv8582.qa.shopview.com/index.html` → **`curl (56) CONNECT tunnel failed, response 502`,
+0 bytes**, on every attempt across three separate clock readings this session. **It is now the ONLY
+dead QA host.** Re-probed alongside it at the same moment, all HTTP 200:
+`app.staging.shopview.com` **`v26.35.6-49e216a`** · `sv9500` **`v26.35.6-4b694be`** ·
+**`sv8685` `v26.35.5-d3f33a7`** · `sv8785` `v3.7-6e2d301`.
+
+**⚠️ A CORRECTION WORTH KEEPING: `sv8685` LOOKED DEAD AND WAS NOT.** An earlier probe this same
+session read `sv8685` as 502 twice and it was reported as newly unreachable; two days later it answers
+200. **A 502 on one of these hosts is not proof the branch is retired — re-probe before saying so**,
+and note that this file's own conclusion about `sv8582` rests on repeated failures across *passes*,
+not a single reading.
+
 ## What is blocked
 
 Reading a **build marker** for the Report Suite's own QA branch. No `app-version`, no
