@@ -40,8 +40,8 @@ Deliver test cases a **new, non-technical manual tester** can run with zero prio
 > **🔗 THE CHAIN HAS THREE LINKS: LEARNED FROM THE SOURCES → VERIFIED RUNNABLE ON THE BUILD →
 > ANY DIVERGENCE RAISED TO THE QA LEAD.** A failing step is **COSMETIC** (correct it and log it)
 > or **SUBSTANTIVE** (the build does not have what the source describes → the smallest change that
-> stops a tester being stranded, per core §15.1a — `AUTOMATION: HOLD` ONLY where the steps genuinely
-> cannot be executed,
+> stops a tester being stranded, with the marker chosen by **🔻 THE MARKER DECISION** in step (2a) —
+> **a HOLD only where the steps genuinely cannot be executed**,
 > "mark BLOCKED, not failed", **and RAISE it**). **The deciding question: *would a reader of the
 > source recognise what the build offers as the same thing?*** Full table in **step (2a)**;
 > deliverable **`DIVERGENCES.md`**. QA lead, verbatim: *"If any precondition learned from the
@@ -109,7 +109,8 @@ Steps come from **what the case exists to test**; this step **verifies them agai
 build** so a tester can actually execute them. **The build is the check, never the author.**
 Fail any one of these and the case is not runnable:
 1. **Is the precondition reachable?** Does the data state exist, or can it be seeded
-   (Standing Rule 14)? **If genuinely unreachable — and only then** → `AUTOMATION: HOLD` with a plain reason
+   (Standing Rule 14)? **If genuinely unreachable — and only then, per 🔻 THE MARKER DECISION below** →
+   `AUTOMATION: HOLD` with a plain reason
    **plus a tester-facing "mark BLOCKED, not failed" line** — never a silent pass.
 2. **Does the navigation path exist?** Every screen, tab and menu the steps name.
 3. **Does each named control exist WHERE THE STEP SAYS IT IS** — not merely somewhere on
@@ -135,8 +136,37 @@ offers as the same thing?***
 | | **(a) COSMETIC** — yes, it is recognisably the same | **(b) SUBSTANTIVE** — no, the source describes something the build does not have |
 |---|---|---|
 | Examples | renamed control · moved menu item · changed label · same route by a slightly different path | the route does not exist · the precondition's state cannot be set up at all, even with seeding (Standing Rule 14) |
-| Handling | **correct it** so the tester can run the case, **and log it** | **NEVER silently rewritten.** Record as a **DIVERGENCE** with **both texts quoted** (Rule 45(e)) + the **C-ids** (Rule 8); apply the **smallest change that stops a tester being stranded** — **and that is RARELY a HOLD: decide from core §15.1a's four-row table, because a HOLD on a case whose steps DO run tells the tester to mark it BLOCKED and so removes its ability to fail** (corrected 2026-08-13; QA lead approved this doc's alignment 2026-08-28). HOLD **only** where the tester genuinely cannot execute the steps, and then with a plain reason **and a "mark BLOCKED, not failed" line** |
+| Handling | **correct it** so the tester can run the case, **and log it** | **NEVER silently rewritten.** Record as a **DIVERGENCE** with **both texts quoted** (Rule 45(e)) + the **C-ids** (Rule 8), then apply the **smallest change that stops a tester being stranded** — **which marker that is, is decided by 🔻 THE MARKER DECISION below, not assumed** |
 | Escalation | none | **RAISE IT TO THE QA LEAD** and log it in the **OUTSTANDING-ITEMS REGISTER** (Rule 36) |
+
+### 🔻 THE MARKER DECISION — the one place this document decides it
+
+**🛑 CORRECTED 2026-08-13, THIS DOCUMENT ALIGNED 2026-08-28 WITH THE QA LEAD'S APPROVAL. SUPERSEDED
+WORDING, KEPT VISIBLE AND DATED:** this document used to say a substantive divergence gets
+*"normally `AUTOMATION: HOLD`"*. **That was wrong and it points the wrong way in most cases.**
+
+**WHY IT MATTERS MORE THAN IT LOOKS: `AUTOMATION: HOLD` TELLS THE TESTER TO MARK THE CASE BLOCKED.**
+So a hold on a case whose steps **do** run **removes that case's ability to fail** — exactly as surely
+as writing the build's behaviour into the expected result does. **The difference is only that it looks
+like caution instead of like a mistake.** A blocked case stops being worked, migrates into a "what is
+left" row, and nobody re-tests the premise.
+
+**⇒ SO DECIDE FROM THE STEPS, NEVER FROM HOW BADLY THE CASE LOOKS LIKE FAILING:**
+
+| What is true of the STEPS | Marker | Why |
+|---|---|---|
+| The tester **cannot execute** them — the route, screen or precondition genuinely does not exist, and seeding cannot create it | **`HOLD - <plain reason>`** + a *"mark BLOCKED, not failed"* line | They would be stranded |
+| The tester **can** execute them; the build fails the requirement; **a LIVE OPEN ticket describes it** | **`READY - EXPECT FAIL (SV-xxxx)`** + the symptom and all three outcomes | It stays armed: **if the fix ships the case passes and the tester tells us — which a HOLD can never do** |
+| The tester **can** execute them; the build fails the requirement; **NO live ticket** (none, closed or obsolete) | **plain `READY`**, and **change nothing else** | The case keeps its documented expectation and **the tester fails it, which is correct.** An unbacked expect-fail marker is barred (core §15.1) |
+| **Most** steps run; **ONE** cannot be performed | **plain `READY`** + a **verdict-free** note naming that one step: *"mark that step blocked and record the rest normally"* | A hold would throw away every result the runnable steps produce |
+
+**⚠️ AND A HOLD WHOSE REASON IS OUR OWN FILING PROBLEM IS NOT A RUNNABILITY HOLD AT ALL** — *"needs
+permission before a ticket exists to point at"* describes **our** constraint, not the tester's. Those
+are one edit from `READY - EXPECT FAIL` once a ticket exists.
+
+**Full four-row treatment, the worked examples and the live case ids: core §15.1a and skill `03`.**
+**This block is the only place this document states the decision** — the other mentions point here, so
+there is one thing to maintain and nothing to drift.
 
 > **⚠️ A PRECONDITION THE SOURCES REQUIRE BUT THE BUILD CANNOT ACHIEVE IS VERY OFTEN EVIDENCE
 > THAT THE *BUILD* IS WRONG, NOT THE CASE.** Rewriting the case to match the build there does
@@ -250,7 +280,54 @@ claims a check that did not happen. **A case that FAILS on the build must not sa
 
 **Worked example of the form in force:** *"This is the expected behaviour as per epic SV-8582 and the
 Sales By Customer report specification version 13, section S4-R13, read on 4 August 2026. Last checked
-against build v3.5-be42149 on 4 August 2026."* Rules: **date = ONE generator variable**, spec versions = a **per-report map**;
+against build v3.5-be42149 on 4 August 2026."*
+
+### 🧑‍🔧 WHAT THE TESTER ACTUALLY SEES — the part that makes this line USEFUL rather than just compliant
+
+**The provenance line sits inside Expected Results, so a manual tester reads it on every case.** Three
+things follow, and each of them is how this line stops guiding the tester if it is got wrong.
+
+**(i) WHERE IT SITS IS FIXED, AND THE MARKER IS ALWAYS LAST.** In order, top to bottom:
+the **numbered expected items** → a **separator line** → the **provenance line** → a **blank line** →
+the **`AUTOMATION:` marker**, which is the very last thing in the field, with a line break after it
+(core §15). **Exactly one provenance line and exactly one marker per case** — the stamper REPLACES,
+never appends a second. Run the post-batch invariant census that proves it (core §2.4): the case that
+taught us this, **C30341**, stored its text as raw HTML, so the writer's plain-text patterns matched
+nothing and it **APPENDED a second provenance line and a second marker — and the byte-check PASSED**,
+because the write was faithful to the payload.
+
+**(ii) 🔑 WRITE THE BREAKS AS `<br>`, OR THE TESTER READS ONE UNREADABLE RUN-ON PARAGRAPH.** This
+project renders markup **literally**, and a bare `\n` inside a `<p>` with no `<br>` **collapses the
+whole field into a single run-on block** — provenance line, marker and all. **So put `<br>` into every
+multi-line field on every write, pre-emptively; do not wait to see whether the re-render fires**
+(core §2.1a, corrected 2026-08-25). **And note the trap that correction exists for: "a field sent
+explicitly is stored verbatim" is FALSE.** A single authorised title-only repair on **C44864** sent all
+three text fields at their exact snapshot values, returned HTTP 200, and **still came back collapsed**.
+**The byte-check is therefore not optional even on a "safe" one-field edit**, and a case's markup state
+is **an output of your write, not a property you inherited** — so census the markup **after** writing,
+not only before.
+
+**(iii) 🛑 THE SPEC VERSION AND THE REQUIREMENT ANCHOR STAY. DO NOT "CLEAN" THEM OUT AS JARGON.**
+Rules 7/9 keep tester-facing text free of spec anchors and internal codes, and **the provenance line is
+a deliberate, QA-lead-instructed EXCEPTION to that** — so a later tidy-up pass that strips the version
+and the anchor for reading like jargon is **destroying the line's whole purpose**, not improving it.
+His reason, verbatim: *"that must tell the Manual QA guy or anyone who is auditing those test cases
+that these are the sources of the expected behavior, make sure to mention the date of the source when
+that source of truth was taken from each source, so that in future if someone changes the source of
+truth I can guard myself telling that the refrence taken from the source of truth was from the state of
+that source which was at this certain date."* **Everything ELSE the tester reads stays plain layman
+English** — the numbered steps and expected items carry no anchors, no case IDs, no HTTP terms, and
+**never the word "VIU"**.
+
+**⇒ THE ANTI-INVENTION GUARDS, restated because this is the field where invention hides.** A read-date
+is **the date we actually opened that source**, never today's by default — **back-filling one onto a
+source this pass did not open is a fabricated observation** (Rule 12) and it defeats the entire point,
+because the date's value is evidentiary. A line **asserting a source that does not support the
+expectation is worse than no line at all** (Rule 32), because it makes an unsourced assertion look
+audited. And **a provenance line is never evidence of a check that did not happen**: if the build was
+not opened, sentence 2 is absent — not softened.
+
+Rules: **date = ONE generator variable**, spec versions = a **per-report map**;
 **IDEMPOTENT — replace the existing line, never append a second**; **never the word "VIU"** or a flag
 name (imports stay VIU-word-free); and where the case deliberately follows a **later product decision**
 instead of the spec text, the line **says so** rather than claiming plain spec agreement (Rule 32 —
@@ -380,8 +457,8 @@ authorized)".
    every case (step 2a) — precondition reachable · path exists · control where the step says
    · steps work in order · labels read from computed style** → VIU + set
    `viu_status`/evidence/`fresh_run` → **classify every failed check COSMETIC (correct + log)
-   or SUBSTANTIVE (the smallest change per core §15.1a — HOLD **only** if the steps cannot be run at
-   all, + "mark BLOCKED, not failed" + RAISE) — *would a reader of the source
+   or SUBSTANTIVE (the smallest change, marker per 🔻 THE MARKER DECISION in step (2a) — HOLD **only**
+   if the steps cannot be run at all, then + "mark BLOCKED, not failed" + RAISE) — *would a reader of the source
    recognise what the build offers as the same thing?*** → commit by pathspec → push via
    `update_case` (GET→diff→update→200/200; skip no-ops; API-section rule) + audit log → report
    tester-ready **with the honest N-of-M: how many cases had EVERY step verified, on which
