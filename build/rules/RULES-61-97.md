@@ -2201,9 +2201,42 @@ Index: CLAUDE.md (rule index table). Other rule files: build/rules/RULES-01-20.m
     files covered — **so the QA lead knows the gap is REAL rather than merely UNSEARCHED.** A blocker
     reported without its search record is not a blocker; it is an unfinished investigation, and it
     costs him a decision he should never have been asked to make.
+    **🔴 (A) STEP 0 OF THE DRILL IS `git fetch origin`. ADDED 2026-08-28 AFTER THE RULE FAILED ITS
+    FIRST LIVE TEST.** **NEVER search, measure or report ANY repository fact before fetching.** A stale
+    checkout does not fail loudly — it answers confidently and wrongly, and the session has no signal
+    that anything is missing. **On 2026-08-28 alone a stale checkout caused: a 479-line security tool
+    (`build/testing-tools/scan_secrets.py`) to be declared non-existent; present handoff files to be
+    reported absent; a 42 KB `CLAUDE.md` to be measured as 459 KB; and existing build-verify
+    directories to be denied.** Every one of those was a confident report about a file that was sitting
+    in the repository at the time. Fetch first, then search.
+    **🔴 (B) SEARCH THE CANONICAL BRANCH, NOT ONLY YOUR OWN. ADDED 2026-08-28, SAME CAUSE.**
+    **The workspace's shared knowledge lives on `origin/claude/slack-session-0sxnd9`.** If you are on a
+    different branch, **you do NOT need to check it out** — read straight from the remote ref:
+    ```
+    git ls-tree -r --name-only origin/claude/slack-session-0sxnd9 | grep -E 'skills/|rules/|BLOCKED|PLAYBOOK'
+    git show origin/claude/slack-session-0sxnd9:<path> | grep -n "<what you need>"
+    git show origin/claude/slack-session-0sxnd9:<path> | sed -n '1,80p'
+    git grep -n "<exact error text>" origin/claude/slack-session-0sxnd9 -- build/ | head -20
+    ```
+    **"NOT ON THIS BRANCH" IS NEVER A VALID REASON TO CONCLUDE SOMETHING DOES NOT EXIST — check the
+    canonical branch before saying anything is missing.** **WHAT WENT WRONG:** on 2026-08-28 a session
+    on `claude/heic-upload-iphone-test-sz7h5p` was given this drill and reported that
+    `build/skills/14-ACCESS-RESILIENCE.md`, `build/rules/RULES-*.md`, the `build/BLOCKED-*.md` files and
+    the diagnosis files "are not on this branch", and that "the rules live inside CLAUDE.md". **Every
+    one of those files existed on `origin/claude/slack-session-0sxnd9` at that moment.** The drill had
+    told sessions WHERE to look but not to FETCH FIRST and not how to search a branch they are not on —
+    so the session searched its own stale tree, found nothing, and reasonably concluded the knowledge
+    did not exist.
+    **DURABLE FACT — THE RULES ARE NO LONGER IN `CLAUDE.md`.** The Standing Rules moved OUT of
+    `CLAUDE.md` into `build/rules/RULES-01-20.md` / `RULES-21-40.md` / `RULES-41-60.md` /
+    `RULES-61-97.md` on **2026-08-21**; **`CLAUDE.md` is now an INDEX.** **A session asserting "the
+    rules live inside CLAUDE.md" is describing a PRE-2026-08-21 state and is therefore STALE — that
+    assertion is itself the signal to `git fetch origin` and re-check before it reports anything else.**
     **THE SEARCH DRILL — run these, verbatim, substituting your own strings:**
     ```
+    git fetch origin                        # STEP 0 — ALWAYS FIRST, NEVER SKIPPED
     grep -rn "<exact error string>" build/ --include=*.md | head -20
+    git grep -n "<exact error string>" origin/claude/slack-session-0sxnd9 -- build/ | head -20
     grep -rn "<endpoint/tool/symptom>" build/APP-ACTIONS-PLAYBOOK.md build/skills/ | head -20
     ls build/BLOCKED-*.md
     ls build/*DIAGNOSIS*.md build/*/FINDINGS.md

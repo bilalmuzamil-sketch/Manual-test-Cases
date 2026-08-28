@@ -353,10 +353,40 @@ what finds it, because the session that solved it pasted the same string into th
 or the BLOCKED file. **If you still cannot find it, REPORT THE SEARCHES YOU RAN** — commands, keys,
 files covered — so the QA lead knows the gap is REAL rather than merely UNSEARCHED.
 
+**🔴 STEP 0 OF THE DRILL IS `git fetch origin` (added 2026-08-28).** **Never search, measure or report
+ANY repository fact before fetching.** A stale checkout does not fail loudly — it answers confidently
+and wrongly. **On 2026-08-28 alone a stale checkout caused a 479-line security tool
+(`build/testing-tools/scan_secrets.py`) to be declared non-existent, present handoff files to be
+reported absent, a 42 KB `CLAUDE.md` to be measured as 459 KB, and existing build-verify directories to
+be denied.** Fetch first, then search.
+
+**🔴 SEARCH THE CANONICAL BRANCH, NOT ONLY YOUR OWN (added 2026-08-28, same cause).** The workspace's
+shared knowledge lives on **`origin/claude/slack-session-0sxnd9`**. If you are on a different branch you
+do **NOT** need to check it out — read straight from the remote ref:
+
+```
+git ls-tree -r --name-only origin/claude/slack-session-0sxnd9 | grep -E 'skills/|rules/|BLOCKED|PLAYBOOK'
+git show origin/claude/slack-session-0sxnd9:<path> | grep -n "<what you need>"
+git show origin/claude/slack-session-0sxnd9:<path> | sed -n '1,80p'
+git grep -n "<exact error text>" origin/claude/slack-session-0sxnd9 -- build/ | head -20
+```
+
+**"NOT ON THIS BRANCH" IS NEVER A VALID REASON TO CONCLUDE SOMETHING DOES NOT EXIST — check the
+canonical branch before saying anything is missing.** On 2026-08-28 a session on another branch
+reported `build/skills/14-ACCESS-RESILIENCE.md`, `build/rules/RULES-*.md` and the `build/BLOCKED-*.md`
+files as absent; all of them existed on the canonical branch at that moment.
+
+**DURABLE FACT:** the Standing Rules moved **OUT of `CLAUDE.md` into `build/rules/RULES-*.md` on
+2026-08-21; `CLAUDE.md` is now an INDEX.** A session asserting "the rules live inside CLAUDE.md" is
+describing a pre-2026-08-21 state and is therefore **stale** — fetch and re-check before reporting
+anything else.
+
 **THE SEARCH DRILL — run these, substituting your own strings:**
 
 ```
+git fetch origin                        # STEP 0 — ALWAYS FIRST, NEVER SKIPPED
 grep -rn "<exact error string>" build/ --include=*.md | head -20
+git grep -n "<exact error string>" origin/claude/slack-session-0sxnd9 -- build/ | head -20
 grep -rn "<endpoint/tool/symptom>" build/APP-ACTIONS-PLAYBOOK.md build/skills/ | head -20
 ls build/BLOCKED-*.md
 ls build/*DIAGNOSIS*.md build/*/FINDINGS.md

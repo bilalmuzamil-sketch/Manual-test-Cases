@@ -82,7 +82,14 @@ These are stated here **in full** because a session that gets only this far must
 - **MINIMISE SUBAGENT SPAWNS (76).** Every spawn pays the full context tax. Batch related work into
   one worker; piggyback cheap checks onto the next substantive worker (78) rather than spending a
   dedicated spawn on them.
-- **NEVER DECLARE A BLOCKER WITHOUT SEARCHING THE REPO FIRST (97).** Before reporting anything as
+- **NEVER DECLARE A BLOCKER WITHOUT SEARCHING THE REPO FIRST (97).** **STEP 0 IS `git fetch origin` —
+  never search, measure or report a repository fact from a stale checkout** — and **if you are on a
+  different branch, search the canonical one without checking it out**:
+  `git grep -n "<exact error text>" origin/claude/slack-session-0sxnd9 -- build/` ·
+  `git show origin/claude/slack-session-0sxnd9:<path> | grep -n "<what you need>"`. **"Not on this
+  branch" is NEVER a reason to conclude something does not exist.** (The Standing Rules moved OUT of
+  CLAUDE.md into `build/rules/RULES-*.md` on **2026-08-21**; a session saying "the rules live inside
+  CLAUDE.md" is stale.) Before reporting anything as
   impossible, blocked, unavailable or unreconstructable, **grep the workspace using the EXACT ERROR
   TEXT** — that is what finds it. Four places, in order: `build/APP-ACTIONS-PLAYBOOK.md` ·
   `build/skills/14-ACCESS-RESILIENCE.md` · `build/ATLASSIAN-JIRA-ACCESS-METHOD.md` ·
