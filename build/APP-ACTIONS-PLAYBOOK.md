@@ -156,10 +156,19 @@ any endpoint/ID not recorded here or in `CLAUDE.md`** — if only partly known, 
   `auth.<env>.shopview.com`, or from the QA lead as a cookie set. Asking him for "a username and
   password instead of cookies" is therefore a dead end; ask for the **three cookies** (or for someone
   to drive the SSO login).
-  **AND `POST /api/quick-login` IS ITSELF SSO-GATED, PROVEN THE SAME WAY:** with no cookies it returns
-  the identical `sso_required` 401 (`sv9500api`, 2026-08-28). It is **not** a recovery route from a
-  genuinely dead shared sign-in — which is exactly what core §6.1 says, now confirmed by probe rather
-  than by inference.
+  **The `quick-login` half of this was ALREADY RECORDED — see §A's own "quick-login is SSO-gated too and
+  returns HTTP 401 `sso_required` as well" entry; re-confirmed by probe on `sv9500api` 2026-08-28 and
+  deliberately NOT restated here, because a duplicated fact drifts** (the reason skills `10`/`11`/`12`
+  became routers).
+  **🔑 THE ROOT CAUSE, WHICH IS WHY NO SESSION CAN BE SELF-MINTED HERE:** the app authenticates via
+  **Google SSO (OIDC to `accounts.google.com` via `auth.<env>.shopview.com`)**. A quick-login from a
+  fresh cookie jar **redirects to the real Google sign-in page**, and there is no Google-SSO
+  automation in this workspace — evidence `build/viu-testrail/results-misc.json`
+  (`actual_ui_observation`). **So cookies are mintable ONLY by the QA lead**, exactly as
+  `OUTSTANDING-ITEMS-REGISTER.md` row **SCH-BV-1** states. **Drop paths already in use, so use one of
+  them rather than inventing a path:** `/tmp/staging-cookie.txt` (single-line header form) or
+  `/tmp/cln/cookies.json` (json form); a QA branch set went to `/tmp/sv9500/cookies.txt` on
+  2026-08-28.
 - **Chromium UI automation (boot2 hydration):** Chromium can't TLS through the egress proxy directly.
   `boot2(roleKey, opts)` in `staging-boot2.mjs` does quick-login → optionally `change-location` →
   reads `GET /api/auth/me/fe-permissions` → seeds cookies + localStorage (`user`,
