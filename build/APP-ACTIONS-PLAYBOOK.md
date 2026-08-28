@@ -711,8 +711,13 @@ with `sv_sso_session` and `cf_clearance` **byte-identical** to the set that was 
     `</p>` and re-nests the markup (raw read-back looks mangled: `<p>A<p>B</p>…</p>`), **but the browser
     auto-closes an open `<p>` when the next block starts, so it renders as clean separate blocks.** Do
     not "fix" the mangled read-back — that is expected and it renders correctly.
+  - **QA-LEAD-APPROVED REFERENCE EXAMPLE (blessed 2026-08-28): C27801** — preconditions as separate
+    `<p>` paragraphs, steps as `<ol><li>`, expected = statement + `<hr />` + a "Source of expected
+    behaviour:" `<ul><li>` list + a final `<p>` "Source-verified <date>". The QA lead confirmed this
+    layout is "ideal". Copy it for any Custom Roles / permission case.
   - **THE RULE WHEN UPDATING ANY CASE (e.g. after source verification): MATCH THE PROVEN-GOOD FORMAT.**
-    Copy the exact block structure of a case known to render well — e.g. Global Search **C44804** — which
+    Copy the exact block structure of a case known to render well — e.g. C27801 or Global Search
+    **C44804** — which
     stores steps/expected as `<ol><li>…</li></ol>` and appends provenance as `<hr /><p>…</p>` after the
     last item. **One paragraph = one `<p>`; steps = `<ol><li>`; the source block goes BELOW the expected
     behaviour, separated by `<hr />`, as a `<p>` label + `<ul><li>` list + a final `<p>` with the
