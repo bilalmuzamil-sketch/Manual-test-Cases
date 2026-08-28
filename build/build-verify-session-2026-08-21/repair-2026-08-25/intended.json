@@ -1,0 +1,27 @@
+{
+ "44874": {
+  "custom_preconds": "1. You are on the Work Orders list page (not the global search palette).\n2. Work Orders exist whose text contains 'Fib'.",
+  "custom_steps": "1. Type 'Fib' into the in-page Work Orders list search field.\n2. Read the list and the banner above it.",
+  "custom_expected": "1. The Work Orders list filters to only rows matching 'Fib'.\n2. A blue banner reads 'Showing 12 work orders matching \"Fib\"' (the count reflects the number of matches).\n3. A 'Clear search' link appears on the right of the banner.\n4. The list columns remain: On Site, Status, Number, Customer, Asset, Unit, VIN/Serial #, Progress, Service Advisor, Lead Technician, Clocked In, Lines, Total Price.\n\n---\nThis is the expected behaviour as per the Global Search PRD (Confluence page 576978945), section design-notes screenshot 1 (in-page Work Orders list search banner), read on 16 July 2026, and epic SV-9160, read on 21 August 2026.\n\nAUTOMATION: Not available on Build to test Yet - Last checked 8/21/2026"
+ },
+ "44875": {
+  "custom_preconds": "1. The Work Orders list is filtered by an in-page search (banner 'Showing N work orders matching [q]' is visible).",
+  "custom_steps": "1. Click the 'Clear search' link in the banner.\n2. Read the list and the banner.",
+  "custom_expected": "1. The filter is removed and the full Work Orders list is shown again.\n2. The 'Showing N work orders matching [q]' banner is removed.\n\n---\nThis is the expected behaviour as per the Global Search PRD (Confluence page 576978945), section design-notes screenshot 1, read on 16 July 2026, and epic SV-9160, read on 21 August 2026.\n\nAUTOMATION: Not available on Build to test Yet - Last checked 8/21/2026"
+ },
+ "45032": {
+  "custom_preconds": "A work order is open with status Estimate, Approved, In Progress, or Review.\nYour 'Work Orders → Work Order View Mode' permission is set to Tech View.\nThe work order line already has at least one part on it.\nYour 'Work Order Line - Create and Edit' setting is NOT enabled.",
+  "custom_steps": "Hover or focus an existing part line.",
+  "custom_expected": "1. The Edit control is not displayed.\n\n---\nThis is the expected behaviour as per epic SV-9315 and story SV-9318 (Story 3, Inline Edit Part - Tech View) and the Inline Add and Edit Parts on Work Order Lines specification version 13, section S3-N2, read on 25 August 2026.\n\nAUTOMATION: Not available on Build to test Yet - Last checked 8/25/2026"
+ },
+ "45055": {
+  "custom_preconds": "A work order is open with status Estimate, Approved, In Progress, or Review.\nYou have the 'Work Order Line - Create and Edit' setting enabled.\nYour 'Work Orders → Work Order View Mode' permission is set to Full View.",
+  "custom_steps": "Type text that has no catalog match into the part number field and view the typeahead options.\nSelect the “Create ... as a new part” action.\nConfirm the same action is absent in Tech View.",
+  "custom_expected": "1. The typeahead ends with a “Create [typed text] as a new part” action that opens the part details modal with the typed description carried over.\n2. This action is shown to Full View users only and is not displayed in Tech View.\n\n---\nThis is the expected behaviour as per epic SV-9315 and story SV-9319 (Story 4, Inline Add Part - Full View) and the Inline Add and Edit Parts on Work Order Lines specification version 13, section S4-R20, read on 25 August 2026.\n\nAUTOMATION: Not available on Build to test Yet - Last checked 8/25/2026"
+ },
+ "45066": {
+  "custom_preconds": "A work order is open with status Estimate, Approved, In Progress, or Review.\nYour 'Work Orders → Work Order View Mode' permission is set to Full View.\nThe work order line already has at least one part on it.\nYour 'Work Order Line - Create and Edit' setting is NOT enabled.",
+  "custom_steps": "Hover or focus an existing part line.",
+  "custom_expected": "1. The Edit control is not displayed.\n\n---\nThis is the expected behaviour as per epic SV-9315 and story SV-9320 (Story 5, Edit Part - Full View) and the Inline Add and Edit Parts on Work Order Lines specification version 13, section S5-N1, read on 25 August 2026.\n\nAUTOMATION: Not available on Build to test Yet - Last checked 8/25/2026"
+ }
+}
