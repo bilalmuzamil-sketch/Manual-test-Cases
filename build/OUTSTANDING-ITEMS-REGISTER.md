@@ -2,6 +2,36 @@
 
 > **⚠️ REFERENCE ONLY — this register is history and other sessions' work. It is NOT a backlog and does not authorise action (Rule 92).** Reading an open item here does **not** mean it is yours to work on; a lane session acts only on the project the QA lead has NAMED.
 
+## 🆕 2026-08-28 (latest) — THE FOUR-JOB APPROVED BATCH RAN IN FULL: 19 DAMAGED CASES RESTORED, 3 WIP CASES AUTHORED, 8 ANCHOR CITATIONS REPAIRED, TWO INDEX COUNTS CORRECTED, THE SWEEP CLOSED OUT
+
+**Everything below was explicitly approved by the QA lead on 2026-08-28, including C29955 (Automated).
+Nothing came back wrong; no run had to be stopped.**
+
+### What CLOSED
+
+| Row | Item | Outcome |
+|---|---|---|
+| **DS-1** | Repair the 19 confirmed damaged cases from the estate-wide sweep | **CLOSED — 19 of 19 repaired, 19 of 19 verified on the rendered page.** Pre-damage text taken verbatim from each case's own `get_history_for_case`; restoration only, zero wording change. `build/report-suite/repair-2026-08-28/RESULTS.md` |
+| **DS-2** | The separate decision on **C29955** (Automated) | **CLOSED — approved and repaired.** Register row for Vlad added (Rule 65) |
+| **DS-3** | Whether to triage the 166 SUSPECT-LOW | **CLOSED-UNSPENT** by the QA lead's decision. Detector calibrated 10/10 against the rendered page; all 8 SUSPECT-HIGH rendered clean. **Not triaged, and not claimed to be clean** — the C-ids stay listed in `RESULTS.csv` with a `disposition` column |
+| **DS-4** | The two case-count corrections for the CLAUDE.md index | **CLOSED — applied.** Report Suite **516**, Global Search **118**; both `PROJECT-STATE.md` files updated with the derivation |
+| **RS-GAP-2 (partial)** | Three WIP anchors with no case | **PARTIALLY CLOSED** — the three approved candidates are live as **C45208 · C45209 · C45210**, and **Rule 62's hold is Jira tickets only, so TestRail case creation was never blocked.** The separate v28 §7 empty-state and S4-R9 gaps in RS-GAP-2 are untouched |
+
+### What this batch OPENS
+
+| Row | Item | Owner | What it blocks | Raised |
+|---|---|---|---|---|
+| **GS-DEL-1** | **12 Global Search API cases have vanished from TestRail** — C44883–C44894, contiguous, all of them the `GET /api/search` API set. `get_case` returns HTTP 400 *"not a valid test case"* for every one; no live case carries any of their titles. **This contradicts the project's own 2026-08-25 note *"Lossless, nothing deleted."*** Deleted cases cannot be queried, so **who deleted them and when is NOT established and is not guessed.** | **QA lead** to say whether they should be restored/re-authored | The Global Search API layer has no coverage at all (Rule 4). The id-map reads 110 but only 98 of those resolve | 2026-08-28 |
+| **AUTO-1** | **C29955's automation marker now reads `AUTOMATION: AUTOMATED`** — changed from `READY` by **TestRail user 7 (Ahtasham Amjad)** on 2026-08-27, i.e. a foreign editor. Under Rule 38 it was **preserved, not reverted**, during the repair. `AUTOMATED` is **not** one of Rule 61's three canonical literals | **QA lead** | Any arithmetic gate that counts READY + EXPECT-FAIL against the total will not recognise this marker | 2026-08-28 |
+| **AUTO-2** | **The damage sweep read the wrong field for "Automated."** It used `custom_automation_type`; the Automated flag is **`custom_atmstatus = 3`**. Three of the 19 damaged cases were Automated (**C26427, C26489, C29955**), not one. All three have register rows for Vlad; both deliverables carry the correction | us (recorded) | Nothing — corrected at source so it cannot be re-discovered as new | 2026-08-28 |
+| **WIP-PLACE-1** | **Where should C45210 live?** It is a WIP-specification requirement (S5a-R4) asserting that Technician Utilization, Parts Velocity and Inventory Value carry **no** Adjustments column. It is filed beside C43821 in *WIP — Earned & Remaining* | **QA lead** | Nothing; the case is live and readable. It can move, or split into one case per report | 2026-08-28 |
+| **WIP-KEY-1** | **Spec Stories 4a and 5a carry no Jira story key** (Story 4a says only *"Raised by SV-9119"*). The three new cases say so in plain words and name SV-8661 as the owning story for the surface, rather than inventing a key | **QA lead / Chris Ward** | Nothing; disclosed on the cases | 2026-08-28 |
+| **WIP-ANCH-1** | **The lettered-anchor blind spot is generic and only Story 4a/5a were checked.** `verify.py`'s regex could not match `S4a-R1`, and S10-R5a, S4-R15a, S4-R16a, S4-R18a, S7-R7a, S7-R8a, S9-R10a, S9-R10b and S9-E1/E2 all use the same form across every report's spec | **QA lead** to authorise the re-run | Coverage arithmetic on every report may still be under-reporting | 2026-08-28 |
+
+**Evidence:** `build/report-suite/repair-2026-08-28/` · `build/report-suite/wip-authoring-2026-08-28/CREATED-AND-REPAIRS-2026-08-28.md` · `build/report-suite/damage-sweep-2026-08-28/DAMAGE-SWEEP.md` (close-out section) · `build/global-search/PROJECT-STATE.md` §0.
+
+**Run 359 after the union-only sync: 513 → 516 tests, 535 → 535 results, every prior test ID and every prior result ID still present.**
+
 ## 🆕 2026-08-28 (late) — REPORT SUITE: THE APPROVED BATCH RAN; TWO NEW WRITE TRAPS FOUND; 38 AUTOMATED CASES HELD ON ONE QUESTION FOR VLAD
 
 **Written and verified on the rendered page:** C30345 · C30381 · C30459 (the three approved content

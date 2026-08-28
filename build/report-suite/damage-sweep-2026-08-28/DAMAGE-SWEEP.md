@@ -328,3 +328,63 @@ history *is* the authoritative per-field record, and nothing here was unreconstr
 4. **Confirmation of two case-count corrections for the CLAUDE.md project index**, re-derived live
    today: **Report Suite 513** (index says 509) and **Global Search 118** (index says 86). The other
    five projects match the index exactly.
+
+---
+
+# CLOSE-OUT — 2026-08-28 (added after the QA lead's decisions)
+
+**Every one of this sweep's four outstanding items now has an answer. Nothing from the sweep is
+still open.** `RESULTS.csv` carries a new final column, **`disposition`**, so each of its 433 rows
+states its own outcome and no reader has to cross-reference this file.
+
+| Class | Cases | Disposition |
+|---|---|---|
+| ESCAPED-TAG | **2** | **REPAIRED 2026-08-28** |
+| FLATTENED | **17** | **REPAIRED 2026-08-28** |
+| SUSPECT-HIGH | **8** | **CLOSED-CLEAN** — render-checked during the sweep, all 8 render correctly |
+| SUSPECT-LOW | **166** | **CLOSED-UNSPENT** — QA lead's decision, not triaged |
+| LEGACY-TERSE | **209** | NOT DAMAGE — excluded by the detector, bodies never edited |
+
+## 1 · The 166 SUSPECT-LOW are CLOSED-UNSPENT
+
+**Decision: the QA lead, 2026-08-28 — close the 166 SUSPECT-LOW without further spend.** They were
+**not** triaged, and this file does not claim they were: **CLOSED-UNSPENT means the question was
+answered by a decision, not by an observation.** Under Rule 12 none of the 166 is being marked clean,
+verified, or free of damage. They are marked *not worth spending the quota on*, and if that judgement
+is ever wrong the cases are still listed by C-id in `RESULTS.csv` and can be picked up unchanged.
+
+**The two reasons the decision rests on, both from this sweep's own evidence:**
+
+1. **The detector was calibrated against the rendered page and scored 10 of 10 true positives** (§4).
+   It has no measured false-positive rate in the two damage classes, so a case it declined to call
+   damaged is a case it looked at and did not flag.
+2. **All 8 SUSPECT-HIGH cases — the ones where lost separators would actually hurt a tester — were
+   render-checked and every one of them rendered CLEAN** (§6.3). SUSPECT-HIGH is by construction the
+   worst of the suspect population: ≥250 characters and ≥3 sentences surviving in one block. If the
+   worst 8 are clean, the 166 that are short or genuinely one sentence are the weakest possible place
+   to spend the next hour.
+
+**What SUSPECT-LOW actually means, restated so the close-out cannot be misread:** the case's history
+proves some edit dropped a separator, but the field is *now* short or a single sentence, so the loss
+most likely reflects a legitimate rewrite. A one-sentence field has no line breaks to lose.
+
+## 2 · The other three items
+
+| Item | Answer |
+|---|---|
+| **Repair the 19 confirmed damaged cases** | **APPROVED and DONE.** 19 of 19 repaired from their own history, 19 of 19 verified on the rendered page. `build/report-suite/repair-2026-08-28/RESULTS.md` |
+| **A separate decision on C29955 (Automated)** | **APPROVED explicitly.** Repaired; register row for Vlad added under Rule 65 |
+| **The two case-count corrections** | **CONFIRMED and APPLIED** to CLAUDE.md and both `PROJECT-STATE.md` files. Report Suite **516** (513 at the sweep + 3 authored the same day); Global Search **118** |
+
+## 3 · A correction this sweep owes
+
+§6.2 said C29955 was *"the only Automated case in the damaged set"*, reading `custom_automation_type`.
+**That is the wrong field.** TestRail's Automation status is **`custom_atmstatus`**, whose option `3`
+is literally *Automated*; `custom_automation_type` is *Automation Type* (None / E2E / Functional /
+Unit). Read from the correct field, **three** of the 19 were Automated: **C26427, C26489 and C29955** —
+all three now have register rows for Vlad.
+
+## OUTSTANDING — what I need from you
+
+**Nothing outstanding from this sweep.** All four items are answered and closed. Two questions opened
+by the repair itself are carried in `build/report-suite/repair-2026-08-28/RESULTS.md`.
