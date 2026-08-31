@@ -2677,5 +2677,917 @@
     "text": "1. Generate each portal PDF\n2. Check the pill and the title wording"
    }
   }
+ },
+ "44903": {
+  "title": "Document label names the type before the number on each document",
+  "atm": 1,
+  "section_id": 6741,
+  "escaping": true,
+  "fields": {
+   "custom_expected": {
+    "blocks": [
+     [
+      "1. The Estimate label reads exactly \"Estimate: {number}\", for example \"Estimate: EST-4176\".",
+      "2. The Invoice label reads exactly \"Invoice: {number}\", for example \"Invoice: INV-4176\".",
+      "3. The Credit Invoice label reads exactly \"Credit: {number}\", for example \"Credit: CM-2202\".",
+      "4. In every case the number always includes its type prefix (EST-, INV-, or CM-), and the type word comes before the number."
+     ],
+     [
+      "---",
+      "This is the expected behaviour as per epic SV-8218 and story SV-9140 (Story 1, Masthead and Letterhead) and the Invoice UI Refresh specification version 45, sections S1-R3 and S1-R4, read on 31 August 2026.",
+      "Last checked against build v26.35.5-8c3cc21 on 8/31/2026."
+     ],
+     [
+      "AUTOMATION: READY"
+     ]
+    ],
+    "text": "1. The Estimate label reads exactly \"Estimate: {number}\", for example \"Estimate: EST-4176\".\n2. The Invoice label reads exactly \"Invoice: {number}\", for example \"Invoice: INV-4176\".\n3. The Credit Invoice label reads exactly \"Credit: {number}\", for example \"Credit: CM-2202\".\n4. In every case the number always includes its type prefix (EST-, INV-, or CM-), and the type word comes before the number.\n\n---\nThis is the expected behaviour as per epic SV-8218 and story SV-9140 (Story 1, Masthead and Letterhead) and the Invoice UI Refresh specification version 45, sections S1-R3 and S1-R4, read on 31 August 2026.\nLast checked against build v26.35.5-8c3cc21 on 8/31/2026.\n\nAUTOMATION: READY"
+   },
+   "custom_preconds": {
+    "blocks": [
+     [
+      "1. You are signed in to ShopView.",
+      "2. You can generate an Estimate, an Invoice, and a Credit Invoice for known documents."
+     ]
+    ],
+    "text": "1. You are signed in to ShopView.\n2. You can generate an Estimate, an Invoice, and a Credit Invoice for known documents."
+   },
+   "custom_steps": {
+    "blocks": [
+     [
+      "1. Generate an Estimate and read its masthead document label.",
+      "2. Generate an Invoice and read its masthead document label.",
+      "3. Generate a Credit Invoice and read its masthead document label."
+     ]
+    ],
+    "text": "1. Generate an Estimate and read its masthead document label.\n2. Generate an Invoice and read its masthead document label.\n3. Generate a Credit Invoice and read its masthead document label."
+   }
+  }
+ },
+ "44905": {
+  "title": "No money figure in the masthead; headline figure is the boxed total",
+  "atm": 1,
+  "section_id": 6741,
+  "escaping": true,
+  "fields": {
+   "custom_expected": {
+    "blocks": [
+     [
+      "1. No monetary amount appears anywhere in the masthead of any document.",
+      "2. On the Estimate the single headline figure appears once, as the boxed figure at the end of the totals block, labeled \"Estimated Total\".",
+      "3. On the Invoice the boxed headline figure at the end of the totals block is labeled \"Balance\".",
+      "4. The Credit Invoice has no boxed headline figure; its masthead carries only \"Credit: {number}\" and \"Issue date: {date}\", and its key figure (Total Credit) sits in the totals block."
+     ],
+     [
+      "---",
+      "This is the expected behaviour as per epic SV-8218 and story SV-9140 (Story 1, Masthead and Letterhead) and the Invoice UI Refresh specification version 45, section S1-R6, read on 31 August 2026.",
+      "Last checked against build v26.35.5-8c3cc21 on 8/31/2026."
+     ],
+     [
+      "AUTOMATION: READY"
+     ]
+    ],
+    "text": "1. No monetary amount appears anywhere in the masthead of any document.\n2. On the Estimate the single headline figure appears once, as the boxed figure at the end of the totals block, labeled \"Estimated Total\".\n3. On the Invoice the boxed headline figure at the end of the totals block is labeled \"Balance\".\n4. The Credit Invoice has no boxed headline figure; its masthead carries only \"Credit: {number}\" and \"Issue date: {date}\", and its key figure (Total Credit) sits in the totals block.\n\n---\nThis is the expected behaviour as per epic SV-8218 and story SV-9140 (Story 1, Masthead and Letterhead) and the Invoice UI Refresh specification version 45, section S1-R6, read on 31 August 2026.\nLast checked against build v26.35.5-8c3cc21 on 8/31/2026.\n\nAUTOMATION: READY"
+   },
+   "custom_preconds": {
+    "blocks": [
+     [
+      "1. You are signed in to ShopView.",
+      "2. You can generate an Estimate, an Invoice, and a Credit Invoice that have monetary totals."
+     ]
+    ],
+    "text": "1. You are signed in to ShopView.\n2. You can generate an Estimate, an Invoice, and a Credit Invoice that have monetary totals."
+   },
+   "custom_steps": {
+    "blocks": [
+     [
+      "1. Generate an Estimate and look at the masthead, then at the end of the totals block.",
+      "2. Generate an Invoice and do the same.",
+      "3. Generate a Credit Invoice and do the same."
+     ]
+    ],
+    "text": "1. Generate an Estimate and look at the masthead, then at the end of the totals block.\n2. Generate an Invoice and do the same.\n3. Generate a Credit Invoice and do the same."
+   }
+  }
+ },
+ "44906": {
+  "title": "Masthead date labels read correctly for each document type",
+  "atm": 1,
+  "section_id": 6741,
+  "escaping": true,
+  "fields": {
+   "custom_expected": {
+    "blocks": [
+     [
+      "1. The Estimate masthead shows \"Estimate date: {date}\" and no due date.",
+      "2. The unpaid Invoice masthead shows \"Invoice date: {date}\" and \"Due date: {date}\".",
+      "3. The fully paid Invoice masthead shows \"Invoice date: {date}\" and \"Paid date: {date}\" (Paid date replaces Due date).",
+      "4. The Credit Invoice masthead shows \"Issue date: {date}\".",
+      "5. Every date reads in the fixed format, for example \"Jan 5, 2026\"."
+     ],
+     [
+      "---",
+      "This is the expected behaviour as per epic SV-8218 and story SV-9140 (Story 1, Masthead and Letterhead) and the Invoice UI Refresh specification version 45, sections S1-R7 and G-R1, read on 31 August 2026. The paid-date swap detail is in S10-R4 (see the Estimate and Invoice Specifics cases).",
+      "Last checked against build v26.35.5-8c3cc21 on 8/31/2026."
+     ],
+     [
+      "AUTOMATION: READY"
+     ]
+    ],
+    "text": "1. The Estimate masthead shows \"Estimate date: {date}\" and no due date.\n2. The unpaid Invoice masthead shows \"Invoice date: {date}\" and \"Due date: {date}\".\n3. The fully paid Invoice masthead shows \"Invoice date: {date}\" and \"Paid date: {date}\" (Paid date replaces Due date).\n4. The Credit Invoice masthead shows \"Issue date: {date}\".\n5. Every date reads in the fixed format, for example \"Jan 5, 2026\".\n\n---\nThis is the expected behaviour as per epic SV-8218 and story SV-9140 (Story 1, Masthead and Letterhead) and the Invoice UI Refresh specification version 45, sections S1-R7 and G-R1, read on 31 August 2026. The paid-date swap detail is in S10-R4 (see the Estimate and Invoice Specifics cases).\nLast checked against build v26.35.5-8c3cc21 on 8/31/2026.\n\nAUTOMATION: READY"
+   },
+   "custom_preconds": {
+    "blocks": [
+     [
+      "1. You are signed in to ShopView.",
+      "2. You can generate an Estimate, an unpaid Invoice, a fully paid Invoice, and a Credit Invoice."
+     ]
+    ],
+    "text": "1. You are signed in to ShopView.\n2. You can generate an Estimate, an unpaid Invoice, a fully paid Invoice, and a Credit Invoice."
+   },
+   "custom_steps": {
+    "blocks": [
+     [
+      "1. Generate an Estimate and read its masthead date label(s).",
+      "2. Generate an unpaid Invoice and read its masthead date label(s).",
+      "3. Generate a fully paid Invoice and read its masthead date label(s).",
+      "4. Generate a Credit Invoice and read its masthead date label(s)."
+     ]
+    ],
+    "text": "1. Generate an Estimate and read its masthead date label(s).\n2. Generate an unpaid Invoice and read its masthead date label(s).\n3. Generate a fully paid Invoice and read its masthead date label(s).\n4. Generate a Credit Invoice and read its masthead date label(s)."
+   }
+  }
+ },
+ "44928": {
+  "title": "Asset section shows whenever the work order has an asset (parts sales too)",
+  "atm": 1,
+  "section_id": 6745,
+  "escaping": true,
+  "fields": {
+   "custom_expected": {
+    "blocks": [
+     [
+      "1. The asset section shows whenever the work order has an asset attached — including on part sales, treated the same as service work orders.",
+      "2. When the work order has no asset attached, the asset section is hidden entirely."
+     ],
+     [
+      "---",
+      "This is the expected behaviour as per epic SV-8218 and story SV-9143 (Story 4, Asset Section) and the Invoice UI Refresh specification version 45, sections S4-N3 and the Story 4 prerequisite, read on 31 August 2026.",
+      "Last checked against build v26.35.5-8c3cc21 on 8/31/2026."
+     ],
+     [
+      "AUTOMATION: READY"
+     ]
+    ],
+    "text": "1. The asset section shows whenever the work order has an asset attached — including on part sales, treated the same as service work orders.\n2. When the work order has no asset attached, the asset section is hidden entirely.\n\n---\nThis is the expected behaviour as per epic SV-8218 and story SV-9143 (Story 4, Asset Section) and the Invoice UI Refresh specification version 45, sections S4-N3 and the Story 4 prerequisite, read on 31 August 2026.\nLast checked against build v26.35.5-8c3cc21 on 8/31/2026.\n\nAUTOMATION: READY"
+   },
+   "custom_preconds": {
+    "blocks": [
+     [
+      "1. You are signed in to ShopView.",
+      "2. You can reach: a service work order with an asset, a parts sale with an asset attached, and a work order with no asset attached."
+     ]
+    ],
+    "text": "1. You are signed in to ShopView.\n2. You can reach: a service work order with an asset, a parts sale with an asset attached, and a work order with no asset attached."
+   },
+   "custom_steps": {
+    "blocks": [
+     [
+      "1. Generate a document for a service work order with an asset; check whether the asset section shows.",
+      "2. Generate a document for a parts sale that has an asset attached; check whether the asset section shows.",
+      "3. Generate a document for a work order with no asset attached; check whether the asset section shows."
+     ]
+    ],
+    "text": "1. Generate a document for a service work order with an asset; check whether the asset section shows.\n2. Generate a document for a parts sale that has an asset attached; check whether the asset section shows.\n3. Generate a document for a work order with no asset attached; check whether the asset section shows."
+   }
+  }
+ },
+ "44956": {
+  "title": "Signature area has exactly three labeled lines and no acknowledgment sentence",
+  "atm": 1,
+  "section_id": 6750,
+  "escaping": true,
+  "fields": {
+   "custom_expected": {
+    "blocks": [
+     [
+      "1. The signature area shows three lines labeled exactly \"Customer Signature\", \"Printed Name\", and \"Date\".",
+      "2. The three lines are identical on every document that carries the area.",
+      "3. The signature area contains no authorization or acknowledgment sentence - only the three lines."
+     ],
+     [
+      "---",
+      "This is the expected behaviour as per epic SV-8218 and story SV-9148 (Story 9, Disclaimer, Signature and Footer) and the Invoice UI Refresh specification version 45, sections S9-R2 and S9-R3, read on 31 August 2026.",
+      "Last checked against build v26.35.5-8c3cc21 on 8/31/2026."
+     ],
+     [
+      "AUTOMATION: READY"
+     ]
+    ],
+    "text": "1. The signature area shows three lines labeled exactly \"Customer Signature\", \"Printed Name\", and \"Date\".\n2. The three lines are identical on every document that carries the area.\n3. The signature area contains no authorization or acknowledgment sentence - only the three lines.\n\n---\nThis is the expected behaviour as per epic SV-8218 and story SV-9148 (Story 9, Disclaimer, Signature and Footer) and the Invoice UI Refresh specification version 45, sections S9-R2 and S9-R3, read on 31 August 2026.\nLast checked against build v26.35.5-8c3cc21 on 8/31/2026.\n\nAUTOMATION: READY"
+   },
+   "custom_preconds": {
+    "blocks": [
+     [
+      "1. You are signed in to ShopView.",
+      "2. You can generate an Estimate, Invoice and Credit Invoice."
+     ]
+    ],
+    "text": "1. You are signed in to ShopView.\n2. You can generate an Estimate, Invoice and Credit Invoice."
+   },
+   "custom_steps": {
+    "blocks": [
+     [
+      "1. Generate each document type.",
+      "2. Find the signature area on each and read its lines."
+     ]
+    ],
+    "text": "1. Generate each document type.\n2. Find the signature area on each and read its lines."
+   }
+  }
+ },
+ "44964": {
+  "title": "Credit Invoice masthead shows 'Credit: {number}' and 'Issue date', no money",
+  "atm": 1,
+  "section_id": 6752,
+  "escaping": true,
+  "fields": {
+   "custom_expected": {
+    "blocks": [
+     [
+      "1. The masthead shows \"Credit: {number}\", where the credit number carries the \"CM-\" prefix (for example \"Credit: CM-2202\").",
+      "2. The masthead shows \"Issue date: {date}\".",
+      "3. The masthead shows no money figure and no boxed headline figure."
+     ],
+     [
+      "---",
+      "This is the expected behaviour as per epic SV-8218 and story SV-9150 (Story 11, Credit Invoice) and the Invoice UI Refresh specification version 45, sections S11-R1 and S1-R6, read on 31 August 2026.",
+      "Last checked against build v26.35.5-8c3cc21 on 8/31/2026."
+     ],
+     [
+      "AUTOMATION: READY"
+     ]
+    ],
+    "text": "1. The masthead shows \"Credit: {number}\", where the credit number carries the \"CM-\" prefix (for example \"Credit: CM-2202\").\n2. The masthead shows \"Issue date: {date}\".\n3. The masthead shows no money figure and no boxed headline figure.\n\n---\nThis is the expected behaviour as per epic SV-8218 and story SV-9150 (Story 11, Credit Invoice) and the Invoice UI Refresh specification version 45, sections S11-R1 and S1-R6, read on 31 August 2026.\nLast checked against build v26.35.5-8c3cc21 on 8/31/2026.\n\nAUTOMATION: READY"
+   },
+   "custom_preconds": {
+    "blocks": [
+     [
+      "1. You are signed in to ShopView.",
+      "2. You can generate a Credit Invoice (credit number carries the CM- prefix)."
+     ]
+    ],
+    "text": "1. You are signed in to ShopView.\n2. You can generate a Credit Invoice (credit number carries the CM- prefix)."
+   },
+   "custom_steps": {
+    "blocks": [
+     [
+      "1. Generate the Credit Invoice.",
+      "2. Read the masthead."
+     ]
+    ],
+    "text": "1. Generate the Credit Invoice.\n2. Read the masthead."
+   }
+  }
+ },
+ "44965": {
+  "title": "Customer address block is labeled 'Credit To' on the Credit Invoice",
+  "atm": 1,
+  "section_id": 6752,
+  "escaping": true,
+  "fields": {
+   "custom_expected": {
+    "blocks": [
+     [
+      "1. The customer address block is labeled exactly \"Credit To\" (not \"Bill To\").",
+      "2. Every other address rule applies to it unchanged (name always shown, address fields hide when empty).",
+      "3. Remit Payment To never appears on the Credit Invoice, so the Credit To block is always full width."
+     ],
+     [
+      "---",
+      "This is the expected behaviour as per epic SV-8218 and story SV-9150 (Story 11, Credit Invoice) and the Invoice UI Refresh specification version 45, sections S11-R2, S2-R1 and S2-R3, read on 31 August 2026.",
+      "Last checked against build v26.35.5-8c3cc21 on 8/31/2026."
+     ],
+     [
+      "AUTOMATION: READY"
+     ]
+    ],
+    "text": "1. The customer address block is labeled exactly \"Credit To\" (not \"Bill To\").\n2. Every other address rule applies to it unchanged (name always shown, address fields hide when empty).\n3. Remit Payment To never appears on the Credit Invoice, so the Credit To block is always full width.\n\n---\nThis is the expected behaviour as per epic SV-8218 and story SV-9150 (Story 11, Credit Invoice) and the Invoice UI Refresh specification version 45, sections S11-R2, S2-R1 and S2-R3, read on 31 August 2026.\nLast checked against build v26.35.5-8c3cc21 on 8/31/2026.\n\nAUTOMATION: READY"
+   },
+   "custom_preconds": {
+    "blocks": [
+     [
+      "1. You are signed in to ShopView.",
+      "2. You can generate a Credit Invoice for a customer with an address."
+     ]
+    ],
+    "text": "1. You are signed in to ShopView.\n2. You can generate a Credit Invoice for a customer with an address."
+   },
+   "custom_steps": {
+    "blocks": [
+     [
+      "1. Generate the Credit Invoice.",
+      "2. Read the customer address block label and its width."
+     ]
+    ],
+    "text": "1. Generate the Credit Invoice.\n2. Read the customer address block label and its width."
+   }
+  }
+ },
+ "44968": {
+  "title": "Restocking fee reduces a returned-part credit total as specified",
+  "atm": 1,
+  "section_id": 6752,
+  "escaping": true,
+  "fields": {
+   "custom_expected": {
+    "blocks": [
+     [
+      "1. The restocking fee reduces the credit: quantity -2 at rate $50.00 with a $10.00 restocking fee produces Total -$90.00.",
+      "2. For a money-only line, Total is the credited amount."
+     ],
+     [
+      "---",
+      "This is the expected behaviour as per epic SV-8218 and story SV-9150 (Story 11, Credit Invoice) and the Invoice UI Refresh specification version 45, section S11-R5, read on 31 August 2026.",
+      "Last checked against build v26.35.5-8c3cc21 on 8/31/2026."
+     ],
+     [
+      "AUTOMATION: READY"
+     ]
+    ],
+    "text": "1. The restocking fee reduces the credit: quantity -2 at rate $50.00 with a $10.00 restocking fee produces Total -$90.00.\n2. For a money-only line, Total is the credited amount.\n\n---\nThis is the expected behaviour as per epic SV-8218 and story SV-9150 (Story 11, Credit Invoice) and the Invoice UI Refresh specification version 45, section S11-R5, read on 31 August 2026.\nLast checked against build v26.35.5-8c3cc21 on 8/31/2026.\n\nAUTOMATION: READY"
+   },
+   "custom_preconds": {
+    "blocks": [
+     [
+      "1. You are signed in to ShopView.",
+      "2. A Credit Invoice has a returned part: quantity -2 at rate $50.00 with a $10.00 restocking fee."
+     ]
+    ],
+    "text": "1. You are signed in to ShopView.\n2. A Credit Invoice has a returned part: quantity -2 at rate $50.00 with a $10.00 restocking fee."
+   },
+   "custom_steps": {
+    "blocks": [
+     [
+      "1. Generate the Credit Invoice.",
+      "2. Read the returned-part line's Total."
+     ]
+    ],
+    "text": "1. Generate the Credit Invoice.\n2. Read the returned-part line's Total."
+   }
+  }
+ },
+ "44971": {
+  "title": "Document layout matches the Design Document structure",
+  "atm": 1,
+  "section_id": 6753,
+  "escaping": true,
+  "fields": {
+   "custom_expected": {
+    "blocks": [
+     [
+      "1. The document layout follows the Design Document exactly: masthead with the shop letterhead left, the shop logo center, and the document block right over a 2px ink rule; a bordered Addresses row; the asset band; the order reference chips; numbered work lines; the \"Summary\" break bar; a two-column tail with the disclaimer left and the totals right; the boxed headline figure; the three-line signature row; the single-line footer."
+     ],
+     [
+      "---",
+      "This is the expected behaviour as per epic SV-8218 and story SV-9151 (Story 12, Document Visual Standard) and the Invoice UI Refresh specification version 45, section S12-R1, and the Design Document, read on 31 August 2026.",
+      "Last checked against build v26.35.5-8c3cc21 on 8/31/2026."
+     ],
+     [
+      "AUTOMATION: READY"
+     ]
+    ],
+    "text": "1. The document layout follows the Design Document exactly: masthead with the shop letterhead left, the shop logo center, and the document block right over a 2px ink rule; a bordered Addresses row; the asset band; the order reference chips; numbered work lines; the \"Summary\" break bar; a two-column tail with the disclaimer left and the totals right; the boxed headline figure; the three-line signature row; the single-line footer.\n\n---\nThis is the expected behaviour as per epic SV-8218 and story SV-9151 (Story 12, Document Visual Standard) and the Invoice UI Refresh specification version 45, section S12-R1, and the Design Document, read on 31 August 2026.\nLast checked against build v26.35.5-8c3cc21 on 8/31/2026.\n\nAUTOMATION: READY"
+   },
+   "custom_preconds": {
+    "blocks": [
+     [
+      "1. You are signed in to ShopView.",
+      "2. You can generate an Estimate, Invoice and Credit Invoice, on screen and as PDF."
+     ]
+    ],
+    "text": "1. You are signed in to ShopView.\n2. You can generate an Estimate, Invoice and Credit Invoice, on screen and as PDF."
+   },
+   "custom_steps": {
+    "blocks": [
+     [
+      "1. Generate each document type on screen and as a PDF.",
+      "2. Compare each against the Design Document's structure."
+     ]
+    ],
+    "text": "1. Generate each document type on screen and as a PDF.\n2. Compare each against the Design Document's structure."
+   }
+  }
+ },
+ "44977": {
+  "title": "Prototype chrome does not appear on any real document",
+  "atm": 1,
+  "section_id": 6753,
+  "escaping": true,
+  "fields": {
+   "custom_expected": {
+    "blocks": [
+     [
+      "1. The Design Document's control strips (the document and field toggles, the settings menu, the theme controls) do not appear on any real document.",
+      "2. Only the white sheet is the document.",
+      "3. The PDF output carries no drop shadow and no rounded sheet corners (those are screen-prototype presentation only)."
+     ],
+     [
+      "---",
+      "This is the expected behaviour as per epic SV-8218 and story SV-9151 (Story 12, Document Visual Standard) and the Invoice UI Refresh specification version 45, sections S12-R7 and S12-N1, read on 31 August 2026.",
+      "Last checked against build v26.35.5-8c3cc21 on 8/31/2026."
+     ],
+     [
+      "AUTOMATION: READY"
+     ]
+    ],
+    "text": "1. The Design Document's control strips (the document and field toggles, the settings menu, the theme controls) do not appear on any real document.\n2. Only the white sheet is the document.\n3. The PDF output carries no drop shadow and no rounded sheet corners (those are screen-prototype presentation only).\n\n---\nThis is the expected behaviour as per epic SV-8218 and story SV-9151 (Story 12, Document Visual Standard) and the Invoice UI Refresh specification version 45, sections S12-R7 and S12-N1, read on 31 August 2026.\nLast checked against build v26.35.5-8c3cc21 on 8/31/2026.\n\nAUTOMATION: READY"
+   },
+   "custom_preconds": {
+    "blocks": [
+     [
+      "1. You are signed in to ShopView.",
+      "2. You can generate a real document (not the Design Document prototype)."
+     ]
+    ],
+    "text": "1. You are signed in to ShopView.\n2. You can generate a real document (not the Design Document prototype)."
+   },
+   "custom_steps": {
+    "blocks": [
+     [
+      "1. Generate a real Estimate, Invoice or Credit Invoice.",
+      "2. Look for any prototype demo tooling."
+     ]
+    ],
+    "text": "1. Generate a real Estimate, Invoice or Credit Invoice.\n2. Look for any prototype demo tooling."
+   }
+  }
+ },
+ "44980": {
+  "title": "Parts Sale documents behave as the Estimate/Invoice except as stated",
+  "atm": 1,
+  "section_id": 6754,
+  "escaping": true,
+  "fields": {
+   "custom_expected": {
+    "blocks": [
+     [
+      "1. The Parts Sale Estimate behaves as the Estimate, and the Parts Sale Invoice as the Invoice, throughout the spec: masthead and date labels (including \"Estimate date\" and the Due/Paid date swap), addresses and Remit Payment To, asset section, financial summary, payments and Balance, the paid banner rule, disclaimer and signature, and the visual standard - except as Story 13 states."
+     ],
+     [
+      "---",
+      "This is the expected behaviour as per epic SV-8218 and story SV-9195 (Story 13, Parts Sale Estimate and Invoice) and the Invoice UI Refresh specification version 45, section S13-R1, read on 31 August 2026.",
+      "Last checked against build v26.35.5-8c3cc21 on 8/31/2026."
+     ],
+     [
+      "AUTOMATION: READY"
+     ]
+    ],
+    "text": "1. The Parts Sale Estimate behaves as the Estimate, and the Parts Sale Invoice as the Invoice, throughout the spec: masthead and date labels (including \"Estimate date\" and the Due/Paid date swap), addresses and Remit Payment To, asset section, financial summary, payments and Balance, the paid banner rule, disclaimer and signature, and the visual standard - except as Story 13 states.\n\n---\nThis is the expected behaviour as per epic SV-8218 and story SV-9195 (Story 13, Parts Sale Estimate and Invoice) and the Invoice UI Refresh specification version 45, section S13-R1, read on 31 August 2026.\nLast checked against build v26.35.5-8c3cc21 on 8/31/2026.\n\nAUTOMATION: READY"
+   },
+   "custom_preconds": {
+    "blocks": [
+     [
+      "1. You are signed in to ShopView.",
+      "2. You can generate a Parts Sale Estimate and a Parts Sale Invoice."
+     ]
+    ],
+    "text": "1. You are signed in to ShopView.\n2. You can generate a Parts Sale Estimate and a Parts Sale Invoice."
+   },
+   "custom_steps": {
+    "blocks": [
+     [
+      "1. Generate a Parts Sale Estimate and a Parts Sale Invoice.",
+      "2. Check masthead, dates, addresses, Remit Payment To, asset section, financial summary, payments/Balance, paid banner, disclaimer/signature, and visual standard."
+     ]
+    ],
+    "text": "1. Generate a Parts Sale Estimate and a Parts Sale Invoice.\n2. Check masthead, dates, addresses, Remit Payment To, asset section, financial summary, payments/Balance, paid banner, disclaimer/signature, and visual standard."
+   }
+  }
+ },
+ "44981": {
+  "title": "Parts Sale body is a single flat 'Parts' section, no jobs",
+  "atm": 1,
+  "section_id": 6754,
+  "escaping": true,
+  "fields": {
+   "custom_expected": {
+    "blocks": [
+     [
+      "1. The body is a single section headed \"Parts\".",
+      "2. It shows flat part lines, each with part number, description, quantity, rate, and amount.",
+      "3. There are no job blocks, no \"Scope of work\", no Labor section, and no Declined Work section on a parts sale document."
+     ],
+     [
+      "---",
+      "This is the expected behaviour as per epic SV-8218 and story SV-9195 (Story 13, Parts Sale Estimate and Invoice) and the Invoice UI Refresh specification version 45, section S13-R2, read on 31 August 2026.",
+      "Last checked against build v26.35.5-8c3cc21 on 8/31/2026."
+     ],
+     [
+      "AUTOMATION: READY"
+     ]
+    ],
+    "text": "1. The body is a single section headed \"Parts\".\n2. It shows flat part lines, each with part number, description, quantity, rate, and amount.\n3. There are no job blocks, no \"Scope of work\", no Labor section, and no Declined Work section on a parts sale document.\n\n---\nThis is the expected behaviour as per epic SV-8218 and story SV-9195 (Story 13, Parts Sale Estimate and Invoice) and the Invoice UI Refresh specification version 45, section S13-R2, read on 31 August 2026.\nLast checked against build v26.35.5-8c3cc21 on 8/31/2026.\n\nAUTOMATION: READY"
+   },
+   "custom_preconds": {
+    "blocks": [
+     [
+      "1. You are signed in to ShopView.",
+      "2. A Parts Sale Estimate or Invoice exists with several part lines."
+     ]
+    ],
+    "text": "1. You are signed in to ShopView.\n2. A Parts Sale Estimate or Invoice exists with several part lines."
+   },
+   "custom_steps": {
+    "blocks": [
+     [
+      "1. Generate the Parts Sale document.",
+      "2. Read the body section."
+     ]
+    ],
+    "text": "1. Generate the Parts Sale document.\n2. Read the body section."
+   }
+  }
+ },
+ "44982": {
+  "title": "Parts Sale line-level fees/discounts render as on the Invoice",
+  "atm": 1,
+  "section_id": 6754,
+  "escaping": true,
+  "fields": {
+   "custom_expected": {
+    "blocks": [
+     [
+      "1. Line-level fees and discounts render exactly as on the Invoice: indented under their part line.",
+      "2. The row divider follows the part's last adjustment row, rather than sitting between the part and its adjustments."
+     ],
+     [
+      "---",
+      "This is the expected behaviour as per epic SV-8218 and story SV-9195 (Story 13, Parts Sale Estimate and Invoice) and the Invoice UI Refresh specification version 45, sections S13-R3 and S12-R8, read on 31 August 2026.",
+      "Last checked against build v26.35.5-8c3cc21 on 8/31/2026."
+     ],
+     [
+      "AUTOMATION: READY"
+     ]
+    ],
+    "text": "1. Line-level fees and discounts render exactly as on the Invoice: indented under their part line.\n2. The row divider follows the part's last adjustment row, rather than sitting between the part and its adjustments.\n\n---\nThis is the expected behaviour as per epic SV-8218 and story SV-9195 (Story 13, Parts Sale Estimate and Invoice) and the Invoice UI Refresh specification version 45, sections S13-R3 and S12-R8, read on 31 August 2026.\nLast checked against build v26.35.5-8c3cc21 on 8/31/2026.\n\nAUTOMATION: READY"
+   },
+   "custom_preconds": {
+    "blocks": [
+     [
+      "1. You are signed in to ShopView.",
+      "2. A Parts Sale document has a part line with a line-level fee or discount."
+     ]
+    ],
+    "text": "1. You are signed in to ShopView.\n2. A Parts Sale document has a part line with a line-level fee or discount."
+   },
+   "custom_steps": {
+    "blocks": [
+     [
+      "1. Generate the Parts Sale document.",
+      "2. Read the part line that has an adjustment."
+     ]
+    ],
+    "text": "1. Generate the Parts Sale document.\n2. Read the part line that has an adjustment."
+   }
+  }
+ },
+ "44983": {
+  "title": "Parts Sale document number keeps parts-sale numbering",
+  "atm": 1,
+  "section_id": 6754,
+  "escaping": true,
+  "fields": {
+   "custom_expected": {
+    "blocks": [
+     [
+      "1. The document number uses the parts-sale numbering through the existing document numbering.",
+      "2. For example the Estimate reads \"Estimate: EST-P2-1088\" and the Invoice reads \"Invoice: INV-P2-1088\"."
+     ],
+     [
+      "---",
+      "This is the expected behaviour as per epic SV-8218 and story SV-9195 (Story 13, Parts Sale Estimate and Invoice) and the Invoice UI Refresh specification version 45, section S13-R4, read on 31 August 2026.",
+      "Last checked against build v26.35.5-8c3cc21 on 8/31/2026."
+     ],
+     [
+      "AUTOMATION: READY"
+     ]
+    ],
+    "text": "1. The document number uses the parts-sale numbering through the existing document numbering.\n2. For example the Estimate reads \"Estimate: EST-P2-1088\" and the Invoice reads \"Invoice: INV-P2-1088\".\n\n---\nThis is the expected behaviour as per epic SV-8218 and story SV-9195 (Story 13, Parts Sale Estimate and Invoice) and the Invoice UI Refresh specification version 45, section S13-R4, read on 31 August 2026.\nLast checked against build v26.35.5-8c3cc21 on 8/31/2026.\n\nAUTOMATION: READY"
+   },
+   "custom_preconds": {
+    "blocks": [
+     [
+      "1. You are signed in to ShopView.",
+      "2. You can generate a Parts Sale Estimate and Invoice with parts-sale numbering."
+     ]
+    ],
+    "text": "1. You are signed in to ShopView.\n2. You can generate a Parts Sale Estimate and Invoice with parts-sale numbering."
+   },
+   "custom_steps": {
+    "blocks": [
+     [
+      "1. Generate the Parts Sale Estimate and read its masthead label.",
+      "2. Generate the Parts Sale Invoice and read its masthead label."
+     ]
+    ],
+    "text": "1. Generate the Parts Sale Estimate and read its masthead label.\n2. Generate the Parts Sale Invoice and read its masthead label."
+   }
+  }
+ },
+ "44984": {
+  "title": "Parts Sale reference fields drop Work Order and Approval Code",
+  "atm": 1,
+  "section_id": 6754,
+  "escaping": true,
+  "fields": {
+   "custom_expected": {
+    "blocks": [
+     [
+      "1. The Work Order field and the Approval Code field are not shown on a parts sale document.",
+      "2. Customer PO and Terms are unchanged (Terms always shows).",
+      "3. Authorizer follows the parts-sale Authorizer treatment (S13-R6)."
+     ],
+     [
+      "---",
+      "This is the expected behaviour as per epic SV-8218 and story SV-9195 (Story 13, Parts Sale Estimate and Invoice) and the Invoice UI Refresh specification version 45, section S13-R5, read on 31 August 2026.",
+      "Last checked against build v26.35.5-8c3cc21 on 8/31/2026."
+     ],
+     [
+      "AUTOMATION: READY"
+     ]
+    ],
+    "text": "1. The Work Order field and the Approval Code field are not shown on a parts sale document.\n2. Customer PO and Terms are unchanged (Terms always shows).\n3. Authorizer follows the parts-sale Authorizer treatment (S13-R6).\n\n---\nThis is the expected behaviour as per epic SV-8218 and story SV-9195 (Story 13, Parts Sale Estimate and Invoice) and the Invoice UI Refresh specification version 45, section S13-R5, read on 31 August 2026.\nLast checked against build v26.35.5-8c3cc21 on 8/31/2026.\n\nAUTOMATION: READY"
+   },
+   "custom_preconds": {
+    "blocks": [
+     [
+      "1. You are signed in to ShopView.",
+      "2. You can generate a Parts Sale document with a Customer PO, Terms, and an Authorizer set."
+     ]
+    ],
+    "text": "1. You are signed in to ShopView.\n2. You can generate a Parts Sale document with a Customer PO, Terms, and an Authorizer set."
+   },
+   "custom_steps": {
+    "blocks": [
+     [
+      "1. Generate the Parts Sale document.",
+      "2. Read the order reference fields area."
+     ]
+    ],
+    "text": "1. Generate the Parts Sale document.\n2. Read the order reference fields area."
+   }
+  }
+ },
+ "44986": {
+  "title": "Parts Sale financial summary shows no Labor and no Shop supplies row",
+  "atm": 1,
+  "section_id": 6754,
+  "escaping": true,
+  "fields": {
+   "custom_expected": {
+    "blocks": [
+     [
+      "1. The financial summary shows no \"Labor\" row and no \"Shop supplies\" row.",
+      "2. The \"Parts\" row, the adjustment rows, \"Subtotal\", \"Tax\", \"Total\", \"Payments\", and \"Balance\" are identical to the Invoice."
+     ],
+     [
+      "---",
+      "This is the expected behaviour as per epic SV-8218 and story SV-9195 (Story 13, Parts Sale Estimate and Invoice) and the Invoice UI Refresh specification version 45, section S13-R7, read on 31 August 2026.",
+      "Last checked against build v26.35.5-8c3cc21 on 8/31/2026."
+     ],
+     [
+      "AUTOMATION: READY"
+     ]
+    ],
+    "text": "1. The financial summary shows no \"Labor\" row and no \"Shop supplies\" row.\n2. The \"Parts\" row, the adjustment rows, \"Subtotal\", \"Tax\", \"Total\", \"Payments\", and \"Balance\" are identical to the Invoice.\n\n---\nThis is the expected behaviour as per epic SV-8218 and story SV-9195 (Story 13, Parts Sale Estimate and Invoice) and the Invoice UI Refresh specification version 45, section S13-R7, read on 31 August 2026.\nLast checked against build v26.35.5-8c3cc21 on 8/31/2026.\n\nAUTOMATION: READY"
+   },
+   "custom_preconds": {
+    "blocks": [
+     [
+      "1. You are signed in to ShopView.",
+      "2. A Parts Sale Invoice exists with parts charges, adjustments, tax and payments."
+     ]
+    ],
+    "text": "1. You are signed in to ShopView.\n2. A Parts Sale Invoice exists with parts charges, adjustments, tax and payments."
+   },
+   "custom_steps": {
+    "blocks": [
+     [
+      "1. Generate the Parts Sale Invoice.",
+      "2. Read the financial summary."
+     ]
+    ],
+    "text": "1. Generate the Parts Sale Invoice.\n2. Read the financial summary."
+   }
+  }
+ },
+ "45168": {
+  "title": "Credit Invoice never shows Remit Payment To and Credit To spans full width",
+  "atm": 1,
+  "section_id": 6742,
+  "escaping": true,
+  "fields": {
+   "custom_expected": {
+    "blocks": [
+     [
+      "1. No Remit Payment To block appears on the Credit Invoice even though a remit-to payee exists.",
+      "2. The 'Credit To' block spans the full width of the addresses area (S2-R3, Section 3 matrix)."
+     ],
+     [
+      "---",
+      "This is the expected behaviour as per epic SV-8218 and story SV-9141 (Story 2, Addresses) and the Invoice UI Refresh specification version 45, section S2-R3, read on 31 August 2026.",
+      "Last checked against build v26.35.5-8c3cc21 on 8/31/2026."
+     ],
+     [
+      "AUTOMATION: READY"
+     ]
+    ],
+    "text": "1. No Remit Payment To block appears on the Credit Invoice even though a remit-to payee exists.\n2. The 'Credit To' block spans the full width of the addresses area (S2-R3, Section 3 matrix).\n\n---\nThis is the expected behaviour as per epic SV-8218 and story SV-9141 (Story 2, Addresses) and the Invoice UI Refresh specification version 45, section S2-R3, read on 31 August 2026.\nLast checked against build v26.35.5-8c3cc21 on 8/31/2026.\n\nAUTOMATION: READY"
+   },
+   "custom_preconds": {
+    "blocks": [
+     [
+      "1. Credit invoice for a shop that HAS a remit-to payee configured"
+     ]
+    ],
+    "text": "1. Credit invoice for a shop that HAS a remit-to payee configured"
+   },
+   "custom_steps": {
+    "blocks": [
+     [
+      "1. Open the Credit Invoice preview"
+     ]
+    ],
+    "text": "1. Open the Credit Invoice preview"
+   }
+  }
+ },
+ "45179": {
+  "title": "Credit Invoice Balance shows the full open balance on an unapplied credit",
+  "atm": 1,
+  "section_id": 6752,
+  "escaping": true,
+  "fields": {
+   "custom_expected": {
+    "blocks": [
+     [
+      "1. 'Payments' shows the label with no rows.",
+      "2. 'Balance' reads $200.00, positive - the credit's open balance (net-new, S11-R6a). A flat $0.00 rendering here is a defect."
+     ],
+     [
+      "---",
+      "This is the expected behaviour as per epic SV-8218 and story SV-9150 (Story 11, Credit Invoice) and the Invoice UI Refresh specification version 45, section S11-R6a, read on 31 August 2026.",
+      "Last checked against build v26.35.5-8c3cc21 on 8/31/2026."
+     ],
+     [
+      "AUTOMATION: READY"
+     ]
+    ],
+    "text": "1. 'Payments' shows the label with no rows.\n2. 'Balance' reads $200.00, positive - the credit's open balance (net-new, S11-R6a). A flat $0.00 rendering here is a defect.\n\n---\nThis is the expected behaviour as per epic SV-8218 and story SV-9150 (Story 11, Credit Invoice) and the Invoice UI Refresh specification version 45, section S11-R6a, read on 31 August 2026.\nLast checked against build v26.35.5-8c3cc21 on 8/31/2026.\n\nAUTOMATION: READY"
+   },
+   "custom_preconds": {
+    "blocks": [
+     [
+      "1. A fresh unapplied credit, e.g. Total Credit -$200.00"
+     ]
+    ],
+    "text": "1. A fresh unapplied credit, e.g. Total Credit -$200.00"
+   },
+   "custom_steps": {
+    "blocks": [
+     [
+      "1. Open the Credit Invoice preview",
+      "2. Check Payments and Balance"
+     ]
+    ],
+    "text": "1. Open the Credit Invoice preview\n2. Check Payments and Balance"
+   }
+  }
+ },
+ "45180": {
+  "title": "Credit Invoice Balance shows the remaining open balance on a partially applied credit",
+  "atm": 1,
+  "section_id": 6752,
+  "escaping": true,
+  "fields": {
+   "custom_expected": {
+    "blocks": [
+     [
+      "1. 'Payments' shows the label with no rows (applications to invoices are not listed).",
+      "2. 'Balance' reads $120.00, positive - the open balance (original minus amounts applied to invoices) (S11-R6a)."
+     ],
+     [
+      "---",
+      "This is the expected behaviour as per epic SV-8218 and story SV-9150 (Story 11, Credit Invoice) and the Invoice UI Refresh specification version 45, section S11-R6a, read on 31 August 2026.",
+      "Last checked against build v26.35.5-8c3cc21 on 8/31/2026."
+     ],
+     [
+      "AUTOMATION: READY"
+     ]
+    ],
+    "text": "1. 'Payments' shows the label with no rows (applications to invoices are not listed).\n2. 'Balance' reads $120.00, positive - the open balance (original minus amounts applied to invoices) (S11-R6a).\n\n---\nThis is the expected behaviour as per epic SV-8218 and story SV-9150 (Story 11, Credit Invoice) and the Invoice UI Refresh specification version 45, section S11-R6a, read on 31 August 2026.\nLast checked against build v26.35.5-8c3cc21 on 8/31/2026.\n\nAUTOMATION: READY"
+   },
+   "custom_preconds": {
+    "blocks": [
+     [
+      "1. A credit of $200 with $80 applied to an invoice"
+     ]
+    ],
+    "text": "1. A credit of $200 with $80 applied to an invoice"
+   },
+   "custom_steps": {
+    "blocks": [
+     [
+      "1. Open the Credit Invoice preview"
+     ]
+    ],
+    "text": "1. Open the Credit Invoice preview"
+   }
+  }
+ },
+ "45182": {
+  "title": "Credit Invoice lists refund rows and shows the open balance until the credit is consumed",
+  "atm": 1,
+  "section_id": 6752,
+  "escaping": true,
+  "fields": {
+   "custom_expected": {
+    "blocks": [
+     [
+      "1. Refund rows read '{date} - {method}' with negative amounts.",
+      "2. Partially refunded: Balance reads $150.00, positive.",
+      "3. Fully consumed: Balance reads $0.00 (S11-R6a - preserves the shipped SV-7754 rendering; a regression here is Critical)."
+     ],
+     [
+      "---",
+      "This is the expected behaviour as per epic SV-8218 and story SV-9150 (Story 11, Credit Invoice) and the Invoice UI Refresh specification version 45, section S11-R6a, read on 31 August 2026.",
+      "Last checked against build v26.35.5-8c3cc21 on 8/31/2026."
+     ],
+     [
+      "AUTOMATION: READY"
+     ]
+    ],
+    "text": "1. Refund rows read '{date} - {method}' with negative amounts.\n2. Partially refunded: Balance reads $150.00, positive.\n3. Fully consumed: Balance reads $0.00 (S11-R6a - preserves the shipped SV-7754 rendering; a regression here is Critical).\n\n---\nThis is the expected behaviour as per epic SV-8218 and story SV-9150 (Story 11, Credit Invoice) and the Invoice UI Refresh specification version 45, section S11-R6a, read on 31 August 2026.\nLast checked against build v26.35.5-8c3cc21 on 8/31/2026.\n\nAUTOMATION: READY"
+   },
+   "custom_preconds": {
+    "blocks": [
+     [
+      "1. A credit of $200 with a $50 refund issued (partially refunded)",
+      "2. Separately, a credit that is fully refunded"
+     ]
+    ],
+    "text": "1. A credit of $200 with a $50 refund issued (partially refunded)\n2. Separately, a credit that is fully refunded"
+   },
+   "custom_steps": {
+    "blocks": [
+     [
+      "1. Open the partially refunded credit preview",
+      "2. Open the fully refunded credit preview"
+     ]
+    ],
+    "text": "1. Open the partially refunded credit preview\n2. Open the fully refunded credit preview"
+   }
+  }
+ },
+ "45183": {
+  "title": "Credit Invoice Balance is correct when a credit is both partially refunded and partially applied",
+  "atm": 1,
+  "section_id": 6752,
+  "escaping": true,
+  "fields": {
+   "custom_expected": {
+    "blocks": [
+     [
+      "1. Balance reads $70.00 - the open balance (original credit total minus amounts refunded minus amounts applied to invoices), shown positive (S11-R6a)."
+     ],
+     [
+      "---",
+      "This is the expected behaviour as per epic SV-8218 and story SV-9150 (Story 11, Credit Invoice) and the Invoice UI Refresh specification version 45, section S11-R6a, read on 31 August 2026.",
+      "Last checked against build v26.35.5-8c3cc21 on 8/31/2026."
+     ],
+     [
+      "AUTOMATION: READY"
+     ]
+    ],
+    "text": "1. Balance reads $70.00 - the open balance (original credit total minus amounts refunded minus amounts applied to invoices), shown positive (S11-R6a).\n\n---\nThis is the expected behaviour as per epic SV-8218 and story SV-9150 (Story 11, Credit Invoice) and the Invoice UI Refresh specification version 45, section S11-R6a, read on 31 August 2026.\nLast checked against build v26.35.5-8c3cc21 on 8/31/2026.\n\nAUTOMATION: READY"
+   },
+   "custom_preconds": {
+    "blocks": [
+     [
+      "1. A credit of $200 with $50 refunded and $80 applied to an invoice"
+     ]
+    ],
+    "text": "1. A credit of $200 with $50 refunded and $80 applied to an invoice"
+   },
+   "custom_steps": {
+    "blocks": [
+     [
+      "1. Open the Credit Invoice preview"
+     ]
+    ],
+    "text": "1. Open the Credit Invoice preview"
+   }
+  }
  }
 }

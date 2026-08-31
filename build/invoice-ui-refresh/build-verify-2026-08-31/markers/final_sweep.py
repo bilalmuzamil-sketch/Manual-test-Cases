@@ -45,10 +45,22 @@ ENTITY = re.compile(r'&amp;(mdash|rsquo|lsquo|amp|lt|gt|nbsp|rarr|#\d+);')
 
 def norm(s): return re.sub(r'[ \t]+', ' ', (s or '').replace('\xa0', ' ')).strip()
 
+def fetch(url, tries=5):
+    # TestRail resets a long-lived keep-alive connection now and then. A bare reset must not end an
+    # 84-case sweep and leave a PARTIAL result reported as the whole one.
+    import time
+    last = None
+    for t in range(tries):
+        try:
+            return op.open(url, timeout=60).read().decode('utf-8', 'replace')
+        except Exception as e:
+            last = e; time.sleep(2 * (t + 1))
+    raise RuntimeError(f'{url} failed after {tries} tries: {last}')
+
 rows, problems = [], []
 for n, cid in enumerate(sorted(snap, key=int), 1):
     c = api(f'get_case/{cid}')
-    page = op.open(f'{BASE}/index.php?/cases/view/{cid}', timeout=60).read().decode('utf-8', 'replace')
+    page = fetch(f'{BASE}/index.php?/cases/view/{cid}')
     p = []
     if snap[cid]['title'][:28] not in page:
         p.append('served page is not this case'); rows.append((cid, p)); problems += [(cid, x) for x in p]; continue
