@@ -24,7 +24,7 @@
 - **Ruthless Usefulness Audit:** 87/87 KEEP (2 WEAK-KEEP), 0 CUT, 0 NONSENSE, 0 unresolved contradictions.
 - **Rule-85 project:** every case SOURCE-VERIFIED ONLY - NO BUILD EXISTS YET (deferred automation marker).
 - **NO TestRail writes. NO Jira. Nothing pushed** (id-map C-IDs blank). Import file ready for the QA lead.
-- **Open PO questions:** PO-1 (Credit Balance S11-R6a vs stale Terminology §6) · PO-2 (un-logged spec edits 2026-08-13 [v38] and ~2026-08-25 [v39]; the v39 one verified cosmetic). Refreshed sheet: questions-2026-08-25/.
+- **Open PO questions:** ~~PO-1~~ **RESOLVED 2026-08-31 by spec v45** (change-log 2026-08-27 rewrote the Credit Invoice Terminology "Balance" to the open-balance definition, matching S11-R6a and our INV-CRED-06 C44969 — the v39 conflict is gone; PO sheet annotated, question no longer sent) · PO-2 still open (un-logged spec edits 2026-08-13 [v38] and ~2026-08-25 [v39]; the v39 one verified cosmetic). Refreshed sheet: questions-2026-08-25/.
 - **Reconciliation:** local active 87 = id-map 87 = import 87; id-map refs 87/87; set-equal both ways.
 
 ## Status — 2026-08-25 (reconciliation pass)
@@ -40,6 +40,8 @@
 - **TestRail (authorized this pass):** `update_case` on all 87 + `add_case` ×2, via block-only HTML (`apply_to_testrail.py`, `to_ol`/`expected_html`). **This also FIXED a pre-existing formatting defect** — the 87 were previously pushed as plain text (walls of text); all **89 now pass `check_case_render.py`** (0 fail, 0 warn). id-map backfilled 89/89.
 - **Run R417 union-synced 117→119 tests** (union-only, Rule 34). The subtree holds **30 foreign cases** (created_by=6, incl. the whole "Cross-Cutting and Regression" section 6770) that were already in R417; they were preserved untouched (Rule 38) and only our 2 new added. **Ours: 89 · live total in run: 119.**
 - **Suite now: 89 cases ours, 112 rule IDs covered both directions, 0 uncovered.**
+- **Foreign-vs-ours R417 reconciliation (Rule 38/39), read-only:** all **30 foreign cases (creator 6) are COMPLEMENTARY — 0 contradictions.** They cover the same rules from API-negative / edge-case / cross-cutting-E2E angles ours do not. Closest neighbours: foreign C45195 (multi-page PDF) ≈ our new S12-R10 C45213; foreign C45192 (mobile viewport) ≈ our new S12-R11 C45214 — both complementary, keep both. Nothing edited on either side. Detail: `reconcile-2026-08-31/FOREIGN-VS-OURS-R417.md`.
+- **PO-1 RESOLVED by spec v45** (Terminology "Balance" rewritten to open-balance = S11-R6a, change-log 2026-08-27); PO sheet annotated on both tabs, no longer to be sent. PO-2 remains open.
 
 ## How to resume (ordered)
 1. `git fetch` + `merge --ff-only` on `claude/slack-session-0sxnd9`; claim the lock.
