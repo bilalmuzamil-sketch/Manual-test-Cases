@@ -23,9 +23,21 @@ r.read(); print('UI session established')
 
 FIELD = re.compile(r'>(Preconditions|Steps|Expected Result)<')
 MD = re.compile(r'<div class="(markdown[^"]*)">')
+def fetch(url, tries=5):
+    # TestRail resets a long-lived keep-alive connection now and then; a bare reset must not be
+    # allowed to end a 119-case sweep and leave a partial picture reported as the whole one.
+    last = None
+    for t in range(tries):
+        try:
+            return op.open(url, timeout=60).read().decode('utf-8', 'replace')
+        except Exception as e:
+            last = e
+            import time; time.sleep(2 * (t + 1))
+    raise RuntimeError(f'{url} failed after {tries} tries: {last}')
+
 out = {}
 for n, cid in enumerate(sorted(ver['cases'], key=int), 1):
-    page = op.open(f'{BASE}/index.php?/cases/view/{cid}', timeout=60).read().decode('utf-8', 'replace')
+    page = fetch(f'{BASE}/index.php?/cases/view/{cid}')
     title_ok = ver['cases'][cid]['title'][:28] in page
     byf = {}
     for fm in FIELD.finditer(page):

@@ -74,3 +74,40 @@
 
 ## TestRail run (updated 2026-08-31)
 - **Full-suite run R417** — https://shopview.testrail.io/index.php?/runs/view/417. As of 2026-08-31: **119 tests** (89 ours + 30 foreign creator-6, preserved). C-IDs backfilled into testrail-id-map.csv (89/89). New cases appended union-only via `build/invoice-ui-refresh/apply_to_testrail.py` (Rule 34); `build/testing-tools/sync_runs.py` also works if it covers R417.
+
+## Status — 2026-08-31 (build verification + automation markers pushed)
+
+- **BUILD VERIFIED: 53 of 119 cases** on QA branch **sv8218**, build marker **`v26.35.5-8c3cc21`**.
+  Verdict = all five runnability checks passed (skill 03), detector control passing both directions.
+  Evidence: `build-verify-2026-08-31/verification.json`; pass folder has the harness, the 6 captured
+  documents, the 4 captured surfaces and the per-case checks.
+- **MARKERS PUSHED on all 53** (QA lead authorised 2026-08-31): `AUTOMATION: Not available on Build to
+  test Yet` → **`AUTOMATION: READY`**, plus **Rule-54 sentence 2** *"Last checked against build
+  v26.35.5-8c3cc21 on 8/31/2026."*. Sentence 1 (documents only) carried **byte-for-byte** and verified
+  unaltered on every case. **No expected behaviour changed** (Rule 57).
+- **Written through the TestRail WEB EDITOR, not the API** — 48 of the 53 served their text fields from
+  an escaping `<div class="markdown">` container, so an API write would have left the tester reading
+  literal `<ol><li><p>`. A UI save flips the container to `markdown fr-view`. Tool:
+  `build-verify-2026-08-31/markers/apply_markers.mjs` (adapted from the report-suite repair batch).
+- **Result: 53 applied, 0 failed, 0 skipped.** Independent post-write sweep (`markers/final_sweep.py`,
+  re-read from live + the served page, not from the writer's log): **53 of 53 pass all seven checks** —
+  container `fr-view` on all three fields · 0 literal tags · 0 visible entities · exactly one
+  `AUTOMATION: READY`, last · provenance s1 unaltered · s2 present once · title/section/refs/atmstatus
+  unchanged. Audit log: `TESTRAIL-EXECUTION-LOG-markers-2026-08-31.md`.
+- **Rule 71 / 65:** every case written carried `custom_atmstatus = 1`. The **5 Automated cases
+  (C44919, C44920, C44921, C44922, C44985) were NOT touched** and remain held — all five fall in the
+  unverified groups anyway. **Nothing to tell Vlad from this pass.**
+- **Handover deliverable:** `build-verify-2026-08-31/HANDOVER-AUTOMATION-READY-2026-08-31.md` — the 53
+  by area, with links, in plain English.
+- **⚠️ OPEN DEFECT IN OUR OWN SUITE — 61 of the other 66 cases are UNREADABLE on screen** (raw
+  `<ol><li>` shown to whoever opens them); 56 repairable now, **5 are the Automated ones and stay
+  held**. Cause: API writes leave the escaping container. **An earlier 2026-08-31 pass also reformatted
+  30 of Mudassir's cases from plain text INTO block HTML via the API, making them worse**, and
+  `check_case_render.py` passed all 30 because it inspects the stored value, not the served page.
+  Per-case list: `markers/readability-all-119.json`. Fix is the same tool, ~20 min, **not yet run —
+  awaiting the QA lead.**
+- **Run R417 unchanged** — no case added, removed or moved, so no union-only sync was needed (Rule 34).
+- **Learnings recorded the same pass** (Rule 93): playbook §J (the UI-login credential trap that makes
+  the container scanner report "0 escaping" for every case; the write-path table; the collapse-census
+  correction) · skill 04 §4.5 (the can-the-tester-actually-read-it gate, run on the served page) ·
+  core §2.1c (the flag follows the write path) · `check_case_render.py` docstring (not sufficient alone).
