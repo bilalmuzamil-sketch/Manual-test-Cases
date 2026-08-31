@@ -360,6 +360,7 @@ job.** Each file is a complete cold-start specification.
 | `build/skills/13-CROSS-SESSION-SAFETY.md` | Before the first write of any lane session (Rules 82–87 as commands) |
 | `build/skills/14-ACCESS-RESILIENCE.md` | Keeping a working path to TestRail / Jira / ShopView / Figma; MCP hygiene (Rule 89) |
 | `build/skills/15-NEW-PROJECT-INTAKE.md` | **The moment a project is NAMED** — required input set, PRESENT/MISSING intake checklist, source-currency block, and the REVIVAL path (Rules 92–93) |
+| `build/skills/18-LAYMAN-UI-STEPS.md` | **Before any handover to a manual tester** — every build-verified case must be followable from the UI by a layman: the entry point, the record, the tab, where the thing appears, and any default-on filter that hides it. Carries the observed routes for sv8218 and the hard line: making a step followable must NEVER make an unreachable state reachable on paper (QA lead, 2026-08-31; testers Victoria, Mudassir Qamar) |
 | `build/skills/17-REGRESSION-IMPACT-V1-TO-V2.md` | **The project is a V2 / upgrade of an existing feature** (Rule 96) — a V2 spec says only what CHANGES and is SILENT about the rest, so derive the **invariant set** (V1 baseline − changed ∪ removed ∪ replaced), escalate the dangerous silences, retire the superseded V1 cases. No build, no cookies |
 | `build/skills/COVERAGE-MATRIX.md` | Checking that a session learning is actually carried by a skill |
 | `build/skills/STATE.md` | Resuming work ON the skills themselves |

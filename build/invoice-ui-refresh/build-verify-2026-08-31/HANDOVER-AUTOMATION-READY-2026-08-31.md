@@ -2,7 +2,7 @@
 
 **Build they were checked on:** `v26.35.5-8c3cc21` (QA branch sv8218) · **checked on:** 31 August 2026
 
-**Ready to automate: 94 test cases.**
+**Ready to automate: 100 test cases.**
 
 Every case in this list has been checked on the build, end to end:
 
@@ -52,16 +52,20 @@ Each one now ends with `AUTOMATION: READY` and records the build it was checked 
 | [C45169](https://shopview.testrail.io/index.php?/cases/view/45169) | Authorizer change is rejected by the API while a non-voided invoice exists |
 | [C45170](https://shopview.testrail.io/index.php?/cases/view/45170) | Authorizer API rejects a contact that does not approve work or belongs to another company |
 
-### Credit Invoice — 8 case(s)
+### Credit Invoice — 12 case(s)
 
 | Case | Title |
 |---|---|
 | [C44964](https://shopview.testrail.io/index.php?/cases/view/44964) | Credit Invoice masthead shows 'Credit: {number}' and 'Issue date', no money |
 | [C44965](https://shopview.testrail.io/index.php?/cases/view/44965) | Customer address block is labeled 'Credit To' on the Credit Invoice |
+| [C44966](https://shopview.testrail.io/index.php?/cases/view/44966) | Status table shows Credit Number, Status, Invoice Number correctly |
+| [C44967](https://shopview.testrail.io/index.php?/cases/view/44967) | Credited items table shows returned parts and money-only lines correctly |
 | [C44968](https://shopview.testrail.io/index.php?/cases/view/44968) | Restocking fee reduces a returned-part credit total as specified |
+| [C44969](https://shopview.testrail.io/index.php?/cases/view/44969) | Totals block rows and Balance follow the credit's status |
 | [C44970](https://shopview.testrail.io/index.php?/cases/view/44970) | Credit Invoice shows the disclaimer and standard signature area |
 | [C45179](https://shopview.testrail.io/index.php?/cases/view/45179) | Credit Invoice Balance shows the full open balance on an unapplied credit |
 | [C45180](https://shopview.testrail.io/index.php?/cases/view/45180) | Credit Invoice Balance shows the remaining open balance on a partially applied credit |
+| [C45181](https://shopview.testrail.io/index.php?/cases/view/45181) | Credit Invoice Balance reads $0.00 on a fully applied credit and on a voided credit |
 | [C45182](https://shopview.testrail.io/index.php?/cases/view/45182) | Credit Invoice lists refund rows and shows the open balance until the credit is consumed |
 | [C45183](https://shopview.testrail.io/index.php?/cases/view/45183) | Credit Invoice Balance is correct when a credit is both partially refunded and partially applied |
 
@@ -104,13 +108,15 @@ Each one now ends with `AUTOMATION: READY` and records the build it was checked 
 | [C45213](https://shopview.testrail.io/index.php?/cases/view/45213) | Multi-page document uses standard page-break behaviour |
 | [C45214](https://shopview.testrail.io/index.php?/cases/view/45214) | On-screen document fits the viewport; wide elements scroll in their own container |
 
-### Estimate and Invoice Specifics — 5 case(s)
+### Estimate and Invoice Specifics — 7 case(s)
 
 | Case | Title |
 |---|---|
 | [C44959](https://shopview.testrail.io/index.php?/cases/view/44959) | Estimate and Invoice differ only as Section 3 specifies |
 | [C44960](https://shopview.testrail.io/index.php?/cases/view/44960) | Estimate shows 'Work Summary', 'Estimated Total', and 'Estimate date' |
 | [C44961](https://shopview.testrail.io/index.php?/cases/view/44961) | Invoice shows 'Work Performed', 'Balance', 'Invoice date' and 'Due date' |
+| [C44962](https://shopview.testrail.io/index.php?/cases/view/44962) | Fully paid Invoice stays an Invoice; 'Paid date' replaces 'Due date' |
+| [C44963](https://shopview.testrail.io/index.php?/cases/view/44963) | Invoice with no due date shows no Due date line; paid swap still applies |
 | [C45176](https://shopview.testrail.io/index.php?/cases/view/45176) | Paid date is the most recent applied row and may fall before the invoice date |
 | [C45178](https://shopview.testrail.io/index.php?/cases/view/45178) | A zero-total invoice with nothing applied is not treated as fully paid |
 
@@ -213,10 +219,10 @@ AUTOMATION: HOLD - customer portal only exists on staging; this case cannot run 
 | Group | Cases | Plain-English reason |
 |---|---|---|
 | Needs a data state I could not create yet | 0 | Mostly the Credit Invoice (12) and Parts Sale (7) cases. Some of this is probably not built yet — see the Credit Invoice pack and the developer questions.|
-| Quotes a word I could not find on screen | 15 | Mostly invoice states (part-paid, voided, draft) the build does not appear to have.|
+| Quotes a word I could not find on screen | 9 | Mostly invoice states (part-paid, voided, draft) the build does not appear to have.|
 | Steps do an action rather than read the document | 9 | These need a person to click through them once.|
 
-**Total: 119 cases in the suite; 94 ready to automate.**
+**Total: 119 cases in the suite; 100 ready to automate.**
 
 ---
 

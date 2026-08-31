@@ -6,12 +6,15 @@
   "refs": "SV-9140 (S1-R1)",
   "atm": 1,
   "preconditions": [
-   "You are signed in to ShopView.",
-   "A work order exists whose shop location has a name, street address, city, state or province, postal code, and phone number all set."
+   "1. You are signed in to ShopView.",
+   "2. A work order exists whose shop location has a name, street address, city, state or province, postal code, and phone number all set.",
+   "3. To put the document on screen: click \"Work Orders\" in the top menu, open the work order you need, then click the \"Finance\" tab. The document appears on the right.",
+   "4. Use the \"Estimate/Invoice\" toggle above the document to switch between the Estimate and the Invoice.",
+   "5. The printer icon prints the document and the download icon saves it. The cog icon opens the invoice display settings (Labor rate, Labor hours, Labor price, Summarize labor total, Summarize parts total, Part number, Part description)."
   ],
   "steps": [
-   "Open the work order and generate (or preview) its Invoice document.",
-   "Look at the masthead (the header block at the top of the document)."
+   "1. Open the work order and generate (or preview) its Invoice document.",
+   "2. Look at the masthead (the header block at the top of the document)."
   ],
   "expected_body": [
    "1. The masthead shows the shop location's name.",
@@ -23,9 +26,12 @@
   "labels_quoted": [],
   "labels_dropped_not_screen": {},
   "nav_nouns": [
+   "download",
+   "estimate",
    "invoice",
    "masthead",
    "preview",
+   "settings",
    "work order"
   ],
   "n_steps": 2
@@ -38,7 +44,10 @@
   "atm": 1,
   "preconditions": [
    "1. You are signed in to ShopView.",
-   "2. You can reach one shop that has a logo set and one shop that has no logo set (or you can add then remove a logo on a test shop)."
+   "2. You can reach one shop that has a logo set and one shop that has no logo set (or you can add then remove a logo on a test shop).",
+   "3. To put the document on screen: click \"Work Orders\" in the top menu, open the work order you need, then click the \"Finance\" tab. The document appears on the right.",
+   "4. Use the \"Estimate/Invoice\" toggle above the document to switch between the Estimate and the Invoice.",
+   "5. The printer icon prints the document and the download icon saves it. The cog icon opens the invoice display settings (Labor rate, Labor hours, Labor price, Summarize labor total, Summarize parts total, Part number, Part description)."
   ],
   "steps": [
    "1. Generate a document for the shop that HAS a logo set and look at the masthead.",
@@ -53,7 +62,12 @@
   "labels_quoted": [],
   "labels_dropped_not_screen": {},
   "nav_nouns": [
-   "masthead"
+   "download",
+   "estimate",
+   "invoice",
+   "masthead",
+   "settings",
+   "work order"
   ],
   "n_steps": 2
  },
@@ -65,7 +79,10 @@
   "atm": 1,
   "preconditions": [
    "1. You are signed in to ShopView.",
-   "2. You can generate an Estimate, an Invoice, and a Credit Invoice for known documents."
+   "2. You can generate an Estimate, an Invoice, and a Credit Invoice for known documents.",
+   "3. Your active location is set to the location the credit was issued at. Credits are location-specific: a credit issued at another location does not show in the customer's Invoices list at all - no row and no print button.",
+   "4. To open the document: Customers, open the customer, Invoices tab, find the credit's row (its credit number, for example CM-100, appears in the Invoice # column next to ordinary invoice numbers), then click the print icon at the right of that row (its tooltip reads \"Print credit memo\").",
+   "5. If the credit has been fully applied or fully refunded, turn the \"Open only\" filter off first, or its row is not listed."
   ],
   "steps": [
    "1. Generate an Estimate and read its masthead document label.",
@@ -84,9 +101,11 @@
   "labels_dropped_not_screen": {},
   "nav_nouns": [
    "credit invoice",
+   "customer",
    "estimate",
    "invoice",
-   "masthead"
+   "masthead",
+   "print"
   ],
   "n_steps": 3
  },
@@ -98,7 +117,10 @@
   "atm": 1,
   "preconditions": [
    "1. You are signed in to ShopView.",
-   "2. You can generate an Estimate, an Invoice (including a fully paid one), and a Credit Invoice."
+   "2. You can generate an Estimate, an Invoice (including a fully paid one), and a Credit Invoice.",
+   "3. To put the document on screen: click \"Work Orders\" in the top menu, open the work order you need, then click the \"Finance\" tab. The document appears on the right.",
+   "4. Use the \"Estimate/Invoice\" toggle above the document to switch between the Estimate and the Invoice.",
+   "5. The printer icon prints the document and the download icon saves it. The cog icon opens the invoice display settings (Labor rate, Labor hours, Labor price, Summarize labor total, Summarize parts total, Part number, Part description)."
   ],
   "steps": [
    "1. Generate each document type, including a fully paid Invoice and a Credit Invoice in various states.",
@@ -119,9 +141,12 @@
   },
   "nav_nouns": [
    "credit invoice",
+   "download",
    "estimate",
    "invoice",
-   "masthead"
+   "masthead",
+   "settings",
+   "work order"
   ],
   "n_steps": 2
  },
@@ -133,7 +158,10 @@
   "atm": 1,
   "preconditions": [
    "1. You are signed in to ShopView.",
-   "2. You can generate an Estimate, an Invoice, and a Credit Invoice that have monetary totals."
+   "2. You can generate an Estimate, an Invoice, and a Credit Invoice that have monetary totals.",
+   "3. Your active location is set to the location the credit was issued at. Credits are location-specific: a credit issued at another location does not show in the customer's Invoices list at all - no row and no print button.",
+   "4. To open the document: Customers, open the customer, Invoices tab, find the credit's row (its credit number, for example CM-100, appears in the Invoice # column next to ordinary invoice numbers), then click the print icon at the right of that row (its tooltip reads \"Print credit memo\").",
+   "5. If the credit has been fully applied or fully refunded, turn the \"Open only\" filter off first, or its row is not listed."
   ],
   "steps": [
    "1. Generate an Estimate and look at the masthead, then at the end of the totals block.",
@@ -155,9 +183,11 @@
   "labels_dropped_not_screen": {},
   "nav_nouns": [
    "credit invoice",
+   "customer",
    "estimate",
    "invoice",
-   "masthead"
+   "masthead",
+   "print"
   ],
   "n_steps": 3
  },
@@ -169,7 +199,10 @@
   "atm": 1,
   "preconditions": [
    "1. You are signed in to ShopView.",
-   "2. You can generate an Estimate, an unpaid Invoice, a fully paid Invoice, and a Credit Invoice."
+   "2. You can generate an Estimate, an unpaid Invoice, a fully paid Invoice, and a Credit Invoice.",
+   "3. Your active location is set to the location the credit was issued at. Credits are location-specific: a credit issued at another location does not show in the customer's Invoices list at all - no row and no print button.",
+   "4. To open the document: Customers, open the customer, Invoices tab, find the credit's row (its credit number, for example CM-100, appears in the Invoice # column next to ordinary invoice numbers), then click the print icon at the right of that row (its tooltip reads \"Print credit memo\").",
+   "5. If the credit has been fully applied or fully refunded, turn the \"Open only\" filter off first, or its row is not listed."
   ],
   "steps": [
    "1. Generate an Estimate and read its masthead date label(s).",
@@ -190,9 +223,11 @@
   "labels_dropped_not_screen": {},
   "nav_nouns": [
    "credit invoice",
+   "customer",
    "estimate",
    "invoice",
-   "masthead"
+   "masthead",
+   "print"
   ],
   "n_steps": 4
  },
@@ -204,7 +239,10 @@
   "atm": 1,
   "preconditions": [
    "1. You are signed in to ShopView.",
-   "2. You can reach (or set up) a shop location that is missing one or more of: street address, city, state or province, postal code, phone number."
+   "2. You can reach (or set up) a shop location that is missing one or more of: street address, city, state or province, postal code, phone number.",
+   "3. To put the document on screen: click \"Work Orders\" in the top menu, open the work order you need, then click the \"Finance\" tab. The document appears on the right.",
+   "4. Use the \"Estimate/Invoice\" toggle above the document to switch between the Estimate and the Invoice.",
+   "5. The printer icon prints the document and the download icon saves it. The cog icon opens the invoice display settings (Labor rate, Labor hours, Labor price, Summarize labor total, Summarize parts total, Part number, Part description)."
   ],
   "steps": [
    "1. Generate a document for a shop location that is missing one or more masthead identity fields.",
@@ -219,7 +257,12 @@
   "labels_quoted": [],
   "labels_dropped_not_screen": {},
   "nav_nouns": [
-   "masthead"
+   "download",
+   "estimate",
+   "invoice",
+   "masthead",
+   "settings",
+   "work order"
   ],
   "n_steps": 2
  },
@@ -230,12 +273,15 @@
   "refs": "SV-9141 (S2-R1)",
   "atm": 1,
   "preconditions": [
-   "You are signed in to ShopView.",
-   "A document exists for a customer that has a company name (or personal name) and a full address."
+   "1. You are signed in to ShopView.",
+   "2. A document exists for a customer that has a company name (or personal name) and a full address.",
+   "3. To put the document on screen: click \"Work Orders\" in the top menu, open the work order you need, then click the \"Finance\" tab. The document appears on the right.",
+   "4. Use the \"Estimate/Invoice\" toggle above the document to switch between the Estimate and the Invoice.",
+   "5. The printer icon prints the document and the download icon saves it. The cog icon opens the invoice display settings (Labor rate, Labor hours, Labor price, Summarize labor total, Summarize parts total, Part number, Part description)."
   ],
   "steps": [
-   "Generate the Estimate or Invoice.",
-   "Look at the addresses area."
+   "1. Generate the Estimate or Invoice.",
+   "2. Look at the addresses area."
   ],
   "expected_body": [
    "1. A block labeled exactly \"Bill To\" is shown.",
@@ -250,8 +296,11 @@
   "labels_dropped_not_screen": {},
   "nav_nouns": [
    "customer",
+   "download",
    "estimate",
-   "invoice"
+   "invoice",
+   "settings",
+   "work order"
   ],
   "n_steps": 2
  },
@@ -263,7 +312,10 @@
   "atm": 1,
   "preconditions": [
    "1. You are signed in to ShopView.",
-   "2. You can reach a document whose shop uses integrated-billing remit-to, and another whose location has its own remit-to setting (remit to another location or a custom address)."
+   "2. You can reach a document whose shop uses integrated-billing remit-to, and another whose location has its own remit-to setting (remit to another location or a custom address).",
+   "3. To put the document on screen: click \"Work Orders\" in the top menu, open the work order you need, then click the \"Finance\" tab. The document appears on the right.",
+   "4. Use the \"Estimate/Invoice\" toggle above the document to switch between the Estimate and the Invoice.",
+   "5. The printer icon prints the document and the download icon saves it. The cog icon opens the invoice display settings (Labor rate, Labor hours, Labor price, Summarize labor total, Summarize parts total, Part number, Part description)."
   ],
   "steps": [
    "1. Generate an Estimate or Invoice where the shop's integrated-billing remit-to is configured; look at the addresses area.",
@@ -281,8 +333,11 @@
   ],
   "labels_dropped_not_screen": {},
   "nav_nouns": [
+   "download",
    "estimate",
-   "invoice"
+   "invoice",
+   "settings",
+   "work order"
   ],
   "n_steps": 2
  },
@@ -294,7 +349,10 @@
   "atm": 1,
   "preconditions": [
    "1. You are signed in to ShopView.",
-   "2. You can reach a document that has no remit-to payee configured (neither mechanism)."
+   "2. You can reach a document that has no remit-to payee configured (neither mechanism).",
+   "3. To put the document on screen: click \"Work Orders\" in the top menu, open the work order you need, then click the \"Finance\" tab. The document appears on the right.",
+   "4. Use the \"Estimate/Invoice\" toggle above the document to switch between the Estimate and the Invoice.",
+   "5. The printer icon prints the document and the download icon saves it. The cog icon opens the invoice display settings (Labor rate, Labor hours, Labor price, Summarize labor total, Summarize parts total, Part number, Part description)."
   ],
   "steps": [
    "1. Generate an Estimate or Invoice with no remit-to payee configured.",
@@ -311,8 +369,11 @@
   "labels_quoted": [],
   "labels_dropped_not_screen": {},
   "nav_nouns": [
+   "download",
    "estimate",
-   "invoice"
+   "invoice",
+   "settings",
+   "work order"
   ],
   "n_steps": 3
  },
@@ -324,7 +385,10 @@
   "atm": 1,
   "preconditions": [
    "1. You are signed in to ShopView.",
-   "2. You can reach a document whose shop has neither integrated-billing remit-to nor a location remit-to setting configured."
+   "2. You can reach a document whose shop has neither integrated-billing remit-to nor a location remit-to setting configured.",
+   "3. To put the document on screen: click \"Work Orders\" in the top menu, open the work order you need, then click the \"Finance\" tab. The document appears on the right.",
+   "4. Use the \"Estimate/Invoice\" toggle above the document to switch between the Estimate and the Invoice.",
+   "5. The printer icon prints the document and the download icon saves it. The cog icon opens the invoice display settings (Labor rate, Labor hours, Labor price, Summarize labor total, Summarize parts total, Part number, Part description)."
   ],
   "steps": [
    "1. Generate an Estimate or Invoice with no remit-to payee configured.",
@@ -341,8 +405,11 @@
   ],
   "labels_dropped_not_screen": {},
   "nav_nouns": [
+   "download",
    "estimate",
-   "invoice"
+   "invoice",
+   "settings",
+   "work order"
   ],
   "n_steps": 2
  },
@@ -354,7 +421,10 @@
   "atm": 1,
   "preconditions": [
    "1. You are signed in to ShopView.",
-   "2. You can reach a document for a customer missing one or more of: street address, city, state or province, postal code."
+   "2. You can reach a document for a customer missing one or more of: street address, city, state or province, postal code.",
+   "3. To put the document on screen: click \"Work Orders\" in the top menu, open the work order you need, then click the \"Finance\" tab. The document appears on the right.",
+   "4. Use the \"Estimate/Invoice\" toggle above the document to switch between the Estimate and the Invoice.",
+   "5. The printer icon prints the document and the download icon saves it. The cog icon opens the invoice display settings (Labor rate, Labor hours, Labor price, Summarize labor total, Summarize parts total, Part number, Part description)."
   ],
   "steps": [
    "1. Generate an Estimate or Invoice for a customer missing one or more Bill To address fields.",
@@ -370,8 +440,11 @@
   "labels_dropped_not_screen": {},
   "nav_nouns": [
    "customer",
+   "download",
    "estimate",
-   "invoice"
+   "invoice",
+   "settings",
+   "work order"
   ],
   "n_steps": 2
  },
@@ -382,7 +455,10 @@
   "refs": "SV-9141 (S2-R3)",
   "atm": 1,
   "preconditions": [
-   "1. Credit invoice for a shop that HAS a remit-to payee configured"
+   "1. Credit invoice for a shop that HAS a remit-to payee configured",
+   "2. Your active location is set to the location the credit was issued at. Credits are location-specific: a credit issued at another location does not show in the customer's Invoices list at all - no row and no print button.",
+   "3. To open the document: Customers, open the customer, Invoices tab, find the credit's row (its credit number, for example CM-100, appears in the Invoice # column next to ordinary invoice numbers), then click the print icon at the right of that row (its tooltip reads \"Print credit memo\").",
+   "4. If the credit has been fully applied or fully refunded, turn the \"Open only\" filter off first, or its row is not listed."
   ],
   "steps": [
    "1. Open the Credit Invoice preview"
@@ -399,7 +475,10 @@
   "labels_dropped_not_screen": {},
   "nav_nouns": [
    "credit invoice",
-   "preview"
+   "customer",
+   "invoice",
+   "preview",
+   "print"
   ],
   "n_steps": 1
  },
@@ -449,7 +528,10 @@
   "atm": 1,
   "preconditions": [
    "1. You are signed in to ShopView.",
-   "2. You can reach a document whose work order HAS payment terms and one that has NONE."
+   "2. You can reach a document whose work order HAS payment terms and one that has NONE.",
+   "3. To put the document on screen: click \"Work Orders\" in the top menu, open the work order you need, then click the \"Finance\" tab. The document appears on the right.",
+   "4. Use the \"Estimate/Invoice\" toggle above the document to switch between the Estimate and the Invoice.",
+   "5. The printer icon prints the document and the download icon saves it. The cog icon opens the invoice display settings (Labor rate, Labor hours, Labor price, Summarize labor total, Summarize parts total, Part number, Part description)."
   ],
   "steps": [
    "1. Generate an Estimate or Invoice whose work order has payment terms set; look at the Terms field.",
@@ -469,9 +551,11 @@
    "Net 30": "When terms are set, the Terms field shows the value (for example \"Net 30\")."
   },
   "nav_nouns": [
+   "download",
    "estimate",
    "invoice",
    "payment",
+   "settings",
    "work order"
   ],
   "n_steps": 2
@@ -484,7 +568,10 @@
   "atm": 1,
   "preconditions": [
    "1. You are signed in to ShopView.",
-   "2. A document exists whose work order has an Authorizer selected (a customer contact with 'Approves Work' enabled)."
+   "2. A document exists whose work order has an Authorizer selected (a customer contact with 'Approves Work' enabled).",
+   "3. To put the document on screen: click \"Work Orders\" in the top menu, open the work order you need, then click the \"Finance\" tab. The document appears on the right.",
+   "4. Use the \"Estimate/Invoice\" toggle above the document to switch between the Estimate and the Invoice.",
+   "5. The printer icon prints the document and the download icon saves it. The cog icon opens the invoice display settings (Labor rate, Labor hours, Labor price, Summarize labor total, Summarize parts total, Part number, Part description)."
   ],
   "steps": [
    "1. Generate the Estimate or Invoice.",
@@ -503,8 +590,10 @@
   "nav_nouns": [
    "authorizer",
    "customer",
+   "download",
    "estimate",
    "invoice",
+   "settings",
    "work order"
   ],
   "n_steps": 2
@@ -548,7 +637,10 @@
   "atm": 1,
   "preconditions": [
    "1. You are signed in to ShopView.",
-   "2. You can reach one document where the work order number equals the trailing digits of the document number (for example document \"INV-S-24914\" with work order \"24914\"), and one where it does not (work order \"24915\")."
+   "2. You can reach one document where the work order number equals the trailing digits of the document number (for example document \"INV-S-24914\" with work order \"24914\"), and one where it does not (work order \"24915\").",
+   "3. To put the document on screen: click \"Work Orders\" in the top menu, open the work order you need, then click the \"Finance\" tab. The document appears on the right.",
+   "4. Use the \"Estimate/Invoice\" toggle above the document to switch between the Estimate and the Invoice.",
+   "5. The printer icon prints the document and the download icon saves it. The cog icon opens the invoice display settings (Labor rate, Labor hours, Labor price, Summarize labor total, Summarize parts total, Part number, Part description)."
   ],
   "steps": [
    "1. Generate the document where the work order number equals the document number's trailing digits; look at the order reference area.",
@@ -567,6 +659,10 @@
    "INV-4176": "Trailing digits example: \"4176\" in \"INV-4176\"; \"24914\" in \"INV-S-24914\"."
   },
   "nav_nouns": [
+   "download",
+   "estimate",
+   "invoice",
+   "settings",
    "work order"
   ],
   "n_steps": 2
@@ -579,7 +675,10 @@
   "atm": 1,
   "preconditions": [
    "1. You are signed in to ShopView.",
-   "2. You can reach a document whose work order has no Customer PO, no Authorizer selected, and no approval code."
+   "2. You can reach a document whose work order has no Customer PO, no Authorizer selected, and no approval code.",
+   "3. To put the document on screen: click \"Work Orders\" in the top menu, open the work order you need, then click the \"Finance\" tab. The document appears on the right.",
+   "4. Use the \"Estimate/Invoice\" toggle above the document to switch between the Estimate and the Invoice.",
+   "5. The printer icon prints the document and the download icon saves it. The cog icon opens the invoice display settings (Labor rate, Labor hours, Labor price, Summarize labor total, Summarize parts total, Part number, Part description)."
   ],
   "steps": [
    "1. Generate an Estimate or Invoice whose work order is missing Customer PO, Authorizer and approval code.",
@@ -598,8 +697,10 @@
   "nav_nouns": [
    "authorizer",
    "customer",
+   "download",
    "estimate",
    "invoice",
+   "settings",
    "work order"
   ],
   "n_steps": 2
@@ -612,7 +713,10 @@
   "atm": 3,
   "preconditions": [
    "1. You are signed in to ShopView with access to work orders.",
-   "2. A work order exists for a customer that has at least one contact with 'Approves Work' enabled, and other contacts without it."
+   "2. A work order exists for a customer that has at least one contact with 'Approves Work' enabled, and other contacts without it.",
+   "3. To put the document on screen: click \"Work Orders\" in the top menu, open the work order you need, then click the \"Finance\" tab. The document appears on the right.",
+   "4. Use the \"Estimate/Invoice\" toggle above the document to switch between the Estimate and the Invoice.",
+   "5. The printer icon prints the document and the download icon saves it. The cog icon opens the invoice display settings (Labor rate, Labor hours, Labor price, Summarize labor total, Summarize parts total, Part number, Part description)."
   ],
   "steps": [
    "1. Open the work order.",
@@ -624,10 +728,6 @@
    "2. Selecting the row opens a list of only the customer's contacts that have \"Approves Work\" enabled.",
    "3. No other contact is offered, and no free-typed name can be entered.",
    "4. This is the only place the Authorizer can be selected.",
-   "EXPECT FAIL - what you should see today: the Authorizer row renders inside a visible rectangle (it looks like an editable input box) and its text is indented, so it does not line up with the Contact and Phone values above it. This is a known problem, already reported as SV-9599.",
-   "If you see exactly that: mark this case FAILED and raise nothing new - it is SV-9599.",
-   "If it fails in any other way: that is a NEW problem. Report it.",
-   "If it passes - the row has no rectangle and lines up with Contact and Phone: the fix has shipped. Tell the QA lead so this marker can be removed.",
    "---",
    "Last checked against build v26.35.5-8c3cc21 on 8/31/2026."
   ],
@@ -639,6 +739,10 @@
   "nav_nouns": [
    "authorizer",
    "customer",
+   "download",
+   "estimate",
+   "invoice",
+   "settings",
    "work order"
   ],
   "n_steps": 3
@@ -651,7 +755,10 @@
   "atm": 3,
   "preconditions": [
    "1. You are signed in to ShopView.",
-   "2. A work order exists whose customer has 'Approves Work' contacts."
+   "2. A work order exists whose customer has 'Approves Work' contacts.",
+   "3. To put the document on screen: click \"Work Orders\" in the top menu, open the work order you need, then click the \"Finance\" tab. The document appears on the right.",
+   "4. Use the \"Estimate/Invoice\" toggle above the document to switch between the Estimate and the Invoice.",
+   "5. The printer icon prints the document and the download icon saves it. The cog icon opens the invoice display settings (Labor rate, Labor hours, Labor price, Summarize labor total, Summarize parts total, Part number, Part description)."
   ],
   "steps": [
    "1. Open a work order with no Authorizer selected and look at the Authorizer row.",
@@ -673,6 +780,10 @@
   "nav_nouns": [
    "authorizer",
    "customer",
+   "download",
+   "estimate",
+   "invoice",
+   "settings",
    "work order"
   ],
   "n_steps": 3
@@ -685,7 +796,10 @@
   "atm": 3,
   "preconditions": [
    "1. You are signed in to ShopView.",
-   "2. A work order's customer has one 'Approves Work' contact WITH a phone number and one WITHOUT."
+   "2. A work order's customer has one 'Approves Work' contact WITH a phone number and one WITHOUT.",
+   "3. To put the document on screen: click \"Work Orders\" in the top menu, open the work order you need, then click the \"Finance\" tab. The document appears on the right.",
+   "4. Use the \"Estimate/Invoice\" toggle above the document to switch between the Estimate and the Invoice.",
+   "5. The printer icon prints the document and the download icon saves it. The cog icon opens the invoice display settings (Labor rate, Labor hours, Labor price, Summarize labor total, Summarize parts total, Part number, Part description)."
   ],
   "steps": [
    "1. Open the work order and select the authorizer whose contact has a phone number; look at the contact card.",
@@ -704,6 +818,10 @@
   "nav_nouns": [
    "authorizer",
    "customer",
+   "download",
+   "estimate",
+   "invoice",
+   "settings",
    "work order"
   ],
   "n_steps": 2
@@ -716,7 +834,10 @@
   "atm": 3,
   "preconditions": [
    "1. You are signed in to ShopView.",
-   "2. A work order that has been invoiced exists, with (or without) an Authorizer selected."
+   "2. A work order that has been invoiced exists, with (or without) an Authorizer selected.",
+   "3. To put the document on screen: click \"Work Orders\" in the top menu, open the work order you need, then click the \"Finance\" tab. The document appears on the right.",
+   "4. Use the \"Estimate/Invoice\" toggle above the document to switch between the Estimate and the Invoice.",
+   "5. The printer icon prints the document and the download icon saves it. The cog icon opens the invoice display settings (Labor rate, Labor hours, Labor price, Summarize labor total, Summarize parts total, Part number, Part description)."
   ],
   "steps": [
    "1. Open the invoiced work order.",
@@ -734,6 +855,10 @@
   "nav_nouns": [
    "authorizer",
    "customer",
+   "download",
+   "estimate",
+   "invoice",
+   "settings",
    "work order"
   ],
   "n_steps": 2
@@ -777,7 +902,10 @@
   "atm": 1,
   "preconditions": [
    "1. Invoiced work order",
-   "2. API access (session token)"
+   "2. API access (session token)",
+   "3. To put the document on screen: click \"Work Orders\" in the top menu, open the work order you need, then click the \"Finance\" tab. The document appears on the right.",
+   "4. Use the \"Estimate/Invoice\" toggle above the document to switch between the Estimate and the Invoice.",
+   "5. The printer icon prints the document and the download icon saves it. The cog icon opens the invoice display settings (Labor rate, Labor hours, Labor price, Summarize labor total, Summarize parts total, Part number, Part description)."
   ],
   "steps": [
    "1. POST /api/work-orders/change-authorizer with a valid authorizer_id directly (bypass the UI) (body: {\"workOrderId\": \"<work order id>\", \"authorizerContactId\": \"<contact id>\"})"
@@ -792,6 +920,10 @@
   "labels_dropped_not_screen": {},
   "nav_nouns": [
    "authorizer",
+   "download",
+   "estimate",
+   "invoice",
+   "settings",
    "work order"
   ],
   "n_steps": 1
@@ -804,7 +936,10 @@
   "atm": 1,
   "preconditions": [
    "1. Un-invoiced work order",
-   "2. Contact IDs: (a) same company without 'Approves Work'; (b) another company's contact"
+   "2. Contact IDs: (a) same company without 'Approves Work'; (b) another company's contact",
+   "3. To put the document on screen: click \"Work Orders\" in the top menu, open the work order you need, then click the \"Finance\" tab. The document appears on the right.",
+   "4. Use the \"Estimate/Invoice\" toggle above the document to switch between the Estimate and the Invoice.",
+   "5. The printer icon prints the document and the download icon saves it. The cog icon opens the invoice display settings (Labor rate, Labor hours, Labor price, Summarize labor total, Summarize parts total, Part number, Part description)."
   ],
   "steps": [
    "1. POST authorizer_id = contact (a)",
@@ -820,6 +955,10 @@
   ],
   "labels_dropped_not_screen": {},
   "nav_nouns": [
+   "download",
+   "estimate",
+   "invoice",
+   "settings",
    "work order"
   ],
   "n_steps": 2
@@ -832,7 +971,10 @@
   "atm": 1,
   "preconditions": [
    "1. You are signed in to ShopView.",
-   "2. A document exists whose work order has an asset attached, and that asset has a VIN (and a separate asset has only a serial number)."
+   "2. A document exists whose work order has an asset attached, and that asset has a VIN (and a separate asset has only a serial number).",
+   "3. To put the document on screen: click \"Work Orders\" in the top menu, open the work order you need, then click the \"Finance\" tab. The document appears on the right.",
+   "4. Use the \"Estimate/Invoice\" toggle above the document to switch between the Estimate and the Invoice.",
+   "5. The printer icon prints the document and the download icon saves it. The cog icon opens the invoice display settings (Labor rate, Labor hours, Labor price, Summarize labor total, Summarize parts total, Part number, Part description)."
   ],
   "steps": [
    "1. Generate an Estimate or Invoice whose work order has an asset with a VIN; look at the asset section.",
@@ -853,8 +995,10 @@
   "labels_dropped_not_screen": {},
   "nav_nouns": [
    "asset",
+   "download",
    "estimate",
    "invoice",
+   "settings",
    "work order"
   ],
   "n_steps": 2
@@ -867,7 +1011,10 @@
   "atm": 1,
   "preconditions": [
    "1. You are signed in to ShopView.",
-   "2. A document exists whose work order has an asset with Unit, Plate, Mileage and Eng Hrs all set."
+   "2. A document exists whose work order has an asset with Unit, Plate, Mileage and Eng Hrs all set.",
+   "3. To put the document on screen: click \"Work Orders\" in the top menu, open the work order you need, then click the \"Finance\" tab. The document appears on the right.",
+   "4. Use the \"Estimate/Invoice\" toggle above the document to switch between the Estimate and the Invoice.",
+   "5. The printer icon prints the document and the download icon saves it. The cog icon opens the invoice display settings (Labor rate, Labor hours, Labor price, Summarize labor total, Summarize parts total, Part number, Part description)."
   ],
   "steps": [
    "1. Generate the Estimate or Invoice.",
@@ -887,8 +1034,10 @@
   "labels_dropped_not_screen": {},
   "nav_nouns": [
    "asset",
+   "download",
    "estimate",
    "invoice",
+   "settings",
    "work order"
   ],
   "n_steps": 2
@@ -901,7 +1050,10 @@
   "atm": 1,
   "preconditions": [
    "1. You are signed in to ShopView.",
-   "2. A document exists whose asset is missing one or more of Unit, Plate, Mileage, Eng Hrs."
+   "2. A document exists whose asset is missing one or more of Unit, Plate, Mileage, Eng Hrs.",
+   "3. To put the document on screen: click \"Work Orders\" in the top menu, open the work order you need, then click the \"Finance\" tab. The document appears on the right.",
+   "4. Use the \"Estimate/Invoice\" toggle above the document to switch between the Estimate and the Invoice.",
+   "5. The printer icon prints the document and the download icon saves it. The cog icon opens the invoice display settings (Labor rate, Labor hours, Labor price, Summarize labor total, Summarize parts total, Part number, Part description)."
   ],
   "steps": [
    "1. Generate an Estimate or Invoice whose asset is missing some of these fields.",
@@ -917,8 +1069,11 @@
   "labels_dropped_not_screen": {},
   "nav_nouns": [
    "asset",
+   "download",
    "estimate",
-   "invoice"
+   "invoice",
+   "settings",
+   "work order"
   ],
   "n_steps": 2
  },
@@ -930,7 +1085,10 @@
   "atm": 1,
   "preconditions": [
    "1. You are signed in to ShopView.",
-   "2. A document exists whose attached asset has no VIN and no serial number."
+   "2. A document exists whose attached asset has no VIN and no serial number.",
+   "3. To put the document on screen: click \"Work Orders\" in the top menu, open the work order you need, then click the \"Finance\" tab. The document appears on the right.",
+   "4. Use the \"Estimate/Invoice\" toggle above the document to switch between the Estimate and the Invoice.",
+   "5. The printer icon prints the document and the download icon saves it. The cog icon opens the invoice display settings (Labor rate, Labor hours, Labor price, Summarize labor total, Summarize parts total, Part number, Part description)."
   ],
   "steps": [
    "1. Generate the Estimate or Invoice.",
@@ -948,8 +1106,11 @@
   },
   "nav_nouns": [
    "asset",
+   "download",
    "estimate",
-   "invoice"
+   "invoice",
+   "settings",
+   "work order"
   ],
   "n_steps": 2
  },
@@ -961,7 +1122,9 @@
   "atm": 1,
   "preconditions": [
    "1. You are signed in to ShopView.",
-   "2. You can reach: a service work order with an asset, a parts sale with an asset attached, and a work order with no asset attached."
+   "2. You can reach: a service work order with an asset, a parts sale with an asset attached, and a work order with no asset attached.",
+   "3. To put the Parts Sale document on screen: click \"Customers\" in the top menu, open the customer, click the \"Part Sales\" tab, open the part sale, then click the \"Finance\" tab.",
+   "4. Use the \"Estimate/Invoice\" toggle above the document to switch between the Parts Sale Estimate and the Parts Sale Invoice."
   ],
   "steps": [
    "1. Generate a document for a service work order with an asset; check whether the asset section shows.",
@@ -978,6 +1141,9 @@
   "labels_dropped_not_screen": {},
   "nav_nouns": [
    "asset",
+   "customer",
+   "estimate",
+   "invoice",
    "parts sale",
    "work order"
   ],
@@ -990,7 +1156,10 @@
   "refs": "SV-9143 (S4-N3)",
   "atm": 1,
   "preconditions": [
-   "1. Work order without an asset"
+   "1. Work order without an asset",
+   "2. To put the document on screen: click \"Work Orders\" in the top menu, open the work order you need, then click the \"Finance\" tab. The document appears on the right.",
+   "3. Use the \"Estimate/Invoice\" toggle above the document to switch between the Estimate and the Invoice.",
+   "4. The printer icon prints the document and the download icon saves it. The cog icon opens the invoice display settings (Labor rate, Labor hours, Labor price, Summarize labor total, Summarize parts total, Part number, Part description)."
   ],
   "steps": [
    "1. Open the Estimate and Invoice previews"
@@ -1004,8 +1173,10 @@
   "labels_dropped_not_screen": {},
   "nav_nouns": [
    "asset",
+   "download",
    "estimate",
    "invoice",
+   "settings",
    "work order"
   ],
   "n_steps": 1
@@ -1018,7 +1189,10 @@
   "atm": 1,
   "preconditions": [
    "1. You are signed in to ShopView.",
-   "2. You can generate an Estimate and an Invoice for work orders that have work lines."
+   "2. You can generate an Estimate and an Invoice for work orders that have work lines.",
+   "3. To put the document on screen: click \"Work Orders\" in the top menu, open the work order you need, then click the \"Finance\" tab. The document appears on the right.",
+   "4. Use the \"Estimate/Invoice\" toggle above the document to switch between the Estimate and the Invoice.",
+   "5. The printer icon prints the document and the download icon saves it. The cog icon opens the invoice display settings (Labor rate, Labor hours, Labor price, Summarize labor total, Summarize parts total, Part number, Part description)."
   ],
   "steps": [
    "1. Generate an Estimate and read the work section heading.",
@@ -1036,8 +1210,11 @@
   ],
   "labels_dropped_not_screen": {},
   "nav_nouns": [
+   "download",
    "estimate",
-   "invoice"
+   "invoice",
+   "settings",
+   "work order"
   ],
   "n_steps": 2
  },
@@ -1049,7 +1226,10 @@
   "atm": 1,
   "preconditions": [
    "1. You are signed in to ShopView.",
-   "2. You can reach a work order with several work lines, and (ideally) one with 100 or more lines."
+   "2. You can reach a work order with several work lines, and (ideally) one with 100 or more lines.",
+   "3. To put the document on screen: click \"Work Orders\" in the top menu, open the work order you need, then click the \"Finance\" tab. The document appears on the right.",
+   "4. Use the \"Estimate/Invoice\" toggle above the document to switch between the Estimate and the Invoice.",
+   "5. The printer icon prints the document and the download icon saves it. The cog icon opens the invoice display settings (Labor rate, Labor hours, Labor price, Summarize labor total, Summarize parts total, Part number, Part description)."
   ],
   "steps": [
    "1. Generate a document for a work order with multiple lines; read the line numbers.",
@@ -1065,6 +1245,10 @@
   "labels_quoted": [],
   "labels_dropped_not_screen": {},
   "nav_nouns": [
+   "download",
+   "estimate",
+   "invoice",
+   "settings",
    "work order"
   ],
   "n_steps": 2
@@ -1077,7 +1261,10 @@
   "atm": 1,
   "preconditions": [
    "1. You are signed in to ShopView.",
-   "2. A work order has a line with a name, a description, and a scope-of-work note; and another line with a name only."
+   "2. A work order has a line with a name, a description, and a scope-of-work note; and another line with a name only.",
+   "3. To put the document on screen: click \"Work Orders\" in the top menu, open the work order you need, then click the \"Finance\" tab. The document appears on the right.",
+   "4. Use the \"Estimate/Invoice\" toggle above the document to switch between the Estimate and the Invoice.",
+   "5. The printer icon prints the document and the download icon saves it. The cog icon opens the invoice display settings (Labor rate, Labor hours, Labor price, Summarize labor total, Summarize parts total, Part number, Part description)."
   ],
   "steps": [
    "1. Generate the document.",
@@ -1095,6 +1282,10 @@
   "labels_quoted": [],
   "labels_dropped_not_screen": {},
   "nav_nouns": [
+   "download",
+   "estimate",
+   "invoice",
+   "settings",
    "work order"
   ],
   "n_steps": 3
@@ -1107,7 +1298,10 @@
   "atm": 1,
   "preconditions": [
    "1. You are signed in to ShopView.",
-   "2. A work order line has both a labor entry and a parts entry."
+   "2. A work order line has both a labor entry and a parts entry.",
+   "3. To put the document on screen: click \"Work Orders\" in the top menu, open the work order you need, then click the \"Finance\" tab. The document appears on the right.",
+   "4. Use the \"Estimate/Invoice\" toggle above the document to switch between the Estimate and the Invoice.",
+   "5. The printer icon prints the document and the download icon saves it. The cog icon opens the invoice display settings (Labor rate, Labor hours, Labor price, Summarize labor total, Summarize parts total, Part number, Part description)."
   ],
   "steps": [
    "1. Generate the document.",
@@ -1125,6 +1319,10 @@
   ],
   "labels_dropped_not_screen": {},
   "nav_nouns": [
+   "download",
+   "estimate",
+   "invoice",
+   "settings",
    "work order"
   ],
   "n_steps": 2
@@ -1137,7 +1335,10 @@
   "atm": 1,
   "preconditions": [
    "1. You are signed in to ShopView.",
-   "2. You can change the document settings under Administration > Invoice Details for a shop, and generate a document for that shop."
+   "2. You can change the document settings under Administration > Invoice Details for a shop, and generate a document for that shop.",
+   "3. To put the document on screen: click \"Work Orders\" in the top menu, open the work order you need, then click the \"Finance\" tab. The document appears on the right.",
+   "4. Use the \"Estimate/Invoice\" toggle above the document to switch between the Estimate and the Invoice.",
+   "5. The printer icon prints the document and the download icon saves it. The cog icon opens the invoice display settings (Labor rate, Labor hours, Labor price, Summarize labor total, Summarize parts total, Part number, Part description)."
   ],
   "steps": [
    "1. Under Administration > Invoice Details, turn each of \"Labor hours\", \"Labor rate\", \"Labor price\", \"Part quantity\", \"Part price\", \"Part number\" and \"Part description\" on, generate a document, and read a work line.",
@@ -1166,8 +1367,11 @@
    "Line total": "The itemized labor and parts entries themselves are never collapsed or hidden by any setting; \"Line total\" and"
   },
   "nav_nouns": [
+   "download",
+   "estimate",
    "invoice",
-   "settings"
+   "settings",
+   "work order"
   ],
   "n_steps": 2
  },
@@ -1179,7 +1383,10 @@
   "atm": 1,
   "preconditions": [
    "1. You are signed in to ShopView.",
-   "2. A work order has a line with a line-level fee and a line with a line-level discount."
+   "2. A work order has a line with a line-level fee and a line with a line-level discount.",
+   "3. To put the document on screen: click \"Work Orders\" in the top menu, open the work order you need, then click the \"Finance\" tab. The document appears on the right.",
+   "4. Use the \"Estimate/Invoice\" toggle above the document to switch between the Estimate and the Invoice.",
+   "5. The printer icon prints the document and the download icon saves it. The cog icon opens the invoice display settings (Labor rate, Labor hours, Labor price, Summarize labor total, Summarize parts total, Part number, Part description)."
   ],
   "steps": [
    "1. Generate the document.",
@@ -1196,6 +1403,10 @@
   "labels_quoted": [],
   "labels_dropped_not_screen": {},
   "nav_nouns": [
+   "download",
+   "estimate",
+   "invoice",
+   "settings",
    "work order"
   ],
   "n_steps": 3
@@ -1208,7 +1419,10 @@
   "atm": 1,
   "preconditions": [
    "1. You are signed in to ShopView.",
-   "2. You can set \"Summarize labor total\" and \"Summarize parts total\" under Administration > Invoice Details, and reach lines with and without visible Labor/Parts figures."
+   "2. You can set \"Summarize labor total\" and \"Summarize parts total\" under Administration > Invoice Details, and reach lines with and without visible Labor/Parts figures.",
+   "3. To put the document on screen: click \"Work Orders\" in the top menu, open the work order you need, then click the \"Finance\" tab. The document appears on the right.",
+   "4. Use the \"Estimate/Invoice\" toggle above the document to switch between the Estimate and the Invoice.",
+   "5. The printer icon prints the document and the download icon saves it. The cog icon opens the invoice display settings (Labor rate, Labor hours, Labor price, Summarize labor total, Summarize parts total, Part number, Part description)."
   ],
   "steps": [
    "1. With both summarize settings on, generate a document and read a line footer that has Labor and Parts amounts.",
@@ -1233,9 +1447,12 @@
   ],
   "labels_dropped_not_screen": {},
   "nav_nouns": [
+   "download",
+   "estimate",
    "footer",
    "invoice",
-   "settings"
+   "settings",
+   "work order"
   ],
   "n_steps": 3
  },
@@ -1247,7 +1464,10 @@
   "atm": 1,
   "preconditions": [
    "1. You are signed in to ShopView.",
-   "2. You can reach a document whose work order has no work lines."
+   "2. You can reach a document whose work order has no work lines.",
+   "3. To put the document on screen: click \"Work Orders\" in the top menu, open the work order you need, then click the \"Finance\" tab. The document appears on the right.",
+   "4. Use the \"Estimate/Invoice\" toggle above the document to switch between the Estimate and the Invoice.",
+   "5. The printer icon prints the document and the download icon saves it. The cog icon opens the invoice display settings (Labor rate, Labor hours, Labor price, Summarize labor total, Summarize parts total, Part number, Part description)."
   ],
   "steps": [
    "1. Generate the document for a work order with no work lines.",
@@ -1264,6 +1484,10 @@
   ],
   "labels_dropped_not_screen": {},
   "nav_nouns": [
+   "download",
+   "estimate",
+   "invoice",
+   "settings",
    "work order"
   ],
   "n_steps": 2
@@ -1276,7 +1500,10 @@
   "atm": 1,
   "preconditions": [
    "1. A work line with both labor and parts",
-   "2. All price settings ON"
+   "2. All price settings ON",
+   "3. To put the document on screen: click \"Work Orders\" in the top menu, open the work order you need, then click the \"Finance\" tab. The document appears on the right.",
+   "4. Use the \"Estimate/Invoice\" toggle above the document to switch between the Estimate and the Invoice.",
+   "5. The printer icon prints the document and the download icon saves it. The cog icon opens the invoice display settings (Labor rate, Labor hours, Labor price, Summarize labor total, Summarize parts total, Part number, Part description)."
   ],
   "steps": [
    "1. Turn OFF 'Summarize labor total', then open the preview",
@@ -1300,8 +1527,12 @@
    "Parts": "After Step 1: the footer 'Labor' figure is hidden; 'Parts' and 'Line total' remain."
   },
   "nav_nouns": [
+   "download",
+   "estimate",
+   "invoice",
    "preview",
-   "settings"
+   "settings",
+   "work order"
   ],
   "n_steps": 3
  },
@@ -1312,7 +1543,10 @@
   "refs": "SV-9144 (S5-R2)",
   "atm": 1,
   "preconditions": [
-   "1. A work order with 100+ lines (factory/seed data)"
+   "1. A work order with 100+ lines (factory/seed data)",
+   "2. To put the document on screen: click \"Work Orders\" in the top menu, open the work order you need, then click the \"Finance\" tab. The document appears on the right.",
+   "3. Use the \"Estimate/Invoice\" toggle above the document to switch between the Estimate and the Invoice.",
+   "4. The printer icon prints the document and the download icon saves it. The cog icon opens the invoice display settings (Labor rate, Labor hours, Labor price, Summarize labor total, Summarize parts total, Part number, Part description)."
   ],
   "steps": [
    "1. Open the Invoice preview",
@@ -1327,9 +1561,12 @@
   "labels_quoted": [],
   "labels_dropped_not_screen": {},
   "nav_nouns": [
+   "download",
+   "estimate",
    "invoice",
    "pdf",
    "preview",
+   "settings",
    "work order"
   ],
   "n_steps": 2
@@ -1434,7 +1671,10 @@
   "atm": 1,
   "preconditions": [
    "1. You are signed in to ShopView.",
-   "2. You can generate an Estimate or Invoice."
+   "2. You can generate an Estimate or Invoice.",
+   "3. To put the document on screen: click \"Work Orders\" in the top menu, open the work order you need, then click the \"Finance\" tab. The document appears on the right.",
+   "4. Use the \"Estimate/Invoice\" toggle above the document to switch between the Estimate and the Invoice.",
+   "5. The printer icon prints the document and the download icon saves it. The cog icon opens the invoice display settings (Labor rate, Labor hours, Labor price, Summarize labor total, Summarize parts total, Part number, Part description)."
   ],
   "steps": [
    "1. Generate the document.",
@@ -1450,9 +1690,12 @@
   ],
   "labels_dropped_not_screen": {},
   "nav_nouns": [
+   "download",
    "estimate",
    "financial summary",
-   "invoice"
+   "invoice",
+   "settings",
+   "work order"
   ],
   "n_steps": 2
  },
@@ -1464,7 +1707,10 @@
   "atm": 1,
   "preconditions": [
    "1. You are signed in to ShopView.",
-   "2. A document exists with labor charges, parts charges, and a shop-supplies charge."
+   "2. A document exists with labor charges, parts charges, and a shop-supplies charge.",
+   "3. To put the document on screen: click \"Work Orders\" in the top menu, open the work order you need, then click the \"Finance\" tab. The document appears on the right.",
+   "4. Use the \"Estimate/Invoice\" toggle above the document to switch between the Estimate and the Invoice.",
+   "5. The printer icon prints the document and the download icon saves it. The cog icon opens the invoice display settings (Labor rate, Labor hours, Labor price, Summarize labor total, Summarize parts total, Part number, Part description)."
   ],
   "steps": [
    "1. Generate the document.",
@@ -1484,7 +1730,12 @@
   ],
   "labels_dropped_not_screen": {},
   "nav_nouns": [
-   "financial summary"
+   "download",
+   "estimate",
+   "financial summary",
+   "invoice",
+   "settings",
+   "work order"
   ],
   "n_steps": 2
  },
@@ -1522,7 +1773,10 @@
   "atm": 1,
   "preconditions": [
    "1. You are signed in to ShopView.",
-   "2. A document exists with line-level labor and parts fees/discounts and two or more work-order-wide adjustments added in a known order."
+   "2. A document exists with line-level labor and parts fees/discounts and two or more work-order-wide adjustments added in a known order.",
+   "3. To put the document on screen: click \"Work Orders\" in the top menu, open the work order you need, then click the \"Finance\" tab. The document appears on the right.",
+   "4. Use the \"Estimate/Invoice\" toggle above the document to switch between the Estimate and the Invoice.",
+   "5. The printer icon prints the document and the download icon saves it. The cog icon opens the invoice display settings (Labor rate, Labor hours, Labor price, Summarize labor total, Summarize parts total, Part number, Part description)."
   ],
   "steps": [
    "1. Generate the document.",
@@ -1544,7 +1798,12 @@
   ],
   "labels_dropped_not_screen": {},
   "nav_nouns": [
-   "financial summary"
+   "download",
+   "estimate",
+   "financial summary",
+   "invoice",
+   "settings",
+   "work order"
   ],
   "n_steps": 2
  },
@@ -1556,7 +1815,10 @@
   "atm": 1,
   "preconditions": [
    "1. You are signed in to ShopView.",
-   "2. A document exists with one or more applicable taxes."
+   "2. A document exists with one or more applicable taxes.",
+   "3. To put the document on screen: click \"Work Orders\" in the top menu, open the work order you need, then click the \"Finance\" tab. The document appears on the right.",
+   "4. Use the \"Estimate/Invoice\" toggle above the document to switch between the Estimate and the Invoice.",
+   "5. The printer icon prints the document and the download icon saves it. The cog icon opens the invoice display settings (Labor rate, Labor hours, Labor price, Summarize labor total, Summarize parts total, Part number, Part description)."
   ],
   "steps": [
    "1. Generate the document.",
@@ -1576,7 +1838,13 @@
    "Total"
   ],
   "labels_dropped_not_screen": {},
-  "nav_nouns": [],
+  "nav_nouns": [
+   "download",
+   "estimate",
+   "invoice",
+   "settings",
+   "work order"
+  ],
   "n_steps": 2
  },
  "44945": {
@@ -1587,7 +1855,10 @@
   "atm": 1,
   "preconditions": [
    "1. You are signed in to ShopView.",
-   "2. You can reach a document with no work-order-wide adjustments and both rollup totals zero, and one with no applicable tax."
+   "2. You can reach a document with no work-order-wide adjustments and both rollup totals zero, and one with no applicable tax.",
+   "3. To put the document on screen: click \"Work Orders\" in the top menu, open the work order you need, then click the \"Finance\" tab. The document appears on the right.",
+   "4. Use the \"Estimate/Invoice\" toggle above the document to switch between the Estimate and the Invoice.",
+   "5. The printer icon prints the document and the download icon saves it. The cog icon opens the invoice display settings (Labor rate, Labor hours, Labor price, Summarize labor total, Summarize parts total, Part number, Part description)."
   ],
   "steps": [
    "1. Generate a document with no adjustments and zero rollups; look for the Adjustments heading.",
@@ -1601,7 +1872,13 @@
   ],
   "labels_quoted": [],
   "labels_dropped_not_screen": {},
-  "nav_nouns": [],
+  "nav_nouns": [
+   "download",
+   "estimate",
+   "invoice",
+   "settings",
+   "work order"
+  ],
   "n_steps": 2
  },
  "44946": {
@@ -1612,7 +1889,10 @@
   "atm": 1,
   "preconditions": [
    "1. You are signed in to ShopView.",
-   "2. An Invoice exists with two or more applied payments made on different dates by different methods."
+   "2. An Invoice exists with two or more applied payments made on different dates by different methods.",
+   "3. To put the document on screen: click \"Work Orders\" in the top menu, open the work order you need, then click the \"Finance\" tab. The document appears on the right.",
+   "4. Use the \"Estimate/Invoice\" toggle above the document to switch between the Estimate and the Invoice.",
+   "5. The printer icon prints the document and the download icon saves it. The cog icon opens the invoice display settings (Labor rate, Labor hours, Labor price, Summarize labor total, Summarize parts total, Part number, Part description)."
   ],
   "steps": [
    "1. Generate the Invoice.",
@@ -1631,8 +1911,12 @@
   ],
   "labels_dropped_not_screen": {},
   "nav_nouns": [
+   "download",
+   "estimate",
    "invoice",
-   "payment"
+   "payment",
+   "settings",
+   "work order"
   ],
   "n_steps": 2
  },
@@ -1676,7 +1960,10 @@
   "atm": 1,
   "preconditions": [
    "1. You are signed in to ShopView.",
-   "2. An Invoice has a deposit applied and an applied customer-account credit (with a CM- number)."
+   "2. An Invoice has a deposit applied and an applied customer-account credit (with a CM- number).",
+   "3. To put the document on screen: click \"Work Orders\" in the top menu, open the work order you need, then click the \"Finance\" tab. The document appears on the right.",
+   "4. Use the \"Estimate/Invoice\" toggle above the document to switch between the Estimate and the Invoice.",
+   "5. The printer icon prints the document and the download icon saves it. The cog icon opens the invoice display settings (Labor rate, Labor hours, Labor price, Summarize labor total, Summarize parts total, Part number, Part description)."
   ],
   "steps": [
    "1. Generate the Invoice.",
@@ -1693,7 +1980,11 @@
   "nav_nouns": [
    "customer",
    "deposit",
-   "invoice"
+   "download",
+   "estimate",
+   "invoice",
+   "settings",
+   "work order"
   ],
   "n_steps": 2
  },
@@ -1705,7 +1996,10 @@
   "atm": 1,
   "preconditions": [
    "1. You are signed in to ShopView.",
-   "2. An Invoice has a payment or deposit whose amount applied to this invoice is less than its full amount - for example an over-collected deposit, or a regular payment spread across more than one invoice - with one case where the excess became a numbered credit and one where it has not yet."
+   "2. An Invoice has a payment or deposit whose amount applied to this invoice is less than its full amount - for example an over-collected deposit, or a regular payment spread across more than one invoice - with one case where the excess became a numbered credit and one where it has not yet.",
+   "3. To put the document on screen: click \"Work Orders\" in the top menu, open the work order you need, then click the \"Finance\" tab. The document appears on the right.",
+   "4. Use the \"Estimate/Invoice\" toggle above the document to switch between the Estimate and the Invoice.",
+   "5. The printer icon prints the document and the download icon saves it. The cog icon opens the invoice display settings (Labor rate, Labor hours, Labor price, Summarize labor total, Summarize parts total, Part number, Part description)."
   ],
   "steps": [
    "1. Generate the Invoice.",
@@ -1724,8 +2018,12 @@
   "labels_dropped_not_screen": {},
   "nav_nouns": [
    "deposit",
+   "download",
+   "estimate",
    "invoice",
-   "payment"
+   "payment",
+   "settings",
+   "work order"
   ],
   "n_steps": 2
  },
@@ -1737,7 +2035,10 @@
   "atm": 1,
   "preconditions": [
    "1. You are signed in to ShopView.",
-   "2. You can reach an unpaid Invoice, a partially paid Invoice, a fully paid Invoice, and an overpaid Invoice."
+   "2. You can reach an unpaid Invoice, a partially paid Invoice, a fully paid Invoice, and an overpaid Invoice.",
+   "3. To put the document on screen: click \"Work Orders\" in the top menu, open the work order you need, then click the \"Finance\" tab. The document appears on the right.",
+   "4. Use the \"Estimate/Invoice\" toggle above the document to switch between the Estimate and the Invoice.",
+   "5. The printer icon prints the document and the download icon saves it. The cog icon opens the invoice display settings (Labor rate, Labor hours, Labor price, Summarize labor total, Summarize parts total, Part number, Part description)."
   ],
   "steps": [
    "1. Generate each Invoice and read the \"Balance\" row."
@@ -1755,7 +2056,11 @@
   "labels_dropped_not_screen": {},
   "nav_nouns": [
    "balance",
-   "invoice"
+   "download",
+   "estimate",
+   "invoice",
+   "settings",
+   "work order"
   ],
   "n_steps": 1
  },
@@ -1847,7 +2152,10 @@
   "atm": 1,
   "preconditions": [
    "1. You are signed in to ShopView.",
-   "2. You can reach an Invoice with a $0.00 payment recorded, and an Invoice with no payments/deposits/credits applied."
+   "2. You can reach an Invoice with a $0.00 payment recorded, and an Invoice with no payments/deposits/credits applied.",
+   "3. To put the document on screen: click \"Work Orders\" in the top menu, open the work order you need, then click the \"Finance\" tab. The document appears on the right.",
+   "4. Use the \"Estimate/Invoice\" toggle above the document to switch between the Estimate and the Invoice.",
+   "5. The printer icon prints the document and the download icon saves it. The cog icon opens the invoice display settings (Labor rate, Labor hours, Labor price, Summarize labor total, Summarize parts total, Part number, Part description)."
   ],
   "steps": [
    "1. Generate the Invoice that has a $0.00 payment; check the Payments rows.",
@@ -1863,8 +2171,12 @@
   "labels_dropped_not_screen": {},
   "nav_nouns": [
    "balance",
+   "download",
+   "estimate",
    "invoice",
-   "payment"
+   "payment",
+   "settings",
+   "work order"
   ],
   "n_steps": 2
  },
@@ -1876,7 +2188,10 @@
   "atm": 1,
   "preconditions": [
    "1. You are signed in to ShopView.",
-   "2. You can obtain an Invoice PDF for an invoice paid only by a shop-recorded method (for example cash at the counter), and a shop-app-generated PDF."
+   "2. You can obtain an Invoice PDF for an invoice paid only by a shop-recorded method (for example cash at the counter), and a shop-app-generated PDF.",
+   "3. To put the document on screen: click \"Work Orders\" in the top menu, open the work order you need, then click the \"Finance\" tab. The document appears on the right.",
+   "4. Use the \"Estimate/Invoice\" toggle above the document to switch between the Estimate and the Invoice.",
+   "5. The printer icon prints the document and the download icon saves it. The cog icon opens the invoice display settings (Labor rate, Labor hours, Labor price, Summarize labor total, Summarize parts total, Part number, Part description)."
   ],
   "steps": [
    "1. Obtain the PDF for the invoice with only shop-recorded payments; look for a paid banner.",
@@ -1891,9 +2206,13 @@
   "labels_quoted": [],
   "labels_dropped_not_screen": {},
   "nav_nouns": [
+   "download",
+   "estimate",
    "invoice",
    "paid banner",
-   "pdf"
+   "pdf",
+   "settings",
+   "work order"
   ],
   "n_steps": 2
  },
@@ -1904,7 +2223,10 @@
   "refs": "SV-9147 (S8-R2)",
   "atm": 1,
   "preconditions": [
-   "1. An invoice with 2 payments, one of them fully reversed"
+   "1. An invoice with 2 payments, one of them fully reversed",
+   "2. To put the document on screen: click \"Work Orders\" in the top menu, open the work order you need, then click the \"Finance\" tab. The document appears on the right.",
+   "3. Use the \"Estimate/Invoice\" toggle above the document to switch between the Estimate and the Invoice.",
+   "4. The printer icon prints the document and the download icon saves it. The cog icon opens the invoice display settings (Labor rate, Labor hours, Labor price, Summarize labor total, Summarize parts total, Part number, Part description)."
   ],
   "steps": [
    "1. Open the Invoice preview"
@@ -1918,8 +2240,12 @@
   "labels_quoted": [],
   "labels_dropped_not_screen": {},
   "nav_nouns": [
+   "download",
+   "estimate",
    "invoice",
-   "preview"
+   "preview",
+   "settings",
+   "work order"
   ],
   "n_steps": 1
  },
@@ -1963,7 +2289,10 @@
   "atm": 1,
   "preconditions": [
    "1. You are signed in to ShopView.",
-   "2. A shop has a configured disclaimer, and you can generate an Estimate, Invoice and Credit Invoice for it."
+   "2. A shop has a configured disclaimer, and you can generate an Estimate, Invoice and Credit Invoice for it.",
+   "3. To put the document on screen: click \"Work Orders\" in the top menu, open the work order you need, then click the \"Finance\" tab. The document appears on the right.",
+   "4. Use the \"Estimate/Invoice\" toggle above the document to switch between the Estimate and the Invoice.",
+   "5. The printer icon prints the document and the download icon saves it. The cog icon opens the invoice display settings (Labor rate, Labor hours, Labor price, Summarize labor total, Summarize parts total, Part number, Part description)."
   ],
   "steps": [
    "1. Generate each document type for the shop.",
@@ -1980,8 +2309,11 @@
   "nav_nouns": [
    "credit invoice",
    "disclaimer",
+   "download",
    "estimate",
-   "invoice"
+   "invoice",
+   "settings",
+   "work order"
   ],
   "n_steps": 2
  },
@@ -1993,7 +2325,10 @@
   "atm": 1,
   "preconditions": [
    "1. You are signed in to ShopView.",
-   "2. You can generate an Estimate, Invoice and Credit Invoice."
+   "2. You can generate an Estimate, Invoice and Credit Invoice.",
+   "3. To put the document on screen: click \"Work Orders\" in the top menu, open the work order you need, then click the \"Finance\" tab. The document appears on the right.",
+   "4. Use the \"Estimate/Invoice\" toggle above the document to switch between the Estimate and the Invoice.",
+   "5. The printer icon prints the document and the download icon saves it. The cog icon opens the invoice display settings (Labor rate, Labor hours, Labor price, Summarize labor total, Summarize parts total, Part number, Part description)."
   ],
   "steps": [
    "1. Generate each document type.",
@@ -2014,9 +2349,12 @@
   "labels_dropped_not_screen": {},
   "nav_nouns": [
    "credit invoice",
+   "download",
    "estimate",
    "invoice",
-   "signature"
+   "settings",
+   "signature",
+   "work order"
   ],
   "n_steps": 2
  },
@@ -2028,7 +2366,10 @@
   "atm": 1,
   "preconditions": [
    "1. You are signed in to ShopView.",
-   "2. A shop has a tax identifier configured (for example \"GST# 812694966 RT0001\")."
+   "2. A shop has a tax identifier configured (for example \"GST# 812694966 RT0001\").",
+   "3. To put the document on screen: click \"Work Orders\" in the top menu, open the work order you need, then click the \"Finance\" tab. The document appears on the right.",
+   "4. Use the \"Estimate/Invoice\" toggle above the document to switch between the Estimate and the Invoice.",
+   "5. The printer icon prints the document and the download icon saves it. The cog icon opens the invoice display settings (Labor rate, Labor hours, Labor price, Summarize labor total, Summarize parts total, Part number, Part description)."
   ],
   "steps": [
    "1. Generate a document for the shop.",
@@ -2045,7 +2386,12 @@
    "GST# 812694966 RT0001": "A shop has a tax identifier configured (for example \"GST# 812694966 RT0001\")."
   },
   "nav_nouns": [
-   "footer"
+   "download",
+   "estimate",
+   "footer",
+   "invoice",
+   "settings",
+   "work order"
   ],
   "n_steps": 2
  },
@@ -2056,12 +2402,15 @@
   "refs": "SV-9148 (S9-N1; S9-N2)",
   "atm": 1,
   "preconditions": [
-   "You are signed in to ShopView.",
-   "You can reach a shop with no configured disclaimer and no tax identifier."
+   "1. You are signed in to ShopView.",
+   "2. You can reach a shop with no configured disclaimer and no tax identifier.",
+   "3. To put the document on screen: click \"Work Orders\" in the top menu, open the work order you need, then click the \"Finance\" tab. The document appears on the right.",
+   "4. Use the \"Estimate/Invoice\" toggle above the document to switch between the Estimate and the Invoice.",
+   "5. The printer icon prints the document and the download icon saves it. The cog icon opens the invoice display settings (Labor rate, Labor hours, Labor price, Summarize labor total, Summarize parts total, Part number, Part description)."
   ],
   "steps": [
-   "Generate a document for that shop.",
-   "Look where the disclaimer and the footer tax identifier would be."
+   "1. Generate a document for that shop.",
+   "2. Look where the disclaimer and the footer tax identifier would be."
   ],
   "expected_body": [
    "1. When the shop has no configured disclaimer, the disclaimer area is not shown.",
@@ -2073,7 +2422,12 @@
   "labels_dropped_not_screen": {},
   "nav_nouns": [
    "disclaimer",
-   "footer"
+   "download",
+   "estimate",
+   "footer",
+   "invoice",
+   "settings",
+   "work order"
   ],
   "n_steps": 2
  },
@@ -2085,7 +2439,10 @@
   "atm": 1,
   "preconditions": [
    "1. You are signed in to ShopView.",
-   "2. You can generate an Estimate and an Invoice from the same underlying work order."
+   "2. You can generate an Estimate and an Invoice from the same underlying work order.",
+   "3. To put the document on screen: click \"Work Orders\" in the top menu, open the work order you need, then click the \"Finance\" tab. The document appears on the right.",
+   "4. Use the \"Estimate/Invoice\" toggle above the document to switch between the Estimate and the Invoice.",
+   "5. The printer icon prints the document and the download icon saves it. The cog icon opens the invoice display settings (Labor rate, Labor hours, Labor price, Summarize labor total, Summarize parts total, Part number, Part description)."
   ],
   "steps": [
    "1. Generate the Estimate and the Invoice.",
@@ -2099,8 +2456,10 @@
   "labels_quoted": [],
   "labels_dropped_not_screen": {},
   "nav_nouns": [
+   "download",
    "estimate",
    "invoice",
+   "settings",
    "work order"
   ],
   "n_steps": 2
@@ -2113,7 +2472,10 @@
   "atm": 1,
   "preconditions": [
    "1. You are signed in to ShopView.",
-   "2. You can generate an Estimate."
+   "2. You can generate an Estimate.",
+   "3. To put the document on screen: click \"Work Orders\" in the top menu, open the work order you need, then click the \"Finance\" tab. The document appears on the right.",
+   "4. Use the \"Estimate/Invoice\" toggle above the document to switch between the Estimate and the Invoice.",
+   "5. The printer icon prints the document and the download icon saves it. The cog icon opens the invoice display settings (Labor rate, Labor hours, Labor price, Summarize labor total, Summarize parts total, Part number, Part description)."
   ],
   "steps": [
    "1. Generate the Estimate.",
@@ -2135,8 +2497,12 @@
   ],
   "labels_dropped_not_screen": {},
   "nav_nouns": [
+   "download",
    "estimate",
-   "masthead"
+   "invoice",
+   "masthead",
+   "settings",
+   "work order"
   ],
   "n_steps": 2
  },
@@ -2148,7 +2514,10 @@
   "atm": 1,
   "preconditions": [
    "1. You are signed in to ShopView.",
-   "2. You can generate an unpaid Invoice."
+   "2. You can generate an unpaid Invoice.",
+   "3. To put the document on screen: click \"Work Orders\" in the top menu, open the work order you need, then click the \"Finance\" tab. The document appears on the right.",
+   "4. Use the \"Estimate/Invoice\" toggle above the document to switch between the Estimate and the Invoice.",
+   "5. The printer icon prints the document and the download icon saves it. The cog icon opens the invoice display settings (Labor rate, Labor hours, Labor price, Summarize labor total, Summarize parts total, Part number, Part description)."
   ],
   "steps": [
    "1. Generate the (not fully paid) Invoice.",
@@ -2167,8 +2536,12 @@
   ],
   "labels_dropped_not_screen": {},
   "nav_nouns": [
+   "download",
+   "estimate",
    "invoice",
-   "masthead"
+   "masthead",
+   "settings",
+   "work order"
   ],
   "n_steps": 2
  },
@@ -2180,7 +2553,10 @@
   "atm": 1,
   "preconditions": [
    "1. You are signed in to ShopView.",
-   "2. You can reach an Invoice that is fully paid (Balance $0.00 with at least one payment/deposit/credit applied), and can reverse a payment on it."
+   "2. You can reach an Invoice that is fully paid (Balance $0.00 with at least one payment/deposit/credit applied), and can reverse a payment on it.",
+   "3. To put the document on screen: click \"Work Orders\" in the top menu, open the work order you need, then click the \"Finance\" tab. The document appears on the right.",
+   "4. Use the \"Estimate/Invoice\" toggle above the document to switch between the Estimate and the Invoice.",
+   "5. The printer icon prints the document and the download icon saves it. The cog icon opens the invoice display settings (Labor rate, Labor hours, Labor price, Summarize labor total, Summarize parts total, Part number, Part description)."
   ],
   "steps": [
    "1. Generate the fully paid Invoice; read the document label, the masthead date labels, the Balance, and the Payments.",
@@ -2192,7 +2568,8 @@
    "3. \"Paid date: {date}\" replaces \"Due date: {date}\" in the masthead; the paid date is the most recent date among the applied payment, deposit and credit rows.",
    "4. If a later change (payment reversal, voided credit, or edit) makes the Balance greater than $0.00, the invoice is no longer fully paid and \"Due date: {date}\" returns.",
    "5. A paid date earlier than the invoice date (for example a deposit collected before invoicing) is shown as-is.",
-   "---"
+   "---",
+   "Last checked against build v26.35.5-8c3cc21 on 8/31/2026."
   ],
   "labels_quoted": [],
   "labels_dropped_not_screen": {
@@ -2201,9 +2578,13 @@
   "nav_nouns": [
    "balance",
    "deposit",
+   "download",
+   "estimate",
    "invoice",
    "masthead",
-   "payment"
+   "payment",
+   "settings",
+   "work order"
   ],
   "n_steps": 2
  },
@@ -2215,7 +2596,10 @@
   "atm": 1,
   "preconditions": [
    "1. You are signed in to ShopView.",
-   "2. You can reach an Invoice that has no due date set, and can make it fully paid."
+   "2. You can reach an Invoice that has no due date set, and can make it fully paid.",
+   "3. To put the document on screen: click \"Work Orders\" in the top menu, open the work order you need, then click the \"Finance\" tab. The document appears on the right.",
+   "4. Use the \"Estimate/Invoice\" toggle above the document to switch between the Estimate and the Invoice.",
+   "5. The printer icon prints the document and the download icon saves it. The cog icon opens the invoice display settings (Labor rate, Labor hours, Labor price, Summarize labor total, Summarize parts total, Part number, Part description)."
   ],
   "steps": [
    "1. Generate the Invoice with no due date; read the masthead date lines.",
@@ -2224,15 +2608,20 @@
   "expected_body": [
    "1. An Invoice with no due date set shows \"Invoice date: {date}\" and no \"Due date\" line (the old quirk of rendering a null due date as today's date is retired).",
    "2. When such an invoice becomes fully paid, \"Paid date: {date}\" is shown.",
-   "---"
+   "---",
+   "Last checked against build v26.35.5-8c3cc21 on 8/31/2026."
   ],
   "labels_quoted": [
    "Due date"
   ],
   "labels_dropped_not_screen": {},
   "nav_nouns": [
+   "download",
+   "estimate",
    "invoice",
-   "masthead"
+   "masthead",
+   "settings",
+   "work order"
   ],
   "n_steps": 2
  },
@@ -2244,7 +2633,10 @@
   "atm": 1,
   "preconditions": [
    "1. An invoice fully covered by a deposit collected BEFORE invoicing",
-   "2. A second invoice paid by 2 payments on different dates"
+   "2. A second invoice paid by 2 payments on different dates",
+   "3. To put the document on screen: click \"Work Orders\" in the top menu, open the work order you need, then click the \"Finance\" tab. The document appears on the right.",
+   "4. Use the \"Estimate/Invoice\" toggle above the document to switch between the Estimate and the Invoice.",
+   "5. The printer icon prints the document and the download icon saves it. The cog icon opens the invoice display settings (Labor rate, Labor hours, Labor price, Summarize labor total, Summarize parts total, Part number, Part description)."
   ],
   "steps": [
    "1. Open the deposit-paid invoice preview",
@@ -2262,9 +2654,13 @@
   "labels_dropped_not_screen": {},
   "nav_nouns": [
    "deposit",
+   "download",
+   "estimate",
    "invoice",
    "payment",
-   "preview"
+   "preview",
+   "settings",
+   "work order"
   ],
   "n_steps": 2
  },
@@ -2304,7 +2700,10 @@
   "refs": "SV-9149 (S10-R4)",
   "atm": 1,
   "preconditions": [
-   "1. An invoice with a $0.00 Total and no payments/deposits/credits applied"
+   "1. An invoice with a $0.00 Total and no payments/deposits/credits applied",
+   "2. To put the document on screen: click \"Work Orders\" in the top menu, open the work order you need, then click the \"Finance\" tab. The document appears on the right.",
+   "3. Use the \"Estimate/Invoice\" toggle above the document to switch between the Estimate and the Invoice.",
+   "4. The printer icon prints the document and the download icon saves it. The cog icon opens the invoice display settings (Labor rate, Labor hours, Labor price, Summarize labor total, Summarize parts total, Part number, Part description)."
   ],
   "steps": [
    "1. Open the preview"
@@ -2320,8 +2719,12 @@
   ],
   "labels_dropped_not_screen": {},
   "nav_nouns": [
+   "download",
+   "estimate",
    "invoice",
-   "preview"
+   "preview",
+   "settings",
+   "work order"
   ],
   "n_steps": 1
  },
@@ -2333,7 +2736,10 @@
   "atm": 1,
   "preconditions": [
    "1. You are signed in to ShopView.",
-   "2. You can generate a Credit Invoice (credit number carries the CM- prefix)."
+   "2. You can generate a Credit Invoice (credit number carries the CM- prefix).",
+   "3. Your active location is set to the location the credit was issued at. Credits are location-specific: a credit issued at another location does not show in the customer's Invoices list at all - no row and no print button.",
+   "4. To open the document: Customers, open the customer, Invoices tab, find the credit's row (its credit number, for example CM-100, appears in the Invoice # column next to ordinary invoice numbers), then click the print icon at the right of that row (its tooltip reads \"Print credit memo\").",
+   "5. If the credit has been fully applied or fully refunded, turn the \"Open only\" filter off first, or its row is not listed."
   ],
   "steps": [
    "1. Generate the Credit Invoice.",
@@ -2352,7 +2758,10 @@
   },
   "nav_nouns": [
    "credit invoice",
-   "masthead"
+   "customer",
+   "invoice",
+   "masthead",
+   "print"
   ],
   "n_steps": 2
  },
@@ -2364,7 +2773,10 @@
   "atm": 1,
   "preconditions": [
    "1. You are signed in to ShopView.",
-   "2. You can generate a Credit Invoice for a customer with an address."
+   "2. You can generate a Credit Invoice for a customer with an address.",
+   "3. Your active location is set to the location the credit was issued at. Credits are location-specific: a credit issued at another location does not show in the customer's Invoices list at all - no row and no print button.",
+   "4. To open the document: Customers, open the customer, Invoices tab, find the credit's row (its credit number, for example CM-100, appears in the Invoice # column next to ordinary invoice numbers), then click the print icon at the right of that row (its tooltip reads \"Print credit memo\").",
+   "5. If the credit has been fully applied or fully refunded, turn the \"Open only\" filter off first, or its row is not listed."
   ],
   "steps": [
    "1. Generate the Credit Invoice.",
@@ -2384,7 +2796,9 @@
   "labels_dropped_not_screen": {},
   "nav_nouns": [
    "credit invoice",
-   "customer"
+   "customer",
+   "invoice",
+   "print"
   ],
   "n_steps": 2
  },
@@ -2396,7 +2810,10 @@
   "atm": 1,
   "preconditions": [
    "1. You are signed in to ShopView.",
-   "2. You can reach Credit Invoices in different states (Unapplied, Partially applied, Applied, Refunded, Voided), including an account-level credit with no origin invoice."
+   "2. You can reach Credit Invoices in different states (Unapplied, Partially applied, Applied, Refunded, Voided), including an account-level credit with no origin invoice.",
+   "3. Your active location is set to the location the credit was issued at. Credits are location-specific: a credit issued at another location does not show in the customer's Invoices list at all - no row and no print button.",
+   "4. To open the document: Customers, open the customer, Invoices tab, find the credit's row (its credit number, for example CM-100, appears in the Invoice # column next to ordinary invoice numbers), then click the print icon at the right of that row (its tooltip reads \"Print credit memo\").",
+   "5. If the credit has been fully applied or fully refunded, turn the \"Open only\" filter off first, or its row is not listed."
   ],
   "steps": [
    "1. Generate a Credit Invoice tied to an originating invoice; read the status table.",
@@ -2407,7 +2824,8 @@
    "2. Status shows the credit's current state: one of \"Unapplied\", \"Partially applied\", \"Applied\", \"Refunded\", or \"Voided\".",
    "3. Invoice Number shows the originating invoice's full document number (for example \"INV-S-24914\").",
    "4. For an account-level credit with no origin invoice, the whole Invoice Number column is hidden.",
-   "---"
+   "---",
+   "Last checked against build v26.35.5-8c3cc21 on 8/31/2026."
   ],
   "labels_quoted": [
    "Applied",
@@ -2424,7 +2842,9 @@
   },
   "nav_nouns": [
    "credit invoice",
-   "invoice"
+   "customer",
+   "invoice",
+   "print"
   ],
   "n_steps": 2
  },
@@ -2436,7 +2856,10 @@
   "atm": 1,
   "preconditions": [
    "1. You are signed in to ShopView.",
-   "2. A Credit Invoice exists mixing a returned-part line (with a restocking fee) and a money-only credit line."
+   "2. A Credit Invoice exists mixing a returned-part line (with a restocking fee) and a money-only credit line.",
+   "3. Your active location is set to the location the credit was issued at. Credits are location-specific: a credit issued at another location does not show in the customer's Invoices list at all - no row and no print button.",
+   "4. To open the document: Customers, open the customer, Invoices tab, find the credit's row (its credit number, for example CM-100, appears in the Invoice # column next to ordinary invoice numbers), then click the print icon at the right of that row (its tooltip reads \"Print credit memo\").",
+   "5. If the credit has been fully applied or fully refunded, turn the \"Open only\" filter off first, or its row is not listed."
   ],
   "steps": [
    "1. Generate the Credit Invoice.",
@@ -2449,7 +2872,8 @@
    "4. The Restocking Fee column is always shown, reading \"$0.00\" when there is no fee.",
    "5. Totals are negative, formatted with a leading minus (for example \"-$100.00\") - not the parentheses convention used for discounts.",
    "6. A money-only line's Description comes from the credit's reason if entered, otherwise the memo text, otherwise \"Refund\".",
-   "---"
+   "---",
+   "Last checked against build v26.35.5-8c3cc21 on 8/31/2026."
   ],
   "labels_quoted": [
    "Description",
@@ -2461,7 +2885,10 @@
   ],
   "labels_dropped_not_screen": {},
   "nav_nouns": [
-   "credit invoice"
+   "credit invoice",
+   "customer",
+   "invoice",
+   "print"
   ],
   "n_steps": 2
  },
@@ -2473,7 +2900,10 @@
   "atm": 1,
   "preconditions": [
    "1. You are signed in to ShopView.",
-   "2. A Credit Invoice has a returned part: quantity -2 at rate $50.00 with a $10.00 restocking fee."
+   "2. A Credit Invoice has a returned part: quantity -2 at rate $50.00 with a $10.00 restocking fee.",
+   "3. Your active location is set to the location the credit was issued at. Credits are location-specific: a credit issued at another location does not show in the customer's Invoices list at all - no row and no print button.",
+   "4. To open the document: Customers, open the customer, Invoices tab, find the credit's row (its credit number, for example CM-100, appears in the Invoice # column next to ordinary invoice numbers), then click the print icon at the right of that row (its tooltip reads \"Print credit memo\").",
+   "5. If the credit has been fully applied or fully refunded, turn the \"Open only\" filter off first, or its row is not listed."
   ],
   "steps": [
    "1. Generate the Credit Invoice.",
@@ -2488,7 +2918,10 @@
   "labels_quoted": [],
   "labels_dropped_not_screen": {},
   "nav_nouns": [
-   "credit invoice"
+   "credit invoice",
+   "customer",
+   "invoice",
+   "print"
   ],
   "n_steps": 2
  },
@@ -2500,7 +2933,10 @@
   "atm": 1,
   "preconditions": [
    "1. You are signed in to ShopView.",
-   "2. You can reach Credit Invoices in each status: Unapplied, Partially applied, Applied, Refunded (with a refund payment), and Voided."
+   "2. You can reach Credit Invoices in each status: Unapplied, Partially applied, Applied, Refunded (with a refund payment), and Voided.",
+   "3. Your active location is set to the location the credit was issued at. Credits are location-specific: a credit issued at another location does not show in the customer's Invoices list at all - no row and no print button.",
+   "4. To open the document: Customers, open the customer, Invoices tab, find the credit's row (its credit number, for example CM-100, appears in the Invoice # column next to ordinary invoice numbers), then click the print icon at the right of that row (its tooltip reads \"Print credit memo\").",
+   "5. If the credit has been fully applied or fully refunded, turn the \"Open only\" filter off first, or its row is not listed."
   ],
   "steps": [
    "1. Generate a Credit Invoice in each status.",
@@ -2515,7 +2951,8 @@
    "6. Voided: Payments shows the label with no rows; Balance reads $0.00.",
    "7. On the Credit Invoice, \"Balance\" is the credit's open balance — the original credit total minus amounts refunded minus amounts applied to invoices — shown positive, reading $0.00 once nothing remains or the credit is voided; it does not follow the Invoice's Total-minus-payments formula.",
    "8. A credit that is both partially refunded and partially applied takes the \"Partially applied\" status (one of the five states, not a new one), and its refund rows still list in the Payments section.",
-   "---"
+   "---",
+   "Last checked against build v26.35.5-8c3cc21 on 8/31/2026."
   ],
   "labels_quoted": [
    "Balance",
@@ -2529,7 +2966,10 @@
   "nav_nouns": [
    "balance",
    "credit invoice",
+   "customer",
+   "invoice",
    "payment",
+   "print",
    "refund"
   ],
   "n_steps": 2
@@ -2542,7 +2982,10 @@
   "atm": 1,
   "preconditions": [
    "1. You are signed in to ShopView.",
-   "2. You can generate a Credit Invoice for a shop with a configured disclaimer."
+   "2. You can generate a Credit Invoice for a shop with a configured disclaimer.",
+   "3. Your active location is set to the location the credit was issued at. Credits are location-specific: a credit issued at another location does not show in the customer's Invoices list at all - no row and no print button.",
+   "4. To open the document: Customers, open the customer, Invoices tab, find the credit's row (its credit number, for example CM-100, appears in the Invoice # column next to ordinary invoice numbers), then click the print icon at the right of that row (its tooltip reads \"Print credit memo\").",
+   "5. If the credit has been fully applied or fully refunded, turn the \"Open only\" filter off first, or its row is not listed."
   ],
   "steps": [
    "1. Generate the Credit Invoice.",
@@ -2562,7 +3005,10 @@
   "labels_dropped_not_screen": {},
   "nav_nouns": [
    "credit invoice",
+   "customer",
    "disclaimer",
+   "invoice",
+   "print",
    "signature"
   ],
   "n_steps": 2
@@ -2574,7 +3020,10 @@
   "refs": "SV-9150 (S11-R6a)",
   "atm": 1,
   "preconditions": [
-   "1. A fresh unapplied credit, e.g. Total Credit -$200.00"
+   "1. A fresh unapplied credit, e.g. Total Credit -$200.00",
+   "2. Your active location is set to the location the credit was issued at. Credits are location-specific: a credit issued at another location does not show in the customer's Invoices list at all - no row and no print button.",
+   "3. To open the document: Customers, open the customer, Invoices tab, find the credit's row (its credit number, for example CM-100, appears in the Invoice # column next to ordinary invoice numbers), then click the print icon at the right of that row (its tooltip reads \"Print credit memo\").",
+   "4. If the credit has been fully applied or fully refunded, turn the \"Open only\" filter off first, or its row is not listed."
   ],
   "steps": [
    "1. Open the Credit Invoice preview",
@@ -2594,7 +3043,10 @@
   "nav_nouns": [
    "balance",
    "credit invoice",
-   "preview"
+   "customer",
+   "invoice",
+   "preview",
+   "print"
   ],
   "n_steps": 2
  },
@@ -2605,7 +3057,10 @@
   "refs": "SV-9150 (S11-R6a)",
   "atm": 1,
   "preconditions": [
-   "1. A credit of $200 with $80 applied to an invoice"
+   "1. A credit of $200 with $80 applied to an invoice",
+   "2. Your active location is set to the location the credit was issued at. Credits are location-specific: a credit issued at another location does not show in the customer's Invoices list at all - no row and no print button.",
+   "3. To open the document: Customers, open the customer, Invoices tab, find the credit's row (its credit number, for example CM-100, appears in the Invoice # column next to ordinary invoice numbers), then click the print icon at the right of that row (its tooltip reads \"Print credit memo\").",
+   "4. If the credit has been fully applied or fully refunded, turn the \"Open only\" filter off first, or its row is not listed."
   ],
   "steps": [
    "1. Open the Credit Invoice preview"
@@ -2624,8 +3079,10 @@
   },
   "nav_nouns": [
    "credit invoice",
+   "customer",
    "invoice",
-   "preview"
+   "preview",
+   "print"
   ],
   "n_steps": 1
  },
@@ -2637,7 +3094,10 @@
   "atm": 1,
   "preconditions": [
    "1. A fully applied credit",
-   "2. Separately, a voided credit"
+   "2. Separately, a voided credit",
+   "3. To put the document on screen: click \"Work Orders\" in the top menu, open the work order you need, then click the \"Finance\" tab. The document appears on the right.",
+   "4. Use the \"Estimate/Invoice\" toggle above the document to switch between the Estimate and the Invoice.",
+   "5. The printer icon prints the document and the download icon saves it. The cog icon opens the invoice display settings (Labor rate, Labor hours, Labor price, Summarize labor total, Summarize parts total, Part number, Part description)."
   ],
   "steps": [
    "1. Open the fully applied credit preview",
@@ -2646,14 +3106,20 @@
   "expected_body": [
    "1. Fully applied: Balance reads $0.00.",
    "2. Voided: Balance reads $0.00; items and totals render unchanged; 'Voided' in the status table is the only indicator (S11-R6a; context note).",
-   "---"
+   "---",
+   "Last checked against build v26.35.5-8c3cc21 on 8/31/2026."
   ],
   "labels_quoted": [
    "Voided"
   ],
   "labels_dropped_not_screen": {},
   "nav_nouns": [
-   "preview"
+   "download",
+   "estimate",
+   "invoice",
+   "preview",
+   "settings",
+   "work order"
   ],
   "n_steps": 2
  },
@@ -2665,7 +3131,10 @@
   "atm": 1,
   "preconditions": [
    "1. A credit of $200 with a $50 refund issued (partially refunded)",
-   "2. Separately, a credit that is fully refunded"
+   "2. Separately, a credit that is fully refunded",
+   "3. To put the document on screen: click \"Work Orders\" in the top menu, open the work order you need, then click the \"Finance\" tab. The document appears on the right.",
+   "4. Use the \"Estimate/Invoice\" toggle above the document to switch between the Estimate and the Invoice.",
+   "5. The printer icon prints the document and the download icon saves it. The cog icon opens the invoice display settings (Labor rate, Labor hours, Labor price, Summarize labor total, Summarize parts total, Part number, Part description)."
   ],
   "steps": [
    "1. Open the partially refunded credit preview",
@@ -2681,8 +3150,13 @@
   "labels_quoted": [],
   "labels_dropped_not_screen": {},
   "nav_nouns": [
+   "download",
+   "estimate",
+   "invoice",
    "preview",
-   "refund"
+   "refund",
+   "settings",
+   "work order"
   ],
   "n_steps": 2
  },
@@ -2693,7 +3167,10 @@
   "refs": "SV-9150 (S11-R6a)",
   "atm": 1,
   "preconditions": [
-   "1. A credit of $200 with $50 refunded and $80 applied to an invoice"
+   "1. A credit of $200 with $50 refunded and $80 applied to an invoice",
+   "2. Your active location is set to the location the credit was issued at. Credits are location-specific: a credit issued at another location does not show in the customer's Invoices list at all - no row and no print button.",
+   "3. To open the document: Customers, open the customer, Invoices tab, find the credit's row (its credit number, for example CM-100, appears in the Invoice # column next to ordinary invoice numbers), then click the print icon at the right of that row (its tooltip reads \"Print credit memo\").",
+   "4. If the credit has been fully applied or fully refunded, turn the \"Open only\" filter off first, or its row is not listed."
   ],
   "steps": [
    "1. Open the Credit Invoice preview"
@@ -2707,8 +3184,10 @@
   "labels_dropped_not_screen": {},
   "nav_nouns": [
    "credit invoice",
+   "customer",
    "invoice",
-   "preview"
+   "preview",
+   "print"
   ],
   "n_steps": 1
  },
@@ -2720,7 +3199,10 @@
   "atm": 1,
   "preconditions": [
    "1. You are signed in to ShopView.",
-   "2. You can generate an Estimate, Invoice and Credit Invoice, on screen and as PDF."
+   "2. You can generate an Estimate, Invoice and Credit Invoice, on screen and as PDF.",
+   "3. To put the document on screen: click \"Work Orders\" in the top menu, open the work order you need, then click the \"Finance\" tab. The document appears on the right.",
+   "4. Use the \"Estimate/Invoice\" toggle above the document to switch between the Estimate and the Invoice.",
+   "5. The printer icon prints the document and the download icon saves it. The cog icon opens the invoice display settings (Labor rate, Labor hours, Labor price, Summarize labor total, Summarize parts total, Part number, Part description)."
   ],
   "steps": [
    "1. Generate each document type on screen and as a PDF.",
@@ -2737,9 +3219,12 @@
   "labels_dropped_not_screen": {},
   "nav_nouns": [
    "credit invoice",
+   "download",
    "estimate",
    "invoice",
-   "pdf"
+   "pdf",
+   "settings",
+   "work order"
   ],
   "n_steps": 2
  },
@@ -2751,7 +3236,10 @@
   "atm": 1,
   "preconditions": [
    "1. You are signed in to ShopView.",
-   "2. You can inspect the colours used in a rendered document (on screen or PDF)."
+   "2. You can inspect the colours used in a rendered document (on screen or PDF).",
+   "3. To put the document on screen: click \"Work Orders\" in the top menu, open the work order you need, then click the \"Finance\" tab. The document appears on the right.",
+   "4. Use the \"Estimate/Invoice\" toggle above the document to switch between the Estimate and the Invoice.",
+   "5. The printer icon prints the document and the download icon saves it. The cog icon opens the invoice display settings (Labor rate, Labor hours, Labor price, Summarize labor total, Summarize parts total, Part number, Part description)."
   ],
   "steps": [
    "1. Generate a document.",
@@ -2766,7 +3254,12 @@
   "labels_quoted": [],
   "labels_dropped_not_screen": {},
   "nav_nouns": [
-   "pdf"
+   "download",
+   "estimate",
+   "invoice",
+   "pdf",
+   "settings",
+   "work order"
   ],
   "n_steps": 2
  },
@@ -2778,7 +3271,10 @@
   "atm": 1,
   "preconditions": [
    "1. You are signed in to ShopView.",
-   "2. You can inspect where the accent colour #257CFF is used on a document."
+   "2. You can inspect where the accent colour #257CFF is used on a document.",
+   "3. To put the document on screen: click \"Work Orders\" in the top menu, open the work order you need, then click the \"Finance\" tab. The document appears on the right.",
+   "4. Use the \"Estimate/Invoice\" toggle above the document to switch between the Estimate and the Invoice.",
+   "5. The printer icon prints the document and the download icon saves it. The cog icon opens the invoice display settings (Labor rate, Labor hours, Labor price, Summarize labor total, Summarize parts total, Part number, Part description)."
   ],
   "steps": [
    "1. Generate a document that has work lines.",
@@ -2795,7 +3291,13 @@
    "ShopView"
   ],
   "labels_dropped_not_screen": {},
-  "nav_nouns": [],
+  "nav_nouns": [
+   "download",
+   "estimate",
+   "invoice",
+   "settings",
+   "work order"
+  ],
   "n_steps": 2
  },
  "44974": {
@@ -2806,7 +3308,10 @@
   "atm": 1,
   "preconditions": [
    "1. You are signed in to ShopView.",
-   "2. You can inspect the fonts and weights used on a rendered document."
+   "2. You can inspect the fonts and weights used on a rendered document.",
+   "3. To put the document on screen: click \"Work Orders\" in the top menu, open the work order you need, then click the \"Finance\" tab. The document appears on the right.",
+   "4. Use the \"Estimate/Invoice\" toggle above the document to switch between the Estimate and the Invoice.",
+   "5. The printer icon prints the document and the download icon saves it. The cog icon opens the invoice display settings (Labor rate, Labor hours, Labor price, Summarize labor total, Summarize parts total, Part number, Part description)."
   ],
   "steps": [
    "1. Generate a document.",
@@ -2821,7 +3326,13 @@
   ],
   "labels_quoted": [],
   "labels_dropped_not_screen": {},
-  "nav_nouns": [],
+  "nav_nouns": [
+   "download",
+   "estimate",
+   "invoice",
+   "settings",
+   "work order"
+  ],
   "n_steps": 2
  },
  "44975": {
@@ -2832,7 +3343,10 @@
   "atm": 1,
   "preconditions": [
    "1. You are signed in to ShopView.",
-   "2. You can obtain a document's print/PDF output and inspect its ink values."
+   "2. You can obtain a document's print/PDF output and inspect its ink values.",
+   "3. To put the document on screen: click \"Work Orders\" in the top menu, open the work order you need, then click the \"Finance\" tab. The document appears on the right.",
+   "4. Use the \"Estimate/Invoice\" toggle above the document to switch between the Estimate and the Invoice.",
+   "5. The printer icon prints the document and the download icon saves it. The cog icon opens the invoice display settings (Labor rate, Labor hours, Labor price, Summarize labor total, Summarize parts total, Part number, Part description)."
   ],
   "steps": [
    "1. Obtain the PDF (or print output) of a document.",
@@ -2848,8 +3362,13 @@
   "labels_quoted": [],
   "labels_dropped_not_screen": {},
   "nav_nouns": [
+   "download",
+   "estimate",
+   "invoice",
    "pdf",
-   "print"
+   "print",
+   "settings",
+   "work order"
   ],
   "n_steps": 2
  },
@@ -2861,7 +3380,10 @@
   "atm": 1,
   "preconditions": [
    "1. You are signed in to ShopView.",
-   "2. You can print or render a document in grayscale."
+   "2. You can print or render a document in grayscale.",
+   "3. To put the document on screen: click \"Work Orders\" in the top menu, open the work order you need, then click the \"Finance\" tab. The document appears on the right.",
+   "4. Use the \"Estimate/Invoice\" toggle above the document to switch between the Estimate and the Invoice.",
+   "5. The printer icon prints the document and the download icon saves it. The cog icon opens the invoice display settings (Labor rate, Labor hours, Labor price, Summarize labor total, Summarize parts total, Part number, Part description)."
   ],
   "steps": [
    "1. Render or print a document in grayscale.",
@@ -2876,7 +3398,12 @@
   "labels_quoted": [],
   "labels_dropped_not_screen": {},
   "nav_nouns": [
-   "print"
+   "download",
+   "estimate",
+   "invoice",
+   "print",
+   "settings",
+   "work order"
   ],
   "n_steps": 2
  },
@@ -2888,7 +3415,10 @@
   "atm": 1,
   "preconditions": [
    "1. You are signed in to ShopView.",
-   "2. You can generate a real document (not the Design Document prototype)."
+   "2. You can generate a real document (not the Design Document prototype).",
+   "3. To put the document on screen: click \"Work Orders\" in the top menu, open the work order you need, then click the \"Finance\" tab. The document appears on the right.",
+   "4. Use the \"Estimate/Invoice\" toggle above the document to switch between the Estimate and the Invoice.",
+   "5. The printer icon prints the document and the download icon saves it. The cog icon opens the invoice display settings (Labor rate, Labor hours, Labor price, Summarize labor total, Summarize parts total, Part number, Part description)."
   ],
   "steps": [
    "1. Generate a real Estimate, Invoice or Credit Invoice.",
@@ -2905,8 +3435,11 @@
   "labels_dropped_not_screen": {},
   "nav_nouns": [
    "credit invoice",
+   "download",
    "estimate",
-   "invoice"
+   "invoice",
+   "settings",
+   "work order"
   ],
   "n_steps": 2
  },
@@ -2918,7 +3451,10 @@
   "atm": 1,
   "preconditions": [
    "1. You are signed in to ShopView.",
-   "2. You can generate a document with several work lines, at least one having fee/discount adjustment rows."
+   "2. You can generate a document with several work lines, at least one having fee/discount adjustment rows.",
+   "3. To put the document on screen: click \"Work Orders\" in the top menu, open the work order you need, then click the \"Finance\" tab. The document appears on the right.",
+   "4. Use the \"Estimate/Invoice\" toggle above the document to switch between the Estimate and the Invoice.",
+   "5. The printer icon prints the document and the download icon saves it. The cog icon opens the invoice display settings (Labor rate, Labor hours, Labor price, Summarize labor total, Summarize parts total, Part number, Part description)."
   ],
   "steps": [
    "1. Generate the document.",
@@ -2938,7 +3474,13 @@
    "Parts"
   ],
   "labels_dropped_not_screen": {},
-  "nav_nouns": [],
+  "nav_nouns": [
+   "download",
+   "estimate",
+   "invoice",
+   "settings",
+   "work order"
+  ],
   "n_steps": 2
  },
  "44979": {
@@ -2949,7 +3491,10 @@
   "atm": 1,
   "preconditions": [
    "1. You are signed in to ShopView.",
-   "2. You can inspect text sizes, weights and colours on a rendered document."
+   "2. You can inspect text sizes, weights and colours on a rendered document.",
+   "3. To put the document on screen: click \"Work Orders\" in the top menu, open the work order you need, then click the \"Finance\" tab. The document appears on the right.",
+   "4. Use the \"Estimate/Invoice\" toggle above the document to switch between the Estimate and the Invoice.",
+   "5. The printer icon prints the document and the download icon saves it. The cog icon opens the invoice display settings (Labor rate, Labor hours, Labor price, Summarize labor total, Summarize parts total, Part number, Part description)."
   ],
   "steps": [
    "1. Generate a document with work lines.",
@@ -2971,7 +3516,13 @@
    "Work Summary"
   ],
   "labels_dropped_not_screen": {},
-  "nav_nouns": [],
+  "nav_nouns": [
+   "download",
+   "estimate",
+   "invoice",
+   "settings",
+   "work order"
+  ],
   "n_steps": 2
  },
  "45213": {
@@ -2981,13 +3532,16 @@
   "refs": "SV-9151 (S12-R10)",
   "atm": 1,
   "preconditions": [
-   "You are signed in to ShopView.",
-   "You can generate a document long enough to span more than one page (a work order with many work lines), on screen and as a PDF."
+   "1. You are signed in to ShopView.",
+   "2. You can generate a document long enough to span more than one page (a work order with many work lines), on screen and as a PDF.",
+   "3. To put the document on screen: click \"Work Orders\" in the top menu, open the work order you need, then click the \"Finance\" tab. The document appears on the right.",
+   "4. Use the \"Estimate/Invoice\" toggle above the document to switch between the Estimate and the Invoice.",
+   "5. The printer icon prints the document and the download icon saves it. The cog icon opens the invoice display settings (Labor rate, Labor hours, Labor price, Summarize labor total, Summarize parts total, Part number, Part description)."
   ],
   "steps": [
-   "Generate a multi-page document.",
-   "Look at the top of every page after the first.",
-   "Check the totals block, a work line together with its own footer, the signature row, and any single row that falls near a page boundary."
+   "1. Generate a multi-page document.",
+   "2. Look at the top of every page after the first.",
+   "3. Check the totals block, a work line together with its own footer, the signature row, and any single row that falls near a page boundary."
   ],
   "expected_body": [
    "1. Long documents paginate using standard, globally accepted page-break behaviour, not custom pagination.",
@@ -3005,8 +3559,12 @@
    "Heavy Duty - 9919": "Every page after the first opens with a single identification line: the shop location's name on the left and t"
   },
   "nav_nouns": [
+   "download",
+   "estimate",
    "footer",
+   "invoice",
    "pdf",
+   "settings",
    "signature",
    "work order"
   ],
@@ -3019,13 +3577,16 @@
   "refs": "SV-9151 (S12-R11)",
   "atm": 1,
   "preconditions": [
-   "You are signed in to ShopView.",
-   "You can view a document on screen and narrow the browser viewport, ideally with a document that contains a wide element such as a wide table."
+   "1. You are signed in to ShopView.",
+   "2. You can view a document on screen and narrow the browser viewport, ideally with a document that contains a wide element such as a wide table.",
+   "3. To put the document on screen: click \"Work Orders\" in the top menu, open the work order you need, then click the \"Finance\" tab. The document appears on the right.",
+   "4. Use the \"Estimate/Invoice\" toggle above the document to switch between the Estimate and the Invoice.",
+   "5. The printer icon prints the document and the download icon saves it. The cog icon opens the invoice display settings (Labor rate, Labor hours, Labor price, Summarize labor total, Summarize parts total, Part number, Part description)."
   ],
   "steps": [
-   "Open a document on screen and narrow the viewport.",
-   "Check whether any content is clipped.",
-   "Find an element wider than the viewport (for example a wide table) and check how it behaves."
+   "1. Open a document on screen and narrow the viewport.",
+   "2. Check whether any content is clipped.",
+   "3. Find an element wider than the viewport (for example a wide table) and check how it behaves."
   ],
   "expected_body": [
    "1. On screen the document fits within the viewport with no content clipped.",
@@ -3035,7 +3596,13 @@
   ],
   "labels_quoted": [],
   "labels_dropped_not_screen": {},
-  "nav_nouns": [],
+  "nav_nouns": [
+   "download",
+   "estimate",
+   "invoice",
+   "settings",
+   "work order"
+  ],
   "n_steps": 3
  },
  "44980": {
@@ -3046,7 +3613,9 @@
   "atm": 1,
   "preconditions": [
    "1. You are signed in to ShopView.",
-   "2. You can generate a Parts Sale Estimate and a Parts Sale Invoice."
+   "2. You can generate a Parts Sale Estimate and a Parts Sale Invoice.",
+   "3. To put the Parts Sale document on screen: click \"Customers\" in the top menu, open the customer, click the \"Part Sales\" tab, open the part sale, then click the \"Finance\" tab.",
+   "4. Use the \"Estimate/Invoice\" toggle above the document to switch between the Parts Sale Estimate and the Parts Sale Invoice."
   ],
   "steps": [
    "1. Generate a Parts Sale Estimate and a Parts Sale Invoice.",
@@ -3064,6 +3633,7 @@
   "nav_nouns": [
    "asset",
    "balance",
+   "customer",
    "disclaimer",
    "estimate",
    "financial summary",
@@ -3084,7 +3654,9 @@
   "atm": 1,
   "preconditions": [
    "1. You are signed in to ShopView.",
-   "2. A Parts Sale Estimate or Invoice exists with several part lines."
+   "2. A Parts Sale Estimate or Invoice exists with several part lines.",
+   "3. To put the Parts Sale document on screen: click \"Customers\" in the top menu, open the customer, click the \"Part Sales\" tab, open the part sale, then click the \"Finance\" tab.",
+   "4. Use the \"Estimate/Invoice\" toggle above the document to switch between the Parts Sale Estimate and the Parts Sale Invoice."
   ],
   "steps": [
    "1. Generate the Parts Sale document.",
@@ -3103,6 +3675,7 @@
   ],
   "labels_dropped_not_screen": {},
   "nav_nouns": [
+   "customer",
    "estimate",
    "invoice",
    "parts sale"
@@ -3117,7 +3690,9 @@
   "atm": 1,
   "preconditions": [
    "1. You are signed in to ShopView.",
-   "2. A Parts Sale document has a part line with a line-level fee or discount."
+   "2. A Parts Sale document has a part line with a line-level fee or discount.",
+   "3. To put the Parts Sale document on screen: click \"Customers\" in the top menu, open the customer, click the \"Part Sales\" tab, open the part sale, then click the \"Finance\" tab.",
+   "4. Use the \"Estimate/Invoice\" toggle above the document to switch between the Parts Sale Estimate and the Parts Sale Invoice."
   ],
   "steps": [
    "1. Generate the Parts Sale document.",
@@ -3132,6 +3707,9 @@
   "labels_quoted": [],
   "labels_dropped_not_screen": {},
   "nav_nouns": [
+   "customer",
+   "estimate",
+   "invoice",
    "parts sale"
   ],
   "n_steps": 2
@@ -3144,7 +3722,9 @@
   "atm": 1,
   "preconditions": [
    "1. You are signed in to ShopView.",
-   "2. You can generate a Parts Sale Estimate and Invoice with parts-sale numbering."
+   "2. You can generate a Parts Sale Estimate and Invoice with parts-sale numbering.",
+   "3. To put the Parts Sale document on screen: click \"Customers\" in the top menu, open the customer, click the \"Part Sales\" tab, open the part sale, then click the \"Finance\" tab.",
+   "4. Use the \"Estimate/Invoice\" toggle above the document to switch between the Parts Sale Estimate and the Parts Sale Invoice."
   ],
   "steps": [
    "1. Generate the Parts Sale Estimate and read its masthead label.",
@@ -3159,6 +3739,7 @@
   "labels_quoted": [],
   "labels_dropped_not_screen": {},
   "nav_nouns": [
+   "customer",
    "estimate",
    "invoice",
    "masthead",
@@ -3174,7 +3755,9 @@
   "atm": 1,
   "preconditions": [
    "1. You are signed in to ShopView.",
-   "2. You can generate a Parts Sale document with a Customer PO, Terms, and an Authorizer set."
+   "2. You can generate a Parts Sale document with a Customer PO, Terms, and an Authorizer set.",
+   "3. To put the Parts Sale document on screen: click \"Customers\" in the top menu, open the customer, click the \"Part Sales\" tab, open the part sale, then click the \"Finance\" tab.",
+   "4. Use the \"Estimate/Invoice\" toggle above the document to switch between the Parts Sale Estimate and the Parts Sale Invoice."
   ],
   "steps": [
    "1. Generate the Parts Sale document.",
@@ -3192,6 +3775,8 @@
   "nav_nouns": [
    "authorizer",
    "customer",
+   "estimate",
+   "invoice",
    "parts sale"
   ],
   "n_steps": 2
@@ -3204,7 +3789,9 @@
   "atm": 3,
   "preconditions": [
    "1. You are signed in to ShopView with access to parts sales.",
-   "2. A parts sale exists for a customer with 'Approves Work' contacts."
+   "2. A parts sale exists for a customer with 'Approves Work' contacts.",
+   "3. To put the Parts Sale document on screen: click \"Customers\" in the top menu, open the customer, click the \"Part Sales\" tab, open the part sale, then click the \"Finance\" tab.",
+   "4. Use the \"Estimate/Invoice\" toggle above the document to switch between the Parts Sale Estimate and the Parts Sale Invoice."
   ],
   "steps": [
    "1. Open the parts sale record and find the Authorizer field.",
@@ -3226,6 +3813,7 @@
   "nav_nouns": [
    "authorizer",
    "customer",
+   "estimate",
    "invoice",
    "parts sale"
   ],
@@ -3239,7 +3827,9 @@
   "atm": 1,
   "preconditions": [
    "1. You are signed in to ShopView.",
-   "2. A Parts Sale Invoice exists with parts charges, adjustments, tax and payments."
+   "2. A Parts Sale Invoice exists with parts charges, adjustments, tax and payments.",
+   "3. To put the Parts Sale document on screen: click \"Customers\" in the top menu, open the customer, click the \"Part Sales\" tab, open the part sale, then click the \"Finance\" tab.",
+   "4. Use the \"Estimate/Invoice\" toggle above the document to switch between the Parts Sale Estimate and the Parts Sale Invoice."
   ],
   "steps": [
    "1. Generate the Parts Sale Invoice.",
@@ -3263,6 +3853,8 @@
   ],
   "labels_dropped_not_screen": {},
   "nav_nouns": [
+   "customer",
+   "estimate",
    "financial summary",
    "invoice",
    "parts sale"
@@ -3303,7 +3895,10 @@
   "atm": 1,
   "preconditions": [
    "1. A US shop and a Canadian shop",
-   "2. Documents with single-digit day dates"
+   "2. Documents with single-digit day dates",
+   "3. To put the document on screen: click \"Work Orders\" in the top menu, open the work order you need, then click the \"Finance\" tab. The document appears on the right.",
+   "4. Use the \"Estimate/Invoice\" toggle above the document to switch between the Estimate and the Invoice.",
+   "5. The printer icon prints the document and the download icon saves it. The cog icon opens the invoice display settings (Labor rate, Labor hours, Labor price, Summarize labor total, Summarize parts total, Part number, Part description)."
   ],
   "steps": [
    "1. Open the estimate/invoice/credit previews on both shops",
@@ -3321,9 +3916,12 @@
    "Date / Time": "The only exception is the Paid banner's 'Date / Time' field."
   },
   "nav_nouns": [
+   "download",
    "estimate",
    "invoice",
-   "payment"
+   "payment",
+   "settings",
+   "work order"
   ],
   "n_steps": 2
  },
@@ -3365,7 +3963,10 @@
   "atm": 1,
   "preconditions": [
    "1. A work order with an authorizer and an asset with a plate",
-   "2. The redesign is live"
+   "2. The redesign is live",
+   "3. To put the document on screen: click \"Work Orders\" in the top menu, open the work order you need, then click the \"Finance\" tab. The document appears on the right.",
+   "4. Use the \"Estimate/Invoice\" toggle above the document to switch between the Estimate and the Invoice.",
+   "5. The printer icon prints the document and the download icon saves it. The cog icon opens the invoice display settings (Labor rate, Labor hours, Labor price, Summarize labor total, Summarize parts total, Part number, Part description)."
   ],
   "steps": [
    "1. Invoice the work order (a snapshot is created)",
@@ -3381,7 +3982,10 @@
   "nav_nouns": [
    "asset",
    "authorizer",
+   "download",
+   "estimate",
    "invoice",
+   "settings",
    "work order"
   ],
   "n_steps": 2
@@ -3394,7 +3998,10 @@
   "atm": 1,
   "preconditions": [
    "1. An invoice ready to send",
-   "2. A test email recipient"
+   "2. A test email recipient",
+   "3. To put the document on screen: click \"Work Orders\" in the top menu, open the work order you need, then click the \"Finance\" tab. The document appears on the right.",
+   "4. Use the \"Estimate/Invoice\" toggle above the document to switch between the Estimate and the Invoice.",
+   "5. The printer icon prints the document and the download icon saves it. The cog icon opens the invoice display settings (Labor rate, Labor hours, Labor price, Summarize labor total, Summarize parts total, Part number, Part description)."
   ],
   "steps": [
    "1. Email the invoice from the shop app",
@@ -3408,9 +4015,13 @@
   "labels_quoted": [],
   "labels_dropped_not_screen": {},
   "nav_nouns": [
+   "download",
    "email",
+   "estimate",
    "invoice",
-   "pdf"
+   "pdf",
+   "settings",
+   "work order"
   ],
   "n_steps": 2
  },
@@ -3421,7 +4032,10 @@
   "refs": "SV-8218 (Plan Phase 4)",
   "atm": 1,
   "preconditions": [
-   "1. An invoice with full content (asset, chips, adjustments, payments)"
+   "1. An invoice with full content (asset, chips, adjustments, payments)",
+   "2. To put the document on screen: click \"Work Orders\" in the top menu, open the work order you need, then click the \"Finance\" tab. The document appears on the right.",
+   "3. Use the \"Estimate/Invoice\" toggle above the document to switch between the Estimate and the Invoice.",
+   "4. The printer icon prints the document and the download icon saves it. The cog icon opens the invoice display settings (Labor rate, Labor hours, Labor price, Summarize labor total, Summarize parts total, Part number, Part description)."
   ],
   "steps": [
    "1. Compare the on-screen preview against the generated PDF, section by section"
@@ -3435,9 +4049,13 @@
   "labels_dropped_not_screen": {},
   "nav_nouns": [
    "asset",
+   "download",
+   "estimate",
    "invoice",
    "pdf",
-   "preview"
+   "preview",
+   "settings",
+   "work order"
   ],
   "n_steps": 1
  },
@@ -3448,7 +4066,10 @@
   "refs": "SV-8218 (Shipped-behaviour note)",
   "atm": 1,
   "preconditions": [
-   "1. A US shop and a Canadian shop with documents"
+   "1. A US shop and a Canadian shop with documents",
+   "2. To put the document on screen: click \"Work Orders\" in the top menu, open the work order you need, then click the \"Finance\" tab. The document appears on the right.",
+   "3. Use the \"Estimate/Invoice\" toggle above the document to switch between the Estimate and the Invoice.",
+   "4. The printer icon prints the document and the download icon saves it. The cog icon opens the invoice display settings (Labor rate, Labor hours, Labor price, Summarize labor total, Summarize parts total, Part number, Part description)."
   ],
   "steps": [
    "1. Open an invoice on each",
@@ -3462,7 +4083,11 @@
   "labels_quoted": [],
   "labels_dropped_not_screen": {},
   "nav_nouns": [
-   "invoice"
+   "download",
+   "estimate",
+   "invoice",
+   "settings",
+   "work order"
   ],
   "n_steps": 2
  },
@@ -3528,7 +4153,10 @@
   "atm": 1,
   "preconditions": [
    "1. An invoice with a logo and a full masthead",
-   "2. Browser DevTools device emulation at 375x667"
+   "2. Browser DevTools device emulation at 375x667",
+   "3. To put the document on screen: click \"Work Orders\" in the top menu, open the work order you need, then click the \"Finance\" tab. The document appears on the right.",
+   "4. Use the \"Estimate/Invoice\" toggle above the document to switch between the Estimate and the Invoice.",
+   "5. The printer icon prints the document and the download icon saves it. The cog icon opens the invoice display settings (Labor rate, Labor hours, Labor price, Summarize labor total, Summarize parts total, Part number, Part description)."
   ],
   "steps": [
    "1. Open the work-order finance-tab invoice preview at the mobile viewport",
@@ -3545,9 +4173,13 @@
   "labels_quoted": [],
   "labels_dropped_not_screen": {},
   "nav_nouns": [
+   "download",
+   "estimate",
    "invoice",
    "masthead",
-   "preview"
+   "preview",
+   "settings",
+   "work order"
   ],
   "n_steps": 3
  },
@@ -3558,7 +4190,10 @@
   "refs": "SV-9144 (S5-R9)",
   "atm": 1,
   "preconditions": [
-   "1. A work order with a labor rate >= $1,000.00 and a fixed line total >= $1,000.00"
+   "1. A work order with a labor rate >= $1,000.00 and a fixed line total >= $1,000.00",
+   "2. To put the document on screen: click \"Work Orders\" in the top menu, open the work order you need, then click the \"Finance\" tab. The document appears on the right.",
+   "3. Use the \"Estimate/Invoice\" toggle above the document to switch between the Estimate and the Invoice.",
+   "4. The printer icon prints the document and the download icon saves it. The cog icon opens the invoice display settings (Labor rate, Labor hours, Labor price, Summarize labor total, Summarize parts total, Part number, Part description)."
   ],
   "steps": [
    "1. Open the Invoice preview",
@@ -3575,10 +4210,13 @@
   "labels_dropped_not_screen": {},
   "nav_nouns": [
    "balance",
+   "download",
+   "estimate",
    "footer",
    "invoice",
    "pdf",
    "preview",
+   "settings",
    "work order"
   ],
   "n_steps": 3
@@ -3591,7 +4229,10 @@
   "atm": 1,
   "preconditions": [
    "1. A location name with a special character (e.g. &, e-acute, apostrophe)",
-   "2. A customer/company name with a special character"
+   "2. A customer/company name with a special character",
+   "3. To put the document on screen: click \"Work Orders\" in the top menu, open the work order you need, then click the \"Finance\" tab. The document appears on the right.",
+   "4. Use the \"Estimate/Invoice\" toggle above the document to switch between the Estimate and the Invoice.",
+   "5. The printer icon prints the document and the download icon saves it. The cog icon opens the invoice display settings (Labor rate, Labor hours, Labor price, Summarize labor total, Summarize parts total, Part number, Part description)."
   ],
   "steps": [
    "1. Open the Invoice preview",
@@ -3609,10 +4250,13 @@
   "nav_nouns": [
    "customer",
    "download",
+   "estimate",
    "invoice",
    "masthead",
    "pdf",
-   "preview"
+   "preview",
+   "settings",
+   "work order"
   ],
   "n_steps": 3
  },
@@ -3623,7 +4267,10 @@
   "refs": "SV-9151 (S12-R1,S12-R10)",
   "atm": 1,
   "preconditions": [
-   "1. An invoice long enough for 3+ PDF pages (many lines with long descriptions)"
+   "1. An invoice long enough for 3+ PDF pages (many lines with long descriptions)",
+   "2. To put the document on screen: click \"Work Orders\" in the top menu, open the work order you need, then click the \"Finance\" tab. The document appears on the right.",
+   "3. Use the \"Estimate/Invoice\" toggle above the document to switch between the Estimate and the Invoice.",
+   "4. The printer icon prints the document and the download icon saves it. The cog icon opens the invoice display settings (Labor rate, Labor hours, Labor price, Summarize labor total, Summarize parts total, Part number, Part description)."
   ],
   "steps": [
    "1. Generate the PDF",
@@ -3641,10 +4288,14 @@
   "labels_quoted": [],
   "labels_dropped_not_screen": {},
   "nav_nouns": [
+   "download",
+   "estimate",
    "invoice",
    "pdf",
    "preview",
-   "print"
+   "print",
+   "settings",
+   "work order"
   ],
   "n_steps": 3
  },
@@ -3687,7 +4338,10 @@
   "refs": "SV-9150 (S11-R3)",
   "atm": 1,
   "preconditions": [
-   "1. A parts-return credit whose originating invoice has since been reversed"
+   "1. A parts-return credit whose originating invoice has since been reversed",
+   "2. Your active location is set to the location the credit was issued at. Credits are location-specific: a credit issued at another location does not show in the customer's Invoices list at all - no row and no print button.",
+   "3. To open the document: Customers, open the customer, Invoices tab, find the credit's row (its credit number, for example CM-100, appears in the Invoice # column next to ordinary invoice numbers), then click the print icon at the right of that row (its tooltip reads \"Print credit memo\").",
+   "4. If the credit has been fully applied or fully refunded, turn the \"Open only\" filter off first, or its row is not listed."
   ],
   "steps": [
    "1. Open the Credit Invoice preview",
@@ -3704,8 +4358,10 @@
   "labels_dropped_not_screen": {},
   "nav_nouns": [
    "credit invoice",
+   "customer",
    "invoice",
-   "preview"
+   "preview",
+   "print"
   ],
   "n_steps": 3
  }

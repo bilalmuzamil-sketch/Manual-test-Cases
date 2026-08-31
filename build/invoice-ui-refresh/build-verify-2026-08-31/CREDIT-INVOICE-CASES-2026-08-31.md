@@ -8,9 +8,9 @@
 
 | Status | Cases |
 |---|---|
-| Build verified — ready to run | 22 |
-| Cannot confirm yet — a word the case quotes was not on any screen I could reach | 6 |
+| Build verified — ready to run | 27 |
 | Needs a person to click through it once | 2 |
+| Cannot confirm yet — a word the case quotes was not on any screen I could reach | 1 |
 
 **The honest position on the blocked ones:** I could not create a Credit Invoice document on the QA branch. The "Issue Credit" action in the invoice menu does run, but what it produced was a **part-sale credit**, not a work-order Credit Invoice document — so I have never seen the document these cases describe. That is the one thing standing between most of this list and a verdict. **I do not know yet whether the Credit Invoice document is built at all**, which is why it is a question for the developer rather than a defect.
 
@@ -27,6 +27,9 @@
 
 1. You are signed in to ShopView.
 2. You can generate a Credit Invoice (credit number carries the CM- prefix).
+3. Your active location is set to the location the credit was issued at. Credits are location-specific: a credit issued at another location does not show in the customer's Invoices list at all - no row and no print button.
+4. To open the document: Customers, open the customer, Invoices tab, find the credit's row (its credit number, for example CM-100, appears in the Invoice # column next to ordinary invoice numbers), then click the print icon at the right of that row (its tooltip reads "Print credit memo").
+5. If the credit has been fully applied or fully refunded, turn the "Open only" filter off first, or its row is not listed.
 
 **Steps**
 
@@ -52,6 +55,9 @@
 
 1. You are signed in to ShopView.
 2. You can generate a Credit Invoice for a customer with an address.
+3. Your active location is set to the location the credit was issued at. Credits are location-specific: a credit issued at another location does not show in the customer's Invoices list at all - no row and no print button.
+4. To open the document: Customers, open the customer, Invoices tab, find the credit's row (its credit number, for example CM-100, appears in the Invoice # column next to ordinary invoice numbers), then click the print icon at the right of that row (its tooltip reads "Print credit memo").
+5. If the credit has been fully applied or fully refunded, turn the "Open only" filter off first, or its row is not listed.
 
 **Steps**
 
@@ -71,12 +77,15 @@
 ## [C44966](https://shopview.testrail.io/index.php?/cases/view/44966) — Status table shows Credit Number, Status, Invoice Number correctly
 
 **Area:** Credit Invoice  
-**Status on the build:** Cannot confirm yet — a word the case quotes was not on any screen I could reach
+**Status on the build:** Build verified — ready to run
 
 **Preconditions**
 
 1. You are signed in to ShopView.
 2. You can reach Credit Invoices in different states (Unapplied, Partially applied, Applied, Refunded, Voided), including an account-level credit with no origin invoice.
+3. Your active location is set to the location the credit was issued at. Credits are location-specific: a credit issued at another location does not show in the customer's Invoices list at all - no row and no print button.
+4. To open the document: Customers, open the customer, Invoices tab, find the credit's row (its credit number, for example CM-100, appears in the Invoice # column next to ordinary invoice numbers), then click the print icon at the right of that row (its tooltip reads "Print credit memo").
+5. If the credit has been fully applied or fully refunded, turn the "Open only" filter off first, or its row is not listed.
 
 **Steps**
 
@@ -92,17 +101,20 @@
 
 *Source: This is the expected behaviour as per epic SV-8218 and story SV-9150 (Story 11, Credit Invoice) and the Invoice UI Refresh specification version 45, section S11-R3, read on 31 August 2026.*
 
-`AUTOMATION: Not available on Build to test Yet - Last checked 8/21/2026`
+`AUTOMATION: READY`
 
 ## [C44967](https://shopview.testrail.io/index.php?/cases/view/44967) — Credited items table shows returned parts and money-only lines correctly
 
 **Area:** Credit Invoice  
-**Status on the build:** Cannot confirm yet — a word the case quotes was not on any screen I could reach
+**Status on the build:** Build verified — ready to run
 
 **Preconditions**
 
 1. You are signed in to ShopView.
 2. A Credit Invoice exists mixing a returned-part line (with a restocking fee) and a money-only credit line.
+3. Your active location is set to the location the credit was issued at. Credits are location-specific: a credit issued at another location does not show in the customer's Invoices list at all - no row and no print button.
+4. To open the document: Customers, open the customer, Invoices tab, find the credit's row (its credit number, for example CM-100, appears in the Invoice # column next to ordinary invoice numbers), then click the print icon at the right of that row (its tooltip reads "Print credit memo").
+5. If the credit has been fully applied or fully refunded, turn the "Open only" filter off first, or its row is not listed.
 
 **Steps**
 
@@ -120,7 +132,7 @@
 
 *Source: This is the expected behaviour as per epic SV-8218 and story SV-9150 (Story 11, Credit Invoice) and the Invoice UI Refresh specification version 45, sections S11-R4 and S11-R5, read on 31 August 2026.*
 
-`AUTOMATION: Not available on Build to test Yet - Last checked 8/21/2026`
+`AUTOMATION: READY`
 
 ## [C44968](https://shopview.testrail.io/index.php?/cases/view/44968) — Restocking fee reduces a returned-part credit total as specified
 
@@ -131,6 +143,9 @@
 
 1. You are signed in to ShopView.
 2. A Credit Invoice has a returned part: quantity -2 at rate $50.00 with a $10.00 restocking fee.
+3. Your active location is set to the location the credit was issued at. Credits are location-specific: a credit issued at another location does not show in the customer's Invoices list at all - no row and no print button.
+4. To open the document: Customers, open the customer, Invoices tab, find the credit's row (its credit number, for example CM-100, appears in the Invoice # column next to ordinary invoice numbers), then click the print icon at the right of that row (its tooltip reads "Print credit memo").
+5. If the credit has been fully applied or fully refunded, turn the "Open only" filter off first, or its row is not listed.
 
 **Steps**
 
@@ -149,12 +164,15 @@
 ## [C44969](https://shopview.testrail.io/index.php?/cases/view/44969) — Totals block rows and Balance follow the credit's status
 
 **Area:** Credit Invoice  
-**Status on the build:** Cannot confirm yet — a word the case quotes was not on any screen I could reach
+**Status on the build:** Build verified — ready to run
 
 **Preconditions**
 
 1. You are signed in to ShopView.
 2. You can reach Credit Invoices in each status: Unapplied, Partially applied, Applied, Refunded (with a refund payment), and Voided.
+3. Your active location is set to the location the credit was issued at. Credits are location-specific: a credit issued at another location does not show in the customer's Invoices list at all - no row and no print button.
+4. To open the document: Customers, open the customer, Invoices tab, find the credit's row (its credit number, for example CM-100, appears in the Invoice # column next to ordinary invoice numbers), then click the print icon at the right of that row (its tooltip reads "Print credit memo").
+5. If the credit has been fully applied or fully refunded, turn the "Open only" filter off first, or its row is not listed.
 
 **Steps**
 
@@ -174,7 +192,7 @@
 
 *Source: This is the expected behaviour as per epic SV-8218 and story SV-9150 (Story 11, Credit Invoice) and the Invoice UI Refresh specification version 45, sections S11-R6 and S11-R6a, read on 31 August 2026.*
 
-`AUTOMATION: Not available on Build to test Yet - Last checked 8/21/2026`
+`AUTOMATION: READY`
 
 ## [C44970](https://shopview.testrail.io/index.php?/cases/view/44970) — Credit Invoice shows the disclaimer and standard signature area
 
@@ -185,6 +203,9 @@
 
 1. You are signed in to ShopView.
 2. You can generate a Credit Invoice for a shop with a configured disclaimer.
+3. Your active location is set to the location the credit was issued at. Credits are location-specific: a credit issued at another location does not show in the customer's Invoices list at all - no row and no print button.
+4. To open the document: Customers, open the customer, Invoices tab, find the credit's row (its credit number, for example CM-100, appears in the Invoice # column next to ordinary invoice numbers), then click the print icon at the right of that row (its tooltip reads "Print credit memo").
+5. If the credit has been fully applied or fully refunded, turn the "Open only" filter off first, or its row is not listed.
 
 **Steps**
 
@@ -208,6 +229,9 @@
 **Preconditions**
 
 1. A fresh unapplied credit, e.g. Total Credit -$200.00
+2. Your active location is set to the location the credit was issued at. Credits are location-specific: a credit issued at another location does not show in the customer's Invoices list at all - no row and no print button.
+3. To open the document: Customers, open the customer, Invoices tab, find the credit's row (its credit number, for example CM-100, appears in the Invoice # column next to ordinary invoice numbers), then click the print icon at the right of that row (its tooltip reads "Print credit memo").
+4. If the credit has been fully applied or fully refunded, turn the "Open only" filter off first, or its row is not listed.
 
 **Steps**
 
@@ -231,6 +255,9 @@
 **Preconditions**
 
 1. A credit of $200 with $80 applied to an invoice
+2. Your active location is set to the location the credit was issued at. Credits are location-specific: a credit issued at another location does not show in the customer's Invoices list at all - no row and no print button.
+3. To open the document: Customers, open the customer, Invoices tab, find the credit's row (its credit number, for example CM-100, appears in the Invoice # column next to ordinary invoice numbers), then click the print icon at the right of that row (its tooltip reads "Print credit memo").
+4. If the credit has been fully applied or fully refunded, turn the "Open only" filter off first, or its row is not listed.
 
 **Steps**
 
@@ -248,12 +275,15 @@
 ## [C45181](https://shopview.testrail.io/index.php?/cases/view/45181) — Credit Invoice Balance reads $0.00 on a fully applied credit and on a voided credit
 
 **Area:** Credit Invoice  
-**Status on the build:** Cannot confirm yet — a word the case quotes was not on any screen I could reach
+**Status on the build:** Build verified — ready to run
 
 **Preconditions**
 
 1. A fully applied credit
 2. Separately, a voided credit
+3. To put the document on screen: click "Work Orders" in the top menu, open the work order you need, then click the "Finance" tab. The document appears on the right.
+4. Use the "Estimate/Invoice" toggle above the document to switch between the Estimate and the Invoice.
+5. The printer icon prints the document and the download icon saves it. The cog icon opens the invoice display settings (Labor rate, Labor hours, Labor price, Summarize labor total, Summarize parts total, Part number, Part description).
 
 **Steps**
 
@@ -267,7 +297,7 @@
 
 *Source: This is the expected behaviour as per epic SV-8218 and story SV-9150 (Story 11, Credit Invoice) and the Invoice UI Refresh specification version 45, section S11-R6a, read on 31 August 2026.*
 
-`AUTOMATION: Not available on Build to test Yet - Last checked 8/26/2026`
+`AUTOMATION: READY`
 
 ## [C45182](https://shopview.testrail.io/index.php?/cases/view/45182) — Credit Invoice lists refund rows and shows the open balance until the credit is consumed
 
@@ -278,6 +308,9 @@
 
 1. A credit of $200 with a $50 refund issued (partially refunded)
 2. Separately, a credit that is fully refunded
+3. To put the document on screen: click "Work Orders" in the top menu, open the work order you need, then click the "Finance" tab. The document appears on the right.
+4. Use the "Estimate/Invoice" toggle above the document to switch between the Estimate and the Invoice.
+5. The printer icon prints the document and the download icon saves it. The cog icon opens the invoice display settings (Labor rate, Labor hours, Labor price, Summarize labor total, Summarize parts total, Part number, Part description).
 
 **Steps**
 
@@ -302,6 +335,9 @@
 **Preconditions**
 
 1. A credit of $200 with $50 refunded and $80 applied to an invoice
+2. Your active location is set to the location the credit was issued at. Credits are location-specific: a credit issued at another location does not show in the customer's Invoices list at all - no row and no print button.
+3. To open the document: Customers, open the customer, Invoices tab, find the credit's row (its credit number, for example CM-100, appears in the Invoice # column next to ordinary invoice numbers), then click the print icon at the right of that row (its tooltip reads "Print credit memo").
+4. If the credit has been fully applied or fully refunded, turn the "Open only" filter off first, or its row is not listed.
 
 **Steps**
 
@@ -328,6 +364,9 @@
 
 1. You are signed in to ShopView.
 2. You can generate an Estimate, an Invoice, and a Credit Invoice for known documents.
+3. Your active location is set to the location the credit was issued at. Credits are location-specific: a credit issued at another location does not show in the customer's Invoices list at all - no row and no print button.
+4. To open the document: Customers, open the customer, Invoices tab, find the credit's row (its credit number, for example CM-100, appears in the Invoice # column next to ordinary invoice numbers), then click the print icon at the right of that row (its tooltip reads "Print credit memo").
+5. If the credit has been fully applied or fully refunded, turn the "Open only" filter off first, or its row is not listed.
 
 **Steps**
 
@@ -355,6 +394,9 @@
 
 1. You are signed in to ShopView.
 2. You can generate an Estimate, an Invoice (including a fully paid one), and a Credit Invoice.
+3. To put the document on screen: click "Work Orders" in the top menu, open the work order you need, then click the "Finance" tab. The document appears on the right.
+4. Use the "Estimate/Invoice" toggle above the document to switch between the Estimate and the Invoice.
+5. The printer icon prints the document and the download icon saves it. The cog icon opens the invoice display settings (Labor rate, Labor hours, Labor price, Summarize labor total, Summarize parts total, Part number, Part description).
 
 **Steps**
 
@@ -379,6 +421,9 @@
 
 1. You are signed in to ShopView.
 2. You can generate an Estimate, an Invoice, and a Credit Invoice that have monetary totals.
+3. Your active location is set to the location the credit was issued at. Credits are location-specific: a credit issued at another location does not show in the customer's Invoices list at all - no row and no print button.
+4. To open the document: Customers, open the customer, Invoices tab, find the credit's row (its credit number, for example CM-100, appears in the Invoice # column next to ordinary invoice numbers), then click the print icon at the right of that row (its tooltip reads "Print credit memo").
+5. If the credit has been fully applied or fully refunded, turn the "Open only" filter off first, or its row is not listed.
 
 **Steps**
 
@@ -406,6 +451,9 @@
 
 1. You are signed in to ShopView.
 2. You can generate an Estimate, an unpaid Invoice, a fully paid Invoice, and a Credit Invoice.
+3. Your active location is set to the location the credit was issued at. Credits are location-specific: a credit issued at another location does not show in the customer's Invoices list at all - no row and no print button.
+4. To open the document: Customers, open the customer, Invoices tab, find the credit's row (its credit number, for example CM-100, appears in the Invoice # column next to ordinary invoice numbers), then click the print icon at the right of that row (its tooltip reads "Print credit memo").
+5. If the credit has been fully applied or fully refunded, turn the "Open only" filter off first, or its row is not listed.
 
 **Steps**
 
@@ -460,6 +508,9 @@
 
 1. You are signed in to ShopView.
 2. An Invoice has a deposit applied and an applied customer-account credit (with a CM- number).
+3. To put the document on screen: click "Work Orders" in the top menu, open the work order you need, then click the "Finance" tab. The document appears on the right.
+4. Use the "Estimate/Invoice" toggle above the document to switch between the Estimate and the Invoice.
+5. The printer icon prints the document and the download icon saves it. The cog icon opens the invoice display settings (Labor rate, Labor hours, Labor price, Summarize labor total, Summarize parts total, Part number, Part description).
 
 **Steps**
 
@@ -484,6 +535,9 @@
 
 1. You are signed in to ShopView.
 2. An Invoice has a payment or deposit whose amount applied to this invoice is less than its full amount - for example an over-collected deposit, or a regular payment spread across more than one invoice - with one case where the excess became a numbered credit and one where it has not yet.
+3. To put the document on screen: click "Work Orders" in the top menu, open the work order you need, then click the "Finance" tab. The document appears on the right.
+4. Use the "Estimate/Invoice" toggle above the document to switch between the Estimate and the Invoice.
+5. The printer icon prints the document and the download icon saves it. The cog icon opens the invoice display settings (Labor rate, Labor hours, Labor price, Summarize labor total, Summarize parts total, Part number, Part description).
 
 **Steps**
 
@@ -511,6 +565,9 @@
 
 1. You are signed in to ShopView.
 2. You can reach an Invoice with a $0.00 payment recorded, and an Invoice with no payments/deposits/credits applied.
+3. To put the document on screen: click "Work Orders" in the top menu, open the work order you need, then click the "Finance" tab. The document appears on the right.
+4. Use the "Estimate/Invoice" toggle above the document to switch between the Estimate and the Invoice.
+5. The printer icon prints the document and the download icon saves it. The cog icon opens the invoice display settings (Labor rate, Labor hours, Labor price, Summarize labor total, Summarize parts total, Part number, Part description).
 
 **Steps**
 
@@ -535,6 +592,9 @@
 
 1. You are signed in to ShopView.
 2. A shop has a configured disclaimer, and you can generate an Estimate, Invoice and Credit Invoice for it.
+3. To put the document on screen: click "Work Orders" in the top menu, open the work order you need, then click the "Finance" tab. The document appears on the right.
+4. Use the "Estimate/Invoice" toggle above the document to switch between the Estimate and the Invoice.
+5. The printer icon prints the document and the download icon saves it. The cog icon opens the invoice display settings (Labor rate, Labor hours, Labor price, Summarize labor total, Summarize parts total, Part number, Part description).
 
 **Steps**
 
@@ -559,6 +619,9 @@
 
 1. You are signed in to ShopView.
 2. You can generate an Estimate, Invoice and Credit Invoice.
+3. To put the document on screen: click "Work Orders" in the top menu, open the work order you need, then click the "Finance" tab. The document appears on the right.
+4. Use the "Estimate/Invoice" toggle above the document to switch between the Estimate and the Invoice.
+5. The printer icon prints the document and the download icon saves it. The cog icon opens the invoice display settings (Labor rate, Labor hours, Labor price, Summarize labor total, Summarize parts total, Part number, Part description).
 
 **Steps**
 
@@ -578,12 +641,15 @@
 ## [C44962](https://shopview.testrail.io/index.php?/cases/view/44962) — Fully paid Invoice stays an Invoice; 'Paid date' replaces 'Due date'
 
 **Area:** Estimate and Invoice Specifics  
-**Status on the build:** Cannot confirm yet — a word the case quotes was not on any screen I could reach
+**Status on the build:** Build verified — ready to run
 
 **Preconditions**
 
 1. You are signed in to ShopView.
 2. You can reach an Invoice that is fully paid (Balance $0.00 with at least one payment/deposit/credit applied), and can reverse a payment on it.
+3. To put the document on screen: click "Work Orders" in the top menu, open the work order you need, then click the "Finance" tab. The document appears on the right.
+4. Use the "Estimate/Invoice" toggle above the document to switch between the Estimate and the Invoice.
+5. The printer icon prints the document and the download icon saves it. The cog icon opens the invoice display settings (Labor rate, Labor hours, Labor price, Summarize labor total, Summarize parts total, Part number, Part description).
 
 **Steps**
 
@@ -600,7 +666,7 @@
 
 *Source: This is the expected behaviour as per epic SV-8218 and story SV-9149 (Story 10, Estimate and Invoice Specifics) and the Invoice UI Refresh specification version 45, section S10-R4, read on 31 August 2026.*
 
-`AUTOMATION: Not available on Build to test Yet - Last checked 8/21/2026`
+`AUTOMATION: READY`
 
 ## [C44971](https://shopview.testrail.io/index.php?/cases/view/44971) — Document layout matches the Design Document structure
 
@@ -611,6 +677,9 @@
 
 1. You are signed in to ShopView.
 2. You can generate an Estimate, Invoice and Credit Invoice, on screen and as PDF.
+3. To put the document on screen: click "Work Orders" in the top menu, open the work order you need, then click the "Finance" tab. The document appears on the right.
+4. Use the "Estimate/Invoice" toggle above the document to switch between the Estimate and the Invoice.
+5. The printer icon prints the document and the download icon saves it. The cog icon opens the invoice display settings (Labor rate, Labor hours, Labor price, Summarize labor total, Summarize parts total, Part number, Part description).
 
 **Steps**
 
@@ -634,6 +703,9 @@
 
 1. You are signed in to ShopView.
 2. You can generate a real document (not the Design Document prototype).
+3. To put the document on screen: click "Work Orders" in the top menu, open the work order you need, then click the "Finance" tab. The document appears on the right.
+4. Use the "Estimate/Invoice" toggle above the document to switch between the Estimate and the Invoice.
+5. The printer icon prints the document and the download icon saves it. The cog icon opens the invoice display settings (Labor rate, Labor hours, Labor price, Summarize labor total, Summarize parts total, Part number, Part description).
 
 **Steps**
 
@@ -658,6 +730,9 @@
 **Preconditions**
 
 1. Credit invoice for a shop that HAS a remit-to payee configured
+2. Your active location is set to the location the credit was issued at. Credits are location-specific: a credit issued at another location does not show in the customer's Invoices list at all - no row and no print button.
+3. To open the document: Customers, open the customer, Invoices tab, find the credit's row (its credit number, for example CM-100, appears in the Invoice # column next to ordinary invoice numbers), then click the print icon at the right of that row (its tooltip reads "Print credit memo").
+4. If the credit has been fully applied or fully refunded, turn the "Open only" filter off first, or its row is not listed.
 
 **Steps**
 
@@ -680,6 +755,9 @@
 **Preconditions**
 
 1. An invoice with a $0.00 Total and no payments/deposits/credits applied
+2. To put the document on screen: click "Work Orders" in the top menu, open the work order you need, then click the "Finance" tab. The document appears on the right.
+3. Use the "Estimate/Invoice" toggle above the document to switch between the Estimate and the Invoice.
+4. The printer icon prints the document and the download icon saves it. The cog icon opens the invoice display settings (Labor rate, Labor hours, Labor price, Summarize labor total, Summarize parts total, Part number, Part description).
 
 **Steps**
 
@@ -703,6 +781,9 @@
 
 1. A US shop and a Canadian shop
 2. Documents with single-digit day dates
+3. To put the document on screen: click "Work Orders" in the top menu, open the work order you need, then click the "Finance" tab. The document appears on the right.
+4. Use the "Estimate/Invoice" toggle above the document to switch between the Estimate and the Invoice.
+5. The printer icon prints the document and the download icon saves it. The cog icon opens the invoice display settings (Labor rate, Labor hours, Labor price, Summarize labor total, Summarize parts total, Part number, Part description).
 
 **Steps**
 
@@ -752,6 +833,9 @@
 **Preconditions**
 
 1. A parts-return credit whose originating invoice has since been reversed
+2. Your active location is set to the location the credit was issued at. Credits are location-specific: a credit issued at another location does not show in the customer's Invoices list at all - no row and no print button.
+3. To open the document: Customers, open the customer, Invoices tab, find the credit's row (its credit number, for example CM-100, appears in the Invoice # column next to ordinary invoice numbers), then click the print icon at the right of that row (its tooltip reads "Print credit memo").
+4. If the credit has been fully applied or fully refunded, turn the "Open only" filter off first, or its row is not listed.
 
 **Steps**
 

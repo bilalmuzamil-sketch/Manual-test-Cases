@@ -195,5 +195,29 @@
   },
   "distinct_documents": 1,
   "conclusion": "historyEvent is ACCEPTED by the endpoint but returns a BYTE-IDENTICAL document for every value tried (none/1/2/5/99) -- one distinct rendering only. So the parameter binding proves nothing about snapshots: either this invoice has no history events, or the value is ignored on this branch. The precondition \"a snapshot created before the redesign\" is therefore NOT ESTABLISHED, and C45185 stays unverified. Marking it verified on the strength of an accepted parameter would be the exact overclaim skill 03 8.0-a warns about."
+ },
+ "payment_surface": {
+  "for_cases": [
+   "C45177",
+   "C45196",
+   "C45197"
+  ],
+  "finance_tab_of_a_paid_work_order": "anchored read: only item_label_Payments / item_value_Payments. No apply, reverse, refund or void ACTION exists on that surface.",
+  "customer_invoices_tab": {
+   "action_ids": [
+    "button_action",
+    "button_new_payment",
+    "button_issue_credit_customer",
+    "checkbox_select_all_transactions",
+    "checkbox_transaction_<id>",
+    "button_print_credit_memo_<id>",
+    "button_cash_out_credit_<id>",
+    "button_delete_credit_<id>"
+   ],
+   "button_action_menu": "empty with a CREDIT row selected -- the bulk action appears to be for invoice-type rows, and there are none on this tab because every invoice on the branch is already paid.",
+   "button_new_payment": "present -- the take-a-payment entry point, but it needs an UNPAID invoice to apply against."
+  },
+  "why_C45177_C45196_C45197_remain_blocked": "All three need either a PAYMENT REVERSAL action (not found on any surface read so far) or an UNPAID INVOICE RECORD to pay. Note the distinction that cost me time earlier: \"Create Invoice\" on an approved work order RENDERS a document (POST /api/work-orders/invoices/estimate) and does NOT create an invoice record -- the work order stays Approved. So the unpaid invoice DOCUMENT is obtainable (and C44963 was verified on it) while an unpaid invoice RECORD is not. A document is enough to read labels; it is not enough to take a payment against.",
+  "confirmed_status_scoping_asymmetry": "Observed live on the Invoices tab: CM-100 (Unapplied), CM-101 (Unapplied) and CM-102 (partially_applied) all render a row with a print button. CM-103 (closed_via_refund) and CM-104 (voided) render NO row at all -- matching the source note that the print control requires row.status != voided and that the \"Open only\" chip defaults to on. The PDF endpoint served both of them anyway, because it is org-scoped while the list is workplace-scoped and status-filtered."
  }
 }
