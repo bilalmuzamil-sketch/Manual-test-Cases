@@ -80,7 +80,7 @@ actioned here.
 |---|---|---|
 | 1 | `00-COMMON-CORE.md` | **All of it once**, then by its routing table. Non-negotiable: **the Rule-50 write discipline and the TestRail hazards — including the omit-field re-render trap and the declared normalisations** · **§16.0 finality (NOT final ⇒ findings PROVISIONAL)** · §14 the provenance line, two sentences never merged · §15 the marker · §17 the fact sheet |
 | 2 | `02-SOURCE-CHECK.md` | **First** — the source must be current before any live work (Rule 81); Rule 59 re-reads it again immediately before the writes begin |
-| 3 | `03-RUN-CHECK.md` | Driving the build live: the build marker at both ends, roles and `reset to template` (Rules 26 / 26a / 74), markers, the Rule-49 queue |
+| 3 | `03-RUN-CHECK.md` | Driving the build live: the build marker at both ends, roles and `reset to template` (Rules 26 / 26a / 74), markers, the Rule-49 queue · **§9 THE NAVIGATION MAP — the whole convention lives there: read `build/<project>/NAVIGATION-MAP.md` BEFORE you navigate (copy `build/NAVIGATION-MAP-TEMPLATE.md` if the project has none), append the moment a path is confirmed live, navigation only — never in an Expected Results or provenance line** |
 | 4 | `01-CASE-BUILD.md` | The wording, structure and traceability standards a re-worded case must still satisfy — and §10 push + **run sync** |
 | 5 | `04-TESTER-READY.md` | The handover, if the pass ends in one — **§6 the brief, §6.1 the `Defects-for-Testers` workbook** |
 | 6 | `06-DEFECT-PREP.md` | Every deviation this pass finds: prepare the pack, apply the **API reachability test**, **stop at the button** |

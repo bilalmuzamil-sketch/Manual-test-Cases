@@ -119,6 +119,22 @@ conditional**, and when it breaks it **400s in a way that reads like an empty re
 5. **Capture the evidence for THIS case, in this run** (§4).
 6. **Assign the status** (§5), **with a comment that a non-technical reader can act on.**
 
+## 3.1 THE NAVIGATION MAP — READ IT BEFORE YOU NAVIGATE, APPEND AS YOU GO
+
+**Before you go hunting for a screen a case's steps name, open `build/<project>/NAVIGATION-MAP.md`**
+(Rule 27 — reuse the recorded recipe, never re-discover). If the project has no map, **start one from
+`build/NAVIGATION-MAP-TEMPLATE.md`**. **The canonical convention — the row format and every guard — is
+`03-RUN-CHECK.md` §9; read it there, it is not restated here.** In short:
+
+- **Append the moment a path is confirmed live** — in the same pass, not as a later cleanup (Rule 93).
+- **Observed live only.** Never infer a path from product source code, a spec, a design or another
+  branch (Rules 12 / 57).
+- **Navigation only.** A map entry is **never** cited in a case's Expected Results or provenance line,
+  and **it is never evidence that the feature works** — the verdict still comes from observing the
+  feature itself (step 4 above).
+- **Rows are branch-specific** and carry the **Rule 91 badge with the date**; a stale row is a starting
+  point — if it fails, re-observe and correct it in the same pass.
+
 ---
 
 # 4 · EVIDENCE, PER CASE — captured in the run that produced the verdict

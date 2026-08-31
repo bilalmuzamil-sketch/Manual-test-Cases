@@ -167,6 +167,24 @@ both stale; they are corrected rather than deleted so nobody re-derives them.
 
 ---
 
+## 3a. THE NAVIGATION MAP — READ IT BEFORE YOU NAVIGATE, APPEND AS YOU GO
+
+Whenever this lane goes to the build for the one thing it may take from it — the **on-screen labels and
+the navigation path** (Rule 57) — go through **`build/<project>/NAVIGATION-MAP.md`** first. If the
+project has no map, create it from **`build/NAVIGATION-MAP-TEMPLATE.md`**. Full convention:
+**`build/skills/03-RUN-CHECK.md` §9** — read it there rather than working from this summary.
+
+- **Read it BEFORE you hunt for a screen** (Rule 27), and **append the moment a path is confirmed**, in
+  the same pass — not as a later cleanup (Rule 93).
+- **Only paths navigated successfully and observed live go in** (Rule 12). **Never infer one from
+  product source code, a spec, a design or another branch** (Rule 57).
+- **Navigation only.** A map entry is **never** cited in a case's Expected Results or in its provenance
+  line — expectations come from the documents (Rules 54 / 57).
+- **Rows are branch-specific** and carry the **Rule 91 badge with the date** (✅ ≤7 d · 🟠 8–14 d ·
+  🔴 >14 d · ❌ never observed); another branch gets its own row, never an overwrite.
+
+---
+
 ## 4. HARD GATES — ASK FIRST, EVERY TIME
 
 | Gate | Rule | The ask |
