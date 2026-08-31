@@ -1,5 +1,5 @@
 {
- "read_at": "2026-08-31T09:39:37.254354+00:00",
+ "read_at": "2026-08-31T16:34:09.105902+00:00",
  "documents": [
   {
    "wo_number": "S2-15522",
@@ -152,6 +152,68 @@
    ],
    "file": "paid-invoice-with-declined-S2-15517.html",
    "text_file": "paid-invoice-with-declined-S2-15517.txt"
+  },
+  {
+   "wo_number": "S-15517",
+   "wo_status": null,
+   "wo_id": null,
+   "credit_memo_id": "83baae01-89bb-4b42-b27f-2a7968fbf932",
+   "credit_number": "CM-100",
+   "credit_status": "Unapplied",
+   "amount": -36.57,
+   "balance": -36.57,
+   "kind": "credit-invoice",
+   "query": "/api/credit-memos/83baae01-89bb-4b42-b27f-2a7968fbf932/pdf",
+   "pdf_bytes": 180470,
+   "pages": 1,
+   "visible_chars": 1622,
+   "test_ids": [],
+   "file": "credit-invoice-CM-100.pdf",
+   "text_file": "credit-invoice-CM-100.txt"
+  },
+  {
+   "wo_number": "P2-123",
+   "wo_status": "paid",
+   "wo_id": "50c51ff1-c5f6-42ba-86ec-d3ce283df81e",
+   "invoice_id": "e4a295ae-6cb5-4865-9411-1a88cd3dc911",
+   "invoice_status": "paid",
+   "kind": "parts-sale",
+   "query": "/api/invoices/preview?invoice_id=e4a295ae-6cb5-4865-9411-1a88cd3dc911&type=html&isEstimate=0&includeDeclined=0&historyEvent=",
+   "html_bytes": 346047,
+   "visible_chars": 1838,
+   "test_ids": [
+    "invoice-balance",
+    "invoice-payment-row",
+    "invoice-payments-heading",
+    "invoice-ref-terms",
+    "invoice-summary-parts",
+    "invoice-summary-subtotal",
+    "invoice-summary-tax-row",
+    "invoice-summary-total"
+   ],
+   "file": "parts-sale-P2-123.html",
+   "text_file": "parts-sale-P2-123.txt"
+  },
+  {
+   "wo_number": "P2-123",
+   "wo_status": "paid",
+   "wo_id": "50c51ff1-c5f6-42ba-86ec-d3ce283df81e",
+   "invoice_id": "e4a295ae-6cb5-4865-9411-1a88cd3dc911",
+   "invoice_status": "paid",
+   "kind": "parts-sale-estimate",
+   "query": "/api/invoices/preview?invoice_id=e4a295ae-6cb5-4865-9411-1a88cd3dc911&type=html&isEstimate=1&includeDeclined=0&historyEvent=",
+   "html_bytes": 344240,
+   "visible_chars": 1742,
+   "test_ids": [
+    "invoice-estimated-total",
+    "invoice-ref-terms",
+    "invoice-summary-parts",
+    "invoice-summary-subtotal",
+    "invoice-summary-tax-row",
+    "invoice-summary-total"
+   ],
+   "file": "parts-sale-estimate-P2-123.html",
+   "text_file": "parts-sale-estimate-P2-123.txt"
   }
  ]
 }
