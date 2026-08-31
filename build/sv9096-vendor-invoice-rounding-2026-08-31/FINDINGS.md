@@ -40,3 +40,17 @@ The QA workplace (Heavy Duty 9919) applies a 5% GST by default, which re-derives
 
 ## How it was verified
 localStorage-seed SPA auth (no quick-login, so no user gets logged out). Session scoped with `POST /api/iam/change-location`. Data set up on existing ordered POs via `orders/change-item` (set unit cost) → `orders/accept` (receive) → `deliveries/change-item` (the edit that triggers the bug) → `deliveries/change` (header/tax). All test data tagged `ZZAUTOTEST` on the disposable QA branch.
+
+## Production cross-check (2026-08-31) — the bug DOES reproduce on prod, confirming the QA fix by contrast
+**Prod:** app.shopview.com / api.shopview.com, build **`v26.35.6-9566abd`** (prod test org, workplace Trucks Hill 2). Same base version as the QA branch but a different commit — and it does **not** carry PR #2699.
+
+Ran the identical trigger on an existing prod test invoice (vendor "Delete Test", invoice `ghf546`): edited the line to $7.83600 × 9, tax $0.
+
+| | Opened invoice | Payment-selection list (ledger) |
+|---|---|---|
+| **Production `v26.35.6-9566abd`** | **$70.52** | **$70.56 / $70.56** ← mismatch, the bug |
+| **QA branch `v26.35.6-8176cde` (PR #2699)** | $70.52 | $70.52 / $70.52 ✓ |
+
+So the $0.04 divergence the customer reported **reproduces on production** and is **gone on the QA branch** — the QA fix-verification is confirmed by direct contrast. Confirmed both in the UI (`evidence/EX-PROD-bug-reproduced.png`, raw `raw-PROD-payment-list.png`) and via API (invoice `total_price` 70.52 from /api/inventory/deliveries vs vendor_transaction `amount`/`balance` 70.56 from list-unpaid-by-vendor-account, accountId c672adbd…).
+
+**Prod hygiene:** the invoice `ghf546` was **restored to its original state** ($16.43 × 2 = $32.86, tax 0) afterwards — invoice and ledger both verified back at $32.86. Prod login used once (`POST /api/login`); credentials in /tmp only, never committed.
