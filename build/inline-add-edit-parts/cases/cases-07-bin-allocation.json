@@ -1,0 +1,528 @@
+[
+  {
+    "id": "IAEP-BIN-01",
+    "area": "Inline Add and Edit Parts - Bin Allocation",
+    "title": "Catalog part carries named bins with on-hand quantity and one Default",
+    "priority": "Medium",
+    "type": "Functional",
+    "permissions_required": "Work Order Line - Create and Edit; Work Order View Mode",
+    "preconditions": [
+      "A work order is open with status Estimate, Approved, In Progress, or Review.",
+      "You have the 'Work Order Line - Create and Edit' setting enabled.",
+      "You can inspect a catalog part's bins (via the typeahead card, the bin picker, or the Bin Locations modal)."
+    ],
+    "steps": [
+      "Look at the set of bins on a catalog part that is held in stock."
+    ],
+    "expected": "1. Each catalog part carries a set of bins.\n2. Every bin has a name and an on-hand quantity.\n3. Exactly one bin per part is flagged as the Default bin.\n\n---\nThis is the expected behaviour as per epic SV-9315 and Story 7 (Bin Allocation on the Inline Row); the Story 7 Jira ticket is TBD and the Inline Add and Edit Parts on Work Order Lines specification version 16, section S7-R1, read on 31 August 2026.\n\nAUTOMATION: Not available on Build to test Yet - Last checked 8/31/2026",
+    "design_ref": "Claude Design “Add Part” artifact 561657da (binding visual reference), as exported 2026-08-25.",
+    "spec_ref": "requirements.md (Inline Add and Edit Parts spec v16)",
+    "refs": "SV-9315 (S7-R1)",
+    "viu_status": "source-verified-only",
+    "notes": ""
+  },
+  {
+    "id": "IAEP-BIN-02",
+    "area": "Inline Add and Edit Parts - Bin Allocation",
+    "title": "Typeahead result cards show inventory quantity and bin chips",
+    "priority": "Medium",
+    "type": "Functional",
+    "permissions_required": "Work Order Line - Create and Edit; Work Order View Mode",
+    "preconditions": [
+      "A work order is open with status Estimate, Approved, In Progress, or Review.",
+      "You have the 'Work Order Line - Create and Edit' setting enabled.",
+      "Your 'Work Orders → Work Order View Mode' permission is set to Tech View."
+    ],
+    "steps": [
+      "Open the inline row and search the part number typeahead.",
+      "Inspect a result card for a stocked part held across several bins.",
+      "Inspect a result card for a part with no bins."
+    ],
+    "expected": "1. The result card shows the total inventory quantity across all bins, then up to three bin chips each with its per-bin quantity.\n2. When a part is in more than three bins, the further bins collapse into a “+ N” chip whose tooltip lists them.\n3. A part with no bins shows “Not stocked” in warning styling instead of chips.\n\n---\nThis is the expected behaviour as per epic SV-9315 and Story 7 (Bin Allocation on the Inline Row); the Story 7 Jira ticket is TBD and the Inline Add and Edit Parts on Work Order Lines specification version 16, section S7-R2, read on 31 August 2026.\n\nAUTOMATION: Not available on Build to test Yet - Last checked 8/31/2026",
+    "design_ref": "Claude Design “Add Part” artifact 561657da (binding visual reference), as exported 2026-08-25.",
+    "spec_ref": "requirements.md (Inline Add and Edit Parts spec v16)",
+    "refs": "SV-9315 (S7-R2)",
+    "viu_status": "source-verified-only",
+    "notes": ""
+  },
+  {
+    "id": "IAEP-BIN-03",
+    "area": "Inline Add and Edit Parts - Bin Allocation",
+    "title": "Selecting a part auto-allocates the full quantity to a single bin",
+    "priority": "Medium",
+    "type": "Functional",
+    "permissions_required": "Work Order Line - Create and Edit; Work Order View Mode",
+    "preconditions": [
+      "A work order is open with status Estimate, Approved, In Progress, or Review.",
+      "You have the 'Work Order Line - Create and Edit' setting enabled.",
+      "Your 'Work Orders → Work Order View Mode' permission is set to Tech View.",
+      "The row is linked to a catalog part that is held in at least one bin (a part with no bins is treated as not stocked and this story does not apply)."
+    ],
+    "steps": [
+      "Select a catalog part whose Default bin covers the quantity and note the allocation.",
+      "Select a part whose Default bin is below the quantity but another single bin covers it.",
+      "Select a part where no single bin covers the quantity."
+    ],
+    "expected": "1. When the Default bin covers the quantity, the full quantity is allocated to the Default bin.\n2. When the Default bin is below the quantity, the full quantity is allocated to the largest single bin whose on-hand covers it.\n3. When no single bin covers the quantity, the allocation stays on the Default bin.\n4. The allocation is never split automatically.\n\n---\nThis is the expected behaviour as per epic SV-9315 and Story 7 (Bin Allocation on the Inline Row); the Story 7 Jira ticket is TBD and the Inline Add and Edit Parts on Work Order Lines specification version 16, section S7-R3, read on 31 August 2026.\n\nAUTOMATION: Not available on Build to test Yet - Last checked 8/31/2026",
+    "design_ref": "Claude Design “Add Part” artifact 561657da (binding visual reference), as exported 2026-08-25.",
+    "spec_ref": "requirements.md (Inline Add and Edit Parts spec v16)",
+    "refs": "SV-9315 (S7-R3)",
+    "viu_status": "source-verified-only",
+    "notes": ""
+  },
+  {
+    "id": "IAEP-BIN-04",
+    "area": "Inline Add and Edit Parts - Bin Allocation",
+    "title": "Allocation is shown below the row as a Pulled from chip",
+    "priority": "Medium",
+    "type": "Functional",
+    "permissions_required": "Work Order Line - Create and Edit; Work Order View Mode",
+    "preconditions": [
+      "A work order is open with status Estimate, Approved, In Progress, or Review.",
+      "You have the 'Work Order Line - Create and Edit' setting enabled.",
+      "Your 'Work Orders → Work Order View Mode' permission is set to Tech View.",
+      "The row is linked to a catalog part that is held in at least one bin (a part with no bins is treated as not stocked and this story does not apply)."
+    ],
+    "steps": [
+      "Select a stocked catalog part and look below the inline row.",
+      "Then clear the allocation / part so no allocation exists and look again."
+    ],
+    "expected": "1. While an allocation exists, it is displayed below the row as “Pulled from” followed by a chip.\n2. The chip is displayed only while an allocation exists.\n\n---\nThis is the expected behaviour as per epic SV-9315 and Story 7 (Bin Allocation on the Inline Row); the Story 7 Jira ticket is TBD and the Inline Add and Edit Parts on Work Order Lines specification version 16, section S7-R4, read on 31 August 2026.\n\nAUTOMATION: Not available on Build to test Yet - Last checked 8/31/2026",
+    "design_ref": "Claude Design “Add Part” artifact 561657da (binding visual reference), as exported 2026-08-25.",
+    "spec_ref": "requirements.md (Inline Add and Edit Parts spec v16)",
+    "refs": "SV-9315 (S7-R4)",
+    "viu_status": "source-verified-only",
+    "notes": ""
+  },
+  {
+    "id": "IAEP-BIN-05",
+    "area": "Inline Add and Edit Parts - Bin Allocation",
+    "title": "Chip label is the bin name for one bin and N bins for a split",
+    "priority": "Medium",
+    "type": "Functional",
+    "permissions_required": "Work Order Line - Create and Edit; Work Order View Mode",
+    "preconditions": [
+      "A work order is open with status Estimate, Approved, In Progress, or Review.",
+      "You have the 'Work Order Line - Create and Edit' setting enabled.",
+      "Your 'Work Orders → Work Order View Mode' permission is set to Tech View.",
+      "The row is linked to a catalog part that is held in at least one bin (a part with no bins is treated as not stocked and this story does not apply)."
+    ],
+    "steps": [
+      "Allocate the whole quantity to a single bin and read the chip label.",
+      "Split the quantity across two or more bins and read the chip label."
+    ],
+    "expected": "1. For a single-bin allocation the chip label is the bin name.\n2. For a split allocation the chip label reads “N bins” (where N is the number of bins).\n\n---\nThis is the expected behaviour as per epic SV-9315 and Story 7 (Bin Allocation on the Inline Row); the Story 7 Jira ticket is TBD and the Inline Add and Edit Parts on Work Order Lines specification version 16, section S7-R5, read on 31 August 2026.\n\nAUTOMATION: Not available on Build to test Yet - Last checked 8/31/2026",
+    "design_ref": "Claude Design “Add Part” artifact 561657da (binding visual reference), as exported 2026-08-25.",
+    "spec_ref": "requirements.md (Inline Add and Edit Parts spec v16)",
+    "refs": "SV-9315 (S7-R5)",
+    "viu_status": "source-verified-only",
+    "notes": ""
+  },
+  {
+    "id": "IAEP-BIN-06",
+    "area": "Inline Add and Edit Parts - Bin Allocation",
+    "title": "Selecting the chip opens a bin picker listing every bin",
+    "priority": "Medium",
+    "type": "Functional",
+    "permissions_required": "Work Order Line - Create and Edit; Work Order View Mode",
+    "preconditions": [
+      "A work order is open with status Estimate, Approved, In Progress, or Review.",
+      "You have the 'Work Order Line - Create and Edit' setting enabled.",
+      "Your 'Work Orders → Work Order View Mode' permission is set to Tech View.",
+      "The row is linked to a catalog part that is held in at least one bin (a part with no bins is treated as not stocked and this story does not apply).",
+      "An allocation exists so the Pulled from chip is shown."
+    ],
+    "steps": [
+      "Select the “Pulled from” chip."
+    ],
+    "expected": "1. A picker opens listing every bin in catalog order, each with its on-hand quantity.\n2. A check marks the currently selected bin and a Default badge marks the Default bin.\n3. Any bin whose on-hand is below the requested quantity is shown in warning styling.\n4. The picker ends with a “Split across bins…” action.\n\n---\nThis is the expected behaviour as per epic SV-9315 and Story 7 (Bin Allocation on the Inline Row); the Story 7 Jira ticket is TBD and the Inline Add and Edit Parts on Work Order Lines specification version 16, section S7-R6, read on 31 August 2026.\n\nAUTOMATION: Not available on Build to test Yet - Last checked 8/31/2026",
+    "design_ref": "Claude Design “Add Part” artifact 561657da (binding visual reference), as exported 2026-08-25.",
+    "spec_ref": "requirements.md (Inline Add and Edit Parts spec v16)",
+    "refs": "SV-9315 (S7-R6)",
+    "viu_status": "source-verified-only",
+    "notes": ""
+  },
+  {
+    "id": "IAEP-BIN-07",
+    "area": "Inline Add and Edit Parts - Bin Allocation",
+    "title": "Choosing a bin from the picker moves the full quantity into it",
+    "priority": "Medium",
+    "type": "Functional",
+    "permissions_required": "Work Order Line - Create and Edit; Work Order View Mode",
+    "preconditions": [
+      "A work order is open with status Estimate, Approved, In Progress, or Review.",
+      "You have the 'Work Order Line - Create and Edit' setting enabled.",
+      "Your 'Work Orders → Work Order View Mode' permission is set to Tech View.",
+      "The row is linked to a catalog part that is held in at least one bin (a part with no bins is treated as not stocked and this story does not apply).",
+      "The bin picker is open."
+    ],
+    "steps": [
+      "Choose a bin other than the current one from the picker."
+    ],
+    "expected": "1. The full quantity moves into the chosen bin.\n2. The allocation is now marked as manually chosen.\n\n---\nThis is the expected behaviour as per epic SV-9315 and Story 7 (Bin Allocation on the Inline Row); the Story 7 Jira ticket is TBD and the Inline Add and Edit Parts on Work Order Lines specification version 16, section S7-R7, read on 31 August 2026.\n\nAUTOMATION: Not available on Build to test Yet - Last checked 8/31/2026",
+    "design_ref": "Claude Design “Add Part” artifact 561657da (binding visual reference), as exported 2026-08-25.",
+    "spec_ref": "requirements.md (Inline Add and Edit Parts spec v16)",
+    "refs": "SV-9315 (S7-R7)",
+    "viu_status": "source-verified-only",
+    "notes": ""
+  },
+  {
+    "id": "IAEP-BIN-08",
+    "area": "Inline Add and Edit Parts - Bin Allocation",
+    "title": "Allocating more than a bin holds is permitted and only warns",
+    "priority": "Medium",
+    "type": "Functional",
+    "permissions_required": "Work Order Line - Create and Edit; Work Order View Mode",
+    "preconditions": [
+      "A work order is open with status Estimate, Approved, In Progress, or Review.",
+      "You have the 'Work Order Line - Create and Edit' setting enabled.",
+      "Your 'Work Orders → Work Order View Mode' permission is set to Tech View.",
+      "The row is linked to a catalog part that is held in at least one bin (a part with no bins is treated as not stocked and this story does not apply)."
+    ],
+    "steps": [
+      "Allocate a quantity larger than the chosen bin's on-hand quantity.",
+      "Attempt to save."
+    ],
+    "expected": "1. Allocating more than a bin's on-hand quantity is permitted; the bin is allowed to go negative.\n2. The system warns but does not block the save.\n\n---\nThis is the expected behaviour as per epic SV-9315 and Story 7 (Bin Allocation on the Inline Row); the Story 7 Jira ticket is TBD and the Inline Add and Edit Parts on Work Order Lines specification version 16, section S7-R8, read on 31 August 2026.\n\nAUTOMATION: Not available on Build to test Yet - Last checked 8/31/2026",
+    "design_ref": "Claude Design “Add Part” artifact 561657da (binding visual reference), as exported 2026-08-25.",
+    "spec_ref": "requirements.md (Inline Add and Edit Parts spec v16)",
+    "refs": "SV-9315 (S7-R8)",
+    "viu_status": "source-verified-only",
+    "notes": ""
+  },
+  {
+    "id": "IAEP-BIN-09",
+    "area": "Inline Add and Edit Parts - Bin Allocation",
+    "title": "A short single-bin allocation shows the takes-negative warning",
+    "priority": "Medium",
+    "type": "Functional",
+    "permissions_required": "Work Order Line - Create and Edit; Work Order View Mode",
+    "preconditions": [
+      "A work order is open with status Estimate, Approved, In Progress, or Review.",
+      "You have the 'Work Order Line - Create and Edit' setting enabled.",
+      "Your 'Work Orders → Work Order View Mode' permission is set to Tech View.",
+      "The row is linked to a catalog part that is held in at least one bin (a part with no bins is treated as not stocked and this story does not apply).",
+      "The full quantity is allocated to a single bin whose on-hand is below that quantity."
+    ],
+    "steps": [
+      "Look at the chip and the note beside it."
+    ],
+    "expected": "1. The chip is shown in warning styling.\n2. This warning is displayed beside it: “Only <on hand> here. Pulling <qty> takes this bin negative.”\n\n---\nThis is the expected behaviour as per epic SV-9315 and Story 7 (Bin Allocation on the Inline Row); the Story 7 Jira ticket is TBD and the Inline Add and Edit Parts on Work Order Lines specification version 16, section S7-R9, read on 31 August 2026.\n\nAUTOMATION: Not available on Build to test Yet - Last checked 8/31/2026",
+    "design_ref": "Claude Design “Add Part” artifact 561657da (binding visual reference), as exported 2026-08-25.",
+    "spec_ref": "requirements.md (Inline Add and Edit Parts spec v16)",
+    "refs": "SV-9315 (S7-R9)",
+    "viu_status": "source-verified-only",
+    "notes": ""
+  },
+  {
+    "id": "IAEP-BIN-10",
+    "area": "Inline Add and Edit Parts - Bin Allocation",
+    "title": "Auto-switching off the Default bin shows an informational note",
+    "priority": "Medium",
+    "type": "Functional",
+    "permissions_required": "Work Order Line - Create and Edit; Work Order View Mode",
+    "preconditions": [
+      "A work order is open with status Estimate, Approved, In Progress, or Review.",
+      "You have the 'Work Order Line - Create and Edit' setting enabled.",
+      "Your 'Work Orders → Work Order View Mode' permission is set to Tech View.",
+      "The row is linked to a catalog part that is held in at least one bin (a part with no bins is treated as not stocked and this story does not apply).",
+      "The Default bin is below the quantity but another single bin covers it, so auto-allocation moved off the Default."
+    ],
+    "steps": [
+      "Look at the note beside the chip."
+    ],
+    "expected": "1. This informational note is displayed beside the chip: “Default bin <name> has <on hand>. Switched to a bin that covers <qty>.”\n2. It is shown only when the takes-negative warning (S7-R9) does not apply.\n\n---\nThis is the expected behaviour as per epic SV-9315 and Story 7 (Bin Allocation on the Inline Row); the Story 7 Jira ticket is TBD and the Inline Add and Edit Parts on Work Order Lines specification version 16, section S7-R10, read on 31 August 2026.\n\nAUTOMATION: Not available on Build to test Yet - Last checked 8/31/2026",
+    "design_ref": "Claude Design “Add Part” artifact 561657da (binding visual reference), as exported 2026-08-25.",
+    "spec_ref": "requirements.md (Inline Add and Edit Parts spec v16)",
+    "refs": "SV-9315 (S7-R10)",
+    "viu_status": "source-verified-only",
+    "notes": ""
+  },
+  {
+    "id": "IAEP-BIN-11",
+    "area": "Inline Add and Edit Parts - Bin Allocation",
+    "title": "Editing the quantity re-runs allocation per manual or automatic state",
+    "priority": "Medium",
+    "type": "Functional",
+    "permissions_required": "Work Order Line - Create and Edit; Work Order View Mode",
+    "preconditions": [
+      "A work order is open with status Estimate, Approved, In Progress, or Review.",
+      "You have the 'Work Order Line - Create and Edit' setting enabled.",
+      "Your 'Work Orders → Work Order View Mode' permission is set to Tech View.",
+      "The row is linked to a catalog part that is held in at least one bin (a part with no bins is treated as not stocked and this story does not apply)."
+    ],
+    "steps": [
+      "With a manually chosen single bin, change the quantity.",
+      "With an automatic allocation, change the quantity."
+    ],
+    "expected": "1. When the user manually chose a single bin, that bin is kept and the new quantity is moved into it — it is not re-picked, and the takes-negative warning (S7-R9) applies if the bin no longer covers it.\n2. When the allocation was automatic, the auto-allocation rule (S7-R3) runs again for the new quantity.\n\n---\nThis is the expected behaviour as per epic SV-9315 and Story 7 (Bin Allocation on the Inline Row); the Story 7 Jira ticket is TBD and the Inline Add and Edit Parts on Work Order Lines specification version 16, section S7-R11, read on 31 August 2026.\n\nAUTOMATION: Not available on Build to test Yet - Last checked 8/31/2026",
+    "design_ref": "Claude Design “Add Part” artifact 561657da (binding visual reference), as exported 2026-08-25.",
+    "spec_ref": "requirements.md (Inline Add and Edit Parts spec v16)",
+    "refs": "SV-9315 (S7-R11)",
+    "viu_status": "source-verified-only",
+    "notes": ""
+  },
+  {
+    "id": "IAEP-BIN-12",
+    "area": "Inline Add and Edit Parts - Bin Allocation",
+    "title": "Split across bins opens the right modal for each view mode",
+    "priority": "Medium",
+    "type": "Functional",
+    "permissions_required": "Work Order Line - Create and Edit; Work Order View Mode",
+    "preconditions": [
+      "A work order is open with status Estimate, Approved, In Progress, or Review.",
+      "You have the 'Work Order Line - Create and Edit' setting enabled.",
+      "The row is linked to a catalog part that is held in at least one bin (a part with no bins is treated as not stocked and this story does not apply).",
+      "The bin picker is open on an add row."
+    ],
+    "steps": [
+      "As a Tech View user, select “Split across bins…”.",
+      "As a Full View user on the add row, select “Split across bins…”."
+    ],
+    "expected": "1. For a Tech View user, “Split across bins…” opens the Bin Locations modal.\n2. For a Full View user on the add row, it opens the part details modal instead, where a per-bin allocation table replaces the single quantity field and focus lands on the first bin input.\n\n---\nThis is the expected behaviour as per epic SV-9315 and Story 7 (Bin Allocation on the Inline Row); the Story 7 Jira ticket is TBD and the Inline Add and Edit Parts on Work Order Lines specification version 16, section S7-R12, read on 31 August 2026.\n\nAUTOMATION: Not available on Build to test Yet - Last checked 8/31/2026",
+    "design_ref": "Claude Design “Add Part” artifact 561657da (binding visual reference), as exported 2026-08-25.",
+    "spec_ref": "requirements.md (Inline Add and Edit Parts spec v16)",
+    "refs": "SV-9315 (S7-R12)",
+    "viu_status": "source-verified-only",
+    "notes": ""
+  },
+  {
+    "id": "IAEP-BIN-13",
+    "area": "Inline Add and Edit Parts - Bin Allocation",
+    "title": "Bin Locations modal lists a row per bin with Auto and Apply",
+    "priority": "Medium",
+    "type": "Functional",
+    "permissions_required": "Work Order Line - Create and Edit; Work Order View Mode",
+    "preconditions": [
+      "A work order is open with status Estimate, Approved, In Progress, or Review.",
+      "You have the 'Work Order Line - Create and Edit' setting enabled.",
+      "Your 'Work Orders → Work Order View Mode' permission is set to Tech View.",
+      "The row is linked to a catalog part that is held in at least one bin (a part with no bins is treated as not stocked and this story does not apply).",
+      "The Bin Locations modal is open via “Split across bins…”."
+    ],
+    "steps": [
+      "Inspect the modal's rows and actions.",
+      "Select the Auto action."
+    ],
+    "expected": "1. The modal lists one row per bin, each showing name, a Default badge, on-hand quantity, and an allocation input.\n2. An Auto action redistributes the quantity Default-first then largest-first.\n3. An Apply action is present.\n\n---\nThis is the expected behaviour as per epic SV-9315 and Story 7 (Bin Allocation on the Inline Row); the Story 7 Jira ticket is TBD and the Inline Add and Edit Parts on Work Order Lines specification version 16, section S7-R13, read on 31 August 2026.\n\nAUTOMATION: Not available on Build to test Yet - Last checked 8/31/2026",
+    "design_ref": "Claude Design “Add Part” artifact 561657da (binding visual reference), as exported 2026-08-25.",
+    "spec_ref": "requirements.md (Inline Add and Edit Parts spec v16)",
+    "refs": "SV-9315 (S7-R13)",
+    "viu_status": "source-verified-only",
+    "notes": ""
+  },
+  {
+    "id": "IAEP-BIN-14",
+    "area": "Inline Add and Edit Parts - Bin Allocation",
+    "title": "Applying a split writes it back and sets quantity to the sum",
+    "priority": "Medium",
+    "type": "Functional",
+    "permissions_required": "Work Order Line - Create and Edit; Work Order View Mode",
+    "preconditions": [
+      "A work order is open with status Estimate, Approved, In Progress, or Review.",
+      "You have the 'Work Order Line - Create and Edit' setting enabled.",
+      "Your 'Work Orders → Work Order View Mode' permission is set to Tech View.",
+      "The row is linked to a catalog part that is held in at least one bin (a part with no bins is treated as not stocked and this story does not apply).",
+      "The Bin Locations modal is open with per-bin allocations entered."
+    ],
+    "steps": [
+      "Enter allocations across two or more bins and select Apply."
+    ],
+    "expected": "1. The split is written back to the inline row.\n2. The row's quantity is set to the sum of the per-bin allocations.\n\n---\nThis is the expected behaviour as per epic SV-9315 and Story 7 (Bin Allocation on the Inline Row); the Story 7 Jira ticket is TBD and the Inline Add and Edit Parts on Work Order Lines specification version 16, section S7-R14, read on 31 August 2026.\n\nAUTOMATION: Not available on Build to test Yet - Last checked 8/31/2026",
+    "design_ref": "Claude Design “Add Part” artifact 561657da (binding visual reference), as exported 2026-08-25.",
+    "spec_ref": "requirements.md (Inline Add and Edit Parts spec v16)",
+    "refs": "SV-9315 (S7-R14)",
+    "viu_status": "source-verified-only",
+    "notes": ""
+  },
+  {
+    "id": "IAEP-BIN-15",
+    "area": "Inline Add and Edit Parts - Bin Allocation",
+    "title": "Already-negative bins show in error styling but do not block",
+    "priority": "Medium",
+    "type": "Functional",
+    "permissions_required": "Work Order Line - Create and Edit; Work Order View Mode",
+    "preconditions": [
+      "A work order is open with status Estimate, Approved, In Progress, or Review.",
+      "You have the 'Work Order Line - Create and Edit' setting enabled.",
+      "Your 'Work Orders → Work Order View Mode' permission is set to Tech View.",
+      "The row is linked to a catalog part that is held in at least one bin (a part with no bins is treated as not stocked and this story does not apply).",
+      "At least one bin is already at a negative on-hand quantity.",
+      "The Bin Locations modal is open."
+    ],
+    "steps": [
+      "Look at the row for the already-negative bin.",
+      "Enter an allocation and Apply."
+    ],
+    "expected": "1. Bins already at a negative on-hand quantity are displayed in error styling in the Bin Locations modal.\n2. Allocation is not blocked.\n\n---\nThis is the expected behaviour as per epic SV-9315 and Story 7 (Bin Allocation on the Inline Row); the Story 7 Jira ticket is TBD and the Inline Add and Edit Parts on Work Order Lines specification version 16, section S7-R15, read on 31 August 2026.\n\nAUTOMATION: Not available on Build to test Yet - Last checked 8/31/2026",
+    "design_ref": "Claude Design “Add Part” artifact 561657da (binding visual reference), as exported 2026-08-25.",
+    "spec_ref": "requirements.md (Inline Add and Edit Parts spec v16)",
+    "refs": "SV-9315 (S7-R15)",
+    "viu_status": "source-verified-only",
+    "notes": ""
+  },
+  {
+    "id": "IAEP-BIN-16",
+    "area": "Inline Add and Edit Parts - Bin Allocation",
+    "title": "Tech View edit row carries the same allocation UI and restores stored splits",
+    "priority": "Medium",
+    "type": "Functional",
+    "permissions_required": "Work Order Line - Create and Edit; Work Order View Mode",
+    "preconditions": [
+      "A work order is open with status Estimate, Approved, In Progress, or Review.",
+      "You have the 'Work Order Line - Create and Edit' setting enabled.",
+      "Your 'Work Orders → Work Order View Mode' permission is set to Tech View.",
+      "The work order line already has at least one part on it.",
+      "The row is linked to a catalog part that is held in at least one bin (a part with no bins is treated as not stocked and this story does not apply)."
+    ],
+    "steps": [
+      "Open the Tech View inline edit row on a part that already has a stored allocation.",
+      "Open the edit row on a part that has no stored allocation."
+    ],
+    "expected": "1. The inline edit row carries the same chip, picker, warnings and label format as the add row.\n2. When the part already has a stored allocation, it is restored and treated as manually chosen.\n3. When there is no stored allocation, auto-allocation runs.\n4. Full View has no inline edit row (S5-R2), so only Tech View reaches this path.\n\n---\nThis is the expected behaviour as per epic SV-9315 and Story 7 (Bin Allocation on the Inline Row); the Story 7 Jira ticket is TBD and the Inline Add and Edit Parts on Work Order Lines specification version 16, section S7-R16, read on 31 August 2026.\n\nAUTOMATION: Not available on Build to test Yet - Last checked 8/31/2026",
+    "design_ref": "Claude Design “Add Part” artifact 561657da (binding visual reference), as exported 2026-08-25.",
+    "spec_ref": "requirements.md (Inline Add and Edit Parts spec v16)",
+    "refs": "SV-9315 (S7-R16)",
+    "viu_status": "source-verified-only",
+    "notes": ""
+  },
+  {
+    "id": "IAEP-BIN-17",
+    "area": "Inline Add and Edit Parts - Bin Allocation",
+    "title": "Allocation is stored on save and not shown on the saved part row",
+    "priority": "Medium",
+    "type": "Functional",
+    "permissions_required": "Work Order Line - Create and Edit; Work Order View Mode",
+    "preconditions": [
+      "A work order is open with status Estimate, Approved, In Progress, or Review.",
+      "You have the 'Work Order Line - Create and Edit' setting enabled.",
+      "Your 'Work Orders → Work Order View Mode' permission is set to Tech View.",
+      "The row is linked to a catalog part that is held in at least one bin (a part with no bins is treated as not stocked and this story does not apply)."
+    ],
+    "steps": [
+      "Allocate a bin, save the part, and look at the saved part row."
+    ],
+    "expected": "1. The allocation is stored with the part line on save.\n2. It is not displayed on the saved part row (surfacing it in the part detail panel is out of scope per the spec's §2).\n\n---\nThis is the expected behaviour as per epic SV-9315 and Story 7 (Bin Allocation on the Inline Row); the Story 7 Jira ticket is TBD and the Inline Add and Edit Parts on Work Order Lines specification version 16, section S7-R17, read on 31 August 2026.\n\nAUTOMATION: Not available on Build to test Yet - Last checked 8/31/2026",
+    "design_ref": "Claude Design “Add Part” artifact 561657da (binding visual reference), as exported 2026-08-25.",
+    "spec_ref": "requirements.md (Inline Add and Edit Parts spec v16)",
+    "refs": "SV-9315 (S7-R17)",
+    "viu_status": "source-verified-only",
+    "notes": ""
+  },
+  {
+    "id": "IAEP-BIN-18",
+    "area": "Inline Add and Edit Parts - Bin Allocation",
+    "title": "The Pulled from chip is reachable by Tab",
+    "priority": "Medium",
+    "type": "Functional",
+    "permissions_required": "Work Order Line - Create and Edit; Work Order View Mode",
+    "preconditions": [
+      "A work order is open with status Estimate, Approved, In Progress, or Review.",
+      "You have the 'Work Order Line - Create and Edit' setting enabled.",
+      "Your 'Work Orders → Work Order View Mode' permission is set to Tech View.",
+      "The row is linked to a catalog part that is held in at least one bin (a part with no bins is treated as not stocked and this story does not apply).",
+      "An allocation exists so the Pulled from chip is shown."
+    ],
+    "steps": [
+      "From the row's last field, Tab toward the chip (per the spec's Keyboard Model — Inline Row)."
+    ],
+    "expected": "1. The “Pulled from” chip is reachable by Tab; it is the last Tab stop in the row's keyboard order, after Save and Cancel (X) (and after More Options in Full View).\n\n---\nThis is the expected behaviour as per epic SV-9315 and Story 7 (Bin Allocation on the Inline Row); the Story 7 Jira ticket is TBD and the Inline Add and Edit Parts on Work Order Lines specification version 16, section S7-R18 and Keyboard Model - Inline Row, read on 31 August 2026.\n\nAUTOMATION: Not available on Build to test Yet - Last checked 8/31/2026",
+    "design_ref": "Claude Design “Add Part” artifact 561657da (binding visual reference), as exported 2026-08-25.",
+    "spec_ref": "requirements.md (Inline Add and Edit Parts spec v16)",
+    "refs": "SV-9315 (S7-R18)",
+    "viu_status": "source-verified-only",
+    "notes": ""
+  },
+  {
+    "id": "IAEP-BIN-19",
+    "area": "Inline Add and Edit Parts - Bin Allocation",
+    "title": "A part with no bins gets no allocation and no chip",
+    "priority": "Medium",
+    "type": "Functional",
+    "permissions_required": "Work Order Line - Create and Edit; Work Order View Mode",
+    "preconditions": [
+      "A work order is open with status Estimate, Approved, In Progress, or Review.",
+      "You have the 'Work Order Line - Create and Edit' setting enabled.",
+      "Your 'Work Orders → Work Order View Mode' permission is set to Tech View."
+    ],
+    "steps": [
+      "Select a catalog part that is held in no bins (not stocked)."
+    ],
+    "expected": "1. The part gets no allocation and no chip.\n2. The “Pulled from” line is not displayed.\n\n---\nThis is the expected behaviour as per epic SV-9315 and Story 7 (Bin Allocation on the Inline Row); the Story 7 Jira ticket is TBD and the Inline Add and Edit Parts on Work Order Lines specification version 16, section S7-N1, read on 31 August 2026.\n\nAUTOMATION: Not available on Build to test Yet - Last checked 8/31/2026",
+    "design_ref": "Claude Design “Add Part” artifact 561657da (binding visual reference), as exported 2026-08-25.",
+    "spec_ref": "requirements.md (Inline Add and Edit Parts spec v16)",
+    "refs": "SV-9315 (S7-N1)",
+    "viu_status": "source-verified-only",
+    "notes": ""
+  },
+  {
+    "id": "IAEP-BIN-20",
+    "area": "Inline Add and Edit Parts - Bin Allocation",
+    "title": "A part not linked to the catalog gets no allocation and no chip",
+    "priority": "Medium",
+    "type": "Functional",
+    "permissions_required": "Work Order Line - Create and Edit; Work Order View Mode",
+    "preconditions": [
+      "A work order is open with status Estimate, Approved, In Progress, or Review.",
+      "You have the 'Work Order Line - Create and Edit' setting enabled.",
+      "Your 'Work Orders → Work Order View Mode' permission is set to Tech View."
+    ],
+    "steps": [
+      "Free-type a description with no catalog part selected."
+    ],
+    "expected": "1. A part not linked to the catalog gets no allocation and no chip.\n\n---\nThis is the expected behaviour as per epic SV-9315 and Story 7 (Bin Allocation on the Inline Row); the Story 7 Jira ticket is TBD and the Inline Add and Edit Parts on Work Order Lines specification version 16, section S7-N2, read on 31 August 2026.\n\nAUTOMATION: Not available on Build to test Yet - Last checked 8/31/2026",
+    "design_ref": "Claude Design “Add Part” artifact 561657da (binding visual reference), as exported 2026-08-25.",
+    "spec_ref": "requirements.md (Inline Add and Edit Parts spec v16)",
+    "refs": "SV-9315 (S7-N2)",
+    "viu_status": "source-verified-only",
+    "notes": ""
+  },
+  {
+    "id": "IAEP-BIN-21",
+    "area": "Inline Add and Edit Parts - Bin Allocation",
+    "title": "No note is shown when the Default bin covers the quantity",
+    "priority": "Medium",
+    "type": "Functional",
+    "permissions_required": "Work Order Line - Create and Edit; Work Order View Mode",
+    "preconditions": [
+      "A work order is open with status Estimate, Approved, In Progress, or Review.",
+      "You have the 'Work Order Line - Create and Edit' setting enabled.",
+      "Your 'Work Orders → Work Order View Mode' permission is set to Tech View.",
+      "The row is linked to a catalog part that is held in at least one bin (a part with no bins is treated as not stocked and this story does not apply).",
+      "The Default bin's on-hand covers the quantity, and other bins would also cover it."
+    ],
+    "steps": [
+      "Select the part and look for a switched-bin note."
+    ],
+    "expected": "1. When the Default bin covers the quantity, no note is shown even if other bins would also cover it.\n\n---\nThis is the expected behaviour as per epic SV-9315 and Story 7 (Bin Allocation on the Inline Row); the Story 7 Jira ticket is TBD and the Inline Add and Edit Parts on Work Order Lines specification version 16, section S7-E1, read on 31 August 2026.\n\nAUTOMATION: Not available on Build to test Yet - Last checked 8/31/2026",
+    "design_ref": "Claude Design “Add Part” artifact 561657da (binding visual reference), as exported 2026-08-25.",
+    "spec_ref": "requirements.md (Inline Add and Edit Parts spec v16)",
+    "refs": "SV-9315 (S7-E1)",
+    "viu_status": "source-verified-only",
+    "notes": ""
+  },
+  {
+    "id": "IAEP-BIN-22",
+    "area": "Inline Add and Edit Parts - Bin Allocation",
+    "title": "A split allocation never shows the takes-negative warning",
+    "priority": "Medium",
+    "type": "Functional",
+    "permissions_required": "Work Order Line - Create and Edit; Work Order View Mode",
+    "preconditions": [
+      "A work order is open with status Estimate, Approved, In Progress, or Review.",
+      "You have the 'Work Order Line - Create and Edit' setting enabled.",
+      "Your 'Work Orders → Work Order View Mode' permission is set to Tech View.",
+      "The row is linked to a catalog part that is held in at least one bin (a part with no bins is treated as not stocked and this story does not apply).",
+      "The quantity is split across two or more bins."
+    ],
+    "steps": [
+      "Create a split allocation and look for the takes-negative warning."
+    ],
+    "expected": "1. A split allocation never shows the takes-negative warning from S7-R9; that warning applies only to a single-bin allocation.\n\n---\nThis is the expected behaviour as per epic SV-9315 and Story 7 (Bin Allocation on the Inline Row); the Story 7 Jira ticket is TBD and the Inline Add and Edit Parts on Work Order Lines specification version 16, section S7-E2, read on 31 August 2026.\n\nAUTOMATION: Not available on Build to test Yet - Last checked 8/31/2026",
+    "design_ref": "Claude Design “Add Part” artifact 561657da (binding visual reference), as exported 2026-08-25.",
+    "spec_ref": "requirements.md (Inline Add and Edit Parts spec v16)",
+    "refs": "SV-9315 (S7-E2)",
+    "viu_status": "source-verified-only",
+    "notes": ""
+  }
+]
