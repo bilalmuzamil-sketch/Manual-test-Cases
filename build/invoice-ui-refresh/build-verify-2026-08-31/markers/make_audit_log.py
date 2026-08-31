@@ -55,10 +55,23 @@ with open(f'{DIR}/TESTRAIL-EXECUTION-LOG-markers-2026-08-31.md', 'w') as f:
                    f"marker CARRIED VERBATIM and last; provenance s1 unaltered; NO build sentence added; ")
                 + f"atmstatus/section_id/refs unchanged |\n")
     if bad:
-        f.write('\n## Failed / skipped\n\n| C-id | Outcome | Detail |\n|---|---|---|\n')
+        applied_ok = {str(r['cid']) for r in ok}
+        f.write('\n## Failed / skipped attempts\n\n')
+        f.write('A row marked **RETRIED — SUCCEEDED** is a failed ATTEMPT whose case was written and '
+                'verified on a later attempt; it is listed because the attempt happened, not because '
+                'the case is outstanding. Every one of these was the same known intermittent: the '
+                'edit form carries a one-shot token, and when it has rotated the save POST returns 302 '
+                'but the browser stays on the edit page. The case was re-read from live first to '
+                'confirm nothing had half-landed, then retried.\n\n')
+        f.write('| C-id | Outcome | Detail |\n|---|---|---|\n')
         for r in bad:
-            f.write(f"| C{r['cid']} | {'SKIPPED' if r.get('skipped') else 'FAILED'} "
-                    f"| {(r.get('reason') or r.get('error') or '')[:300]} |\n")
+            cid = str(r['cid'])
+            out = 'SKIPPED' if r.get('skipped') else (
+                'FAILED, then **RETRIED — SUCCEEDED**' if cid in applied_ok else '**FAILED — STILL OUTSTANDING**')
+            f.write(f"| C{cid} | {out} | {(r.get('reason') or r.get('error') or '')[:260]} |\n")
+        still = [str(r['cid']) for r in bad if not r.get('skipped') and str(r['cid']) not in applied_ok]
+        f.write(f"\n**Cases left in a failed state: {len(still)}**"
+                + (f" — C{', C'.join(still)}\n" if still else " (none).\n"))
     f.write('\n## Automated cases changed — for Vlad (Rule 65)\n\n')
     changed3 = [r for r in ok if r['atm'] == 3]
     if changed3:

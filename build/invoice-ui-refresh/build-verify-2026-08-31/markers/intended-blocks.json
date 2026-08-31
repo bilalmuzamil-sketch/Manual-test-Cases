@@ -2307,5 +2307,368 @@
     "text": "1. Generate the document.\n2. Read the Adjustments group in the financial summary, top to bottom."
    }
   }
+ },
+ "44919": {
+  "title": "Authorizer is selected in the work order customer contact card",
+  "atm": 3,
+  "section_id": 6744,
+  "escaping": true,
+  "fields": {
+   "custom_expected": {
+    "blocks": [
+     [
+      "1. An \"Authorizer\" row appears in the customer contact card, directly below the Contact and Phone values, in the same label-and-value style.",
+      "2. Selecting the row opens a list of only the customer's contacts that have \"Approves Work\" enabled.",
+      "3. No other contact is offered, and no free-typed name can be entered.",
+      "4. This is the only place the Authorizer can be selected."
+     ],
+     [
+      "---",
+      "This is the expected behaviour as per epic SV-8218 and story SV-9142 (Story 3, Order Reference Fields) and the Invoice UI Refresh specification version 45, section S3-R5, read on 31 August 2026.",
+      "Last checked against build v26.35.5-8c3cc21 on 8/31/2026."
+     ],
+     [
+      "AUTOMATION: READY"
+     ]
+    ],
+    "text": "1. An \"Authorizer\" row appears in the customer contact card, directly below the Contact and Phone values, in the same label-and-value style.\n2. Selecting the row opens a list of only the customer's contacts that have \"Approves Work\" enabled.\n3. No other contact is offered, and no free-typed name can be entered.\n4. This is the only place the Authorizer can be selected.\n\n---\nThis is the expected behaviour as per epic SV-8218 and story SV-9142 (Story 3, Order Reference Fields) and the Invoice UI Refresh specification version 45, section S3-R5, read on 31 August 2026.\nLast checked against build v26.35.5-8c3cc21 on 8/31/2026.\n\nAUTOMATION: READY"
+   },
+   "custom_preconds": {
+    "blocks": [
+     [
+      "1. You are signed in to ShopView with access to work orders.",
+      "2. A work order exists for a customer that has at least one contact with 'Approves Work' enabled, and other contacts without it."
+     ]
+    ],
+    "text": "1. You are signed in to ShopView with access to work orders.\n2. A work order exists for a customer that has at least one contact with 'Approves Work' enabled, and other contacts without it."
+   },
+   "custom_steps": {
+    "blocks": [
+     [
+      "1. Open the work order.",
+      "2. Look at the customer contact card on the left side of the work order, below the Contact and Phone values.",
+      "3. Select the \"Authorizer\" row and look at the list of choices offered."
+     ]
+    ],
+    "text": "1. Open the work order.\n2. Look at the customer contact card on the left side of the work order, below the Contact and Phone values.\n3. Select the \"Authorizer\" row and look at the list of choices offered."
+   }
+  }
+ },
+ "44920": {
+  "title": "Authorizer is optional and can be cleared with 'No authorizer'",
+  "atm": 3,
+  "section_id": 6744,
+  "escaping": true,
+  "fields": {
+   "custom_expected": {
+    "blocks": [
+     [
+      "1. The Authorizer is not required and defaults to empty on a new work order.",
+      "2. The Authorizer list includes a \"No authorizer\" option.",
+      "3. Choosing \"No authorizer\" clears the selection back to empty."
+     ],
+     [
+      "---",
+      "This is the expected behaviour as per epic SV-8218 and story SV-9142 (Story 3, Order Reference Fields) and the Invoice UI Refresh specification version 45, section S3-R6, read on 31 August 2026.",
+      "Last checked against build v26.35.5-8c3cc21 on 8/31/2026."
+     ],
+     [
+      "AUTOMATION: READY"
+     ]
+    ],
+    "text": "1. The Authorizer is not required and defaults to empty on a new work order.\n2. The Authorizer list includes a \"No authorizer\" option.\n3. Choosing \"No authorizer\" clears the selection back to empty.\n\n---\nThis is the expected behaviour as per epic SV-8218 and story SV-9142 (Story 3, Order Reference Fields) and the Invoice UI Refresh specification version 45, section S3-R6, read on 31 August 2026.\nLast checked against build v26.35.5-8c3cc21 on 8/31/2026.\n\nAUTOMATION: READY"
+   },
+   "custom_preconds": {
+    "blocks": [
+     [
+      "1. You are signed in to ShopView.",
+      "2. A work order exists whose customer has 'Approves Work' contacts."
+     ]
+    ],
+    "text": "1. You are signed in to ShopView.\n2. A work order exists whose customer has 'Approves Work' contacts."
+   },
+   "custom_steps": {
+    "blocks": [
+     [
+      "1. Open a work order with no Authorizer selected and look at the Authorizer row.",
+      "2. Open the Authorizer list and note the options.",
+      "3. Select an authorizer, then reopen the list and choose \"No authorizer\"."
+     ]
+    ],
+    "text": "1. Open a work order with no Authorizer selected and look at the Authorizer row.\n2. Open the Authorizer list and note the options.\n3. Select an authorizer, then reopen the list and choose \"No authorizer\"."
+   }
+  }
+ },
+ "44921": {
+  "title": "Authorizer's phone shows below the name when the contact has one",
+  "atm": 3,
+  "section_id": 6744,
+  "escaping": true,
+  "fields": {
+   "custom_expected": {
+    "blocks": [
+     [
+      "1. When the selected authorizer's contact record has a phone number, the phone shows in the card directly below the authorizer's name, styled like the Contact's phone.",
+      "2. When the contact record has no phone number, no phone row is shown under the authorizer's name."
+     ],
+     [
+      "---",
+      "This is the expected behaviour as per epic SV-8218 and story SV-9142 (Story 3, Order Reference Fields) and the Invoice UI Refresh specification version 45, section S3-R7, read on 31 August 2026.",
+      "Last checked against build v26.35.5-8c3cc21 on 8/31/2026."
+     ],
+     [
+      "AUTOMATION: READY"
+     ]
+    ],
+    "text": "1. When the selected authorizer's contact record has a phone number, the phone shows in the card directly below the authorizer's name, styled like the Contact's phone.\n2. When the contact record has no phone number, no phone row is shown under the authorizer's name.\n\n---\nThis is the expected behaviour as per epic SV-8218 and story SV-9142 (Story 3, Order Reference Fields) and the Invoice UI Refresh specification version 45, section S3-R7, read on 31 August 2026.\nLast checked against build v26.35.5-8c3cc21 on 8/31/2026.\n\nAUTOMATION: READY"
+   },
+   "custom_preconds": {
+    "blocks": [
+     [
+      "1. You are signed in to ShopView.",
+      "2. A work order's customer has one 'Approves Work' contact WITH a phone number and one WITHOUT."
+     ]
+    ],
+    "text": "1. You are signed in to ShopView.\n2. A work order's customer has one 'Approves Work' contact WITH a phone number and one WITHOUT."
+   },
+   "custom_steps": {
+    "blocks": [
+     [
+      "1. Open the work order and select the authorizer whose contact has a phone number; look at the contact card.",
+      "2. Select the authorizer whose contact has no phone number; look at the contact card."
+     ]
+    ],
+    "text": "1. Open the work order and select the authorizer whose contact has a phone number; look at the contact card.\n2. Select the authorizer whose contact has no phone number; look at the contact card."
+   }
+  }
+ },
+ "44922": {
+  "title": "Authorizer is locked once the work order is invoiced",
+  "atm": 3,
+  "section_id": 6744,
+  "escaping": true,
+  "fields": {
+   "custom_expected": {
+    "blocks": [
+     [
+      "1. Once the work order is invoiced, the Authorizer row is locked and its value cannot be changed.",
+      "2. Before invoicing the row is editable; from the point of invoicing it is read-only.",
+      "3. If the invoice is later voided or reversed, the work order returns to Complete and the Authorizer row is re-enabled."
+     ],
+     [
+      "---",
+      "This is the expected behaviour as per epic SV-8218 and story SV-9142 (Story 3, Order Reference Fields) and the Invoice UI Refresh specification version 45, section S3-R8, read on 31 August 2026.",
+      "Last checked against build v26.35.5-8c3cc21 on 8/31/2026."
+     ],
+     [
+      "AUTOMATION: READY"
+     ]
+    ],
+    "text": "1. Once the work order is invoiced, the Authorizer row is locked and its value cannot be changed.\n2. Before invoicing the row is editable; from the point of invoicing it is read-only.\n3. If the invoice is later voided or reversed, the work order returns to Complete and the Authorizer row is re-enabled.\n\n---\nThis is the expected behaviour as per epic SV-8218 and story SV-9142 (Story 3, Order Reference Fields) and the Invoice UI Refresh specification version 45, section S3-R8, read on 31 August 2026.\nLast checked against build v26.35.5-8c3cc21 on 8/31/2026.\n\nAUTOMATION: READY"
+   },
+   "custom_preconds": {
+    "blocks": [
+     [
+      "1. You are signed in to ShopView.",
+      "2. A work order that has been invoiced exists, with (or without) an Authorizer selected."
+     ]
+    ],
+    "text": "1. You are signed in to ShopView.\n2. A work order that has been invoiced exists, with (or without) an Authorizer selected."
+   },
+   "custom_steps": {
+    "blocks": [
+     [
+      "1. Open the invoiced work order.",
+      "2. Try to change the Authorizer in the customer contact card."
+     ]
+    ],
+    "text": "1. Open the invoiced work order.\n2. Try to change the Authorizer in the customer contact card."
+   }
+  }
+ },
+ "44947": {
+  "title": "Payment method name resolves per rule (SHOPPAY shows 'Online')",
+  "atm": 1,
+  "section_id": 6749,
+  "escaping": true,
+  "marker_override": "AUTOMATION: HOLD - customer portal only exists on staging; this case cannot run on the QA branch",
+  "fields": {
+   "custom_expected": {
+    "blocks": [
+     [
+      "1. A payment's method shows the shop-configured payment-method name when configured.",
+      "2. When not configured, it shows the payment code with each underscore replaced by a space (for example credit_card shows as \"credit card\").",
+      "3. The \"SHOPPAY\" code shows as \"Online\"."
+     ],
+     [
+      "---",
+      "This is the expected behaviour as per epic SV-8218 and story SV-9147 (Story 8, Paid Banner, Payments and Balance) and the Invoice UI Refresh specification version 45, section S8-R3, read on 31 August 2026.",
+      "Last checked against build v26.35.5-8c3cc21 on 8/31/2026."
+     ],
+     [
+      "AUTOMATION: HOLD - customer portal only exists on staging; this case cannot run on the QA branch"
+     ]
+    ],
+    "text": "1. A payment's method shows the shop-configured payment-method name when configured.\n2. When not configured, it shows the payment code with each underscore replaced by a space (for example credit_card shows as \"credit card\").\n3. The \"SHOPPAY\" code shows as \"Online\".\n\n---\nThis is the expected behaviour as per epic SV-8218 and story SV-9147 (Story 8, Paid Banner, Payments and Balance) and the Invoice UI Refresh specification version 45, section S8-R3, read on 31 August 2026.\nLast checked against build v26.35.5-8c3cc21 on 8/31/2026.\n\nAUTOMATION: HOLD - customer portal only exists on staging; this case cannot run on the QA branch"
+   },
+   "custom_preconds": {
+    "blocks": [
+     [
+      "1. You are signed in to ShopView.",
+      "2. An Invoice has a payment with a shop-configured method name, one with an unconfigured code (for example credit_card), and one made online (SHOPPAY)."
+     ]
+    ],
+    "text": "1. You are signed in to ShopView.\n2. An Invoice has a payment with a shop-configured method name, one with an unconfigured code (for example credit_card), and one made online (SHOPPAY)."
+   },
+   "custom_steps": {
+    "blocks": [
+     [
+      "1. Generate the Invoice.",
+      "2. Read the method name on each payment row."
+     ]
+    ],
+    "text": "1. Generate the Invoice.\n2. Read the method name on each payment row."
+   }
+  }
+ },
+ "44951": {
+  "title": "Paid banner appears only on portal-generated Invoice PDFs, before all content",
+  "atm": 1,
+  "section_id": 6749,
+  "escaping": true,
+  "marker_override": "AUTOMATION: HOLD - customer portal only exists on staging; this case cannot run on the QA branch",
+  "fields": {
+   "custom_expected": {
+    "blocks": [
+     [
+      "1. On the portal-generated PDF the paid banner appears before all other invoice content, including the masthead.",
+      "2. The banner lists only portal-processed payments; shop-recorded payments appear only in the Payments section.",
+      "3. An Invoice PDF generated in the shop app never carries the banner, whether or not portal payments exist.",
+      "4. The banner shows a fixed status pill: exactly \"PAID IN FULL\" when the invoice is fully paid at generation time, otherwise exactly \"PARTIALLY PAID\".",
+      "5. The banner title reads exactly \"Payment Receipt (Batch) - Payments by ShopView\" when every listed payment was part of a batch, otherwise exactly \"Payment Receipt - Payments by ShopView\"."
+     ],
+     [
+      "---",
+      "This is the expected behaviour as per epic SV-8218 and story SV-9147 (Story 8, Paid Banner, Payments and Balance) and the Invoice UI Refresh specification version 45, section S8-R8, read on 31 August 2026.",
+      "Last checked against build v26.35.5-8c3cc21 on 8/31/2026."
+     ],
+     [
+      "AUTOMATION: HOLD - customer portal only exists on staging; this case cannot run on the QA branch"
+     ]
+    ],
+    "text": "1. On the portal-generated PDF the paid banner appears before all other invoice content, including the masthead.\n2. The banner lists only portal-processed payments; shop-recorded payments appear only in the Payments section.\n3. An Invoice PDF generated in the shop app never carries the banner, whether or not portal payments exist.\n4. The banner shows a fixed status pill: exactly \"PAID IN FULL\" when the invoice is fully paid at generation time, otherwise exactly \"PARTIALLY PAID\".\n5. The banner title reads exactly \"Payment Receipt (Batch) - Payments by ShopView\" when every listed payment was part of a batch, otherwise exactly \"Payment Receipt - Payments by ShopView\".\n\n---\nThis is the expected behaviour as per epic SV-8218 and story SV-9147 (Story 8, Paid Banner, Payments and Balance) and the Invoice UI Refresh specification version 45, section S8-R8, read on 31 August 2026.\nLast checked against build v26.35.5-8c3cc21 on 8/31/2026.\n\nAUTOMATION: HOLD - customer portal only exists on staging; this case cannot run on the QA branch"
+   },
+   "custom_preconds": {
+    "blocks": [
+     [
+      "1. You are signed in to ShopView.",
+      "2. You can obtain an Invoice PDF generated by the customer portal (with portal payments) and an Invoice PDF generated in the shop app for the same invoice."
+     ]
+    ],
+    "text": "1. You are signed in to ShopView.\n2. You can obtain an Invoice PDF generated by the customer portal (with portal payments) and an Invoice PDF generated in the shop app for the same invoice."
+   },
+   "custom_steps": {
+    "blocks": [
+     [
+      "1. Obtain the portal-generated Invoice PDF and look at the very top of the document.",
+      "2. Obtain the shop-app-generated Invoice PDF for the same invoice and look for the banner.",
+      "3. Check a portal-generated PDF that has shop-recorded (non-portal) payments too."
+     ]
+    ],
+    "text": "1. Obtain the portal-generated Invoice PDF and look at the very top of the document.\n2. Obtain the shop-app-generated Invoice PDF for the same invoice and look for the banner.\n3. Check a portal-generated PDF that has shop-recorded (non-portal) payments too."
+   }
+  }
+ },
+ "44952": {
+  "title": "Each banner payment shows its labeled fields and conditional fees/marker",
+  "atm": 1,
+  "section_id": 6749,
+  "escaping": true,
+  "marker_override": "AUTOMATION: HOLD - customer portal only exists on staging; this case cannot run on the QA branch",
+  "fields": {
+   "custom_expected": {
+    "blocks": [
+     [
+      "1. Each banner payment shows fields labeled exactly: \"Date / Time\", \"Paid By\", \"Method\", \"Invoice Amount\", and \"Total Charged\".",
+      "2. \"Total Charged\" is labeled \"Total Charged (Batch)\" for a batch payment and then covers the whole batch.",
+      "3. \"Convenience Fee\" and \"Late Fee\" each show only when the portal charged one (a non-zero amount).",
+      "4. \"Remaining Balance\" shows only when the balance immediately after that payment was greater than $0.00.",
+      "5. In a batch, each payment carries a \"Payment X of Y - Batch\" marker.",
+      "6. \"Date / Time\" reads in the format \"Jan 5, 2026 - 2:41 PM MST\" (date, then time with timezone)."
+     ],
+     [
+      "---",
+      "This is the expected behaviour as per epic SV-8218 and story SV-9147 (Story 8, Paid Banner, Payments and Balance) and the Invoice UI Refresh specification version 45, sections S8-R9 and G-R1, read on 31 August 2026.",
+      "Last checked against build v26.35.5-8c3cc21 on 8/31/2026."
+     ],
+     [
+      "AUTOMATION: HOLD - customer portal only exists on staging; this case cannot run on the QA branch"
+     ]
+    ],
+    "text": "1. Each banner payment shows fields labeled exactly: \"Date / Time\", \"Paid By\", \"Method\", \"Invoice Amount\", and \"Total Charged\".\n2. \"Total Charged\" is labeled \"Total Charged (Batch)\" for a batch payment and then covers the whole batch.\n3. \"Convenience Fee\" and \"Late Fee\" each show only when the portal charged one (a non-zero amount).\n4. \"Remaining Balance\" shows only when the balance immediately after that payment was greater than $0.00.\n5. In a batch, each payment carries a \"Payment X of Y - Batch\" marker.\n6. \"Date / Time\" reads in the format \"Jan 5, 2026 - 2:41 PM MST\" (date, then time with timezone).\n\n---\nThis is the expected behaviour as per epic SV-8218 and story SV-9147 (Story 8, Paid Banner, Payments and Balance) and the Invoice UI Refresh specification version 45, sections S8-R9 and G-R1, read on 31 August 2026.\nLast checked against build v26.35.5-8c3cc21 on 8/31/2026.\n\nAUTOMATION: HOLD - customer portal only exists on staging; this case cannot run on the QA branch"
+   },
+   "custom_preconds": {
+    "blocks": [
+     [
+      "1. You are signed in to ShopView.",
+      "2. You can obtain a portal-generated Invoice PDF with a single payment, and one paid as part of a batch, ideally with convenience/late fees."
+     ]
+    ],
+    "text": "1. You are signed in to ShopView.\n2. You can obtain a portal-generated Invoice PDF with a single payment, and one paid as part of a batch, ideally with convenience/late fees."
+   },
+   "custom_steps": {
+    "blocks": [
+     [
+      "1. Obtain the portal-generated PDF and read each banner payment's fields.",
+      "2. Compare a single-payment banner with a batch-payment banner."
+     ]
+    ],
+    "text": "1. Obtain the portal-generated PDF and read each banner payment's fields.\n2. Compare a single-payment banner with a batch-payment banner."
+   }
+  }
+ },
+ "45175": {
+  "title": "Paid banner pill and title wording follow the paid state and the batch rule",
+  "atm": 1,
+  "section_id": 6749,
+  "escaping": true,
+  "marker_override": "AUTOMATION: HOLD - customer portal only exists on staging; this case cannot run on the QA branch",
+  "fields": {
+   "custom_expected": {
+    "blocks": [
+     [
+      "1. Fully paid: the pill reads exactly 'PAID IN FULL'; partially paid: exactly 'PARTIALLY PAID'.",
+      "2. Title reads exactly 'Payment Receipt - Payments by ShopView'.",
+      "3. When every payment is a batch payment: the title reads exactly 'Payment Receipt (Batch) - Payments by ShopView' (S8-R8)."
+     ],
+     [
+      "---",
+      "This is the expected behaviour as per epic SV-8218 and story SV-9147 (Story 8, Paid Banner, Payments and Balance) and the Invoice UI Refresh specification version 45, section S8-R8, read on 31 August 2026.",
+      "Last checked against build v26.35.5-8c3cc21 on 8/31/2026."
+     ],
+     [
+      "AUTOMATION: HOLD - customer portal only exists on staging; this case cannot run on the QA branch"
+     ]
+    ],
+    "text": "1. Fully paid: the pill reads exactly 'PAID IN FULL'; partially paid: exactly 'PARTIALLY PAID'.\n2. Title reads exactly 'Payment Receipt - Payments by ShopView'.\n3. When every payment is a batch payment: the title reads exactly 'Payment Receipt (Batch) - Payments by ShopView' (S8-R8).\n\n---\nThis is the expected behaviour as per epic SV-8218 and story SV-9147 (Story 8, Paid Banner, Payments and Balance) and the Invoice UI Refresh specification version 45, section S8-R8, read on 31 August 2026.\nLast checked against build v26.35.5-8c3cc21 on 8/31/2026.\n\nAUTOMATION: HOLD - customer portal only exists on staging; this case cannot run on the QA branch"
+   },
+   "custom_preconds": {
+    "blocks": [
+     [
+      "1. Portal invoices: one fully paid by a single payment; one partially paid; one paid entirely via batch checkout"
+     ]
+    ],
+    "text": "1. Portal invoices: one fully paid by a single payment; one partially paid; one paid entirely via batch checkout"
+   },
+   "custom_steps": {
+    "blocks": [
+     [
+      "1. Generate each portal PDF",
+      "2. Check the pill and the title wording"
+     ]
+    ],
+    "text": "1. Generate each portal PDF\n2. Check the pill and the title wording"
+   }
+  }
  }
 }

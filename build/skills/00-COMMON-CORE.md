@@ -676,6 +676,47 @@ permission; keep Failed / Retest / Blocked local.
 **We NEVER edit, update, delete, move, or add to a run any case we did not author.** Not to tidy a
 title, not to add `refs`, not to merge an apparent duplicate.
 
+### 5.0-b 🔑 TWO STANDING AUTHORISATIONS AND ONE NEW MARKER — QA LEAD, 2026-08-31
+
+**(1) SEEDING TEST DATA IS PRE-AUTHORISED, PERMANENTLY.** Asked *"May I seed a credit memo against a
+customer account to unblock the 12 Credit Invoice cases?"* the QA lead answered **"Always"**. So:
+**seed whatever data a build verification needs on a disposable environment (staging / QA branch /
+prod test orgs / QuickBooks) without asking each time.** Tag throwaway data **`ZZAUTOTEST`**, restore
+what you change (Rule 6), and keep the read-then-commit guard: establish whether a confirmation step
+exists BEFORE pressing the control that commits, and print every non-GET call at exit (core §7.5).
+**This does NOT extend to TestRail** — Rule 6 and the standing *"do not CRUD any test cases in
+TestRail without my permission"* are untouched.
+
+**(2) CUSTOMER-PORTAL CASES CANNOT BE TESTED ON A QA BRANCH — THEY ARE STAGING-ONLY.** QA lead,
+verbatim: *"Customer portal related tickets can only be tested on staging and not on the QA branch.
+We need to put this marker on such tickets aswell."* This matters far beyond one project: **a label or
+behaviour that lives on a portal surface will be reported "absent" by any QA-branch probe, forever.**
+The Invoice UI Refresh instance: spec S8-R8 puts the **paid banner** only on a **portal-generated**
+Invoice PDF (*"An Invoice PDF generated in the shop app never carries the banner"*), so
+`PAID IN FULL`, `PARTIALLY PAID`, `Payment Receipt - Payments by ShopView`, `Total Charged`,
+`Remaining Balance`, `Convenience Fee`, `Late Fee`, `Paid By`, `Method`, `Date / Time`,
+`Invoice Amount` and `Payment X of Y - Batch` are unreachable from a shop-app render.
+
+**⇒ THE MARKER (new variant, first used 2026-08-31), a machine-findable literal like the others:**
+
+```
+AUTOMATION: HOLD - customer portal only exists on staging; this case cannot run on the QA branch
+```
+
+**Why HOLD and not a fifth literal:** the CLAUDE.md arithmetic gate is
+**READY + EXPECT-FAIL = total − HOLD**, and a new literal would silently break it; and the marker
+convention permits HOLD for *"a genuinely unobtainable thing"* — a portal that does not exist on the
+branch qualifies, so this is not the barred tool-flag excuse. **The wording is provisional: the QA
+lead may rename it.**
+
+**⇒ SCOPE IT FROM THE PRECONDITIONS, NOT FROM THE WORD "PORTAL".** Only a case whose **preconditions
+require a portal-generated artefact** gets the marker. A case that verifies the portal feature's
+**ABSENCE** on the shop-app path is fully testable on the branch and must NOT be parked — on
+2026-08-31, C44954 (*"No paid banner when the invoice has no portal-processed payment"*) is build
+verified, while C44947/C44951/C44952/C45175 are staging-only. Four other cases mention the banner in
+passing, and C45184 names it as an **exclusion** (*"The only exception is the Paid banner's
+'Date / Time' field"*) — none of those five are portal-gated.
+
 ### 5.0-a 🔑 WHO IS WHO ON INVOICE UI REFRESH — CONFIRMED BY THE QA LEAD 2026-08-31
 
 A session on 2026-08-31 was told *"handover those test cases to the Mudassir who is the automation
