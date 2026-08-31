@@ -387,7 +387,9 @@ action**; §J TestRail traps, §K production access) · `build/TESTING-RUNBOOK.m
 `build/SPEC-RELEVANCE-RECONCILIATION-PROCESS.md` · `build/MISSING-TRACEABILITY-PROCESS.md` ·
 `build/CUSTOM-ROLES-PERMISSION-VIU-PROCESS.md` · `build/PROD-VS-STAGING-COMPARE-METHOD.md` ·
 `build/COMPARISON-WORKBOOK-RECIPE.md` · `build/PROCESS-AUTHORING-STANDARD.md` ·
-`build/LESSONS-2026-07-31.md`.
+`build/LESSONS-2026-07-31.md` · `build/NAVIGATION-MAP-TEMPLATE.md` (copy to
+`build/<project>/NAVIGATION-MAP.md` — navigation paths OBSERVED once on the build and RECORDED, then
+reused; convention in `build/skills/03-RUN-CHECK.md` §9).
 
 ---
 
@@ -476,10 +478,25 @@ Compact form — **the rule named in brackets is the authority; read it before r
   intact**: copy the proven-good structure (e.g. Global Search C44804) or reuse the block-only
   converters in `build/global-search/apply_to_testrail.py`; never hand-author inline HTML. Full trap +
   round-trip evidence: `build/APP-ACTIONS-PLAYBOOK.md` §J. [proven live 2026-08-28, C27800]
+- **🛑 THE API-WRITE ESCAPING-CONTAINER TRAP — BLOCK HTML WRITTEN VIA THE API IS OFTEN UNREADABLE, AND
+  `check_case_render.py` CANNOT SEE IT (measured 2026-08-31).** TestRail serves each field in one of two
+  containers, invisible to the API: `<div class="markdown fr-view">` renders block HTML; plain
+  `<div class="markdown">` **ESCAPES it** so the tester literally reads `<ol><li><p>`. **An API
+  `update_case`/`add_case` leaves the field in the ESCAPING container; only a UI SAVE flips it to
+  `fr-view`.** So a case can PASS `check_case_render.py` (which reads the API-stored value) and still be
+  unreadable on screen. Proven live: a v13→v16 pass reformatted 76 Inline cases to block HTML via the
+  API — all passed the self-check, all 76 were escaping/unreadable on the served page. **⇒ (a) the
+  post-write check is TWO steps now: the stored-value check AND a served-page container scan (log into the
+  UI, GET `/index.php?/cases/view/<id>`, require `markdown fr-view`); (b) repair escaping cases through
+  the UI editor (Playwright), NEVER by another API write — proven recipe in
+  `build/build-verify-session-2026-08-21/repair-2026-08-25/` and playbook §J; (c) plain text in an
+  escaping container still renders as text, so do NOT "upgrade" a readable plain-text case to block HTML
+  via the API — that makes it WORSE.** Full evidence + the served-page scanner: `build/APP-ACTIONS-PLAYBOOK.md` §J.
 - **🛑 POST-WRITE RENDER SELF-CHECK — after ANY case create/update, fetch it back and confirm it
   renders correctly before calling it done.** Never assume the write looks right; verify it. Run
   `python3 build/testing-tools/check_case_render.py <C-ID> …` (fails on inline tags, wall-of-text, or
-  no block structure). A green self-check is part of "done". [standing rule, 2026-08-28]
+  no block structure) **AND then the served-page container scan** (above) — a green stored-value check is
+  NOT sufficient on its own. A case is "done" only when the served page shows `fr-view`. [standing rule, 2026-08-28; served-page correction 2026-08-31]
 - **Blocked-revisit loop:** a tester marks anything that seems off as **Blocked** (never skips, never
   guesses); every Blocked case gets a manual revisit against the current spec + build and an
   authorised correction.

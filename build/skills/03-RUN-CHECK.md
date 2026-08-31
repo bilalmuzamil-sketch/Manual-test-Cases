@@ -778,6 +778,51 @@ Standing Rule 74 in `CLAUDE.md`.
 
 ---
 
+# 9 · 🔑 THE NAVIGATION MAP — OBSERVE THE PATH ONCE, RECORD IT, REUSE IT (approved 2026-08-31)
+
+Every project keeps a **`build/<project>/NAVIGATION-MAP.md`**: how you actually reach each screen in
+this build, written down the first time somebody reaches it, so the next session **reads it instead of
+rediscovering it**. Navigation is one of only **two things we take from the build at all** (Rule 57 —
+the on-screen labels/navigation, and the pass/fail verdict), and Rule 27 says a proven action recipe is
+reused, never re-derived. **Read the map BEFORE you navigate; write to it the MOMENT a path is
+confirmed** — in the same pass, not at the end (Rule 93). It is a small file; reading it costs a
+fraction of what rediscovery costs, so this is a token-discipline win (Rule 88 / the Charter), not
+overhead. Start a new project's map from **`build/NAVIGATION-MAP-TEMPLATE.md`**.
+
+### 9.1 THE FORMAT — one row per feature/screen
+
+| Feature / screen | Exact menu path, in the build's own on-screen labels | URL | Branch + build marker observed on | Date observed | Recorded by (session / lane) |
+|---|---|---|---|---|---|
+
+The path is written in **the build's own labels**, exactly as they read on screen (Rule 9) — never a
+tidied-up or remembered wording.
+
+### 9.2 THE GUARDS — each one is a way this file could start lying
+
+- **A path is written ONLY after it was navigated successfully and OBSERVED LIVE** (Rule 12). **Never
+  infer a path from product source code, from a spec, from a design, or from another branch.** That is
+  exactly the Rule 57 trap: a route that exists in code may not be deployed, or may not be flag-enabled,
+  on the branch under test.
+- **The map records NAVIGATION ONLY — never expected behaviour.** Expected behaviour comes from the
+  documents (Rule 57). **A `NAVIGATION-MAP` entry is never cited in a case's Expected Results or in its
+  provenance line.**
+- **Paths are BRANCH-SPECIFIC.** Do not reuse a path recorded on one branch for a different branch
+  without re-observing it. When you observe it on another branch, **add its own row — never overwrite
+  the first one.**
+- **Freshness carries the Rule 91 badge, with the date:** **✅ ≤7 days · 🟠 8–14 days · 🔴 >14 days ·
+  ❌ never observed.** A stale row is still usable **as a starting point**; if it fails, **re-observe,
+  correct the row, and commit the correction in the same pass** (Rule 93) — **never leave a known-wrong
+  path for the next session to trip over.**
+- **The map is a convenience for REACHING a screen. It is never evidence that a feature WORKS** — the
+  pass/fail verdict still comes from observing the feature itself (§2, Rule 12).
+
+Shared, cross-project staging paths stay in `build/APP-ACTIONS-PLAYBOOK.md` (its "Navigation Map"
+section); the per-project file holds this project's screens on the branch it is tested on. The two
+**cross-reference each other rather than duplicating** — if a path is genuinely general, put it in the
+playbook and point at it.
+
+---
+
 # THE STEPS
 
 1. **Core §0 pass-start checklist**, then **record the BUILD MARKER**: `<meta name="app-version">`,
