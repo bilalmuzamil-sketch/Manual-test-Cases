@@ -5,7 +5,7 @@
 ## Identity
 - **Epic:** SV-8218 (owner/assignee Chris Ward) · **PO:** Chris Ward
 - **Spec:** Confluence **755990532**, live **v45** (as of 2026-08-31; authored at v38, re-verified at v39 then re-verified at **v45** 2026-08-31 — 14 rules changed + 2 net-new); tech plan built against **v36**
-- **Design:** Claude artifact `c88ee207-3197-4f54-8cb9-bac3deb84354` (binding visual reference; static export held)
+- **Design:** Claude artifact `c88ee207-3197-4f54-8cb9-bac3deb84354` (binding visual reference). **Refreshed 2026-08-31** (QA lead supplied updated export). Diff vs the POC extract: design caught up to spec v45 (masthead date labels "Estimate date:/Invoice date:/Due date:/Paid date:", Credit Balance shows open balance, now framed "binding"), **all changes already reflected in the v45 cases — 0 case updates needed.** Current extract: `reconcile-2026-08-31/design-extract-2026-08-31.txt`; finding: `reconcile-2026-08-31/DESIGN-UPDATE-2026-08-31.md`. POC extract kept dated at `intake-2026-08-21/sources/design-document-poc-text-extract.txt`.
 - **Tech plan:** `intake-2026-08-21/sources/tech-plan-2026-08-12.md` (Symfony/Twig→WeasyPrint + Vue/Quasar)
 - **Git dev branch (theirs):** `project/invoice-ui-refresh` · **QA env:** none yet (feature Not started)
 - **Case source:** `build/invoice-ui-refresh/cases/` · internal ID prefix **INV** (`INV-<AREA>-NN`)
