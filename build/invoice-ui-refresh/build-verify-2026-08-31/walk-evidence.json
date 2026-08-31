@@ -163,5 +163,37 @@
    "status": 200,
    "note": "authorizer reset to Darren Moore (valid) after the probes"
   }
+ },
+ "C45185_historyEvent": {
+  "step": "Generate its PDF (of a snapshot created BEFORE the redesign)",
+  "per_value": {
+   "none": {
+    "bytes": 363121,
+    "visible": 4366,
+    "sha256_visible": "acdc00f5ced2f4c6"
+   },
+   "1": {
+    "bytes": 363121,
+    "visible": 4366,
+    "sha256_visible": "acdc00f5ced2f4c6"
+   },
+   "2": {
+    "bytes": 363121,
+    "visible": 4366,
+    "sha256_visible": "acdc00f5ced2f4c6"
+   },
+   "5": {
+    "bytes": 363121,
+    "visible": 4366,
+    "sha256_visible": "acdc00f5ced2f4c6"
+   },
+   "99": {
+    "bytes": 363121,
+    "visible": 4366,
+    "sha256_visible": "acdc00f5ced2f4c6"
+   }
+  },
+  "distinct_documents": 1,
+  "conclusion": "historyEvent is ACCEPTED by the endpoint but returns a BYTE-IDENTICAL document for every value tried (none/1/2/5/99) -- one distinct rendering only. So the parameter binding proves nothing about snapshots: either this invoice has no history events, or the value is ignored on this branch. The precondition \"a snapshot created before the redesign\" is therefore NOT ESTABLISHED, and C45185 stays unverified. Marking it verified on the strength of an accepted parameter would be the exact overclaim skill 03 8.0-a warns about."
  }
 }
