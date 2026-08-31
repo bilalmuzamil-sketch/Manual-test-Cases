@@ -1031,6 +1031,53 @@ with `sv_sso_session` and `cf_clearance` **byte-identical** to the set that was 
   | `/api/work-orders/statuses` | GET | Estimate · Approved · In progress · Review · Complete · Invoiced · Paid |
   | `/api/invoices/preview?invoice_id=<id>&type=html&isEstimate=<0\|1>&includeDeclined=<0\|1>&historyEvent=` | GET | the document render path; invoice id is `data.work_order.invoice_id` on `/api/work-orders/view/{woId}` |
 
+  **⇒ ✅ THE INVOICE UI REFRESH DOCUMENT ROUTES, ALL BUILD-VERIFIED LIVE 2026-08-31.** Two of these
+  came from a source-read by another session (`CROSS-SESSION-UNBLOCK-2026-08-31.md`, badge **never
+  build-verified**); each was then confirmed with one live call, which is what moves a lead to a fact
+  (Rule 12). **One of them did NOT behave as the source predicted — see the 500 below.**
+
+  | Document | Route | Live result |
+  |---|---|---|
+  | Invoice / Estimate (HTML) | `GET /api/invoices/preview?invoice_id=<id>&type=html&isEstimate=0\|1&includeDeclined=0\|1&historyEvent=` | 200 |
+  | Invoice / Estimate (**PDF**) | same route, **`type=pdf`** | **200, real PDF v1.7, 187 KB** |
+  | **Credit Invoice** | `GET /api/credit-memos/{creditMemoId}/pdf` | **200, PDF, `credit-memo.pdf`** |
+  | **Parts Sale** Invoice / Estimate | `GET /api/invoices/preview?invoice_id=<the part sale's invoice_id>&isEstimate=0\|1` | **200** — `INV-P2-123` / `EST-P2-123` |
+  | Parts Sale (dedicated endpoint) | `GET /api/part-sales/{workOrderId}/invoice-pdf?estimate=0\|1` | **HTTP 500** — twice, two part sales, both `estimate` values |
+
+  **🔑 A PART SALE *IS* A WORK ORDER.** `/api/part-sales/{id}/pdf` and `/api/part-sales/view/{id}`
+  are 404, but **`GET /api/work-orders/view/{partSaleId}` returns 200** and the paid one carries
+  `invoice_id` — which the ordinary preview route accepts. The `/api/part-sales` row `id` **is** the
+  work order id (the view payload echoes it back as `"id"`). The clue was in the credit memo payload:
+  `origin_invoices[0].work_order_type == 'service'` implies other work-order types exist.
+
+  **🔑 `type=pdf` WAS ALWAYS THERE.** The DTO asserts `Choice(['html','HTML','pdf','PDF'])`. A pass
+  spent a day rendering `type=html` and reported four cases blocked on *"Generate the PDF"*. **Try
+  the one-token variant of the call you are already making before reporting a capability missing.**
+
+  **🔑 `includeDeclined=1` RENDERS DECLINED WORK — the capability ships without a UI control.**
+  Live: the same invoice goes from 4,366 to 5,256 visible characters and the label **`Declined Work`**
+  appears. The **toggle** is absent from the Invoice Details dialog (proven with a firing control),
+  and no front-end code sends the param. **This is NOT Rule 24** — Rule 24 is about a permission
+  boundary correctly hidden from a user who should not act; here the control is missing for an admin
+  who *should* have it, on a story still In Progress. So it is **possibly-unfinished (Rules 49/60)**,
+  keeps the documented expectation (Rule 57) and the **NOT AVAILABLE ON BUILD** marker (Rule 69) —
+  **not a PASSED case, and not a defect ticket.**
+
+  **⚠️ A 500 IS NOT A 404, AND THE DIFFERENCE IS THE DIAGNOSIS.** On `part_sales_invoice_pdf` the
+  param is `#[MapEntity('partSaleId')] WorkOrder`, so an unresolvable id yields **404**. Getting
+  **500** proves the entity bound and the fault is inside the handler — and the same document
+  renders fine through the preview route, so template and data are good. Candidate written up at
+  `build/invoice-ui-refresh/build-verify-2026-08-31/DEFECT-CANDIDATE-partsale-invoice-pdf-500.md`
+  (not filed — hold active).
+
+  **⚠️ THE CREDIT DOCUMENT IS PDF-ONLY.** `type=html`, `format=html`, `html=1` and `?preview=1` all
+  still return `%PDF-`. Text extraction needs pypdf; this image's `cryptography` is broken
+  (`_cffi_backend` missing) and `pip install --force-reinstall cffi` fixes it. **pypdf inserts
+  kerning artefacts inside words** — the captured credit document literally reads `T ax`,
+  `T erritory` — so a label matcher needs a **space-insensitive fallback applied only after an exact
+  miss**, with controls drawn from the PDF itself. **Never edit the captured text to suit the
+  matcher.**
+
   **⇒ 🔑 CUSTOMER CREDIT MEMOS ON sv8218 — the record is reachable, the DOCUMENT is not (2026-08-31).**
   `GET /api/customer-account/list-unpaid-transaction?account_id=<customer_account_id>` returns them,
   with `type: credit`, `formatted_invoice_number: CM-100`, `status_label: Unapplied`. The
