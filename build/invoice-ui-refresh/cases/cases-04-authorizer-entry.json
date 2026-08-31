@@ -7,9 +7,9 @@
     "type": "Functional",
     "preconditions": "1. You are signed in to ShopView with access to work orders.\n2. A work order exists for a customer that has at least one contact with 'Approves Work' enabled, and other contacts without it.",
     "steps": "1. Open the work order.\n2. Look at the customer contact card on the left side of the work order, below the Contact and Phone values.\n3. Select the \"Authorizer\" row and look at the list of choices offered.",
-    "expected": "1. An \"Authorizer\" row appears in the customer contact card, directly below the Contact and Phone values, in the same label-and-value style.\n2. Selecting the row opens a list of only the customer's contacts that have \"Approves Work\" enabled.\n3. No other contact is offered, and no free-typed name can be entered.\n4. This is the only place the Authorizer can be selected.\n\n---\nThis is the expected behaviour as per epic SV-8218 and story SV-9142 (Story 3, Order Reference Fields) and the Invoice UI Refresh specification version 39, section S3-R5, read on 25 August 2026.\n\nAUTOMATION: Not available on Build to test Yet - Last checked 8/21/2026\n",
+    "expected": "1. An \"Authorizer\" row appears in the customer contact card, directly below the Contact and Phone values, in the same label-and-value style.\n2. Selecting the row opens a list of only the customer's contacts that have \"Approves Work\" enabled.\n3. No other contact is offered, and no free-typed name can be entered.\n4. This is the only place the Authorizer can be selected.\n\n---\nThis is the expected behaviour as per epic SV-8218 and story SV-9142 (Story 3, Order Reference Fields) and the Invoice UI Refresh specification version 45, section S3-R5, read on 31 August 2026.\n\nAUTOMATION: Not available on Build to test Yet - Last checked 8/21/2026\n",
     "design_ref": "Claude Design Document artifact c88ee207 (binding visual reference), as exported 2026-08-21.",
-    "spec_ref": "requirements.md (Invoice UI Refresh spec v39)",
+    "spec_ref": "requirements.md (Invoice UI Refresh spec v45)",
     "refs": "SV-9142 (S3-R5)",
     "viu_status": "SOURCE-VERIFIED ONLY - NO BUILD EXISTS YET",
     "notes": "Net-new entry point on the work order (Vue/Quasar UI), not the document. Only 'Approves Work' contacts (the existing is_authorizer flag) are offered."
@@ -22,9 +22,9 @@
     "type": "Functional",
     "preconditions": "1. You are signed in to ShopView.\n2. A work order exists whose customer has 'Approves Work' contacts.",
     "steps": "1. Open a work order with no Authorizer selected and look at the Authorizer row.\n2. Open the Authorizer list and note the options.\n3. Select an authorizer, then reopen the list and choose \"No authorizer\".",
-    "expected": "1. The Authorizer is not required and defaults to empty on a new work order.\n2. The Authorizer list includes a \"No authorizer\" option.\n3. Choosing \"No authorizer\" clears the selection back to empty.\n\n---\nThis is the expected behaviour as per epic SV-8218 and story SV-9142 (Story 3, Order Reference Fields) and the Invoice UI Refresh specification version 39, section S3-R6, read on 25 August 2026.\n\nAUTOMATION: Not available on Build to test Yet - Last checked 8/21/2026\n",
+    "expected": "1. The Authorizer is not required and defaults to empty on a new work order.\n2. The Authorizer list includes a \"No authorizer\" option.\n3. Choosing \"No authorizer\" clears the selection back to empty.\n\n---\nThis is the expected behaviour as per epic SV-8218 and story SV-9142 (Story 3, Order Reference Fields) and the Invoice UI Refresh specification version 45, section S3-R6, read on 31 August 2026.\n\nAUTOMATION: Not available on Build to test Yet - Last checked 8/21/2026\n",
     "design_ref": "Claude Design Document artifact c88ee207 (binding visual reference), as exported 2026-08-21.",
-    "spec_ref": "requirements.md (Invoice UI Refresh spec v39)",
+    "spec_ref": "requirements.md (Invoice UI Refresh spec v45)",
     "refs": "SV-9142 (S3-R6)",
     "viu_status": "SOURCE-VERIFIED ONLY - NO BUILD EXISTS YET",
     "notes": "Optional + 'No authorizer' clear (S3-R6, net-new)."
@@ -37,9 +37,9 @@
     "type": "Functional",
     "preconditions": "1. You are signed in to ShopView.\n2. A work order's customer has one 'Approves Work' contact WITH a phone number and one WITHOUT.",
     "steps": "1. Open the work order and select the authorizer whose contact has a phone number; look at the contact card.\n2. Select the authorizer whose contact has no phone number; look at the contact card.",
-    "expected": "1. When the selected authorizer's contact record has a phone number, the phone shows in the card directly below the authorizer's name, styled like the Contact's phone.\n2. When the contact record has no phone number, no phone row is shown under the authorizer's name.\n\n---\nThis is the expected behaviour as per epic SV-8218 and story SV-9142 (Story 3, Order Reference Fields) and the Invoice UI Refresh specification version 39, section S3-R7, read on 25 August 2026.\n\nAUTOMATION: Not available on Build to test Yet - Last checked 8/21/2026\n",
+    "expected": "1. When the selected authorizer's contact record has a phone number, the phone shows in the card directly below the authorizer's name, styled like the Contact's phone.\n2. When the contact record has no phone number, no phone row is shown under the authorizer's name.\n\n---\nThis is the expected behaviour as per epic SV-8218 and story SV-9142 (Story 3, Order Reference Fields) and the Invoice UI Refresh specification version 45, section S3-R7, read on 31 August 2026.\n\nAUTOMATION: Not available on Build to test Yet - Last checked 8/21/2026\n",
     "design_ref": "Claude Design Document artifact c88ee207 (binding visual reference), as exported 2026-08-21.",
-    "spec_ref": "requirements.md (Invoice UI Refresh spec v39)",
+    "spec_ref": "requirements.md (Invoice UI Refresh spec v45)",
     "refs": "SV-9142 (S3-R7)",
     "viu_status": "SOURCE-VERIFIED ONLY - NO BUILD EXISTS YET",
     "notes": "Authorizer phone sub-row (S3-R7, net-new)."
@@ -52,12 +52,12 @@
     "type": "Functional",
     "preconditions": "1. You are signed in to ShopView.\n2. A work order that has been invoiced exists, with (or without) an Authorizer selected.",
     "steps": "1. Open the invoiced work order.\n2. Try to change the Authorizer in the customer contact card.",
-    "expected": "1. Once the work order is invoiced, the Authorizer row is locked and its value cannot be changed.\n2. Before invoicing the row is editable; from the point of invoicing it is read-only.\n\n---\nThis is the expected behaviour as per epic SV-8218 and story SV-9142 (Story 3, Order Reference Fields) and the Invoice UI Refresh specification version 39, section S3-R8, read on 25 August 2026.\n\nAUTOMATION: Not available on Build to test Yet - Last checked 8/21/2026\n",
+    "expected": "1. Once the work order is invoiced, the Authorizer row is locked and its value cannot be changed.\n2. Before invoicing the row is editable; from the point of invoicing it is read-only.\n3. If the invoice is later voided or reversed, the work order returns to Complete and the Authorizer row is re-enabled.\n\n---\nThis is the expected behaviour as per epic SV-8218 and story SV-9142 (Story 3, Order Reference Fields) and the Invoice UI Refresh specification version 45, section S3-R8, read on 31 August 2026.\n\nAUTOMATION: Not available on Build to test Yet - Last checked 8/21/2026\n",
     "design_ref": "Claude Design Document artifact c88ee207 (binding visual reference), as exported 2026-08-21.",
-    "spec_ref": "requirements.md (Invoice UI Refresh spec v39)",
+    "spec_ref": "requirements.md (Invoice UI Refresh spec v45)",
     "refs": "SV-9142 (S3-R8)",
     "viu_status": "SOURCE-VERIFIED ONLY - NO BUILD EXISTS YET",
-    "notes": "Locked-once-invoiced (S3-R8, net-new)."
+    "notes": "Locked-once-invoiced, re-enabled on void/reversal (S3-R8; void/reversal unlock net-new v45, Mudassir review 2026-08-27)."
   },
   {
     "id": "INV-AUTH-05",
@@ -67,9 +67,9 @@
     "type": "Functional",
     "preconditions": "1. You are signed in to ShopView.\n2. A work order is open for a customer, and you can edit that customer's contacts.",
     "steps": "1. On the customer's contacts page, create or edit a contact and enable \"Approves Work\".\n2. Return to the open work order without refreshing or re-saving it.\n3. Open the Authorizer list.",
-    "expected": "1. The newly enabled contact appears in the work order's Authorizer list.\n2. It becomes selectable without any refresh or re-save of the work order.\n\n---\nThis is the expected behaviour as per epic SV-8218 and story SV-9142 (Story 3, Order Reference Fields) and the Invoice UI Refresh specification version 39, section S3-R9, read on 25 August 2026.\n\nAUTOMATION: Not available on Build to test Yet - Last checked 8/21/2026\n",
+    "expected": "1. The newly enabled contact appears in the work order's Authorizer list.\n2. It becomes selectable without any refresh or re-save of the work order.\n\n---\nThis is the expected behaviour as per epic SV-8218 and story SV-9142 (Story 3, Order Reference Fields) and the Invoice UI Refresh specification version 45, section S3-R9, read on 31 August 2026.\n\nAUTOMATION: Not available on Build to test Yet - Last checked 8/21/2026\n",
     "design_ref": "Claude Design Document artifact c88ee207 (binding visual reference), as exported 2026-08-21.",
-    "spec_ref": "requirements.md (Invoice UI Refresh spec v39)",
+    "spec_ref": "requirements.md (Invoice UI Refresh spec v45)",
     "refs": "SV-9142 (S3-R9)",
     "viu_status": "SOURCE-VERIFIED ONLY - NO BUILD EXISTS YET",
     "notes": "Immediate selectability (S3-R9, net-new) - a live-UI behaviour, not a document rule."

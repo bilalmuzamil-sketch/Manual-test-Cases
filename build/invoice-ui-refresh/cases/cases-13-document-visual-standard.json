@@ -7,9 +7,9 @@
     "type": "Functional",
     "preconditions": "1. You are signed in to ShopView.\n2. You can generate an Estimate, Invoice and Credit Invoice, on screen and as PDF.",
     "steps": "1. Generate each document type on screen and as a PDF.\n2. Compare each against the Design Document's structure.",
-    "expected": "1. The document layout follows the Design Document exactly: masthead with the shop letterhead left, the shop logo center, and the document block right over a 2px ink rule; a bordered Addresses row; the asset band; the order reference chips; numbered work lines; the \"Summary\" break bar; a two-column tail with the disclaimer left and the totals right; the boxed headline figure; the three-line signature row; the single-line footer.\n\n---\nThis is the expected behaviour as per epic SV-8218 and story SV-9151 (Story 12, Document Visual Standard) and the Invoice UI Refresh specification version 39, section S12-R1, and the Design Document, read on 25 August 2026.\n\nAUTOMATION: Not available on Build to test Yet - Last checked 8/21/2026\n",
+    "expected": "1. The document layout follows the Design Document exactly: masthead with the shop letterhead left, the shop logo center, and the document block right over a 2px ink rule; a bordered Addresses row; the asset band; the order reference chips; numbered work lines; the \"Summary\" break bar; a two-column tail with the disclaimer left and the totals right; the boxed headline figure; the three-line signature row; the single-line footer.\n\n---\nThis is the expected behaviour as per epic SV-8218 and story SV-9151 (Story 12, Document Visual Standard) and the Invoice UI Refresh specification version 45, section S12-R1, and the Design Document, read on 31 August 2026.\n\nAUTOMATION: Not available on Build to test Yet - Last checked 8/21/2026\n",
     "design_ref": "Claude Design Document artifact c88ee207 (binding visual reference, appearance source of truth per spec Visual design status), as exported 2026-08-21.",
-    "spec_ref": "requirements.md (Invoice UI Refresh spec v39)",
+    "spec_ref": "requirements.md (Invoice UI Refresh spec v45)",
     "refs": "SV-9151 (S12-R1)",
     "viu_status": "SOURCE-VERIFIED ONLY - NO BUILD EXISTS YET",
     "notes": "Layout structure (S12-R1). Appearance source of truth is the Design Document (spec Visual design status)."
@@ -22,12 +22,12 @@
     "type": "Functional",
     "preconditions": "1. You are signed in to ShopView.\n2. You can inspect the colours used in a rendered document (on screen or PDF).",
     "steps": "1. Generate a document.\n2. Check every colour used against the allowed set.",
-    "expected": "1. The only colours on any document are: ink #121926, body text #364152, muted text #697586, faint labels #9AA4B2, hairlines #E3E8EF, row dividers #EEF2F6, accent #257CFF, negative #B42318, paper #FFFFFF.\n2. No colour outside this closed set appears.\n\n---\nThis is the expected behaviour as per epic SV-8218 and story SV-9151 (Story 12, Document Visual Standard) and the Invoice UI Refresh specification version 39, section S12-R2, and the Design Document, read on 25 August 2026.\n\nAUTOMATION: Not available on Build to test Yet - Last checked 8/21/2026\n",
+    "expected": "1. The only colours on the light printed document are: ink #121926, body text #364152, muted text #697586, faint labels #9AA4B2, hairlines #E3E8EF, row dividers #EEF2F6, paid-banner surface #F8FAFC, accent #257CFF, negative #B42318, paper #FFFFFF.\n2. No colour outside this set appears on the printed document; the print and black-and-white output adds only the inks S12-R5 lists, and the Design Document's demo chrome and dark-mode preview are not part of any document.\n\n---\nThis is the expected behaviour as per epic SV-8218 and story SV-9151 (Story 12, Document Visual Standard) and the Invoice UI Refresh specification version 45, section S12-R2, and the Design Document, read on 31 August 2026.\n\nAUTOMATION: Not available on Build to test Yet - Last checked 8/21/2026\n",
     "design_ref": "Claude Design Document artifact c88ee207 (binding visual reference, appearance source of truth per spec Visual design status), as exported 2026-08-21.",
-    "spec_ref": "requirements.md (Invoice UI Refresh spec v39)",
+    "spec_ref": "requirements.md (Invoice UI Refresh spec v45)",
     "refs": "SV-9151 (S12-R2)",
     "viu_status": "SOURCE-VERIFIED ONLY - NO BUILD EXISTS YET",
-    "notes": "Closed palette (S12-R2), incl. #EEF2F6 row-divider grey added by CEO pass 2026-08-12."
+    "notes": "Closed palette (S12-R2), incl. #EEF2F6 row-divider grey (CEO pass 2026-08-12) and paid-banner surface #F8FAFC (added v45, Milomir conformance audit 2026-08-25); set scoped to the light printed document, print/B&W governed by S12-R5."
   },
   {
     "id": "INV-VIS-03",
@@ -37,12 +37,12 @@
     "type": "Functional",
     "preconditions": "1. You are signed in to ShopView.\n2. You can inspect where the accent colour #257CFF is used on a document.",
     "steps": "1. Generate a document that has work lines.\n2. Find every place the accent #257CFF is used.",
-    "expected": "1. The accent #257CFF appears only on the work line numbers and on the word \"ShopView\" in the footer.\n2. Nothing else on the document uses the accent.\n\n---\nThis is the expected behaviour as per epic SV-8218 and story SV-9151 (Story 12, Document Visual Standard) and the Invoice UI Refresh specification version 39, section S12-R3, and the Design Document, read on 25 August 2026.\n\nAUTOMATION: Not available on Build to test Yet - Last checked 8/21/2026\n",
+    "expected": "1. The accent #257CFF appears only on the work line numbers and on the word \"ShopView\" in the footer.\n2. On the Parts Sale document, which has no numbered work lines, the accent appears only on the word \"ShopView\" in the footer.\n3. Nothing else on the document uses the accent.\n\n---\nThis is the expected behaviour as per epic SV-8218 and story SV-9151 (Story 12, Document Visual Standard) and the Invoice UI Refresh specification version 45, section S12-R3, and the Design Document, read on 31 August 2026.\n\nAUTOMATION: Not available on Build to test Yet - Last checked 8/21/2026\n",
     "design_ref": "Claude Design Document artifact c88ee207 (binding visual reference, appearance source of truth per spec Visual design status), as exported 2026-08-21.",
-    "spec_ref": "requirements.md (Invoice UI Refresh spec v39)",
+    "spec_ref": "requirements.md (Invoice UI Refresh spec v45)",
     "refs": "SV-9151 (S12-R3)",
     "viu_status": "SOURCE-VERIFIED ONLY - NO BUILD EXISTS YET",
-    "notes": "Accent discipline (S12-R3)."
+    "notes": "Accent discipline (S12-R3); v45 clarifies the un-numbered Parts Sale document shows the accent only on 'ShopView' (Mudassir review 2026-08-27)."
   },
   {
     "id": "INV-VIS-04",
@@ -52,12 +52,12 @@
     "type": "Functional",
     "preconditions": "1. You are signed in to ShopView.\n2. You can inspect the fonts and weights used on a rendered document.",
     "steps": "1. Generate a document.\n2. Check the typeface and the weight of body text, emphasis/totals, in-job section labels, and the shop name/document label/headline figure/line numbers.",
-    "expected": "1. The typeface is Inter with a system sans-serif fallback.\n2. Weight 400 for body text; 600 and 700 for emphasis and totals; 750 for the in-job section labels; 800 for the shop name, the document label, the headline figure, and the line numbers.\n3. Uppercase micro-labels carry letterspacing as in the Design Document.\n\n---\nThis is the expected behaviour as per epic SV-8218 and story SV-9151 (Story 12, Document Visual Standard) and the Invoice UI Refresh specification version 39, section S12-R4, and the Design Document, read on 25 August 2026.\n\nAUTOMATION: Not available on Build to test Yet - Last checked 8/21/2026\n",
+    "expected": "1. The typeface is Inter with a system sans-serif fallback, applied identically on screen and in PDF output, so the on-screen preview and the PDF wrap line for line.\n2. Weight 400 for body text; 600 and 700 for emphasis and totals; 700 for the in-job section labels; 800 for the shop name, the document label, the headline figure, and the line numbers.\n3. Uppercase micro-labels carry letterspacing as in the Design Document.\n\n---\nThis is the expected behaviour as per epic SV-8218 and story SV-9151 (Story 12, Document Visual Standard) and the Invoice UI Refresh specification version 45, section S12-R4, and the Design Document, read on 31 August 2026.\n\nAUTOMATION: Not available on Build to test Yet - Last checked 8/21/2026\n",
     "design_ref": "Claude Design Document artifact c88ee207 (binding visual reference, appearance source of truth per spec Visual design status), as exported 2026-08-21.",
-    "spec_ref": "requirements.md (Invoice UI Refresh spec v39)",
+    "spec_ref": "requirements.md (Invoice UI Refresh spec v45)",
     "refs": "SV-9151 (S12-R4)",
     "viu_status": "SOURCE-VERIFIED ONLY - NO BUILD EXISTS YET",
-    "notes": "Typography weights (S12-R4), incl. 750 label weight added by CEO pass."
+    "notes": "Typography weights (S12-R4). In-job section-label weight is 700 (lowered from 750, Milomir build feedback 2026-08-26; WeasyPrint drops 750 to 400). Inter applies identically on screen and in PDF (v45, 2026-08-28)."
   },
   {
     "id": "INV-VIS-05",
@@ -67,9 +67,9 @@
     "type": "Functional",
     "preconditions": "1. You are signed in to ShopView.\n2. You can obtain a document's print/PDF output and inspect its ink values.",
     "steps": "1. Obtain the PDF (or print output) of a document.\n2. Check the darkness of text and hairline rules.",
-    "expected": "1. In print and PDF output, no text renders lighter than #4B5565.\n2. Text smaller than 10px renders no lighter than #364152.\n3. Hairline rules render no lighter than #CDD5DF.\n\n---\nThis is the expected behaviour as per epic SV-8218 and story SV-9151 (Story 12, Document Visual Standard) and the Invoice UI Refresh specification version 39, section S12-R5, and the Design Document, read on 25 August 2026.\n\nAUTOMATION: Not available on Build to test Yet - Last checked 8/21/2026\n",
+    "expected": "1. In print and PDF output, no text renders lighter than #4B5565.\n2. Text smaller than 10px renders no lighter than #364152.\n3. Hairline rules render no lighter than #CDD5DF.\n\n---\nThis is the expected behaviour as per epic SV-8218 and story SV-9151 (Story 12, Document Visual Standard) and the Invoice UI Refresh specification version 45, section S12-R5, and the Design Document, read on 31 August 2026.\n\nAUTOMATION: Not available on Build to test Yet - Last checked 8/21/2026\n",
     "design_ref": "Claude Design Document artifact c88ee207 (binding visual reference, appearance source of truth per spec Visual design status), as exported 2026-08-21.",
-    "spec_ref": "requirements.md (Invoice UI Refresh spec v39)",
+    "spec_ref": "requirements.md (Invoice UI Refresh spec v45)",
     "refs": "SV-9151 (S12-R5)",
     "viu_status": "SOURCE-VERIFIED ONLY - NO BUILD EXISTS YET",
     "notes": "Print ink floor (S12-R5) - weak printers drop lighter values."
@@ -82,9 +82,9 @@
     "type": "Functional",
     "preconditions": "1. You are signed in to ShopView.\n2. You can print or render a document in grayscale.",
     "steps": "1. Render or print a document in grayscale.\n2. Check that all meaning is still clear without colour.",
-    "expected": "1. Every document is fully legible printed in grayscale.\n2. Colour is never the only signal: credit amounts also carry the leading minus, and discounts also carry parentheses.\n\n---\nThis is the expected behaviour as per epic SV-8218 and story SV-9151 (Story 12, Document Visual Standard) and the Invoice UI Refresh specification version 39, section S12-R6, and the Design Document, read on 25 August 2026.\n\nAUTOMATION: Not available on Build to test Yet - Last checked 8/21/2026\n",
+    "expected": "1. Every document is fully legible printed in grayscale.\n2. Colour is never the only signal: credit amounts also carry the leading minus, and discounts also carry parentheses.\n\n---\nThis is the expected behaviour as per epic SV-8218 and story SV-9151 (Story 12, Document Visual Standard) and the Invoice UI Refresh specification version 45, section S12-R6, and the Design Document, read on 31 August 2026.\n\nAUTOMATION: Not available on Build to test Yet - Last checked 8/21/2026\n",
     "design_ref": "Claude Design Document artifact c88ee207 (binding visual reference, appearance source of truth per spec Visual design status), as exported 2026-08-21.",
-    "spec_ref": "requirements.md (Invoice UI Refresh spec v39)",
+    "spec_ref": "requirements.md (Invoice UI Refresh spec v45)",
     "refs": "SV-9151 (S12-R6)",
     "viu_status": "SOURCE-VERIFIED ONLY - NO BUILD EXISTS YET",
     "notes": "Grayscale legibility (S12-R6); reinforced by S11-R4 minus and S5-R8 parentheses."
@@ -97,12 +97,12 @@
     "type": "Negative",
     "preconditions": "1. You are signed in to ShopView.\n2. You can generate a real document (not the Design Document prototype).",
     "steps": "1. Generate a real Estimate, Invoice or Credit Invoice.\n2. Look for any prototype demo tooling.",
-    "expected": "1. The Design Document's control strips (the document and field toggles, the settings menu, the POC badge, the theme controls) do not appear on any real document.\n2. Only the white sheet is the document.\n3. The PDF output carries no drop shadow and no rounded sheet corners (those are screen-prototype presentation only).\n\n---\nThis is the expected behaviour as per epic SV-8218 and story SV-9151 (Story 12, Document Visual Standard) and the Invoice UI Refresh specification version 39, sections S12-R7 and S12-N1, read on 25 August 2026.\n\nAUTOMATION: Not available on Build to test Yet - Last checked 8/21/2026\n",
+    "expected": "1. The Design Document's control strips (the document and field toggles, the settings menu, the theme controls) do not appear on any real document.\n2. Only the white sheet is the document.\n3. The PDF output carries no drop shadow and no rounded sheet corners (those are screen-prototype presentation only).\n\n---\nThis is the expected behaviour as per epic SV-8218 and story SV-9151 (Story 12, Document Visual Standard) and the Invoice UI Refresh specification version 45, sections S12-R7 and S12-N1, read on 31 August 2026.\n\nAUTOMATION: Not available on Build to test Yet - Last checked 8/21/2026\n",
     "design_ref": "Claude Design Document artifact c88ee207 (binding visual reference, appearance source of truth per spec Visual design status), as exported 2026-08-21.",
-    "spec_ref": "requirements.md (Invoice UI Refresh spec v39)",
+    "spec_ref": "requirements.md (Invoice UI Refresh spec v45)",
     "refs": "SV-9151 (S12-R7; S12-N1)",
     "viu_status": "SOURCE-VERIFIED ONLY - NO BUILD EXISTS YET",
-    "notes": "Prototype-chrome exclusion (S12-R7/N1)."
+    "notes": "Prototype-chrome exclusion (S12-R7/N1). The stale 'POC badge' reference was dropped from S12-R7 in v45 (Mudassir review 2026-08-27)."
   },
   {
     "id": "INV-VIS-08",
@@ -112,9 +112,9 @@
     "type": "Functional",
     "preconditions": "1. You are signed in to ShopView.\n2. You can generate a document with several work lines, at least one having fee/discount adjustment rows.",
     "steps": "1. Generate the document.\n2. Inspect the rules and dividers in the work section.",
-    "expected": "1. The work section opens with a 2px ink rule under the section label.\n2. Numbered jobs are separated by a 1px ink (#121926) rule.\n3. Charge rows inside a job are separated by #EEF2F6 row dividers.\n4. The \"Labor\" and \"Parts\" sub-section labels carry no underline rule.\n5. When a line has fee or discount adjustment rows, the row divider follows the line's last adjustment row - never between the line and its adjustments - so the line and its adjustments read as one group.\n\n---\nThis is the expected behaviour as per epic SV-8218 and story SV-9151 (Story 12, Document Visual Standard) and the Invoice UI Refresh specification version 39, section S12-R8, and the Design Document, read on 25 August 2026.\n\nAUTOMATION: Not available on Build to test Yet - Last checked 8/21/2026\n",
+    "expected": "1. The work section opens with a 2px ink rule under the section label.\n2. Numbered jobs are separated by a 1px ink (#121926) rule.\n3. Charge rows inside a job are separated by #EEF2F6 row dividers.\n4. The \"Labor\" and \"Parts\" sub-section labels carry no underline rule.\n5. When a line has fee or discount adjustment rows, the row divider follows the line's last adjustment row - never between the line and its adjustments - so the line and its adjustments read as one group.\n\n---\nThis is the expected behaviour as per epic SV-8218 and story SV-9151 (Story 12, Document Visual Standard) and the Invoice UI Refresh specification version 45, section S12-R8, and the Design Document, read on 31 August 2026.\n\nAUTOMATION: Not available on Build to test Yet - Last checked 8/21/2026\n",
     "design_ref": "Claude Design Document artifact c88ee207 (binding visual reference, appearance source of truth per spec Visual design status), as exported 2026-08-21.",
-    "spec_ref": "requirements.md (Invoice UI Refresh spec v39)",
+    "spec_ref": "requirements.md (Invoice UI Refresh spec v45)",
     "refs": "SV-9151 (S12-R8)",
     "viu_status": "SOURCE-VERIFIED ONLY - NO BUILD EXISTS YET",
     "notes": "Work-section dividers (S12-R8, CEO pass 2026-08-12); same rule on Parts Sale body (S13-R3)."
@@ -127,11 +127,41 @@
     "type": "Functional",
     "preconditions": "1. You are signed in to ShopView.\n2. You can inspect text sizes, weights and colours on a rendered document.",
     "steps": "1. Generate a document with work lines.\n2. Inspect the document section label, the 'Scope of work' label, and the in-job 'Labor'/'Parts' labels.",
-    "expected": "1. The document section label (\"Work Summary\" / \"Work Performed\" / \"Parts\") is 11px weight 700 in muted ink #697586.\n2. \"Scope of work\" is 10px weight 750 in body ink #364152.\n3. The in-job \"Labor\" and \"Parts\" labels are 10.5px weight 750 in full ink #121926.\n4. All three sit visually below the 16px weight-700 job titles, with letterspacing per the Design Document.\n\n---\nThis is the expected behaviour as per epic SV-8218 and story SV-9151 (Story 12, Document Visual Standard) and the Invoice UI Refresh specification version 39, section S12-R9, and the Design Document, read on 25 August 2026.\n\nAUTOMATION: Not available on Build to test Yet - Last checked 8/21/2026\n",
+    "expected": "1. The document section label (\"Work Summary\" / \"Work Performed\" / \"Parts\") is 11px weight 700 in muted ink #697586.\n2. \"Scope of work\" is 10px weight 700 in body ink #364152.\n3. The in-job \"Labor\" and \"Parts\" labels are 10.5px weight 700 in full ink #121926.\n4. All three sit visually below the 16px weight-700 job titles, with letterspacing per the Design Document.\n\n---\nThis is the expected behaviour as per epic SV-8218 and story SV-9151 (Story 12, Document Visual Standard) and the Invoice UI Refresh specification version 45, section S12-R9, and the Design Document, read on 31 August 2026.\n\nAUTOMATION: Not available on Build to test Yet - Last checked 8/21/2026\n",
     "design_ref": "Claude Design Document artifact c88ee207 (binding visual reference, appearance source of truth per spec Visual design status), as exported 2026-08-21.",
-    "spec_ref": "requirements.md (Invoice UI Refresh spec v39)",
+    "spec_ref": "requirements.md (Invoice UI Refresh spec v45)",
     "refs": "SV-9151 (S12-R9)",
     "viu_status": "SOURCE-VERIFIED ONLY - NO BUILD EXISTS YET",
-    "notes": "Section-label hierarchy (S12-R9, CEO pass 2026-08-12)."
+    "notes": "Section-label hierarchy (S12-R9, CEO pass 2026-08-12). In-job 'Labor'/'Parts' and 'Scope of work' label weight lowered 750->700 in v45 (Milomir build feedback 2026-08-26; WeasyPrint drops 750 to 400). Document section label is 11px weight 700 muted #697586."
+  },
+  {
+    "id": "INV-VIS-10",
+    "area": "Document Visual Standard",
+    "title": "Multi-page document uses standard page-break behaviour",
+    "priority": "Medium",
+    "type": "Functional",
+    "preconditions": "1. You are signed in to ShopView.\n2. You can generate a document long enough to span more than one page (a work order with many work lines), on screen and as a PDF.",
+    "steps": "1. Generate a multi-page document.\n2. Look at the top of every page after the first.\n3. Check the totals block, a work line together with its own footer, the signature row, and any single row that falls near a page boundary.",
+    "expected": "1. Long documents paginate using standard, globally accepted page-break behaviour, not custom pagination.\n2. Every page after the first opens with a single identification line: the shop location's name on the left and the document number on the right (for example \"Heavy Duty - 9919\" on the left and \"Invoice: INV-S2-4802\" on the right).\n3. The full masthead does not repeat on later pages.\n4. The totals block is not split across a page break.\n5. A work line and its own footer stay together on the same page.\n6. The signature row does not land alone on a final page.\n7. No single row is orphaned by itself on a page.\n\n---\nThis is the expected behaviour as per epic SV-8218 and story SV-9151 (Story 12, Document Visual Standard) and the Invoice UI Refresh specification version 45, section S12-R10, and the Design Document, read on 31 August 2026.\n\nAUTOMATION: Not available on Build to test Yet - Last checked 8/31/2026\n",
+    "design_ref": "Claude Design Document artifact c88ee207 (binding visual reference, appearance source of truth per spec Visual design status), as exported 2026-08-21.",
+    "spec_ref": "requirements.md (Invoice UI Refresh spec v45)",
+    "refs": "SV-9151 (S12-R10)",
+    "viu_status": "SOURCE-VERIFIED ONLY - NO BUILD EXISTS YET",
+    "notes": "Page-break behaviour (S12-R10, net-new v45; Mudassir review 2026-08-27, later-page identification line finalised 2026-08-28)."
+  },
+  {
+    "id": "INV-VIS-11",
+    "area": "Document Visual Standard",
+    "title": "On-screen document fits the viewport; wide elements scroll in their own container",
+    "priority": "Medium",
+    "type": "Functional",
+    "preconditions": "1. You are signed in to ShopView.\n2. You can view a document on screen and narrow the browser viewport, ideally with a document that contains a wide element such as a wide table.",
+    "steps": "1. Open a document on screen and narrow the viewport.\n2. Check whether any content is clipped.\n3. Find an element wider than the viewport (for example a wide table) and check how it behaves.",
+    "expected": "1. On screen the document fits within the viewport with no content clipped.\n2. Any element wider than the viewport (for example a wide table) scrolls horizontally within its own container, rather than clipping or forcing the whole page to scroll sideways.\n\n---\nThis is the expected behaviour as per epic SV-8218 and story SV-9151 (Story 12, Document Visual Standard) and the Invoice UI Refresh specification version 45, section S12-R11, and the Design Document, read on 31 August 2026.\n\nAUTOMATION: Not available on Build to test Yet - Last checked 8/31/2026\n",
+    "design_ref": "Claude Design Document artifact c88ee207 (binding visual reference, appearance source of truth per spec Visual design status), as exported 2026-08-21.",
+    "spec_ref": "requirements.md (Invoice UI Refresh spec v45)",
+    "refs": "SV-9151 (S12-R11)",
+    "viu_status": "SOURCE-VERIFIED ONLY - NO BUILD EXISTS YET",
+    "notes": "Small-viewport fit (S12-R11, net-new v45; Mudassir review 2026-08-27). Wide content scrolls in its own container, never clipping or forcing the whole page to scroll sideways."
   }
 ]
