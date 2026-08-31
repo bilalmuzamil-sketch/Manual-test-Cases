@@ -4116,5 +4116,132 @@
     "text": "1. Generate the PDF\n2. Inspect every page break\n3. Print-preview in grayscale"
    }
   }
+ },
+ "44955": {
+  "title": "Shop disclaimer shows with no heading, identical on every document",
+  "atm": 1,
+  "section_id": 6750,
+  "escaping": true,
+  "fields": {
+   "custom_expected": {
+    "blocks": [
+     [
+      "1. Each document shows the shop's configured disclaimer text, with no heading above it.",
+      "2. The disclaimer is identical on every document that carries it."
+     ],
+     [
+      "---",
+      "This is the expected behaviour as per epic SV-8218 and story SV-9148 (Story 9, Disclaimer, Signature and Footer) and the Invoice UI Refresh specification version 45, section S9-R1, read on 31 August 2026.",
+      "Last checked against build v26.35.5-8c3cc21 on 8/31/2026."
+     ],
+     [
+      "AUTOMATION: READY"
+     ]
+    ],
+    "text": "1. Each document shows the shop's configured disclaimer text, with no heading above it.\n2. The disclaimer is identical on every document that carries it.\n\n---\nThis is the expected behaviour as per epic SV-8218 and story SV-9148 (Story 9, Disclaimer, Signature and Footer) and the Invoice UI Refresh specification version 45, section S9-R1, read on 31 August 2026.\nLast checked against build v26.35.5-8c3cc21 on 8/31/2026.\n\nAUTOMATION: READY"
+   },
+   "custom_preconds": {
+    "blocks": [
+     [
+      "1. You are signed in to ShopView.",
+      "2. A shop has a configured disclaimer, and you can generate an Estimate, Invoice and Credit Invoice for it."
+     ]
+    ],
+    "text": "1. You are signed in to ShopView.\n2. A shop has a configured disclaimer, and you can generate an Estimate, Invoice and Credit Invoice for it."
+   },
+   "custom_steps": {
+    "blocks": [
+     [
+      "1. Generate each document type for the shop.",
+      "2. Find the disclaimer text on each."
+     ]
+    ],
+    "text": "1. Generate each document type for the shop.\n2. Find the disclaimer text on each."
+   }
+  }
+ },
+ "45169": {
+  "title": "Authorizer change is rejected by the API while a non-voided invoice exists",
+  "atm": 1,
+  "section_id": 6744,
+  "escaping": true,
+  "fields": {
+   "custom_expected": {
+    "blocks": [
+     [
+      "1. The API returns 409; the Authorizer is unchanged. The server-side lock cannot be bypassed (NFR-001, plan D2).",
+      "2. The lock is conditional, not permanent: per v45 S3-R8 a later void or reversal returns the work order to Complete and re-enables the Authorizer row (that transition is out of scope for this API-rejection case)."
+     ],
+     [
+      "---",
+      "This is the expected behaviour as per epic SV-8218 and story SV-9142 (Story 3, Order Reference Fields) and the Invoice UI Refresh specification version 45, section S3-R8, read on 31 August 2026.",
+      "Last checked against build v26.35.5-8c3cc21 on 8/31/2026."
+     ],
+     [
+      "AUTOMATION: READY"
+     ]
+    ],
+    "text": "1. The API returns 409; the Authorizer is unchanged. The server-side lock cannot be bypassed (NFR-001, plan D2).\n2. The lock is conditional, not permanent: per v45 S3-R8 a later void or reversal returns the work order to Complete and re-enables the Authorizer row (that transition is out of scope for this API-rejection case).\n\n---\nThis is the expected behaviour as per epic SV-8218 and story SV-9142 (Story 3, Order Reference Fields) and the Invoice UI Refresh specification version 45, section S3-R8, read on 31 August 2026.\nLast checked against build v26.35.5-8c3cc21 on 8/31/2026.\n\nAUTOMATION: READY"
+   },
+   "custom_preconds": {
+    "blocks": [
+     [
+      "1. Invoiced work order",
+      "2. API access (session token)"
+     ]
+    ],
+    "text": "1. Invoiced work order\n2. API access (session token)"
+   },
+   "custom_steps": {
+    "blocks": [
+     [
+      "1. POST /api/work-orders/change-authorizer with a valid authorizer_id directly (bypass the UI) (body: {\"workOrderId\": \"<work order id>\", \"authorizerContactId\": \"<contact id>\"})"
+     ]
+    ],
+    "text": "1. POST /api/work-orders/change-authorizer with a valid authorizer_id directly (bypass the UI) (body: {\"workOrderId\": \"<work order id>\", \"authorizerContactId\": \"<contact id>\"})"
+   }
+  }
+ },
+ "45170": {
+  "title": "Authorizer API rejects a contact that does not approve work or belongs to another company",
+  "atm": 1,
+  "section_id": 6744,
+  "escaping": true,
+  "fields": {
+   "custom_expected": {
+    "blocks": [
+     [
+      "1. Both are rejected - 422 (or 404 for the cross-tenant contact); the Authorizer is unchanged (NFR-002). Only a customer contact with 'Approves Work' enabled can be selected as Authorizer (S3-R5)."
+     ],
+     [
+      "---",
+      "This is the expected behaviour as per epic SV-8218 and story SV-9142 (Story 3, Order Reference Fields) and the Invoice UI Refresh specification version 45, section S3-R5, read on 31 August 2026.",
+      "Last checked against build v26.35.5-8c3cc21 on 8/31/2026."
+     ],
+     [
+      "AUTOMATION: READY"
+     ]
+    ],
+    "text": "1. Both are rejected - 422 (or 404 for the cross-tenant contact); the Authorizer is unchanged (NFR-002). Only a customer contact with 'Approves Work' enabled can be selected as Authorizer (S3-R5).\n\n---\nThis is the expected behaviour as per epic SV-8218 and story SV-9142 (Story 3, Order Reference Fields) and the Invoice UI Refresh specification version 45, section S3-R5, read on 31 August 2026.\nLast checked against build v26.35.5-8c3cc21 on 8/31/2026.\n\nAUTOMATION: READY"
+   },
+   "custom_preconds": {
+    "blocks": [
+     [
+      "1. Un-invoiced work order",
+      "2. Contact IDs: (a) same company without 'Approves Work'; (b) another company's contact"
+     ]
+    ],
+    "text": "1. Un-invoiced work order\n2. Contact IDs: (a) same company without 'Approves Work'; (b) another company's contact"
+   },
+   "custom_steps": {
+    "blocks": [
+     [
+      "1. POST authorizer_id = contact (a)",
+      "2. POST authorizer_id = contact (b)"
+     ]
+    ],
+    "text": "1. POST authorizer_id = contact (a)\n2. POST authorizer_id = contact (b)"
+   }
+  }
  }
 }

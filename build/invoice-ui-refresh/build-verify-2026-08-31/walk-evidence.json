@@ -75,5 +75,93 @@
   ]
  },
  "walked_at": "2026-08-31T17:01:38.630793+00:00",
- "build_marker": "v26.35.5-8c3cc21"
+ "build_marker": "v26.35.5-8c3cc21",
+ "C44955": {
+  "step": "Find the disclaimer text on each",
+  "documents_checked": 9,
+  "per_document": {
+   "invoice/S2-15522": {
+    "disclaimer_present": true,
+    "has_heading_above_it": false
+   },
+   "estimate/S2-15522": {
+    "disclaimer_present": true,
+    "has_heading_above_it": false
+   },
+   "invoice-with-declined/S2-15522": {
+    "disclaimer_present": true,
+    "has_heading_above_it": false
+   },
+   "invoice/S2-15517": {
+    "disclaimer_present": true,
+    "has_heading_above_it": false
+   },
+   "estimate/S2-15517": {
+    "disclaimer_present": true,
+    "has_heading_above_it": false
+   },
+   "invoice-with-declined/S2-15517": {
+    "disclaimer_present": true,
+    "has_heading_above_it": false
+   },
+   "credit-invoice/S-15517": {
+    "disclaimer_present": true,
+    "has_heading_above_it": false
+   },
+   "parts-sale/P2-123": {
+    "disclaimer_present": true,
+    "has_heading_above_it": false
+   },
+   "parts-sale-estimate/P2-123": {
+    "disclaimer_present": true,
+    "has_heading_above_it": false
+   }
+  },
+  "disclaimer_on_every_document": true,
+  "any_heading_above_the_disclaimer": false
+ },
+ "C45169_route_probe": {
+  "/api/work-orders/06747f14-bf1e-4c03-8358-732e78b0167d/authorizer": {
+   "GET": {
+    "status": 404,
+    "body": "{\"errors\":[{\"error\":\"\\u0027resource\\u0027 was not found.\"}]}"
+   }
+  },
+  "/api/work-orders/06747f14-bf1e-4c03-8358-732e78b0167d/set-authorizer": {
+   "GET": {
+    "status": 404,
+    "body": "{\"errors\":[{\"error\":\"\\u0027resource\\u0027 was not found.\"}]}"
+   }
+  }
+ },
+ "C45169_C45170": {
+  "C45169_invoiced_wo_valid_contact": {
+   "status": 409,
+   "body": "{\"errors\":[{\"error\":\"The authorizer cannot be changed on an invoiced or paid work order (`06747f14-bf1e-4c03-8358-732e78b0167d`).\"}]}",
+   "refused": true
+  },
+  "C45170b_foreign_or_unknown_contact": {
+   "status": 404,
+   "body": "{\"errors\":[{\"error\":\"\\u0027Contact\\u0027 was not found.\"}]}",
+   "refused": true
+  },
+  "route_used": "POST /api/work-orders/change-authorizer {workOrderId, authorizerContactId}",
+  "route_in_case_text_404s": "/api/work-orders/{wo}/authorizer",
+  "C45170a_same_customer_non_authorizer": {
+   "contact": "f66aa7fb-85b4-425f-8e77-af3e28abfa27",
+   "status": 422,
+   "body": "{\"errors\":[{\"error\":\"The contact `f66aa7fb-85b4-425f-8e77-af3e28abfa27` cannot be used as the authorizer for this work order.\"}]}",
+   "refused": true
+  },
+  "C45170b_other_customer_contact": {
+   "contact": "ecb3993a-fc41-4887-acc5-4c3d4fb97c9e",
+   "status": 422,
+   "body": "{\"errors\":[{\"error\":\"The contact `ecb3993a-fc41-4887-acc5-4c3d4fb97c9e` cannot be used as the authorizer for this work order.\"}]}",
+   "refused": true
+  },
+  "restored": {
+   "status": 200,
+   "note": "authorizer reset to Darren Moore (valid) after the probes"
+  }
+ }
 }
