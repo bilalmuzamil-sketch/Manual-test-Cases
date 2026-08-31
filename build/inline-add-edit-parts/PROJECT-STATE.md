@@ -71,6 +71,37 @@
   author_cases.py + apply_to_testrail.py.
 - **Still no QA build → Rule 85 SOURCE-VERIFIED ONLY.** Open PO questions PO-IAEP-1/2 still open.
 
+## Status — 2026-08-31 (render-container repair to fr-view)
+- **PROBLEM (measured, not theoretical):** TestRail serves each case field in one of two containers,
+  invisible to the API — `<div class="markdown fr-view">` (block HTML renders, readable) vs
+  `<div class="markdown">` (block HTML **ESCAPED** — the tester literally reads `<ol><li><p>`). An API
+  `update_case` always leaves the field in the ESCAPING container; **only a UI save flips it to
+  `fr-view`.** The 2026-08-31 v13→v16 API pass converted these cases' plain text to block HTML, so a
+  live scan found **76 of the 118 escaping** (e.g. C45000 = 3/3 fields escaping).
+- **FIX (QA-lead-approved UI-repair-to-fr-view):** drove the TestRail web editor with Playwright
+  through the local MITM bridge and re-saved each field so the container flips to `fr-view`. Evidence +
+  scripts in `render-repair-2026-08-31/` (scan.mjs, repair.mjs, fix_deterministic.mjs, REPAIRED-final.jsonl).
+- **RESULT — final re-scan of all 118 (scan-final.json): escaping 0, all-fr-view 118, zero literal
+  tags, zero visible entities.** 77 targets (76 escaping + C45005) verified fr-view + numbers visible +
+  AUTOMATION marker last + atmstatus/title unchanged; 0 failures.
+- **Rule 71 / 65 — the 2 Automated cases (atm=3, Vladimir Tomovic) were UI-repaired this pass with the
+  QA lead's explicit go-ahead (skip lifted for these two only):** **C45026 (IAEP-TEDIT-04, S3-R5)** was
+  escaping → repaired to fr-view + re-stamped v13→v16; **C45005 (IAEP-TADD-08, S2-R9)** was found live
+  already fr-view + v16 and was NOT written. atm=3 preserved on both. FOR-VLAD note:
+  `render-repair-2026-08-31/FOR-VLAD-automated-cases-changed-2026-08-31.md`. Foreign C45220 untouched (Rule 38).
+- **🛑 LESSON — a case's readability is decided by the SERVED-PAGE CONTAINER, not the API-stored HTML.**
+  `build/testing-tools/check_case_render.py` reads the API value and cannot see the container, so an
+  API-written case with perfect block HTML PASSES that check yet is UNREADABLE on screen. The only fix
+  is a **UI save** (Playwright). Two further traps proven this pass: (1) keystroke-typing "1. " into a
+  field that still holds the old `<ol>` intermittently triggers Froala's list-autoformat, which swallows
+  the literal "1." into a real `<ol>` marker (lost from the tester's numbered view) — so set content
+  **deterministically via the Froala instance** (`window.FroalaEditor.INSTANCES.find(i => i.$oel[0].id ===
+  '<field>_display').html.set('<p>line<br>line</p>')`) rather than keystrokes; (2) TestRail intermittently
+  rejects the save with **"Deadlock found when trying to get lock"** — **retry the save** (loop, backoff).
+  Chromium **cannot TLS through the egress proxy** (connection reset) — it must go through the local MITM
+  bridge (`build/atlassian-login/bridge.mjs`, `NODE_USE_ENV_PROXY=1`), and Node fetch API calls likewise
+  need `NODE_USE_ENV_PROXY=1` + `NODE_EXTRA_CA_CERTS`.
+
 ## How to resume
 1. On go-ahead from Sasha's answers: fold PO-IAEP-1/2 outcomes into IAEP-TEDIT-12 and IAEP-BTN-06/07.
 2. When a QA build exists: run skill 03/11 build verification; re-stamp AUTOMATION markers.
