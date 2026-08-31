@@ -62,7 +62,9 @@ def sub(r):
 secname = {s['id']: s['name'] for s in sec}
 ids = set(sub(6559))
 cases = [c for c in paged("get_cases/1&suite_id=1", "cases") if c['section_id'] in ids]
-ours = [c for c in cases if c.get('created_by') == 3]
+# scope is ALL 119: the QA lead confirmed Mudassir Qamar (id 6) as the Manual QA owner
+# for this suite on 2026-08-31, so his 30 cases are treated exactly like ours (core 5.0).
+ours = cases
 
 TAG = re.compile(r'<[^>]+>')
 def plain(t):

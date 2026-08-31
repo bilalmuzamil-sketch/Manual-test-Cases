@@ -1,0 +1,2163 @@
+{
+ "evaluated_at": "2026-08-31T09:41:48.023085+00:00",
+ "control_can_fire": true,
+ "document_kinds_available": [
+  "estimate",
+  "invoice",
+  "invoice-with-declined"
+ ],
+ "document_test_ids": [
+  "invoice-balance",
+  "invoice-estimated-total",
+  "invoice-payment-row",
+  "invoice-payments-heading",
+  "invoice-ref-customer-po",
+  "invoice-ref-terms",
+  "invoice-summary-labor",
+  "invoice-summary-parts",
+  "invoice-summary-shop-supplies",
+  "invoice-summary-subtotal",
+  "invoice-summary-tax-row",
+  "invoice-summary-total"
+ ],
+ "tally": {
+  "NO_LABELS_TO_CHECK": 38,
+  "NOT_ESTABLISHED": 31,
+  "LABELS_ALL_PRESENT": 25,
+  "LABEL_DIVERGENCE": 25
+ },
+ "cases": {
+  "44901": {
+   "cid": "44901",
+   "title": "Masthead shows the shop location's full identity details",
+   "section": "Masthead and Letterhead",
+   "atm": 1,
+   "needs": [
+    "invoice"
+   ],
+   "missing_document_kinds": [],
+   "labels_total": 0,
+   "labels_found": [],
+   "labels_absent": [],
+   "verdict": "NO_LABELS_TO_CHECK",
+   "why": "the case quotes no on-screen label; runnability turns on its steps alone"
+  },
+  "44902": {
+   "cid": "44902",
+   "title": "Shop logo shows when set; nothing (no placeholder) shows when unset",
+   "section": "Masthead and Letterhead",
+   "atm": 1,
+   "needs": [
+    "invoice"
+   ],
+   "missing_document_kinds": [],
+   "labels_total": 0,
+   "labels_found": [],
+   "labels_absent": [],
+   "verdict": "NO_LABELS_TO_CHECK",
+   "why": "the case quotes no on-screen label; runnability turns on its steps alone"
+  },
+  "44903": {
+   "cid": "44903",
+   "title": "Document label names the type before the number on each document",
+   "section": "Masthead and Letterhead",
+   "atm": 1,
+   "needs": [
+    "credit-invoice",
+    "estimate"
+   ],
+   "missing_document_kinds": [
+    "credit-invoice"
+   ],
+   "labels_total": 0,
+   "labels_found": [],
+   "labels_absent": [],
+   "verdict": "NOT_ESTABLISHED",
+   "why": "needs a document type not captured: credit-invoice"
+  },
+  "44904": {
+   "cid": "44904",
+   "title": "No status pill appears in the masthead on any document",
+   "section": "Masthead and Letterhead",
+   "atm": 1,
+   "needs": [
+    "credit-invoice",
+    "estimate"
+   ],
+   "missing_document_kinds": [
+    "credit-invoice"
+   ],
+   "labels_total": 4,
+   "labels_found": [
+    "PAID"
+   ],
+   "labels_absent": [
+    "DRAFT",
+    "PAID IN FULL",
+    "VOIDED"
+   ],
+   "verdict": "NOT_ESTABLISHED",
+   "why": "needs a document type not captured: credit-invoice"
+  },
+  "44905": {
+   "cid": "44905",
+   "title": "No money figure in the masthead; headline figure is the boxed total",
+   "section": "Masthead and Letterhead",
+   "atm": 1,
+   "needs": [
+    "credit-invoice",
+    "estimate"
+   ],
+   "missing_document_kinds": [
+    "credit-invoice"
+   ],
+   "labels_total": 2,
+   "labels_found": [
+    "Balance",
+    "Estimated Total"
+   ],
+   "labels_absent": [],
+   "verdict": "NOT_ESTABLISHED",
+   "why": "needs a document type not captured: credit-invoice"
+  },
+  "44906": {
+   "cid": "44906",
+   "title": "Masthead date labels read correctly for each document type",
+   "section": "Masthead and Letterhead",
+   "atm": 1,
+   "needs": [
+    "credit-invoice",
+    "estimate"
+   ],
+   "missing_document_kinds": [
+    "credit-invoice"
+   ],
+   "labels_total": 0,
+   "labels_found": [],
+   "labels_absent": [],
+   "verdict": "NOT_ESTABLISHED",
+   "why": "needs a document type not captured: credit-invoice"
+  },
+  "44907": {
+   "cid": "44907",
+   "title": "Masthead identity fields each hide when empty",
+   "section": "Masthead and Letterhead",
+   "atm": 1,
+   "needs": [
+    "invoice"
+   ],
+   "missing_document_kinds": [],
+   "labels_total": 0,
+   "labels_found": [],
+   "labels_absent": [],
+   "verdict": "NO_LABELS_TO_CHECK",
+   "why": "the case quotes no on-screen label; runnability turns on its steps alone"
+  },
+  "44908": {
+   "cid": "44908",
+   "title": "Bill To block shows the customer name and address",
+   "section": "Addresses",
+   "atm": 1,
+   "needs": [
+    "estimate",
+    "invoice"
+   ],
+   "missing_document_kinds": [],
+   "labels_total": 1,
+   "labels_found": [
+    "Bill To"
+   ],
+   "labels_absent": [],
+   "verdict": "LABELS_ALL_PRESENT",
+   "why": "all 1 quoted labels found in the rendered document"
+  },
+  "44909": {
+   "cid": "44909",
+   "title": "Remit Payment To shows when a payee is configured (both mechanisms)",
+   "section": "Addresses",
+   "atm": 1,
+   "needs": [
+    "estimate",
+    "invoice"
+   ],
+   "missing_document_kinds": [],
+   "labels_total": 1,
+   "labels_found": [
+    "Remit Payment To"
+   ],
+   "labels_absent": [],
+   "verdict": "LABELS_ALL_PRESENT",
+   "why": "all 1 quoted labels found in the rendered document"
+  },
+  "44910": {
+   "cid": "44910",
+   "title": "Bill To spans full width when Remit Payment To is absent",
+   "section": "Addresses",
+   "atm": 1,
+   "needs": [
+    "estimate",
+    "invoice"
+   ],
+   "missing_document_kinds": [],
+   "labels_total": 0,
+   "labels_found": [],
+   "labels_absent": [],
+   "verdict": "NO_LABELS_TO_CHECK",
+   "why": "the case quotes no on-screen label; runnability turns on its steps alone"
+  },
+  "44911": {
+   "cid": "44911",
+   "title": "Remit Payment To is hidden when no payee is configured",
+   "section": "Addresses",
+   "atm": 1,
+   "needs": [
+    "estimate",
+    "invoice"
+   ],
+   "missing_document_kinds": [],
+   "labels_total": 1,
+   "labels_found": [
+    "Remit Payment To"
+   ],
+   "labels_absent": [],
+   "verdict": "LABELS_ALL_PRESENT",
+   "why": "all 1 quoted labels found in the rendered document"
+  },
+  "44912": {
+   "cid": "44912",
+   "title": "Bill To address fields hide when empty; the name line always shows",
+   "section": "Addresses",
+   "atm": 1,
+   "needs": [
+    "estimate",
+    "invoice"
+   ],
+   "missing_document_kinds": [],
+   "labels_total": 0,
+   "labels_found": [],
+   "labels_absent": [],
+   "verdict": "NO_LABELS_TO_CHECK",
+   "why": "the case quotes no on-screen label; runnability turns on its steps alone"
+  },
+  "45168": {
+   "cid": "45168",
+   "title": "Credit Invoice never shows Remit Payment To and Credit To spans full width",
+   "section": "Addresses",
+   "atm": 1,
+   "needs": [
+    "credit-invoice"
+   ],
+   "missing_document_kinds": [
+    "credit-invoice"
+   ],
+   "labels_total": 1,
+   "labels_found": [],
+   "labels_absent": [
+    "Credit To"
+   ],
+   "verdict": "NOT_ESTABLISHED",
+   "why": "needs a document type not captured: credit-invoice"
+  },
+  "44913": {
+   "cid": "44913",
+   "title": "Order reference fields show in the fixed order with no label punctuation",
+   "section": "Order Reference Fields",
+   "atm": 1,
+   "needs": [
+    "estimate",
+    "invoice"
+   ],
+   "missing_document_kinds": [],
+   "labels_total": 5,
+   "labels_found": [
+    "Customer PO",
+    "Terms",
+    "Work Order"
+   ],
+   "labels_absent": [
+    "Approval Code",
+    "Authorizer"
+   ],
+   "verdict": "LABEL_DIVERGENCE",
+   "why": "2 of 5 quoted labels not found"
+  },
+  "44914": {
+   "cid": "44914",
+   "title": "Terms field always shows, even when no terms are set",
+   "section": "Order Reference Fields",
+   "atm": 1,
+   "needs": [
+    "estimate",
+    "invoice"
+   ],
+   "missing_document_kinds": [],
+   "labels_total": 2,
+   "labels_found": [
+    "Net 30",
+    "Terms"
+   ],
+   "labels_absent": [],
+   "verdict": "LABELS_ALL_PRESENT",
+   "why": "all 2 quoted labels found in the rendered document"
+  },
+  "44915": {
+   "cid": "44915",
+   "title": "Authorizer field shows the selected authorizer's full name",
+   "section": "Order Reference Fields",
+   "atm": 1,
+   "needs": [
+    "estimate",
+    "invoice"
+   ],
+   "missing_document_kinds": [],
+   "labels_total": 1,
+   "labels_found": [],
+   "labels_absent": [
+    "Approves Work"
+   ],
+   "verdict": "LABEL_DIVERGENCE",
+   "why": "1 of 1 quoted labels not found"
+  },
+  "44916": {
+   "cid": "44916",
+   "title": "Approval Code field shows the integrated-billing approval code",
+   "section": "Order Reference Fields",
+   "atm": 1,
+   "needs": [
+    "estimate",
+    "invoice"
+   ],
+   "missing_document_kinds": [],
+   "labels_total": 2,
+   "labels_found": [],
+   "labels_absent": [
+    "Approval Code",
+    "Authorizer"
+   ],
+   "verdict": "LABEL_DIVERGENCE",
+   "why": "2 of 2 quoted labels not found"
+  },
+  "44917": {
+   "cid": "44917",
+   "title": "Work Order field hides when it equals the document number's trailing digits",
+   "section": "Order Reference Fields",
+   "atm": 1,
+   "needs": [
+    "invoice"
+   ],
+   "missing_document_kinds": [],
+   "labels_total": 2,
+   "labels_found": [],
+   "labels_absent": [
+    "INV-4176",
+    "INV-S-24914"
+   ],
+   "verdict": "LABEL_DIVERGENCE",
+   "why": "2 of 2 quoted labels not found"
+  },
+  "44918": {
+   "cid": "44918",
+   "title": "Customer PO, Authorizer and Approval Code each hide when empty",
+   "section": "Order Reference Fields",
+   "atm": 1,
+   "needs": [
+    "estimate",
+    "invoice"
+   ],
+   "missing_document_kinds": [],
+   "labels_total": 0,
+   "labels_found": [],
+   "labels_absent": [],
+   "verdict": "NO_LABELS_TO_CHECK",
+   "why": "the case quotes no on-screen label; runnability turns on its steps alone"
+  },
+  "44919": {
+   "cid": "44919",
+   "title": "Authorizer is selected in the work order customer contact card",
+   "section": "Authorizer Entry (Work Order)",
+   "atm": 3,
+   "needs": [
+    "invoice"
+   ],
+   "missing_document_kinds": [],
+   "labels_total": 2,
+   "labels_found": [],
+   "labels_absent": [
+    "Approves Work",
+    "Authorizer"
+   ],
+   "verdict": "LABEL_DIVERGENCE",
+   "why": "2 of 2 quoted labels not found"
+  },
+  "44920": {
+   "cid": "44920",
+   "title": "Authorizer is optional and can be cleared with 'No authorizer'",
+   "section": "Authorizer Entry (Work Order)",
+   "atm": 3,
+   "needs": [
+    "invoice"
+   ],
+   "missing_document_kinds": [],
+   "labels_total": 2,
+   "labels_found": [],
+   "labels_absent": [
+    "Approves Work",
+    "No authorizer"
+   ],
+   "verdict": "LABEL_DIVERGENCE",
+   "why": "2 of 2 quoted labels not found"
+  },
+  "44921": {
+   "cid": "44921",
+   "title": "Authorizer's phone shows below the name when the contact has one",
+   "section": "Authorizer Entry (Work Order)",
+   "atm": 3,
+   "needs": [
+    "invoice"
+   ],
+   "missing_document_kinds": [],
+   "labels_total": 1,
+   "labels_found": [],
+   "labels_absent": [
+    "Approves Work"
+   ],
+   "verdict": "LABEL_DIVERGENCE",
+   "why": "1 of 1 quoted labels not found"
+  },
+  "44922": {
+   "cid": "44922",
+   "title": "Authorizer is locked once the work order is invoiced",
+   "section": "Authorizer Entry (Work Order)",
+   "atm": 3,
+   "needs": [
+    "invoice"
+   ],
+   "missing_document_kinds": [],
+   "labels_total": 0,
+   "labels_found": [],
+   "labels_absent": [],
+   "verdict": "NO_LABELS_TO_CHECK",
+   "why": "the case quotes no on-screen label; runnability turns on its steps alone"
+  },
+  "44923": {
+   "cid": "44923",
+   "title": "A new 'Approves Work' contact becomes selectable immediately",
+   "section": "Authorizer Entry (Work Order)",
+   "atm": 1,
+   "needs": [
+    "invoice"
+   ],
+   "missing_document_kinds": [],
+   "labels_total": 1,
+   "labels_found": [],
+   "labels_absent": [
+    "Approves Work"
+   ],
+   "verdict": "LABEL_DIVERGENCE",
+   "why": "1 of 1 quoted labels not found"
+  },
+  "45169": {
+   "cid": "45169",
+   "title": "Authorizer change is rejected by the API while a non-voided invoice exists",
+   "section": "Authorizer Entry (Work Order)",
+   "atm": 1,
+   "needs": [
+    "invoice"
+   ],
+   "missing_document_kinds": [],
+   "labels_total": 0,
+   "labels_found": [],
+   "labels_absent": [],
+   "verdict": "NO_LABELS_TO_CHECK",
+   "why": "the case quotes no on-screen label; runnability turns on its steps alone"
+  },
+  "45170": {
+   "cid": "45170",
+   "title": "Authorizer API rejects a contact that does not approve work or belongs to another company",
+   "section": "Authorizer Entry (Work Order)",
+   "atm": 1,
+   "needs": [
+    "invoice"
+   ],
+   "missing_document_kinds": [],
+   "labels_total": 1,
+   "labels_found": [],
+   "labels_absent": [
+    "Approves Work"
+   ],
+   "verdict": "LABEL_DIVERGENCE",
+   "why": "1 of 1 quoted labels not found"
+  },
+  "44924": {
+   "cid": "44924",
+   "title": "Asset section shows Asset name and VIN / Serial when present",
+   "section": "Asset Section",
+   "atm": 1,
+   "needs": [
+    "estimate",
+    "invoice"
+   ],
+   "missing_document_kinds": [],
+   "labels_total": 2,
+   "labels_found": [
+    "Asset",
+    "VIN / Serial"
+   ],
+   "labels_absent": [],
+   "verdict": "LABELS_ALL_PRESENT",
+   "why": "all 2 quoted labels found in the rendered document"
+  },
+  "44925": {
+   "cid": "44925",
+   "title": "Asset section can show Unit, Plate, Mileage and Eng Hrs",
+   "section": "Asset Section",
+   "atm": 1,
+   "needs": [
+    "estimate",
+    "invoice"
+   ],
+   "missing_document_kinds": [],
+   "labels_total": 4,
+   "labels_found": [
+    "Eng Hrs",
+    "Mileage",
+    "Plate",
+    "Unit"
+   ],
+   "labels_absent": [],
+   "verdict": "LABELS_ALL_PRESENT",
+   "why": "all 4 quoted labels found in the rendered document"
+  },
+  "44926": {
+   "cid": "44926",
+   "title": "Unit, Plate, Mileage and Eng Hrs each hide when empty",
+   "section": "Asset Section",
+   "atm": 1,
+   "needs": [
+    "estimate",
+    "invoice"
+   ],
+   "missing_document_kinds": [],
+   "labels_total": 0,
+   "labels_found": [],
+   "labels_absent": [],
+   "verdict": "NO_LABELS_TO_CHECK",
+   "why": "the case quotes no on-screen label; runnability turns on its steps alone"
+  },
+  "44927": {
+   "cid": "44927",
+   "title": "VIN / Serial hides when the asset has neither; Asset name still shows",
+   "section": "Asset Section",
+   "atm": 1,
+   "needs": [
+    "estimate",
+    "invoice"
+   ],
+   "missing_document_kinds": [],
+   "labels_total": 1,
+   "labels_found": [
+    "VIN / Serial"
+   ],
+   "labels_absent": [],
+   "verdict": "LABELS_ALL_PRESENT",
+   "why": "all 1 quoted labels found in the rendered document"
+  },
+  "44928": {
+   "cid": "44928",
+   "title": "Asset section shows whenever the work order has an asset (parts sales too)",
+   "section": "Asset Section",
+   "atm": 1,
+   "needs": [
+    "parts-sale"
+   ],
+   "missing_document_kinds": [
+    "parts-sale"
+   ],
+   "labels_total": 0,
+   "labels_found": [],
+   "labels_absent": [],
+   "verdict": "NOT_ESTABLISHED",
+   "why": "needs a document type not captured: parts-sale"
+  },
+  "45171": {
+   "cid": "45171",
+   "title": "Asset section is hidden when the work order has no asset attached",
+   "section": "Asset Section",
+   "atm": 1,
+   "needs": [
+    "estimate",
+    "invoice"
+   ],
+   "missing_document_kinds": [],
+   "labels_total": 0,
+   "labels_found": [],
+   "labels_absent": [],
+   "verdict": "NO_LABELS_TO_CHECK",
+   "why": "the case quotes no on-screen label; runnability turns on its steps alone"
+  },
+  "44929": {
+   "cid": "44929",
+   "title": "Work heading is 'Work Summary' on Estimate and 'Work Performed' on Invoice",
+   "section": "Work Section",
+   "atm": 1,
+   "needs": [
+    "estimate",
+    "invoice"
+   ],
+   "missing_document_kinds": [],
+   "labels_total": 2,
+   "labels_found": [
+    "Work Performed",
+    "Work Summary"
+   ],
+   "labels_absent": [],
+   "verdict": "LABELS_ALL_PRESENT",
+   "why": "all 2 quoted labels found in the rendered document"
+  },
+  "44930": {
+   "cid": "44930",
+   "title": "Work line numbers are sequential and zero-padded to two digits",
+   "section": "Work Section",
+   "atm": 1,
+   "needs": [
+    "invoice"
+   ],
+   "missing_document_kinds": [],
+   "labels_total": 0,
+   "labels_found": [],
+   "labels_absent": [],
+   "verdict": "NO_LABELS_TO_CHECK",
+   "why": "the case quotes no on-screen label; runnability turns on its steps alone"
+  },
+  "44931": {
+   "cid": "44931",
+   "title": "Each work line shows name, and description and scope-of-work note when present",
+   "section": "Work Section",
+   "atm": 1,
+   "needs": [
+    "invoice"
+   ],
+   "missing_document_kinds": [],
+   "labels_total": 0,
+   "labels_found": [],
+   "labels_absent": [],
+   "verdict": "NO_LABELS_TO_CHECK",
+   "why": "the case quotes no on-screen label; runnability turns on its steps alone"
+  },
+  "44932": {
+   "cid": "44932",
+   "title": "Labor and Parts entries are labeled exactly 'Labor' and 'Parts'",
+   "section": "Work Section",
+   "atm": 1,
+   "needs": [
+    "invoice"
+   ],
+   "missing_document_kinds": [],
+   "labels_total": 2,
+   "labels_found": [
+    "Labor",
+    "Parts"
+   ],
+   "labels_absent": [],
+   "verdict": "LABELS_ALL_PRESENT",
+   "why": "all 2 quoted labels found in the rendered document"
+  },
+  "44933": {
+   "cid": "44933",
+   "title": "Invoice Details settings show or hide the per-entry figures",
+   "section": "Work Section",
+   "atm": 1,
+   "needs": [
+    "invoice"
+   ],
+   "missing_document_kinds": [],
+   "labels_total": 10,
+   "labels_found": [
+    "Labor",
+    "Line total",
+    "Parts"
+   ],
+   "labels_absent": [
+    "Labor hours",
+    "Labor price",
+    "Labor rate",
+    "Part description",
+    "Part number",
+    "Part price",
+    "Part quantity"
+   ],
+   "verdict": "LABEL_DIVERGENCE",
+   "why": "7 of 10 quoted labels not found"
+  },
+  "44934": {
+   "cid": "44934",
+   "title": "Line-level fee shows as a plain amount; discount shows in parentheses",
+   "section": "Work Section",
+   "atm": 1,
+   "needs": [
+    "invoice"
+   ],
+   "missing_document_kinds": [],
+   "labels_total": 0,
+   "labels_found": [],
+   "labels_absent": [],
+   "verdict": "NO_LABELS_TO_CHECK",
+   "why": "the case quotes no on-screen label; runnability turns on its steps alone"
+  },
+  "44935": {
+   "cid": "44935",
+   "title": "Line footer shows Labor, Parts and Line total with the divider rule",
+   "section": "Work Section",
+   "atm": 1,
+   "needs": [
+    "invoice"
+   ],
+   "missing_document_kinds": [],
+   "labels_total": 5,
+   "labels_found": [
+    "Labor",
+    "Line total",
+    "Parts"
+   ],
+   "labels_absent": [
+    "Summarize labor total",
+    "Summarize parts total"
+   ],
+   "verdict": "LABEL_DIVERGENCE",
+   "why": "2 of 5 quoted labels not found"
+  },
+  "44936": {
+   "cid": "44936",
+   "title": "Empty work section shows heading; Summary divider still precedes summary",
+   "section": "Work Section",
+   "atm": 1,
+   "needs": [
+    "invoice"
+   ],
+   "missing_document_kinds": [],
+   "labels_total": 1,
+   "labels_found": [
+    "Summary"
+   ],
+   "labels_absent": [],
+   "verdict": "LABELS_ALL_PRESENT",
+   "why": "all 1 quoted labels found in the rendered document"
+  },
+  "45172": {
+   "cid": "45172",
+   "title": "Summarize labor total and Summarize parts total control the line footer figures",
+   "section": "Work Section",
+   "atm": 1,
+   "needs": [
+    "invoice"
+   ],
+   "missing_document_kinds": [],
+   "labels_total": 5,
+   "labels_found": [
+    "Labor",
+    "Line total",
+    "Parts"
+   ],
+   "labels_absent": [
+    "Summarize labor total",
+    "Summarize parts total"
+   ],
+   "verdict": "LABEL_DIVERGENCE",
+   "why": "2 of 5 quoted labels not found"
+  },
+  "45173": {
+   "cid": "45173",
+   "title": "Line numbers move to three digits from line 100 on a large document",
+   "section": "Work Section",
+   "atm": 1,
+   "needs": [
+    "invoice"
+   ],
+   "missing_document_kinds": [],
+   "labels_total": 0,
+   "labels_found": [],
+   "labels_absent": [],
+   "verdict": "NO_LABELS_TO_CHECK",
+   "why": "the case quotes no on-screen label; runnability turns on its steps alone"
+  },
+  "44937": {
+   "cid": "44937",
+   "title": "Declined Work shows in its own section with names and descriptions only",
+   "section": "Declined Work",
+   "atm": 1,
+   "needs": [
+    "estimate",
+    "invoice",
+    "invoice-with-declined"
+   ],
+   "missing_document_kinds": [],
+   "labels_total": 2,
+   "labels_found": [
+    "Declined Work"
+   ],
+   "labels_absent": [
+    "Show declined work"
+   ],
+   "verdict": "LABEL_DIVERGENCE",
+   "why": "1 of 2 quoted labels not found"
+  },
+  "44938": {
+   "cid": "44938",
+   "title": "Declined lines show no prices, no line numbers, and no status pill",
+   "section": "Declined Work",
+   "atm": 1,
+   "needs": [
+    "invoice-with-declined"
+   ],
+   "missing_document_kinds": [],
+   "labels_total": 2,
+   "labels_found": [
+    "Declined Work"
+   ],
+   "labels_absent": [
+    "Show declined work"
+   ],
+   "verdict": "LABEL_DIVERGENCE",
+   "why": "1 of 2 quoted labels not found"
+  },
+  "44939": {
+   "cid": "44939",
+   "title": "Declined Work section hidden when nothing declined or option off",
+   "section": "Declined Work",
+   "atm": 1,
+   "needs": [
+    "invoice-with-declined"
+   ],
+   "missing_document_kinds": [],
+   "labels_total": 1,
+   "labels_found": [],
+   "labels_absent": [
+    "Show declined work"
+   ],
+   "verdict": "LABEL_DIVERGENCE",
+   "why": "1 of 1 quoted labels not found"
+  },
+  "44940": {
+   "cid": "44940",
+   "title": "'Summary' divider precedes the financial summary",
+   "section": "Financial Summary",
+   "atm": 1,
+   "needs": [
+    "estimate",
+    "invoice"
+   ],
+   "missing_document_kinds": [],
+   "labels_total": 1,
+   "labels_found": [
+    "Summary"
+   ],
+   "labels_absent": [],
+   "verdict": "LABELS_ALL_PRESENT",
+   "why": "all 1 quoted labels found in the rendered document"
+  },
+  "44941": {
+   "cid": "44941",
+   "title": "Summary shows gross Labor and Parts rows, and Shop supplies when charged",
+   "section": "Financial Summary",
+   "atm": 1,
+   "needs": [
+    "invoice"
+   ],
+   "missing_document_kinds": [],
+   "labels_total": 3,
+   "labels_found": [
+    "Labor",
+    "Parts",
+    "Shop supplies"
+   ],
+   "labels_absent": [],
+   "verdict": "LABELS_ALL_PRESENT",
+   "why": "all 3 quoted labels found in the rendered document"
+  },
+  "44942": {
+   "cid": "44942",
+   "title": "Shop supplies shows its percentage when the location setting is enabled",
+   "section": "Financial Summary",
+   "atm": 1,
+   "needs": [
+    "estimate",
+    "invoice"
+   ],
+   "missing_document_kinds": [],
+   "labels_total": 1,
+   "labels_found": [],
+   "labels_absent": [
+    "Show % on Estimates and Invoices"
+   ],
+   "verdict": "LABEL_DIVERGENCE",
+   "why": "1 of 1 quoted labels not found"
+  },
+  "44943": {
+   "cid": "44943",
+   "title": "Adjustments group shows rollup Labor/Parts then each work-order-wide row",
+   "section": "Financial Summary",
+   "atm": 1,
+   "needs": [
+    "invoice"
+   ],
+   "missing_document_kinds": [],
+   "labels_total": 3,
+   "labels_found": [
+    "Labor",
+    "Parts"
+   ],
+   "labels_absent": [
+    "Adjustments"
+   ],
+   "verdict": "LABEL_DIVERGENCE",
+   "why": "1 of 3 quoted labels not found"
+  },
+  "44944": {
+   "cid": "44944",
+   "title": "Summary shows Subtotal, one row per tax, and the grand Total",
+   "section": "Financial Summary",
+   "atm": 1,
+   "needs": [
+    "invoice"
+   ],
+   "missing_document_kinds": [],
+   "labels_total": 2,
+   "labels_found": [
+    "Subtotal",
+    "Total"
+   ],
+   "labels_absent": [],
+   "verdict": "LABELS_ALL_PRESENT",
+   "why": "all 2 quoted labels found in the rendered document"
+  },
+  "44945": {
+   "cid": "44945",
+   "title": "Adjustments heading and tax rows hide when nothing applies",
+   "section": "Financial Summary",
+   "atm": 1,
+   "needs": [
+    "invoice"
+   ],
+   "missing_document_kinds": [],
+   "labels_total": 0,
+   "labels_found": [],
+   "labels_absent": [],
+   "verdict": "NO_LABELS_TO_CHECK",
+   "why": "the case quotes no on-screen label; runnability turns on its steps alone"
+  },
+  "44946": {
+   "cid": "44946",
+   "title": "Payments heading and each applied payment row show correctly",
+   "section": "Paid Banner, Payments and Balance",
+   "atm": 1,
+   "needs": [
+    "invoice"
+   ],
+   "missing_document_kinds": [],
+   "labels_total": 1,
+   "labels_found": [
+    "Payments"
+   ],
+   "labels_absent": [],
+   "verdict": "LABELS_ALL_PRESENT",
+   "why": "all 1 quoted labels found in the rendered document"
+  },
+  "44947": {
+   "cid": "44947",
+   "title": "Payment method name resolves per rule (SHOPPAY shows 'Online')",
+   "section": "Paid Banner, Payments and Balance",
+   "atm": 1,
+   "needs": [
+    "invoice"
+   ],
+   "missing_document_kinds": [],
+   "labels_total": 2,
+   "labels_found": [],
+   "labels_absent": [
+    "Online",
+    "SHOPPAY"
+   ],
+   "verdict": "LABEL_DIVERGENCE",
+   "why": "2 of 2 quoted labels not found"
+  },
+  "44948": {
+   "cid": "44948",
+   "title": "Deposit and applied customer-account credit show as labeled payment rows",
+   "section": "Paid Banner, Payments and Balance",
+   "atm": 1,
+   "needs": [
+    "invoice"
+   ],
+   "missing_document_kinds": [],
+   "labels_total": 0,
+   "labels_found": [],
+   "labels_absent": [],
+   "verdict": "NO_LABELS_TO_CHECK",
+   "why": "the case quotes no on-screen label; runnability turns on its steps alone"
+  },
+  "44949": {
+   "cid": "44949",
+   "title": "Excess payment sub-line reads exactly per the credited/ to-be-credited rule",
+   "section": "Paid Banner, Payments and Balance",
+   "atm": 1,
+   "needs": [
+    "invoice"
+   ],
+   "missing_document_kinds": [],
+   "labels_total": 0,
+   "labels_found": [],
+   "labels_absent": [],
+   "verdict": "NO_LABELS_TO_CHECK",
+   "why": "the case quotes no on-screen label; runnability turns on its steps alone"
+  },
+  "44950": {
+   "cid": "44950",
+   "title": "Balance equals Total minus all applied amounts, floored at $0.00",
+   "section": "Paid Banner, Payments and Balance",
+   "atm": 1,
+   "needs": [
+    "invoice"
+   ],
+   "missing_document_kinds": [],
+   "labels_total": 1,
+   "labels_found": [
+    "Balance"
+   ],
+   "labels_absent": [],
+   "verdict": "LABELS_ALL_PRESENT",
+   "why": "all 1 quoted labels found in the rendered document"
+  },
+  "44951": {
+   "cid": "44951",
+   "title": "Paid banner appears only on portal-generated Invoice PDFs, before all content",
+   "section": "Paid Banner, Payments and Balance",
+   "atm": 1,
+   "needs": [
+    "invoice"
+   ],
+   "missing_document_kinds": [],
+   "labels_total": 3,
+   "labels_found": [],
+   "labels_absent": [
+    "PAID IN FULL",
+    "PARTIALLY PAID",
+    "Payment Receipt - Payments by ShopView"
+   ],
+   "verdict": "LABEL_DIVERGENCE",
+   "why": "3 of 3 quoted labels not found"
+  },
+  "44952": {
+   "cid": "44952",
+   "title": "Each banner payment shows its labeled fields and conditional fees/marker",
+   "section": "Paid Banner, Payments and Balance",
+   "atm": 1,
+   "needs": [
+    "invoice"
+   ],
+   "missing_document_kinds": [],
+   "labels_total": 9,
+   "labels_found": [],
+   "labels_absent": [
+    "Convenience Fee",
+    "Date / Time",
+    "Invoice Amount",
+    "Late Fee",
+    "Method",
+    "Paid By",
+    "Payment X of Y - Batch",
+    "Remaining Balance",
+    "Total Charged"
+   ],
+   "verdict": "LABEL_DIVERGENCE",
+   "why": "9 of 9 quoted labels not found"
+  },
+  "44953": {
+   "cid": "44953",
+   "title": "$0.00 payment rows hidden; no-payments state shows heading with Balance = Total",
+   "section": "Paid Banner, Payments and Balance",
+   "atm": 1,
+   "needs": [
+    "invoice"
+   ],
+   "missing_document_kinds": [],
+   "labels_total": 0,
+   "labels_found": [],
+   "labels_absent": [],
+   "verdict": "NO_LABELS_TO_CHECK",
+   "why": "the case quotes no on-screen label; runnability turns on its steps alone"
+  },
+  "44954": {
+   "cid": "44954",
+   "title": "No paid banner when the invoice has no portal-processed payment",
+   "section": "Paid Banner, Payments and Balance",
+   "atm": 1,
+   "needs": [
+    "invoice"
+   ],
+   "missing_document_kinds": [],
+   "labels_total": 0,
+   "labels_found": [],
+   "labels_absent": [],
+   "verdict": "NO_LABELS_TO_CHECK",
+   "why": "the case quotes no on-screen label; runnability turns on its steps alone"
+  },
+  "45174": {
+   "cid": "45174",
+   "title": "A fully reversed payment does not appear in the Payments section",
+   "section": "Paid Banner, Payments and Balance",
+   "atm": 1,
+   "needs": [
+    "invoice"
+   ],
+   "missing_document_kinds": [],
+   "labels_total": 0,
+   "labels_found": [],
+   "labels_absent": [],
+   "verdict": "NO_LABELS_TO_CHECK",
+   "why": "the case quotes no on-screen label; runnability turns on its steps alone"
+  },
+  "45175": {
+   "cid": "45175",
+   "title": "Paid banner pill and title wording follow the paid state and the batch rule",
+   "section": "Paid Banner, Payments and Balance",
+   "atm": 1,
+   "needs": [
+    "invoice"
+   ],
+   "missing_document_kinds": [],
+   "labels_total": 3,
+   "labels_found": [],
+   "labels_absent": [
+    "PAID IN FULL",
+    "PARTIALLY PAID",
+    "Payment Receipt - Payments by ShopView"
+   ],
+   "verdict": "LABEL_DIVERGENCE",
+   "why": "3 of 3 quoted labels not found"
+  },
+  "44955": {
+   "cid": "44955",
+   "title": "Shop disclaimer shows with no heading, identical on every document",
+   "section": "Disclaimer, Signature and Footer",
+   "atm": 1,
+   "needs": [
+    "credit-invoice",
+    "estimate"
+   ],
+   "missing_document_kinds": [
+    "credit-invoice"
+   ],
+   "labels_total": 0,
+   "labels_found": [],
+   "labels_absent": [],
+   "verdict": "NOT_ESTABLISHED",
+   "why": "needs a document type not captured: credit-invoice"
+  },
+  "44956": {
+   "cid": "44956",
+   "title": "Signature area has exactly three labeled lines and no acknowledgment sentence",
+   "section": "Disclaimer, Signature and Footer",
+   "atm": 1,
+   "needs": [
+    "credit-invoice",
+    "estimate"
+   ],
+   "missing_document_kinds": [
+    "credit-invoice"
+   ],
+   "labels_total": 3,
+   "labels_found": [
+    "Customer Signature",
+    "Date",
+    "Printed Name"
+   ],
+   "labels_absent": [],
+   "verdict": "NOT_ESTABLISHED",
+   "why": "needs a document type not captured: credit-invoice"
+  },
+  "44957": {
+   "cid": "44957",
+   "title": "Footer shows the shop tax identifier exactly, with no added label",
+   "section": "Disclaimer, Signature and Footer",
+   "atm": 1,
+   "needs": [
+    "invoice"
+   ],
+   "missing_document_kinds": [],
+   "labels_total": 1,
+   "labels_found": [
+    "GST# 812694966 RT0001"
+   ],
+   "labels_absent": [],
+   "verdict": "LABELS_ALL_PRESENT",
+   "why": "all 1 quoted labels found in the rendered document"
+  },
+  "44958": {
+   "cid": "44958",
+   "title": "Disclaimer and footer tax identifier hide when not configured",
+   "section": "Disclaimer, Signature and Footer",
+   "atm": 1,
+   "needs": [
+    "invoice"
+   ],
+   "missing_document_kinds": [],
+   "labels_total": 0,
+   "labels_found": [],
+   "labels_absent": [],
+   "verdict": "NO_LABELS_TO_CHECK",
+   "why": "the case quotes no on-screen label; runnability turns on its steps alone"
+  },
+  "44959": {
+   "cid": "44959",
+   "title": "Estimate and Invoice differ only as Section 3 specifies",
+   "section": "Estimate and Invoice Specifics",
+   "atm": 1,
+   "needs": [
+    "estimate",
+    "invoice"
+   ],
+   "missing_document_kinds": [],
+   "labels_total": 0,
+   "labels_found": [],
+   "labels_absent": [],
+   "verdict": "NO_LABELS_TO_CHECK",
+   "why": "the case quotes no on-screen label; runnability turns on its steps alone"
+  },
+  "44960": {
+   "cid": "44960",
+   "title": "Estimate shows 'Work Summary', 'Estimated Total', and 'Estimate date'",
+   "section": "Estimate and Invoice Specifics",
+   "atm": 1,
+   "needs": [
+    "estimate"
+   ],
+   "missing_document_kinds": [],
+   "labels_total": 3,
+   "labels_found": [
+    "Date",
+    "Estimated Total",
+    "Work Summary"
+   ],
+   "labels_absent": [],
+   "verdict": "LABELS_ALL_PRESENT",
+   "why": "all 3 quoted labels found in the rendered document"
+  },
+  "44961": {
+   "cid": "44961",
+   "title": "Invoice shows 'Work Performed', 'Balance', 'Invoice date' and 'Due date'",
+   "section": "Estimate and Invoice Specifics",
+   "atm": 1,
+   "needs": [
+    "invoice"
+   ],
+   "missing_document_kinds": [],
+   "labels_total": 2,
+   "labels_found": [
+    "Balance",
+    "Work Performed"
+   ],
+   "labels_absent": [],
+   "verdict": "LABELS_ALL_PRESENT",
+   "why": "all 2 quoted labels found in the rendered document"
+  },
+  "44962": {
+   "cid": "44962",
+   "title": "Fully paid Invoice stays an Invoice; 'Paid date' replaces 'Due date'",
+   "section": "Estimate and Invoice Specifics",
+   "atm": 1,
+   "needs": [
+    "invoice"
+   ],
+   "missing_document_kinds": [],
+   "labels_total": 1,
+   "labels_found": [],
+   "labels_absent": [
+    "Receipt"
+   ],
+   "verdict": "LABEL_DIVERGENCE",
+   "why": "1 of 1 quoted labels not found"
+  },
+  "44963": {
+   "cid": "44963",
+   "title": "Invoice with no due date shows no Due date line; paid swap still applies",
+   "section": "Estimate and Invoice Specifics",
+   "atm": 1,
+   "needs": [
+    "invoice"
+   ],
+   "missing_document_kinds": [],
+   "labels_total": 1,
+   "labels_found": [],
+   "labels_absent": [
+    "Due date"
+   ],
+   "verdict": "LABEL_DIVERGENCE",
+   "why": "1 of 1 quoted labels not found"
+  },
+  "45176": {
+   "cid": "45176",
+   "title": "Paid date is the most recent applied row and may fall before the invoice date",
+   "section": "Estimate and Invoice Specifics",
+   "atm": 1,
+   "needs": [
+    "invoice"
+   ],
+   "missing_document_kinds": [],
+   "labels_total": 1,
+   "labels_found": [
+    "Paid date"
+   ],
+   "labels_absent": [],
+   "verdict": "LABELS_ALL_PRESENT",
+   "why": "all 1 quoted labels found in the rendered document"
+  },
+  "45177": {
+   "cid": "45177",
+   "title": "Reversing a payment returns the masthead to Due date",
+   "section": "Estimate and Invoice Specifics",
+   "atm": 1,
+   "needs": [
+    "invoice"
+   ],
+   "missing_document_kinds": [],
+   "labels_total": 1,
+   "labels_found": [
+    "Paid date"
+   ],
+   "labels_absent": [],
+   "verdict": "LABELS_ALL_PRESENT",
+   "why": "all 1 quoted labels found in the rendered document"
+  },
+  "45178": {
+   "cid": "45178",
+   "title": "A zero-total invoice with nothing applied is not treated as fully paid",
+   "section": "Estimate and Invoice Specifics",
+   "atm": 1,
+   "needs": [
+    "invoice"
+   ],
+   "missing_document_kinds": [],
+   "labels_total": 1,
+   "labels_found": [
+    "Paid date"
+   ],
+   "labels_absent": [],
+   "verdict": "LABELS_ALL_PRESENT",
+   "why": "all 1 quoted labels found in the rendered document"
+  },
+  "44964": {
+   "cid": "44964",
+   "title": "Credit Invoice masthead shows 'Credit: {number}' and 'Issue date', no money",
+   "section": "Credit Invoice",
+   "atm": 1,
+   "needs": [
+    "credit-invoice"
+   ],
+   "missing_document_kinds": [
+    "credit-invoice"
+   ],
+   "labels_total": 1,
+   "labels_found": [],
+   "labels_absent": [
+    "CM-"
+   ],
+   "verdict": "NOT_ESTABLISHED",
+   "why": "needs a document type not captured: credit-invoice"
+  },
+  "44965": {
+   "cid": "44965",
+   "title": "Customer address block is labeled 'Credit To' on the Credit Invoice",
+   "section": "Credit Invoice",
+   "atm": 1,
+   "needs": [
+    "credit-invoice"
+   ],
+   "missing_document_kinds": [
+    "credit-invoice"
+   ],
+   "labels_total": 2,
+   "labels_found": [
+    "Bill To"
+   ],
+   "labels_absent": [
+    "Credit To"
+   ],
+   "verdict": "NOT_ESTABLISHED",
+   "why": "needs a document type not captured: credit-invoice"
+  },
+  "44966": {
+   "cid": "44966",
+   "title": "Status table shows Credit Number, Status, Invoice Number correctly",
+   "section": "Credit Invoice",
+   "atm": 1,
+   "needs": [
+    "credit-invoice"
+   ],
+   "missing_document_kinds": [
+    "credit-invoice"
+   ],
+   "labels_total": 9,
+   "labels_found": [],
+   "labels_absent": [
+    "Applied",
+    "Credit Number",
+    "INV-S-24914",
+    "Invoice Number",
+    "Partially applied",
+    "Refunded",
+    "Status",
+    "Unapplied",
+    "Voided"
+   ],
+   "verdict": "NOT_ESTABLISHED",
+   "why": "needs a document type not captured: credit-invoice"
+  },
+  "44967": {
+   "cid": "44967",
+   "title": "Credited items table shows returned parts and money-only lines correctly",
+   "section": "Credit Invoice",
+   "atm": 1,
+   "needs": [
+    "credit-invoice"
+   ],
+   "missing_document_kinds": [
+    "credit-invoice"
+   ],
+   "labels_total": 6,
+   "labels_found": [
+    "Rate",
+    "Total"
+   ],
+   "labels_absent": [
+    "Description",
+    "Quantity",
+    "Refund",
+    "Restocking Fee"
+   ],
+   "verdict": "NOT_ESTABLISHED",
+   "why": "needs a document type not captured: credit-invoice"
+  },
+  "44968": {
+   "cid": "44968",
+   "title": "Restocking fee reduces a returned-part credit total as specified",
+   "section": "Credit Invoice",
+   "atm": 1,
+   "needs": [
+    "credit-invoice"
+   ],
+   "missing_document_kinds": [
+    "credit-invoice"
+   ],
+   "labels_total": 0,
+   "labels_found": [],
+   "labels_absent": [],
+   "verdict": "NOT_ESTABLISHED",
+   "why": "needs a document type not captured: credit-invoice"
+  },
+  "44969": {
+   "cid": "44969",
+   "title": "Totals block rows and Balance follow the credit's status",
+   "section": "Credit Invoice",
+   "atm": 1,
+   "needs": [
+    "credit-invoice"
+   ],
+   "missing_document_kinds": [
+    "credit-invoice"
+   ],
+   "labels_total": 6,
+   "labels_found": [
+    "Balance",
+    "Payments",
+    "Subtotal"
+   ],
+   "labels_absent": [
+    "Partially applied",
+    "Tax",
+    "Total Credit"
+   ],
+   "verdict": "NOT_ESTABLISHED",
+   "why": "needs a document type not captured: credit-invoice"
+  },
+  "44970": {
+   "cid": "44970",
+   "title": "Credit Invoice shows the disclaimer and standard signature area",
+   "section": "Credit Invoice",
+   "atm": 1,
+   "needs": [
+    "credit-invoice"
+   ],
+   "missing_document_kinds": [
+    "credit-invoice"
+   ],
+   "labels_total": 3,
+   "labels_found": [
+    "Customer Signature",
+    "Date",
+    "Printed Name"
+   ],
+   "labels_absent": [],
+   "verdict": "NOT_ESTABLISHED",
+   "why": "needs a document type not captured: credit-invoice"
+  },
+  "45179": {
+   "cid": "45179",
+   "title": "Credit Invoice Balance shows the full open balance on an unapplied credit",
+   "section": "Credit Invoice",
+   "atm": 1,
+   "needs": [
+    "credit-invoice"
+   ],
+   "missing_document_kinds": [
+    "credit-invoice"
+   ],
+   "labels_total": 2,
+   "labels_found": [
+    "Balance",
+    "Payments"
+   ],
+   "labels_absent": [],
+   "verdict": "NOT_ESTABLISHED",
+   "why": "needs a document type not captured: credit-invoice"
+  },
+  "45180": {
+   "cid": "45180",
+   "title": "Credit Invoice Balance shows the remaining open balance on a partially applied credit",
+   "section": "Credit Invoice",
+   "atm": 1,
+   "needs": [
+    "credit-invoice"
+   ],
+   "missing_document_kinds": [
+    "credit-invoice"
+   ],
+   "labels_total": 2,
+   "labels_found": [
+    "Balance",
+    "Payments"
+   ],
+   "labels_absent": [],
+   "verdict": "NOT_ESTABLISHED",
+   "why": "needs a document type not captured: credit-invoice"
+  },
+  "45181": {
+   "cid": "45181",
+   "title": "Credit Invoice Balance reads $0.00 on a fully applied credit and on a voided credit",
+   "section": "Credit Invoice",
+   "atm": 1,
+   "needs": [
+    "credit-invoice"
+   ],
+   "missing_document_kinds": [
+    "credit-invoice"
+   ],
+   "labels_total": 1,
+   "labels_found": [],
+   "labels_absent": [
+    "Voided"
+   ],
+   "verdict": "NOT_ESTABLISHED",
+   "why": "needs a document type not captured: credit-invoice"
+  },
+  "45182": {
+   "cid": "45182",
+   "title": "Credit Invoice lists refund rows and shows the open balance until the credit is consumed",
+   "section": "Credit Invoice",
+   "atm": 1,
+   "needs": [
+    "credit-invoice"
+   ],
+   "missing_document_kinds": [
+    "credit-invoice"
+   ],
+   "labels_total": 0,
+   "labels_found": [],
+   "labels_absent": [],
+   "verdict": "NOT_ESTABLISHED",
+   "why": "needs a document type not captured: credit-invoice"
+  },
+  "45183": {
+   "cid": "45183",
+   "title": "Credit Invoice Balance is correct when a credit is both partially refunded and partially applied",
+   "section": "Credit Invoice",
+   "atm": 1,
+   "needs": [
+    "credit-invoice"
+   ],
+   "missing_document_kinds": [
+    "credit-invoice"
+   ],
+   "labels_total": 0,
+   "labels_found": [],
+   "labels_absent": [],
+   "verdict": "NOT_ESTABLISHED",
+   "why": "needs a document type not captured: credit-invoice"
+  },
+  "44971": {
+   "cid": "44971",
+   "title": "Document layout matches the Design Document structure",
+   "section": "Document Visual Standard",
+   "atm": 1,
+   "needs": [
+    "credit-invoice",
+    "estimate"
+   ],
+   "missing_document_kinds": [
+    "credit-invoice"
+   ],
+   "labels_total": 1,
+   "labels_found": [
+    "Summary"
+   ],
+   "labels_absent": [],
+   "verdict": "NOT_ESTABLISHED",
+   "why": "needs a document type not captured: credit-invoice"
+  },
+  "44972": {
+   "cid": "44972",
+   "title": "Only the closed palette colours appear on any document",
+   "section": "Document Visual Standard",
+   "atm": 1,
+   "needs": [
+    "invoice"
+   ],
+   "missing_document_kinds": [],
+   "labels_total": 0,
+   "labels_found": [],
+   "labels_absent": [],
+   "verdict": "NO_LABELS_TO_CHECK",
+   "why": "the case quotes no on-screen label; runnability turns on its steps alone"
+  },
+  "44973": {
+   "cid": "44973",
+   "title": "Accent colour appears only on line numbers and the footer 'ShopView'",
+   "section": "Document Visual Standard",
+   "atm": 1,
+   "needs": [
+    "invoice"
+   ],
+   "missing_document_kinds": [],
+   "labels_total": 1,
+   "labels_found": [
+    "ShopView"
+   ],
+   "labels_absent": [],
+   "verdict": "LABELS_ALL_PRESENT",
+   "why": "all 1 quoted labels found in the rendered document"
+  },
+  "44974": {
+   "cid": "44974",
+   "title": "Typography uses Inter with the specified weights",
+   "section": "Document Visual Standard",
+   "atm": 1,
+   "needs": [
+    "invoice"
+   ],
+   "missing_document_kinds": [],
+   "labels_total": 0,
+   "labels_found": [],
+   "labels_absent": [],
+   "verdict": "NO_LABELS_TO_CHECK",
+   "why": "the case quotes no on-screen label; runnability turns on its steps alone"
+  },
+  "44975": {
+   "cid": "44975",
+   "title": "Print/PDF ink floor keeps text and rules dark enough",
+   "section": "Document Visual Standard",
+   "atm": 1,
+   "needs": [
+    "invoice"
+   ],
+   "missing_document_kinds": [],
+   "labels_total": 0,
+   "labels_found": [],
+   "labels_absent": [],
+   "verdict": "NO_LABELS_TO_CHECK",
+   "why": "the case quotes no on-screen label; runnability turns on its steps alone"
+  },
+  "44976": {
+   "cid": "44976",
+   "title": "Every document is fully legible in grayscale",
+   "section": "Document Visual Standard",
+   "atm": 1,
+   "needs": [
+    "invoice"
+   ],
+   "missing_document_kinds": [],
+   "labels_total": 0,
+   "labels_found": [],
+   "labels_absent": [],
+   "verdict": "NO_LABELS_TO_CHECK",
+   "why": "the case quotes no on-screen label; runnability turns on its steps alone"
+  },
+  "44977": {
+   "cid": "44977",
+   "title": "Prototype chrome does not appear on any real document",
+   "section": "Document Visual Standard",
+   "atm": 1,
+   "needs": [
+    "credit-invoice",
+    "estimate"
+   ],
+   "missing_document_kinds": [
+    "credit-invoice"
+   ],
+   "labels_total": 0,
+   "labels_found": [],
+   "labels_absent": [],
+   "verdict": "NOT_ESTABLISHED",
+   "why": "needs a document type not captured: credit-invoice"
+  },
+  "44978": {
+   "cid": "44978",
+   "title": "Work-section rules and dividers follow the specified treatment",
+   "section": "Document Visual Standard",
+   "atm": 1,
+   "needs": [
+    "invoice"
+   ],
+   "missing_document_kinds": [],
+   "labels_total": 2,
+   "labels_found": [
+    "Labor",
+    "Parts"
+   ],
+   "labels_absent": [],
+   "verdict": "LABELS_ALL_PRESENT",
+   "why": "all 2 quoted labels found in the rendered document"
+  },
+  "44979": {
+   "cid": "44979",
+   "title": "Section labels use the three-tier hierarchy with exact sizes and inks",
+   "section": "Document Visual Standard",
+   "atm": 1,
+   "needs": [
+    "invoice"
+   ],
+   "missing_document_kinds": [],
+   "labels_total": 5,
+   "labels_found": [
+    "Labor",
+    "Parts",
+    "Scope of work",
+    "Work Performed",
+    "Work Summary"
+   ],
+   "labels_absent": [],
+   "verdict": "LABELS_ALL_PRESENT",
+   "why": "all 5 quoted labels found in the rendered document"
+  },
+  "45213": {
+   "cid": "45213",
+   "title": "Multi-page document uses standard page-break behaviour",
+   "section": "Document Visual Standard",
+   "atm": 1,
+   "needs": [
+    "invoice"
+   ],
+   "missing_document_kinds": [],
+   "labels_total": 1,
+   "labels_found": [
+    "Heavy Duty - 9919"
+   ],
+   "labels_absent": [],
+   "verdict": "LABELS_ALL_PRESENT",
+   "why": "all 1 quoted labels found in the rendered document"
+  },
+  "45214": {
+   "cid": "45214",
+   "title": "On-screen document fits the viewport; wide elements scroll in their own container",
+   "section": "Document Visual Standard",
+   "atm": 1,
+   "needs": [
+    "invoice"
+   ],
+   "missing_document_kinds": [],
+   "labels_total": 0,
+   "labels_found": [],
+   "labels_absent": [],
+   "verdict": "NO_LABELS_TO_CHECK",
+   "why": "the case quotes no on-screen label; runnability turns on its steps alone"
+  },
+  "44980": {
+   "cid": "44980",
+   "title": "Parts Sale documents behave as the Estimate/Invoice except as stated",
+   "section": "Parts Sale Estimate and Invoice",
+   "atm": 1,
+   "needs": [
+    "estimate",
+    "invoice",
+    "parts-sale"
+   ],
+   "missing_document_kinds": [
+    "parts-sale"
+   ],
+   "labels_total": 1,
+   "labels_found": [
+    "Estimate date"
+   ],
+   "labels_absent": [],
+   "verdict": "NOT_ESTABLISHED",
+   "why": "needs a document type not captured: parts-sale"
+  },
+  "44981": {
+   "cid": "44981",
+   "title": "Parts Sale body is a single flat 'Parts' section, no jobs",
+   "section": "Parts Sale Estimate and Invoice",
+   "atm": 1,
+   "needs": [
+    "estimate",
+    "invoice",
+    "parts-sale"
+   ],
+   "missing_document_kinds": [
+    "parts-sale"
+   ],
+   "labels_total": 2,
+   "labels_found": [
+    "Parts",
+    "Scope of work"
+   ],
+   "labels_absent": [],
+   "verdict": "NOT_ESTABLISHED",
+   "why": "needs a document type not captured: parts-sale"
+  },
+  "44982": {
+   "cid": "44982",
+   "title": "Parts Sale line-level fees/discounts render as on the Invoice",
+   "section": "Parts Sale Estimate and Invoice",
+   "atm": 1,
+   "needs": [
+    "invoice",
+    "parts-sale"
+   ],
+   "missing_document_kinds": [
+    "parts-sale"
+   ],
+   "labels_total": 0,
+   "labels_found": [],
+   "labels_absent": [],
+   "verdict": "NOT_ESTABLISHED",
+   "why": "needs a document type not captured: parts-sale"
+  },
+  "44983": {
+   "cid": "44983",
+   "title": "Parts Sale document number keeps parts-sale numbering",
+   "section": "Parts Sale Estimate and Invoice",
+   "atm": 1,
+   "needs": [
+    "estimate",
+    "invoice",
+    "parts-sale"
+   ],
+   "missing_document_kinds": [
+    "parts-sale"
+   ],
+   "labels_total": 0,
+   "labels_found": [],
+   "labels_absent": [],
+   "verdict": "NOT_ESTABLISHED",
+   "why": "needs a document type not captured: parts-sale"
+  },
+  "44984": {
+   "cid": "44984",
+   "title": "Parts Sale reference fields drop Work Order and Approval Code",
+   "section": "Parts Sale Estimate and Invoice",
+   "atm": 1,
+   "needs": [
+    "parts-sale"
+   ],
+   "missing_document_kinds": [
+    "parts-sale"
+   ],
+   "labels_total": 0,
+   "labels_found": [],
+   "labels_absent": [],
+   "verdict": "NOT_ESTABLISHED",
+   "why": "needs a document type not captured: parts-sale"
+  },
+  "44985": {
+   "cid": "44985",
+   "title": "Parts sale receives the Authorizer treatment (net-new)",
+   "section": "Parts Sale Estimate and Invoice",
+   "atm": 3,
+   "needs": [
+    "invoice",
+    "parts-sale"
+   ],
+   "missing_document_kinds": [
+    "parts-sale"
+   ],
+   "labels_total": 1,
+   "labels_found": [],
+   "labels_absent": [
+    "Approves Work"
+   ],
+   "verdict": "NOT_ESTABLISHED",
+   "why": "needs a document type not captured: parts-sale"
+  },
+  "44986": {
+   "cid": "44986",
+   "title": "Parts Sale financial summary shows no Labor and no Shop supplies row",
+   "section": "Parts Sale Estimate and Invoice",
+   "atm": 1,
+   "needs": [
+    "invoice",
+    "parts-sale"
+   ],
+   "missing_document_kinds": [
+    "parts-sale"
+   ],
+   "labels_total": 8,
+   "labels_found": [
+    "Balance",
+    "Labor",
+    "Parts",
+    "Payments",
+    "Shop supplies",
+    "Subtotal",
+    "Total"
+   ],
+   "labels_absent": [
+    "Tax"
+   ],
+   "verdict": "NOT_ESTABLISHED",
+   "why": "needs a document type not captured: parts-sale"
+  },
+  "44987": {
+   "cid": "44987",
+   "title": "Batch and imported invoices are out of scope (kept on current templates)",
+   "section": "Parts Sale Estimate and Invoice",
+   "atm": 1,
+   "needs": [
+    "invoice"
+   ],
+   "missing_document_kinds": [],
+   "labels_total": 0,
+   "labels_found": [],
+   "labels_absent": [],
+   "verdict": "NO_LABELS_TO_CHECK",
+   "why": "the case quotes no on-screen label; runnability turns on its steps alone"
+  },
+  "45184": {
+   "cid": "45184",
+   "title": "Every date on every document renders in the fixed Jan 5, 2026 format",
+   "section": "Cross-Cutting and Regression",
+   "atm": 1,
+   "needs": [
+    "estimate",
+    "invoice"
+   ],
+   "missing_document_kinds": [],
+   "labels_total": 1,
+   "labels_found": [],
+   "labels_absent": [
+    "Date / Time"
+   ],
+   "verdict": "LABEL_DIVERGENCE",
+   "why": "1 of 1 quoted labels not found"
+  },
+  "45185": {
+   "cid": "45185",
+   "title": "A snapshot created before the redesign renders in the new layout with blanks and no error",
+   "section": "Cross-Cutting and Regression",
+   "atm": 1,
+   "needs": [
+    "estimate",
+    "invoice"
+   ],
+   "missing_document_kinds": [],
+   "labels_total": 0,
+   "labels_found": [],
+   "labels_absent": [],
+   "verdict": "NO_LABELS_TO_CHECK",
+   "why": "the case quotes no on-screen label; runnability turns on its steps alone"
+  },
+  "45186": {
+   "cid": "45186",
+   "title": "A snapshot created after the redesign carries the new fields when reopened",
+   "section": "Cross-Cutting and Regression",
+   "atm": 1,
+   "needs": [
+    "invoice"
+   ],
+   "missing_document_kinds": [],
+   "labels_total": 0,
+   "labels_found": [],
+   "labels_absent": [],
+   "verdict": "NO_LABELS_TO_CHECK",
+   "why": "the case quotes no on-screen label; runnability turns on its steps alone"
+  },
+  "45187": {
+   "cid": "45187",
+   "title": "An emailed invoice attaches the redesigned PDF",
+   "section": "Cross-Cutting and Regression",
+   "atm": 1,
+   "needs": [
+    "invoice"
+   ],
+   "missing_document_kinds": [],
+   "labels_total": 0,
+   "labels_found": [],
+   "labels_absent": [],
+   "verdict": "NO_LABELS_TO_CHECK",
+   "why": "the case quotes no on-screen label; runnability turns on its steps alone"
+  },
+  "45188": {
+   "cid": "45188",
+   "title": "The on-screen preview matches the generated PDF with no markup stripped",
+   "section": "Cross-Cutting and Regression",
+   "atm": 1,
+   "needs": [
+    "invoice"
+   ],
+   "missing_document_kinds": [],
+   "labels_total": 0,
+   "labels_found": [],
+   "labels_absent": [],
+   "verdict": "NO_LABELS_TO_CHECK",
+   "why": "the case quotes no on-screen label; runnability turns on its steps alone"
+  },
+  "45189": {
+   "cid": "45189",
+   "title": "Currency and percentage formats follow existing conventions for US and Canadian shops",
+   "section": "Cross-Cutting and Regression",
+   "atm": 1,
+   "needs": [
+    "invoice"
+   ],
+   "missing_document_kinds": [],
+   "labels_total": 0,
+   "labels_found": [],
+   "labels_absent": [],
+   "verdict": "NO_LABELS_TO_CHECK",
+   "why": "the case quotes no on-screen label; runnability turns on its steps alone"
+  },
+  "45190": {
+   "cid": "45190",
+   "title": "Work order, imported work order and part sale customer cards still work after the Authorizer change",
+   "section": "Cross-Cutting and Regression",
+   "atm": 1,
+   "needs": [
+    "parts-sale"
+   ],
+   "missing_document_kinds": [
+    "parts-sale"
+   ],
+   "labels_total": 0,
+   "labels_found": [],
+   "labels_absent": [],
+   "verdict": "NOT_ESTABLISHED",
+   "why": "needs a document type not captured: parts-sale"
+  },
+  "45191": {
+   "cid": "45191",
+   "title": "A user without work order edit permission sees the Authorizer as read-only",
+   "section": "Cross-Cutting and Regression",
+   "atm": 1,
+   "needs": [
+    "invoice"
+   ],
+   "missing_document_kinds": [],
+   "labels_total": 0,
+   "labels_found": [],
+   "labels_absent": [],
+   "verdict": "NO_LABELS_TO_CHECK",
+   "why": "the case quotes no on-screen label; runnability turns on its steps alone"
+  },
+  "45192": {
+   "cid": "45192",
+   "title": "Invoice preview fits a mobile viewport with no clipping and no header overlap",
+   "section": "Cross-Cutting and Regression",
+   "atm": 1,
+   "needs": [
+    "invoice"
+   ],
+   "missing_document_kinds": [],
+   "labels_total": 0,
+   "labels_found": [],
+   "labels_absent": [],
+   "verdict": "NO_LABELS_TO_CHECK",
+   "why": "the case quotes no on-screen label; runnability turns on its steps alone"
+  },
+  "45193": {
+   "cid": "45193",
+   "title": "Amounts of four digits or more render correctly with no NaN",
+   "section": "Cross-Cutting and Regression",
+   "atm": 1,
+   "needs": [
+    "invoice"
+   ],
+   "missing_document_kinds": [],
+   "labels_total": 0,
+   "labels_found": [],
+   "labels_absent": [],
+   "verdict": "NO_LABELS_TO_CHECK",
+   "why": "the case quotes no on-screen label; runnability turns on its steps alone"
+  },
+  "45194": {
+   "cid": "45194",
+   "title": "Special characters in shop and customer names render correctly on the document",
+   "section": "Cross-Cutting and Regression",
+   "atm": 1,
+   "needs": [
+    "invoice"
+   ],
+   "missing_document_kinds": [],
+   "labels_total": 0,
+   "labels_found": [],
+   "labels_absent": [],
+   "verdict": "NO_LABELS_TO_CHECK",
+   "why": "the case quotes no on-screen label; runnability turns on its steps alone"
+  },
+  "45195": {
+   "cid": "45195",
+   "title": "A multi-page invoice PDF breaks cleanly between pages",
+   "section": "Cross-Cutting and Regression",
+   "atm": 1,
+   "needs": [
+    "invoice"
+   ],
+   "missing_document_kinds": [],
+   "labels_total": 0,
+   "labels_found": [],
+   "labels_absent": [],
+   "verdict": "NO_LABELS_TO_CHECK",
+   "why": "the case quotes no on-screen label; runnability turns on its steps alone"
+  },
+  "45196": {
+   "cid": "45196",
+   "title": "An invoice paid by mixed cash and customer credit shows the Paid date",
+   "section": "Cross-Cutting and Regression",
+   "atm": 1,
+   "needs": [
+    "invoice"
+   ],
+   "missing_document_kinds": [],
+   "labels_total": 1,
+   "labels_found": [],
+   "labels_absent": [
+    "Due date"
+   ],
+   "verdict": "LABEL_DIVERGENCE",
+   "why": "1 of 1 quoted labels not found"
+  },
+  "45197": {
+   "cid": "45197",
+   "title": "Credit Invoice renders when its originating invoice has been reversed",
+   "section": "Cross-Cutting and Regression",
+   "atm": 1,
+   "needs": [
+    "credit-invoice"
+   ],
+   "missing_document_kinds": [
+    "credit-invoice"
+   ],
+   "labels_total": 0,
+   "labels_found": [],
+   "labels_absent": [],
+   "verdict": "NOT_ESTABLISHED",
+   "why": "needs a document type not captured: credit-invoice"
+  }
+ }
+}

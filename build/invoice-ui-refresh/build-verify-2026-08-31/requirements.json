@@ -339,6 +339,31 @@
   ],
   "n_steps": 2
  },
+ "45168": {
+  "cid": 45168,
+  "title": "Credit Invoice never shows Remit Payment To and Credit To spans full width",
+  "section": "Addresses",
+  "refs": "SV-9141 (S2-R3)",
+  "atm": 1,
+  "preconditions": [
+   "Credit invoice for a shop that HAS a remit-to payee configured"
+  ],
+  "steps": [
+   "Open the Credit Invoice preview"
+  ],
+  "expected_body": [
+   "No Remit Payment To block appears on the Credit Invoice even though a remit-to payee exists.",
+   "The 'Credit To' block spans the full width of the addresses area (S2-R3, Section 3 matrix)."
+  ],
+  "labels_quoted": [
+   "Credit To"
+  ],
+  "nav_nouns": [
+   "credit invoice",
+   "preview"
+  ],
+  "n_steps": 1
+ },
  "44913": {
   "cid": 44913,
   "title": "Order reference fields show in the fixed order with no label punctuation",
@@ -670,6 +695,55 @@
   ],
   "n_steps": 3
  },
+ "45169": {
+  "cid": 45169,
+  "title": "Authorizer change is rejected by the API while a non-voided invoice exists",
+  "section": "Authorizer Entry (Work Order)",
+  "refs": "SV-9142 (S3-R8)",
+  "atm": 1,
+  "preconditions": [
+   "Invoiced work order",
+   "API access (session token)"
+  ],
+  "steps": [
+   "POST /api/work-orders/{wo}/authorizer with a valid authorizer_id directly (bypass the UI)"
+  ],
+  "expected_body": [
+   "The API returns 409; the Authorizer is unchanged. The server-side lock cannot be bypassed (NFR-001, plan D2).",
+   "The lock is conditional, not permanent: per v45 S3-R8 a later void or reversal returns the work order to Complete and re-enables the Authorizer row (that transition is out of scope for this API-rejection case)."
+  ],
+  "labels_quoted": [],
+  "nav_nouns": [
+   "authorizer",
+   "work order"
+  ],
+  "n_steps": 1
+ },
+ "45170": {
+  "cid": 45170,
+  "title": "Authorizer API rejects a contact that does not approve work or belongs to another company",
+  "section": "Authorizer Entry (Work Order)",
+  "refs": "SV-9142 (S3-R5)",
+  "atm": 1,
+  "preconditions": [
+   "Un-invoiced work order",
+   "Contact IDs: (a) same company without 'Approves Work'; (b) another company's contact"
+  ],
+  "steps": [
+   "POST authorizer_id = contact (a)",
+   "POST authorizer_id = contact (b)"
+  ],
+  "expected_body": [
+   "Both are rejected - 422 (or 404 for the cross-tenant contact); the Authorizer is unchanged (NFR-002). Only a customer contact with 'Approves Work' enabled can be selected as Authorizer (S3-R5)."
+  ],
+  "labels_quoted": [
+   "Approves Work"
+  ],
+  "nav_nouns": [
+   "work order"
+  ],
+  "n_steps": 2
+ },
  "44924": {
   "cid": 44924,
   "title": "Asset section shows Asset name and VIN / Serial when present",
@@ -813,6 +887,30 @@
    "work order"
   ],
   "n_steps": 3
+ },
+ "45171": {
+  "cid": 45171,
+  "title": "Asset section is hidden when the work order has no asset attached",
+  "section": "Asset Section",
+  "refs": "SV-9143 (S4-N3)",
+  "atm": 1,
+  "preconditions": [
+   "Work order without an asset"
+  ],
+  "steps": [
+   "Open the Estimate and Invoice previews"
+  ],
+  "expected_body": [
+   "The entire asset section is absent on both documents (S4-N3)."
+  ],
+  "labels_quoted": [],
+  "nav_nouns": [
+   "asset",
+   "estimate",
+   "invoice",
+   "work order"
+  ],
+  "n_steps": 1
  },
  "44929": {
   "cid": 44929,
@@ -1043,6 +1141,65 @@
    "Summary"
   ],
   "nav_nouns": [
+   "work order"
+  ],
+  "n_steps": 2
+ },
+ "45172": {
+  "cid": 45172,
+  "title": "Summarize labor total and Summarize parts total control the line footer figures",
+  "section": "Work Section",
+  "refs": "SV-9144 (S5-R7)",
+  "atm": 1,
+  "preconditions": [
+   "A work line with both labor and parts",
+   "All price settings ON"
+  ],
+  "steps": [
+   "Turn OFF 'Summarize labor total', then open the preview",
+   "Turn OFF 'Summarize parts total' too, then open the preview",
+   "Restore both settings"
+  ],
+  "expected_body": [
+   "After Step 1: the footer 'Labor' figure is hidden; 'Parts' and 'Line total' remain.",
+   "After Step 2: both the 'Labor' and 'Parts' footer figures are hidden; 'Line total' stands alone WITHOUT the vertical divider (S5-R7, S5-R9).",
+   "'Line total' is always shown."
+  ],
+  "labels_quoted": [
+   "Labor",
+   "Line total",
+   "Parts",
+   "Summarize labor total",
+   "Summarize parts total"
+  ],
+  "nav_nouns": [
+   "preview",
+   "settings"
+  ],
+  "n_steps": 3
+ },
+ "45173": {
+  "cid": 45173,
+  "title": "Line numbers move to three digits from line 100 on a large document",
+  "section": "Work Section",
+  "refs": "SV-9144 (S5-R2)",
+  "atm": 1,
+  "preconditions": [
+   "A work order with 100+ lines (factory/seed data)"
+  ],
+  "steps": [
+   "Open the Invoice preview",
+   "Generate the PDF"
+  ],
+  "expected_body": [
+   "Lines 1-99 stay two digits; line 100 and above show three digits (S5-R2).",
+   "The document renders without timeout (NFR-004)."
+  ],
+  "labels_quoted": [],
+  "nav_nouns": [
+   "invoice",
+   "pdf",
+   "preview",
    "work order"
   ],
   "n_steps": 2
@@ -1560,6 +1717,58 @@
   ],
   "n_steps": 2
  },
+ "45174": {
+  "cid": 45174,
+  "title": "A fully reversed payment does not appear in the Payments section",
+  "section": "Paid Banner, Payments and Balance",
+  "refs": "SV-9147 (S8-R2)",
+  "atm": 1,
+  "preconditions": [
+   "An invoice with 2 payments, one of them fully reversed"
+  ],
+  "steps": [
+   "Open the Invoice preview"
+  ],
+  "expected_body": [
+   "Only the active payment is listed; the fully reversed payment is absent (a fully reversed payment is no longer applied and does not appear).",
+   "Balance reflects only the applied amounts (S8-R2)."
+  ],
+  "labels_quoted": [],
+  "nav_nouns": [
+   "invoice",
+   "preview"
+  ],
+  "n_steps": 1
+ },
+ "45175": {
+  "cid": 45175,
+  "title": "Paid banner pill and title wording follow the paid state and the batch rule",
+  "section": "Paid Banner, Payments and Balance",
+  "refs": "SV-9147 (S8-R8)",
+  "atm": 1,
+  "preconditions": [
+   "Portal invoices: one fully paid by a single payment; one partially paid; one paid entirely via batch checkout"
+  ],
+  "steps": [
+   "Generate each portal PDF",
+   "Check the pill and the title wording"
+  ],
+  "expected_body": [
+   "Fully paid: the pill reads exactly 'PAID IN FULL'; partially paid: exactly 'PARTIALLY PAID'.",
+   "Title reads exactly 'Payment Receipt - Payments by ShopView'.",
+   "When every payment is a batch payment: the title reads exactly 'Payment Receipt (Batch) - Payments by ShopView' (S8-R8)."
+  ],
+  "labels_quoted": [
+   "PAID IN FULL",
+   "PARTIALLY PAID",
+   "Payment Receipt - Payments by ShopView"
+  ],
+  "nav_nouns": [
+   "payment",
+   "pdf"
+  ],
+  "n_steps": 2
+ },
  "44955": {
   "cid": 44955,
   "title": "Shop disclaimer shows with no heading, identical on every document",
@@ -1816,6 +2025,87 @@
   ],
   "n_steps": 2
  },
+ "45176": {
+  "cid": 45176,
+  "title": "Paid date is the most recent applied row and may fall before the invoice date",
+  "section": "Estimate and Invoice Specifics",
+  "refs": "SV-9149 (S10-R4)",
+  "atm": 1,
+  "preconditions": [
+   "An invoice fully covered by a deposit collected BEFORE invoicing",
+   "A second invoice paid by 2 payments on different dates"
+  ],
+  "steps": [
+   "Open the deposit-paid invoice preview",
+   "Open the 2-payment invoice preview"
+  ],
+  "expected_body": [
+   "Deposit-paid: 'Paid date' equals the deposit collection date, even though it is earlier than the invoice date - shown as-is.",
+   "2-payment: 'Paid date' equals the LATEST of the applied dates (S10-R4)."
+  ],
+  "labels_quoted": [
+   "Paid date"
+  ],
+  "nav_nouns": [
+   "deposit",
+   "invoice",
+   "payment",
+   "preview"
+  ],
+  "n_steps": 2
+ },
+ "45177": {
+  "cid": 45177,
+  "title": "Reversing a payment returns the masthead to Due date",
+  "section": "Estimate and Invoice Specifics",
+  "refs": "SV-9149 (S10-R4)",
+  "atm": 1,
+  "preconditions": [
+   "A fully paid invoice showing 'Paid date'"
+  ],
+  "steps": [
+   "Reverse one payment so Balance > $0.00",
+   "Re-open the preview"
+  ],
+  "expected_body": [
+   "'Due date: {date}' returns and 'Paid date' is gone - the label is decided by the invoice state at render time (S10-R4)."
+  ],
+  "labels_quoted": [
+   "Paid date"
+  ],
+  "nav_nouns": [
+   "balance",
+   "invoice",
+   "payment",
+   "preview"
+  ],
+  "n_steps": 2
+ },
+ "45178": {
+  "cid": 45178,
+  "title": "A zero-total invoice with nothing applied is not treated as fully paid",
+  "section": "Estimate and Invoice Specifics",
+  "refs": "SV-9149 (S10-R4)",
+  "atm": 1,
+  "preconditions": [
+   "An invoice with a $0.00 Total and no payments/deposits/credits applied"
+  ],
+  "steps": [
+   "Open the preview"
+  ],
+  "expected_body": [
+   "Shows 'Due date: {date}' (or no due-date line if unset) - NOT 'Paid date'.",
+   "Fully paid requires Balance $0.00 AND at least one applied row (Section 6 definition, S10-R4)."
+  ],
+  "labels_quoted": [
+   "Paid date"
+  ],
+  "nav_nouns": [
+   "invoice",
+   "preview"
+  ],
+  "n_steps": 1
+ },
  "44964": {
   "cid": 44964,
   "title": "Credit Invoice masthead shows 'Credit: {number}' and 'Issue date', no money",
@@ -2038,6 +2328,136 @@
    "signature"
   ],
   "n_steps": 2
+ },
+ "45179": {
+  "cid": 45179,
+  "title": "Credit Invoice Balance shows the full open balance on an unapplied credit",
+  "section": "Credit Invoice",
+  "refs": "SV-9150 (S11-R6a)",
+  "atm": 1,
+  "preconditions": [
+   "A fresh unapplied credit, e.g. Total Credit -$200.00"
+  ],
+  "steps": [
+   "Open the Credit Invoice preview",
+   "Check Payments and Balance"
+  ],
+  "expected_body": [
+   "'Payments' shows the label with no rows.",
+   "'Balance' reads $200.00, positive - the credit's open balance (net-new, S11-R6a). A flat $0.00 rendering here is a defect."
+  ],
+  "labels_quoted": [
+   "Balance",
+   "Payments"
+  ],
+  "nav_nouns": [
+   "balance",
+   "credit invoice",
+   "preview"
+  ],
+  "n_steps": 2
+ },
+ "45180": {
+  "cid": 45180,
+  "title": "Credit Invoice Balance shows the remaining open balance on a partially applied credit",
+  "section": "Credit Invoice",
+  "refs": "SV-9150 (S11-R6a)",
+  "atm": 1,
+  "preconditions": [
+   "A credit of $200 with $80 applied to an invoice"
+  ],
+  "steps": [
+   "Open the Credit Invoice preview"
+  ],
+  "expected_body": [
+   "'Payments' shows the label with no rows (applications to invoices are not listed).",
+   "'Balance' reads $120.00, positive - the open balance (original minus amounts applied to invoices) (S11-R6a)."
+  ],
+  "labels_quoted": [
+   "Balance",
+   "Payments"
+  ],
+  "nav_nouns": [
+   "credit invoice",
+   "invoice",
+   "preview"
+  ],
+  "n_steps": 1
+ },
+ "45181": {
+  "cid": 45181,
+  "title": "Credit Invoice Balance reads $0.00 on a fully applied credit and on a voided credit",
+  "section": "Credit Invoice",
+  "refs": "SV-9150 (S11-R6a)",
+  "atm": 1,
+  "preconditions": [
+   "A fully applied credit",
+   "Separately, a voided credit"
+  ],
+  "steps": [
+   "Open the fully applied credit preview",
+   "Open the voided credit preview"
+  ],
+  "expected_body": [
+   "Fully applied: Balance reads $0.00.",
+   "Voided: Balance reads $0.00; items and totals render unchanged; 'Voided' in the status table is the only indicator (S11-R6a; context note)."
+  ],
+  "labels_quoted": [
+   "Voided"
+  ],
+  "nav_nouns": [
+   "preview"
+  ],
+  "n_steps": 2
+ },
+ "45182": {
+  "cid": 45182,
+  "title": "Credit Invoice lists refund rows and shows the open balance until the credit is consumed",
+  "section": "Credit Invoice",
+  "refs": "SV-9150 (S11-R6a)",
+  "atm": 1,
+  "preconditions": [
+   "A credit of $200 with a $50 refund issued (partially refunded)",
+   "Separately, a credit that is fully refunded"
+  ],
+  "steps": [
+   "Open the partially refunded credit preview",
+   "Open the fully refunded credit preview"
+  ],
+  "expected_body": [
+   "Refund rows read '{date} - {method}' with negative amounts.",
+   "Partially refunded: Balance reads $150.00, positive.",
+   "Fully consumed: Balance reads $0.00 (S11-R6a - preserves the shipped SV-7754 rendering; a regression here is Critical)."
+  ],
+  "labels_quoted": [],
+  "nav_nouns": [
+   "preview",
+   "refund"
+  ],
+  "n_steps": 2
+ },
+ "45183": {
+  "cid": 45183,
+  "title": "Credit Invoice Balance is correct when a credit is both partially refunded and partially applied",
+  "section": "Credit Invoice",
+  "refs": "SV-9150 (S11-R6a)",
+  "atm": 1,
+  "preconditions": [
+   "A credit of $200 with $50 refunded and $80 applied to an invoice"
+  ],
+  "steps": [
+   "Open the Credit Invoice preview"
+  ],
+  "expected_body": [
+   "Balance reads $70.00 - the open balance (original credit total minus amounts refunded minus amounts applied to invoices), shown positive (S11-R6a)."
+  ],
+  "labels_quoted": [],
+  "nav_nouns": [
+   "credit invoice",
+   "invoice",
+   "preview"
+  ],
+  "n_steps": 1
  },
  "44971": {
   "cid": 44971,
@@ -2566,5 +2986,382 @@
    "invoice"
   ],
   "n_steps": 2
+ },
+ "45184": {
+  "cid": 45184,
+  "title": "Every date on every document renders in the fixed Jan 5, 2026 format",
+  "section": "Cross-Cutting and Regression",
+  "refs": "SV-8218 (G-R1)",
+  "atm": 1,
+  "preconditions": [
+   "A US shop and a Canadian shop",
+   "Documents with single-digit day dates"
+  ],
+  "steps": [
+   "Open the estimate/invoice/credit previews on both shops",
+   "Check every date, including the payment rows"
+  ],
+  "expected_body": [
+   "All dates render in the 'Jan 5, 2026' style - abbreviated English month, day of the month without a leading zero, a comma, and the four-digit year.",
+   "The format is identical for US and Canadian shops and no shop or user setting changes it (G-R1).",
+   "The only exception is the Paid banner's 'Date / Time' field."
+  ],
+  "labels_quoted": [
+   "Date / Time"
+  ],
+  "nav_nouns": [
+   "estimate",
+   "invoice",
+   "payment"
+  ],
+  "n_steps": 2
+ },
+ "45185": {
+  "cid": 45185,
+  "title": "A snapshot created before the redesign renders in the new layout with blanks and no error",
+  "section": "Cross-Cutting and Regression",
+  "refs": "SV-8218 (Plan D5)",
+  "atm": 1,
+  "preconditions": [
+   "A staging invoice snapshot created BEFORE the redesign deploy"
+  ],
+  "steps": [
+   "Open the historical snapshot",
+   "Generate its PDF",
+   "Check fields the old snapshot never stored (authorizer, plate, estimate date, ...)"
+  ],
+  "expected_body": [
+   "The snapshot renders in the new layout.",
+   "Fields the old snapshot never stored are blank (hidden per hide-when-empty).",
+   "No 500 / fatal error occurs (plan D5 - the single biggest correctness risk)."
+  ],
+  "labels_quoted": [],
+  "nav_nouns": [
+   "authorizer",
+   "estimate",
+   "invoice",
+   "pdf"
+  ],
+  "n_steps": 3
+ },
+ "45186": {
+  "cid": 45186,
+  "title": "A snapshot created after the redesign carries the new fields when reopened",
+  "section": "Cross-Cutting and Regression",
+  "refs": "SV-8218 (Plan Phase 2)",
+  "atm": 1,
+  "preconditions": [
+   "A work order with an authorizer and an asset with a plate",
+   "The redesign is live"
+  ],
+  "steps": [
+   "Invoice the work order (a snapshot is created)",
+   "Re-open the snapshot later"
+  ],
+  "expected_body": [
+   "The snapshot renders with the authorizer name, plate and all new content persisted (plan Phase 2 snapshot writes)."
+  ],
+  "labels_quoted": [],
+  "nav_nouns": [
+   "asset",
+   "authorizer",
+   "invoice",
+   "work order"
+  ],
+  "n_steps": 2
+ },
+ "45187": {
+  "cid": 45187,
+  "title": "An emailed invoice attaches the redesigned PDF",
+  "section": "Cross-Cutting and Regression",
+  "refs": "SV-8218 (Plan Section 2)",
+  "atm": 1,
+  "preconditions": [
+   "An invoice ready to send",
+   "A test email recipient"
+  ],
+  "steps": [
+   "Email the invoice from the shop app",
+   "Open the attached PDF"
+  ],
+  "expected_body": [
+   "The attached PDF is the redesigned document, identical to the shop-app PDF (single render path; plan Section 2)."
+  ],
+  "labels_quoted": [],
+  "nav_nouns": [
+   "email",
+   "invoice",
+   "pdf"
+  ],
+  "n_steps": 2
+ },
+ "45188": {
+  "cid": 45188,
+  "title": "The on-screen preview matches the generated PDF with no markup stripped",
+  "section": "Cross-Cutting and Regression",
+  "refs": "SV-8218 (Plan Phase 4)",
+  "atm": 1,
+  "preconditions": [
+   "An invoice with full content (asset, chips, adjustments, payments)"
+  ],
+  "steps": [
+   "Compare the on-screen preview against the generated PDF, section by section"
+  ],
+  "expected_body": [
+   "The preview shows all sections and styles - DOMPurify must not strip the new markup (plan Phase 4 watch-item)."
+  ],
+  "labels_quoted": [],
+  "nav_nouns": [
+   "asset",
+   "invoice",
+   "pdf",
+   "preview"
+  ],
+  "n_steps": 1
+ },
+ "45189": {
+  "cid": 45189,
+  "title": "Currency and percentage formats follow existing conventions for US and Canadian shops",
+  "section": "Cross-Cutting and Regression",
+  "refs": "SV-8218 (Shipped-behaviour note)",
+  "atm": 1,
+  "preconditions": [
+   "A US shop and a Canadian shop with documents"
+  ],
+  "steps": [
+   "Open an invoice on each",
+   "Check the currency and percentage formats"
+  ],
+  "expected_body": [
+   "Number, currency and percentage formats follow ShopView's existing locale-aware conventions - the redesign must not alter them (PRD shipped-behaviour note)."
+  ],
+  "labels_quoted": [],
+  "nav_nouns": [
+   "invoice"
+  ],
+  "n_steps": 2
+ },
+ "45190": {
+  "cid": 45190,
+  "title": "Work order, imported work order and part sale customer cards still work after the Authorizer change",
+  "section": "Cross-Cutting and Regression",
+  "refs": "SV-9142 (S3-R5)",
+  "atm": 1,
+  "preconditions": [
+   "One normal work order, one imported work order, and one parts sale"
+  ],
+  "steps": [
+   "Open each record's customer card",
+   "Verify the Contact/Phone rows and the card actions still work"
+  ],
+  "expected_body": [
+   "The card renders and functions on all three.",
+   "The Authorizer row appears on the work order and the parts sale only - NOT on the imported work order (plan CustomerCard gate); no layout break."
+  ],
+  "labels_quoted": [],
+  "nav_nouns": [
+   "customer",
+   "parts sale",
+   "work order"
+  ],
+  "n_steps": 2
+ },
+ "45191": {
+  "cid": 45191,
+  "title": "A user without work order edit permission sees the Authorizer as read-only",
+  "section": "Cross-Cutting and Regression",
+  "refs": "SV-9142 (S3-R5)",
+  "atm": 1,
+  "preconditions": [
+   "A user lacking the workOrders edit permission",
+   "A work order with an authorizer set"
+  ],
+  "steps": [
+   "Log in as the restricted user",
+   "Open the work order customer card"
+  ],
+  "expected_body": [
+   "The Authorizer shows as a static, read-only field; no select control is offered (plan CustomerCard fallback)."
+  ],
+  "labels_quoted": [],
+  "nav_nouns": [
+   "authorizer",
+   "customer",
+   "work order"
+  ],
+  "n_steps": 2
+ },
+ "45192": {
+  "cid": 45192,
+  "title": "Invoice preview fits a mobile viewport with no clipping and no header overlap",
+  "section": "Cross-Cutting and Regression",
+  "refs": "SV-9151 (S12-R11); SV-9441",
+  "atm": 1,
+  "preconditions": [
+   "An invoice with a logo and a full masthead",
+   "Browser DevTools device emulation at 375x667"
+  ],
+  "steps": [
+   "Open the work-order finance-tab invoice preview at the mobile viewport",
+   "Check the masthead, Bill To, work lines and terms text",
+   "Scroll the full document"
+  ],
+  "expected_body": [
+   "The document fits within the viewport with no content clipped; there is no left-edge clipping, the logo does not overlap the label/dates, and the phone number does not break mid-number.",
+   "Any element wider than the viewport (for example a wide table) scrolls horizontally within its own container rather than clipping or forcing the whole page to scroll sideways (v45 S12-R11).",
+   "History: 5th recurrence risk - SV-9441 open on the old template (SV-3362 / SV-3994 / SV-4946 / SV-5123 prior)."
+  ],
+  "labels_quoted": [],
+  "nav_nouns": [
+   "invoice",
+   "masthead",
+   "preview"
+  ],
+  "n_steps": 3
+ },
+ "45193": {
+  "cid": 45193,
+  "title": "Amounts of four digits or more render correctly with no NaN",
+  "section": "Cross-Cutting and Regression",
+  "refs": "SV-9144 (S5-R9)",
+  "atm": 1,
+  "preconditions": [
+   "A work order with a labor rate >= $1,000.00 and a fixed line total >= $1,000.00"
+  ],
+  "steps": [
+   "Open the Invoice preview",
+   "Check the line figures, footer, summary and Balance",
+   "Generate the PDF"
+  ],
+  "expected_body": [
+   "All amounts render as formatted currency; there is no $NaN anywhere.",
+   "History: SV-8680 / SV-8581 showed $NaN at 4+ digits."
+  ],
+  "labels_quoted": [],
+  "nav_nouns": [
+   "balance",
+   "footer",
+   "invoice",
+   "pdf",
+   "preview",
+   "work order"
+  ],
+  "n_steps": 3
+ },
+ "45194": {
+  "cid": 45194,
+  "title": "Special characters in shop and customer names render correctly on the document",
+  "section": "Cross-Cutting and Regression",
+  "refs": "SV-9140 (S1-R1)",
+  "atm": 1,
+  "preconditions": [
+   "A location name with a special character (e.g. &, e-acute, apostrophe)",
+   "A customer/company name with a special character"
+  ],
+  "steps": [
+   "Open the Invoice preview",
+   "Generate and download the PDF",
+   "Check the masthead and Bill To"
+  ],
+  "expected_body": [
+   "Characters render exactly as entered - an ampersand shows as & and never as an escaped entity; no mojibake; no missing glyphs in Inter.",
+   "History: SV-4406."
+  ],
+  "labels_quoted": [],
+  "nav_nouns": [
+   "customer",
+   "download",
+   "invoice",
+   "masthead",
+   "pdf",
+   "preview"
+  ],
+  "n_steps": 3
+ },
+ "45195": {
+  "cid": 45195,
+  "title": "A multi-page invoice PDF breaks cleanly between pages",
+  "section": "Cross-Cutting and Regression",
+  "refs": "SV-9151 (S12-R1,S12-R10)",
+  "atm": 1,
+  "preconditions": [
+   "An invoice long enough for 3+ PDF pages (many lines with long descriptions)"
+  ],
+  "steps": [
+   "Generate the PDF",
+   "Inspect every page break",
+   "Print-preview in grayscale"
+  ],
+  "expected_body": [
+   "No content is cut mid-row; descriptions do not split illegibly across pages; the totals and signature block are not orphaned oddly (S12-R1).",
+   "Per v45 S12-R10: every page after the first opens with a single identification line (shop location name on the left, document number on the right); the full masthead does not repeat on later pages.",
+   "Per v45 S12-R10: the totals block is not split across a page break; a work line and its own footer stay together on the same page; the signature row does not land alone on a final page; and no single row is orphaned by itself on a page.",
+   "History: SV-8914 (Ready to Fix - ACTIVE) + SV-8189."
+  ],
+  "labels_quoted": [],
+  "nav_nouns": [
+   "invoice",
+   "pdf",
+   "preview",
+   "print"
+  ],
+  "n_steps": 3
+ },
+ "45196": {
+  "cid": 45196,
+  "title": "An invoice paid by mixed cash and customer credit shows the Paid date",
+  "section": "Cross-Cutting and Regression",
+  "refs": "SV-9149 (S10-R4)",
+  "atm": 1,
+  "preconditions": [
+   "An invoice paid to $0.00 via a cash payment plus an applied customer-account credit combined"
+  ],
+  "steps": [
+   "Apply cash for part of the Total",
+   "Apply customer credit for the remainder",
+   "Re-open the invoice preview"
+  ],
+  "expected_body": [
+   "Balance reads $0.00; 'Paid date: {date}' replaces 'Due date' (the most recent applied row date).",
+   "Both rows are listed per S8-R2 / S8-R4 (S10-R4).",
+   "History: SV-7846 (OPEN) - mixed payment not marked Paid."
+  ],
+  "labels_quoted": [
+   "Due date"
+  ],
+  "nav_nouns": [
+   "customer",
+   "invoice",
+   "payment",
+   "preview"
+  ],
+  "n_steps": 3
+ },
+ "45197": {
+  "cid": 45197,
+  "title": "Credit Invoice renders when its originating invoice has been reversed",
+  "section": "Cross-Cutting and Regression",
+  "refs": "SV-9150 (S11-R3)",
+  "atm": 1,
+  "preconditions": [
+   "A parts-return credit whose originating invoice has since been reversed"
+  ],
+  "steps": [
+   "Open the Credit Invoice preview",
+   "Check the status table and totals",
+   "Attempt the void if applicable"
+  ],
+  "expected_body": [
+   "The document renders without a 500.",
+   "The status table handles the missing/reversed origin invoice gracefully - Invoice Number shows the last known number or the documented column behaviour (S11-R3); no fatal error.",
+   "History: SV-7821 void 500s on reversed origin."
+  ],
+  "labels_quoted": [],
+  "nav_nouns": [
+   "credit invoice",
+   "invoice",
+   "preview"
+  ],
+  "n_steps": 3
  }
 }
