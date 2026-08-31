@@ -14,11 +14,14 @@
    "Look at the masthead (the header block at the top of the document)."
   ],
   "expected_body": [
-   "The masthead shows the shop location's name.",
-   "It shows the shop location's street address, city, state or province, postal code, and phone number.",
-   "All of these identity details read exactly as they are entered for the shop location."
+   "1. The masthead shows the shop location's name.",
+   "2. It shows the shop location's street address, city, state or province, postal code, and phone number.",
+   "3. All of these identity details read exactly as they are entered for the shop location.",
+   "---",
+   "Last checked against build v26.35.5-8c3cc21 on 8/31/2026."
   ],
   "labels_quoted": [],
+  "labels_dropped_not_screen": {},
   "nav_nouns": [
    "invoice",
    "masthead",
@@ -34,18 +37,21 @@
   "refs": "SV-9140 (S1-R2)",
   "atm": 1,
   "preconditions": [
-   "You are signed in to ShopView.",
-   "You can reach one shop that has a logo set and one shop that has no logo set (or you can add then remove a logo on a test shop)."
+   "1. You are signed in to ShopView.",
+   "2. You can reach one shop that has a logo set and one shop that has no logo set (or you can add then remove a logo on a test shop)."
   ],
   "steps": [
-   "Generate a document for the shop that HAS a logo set and look at the masthead.",
-   "Generate a document for the shop that has NO logo set and look at the masthead."
+   "1. Generate a document for the shop that HAS a logo set and look at the masthead.",
+   "2. Generate a document for the shop that has NO logo set and look at the masthead."
   ],
   "expected_body": [
-   "When the shop has a logo set, the masthead shows that logo.",
-   "When the shop has no logo set, the masthead shows no logo at all — and no placeholder image, box or 'no logo' text appears in its place."
+   "1. When the shop has a logo set, the masthead shows that logo.",
+   "2. When the shop has no logo set, the masthead shows no logo at all — and no placeholder image, box or 'no logo' text appears in its place.",
+   "---",
+   "Last checked against build v26.35.5-8c3cc21 on 8/31/2026."
   ],
   "labels_quoted": [],
+  "labels_dropped_not_screen": {},
   "nav_nouns": [
    "masthead"
   ],
@@ -58,21 +64,24 @@
   "refs": "SV-9140 (S1-R3; S1-R4)",
   "atm": 1,
   "preconditions": [
-   "You are signed in to ShopView.",
-   "You can generate an Estimate, an Invoice, and a Credit Invoice for known documents."
+   "1. You are signed in to ShopView.",
+   "2. You can generate an Estimate, an Invoice, and a Credit Invoice for known documents."
   ],
   "steps": [
-   "Generate an Estimate and read its masthead document label.",
-   "Generate an Invoice and read its masthead document label.",
-   "Generate a Credit Invoice and read its masthead document label."
+   "1. Generate an Estimate and read its masthead document label.",
+   "2. Generate an Invoice and read its masthead document label.",
+   "3. Generate a Credit Invoice and read its masthead document label."
   ],
   "expected_body": [
-   "The Estimate label reads exactly \"Estimate: {number}\", for example \"Estimate: EST-4176\".",
-   "The Invoice label reads exactly \"Invoice: {number}\", for example \"Invoice: INV-4176\".",
-   "The Credit Invoice label reads exactly \"Credit: {number}\", for example \"Credit: CM-2202\".",
-   "In every case the number always includes its type prefix (EST-, INV-, or CM-), and the type word comes before the number."
+   "1. The Estimate label reads exactly \"Estimate: {number}\", for example \"Estimate: EST-4176\".",
+   "2. The Invoice label reads exactly \"Invoice: {number}\", for example \"Invoice: INV-4176\".",
+   "3. The Credit Invoice label reads exactly \"Credit: {number}\", for example \"Credit: CM-2202\".",
+   "4. In every case the number always includes its type prefix (EST-, INV-, or CM-), and the type word comes before the number.",
+   "---",
+   "Last checked against build v26.35.5-8c3cc21 on 8/31/2026."
   ],
   "labels_quoted": [],
+  "labels_dropped_not_screen": {},
   "nav_nouns": [
    "credit invoice",
    "estimate",
@@ -88,23 +97,25 @@
   "refs": "SV-9140 (S1-R5)",
   "atm": 1,
   "preconditions": [
-   "You are signed in to ShopView.",
-   "You can generate an Estimate, an Invoice (including a fully paid one), and a Credit Invoice."
+   "1. You are signed in to ShopView.",
+   "2. You can generate an Estimate, an Invoice (including a fully paid one), and a Credit Invoice."
   ],
   "steps": [
-   "Generate each document type, including a fully paid Invoice and a Credit Invoice in various states.",
-   "Look at the masthead of each."
+   "1. Generate each document type, including a fully paid Invoice and a Credit Invoice in various states.",
+   "2. Look at the masthead of each."
   ],
   "expected_body": [
-   "No status label or pill (for example \"PAID\", \"PAID IN FULL\", \"DRAFT\", \"VOIDED\") appears anywhere in the masthead of any document.",
-   "The only place a status indicator appears is with the content that proves it: the Paid banner's pill (on portal-generated Invoice PDFs) and the Status column in the Credit Invoice's status table."
+   "1. No status label or pill (for example \"PAID\", \"PAID IN FULL\", \"DRAFT\", \"VOIDED\") appears anywhere in the masthead of any document.",
+   "2. The only place a status indicator appears is with the content that proves it: the Paid banner's pill (on portal-generated Invoice PDFs) and the Status column in the Credit Invoice's status table.",
+   "---"
   ],
-  "labels_quoted": [
-   "DRAFT",
-   "PAID",
-   "PAID IN FULL",
-   "VOIDED"
-  ],
+  "labels_quoted": [],
+  "labels_dropped_not_screen": {
+   "PAID": "No status label or pill (for example \"PAID\", \"PAID IN FULL\", \"DRAFT\", \"VOIDED\") appears anywhere in the masthe",
+   "PAID IN FULL": "No status label or pill (for example \"PAID\", \"PAID IN FULL\", \"DRAFT\", \"VOIDED\") appears anywhere in the masthe",
+   "DRAFT": "No status label or pill (for example \"PAID\", \"PAID IN FULL\", \"DRAFT\", \"VOIDED\") appears anywhere in the masthe",
+   "VOIDED": "No status label or pill (for example \"PAID\", \"PAID IN FULL\", \"DRAFT\", \"VOIDED\") appears anywhere in the masthe"
+  },
   "nav_nouns": [
    "credit invoice",
    "estimate",
@@ -120,24 +131,27 @@
   "refs": "SV-9140 (S1-R6)",
   "atm": 1,
   "preconditions": [
-   "You are signed in to ShopView.",
-   "You can generate an Estimate, an Invoice, and a Credit Invoice that have monetary totals."
+   "1. You are signed in to ShopView.",
+   "2. You can generate an Estimate, an Invoice, and a Credit Invoice that have monetary totals."
   ],
   "steps": [
-   "Generate an Estimate and look at the masthead, then at the end of the totals block.",
-   "Generate an Invoice and do the same.",
-   "Generate a Credit Invoice and do the same."
+   "1. Generate an Estimate and look at the masthead, then at the end of the totals block.",
+   "2. Generate an Invoice and do the same.",
+   "3. Generate a Credit Invoice and do the same."
   ],
   "expected_body": [
-   "No monetary amount appears anywhere in the masthead of any document.",
-   "On the Estimate the single headline figure appears once, as the boxed figure at the end of the totals block, labeled \"Estimated Total\".",
-   "On the Invoice the boxed headline figure at the end of the totals block is labeled \"Balance\".",
-   "The Credit Invoice has no boxed headline figure; its masthead carries only \"Credit: {number}\" and \"Issue date: {date}\", and its key figure (Total Credit) sits in the totals block."
+   "1. No monetary amount appears anywhere in the masthead of any document.",
+   "2. On the Estimate the single headline figure appears once, as the boxed figure at the end of the totals block, labeled \"Estimated Total\".",
+   "3. On the Invoice the boxed headline figure at the end of the totals block is labeled \"Balance\".",
+   "4. The Credit Invoice has no boxed headline figure; its masthead carries only \"Credit: {number}\" and \"Issue date: {date}\", and its key figure (Total Credit) sits in the totals block.",
+   "---",
+   "Last checked against build v26.35.5-8c3cc21 on 8/31/2026."
   ],
   "labels_quoted": [
    "Balance",
    "Estimated Total"
   ],
+  "labels_dropped_not_screen": {},
   "nav_nouns": [
    "credit invoice",
    "estimate",
@@ -153,23 +167,26 @@
   "refs": "SV-9140 (S1-R7; G-R1)",
   "atm": 1,
   "preconditions": [
-   "You are signed in to ShopView.",
-   "You can generate an Estimate, an unpaid Invoice, a fully paid Invoice, and a Credit Invoice."
+   "1. You are signed in to ShopView.",
+   "2. You can generate an Estimate, an unpaid Invoice, a fully paid Invoice, and a Credit Invoice."
   ],
   "steps": [
-   "Generate an Estimate and read its masthead date label(s).",
-   "Generate an unpaid Invoice and read its masthead date label(s).",
-   "Generate a fully paid Invoice and read its masthead date label(s).",
-   "Generate a Credit Invoice and read its masthead date label(s)."
+   "1. Generate an Estimate and read its masthead date label(s).",
+   "2. Generate an unpaid Invoice and read its masthead date label(s).",
+   "3. Generate a fully paid Invoice and read its masthead date label(s).",
+   "4. Generate a Credit Invoice and read its masthead date label(s)."
   ],
   "expected_body": [
-   "The Estimate masthead shows \"Estimate date: {date}\" and no due date.",
-   "The unpaid Invoice masthead shows \"Invoice date: {date}\" and \"Due date: {date}\".",
-   "The fully paid Invoice masthead shows \"Invoice date: {date}\" and \"Paid date: {date}\" (Paid date replaces Due date).",
-   "The Credit Invoice masthead shows \"Issue date: {date}\".",
-   "Every date reads in the fixed format, for example \"Jan 5, 2026\"."
+   "1. The Estimate masthead shows \"Estimate date: {date}\" and no due date.",
+   "2. The unpaid Invoice masthead shows \"Invoice date: {date}\" and \"Due date: {date}\".",
+   "3. The fully paid Invoice masthead shows \"Invoice date: {date}\" and \"Paid date: {date}\" (Paid date replaces Due date).",
+   "4. The Credit Invoice masthead shows \"Issue date: {date}\".",
+   "5. Every date reads in the fixed format, for example \"Jan 5, 2026\".",
+   "---",
+   "Last checked against build v26.35.5-8c3cc21 on 8/31/2026."
   ],
   "labels_quoted": [],
+  "labels_dropped_not_screen": {},
   "nav_nouns": [
    "credit invoice",
    "estimate",
@@ -185,18 +202,21 @@
   "refs": "SV-9140 (S1-N1)",
   "atm": 1,
   "preconditions": [
-   "You are signed in to ShopView.",
-   "You can reach (or set up) a shop location that is missing one or more of: street address, city, state or province, postal code, phone number."
+   "1. You are signed in to ShopView.",
+   "2. You can reach (or set up) a shop location that is missing one or more of: street address, city, state or province, postal code, phone number."
   ],
   "steps": [
-   "Generate a document for a shop location that is missing one or more masthead identity fields.",
-   "Look at the masthead."
+   "1. Generate a document for a shop location that is missing one or more masthead identity fields.",
+   "2. Look at the masthead."
   ],
   "expected_body": [
-   "Each missing field among the street address, city, state or province, postal code, and phone number is hidden — no blank line and no empty label is left where it would have been.",
-   "The fields that do have values still show normally."
+   "1. Each missing field among the street address, city, state or province, postal code, and phone number is hidden — no blank line and no empty label is left where it would have been.",
+   "2. The fields that do have values still show normally.",
+   "---",
+   "Last checked against build v26.35.5-8c3cc21 on 8/31/2026."
   ],
   "labels_quoted": [],
+  "labels_dropped_not_screen": {},
   "nav_nouns": [
    "masthead"
   ],
@@ -217,13 +237,16 @@
    "Look at the addresses area."
   ],
   "expected_body": [
-   "A block labeled exactly \"Bill To\" is shown.",
-   "It shows the customer's name — the company name when the customer has one, otherwise the customer's personal name.",
-   "It shows the customer's street address, city, state or province, and postal code."
+   "1. A block labeled exactly \"Bill To\" is shown.",
+   "2. It shows the customer's name — the company name when the customer has one, otherwise the customer's personal name.",
+   "3. It shows the customer's street address, city, state or province, and postal code.",
+   "---",
+   "Last checked against build v26.35.5-8c3cc21 on 8/31/2026."
   ],
   "labels_quoted": [
    "Bill To"
   ],
+  "labels_dropped_not_screen": {},
   "nav_nouns": [
    "customer",
    "estimate",
@@ -238,21 +261,24 @@
   "refs": "SV-9141 (S2-R2)",
   "atm": 1,
   "preconditions": [
-   "You are signed in to ShopView.",
-   "You can reach a document whose shop uses integrated-billing remit-to, and another whose location has its own remit-to setting (remit to another location or a custom address)."
+   "1. You are signed in to ShopView.",
+   "2. You can reach a document whose shop uses integrated-billing remit-to, and another whose location has its own remit-to setting (remit to another location or a custom address)."
   ],
   "steps": [
-   "Generate an Estimate or Invoice where the shop's integrated-billing remit-to is configured; look at the addresses area.",
-   "Generate an Estimate or Invoice where the location's own remit-to setting is configured; look at the addresses area."
+   "1. Generate an Estimate or Invoice where the shop's integrated-billing remit-to is configured; look at the addresses area.",
+   "2. Generate an Estimate or Invoice where the location's own remit-to setting is configured; look at the addresses area."
   ],
   "expected_body": [
-   "A block labeled exactly \"Remit Payment To\" is shown, holding the payee address.",
-   "The payee resolves from either mechanism: the shop's integrated-billing remit-to, or the location's own remit-to setting.",
-   "The block appears on the Estimate and Invoice (not on the Credit Invoice)."
+   "1. A block labeled exactly \"Remit Payment To\" is shown, holding the payee address.",
+   "2. The payee resolves from either mechanism: the shop's integrated-billing remit-to, or the location's own remit-to setting.",
+   "3. The block appears on the Estimate and Invoice (not on the Credit Invoice).",
+   "---",
+   "Last checked against build v26.35.5-8c3cc21 on 8/31/2026."
   ],
   "labels_quoted": [
    "Remit Payment To"
   ],
+  "labels_dropped_not_screen": {},
   "nav_nouns": [
    "estimate",
    "invoice"
@@ -266,20 +292,23 @@
   "refs": "SV-9141 (S2-R3)",
   "atm": 1,
   "preconditions": [
-   "You are signed in to ShopView.",
-   "You can reach a document that has no remit-to payee configured (neither mechanism)."
+   "1. You are signed in to ShopView.",
+   "2. You can reach a document that has no remit-to payee configured (neither mechanism)."
   ],
   "steps": [
-   "Generate an Estimate or Invoice with no remit-to payee configured.",
-   "Look at the addresses area and note the width of the Bill To block.",
-   "For comparison, generate a document that does have a remit-to payee."
+   "1. Generate an Estimate or Invoice with no remit-to payee configured.",
+   "2. Look at the addresses area and note the width of the Bill To block.",
+   "3. For comparison, generate a document that does have a remit-to payee."
   ],
   "expected_body": [
-   "When there is no Remit Payment To block, the Bill To block spans the full width of the addresses area (it does not stay at half width).",
-   "When a Remit Payment To block is present, Bill To and Remit Payment To sit side by side.",
-   "On the Credit Invoice, where Remit Payment To never appears, the Credit To block is always full width."
+   "1. When there is no Remit Payment To block, the Bill To block spans the full width of the addresses area (it does not stay at half width).",
+   "2. When a Remit Payment To block is present, Bill To and Remit Payment To sit side by side.",
+   "3. On the Credit Invoice, where Remit Payment To never appears, the Credit To block is always full width.",
+   "---",
+   "Last checked against build v26.35.5-8c3cc21 on 8/31/2026."
   ],
   "labels_quoted": [],
+  "labels_dropped_not_screen": {},
   "nav_nouns": [
    "estimate",
    "invoice"
@@ -293,20 +322,23 @@
   "refs": "SV-9141 (S2-N2; S2-R2)",
   "atm": 1,
   "preconditions": [
-   "You are signed in to ShopView.",
-   "You can reach a document whose shop has neither integrated-billing remit-to nor a location remit-to setting configured."
+   "1. You are signed in to ShopView.",
+   "2. You can reach a document whose shop has neither integrated-billing remit-to nor a location remit-to setting configured."
   ],
   "steps": [
-   "Generate an Estimate or Invoice with no remit-to payee configured.",
-   "Look at the addresses area."
+   "1. Generate an Estimate or Invoice with no remit-to payee configured.",
+   "2. Look at the addresses area."
   ],
   "expected_body": [
-   "No \"Remit Payment To\" block is shown.",
-   "The shop's own address is NOT printed as a fallback remit-to (this fallback has been removed)."
+   "1. No \"Remit Payment To\" block is shown.",
+   "2. The shop's own address is NOT printed as a fallback remit-to (this fallback has been removed).",
+   "---",
+   "Last checked against build v26.35.5-8c3cc21 on 8/31/2026."
   ],
   "labels_quoted": [
    "Remit Payment To"
   ],
+  "labels_dropped_not_screen": {},
   "nav_nouns": [
    "estimate",
    "invoice"
@@ -320,18 +352,21 @@
   "refs": "SV-9141 (S2-N1)",
   "atm": 1,
   "preconditions": [
-   "You are signed in to ShopView.",
-   "You can reach a document for a customer missing one or more of: street address, city, state or province, postal code."
+   "1. You are signed in to ShopView.",
+   "2. You can reach a document for a customer missing one or more of: street address, city, state or province, postal code."
   ],
   "steps": [
-   "Generate an Estimate or Invoice for a customer missing one or more Bill To address fields.",
-   "Look at the Bill To block."
+   "1. Generate an Estimate or Invoice for a customer missing one or more Bill To address fields.",
+   "2. Look at the Bill To block."
   ],
   "expected_body": [
-   "Each missing field among the street address, city, state or province, and postal code is hidden — no blank line is left.",
-   "The name line is always shown, even when the address fields are empty."
+   "1. Each missing field among the street address, city, state or province, and postal code is hidden — no blank line is left.",
+   "2. The name line is always shown, even when the address fields are empty.",
+   "---",
+   "Last checked against build v26.35.5-8c3cc21 on 8/31/2026."
   ],
   "labels_quoted": [],
+  "labels_dropped_not_screen": {},
   "nav_nouns": [
    "customer",
    "estimate",
@@ -346,18 +381,21 @@
   "refs": "SV-9141 (S2-R3)",
   "atm": 1,
   "preconditions": [
-   "Credit invoice for a shop that HAS a remit-to payee configured"
+   "1. Credit invoice for a shop that HAS a remit-to payee configured"
   ],
   "steps": [
-   "Open the Credit Invoice preview"
+   "1. Open the Credit Invoice preview"
   ],
   "expected_body": [
-   "No Remit Payment To block appears on the Credit Invoice even though a remit-to payee exists.",
-   "The 'Credit To' block spans the full width of the addresses area (S2-R3, Section 3 matrix)."
+   "1. No Remit Payment To block appears on the Credit Invoice even though a remit-to payee exists.",
+   "2. The 'Credit To' block spans the full width of the addresses area (S2-R3, Section 3 matrix).",
+   "---",
+   "Last checked against build v26.35.5-8c3cc21 on 8/31/2026."
   ],
   "labels_quoted": [
    "Credit To"
   ],
+  "labels_dropped_not_screen": {},
   "nav_nouns": [
    "credit invoice",
    "preview"
@@ -371,17 +409,18 @@
   "refs": "SV-9142 (S3-R1)",
   "atm": 1,
   "preconditions": [
-   "You are signed in to ShopView.",
-   "A document exists whose work order has a work order number, a customer PO, an authorizer, an approval code, and payment terms all set."
+   "1. You are signed in to ShopView.",
+   "2. A document exists whose work order has a work order number, a customer PO, an authorizer, an approval code, and payment terms all set."
   ],
   "steps": [
-   "Generate the Estimate or Invoice.",
-   "Look at the order reference fields area."
+   "1. Generate the Estimate or Invoice.",
+   "2. Look at the order reference fields area."
   ],
   "expected_body": [
-   "Up to five fields can appear, in this exact order: \"Work Order\", \"Customer PO\", \"Authorizer\", \"Approval Code\", \"Terms\".",
-   "Each field label has no punctuation after it (no colon).",
-   "The labels read exactly as listed."
+   "1. Up to five fields can appear, in this exact order: \"Work Order\", \"Customer PO\", \"Authorizer\", \"Approval Code\", \"Terms\".",
+   "2. Each field label has no punctuation after it (no colon).",
+   "3. The labels read exactly as listed.",
+   "---"
   ],
   "labels_quoted": [
    "Approval Code",
@@ -390,6 +429,7 @@
    "Terms",
    "Work Order"
   ],
+  "labels_dropped_not_screen": {},
   "nav_nouns": [
    "authorizer",
    "customer",
@@ -407,22 +447,26 @@
   "refs": "SV-9142 (S3-R2; S3-N4)",
   "atm": 1,
   "preconditions": [
-   "You are signed in to ShopView.",
-   "You can reach a document whose work order HAS payment terms and one that has NONE."
+   "1. You are signed in to ShopView.",
+   "2. You can reach a document whose work order HAS payment terms and one that has NONE."
   ],
   "steps": [
-   "Generate an Estimate or Invoice whose work order has payment terms set; look at the Terms field.",
-   "Generate one whose work order has no payment terms set; look at the Terms field."
+   "1. Generate an Estimate or Invoice whose work order has payment terms set; look at the Terms field.",
+   "2. Generate one whose work order has no payment terms set; look at the Terms field."
   ],
   "expected_body": [
-   "When terms are set, the Terms field shows the value (for example \"Net 30\").",
-   "When no terms are set, the field still shows: the text reads exactly \"Terms\" with an empty value area — no colon, and no placeholder text.",
-   "Terms is the one order reference field that always shows (all others hide when empty)."
+   "1. When terms are set, the Terms field shows the value (for example \"Net 30\").",
+   "2. When no terms are set, the field still shows: the text reads exactly \"Terms\" with an empty value area — no colon, and no placeholder text.",
+   "3. Terms is the one order reference field that always shows (all others hide when empty).",
+   "---",
+   "Last checked against build v26.35.5-8c3cc21 on 8/31/2026."
   ],
   "labels_quoted": [
-   "Net 30",
    "Terms"
   ],
+  "labels_dropped_not_screen": {
+   "Net 30": "When terms are set, the Terms field shows the value (for example \"Net 30\")."
+  },
   "nav_nouns": [
    "estimate",
    "invoice",
@@ -438,20 +482,23 @@
   "refs": "SV-9142 (S3-R3)",
   "atm": 1,
   "preconditions": [
-   "You are signed in to ShopView.",
-   "A document exists whose work order has an Authorizer selected (a customer contact with 'Approves Work' enabled)."
+   "1. You are signed in to ShopView.",
+   "2. A document exists whose work order has an Authorizer selected (a customer contact with 'Approves Work' enabled)."
   ],
   "steps": [
-   "Generate the Estimate or Invoice.",
-   "Look at the Authorizer field in the order reference area."
+   "1. Generate the Estimate or Invoice.",
+   "2. Look at the Authorizer field in the order reference area."
   ],
   "expected_body": [
-   "The Authorizer field shows the full name of the work order's selected authorizer.",
-   "The name matches the selected 'Approves Work' contact on the work order."
+   "1. The Authorizer field shows the full name of the work order's selected authorizer.",
+   "2. The name matches the selected 'Approves Work' contact on the work order.",
+   "---",
+   "Last checked against build v26.35.5-8c3cc21 on 8/31/2026."
   ],
   "labels_quoted": [
    "Approves Work"
   ],
+  "labels_dropped_not_screen": {},
   "nav_nouns": [
    "authorizer",
    "customer",
@@ -468,21 +515,23 @@
   "refs": "SV-9142 (S3-R4)",
   "atm": 1,
   "preconditions": [
-   "You are signed in to ShopView.",
-   "A document exists whose work order has an integrated-billing approval code."
+   "1. You are signed in to ShopView.",
+   "2. A document exists whose work order has an integrated-billing approval code."
   ],
   "steps": [
-   "Generate the Estimate or Invoice.",
-   "Look at the Approval Code field in the order reference area."
+   "1. Generate the Estimate or Invoice.",
+   "2. Look at the Approval Code field in the order reference area."
   ],
   "expected_body": [
-   "The Approval Code field shows the work order's integrated-billing approval code, in its own field labeled exactly \"Approval Code\".",
-   "The approval code is no longer shown under the \"Authorizer\" label (net-new placement)."
+   "1. The Approval Code field shows the work order's integrated-billing approval code, in its own field labeled exactly \"Approval Code\".",
+   "2. The approval code is no longer shown under the \"Authorizer\" label (net-new placement).",
+   "---"
   ],
   "labels_quoted": [
    "Approval Code",
    "Authorizer"
   ],
+  "labels_dropped_not_screen": {},
   "nav_nouns": [
    "estimate",
    "invoice",
@@ -497,22 +546,24 @@
   "refs": "SV-9142 (S3-N1)",
   "atm": 1,
   "preconditions": [
-   "You are signed in to ShopView.",
-   "You can reach one document where the work order number equals the trailing digits of the document number (for example document \"INV-S-24914\" with work order \"24914\"), and one where it does not (work order \"24915\")."
+   "1. You are signed in to ShopView.",
+   "2. You can reach one document where the work order number equals the trailing digits of the document number (for example document \"INV-S-24914\" with work order \"24914\"), and one where it does not (work order \"24915\")."
   ],
   "steps": [
-   "Generate the document where the work order number equals the document number's trailing digits; look at the order reference area.",
-   "Generate the document where they differ; look at the order reference area."
+   "1. Generate the document where the work order number equals the document number's trailing digits; look at the order reference area.",
+   "2. Generate the document where they differ; look at the order reference area."
   ],
   "expected_body": [
-   "When the work order number equals the unbroken digits at the end of the document number, the Work Order field is hidden.",
-   "When they differ, the Work Order field is shown with its value.",
-   "Trailing digits example: \"4176\" in \"INV-4176\"; \"24914\" in \"INV-S-24914\"."
+   "1. When the work order number equals the unbroken digits at the end of the document number, the Work Order field is hidden.",
+   "2. When they differ, the Work Order field is shown with its value.",
+   "3. Trailing digits example: \"4176\" in \"INV-4176\"; \"24914\" in \"INV-S-24914\".",
+   "---"
   ],
-  "labels_quoted": [
-   "INV-4176",
-   "INV-S-24914"
-  ],
+  "labels_quoted": [],
+  "labels_dropped_not_screen": {
+   "INV-S-24914": "You can reach one document where the work order number equals the trailing digits of the document number (for ",
+   "INV-4176": "Trailing digits example: \"4176\" in \"INV-4176\"; \"24914\" in \"INV-S-24914\"."
+  },
   "nav_nouns": [
    "work order"
   ],
@@ -525,20 +576,23 @@
   "refs": "SV-9142 (S3-N2; S3-N3; S3-N5)",
   "atm": 1,
   "preconditions": [
-   "You are signed in to ShopView.",
-   "You can reach a document whose work order has no Customer PO, no Authorizer selected, and no approval code."
+   "1. You are signed in to ShopView.",
+   "2. You can reach a document whose work order has no Customer PO, no Authorizer selected, and no approval code."
   ],
   "steps": [
-   "Generate an Estimate or Invoice whose work order is missing Customer PO, Authorizer and approval code.",
-   "Look at the order reference area."
+   "1. Generate an Estimate or Invoice whose work order is missing Customer PO, Authorizer and approval code.",
+   "2. Look at the order reference area."
   ],
   "expected_body": [
-   "The Customer PO field is hidden (no label, no empty value).",
-   "The Authorizer field is hidden — no label and no empty value area; an empty authorizer never prints on any document.",
-   "The Approval Code field is hidden (no label, no empty value area).",
-   "Terms still shows (it is the always-show exception)."
+   "1. The Customer PO field is hidden (no label, no empty value).",
+   "2. The Authorizer field is hidden — no label and no empty value area; an empty authorizer never prints on any document.",
+   "3. The Approval Code field is hidden (no label, no empty value area).",
+   "4. Terms still shows (it is the always-show exception).",
+   "---",
+   "Last checked against build v26.35.5-8c3cc21 on 8/31/2026."
   ],
   "labels_quoted": [],
+  "labels_dropped_not_screen": {},
   "nav_nouns": [
    "authorizer",
    "customer",
@@ -555,24 +609,31 @@
   "refs": "SV-9142 (S3-R5)",
   "atm": 3,
   "preconditions": [
-   "You are signed in to ShopView with access to work orders.",
-   "A work order exists for a customer that has at least one contact with 'Approves Work' enabled, and other contacts without it."
+   "1. You are signed in to ShopView with access to work orders.",
+   "2. A work order exists for a customer that has at least one contact with 'Approves Work' enabled, and other contacts without it."
   ],
   "steps": [
-   "Open the work order.",
-   "Look at the customer contact card on the left side of the work order, below the Contact and Phone values.",
-   "Select the \"Authorizer\" row and look at the list of choices offered."
+   "1. Open the work order.",
+   "2. Look at the customer contact card on the left side of the work order, below the Contact and Phone values.",
+   "3. Select the \"Authorizer\" row and look at the list of choices offered."
   ],
   "expected_body": [
-   "An \"Authorizer\" row appears in the customer contact card, directly below the Contact and Phone values, in the same label-and-value style.",
-   "Selecting the row opens a list of only the customer's contacts that have \"Approves Work\" enabled.",
-   "No other contact is offered, and no free-typed name can be entered.",
-   "This is the only place the Authorizer can be selected."
+   "1. An \"Authorizer\" row appears in the customer contact card, directly below the Contact and Phone values, in the same label-and-value style.",
+   "2. Selecting the row opens a list of only the customer's contacts that have \"Approves Work\" enabled.",
+   "3. No other contact is offered, and no free-typed name can be entered.",
+   "4. This is the only place the Authorizer can be selected.",
+   "EXPECT FAIL - what you should see today: the Authorizer row renders inside a visible rectangle (it looks like an editable input box) and its text is indented, so it does not line up with the Contact and Phone values above it. This is a known problem, already reported as SV-9599.",
+   "If you see exactly that: mark this case FAILED and raise nothing new - it is SV-9599.",
+   "If it fails in any other way: that is a NEW problem. Report it.",
+   "If it passes - the row has no rectangle and lines up with Contact and Phone: the fix has shipped. Tell the QA lead so this marker can be removed.",
+   "---",
+   "Last checked against build v26.35.5-8c3cc21 on 8/31/2026."
   ],
   "labels_quoted": [
    "Approves Work",
    "Authorizer"
   ],
+  "labels_dropped_not_screen": {},
   "nav_nouns": [
    "authorizer",
    "customer",
@@ -587,23 +648,26 @@
   "refs": "SV-9142 (S3-R6)",
   "atm": 3,
   "preconditions": [
-   "You are signed in to ShopView.",
-   "A work order exists whose customer has 'Approves Work' contacts."
+   "1. You are signed in to ShopView.",
+   "2. A work order exists whose customer has 'Approves Work' contacts."
   ],
   "steps": [
-   "Open a work order with no Authorizer selected and look at the Authorizer row.",
-   "Open the Authorizer list and note the options.",
-   "Select an authorizer, then reopen the list and choose \"No authorizer\"."
+   "1. Open a work order with no Authorizer selected and look at the Authorizer row.",
+   "2. Open the Authorizer list and note the options.",
+   "3. Select an authorizer, then reopen the list and choose \"No authorizer\"."
   ],
   "expected_body": [
-   "The Authorizer is not required and defaults to empty on a new work order.",
-   "The Authorizer list includes a \"No authorizer\" option.",
-   "Choosing \"No authorizer\" clears the selection back to empty."
+   "1. The Authorizer is not required and defaults to empty on a new work order.",
+   "2. The Authorizer list includes a \"No authorizer\" option.",
+   "3. Choosing \"No authorizer\" clears the selection back to empty.",
+   "---",
+   "Last checked against build v26.35.5-8c3cc21 on 8/31/2026."
   ],
   "labels_quoted": [
    "Approves Work",
    "No authorizer"
   ],
+  "labels_dropped_not_screen": {},
   "nav_nouns": [
    "authorizer",
    "customer",
@@ -618,20 +682,23 @@
   "refs": "SV-9142 (S3-R7)",
   "atm": 3,
   "preconditions": [
-   "You are signed in to ShopView.",
-   "A work order's customer has one 'Approves Work' contact WITH a phone number and one WITHOUT."
+   "1. You are signed in to ShopView.",
+   "2. A work order's customer has one 'Approves Work' contact WITH a phone number and one WITHOUT."
   ],
   "steps": [
-   "Open the work order and select the authorizer whose contact has a phone number; look at the contact card.",
-   "Select the authorizer whose contact has no phone number; look at the contact card."
+   "1. Open the work order and select the authorizer whose contact has a phone number; look at the contact card.",
+   "2. Select the authorizer whose contact has no phone number; look at the contact card."
   ],
   "expected_body": [
-   "When the selected authorizer's contact record has a phone number, the phone shows in the card directly below the authorizer's name, styled like the Contact's phone.",
-   "When the contact record has no phone number, no phone row is shown under the authorizer's name."
+   "1. When the selected authorizer's contact record has a phone number, the phone shows in the card directly below the authorizer's name, styled like the Contact's phone.",
+   "2. When the contact record has no phone number, no phone row is shown under the authorizer's name.",
+   "---",
+   "Last checked against build v26.35.5-8c3cc21 on 8/31/2026."
   ],
   "labels_quoted": [
    "Approves Work"
   ],
+  "labels_dropped_not_screen": {},
   "nav_nouns": [
    "authorizer",
    "customer",
@@ -646,19 +713,22 @@
   "refs": "SV-9142 (S3-R8)",
   "atm": 3,
   "preconditions": [
-   "You are signed in to ShopView.",
-   "A work order that has been invoiced exists, with (or without) an Authorizer selected."
+   "1. You are signed in to ShopView.",
+   "2. A work order that has been invoiced exists, with (or without) an Authorizer selected."
   ],
   "steps": [
-   "Open the invoiced work order.",
-   "Try to change the Authorizer in the customer contact card."
+   "1. Open the invoiced work order.",
+   "2. Try to change the Authorizer in the customer contact card."
   ],
   "expected_body": [
-   "Once the work order is invoiced, the Authorizer row is locked and its value cannot be changed.",
-   "Before invoicing the row is editable; from the point of invoicing it is read-only.",
-   "If the invoice is later voided or reversed, the work order returns to Complete and the Authorizer row is re-enabled."
+   "1. Once the work order is invoiced, the Authorizer row is locked and its value cannot be changed.",
+   "2. Before invoicing the row is editable; from the point of invoicing it is read-only.",
+   "3. If the invoice is later voided or reversed, the work order returns to Complete and the Authorizer row is re-enabled.",
+   "---",
+   "Last checked against build v26.35.5-8c3cc21 on 8/31/2026."
   ],
   "labels_quoted": [],
+  "labels_dropped_not_screen": {},
   "nav_nouns": [
    "authorizer",
    "customer",
@@ -673,21 +743,23 @@
   "refs": "SV-9142 (S3-R9)",
   "atm": 1,
   "preconditions": [
-   "You are signed in to ShopView.",
-   "A work order is open for a customer, and you can edit that customer's contacts."
+   "1. You are signed in to ShopView.",
+   "2. A work order is open for a customer, and you can edit that customer's contacts."
   ],
   "steps": [
-   "On the customer's contacts page, create or edit a contact and enable \"Approves Work\".",
-   "Return to the open work order without refreshing or re-saving it.",
-   "Open the Authorizer list."
+   "1. On the customer's contacts page, create or edit a contact and enable \"Approves Work\".",
+   "2. Return to the open work order without refreshing or re-saving it.",
+   "3. Open the Authorizer list."
   ],
   "expected_body": [
-   "The newly enabled contact appears in the work order's Authorizer list.",
-   "It becomes selectable without any refresh or re-save of the work order."
+   "1. The newly enabled contact appears in the work order's Authorizer list.",
+   "2. It becomes selectable without any refresh or re-save of the work order.",
+   "---"
   ],
   "labels_quoted": [
    "Approves Work"
   ],
+  "labels_dropped_not_screen": {},
   "nav_nouns": [
    "authorizer",
    "customer",
@@ -702,17 +774,19 @@
   "refs": "SV-9142 (S3-R8)",
   "atm": 1,
   "preconditions": [
-   "Invoiced work order",
-   "API access (session token)"
+   "1. Invoiced work order",
+   "2. API access (session token)"
   ],
   "steps": [
-   "POST /api/work-orders/{wo}/authorizer with a valid authorizer_id directly (bypass the UI)"
+   "1. POST /api/work-orders/{wo}/authorizer with a valid authorizer_id directly (bypass the UI)"
   ],
   "expected_body": [
-   "The API returns 409; the Authorizer is unchanged. The server-side lock cannot be bypassed (NFR-001, plan D2).",
-   "The lock is conditional, not permanent: per v45 S3-R8 a later void or reversal returns the work order to Complete and re-enables the Authorizer row (that transition is out of scope for this API-rejection case)."
+   "1. The API returns 409; the Authorizer is unchanged. The server-side lock cannot be bypassed (NFR-001, plan D2).",
+   "2. The lock is conditional, not permanent: per v45 S3-R8 a later void or reversal returns the work order to Complete and re-enables the Authorizer row (that transition is out of scope for this API-rejection case).",
+   "---"
   ],
   "labels_quoted": [],
+  "labels_dropped_not_screen": {},
   "nav_nouns": [
    "authorizer",
    "work order"
@@ -726,19 +800,21 @@
   "refs": "SV-9142 (S3-R5)",
   "atm": 1,
   "preconditions": [
-   "Un-invoiced work order",
-   "Contact IDs: (a) same company without 'Approves Work'; (b) another company's contact"
+   "1. Un-invoiced work order",
+   "2. Contact IDs: (a) same company without 'Approves Work'; (b) another company's contact"
   ],
   "steps": [
-   "POST authorizer_id = contact (a)",
-   "POST authorizer_id = contact (b)"
+   "1. POST authorizer_id = contact (a)",
+   "2. POST authorizer_id = contact (b)"
   ],
   "expected_body": [
-   "Both are rejected - 422 (or 404 for the cross-tenant contact); the Authorizer is unchanged (NFR-002). Only a customer contact with 'Approves Work' enabled can be selected as Authorizer (S3-R5)."
+   "1. Both are rejected - 422 (or 404 for the cross-tenant contact); the Authorizer is unchanged (NFR-002). Only a customer contact with 'Approves Work' enabled can be selected as Authorizer (S3-R5).",
+   "---"
   ],
   "labels_quoted": [
    "Approves Work"
   ],
+  "labels_dropped_not_screen": {},
   "nav_nouns": [
    "work order"
   ],
@@ -751,23 +827,26 @@
   "refs": "SV-9143 (S4-R1)",
   "atm": 1,
   "preconditions": [
-   "You are signed in to ShopView.",
-   "A document exists whose work order has an asset attached, and that asset has a VIN (and a separate asset has only a serial number)."
+   "1. You are signed in to ShopView.",
+   "2. A document exists whose work order has an asset attached, and that asset has a VIN (and a separate asset has only a serial number)."
   ],
   "steps": [
-   "Generate an Estimate or Invoice whose work order has an asset with a VIN; look at the asset section.",
-   "Generate one whose asset has only a serial number (no VIN); look at the asset section."
+   "1. Generate an Estimate or Invoice whose work order has an asset with a VIN; look at the asset section.",
+   "2. Generate one whose asset has only a serial number (no VIN); look at the asset section."
   ],
   "expected_body": [
-   "The asset section shows the asset name, labeled exactly \"Asset\".",
-   "When the asset has a VIN, one value labeled exactly \"VIN / Serial\" shows the VIN.",
-   "When the asset has no VIN but has a serial number, the \"VIN / Serial\" value shows the serial number.",
-   "The VIN is preferred when both exist."
+   "1. The asset section shows the asset name, labeled exactly \"Asset\".",
+   "2. When the asset has a VIN, one value labeled exactly \"VIN / Serial\" shows the VIN.",
+   "3. When the asset has no VIN but has a serial number, the \"VIN / Serial\" value shows the serial number.",
+   "4. The VIN is preferred when both exist.",
+   "---",
+   "Last checked against build v26.35.5-8c3cc21 on 8/31/2026."
   ],
   "labels_quoted": [
    "Asset",
    "VIN / Serial"
   ],
+  "labels_dropped_not_screen": {},
   "nav_nouns": [
    "asset",
    "estimate",
@@ -783,15 +862,17 @@
   "refs": "SV-9143 (S4-R2)",
   "atm": 1,
   "preconditions": [
-   "You are signed in to ShopView.",
-   "A document exists whose work order has an asset with Unit, Plate, Mileage and Eng Hrs all set."
+   "1. You are signed in to ShopView.",
+   "2. A document exists whose work order has an asset with Unit, Plate, Mileage and Eng Hrs all set."
   ],
   "steps": [
-   "Generate the Estimate or Invoice.",
-   "Look at the asset section."
+   "1. Generate the Estimate or Invoice.",
+   "2. Look at the asset section."
   ],
   "expected_body": [
-   "The asset section shows fields labeled exactly \"Unit\", \"Plate\", \"Mileage\", and \"Eng Hrs\" with their values."
+   "1. The asset section shows fields labeled exactly \"Unit\", \"Plate\", \"Mileage\", and \"Eng Hrs\" with their values.",
+   "---",
+   "Last checked against build v26.35.5-8c3cc21 on 8/31/2026."
   ],
   "labels_quoted": [
    "Eng Hrs",
@@ -799,6 +880,7 @@
    "Plate",
    "Unit"
   ],
+  "labels_dropped_not_screen": {},
   "nav_nouns": [
    "asset",
    "estimate",
@@ -814,18 +896,21 @@
   "refs": "SV-9143 (S4-N1)",
   "atm": 1,
   "preconditions": [
-   "You are signed in to ShopView.",
-   "A document exists whose asset is missing one or more of Unit, Plate, Mileage, Eng Hrs."
+   "1. You are signed in to ShopView.",
+   "2. A document exists whose asset is missing one or more of Unit, Plate, Mileage, Eng Hrs."
   ],
   "steps": [
-   "Generate an Estimate or Invoice whose asset is missing some of these fields.",
-   "Look at the asset section."
+   "1. Generate an Estimate or Invoice whose asset is missing some of these fields.",
+   "2. Look at the asset section."
   ],
   "expected_body": [
-   "Each of Unit, Plate, Mileage and Eng Hrs is hidden when it has no value — no blank label is left.",
-   "The fields that do have values still show."
+   "1. Each of Unit, Plate, Mileage and Eng Hrs is hidden when it has no value — no blank label is left.",
+   "2. The fields that do have values still show.",
+   "---",
+   "Last checked against build v26.35.5-8c3cc21 on 8/31/2026."
   ],
   "labels_quoted": [],
+  "labels_dropped_not_screen": {},
   "nav_nouns": [
    "asset",
    "estimate",
@@ -840,20 +925,23 @@
   "refs": "SV-9143 (S4-N2)",
   "atm": 1,
   "preconditions": [
-   "You are signed in to ShopView.",
-   "A document exists whose attached asset has no VIN and no serial number."
+   "1. You are signed in to ShopView.",
+   "2. A document exists whose attached asset has no VIN and no serial number."
   ],
   "steps": [
-   "Generate the Estimate or Invoice.",
-   "Look at the asset section."
+   "1. Generate the Estimate or Invoice.",
+   "2. Look at the asset section."
   ],
   "expected_body": [
-   "The \"VIN / Serial\" field is hidden when the asset has neither a VIN nor a serial number.",
-   "The Asset name still shows."
+   "1. The \"VIN / Serial\" field is hidden when the asset has neither a VIN nor a serial number.",
+   "2. The Asset name still shows.",
+   "---",
+   "Last checked against build v26.35.5-8c3cc21 on 8/31/2026."
   ],
   "labels_quoted": [
    "VIN / Serial"
   ],
+  "labels_dropped_not_screen": {},
   "nav_nouns": [
    "asset",
    "estimate",
@@ -868,19 +956,22 @@
   "refs": "SV-9143 (S4-N3; Story 4 prerequisite)",
   "atm": 1,
   "preconditions": [
-   "You are signed in to ShopView.",
-   "You can reach: a service work order with an asset, a parts sale with an asset attached, and a work order with no asset attached."
+   "1. You are signed in to ShopView.",
+   "2. You can reach: a service work order with an asset, a parts sale with an asset attached, and a work order with no asset attached."
   ],
   "steps": [
-   "Generate a document for a service work order with an asset; check whether the asset section shows.",
-   "Generate a document for a parts sale that has an asset attached; check whether the asset section shows.",
-   "Generate a document for a work order with no asset attached; check whether the asset section shows."
+   "1. Generate a document for a service work order with an asset; check whether the asset section shows.",
+   "2. Generate a document for a parts sale that has an asset attached; check whether the asset section shows.",
+   "3. Generate a document for a work order with no asset attached; check whether the asset section shows."
   ],
   "expected_body": [
-   "The asset section shows whenever the work order has an asset attached — including on part sales, treated the same as service work orders.",
-   "When the work order has no asset attached, the asset section is hidden entirely."
+   "1. The asset section shows whenever the work order has an asset attached — including on part sales, treated the same as service work orders.",
+   "2. When the work order has no asset attached, the asset section is hidden entirely.",
+   "---",
+   "Last checked against build v26.35.5-8c3cc21 on 8/31/2026."
   ],
   "labels_quoted": [],
+  "labels_dropped_not_screen": {},
   "nav_nouns": [
    "asset",
    "parts sale",
@@ -895,15 +986,18 @@
   "refs": "SV-9143 (S4-N3)",
   "atm": 1,
   "preconditions": [
-   "Work order without an asset"
+   "1. Work order without an asset"
   ],
   "steps": [
-   "Open the Estimate and Invoice previews"
+   "1. Open the Estimate and Invoice previews"
   ],
   "expected_body": [
-   "The entire asset section is absent on both documents (S4-N3)."
+   "1. The entire asset section is absent on both documents (S4-N3).",
+   "---",
+   "Last checked against build v26.35.5-8c3cc21 on 8/31/2026."
   ],
   "labels_quoted": [],
+  "labels_dropped_not_screen": {},
   "nav_nouns": [
    "asset",
    "estimate",
@@ -919,21 +1013,24 @@
   "refs": "SV-9144 (S5-R1)",
   "atm": 1,
   "preconditions": [
-   "You are signed in to ShopView.",
-   "You can generate an Estimate and an Invoice for work orders that have work lines."
+   "1. You are signed in to ShopView.",
+   "2. You can generate an Estimate and an Invoice for work orders that have work lines."
   ],
   "steps": [
-   "Generate an Estimate and read the work section heading.",
-   "Generate an Invoice and read the work section heading."
+   "1. Generate an Estimate and read the work section heading.",
+   "2. Generate an Invoice and read the work section heading."
   ],
   "expected_body": [
-   "On the Estimate the work section heading reads exactly \"Work Summary\".",
-   "On the Invoice the same section heading reads exactly \"Work Performed\"."
+   "1. On the Estimate the work section heading reads exactly \"Work Summary\".",
+   "2. On the Invoice the same section heading reads exactly \"Work Performed\".",
+   "---",
+   "Last checked against build v26.35.5-8c3cc21 on 8/31/2026."
   ],
   "labels_quoted": [
    "Work Performed",
    "Work Summary"
   ],
+  "labels_dropped_not_screen": {},
   "nav_nouns": [
    "estimate",
    "invoice"
@@ -947,19 +1044,22 @@
   "refs": "SV-9144 (S5-R2)",
   "atm": 1,
   "preconditions": [
-   "You are signed in to ShopView.",
-   "You can reach a work order with several work lines, and (ideally) one with 100 or more lines."
+   "1. You are signed in to ShopView.",
+   "2. You can reach a work order with several work lines, and (ideally) one with 100 or more lines."
   ],
   "steps": [
-   "Generate a document for a work order with multiple lines; read the line numbers.",
-   "If available, generate a document for a work order with 100 or more lines; read the line numbers."
+   "1. Generate a document for a work order with multiple lines; read the line numbers.",
+   "2. If available, generate a document for a work order with 100 or more lines; read the line numbers."
   ],
   "expected_body": [
-   "Line numbers are sequential with no gaps.",
-   "Lines 1 to 99 are zero-padded to two digits: 01, 02 ... 10, 11.",
-   "When the document has 100 or more lines, lines 1-99 still show two digits and lines 100 and above show three digits (100, 101 ...)."
+   "1. Line numbers are sequential with no gaps.",
+   "2. Lines 1 to 99 are zero-padded to two digits: 01, 02 ... 10, 11.",
+   "3. When the document has 100 or more lines, lines 1-99 still show two digits and lines 100 and above show three digits (100, 101 ...).",
+   "---",
+   "Last checked against build v26.35.5-8c3cc21 on 8/31/2026."
   ],
   "labels_quoted": [],
+  "labels_dropped_not_screen": {},
   "nav_nouns": [
    "work order"
   ],
@@ -972,21 +1072,24 @@
   "refs": "SV-9144 (S5-R3; S5-R4; S5-R5)",
   "atm": 1,
   "preconditions": [
-   "You are signed in to ShopView.",
-   "A work order has a line with a name, a description, and a scope-of-work note; and another line with a name only."
+   "1. You are signed in to ShopView.",
+   "2. A work order has a line with a name, a description, and a scope-of-work note; and another line with a name only."
   ],
   "steps": [
-   "Generate the document.",
-   "Read the line that has a description and a scope-of-work note.",
-   "Read the line that has a name only."
+   "1. Generate the document.",
+   "2. Read the line that has a description and a scope-of-work note.",
+   "3. Read the line that has a name only."
   ],
   "expected_body": [
-   "Each work line shows its name.",
-   "A line shows its description when a description is present.",
-   "A line shows its scope-of-work note when a scope-of-work note is present (shown below the description).",
-   "A line with no description and no scope-of-work note shows just its name (no empty rows)."
+   "1. Each work line shows its name.",
+   "2. A line shows its description when a description is present.",
+   "3. A line shows its scope-of-work note when a scope-of-work note is present (shown below the description).",
+   "4. A line with no description and no scope-of-work note shows just its name (no empty rows).",
+   "---",
+   "Last checked against build v26.35.5-8c3cc21 on 8/31/2026."
   ],
   "labels_quoted": [],
+  "labels_dropped_not_screen": {},
   "nav_nouns": [
    "work order"
   ],
@@ -999,21 +1102,24 @@
   "refs": "SV-9144 (S5-R6)",
   "atm": 1,
   "preconditions": [
-   "You are signed in to ShopView.",
-   "A work order line has both a labor entry and a parts entry."
+   "1. You are signed in to ShopView.",
+   "2. A work order line has both a labor entry and a parts entry."
   ],
   "steps": [
-   "Generate the document.",
-   "Read the entry labels within a work line."
+   "1. Generate the document.",
+   "2. Read the entry labels within a work line."
   ],
   "expected_body": [
-   "A labor entry within a line is labeled exactly \"Labor\".",
-   "A parts entry within a line is labeled exactly \"Parts\"."
+   "1. A labor entry within a line is labeled exactly \"Labor\".",
+   "2. A parts entry within a line is labeled exactly \"Parts\".",
+   "---",
+   "Last checked against build v26.35.5-8c3cc21 on 8/31/2026."
   ],
   "labels_quoted": [
    "Labor",
    "Parts"
   ],
+  "labels_dropped_not_screen": {},
   "nav_nouns": [
    "work order"
   ],
@@ -1026,18 +1132,20 @@
   "refs": "SV-9144 (S5-R7)",
   "atm": 1,
   "preconditions": [
-   "You are signed in to ShopView.",
-   "You can change the document settings under Administration > Invoice Details for a shop, and generate a document for that shop."
+   "1. You are signed in to ShopView.",
+   "2. You can change the document settings under Administration > Invoice Details for a shop, and generate a document for that shop."
   ],
   "steps": [
-   "Under Administration > Invoice Details, turn each of \"Labor hours\", \"Labor rate\", \"Labor price\", \"Part quantity\", \"Part price\", \"Part number\" and \"Part description\" on, generate a document, and read a work line.",
-   "Turn each setting off, generate again, and read the same line."
+   "1. Under Administration > Invoice Details, turn each of \"Labor hours\", \"Labor rate\", \"Labor price\", \"Part quantity\", \"Part price\", \"Part number\" and \"Part description\" on, generate a document, and read a work line.",
+   "2. Turn each setting off, generate again, and read the same line."
   ],
   "expected_body": [
-   "When \"Labor hours\", \"Labor rate\", \"Labor price\", \"Part quantity\", \"Part price\", \"Part number\" and \"Part description\" are on, each per-entry figure, the part number, and the part description show on their labor/part entry.",
-   "Turning a setting off hides its per-entry figure; turning \"Part number\" off hides the part number on every parts entry, and turning \"Part description\" off hides the part description on every parts entry.",
-   "Turning \"Labor price\" off also hides the line footer's \"Labor\" figure; turning \"Part price\" off also hides the line footer's \"Parts\" figure.",
-   "The itemized labor and parts entries themselves are never collapsed or hidden by any setting; \"Line total\" and the financial summary always show their amounts."
+   "1. When \"Labor hours\", \"Labor rate\", \"Labor price\", \"Part quantity\", \"Part price\", \"Part number\" and \"Part description\" are on, each per-entry figure, the part number, and the part description show on their labor/part entry.",
+   "2. Turning a setting off hides its per-entry figure; turning \"Part number\" off hides the part number on every parts entry, and turning \"Part description\" off hides the part description on every parts entry.",
+   "3. Turning \"Labor price\" off also hides the line footer's \"Labor\" figure; turning \"Part price\" off also hides the line footer's \"Parts\" figure.",
+   "4. The itemized labor and parts entries themselves are never collapsed or hidden by any setting; \"Line total\" and the financial summary always show their amounts.",
+   "---",
+   "Last checked against build v26.35.5-8c3cc21 on 8/31/2026."
   ],
   "labels_quoted": [
    "Labor",
@@ -1051,6 +1159,7 @@
    "Part quantity",
    "Parts"
   ],
+  "labels_dropped_not_screen": {},
   "nav_nouns": [
    "invoice",
    "settings"
@@ -1064,20 +1173,23 @@
   "refs": "SV-9144 (S5-R8)",
   "atm": 1,
   "preconditions": [
-   "You are signed in to ShopView.",
-   "A work order has a line with a line-level fee and a line with a line-level discount."
+   "1. You are signed in to ShopView.",
+   "2. A work order has a line with a line-level fee and a line with a line-level discount."
   ],
   "steps": [
-   "Generate the document.",
-   "Read the line that has a line-level fee.",
-   "Read the line that has a line-level discount."
+   "1. Generate the document.",
+   "2. Read the line that has a line-level fee.",
+   "3. Read the line that has a line-level discount."
   ],
   "expected_body": [
-   "A fee that applies to a single labor or parts line is shown with that line as a plain amount.",
-   "A discount that applies to a single line is shown with that line in parentheses (the accounting convention for a subtraction).",
-   "The parentheses are required wording, not styling."
+   "1. A fee that applies to a single labor or parts line is shown with that line as a plain amount.",
+   "2. A discount that applies to a single line is shown with that line in parentheses (the accounting convention for a subtraction).",
+   "3. The parentheses are required wording, not styling.",
+   "---",
+   "Last checked against build v26.35.5-8c3cc21 on 8/31/2026."
   ],
   "labels_quoted": [],
+  "labels_dropped_not_screen": {},
   "nav_nouns": [
    "work order"
   ],
@@ -1090,20 +1202,22 @@
   "refs": "SV-9144 (S5-R7; S5-R9; S5-R10)",
   "atm": 1,
   "preconditions": [
-   "You are signed in to ShopView.",
-   "You can set \"Summarize labor total\" and \"Summarize parts total\" under Administration > Invoice Details, and reach lines with and without visible Labor/Parts figures."
+   "1. You are signed in to ShopView.",
+   "2. You can set \"Summarize labor total\" and \"Summarize parts total\" under Administration > Invoice Details, and reach lines with and without visible Labor/Parts figures."
   ],
   "steps": [
-   "With both summarize settings on, generate a document and read a line footer that has Labor and Parts amounts.",
-   "Turn the summarize settings off and read the footer again.",
-   "Read a footer on a line where neither a Labor nor a Parts figure is visible."
+   "1. With both summarize settings on, generate a document and read a line footer that has Labor and Parts amounts.",
+   "2. Turn the summarize settings off and read the footer again.",
+   "3. Read a footer on a line where neither a Labor nor a Parts figure is visible."
   ],
   "expected_body": [
-   "Each work line has a footer with figures labeled exactly \"Labor\", \"Parts\", and \"Line total\".",
-   "The Labor and Parts figures are that line's own totals after its line-level fees and discounts; \"Line total\" is their sum.",
-   "A \"Labor\" or \"Parts\" footer figure shows only when its summarize setting is on; it is hidden when that setting is off, when its value is $0.00, or when its matching price setting is off (a negative value is shown with its sign).",
-   "The vertical divider before \"Line total\" shows only when at least one Labor or Parts figure is visible; when neither is, \"Line total\" stands alone with no divider.",
-   "\"Line total\" always shows, appears once per line, and shows even when it reads $0.00."
+   "1. Each work line has a footer with figures labeled exactly \"Labor\", \"Parts\", and \"Line total\".",
+   "2. The Labor and Parts figures are that line's own totals after its line-level fees and discounts; \"Line total\" is their sum.",
+   "3. A \"Labor\" or \"Parts\" footer figure shows only when its summarize setting is on; it is hidden when that setting is off, when its value is $0.00, or when its matching price setting is off (a negative value is shown with its sign).",
+   "4. The vertical divider before \"Line total\" shows only when at least one Labor or Parts figure is visible; when neither is, \"Line total\" stands alone with no divider.",
+   "5. \"Line total\" always shows, appears once per line, and shows even when it reads $0.00.",
+   "---",
+   "Last checked against build v26.35.5-8c3cc21 on 8/31/2026."
   ],
   "labels_quoted": [
    "Labor",
@@ -1112,6 +1226,7 @@
    "Summarize labor total",
    "Summarize parts total"
   ],
+  "labels_dropped_not_screen": {},
   "nav_nouns": [
    "footer",
    "invoice",
@@ -1126,20 +1241,23 @@
   "refs": "SV-9144 (S5-N1)",
   "atm": 1,
   "preconditions": [
-   "You are signed in to ShopView.",
-   "You can reach a document whose work order has no work lines."
+   "1. You are signed in to ShopView.",
+   "2. You can reach a document whose work order has no work lines."
   ],
   "steps": [
-   "Generate the document for a work order with no work lines.",
-   "Look at the work section and what follows it."
+   "1. Generate the document for a work order with no work lines.",
+   "2. Look at the work section and what follows it."
   ],
   "expected_body": [
-   "The work section shows its heading with no lines beneath it.",
-   "The \"Summary\" divider still appears and precedes the financial summary."
+   "1. The work section shows its heading with no lines beneath it.",
+   "2. The \"Summary\" divider still appears and precedes the financial summary.",
+   "---",
+   "Last checked against build v26.35.5-8c3cc21 on 8/31/2026."
   ],
   "labels_quoted": [
    "Summary"
   ],
+  "labels_dropped_not_screen": {},
   "nav_nouns": [
    "work order"
   ],
@@ -1152,18 +1270,19 @@
   "refs": "SV-9144 (S5-R7)",
   "atm": 1,
   "preconditions": [
-   "A work line with both labor and parts",
-   "All price settings ON"
+   "1. A work line with both labor and parts",
+   "2. All price settings ON"
   ],
   "steps": [
-   "Turn OFF 'Summarize labor total', then open the preview",
-   "Turn OFF 'Summarize parts total' too, then open the preview",
-   "Restore both settings"
+   "1. Turn OFF 'Summarize labor total', then open the preview",
+   "2. Turn OFF 'Summarize parts total' too, then open the preview",
+   "3. Restore both settings"
   ],
   "expected_body": [
-   "After Step 1: the footer 'Labor' figure is hidden; 'Parts' and 'Line total' remain.",
-   "After Step 2: both the 'Labor' and 'Parts' footer figures are hidden; 'Line total' stands alone WITHOUT the vertical divider (S5-R7, S5-R9).",
-   "'Line total' is always shown."
+   "1. After Step 1: the footer 'Labor' figure is hidden; 'Parts' and 'Line total' remain.",
+   "2. After Step 2: both the 'Labor' and 'Parts' footer figures are hidden; 'Line total' stands alone WITHOUT the vertical divider (S5-R7, S5-R9).",
+   "3. 'Line total' is always shown.",
+   "---"
   ],
   "labels_quoted": [
    "Labor",
@@ -1172,6 +1291,7 @@
    "Summarize labor total",
    "Summarize parts total"
   ],
+  "labels_dropped_not_screen": {},
   "nav_nouns": [
    "preview",
    "settings"
@@ -1185,17 +1305,19 @@
   "refs": "SV-9144 (S5-R2)",
   "atm": 1,
   "preconditions": [
-   "A work order with 100+ lines (factory/seed data)"
+   "1. A work order with 100+ lines (factory/seed data)"
   ],
   "steps": [
-   "Open the Invoice preview",
-   "Generate the PDF"
+   "1. Open the Invoice preview",
+   "2. Generate the PDF"
   ],
   "expected_body": [
-   "Lines 1-99 stay two digits; line 100 and above show three digits (S5-R2).",
-   "The document renders without timeout (NFR-004)."
+   "1. Lines 1-99 stay two digits; line 100 and above show three digits (S5-R2).",
+   "2. The document renders without timeout (NFR-004).",
+   "---"
   ],
   "labels_quoted": [],
+  "labels_dropped_not_screen": {},
   "nav_nouns": [
    "invoice",
    "pdf",
@@ -1211,22 +1333,24 @@
   "refs": "SV-9145 (S6-R1; S6-R2)",
   "atm": 1,
   "preconditions": [
-   "You are signed in to ShopView.",
-   "A document exists whose work order has declined work lines (with names, descriptions, and internal scope-of-work notes), and the \"Show declined work\" option is enabled."
+   "1. You are signed in to ShopView.",
+   "2. A document exists whose work order has declined work lines (with names, descriptions, and internal scope-of-work notes), and the \"Show declined work\" option is enabled."
   ],
   "steps": [
-   "Generate the Estimate or Invoice.",
-   "Find the Declined Work section and read its lines."
+   "1. Generate the Estimate or Invoice.",
+   "2. Find the Declined Work section and read its lines."
   ],
   "expected_body": [
-   "Declined work appears in its own section headed exactly \"Declined Work\", separate from the main work section.",
-   "Each declined line shows its name, and its description when a description is present.",
-   "A declined line never shows a scope-of-work note (the technician's internal write-up) - that note does not print for declined work on any customer document."
+   "1. Declined work appears in its own section headed exactly \"Declined Work\", separate from the main work section.",
+   "2. Each declined line shows its name, and its description when a description is present.",
+   "3. A declined line never shows a scope-of-work note (the technician's internal write-up) - that note does not print for declined work on any customer document.",
+   "---"
   ],
   "labels_quoted": [
    "Declined Work",
    "Show declined work"
   ],
+  "labels_dropped_not_screen": {},
   "nav_nouns": [
    "declined work",
    "estimate",
@@ -1242,23 +1366,25 @@
   "refs": "SV-9145 (S6-R3; S6-R4; S6-R5)",
   "atm": 1,
   "preconditions": [
-   "You are signed in to ShopView.",
-   "A document exists with declined work lines and \"Show declined work\" enabled."
+   "1. You are signed in to ShopView.",
+   "2. A document exists with declined work lines and \"Show declined work\" enabled."
   ],
   "steps": [
-   "Generate the document.",
-   "Read the Declined Work section and check the totals elsewhere on the document."
+   "1. Generate the document.",
+   "2. Read the Declined Work section and check the totals elsewhere on the document."
   ],
   "expected_body": [
-   "Declined lines show no prices, no labor totals, and no parts totals.",
-   "Declined lines are never included in any total on the document.",
-   "Declined lines do not show a line number.",
-   "No status pill is shown on declined lines; the \"Declined Work\" heading is the only indicator of declined status."
+   "1. Declined lines show no prices, no labor totals, and no parts totals.",
+   "2. Declined lines are never included in any total on the document.",
+   "3. Declined lines do not show a line number.",
+   "4. No status pill is shown on declined lines; the \"Declined Work\" heading is the only indicator of declined status.",
+   "---"
   ],
   "labels_quoted": [
    "Declined Work",
    "Show declined work"
   ],
+  "labels_dropped_not_screen": {},
   "nav_nouns": [
    "declined work"
   ],
@@ -1271,20 +1397,22 @@
   "refs": "SV-9145 (S6-N1)",
   "atm": 1,
   "preconditions": [
-   "You are signed in to ShopView.",
-   "You can reach a document with no declined lines, and one that has declined lines but with \"Show declined work\" turned off."
+   "1. You are signed in to ShopView.",
+   "2. You can reach a document with no declined lines, and one that has declined lines but with \"Show declined work\" turned off."
   ],
   "steps": [
-   "Generate a document with no declined lines; look for a Declined Work section.",
-   "Generate a document that has declined lines but with \"Show declined work\" off; look for a Declined Work section."
+   "1. Generate a document with no declined lines; look for a Declined Work section.",
+   "2. Generate a document that has declined lines but with \"Show declined work\" off; look for a Declined Work section."
   ],
   "expected_body": [
-   "When there are no declined lines, the Declined Work section is not shown.",
-   "When the \"Show declined work\" option is off, the Declined Work section is not shown even if declined lines exist."
+   "1. When there are no declined lines, the Declined Work section is not shown.",
+   "2. When the \"Show declined work\" option is off, the Declined Work section is not shown even if declined lines exist.",
+   "---"
   ],
   "labels_quoted": [
    "Show declined work"
   ],
+  "labels_dropped_not_screen": {},
   "nav_nouns": [
    "declined work"
   ],
@@ -1297,19 +1425,21 @@
   "refs": "SV-9146 (S7-R1)",
   "atm": 1,
   "preconditions": [
-   "You are signed in to ShopView.",
-   "You can generate an Estimate or Invoice."
+   "1. You are signed in to ShopView.",
+   "2. You can generate an Estimate or Invoice."
   ],
   "steps": [
-   "Generate the document.",
-   "Find where the work section ends and the financial summary begins."
+   "1. Generate the document.",
+   "2. Find where the work section ends and the financial summary begins."
   ],
   "expected_body": [
-   "A divider labeled exactly \"Summary\" precedes the financial summary."
+   "1. A divider labeled exactly \"Summary\" precedes the financial summary.",
+   "---"
   ],
   "labels_quoted": [
    "Summary"
   ],
+  "labels_dropped_not_screen": {},
   "nav_nouns": [
    "estimate",
    "financial summary",
@@ -1324,23 +1454,26 @@
   "refs": "SV-9146 (S7-R2; S7-R6)",
   "atm": 1,
   "preconditions": [
-   "You are signed in to ShopView.",
-   "A document exists with labor charges, parts charges, and a shop-supplies charge."
+   "1. You are signed in to ShopView.",
+   "2. A document exists with labor charges, parts charges, and a shop-supplies charge."
   ],
   "steps": [
-   "Generate the document.",
-   "Read the financial summary rows for Labor, Parts and Shop supplies."
+   "1. Generate the document.",
+   "2. Read the financial summary rows for Labor, Parts and Shop supplies."
   ],
   "expected_body": [
-   "The summary shows a row labeled exactly \"Labor\" and a row labeled exactly \"Parts\".",
-   "Each shows the gross amount - before any fees or discounts.",
-   "A row labeled exactly \"Shop supplies\" shows only when a shop-supplies charge applies."
+   "1. The summary shows a row labeled exactly \"Labor\" and a row labeled exactly \"Parts\".",
+   "2. Each shows the gross amount - before any fees or discounts.",
+   "3. A row labeled exactly \"Shop supplies\" shows only when a shop-supplies charge applies.",
+   "---",
+   "Last checked against build v26.35.5-8c3cc21 on 8/31/2026."
   ],
   "labels_quoted": [
    "Labor",
    "Parts",
    "Shop supplies"
   ],
+  "labels_dropped_not_screen": {},
   "nav_nouns": [
    "financial summary"
   ],
@@ -1353,20 +1486,22 @@
   "refs": "SV-9146 (S7-R3)",
   "atm": 1,
   "preconditions": [
-   "You are signed in to ShopView.",
-   "You can reach a document whose location has \"Show % on Estimates and Invoices\" enabled and shop supplies charged as a percentage of labor, and one with the setting disabled."
+   "1. You are signed in to ShopView.",
+   "2. You can reach a document whose location has \"Show % on Estimates and Invoices\" enabled and shop supplies charged as a percentage of labor, and one with the setting disabled."
   ],
   "steps": [
-   "Generate a document with the setting enabled and read the Shop supplies row.",
-   "Generate one with the setting disabled and read the Shop supplies row."
+   "1. Generate a document with the setting enabled and read the Shop supplies row.",
+   "2. Generate one with the setting disabled and read the Shop supplies row."
   ],
   "expected_body": [
-   "When the location's \"Show % on Estimates and Invoices\" setting is enabled and shop supplies are charged as a percentage of labor, the percentage is shown alongside the shop supplies amount.",
-   "Otherwise the shop supplies amount is shown alone."
+   "1. When the location's \"Show % on Estimates and Invoices\" setting is enabled and shop supplies are charged as a percentage of labor, the percentage is shown alongside the shop supplies amount.",
+   "2. Otherwise the shop supplies amount is shown alone.",
+   "---"
   ],
   "labels_quoted": [
    "Show % on Estimates and Invoices"
   ],
+  "labels_dropped_not_screen": {},
   "nav_nouns": [],
   "n_steps": 2
  },
@@ -1377,25 +1512,28 @@
   "refs": "SV-9146 (S7-R4; S7-R5)",
   "atm": 1,
   "preconditions": [
-   "You are signed in to ShopView.",
-   "A document exists with line-level labor and parts fees/discounts and two or more work-order-wide adjustments added in a known order."
+   "1. You are signed in to ShopView.",
+   "2. A document exists with line-level labor and parts fees/discounts and two or more work-order-wide adjustments added in a known order."
   ],
   "steps": [
-   "Generate the document.",
-   "Read the Adjustments group in the financial summary, top to bottom."
+   "1. Generate the document.",
+   "2. Read the Adjustments group in the financial summary, top to bottom."
   ],
   "expected_body": [
-   "Fees and discounts are grouped under a heading labeled exactly \"Adjustments\", which carries no amount of its own.",
-   "Under it, in this order: a rollup row labeled \"Labor\" totaling all line-level labor fees and discounts, a rollup row labeled \"Parts\" totaling all line-level parts fees and discounts, then each work-order-wide fee or discount as its own named row in the order it was added.",
-   "A \"Labor\" or \"Parts\" rollup row shows only when its total is not zero; a negative rollup shows in parentheses, a positive rollup as a plain amount.",
-   "A work-order-wide discount shows in parentheses; a work-order-wide fee shows as a plain amount.",
-   "There are intentionally two \"Labor\" rows and two \"Parts\" rows in the summary; the Adjustments pair is distinguished by sitting under the Adjustments heading."
+   "1. Fees and discounts are grouped under a heading labeled exactly \"Adjustments\", which carries no amount of its own.",
+   "2. Under it, in this order: a rollup row labeled \"Labor\" totaling all line-level labor fees and discounts, a rollup row labeled \"Parts\" totaling all line-level parts fees and discounts, then each work-order-wide fee or discount as its own named row in the order it was added.",
+   "3. A \"Labor\" or \"Parts\" rollup row shows only when its total is not zero; a negative rollup shows in parentheses, a positive rollup as a plain amount.",
+   "4. A work-order-wide discount shows in parentheses; a work-order-wide fee shows as a plain amount.",
+   "5. There are intentionally two \"Labor\" rows and two \"Parts\" rows in the summary; the Adjustments pair is distinguished by sitting under the Adjustments heading.",
+   "---",
+   "Last checked against build v26.35.5-8c3cc21 on 8/31/2026."
   ],
   "labels_quoted": [
    "Adjustments",
    "Labor",
    "Parts"
   ],
+  "labels_dropped_not_screen": {},
   "nav_nouns": [
    "financial summary"
   ],
@@ -1408,24 +1546,27 @@
   "refs": "SV-9146 (S7-R7; S7-R8; S7-R9; S7-R10)",
   "atm": 1,
   "preconditions": [
-   "You are signed in to ShopView.",
-   "A document exists with one or more applicable taxes."
+   "1. You are signed in to ShopView.",
+   "2. A document exists with one or more applicable taxes."
   ],
   "steps": [
-   "Generate the document.",
-   "Read the Subtotal, tax rows, and Total in the summary."
+   "1. Generate the document.",
+   "2. Read the Subtotal, tax rows, and Total in the summary."
   ],
   "expected_body": [
-   "The summary shows a row labeled exactly \"Subtotal\".",
-   "It shows one tax row per applicable tax, each labeled with the tax name and its rate.",
-   "It shows the grand total labeled exactly \"Total\".",
-   "Every row that contributes to the Subtotal is displayed; no contributing summary row is hidden.",
-   "The visible math holds: gross Labor + gross Parts + Shop supplies + all Adjustments rows = Subtotal."
+   "1. The summary shows a row labeled exactly \"Subtotal\".",
+   "2. It shows one tax row per applicable tax, each labeled with the tax name and its rate.",
+   "3. It shows the grand total labeled exactly \"Total\".",
+   "4. Every row that contributes to the Subtotal is displayed; no contributing summary row is hidden.",
+   "5. The visible math holds: gross Labor + gross Parts + Shop supplies + all Adjustments rows = Subtotal.",
+   "---",
+   "Last checked against build v26.35.5-8c3cc21 on 8/31/2026."
   ],
   "labels_quoted": [
    "Subtotal",
    "Total"
   ],
+  "labels_dropped_not_screen": {},
   "nav_nouns": [],
   "n_steps": 2
  },
@@ -1436,18 +1577,21 @@
   "refs": "SV-9146 (S7-N1; S7-N2)",
   "atm": 1,
   "preconditions": [
-   "You are signed in to ShopView.",
-   "You can reach a document with no work-order-wide adjustments and both rollup totals zero, and one with no applicable tax."
+   "1. You are signed in to ShopView.",
+   "2. You can reach a document with no work-order-wide adjustments and both rollup totals zero, and one with no applicable tax."
   ],
   "steps": [
-   "Generate a document with no adjustments and zero rollups; look for the Adjustments heading.",
-   "Generate a document with no applicable tax; look for a tax row."
+   "1. Generate a document with no adjustments and zero rollups; look for the Adjustments heading.",
+   "2. Generate a document with no applicable tax; look for a tax row."
   ],
   "expected_body": [
-   "The Adjustments heading is not shown when there is nothing to list under it (no work-order-wide fees or discounts and both rollup totals at zero).",
-   "When no tax applies, no tax row is shown."
+   "1. The Adjustments heading is not shown when there is nothing to list under it (no work-order-wide fees or discounts and both rollup totals at zero).",
+   "2. When no tax applies, no tax row is shown.",
+   "---",
+   "Last checked against build v26.35.5-8c3cc21 on 8/31/2026."
   ],
   "labels_quoted": [],
+  "labels_dropped_not_screen": {},
   "nav_nouns": [],
   "n_steps": 2
  },
@@ -1458,22 +1602,25 @@
   "refs": "SV-9147 (S8-R1; S8-R2)",
   "atm": 1,
   "preconditions": [
-   "You are signed in to ShopView.",
-   "An Invoice exists with two or more applied payments made on different dates by different methods."
+   "1. You are signed in to ShopView.",
+   "2. An Invoice exists with two or more applied payments made on different dates by different methods."
   ],
   "steps": [
-   "Generate the Invoice.",
-   "Find the Payments section and read each payment row."
+   "1. Generate the Invoice.",
+   "2. Find the Payments section and read each payment row."
   ],
   "expected_body": [
-   "The Invoice shows a heading labeled exactly \"Payments\".",
-   "Each applied payment shows as a row reading \"{date} - {method}\" (for example \"Jul 30, 2026 - Cash\"), where the hyphen is a literal character.",
-   "The amount shown is the applied amount when present, otherwise the payment amount.",
-   "Rows list applied payments only, ordered by date and then by the order the payments were recorded; a fully reversed payment does not appear."
+   "1. The Invoice shows a heading labeled exactly \"Payments\".",
+   "2. Each applied payment shows as a row reading \"{date} - {method}\" (for example \"Jul 30, 2026 - Cash\"), where the hyphen is a literal character.",
+   "3. The amount shown is the applied amount when present, otherwise the payment amount.",
+   "4. Rows list applied payments only, ordered by date and then by the order the payments were recorded; a fully reversed payment does not appear.",
+   "---",
+   "Last checked against build v26.35.5-8c3cc21 on 8/31/2026."
   ],
   "labels_quoted": [
    "Payments"
   ],
+  "labels_dropped_not_screen": {},
   "nav_nouns": [
    "invoice",
    "payment"
@@ -1487,22 +1634,25 @@
   "refs": "SV-9147 (S8-R3)",
   "atm": 1,
   "preconditions": [
-   "You are signed in to ShopView.",
-   "An Invoice has a payment with a shop-configured method name, one with an unconfigured code (for example credit_card), and one made online (SHOPPAY)."
+   "1. You are signed in to ShopView.",
+   "2. An Invoice has a payment with a shop-configured method name, one with an unconfigured code (for example credit_card), and one made online (SHOPPAY)."
   ],
   "steps": [
-   "Generate the Invoice.",
-   "Read the method name on each payment row."
+   "1. Generate the Invoice.",
+   "2. Read the method name on each payment row."
   ],
   "expected_body": [
-   "A payment's method shows the shop-configured payment-method name when configured.",
-   "When not configured, it shows the payment code with each underscore replaced by a space (for example credit_card shows as \"credit card\").",
-   "The \"SHOPPAY\" code shows as \"Online\"."
+   "1. A payment's method shows the shop-configured payment-method name when configured.",
+   "2. When not configured, it shows the payment code with each underscore replaced by a space (for example credit_card shows as \"credit card\").",
+   "3. The \"SHOPPAY\" code shows as \"Online\".",
+   "---",
+   "Last checked against build v26.35.5-8c3cc21 on 8/31/2026."
   ],
   "labels_quoted": [
    "Online",
    "SHOPPAY"
   ],
+  "labels_dropped_not_screen": {},
   "nav_nouns": [
    "invoice",
    "payment"
@@ -1516,18 +1666,21 @@
   "refs": "SV-9147 (S8-R4)",
   "atm": 1,
   "preconditions": [
-   "You are signed in to ShopView.",
-   "An Invoice has a deposit applied and an applied customer-account credit (with a CM- number)."
+   "1. You are signed in to ShopView.",
+   "2. An Invoice has a deposit applied and an applied customer-account credit (with a CM- number)."
   ],
   "steps": [
-   "Generate the Invoice.",
-   "Read the deposit row and the applied-credit row in the Payments section."
+   "1. Generate the Invoice.",
+   "2. Read the deposit row and the applied-credit row in the Payments section."
   ],
   "expected_body": [
-   "A deposit shows as a payment row labeled \"(Deposit) {date} - {method}\", where {date} is the date the deposit was collected.",
-   "An applied customer-account credit shows as a payment row labeled \"(Credit) {date} - {credit number}\", where {credit number} is the full CM-prefixed number and {date} is the date the credit was applied."
+   "1. A deposit shows as a payment row labeled \"(Deposit) {date} - {method}\", where {date} is the date the deposit was collected.",
+   "2. An applied customer-account credit shows as a payment row labeled \"(Credit) {date} - {credit number}\", where {credit number} is the full CM-prefixed number and {date} is the date the credit was applied.",
+   "---",
+   "Last checked against build v26.35.5-8c3cc21 on 8/31/2026."
   ],
   "labels_quoted": [],
+  "labels_dropped_not_screen": {},
   "nav_nouns": [
    "customer",
    "deposit",
@@ -1542,21 +1695,24 @@
   "refs": "SV-9147 (S8-R5)",
   "atm": 1,
   "preconditions": [
-   "You are signed in to ShopView.",
-   "An Invoice has a payment or deposit whose amount applied to this invoice is less than its full amount - for example an over-collected deposit, or a regular payment spread across more than one invoice - with one case where the excess became a numbered credit and one where it has not yet."
+   "1. You are signed in to ShopView.",
+   "2. An Invoice has a payment or deposit whose amount applied to this invoice is less than its full amount - for example an over-collected deposit, or a regular payment spread across more than one invoice - with one case where the excess became a numbered credit and one where it has not yet."
   ],
   "steps": [
-   "Generate the Invoice.",
-   "Read the sub-line beneath the row whose applied amount is less than its full amount (payment or deposit)."
+   "1. Generate the Invoice.",
+   "2. Read the sub-line beneath the row whose applied amount is less than its full amount (payment or deposit)."
   ],
   "expected_body": [
-   "A sub-line is shown beneath any payment or deposit whose amount applied to this invoice is less than its full amount - this is not limited to deposits and includes a regular payment spread across more than one invoice. It gates on applied being less than the full amount, never on whether the row is a deposit.",
-   "When the excess has become a customer-account credit with a number, the sub-line reads exactly \"of {full amount} — {excess} → Credit {credit number}\" (for example \"of $500.00 — $150.00 → Credit CM-1042\").",
-   "Otherwise it reads exactly \"of {full amount} — {excess} will be credited\".",
-   "{full amount} is the payment's or deposit's full amount; {excess} is the full amount minus the amount applied to this invoice.",
-   "The em dash and the arrow are literal separator characters, not subtraction."
+   "1. A sub-line is shown beneath any payment or deposit whose amount applied to this invoice is less than its full amount - this is not limited to deposits and includes a regular payment spread across more than one invoice. It gates on applied being less than the full amount, never on whether the row is a deposit.",
+   "2. When the excess has become a customer-account credit with a number, the sub-line reads exactly \"of {full amount} — {excess} → Credit {credit number}\" (for example \"of $500.00 — $150.00 → Credit CM-1042\").",
+   "3. Otherwise it reads exactly \"of {full amount} — {excess} will be credited\".",
+   "4. {full amount} is the payment's or deposit's full amount; {excess} is the full amount minus the amount applied to this invoice.",
+   "5. The em dash and the arrow are literal separator characters, not subtraction.",
+   "---",
+   "Last checked against build v26.35.5-8c3cc21 on 8/31/2026."
   ],
   "labels_quoted": [],
+  "labels_dropped_not_screen": {},
   "nav_nouns": [
    "deposit",
    "invoice",
@@ -1571,20 +1727,23 @@
   "refs": "SV-9147 (S8-R6)",
   "atm": 1,
   "preconditions": [
-   "You are signed in to ShopView.",
-   "You can reach an unpaid Invoice, a partially paid Invoice, a fully paid Invoice, and an overpaid Invoice."
+   "1. You are signed in to ShopView.",
+   "2. You can reach an unpaid Invoice, a partially paid Invoice, a fully paid Invoice, and an overpaid Invoice."
   ],
   "steps": [
-   "Generate each Invoice and read the \"Balance\" row."
+   "1. Generate each Invoice and read the \"Balance\" row."
   ],
   "expected_body": [
-   "The Invoice shows a row labeled exactly \"Balance\".",
-   "Balance equals the Total minus all applied payments (any method), applied deposits, and applied customer-account credits.",
-   "Balance is floored at $0.00: an overpaid invoice shows \"Balance\" with \"$0.00\" - never a negative amount and never a hidden row."
+   "1. The Invoice shows a row labeled exactly \"Balance\".",
+   "2. Balance equals the Total minus all applied payments (any method), applied deposits, and applied customer-account credits.",
+   "3. Balance is floored at $0.00: an overpaid invoice shows \"Balance\" with \"$0.00\" - never a negative amount and never a hidden row.",
+   "---",
+   "Last checked against build v26.35.5-8c3cc21 on 8/31/2026."
   ],
   "labels_quoted": [
    "Balance"
   ],
+  "labels_dropped_not_screen": {},
   "nav_nouns": [
    "balance",
    "invoice"
@@ -1598,26 +1757,29 @@
   "refs": "SV-9147 (S8-R8)",
   "atm": 1,
   "preconditions": [
-   "You are signed in to ShopView.",
-   "You can obtain an Invoice PDF generated by the customer portal (with portal payments) and an Invoice PDF generated in the shop app for the same invoice."
+   "1. You are signed in to ShopView.",
+   "2. You can obtain an Invoice PDF generated by the customer portal (with portal payments) and an Invoice PDF generated in the shop app for the same invoice."
   ],
   "steps": [
-   "Obtain the portal-generated Invoice PDF and look at the very top of the document.",
-   "Obtain the shop-app-generated Invoice PDF for the same invoice and look for the banner.",
-   "Check a portal-generated PDF that has shop-recorded (non-portal) payments too."
+   "1. Obtain the portal-generated Invoice PDF and look at the very top of the document.",
+   "2. Obtain the shop-app-generated Invoice PDF for the same invoice and look for the banner.",
+   "3. Check a portal-generated PDF that has shop-recorded (non-portal) payments too."
   ],
   "expected_body": [
-   "On the portal-generated PDF the paid banner appears before all other invoice content, including the masthead.",
-   "The banner lists only portal-processed payments; shop-recorded payments appear only in the Payments section.",
-   "An Invoice PDF generated in the shop app never carries the banner, whether or not portal payments exist.",
-   "The banner shows a fixed status pill: exactly \"PAID IN FULL\" when the invoice is fully paid at generation time, otherwise exactly \"PARTIALLY PAID\".",
-   "The banner title reads exactly \"Payment Receipt (Batch) - Payments by ShopView\" when every listed payment was part of a batch, otherwise exactly \"Payment Receipt - Payments by ShopView\"."
+   "1. On the portal-generated PDF the paid banner appears before all other invoice content, including the masthead.",
+   "2. The banner lists only portal-processed payments; shop-recorded payments appear only in the Payments section.",
+   "3. An Invoice PDF generated in the shop app never carries the banner, whether or not portal payments exist.",
+   "4. The banner shows a fixed status pill: exactly \"PAID IN FULL\" when the invoice is fully paid at generation time, otherwise exactly \"PARTIALLY PAID\".",
+   "5. The banner title reads exactly \"Payment Receipt (Batch) - Payments by ShopView\" when every listed payment was part of a batch, otherwise exactly \"Payment Receipt - Payments by ShopView\".",
+   "---",
+   "Last checked against build v26.35.5-8c3cc21 on 8/31/2026."
   ],
   "labels_quoted": [
    "PAID IN FULL",
    "PARTIALLY PAID",
    "Payment Receipt - Payments by ShopView"
   ],
+  "labels_dropped_not_screen": {},
   "nav_nouns": [
    "customer",
    "invoice",
@@ -1632,20 +1794,22 @@
   "refs": "SV-9147 (S8-R9; G-R1)",
   "atm": 1,
   "preconditions": [
-   "You are signed in to ShopView.",
-   "You can obtain a portal-generated Invoice PDF with a single payment, and one paid as part of a batch, ideally with convenience/late fees."
+   "1. You are signed in to ShopView.",
+   "2. You can obtain a portal-generated Invoice PDF with a single payment, and one paid as part of a batch, ideally with convenience/late fees."
   ],
   "steps": [
-   "Obtain the portal-generated PDF and read each banner payment's fields.",
-   "Compare a single-payment banner with a batch-payment banner."
+   "1. Obtain the portal-generated PDF and read each banner payment's fields.",
+   "2. Compare a single-payment banner with a batch-payment banner."
   ],
   "expected_body": [
-   "Each banner payment shows fields labeled exactly: \"Date / Time\", \"Paid By\", \"Method\", \"Invoice Amount\", and \"Total Charged\".",
-   "\"Total Charged\" is labeled \"Total Charged (Batch)\" for a batch payment and then covers the whole batch.",
-   "\"Convenience Fee\" and \"Late Fee\" each show only when the portal charged one (a non-zero amount).",
-   "\"Remaining Balance\" shows only when the balance immediately after that payment was greater than $0.00.",
-   "In a batch, each payment carries a \"Payment X of Y - Batch\" marker.",
-   "\"Date / Time\" reads in the format \"Jan 5, 2026 - 2:41 PM MST\" (date, then time with timezone)."
+   "1. Each banner payment shows fields labeled exactly: \"Date / Time\", \"Paid By\", \"Method\", \"Invoice Amount\", and \"Total Charged\".",
+   "2. \"Total Charged\" is labeled \"Total Charged (Batch)\" for a batch payment and then covers the whole batch.",
+   "3. \"Convenience Fee\" and \"Late Fee\" each show only when the portal charged one (a non-zero amount).",
+   "4. \"Remaining Balance\" shows only when the balance immediately after that payment was greater than $0.00.",
+   "5. In a batch, each payment carries a \"Payment X of Y - Batch\" marker.",
+   "6. \"Date / Time\" reads in the format \"Jan 5, 2026 - 2:41 PM MST\" (date, then time with timezone).",
+   "---",
+   "Last checked against build v26.35.5-8c3cc21 on 8/31/2026."
   ],
   "labels_quoted": [
    "Convenience Fee",
@@ -1658,6 +1822,7 @@
    "Remaining Balance",
    "Total Charged"
   ],
+  "labels_dropped_not_screen": {},
   "nav_nouns": [
    "invoice",
    "payment",
@@ -1672,18 +1837,21 @@
   "refs": "SV-9147 (S8-R7; S8-N1)",
   "atm": 1,
   "preconditions": [
-   "You are signed in to ShopView.",
-   "You can reach an Invoice with a $0.00 payment recorded, and an Invoice with no payments/deposits/credits applied."
+   "1. You are signed in to ShopView.",
+   "2. You can reach an Invoice with a $0.00 payment recorded, and an Invoice with no payments/deposits/credits applied."
   ],
   "steps": [
-   "Generate the Invoice that has a $0.00 payment; check the Payments rows.",
-   "Generate the Invoice with nothing applied; read the Payments heading and the Balance."
+   "1. Generate the Invoice that has a $0.00 payment; check the Payments rows.",
+   "2. Generate the Invoice with nothing applied; read the Payments heading and the Balance."
   ],
   "expected_body": [
-   "A payment row whose amount is $0.00 is not shown.",
-   "When no payments, deposits or customer-account credits have been applied, the Payments heading shows with no rows and the Balance equals the Total."
+   "1. A payment row whose amount is $0.00 is not shown.",
+   "2. When no payments, deposits or customer-account credits have been applied, the Payments heading shows with no rows and the Balance equals the Total.",
+   "---",
+   "Last checked against build v26.35.5-8c3cc21 on 8/31/2026."
   ],
   "labels_quoted": [],
+  "labels_dropped_not_screen": {},
   "nav_nouns": [
    "balance",
    "invoice",
@@ -1698,18 +1866,21 @@
   "refs": "SV-9147 (S8-N2)",
   "atm": 1,
   "preconditions": [
-   "You are signed in to ShopView.",
-   "You can obtain an Invoice PDF for an invoice paid only by a shop-recorded method (for example cash at the counter), and a shop-app-generated PDF."
+   "1. You are signed in to ShopView.",
+   "2. You can obtain an Invoice PDF for an invoice paid only by a shop-recorded method (for example cash at the counter), and a shop-app-generated PDF."
   ],
   "steps": [
-   "Obtain the PDF for the invoice with only shop-recorded payments; look for a paid banner.",
-   "Obtain a shop-app-generated PDF; look for a paid banner."
+   "1. Obtain the PDF for the invoice with only shop-recorded payments; look for a paid banner.",
+   "2. Obtain a shop-app-generated PDF; look for a paid banner."
   ],
   "expected_body": [
-   "When the invoice has no portal-processed payment, the paid banner is not shown - a shop-recorded payment never produces the banner.",
-   "An Invoice PDF generated in the shop app shows no banner in any case."
+   "1. When the invoice has no portal-processed payment, the paid banner is not shown - a shop-recorded payment never produces the banner.",
+   "2. An Invoice PDF generated in the shop app shows no banner in any case.",
+   "---",
+   "Last checked against build v26.35.5-8c3cc21 on 8/31/2026."
   ],
   "labels_quoted": [],
+  "labels_dropped_not_screen": {},
   "nav_nouns": [
    "invoice",
    "paid banner",
@@ -1724,16 +1895,19 @@
   "refs": "SV-9147 (S8-R2)",
   "atm": 1,
   "preconditions": [
-   "An invoice with 2 payments, one of them fully reversed"
+   "1. An invoice with 2 payments, one of them fully reversed"
   ],
   "steps": [
-   "Open the Invoice preview"
+   "1. Open the Invoice preview"
   ],
   "expected_body": [
-   "Only the active payment is listed; the fully reversed payment is absent (a fully reversed payment is no longer applied and does not appear).",
-   "Balance reflects only the applied amounts (S8-R2)."
+   "1. Only the active payment is listed; the fully reversed payment is absent (a fully reversed payment is no longer applied and does not appear).",
+   "2. Balance reflects only the applied amounts (S8-R2).",
+   "---",
+   "Last checked against build v26.35.5-8c3cc21 on 8/31/2026."
   ],
   "labels_quoted": [],
+  "labels_dropped_not_screen": {},
   "nav_nouns": [
    "invoice",
    "preview"
@@ -1747,22 +1921,25 @@
   "refs": "SV-9147 (S8-R8)",
   "atm": 1,
   "preconditions": [
-   "Portal invoices: one fully paid by a single payment; one partially paid; one paid entirely via batch checkout"
+   "1. Portal invoices: one fully paid by a single payment; one partially paid; one paid entirely via batch checkout"
   ],
   "steps": [
-   "Generate each portal PDF",
-   "Check the pill and the title wording"
+   "1. Generate each portal PDF",
+   "2. Check the pill and the title wording"
   ],
   "expected_body": [
-   "Fully paid: the pill reads exactly 'PAID IN FULL'; partially paid: exactly 'PARTIALLY PAID'.",
-   "Title reads exactly 'Payment Receipt - Payments by ShopView'.",
-   "When every payment is a batch payment: the title reads exactly 'Payment Receipt (Batch) - Payments by ShopView' (S8-R8)."
+   "1. Fully paid: the pill reads exactly 'PAID IN FULL'; partially paid: exactly 'PARTIALLY PAID'.",
+   "2. Title reads exactly 'Payment Receipt - Payments by ShopView'.",
+   "3. When every payment is a batch payment: the title reads exactly 'Payment Receipt (Batch) - Payments by ShopView' (S8-R8).",
+   "---",
+   "Last checked against build v26.35.5-8c3cc21 on 8/31/2026."
   ],
   "labels_quoted": [
    "PAID IN FULL",
    "PARTIALLY PAID",
    "Payment Receipt - Payments by ShopView"
   ],
+  "labels_dropped_not_screen": {},
   "nav_nouns": [
    "payment",
    "pdf"
@@ -1788,6 +1965,7 @@
    "The disclaimer is identical on every document that carries it."
   ],
   "labels_quoted": [],
+  "labels_dropped_not_screen": {},
   "nav_nouns": [
    "credit invoice",
    "disclaimer",
@@ -1803,23 +1981,26 @@
   "refs": "SV-9148 (S9-R2; S9-R3)",
   "atm": 1,
   "preconditions": [
-   "You are signed in to ShopView.",
-   "You can generate an Estimate, Invoice and Credit Invoice."
+   "1. You are signed in to ShopView.",
+   "2. You can generate an Estimate, Invoice and Credit Invoice."
   ],
   "steps": [
-   "Generate each document type.",
-   "Find the signature area on each and read its lines."
+   "1. Generate each document type.",
+   "2. Find the signature area on each and read its lines."
   ],
   "expected_body": [
-   "The signature area shows three lines labeled exactly \"Customer Signature\", \"Printed Name\", and \"Date\".",
-   "The three lines are identical on every document that carries the area.",
-   "The signature area contains no authorization or acknowledgment sentence - only the three lines."
+   "1. The signature area shows three lines labeled exactly \"Customer Signature\", \"Printed Name\", and \"Date\".",
+   "2. The three lines are identical on every document that carries the area.",
+   "3. The signature area contains no authorization or acknowledgment sentence - only the three lines.",
+   "---",
+   "Last checked against build v26.35.5-8c3cc21 on 8/31/2026."
   ],
   "labels_quoted": [
    "Customer Signature",
    "Date",
    "Printed Name"
   ],
+  "labels_dropped_not_screen": {},
   "nav_nouns": [
    "credit invoice",
    "estimate",
@@ -1835,20 +2016,23 @@
   "refs": "SV-9148 (S9-R4)",
   "atm": 1,
   "preconditions": [
-   "You are signed in to ShopView.",
-   "A shop has a tax identifier configured (for example \"GST# 812694966 RT0001\")."
+   "1. You are signed in to ShopView.",
+   "2. A shop has a tax identifier configured (for example \"GST# 812694966 RT0001\")."
   ],
   "steps": [
-   "Generate a document for the shop.",
-   "Read the footer tax identifier."
+   "1. Generate a document for the shop.",
+   "2. Read the footer tax identifier."
   ],
   "expected_body": [
-   "The footer shows the shop's tax identifier exactly as the shop entered it.",
-   "No label is added in front of it (the shop types its own label into the field)."
+   "1. The footer shows the shop's tax identifier exactly as the shop entered it.",
+   "2. No label is added in front of it (the shop types its own label into the field).",
+   "---",
+   "Last checked against build v26.35.5-8c3cc21 on 8/31/2026."
   ],
-  "labels_quoted": [
-   "GST# 812694966 RT0001"
-  ],
+  "labels_quoted": [],
+  "labels_dropped_not_screen": {
+   "GST# 812694966 RT0001": "A shop has a tax identifier configured (for example \"GST# 812694966 RT0001\")."
+  },
   "nav_nouns": [
    "footer"
   ],
@@ -1869,10 +2053,13 @@
    "Look where the disclaimer and the footer tax identifier would be."
   ],
   "expected_body": [
-   "When the shop has no configured disclaimer, the disclaimer area is not shown.",
-   "When the shop has no tax identifier configured, the footer tax identifier is not shown."
+   "1. When the shop has no configured disclaimer, the disclaimer area is not shown.",
+   "2. When the shop has no tax identifier configured, the footer tax identifier is not shown.",
+   "---",
+   "Last checked against build v26.35.5-8c3cc21 on 8/31/2026."
   ],
   "labels_quoted": [],
+  "labels_dropped_not_screen": {},
   "nav_nouns": [
    "disclaimer",
    "footer"
@@ -1886,17 +2073,20 @@
   "refs": "SV-9149 (S10-R1)",
   "atm": 1,
   "preconditions": [
-   "You are signed in to ShopView.",
-   "You can generate an Estimate and an Invoice from the same underlying work order."
+   "1. You are signed in to ShopView.",
+   "2. You can generate an Estimate and an Invoice from the same underlying work order."
   ],
   "steps": [
-   "Generate the Estimate and the Invoice.",
-   "Compare them section by section."
+   "1. Generate the Estimate and the Invoice.",
+   "2. Compare them section by section."
   ],
   "expected_body": [
-   "The Estimate and Invoice carry the same content, differing only in: the document label, the dates, the work-section heading, the headline figure label, and the presence of the Paid banner and the Payments and Balance sections on the Invoice."
+   "1. The Estimate and Invoice carry the same content, differing only in: the document label, the dates, the work-section heading, the headline figure label, and the presence of the Paid banner and the Payments and Balance sections on the Invoice.",
+   "---",
+   "Last checked against build v26.35.5-8c3cc21 on 8/31/2026."
   ],
   "labels_quoted": [],
+  "labels_dropped_not_screen": {},
   "nav_nouns": [
    "estimate",
    "invoice",
@@ -1911,25 +2101,28 @@
   "refs": "SV-9149 (S10-R2)",
   "atm": 1,
   "preconditions": [
-   "You are signed in to ShopView.",
-   "You can generate an Estimate."
+   "1. You are signed in to ShopView.",
+   "2. You can generate an Estimate."
   ],
   "steps": [
-   "Generate the Estimate.",
-   "Read the work-section heading, the boxed headline figure label, and the masthead date."
+   "1. Generate the Estimate.",
+   "2. Read the work-section heading, the boxed headline figure label, and the masthead date."
   ],
   "expected_body": [
-   "The work-section heading reads \"Work Summary\".",
-   "The boxed headline figure is labeled \"Estimated Total\".",
-   "The masthead shows \"Estimate date: {date}\".",
-   "No validity or expiry date is shown; no due-date line is shown.",
-   "The signature area's \"Date\" line is unaffected."
+   "1. The work-section heading reads \"Work Summary\".",
+   "2. The boxed headline figure is labeled \"Estimated Total\".",
+   "3. The masthead shows \"Estimate date: {date}\".",
+   "4. No validity or expiry date is shown; no due-date line is shown.",
+   "5. The signature area's \"Date\" line is unaffected.",
+   "---",
+   "Last checked against build v26.35.5-8c3cc21 on 8/31/2026."
   ],
   "labels_quoted": [
    "Date",
    "Estimated Total",
    "Work Summary"
   ],
+  "labels_dropped_not_screen": {},
   "nav_nouns": [
    "estimate",
    "masthead"
@@ -1943,22 +2136,25 @@
   "refs": "SV-9149 (S10-R3)",
   "atm": 1,
   "preconditions": [
-   "You are signed in to ShopView.",
-   "You can generate an unpaid Invoice."
+   "1. You are signed in to ShopView.",
+   "2. You can generate an unpaid Invoice."
   ],
   "steps": [
-   "Generate the (not fully paid) Invoice.",
-   "Read the work-section heading, the boxed headline figure label, and the masthead dates."
+   "1. Generate the (not fully paid) Invoice.",
+   "2. Read the work-section heading, the boxed headline figure label, and the masthead dates."
   ],
   "expected_body": [
-   "The work-section heading reads \"Work Performed\".",
-   "The boxed headline figure is labeled \"Balance\".",
-   "The masthead shows \"Invoice date: {date}\" and \"Due date: {date}\"."
+   "1. The work-section heading reads \"Work Performed\".",
+   "2. The boxed headline figure is labeled \"Balance\".",
+   "3. The masthead shows \"Invoice date: {date}\" and \"Due date: {date}\".",
+   "---",
+   "Last checked against build v26.35.5-8c3cc21 on 8/31/2026."
   ],
   "labels_quoted": [
    "Balance",
    "Work Performed"
   ],
+  "labels_dropped_not_screen": {},
   "nav_nouns": [
    "invoice",
    "masthead"
@@ -1972,23 +2168,25 @@
   "refs": "SV-9149 (S10-R4)",
   "atm": 1,
   "preconditions": [
-   "You are signed in to ShopView.",
-   "You can reach an Invoice that is fully paid (Balance $0.00 with at least one payment/deposit/credit applied), and can reverse a payment on it."
+   "1. You are signed in to ShopView.",
+   "2. You can reach an Invoice that is fully paid (Balance $0.00 with at least one payment/deposit/credit applied), and can reverse a payment on it."
   ],
   "steps": [
-   "Generate the fully paid Invoice; read the document label, the masthead date labels, the Balance, and the Payments.",
-   "Reverse a payment so the Balance becomes greater than $0.00; regenerate and read the masthead date labels."
+   "1. Generate the fully paid Invoice; read the document label, the masthead date labels, the Balance, and the Payments.",
+   "2. Reverse a payment so the Balance becomes greater than $0.00; regenerate and read the masthead date labels."
   ],
   "expected_body": [
-   "The fully paid Invoice keeps the label \"Invoice: {number}\" - it is never renamed to \"Receipt\"; no separate receipt document exists.",
-   "It lists its payments and shows a Balance of $0.00.",
-   "\"Paid date: {date}\" replaces \"Due date: {date}\" in the masthead; the paid date is the most recent date among the applied payment, deposit and credit rows.",
-   "If a later change (payment reversal, voided credit, or edit) makes the Balance greater than $0.00, the invoice is no longer fully paid and \"Due date: {date}\" returns.",
-   "A paid date earlier than the invoice date (for example a deposit collected before invoicing) is shown as-is."
+   "1. The fully paid Invoice keeps the label \"Invoice: {number}\" - it is never renamed to \"Receipt\"; no separate receipt document exists.",
+   "2. It lists its payments and shows a Balance of $0.00.",
+   "3. \"Paid date: {date}\" replaces \"Due date: {date}\" in the masthead; the paid date is the most recent date among the applied payment, deposit and credit rows.",
+   "4. If a later change (payment reversal, voided credit, or edit) makes the Balance greater than $0.00, the invoice is no longer fully paid and \"Due date: {date}\" returns.",
+   "5. A paid date earlier than the invoice date (for example a deposit collected before invoicing) is shown as-is.",
+   "---"
   ],
   "labels_quoted": [
    "Receipt"
   ],
+  "labels_dropped_not_screen": {},
   "nav_nouns": [
    "balance",
    "deposit",
@@ -2005,20 +2203,22 @@
   "refs": "SV-9149 (S10-N1)",
   "atm": 1,
   "preconditions": [
-   "You are signed in to ShopView.",
-   "You can reach an Invoice that has no due date set, and can make it fully paid."
+   "1. You are signed in to ShopView.",
+   "2. You can reach an Invoice that has no due date set, and can make it fully paid."
   ],
   "steps": [
-   "Generate the Invoice with no due date; read the masthead date lines.",
-   "Make it fully paid; regenerate and read the masthead date lines."
+   "1. Generate the Invoice with no due date; read the masthead date lines.",
+   "2. Make it fully paid; regenerate and read the masthead date lines."
   ],
   "expected_body": [
-   "An Invoice with no due date set shows \"Invoice date: {date}\" and no \"Due date\" line (the old quirk of rendering a null due date as today's date is retired).",
-   "When such an invoice becomes fully paid, \"Paid date: {date}\" is shown."
+   "1. An Invoice with no due date set shows \"Invoice date: {date}\" and no \"Due date\" line (the old quirk of rendering a null due date as today's date is retired).",
+   "2. When such an invoice becomes fully paid, \"Paid date: {date}\" is shown.",
+   "---"
   ],
   "labels_quoted": [
    "Due date"
   ],
+  "labels_dropped_not_screen": {},
   "nav_nouns": [
    "invoice",
    "masthead"
@@ -2032,20 +2232,23 @@
   "refs": "SV-9149 (S10-R4)",
   "atm": 1,
   "preconditions": [
-   "An invoice fully covered by a deposit collected BEFORE invoicing",
-   "A second invoice paid by 2 payments on different dates"
+   "1. An invoice fully covered by a deposit collected BEFORE invoicing",
+   "2. A second invoice paid by 2 payments on different dates"
   ],
   "steps": [
-   "Open the deposit-paid invoice preview",
-   "Open the 2-payment invoice preview"
+   "1. Open the deposit-paid invoice preview",
+   "2. Open the 2-payment invoice preview"
   ],
   "expected_body": [
-   "Deposit-paid: 'Paid date' equals the deposit collection date, even though it is earlier than the invoice date - shown as-is.",
-   "2-payment: 'Paid date' equals the LATEST of the applied dates (S10-R4)."
+   "1. Deposit-paid: 'Paid date' equals the deposit collection date, even though it is earlier than the invoice date - shown as-is.",
+   "2. 2-payment: 'Paid date' equals the LATEST of the applied dates (S10-R4).",
+   "---",
+   "Last checked against build v26.35.5-8c3cc21 on 8/31/2026."
   ],
   "labels_quoted": [
    "Paid date"
   ],
+  "labels_dropped_not_screen": {},
   "nav_nouns": [
    "deposit",
    "invoice",
@@ -2061,18 +2264,20 @@
   "refs": "SV-9149 (S10-R4)",
   "atm": 1,
   "preconditions": [
-   "A fully paid invoice showing 'Paid date'"
+   "1. A fully paid invoice showing 'Paid date'"
   ],
   "steps": [
-   "Reverse one payment so Balance > $0.00",
-   "Re-open the preview"
+   "1. Reverse one payment so Balance > $0.00",
+   "2. Re-open the preview"
   ],
   "expected_body": [
-   "'Due date: {date}' returns and 'Paid date' is gone - the label is decided by the invoice state at render time (S10-R4)."
+   "1. 'Due date: {date}' returns and 'Paid date' is gone - the label is decided by the invoice state at render time (S10-R4).",
+   "---"
   ],
   "labels_quoted": [
    "Paid date"
   ],
+  "labels_dropped_not_screen": {},
   "nav_nouns": [
    "balance",
    "invoice",
@@ -2088,18 +2293,21 @@
   "refs": "SV-9149 (S10-R4)",
   "atm": 1,
   "preconditions": [
-   "An invoice with a $0.00 Total and no payments/deposits/credits applied"
+   "1. An invoice with a $0.00 Total and no payments/deposits/credits applied"
   ],
   "steps": [
-   "Open the preview"
+   "1. Open the preview"
   ],
   "expected_body": [
-   "Shows 'Due date: {date}' (or no due-date line if unset) - NOT 'Paid date'.",
-   "Fully paid requires Balance $0.00 AND at least one applied row (Section 6 definition, S10-R4)."
+   "1. Shows 'Due date: {date}' (or no due-date line if unset) - NOT 'Paid date'.",
+   "2. Fully paid requires Balance $0.00 AND at least one applied row (Section 6 definition, S10-R4).",
+   "---",
+   "Last checked against build v26.35.5-8c3cc21 on 8/31/2026."
   ],
   "labels_quoted": [
    "Paid date"
   ],
+  "labels_dropped_not_screen": {},
   "nav_nouns": [
    "invoice",
    "preview"
@@ -2113,21 +2321,24 @@
   "refs": "SV-9150 (S11-R1; S1-R6)",
   "atm": 1,
   "preconditions": [
-   "You are signed in to ShopView.",
-   "You can generate a Credit Invoice (credit number carries the CM- prefix)."
+   "1. You are signed in to ShopView.",
+   "2. You can generate a Credit Invoice (credit number carries the CM- prefix)."
   ],
   "steps": [
-   "Generate the Credit Invoice.",
-   "Read the masthead."
+   "1. Generate the Credit Invoice.",
+   "2. Read the masthead."
   ],
   "expected_body": [
-   "The masthead shows \"Credit: {number}\", where the credit number carries the \"CM-\" prefix (for example \"Credit: CM-2202\").",
-   "The masthead shows \"Issue date: {date}\".",
-   "The masthead shows no money figure and no boxed headline figure."
+   "1. The masthead shows \"Credit: {number}\", where the credit number carries the \"CM-\" prefix (for example \"Credit: CM-2202\").",
+   "2. The masthead shows \"Issue date: {date}\".",
+   "3. The masthead shows no money figure and no boxed headline figure.",
+   "---",
+   "Last checked against build v26.35.5-8c3cc21 on 8/31/2026."
   ],
-  "labels_quoted": [
-   "CM-"
-  ],
+  "labels_quoted": [],
+  "labels_dropped_not_screen": {
+   "CM-": "The masthead shows \"Credit: {number}\", where the credit number carries the \"CM-\" prefix (for example \"Credit: "
+  },
   "nav_nouns": [
    "credit invoice",
    "masthead"
@@ -2141,22 +2352,25 @@
   "refs": "SV-9150 (S11-R2; S2-R1; S2-R3)",
   "atm": 1,
   "preconditions": [
-   "You are signed in to ShopView.",
-   "You can generate a Credit Invoice for a customer with an address."
+   "1. You are signed in to ShopView.",
+   "2. You can generate a Credit Invoice for a customer with an address."
   ],
   "steps": [
-   "Generate the Credit Invoice.",
-   "Read the customer address block label and its width."
+   "1. Generate the Credit Invoice.",
+   "2. Read the customer address block label and its width."
   ],
   "expected_body": [
-   "The customer address block is labeled exactly \"Credit To\" (not \"Bill To\").",
-   "Every other address rule applies to it unchanged (name always shown, address fields hide when empty).",
-   "Remit Payment To never appears on the Credit Invoice, so the Credit To block is always full width."
+   "1. The customer address block is labeled exactly \"Credit To\" (not \"Bill To\").",
+   "2. Every other address rule applies to it unchanged (name always shown, address fields hide when empty).",
+   "3. Remit Payment To never appears on the Credit Invoice, so the Credit To block is always full width.",
+   "---",
+   "Last checked against build v26.35.5-8c3cc21 on 8/31/2026."
   ],
   "labels_quoted": [
    "Bill To",
    "Credit To"
   ],
+  "labels_dropped_not_screen": {},
   "nav_nouns": [
    "credit invoice",
    "customer"
@@ -2170,23 +2384,23 @@
   "refs": "SV-9150 (S11-R3)",
   "atm": 1,
   "preconditions": [
-   "You are signed in to ShopView.",
-   "You can reach Credit Invoices in different states (Unapplied, Partially applied, Applied, Refunded, Voided), including an account-level credit with no origin invoice."
+   "1. You are signed in to ShopView.",
+   "2. You can reach Credit Invoices in different states (Unapplied, Partially applied, Applied, Refunded, Voided), including an account-level credit with no origin invoice."
   ],
   "steps": [
-   "Generate a Credit Invoice tied to an originating invoice; read the status table.",
-   "Generate an account-level credit with no origin invoice; read the status table."
+   "1. Generate a Credit Invoice tied to an originating invoice; read the status table.",
+   "2. Generate an account-level credit with no origin invoice; read the status table."
   ],
   "expected_body": [
-   "A status table shows three columns labeled exactly \"Credit Number\", \"Status\", and \"Invoice Number\".",
-   "Status shows the credit's current state: one of \"Unapplied\", \"Partially applied\", \"Applied\", \"Refunded\", or \"Voided\".",
-   "Invoice Number shows the originating invoice's full document number (for example \"INV-S-24914\").",
-   "For an account-level credit with no origin invoice, the whole Invoice Number column is hidden."
+   "1. A status table shows three columns labeled exactly \"Credit Number\", \"Status\", and \"Invoice Number\".",
+   "2. Status shows the credit's current state: one of \"Unapplied\", \"Partially applied\", \"Applied\", \"Refunded\", or \"Voided\".",
+   "3. Invoice Number shows the originating invoice's full document number (for example \"INV-S-24914\").",
+   "4. For an account-level credit with no origin invoice, the whole Invoice Number column is hidden.",
+   "---"
   ],
   "labels_quoted": [
    "Applied",
    "Credit Number",
-   "INV-S-24914",
    "Invoice Number",
    "Partially applied",
    "Refunded",
@@ -2194,6 +2408,9 @@
    "Unapplied",
    "Voided"
   ],
+  "labels_dropped_not_screen": {
+   "INV-S-24914": "Invoice Number shows the originating invoice's full document number (for example \"INV-S-24914\")."
+  },
   "nav_nouns": [
    "credit invoice",
    "invoice"
@@ -2207,20 +2424,21 @@
   "refs": "SV-9150 (S11-R4; S11-R5)",
   "atm": 1,
   "preconditions": [
-   "You are signed in to ShopView.",
-   "A Credit Invoice exists mixing a returned-part line (with a restocking fee) and a money-only credit line."
+   "1. You are signed in to ShopView.",
+   "2. A Credit Invoice exists mixing a returned-part line (with a restocking fee) and a money-only credit line."
   ],
   "steps": [
-   "Generate the Credit Invoice.",
-   "Read the credited items table."
+   "1. Generate the Credit Invoice.",
+   "2. Read the credited items table."
   ],
   "expected_body": [
-   "The credited items appear in a table with columns labeled exactly \"Description\", \"Quantity\", \"Rate\", \"Restocking Fee\", and \"Total\".",
-   "A returned part shows its actual quantity as a negative number, and its rate.",
-   "A money-only credit line shows \"--\" for Quantity and Rate.",
-   "The Restocking Fee column is always shown, reading \"$0.00\" when there is no fee.",
-   "Totals are negative, formatted with a leading minus (for example \"-$100.00\") - not the parentheses convention used for discounts.",
-   "A money-only line's Description comes from the credit's reason if entered, otherwise the memo text, otherwise \"Refund\"."
+   "1. The credited items appear in a table with columns labeled exactly \"Description\", \"Quantity\", \"Rate\", \"Restocking Fee\", and \"Total\".",
+   "2. A returned part shows its actual quantity as a negative number, and its rate.",
+   "3. A money-only credit line shows \"--\" for Quantity and Rate.",
+   "4. The Restocking Fee column is always shown, reading \"$0.00\" when there is no fee.",
+   "5. Totals are negative, formatted with a leading minus (for example \"-$100.00\") - not the parentheses convention used for discounts.",
+   "6. A money-only line's Description comes from the credit's reason if entered, otherwise the memo text, otherwise \"Refund\".",
+   "---"
   ],
   "labels_quoted": [
    "Description",
@@ -2230,6 +2448,7 @@
    "Restocking Fee",
    "Total"
   ],
+  "labels_dropped_not_screen": {},
   "nav_nouns": [
    "credit invoice"
   ],
@@ -2242,18 +2461,21 @@
   "refs": "SV-9150 (S11-R5)",
   "atm": 1,
   "preconditions": [
-   "You are signed in to ShopView.",
-   "A Credit Invoice has a returned part: quantity -2 at rate $50.00 with a $10.00 restocking fee."
+   "1. You are signed in to ShopView.",
+   "2. A Credit Invoice has a returned part: quantity -2 at rate $50.00 with a $10.00 restocking fee."
   ],
   "steps": [
-   "Generate the Credit Invoice.",
-   "Read the returned-part line's Total."
+   "1. Generate the Credit Invoice.",
+   "2. Read the returned-part line's Total."
   ],
   "expected_body": [
-   "The restocking fee reduces the credit: quantity -2 at rate $50.00 with a $10.00 restocking fee produces Total -$90.00.",
-   "For a money-only line, Total is the credited amount."
+   "1. The restocking fee reduces the credit: quantity -2 at rate $50.00 with a $10.00 restocking fee produces Total -$90.00.",
+   "2. For a money-only line, Total is the credited amount.",
+   "---",
+   "Last checked against build v26.35.5-8c3cc21 on 8/31/2026."
   ],
   "labels_quoted": [],
+  "labels_dropped_not_screen": {},
   "nav_nouns": [
    "credit invoice"
   ],
@@ -2266,22 +2488,23 @@
   "refs": "SV-9150 (S11-R6; S11-R6a)",
   "atm": 1,
   "preconditions": [
-   "You are signed in to ShopView.",
-   "You can reach Credit Invoices in each status: Unapplied, Partially applied, Applied, Refunded (with a refund payment), and Voided."
+   "1. You are signed in to ShopView.",
+   "2. You can reach Credit Invoices in each status: Unapplied, Partially applied, Applied, Refunded (with a refund payment), and Voided."
   ],
   "steps": [
-   "Generate a Credit Invoice in each status.",
-   "Read the totals block rows and the Payments/Balance content for each."
+   "1. Generate a Credit Invoice in each status.",
+   "2. Read the totals block rows and the Payments/Balance content for each."
   ],
   "expected_body": [
-   "The totals block shows rows labeled exactly: \"Subtotal\" (sum of item totals, negative), \"Tax\" (one row; negative when tax applies, \"$0.00\" when none), \"Total Credit\" (negative, the document's key figure), \"Payments\", and \"Balance\".",
-   "Unapplied: Payments shows the label with no rows; Balance shows the full credit amount, positive (its open balance).",
-   "Partially applied: Payments shows the label with no rows; Balance shows the open balance, positive (original credit total minus amounts refunded minus amounts applied to invoices).",
-   "Applied: Payments shows the label with no rows; Balance reads $0.00.",
-   "Refunded: one row per refund payment reading \"{date} - {method}\" with the refunded amount (negative); Balance reads $0.00 once fully consumed, otherwise the open balance, positive.",
-   "Voided: Payments shows the label with no rows; Balance reads $0.00.",
-   "On the Credit Invoice, \"Balance\" is the credit's open balance — the original credit total minus amounts refunded minus amounts applied to invoices — shown positive, reading $0.00 once nothing remains or the credit is voided; it does not follow the Invoice's Total-minus-payments formula.",
-   "A credit that is both partially refunded and partially applied takes the \"Partially applied\" status (one of the five states, not a new one), and its refund rows still list in the Payments section."
+   "1. The totals block shows rows labeled exactly: \"Subtotal\" (sum of item totals, negative), \"Tax\" (one row; negative when tax applies, \"$0.00\" when none), \"Total Credit\" (negative, the document's key figure), \"Payments\", and \"Balance\".",
+   "2. Unapplied: Payments shows the label with no rows; Balance shows the full credit amount, positive (its open balance).",
+   "3. Partially applied: Payments shows the label with no rows; Balance shows the open balance, positive (original credit total minus amounts refunded minus amounts applied to invoices).",
+   "4. Applied: Payments shows the label with no rows; Balance reads $0.00.",
+   "5. Refunded: one row per refund payment reading \"{date} - {method}\" with the refunded amount (negative); Balance reads $0.00 once fully consumed, otherwise the open balance, positive.",
+   "6. Voided: Payments shows the label with no rows; Balance reads $0.00.",
+   "7. On the Credit Invoice, \"Balance\" is the credit's open balance — the original credit total minus amounts refunded minus amounts applied to invoices — shown positive, reading $0.00 once nothing remains or the credit is voided; it does not follow the Invoice's Total-minus-payments formula.",
+   "8. A credit that is both partially refunded and partially applied takes the \"Partially applied\" status (one of the five states, not a new one), and its refund rows still list in the Payments section.",
+   "---"
   ],
   "labels_quoted": [
    "Balance",
@@ -2291,6 +2514,7 @@
    "Tax",
    "Total Credit"
   ],
+  "labels_dropped_not_screen": {},
   "nav_nouns": [
    "balance",
    "credit invoice",
@@ -2306,22 +2530,24 @@
   "refs": "SV-9150 (S11-R7; S9-R2)",
   "atm": 1,
   "preconditions": [
-   "You are signed in to ShopView.",
-   "You can generate a Credit Invoice for a shop with a configured disclaimer."
+   "1. You are signed in to ShopView.",
+   "2. You can generate a Credit Invoice for a shop with a configured disclaimer."
   ],
   "steps": [
-   "Generate the Credit Invoice.",
-   "Find the disclaimer and the signature area."
+   "1. Generate the Credit Invoice.",
+   "2. Find the disclaimer and the signature area."
   ],
   "expected_body": [
-   "The Credit Invoice shows the shop's configured disclaimer.",
-   "It shows the standard signature area with the three lines \"Customer Signature\", \"Printed Name\", and \"Date\"."
+   "1. The Credit Invoice shows the shop's configured disclaimer.",
+   "2. It shows the standard signature area with the three lines \"Customer Signature\", \"Printed Name\", and \"Date\".",
+   "---"
   ],
   "labels_quoted": [
    "Customer Signature",
    "Date",
    "Printed Name"
   ],
+  "labels_dropped_not_screen": {},
   "nav_nouns": [
    "credit invoice",
    "disclaimer",
@@ -2336,20 +2562,23 @@
   "refs": "SV-9150 (S11-R6a)",
   "atm": 1,
   "preconditions": [
-   "A fresh unapplied credit, e.g. Total Credit -$200.00"
+   "1. A fresh unapplied credit, e.g. Total Credit -$200.00"
   ],
   "steps": [
-   "Open the Credit Invoice preview",
-   "Check Payments and Balance"
+   "1. Open the Credit Invoice preview",
+   "2. Check Payments and Balance"
   ],
   "expected_body": [
-   "'Payments' shows the label with no rows.",
-   "'Balance' reads $200.00, positive - the credit's open balance (net-new, S11-R6a). A flat $0.00 rendering here is a defect."
+   "1. 'Payments' shows the label with no rows.",
+   "2. 'Balance' reads $200.00, positive - the credit's open balance (net-new, S11-R6a). A flat $0.00 rendering here is a defect.",
+   "---",
+   "Last checked against build v26.35.5-8c3cc21 on 8/31/2026."
   ],
   "labels_quoted": [
    "Balance",
    "Payments"
   ],
+  "labels_dropped_not_screen": {},
   "nav_nouns": [
    "balance",
    "credit invoice",
@@ -2364,19 +2593,22 @@
   "refs": "SV-9150 (S11-R6a)",
   "atm": 1,
   "preconditions": [
-   "A credit of $200 with $80 applied to an invoice"
+   "1. A credit of $200 with $80 applied to an invoice"
   ],
   "steps": [
-   "Open the Credit Invoice preview"
+   "1. Open the Credit Invoice preview"
   ],
   "expected_body": [
-   "'Payments' shows the label with no rows (applications to invoices are not listed).",
-   "'Balance' reads $120.00, positive - the open balance (original minus amounts applied to invoices) (S11-R6a)."
+   "1. 'Payments' shows the label with no rows (applications to invoices are not listed).",
+   "2. 'Balance' reads $120.00, positive - the open balance (original minus amounts applied to invoices) (S11-R6a).",
+   "---",
+   "Last checked against build v26.35.5-8c3cc21 on 8/31/2026."
   ],
   "labels_quoted": [
    "Balance",
    "Payments"
   ],
+  "labels_dropped_not_screen": {},
   "nav_nouns": [
    "credit invoice",
    "invoice",
@@ -2391,20 +2623,22 @@
   "refs": "SV-9150 (S11-R6a)",
   "atm": 1,
   "preconditions": [
-   "A fully applied credit",
-   "Separately, a voided credit"
+   "1. A fully applied credit",
+   "2. Separately, a voided credit"
   ],
   "steps": [
-   "Open the fully applied credit preview",
-   "Open the voided credit preview"
+   "1. Open the fully applied credit preview",
+   "2. Open the voided credit preview"
   ],
   "expected_body": [
-   "Fully applied: Balance reads $0.00.",
-   "Voided: Balance reads $0.00; items and totals render unchanged; 'Voided' in the status table is the only indicator (S11-R6a; context note)."
+   "1. Fully applied: Balance reads $0.00.",
+   "2. Voided: Balance reads $0.00; items and totals render unchanged; 'Voided' in the status table is the only indicator (S11-R6a; context note).",
+   "---"
   ],
   "labels_quoted": [
    "Voided"
   ],
+  "labels_dropped_not_screen": {},
   "nav_nouns": [
    "preview"
   ],
@@ -2417,19 +2651,22 @@
   "refs": "SV-9150 (S11-R6a)",
   "atm": 1,
   "preconditions": [
-   "A credit of $200 with a $50 refund issued (partially refunded)",
-   "Separately, a credit that is fully refunded"
+   "1. A credit of $200 with a $50 refund issued (partially refunded)",
+   "2. Separately, a credit that is fully refunded"
   ],
   "steps": [
-   "Open the partially refunded credit preview",
-   "Open the fully refunded credit preview"
+   "1. Open the partially refunded credit preview",
+   "2. Open the fully refunded credit preview"
   ],
   "expected_body": [
-   "Refund rows read '{date} - {method}' with negative amounts.",
-   "Partially refunded: Balance reads $150.00, positive.",
-   "Fully consumed: Balance reads $0.00 (S11-R6a - preserves the shipped SV-7754 rendering; a regression here is Critical)."
+   "1. Refund rows read '{date} - {method}' with negative amounts.",
+   "2. Partially refunded: Balance reads $150.00, positive.",
+   "3. Fully consumed: Balance reads $0.00 (S11-R6a - preserves the shipped SV-7754 rendering; a regression here is Critical).",
+   "---",
+   "Last checked against build v26.35.5-8c3cc21 on 8/31/2026."
   ],
   "labels_quoted": [],
+  "labels_dropped_not_screen": {},
   "nav_nouns": [
    "preview",
    "refund"
@@ -2443,15 +2680,18 @@
   "refs": "SV-9150 (S11-R6a)",
   "atm": 1,
   "preconditions": [
-   "A credit of $200 with $50 refunded and $80 applied to an invoice"
+   "1. A credit of $200 with $50 refunded and $80 applied to an invoice"
   ],
   "steps": [
-   "Open the Credit Invoice preview"
+   "1. Open the Credit Invoice preview"
   ],
   "expected_body": [
-   "Balance reads $70.00 - the open balance (original credit total minus amounts refunded minus amounts applied to invoices), shown positive (S11-R6a)."
+   "1. Balance reads $70.00 - the open balance (original credit total minus amounts refunded minus amounts applied to invoices), shown positive (S11-R6a).",
+   "---",
+   "Last checked against build v26.35.5-8c3cc21 on 8/31/2026."
   ],
   "labels_quoted": [],
+  "labels_dropped_not_screen": {},
   "nav_nouns": [
    "credit invoice",
    "invoice",
@@ -2466,19 +2706,22 @@
   "refs": "SV-9151 (S12-R1)",
   "atm": 1,
   "preconditions": [
-   "You are signed in to ShopView.",
-   "You can generate an Estimate, Invoice and Credit Invoice, on screen and as PDF."
+   "1. You are signed in to ShopView.",
+   "2. You can generate an Estimate, Invoice and Credit Invoice, on screen and as PDF."
   ],
   "steps": [
-   "Generate each document type on screen and as a PDF.",
-   "Compare each against the Design Document's structure."
+   "1. Generate each document type on screen and as a PDF.",
+   "2. Compare each against the Design Document's structure."
   ],
   "expected_body": [
-   "The document layout follows the Design Document exactly: masthead with the shop letterhead left, the shop logo center, and the document block right over a 2px ink rule; a bordered Addresses row; the asset band; the order reference chips; numbered work lines; the \"Summary\" break bar; a two-column tail with the disclaimer left and the totals right; the boxed headline figure; the three-line signature row; the single-line footer."
+   "1. The document layout follows the Design Document exactly: masthead with the shop letterhead left, the shop logo center, and the document block right over a 2px ink rule; a bordered Addresses row; the asset band; the order reference chips; numbered work lines; the \"Summary\" break bar; a two-column tail with the disclaimer left and the totals right; the boxed headline figure; the three-line signature row; the single-line footer.",
+   "---",
+   "Last checked against build v26.35.5-8c3cc21 on 8/31/2026."
   ],
   "labels_quoted": [
    "Summary"
   ],
+  "labels_dropped_not_screen": {},
   "nav_nouns": [
    "credit invoice",
    "estimate",
@@ -2494,18 +2737,21 @@
   "refs": "SV-9151 (S12-R2)",
   "atm": 1,
   "preconditions": [
-   "You are signed in to ShopView.",
-   "You can inspect the colours used in a rendered document (on screen or PDF)."
+   "1. You are signed in to ShopView.",
+   "2. You can inspect the colours used in a rendered document (on screen or PDF)."
   ],
   "steps": [
-   "Generate a document.",
-   "Check every colour used against the allowed set."
+   "1. Generate a document.",
+   "2. Check every colour used against the allowed set."
   ],
   "expected_body": [
-   "The only colours on the light printed document are: ink #121926, body text #364152, muted text #697586, faint labels #9AA4B2, hairlines #E3E8EF, row dividers #EEF2F6, paid-banner surface #F8FAFC, accent #257CFF, negative #B42318, paper #FFFFFF.",
-   "No colour outside this set appears on the printed document; the print and black-and-white output adds only the inks S12-R5 lists, and the Design Document's demo chrome and dark-mode preview are not part of any document."
+   "1. The only colours on the light printed document are: ink #121926, body text #364152, muted text #697586, faint labels #9AA4B2, hairlines #E3E8EF, row dividers #EEF2F6, paid-banner surface #F8FAFC, accent #257CFF, negative #B42318, paper #FFFFFF.",
+   "2. No colour outside this set appears on the printed document; the print and black-and-white output adds only the inks S12-R5 lists, and the Design Document's demo chrome and dark-mode preview are not part of any document.",
+   "---",
+   "Last checked against build v26.35.5-8c3cc21 on 8/31/2026."
   ],
   "labels_quoted": [],
+  "labels_dropped_not_screen": {},
   "nav_nouns": [
    "pdf"
   ],
@@ -2518,21 +2764,23 @@
   "refs": "SV-9151 (S12-R3)",
   "atm": 1,
   "preconditions": [
-   "You are signed in to ShopView.",
-   "You can inspect where the accent colour #257CFF is used on a document."
+   "1. You are signed in to ShopView.",
+   "2. You can inspect where the accent colour #257CFF is used on a document."
   ],
   "steps": [
-   "Generate a document that has work lines.",
-   "Find every place the accent #257CFF is used."
+   "1. Generate a document that has work lines.",
+   "2. Find every place the accent #257CFF is used."
   ],
   "expected_body": [
-   "The accent #257CFF appears only on the work line numbers and on the word \"ShopView\" in the footer.",
-   "On the Parts Sale document, which has no numbered work lines, the accent appears only on the word \"ShopView\" in the footer.",
-   "Nothing else on the document uses the accent."
+   "1. The accent #257CFF appears only on the work line numbers and on the word \"ShopView\" in the footer.",
+   "2. On the Parts Sale document, which has no numbered work lines, the accent appears only on the word \"ShopView\" in the footer.",
+   "3. Nothing else on the document uses the accent.",
+   "---"
   ],
   "labels_quoted": [
    "ShopView"
   ],
+  "labels_dropped_not_screen": {},
   "nav_nouns": [],
   "n_steps": 2
  },
@@ -2543,19 +2791,22 @@
   "refs": "SV-9151 (S12-R4)",
   "atm": 1,
   "preconditions": [
-   "You are signed in to ShopView.",
-   "You can inspect the fonts and weights used on a rendered document."
+   "1. You are signed in to ShopView.",
+   "2. You can inspect the fonts and weights used on a rendered document."
   ],
   "steps": [
-   "Generate a document.",
-   "Check the typeface and the weight of body text, emphasis/totals, in-job section labels, and the shop name/document label/headline figure/line numbers."
+   "1. Generate a document.",
+   "2. Check the typeface and the weight of body text, emphasis/totals, in-job section labels, and the shop name/document label/headline figure/line numbers."
   ],
   "expected_body": [
-   "The typeface is Inter with a system sans-serif fallback, applied identically on screen and in PDF output, so the on-screen preview and the PDF wrap line for line.",
-   "Weight 400 for body text; 600 and 700 for emphasis and totals; 700 for the in-job section labels; 800 for the shop name, the document label, the headline figure, and the line numbers.",
-   "Uppercase micro-labels carry letterspacing as in the Design Document."
+   "1. The typeface is Inter with a system sans-serif fallback, applied identically on screen and in PDF output, so the on-screen preview and the PDF wrap line for line.",
+   "2. Weight 400 for body text; 600 and 700 for emphasis and totals; 700 for the in-job section labels; 800 for the shop name, the document label, the headline figure, and the line numbers.",
+   "3. Uppercase micro-labels carry letterspacing as in the Design Document.",
+   "---",
+   "Last checked against build v26.35.5-8c3cc21 on 8/31/2026."
   ],
   "labels_quoted": [],
+  "labels_dropped_not_screen": {},
   "nav_nouns": [],
   "n_steps": 2
  },
@@ -2566,19 +2817,22 @@
   "refs": "SV-9151 (S12-R5)",
   "atm": 1,
   "preconditions": [
-   "You are signed in to ShopView.",
-   "You can obtain a document's print/PDF output and inspect its ink values."
+   "1. You are signed in to ShopView.",
+   "2. You can obtain a document's print/PDF output and inspect its ink values."
   ],
   "steps": [
-   "Obtain the PDF (or print output) of a document.",
-   "Check the darkness of text and hairline rules."
+   "1. Obtain the PDF (or print output) of a document.",
+   "2. Check the darkness of text and hairline rules."
   ],
   "expected_body": [
-   "In print and PDF output, no text renders lighter than #4B5565.",
-   "Text smaller than 10px renders no lighter than #364152.",
-   "Hairline rules render no lighter than #CDD5DF."
+   "1. In print and PDF output, no text renders lighter than #4B5565.",
+   "2. Text smaller than 10px renders no lighter than #364152.",
+   "3. Hairline rules render no lighter than #CDD5DF.",
+   "---",
+   "Last checked against build v26.35.5-8c3cc21 on 8/31/2026."
   ],
   "labels_quoted": [],
+  "labels_dropped_not_screen": {},
   "nav_nouns": [
    "pdf",
    "print"
@@ -2592,18 +2846,21 @@
   "refs": "SV-9151 (S12-R6)",
   "atm": 1,
   "preconditions": [
-   "You are signed in to ShopView.",
-   "You can print or render a document in grayscale."
+   "1. You are signed in to ShopView.",
+   "2. You can print or render a document in grayscale."
   ],
   "steps": [
-   "Render or print a document in grayscale.",
-   "Check that all meaning is still clear without colour."
+   "1. Render or print a document in grayscale.",
+   "2. Check that all meaning is still clear without colour."
   ],
   "expected_body": [
-   "Every document is fully legible printed in grayscale.",
-   "Colour is never the only signal: credit amounts also carry the leading minus, and discounts also carry parentheses."
+   "1. Every document is fully legible printed in grayscale.",
+   "2. Colour is never the only signal: credit amounts also carry the leading minus, and discounts also carry parentheses.",
+   "---",
+   "Last checked against build v26.35.5-8c3cc21 on 8/31/2026."
   ],
   "labels_quoted": [],
+  "labels_dropped_not_screen": {},
   "nav_nouns": [
    "print"
   ],
@@ -2616,19 +2873,22 @@
   "refs": "SV-9151 (S12-R7; S12-N1)",
   "atm": 1,
   "preconditions": [
-   "You are signed in to ShopView.",
-   "You can generate a real document (not the Design Document prototype)."
+   "1. You are signed in to ShopView.",
+   "2. You can generate a real document (not the Design Document prototype)."
   ],
   "steps": [
-   "Generate a real Estimate, Invoice or Credit Invoice.",
-   "Look for any prototype demo tooling."
+   "1. Generate a real Estimate, Invoice or Credit Invoice.",
+   "2. Look for any prototype demo tooling."
   ],
   "expected_body": [
-   "The Design Document's control strips (the document and field toggles, the settings menu, the theme controls) do not appear on any real document.",
-   "Only the white sheet is the document.",
-   "The PDF output carries no drop shadow and no rounded sheet corners (those are screen-prototype presentation only)."
+   "1. The Design Document's control strips (the document and field toggles, the settings menu, the theme controls) do not appear on any real document.",
+   "2. Only the white sheet is the document.",
+   "3. The PDF output carries no drop shadow and no rounded sheet corners (those are screen-prototype presentation only).",
+   "---",
+   "Last checked against build v26.35.5-8c3cc21 on 8/31/2026."
   ],
   "labels_quoted": [],
+  "labels_dropped_not_screen": {},
   "nav_nouns": [
    "credit invoice",
    "estimate",
@@ -2643,24 +2903,26 @@
   "refs": "SV-9151 (S12-R8)",
   "atm": 1,
   "preconditions": [
-   "You are signed in to ShopView.",
-   "You can generate a document with several work lines, at least one having fee/discount adjustment rows."
+   "1. You are signed in to ShopView.",
+   "2. You can generate a document with several work lines, at least one having fee/discount adjustment rows."
   ],
   "steps": [
-   "Generate the document.",
-   "Inspect the rules and dividers in the work section."
+   "1. Generate the document.",
+   "2. Inspect the rules and dividers in the work section."
   ],
   "expected_body": [
-   "The work section opens with a 2px ink rule under the section label.",
-   "Numbered jobs are separated by a 1px ink (#121926) rule.",
-   "Charge rows inside a job are separated by #EEF2F6 row dividers.",
-   "The \"Labor\" and \"Parts\" sub-section labels carry no underline rule.",
-   "When a line has fee or discount adjustment rows, the row divider follows the line's last adjustment row - never between the line and its adjustments - so the line and its adjustments read as one group."
+   "1. The work section opens with a 2px ink rule under the section label.",
+   "2. Numbered jobs are separated by a 1px ink (#121926) rule.",
+   "3. Charge rows inside a job are separated by #EEF2F6 row dividers.",
+   "4. The \"Labor\" and \"Parts\" sub-section labels carry no underline rule.",
+   "5. When a line has fee or discount adjustment rows, the row divider follows the line's last adjustment row - never between the line and its adjustments - so the line and its adjustments read as one group.",
+   "---"
   ],
   "labels_quoted": [
    "Labor",
    "Parts"
   ],
+  "labels_dropped_not_screen": {},
   "nav_nouns": [],
   "n_steps": 2
  },
@@ -2671,18 +2933,20 @@
   "refs": "SV-9151 (S12-R9)",
   "atm": 1,
   "preconditions": [
-   "You are signed in to ShopView.",
-   "You can inspect text sizes, weights and colours on a rendered document."
+   "1. You are signed in to ShopView.",
+   "2. You can inspect text sizes, weights and colours on a rendered document."
   ],
   "steps": [
-   "Generate a document with work lines.",
-   "Inspect the document section label, the 'Scope of work' label, and the in-job 'Labor'/'Parts' labels."
+   "1. Generate a document with work lines.",
+   "2. Inspect the document section label, the 'Scope of work' label, and the in-job 'Labor'/'Parts' labels."
   ],
   "expected_body": [
-   "The document section label (\"Work Summary\" / \"Work Performed\" / \"Parts\") is 11px weight 700 in muted ink #697586.",
-   "\"Scope of work\" is 10px weight 700 in body ink #364152.",
-   "The in-job \"Labor\" and \"Parts\" labels are 10.5px weight 700 in full ink #121926.",
-   "All three sit visually below the 16px weight-700 job titles, with letterspacing per the Design Document."
+   "1. The document section label (\"Work Summary\" / \"Work Performed\" / \"Parts\") is 11px weight 700 in muted ink #697586.",
+   "2. \"Scope of work\" is 10px weight 700 in body ink #364152.",
+   "3. The in-job \"Labor\" and \"Parts\" labels are 10.5px weight 700 in full ink #121926.",
+   "4. All three sit visually below the 16px weight-700 job titles, with letterspacing per the Design Document.",
+   "---",
+   "Last checked against build v26.35.5-8c3cc21 on 8/31/2026."
   ],
   "labels_quoted": [
    "Labor",
@@ -2691,6 +2955,7 @@
    "Work Performed",
    "Work Summary"
   ],
+  "labels_dropped_not_screen": {},
   "nav_nouns": [],
   "n_steps": 2
  },
@@ -2710,17 +2975,20 @@
    "Check the totals block, a work line together with its own footer, the signature row, and any single row that falls near a page boundary."
   ],
   "expected_body": [
-   "Long documents paginate using standard, globally accepted page-break behaviour, not custom pagination.",
-   "Every page after the first opens with a single identification line: the shop location's name on the left and the document number on the right (for example \"Heavy Duty - 9919\" on the left and \"Invoice: INV-S2-4802\" on the right).",
-   "The full masthead does not repeat on later pages.",
-   "The totals block is not split across a page break.",
-   "A work line and its own footer stay together on the same page.",
-   "The signature row does not land alone on a final page.",
-   "No single row is orphaned by itself on a page."
+   "1. Long documents paginate using standard, globally accepted page-break behaviour, not custom pagination.",
+   "2. Every page after the first opens with a single identification line: the shop location's name on the left and the document number on the right (for example \"Heavy Duty - 9919\" on the left and \"Invoice: INV-S2-4802\" on the right).",
+   "3. The full masthead does not repeat on later pages.",
+   "4. The totals block is not split across a page break.",
+   "5. A work line and its own footer stay together on the same page.",
+   "6. The signature row does not land alone on a final page.",
+   "7. No single row is orphaned by itself on a page.",
+   "---",
+   "Last checked against build v26.35.5-8c3cc21 on 8/31/2026."
   ],
-  "labels_quoted": [
-   "Heavy Duty - 9919"
-  ],
+  "labels_quoted": [],
+  "labels_dropped_not_screen": {
+   "Heavy Duty - 9919": "Every page after the first opens with a single identification line: the shop location's name on the left and t"
+  },
   "nav_nouns": [
    "footer",
    "pdf",
@@ -2745,10 +3013,13 @@
    "Find an element wider than the viewport (for example a wide table) and check how it behaves."
   ],
   "expected_body": [
-   "On screen the document fits within the viewport with no content clipped.",
-   "Any element wider than the viewport (for example a wide table) scrolls horizontally within its own container, rather than clipping or forcing the whole page to scroll sideways."
+   "1. On screen the document fits within the viewport with no content clipped.",
+   "2. Any element wider than the viewport (for example a wide table) scrolls horizontally within its own container, rather than clipping or forcing the whole page to scroll sideways.",
+   "---",
+   "Last checked against build v26.35.5-8c3cc21 on 8/31/2026."
   ],
   "labels_quoted": [],
+  "labels_dropped_not_screen": {},
   "nav_nouns": [],
   "n_steps": 3
  },
@@ -2759,19 +3030,22 @@
   "refs": "SV-9195 (S13-R1)",
   "atm": 1,
   "preconditions": [
-   "You are signed in to ShopView.",
-   "You can generate a Parts Sale Estimate and a Parts Sale Invoice."
+   "1. You are signed in to ShopView.",
+   "2. You can generate a Parts Sale Estimate and a Parts Sale Invoice."
   ],
   "steps": [
-   "Generate a Parts Sale Estimate and a Parts Sale Invoice.",
-   "Check masthead, dates, addresses, Remit Payment To, asset section, financial summary, payments/Balance, paid banner, disclaimer/signature, and visual standard."
+   "1. Generate a Parts Sale Estimate and a Parts Sale Invoice.",
+   "2. Check masthead, dates, addresses, Remit Payment To, asset section, financial summary, payments/Balance, paid banner, disclaimer/signature, and visual standard."
   ],
   "expected_body": [
-   "The Parts Sale Estimate behaves as the Estimate, and the Parts Sale Invoice as the Invoice, throughout the spec: masthead and date labels (including \"Estimate date\" and the Due/Paid date swap), addresses and Remit Payment To, asset section, financial summary, payments and Balance, the paid banner rule, disclaimer and signature, and the visual standard - except as Story 13 states."
+   "1. The Parts Sale Estimate behaves as the Estimate, and the Parts Sale Invoice as the Invoice, throughout the spec: masthead and date labels (including \"Estimate date\" and the Due/Paid date swap), addresses and Remit Payment To, asset section, financial summary, payments and Balance, the paid banner rule, disclaimer and signature, and the visual standard - except as Story 13 states.",
+   "---",
+   "Last checked against build v26.35.5-8c3cc21 on 8/31/2026."
   ],
-  "labels_quoted": [
-   "Estimate date"
-  ],
+  "labels_quoted": [],
+  "labels_dropped_not_screen": {
+   "Estimate date": "The Parts Sale Estimate behaves as the Estimate, and the Parts Sale Invoice as the Invoice, throughout the spe"
+  },
   "nav_nouns": [
    "asset",
    "balance",
@@ -2794,22 +3068,25 @@
   "refs": "SV-9195 (S13-R2)",
   "atm": 1,
   "preconditions": [
-   "You are signed in to ShopView.",
-   "A Parts Sale Estimate or Invoice exists with several part lines."
+   "1. You are signed in to ShopView.",
+   "2. A Parts Sale Estimate or Invoice exists with several part lines."
   ],
   "steps": [
-   "Generate the Parts Sale document.",
-   "Read the body section."
+   "1. Generate the Parts Sale document.",
+   "2. Read the body section."
   ],
   "expected_body": [
-   "The body is a single section headed \"Parts\".",
-   "It shows flat part lines, each with part number, description, quantity, rate, and amount.",
-   "There are no job blocks, no \"Scope of work\", no Labor section, and no Declined Work section on a parts sale document."
+   "1. The body is a single section headed \"Parts\".",
+   "2. It shows flat part lines, each with part number, description, quantity, rate, and amount.",
+   "3. There are no job blocks, no \"Scope of work\", no Labor section, and no Declined Work section on a parts sale document.",
+   "---",
+   "Last checked against build v26.35.5-8c3cc21 on 8/31/2026."
   ],
   "labels_quoted": [
    "Parts",
    "Scope of work"
   ],
+  "labels_dropped_not_screen": {},
   "nav_nouns": [
    "estimate",
    "invoice",
@@ -2824,18 +3101,21 @@
   "refs": "SV-9195 (S13-R3; S12-R8)",
   "atm": 1,
   "preconditions": [
-   "You are signed in to ShopView.",
-   "A Parts Sale document has a part line with a line-level fee or discount."
+   "1. You are signed in to ShopView.",
+   "2. A Parts Sale document has a part line with a line-level fee or discount."
   ],
   "steps": [
-   "Generate the Parts Sale document.",
-   "Read the part line that has an adjustment."
+   "1. Generate the Parts Sale document.",
+   "2. Read the part line that has an adjustment."
   ],
   "expected_body": [
-   "Line-level fees and discounts render exactly as on the Invoice: indented under their part line.",
-   "The row divider follows the part's last adjustment row, rather than sitting between the part and its adjustments."
+   "1. Line-level fees and discounts render exactly as on the Invoice: indented under their part line.",
+   "2. The row divider follows the part's last adjustment row, rather than sitting between the part and its adjustments.",
+   "---",
+   "Last checked against build v26.35.5-8c3cc21 on 8/31/2026."
   ],
   "labels_quoted": [],
+  "labels_dropped_not_screen": {},
   "nav_nouns": [
    "parts sale"
   ],
@@ -2848,18 +3128,21 @@
   "refs": "SV-9195 (S13-R4)",
   "atm": 1,
   "preconditions": [
-   "You are signed in to ShopView.",
-   "You can generate a Parts Sale Estimate and Invoice with parts-sale numbering."
+   "1. You are signed in to ShopView.",
+   "2. You can generate a Parts Sale Estimate and Invoice with parts-sale numbering."
   ],
   "steps": [
-   "Generate the Parts Sale Estimate and read its masthead label.",
-   "Generate the Parts Sale Invoice and read its masthead label."
+   "1. Generate the Parts Sale Estimate and read its masthead label.",
+   "2. Generate the Parts Sale Invoice and read its masthead label."
   ],
   "expected_body": [
-   "The document number uses the parts-sale numbering through the existing document numbering.",
-   "For example the Estimate reads \"Estimate: EST-P2-1088\" and the Invoice reads \"Invoice: INV-P2-1088\"."
+   "1. The document number uses the parts-sale numbering through the existing document numbering.",
+   "2. For example the Estimate reads \"Estimate: EST-P2-1088\" and the Invoice reads \"Invoice: INV-P2-1088\".",
+   "---",
+   "Last checked against build v26.35.5-8c3cc21 on 8/31/2026."
   ],
   "labels_quoted": [],
+  "labels_dropped_not_screen": {},
   "nav_nouns": [
    "estimate",
    "invoice",
@@ -2875,19 +3158,22 @@
   "refs": "SV-9195 (S13-R5)",
   "atm": 1,
   "preconditions": [
-   "You are signed in to ShopView.",
-   "You can generate a Parts Sale document with a Customer PO, Terms, and an Authorizer set."
+   "1. You are signed in to ShopView.",
+   "2. You can generate a Parts Sale document with a Customer PO, Terms, and an Authorizer set."
   ],
   "steps": [
-   "Generate the Parts Sale document.",
-   "Read the order reference fields area."
+   "1. Generate the Parts Sale document.",
+   "2. Read the order reference fields area."
   ],
   "expected_body": [
-   "The Work Order field and the Approval Code field are not shown on a parts sale document.",
-   "Customer PO and Terms are unchanged (Terms always shows).",
-   "Authorizer follows the parts-sale Authorizer treatment (S13-R6)."
+   "1. The Work Order field and the Approval Code field are not shown on a parts sale document.",
+   "2. Customer PO and Terms are unchanged (Terms always shows).",
+   "3. Authorizer follows the parts-sale Authorizer treatment (S13-R6).",
+   "---",
+   "Last checked against build v26.35.5-8c3cc21 on 8/31/2026."
   ],
   "labels_quoted": [],
+  "labels_dropped_not_screen": {},
   "nav_nouns": [
    "authorizer",
    "customer",
@@ -2902,23 +3188,26 @@
   "refs": "SV-9195 (S13-R6)",
   "atm": 3,
   "preconditions": [
-   "You are signed in to ShopView with access to parts sales.",
-   "A parts sale exists for a customer with 'Approves Work' contacts."
+   "1. You are signed in to ShopView with access to parts sales.",
+   "2. A parts sale exists for a customer with 'Approves Work' contacts."
   ],
   "steps": [
-   "Open the parts sale record and find the Authorizer field.",
-   "Select an authorizer from the offered list, then invoice the parts sale and try to change it.",
-   "Generate the Parts Sale document and read the Authorizer reference field."
+   "1. Open the parts sale record and find the Authorizer field.",
+   "2. Select an authorizer from the offered list, then invoice the parts sale and try to change it.",
+   "3. Generate the Parts Sale document and read the Authorizer reference field."
   ],
   "expected_body": [
-   "The parts sale has an Authorizer field offering the customer's \"Approves Work\" contacts, empty by default, filled by the user.",
-   "It is locked once the parts sale is invoiced.",
-   "If that invoice is voided or reversed, the Authorizer becomes editable again (mirrors S3-R8).",
-   "When set, the authorizer's name prints in the document's Authorizer reference field."
+   "1. The parts sale has an Authorizer field offering the customer's \"Approves Work\" contacts, empty by default, filled by the user.",
+   "2. It is locked once the parts sale is invoiced.",
+   "3. If that invoice is voided or reversed, the Authorizer becomes editable again (mirrors S3-R8).",
+   "4. When set, the authorizer's name prints in the document's Authorizer reference field.",
+   "---",
+   "Last checked against build v26.35.5-8c3cc21 on 8/31/2026."
   ],
   "labels_quoted": [
    "Approves Work"
   ],
+  "labels_dropped_not_screen": {},
   "nav_nouns": [
    "authorizer",
    "customer",
@@ -2934,16 +3223,18 @@
   "refs": "SV-9195 (S13-R7)",
   "atm": 1,
   "preconditions": [
-   "You are signed in to ShopView.",
-   "A Parts Sale Invoice exists with parts charges, adjustments, tax and payments."
+   "1. You are signed in to ShopView.",
+   "2. A Parts Sale Invoice exists with parts charges, adjustments, tax and payments."
   ],
   "steps": [
-   "Generate the Parts Sale Invoice.",
-   "Read the financial summary."
+   "1. Generate the Parts Sale Invoice.",
+   "2. Read the financial summary."
   ],
   "expected_body": [
-   "The financial summary shows no \"Labor\" row and no \"Shop supplies\" row.",
-   "The \"Parts\" row, the adjustment rows, \"Subtotal\", \"Tax\", \"Total\", \"Payments\", and \"Balance\" are identical to the Invoice."
+   "1. The financial summary shows no \"Labor\" row and no \"Shop supplies\" row.",
+   "2. The \"Parts\" row, the adjustment rows, \"Subtotal\", \"Tax\", \"Total\", \"Payments\", and \"Balance\" are identical to the Invoice.",
+   "---",
+   "Last checked against build v26.35.5-8c3cc21 on 8/31/2026."
   ],
   "labels_quoted": [
    "Balance",
@@ -2955,6 +3246,7 @@
    "Tax",
    "Total"
   ],
+  "labels_dropped_not_screen": {},
   "nav_nouns": [
    "financial summary",
    "invoice",
@@ -2982,6 +3274,7 @@
    "Restyling shared template partials must not half-restyle these deferred templates."
   ],
   "labels_quoted": [],
+  "labels_dropped_not_screen": {},
   "nav_nouns": [
    "invoice"
   ],
@@ -2994,21 +3287,23 @@
   "refs": "SV-8218 (G-R1)",
   "atm": 1,
   "preconditions": [
-   "A US shop and a Canadian shop",
-   "Documents with single-digit day dates"
+   "1. A US shop and a Canadian shop",
+   "2. Documents with single-digit day dates"
   ],
   "steps": [
-   "Open the estimate/invoice/credit previews on both shops",
-   "Check every date, including the payment rows"
+   "1. Open the estimate/invoice/credit previews on both shops",
+   "2. Check every date, including the payment rows"
   ],
   "expected_body": [
-   "All dates render in the 'Jan 5, 2026' style - abbreviated English month, day of the month without a leading zero, a comma, and the four-digit year.",
-   "The format is identical for US and Canadian shops and no shop or user setting changes it (G-R1).",
-   "The only exception is the Paid banner's 'Date / Time' field."
+   "1. All dates render in the 'Jan 5, 2026' style - abbreviated English month, day of the month without a leading zero, a comma, and the four-digit year.",
+   "2. The format is identical for US and Canadian shops and no shop or user setting changes it (G-R1).",
+   "3. The only exception is the Paid banner's 'Date / Time' field.",
+   "---"
   ],
-  "labels_quoted": [
-   "Date / Time"
-  ],
+  "labels_quoted": [],
+  "labels_dropped_not_screen": {
+   "Date / Time": "The only exception is the Paid banner's 'Date / Time' field."
+  },
   "nav_nouns": [
    "estimate",
    "invoice",
@@ -3023,19 +3318,21 @@
   "refs": "SV-8218 (Plan D5)",
   "atm": 1,
   "preconditions": [
-   "A staging invoice snapshot created BEFORE the redesign deploy"
+   "1. A staging invoice snapshot created BEFORE the redesign deploy"
   ],
   "steps": [
-   "Open the historical snapshot",
-   "Generate its PDF",
-   "Check fields the old snapshot never stored (authorizer, plate, estimate date, ...)"
+   "1. Open the historical snapshot",
+   "2. Generate its PDF",
+   "3. Check fields the old snapshot never stored (authorizer, plate, estimate date, ...)"
   ],
   "expected_body": [
-   "The snapshot renders in the new layout.",
-   "Fields the old snapshot never stored are blank (hidden per hide-when-empty).",
-   "No 500 / fatal error occurs (plan D5 - the single biggest correctness risk)."
+   "1. The snapshot renders in the new layout.",
+   "2. Fields the old snapshot never stored are blank (hidden per hide-when-empty).",
+   "3. No 500 / fatal error occurs (plan D5 - the single biggest correctness risk).",
+   "---"
   ],
   "labels_quoted": [],
+  "labels_dropped_not_screen": {},
   "nav_nouns": [
    "authorizer",
    "estimate",
@@ -3051,17 +3348,20 @@
   "refs": "SV-8218 (Plan Phase 2)",
   "atm": 1,
   "preconditions": [
-   "A work order with an authorizer and an asset with a plate",
-   "The redesign is live"
+   "1. A work order with an authorizer and an asset with a plate",
+   "2. The redesign is live"
   ],
   "steps": [
-   "Invoice the work order (a snapshot is created)",
-   "Re-open the snapshot later"
+   "1. Invoice the work order (a snapshot is created)",
+   "2. Re-open the snapshot later"
   ],
   "expected_body": [
-   "The snapshot renders with the authorizer name, plate and all new content persisted (plan Phase 2 snapshot writes)."
+   "1. The snapshot renders with the authorizer name, plate and all new content persisted (plan Phase 2 snapshot writes).",
+   "---",
+   "Last checked against build v26.35.5-8c3cc21 on 8/31/2026."
   ],
   "labels_quoted": [],
+  "labels_dropped_not_screen": {},
   "nav_nouns": [
    "asset",
    "authorizer",
@@ -3077,17 +3377,20 @@
   "refs": "SV-8218 (Plan Section 2)",
   "atm": 1,
   "preconditions": [
-   "An invoice ready to send",
-   "A test email recipient"
+   "1. An invoice ready to send",
+   "2. A test email recipient"
   ],
   "steps": [
-   "Email the invoice from the shop app",
-   "Open the attached PDF"
+   "1. Email the invoice from the shop app",
+   "2. Open the attached PDF"
   ],
   "expected_body": [
-   "The attached PDF is the redesigned document, identical to the shop-app PDF (single render path; plan Section 2)."
+   "1. The attached PDF is the redesigned document, identical to the shop-app PDF (single render path; plan Section 2).",
+   "---",
+   "Last checked against build v26.35.5-8c3cc21 on 8/31/2026."
   ],
   "labels_quoted": [],
+  "labels_dropped_not_screen": {},
   "nav_nouns": [
    "email",
    "invoice",
@@ -3102,15 +3405,18 @@
   "refs": "SV-8218 (Plan Phase 4)",
   "atm": 1,
   "preconditions": [
-   "An invoice with full content (asset, chips, adjustments, payments)"
+   "1. An invoice with full content (asset, chips, adjustments, payments)"
   ],
   "steps": [
-   "Compare the on-screen preview against the generated PDF, section by section"
+   "1. Compare the on-screen preview against the generated PDF, section by section"
   ],
   "expected_body": [
-   "The preview shows all sections and styles - DOMPurify must not strip the new markup (plan Phase 4 watch-item)."
+   "1. The preview shows all sections and styles - DOMPurify must not strip the new markup (plan Phase 4 watch-item).",
+   "---",
+   "Last checked against build v26.35.5-8c3cc21 on 8/31/2026."
   ],
   "labels_quoted": [],
+  "labels_dropped_not_screen": {},
   "nav_nouns": [
    "asset",
    "invoice",
@@ -3126,16 +3432,19 @@
   "refs": "SV-8218 (Shipped-behaviour note)",
   "atm": 1,
   "preconditions": [
-   "A US shop and a Canadian shop with documents"
+   "1. A US shop and a Canadian shop with documents"
   ],
   "steps": [
-   "Open an invoice on each",
-   "Check the currency and percentage formats"
+   "1. Open an invoice on each",
+   "2. Check the currency and percentage formats"
   ],
   "expected_body": [
-   "Number, currency and percentage formats follow ShopView's existing locale-aware conventions - the redesign must not alter them (PRD shipped-behaviour note)."
+   "1. Number, currency and percentage formats follow ShopView's existing locale-aware conventions - the redesign must not alter them (PRD shipped-behaviour note).",
+   "---",
+   "Last checked against build v26.35.5-8c3cc21 on 8/31/2026."
   ],
   "labels_quoted": [],
+  "labels_dropped_not_screen": {},
   "nav_nouns": [
    "invoice"
   ],
@@ -3148,17 +3457,19 @@
   "refs": "SV-9142 (S3-R5)",
   "atm": 1,
   "preconditions": [
-   "One normal work order, one imported work order, and one parts sale"
+   "1. One normal work order, one imported work order, and one parts sale"
   ],
   "steps": [
-   "Open each record's customer card",
-   "Verify the Contact/Phone rows and the card actions still work"
+   "1. Open each record's customer card",
+   "2. Verify the Contact/Phone rows and the card actions still work"
   ],
   "expected_body": [
-   "The card renders and functions on all three.",
-   "The Authorizer row appears on the work order and the parts sale only - NOT on the imported work order (plan CustomerCard gate); no layout break."
+   "1. The card renders and functions on all three.",
+   "2. The Authorizer row appears on the work order and the parts sale only - NOT on the imported work order (plan CustomerCard gate); no layout break.",
+   "---"
   ],
   "labels_quoted": [],
+  "labels_dropped_not_screen": {},
   "nav_nouns": [
    "customer",
    "parts sale",
@@ -3173,17 +3484,19 @@
   "refs": "SV-9142 (S3-R5)",
   "atm": 1,
   "preconditions": [
-   "A user lacking the workOrders edit permission",
-   "A work order with an authorizer set"
+   "1. A user lacking the workOrders edit permission",
+   "2. A work order with an authorizer set"
   ],
   "steps": [
-   "Log in as the restricted user",
-   "Open the work order customer card"
+   "1. Log in as the restricted user",
+   "2. Open the work order customer card"
   ],
   "expected_body": [
-   "The Authorizer shows as a static, read-only field; no select control is offered (plan CustomerCard fallback)."
+   "1. The Authorizer shows as a static, read-only field; no select control is offered (plan CustomerCard fallback).",
+   "---"
   ],
   "labels_quoted": [],
+  "labels_dropped_not_screen": {},
   "nav_nouns": [
    "authorizer",
    "customer",
@@ -3198,20 +3511,23 @@
   "refs": "SV-9151 (S12-R11); SV-9441",
   "atm": 1,
   "preconditions": [
-   "An invoice with a logo and a full masthead",
-   "Browser DevTools device emulation at 375x667"
+   "1. An invoice with a logo and a full masthead",
+   "2. Browser DevTools device emulation at 375x667"
   ],
   "steps": [
-   "Open the work-order finance-tab invoice preview at the mobile viewport",
-   "Check the masthead, Bill To, work lines and terms text",
-   "Scroll the full document"
+   "1. Open the work-order finance-tab invoice preview at the mobile viewport",
+   "2. Check the masthead, Bill To, work lines and terms text",
+   "3. Scroll the full document"
   ],
   "expected_body": [
-   "The document fits within the viewport with no content clipped; there is no left-edge clipping, the logo does not overlap the label/dates, and the phone number does not break mid-number.",
-   "Any element wider than the viewport (for example a wide table) scrolls horizontally within its own container rather than clipping or forcing the whole page to scroll sideways (v45 S12-R11).",
-   "History: 5th recurrence risk - SV-9441 open on the old template (SV-3362 / SV-3994 / SV-4946 / SV-5123 prior)."
+   "1. The document fits within the viewport with no content clipped; there is no left-edge clipping, the logo does not overlap the label/dates, and the phone number does not break mid-number.",
+   "2. Any element wider than the viewport (for example a wide table) scrolls horizontally within its own container rather than clipping or forcing the whole page to scroll sideways (v45 S12-R11).",
+   "3. History: 5th recurrence risk - SV-9441 open on the old template (SV-3362 / SV-3994 / SV-4946 / SV-5123 prior).",
+   "---",
+   "Last checked against build v26.35.5-8c3cc21 on 8/31/2026."
   ],
   "labels_quoted": [],
+  "labels_dropped_not_screen": {},
   "nav_nouns": [
    "invoice",
    "masthead",
@@ -3226,18 +3542,20 @@
   "refs": "SV-9144 (S5-R9)",
   "atm": 1,
   "preconditions": [
-   "A work order with a labor rate >= $1,000.00 and a fixed line total >= $1,000.00"
+   "1. A work order with a labor rate >= $1,000.00 and a fixed line total >= $1,000.00"
   ],
   "steps": [
-   "Open the Invoice preview",
-   "Check the line figures, footer, summary and Balance",
-   "Generate the PDF"
+   "1. Open the Invoice preview",
+   "2. Check the line figures, footer, summary and Balance",
+   "3. Generate the PDF"
   ],
   "expected_body": [
-   "All amounts render as formatted currency; there is no $NaN anywhere.",
-   "History: SV-8680 / SV-8581 showed $NaN at 4+ digits."
+   "1. All amounts render as formatted currency; there is no $NaN anywhere.",
+   "2. History: SV-8680 / SV-8581 showed $NaN at 4+ digits.",
+   "---"
   ],
   "labels_quoted": [],
+  "labels_dropped_not_screen": {},
   "nav_nouns": [
    "balance",
    "footer",
@@ -3255,19 +3573,22 @@
   "refs": "SV-9140 (S1-R1)",
   "atm": 1,
   "preconditions": [
-   "A location name with a special character (e.g. &, e-acute, apostrophe)",
-   "A customer/company name with a special character"
+   "1. A location name with a special character (e.g. &, e-acute, apostrophe)",
+   "2. A customer/company name with a special character"
   ],
   "steps": [
-   "Open the Invoice preview",
-   "Generate and download the PDF",
-   "Check the masthead and Bill To"
+   "1. Open the Invoice preview",
+   "2. Generate and download the PDF",
+   "3. Check the masthead and Bill To"
   ],
   "expected_body": [
-   "Characters render exactly as entered - an ampersand shows as & and never as an escaped entity; no mojibake; no missing glyphs in Inter.",
-   "History: SV-4406."
+   "1. Characters render exactly as entered - an ampersand shows as & and never as an escaped entity; no mojibake; no missing glyphs in Inter.",
+   "2. History: SV-4406.",
+   "---",
+   "Last checked against build v26.35.5-8c3cc21 on 8/31/2026."
   ],
   "labels_quoted": [],
+  "labels_dropped_not_screen": {},
   "nav_nouns": [
    "customer",
    "download",
@@ -3285,20 +3606,22 @@
   "refs": "SV-9151 (S12-R1,S12-R10)",
   "atm": 1,
   "preconditions": [
-   "An invoice long enough for 3+ PDF pages (many lines with long descriptions)"
+   "1. An invoice long enough for 3+ PDF pages (many lines with long descriptions)"
   ],
   "steps": [
-   "Generate the PDF",
-   "Inspect every page break",
-   "Print-preview in grayscale"
+   "1. Generate the PDF",
+   "2. Inspect every page break",
+   "3. Print-preview in grayscale"
   ],
   "expected_body": [
-   "No content is cut mid-row; descriptions do not split illegibly across pages; the totals and signature block are not orphaned oddly (S12-R1).",
-   "Per v45 S12-R10: every page after the first opens with a single identification line (shop location name on the left, document number on the right); the full masthead does not repeat on later pages.",
-   "Per v45 S12-R10: the totals block is not split across a page break; a work line and its own footer stay together on the same page; the signature row does not land alone on a final page; and no single row is orphaned by itself on a page.",
-   "History: SV-8914 (Ready to Fix - ACTIVE) + SV-8189."
+   "1. No content is cut mid-row; descriptions do not split illegibly across pages; the totals and signature block are not orphaned oddly (S12-R1).",
+   "2. Per v45 S12-R10: every page after the first opens with a single identification line (shop location name on the left, document number on the right); the full masthead does not repeat on later pages.",
+   "3. Per v45 S12-R10: the totals block is not split across a page break; a work line and its own footer stay together on the same page; the signature row does not land alone on a final page; and no single row is orphaned by itself on a page.",
+   "4. History: SV-8914 (Ready to Fix - ACTIVE) + SV-8189.",
+   "---"
   ],
   "labels_quoted": [],
+  "labels_dropped_not_screen": {},
   "nav_nouns": [
    "invoice",
    "pdf",
@@ -3314,21 +3637,23 @@
   "refs": "SV-9149 (S10-R4)",
   "atm": 1,
   "preconditions": [
-   "An invoice paid to $0.00 via a cash payment plus an applied customer-account credit combined"
+   "1. An invoice paid to $0.00 via a cash payment plus an applied customer-account credit combined"
   ],
   "steps": [
-   "Apply cash for part of the Total",
-   "Apply customer credit for the remainder",
-   "Re-open the invoice preview"
+   "1. Apply cash for part of the Total",
+   "2. Apply customer credit for the remainder",
+   "3. Re-open the invoice preview"
   ],
   "expected_body": [
-   "Balance reads $0.00; 'Paid date: {date}' replaces 'Due date' (the most recent applied row date).",
-   "Both rows are listed per S8-R2 / S8-R4 (S10-R4).",
-   "History: SV-7846 (OPEN) - mixed payment not marked Paid."
+   "1. Balance reads $0.00; 'Paid date: {date}' replaces 'Due date' (the most recent applied row date).",
+   "2. Both rows are listed per S8-R2 / S8-R4 (S10-R4).",
+   "3. History: SV-7846 (OPEN) - mixed payment not marked Paid.",
+   "---"
   ],
   "labels_quoted": [
    "Due date"
   ],
+  "labels_dropped_not_screen": {},
   "nav_nouns": [
    "customer",
    "invoice",
@@ -3344,19 +3669,21 @@
   "refs": "SV-9150 (S11-R3)",
   "atm": 1,
   "preconditions": [
-   "A parts-return credit whose originating invoice has since been reversed"
+   "1. A parts-return credit whose originating invoice has since been reversed"
   ],
   "steps": [
-   "Open the Credit Invoice preview",
-   "Check the status table and totals",
-   "Attempt the void if applicable"
+   "1. Open the Credit Invoice preview",
+   "2. Check the status table and totals",
+   "3. Attempt the void if applicable"
   ],
   "expected_body": [
-   "The document renders without a 500.",
-   "The status table handles the missing/reversed origin invoice gracefully - Invoice Number shows the last known number or the documented column behaviour (S11-R3); no fatal error.",
-   "History: SV-7821 void 500s on reversed origin."
+   "1. The document renders without a 500.",
+   "2. The status table handles the missing/reversed origin invoice gracefully - Invoice Number shows the last known number or the documented column behaviour (S11-R3); no fatal error.",
+   "3. History: SV-7821 void 500s on reversed origin.",
+   "---"
   ],
   "labels_quoted": [],
+  "labels_dropped_not_screen": {},
   "nav_nouns": [
    "credit invoice",
    "invoice",
