@@ -20,12 +20,26 @@ DIR = 'build/invoice-ui-refresh/build-verify-2026-08-31'
 req = json.load(open(f'{DIR}/requirements.json'))
 man = json.load(open(f'{DIR}/documents-manifest.json'))
 fin = json.load(open(f'{DIR}/finance-and-menu.json'))
+import os
+SURF = json.load(open(f'{DIR}/surfaces.json')) if os.path.exists(f'{DIR}/surfaces.json') else {}
 
 # ---------- the observed build ----------
 DOC_TEXT = {}
 for d in man['documents']:
     DOC_TEXT.setdefault(d['kind'], []).append(open(f"{DIR}/documents/{d['text_file']}", encoding='utf-8').read())
 ALL_DOC = '\n'.join(t for v in DOC_TEXT.values() for t in v)
+# A label absent from the DOCUMENT may simply live on another surface. Searching one surface and
+# concluding "absent" is a probe that cannot fire, so the corpus is every surface a tester sees:
+# the rendered documents PLUS the work-order page, finance tab, invoice menu and settings dialog.
+SURF_TEXT = []
+for _k, _v in SURF.items():
+    if isinstance(_v, dict):
+        if _v.get('text'): SURF_TEXT.append(_v['text'])
+        for _lk in ('controls', 'items', 'options'):
+            for _c in (_v.get(_lk) or []):
+                SURF_TEXT.append((_c.get('t') or '') + ' ' + (_c.get('id') or ''))
+ALL_SURFACE = '\n'.join(SURF_TEXT)
+ALL_DOC = ALL_DOC + '\n' + ALL_SURFACE
 DOC_IDS = sorted({i for d in man['documents'] for i in d['test_ids']})
 FIN_CONTROLS = {(c.get('id') or '').strip(): (c.get('t') or '').strip() for c in fin.get('finance_controls', [])}
 FIN_TEXT = ' | '.join(v for v in FIN_CONTROLS.values() if v)
@@ -140,7 +154,9 @@ for cid, case in req.items():
 
 out = {'verified_at': datetime.datetime.now(datetime.timezone.utc).isoformat(),
        'build_marker': 'v26.35.5-8c3cc21', 'control_can_fire': ctrl_ok,
-       'document_kinds_captured': sorted(DOC_KINDS), 'tally': dict(tally), 'cases': results}
+       'document_kinds_captured': sorted(DOC_KINDS),
+       'surfaces_searched': sorted(SURF.keys()),
+       'tally': dict(tally), 'cases': results}
 json.dump(out, open(f'{DIR}/verification.json', 'w'), indent=1, ensure_ascii=False)
 
 print(f"\nBUILD MARKER: v26.35.5-8c3cc21   cases: {len(results)}\n")

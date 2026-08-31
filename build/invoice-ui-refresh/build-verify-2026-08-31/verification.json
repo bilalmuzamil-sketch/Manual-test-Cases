@@ -1,5 +1,5 @@
 {
- "verified_at": "2026-08-31T09:51:19.971125+00:00",
+ "verified_at": "2026-08-31T10:05:22.905599+00:00",
  "build_marker": "v26.35.5-8c3cc21",
  "control_can_fire": true,
  "document_kinds_captured": [
@@ -7,10 +7,18 @@
   "invoice",
   "invoice-with-declined"
  ],
+ "surfaces_searched": [
+  "finance-tab",
+  "invoice-menu",
+  "invoice-settings",
+  "invoice-settings-options",
+  "print-control",
+  "workorder-lines"
+ ],
  "tally": {
-  "RUNNABLE": 51,
+  "RUNNABLE": 53,
   "NOT_ESTABLISHED": 31,
-  "LABELS_UNCONFIRMED": 20,
+  "LABELS_UNCONFIRMED": 18,
   "NEEDS_STEP_WALK": 17
  },
  "cases": {
@@ -291,11 +299,10 @@
     "2_navigation": "PASS — /workorders/{id}/finance renders (observed finance)",
     "3_controls": "PASS — the case names no control beyond the document itself",
     "4_step_order": "PASS — all 2 steps are document-inspection steps, order-independent",
-    "5_labels": "ABSENT_IN_SAMPLE — 2 of 5 not in the captured states: ['Approval Code', 'Authorizer']"
+    "5_labels": "ABSENT_IN_SAMPLE — 1 of 5 not in the captured states: ['Approval Code']"
    },
    "labels_absent": [
-    "Approval Code",
-    "Authorizer"
+    "Approval Code"
    ],
    "n_steps": 2
   },
@@ -356,11 +363,10 @@
     "2_navigation": "PASS — /workorders/{id}/finance renders (observed finance)",
     "3_controls": "PASS — the case names no control beyond the document itself",
     "4_step_order": "PASS — all 2 steps are document-inspection steps, order-independent",
-    "5_labels": "ABSENT_IN_SAMPLE — 2 of 2 not in the captured states: ['Approval Code', 'Authorizer']"
+    "5_labels": "ABSENT_IN_SAMPLE — 1 of 2 not in the captured states: ['Approval Code']"
    },
    "labels_absent": [
-    "Approval Code",
-    "Authorizer"
+    "Approval Code"
    ],
    "n_steps": 2
   },
@@ -420,11 +426,10 @@
     "2_navigation": "PASS — /workorders/{id}/finance renders (observed finance)",
     "3_controls": "PASS — the case names no control beyond the document itself",
     "4_step_order": "PASS — all 3 steps are document-inspection steps, order-independent",
-    "5_labels": "ABSENT_IN_SAMPLE — 2 of 2 not in the captured states: ['Approves Work', 'Authorizer']"
+    "5_labels": "ABSENT_IN_SAMPLE — 1 of 2 not in the captured states: ['Approves Work']"
    },
    "labels_absent": [
-    "Approves Work",
-    "Authorizer"
+    "Approves Work"
    ],
    "n_steps": 3
   },
@@ -755,23 +760,15 @@
    "needs": [
     "invoice"
    ],
-   "verdict": "LABELS_UNCONFIRMED",
+   "verdict": "RUNNABLE",
    "checks": {
     "1_precondition": "PASS — invoice document(s) captured this run",
     "2_navigation": "PASS — /workorders/{id}/finance renders (observed finance)",
     "3_controls": "PASS — the case names no control beyond the document itself",
     "4_step_order": "PASS — all 2 steps are document-inspection steps, order-independent",
-    "5_labels": "ABSENT_IN_SAMPLE — 7 of 10 not in the captured states: ['Labor hours', 'Labor price', 'Labor rate', 'Part description']"
+    "5_labels": "PASS — all 10 quoted labels found in the rendered document"
    },
-   "labels_absent": [
-    "Labor hours",
-    "Labor price",
-    "Labor rate",
-    "Part description",
-    "Part number",
-    "Part price",
-    "Part quantity"
-   ],
+   "labels_absent": [],
    "n_steps": 2
   },
   "44934": {
@@ -801,18 +798,15 @@
    "needs": [
     "invoice"
    ],
-   "verdict": "LABELS_UNCONFIRMED",
+   "verdict": "RUNNABLE",
    "checks": {
     "1_precondition": "PASS — invoice document(s) captured this run",
     "2_navigation": "PASS — /workorders/{id}/finance renders (observed finance)",
     "3_controls": "PASS — the case names no control beyond the document itself",
     "4_step_order": "PASS — all 3 steps are document-inspection steps, order-independent",
-    "5_labels": "ABSENT_IN_SAMPLE — 2 of 5 not in the captured states: ['Summarize labor total', 'Summarize parts total']"
+    "5_labels": "PASS — all 5 quoted labels found in the rendered document"
    },
-   "labels_absent": [
-    "Summarize labor total",
-    "Summarize parts total"
-   ],
+   "labels_absent": [],
    "n_steps": 3
   },
   "44936": {
@@ -848,12 +842,9 @@
     "2_navigation": "PASS — /workorders/{id}/finance renders (observed finance)",
     "3_controls": "PASS — the case names no control beyond the document itself",
     "4_step_order": "NEEDS_STEP_WALK — 1 of 3 step(s) name an action not matched to an observed surface: ['Restore both settings']",
-    "5_labels": "ABSENT_IN_SAMPLE — 2 of 5 not in the captured states: ['Summarize labor total', 'Summarize parts total']"
+    "5_labels": "PASS — all 5 quoted labels found in the rendered document"
    },
-   "labels_absent": [
-    "Summarize labor total",
-    "Summarize parts total"
-   ],
+   "labels_absent": [],
    "n_steps": 3
   },
   "45173": {
@@ -1581,7 +1572,7 @@
     "2_navigation": "PASS — /workorders/{id}/finance renders (observed finance)",
     "3_controls": "PASS — the case names no control beyond the document itself",
     "4_step_order": "PASS — all 2 steps are document-inspection steps, order-independent",
-    "5_labels": "ABSENT_IN_SAMPLE — 9 of 9 not in the captured states: ['Applied', 'Credit Number', 'INV-S-24914', 'Invoice Number']"
+    "5_labels": "ABSENT_IN_SAMPLE — 8 of 9 not in the captured states: ['Applied', 'Credit Number', 'INV-S-24914', 'Invoice Number']"
    },
    "labels_absent": [
     "Applied",
@@ -1590,7 +1581,6 @@
     "Invoice Number",
     "Partially applied",
     "Refunded",
-    "Status",
     "Unapplied",
     "Voided"
    ],
@@ -1610,11 +1600,9 @@
     "2_navigation": "PASS — /workorders/{id}/finance renders (observed finance)",
     "3_controls": "PASS — the case names no control beyond the document itself",
     "4_step_order": "PASS — all 2 steps are document-inspection steps, order-independent",
-    "5_labels": "ABSENT_IN_SAMPLE — 4 of 6 not in the captured states: ['Description', 'Quantity', 'Refund', 'Restocking Fee']"
+    "5_labels": "ABSENT_IN_SAMPLE — 2 of 6 not in the captured states: ['Refund', 'Restocking Fee']"
    },
    "labels_absent": [
-    "Description",
-    "Quantity",
     "Refund",
     "Restocking Fee"
    ],
@@ -1653,11 +1641,10 @@
     "2_navigation": "PASS — /workorders/{id}/finance renders (observed finance)",
     "3_controls": "PASS — the case names no control beyond the document itself",
     "4_step_order": "PASS — all 2 steps are document-inspection steps, order-independent",
-    "5_labels": "ABSENT_IN_SAMPLE — 3 of 6 not in the captured states: ['Partially applied', 'Tax', 'Total Credit']"
+    "5_labels": "ABSENT_IN_SAMPLE — 2 of 6 not in the captured states: ['Partially applied', 'Total Credit']"
    },
    "labels_absent": [
     "Partially applied",
-    "Tax",
     "Total Credit"
    ],
    "n_steps": 2
@@ -2128,11 +2115,9 @@
     "2_navigation": "PASS — /workorders/{id}/finance renders (observed finance)",
     "3_controls": "PASS — the case names no control beyond the document itself",
     "4_step_order": "PASS — all 2 steps are document-inspection steps, order-independent",
-    "5_labels": "ABSENT_IN_SAMPLE — 1 of 8 not in the captured states: ['Tax']"
+    "5_labels": "PASS — all 8 quoted labels found in the rendered document"
    },
-   "labels_absent": [
-    "Tax"
-   ],
+   "labels_absent": [],
    "n_steps": 2
   },
   "44987": {
