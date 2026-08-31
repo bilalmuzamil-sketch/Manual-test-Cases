@@ -166,6 +166,25 @@ both stale; they are corrected rather than deleted so nobody re-derives them.
 
 ---
 
+## 3a. THE NAVIGATION MAP — READ IT BEFORE YOU NAVIGATE, APPEND AS YOU GO
+
+A VIU pass reaches a lot of screens, so it both consumes and feeds
+**`build/<project>/NAVIGATION-MAP.md`**. If the project has no map, create it from
+**`build/NAVIGATION-MAP-TEMPLATE.md`**. Full convention: **`build/skills/03-RUN-CHECK.md` §9** — read
+it there rather than working from this summary.
+
+- **Read it BEFORE you start hunting for a screen** (Rule 27 — reuse the recorded recipe, never
+  re-discover), and **append the moment a path is confirmed**, in the same pass (Rule 93).
+- **Only paths navigated successfully and observed live go in** (Rule 12). **Never infer one from
+  product source code, a spec, a design or another branch** (Rule 57).
+- **Navigation only** — a map entry is **never** cited in a case's Expected Results or provenance line;
+  the wording you put in a case still comes from the documents plus the build's own labels (Rules 9 /
+  54 / 57).
+- **Rows are branch-specific** and carry the **Rule 91 badge with the date** (✅ ≤7 d · 🟠 8–14 d ·
+  🔴 >14 d · ❌ never observed); a different branch gets its own row, never an overwrite.
+
+---
+
 ## 4. HARD GATES — ASK FIRST, EVERY TIME
 
 | Gate | Rule | The ask |

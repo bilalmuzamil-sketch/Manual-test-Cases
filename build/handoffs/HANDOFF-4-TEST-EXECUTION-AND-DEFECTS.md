@@ -151,6 +151,25 @@ design**. **Standing Rule 94 — the ADMISSIBILITY GATE — exists to kill exact
 
 ---
 
+## 3a. THE NAVIGATION MAP — READ IT BEFORE YOU NAVIGATE, APPEND AS YOU GO
+
+Before you go looking for a screen a case's steps name, open **`build/<project>/NAVIGATION-MAP.md`**;
+if the project has no map, create it from **`build/NAVIGATION-MAP-TEMPLATE.md`**. Full convention:
+**`build/skills/03-RUN-CHECK.md` §9** — read it there rather than working from this summary.
+
+- **Read it FIRST** (Rule 27 — reuse the recorded recipe, never re-discover), and **append the moment a
+  path is confirmed**, in the same pass, not as a later cleanup (Rule 93).
+- **Only paths navigated successfully and observed live go in** (Rule 12). **Never infer one from
+  product source code, a spec, a design or another branch** (Rule 57).
+- **Navigation only.** A map entry is **never** cited in a case's Expected Results or provenance line,
+  and it is **never evidence that the feature works** — the pass/fail verdict still comes from
+  observing the feature itself (Rules 12 / 57).
+- **Rows are branch-specific** and carry the **Rule 91 badge with the date** (✅ ≤7 d · 🟠 8–14 d ·
+  🔴 >14 d · ❌ never observed); a stale row is a starting point — if it fails, re-observe and correct
+  it in the same pass.
+
+---
+
 ## 4. HARD GATES — ASK FIRST, EVERY TIME
 
 | Rule | You must ask before… |
