@@ -1,13 +1,11 @@
 {
- "verified_at": "2026-08-31T17:36:08.845404+00:00",
+ "verified_at": "2026-08-31T17:14:17.940129+00:00",
  "build_marker": "v26.35.5-8c3cc21",
  "control_can_fire": true,
  "document_kinds_captured": [
   "credit-invoice",
   "estimate",
-  "estimate-unapproved",
   "invoice",
-  "invoice-unpaid",
   "invoice-with-declined",
   "parts-sale",
   "parts-sale-estimate"
@@ -33,8 +31,8 @@
   "surfaces.json:workorder-lines"
  ],
  "tally": {
-  "RUNNABLE": 101,
-  "LABELS_UNCONFIRMED": 9,
+  "RUNNABLE": 95,
+  "LABELS_UNCONFIRMED": 15,
   "NEEDS_STEP_WALK": 9
  },
  "cases": {
@@ -625,7 +623,7 @@
     "2_navigation": "PASS — /workorders/{id}/finance renders (observed finance)",
     "3_controls": "PASS — the case names no control beyond the document itself",
     "4_step_order": "PASS — all 2 steps are document-inspection steps, order-independent",
-    "5_labels": "N/A — the case quotes no on-screen label"
+    "5_labels": "PASS — all 1 quoted labels found in the rendered document"
    },
    "labels_absent": [],
    "n_steps": 2
@@ -760,7 +758,7 @@
     "2_navigation": "PASS — /workorders/{id}/finance renders (observed finance)",
     "3_controls": "PASS — the case names no control beyond the document itself",
     "4_step_order": "PASS — all 2 steps are document-inspection steps, order-independent",
-    "5_labels": "PASS — all 9 quoted labels found in the rendered document"
+    "5_labels": "PASS — all 10 quoted labels found in the rendered document"
    },
    "labels_absent": [],
    "n_steps": 2
@@ -836,7 +834,7 @@
     "2_navigation": "PASS — /workorders/{id}/finance renders (observed finance)",
     "3_controls": "PASS — the case names no control beyond the document itself",
     "4_step_order": "PASS — all 3 steps are document-inspection steps, order-independent",
-    "5_labels": "PASS — all 3 quoted labels found in the rendered document"
+    "5_labels": "PASS — all 5 quoted labels found in the rendered document"
    },
    "labels_absent": [],
    "n_steps": 3
@@ -1416,15 +1414,17 @@
    "needs": [
     "invoice"
    ],
-   "verdict": "RUNNABLE",
+   "verdict": "LABELS_UNCONFIRMED",
    "checks": {
     "1_precondition": "PASS — invoice document(s) captured this run",
     "2_navigation": "PASS — /workorders/{id}/finance renders (observed finance)",
     "3_controls": "PASS — the case names no control beyond the document itself",
     "4_step_order": "PASS — all 2 steps are document-inspection steps, order-independent",
-    "5_labels": "N/A — the case quotes no on-screen label"
+    "5_labels": "ABSENT_IN_SAMPLE — 1 of 1 not in the captured states: ['Receipt']"
    },
-   "labels_absent": [],
+   "labels_absent": [
+    "Receipt"
+   ],
    "n_steps": 2
   },
   "44963": {
@@ -1435,15 +1435,17 @@
    "needs": [
     "invoice"
    ],
-   "verdict": "RUNNABLE",
+   "verdict": "LABELS_UNCONFIRMED",
    "checks": {
     "1_precondition": "PASS — invoice document(s) captured this run",
     "2_navigation": "PASS — /workorders/{id}/finance renders (observed finance)",
     "3_controls": "PASS — the case names no control beyond the document itself",
     "4_step_order": "PASS — all 2 steps are document-inspection steps, order-independent",
-    "5_labels": "PASS — all 1 quoted labels found in the rendered document"
+    "5_labels": "ABSENT_IN_SAMPLE — 1 of 1 not in the captured states: ['Due date']"
    },
-   "labels_absent": [],
+   "labels_absent": [
+    "Due date"
+   ],
    "n_steps": 2
   },
   "45176": {
@@ -1549,15 +1551,19 @@
    "needs": [
     "credit-invoice"
    ],
-   "verdict": "RUNNABLE",
+   "verdict": "LABELS_UNCONFIRMED",
    "checks": {
     "1_precondition": "PASS — credit-invoice document(s) captured this run",
     "2_navigation": "PASS — /workorders/{id}/finance renders (observed finance)",
     "3_controls": "PASS — the case names no control beyond the document itself",
     "4_step_order": "PASS — all 2 steps are document-inspection steps, order-independent",
-    "5_labels": "PASS — all 8 quoted labels found in the rendered document"
+    "5_labels": "ABSENT_IN_SAMPLE — 3 of 8 not in the captured states: ['Partially applied', 'Refunded', 'Voided']"
    },
-   "labels_absent": [],
+   "labels_absent": [
+    "Partially applied",
+    "Refunded",
+    "Voided"
+   ],
    "n_steps": 2
   },
   "44967": {
@@ -1568,15 +1574,17 @@
    "needs": [
     "credit-invoice"
    ],
-   "verdict": "RUNNABLE",
+   "verdict": "LABELS_UNCONFIRMED",
    "checks": {
     "1_precondition": "PASS — credit-invoice document(s) captured this run",
     "2_navigation": "PASS — /workorders/{id}/finance renders (observed finance)",
     "3_controls": "PASS — the case names no control beyond the document itself",
     "4_step_order": "PASS — all 2 steps are document-inspection steps, order-independent",
-    "5_labels": "PASS — all 6 quoted labels found in the rendered document"
+    "5_labels": "ABSENT_IN_SAMPLE — 1 of 6 not in the captured states: ['Refund']"
    },
-   "labels_absent": [],
+   "labels_absent": [
+    "Refund"
+   ],
    "n_steps": 2
   },
   "44968": {
@@ -1606,15 +1614,17 @@
    "needs": [
     "credit-invoice"
    ],
-   "verdict": "RUNNABLE",
+   "verdict": "LABELS_UNCONFIRMED",
    "checks": {
     "1_precondition": "PASS — credit-invoice document(s) captured this run",
     "2_navigation": "PASS — /workorders/{id}/finance renders (observed finance)",
     "3_controls": "PASS — the case names no control beyond the document itself",
     "4_step_order": "PASS — all 2 steps are document-inspection steps, order-independent",
-    "5_labels": "PASS — all 6 quoted labels found in the rendered document"
+    "5_labels": "ABSENT_IN_SAMPLE — 1 of 6 not in the captured states: ['Partially applied']"
    },
-   "labels_absent": [],
+   "labels_absent": [
+    "Partially applied"
+   ],
    "n_steps": 2
   },
   "44970": {
@@ -1669,7 +1679,7 @@
     "2_navigation": "PASS — /workorders/{id}/finance renders (observed finance)",
     "3_controls": "PASS — the case names no control beyond the document itself",
     "4_step_order": "PASS — all 1 steps are document-inspection steps, order-independent",
-    "5_labels": "PASS — all 1 quoted labels found in the rendered document"
+    "5_labels": "PASS — all 2 quoted labels found in the rendered document"
    },
    "labels_absent": [],
    "n_steps": 1
@@ -1682,15 +1692,17 @@
    "needs": [
     "credit-invoice"
    ],
-   "verdict": "RUNNABLE",
+   "verdict": "LABELS_UNCONFIRMED",
    "checks": {
     "1_precondition": "PASS — credit-invoice document(s) captured this run",
     "2_navigation": "PASS — /workorders/{id}/finance renders (observed finance)",
     "3_controls": "PASS — the case names no control beyond the document itself",
     "4_step_order": "PASS — all 2 steps are document-inspection steps, order-independent",
-    "5_labels": "PASS — all 1 quoted labels found in the rendered document"
+    "5_labels": "ABSENT_IN_SAMPLE — 1 of 1 not in the captured states: ['Voided']"
    },
-   "labels_absent": [],
+   "labels_absent": [
+    "Voided"
+   ],
    "n_steps": 2
   },
   "45182": {
@@ -2347,9 +2359,11 @@
     "2_navigation": "PASS — /workorders/{id}/finance renders (observed finance)",
     "3_controls": "PASS — the case names no control beyond the document itself",
     "4_step_order": "NEEDS_STEP_WALK — 2 of 3 step(s) name an action not matched to an observed surface: ['1. Apply cash for part of the Total', '2. Apply customer credit for the remainder']",
-    "5_labels": "PASS — all 1 quoted labels found in the rendered document"
+    "5_labels": "ABSENT_IN_SAMPLE — 1 of 1 not in the captured states: ['Due date']"
    },
-   "labels_absent": [],
+   "labels_absent": [
+    "Due date"
+   ],
    "n_steps": 3
   },
   "45197": {

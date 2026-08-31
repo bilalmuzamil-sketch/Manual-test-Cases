@@ -32,19 +32,18 @@ Cases analysed: **119** (ours only; the 30 foreign cases are excluded, Rule 38).
 | email | 1 |
 | download | 1 |
 
-## The most-depended-on quoted on-screen labels (78 distinct)
+## The most-depended-on quoted on-screen labels (77 distinct)
 
 | Label | Cases |
 |---|---|
-| `Parts` | 10 |
-| `Labor` | 9 |
+| `Parts` | 9 |
+| `Labor` | 8 |
 | `Balance` | 7 |
 | `Approves Work` | 7 |
-| `Payments` | 5 |
+| `Payments` | 4 |
 | `Authorizer` | 3 |
 | `Work Performed` | 3 |
 | `Work Summary` | 3 |
-| `Line total` | 3 |
 | `Summary` | 3 |
 | `Show declined work` | 3 |
 | `Subtotal` | 3 |
@@ -57,7 +56,7 @@ Cases analysed: **119** (ours only; the 30 foreign cases are excluded, Rule 38).
 | `Credit To` | 2 |
 | `Approval Code` | 2 |
 | `Terms` | 2 |
-| `VIN / Serial` | 2 |
+| `Line total` | 2 |
 | `Summarize labor total` | 2 |
 | `Summarize parts total` | 2 |
 | `Declined Work` | 2 |
@@ -76,6 +75,7 @@ Cases analysed: **119** (ours only; the 30 foreign cases are excluded, Rule 38).
 | `Work Order` | 1 |
 | `No authorizer` | 1 |
 | `Asset` | 1 |
+| `VIN / Serial` | 1 |
 | `Eng Hrs` | 1 |
 | `Mileage` | 1 |
 | `Plate` | 1 |
@@ -86,8 +86,8 @@ Cases analysed: **119** (ours only; the 30 foreign cases are excluded, Rule 38).
 
 | Precondition | Cases |
 |---|---|
-| 1. You are signed in to ShopView. | 80 |
-| You are signed in to ShopView. | 7 |
+| 1. You are signed in to ShopView. | 81 |
+| You are signed in to ShopView. | 6 |
 | A work order exists whose shop location has a name, street address, city, state or provinc | 1 |
 | 2. You can reach one shop that has a logo set and one shop that has no logo set (or you ca | 1 |
 | 2. You can generate an Estimate, an Invoice, and a Credit Invoice for known documents. | 1 |

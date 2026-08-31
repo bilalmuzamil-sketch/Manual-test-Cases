@@ -1,5 +1,5 @@
 {
- "read_at": "2026-08-31T16:34:09.105902+00:00",
+ "read_at": "2026-08-31T17:35:56.204439+00:00",
  "documents": [
   {
    "wo_number": "S2-15522",
@@ -214,6 +214,115 @@
    ],
    "file": "parts-sale-estimate-P2-123.html",
    "text_file": "parts-sale-estimate-P2-123.txt"
+  },
+  {
+   "wo_number": "S8218-15591",
+   "wo_status": "approved",
+   "wo_id": "891e1767-bc87-4c14-a7e5-f68524fbd02d",
+   "invoice_id": null,
+   "invoice_status": "not invoiced",
+   "kind": "invoice-unpaid",
+   "query": "POST /api/work-orders/invoices/estimate {\"work_order_id\": \"891e1767-bc87-4c14-a7e5-f68524fbd02d\", \"type\": \"html\", \"isEstimate\": 0, \"includeDeclined\": 0, \"issueDate\": \"2026-08-31T17:28:03+00:00\", \"dueDate\": \"2026-09-30T17:28:03+00:00\", \"historyEvent\": null}",
+   "html_bytes": 347045,
+   "visible_chars": 1961,
+   "test_ids": [
+    "invoice-balance",
+    "invoice-payments-heading",
+    "invoice-ref-terms",
+    "invoice-summary-labor",
+    "invoice-summary-parts",
+    "invoice-summary-subtotal",
+    "invoice-summary-tax-row",
+    "invoice-summary-total"
+   ],
+   "file": "invoice-unpaid-S8218-15591.html",
+   "text_file": "invoice-unpaid-S8218-15591.txt"
+  },
+  {
+   "wo_number": "S8218-15591",
+   "wo_status": "approved",
+   "wo_id": "891e1767-bc87-4c14-a7e5-f68524fbd02d",
+   "invoice_id": null,
+   "invoice_status": "not invoiced",
+   "kind": "estimate-unapproved",
+   "query": "POST /api/work-orders/invoices/estimate {\"work_order_id\": \"891e1767-bc87-4c14-a7e5-f68524fbd02d\", \"type\": \"html\", \"isEstimate\": 1, \"includeDeclined\": 0, \"issueDate\": \"2026-08-31T17:28:03+00:00\", \"dueDate\": \"2026-09-30T17:28:03+00:00\", \"historyEvent\": null}",
+   "html_bytes": 346563,
+   "visible_chars": 1936,
+   "test_ids": [
+    "invoice-estimated-total",
+    "invoice-ref-terms",
+    "invoice-summary-labor",
+    "invoice-summary-parts",
+    "invoice-summary-subtotal",
+    "invoice-summary-tax-row",
+    "invoice-summary-total"
+   ],
+   "file": "estimate-unapproved-S8218-15591.html",
+   "text_file": "estimate-unapproved-S8218-15591.txt"
+  },
+  {
+   "wo_number": null,
+   "wo_status": null,
+   "wo_id": null,
+   "credit_memo_id": "9ebee29b-7d42-45a4-8873-9666f770b7b3",
+   "credit_number": "CM-101",
+   "credit_status": "open / Unapplied",
+   "kind": "credit-invoice",
+   "query": "/api/credit-memos/9ebee29b-7d42-45a4-8873-9666f770b7b3/pdf",
+   "pdf_bytes": 179088,
+   "pages": 1,
+   "visible_chars": 521,
+   "test_ids": [],
+   "file": "credit-invoice-CM-101.pdf",
+   "text_file": "credit-invoice-CM-101.txt"
+  },
+  {
+   "wo_number": null,
+   "wo_status": null,
+   "wo_id": null,
+   "credit_memo_id": "deb4cc1c-327b-4185-82b8-794729b05bbc",
+   "credit_number": "CM-102",
+   "credit_status": "partially_applied",
+   "kind": "credit-invoice",
+   "query": "/api/credit-memos/deb4cc1c-327b-4185-82b8-794729b05bbc/pdf",
+   "pdf_bytes": 179123,
+   "pages": 1,
+   "visible_chars": 570,
+   "test_ids": [],
+   "file": "credit-invoice-CM-102.pdf",
+   "text_file": "credit-invoice-CM-102.txt"
+  },
+  {
+   "wo_number": null,
+   "wo_status": null,
+   "wo_id": null,
+   "credit_memo_id": "09f256ea-7401-4886-b6b2-009ea7ecf9b0",
+   "credit_number": "CM-103",
+   "credit_status": "closed_via_refund",
+   "kind": "credit-invoice",
+   "query": "/api/credit-memos/09f256ea-7401-4886-b6b2-009ea7ecf9b0/pdf",
+   "pdf_bytes": 179159,
+   "pages": 1,
+   "visible_chars": 560,
+   "test_ids": [],
+   "file": "credit-invoice-CM-103.pdf",
+   "text_file": "credit-invoice-CM-103.txt"
+  },
+  {
+   "wo_number": null,
+   "wo_status": null,
+   "wo_id": null,
+   "credit_memo_id": "cfeb1082-c177-42f6-8a4b-f9d16ce7e3cb",
+   "credit_number": "CM-104",
+   "credit_status": "voided",
+   "kind": "credit-invoice",
+   "query": "/api/credit-memos/cfeb1082-c177-42f6-8a4b-f9d16ce7e3cb/pdf",
+   "pdf_bytes": 179128,
+   "pages": 1,
+   "visible_chars": 517,
+   "test_ids": [],
+   "file": "credit-invoice-CM-104.pdf",
+   "text_file": "credit-invoice-CM-104.txt"
   }
  ]
 }

@@ -107,8 +107,7 @@
   "expected_body": [
    "1. No status label or pill (for example \"PAID\", \"PAID IN FULL\", \"DRAFT\", \"VOIDED\") appears anywhere in the masthead of any document.",
    "2. The only place a status indicator appears is with the content that proves it: the Paid banner's pill (on portal-generated Invoice PDFs) and the Status column in the Credit Invoice's status table.",
-   "---",
-   "Last checked against build v26.35.5-8c3cc21 on 8/31/2026."
+   "---"
   ],
   "labels_quoted": [],
   "labels_dropped_not_screen": {
@@ -558,8 +557,7 @@
    "1. When the work order number equals the unbroken digits at the end of the document number, the Work Order field is hidden.",
    "2. When they differ, the Work Order field is shown with its value.",
    "3. Trailing digits example: \"4176\" in \"INV-4176\"; \"24914\" in \"INV-S-24914\".",
-   "---",
-   "Last checked against build v26.35.5-8c3cc21 on 8/31/2026."
+   "---"
   ],
   "labels_quoted": [],
   "labels_dropped_not_screen": {
@@ -780,13 +778,12 @@
    "2. API access (session token)"
   ],
   "steps": [
-   "1. POST /api/work-orders/change-authorizer with a valid authorizer_id directly (bypass the UI) (body: {\"workOrderId\": \"<work order id>\", \"authorizerContactId\": \"<contact id>\"})"
+   "1. POST /api/work-orders/{wo}/authorizer with a valid authorizer_id directly (bypass the UI)"
   ],
   "expected_body": [
    "1. The API returns 409; the Authorizer is unchanged. The server-side lock cannot be bypassed (NFR-001, plan D2).",
    "2. The lock is conditional, not permanent: per v45 S3-R8 a later void or reversal returns the work order to Complete and re-enables the Authorizer row (that transition is out of scope for this API-rejection case).",
-   "---",
-   "Last checked against build v26.35.5-8c3cc21 on 8/31/2026."
+   "---"
   ],
   "labels_quoted": [],
   "labels_dropped_not_screen": {},
@@ -812,8 +809,7 @@
   ],
   "expected_body": [
    "1. Both are rejected - 422 (or 404 for the cross-tenant contact); the Authorizer is unchanged (NFR-002). Only a customer contact with 'Approves Work' enabled can be selected as Authorizer (S3-R5).",
-   "---",
-   "Last checked against build v26.35.5-8c3cc21 on 8/31/2026."
+   "---"
   ],
   "labels_quoted": [
    "Approves Work"
@@ -942,10 +938,10 @@
    "---",
    "Last checked against build v26.35.5-8c3cc21 on 8/31/2026."
   ],
-  "labels_quoted": [],
-  "labels_dropped_not_screen": {
-   "VIN / Serial": "The \"VIN / Serial\" field is hidden when the asset has neither a VIN nor a serial number."
-  },
+  "labels_quoted": [
+   "VIN / Serial"
+  ],
+  "labels_dropped_not_screen": {},
   "nav_nouns": [
    "asset",
    "estimate",
@@ -1156,15 +1152,14 @@
    "Labor hours",
    "Labor price",
    "Labor rate",
+   "Line total",
    "Part description",
    "Part number",
    "Part price",
    "Part quantity",
    "Parts"
   ],
-  "labels_dropped_not_screen": {
-   "Line total": "The itemized labor and parts entries themselves are never collapsed or hidden by any setting; \"Line total\" and"
-  },
+  "labels_dropped_not_screen": {},
   "nav_nouns": [
    "invoice",
    "settings"
@@ -1287,18 +1282,16 @@
    "1. After Step 1: the footer 'Labor' figure is hidden; 'Parts' and 'Line total' remain.",
    "2. After Step 2: both the 'Labor' and 'Parts' footer figures are hidden; 'Line total' stands alone WITHOUT the vertical divider (S5-R7, S5-R9).",
    "3. 'Line total' is always shown.",
-   "---",
-   "Last checked against build v26.35.5-8c3cc21 on 8/31/2026."
+   "---"
   ],
   "labels_quoted": [
+   "Labor",
    "Line total",
+   "Parts",
    "Summarize labor total",
    "Summarize parts total"
   ],
-  "labels_dropped_not_screen": {
-   "Labor": "After Step 1: the footer 'Labor' figure is hidden; 'Parts' and 'Line total' remain.",
-   "Parts": "After Step 1: the footer 'Labor' figure is hidden; 'Parts' and 'Line total' remain."
-  },
+  "labels_dropped_not_screen": {},
   "nav_nouns": [
    "preview",
    "settings"
@@ -1321,8 +1314,7 @@
   "expected_body": [
    "1. Lines 1-99 stay two digits; line 100 and above show three digits (S5-R2).",
    "2. The document renders without timeout (NFR-004).",
-   "---",
-   "Last checked against build v26.35.5-8c3cc21 on 8/31/2026."
+   "---"
   ],
   "labels_quoted": [],
   "labels_dropped_not_screen": {},
@@ -1442,8 +1434,7 @@
   ],
   "expected_body": [
    "1. A divider labeled exactly \"Summary\" precedes the financial summary.",
-   "---",
-   "Last checked against build v26.35.5-8c3cc21 on 8/31/2026."
+   "---"
   ],
   "labels_quoted": [
    "Summary"
@@ -1962,18 +1953,16 @@
   "refs": "SV-9148 (S9-R1)",
   "atm": 1,
   "preconditions": [
-   "1. You are signed in to ShopView.",
-   "2. A shop has a configured disclaimer, and you can generate an Estimate, Invoice and Credit Invoice for it."
+   "You are signed in to ShopView.",
+   "A shop has a configured disclaimer, and you can generate an Estimate, Invoice and Credit Invoice for it."
   ],
   "steps": [
-   "1. Generate each document type for the shop.",
-   "2. Find the disclaimer text on each."
+   "Generate each document type for the shop.",
+   "Find the disclaimer text on each."
   ],
   "expected_body": [
-   "1. Each document shows the shop's configured disclaimer text, with no heading above it.",
-   "2. The disclaimer is identical on every document that carries it.",
-   "---",
-   "Last checked against build v26.35.5-8c3cc21 on 8/31/2026."
+   "Each document shows the shop's configured disclaimer text, with no heading above it.",
+   "The disclaimer is identical on every document that carries it."
   ],
   "labels_quoted": [],
   "labels_dropped_not_screen": {},
@@ -2194,10 +2183,10 @@
    "5. A paid date earlier than the invoice date (for example a deposit collected before invoicing) is shown as-is.",
    "---"
   ],
-  "labels_quoted": [],
-  "labels_dropped_not_screen": {
-   "Receipt": "The fully paid Invoice keeps the label \"Invoice: {number}\" - it is never renamed to \"Receipt\"; no separate rec"
-  },
+  "labels_quoted": [
+   "Receipt"
+  ],
+  "labels_dropped_not_screen": {},
   "nav_nouns": [
    "balance",
    "deposit",
@@ -2551,8 +2540,7 @@
   "expected_body": [
    "1. The Credit Invoice shows the shop's configured disclaimer.",
    "2. It shows the standard signature area with the three lines \"Customer Signature\", \"Printed Name\", and \"Date\".",
-   "---",
-   "Last checked against build v26.35.5-8c3cc21 on 8/31/2026."
+   "---"
   ],
   "labels_quoted": [
    "Customer Signature",
@@ -2617,11 +2605,10 @@
    "Last checked against build v26.35.5-8c3cc21 on 8/31/2026."
   ],
   "labels_quoted": [
-   "Balance"
+   "Balance",
+   "Payments"
   ],
-  "labels_dropped_not_screen": {
-   "Payments": "'Payments' shows the label with no rows (applications to invoices are not listed)."
-  },
+  "labels_dropped_not_screen": {},
   "nav_nouns": [
    "credit invoice",
    "invoice",
@@ -2788,8 +2775,7 @@
    "1. The accent #257CFF appears only on the work line numbers and on the word \"ShopView\" in the footer.",
    "2. On the Parts Sale document, which has no numbered work lines, the accent appears only on the word \"ShopView\" in the footer.",
    "3. Nothing else on the document uses the accent.",
-   "---",
-   "Last checked against build v26.35.5-8c3cc21 on 8/31/2026."
+   "---"
   ],
   "labels_quoted": [
    "ShopView"
@@ -2930,8 +2916,7 @@
    "3. Charge rows inside a job are separated by #EEF2F6 row dividers.",
    "4. The \"Labor\" and \"Parts\" sub-section labels carry no underline rule.",
    "5. When a line has fee or discount adjustment rows, the row divider follows the line's last adjustment row - never between the line and its adjustments - so the line and its adjustments read as one group.",
-   "---",
-   "Last checked against build v26.35.5-8c3cc21 on 8/31/2026."
+   "---"
   ],
   "labels_quoted": [
    "Labor",
@@ -3313,8 +3298,7 @@
    "1. All dates render in the 'Jan 5, 2026' style - abbreviated English month, day of the month without a leading zero, a comma, and the four-digit year.",
    "2. The format is identical for US and Canadian shops and no shop or user setting changes it (G-R1).",
    "3. The only exception is the Paid banner's 'Date / Time' field.",
-   "---",
-   "Last checked against build v26.35.5-8c3cc21 on 8/31/2026."
+   "---"
   ],
   "labels_quoted": [],
   "labels_dropped_not_screen": {
@@ -3568,8 +3552,7 @@
   "expected_body": [
    "1. All amounts render as formatted currency; there is no $NaN anywhere.",
    "2. History: SV-8680 / SV-8581 showed $NaN at 4+ digits.",
-   "---",
-   "Last checked against build v26.35.5-8c3cc21 on 8/31/2026."
+   "---"
   ],
   "labels_quoted": [],
   "labels_dropped_not_screen": {},
@@ -3635,8 +3618,7 @@
    "2. Per v45 S12-R10: every page after the first opens with a single identification line (shop location name on the left, document number on the right); the full masthead does not repeat on later pages.",
    "3. Per v45 S12-R10: the totals block is not split across a page break; a work line and its own footer stay together on the same page; the signature row does not land alone on a final page; and no single row is orphaned by itself on a page.",
    "4. History: SV-8914 (Ready to Fix - ACTIVE) + SV-8189.",
-   "---",
-   "Last checked against build v26.35.5-8c3cc21 on 8/31/2026."
+   "---"
   ],
   "labels_quoted": [],
   "labels_dropped_not_screen": {},
