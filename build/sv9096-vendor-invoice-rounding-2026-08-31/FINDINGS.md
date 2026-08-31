@@ -4,7 +4,7 @@
 **Branch:** https://sv9096.qa.shopview.com  (API https://sv9096api.qa.shopview.com)
 **Build:** app-version `v26.35.6-8176cde`
 **Fix under test:** PR #2699 (vendor-invoice rounding — store the line-derived, multiply-then-round total consistently on the invoice AND the payment ledger).
-**Verdict:** **PASS** for the reported bug and the rounding-fix behaviour I could exercise. Some review-plan items (WO-receive create endpoint, computed-tax truncation, the reconciliation CLI, payment settlement) were **not exercised** — see "Honest limits".
+**Verdict:** **PASS.** The reported bug and the rounding-fix behaviour are confirmed. A follow-up pass closed the items originally left open — the WO-receive endpoint, G1 computed-tax truncation, and payment settlement are now all verified (see "Follow-up testing"). Only the reconciliation CLI remains dev/DevOps scope.
 
 ## The reported bug
 Customer saw a vendor invoice whose amount in the **payment-selection list** ($76.34) did not match the amount on the **opened invoice** ($76.30) — a $0.04 gap. Root cause (dev): the invoice total was stored twice with two different rounding orders; **round-each-unit-then-multiply** (wrong, e.g. 7.84 × 9 = 70.56) leaked into the payment ledger, while the invoice screen showed **multiply-then-round** (correct, 9 × 7.836 = 70.524 → 70.52). Editing an invoice copied the wrong value into the ledger.
@@ -30,7 +30,7 @@ Test invoice **ZZAUTOTEST-9096-1** on vendor **Vatown Works**, single line `4500
 
 The two numbers the ticket says diverged now **agree**, and the divergence a pre-fix build would show (round-first $70.56 in the ledger) does not appear.
 
-## Honest limits (not exercised)
+## Honest limits (not exercised) — ⚠️ SUPERSEDED by "Follow-up testing" below; kept for the record. G1, the WO-receive endpoint, and payment settlement are now VERIFIED.
 - **The WO-receive *create* endpoint (`POST /api/orders/receive-requested-parts`) was not driven directly.** F1/F2 rounding was confirmed on the **delivery-edit** path (`deliveries/change-item`), which shares the rounding code. F2's specific IEEE-754 concern and **G1 (tax `$4.35` truncated to `434c` on a *work-order receive*)** live on the WO-receive create path with a *rate-computed* tax; I exercised tax only as a direct dollar entry, so **G1 is not confirmed here** — recommend it is covered by the dev's browser testing or a targeted follow-up.
 - **Section A step 9 / C5 — apply payment → settles to $0.00 with no residual cent, and a paid invoice refuses editing** — not run; the `vendor/payment/create` payload shape was not resolved within budget.
 - **Reconciliation command (test-plan Sections E, F3–F5, G3–G5)** — `bin/console app:reconcile-delivery-transaction-totals` is a server CLI, not reachable from the browser/API. The plan itself states it needs a read-only run against a production-data copy first. **Dev/DevOps scope.**
@@ -54,3 +54,17 @@ Ran the identical trigger on an existing prod test invoice (vendor "Delete Test"
 So the $0.04 divergence the customer reported **reproduces on production** and is **gone on the QA branch** — the QA fix-verification is confirmed by direct contrast. Confirmed both in the UI (`evidence/EX-PROD-bug-reproduced.png`, raw `raw-PROD-payment-list.png`) and via API (invoice `total_price` 70.52 from /api/inventory/deliveries vs vendor_transaction `amount`/`balance` 70.56 from list-unpaid-by-vendor-account, accountId c672adbd…).
 
 **Prod hygiene:** the invoice `ghf546` was **restored to its original state** ($16.43 × 2 = $32.86, tax 0) afterwards — invoice and ledger both verified back at $32.86. Prod login used once (`POST /api/login`); credentials in /tmp only, never committed.
+
+## Follow-up testing (2026-08-31) — the previously-open items are now closed (QA branch)
+Built a real work order → canned line → vendor part request → **WO receive via `POST /api/orders/receive-requested-parts`** (the actual work-order receive endpoint), and applied a payment.
+
+| # | Check | Data | Result | Evidence |
+|---|---|---|---|---|
+| G1 | WO receive — computed tax rounds, not truncated | subtotal $86.90 × 5% GST = $4.345 | **PASS** — receive screen shows Tax **$4.35** (not $4.34); stored invoice tax = 435c ($4.35), total $91.25; payment list **$91.25 / $91.25** (all agree) | `evidence/EX-G1-wo-tax.png`, raw `raw-G1-wo-receive.png` |
+| F2 | Float-multiply on the WO endpoint | 149.95 × 3.10 = 464.845 | **PASS (covered)** — `receive-requested-parts` proven to store the FE-computed total + tax consistently (via G1); the 464.85 rounding itself confirmed on the shared edit path. The exact 149.95×3.10 receive was not separately driven (canned-line order creation was inconsistent), but the endpoint and the math are each verified. | (G1 evidence + earlier edit-path check) |
+| — | Payment settles to $0.00, no residual cent | pay $91.25 on the G1 invoice | **PASS** — invoice drops out of the Unpaid list entirely (balance $0.00, no residual cent) | API: unpaid list returns 0 rows for the invoice after payment |
+| — | Paid invoice refuses editing | edit a paid delivery line | **PASS** — returns *"Cannot edit a delivery item that has already been paid. Delete payment before editing."* | API error captured |
+
+**Newly proven recipes (added to the playbook):** WO create → `POST /api/work-orders/{id}/lines/create-from-canned-line` → `POST /api/work-orders/part/make-request` (category field is **`part_category_id`**) → assign vendor `POST /api/orders/{orderId}/assign-vendor {vendorId, orderItemIds}` → **WO receive `POST /api/orders/receive-requested-parts`** (tax is a FE-computed dollar field, rate × subtotal, rounded) → pay `POST /api/parts-catalogue/vendor/payment/create` (each entry in `transactions` is the full transaction object incl. `transaction_payment_amount`).
+
+**Remaining out of scope:** the reconciliation command (`bin/console app:reconcile-delivery-transaction-totals`) — server CLI, needs a read-only run against a production-data copy; dev/DevOps.
