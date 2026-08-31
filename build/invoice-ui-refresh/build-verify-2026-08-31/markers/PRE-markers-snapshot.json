@@ -1697,5 +1697,95 @@
    "This is the expected behaviour as per epic SV-8218 and story SV-9142 (Story 3, Order Reference Fields) and the Invoice UI Refresh specification version 45, section S3-R5, read on 31 August 2026."
   ],
   "build_sentence": []
+ },
+ "44962": {
+  "id": "44962",
+  "title": "Fully paid Invoice stays an Invoice; 'Paid date' replaces 'Due date'",
+  "section_id": 6751,
+  "refs": "SV-9149 (S10-R4)",
+  "atm": 1,
+  "custom_expected": "<p>1. The fully paid Invoice keeps the label \"Invoice: {number}\" - it is never renamed to \"Receipt\"; no separate receipt document exists.<br>2. It lists its payments and shows a Balance of $0.00.<br>3. \"Paid date: {date}\" replaces \"Due date: {date}\" in the masthead; the paid date is the most recent date among the applied payment, deposit and credit rows.<br>4. If a later change (payment reversal, voided credit, or edit) makes the Balance greater than $0.00, the invoice is no longer fully paid and \"Due date: {date}\" returns.<br>5. A paid date earlier than the invoice date (for example a deposit collected before invoicing) is shown as-is.</p><p>---<br>This is the expected behaviour as per epic SV-8218 and story SV-9149 (Story 10, Estimate and Invoice Specifics) and the Invoice UI Refresh specification version 45, section S10-R4, read on 31 August 2026.</p><p>AUTOMATION: Not available on Build to test Yet - Last checked 8/21/2026</p>",
+  "markers": [
+   "AUTOMATION: Not available on Build to test Yet - Last checked 8/21/2026"
+  ],
+  "provenance": [
+   "This is the expected behaviour as per epic SV-8218 and story SV-9149 (Story 10, Estimate and Invoice Specifics) and the Invoice UI Refresh specification version 45, section S10-R4, read on 31 August 2026."
+  ],
+  "build_sentence": []
+ },
+ "44963": {
+  "id": "44963",
+  "title": "Invoice with no due date shows no Due date line; paid swap still applies",
+  "section_id": 6751,
+  "refs": "SV-9149 (S10-N1)",
+  "atm": 1,
+  "custom_expected": "<p>1. An Invoice with no due date set shows \"Invoice date: {date}\" and no \"Due date\" line (the old quirk of rendering a null due date as today's date is retired).<br>2. When such an invoice becomes fully paid, \"Paid date: {date}\" is shown.</p><p>---<br>This is the expected behaviour as per epic SV-8218 and story SV-9149 (Story 10, Estimate and Invoice Specifics) and the Invoice UI Refresh specification version 45, section S10-N1, read on 31 August 2026.</p><p>AUTOMATION: Not available on Build to test Yet - Last checked 8/21/2026</p>",
+  "markers": [
+   "AUTOMATION: Not available on Build to test Yet - Last checked 8/21/2026"
+  ],
+  "provenance": [
+   "This is the expected behaviour as per epic SV-8218 and story SV-9149 (Story 10, Estimate and Invoice Specifics) and the Invoice UI Refresh specification version 45, section S10-N1, read on 31 August 2026."
+  ],
+  "build_sentence": []
+ },
+ "44966": {
+  "id": "44966",
+  "title": "Status table shows Credit Number, Status, Invoice Number correctly",
+  "section_id": 6752,
+  "refs": "SV-9150 (S11-R3)",
+  "atm": 1,
+  "custom_expected": "<p>1. A status table shows three columns labeled exactly \"Credit Number\", \"Status\", and \"Invoice Number\".<br>2. Status shows the credit's current state: one of \"Unapplied\", \"Partially applied\", \"Applied\", \"Refunded\", or \"Voided\".<br>3. Invoice Number shows the originating invoice's full document number (for example \"INV-S-24914\").<br>4. For an account-level credit with no origin invoice, the whole Invoice Number column is hidden.</p><p>---<br>This is the expected behaviour as per epic SV-8218 and story SV-9150 (Story 11, Credit Invoice) and the Invoice UI Refresh specification version 45, section S11-R3, read on 31 August 2026.</p><p>AUTOMATION: Not available on Build to test Yet - Last checked 8/21/2026</p>",
+  "markers": [
+   "AUTOMATION: Not available on Build to test Yet - Last checked 8/21/2026"
+  ],
+  "provenance": [
+   "This is the expected behaviour as per epic SV-8218 and story SV-9150 (Story 11, Credit Invoice) and the Invoice UI Refresh specification version 45, section S11-R3, read on 31 August 2026."
+  ],
+  "build_sentence": []
+ },
+ "44967": {
+  "id": "44967",
+  "title": "Credited items table shows returned parts and money-only lines correctly",
+  "section_id": 6752,
+  "refs": "SV-9150 (S11-R4; S11-R5)",
+  "atm": 1,
+  "custom_expected": "<p>1. The credited items appear in a table with columns labeled exactly \"Description\", \"Quantity\", \"Rate\", \"Restocking Fee\", and \"Total\".<br>2. A returned part shows its actual quantity as a negative number, and its rate.<br>3. A money-only credit line shows \"--\" for Quantity and Rate.<br>4. The Restocking Fee column is always shown, reading \"$0.00\" when there is no fee.<br>5. Totals are negative, formatted with a leading minus (for example \"-$100.00\") - not the parentheses convention used for discounts.<br>6. A money-only line's Description comes from the credit's reason if entered, otherwise the memo text, otherwise \"Refund\".</p><p>---<br>This is the expected behaviour as per epic SV-8218 and story SV-9150 (Story 11, Credit Invoice) and the Invoice UI Refresh specification version 45, sections S11-R4 and S11-R5, read on 31 August 2026.</p><p>AUTOMATION: Not available on Build to test Yet - Last checked 8/21/2026</p>",
+  "markers": [
+   "AUTOMATION: Not available on Build to test Yet - Last checked 8/21/2026"
+  ],
+  "provenance": [
+   "This is the expected behaviour as per epic SV-8218 and story SV-9150 (Story 11, Credit Invoice) and the Invoice UI Refresh specification version 45, sections S11-R4 and S11-R5, read on 31 August 2026."
+  ],
+  "build_sentence": []
+ },
+ "44969": {
+  "id": "44969",
+  "title": "Totals block rows and Balance follow the credit's status",
+  "section_id": 6752,
+  "refs": "SV-9150 (S11-R6; S11-R6a)",
+  "atm": 1,
+  "custom_expected": "<p>1. The totals block shows rows labeled exactly: \"Subtotal\" (sum of item totals, negative), \"Tax\" (one row; negative when tax applies, \"$0.00\" when none), \"Total Credit\" (negative, the document's key figure), \"Payments\", and \"Balance\".<br>2. Unapplied: Payments shows the label with no rows; Balance shows the full credit amount, positive (its open balance).<br>3. Partially applied: Payments shows the label with no rows; Balance shows the open balance, positive (original credit total minus amounts refunded minus amounts applied to invoices).<br>4. Applied: Payments shows the label with no rows; Balance reads $0.00.<br>5. Refunded: one row per refund payment reading \"{date} - {method}\" with the refunded amount (negative); Balance reads $0.00 once fully consumed, otherwise the open balance, positive.<br>6. Voided: Payments shows the label with no rows; Balance reads $0.00.<br>7. On the Credit Invoice, \"Balance\" is the credit's open balance — the original credit total minus amounts refunded minus amounts applied to invoices — shown positive, reading $0.00 once nothing remains or the credit is voided; it does not follow the Invoice's Total-minus-payments formula.<br>8. A credit that is both partially refunded and partially applied takes the \"Partially applied\" status (one of the five states, not a new one), and its refund rows still list in the Payments section.</p><p>---<br>This is the expected behaviour as per epic SV-8218 and story SV-9150 (Story 11, Credit Invoice) and the Invoice UI Refresh specification version 45, sections S11-R6 and S11-R6a, read on 31 August 2026.</p><p>AUTOMATION: Not available on Build to test Yet - Last checked 8/21/2026</p>",
+  "markers": [
+   "AUTOMATION: Not available on Build to test Yet - Last checked 8/21/2026"
+  ],
+  "provenance": [
+   "This is the expected behaviour as per epic SV-8218 and story SV-9150 (Story 11, Credit Invoice) and the Invoice UI Refresh specification version 45, sections S11-R6 and S11-R6a, read on 31 August 2026."
+  ],
+  "build_sentence": []
+ },
+ "45181": {
+  "id": "45181",
+  "title": "Credit Invoice Balance reads $0.00 on a fully applied credit and on a voided credit",
+  "section_id": 6752,
+  "refs": "SV-9150 (S11-R6a)",
+  "atm": 1,
+  "custom_expected": "<p>1. Fully applied: Balance reads $0.00.<br>2. Voided: Balance reads $0.00; items and totals render unchanged; 'Voided' in the status table is the only indicator (S11-R6a; context note).</p><p>---<br>This is the expected behaviour as per epic SV-8218 and story SV-9150 (Story 11, Credit Invoice) and the Invoice UI Refresh specification version 45, section S11-R6a, read on 31 August 2026.</p><p>AUTOMATION: Not available on Build to test Yet - Last checked 8/26/2026</p>",
+  "markers": [
+   "AUTOMATION: Not available on Build to test Yet - Last checked 8/26/2026"
+  ],
+  "provenance": [
+   "This is the expected behaviour as per epic SV-8218 and story SV-9150 (Story 11, Credit Invoice) and the Invoice UI Refresh specification version 45, section S11-R6a, read on 31 August 2026."
+  ],
+  "build_sentence": []
  }
 }

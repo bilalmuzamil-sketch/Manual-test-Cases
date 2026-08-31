@@ -92,6 +92,12 @@ QUOTED = re.compile(r"['\"“”‘’]([A-Z][A-Za-z0-9 /&#\.\-\+%]{1,44})['\"�
 # survives, because the filter only drops a quote whose every occurrence is inside such a sentence.
 EXAMPLE_CUE = re.compile(r'\b(for example|e\.g\.|example|such as|sample)\b', re.I)
 EXCLUSION_CUE = re.compile(r'\b(only exception|except(?:ion)?\b|does not apply|other than)\b', re.I)
+# (c) A NEGATIVE ASSERTION. C44962 expects: 'it is never renamed to "Receipt"; no separate receipt
+#     document exists.' The label is quoted to say it must NOT appear, so demanding it ON SCREEN
+#     inverts the case -- the same mistake as C44904's status pills. A quote inside a negative
+#     sentence is never a label to find.
+NEGATION_CUE = re.compile(r"\b(never|no separate|not renamed|is not|are not|does not|do not|"
+                          r"must not|cannot|hidden|no label|absent|does no)\b", re.I)
 
 
 def sentences(text):
@@ -108,7 +114,8 @@ def screen_labels(all_text):
     """Quoted strings that are genuinely ON-SCREEN LABELS for check 5."""
     keep, dropped = set(), {}
     for sent in sentences(all_text):
-        cue = EXAMPLE_CUE.search(sent) or EXCLUSION_CUE.search(sent)
+        cue = (EXAMPLE_CUE.search(sent) or EXCLUSION_CUE.search(sent)
+               or NEGATION_CUE.search(sent))
         for q in QUOTED.findall(sent):
             if cue:
                 dropped.setdefault(q, sent.strip()[:110])
