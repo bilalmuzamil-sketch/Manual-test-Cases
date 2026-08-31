@@ -26,17 +26,27 @@ const { chromium } = pkg;
 import fs from 'fs';
 
 const DIR = '/home/user/Manual-test-Cases/build/invoice-ui-refresh/build-verify-2026-08-31/markers';
-const DONE = `${DIR}/APPLIED.jsonl`;
-const FAILED = `${DIR}/FAILED.jsonl`;
-const RUNFLAG = '/tmp/invmark/RUNNING';
+// MODE=ready  -> lift the marker to AUTOMATION: READY and require Rule-54 sentence 2 (the 53
+//                build-verified cases).
+// MODE=carry  -> RENDERING FIX ONLY: the existing marker is carried verbatim and NO build
+//                sentence is added, because the case is NOT build-verified (the 56 unreadable
+//                cases, QA lead authorised 2026-08-31). Verification asserts exactly that:
+//                the marker must still equal what the pre-write snapshot held, and a build
+//                sentence appearing would be a FAILURE, not a bonus.
+const MODE = process.env.MODE || 'ready';
+const TAG = MODE === 'ready' ? '' : '-rest';
+const DONE = `${DIR}/APPLIED${TAG}.jsonl`;
+const FAILED = `${DIR}/FAILED${TAG}.jsonl`;
+const RUNFLAG = process.env.RUNFLAG || '/tmp/invmark/RUNNING';
 const C = JSON.parse(fs.readFileSync('/tmp/testrail/creds.json', 'utf8'));
 const U = JSON.parse(fs.readFileSync('/tmp/testrail/ui-creds.json', 'utf8'));
 const HOST = 'https://shopview.testrail.io';
 const API = `${HOST}/index.php?/api/v2`;
 const AUTH = 'Basic ' + Buffer.from(`${C.email}:${C.password}`).toString('base64');
 const port = fs.readFileSync('/tmp/atlassian/bridge-port.txt', 'utf8').trim();
-const data = JSON.parse(fs.readFileSync(`${DIR}/intended-blocks.json`, 'utf8'));
-const snap = JSON.parse(fs.readFileSync(`${DIR}/PRE-markers-snapshot.json`, 'utf8'));
+const data = JSON.parse(fs.readFileSync(`${DIR}/intended-blocks${TAG}.json`, 'utf8'));
+const snap = JSON.parse(fs.readFileSync(MODE === 'ready'
+  ? `${DIR}/PRE-markers-snapshot.json` : `${DIR}/PRE-rest-snapshot.json`, 'utf8'));
 
 const log = (...a) => console.log(new Date().toISOString().slice(11, 19), ...a);
 
@@ -179,18 +189,24 @@ for (const cid of queue) {
     // ---- the marker and the two provenance sentences ----
     const lines = norm(view.custom_expected ? view.custom_expected.text : '').split('\n').filter(l => l.trim());
     const last = lines[lines.length - 1] || '';
-    if (last !== 'AUTOMATION: READY') problems.push(`marker is not "AUTOMATION: READY" and last: ${JSON.stringify(last.slice(0, 70))}`);
+    const wantMarker = MODE === 'ready' ? 'AUTOMATION: READY' : rec.marker_carried;
+    if (last !== wantMarker) problems.push(`marker is not ${JSON.stringify(wantMarker)} and last: ${JSON.stringify(last.slice(0, 70))}`);
     const nmark = lines.filter(l => l.startsWith('AUTOMATION:')).length;
     if (nmark !== 1) problems.push(`AUTOMATION marker count = ${nmark}`);
-    if (/Not available on Build/.test(view.custom_expected.text)) problems.push('the deferred marker text is still present');
+    if (MODE === 'ready' && /Not available on Build/.test(view.custom_expected.text)) problems.push('the deferred marker text is still present');
     // Rule 54: sentence 1 carried byte-for-byte, sentence 2 present, NEVER merged
     const wantS1 = norm(snap[cid].provenance[0].replace(/&amp;/g, '&').replace(/&mdash;/g, '—'));
     const s1 = lines.filter(l => l.startsWith('This is the expected behaviour'));
     const s2 = lines.filter(l => l.startsWith('Last checked against build'));
     if (s1.length !== 1) problems.push(`provenance sentence 1 count = ${s1.length}`);
     else if (norm(s1[0]) !== wantS1) problems.push(`provenance sentence 1 was altered`);
-    if (s2.length !== 1) problems.push(`build sentence count = ${s2.length}`);
-    else if (s2[0] !== 'Last checked against build v26.35.5-8c3cc21 on 8/31/2026.') problems.push(`build sentence wrong: ${JSON.stringify(s2[0])}`);
+    if (MODE === 'ready') {
+      if (s2.length !== 1) problems.push(`build sentence count = ${s2.length}`);
+      else if (s2[0] !== 'Last checked against build v26.35.5-8c3cc21 on 8/31/2026.') problems.push(`build sentence wrong: ${JSON.stringify(s2[0])}`);
+    } else if (s2.length !== 0) {
+      // a rendering-only pass must not invent a build claim on a case that is not build-verified
+      problems.push(`MODE=carry but a build sentence appeared: ${JSON.stringify(s2)}`);
+    }
     if (/as per the build tested on/i.test(view.custom_expected.text)) problems.push('BARRED phrasing "as per the build tested on" present');
     if (problems.length) throw new Error(problems.join(' | '));
 

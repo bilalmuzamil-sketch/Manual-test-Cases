@@ -676,6 +676,23 @@ permission; keep Failed / Retest / Blocked local.
 **We NEVER edit, update, delete, move, or add to a run any case we did not author.** Not to tidy a
 title, not to add `refs`, not to merge an apparent duplicate.
 
+### 5.0-a 🔑 WHO IS WHO ON INVOICE UI REFRESH — CONFIRMED BY THE QA LEAD 2026-08-31
+
+A session on 2026-08-31 was told *"handover those test cases to the Mudassir who is the automation
+engineer"*, which conflicted with the recorded role. **It was raised rather than silently resolved,
+and the QA lead corrected it — verbatim answer: "Layman/Manual QA".** So:
+
+| Person | Role | Consequence |
+|---|---|---|
+| **Mudassir Qamar** (TestRail user **6**) | **Manual QA owner** of Invoice UI Refresh — *not* the automation engineer | His cases are **IN SCOPE** (§5.0 carve-out to Rule 38): source-verify, build-verify, keep tester-ready |
+| **Vladimir Tomovic** (TestRail user **1**) | **the automation engineer** | Still the **Rule 65 tell-Vlad** contact, and still the owner of `custom_atmstatus = 3` |
+
+**⇒ A handover to Mudassir is a handover to a MANUAL tester, so it is the Rule 84 tester-readiness
+gate that applies to it — including skill 04 §4.5, can he actually READ the case on screen.**
+**⇒ Rule 65 is unaffected: an Automated case that changes is still reported to Vlad, never to the
+manual owner.** *(Lesson: a role stated in passing in an instruction is worth one question when it
+contradicts the record — the answer here changed which gate applies to the deliverable.)*
+
 ### 5.0 🔑 THE ONE CARVE-OUT — A CASE BY THE PROJECT'S **MANUAL QA OWNER** IS IN SCOPE, ONCE THE QA LEAD NAMES THEM (added 2026-08-31)
 
 **QA lead, verbatim:** *"If they are created by Mudassir, then treat them as the test cases which you

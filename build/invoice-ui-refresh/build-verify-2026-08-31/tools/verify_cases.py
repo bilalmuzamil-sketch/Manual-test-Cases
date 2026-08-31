@@ -21,7 +21,20 @@ req = json.load(open(f'{DIR}/requirements.json'))
 man = json.load(open(f'{DIR}/documents-manifest.json'))
 fin = json.load(open(f'{DIR}/finance-and-menu.json'))
 import os
-SURF = json.load(open(f'{DIR}/surfaces.json')) if os.path.exists(f'{DIR}/surfaces.json') else {}
+# EVERY captured surface file, not just the first one. The 2026-08-31 authorizer round proved the
+# cost of a partial corpus: 'Approves Work' was reported absent on 4 cases purely because nothing
+# had opened the customer contact record, where the spec says it lives. It is
+# `input_checkbox_is_authorizer` on the Edit Contact dialog -- it was there all along.
+SURF = {}
+for _f in ('surfaces.json', 'surfaces-authorizer.json', 'surfaces-contact.json',
+           'surfaces-contact2.json', 'authorizer-probe.json'):
+    _p = f'{DIR}/{_f}'
+    if os.path.exists(_p):
+        _d = json.load(open(_p))
+        if 'probes' in _d:          # authorizer-probe.json nests its surfaces under 'probes'
+            _d = _d['probes']
+        for _k, _v in _d.items():
+            SURF[f'{_f}:{_k}'] = _v
 
 # ---------- the observed build ----------
 DOC_TEXT = {}
@@ -35,7 +48,7 @@ SURF_TEXT = []
 for _k, _v in SURF.items():
     if isinstance(_v, dict):
         if _v.get('text'): SURF_TEXT.append(_v['text'])
-        for _lk in ('controls', 'items', 'options'):
+        for _lk in ('controls', 'items', 'options', 'fields'):
             for _c in (_v.get(_lk) or []):
                 SURF_TEXT.append((_c.get('t') or '') + ' ' + (_c.get('id') or ''))
 ALL_SURFACE = '\n'.join(SURF_TEXT)
@@ -111,7 +124,22 @@ for cid, case in req.items():
     checks['3_controls'] = 'PASS — ' + ('; '.join(c3) if c3 else 'the case names no control beyond the document itself')
 
     # CHECK 4 — step order
+    # A NAMED, EVIDENCED EXCEPTION LIST, not a loosened regex. Where a step performs an action my
+    # keyword matcher does not recognise but which I ACTUALLY WALKED on the build this run, the
+    # case passes check 4 on that observation -- and the observation is written here so it is
+    # auditable. Loosening NAV_OK instead would silently pass every "change/try/set" step in the
+    # suite, inflating the verified count with steps nobody walked (skill 03 §8.1).
+    WALKED = {
+        '44922': ("Walked 2026-08-31 on v26.35.5-8c3cc21: on PAID work order S2-15522 the "
+                  "select_authorizer control renders with computed pointer-events:none and its "
+                  "picker yields 0 options; on ESTIMATE work order S8218-15017 the same control "
+                  "opens with 2 options ('No authorizer', 'Darren Moore'). Both steps performed, "
+                  "evidence build-verify-2026-08-31/authorizer-probe.json."),
+    }
     unwalkable = [s for s in case['steps'] if not NAV_OK.search(s)]
+    if unwalkable and cid in WALKED:
+        checks['4_step_order'] = f'PASS (walked, with evidence) — {WALKED[cid]}'
+        unwalkable = []
     if unwalkable:
         # a step I could not match to an observed surface is NOT a pass. Letting REVIEW fall
         # through to RUNNABLE would inflate the verified count with cases whose steps were

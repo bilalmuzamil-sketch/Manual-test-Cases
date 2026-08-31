@@ -69,22 +69,55 @@ with open(f'{DIR}/HANDOVER-AUTOMATION-READY-2026-08-31.md', 'w') as f:
             f.write(f"| [C{r['cid']}]({r['link']}) | {r['title']} |\n")
         f.write('\n')
     if notready:
-        f.write('---\n\n## ⚠️ NOT in the handover (marker not confirmed on the live case)\n\n')
-        f.write('| Case | Live marker | Build sentence | Why |\n|---|---|---|---|\n')
-        for r in notready:
-            why = failed.get(r['cid'], {}).get('error', 'not attempted')[:110]
-            f.write(f"| [C{r['cid']}]({r['link']}) | {r['marker']} | {r['sentence2']} | {why} |\n")
-        f.write('\n')
+        held = [r for r in notready if r['atm'] == 3]
+        other = [r for r in notready if r['atm'] != 3]
+        if held:
+            f.write('---\n\n## ✅ Build verified but NOT marked — waiting on your go-ahead\n\n')
+            f.write(f'**{len(held)} case(s) passed every check on the build, but TestRail flags them '
+                    '**Automated**.** Rule 71 means I do not change an Automated case without your '
+                    'explicit go-ahead, and Rule 65 means Vladimir Tomovic gets told when one changes. '
+                    'So they are **verified and untouched** — their markers still read '
+                    '"Not available on Build to test Yet", and they still show raw code on screen '
+                    'because I did not repair them either.\n\n')
+            f.write('| Case | Title | What I observed on the build |\n|---|---|---|\n')
+            for r in sorted(held, key=lambda x: int(x['cid'])):
+                f.write(f"| [C{r['cid']}]({r['link']}) | {r['title']} | passed all five checks |\n")
+            f.write('\n**Say the word and I will mark all of them READY, repair their display, '
+                    'and give you the list to send Vlad.**\n\n')
+        if other:
+            f.write('---\n\n## ⚠️ NOT in the handover (marker not confirmed on the live case)\n\n')
+            f.write('| Case | Live marker | Build sentence | Why |\n|---|---|---|---|\n')
+            for r in other:
+                why = failed.get(r['cid'], {}).get('error', 'not attempted')[:110]
+                f.write(f"| [C{r['cid']}]({r['link']}) | {r['marker']} | {r['sentence2']} | {why} |\n")
+            f.write('\n')
     f.write('---\n\n## Still being worked on — not in this handover\n\n')
     t = ver['tally']
     f.write('| Group | Cases | Plain-English reason |\n|---|---|---|\n')
     f.write(f"| Needs a data state I could not create yet | {t.get('NOT_ESTABLISHED',0)} | "
-            "Includes the Credit Invoice and Parts Sale cases. Some of this is probably not built yet.|\n")
+            "Mostly the Credit Invoice (12) and Parts Sale (7) cases. Some of this is probably not "
+            "built yet — see the Credit Invoice pack and the developer questions.|\n")
     f.write(f"| Quotes a word I could not find on screen | {t.get('LABELS_UNCONFIRMED',0)} | "
             "Mostly invoice states (part-paid, voided, draft) the build does not appear to have.|\n")
     f.write(f"| Steps do an action rather than read the document | {t.get('NEEDS_STEP_WALK',0)} | "
             "These need a person to click through them once.|\n")
     f.write(f"\n**Total: {sum(t.values())} cases in the suite; {len(rows)} ready to automate.**\n")
+    # ---- readability, measured on the served page ----
+    rd = json.load(open(f'{M}/readability-all-119.json'))
+    unread = sorted((c for c, v in rd.items() if not v['readable']), key=int)
+    f.write('\n---\n\n## Display check — can a person actually read these cases?\n\n')
+    f.write(f'**{len(rd) - len(unread)} of {len(rd)} cases in the suite now display correctly.**\n\n')
+    f.write('TestRail decides *per case* whether to show the stored text as formatted text or as raw '
+            'code, and it depends on how the case was last written: through the **API** it shows raw '
+            'code, through the **web editor** it displays properly. Everything in this suite had been '
+            'written by API, so 61 cases were showing testers this:\n\n')
+    f.write('> `<ol><li>You are signed in to ShopView.</li>...</ol>`\n\n')
+    f.write('All of those have now been re-saved through the editor and display properly. The words '
+            'were never wrong — only buried. **No expected behaviour was changed in that repair, and '
+            'no marker was lifted on a case that is not build verified.**\n\n')
+    if unread:
+        f.write(f'**Still showing raw code: {len(unread)} case(s)** — C{", C".join(unread)}. '
+                'These are the Automated ones above; I left them alone under Rule 71.\n')
 
 json.dump({'ready': rows, 'not_ready': notready, 'built_at': datetime.datetime.now(datetime.timezone.utc).isoformat()},
           open(f'{M}/handover.json', 'w'), indent=1, ensure_ascii=False)

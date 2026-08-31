@@ -2218,5 +2218,94 @@
     "text": "1. On screen the document fits within the viewport with no content clipped.\n2. Any element wider than the viewport (for example a wide table) scrolls horizontally within its own container, rather than clipping or forcing the whole page to scroll sideways.\n\n---\nThis is the expected behaviour as per epic SV-8218 and story SV-9151 (Story 12, Document Visual Standard) and the Invoice UI Refresh specification version 45, section S12-R11, and the Design Document, read on 31 August 2026.\nLast checked against build v26.35.5-8c3cc21 on 8/31/2026.\n\nAUTOMATION: READY"
    }
   }
+ },
+ "44915": {
+  "title": "Authorizer field shows the selected authorizer's full name",
+  "atm": 1,
+  "section_id": 6743,
+  "escaping": false,
+  "fields": {
+   "custom_expected": {
+    "blocks": [
+     [
+      "1. The Authorizer field shows the full name of the work order's selected authorizer.",
+      "2. The name matches the selected 'Approves Work' contact on the work order."
+     ],
+     [
+      "---",
+      "This is the expected behaviour as per epic SV-8218 and story SV-9142 (Story 3, Order Reference Fields) and the Invoice UI Refresh specification version 45, section S3-R3, read on 31 August 2026.",
+      "Last checked against build v26.35.5-8c3cc21 on 8/31/2026."
+     ],
+     [
+      "AUTOMATION: READY"
+     ]
+    ],
+    "text": "1. The Authorizer field shows the full name of the work order's selected authorizer.\n2. The name matches the selected 'Approves Work' contact on the work order.\n\n---\nThis is the expected behaviour as per epic SV-8218 and story SV-9142 (Story 3, Order Reference Fields) and the Invoice UI Refresh specification version 45, section S3-R3, read on 31 August 2026.\nLast checked against build v26.35.5-8c3cc21 on 8/31/2026.\n\nAUTOMATION: READY"
+   },
+   "custom_preconds": {
+    "blocks": [
+     [
+      "1. You are signed in to ShopView.",
+      "2. A document exists whose work order has an Authorizer selected (a customer contact with 'Approves Work' enabled)."
+     ]
+    ],
+    "text": "1. You are signed in to ShopView.\n2. A document exists whose work order has an Authorizer selected (a customer contact with 'Approves Work' enabled)."
+   },
+   "custom_steps": {
+    "blocks": [
+     [
+      "1. Generate the Estimate or Invoice.",
+      "2. Look at the Authorizer field in the order reference area."
+     ]
+    ],
+    "text": "1. Generate the Estimate or Invoice.\n2. Look at the Authorizer field in the order reference area."
+   }
+  }
+ },
+ "44943": {
+  "title": "Adjustments group shows rollup Labor/Parts then each work-order-wide row",
+  "atm": 1,
+  "section_id": 6748,
+  "escaping": false,
+  "fields": {
+   "custom_expected": {
+    "blocks": [
+     [
+      "1. Fees and discounts are grouped under a heading labeled exactly \"Adjustments\", which carries no amount of its own.",
+      "2. Under it, in this order: a rollup row labeled \"Labor\" totaling all line-level labor fees and discounts, a rollup row labeled \"Parts\" totaling all line-level parts fees and discounts, then each work-order-wide fee or discount as its own named row in the order it was added.",
+      "3. A \"Labor\" or \"Parts\" rollup row shows only when its total is not zero; a negative rollup shows in parentheses, a positive rollup as a plain amount.",
+      "4. A work-order-wide discount shows in parentheses; a work-order-wide fee shows as a plain amount.",
+      "5. There are intentionally two \"Labor\" rows and two \"Parts\" rows in the summary; the Adjustments pair is distinguished by sitting under the Adjustments heading."
+     ],
+     [
+      "---",
+      "This is the expected behaviour as per epic SV-8218 and story SV-9146 (Story 7, Financial Summary) and the Invoice UI Refresh specification version 45, sections S7-R4 and S7-R5, read on 31 August 2026.",
+      "Last checked against build v26.35.5-8c3cc21 on 8/31/2026."
+     ],
+     [
+      "AUTOMATION: READY"
+     ]
+    ],
+    "text": "1. Fees and discounts are grouped under a heading labeled exactly \"Adjustments\", which carries no amount of its own.\n2. Under it, in this order: a rollup row labeled \"Labor\" totaling all line-level labor fees and discounts, a rollup row labeled \"Parts\" totaling all line-level parts fees and discounts, then each work-order-wide fee or discount as its own named row in the order it was added.\n3. A \"Labor\" or \"Parts\" rollup row shows only when its total is not zero; a negative rollup shows in parentheses, a positive rollup as a plain amount.\n4. A work-order-wide discount shows in parentheses; a work-order-wide fee shows as a plain amount.\n5. There are intentionally two \"Labor\" rows and two \"Parts\" rows in the summary; the Adjustments pair is distinguished by sitting under the Adjustments heading.\n\n---\nThis is the expected behaviour as per epic SV-8218 and story SV-9146 (Story 7, Financial Summary) and the Invoice UI Refresh specification version 45, sections S7-R4 and S7-R5, read on 31 August 2026.\nLast checked against build v26.35.5-8c3cc21 on 8/31/2026.\n\nAUTOMATION: READY"
+   },
+   "custom_preconds": {
+    "blocks": [
+     [
+      "1. You are signed in to ShopView.",
+      "2. A document exists with line-level labor and parts fees/discounts and two or more work-order-wide adjustments added in a known order."
+     ]
+    ],
+    "text": "1. You are signed in to ShopView.\n2. A document exists with line-level labor and parts fees/discounts and two or more work-order-wide adjustments added in a known order."
+   },
+   "custom_steps": {
+    "blocks": [
+     [
+      "1. Generate the document.",
+      "2. Read the Adjustments group in the financial summary, top to bottom."
+     ]
+    ],
+    "text": "1. Generate the document.\n2. Read the Adjustments group in the financial summary, top to bottom."
+   }
+  }
  }
 }

@@ -1,0 +1,772 @@
+# Credit Invoice — every test case we have, with its steps
+
+**Asked for by the QA lead, 31 August 2026.** Read live from TestRail that day.
+
+**30 cases involve a Credit Invoice.** 12 of them are the dedicated Credit Invoice cases; the other 18 are cases in other areas that include the Credit Invoice among the documents they check.
+
+## Where these stand on the build
+
+| Status | Cases |
+|---|---|
+| Cannot run yet — I could not produce a Credit Invoice document on the build | 22 |
+| Build verified — ready to run | 4 |
+| Cannot confirm yet — a word the case quotes was not on any screen I could reach | 3 |
+| Needs a person to click through it once | 1 |
+
+**The honest position on the blocked ones:** I could not create a Credit Invoice document on the QA branch. The "Issue Credit" action in the invoice menu does run, but what it produced was a **part-sale credit**, not a work-order Credit Invoice document — so I have never seen the document these cases describe. That is the one thing standing between most of this list and a verdict. **I do not know yet whether the Credit Invoice document is built at all**, which is why it is a question for the developer rather than a defect.
+
+---
+
+# The dedicated Credit Invoice cases
+
+## [C44964](https://shopview.testrail.io/index.php?/cases/view/44964) — Credit Invoice masthead shows 'Credit: {number}' and 'Issue date', no money
+
+**Area:** Credit Invoice  
+**Status on the build:** Cannot run yet — I could not produce a Credit Invoice document on the build
+
+**Preconditions**
+
+1. You are signed in to ShopView.
+2. You can generate a Credit Invoice (credit number carries the CM- prefix).
+
+**Steps**
+
+1. Generate the Credit Invoice.
+2. Read the masthead.
+
+**Expected result**
+
+1. The masthead shows "Credit: {number}", where the credit number carries the "CM-" prefix (for example "Credit: CM-2202").
+2. The masthead shows "Issue date: {date}".
+3. The masthead shows no money figure and no boxed headline figure.
+
+*Source: This is the expected behaviour as per epic SV-8218 and story SV-9150 (Story 11, Credit Invoice) and the Invoice UI Refresh specification version 45, sections S11-R1 and S1-R6, read on 31 August 2026.*
+
+`AUTOMATION: Not available on Build to test Yet - Last checked 8/21/2026`
+
+## [C44965](https://shopview.testrail.io/index.php?/cases/view/44965) — Customer address block is labeled 'Credit To' on the Credit Invoice
+
+**Area:** Credit Invoice  
+**Status on the build:** Cannot run yet — I could not produce a Credit Invoice document on the build
+
+**Preconditions**
+
+1. You are signed in to ShopView.
+2. You can generate a Credit Invoice for a customer with an address.
+
+**Steps**
+
+1. Generate the Credit Invoice.
+2. Read the customer address block label and its width.
+
+**Expected result**
+
+1. The customer address block is labeled exactly "Credit To" (not "Bill To").
+2. Every other address rule applies to it unchanged (name always shown, address fields hide when empty).
+3. Remit Payment To never appears on the Credit Invoice, so the Credit To block is always full width.
+
+*Source: This is the expected behaviour as per epic SV-8218 and story SV-9150 (Story 11, Credit Invoice) and the Invoice UI Refresh specification version 45, sections S11-R2, S2-R1 and S2-R3, read on 31 August 2026.*
+
+`AUTOMATION: Not available on Build to test Yet - Last checked 8/21/2026`
+
+## [C44966](https://shopview.testrail.io/index.php?/cases/view/44966) — Status table shows Credit Number, Status, Invoice Number correctly
+
+**Area:** Credit Invoice  
+**Status on the build:** Cannot run yet — I could not produce a Credit Invoice document on the build
+
+**Preconditions**
+
+1. You are signed in to ShopView.
+2. You can reach Credit Invoices in different states (Unapplied, Partially applied, Applied, Refunded, Voided), including an account-level credit with no origin invoice.
+
+**Steps**
+
+1. Generate a Credit Invoice tied to an originating invoice; read the status table.
+2. Generate an account-level credit with no origin invoice; read the status table.
+
+**Expected result**
+
+1. A status table shows three columns labeled exactly "Credit Number", "Status", and "Invoice Number".
+2. Status shows the credit's current state: one of "Unapplied", "Partially applied", "Applied", "Refunded", or "Voided".
+3. Invoice Number shows the originating invoice's full document number (for example "INV-S-24914").
+4. For an account-level credit with no origin invoice, the whole Invoice Number column is hidden.
+
+*Source: This is the expected behaviour as per epic SV-8218 and story SV-9150 (Story 11, Credit Invoice) and the Invoice UI Refresh specification version 45, section S11-R3, read on 31 August 2026.*
+
+`AUTOMATION: Not available on Build to test Yet - Last checked 8/21/2026`
+
+## [C44967](https://shopview.testrail.io/index.php?/cases/view/44967) — Credited items table shows returned parts and money-only lines correctly
+
+**Area:** Credit Invoice  
+**Status on the build:** Cannot run yet — I could not produce a Credit Invoice document on the build
+
+**Preconditions**
+
+1. You are signed in to ShopView.
+2. A Credit Invoice exists mixing a returned-part line (with a restocking fee) and a money-only credit line.
+
+**Steps**
+
+1. Generate the Credit Invoice.
+2. Read the credited items table.
+
+**Expected result**
+
+1. The credited items appear in a table with columns labeled exactly "Description", "Quantity", "Rate", "Restocking Fee", and "Total".
+2. A returned part shows its actual quantity as a negative number, and its rate.
+3. A money-only credit line shows "--" for Quantity and Rate.
+4. The Restocking Fee column is always shown, reading "$0.00" when there is no fee.
+5. Totals are negative, formatted with a leading minus (for example "-$100.00") - not the parentheses convention used for discounts.
+6. A money-only line's Description comes from the credit's reason if entered, otherwise the memo text, otherwise "Refund".
+
+*Source: This is the expected behaviour as per epic SV-8218 and story SV-9150 (Story 11, Credit Invoice) and the Invoice UI Refresh specification version 45, sections S11-R4 and S11-R5, read on 31 August 2026.*
+
+`AUTOMATION: Not available on Build to test Yet - Last checked 8/21/2026`
+
+## [C44968](https://shopview.testrail.io/index.php?/cases/view/44968) — Restocking fee reduces a returned-part credit total as specified
+
+**Area:** Credit Invoice  
+**Status on the build:** Cannot run yet — I could not produce a Credit Invoice document on the build
+
+**Preconditions**
+
+1. You are signed in to ShopView.
+2. A Credit Invoice has a returned part: quantity -2 at rate $50.00 with a $10.00 restocking fee.
+
+**Steps**
+
+1. Generate the Credit Invoice.
+2. Read the returned-part line's Total.
+
+**Expected result**
+
+1. The restocking fee reduces the credit: quantity -2 at rate $50.00 with a $10.00 restocking fee produces Total -$90.00.
+2. For a money-only line, Total is the credited amount.
+
+*Source: This is the expected behaviour as per epic SV-8218 and story SV-9150 (Story 11, Credit Invoice) and the Invoice UI Refresh specification version 45, section S11-R5, read on 31 August 2026.*
+
+`AUTOMATION: Not available on Build to test Yet - Last checked 8/21/2026`
+
+## [C44969](https://shopview.testrail.io/index.php?/cases/view/44969) — Totals block rows and Balance follow the credit's status
+
+**Area:** Credit Invoice  
+**Status on the build:** Cannot run yet — I could not produce a Credit Invoice document on the build
+
+**Preconditions**
+
+1. You are signed in to ShopView.
+2. You can reach Credit Invoices in each status: Unapplied, Partially applied, Applied, Refunded (with a refund payment), and Voided.
+
+**Steps**
+
+1. Generate a Credit Invoice in each status.
+2. Read the totals block rows and the Payments/Balance content for each.
+
+**Expected result**
+
+1. The totals block shows rows labeled exactly: "Subtotal" (sum of item totals, negative), "Tax" (one row; negative when tax applies, "$0.00" when none), "Total Credit" (negative, the document's key figure), "Payments", and "Balance".
+2. Unapplied: Payments shows the label with no rows; Balance shows the full credit amount, positive (its open balance).
+3. Partially applied: Payments shows the label with no rows; Balance shows the open balance, positive (original credit total minus amounts refunded minus amounts applied to invoices).
+4. Applied: Payments shows the label with no rows; Balance reads $0.00.
+5. Refunded: one row per refund payment reading "{date} - {method}" with the refunded amount (negative); Balance reads $0.00 once fully consumed, otherwise the open balance, positive.
+6. Voided: Payments shows the label with no rows; Balance reads $0.00.
+7. On the Credit Invoice, "Balance" is the credit's open balance — the original credit total minus amounts refunded minus amounts applied to invoices — shown positive, reading $0.00 once nothing remains or the credit is voided; it does not follow the Invoice's Total-minus-payments formula.
+8. A credit that is both partially refunded and partially applied takes the "Partially applied" status (one of the five states, not a new one), and its refund rows still list in the Payments section.
+
+*Source: This is the expected behaviour as per epic SV-8218 and story SV-9150 (Story 11, Credit Invoice) and the Invoice UI Refresh specification version 45, sections S11-R6 and S11-R6a, read on 31 August 2026.*
+
+`AUTOMATION: Not available on Build to test Yet - Last checked 8/21/2026`
+
+## [C44970](https://shopview.testrail.io/index.php?/cases/view/44970) — Credit Invoice shows the disclaimer and standard signature area
+
+**Area:** Credit Invoice  
+**Status on the build:** Cannot run yet — I could not produce a Credit Invoice document on the build
+
+**Preconditions**
+
+1. You are signed in to ShopView.
+2. You can generate a Credit Invoice for a shop with a configured disclaimer.
+
+**Steps**
+
+1. Generate the Credit Invoice.
+2. Find the disclaimer and the signature area.
+
+**Expected result**
+
+1. The Credit Invoice shows the shop's configured disclaimer.
+2. It shows the standard signature area with the three lines "Customer Signature", "Printed Name", and "Date".
+
+*Source: This is the expected behaviour as per epic SV-8218 and story SV-9150 (Story 11, Credit Invoice) and the Invoice UI Refresh specification version 45, sections S11-R7 and S9-R2, read on 31 August 2026.*
+
+`AUTOMATION: Not available on Build to test Yet - Last checked 8/21/2026`
+
+## [C45179](https://shopview.testrail.io/index.php?/cases/view/45179) — Credit Invoice Balance shows the full open balance on an unapplied credit
+
+**Area:** Credit Invoice  
+**Status on the build:** Cannot run yet — I could not produce a Credit Invoice document on the build
+
+**Preconditions**
+
+1. A fresh unapplied credit, e.g. Total Credit -$200.00
+
+**Steps**
+
+1. Open the Credit Invoice preview
+2. Check Payments and Balance
+
+**Expected result**
+
+1. 'Payments' shows the label with no rows.
+2. 'Balance' reads $200.00, positive - the credit's open balance (net-new, S11-R6a). A flat $0.00 rendering here is a defect.
+
+*Source: This is the expected behaviour as per epic SV-8218 and story SV-9150 (Story 11, Credit Invoice) and the Invoice UI Refresh specification version 45, section S11-R6a, read on 31 August 2026.*
+
+`AUTOMATION: Not available on Build to test Yet - Last checked 8/26/2026`
+
+## [C45180](https://shopview.testrail.io/index.php?/cases/view/45180) — Credit Invoice Balance shows the remaining open balance on a partially applied credit
+
+**Area:** Credit Invoice  
+**Status on the build:** Cannot run yet — I could not produce a Credit Invoice document on the build
+
+**Preconditions**
+
+1. A credit of $200 with $80 applied to an invoice
+
+**Steps**
+
+1. Open the Credit Invoice preview
+
+**Expected result**
+
+1. 'Payments' shows the label with no rows (applications to invoices are not listed).
+2. 'Balance' reads $120.00, positive - the open balance (original minus amounts applied to invoices) (S11-R6a).
+
+*Source: This is the expected behaviour as per epic SV-8218 and story SV-9150 (Story 11, Credit Invoice) and the Invoice UI Refresh specification version 45, section S11-R6a, read on 31 August 2026.*
+
+`AUTOMATION: Not available on Build to test Yet - Last checked 8/26/2026`
+
+## [C45181](https://shopview.testrail.io/index.php?/cases/view/45181) — Credit Invoice Balance reads $0.00 on a fully applied credit and on a voided credit
+
+**Area:** Credit Invoice  
+**Status on the build:** Cannot run yet — I could not produce a Credit Invoice document on the build
+
+**Preconditions**
+
+1. A fully applied credit
+2. Separately, a voided credit
+
+**Steps**
+
+1. Open the fully applied credit preview
+2. Open the voided credit preview
+
+**Expected result**
+
+1. Fully applied: Balance reads $0.00.
+2. Voided: Balance reads $0.00; items and totals render unchanged; 'Voided' in the status table is the only indicator (S11-R6a; context note).
+
+*Source: This is the expected behaviour as per epic SV-8218 and story SV-9150 (Story 11, Credit Invoice) and the Invoice UI Refresh specification version 45, section S11-R6a, read on 31 August 2026.*
+
+`AUTOMATION: Not available on Build to test Yet - Last checked 8/26/2026`
+
+## [C45182](https://shopview.testrail.io/index.php?/cases/view/45182) — Credit Invoice lists refund rows and shows the open balance until the credit is consumed
+
+**Area:** Credit Invoice  
+**Status on the build:** Cannot run yet — I could not produce a Credit Invoice document on the build
+
+**Preconditions**
+
+1. A credit of $200 with a $50 refund issued (partially refunded)
+2. Separately, a credit that is fully refunded
+
+**Steps**
+
+1. Open the partially refunded credit preview
+2. Open the fully refunded credit preview
+
+**Expected result**
+
+1. Refund rows read '{date} - {method}' with negative amounts.
+2. Partially refunded: Balance reads $150.00, positive.
+3. Fully consumed: Balance reads $0.00 (S11-R6a - preserves the shipped SV-7754 rendering; a regression here is Critical).
+
+*Source: This is the expected behaviour as per epic SV-8218 and story SV-9150 (Story 11, Credit Invoice) and the Invoice UI Refresh specification version 45, section S11-R6a, read on 31 August 2026.*
+
+`AUTOMATION: Not available on Build to test Yet - Last checked 8/26/2026`
+
+## [C45183](https://shopview.testrail.io/index.php?/cases/view/45183) — Credit Invoice Balance is correct when a credit is both partially refunded and partially applied
+
+**Area:** Credit Invoice  
+**Status on the build:** Cannot run yet — I could not produce a Credit Invoice document on the build
+
+**Preconditions**
+
+1. A credit of $200 with $50 refunded and $80 applied to an invoice
+
+**Steps**
+
+1. Open the Credit Invoice preview
+
+**Expected result**
+
+1. Balance reads $70.00 - the open balance (original credit total minus amounts refunded minus amounts applied to invoices), shown positive (S11-R6a).
+
+*Source: This is the expected behaviour as per epic SV-8218 and story SV-9150 (Story 11, Credit Invoice) and the Invoice UI Refresh specification version 45, section S11-R6a, read on 31 August 2026.*
+
+`AUTOMATION: Not available on Build to test Yet - Last checked 8/26/2026`
+
+---
+
+# Other cases that also cover the Credit Invoice
+
+## [C44903](https://shopview.testrail.io/index.php?/cases/view/44903) — Document label names the type before the number on each document
+
+**Area:** Masthead and Letterhead  
+**Status on the build:** Cannot run yet — I could not produce a Credit Invoice document on the build
+
+**Preconditions**
+
+1. You are signed in to ShopView.
+2. You can generate an Estimate, an Invoice, and a Credit Invoice for known documents.
+
+**Steps**
+
+1. Generate an Estimate and read its masthead document label.
+2. Generate an Invoice and read its masthead document label.
+3. Generate a Credit Invoice and read its masthead document label.
+
+**Expected result**
+
+1. The Estimate label reads exactly "Estimate: {number}", for example "Estimate: EST-4176".
+2. The Invoice label reads exactly "Invoice: {number}", for example "Invoice: INV-4176".
+3. The Credit Invoice label reads exactly "Credit: {number}", for example "Credit: CM-2202".
+4. In every case the number always includes its type prefix (EST-, INV-, or CM-), and the type word comes before the number.
+
+*Source: This is the expected behaviour as per epic SV-8218 and story SV-9140 (Story 1, Masthead and Letterhead) and the Invoice UI Refresh specification version 45, sections S1-R3 and S1-R4, read on 31 August 2026.*
+
+`AUTOMATION: Not available on Build to test Yet - Last checked 8/21/2026`
+
+## [C44904](https://shopview.testrail.io/index.php?/cases/view/44904) — No status pill appears in the masthead on any document
+
+**Area:** Masthead and Letterhead  
+**Status on the build:** Cannot run yet — I could not produce a Credit Invoice document on the build
+
+**Preconditions**
+
+1. You are signed in to ShopView.
+2. You can generate an Estimate, an Invoice (including a fully paid one), and a Credit Invoice.
+
+**Steps**
+
+1. Generate each document type, including a fully paid Invoice and a Credit Invoice in various states.
+2. Look at the masthead of each.
+
+**Expected result**
+
+1. No status label or pill (for example "PAID", "PAID IN FULL", "DRAFT", "VOIDED") appears anywhere in the masthead of any document.
+2. The only place a status indicator appears is with the content that proves it: the Paid banner's pill (on portal-generated Invoice PDFs) and the Status column in the Credit Invoice's status table.
+
+*Source: This is the expected behaviour as per epic SV-8218 and story SV-9140 (Story 1, Masthead and Letterhead) and the Invoice UI Refresh specification version 45, section S1-R5, read on 31 August 2026.*
+
+`AUTOMATION: Not available on Build to test Yet - Last checked 8/21/2026`
+
+## [C44905](https://shopview.testrail.io/index.php?/cases/view/44905) — No money figure in the masthead; headline figure is the boxed total
+
+**Area:** Masthead and Letterhead  
+**Status on the build:** Cannot run yet — I could not produce a Credit Invoice document on the build
+
+**Preconditions**
+
+1. You are signed in to ShopView.
+2. You can generate an Estimate, an Invoice, and a Credit Invoice that have monetary totals.
+
+**Steps**
+
+1. Generate an Estimate and look at the masthead, then at the end of the totals block.
+2. Generate an Invoice and do the same.
+3. Generate a Credit Invoice and do the same.
+
+**Expected result**
+
+1. No monetary amount appears anywhere in the masthead of any document.
+2. On the Estimate the single headline figure appears once, as the boxed figure at the end of the totals block, labeled "Estimated Total".
+3. On the Invoice the boxed headline figure at the end of the totals block is labeled "Balance".
+4. The Credit Invoice has no boxed headline figure; its masthead carries only "Credit: {number}" and "Issue date: {date}", and its key figure (Total Credit) sits in the totals block.
+
+*Source: This is the expected behaviour as per epic SV-8218 and story SV-9140 (Story 1, Masthead and Letterhead) and the Invoice UI Refresh specification version 45, section S1-R6, read on 31 August 2026.*
+
+`AUTOMATION: Not available on Build to test Yet - Last checked 8/21/2026`
+
+## [C44906](https://shopview.testrail.io/index.php?/cases/view/44906) — Masthead date labels read correctly for each document type
+
+**Area:** Masthead and Letterhead  
+**Status on the build:** Cannot run yet — I could not produce a Credit Invoice document on the build
+
+**Preconditions**
+
+1. You are signed in to ShopView.
+2. You can generate an Estimate, an unpaid Invoice, a fully paid Invoice, and a Credit Invoice.
+
+**Steps**
+
+1. Generate an Estimate and read its masthead date label(s).
+2. Generate an unpaid Invoice and read its masthead date label(s).
+3. Generate a fully paid Invoice and read its masthead date label(s).
+4. Generate a Credit Invoice and read its masthead date label(s).
+
+**Expected result**
+
+1. The Estimate masthead shows "Estimate date: {date}" and no due date.
+2. The unpaid Invoice masthead shows "Invoice date: {date}" and "Due date: {date}".
+3. The fully paid Invoice masthead shows "Invoice date: {date}" and "Paid date: {date}" (Paid date replaces Due date).
+4. The Credit Invoice masthead shows "Issue date: {date}".
+5. Every date reads in the fixed format, for example "Jan 5, 2026".
+
+*Source: This is the expected behaviour as per epic SV-8218 and story SV-9140 (Story 1, Masthead and Letterhead) and the Invoice UI Refresh specification version 45, sections S1-R7 and G-R1, read on 31 August 2026. The paid-date swap detail is in S10-R4 (see the Estimate and Invoice Specifics cases).*
+
+`AUTOMATION: Not available on Build to test Yet - Last checked 8/21/2026`
+
+## [C44947](https://shopview.testrail.io/index.php?/cases/view/44947) — Payment method name resolves per rule (SHOPPAY shows 'Online')
+
+**Area:** Paid Banner, Payments and Balance  
+**Status on the build:** Cannot confirm yet — a word the case quotes was not on any screen I could reach
+
+**Preconditions**
+
+1. You are signed in to ShopView.
+2. An Invoice has a payment with a shop-configured method name, one with an unconfigured code (for example credit_card), and one made online (SHOPPAY).
+
+**Steps**
+
+1. Generate the Invoice.
+2. Read the method name on each payment row.
+
+**Expected result**
+
+1. A payment's method shows the shop-configured payment-method name when configured.
+2. When not configured, it shows the payment code with each underscore replaced by a space (for example credit_card shows as "credit card").
+3. The "SHOPPAY" code shows as "Online".
+
+*Source: This is the expected behaviour as per epic SV-8218 and story SV-9147 (Story 8, Paid Banner, Payments and Balance) and the Invoice UI Refresh specification version 45, section S8-R3, read on 31 August 2026.*
+
+`AUTOMATION: Not available on Build to test Yet - Last checked 8/21/2026`
+
+## [C44948](https://shopview.testrail.io/index.php?/cases/view/44948) — Deposit and applied customer-account credit show as labeled payment rows
+
+**Area:** Paid Banner, Payments and Balance  
+**Status on the build:** Build verified — ready to run
+
+**Preconditions**
+
+1. You are signed in to ShopView.
+2. An Invoice has a deposit applied and an applied customer-account credit (with a CM- number).
+
+**Steps**
+
+1. Generate the Invoice.
+2. Read the deposit row and the applied-credit row in the Payments section.
+
+**Expected result**
+
+1. A deposit shows as a payment row labeled "(Deposit) {date} - {method}", where {date} is the date the deposit was collected.
+2. An applied customer-account credit shows as a payment row labeled "(Credit) {date} - {credit number}", where {credit number} is the full CM-prefixed number and {date} is the date the credit was applied.
+
+*Source: This is the expected behaviour as per epic SV-8218 and story SV-9147 (Story 8, Paid Banner, Payments and Balance) and the Invoice UI Refresh specification version 45, section S8-R4, read on 31 August 2026.*
+
+`AUTOMATION: READY`
+
+## [C44949](https://shopview.testrail.io/index.php?/cases/view/44949) — Excess payment sub-line reads exactly per the credited/ to-be-credited rule
+
+**Area:** Paid Banner, Payments and Balance  
+**Status on the build:** Build verified — ready to run
+
+**Preconditions**
+
+1. You are signed in to ShopView.
+2. An Invoice has a payment or deposit whose amount applied to this invoice is less than its full amount - for example an over-collected deposit, or a regular payment spread across more than one invoice - with one case where the excess became a numbered credit and one where it has not yet.
+
+**Steps**
+
+1. Generate the Invoice.
+2. Read the sub-line beneath the row whose applied amount is less than its full amount (payment or deposit).
+
+**Expected result**
+
+1. A sub-line is shown beneath any payment or deposit whose amount applied to this invoice is less than its full amount - this is not limited to deposits and includes a regular payment spread across more than one invoice. It gates on applied being less than the full amount, never on whether the row is a deposit.
+2. When the excess has become a customer-account credit with a number, the sub-line reads exactly "of {full amount} — {excess} → Credit {credit number}" (for example "of $500.00 — $150.00 → Credit CM-1042").
+3. Otherwise it reads exactly "of {full amount} — {excess} will be credited".
+4. {full amount} is the payment's or deposit's full amount; {excess} is the full amount minus the amount applied to this invoice.
+5. The em dash and the arrow are literal separator characters, not subtraction.
+
+*Source: This is the expected behaviour as per epic SV-8218 and story SV-9147 (Story 8, Paid Banner, Payments and Balance) and the Invoice UI Refresh specification version 45, section S8-R5, read on 31 August 2026.*
+
+`AUTOMATION: READY`
+
+## [C44953](https://shopview.testrail.io/index.php?/cases/view/44953) — $0.00 payment rows hidden; no-payments state shows heading with Balance = Total
+
+**Area:** Paid Banner, Payments and Balance  
+**Status on the build:** Build verified — ready to run
+
+**Preconditions**
+
+1. You are signed in to ShopView.
+2. You can reach an Invoice with a $0.00 payment recorded, and an Invoice with no payments/deposits/credits applied.
+
+**Steps**
+
+1. Generate the Invoice that has a $0.00 payment; check the Payments rows.
+2. Generate the Invoice with nothing applied; read the Payments heading and the Balance.
+
+**Expected result**
+
+1. A payment row whose amount is $0.00 is not shown.
+2. When no payments, deposits or customer-account credits have been applied, the Payments heading shows with no rows and the Balance equals the Total.
+
+*Source: This is the expected behaviour as per epic SV-8218 and story SV-9147 (Story 8, Paid Banner, Payments and Balance) and the Invoice UI Refresh specification version 45, sections S8-R7 and S8-N1, read on 31 August 2026.*
+
+`AUTOMATION: READY`
+
+## [C44955](https://shopview.testrail.io/index.php?/cases/view/44955) — Shop disclaimer shows with no heading, identical on every document
+
+**Area:** Disclaimer, Signature and Footer  
+**Status on the build:** Cannot run yet — I could not produce a Credit Invoice document on the build
+
+**Preconditions**
+
+1. You are signed in to ShopView.
+2. A shop has a configured disclaimer, and you can generate an Estimate, Invoice and Credit Invoice for it.
+
+**Steps**
+
+1. Generate each document type for the shop.
+2. Find the disclaimer text on each.
+
+**Expected result**
+
+1. Each document shows the shop's configured disclaimer text, with no heading above it.
+2. The disclaimer is identical on every document that carries it.
+
+*Source: This is the expected behaviour as per epic SV-8218 and story SV-9148 (Story 9, Disclaimer, Signature and Footer) and the Invoice UI Refresh specification version 45, section S9-R1, read on 31 August 2026.*
+
+`AUTOMATION: Not available on Build to test Yet - Last checked 8/21/2026`
+
+## [C44956](https://shopview.testrail.io/index.php?/cases/view/44956) — Signature area has exactly three labeled lines and no acknowledgment sentence
+
+**Area:** Disclaimer, Signature and Footer  
+**Status on the build:** Cannot run yet — I could not produce a Credit Invoice document on the build
+
+**Preconditions**
+
+1. You are signed in to ShopView.
+2. You can generate an Estimate, Invoice and Credit Invoice.
+
+**Steps**
+
+1. Generate each document type.
+2. Find the signature area on each and read its lines.
+
+**Expected result**
+
+1. The signature area shows three lines labeled exactly "Customer Signature", "Printed Name", and "Date".
+2. The three lines are identical on every document that carries the area.
+3. The signature area contains no authorization or acknowledgment sentence - only the three lines.
+
+*Source: This is the expected behaviour as per epic SV-8218 and story SV-9148 (Story 9, Disclaimer, Signature and Footer) and the Invoice UI Refresh specification version 45, sections S9-R2 and S9-R3, read on 31 August 2026.*
+
+`AUTOMATION: Not available on Build to test Yet - Last checked 8/21/2026`
+
+## [C44962](https://shopview.testrail.io/index.php?/cases/view/44962) — Fully paid Invoice stays an Invoice; 'Paid date' replaces 'Due date'
+
+**Area:** Estimate and Invoice Specifics  
+**Status on the build:** Cannot confirm yet — a word the case quotes was not on any screen I could reach
+
+**Preconditions**
+
+1. You are signed in to ShopView.
+2. You can reach an Invoice that is fully paid (Balance $0.00 with at least one payment/deposit/credit applied), and can reverse a payment on it.
+
+**Steps**
+
+1. Generate the fully paid Invoice; read the document label, the masthead date labels, the Balance, and the Payments.
+2. Reverse a payment so the Balance becomes greater than $0.00; regenerate and read the masthead date labels.
+
+**Expected result**
+
+1. The fully paid Invoice keeps the label "Invoice: {number}" - it is never renamed to "Receipt"; no separate receipt document exists.
+2. It lists its payments and shows a Balance of $0.00.
+3. "Paid date: {date}" replaces "Due date: {date}" in the masthead; the paid date is the most recent date among the applied payment, deposit and credit rows.
+4. If a later change (payment reversal, voided credit, or edit) makes the Balance greater than $0.00, the invoice is no longer fully paid and "Due date: {date}" returns.
+5. A paid date earlier than the invoice date (for example a deposit collected before invoicing) is shown as-is.
+
+*Source: This is the expected behaviour as per epic SV-8218 and story SV-9149 (Story 10, Estimate and Invoice Specifics) and the Invoice UI Refresh specification version 45, section S10-R4, read on 31 August 2026.*
+
+`AUTOMATION: Not available on Build to test Yet - Last checked 8/21/2026`
+
+## [C44971](https://shopview.testrail.io/index.php?/cases/view/44971) — Document layout matches the Design Document structure
+
+**Area:** Document Visual Standard  
+**Status on the build:** Cannot run yet — I could not produce a Credit Invoice document on the build
+
+**Preconditions**
+
+1. You are signed in to ShopView.
+2. You can generate an Estimate, Invoice and Credit Invoice, on screen and as PDF.
+
+**Steps**
+
+1. Generate each document type on screen and as a PDF.
+2. Compare each against the Design Document's structure.
+
+**Expected result**
+
+1. The document layout follows the Design Document exactly: masthead with the shop letterhead left, the shop logo center, and the document block right over a 2px ink rule; a bordered Addresses row; the asset band; the order reference chips; numbered work lines; the "Summary" break bar; a two-column tail with the disclaimer left and the totals right; the boxed headline figure; the three-line signature row; the single-line footer.
+
+*Source: This is the expected behaviour as per epic SV-8218 and story SV-9151 (Story 12, Document Visual Standard) and the Invoice UI Refresh specification version 45, section S12-R1, and the Design Document, read on 31 August 2026.*
+
+`AUTOMATION: Not available on Build to test Yet - Last checked 8/21/2026`
+
+## [C44977](https://shopview.testrail.io/index.php?/cases/view/44977) — Prototype chrome does not appear on any real document
+
+**Area:** Document Visual Standard  
+**Status on the build:** Cannot run yet — I could not produce a Credit Invoice document on the build
+
+**Preconditions**
+
+1. You are signed in to ShopView.
+2. You can generate a real document (not the Design Document prototype).
+
+**Steps**
+
+1. Generate a real Estimate, Invoice or Credit Invoice.
+2. Look for any prototype demo tooling.
+
+**Expected result**
+
+1. The Design Document's control strips (the document and field toggles, the settings menu, the theme controls) do not appear on any real document.
+2. Only the white sheet is the document.
+3. The PDF output carries no drop shadow and no rounded sheet corners (those are screen-prototype presentation only).
+
+*Source: This is the expected behaviour as per epic SV-8218 and story SV-9151 (Story 12, Document Visual Standard) and the Invoice UI Refresh specification version 45, sections S12-R7 and S12-N1, read on 31 August 2026.*
+
+`AUTOMATION: Not available on Build to test Yet - Last checked 8/21/2026`
+
+## [C45168](https://shopview.testrail.io/index.php?/cases/view/45168) — Credit Invoice never shows Remit Payment To and Credit To spans full width
+
+**Area:** Addresses  
+**Status on the build:** Cannot run yet — I could not produce a Credit Invoice document on the build
+
+**Preconditions**
+
+1. Credit invoice for a shop that HAS a remit-to payee configured
+
+**Steps**
+
+1. Open the Credit Invoice preview
+
+**Expected result**
+
+1. No Remit Payment To block appears on the Credit Invoice even though a remit-to payee exists.
+2. The 'Credit To' block spans the full width of the addresses area (S2-R3, Section 3 matrix).
+
+*Source: This is the expected behaviour as per epic SV-8218 and story SV-9141 (Story 2, Addresses) and the Invoice UI Refresh specification version 45, section S2-R3, read on 31 August 2026.*
+
+`AUTOMATION: Not available on Build to test Yet - Last checked 8/26/2026`
+
+## [C45178](https://shopview.testrail.io/index.php?/cases/view/45178) — A zero-total invoice with nothing applied is not treated as fully paid
+
+**Area:** Estimate and Invoice Specifics  
+**Status on the build:** Build verified — ready to run
+
+**Preconditions**
+
+1. An invoice with a $0.00 Total and no payments/deposits/credits applied
+
+**Steps**
+
+1. Open the preview
+
+**Expected result**
+
+1. Shows 'Due date: {date}' (or no due-date line if unset) - NOT 'Paid date'.
+2. Fully paid requires Balance $0.00 AND at least one applied row (Section 6 definition, S10-R4).
+
+*Source: This is the expected behaviour as per epic SV-8218 and story SV-9149 (Story 10, Estimate and Invoice Specifics) and the Invoice UI Refresh specification version 45, section S10-R4, read on 31 August 2026.*
+
+`AUTOMATION: READY`
+
+## [C45184](https://shopview.testrail.io/index.php?/cases/view/45184) — Every date on every document renders in the fixed Jan 5, 2026 format
+
+**Area:** Cross-Cutting and Regression  
+**Status on the build:** Cannot confirm yet — a word the case quotes was not on any screen I could reach
+
+**Preconditions**
+
+1. A US shop and a Canadian shop
+2. Documents with single-digit day dates
+
+**Steps**
+
+1. Open the estimate/invoice/credit previews on both shops
+2. Check every date, including the payment rows
+
+**Expected result**
+
+1. All dates render in the 'Jan 5, 2026' style - abbreviated English month, day of the month without a leading zero, a comma, and the four-digit year.
+2. The format is identical for US and Canadian shops and no shop or user setting changes it (G-R1).
+3. The only exception is the Paid banner's 'Date / Time' field.
+
+*Source: This is the expected behaviour as per epic SV-8218 and the Invoice UI Refresh specification version 45, section G-R1, read on 31 August 2026.*
+
+`AUTOMATION: Not available on Build to test Yet - Last checked 8/26/2026`
+
+## [C45196](https://shopview.testrail.io/index.php?/cases/view/45196) — An invoice paid by mixed cash and customer credit shows the Paid date
+
+**Area:** Cross-Cutting and Regression  
+**Status on the build:** Needs a person to click through it once
+
+**Preconditions**
+
+1. An invoice paid to $0.00 via a cash payment plus an applied customer-account credit combined
+
+**Steps**
+
+1. Apply cash for part of the Total
+2. Apply customer credit for the remainder
+3. Re-open the invoice preview
+
+**Expected result**
+
+1. Balance reads $0.00; 'Paid date: {date}' replaces 'Due date' (the most recent applied row date).
+2. Both rows are listed per S8-R2 / S8-R4 (S10-R4).
+3. History: SV-7846 (OPEN) - mixed payment not marked Paid.
+
+*Source: This is the expected behaviour as per epic SV-8218 and story SV-9149 (Story 10, Estimate and Invoice Specifics) and the Invoice UI Refresh specification version 45, section S10-R4, read on 31 August 2026.*
+
+`AUTOMATION: Not available on Build to test Yet - Last checked 8/26/2026`
+
+## [C45197](https://shopview.testrail.io/index.php?/cases/view/45197) — Credit Invoice renders when its originating invoice has been reversed
+
+**Area:** Cross-Cutting and Regression  
+**Status on the build:** Cannot run yet — I could not produce a Credit Invoice document on the build
+
+**Preconditions**
+
+1. A parts-return credit whose originating invoice has since been reversed
+
+**Steps**
+
+1. Open the Credit Invoice preview
+2. Check the status table and totals
+3. Attempt the void if applicable
+
+**Expected result**
+
+1. The document renders without a 500.
+2. The status table handles the missing/reversed origin invoice gracefully - Invoice Number shows the last known number or the documented column behaviour (S11-R3); no fatal error.
+3. History: SV-7821 void 500s on reversed origin.
+
+*Source: This is the expected behaviour as per epic SV-8218 and story SV-9150 (Story 11, Credit Invoice) and the Invoice UI Refresh specification version 45, section S11-R3, read on 31 August 2026.*
+
+`AUTOMATION: Not available on Build to test Yet - Last checked 8/26/2026`
+

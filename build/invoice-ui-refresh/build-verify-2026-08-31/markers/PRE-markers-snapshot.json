@@ -1005,5 +1005,35 @@
    "This is the expected behaviour as per epic SV-8218 and story SV-9151 (Story 12, Document Visual Standard) and the Invoice UI Refresh specification version 45, section S12-R11, and the Design Document, read on 31 August 2026."
   ],
   "build_sentence": []
+ },
+ "44915": {
+  "id": "44915",
+  "title": "Authorizer field shows the selected authorizer's full name",
+  "section_id": 6743,
+  "refs": "SV-9142 (S3-R3)",
+  "atm": 1,
+  "custom_expected": "<p>1. The Authorizer field shows the full name of the work order's selected authorizer.<br>2. The name matches the selected 'Approves Work' contact on the work order.</p><p>---<br>This is the expected behaviour as per epic SV-8218 and story SV-9142 (Story 3, Order Reference Fields) and the Invoice UI Refresh specification version 45, section S3-R3, read on 31 August 2026.</p><p>AUTOMATION: Not available on Build to test Yet - Last checked 8/21/2026</p>",
+  "markers": [
+   "AUTOMATION: Not available on Build to test Yet - Last checked 8/21/2026"
+  ],
+  "provenance": [
+   "This is the expected behaviour as per epic SV-8218 and story SV-9142 (Story 3, Order Reference Fields) and the Invoice UI Refresh specification version 45, section S3-R3, read on 31 August 2026."
+  ],
+  "build_sentence": []
+ },
+ "44943": {
+  "id": "44943",
+  "title": "Adjustments group shows rollup Labor/Parts then each work-order-wide row",
+  "section_id": 6748,
+  "refs": "SV-9146 (S7-R4; S7-R5)",
+  "atm": 1,
+  "custom_expected": "<p>1. Fees and discounts are grouped under a heading labeled exactly \"Adjustments\", which carries no amount of its own.<br>2. Under it, in this order: a rollup row labeled \"Labor\" totaling all line-level labor fees and discounts, a rollup row labeled \"Parts\" totaling all line-level parts fees and discounts, then each work-order-wide fee or discount as its own named row in the order it was added.<br>3. A \"Labor\" or \"Parts\" rollup row shows only when its total is not zero; a negative rollup shows in parentheses, a positive rollup as a plain amount.<br>4. A work-order-wide discount shows in parentheses; a work-order-wide fee shows as a plain amount.<br>5. There are intentionally two \"Labor\" rows and two \"Parts\" rows in the summary; the Adjustments pair is distinguished by sitting under the Adjustments heading.</p><p>---<br>This is the expected behaviour as per epic SV-8218 and story SV-9146 (Story 7, Financial Summary) and the Invoice UI Refresh specification version 45, sections S7-R4 and S7-R5, read on 31 August 2026.</p><p>AUTOMATION: Not available on Build to test Yet - Last checked 8/21/2026</p>",
+  "markers": [
+   "AUTOMATION: Not available on Build to test Yet - Last checked 8/21/2026"
+  ],
+  "provenance": [
+   "This is the expected behaviour as per epic SV-8218 and story SV-9146 (Story 7, Financial Summary) and the Invoice UI Refresh specification version 45, sections S7-R4 and S7-R5, read on 31 August 2026."
+  ],
+  "build_sentence": []
  }
 }

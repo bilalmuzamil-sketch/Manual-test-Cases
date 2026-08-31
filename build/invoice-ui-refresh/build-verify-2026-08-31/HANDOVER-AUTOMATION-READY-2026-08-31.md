@@ -2,7 +2,7 @@
 
 **Build they were checked on:** `v26.35.5-8c3cc21` (QA branch sv8218) · **checked on:** 31 August 2026
 
-**Ready to automate: 53 test cases.**
+**Ready to automate: 55 test cases.**
 
 Every case in this list has been checked on the build, end to end:
 
@@ -80,11 +80,12 @@ Each one now ends with `AUTOMATION: READY` and records the build it was checked 
 | [C45176](https://shopview.testrail.io/index.php?/cases/view/45176) | Paid date is the most recent applied row and may fall before the invoice date |
 | [C45178](https://shopview.testrail.io/index.php?/cases/view/45178) | A zero-total invoice with nothing applied is not treated as fully paid |
 
-### Financial Summary — 3 case(s)
+### Financial Summary — 4 case(s)
 
 | Case | Title |
 |---|---|
 | [C44941](https://shopview.testrail.io/index.php?/cases/view/44941) | Summary shows gross Labor and Parts rows, and Shop supplies when charged |
+| [C44943](https://shopview.testrail.io/index.php?/cases/view/44943) | Adjustments group shows rollup Labor/Parts then each work-order-wide row |
 | [C44944](https://shopview.testrail.io/index.php?/cases/view/44944) | Summary shows Subtotal, one row per tax, and the grand Total |
 | [C44945](https://shopview.testrail.io/index.php?/cases/view/44945) | Adjustments heading and tax rows hide when nothing applies |
 
@@ -96,11 +97,12 @@ Each one now ends with `AUTOMATION: READY` and records the build it was checked 
 | [C44902](https://shopview.testrail.io/index.php?/cases/view/44902) | Shop logo shows when set; nothing (no placeholder) shows when unset |
 | [C44907](https://shopview.testrail.io/index.php?/cases/view/44907) | Masthead identity fields each hide when empty |
 
-### Order Reference Fields — 2 case(s)
+### Order Reference Fields — 3 case(s)
 
 | Case | Title |
 |---|---|
 | [C44914](https://shopview.testrail.io/index.php?/cases/view/44914) | Terms field always shows, even when no terms are set |
+| [C44915](https://shopview.testrail.io/index.php?/cases/view/44915) | Authorizer field shows the selected authorizer's full name |
 | [C44918](https://shopview.testrail.io/index.php?/cases/view/44918) | Customer PO, Authorizer and Approval Code each hide when empty |
 
 ### Paid Banner, Payments and Balance — 7 case(s)
@@ -130,44 +132,41 @@ Each one now ends with `AUTOMATION: READY` and records the build it was checked 
 
 ---
 
+## ✅ Build verified but NOT marked — waiting on your go-ahead
+
+**4 case(s) passed every check on the build, but TestRail flags them **Automated**.** Rule 71 means I do not change an Automated case without your explicit go-ahead, and Rule 65 means Vladimir Tomovic gets told when one changes. So they are **verified and untouched** — their markers still read "Not available on Build to test Yet", and they still show raw code on screen because I did not repair them either.
+
+| Case | Title | What I observed on the build |
+|---|---|---|
+| [C44919](https://shopview.testrail.io/index.php?/cases/view/44919) | Authorizer is selected in the work order customer contact card | passed all five checks |
+| [C44920](https://shopview.testrail.io/index.php?/cases/view/44920) | Authorizer is optional and can be cleared with 'No authorizer' | passed all five checks |
+| [C44921](https://shopview.testrail.io/index.php?/cases/view/44921) | Authorizer's phone shows below the name when the contact has one | passed all five checks |
+| [C44922](https://shopview.testrail.io/index.php?/cases/view/44922) | Authorizer is locked once the work order is invoiced | passed all five checks |
+
+**Say the word and I will mark all of them READY, repair their display, and give you the list to send Vlad.**
+
+---
+
 ## Still being worked on — not in this handover
 
 | Group | Cases | Plain-English reason |
 |---|---|---|
-| Needs a data state I could not create yet | 31 | Includes the Credit Invoice and Parts Sale cases. Some of this is probably not built yet.|
-| Quotes a word I could not find on screen | 18 | Mostly invoice states (part-paid, voided, draft) the build does not appear to have.|
-| Steps do an action rather than read the document | 17 | These need a person to click through them once.|
+| Needs a data state I could not create yet | 31 | Mostly the Credit Invoice (12) and Parts Sale (7) cases. Some of this is probably not built yet — see the Credit Invoice pack and the developer questions.|
+| Quotes a word I could not find on screen | 13 | Mostly invoice states (part-paid, voided, draft) the build does not appear to have.|
+| Steps do an action rather than read the document | 16 | These need a person to click through them once.|
 
-**Total: 119 cases in the suite; 53 ready to automate.**
+**Total: 119 cases in the suite; 55 ready to automate.**
 
 ---
 
-## ⚠️ A separate problem found during this pass — 61 of the other cases are unreadable on screen
+## Display check — can a person actually read these cases?
 
-**This does not affect the 58 cases above** — those were all fixed as part of this pass and
-now display correctly.
+**114 of 119 cases in the suite now display correctly.**
 
-**What is wrong.** TestRail decides *per case* whether to show the stored text as formatted text or as
-raw code. On 61 of the remaining cases it shows raw code, so anyone opening them reads this:
+TestRail decides *per case* whether to show the stored text as formatted text or as raw code, and it depends on how the case was last written: through the **API** it shows raw code, through the **web editor** it displays properly. Everything in this suite had been written by API, so 61 cases were showing testers this:
 
-> `<ol><li>You are signed in to ShopView.</li><li>...</li></ol>`
+> `<ol><li>You are signed in to ShopView.</li>...</ol>`
 
-instead of a readable numbered list. The words are all correct — they are just buried in code.
+All of those have now been re-saved through the editor and display properly. The words were never wrong — only buried. **No expected behaviour was changed in that repair, and no marker was lifted on a case that is not build verified.**
 
-**What caused it.** Writing a case through the TestRail **API** leaves it in the "show raw code" mode;
-saving it through the TestRail **web editor** switches it to the readable mode. Every case here was
-written through the API. An earlier pass on 2026-08-31 also reformatted 30 of Mudassir's cases from
-plain text into this code form, which made them worse — our render checker passed them because it
-inspects the stored text, not what the screen shows. Both the checker and the process notes have been
-corrected.
-
-**The fix is proven and takes about 20 minutes for all of them** — the same tool that fixed the 58
-cases above (`markers/apply_markers.mjs`), which re-saves each case through the web editor and then
-re-reads the page to confirm it renders. **I have not run it on these yet** because they are not
-build-verified and are the next piece of work; say the word and I will.
-
-- **56 cases** can be repaired straight away.
-- **5 cases are flagged Automated in TestRail** (C44919, C44920, C44921, C44922, C44985) and are **untouched and
-  held** — Rule 71 means I do not change an Automated case without your go-ahead.
-
-Full per-case list: `markers/readability-all-119.json`.
+**Still showing raw code: 5 case(s)** — C44919, C44920, C44921, C44922, C44985. These are the Automated ones above; I left them alone under Rule 71.

@@ -9,10 +9,17 @@ M = f'{DIR}/markers'
 rc = json.load(open(f'{M}/render-containers.json'))
 snap = json.load(open(f'{M}/PRE-markers-snapshot.json'))
 ok, bad = [], []
-for line in open(f'{M}/APPLIED.jsonl'):
-    if line.strip(): ok.append(json.loads(line))
-if os.path.exists(f'{M}/FAILED.jsonl'):
-    for line in open(f'{M}/FAILED.jsonl'):
+# TWO passes ran on 2026-08-31 and the log must cover both:
+#   APPLIED.jsonl      MODE=ready -> marker lifted to READY + Rule-54 sentence 2 (build-verified)
+#   APPLIED-rest.jsonl MODE=carry -> RENDERING FIX ONLY, marker carried verbatim, no build claim
+for f, mode in (('APPLIED.jsonl', 'ready'), ('APPLIED-rest.jsonl', 'carry')):
+    if not os.path.exists(f'{M}/{f}'): continue
+    for line in open(f'{M}/{f}'):
+        if line.strip():
+            j = json.loads(line); j['mode'] = mode; ok.append(j)
+for f in ('FAILED.jsonl', 'FAILED-rest.jsonl'):
+    if not os.path.exists(f'{M}/{f}'): continue
+    for line in open(f'{M}/{f}'):
         if line.strip(): bad.append(json.loads(line))
 
 with open(f'{DIR}/TESTRAIL-EXECUTION-LOG-markers-2026-08-31.md', 'w') as f:
@@ -38,13 +45,15 @@ with open(f'{DIR}/TESTRAIL-EXECUTION-LOG-markers-2026-08-31.md', 'w') as f:
     f.write('|---|---|---|---|---|---|---|\n')
     for r in sorted(ok, key=lambda x: int(x['cid'])):
         cid = str(r['cid'])
-        before = rc[cid]['expected_container']
+        before = (rc.get(cid) or {}).get('expected_container', 'markdown')
         after = r['evidence'].get('custom_expected', {}).get('cls', '?')
         f.write(f"| [C{cid}](https://shopview.testrail.io/index.php?/cases/view/{cid}) "
-                f"| UI edit + save | {len(r['fields'])} | {r.get('http')} | `{before}` → `{after}` "
+                f"| UI edit + save ({r['mode']}) | {len(r['fields'])} | {r.get('http')} | `{before}` → `{after}` "
                 f"| {r['atm']} | rendered text == intended; 0 literal tags; 0 HTML entities; "
-                f"marker `AUTOMATION: READY` last and unique; provenance s1 unaltered; s2 present; "
-                f"atmstatus/section_id/refs unchanged |\n")
+                + (f"marker `AUTOMATION: READY` last and unique; provenance s1 unaltered; s2 present; "
+                   if r['mode'] == 'ready' else
+                   f"marker CARRIED VERBATIM and last; provenance s1 unaltered; NO build sentence added; ")
+                + f"atmstatus/section_id/refs unchanged |\n")
     if bad:
         f.write('\n## Failed / skipped\n\n| C-id | Outcome | Detail |\n|---|---|---|\n')
         for r in bad:

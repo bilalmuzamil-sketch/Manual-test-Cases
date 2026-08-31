@@ -1,5 +1,5 @@
 {
- "verified_at": "2026-08-31T14:29:52.844733+00:00",
+ "verified_at": "2026-08-31T10:05:22.905599+00:00",
  "build_marker": "v26.35.5-8c3cc21",
  "control_can_fire": true,
  "document_kinds_captured": [
@@ -8,30 +8,18 @@
   "invoice-with-declined"
  ],
  "surfaces_searched": [
-  "authorizer-probe.json:editable",
-  "authorizer-probe.json:invoiced",
-  "surfaces-authorizer.json:authorizer-picker",
-  "surfaces-authorizer.json:authorizer-picker-page",
-  "surfaces-authorizer.json:wo-customer-card",
-  "surfaces-contact.json:customercb0bf66d-339",
-  "surfaces-contact.json:customercontacts",
-  "surfaces-contact.json:customers-list",
-  "surfaces-contact2.json:contact-form",
-  "surfaces-contact2.json:contact-form-fields",
-  "surfaces-contact2.json:customer-contacts",
-  "surfaces-contact2.json:customer-page",
-  "surfaces.json:finance-tab",
-  "surfaces.json:invoice-menu",
-  "surfaces.json:invoice-settings",
-  "surfaces.json:invoice-settings-options",
-  "surfaces.json:print-control",
-  "surfaces.json:workorder-lines"
+  "finance-tab",
+  "invoice-menu",
+  "invoice-settings",
+  "invoice-settings-options",
+  "print-control",
+  "workorder-lines"
  ],
  "tally": {
-  "RUNNABLE": 59,
+  "RUNNABLE": 53,
   "NOT_ESTABLISHED": 31,
-  "LABELS_UNCONFIRMED": 13,
-  "NEEDS_STEP_WALK": 16
+  "LABELS_UNCONFIRMED": 18,
+  "NEEDS_STEP_WALK": 17
  },
  "cases": {
   "44901": {
@@ -347,15 +335,17 @@
     "estimate",
     "invoice"
    ],
-   "verdict": "RUNNABLE",
+   "verdict": "LABELS_UNCONFIRMED",
    "checks": {
     "1_precondition": "PASS — estimate, invoice document(s) captured this run",
     "2_navigation": "PASS — /workorders/{id}/finance renders (observed finance)",
     "3_controls": "PASS — the case names no control beyond the document itself",
     "4_step_order": "PASS — all 2 steps are document-inspection steps, order-independent",
-    "5_labels": "PASS — all 1 quoted labels found in the rendered document"
+    "5_labels": "ABSENT_IN_SAMPLE — 1 of 1 not in the captured states: ['Approves Work']"
    },
-   "labels_absent": [],
+   "labels_absent": [
+    "Approves Work"
+   ],
    "n_steps": 2
   },
   "44916": {
@@ -430,15 +420,17 @@
    "needs": [
     "invoice"
    ],
-   "verdict": "RUNNABLE",
+   "verdict": "LABELS_UNCONFIRMED",
    "checks": {
     "1_precondition": "PASS — invoice document(s) captured this run",
     "2_navigation": "PASS — /workorders/{id}/finance renders (observed finance)",
     "3_controls": "PASS — the case names no control beyond the document itself",
     "4_step_order": "PASS — all 3 steps are document-inspection steps, order-independent",
-    "5_labels": "PASS — all 2 quoted labels found in the rendered document"
+    "5_labels": "ABSENT_IN_SAMPLE — 1 of 2 not in the captured states: ['Approves Work']"
    },
-   "labels_absent": [],
+   "labels_absent": [
+    "Approves Work"
+   ],
    "n_steps": 3
   },
   "44920": {
@@ -449,15 +441,18 @@
    "needs": [
     "invoice"
    ],
-   "verdict": "RUNNABLE",
+   "verdict": "LABELS_UNCONFIRMED",
    "checks": {
     "1_precondition": "PASS — invoice document(s) captured this run",
     "2_navigation": "PASS — /workorders/{id}/finance renders (observed finance)",
     "3_controls": "PASS — the case names no control beyond the document itself",
     "4_step_order": "PASS — all 3 steps are document-inspection steps, order-independent",
-    "5_labels": "PASS — all 2 quoted labels found in the rendered document"
+    "5_labels": "ABSENT_IN_SAMPLE — 2 of 2 not in the captured states: ['Approves Work', 'No authorizer']"
    },
-   "labels_absent": [],
+   "labels_absent": [
+    "Approves Work",
+    "No authorizer"
+   ],
    "n_steps": 3
   },
   "44921": {
@@ -468,15 +463,17 @@
    "needs": [
     "invoice"
    ],
-   "verdict": "RUNNABLE",
+   "verdict": "LABELS_UNCONFIRMED",
    "checks": {
     "1_precondition": "PASS — invoice document(s) captured this run",
     "2_navigation": "PASS — /workorders/{id}/finance renders (observed finance)",
     "3_controls": "PASS — the case names no control beyond the document itself",
     "4_step_order": "PASS — all 2 steps are document-inspection steps, order-independent",
-    "5_labels": "PASS — all 1 quoted labels found in the rendered document"
+    "5_labels": "ABSENT_IN_SAMPLE — 1 of 1 not in the captured states: ['Approves Work']"
    },
-   "labels_absent": [],
+   "labels_absent": [
+    "Approves Work"
+   ],
    "n_steps": 2
   },
   "44922": {
@@ -487,12 +484,12 @@
    "needs": [
     "invoice"
    ],
-   "verdict": "RUNNABLE",
+   "verdict": "NEEDS_STEP_WALK",
    "checks": {
     "1_precondition": "PASS — invoice document(s) captured this run",
     "2_navigation": "PASS — /workorders/{id}/finance renders (observed finance)",
     "3_controls": "PASS — the case names no control beyond the document itself",
-    "4_step_order": "PASS — all 2 steps are document-inspection steps, order-independent",
+    "4_step_order": "NEEDS_STEP_WALK — 1 of 2 step(s) name an action not matched to an observed surface: ['Try to change the Authorizer in the customer contact card.']",
     "5_labels": "N/A — the case quotes no on-screen label"
    },
    "labels_absent": [],
@@ -512,9 +509,11 @@
     "2_navigation": "PASS — /workorders/{id}/finance renders (observed finance)",
     "3_controls": "PASS — the case names no control beyond the document itself",
     "4_step_order": "NEEDS_STEP_WALK — 1 of 3 step(s) name an action not matched to an observed surface: ['On the customer\\'s contacts page, create or edit a contact and enable \"Approves Work\".']",
-    "5_labels": "PASS — all 1 quoted labels found in the rendered document"
+    "5_labels": "ABSENT_IN_SAMPLE — 1 of 1 not in the captured states: ['Approves Work']"
    },
-   "labels_absent": [],
+   "labels_absent": [
+    "Approves Work"
+   ],
    "n_steps": 3
   },
   "45169": {
@@ -550,9 +549,11 @@
     "2_navigation": "PASS — /workorders/{id}/finance renders (observed finance)",
     "3_controls": "PASS — the case names no control beyond the document itself",
     "4_step_order": "NEEDS_STEP_WALK — 2 of 2 step(s) name an action not matched to an observed surface: ['POST authorizer_id = contact (a)', 'POST authorizer_id = contact (b)']",
-    "5_labels": "PASS — all 1 quoted labels found in the rendered document"
+    "5_labels": "ABSENT_IN_SAMPLE — 1 of 1 not in the captured states: ['Approves Work']"
    },
-   "labels_absent": [],
+   "labels_absent": [
+    "Approves Work"
+   ],
    "n_steps": 2
   },
   "44924": {
@@ -999,15 +1000,17 @@
    "needs": [
     "invoice"
    ],
-   "verdict": "RUNNABLE",
+   "verdict": "LABELS_UNCONFIRMED",
    "checks": {
     "1_precondition": "PASS — invoice document(s) captured this run",
     "2_navigation": "PASS — /workorders/{id}/finance renders (observed finance)",
     "3_controls": "PASS — the case names no control beyond the document itself",
     "4_step_order": "PASS — all 2 steps are document-inspection steps, order-independent",
-    "5_labels": "PASS — all 3 quoted labels found in the rendered document"
+    "5_labels": "ABSENT_IN_SAMPLE — 1 of 3 not in the captured states: ['Adjustments']"
    },
-   "labels_absent": [],
+   "labels_absent": [
+    "Adjustments"
+   ],
    "n_steps": 2
   },
   "44944": {
@@ -2090,9 +2093,11 @@
     "2_navigation": "PASS — /workorders/{id}/finance renders (observed finance)",
     "3_controls": "PASS — the case names no control beyond the document itself",
     "4_step_order": "PASS — all 3 steps are document-inspection steps, order-independent",
-    "5_labels": "PASS — all 1 quoted labels found in the rendered document"
+    "5_labels": "ABSENT_IN_SAMPLE — 1 of 1 not in the captured states: ['Approves Work']"
    },
-   "labels_absent": [],
+   "labels_absent": [
+    "Approves Work"
+   ],
    "n_steps": 3
   },
   "44986": {
