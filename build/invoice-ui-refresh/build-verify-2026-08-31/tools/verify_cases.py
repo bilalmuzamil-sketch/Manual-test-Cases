@@ -60,12 +60,33 @@ ROUTE_FINANCE = fin.get('finance_tab', {}).get('url', '')
 
 def norm(s): return re.sub(r'\s+', ' ', (s or '')).strip().lower()
 NDOC = norm(ALL_DOC)
+# The Credit Invoice is served ONLY as a PDF, and pypdf's text extraction inserts kerning artefacts
+# inside words -- the captured document literally reads "T ax", "T erritory", "mechanic's lien".
+# So a label test that only does an exact substring match will miss real labels in that document.
+# The fallback is a SPACE-INSENSITIVE compare, applied ONLY after the exact test fails, and it is
+# controlled below like every other detector here. The captured text is never edited to suit the
+# matcher -- that would be doctoring the evidence.
+NDOC_NOSP = re.sub(r'[^a-z0-9$%/#().,:-]', '', NDOC)
+
+def present(label):
+    n = norm(label)
+    if n in NDOC:
+        return True, 'exact'
+    if re.sub(r'[^a-z0-9$%/#().,:-]', '', n) in NDOC_NOSP:
+        return True, 'despaced'
+    return False, 'absent'
 NFIN = norm(FIN_TEXT + ' ' + ' '.join(DOC_IDS) + ' ' + ' '.join(FIN_CONTROLS))
 
 # ---------- controls: the detector must fire both ways before any negative is trusted ----------
-CTRL = [('bill to', True), ('remit payment to', True), ('zz-not-a-label-9f3a', False)]
-ctrl_ok = all((norm(s) in NDOC) == expect for s, expect in CTRL)
-print('CONTROL:', ' | '.join(f"{s!r}={'found' if norm(s) in NDOC else 'absent'}" for s, _ in CTRL),
+# Controls must fire in BOTH directions, and must include a string from the PDF-only credit
+# document so the despaced fallback is proven too -- otherwise the credit corpus could be empty
+# and every credit case would read as a clean "labels present".
+CTRL = [('bill to', True), ('remit payment to', True),      # HTML documents
+        ('Credit To', True), ('RESTOCKING FEE', True),      # the PDF credit document
+        ('Total Credit', True),
+        ('zz-not-a-label-9f3a', False), ('zzz restocking fake', False)]
+ctrl_ok = all(present(s)[0] == expect for s, expect in CTRL)
+print('CONTROL:', ' | '.join(f"{s!r}={present(s)[1]}" for s, _ in CTRL),
       '->', 'CAN FIRE' if ctrl_ok else '*** FAILED ***')
 
 DOC_KINDS = set(DOC_TEXT)
@@ -152,7 +173,7 @@ for cid, case in req.items():
 
     # CHECK 5 — labels
     labels = case['labels_quoted']
-    absent = [l for l in labels if norm(l) not in NDOC]
+    absent = [l for l in labels if not present(l)[0]]
     if not labels:
         checks['5_labels'] = 'N/A — the case quotes no on-screen label'
     elif absent:

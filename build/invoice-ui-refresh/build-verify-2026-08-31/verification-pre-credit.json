@@ -1,14 +1,11 @@
 {
- "verified_at": "2026-08-31T16:34:20.352478+00:00",
+ "verified_at": "2026-08-31T14:29:52.844733+00:00",
  "build_marker": "v26.35.5-8c3cc21",
  "control_can_fire": true,
  "document_kinds_captured": [
-  "credit-invoice",
   "estimate",
   "invoice",
-  "invoice-with-declined",
-  "parts-sale",
-  "parts-sale-estimate"
+  "invoice-with-declined"
  ],
  "surfaces_searched": [
   "authorizer-probe.json:editable",
@@ -31,9 +28,10 @@
   "surfaces.json:workorder-lines"
  ],
  "tally": {
-  "RUNNABLE": 81,
-  "LABELS_UNCONFIRMED": 18,
-  "NEEDS_STEP_WALK": 20
+  "RUNNABLE": 59,
+  "NOT_ESTABLISHED": 31,
+  "LABELS_UNCONFIRMED": 13,
+  "NEEDS_STEP_WALK": 16
  },
  "cases": {
   "44901": {
@@ -83,9 +81,9 @@
     "credit-invoice",
     "estimate"
    ],
-   "verdict": "RUNNABLE",
+   "verdict": "NOT_ESTABLISHED",
    "checks": {
-    "1_precondition": "PASS — credit-invoice, estimate document(s) captured this run",
+    "1_precondition": "NOT_ESTABLISHED — no credit-invoice document captured",
     "2_navigation": "PASS — /workorders/{id}/finance renders (observed finance)",
     "3_controls": "PASS — the case names no control beyond the document itself",
     "4_step_order": "PASS — all 3 steps are document-inspection steps, order-independent",
@@ -103,9 +101,9 @@
     "credit-invoice",
     "estimate"
    ],
-   "verdict": "LABELS_UNCONFIRMED",
+   "verdict": "NOT_ESTABLISHED",
    "checks": {
-    "1_precondition": "PASS — credit-invoice, estimate document(s) captured this run",
+    "1_precondition": "NOT_ESTABLISHED — no credit-invoice document captured",
     "2_navigation": "PASS — /workorders/{id}/finance renders (observed finance)",
     "3_controls": "PASS — the case names no control beyond the document itself",
     "4_step_order": "PASS — all 2 steps are document-inspection steps, order-independent",
@@ -127,9 +125,9 @@
     "credit-invoice",
     "estimate"
    ],
-   "verdict": "RUNNABLE",
+   "verdict": "NOT_ESTABLISHED",
    "checks": {
-    "1_precondition": "PASS — credit-invoice, estimate document(s) captured this run",
+    "1_precondition": "NOT_ESTABLISHED — no credit-invoice document captured",
     "2_navigation": "PASS — /workorders/{id}/finance renders (observed finance)",
     "3_controls": "PASS — the case names no control beyond the document itself",
     "4_step_order": "PASS — all 3 steps are document-inspection steps, order-independent",
@@ -147,9 +145,9 @@
     "credit-invoice",
     "estimate"
    ],
-   "verdict": "RUNNABLE",
+   "verdict": "NOT_ESTABLISHED",
    "checks": {
-    "1_precondition": "PASS — credit-invoice, estimate document(s) captured this run",
+    "1_precondition": "NOT_ESTABLISHED — no credit-invoice document captured",
     "2_navigation": "PASS — /workorders/{id}/finance renders (observed finance)",
     "3_controls": "PASS — the case names no control beyond the document itself",
     "4_step_order": "PASS — all 4 steps are document-inspection steps, order-independent",
@@ -285,15 +283,17 @@
    "needs": [
     "credit-invoice"
    ],
-   "verdict": "RUNNABLE",
+   "verdict": "NOT_ESTABLISHED",
    "checks": {
-    "1_precondition": "PASS — credit-invoice document(s) captured this run",
+    "1_precondition": "NOT_ESTABLISHED — no credit-invoice document captured",
     "2_navigation": "PASS — /workorders/{id}/finance renders (observed finance)",
     "3_controls": "PASS — the case names no control beyond the document itself",
     "4_step_order": "PASS — all 1 steps are document-inspection steps, order-independent",
-    "5_labels": "PASS — all 1 quoted labels found in the rendered document"
+    "5_labels": "ABSENT_IN_SAMPLE — 1 of 1 not in the captured states: ['Credit To']"
    },
-   "labels_absent": [],
+   "labels_absent": [
+    "Credit To"
+   ],
    "n_steps": 1
   },
   "44913": {
@@ -643,9 +643,9 @@
    "needs": [
     "parts-sale"
    ],
-   "verdict": "RUNNABLE",
+   "verdict": "NOT_ESTABLISHED",
    "checks": {
-    "1_precondition": "PASS — parts-sale document(s) captured this run",
+    "1_precondition": "NOT_ESTABLISHED — no parts-sale document captured",
     "2_navigation": "PASS — /workorders/{id}/finance renders (observed finance)",
     "3_controls": "PASS — the case names no control beyond the document itself",
     "4_step_order": "PASS — all 3 steps are document-inspection steps, order-independent",
@@ -1081,9 +1081,10 @@
     "2_navigation": "PASS — /workorders/{id}/finance renders (observed finance)",
     "3_controls": "PASS — the case names no control beyond the document itself",
     "4_step_order": "PASS — all 2 steps are document-inspection steps, order-independent",
-    "5_labels": "ABSENT_IN_SAMPLE — 1 of 2 not in the captured states: ['SHOPPAY']"
+    "5_labels": "ABSENT_IN_SAMPLE — 2 of 2 not in the captured states: ['Online', 'SHOPPAY']"
    },
    "labels_absent": [
+    "Online",
     "SHOPPAY"
    ],
    "n_steps": 2
@@ -1286,9 +1287,9 @@
     "credit-invoice",
     "estimate"
    ],
-   "verdict": "NEEDS_STEP_WALK",
+   "verdict": "NOT_ESTABLISHED",
    "checks": {
-    "1_precondition": "PASS — credit-invoice, estimate document(s) captured this run",
+    "1_precondition": "NOT_ESTABLISHED — no credit-invoice document captured",
     "2_navigation": "PASS — /workorders/{id}/finance renders (observed finance)",
     "3_controls": "PASS — the case names no control beyond the document itself",
     "4_step_order": "NEEDS_STEP_WALK — 1 of 2 step(s) name an action not matched to an observed surface: ['Find the disclaimer text on each.']",
@@ -1306,9 +1307,9 @@
     "credit-invoice",
     "estimate"
    ],
-   "verdict": "RUNNABLE",
+   "verdict": "NOT_ESTABLISHED",
    "checks": {
-    "1_precondition": "PASS — credit-invoice, estimate document(s) captured this run",
+    "1_precondition": "NOT_ESTABLISHED — no credit-invoice document captured",
     "2_navigation": "PASS — /workorders/{id}/finance renders (observed finance)",
     "3_controls": "PASS — the case names no control beyond the document itself",
     "4_step_order": "PASS — all 2 steps are document-inspection steps, order-independent",
@@ -1520,15 +1521,17 @@
    "needs": [
     "credit-invoice"
    ],
-   "verdict": "RUNNABLE",
+   "verdict": "NOT_ESTABLISHED",
    "checks": {
-    "1_precondition": "PASS — credit-invoice document(s) captured this run",
+    "1_precondition": "NOT_ESTABLISHED — no credit-invoice document captured",
     "2_navigation": "PASS — /workorders/{id}/finance renders (observed finance)",
     "3_controls": "PASS — the case names no control beyond the document itself",
     "4_step_order": "PASS — all 2 steps are document-inspection steps, order-independent",
-    "5_labels": "PASS — all 1 quoted labels found in the rendered document"
+    "5_labels": "ABSENT_IN_SAMPLE — 1 of 1 not in the captured states: ['CM-']"
    },
-   "labels_absent": [],
+   "labels_absent": [
+    "CM-"
+   ],
    "n_steps": 2
   },
   "44965": {
@@ -1539,15 +1542,17 @@
    "needs": [
     "credit-invoice"
    ],
-   "verdict": "RUNNABLE",
+   "verdict": "NOT_ESTABLISHED",
    "checks": {
-    "1_precondition": "PASS — credit-invoice document(s) captured this run",
+    "1_precondition": "NOT_ESTABLISHED — no credit-invoice document captured",
     "2_navigation": "PASS — /workorders/{id}/finance renders (observed finance)",
     "3_controls": "PASS — the case names no control beyond the document itself",
     "4_step_order": "PASS — all 2 steps are document-inspection steps, order-independent",
-    "5_labels": "PASS — all 2 quoted labels found in the rendered document"
+    "5_labels": "ABSENT_IN_SAMPLE — 1 of 2 not in the captured states: ['Credit To']"
    },
-   "labels_absent": [],
+   "labels_absent": [
+    "Credit To"
+   ],
    "n_steps": 2
   },
   "44966": {
@@ -1558,18 +1563,22 @@
    "needs": [
     "credit-invoice"
    ],
-   "verdict": "LABELS_UNCONFIRMED",
+   "verdict": "NOT_ESTABLISHED",
    "checks": {
-    "1_precondition": "PASS — credit-invoice document(s) captured this run",
+    "1_precondition": "NOT_ESTABLISHED — no credit-invoice document captured",
     "2_navigation": "PASS — /workorders/{id}/finance renders (observed finance)",
     "3_controls": "PASS — the case names no control beyond the document itself",
     "4_step_order": "PASS — all 2 steps are document-inspection steps, order-independent",
-    "5_labels": "ABSENT_IN_SAMPLE — 4 of 9 not in the captured states: ['INV-S-24914', 'Partially applied', 'Refunded', 'Voided']"
+    "5_labels": "ABSENT_IN_SAMPLE — 8 of 9 not in the captured states: ['Applied', 'Credit Number', 'INV-S-24914', 'Invoice Number']"
    },
    "labels_absent": [
+    "Applied",
+    "Credit Number",
     "INV-S-24914",
+    "Invoice Number",
     "Partially applied",
     "Refunded",
+    "Unapplied",
     "Voided"
    ],
    "n_steps": 2
@@ -1582,16 +1591,17 @@
    "needs": [
     "credit-invoice"
    ],
-   "verdict": "LABELS_UNCONFIRMED",
+   "verdict": "NOT_ESTABLISHED",
    "checks": {
-    "1_precondition": "PASS — credit-invoice document(s) captured this run",
+    "1_precondition": "NOT_ESTABLISHED — no credit-invoice document captured",
     "2_navigation": "PASS — /workorders/{id}/finance renders (observed finance)",
     "3_controls": "PASS — the case names no control beyond the document itself",
     "4_step_order": "PASS — all 2 steps are document-inspection steps, order-independent",
-    "5_labels": "ABSENT_IN_SAMPLE — 1 of 6 not in the captured states: ['Refund']"
+    "5_labels": "ABSENT_IN_SAMPLE — 2 of 6 not in the captured states: ['Refund', 'Restocking Fee']"
    },
    "labels_absent": [
-    "Refund"
+    "Refund",
+    "Restocking Fee"
    ],
    "n_steps": 2
   },
@@ -1603,9 +1613,9 @@
    "needs": [
     "credit-invoice"
    ],
-   "verdict": "RUNNABLE",
+   "verdict": "NOT_ESTABLISHED",
    "checks": {
-    "1_precondition": "PASS — credit-invoice document(s) captured this run",
+    "1_precondition": "NOT_ESTABLISHED — no credit-invoice document captured",
     "2_navigation": "PASS — /workorders/{id}/finance renders (observed finance)",
     "3_controls": "PASS — the case names no control beyond the document itself",
     "4_step_order": "PASS — all 2 steps are document-inspection steps, order-independent",
@@ -1622,16 +1632,17 @@
    "needs": [
     "credit-invoice"
    ],
-   "verdict": "LABELS_UNCONFIRMED",
+   "verdict": "NOT_ESTABLISHED",
    "checks": {
-    "1_precondition": "PASS — credit-invoice document(s) captured this run",
+    "1_precondition": "NOT_ESTABLISHED — no credit-invoice document captured",
     "2_navigation": "PASS — /workorders/{id}/finance renders (observed finance)",
     "3_controls": "PASS — the case names no control beyond the document itself",
     "4_step_order": "PASS — all 2 steps are document-inspection steps, order-independent",
-    "5_labels": "ABSENT_IN_SAMPLE — 1 of 6 not in the captured states: ['Partially applied']"
+    "5_labels": "ABSENT_IN_SAMPLE — 2 of 6 not in the captured states: ['Partially applied', 'Total Credit']"
    },
    "labels_absent": [
-    "Partially applied"
+    "Partially applied",
+    "Total Credit"
    ],
    "n_steps": 2
   },
@@ -1643,9 +1654,9 @@
    "needs": [
     "credit-invoice"
    ],
-   "verdict": "NEEDS_STEP_WALK",
+   "verdict": "NOT_ESTABLISHED",
    "checks": {
-    "1_precondition": "PASS — credit-invoice document(s) captured this run",
+    "1_precondition": "NOT_ESTABLISHED — no credit-invoice document captured",
     "2_navigation": "PASS — /workorders/{id}/finance renders (observed finance)",
     "3_controls": "PASS — the case names no control beyond the document itself",
     "4_step_order": "NEEDS_STEP_WALK — 1 of 2 step(s) name an action not matched to an observed surface: ['Find the disclaimer and the signature area.']",
@@ -1662,9 +1673,9 @@
    "needs": [
     "credit-invoice"
    ],
-   "verdict": "RUNNABLE",
+   "verdict": "NOT_ESTABLISHED",
    "checks": {
-    "1_precondition": "PASS — credit-invoice document(s) captured this run",
+    "1_precondition": "NOT_ESTABLISHED — no credit-invoice document captured",
     "2_navigation": "PASS — /workorders/{id}/finance renders (observed finance)",
     "3_controls": "PASS — the case names no control beyond the document itself",
     "4_step_order": "PASS — all 2 steps are document-inspection steps, order-independent",
@@ -1681,9 +1692,9 @@
    "needs": [
     "credit-invoice"
    ],
-   "verdict": "RUNNABLE",
+   "verdict": "NOT_ESTABLISHED",
    "checks": {
-    "1_precondition": "PASS — credit-invoice document(s) captured this run",
+    "1_precondition": "NOT_ESTABLISHED — no credit-invoice document captured",
     "2_navigation": "PASS — /workorders/{id}/finance renders (observed finance)",
     "3_controls": "PASS — the case names no control beyond the document itself",
     "4_step_order": "PASS — all 1 steps are document-inspection steps, order-independent",
@@ -1700,9 +1711,9 @@
    "needs": [
     "credit-invoice"
    ],
-   "verdict": "LABELS_UNCONFIRMED",
+   "verdict": "NOT_ESTABLISHED",
    "checks": {
-    "1_precondition": "PASS — credit-invoice document(s) captured this run",
+    "1_precondition": "NOT_ESTABLISHED — no credit-invoice document captured",
     "2_navigation": "PASS — /workorders/{id}/finance renders (observed finance)",
     "3_controls": "PASS — the case names no control beyond the document itself",
     "4_step_order": "PASS — all 2 steps are document-inspection steps, order-independent",
@@ -1721,9 +1732,9 @@
    "needs": [
     "credit-invoice"
    ],
-   "verdict": "RUNNABLE",
+   "verdict": "NOT_ESTABLISHED",
    "checks": {
-    "1_precondition": "PASS — credit-invoice document(s) captured this run",
+    "1_precondition": "NOT_ESTABLISHED — no credit-invoice document captured",
     "2_navigation": "PASS — /workorders/{id}/finance renders (observed finance)",
     "3_controls": "PASS — the case names no control beyond the document itself",
     "4_step_order": "PASS — all 2 steps are document-inspection steps, order-independent",
@@ -1740,9 +1751,9 @@
    "needs": [
     "credit-invoice"
    ],
-   "verdict": "RUNNABLE",
+   "verdict": "NOT_ESTABLISHED",
    "checks": {
-    "1_precondition": "PASS — credit-invoice document(s) captured this run",
+    "1_precondition": "NOT_ESTABLISHED — no credit-invoice document captured",
     "2_navigation": "PASS — /workorders/{id}/finance renders (observed finance)",
     "3_controls": "PASS — the case names no control beyond the document itself",
     "4_step_order": "PASS — all 1 steps are document-inspection steps, order-independent",
@@ -1760,9 +1771,9 @@
     "credit-invoice",
     "estimate"
    ],
-   "verdict": "RUNNABLE",
+   "verdict": "NOT_ESTABLISHED",
    "checks": {
-    "1_precondition": "PASS — credit-invoice, estimate document(s) captured this run",
+    "1_precondition": "NOT_ESTABLISHED — no credit-invoice document captured",
     "2_navigation": "PASS — /workorders/{id}/finance renders (observed finance)",
     "3_controls": "PASS — button_download_invoice PRESENT",
     "4_step_order": "PASS — all 2 steps are document-inspection steps, order-independent",
@@ -1875,9 +1886,9 @@
     "credit-invoice",
     "estimate"
    ],
-   "verdict": "RUNNABLE",
+   "verdict": "NOT_ESTABLISHED",
    "checks": {
-    "1_precondition": "PASS — credit-invoice, estimate document(s) captured this run",
+    "1_precondition": "NOT_ESTABLISHED — no credit-invoice document captured",
     "2_navigation": "PASS — /workorders/{id}/finance renders (observed finance)",
     "3_controls": "PASS — the case names no control beyond the document itself",
     "4_step_order": "PASS — all 2 steps are document-inspection steps, order-independent",
@@ -1972,9 +1983,9 @@
     "invoice",
     "parts-sale"
    ],
-   "verdict": "RUNNABLE",
+   "verdict": "NOT_ESTABLISHED",
    "checks": {
-    "1_precondition": "PASS — estimate, invoice, parts-sale document(s) captured this run",
+    "1_precondition": "NOT_ESTABLISHED — no parts-sale document captured",
     "2_navigation": "PASS — /workorders/{id}/finance renders (observed finance)",
     "3_controls": "PASS — the case names no control beyond the document itself",
     "4_step_order": "PASS — all 2 steps are document-inspection steps, order-independent",
@@ -1993,9 +2004,9 @@
     "invoice",
     "parts-sale"
    ],
-   "verdict": "RUNNABLE",
+   "verdict": "NOT_ESTABLISHED",
    "checks": {
-    "1_precondition": "PASS — estimate, invoice, parts-sale document(s) captured this run",
+    "1_precondition": "NOT_ESTABLISHED — no parts-sale document captured",
     "2_navigation": "PASS — /workorders/{id}/finance renders (observed finance)",
     "3_controls": "PASS — the case names no control beyond the document itself",
     "4_step_order": "PASS — all 2 steps are document-inspection steps, order-independent",
@@ -2013,9 +2024,9 @@
     "invoice",
     "parts-sale"
    ],
-   "verdict": "RUNNABLE",
+   "verdict": "NOT_ESTABLISHED",
    "checks": {
-    "1_precondition": "PASS — invoice, parts-sale document(s) captured this run",
+    "1_precondition": "NOT_ESTABLISHED — no parts-sale document captured",
     "2_navigation": "PASS — /workorders/{id}/finance renders (observed finance)",
     "3_controls": "PASS — the case names no control beyond the document itself",
     "4_step_order": "PASS — all 2 steps are document-inspection steps, order-independent",
@@ -2034,9 +2045,9 @@
     "invoice",
     "parts-sale"
    ],
-   "verdict": "RUNNABLE",
+   "verdict": "NOT_ESTABLISHED",
    "checks": {
-    "1_precondition": "PASS — estimate, invoice, parts-sale document(s) captured this run",
+    "1_precondition": "NOT_ESTABLISHED — no parts-sale document captured",
     "2_navigation": "PASS — /workorders/{id}/finance renders (observed finance)",
     "3_controls": "PASS — the case names no control beyond the document itself",
     "4_step_order": "PASS — all 2 steps are document-inspection steps, order-independent",
@@ -2053,9 +2064,9 @@
    "needs": [
     "parts-sale"
    ],
-   "verdict": "RUNNABLE",
+   "verdict": "NOT_ESTABLISHED",
    "checks": {
-    "1_precondition": "PASS — parts-sale document(s) captured this run",
+    "1_precondition": "NOT_ESTABLISHED — no parts-sale document captured",
     "2_navigation": "PASS — /workorders/{id}/finance renders (observed finance)",
     "3_controls": "PASS — the case names no control beyond the document itself",
     "4_step_order": "PASS — all 2 steps are document-inspection steps, order-independent",
@@ -2073,9 +2084,9 @@
     "invoice",
     "parts-sale"
    ],
-   "verdict": "RUNNABLE",
+   "verdict": "NOT_ESTABLISHED",
    "checks": {
-    "1_precondition": "PASS — invoice, parts-sale document(s) captured this run",
+    "1_precondition": "NOT_ESTABLISHED — no parts-sale document captured",
     "2_navigation": "PASS — /workorders/{id}/finance renders (observed finance)",
     "3_controls": "PASS — the case names no control beyond the document itself",
     "4_step_order": "PASS — all 3 steps are document-inspection steps, order-independent",
@@ -2093,9 +2104,9 @@
     "invoice",
     "parts-sale"
    ],
-   "verdict": "RUNNABLE",
+   "verdict": "NOT_ESTABLISHED",
    "checks": {
-    "1_precondition": "PASS — invoice, parts-sale document(s) captured this run",
+    "1_precondition": "NOT_ESTABLISHED — no parts-sale document captured",
     "2_navigation": "PASS — /workorders/{id}/finance renders (observed finance)",
     "3_controls": "PASS — the case names no control beyond the document itself",
     "4_step_order": "PASS — all 2 steps are document-inspection steps, order-independent",
@@ -2249,9 +2260,9 @@
    "needs": [
     "parts-sale"
    ],
-   "verdict": "NEEDS_STEP_WALK",
+   "verdict": "NOT_ESTABLISHED",
    "checks": {
-    "1_precondition": "PASS — parts-sale document(s) captured this run",
+    "1_precondition": "NOT_ESTABLISHED — no parts-sale document captured",
     "2_navigation": "PASS — /workorders/{id}/finance renders (observed finance)",
     "3_controls": "PASS — the case names no control beyond the document itself",
     "4_step_order": "NEEDS_STEP_WALK — 1 of 2 step(s) name an action not matched to an observed surface: ['Verify the Contact/Phone rows and the card actions still work']",
@@ -2384,9 +2395,9 @@
    "needs": [
     "credit-invoice"
    ],
-   "verdict": "NEEDS_STEP_WALK",
+   "verdict": "NOT_ESTABLISHED",
    "checks": {
-    "1_precondition": "PASS — credit-invoice document(s) captured this run",
+    "1_precondition": "NOT_ESTABLISHED — no credit-invoice document captured",
     "2_navigation": "PASS — /workorders/{id}/finance renders (observed finance)",
     "3_controls": "PASS — the case names no control beyond the document itself",
     "4_step_order": "NEEDS_STEP_WALK — 1 of 3 step(s) name an action not matched to an observed surface: ['Attempt the void if applicable']",
