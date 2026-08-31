@@ -998,6 +998,52 @@ with `sv_sso_session` and `cf_clearance` **byte-identical** to the set that was 
   via the API**, and **where a case's body must change and its container is unknown, prefer the UI
   editor.** On 2026-08-26 this damaged **72 cases**.
 
+  **⇒ 🛑 THE UI-LOGIN CREDENTIAL TRAP — IT TURNS THE CONTAINER SCANNER INTO A DETECTOR THAT CANNOT
+  FIRE, AND IT REPORTS A CLEAN BILL OF HEALTH (found 2026-08-31, Invoice UI Refresh).**
+  **`/tmp/testrail/creds.json['password']` holds the TESTRAIL API KEY, not the account password.**
+  The API accepts the key as the Basic-auth password, so every `get_case` works and the file looks
+  correct. But the **web UI login form needs the real account password**, and posting the API key into
+  it **fails silently**: the POST returns HTTP 200, you land back on `/auth/login/`, and every
+  subsequent `index.php?/cases/view/<id>` fetch returns the **24 KB login shell** instead of the case.
+  The container regex then matches **nothing**, and the scan reports **"0 escaping containers"** for
+  every case — i.e. *"all safe, write via the API"* — which is the exact opposite of the truth.
+  On this pass the real split was **48 escaping / 5 fr-view**; the broken scan said **0 / 53**.
+  **⇒ Keep the UI password in a SEPARATE file (`/tmp/testrail/ui-creds.json`, `chmod 600`), and make
+  every UI-session scanner CONTROL ITSELF:** assert the post-login URL is **not** `/auth/login`, assert
+  the fetched page actually contains the case's own title, and classify a case whose container could
+  not be located as **UNKNOWN — never as "safe"**. Working scanner with all three assertions:
+  `build/invoice-ui-refresh/build-verify-2026-08-31/markers/render_scan.py`.
+  *(This is Rule 12 in miniature: "0 problems found" from a probe that cannot fire is not a result.)*
+
+  **⇒ ✅ A UI SAVE FLIPS THE CONTAINER TO `fr-view`; AN API WRITE LEAVES IT ESCAPING (measured
+  2026-08-31).** §J above says repair "needs the web editor" but not *why it sticks*. It sticks because
+  the container flag follows the **write path**, not the content:
+
+  | How the field was last written | Resulting container | Tester sees |
+  |---|---|---|
+  | `add_case` / `update_case` (API) | plain `<div class="markdown">` | **literal `<ol><li><p>` text** |
+  | the TestRail web editor (UI save) | `<div class="markdown fr-view">` | correctly rendered |
+
+  **Evidence, both directions, on one suite:** of the 53 build-verified Invoice cases, the **48 written
+  only ever by the API are all plain `markdown`**, and the **5 that had been repaired through the UI
+  editor earlier the same day are all `fr-view` — 5 of 5**. So the flag is not random and not per-suite:
+  it is a fingerprint of the last write path. **Consequences:** (a) a case authored via the API is
+  *born* showing tags if it stores any HTML, so **API-authored cases should store PLAIN TEXT, never
+  block HTML**; (b) the render repair and any content edit are **ONE operation** — do them in the same
+  UI save rather than writing twice; (c) **`fr-view` is achievable, so "the tester reads tags" is never
+  a permanent state.**
+
+  **⇒ ⚠️ CORRECTION TO THE COLLAPSE CENSUS (2026-08-28 → 2026-08-31): IT MEASURED THE WRONG ARTEFACT.**
+  The census that concluded **"0 genuinely collapsed cases across the 428"** ran `genuine_collapse()`
+  over the **API-stored value**. That answers *"is a newline stranded inside a `<p>`?"* — a real
+  question, and the 0 stands **for that question**. It says **nothing** about whether the tester can
+  read the case, because **escaping is decided by the container, which the stored value does not
+  reveal.** Run on the served page instead, the same corpus's Invoice slice came back **48 of 53
+  unreadable**. **⇒ THERE ARE TWO SEPARATE DEFECTS AND EACH NEEDS ITS OWN PROBE: the bare-`\n`-inside-
+  `<p>` COLLAPSE (read the stored value) and the ESCAPING CONTAINER (read the served view page). A
+  clean bill from one is not a clean bill from the other.** Never report "the suite renders fine"
+  from the stored value alone.
+
   **⇒ THE REPAIR ROUTE, PROVEN (C30197, then the 70-case batch, 2026-08-26).** The UI editor is
   driven with **Playwright**, and Playwright needs the **LOCAL MITM BRIDGE** — chromium **cannot TLS
   through the egress proxy directly** (`net::ERR_CONNECTION_RESET` on every host, `curl` through the

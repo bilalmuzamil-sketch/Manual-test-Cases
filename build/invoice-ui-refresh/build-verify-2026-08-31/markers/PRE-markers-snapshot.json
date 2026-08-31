@@ -1,0 +1,1009 @@
+{
+ "44901": {
+  "id": 44901,
+  "title": "Masthead shows the shop location's full identity details",
+  "section_id": 6741,
+  "atm": 1,
+  "refs": "SV-9140 (S1-R1)",
+  "updated_by": 3,
+  "created_by": 3,
+  "custom_expected": "<ol>\n<li>The masthead shows the shop location's name.</li>\n<li>It shows the shop location's street address, city, state or province, postal code, and phone number.</li>\n<li>All of these identity details read exactly as they are entered for the shop location.</li>\n<hr><p>This is the expected behaviour as per epic SV-8218 and story SV-9140 (Story 1, Masthead and Letterhead) and the Invoice UI Refresh specification version 45, section S1-R1, read on 31 August 2026.</p><p>AUTOMATION: Not available on Build to test Yet - Last checked 8/21/2026</p></ol>\n",
+  "custom_steps": "<ol>\n<li>Open the work order and generate (or preview) its Invoice document.</li>\n<li>Look at the masthead (the header block at the top of the document).</li>\n</ol>\n",
+  "custom_preconds": "<ol>\n<li>You are signed in to ShopView.</li>\n<li>A work order exists whose shop location has a name, street address, city, state or province, postal code, and phone number all set.</li>\n</ol>\n",
+  "markers": [
+   "AUTOMATION: Not available on Build to test Yet - Last checked 8/21/2026"
+  ],
+  "provenance": [
+   "This is the expected behaviour as per epic SV-8218 and story SV-9140 (Story 1, Masthead and Letterhead) and the Invoice UI Refresh specification version 45, section S1-R1, read on 31 August 2026."
+  ],
+  "build_sentence": []
+ },
+ "44902": {
+  "id": 44902,
+  "title": "Shop logo shows when set; nothing (no placeholder) shows when unset",
+  "section_id": 6741,
+  "atm": 1,
+  "refs": "SV-9140 (S1-R2)",
+  "updated_by": 3,
+  "created_by": 3,
+  "custom_expected": "<ol>\n<li>When the shop has a logo set, the masthead shows that logo.</li>\n<li>When the shop has no logo set, the masthead shows no logo at all &mdash; and no placeholder image, box or 'no logo' text appears in its place.</li>\n<hr><p>This is the expected behaviour as per epic SV-8218 and story SV-9140 (Story 1, Masthead and Letterhead) and the Invoice UI Refresh specification version 45, section S1-R2, read on 31 August 2026.</p><p>AUTOMATION: Not available on Build to test Yet - Last checked 8/21/2026</p></ol>\n",
+  "custom_steps": "<ol>\n<li>Generate a document for the shop that HAS a logo set and look at the masthead.</li>\n<li>Generate a document for the shop that has NO logo set and look at the masthead.</li>\n</ol>\n",
+  "custom_preconds": "<ol>\n<li>You are signed in to ShopView.</li>\n<li>You can reach one shop that has a logo set and one shop that has no logo set (or you can add then remove a logo on a test shop).</li>\n</ol>\n",
+  "markers": [
+   "AUTOMATION: Not available on Build to test Yet - Last checked 8/21/2026"
+  ],
+  "provenance": [
+   "This is the expected behaviour as per epic SV-8218 and story SV-9140 (Story 1, Masthead and Letterhead) and the Invoice UI Refresh specification version 45, section S1-R2, read on 31 August 2026."
+  ],
+  "build_sentence": []
+ },
+ "44907": {
+  "id": 44907,
+  "title": "Masthead identity fields each hide when empty",
+  "section_id": 6741,
+  "atm": 1,
+  "refs": "SV-9140 (S1-N1)",
+  "updated_by": 3,
+  "created_by": 3,
+  "custom_expected": "<ol>\n<li>Each missing field among the street address, city, state or province, postal code, and phone number is hidden &mdash; no blank line and no empty label is left where it would have been.</li>\n<li>The fields that do have values still show normally.</li>\n<hr><p>This is the expected behaviour as per epic SV-8218 and story SV-9140 (Story 1, Masthead and Letterhead) and the Invoice UI Refresh specification version 45, section S1-N1, read on 31 August 2026.</p><p>AUTOMATION: Not available on Build to test Yet - Last checked 8/21/2026</p></ol>\n",
+  "custom_steps": "<ol>\n<li>Generate a document for a shop location that is missing one or more masthead identity fields.</li>\n<li>Look at the masthead.</li>\n</ol>\n",
+  "custom_preconds": "<ol>\n<li>You are signed in to ShopView.</li>\n<li>You can reach (or set up) a shop location that is missing one or more of: street address, city, state or province, postal code, phone number.</li>\n</ol>\n",
+  "markers": [
+   "AUTOMATION: Not available on Build to test Yet - Last checked 8/21/2026"
+  ],
+  "provenance": [
+   "This is the expected behaviour as per epic SV-8218 and story SV-9140 (Story 1, Masthead and Letterhead) and the Invoice UI Refresh specification version 45, section S1-N1, read on 31 August 2026."
+  ],
+  "build_sentence": []
+ },
+ "44908": {
+  "id": 44908,
+  "title": "Bill To block shows the customer name and address",
+  "section_id": 6742,
+  "atm": 1,
+  "refs": "SV-9141 (S2-R1)",
+  "updated_by": 3,
+  "created_by": 3,
+  "custom_expected": "<ol>\n<li>A block labeled exactly \"Bill To\" is shown.</li>\n<li>It shows the customer's name &mdash; the company name when the customer has one, otherwise the customer's personal name.</li>\n<li>It shows the customer's street address, city, state or province, and postal code.</li>\n<hr><p>This is the expected behaviour as per epic SV-8218 and story SV-9141 (Story 2, Addresses) and the Invoice UI Refresh specification version 45, section S2-R1, read on 31 August 2026.</p><p>AUTOMATION: Not available on Build to test Yet - Last checked 8/21/2026</p></ol>\n",
+  "custom_steps": "<ol>\n<li>Generate the Estimate or Invoice.</li>\n<li>Look at the addresses area.</li>\n</ol>\n",
+  "custom_preconds": "<ol>\n<li>You are signed in to ShopView.</li>\n<li>A document exists for a customer that has a company name (or personal name) and a full address.</li>\n</ol>\n",
+  "markers": [
+   "AUTOMATION: Not available on Build to test Yet - Last checked 8/21/2026"
+  ],
+  "provenance": [
+   "This is the expected behaviour as per epic SV-8218 and story SV-9141 (Story 2, Addresses) and the Invoice UI Refresh specification version 45, section S2-R1, read on 31 August 2026."
+  ],
+  "build_sentence": []
+ },
+ "44909": {
+  "id": 44909,
+  "title": "Remit Payment To shows when a payee is configured (both mechanisms)",
+  "section_id": 6742,
+  "atm": 1,
+  "refs": "SV-9141 (S2-R2)",
+  "updated_by": 3,
+  "created_by": 3,
+  "custom_expected": "<ol>\n<li>A block labeled exactly \"Remit Payment To\" is shown, holding the payee address.</li>\n<li>The payee resolves from either mechanism: the shop's integrated-billing remit-to, or the location's own remit-to setting.</li>\n<li>The block appears on the Estimate and Invoice (not on the Credit Invoice).</li>\n<hr><p>This is the expected behaviour as per epic SV-8218 and story SV-9141 (Story 2, Addresses) and the Invoice UI Refresh specification version 45, section S2-R2, read on 31 August 2026.</p><p>AUTOMATION: Not available on Build to test Yet - Last checked 8/21/2026</p></ol>\n",
+  "custom_steps": "<ol>\n<li>Generate an Estimate or Invoice where the shop's integrated-billing remit-to is configured; look at the addresses area.</li>\n<li>Generate an Estimate or Invoice where the location's own remit-to setting is configured; look at the addresses area.</li>\n</ol>\n",
+  "custom_preconds": "<ol>\n<li>You are signed in to ShopView.</li>\n<li>You can reach a document whose shop uses integrated-billing remit-to, and another whose location has its own remit-to setting (remit to another location or a custom address).</li>\n</ol>\n",
+  "markers": [
+   "AUTOMATION: Not available on Build to test Yet - Last checked 8/21/2026"
+  ],
+  "provenance": [
+   "This is the expected behaviour as per epic SV-8218 and story SV-9141 (Story 2, Addresses) and the Invoice UI Refresh specification version 45, section S2-R2, read on 31 August 2026."
+  ],
+  "build_sentence": []
+ },
+ "44910": {
+  "id": 44910,
+  "title": "Bill To spans full width when Remit Payment To is absent",
+  "section_id": 6742,
+  "atm": 1,
+  "refs": "SV-9141 (S2-R3)",
+  "updated_by": 3,
+  "created_by": 3,
+  "custom_expected": "<ol>\n<li>When there is no Remit Payment To block, the Bill To block spans the full width of the addresses area (it does not stay at half width).</li>\n<li>When a Remit Payment To block is present, Bill To and Remit Payment To sit side by side.</li>\n<li>On the Credit Invoice, where Remit Payment To never appears, the Credit To block is always full width.</li>\n<hr><p>This is the expected behaviour as per epic SV-8218 and story SV-9141 (Story 2, Addresses) and the Invoice UI Refresh specification version 45, section S2-R3, read on 31 August 2026.</p><p>AUTOMATION: Not available on Build to test Yet - Last checked 8/21/2026</p></ol>\n",
+  "custom_steps": "<ol>\n<li>Generate an Estimate or Invoice with no remit-to payee configured.</li>\n<li>Look at the addresses area and note the width of the Bill To block.</li>\n<li>For comparison, generate a document that does have a remit-to payee.</li>\n</ol>\n",
+  "custom_preconds": "<ol>\n<li>You are signed in to ShopView.</li>\n<li>You can reach a document that has no remit-to payee configured (neither mechanism).</li>\n</ol>\n",
+  "markers": [
+   "AUTOMATION: Not available on Build to test Yet - Last checked 8/21/2026"
+  ],
+  "provenance": [
+   "This is the expected behaviour as per epic SV-8218 and story SV-9141 (Story 2, Addresses) and the Invoice UI Refresh specification version 45, section S2-R3, read on 31 August 2026."
+  ],
+  "build_sentence": []
+ },
+ "44911": {
+  "id": 44911,
+  "title": "Remit Payment To is hidden when no payee is configured",
+  "section_id": 6742,
+  "atm": 1,
+  "refs": "SV-9141 (S2-N2; S2-R2)",
+  "updated_by": 3,
+  "created_by": 3,
+  "custom_expected": "<ol>\n<li>No \"Remit Payment To\" block is shown.</li>\n<li>The shop's own address is NOT printed as a fallback remit-to (this fallback has been removed).</li>\n<hr><p>This is the expected behaviour as per epic SV-8218 and story SV-9141 (Story 2, Addresses) and the Invoice UI Refresh specification version 45, sections S2-N2 and S2-R2, read on 31 August 2026.</p><p>AUTOMATION: Not available on Build to test Yet - Last checked 8/21/2026</p></ol>\n",
+  "custom_steps": "<ol>\n<li>Generate an Estimate or Invoice with no remit-to payee configured.</li>\n<li>Look at the addresses area.</li>\n</ol>\n",
+  "custom_preconds": "<ol>\n<li>You are signed in to ShopView.</li>\n<li>You can reach a document whose shop has neither integrated-billing remit-to nor a location remit-to setting configured.</li>\n</ol>\n",
+  "markers": [
+   "AUTOMATION: Not available on Build to test Yet - Last checked 8/21/2026"
+  ],
+  "provenance": [
+   "This is the expected behaviour as per epic SV-8218 and story SV-9141 (Story 2, Addresses) and the Invoice UI Refresh specification version 45, sections S2-N2 and S2-R2, read on 31 August 2026."
+  ],
+  "build_sentence": []
+ },
+ "44912": {
+  "id": 44912,
+  "title": "Bill To address fields hide when empty; the name line always shows",
+  "section_id": 6742,
+  "atm": 1,
+  "refs": "SV-9141 (S2-N1)",
+  "updated_by": 3,
+  "created_by": 3,
+  "custom_expected": "<ol>\n<li>Each missing field among the street address, city, state or province, and postal code is hidden &mdash; no blank line is left.</li>\n<li>The name line is always shown, even when the address fields are empty.</li>\n<hr><p>This is the expected behaviour as per epic SV-8218 and story SV-9141 (Story 2, Addresses) and the Invoice UI Refresh specification version 45, section S2-N1, read on 31 August 2026.</p><p>AUTOMATION: Not available on Build to test Yet - Last checked 8/21/2026</p></ol>\n",
+  "custom_steps": "<ol>\n<li>Generate an Estimate or Invoice for a customer missing one or more Bill To address fields.</li>\n<li>Look at the Bill To block.</li>\n</ol>\n",
+  "custom_preconds": "<ol>\n<li>You are signed in to ShopView.</li>\n<li>You can reach a document for a customer missing one or more of: street address, city, state or province, postal code.</li>\n</ol>\n",
+  "markers": [
+   "AUTOMATION: Not available on Build to test Yet - Last checked 8/21/2026"
+  ],
+  "provenance": [
+   "This is the expected behaviour as per epic SV-8218 and story SV-9141 (Story 2, Addresses) and the Invoice UI Refresh specification version 45, section S2-N1, read on 31 August 2026."
+  ],
+  "build_sentence": []
+ },
+ "44914": {
+  "id": 44914,
+  "title": "Terms field always shows, even when no terms are set",
+  "section_id": 6743,
+  "atm": 1,
+  "refs": "SV-9142 (S3-R2; S3-N4)",
+  "updated_by": 3,
+  "created_by": 3,
+  "custom_expected": "<ol>\n<li>When terms are set, the Terms field shows the value (for example \"Net 30\").</li>\n<li>When no terms are set, the field still shows: the text reads exactly \"Terms\" with an empty value area &mdash; no colon, and no placeholder text.</li>\n<li>Terms is the one order reference field that always shows (all others hide when empty).</li>\n<hr><p>This is the expected behaviour as per epic SV-8218 and story SV-9142 (Story 3, Order Reference Fields) and the Invoice UI Refresh specification version 45, sections S3-R2 and S3-N4, read on 31 August 2026.</p><p>AUTOMATION: Not available on Build to test Yet - Last checked 8/21/2026</p></ol>\n",
+  "custom_steps": "<ol>\n<li>Generate an Estimate or Invoice whose work order has payment terms set; look at the Terms field.</li>\n<li>Generate one whose work order has no payment terms set; look at the Terms field.</li>\n</ol>\n",
+  "custom_preconds": "<ol>\n<li>You are signed in to ShopView.</li>\n<li>You can reach a document whose work order HAS payment terms and one that has NONE.</li>\n</ol>\n",
+  "markers": [
+   "AUTOMATION: Not available on Build to test Yet - Last checked 8/21/2026"
+  ],
+  "provenance": [
+   "This is the expected behaviour as per epic SV-8218 and story SV-9142 (Story 3, Order Reference Fields) and the Invoice UI Refresh specification version 45, sections S3-R2 and S3-N4, read on 31 August 2026."
+  ],
+  "build_sentence": []
+ },
+ "44918": {
+  "id": 44918,
+  "title": "Customer PO, Authorizer and Approval Code each hide when empty",
+  "section_id": 6743,
+  "atm": 1,
+  "refs": "SV-9142 (S3-N2; S3-N3; S3-N5)",
+  "updated_by": 3,
+  "created_by": 3,
+  "custom_expected": "<ol>\n<li>The Customer PO field is hidden (no label, no empty value).</li>\n<li>The Authorizer field is hidden &mdash; no label and no empty value area; an empty authorizer never prints on any document.</li>\n<li>The Approval Code field is hidden (no label, no empty value area).</li>\n<li>Terms still shows (it is the always-show exception).</li>\n<hr><p>This is the expected behaviour as per epic SV-8218 and story SV-9142 (Story 3, Order Reference Fields) and the Invoice UI Refresh specification version 45, sections S3-N2, S3-N3 and S3-N5, read on 31 August 2026.</p><p>AUTOMATION: Not available on Build to test Yet - Last checked 8/21/2026</p></ol>\n",
+  "custom_steps": "<ol>\n<li>Generate an Estimate or Invoice whose work order is missing Customer PO, Authorizer and approval code.</li>\n<li>Look at the order reference area.</li>\n</ol>\n",
+  "custom_preconds": "<ol>\n<li>You are signed in to ShopView.</li>\n<li>You can reach a document whose work order has no Customer PO, no Authorizer selected, and no approval code.</li>\n</ol>\n",
+  "markers": [
+   "AUTOMATION: Not available on Build to test Yet - Last checked 8/21/2026"
+  ],
+  "provenance": [
+   "This is the expected behaviour as per epic SV-8218 and story SV-9142 (Story 3, Order Reference Fields) and the Invoice UI Refresh specification version 45, sections S3-N2, S3-N3 and S3-N5, read on 31 August 2026."
+  ],
+  "build_sentence": []
+ },
+ "44924": {
+  "id": 44924,
+  "title": "Asset section shows Asset name and VIN / Serial when present",
+  "section_id": 6745,
+  "atm": 1,
+  "refs": "SV-9143 (S4-R1)",
+  "updated_by": 3,
+  "created_by": 3,
+  "custom_expected": "<ol>\n<li>The asset section shows the asset name, labeled exactly \"Asset\".</li>\n<li>When the asset has a VIN, one value labeled exactly \"VIN / Serial\" shows the VIN.</li>\n<li>When the asset has no VIN but has a serial number, the \"VIN / Serial\" value shows the serial number.</li>\n<li>The VIN is preferred when both exist.</li>\n<hr><p>This is the expected behaviour as per epic SV-8218 and story SV-9143 (Story 4, Asset Section) and the Invoice UI Refresh specification version 45, section S4-R1, read on 31 August 2026.</p><p>AUTOMATION: Not available on Build to test Yet - Last checked 8/21/2026</p></ol>\n",
+  "custom_steps": "<ol>\n<li>Generate an Estimate or Invoice whose work order has an asset with a VIN; look at the asset section.</li>\n<li>Generate one whose asset has only a serial number (no VIN); look at the asset section.</li>\n</ol>\n",
+  "custom_preconds": "<ol>\n<li>You are signed in to ShopView.</li>\n<li>A document exists whose work order has an asset attached, and that asset has a VIN (and a separate asset has only a serial number).</li>\n</ol>\n",
+  "markers": [
+   "AUTOMATION: Not available on Build to test Yet - Last checked 8/21/2026"
+  ],
+  "provenance": [
+   "This is the expected behaviour as per epic SV-8218 and story SV-9143 (Story 4, Asset Section) and the Invoice UI Refresh specification version 45, section S4-R1, read on 31 August 2026."
+  ],
+  "build_sentence": []
+ },
+ "44925": {
+  "id": 44925,
+  "title": "Asset section can show Unit, Plate, Mileage and Eng Hrs",
+  "section_id": 6745,
+  "atm": 1,
+  "refs": "SV-9143 (S4-R2)",
+  "updated_by": 3,
+  "created_by": 3,
+  "custom_expected": "<ol>\n<li>The asset section shows fields labeled exactly \"Unit\", \"Plate\", \"Mileage\", and \"Eng Hrs\" with their values.</li>\n<hr><p>This is the expected behaviour as per epic SV-8218 and story SV-9143 (Story 4, Asset Section) and the Invoice UI Refresh specification version 45, section S4-R2, read on 31 August 2026.</p><p>AUTOMATION: Not available on Build to test Yet - Last checked 8/21/2026</p></ol>\n",
+  "custom_steps": "<ol>\n<li>Generate the Estimate or Invoice.</li>\n<li>Look at the asset section.</li>\n</ol>\n",
+  "custom_preconds": "<ol>\n<li>You are signed in to ShopView.</li>\n<li>A document exists whose work order has an asset with Unit, Plate, Mileage and Eng Hrs all set.</li>\n</ol>\n",
+  "markers": [
+   "AUTOMATION: Not available on Build to test Yet - Last checked 8/21/2026"
+  ],
+  "provenance": [
+   "This is the expected behaviour as per epic SV-8218 and story SV-9143 (Story 4, Asset Section) and the Invoice UI Refresh specification version 45, section S4-R2, read on 31 August 2026."
+  ],
+  "build_sentence": []
+ },
+ "44926": {
+  "id": 44926,
+  "title": "Unit, Plate, Mileage and Eng Hrs each hide when empty",
+  "section_id": 6745,
+  "atm": 1,
+  "refs": "SV-9143 (S4-N1)",
+  "updated_by": 3,
+  "created_by": 3,
+  "custom_expected": "<ol>\n<li>Each of Unit, Plate, Mileage and Eng Hrs is hidden when it has no value &mdash; no blank label is left.</li>\n<li>The fields that do have values still show.</li>\n<hr><p>This is the expected behaviour as per epic SV-8218 and story SV-9143 (Story 4, Asset Section) and the Invoice UI Refresh specification version 45, section S4-N1, read on 31 August 2026.</p><p>AUTOMATION: Not available on Build to test Yet - Last checked 8/21/2026</p></ol>\n",
+  "custom_steps": "<ol>\n<li>Generate an Estimate or Invoice whose asset is missing some of these fields.</li>\n<li>Look at the asset section.</li>\n</ol>\n",
+  "custom_preconds": "<ol>\n<li>You are signed in to ShopView.</li>\n<li>A document exists whose asset is missing one or more of Unit, Plate, Mileage, Eng Hrs.</li>\n</ol>\n",
+  "markers": [
+   "AUTOMATION: Not available on Build to test Yet - Last checked 8/21/2026"
+  ],
+  "provenance": [
+   "This is the expected behaviour as per epic SV-8218 and story SV-9143 (Story 4, Asset Section) and the Invoice UI Refresh specification version 45, section S4-N1, read on 31 August 2026."
+  ],
+  "build_sentence": []
+ },
+ "44927": {
+  "id": 44927,
+  "title": "VIN / Serial hides when the asset has neither; Asset name still shows",
+  "section_id": 6745,
+  "atm": 1,
+  "refs": "SV-9143 (S4-N2)",
+  "updated_by": 3,
+  "created_by": 3,
+  "custom_expected": "<ol>\n<li>The \"VIN / Serial\" field is hidden when the asset has neither a VIN nor a serial number.</li>\n<li>The Asset name still shows.</li>\n<hr><p>This is the expected behaviour as per epic SV-8218 and story SV-9143 (Story 4, Asset Section) and the Invoice UI Refresh specification version 45, section S4-N2, read on 31 August 2026.</p><p>AUTOMATION: Not available on Build to test Yet - Last checked 8/21/2026</p></ol>\n",
+  "custom_steps": "<ol>\n<li>Generate the Estimate or Invoice.</li>\n<li>Look at the asset section.</li>\n</ol>\n",
+  "custom_preconds": "<ol>\n<li>You are signed in to ShopView.</li>\n<li>A document exists whose attached asset has no VIN and no serial number.</li>\n</ol>\n",
+  "markers": [
+   "AUTOMATION: Not available on Build to test Yet - Last checked 8/21/2026"
+  ],
+  "provenance": [
+   "This is the expected behaviour as per epic SV-8218 and story SV-9143 (Story 4, Asset Section) and the Invoice UI Refresh specification version 45, section S4-N2, read on 31 August 2026."
+  ],
+  "build_sentence": []
+ },
+ "44929": {
+  "id": 44929,
+  "title": "Work heading is 'Work Summary' on Estimate and 'Work Performed' on Invoice",
+  "section_id": 6746,
+  "atm": 1,
+  "refs": "SV-9144 (S5-R1)",
+  "updated_by": 3,
+  "created_by": 3,
+  "custom_expected": "<ol>\n<li>On the Estimate the work section heading reads exactly \"Work Summary\".</li>\n<li>On the Invoice the same section heading reads exactly \"Work Performed\".</li>\n<hr><p>This is the expected behaviour as per epic SV-8218 and story SV-9144 (Story 5, Work Section) and the Invoice UI Refresh specification version 45, section S5-R1, read on 31 August 2026.</p><p>AUTOMATION: Not available on Build to test Yet - Last checked 8/21/2026</p></ol>\n",
+  "custom_steps": "<ol>\n<li>Generate an Estimate and read the work section heading.</li>\n<li>Generate an Invoice and read the work section heading.</li>\n</ol>\n",
+  "custom_preconds": "<ol>\n<li>You are signed in to ShopView.</li>\n<li>You can generate an Estimate and an Invoice for work orders that have work lines.</li>\n</ol>\n",
+  "markers": [
+   "AUTOMATION: Not available on Build to test Yet - Last checked 8/21/2026"
+  ],
+  "provenance": [
+   "This is the expected behaviour as per epic SV-8218 and story SV-9144 (Story 5, Work Section) and the Invoice UI Refresh specification version 45, section S5-R1, read on 31 August 2026."
+  ],
+  "build_sentence": []
+ },
+ "44930": {
+  "id": 44930,
+  "title": "Work line numbers are sequential and zero-padded to two digits",
+  "section_id": 6746,
+  "atm": 1,
+  "refs": "SV-9144 (S5-R2)",
+  "updated_by": 3,
+  "created_by": 3,
+  "custom_expected": "<ol>\n<li>Line numbers are sequential with no gaps.</li>\n<li>Lines 1 to 99 are zero-padded to two digits: 01, 02 ... 10, 11.</li>\n<li>When the document has 100 or more lines, lines 1-99 still show two digits and lines 100 and above show three digits (100, 101 ...).</li>\n<hr><p>This is the expected behaviour as per epic SV-8218 and story SV-9144 (Story 5, Work Section) and the Invoice UI Refresh specification version 45, section S5-R2, read on 31 August 2026.</p><p>AUTOMATION: Not available on Build to test Yet - Last checked 8/21/2026</p></ol>\n",
+  "custom_steps": "<ol>\n<li>Generate a document for a work order with multiple lines; read the line numbers.</li>\n<li>If available, generate a document for a work order with 100 or more lines; read the line numbers.</li>\n</ol>\n",
+  "custom_preconds": "<ol>\n<li>You are signed in to ShopView.</li>\n<li>You can reach a work order with several work lines, and (ideally) one with 100 or more lines.</li>\n</ol>\n",
+  "markers": [
+   "AUTOMATION: Not available on Build to test Yet - Last checked 8/21/2026"
+  ],
+  "provenance": [
+   "This is the expected behaviour as per epic SV-8218 and story SV-9144 (Story 5, Work Section) and the Invoice UI Refresh specification version 45, section S5-R2, read on 31 August 2026."
+  ],
+  "build_sentence": []
+ },
+ "44931": {
+  "id": 44931,
+  "title": "Each work line shows name, and description and scope-of-work note when present",
+  "section_id": 6746,
+  "atm": 1,
+  "refs": "SV-9144 (S5-R3; S5-R4; S5-R5)",
+  "updated_by": 3,
+  "created_by": 3,
+  "custom_expected": "<ol>\n<li>Each work line shows its name.</li>\n<li>A line shows its description when a description is present.</li>\n<li>A line shows its scope-of-work note when a scope-of-work note is present (shown below the description).</li>\n<li>A line with no description and no scope-of-work note shows just its name (no empty rows).</li>\n<hr><p>This is the expected behaviour as per epic SV-8218 and story SV-9144 (Story 5, Work Section) and the Invoice UI Refresh specification version 45, sections S5-R3, S5-R4 and S5-R5, read on 31 August 2026.</p><p>AUTOMATION: Not available on Build to test Yet - Last checked 8/21/2026</p></ol>\n",
+  "custom_steps": "<ol>\n<li>Generate the document.</li>\n<li>Read the line that has a description and a scope-of-work note.</li>\n<li>Read the line that has a name only.</li>\n</ol>\n",
+  "custom_preconds": "<ol>\n<li>You are signed in to ShopView.</li>\n<li>A work order has a line with a name, a description, and a scope-of-work note; and another line with a name only.</li>\n</ol>\n",
+  "markers": [
+   "AUTOMATION: Not available on Build to test Yet - Last checked 8/21/2026"
+  ],
+  "provenance": [
+   "This is the expected behaviour as per epic SV-8218 and story SV-9144 (Story 5, Work Section) and the Invoice UI Refresh specification version 45, sections S5-R3, S5-R4 and S5-R5, read on 31 August 2026."
+  ],
+  "build_sentence": []
+ },
+ "44932": {
+  "id": 44932,
+  "title": "Labor and Parts entries are labeled exactly 'Labor' and 'Parts'",
+  "section_id": 6746,
+  "atm": 1,
+  "refs": "SV-9144 (S5-R6)",
+  "updated_by": 3,
+  "created_by": 3,
+  "custom_expected": "<ol>\n<li>A labor entry within a line is labeled exactly \"Labor\".</li>\n<li>A parts entry within a line is labeled exactly \"Parts\".</li>\n<hr><p>This is the expected behaviour as per epic SV-8218 and story SV-9144 (Story 5, Work Section) and the Invoice UI Refresh specification version 45, section S5-R6, read on 31 August 2026.</p><p>AUTOMATION: Not available on Build to test Yet - Last checked 8/21/2026</p></ol>\n",
+  "custom_steps": "<ol>\n<li>Generate the document.</li>\n<li>Read the entry labels within a work line.</li>\n</ol>\n",
+  "custom_preconds": "<ol>\n<li>You are signed in to ShopView.</li>\n<li>A work order line has both a labor entry and a parts entry.</li>\n</ol>\n",
+  "markers": [
+   "AUTOMATION: Not available on Build to test Yet - Last checked 8/21/2026"
+  ],
+  "provenance": [
+   "This is the expected behaviour as per epic SV-8218 and story SV-9144 (Story 5, Work Section) and the Invoice UI Refresh specification version 45, section S5-R6, read on 31 August 2026."
+  ],
+  "build_sentence": []
+ },
+ "44933": {
+  "id": 44933,
+  "title": "Invoice Details settings show or hide the per-entry figures",
+  "section_id": 6746,
+  "atm": 1,
+  "refs": "SV-9144 (S5-R7)",
+  "updated_by": 3,
+  "created_by": 3,
+  "custom_expected": "<ol>\n<li>When \"Labor hours\", \"Labor rate\", \"Labor price\", \"Part quantity\", \"Part price\", \"Part number\" and \"Part description\" are on, each per-entry figure, the part number, and the part description show on their labor/part entry.</li>\n<li>Turning a setting off hides its per-entry figure; turning \"Part number\" off hides the part number on every parts entry, and turning \"Part description\" off hides the part description on every parts entry.</li>\n<li>Turning \"Labor price\" off also hides the line footer's \"Labor\" figure; turning \"Part price\" off also hides the line footer's \"Parts\" figure.</li>\n<li>The itemized labor and parts entries themselves are never collapsed or hidden by any setting; \"Line total\" and the financial summary always show their amounts.</li>\n<hr><p>This is the expected behaviour as per epic SV-8218 and story SV-9144 (Story 5, Work Section) and the Invoice UI Refresh specification version 45, section S5-R7, read on 31 August 2026.</p><p>AUTOMATION: Not available on Build to test Yet - Last checked 8/21/2026</p></ol>\n",
+  "custom_steps": "<ol>\n<li>Under Administration &gt; Invoice Details, turn each of \"Labor hours\", \"Labor rate\", \"Labor price\", \"Part quantity\", \"Part price\", \"Part number\" and \"Part description\" on, generate a document, and read a work line.</li>\n<li>Turn each setting off, generate again, and read the same line.</li>\n</ol>\n",
+  "custom_preconds": "<ol>\n<li>You are signed in to ShopView.</li>\n<li>You can change the document settings under Administration &gt; Invoice Details for a shop, and generate a document for that shop.</li>\n</ol>\n",
+  "markers": [
+   "AUTOMATION: Not available on Build to test Yet - Last checked 8/21/2026"
+  ],
+  "provenance": [
+   "This is the expected behaviour as per epic SV-8218 and story SV-9144 (Story 5, Work Section) and the Invoice UI Refresh specification version 45, section S5-R7, read on 31 August 2026."
+  ],
+  "build_sentence": []
+ },
+ "44934": {
+  "id": 44934,
+  "title": "Line-level fee shows as a plain amount; discount shows in parentheses",
+  "section_id": 6746,
+  "atm": 1,
+  "refs": "SV-9144 (S5-R8)",
+  "updated_by": 3,
+  "created_by": 3,
+  "custom_expected": "<ol>\n<li>A fee that applies to a single labor or parts line is shown with that line as a plain amount.</li>\n<li>A discount that applies to a single line is shown with that line in parentheses (the accounting convention for a subtraction).</li>\n<li>The parentheses are required wording, not styling.</li>\n<hr><p>This is the expected behaviour as per epic SV-8218 and story SV-9144 (Story 5, Work Section) and the Invoice UI Refresh specification version 45, section S5-R8, read on 31 August 2026.</p><p>AUTOMATION: Not available on Build to test Yet - Last checked 8/21/2026</p></ol>\n",
+  "custom_steps": "<ol>\n<li>Generate the document.</li>\n<li>Read the line that has a line-level fee.</li>\n<li>Read the line that has a line-level discount.</li>\n</ol>\n",
+  "custom_preconds": "<ol>\n<li>You are signed in to ShopView.</li>\n<li>A work order has a line with a line-level fee and a line with a line-level discount.</li>\n</ol>\n",
+  "markers": [
+   "AUTOMATION: Not available on Build to test Yet - Last checked 8/21/2026"
+  ],
+  "provenance": [
+   "This is the expected behaviour as per epic SV-8218 and story SV-9144 (Story 5, Work Section) and the Invoice UI Refresh specification version 45, section S5-R8, read on 31 August 2026."
+  ],
+  "build_sentence": []
+ },
+ "44935": {
+  "id": 44935,
+  "title": "Line footer shows Labor, Parts and Line total with the divider rule",
+  "section_id": 6746,
+  "atm": 1,
+  "refs": "SV-9144 (S5-R7; S5-R9; S5-R10)",
+  "updated_by": 3,
+  "created_by": 3,
+  "custom_expected": "<ol>\n<li>Each work line has a footer with figures labeled exactly \"Labor\", \"Parts\", and \"Line total\".</li>\n<li>The Labor and Parts figures are that line's own totals after its line-level fees and discounts; \"Line total\" is their sum.</li>\n<li>A \"Labor\" or \"Parts\" footer figure shows only when its summarize setting is on; it is hidden when that setting is off, when its value is $0.00, or when its matching price setting is off (a negative value is shown with its sign).</li>\n<li>The vertical divider before \"Line total\" shows only when at least one Labor or Parts figure is visible; when neither is, \"Line total\" stands alone with no divider.</li>\n<li>\"Line total\" always shows, appears once per line, and shows even when it reads $0.00.</li>\n<hr><p>This is the expected behaviour as per epic SV-8218 and story SV-9144 (Story 5, Work Section) and the Invoice UI Refresh specification version 45, sections S5-R7, S5-R9 and S5-R10, read on 31 August 2026.</p><p>AUTOMATION: Not available on Build to test Yet - Last checked 8/21/2026</p></ol>\n",
+  "custom_steps": "<ol>\n<li>With both summarize settings on, generate a document and read a line footer that has Labor and Parts amounts.</li>\n<li>Turn the summarize settings off and read the footer again.</li>\n<li>Read a footer on a line where neither a Labor nor a Parts figure is visible.</li>\n</ol>\n",
+  "custom_preconds": "<ol>\n<li>You are signed in to ShopView.</li>\n<li>You can set \"Summarize labor total\" and \"Summarize parts total\" under Administration &gt; Invoice Details, and reach lines with and without visible Labor/Parts figures.</li>\n</ol>\n",
+  "markers": [
+   "AUTOMATION: Not available on Build to test Yet - Last checked 8/21/2026"
+  ],
+  "provenance": [
+   "This is the expected behaviour as per epic SV-8218 and story SV-9144 (Story 5, Work Section) and the Invoice UI Refresh specification version 45, sections S5-R7, S5-R9 and S5-R10, read on 31 August 2026."
+  ],
+  "build_sentence": []
+ },
+ "44936": {
+  "id": 44936,
+  "title": "Empty work section shows heading; Summary divider still precedes summary",
+  "section_id": 6746,
+  "atm": 1,
+  "refs": "SV-9144 (S5-N1)",
+  "updated_by": 3,
+  "created_by": 3,
+  "custom_expected": "<ol>\n<li>The work section shows its heading with no lines beneath it.</li>\n<li>The \"Summary\" divider still appears and precedes the financial summary.</li>\n<hr><p>This is the expected behaviour as per epic SV-8218 and story SV-9144 (Story 5, Work Section) and the Invoice UI Refresh specification version 45, section S5-N1, read on 31 August 2026.</p><p>AUTOMATION: Not available on Build to test Yet - Last checked 8/21/2026</p></ol>\n",
+  "custom_steps": "<ol>\n<li>Generate the document for a work order with no work lines.</li>\n<li>Look at the work section and what follows it.</li>\n</ol>\n",
+  "custom_preconds": "<ol>\n<li>You are signed in to ShopView.</li>\n<li>You can reach a document whose work order has no work lines.</li>\n</ol>\n",
+  "markers": [
+   "AUTOMATION: Not available on Build to test Yet - Last checked 8/21/2026"
+  ],
+  "provenance": [
+   "This is the expected behaviour as per epic SV-8218 and story SV-9144 (Story 5, Work Section) and the Invoice UI Refresh specification version 45, section S5-N1, read on 31 August 2026."
+  ],
+  "build_sentence": []
+ },
+ "44941": {
+  "id": 44941,
+  "title": "Summary shows gross Labor and Parts rows, and Shop supplies when charged",
+  "section_id": 6748,
+  "atm": 1,
+  "refs": "SV-9146 (S7-R2; S7-R6)",
+  "updated_by": 3,
+  "created_by": 3,
+  "custom_expected": "<ol>\n<li>The summary shows a row labeled exactly \"Labor\" and a row labeled exactly \"Parts\".</li>\n<li>Each shows the gross amount - before any fees or discounts.</li>\n<li>A row labeled exactly \"Shop supplies\" shows only when a shop-supplies charge applies.</li>\n<hr><p>This is the expected behaviour as per epic SV-8218 and story SV-9146 (Story 7, Financial Summary) and the Invoice UI Refresh specification version 45, sections S7-R2 and S7-R6, read on 31 August 2026.</p><p>AUTOMATION: Not available on Build to test Yet - Last checked 8/21/2026</p></ol>\n",
+  "custom_steps": "<ol>\n<li>Generate the document.</li>\n<li>Read the financial summary rows for Labor, Parts and Shop supplies.</li>\n</ol>\n",
+  "custom_preconds": "<ol>\n<li>You are signed in to ShopView.</li>\n<li>A document exists with labor charges, parts charges, and a shop-supplies charge.</li>\n</ol>\n",
+  "markers": [
+   "AUTOMATION: Not available on Build to test Yet - Last checked 8/21/2026"
+  ],
+  "provenance": [
+   "This is the expected behaviour as per epic SV-8218 and story SV-9146 (Story 7, Financial Summary) and the Invoice UI Refresh specification version 45, sections S7-R2 and S7-R6, read on 31 August 2026."
+  ],
+  "build_sentence": []
+ },
+ "44944": {
+  "id": 44944,
+  "title": "Summary shows Subtotal, one row per tax, and the grand Total",
+  "section_id": 6748,
+  "atm": 1,
+  "refs": "SV-9146 (S7-R7; S7-R8; S7-R9; S7-R10)",
+  "updated_by": 3,
+  "created_by": 3,
+  "custom_expected": "<ol>\n<li>The summary shows a row labeled exactly \"Subtotal\".</li>\n<li>It shows one tax row per applicable tax, each labeled with the tax name and its rate.</li>\n<li>It shows the grand total labeled exactly \"Total\".</li>\n<li>Every row that contributes to the Subtotal is displayed; no contributing summary row is hidden.</li>\n<li>The visible math holds: gross Labor + gross Parts + Shop supplies + all Adjustments rows = Subtotal.</li>\n<hr><p>This is the expected behaviour as per epic SV-8218 and story SV-9146 (Story 7, Financial Summary) and the Invoice UI Refresh specification version 45, sections S7-R7, S7-R8, S7-R9 and S7-R10, read on 31 August 2026.</p><p>AUTOMATION: Not available on Build to test Yet - Last checked 8/21/2026</p></ol>\n",
+  "custom_steps": "<ol>\n<li>Generate the document.</li>\n<li>Read the Subtotal, tax rows, and Total in the summary.</li>\n</ol>\n",
+  "custom_preconds": "<ol>\n<li>You are signed in to ShopView.</li>\n<li>A document exists with one or more applicable taxes.</li>\n</ol>\n",
+  "markers": [
+   "AUTOMATION: Not available on Build to test Yet - Last checked 8/21/2026"
+  ],
+  "provenance": [
+   "This is the expected behaviour as per epic SV-8218 and story SV-9146 (Story 7, Financial Summary) and the Invoice UI Refresh specification version 45, sections S7-R7, S7-R8, S7-R9 and S7-R10, read on 31 August 2026."
+  ],
+  "build_sentence": []
+ },
+ "44945": {
+  "id": 44945,
+  "title": "Adjustments heading and tax rows hide when nothing applies",
+  "section_id": 6748,
+  "atm": 1,
+  "refs": "SV-9146 (S7-N1; S7-N2)",
+  "updated_by": 3,
+  "created_by": 3,
+  "custom_expected": "<ol>\n<li>The Adjustments heading is not shown when there is nothing to list under it (no work-order-wide fees or discounts and both rollup totals at zero).</li>\n<li>When no tax applies, no tax row is shown.</li>\n<hr><p>This is the expected behaviour as per epic SV-8218 and story SV-9146 (Story 7, Financial Summary) and the Invoice UI Refresh specification version 45, sections S7-N1 and S7-N2, read on 31 August 2026.</p><p>AUTOMATION: Not available on Build to test Yet - Last checked 8/21/2026</p></ol>\n",
+  "custom_steps": "<ol>\n<li>Generate a document with no adjustments and zero rollups; look for the Adjustments heading.</li>\n<li>Generate a document with no applicable tax; look for a tax row.</li>\n</ol>\n",
+  "custom_preconds": "<ol>\n<li>You are signed in to ShopView.</li>\n<li>You can reach a document with no work-order-wide adjustments and both rollup totals zero, and one with no applicable tax.</li>\n</ol>\n",
+  "markers": [
+   "AUTOMATION: Not available on Build to test Yet - Last checked 8/21/2026"
+  ],
+  "provenance": [
+   "This is the expected behaviour as per epic SV-8218 and story SV-9146 (Story 7, Financial Summary) and the Invoice UI Refresh specification version 45, sections S7-N1 and S7-N2, read on 31 August 2026."
+  ],
+  "build_sentence": []
+ },
+ "44946": {
+  "id": 44946,
+  "title": "Payments heading and each applied payment row show correctly",
+  "section_id": 6749,
+  "atm": 1,
+  "refs": "SV-9147 (S8-R1; S8-R2)",
+  "updated_by": 3,
+  "created_by": 3,
+  "custom_expected": "<ol>\n<li>The Invoice shows a heading labeled exactly \"Payments\".</li>\n<li>Each applied payment shows as a row reading \"{date} - {method}\" (for example \"Jul 30, 2026 - Cash\"), where the hyphen is a literal character.</li>\n<li>The amount shown is the applied amount when present, otherwise the payment amount.</li>\n<li>Rows list applied payments only, ordered by date and then by the order the payments were recorded; a fully reversed payment does not appear.</li>\n<hr><p>This is the expected behaviour as per epic SV-8218 and story SV-9147 (Story 8, Paid Banner, Payments and Balance) and the Invoice UI Refresh specification version 45, section S8-R2, read on 31 August 2026.</p><p>AUTOMATION: Not available on Build to test Yet - Last checked 8/21/2026</p></ol>\n",
+  "custom_steps": "<ol>\n<li>Generate the Invoice.</li>\n<li>Find the Payments section and read each payment row.</li>\n</ol>\n",
+  "custom_preconds": "<ol>\n<li>You are signed in to ShopView.</li>\n<li>An Invoice exists with two or more applied payments made on different dates by different methods.</li>\n</ol>\n",
+  "markers": [
+   "AUTOMATION: Not available on Build to test Yet - Last checked 8/21/2026"
+  ],
+  "provenance": [
+   "This is the expected behaviour as per epic SV-8218 and story SV-9147 (Story 8, Paid Banner, Payments and Balance) and the Invoice UI Refresh specification version 45, section S8-R2, read on 31 August 2026."
+  ],
+  "build_sentence": []
+ },
+ "44948": {
+  "id": 44948,
+  "title": "Deposit and applied customer-account credit show as labeled payment rows",
+  "section_id": 6749,
+  "atm": 1,
+  "refs": "SV-9147 (S8-R4)",
+  "updated_by": 3,
+  "created_by": 3,
+  "custom_expected": "<ol>\n<li>A deposit shows as a payment row labeled \"(Deposit) {date} - {method}\", where {date} is the date the deposit was collected.</li>\n<li>An applied customer-account credit shows as a payment row labeled \"(Credit) {date} - {credit number}\", where {credit number} is the full CM-prefixed number and {date} is the date the credit was applied.</li>\n<hr><p>This is the expected behaviour as per epic SV-8218 and story SV-9147 (Story 8, Paid Banner, Payments and Balance) and the Invoice UI Refresh specification version 45, section S8-R4, read on 31 August 2026.</p><p>AUTOMATION: Not available on Build to test Yet - Last checked 8/21/2026</p></ol>\n",
+  "custom_steps": "<ol>\n<li>Generate the Invoice.</li>\n<li>Read the deposit row and the applied-credit row in the Payments section.</li>\n</ol>\n",
+  "custom_preconds": "<ol>\n<li>You are signed in to ShopView.</li>\n<li>An Invoice has a deposit applied and an applied customer-account credit (with a CM- number).</li>\n</ol>\n",
+  "markers": [
+   "AUTOMATION: Not available on Build to test Yet - Last checked 8/21/2026"
+  ],
+  "provenance": [
+   "This is the expected behaviour as per epic SV-8218 and story SV-9147 (Story 8, Paid Banner, Payments and Balance) and the Invoice UI Refresh specification version 45, section S8-R4, read on 31 August 2026."
+  ],
+  "build_sentence": []
+ },
+ "44949": {
+  "id": 44949,
+  "title": "Excess payment sub-line reads exactly per the credited/ to-be-credited rule",
+  "section_id": 6749,
+  "atm": 1,
+  "refs": "SV-9147 (S8-R5)",
+  "updated_by": 3,
+  "created_by": 3,
+  "custom_expected": "<ol>\n<li>A sub-line is shown beneath any payment or deposit whose amount applied to this invoice is less than its full amount - this is not limited to deposits and includes a regular payment spread across more than one invoice. It gates on applied being less than the full amount, never on whether the row is a deposit.</li>\n<li>When the excess has become a customer-account credit with a number, the sub-line reads exactly \"of {full amount} &mdash; {excess} &rarr; Credit {credit number}\" (for example \"of $500.00 &mdash; $150.00 &rarr; Credit CM-1042\").</li>\n<li>Otherwise it reads exactly \"of {full amount} &mdash; {excess} will be credited\".</li>\n<li>{full amount} is the payment's or deposit's full amount; {excess} is the full amount minus the amount applied to this invoice.</li>\n<li>The em dash and the arrow are literal separator characters, not subtraction.</li>\n<hr><p>This is the expected behaviour as per epic SV-8218 and story SV-9147 (Story 8, Paid Banner, Payments and Balance) and the Invoice UI Refresh specification version 45, section S8-R5, read on 31 August 2026.</p><p>AUTOMATION: Not available on Build to test Yet - Last checked 8/21/2026</p></ol>\n",
+  "custom_steps": "<ol>\n<li>Generate the Invoice.</li>\n<li>Read the sub-line beneath the row whose applied amount is less than its full amount (payment or deposit).</li>\n</ol>\n",
+  "custom_preconds": "<ol>\n<li>You are signed in to ShopView.</li>\n<li>An Invoice has a payment or deposit whose amount applied to this invoice is less than its full amount - for example an over-collected deposit, or a regular payment spread across more than one invoice - with one case where the excess became a numbered credit and one where it has not yet.</li>\n</ol>\n",
+  "markers": [
+   "AUTOMATION: Not available on Build to test Yet - Last checked 8/21/2026"
+  ],
+  "provenance": [
+   "This is the expected behaviour as per epic SV-8218 and story SV-9147 (Story 8, Paid Banner, Payments and Balance) and the Invoice UI Refresh specification version 45, section S8-R5, read on 31 August 2026."
+  ],
+  "build_sentence": []
+ },
+ "44950": {
+  "id": 44950,
+  "title": "Balance equals Total minus all applied amounts, floored at $0.00",
+  "section_id": 6749,
+  "atm": 1,
+  "refs": "SV-9147 (S8-R6)",
+  "updated_by": 3,
+  "created_by": 3,
+  "custom_expected": "<ol>\n<li>The Invoice shows a row labeled exactly \"Balance\".</li>\n<li>Balance equals the Total minus all applied payments (any method), applied deposits, and applied customer-account credits.</li>\n<li>Balance is floored at $0.00: an overpaid invoice shows \"Balance\" with \"$0.00\" - never a negative amount and never a hidden row.</li>\n<hr><p>This is the expected behaviour as per epic SV-8218 and story SV-9147 (Story 8, Paid Banner, Payments and Balance) and the Invoice UI Refresh specification version 45, section S8-R6, read on 31 August 2026.</p><p>AUTOMATION: Not available on Build to test Yet - Last checked 8/21/2026</p></ol>\n",
+  "custom_steps": "<ol>\n<li>Generate each Invoice and read the \"Balance\" row.</li>\n</ol>\n",
+  "custom_preconds": "<ol>\n<li>You are signed in to ShopView.</li>\n<li>You can reach an unpaid Invoice, a partially paid Invoice, a fully paid Invoice, and an overpaid Invoice.</li>\n</ol>\n",
+  "markers": [
+   "AUTOMATION: Not available on Build to test Yet - Last checked 8/21/2026"
+  ],
+  "provenance": [
+   "This is the expected behaviour as per epic SV-8218 and story SV-9147 (Story 8, Paid Banner, Payments and Balance) and the Invoice UI Refresh specification version 45, section S8-R6, read on 31 August 2026."
+  ],
+  "build_sentence": []
+ },
+ "44953": {
+  "id": 44953,
+  "title": "$0.00 payment rows hidden; no-payments state shows heading with Balance = Total",
+  "section_id": 6749,
+  "atm": 1,
+  "refs": "SV-9147 (S8-R7; S8-N1)",
+  "updated_by": 3,
+  "created_by": 3,
+  "custom_expected": "<ol>\n<li>A payment row whose amount is $0.00 is not shown.</li>\n<li>When no payments, deposits or customer-account credits have been applied, the Payments heading shows with no rows and the Balance equals the Total.</li>\n<hr><p>This is the expected behaviour as per epic SV-8218 and story SV-9147 (Story 8, Paid Banner, Payments and Balance) and the Invoice UI Refresh specification version 45, sections S8-R7 and S8-N1, read on 31 August 2026.</p><p>AUTOMATION: Not available on Build to test Yet - Last checked 8/21/2026</p></ol>\n",
+  "custom_steps": "<ol>\n<li>Generate the Invoice that has a $0.00 payment; check the Payments rows.</li>\n<li>Generate the Invoice with nothing applied; read the Payments heading and the Balance.</li>\n</ol>\n",
+  "custom_preconds": "<ol>\n<li>You are signed in to ShopView.</li>\n<li>You can reach an Invoice with a $0.00 payment recorded, and an Invoice with no payments/deposits/credits applied.</li>\n</ol>\n",
+  "markers": [
+   "AUTOMATION: Not available on Build to test Yet - Last checked 8/21/2026"
+  ],
+  "provenance": [
+   "This is the expected behaviour as per epic SV-8218 and story SV-9147 (Story 8, Paid Banner, Payments and Balance) and the Invoice UI Refresh specification version 45, sections S8-R7 and S8-N1, read on 31 August 2026."
+  ],
+  "build_sentence": []
+ },
+ "44954": {
+  "id": 44954,
+  "title": "No paid banner when the invoice has no portal-processed payment",
+  "section_id": 6749,
+  "atm": 1,
+  "refs": "SV-9147 (S8-N2)",
+  "updated_by": 3,
+  "created_by": 3,
+  "custom_expected": "<ol>\n<li>When the invoice has no portal-processed payment, the paid banner is not shown - a shop-recorded payment never produces the banner.</li>\n<li>An Invoice PDF generated in the shop app shows no banner in any case.</li>\n<hr><p>This is the expected behaviour as per epic SV-8218 and story SV-9147 (Story 8, Paid Banner, Payments and Balance) and the Invoice UI Refresh specification version 45, section S8-N2, read on 31 August 2026.</p><p>AUTOMATION: Not available on Build to test Yet - Last checked 8/21/2026</p></ol>\n",
+  "custom_steps": "<ol>\n<li>Obtain the PDF for the invoice with only shop-recorded payments; look for a paid banner.</li>\n<li>Obtain a shop-app-generated PDF; look for a paid banner.</li>\n</ol>\n",
+  "custom_preconds": "<ol>\n<li>You are signed in to ShopView.</li>\n<li>You can obtain an Invoice PDF for an invoice paid only by a shop-recorded method (for example cash at the counter), and a shop-app-generated PDF.</li>\n</ol>\n",
+  "markers": [
+   "AUTOMATION: Not available on Build to test Yet - Last checked 8/21/2026"
+  ],
+  "provenance": [
+   "This is the expected behaviour as per epic SV-8218 and story SV-9147 (Story 8, Paid Banner, Payments and Balance) and the Invoice UI Refresh specification version 45, section S8-N2, read on 31 August 2026."
+  ],
+  "build_sentence": []
+ },
+ "44957": {
+  "id": 44957,
+  "title": "Footer shows the shop tax identifier exactly, with no added label",
+  "section_id": 6750,
+  "atm": 1,
+  "refs": "SV-9148 (S9-R4)",
+  "updated_by": 3,
+  "created_by": 3,
+  "custom_expected": "<ol>\n<li>The footer shows the shop's tax identifier exactly as the shop entered it.</li>\n<li>No label is added in front of it (the shop types its own label into the field).</li>\n<hr><p>This is the expected behaviour as per epic SV-8218 and story SV-9148 (Story 9, Disclaimer, Signature and Footer) and the Invoice UI Refresh specification version 45, section S9-R4, read on 31 August 2026.</p><p>AUTOMATION: Not available on Build to test Yet - Last checked 8/21/2026</p></ol>\n",
+  "custom_steps": "<ol>\n<li>Generate a document for the shop.</li>\n<li>Read the footer tax identifier.</li>\n</ol>\n",
+  "custom_preconds": "<ol>\n<li>You are signed in to ShopView.</li>\n<li>A shop has a tax identifier configured (for example \"GST# 812694966 RT0001\").</li>\n</ol>\n",
+  "markers": [
+   "AUTOMATION: Not available on Build to test Yet - Last checked 8/21/2026"
+  ],
+  "provenance": [
+   "This is the expected behaviour as per epic SV-8218 and story SV-9148 (Story 9, Disclaimer, Signature and Footer) and the Invoice UI Refresh specification version 45, section S9-R4, read on 31 August 2026."
+  ],
+  "build_sentence": []
+ },
+ "44958": {
+  "id": 44958,
+  "title": "Disclaimer and footer tax identifier hide when not configured",
+  "section_id": 6750,
+  "atm": 1,
+  "refs": "SV-9148 (S9-N1; S9-N2)",
+  "updated_by": 3,
+  "created_by": 3,
+  "custom_expected": "<ol>\n<li>When the shop has no configured disclaimer, the disclaimer area is not shown.</li>\n<li>When the shop has no tax identifier configured, the footer tax identifier is not shown.</li>\n<hr><p>This is the expected behaviour as per epic SV-8218 and story SV-9148 (Story 9, Disclaimer, Signature and Footer) and the Invoice UI Refresh specification version 45, sections S9-N1 and S9-N2, read on 31 August 2026.</p><p>AUTOMATION: Not available on Build to test Yet - Last checked 8/21/2026</p></ol>\n",
+  "custom_steps": "<ol>\n<li>Generate a document for that shop.</li>\n<li>Look where the disclaimer and the footer tax identifier would be.</li>\n</ol>\n",
+  "custom_preconds": "<ol>\n<li>You are signed in to ShopView.</li>\n<li>You can reach a shop with no configured disclaimer and no tax identifier.</li>\n</ol>\n",
+  "markers": [
+   "AUTOMATION: Not available on Build to test Yet - Last checked 8/21/2026"
+  ],
+  "provenance": [
+   "This is the expected behaviour as per epic SV-8218 and story SV-9148 (Story 9, Disclaimer, Signature and Footer) and the Invoice UI Refresh specification version 45, sections S9-N1 and S9-N2, read on 31 August 2026."
+  ],
+  "build_sentence": []
+ },
+ "44959": {
+  "id": 44959,
+  "title": "Estimate and Invoice differ only as Section 3 specifies",
+  "section_id": 6751,
+  "atm": 1,
+  "refs": "SV-9149 (S10-R1)",
+  "updated_by": 3,
+  "created_by": 3,
+  "custom_expected": "<ol>\n<li>The Estimate and Invoice carry the same content, differing only in: the document label, the dates, the work-section heading, the headline figure label, and the presence of the Paid banner and the Payments and Balance sections on the Invoice.</li>\n<hr><p>This is the expected behaviour as per epic SV-8218 and story SV-9149 (Story 10, Estimate and Invoice Specifics) and the Invoice UI Refresh specification version 45, section S10-R1, read on 31 August 2026.</p><p>AUTOMATION: Not available on Build to test Yet - Last checked 8/21/2026</p></ol>\n",
+  "custom_steps": "<ol>\n<li>Generate the Estimate and the Invoice.</li>\n<li>Compare them section by section.</li>\n</ol>\n",
+  "custom_preconds": "<ol>\n<li>You are signed in to ShopView.</li>\n<li>You can generate an Estimate and an Invoice from the same underlying work order.</li>\n</ol>\n",
+  "markers": [
+   "AUTOMATION: Not available on Build to test Yet - Last checked 8/21/2026"
+  ],
+  "provenance": [
+   "This is the expected behaviour as per epic SV-8218 and story SV-9149 (Story 10, Estimate and Invoice Specifics) and the Invoice UI Refresh specification version 45, section S10-R1, read on 31 August 2026."
+  ],
+  "build_sentence": []
+ },
+ "44960": {
+  "id": 44960,
+  "title": "Estimate shows 'Work Summary', 'Estimated Total', and 'Estimate date'",
+  "section_id": 6751,
+  "atm": 1,
+  "refs": "SV-9149 (S10-R2)",
+  "updated_by": 3,
+  "created_by": 3,
+  "custom_expected": "<ol>\n<li>The work-section heading reads \"Work Summary\".</li>\n<li>The boxed headline figure is labeled \"Estimated Total\".</li>\n<li>The masthead shows \"Estimate date: {date}\".</li>\n<li>No validity or expiry date is shown; no due-date line is shown.</li>\n<li>The signature area's \"Date\" line is unaffected.</li>\n<hr><p>This is the expected behaviour as per epic SV-8218 and story SV-9149 (Story 10, Estimate and Invoice Specifics) and the Invoice UI Refresh specification version 45, section S10-R2, read on 31 August 2026.</p><p>AUTOMATION: Not available on Build to test Yet - Last checked 8/21/2026</p></ol>\n",
+  "custom_steps": "<ol>\n<li>Generate the Estimate.</li>\n<li>Read the work-section heading, the boxed headline figure label, and the masthead date.</li>\n</ol>\n",
+  "custom_preconds": "<ol>\n<li>You are signed in to ShopView.</li>\n<li>You can generate an Estimate.</li>\n</ol>\n",
+  "markers": [
+   "AUTOMATION: Not available on Build to test Yet - Last checked 8/21/2026"
+  ],
+  "provenance": [
+   "This is the expected behaviour as per epic SV-8218 and story SV-9149 (Story 10, Estimate and Invoice Specifics) and the Invoice UI Refresh specification version 45, section S10-R2, read on 31 August 2026."
+  ],
+  "build_sentence": []
+ },
+ "44961": {
+  "id": 44961,
+  "title": "Invoice shows 'Work Performed', 'Balance', 'Invoice date' and 'Due date'",
+  "section_id": 6751,
+  "atm": 1,
+  "refs": "SV-9149 (S10-R3)",
+  "updated_by": 3,
+  "created_by": 3,
+  "custom_expected": "<ol>\n<li>The work-section heading reads \"Work Performed\".</li>\n<li>The boxed headline figure is labeled \"Balance\".</li>\n<li>The masthead shows \"Invoice date: {date}\" and \"Due date: {date}\".</li>\n<hr><p>This is the expected behaviour as per epic SV-8218 and story SV-9149 (Story 10, Estimate and Invoice Specifics) and the Invoice UI Refresh specification version 45, section S10-R3, read on 31 August 2026.</p><p>AUTOMATION: Not available on Build to test Yet - Last checked 8/21/2026</p></ol>\n",
+  "custom_steps": "<ol>\n<li>Generate the (not fully paid) Invoice.</li>\n<li>Read the work-section heading, the boxed headline figure label, and the masthead dates.</li>\n</ol>\n",
+  "custom_preconds": "<ol>\n<li>You are signed in to ShopView.</li>\n<li>You can generate an unpaid Invoice.</li>\n</ol>\n",
+  "markers": [
+   "AUTOMATION: Not available on Build to test Yet - Last checked 8/21/2026"
+  ],
+  "provenance": [
+   "This is the expected behaviour as per epic SV-8218 and story SV-9149 (Story 10, Estimate and Invoice Specifics) and the Invoice UI Refresh specification version 45, section S10-R3, read on 31 August 2026."
+  ],
+  "build_sentence": []
+ },
+ "44972": {
+  "id": 44972,
+  "title": "Only the closed palette colours appear on any document",
+  "section_id": 6753,
+  "atm": 1,
+  "refs": "SV-9151 (S12-R2)",
+  "updated_by": 3,
+  "created_by": 3,
+  "custom_expected": "<ol>\n<li>The only colours on the light printed document are: ink #121926, body text #364152, muted text #697586, faint labels #9AA4B2, hairlines #E3E8EF, row dividers #EEF2F6, paid-banner surface #F8FAFC, accent #257CFF, negative #B42318, paper #FFFFFF.</li>\n<li>No colour outside this set appears on the printed document; the print and black-and-white output adds only the inks S12-R5 lists, and the Design Document's demo chrome and dark-mode preview are not part of any document.</li>\n<hr><p>This is the expected behaviour as per epic SV-8218 and story SV-9151 (Story 12, Document Visual Standard) and the Invoice UI Refresh specification version 45, section S12-R2, and the Design Document, read on 31 August 2026.</p><p>AUTOMATION: Not available on Build to test Yet - Last checked 8/21/2026</p></ol>\n",
+  "custom_steps": "<ol>\n<li>Generate a document.</li>\n<li>Check every colour used against the allowed set.</li>\n</ol>\n",
+  "custom_preconds": "<ol>\n<li>You are signed in to ShopView.</li>\n<li>You can inspect the colours used in a rendered document (on screen or PDF).</li>\n</ol>\n",
+  "markers": [
+   "AUTOMATION: Not available on Build to test Yet - Last checked 8/21/2026"
+  ],
+  "provenance": [
+   "This is the expected behaviour as per epic SV-8218 and story SV-9151 (Story 12, Document Visual Standard) and the Invoice UI Refresh specification version 45, section S12-R2, and the Design Document, read on 31 August 2026."
+  ],
+  "build_sentence": []
+ },
+ "44974": {
+  "id": 44974,
+  "title": "Typography uses Inter with the specified weights",
+  "section_id": 6753,
+  "atm": 1,
+  "refs": "SV-9151 (S12-R4)",
+  "updated_by": 3,
+  "created_by": 3,
+  "custom_expected": "<ol>\n<li>The typeface is Inter with a system sans-serif fallback, applied identically on screen and in PDF output, so the on-screen preview and the PDF wrap line for line.</li>\n<li>Weight 400 for body text; 600 and 700 for emphasis and totals; 700 for the in-job section labels; 800 for the shop name, the document label, the headline figure, and the line numbers.</li>\n<li>Uppercase micro-labels carry letterspacing as in the Design Document.</li>\n<hr><p>This is the expected behaviour as per epic SV-8218 and story SV-9151 (Story 12, Document Visual Standard) and the Invoice UI Refresh specification version 45, section S12-R4, and the Design Document, read on 31 August 2026.</p><p>AUTOMATION: Not available on Build to test Yet - Last checked 8/21/2026</p></ol>\n",
+  "custom_steps": "<ol>\n<li>Generate a document.</li>\n<li>Check the typeface and the weight of body text, emphasis/totals, in-job section labels, and the shop name/document label/headline figure/line numbers.</li>\n</ol>\n",
+  "custom_preconds": "<ol>\n<li>You are signed in to ShopView.</li>\n<li>You can inspect the fonts and weights used on a rendered document.</li>\n</ol>\n",
+  "markers": [
+   "AUTOMATION: Not available on Build to test Yet - Last checked 8/21/2026"
+  ],
+  "provenance": [
+   "This is the expected behaviour as per epic SV-8218 and story SV-9151 (Story 12, Document Visual Standard) and the Invoice UI Refresh specification version 45, section S12-R4, and the Design Document, read on 31 August 2026."
+  ],
+  "build_sentence": []
+ },
+ "44975": {
+  "id": 44975,
+  "title": "Print/PDF ink floor keeps text and rules dark enough",
+  "section_id": 6753,
+  "atm": 1,
+  "refs": "SV-9151 (S12-R5)",
+  "updated_by": 3,
+  "created_by": 3,
+  "custom_expected": "<ol>\n<li>In print and PDF output, no text renders lighter than #4B5565.</li>\n<li>Text smaller than 10px renders no lighter than #364152.</li>\n<li>Hairline rules render no lighter than #CDD5DF.</li>\n<hr><p>This is the expected behaviour as per epic SV-8218 and story SV-9151 (Story 12, Document Visual Standard) and the Invoice UI Refresh specification version 45, section S12-R5, and the Design Document, read on 31 August 2026.</p><p>AUTOMATION: Not available on Build to test Yet - Last checked 8/21/2026</p></ol>\n",
+  "custom_steps": "<ol>\n<li>Obtain the PDF (or print output) of a document.</li>\n<li>Check the darkness of text and hairline rules.</li>\n</ol>\n",
+  "custom_preconds": "<ol>\n<li>You are signed in to ShopView.</li>\n<li>You can obtain a document's print/PDF output and inspect its ink values.</li>\n</ol>\n",
+  "markers": [
+   "AUTOMATION: Not available on Build to test Yet - Last checked 8/21/2026"
+  ],
+  "provenance": [
+   "This is the expected behaviour as per epic SV-8218 and story SV-9151 (Story 12, Document Visual Standard) and the Invoice UI Refresh specification version 45, section S12-R5, and the Design Document, read on 31 August 2026."
+  ],
+  "build_sentence": []
+ },
+ "44976": {
+  "id": 44976,
+  "title": "Every document is fully legible in grayscale",
+  "section_id": 6753,
+  "atm": 1,
+  "refs": "SV-9151 (S12-R6)",
+  "updated_by": 3,
+  "created_by": 3,
+  "custom_expected": "<ol>\n<li>Every document is fully legible printed in grayscale.</li>\n<li>Colour is never the only signal: credit amounts also carry the leading minus, and discounts also carry parentheses.</li>\n<hr><p>This is the expected behaviour as per epic SV-8218 and story SV-9151 (Story 12, Document Visual Standard) and the Invoice UI Refresh specification version 45, section S12-R6, and the Design Document, read on 31 August 2026.</p><p>AUTOMATION: Not available on Build to test Yet - Last checked 8/21/2026</p></ol>\n",
+  "custom_steps": "<ol>\n<li>Render or print a document in grayscale.</li>\n<li>Check that all meaning is still clear without colour.</li>\n</ol>\n",
+  "custom_preconds": "<ol>\n<li>You are signed in to ShopView.</li>\n<li>You can print or render a document in grayscale.</li>\n</ol>\n",
+  "markers": [
+   "AUTOMATION: Not available on Build to test Yet - Last checked 8/21/2026"
+  ],
+  "provenance": [
+   "This is the expected behaviour as per epic SV-8218 and story SV-9151 (Story 12, Document Visual Standard) and the Invoice UI Refresh specification version 45, section S12-R6, and the Design Document, read on 31 August 2026."
+  ],
+  "build_sentence": []
+ },
+ "44979": {
+  "id": 44979,
+  "title": "Section labels use the three-tier hierarchy with exact sizes and inks",
+  "section_id": 6753,
+  "atm": 1,
+  "refs": "SV-9151 (S12-R9)",
+  "updated_by": 3,
+  "created_by": 3,
+  "custom_expected": "<ol>\n<li>The document section label (\"Work Summary\" / \"Work Performed\" / \"Parts\") is 11px weight 700 in muted ink #697586.</li>\n<li>\"Scope of work\" is 10px weight 700 in body ink #364152.</li>\n<li>The in-job \"Labor\" and \"Parts\" labels are 10.5px weight 700 in full ink #121926.</li>\n<li>All three sit visually below the 16px weight-700 job titles, with letterspacing per the Design Document.</li>\n<hr><p>This is the expected behaviour as per epic SV-8218 and story SV-9151 (Story 12, Document Visual Standard) and the Invoice UI Refresh specification version 45, section S12-R9, and the Design Document, read on 31 August 2026.</p><p>AUTOMATION: Not available on Build to test Yet - Last checked 8/21/2026</p></ol>\n",
+  "custom_steps": "<ol>\n<li>Generate a document with work lines.</li>\n<li>Inspect the document section label, the 'Scope of work' label, and the in-job 'Labor'/'Parts' labels.</li>\n</ol>\n",
+  "custom_preconds": "<ol>\n<li>You are signed in to ShopView.</li>\n<li>You can inspect text sizes, weights and colours on a rendered document.</li>\n</ol>\n",
+  "markers": [
+   "AUTOMATION: Not available on Build to test Yet - Last checked 8/21/2026"
+  ],
+  "provenance": [
+   "This is the expected behaviour as per epic SV-8218 and story SV-9151 (Story 12, Document Visual Standard) and the Invoice UI Refresh specification version 45, section S12-R9, and the Design Document, read on 31 August 2026."
+  ],
+  "build_sentence": []
+ },
+ "45171": {
+  "id": 45171,
+  "title": "Asset section is hidden when the work order has no asset attached",
+  "section_id": 6745,
+  "atm": 1,
+  "refs": "SV-9143 (S4-N3)",
+  "updated_by": 3,
+  "created_by": 6,
+  "custom_expected": "<ol>\n<li>The entire asset section is absent on both documents (S4-N3).</li>\n<hr><p>This is the expected behaviour as per epic SV-8218 and story SV-9143 (Story 4, Asset Section) and the Invoice UI Refresh specification version 45, section S4-N3, read on 31 August 2026.</p><p>AUTOMATION: Not available on Build to test Yet - Last checked 8/26/2026</p></ol>\n",
+  "custom_steps": "<ol>\n<li>Open the Estimate and Invoice previews</li>\n</ol>\n",
+  "custom_preconds": "<ol>\n<li>Work order without an asset</li>\n</ol>\n",
+  "markers": [
+   "AUTOMATION: Not available on Build to test Yet - Last checked 8/26/2026"
+  ],
+  "provenance": [
+   "This is the expected behaviour as per epic SV-8218 and story SV-9143 (Story 4, Asset Section) and the Invoice UI Refresh specification version 45, section S4-N3, read on 31 August 2026."
+  ],
+  "build_sentence": []
+ },
+ "45174": {
+  "id": 45174,
+  "title": "A fully reversed payment does not appear in the Payments section",
+  "section_id": 6749,
+  "atm": 1,
+  "refs": "SV-9147 (S8-R2)",
+  "updated_by": 3,
+  "created_by": 6,
+  "custom_expected": "<ol>\n<li>Only the active payment is listed; the fully reversed payment is absent (a fully reversed payment is no longer applied and does not appear).</li>\n<li>Balance reflects only the applied amounts (S8-R2).</li>\n<hr><p>This is the expected behaviour as per epic SV-8218 and story SV-9147 (Story 8, Paid Banner, Payments and Balance) and the Invoice UI Refresh specification version 45, section S8-R2, read on 31 August 2026.</p><p>AUTOMATION: Not available on Build to test Yet - Last checked 8/26/2026</p></ol>\n",
+  "custom_steps": "<ol>\n<li>Open the Invoice preview</li>\n</ol>\n",
+  "custom_preconds": "<ol>\n<li>An invoice with 2 payments, one of them fully reversed</li>\n</ol>\n",
+  "markers": [
+   "AUTOMATION: Not available on Build to test Yet - Last checked 8/26/2026"
+  ],
+  "provenance": [
+   "This is the expected behaviour as per epic SV-8218 and story SV-9147 (Story 8, Paid Banner, Payments and Balance) and the Invoice UI Refresh specification version 45, section S8-R2, read on 31 August 2026."
+  ],
+  "build_sentence": []
+ },
+ "45176": {
+  "id": 45176,
+  "title": "Paid date is the most recent applied row and may fall before the invoice date",
+  "section_id": 6751,
+  "atm": 1,
+  "refs": "SV-9149 (S10-R4)",
+  "updated_by": 3,
+  "created_by": 6,
+  "custom_expected": "<ol>\n<li>Deposit-paid: 'Paid date' equals the deposit collection date, even though it is earlier than the invoice date - shown as-is.</li>\n<li>2-payment: 'Paid date' equals the LATEST of the applied dates (S10-R4).</li>\n<hr><p>This is the expected behaviour as per epic SV-8218 and story SV-9149 (Story 10, Estimate and Invoice Specifics) and the Invoice UI Refresh specification version 45, section S10-R4, read on 31 August 2026.</p><p>AUTOMATION: Not available on Build to test Yet - Last checked 8/26/2026</p></ol>\n",
+  "custom_steps": "<ol>\n<li>Open the deposit-paid invoice preview</li>\n<li>Open the 2-payment invoice preview</li>\n</ol>\n",
+  "custom_preconds": "<ol>\n<li>An invoice fully covered by a deposit collected BEFORE invoicing</li>\n<li>A second invoice paid by 2 payments on different dates</li>\n</ol>\n",
+  "markers": [
+   "AUTOMATION: Not available on Build to test Yet - Last checked 8/26/2026"
+  ],
+  "provenance": [
+   "This is the expected behaviour as per epic SV-8218 and story SV-9149 (Story 10, Estimate and Invoice Specifics) and the Invoice UI Refresh specification version 45, section S10-R4, read on 31 August 2026."
+  ],
+  "build_sentence": []
+ },
+ "45178": {
+  "id": 45178,
+  "title": "A zero-total invoice with nothing applied is not treated as fully paid",
+  "section_id": 6751,
+  "atm": 1,
+  "refs": "SV-9149 (S10-R4)",
+  "updated_by": 3,
+  "created_by": 6,
+  "custom_expected": "<ol>\n<li>Shows 'Due date: {date}' (or no due-date line if unset) - NOT 'Paid date'.</li>\n<li>Fully paid requires Balance $0.00 AND at least one applied row (Section 6 definition, S10-R4).</li>\n<hr><p>This is the expected behaviour as per epic SV-8218 and story SV-9149 (Story 10, Estimate and Invoice Specifics) and the Invoice UI Refresh specification version 45, section S10-R4, read on 31 August 2026.</p><p>AUTOMATION: Not available on Build to test Yet - Last checked 8/26/2026</p></ol>\n",
+  "custom_steps": "<ol>\n<li>Open the preview</li>\n</ol>\n",
+  "custom_preconds": "<ol>\n<li>An invoice with a $0.00 Total and no payments/deposits/credits applied</li>\n</ol>\n",
+  "markers": [
+   "AUTOMATION: Not available on Build to test Yet - Last checked 8/26/2026"
+  ],
+  "provenance": [
+   "This is the expected behaviour as per epic SV-8218 and story SV-9149 (Story 10, Estimate and Invoice Specifics) and the Invoice UI Refresh specification version 45, section S10-R4, read on 31 August 2026."
+  ],
+  "build_sentence": []
+ },
+ "45186": {
+  "id": 45186,
+  "title": "A snapshot created after the redesign carries the new fields when reopened",
+  "section_id": 6770,
+  "atm": 1,
+  "refs": "SV-8218 (Plan Phase 2)",
+  "updated_by": 3,
+  "created_by": 6,
+  "custom_expected": "<ol>\n<li>The snapshot renders with the authorizer name, plate and all new content persisted (plan Phase 2 snapshot writes).</li>\n<hr><p>This is the expected behaviour as per epic SV-8218 and the Invoice UI Refresh engineering plan (Phase 2); verified current against the Invoice UI Refresh specification version 45, read on 31 August 2026.</p><p>AUTOMATION: Not available on Build to test Yet - Last checked 8/26/2026</p></ol>\n",
+  "custom_steps": "<ol>\n<li>Invoice the work order (a snapshot is created)</li>\n<li>Re-open the snapshot later</li>\n</ol>\n",
+  "custom_preconds": "<ol>\n<li>A work order with an authorizer and an asset with a plate</li>\n<li>The redesign is live</li>\n</ol>\n",
+  "markers": [
+   "AUTOMATION: Not available on Build to test Yet - Last checked 8/26/2026"
+  ],
+  "provenance": [
+   "This is the expected behaviour as per epic SV-8218 and the Invoice UI Refresh engineering plan (Phase 2); verified current against the Invoice UI Refresh specification version 45, read on 31 August 2026."
+  ],
+  "build_sentence": []
+ },
+ "45187": {
+  "id": 45187,
+  "title": "An emailed invoice attaches the redesigned PDF",
+  "section_id": 6770,
+  "atm": 1,
+  "refs": "SV-8218 (Plan Section 2)",
+  "updated_by": 3,
+  "created_by": 6,
+  "custom_expected": "<ol>\n<li>The attached PDF is the redesigned document, identical to the shop-app PDF (single render path; plan Section 2).</li>\n<hr><p>This is the expected behaviour as per epic SV-8218 and the Invoice UI Refresh engineering plan (Section 2); verified current against the Invoice UI Refresh specification version 45, read on 31 August 2026.</p><p>AUTOMATION: Not available on Build to test Yet - Last checked 8/26/2026</p></ol>\n",
+  "custom_steps": "<ol>\n<li>Email the invoice from the shop app</li>\n<li>Open the attached PDF</li>\n</ol>\n",
+  "custom_preconds": "<ol>\n<li>An invoice ready to send</li>\n<li>A test email recipient</li>\n</ol>\n",
+  "markers": [
+   "AUTOMATION: Not available on Build to test Yet - Last checked 8/26/2026"
+  ],
+  "provenance": [
+   "This is the expected behaviour as per epic SV-8218 and the Invoice UI Refresh engineering plan (Section 2); verified current against the Invoice UI Refresh specification version 45, read on 31 August 2026."
+  ],
+  "build_sentence": []
+ },
+ "45188": {
+  "id": 45188,
+  "title": "The on-screen preview matches the generated PDF with no markup stripped",
+  "section_id": 6770,
+  "atm": 1,
+  "refs": "SV-8218 (Plan Phase 4)",
+  "updated_by": 3,
+  "created_by": 6,
+  "custom_expected": "<ol>\n<li>The preview shows all sections and styles - DOMPurify must not strip the new markup (plan Phase 4 watch-item).</li>\n<hr><p>This is the expected behaviour as per epic SV-8218 and the Invoice UI Refresh engineering plan (Phase 4); verified current against the Invoice UI Refresh specification version 45, read on 31 August 2026.</p><p>AUTOMATION: Not available on Build to test Yet - Last checked 8/26/2026</p></ol>\n",
+  "custom_steps": "<ol>\n<li>Compare the on-screen preview against the generated PDF, section by section</li>\n</ol>\n",
+  "custom_preconds": "<ol>\n<li>An invoice with full content (asset, chips, adjustments, payments)</li>\n</ol>\n",
+  "markers": [
+   "AUTOMATION: Not available on Build to test Yet - Last checked 8/26/2026"
+  ],
+  "provenance": [
+   "This is the expected behaviour as per epic SV-8218 and the Invoice UI Refresh engineering plan (Phase 4); verified current against the Invoice UI Refresh specification version 45, read on 31 August 2026."
+  ],
+  "build_sentence": []
+ },
+ "45189": {
+  "id": 45189,
+  "title": "Currency and percentage formats follow existing conventions for US and Canadian shops",
+  "section_id": 6770,
+  "atm": 1,
+  "refs": "SV-8218 (Shipped-behaviour note)",
+  "updated_by": 3,
+  "created_by": 6,
+  "custom_expected": "<ol>\n<li>Number, currency and percentage formats follow ShopView's existing locale-aware conventions - the redesign must not alter them (PRD shipped-behaviour note).</li>\n<hr><p>This is the expected behaviour as per epic SV-8218 and the Invoice UI Refresh PRD shipped-behaviour note; verified current against the Invoice UI Refresh specification version 45, read on 31 August 2026.</p><p>AUTOMATION: Not available on Build to test Yet - Last checked 8/26/2026</p></ol>\n",
+  "custom_steps": "<ol>\n<li>Open an invoice on each</li>\n<li>Check the currency and percentage formats</li>\n</ol>\n",
+  "custom_preconds": "<ol>\n<li>A US shop and a Canadian shop with documents</li>\n</ol>\n",
+  "markers": [
+   "AUTOMATION: Not available on Build to test Yet - Last checked 8/26/2026"
+  ],
+  "provenance": [
+   "This is the expected behaviour as per epic SV-8218 and the Invoice UI Refresh PRD shipped-behaviour note; verified current against the Invoice UI Refresh specification version 45, read on 31 August 2026."
+  ],
+  "build_sentence": []
+ },
+ "45192": {
+  "id": 45192,
+  "title": "Invoice preview fits a mobile viewport with no clipping and no header overlap",
+  "section_id": 6770,
+  "atm": 1,
+  "refs": "SV-9151 (S12-R11); SV-9441",
+  "updated_by": 3,
+  "created_by": 6,
+  "custom_expected": "<ol>\n<li>The document fits within the viewport with no content clipped; there is no left-edge clipping, the logo does not overlap the label/dates, and the phone number does not break mid-number.</li>\n<li>Any element wider than the viewport (for example a wide table) scrolls horizontally within its own container rather than clipping or forcing the whole page to scroll sideways (v45 S12-R11).</li>\n<li>History: 5th recurrence risk - SV-9441 open on the old template (SV-3362 / SV-3994 / SV-4946 / SV-5123 prior).</li>\n<hr><p>This is the expected behaviour as per epic SV-8218 and story SV-9151 (Story 12, Document Visual Standard) and the Invoice UI Refresh specification version 45, section S12-R11, read on 31 August 2026.</p><p>AUTOMATION: Not available on Build to test Yet - Last checked 8/26/2026</p></ol>\n",
+  "custom_steps": "<ol>\n<li>Open the work-order finance-tab invoice preview at the mobile viewport</li>\n<li>Check the masthead, Bill To, work lines and terms text</li>\n<li>Scroll the full document</li>\n</ol>\n",
+  "custom_preconds": "<ol>\n<li>An invoice with a logo and a full masthead</li>\n<li>Browser DevTools device emulation at 375x667</li>\n</ol>\n",
+  "markers": [
+   "AUTOMATION: Not available on Build to test Yet - Last checked 8/26/2026"
+  ],
+  "provenance": [
+   "This is the expected behaviour as per epic SV-8218 and story SV-9151 (Story 12, Document Visual Standard) and the Invoice UI Refresh specification version 45, section S12-R11, read on 31 August 2026."
+  ],
+  "build_sentence": []
+ },
+ "45194": {
+  "id": 45194,
+  "title": "Special characters in shop and customer names render correctly on the document",
+  "section_id": 6770,
+  "atm": 1,
+  "refs": "SV-9140 (S1-R1)",
+  "updated_by": 3,
+  "created_by": 6,
+  "custom_expected": "<ol>\n<li>Characters render exactly as entered - an ampersand shows as &amp; and never as an escaped entity; no mojibake; no missing glyphs in Inter.</li>\n<li>History: SV-4406.</li>\n<hr><p>This is the expected behaviour as per epic SV-8218 and story SV-9140 (Story 1, Masthead) and the Invoice UI Refresh specification version 45, section S1-R1, read on 31 August 2026.</p><p>AUTOMATION: Not available on Build to test Yet - Last checked 8/26/2026</p></ol>\n",
+  "custom_steps": "<ol>\n<li>Open the Invoice preview</li>\n<li>Generate and download the PDF</li>\n<li>Check the masthead and Bill To</li>\n</ol>\n",
+  "custom_preconds": "<ol>\n<li>A location name with a special character (e.g. &amp;, e-acute, apostrophe)</li>\n<li>A customer/company name with a special character</li>\n</ol>\n",
+  "markers": [
+   "AUTOMATION: Not available on Build to test Yet - Last checked 8/26/2026"
+  ],
+  "provenance": [
+   "This is the expected behaviour as per epic SV-8218 and story SV-9140 (Story 1, Masthead) and the Invoice UI Refresh specification version 45, section S1-R1, read on 31 August 2026."
+  ],
+  "build_sentence": []
+ },
+ "45213": {
+  "id": 45213,
+  "title": "Multi-page document uses standard page-break behaviour",
+  "section_id": 6753,
+  "atm": 1,
+  "refs": "SV-9151 (S12-R10)",
+  "updated_by": 3,
+  "created_by": 3,
+  "custom_expected": "<ol>\n<li>Long documents paginate using standard, globally accepted page-break behaviour, not custom pagination.</li>\n<li>Every page after the first opens with a single identification line: the shop location's name on the left and the document number on the right (for example \"Heavy Duty - 9919\" on the left and \"Invoice: INV-S2-4802\" on the right).</li>\n<li>The full masthead does not repeat on later pages.</li>\n<li>The totals block is not split across a page break.</li>\n<li>A work line and its own footer stay together on the same page.</li>\n<li>The signature row does not land alone on a final page.</li>\n<li>No single row is orphaned by itself on a page.</li>\n<hr><p>This is the expected behaviour as per epic SV-8218 and story SV-9151 (Story 12, Document Visual Standard) and the Invoice UI Refresh specification version 45, section S12-R10, and the Design Document, read on 31 August 2026.</p><p>AUTOMATION: Not available on Build to test Yet - Last checked 8/31/2026</p></ol>\n",
+  "custom_steps": "<ol>\n<li>Generate a multi-page document.</li>\n<li>Look at the top of every page after the first.</li>\n<li>Check the totals block, a work line together with its own footer, the signature row, and any single row that falls near a page boundary.</li>\n</ol>\n",
+  "custom_preconds": "<ol>\n<li>You are signed in to ShopView.</li>\n<li>You can generate a document long enough to span more than one page (a work order with many work lines), on screen and as a PDF.</li>\n</ol>\n",
+  "markers": [
+   "AUTOMATION: Not available on Build to test Yet - Last checked 8/31/2026"
+  ],
+  "provenance": [
+   "This is the expected behaviour as per epic SV-8218 and story SV-9151 (Story 12, Document Visual Standard) and the Invoice UI Refresh specification version 45, section S12-R10, and the Design Document, read on 31 August 2026."
+  ],
+  "build_sentence": []
+ },
+ "45214": {
+  "id": 45214,
+  "title": "On-screen document fits the viewport; wide elements scroll in their own container",
+  "section_id": 6753,
+  "atm": 1,
+  "refs": "SV-9151 (S12-R11)",
+  "updated_by": 3,
+  "created_by": 3,
+  "custom_expected": "<ol>\n<li>On screen the document fits within the viewport with no content clipped.</li>\n<li>Any element wider than the viewport (for example a wide table) scrolls horizontally within its own container, rather than clipping or forcing the whole page to scroll sideways.</li>\n<hr><p>This is the expected behaviour as per epic SV-8218 and story SV-9151 (Story 12, Document Visual Standard) and the Invoice UI Refresh specification version 45, section S12-R11, and the Design Document, read on 31 August 2026.</p><p>AUTOMATION: Not available on Build to test Yet - Last checked 8/31/2026</p></ol>\n",
+  "custom_steps": "<ol>\n<li>Open a document on screen and narrow the viewport.</li>\n<li>Check whether any content is clipped.</li>\n<li>Find an element wider than the viewport (for example a wide table) and check how it behaves.</li>\n</ol>\n",
+  "custom_preconds": "<ol>\n<li>You are signed in to ShopView.</li>\n<li>You can view a document on screen and narrow the browser viewport, ideally with a document that contains a wide element such as a wide table.</li>\n</ol>\n",
+  "markers": [
+   "AUTOMATION: Not available on Build to test Yet - Last checked 8/31/2026"
+  ],
+  "provenance": [
+   "This is the expected behaviour as per epic SV-8218 and story SV-9151 (Story 12, Document Visual Standard) and the Invoice UI Refresh specification version 45, section S12-R11, and the Design Document, read on 31 August 2026."
+  ],
+  "build_sentence": []
+ }
+}

@@ -263,6 +263,18 @@ which **`get_case` does NOT expose**. **Therefore: never bulk-write plain text v
 case's body must change and its container is unknown, prefer the UI editor.** On 2026-08-26 this
 damaged **72 cases**.
 
+**⇒ 2026-08-31 — THE FLAG FOLLOWS THE WRITE PATH, AND THAT MAKES IT PREDICTABLE.** The container is
+not random: **an API write leaves the field escaping; a UI save flips it to `fr-view`.** Measured on
+one suite in both directions — the **48** Invoice cases written only ever by the API were **all** plain
+`markdown`; the **5** repaired through the editor were **all** `fr-view`. Three consequences:
+**(a)** a case AUTHORED via the API is *born* showing tags if it stores block HTML, so **API-authored
+cases must store PLAIN TEXT**; **(b)** a content edit and a render repair are **ONE UI save**, never two
+writes; **(c)** `fr-view` is reachable, so **"the tester reads tags" is never permanent.**
+**And the check must be run on the SERVED PAGE with a session PROVEN logged in** — the UI login needs
+the account password, *not* the API key that `/tmp/testrail/creds.json['password']` actually holds; a
+silently-failed login makes the scanner report "0 escaping" for every case. Playbook §J has the trap,
+the self-controlling scanner and the tester-readiness gate (skill 04 §4.5).
+
 **THE UI EDITOR IS DRIVEN WITH PLAYWRIGHT, AND PLAYWRIGHT NEEDS THE LOCAL MITM BRIDGE.** Chromium
 **cannot TLS through the egress proxy directly** — every navigation returns `net::ERR_CONNECTION_RESET`
 even though `curl` through the same proxy returns 200. Start a **fresh** `build/atlassian-login/bridge.mjs`

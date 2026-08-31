@@ -184,6 +184,36 @@ executing the preconditions and steps. **A blocked item whose reason is a person
 
 ---
 
+# 4.5 · 🛑 THE CAN-THE-TESTER-ACTUALLY-READ-IT GATE — run this on the SERVED PAGE, not the stored value
+
+**Added 2026-08-31, after 48 of 53 "build-verified, handover-ready" Invoice UI Refresh cases turned
+out to be displaying `<ol><li><p>` as literal text to whoever opened them.** Nothing else in this
+skill would have caught it: the cold read (§1) reads the *stored* value, the contradiction sweep (§2)
+reads meaning, and both were clean. The cases were unreadable on screen the whole time.
+
+**THE GATE — no suite is handed over until every case in it passes:**
+
+1. **Fetch the case's SERVED VIEW PAGE** on a logged-in UI session — `index.php?/cases/view/<id>` —
+   and read the container class of each of the three text fields.
+   **`<div class="markdown fr-view">` = renders correctly. Plain `<div class="markdown">` = the
+   stored value is ESCAPED and the tester literally reads every tag.**
+   Working scanner: `build/invoice-ui-refresh/build-verify-2026-08-31/markers/render_scan.py`.
+2. **Assert the scanner is actually logged in** before believing a single negative. The UI login needs
+   the **account password**, which is **NOT** what `/tmp/testrail/creds.json['password']` holds (that
+   is the API key). A failed login returns the login shell for every case, matches no container, and
+   reports **"0 escaping"** for the whole suite. See the playbook §J credential trap.
+3. **A case whose container could not be read is UNKNOWN, never "safe."**
+4. **Repair through the UI editor, never the API** — a UI save flips the container to `fr-view`; an API
+   write leaves it escaping (48/48 API-written vs 5/5 UI-written, measured 2026-08-31). Recipe:
+   `.../markers/apply_markers.mjs`, adapted from `build/report-suite/damage-2026-08-26/ui_repair_batch.mjs`.
+5. **Then re-read the served page and confirm** the rendered text matches the intended text, no literal
+   tag and no HTML entity (`&mdash;`, `&amp;`) is visible, and the AUTOMATION marker is last.
+
+**Why this belongs in THIS skill rather than only in the write skills:** a case can be perfectly
+sourced, perfectly runnable and perfectly marked, and still be **unusable by the person it is handed
+to**. Tester-readiness is a property of what appears on their screen. **"The stored value is correct"
+is not evidence that the case is readable** — the two are decided by different things (playbook §J).
+
 # 5 · SYNC THE RUN BEFORE THE HANDOVER
 
 A handover against an out-of-sync run makes a tester see gaps that do not exist — **that has already
