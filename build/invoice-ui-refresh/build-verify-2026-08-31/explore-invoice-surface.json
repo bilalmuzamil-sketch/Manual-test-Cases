@@ -1,0 +1,50 @@
+{
+ "read_at": "2026-08-31T09:32:40.442Z",
+ "routes": {
+  "/workorders?tab=complete": {
+   "url": "https://sv8218.qa.shopview.com/workorders?tab=complete",
+   "chars": 2517
+  },
+  "/invoices": {
+   "url": "https://sv8218.qa.shopview.com/invoices",
+   "chars": 238,
+   "login_bounce": false,
+   "head": "Skip to main content | Work Orders | Schedule | Customers | Parts | Reports | Loading... | Ctrl+K | timer | Clock In | notifications | Staging"
+  },
+  "/estimates": {
+   "url": "https://sv8218.qa.shopview.com/estimates",
+   "chars": 231,
+   "login_bounce": false,
+   "head": "Skip to main content | Work Orders | Schedule | Customers | Parts | Reports | Loading... | Ctrl+K | timer | Clock In | notifications | Staging"
+  },
+  "/invoicing": {
+   "url": "https://sv8218.qa.shopview.com/invoicing",
+   "chars": 212,
+   "login_bounce": false,
+   "head": "Skip to main content | Work Orders | Schedule | Customers | Parts | Reports | Loading... | Ctrl+K | timer | Clock In | notifications | Staging"
+  },
+  "/documents": {
+   "url": "https://sv8218.qa.shopview.com/documents",
+   "chars": 223,
+   "login_bounce": false,
+   "head": "Skip to main content | Work Orders | Schedule | Customers | Parts | Reports | Loading... | Ctrl+K | timer | Clock In | notifications | Staging"
+  }
+ },
+ "workorder": null,
+ "actions": [],
+ "notes": [
+  {
+   "endpoint": "/api/invoices",
+   "status": 404
+  },
+  {
+   "endpoint": "/api/work-orders?limit=1",
+   "status": 200
+  },
+  {
+   "endpoint": "/api/settings/invoice",
+   "status": 404
+  }
+ ],
+ "workorder_links": []
+}
