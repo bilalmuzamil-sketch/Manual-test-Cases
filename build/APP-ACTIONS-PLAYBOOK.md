@@ -98,6 +98,54 @@ evidenced in the committed artifacts — confirm before relying on it.
 
 # STAGING ACTION RECIPES (quick-reference index)
 
+> ## 🔧 RECIPE — DRIVING A **QA BRANCH** SPA WITH PLAYWRIGHT, END TO END (proven 2026-08-31 on `sv8218`)
+>
+> **Four things must all be true or the browser never reaches the app. Each one failed in turn on
+> 2026-08-31 and each failure has a distinct, misleading symptom.** Working harness:
+> `build/invoice-ui-refresh/build-verify-2026-08-31/tools/boot8218.mjs` — copy it, change the host.
+>
+> **(1) THE MITM BRIDGE MUST BE FRESH, BECAUSE THE EGRESS PROXY PORT ROTATES *WITHIN* A SESSION.**
+> Symptom: chromium returns **`net::ERR_PROXY_CONNECTION_FAILED`** on every navigation while `curl`
+> through the egress proxy still works. Cause: the running bridge holds the egress port it was
+> started with; `$HTTPS_PROXY` had moved (`:46015` → `:45521`) and the bridge process was gone.
+> **Do not debug the app — restart the bridge and re-read `$HTTPS_PROXY` LIVE.**
+> ```sh
+> ps aux | grep -c "[b]ridge.mjs"                    # 0 = dead, and the port file is a lie
+> rm -f /tmp/atlassian/bridge-port.txt
+> export NODE_EXTRA_CA_CERTS=/root/.ccr/ca-bundle.crt NODE_USE_ENV_PROXY=1
+> setsid nohup node build/atlassian-login/bridge.mjs > /tmp/atlassian/bridge.log 2>&1 < /dev/null &
+> curl -s -o /dev/null -w '%{http_code}\n' -x http://127.0.0.1:$(cat /tmp/atlassian/bridge-port.txt) \
+>      -k https://<branch>.qa.shopview.com/index.html      # expect 200
+> ```
+>
+> **(2) THE BRIDGE NEEDS ITS CERT GENERATED FIRST, AND THE DOCUMENTED SAN IS TOO NARROW.**
+> Symptom: `ENOENT: no such file or directory, open '/tmp/atlassian/mitm.key'`. The `openssl` line in
+> `build/ATLASSIAN-JIRA-ACCESS-METHOD.md` covers only `*.atlassian.net` — **add the hosts you actually
+> need**: `-addext "subjectAltName=DNS:*.atlassian.net,DNS:*.atlassian.com,DNS:*.testrail.io,DNS:*.qa.shopview.com"`.
+>
+> **(3) 🔑 COOKIES ALONE DO NOT GET YOU IN — THE SPA NEEDS `user` + `token` IN `localStorage`.**
+> Symptom, and it looks like dead cookies but is not: the API probe returns **HTTP 200 with a real
+> permissions payload**, yet the browser lands on **`/login?redirect=/workorders`** showing the
+> sign-in form. Seeding `fe_permissions_wrapper` alone is not enough.
+> **The fix — mint a real session, then hydrate all three keys:**
+> ```
+> POST /api/quick-login {"key":"admin"}   ->  200, data.{token,role,details} + a ROTATED PHPSESSID
+> localStorage: user = {data:{token,role,details}} · fe_permissions_wrapper = <fe data> · token
+> then goto the real route  (order matters: cookies -> land on /login -> write localStorage -> navigate)
+> ```
+> **Swap the rotated `PHPSESSID` into your API cookie header too**, or subsequent API calls answer 409.
+> **Use `{"key":"admin"}` first** — a failed `{"key":"tech"}` burns the session and everything then
+> 409s (core §6.2). **And quick-login EVICTS any other worker on that branch**, so confirm with the QA
+> lead that nobody else is driving it (Rule 83).
+>
+> **(4) THE HOST HAS NO DOT BEFORE `api`.** `sv8218api.qa.shopview.com`, never `sv8218.api…`. And
+> **probe the `…api.` host, never the app host** — the SPA serves `index.html` for any unmatched path,
+> so a 200 from the app host proves nothing (core §6 trap 2).
+>
+> **Landing proof to assert, so a false success cannot pass:** the URL must NOT match `/login`, the
+> page title is the real screen (`Work Orders | ShopView`), and `document.body.innerText` is a
+> four-figure character count of real content — not the 225 characters of the sign-in form.
+
 Consolidated, copy-paste-ready staging/QA recipes so no worker re-discovers a proven
 action. Each is terse: **what · method+endpoint (minimal payload) · the gotcha · helper
 location · source**. Fuller per-action detail (UI click-paths, confidence grades) is in

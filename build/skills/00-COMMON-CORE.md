@@ -664,6 +664,39 @@ permission; keep Failed / Retest / Blocked local.
 **We NEVER edit, update, delete, move, or add to a run any case we did not author.** Not to tidy a
 title, not to add `refs`, not to merge an apparent duplicate.
 
+### 5.0 🔑 THE ONE CARVE-OUT — A CASE BY THE PROJECT'S **MANUAL QA OWNER** IS IN SCOPE, ONCE THE QA LEAD NAMES THEM (added 2026-08-31)
+
+**QA lead, verbatim:** *"If they are created by Mudassir, then treat them as the test cases which you
+need to build verify too because mudassir is the Manual QA owner for this testing suite/project. Going
+forward for such foreign cases tell me the name of the creator/updater of those test cases and if I
+tell you in the reply that the person you have named is the Maual QA owner, then you must treat those
+test cases as other test cases."*
+
+**⇒ THE PROCEDURE, AND THE NAMING STEP IS THE WHOLE POINT:**
+
+1. **RESOLVE THE AUTHOR TO A NAME, LIVE** — `get_user/{id}`, never from the id table above. That table
+   is a starting point and **it has been wrong** (§17 records "Grossman" vs "Grosman" unconfirmed).
+   Report **`created_by` AND `updated_by`** — they can differ, and the later editor matters as much as
+   the author.
+2. **TELL THE QA LEAD THE NAME** and ask whether that person is the **Manual QA owner** of this
+   suite/project.
+3. **IF HE CONFIRMS:** those cases are treated **exactly like ours** — build-verified, and updated
+   where the preconditions/steps need to be build-accurate. They stop being "foreign" for this project.
+4. **UNTIL HE CONFIRMS, THE HANDS-OFF POSTURE ABOVE STANDS.** Silence is not confirmation.
+
+**⚠️ THE CONFIRMATION IS PER SUITE/PROJECT AND PER PERSON.** "Mudassir owns Invoice Refresh" says
+nothing about who owns Global Search, and nothing about Vladimir Tomovic's automation cases anywhere.
+**Ask again on the next project.**
+
+**⚠️ WHAT THIS DOES *NOT* CHANGE:** Rule 71 still gates any case flagged `custom_atmstatus = 3`
+(ask-first, even the owner's) · Rule 65 still requires telling Vlad · the counts are still reported
+**both ways** (§1.3 — ours N / owner's M / live total), because "who wrote it" stays a fact worth
+showing even when the treatment is identical.
+
+*First application: Invoice Refresh, 2026-08-31. 30 of the 119 cases in group 6559 were created **and**
+last updated by **Mudassir Qamar** (id 6, `mudassir.qamar@shopview.com`, resolved live); the QA lead
+confirmed him as the Manual QA owner, so the build-verification scope became **119, not 89**.*
+
 **How to tell:** `get_case` returns `created_by` / `updated_by` as user ids. **We are user id 3 (Bilal
 Muzamil).** Id 1 = **Vladimir Tomovic**, the automation engineer. Others: 2 Nebojsa Glavinic ·
 4 Viktoria Videnovic · 5 Ayesha Khan · 6 Mudassir Qamar · 7 Ahtasham Amjad · 8 Chris Amani ·
