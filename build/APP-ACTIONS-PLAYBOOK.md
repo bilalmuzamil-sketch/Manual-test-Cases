@@ -2120,6 +2120,34 @@ for the next session. Badges: **✅ ≤7 days · 🟠 8–14 days · 🔴 >14 da
 | Wages | (per-staff) Staff → Edit Staff Member | (modal) | `settingsWages` reveals Salary Type + Hourly Rate on the staff modal. | ❌ unknown | ❌ unknown | ❌ observation date unknown — recorded before the navigation-map convention existed (2026-08-31); not yet re-observed | ❌ unknown |
 | Integrations | Settings sidebar → Integrations | `/administration/quickbooks`, `/administration/finance/quickbooks` (routes exist) | Shows only **IBS**; QuickBooks absent. | ❌ unknown | ❌ unknown | ❌ observation date unknown — recorded before the navigation-map convention existed (2026-08-31); not yet re-observed | ❌ unknown |
 
+### RE-OBSERVATION ATTEMPT — 2026-08-31 · **0 of 28 rows re-observed** (no session could be minted)
+
+An attempt was made on **2026-08-31** to re-walk every row above on staging and replace the `❌` cells
+with a real date. **It reached the app but could not sign in, so NOT ONE row was re-observed and every
+row above is still `❌`.** Recorded here so the next session does not repeat the same four probes.
+
+**What WAS observed live, unauthenticated (this much is real):**
+
+| Probe | Result |
+|---|---|
+| `GET https://app.staging.shopview.com/index.html` | **HTTP 200** · build marker **`v26.35.6-49e216a`** · `last-modified: Fri, 28 Aug 2026 08:31:04 GMT` · `etag: "7ee61447ee66167ad918fee664be24ea"` |
+| `GET https://api.staging.shopview.com/` | **HTTP 200** `{"data":[]}` — the API host is up |
+
+**What FAILED, with the exact response text:**
+
+| Probe | Result |
+|---|---|
+| `GET https://api.staging.shopview.com/api/auth/me/fe-permissions` (no cookies — none exist in this container) | **HTTP 401** `{"error":"sso_required","sso_redirect_url":"https://auth.staging.shopview.com/login?return_to=…"}` |
+| `POST https://api.staging.shopview.com/api/quick-login {"key":"admin"}` | **HTTP 401** — the **identical** `sso_required` body. Confirms on **staging** what §A already proved on `sv9500api`: quick-login is itself SSO-gated and is **not** a way in from a cold jar |
+| Following the `sso_redirect_url` to `https://auth.staging.shopview.com/login?...` | **HTTP 200 — the real Google sign-in page** (`accounts.google.com`, `hd=shopview.com`, `prompt=select_account`). Exactly the §A root cause: **a staging session is mintable only by a human SSO login or by the QA lead handing over a cookie set** |
+
+**Why no fallback was tried:** `/tmp` held **no cookie file at all** (`/tmp/qa-cookies/`,
+`/tmp/staging-cookie.txt`, `/tmp/cln/cookies.json` — none present; `/tmp` is per-container and this was
+a fresh one), and §A records that `POST /api/login {username,password}` is **prod-only** and answers the
+same `sso_required` 401 on staging. **This is the state `build/BLOCKED-shopview-app-session.md` already
+describes — re-confirmed live on 2026-08-31, not a new blocker.** The unblock is unchanged: a fresh
+three-cookie set for `app.staging.shopview.com` from the QA lead, into `/tmp` only.
+
 ---
 
 ## WORK ORDERS
