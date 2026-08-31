@@ -14,9 +14,19 @@ DIR = 'build/invoice-ui-refresh/build-verify-2026-08-31'
 M = f'{DIR}/markers'
 LINK = 'https://shopview.testrail.io/index.php?/cases/view/'
 
-def get(p):
-    r = urllib.request.Request(B + p); r.add_header('Authorization', 'Basic ' + A)
-    return json.loads(urllib.request.urlopen(r, timeout=60).read().decode())
+def get(p, tries=5):
+    # TestRail resets a long-lived keep-alive connection now and then; one reset must not abort a
+    # 119-case generator and leave a PARTIAL deliverable that reads like a complete one.
+    import time
+    last = None
+    for t in range(tries):
+        try:
+            r = urllib.request.Request(B + p)
+            r.add_header('Authorization', 'Basic ' + A)
+            return json.loads(urllib.request.urlopen(r, timeout=60).read().decode())
+        except Exception as e:
+            last = e; time.sleep(2 * (t + 1))
+    raise RuntimeError(f'{{p}} failed after {{tries}} tries: {{last}}')
 
 ver = json.load(open(f'{DIR}/verification.json'))
 applied = {}

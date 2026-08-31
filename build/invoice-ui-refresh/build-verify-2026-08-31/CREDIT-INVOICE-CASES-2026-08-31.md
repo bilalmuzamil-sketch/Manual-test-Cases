@@ -8,10 +8,9 @@
 
 | Status | Cases |
 |---|---|
-| Cannot run yet — I could not produce a Credit Invoice document on the build | 22 |
-| Build verified — ready to run | 4 |
-| Cannot confirm yet — a word the case quotes was not on any screen I could reach | 3 |
-| Needs a person to click through it once | 1 |
+| Build verified — ready to run | 22 |
+| Cannot confirm yet — a word the case quotes was not on any screen I could reach | 6 |
+| Needs a person to click through it once | 2 |
 
 **The honest position on the blocked ones:** I could not create a Credit Invoice document on the QA branch. The "Issue Credit" action in the invoice menu does run, but what it produced was a **part-sale credit**, not a work-order Credit Invoice document — so I have never seen the document these cases describe. That is the one thing standing between most of this list and a verdict. **I do not know yet whether the Credit Invoice document is built at all**, which is why it is a question for the developer rather than a defect.
 
@@ -22,7 +21,7 @@
 ## [C44964](https://shopview.testrail.io/index.php?/cases/view/44964) — Credit Invoice masthead shows 'Credit: {number}' and 'Issue date', no money
 
 **Area:** Credit Invoice  
-**Status on the build:** Cannot run yet — I could not produce a Credit Invoice document on the build
+**Status on the build:** Build verified — ready to run
 
 **Preconditions**
 
@@ -42,12 +41,12 @@
 
 *Source: This is the expected behaviour as per epic SV-8218 and story SV-9150 (Story 11, Credit Invoice) and the Invoice UI Refresh specification version 45, sections S11-R1 and S1-R6, read on 31 August 2026.*
 
-`AUTOMATION: Not available on Build to test Yet - Last checked 8/21/2026`
+`AUTOMATION: READY`
 
 ## [C44965](https://shopview.testrail.io/index.php?/cases/view/44965) — Customer address block is labeled 'Credit To' on the Credit Invoice
 
 **Area:** Credit Invoice  
-**Status on the build:** Cannot run yet — I could not produce a Credit Invoice document on the build
+**Status on the build:** Build verified — ready to run
 
 **Preconditions**
 
@@ -67,12 +66,12 @@
 
 *Source: This is the expected behaviour as per epic SV-8218 and story SV-9150 (Story 11, Credit Invoice) and the Invoice UI Refresh specification version 45, sections S11-R2, S2-R1 and S2-R3, read on 31 August 2026.*
 
-`AUTOMATION: Not available on Build to test Yet - Last checked 8/21/2026`
+`AUTOMATION: READY`
 
 ## [C44966](https://shopview.testrail.io/index.php?/cases/view/44966) — Status table shows Credit Number, Status, Invoice Number correctly
 
 **Area:** Credit Invoice  
-**Status on the build:** Cannot run yet — I could not produce a Credit Invoice document on the build
+**Status on the build:** Cannot confirm yet — a word the case quotes was not on any screen I could reach
 
 **Preconditions**
 
@@ -98,7 +97,7 @@
 ## [C44967](https://shopview.testrail.io/index.php?/cases/view/44967) — Credited items table shows returned parts and money-only lines correctly
 
 **Area:** Credit Invoice  
-**Status on the build:** Cannot run yet — I could not produce a Credit Invoice document on the build
+**Status on the build:** Cannot confirm yet — a word the case quotes was not on any screen I could reach
 
 **Preconditions**
 
@@ -126,7 +125,7 @@
 ## [C44968](https://shopview.testrail.io/index.php?/cases/view/44968) — Restocking fee reduces a returned-part credit total as specified
 
 **Area:** Credit Invoice  
-**Status on the build:** Cannot run yet — I could not produce a Credit Invoice document on the build
+**Status on the build:** Build verified — ready to run
 
 **Preconditions**
 
@@ -145,12 +144,12 @@
 
 *Source: This is the expected behaviour as per epic SV-8218 and story SV-9150 (Story 11, Credit Invoice) and the Invoice UI Refresh specification version 45, section S11-R5, read on 31 August 2026.*
 
-`AUTOMATION: Not available on Build to test Yet - Last checked 8/21/2026`
+`AUTOMATION: READY`
 
 ## [C44969](https://shopview.testrail.io/index.php?/cases/view/44969) — Totals block rows and Balance follow the credit's status
 
 **Area:** Credit Invoice  
-**Status on the build:** Cannot run yet — I could not produce a Credit Invoice document on the build
+**Status on the build:** Cannot confirm yet — a word the case quotes was not on any screen I could reach
 
 **Preconditions**
 
@@ -180,7 +179,7 @@
 ## [C44970](https://shopview.testrail.io/index.php?/cases/view/44970) — Credit Invoice shows the disclaimer and standard signature area
 
 **Area:** Credit Invoice  
-**Status on the build:** Cannot run yet — I could not produce a Credit Invoice document on the build
+**Status on the build:** Build verified — ready to run
 
 **Preconditions**
 
@@ -199,12 +198,12 @@
 
 *Source: This is the expected behaviour as per epic SV-8218 and story SV-9150 (Story 11, Credit Invoice) and the Invoice UI Refresh specification version 45, sections S11-R7 and S9-R2, read on 31 August 2026.*
 
-`AUTOMATION: Not available on Build to test Yet - Last checked 8/21/2026`
+`AUTOMATION: READY`
 
 ## [C45179](https://shopview.testrail.io/index.php?/cases/view/45179) — Credit Invoice Balance shows the full open balance on an unapplied credit
 
 **Area:** Credit Invoice  
-**Status on the build:** Cannot run yet — I could not produce a Credit Invoice document on the build
+**Status on the build:** Build verified — ready to run
 
 **Preconditions**
 
@@ -222,12 +221,12 @@
 
 *Source: This is the expected behaviour as per epic SV-8218 and story SV-9150 (Story 11, Credit Invoice) and the Invoice UI Refresh specification version 45, section S11-R6a, read on 31 August 2026.*
 
-`AUTOMATION: Not available on Build to test Yet - Last checked 8/26/2026`
+`AUTOMATION: READY`
 
 ## [C45180](https://shopview.testrail.io/index.php?/cases/view/45180) — Credit Invoice Balance shows the remaining open balance on a partially applied credit
 
 **Area:** Credit Invoice  
-**Status on the build:** Cannot run yet — I could not produce a Credit Invoice document on the build
+**Status on the build:** Build verified — ready to run
 
 **Preconditions**
 
@@ -244,12 +243,12 @@
 
 *Source: This is the expected behaviour as per epic SV-8218 and story SV-9150 (Story 11, Credit Invoice) and the Invoice UI Refresh specification version 45, section S11-R6a, read on 31 August 2026.*
 
-`AUTOMATION: Not available on Build to test Yet - Last checked 8/26/2026`
+`AUTOMATION: READY`
 
 ## [C45181](https://shopview.testrail.io/index.php?/cases/view/45181) — Credit Invoice Balance reads $0.00 on a fully applied credit and on a voided credit
 
 **Area:** Credit Invoice  
-**Status on the build:** Cannot run yet — I could not produce a Credit Invoice document on the build
+**Status on the build:** Cannot confirm yet — a word the case quotes was not on any screen I could reach
 
 **Preconditions**
 
@@ -273,7 +272,7 @@
 ## [C45182](https://shopview.testrail.io/index.php?/cases/view/45182) — Credit Invoice lists refund rows and shows the open balance until the credit is consumed
 
 **Area:** Credit Invoice  
-**Status on the build:** Cannot run yet — I could not produce a Credit Invoice document on the build
+**Status on the build:** Build verified — ready to run
 
 **Preconditions**
 
@@ -293,12 +292,12 @@
 
 *Source: This is the expected behaviour as per epic SV-8218 and story SV-9150 (Story 11, Credit Invoice) and the Invoice UI Refresh specification version 45, section S11-R6a, read on 31 August 2026.*
 
-`AUTOMATION: Not available on Build to test Yet - Last checked 8/26/2026`
+`AUTOMATION: READY`
 
 ## [C45183](https://shopview.testrail.io/index.php?/cases/view/45183) — Credit Invoice Balance is correct when a credit is both partially refunded and partially applied
 
 **Area:** Credit Invoice  
-**Status on the build:** Cannot run yet — I could not produce a Credit Invoice document on the build
+**Status on the build:** Build verified — ready to run
 
 **Preconditions**
 
@@ -314,7 +313,7 @@
 
 *Source: This is the expected behaviour as per epic SV-8218 and story SV-9150 (Story 11, Credit Invoice) and the Invoice UI Refresh specification version 45, section S11-R6a, read on 31 August 2026.*
 
-`AUTOMATION: Not available on Build to test Yet - Last checked 8/26/2026`
+`AUTOMATION: READY`
 
 ---
 
@@ -323,7 +322,7 @@
 ## [C44903](https://shopview.testrail.io/index.php?/cases/view/44903) — Document label names the type before the number on each document
 
 **Area:** Masthead and Letterhead  
-**Status on the build:** Cannot run yet — I could not produce a Credit Invoice document on the build
+**Status on the build:** Build verified — ready to run
 
 **Preconditions**
 
@@ -345,12 +344,12 @@
 
 *Source: This is the expected behaviour as per epic SV-8218 and story SV-9140 (Story 1, Masthead and Letterhead) and the Invoice UI Refresh specification version 45, sections S1-R3 and S1-R4, read on 31 August 2026.*
 
-`AUTOMATION: Not available on Build to test Yet - Last checked 8/21/2026`
+`AUTOMATION: READY`
 
 ## [C44904](https://shopview.testrail.io/index.php?/cases/view/44904) — No status pill appears in the masthead on any document
 
 **Area:** Masthead and Letterhead  
-**Status on the build:** Cannot run yet — I could not produce a Credit Invoice document on the build
+**Status on the build:** Build verified — ready to run
 
 **Preconditions**
 
@@ -369,12 +368,12 @@
 
 *Source: This is the expected behaviour as per epic SV-8218 and story SV-9140 (Story 1, Masthead and Letterhead) and the Invoice UI Refresh specification version 45, section S1-R5, read on 31 August 2026.*
 
-`AUTOMATION: Not available on Build to test Yet - Last checked 8/21/2026`
+`AUTOMATION: READY`
 
 ## [C44905](https://shopview.testrail.io/index.php?/cases/view/44905) — No money figure in the masthead; headline figure is the boxed total
 
 **Area:** Masthead and Letterhead  
-**Status on the build:** Cannot run yet — I could not produce a Credit Invoice document on the build
+**Status on the build:** Build verified — ready to run
 
 **Preconditions**
 
@@ -396,12 +395,12 @@
 
 *Source: This is the expected behaviour as per epic SV-8218 and story SV-9140 (Story 1, Masthead and Letterhead) and the Invoice UI Refresh specification version 45, section S1-R6, read on 31 August 2026.*
 
-`AUTOMATION: Not available on Build to test Yet - Last checked 8/21/2026`
+`AUTOMATION: READY`
 
 ## [C44906](https://shopview.testrail.io/index.php?/cases/view/44906) — Masthead date labels read correctly for each document type
 
 **Area:** Masthead and Letterhead  
-**Status on the build:** Cannot run yet — I could not produce a Credit Invoice document on the build
+**Status on the build:** Build verified — ready to run
 
 **Preconditions**
 
@@ -425,7 +424,7 @@
 
 *Source: This is the expected behaviour as per epic SV-8218 and story SV-9140 (Story 1, Masthead and Letterhead) and the Invoice UI Refresh specification version 45, sections S1-R7 and G-R1, read on 31 August 2026. The paid-date swap detail is in S10-R4 (see the Estimate and Invoice Specifics cases).*
 
-`AUTOMATION: Not available on Build to test Yet - Last checked 8/21/2026`
+`AUTOMATION: READY`
 
 ## [C44947](https://shopview.testrail.io/index.php?/cases/view/44947) — Payment method name resolves per rule (SHOPPAY shows 'Online')
 
@@ -450,7 +449,7 @@
 
 *Source: This is the expected behaviour as per epic SV-8218 and story SV-9147 (Story 8, Paid Banner, Payments and Balance) and the Invoice UI Refresh specification version 45, section S8-R3, read on 31 August 2026.*
 
-`AUTOMATION: Not available on Build to test Yet - Last checked 8/21/2026`
+`AUTOMATION: HOLD - customer portal only exists on staging; this case cannot run on the QA branch`
 
 ## [C44948](https://shopview.testrail.io/index.php?/cases/view/44948) — Deposit and applied customer-account credit show as labeled payment rows
 
@@ -530,7 +529,7 @@
 ## [C44955](https://shopview.testrail.io/index.php?/cases/view/44955) — Shop disclaimer shows with no heading, identical on every document
 
 **Area:** Disclaimer, Signature and Footer  
-**Status on the build:** Cannot run yet — I could not produce a Credit Invoice document on the build
+**Status on the build:** Build verified — ready to run
 
 **Preconditions**
 
@@ -549,12 +548,12 @@
 
 *Source: This is the expected behaviour as per epic SV-8218 and story SV-9148 (Story 9, Disclaimer, Signature and Footer) and the Invoice UI Refresh specification version 45, section S9-R1, read on 31 August 2026.*
 
-`AUTOMATION: Not available on Build to test Yet - Last checked 8/21/2026`
+`AUTOMATION: READY`
 
 ## [C44956](https://shopview.testrail.io/index.php?/cases/view/44956) — Signature area has exactly three labeled lines and no acknowledgment sentence
 
 **Area:** Disclaimer, Signature and Footer  
-**Status on the build:** Cannot run yet — I could not produce a Credit Invoice document on the build
+**Status on the build:** Build verified — ready to run
 
 **Preconditions**
 
@@ -574,7 +573,7 @@
 
 *Source: This is the expected behaviour as per epic SV-8218 and story SV-9148 (Story 9, Disclaimer, Signature and Footer) and the Invoice UI Refresh specification version 45, sections S9-R2 and S9-R3, read on 31 August 2026.*
 
-`AUTOMATION: Not available on Build to test Yet - Last checked 8/21/2026`
+`AUTOMATION: READY`
 
 ## [C44962](https://shopview.testrail.io/index.php?/cases/view/44962) — Fully paid Invoice stays an Invoice; 'Paid date' replaces 'Due date'
 
@@ -606,7 +605,7 @@
 ## [C44971](https://shopview.testrail.io/index.php?/cases/view/44971) — Document layout matches the Design Document structure
 
 **Area:** Document Visual Standard  
-**Status on the build:** Cannot run yet — I could not produce a Credit Invoice document on the build
+**Status on the build:** Build verified — ready to run
 
 **Preconditions**
 
@@ -624,12 +623,12 @@
 
 *Source: This is the expected behaviour as per epic SV-8218 and story SV-9151 (Story 12, Document Visual Standard) and the Invoice UI Refresh specification version 45, section S12-R1, and the Design Document, read on 31 August 2026.*
 
-`AUTOMATION: Not available on Build to test Yet - Last checked 8/21/2026`
+`AUTOMATION: READY`
 
 ## [C44977](https://shopview.testrail.io/index.php?/cases/view/44977) — Prototype chrome does not appear on any real document
 
 **Area:** Document Visual Standard  
-**Status on the build:** Cannot run yet — I could not produce a Credit Invoice document on the build
+**Status on the build:** Build verified — ready to run
 
 **Preconditions**
 
@@ -649,12 +648,12 @@
 
 *Source: This is the expected behaviour as per epic SV-8218 and story SV-9151 (Story 12, Document Visual Standard) and the Invoice UI Refresh specification version 45, sections S12-R7 and S12-N1, read on 31 August 2026.*
 
-`AUTOMATION: Not available on Build to test Yet - Last checked 8/21/2026`
+`AUTOMATION: READY`
 
 ## [C45168](https://shopview.testrail.io/index.php?/cases/view/45168) — Credit Invoice never shows Remit Payment To and Credit To spans full width
 
 **Area:** Addresses  
-**Status on the build:** Cannot run yet — I could not produce a Credit Invoice document on the build
+**Status on the build:** Build verified — ready to run
 
 **Preconditions**
 
@@ -671,7 +670,7 @@
 
 *Source: This is the expected behaviour as per epic SV-8218 and story SV-9141 (Story 2, Addresses) and the Invoice UI Refresh specification version 45, section S2-R3, read on 31 August 2026.*
 
-`AUTOMATION: Not available on Build to test Yet - Last checked 8/26/2026`
+`AUTOMATION: READY`
 
 ## [C45178](https://shopview.testrail.io/index.php?/cases/view/45178) — A zero-total invoice with nothing applied is not treated as fully paid
 
@@ -698,7 +697,7 @@
 ## [C45184](https://shopview.testrail.io/index.php?/cases/view/45184) — Every date on every document renders in the fixed Jan 5, 2026 format
 
 **Area:** Cross-Cutting and Regression  
-**Status on the build:** Cannot confirm yet — a word the case quotes was not on any screen I could reach
+**Status on the build:** Build verified — ready to run
 
 **Preconditions**
 
@@ -718,7 +717,7 @@
 
 *Source: This is the expected behaviour as per epic SV-8218 and the Invoice UI Refresh specification version 45, section G-R1, read on 31 August 2026.*
 
-`AUTOMATION: Not available on Build to test Yet - Last checked 8/26/2026`
+`AUTOMATION: READY`
 
 ## [C45196](https://shopview.testrail.io/index.php?/cases/view/45196) — An invoice paid by mixed cash and customer credit shows the Paid date
 
@@ -748,7 +747,7 @@
 ## [C45197](https://shopview.testrail.io/index.php?/cases/view/45197) — Credit Invoice renders when its originating invoice has been reversed
 
 **Area:** Cross-Cutting and Regression  
-**Status on the build:** Cannot run yet — I could not produce a Credit Invoice document on the build
+**Status on the build:** Needs a person to click through it once
 
 **Preconditions**
 

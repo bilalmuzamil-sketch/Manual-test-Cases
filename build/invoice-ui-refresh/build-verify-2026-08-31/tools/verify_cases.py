@@ -175,6 +175,23 @@ for cid, case in req.items():
         '45193': ("Walked: type=pdf returns a real 3-page PDF (187,703 bytes)."),
         '45195': ("Walked: type=pdf returns a 3-PAGE PDF (chars per page 1439/1737/1427), so page "
                   "breaks exist and 'inspect every page break' is executable."),
+        # --- walked 2026-08-31, tranche 2 ---
+        '44955': ("Walked across all NINE captured documents (invoice, estimate, "
+                  "invoice-with-declined, credit invoice, parts sale invoice and estimate): the "
+                  "shop disclaimer is present on every one and no heading sits above it, so "
+                  "'find the disclaimer text on each' is executable and its subject exists."),
+        '45169': ("Walked against the REAL route. POST /api/work-orders/change-authorizer "
+                  "{workOrderId, authorizerContactId} with a VALID authorizer on PAID work order "
+                  "S2-15522 returns HTTP 409: 'The authorizer cannot be changed on an invoiced or "
+                  "paid work order'. The refusal the case asks for is observable. NOTE the route "
+                  "named in the case steps, /api/work-orders/{wo}/authorizer, 404s -- the steps "
+                  "need updating to the real route."),
+        '45170': ("Walked BOTH halves on editable work order S8218-15017 (same customer, so the "
+                  "two conditions are not confounded). (a) a same-customer contact WITHOUT "
+                  "'Approves Work' (Nicole Cole) -> HTTP 422 'cannot be used as the authorizer for "
+                  "this work order'. (b) a contact belonging to ANOTHER customer (Jeffrey Burns) "
+                  "-> HTTP 422, same refusal. The work order was then restored to a valid "
+                  "authorizer (Rule 6)."),
         # NOT added, and why -- each would be an overclaim:
         #   C45185 needs "a snapshot created BEFORE the redesign". historyEvent=1|2|5 are accepted
         #     by the endpoint, but I proved only that the PARAM binds, not that a pre-redesign

@@ -1,5 +1,5 @@
 {
- "verified_at": "2026-08-31T17:14:17.940129+00:00",
+ "verified_at": "2026-08-31T17:02:09.940845+00:00",
  "build_marker": "v26.35.5-8c3cc21",
  "control_can_fire": true,
  "document_kinds_captured": [
@@ -31,9 +31,9 @@
   "surfaces.json:workorder-lines"
  ],
  "tally": {
-  "RUNNABLE": 95,
+  "RUNNABLE": 92,
   "LABELS_UNCONFIRMED": 15,
-  "NEEDS_STEP_WALK": 9
+  "NEEDS_STEP_WALK": 12
  },
  "cases": {
   "44901": {
@@ -518,12 +518,12 @@
    "needs": [
     "invoice"
    ],
-   "verdict": "RUNNABLE",
+   "verdict": "NEEDS_STEP_WALK",
    "checks": {
     "1_precondition": "PASS — invoice document(s) captured this run",
     "2_navigation": "PASS — /workorders/{id}/finance renders (observed finance)",
     "3_controls": "PASS — the case names no control beyond the document itself",
-    "4_step_order": "PASS — all 1 steps are document-inspection steps, order-independent",
+    "4_step_order": "NEEDS_STEP_WALK — 1 of 1 step(s) name an action not matched to an observed surface: ['1. POST /api/work-orders/{wo}/authorizer with a valid authorizer_id directly (bypass the UI)']",
     "5_labels": "N/A — the case quotes no on-screen label"
    },
    "labels_absent": [],
@@ -537,12 +537,12 @@
    "needs": [
     "invoice"
    ],
-   "verdict": "RUNNABLE",
+   "verdict": "NEEDS_STEP_WALK",
    "checks": {
     "1_precondition": "PASS — invoice document(s) captured this run",
     "2_navigation": "PASS — /workorders/{id}/finance renders (observed finance)",
     "3_controls": "PASS — the case names no control beyond the document itself",
-    "4_step_order": "PASS — all 2 steps are document-inspection steps, order-independent",
+    "4_step_order": "NEEDS_STEP_WALK — 2 of 2 step(s) name an action not matched to an observed surface: ['1. POST authorizer_id = contact (a)', '2. POST authorizer_id = contact (b)']",
     "5_labels": "PASS — all 1 quoted labels found in the rendered document"
    },
    "labels_absent": [],
@@ -1279,12 +1279,12 @@
     "credit-invoice",
     "estimate"
    ],
-   "verdict": "RUNNABLE",
+   "verdict": "NEEDS_STEP_WALK",
    "checks": {
     "1_precondition": "PASS — credit-invoice, estimate document(s) captured this run",
     "2_navigation": "PASS — /workorders/{id}/finance renders (observed finance)",
     "3_controls": "PASS — the case names no control beyond the document itself",
-    "4_step_order": "PASS — all 2 steps are document-inspection steps, order-independent",
+    "4_step_order": "NEEDS_STEP_WALK — 1 of 2 step(s) name an action not matched to an observed surface: ['Find the disclaimer text on each.']",
     "5_labels": "N/A — the case quotes no on-screen label"
    },
    "labels_absent": [],

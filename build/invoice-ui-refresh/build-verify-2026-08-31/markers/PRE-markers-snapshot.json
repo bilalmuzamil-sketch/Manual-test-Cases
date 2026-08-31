@@ -1652,5 +1652,50 @@
    "This is the expected behaviour as per epic SV-8218 and story SV-9151 (Story 12, Document Visual Standard) and the Invoice UI Refresh specification version 45, section S12-R1 and S12-R10, read on 31 August 2026."
   ],
   "build_sentence": []
+ },
+ "44955": {
+  "id": "44955",
+  "title": "Shop disclaimer shows with no heading, identical on every document",
+  "section_id": 6750,
+  "refs": "SV-9148 (S9-R1)",
+  "atm": 1,
+  "custom_expected": "<ol>\n<li>Each document shows the shop's configured disclaimer text, with no heading above it.</li>\n<li>The disclaimer is identical on every document that carries it.</li>\n<hr><p>This is the expected behaviour as per epic SV-8218 and story SV-9148 (Story 9, Disclaimer, Signature and Footer) and the Invoice UI Refresh specification version 45, section S9-R1, read on 31 August 2026.</p><p>AUTOMATION: Not available on Build to test Yet - Last checked 8/21/2026</p></ol>\n",
+  "markers": [
+   "AUTOMATION: Not available on Build to test Yet - Last checked 8/21/2026"
+  ],
+  "provenance": [
+   "This is the expected behaviour as per epic SV-8218 and story SV-9148 (Story 9, Disclaimer, Signature and Footer) and the Invoice UI Refresh specification version 45, section S9-R1, read on 31 August 2026."
+  ],
+  "build_sentence": []
+ },
+ "45169": {
+  "id": "45169",
+  "title": "Authorizer change is rejected by the API while a non-voided invoice exists",
+  "section_id": 6744,
+  "refs": "SV-9142 (S3-R8)",
+  "atm": 1,
+  "custom_expected": "<p>1. The API returns 409; the Authorizer is unchanged. The server-side lock cannot be bypassed (NFR-001, plan D2).<br>2. The lock is conditional, not permanent: per v45 S3-R8 a later void or reversal returns the work order to Complete and re-enables the Authorizer row (that transition is out of scope for this API-rejection case).</p><p>---<br>This is the expected behaviour as per epic SV-8218 and story SV-9142 (Story 3, Order Reference Fields) and the Invoice UI Refresh specification version 45, section S3-R8, read on 31 August 2026.</p><p>AUTOMATION: Not available on Build to test Yet - Last checked 8/26/2026</p>",
+  "markers": [
+   "AUTOMATION: Not available on Build to test Yet - Last checked 8/26/2026"
+  ],
+  "provenance": [
+   "This is the expected behaviour as per epic SV-8218 and story SV-9142 (Story 3, Order Reference Fields) and the Invoice UI Refresh specification version 45, section S3-R8, read on 31 August 2026."
+  ],
+  "build_sentence": []
+ },
+ "45170": {
+  "id": "45170",
+  "title": "Authorizer API rejects a contact that does not approve work or belongs to another company",
+  "section_id": 6744,
+  "refs": "SV-9142 (S3-R5)",
+  "atm": 1,
+  "custom_expected": "<p>1. Both are rejected - 422 (or 404 for the cross-tenant contact); the Authorizer is unchanged (NFR-002). Only a customer contact with 'Approves Work' enabled can be selected as Authorizer (S3-R5).</p><p>---<br>This is the expected behaviour as per epic SV-8218 and story SV-9142 (Story 3, Order Reference Fields) and the Invoice UI Refresh specification version 45, section S3-R5, read on 31 August 2026.</p><p>AUTOMATION: Not available on Build to test Yet - Last checked 8/26/2026</p>",
+  "markers": [
+   "AUTOMATION: Not available on Build to test Yet - Last checked 8/26/2026"
+  ],
+  "provenance": [
+   "This is the expected behaviour as per epic SV-8218 and story SV-9142 (Story 3, Order Reference Fields) and the Invoice UI Refresh specification version 45, section S3-R5, read on 31 August 2026."
+  ],
+  "build_sentence": []
  }
 }
