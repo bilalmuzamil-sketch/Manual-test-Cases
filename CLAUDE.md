@@ -387,7 +387,9 @@ action**; §J TestRail traps, §K production access) · `build/TESTING-RUNBOOK.m
 `build/SPEC-RELEVANCE-RECONCILIATION-PROCESS.md` · `build/MISSING-TRACEABILITY-PROCESS.md` ·
 `build/CUSTOM-ROLES-PERMISSION-VIU-PROCESS.md` · `build/PROD-VS-STAGING-COMPARE-METHOD.md` ·
 `build/COMPARISON-WORKBOOK-RECIPE.md` · `build/PROCESS-AUTHORING-STANDARD.md` ·
-`build/LESSONS-2026-07-31.md`.
+`build/LESSONS-2026-07-31.md` · `build/NAVIGATION-MAP-TEMPLATE.md` (copy to
+`build/<project>/NAVIGATION-MAP.md` — navigation paths OBSERVED once on the build and RECORDED, then
+reused; convention in `build/skills/03-RUN-CHECK.md` §9).
 
 ---
 

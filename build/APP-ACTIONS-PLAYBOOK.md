@@ -2064,6 +2064,16 @@ takes a plain string), then transition, then read back status + resolution + pri
 How to reach each screen. SPA routes are under `app.staging.shopview.com`. Top nav
 items are **gated by permission** (a hidden item means the role lacks the perm).
 
+> **↔ PER-PROJECT PATHS LIVE IN `build/<project>/NAVIGATION-MAP.md` — NOT HERE.** This section holds
+> the **shared, cross-project staging** paths. A path that is specific to a project and to the branch
+> it is tested on goes in that project's own map (template: `build/NAVIGATION-MAP-TEMPLATE.md`;
+> convention: `build/skills/03-RUN-CHECK.md` §9), which records the branch + build marker and the date
+> observed. **The two files cross-reference, never duplicate:** if a path proves general, promote it
+> here and point at it from the project map. Same discipline either way (Rules 27 / 57 / 12) — a path
+> is written only after it was **navigated successfully and observed live**, never inferred from source
+> code, a spec, a design or another branch, and the map records **navigation only, never expected
+> behaviour**.
+
 | Screen / Feature | Nav path (from the top) | SPA route | Notes |
 |---|---|---|---|
 | Work Orders list | Top nav → Work Orders | `/workorders` | Gated by `workOrdersView`. |

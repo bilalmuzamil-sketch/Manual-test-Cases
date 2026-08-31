@@ -166,6 +166,30 @@ both stale; they are corrected rather than deleted so nobody re-derives them.
 
 ---
 
+## 3a. THE NAVIGATION MAP — READ IT BEFORE YOU NAVIGATE, APPEND AS YOU GO
+
+**`build/<project>/NAVIGATION-MAP.md`** records how each screen is actually reached on this build:
+one row per feature/screen — **feature/screen · exact menu path in the build's own on-screen labels ·
+URL · branch + build marker observed on · date observed · recorded by**. Full convention:
+**`03-RUN-CHECK.md` §9**; new projects copy **`build/NAVIGATION-MAP-TEMPLATE.md`**.
+
+- **Read it FIRST, before you start hunting for a screen** (Rule 27 — reuse the recorded recipe, never
+  re-discover). If the project has no map yet, create it from the template as you go.
+- **Append the moment a path is confirmed**, in the same pass (Rule 93) — not at the end of the pass.
+- **Only what you navigated successfully and observed live goes in** (Rule 12). **Never infer a path
+  from source code, a spec, a design or another branch** — a route that exists in code may not be
+  deployed or flag-enabled on the branch you are testing (Rule 57).
+- **Navigation only, never expected behaviour** — a map entry is never cited in a case's Expected
+  Results or provenance line (Rule 57).
+- **Paths are branch-specific**: a different branch gets **its own row**, re-observed, never an
+  overwrite. Carry the **Rule 91 badge + date** (✅ ≤7 d · 🟠 8–14 d · 🔴 >14 d · ❌ never observed).
+- A stale row is a **starting point**; if it fails, **re-observe, correct the row and commit the
+  correction in the same pass** — never leave a known-wrong path behind you.
+- The map gets you to the screen. **It is never evidence the feature works** — the verdict still comes
+  from observing the feature (Rule 12).
+
+---
+
 ## 4. HARD GATES — ASK FIRST, EVERY TIME
 
 | Gate | Rule | The ask |
