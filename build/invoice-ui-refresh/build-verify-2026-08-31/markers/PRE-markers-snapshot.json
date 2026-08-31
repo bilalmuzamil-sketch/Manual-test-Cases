@@ -1035,5 +1035,125 @@
    "This is the expected behaviour as per epic SV-8218 and story SV-9146 (Story 7, Financial Summary) and the Invoice UI Refresh specification version 45, sections S7-R4 and S7-R5, read on 31 August 2026."
   ],
   "build_sentence": []
+ },
+ "44919": {
+  "id": "44919",
+  "title": "Authorizer is selected in the work order customer contact card",
+  "section_id": 6744,
+  "refs": "SV-9142 (S3-R5)",
+  "atm": 3,
+  "custom_expected": "<ol>\n<li>An \"Authorizer\" row appears in the customer contact card, directly below the Contact and Phone values, in the same label-and-value style.</li>\n<li>Selecting the row opens a list of only the customer's contacts that have \"Approves Work\" enabled.</li>\n<li>No other contact is offered, and no free-typed name can be entered.</li>\n<li>This is the only place the Authorizer can be selected.</li>\n<hr><p>This is the expected behaviour as per epic SV-8218 and story SV-9142 (Story 3, Order Reference Fields) and the Invoice UI Refresh specification version 45, section S3-R5, read on 31 August 2026.</p><p>AUTOMATION: Not available on Build to test Yet - Last checked 8/21/2026</p></ol>\n",
+  "markers": [
+   "AUTOMATION: Not available on Build to test Yet - Last checked 8/21/2026"
+  ],
+  "provenance": [
+   "This is the expected behaviour as per epic SV-8218 and story SV-9142 (Story 3, Order Reference Fields) and the Invoice UI Refresh specification version 45, section S3-R5, read on 31 August 2026."
+  ],
+  "build_sentence": []
+ },
+ "44920": {
+  "id": "44920",
+  "title": "Authorizer is optional and can be cleared with 'No authorizer'",
+  "section_id": 6744,
+  "refs": "SV-9142 (S3-R6)",
+  "atm": 3,
+  "custom_expected": "<ol>\n<li>The Authorizer is not required and defaults to empty on a new work order.</li>\n<li>The Authorizer list includes a \"No authorizer\" option.</li>\n<li>Choosing \"No authorizer\" clears the selection back to empty.</li>\n<hr><p>This is the expected behaviour as per epic SV-8218 and story SV-9142 (Story 3, Order Reference Fields) and the Invoice UI Refresh specification version 45, section S3-R6, read on 31 August 2026.</p><p>AUTOMATION: Not available on Build to test Yet - Last checked 8/21/2026</p></ol>\n",
+  "markers": [
+   "AUTOMATION: Not available on Build to test Yet - Last checked 8/21/2026"
+  ],
+  "provenance": [
+   "This is the expected behaviour as per epic SV-8218 and story SV-9142 (Story 3, Order Reference Fields) and the Invoice UI Refresh specification version 45, section S3-R6, read on 31 August 2026."
+  ],
+  "build_sentence": []
+ },
+ "44921": {
+  "id": "44921",
+  "title": "Authorizer's phone shows below the name when the contact has one",
+  "section_id": 6744,
+  "refs": "SV-9142 (S3-R7)",
+  "atm": 3,
+  "custom_expected": "<ol>\n<li>When the selected authorizer's contact record has a phone number, the phone shows in the card directly below the authorizer's name, styled like the Contact's phone.</li>\n<li>When the contact record has no phone number, no phone row is shown under the authorizer's name.</li>\n<hr><p>This is the expected behaviour as per epic SV-8218 and story SV-9142 (Story 3, Order Reference Fields) and the Invoice UI Refresh specification version 45, section S3-R7, read on 31 August 2026.</p><p>AUTOMATION: Not available on Build to test Yet - Last checked 8/21/2026</p></ol>\n",
+  "markers": [
+   "AUTOMATION: Not available on Build to test Yet - Last checked 8/21/2026"
+  ],
+  "provenance": [
+   "This is the expected behaviour as per epic SV-8218 and story SV-9142 (Story 3, Order Reference Fields) and the Invoice UI Refresh specification version 45, section S3-R7, read on 31 August 2026."
+  ],
+  "build_sentence": []
+ },
+ "44922": {
+  "id": "44922",
+  "title": "Authorizer is locked once the work order is invoiced",
+  "section_id": 6744,
+  "refs": "SV-9142 (S3-R8)",
+  "atm": 3,
+  "custom_expected": "<ol>\n<li>Once the work order is invoiced, the Authorizer row is locked and its value cannot be changed.</li>\n<li>Before invoicing the row is editable; from the point of invoicing it is read-only.</li>\n<li>If the invoice is later voided or reversed, the work order returns to Complete and the Authorizer row is re-enabled.</li>\n<hr><p>This is the expected behaviour as per epic SV-8218 and story SV-9142 (Story 3, Order Reference Fields) and the Invoice UI Refresh specification version 45, section S3-R8, read on 31 August 2026.</p><p>AUTOMATION: Not available on Build to test Yet - Last checked 8/21/2026</p></ol>\n",
+  "markers": [
+   "AUTOMATION: Not available on Build to test Yet - Last checked 8/21/2026"
+  ],
+  "provenance": [
+   "This is the expected behaviour as per epic SV-8218 and story SV-9142 (Story 3, Order Reference Fields) and the Invoice UI Refresh specification version 45, section S3-R8, read on 31 August 2026."
+  ],
+  "build_sentence": []
+ },
+ "44947": {
+  "id": "44947",
+  "title": "Payment method name resolves per rule (SHOPPAY shows 'Online')",
+  "section_id": 6749,
+  "refs": "SV-9147 (S8-R3)",
+  "atm": 1,
+  "custom_expected": "<p>1. A payment's method shows the shop-configured payment-method name when configured.<br>2. When not configured, it shows the payment code with each underscore replaced by a space (for example credit_card shows as \"credit card\").<br>3. The \"SHOPPAY\" code shows as \"Online\".</p><p>---<br>This is the expected behaviour as per epic SV-8218 and story SV-9147 (Story 8, Paid Banner, Payments and Balance) and the Invoice UI Refresh specification version 45, section S8-R3, read on 31 August 2026.</p><p>AUTOMATION: Not available on Build to test Yet - Last checked 8/21/2026</p>",
+  "markers": [
+   "AUTOMATION: Not available on Build to test Yet - Last checked 8/21/2026"
+  ],
+  "provenance": [
+   "This is the expected behaviour as per epic SV-8218 and story SV-9147 (Story 8, Paid Banner, Payments and Balance) and the Invoice UI Refresh specification version 45, section S8-R3, read on 31 August 2026."
+  ],
+  "build_sentence": []
+ },
+ "44951": {
+  "id": "44951",
+  "title": "Paid banner appears only on portal-generated Invoice PDFs, before all content",
+  "section_id": 6749,
+  "refs": "SV-9147 (S8-R8)",
+  "atm": 1,
+  "custom_expected": "<p>1. On the portal-generated PDF the paid banner appears before all other invoice content, including the masthead.<br>2. The banner lists only portal-processed payments; shop-recorded payments appear only in the Payments section.<br>3. An Invoice PDF generated in the shop app never carries the banner, whether or not portal payments exist.<br>4. The banner shows a fixed status pill: exactly \"PAID IN FULL\" when the invoice is fully paid at generation time, otherwise exactly \"PARTIALLY PAID\".<br>5. The banner title reads exactly \"Payment Receipt (Batch) - Payments by ShopView\" when every listed payment was part of a batch, otherwise exactly \"Payment Receipt - Payments by ShopView\".</p><p>---<br>This is the expected behaviour as per epic SV-8218 and story SV-9147 (Story 8, Paid Banner, Payments and Balance) and the Invoice UI Refresh specification version 45, section S8-R8, read on 31 August 2026.</p><p>AUTOMATION: Not available on Build to test Yet - Last checked 8/21/2026</p>",
+  "markers": [
+   "AUTOMATION: Not available on Build to test Yet - Last checked 8/21/2026"
+  ],
+  "provenance": [
+   "This is the expected behaviour as per epic SV-8218 and story SV-9147 (Story 8, Paid Banner, Payments and Balance) and the Invoice UI Refresh specification version 45, section S8-R8, read on 31 August 2026."
+  ],
+  "build_sentence": []
+ },
+ "44952": {
+  "id": "44952",
+  "title": "Each banner payment shows its labeled fields and conditional fees/marker",
+  "section_id": 6749,
+  "refs": "SV-9147 (S8-R9; G-R1)",
+  "atm": 1,
+  "custom_expected": "<p>1. Each banner payment shows fields labeled exactly: \"Date / Time\", \"Paid By\", \"Method\", \"Invoice Amount\", and \"Total Charged\".<br>2. \"Total Charged\" is labeled \"Total Charged (Batch)\" for a batch payment and then covers the whole batch.<br>3. \"Convenience Fee\" and \"Late Fee\" each show only when the portal charged one (a non-zero amount).<br>4. \"Remaining Balance\" shows only when the balance immediately after that payment was greater than $0.00.<br>5. In a batch, each payment carries a \"Payment X of Y - Batch\" marker.<br>6. \"Date / Time\" reads in the format \"Jan 5, 2026 - 2:41 PM MST\" (date, then time with timezone).</p><p>---<br>This is the expected behaviour as per epic SV-8218 and story SV-9147 (Story 8, Paid Banner, Payments and Balance) and the Invoice UI Refresh specification version 45, sections S8-R9 and G-R1, read on 31 August 2026.</p><p>AUTOMATION: Not available on Build to test Yet - Last checked 8/21/2026</p>",
+  "markers": [
+   "AUTOMATION: Not available on Build to test Yet - Last checked 8/21/2026"
+  ],
+  "provenance": [
+   "This is the expected behaviour as per epic SV-8218 and story SV-9147 (Story 8, Paid Banner, Payments and Balance) and the Invoice UI Refresh specification version 45, sections S8-R9 and G-R1, read on 31 August 2026."
+  ],
+  "build_sentence": []
+ },
+ "45175": {
+  "id": "45175",
+  "title": "Paid banner pill and title wording follow the paid state and the batch rule",
+  "section_id": 6749,
+  "refs": "SV-9147 (S8-R8)",
+  "atm": 1,
+  "custom_expected": "<p>1. Fully paid: the pill reads exactly 'PAID IN FULL'; partially paid: exactly 'PARTIALLY PAID'.<br>2. Title reads exactly 'Payment Receipt - Payments by ShopView'.<br>3. When every payment is a batch payment: the title reads exactly 'Payment Receipt (Batch) - Payments by ShopView' (S8-R8).</p><p>---<br>This is the expected behaviour as per epic SV-8218 and story SV-9147 (Story 8, Paid Banner, Payments and Balance) and the Invoice UI Refresh specification version 45, section S8-R8, read on 31 August 2026.</p><p>AUTOMATION: Not available on Build to test Yet - Last checked 8/26/2026</p>",
+  "markers": [
+   "AUTOMATION: Not available on Build to test Yet - Last checked 8/26/2026"
+  ],
+  "provenance": [
+   "This is the expected behaviour as per epic SV-8218 and story SV-9147 (Story 8, Paid Banner, Payments and Balance) and the Invoice UI Refresh specification version 45, section S8-R8, read on 31 August 2026."
+  ],
+  "build_sentence": []
  }
 }

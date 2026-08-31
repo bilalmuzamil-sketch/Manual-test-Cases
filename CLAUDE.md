@@ -429,6 +429,15 @@ Compact form — **the rule named in brackets is the authority; read it before r
   HOLD** (devtools, DOM/network, PDF/CSV reading, seeded data, viewports are all automatable); only a
   genuinely unobtainable thing does. **NOT-BUILT cases are excluded from any ready-to-automate figure.**
   Arithmetic gate: READY + EXPECT-FAIL = total − HOLD, read back from the live cases. [61, 60]
+  **🆕 2026-08-31 — THE STAGING-ONLY HOLD.** A case whose PRECONDITIONS require a **customer-portal**
+  artefact cannot be tested on a QA branch at all (QA lead, 2026-08-31: *"Customer portal related
+  tickets can only be tested on staging and not on the QA branch. We need to put this marker on such
+  tickets aswell."*). It carries
+  `AUTOMATION: HOLD - customer portal only exists on staging; this case cannot run on the QA branch`
+  — a HOLD, so the arithmetic gate above is unaffected. **Scope it from the preconditions, never from
+  the word "portal":** a case that verifies the portal feature's ABSENCE on the shop-app path is
+  testable on the branch and must not be parked. Full treatment + the worked example:
+  `build/skills/00-COMMON-CORE.md` §5.0-b.
 - **An `EXPECT FAIL` case carries the SYMPTOM and ALL THREE OUTCOMES**, before the provenance line:
   what you should see today; **(1)** exactly that ⇒ mark FAILED, raise nothing new; **(2)** fails
   DIFFERENTLY ⇒ a NEW problem, report it; **(3)** PASSES ⇒ the fix shipped, tell the QA lead. Where the

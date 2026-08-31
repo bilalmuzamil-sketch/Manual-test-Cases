@@ -128,10 +128,17 @@ for (const cid of queue) {
     // ---- RULE 71 GATE, immediately before the write ----
     const [st, live] = await api(`get_case/${cid}`);
     if (st !== 200) throw new Error(`pre-GET HTTP ${st}`);
-    if (live.custom_atmstatus === 3) {
+    // RULE 71: an Automated case is skipped unless the QA lead has given a go-ahead for THAT case.
+    // The allow-list is an explicit, per-case file -- never a blanket flag -- so the gate still
+    // stops every Automated case nobody authorised. Rule 65 duty is unchanged: each case written
+    // here is reported to Vladimir Tomovic.
+    const AUTHORISED = fs.existsSync(`${DIR}/automated-authorised.json`)
+      ? new Set(JSON.parse(fs.readFileSync(`${DIR}/automated-authorised.json`, 'utf8')).map(String)) : new Set();
+    if (live.custom_atmstatus === 3 && !AUTHORISED.has(String(cid))) {
       fs.appendFileSync(FAILED, JSON.stringify({ cid, skipped: true, reason: 'AUTOMATED (custom_atmstatus=3) — held for Vlad, Rules 65/71', at: new Date().toISOString() }) + '\n');
-      skipped++; log(`C${cid} SKIPPED — Automated`); continue;
+      skipped++; log(`C${cid} SKIPPED — Automated, not on the authorised list`); continue;
     }
+    if (live.custom_atmstatus === 3) log(`C${cid} is AUTOMATED — writing under the QA lead's 2026-08-31 per-case go-ahead; Rule 65 report required`);
     const atmBefore = live.custom_atmstatus, secBefore = live.section_id, refsBefore = live.refs || null;
 
     await page.goto(`${HOST}/index.php?/cases/edit/${cid}`, { waitUntil: 'networkidle' });
@@ -189,11 +196,15 @@ for (const cid of queue) {
     // ---- the marker and the two provenance sentences ----
     const lines = norm(view.custom_expected ? view.custom_expected.text : '').split('\n').filter(l => l.trim());
     const last = lines[lines.length - 1] || '';
-    const wantMarker = MODE === 'ready' ? 'AUTOMATION: READY' : rec.marker_carried;
+    // A per-case marker_override lets one batch carry both READY cases and HOLD cases (e.g. the
+    // customer-portal cases, which are staging-only) while the verification stays EXACT per case:
+    // whatever the override says is what must be on the page, character for character.
+    const wantMarker = rec.marker_override ? rec.marker_override
+                     : (MODE === 'ready' ? 'AUTOMATION: READY' : rec.marker_carried);
     if (last !== wantMarker) problems.push(`marker is not ${JSON.stringify(wantMarker)} and last: ${JSON.stringify(last.slice(0, 70))}`);
     const nmark = lines.filter(l => l.startsWith('AUTOMATION:')).length;
     if (nmark !== 1) problems.push(`AUTOMATION marker count = ${nmark}`);
-    if (MODE === 'ready' && /Not available on Build/.test(view.custom_expected.text)) problems.push('the deferred marker text is still present');
+    if (MODE === 'ready' && !rec.marker_override && /Not available on Build/.test(view.custom_expected.text)) problems.push('the deferred marker text is still present');
     // Rule 54: sentence 1 carried byte-for-byte, sentence 2 present, NEVER merged
     const wantS1 = norm(snap[cid].provenance[0].replace(/&amp;/g, '&').replace(/&mdash;/g, '—'));
     const s1 = lines.filter(l => l.startsWith('This is the expected behaviour'));

@@ -37,6 +37,7 @@ if '/auth/login' in r.geturl():
 r.read(); print('UI session established')
 
 snap = json.load(open(f'{M}/PRE-markers-snapshot.json'))
+INTENDED = json.load(open(f'{M}/intended-blocks.json'))
 FIELD = re.compile(r'>(Preconditions|Steps|Expected Result)<')
 MD = re.compile(r'<div class="(markdown[^"]*)">')
 LITERAL = re.compile(r'&lt;\s*/?\s*(p|br|div|span|ul|ol|li|strong|em|b|i|hr)\b', re.I)
@@ -71,10 +72,14 @@ for n, cid in enumerate(sorted(snap, key=int), 1):
     exp = html.unescape(re.sub(r'<[^>]+>', '\n', c.get('custom_expected') or ''))
     lines = [l.strip() for l in exp.split('\n') if l.strip()]
     # 3 — the marker
+    # The expected marker is per case: READY for a build-verified case, or the exact override text
+    # for one that carries a different verdict (the customer-portal cases are HOLD, staging-only).
+    want_marker = INTENDED.get(cid, {}).get('marker_override') or 'AUTOMATION: READY'
     marks = [l for l in lines if l.startswith('AUTOMATION:')]
-    if marks != ['AUTOMATION: READY']: p.append(f'markers = {marks}')
-    elif lines[-1] != 'AUTOMATION: READY': p.append(f'marker not last (last is {lines[-1][:50]!r})')
-    if 'Not available on Build' in exp: p.append('deferred marker text still present')
+    if marks != [want_marker]: p.append(f'markers = {marks} (wanted {want_marker!r})')
+    elif lines[-1] != want_marker: p.append(f'marker not last (last is {lines[-1][:50]!r})')
+    if 'Not available on Build' in exp and not INTENDED.get(cid, {}).get('marker_override'):
+        p.append('deferred marker text still present')
     # 4 — sentence 1 byte-identical
     want1 = norm(html.unescape(snap[cid]['provenance'][0]))
     got1 = [l for l in lines if l.startswith('This is the expected behaviour')]
