@@ -1,4 +1,4 @@
-# Coverage Matrix — Invoice UI Refresh (spec v38)
+# Coverage Matrix — Invoice UI Refresh (spec v45)
 
 **Re-derived 2026-08-21 from spec v38 and the 87 authored cases, BOTH directions. No C-IDs yet (nothing pushed).**
 
@@ -43,7 +43,7 @@ Verdicts: **covered** (case IDs named) · **not independently testable** (ration
 | S5-R3 | Each work line shows a name. | covered | INV-WORK-03 |
 | S5-R4 | Each work line shows its description when a description is present. | covered | INV-WORK-03 |
 | S5-R5 | Each work line shows its scope-of-work note when a scope-of-work note is present. | covered | INV-WORK-03 |
-| S5-R6 | A labor entry within a line is labeled exactly "Labor"; a parts entry is labeled exactly "Part". | covered | INV-WORK-04 |
+| S5-R6 | A labor entry within a line is labeled exactly "Labor"; a parts entry is labeled exactly "Parts". | covered | INV-WORK-04 |
 | S5-R7 | Labor hours, labor rate, labor cost, part quantity, and part price are each shown or hidden by their own independent document setting — under Administration → Invoice Details, labeled "Labor hours", "Labor rate", "Labor price", "Part quanti | covered | INV-WORK-05, INV-WORK-07 |
 | S5-R8 | A fee or discount that applies to a single labor or parts line is shown with that line; a discount is shown in parentheses and a fee is shown as a plain amount. | covered | INV-WORK-06 |
 | S5-R9 | Each work line shows a footer with figures labeled exactly "Labor", "Parts", and "Line total". The Labor and Parts figures are that line's own totals after its line-level fees and discounts; "Line total" is their sum. A "Labor" or "Parts" f | covered | INV-WORK-07 |
@@ -98,14 +98,16 @@ Verdicts: **covered** (case IDs named) · **not independently testable** (ration
 | S11-R6a | Balance reads the credit's **open balance** in every status: the original credit total minus amounts refunded minus amounts applied to invoices, shown positive, reading $0.00 once nothing remains or when the credit is voided. On memos with  | covered | INV-CRED-06 |
 | S11-R7 | The Credit Invoice shows the shop's configured disclaimer and the standard signature area (S9-R2). | covered | INV-CRED-07 |
 | S12-R1 | The documents implement the Design Document's structure exactly: masthead with the shop letterhead left, the shop logo center, and the document block right over a 2px ink rule; a bordered Addresses row; the asset band; the order reference c | covered | INV-VIS-01 |
-| S12-R2 | The only colors on any document are: ink #121926, body text #364152, muted text #697586, faint labels #9AA4B2, hairlines #E3E8EF, row dividers #EEF2F6, accent #257CFF, negative #B42318, paper #FFFFFF. No color outside this set appears. | covered | INV-VIS-02 |
-| S12-R3 | The accent #257CFF appears only on the work line numbers and on the word "ShopView" in the footer. Nothing else on the document uses the accent. | covered | INV-VIS-03 |
-| S12-R4 | The typeface is Inter with a system sans-serif fallback. Weight 400 for body text; 600 and 700 for emphasis and totals; 750 for the in-job section labels (S12-R9); 800 for the shop name, the document label, the headline figure, and the line | covered | INV-VIS-04 |
+| S12-R2 | The only colors on the light printed document are: ink #121926, body text #364152, muted text #697586, faint labels #9AA4B2, hairlines #E3E8EF, row dividers #EEF2F6, paid-banner surface #F8FAFC, accent #257CFF, negative #B42318, paper #FFFFFF. No color outside this set appears on the printed document; print/B&W adds only the S12-R5 inks; demo chrome and dark-mode preview are not part of any document. | covered | INV-VIS-02 |
+| S12-R3 | The accent #257CFF appears only on the work line numbers and on the word "ShopView" in the footer. On the Parts Sale document (no numbered work lines) the accent appears only on "ShopView". Nothing else uses the accent. | covered | INV-VIS-03 |
+| S12-R4 | The typeface is Inter with a system sans-serif fallback, applied identically on screen and in PDF output (preview and PDF wrap line for line). Weight 400 body; 600 and 700 emphasis/totals; 700 in-job section labels (S12-R9); 800 shop name, document label, headline figure, line numbers. | covered | INV-VIS-04 |
 | S12-R5 | In print and PDF output, no text renders lighter than #4B5565; text smaller than 10px renders no lighter than #364152; hairline rules render no lighter than #CDD5DF. (Weak printers drop lighter values.) | covered | INV-VIS-05 |
 | S12-R6 | Every document is fully legible printed in grayscale. Color is never the only signal: credit amounts also carry the leading minus (S11-R4), and discounts also carry parentheses (S5-R8). | covered | INV-VIS-06 |
-| S12-R7 | The Design Document's control strips (the document and field toggles, the settings menu, the POC badge, the theme controls) are demo tooling. They are not part of any document. The white sheet is the document. | covered | INV-VIS-07 |
+| S12-R7 | The Design Document's control strips (the document and field toggles, the settings menu, the theme controls) are demo tooling. They are not part of any document. The white sheet is the document. | covered | INV-VIS-07 |
 | S12-R8 | The work section opens with a 2px ink rule under the section label. Numbered jobs are separated by a 1px ink (#121926) rule. Charge rows inside a job are separated by #EEF2F6 row dividers. The "Labor" and "Parts" sub-section labels carry no | covered | INV-PART-03, INV-VIS-08 |
-| S12-R9 | Section labels are bold uppercase micro-labels in three fixed treatments: the document section label ("Work Summary" / "Work Performed" / "Parts") at 11px weight 700 in muted ink #697586; "Scope of work" at 10px weight 750 in body ink #3641 | covered | INV-VIS-09 |
+| S12-R9 | Section labels are bold uppercase micro-labels in three fixed treatments: the document section label ("Work Summary" / "Work Performed" / "Parts") at 11px weight 700 in muted ink #697586; "Scope of work" at 10px weight 700 in body ink #364152; the in-job "Labor"/"Parts" labels at 10.5px weight 700 in full ink #121926. | covered | INV-VIS-09 |
+| S12-R10 | Long documents paginate with standard page-break behavior: every page after the first opens with a single identification line (shop location name left, document number right); the full masthead does not repeat; the totals block is not split; a work line and its footer stay together; the signature row does not land alone; no single row is orphaned. | covered | INV-VIS-10 |
+| S12-R11 | On screen the document fits within the viewport with no content clipped; any element wider than the viewport (e.g. a wide table) scrolls horizontally within its own container rather than clipping or forcing the whole page to scroll sideways. | covered | INV-VIS-11 |
 | S12-N1 | The PDF output carries no drop shadow and no rounded sheet corners; those are screen-prototype presentation only. | covered | INV-VIS-07 |
 | S13-R1 | The Parts Sale Estimate behaves as the Estimate, and the Parts Sale Invoice as the Invoice, throughout this spec — masthead and date labels (Stories 1 and 10, including "Estimate date" and the Due/Paid date swap), addresses and Remit Paymen | covered | INV-PART-01 |
 | S13-R2 | The body is a single section headed "Parts": flat part lines showing part number, description, quantity, rate, and amount. No job blocks, no "Scope of work", no Labor section, and no Declined Work section exist on a parts sale document. | covered | INV-PART-02 |
@@ -118,7 +120,7 @@ Verdicts: **covered** (case IDs named) · **not independently testable** (ration
 | G-R1 | Every {date} on every document renders as, for example, "Jan 5, 2026": abbreviated English month, day of the month without a leading zero, a comma, and the four-digit year (PHP format string "M j, Y"). This format is fixed: no shop or user  | covered | INV-MAST-06, INV-PAID-07 |
 
 ## Reconciliation
-- Distinct spec rule IDs: **110**
-- Rules with at least one covering case: **110**
+- Distinct spec rule IDs: **112** (v45: +S12-R10 page breaks, +S12-R11 viewport)
+- Rules with at least one covering case: **112**
 - **UNCOVERED rules: 0** — none
-- Cases: **87** · case→rule anchors all resolve to a real spec rule: **YES**
+- Cases: **89** · case→rule anchors all resolve to a real spec rule: **YES**

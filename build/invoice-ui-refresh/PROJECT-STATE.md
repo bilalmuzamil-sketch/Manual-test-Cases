@@ -4,15 +4,15 @@
 
 ## Identity
 - **Epic:** SV-8218 (owner/assignee Chris Ward) · **PO:** Chris Ward
-- **Spec:** Confluence **755990532**, live **v39** (as of 2026-08-25; authored at v38, re-verified at v39 — delta non-substantive); tech plan built against **v36**
+- **Spec:** Confluence **755990532**, live **v45** (as of 2026-08-31; authored at v38, re-verified at v39 then re-verified at **v45** 2026-08-31 — 14 rules changed + 2 net-new); tech plan built against **v36**
 - **Design:** Claude artifact `c88ee207-3197-4f54-8cb9-bac3deb84354` (binding visual reference; static export held)
 - **Tech plan:** `intake-2026-08-21/sources/tech-plan-2026-08-12.md` (Symfony/Twig→WeasyPrint + Vue/Quasar)
 - **Git dev branch (theirs):** `project/invoice-ui-refresh` · **QA env:** none yet (feature Not started)
 - **Case source:** `build/invoice-ui-refresh/cases/` · internal ID prefix **INV** (`INV-<AREA>-NN`)
 - **TestRail parent folder (group):** group_id **6559**, suite 1 — cases live in the sub-sections inside it, not directly in the folder. Link: https://shopview.testrail.io/index.php?/suites/view/1&group_by=cases:section_id&group_order=asc&display=compact&display_deleted_cases=0&group_id=6559 (recorded 2026-08-25)
 
-## Scope (from spec v39; unchanged from v38)
-- **13 stories**, **109 rule IDs** (S1–S13 + G-R1). Documents: Estimate · Invoice (paid = receipt) ·
+## Scope (from spec v45)
+- **13 stories**, **112 rule IDs** (S1–S13 + G-R1; was 110 at v39, +S12-R10 page breaks, +S12-R11 viewport). Documents: Estimate · Invoice (paid = receipt) ·
   Credit Invoice · Parts Sale Estimate · Parts Sale Invoice.
 - Epic children: 12 named (SV-9140–9151) + SV-9195 (Story 13) + SV-9193 (batch/imported, **deferred**) +
   5 "Verify:" plan Tasks (SV-9207–9211, not test requirements).
@@ -31,10 +31,20 @@
 - Re-supplied design + tech plan are IDENTICAL to authoring inputs (design content byte-identical; tech plan md5-identical). PRD moved **v38→v39**, delta non-substantive (Slack-link row only). **No case content changed**; provenance re-stamped v38→v39 on all 87; import regenerated (0 shredded, 87/87). Detail: reconcile-2026-08-25/RECONCILIATION-2026-08-25.md.
 
 
+## Status — 2026-08-31 (source re-verification v39→v45)
+- **Spec moved v39→v45** (Confluence 755990532). Exhaustive v39-vs-v45 rule-body diff (v39 snapshot in `intake-2026-08-21/sources/`) found **14 changed rules + 2 net-new**. All changes trace to the spec's own change log: Milomir build feedback (2026-08-26 / 2026-08-28) and Mudassir spec review (2026-08-27).
+- **Cases updated (content) to v45:** S3-R8 void/reversal unlock (INV-AUTH-04 C44922); S5-R6 "Part"→"Parts" (INV-WORK-04 C44932); S5-R7 nine Invoice-Details settings incl. Part number/description (INV-WORK-05 C44933); S8-R2 ordering tiebreak (INV-PAID-01 C44946); S8-R5 excess sub-line not deposit-gated + literal em-dash/arrow (INV-PAID-04 C44949); S11-R6a open-balance + partial-refund-and-applied note (INV-CRED-06 C44969); S12-R2 palette +#F8FAFC, scoped to light printed doc (INV-VIS-02 C44972); S12-R3 Parts-Sale accent (INV-VIS-03 C44973); S12-R4 label weight 750→700 + Inter identical on-screen/PDF (INV-VIS-04 C44974); S12-R7 POC-badge dropped (INV-VIS-07 C44977); S12-R9 label weight 750→700 (INV-VIS-09 C44979); S13-R6 void/reversal unlock (INV-PART-06 C44985). S2-R3 tester content unchanged (internal note fixed). S5-R9/S13-N1 re-stamp only.
+- **⚠️ THREE of the changed rules were NOT in the pass's task list** and were caught by the exhaustive diff: **S5-R6** (Part→"Parts"), **S12-R2** (+#F8FAFC / scope reword), **S2-R3** (framing). All three post-date the v39 snapshot (v39 change log ended 2026-08-12; the Milomir/Mudassir edits are v40+). Fixed to v45 verbatim and flagged to the lead.
+- **2 net-new cases:** INV-VIS-10 (S12-R10 page breaks) → **C45213**; INV-VIS-11 (S12-R11 viewport) → **C45214**. In section 6753 (Document Visual Standard).
+- **Provenance re-stamped on all 87 + 2 new** → "specification version 45 … read on 31 August 2026" (spec_ref → spec v45). AUTOMATION marker date left at 8/21/2026 on the 87 (still Rule-85, no build); the 2 new carry 8/31/2026.
+- **TestRail (authorized this pass):** `update_case` on all 87 + `add_case` ×2, via block-only HTML (`apply_to_testrail.py`, `to_ol`/`expected_html`). **This also FIXED a pre-existing formatting defect** — the 87 were previously pushed as plain text (walls of text); all **89 now pass `check_case_render.py`** (0 fail, 0 warn). id-map backfilled 89/89.
+- **Run R417 union-synced 117→119 tests** (union-only, Rule 34). The subtree holds **30 foreign cases** (created_by=6, incl. the whole "Cross-Cutting and Regression" section 6770) that were already in R417; they were preserved untouched (Rule 38) and only our 2 new added. **Ours: 89 · live total in run: 119.**
+- **Suite now: 89 cases ours, 112 rule IDs covered both directions, 0 uncovered.**
+
 ## How to resume (ordered)
 1. `git fetch` + `merge --ff-only` on `claude/slack-session-0sxnd9`; claim the lock.
 2. Read `intake-2026-08-21/INTAKE-2026-08-21.md` + `SOURCE-CURRENCY.md`.
 3. On go-ahead: run the **v36→v38 + log-vs-body diff** first (Rule 59), then author per skill 01.
 
-## TestRail run (2026-08-25)
-- **Full-suite run R417** — all 87 cases — https://shopview.testrail.io/index.php?/runs/view/417. C-IDs backfilled into testrail-id-map.csv. New cases: append via `build/testing-tools/sync_runs.py --apply` (union-only, Rule 34).
+## TestRail run (updated 2026-08-31)
+- **Full-suite run R417** — https://shopview.testrail.io/index.php?/runs/view/417. As of 2026-08-31: **119 tests** (89 ours + 30 foreign creator-6, preserved). C-IDs backfilled into testrail-id-map.csv (89/89). New cases appended union-only via `build/invoice-ui-refresh/apply_to_testrail.py` (Rule 34); `build/testing-tools/sync_runs.py` also works if it covers R417.
