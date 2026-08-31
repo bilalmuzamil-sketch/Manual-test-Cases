@@ -28,5 +28,11 @@
   · questions-2026-08-25/.
 - **Reconciliation:** authored 44 = import 44 = id-map 44; set-equal both ways.
 
+## Status — 2026-08-31 (source currency check — NO verification needed)
+- **Spec checked live: Confluence 519176194 is now v9** (was v8 at authoring 2026-08-25). The version integer bumped, so the source qualified for a check.
+- **Diff v8→v9 = NON-SUBSTANTIVE.** Same **45 rule IDs** (S1–S6), rule texts materially identical, and the spec's own **Change Log has not moved since 2026-04-19** — no entry after our authoring. Only difference found: S3-R3 carries a trailing rationale sentence ("This printout is for mechanics doing the work, not for billing") that our requirements condensed; no behavioural change. **No case content update warranted** (same call as Invoice v38→v39).
+- **No case writes made** — the 44 cases remain accurate against v9. Provenance left reading v8 because v8≡v9 in substance; not re-stamped via API to avoid disturbing the render container (see the Inline render-container lesson). The cases are currently plain-text (authored 2026-08-25), which renders readably as text; a rich `fr-view` reformat can be offered as a separate nicety if the QA lead wants it.
+- Epic **SV-9383** owner still **TBD** (PO-PFWO-1 open).
+
 ## TestRail run (2026-08-25)
 - **Full-suite run R419** — all 44 cases — https://shopview.testrail.io/index.php?/runs/view/419. C-IDs backfilled into testrail-id-map.csv. New cases: append via `build/testing-tools/sync_runs.py --apply` (union-only, Rule 34).
