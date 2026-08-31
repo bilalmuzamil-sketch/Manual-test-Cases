@@ -34,6 +34,59 @@ it through the existing credit-memo path. That is seeding on a disposable QA bra
 already authorised. **I have not done it yet** — I stopped to report rather than spend more of the
 budget hunting the listing route.
 
+### 🛑 UPDATE, same day — I was wrong about "Issue Credit", and a real credit memo DOES exist
+
+Once seeding was authorised ("Always") I went looking, and the record was already there:
+
+| Field | Value |
+|---|---|
+| Number | **CM-100** (the `CM-` prefix S11-R1 requires) |
+| Type | `credit` / **`Credit`** |
+| Status | **`Unapplied`** — one of the five statuses in S11-R6a's status table |
+| Amount | −36.57 |
+| Origin invoice | S-15517 |
+| Memo | `ZZAUTOTEST build verification 2026-08-31 (seeded to verify the Credit Invoice cases)` |
+| Customer account | `37b48175-14be-4049-9058-bf357e93f665` |
+
+**That memo text is mine.** The "Issue Credit" run I made earlier today **did** create a genuine
+customer credit memo — so my statement above that it produced "only a part-sale credit, a different
+object" was **wrong**. The `has_part_sale_credits: true` flag I saw was a side effect, not the whole
+result. **I do not need to seed anything: the credit memo is already on the branch.**
+
+**Read it with:** `GET /api/customer-account/list-unpaid-transaction?account_id=<customer_account_id>`
+— and `customer_account_id` comes from `data.company.customer_account_id` on
+`GET /api/customers/view/{customerId}`.
+
+### What I still could not do: render its DOCUMENT
+
+The financial record exists; **the document does not appear to be reachable on this branch.** What I
+searched, so the gap is known to be real rather than unsearched:
+
+- **The customer record** — the Invoices, Payments and Deposits tabs. **CM-100 appears on none of
+  them** (checked by page text, `/customers/{id}/invoices|payments|deposits`).
+- **The originating work order** (S2-15517). Its finance tab does not mention CM-100 or the word
+  "Credit" at all, and its invoice menu offers only the *Issue Credit* **action** — there is no
+  "view credit" item.
+- **13 candidate API routes**, singular and plural, path-param and query-param:
+  `/api/credit-memos/preview` · `/api/credit-memo/preview` · `/api/credit-memos/preview/{id}` ·
+  `/api/credit-memos/view/{id}` · `/api/credit-memo/view/{id}` · `/api/credit-memos/{id}` ·
+  `/api/credit-memos/document?id=` · `/api/credit-memos/list` · `/api/customer-credits/preview` ·
+  `/api/documents/preview?credit_memo_id=` · `/api/customers/{id}/credit-memos` ·
+  `/api/customers/{id}/credits` — **all 404.**
+- **`/api/invoices/preview?invoice_id=<the credit memo id>`** → **400**, and with
+  `credit_memo_id=` → 400 *"invoice_id: Missing required parameter"*. The invoice renderer does not
+  accept a credit memo.
+- **The app's own traffic** while walking every one of those screens — no credit/memo/preview route
+  was ever called.
+
+**⇒ My reasoned conclusion, stated as a conclusion and not as proof:** the credit memo document is
+**not rendered on the sv8218 branch**, which is consistent with [SV-9150 Story 11](https://shopview.atlassian.net/browse/SV-9150)
+being **Open**. The spec says production renders it today via `CreditMemoPdfDataProvider` (the shipped
+SV-7754 path), so the document exists **in production** — just not here.
+
+**⇒ THE ONE QUESTION THAT IS ACTUALLY LEFT FOR MILOMIR**, and it is small: *from which screen is a
+customer credit memo's PDF produced?* Everything else I answered myself.
+
 ## Question 2 — Are partial-paid / voided / draft invoice states in scope?
 
 **🛑 CORRECTION — I told you these were "probably not built". That was wrong, and I was looking in

@@ -1030,6 +1030,18 @@ with `sv_sso_session` and `cf_clearance` **byte-identical** to the set that was 
   | `/api/work-orders/statuses` | GET | Estimate · Approved · In progress · Review · Complete · Invoiced · Paid |
   | `/api/invoices/preview?invoice_id=<id>&type=html&isEstimate=<0\|1>&includeDeclined=<0\|1>&historyEvent=` | GET | the document render path; invoice id is `data.work_order.invoice_id` on `/api/work-orders/view/{woId}` |
 
+  **⇒ 🔑 CUSTOMER CREDIT MEMOS ON sv8218 — the record is reachable, the DOCUMENT is not (2026-08-31).**
+  `GET /api/customer-account/list-unpaid-transaction?account_id=<customer_account_id>` returns them,
+  with `type: credit`, `formatted_invoice_number: CM-100`, `status_label: Unapplied`. The
+  **`customer_account_id` is `data.company.customer_account_id` on
+  `GET /api/customers/view/{customerId}`** — it is NOT the customer id. The **invoice menu's
+  "Issue Credit" action DOES create a genuine customer credit memo** (a session on 2026-08-31 first
+  concluded it made "only a part-sale credit" — wrong; the `has_part_sale_credits: true` flag was a
+  side effect). **The credit memo's document could not be rendered:** it is absent from the customer's
+  Invoices/Payments/Deposits tabs and from the originating work order's finance tab, 13 candidate
+  routes all 404, `/api/invoices/preview` rejects a credit memo id, and the app never calls a
+  credit/preview route. **Before re-running that hunt, read this list — it is the searched set.**
+
   **⚠️ A 405 IS A FIND, NOT A FAILURE.** `/api/credit-memos` answering *405 Method Not Allowed
   (Allow: POST)* proved the endpoint exists and named its method, and the 400 that followed named its
   required parameters. **Read the error body — on this API it enumerates the missing fields.** A
