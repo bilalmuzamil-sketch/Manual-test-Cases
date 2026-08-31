@@ -43,6 +43,30 @@
 - **Foreign-vs-ours R417 reconciliation (Rule 38/39), read-only:** all **30 foreign cases (creator 6) are COMPLEMENTARY — 0 contradictions.** They cover the same rules from API-negative / edge-case / cross-cutting-E2E angles ours do not. Closest neighbours: foreign C45195 (multi-page PDF) ≈ our new S12-R10 C45213; foreign C45192 (mobile viewport) ≈ our new S12-R11 C45214 — both complementary, keep both. Nothing edited on either side. Detail: `reconcile-2026-08-31/FOREIGN-VS-OURS-R417.md`.
 - **PO-1 RESOLVED by spec v45** (Terminology "Balance" rewritten to open-balance = S11-R6a, change-log 2026-08-27); PO sheet annotated on both tabs, no longer to be sent. PO-2 remains open.
 
+## Status — 2026-08-31 (Mudassir's 30 tester cases source-verified to v45)
+- **Designated manual QA tester recorded: Mudassir Qamar (TestRail user id 6, mudassir.qamar@shopview.com).**
+  Per the QA lead, his cases are **IN-SCOPE (treated as the QA lead's own), NOT foreign** (Rule-38 bullet).
+- **His 30 cases C45168–C45197** (contiguous; run R417; created_by=6; all custom_atmstatus=1 Not Automated,
+  none Rule-71-blocked) were **source-verified to spec v45 in place** (source currency reconfirmed 2026-08-31:
+  live Confluence 755990532 body matches the saved v45 body, newest change-log entry 2026-08-28).
+- **Content updates (4):** C45169 (S3-R8) added the v45 void/reversal re-enable clause; **C45179 (S11-R6a)
+  removed the now-WRONG stale note** ("PRD Terminology still says fixed $0.00 — stale") — v45 change-log
+  2026-08-27 fixed the Terminology to the open-balance definition, so it now AGREES with S11-R6a; also
+  dropped the v36 pin. C45192 added v45 **S12-R11** viewport clause (refs +S12-R11); C45195 added v45
+  **S12-R10** page-break rules (refs +S12-R10). The other 26 = re-stamp only (verified matching v45).
+- **All 30 reformatted to block-only HTML** (were plain-text walls; same defect the 89 had). All 30 now pass
+  `check_case_render.py` (0 fail, 0 warn), mirroring the live sibling format (C44910).
+- **Provenance normalized on all 30** → "…Invoice UI Refresh specification version 45, section <rule>, read on
+  31 August 2026" (mirrors the 89 for a uniform tester read; Confluence page id 755990532 kept in the map
+  and PROJECT-STATE, not repeated in every body — Rule 16). AUTOMATION marker left verbatim
+  ("Not available on Build to test Yet - Last checked 8/26/2026"; matches the suite convention; no build exists).
+- **created_by stays 6** on all 30 (his authorship preserved); updated_by is us. Nothing deleted/moved; no
+  run-membership change; no Jira.
+- **Suite in R417 now = 89 ours + 30 tester (Mudassir), all in-scope, 0 truly-foreign in R417 (live total 119).**
+- Per-case disposition + links: `reconcile-2026-08-31/mudassir-cases-map.csv`. Reconciliation reframed:
+  `reconcile-2026-08-31/FOREIGN-VS-OURS-R417.md`.
+- **Held as ambiguous: none** — every rule mapped cleanly to v45 text.
+
 ## How to resume (ordered)
 1. `git fetch` + `merge --ff-only` on `claude/slack-session-0sxnd9`; claim the lock.
 2. Read `intake-2026-08-21/INTAKE-2026-08-21.md` + `SOURCE-CURRENCY.md`.

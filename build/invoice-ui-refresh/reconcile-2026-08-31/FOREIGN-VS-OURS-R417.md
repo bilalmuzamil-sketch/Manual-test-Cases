@@ -1,10 +1,22 @@
-# Foreign vs Ours — Run R417 overlap reconciliation (Invoice UI Refresh)
+# Tester (Mudassir) vs Ours — Run R417 overlap cross-reference (Invoice UI Refresh)
 
-**Date:** 2026-08-31 · **Run:** R417 (119 tests) · **Ours (created_by=3):** 89 · **Foreign (created_by=6):** 30.
-**Rule 38 posture: HANDS-OFF.** Foreign cases are identified and reported only — nothing was edited, moved,
-or deleted. This is the Rule 39 "establish both sides" report; no contradiction was found, so no merge is
-proposed. The 30 foreign cases were already in R417 before our 2026-08-31 v45 pass and the union sync
-(Rule 34) preserved them untouched.
+> **🔴 STATUS CHANGE 2026-08-31 (later same day): these 30 are NO LONGER treated as "foreign".**
+> **TestRail user id 6 = Mudassir Qamar (mudassir.qamar@shopview.com), the designated manual QA tester
+> for Invoice UI Refresh.** The QA lead instructed that his cases are IN-SCOPE — treated as if the QA
+> lead's own, NOT foreign (recorded in CLAUDE.md Rule-38 bullet and PROJECT-STATE.md). His 30 cases
+> (C45168–C45197) were **source-verified to spec v45 on 2026-08-31**, in place: content aligned to v45,
+> provenance normalized to "specification version 45 … read on 31 August 2026", and all reformatted to
+> block-only HTML (all 30 pass `check_case_render.py`). created_by stays 6 (his authorship preserved);
+> updated_by is us. **Suite in R417 now = 89 ours + 30 tester (Mudassir), all in-scope, 0 truly-foreign.**
+> The overlap table below is retained as a useful ours↔tester cross-reference. Per-case disposition +
+> links: `reconcile-2026-08-31/mudassir-cases-map.csv`.
+
+**Date:** 2026-08-31 · **Run:** R417 (119 tests) · **Ours (created_by=3):** 89 · **Tester — Mudassir (created_by=6):** 30.
+**Original (superseded) posture — Rule 38 HANDS-OFF:** before the QA lead's clarification, these 30 were
+read as foreign and reported read-only. That read no longer applies; they are now maintained as in-scope
+tester cases. This remains the Rule 39 "establish both sides" record; no contradiction was found, so no
+merge is proposed. The 30 were already in R417 before the 2026-08-31 v45 pass and the union sync (Rule 34)
+preserved their run membership.
 
 ## Verdict
 **All 30 foreign cases are COMPLEMENTARY to ours — 0 contradictions.** They cover the same rules from
@@ -13,8 +25,8 @@ UI-behaviour cases deliberately do not. Keeping both is correct; nothing needs c
 Two foreign cases are the closest conceptual neighbours of the two new cases this pass added — noted below
 so the QA lead is aware, not because either is wrong.
 
-## Same-rule overlaps (foreign ↔ our case on the identical rule)
-| Foreign | Rule | Our same-rule case | Relationship |
+## Same-rule overlaps (tester/Mudassir ↔ our case on the identical rule)
+| Tester (Mudassir) | Rule | Our same-rule case | Relationship |
 |---|---|---|---|
 | C45168 | S2-R3 | C44910 | Foreign = Credit Invoice never shows Remit-to (specific doc); ours = the rule in general. Complementary. |
 | C45171 | S4-N3 | C44928 | Asset section hidden when no asset — foreign negative alongside our positive. Complementary. |
@@ -32,7 +44,7 @@ so the QA lead is aware, not because either is wrong.
 | C45172 | S5-R7 | C44933, C44935 | "Summarize labor/parts total" footer control — foreign focuses the summarize toggles; ours the nine Invoice Details settings + footer. Complementary. |
 | C45173 | S5-R2 | C44930 | Line numbers → three digits from line 100. Complementary edge case. |
 
-## Foreign-only anchors (no rule-level overlap — E2E / regression, entirely additive)
+## Tester-only anchors (no rule-level overlap — E2E / regression, entirely additive)
 - **C45185–C45189** — SV-8218 Plan/Shipped anchors: snapshot-before/after redesign, emailed PDF attach,
   preview-vs-PDF parity, US/CA currency conventions. Cross-cutting E2E; no matching rule ID in our suite.
 - **C45192** — mobile-viewport fit (anchor SV-9441). **Closest neighbour of our new S12-R11 viewport case
@@ -40,8 +52,8 @@ so the QA lead is aware, not because either is wrong.
   Complementary.
 
 ## Recommendation
-- **No action on foreign cases** (Rule 38). No contradictions to reconcile (Rule 39 satisfied by this report).
+- **The 30 tester (Mudassir) cases are now maintained in-scope** and were source-verified to v45 on
+  2026-08-31 (per-case disposition in `mudassir-cases-map.csv`). No contradictions to reconcile
+  (Rule 39 satisfied by this report).
 - The two near-neighbours (C45195 ↔ C45213; C45192 ↔ C45214) are complementary; keep both. If the QA lead
   wants a single owner per concept later, that is a dedup decision for them — not a correctness issue.
-- If the foreign author renumbers or retires any of these, our union sync keeps ours intact; theirs are
-  theirs to manage.
