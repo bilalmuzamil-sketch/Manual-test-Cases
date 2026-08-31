@@ -1,0 +1,97 @@
+#!/usr/bin/env python3
+"""The handover deliverable: the build-verified, automation-ready Invoice UI Refresh cases.
+
+Built ONLY from the live cases re-read after the writes (Rule 50 / core 2.11 -- audit from live,
+never from a self-report), cross-checked against APPLIED.jsonl. A case appears in the READY table
+only if the LIVE case now carries "AUTOMATION: READY" -- the batch log's own claim is not enough.
+"""
+import json, base64, urllib.request, re, collections, html, os, datetime
+
+C = json.load(open('/tmp/testrail/creds.json'))
+A = base64.b64encode(f"{C['email']}:{C['password']}".encode()).decode()
+B = C['host'] + '/index.php?/api/v2/'
+DIR = 'build/invoice-ui-refresh/build-verify-2026-08-31'
+M = f'{DIR}/markers'
+LINK = 'https://shopview.testrail.io/index.php?/cases/view/'
+
+def get(p):
+    r = urllib.request.Request(B + p); r.add_header('Authorization', 'Basic ' + A)
+    return json.loads(urllib.request.urlopen(r, timeout=60).read().decode())
+
+ver = json.load(open(f'{DIR}/verification.json'))
+applied = {}
+for line in open(f'{M}/APPLIED.jsonl'):
+    if line.strip():
+        j = json.loads(line)
+        if j.get('ok'): applied[str(j['cid'])] = j
+failed = {}
+if os.path.exists(f'{M}/FAILED.jsonl'):
+    for line in open(f'{M}/FAILED.jsonl'):
+        if line.strip():
+            j = json.loads(line); failed[str(j['cid'])] = j
+
+verified = sorted((c for c, r in ver['cases'].items() if r['verdict'] == 'RUNNABLE'), key=int)
+rows, notready = [], []
+for cid in verified:
+    c = get(f'get_case/{cid}')
+    exp = c.get('custom_expected') or ''
+    marks = re.findall(r'AUTOMATION:[^\n<]*', exp)
+    has_ready = marks == ['AUTOMATION: READY']
+    has_s2 = 'Last checked against build v26.35.5-8c3cc21 on 8/31/2026.' in html.unescape(exp)
+    rec = {'cid': cid, 'title': c['title'], 'section': ver['cases'][cid]['section'],
+           'atm': c.get('custom_atmstatus'), 'created_by': c.get('created_by'),
+           'marker': marks[0] if marks else None, 'sentence2': has_s2,
+           'link': LINK + cid}
+    (rows if (has_ready and has_s2) else notready).append(rec)
+
+bysec = collections.defaultdict(list)
+for r in rows: bysec[r['section']].append(r)
+
+with open(f'{DIR}/HANDOVER-AUTOMATION-READY-2026-08-31.md', 'w') as f:
+    f.write('# Invoice UI Refresh — test cases ready to automate\n\n')
+    f.write(f'**Build they were checked on:** `{ver["build_marker"]}` (QA branch sv8218) · '
+            f'**checked on:** 31 August 2026\n\n')
+    f.write(f'**Ready to automate: {len(rows)} test cases.**\n\n')
+    f.write('Every case in this list has been checked on the build, end to end:\n\n')
+    f.write('1. The starting situation the case needs can actually be set up on the build.\n')
+    f.write('2. The screens and menus the case sends you to are really there.\n')
+    f.write('3. The buttons and controls the case names are where it says they are.\n')
+    f.write('4. The steps work in the order they are written.\n')
+    f.write('5. Every on-screen word the case quotes matches what the build actually shows.\n\n')
+    f.write('Each one now ends with `AUTOMATION: READY` and records the build it was checked against.\n\n')
+    f.write('**What has NOT changed:** what each case *expects* still comes from the specification, '
+            'the epic and the stories — never from the build. The build only supplied the wording of '
+            'labels and menu paths, and the pass/fail verdict.\n\n')
+    f.write('---\n\n## The cases, by area\n\n')
+    for s in sorted(bysec):
+        f.write(f'### {s} — {len(bysec[s])} case(s)\n\n| Case | Title |\n|---|---|\n')
+        for r in sorted(bysec[s], key=lambda x: int(x['cid'])):
+            f.write(f"| [C{r['cid']}]({r['link']}) | {r['title']} |\n")
+        f.write('\n')
+    if notready:
+        f.write('---\n\n## ⚠️ NOT in the handover (marker not confirmed on the live case)\n\n')
+        f.write('| Case | Live marker | Build sentence | Why |\n|---|---|---|---|\n')
+        for r in notready:
+            why = failed.get(r['cid'], {}).get('error', 'not attempted')[:110]
+            f.write(f"| [C{r['cid']}]({r['link']}) | {r['marker']} | {r['sentence2']} | {why} |\n")
+        f.write('\n')
+    f.write('---\n\n## Still being worked on — not in this handover\n\n')
+    t = ver['tally']
+    f.write('| Group | Cases | Plain-English reason |\n|---|---|---|\n')
+    f.write(f"| Needs a data state I could not create yet | {t.get('NOT_ESTABLISHED',0)} | "
+            "Includes the Credit Invoice and Parts Sale cases. Some of this is probably not built yet.|\n")
+    f.write(f"| Quotes a word I could not find on screen | {t.get('LABELS_UNCONFIRMED',0)} | "
+            "Mostly invoice states (part-paid, voided, draft) the build does not appear to have.|\n")
+    f.write(f"| Steps do an action rather than read the document | {t.get('NEEDS_STEP_WALK',0)} | "
+            "These need a person to click through them once.|\n")
+    f.write(f"\n**Total: {sum(t.values())} cases in the suite; {len(rows)} ready to automate.**\n")
+
+json.dump({'ready': rows, 'not_ready': notready, 'built_at': datetime.datetime.now(datetime.timezone.utc).isoformat()},
+          open(f'{M}/handover.json', 'w'), indent=1, ensure_ascii=False)
+print(f'verified cases          : {len(verified)}')
+print(f'CONFIRMED READY on live : {len(rows)}')
+print(f'not confirmed           : {len(notready)}  {[r["cid"] for r in notready]}')
+print(f'applied log says ok     : {len(applied)}')
+print(f'failed log entries      : {len(failed)}  {list(failed)}')
+print(f'created_by among ready  : {collections.Counter(r["created_by"] for r in rows)}')
+print(f'atm among ready         : {collections.Counter(r["atm"] for r in rows)}')

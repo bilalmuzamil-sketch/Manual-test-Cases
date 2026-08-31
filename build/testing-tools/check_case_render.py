@@ -17,7 +17,28 @@ WARNING (reported, does NOT fail the check):
     Put each line in its own <p>, or use a <ul><li> list. A <br> seen live is usually a
     human's UI edit (fine, leave it) — but never generate one from a script.
 
-The ONLY tags proven to render when written via the API are BLOCK tags:
+🛑 THIS CHECK IS NOT SUFFICIENT ON ITS OWN — CORRECTED 2026-08-31.
+  It reads the API-STORED VALUE. Whether a tester can actually READ the case is decided by the
+  per-case CONTAINER on the SERVED VIEW PAGE, which the stored value cannot reveal:
+      <div class="markdown fr-view">  -> block HTML renders           (readable)
+      <div class="markdown">          -> block HTML is ESCAPED        (tester reads "<ol><li><p>")
+  An API write leaves a field in the ESCAPING container; only a UI save flips it to fr-view.
+  So on an API-written case this script's advice -- "use block tags <p>/<ol>/<li>/<hr>" -- produces
+  a field that PASSES here and is UNREADABLE on screen.
+
+  MEASURED: on 2026-08-31 a pass reformatted 30 Invoice cases from plain text into block HTML via
+  the API and this script reported 0 fail / 0 warn on all 30. Of the 10 of those that were later
+  scanned on the served page, 10 of 10 were in an escaping container -- i.e. the reformat made them
+  WORSE (plain text at least renders as text) and this gate said they were fine.
+
+  ⇒ ALWAYS PAIR THIS WITH THE SERVED-PAGE SCAN before claiming a case renders correctly:
+      build/invoice-ui-refresh/build-verify-2026-08-31/markers/render_scan.py
+    and repair through the UI editor, not the API (skill 04 §4.5, playbook §J, core §2.1c).
+    NOTE the scan needs the ACCOUNT PASSWORD (/tmp/testrail/ui-creds.json), not the API key that
+    /tmp/testrail/creds.json['password'] holds -- a silently-failed login makes it report
+    "0 escaping" for every case.
+
+  The ONLY tags proven to render when written via the API are BLOCK tags:
   <p>  <ol>/<ul> + <li>  <hr>.  Use only those.
 
 Exit code is non-zero if any case fails, so it can gate a commit / a push script.
