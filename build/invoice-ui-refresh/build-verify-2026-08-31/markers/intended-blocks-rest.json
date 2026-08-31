@@ -2416,7 +2416,7 @@
   "atm": 1,
   "section_id": 6770,
   "escaping": true,
-  "marker_carried": "AUTOMATION: Not available on Build to test Yet - Last checked 8/26/2026",
+  "marker_override": "AUTOMATION: Not available on Build to test Yet - Last checked 8/26/2026",
   "fields": {
    "custom_expected": {
     "blocks": [
@@ -2438,10 +2438,13 @@
    "custom_preconds": {
     "blocks": [
      [
-      "1. A parts-return credit whose originating invoice has since been reversed"
+      "1. A parts-return credit whose originating invoice has since been reversed",
+      "2. Your active location is set to the location the credit was issued at. Credits are location-specific: a credit issued at another location does not show in the customer's Invoices list at all - no row and no print button.",
+      "3. To open the document: Customers, open the customer, Invoices tab, find the credit's row (its credit number, for example CM-100, appears in the Invoice # column next to ordinary invoice numbers), then click the print icon at the right of that row (its tooltip reads \"Print credit memo\").",
+      "4. If the credit has been fully applied or fully refunded, turn the \"Open only\" filter off first, or its row is not listed."
      ]
     ],
-    "text": "1. A parts-return credit whose originating invoice has since been reversed"
+    "text": "1. A parts-return credit whose originating invoice has since been reversed\n2. Your active location is set to the location the credit was issued at. Credits are location-specific: a credit issued at another location does not show in the customer's Invoices list at all - no row and no print button.\n3. To open the document: Customers, open the customer, Invoices tab, find the credit's row (its credit number, for example CM-100, appears in the Invoice # column next to ordinary invoice numbers), then click the print icon at the right of that row (its tooltip reads \"Print credit memo\").\n4. If the credit has been fully applied or fully refunded, turn the \"Open only\" filter off first, or its row is not listed."
    },
    "custom_steps": {
     "blocks": [
@@ -2453,6 +2456,7 @@
     ],
     "text": "1. Open the Credit Invoice preview\n2. Check the status table and totals\n3. Attempt the void if applicable"
    }
-  }
+  },
+  "marker_carried": "AUTOMATION: Not available on Build to test Yet - Last checked 8/26/2026"
  }
 }

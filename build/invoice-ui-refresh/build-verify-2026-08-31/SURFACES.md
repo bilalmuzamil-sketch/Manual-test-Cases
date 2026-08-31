@@ -6,12 +6,15 @@ Cases analysed: **119** (ours only; the 30 foreign cases are excluded, Rule 38).
 
 | Surface | Cases |
 |---|---|
-| invoice | 68 |
-| estimate | 33 |
-| work order | 31 |
+| invoice | 112 |
+| estimate | 94 |
+| work order | 86 |
+| download | 79 |
+| settings | 79 |
+| customer | 39 |
 | preview | 20 |
 | credit invoice | 20 |
-| customer | 19 |
+| print | 18 |
 | masthead | 16 |
 | payment | 15 |
 | pdf | 15 |
@@ -24,13 +27,10 @@ Cases analysed: **119** (ours only; the 30 foreign cases are excluded, Rule 38).
 | deposit | 4 |
 | disclaimer | 4 |
 | signature | 4 |
-| settings | 3 |
 | declined work | 3 |
-| print | 3 |
 | paid banner | 2 |
 | refund | 2 |
 | email | 1 |
-| download | 1 |
 
 ## The most-depended-on quoted on-screen labels (77 distinct)
 
@@ -82,20 +82,33 @@ Cases analysed: **119** (ours only; the 30 foreign cases are excluded, Rule 38).
 | `Unit` | 1 |
 | `Labor hours` | 1 |
 
-## Distinct preconditions (135 distinct) — the data states to reach
+## Distinct preconditions (149 distinct) — the data states to reach
 
 | Precondition | Cases |
 |---|---|
-| 1. You are signed in to ShopView. | 81 |
-| You are signed in to ShopView. | 6 |
-| A work order exists whose shop location has a name, street address, city, state or provinc | 1 |
+| 1. You are signed in to ShopView. | 86 |
+| 3. To put the document on screen: click "Work Orders" in the top menu, open the work order | 71 |
+| 4. Use the "Estimate/Invoice" toggle above the document to switch between the Estimate and | 71 |
+| 5. The printer icon prints the document and the download icon saves it. The cog icon opens | 71 |
+| 3. Your active location is set to the location the credit was issued at. Credits are locat | 10 |
+| 4. To open the document: Customers, open the customer, Invoices tab, find the credit's row | 10 |
+| 5. If the credit has been fully applied or fully refunded, turn the "Open only" filter off | 10 |
+| 3. To put the Parts Sale document on screen: click "Customers" in the top menu, open the c | 8 |
+| 4. Use the "Estimate/Invoice" toggle above the document to switch between the Parts Sale E | 8 |
+| 2. To put the document on screen: click "Work Orders" in the top menu, open the work order | 8 |
+| 3. Use the "Estimate/Invoice" toggle above the document to switch between the Estimate and | 8 |
+| 4. The printer icon prints the document and the download icon saves it. The cog icon opens | 8 |
+| 2. Your active location is set to the location the credit was issued at. Credits are locat | 5 |
+| 3. To open the document: Customers, open the customer, Invoices tab, find the credit's row | 5 |
+| 4. If the credit has been fully applied or fully refunded, turn the "Open only" filter off | 5 |
+| 2. A work order exists whose shop location has a name, street address, city, state or prov | 1 |
 | 2. You can reach one shop that has a logo set and one shop that has no logo set (or you ca | 1 |
 | 2. You can generate an Estimate, an Invoice, and a Credit Invoice for known documents. | 1 |
 | 2. You can generate an Estimate, an Invoice (including a fully paid one), and a Credit Inv | 1 |
 | 2. You can generate an Estimate, an Invoice, and a Credit Invoice that have monetary total | 1 |
 | 2. You can generate an Estimate, an unpaid Invoice, a fully paid Invoice, and a Credit Inv | 1 |
 | 2. You can reach (or set up) a shop location that is missing one or more of: street addres | 1 |
-| A document exists for a customer that has a company name (or personal name) and a full add | 1 |
+| 2. A document exists for a customer that has a company name (or personal name) and a full  | 1 |
 | 2. You can reach a document whose shop uses integrated-billing remit-to, and another whose | 1 |
 | 2. You can reach a document that has no remit-to payee configured (neither mechanism). | 1 |
 | 2. You can reach a document whose shop has neither integrated-billing remit-to nor a locat | 1 |
@@ -103,16 +116,3 @@ Cases analysed: **119** (ours only; the 30 foreign cases are excluded, Rule 38).
 | 1. Credit invoice for a shop that HAS a remit-to payee configured | 1 |
 | 2. A document exists whose work order has a work order number, a customer PO, an authorize | 1 |
 | 2. You can reach a document whose work order HAS payment terms and one that has NONE. | 1 |
-| 2. A document exists whose work order has an Authorizer selected (a customer contact with  | 1 |
-| 2. A document exists whose work order has an integrated-billing approval code. | 1 |
-| 2. You can reach one document where the work order number equals the trailing digits of th | 1 |
-| 2. You can reach a document whose work order has no Customer PO, no Authorizer selected, a | 1 |
-| 1. You are signed in to ShopView with access to work orders. | 1 |
-| 2. A work order exists for a customer that has at least one contact with 'Approves Work' e | 1 |
-| 2. A work order exists whose customer has 'Approves Work' contacts. | 1 |
-| 2. A work order's customer has one 'Approves Work' contact WITH a phone number and one WIT | 1 |
-| 2. A work order that has been invoiced exists, with (or without) an Authorizer selected. | 1 |
-| 2. A work order is open for a customer, and you can edit that customer's contacts. | 1 |
-| 1. Invoiced work order | 1 |
-| 2. API access (session token) | 1 |
-| 1. Un-invoiced work order | 1 |

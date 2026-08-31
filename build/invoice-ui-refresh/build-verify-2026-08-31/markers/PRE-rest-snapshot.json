@@ -885,14 +885,13 @@
   "section_id": 6770,
   "refs": "SV-9150 (S11-R3)",
   "atm": 1,
-  "custom_expected": "<ol>\n<li>The document renders without a 500.</li>\n<li>The status table handles the missing/reversed origin invoice gracefully - Invoice Number shows the last known number or the documented column behaviour (S11-R3); no fatal error.</li>\n<li>History: SV-7821 void 500s on reversed origin.</li>\n<hr><p>This is the expected behaviour as per epic SV-8218 and story SV-9150 (Story 11, Credit Invoice) and the Invoice UI Refresh specification version 45, section S11-R3, read on 31 August 2026.</p><p>AUTOMATION: Not available on Build to test Yet - Last checked 8/26/2026</p></ol>\n",
-  "custom_steps": "<ol>\n<li>Open the Credit Invoice preview</li>\n<li>Check the status table and totals</li>\n<li>Attempt the void if applicable</li>\n</ol>\n",
-  "custom_preconds": "<ol>\n<li>A parts-return credit whose originating invoice has since been reversed</li>\n</ol>\n",
+  "custom_expected": "<p>1. The document renders without a 500.<br>2. The status table handles the missing/reversed origin invoice gracefully - Invoice Number shows the last known number or the documented column behaviour (S11-R3); no fatal error.<br>3. History: SV-7821 void 500s on reversed origin.</p><p>---<br>This is the expected behaviour as per epic SV-8218 and story SV-9150 (Story 11, Credit Invoice) and the Invoice UI Refresh specification version 45, section S11-R3, read on 31 August 2026.</p><p>AUTOMATION: Not available on Build to test Yet - Last checked 8/26/2026</p>",
   "markers": [
    "AUTOMATION: Not available on Build to test Yet - Last checked 8/26/2026"
   ],
   "provenance": [
    "This is the expected behaviour as per epic SV-8218 and story SV-9150 (Story 11, Credit Invoice) and the Invoice UI Refresh specification version 45, section S11-R3, read on 31 August 2026."
-  ]
+  ],
+  "build_sentence": []
  }
 }

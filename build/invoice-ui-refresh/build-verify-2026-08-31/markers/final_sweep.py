@@ -22,19 +22,42 @@ BASE = 'https://shopview.testrail.io'
 M = 'build/invoice-ui-refresh/build-verify-2026-08-31/markers'
 S2 = 'Last checked against build v26.35.5-8c3cc21 on 8/31/2026.'
 
-def api(p):
-    r = urllib.request.Request(B + p); r.add_header('Authorization', 'Basic ' + A)
-    return json.loads(urllib.request.urlopen(r, timeout=60).read().decode())
+def api(p, tries=5):
+    # The page fetch got a retry wrapper; this one did not, and a single reset then aborted the
+    # whole sweep. Both paths need it -- a sweep that dies halfway is worse than useless, because
+    # its partial output reads like a complete pass.
+    import time
+    last = None
+    for t in range(tries):
+        try:
+            r = urllib.request.Request(B + p); r.add_header('Authorization', 'Basic ' + A)
+            return json.loads(urllib.request.urlopen(r, timeout=60).read().decode())
+        except Exception as e:
+            last = e; time.sleep(2 * (t + 1))
+    raise RuntimeError(f'{p} failed after {tries} tries: {last}')
 
 jar = http.cookiejar.CookieJar()
 op = urllib.request.build_opener(urllib.request.HTTPCookieProcessor(jar))
 op.addheaders = [('User-Agent', 'Mozilla/5.0'), ('Referer', BASE + '/index.php?/auth/login/')]
-op.open(BASE + '/index.php?/auth/login/', timeout=60).read()
-r = op.open(BASE + '/index.php?/auth/login/', urllib.parse.urlencode(
-    {'name': U['email'], 'password': U['ui_password'], 'rememberme': '1'}).encode(), timeout=60)
-if '/auth/login' in r.geturl():
+def _login(tries=5):
+    # The LOGIN itself needs the retry too. Wrapping only the per-case calls left a reset here able
+    # to kill the run before a single case was swept.
+    import time
+    last = None
+    for t in range(tries):
+        try:
+            op.open(BASE + '/index.php?/auth/login/', timeout=60).read()
+            r = op.open(BASE + '/index.php?/auth/login/', urllib.parse.urlencode(
+                {'name': U['email'], 'password': U['ui_password'], 'rememberme': '1'}).encode(), timeout=60)
+            return r.geturl()
+        except Exception as e:
+            last = e; time.sleep(2 * (t + 1))
+    sys.exit(f'*** LOGIN FAILED after {tries} tries: {last}')
+
+landed = _login()
+if '/auth/login' in landed:
     sys.exit('*** UI LOGIN FAILED — refusing to report a sweep from an unauthenticated session')
-r.read(); print('UI session established')
+print('UI session established')
 
 snap = json.load(open(f'{M}/PRE-markers-snapshot.json'))
 INTENDED = json.load(open(f'{M}/intended-blocks.json'))
@@ -98,8 +121,22 @@ for n, cid in enumerate(sorted(snap, key=int), 1):
     if len(got1) != 1: p.append(f'provenance sentence 1 count = {len(got1)}')
     elif norm(got1[0]) != want1: p.append('provenance sentence 1 ALTERED')
     # 5 — sentence 2
+    # A case that is NOT build verified must NOT carry a build sentence -- claiming a build check on
+    # a case that never passed one would be the overclaim this whole pass has been guarding against.
+    # So the expectation flips with the marker: READY -> sentence required, anything else -> absent.
+    # Rule 54 sentence 2 records THAT A CHECK HAPPENED and against which build -- it is not a
+    # synonym for "passed". So it belongs on every case this pass actually checked, whatever the
+    # outcome:
+    #   READY / READY - EXPECT FAIL      -> checked, and runnable            -> sentence required
+    #   HOLD - customer portal ...       -> checked, and found untestable here -> sentence required
+    #   Not available on Build - Last checked <date> -> the marker ALREADY carries its own date, so
+    #                                       a second date would duplicate it -> sentence must be absent
+    expects_build_sentence = not want_marker.startswith('AUTOMATION: Not available on Build')
     got2 = [l for l in lines if l.startswith('Last checked against build')]
-    if got2 != [S2]: p.append(f'build sentence = {got2}')
+    if expects_build_sentence:
+        if got2 != [S2]: p.append(f'build sentence = {got2} (expected {[S2]})')
+    elif got2:
+        p.append(f'NOT build verified yet it carries a build sentence: {got2}')
     # 6 — immutables
     if c['title'] != snap[cid]['title']: p.append('title changed')
     if c['section_id'] != snap[cid]['section_id']: p.append('section_id changed')

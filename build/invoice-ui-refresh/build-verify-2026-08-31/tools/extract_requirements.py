@@ -139,7 +139,22 @@ precond_freq = collections.Counter()
 for c in ours:
     pre, stp, exp = lines(c.get('custom_preconds')), lines(c.get('custom_steps')), lines(c.get('custom_expected'))
     body = ' '.join(pre + stp)
-    all_text = ' '.join(pre + stp + exp)
+    # 🛑 NAVIGATION HELP TEXT IS NOT AN ASSERTION. The preconditions carry a route for the tester
+    # (skill 18) -- "click 'Work Orders' ... then the 'Finance' tab ... use the 'Estimate/Invoice'
+    # toggle". Those quoted names are APP CHROME, not labels the DOCUMENT must show, and extracting
+    # them made check 5 demand them in the rendered document: adding the routes regressed 87 cases
+    # from RUNNABLE on the single label 'Estimate/Invoice'. Caught by diffing before/after, which is
+    # why every enrichment gets that diff.
+    NAV_HELP = ('to put the document on screen', 'to put the parts sale document on screen',
+                'to open the document:', 'use the "estimate/invoice" toggle',
+                'the printer icon prints', 'your active location is set to',
+                'if the credit has been fully applied')
+    # the extracted lines KEEP their "N. " numbering, so strip it before testing the prefix --
+    # without this the startswith never matches and the filter silently does nothing.
+    def _bare(p):
+        return re.sub(r'^\s*\d+\.\s*', '', p).strip().lower()
+    pre_assertive = [p for p in pre if not any(_bare(p).startswith(h) for h in NAV_HELP)]
+    all_text = ' '.join(pre_assertive + stp + exp)
     labels, dropped_labels = screen_labels(all_text)
     navs = sorted({m.group(0).lower() for m in NAV.finditer(body)})
     for l in labels:
