@@ -1,76 +1,104 @@
-# Inline Add and Edit Parts on Work Order Lines — Requirements (ingested)
+# Inline Add and Edit Parts on Work Order Lines — Confluence page 782761986
 
-**Source:** Confluence page 782761986, **version 16** (live as of 2026-08-31), read 2026-08-31.
-Verbatim body captured at `intake-2026-08-25/sources/spec-body-confluence-v16-782761986.md`.
-**Epic:** SV-9315 · **PO / Owner:** Sasha Grosman · **Design:** Claude Design "Add Part"
-(artifact 561657da-adc4-45a2-88e5-cd8ae15c63eb; static export held in intake-2026-08-25/sources/, exported
-2026-08-25 — note the held export predates Story 7 (added 2026-08-27), so it may not depict bins; the PRD
-body is the source for Story 7 per Rule 57).
-**Tech plan:** dated 2026-08-18 — BEHIND the spec (S3-E1, the 2026-08-24 additions, combined validation,
-and now silent on Story 7 / bin allocation, added 2026-08-27). Per Rule 30 the tech plan informs but never
-overrules; per Rule 57 the PRD is the content source of truth. Divergences are disclosed in
-DELIBERATE-DECISIONS and the PO questions sheet.
-
-**v13→v16 source re-verification (2026-08-31):** v16 adds **Story 7: Bin Allocation on the Inline Row**
-(22 rule IDs, S7-R1…R18/N1–N2/E1–E2) and a new **Keyboard Model — Inline Row** section (the single
-source of Tab order; S2-R13 and S4-R15 now point to it). Amended: **S2-R4** (typeahead cards carry
-inventory qty + bins; selecting a part triggers bin allocation), **S2-R6** (quantity may be set by a bin
-split, S7-R14), **S2-R13 / S4-R15** (defer Tab order to the Keyboard Model), and **§5 Terminology** (Bin /
-Default bin / Allocation added; Part details modal now holds bin quantities) and **§9 Permissions** (the
-Bin Locations modal is the one modal a Tech View user reaches) and **§8** (two new bin warning messages).
-Stories 1, 3, 5, 6 are UNCHANGED in normative content. The §11 Change Log table is EMPTY — deltas were
-derived by body diff.
-
-**Rule inventory (129 rule IDs):** Story 1 = 14 (R1–R8, N1–N4, E1–E2) · Story 2 = 29 (R1–R19, N1–N6,
-E1–E3, EH1) · Story 3 = 14 (R1–R9, N1–N3, E1–E2) · Story 4 = 30 (R1–R20, N1–N6, E1–E3, EH1) ·
-Story 5 = 6 (R1–R3, N1–N2, E1) · Story 6 = 14 (R1–R6, N1–N5, E1–E3) · Story 7 = 22 (R1–R18, N1–N2, E1–E2).
-_(The former "110 / Story 6 = 17" line was an arithmetic slip: Story 6 is 14 rule IDs; v13 total was 107.)_
-
-The authoring-relevant PRD sections follow verbatim.
+**Captured live 2026-08-31 via mcp__Atlassian__fetch. metadata.version = 16. "Last Updated" 2026-08-27.**
+Verbatim body follows.
 
 ---
+
+|  |  |
+| --- | --- |
+| **Epic** | SV-9315 |
+| **Owner** | Sasha Grosman |
+| **Design** | Claude Design — Add Part (artifact 561657da-adc4-45a2-88e5-cd8ae15c63eb) |
+| **Last Updated** | 2026-08-27 |
+
+## 1. Business Case
+
+Adding parts to a work order today is a high-effort task: every part requires opening a modal, filling it out, saving, and reopening it for the next part. For a technician adding several parts to a job, that is a long sequence of clicks and constant switching between keyboard and mouse. This feature puts part entry directly on the work order line so a technician can add parts one after another without leaving the keyboard, while preserving the full-detail path for users who need to price and categorize those parts for processing.
+
+## 2. Feature Overview
+
+**Core ShopView**
+
+* An "Add Part" button appears directly on each work order line while the work order is open and editable.
+* Selecting it opens an editable row inline on that work order line, rather than a modal.
+* The fields shown in the inline row depend on the user's work order view mode:
+    * **Tech View** — description, part number, quantity
+    * **Full View** — description, part number, quantity, category, cost, sell price
+* Saving an inline row immediately adds the part to the work order line, shows a success toast, and opens a fresh empty row with the cursor in the description field, so the user can enter the next part without touching the mouse.
+* A part saved without a matching catalog part is added with status **Requested** and is visually flagged as needing details, so a Full View user can complete it later.
+* When the part is linked to a catalog part that is held in bins, the system picks the bin it will be pulled from and shows that choice under the row, where the user can change it or split the quantity across bins without leaving the row.
+* Existing parts on a work order line expose an Edit control on hover or keyboard focus. In Tech View, Edit opens the same inline row. In Full View, Edit opens the part details modal.
+* Full View users can escalate from the inline row to the part details modal via a "More Options" button, carrying over anything already typed.
+* The inline row can be dismissed without saving. If the user has entered data, the system confirms before discarding it — whether they dismiss the row directly or navigate away from the work order.
+
+**Out of Scope**
+
+* Line approval behavior is unchanged. The unpriced-parts guard shown in the design canvas is existing behavior and is not modified by this spec.
+* A small-screen (phone / narrow tablet) treatment of the inline row. Behavior on small screens is unchanged from today; a dedicated Tech View small-screen story may follow once designs exist.
+* Inline deletion of parts. Deleting a part continues to work as it does today. (The current design canvas shows a row menu containing Delete — this is being removed; see design punch list.)
+* Drag-and-drop reordering of part rows, per-cell editing of saved rows, the part details side panel, unlinking a part from the catalog, and part source cycling. These appear in the design canvas but are separate scope; they will be specced independently.
+* Changes to labor, sublet, or other non-part work order line items.
+* Changes to how parts are ordered, picked, or received (existing procurement statuses and actions are unchanged).
+
+## 3. Jobs to be Done / Goals
+
+> **When** I have a work order open at the bay and I need to record the parts I just used, **I want to** add them straight onto the line I am looking at, **so I can** keep working instead of navigating in and out of modals.
+
+> **When** I am adding several parts in a row, **I want to** type a part, save, and immediately start the next one without reaching for the mouse, **so I can** get through a long parts list quickly.
+
+> **When** I am responsible for pricing and processing a work order, **I want to** enter full part details including cost and sell price, **so I can** get the work order ready for invoicing.
+
+**Goals**
+
+* Reduce the number of clicks required to add a part to a work order line.
+* Make repeat part entry fully completable from the keyboard.
+* Preserve the complete add-part experience for users who need more than the inline fields.
 
 ## 4. Key Decisions
 
 * **The inline row is a fast path, not a replacement.** The part details modal remains available to Full View users through "More Options" and continues to be the way to reach fields that are not on the inline row.
-* **Description is the anchor field.** (2026-08-17) The row leads with description — it is the required field, receives focus first, and receives focus again after each save. Part number is optional; a part with no catalog match is allowed and enters the Requested flow.
+* **Description is the anchor field.** (2026-08-17, design review) The row leads with description — it is the required field, receives focus first, and receives focus again after each save. Part number is optional; a part with no catalog match is allowed and enters the Requested flow. This replaced the earlier "part number or description" rule.
 * **Quantity starts empty and is required.** (2026-08-17) An empty quantity is a prompt to enter one, not a silent default of 1. (The part details modal may still default quantity to 1.)
-* **Tech View gets inline edit; Full View does not.** Full View edit opens the part details modal.
-* **A part added by a Tech View user is categorized as Uncategorized.**
+* **Tech View gets inline edit; Full View does not.** Full View editing routinely involves fields that do not fit on an inline row. Full View edit opens the part details modal.
+* **A part added by a Tech View user is categorized as Uncategorized.** Category is not visible in Tech View; assigning Uncategorized makes the gap visible so a Full View user can correct it later.
 * **This spec changes part entry only.** (2026-08-18) Downstream behavior — line approval, the unpriced-parts guard, procurement statuses — is existing behavior and is not modified.
-* **One success toast for all saves.** (2026-08-18) The toast always reads "Part added".
-* **Edit is revealed on hover/focus, not in a row menu.** (2026-08-17)
+* **One success toast for all saves.** (2026-08-18) The toast always reads "Part added"; the Requested status and needs-details flag on the part line communicate the catalog gap, not the toast.
+* **Edit is revealed on hover/focus, not in a row menu.** (2026-08-17) The design's kebab menu (Edit/Delete) is replaced with a hover-revealed Edit control; delete stays out of scope.
 * **View mode follows the permission, not the job title.** (2026-08-17)
-* **Unsaved data is protected.** (2026-08-17) Discarding a populated row — directly or by navigating away — requires confirmation (Story 6).
-* **Validation speaks in one sentence.** (2026-08-24) When more than one required field is empty, the row shows a single combined message naming all of them.
-* **Cancelling the part details modal discards the whole entry.** (2026-08-24) Modal cancel asks for confirmation first; confirming closes both the modal and the inline row and discards the data (S4-R12).
+* **Unsaved data is protected.** (2026-08-17, reaffirmed) Discarding a populated row — directly or by navigating away — requires confirmation (Story 6), even though this adds one step to abandonment.
+* **Validation speaks in one sentence.** (2026-08-24, design review) When more than one required field is empty, the row shows a single combined message naming all of them, not one message per field.
+* **Cancelling the part details modal discards the whole entry.** (2026-08-24) Modal cancel asks for confirmation first; confirming closes both the modal and the inline row and discards the data (S4-R12). This resolves the Story 6 open question.
 * **Only one inline row may be open at a time.**
-* **No feature flag.**
+* **No feature flag.** The change is additive; the existing permissions already control what each user sees.
 
 ## 5. Terminology
-* **Work order line** → A line item on the work order. Parts are added underneath a work order line. "Part line" = an individual part record beneath a work order line.
-* **Tech View / Full View** → The two options of the 'Work Orders → Work Order View Mode' permission. Tech View hides cost and pricing; Full View shows it.
-* **Inline row** → The editable row that appears within the work order line when adding or editing a part. Not a modal.
-* **Rate** → The user-facing label for a part's sell price. "sell price" and "Rate" are interchangeable.
-* **Requested** → The existing status assigned to a part added without a matching catalog part. Flagged as needing details until completed by a Full View user.
-* **Bin** → A named storage location holding a quantity of a part. A catalog part may be held in several bins, each with its own on-hand quantity. _(Added v16.)_
-* **Default bin** → The one bin per part flagged as the first place to pull from. _(Added v16.)_
-* **Allocation** → Which bin or bins the quantity on a part line is pulled from, and how much from each. Shown on the inline row as the "Pulled from" chip. _(Added v16.)_
+
+* **Work order line** → A line item on the work order (the job or service being performed). Parts are added underneath a work order line. Where this spec says "part line," it means an individual part record beneath a work order line — not the work order line itself.
+* **Tech View / Full View** → The two options of the 'Work Orders → Work Order View Mode' permission. Tech View hides cost and pricing information; Full View shows it.
+* **Inline row** → The editable row that appears within the work order line when adding or editing a part. It is not a modal and does not overlay the page.
+* **Rate** → The user-facing label for a part's sell price. This spec uses "sell price" and "Rate" interchangeably.
+* **Requested** → The existing status assigned to a part added without a matching catalog part. Requested parts are flagged as needing details until completed by a Full View user.
+* **Bin** → A named storage location holding a quantity of a part. A catalog part may be held in several bins, each with its own on-hand quantity.
+* **Default bin** → The one bin per part flagged as the first place to pull from.
+* **Allocation** → Which bin or bins the quantity on a part line is pulled from, and how much from each. Shown on the inline row as the "Pulled from" chip.
 * **Part details modal** → The full add/edit part form reached via "More Options", "Create new part", or Full View Edit. It contains all part fields including category and bin quantities.
 
 ## 6. Assumptions
-* The Work Order View Mode permission already exists and already determines whether a user sees cost and pricing.
-* The part number typeahead is the same control used in the existing add-part flow.
+
+* The Work Order View Mode permission already exists and already determines whether a user sees cost and pricing on the work order. This spec extends its effect to the new inline behavior rather than introducing a new permission.
+* The part number typeahead is the same control used in the existing add-part flow and behaves as it does today.
 * Adding the same part twice to the same work order line is permitted and produces two separate part lines.
 
 ## 7. Requirements
 
 ### Story 1: Add Part Button on Work Order Lines — Jira SV-9316
+
 **Prerequisites:** A work order is open. Status is one of: Estimate, Approved, In Progress, Review. The user has 'Work Order Line - Create and Edit' enabled. The user has 'Work Orders → Work Order View Mode' set to Tech View or Full View (exactly two options; every user has one).
 
 * **S1-R1:** Each work order line displays an "Add Part" button in its Parts section.
-* **S1-R2:** Selecting "Add Part" opens an inline row directly below the Add Part control, above the line's existing parts.
-* **S1-R3:** When the inline row opens, the cursor is placed in the description field automatically.
+* **S1-R2:** Selecting "Add Part" opens an inline row directly below the Add Part control, above the line's existing parts. _(Amended 2026-08-17.)_
+* **S1-R3:** When the inline row opens, the cursor is placed in the description field automatically. _(Amended 2026-08-17.)_
 * **S1-R4:** If the user's view mode is Tech View, the inline row follows Story 2.
 * **S1-R5:** If the user's view mode is Full View, the inline row follows Story 4.
 * **S1-R6:** Each existing part line displays an Edit control when the user hovers over that part line.
@@ -84,6 +112,7 @@ The authoring-relevant PRD sections follow verbatim.
 * **S1-E2:** If an inline row is already open anywhere on the work order, selecting "Add Part" on a different work order line follows S6-R5.
 
 ### Story 2: Inline Add Part — Tech View — Jira SV-9317
+
 **Prerequisites:** All Story 1 prerequisites met. Work Order View Mode = Tech View.
 
 * **S2-R1:** The inline row displays exactly three editable fields, in order: description, part number, quantity.
@@ -102,11 +131,11 @@ The authoring-relevant PRD sections follow verbatim.
 * **S2-R14:** Pressing Escape closes the inline row, with the same result as selecting X.
 * **S2-R15:** Selecting X closes the inline row without saving. If the row contains data, this follows S6-R1.
 * **S2-R16:** If the user clicks anywhere outside the inline row while the row contains data, the row remains open and its data is preserved. The click does not cancel the row.
-* **S2-R17:** If the user saves with no catalog part selected (free-typed description, with or without a free-typed part number), the part is added with the existing Requested status and the part line is visually flagged as needing details. The success toast is the same: "Part added".
+* **S2-R17:** If the user saves with no catalog part selected (free-typed description, with or without a free-typed part number), the part is added with the existing Requested status and the part line is visually flagged as needing details. The success toast is the same: "Part added". _(Amended 2026-08-18.)_
 * **S2-R18:** The inline row displays a keyboard hint legend: Enter — save & next row · Tab — next field · Esc — cancel.
 * **S2-R19:** When the user selects a part from the typeahead, focus moves to the quantity field. The part number and description are already populated, so quantity is the only remaining entry. _(Added 2026-08-24.)_
-* **S2-N1:** If the user attempts to save while any required field is empty, the row does not save and a single inline validation message names all of them: "Enter a description, qty, cost and sell price to save this part." Only the fields actually missing are named, in that order; in Tech View only description and qty can appear.
-* **S2-N2:** An empty quantity is covered by the combined message in S2-N1 ("Enter a qty to save this part."). Quantity is required in both view modes.
+* **S2-N1:** If the user attempts to save while any required field is empty, the row does not save and a single inline validation message names all of them: "Enter a description, qty, cost and sell price to save this part." Only the fields actually missing are named, in that order; in Tech View only description and qty can appear. _(Amended 2026-08-24.)_
+* **S2-N2:** An empty quantity is covered by the combined message in S2-N1 ("Enter a qty to save this part."). Quantity is required in both view modes. _(Amended 2026-08-24.)_
 * **S2-N3:** If the user attempts to save with a quantity of zero or a negative quantity, the row does not save and an inline validation message is displayed: "Qty must be greater than 0."
 * **S2-N4:** When a validation message is displayed, the invalid field is highlighted and the cursor moves to the first field that failed validation.
 * **S2-N5:** Validation messages clear as soon as the user corrects the field.
@@ -117,15 +146,16 @@ The authoring-relevant PRD sections follow verbatim.
 * **S2-EH1:** If the part cannot be saved for any other reason, the user sees an alert toast: "Couldn't add the part. Please try again." The inline row remains open with the entered data intact.
 
 ### Story 3: Inline Edit Part — Tech View — Jira SV-9318
+
 **Prerequisites:** All Story 1 prerequisites met. Work Order View Mode = Tech View. The part line being edited already exists.
 
 * **S3-R1:** Selecting Edit on a part line opens an inline edit row directly below that part line, containing the same three fields as the add flow in the same order: description, part number, quantity.
 * **S3-R2:** The inline row is pre-populated with the part's current description, part number, and quantity.
 * **S3-R3:** The cursor is placed in the description field when the row opens.
-* **S3-R4:** All field behavior, keyboard behavior, and validation from Story 2 apply identically to the edit row (S2-R3 through S2-R8, S2-R12 through S2-R16, S2-R18, and S2-N1 through S2-N6), with one exception: the edit row's keyboard hint legend reads Enter — save · Tab — next field · Esc — cancel, without "& next row", because saving an edit does not open a new row (S3-R6).
+* **S3-R4:** All field behavior, keyboard behavior, and validation from Story 2 apply identically to the edit row (S2-R3 through S2-R8, S2-R12 through S2-R16, S2-R18, and S2-N1 through S2-N6), with one exception: the edit row's keyboard hint legend reads Enter — save · Tab — next field · Esc — cancel, without "& next row", because saving an edit does not open a new row (S3-R6). _(Amended 2026-08-24.)_
 * **S3-R5:** When the user saves, the part line is updated in place and the inline row closes, returning to the normal part line display.
 * **S3-R6:** Saving an edit does not open a new empty inline row. The repeat-entry behavior in S2-R10 applies only to the add flow.
-* **S3-R7:** Any value on the part that is not displayed in Tech View — including cost, sell price, and category — is preserved unchanged when a Tech View user saves an inline edit, unless the user has linked the row to a different catalog part; in that case the row is repopulated from the new part and none of these values survive — see S3-R9.
+* **S3-R7:** Any value on the part that is not displayed in Tech View — including cost, sell price, and category — is preserved unchanged when a Tech View user saves an inline edit, unless the user has linked the row to a different catalog part; in that case the row is repopulated from the new part and none of these values survive — see S3-R9. _(Amended 2026-08-24.)_
 * **S3-R8:** Selecting X or pressing Escape closes the row without saving. If the user has changed any field, this follows S6-R1.
 * **S3-R9:** If the user selects a different catalog part from the part number typeahead in the edit row, the row is repopulated from the newly selected part — description, cost, sell price, and category — matching the add flow (S2-R4). Fields not held by the catalog part are untouched: the quantity the user entered stays as it is, and focus moves to it. This is the one case where the values protected by S3-R7 are overwritten. _(Added 2026-08-24.)_
 * **S3-N1:** If the user opens the edit row, changes nothing, and closes it, no confirmation is shown and no update is recorded.
@@ -135,9 +165,10 @@ The authoring-relevant PRD sections follow verbatim.
 * **S3-E2:** If the work order moves to a status that does not permit editing while the row is open, S2-E3 applies.
 
 ### Story 4: Inline Add Part — Full View — Jira SV-9319
+
 **Prerequisites:** All Story 1 prerequisites met. Work Order View Mode = Full View.
 
-* **S4-R1:** The inline row displays six editable fields, in order: description, part number, quantity, category, cost, sell price (Rate).
+* **S4-R1:** The inline row displays six editable fields, in order: description, part number, quantity, category, cost, sell price (Rate). _(Amended 2026-08-17.)_
 * **S4-R2:** Description, part number, and quantity behavior from Story 2 applies identically (S2-R3 through S2-R8).
 * **S4-R3:** When the user selects a part from the typeahead, cost and sell price populate automatically from the selected part. Cost and sell price display with a $ prefix.
 * **S4-R4:** The user can overwrite the populated cost and sell price.
@@ -150,7 +181,7 @@ The authoring-relevant PRD sections follow verbatim.
 * **S4-R11:** When the user saves from within the modal ("Save part"), the part is added, the modal closes, and the inline row also closes. No new inline row is opened.
 * **S4-R12:** When the user cancels the modal, the modal closes, the inline row closes, and the entered data is discarded.
 * **S4-R13:** Pressing Enter from any field saves the row, matching S2-R12.
-* **S4-R14:** Pressing Shift+Enter opens the "More Options" modal, so a user can escalate to full detail without reaching for the mouse.
+* **S4-R14:** Pressing Shift+Enter opens the "More Options" modal, so a user can escalate to full detail without reaching for the mouse. _(Amended 2026-08-17.)_
 * **S4-R15:** Pressing Tab moves the cursor forward through the row and does not leave it. See _Keyboard Model — Inline Row_ at the end of this section for the full order. _(Amended 2026-08-25.)_
 * **S4-R16:** Pressing Escape closes the inline row, matching S2-R14.
 * **S4-R17:** If the user clicks anywhere outside the inline row while the row contains data, the row remains open and its data is preserved, matching S2-R16.
@@ -158,8 +189,8 @@ The authoring-relevant PRD sections follow verbatim.
 * **S4-R19:** The Requested flow (S2-R17) applies equally in Full View when no catalog part is selected.
 * **S4-R20:** The part number typeahead ends with a "Create <typed text> as a new part" action that opens the part details modal with the typed description carried over. This action is shown to Full View users only; it is not displayed in Tech View. _(Added 2026-08-24.)_
 * **S4-N1:** All validation in S2-N1 through S2-N6 applies.
-* **S4-N2:** An empty cost is covered by the combined message in S2-N1 ("Enter a cost to save this part.").
-* **S4-N3:** An empty sell price is covered by the combined message in S2-N1 ("Enter a sell price to save this part.").
+* **S4-N2:** An empty cost is covered by the combined message in S2-N1 ("Enter a cost to save this part."). _(Amended 2026-08-24.)_
+* **S4-N3:** An empty sell price is covered by the combined message in S2-N1 ("Enter a sell price to save this part."). _(Amended 2026-08-24.)_
 * **S4-N4:** Validation is not enforced when the user selects "More Options." The user may escalate to the modal with an incomplete row, and the modal applies its own validation on save.
 * **S4-N5:** If a cost or sell price is not a number, or is negative, the row does not save and the message names the field: "Cost must be a number.", "Cost cannot be negative.", "Sell price must be a number.", "Sell price cannot be negative." _(Added 2026-08-24.)_
 * **S4-N6:** If the sell price is lower than the cost, a non-blocking note is displayed in the row: "Sell price is below cost." The row still saves — see S4-E2. _(Added 2026-08-24.)_
@@ -169,9 +200,10 @@ The authoring-relevant PRD sections follow verbatim.
 * **S4-EH1:** S2-EH1 applies.
 
 ### Story 5: Edit Part — Full View — Jira SV-9320
+
 **Prerequisites:** All Story 1 prerequisites met. Work Order View Mode = Full View. The part line being edited already exists.
 
-* **S5-R1:** Selecting Edit on a part line opens the part details modal, pre-populated with the part's current values.
+* **S5-R1:** Selecting Edit on a part line opens the part details modal, pre-populated with the part's current values. _(Amended 2026-08-17.)_
 * **S5-R2:** There is no inline edit row for Full View users. The part line is not replaced by an editable row.
 * **S5-R3:** Saving from the modal updates the part line and closes the modal. No inline row opens afterward.
 * **S5-N1:** If the user does not have 'Work Order Line - Create and Edit' enabled, the Edit control is not displayed.
@@ -179,10 +211,11 @@ The authoring-relevant PRD sections follow verbatim.
 * **S5-E1:** If an inline add row is open on the work order and the user selects Edit on an existing part line, S6-R5 applies before the modal opens.
 
 ### Story 6: Protecting Unsaved Part Data — Jira SV-9321
-Applies to the inline rows in Stories 2, 3, and 4.
-**Prerequisites:** An inline add or edit row is open. The row contains data the user entered (add: any field has a typed/selected value; edit: at least one field differs from the saved value).
 
-* **S6-R1:** If the user selects X or presses Escape on a row containing data, a confirmation is displayed: Title "Discard this part?", Body "The details you entered will be lost.", Actions "Keep Editing" and "Discard Part", "Keep Editing" is the default focused action. For an edit row (Story 3), the same confirmation is shown with edit wording — Title "Discard these changes?", Body "The changes you made will be lost." Actions and default focus unchanged.
+Applies to the inline rows in Stories 2, 3, and 4.
+**Prerequisites:** An inline add or edit row is open. The row contains data the user entered.
+
+* **S6-R1:** If the user selects X or presses Escape on a row containing data, a confirmation is displayed: Title "Discard this part?", Body "The details you entered will be lost.", Actions "Keep Editing" and "Discard Part", "Keep Editing" is the default focused action. For an edit row (Story 3), the same confirmation is shown with edit wording — Title "Discard these changes?", Body "The changes you made will be lost." Actions and default focus unchanged. _(Added 2026-08-24.)_
 * **S6-R2:** Selecting "Keep Editing" closes the confirmation and returns the user to the inline row with all entered data intact.
 * **S6-R3:** Selecting "Discard Part" closes the inline row without saving. For an edit row, the part line returns to its previously saved values.
 * **S6-R4:** If the user navigates away from the work order — via browser back, browser forward, or in-app navigation — while a row contains data, a confirmation is displayed: Title "Leave without saving?", Body "This part hasn't been added to the work order yet. Leaving will discard it.", Actions "Stay on Work Order" and "Leave", "Stay on Work Order" is the default focused action.
@@ -197,10 +230,11 @@ Applies to the inline rows in Stories 2, 3, and 4.
 * **S6-E2:** Selecting "Leave" on the navigate-away confirmation discards the entered part and completes the navigation the user requested.
 * **S6-E3:** Selecting "Stay on Work Order" cancels the navigation, keeps the user on the work order, and returns focus to the inline row with data intact.
 
-### Story 7: Bin Allocation on the Inline Row — Jira TBD (no story ticket yet; ref cases to SV-9315)
-Applies to the inline rows in Stories 2, 3, and 4.
-**Prerequisites:** All Story 1 prerequisites met. An inline add or edit row is open and linked to a catalog
-part that has at least one bin. A part with no bins is treated as not stocked and this story does not apply.
+### Story 7: Bin Allocation on the Inline Row — Jira TBD
+
+**As a** user adding an inventory part on the inline row, **I want** the system to pick the bin the part will be pulled from and show me that choice, **so that** I can accept or change it without leaving the row.
+
+**Prerequisites:** All Story 1 prerequisites met. An inline add row (Story 2 or Story 4) or an inline edit row (Story 3) is open. The row is linked to a catalog part that has at least one bin. A part with no bins is treated as not stocked and this story does not apply.
 
 * **S7-R1:** Each catalog part carries a set of bins; every bin has a name and an on-hand quantity, and exactly one bin per part is flagged Default.
 * **S7-R2:** Typeahead result cards show the total inventory quantity across all bins, then up to three bin chips with per-bin quantity; further bins collapse into a "+ N" chip whose tooltip lists them. A part with no bins shows "Not stocked" in warning styling instead of chips.
@@ -225,40 +259,40 @@ part that has at least one bin. A part with no bins is treated as not stocked an
 * **S7-E1:** When the Default bin covers the quantity, no note is shown even if other bins would also cover it.
 * **S7-E2:** A split allocation never shows the warning in S7-R9; that warning applies only to a single-bin allocation.
 
-### Keyboard Model — Inline Row _(Added 2026-08-25; single source for Tab order — S2-R13 and S4-R15 point here)_
+### Keyboard Model — Inline Row
+
 Applies to the inline rows in Stories 2, 3, and 4. Fields the user's view mode does not render are never reached by Tab.
 
-* **Tab order — Tech View add row:** description → part number → qty → Save → Cancel (X) → "Pulled from" bin chip (in the hint row below; present only while a bin is allocated, S7-R4). Category, cost, sell price, and "More options" are not rendered in Tech View.
-* **Tab order — Full View add row:** description → part number → qty → category → cost → sell price → Save → Cancel (X) → More options (sits visually to the left of Save but tabs last of the row's own controls) → "Pulled from" bin chip.
-* **Tab order — Tech View edit row:** same as the Tech View add row (description, part number, qty, Save, Cancel (X), then the bin chip when shown); the edit row has no "More options" button.
-* **Other keys:** Enter — saves the row (add row then opens the next empty row; edit row closes, S3-R6); Shift+Enter — opens the part details modal (Full View only); Esc — cancels the row, following S6-R1 when the row contains data. (Requirements: S2-R12, S2-R14, S4-R13, S4-R14, S4-R16.)
+**Tab order — Tech View add row:** 1. Description · 2. Part number · 3. Qty · 4. Save · 5. Cancel (X) · 6. "Pulled from" bin chip — sits in the hint row below, present only while a bin is allocated (S7-R4). Category, cost, sell price, and "More options" are not rendered in Tech View.
+
+**Tab order — Full View add row:** 1. Description · 2. Part number · 3. Qty · 4. Category · 5. Cost · 6. Sell price · 7. Save · 8. Cancel (X) · 9. More options — sits visually to the left of Save, but tabs last of the row's own controls by design · 10. "Pulled from" bin chip — present only while a bin is allocated (S7-R4).
+
+**Tab order — Tech View edit row:** The same order as the Tech View add row: description, part number, qty, Save, Cancel (X), then the "Pulled from" bin chip when one is shown. The edit row has no "More options" button.
+
+**Other keys in the row** (requirements are S2-R12, S2-R14, S4-R13, S4-R14, S4-R16): Enter — saves the row (add row then opens the next empty row; edit row closes, S3-R6). Shift+Enter — opens the part details modal, Full View only. Esc — cancels the row, following S6-R1 when the row contains data.
+
+_(Added 2026-08-25. This is the single source for Tab order; S2-R13 and S4-R15 point here.)_
 
 ## 8. User Feedback Summary (messages, verbatim)
-| Trigger | Message |
-|---|---|
-| Save with required field(s) empty | "Enter a description, qty, cost and sell price to save this part." — only the missing fields named, in that order |
-| Save with quantity of zero or less | "Qty must be greater than 0" |
-| Allocated bin holds less than the quantity (v16, Story 7) | "Only <on hand> here. Pulling <qty> takes this bin negative." (warning beside the Pulled-from chip; chip turns warning-coloured; saving not blocked) |
-| Auto-allocation moved the quantity off the Default bin (v16, Story 7) | "Default bin <name> has <on hand>. Switched to a bin that covers <qty>." (informational; shown only when the warning above does not apply) |
-| Cost/sell price not a number, or negative (Full View) | "Cost must be a number." · "Cost cannot be negative." · "Sell price must be a number." · "Sell price cannot be negative." |
-| Sell price lower than cost (Full View) | "Sell price is below cost." (non-blocking; part still saves — S4-E2) |
-| Part saved (any) | "Part added" |
-| X/Escape on a row with data | "Discard this part? The details you entered will be lost." — Keep Editing / Discard Part |
-| X/Escape on an edit row with changes | "Discard these changes? The changes you made will be lost." — Keep Editing / Discard Part |
-| Navigating away with a row containing data | "Leave without saving? This part hasn't been added to the work order yet. Leaving will discard it." — Stay on Work Order / Leave |
-| Save fails | "Couldn't add the part. Please try again." (inline in row; alert toast when the save came from the modal) |
-| Work order no longer editable at save time | "This work order can no longer be edited. Refresh to see the latest." |
-| Part changed by another user at save time | "This part was changed by someone else. Refresh to see the latest." |
 
-Design coverage (2026-08-24): every message above is in the design canvas except two — "Couldn't add the part. Please try again." and "This part was changed by someone else. Refresh to see the latest." Those two are copy only.
+New in v16 (Story 7): "Only <on hand> here. Pulling <qty> takes this bin negative." (warning beside the Pulled-from chip; chip turns warning-coloured; saving not blocked, S7-R8) · "Default bin <name> has <on hand>. Switched to a bin that covers <qty>." (informational note beside the chip; shown only when the warning above does not apply). All Story 1–6 messages unchanged from v13.
 
 ## 9. Permissions Summary
+
 * Two existing permissions govern this feature; no new permission is introduced.
 * **'Work Order Line - Create and Edit'** controls whether the user can add or edit parts at all.
 * **'Work Orders → Work Order View Mode'** controls which experience the user gets: Tech View or Full View.
-* Tech View: Add Part button, three-field inline add row, three-field inline edit row. No cost/sell price/category/More Options.
-* The Bin Locations modal (S7-R12) is the one modal a Tech View user reaches. It is not the part details modal and exposes no cost, sell price or category. _(Added v16, 2026-08-27.)_
-* Full View: Add Part button, six-field inline add row with More Options, part details modal for editing. No inline edit row.
+* **Tech View** users get: the Add Part button, the three-field inline add row, the three-field inline edit row. They do not see cost, sell price, category, or the More Options action.
+* The Bin Locations modal (S7-R12) is the one modal a Tech View user reaches. It is not the part details modal and exposes no cost, sell price or category. _(Added 2026-08-27.)_
+* **Full View** users get: the Add Part button, the six-field inline add row with More Options, and the part details modal for editing. They do not get an inline edit row.
 
 ## 10. Feature Flag
+
 * Not behind a feature flag; existing permissions determine what each user sees; the change is additive.
+
+## 11. Change Log
+
+| Date | Reporter | Change | Notes |
+| --- | --- | --- | --- |
+
+**(The §11 Change Log table is EMPTY in v16 — the deltas above were derived by body diff, not from a change log.)**
