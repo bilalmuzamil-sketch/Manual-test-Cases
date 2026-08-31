@@ -116,7 +116,13 @@ These are stated here **in full** because a session that gets only this far must
 - **PLAIN LAYMAN WORDING (7/9).** Tester-facing and PO-facing text uses the build's exact labels and
   no jargon — no case IDs, spec anchors, HTTP terms or internal names in what they read.
 - **FOREIGN CASES AND TICKETS ARE HANDS-OFF (38).** Report, never edit. State both numbers: ours N /
-  live total M.
+  live total M. **ALWAYS NAME THE CREATOR when you call a case foreign** (look up the TestRail user, e.g.
+  `get_user/<id>`) — the QA lead decides scope by who authored it. **A case authored by the project's
+  designated MANUAL QA TESTER is NOT foreign — treat it as IN-SCOPE (as if created by the QA lead):
+  source-verify it, keep it tester-ready, update it.** The QA lead names who the tester is per project;
+  once named, that person's cases on that project are ours to maintain. **Recorded testers:** Invoice UI
+  Refresh → **Mudassir Qamar** (TestRail user 6, mudassir.qamar@shopview.com), confirmed 2026-08-31.
+  (Still respect Rule 71: never change a case flagged **Automated** without the QA lead — even a tester's.)
 
 ---
 
