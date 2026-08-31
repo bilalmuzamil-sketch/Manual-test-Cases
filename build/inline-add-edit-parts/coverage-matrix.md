@@ -1,10 +1,14 @@
 # Inline Add and Edit Parts — Coverage Matrix (both directions)
 
-**Source:** PRD 782761986 v13 · Epic SV-9315 · authored 2026-08-25 · 96 cases · 107 rule IDs.
+**Source:** PRD 782761986 **v16** · Epic SV-9315 · authored 2026-08-25, source-re-verified v13→v16 on
+2026-08-31 · **118 cases · 129 rule IDs**.
 
 Forward = every PRD rule ID maps to at least one case. Reverse = every case anchor is a real PRD rule ID.
 
-- Rules covered: **107/107** · Uncovered: **none** · Orphan anchors: **none**
+- Rules covered: **129/129** · Uncovered: **none** · Orphan anchors: **none**
+- v16 delta: **+22 rule IDs** (Story 7, S7) → **+22 cases** (IAEP-BIN-01…22, 1:1). The new **Keyboard
+  Model — Inline Row** section is not a numbered rule ID; its Tab-order behaviour is covered by
+  IAEP-TADD-12 (Tech add), IAEP-FADD-15 (Full add), IAEP-TEDIT-03 (Tech edit) and IAEP-BIN-18 (bin chip).
 
 ## S1
 
@@ -142,4 +146,40 @@ Forward = every PRD rule ID maps to at least one case. Reverse = every case anch
 | S6-E1 | IAEP-GUARD-13 |
 | S6-E2 | IAEP-GUARD-14 |
 | S6-E3 | IAEP-GUARD-15 |
+
+## S7 (Bin Allocation — new in v16; Jira TBD, cases ref SV-9315)
+
+| Rule | Cases |
+|---|---|
+| S7-R1 | IAEP-BIN-01 |
+| S7-R2 | IAEP-BIN-02 |
+| S7-R3 | IAEP-BIN-03 |
+| S7-R4 | IAEP-BIN-04 |
+| S7-R5 | IAEP-BIN-05 |
+| S7-R6 | IAEP-BIN-06 |
+| S7-R7 | IAEP-BIN-07 |
+| S7-R8 | IAEP-BIN-08 |
+| S7-R9 | IAEP-BIN-09 |
+| S7-R10 | IAEP-BIN-10 |
+| S7-R11 | IAEP-BIN-11 |
+| S7-R12 | IAEP-BIN-12 |
+| S7-R13 | IAEP-BIN-13 |
+| S7-R14 | IAEP-BIN-14 |
+| S7-R15 | IAEP-BIN-15 |
+| S7-R16 | IAEP-BIN-16 |
+| S7-R17 | IAEP-BIN-17 |
+| S7-R18 | IAEP-BIN-18 |
+| S7-N1 | IAEP-BIN-19 |
+| S7-N2 | IAEP-BIN-20 |
+| S7-E1 | IAEP-BIN-21 |
+| S7-E2 | IAEP-BIN-22 |
+
+## Keyboard Model — Inline Row (new in v16; not a numbered rule ID)
+
+| Behaviour | Cases |
+|---|---|
+| Tech View add-row Tab order | IAEP-TADD-12 |
+| Full View add-row Tab order | IAEP-FADD-15 |
+| Tech View edit-row Tab order | IAEP-TEDIT-03 |
+| "Pulled from" bin chip in Tab order | IAEP-BIN-18 |
 

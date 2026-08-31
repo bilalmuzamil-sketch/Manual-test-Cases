@@ -14,9 +14,9 @@
     "steps": [
       "Select “Add Part” and inspect the fields in the inline row."
     ],
-    "expected": "1. The inline row displays exactly three editable fields, in order: description, part number, quantity.\n2. Cost, sell price, category, and any other part details are not displayed in the inline row.\n\n---\nThis is the expected behaviour as per epic SV-9315 and story SV-9317 (Story 2, Inline Add Part - Tech View) and the Inline Add and Edit Parts on Work Order Lines specification version 13, section S2-R1, S2-R2, read on 25 August 2026.\n\nAUTOMATION: Not available on Build to test Yet - Last checked 8/25/2026",
+    "expected": "1. The inline row displays exactly three editable fields, in order: description, part number, quantity.\n2. Cost, sell price, category, and any other part details are not displayed in the inline row.\n\n---\nThis is the expected behaviour as per epic SV-9315 and story SV-9317 (Story 2, Inline Add Part - Tech View) and the Inline Add and Edit Parts on Work Order Lines specification version 16, section S2-R1, S2-R2, read on 31 August 2026.\n\nAUTOMATION: Not available on Build to test Yet - Last checked 8/31/2026",
     "design_ref": "Claude Design “Add Part” artifact 561657da (binding visual reference), as exported 2026-08-25.",
-    "spec_ref": "requirements.md (Inline Add and Edit Parts spec v13)",
+    "spec_ref": "requirements.md (Inline Add and Edit Parts spec v16)",
     "refs": "SV-9317 (S2-R1; S2-R2)",
     "viu_status": "source-verified-only",
     "notes": ""
@@ -36,9 +36,9 @@
     "steps": [
       "Open the inline row and type into the part number field."
     ],
-    "expected": "1. The part number field is the same catalog typeahead used in the existing add-part flow and behaves as it does today.\n\n---\nThis is the expected behaviour as per epic SV-9315 and story SV-9317 (Story 2, Inline Add Part - Tech View) and the Inline Add and Edit Parts on Work Order Lines specification version 13, section S2-R3, read on 25 August 2026.\n\nAUTOMATION: Not available on Build to test Yet - Last checked 8/25/2026",
+    "expected": "1. The part number field is the same catalog typeahead used in the existing add-part flow and behaves as it does today.\n\n---\nThis is the expected behaviour as per epic SV-9315 and story SV-9317 (Story 2, Inline Add Part - Tech View) and the Inline Add and Edit Parts on Work Order Lines specification version 16, section S2-R3, read on 31 August 2026.\n\nAUTOMATION: Not available on Build to test Yet - Last checked 8/31/2026",
     "design_ref": "Claude Design “Add Part” artifact 561657da (binding visual reference), as exported 2026-08-25.",
-    "spec_ref": "requirements.md (Inline Add and Edit Parts spec v13)",
+    "spec_ref": "requirements.md (Inline Add and Edit Parts spec v16)",
     "refs": "SV-9317 (S2-R3)",
     "viu_status": "source-verified-only",
     "notes": ""
@@ -57,11 +57,12 @@
     ],
     "steps": [
       "Type a description of your own into the description field.",
-      "In the part number field, search and select a matching catalog part."
+      "In the part number field, search and select a matching catalog part.",
+      "Look at the typeahead result cards before selecting."
     ],
-    "expected": "1. The part number and description populate from the selected part; the description you had typed is replaced by the catalog description.\n2. Focus moves to the quantity field, since part number and description are already populated.\n\n---\nThis is the expected behaviour as per epic SV-9315 and story SV-9317 (Story 2, Inline Add Part - Tech View) and the Inline Add and Edit Parts on Work Order Lines specification version 13, section S2-R4, S2-R19, read on 25 August 2026.\n\nAUTOMATION: Not available on Build to test Yet - Last checked 8/25/2026",
+    "expected": "1. The part number and description populate from the selected part; the description you had typed is replaced by the catalog description.\n2. Focus moves to the quantity field, since part number and description are already populated.\n3. The typeahead result cards also carry the part's inventory quantity and bins, and selecting the part triggers bin allocation (see the Bin Allocation cases, Story 7).\n\n---\nThis is the expected behaviour as per epic SV-9315 and story SV-9317 (Story 2, Inline Add Part - Tech View) and the Inline Add and Edit Parts on Work Order Lines specification version 16, section S2-R4, S2-R19, read on 31 August 2026.\n\nAUTOMATION: Not available on Build to test Yet - Last checked 8/31/2026",
     "design_ref": "Claude Design “Add Part” artifact 561657da (binding visual reference), as exported 2026-08-25.",
-    "spec_ref": "requirements.md (Inline Add and Edit Parts spec v13)",
+    "spec_ref": "requirements.md (Inline Add and Edit Parts spec v16)",
     "refs": "SV-9317 (S2-R4; S2-R19)",
     "viu_status": "source-verified-only",
     "notes": ""
@@ -82,9 +83,9 @@
     "steps": [
       "Edit the description field, replacing the populated text with your own."
     ],
-    "expected": "1. The description accepts your edit; the populated catalog description can be overwritten.\n\n---\nThis is the expected behaviour as per epic SV-9315 and story SV-9317 (Story 2, Inline Add Part - Tech View) and the Inline Add and Edit Parts on Work Order Lines specification version 13, section S2-R5, read on 25 August 2026.\n\nAUTOMATION: Not available on Build to test Yet - Last checked 8/25/2026",
+    "expected": "1. The description accepts your edit; the populated catalog description can be overwritten.\n\n---\nThis is the expected behaviour as per epic SV-9315 and story SV-9317 (Story 2, Inline Add Part - Tech View) and the Inline Add and Edit Parts on Work Order Lines specification version 16, section S2-R5, read on 31 August 2026.\n\nAUTOMATION: Not available on Build to test Yet - Last checked 8/31/2026",
     "design_ref": "Claude Design “Add Part” artifact 561657da (binding visual reference), as exported 2026-08-25.",
-    "spec_ref": "requirements.md (Inline Add and Edit Parts spec v13)",
+    "spec_ref": "requirements.md (Inline Add and Edit Parts spec v16)",
     "refs": "SV-9317 (S2-R5)",
     "viu_status": "source-verified-only",
     "notes": ""
@@ -104,9 +105,9 @@
     "steps": [
       "Open the inline row and look at the quantity field before typing anything."
     ],
-    "expected": "1. The quantity field starts empty (it is not pre-filled with 1).\n2. Quantity is a required field.\n\n---\nThis is the expected behaviour as per epic SV-9315 and story SV-9317 (Story 2, Inline Add Part - Tech View) and the Inline Add and Edit Parts on Work Order Lines specification version 13, section S2-R6, read on 25 August 2026.\n\nAUTOMATION: Not available on Build to test Yet - Last checked 8/25/2026",
+    "expected": "1. The quantity field starts empty (it is not pre-filled with 1).\n2. Quantity is a required field.\n3. Quantity may also be set by applying a bin split (see the Bin Allocation cases, Story 7).\n\n---\nThis is the expected behaviour as per epic SV-9315 and story SV-9317 (Story 2, Inline Add Part - Tech View) and the Inline Add and Edit Parts on Work Order Lines specification version 16, section S2-R6, read on 31 August 2026.\n\nAUTOMATION: Not available on Build to test Yet - Last checked 8/31/2026",
     "design_ref": "Claude Design “Add Part” artifact 561657da (binding visual reference), as exported 2026-08-25.",
-    "spec_ref": "requirements.md (Inline Add and Edit Parts spec v13)",
+    "spec_ref": "requirements.md (Inline Add and Edit Parts spec v16)",
     "refs": "SV-9317 (S2-R6)",
     "viu_status": "source-verified-only",
     "notes": ""
@@ -126,9 +127,9 @@
     "steps": [
       "Open the inline row and look at its actions."
     ],
-    "expected": "1. The inline row displays a Save action and an X (close) action.\n\n---\nThis is the expected behaviour as per epic SV-9315 and story SV-9317 (Story 2, Inline Add Part - Tech View) and the Inline Add and Edit Parts on Work Order Lines specification version 13, section S2-R7, read on 25 August 2026.\n\nAUTOMATION: Not available on Build to test Yet - Last checked 8/25/2026",
+    "expected": "1. The inline row displays a Save action and an X (close) action.\n\n---\nThis is the expected behaviour as per epic SV-9315 and story SV-9317 (Story 2, Inline Add Part - Tech View) and the Inline Add and Edit Parts on Work Order Lines specification version 16, section S2-R7, read on 31 August 2026.\n\nAUTOMATION: Not available on Build to test Yet - Last checked 8/31/2026",
     "design_ref": "Claude Design “Add Part” artifact 561657da (binding visual reference), as exported 2026-08-25.",
-    "spec_ref": "requirements.md (Inline Add and Edit Parts spec v13)",
+    "spec_ref": "requirements.md (Inline Add and Edit Parts spec v16)",
     "refs": "SV-9317 (S2-R7)",
     "viu_status": "source-verified-only",
     "notes": ""
@@ -149,9 +150,9 @@
       "Enter a description and a quantity but leave part number empty, then Save.",
       "Separately, try to Save with a description but no quantity."
     ],
-    "expected": "1. With a description and a quantity the part saves even though part number is empty (part number is optional).\n2. Without a quantity the row does not save (see the validation cases).\n\n---\nThis is the expected behaviour as per epic SV-9315 and story SV-9317 (Story 2, Inline Add Part - Tech View) and the Inline Add and Edit Parts on Work Order Lines specification version 13, section S2-R8, read on 25 August 2026.\n\nAUTOMATION: Not available on Build to test Yet - Last checked 8/25/2026",
+    "expected": "1. With a description and a quantity the part saves even though part number is empty (part number is optional).\n2. Without a quantity the row does not save (see the validation cases).\n\n---\nThis is the expected behaviour as per epic SV-9315 and story SV-9317 (Story 2, Inline Add Part - Tech View) and the Inline Add and Edit Parts on Work Order Lines specification version 16, section S2-R8, read on 31 August 2026.\n\nAUTOMATION: Not available on Build to test Yet - Last checked 8/31/2026",
     "design_ref": "Claude Design “Add Part” artifact 561657da (binding visual reference), as exported 2026-08-25.",
-    "spec_ref": "requirements.md (Inline Add and Edit Parts spec v13)",
+    "spec_ref": "requirements.md (Inline Add and Edit Parts spec v16)",
     "refs": "SV-9317 (S2-R8)",
     "viu_status": "source-verified-only",
     "notes": ""
@@ -171,9 +172,9 @@
     "steps": [
       "Enter a valid description and quantity and Save the row."
     ],
-    "expected": "1. The part is added at the top of the line's parts list.\n2. A success toast displays reading “Part added” and fades on its own.\n\n---\nThis is the expected behaviour as per epic SV-9315 and story SV-9317 (Story 2, Inline Add Part - Tech View) and the Inline Add and Edit Parts on Work Order Lines specification version 13, section S2-R9, read on 25 August 2026.\n\nAUTOMATION: Not available on Build to test Yet - Last checked 8/25/2026",
+    "expected": "1. The part is added at the top of the line's parts list.\n2. A success toast displays reading “Part added” and fades on its own.\n\n---\nThis is the expected behaviour as per epic SV-9315 and story SV-9317 (Story 2, Inline Add Part - Tech View) and the Inline Add and Edit Parts on Work Order Lines specification version 16, section S2-R9, read on 31 August 2026.\n\nAUTOMATION: Not available on Build to test Yet - Last checked 8/31/2026",
     "design_ref": "Claude Design “Add Part” artifact 561657da (binding visual reference), as exported 2026-08-25.",
-    "spec_ref": "requirements.md (Inline Add and Edit Parts spec v13)",
+    "spec_ref": "requirements.md (Inline Add and Edit Parts spec v16)",
     "refs": "SV-9317 (S2-R9)",
     "viu_status": "source-verified-only",
     "notes": ""
@@ -193,9 +194,9 @@
     "steps": [
       "Save a valid inline row."
     ],
-    "expected": "1. Immediately after the successful save, a new empty inline row opens on the same work order line.\n2. The cursor is placed in the description field of the new row.\n\n---\nThis is the expected behaviour as per epic SV-9315 and story SV-9317 (Story 2, Inline Add Part - Tech View) and the Inline Add and Edit Parts on Work Order Lines specification version 13, section S2-R10, read on 25 August 2026.\n\nAUTOMATION: Not available on Build to test Yet - Last checked 8/25/2026",
+    "expected": "1. Immediately after the successful save, a new empty inline row opens on the same work order line.\n2. The cursor is placed in the description field of the new row.\n\n---\nThis is the expected behaviour as per epic SV-9315 and story SV-9317 (Story 2, Inline Add Part - Tech View) and the Inline Add and Edit Parts on Work Order Lines specification version 16, section S2-R10, read on 31 August 2026.\n\nAUTOMATION: Not available on Build to test Yet - Last checked 8/31/2026",
     "design_ref": "Claude Design “Add Part” artifact 561657da (binding visual reference), as exported 2026-08-25.",
-    "spec_ref": "requirements.md (Inline Add and Edit Parts spec v13)",
+    "spec_ref": "requirements.md (Inline Add and Edit Parts spec v16)",
     "refs": "SV-9317 (S2-R10)",
     "viu_status": "source-verified-only",
     "notes": ""
@@ -216,9 +217,9 @@
       "Save a part through the Tech View inline row.",
       "Have a Full View user open the same work order and inspect the part's category."
     ],
-    "expected": "1. The part is assigned the category “Uncategorized”.\n2. The category is not displayed to the Tech View user.\n\n---\nThis is the expected behaviour as per epic SV-9315 and story SV-9317 (Story 2, Inline Add Part - Tech View) and the Inline Add and Edit Parts on Work Order Lines specification version 13, section S2-R11, read on 25 August 2026.\n\nAUTOMATION: Not available on Build to test Yet - Last checked 8/25/2026",
+    "expected": "1. The part is assigned the category “Uncategorized”.\n2. The category is not displayed to the Tech View user.\n\n---\nThis is the expected behaviour as per epic SV-9315 and story SV-9317 (Story 2, Inline Add Part - Tech View) and the Inline Add and Edit Parts on Work Order Lines specification version 16, section S2-R11, read on 31 August 2026.\n\nAUTOMATION: Not available on Build to test Yet - Last checked 8/31/2026",
     "design_ref": "Claude Design “Add Part” artifact 561657da (binding visual reference), as exported 2026-08-25.",
-    "spec_ref": "requirements.md (Inline Add and Edit Parts spec v13)",
+    "spec_ref": "requirements.md (Inline Add and Edit Parts spec v16)",
     "refs": "SV-9317 (S2-R11)",
     "viu_status": "source-verified-only",
     "notes": ""
@@ -239,9 +240,9 @@
       "Enter a valid description and quantity.",
       "With the cursor in any field, press Enter."
     ],
-    "expected": "1. Pressing Enter saves the row, with the same result as selecting Save.\n\n---\nThis is the expected behaviour as per epic SV-9315 and story SV-9317 (Story 2, Inline Add Part - Tech View) and the Inline Add and Edit Parts on Work Order Lines specification version 13, section S2-R12, read on 25 August 2026.\n\nAUTOMATION: Not available on Build to test Yet - Last checked 8/25/2026",
+    "expected": "1. Pressing Enter saves the row, with the same result as selecting Save.\n\n---\nThis is the expected behaviour as per epic SV-9315 and story SV-9317 (Story 2, Inline Add Part - Tech View) and the Inline Add and Edit Parts on Work Order Lines specification version 16, section S2-R12, read on 31 August 2026.\n\nAUTOMATION: Not available on Build to test Yet - Last checked 8/31/2026",
     "design_ref": "Claude Design “Add Part” artifact 561657da (binding visual reference), as exported 2026-08-25.",
-    "spec_ref": "requirements.md (Inline Add and Edit Parts spec v13)",
+    "spec_ref": "requirements.md (Inline Add and Edit Parts spec v16)",
     "refs": "SV-9317 (S2-R12)",
     "viu_status": "source-verified-only",
     "notes": ""
@@ -249,7 +250,7 @@
   {
     "id": "IAEP-TADD-12",
     "area": "Inline Add and Edit Parts - Tech View Inline Add",
-    "title": "Tab moves through fields in order and from quantity to Save",
+    "title": "Tab moves through the Tech View add row and never leaves it",
     "priority": "Medium",
     "type": "Functional",
     "permissions_required": "Work Order Line - Create and Edit; Work Order View Mode",
@@ -259,11 +260,12 @@
       "Your 'Work Orders → Work Order View Mode' permission is set to Tech View."
     ],
     "steps": [
-      "Place the cursor in the description field and press Tab repeatedly."
+      "Place the cursor in the description field and press Tab repeatedly through the whole row.",
+      "For the last step, have a bin allocated so the “Pulled from” chip is shown."
     ],
-    "expected": "1. Tab moves the cursor forward in the order description, part number, quantity.\n2. Tab from the quantity field moves focus to the Save action rather than leaving the row.\n\n---\nThis is the expected behaviour as per epic SV-9315 and story SV-9317 (Story 2, Inline Add Part - Tech View) and the Inline Add and Edit Parts on Work Order Lines specification version 13, section S2-R13, read on 25 August 2026.\n\nAUTOMATION: Not available on Build to test Yet - Last checked 8/25/2026",
+    "expected": "1. Tab moves the cursor forward through the row and does not leave it (per the spec's Keyboard Model — Inline Row).\n2. The Tech View add-row Tab order is: description, part number, quantity, Save, Cancel (X).\n3. When a bin is allocated, the “Pulled from” bin chip (in the hint row below) is the last Tab stop; it is present only while a bin is allocated.\n\n---\nThis is the expected behaviour as per epic SV-9315 and story SV-9317 (Story 2, Inline Add Part - Tech View) and the Inline Add and Edit Parts on Work Order Lines specification version 16, section S2-R13 and Keyboard Model - Inline Row, read on 31 August 2026.\n\nAUTOMATION: Not available on Build to test Yet - Last checked 8/31/2026",
     "design_ref": "Claude Design “Add Part” artifact 561657da (binding visual reference), as exported 2026-08-25.",
-    "spec_ref": "requirements.md (Inline Add and Edit Parts spec v13)",
+    "spec_ref": "requirements.md (Inline Add and Edit Parts spec v16)",
     "refs": "SV-9317 (S2-R13)",
     "viu_status": "source-verified-only",
     "notes": ""
@@ -283,9 +285,9 @@
     "steps": [
       "With an empty inline row open, press Escape."
     ],
-    "expected": "1. Escape closes the inline row, with the same result as selecting X (for an empty row it closes immediately).\n\n---\nThis is the expected behaviour as per epic SV-9315 and story SV-9317 (Story 2, Inline Add Part - Tech View) and the Inline Add and Edit Parts on Work Order Lines specification version 13, section S2-R14, read on 25 August 2026.\n\nAUTOMATION: Not available on Build to test Yet - Last checked 8/25/2026",
+    "expected": "1. Escape closes the inline row, with the same result as selecting X (for an empty row it closes immediately).\n\n---\nThis is the expected behaviour as per epic SV-9315 and story SV-9317 (Story 2, Inline Add Part - Tech View) and the Inline Add and Edit Parts on Work Order Lines specification version 16, section S2-R14, read on 31 August 2026.\n\nAUTOMATION: Not available on Build to test Yet - Last checked 8/31/2026",
     "design_ref": "Claude Design “Add Part” artifact 561657da (binding visual reference), as exported 2026-08-25.",
-    "spec_ref": "requirements.md (Inline Add and Edit Parts spec v13)",
+    "spec_ref": "requirements.md (Inline Add and Edit Parts spec v16)",
     "refs": "SV-9317 (S2-R14)",
     "viu_status": "source-verified-only",
     "notes": ""
@@ -305,9 +307,9 @@
     "steps": [
       "With data entered in the row, select X."
     ],
-    "expected": "1. Selecting X closes the inline row without saving.\n2. Because the row contains data, the discard confirmation from S6-R1 is shown first.\n\n---\nThis is the expected behaviour as per epic SV-9315 and story SV-9317 (Story 2, Inline Add Part - Tech View) and the Inline Add and Edit Parts on Work Order Lines specification version 13, section S2-R15, read on 25 August 2026.\n\nAUTOMATION: Not available on Build to test Yet - Last checked 8/25/2026",
+    "expected": "1. Selecting X closes the inline row without saving.\n2. Because the row contains data, the discard confirmation from S6-R1 is shown first.\n\n---\nThis is the expected behaviour as per epic SV-9315 and story SV-9317 (Story 2, Inline Add Part - Tech View) and the Inline Add and Edit Parts on Work Order Lines specification version 16, section S2-R15, read on 31 August 2026.\n\nAUTOMATION: Not available on Build to test Yet - Last checked 8/31/2026",
     "design_ref": "Claude Design “Add Part” artifact 561657da (binding visual reference), as exported 2026-08-25.",
-    "spec_ref": "requirements.md (Inline Add and Edit Parts spec v13)",
+    "spec_ref": "requirements.md (Inline Add and Edit Parts spec v16)",
     "refs": "SV-9317 (S2-R15)",
     "viu_status": "source-verified-only",
     "notes": ""
@@ -328,9 +330,9 @@
     "steps": [
       "Click somewhere on the page outside the inline row."
     ],
-    "expected": "1. The inline row remains open and its data is preserved; the click does not cancel the row.\n\n---\nThis is the expected behaviour as per epic SV-9315 and story SV-9317 (Story 2, Inline Add Part - Tech View) and the Inline Add and Edit Parts on Work Order Lines specification version 13, section S2-R16, read on 25 August 2026.\n\nAUTOMATION: Not available on Build to test Yet - Last checked 8/25/2026",
+    "expected": "1. The inline row remains open and its data is preserved; the click does not cancel the row.\n\n---\nThis is the expected behaviour as per epic SV-9315 and story SV-9317 (Story 2, Inline Add Part - Tech View) and the Inline Add and Edit Parts on Work Order Lines specification version 16, section S2-R16, read on 31 August 2026.\n\nAUTOMATION: Not available on Build to test Yet - Last checked 8/31/2026",
     "design_ref": "Claude Design “Add Part” artifact 561657da (binding visual reference), as exported 2026-08-25.",
-    "spec_ref": "requirements.md (Inline Add and Edit Parts spec v13)",
+    "spec_ref": "requirements.md (Inline Add and Edit Parts spec v16)",
     "refs": "SV-9317 (S2-R16)",
     "viu_status": "source-verified-only",
     "notes": ""
@@ -350,9 +352,9 @@
     "steps": [
       "Type a description (and optionally a part number) that matches nothing in the catalog, enter a quantity, and Save."
     ],
-    "expected": "1. The part is added with the existing Requested status and the part line is visually flagged as needing details.\n2. The success toast is the same as any other save: “Part added”.\n3. The part number typeahead behaves as in the existing add-part flow when nothing matches.\n\n---\nThis is the expected behaviour as per epic SV-9315 and story SV-9317 (Story 2, Inline Add Part - Tech View) and the Inline Add and Edit Parts on Work Order Lines specification version 13, section S2-R17, S2-E1, read on 25 August 2026.\n\nAUTOMATION: Not available on Build to test Yet - Last checked 8/25/2026",
+    "expected": "1. The part is added with the existing Requested status and the part line is visually flagged as needing details.\n2. The success toast is the same as any other save: “Part added”.\n3. The part number typeahead behaves as in the existing add-part flow when nothing matches.\n\n---\nThis is the expected behaviour as per epic SV-9315 and story SV-9317 (Story 2, Inline Add Part - Tech View) and the Inline Add and Edit Parts on Work Order Lines specification version 16, section S2-R17, S2-E1, read on 31 August 2026.\n\nAUTOMATION: Not available on Build to test Yet - Last checked 8/31/2026",
     "design_ref": "Claude Design “Add Part” artifact 561657da (binding visual reference), as exported 2026-08-25.",
-    "spec_ref": "requirements.md (Inline Add and Edit Parts spec v13)",
+    "spec_ref": "requirements.md (Inline Add and Edit Parts spec v16)",
     "refs": "SV-9317 (S2-R17; S2-E1)",
     "viu_status": "source-verified-only",
     "notes": ""
@@ -372,9 +374,9 @@
     "steps": [
       "Open the inline row and read the keyboard hint legend."
     ],
-    "expected": "1. The inline row displays a keyboard hint legend: Enter — save & next row · Tab — next field · Esc — cancel.\n\n---\nThis is the expected behaviour as per epic SV-9315 and story SV-9317 (Story 2, Inline Add Part - Tech View) and the Inline Add and Edit Parts on Work Order Lines specification version 13, section S2-R18, read on 25 August 2026.\n\nAUTOMATION: Not available on Build to test Yet - Last checked 8/25/2026",
+    "expected": "1. The inline row displays a keyboard hint legend: Enter — save & next row · Tab — next field · Esc — cancel.\n\n---\nThis is the expected behaviour as per epic SV-9315 and story SV-9317 (Story 2, Inline Add Part - Tech View) and the Inline Add and Edit Parts on Work Order Lines specification version 16, section S2-R18, read on 31 August 2026.\n\nAUTOMATION: Not available on Build to test Yet - Last checked 8/31/2026",
     "design_ref": "Claude Design “Add Part” artifact 561657da (binding visual reference), as exported 2026-08-25.",
-    "spec_ref": "requirements.md (Inline Add and Edit Parts spec v13)",
+    "spec_ref": "requirements.md (Inline Add and Edit Parts spec v16)",
     "refs": "SV-9317 (S2-R18)",
     "viu_status": "source-verified-only",
     "notes": ""
@@ -395,9 +397,9 @@
       "Leave the description and the quantity empty and attempt to Save.",
       "Separately, fill the description but leave quantity empty and attempt to Save."
     ],
-    "expected": "1. The row does not save; a single inline validation message names all missing fields in order.\n2. In Tech View only description and qty can appear in the message (for example “Enter a qty to save this part.” when only quantity is missing).\n\n---\nThis is the expected behaviour as per epic SV-9315 and story SV-9317 (Story 2, Inline Add Part - Tech View) and the Inline Add and Edit Parts on Work Order Lines specification version 13, section S2-N1, S2-N2, read on 25 August 2026.\n\nAUTOMATION: Not available on Build to test Yet - Last checked 8/25/2026",
+    "expected": "1. The row does not save; a single inline validation message names all missing fields in order.\n2. In Tech View only description and qty can appear in the message (for example “Enter a qty to save this part.” when only quantity is missing).\n\n---\nThis is the expected behaviour as per epic SV-9315 and story SV-9317 (Story 2, Inline Add Part - Tech View) and the Inline Add and Edit Parts on Work Order Lines specification version 16, section S2-N1, S2-N2, read on 31 August 2026.\n\nAUTOMATION: Not available on Build to test Yet - Last checked 8/31/2026",
     "design_ref": "Claude Design “Add Part” artifact 561657da (binding visual reference), as exported 2026-08-25.",
-    "spec_ref": "requirements.md (Inline Add and Edit Parts spec v13)",
+    "spec_ref": "requirements.md (Inline Add and Edit Parts spec v16)",
     "refs": "SV-9317 (S2-N1; S2-N2)",
     "viu_status": "source-verified-only",
     "notes": ""
@@ -417,9 +419,9 @@
     "steps": [
       "Enter a description and a quantity of 0 (or a negative number) and attempt to Save."
     ],
-    "expected": "1. The row does not save and an inline validation message is displayed: “Qty must be greater than 0.”\n\n---\nThis is the expected behaviour as per epic SV-9315 and story SV-9317 (Story 2, Inline Add Part - Tech View) and the Inline Add and Edit Parts on Work Order Lines specification version 13, section S2-N3, read on 25 August 2026.\n\nAUTOMATION: Not available on Build to test Yet - Last checked 8/25/2026",
+    "expected": "1. The row does not save and an inline validation message is displayed: “Qty must be greater than 0.”\n\n---\nThis is the expected behaviour as per epic SV-9315 and story SV-9317 (Story 2, Inline Add Part - Tech View) and the Inline Add and Edit Parts on Work Order Lines specification version 16, section S2-N3, read on 31 August 2026.\n\nAUTOMATION: Not available on Build to test Yet - Last checked 8/31/2026",
     "design_ref": "Claude Design “Add Part” artifact 561657da (binding visual reference), as exported 2026-08-25.",
-    "spec_ref": "requirements.md (Inline Add and Edit Parts spec v13)",
+    "spec_ref": "requirements.md (Inline Add and Edit Parts spec v16)",
     "refs": "SV-9317 (S2-N3)",
     "viu_status": "source-verified-only",
     "notes": ""
@@ -439,9 +441,9 @@
     "steps": [
       "Trigger a validation error by leaving a required field empty and attempting to Save."
     ],
-    "expected": "1. The invalid field is highlighted and the cursor moves to the first field that failed validation.\n\n---\nThis is the expected behaviour as per epic SV-9315 and story SV-9317 (Story 2, Inline Add Part - Tech View) and the Inline Add and Edit Parts on Work Order Lines specification version 13, section S2-N4, read on 25 August 2026.\n\nAUTOMATION: Not available on Build to test Yet - Last checked 8/25/2026",
+    "expected": "1. The invalid field is highlighted and the cursor moves to the first field that failed validation.\n\n---\nThis is the expected behaviour as per epic SV-9315 and story SV-9317 (Story 2, Inline Add Part - Tech View) and the Inline Add and Edit Parts on Work Order Lines specification version 16, section S2-N4, read on 31 August 2026.\n\nAUTOMATION: Not available on Build to test Yet - Last checked 8/31/2026",
     "design_ref": "Claude Design “Add Part” artifact 561657da (binding visual reference), as exported 2026-08-25.",
-    "spec_ref": "requirements.md (Inline Add and Edit Parts spec v13)",
+    "spec_ref": "requirements.md (Inline Add and Edit Parts spec v16)",
     "refs": "SV-9317 (S2-N4)",
     "viu_status": "source-verified-only",
     "notes": ""
@@ -462,9 +464,9 @@
     "steps": [
       "Correct the field named in the validation message."
     ],
-    "expected": "1. The validation message clears as soon as the field is corrected.\n\n---\nThis is the expected behaviour as per epic SV-9315 and story SV-9317 (Story 2, Inline Add Part - Tech View) and the Inline Add and Edit Parts on Work Order Lines specification version 13, section S2-N5, read on 25 August 2026.\n\nAUTOMATION: Not available on Build to test Yet - Last checked 8/25/2026",
+    "expected": "1. The validation message clears as soon as the field is corrected.\n\n---\nThis is the expected behaviour as per epic SV-9315 and story SV-9317 (Story 2, Inline Add Part - Tech View) and the Inline Add and Edit Parts on Work Order Lines specification version 16, section S2-N5, read on 31 August 2026.\n\nAUTOMATION: Not available on Build to test Yet - Last checked 8/31/2026",
     "design_ref": "Claude Design “Add Part” artifact 561657da (binding visual reference), as exported 2026-08-25.",
-    "spec_ref": "requirements.md (Inline Add and Edit Parts spec v13)",
+    "spec_ref": "requirements.md (Inline Add and Edit Parts spec v16)",
     "refs": "SV-9317 (S2-N5)",
     "viu_status": "source-verified-only",
     "notes": ""
@@ -484,9 +486,9 @@
     "steps": [
       "With no data entered in the row, select X or press Escape."
     ],
-    "expected": "1. The row closes immediately with no confirmation.\n\n---\nThis is the expected behaviour as per epic SV-9315 and story SV-9317 (Story 2, Inline Add Part - Tech View) and the Inline Add and Edit Parts on Work Order Lines specification version 13, section S2-N6, read on 25 August 2026.\n\nAUTOMATION: Not available on Build to test Yet - Last checked 8/25/2026",
+    "expected": "1. The row closes immediately with no confirmation.\n\n---\nThis is the expected behaviour as per epic SV-9315 and story SV-9317 (Story 2, Inline Add Part - Tech View) and the Inline Add and Edit Parts on Work Order Lines specification version 16, section S2-N6, read on 31 August 2026.\n\nAUTOMATION: Not available on Build to test Yet - Last checked 8/31/2026",
     "design_ref": "Claude Design “Add Part” artifact 561657da (binding visual reference), as exported 2026-08-25.",
-    "spec_ref": "requirements.md (Inline Add and Edit Parts spec v13)",
+    "spec_ref": "requirements.md (Inline Add and Edit Parts spec v16)",
     "refs": "SV-9317 (S2-N6)",
     "viu_status": "source-verified-only",
     "notes": ""
@@ -506,9 +508,9 @@
     "steps": [
       "Add a part to the line, then add the exact same part to the same line again."
     ],
-    "expected": "1. Two separate part lines are created; the quantities are not merged.\n\n---\nThis is the expected behaviour as per epic SV-9315 and story SV-9317 (Story 2, Inline Add Part - Tech View) and the Inline Add and Edit Parts on Work Order Lines specification version 13, section S2-E2, read on 25 August 2026.\n\nAUTOMATION: Not available on Build to test Yet - Last checked 8/25/2026",
+    "expected": "1. Two separate part lines are created; the quantities are not merged.\n\n---\nThis is the expected behaviour as per epic SV-9315 and story SV-9317 (Story 2, Inline Add Part - Tech View) and the Inline Add and Edit Parts on Work Order Lines specification version 16, section S2-E2, read on 31 August 2026.\n\nAUTOMATION: Not available on Build to test Yet - Last checked 8/31/2026",
     "design_ref": "Claude Design “Add Part” artifact 561657da (binding visual reference), as exported 2026-08-25.",
-    "spec_ref": "requirements.md (Inline Add and Edit Parts spec v13)",
+    "spec_ref": "requirements.md (Inline Add and Edit Parts spec v16)",
     "refs": "SV-9317 (S2-E2)",
     "viu_status": "source-verified-only",
     "notes": ""
@@ -530,9 +532,9 @@
       "While the row is open, have the work order move to a status that does not permit editing (for example, another user invoices it).",
       "Attempt to Save."
     ],
-    "expected": "1. The save fails and an alert is shown: “This work order can no longer be edited. Refresh to see the latest.”\n2. The entered data remains in the row so it can be copied before refreshing.\n\n---\nThis is the expected behaviour as per epic SV-9315 and story SV-9317 (Story 2, Inline Add Part - Tech View) and the Inline Add and Edit Parts on Work Order Lines specification version 13, section S2-E3, read on 25 August 2026.\n\nAUTOMATION: Not available on Build to test Yet - Last checked 8/25/2026",
+    "expected": "1. The save fails and an alert is shown: “This work order can no longer be edited. Refresh to see the latest.”\n2. The entered data remains in the row so it can be copied before refreshing.\n\n---\nThis is the expected behaviour as per epic SV-9315 and story SV-9317 (Story 2, Inline Add Part - Tech View) and the Inline Add and Edit Parts on Work Order Lines specification version 16, section S2-E3, read on 31 August 2026.\n\nAUTOMATION: Not available on Build to test Yet - Last checked 8/31/2026",
     "design_ref": "Claude Design “Add Part” artifact 561657da (binding visual reference), as exported 2026-08-25.",
-    "spec_ref": "requirements.md (Inline Add and Edit Parts spec v13)",
+    "spec_ref": "requirements.md (Inline Add and Edit Parts spec v16)",
     "refs": "SV-9317 (S2-E3)",
     "viu_status": "source-verified-only",
     "notes": ""
@@ -554,9 +556,9 @@
       "Cause the save to fail for a reason other than an editability change (for example, the request cannot complete).",
       "Observe the row and the toast."
     ],
-    "expected": "1. An alert toast is shown: “Couldn't add the part. Please try again.”\n2. The inline row remains open with the entered data intact.\n\n---\nThis is the expected behaviour as per epic SV-9315 and story SV-9317 (Story 2, Inline Add Part - Tech View) and the Inline Add and Edit Parts on Work Order Lines specification version 13, section S2-EH1, read on 25 August 2026.\n\nAUTOMATION: Not available on Build to test Yet - Last checked 8/25/2026",
+    "expected": "1. An alert toast is shown: “Couldn't add the part. Please try again.”\n2. The inline row remains open with the entered data intact.\n\n---\nThis is the expected behaviour as per epic SV-9315 and story SV-9317 (Story 2, Inline Add Part - Tech View) and the Inline Add and Edit Parts on Work Order Lines specification version 16, section S2-EH1, read on 31 August 2026.\n\nAUTOMATION: Not available on Build to test Yet - Last checked 8/31/2026",
     "design_ref": "Claude Design “Add Part” artifact 561657da (binding visual reference), as exported 2026-08-25.",
-    "spec_ref": "requirements.md (Inline Add and Edit Parts spec v13)",
+    "spec_ref": "requirements.md (Inline Add and Edit Parts spec v16)",
     "refs": "SV-9317 (S2-EH1)",
     "viu_status": "source-verified-only",
     "notes": ""
