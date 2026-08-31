@@ -76,6 +76,49 @@ def lines(t):
 
 # quoted on-screen labels: 'Foo', "Foo", or Title Case in quotes
 QUOTED = re.compile(r"['\"“”‘’]([A-Z][A-Za-z0-9 /&#\.\-\+%]{1,44})['\"“”‘’]")
+
+# 🛑 NOT EVERY QUOTED STRING IS AN ON-SCREEN LABEL, and treating them all as labels manufactured
+# false blockers. Two shapes were caught on 2026-08-31, both generalisable:
+#
+#   (a) A DATA EXAMPLE.  C44917 expects: 'Trailing digits example: "4176" in "INV-4176"'. INV-4176
+#       is a sample invoice number, not a label to find on screen. Check 5 demanded it and reported
+#       the case blocked.
+#   (b) AN EXCLUSION.  C45184 expects: "The only exception is the Paid banner's 'Date / Time'
+#       field." The case quotes that label precisely to say it does NOT follow the rule. Requiring
+#       it on screen inverts the case's own meaning.
+#
+# Both are decided from the SENTENCE the quote sits in, so the test is sentence-scoped, not a
+# per-case allow-list. A quote that is BOTH a label and an example elsewhere in the case still
+# survives, because the filter only drops a quote whose every occurrence is inside such a sentence.
+EXAMPLE_CUE = re.compile(r'\b(for example|e\.g\.|example|such as|sample)\b', re.I)
+EXCLUSION_CUE = re.compile(r'\b(only exception|except(?:ion)?\b|does not apply|other than)\b', re.I)
+
+
+def sentences(text):
+    # Split on sentence ENDS only -- '.' and newline -- never on ';'. C44917 expects
+    #   'Trailing digits example: "4176" in "INV-4176"; "24914" in "INV-S-24914".'
+    # Splitting on ';' put the second clause in its own "sentence" with no cue word, so
+    # INV-S-24914 survived as a "label" while INV-4176 was correctly dropped -- one example
+    # kept and its twin discarded, from one sentence. A semicolon continues a sentence; the
+    # cue governs the whole of it.
+    return re.split(r'(?<=\.)\s+|\n', text or '')
+
+
+def screen_labels(all_text):
+    """Quoted strings that are genuinely ON-SCREEN LABELS for check 5."""
+    keep, dropped = set(), {}
+    for sent in sentences(all_text):
+        cue = EXAMPLE_CUE.search(sent) or EXCLUSION_CUE.search(sent)
+        for q in QUOTED.findall(sent):
+            if cue:
+                dropped.setdefault(q, sent.strip()[:110])
+            else:
+                keep.add(q)
+    # a quote seen in a normal sentence anywhere in the case is a real label
+    for q in list(dropped):
+        if q in keep:
+            del dropped[q]
+    return sorted(keep), dropped
 # route-ish words the app uses
 NAV = re.compile(r'\b(work order|workorder|invoice|estimate|credit invoice|parts sale|payment|'
                  r'settings|customer|asset|print|pdf|preview|download|email|masthead|letterhead|'
@@ -89,7 +132,8 @@ precond_freq = collections.Counter()
 for c in ours:
     pre, stp, exp = lines(c.get('custom_preconds')), lines(c.get('custom_steps')), lines(c.get('custom_expected'))
     body = ' '.join(pre + stp)
-    labels = sorted(set(QUOTED.findall(' '.join(pre + stp + exp))))
+    all_text = ' '.join(pre + stp + exp)
+    labels, dropped_labels = screen_labels(all_text)
     navs = sorted({m.group(0).lower() for m in NAV.finditer(body)})
     for l in labels:
         label_freq[l] += 1
@@ -108,6 +152,7 @@ for c in ours:
         'expected_body': [l for l in exp if not l.startswith('AUTOMATION:')
                           and 'This is the expected behaviour as per' not in l],
         'labels_quoted': labels,
+        'labels_dropped_not_screen': dropped_labels,
         'nav_nouns': navs,
         'n_steps': len(stp),
     }

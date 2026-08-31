@@ -32,7 +32,7 @@ Cases analysed: **119** (ours only; the 30 foreign cases are excluded, Rule 38).
 | email | 1 |
 | download | 1 |
 
-## The most-depended-on quoted on-screen labels (88 distinct)
+## The most-depended-on quoted on-screen labels (78 distinct)
 
 | Label | Cases |
 |---|---|
@@ -41,7 +41,6 @@ Cases analysed: **119** (ours only; the 30 foreign cases are excluded, Rule 38).
 | `Balance` | 7 |
 | `Approves Work` | 7 |
 | `Payments` | 5 |
-| `PAID IN FULL` | 3 |
 | `Authorizer` | 3 |
 | `Work Performed` | 3 |
 | `Work Summary` | 3 |
@@ -58,15 +57,14 @@ Cases analysed: **119** (ours only; the 30 foreign cases are excluded, Rule 38).
 | `Credit To` | 2 |
 | `Approval Code` | 2 |
 | `Terms` | 2 |
-| `INV-S-24914` | 2 |
 | `VIN / Serial` | 2 |
 | `Summarize labor total` | 2 |
 | `Summarize parts total` | 2 |
 | `Declined Work` | 2 |
 | `Shop supplies` | 2 |
+| `PAID IN FULL` | 2 |
 | `PARTIALLY PAID` | 2 |
 | `Payment Receipt - Payments by ShopView` | 2 |
-| `Date / Time` | 2 |
 | `Customer Signature` | 2 |
 | `Printed Name` | 2 |
 | `Due date` | 2 |
@@ -74,45 +72,47 @@ Cases analysed: **119** (ours only; the 30 foreign cases are excluded, Rule 38).
 | `Voided` | 2 |
 | `Tax` | 2 |
 | `Scope of work` | 2 |
-| `DRAFT` | 1 |
-| `PAID` | 1 |
-| `VOIDED` | 1 |
 | `Customer PO` | 1 |
 | `Work Order` | 1 |
-| `Net 30` | 1 |
-| `INV-4176` | 1 |
+| `No authorizer` | 1 |
+| `Asset` | 1 |
+| `Eng Hrs` | 1 |
+| `Mileage` | 1 |
+| `Plate` | 1 |
+| `Unit` | 1 |
+| `Labor hours` | 1 |
 
-## Distinct preconditions (134 distinct) — the data states to reach
+## Distinct preconditions (135 distinct) — the data states to reach
 
 | Precondition | Cases |
 |---|---|
-| You are signed in to ShopView. | 87 |
+| 1. You are signed in to ShopView. | 80 |
+| You are signed in to ShopView. | 7 |
 | A work order exists whose shop location has a name, street address, city, state or provinc | 1 |
-| You can reach one shop that has a logo set and one shop that has no logo set (or you can a | 1 |
-| You can generate an Estimate, an Invoice, and a Credit Invoice for known documents. | 1 |
-| You can generate an Estimate, an Invoice (including a fully paid one), and a Credit Invoic | 1 |
-| You can generate an Estimate, an Invoice, and a Credit Invoice that have monetary totals. | 1 |
-| You can generate an Estimate, an unpaid Invoice, a fully paid Invoice, and a Credit Invoic | 1 |
-| You can reach (or set up) a shop location that is missing one or more of: street address,  | 1 |
+| 2. You can reach one shop that has a logo set and one shop that has no logo set (or you ca | 1 |
+| 2. You can generate an Estimate, an Invoice, and a Credit Invoice for known documents. | 1 |
+| 2. You can generate an Estimate, an Invoice (including a fully paid one), and a Credit Inv | 1 |
+| 2. You can generate an Estimate, an Invoice, and a Credit Invoice that have monetary total | 1 |
+| 2. You can generate an Estimate, an unpaid Invoice, a fully paid Invoice, and a Credit Inv | 1 |
+| 2. You can reach (or set up) a shop location that is missing one or more of: street addres | 1 |
 | A document exists for a customer that has a company name (or personal name) and a full add | 1 |
-| You can reach a document whose shop uses integrated-billing remit-to, and another whose lo | 1 |
-| You can reach a document that has no remit-to payee configured (neither mechanism). | 1 |
-| You can reach a document whose shop has neither integrated-billing remit-to nor a location | 1 |
-| You can reach a document for a customer missing one or more of: street address, city, stat | 1 |
-| Credit invoice for a shop that HAS a remit-to payee configured | 1 |
-| A document exists whose work order has a work order number, a customer PO, an authorizer,  | 1 |
-| You can reach a document whose work order HAS payment terms and one that has NONE. | 1 |
-| A document exists whose work order has an Authorizer selected (a customer contact with 'Ap | 1 |
-| A document exists whose work order has an integrated-billing approval code. | 1 |
-| You can reach one document where the work order number equals the trailing digits of the d | 1 |
-| You can reach a document whose work order has no Customer PO, no Authorizer selected, and  | 1 |
-| You are signed in to ShopView with access to work orders. | 1 |
-| A work order exists for a customer that has at least one contact with 'Approves Work' enab | 1 |
-| A work order exists whose customer has 'Approves Work' contacts. | 1 |
-| A work order's customer has one 'Approves Work' contact WITH a phone number and one WITHOU | 1 |
-| A work order that has been invoiced exists, with (or without) an Authorizer selected. | 1 |
-| A work order is open for a customer, and you can edit that customer's contacts. | 1 |
-| Invoiced work order | 1 |
-| API access (session token) | 1 |
-| Un-invoiced work order | 1 |
-| Contact IDs: (a) same company without 'Approves Work'; (b) another company's contact | 1 |
+| 2. You can reach a document whose shop uses integrated-billing remit-to, and another whose | 1 |
+| 2. You can reach a document that has no remit-to payee configured (neither mechanism). | 1 |
+| 2. You can reach a document whose shop has neither integrated-billing remit-to nor a locat | 1 |
+| 2. You can reach a document for a customer missing one or more of: street address, city, s | 1 |
+| 1. Credit invoice for a shop that HAS a remit-to payee configured | 1 |
+| 2. A document exists whose work order has a work order number, a customer PO, an authorize | 1 |
+| 2. You can reach a document whose work order HAS payment terms and one that has NONE. | 1 |
+| 2. A document exists whose work order has an Authorizer selected (a customer contact with  | 1 |
+| 2. A document exists whose work order has an integrated-billing approval code. | 1 |
+| 2. You can reach one document where the work order number equals the trailing digits of th | 1 |
+| 2. You can reach a document whose work order has no Customer PO, no Authorizer selected, a | 1 |
+| 1. You are signed in to ShopView with access to work orders. | 1 |
+| 2. A work order exists for a customer that has at least one contact with 'Approves Work' e | 1 |
+| 2. A work order exists whose customer has 'Approves Work' contacts. | 1 |
+| 2. A work order's customer has one 'Approves Work' contact WITH a phone number and one WIT | 1 |
+| 2. A work order that has been invoiced exists, with (or without) an Authorizer selected. | 1 |
+| 2. A work order is open for a customer, and you can edit that customer's contacts. | 1 |
+| 1. Invoiced work order | 1 |
+| 2. API access (session token) | 1 |
+| 1. Un-invoiced work order | 1 |

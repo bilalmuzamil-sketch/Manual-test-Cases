@@ -3589,5 +3589,532 @@
     "text": "1. Open the Credit Invoice preview"
    }
   }
+ },
+ "44985": {
+  "title": "Parts sale receives the Authorizer treatment (net-new)",
+  "atm": 3,
+  "section_id": 6754,
+  "escaping": true,
+  "fields": {
+   "custom_expected": {
+    "blocks": [
+     [
+      "1. The parts sale has an Authorizer field offering the customer's \"Approves Work\" contacts, empty by default, filled by the user.",
+      "2. It is locked once the parts sale is invoiced.",
+      "3. If that invoice is voided or reversed, the Authorizer becomes editable again (mirrors S3-R8).",
+      "4. When set, the authorizer's name prints in the document's Authorizer reference field."
+     ],
+     [
+      "---",
+      "This is the expected behaviour as per epic SV-8218 and story SV-9195 (Story 13, Parts Sale Estimate and Invoice) and the Invoice UI Refresh specification version 45, section S13-R6, read on 31 August 2026.",
+      "Last checked against build v26.35.5-8c3cc21 on 8/31/2026."
+     ],
+     [
+      "AUTOMATION: READY"
+     ]
+    ],
+    "text": "1. The parts sale has an Authorizer field offering the customer's \"Approves Work\" contacts, empty by default, filled by the user.\n2. It is locked once the parts sale is invoiced.\n3. If that invoice is voided or reversed, the Authorizer becomes editable again (mirrors S3-R8).\n4. When set, the authorizer's name prints in the document's Authorizer reference field.\n\n---\nThis is the expected behaviour as per epic SV-8218 and story SV-9195 (Story 13, Parts Sale Estimate and Invoice) and the Invoice UI Refresh specification version 45, section S13-R6, read on 31 August 2026.\nLast checked against build v26.35.5-8c3cc21 on 8/31/2026.\n\nAUTOMATION: READY"
+   },
+   "custom_preconds": {
+    "blocks": [
+     [
+      "1. You are signed in to ShopView with access to parts sales.",
+      "2. A parts sale exists for a customer with 'Approves Work' contacts."
+     ]
+    ],
+    "text": "1. You are signed in to ShopView with access to parts sales.\n2. A parts sale exists for a customer with 'Approves Work' contacts."
+   },
+   "custom_steps": {
+    "blocks": [
+     [
+      "1. Open the parts sale record and find the Authorizer field.",
+      "2. Select an authorizer from the offered list, then invoice the parts sale and try to change it.",
+      "3. Generate the Parts Sale document and read the Authorizer reference field."
+     ]
+    ],
+    "text": "1. Open the parts sale record and find the Authorizer field.\n2. Select an authorizer from the offered list, then invoice the parts sale and try to change it.\n3. Generate the Parts Sale document and read the Authorizer reference field."
+   }
+  }
+ },
+ "44904": {
+  "title": "No status pill appears in the masthead on any document",
+  "atm": 1,
+  "section_id": 6741,
+  "escaping": true,
+  "fields": {
+   "custom_expected": {
+    "blocks": [
+     [
+      "1. No status label or pill (for example \"PAID\", \"PAID IN FULL\", \"DRAFT\", \"VOIDED\") appears anywhere in the masthead of any document.",
+      "2. The only place a status indicator appears is with the content that proves it: the Paid banner's pill (on portal-generated Invoice PDFs) and the Status column in the Credit Invoice's status table."
+     ],
+     [
+      "---",
+      "This is the expected behaviour as per epic SV-8218 and story SV-9140 (Story 1, Masthead and Letterhead) and the Invoice UI Refresh specification version 45, section S1-R5, read on 31 August 2026.",
+      "Last checked against build v26.35.5-8c3cc21 on 8/31/2026."
+     ],
+     [
+      "AUTOMATION: READY"
+     ]
+    ],
+    "text": "1. No status label or pill (for example \"PAID\", \"PAID IN FULL\", \"DRAFT\", \"VOIDED\") appears anywhere in the masthead of any document.\n2. The only place a status indicator appears is with the content that proves it: the Paid banner's pill (on portal-generated Invoice PDFs) and the Status column in the Credit Invoice's status table.\n\n---\nThis is the expected behaviour as per epic SV-8218 and story SV-9140 (Story 1, Masthead and Letterhead) and the Invoice UI Refresh specification version 45, section S1-R5, read on 31 August 2026.\nLast checked against build v26.35.5-8c3cc21 on 8/31/2026.\n\nAUTOMATION: READY"
+   },
+   "custom_preconds": {
+    "blocks": [
+     [
+      "1. You are signed in to ShopView.",
+      "2. You can generate an Estimate, an Invoice (including a fully paid one), and a Credit Invoice."
+     ]
+    ],
+    "text": "1. You are signed in to ShopView.\n2. You can generate an Estimate, an Invoice (including a fully paid one), and a Credit Invoice."
+   },
+   "custom_steps": {
+    "blocks": [
+     [
+      "1. Generate each document type, including a fully paid Invoice and a Credit Invoice in various states.",
+      "2. Look at the masthead of each."
+     ]
+    ],
+    "text": "1. Generate each document type, including a fully paid Invoice and a Credit Invoice in various states.\n2. Look at the masthead of each."
+   }
+  }
+ },
+ "44917": {
+  "title": "Work Order field hides when it equals the document number's trailing digits",
+  "atm": 1,
+  "section_id": 6743,
+  "escaping": true,
+  "fields": {
+   "custom_expected": {
+    "blocks": [
+     [
+      "1. When the work order number equals the unbroken digits at the end of the document number, the Work Order field is hidden.",
+      "2. When they differ, the Work Order field is shown with its value.",
+      "3. Trailing digits example: \"4176\" in \"INV-4176\"; \"24914\" in \"INV-S-24914\"."
+     ],
+     [
+      "---",
+      "This is the expected behaviour as per epic SV-8218 and story SV-9142 (Story 3, Order Reference Fields) and the Invoice UI Refresh specification version 45, section S3-N1, read on 31 August 2026.",
+      "Last checked against build v26.35.5-8c3cc21 on 8/31/2026."
+     ],
+     [
+      "AUTOMATION: READY"
+     ]
+    ],
+    "text": "1. When the work order number equals the unbroken digits at the end of the document number, the Work Order field is hidden.\n2. When they differ, the Work Order field is shown with its value.\n3. Trailing digits example: \"4176\" in \"INV-4176\"; \"24914\" in \"INV-S-24914\".\n\n---\nThis is the expected behaviour as per epic SV-8218 and story SV-9142 (Story 3, Order Reference Fields) and the Invoice UI Refresh specification version 45, section S3-N1, read on 31 August 2026.\nLast checked against build v26.35.5-8c3cc21 on 8/31/2026.\n\nAUTOMATION: READY"
+   },
+   "custom_preconds": {
+    "blocks": [
+     [
+      "1. You are signed in to ShopView.",
+      "2. You can reach one document where the work order number equals the trailing digits of the document number (for example document \"INV-S-24914\" with work order \"24914\"), and one where it does not (work order \"24915\")."
+     ]
+    ],
+    "text": "1. You are signed in to ShopView.\n2. You can reach one document where the work order number equals the trailing digits of the document number (for example document \"INV-S-24914\" with work order \"24914\"), and one where it does not (work order \"24915\")."
+   },
+   "custom_steps": {
+    "blocks": [
+     [
+      "1. Generate the document where the work order number equals the document number's trailing digits; look at the order reference area.",
+      "2. Generate the document where they differ; look at the order reference area."
+     ]
+    ],
+    "text": "1. Generate the document where the work order number equals the document number's trailing digits; look at the order reference area.\n2. Generate the document where they differ; look at the order reference area."
+   }
+  }
+ },
+ "44940": {
+  "title": "'Summary' divider precedes the financial summary",
+  "atm": 1,
+  "section_id": 6748,
+  "escaping": true,
+  "fields": {
+   "custom_expected": {
+    "blocks": [
+     [
+      "1. A divider labeled exactly \"Summary\" precedes the financial summary."
+     ],
+     [
+      "---",
+      "This is the expected behaviour as per epic SV-8218 and story SV-9146 (Story 7, Financial Summary) and the Invoice UI Refresh specification version 45, section S7-R1, read on 31 August 2026.",
+      "Last checked against build v26.35.5-8c3cc21 on 8/31/2026."
+     ],
+     [
+      "AUTOMATION: READY"
+     ]
+    ],
+    "text": "1. A divider labeled exactly \"Summary\" precedes the financial summary.\n\n---\nThis is the expected behaviour as per epic SV-8218 and story SV-9146 (Story 7, Financial Summary) and the Invoice UI Refresh specification version 45, section S7-R1, read on 31 August 2026.\nLast checked against build v26.35.5-8c3cc21 on 8/31/2026.\n\nAUTOMATION: READY"
+   },
+   "custom_preconds": {
+    "blocks": [
+     [
+      "1. You are signed in to ShopView.",
+      "2. You can generate an Estimate or Invoice."
+     ]
+    ],
+    "text": "1. You are signed in to ShopView.\n2. You can generate an Estimate or Invoice."
+   },
+   "custom_steps": {
+    "blocks": [
+     [
+      "1. Generate the document.",
+      "2. Find where the work section ends and the financial summary begins."
+     ]
+    ],
+    "text": "1. Generate the document.\n2. Find where the work section ends and the financial summary begins."
+   }
+  }
+ },
+ "44970": {
+  "title": "Credit Invoice shows the disclaimer and standard signature area",
+  "atm": 1,
+  "section_id": 6752,
+  "escaping": true,
+  "fields": {
+   "custom_expected": {
+    "blocks": [
+     [
+      "1. The Credit Invoice shows the shop's configured disclaimer.",
+      "2. It shows the standard signature area with the three lines \"Customer Signature\", \"Printed Name\", and \"Date\"."
+     ],
+     [
+      "---",
+      "This is the expected behaviour as per epic SV-8218 and story SV-9150 (Story 11, Credit Invoice) and the Invoice UI Refresh specification version 45, sections S11-R7 and S9-R2, read on 31 August 2026.",
+      "Last checked against build v26.35.5-8c3cc21 on 8/31/2026."
+     ],
+     [
+      "AUTOMATION: READY"
+     ]
+    ],
+    "text": "1. The Credit Invoice shows the shop's configured disclaimer.\n2. It shows the standard signature area with the three lines \"Customer Signature\", \"Printed Name\", and \"Date\".\n\n---\nThis is the expected behaviour as per epic SV-8218 and story SV-9150 (Story 11, Credit Invoice) and the Invoice UI Refresh specification version 45, sections S11-R7 and S9-R2, read on 31 August 2026.\nLast checked against build v26.35.5-8c3cc21 on 8/31/2026.\n\nAUTOMATION: READY"
+   },
+   "custom_preconds": {
+    "blocks": [
+     [
+      "1. You are signed in to ShopView.",
+      "2. You can generate a Credit Invoice for a shop with a configured disclaimer."
+     ]
+    ],
+    "text": "1. You are signed in to ShopView.\n2. You can generate a Credit Invoice for a shop with a configured disclaimer."
+   },
+   "custom_steps": {
+    "blocks": [
+     [
+      "1. Generate the Credit Invoice.",
+      "2. Find the disclaimer and the signature area."
+     ]
+    ],
+    "text": "1. Generate the Credit Invoice.\n2. Find the disclaimer and the signature area."
+   }
+  }
+ },
+ "44973": {
+  "title": "Accent colour appears only on line numbers and the footer 'ShopView'",
+  "atm": 1,
+  "section_id": 6753,
+  "escaping": true,
+  "fields": {
+   "custom_expected": {
+    "blocks": [
+     [
+      "1. The accent #257CFF appears only on the work line numbers and on the word \"ShopView\" in the footer.",
+      "2. On the Parts Sale document, which has no numbered work lines, the accent appears only on the word \"ShopView\" in the footer.",
+      "3. Nothing else on the document uses the accent."
+     ],
+     [
+      "---",
+      "This is the expected behaviour as per epic SV-8218 and story SV-9151 (Story 12, Document Visual Standard) and the Invoice UI Refresh specification version 45, section S12-R3, and the Design Document, read on 31 August 2026.",
+      "Last checked against build v26.35.5-8c3cc21 on 8/31/2026."
+     ],
+     [
+      "AUTOMATION: READY"
+     ]
+    ],
+    "text": "1. The accent #257CFF appears only on the work line numbers and on the word \"ShopView\" in the footer.\n2. On the Parts Sale document, which has no numbered work lines, the accent appears only on the word \"ShopView\" in the footer.\n3. Nothing else on the document uses the accent.\n\n---\nThis is the expected behaviour as per epic SV-8218 and story SV-9151 (Story 12, Document Visual Standard) and the Invoice UI Refresh specification version 45, section S12-R3, and the Design Document, read on 31 August 2026.\nLast checked against build v26.35.5-8c3cc21 on 8/31/2026.\n\nAUTOMATION: READY"
+   },
+   "custom_preconds": {
+    "blocks": [
+     [
+      "1. You are signed in to ShopView.",
+      "2. You can inspect where the accent colour #257CFF is used on a document."
+     ]
+    ],
+    "text": "1. You are signed in to ShopView.\n2. You can inspect where the accent colour #257CFF is used on a document."
+   },
+   "custom_steps": {
+    "blocks": [
+     [
+      "1. Generate a document that has work lines.",
+      "2. Find every place the accent #257CFF is used."
+     ]
+    ],
+    "text": "1. Generate a document that has work lines.\n2. Find every place the accent #257CFF is used."
+   }
+  }
+ },
+ "44978": {
+  "title": "Work-section rules and dividers follow the specified treatment",
+  "atm": 1,
+  "section_id": 6753,
+  "escaping": true,
+  "fields": {
+   "custom_expected": {
+    "blocks": [
+     [
+      "1. The work section opens with a 2px ink rule under the section label.",
+      "2. Numbered jobs are separated by a 1px ink (#121926) rule.",
+      "3. Charge rows inside a job are separated by #EEF2F6 row dividers.",
+      "4. The \"Labor\" and \"Parts\" sub-section labels carry no underline rule.",
+      "5. When a line has fee or discount adjustment rows, the row divider follows the line's last adjustment row - never between the line and its adjustments - so the line and its adjustments read as one group."
+     ],
+     [
+      "---",
+      "This is the expected behaviour as per epic SV-8218 and story SV-9151 (Story 12, Document Visual Standard) and the Invoice UI Refresh specification version 45, section S12-R8, and the Design Document, read on 31 August 2026.",
+      "Last checked against build v26.35.5-8c3cc21 on 8/31/2026."
+     ],
+     [
+      "AUTOMATION: READY"
+     ]
+    ],
+    "text": "1. The work section opens with a 2px ink rule under the section label.\n2. Numbered jobs are separated by a 1px ink (#121926) rule.\n3. Charge rows inside a job are separated by #EEF2F6 row dividers.\n4. The \"Labor\" and \"Parts\" sub-section labels carry no underline rule.\n5. When a line has fee or discount adjustment rows, the row divider follows the line's last adjustment row - never between the line and its adjustments - so the line and its adjustments read as one group.\n\n---\nThis is the expected behaviour as per epic SV-8218 and story SV-9151 (Story 12, Document Visual Standard) and the Invoice UI Refresh specification version 45, section S12-R8, and the Design Document, read on 31 August 2026.\nLast checked against build v26.35.5-8c3cc21 on 8/31/2026.\n\nAUTOMATION: READY"
+   },
+   "custom_preconds": {
+    "blocks": [
+     [
+      "1. You are signed in to ShopView.",
+      "2. You can generate a document with several work lines, at least one having fee/discount adjustment rows."
+     ]
+    ],
+    "text": "1. You are signed in to ShopView.\n2. You can generate a document with several work lines, at least one having fee/discount adjustment rows."
+   },
+   "custom_steps": {
+    "blocks": [
+     [
+      "1. Generate the document.",
+      "2. Inspect the rules and dividers in the work section."
+     ]
+    ],
+    "text": "1. Generate the document.\n2. Inspect the rules and dividers in the work section."
+   }
+  }
+ },
+ "45172": {
+  "title": "Summarize labor total and Summarize parts total control the line footer figures",
+  "atm": 1,
+  "section_id": 6746,
+  "escaping": true,
+  "fields": {
+   "custom_expected": {
+    "blocks": [
+     [
+      "1. After Step 1: the footer 'Labor' figure is hidden; 'Parts' and 'Line total' remain.",
+      "2. After Step 2: both the 'Labor' and 'Parts' footer figures are hidden; 'Line total' stands alone WITHOUT the vertical divider (S5-R7, S5-R9).",
+      "3. 'Line total' is always shown."
+     ],
+     [
+      "---",
+      "This is the expected behaviour as per epic SV-8218 and story SV-9144 (Story 5, Work Section) and the Invoice UI Refresh specification version 45, section S5-R7, read on 31 August 2026.",
+      "Last checked against build v26.35.5-8c3cc21 on 8/31/2026."
+     ],
+     [
+      "AUTOMATION: READY"
+     ]
+    ],
+    "text": "1. After Step 1: the footer 'Labor' figure is hidden; 'Parts' and 'Line total' remain.\n2. After Step 2: both the 'Labor' and 'Parts' footer figures are hidden; 'Line total' stands alone WITHOUT the vertical divider (S5-R7, S5-R9).\n3. 'Line total' is always shown.\n\n---\nThis is the expected behaviour as per epic SV-8218 and story SV-9144 (Story 5, Work Section) and the Invoice UI Refresh specification version 45, section S5-R7, read on 31 August 2026.\nLast checked against build v26.35.5-8c3cc21 on 8/31/2026.\n\nAUTOMATION: READY"
+   },
+   "custom_preconds": {
+    "blocks": [
+     [
+      "1. A work line with both labor and parts",
+      "2. All price settings ON"
+     ]
+    ],
+    "text": "1. A work line with both labor and parts\n2. All price settings ON"
+   },
+   "custom_steps": {
+    "blocks": [
+     [
+      "1. Turn OFF 'Summarize labor total', then open the preview",
+      "2. Turn OFF 'Summarize parts total' too, then open the preview",
+      "3. Restore both settings"
+     ]
+    ],
+    "text": "1. Turn OFF 'Summarize labor total', then open the preview\n2. Turn OFF 'Summarize parts total' too, then open the preview\n3. Restore both settings"
+   }
+  }
+ },
+ "45173": {
+  "title": "Line numbers move to three digits from line 100 on a large document",
+  "atm": 1,
+  "section_id": 6746,
+  "escaping": true,
+  "fields": {
+   "custom_expected": {
+    "blocks": [
+     [
+      "1. Lines 1-99 stay two digits; line 100 and above show three digits (S5-R2).",
+      "2. The document renders without timeout (NFR-004)."
+     ],
+     [
+      "---",
+      "This is the expected behaviour as per epic SV-8218 and story SV-9144 (Story 5, Work Section) and the Invoice UI Refresh specification version 45, section S5-R2, read on 31 August 2026.",
+      "Last checked against build v26.35.5-8c3cc21 on 8/31/2026."
+     ],
+     [
+      "AUTOMATION: READY"
+     ]
+    ],
+    "text": "1. Lines 1-99 stay two digits; line 100 and above show three digits (S5-R2).\n2. The document renders without timeout (NFR-004).\n\n---\nThis is the expected behaviour as per epic SV-8218 and story SV-9144 (Story 5, Work Section) and the Invoice UI Refresh specification version 45, section S5-R2, read on 31 August 2026.\nLast checked against build v26.35.5-8c3cc21 on 8/31/2026.\n\nAUTOMATION: READY"
+   },
+   "custom_preconds": {
+    "blocks": [
+     [
+      "1. A work order with 100+ lines (factory/seed data)"
+     ]
+    ],
+    "text": "1. A work order with 100+ lines (factory/seed data)"
+   },
+   "custom_steps": {
+    "blocks": [
+     [
+      "1. Open the Invoice preview",
+      "2. Generate the PDF"
+     ]
+    ],
+    "text": "1. Open the Invoice preview\n2. Generate the PDF"
+   }
+  }
+ },
+ "45184": {
+  "title": "Every date on every document renders in the fixed Jan 5, 2026 format",
+  "atm": 1,
+  "section_id": 6770,
+  "escaping": true,
+  "fields": {
+   "custom_expected": {
+    "blocks": [
+     [
+      "1. All dates render in the 'Jan 5, 2026' style - abbreviated English month, day of the month without a leading zero, a comma, and the four-digit year.",
+      "2. The format is identical for US and Canadian shops and no shop or user setting changes it (G-R1).",
+      "3. The only exception is the Paid banner's 'Date / Time' field."
+     ],
+     [
+      "---",
+      "This is the expected behaviour as per epic SV-8218 and the Invoice UI Refresh specification version 45, section G-R1, read on 31 August 2026.",
+      "Last checked against build v26.35.5-8c3cc21 on 8/31/2026."
+     ],
+     [
+      "AUTOMATION: READY"
+     ]
+    ],
+    "text": "1. All dates render in the 'Jan 5, 2026' style - abbreviated English month, day of the month without a leading zero, a comma, and the four-digit year.\n2. The format is identical for US and Canadian shops and no shop or user setting changes it (G-R1).\n3. The only exception is the Paid banner's 'Date / Time' field.\n\n---\nThis is the expected behaviour as per epic SV-8218 and the Invoice UI Refresh specification version 45, section G-R1, read on 31 August 2026.\nLast checked against build v26.35.5-8c3cc21 on 8/31/2026.\n\nAUTOMATION: READY"
+   },
+   "custom_preconds": {
+    "blocks": [
+     [
+      "1. A US shop and a Canadian shop",
+      "2. Documents with single-digit day dates"
+     ]
+    ],
+    "text": "1. A US shop and a Canadian shop\n2. Documents with single-digit day dates"
+   },
+   "custom_steps": {
+    "blocks": [
+     [
+      "1. Open the estimate/invoice/credit previews on both shops",
+      "2. Check every date, including the payment rows"
+     ]
+    ],
+    "text": "1. Open the estimate/invoice/credit previews on both shops\n2. Check every date, including the payment rows"
+   }
+  }
+ },
+ "45193": {
+  "title": "Amounts of four digits or more render correctly with no NaN",
+  "atm": 1,
+  "section_id": 6770,
+  "escaping": true,
+  "fields": {
+   "custom_expected": {
+    "blocks": [
+     [
+      "1. All amounts render as formatted currency; there is no $NaN anywhere.",
+      "2. History: SV-8680 / SV-8581 showed $NaN at 4+ digits."
+     ],
+     [
+      "---",
+      "This is the expected behaviour as per epic SV-8218 and story SV-9144 (Story 5, Work Section) and the Invoice UI Refresh specification version 45, section S5-R9, read on 31 August 2026.",
+      "Last checked against build v26.35.5-8c3cc21 on 8/31/2026."
+     ],
+     [
+      "AUTOMATION: READY"
+     ]
+    ],
+    "text": "1. All amounts render as formatted currency; there is no $NaN anywhere.\n2. History: SV-8680 / SV-8581 showed $NaN at 4+ digits.\n\n---\nThis is the expected behaviour as per epic SV-8218 and story SV-9144 (Story 5, Work Section) and the Invoice UI Refresh specification version 45, section S5-R9, read on 31 August 2026.\nLast checked against build v26.35.5-8c3cc21 on 8/31/2026.\n\nAUTOMATION: READY"
+   },
+   "custom_preconds": {
+    "blocks": [
+     [
+      "1. A work order with a labor rate >= $1,000.00 and a fixed line total >= $1,000.00"
+     ]
+    ],
+    "text": "1. A work order with a labor rate >= $1,000.00 and a fixed line total >= $1,000.00"
+   },
+   "custom_steps": {
+    "blocks": [
+     [
+      "1. Open the Invoice preview",
+      "2. Check the line figures, footer, summary and Balance",
+      "3. Generate the PDF"
+     ]
+    ],
+    "text": "1. Open the Invoice preview\n2. Check the line figures, footer, summary and Balance\n3. Generate the PDF"
+   }
+  }
+ },
+ "45195": {
+  "title": "A multi-page invoice PDF breaks cleanly between pages",
+  "atm": 1,
+  "section_id": 6770,
+  "escaping": true,
+  "fields": {
+   "custom_expected": {
+    "blocks": [
+     [
+      "1. No content is cut mid-row; descriptions do not split illegibly across pages; the totals and signature block are not orphaned oddly (S12-R1).",
+      "2. Per v45 S12-R10: every page after the first opens with a single identification line (shop location name on the left, document number on the right); the full masthead does not repeat on later pages.",
+      "3. Per v45 S12-R10: the totals block is not split across a page break; a work line and its own footer stay together on the same page; the signature row does not land alone on a final page; and no single row is orphaned by itself on a page.",
+      "4. History: SV-8914 (Ready to Fix - ACTIVE) + SV-8189."
+     ],
+     [
+      "---",
+      "This is the expected behaviour as per epic SV-8218 and story SV-9151 (Story 12, Document Visual Standard) and the Invoice UI Refresh specification version 45, section S12-R1 and S12-R10, read on 31 August 2026.",
+      "Last checked against build v26.35.5-8c3cc21 on 8/31/2026."
+     ],
+     [
+      "AUTOMATION: READY"
+     ]
+    ],
+    "text": "1. No content is cut mid-row; descriptions do not split illegibly across pages; the totals and signature block are not orphaned oddly (S12-R1).\n2. Per v45 S12-R10: every page after the first opens with a single identification line (shop location name on the left, document number on the right); the full masthead does not repeat on later pages.\n3. Per v45 S12-R10: the totals block is not split across a page break; a work line and its own footer stay together on the same page; the signature row does not land alone on a final page; and no single row is orphaned by itself on a page.\n4. History: SV-8914 (Ready to Fix - ACTIVE) + SV-8189.\n\n---\nThis is the expected behaviour as per epic SV-8218 and story SV-9151 (Story 12, Document Visual Standard) and the Invoice UI Refresh specification version 45, section S12-R1 and S12-R10, read on 31 August 2026.\nLast checked against build v26.35.5-8c3cc21 on 8/31/2026.\n\nAUTOMATION: READY"
+   },
+   "custom_preconds": {
+    "blocks": [
+     [
+      "1. An invoice long enough for 3+ PDF pages (many lines with long descriptions)"
+     ]
+    ],
+    "text": "1. An invoice long enough for 3+ PDF pages (many lines with long descriptions)"
+   },
+   "custom_steps": {
+    "blocks": [
+     [
+      "1. Generate the PDF",
+      "2. Inspect every page break",
+      "3. Print-preview in grayscale"
+     ]
+    ],
+    "text": "1. Generate the PDF\n2. Inspect every page break\n3. Print-preview in grayscale"
+   }
+  }
  }
 }

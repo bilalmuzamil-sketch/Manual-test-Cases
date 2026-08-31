@@ -156,6 +156,31 @@ for cid, case in req.items():
                   "picker yields 0 options; on ESTIMATE work order S8218-15017 the same control "
                   "opens with 2 options ('No authorizer', 'Darren Moore'). Both steps performed, "
                   "evidence build-verify-2026-08-31/authorizer-probe.json."),
+        # --- walked 2026-08-31, evidence in build-verify-2026-08-31/walk-evidence.json ---
+        '44940': ("Walked: in the rendered document 'Work Performed' is at char 539 and the "
+                  "'Summary' divider at char 3075, so the boundary the step asks for exists and is "
+                  "in the right order."),
+        '44970': ("Walked on the captured Credit Invoice (CM-100): the disclaimer text is present "
+                  "and the signature area carries CUSTOMER SIGNATURE / PRINTED NAME / DATE."),
+        '44973': ("Walked: the accent #257CFF occurs 3 times in the rendered document HTML, so "
+                  "'find every place the accent is used' is executable."),
+        '44978': ("Walked: the work-section rules are inspectable in the rendered HTML -- "
+                  "border-top:2px x1, 1px solid #121926 x3, #EEF2F6 row dividers x3, "
+                  "#E3E8EF hairlines x9."),
+        '45172': ("Walked: /api/invoices/{woId}/settings/view returns all nine setting keys, "
+                  "including summarizeLaborTotal and summarizePartsTotal, so the settings the step "
+                  "changes and restores are readable and addressable."),
+        '45173': ("Walked: the same document route returns a real PDF with type=pdf -- "
+                  "187,703 bytes, %PDF- header, 3 pages."),
+        '45193': ("Walked: type=pdf returns a real 3-page PDF (187,703 bytes)."),
+        '45195': ("Walked: type=pdf returns a 3-PAGE PDF (chars per page 1439/1737/1427), so page "
+                  "breaks exist and 'inspect every page break' is executable."),
+        # NOT added, and why -- each would be an overclaim:
+        #   C45185 needs "a snapshot created BEFORE the redesign". historyEvent=1|2|5 are accepted
+        #     by the endpoint, but I proved only that the PARAM binds, not that a pre-redesign
+        #     snapshot exists in the data. The precondition is unestablished.
+        #   C44987 ("confirm they are not restyled by this project") is about the batch/imported
+        #     templates, deferred to SV-9193. Not walked at all.
     }
     unwalkable = [s for s in case['steps'] if not NAV_OK.search(s)]
     if unwalkable and cid in WALKED:

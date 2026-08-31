@@ -141,7 +141,19 @@ for (const cid of queue) {
     if (live.custom_atmstatus === 3) log(`C${cid} is AUTOMATED — writing under the QA lead's 2026-08-31 per-case go-ahead; Rule 65 report required`);
     const atmBefore = live.custom_atmstatus, secBefore = live.section_id, refsBefore = live.refs || null;
 
-    await page.goto(`${HOST}/index.php?/cases/edit/${cid}`, { waitUntil: 'networkidle' });
+    // 🛑 THE EDIT FORM'S ONE-SHOT TOKEN. It rotates after every successful save, so a CACHED edit
+    // page POSTs a stale token and TestRail silently rejects the save -- the browser just stays on
+    // the edit page (save POST 302, no navigation). Cache-Control/Pragma headers alone were not
+    // enough: measured 5 failures in 11 writes. A unique query param per attempt makes the URL
+    // itself uncacheable, which is the only thing that reliably forces a fresh token.
+    // The failures ALTERNATE with successes, which rules out HTTP caching (a cache-busting query
+    // param changed nothing) and points at the editor's own client-side token state: a successful
+    // save consumes the token, and the next edit page opened in the same tab can come up holding
+    // the consumed one. So load a neutral page first, then the edit form -- the form is then
+    // always minted fresh by the server rather than restored from the previous case's state.
+    await page.goto(`${HOST}/index.php?/dashboard`, { waitUntil: 'domcontentloaded' }).catch(() => {});
+    await page.goto(`${HOST}/index.php?/cases/edit/${cid}&_cb=${Date.now()}`, { waitUntil: 'networkidle' });
+    await page.waitForTimeout(400);
     for (const f of fields) {
       const ed = page.locator(`#${f}_display .fr-element`);
       await ed.waitFor({ state: 'visible', timeout: 30000 });
