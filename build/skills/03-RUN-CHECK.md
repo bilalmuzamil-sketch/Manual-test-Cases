@@ -619,6 +619,46 @@ Standing Rule 69 in `CLAUDE.md`.
 
 ---
 
+## 8.0-a 🛑 A CHECK THAT FAILS IS A STATEMENT ABOUT YOUR CHECK UNTIL YOU PROVE OTHERWISE
+
+**Recorded 2026-08-31 after the QA lead asked, in these words: *"WHY are you failing to unblock
+yourself?"* The answer was that I had relayed my own tooling misses to him as build limitations.**
+Of 60 Invoice UI Refresh cases reported as not build verified, **18 were not blocked by anything**
+and **12 more had been called blocked before the search was finished** — half the list.
+
+**THE THREE FAILURE SHAPES, ALL THREE OBSERVED IN ONE PASS:**
+
+1. **A matcher miss reported as a build gap.** Check 4 flags a case whose step "names an action not
+   matched to an observed surface". That is a fact about the **matcher**. Steps like *"Find where the
+   work section ends"*, *"Inspect the rules and dividers"*, *"Restore both settings"* are all doable
+   — the matcher simply had no keyword for them. **Never write a verdict sentence that attributes a
+   matcher miss to the build.**
+2. **The obvious variant never tried.** Four cases said *"Generate the PDF"*. The pass had rendered
+   documents through `…/preview?…&type=html` all day and **never once tried `type=pdf`** — which
+   returns HTTP 200 and a real PDF. **Before reporting a capability missing, try the one-token
+   variant of the call you are already making.**
+3. **One missing artefact generalised into a category.** *"No parts-sale document captured"* became
+   *"the Parts Sale is not built"* across 9 cases, while nothing had ever clicked into a part sale.
+   **Rule 68: decompose, and prove the blocker for the thing it actually blocks.**
+
+**⇒ THE GATE, before any case is reported as blocked:**
+
+- **Run the probe with a POSITIVE CONTROL in the same read.** If a negative list contains a string
+  you have already seen on that surface, the probe did not fire and **every negative is void**. On
+  2026-08-31 a settings-dialog probe returned all nine labels "absent" — including `Labor rate`,
+  captured from that same dialog an hour earlier. The dialog had simply not opened. Re-run with the
+  control asserted first, and the real answer appeared: **seven settings present, `Show declined
+  work` and `Show %` genuinely absent.** Same probe, opposite conclusion.
+- **Ask whether the state you need even exists in the data.** `Due date` was reported absent when
+  spec S10-R4 shows it appears only on an invoice that is **not fully paid** — and every invoice on
+  the branch was paid. A label that only renders in a state you never created is not an absent label.
+- **Classify each case as MINE / BLOCKED-PROVEN / BLOCKED-EVIDENCED / NOT-YET-PROVEN**, and report
+  the counts. "MINE" is the honest name for work you have not done, and it must never be filed under
+  a blocker. Worked example, all four buckets:
+  `build/invoice-ui-refresh/build-verify-2026-08-31/NOT-BUILD-VERIFIED-ANALYSIS-2026-08-31.md`.
+- **If it is still not found, LIST THE SEARCHES** (Rule 97). Where that was done — the credit memo
+  document — the report held up. Where it was not — parts sale, approval code — it did not.
+
 # 8 · 🔴 NO PRESENT FEATURE IS LEFT UN-BUILD-VERIFIED — SEED AND LOG IN AS NEEDED (Standing Rule 74, 2026-08-19)
 
 **QA lead, verbatim (2026-08-19): *"why would you skip build verifying any case … specially when I have

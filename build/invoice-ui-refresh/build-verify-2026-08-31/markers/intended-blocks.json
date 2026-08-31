@@ -2313,6 +2313,7 @@
   "atm": 3,
   "section_id": 6744,
   "escaping": true,
+  "marker_override": "AUTOMATION: READY - EXPECT FAIL (SV-9599)",
   "fields": {
    "custom_expected": {
     "blocks": [
@@ -2323,15 +2324,21 @@
       "4. This is the only place the Authorizer can be selected."
      ],
      [
+      "EXPECT FAIL - what you should see today: the Authorizer row renders inside a visible rectangle (it looks like an editable input box) and its text is indented, so it does not line up with the Contact and Phone values above it. This is a known problem, already reported as SV-9599.",
+      "If you see exactly that: mark this case FAILED and raise nothing new - it is SV-9599.",
+      "If it fails in any other way: that is a NEW problem. Report it.",
+      "If it passes - the row has no rectangle and lines up with Contact and Phone: the fix has shipped. Tell the QA lead so this marker can be removed."
+     ],
+     [
       "---",
       "This is the expected behaviour as per epic SV-8218 and story SV-9142 (Story 3, Order Reference Fields) and the Invoice UI Refresh specification version 45, section S3-R5, read on 31 August 2026.",
       "Last checked against build v26.35.5-8c3cc21 on 8/31/2026."
      ],
      [
-      "AUTOMATION: READY"
+      "AUTOMATION: READY - EXPECT FAIL (SV-9599)"
      ]
     ],
-    "text": "1. An \"Authorizer\" row appears in the customer contact card, directly below the Contact and Phone values, in the same label-and-value style.\n2. Selecting the row opens a list of only the customer's contacts that have \"Approves Work\" enabled.\n3. No other contact is offered, and no free-typed name can be entered.\n4. This is the only place the Authorizer can be selected.\n\n---\nThis is the expected behaviour as per epic SV-8218 and story SV-9142 (Story 3, Order Reference Fields) and the Invoice UI Refresh specification version 45, section S3-R5, read on 31 August 2026.\nLast checked against build v26.35.5-8c3cc21 on 8/31/2026.\n\nAUTOMATION: READY"
+    "text": "1. An \"Authorizer\" row appears in the customer contact card, directly below the Contact and Phone values, in the same label-and-value style.\n2. Selecting the row opens a list of only the customer's contacts that have \"Approves Work\" enabled.\n3. No other contact is offered, and no free-typed name can be entered.\n4. This is the only place the Authorizer can be selected.\n\nEXPECT FAIL - what you should see today: the Authorizer row renders inside a visible rectangle (it looks like an editable input box) and its text is indented, so it does not line up with the Contact and Phone values above it. This is a known problem, already reported as SV-9599.\nIf you see exactly that: mark this case FAILED and raise nothing new - it is SV-9599.\nIf it fails in any other way: that is a NEW problem. Report it.\nIf it passes - the row has no rectangle and lines up with Contact and Phone: the fix has shipped. Tell the QA lead so this marker can be removed.\n\n---\nThis is the expected behaviour as per epic SV-8218 and story SV-9142 (Story 3, Order Reference Fields) and the Invoice UI Refresh specification version 45, section S3-R5, read on 31 August 2026.\nLast checked against build v26.35.5-8c3cc21 on 8/31/2026.\n\nAUTOMATION: READY - EXPECT FAIL (SV-9599)"
    },
    "custom_preconds": {
     "blocks": [

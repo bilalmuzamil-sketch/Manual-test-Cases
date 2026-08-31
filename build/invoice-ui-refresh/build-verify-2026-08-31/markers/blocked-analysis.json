@@ -1,0 +1,302 @@
+[
+ {
+  "cid": "44903",
+  "class": "BLOCKED-EVIDENCED",
+  "why": "Needs a Credit Invoice DOCUMENT. The credit memo RECORD exists (CM-100). The document render path was searched exhaustively and not found; Story 11."
+ },
+ {
+  "cid": "44904",
+  "class": "BLOCKED-EVIDENCED",
+  "why": "Needs a Credit Invoice DOCUMENT. The credit memo RECORD exists (CM-100). The document render path was searched exhaustively and not found; Story 11."
+ },
+ {
+  "cid": "44905",
+  "class": "BLOCKED-EVIDENCED",
+  "why": "Needs a Credit Invoice DOCUMENT. The credit memo RECORD exists (CM-100). The document render path was searched exhaustively and not found; Story 11."
+ },
+ {
+  "cid": "44906",
+  "class": "BLOCKED-EVIDENCED",
+  "why": "Needs a Credit Invoice DOCUMENT. The credit memo RECORD exists (CM-100). The document render path was searched exhaustively and not found; Story 11."
+ },
+ {
+  "cid": "45168",
+  "class": "BLOCKED-EVIDENCED",
+  "why": "Needs a Credit Invoice DOCUMENT. The credit memo RECORD exists (CM-100). The document render path was searched exhaustively and not found; Story 11."
+ },
+ {
+  "cid": "44913",
+  "class": "NOT-YET-PROVEN",
+  "why": "Needs an invoice carrying an integrated-billing \"Approval Code\". The work order shows an IBS# so the data exists; I never probed whether an approval code can be seeded. Untried."
+ },
+ {
+  "cid": "44916",
+  "class": "NOT-YET-PROVEN",
+  "why": "Needs an invoice carrying an integrated-billing \"Approval Code\". The work order shows an IBS# so the data exists; I never probed whether an approval code can be seeded. Untried."
+ },
+ {
+  "cid": "44917",
+  "class": "MINE",
+  "why": "NOT a blocker at all - a detector false positive. The \"absent labels\" INV-4176 and INV-S-24914 are EXAMPLE invoice numbers written inside the case text, not labels to find on screen."
+ },
+ {
+  "cid": "44923",
+  "class": "MINE",
+  "why": "\"create or edit a contact and enable Approves Work\" - I FOUND that checkbox today (input_checkbox_is_authorizer on the Edit Contact dialog). Nothing stops me doing it."
+ },
+ {
+  "cid": "45169",
+  "class": "MINE",
+  "why": "\"POST /api/work-orders/{wo}/authorizer directly\" - a direct API call on a disposable branch. Seeding authorised."
+ },
+ {
+  "cid": "45170",
+  "class": "MINE",
+  "why": "Two direct authorizer POSTs with invalid contacts - same."
+ },
+ {
+  "cid": "44928",
+  "class": "NOT-YET-PROVEN",
+  "why": "Needs a Parts Sale document. I have /api/part-sales (53 records) but NEVER clicked into a part sale in the UI to learn its detail/document route. Untried."
+ },
+ {
+  "cid": "45172",
+  "class": "MINE",
+  "why": "\"Restore both settings\" - the toggles exist (toggle_setting_summarizeLaborTotal etc.) and seeding is authorised."
+ },
+ {
+  "cid": "45173",
+  "class": "MINE",
+  "why": "\"Generate the PDF\" - I render type=html and never once tried type=pdf on the same endpoint."
+ },
+ {
+  "cid": "44937",
+  "class": "BLOCKED-PROVEN",
+  "why": "The \"Show declined work\" setting is genuinely absent from the Invoice Details dialog - confirmed this run with a POSITIVE CONTROL firing (Labor rate, Labor hours, Labor price, Summarize labor total, Summarize parts total, Part number, Part description all FOUND in the same read). Story 6 not built."
+ },
+ {
+  "cid": "44938",
+  "class": "BLOCKED-PROVEN",
+  "why": "Same."
+ },
+ {
+  "cid": "44939",
+  "class": "BLOCKED-PROVEN",
+  "why": "Same."
+ },
+ {
+  "cid": "44940",
+  "class": "MINE",
+  "why": "Pure document inspection (\"Find where the work section ends and the financial summary begins\") - I already have the rendered documents. My step-matcher just did not recognise \"Find where\"."
+ },
+ {
+  "cid": "44942",
+  "class": "BLOCKED-PROVEN",
+  "why": "The \"Show % on Estimates and Invoices\" setting is genuinely absent, same controlled read. Story 7 not built."
+ },
+ {
+  "cid": "44947",
+  "class": "BLOCKED-PROVEN",
+  "why": "Needs a portal-processed (SHOPPAY) payment. The customer portal does not exist on a QA branch - your ruling. Marked staging-only."
+ },
+ {
+  "cid": "44951",
+  "class": "BLOCKED-PROVEN",
+  "why": "Needs a portal-generated Invoice PDF. Spec S8-R8: a shop-app PDF never carries the banner. Marked staging-only."
+ },
+ {
+  "cid": "44952",
+  "class": "BLOCKED-PROVEN",
+  "why": "Same - the banner field labels only exist on a portal PDF. Marked staging-only."
+ },
+ {
+  "cid": "45175",
+  "class": "BLOCKED-PROVEN",
+  "why": "Same - \"Generate each portal PDF\". Marked staging-only."
+ },
+ {
+  "cid": "44955",
+  "class": "BLOCKED-EVIDENCED",
+  "why": "Needs a Credit Invoice DOCUMENT. The credit memo RECORD exists (CM-100). The document render path was searched exhaustively and not found; Story 11."
+ },
+ {
+  "cid": "44956",
+  "class": "BLOCKED-EVIDENCED",
+  "why": "Needs a Credit Invoice DOCUMENT. The credit memo RECORD exists (CM-100). The document render path was searched exhaustively and not found; Story 11."
+ },
+ {
+  "cid": "44962",
+  "class": "NOT-YET-PROVEN",
+  "why": "Quotes \"Receipt\". Needs checking against a non-paid invoice too - same gap as C44963. Untried."
+ },
+ {
+  "cid": "44963",
+  "class": "MINE",
+  "why": "\"Due date\" cannot appear in the data I have: every invoice on the branch is PAID, and S10-R4 says a paid invoice shows \"Paid date\" INSTEAD of \"Due date\". Proven this run: the only work-order states present are paid=90, approved=2, estimate=8, and approved/estimate work orders carry no invoice_id at all. I need to INVOICE an approved work order to create an unpaid invoice - seeding, which is authorised."
+ },
+ {
+  "cid": "45177",
+  "class": "MINE",
+  "why": "\"Reverse one payment so Balance > $0.00\" - invoice reversal is a real shipped operation (SV-9087, SV-9382 both Done). Seedable."
+ },
+ {
+  "cid": "44964",
+  "class": "BLOCKED-EVIDENCED",
+  "why": "Needs a Credit Invoice DOCUMENT. The credit memo RECORD exists (CM-100). The document render path was searched exhaustively and not found; Story 11."
+ },
+ {
+  "cid": "44965",
+  "class": "BLOCKED-EVIDENCED",
+  "why": "Needs a Credit Invoice DOCUMENT. The credit memo RECORD exists (CM-100). The document render path was searched exhaustively and not found; Story 11."
+ },
+ {
+  "cid": "44966",
+  "class": "BLOCKED-EVIDENCED",
+  "why": "Needs a Credit Invoice DOCUMENT. The credit memo RECORD exists (CM-100). The document render path was searched exhaustively and not found; Story 11."
+ },
+ {
+  "cid": "44967",
+  "class": "BLOCKED-EVIDENCED",
+  "why": "Needs a Credit Invoice DOCUMENT. The credit memo RECORD exists (CM-100). The document render path was searched exhaustively and not found; Story 11."
+ },
+ {
+  "cid": "44968",
+  "class": "BLOCKED-EVIDENCED",
+  "why": "Needs a Credit Invoice DOCUMENT. The credit memo RECORD exists (CM-100). The document render path was searched exhaustively and not found; Story 11."
+ },
+ {
+  "cid": "44969",
+  "class": "BLOCKED-EVIDENCED",
+  "why": "Needs a Credit Invoice DOCUMENT. The credit memo RECORD exists (CM-100). The document render path was searched exhaustively and not found; Story 11."
+ },
+ {
+  "cid": "44970",
+  "class": "BLOCKED-EVIDENCED",
+  "why": "Needs a Credit Invoice DOCUMENT. The credit memo RECORD exists (CM-100). The document render path was searched exhaustively and not found; Story 11."
+ },
+ {
+  "cid": "45179",
+  "class": "BLOCKED-EVIDENCED",
+  "why": "Needs a Credit Invoice DOCUMENT. The credit memo RECORD exists (CM-100). The document render path was searched exhaustively and not found; Story 11."
+ },
+ {
+  "cid": "45180",
+  "class": "BLOCKED-EVIDENCED",
+  "why": "Needs a Credit Invoice DOCUMENT. The credit memo RECORD exists (CM-100). The document render path was searched exhaustively and not found; Story 11."
+ },
+ {
+  "cid": "45181",
+  "class": "BLOCKED-EVIDENCED",
+  "why": "Needs a Credit Invoice DOCUMENT. The credit memo RECORD exists (CM-100). The document render path was searched exhaustively and not found; Story 11."
+ },
+ {
+  "cid": "45182",
+  "class": "BLOCKED-EVIDENCED",
+  "why": "Needs a Credit Invoice DOCUMENT. The credit memo RECORD exists (CM-100). The document render path was searched exhaustively and not found; Story 11."
+ },
+ {
+  "cid": "45183",
+  "class": "BLOCKED-EVIDENCED",
+  "why": "Needs a Credit Invoice DOCUMENT. The credit memo RECORD exists (CM-100). The document render path was searched exhaustively and not found; Story 11."
+ },
+ {
+  "cid": "44971",
+  "class": "BLOCKED-EVIDENCED",
+  "why": "Needs a Credit Invoice DOCUMENT. The credit memo RECORD exists (CM-100). The document render path was searched exhaustively and not found; Story 11."
+ },
+ {
+  "cid": "44973",
+  "class": "MINE",
+  "why": "Pure document inspection (\"Find every place the accent #257CFF is used\") - greppable in the captured HTML."
+ },
+ {
+  "cid": "44977",
+  "class": "BLOCKED-EVIDENCED",
+  "why": "Needs a Credit Invoice DOCUMENT. The credit memo RECORD exists (CM-100). The document render path was searched exhaustively and not found; Story 11."
+ },
+ {
+  "cid": "44978",
+  "class": "MINE",
+  "why": "Pure document inspection (\"Inspect the rules and dividers in the work section\") - the captured HTML carries the rules."
+ },
+ {
+  "cid": "44980",
+  "class": "NOT-YET-PROVEN",
+  "why": "Needs a Parts Sale document. I have /api/part-sales (53 records) but NEVER clicked into a part sale in the UI to learn its detail/document route. Untried."
+ },
+ {
+  "cid": "44981",
+  "class": "NOT-YET-PROVEN",
+  "why": "Needs a Parts Sale document. I have /api/part-sales (53 records) but NEVER clicked into a part sale in the UI to learn its detail/document route. Untried."
+ },
+ {
+  "cid": "44982",
+  "class": "NOT-YET-PROVEN",
+  "why": "Needs a Parts Sale document. I have /api/part-sales (53 records) but NEVER clicked into a part sale in the UI to learn its detail/document route. Untried."
+ },
+ {
+  "cid": "44983",
+  "class": "NOT-YET-PROVEN",
+  "why": "Needs a Parts Sale document. I have /api/part-sales (53 records) but NEVER clicked into a part sale in the UI to learn its detail/document route. Untried."
+ },
+ {
+  "cid": "44984",
+  "class": "NOT-YET-PROVEN",
+  "why": "Needs a Parts Sale document. I have /api/part-sales (53 records) but NEVER clicked into a part sale in the UI to learn its detail/document route. Untried."
+ },
+ {
+  "cid": "44985",
+  "class": "NOT-YET-PROVEN",
+  "why": "Needs a Parts Sale document. I have /api/part-sales (53 records) but NEVER clicked into a part sale in the UI to learn its detail/document route. Untried."
+ },
+ {
+  "cid": "44986",
+  "class": "NOT-YET-PROVEN",
+  "why": "Needs a Parts Sale document. I have /api/part-sales (53 records) but NEVER clicked into a part sale in the UI to learn its detail/document route. Untried."
+ },
+ {
+  "cid": "44987",
+  "class": "MINE",
+  "why": "Pure inspection (\"Confirm they are not restyled by this project\")."
+ },
+ {
+  "cid": "45184",
+  "class": "MINE",
+  "why": "NOT a blocker - the case quotes \"Date / Time\" only to EXCLUDE it (\"The only exception is the Paid banner's Date / Time field\"). My check 5 required it on screen anyway. Its real needs are a Canadian shop and a credit preview."
+ },
+ {
+  "cid": "45185",
+  "class": "MINE",
+  "why": "\"Generate its PDF\" - same; also needs a pre-redesign snapshot, which is seedable."
+ },
+ {
+  "cid": "45190",
+  "class": "NOT-YET-PROVEN",
+  "why": "Needs a Parts Sale document. I have /api/part-sales (53 records) but NEVER clicked into a part sale in the UI to learn its detail/document route. Untried."
+ },
+ {
+  "cid": "45191",
+  "class": "MINE",
+  "why": "\"Log in as the restricted user\" - you told me on 2026-08-31 I may change the Technician quick-login user's role at any time."
+ },
+ {
+  "cid": "45193",
+  "class": "MINE",
+  "why": "\"Generate the PDF\" - same."
+ },
+ {
+  "cid": "45195",
+  "class": "MINE",
+  "why": "\"Generate the PDF\" + \"Inspect every page break\" - same endpoint, never tried type=pdf."
+ },
+ {
+  "cid": "45196",
+  "class": "MINE",
+  "why": "\"Apply cash for part of the Total / customer credit for the remainder\" - a partial payment plus a credit application. Seedable; CM-100 already exists to apply."
+ },
+ {
+  "cid": "45197",
+  "class": "BLOCKED-EVIDENCED",
+  "why": "Needs a Credit Invoice DOCUMENT. The credit memo RECORD exists (CM-100). The document render path was searched exhaustively and not found; Story 11."
+ }
+]
