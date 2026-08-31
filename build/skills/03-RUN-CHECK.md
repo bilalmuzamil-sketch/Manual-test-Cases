@@ -662,6 +662,25 @@ log in freely.
 
 ### 8.2a MULTI-LOGIN STANDARD PRACTICE — the Technician-role-swap method (PREFERRED)
 
+> **🔴 HARDENED TO A STANDING RULE, 2026-08-31 — THE ADMIN'S ROLE IS NEVER CHANGED. EVER.**
+> QA lead, verbatim: *"for this you can change the role of the Tech user which is accessed through the
+> quick login, no need to change the role of the Admin ever, anytime for anycase in future too if you
+> have to change the role, you can change the role of the tech."*
+>
+> **SO THE ROLE-SWAP TARGET IS SETTLED FOR ALL PROJECTS AND ALL FUTURE PASSES: the TECHNICIAN
+> quick-login user.** This is no longer merely "preferred" — **the Administrator's role is out of
+> bounds**, on every project, for every case, indefinitely. Where a case needs a role the Technician
+> does not have, the role is applied **to the Technician**, never taken from the Admin.
+>
+> **WHY IT MATTERS BEYOND TIDINESS:** the Admin session is the one every other session and every API
+> probe depends on, and a role-definition edit **invalidates every holder's session one way and does
+> not restore it when the permissions are put back** (core §7.3). Swapping the Admin's role would
+> therefore cost the estate its only reliable sign-in, for the whole day, to observe one case.
+> **Swapping the Technician's costs nothing anyone else is using.**
+>
+> **The five steps below are unchanged**, and step 5 — restoring the Technician role afterwards —
+> stays mandatory: the pass is not done until Tech is back on "Technician".
+
 **For any case needing a DIFFERENT role / login** (permission cases, role-negatives, second-user
 behaviour), the **preferred, recorded standard** is to swap the role on the **Technician quick-login
 user** rather than create a new user. QA lead's directive, 2026-08-19, verbatim: *"instead of creating
