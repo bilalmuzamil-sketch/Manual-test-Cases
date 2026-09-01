@@ -2323,6 +2323,9 @@ three-cookie set for `app.staging.shopview.com` from the QA lead, into `/tmp` on
 - **Confidence:** High (created 201 across Foreman/SM/SA/SSA).
 
 ### Reverse an invoice
+- **⚠️ A PAID INVOICE CANNOT BE REVERSED** — `POST /api/invoices/reverse-invoice` answers **400
+  *"Customer transaction cannot be deleted."*** Reverse its payments first, or start from an unpaid
+  invoice. (Proven 2026-09-01; the previous entry only recorded the 200 and the 403.)
 - **UI path:** WO detail → Finance tab → invoice **three-dot** menu → **Reverse** → Warning ("re-open and undo the invoice") → confirm Reverse. (Part-sales invoice: Part Sales → invoice → reverse.)
 - **API:** `POST /api/invoices/reverse-invoice` body `{id}` → **200** (WO reverts "Invoiced" → "Complete", Create Invoice reappears).
 - **Preconditions:** WO-invoice reverse is gated by **Work Orders: Delete** (SM has WO Delete → reverse allowed even though `invoicingPaymentsDelete`=OFF). Foreman/Parts Manager without it → menu shows only "Issue Credit" and the endpoint returns **403 "Access denied."**
@@ -2330,7 +2333,87 @@ three-cookie set for `app.staging.shopview.com` from the QA lead, into `/tmp` on
 
 ### Issue credit
 - **UI path:** WO detail → Finance tab → invoice three-dot menu → **Issue Credit** (present even for roles that lack Reverse).
-- **Confidence:** Medium (menu item confirmed; flow not fully driven).
+- **API (driven live 2026-09-01, 201):** `POST /api/credit-memos` —
+  `{customerAccountId, amount, reason, originKind:"invoice"|"manual", originInvoiceId, originDate,
+  lineItems:[{partNumber, description, quantity, sellPrice, restockingFee, taxAmount,
+  originatingInvoiceLineId}], refund?:{amount, paymentMethod, memo, externalReference}}`.
+  Payload read off the product's own `IssueCreditMemoDialog` chunk, then executed.
+- **🔑 `amount` IS IN DOLLARS, NOT CENTS** — and when `lineItems` is present the server derives the
+  total from the lines and ignores `amount` entirely. Passing `6084` for a manual credit created a
+  **$6,084.00** credit, not $60.84. Two credits differing only in this looked identical in the
+  request and were 100× apart in the record.
+- **Creditable parts:** `GET /api/part-sales/{id}/list-credit-available-parts` takes the **INVOICE
+  id**, not the part-sale id. The part-sale id answers **400 `{"invoiceId":"Not found"}`**, which
+  reads like a missing feature and is really a wrong id.
+- **The parts-return picker is PART-SALE ONLY** (`PartsReturnPicker` props default
+  `invoiceType:"partSale"`); a service work order's credit is a plain amount.
+- **Void / cash out:** `POST /api/credit-memos/{id}/void` · `POST /api/credit-memos/{id}/cash-out`.
+  Voiding an already-voided credit answers a clean **400** *"Cannot void a credit memo while it is
+  in status \"voided\"."* — a refusal, not a failure.
+- **⚠️ REVERSING AN INVOICE AUTO-VOIDS ANY CREDIT ISSUED AGAINST IT, AND DELETES THE INVOICE
+  RECORD.** Proven 2026-09-01: the credit went *Unapplied → Voided*, its Balance $10.94 → $0.00, and
+  the credit document's **Invoice Number column disappeared** (correct per spec S11-R3, which hides
+  it when there is no origin invoice). Afterwards `GET /api/invoices/{id}/view` answers 400 *"The
+  invoice doesn't exist"*.
+- **Confidence:** High (create, render, reverse-origin, re-render and void all executed).
+
+### Import an historical / "imported" work order  🆕 2026-09-01
+- **Why it matters:** a session on 2026-08-31 reported invoice import as **not built** on the
+  strength of four **guessed** routes all answering 404. It is built. **Four 404s from guessed routes
+  are not evidence of absence** — a guessed route and a wrong id 404 identically.
+- **API:** `POST /api/imports/work-order-historical`, **multipart, field name `file`** → 200
+  `{"duplicatedInvoices":[]}`. A bare POST answers 400 *"file file is missing or invalid"*; wrong
+  headers answer *"Invalid file headers provided!"*.
+- **The CSV contract is shipped by the product itself** — an inline template literal in the
+  `InvoicesDataImport` chunk, downloadable in-app as `invoices_template.csv`. **24 columns; the 10
+  marked `*` are required.** Keep the asterisks and the exact column order:
+  `*Shop Location,*Customer,VIN,Year,Make,Model,Unit #,Unit Type,Mileage,Hours,*Invoice Number,*Invoice Date,PO,Service Advisor,*Item,*Line Title - What are you doing,Line Description - Why are you doing it,Tech Story,Part #,Part Description,*Qty,*Rate,*Total,*Tax Amount`
+  · `*Invoice Date` is **MM/DD/YYYY** (an ISO date is read as empty) · `*Item` is one of
+  Labor / Part / Shop Supplies / Misc / Sublet / Credit Memo · `*Shop Location` and `*Customer` must
+  match existing records by name.
+- **Read them back:** `GET /api/work-orders-imported` (list) · `GET /api/work-orders-imported/{id}`.
+  They are **NOT** in `GET /api/work-orders` — `imported` is a **synthetic status on a separate
+  endpoint** and is absent from `GET /api/work-orders/statuses`. 600 work orders scanned for
+  `status == imported` found zero; the separate endpoint had them.
+- **Screen:** route `/imported-work-orders/:id`, component `ImportedWorkOrderLeftSection`.
+- **Screen navigation, tester-style:** Work Orders list → the **Imported** status chip → click the
+  row. (The route also has a guard, `requiredCheck: () => featureFlags().WorkOrders`.)
+- **🛑 A PAGE THAT LANDS ON `/` WITH ~148 BODY CHARACTERS IS THE ENVIRONMENT ASLEEP, NOT A ROUTE
+  GUARD AND NOT A MISSING SCREEN.** sv8218 auto-sleeps mid-run and every route then serves
+  `sleep.qa.shopview.com/?app=sv8218&api=sv8218` reading *"Environment Sleeping — This environment is
+  currently paused to save resources… Wake Up"*. On 2026-09-01 this was first misdiagnosed as the
+  route guard firing before the feature-flag store loaded; the body text settled it.
+  **Assert the landing, and read the body text before diagnosing** — wake with the toggleQaEnv
+  lambda (below) and re-run. **The API keeps answering for a while after the SPA host has gone to
+  sleep**, so an API-only probe will not warn you.
+- **No document route:** an imported work order has no invoice PDF of its own
+  (`/api/invoices/preview` rejects its id; `/api/work-orders-imported/{id}/pdf` is 404).
+- **Confidence:** High (seeded `ZZAUTOTEST-IMP-001` live and read it back).
+
+### Create a customer payment (full payload)  🆕 2026-09-01
+- **API:** `POST /api/customer-account/create-customer-payment` → **201 `{id}`**. Payload, read off
+  `TransactionsPaymentDialog` and executed:
+  `{account_id, payment_date:"YYYY-MM-DD HH:MM:SS", payment_method:<CODE>, reference_number,
+  description, transactions:[<the row from list-unpaid-transaction with transaction_payment_amount
+  set>], primary_id:<that row's id>, new_credit:0, new_deposit:0, applied_credits:[<a credit row,
+  same shape>], applied_deposits:[], ibs_batch_id:null, payment_amount:<number>}`.
+- **The transaction row's `id` is the TRANSACTION id; `reference_id` is the invoice id.** Match on
+  `reference_id` when you are holding an invoice id.
+- **Apply a customer credit** by putting the credit's row in `applied_credits` with
+  `payment_method:"APPLIED_CREDIT"` and `payment_amount:0`; the document then shows
+  `(Credit) {date} - CM-xxxx`.
+- **Unpaid list:** `GET /api/customer-account/list-unpaid-transaction?accountId=…&openOnly=true|false`.
+  **`openOnly=true` is the "Open only" chip** — fully applied/paid rows vanish from it, which looks
+  like deleted data and is not.
+- **⚠️ AN UNCONFIGURED PAYMENT CODE IS REFUSED**, so the "unconfigured code" rendering state cannot
+  be created directly: `payment_method:"credit_card"` answers **400 *"Payment method \"credit_card\"
+  is not available for this organization."*** **Reach it instead by creating a method, paying with
+  it, then deleting the method** — `POST /api/organizations/finance/payment-methods/create
+  {name, type:1}` (the server derives `code` from the name, upper-snake) →
+  `POST /api/organizations/finance/payment-methods/delete {id}`. That leaves the payment carrying a
+  code nothing resolves, and gives a controlled A/B on one payment row.
+- **⚠️ `GET /api/organizations/finance/payment-methods` 500s with no query string** (and with a
+  pagination one); **`?type=1` works.** A 500 where a 400 belongs — recorded, not filed.
 
 ### Create a payment
 - **UI path:** WO Finance (after invoicing) → **New Payment** → method (e.g. Cash) → amount → **Make Payment**. Customer Payments also on Customers → customer → Payments tab.

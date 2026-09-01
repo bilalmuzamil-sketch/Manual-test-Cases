@@ -1,0 +1,35 @@
+### C45190 — imported work order
+  imported list: https://sv8218.qa.shopview.com/workorders?status=imported | asleep: false
+  row clicked: true
+  landed /imported-work-orders/c457a7fa-a42d-4994-bc85-0dff770f2314 | chars 744
+  statics: ["VIN/Serial #"]
+  selects: ["Search"]
+  Contact false | Phone false | AUTHORIZER false | Change Customer false
+  full text: Skip to main content Work Orders Schedule Customers Parts Reports Search Ctrl+K timer Clock In notifications Staging Heavy Duty - 9919 AS ZZAUTOTE.. Imported Invoiced: Jan 15, 2026 Una Truck Center VIN/Serial # Unknown Financial Info Item Cost Total $105.00 delete get_app print undefined, undefined, undefined Invoice: INV-ZZAUTOTEST-IMP-001 Issue date: Jan 15, 2026 Bill To Una Truck Center 8592 Lee Streets Suite 053 Stephenburgh, Nunavut, G9H 6K5 Unit - VIN/Serial # - Asset - Mileage - Eng Hrs - Customer PO - Description Quantity Rate Amount ZZAUTOTEST imported line Seeded for C45190 1.00 $100.00 $100.00 Subtotal $100.00 Tax $5.00 Total $105.00 Customer signature: Printed name: Date: Software Powered by ShopView
+
+### C45190 — parts sale
+  landed /parts/part-sale/10ec6899-316b-409e-993a-72ca87460d5b/part-requests | chars 1077
+  statics: ["Phone","Unit #","VIN/Serial #"]
+  selects: ["Search","Contact","Authorizer","Category","Vendor"]
+  Contact true | Phone true | AUTHORIZER true | Change Customer false
+
+### C44923 — new Approves Work contact becomes selectable without refresh
+  BEFORE — list opened: true | options: []
+  target contact: Shelby Kennedy | already listed: false
+  contacts tab: https://sv8218.qa.shopview.com/customers/97734382-36a3-4f04-9226-a97bd662ec24/work-orders
+  contact row: {"rowFound":false,"sample":["Statusarrow_drop_up Numberarrow_drop_up Assetarrow_drop_up U","","Paid S2-16503 Big Tex Big Tex 618T 16VFX1927K4073222 content","Paid S2-15591 Zierke Built Manufac.. UP1 1Z9PU1118DM026128 c","Paid S2-15522 Ford F-550 1FD0W5HY8JEC31072 content_copy 128%","Paid S2-15517 Zi
+  Approves Work control: {"found":false,"tail":"su Pc138uslc-11\n\tE203\t\nKMTPC261CHA051278\ncontent_copy\n\t95%\tUnassigned\t2\t$1,648.87\tJan 15, 2026\tJan 20, 2026\t229 days\t60\t0\nPaid\tS2-12577\t\nKubota KX080-4\n\tE176\t\n34604\ncontent_copy\n\t78%\tUnassigned\t7\t$2,453.70\tJan 13, 2026\tJan 15, 2026\t231 days\t59\
+  is_authorizer on the RECORD now: contact not found
+  AFTER (work order never refreshed) options: []
+  RESULT — selectable without refresh: false
+
+### C45191 — restricted user sees a read-only Authorizer
+  POSITIVE CONTROL (admin): authorizer select present: true | readonly element: false
+  switch-user -> Brandi Smith: HTTP 200
+  workOrder* permissions as this user: ["workOrderLinesCreateAndEdit","workOrdersView"]
+  workOrdersCreateAndEdit present: false
+  AS RESTRICTED USER: chars 1634 | landed /workorders/8c5c5751-549e-405c-8d1c-ed7896eb802b/lines
+    statics: ["Lead technician","Service advisor","Sales representative","Contact","Phone","Authorizer","Title","Unit #","VIN/Serial #"]
+    selects: ["Search"]
+    authorizer present: true | READ-ONLY ELEMENT: true
+  restored to admin: HTTP 200

@@ -1,0 +1,15 @@
+starting state — Olivia Sims is_authorizer: false
+work order open: https://sv8218.qa.shopview.com/workorders/d973d775-8e53-443b-912d-a56f6dafd54d/lines
+  [BEFORE] open: clicked | options: ["check No authorizer","check Peter Soto"]
+  [BEFORE] POSITIVE CONTROL "No authorizer" present: true
+  Olivia Sims already listed: false
+contacts tab: https://sv8218.qa.shopview.com/customers/e07ebbc4-5a07-41aa-98fd-f1acdde40934/contacts
+contact row: {"found":true,"via":"edit icon","text":"Olivia Sims - 466-535-5245 914-534-7174 olivia.sims@staging.shopview.local 0 1 No edit_note"}
+"Approves Work" control: {"found":true,"label":"Approves Work"}
+save: {"clicked":true,"label":"Save"}
+record now — Olivia Sims is_authorizer: true
+work order tab still at: https://sv8218.qa.shopview.com/workorders/d973d775-8e53-443b-912d-a56f6dafd54d/lines (never reloaded)
+  [AFTER] open: clicked | options: ["check No authorizer","check Peter Soto","check Olivia Sims"]
+  [AFTER] POSITIVE CONTROL "No authorizer" present: true
+RESULT — "Olivia Sims" selectable without refresh: true
+RESULT IS TRUSTWORTHY (control fired both times): true
