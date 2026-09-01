@@ -2390,6 +2390,50 @@ three-cookie set for `app.staging.shopview.com` from the QA lead, into `/tmp` on
   (`/api/invoices/preview` rejects its id; `/api/work-orders-imported/{id}/pdf` is 404).
 - **Confidence:** High (seeded `ZZAUTOTEST-IMP-001` live and read it back).
 
+### Document snapshots and batch invoices  🆕 2026-09-01
+- **Snapshot a document as it was at a history event:**
+  `POST /api/work-orders/invoices/snapshot {entity_event_id, work_order_id, type:"html"|"pdf"}` →
+  200. `entity_event_id` is an event from `GET /api/work-orders/{id}/history` (payload is
+  `data.history`, **not** `data.collection`) whose **`snapshotAvailable`** flag is true.
+- **🛑 THE `historyEvent` QUERY PARAM ON `/api/invoices/preview` IS NOT THE SNAPSHOT FEATURE.** It
+  binds and changes nothing — five different values including a nonsense one return a byte-identical
+  document. A pass spent a day on it and filed a defect candidate for a parameter that is simply not
+  the mechanism. **The route above is the mechanism.**
+- **⚠️ FINDING (2026-09-01): every PRE-EXISTING snapshot on sv8218 returns HTTP 500**; snapshots
+  captured the same day return 200. Proven on one work order (S8218-17113: today 200, its own
+  18/13/10 August events all 500, html and pdf), so it is the snapshot's age, not the record or the
+  document type. Candidate at
+  `build/invoice-ui-refresh/build-verify-2026-08-31/DEFECT-CANDIDATE-snapshot-500.md` (not filed).
+- **Batch invoice PDF:** `POST /api/invoices/batch-pdf {invoiceIds:[…]}` → 200, one multi-page PDF.
+  **NOT `/api/invoices/batch`**, which is a 404 and was mistaken for the feature being absent.
+- **Both the batch PDF and the imported-work-order document render the OLD template**, which is
+  correct — they are deferred to SV-9193. Tell them apart by label, not by guesswork: **old** =
+  `Invoice Date:` (capital D) · `Customer signature:` / `Printed name:` (lower case, colons) ·
+  `Software Powered by ShopView` · `Tax` · `Issue date:` (imported). **New** = `Invoice date:` ·
+  `Paid date:` when settled · `Customer Signature` / `Printed Name` · `Powered by ShopView` ·
+  `GST (5%)` · the `Addresses` and `Summary` group labels.
+
+### 🛑 NEVER WRITE "NOT BUILT" FROM A GUESSED ROUTE — FETCH THE BUNDLE  🆕 2026-09-01
+On 2026-08-31 three features were reported as not built because guessed route names answered 404.
+**All three were built** — the imported/historical import, the batch invoice PDF, and document
+snapshots. **A guessed route and a wrong id 404 identically**, so a 404 from a name you invented is
+evidence of nothing.
+
+**The product's own front-end bundle is the authority on which routes exist, and it is one fetch
+away.** It is *product source code*, so it is **never a source of expected behaviour (Rule 57)** —
+use it only to find the route to drive and the payload shape to send, then observe live.
+
+```
+C=$(cat /tmp/qa-cookies/<branch>-live-session.txt)
+curl -s -H "Cookie: $C" https://<branch>.qa.shopview.com/ | grep -o 'src="[^"]*\.js"'   # entry chunk
+# then fetch it, and follow its "./*.js" references (2-3 rounds reaches the whole graph, ~520 files)
+grep -ho '\(get\|post\)(`\?"\?[a-z][^`",)]*<keyword>[^`",)]*' *.js | sort -u
+```
+It also yields the **exact request payload** (as it did for `credit-memos`,
+`create-customer-payment` and the snapshot route) and any **CSV import template** the app ships
+inline — which is how the historical-import contract was obtained without guessing a write
+(skill 03 §8.2-w).
+
 ### Create a customer payment (full payload)  🆕 2026-09-01
 - **API:** `POST /api/customer-account/create-customer-payment` → **201 `{id}`**. Payload, read off
   `TransactionsPaymentDialog` and executed:

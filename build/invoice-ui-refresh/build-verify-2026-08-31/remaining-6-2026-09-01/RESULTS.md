@@ -306,3 +306,96 @@ trap the next session will hit:
 
 The positive control is what caught all three: without it, three separate runs would have reported a
 passing case as failing.
+
+---
+
+# Two more cases taken off the "not built" list — and one of them FAILS
+
+Having found that the imported/historical import was built after all, I checked the other rows in
+`DEFERRED-RUN.md` the same way — by reading the product's own bundle for the real route instead of
+guessing. **Two of the six were wrong.**
+
+## C44987 — Batch and imported invoices are out of scope (kept on current templates) — **PASS**
+
+Both halves are generatable on this build, contrary to yesterday's row:
+
+| Half | Yesterday's claim | Actually |
+|---|---|---|
+| Imported invoice | `/api/work-orders/import`, `/api/imported-work-orders` → 404 ⇒ "not built" | `POST /api/imports/work-order-historical` + `GET /api/work-orders-imported` — **built**; one seeded |
+| Batch invoice | `/api/invoices/batch` → 404 ⇒ "not built" | **`POST /api/invoices/batch-pdf {invoiceIds:[…]}` → 200, a 185 KB PDF** |
+
+Both guessed routes were simply the wrong names.
+
+**The test.** The case asserts these keep their **current** templates and are not half-restyled by
+the shared partials. So the same invoice (**P8218-209**) was rendered two ways — through the batch
+route and through the redesigned single-invoice route — and the template markers compared:
+
+| Marker | Batch PDF | Redesigned render |
+|---|---|---|
+| `Invoice Date:` (old, capital D) / `Invoice date:` (new) | **old** | new |
+| `Due date:` even though the invoice is fully paid / `Paid date:` (new) | **old** | new |
+| `Customer signature:` `Printed name:` (old) / `Customer Signature` `Printed Name` (new) | **old** | new |
+| `Software Powered by ShopView` (old) / `Powered by ShopView` (new) | **old** | new |
+| `Addresses` group label (new) | absent | present |
+| `Summary` block label (new) | absent | present |
+
+The imported invoice was compared the same way and is **also wholly on the old template** — plus
+`Issue date:` rather than `Invoice date:`, and `Tax` rather than `GST (5%)`.
+
+1. *"Batch invoices and imported invoices are not part of Story 13 or this spec"* — **met.**
+2. *"They keep their current templates until SV-9193 ships"* — **met**, proven on the same invoice
+   through both routes.
+3. *"Restyling shared template partials must not half-restyle these deferred templates"* — **met.**
+   Every one of the six style markers is the old value on both deferred documents and **not one new
+   marker leaks in**. The elements they share with the new document (`Payments`, `Balance`,
+   `GST (5%)`, the warranty paragraph) are content both templates carry, not restyling.
+
+Evidence: `evidence/c44987-batch-document.txt`, `evidence/c44987-imported-document.txt`,
+`evidence/c44987-imported-document.png`.
+
+## C45185 — A snapshot created before the redesign renders in the new layout with blanks — **FAILED**
+
+**The `historyEvent` query parameter I spent yesterday on was the wrong mechanism entirely.** It
+binds and changes nothing because it is not how snapshots work. The real one, read off the bundle:
+
+> `POST /api/work-orders/invoices/snapshot {entity_event_id, work_order_id, type:"html"|"pdf"}`,
+> where `entity_event_id` is a history event whose `snapshotAvailable` flag is true.
+
+That withdraws yesterday's *"`historyEvent` is a no-op"* defect candidate — the parameter is simply
+not the feature. **The case is testable, and it fails.**
+
+| | Result |
+|---|---|
+| Snapshots captured **today** (4 calls) | **200**, correct document |
+| Snapshots **already on the branch** (20 calls) | **HTTP 500**, every one |
+
+Ruled out on a **single work order** so it cannot be the record or the document type — on
+**S8218-17113**, today's *Invoice created* snapshot returns 200 while its own *Invoice downloaded*
+(18 Aug), *Reviewed* (13 Aug) and *Estimate downloaded* (10 Aug) snapshots all return 500, on both
+html and pdf.
+
+**Against the case's expectation** — *"renders in the new layout with blanks"*:
+
+- **The layout half is right.** A snapshot that renders goes through the **new** template
+  (`Invoice date:`, `Addresses`, `Summary`, `Customer Signature`, `Powered by ShopView`) and shows
+  the state at the moment of the event — the S8218-17113 snapshot correctly shows `Due date:` and
+  the net-new `Authorizer` and `Remit Payment To` fields.
+- **The pre-redesign half fails.** A snapshot captured before the redesign does not render with
+  blanks; it returns a server error.
+
+So **C45185 is a DEVIATION, not a not-built case.** It keeps its documented expectation (Rule 57)
+and its marker becomes `AUTOMATION: READY - EXPECT FAIL` once a ticket exists. Defect candidate
+written up at `../DEFECT-CANDIDATE-snapshot-500.md` — **not filed, the hold stands.**
+
+## Where this leaves the suite
+
+**110 of 119 verified** (108 + C44987 + C45185). The deferred list is down to **four** — C44937,
+C44938, C44939 (the `Show declined work` setting) and C44942 (`Show %`), all still genuinely absent
+from the Invoice Details dialog with a firing positive control, and all on stories still In Progress.
+
+## The lesson, for the third time today
+
+Three "not built" verdicts in yesterday's pass rested on **guessed route names returning 404**. All
+three were wrong: the imported import, the batch PDF, and the snapshot. The product's front-end
+bundle is one fetch away, lists every route the app actually calls, and settled each in minutes.
+**Fetch the bundle before writing "not built".** Recorded in the playbook.
