@@ -9,6 +9,15 @@
 
 Named testers so far: **Victoria** (new suites, sv9315) · **Mudassir Qamar** (Invoice UI Refresh).
 
+## 🛑 SCOPE — UNIVERSAL (QA lead, 2026-08-31, reaffirmed)
+**This applies to EVERY case in EVERY suite — not only build-verified ones.** No case may ship with a
+spec-level precondition or step. Verbatim: *"Make sure that NO test case has the spec level preconditions
+and steps of replication — they should always be Runnable by the manual QA in the build."* A source-only
+(Rule-85) suite is NOT exempt: draft the route from the **design/spec**, mark it PROVISIONAL until the
+build confirms exact labels/filters, and NEVER invent an unreachable path or state (the hard line below).
+On a no-build suite the EXPECTED results still come only from the documents (Rule 57); it is the
+PRECONDITIONS/STEPS route that is drafted-from-design and confirmed at build time.
+
 ## THE RULE
 
 **A case is not tester-ready until a person who has never seen the feature can open the right screen
