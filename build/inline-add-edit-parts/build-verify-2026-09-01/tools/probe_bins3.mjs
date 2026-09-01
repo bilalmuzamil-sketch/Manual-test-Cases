@@ -55,14 +55,23 @@ const state = () => page.evaluate(() => {
 });
 
 const out = {};
-await apiPost('/api/exit-switch-user', {}).catch(() => {});
-const sw = await apiPost('/api/switch-user', { user_id: TECH });
-console.log('switch-user', sw.status);
+// Impersonation does not always take on the first attempt: a switch-user right after a previous
+// run's exit-switch-user can answer 200 while the session is still the admin. So exit, switch and
+// then CHECK, up to three times, rather than trusting the 200 (or reporting Full View as Tech View).
+let mode = null;
+for (let a = 0; a < 3; a++) {
+  await apiPost('/api/exit-switch-user', {}).catch(() => {});
+  await new Promise(r => setTimeout(r, 2500));
+  const sw = await apiPost('/api/switch-user', { user_id: TECH });
+  await new Promise(r => setTimeout(r, 2500));
+  mode = await sync();
+  console.log(`attempt ${a + 1}: switch-user ${sw.status}, view_mode ${mode}`);
+  if (mode === 'tech') break;
+}
 try {
-  const mode = await sync();
-  console.log('view_mode:', mode);
-  if (mode !== 'tech') { console.log('not Tech View — STOP'); }
+  if (mode !== 'tech') { console.log('could not reach Tech View — STOP rather than report Full View as Tech View'); }
   else {
+    out.viewMode = mode;
     out.rowOpened = await openRow();
     await page.evaluate(() => { const s = document.querySelector('[data-test-id="select_inline_part_number"]');
       const i = s && (s.matches('input') ? s : s.querySelector('input')); (i || s)?.click(); });
@@ -129,6 +138,6 @@ try {
   await apiPost('/api/exit-switch-user', {}).catch(() => {});
 }
 console.log(JSON.stringify(out, null, 1).slice(0, 3000));
-results['T1-tech-bin-locations-apply'] = out;
+results[`T1-tech-bin-locations-apply:${PART}`] = out;
 fs.writeFileSync(RESULTS_FILE, JSON.stringify(results, null, 1));
 await browser.close();
