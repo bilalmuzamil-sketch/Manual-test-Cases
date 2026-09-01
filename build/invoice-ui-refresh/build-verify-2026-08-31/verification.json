@@ -1,5 +1,5 @@
 {
- "verified_at": "2026-08-31T18:20:06.889289+00:00",
+ "verified_at": "2026-09-01T02:33:51.908112+00:00",
  "build_marker": "v26.35.5-8c3cc21",
  "control_can_fire": true,
  "document_kinds_captured": [
@@ -33,9 +33,9 @@
   "surfaces.json:workorder-lines"
  ],
  "tally": {
-  "RUNNABLE": 101,
+  "RUNNABLE": 102,
   "LABELS_UNCONFIRMED": 9,
-  "NEEDS_STEP_WALK": 9
+  "NEEDS_STEP_WALK": 8
  },
  "cases": {
   "44901": {
@@ -1512,12 +1512,12 @@
    "needs": [
     "invoice"
    ],
-   "verdict": "NEEDS_STEP_WALK",
+   "verdict": "RUNNABLE",
    "checks": {
     "1_precondition": "PASS — invoice document(s) captured this run",
     "2_navigation": "PASS — /workorders/{id}/finance renders (observed finance)",
     "3_controls": "PASS — the case names no control beyond the document itself",
-    "4_step_order": "NEEDS_STEP_WALK — 1 of 2 step(s) name an action not matched to an observed surface: ['1. Reverse one payment so Balance > $0.00']",
+    "4_step_order": "PASS — all 2 steps are document-inspection steps, order-independent",
     "5_labels": "PASS — all 1 quoted labels found in the rendered document"
    },
    "labels_absent": [],

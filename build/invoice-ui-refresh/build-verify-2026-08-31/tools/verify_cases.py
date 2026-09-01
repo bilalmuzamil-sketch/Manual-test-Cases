@@ -192,6 +192,14 @@ for cid, case in req.items():
                   "this work order'. (b) a contact belonging to ANOTHER customer (Jeffrey Burns) "
                   "-> HTTP 422, same refusal. The work order was then restored to a valid "
                   "authorizer (Rule 6)."),
+        '45177': ("WALKED END TO END 2026-08-31 on v26.35.5-8c3cc21, using the playbook recipe at "
+                  ":2342 that I should have grepped for in the first place. On work order S2-15468 "
+                  "(invoice 8605f896), masthead BEFORE = 'Invoice date' + 'Paid date', Balance "
+                  "$0.00. Reversed the payment positively identified by its own "
+                  "payment_statements[].work_order_id link (payment f785e89a, EFT, $2,930.37) via "
+                  "POST /api/customer-account/reverse-customer-payment {id} -> 201. Masthead AFTER = "
+                  "'Invoice date' + 'Due date', Balance $2,557.70. The S10-R4 behaviour the case "
+                  "asserts is observable. Evidence: c45177-evidence.json."),
         # NOT added, and why -- each would be an overclaim:
         #   C45185 needs "a snapshot created BEFORE the redesign". historyEvent=1|2|5 are accepted
         #     by the endpoint, but I proved only that the PARAM binds, not that a pre-redesign
