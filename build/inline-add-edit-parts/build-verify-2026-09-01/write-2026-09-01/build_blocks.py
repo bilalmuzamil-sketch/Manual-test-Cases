@@ -29,7 +29,13 @@ from verdicts import V                                     # noqa: E402
 
 CASES = json.load(open('/tmp/inl6597/cases6597.json'))
 BUILD_SENTENCE = 'Last checked against build v26.35.6-598cc8a on 9/1/2026.'
-EXCLUDE = {45220, 45005, 45026}
+# C45220 stays out permanently: it is Vladimir Tomovic's (TestRail user 1) and the QA lead's
+# instruction of 2026-09-01 is explicit — "C45220 and others where the creator of the test case is
+# Vladimir, do not change them." C45005 and C45026 are OURS (created_by 3) and flagged Automated;
+# the QA lead answered "Permitted" for them on 2026-09-01, so they are in, and Rule 65 obliges a
+# written report to Vlad for each one.
+EXCLUDE = {45220}
+AUTOMATED_AUTHORISED = {45005, 45026}
 
 # ---------------------------------------------------------------- T1 the route
 ROUTE_TAIL = ('Open its “Lines” tab. Each work order line has its own Parts section beneath it: the '
@@ -160,7 +166,13 @@ intended, snapshot, skipped = {}, {}, []
 for c in CASES:
     cid = c['id']
     if cid in EXCLUDE:
-        skipped.append({'cid': cid, 'reason': 'foreign (Rule 38)' if cid == 45220 else 'Automated, custom_atmstatus=3 (Rule 71) — held for the QA lead'})
+        skipped.append({'cid': cid,
+                        'reason': "created by Vladimir Tomovic (TestRail user 1) — the QA lead's "
+                                  "2026-09-01 instruction is that his cases are not changed; Rule 38 "
+                                  "and Rule 71 (it is also flagged Automated)"})
+        continue
+    if c.get('custom_atmstatus') == 3 and cid not in AUTOMATED_AUTHORISED:
+        skipped.append({'cid': cid, 'reason': 'flagged Automated with no per-case go-ahead (Rule 71)'})
         continue
     verdict = V[cid][0]
     seen = {}
@@ -220,6 +232,9 @@ out = os.path.join(HERE)
 json.dump(intended, open(f'{out}/intended-blocks.json', 'w'), indent=1, ensure_ascii=False)
 json.dump(snapshot, open(f'{out}/PRE-snapshot.json', 'w'), indent=1, ensure_ascii=False)
 json.dump(skipped, open(f'{out}/SKIPPED.json', 'w'), indent=1, ensure_ascii=False)
+# the writer's Rule 71 gate reads this allow-list immediately before each write; it is an explicit
+# per-case file, never a blanket flag
+json.dump(sorted(AUTOMATED_AUTHORISED), open(f'{out}/automated-authorised.json', 'w'))
 print(f'queued {len(intended)} cases, skipped {len(skipped)}')
 import collections
 print(collections.Counter(v['verdict'] for v in intended.values()))

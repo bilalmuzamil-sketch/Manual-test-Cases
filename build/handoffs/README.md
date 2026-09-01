@@ -29,7 +29,7 @@ Inline and verbatim, because **a session must not have to open another file to l
 **A HANDOFF WITHOUT IT IS NON-COMPLIANT AND MUST NOT BE ISSUED.** If you are authoring or revising a
 handoff, copy the section from any of the four existing handoffs. If a handoff already has a
 token/quota section, **MERGE into it — never duplicate.** Authority: **Standing Rule 95**
-(`build/rules/RULES-61-97.md`); it ties Rules 12, 50, 75, 76, 77, 78, 79, 80, 86, 88, 90.
+(`build/rules/RULES-61-98.md`); it ties Rules 12, 50, 75, 76, 77, 78, 79, 80, 86, 88, 90.
 
 ---
 
@@ -51,7 +51,7 @@ playbook or the relevant skill IN THE SAME PASS**.
 
 **A HANDOFF WITHOUT IT IS NON-COMPLIANT AND MUST NOT BE ISSUED.** Copy the section from any of the four
 existing handoffs; merge rather than duplicate if a similar section exists. Routers and other skills take
-it **by pointer only**. Authority: **Standing Rule 97** (`build/rules/RULES-61-97.md`); it ties Rules 27,
+it **by pointer only**. Authority: **Standing Rule 97** (`build/rules/RULES-61-98.md`); it ties Rules 27,
 29, 59, 68, 76, 79, 86, 88, 89, 93.
 
 ---

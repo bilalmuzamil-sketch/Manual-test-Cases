@@ -1274,7 +1274,7 @@ end**). Also `ls build/BLOCKED-*.md` — **several are marked RESOLVED and carry
 RAN**, so the QA lead knows the gap is real rather than unsearched. **One tool failing is a fact about
 that tool, never about the task** (Rule 68). **Solve something new ⇒ write it into the playbook or the
 relevant skill IN THE SAME PASS** (Rule 93). **The full drill — with the five real 2026-08-28 false
-blockers — is INLINE in every handoff and in `build/rules/RULES-61-97.md` (Rule 97).**
+blockers — is INLINE in every handoff and in `build/rules/RULES-61-98.md` (Rule 97).**
 
 ---
 
@@ -2183,7 +2183,7 @@ and the case-body snapshots that make a foreign edit diffable.
 > **Standing Rule 90 — the weekly quota is ONE shared pool:** main/orchestrator **15 %** · each lane
 > **25 %** · **10 % reserve**. **Report your spend with your work**; at **50 % of your own budget**
 > compare spend against work completed and **STOP AND REPORT if spend is outpacing progress**; **never
-> consume the reserve without the QA lead's say-so.** Full texts: `build/rules/RULES-61-97.md`.
+> consume the reserve without the QA lead's say-so.** Full texts: `build/rules/RULES-61-98.md`.
 
 
 ---

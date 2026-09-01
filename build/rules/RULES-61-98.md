@@ -1,9 +1,9 @@
-# ShopView QA — Standing Rules 61–97
+# ShopView QA — Standing Rules 61–98
 
 This file holds the FULL, VERBATIM text of Standing Rules 61–97.
 
 Full archive: build/rules/CLAUDE-FULL-ARCHIVE-2026-08-21.md
-Index: CLAUDE.md (rule index table). Other rule files: build/rules/RULES-01-20.md, build/rules/RULES-21-40.md, build/rules/RULES-41-60.md, build/rules/RULES-61-97.md
+Index: CLAUDE.md (rule index table). Other rule files: build/rules/RULES-01-20.md, build/rules/RULES-21-40.md, build/rules/RULES-41-60.md, build/rules/RULES-61-98.md
 
 **Read the rule you are about to apply here, in full — the index is not the rule.**
 
@@ -342,6 +342,25 @@ Index: CLAUDE.md (rule index table). Other rule files: build/rules/RULES-01-20.m
     (corrected 2026-08-11, and re-confirmed by him here). **Jira ticket creation STAYS HELD** until his
     next order (the LIFT CONDITION above). This is a clarification of how we RECORDED his ruling, not a
     reversal by him.
+
+    **⇒ AMENDMENT, 2026-09-01 — THE GO-AHEAD IS PERMISSION TO *LOOK AGAIN*, NOT PERMISSION TO FILE.
+    THREE GATES, IN ORDER.** QA lead, verbatim: *"Hold all such tickets for now - for other suites too,
+    we may need to create them after verifying the build once again when I will give you a go ahead,
+    but make sure even when I give you a go ahead I will verify on the build once again and if you still
+    find the issue then you will ask me for the permission to create the ticket."*
+    **(1) HELD.** Every defect candidate is held, **on every suite**, not only the one in hand. Prepare
+    it to the button and stop (A10 of `build/skills/06-DEFECT-PREP.md`).
+    **(2) HIS GO-AHEAD = RE-VERIFY.** When he lifts the hold for a candidate, that authorises a fresh
+    look at the build. **It is not the filing permission**, and treating it as one is the failure this
+    amendment exists to stop.
+    **(3) RE-VERIFY, THEN ASK.** Reproduce the finding on the build **as it stands that day** — the
+    branches redeploy continuously and are never final (Rules 49/60), so a candidate written days
+    earlier may already be fixed. **If it no longer reproduces: close the candidate and say so — do not
+    file it.** If it still reproduces: **ask for permission to create the ticket, per candidate.**
+    This COMPOUNDS with "permission is PER ASK" above; the re-verification comes **before** the ask and
+    never replaces it. Ties to Rules 12 (the re-verification is an observation, not an inference), 49
+    and 60 (a candidate ages because the build moves), 61 (a fix that shipped reports itself — the same
+    logic applies to a candidate that was never filed) and 80 (say when it was last checked).
 63. **WHEN HIS INSTRUCTION CONFLICTS WITH A RECORDED RULE, STOP AND SURFACE THE CONFLICT BEFORE
     ACTING — state both sides and ask which to follow (all projects).**
     USER DIRECTIVE (2026-08-11, verbatim, his typing preserved exactly as he wrote it because Rule 25
@@ -2229,7 +2248,7 @@ Index: CLAUDE.md (rule index table). Other rule files: build/rules/RULES-01-20.m
     did not exist.
     **DURABLE FACT — THE RULES ARE NO LONGER IN `CLAUDE.md`.** The Standing Rules moved OUT of
     `CLAUDE.md` into `build/rules/RULES-01-20.md` / `RULES-21-40.md` / `RULES-41-60.md` /
-    `RULES-61-97.md` on **2026-08-21**; **`CLAUDE.md` is now an INDEX.** **A session asserting "the
+    `RULES-61-98.md` on **2026-08-21**; **`CLAUDE.md` is now an INDEX.** **A session asserting "the
     rules live inside CLAUDE.md" is describing a PRE-2026-08-21 state and is therefore STALE — that
     assertion is itself the signal to `git fetch origin` and re-check before it reports anything else.**
     **THE SEARCH DRILL — run these, verbatim, substituting your own strings:**
@@ -2292,3 +2311,82 @@ Index: CLAUDE.md (rule index table). Other rule files: build/rules/RULES-01-20.m
     never from a session's self-report), **88** (never bulk-read; script it and grep it), **89**
     (access resilience — every session keeps a working path to every source), **90** (the shared quota
     that re-discovery burns) and **93** (the learning loop that Rule 97 feeds).
+98. **EVERY REPORT IS A TABLE THAT ANSWERS FIVE QUESTIONS — DONE · LEFT · BLOCKED · HOW TO UNBLOCK ·
+    HANDOFF-READY (all projects, every report, permanent).**
+
+    **QA lead, 2026-09-01, verbatim:** *"Also make s rule to give me the report in the table format
+    about what has been completed and what is left and why and how to complete that too and what is
+    blocked on what and how to get unblocked on that and if the suite is ready to be handded of to the
+    Manual Qa tester."*
+
+    **A report that is not in this shape is not a report.** Prose paragraphs, a wall of bullets, or a
+    verdict count on its own do not satisfy this rule. **Every status update, every per-project
+    completion report (Rule 67), every pass write-up and every handoff readiness note carries the
+    five tables below — in this order — and the LAST one is a straight YES or NO, never a hedge.**
+
+    ### TABLE 1 — WHAT IS COMPLETE
+
+    | Item | Evidence | When |
+    |---|---|---|
+
+    One row per finished thing, and **every row names the evidence** — the committed file, the C-id,
+    the probe, the run. A row with no evidence column is a claim, not a completion (Rule 12).
+
+    ### TABLE 2 — WHAT IS LEFT, WHY, AND HOW TO FINISH IT
+
+    | Item | Why it is not done | Exactly how to finish it | Whose move |
+    |---|---|---|---|
+
+    **"Why" is a reason, not an apology** — ran out of session, needs a data state, needs his ruling,
+    needs a build that does not exist yet. **"How to finish it" must be specific enough for a DIFFERENT
+    session to execute without asking anything** — the script to run, the data to seed, the route to
+    walk, the case ids. If it cannot be written that concretely, the item is not understood yet and the
+    row says so.
+
+    ### TABLE 3 — WHAT IS BLOCKED, AND ON WHAT
+
+    | Blocked item | Blocked on | Proof it is really blocked | What it does NOT block |
+    |---|---|---|---|
+
+    **Rule 68 applies in full:** a blocker blocks only what it actually blocks, so the fourth column is
+    mandatory — it is what stops a blocker being used as an excuse for the whole pass. **Rule 97
+    applies too:** the "proof" column names the searches that were run before the thing was called
+    blocked.
+
+    ### TABLE 4 — HOW TO GET UNBLOCKED
+
+    | Blocked item | The exact ask | Who can grant it | What happens the moment it lands |
+    |---|---|---|---|
+
+    **The ask is stated so he can act on it in one read** — *"a fresh `sv_sso_session` cookie for
+    `*.qa.shopview.com`, by that name"*, not *"access is broken"*. The last column proves the ask is
+    worth making: it says what resumes immediately.
+
+    ### TABLE 5 — IS THE SUITE READY TO HAND TO THE MANUAL QA TESTER?
+
+    | Gate | Result | Evidence |
+    |---|---|---|
+    | Every case runnable from the UI by a layman (skill 18) | | `check_runnable_cases.py` exit code |
+    | Every case renders on the served page (`markdown fr-view`, no literal tags) | | the container scan |
+    | Exactly one AUTOMATION marker per case, and the arithmetic gate balances | | read back from live cases |
+    | Every case build-verified, or explicitly listed as not | | the per-case verdict table |
+    | Titles within the length convention, provenance lines intact (Rule 54) | | the post-write verification |
+    | **HANDOFF READY?** | **YES / NO** | — |
+
+    **The final row is a single word, and it is NO unless every gate above it passed.** Name the tester
+    by name when it is YES (Rule 38's per-suite assignment: Invoice UI Refresh → Mudassir Qamar;
+    6597 Inline Add and Edit Parts and 6617 Printer Friendly WO → Viktoria Videnovic). **A partial pass
+    is reported as NO with Table 2 saying exactly what is missing** — never as "essentially ready".
+
+    **Rule 36 is unchanged and still comes last:** the report ends with **"OUTSTANDING — what I need
+    from you"**, or *"nothing outstanding"* if that is true. Tables 3 and 4 feed it; they do not
+    replace it.
+
+    Ties to Rules **7** and **9** (plain layman wording — he reads these tables, not a log), **12**
+    (every completion row carries observed evidence), **16** (deliver in the established format — this
+    IS the established format for a report now), **17** (complete data in, complete data out), **36**
+    (the OUTSTANDING section still closes every report), **50** (per-case audit evidence is what fills
+    the Evidence columns), **67** (the per-project completion table is this shape), **68** (a blocker
+    blocks only what it blocks — Table 3 column 4), **70** (action-first, plain-language, table-form —
+    this rule makes "table-form" mandatory rather than preferred), **80** (say when it was last done),
+    **84** (the tester-readiness gate is Table 5) and **97** (Table 3's proof column names the searches).

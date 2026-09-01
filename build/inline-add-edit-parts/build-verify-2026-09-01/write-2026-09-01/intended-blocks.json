@@ -720,6 +720,48 @@
    }
   }
  },
+ "45005": {
+  "title": "Saving adds the part at the top of the list with a Part added toast",
+  "verdict": "PENDING",
+  "marker_override": "AUTOMATION: READY",
+  "build_sentence": null,
+  "fields": {
+   "custom_preconds": {
+    "blocks": [
+     [
+      "1. A work order is open with status Estimate, Approved, In Progress, or Review.",
+      "2. You have the 'Work Order Line - Create and Edit' setting enabled. To check it: open “Settings”, click “Roles & Permissions” in the sidebar, then click the pencil on the role your user is on, and look for “Work Order Line - Create and Edit”.",
+      "3. Your “Work Orders → Work Order View Mode” permission is set to Tech View. To check or change it: open “Settings”, click “Roles & Permissions” in the sidebar, then click the pencil on the role your user is on, then set “Work Order View Mode” to Tech View."
+     ]
+    ],
+    "text": "1. A work order is open with status Estimate, Approved, In Progress, or Review.\n2. You have the 'Work Order Line - Create and Edit' setting enabled. To check it: open “Settings”, click “Roles & Permissions” in the sidebar, then click the pencil on the role your user is on, and look for “Work Order Line - Create and Edit”.\n3. Your “Work Orders → Work Order View Mode” permission is set to Tech View. To check or change it: open “Settings”, click “Roles & Permissions” in the sidebar, then click the pencil on the role your user is on, then set “Work Order View Mode” to Tech View."
+   },
+   "custom_steps": {
+    "blocks": [
+     [
+      "1. Enter a valid description and quantity and Save the row."
+     ]
+    ],
+    "text": "1. Enter a valid description and quantity and Save the row."
+   },
+   "custom_expected": {
+    "blocks": [
+     [
+      "1. The part is added at the top of the line's parts list.",
+      "2. A success toast displays reading “Part added” and fades on its own."
+     ],
+     [
+      "---",
+      "This is the expected behaviour as per epic SV-9315 and story SV-9317 (Story 2, Inline Add Part - Tech View) and the Inline Add and Edit Parts on Work Order Lines specification version 16, section S2-R9, read on 31 August 2026."
+     ],
+     [
+      "AUTOMATION: READY"
+     ]
+    ],
+    "text": "1. The part is added at the top of the line's parts list.\n2. A success toast displays reading “Part added” and fades on its own.\n---\nThis is the expected behaviour as per epic SV-9315 and story SV-9317 (Story 2, Inline Add Part - Tech View) and the Inline Add and Edit Parts on Work Order Lines specification version 16, section S2-R9, read on 31 August 2026.\nAUTOMATION: READY"
+   }
+  }
+ },
  "45006": {
   "title": "After a save a fresh empty row opens with cursor in description",
   "verdict": "PENDING",
@@ -1572,6 +1614,48 @@
      ]
     ],
     "text": "1. All field, keyboard, and validation behaviour from Story 2 applies identically to the edit row.\n2. The edit-row Tab order matches the Tech View add row (per the spec's Keyboard Model — Inline Row): description, part number, quantity, Save, Cancel (X), then the “Pulled from” bin chip when one is shown; the edit row has no “More options” button.\n3. The edit row's hint legend reads Enter — save · Tab — next field · Esc — cancel, without “& next row”, because saving an edit does not open a new row.\n---\nThis is the expected behaviour as per epic SV-9315 and story SV-9318 (Story 3, Inline Edit Part - Tech View) and the Inline Add and Edit Parts on Work Order Lines specification version 16, section S3-R4 and Keyboard Model - Inline Row, read on 31 August 2026.\nLast checked against build v26.35.6-598cc8a on 9/1/2026.\nAUTOMATION: READY"
+   }
+  }
+ },
+ "45026": {
+  "title": "Saving an edit updates the part line in place and closes the row",
+  "verdict": "PENDING",
+  "marker_override": "AUTOMATION: READY",
+  "build_sentence": null,
+  "fields": {
+   "custom_preconds": {
+    "blocks": [
+     [
+      "1. A work order is open with status Estimate, Approved, In Progress, or Review.",
+      "2. You have the 'Work Order Line - Create and Edit' setting enabled. To check it: open “Settings”, click “Roles & Permissions” in the sidebar, then click the pencil on the role your user is on, and look for “Work Order Line - Create and Edit”.",
+      "3. Your “Work Orders → Work Order View Mode” permission is set to Tech View. To check or change it: open “Settings”, click “Roles & Permissions” in the sidebar, then click the pencil on the role your user is on, then set “Work Order View Mode” to Tech View.",
+      "4. The work order line already has at least one part on it."
+     ]
+    ],
+    "text": "1. A work order is open with status Estimate, Approved, In Progress, or Review.\n2. You have the 'Work Order Line - Create and Edit' setting enabled. To check it: open “Settings”, click “Roles & Permissions” in the sidebar, then click the pencil on the role your user is on, and look for “Work Order Line - Create and Edit”.\n3. Your “Work Orders → Work Order View Mode” permission is set to Tech View. To check or change it: open “Settings”, click “Roles & Permissions” in the sidebar, then click the pencil on the role your user is on, then set “Work Order View Mode” to Tech View.\n4. The work order line already has at least one part on it."
+   },
+   "custom_steps": {
+    "blocks": [
+     [
+      "1. Open an edit row, change a value, and Save."
+     ]
+    ],
+    "text": "1. Open an edit row, change a value, and Save."
+   },
+   "custom_expected": {
+    "blocks": [
+     [
+      "1. The part line is updated in place and the inline row closes, returning to the normal part line display."
+     ],
+     [
+      "---",
+      "This is the expected behaviour as per epic SV-9315 and story SV-9318 (Story 3, Inline Edit Part - Tech View) and the Inline Add and Edit Parts on Work Order Lines specification version 16, section S3-R5, read on 31 August 2026."
+     ],
+     [
+      "AUTOMATION: READY"
+     ]
+    ],
+    "text": "1. The part line is updated in place and the inline row closes, returning to the normal part line display.\n---\nThis is the expected behaviour as per epic SV-9315 and story SV-9318 (Story 3, Inline Edit Part - Tech View) and the Inline Add and Edit Parts on Work Order Lines specification version 16, section S3-R5, read on 31 August 2026.\nAUTOMATION: READY"
    }
   }
  },

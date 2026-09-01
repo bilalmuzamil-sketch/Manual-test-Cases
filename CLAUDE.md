@@ -20,7 +20,7 @@ The previous CLAUDE.md was **738 KB / roughly 183,000 tokens**, and it was **TRU
 AT RULE 62**. Sessions were therefore running with **Rules 63–88 SILENTLY ABSENT** while believing
 they had read the whole file. A rule you have never seen is a rule you will break.
 
-**THEREFORE: NEVER ASSUME YOU HAVE SEEN ALL THE RULES.** There are **97 numbered Standing Rules**.
+**THEREFORE: NEVER ASSUME YOU HAVE SEEN ALL THE RULES.** There are **98 numbered Standing Rules**.
 Count them in the index below. If you are
 about to apply a rule, open its file and read it. **NEVER read
 `build/rules/CLAUDE-FULL-ARCHIVE-2026-08-21.md` whole** — it will exhaust your context exactly as the
@@ -51,6 +51,16 @@ These are stated here **in full** because a session that gets only this far must
   new artefact in any other external system of record; **TestRail cases are expressly carved out**.
   **This hold is TEMPORARY with a lift condition (his next order) — a session reading this later must
   CHECK whether it has been lifted, not assume it is standing law.** Register row **H1**.
+- **🛑 A DEFECT CANDIDATE IS RE-VERIFIED ON THE BUILD *AFTER* THE GO-AHEAD, AND ONLY THEN ASKED ABOUT
+  (QA lead, 2026-09-01).** Verbatim: *"Hold all such tickets for now - for other suites too, we may
+  need to create them after verifying the build once again when I will give you a go ahead, but make
+  sure even when I give you a go ahead I will verify on the build once again and if you still find the
+  issue then you will ask me for the permission to create the ticket."* **Three gates, in order:
+  (1) every candidate is HELD, on every suite · (2) his "go ahead" is permission to LOOK AGAIN, never
+  to file · (3) reproduce it on the build as it stands that day — if it no longer reproduces, CLOSE the
+  candidate and say so; if it does, ASK for permission per candidate.** Compounds with Rule 62's
+  per-ask permission; the re-verification comes BEFORE the ask, it does not replace it. Full treatment:
+  `build/skills/06-DEFECT-PREP.md` §A10-b.
 - **SECRETS: `/tmp` ONLY, `chmod 600`, NEVER COMMITTED — THIS REPO IS PUBLIC (82).** Cookies, tokens,
   passwords, OTP codes live in `/tmp` and nowhere else; never in a log, an error paste, or a commit.
   **Before every commit run the REAL scanner: `python3 build/testing-tools/scan_secrets.py --staged`**
@@ -111,6 +121,14 @@ These are stated here **in full** because a session that gets only this far must
   and `/tmp` are ephemeral. `git add -- <paths>` only — **never `git add -A` / `git add .`**.
 - **ALWAYS PAIR AN INTERNAL ID WITH ITS C-ID AND LINK (8).** Never a bare `FLT-…`/`SCH-…`: give
   `C#####` and `https://shopview.testrail.io/index.php?/cases/view/<id>` — in files AND in chat.
+- **🛑 EVERY REPORT IS FIVE TABLES: DONE · LEFT · BLOCKED · HOW TO UNBLOCK · HANDOFF-READY (98, QA lead
+  2026-09-01).** Verbatim: *"give me the report in the table format about what has been completed and
+  what is left and why and how to complete that too and what is blocked on what and how to get
+  unblocked on that and if the suite is ready to be handded of to the Manual Qa tester."* Prose is not
+  a report. **Table 2 must say how to finish each item concretely enough for a DIFFERENT session to
+  execute it without asking · Table 3 must name what the blocker does NOT block (68) · Table 5's last
+  row is a bare YES or NO and is NO unless every gate above it passed.** Rule 36's OUTSTANDING section
+  still closes the report. Full text: `build/rules/RULES-61-98.md` rule 98.
 - **EVERY REPORT ENDS WITH "OUTSTANDING — what I need from you" (36).** Say *"nothing outstanding"* if
   that is true; never omit the section. Keep `build/OUTSTANDING-ITEMS-REGISTER.md` current.
 - **PLAIN LAYMAN WORDING (7/9).** Tester-facing and PO-facing text uses the build's exact labels and
@@ -145,7 +163,11 @@ These are stated here **in full** because a session that gets only this far must
   `get_user/<id>`) — the QA lead decides scope by who authored it. **A case authored by the project's
   designated MANUAL QA TESTER is NOT foreign — treat it as IN-SCOPE (as if created by the QA lead):
   source-verify it, keep it tester-ready, update it.** The QA lead names who the tester is per project;
-  once named, that person's cases on that project are ours to maintain. **Recorded testers:** Invoice UI
+  once named, that person's cases on that project are ours to maintain.
+  **🛑 VLADIMIR TOMOVIC'S CASES ARE NEVER CHANGED (QA lead, 2026-09-01, verbatim: _"C45220 and others
+  where the creator of the test case is Vladimir, do not change them."_)** — TestRail user **1**,
+  `created_by = 1`. Report them, never edit them, whatever else a session has been authorised to
+  override. Check `created_by` before any write, not the title. **Recorded testers:** Invoice UI
   Refresh → **Mudassir Qamar** (TestRail user 6, mudassir.qamar@shopview.com), confirmed 2026-08-31.
   **THE TWO MANUAL QA TESTERS ARE ASSIGNED PER SUITE — do not merge them (QA lead, 2026-09-01,
   verbatim: _"invoice refresh os for the manual QA tester Mudassir. 6597/6617 is for Viktoria."_):**
@@ -156,7 +178,7 @@ These are stated here **in full** because a session that gets only this far must
 
 ---
 
-## 2 · THE RULE INDEX — all 97 rules, and where each one lives
+## 2 · THE RULE INDEX — all 98 rules, and where each one lives
 
 **Read the rule in its file before applying it.** One line per rule; the line is a locator, not the
 rule. Generated from the split files' own headers.
@@ -237,7 +259,7 @@ rule. Generated from the split files' own headers.
 | **59** | RE-READ THE SOURCES IMMEDIATELY BEFORE THE WRITES BEGIN — a second currency check, not only the |
 | **60** | THE BUILD WILL NEVER BE DECLARED FINAL — SEPARATE WHAT DEPENDS ON THE BUILD FROM WHAT DOES NOT |
 
-### `build/rules/RULES-61-97.md` — rules 61–97
+### `build/rules/RULES-61-98.md` — rules 61–98
 
 | # | Rule (short title) |
 |---|---|
@@ -278,8 +300,9 @@ rule. Generated from the split files' own headers.
 | **95** | THE TOKEN-DISCIPLINE CHARTER IS CARRIED BY EVERY SESSION AND EVERY HANDOFF — AND QUALITY IS NEVER WHAT GETS CUT |
 | **96** | A V2 / UPGRADE PROJECT MUST DERIVE AND TEST THE INVARIANT SET — WHAT THE SPEC DOES NOT MENTION IS STILL A REQUIREMENT |
 | **97** | NEVER DECLARE A BLOCKER WITHOUT SEARCHING THE REPO FIRST — THE ANSWER IS USUALLY ALREADY WRITTEN DOWN |
+| **98** | EVERY REPORT IS A TABLE THAT ANSWERS FIVE QUESTIONS — DONE · LEFT · BLOCKED · HOW TO UNBLOCK · HANDOFF-READY |
 
-**Rule 95 (the Token-Discipline Charter)** was added 2026-08-26 in `build/rules/RULES-61-97.md`. Its
+**Rule 95 (the Token-Discipline Charter)** was added 2026-08-26 in `build/rules/RULES-61-98.md`. Its
 canonical one-page operator form is **`build/skills/TOKEN-DISCIPLINE-CHARTER.md`** — twelve clauses
 (strategy first · never bulk-read, script it · the reading rule · spawn discipline · never poll · batch
 writes · piggyback cheap checks · never re-do work · answer in text · the budget · the week-start guard ·
@@ -287,7 +310,7 @@ writes · piggyback cheap checks · never re-do work · answer in text · the bu
 applies them from its first turn; a handoff without them is non-compliant and must not be issued.**
 Routers take it by pointer only.
 
-**Rule 96 (the V1→V2 invariant set)** was added 2026-08-26 in `build/rules/RULES-61-97.md`, which was
+**Rule 96 (the V1→V2 invariant set)** was added 2026-08-26 in `build/rules/RULES-61-98.md`, which was
 renamed on the same day from its previous 61-to-95 filename. Operator form:
 **`build/skills/17-REGRESSION-IMPACT-V1-TO-V2.md`**. **A V2 spec describes only what CHANGES and is
 SILENT about everything else, so a V2 build can break a V1 behaviour with every case still passing.**
@@ -299,7 +322,7 @@ change"**, and a **high-collateral-risk silence is escalated as a PO question, n
 at intake — **(i) NEW · (ii) V2/UPGRADE · (iii) REVIVAL** — in `build/skills/15-NEW-PROJECT-INTAKE.md`
 §1a, and **type (ii) triggers the skill**.
 
-**Rule 97 (search before you give up)** was added 2026-08-28 in `build/rules/RULES-61-97.md`, which was
+**Rule 97 (search before you give up)** was added 2026-08-28 in `build/rules/RULES-61-98.md`, which was
 renamed on the same day from its previous 61-to-96 filename. **QA lead, verbatim:** *"I want that
 session if it is giving up to go and see if you ever did something similar and it worked for you and to
 learn from you then."* The **SEARCH BEFORE YOU GIVE UP** drill is carried INLINE by all four handoffs
@@ -308,7 +331,7 @@ learn from you then."* The **SEARCH BEFORE YOU GIVE UP** drill is carried INLINE
 the four routers (`10`/`11`/`12`/`16`), `13-CROSS-SESSION-SAFETY.md` and `00-COMMON-CORE.md`.
 
 **Rules 89 (access resilience + MCP hygiene) and 90 (shared-quota budget allocation)** were added
-2026-08-21 and live in `build/rules/RULES-61-97.md` with 61–88. Rule 89's operator form is
+2026-08-21 and live in `build/rules/RULES-61-98.md` with 61–88. Rule 89's operator form is
 `build/skills/14-ACCESS-RESILIENCE.md`.
 
 **Rule 91 (the verification freshness badge)** was added 2026-08-21 in the same file. **Its second
@@ -549,7 +572,7 @@ Compact form — **the rule named in brackets is the authority; read it before r
 | Standing Rules 1–20 (full text) | `build/rules/RULES-01-20.md` |
 | Standing Rules 21–40 (full text) | `build/rules/RULES-21-40.md` |
 | Standing Rules 41–60 (full text) | `build/rules/RULES-41-60.md` |
-| Standing Rules 61–97 (full text) | `build/rules/RULES-61-97.md` |
+| Standing Rules 61–98 (full text) | `build/rules/RULES-61-98.md` |
 | Per-project narrative history (projects 1–7) | `build/rules/PROJECT-HISTORY-ARCHIVE.md` |
 | Byte-verification hashes for the split | `build/rules/INTEGRITY.md` |
 | Staging/QA/prod action recipes, TestRail traps | `build/APP-ACTIONS-PLAYBOOK.md` |

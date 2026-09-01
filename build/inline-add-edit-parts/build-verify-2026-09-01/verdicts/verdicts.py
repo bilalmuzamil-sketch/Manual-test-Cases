@@ -18,7 +18,7 @@ V = {
  44988: ('PASS', 'A-add-row', 'Add Part present on all 3 lines of S9315-14846, one per line; a line with no parts still shows it'),
  44989: ('PASS', 'A-add-row', 'row opens above the existing part rows (newRowAboveExistingParts=true) and the cursor lands in description'),
  44990: ('PASS', 'A-add-row + TA-add-row', 'admin (view_mode full) gets six fields, technician (view_mode tech) gets three'),
- 44991: ('PASS', 'P-edit + C1-edit-reveal', 'the Edit control sits on every part row at opacity 0 and is revealed on pointer hover'),
+44991: ('PASS', 'C1-edit-reveal', 'the edit control sits on every part row at opacity 0 and goes to opacity 1 on hover. The keyboard-focus half of S1-R7 is re-probed separately - see C1b'),
  44992: ('PASS', 'P-edit + TI-edit-row', 'Full View Edit opens the New Part Request modal; Tech View Edit opens inline_part_edit_row'),
  44993: (None, None, ''),
  44994: (None, None, ''),
@@ -82,7 +82,7 @@ V = {
  45054: ('PASS', 'G-save', 'a free-typed part saved in Full View shows on the line with the Requested status'),
  45055: ('PASS', 'S-create-new', 'a no-match search offers "Create ZZQXNOSUCHPART as a new part"'),
  45056: ('PASS', 'V-message-hunt', 'the combined message names cost when cost is the missing field: "Enter a cost to save this part."'),
- 45057: (None, None, ''),
+45057: ('PASS', 'C2-more-options-no-validation', 'More options opened the New Part Request modal from a row missing qty, cost and sell price, with no validation raised on the row'),
  45058: ('PASS', 'V-message-hunt', '"Cost cannot be negative." verbatim; a non-numeric entry is refused by the field itself so the row never reaches the "must be a number" branch'),
  45059: ('PASS', 'V-message-hunt', 'sell 10 under cost 100 shows "Sell price is below cost." and does not block'),
  45060: (None, None, ''),
@@ -91,7 +91,7 @@ V = {
 
  # ---------------- Story 5: Full View edit (6 cases) ----------------
  45063: (None, None, ''),45064: ('PASS', 'P-edit', 'no inline edit row appears for a Full View user; the part row is not replaced'), 45065: (None, None, ''),
- 45066: (None, None, ''), 45067: (None, None, ''),45068: ('FAIL', 'AB-edit-guard-recheck', 'Edit on a part line while a POPULATED add row is open opens the Edit Part Request modal immediately, with no discard confirmation, and leaves the add row open. Observed twice. S5-E1 requires S6-R5 first.'),
+ 45066: (None, None, ''),45067: ('PASS', 'C3-edit-modal', 'a change typed into the Edit Part Request modal and then cancelled left the part line byte-identical'),45068: ('FAIL', 'AB-edit-guard-recheck', 'Edit on a part line while a POPULATED add row is open opens the Edit Part Request modal immediately, with no discard confirmation, and leaves the add row open. Observed twice. S5-E1 requires S6-R5 first.'),
 
  # ---------------- Story 6: unsaved-data protection (15 cases) ----------------
  45069: ('PASS', 'J-close', 'verbatim "Discard this part?" / "The details you entered will be lost." / Keep Editing / Discard Part'),
@@ -104,17 +104,17 @@ V = {
  45076: ('PASS', 'J-close', 'an empty row closed on Escape with no confirmation'),
  45077: ('PASS', 'Z-followon-row', 'navigating away from an empty row went through with no confirmation'),
  45078: (None, None, ''),
- 45079: (None, None, ''),
+45079: ('PASS', 'C5-no-row-navigation', 'with no inline row open, navigating from the Lines tab to the work orders list raised nothing'),
  45080: ('PASS', 'K-click-outside', 'no confirmation of any kind on a click outside the row'),
  45081: ('PASS', 'Z-followon-row', 'the untouched follow-on row after a save raised nothing on Escape or on navigation'),
- 45082: (None, None, ''),
- 45083: (None, None, ''),
+45082: ('PASS', 'C4-leave-stay', '"Leave" discarded the typed part and completed the navigation to /workorders'),
+45083: ('PASS', 'C4-leave-stay', '"Stay On Work Order" kept the user on the Lines tab with the row open, the typed description intact and focus back inside the row'),
 
  # ---------------- Story 7: bin allocation (22 cases) ----------------
- 45221: (None, None, ''), 45222: (None, None, ''), 45223: (None, None, ''), 45224: (None, None, ''),
- 45225: (None, None, ''), 45226: (None, None, ''), 45227: (None, None, ''), 45228: (None, None, ''),
- 45229: (None, None, ''), 45230: (None, None, ''), 45231: (None, None, ''), 45232: (None, None, ''),
+ 45221: (None, None, ''),45222: ('PASS', 'B1-cards', 'result cards read "Inventory Qty: 7 EA" then the per-bin chip "PB1 7" - total first, then per-bin quantity. The "+ N" collapse chip and the "Not stocked" card have no data on this branch to show them (INL-2)'),45223: ('PASS', 'B2-picker', 'selecting a stocked part allocated the whole quantity to its single Default bin, PB1, with no split'),45224: ('PASS', 'B2-picker', 'the allocation appears below the row as "Pulled from" followed by a chip; with no allocation there is no chip (B7)'),
+45225: ('PASS', 'B2-picker', 'the chip label is the bin name, "PB1", for a single-bin allocation. The "N bins" split label needs a multi-bin part (INL-2)'),45226: ('PASS', 'B2-picker', 'the chip opens a picker reading "check PB1 Default 7" then "Split across bins…" - the check on the current selection, the Default badge, the on-hand quantity and the split action'), 45227: (None, None, ''),45228: ('PASS', 'B4-over-allocate', 'a quantity of 999 against a bin holding 7 was accepted and only warned; nothing blocked the row'),
+45229: ('PASS', 'B4-over-allocate', 'verbatim "Only 7 here. Pulling 999 takes this bin negative." beside the chip, and the chip picks up the warning class inline-part-row__bin-chip--warn'), 45230: (None, None, ''), 45231: (None, None, ''), 45232: (None, None, ''),
  45233: (None, None, ''), 45234: (None, None, ''), 45235: (None, None, ''), 45236: (None, None, ''),
- 45237: (None, None, ''), 45238: (None, None, ''), 45239: (None, None, ''), 45240: (None, None, ''),
+45237: ('PASS', 'B8-saved-row', 'after saving, the part line reads "(N68SL-356) … 1 Quoted $8.13" and names no bin anywhere'),45238: ('PASS', 'B6-tab-to-chip', 'Tab reached the chip in the documented position: description, part number, qty, category, cost, sell price, Save, close, More options, then button_pulled_from_bin'), 45239: (None, None, ''),45240: ('PASS', 'B7-no-catalog-part', 'a free-typed description with no catalog part got no chip and no "Pulled from" line at all'),
  45242: (None, None, ''), 45243: (None, None, ''),
 }
