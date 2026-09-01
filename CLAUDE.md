@@ -115,6 +115,17 @@ These are stated here **in full** because a session that gets only this far must
   that is true; never omit the section. Keep `build/OUTSTANDING-ITEMS-REGISTER.md` current.
 - **PLAIN LAYMAN WORDING (7/9).** Tester-facing and PO-facing text uses the build's exact labels and
   no jargon — no case IDs, spec anchors, HTTP terms or internal names in what they read.
+- **🛑 EVERY CASE IS RUNNABLE FROM THE UI BY A LAYMAN — NO SPEC-LEVEL PRECONDITIONS OR STEPS (skill 18,
+  QA lead 2026-08-31, UNIVERSAL — ALL cases, ALL suites, NOT only build-verified ones).** A precondition
+  that asserts a *state* ("a document exists whose work order has … set") or a step that *summarizes* an
+  action ("Generate the Invoice") is DEFECTIVE. Preconditions carry the **route as UI clicks** — the five
+  things: (1) entry point (top-menu/screen, exact label) · (2) which record to open and how you know it's
+  the right one · (3) the tab/panel · (4) where the thing appears · (5) any default-on filter that hides
+  it. Steps describe the check; **Expected Results still come from the documents, never the build (57).**
+  **NEVER make a step followable by inventing a path or a state a tester cannot actually reach** (skill 18
+  hard line) — where a route needs the live build to confirm and no build exists yet (Rule 85), draft it
+  from the **design/spec** and mark it PROVISIONAL, never fabricated. This is part of the tester-readiness
+  gate (84): a case with spec-level preconditions/steps is NOT tester-ready. Skill: `build/skills/18-LAYMAN-UI-STEPS.md`.
 - **FOREIGN CASES AND TICKETS ARE HANDS-OFF (38).** Report, never edit. State both numbers: ours N /
   live total M. **ALWAYS NAME THE CREATOR when you call a case foreign** (look up the TestRail user, e.g.
   `get_user/<id>`) — the QA lead decides scope by who authored it. **A case authored by the project's
