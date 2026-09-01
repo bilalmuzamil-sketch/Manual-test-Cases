@@ -23,7 +23,28 @@ await apiPost('/api/exit-switch-user', {}).catch(() => {});
 const sw = await apiPost('/api/switch-user', { user_id: TECH });
 console.log('switch-user HTTP', sw.status);
 if (sw.status !== 200 && sw.status !== 201) { console.log('could not impersonate — STOP'); await browser.close(); process.exit(2); }
-await page.reload({ waitUntil: 'domcontentloaded' }).catch(() => {});
+
+// 🛑 A RELOAD IS NOT ENOUGH, AND THIS COST A WHOLE RUN. boot() hydrated localStorage from
+// quick-login {admin}: `user`, `fe_permissions_wrapper` and `token` all describe the ADMIN, and the
+// SPA reads view_mode out of localStorage, not off the wire. So after switch-user the API is the
+// technician while the page is still Full View -- the run reported six fields WITH pricing as the
+// "Tech View" row, which is a false negative dressed up as data. Re-hydrate from the technician's
+// own fe-permissions before touching the page, then assert view_mode is 'tech'.
+const fe = await apiGet('/api/auth/me/fe-permissions');
+if (fe.status !== 200) { console.log('post-switch fe-permissions HTTP ' + fe.status + ' — STOP'); await browser.close(); process.exit(2); }
+const feData = fe.body?.data;
+console.log('view_mode after switch-user:', feData?.view_mode, '| perms:', feData?.fe_permissions?.length);
+if (feData?.view_mode !== 'tech') {
+  console.log('THE IMPERSONATED USER IS NOT IN TECH VIEW — STOP rather than report Full View as Tech View');
+  await apiPost('/api/exit-switch-user', {}).catch(() => {});
+  await browser.close(); process.exit(3);
+}
+await page.goto(APP + '/login', { waitUntil: 'domcontentloaded', timeout: 60000 }).catch(() => {});
+await page.evaluate(f => {
+  const u = JSON.parse(localStorage.getItem('user') || '{}');
+  if (u?.data) { u.data.role = f?.role ?? u.data.role; localStorage.setItem('user', JSON.stringify(u)); }
+  localStorage.setItem('fe_permissions_wrapper', JSON.stringify(f));
+}, feData);
 
 const land = async () => {
   for (let a = 0; a < 3; a++) {
@@ -34,7 +55,12 @@ const land = async () => {
       chars: (document.body?.innerText || '').length,
       addPart: document.querySelectorAll('[data-test-id="button_add_part"]').length,
       editBtns: document.querySelectorAll('[data-test-id="button_edit_part"]').length,
+      // the page's OWN idea of the view mode, read back every landing: a stale localStorage is the
+      // one failure that makes a Tech View run silently report Full View
+      viewModeInPage: (() => { try { return JSON.parse(localStorage.getItem('fe_permissions_wrapper') || '{}').view_mode; }
+                              catch (_) { return null; } })(),
     }));
+    if (ok.viewModeInPage !== 'tech') { console.log('LANDED WITH view_mode=' + ok.viewModeInPage + ' — not Tech View'); }
     if (!ok.onLogin && ok.chars > 1200 && ok.addPart) return ok;
     if (a === 2) { console.log('LANDING ASSERTION FAILED', JSON.stringify(ok)); return ok; }
   }

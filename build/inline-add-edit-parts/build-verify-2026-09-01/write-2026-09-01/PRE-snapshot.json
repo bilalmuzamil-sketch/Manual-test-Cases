@@ -237,6 +237,20 @@
    "custom_expected": "<p>1. With a description and a quantity the part saves even though part number is empty (part number is optional).<br>2. Without a quantity the row does not save (see the validation cases).</p><p>---<br>This is the expected behaviour as per epic SV-9315 and story SV-9317 (Story 2, Inline Add Part - Tech View) and the Inline Add and Edit Parts on Work Order Lines specification version 16, section S2-R8, read on 31 August 2026.</p><p>AUTOMATION: Not available on Build to test Yet - Last checked 8/31/2026</p>"
   }
  },
+ "45005": {
+  "title": "Saving adds the part at the top of the list with a Part added toast",
+  "atm": 3,
+  "section_id": 6756,
+  "refs": "SV-9317 (S2-R9)",
+  "provenance": [
+   "This is the expected behaviour as per epic SV-9315 and story SV-9317 (Story 2, Inline Add Part - Tech View) and the Inline Add and Edit Parts on Work Order Lines specification version 16, section S2-R9, read on 31 August 2026."
+  ],
+  "before": {
+   "custom_preconds": "<p>1. A work order is open with status Estimate, Approved, In Progress, or Review.<br>2. You have the 'Work Order Line - Create and Edit' setting enabled.<br>3. Your 'Work Orders → Work Order View Mode' permission is set to Tech View.</p>",
+   "custom_steps": "<p>1. Enter a valid description and quantity and Save the row.</p>",
+   "custom_expected": "<p>1. The part is added at the top of the line's parts list.<br>2. A success toast displays reading “Part added” and fades on its own.</p><p>---<br>This is the expected behaviour as per epic SV-9315 and story SV-9317 (Story 2, Inline Add Part - Tech View) and the Inline Add and Edit Parts on Work Order Lines specification version 16, section S2-R9, read on 31 August 2026.</p><p>AUTOMATION: Not available on Build to test Yet - Last checked 8/31/2026</p>"
+  }
+ },
  "45006": {
   "title": "After a save a fresh empty row opens with cursor in description",
   "atm": 1,
@@ -515,6 +529,20 @@
    "custom_preconds": "<p>1. In the top menu click “Work Orders”, then open a work order whose status is Estimate, Approved, In Progress, or Review (click its row in the list). Open its Lines tab — each work order line has its own Parts section beneath it, where the “Add Part” button and part lines appear. (Route drafted from the spec/design and marked PROVISIONAL — confirm the exact tab name and Parts-section placement on the build.)<br>2. Your user has the 'Work Order Line - Create and Edit' permission enabled (an administrator sets this on your user role; confirm the exact path on the build).<br>3. Your 'Work Orders → Work Order View Mode' permission is set to Tech View (an administrator sets this on your user role; confirm the exact path on the build).<br>4. The work order line already has at least one part listed in its Parts section (if not, add one first with “Add Part”).</p>",
    "custom_steps": "<p>1. Open an edit row and exercise the fields, keyboard, and validation.<br>2. Press Tab repeatedly through the whole edit row.<br>3. Read the keyboard hint legend.</p>",
    "custom_expected": "<p>1. All field, keyboard, and validation behaviour from Story 2 applies identically to the edit row.<br>2. The edit-row Tab order matches the Tech View add row (per the spec's Keyboard Model — Inline Row): description, part number, quantity, Save, Cancel (X), then the “Pulled from” bin chip when one is shown; the edit row has no “More Options” button.<br>3. The edit row's hint legend reads Enter — save · Tab — next field · Esc — cancel, without “&amp; next row”, because saving an edit does not open a new row.</p><p>---<br>This is the expected behaviour as per epic SV-9315 and story SV-9318 (Story 3, Inline Edit Part - Tech View) and the Inline Add and Edit Parts on Work Order Lines specification version 16, section S3-R4 and Keyboard Model - Inline Row, read on 31 August 2026.</p><p>AUTOMATION: Not available on Build to test Yet - Last checked 8/31/2026</p>"
+  }
+ },
+ "45026": {
+  "title": "Saving an edit updates the part line in place and closes the row",
+  "atm": 3,
+  "section_id": 6757,
+  "refs": "SV-9318 (S3-R5)",
+  "provenance": [
+   "This is the expected behaviour as per epic SV-9315 and story SV-9318 (Story 3, Inline Edit Part - Tech View) and the Inline Add and Edit Parts on Work Order Lines specification version 16, section S3-R5, read on 31 August 2026."
+  ],
+  "before": {
+   "custom_preconds": "<p>1. A work order is open with status Estimate, Approved, In Progress, or Review.<br>2. You have the 'Work Order Line - Create and Edit' setting enabled.<br>3. Your 'Work Orders → Work Order View Mode' permission is set to Tech View.<br>4. The work order line already has at least one part on it.</p>",
+   "custom_steps": "<p>1. Open an edit row, change a value, and Save.</p>",
+   "custom_expected": "<p>1. The part line is updated in place and the inline row closes, returning to the normal part line display.</p><p>---<br>This is the expected behaviour as per epic SV-9315 and story SV-9318 (Story 3, Inline Edit Part - Tech View) and the Inline Add and Edit Parts on Work Order Lines specification version 16, section S3-R5, read on 31 August 2026.</p><p>AUTOMATION: Not available on Build to test Yet - Last checked 8/31/2026</p>"
   }
  },
  "45027": {

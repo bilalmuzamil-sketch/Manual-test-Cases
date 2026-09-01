@@ -44,5 +44,140 @@
    "defaultBadge": true,
    "checkMark": true
   }
+ },
+ "B3-choose-bin": [
+  {
+   "query": "CLAMP",
+   "multiBinCard": null,
+   "cardsSample": [
+    "3.50-3.82\" (89-97mm) SPRING LOADED T-BOLT CLAMP N68SL-356 Inventory Qty: 7 EA PB1 7",
+    "(SS HOSE CLAMP (2-1/16\" - 3-1/16\"), 1/2\" WIDE) 4--PET-40 Inventory Qty: 6 ea ST20 6",
+    "1.57-1.69\" STAINLESS STEEL BAND w/PLATED BOLT MIKALOR CLAMP N75-4043 Inventory Qty: 2 EA PB3 2"
+   ]
+  },
+  {
+   "query": "FILTER",
+   "multiBinCard": "**DUPLICATE** Fuel Filter, Cummins/Paccar FF5636 Inventory Qty: 0 ea Unassigned 0 UPGRADE FF5813 P550879 BF7924 33936",
+   "cardsSample": [
+    "**DUPLICATE** AIR FILTER AF25247 Inventory Qty: 0 ea Unassigned 0",
+    "**DUPLICATE** Air Filter, NON-FR (49959/42809(NON FR), P607960/P607955(NON FR), AF4202(NON FR)) USE WITH AF27706 (P616400) AF26154 Inventory Qty: 0 ea Unassigned 0",
+    "**DUPLICATE** CABIN FILTER M2 N10G-36-000006 Inventory Qty: 0 ea Unassigned 0"
+   ],
+   "beforeChip": "Unassigned expand_more",
+   "pickerItems": [
+    "check Unassigned Default 0",
+    "call_split Split across bins…"
+   ],
+   "afterChip": "Unassigned expand_more",
+   "afterSentences": []
+  }
+ ],
+ "B4-over-allocate": {
+  "chosen": "3.50-3.82\" (89-97mm) SPRING LOADED T-BOLT CLAMP N68SL-356 Inventory Qty: 7 EA PB1 7",
+  "base": {
+   "pulledFromOnPage": true,
+   "chipLabel": "PB1 expand_more",
+   "chipClasses": "q-btn q-btn-item non-selectable no-outline q-btn--flat q-btn--rectangle text-blue-10 q-btn--actionable q-focusable q-hoverable q-btn--no-uppercase inline-part-row__bin-chip",
+   "chipWarningStyled": false,
+   "textNearChip": "Pulled from PB1 expand_more Enter save & next row · Tab next field · Esc cancel · ⇧ Enter more options",
+   "sentences": {
+    "takesNegative": false,
+    "defaultSwitched": false,
+    "notStocked": false
+   },
+   "matchedSentences": []
+  },
+  "over": {
+   "pulledFromOnPage": true,
+   "chipLabel": "PB1 expand_more",
+   "chipClasses": "q-btn q-btn-item non-selectable no-outline q-btn--flat q-btn--rectangle text-blue-10 q-btn--actionable q-focusable q-hoverable q-btn--no-uppercase inline-part-row__bin-chip inline-part-row__bin-chip--warn",
+   "chipWarningStyled": false,
+   "textNearChip": "Pulled from PB1 expand_more Only 7 here. Pulling 999 takes this bin negative. Enter save & next row · Tab next field · Esc cancel · ⇧ Enter more options",
+   "sentences": {
+    "takesNegative": true,
+    "defaultSwitched": false,
+    "notStocked": false
+   },
+   "matchedSentences": [
+    "Only 7 here. Pulling 999 takes this bin negative."
+   ]
+  }
+ },
+ "B5-split": {
+  "chosen": "3.50-3.82\" (89-97mm) SPRING LOADED T-BOLT CLAMP N68SL-356 Inventory Qty: 7 EA PB1 7",
+  "splitActionClicked": true,
+  "modal": {
+   "open": true,
+   "text": "New Part Request close Part Number arrow_drop_down Description Source Inventory arrow_drop_down Category arrow_drop_down Vendor arrow_drop_down $ Cost $ Core Charge $ Sell Price Margin % Inventory Bin name Quantity in stock Amount PB1 Default 7 AI SHOPCOACH PARTS GUIDE Save Part",
+   "title": "New Part Request close Part Number arrow_drop_down Descripti",
+   "hasAuto": false,
+   "hasApply": false,
+   "hasDefaultBadge": true,
+   "exposesPricing": true,
+   "ids": [
+    "dialog_title",
+    "button_close_dialog",
+    "select_part",
+    "input_workorder_part_description",
+    "select_workorder_part_source",
+    "select_part_category",
+    "select_part_vendor",
+    "input_part_cost",
+    "input_workorder_part_core_charge",
+    "input_workorder_part_sell_price",
+    "input_workorder_part_margin",
+    "default_badge",
+    "input_bin_quantity_1295689b-479b-11f1-9bed-020a144de1a3",
+    "button_shopcoach",
+    "button_workorder_part_save"
+   ],
+   "rows": [
+    "New Part Request close",
+    "close",
+    "Part Number arrow_drop_down Description Source Inventory arrow_drop_down Category arrow_drop_down Vendor arrow_drop_down $ Cost $ Core Charge $ Sell Price Margin % Inventory Bin name Quantity in stock Amount PB1 Default 7 AI SHOPCOACH PARTS GUIDE Save Part",
+    "Part Number arrow_drop_down",
+    "Part Number arrow_drop_down",
+    "Part Number",
+    "cancel",
+    "arrow_drop_down",
+    "Description",
+    "Description",
+    "Description",
+    "Source Inventory arrow_drop_down"
+   ],
+   "inputs": 10
+  }
+ },
+ "B6-tab-to-chip": {
+  "tabSequence": [
+   "input_inline_part_description",
+   "select_inline_part_number",
+   "input_inline_part_quantity",
+   "select_inline_part_category",
+   "input_inline_part_cost",
+   "input_inline_part_sell_price",
+   "button_save_inline_part",
+   "button_cancel_inline_part",
+   "button_more_options_inline_part",
+   "button_pulled_from_bin",
+   "input_inline_part_description",
+   "select_inline_part_number"
+  ],
+  "chipReached": true
+ },
+ "B7-no-catalog-part": {
+  "chipLabel": null,
+  "pulledFromOnPage": false,
+  "sentences": {
+   "takesNegative": false,
+   "defaultSwitched": false,
+   "notStocked": false
+  }
+ },
+ "B8-saved-row": {
+  "chosen": "3.50-3.82\" (89-97mm) SPRING LOADED T-BOLT CLAMP N68SL-356 Inventory Qty: 7 EA PB1 7",
+  "chipBeforeSave": "PB1 expand_more",
+  "topRow": "drag_indicator (N68SL-356) 3.50-3.82\" (89-97mm) SPRING LOADED T-BOLT CLAMP edit more_vert 1 Quoted $8.13 54% $8.13",
+  "anyRowNamesABin": false
  }
 }

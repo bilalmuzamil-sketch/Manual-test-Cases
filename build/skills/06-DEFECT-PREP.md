@@ -379,6 +379,26 @@ or the engineering manager makes it in public.**
 - **On resume: ONE TICKET AT A TIME** — create one, he verifies it, only then the next. **Never a
   batch** (Rules 62/73).
 
+#### 🛑 A10-b · THE GO-AHEAD IS NOT THE PERMISSION — RE-VERIFY ON THE BUILD FIRST, THEN ASK AGAIN
+
+**QA lead, 2026-09-01, verbatim:** *"Hold all such tickets for now - for other suites too, we may need
+to create them after verifying the build once again when I will give you a go ahead, but make sure even
+when I give you a go ahead I will verify on the build once again and if you still find the issue then
+you will ask me for the permission to create the ticket."*
+
+So a defect candidate now passes through **three** gates, not one, and they are in this order:
+
+| # | Gate | What it means in practice |
+|---|---|---|
+| 1 | **HOLD** | Every candidate is held. **This applies to every suite, not only the one in hand.** Prepare it to the button and stop. |
+| 2 | **HIS GO-AHEAD TO LOOK AGAIN** | When he says go ahead, that is permission to **re-verify**, and nothing more. It is **not** permission to file. |
+| 3 | **RE-VERIFY ON THE BUILD, THEN ASK** | Reproduce the finding again on the build **as it stands that day** — the branch moves continuously (Rules 49/60), so a candidate written days earlier may already be fixed. **If it no longer reproduces, say so and close the candidate — do not file it.** If it still reproduces, **ask for permission to create the ticket**, per candidate. |
+
+**The trap this closes:** treating "go ahead" as the filing permission and pushing a stale ticket for a
+bug that shipped a fix in between. That wastes his time and costs the suite's credibility. **A10's
+"permission is PER ASK" and this clause compound — the re-verification does not replace the ask, it
+comes before it.**
+
 ---
 
 # 📸 THE ANNOTATED-SCREENSHOT AND LAYMAN-TICKET STANDARD

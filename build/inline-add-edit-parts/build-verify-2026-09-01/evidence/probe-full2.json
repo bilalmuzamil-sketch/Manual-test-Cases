@@ -1,0 +1,121 @@
+{
+ "C1-edit-reveal": {
+  "atRest": {
+   "opacity": "0",
+   "visibility": "visible",
+   "pointerEvents": "auto"
+  },
+  "onHover": {
+   "opacity": "1",
+   "visibility": "visible",
+   "pointerEvents": "auto"
+  },
+  "onKeyboardFocus": {
+   "focusedTag": "BUTTON",
+   "opacity": "0",
+   "visibility": "visible"
+  }
+ },
+ "C2-more-options-no-validation": {
+  "modalOpened": true,
+  "modalTitle": "New Part Request close Part Number arrow_drop_down Description Quantity Source V",
+  "validationOnRow": {
+   "errorFields": 0,
+   "sentenceShown": false
+  }
+ },
+ "C3-edit-modal": {
+  "originalLine": "drag_indicator (N68SL-356) 3.50-3.82\" (89-97mm) SPRING LOADED T-BOLT CLAMP edit more_vert 1 Quoted $8.13 54% $8.13",
+  "typedIntoModal": true,
+  "saveClicked": true,
+  "afterSave": {
+   "modalOpen": false,
+   "inlineRowOpen": false,
+   "editRowOpen": false,
+   "lineUpdated": false
+  },
+  "cancelLeg": {
+   "lineBefore": "drag_indicator (N68SL-356) 3.50-3.82\" (89-97mm) SPRING LOADED T-BOLT CLAMP edit more_vert 1 Quoted $8.13 54% $8.13",
+   "confirmationShown": [],
+   "lineAfter": "drag_indicator (N68SL-356) 3.50-3.82\" (89-97mm) SPRING LOADED T-BOLT CLAMP edit more_vert 1 Quoted $8.13 54% $8.13",
+   "unchanged": true
+  }
+ },
+ "C4-leave-stay": {
+  "firstConfirmation": [
+   {
+    "text": "Leave without saving? close This part hasn't been added to the work order yet. Leaving will discard it. Stay On Work Order Leave",
+    "buttons": [
+     "close",
+     "Stay On Work Order",
+     "Leave"
+    ]
+   }
+  ],
+  "stayClicked": true,
+  "afterStay": {
+   "url": "/workorders/c6d4b883-6f78-4c9e-ab7e-436a6d99c17a/lines",
+   "rowOpen": true,
+   "desc": "ZZAUTOTEST leavestay",
+   "focusedInRow": true
+  },
+  "secondConfirmation": true,
+  "leaveClicked": true,
+  "afterLeave": {
+   "url": "/workorders?tab=work_orders",
+   "rowOpen": false
+  }
+ },
+ "C5-no-row-navigation": {
+  "from": "/workorders/c6d4b883-6f78-4c9e-ab7e-436a6d99c17a/lines",
+  "to": "/workorders?tab=work_orders",
+  "anyDialog": false
+ },
+ "C6-part-without-prices": [
+  {
+   "query": "NBOR",
+   "card": "#04 BSPP REPLACEMENT O-RING NBOR-04 Inventory Qty: 0 EA Unassigned 0",
+   "values": {
+    "cost": "0.35",
+    "sell": "1.00",
+    "desc": "#04 BSPP REPLACEMENT O-RING"
+   }
+  },
+  {
+   "query": "BSPP",
+   "card": "#04 BSPP REPLACEMENT O-RING NBOR-04 Inventory Qty: 0 EA Unassigned 0",
+   "values": {
+    "cost": "0.35",
+    "sell": "1.00",
+    "desc": "#04 BSPP REPLACEMENT O-RING"
+   }
+  },
+  {
+   "query": "O-RING",
+   "card": "#04 BSPP REPLACEMENT O-RING NBOR-04 Inventory Qty: 0 EA Unassigned 0",
+   "values": {
+    "cost": "0.35",
+    "sell": "1.00",
+    "desc": "#04 BSPP REPLACEMENT O-RING"
+   }
+  },
+  {
+   "query": "FREIGHT",
+   "card": "ACCELERATOR PEDAL SPRING FREIGHTLINER 104.1172 Inventory Qty: 1 ea MZI2B 1 111727000 0110251000",
+   "values": {
+    "cost": "2.89",
+    "sell": "6.28",
+    "desc": "ACCELERATOR PEDAL SPRING FREIGHTLINER"
+   }
+  },
+  {
+   "query": "SUBLET",
+   "card": "DOC 2 STAGE CLEANING SVC-SILVER-DOC Inventory Qty: 0 ea CHARGE 0 SUBLET DOC 2 STAGE ...",
+   "values": {
+    "cost": "0.00",
+    "sell": "425.00",
+    "desc": "DOC 2 STAGE CLEANING"
+   }
+  }
+ ]
+}

@@ -5,6 +5,29 @@
 
 ---
 
+## 🛑 §0 — THE MANDATORY SHAPE OF EVERY REPORT (Rule 98, QA lead 2026-09-01)
+
+**Verbatim:** *"Also make s rule to give me the report in the table format about what has been
+completed and what is left and why and how to complete that too and what is blocked on what and how
+to get unblocked on that and if the suite is ready to be handded of to the Manual Qa tester."*
+
+**Five tables, in this order, in EVERY report — status updates included, not just end-of-project
+ones.** The full text with all the column definitions is Rule 98 in
+[`../rules/RULES-61-98.md`](../rules/RULES-61-98.md); the skeleton is:
+
+| # | Table | The column that people forget, and why it matters |
+|---|---|---|
+| 1 | **What is complete** | **Evidence** — a row without it is a claim, not a completion (Rule 12) |
+| 2 | **What is left, why, and how to finish it** | **"Exactly how to finish it"** must be concrete enough for a DIFFERENT session to execute with no questions: the script, the data to seed, the case ids |
+| 3 | **What is blocked, and on what** | **"What it does NOT block"** — Rule 68; without it a blocker becomes an excuse for the whole pass |
+| 4 | **How to get unblocked** | **"The exact ask"**, phrased so he can act in one read, plus what resumes the moment it lands |
+| 5 | **Is the suite ready for the manual QA tester?** | The last row is a bare **YES / NO**, and it is **NO** unless every gate above it passed. Name the tester when YES |
+
+**Then Rule 36's `OUTSTANDING — what I need from you` closes the report.** Tables 3 and 4 feed that
+section; they do not replace it.
+
+---
+
 ## PURPOSE, IN PLAIN ENGLISH
 
 **Tell the QA lead, in one table, exactly what is done on a project and exactly what is not — before
