@@ -31,6 +31,43 @@
 - Re-supplied design + tech plan are IDENTICAL to authoring inputs (design content byte-identical; tech plan md5-identical). PRD moved **v38→v39**, delta non-substantive (Slack-link row only). **No case content changed**; provenance re-stamped v38→v39 on all 87; import regenerated (0 shredded, 87/87). Detail: reconcile-2026-08-25/RECONCILIATION-2026-08-25.md.
 
 
+## 🆕 Status — 2026-09-01 (developer answer on the Credit Invoice — CORROBORATION, plus one coverage gap)
+
+The QA lead relayed the developer's answer to *"what is a Credit Invoice"*. Recorded verbatim with a
+point-by-point comparison at
+`dev-answers-2026-09-01/DEV-ANSWER-credit-invoice-2026-09-01.md`.
+
+**It contradicts nothing.** Six of its eight points match spec v45 and the seven Credit Invoice cases
+word for word — including the masthead with no boxed figure, "Credit To" always full width with no
+Remit Payment To (already in C44965's own Expected Results), the hidden Invoice Number column, the
+credited-items columns with the leading-minus-not-parentheses distinction, the totals block being its
+own block rather than the Story 7 financial summary, and **the S11-R6a open-balance definition with
+Chris's 2026-08-12 "option (b)"** — which is independent corroboration of the one thing we had carried
+as a PO question (PO-1, closed by spec v45).
+
+**What is new, and it is a genuine gap.** The document is rendered by **two** providers —
+`CreditMemoPdfDataProvider` (refunds, account-level credits, portal refunds, void-invoice credits; may
+be money-only with no origin invoice) and `PartSaleCreditPdfDataProvider` (the legacy `part_sale_credit`
+from a part-sale return, **the only source of restocking fees**). Neither name, nor `part_sale_credit`,
+appears anywhere in `requirements.md` or the cases; S11-R6a names only the first. Two consequences:
+
+1. **C44967's precondition may be unreachable.** It says *"A Credit Invoice exists mixing a returned-part
+   line (with a restocking fee) and a money-only credit line."* If restocking fees exist only on the
+   part-sale path and money-only lines only on the credit-memo path, one document cannot hold both.
+   **Not asserted** — he did not say that, there is no QA build (Rule 85), and Rule 58 forbids resolving
+   an ambiguous source by guessing. **Question sent.** If the answer is "they cannot mix", the fix is a
+   split into two cases, with the Expected Results unchanged.
+2. **Coverage: one template, two producers, and D10 says the balance decision was applied to BOTH.** Our
+   cases say "a Credit Invoice" throughout and never say which kind, so all seven could be run on credit
+   memos and never touch the part-sale path — precisely where a two-provider divergence would hide.
+
+**Proposed and awaiting the QA lead:** name the credit kind in each precondition; run C44969 on both
+providers; anchor C44968 to a part-sale return; add **SV-7772** to C44966's `refs`.
+
+**No case was edited.** This suite belongs to the manual tester **Mudassir Qamar**, no write was
+authorised, and the developer's answer describes product source code — which establishes fact and is
+never a source of expectation (Rules 57 and 96).
+
 ## Status — 2026-08-31 (source re-verification v39→v45)
 - **Spec moved v39→v45** (Confluence 755990532). Exhaustive v39-vs-v45 rule-body diff (v39 snapshot in `intake-2026-08-21/sources/`) found **14 changed rules + 2 net-new**. All changes trace to the spec's own change log: Milomir build feedback (2026-08-26 / 2026-08-28) and Mudassir spec review (2026-08-27).
 - **Cases updated (content) to v45:** S3-R8 void/reversal unlock (INV-AUTH-04 C44922); S5-R6 "Part"→"Parts" (INV-WORK-04 C44932); S5-R7 nine Invoice-Details settings incl. Part number/description (INV-WORK-05 C44933); S8-R2 ordering tiebreak (INV-PAID-01 C44946); S8-R5 excess sub-line not deposit-gated + literal em-dash/arrow (INV-PAID-04 C44949); S11-R6a open-balance + partial-refund-and-applied note (INV-CRED-06 C44969); S12-R2 palette +#F8FAFC, scoped to light printed doc (INV-VIS-02 C44972); S12-R3 Parts-Sale accent (INV-VIS-03 C44973); S12-R4 label weight 750→700 + Inter identical on-screen/PDF (INV-VIS-04 C44974); S12-R7 POC-badge dropped (INV-VIS-07 C44977); S12-R9 label weight 750→700 (INV-VIS-09 C44979); S13-R6 void/reversal unlock (INV-PART-06 C44985). S2-R3 tester content unchanged (internal note fixed). S5-R9/S13-N1 re-stamp only.
