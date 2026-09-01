@@ -62,6 +62,58 @@ work, not something you author mid-pass.
 
 ---
 
+## 1a. 🛑 "I CANNOT OBSERVE THIS ON THE BUILD" IS **NOT** "BLOCKED"
+
+**READ THIS BEFORE §2. It is the fix for a real incident: on 2026-08-31 a session parked 18 cases as
+"blocked" when every one of them had a defined deliverable outcome already written down — and one of
+them had a full working recipe sitting in `build/APP-ACTIONS-PLAYBOOK.md` the whole time.** A VIU pass
+reaches more screens than any other lane, so it hits this more often than any other lane.
+
+**Work in this lane almost never STOPS. It CHANGES SHAPE.** When you cannot observe something, you do
+not get to stop — you pick the right outcome from this list:
+
+| What you actually hit | The outcome that is already defined for it |
+|---|---|
+| **Feature is not built yet** | **Rule 69** — `AUTOMATION: Not available on Build to test Yet - Last checked <M/D/YYYY>`, the under-development line, a `DEFERRED-RUN.md` row. **A finished case**, not a blocker; **excluded from any ready-to-automate figure**; substitutes for a plain `AUTOMATION: READY` **only**, never over an `EXPECT FAIL` or a `HOLD`. (`03-RUN-CHECK.md` §7) |
+| **A precondition needs the CUSTOMER PORTAL** | The **staging-only HOLD** — the literal below. Judge it from the **preconditions**, never from the word "portal". (`00-COMMON-CORE.md` §5.0-b(2)) |
+| **The source is ambiguous** | **Rule 58** — **hold the case and add a PO-question row.** An ambiguous source is **NEVER** resolved by looking at the build, and a wording change you cannot quote back to a source is **invalid**. |
+| **A data state you need does not exist** | **Rule 14 — SEED IT.** Seeding on a disposable environment is **pre-authorised, permanently** (`00-COMMON-CORE.md` §5.0-b(1)). **Never NOT-VERIFIED for a data state.** |
+| **The feature is there but you cannot find the control** | **Rule 97 search drill** (playbook first — the exact error text) **+ Rule 26 role reset**: an action you cannot find may be **role-gated and simply not rendered** — check the gate before calling it absent. Then the network tab, and grep the served JS bundle. |
+| **It is genuinely your own unfinished work** | **Say so plainly — "MINE".** That is the honest name for it, and it is never filed under a blocker. |
+
+**⇒ THE STAGING-ONLY CUSTOMER-PORTAL HOLD — a machine-findable literal, byte-exact, never reworded:**
+
+```
+AUTOMATION: HOLD - customer portal only exists on staging; this case cannot run on the QA branch
+```
+
+**QA lead, 2026-08-31, verbatim: *"Customer portal related tickets can only be tested on staging and
+not on the QA branch. We need to put this marker on such tickets aswell."*** Without it, **a label
+that lives on a portal surface is reported "absent" by any QA-branch probe, forever** — which in this
+lane means a VIU pass would "correct" a case's wording to match a screen the label was never on.
+**SCOPE IT FROM THE PRECONDITIONS, NEVER FROM THE WORD "PORTAL":** only a case whose preconditions
+require a **portal-generated artefact** gets it; **a case verifying the portal feature's ABSENCE on
+the shop-app path is fully testable on the QA branch and must NOT be parked** (2026-08-31: C44954 is
+build verified; C44947 / C44951 / C44952 / C45175 are staging-only). It is a **HOLD**, so the gate
+**READY + EXPECT-FAIL = total − HOLD** is unaffected.
+
+**ONLY AFTER ALL OF THE ABOVE does anything earn the word "blocked" — and then Rule 68 applies:
+"blocked" is a property of a QUESTION about a case, not of the case. DECOMPOSE, because part of the
+group is almost always testable, and STATE THE RESIDUAL: *"Blocked for X. Still possible under it: Y.
+Genuinely impossible until X clears: Z."*** Six checkable requirements: **`00-COMMON-CORE.md` §11.4.**
+
+**THE RULE 57 COROLLARY:** expected behaviour comes from the **DOCUMENTS**; from the build we take
+**exactly two things** — the **on-screen labels / navigation path** and the **pass / fail verdict**.
+**Therefore a case can be fully tester-ready and FINISHED with zero build access** — "no build access"
+is a statement about two fields, never about the case.
+
+**Canonical fuller treatment — read it, do not work from this table alone: `03-RUN-CHECK.md` §8.0-a**
+(*a check that fails is a statement about YOUR CHECK until you prove otherwise* — the positive-control
+gate, the one-token variant, and the MINE / BLOCKED-PROVEN / BLOCKED-EVIDENCED / NOT-YET-PROVEN
+classification you must report counts for).
+
+---
+
 ## 2. READ THESE FIRST, IN THIS ORDER
 
 1. **`build/skills/12-VIU.md`** — your own skill. Read it fully.
@@ -130,12 +182,18 @@ both stale; they are corrected rather than deleted so nobody re-derives them.
 6. **Rule 12 / 13** — VIU-Verified means **observed live with evidence captured that run**; for
    permission cases that means driving the UI **as** the role, per role, per environment. Never
    derived from role definitions, `fe_permissions`, atoms or code.
-7. **Rule 14** — seed, don't block.
+7. **Rule 14** — **seed, don't block.** A missing data state is never an acceptable blocker on a
+   disposable environment, and **never a NOT-VERIFIED**; seeding there is **pre-authorised,
+   permanently** (`00-COMMON-CORE.md` §5.0-b(1)). Roles, staff records and settings are the exception
+   (core §7.3), and you may never manufacture the condition under test (core §7.4).
 8. **Rule 17** — the whole population, with the exact totals stated.
 9. **Rule 22** — ask for the live-build check and the access **up front**.
 10. **Rule 25** — every deviation quotes its source verbatim; an unsupported assertion is **removed or
     made scope-conditional (Rule 42)**, never replaced with what the build does.
 11. **Rule 26 / 26a** — reset roles to template first; re-reset persistently on mid-run drift.
+    **And the inverse framing, which is how this rule usually bites a VIU: an action or a label you
+    cannot find may be ROLE-GATED and simply not rendered for the role you are in — check the gate
+    before you call it absent, and before you "correct" a case's wording to match a screen.**
 12. **Rule 29** — commit and push after every step and **mid-run**; path-scoped `git add` only; keep
     per-operation logs so a killed push can be resumed exactly.
 13. **Rule 31 / 59** — source currency first, and **re-read the sources immediately before the writes
@@ -150,16 +208,30 @@ both stale; they are corrected rather than deleted so nobody re-derives them.
 19. **Rule 54** — the two-sentence provenance line, **re-stamped in the same push**; sentence 1 names
     documents only; *"as per the build tested on …"* is **barred**.
 20. **Rule 56** — disclose a divergence where one exists; never manufacture one where it does not.
-21. **Rule 57** — the build supplies **only** labels and the verdict. A closed ticket is not a spec
-    change.
-22. **Rule 58** — an ambiguous source is never resolved from the build: hold and ask. **Quote-back
+21. **Rule 57** — the build supplies **only** labels/navigation and the verdict. A closed ticket is
+    not a spec change. **⇒ a case can be tester-ready and FINISHED with zero build access (§1a).**
+22. **Rule 58** — an ambiguous source is never resolved from the build: **hold the case and add a
+    PO-question row** — a held case plus a question is the deliverable, not a blocker. **Quote-back
     test:** an expectation that cannot be quoted from a source makes the edit **invalid**.
 23. **Rule 61** — every expect-fail case names the symptom and the three outcomes; **ticket status is
     never evidence about the build**.
 24. **Rule 62** — no Jira ticket without permission (currently under a **"create nothing"** hold).
 25. **Rule 71** — automated cases: read-assess → report → **HOLD**.
-26. **Rule 74** — multi-login standard: reset role to template → assign to the Technician quick-login
-    → test → restore Technician.
+26. **Rule 74** — **no PRESENT feature is left un-build-verified.** This is a coverage obligation, not
+    a login mechanic: **seed the data and log in as whatever role the feature needs**, and the only
+    acceptable un-verified feature is one that is **genuinely absent from the build** (→ Rule 69) or
+    **genuinely unreachable on it** (→ the staging-only portal HOLD). The multi-login mechanic — reset
+    role to template → assign to the Technician quick-login → test → restore Technician — is **how**
+    you satisfy it, never the whole of it.
+26a. **Rule 68** — **a blocker must be PROVED and blocks only what it ACTUALLY blocks.** *"We could
+    not see a way"* is an assumption; *"we tried A, B and C and here is what each returned"* is a
+    measurement. **DECOMPOSE and state the residual** (`00-COMMON-CORE.md` §11.4). See §1a — most
+    things reported as blocked are not.
+26b. **Rule 69** — a case that **cannot yet be build-verified** keeps its **documented** expectation,
+    carries **`AUTOMATION: Not available on Build to test Yet - Last checked <M/D/YYYY>`**, gets the
+    under-development line and a `DEFERRED-RUN.md` row: a **FINISHED case, NOT a blocker**, excluded
+    from any ready-to-automate figure. Substitutes for a plain `AUTOMATION: READY` **only**.
+    Procedure: **`03-RUN-CHECK.md` §7**.
 27. **Rule 77** — validity window: ≤3 builds and ≤3 source versions still counts, **but show the
     date**.
 28. **Rules 75 / 76 / 79** — detached-process architecture, quota discipline, strategy first.

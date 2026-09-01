@@ -61,6 +61,54 @@ get wrong, or a case belonging to another lane that looks stale, **write it down
 
 ---
 
+## 1a. 🛑 NO BUILD ACCESS IS NOT A BLOCKER ON THIS LANE — AND YOU STILL OWN THE MARKERS
+
+**READ THIS BEFORE §2.** On 2026-08-31 a session in the neighbouring lane parked **18 cases as
+"blocked"** when every one of them already had a defined deliverable outcome written down. That
+mistake is available to this lane too, in a slightly different shape: **waiting on the build.**
+
+**THE RULE 57 COROLLARY, AND FOR THIS LANE IT IS THE WHOLE POINT.** Expected behaviour comes from the
+**DOCUMENTS** — spec/PRD, the epic's stories, the PO's verified answers, the design, Figma, the
+technical design. From the build we take **exactly two things**: the **on-screen labels / navigation
+path**, and the **pass / fail verdict**. **Therefore a case can be fully authored, tester-ready and
+FINISHED with zero build access.** *"No build"*, *"the branch is down"*, *"cookies are 401"* are
+statements about **two fields**, never about the case. Author it, mark the unconfirmable labels
+**"VIU-confirm"** (Rule 9), and hand the label pass to lane 3 — **do not stop, and never park the
+requirement.**
+
+**AND YOU DECIDE THE MARKER, so you must know the two that are not `AUTOMATION: READY`.** Both are
+machine-findable literals — **byte-exact, never reworded**:
+
+| What the requirement needs | The marker you author it with |
+|---|---|
+| **The feature is not built yet** (Rule 69) | `AUTOMATION: Not available on Build to test Yet - Last checked <M/D/YYYY>` — plus the under-development line and a `DEFERRED-RUN.md` row. It is a **FINISHED case, NOT a blocker**, it keeps its **documented** expectation, it is **excluded from any ready-to-automate figure**, and it substitutes for a **plain `AUTOMATION: READY` only** — never over an `EXPECT FAIL` or a `HOLD`. Procedure: `03-RUN-CHECK.md` §7. |
+| **A precondition requires a customer-portal artefact** | `AUTOMATION: HOLD - customer portal only exists on staging; this case cannot run on the QA branch` — the portal does not exist on a QA branch, so the case can only ever run on staging. Canonical: `00-COMMON-CORE.md` §5.0-b(2). |
+
+**⇒ SCOPE THE PORTAL HOLD FROM THE CASE'S PRECONDITIONS, NEVER FROM THE WORD "PORTAL".** Only a case
+whose **preconditions require a portal-generated artefact** gets it. **A case that verifies the portal
+feature's ABSENCE on the shop-app path is fully testable on the QA branch and must NOT be parked** —
+2026-08-31 worked example: C44954 (*"No paid banner when the invoice has no portal-processed
+payment"*) is build verified, while C44947 / C44951 / C44952 / C45175 are staging-only. It is a
+**HOLD**, so the CLAUDE.md arithmetic gate **READY + EXPECT-FAIL = total − HOLD** is unaffected.
+
+**THE OTHER TWO SHAPES YOU WILL HIT WHILE AUTHORING, AND NEITHER IS "BLOCKED":**
+
+- **The source is ambiguous** → **Rule 58: HOLD the case and add a PO-question row.** The deliverable
+  is *a held case plus a question*, not a blocker — and an ambiguous source is **NEVER** resolved by
+  looking at the build.
+- **You cannot find something in the repo / a source** → the **Rule 97 search drill** (the mandatory
+  section near the end of this file) **before** you report it as unavailable.
+
+**ONLY AFTER ALL OF THE ABOVE does anything earn the word "blocked" — and then Rule 68 applies:
+"blocked" is a property of a QUESTION about a case, not of the case. DECOMPOSE, and STATE THE
+RESIDUAL: *"Blocked for X. Still possible under it: Y. Genuinely impossible until X clears: Z."***
+The six checkable requirements are in **`00-COMMON-CORE.md` §11.4** — read them there.
+
+**Canonical fuller treatment — read it, do not work from this section alone:
+`03-RUN-CHECK.md` §8.0-a.**
+
+---
+
 ## 2. READ THESE FIRST, IN THIS ORDER
 
 1. **`build/skills/10-TEST-CASE-CREATION.md`** — your own skill. Read it fully; it is the operating
@@ -158,9 +206,19 @@ both stale; they are corrected rather than deleted so nobody re-derives them.
     extremely simple language.
 25. **Rule 56** — disclose a divergence where one exists; never manufacture one where it does not.
 26. **Rule 57** — expected behaviour comes only from documents (a)–(g); the build is never a source,
-    and the list is open-ended.
-27. **Rule 58** — an ambiguous source is never resolved from the build: hold and ask.
+    and the list is open-ended. **⇒ a case is authorable and FINISHABLE with zero build access — see
+    §1a.**
+27. **Rule 58** — an ambiguous source is never resolved from the build: **hold the case and add a
+    PO-question row.** A held case plus a question is the deliverable; it is not a blocker.
 28. **Rule 61** — every expect-fail case names the symptom and all three outcomes.
+28a. **Rule 69** — a requirement whose feature is **not built yet** is authored to completion with
+    **`AUTOMATION: Not available on Build to test Yet - Last checked <M/D/YYYY>`**, the
+    under-development line and a `DEFERRED-RUN.md` row. **A FINISHED case, not a blocker**, excluded
+    from any ready-to-automate figure (§1a; `03-RUN-CHECK.md` §7).
+28b. **Rule 68** — **a blocker must be PROVED and blocks only what it ACTUALLY blocks.** "Blocked" is
+    a property of a **question** about a case, not of the case. **DECOMPOSE and state the residual**
+    (`00-COMMON-CORE.md` §11.4). Most things reported as blocked have a defined outcome instead —
+    §1a's list.
 29. **Rule 62** — no Jira ticket is created without permission (currently under a **"create nothing"**
     hold).
 30. **Rules 75 / 76 / 79** — detached-process architecture, quota discipline, strategy first.
