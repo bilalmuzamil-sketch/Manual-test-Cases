@@ -6,7 +6,12 @@ import { boot, APP } from './boot9315.mjs';
 import fs from 'fs';
 const OUT = 'build/inline-add-edit-parts/build-verify-2026-09-01';
 const WO = process.env.WO || 'c6d4b883-6f78-4c9e-ab7e-436a6d99c17a';
-const PART = process.env.PART || 'N68SL-356';
+// S31S-950 is held in FOUR bins - SKID1 6 (Default), ST20 4, ST24 4, ST25 3, total 17 - which makes
+// the "+ N" collapse chip, the multi-bin picker, the auto-switch note, the split label and the
+// Bin Locations Auto/Apply flow all observable on one part. It was there all along: the inventory
+// API ignores rowsPerPage and page and only honours pagination[rowsPerPage] / pagination[page], so
+// the first survey read 100 of 6,879 parts and concluded no multi-bin part existed.
+const PART = process.env.PART || 'S31S-950';
 const ONLY = (process.env.ONLY || '').split(',').filter(Boolean);
 const RESULTS_FILE = `${OUT}/evidence/probe-bins2.json`;
 const results = (() => { try { return JSON.parse(fs.readFileSync(RESULTS_FILE, 'utf8')); } catch (_) { return {}; } })();
@@ -170,6 +175,149 @@ P['S4-split-apply'] = async () => {
   const afterApply = await state();
   await page.screenshot({ path: `${OUT}/evidence/bin2-split-apply.png`, fullPage: true });
   return { splitClicked, modal, autoClicked, afterAuto, enteredAmounts: entered, applyClicked, afterApply };
+};
+
+
+// S7-R15 (C45235): a bin already at a negative on-hand shows in error styling and does not block.
+// TP-12-1013-CH holds LGRACK -1 and D1F 3 (Default).
+P['S5-negative-bin'] = async () => {
+  await openRow();
+  await page.evaluate(() => { const s = document.querySelector('[data-test-id="select_inline_part_number"]');
+    const i = s && (s.matches('input') ? s : s.querySelector('input')); (i || s)?.click(); });
+  await page.waitForTimeout(900);
+  await page.keyboard.type('TP-12-1013-CH', { delay: 55 });
+  await page.waitForTimeout(3800);
+  const cards = await page.evaluate(() => [...document.querySelectorAll('.q-menu .q-item')]
+    .map(e => (e.innerText || '').replace(/\s+/g, ' ').trim()).slice(0, 5));
+  await page.evaluate(() => document.querySelector('.q-menu .q-item')?.click());
+  await page.waitForTimeout(4500);
+  await set('input_inline_part_quantity', '2');
+  await page.waitForTimeout(2500);
+  const chip = await state();
+  await openPicker();
+  const picker = await page.evaluate(() => {
+    const m = document.querySelector('.q-menu') || document.querySelector('.q-dialog');
+    return m ? { items: [...m.querySelectorAll('.q-item')].map(e => ({
+      text: (e.innerText || '').replace(/\s+/g,' ').trim(),
+      errorStyled: /negative|error|text-red|text-negative|warn/.test(e.className + ' ' +
+        [...e.querySelectorAll('*')].map(c => c.className).join(' ')) })).slice(0, 12) } : null; });
+  const splitClicked = await page.evaluate(() => {
+    const it = [...document.querySelectorAll('.q-menu .q-item, .q-dialog .q-item')].find(e => /split across/i.test(e.innerText || ''));
+    if (!it) return false; it.click(); return true; });
+  await page.waitForTimeout(4500);
+  const modal = await page.evaluate(() => {
+    const d = document.querySelector('.q-dialog');
+    if (!d) return { open: false };
+    return { open: true,
+      rows: [...d.querySelectorAll('tr')].map(r => ({
+        text: (r.innerText || '').replace(/\s+/g,' ').trim().slice(0, 100),
+        errorStyled: /negative|error|text-red|text-negative/.test(r.className + ' ' +
+          [...r.querySelectorAll('*')].map(c => c.className).join(' ')) })).filter(r => r.text),
+      applyDisabled: !!d.querySelector('[data-test-id="button_apply_bin_locations"]')?.disabled };
+  });
+  await page.screenshot({ path: `${OUT}/evidence/bin2-negative.png`, fullPage: true });
+  return { cards, chip, picker, splitClicked, modal };
+};
+
+// S4-E1 (C45060): a catalog part with NO cost and NO sell price on record opens those fields empty.
+// 6050-P has neither.
+P['S6-no-prices'] = async () => {
+  await openRow();
+  await page.evaluate(() => { const s = document.querySelector('[data-test-id="select_inline_part_number"]');
+    const i = s && (s.matches('input') ? s : s.querySelector('input')); (i || s)?.click(); });
+  await page.waitForTimeout(900);
+  await page.keyboard.type('6050-P', { delay: 60 });
+  await page.waitForTimeout(3800);
+  const cards = await page.evaluate(() => [...document.querySelectorAll('.q-menu .q-item')]
+    .map(e => (e.innerText || '').replace(/\s+/g, ' ').trim()).slice(0, 5));
+  await page.evaluate(() => document.querySelector('.q-menu .q-item')?.click());
+  await page.waitForTimeout(4500);
+  const vals = await page.evaluate(() => {
+    const g = i => { const e = document.querySelector(`[data-test-id="${i}"]`);
+      const n = e && (e.matches('input') ? e : e.querySelector('input')); return n ? n.value : null; };
+    return { desc: g('input_inline_part_description'), part: g('select_inline_part_number'),
+             cost: g('input_inline_part_cost'), sell: g('input_inline_part_sell_price') };
+  });
+  // and confirm the row refuses to save while they are empty
+  await set('input_inline_part_quantity', '1');
+  await page.evaluate(() => document.querySelector('[data-test-id="button_save_inline_part"]')?.click());
+  await page.waitForTimeout(3200);
+  const after = await page.evaluate(() => ({
+    rowOpen: !!document.querySelector('[data-test-id="inline_part_row"]'),
+    sentence: (document.body?.innerText || '').match(/Enter a[^\n]*to save this part\./)?.[0] || null }));
+  await page.screenshot({ path: `${OUT}/evidence/bin2-no-prices.png`, fullPage: true });
+  return { cards, valuesAfterSelecting: vals, saveAttempt: after };
+};
+
+
+// S7-R10 (C45230): the auto-switch NOTE needs a Default that is BELOW the quantity while another
+// SINGLE bin covers it. S31S-950 cannot show it - its Default (SKID1 6) is its largest bin, so per
+// S7-R3 the allocation correctly STAYS on the Default and no note is due. P550848 is the right
+// shape: H3B 6 is the Default and A2CA holds 50.
+P['S7-default-switch'] = async () => {
+  const pick = async (q) => {
+    await page.evaluate(() => { const s = document.querySelector('[data-test-id="select_inline_part_number"]');
+      const i = s && (s.matches('input') ? s : s.querySelector('input')); (i || s)?.click(); });
+    await page.waitForTimeout(900);
+    await page.keyboard.type(q, { delay: 55 });
+    await page.waitForTimeout(3800);
+    const cards = await page.evaluate(() => [...document.querySelectorAll('.q-menu .q-item')]
+      .map(e => (e.innerText || '').replace(/\s+/g, ' ').trim()).slice(0, 4));
+    await page.evaluate(() => document.querySelector('.q-menu .q-item')?.click());
+    await page.waitForTimeout(4500);
+    return cards;
+  };
+  await openRow();
+  const cards = await pick('P550848');
+  const atSelect = await state();
+  await set('input_inline_part_quantity', '4');       // Default H3B holds 6, so it covers 4
+  await page.waitForTimeout(4000);
+  const withinDefault = await state();
+  await set('input_inline_part_quantity', '10');      // Default 6 < 10, and A2CA (50) covers it
+  await page.waitForTimeout(4500);
+  const overDefault = await state();
+  await page.screenshot({ path: `${OUT}/evidence/bin2-default-switch.png`, fullPage: true });
+  return { cards, atSelect, quantity4_withinDefault: withinDefault, quantity10_overDefault: overDefault };
+};
+
+// S7-E2 (C45243): a SPLIT allocation never shows the takes-negative warning, even when one of the
+// bins in the split is short. Built on P550848 by splitting across H3B and A2CA.
+P['S8-split-never-warns'] = async () => {
+  await openRow();
+  await page.evaluate(() => { const s = document.querySelector('[data-test-id="select_inline_part_number"]');
+    const i = s && (s.matches('input') ? s : s.querySelector('input')); (i || s)?.click(); });
+  await page.waitForTimeout(900);
+  await page.keyboard.type('P550848', { delay: 55 });
+  await page.waitForTimeout(3800);
+  await page.evaluate(() => document.querySelector('.q-menu .q-item')?.click());
+  await page.waitForTimeout(4500);
+  await set('input_inline_part_quantity', '8');
+  await page.waitForTimeout(3000);
+  await openPicker();
+  const splitClicked = await page.evaluate(() => {
+    const it = [...document.querySelectorAll('.q-menu .q-item, .q-dialog .q-item')].find(e => /split across/i.test(e.innerText || ''));
+    if (!it) return false; it.click(); return true; });
+  await page.waitForTimeout(4500);
+  const modalRows = await page.evaluate(() => {
+    const d = document.querySelector('.q-dialog');
+    return d ? [...d.querySelectorAll('tr')].map(r => (r.innerText || '').replace(/\s+/g,' ').trim()).filter(Boolean).slice(0, 10) : null; });
+  // put MORE into the small bin than it holds, and the rest into the big one, then Apply
+  const entered = await page.evaluate(() => {
+    const d = document.querySelector('.q-dialog');
+    const ins = [...(d?.querySelectorAll('input') || [])];
+    const vals = [];
+    ins.slice(0, 2).forEach((i, n) => { i.focus(); i.value = String(n === 0 ? 7 : 3);
+      i.dispatchEvent(new Event('input', { bubbles: true })); i.dispatchEvent(new Event('change', { bubbles: true }));
+      vals.push(i.value); });
+    return vals; });
+  await page.waitForTimeout(2200);
+  const applied = await page.evaluate(() => {
+    const b = document.querySelector('[data-test-id="button_apply_bin_locations"]');
+    if (!b) return 'no apply button'; if (b.disabled) return 'disabled'; b.click(); return true; });
+  await page.waitForTimeout(4500);
+  const after = await state();
+  await page.screenshot({ path: `${OUT}/evidence/bin2-split-no-warn.png`, fullPage: true });
+  return { modalRows, enteredAmounts: entered, applied, after };
 };
 
 const names = Object.keys(P).filter(n => !ONLY.length || ONLY.some(o => n.startsWith(o)));
