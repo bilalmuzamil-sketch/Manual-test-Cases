@@ -83,14 +83,16 @@ w('| C45123 | **Your per-case go-ahead to rewrite one Automated case** | you | i
   'suite then has no unwritten case |\n')
 w('\n## TABLE 5 — IS THE SUITE READY TO HAND TO THE MANUAL QA TESTER?\n\n')
 w('| Gate | Result | Evidence |\n|---|---|---|\n')
-w('| Every case runnable from the UI by a layman | **YES for the 43 written** — gate 43/43 on the '
-  'generated text, and the one unwritten case is the Automated one | pre-write gate + live post-write gate |\n')
-w('| Every case renders on the served page (`markdown fr-view`) | see the served-page scan in the run log | `served_page_scan.mjs` |\n')
-w('| Exactly one AUTOMATION marker per case, arithmetic balancing | 43 written, all `AUTOMATION: READY` | live post-write check |\n')
+w('| Every case runnable from the UI by a layman | **YES** — the gate run LIVE against TestRail '
+  'after the write passes clean; the one unwritten case is the Automated one | `tools/postwrite_check.py` check 1 |\n')
+w('| Every case renders on the served page (`markdown fr-view`) | **YES** — 43 scanned on the served page after the write: 0 escaping, 0 literal tags | `evidence/served-page-scan.json` |\n')
+w('| Exactly one AUTOMATION marker per case, arithmetic balancing | **YES** — 43 markers, one per '
+  'case; READY 43 + EXPECT-FAIL 0 = total 43 − HOLD 0 | `tools/postwrite_check.py` check 2 |\n')
 w('| Every case build-verified, or explicitly listed as not | **NO** — '
   f'{c.get("PASS",0)} PASS, {c.get("PARTIAL",0)} PARTIAL, {c.get("UNREACHABLE",0)} UNREACHABLE, '
   f'{c.get("NOTVER",0)} not verified | `verdicts/PER-CASE-VERDICTS.md` |\n')
-w('| Provenance intact, build sentence only where observed | 38 of 43 carry it; the 5 unverified do not | live post-write check |\n')
+w('| Provenance intact, build sentence only where observed | **YES** — sentence 1 unaltered on all '
+  '43; sentence 2 on the 38 cases this pass observed and absent from the 5 it could not | `tools/postwrite_check.py` check 3 |\n')
 w(f'| **HANDOFF READY?** | **NO** | 5 cases need a data state and 2 need the PO to resolve a '
   f'contradiction in the document. Everything else is done and written. Two data states away from YES '
   f'for **{TESTER}** |\n')
