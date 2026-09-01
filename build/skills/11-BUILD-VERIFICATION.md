@@ -137,3 +137,28 @@ Full texts: `build/rules/RULES-01-20.md` · `RULES-21-40.md` · `RULES-41-60.md`
   build-verified**, with the build marker. **A bare tick is non-compliant** (Rule 12). Rule 91 is
   **visibility**; Rule 77 is **validity** — a case inside Rule 77's 3-build window may still show 🟠
   or 🔴, and that is intended. Tool: `build/testing-tools/verification_badge.py` (requires `--today`).
+
+
+---
+
+## 🔴 THE LANE IS NOT FINISHED UNTIL EVERY CASE IS RUNNABLE (QA lead, 2026-09-01)
+
+Build verification has **two** deliverables of equal standing, not one:
+
+1. **The verdicts** — observed live, with evidence (Rules 12/13).
+2. **RUNNABILITY** — every case in the suite carries preconditions and steps a manual tester can
+   follow from the UI. Not only the cases verified this run: **every case in the suite.**
+
+> QA lead, verbatim: *"ONE of the major part of build verification is TO make the steps of
+> replication and preconditions RUNNABLE and not to keep those test cases the spec level test
+> cases. Make sure you do never fail in that part and this thing never bites me."*
+
+**Before reporting a suite done, run the gate and drive it to zero:**
+
+```
+python3 build/testing-tools/check_runnable_cases.py --section-prefix "Invoice Refresh (Aug 2026)"
+```
+
+It reads TestRail live and exits 1 while any case is still spec-level. A green verdict table on top
+of spec-level steps is an unfinished lane, and it is the failure the QA lead has now called out
+twice. Procedure and calibration: `build/skills/18-LAYMAN-UI-STEPS.md`.

@@ -65,6 +65,13 @@ def text_of(v):
     v = re.sub(r'<[^>]+>', '\n', v)
     return [l.strip() for l in html.unescape(v).split('\n') if l.strip()]
 
+def is_api_case(case, blob):
+    """A deliberate API-level case (Rule 4). Its API wording is its SUBSTANCE, not jargon that
+    strayed in: the whole point is that the back end enforces a rule when the screen is bypassed.
+    Such a case is still held to R1-R4 -- it must say how to reach the record in the app first --
+    but R5 is waived, because stripping the endpoint would delete the test."""
+    return '/api/' in blob or re.search(r'\bAPI\b', case.get('title', '') or '') is not None
+
 def audit(case):
     pre  = text_of(case.get('custom_preconds'))
     step = text_of(case.get('custom_steps'))
@@ -75,9 +82,10 @@ def audit(case):
     if not SCREEN.search(blob):       fails.append('R1 no entry point: no top-menu screen is named')
     if not NAV.search(blob):          fails.append('R2 no navigation instruction (click / open / go to)')
     if not TAB.search(blob):          fails.append('R3 nothing to aim at: no tab, panel, menu, icon, button, column or row')
-    for rx, why in JARGON:
-        m = rx.search(blob)
-        if m:                         fails.append(f'R5 jargon a tester will not understand: {why} -- {m.group(0)!r}')
+    if not is_api_case(case, blob):
+        for rx, why in JARGON:
+            m = rx.search(blob)
+            if m:                     fails.append(f'R5 jargon a tester will not understand: {why} -- {m.group(0)!r}')
     # R4: THE FIRST STEP MUST PUT THE TESTER SOMEWHERE.
     # Calibration matters here. Requiring EVERY step to name a place over-fires badly: once step 1
     # has the document on screen, "Look at the masthead" is exactly right and repeating the click

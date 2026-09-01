@@ -1,0 +1,171 @@
+{
+ "44946": {
+  "provenance": [
+   "This is the expected behaviour as per epic SV-8218 and story SV-9147 (Story 8, Paid Banner, Payments and Balance) and the Invoice UI Refresh specification version 45, section S8-R2, read on 31 August 2026."
+  ],
+  "marker_carried": "AUTOMATION: READY",
+  "title": "Payments heading and each applied payment row show correctly",
+  "atm": 1,
+  "before": {
+   "custom_preconds": "<p>1. You are signed in to ShopView.<br>2. An Invoice exists with two or more applied payments made on different dates by different methods.<br>3. To put the document on screen: click \"Work Orders\" in the top menu, open the work order you need, then click the \"Finance\" tab. The document appears on the right.<br>4. Use the \"Estimate/Invoice\" toggle above the document to switch between the Estimate and the Invoice.<br>5. The printer icon prints the document and the download icon saves it. The cog icon opens the invoice display settings (Labor rate, Labor hours, Labor price, Summarize labor total, Summarize parts total, Part number, Part description).</p>",
+   "custom_steps": "<p>1. Generate the Invoice.<br>2. Find the Payments section and read each payment row.</p>"
+  },
+  "before_expected_s2": null
+ },
+ "44948": {
+  "provenance": [
+   "This is the expected behaviour as per epic SV-8218 and story SV-9147 (Story 8, Paid Banner, Payments and Balance) and the Invoice UI Refresh specification version 45, section S8-R4, read on 31 August 2026."
+  ],
+  "marker_carried": "AUTOMATION: READY",
+  "title": "Deposit and applied customer-account credit show as labeled payment rows",
+  "atm": 1,
+  "before": {
+   "custom_preconds": "<p>1. You are signed in to ShopView.<br>2. An Invoice has a deposit applied and an applied customer-account credit (with a CM- number).<br>3. To put the document on screen: click \"Work Orders\" in the top menu, open the work order you need, then click the \"Finance\" tab. The document appears on the right.<br>4. Use the \"Estimate/Invoice\" toggle above the document to switch between the Estimate and the Invoice.<br>5. The printer icon prints the document and the download icon saves it. The cog icon opens the invoice display settings (Labor rate, Labor hours, Labor price, Summarize labor total, Summarize parts total, Part number, Part description).</p>",
+   "custom_steps": "<p>1. Generate the Invoice.<br>2. Read the deposit row and the applied-credit row in the Payments section.</p>"
+  },
+  "before_expected_s2": null
+ },
+ "44959": {
+  "provenance": [
+   "This is the expected behaviour as per epic SV-8218 and story SV-9149 (Story 10, Estimate and Invoice Specifics) and the Invoice UI Refresh specification version 45, section S10-R1, read on 31 August 2026."
+  ],
+  "marker_carried": "AUTOMATION: READY",
+  "title": "Estimate and Invoice differ only as Section 3 specifies",
+  "atm": 1,
+  "before": {
+   "custom_preconds": "<p>1. You are signed in to ShopView.<br>2. You can generate an Estimate and an Invoice from the same underlying work order.<br>3. To put the document on screen: click \"Work Orders\" in the top menu, open the work order you need, then click the \"Finance\" tab. The document appears on the right.<br>4. Use the \"Estimate/Invoice\" toggle above the document to switch between the Estimate and the Invoice.<br>5. The printer icon prints the document and the download icon saves it. The cog icon opens the invoice display settings (Labor rate, Labor hours, Labor price, Summarize labor total, Summarize parts total, Part number, Part description).</p>",
+   "custom_steps": "<p>1. Generate the Estimate and the Invoice.<br>2. Compare them section by section.</p>"
+  },
+  "before_expected_s2": null
+ },
+ "44964": {
+  "provenance": [
+   "This is the expected behaviour as per epic SV-8218 and story SV-9150 (Story 11, Credit Invoice) and the Invoice UI Refresh specification version 45, sections S11-R1 and S1-R6, read on 31 August 2026."
+  ],
+  "marker_carried": "AUTOMATION: READY",
+  "title": "Credit Invoice masthead shows 'Credit: {number}' and 'Issue date', no money",
+  "atm": 1,
+  "before": {
+   "custom_preconds": "<p>1. You are signed in to ShopView.<br>2. You can generate a Credit Invoice (credit number carries the CM- prefix).<br>3. Your active location must be the location the credit was issued at. Credits are location-specific: a credit issued at another location does not appear in the customer's Invoices list at all.<br>4. To open the Credit Invoice: click \"Customers\" in the top menu, open the customer, click the \"Invoices\" tab, find the credit's row (its number, for example CM-100, appears in the \"Invoice #\" column next to ordinary invoice numbers), then click the print icon at the right of that row (its tooltip reads \"Print credit memo\").<br>5. If the credit is fully applied or fully refunded, turn the \"Open only\" filter off first, or its row is not listed.</p>",
+   "custom_steps": "<p>1. Click \"Customers\" in the top menu, open the customer, open the \"Invoices\" tab, find the credit's row (its CM- number in the \"Invoice #\" column), and click the print icon (tooltip \"Print credit memo\") to open the Credit Invoice.<br>2. Read the masthead.</p>"
+  },
+  "before_expected_s2": null
+ },
+ "44978": {
+  "provenance": [
+   "This is the expected behaviour as per epic SV-8218 and story SV-9151 (Story 12, Document Visual Standard) and the Invoice UI Refresh specification version 45, section S12-R8, and the Design Document, read on 31 August 2026."
+  ],
+  "marker_carried": "AUTOMATION: READY",
+  "title": "Work-section rules and dividers follow the specified treatment",
+  "atm": 1,
+  "before": {
+   "custom_preconds": "<p>1. You are signed in to ShopView.<br>2. You can generate a document with several work lines, at least one having fee/discount adjustment rows.<br>3. To put the document on screen: click \"Work Orders\" in the top menu, open the work order you need, then click the \"Finance\" tab. The document appears on the right.<br>4. Use the \"Estimate/Invoice\" toggle above the document to switch between the Estimate and the Invoice.<br>5. The printer icon prints the document and the download icon saves it. The cog icon opens the invoice display settings (Labor rate, Labor hours, Labor price, Summarize labor total, Summarize parts total, Part number, Part description).</p>",
+   "custom_steps": "<p>1. Generate the document.<br>2. Inspect the rules and dividers in the work section.</p>"
+  },
+  "before_expected_s2": null
+ },
+ "44987": {
+  "provenance": [
+   "This is the expected behaviour as per epic SV-8218 and story SV-9195 (Story 13, Parts Sale Estimate and Invoice) and the Invoice UI Refresh specification version 45, section S13-N1, and story SV-9193 (deferred), read on 31 August 2026."
+  ],
+  "marker_carried": "AUTOMATION: READY",
+  "title": "Batch and imported invoices are out of scope (kept on current templates)",
+  "atm": 1,
+  "before": {
+   "custom_preconds": "<p>1. You are signed in to ShopView.<br>2. You can generate a batch invoice and an imported invoice.<br>3. Batch invoices and imported invoices are out of scope for this project (deferred to SV-9193). The Invoice UI Refresh does not restyle them and the path to generate them is to be confirmed on the build; this case only confirms they are left on their current template.</p>",
+   "custom_steps": "<p>1. Open a batch invoice and an imported invoice on the build (path to be confirmed there).<br>2. Confirm they are not restyled by this project.</p>"
+  },
+  "before_expected_s2": null
+ },
+ "45168": {
+  "provenance": [
+   "This is the expected behaviour as per epic SV-8218 and story SV-9141 (Story 2, Addresses) and the Invoice UI Refresh specification version 45, section S2-R3, read on 31 August 2026."
+  ],
+  "marker_carried": "AUTOMATION: READY",
+  "title": "Credit Invoice never shows Remit Payment To and Credit To spans full width",
+  "atm": 1,
+  "before": {
+   "custom_preconds": "<p>1. Credit invoice for a shop that HAS a remit-to payee configured<br>2. Your active location is set to the location the credit was issued at. Credits are location-specific: a credit issued at another location does not show in the customer's Invoices list at all - no row and no print button.<br>3. To open the document: Customers, open the customer, Invoices tab, find the credit's row (its credit number, for example CM-100, appears in the Invoice # column next to ordinary invoice numbers), then click the print icon at the right of that row (its tooltip reads \"Print credit memo\").<br>4. If the credit has been fully applied or fully refunded, turn the \"Open only\" filter off first, or its row is not listed.</p>",
+   "custom_steps": "<p>1. Open the Credit Invoice preview</p>"
+  },
+  "before_expected_s2": null
+ },
+ "45169": {
+  "provenance": [
+   "This is the expected behaviour as per epic SV-8218 and story SV-9142 (Story 3, Order Reference Fields) and the Invoice UI Refresh specification version 45, section S3-R8, read on 31 August 2026."
+  ],
+  "marker_carried": "AUTOMATION: READY",
+  "title": "Authorizer change is rejected by the API while a non-voided invoice exists",
+  "atm": 1,
+  "before": {
+   "custom_preconds": "<p>1. You are signed in to ShopView and have API access (a valid session token).<br>2. Invoiced work order<br>3. To reach the work order in the app: click \"Work Orders\" in the top menu and open the work order.<br>4. To set up the customer's contacts: click \"Customers\" in the top menu, open the customer, click the \"Contacts\" tab (the \"Approves Work\" checkbox marks a contact as an approver).</p>",
+   "custom_steps": "<p>1. Prepare the work order and its customer contacts as described in the preconditions (Work Orders to open the work order; Customers -&gt; Contacts to set \"Approves Work\").<br>2. POST /api/work-orders/change-authorizer with a valid authorizer_id directly (bypass the UI) (body: {\"workOrderId\": \"&lt;work order id&gt;\", \"authorizerContactId\": \"&lt;contact id&gt;\"})</p>"
+  },
+  "before_expected_s2": null
+ },
+ "45181": {
+  "provenance": [
+   "This is the expected behaviour as per epic SV-8218 and story SV-9150 (Story 11, Credit Invoice) and the Invoice UI Refresh specification version 45, section S11-R6a, read on 31 August 2026."
+  ],
+  "marker_carried": "AUTOMATION: READY",
+  "title": "Credit Invoice Balance reads $0.00 on a fully applied credit and on a voided credit",
+  "atm": 1,
+  "before": {
+   "custom_preconds": "<p>1. A fully applied credit<br>2. Separately, a voided credit<br>3. To put the document on screen: click \"Work Orders\" in the top menu, open the work order you need, then click the \"Finance\" tab. The document appears on the right.<br>4. Use the \"Estimate/Invoice\" toggle above the document to switch between the Estimate and the Invoice.<br>5. The printer icon prints the document and the download icon saves it. The cog icon opens the invoice display settings (Labor rate, Labor hours, Labor price, Summarize labor total, Summarize parts total, Part number, Part description).</p>",
+   "custom_steps": "<p>1. Open the fully applied credit preview<br>2. Open the voided credit preview</p>"
+  },
+  "before_expected_s2": null
+ },
+ "45185": {
+  "provenance": [
+   "This is the expected behaviour as per epic SV-8218 and the Invoice UI Refresh engineering plan (item D5); verified current against the Invoice UI Refresh specification version 45, read on 31 August 2026."
+  ],
+  "marker_carried": "AUTOMATION: HOLD - this case fails on a server error that has no ticket yet; change to READY - EXPECT FAIL (SV-xxxx) once the ticket is filed",
+  "title": "A snapshot created before the redesign renders in the new layout with blanks and no error",
+  "atm": 1,
+  "before": {
+   "custom_preconds": "<p>1. You are signed in to ShopView.<br>2. A staging invoice snapshot created BEFORE the redesign deploy<br>3. A pre-redesign invoice snapshot exists only on staging (an invoice created before the redesign deploy). Open it from \"Customers\" -&gt; open the customer -&gt; \"Invoices\" tab on staging. This is a staging-only historical check.</p>",
+   "custom_steps": "<p>1. Open the pre-redesign snapshot from the customer's \"Invoices\" tab on staging.<br>2. Generate its PDF as well.<br>3. Check the fields the old snapshot never stored (authorizer, plate, estimate date, and so on) - confirm they render blank with no error.</p>"
+  },
+  "before_expected_s2": null
+ },
+ "45190": {
+  "provenance": [
+   "This is the expected behaviour as per epic SV-8218 and story SV-9142 (Story 3, Order Reference Fields) and the Invoice UI Refresh specification version 45, section S3-R5, read on 31 August 2026."
+  ],
+  "marker_carried": "AUTOMATION: READY",
+  "title": "Work order, imported work order and part sale customer cards still work after the Authorizer change",
+  "atm": 1,
+  "before": {
+   "custom_preconds": "<p>1. You are signed in to ShopView.<br>2. One normal work order, one imported work order, and one parts sale<br>3. To open a work order's customer card: click \"Work Orders\" in the top menu and open the work order (the customer card is on the left). Imported work orders open the same way from the Work Orders list.<br>4. To open a parts sale's customer card: click \"Customers\" in the top menu, open the customer, click the \"Part Sales\" tab, and open the part sale.</p>",
+   "custom_steps": "<p>1. Open each record's customer card: \"Work Orders\" -&gt; open the work order (and the imported work order); \"Customers\" -&gt; open the customer -&gt; \"Part Sales\" -&gt; open the part sale.<br>2. Verify the Contact/Phone rows and the card actions still work</p>"
+  },
+  "before_expected_s2": null
+ },
+ "45191": {
+  "provenance": [
+   "This is the expected behaviour as per epic SV-8218 and story SV-9142 (Story 3, Order Reference Fields) and the Invoice UI Refresh specification version 45, section S3-R5, read on 31 August 2026."
+  ],
+  "marker_carried": "AUTOMATION: READY",
+  "title": "A user without work order edit permission sees the Authorizer as read-only",
+  "atm": 1,
+  "before": {
+   "custom_preconds": "<p>1. You are signed in to ShopView.<br>2. A user lacking the workOrders edit permission<br>3. A work order with an authorizer set<br>4. To set up the restricted user: an administrator removes the Work Orders edit permission from the user's role (Custom Roles &amp; Permissions).<br>5. To reach the Authorizer: log in as that user, click \"Work Orders\" in the top menu, open the work order, and look at the \"Authorizer\" row in the customer card on the left.</p>",
+   "custom_steps": "<p>1. Log in as the restricted user, click \"Work Orders\" in the top menu, open the work order, and look at the \"Authorizer\" row in the customer card on the left.<br>2. Check whether the Authorizer row can be changed or is shown read-only.</p>"
+  },
+  "before_expected_s2": null
+ },
+ "45196": {
+  "provenance": [
+   "This is the expected behaviour as per epic SV-8218 and story SV-9149 (Story 10, Estimate and Invoice Specifics) and the Invoice UI Refresh specification version 45, section S10-R4, read on 31 August 2026."
+  ],
+  "marker_carried": "AUTOMATION: READY",
+  "title": "An invoice paid by mixed cash and customer credit shows the Paid date",
+  "atm": 1,
+  "before": {
+   "custom_preconds": "<p>1. You are signed in to ShopView.<br>2. An invoice paid to $0.00 via a cash payment plus an applied customer-account credit combined<br>3. To open the document on screen: click \"Work Orders\" in the top menu, open the work order (click its row), then click the \"Finance\" tab. The document appears on the right.<br>4. Use the \"Estimate / Invoice\" toggle above the document to switch between the Estimate and the Invoice.</p>",
+   "custom_steps": "<p>1. Click \"Work Orders\" in the top menu, open the work order, click the \"Finance\" tab, and use the \"Estimate / Invoice\" toggle to show the document you need.<br>2. Apply a cash payment for part of the Total, then apply a customer-account credit for the remainder.<br>3. Re-open the Finance tab and read the Payments rows and the masthead date labels.</p>"
+  },
+  "before_expected_s2": null
+ }
+}
