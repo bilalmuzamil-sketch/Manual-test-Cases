@@ -131,6 +131,16 @@ These are stated here **in full** because a session that gets only this far must
   still closes the report. Full text: `build/rules/RULES-61-98.md` rule 98.
 - **EVERY REPORT ENDS WITH "OUTSTANDING — what I need from you" (36).** Say *"nothing outstanding"* if
   that is true; never omit the section. Keep `build/OUTSTANDING-ITEMS-REGISTER.md` current.
+- **🛑 A QUESTION SHEET IS ALWAYS A SPREADSHEET, NEVER A MARKDOWN TABLE (QA lead, 2026-09-01).**
+  Verbatim: *"the questions should always be in Excel or google soreadsheet, in a lay man language for
+  a nontechnical person to understand."* Deliver **`.xlsx`** (or a Google Sheet) in the established
+  column shape — **`# · Topic · What happens now · The question · Options · Your answer`** — one sheet
+  per feature, plus a final **QA internal** sheet carrying the case ids and requirement anchors that
+  the PO is not meant to read. **The PO-facing sheets contain no case ids, no spec anchors, no API or
+  HTTP terms, no field names** (7/9); every question offers **OPTIONS** so it can be answered by
+  ticking one. Generator + the enforced layman check: `build/testing-tools/make_question_sheet.py`.
+  Still governed by Rule 55 (project and feature named on every row, answerable by a non-technical
+  reader) and Rule 66 (the sheet is the LAST thing sent).
 - **PLAIN LAYMAN WORDING (7/9).** Tester-facing and PO-facing text uses the build's exact labels and
   no jargon — no case IDs, spec anchors, HTTP terms or internal names in what they read.
 - **🛑 RUNNABILITY IS A DELIVERABLE OF BUILD VERIFICATION, NOT A TIDY-UP (QA lead, 2026-09-01).** Verbatim:

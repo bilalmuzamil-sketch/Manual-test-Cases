@@ -5,6 +5,35 @@
 
 ---
 
+
+## 🛑 §0 — THE DELIVERABLE IS A SPREADSHEET (QA lead, 2026-09-01)
+
+**Verbatim:** *"the questions should always be in Excel or google soreadsheet, in a lay man language
+for a nontechnical person to understand."*
+
+A markdown table is **not** a question sheet any more. Produce **`.xlsx`** (or a Google Sheet) with:
+
+| Column | What goes in it |
+|---|---|
+| **#** | 1, 2, 3 — so he can answer "1: B" in a chat message |
+| **Topic** | the feature in the words a shop uses, e.g. *"Parts that are not kept in a bin"* |
+| **What happens now** | what we actually saw, in plain words, with numbers where they help (*"all 6,879 of them"*) |
+| **The question** | one question, answerable in one sitting, no jargon |
+| **Options** | **A) / B) / C)** — always offer choices, including *"Not sure — please check with the engineers"* |
+| **Your answer** | left empty for him |
+
+**One sheet per feature**, then a final **"QA internal — not for the PO"** sheet holding the case ids,
+the requirement anchors and why each item is a question rather than a defect. **The PO-facing sheets
+carry none of that.**
+
+**Use `build/testing-tools/make_question_sheet.py`** — it writes the format and then FAILS the run if a
+PO-facing cell contains a case id, a specification anchor, an API or HTTP term, a camelCase identifier
+or a database field name. Feed it a small JSON spec; a worked example is
+`build/inline-add-edit-parts/questions-2026-09-01/`.
+
+**Unchanged:** Rule 55 (the project and feature are named, and a non-technical person can answer every
+row) and Rule 66 (the sheet is the LAST thing sent, once everything answerable without him is done).
+
 ## PURPOSE, IN PLAIN ENGLISH
 
 **Ask a product owner only the things we genuinely cannot settle ourselves — once, at the end, on one
