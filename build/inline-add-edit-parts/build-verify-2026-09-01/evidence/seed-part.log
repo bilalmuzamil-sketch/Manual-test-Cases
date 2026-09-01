@@ -1,0 +1,21 @@
+catalog field focused: {"ok":true}
+catalog typeahead: {"text":"No results","items":["No results"]}
+create action: false
+before save: {
+ "title": "New Inventory Part close Catalog Part arrow_drop_down Vendor arrow_drop_down Category arrow_drop_down Manufacturer arrow_drop_down $ Cost $ Sell Price $ Core Charge Min Max Tags Inventory Bin Location",
+ "cost": "",
+ "sell": "",
+ "bin0": "",
+ "buttons": [
+  "close",
+  "Add Bin Location",
+  "Save"
+ ]
+}
+save clicked: Add Bin Location
+after save: {
+ "dialogOpen": true,
+ "dialogText": "New Inventory Part close Catalog Part arrow_drop_down Vendor arrow_drop_down Category arrow_drop_down Manufacturer arrow_drop_down $ Cost $ Sell Price $ Core Charge Min Max Tags Inventory Bin Location General Storage arrow_drop_down Quantity Default Bin Location arrow_drop_down Quantity delete Add Bin Location Save",
+ "toast": [],
+ "rowPresent": false
+}
