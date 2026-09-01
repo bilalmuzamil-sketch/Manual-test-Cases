@@ -2365,6 +2365,14 @@ were stale). Sources: `build/report-suite/build-verify-2026-08-18/{TU,WIP,IV}-SW
 - **INLINE-VLAD-1 OPEN** — two Automated cases changed on 6597: **C45026** (IAEP-TEDIT-04, S3-R5) escaping → repaired to fr-view + re-stamped v13→v16; **C45005** (IAEP-TADD-08, S2-R9) was already fr-view+v16, not written. `atmstatus=3` preserved on both. Note: `build/inline-add-edit-parts/render-repair-2026-08-31/FOR-VLAD-automated-cases-changed-2026-08-31.md`.
 
 #### CARRIED OVER — open, for the QA lead's decision later (per his 2026-08-31 instruction)
+- **🛑 CO-LANE — HANDS OFF 6597 AND 6617 UNTIL THE QA LEAD SAYS OTHERWISE (2026-09-01).** Verbatim:
+  *"6597/6617 are with the other Session being source verfied currently, dont touch them, I will let
+  you know when yiu can proceed with Build verification on them."* **Inline Add and Edit Parts (6597)**
+  and **Printer Friendly WO (6617)** belong to the other session while it source-verifies them. This
+  session does **not** read-modify, write, run or build-verify anything in those groups, and does not
+  drive **sv9315**, until he gives the go-ahead. Build verification on them is expected AFTER his
+  word, not before. (Context: the branch access and the corrected `sv_sso_session` cookie for sv9315
+  are already recorded in `/tmp/qa-cookies/sv9315.json`; that is preparation, not permission.)
 - **⏰ CO-R1 — REMINDER OWED TO THE QA LEAD (his instruction, 2026-09-01: _"Remind me after we are
   done with the next two suites"_).** When **Inline Add and Edit Parts (group 6597)** and **Printer
   Friendly WO (group 6617)** are finished, remind him of: (a) the **snapshot-500 defect**, prepared

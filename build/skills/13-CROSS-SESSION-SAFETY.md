@@ -424,3 +424,26 @@ rule bodies into the index, or a refresh rewriting the file from a stale copy. *
 disk** — on 2026-08-21 a session reported 459,549 bytes from a stale context snapshot while the real
 file was 34,164; a "repair" on that reading would have discarded 693 commits. Guard + diagnosis:
 `build/rules/INTEGRITY.md` § SIZE GUARD.
+
+
+---
+
+## LANE BOUNDARIES IN FORCE (check this list before touching any suite)
+
+A lane boundary is not advice — it is the QA lead assigning a suite to one session. Writing into
+another session's lane is how work gets destroyed: on 2026-09-01 two sessions edited the Invoice
+suite within minutes of each other and **five build-verified routes were overwritten with
+design-derived ones**, three of them materially wrong. Nobody noticed until a live re-read.
+
+| Suite / group | Owner | Since | Status |
+|---|---|---|---|
+| **Invoice UI Refresh** (TestRail sections under *Invoice Refresh (Aug 2026)*), branch **sv8218** | **this build-verification session** | 2026-09-01 | the other session was stopped from changing it by the QA lead |
+| **Inline Add and Edit Parts (6597)** and **Printer Friendly WO (6617)**, branch **sv9315** | **the other session** — source verification in progress | 2026-09-01 | 🛑 **DO NOT TOUCH.** QA lead: *"dont touch them, I will let you know when yiu can proceed with Build verification on them."* |
+
+**Having the credentials for a branch is not permission to work on it.** The sv9315 cookies and the
+corrected `sv_sso_session` name are recorded because they were hard to find, not because the lane is
+open. **Ask, or wait to be told.**
+
+**How to check you are not colliding, before any write:** read the case's `updated_on` and compare it
+against your own last write. A cadence of edits you did not make — the 2026-09-01 collision showed a
+steady one every ~10 seconds — means another session is mid-run. Stop and report it; do not race it.
