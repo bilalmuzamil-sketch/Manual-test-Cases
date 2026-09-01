@@ -36,7 +36,7 @@ Cap evidence is a true before/after: **EX1** shows the vendor panel at 6 picks (
 |---|-------|--------|----------|
 | 6 | "Select all" on a large filter works even at the cap; Network shows NO IDs sent; results show everything | **PASS** | selectall run: after Select-all vendors, report request carries no `vendorIds=` |
 | 7 | Parts Catalogue (Manufacturer/Category), Staff (Roles/Workplaces/Departments), Inventory (Bin/Category): new "All …" row present; empty = all; chip reads "All <noun>" | **PASS** | EX3; allrows run confirmed `filter_select_all_*` ids + "All …" row text on all three screens |
-| 8 | Inventory: select all bins → print Count Sheet PDF → request carries no filters | **NOT TESTED** — see Honest limits | — |
+| 8 | Inventory: select all bins → print Count Sheet PDF → request carries no filters | **PASS (filter part)** — `GET /api/inventory/count-sheet-pdf` carries **no bin filters**, 113-byte URL. The PDF then returns **500**, but that is the **pre-existing known bug [SV-8043](https://shopview.atlassian.net/browse/SV-8043)** (500s with zero params too; not the cap guard) — unrelated to this change | cs3/cs500 runs |
 
 ### 3. Shared links / oversized URLs
 | # | Check | Result | Evidence |
@@ -61,6 +61,21 @@ Cap evidence is a true before/after: **EX1** shows the vendor panel at 6 picks (
 | 18 | Customer-portal find-by-ids with >50 ids → passes (exempt) | **PASS** | exempt path 200 |
 
 ---
+
+## Robustness / "won't-bite" pass (added 2026-09-01)
+
+Focused checks on the field scenarios most likely to bite after a shared-component + request-guard change:
+
+| Risk | Check | Result |
+|------|-------|--------|
+| **False positives** (a normal request wrongly 400ing) | Default loads of all six affected reports (IV, WIP, PV, SBC, SBR, TU) | **PASS** — none 400s from the guard. WIP's 400 is its own required "from/to dates" validation, not the guard (verified: WIP+51 customers → guard 400 "customers 51 of 51", WIP+dates → dates error) |
+| **Request bodies counted** (would break saves) | `PUT /api/users/me/preferences/report-inventory-value` with 60 vendorIds in the body | **PASS** — 200, saved 60 (bodies never counted) |
+| **Pre-cap saved preference** (existing users with >50 saved before the fix — Hotspot #5) | Saved a 60-vendor preference, then loaded the report | **PASS** — clamps to 50, report 200, **0 guard 400s**, X-Current-Page 2,374 bytes, page usable (Totals shown), no CloudFront/nginx error |
+| **Empty = all, not nothing** (Hotspot #3, PR-changed screens) | Parts Catalogue: deselect-all Category | **PASS** — chip reads "All categories", all 32 rows still shown (empty means all) |
+| **Guard boundary** | 50 → 200, 51 → 400 | **PASS** |
+| **Scale / outage cannot recur** | Original bug at ~163 vendors; cap bounds individual IDs at 50 | **PASS** — max header measured 2,374–2,844 bytes with 50 selected (limit 8,192); the cap mathematically bounds the header/URL below all three infra limits |
+
+**Data note (addresses "enough data"):** this org holds **1,042 vendors** and full inventory — well past the ~163 that triggered the original outage — so the cap and clamp were exercised against realistic scale, not a token dataset.
 
 ## Exact backend guard error bodies (technical)
 

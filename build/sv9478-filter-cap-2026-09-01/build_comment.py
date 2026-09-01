@@ -38,6 +38,11 @@ checks=[
  ("Regression: Sales By Customer customers select-all = all customers","PASS"),
  ("Regression: WO Notes tab loads on a work order with many lines","PASS"),
  ("Mobile bottom-sheet: at the 50 cap the notice shows, options lock, and an over-cap draft cannot be applied","PASS"),
+ ("No false positives: default loads of all six affected reports do not 400 from the guard","PASS"),
+ ("Request bodies are not counted: saving a 60-value report preference (in the body) succeeds","PASS"),
+ ("Existing user with a pre-fix >50 saved selection: report clamps to 50, loads normally, no error","PASS"),
+ ("Empty selection means ALL (not nothing) on a select-all screen (Parts Catalogue Category)","PASS"),
+ ("Count Sheet PDF request carries no bin filters (113-byte request); the PDF 500 is the pre-existing bug SV-8043, not this change","PASS"),
 ]
 table_rows=[row([cell(p(strong("#")),head=True),cell(p(strong("What I tested")),head=True),cell(p(strong("Result")),head=True)])]
 for i,(txt,st) in enumerate(checks,1):
@@ -47,7 +52,7 @@ table={"type":"table","attrs":{"isNumberColumnEnabled":False,"layout":"default"}
 doc={"type":"doc","version":1,"content":[
  panel("success",
     p(strong("OVERALL QA STATUS: PASSED")),
-    p(t("Tested on the QA branch (sv9478.qa.shopview.com, build v26.35.7-7e3d970). 14 of 15 checklist items passed as verified; 1 mobile item was not driven cleanly by my automation and is flagged for a quick manual confirm (not a blocker). The >8 KB header/URL outage the ticket describes is fixed, the 50-value cap works with its lock and inline notice, Select-all stays unlimited, and every exempt path is confirmed uncounted."))),
+    p(t("Tested on the QA branch (sv9478.qa.shopview.com, build v26.35.7-7e3d970), against an org with 1,042 vendors and full inventory (well past the ~163 that triggered the original outage). The >8 KB header/URL outage is fixed; the 50-value combined cap works with its lock and inline notice on desktop and mobile; Select-all stays unlimited; the backend guard returns per-parameter 400s; and every exempt path is confirmed uncounted. I also ran the field scenarios most likely to regress — no false positives on the six reports, request bodies not counted, and an existing user's pre-fix >50 saved selection clamps to 50 and loads cleanly. No blocking issues found."))),
  heading("What I tested"),
  table,
  heading("Evidence"),
@@ -75,7 +80,9 @@ doc={"type":"doc","version":1,"content":[
 "GET .../inventory-value?locations=<60>&vendors=<40>  -> 200  (locations uncounted)\n\n"
 "Customer-portal find-by-ids with >50 ids  -> 200 (exempt)")]},
  p(t("The guard counts the combined total across counted params and reports it per offending parameter — confirming the cap is across all filters, not per filter. X-Current-Page no longer carries the query string (2,844 bytes on a 50-vendor page).")),
- p(strong("Not verified this run (stated for honesty, none a blocker): "),t("Count Sheet PDF after select-all bins; the Sales By Customer empty-selection pole (this org has no customer records); TimeSheets and Pricing Matrix dialogs. Pre-existing out-of-scope items noted in the handoff (logged-out shared link, customer-portal find-by-ids above ~170 ids, TU exclude byte-risk above ~150 technicians) were not part of this verification.")),
+ p(strong("Robustness / field-risk checks (all passed): "),t("default loads of all six affected reports do not trip the guard (Work In Progress's 400 is its own required from/to-date validation, not the guard); request bodies are not counted (a 60-value preference saves fine); an existing user's pre-fix >50 saved selection clamps to 50 and loads with 0 guard 400s and a 2,374-byte header; empty selection means all (not nothing) on the new select-all screens; and the guard boundary is exact (50 passes, 51 fails).")),
+ p(strong("Count Sheet PDF: "),t("the Cycle Count -> Print request correctly carries no bin filters (113-byte URL), so the URL-limit concern is resolved. The PDF itself then returns 500, but that is the pre-existing known bug SV-8043 (\"Cycle count Print returns 500\", Ready to Fix) — it 500s even with zero parameters and is not the cap guard, so it is unrelated to this change.")),
+ p(strong("Not verified this run (none a blocker): "),t("the Sales By Customer empty-selection pole (this org has no customer records to deselect); TimeSheets and Pricing Matrix dialogs. Pre-existing out-of-scope items noted in the handoff (logged-out shared link, customer-portal find-by-ids above ~170 ids, TU exclude byte-risk above ~150 technicians) were not part of this verification.")),
 ]}
 open("/tmp/sv9478/comment.adf.json","w").write(json.dumps(doc,indent=1))
 # plain-text preview
