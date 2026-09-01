@@ -2350,3 +2350,24 @@ were stale). Sources: `build/report-suite/build-verify-2026-08-18/{TU,WIP,IV}-SW
 - **RSB-6 OPEN — QA lead.** **Confluence credentials.** None were supplied to the 2026-08-28 session, so no spec was re-fetched live and provenance stamps carry the **2026-08-26 capture date** of the held spec body plus a dated re-check sentence, not a same-day live read date.
 - **RSB-7 OPEN — QA lead.** `verify.py` counts coverage from `source-verify-2026-08-26/data/live-cases.json`, a **case snapshot taken 2026-08-26**. The 2026-08-28 `refs` backfill is **not** reflected in any coverage figure it prints. Decide whether it should read the cases live.
 - **CLOSED this pass** — the 38 held Automated re-pins (Vlad cleared); the WIP `refs` backfill (23 anchors / 14 cases); the three approved case extensions (C30457, C30528 written; C43838 already correct); the two SBR content fixes (C30235, C30236) and C43821 (**re-cite NOT needed — S4a-R2 is present and unchanged in live v28; the "deleted anchor" was a tool artefact**); run **359** synced to 513 tests with all 535 results intact; both tooling bugs; Rule 62's wording.
+
+### 🆕 2026-08-31 (overnight) — source verification of the two named suites (6597 Inline, 6617 Printer Friendly); render-container standard adopted
+
+**Context:** QA lead directed source verification of exactly two suites: **Inline Add & Edit Parts (group 6597)** and **Printer Friendly WO (group 6617)** — verify only if the source changed after the cases were authored (2026-08-25).
+
+#### CLOSED this pass
+- **6617 Printer Friendly** — spec Confluence 519176194 bumped **v8→v9** but **NON-SUBSTANTIVE** (same 45 rule IDs, change log unchanged since 2026-04-19). No case updates. Source-verified current. Cases remain plain-text (readable). `build/printer-friendly-wo/PROJECT-STATE.md`.
+- **6597 Inline** — spec Confluence 782761986 **v13→v16** verified: NEW Story 7 Bin Allocation (22 cases C45221–C45243), S2-R4/R6/S9 amendments, all 96 existing re-stamped v16. Suite = **118 cases, 129 rule IDs, 0 uncovered**, run R418 synced.
+- **6597 render-container repair** — my v16 pass wrote block HTML via API, which landed **76 of 118 cases in the escaping container** (literal tags on the served page). **All 118 UI-repaired to `markdown fr-view`** (independently verified on the served page: 0 escaping, 0 literal tags in the rendered field). Commit 709d5b73.
+- **DECISION ADOPTED (QA lead, 2026-08-31): the Playwright UI-repair-to-`fr-view` is now the STANDARD required post-step after ANY API-write pass** — an API `update_case`/`add_case` leaves fields in the escaping container; only a UI save flips them. The two-step post-write gate (stored-value `check_case_render.py` + served-page container scan, then UI-repair any escaping case) is mandatory. Recorded in CLAUDE.md + playbook §J.
+
+#### FOR VLAD (Rule 65)
+- **INLINE-VLAD-1 OPEN** — two Automated cases changed on 6597: **C45026** (IAEP-TEDIT-04, S3-R5) escaping → repaired to fr-view + re-stamped v13→v16; **C45005** (IAEP-TADD-08, S2-R9) was already fr-view+v16, not written. `atmstatus=3` preserved on both. Note: `build/inline-add-edit-parts/render-repair-2026-08-31/FOR-VLAD-automated-cases-changed-2026-08-31.md`.
+
+#### CARRIED OVER — open, for the QA lead's decision later (per his 2026-08-31 instruction)
+- **CO-1 (Invoice) — PO-2 OPEN (Chris Ward):** un-logged pre-v39 spec edits (2026-08-13 [v38], ~2026-08-25 [v39]); the v39 one verified cosmetic. Awaiting Chris.
+- **CO-2 (Inline) — Story 7 Jira TBD (Sasha Grosman):** the spec's Story 7 (Bin Allocation) has no Jira story ticket. Our 22 new cases ref the epic SV-9315. A Story 7 ticket should be created + linked (HELD — Jira creation hold; QA lead said "Hold").
+- **CO-3 (Inline) — PO-IAEP-1 / PO-IAEP-2 OPEN (Sasha):** S3-E1 scope (PRD keeps vs tech plan D3 defers); "Imported" status guard (PRD hides Add Part/Edit vs tech plan plans no check).
+- **CO-4 (Inline) — spec-silence question (Sasha):** should adding a part to a **Complete line** reopen the line? (Vlad's C45220 asserts yes; PRD silent. `build/inline-add-edit-parts/reconcile-2026-08-31/C45220-RECONCILIATION.md`.)
+- **CO-5 (Printer Friendly) — PO-PFWO-1 / PO-PFWO-2 OPEN:** confirm the Owner/PO (spec says TBD); confirm PRD is the appearance authority or a design will follow.
+- **CO-6 (both) — BUILD VERIFICATION BLOCKED (Rule 85):** neither suite has a QA build/environment yet, so build verification cannot start. Both are SOURCE-VERIFIED ONLY. Run skill 11 when a build lands.

@@ -493,6 +493,10 @@ Compact form — **the rule named in brackets is the authority; read it before r
   `build/build-verify-session-2026-08-21/repair-2026-08-25/` and playbook §J; (c) plain text in an
   escaping container still renders as text, so do NOT "upgrade" a readable plain-text case to block HTML
   via the API — that makes it WORSE.** Full evidence + the served-page scanner: `build/APP-ACTIONS-PLAYBOOK.md` §J.
+  **🆕 STANDARD (QA lead, 2026-08-31): after ANY API-write pass, the served-page container scan + UI-repair
+  of every escaping case to `fr-view` is the REQUIRED post-step — not optional.** Proven recipe (Playwright →
+  Froala `html.set` → deadlock-retry): `build/inline-add-edit-parts/render-repair-2026-08-31/` and
+  `build/build-verify-session-2026-08-21/repair-2026-08-25/`.
 - **🛑 POST-WRITE RENDER SELF-CHECK — after ANY case create/update, fetch it back and confirm it
   renders correctly before calling it done.** Never assume the write looks right; verify it. Run
   `python3 build/testing-tools/check_case_render.py <C-ID> …` (fails on inline tags, wall-of-text, or
