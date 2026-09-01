@@ -1,0 +1,58 @@
+{
+ "44996": {
+  "title": "Add Part and Edit hidden when the work order/line is not editable otherwise",
+  "atm": 1,
+  "section_id": 6755,
+  "refs": "SV-9316 (S1-N4)",
+  "provenance": [
+   "This is the expected behaviour as per epic SV-9315 and story SV-9316 (Story 1, Add Part Button on Work Order Lines) and the Inline Add and Edit Parts on Work Order Lines specification version 16, section S1-N4, read on 31 August 2026."
+  ],
+  "before": {
+   "custom_preconds": "<p>1. Your user has the 'Work Order Line - Create and Edit' permission enabled.&nbsp;<br>2. In the top menu click “Work Orders”<br>3. Then look at any line having a status \"Complete\" (mark it as complete)<br>OR<br>4. Move the line to any status that does not allow you to request a part on it.</p><p><br></p>",
+   "custom_steps": "<p>1. Open that work order and try to find the \"Add Part\" option for that line.</p>",
+   "custom_expected": "<p>1. The “Add Part” button is not displayed.</p><p>---<br>This is the expected behaviour as per epic SV-9315 and story SV-9316 (Story 1, Add Part Button on Work Order Lines) and the Inline Add and Edit Parts on Work Order Lines specification version 16, section S1-N4, read on 31 August 2026.</p><p>AUTOMATION: READY</p>"
+  }
+ },
+ "45034": {
+  "title": "Concurrent change by another user fails the edit save with a message",
+  "atm": 1,
+  "section_id": 6757,
+  "refs": "SV-9318 (S3-E1)",
+  "provenance": [
+   "This is the expected behaviour as per epic SV-9315 and story SV-9318 (Story 3, Inline Edit Part - Tech View) and the Inline Add and Edit Parts on Work Order Lines specification version 16, section S3-E1, read on 31 August 2026."
+  ],
+  "before": {
+   "custom_preconds": "<p>1. In the top menu click “Work Orders”, then open a work order whose status is Estimate, Approved, In Progress, or Review (click its row in the list). Open its “Lines” tab. Each work order line has its own Parts section beneath it: the “Add Part” button sits in that section, and every part already on the line has an “edit” control at the right-hand end of its row — that control stays invisible until you move the mouse over the row.<br>2. Your user has the 'Work Order Line - Create and Edit' permission enabled. To check it: open “Settings”, click “Roles &amp; Permissions” in the sidebar, then click the pencil on the role your user is on, and look for “Work Order Line - Create and Edit”.<br>3. Your “Work Orders → Work Order View Mode” permission is set to Tech View. To check or change it: open “Settings”, click “Roles &amp; Permissions” in the sidebar, then click the pencil on the role your user is on, then set “Work Order View Mode” to Tech View.<br>4. The work order line already has at least one part listed in its Parts section (if not, add one first with “Add Part”).</p>",
+   "custom_steps": "<p>1. Open an edit row.<br>2. Have another user modify or delete the same part while your row is open.<br>3. Attempt to Save using the Save control on the inline row.</p>",
+   "custom_expected": "<p>1. The save fails and an alert is shown: “This part was changed by someone else. Refresh to see the latest.”</p><p>NOTE FOR THE TESTER: this needs a second person changing the same part at the same moment as you. If you can arrange that, run it; otherwise leave it Untested and tell the QA lead.</p><p>---<br>This is the expected behaviour as per epic SV-9315 and story SV-9318 (Story 3, Inline Edit Part - Tech View) and the Inline Add and Edit Parts on Work Order Lines specification version 16, section S3-E1, read on 31 August 2026.</p><p>AUTOMATION: READY</p>"
+  }
+ },
+ "45060": {
+  "title": "Selected part with no cost or sell price opens those fields empty",
+  "atm": 1,
+  "section_id": 6758,
+  "refs": "SV-9319 (S4-E1)",
+  "provenance": [
+   "This is the expected behaviour as per epic SV-9315 and story SV-9319 (Story 4, Inline Add Part - Full View) and the Inline Add and Edit Parts on Work Order Lines specification version 16, section S4-E1, read on 31 August 2026."
+  ],
+  "before": {
+   "custom_preconds": "<p>1. In the top menu click “Work Orders”, then open a work order whose status is Estimate, Approved, In Progress, or Review (click its row in the list). Open its “Lines” tab. Each work order line has its own Parts section beneath it: the “Add Part” button sits in that section, and every part already on the line has an “edit” control at the right-hand end of its row — that control stays invisible until you move the mouse over the row.<br>2. Your user has the 'Work Order Line - Create and Edit' permission enabled. To check it: open “Settings”, click “Roles &amp; Permissions” in the sidebar, then click the pencil on the role your user is on, and look for “Work Order Line - Create and Edit”.<br>3. Your “Work Orders → Work Order View Mode” permission is set to Full View. To check or change it: open “Settings”, click “Roles &amp; Permissions” in the sidebar, then click the pencil on the role your user is on, then set “Work Order View Mode” to Full View.</p>",
+   "custom_steps": "<p>1. On the open inline part row (see Preconditions), select a catalog part that has no cost or sell price on record.</p>",
+   "custom_expected": "<p>1. Those fields open empty and the user must enter them before saving inline.<br>2. The user may instead select “More options” to complete the part in the modal.</p><p>NOTE FOR THE TESTER: this needs a part with no cost and no sell price recorded at all. Every part on this test system holds 0.00 in those boxes, which is not the same as empty, so the case cannot be set up here yet.</p><p>---<br>This is the expected behaviour as per epic SV-9315 and story SV-9319 (Story 4, Inline Add Part - Full View) and the Inline Add and Edit Parts on Work Order Lines specification version 16, section S4-E1, read on 31 August 2026.</p><p>AUTOMATION: READY</p>"
+  }
+ },
+ "45239": {
+  "title": "A part with no bins gets no allocation and no chip",
+  "atm": 1,
+  "section_id": 6771,
+  "refs": "SV-9315 (S7-N1)",
+  "provenance": [
+   "This is the expected behaviour as per epic SV-9315 and Story 7 (Bin Allocation on the Inline Row); the Story 7 Jira ticket is TBD and the Inline Add and Edit Parts on Work Order Lines specification version 16, section S7-N1, read on 31 August 2026."
+  ],
+  "before": {
+   "custom_preconds": "<p>1. In the top menu click “Work Orders”, then open a work order whose status is Estimate, Approved, In Progress, or Review (click its row in the list). Open its “Lines” tab. Each work order line has its own Parts section beneath it: the “Add Part” button sits in that section, and every part already on the line has an “edit” control at the right-hand end of its row — that control stays invisible until you move the mouse over the row.<br>2. Your user has the 'Work Order Line - Create and Edit' permission enabled. To check it: open “Settings”, click “Roles &amp; Permissions” in the sidebar, then click the pencil on the role your user is on, and look for “Work Order Line - Create and Edit”.<br>3. Your “Work Orders → Work Order View Mode” permission is set to Tech View. To check or change it: open “Settings”, click “Roles &amp; Permissions” in the sidebar, then click the pencil on the role your user is on, then set “Work Order View Mode” to Tech View.</p>",
+   "custom_steps": "<p>1. On the open inline part row (see Preconditions), select a catalog part that is held in no bins (not stocked).</p>",
+   "custom_expected": "<p>1. The part gets no allocation and no chip.<br>2. The “Pulled from” line is not displayed.</p><p>NOTE FOR THE TESTER: this needs a part that is not kept in any bin. Every part on this test system sits in at least one bin, so the case cannot be set up here yet.</p><p>---<br>This is the expected behaviour as per epic SV-9315 and Story 7 (Bin Allocation on the Inline Row); the Story 7 Jira ticket is TBD and the Inline Add and Edit Parts on Work Order Lines specification version 16, section S7-N1, read on 31 August 2026.</p><p>AUTOMATION: READY</p>"
+  }
+ }
+}

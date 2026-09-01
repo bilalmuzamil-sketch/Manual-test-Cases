@@ -1,0 +1,76 @@
+{
+ "C45090-no-view-permission": {
+  "technicianPermissionsBefore": [
+   "customersView",
+   "workOrderLinesCreateAndEdit",
+   "woTechViewMode",
+   "woPickParts",
+   "scheduleView",
+   "workOrdersView"
+  ],
+  "positiveControl": {
+   "url": "/workorders/c6d4b883-6f78-4c9e-ab7e-436a6d99c17a/lines",
+   "onLogin": false,
+   "chars": 2646,
+   "firstChars": "Skip to main content Work Orders Schedule Customers Search Ctrl+K timer Clock In notifications Staging Heavy Duty - 9919 CS S9315-14.. Estimate Started: May 1, 2026 Total Tech Hours: 2.0 hrs location_on Progress 0% Lead ",
+   "moreButtons": 1,
+   "menu": {
+    "items": [
+     {
+      "text": "Print Work Order",
+      "disabled": false
+     }
+    ],
+    "printPresent": true,
+    "printDisabled": false
+   }
+  },
+  "strip": {
+   "status": 200
+  },
+  "roleAsReadBackAfterTheStrip": [
+   "customersView",
+   "scheduleView",
+   "woTechViewMode"
+  ],
+  "screenWithoutTheViewPermission": {
+   "url": "/timesheets",
+   "onLogin": false,
+   "chars": 573,
+   "firstChars": "Skip to main content Schedule Customers Search Ctrl+K timer Clock In notifications Staging Heavy Duty - 9919 CS Timesheets for Admin ShopView calendar_today Date Range: Today keyboard_arrow_down Datearrow_drop_up Employe",
+   "moreButtons": 0,
+   "menu": null,
+   "printItem": null,
+   "permissionsSeenByThePage": [
+    "customersView",
+    "scheduleView",
+    "woTechViewMode"
+   ]
+  },
+  "restore": {
+   "status": 200
+  },
+  "RESTORE_VERIFIED": {
+   "status": 200,
+   "permissionsBefore": [
+    "customersView",
+    "scheduleView",
+    "woPickParts",
+    "woTechViewMode",
+    "workOrderLinesCreateAndEdit",
+    "workOrdersView"
+   ],
+   "permissionsAfter": [
+    "customersView",
+    "scheduleView",
+    "woPickParts",
+    "woTechViewMode",
+    "workOrderLinesCreateAndEdit",
+    "workOrdersView"
+   ],
+   "identical": true,
+   "viewModeBefore": "tech",
+   "viewModeAfter": "tech"
+  }
+ }
+}

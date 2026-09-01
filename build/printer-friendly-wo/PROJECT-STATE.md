@@ -38,6 +38,27 @@ that reason **inside the case**, at the end of Expected Results, so a tester wor
 the run is told the same thing the brief tells them (skill 04 §4). Gate:
 `build/handoff-2026-09-01/check_self_explains.py`.
 
+
+### 🆕 Later on 2026-09-01 — THE SUITE NOW HAS A VERDICT ON ALL 44 CASES. ZERO "NOT VERIFIED".
+
+QA lead, verbatim: *"You are never supposed to create defect, you are supposed to make the tests
+RUNNABLE"* and, on the no-view sign-in, *"You can change the permission of a Tech to make this
+happen."* The five NOT VERIFIED cases were settled:
+
+| Case | Was | Now | What settled it |
+|---|---|---|---|
+| **C45090** | NOT VERIFIED | **PASS** | Removed the work-orders view permission group from the Technician role. **A 200 is not proof:** removing `workOrdersView` alone answers 200 and the role reads back with it still on, because the line-edit and pick-parts permissions depend on it. With the whole group off, the technician is redirected off the work order URL to /timesheets, "Work Orders" is gone from the top menu, and there is no More menu and no print option. Role restored, restore verified identical including view mode |
+| **C45111** | NOT VERIFIED | **PASS** | 560-character story seeded with `POST /api/work-orders/lines/change-story` (NOT `/lines/change`, which answers 500), printed with the print stylesheet applied: all ten repetitions of the seeded phrase on the paper, 600 characters visible, no ellipsis and no "Show more". Original story restored character for character |
+| **C45097** | NOT VERIFIED | **UNREACHABLE** | Pressing Save with Customer empty answers **"Customer is a required field"** and sends no request. A work order with no customer cannot exist |
+| **C45098** | NOT VERIFIED | **UNREACHABLE** | Choosing a customer and pressing Save with Add Asset empty answers **"Asset is a required field"**. Nearest real data, S2-6107, has a vehicle with only a year and prints "Vehicle: 1993" — sparse, not absent |
+| **C45104** | NOT VERIFIED | **UNREACHABLE** | `GET /api/work-orders/line-statuses` returns exactly `authorization_required, authorization_declined, authorized, complete`. Posting "cancelled" against a real line id answers 400 with the status field alone rejected. **There is no Cancelled line status in the product** |
+
+**Final verdicts, 44 cases: 38 PASS · 1 PARTIAL (C45088) · 5 UNREACHABLE (C45097, C45098, C45104,
+C45107, C45116).** All five UNREACHABLE cases now carry `AUTOMATION: HOLD` with the reason in plain
+words, plus a tester note. Arithmetic gate re-derived: READY 38 + EXPECT-FAIL 0 = 38, and 43 − HOLD 5 =
+38 → closes. **Five of the suite's requirements describe behaviour in a state the product forbids —
+that is one product-owner question, not five data-state gaps.**
+
 ## Update — 2026-09-01 (runnable-steps gate: NOT RUNNABLE = 0 for all non-Automated cases)
 Ran `build/testing-tools/check_runnable_cases.py` (reads TestRail live) over the whole suite: it flagged
 11 cases NOT RUNNABLE (all R4 — the FIRST step, e.g. "Read the header area of the printout.", did not say

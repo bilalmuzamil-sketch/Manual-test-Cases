@@ -1,0 +1,130 @@
+{
+ "44996": {
+  "title": "Add Part and Edit hidden when the work order/line is not editable otherwise",
+  "verdict": "verdict changed 2026-09-01",
+  "marker_override": "AUTOMATION: READY",
+  "build_sentence": "Last checked against build v26.35.6-598cc8a on 9/1/2026.",
+  "fields": {
+   "custom_expected": {
+    "blocks": [
+     [
+      "1. The “Add Part” button is not displayed."
+     ],
+     [
+      "WHAT YOU SHOULD SEE TODAY, AND IT IS A PROBLEM: the “Add Part” button is STILL shown on the line after its status becomes “Complete”. (1) If that is exactly what you see, mark the case FAILED and raise nothing new. (2) If it fails DIFFERENTLY, that is a new problem — please report it. (3) If “Add Part” is gone from that line, the fix has shipped — tell the QA lead."
+     ],
+     [
+      "---",
+      "This is the expected behaviour as per epic SV-9315 and story SV-9316 (Story 1, Add Part Button on Work Order Lines) and the Inline Add and Edit Parts on Work Order Lines specification version 16, section S1-N4, read on 31 August 2026.",
+      "Last checked against build v26.35.6-598cc8a on 9/1/2026."
+     ],
+     [
+      "AUTOMATION: READY"
+     ]
+    ],
+    "text": "1. The “Add Part” button is not displayed.\n\nWHAT YOU SHOULD SEE TODAY, AND IT IS A PROBLEM: the “Add Part” button is STILL shown on the line after its status becomes “Complete”. (1) If that is exactly what you see, mark the case FAILED and raise nothing new. (2) If it fails DIFFERENTLY, that is a new problem — please report it. (3) If “Add Part” is gone from that line, the fix has shipped — tell the QA lead.\n\n---\nThis is the expected behaviour as per epic SV-9315 and story SV-9316 (Story 1, Add Part Button on Work Order Lines) and the Inline Add and Edit Parts on Work Order Lines specification version 16, section S1-N4, read on 31 August 2026.\nLast checked against build v26.35.6-598cc8a on 9/1/2026.\n\nAUTOMATION: READY"
+   },
+   "custom_preconds": {
+    "blocks": [
+     [
+      "1. In the top menu click “Work Orders”, then open a work order whose status is Estimate, Approved, In Progress, or Review (click its row in the list). Open its “Lines” tab. Each work order line has its own Parts section beneath it: the “Add Part” button sits in that section, and every part already on the line has an “edit” control at the right-hand end of its row — that control stays invisible until you move the mouse over the row.",
+      "2. Your user has the ‘Work Order Line - Create and Edit’ permission enabled. To check it: open “Settings”, click “Roles & Permissions” in the sidebar, then click the pencil on the role your user is on, and look for “Work Order Line - Create and Edit”.",
+      "3. Pick a line that has NO parts on it yet — a line with parts on it cannot be completed at all, the app refuses with “Line can’t be completed with unfulfilled part requests.”",
+      "4. On that line click “Approve”, and once its status reads “Authorized” mark it Complete from the same row. Its status badge should then read “Complete”. Going straight to Complete is not allowed — the app makes you approve it first.",
+      "5. Now look at that line’s own Parts section."
+     ]
+    ],
+    "text": "1. In the top menu click “Work Orders”, then open a work order whose status is Estimate, Approved, In Progress, or Review (click its row in the list). Open its “Lines” tab. Each work order line has its own Parts section beneath it: the “Add Part” button sits in that section, and every part already on the line has an “edit” control at the right-hand end of its row — that control stays invisible until you move the mouse over the row.\n2. Your user has the ‘Work Order Line - Create and Edit’ permission enabled. To check it: open “Settings”, click “Roles & Permissions” in the sidebar, then click the pencil on the role your user is on, and look for “Work Order Line - Create and Edit”.\n3. Pick a line that has NO parts on it yet — a line with parts on it cannot be completed at all, the app refuses with “Line can’t be completed with unfulfilled part requests.”\n4. On that line click “Approve”, and once its status reads “Authorized” mark it Complete from the same row. Its status badge should then read “Complete”. Going straight to Complete is not allowed — the app makes you approve it first.\n5. Now look at that line’s own Parts section."
+   }
+  }
+ },
+ "45034": {
+  "title": "Concurrent change by another user fails the edit save with a message",
+  "verdict": "verdict changed 2026-09-01",
+  "marker_override": "AUTOMATION: READY",
+  "build_sentence": null,
+  "fields": {
+   "custom_expected": {
+    "blocks": [
+     [
+      "1. The save fails and an alert is shown: “This part was changed by someone else. Refresh to see the latest.”"
+     ],
+     [
+      "NOTE FOR THE TESTER: this one really does need a second person. Ask a colleague to open the same part and change or delete it while your edit row is sitting open, then press Save. If you cannot arrange that, leave the case Untested and tell the QA lead — do not mark it Passed or Failed on a guess. We tried to reproduce it from a second connection rather than a second person and could not get the row open at the right moment, so nothing is known about this behaviour either way."
+     ],
+     [
+      "---",
+      "This is the expected behaviour as per epic SV-9315 and story SV-9318 (Story 3, Inline Edit Part - Tech View) and the Inline Add and Edit Parts on Work Order Lines specification version 16, section S3-E1, read on 31 August 2026."
+     ],
+     [
+      "AUTOMATION: READY"
+     ]
+    ],
+    "text": "1. The save fails and an alert is shown: “This part was changed by someone else. Refresh to see the latest.”\n\nNOTE FOR THE TESTER: this one really does need a second person. Ask a colleague to open the same part and change or delete it while your edit row is sitting open, then press Save. If you cannot arrange that, leave the case Untested and tell the QA lead — do not mark it Passed or Failed on a guess. We tried to reproduce it from a second connection rather than a second person and could not get the row open at the right moment, so nothing is known about this behaviour either way.\n\n---\nThis is the expected behaviour as per epic SV-9315 and story SV-9318 (Story 3, Inline Edit Part - Tech View) and the Inline Add and Edit Parts on Work Order Lines specification version 16, section S3-E1, read on 31 August 2026.\n\nAUTOMATION: READY"
+   }
+  }
+ },
+ "45060": {
+  "title": "Selected part with no cost or sell price opens those fields empty",
+  "verdict": "verdict changed 2026-09-01",
+  "marker_override": "AUTOMATION: READY",
+  "build_sentence": "Last checked against build v26.35.6-598cc8a on 9/1/2026.",
+  "fields": {
+   "custom_expected": {
+    "blocks": [
+     [
+      "1. Those fields open empty and the user must enter them before saving inline.",
+      "2. The user may instead select “More options” to complete the part in the modal."
+     ],
+     [
+      "WHAT YOU SHOULD SEE TODAY, AND IT IS A PROBLEM: the two boxes do NOT open empty — they open showing “0.00”, and the part saves at 0.00 without you typing anything. (1) If that is exactly what you see, mark the case FAILED and raise nothing new. (2) If it fails DIFFERENTLY, that is a new problem — please report it. (3) If the boxes DO open empty and the save is refused until you fill them, the fix has shipped — tell the QA lead."
+     ],
+     [
+      "---",
+      "This is the expected behaviour as per epic SV-9315 and story SV-9319 (Story 4, Inline Add Part - Full View) and the Inline Add and Edit Parts on Work Order Lines specification version 16, section S4-E1, read on 31 August 2026.",
+      "Last checked against build v26.35.6-598cc8a on 9/1/2026."
+     ],
+     [
+      "AUTOMATION: READY"
+     ]
+    ],
+    "text": "1. Those fields open empty and the user must enter them before saving inline.\n2. The user may instead select “More options” to complete the part in the modal.\n\nWHAT YOU SHOULD SEE TODAY, AND IT IS A PROBLEM: the two boxes do NOT open empty — they open showing “0.00”, and the part saves at 0.00 without you typing anything. (1) If that is exactly what you see, mark the case FAILED and raise nothing new. (2) If it fails DIFFERENTLY, that is a new problem — please report it. (3) If the boxes DO open empty and the save is refused until you fill them, the fix has shipped — tell the QA lead.\n\n---\nThis is the expected behaviour as per epic SV-9315 and story SV-9319 (Story 4, Inline Add Part - Full View) and the Inline Add and Edit Parts on Work Order Lines specification version 16, section S4-E1, read on 31 August 2026.\nLast checked against build v26.35.6-598cc8a on 9/1/2026.\n\nAUTOMATION: READY"
+   },
+   "custom_preconds": {
+    "blocks": [
+     [
+      "1. In the top menu click “Work Orders”, then open a work order whose status is Estimate, Approved, In Progress, or Review (click its row in the list). Open its “Lines” tab. Each work order line has its own Parts section beneath it: the “Add Part” button sits in that section, and every part already on the line has an “edit” control at the right-hand end of its row — that control stays invisible until you move the mouse over the row.",
+      "2. Your user has the ‘Work Order Line - Create and Edit’ permission enabled. To check it: open “Settings”, click “Roles & Permissions” in the sidebar, then click the pencil on the role your user is on, and look for “Work Order Line - Create and Edit”.",
+      "3. Click “Add Part” on a line, then in the “Part number” box type a catalog part number that is not stocked anywhere — “F40010212” (Slack Adjuster) is one, and the suggestion list marks it “Catalog”. Click that suggestion. Then look at the “Cost” and “Sell price” boxes."
+     ]
+    ],
+    "text": "1. In the top menu click “Work Orders”, then open a work order whose status is Estimate, Approved, In Progress, or Review (click its row in the list). Open its “Lines” tab. Each work order line has its own Parts section beneath it: the “Add Part” button sits in that section, and every part already on the line has an “edit” control at the right-hand end of its row — that control stays invisible until you move the mouse over the row.\n2. Your user has the ‘Work Order Line - Create and Edit’ permission enabled. To check it: open “Settings”, click “Roles & Permissions” in the sidebar, then click the pencil on the role your user is on, and look for “Work Order Line - Create and Edit”.\n3. Click “Add Part” on a line, then in the “Part number” box type a catalog part number that is not stocked anywhere — “F40010212” (Slack Adjuster) is one, and the suggestion list marks it “Catalog”. Click that suggestion. Then look at the “Cost” and “Sell price” boxes."
+   }
+  }
+ },
+ "45239": {
+  "title": "A part with no bins gets no allocation and no chip",
+  "verdict": "verdict changed 2026-09-01",
+  "marker_override": "AUTOMATION: READY",
+  "build_sentence": "Last checked against build v26.35.6-598cc8a on 9/1/2026.",
+  "fields": {
+   "custom_expected": {
+    "blocks": [
+     [
+      "1. The part gets no allocation and no chip.",
+      "2. The “Pulled from” line is not displayed."
+     ],
+     [
+      "---",
+      "This is the expected behaviour as per epic SV-9315 and Story 7 (Bin Allocation on the Inline Row); the Story 7 Jira ticket is TBD and the Inline Add and Edit Parts on Work Order Lines specification version 16, section S7-N1, read on 31 August 2026.",
+      "Last checked against build v26.35.6-598cc8a on 9/1/2026."
+     ],
+     [
+      "AUTOMATION: READY"
+     ]
+    ],
+    "text": "1. The part gets no allocation and no chip.\n2. The “Pulled from” line is not displayed.\n\n---\nThis is the expected behaviour as per epic SV-9315 and Story 7 (Bin Allocation on the Inline Row); the Story 7 Jira ticket is TBD and the Inline Add and Edit Parts on Work Order Lines specification version 16, section S7-N1, read on 31 August 2026.\nLast checked against build v26.35.6-598cc8a on 9/1/2026.\n\nAUTOMATION: READY"
+   }
+  }
+ }
+}

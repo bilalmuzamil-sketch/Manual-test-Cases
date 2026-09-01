@@ -11,7 +11,11 @@
   "automated_ids": [
    45220,
    45005,
-   45026
+   45026,
+   45223,
+   45224,
+   45227,
+   45237
   ],
   "markers": {
    "AUTOMATION: READY": 118,
@@ -40,11 +44,8 @@
    "results_already_recorded": []
   },
   "without_build_sentence": [
-   44996,
    45034,
-   45060,
-   45220,
-   45239
+   45220
   ],
   "per_case": {
    "44988": {
@@ -112,12 +113,12 @@
     "build_sentence": true
    },
    "44996": {
-    "title": "Add Part and Edit hidden when the work order is not editable otherwise",
+    "title": "Add Part and Edit hidden when the work order/line is not editable otherwise",
     "marker": "AUTOMATION: READY",
     "author": "Bilal Muzamil",
     "automated": false,
     "foreign": false,
-    "build_sentence": false
+    "build_sentence": true
    },
    "44997": {
     "title": "Add Part on another line while a row is open triggers the guard",
@@ -637,7 +638,7 @@
     "author": "Bilal Muzamil",
     "automated": false,
     "foreign": false,
-    "build_sentence": false
+    "build_sentence": true
    },
    "45061": {
     "title": "Work order becoming non-editable during Full View add fails the save",
@@ -843,7 +844,7 @@
     "title": "Selecting a part auto-allocates the full quantity to a single bin",
     "marker": "AUTOMATION: READY",
     "author": "Bilal Muzamil",
-    "automated": false,
+    "automated": true,
     "foreign": false,
     "build_sentence": true
    },
@@ -851,7 +852,7 @@
     "title": "Allocation is shown below the row as a Pulled from chip",
     "marker": "AUTOMATION: READY",
     "author": "Bilal Muzamil",
-    "automated": false,
+    "automated": true,
     "foreign": false,
     "build_sentence": true
    },
@@ -875,7 +876,7 @@
     "title": "Choosing a bin from the picker moves the full quantity into it",
     "marker": "AUTOMATION: READY",
     "author": "Bilal Muzamil",
-    "automated": false,
+    "automated": true,
     "foreign": false,
     "build_sentence": true
    },
@@ -955,7 +956,7 @@
     "title": "Allocation is stored on save and not shown on the saved part row",
     "marker": "AUTOMATION: READY",
     "author": "Bilal Muzamil",
-    "automated": false,
+    "automated": true,
     "foreign": false,
     "build_sentence": true
    },
@@ -973,7 +974,7 @@
     "author": "Bilal Muzamil",
     "automated": false,
     "foreign": false,
-    "build_sentence": false
+    "build_sentence": true
    },
    "45240": {
     "title": "A part not linked to the catalog gets no allocation and no chip",
@@ -1010,18 +1011,21 @@
    45123
   ],
   "markers": {
-   "AUTOMATION: READY": 41,
+   "AUTOMATION: READY": 38,
+   "AUTOMATION: HOLD - a work order cannot be created without a customer (\"Customer is a required field\"), so this printout can never be reached; awaiting a product-owner ruling": 1,
+   "AUTOMATION: HOLD - a work order cannot be created without a vehicle (\"Asset is a required field\"), so this printout can never be reached; awaiting a product-owner ruling": 1,
+   "AUTOMATION: HOLD - the product has no Cancelled line status (only Authorization required, Declined, Authorized and Complete), so this state cannot be reached; awaiting a product-owner ruling": 1,
    "AUTOMATION: HOLD - a work order with no line items cannot be printed at all, so this printout can never be reached; awaiting a product-owner ruling on the contradiction": 1,
    "AUTOMATION: HOLD - a work order with no line items cannot be printed at all, so this summary can never be reached; awaiting a product-owner ruling on the contradiction": 1,
    "AUTOMATION: Not available on Build to test Yet - Last checked 8/25/2026": 1
   },
   "arithmetic": {
-   "ready": 41,
+   "ready": 38,
    "expect_fail": 0,
-   "hold": 2,
+   "hold": 5,
    "total": 43,
-   "ready_plus_expectfail": 41,
-   "total_minus_hold": 41,
+   "ready_plus_expectfail": 38,
+   "total_minus_hold": 38,
    "closes": true,
    "excluded_from_the_gate": [
     45123
@@ -1038,11 +1042,6 @@
    "results_already_recorded": []
   },
   "without_build_sentence": [
-   45090,
-   45097,
-   45098,
-   45104,
-   45111,
    45123
   ],
   "per_case": {
@@ -1100,7 +1099,7 @@
     "author": "Bilal Muzamil",
     "automated": false,
     "foreign": false,
-    "build_sentence": false
+    "build_sentence": true
    },
    "45091": {
     "title": "Print is disabled until line item data has loaded",
@@ -1152,19 +1151,19 @@
    },
    "45097": {
     "title": "No customer assigned prints an explicit placeholder",
-    "marker": "AUTOMATION: READY",
+    "marker": "AUTOMATION: HOLD - a work order cannot be created without a customer (\"Customer is a required field\"), so this printout can never be reached; awaiting a product-owner ruling",
     "author": "Bilal Muzamil",
     "automated": false,
     "foreign": false,
-    "build_sentence": false
+    "build_sentence": true
    },
    "45098": {
     "title": "No vehicle assigned prints an explicit placeholder",
-    "marker": "AUTOMATION: READY",
+    "marker": "AUTOMATION: HOLD - a work order cannot be created without a vehicle (\"Asset is a required field\"), so this printout can never be reached; awaiting a product-owner ruling",
     "author": "Bilal Muzamil",
     "automated": false,
     "foreign": false,
-    "build_sentence": false
+    "build_sentence": true
    },
    "45099": {
     "title": "Each line shows number, description, status, time, story and techs",
@@ -1208,11 +1207,11 @@
    },
    "45104": {
     "title": "Cancelled lines still print if visible on screen",
-    "marker": "AUTOMATION: READY",
+    "marker": "AUTOMATION: HOLD - the product has no Cancelled line status (only Authorization required, Declined, Authorized and Complete), so this state cannot be reached; awaiting a product-owner ruling",
     "author": "Bilal Muzamil",
     "automated": false,
     "foreign": false,
-    "build_sentence": false
+    "build_sentence": true
    },
    "45105": {
     "title": "Line groups are separated by a thick border and note space",
@@ -1268,7 +1267,7 @@
     "author": "Bilal Muzamil",
     "automated": false,
     "foreign": false,
-    "build_sentence": false
+    "build_sentence": true
    },
    "45112": {
     "title": "Summary shows total actual and estimated time",

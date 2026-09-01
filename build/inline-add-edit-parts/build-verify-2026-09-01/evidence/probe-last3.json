@@ -1,0 +1,124 @@
+{
+ "C45060-no-cost-no-sell": {
+  "catalogueRecordHasNoCostField": true,
+  "catalogueRecordKeys": [
+   "id",
+   "name",
+   "size",
+   "part_number",
+   "manufacturer_id",
+   "category",
+   "measurement",
+   "core_part_id",
+   "is_core",
+   "organization_id",
+   "part_number_stripped",
+   "external_id",
+   "external_source",
+   "manufacturer_name",
+   "category_label",
+   "deletable",
+   "tags"
+  ],
+  "onSelect": {
+   "cost": "0.00",
+   "sell": "0.00",
+   "desc": "Slack Adjuster"
+  },
+  "afterSaveAttempt": {
+   "saved": [
+    201
+   ],
+   "sentences": {
+    "mustEnter": false,
+    "changedBySomeoneElse": false,
+    "anyNegative": [
+     "location_on",
+     "check_circle\nPart added\nClose"
+    ]
+   },
+   "rowStillOpen": true
+  }
+ },
+ "C44996-line-complete": {
+  "line": "6713980e-db91-47db-b6b2-3dacd91d50fd",
+  "addPartButtonsBeforeTheFlip": 3,
+  "flippedTo": "complete",
+  "flipSteps": [
+   {
+    "to": "authorized",
+    "http": 200,
+    "body": "{\"data\":[]}"
+   },
+   {
+    "to": "complete",
+    "http": 200,
+    "body": "{\"data\":[]}"
+   }
+  ],
+  "observed": {
+   "statusBadge": "Complete",
+   "blockFound": true,
+   "addPartInThatLineBlock": 0,
+   "addPartOnThePage": 3,
+   "blockText": "2 more_vert Diagnose - Fuel gauge 0.00 / 0.00 Complete $149.95 0% $0",
+   "buttonToLineMap": [
+    {
+     "lineId": "7c43dc20-e728-451c-a8d2-6b306523aee5",
+     "status": "Needs Approval"
+    },
+    {
+     "lineId": "7c43dc20-e728-451c-a8d2-6b306523aee5",
+     "status": "Needs Approval"
+    },
+    {
+     "lineId": "7c43dc20-e728-451c-a8d2-6b306523aee5",
+     "status": "Needs Approval"
+    }
+   ],
+   "legacyRead": {
+    "statusBadge": "Complete",
+    "addPartInThatLine": 0,
+    "addPartOnThePage": 3,
+    "lineText": "Complete"
+   }
+  },
+  "RESTORE_VERIFIED": {
+   "originalStatus": "authorization_required",
+   "statusNow": "authorization_required",
+   "identical": true,
+   "restoreSteps": [
+    {
+     "to": "authorized",
+     "http": 200,
+     "body": "{\"data\":[]}"
+    },
+    {
+     "to": "authorization_required",
+     "http": 200,
+     "body": "{\"data\":[]}"
+    }
+   ]
+  }
+ },
+ "C45034-concurrent-change": {
+  "partRequest": "80997ba9-cbcb-48ea-aafd-760c204afffb",
+  "openedEdit": true,
+  "rowOpen": false,
+  "concurrentChange": {
+   "http": 404,
+   "body": "{\"errors\":[{\"error\":\"'resource' was not found.\"}]}"
+  },
+  "afterSave": {
+   "savePosts": [],
+   "sentences": {
+    "mustEnter": false,
+    "changedBySomeoneElse": false,
+    "anyNegative": [
+     "location_on"
+    ]
+   },
+   "rowStillOpen": false
+  }
+ }
+}

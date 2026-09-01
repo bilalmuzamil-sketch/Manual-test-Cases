@@ -361,6 +361,35 @@ Index: CLAUDE.md (rule index table). Other rule files: build/rules/RULES-01-20.m
     never replaces it. Ties to Rules 12 (the re-verification is an observation, not an inference), 49
     and 60 (a candidate ages because the build moves), 61 (a fix that shipped reports itself — the same
     logic applies to a candidate that was never filed) and 80 (say when it was last checked).
+    **⇒ AMENDMENT, 2026-09-01 — THE LANE'S JOB IS RUNNABLE TESTS, NOT TICKETS. STOP PREPARING DEFECTS.**
+    QA lead, 2026-09-01, verbatim: *"You are never supposed to create defect, you are supposed to make
+    the tests RUNNABLE."*
+    **WHAT THIS CHANGES.** A build-verification / VIU / execution pass no longer ends with a defect
+    candidate awaiting permission. When the build does not match the document, the deliverable is the
+    **CASE**, made runnable and honest:
+      · the documented expectation STAYS (Rule 57) — a deviation never rewrites it;
+      · the case carries the **three outcomes** in plain words (Rule 61's expect-fail shape) so the
+        tester runs it, sees the problem, and marks it **Failed** — *what you should see today · exactly
+        that ⇒ Failed, raise nothing new · different ⇒ a new problem, report it · it passes ⇒ the fix
+        shipped, tell the QA lead*;
+      · the marker stays **`AUTOMATION: READY`** — an `EXPECT FAIL (SV-xxxx)` marker needs a LIVE
+        ticket behind it and there is none, and skill 04 §4 is explicit that with no backing the marker
+        comes off and the tester discovers the outcome;
+      · **no ticket text is drafted, no permission is asked for, and no defect candidate file is
+        opened.** Report the finding in the pass report with its **C-id**, and move on.
+    **THE CONFLICT, STATED RATHER THAN SILENTLY RESOLVED (Rule 63).** Rules 51, 52, 53, 62, 73 and 94
+    and the whole of `build/skills/06-DEFECT-PREP.md` are written around producing an unchallengeable
+    ticket and stopping at the button; the three-gate rule recorded earlier the same day
+    (hold → re-verify on the build → ask per candidate) assumes candidates exist to hold. **This
+    instruction supersedes all of that for the lane's own output.** What survives: if he asks for a
+    ticket, skill 06's shape (`Story Defect`, parented to the owning story, `Medium`, never `High`) is
+    still how it is filed. **The already-prepared candidates are NOT filed and NOT re-raised as asks** —
+    they stay in the repo as records and the cases carry the behaviour instead.
+    **WORKED EXAMPLES, 2026-09-01, all three handled this way with no ticket:** **C45068** (no discard
+    confirmation when the pencil is clicked with a populated inline add row open) · **C45060** (the
+    cost and sell-price boxes open at 0.00 instead of empty, and the part saves at 0.00) · **C44996**
+    (a line whose status is Complete still shows "+ Add Part").
+
 63. **WHEN HIS INSTRUCTION CONFLICTS WITH A RECORDED RULE, STOP AND SURFACE THE CONFLICT BEFORE
     ACTING — state both sides and ask which to follow (all projects).**
     USER DIRECTIVE (2026-08-11, verbatim, his typing preserved exactly as he wrote it because Rule 25
@@ -2323,6 +2352,15 @@ Index: CLAUDE.md (rule index table). Other rule files: build/rules/RULES-01-20.m
     verdict count on its own do not satisfy this rule. **Every status update, every per-project
     completion report (Rule 67), every pass write-up and every handoff readiness note carries the
     five tables below — in this order — and the LAST one is a straight YES or NO, never a hedge.**
+
+    **⇒ AMENDMENT, 2026-09-01 — ALWAYS GIVE THE TEST CASE NUMBERS.** QA lead, 2026-09-01, verbatim:
+    *"ALways give test case numbers."* **Every row of every one of the five tables names the C-ids it
+    is about, not a count.** "5 cases blocked on data" is not a report row; "C45090, C45097, C45098,
+    C45104, C45111" is. This binds the counts too: a report that says how many are complete and how
+    many are left **states both numbers explicitly and lists the ids of the ones that are left** — the
+    2026-09-01 handover report was sent back for exactly that omission. Rule 8 still applies on top,
+    so an id in a deliverable is paired with its
+    `https://shopview.testrail.io/index.php?/cases/view/<id>` link.
 
     ### TABLE 1 — WHAT IS COMPLETE
 

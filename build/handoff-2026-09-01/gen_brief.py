@@ -47,27 +47,24 @@ exec(_src[_src.index('NEXT = {'):_src.index('FLAVOUR = {')], _ns)
 NEXT = _ns['NEXT']
 
 WHY = {  # the thing each un-runnable case is actually waiting on - used to GROUP the skip list
- 44993: 'work orders in statuses this test system does not have',
- 44994: 'work orders in statuses this test system does not have',
- 45088: 'work orders in statuses this test system does not have',
- 44996: 'an answer from the product owner',
- 45060: 'an answer from the product owner',
- 45239: 'an answer from the product owner',
- 45107: 'an answer from the product owner (the written description contradicts itself)',
- 45116: 'an answer from the product owner (the written description contradicts itself)',
+ 44993: 'work order statuses this system does not have',
+ 44994: 'work order statuses this system does not have',
+ 45088: 'work order statuses this system does not have',
+ 45097: 'a product-owner ruling — the app forbids the state',
+ 45098: 'a product-owner ruling — the app forbids the state',
+ 45104: 'a product-owner ruling — the app forbids the state',
+ 45107: 'a product-owner ruling — the app forbids the state',
+ 45116: 'a product-owner ruling — the app forbids the state',
  45034: 'a second person working at the same time',
- 45090: 'a test login that cannot open work orders',
- 45097: 'a work order with no customer on it',
- 45098: 'a work order with no vehicle on it',
- 45104: 'a line whose status is Cancelled',
- 45111: 'a tech story about a paragraph long',
- 45068: 'nothing - RUN IT, it is a known problem',
- 45220: 'nothing - it is not ours to touch',
+ 45220: 'nothing — it is not ours to touch',
+ 44996: 'nothing — RUN IT, it is a known problem',
+ 45060: 'nothing — RUN IT, it is a known problem',
+ 45068: 'nothing — RUN IT, it is a known problem',
 }
 PLAIN = {  # "what it is, in plain words" - never the raw case title, which carries jargon
  44993: 'Checks the Add Part button is hidden on work orders that can no longer be changed',
  44994: 'Checks the pencil (Edit) control is hidden on work orders that can no longer be changed',
- 44996: 'Checks the row is hidden when a work order cannot be changed for a reason other than status',
+ 44996: 'Checks Add Part is hidden once a line is finished',
  45034: 'Checks what you are told when someone else changes the same part while you are editing it',
  45060: 'Checks the cost and price boxes when the chosen part has no cost or price recorded',
  45068: 'Checks you are asked before your unsaved part is thrown away',
@@ -233,7 +230,7 @@ for d in data:
               f"{NEXT.get(cid, 'ASK THE QA LEAD - no instruction has been written for this one.')} |")
         w('')
     # cases that run end to end but carry an instruction
-    extra = [cid for cid in (45068, 45123) if cid in d['V']
+    extra = [cid for cid in (44996, 45060, 45068, 45090, 45111, 45123, 45239) if cid in d['V']
              and cid not in d['dont_run'] and cid not in d['part_only']]
     if extra:
         w('### Run these, but read the note first')
@@ -273,24 +270,34 @@ w('| # | What I need | Why it matters | What happens without it |')
 w('|---|---|---|---|')
 rows = [
  ('Go-ahead to rewrite one Printer Friendly test',
-  f'[C45123]({link(45123)}) is flagged Automated, so it cannot be touched without your say-so per case. '
-  'Its steps do not yet name where on the screen to look.',
+  f'[C45123]({link(45123)}) is flagged Automated, so it cannot be touched without your say-so per '
+  'case. Its behaviour is verified as correct; only its steps are short of naming where on the screen '
+  'to look, which is why it is the one case in that suite failing the runnability check.',
   'It goes to the tester with vaguer instructions than the other 43.'),
- ('A ruling on one colleague-owned test',
-  f'[C45220]({link(45220)}) belongs to Vladimir Tomovic and has no steps at all. You told me not to '
-  'change his cases, so I have not.',
-  'The tester will open an empty test and not know what to do with it.'),
- ('Five answers from the product owner',
-  'They are in the two question spreadsheets already sent. They decide five tests in these suites.',
-  'Those five stay Untested rather than Passed or Failed.'),
- ('Permission to raise one bug ticket',
-  f'The unsaved-part warning does not appear ([C45068]({link(45068)})). The ticket text is written and '
-  'waiting; you asked me to hold every ticket and to re-check on the build first when you lift that.',
-  'A real, reproducible bug stays unrecorded outside these notes.'),
- ('A decision on the contradiction in the Printer Friendly description',
-  'The description says printing is switched off when a work order has no lines, and elsewhere '
-  'describes what that printout should look like. Both cannot be true.',
-  'Two tests can never be run by anyone.'),
+ ('A product-owner ruling on five tests the application forbids',
+  f'[C45097]({link(45097)}) and [C45098]({link(45098)}) describe a work order with no customer / no '
+  f'vehicle — the app answers "Customer is a required field" and "Asset is a required field" and '
+  f'creates nothing. [C45104]({link(45104)}) needs a Cancelled line status, which the product does not '
+  f'have (its list is Authorization required, Declined, Authorized, Complete). '
+  f'[C45107]({link(45107)}) and [C45116]({link(45116)}) describe the printout of a work order with no '
+  'lines, which cannot be printed at all. In every case the written requirement asks for behaviour in '
+  'a state the product does not permit.',
+  'Those five stay Untested — nobody can run them, now or later, until the requirement changes.'),
+ ('A colleague for one test',
+  f'[C45034]({link(45034)}) needs a second person changing the same part while the tester\'s edit row '
+  'is open. Two attempts from a second connection could not get the row open at the right moment, so '
+  'nothing is known about the behaviour either way.',
+  'It stays Untested; a tester with a colleague settles it in a minute.'),
+ ('Nothing on Vladimir Tomovic\'s case — recorded, not asked',
+  f'[C45220]({link(45220)}) has no steps and is the one Inline case failing the runnability check. '
+  'Your instruction is recorded and I have not touched it, and I am not asking again.',
+  'The tester will open an empty test; the brief tells her to leave it alone.'),
+ ('For your information — four more cases became Automated today',
+  f'[C45223]({link(45223)}), [C45224]({link(45224)}), [C45227]({link(45227)}) and '
+  f'[C45237]({link(45237)}) are now flagged Automated in TestRail; this morning only '
+  f'[C45005]({link(45005)}), [C45026]({link(45026)}) and [C45220]({link(45220)}) were. All four were '
+  'written before the flag appeared, so nothing was written to a protected case.',
+  'From now on those four need a per-case go-ahead like any other Automated case.'),
 ]
 for i, (a, b, cc) in enumerate(rows, 1):
     w(f'| {i} | **{a}** | {b} | {cc} |')

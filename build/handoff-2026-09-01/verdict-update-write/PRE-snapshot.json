@@ -1,0 +1,72 @@
+{
+ "45090": {
+  "title": "Users without view permission cannot reach the print option",
+  "atm": 1,
+  "section_id": 6761,
+  "refs": "SV-9384 (S1-N1)",
+  "provenance": [
+   "This is the expected behaviour as per epic SV-9383 and story SV-9384 (Story 1, Print Option in More Menu) and the Printer Friendly Work Orders specification version 8, section S1-N1, read on 25 August 2026."
+  ],
+  "before": {
+   "custom_preconds": "<p>1. Sign in as a user whose role cannot view work orders, or have an administrator create one. To set a role up that way: open “Settings” from the menu behind your name at the top right, click “Roles &amp; Permissions” in the sidebar, then click the pencil on the role in question and switch its work-order viewing permission off. Then, in the top menu, try to reach “Work Orders” at all.</p>",
+   "custom_steps": "<p>1. Attempt to open the work order detail page.</p>",
+   "custom_expected": "<p>1. You cannot access the work order detail page and therefore cannot reach the print option (enforced by existing access control).</p><p>NOTE FOR THE TESTER: this needs a sign-in that cannot open work orders at all. Ask the QA lead to set one up; until then leave the case Untested.</p><p>---<br>This is the expected behaviour as per epic SV-9383 and story SV-9384 (Story 1, Print Option in More Menu) and the Printer Friendly Work Orders specification version 8, section S1-N1, read on 25 August 2026.</p><p>AUTOMATION: READY</p>"
+  }
+ },
+ "45097": {
+  "title": "No customer assigned prints an explicit placeholder",
+  "atm": 1,
+  "section_id": 6762,
+  "refs": "SV-9385 (S2-N1)",
+  "provenance": [
+   "This is the expected behaviour as per epic SV-9383 and story SV-9385 (Story 2, Print Layout - Work Order Header) and the Printer Friendly Work Orders specification version 8, section S2-N1, read on 25 August 2026."
+  ],
+  "before": {
+   "custom_preconds": "<p>1. In the top menu click “Work Orders” and open a work order by clicking its row. On the work order’s toolbar click the three-dots button at the top right, then choose “Print Work Order”. The menu holds five items in this order: “Audit Log”, “Timesheets”, “Add Work Order Fee / Discount”, “Print Work Order”, “Delete Work Order”. Choosing it opens your browser’s own print dialog — the printout is what you are checking, so use your browser’s print preview to look at it.<br>2. The open work order has no customer assigned.</p>",
+   "custom_steps": "<p>1. Read the customer section of the printout.</p>",
+   "custom_expected": "<p>1. The customer section displays “No customer assigned”.</p><p>NOTE FOR THE TESTER: this needs a work order with no customer on it. Every work order on this test system has one, so the case cannot be set up here yet.</p><p>---<br>This is the expected behaviour as per epic SV-9383 and story SV-9385 (Story 2, Print Layout - Work Order Header) and the Printer Friendly Work Orders specification version 8, section S2-N1, read on 25 August 2026.</p><p>AUTOMATION: READY</p>"
+  }
+ },
+ "45098": {
+  "title": "No vehicle assigned prints an explicit placeholder",
+  "atm": 1,
+  "section_id": 6762,
+  "refs": "SV-9385 (S2-N2)",
+  "provenance": [
+   "This is the expected behaviour as per epic SV-9383 and story SV-9385 (Story 2, Print Layout - Work Order Header) and the Printer Friendly Work Orders specification version 8, section S2-N2, read on 25 August 2026."
+  ],
+  "before": {
+   "custom_preconds": "<p>1. In the top menu click “Work Orders” and open a work order by clicking its row. On the work order’s toolbar click the three-dots button at the top right, then choose “Print Work Order”. The menu holds five items in this order: “Audit Log”, “Timesheets”, “Add Work Order Fee / Discount”, “Print Work Order”, “Delete Work Order”. Choosing it opens your browser’s own print dialog — the printout is what you are checking, so use your browser’s print preview to look at it.<br>2. The open work order has no vehicle assigned.</p>",
+   "custom_steps": "<p>1. Read the vehicle section of the printout.</p>",
+   "custom_expected": "<p>1. The vehicle section displays “No vehicle assigned”.</p><p>NOTE FOR THE TESTER: this needs a work order with no vehicle on it. Every work order on this test system has one, so the case cannot be set up here yet.</p><p>---<br>This is the expected behaviour as per epic SV-9383 and story SV-9385 (Story 2, Print Layout - Work Order Header) and the Printer Friendly Work Orders specification version 8, section S2-N2, read on 25 August 2026.</p><p>AUTOMATION: READY</p>"
+  }
+ },
+ "45104": {
+  "title": "Cancelled lines still print if visible on screen",
+  "atm": 1,
+  "section_id": 6763,
+  "refs": "SV-9386 (S3-R6)",
+  "provenance": [
+   "This is the expected behaviour as per epic SV-9383 and story SV-9386 (Story 3, Print Layout - Line Items) and the Printer Friendly Work Orders specification version 8, section S3-R6, read on 25 August 2026."
+  ],
+  "before": {
+   "custom_preconds": "<p>1. In the top menu click “Work Orders” and open a work order by clicking its row. On the work order’s toolbar click the three-dots button at the top right, then choose “Print Work Order”. The menu holds five items in this order: “Audit Log”, “Timesheets”, “Add Work Order Fee / Discount”, “Print Work Order”, “Delete Work Order”. Choosing it opens your browser’s own print dialog — the printout is what you are checking, so use your browser’s print preview to look at it.<br>2. The open work order has a line with a Cancelled status visible on the Lines tab.</p>",
+   "custom_steps": "<p>1. On the Print Work Order view (see Preconditions), read the printout for the cancelled line.</p>",
+   "custom_expected": "<p>1. Line items with a status of “Cancelled” still appear on the printout if they are visible on screen, with their status clearly indicated.</p><p>NOTE FOR THE TESTER: this needs a work order line whose status is Cancelled, and none of the work orders checked had one. If you can set a line to Cancelled yourself, do that and then run the case; otherwise leave it Untested.</p><p>---<br>This is the expected behaviour as per epic SV-9383 and story SV-9386 (Story 3, Print Layout - Line Items) and the Printer Friendly Work Orders specification version 8, section S3-R6, read on 25 August 2026.</p><p>AUTOMATION: READY</p>"
+  }
+ },
+ "45111": {
+  "title": "A very long tech story wraps and prints in full",
+  "atm": 1,
+  "section_id": 6763,
+  "refs": "SV-9386 (S3-E2)",
+  "provenance": [
+   "This is the expected behaviour as per epic SV-9383 and story SV-9386 (Story 3, Print Layout - Line Items) and the Printer Friendly Work Orders specification version 8, section S3-E2, read on 25 August 2026."
+  ],
+  "before": {
+   "custom_preconds": "<p>1. In the top menu click “Work Orders” and open a work order by clicking its row. On the work order’s toolbar click the three-dots button at the top right, then choose “Print Work Order”. The menu holds five items in this order: “Audit Log”, “Timesheets”, “Add Work Order Fee / Discount”, “Print Work Order”, “Delete Work Order”. Choosing it opens your browser’s own print dialog — the printout is what you are checking, so use your browser’s print preview to look at it.<br>2. At least one line on the open work order has a tech story of 500 or more characters.</p>",
+   "custom_steps": "<p>1. On the Print Work Order view (see Preconditions), read the long tech story on the printout.</p>",
+   "custom_expected": "<p>1. The tech story wraps and prints in full; it is not truncated.</p><p>NOTE FOR THE TESTER: this needs a tech story of at least 500 characters - about a full paragraph. If you can paste that much text into a line’s tech story, do that and then run the case; otherwise leave it Untested.</p><p>---<br>This is the expected behaviour as per epic SV-9383 and story SV-9386 (Story 3, Print Layout - Line Items) and the Printer Friendly Work Orders specification version 8, section S3-E2, read on 25 August 2026.</p><p>AUTOMATION: READY</p>"
+  }
+ }
+}
