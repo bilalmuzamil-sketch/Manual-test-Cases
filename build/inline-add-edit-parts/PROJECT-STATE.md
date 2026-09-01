@@ -2,6 +2,44 @@
 
 **Canonical cold-resume doc.** Status derived live; do not trust remembered figures (Rule 92 / skill 15 §7).
 
+## 🆕 Update — 2026-09-01 (LATEST) — BUILD-VERIFIED ON A LIVE QA BUILD AND HANDED OFF TO THE MANUAL QA TESTER
+
+**Any "no build / routes PROVISIONAL" reading below is now STALE.** The suite was verified live on
+**sv9315.qa.shopview.com, build `v26.35.6-598cc8a`**, on 1 September 2026, and every route in it is
+the route actually walked.
+
+**Verdicts, 119 cases:** 111 PASS · 2 PARTIAL · 1 FAIL · 2 NOT VERIFIED · 2 open product-owner
+questions · 1 FOREIGN (C45220, Vladimir Tomovic — untouched). Per case:
+`build-verify-2026-09-01/verdicts/PER-CASE-VERDICTS.md`. Report:
+`build-verify-2026-09-01/REPORT-2026-09-01.md`.
+
+**Writes: 118 of 118 applied through the TestRail UI editor, 0 failures.** All four post-write checks
+clean: runnability 118/119 (the one is C45220), 118 markers with the gate balancing both ways, Rule-54
+sentence 2 on exactly the 114 cases this pass observed live and nowhere else, and 0 escaping containers
+on the served pages.
+
+**The one deviation: C45068.** Clicking the pencil on a part line while a POPULATED inline add row is
+open opens the Edit Part Request modal immediately, with **no** discard confirmation, and leaves the
+add row behind it. Observed twice. S5-E1 requires S6-R5's confirmation first. **Ticket text ready,
+nothing filed** — the Jira hold stands, and per the QA lead's 2026-09-01 instruction a go-ahead means
+re-verify on the build first and then ask per candidate. Register row HO-4.
+
+**A correction worth keeping.** Nine Story 7 cases were reported blocked on bin data states that did
+not exist. They existed all along: `/api/inventory/parts` ignores `pagination[rowsPerPage]` and
+`page` as most callers write them, so the read saw **100 of 6,879** parts. Recorded as
+`build/APP-ACTIONS-PLAYBOOK.md` §S. **A "the data does not exist" conclusion needs the paging proved
+first.**
+
+**Handed off to Viktoria Videnovic** (TestRail user 4) on 2026-09-01 — not Mudassir Qamar, who owns
+Invoice UI Refresh (QA lead, 2026-09-01). Run **418**, 119 tests, set-equal to the cases in both
+directions, zero results pre-recorded. Deliverables in `build/handoff-2026-09-01/`: the brief,
+`HOW-THE-NUMBERS-WERE-DERIVED.md`, and the `Defects-for-Testers` workbook. Six gates were run at
+handover and every one is re-runnable from that folder.
+
+**Also on 2026-09-01:** the 6 cases the brief does not send the tester through end to end now carry
+that reason **inside the case**, at the end of Expected Results (skill 04 §4). Gate:
+`build/handoff-2026-09-01/check_self_explains.py`.
+
 ## Update — 2026-09-01 (runnable-steps gate: NOT RUNNABLE = 0 for all non-Automated cases)
 Ran `build/testing-tools/check_runnable_cases.py` (reads TestRail live) over the whole suite: it flagged
 22 cases NOT RUNNABLE (all R4 — the FIRST step, or a bare "Attempt to Save" later step, did not say where
