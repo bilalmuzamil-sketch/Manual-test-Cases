@@ -2,6 +2,20 @@
 
 **Canonical cold-resume doc.** Status derived live; do not trust remembered figures (Rule 92 / skill 15 §7).
 
+## Update — 2026-09-01 (runnable-steps gate: NOT RUNNABLE = 0 for all non-Automated cases)
+Ran `build/testing-tools/check_runnable_cases.py` (reads TestRail live) over the whole suite: it flagged
+22 cases NOT RUNNABLE (all R4 — the FIRST step, or a bare "Attempt to Save" later step, did not say where
+to go). Fixed **21 of ours** (created_by 3, atm=1) by anchoring the offending step to the state the
+preconditions already establish (Inline: "In the work order line's Parts section (see Preconditions), …"
+or "On the open inline part row (see Preconditions), …"; guard dialogs point at the named dialog; the four
+"Attempt to Save" steps now name the Save control on the inline row). Preconds/Expected untouched (Rule 57);
+routes remain PROVISIONAL (no build). Edited through the TestRail UI editor (Froala) so every field stays
+`markdown fr-view` — verified served-page fr-view + no literal tags on each. Cases: C45021, C45023, C45034,
+C45035, C45036, C45038, C45045, C45053, C45060, C45063, C45064, C45068, C45071, C45076, C45082, C45221,
+C45223, C45228, C45239, C45242, C45243. **Final gate: 118 RUNNABLE / 1 NOT RUNNABLE** — the one remaining is
+**C45220** (foreign, Vladimir Tomovic / created_by 1, and Automated atm=3) → left untouched (Rules 38 + 71).
+Local `cases/*.json` steps synced to match. Gate exit criterion met.
+
 ## Identity
 - **TestRail parent folder (group):** group_id **6597**, suite 1 — cases live in the sub-sections inside it, not directly in the folder. Link: https://shopview.testrail.io/index.php?/suites/view/1&group_by=cases:section_id&group_order=asc&display=compact&display_deleted_cases=0&group_id=6597 (recorded 2026-08-25)
 - **Epic:** SV-9315 · **PO / Owner:** Sasha Grosman
