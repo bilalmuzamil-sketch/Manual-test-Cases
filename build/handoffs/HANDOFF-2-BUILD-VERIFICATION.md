@@ -47,7 +47,8 @@
 ## 1. MISSION
 
 You are the **build-verification session**. Your job is to take test cases that already exist and
-**drive them live against the running build**, producing an observed **PASS / DEVIATION / HOLD**
+**drive them live against the running build**, producing an observed
+**PASS / DEVIATION / HOLD / NOT AVAILABLE ON BUILD**
 verdict for each one with evidence captured that run, a re-check queue, and a plain-language
 **Defects-for-Testers** workbook a manual QA can act on tomorrow morning. **You must NEVER do the
 following:** you do not author new test cases (that is handoff 1), you do not rewrite case wording or
@@ -58,6 +59,49 @@ explicit permission asked for and granted, and you never touch another author's 
 your lane and report cross-lane findings back to the main session**: if you find a coverage gap, a
 missing case or a nonsense case, write it up and hand it back rather than authoring or editing it
 yourself.
+
+**THE FOURTH VERDICT — `NOT AVAILABLE ON BUILD` (Rule 69).** A case whose steps or preconditions
+**cannot yet be build-verified** is not a failure and **not a blocker — it is a FINISHED case**. It
+**keeps its documented expectation** (Rule 57), carries the marker
+**`AUTOMATION: Not available on Build to test Yet - Last checked <M/D/YYYY>`** with the date you
+actually checked, gets the tester-facing under-development line, is logged to this pass's
+`DEFERRED-RUN.md`, and is **excluded from any ready-to-automate figure**. Procedure:
+**`03-RUN-CHECK.md` §7** (decision table §7.2, the exact line §7.3, the deferred list §7.4);
+marker rules: **`00-COMMON-CORE.md` §15**.
+
+---
+
+## 1a. 🛑 "I CANNOT OBSERVE THIS ON THE BUILD" IS **NOT** "BLOCKED"
+
+**READ THIS BEFORE YOU READ ANYTHING ELSE IN §2. It is the fix for a real incident: on 2026-08-31 a
+build-verification session parked 18 cases as "blocked" when every one of them had a defined
+deliverable outcome already written down — and one of them had a full working recipe sitting in
+`build/APP-ACTIONS-PLAYBOOK.md` the whole time.**
+
+**Work in this lane almost never STOPS. It CHANGES SHAPE.** When you cannot observe something, you do
+not get to stop — you pick the right outcome from this list:
+
+| What you actually hit | The outcome that is already defined for it |
+|---|---|
+| **Feature is not built yet** | **Rule 69** — `AUTOMATION: Not available on Build to test Yet - Last checked <M/D/YYYY>`, under-development line, `DEFERRED-RUN.md`. **A finished case**, not a blocker. (`03-RUN-CHECK.md` §7) |
+| **A precondition needs the CUSTOMER PORTAL** | The **staging-only HOLD** marker — see **§3b** below and **`00-COMMON-CORE.md` §5.0-b**. Judge it from the **preconditions**, never from the word "portal". |
+| **The source is ambiguous** | **Rule 58** — **hold the case and add a PO-question row.** An ambiguous source is **NEVER** resolved by looking at the build. |
+| **A data state you need does not exist** | **Rule 14 — SEED IT.** Seeding on a disposable environment is **pre-authorised, permanently** (`00-COMMON-CORE.md` §5.0-b(1)). **Never NOT-VERIFIED for a data state.** |
+| **The feature is there but you cannot find the control** | **Rule 97 search drill** (playbook first — the exact error text) **+ Rule 26 role reset** (it may be permission-gated and simply not rendered) **+ the network tab + grep the served JS bundle.** A control you cannot see may be one role-reset away. |
+| **It is genuinely your own unfinished work** | **Say so plainly — "MINE".** That is the honest name for it, and it is never filed under a blocker. |
+
+**ONLY AFTER ALL OF THE ABOVE does anything earn the word "blocked" — and then Rule 68 applies:
+DECOMPOSE, because part of the group is almost always testable, and STATE THE RESIDUAL.**
+
+**THE RULE 57 COROLLARY, AND IT IS THE POINT:** expected behaviour comes from the **DOCUMENTS**. From
+the build we take **exactly two things** — the **on-screen labels / navigation path**, and the
+**pass / fail verdict**. **Therefore a case can be fully authored, tester-ready and FINISHED with zero
+build access.** "No build access" is a statement about two fields, never about the case.
+
+**Canonical fuller treatment — read it, do not work from this table alone:
+`03-RUN-CHECK.md` §8.0-a** (*a check that fails is a statement about YOUR CHECK until you prove
+otherwise* — the positive-control gate, the one-token variant, and the
+MINE / BLOCKED-PROVEN / BLOCKED-EVIDENCED / NOT-YET-PROVEN classification you must report counts for).
 
 ---
 
@@ -123,7 +167,11 @@ both stale; they are corrected rather than deleted so nobody re-derives them.
 3. **Rule 9** — the build supplies the **labels**; correct them, never invent them.
 4. **Rule 12** — verified means **observed**, with evidence captured that run. Never inferred from
    spec, code, role definitions or prior data. Not observed ⇒ labelled NOT VERIFIED / Blocked with the
-   reason.
+   reason. **⚠️ READ THIS WITH §1a — Blocked-with-reason stays a legitimate honest outcome, but it is
+   NOT the default for anything you did not observe.** Most unobserved things have a *different*
+   defined outcome (Rule 69 marker · the staging-only portal HOLD · Rule 58 hold-and-ask · Rule 14
+   seed it · the Rule 97 search drill). **Pick the outcome from §1a's table first; "blocked" is what
+   is left over, and Rule 68 then applies to it.**
 5. **Rule 13** — live, feature-by-feature testing is the default standard for any test / verify /
    check / confirm request.
 6. **Rule 14** — **seed, don't block.** A missing data state is never an acceptable blocker on a
@@ -157,12 +205,27 @@ both stale; they are corrected rather than deleted so nobody re-derives them.
     build**.
 23. **Rule 62** — no Jira ticket is created without permission (currently under a **"create nothing"**
     hold).
-24. **Rule 71** — automated cases: read-assess → report → **HOLD**; never blanket-skip.
-25. **Rule 74** — the multi-login standard: reset role to template → assign to the Technician
+24. **Rule 68** — **a blocker must be PROVED, and it blocks ONLY WHAT IT ACTUALLY BLOCKS.**
+    *"We could not see a way"* is an assumption; *"we tried A, B and C, and here is what each
+    returned"* is a measurement. **DECOMPOSE the work** — "blocked" is a property of a **question**
+    about a case, not of the case: a missing PO answer blocks the **verdict**, not the runnability; a
+    missing permission blocks **one step**, not the walk. **STATE THE RESIDUAL, in two lines:**
+    *"Blocked for X. Still possible under it: Y. Genuinely impossible until X clears: Z."* A blocked
+    item that never names what could still be done is not a report, it is an excuse. **The six
+    checkable requirements are in `00-COMMON-CORE.md` §11.4 — read them there; they are not repeated
+    here.** See also **§1a**: most things reported as blocked are not.
+25. **Rule 69** — a case that **cannot yet be build-verified** keeps its **documented** expectation
+    (Rule 57), carries **`AUTOMATION: Not available on Build to test Yet - Last checked <M/D/YYYY>`**,
+    gets the under-development line and a `DEFERRED-RUN.md` row — it is a **FINISHED case, NOT a
+    blocker**, and it is **excluded from any ready-to-automate figure**. The marker substitutes for a
+    plain `AUTOMATION: READY` **only** — never over an `EXPECT FAIL` or a `HOLD`. Procedure:
+    **`03-RUN-CHECK.md` §7**.
+26. **Rule 71** — automated cases: read-assess → report → **HOLD**; never blanket-skip.
+27. **Rule 74** — the multi-login standard: reset role to template → assign to the Technician
     quick-login → test → restore Technician.
-26. **Rule 77** — the validity window: a verdict within **≤3 builds and ≤3 source versions** still
+28. **Rule 77** — the validity window: a verdict within **≤3 builds and ≤3 source versions** still
     counts, **but show the date**.
-27. **Rules 75 / 76 / 79** — detached-process architecture, quota discipline, strategy first.
+29. **Rules 75 / 76 / 79** — detached-process architecture, quota discipline, strategy first.
 
 ---
 
@@ -187,6 +250,39 @@ URL · branch + build marker observed on · date observed · recorded by**. Full
   correction in the same pass** — never leave a known-wrong path behind you.
 - The map gets you to the screen. **It is never evidence the feature works** — the verdict still comes
   from observing the feature (Rule 12).
+
+---
+
+## 3b. THE STAGING-ONLY CUSTOMER-PORTAL HOLD
+
+> **CANONICAL SOURCE: `build/skills/00-COMMON-CORE.md` §5.0-b(2). This is a working copy — if the two
+> ever disagree, §5.0-b wins and this copy is the bug.**
+
+**QA lead, 2026-08-31, verbatim: *"Customer portal related tickets can only be tested on staging and
+not on the QA branch. We need to put this marker on such tickets aswell."*** This matters far beyond
+one project: **a label or behaviour that lives on a portal surface will be reported "absent" by any
+QA-branch probe, forever** — so without this marker a portal case turns into a false "not built"
+verdict or a false blocker.
+
+**⇒ THE MARKER — a machine-findable literal, never reworded, exactly as written:**
+
+```
+AUTOMATION: HOLD - customer portal only exists on staging; this case cannot run on the QA branch
+```
+
+**It is a HOLD, not a fifth literal**, so the CLAUDE.md arithmetic gate **READY + EXPECT-FAIL =
+total − HOLD** is unaffected; a portal that does not exist on the branch is *"a genuinely unobtainable
+thing"*, so this is not the barred tool-flag excuse. **The wording is provisional — the QA lead may
+rename it.**
+
+**⇒ SCOPE IT FROM THE CASE'S PRECONDITIONS, NEVER FROM THE WORD "PORTAL".** Only a case whose
+**preconditions require a portal-generated artefact** gets the marker. **A case that verifies the
+portal feature's ABSENCE on the shop-app path is fully testable on the QA branch and must NOT be
+parked.** Worked example, 2026-08-31 (Invoice UI Refresh): **C44954** — *"No paid banner when the
+invoice has no portal-processed payment"* — **is build verified**, while **C44947 / C44951 / C44952 /
+C45175** are staging-only. Four further cases mention the banner in passing and **C45184** names it as
+an **exclusion** (*"The only exception is the Paid banner's 'Date / Time' field"*) — **none of those
+five are portal-gated.**
 
 ---
 
