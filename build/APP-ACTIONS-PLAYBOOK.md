@@ -2390,6 +2390,28 @@ three-cookie set for `app.staging.shopview.com` from the QA lead, into `/tmp` on
   (`/api/invoices/preview` rejects its id; `/api/work-orders-imported/{id}/pdf` is 404).
 - **Confidence:** High (seeded `ZZAUTOTEST-IMP-001` live and read it back).
 
+### Impersonation, and the inline part row  🆕 2026-09-01 (sv9315)
+- **🛑 `quick-login` DOES NOT END IMPERSONATION.** After a `switch-user`, a second `switch-user`
+  answers **400 *"You are already impersonating a user. Exit impersonation first."*** even though the
+  profile reads Admin and `view_mode` reads `full`. The exit route is **`POST /api/exit-switch-user`**
+  (read off the SPA bundle; eight guessed shapes returned 404). **Always exit before switching again,
+  and exit before handing the branch back.**
+- **A bare `quick-login` at the END of a run strands the next process.** It rotates the shared
+  PHPSESSID; if the new value is not written back to the cookie file every later call answers
+  **409 "Session has expired."** and looks like dead credentials. Persist the rotated session.
+- **Tech View needs no role change.** The **Technician** role already carries `view_mode: 'tech'` and
+  lacks `woFullViewMode`; the **Admin** carries `view_mode: 'full'` and holds it. So impersonating a
+  Technician *is* Tech View. There is also a dedicated **"Tech View"** role with one holder.
+- **⚠️ IMPERSONATE A TECHNICIAN AT THE WORK ORDER'S OWN WORKPLACE.** A technician based elsewhere sees
+  a page with no Parts controls at all, which reads exactly like the feature being absent. Compare the
+  work order's `workplace_id` (`GET /api/work-orders/view/{id}`) against the staff record's.
+- **The inline part row has TWO ids:** **`inline_part_row`** when adding and
+  **`inline_part_edit_row`** when editing. Fields: `input_inline_part_description`,
+  `select_inline_part_number`, `input_inline_part_quantity` (all views) plus
+  `select_inline_part_category`, `input_inline_part_cost`, `input_inline_part_sell_price` (Full View
+  only); controls `button_more_options_inline_part` (opens the full New/Edit Part Request modal),
+  `button_save_inline_part`, `button_cancel_inline_part`, and `button_pulled_from_bin` for the bin chip.
+
 ### Document snapshots and batch invoices  🆕 2026-09-01
 - **Snapshot a document as it was at a history event:**
   `POST /api/work-orders/invoices/snapshot {entity_event_id, work_order_id, type:"html"|"pdf"}` →
