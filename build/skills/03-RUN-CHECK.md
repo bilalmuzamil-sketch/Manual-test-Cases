@@ -1097,7 +1097,16 @@ string found in `innerText` is not yet proof of what the tester reads either —
 14. **BEFORE REPORTING A WORDING DEVIATION, WALK THE DOM FOR THE DOCUMENTED STRING AND REPORT THE
     ELEMENT: tag, classes, size and computed visibility.** "Not in the toast" is not "not on screen",
     and "in innerText" is not "on screen" either.
-15. **AN INCONCLUSIVE RUN IS NOT A FINDING — SAY WHAT WOULD MAKE IT CONCLUSIVE.** The
+15. **🛑 "THE DATA STATE DOES NOT EXIST" IS A CLAIM ABOUT THE BRANCH — PROVE THE PAGING FIRST.**
+    A survey of the inventory read **100 of 6,879 parts**, because `GET /api/inventory/parts` ignores
+    `limit`, `rowsPerPage` and `page` and honours only `pagination[rowsPerPage]`. On that basis nine
+    test cases were written up as blocked on a data state that existed all along — a part held in
+    **four** bins, a part with an already-negative bin, and a part with no prices were all in the set
+    the survey never read. **Check the response's own `pagination` block against what you asked for:
+    asking for 500 and being told `"rowsPerPage": 100` is the endpoint telling you it ignored you.**
+    Full table of the three endpoints and their three different paging shapes:
+    `build/APP-ACTIONS-PLAYBOOK.md` §P.
+16. **AN INCONCLUSIVE RUN IS NOT A FINDING — SAY WHAT WOULD MAKE IT CONCLUSIVE.** The
     concurrent-change case ended with no message and an open row, which looks like a defect until you
     notice the probe never re-confirmed that the row was editing the record it had deleted. The
     verdict stayed NOT VERIFIED with the missing assertion named, rather than becoming a ticket.

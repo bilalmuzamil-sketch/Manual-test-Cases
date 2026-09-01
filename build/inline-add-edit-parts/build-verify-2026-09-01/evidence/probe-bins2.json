@@ -1,18 +1,138 @@
 {
  "S1-card-chips": {
   "cards": [
-   "3.50-3.82\" (89-97mm) SPRING LOADED T-BOLT CLAMP N68SL-356 Inventory Qty: 7 EA PB1 7",
-   "3.50-3.82\" (89-97mm) SPRING LOADED T-BOLT CLAMP N68SL-356 Catalog PB1 7"
+   "Group 31 Battery- Stud Post 950CCA S31S-950 Inventory Qty: 17 ea SKID1 6 ST20 4 ST24 4 + 1 STUD POST 31 BATTERY CELL ...",
+   "Group 31 Battery- Stud Post 950CCA S31S-950 Catalog SKID1 6 ST20 4 ST24 4 + 1 STUD POST 31 BATTERY CELL ..."
   ],
-  "plusNChipPresent": false
+  "plusNChipPresent": true
  },
  "S2-auto-switch": {
-  "PROBE_ERROR": "Error: page.waitForTimeout: Target page, context or browser has been closed"
+  "card": "Group 31 Battery- Stud Post 950CCA S31S-950 Inventory Qty: 17 ea SKID1 6 ST20 4 ST24 4 + 1 STUD POST 31 BATTERY CELL ...",
+  "atSelect": {
+   "chipLabel": "SKID1 expand_more",
+   "chipWarn": false,
+   "textNearChip": "Pulled from SKID1 expand_more Enter save & next row · Tab next field · Esc cancel · ⇧ Enter more options",
+   "qty": "",
+   "takesNegative": false,
+   "defaultSwitched": false,
+   "notStocked": false,
+   "sentences": []
+  },
+  "atThree": {
+   "chipLabel": "SKID1 expand_more",
+   "chipWarn": false,
+   "textNearChip": "Pulled from SKID1 expand_more Enter save & next row · Tab next field · Esc cancel · ⇧ Enter more options",
+   "qty": "3",
+   "takesNegative": false,
+   "defaultSwitched": false,
+   "notStocked": false,
+   "sentences": []
+  }
  },
  "S3-manual-bin": {
-  "PROBE_ERROR": "Error: page.waitForTimeout: Target page, context or browser has been closed"
+  "before": {
+   "chipLabel": "SKID1 expand_more",
+   "chipWarn": false,
+   "textNearChip": "Pulled from SKID1 expand_more Enter save & next row · Tab next field · Esc cancel · ⇧ Enter more options",
+   "qty": "2",
+   "takesNegative": false,
+   "defaultSwitched": false,
+   "notStocked": false,
+   "sentences": []
+  },
+  "picker": {
+   "items": [
+    "check SKID1 Default 6",
+    "ST20 4",
+    "ST24 4",
+    "ST25 3",
+    "call_split Split across bins…"
+   ],
+   "text": "check SKID1 Default 6 ST20 4 ST24 4 ST25 3 call_split Split across bins…"
+  },
+  "chosen": "ST20 4",
+  "afterChoose": {
+   "chipLabel": "ST20 expand_more",
+   "chipWarn": false,
+   "textNearChip": "Pulled from ST20 expand_more Enter save & next row · Tab next field · Esc cancel · ⇧ Enter more options",
+   "qty": "2",
+   "takesNegative": false,
+   "defaultSwitched": false,
+   "notStocked": false,
+   "sentences": []
+  },
+  "afterQtyChange": {
+   "chipLabel": "ST20 expand_more",
+   "chipWarn": true,
+   "textNearChip": "Pulled from ST20 expand_more Only 4 here. Pulling 9 takes this bin negative. Enter save & next row · Tab next field · Esc cancel · ⇧ Enter more options",
+   "qty": "9",
+   "takesNegative": true,
+   "defaultSwitched": false,
+   "notStocked": false,
+   "sentences": [
+    "Only 4 here. Pulling 9 takes this bin negative."
+   ]
+  }
  },
  "S4-split-apply": {
-  "PROBE_ERROR": "Error: page.waitForTimeout: Target page, context or browser has been closed"
+  "splitClicked": true,
+  "modal": {
+   "open": true,
+   "title": "New Part Request close Part Number arrow_drop_down Descripti",
+   "rows": [
+    {
+     "text": "Bin name Quantity in stock Amount",
+     "errorStyled": false
+    },
+    {
+     "text": "SKID1 Default 6",
+     "errorStyled": false
+    }
+   ],
+   "hasAuto": false,
+   "hasApply": false,
+   "amountInputs": [
+    "select_part",
+    "input_workorder_part_description",
+    "select_part_category",
+    "select_part_vendor",
+    "input_part_cost",
+    "input_workorder_part_core_charge",
+    "input_workorder_part_sell_price",
+    "input_workorder_part_margin",
+    "input_bin_quantity_12956b15-479b-11f1-9bed-020a144de1a3"
+   ]
+  },
+  "autoClicked": false,
+  "afterAuto": {
+   "amounts": [
+    "",
+    "Group 31 Battery- Stud Post 950CCA",
+    "Inventory",
+    "",
+    "",
+    "92.00000",
+    "",
+    "141.54",
+    "35.00071",
+    "2"
+   ],
+   "note": null
+  },
+  "enteredAmounts": [
+   "1",
+   "2"
+  ],
+  "applyClicked": false,
+  "afterApply": {
+   "chipLabel": "SKID1 expand_more",
+   "chipWarn": false,
+   "textNearChip": "Pulled from SKID1 expand_more Enter save & next row · Tab next field · Esc cancel · ⇧ Enter more options",
+   "qty": "2",
+   "takesNegative": false,
+   "defaultSwitched": false,
+   "notStocked": false,
+   "sentences": []
+  }
  }
 }
