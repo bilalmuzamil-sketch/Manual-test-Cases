@@ -206,7 +206,10 @@ for c in CASES:
     prov_lines = [l for l in prov_lines if not l.startswith('Last checked against build')]
     assert len(prov_lines) == 1, (cid, prov_lines)
     prov_block = ['---'] + prov_lines
-    if verdict in ('PASS', 'FAIL'):
+    # A PARTIAL case WAS checked against the build - part of it was observed and part has no data
+    # state here - so Rule 54 sentence 2 is true of it and belongs on it. Only a case this pass never
+    # exercised is left without one.
+    if verdict in ('PASS', 'FAIL', 'PARTIAL'):
         prov_block.append(BUILD_SENTENCE)
     marker = 'AUTOMATION: READY'
 
@@ -214,12 +217,16 @@ for c in CASES:
         'title': c['title'],
         'verdict': verdict or 'PENDING',
         'marker_override': marker,
-        'build_sentence': BUILD_SENTENCE if verdict in ('PASS', 'FAIL') else None,
+        'build_sentence': BUILD_SENTENCE if verdict in ('PASS', 'FAIL', 'PARTIAL') else None,
         'fields': {
             'custom_preconds': {'blocks': [newpre], 'text': '\n'.join(newpre)},
             'custom_steps':    {'blocks': [newstp], 'text': '\n'.join(newstp)},
+            # 🛑 THE VERIFIER COMPARES AGAINST THE RENDERED innerText, AND SEPARATE <p> BLOCKS
+            # RENDER WITH A BLANK LINE BETWEEN THEM. Joining every line with a single \n made the
+            # first pilot fail verification on three cases whose content had in fact saved
+            # perfectly. Lines WITHIN a block keep \n (they are <br>s); blocks are joined with \n\n.
             'custom_expected': {'blocks': [body_lines, prov_block, [marker]],
-                                'text': '\n'.join(body_lines + prov_block + [marker])},
+                                'text': '\n\n'.join(['\n'.join(b) for b in (body_lines, prov_block, [marker])])},
         },
     }
     snapshot[str(cid)] = {

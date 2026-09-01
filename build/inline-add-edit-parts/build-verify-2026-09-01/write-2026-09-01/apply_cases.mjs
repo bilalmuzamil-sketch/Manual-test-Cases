@@ -213,6 +213,26 @@ for (const cid of queue) {
       await page.waitForLoadState('networkidle');
       for (let w = 0; w < 40 && /cases\/edit/.test(page.url()); w++) await page.waitForTimeout(500);
       if (/cases\/edit/.test(page.url())) {
+        // A DEADLOCK IS RETRYABLE AND IT IS THE COMMON CASE HERE. TestRail answers
+        // "Deadlock found when trying to get lock; try restarting transaction" under concurrent
+        // writes; the "Title is too long" that appears alongside it is a LATENT DOM TEMPLATE, not a
+        // live error (established 2026-08-31 on the Invoice suite). So look for the deadlock text
+        // and simply save again, up to three times, before treating the case as failed.
+        for (let dl = 0; dl < 3; dl++) {
+          const isDeadlock = await page.evaluate(() =>
+            /Deadlock found when trying to get lock/.test(document.body?.innerText || '')
+            || [...document.querySelectorAll('.message-error, .error, [class*="error"]')]
+                 .some(e => /Deadlock found/.test(e.innerText || '')));
+          if (!isDeadlock) break;
+          log(`C${cid} deadlock on save — retrying (${dl + 1}/3)`);
+          await page.waitForTimeout(3000 * (dl + 1));
+          await page.click('#accept', { timeout: 30000 }).catch(() => {});
+          await page.waitForLoadState('networkidle');
+          for (let w = 0; w < 40 && /cases\/edit/.test(page.url()); w++) await page.waitForTimeout(500);
+          if (!/cases\/edit/.test(page.url())) break;
+        }
+      }
+      if (/cases\/edit/.test(page.url())) {
         // Two identical failures on one case is not the token race - capture what the page is
         // actually saying before calling it a retryable flake (skill 03 s8.0-a).
         const diag = await page.evaluate(() => ({
