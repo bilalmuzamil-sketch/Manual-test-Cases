@@ -99,6 +99,51 @@ design**. **Standing Rule 94 — the ADMISSIBILITY GATE — exists to kill exact
 
 ---
 
+## 1a. 🛑 "I CANNOT OBSERVE THIS ON THE BUILD" IS **NOT** "BLOCKED" — AND IT IS NOT A DEFECT EITHER
+
+**READ THIS BEFORE §2. On 2026-08-31 a session parked 18 cases as "blocked" when every one of them had
+a defined deliverable outcome already written down — and one of them had a full working recipe sitting
+in `build/APP-ACTIONS-PLAYBOOK.md` the whole time.** In **this** lane the mistake is more expensive
+than a stalled pass: **an unobserved thing recorded as Blocked is a wrong test result, and an
+unobserved thing recorded as a defect is a refused ticket** — the exact failure this lane exists to
+stop (*"irrelevant"*, *"obsolete"*).
+
+**A result is a CONCLUSION, so pick the right outcome before you record one:**
+
+| What you actually hit | The outcome that is already defined for it — NOT Blocked, NOT Failed |
+|---|---|
+| **Feature is not built yet** | **Rule 69** — `AUTOMATION: Not available on Build to test Yet - Last checked <M/D/YYYY>`, the under-development line, a **`DEFERRED-RUN.md`** row. **A finished case**, not a blocker and **not a defect** (admissibility gate: *unfinished work* is refusal reason #1). Excluded from any ready-to-automate figure. (`03-RUN-CHECK.md` §7) |
+| **A precondition needs the CUSTOMER PORTAL** | The **staging-only HOLD** — the literal below. Judge it from the **preconditions**, never from the word "portal". (`00-COMMON-CORE.md` §5.0-b(2)) |
+| **The source is ambiguous** | **Rule 58** — **hold the case and add a PO-question row.** An ambiguous source is **NEVER** resolved by looking at the build, and **you may not raise a defect against an expectation you had to interpret.** |
+| **A data state you need does not exist** | **Rule 14 — SEED IT.** Pre-authorised, permanently, on a disposable environment (`00-COMMON-CORE.md` §5.0-b(1)). **Never NOT-VERIFIED, never Blocked, for a data state.** |
+| **The feature is there but you cannot find the control** | **Rule 97 search drill** (playbook first — the **exact error text**) **+ Rule 26 role reset**: an action you cannot find may be **role-gated and simply not rendered** — check the gate before you call it absent. **A "missing control" filed as a defect without the role reset is a refused ticket.** Then the network tab, and grep the served JS bundle. |
+| **It is genuinely your own unfinished work or a broken harness** | **Say so plainly — "MINE".** `03-RUN-CHECK.md` §8.0-a: **a check that fails is a statement about YOUR CHECK until you prove otherwise** — no probe that could not fire ever produces a Failed. |
+
+**⇒ THE STAGING-ONLY CUSTOMER-PORTAL HOLD — a machine-findable literal, byte-exact, never reworded:**
+
+```
+AUTOMATION: HOLD - customer portal only exists on staging; this case cannot run on the QA branch
+```
+
+**QA lead, 2026-08-31, verbatim: *"Customer portal related tickets can only be tested on staging and
+not on the QA branch. We need to put this marker on such tickets aswell."*** **A label or behaviour
+that lives on a portal surface will be reported "absent" by any QA-branch probe, forever** — so
+without this marker it becomes a false Failed and then a refused ticket. **SCOPE IT FROM THE
+PRECONDITIONS, NEVER FROM THE WORD "PORTAL":** only a case whose preconditions require a
+**portal-generated artefact** gets it; **a case verifying the portal feature's ABSENCE on the shop-app
+path is fully executable on the QA branch and must NOT be parked** (2026-08-31: C44954 is build
+verified; C44947 / C44951 / C44952 / C45175 are staging-only). It is a **HOLD**, so the gate
+**READY + EXPECT-FAIL = total − HOLD** is unaffected.
+
+**ONLY AFTER ALL OF THE ABOVE does anything earn the word "blocked"** — and the disciplined-Blocked
+bullet in §3 (Rule 68) then applies in full: **"blocked" is a property of a QUESTION about a case, not
+of the case. DECOMPOSE and STATE THE RESIDUAL.** Six checkable requirements: **`00-COMMON-CORE.md`
+§11.4.** Canonical fuller treatment, including the positive-control gate and the MINE /
+BLOCKED-PROVEN / BLOCKED-EVIDENCED / NOT-YET-PROVEN classification you must report counts for:
+**`03-RUN-CHECK.md` §8.0-a** — read it, do not work from this table alone.
+
+---
+
 ## 2. READ THESE FIRST, IN THIS ORDER
 
 | # | File | Why / which parts |
@@ -135,6 +180,20 @@ design**. **Standing Rule 94 — the ADMISSIBILITY GATE — exists to kill exact
   state or a login is NEVER a blocker — seed it, log in as the role**, Rules 14/74), and **state the
   residual: "Blocked for X. Still possible under it: Y. Genuinely impossible until X clears: Z."**
   **The tell that this was skipped: a blocked item whose reason is a person's name.**
+  **⚠️ AND READ IT WITH §1a — "blocked" is what is LEFT OVER after the defined outcomes are ruled
+  out, never the default for anything you did not observe.**
+- **A CASE YOU COULD NOT RUN BECAUSE THE FEATURE IS NOT BUILT YET IS A FINISHED CASE (Rule 69), NOT A
+  BLOCKER AND NOT A DEFECT.** It keeps its **documented** expectation, carries
+  **`AUTOMATION: Not available on Build to test Yet - Last checked <M/D/YYYY>`** with the date you
+  checked, gets the under-development line and a **`DEFERRED-RUN.md`** row, and is **excluded from any
+  ready-to-automate figure**. Procedure: `03-RUN-CHECK.md` §7. **Filing unfinished work as a defect is
+  refusal reason #1** (Rule 94).
+- **AN AMBIGUOUS SOURCE IS NEVER RESOLVED FROM THE BUILD (Rule 58).** The deliverable is a **HELD case
+  plus a PO-question row**, not a blocker and never a ticket — **a defect raised against an
+  expectation you had to interpret cannot clear the admissibility gate.**
+- **AN ACTION YOU CANNOT FIND MAY BE ROLE-GATED AND SIMPLY NOT RENDERED (Rule 26).** Reset roles to
+  template **before** any permission-dependent execution, and **check the gate before you call a
+  control absent** — a "missing control" reported without the role reset is a refused ticket.
 - **RESULTS ARE HELD LOCALLY BY DEFAULT.** Core §4.1: **never write a result to another tester's run**;
   log only **Passed** to a run at all, and **only with permission**; keep Failed / Retest / Blocked
   local. **Runs 352 / 357 / 359 belong to other testers.**
