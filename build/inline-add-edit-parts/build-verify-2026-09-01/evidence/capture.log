@@ -133,3 +133,37 @@ AS THE TECHNICIAN (Tech View):
     modal title     : null
 
 restored to admin: HTTP 200
+
+
+=== EDIT in FULL VIEW ===
+  landing: chars 1855 | Lines tab true | part rows 3 | edit buttons 3
+  inline row appeared : false 
+  values pre-filled   : []
+  modal appeared      : true "Edit Part Request close Part Number arrow_drop_down Description Quantity Source Vendor arrow_drop_down Category HD-Sublet arrow_drop_down Ve"
+  modal labels        : ["Part number","Description","Quantity","Source","Category","Vendor","Cost","Core charge","Sell price","Margin"]
+  modal pre-filled    : ["SUBLET","Cylinder Re-Seal","1","Vendor","1,279.75000","0.00","1,551.21","17.49989"]
+
+switched to the technician: HTTP 400 | view_mode "full"
+
+=== EDIT in TECH VIEW ===
+  landing: chars 0 | Lines tab false | part rows 0 | edit buttons 0
+  ⚠️  page/controls not present - NOT OBSERVED, not an absence
+
+restored to admin: HTTP 200
+
+
+=== EDIT in FULL VIEW ===
+  landing: chars 1204 | Lines tab true | part rows 0 | edit buttons 0
+  ⚠️  page/controls not present - NOT OBSERVED, not an absence
+
+switched to the technician: HTTP 200 | view_mode "tech"
+
+=== EDIT in TECH VIEW ===
+  landing: chars 1427 | Lines tab true | part rows 3 | edit buttons 3
+  inline row appeared : false 
+  values pre-filled   : []
+  modal appeared      : false 
+  modal labels        : []
+  modal pre-filled    : []
+
+exit-switch-user: 200 | restored to admin: 200

@@ -438,7 +438,7 @@ design-derived ones**, three of them materially wrong. Nobody noticed until a li
 | Suite / group | Owner | Since | Status |
 |---|---|---|---|
 | **Invoice UI Refresh** (sections under *Invoice Refresh (Aug 2026)*), branch **sv8218** — manual QA tester **Mudassir Qamar** | **this build-verification session** | 2026-09-01 | the other session was stopped from changing it by the QA lead |
-| **Inline Add and Edit Parts (6597)** and **Printer Friendly WO (6617)**, branch **sv9315** — manual QA tester **Viktoria Videnovic** | **the other session** — source verification in progress | 2026-09-01 | 🛑 **DO NOT TOUCH.** QA lead: *"dont touch them, I will let you know when yiu can proceed with Build verification on them."* |
+| **Inline Add and Edit Parts (6597)** and **Printer Friendly WO (6617)**, branch **sv9315** — manual QA tester **Viktoria Videnovic** | **this build-verification session** | 2026-09-01 | ✅ **HANDED OVER.** QA lead: *"there is no other session that is currently working on 6597/6617"*, and *"if anyother seasion has written something on any test cases and if you believe that should be overridden … you have a go ahead from my side to edit those test cases too and build verify them too."* **So the other session's route text is overridable where a build-verified route contradicts it** — that is the same call that was right on Invoice, where three design-derived routes were materially wrong. |
 
 **Having the credentials for a branch is not permission to work on it.** The sv9315 cookies and the
 corrected `sv_sso_session` name are recorded because they were hard to find, not because the lane is
@@ -447,3 +447,23 @@ open. **Ask, or wait to be told.**
 **How to check you are not colliding, before any write:** read the case's `updated_on` and compare it
 against your own last write. A cadence of edits you did not make — the 2026-09-01 collision showed a
 steady one every ~10 seconds — means another session is mid-run. Stop and report it; do not race it.
+
+
+## WHEN YOU MAY OVERRIDE ANOTHER SESSION'S WRITES
+
+Only when the QA lead has handed you the lane, and then only on the merits. The standing precedent
+(Invoice UI Refresh, 2026-09-01) is that **a route OBSERVED on the build outranks one derived from the
+design** — three of the five routes another session had written there were materially wrong, and the
+observed ones replaced them. Say in the report which ones you overrode and why; never silently.
+
+**Two things a lane handover does NOT cover:**
+
+1. **A case authored by a PERSON rather than a session.** Rule 38 makes a foreign case report-only.
+   *"Another session has written something"* is not permission to edit a human colleague's case.
+2. **A case TestRail flags as Automated** (`custom_atmstatus = 3`) — Rule 71 needs a go-ahead, and
+   Rule 65 needs Vlad told afterwards. A broad lane handover covers the suite's ordinary cases; if an
+   Automated case is also someone else's, both rules bite and you ask.
+
+On 6597 this lands on **C45220** — Vladimir Tomovic's case, flagged Automated, and the only case in
+the suite failing the runnability gate (it has no steps at all). Both exclusions apply, so it is
+**flagged for the QA lead, not edited.**

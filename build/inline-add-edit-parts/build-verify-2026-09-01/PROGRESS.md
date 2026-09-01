@@ -50,10 +50,16 @@ directly, as a clean A/B against Full View.
 - **"Not stocked" card** (C45222 leg 3) and the **"+ N" collapse chip** (leg 2). Neither appeared in
   the sample: they need a part with **no** bins and a part in **more than three** bins. Data states to
   seed, not findings.
-- **The Edit control's behaviour**, in either view. It is present and it responds, but neither an
-  inline row nor a modal was captured after clicking it in Tech View. Not concluded either way —
-  needs one more capture. (C45023 expects an inline row with the same three fields; C45063 expects a
-  pre-populated modal in Full View.)
+### The Edit control — verified in BOTH views
+
+| View | Observed | Case |
+|---|---|---|
+| **Full View** | the **"Edit Part Request" modal** opens **pre-populated**: `Part number SUBLET · Description "Cylinder Re-Seal" · Quantity 1 · Source Vendor · Cost 1,279.75 · Core charge 0.00 · Sell price 1,551.21 · Margin 17.49989` | **C45063** ✅ |
+| **Tech View** | an **inline row below the part** with **the same three fields** — `Description · Part number · Qty` — plus Save/Cancel and a keyboard legend reading **`Enter save · Tab next field · Esc cancel`** | **C45023** ✅ |
+
+**The add row and the edit row are different elements:** `inline_part_row` for add,
+**`inline_part_edit_row`** for edit. Looking only for the add-row id is why an earlier capture
+reported "no inline row and no modal" on a click that had plainly done something.
 
 ### A third instrument error — the one that matters most
 
@@ -65,6 +71,17 @@ visible, not on `/login`), the button is **there** and the row opens.
 
 Had I reported that, it would have contradicted 25 cases on the strength of a workplace mismatch.
 The landing assertion is now built into the capture tool.
+
+### A fourth — the Edit row has its own test-id
+
+"Edit does nothing in Tech View" survived one careful re-run *with* a landing assertion, which made it
+look solid. It was still wrong: the edit row is `inline_part_edit_row`, and I was only looking for
+`inline_part_row`. A whole-DOM before/after diff settled it in one run — 7 new test-ids, 4 new inputs,
+and the words `Description · number · Qty · Save · Cancel · Enter save · Tab next field · Esc cancel`
+appearing.
+
+**When a negative survives a re-run, stop refining the selector and diff the whole surface.** A
+targeted selector can only ever confirm your own guess about what should appear.
 
 ## Two more instrument errors caught before they became false findings
 
@@ -87,10 +104,25 @@ Recording these because both would have been reported as defects (skill 03 §8.0
   holds up.
 - Three Automated cases in this suite: C45220 (Vlad's), C45005, C45026. None written by this pass.
 
+## All seven areas of the suite now have their backbone observed
+
+| Area | Cases | Backbone verified |
+|---|---|---|
+| Add Part Button and Edit Control | 11 | ✅ |
+| Tech View Inline Add | 25 | ✅ three fields, no pricing |
+| Tech View Inline Edit | 13 | ✅ `inline_part_edit_row`, same three fields |
+| Full View Inline Add | 27 | ✅ six fields, exact order |
+| Full View Edit | 6 | ✅ pre-populated modal |
+| Unsaved Data Protection | 15 | ✅ both the close control and Escape |
+| Bin Allocation | 22 | ✅ cards, Pulled from chip, bin picker with Default badge |
+
 ## OUTSTANDING
 
-1. **Tech View access** — to verify 38 Tech View cases I need the Technician view mode. I can swap the
-   role on the Technician quick-login user (skill 03 §8.2a) — say the word and I will, or tell me if
-   you would rather I used a different account on this branch.
-2. Nothing else blocking. Verification continues on the Full View, Add-Part-button and Bin Allocation
-   areas, which need no extra access.
+1. **Nothing blocking.** Per-case verdicts and the marker/runnability pass come next.
+2. **[C45220](https://shopview.testrail.io/index.php?/cases/view/45220)** — Vladimir Tomovic's case,
+   flagged Automated, **no steps at all**, and the only case in the suite failing the runnability
+   gate. The QA lead's override covers *another session's* writes; this is a **person's** case and an
+   **Automated** one, so Rules 38 and 71 both apply. **Flagged, not touched — say the word and I will
+   write steps for it.**
+3. Two bin data states still to seed: a part with **no** bins ("Not stocked") and a part in **more
+   than three** bins (the "+ N" collapse chip).
