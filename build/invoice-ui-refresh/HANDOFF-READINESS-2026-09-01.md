@@ -67,7 +67,30 @@ preconditions, steps or titles. Requirement text and provenance sentence 1 are b
 authored from the spec (Rule 57/54), verified after every write. Every case traces to its epic,
 story and spec section, and all 119 carry a provenance line.
 
-## 5. 🔴 ONE THING TO DECIDE BEFORE THE HANDOFF
+## 5. ✅ RESOLVED — the marker that was factually wrong is corrected
+
+**C44913 and C44916 read `AUTOMATION: Not available on Build to test Yet`, which was false.** The
+feature IS on the build: the work order carries an integrated-billing number and four IBS endpoints
+exist. What is unresolved is the PO question about how a tester **obtains** an Approval Code.
+
+The QA lead delegated the call (*"Take the decision which is correct"*). Both now read:
+
+> `AUTOMATION: HOLD - held pending the PO answer on how a tester obtains an Approval Code`
+
+and the tester-facing *"could not be build-verified because the feature was not found"* line was
+removed from each, because it was not true. Requirement text and provenance are untouched.
+
+**Why HOLD and not the Rule 69 not-built marker:** Rule 69 is for a feature that is absent from the
+build. This feature is present; only the test data route is unresolved. Telling Viktoria the feature
+is missing would have been a lie, and it would have sent her looking for something that is there.
+Being a HOLD, both are excluded from the ready-to-automate arithmetic, which is also correct — they
+are not ready to automate until the PO answers.
+
+**Suite markers now:** 109 READY · 6 HOLD · 4 not-built-yet = 119.
+
+---
+
+## 5b. THE ORIGINAL DECISION TEXT (superseded, kept for the record)
 
 **C44913 and C44916 carry a marker that is factually wrong.** They read
 `AUTOMATION: Not available on Build to test Yet`, but the feature **is** on the build — the work
@@ -95,8 +118,9 @@ Yes, in four places:
 
 ## OUTSTANDING
 
-1. **The C44913/C44916 marker decision** above — the only thing between this suite and a clean handoff.
-2. **Reminder, as you asked:** the snapshot-500 defect is prepared and **not filed**
+1. **Nothing blocking. The suite is ready to hand to Viktoria.**
+2. **Reminder deferred at your instruction** — to be raised only after Inline Add and Edit Parts
+   (6597) and Printer Friendly WO (6617) are done: the snapshot-500 defect is prepared and **not filed**
    (`build-verify-2026-08-31/DEFECT-CANDIDATE-snapshot-500.md`), and three PO questions are parked —
    IBS Approval Code, the Credit Balance terminology line, and the imported-work-order Authorizer conflict.
 3. sv9315 (groups 6597/6617) is untouched. **Confirm which session owns those two suites** — the

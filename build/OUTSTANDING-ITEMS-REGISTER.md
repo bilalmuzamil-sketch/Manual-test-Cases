@@ -2365,6 +2365,12 @@ were stale). Sources: `build/report-suite/build-verify-2026-08-18/{TU,WIP,IV}-SW
 - **INLINE-VLAD-1 OPEN** — two Automated cases changed on 6597: **C45026** (IAEP-TEDIT-04, S3-R5) escaping → repaired to fr-view + re-stamped v13→v16; **C45005** (IAEP-TADD-08, S2-R9) was already fr-view+v16, not written. `atmstatus=3` preserved on both. Note: `build/inline-add-edit-parts/render-repair-2026-08-31/FOR-VLAD-automated-cases-changed-2026-08-31.md`.
 
 #### CARRIED OVER — open, for the QA lead's decision later (per his 2026-08-31 instruction)
+- **⏰ CO-R1 — REMINDER OWED TO THE QA LEAD (his instruction, 2026-09-01: _"Remind me after we are
+  done with the next two suites"_).** When **Inline Add and Edit Parts (group 6597)** and **Printer
+  Friendly WO (group 6617)** are finished, remind him of: (a) the **snapshot-500 defect**, prepared
+  and NOT filed (CO-9 below); (b) the **three open PO questions** — IBS Approval Code (C44913/C44916),
+  the Credit Balance terminology line (PO-1), and the imported-work-order Authorizer conflict (CO-7).
+  **Do not raise them before those two suites are done** — he asked for them to wait.
 - **CO-9 (Invoice) — DEFECT CANDIDATE, NEW 2026-09-01, NOT FILED (hold):** **every document
   snapshot that already existed on sv8218 returns HTTP 500**; one captured the same day returns 200.
   Proven on a single work order (**S8218-17113**: today 200, its own 18/13/10 August events all 500,
