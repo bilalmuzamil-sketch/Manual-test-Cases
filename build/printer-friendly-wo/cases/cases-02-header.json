@@ -1,146 +1,146 @@
 [
-  {
-    "id": "PFWO-HDR-01",
-    "area": "Printer Friendly Work Orders - Print Layout Header",
-    "title": "Work order number is shown prominently at the top",
-    "priority": "Medium",
-    "type": "Functional",
-    "permissions_required": "View Work Order (no new permission introduced)",
-    "preconditions": [
-      "In the top menu click “Work Orders”, open a work order to reach its detail view, click “More” (the overflow/actions menu on the work order toolbar) and choose “Print Work Order” — the browser print view/dialog opens. (Route drafted from the spec and marked PROVISIONAL — confirm on the build.)"
-    ],
-    "steps": [
-      "Look at the top of the printed page."
-    ],
-    "expected": "1. The printed page displays the work order number prominently at the top.\n\n---\nThis is the expected behaviour as per epic SV-9383 and story SV-9385 (Story 2, Print Layout - Work Order Header) and the Printer Friendly Work Orders specification version 8, section S2-R1, read on 25 August 2026.\n\nAUTOMATION: Not available on Build to test Yet - Last checked 8/25/2026",
-    "design_ref": "No design exists yet (PRD marks Design: TBD on every story); authored from PRD text.",
-    "spec_ref": "requirements.md (Printer Friendly Work Orders spec v8)",
-    "refs": "SV-9385 (S2-R1)",
-    "viu_status": "source-verified-only",
-    "notes": ""
-  },
-  {
-    "id": "PFWO-HDR-02",
-    "area": "Printer Friendly Work Orders - Print Layout Header",
-    "title": "Work order status is shown next to the work order number",
-    "priority": "Medium",
-    "type": "Functional",
-    "permissions_required": "View Work Order (no new permission introduced)",
-    "preconditions": [
-      "In the top menu click “Work Orders”, open a work order to reach its detail view, click “More” (the overflow/actions menu on the work order toolbar) and choose “Print Work Order” — the browser print view/dialog opens. (Route drafted from the spec and marked PROVISIONAL — confirm on the build.)"
-    ],
-    "steps": [
-      "Look at the top of the printed page next to the work order number."
-    ],
-    "expected": "1. The work order status is displayed next to the work order number.\n\n---\nThis is the expected behaviour as per epic SV-9383 and story SV-9385 (Story 2, Print Layout - Work Order Header) and the Printer Friendly Work Orders specification version 8, section S2-R2, read on 25 August 2026.\n\nAUTOMATION: Not available on Build to test Yet - Last checked 8/25/2026",
-    "design_ref": "No design exists yet (PRD marks Design: TBD on every story); authored from PRD text.",
-    "spec_ref": "requirements.md (Printer Friendly Work Orders spec v8)",
-    "refs": "SV-9385 (S2-R2)",
-    "viu_status": "source-verified-only",
-    "notes": ""
-  },
-  {
-    "id": "PFWO-HDR-03",
-    "area": "Printer Friendly Work Orders - Print Layout Header",
-    "title": "Header shows customer, vehicle, advisor, lead tech and start date",
-    "priority": "Medium",
-    "type": "Functional",
-    "permissions_required": "View Work Order (no new permission introduced)",
-    "preconditions": [
-      "In the top menu click “Work Orders”, open a work order to reach its detail view, click “More” (the overflow/actions menu on the work order toolbar) and choose “Print Work Order” — the browser print view/dialog opens. (Route drafted from the spec and marked PROVISIONAL — confirm on the build.)",
-      "The open work order has a customer, a vehicle, a service advisor, a lead technician and a start date set."
-    ],
-    "steps": [
-      "Read the header area of the printout."
-    ],
-    "expected": "1. The header displays: customer name (and company name if present); vehicle year, make, model, VIN, license plate, unit number (if present), mileage, engine hours (if present); service advisor name; lead technician name; and the work order start date.\n\n---\nThis is the expected behaviour as per epic SV-9383 and story SV-9385 (Story 2, Print Layout - Work Order Header) and the Printer Friendly Work Orders specification version 8, section S2-R3, read on 25 August 2026.\n\nAUTOMATION: Not available on Build to test Yet - Last checked 8/25/2026",
-    "design_ref": "No design exists yet (PRD marks Design: TBD on every story); authored from PRD text.",
-    "spec_ref": "requirements.md (Printer Friendly Work Orders spec v8)",
-    "refs": "SV-9385 (S2-R3)",
-    "viu_status": "source-verified-only",
-    "notes": ""
-  },
-  {
-    "id": "PFWO-HDR-04",
-    "area": "Printer Friendly Work Orders - Print Layout Header",
-    "title": "Header omits fields that have no value rather than showing blanks",
-    "priority": "Medium",
-    "type": "Functional",
-    "permissions_required": "View Work Order (no new permission introduced)",
-    "preconditions": [
-      "In the top menu click “Work Orders”, open a work order to reach its detail view, click “More” (the overflow/actions menu on the work order toolbar) and choose “Print Work Order” — the browser print view/dialog opens. (Route drafted from the spec and marked PROVISIONAL — confirm on the build.)",
-      "The open work order is missing some optional fields (e.g. no engine hours, no license plate)."
-    ],
-    "steps": [
-      "Read the header area of the printout."
-    ],
-    "expected": "1. Fields that have no value are omitted from the printout rather than displayed as blank.\n\n---\nThis is the expected behaviour as per epic SV-9383 and story SV-9385 (Story 2, Print Layout - Work Order Header) and the Printer Friendly Work Orders specification version 8, section S2-R4, read on 25 August 2026.\n\nAUTOMATION: Not available on Build to test Yet - Last checked 8/25/2026",
-    "design_ref": "No design exists yet (PRD marks Design: TBD on every story); authored from PRD text.",
-    "spec_ref": "requirements.md (Printer Friendly Work Orders spec v8)",
-    "refs": "SV-9385 (S2-R4)",
-    "viu_status": "source-verified-only",
-    "notes": ""
-  },
-  {
-    "id": "PFWO-HDR-05",
-    "area": "Printer Friendly Work Orders - Print Layout Header",
-    "title": "Header shows the shop or organization name",
-    "priority": "Medium",
-    "type": "Functional",
-    "permissions_required": "View Work Order (no new permission introduced)",
-    "preconditions": [
-      "In the top menu click “Work Orders”, open a work order to reach its detail view, click “More” (the overflow/actions menu on the work order toolbar) and choose “Print Work Order” — the browser print view/dialog opens. (Route drafted from the spec and marked PROVISIONAL — confirm on the build.)"
-    ],
-    "steps": [
-      "Read the header area of the printout."
-    ],
-    "expected": "1. The shop name or organization name appears in the header area to identify the source of the printout.\n\n---\nThis is the expected behaviour as per epic SV-9383 and story SV-9385 (Story 2, Print Layout - Work Order Header) and the Printer Friendly Work Orders specification version 8, section S2-R5, read on 25 August 2026.\n\nAUTOMATION: Not available on Build to test Yet - Last checked 8/25/2026",
-    "design_ref": "No design exists yet (PRD marks Design: TBD on every story); authored from PRD text.",
-    "spec_ref": "requirements.md (Printer Friendly Work Orders spec v8)",
-    "refs": "SV-9385 (S2-R5)",
-    "viu_status": "source-verified-only",
-    "notes": ""
-  },
-  {
-    "id": "PFWO-HDR-06",
-    "area": "Printer Friendly Work Orders - Print Layout Header",
-    "title": "No customer assigned prints an explicit placeholder",
-    "priority": "Medium",
-    "type": "Functional",
-    "permissions_required": "View Work Order (no new permission introduced)",
-    "preconditions": [
-      "In the top menu click “Work Orders”, open a work order to reach its detail view, click “More” (the overflow/actions menu on the work order toolbar) and choose “Print Work Order” — the browser print view/dialog opens. (Route drafted from the spec and marked PROVISIONAL — confirm on the build.)",
-      "The open work order has no customer assigned."
-    ],
-    "steps": [
-      "Read the customer section of the printout."
-    ],
-    "expected": "1. The customer section displays “No customer assigned”.\n\n---\nThis is the expected behaviour as per epic SV-9383 and story SV-9385 (Story 2, Print Layout - Work Order Header) and the Printer Friendly Work Orders specification version 8, section S2-N1, read on 25 August 2026.\n\nAUTOMATION: Not available on Build to test Yet - Last checked 8/25/2026",
-    "design_ref": "No design exists yet (PRD marks Design: TBD on every story); authored from PRD text.",
-    "spec_ref": "requirements.md (Printer Friendly Work Orders spec v8)",
-    "refs": "SV-9385 (S2-N1)",
-    "viu_status": "source-verified-only",
-    "notes": ""
-  },
-  {
-    "id": "PFWO-HDR-07",
-    "area": "Printer Friendly Work Orders - Print Layout Header",
-    "title": "No vehicle assigned prints an explicit placeholder",
-    "priority": "Medium",
-    "type": "Functional",
-    "permissions_required": "View Work Order (no new permission introduced)",
-    "preconditions": [
-      "In the top menu click “Work Orders”, open a work order to reach its detail view, click “More” (the overflow/actions menu on the work order toolbar) and choose “Print Work Order” — the browser print view/dialog opens. (Route drafted from the spec and marked PROVISIONAL — confirm on the build.)",
-      "The open work order has no vehicle assigned."
-    ],
-    "steps": [
-      "Read the vehicle section of the printout."
-    ],
-    "expected": "1. The vehicle section displays “No vehicle assigned”.\n\n---\nThis is the expected behaviour as per epic SV-9383 and story SV-9385 (Story 2, Print Layout - Work Order Header) and the Printer Friendly Work Orders specification version 8, section S2-N2, read on 25 August 2026.\n\nAUTOMATION: Not available on Build to test Yet - Last checked 8/25/2026",
-    "design_ref": "No design exists yet (PRD marks Design: TBD on every story); authored from PRD text.",
-    "spec_ref": "requirements.md (Printer Friendly Work Orders spec v8)",
-    "refs": "SV-9385 (S2-N2)",
-    "viu_status": "source-verified-only",
-    "notes": ""
-  }
+ {
+  "id": "PFWO-HDR-01",
+  "area": "Printer Friendly Work Orders - Print Layout Header",
+  "title": "Work order number is shown prominently at the top",
+  "priority": "Medium",
+  "type": "Functional",
+  "permissions_required": "View Work Order (no new permission introduced)",
+  "preconditions": [
+   "In the top menu click “Work Orders”, open a work order to reach its detail view, click “More” (the overflow/actions menu on the work order toolbar) and choose “Print Work Order” — the browser print view/dialog opens. (Route drafted from the spec and marked PROVISIONAL — confirm on the build.)"
+  ],
+  "steps": [
+   "Look at the top of the printed page."
+  ],
+  "expected": "1. The printed page displays the work order number prominently at the top.\n\n---\nThis is the expected behaviour as per epic SV-9383 and story SV-9385 (Story 2, Print Layout - Work Order Header) and the Printer Friendly Work Orders specification version 8, section S2-R1, read on 25 August 2026.\n\nAUTOMATION: Not available on Build to test Yet - Last checked 8/25/2026",
+  "design_ref": "No design exists yet (PRD marks Design: TBD on every story); authored from PRD text.",
+  "spec_ref": "requirements.md (Printer Friendly Work Orders spec v8)",
+  "refs": "SV-9385 (S2-R1)",
+  "viu_status": "source-verified-only",
+  "notes": ""
+ },
+ {
+  "id": "PFWO-HDR-02",
+  "area": "Printer Friendly Work Orders - Print Layout Header",
+  "title": "Work order status is shown next to the work order number",
+  "priority": "Medium",
+  "type": "Functional",
+  "permissions_required": "View Work Order (no new permission introduced)",
+  "preconditions": [
+   "In the top menu click “Work Orders”, open a work order to reach its detail view, click “More” (the overflow/actions menu on the work order toolbar) and choose “Print Work Order” — the browser print view/dialog opens. (Route drafted from the spec and marked PROVISIONAL — confirm on the build.)"
+  ],
+  "steps": [
+   "Look at the top of the printed page next to the work order number."
+  ],
+  "expected": "1. The work order status is displayed next to the work order number.\n\n---\nThis is the expected behaviour as per epic SV-9383 and story SV-9385 (Story 2, Print Layout - Work Order Header) and the Printer Friendly Work Orders specification version 8, section S2-R2, read on 25 August 2026.\n\nAUTOMATION: Not available on Build to test Yet - Last checked 8/25/2026",
+  "design_ref": "No design exists yet (PRD marks Design: TBD on every story); authored from PRD text.",
+  "spec_ref": "requirements.md (Printer Friendly Work Orders spec v8)",
+  "refs": "SV-9385 (S2-R2)",
+  "viu_status": "source-verified-only",
+  "notes": ""
+ },
+ {
+  "id": "PFWO-HDR-03",
+  "area": "Printer Friendly Work Orders - Print Layout Header",
+  "title": "Header shows customer, vehicle, advisor, lead tech and start date",
+  "priority": "Medium",
+  "type": "Functional",
+  "permissions_required": "View Work Order (no new permission introduced)",
+  "preconditions": [
+   "In the top menu click “Work Orders”, open a work order to reach its detail view, click “More” (the overflow/actions menu on the work order toolbar) and choose “Print Work Order” — the browser print view/dialog opens. (Route drafted from the spec and marked PROVISIONAL — confirm on the build.)",
+   "The open work order has a customer, a vehicle, a service advisor, a lead technician and a start date set."
+  ],
+  "steps": [
+   "On the Print Work Order view (see Preconditions), read the header area of the printout."
+  ],
+  "expected": "1. The header displays: customer name (and company name if present); vehicle year, make, model, VIN, license plate, unit number (if present), mileage, engine hours (if present); service advisor name; lead technician name; and the work order start date.\n\n---\nThis is the expected behaviour as per epic SV-9383 and story SV-9385 (Story 2, Print Layout - Work Order Header) and the Printer Friendly Work Orders specification version 8, section S2-R3, read on 25 August 2026.\n\nAUTOMATION: Not available on Build to test Yet - Last checked 8/25/2026",
+  "design_ref": "No design exists yet (PRD marks Design: TBD on every story); authored from PRD text.",
+  "spec_ref": "requirements.md (Printer Friendly Work Orders spec v8)",
+  "refs": "SV-9385 (S2-R3)",
+  "viu_status": "source-verified-only",
+  "notes": ""
+ },
+ {
+  "id": "PFWO-HDR-04",
+  "area": "Printer Friendly Work Orders - Print Layout Header",
+  "title": "Header omits fields that have no value rather than showing blanks",
+  "priority": "Medium",
+  "type": "Functional",
+  "permissions_required": "View Work Order (no new permission introduced)",
+  "preconditions": [
+   "In the top menu click “Work Orders”, open a work order to reach its detail view, click “More” (the overflow/actions menu on the work order toolbar) and choose “Print Work Order” — the browser print view/dialog opens. (Route drafted from the spec and marked PROVISIONAL — confirm on the build.)",
+   "The open work order is missing some optional fields (e.g. no engine hours, no license plate)."
+  ],
+  "steps": [
+   "On the Print Work Order view (see Preconditions), read the header area of the printout."
+  ],
+  "expected": "1. Fields that have no value are omitted from the printout rather than displayed as blank.\n\n---\nThis is the expected behaviour as per epic SV-9383 and story SV-9385 (Story 2, Print Layout - Work Order Header) and the Printer Friendly Work Orders specification version 8, section S2-R4, read on 25 August 2026.\n\nAUTOMATION: Not available on Build to test Yet - Last checked 8/25/2026",
+  "design_ref": "No design exists yet (PRD marks Design: TBD on every story); authored from PRD text.",
+  "spec_ref": "requirements.md (Printer Friendly Work Orders spec v8)",
+  "refs": "SV-9385 (S2-R4)",
+  "viu_status": "source-verified-only",
+  "notes": ""
+ },
+ {
+  "id": "PFWO-HDR-05",
+  "area": "Printer Friendly Work Orders - Print Layout Header",
+  "title": "Header shows the shop or organization name",
+  "priority": "Medium",
+  "type": "Functional",
+  "permissions_required": "View Work Order (no new permission introduced)",
+  "preconditions": [
+   "In the top menu click “Work Orders”, open a work order to reach its detail view, click “More” (the overflow/actions menu on the work order toolbar) and choose “Print Work Order” — the browser print view/dialog opens. (Route drafted from the spec and marked PROVISIONAL — confirm on the build.)"
+  ],
+  "steps": [
+   "On the Print Work Order view (see Preconditions), read the header area of the printout."
+  ],
+  "expected": "1. The shop name or organization name appears in the header area to identify the source of the printout.\n\n---\nThis is the expected behaviour as per epic SV-9383 and story SV-9385 (Story 2, Print Layout - Work Order Header) and the Printer Friendly Work Orders specification version 8, section S2-R5, read on 25 August 2026.\n\nAUTOMATION: Not available on Build to test Yet - Last checked 8/25/2026",
+  "design_ref": "No design exists yet (PRD marks Design: TBD on every story); authored from PRD text.",
+  "spec_ref": "requirements.md (Printer Friendly Work Orders spec v8)",
+  "refs": "SV-9385 (S2-R5)",
+  "viu_status": "source-verified-only",
+  "notes": ""
+ },
+ {
+  "id": "PFWO-HDR-06",
+  "area": "Printer Friendly Work Orders - Print Layout Header",
+  "title": "No customer assigned prints an explicit placeholder",
+  "priority": "Medium",
+  "type": "Functional",
+  "permissions_required": "View Work Order (no new permission introduced)",
+  "preconditions": [
+   "In the top menu click “Work Orders”, open a work order to reach its detail view, click “More” (the overflow/actions menu on the work order toolbar) and choose “Print Work Order” — the browser print view/dialog opens. (Route drafted from the spec and marked PROVISIONAL — confirm on the build.)",
+   "The open work order has no customer assigned."
+  ],
+  "steps": [
+   "Read the customer section of the printout."
+  ],
+  "expected": "1. The customer section displays “No customer assigned”.\n\n---\nThis is the expected behaviour as per epic SV-9383 and story SV-9385 (Story 2, Print Layout - Work Order Header) and the Printer Friendly Work Orders specification version 8, section S2-N1, read on 25 August 2026.\n\nAUTOMATION: Not available on Build to test Yet - Last checked 8/25/2026",
+  "design_ref": "No design exists yet (PRD marks Design: TBD on every story); authored from PRD text.",
+  "spec_ref": "requirements.md (Printer Friendly Work Orders spec v8)",
+  "refs": "SV-9385 (S2-N1)",
+  "viu_status": "source-verified-only",
+  "notes": ""
+ },
+ {
+  "id": "PFWO-HDR-07",
+  "area": "Printer Friendly Work Orders - Print Layout Header",
+  "title": "No vehicle assigned prints an explicit placeholder",
+  "priority": "Medium",
+  "type": "Functional",
+  "permissions_required": "View Work Order (no new permission introduced)",
+  "preconditions": [
+   "In the top menu click “Work Orders”, open a work order to reach its detail view, click “More” (the overflow/actions menu on the work order toolbar) and choose “Print Work Order” — the browser print view/dialog opens. (Route drafted from the spec and marked PROVISIONAL — confirm on the build.)",
+   "The open work order has no vehicle assigned."
+  ],
+  "steps": [
+   "Read the vehicle section of the printout."
+  ],
+  "expected": "1. The vehicle section displays “No vehicle assigned”.\n\n---\nThis is the expected behaviour as per epic SV-9383 and story SV-9385 (Story 2, Print Layout - Work Order Header) and the Printer Friendly Work Orders specification version 8, section S2-N2, read on 25 August 2026.\n\nAUTOMATION: Not available on Build to test Yet - Last checked 8/25/2026",
+  "design_ref": "No design exists yet (PRD marks Design: TBD on every story); authored from PRD text.",
+  "spec_ref": "requirements.md (Printer Friendly Work Orders spec v8)",
+  "refs": "SV-9385 (S2-N2)",
+  "viu_status": "source-verified-only",
+  "notes": ""
+ }
 ]

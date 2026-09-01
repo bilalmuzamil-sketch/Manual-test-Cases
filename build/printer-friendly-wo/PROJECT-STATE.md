@@ -2,6 +2,17 @@
 
 **Canonical cold-resume doc.** Status derived live (Rule 92 / skill 15 §7).
 
+## Update — 2026-09-01 (runnable-steps gate: NOT RUNNABLE = 0 for all non-Automated cases)
+Ran `build/testing-tools/check_runnable_cases.py` (reads TestRail live) over the whole suite: it flagged
+11 cases NOT RUNNABLE (all R4 — the FIRST step, e.g. "Read the header area of the printout.", did not say
+where to go). Fixed **10 of ours** (created_by 3, atm=1) by anchoring step 1 to the print view the
+preconditions establish: "On the Print Work Order view (see Preconditions), …". Preconds/Expected untouched
+(Rule 57); routes remain PROVISIONAL (no build). Edited through the TestRail UI editor (Froala) so every
+field stays `markdown fr-view` — verified served-page fr-view + no literal tags on each. Cases: C45094,
+C45095, C45096, C45099, C45104, C45105, C45106, C45109, C45111, C45114. **Final gate: 43 RUNNABLE / 1 NOT
+RUNNABLE** — the one remaining is **C45123** (Automated atm=3) → left untouched (Rule 71). Local
+`cases/*.json` steps synced to match. Gate exit criterion met.
+
 ## Identity
 - **TestRail parent folder (group):** group_id **6617**, suite 1 — cases live in the sub-sections inside it, not directly in the folder. Link: https://shopview.testrail.io/index.php?/suites/view/1&group_by=cases:section_id&group_order=asc&display=compact&display_deleted_cases=0&group_id=6617 (recorded 2026-08-25)
 - **Epic:** SV-9383 · **PO / Owner:** **TBD** (must be confirmed — PO-PFWO-1)
