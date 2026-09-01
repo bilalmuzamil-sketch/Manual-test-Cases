@@ -30,18 +30,43 @@ line's Parts section carries an **Add Part** button (`button_add_part`) and an *
 | C45225 | chip label is the **bin name** for a single-bin allocation | ✅ label reads `PB1` |
 | C45226 | picker lists every bin with on-hand, a **check** on the selected one and a **Default** badge | ✅ `check PB1 Default 7`, plus a `Split across bins…` entry |
 
-## Not yet established — and deliberately not guessed
+### Tech View — verified, and it needed no role change
 
-- **Tech View** (25 + 13 cases). The admin account is in **Full View**, which is why the row shows six
-  fields. Tech View is expected to show three fields and no pricing (C44998). **Needs the Technician
-  view mode** — not yet observed, so no Tech View case has a verdict.
+The **Technician role already carries `view_mode: 'tech'`** and lacks `woFullViewMode`, read live from
+`GET /api/roles/{id}`. So impersonating an active Technician **is** Tech View: nothing was changed and
+nothing needs restoring (skill 03 §8.2a's five-step swap is for when no such role holder exists).
+
+| Viewer | `view_mode` | Inline add row fields | Pricing on the row |
+|---|---|---|---|
+| Admin | `full` | `Description · Part number · Qty · Category · Cost · Sell price` | **yes** |
+| Christopher Smith, Technician | `tech` | **`Description · Part number · Qty`** | **no** |
+
+Row text as the technician, verbatim: `Description Part number Qty Save Cancel`.
+
+That is **C44998** ("Tech View inline add row shows exactly three fields and no pricing") observed
+directly, as a clean A/B against Full View.
+
+## Not yet established — and deliberately not guessed
 - **"Not stocked" card** (C45222 leg 3) and the **"+ N" collapse chip** (leg 2). Neither appeared in
   the sample: they need a part with **no** bins and a part in **more than three** bins. Data states to
   seed, not findings.
-- **Full View Edit opens a modal** (C45063) — the Edit control was seen but its behaviour is not yet
-  captured.
+- **The Edit control's behaviour**, in either view. It is present and it responds, but neither an
+  inline row nor a modal was captured after clicking it in Tech View. Not concluded either way —
+  needs one more capture. (C45023 expects an inline row with the same three fields; C45063 expects a
+  pre-populated modal in Full View.)
 
-## Two instrument errors caught before they became false findings
+### A third instrument error — the one that matters most
+
+**"Add Part is not visible in Tech View"** was my first Tech View reading, and it was wrong twice
+over: the technician I impersonated was based at *Staging Lethbridge* while the work order is at
+*Staging Heavy Duty 9919*, and I never checked the page had rendered at all. Re-run with a technician
+at the work order's **own** workplace and a landing assertion (Lines tab present, 3 existing part rows
+visible, not on `/login`), the button is **there** and the row opens.
+
+Had I reported that, it would have contradicted 25 cases on the strength of a workplace mismatch.
+The landing assertion is now built into the capture tool.
+
+## Two more instrument errors caught before they became false findings
 
 Recording these because both would have been reported as defects (skill 03 §8.0-b):
 

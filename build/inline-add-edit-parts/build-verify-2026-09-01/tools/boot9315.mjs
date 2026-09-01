@@ -35,6 +35,10 @@ export async function apiGet(path) {
   let body = null; try { body = await r.json(); } catch (_) {}
   return { status: r.status, body };
 }
+// 🛑 A BARE quick-login AT THE END OF A RUN STRANDS THE NEXT PROCESS. It rotates the shared
+// PHPSESSID; if the new one is not written back to the cookie file, every later call answers
+// HTTP 409 "Session has expired." and looks like dead credentials. So apiPost persists any rotated
+// session itself, not just quickLogin().
 export async function apiPost(path, payload) {
   const r = await fetch(API + path, {
     method: 'POST',
@@ -46,7 +50,10 @@ export async function apiPost(path, payload) {
   const sc = r.headers.getSetCookie ? r.headers.getSetCookie() : [];
   for (const c of sc) {
     const m = /^PHPSESSID=([^;]+)/.exec(c);
-    if (m) SESS = SESS.replace(/PHPSESSID=[^;]*/, `PHPSESSID=${m[1]}`);
+    if (m) {
+      SESS = SESS.replace(/PHPSESSID=[^;]*/, `PHPSESSID=${m[1]}`);
+      try { fs.writeFileSync('/tmp/qa-cookies/sv9315-live-session.txt', SESS, { mode: 0o600 }); } catch (_) {}
+    }
   }
   return { status: r.status, body };
 }

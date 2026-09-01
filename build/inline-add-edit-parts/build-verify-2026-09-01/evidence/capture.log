@@ -83,3 +83,53 @@ work order S9315-15591 lines tab: https://sv9315.qa.shopview.com/workorders/891e
   opened          : true
   "Default" badge : true
   rows            : ["check PB1 Default 7","call_split Split across bins…"]
+
+POSITIVE CONTROL - admin, Full View (view_mode=full):
+  labels : ["Description","Part number","Qty","Category","Cost","Sell price"]
+  pricing on the row: true
+
+switch-user -> Wesley Mcclure: HTTP 200
+  view_mode reported   : "tech"
+  woFullViewMode held  : false
+  workOrder* perms     : ["workOrderLinesCreateAndEdit","workOrdersView"]
+  Add Part button visible as the technician: false
+
+AS THE TECHNICIAN (Tech View):
+  inline row opened  : false
+  labels             : undefined
+  field test-ids     : undefined
+  any pricing shown  : undefined
+  row text           : undefined
+
+  Tech View EDIT clicked: false
+    inline row shown: false | modal shown: false
+    labels          : []
+    modal title     : null
+
+restored to admin: HTTP 200
+
+POSITIVE CONTROL - admin, Full View (view_mode=full):
+  labels : undefined
+  pricing on the row: undefined
+
+switch-user -> Christopher Smith: HTTP 200
+  view_mode reported   : "tech"
+  woFullViewMode held  : false
+  workOrder* perms     : ["workOrderLinesCreateAndEdit","workOrdersView"]
+  LANDING CHECK: url /workorders/891e1767-bc87-4c14-a7e5-f68524fbd02d/lines | chars 1427 | on /login: false
+    work-order number on page: false | Lines tab: true | existing part rows visible: 3
+  Add Part button visible as the technician: true
+
+AS THE TECHNICIAN (Tech View):
+  inline row opened  : true
+  labels             : ["Description","Part number","Qty"]
+  field test-ids     : ["input_inline_part_description","select_inline_part_number","input_inline_part_quantity","button_save_inline_part","button_cancel_inline_part"]
+  any pricing shown  : false
+  row text           : " Description Part number Qty Save Cancel"
+
+  Tech View EDIT clicked: true
+    inline row shown: false | modal shown: false
+    labels          : []
+    modal title     : null
+
+restored to admin: HTTP 200
