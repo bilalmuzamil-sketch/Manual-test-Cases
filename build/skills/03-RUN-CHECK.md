@@ -617,6 +617,43 @@ over story status), Rule 61 (the marker family; a stale expect-fail has no backi
 deferred marker + substitution/metadata rules), Rule 71 (Automated cases held). Recorded at the tail of
 Standing Rule 69 in `CLAUDE.md`.
 
+### 7.5 🔑 THE STAGING-ONLY CUSTOMER-PORTAL HOLD — A SURFACE THE QA BRANCH DOES NOT HAVE (2026-08-31)
+
+**CANONICAL SOURCE: `00-COMMON-CORE.md` §5.0-b(2) — if this copy and §5.0-b ever disagree, §5.0-b
+wins and this section is the bug.**
+
+**§7 above covers a feature that is NOT BUILT YET. This is the neighbouring state and it is NOT the
+same one: the feature exists, but the SURFACE it lives on does not exist on a QA branch.** QA lead,
+verbatim: *"Customer portal related tickets can only be tested on staging and not on the QA branch. We
+need to put this marker on such tickets aswell."* **A label or behaviour that lives on a portal
+surface will be reported "absent" by any QA-branch probe, forever** — so without this marker §7.2's
+"feature NOT FOUND in the build" row will fire on it and produce a **false not-yet-developed verdict**.
+
+**⇒ THE MARKER — a machine-findable literal like the others, never reworded:**
+
+```
+AUTOMATION: HOLD - customer portal only exists on staging; this case cannot run on the QA branch
+```
+
+**HOLD, not a fifth literal:** the arithmetic gate is **READY + EXPECT-FAIL = total − HOLD** and a new
+literal would silently break it; the marker convention permits HOLD for *"a genuinely unobtainable
+thing"*, which a non-existent portal is — so this is **not** the barred tool-flag excuse. **The
+wording is provisional; the QA lead may rename it.**
+
+**⇒ SCOPE IT FROM THE PRECONDITIONS, NOT FROM THE WORD "PORTAL".** Only a case whose **preconditions
+require a portal-generated artefact** gets the marker. **A case that verifies the portal feature's
+ABSENCE on the shop-app path is fully testable on the branch and must NOT be parked.** Worked example,
+2026-08-31 (Invoice UI Refresh, spec S8-R8 — the paid banner appears only on a **portal-generated**
+Invoice PDF): **C44954** (*"No paid banner when the invoice has no portal-processed payment"*) **is
+build verified**, while **C44947 / C44951 / C44952 / C45175** are staging-only. Four other cases
+mention the banner in passing and **C45184** names it as an **exclusion** — **none of those five are
+portal-gated.**
+
+**Ties:** §7.2 (do not let this fall into the "not found" row), §8.4 (the only permitted un-verified
+state is genuine feature absence — this is a *surface* absence and is marked, not left un-verified),
+§8.0-a (prove the probe could fire before concluding absence), Rule 60 (the HOLD half of the marker
+family is the build-dependent half), Rule 61 (the marker family).
+
 ---
 
 ## 8.0-a 🛑 A CHECK THAT FAILS IS A STATEMENT ABOUT YOUR CHECK UNTIL YOU PROVE OTHERWISE
