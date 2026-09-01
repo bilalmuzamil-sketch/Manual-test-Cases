@@ -116,3 +116,35 @@ method can put arbitrary text on a customer-facing document and into the payment
 
 **Draft ticket:** `Story Defect`, parent the owning payments story, Priority `Medium`, summary
 *"credit-memo cash-out accepts an arbitrary payment_method string with no validation"*.
+
+---
+
+# ⚠️ DISCLOSURE — an unintended payment reversal I performed (2026-08-31)
+
+**Not a product defect. My mistake, recorded because it changed data.**
+
+While walking C45177 I reversed **the wrong payment**:
+
+| | |
+|---|---|
+| Payment | `421c5af8-f864-4727-b8d1-5b5aa8130036`, ref **05301J**, **MASTERCARD**, **$9,607.23**, dated 2025-09-16 |
+| Customer account | `37b48175-14be-4049-9058-bf357e93f665` (Aagate Landscaping) |
+| Call | `POST /api/customer-account/reverse-customer-payment {"id": "421c5af8-…"}` → **201** |
+| Effect | payments on the account went **30 → 29**; the payment is no longer listed |
+| Environment | QA branch **sv8218** — a disposable test branch (Rule 6) |
+| Recoverable | The action's own confirmation states *"The payment record is preserved for audit history"*, so it should be visible in the audit trail. |
+
+**How it happened, exactly.** I could not match a payment to the target invoice, so my script fell back
+to `cand = pays[0]` — the first payment on the account — and then wrote to it. The masthead did not
+change (still `Paid date`, Balance $0.00), which is how I noticed: the payment I reversed had nothing
+to do with the invoice I was testing.
+
+**The lesson, and it is a rule-shaped one:**
+
+> **A FALLBACK IS FINE FOR A READ AND NEVER FOR A WRITE.** "If I cannot identify the right record, use
+> the first one" is a reasonable default when you are only looking. Carried into a mutating call it
+> means *"change something, I don't mind what"*. A write must name its target or refuse to run.
+
+This is being added to the playbook's seeding guidance and to skill 03 §8.2, next to the standing
+"seed freely on a disposable branch" permission — because that permission is what made the write easy,
+and it is exactly where the guard belongs.
