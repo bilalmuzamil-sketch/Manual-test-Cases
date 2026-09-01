@@ -2365,6 +2365,17 @@ were stale). Sources: `build/report-suite/build-verify-2026-08-18/{TU,WIP,IV}-SW
 - **INLINE-VLAD-1 OPEN** — two Automated cases changed on 6597: **C45026** (IAEP-TEDIT-04, S3-R5) escaping → repaired to fr-view + re-stamped v13→v16; **C45005** (IAEP-TADD-08, S2-R9) was already fr-view+v16, not written. `atmstatus=3` preserved on both. Note: `build/inline-add-edit-parts/render-repair-2026-08-31/FOR-VLAD-automated-cases-changed-2026-08-31.md`.
 
 #### CARRIED OVER — open, for the QA lead's decision later (per his 2026-08-31 instruction)
+- **CO-9 (Invoice) — DEFECT CANDIDATE, NEW 2026-09-01, NOT FILED (hold):** **every document
+  snapshot that already existed on sv8218 returns HTTP 500**; one captured the same day returns 200.
+  Proven on a single work order (**S8218-17113**: today 200, its own 18/13/10 August events all 500,
+  html and pdf), so it is the snapshot's age, not the record or the document type — 20 of 20
+  pre-existing calls failed. Makes **C45185 a FAILED case**, not a not-built one. Candidate:
+  `build/invoice-ui-refresh/build-verify-2026-08-31/DEFECT-CANDIDATE-snapshot-500.md`.
+  **Needs your go-ahead to file** (per-ask permission, Rule 62). The server log for the captured
+  request ids should name the cause in one line.
+- **CO-10 (Invoice) — WITHDRAWN 2026-09-01:** the earlier `historyEvent` defect candidate is
+  withdrawn. That query parameter is a no-op because **it is not the snapshot mechanism** — the real
+  route is `POST /api/work-orders/invoices/snapshot`. Nothing was filed for it.
 - **CO-7 (Invoice) — PO-3 OPEN (Chris Ward), NEW 2026-09-01:** does S3-R5's *"every work order"*
   include **imported** work orders? The spec says the Authorizer row is on every work order; the
   technical plan gates it off for imported ones and the build follows the plan. Case **C45190**
