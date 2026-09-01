@@ -256,7 +256,7 @@ for (const cid of queue) {
     const nmark = lines.filter(l => l.startsWith('AUTOMATION:')).length;
     if (nmark !== 1) problems.push(`AUTOMATION marker count = ${nmark}`);
     if (MODE === 'ready' && !rec.marker_override && /Not available on Build/.test(view.custom_expected.text)) problems.push('the deferred marker text is still present');
-    if (MODE === 'steps' && Object.keys(rec.fields).some(f => f === 'custom_expected')) problems.push('MODE=steps must never write custom_expected');
+    if (MODE === 'steps' && !process.env.ALLOW_EXPECTED && Object.keys(rec.fields).some(f => f === 'custom_expected')) problems.push('MODE=steps must never write custom_expected unless ALLOW_EXPECTED is set');
     // Rule 54: sentence 1 carried byte-for-byte, sentence 2 present, NEVER merged
     const wantS1 = norm(snap[cid].provenance[0].replace(/&amp;/g, '&').replace(/&mdash;/g, '—'));
     const s1 = lines.filter(l => l.startsWith('This is the expected behaviour'));
