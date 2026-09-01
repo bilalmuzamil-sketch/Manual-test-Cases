@@ -29,25 +29,32 @@ HOW = {
          'product (a lock? a closed period? an integration hold?), then seed that condition. Until '
          'that is answered the case cannot be written into a runnable form either - it is the one '
          'precondition in the suite that still names a state rather than a route.'),
- 45022: ('The save-failure alert has not been seen yet. The first attempt aborted the request at the '
-         'transport layer, which is a dead socket rather than a server refusing the save.',
-         'Re-run tools/probe_neg.mjs with ONLY=EH2: it fulfils POST /api/work-orders/part/make-request '
-         'with a real 500 and a JSON error body and reads the surface at 2s and 7s so the toast cannot '
-         'fade unseen. If "Couldn\'t add the part. Please try again." does not appear and the row does '
-         'not stay open with its data, that is a deviation candidate - hold it per the three-gate rule.'),
+ 45022: ('The SUBSTANCE is already observed - a forced 500 on the save leaves the row open with the '
+         'description and quantity intact. What is not settled is the WORDING: the visible toast reads '
+         '"Ooooops! An error occurred" while the document specifies "Couldn\'t add the part. Please '
+         'try again.", and although that documented string is present in the page\'s rendered text, a '
+         'string in innerText is not proof of what a tester reads.',
+         'Run tools/probe_last.mjs with ONLY=L2. It forces the 500 again and walks the DOM for the '
+         'element carrying "add the part", reporting its tag, classes, size and computed visibility. '
+         'If the documented sentence is on screen the case is a PASS; if only the generic toast is '
+         'visible it is a wording deviation - held per the three-gate rule, not filed.'),
  45062: ('Same as C45022 - it is the Full View half of the same requirement (S4-EH1 points at S2-EH1).',
          'Settled by the same ONLY=EH2 run, read as a Full View user on the six-field row.'),
- 45028: ('The run that would have proved it used the wrong API field names and read back nulls.',
-         'Re-run tools/probe_cross.mjs with ONLY=X2. It creates the part as the admin WITH cost 7.77, '
-         'sell 19.19 and category AUTO-Batteries, edits only the description as the technician, then '
-         'reads cost, sell_price and part_category_id back as the admin.'),
- 45034: ('The concurrent-change alert has not been seen. The probe could not identify which part '
-         'request the edit row was editing, because list-requests ignores its work_order_id parameter '
-         'and answers with 100 rows from across the estate.',
-         'Re-run tools/probe_neg.mjs with ONLY=E1 - it now filters the list client-side on '
-         'work_order_id. It opens the Tech View edit row, deletes that exact part request over the '
-         'API behind the row, then saves, and looks for "This part was changed by someone else. '
-         'Refresh to see the latest."'),
+ 45028: ('Two runs read nulls back, both times because the values were fetched from the API: '
+         'list-requests does not return a freshly created part request on this work order at all.',
+         'Run tools/probe_cross.mjs with ONLY=X2 - it now reads cost, sell price and category off the '
+         'FULL VIEW EDIT MODAL instead, which is where a Full View user actually sees them and is '
+         'better evidence anyway. It creates the part as the admin with cost 7.77, sell 19.19 and '
+         'category AUTO-Batteries, edits only the description as the technician, and re-opens the '
+         'modal as the admin.'),
+ 45034: ('The part request the edit row is editing cannot be identified from the API at all: '
+         'list-requests ignores work_order_id, workOrderId, work_order and filter[work_order_id] '
+         'alike, always returning the same first 100 rows from across the estate, and none of them '
+         'belongs to this work order.',
+         'Run tools/probe_last.mjs with ONLY=L1. It takes the id from the app\'s OWN save request: '
+         'the first save on the edit row is aborted so its payload can be read, the part is then '
+         'deleted over the API behind a fresh edit row, and the save is made for real while watching '
+         'for "This part was changed by someone else. Refresh to see the latest."'),
  45060: ('Every catalog part on this branch carries a cost and a sell price, so a part with neither '
          'on record does not exist. Five searches (NBOR, BSPP, O-RING, FREIGHT, SUBLET) all came back '
          'with prices; the closest, SUBLET, has cost 0.00, which is a value, not an empty field.',
