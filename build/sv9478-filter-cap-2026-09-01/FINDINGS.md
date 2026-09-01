@@ -27,7 +27,9 @@ Selecting too many filter values used to grow the page URL and a hidden per-requ
 | 2 | At cap, deselecting always works; after deselecting one, a different one can be selected again | **PASS** | cap3 run: DESELECT → count drops + notice clears; RESELECT different → back at cap |
 | 3 | With exactly 50 selected, report request succeeds (no 400) and results filter | **PASS** | cap3 run: 0×400, last report status 200 |
 | 4 | Location filter at default (all your locations) does NOT consume the 50 budget | **PASS** | API: 60 locations + 40 vendors → 200 (locations uncounted) |
-| 5 | Repeat one lock/notice check on mobile viewport (bottom sheet) | **NOT CLEANLY DRIVEN** — see Honest limits | mobile.mjs |
+| 5 | Repeat one lock/notice check on mobile viewport (bottom sheet) | **NOT DRIVEN** by automation — see Honest limits | mobile.mjs |
+
+Cap evidence is a true before/after: **EX1** shows the vendor panel at 6 picks (all options selectable, no notice) beside the same panel at the 50 combined cap (unchecked options locked + notice).
 
 ### 2. Select all (unlimited path)
 | # | Check | Result | Evidence |
@@ -92,7 +94,7 @@ The guard counts the **combined** total (51) and reports it **per offending para
 
 Per Rule 12 (observed, never inferred) these are stated plainly rather than passed:
 
-1. **Mobile bottom-sheet cap (checklist #5).** The desktop cap/lock/notice is fully proven and it runs through the **same shared filter component** (per the handoff, "desktop panels + mobile sheet"). At 390×844 the filter sheet rendered but automation could not drive its individual-pick selection cleanly (it opens at the all-selected/select-all state and the sheet's clear control differs). Recommend a ~30-second manual mobile confirm of one lock/notice; not a blocker.
+1. **Mobile bottom-sheet cap (checklist #5).** The desktop cap/lock/notice is fully proven and it runs through the **same shared filter component** (per the handoff, "desktop panels + mobile sheet"). At 390×844 the filter sheet rendered, but across three automation attempts I could not drive its individual-pick selection cleanly — the vendor filter is persisted at the all-selected/select-all state (1042 checked, which sends no IDs) and the sheet's deselect-all/clear control did not toggle it off under automation. Recommend a ~30-second manual mobile confirm of one lock/notice; not a blocker.
 2. **Count Sheet PDF after select-all bins (checklist #8).** Not exercised. The select-all-sends-no-IDs behavior it depends on is proven on the Inventory filters (EX3 / allrows run); the PDF export path itself was not driven.
 3. **SBC "explicitly empty = no rows" pole (checklist #12).** The all-customers pole is confirmed (select-all present, default sends no IDs). This QA org has no customer records, so the empty-selection-returns-no-rows pole could not be produced.
 4. **TimeSheets technician filter and Pricing Matrix dialog (checklist #14).** Not driven; low-risk (category lookups / technician filter are on the exempt/unchanged path).
@@ -107,7 +109,8 @@ None of the above changes the verdict: the outage the ticket describes is fixed,
 ---
 
 ## Evidence files
-- `evidence/EX1-cap-notice-annotated.png` — 50-cap notice + locked options
+- `evidence/EX1-cap-before-after-annotated.png` — 50-cap before (under cap, selectable) vs after (locked + notice)
+- `evidence/EX1-cap-notice-annotated.png` — 50-cap at-cap single view (superseded by the before/after)
 - `evidence/EX2-sharedlink-annotated.png` — 60-UUID shared link clamped to 50, clean load
 - `evidence/EX3-selectall-annotated.png` — new "All categories" select-all row (Parts Catalogue)
 - `evidence/raw-*.png` — un-annotated captures
