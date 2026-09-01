@@ -19,7 +19,13 @@ const WO = 'c6d4b883-6f78-4c9e-ab7e-436a6d99c17a';                    // S9315-1
 const PAID_WO = '06747f14-bf1e-4c03-8358-732e78b0167d';               // S2-15522, paid
 const TECH = '2d36a5f5-c957-45e0-a376-46d24df2a44c';                  // Christopher Smith
 const TECH_ROLE = '2d4b8464-81a9-4c1e-96c6-a2a64f02a389';             // Technician
-const results = {};
+// MERGE, never replace: a run with ONLY=... must not delete the probes it did not re-run.
+// The first version overwrote this file every run, and a targeted re-run silently dropped
+// two verified results that only survived because they were already committed.
+const RESULTS_FILE = `${OUT}/evidence/probe-neg.json`;
+const results = (() => {
+  try { return JSON.parse(fs.readFileSync(RESULTS_FILE, 'utf8')); } catch (_) { return {}; }
+})();
 const { browser, page } = await boot('/workorders');
 // 🛑 A CHARACTER COUNT IS NOT A LANDING SIGNAL. The page shell alone is already over 1,200
 // characters and still shows "Loading..." in the header while the Parts section is unmounted, so a
@@ -268,7 +274,7 @@ for (const n of names) {
   process.stdout.write(`\n### ${n}\n`);
   try { results[n] = await P[n](); console.log(JSON.stringify(results[n], null, 1).slice(0, 3000)); }
   catch (e) { results[n] = { PROBE_ERROR: String(e).slice(0, 300) }; console.log('PROBE ERROR', String(e).slice(0, 300)); }
-  fs.writeFileSync(`${OUT}/evidence/probe-neg.json`, JSON.stringify(results, null, 1));
+  fs.writeFileSync(RESULTS_FILE, JSON.stringify(results, null, 1));
 }
 await apiPost('/api/exit-switch-user', {}).catch(() => {});
 await browser.close();

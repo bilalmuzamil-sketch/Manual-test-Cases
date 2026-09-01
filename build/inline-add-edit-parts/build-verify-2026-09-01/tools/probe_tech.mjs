@@ -11,7 +11,13 @@ const OUT = 'build/inline-add-edit-parts/build-verify-2026-09-01';
 const WO = process.env.WO || 'c6d4b883-6f78-4c9e-ab7e-436a6d99c17a';   // S9315-14846 @ Heavy Duty 9919
 const TECH = process.env.TECH || '2d36a5f5-c957-45e0-a376-46d24df2a44c'; // Christopher Smith, Technician
 const ONLY = (process.env.ONLY || '').split(',').filter(Boolean);
-const results = {};
+// MERGE, never replace: a run with ONLY=... must not delete the probes it did not re-run.
+// The first version overwrote this file every run, and a targeted re-run silently dropped
+// two verified results that only survived because they were already committed.
+const RESULTS_FILE = `${OUT}/evidence/probe-tech.json`;
+const results = (() => {
+  try { return JSON.parse(fs.readFileSync(RESULTS_FILE, 'utf8')); } catch (_) { return {}; }
+})();
 const { browser, page } = await boot('/workorders');
 
 const settle = async () => {
@@ -370,7 +376,7 @@ for (const n of names) {
   process.stdout.write(`\n### ${n}\n`);
   try { results[n] = await P[n](); console.log(JSON.stringify(results[n], null, 1).slice(0, 3000)); }
   catch (e) { results[n] = { PROBE_ERROR: String(e).slice(0, 300) }; console.log('PROBE ERROR', String(e).slice(0, 300)); }
-  fs.writeFileSync(`${OUT}/evidence/probe-tech.json`, JSON.stringify(results, null, 1));
+  fs.writeFileSync(RESULTS_FILE, JSON.stringify(results, null, 1));
 }
 // hand the session back
 const ex = await apiPost('/api/exit-switch-user', {});
