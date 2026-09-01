@@ -1,0 +1,366 @@
+{
+ "45197": {
+  "title": "Credit Invoice renders when its originating invoice has been reversed",
+  "marker_override": "AUTOMATION: READY",
+  "fields": {
+   "custom_preconds": {
+    "blocks": [
+     [
+      "1. You are signed in to ShopView.",
+      "2. You need a parts return credit whose original invoice has since been reversed. To make one: click Parts in the top menu, open Part Sales, and open a part sale that is Complete but not yet paid. Click its Finance tab and create the invoice. On that same invoice use Issue Credit and return one part. Then, on the invoice's three dot menu, choose Reverse and confirm.",
+      "3. Set your active location to the location the credit was issued at. Credits are location specific: a credit issued at another location does not appear in the customer's Invoices list at all, so there is no row and no print button.",
+      "4. To open the document: click Customers in the top menu, open the customer, click the Invoices tab, and find the credit's row. Its credit number, for example CM-100, is in the Invoice # column next to ordinary invoice numbers. Click the print icon at the right of that row; its tooltip reads \"Print credit memo\".",
+      "5. If the credit has been fully applied or fully refunded, turn the \"Open only\" filter off first, or its row is not listed."
+     ]
+    ],
+    "text": "1. You are signed in to ShopView.\n2. You need a parts return credit whose original invoice has since been reversed. To make one: click Parts in the top menu, open Part Sales, and open a part sale that is Complete but not yet paid. Click its Finance tab and create the invoice. On that same invoice use Issue Credit and return one part. Then, on the invoice's three dot menu, choose Reverse and confirm.\n3. Set your active location to the location the credit was issued at. Credits are location specific: a credit issued at another location does not appear in the customer's Invoices list at all, so there is no row and no print button.\n4. To open the document: click Customers in the top menu, open the customer, click the Invoices tab, and find the credit's row. Its credit number, for example CM-100, is in the Invoice # column next to ordinary invoice numbers. Click the print icon at the right of that row; its tooltip reads \"Print credit memo\".\n5. If the credit has been fully applied or fully refunded, turn the \"Open only\" filter off first, or its row is not listed."
+   },
+   "custom_steps": {
+    "blocks": [
+     [
+      "1. Open the credit document using the route in the preconditions.",
+      "2. Read the small table at the top that lists the credit number and its status, and read the Balance.",
+      "3. Try to void the credit, if a Void action is offered."
+     ]
+    ],
+    "text": "1. Open the credit document using the route in the preconditions.\n2. Read the small table at the top that lists the credit number and its status, and read the Balance.\n3. Try to void the credit, if a Void action is offered."
+   },
+   "custom_expected": {
+    "blocks": [
+     [
+      "1. The document renders without a 500.",
+      "2. The status table handles the missing/reversed origin invoice gracefully - Invoice Number shows the last known number or the documented column behaviour (S11-R3); no fatal error.",
+      "3. History: SV-7821 void 500s on reversed origin."
+     ],
+     [
+      "---",
+      "This is the expected behaviour as per epic SV-8218 and story SV-9150 (Story 11, Credit Invoice) and the Invoice UI Refresh specification version 45, section S11-R3, read on 31 August 2026.",
+      "Last checked against build v26.35.5-8c3cc21 on 9/1/2026."
+     ],
+     [
+      "AUTOMATION: READY"
+     ]
+    ],
+    "text": "1. The document renders without a 500.\n2. The status table handles the missing/reversed origin invoice gracefully - Invoice Number shows the last known number or the documented column behaviour (S11-R3); no fatal error.\n3. History: SV-7821 void 500s on reversed origin.\n\n---\nThis is the expected behaviour as per epic SV-8218 and story SV-9150 (Story 11, Credit Invoice) and the Invoice UI Refresh specification version 45, section S11-R3, read on 31 August 2026.\nLast checked against build v26.35.5-8c3cc21 on 9/1/2026.\n\nAUTOMATION: READY"
+   }
+  }
+ },
+ "44947": {
+  "title": "Payment method name resolves per rule (SHOPPAY shows 'Online')",
+  "marker_override": "AUTOMATION: READY",
+  "fields": {
+   "custom_preconds": {
+    "blocks": [
+     [
+      "1. You are signed in to ShopView.",
+      "2. You need one invoice carrying three payments made three different ways. To set it up: click Parts in the top menu, open Part Sales, open a part sale that is Complete, click its Finance tab and create the invoice.",
+      "3. Add the first payment with New Payment, choosing a payment method the shop has set up, for example Visa.",
+      "4. Add a second payment made online, so its method is the online one (SHOPPAY).",
+      "5. For the third, you need a payment whose method the shop no longer has set up, because the payment screen refuses any method that is not on the shop's list. Do it in this order: add a new payment method in the shop's payment method settings; take a payment using it; then delete that method again. The payment stays, and its method is now one the shop does not have. Ask an administrator if you cannot reach the payment method settings.",
+      "6. To read the document: on the work order or part sale, click the Finance tab. The document appears on screen."
+     ]
+    ],
+    "text": "1. You are signed in to ShopView.\n2. You need one invoice carrying three payments made three different ways. To set it up: click Parts in the top menu, open Part Sales, open a part sale that is Complete, click its Finance tab and create the invoice.\n3. Add the first payment with New Payment, choosing a payment method the shop has set up, for example Visa.\n4. Add a second payment made online, so its method is the online one (SHOPPAY).\n5. For the third, you need a payment whose method the shop no longer has set up, because the payment screen refuses any method that is not on the shop's list. Do it in this order: add a new payment method in the shop's payment method settings; take a payment using it; then delete that method again. The payment stays, and its method is now one the shop does not have. Ask an administrator if you cannot reach the payment method settings.\n6. To read the document: on the work order or part sale, click the Finance tab. The document appears on screen."
+   },
+   "custom_steps": {
+    "blocks": [
+     [
+      "1. Open the document on the Finance tab.",
+      "2. Find the Payments block near the bottom, above Balance.",
+      "3. Read the method name shown on each of the three payment rows."
+     ]
+    ],
+    "text": "1. Open the document on the Finance tab.\n2. Find the Payments block near the bottom, above Balance.\n3. Read the method name shown on each of the three payment rows."
+   },
+   "custom_expected": {
+    "blocks": [
+     [
+      "1. A payment's method shows the shop-configured payment-method name when configured.",
+      "2. When not configured, it shows the payment code with each underscore replaced by a space (for example credit_card shows as \"credit card\").",
+      "3. The \"SHOPPAY\" code shows as \"Online\"."
+     ],
+     [
+      "---",
+      "This is the expected behaviour as per epic SV-8218 and story SV-9147 (Story 8, Paid Banner, Payments and Balance) and the Invoice UI Refresh specification version 45, section S8-R3, read on 31 August 2026.",
+      "Last checked against build v26.35.5-8c3cc21 on 9/1/2026."
+     ],
+     [
+      "AUTOMATION: READY"
+     ]
+    ],
+    "text": "1. A payment's method shows the shop-configured payment-method name when configured.\n2. When not configured, it shows the payment code with each underscore replaced by a space (for example credit_card shows as \"credit card\").\n3. The \"SHOPPAY\" code shows as \"Online\".\n\n---\nThis is the expected behaviour as per epic SV-8218 and story SV-9147 (Story 8, Paid Banner, Payments and Balance) and the Invoice UI Refresh specification version 45, section S8-R3, read on 31 August 2026.\nLast checked against build v26.35.5-8c3cc21 on 9/1/2026.\n\nAUTOMATION: READY"
+   }
+  }
+ },
+ "45196": {
+  "title": "An invoice paid by mixed cash and customer credit shows the Paid date",
+  "marker_override": "AUTOMATION: READY",
+  "fields": {
+   "custom_preconds": {
+    "blocks": [
+     [
+      "1. You are signed in to ShopView.",
+      "2. You need one invoice that is settled partly by cash and partly by a customer credit. To set it up: click Parts in the top menu, open Part Sales, open a part sale that is Complete, click its Finance tab and create the invoice. Note the amount owing.",
+      "3. Click Customers in the top menu, open that customer, click the Invoices tab and use Issue Credit to give the account a store credit worth part of that amount.",
+      "4. Before you pay anything, open the document once and note whether the top of it says \"Due date\" or \"Paid date\", so you can tell what changes.",
+      "5. To read the document: on the part sale, click the Finance tab. The document appears on screen."
+     ]
+    ],
+    "text": "1. You are signed in to ShopView.\n2. You need one invoice that is settled partly by cash and partly by a customer credit. To set it up: click Parts in the top menu, open Part Sales, open a part sale that is Complete, click its Finance tab and create the invoice. Note the amount owing.\n3. Click Customers in the top menu, open that customer, click the Invoices tab and use Issue Credit to give the account a store credit worth part of that amount.\n4. Before you pay anything, open the document once and note whether the top of it says \"Due date\" or \"Paid date\", so you can tell what changes.\n5. To read the document: on the part sale, click the Finance tab. The document appears on screen."
+   },
+   "custom_steps": {
+    "blocks": [
+     [
+      "1. Pay part of the amount owing in cash, using New Payment on the Finance tab.",
+      "2. Settle the rest by applying the customer's credit to the same invoice.",
+      "3. Open the document again on the Finance tab.",
+      "4. Read the dates at the top of the document, the Payments block, and the Balance."
+     ]
+    ],
+    "text": "1. Pay part of the amount owing in cash, using New Payment on the Finance tab.\n2. Settle the rest by applying the customer's credit to the same invoice.\n3. Open the document again on the Finance tab.\n4. Read the dates at the top of the document, the Payments block, and the Balance."
+   },
+   "custom_expected": {
+    "blocks": [
+     [
+      "1. Balance reads $0.00; 'Paid date: {date}' replaces 'Due date' (the most recent applied row date).",
+      "2. Both rows are listed per S8-R2 / S8-R4 (S10-R4).",
+      "3. History: SV-7846 (OPEN) - mixed payment not marked Paid."
+     ],
+     [
+      "---",
+      "This is the expected behaviour as per epic SV-8218 and story SV-9149 (Story 10, Estimate and Invoice Specifics) and the Invoice UI Refresh specification version 45, section S10-R4, read on 31 August 2026.",
+      "Last checked against build v26.35.5-8c3cc21 on 9/1/2026."
+     ],
+     [
+      "AUTOMATION: READY"
+     ]
+    ],
+    "text": "1. Balance reads $0.00; 'Paid date: {date}' replaces 'Due date' (the most recent applied row date).\n2. Both rows are listed per S8-R2 / S8-R4 (S10-R4).\n3. History: SV-7846 (OPEN) - mixed payment not marked Paid.\n\n---\nThis is the expected behaviour as per epic SV-8218 and story SV-9149 (Story 10, Estimate and Invoice Specifics) and the Invoice UI Refresh specification version 45, section S10-R4, read on 31 August 2026.\nLast checked against build v26.35.5-8c3cc21 on 9/1/2026.\n\nAUTOMATION: READY"
+   }
+  }
+ },
+ "45190": {
+  "title": "Work order, imported work order and part sale customer cards still work after the Authorizer change",
+  "marker_override": "AUTOMATION: READY",
+  "fields": {
+   "custom_preconds": {
+    "blocks": [
+     [
+      "1. You are signed in to ShopView.",
+      "2. You need three records open in turn: an ordinary work order, an imported work order, and a parts sale.",
+      "3. An ordinary work order: click Work Orders in the top menu and open any row.",
+      "4. An imported work order: click Work Orders in the top menu, set the Status filter to Imported, and open a row. Imported work orders only appear under that filter; they are not in the ordinary list.",
+      "5. A parts sale: click Parts in the top menu, open Part Sales, and open any row.",
+      "6. On each of the three, the customer card is the panel down the left hand side of the screen."
+     ]
+    ],
+    "text": "1. You are signed in to ShopView.\n2. You need three records open in turn: an ordinary work order, an imported work order, and a parts sale.\n3. An ordinary work order: click Work Orders in the top menu and open any row.\n4. An imported work order: click Work Orders in the top menu, set the Status filter to Imported, and open a row. Imported work orders only appear under that filter; they are not in the ordinary list.\n5. A parts sale: click Parts in the top menu, open Part Sales, and open any row.\n6. On each of the three, the customer card is the panel down the left hand side of the screen."
+   },
+   "custom_steps": {
+    "blocks": [
+     [
+      "1. Open each of the three records in turn.",
+      "2. On each one, read the customer card down the left hand side: the Contact row, the Phone row, and whether there is an Authorizer row.",
+      "3. Check the card looks right on all three - nothing overlapping, cut off or missing its heading."
+     ]
+    ],
+    "text": "1. Open each of the three records in turn.\n2. On each one, read the customer card down the left hand side: the Contact row, the Phone row, and whether there is an Authorizer row.\n3. Check the card looks right on all three - nothing overlapping, cut off or missing its heading."
+   },
+   "custom_expected": {
+    "blocks": [
+     [
+      "1. The card renders and functions on all three.",
+      "2. The Authorizer row appears on the work order and the parts sale only - NOT on the imported work order (plan CustomerCard gate); no layout break."
+     ],
+     [
+      "---",
+      "This is the expected behaviour as per epic SV-8218 and story SV-9142 (Story 3, Order Reference Fields) and the Invoice UI Refresh specification version 45, section S3-R5, read on 31 August 2026.",
+      "Last checked against build v26.35.5-8c3cc21 on 9/1/2026."
+     ],
+     [
+      "AUTOMATION: READY"
+     ]
+    ],
+    "text": "1. The card renders and functions on all three.\n2. The Authorizer row appears on the work order and the parts sale only - NOT on the imported work order (plan CustomerCard gate); no layout break.\n\n---\nThis is the expected behaviour as per epic SV-8218 and story SV-9142 (Story 3, Order Reference Fields) and the Invoice UI Refresh specification version 45, section S3-R5, read on 31 August 2026.\nLast checked against build v26.35.5-8c3cc21 on 9/1/2026.\n\nAUTOMATION: READY"
+   }
+  }
+ },
+ "45191": {
+  "title": "A user without work order edit permission sees the Authorizer as read-only",
+  "marker_override": "AUTOMATION: READY",
+  "fields": {
+   "custom_preconds": {
+    "blocks": [
+     [
+      "1. You need two sign ins: your own, and one for a person whose role does not let them edit work orders. On this system the Technician role is already like that, so any active Technician will do.",
+      "2. Click Work Orders in the top menu and open a work order that has an Authorizer chosen. The Authorizer row is in the customer card down the left hand side, below Contact and Phone.",
+      "3. Look at it as yourself first, so you know what the editable version looks like."
+     ]
+    ],
+    "text": "1. You need two sign ins: your own, and one for a person whose role does not let them edit work orders. On this system the Technician role is already like that, so any active Technician will do.\n2. Click Work Orders in the top menu and open a work order that has an Authorizer chosen. The Authorizer row is in the customer card down the left hand side, below Contact and Phone.\n3. Look at it as yourself first, so you know what the editable version looks like."
+   },
+   "custom_steps": {
+    "blocks": [
+     [
+      "1. Sign in as the person whose role does not let them edit work orders.",
+      "2. Open the same work order and look at the customer card down the left hand side.",
+      "3. Try to change the Authorizer."
+     ]
+    ],
+    "text": "1. Sign in as the person whose role does not let them edit work orders.\n2. Open the same work order and look at the customer card down the left hand side.\n3. Try to change the Authorizer."
+   },
+   "custom_expected": {
+    "blocks": [
+     [
+      "1. The Authorizer shows as a static, read-only field; no select control is offered (plan CustomerCard fallback)."
+     ],
+     [
+      "---",
+      "This is the expected behaviour as per epic SV-8218 and story SV-9142 (Story 3, Order Reference Fields) and the Invoice UI Refresh specification version 45, section S3-R5, read on 31 August 2026.",
+      "Last checked against build v26.35.5-8c3cc21 on 9/1/2026."
+     ],
+     [
+      "AUTOMATION: READY"
+     ]
+    ],
+    "text": "1. The Authorizer shows as a static, read-only field; no select control is offered (plan CustomerCard fallback).\n\n---\nThis is the expected behaviour as per epic SV-8218 and story SV-9142 (Story 3, Order Reference Fields) and the Invoice UI Refresh specification version 45, section S3-R5, read on 31 August 2026.\nLast checked against build v26.35.5-8c3cc21 on 9/1/2026.\n\nAUTOMATION: READY"
+   }
+  }
+ },
+ "44923": {
+  "title": "A new 'Approves Work' contact becomes selectable immediately",
+  "marker_override": "AUTOMATION: READY",
+  "fields": {
+   "custom_preconds": {
+    "blocks": [
+     [
+      "1. You are signed in to ShopView.",
+      "2. Click Work Orders in the top menu and open a work order that has NOT been invoiced yet - one that still says Estimate, Approved, In progress, Review or Complete. Once a work order is invoiced the Authorizer is locked and cannot be changed, so the test cannot be done on it.",
+      "3. Leave that work order open on screen. Do not reload it at any point.",
+      "4. In a second browser tab, click Customers in the top menu, open the same customer, and click the Contacts tab.",
+      "5. Pick a contact on that list who does not yet approve work - the Approves Work column reads No."
+     ]
+    ],
+    "text": "1. You are signed in to ShopView.\n2. Click Work Orders in the top menu and open a work order that has NOT been invoiced yet - one that still says Estimate, Approved, In progress, Review or Complete. Once a work order is invoiced the Authorizer is locked and cannot be changed, so the test cannot be done on it.\n3. Leave that work order open on screen. Do not reload it at any point.\n4. In a second browser tab, click Customers in the top menu, open the same customer, and click the Contacts tab.\n5. Pick a contact on that list who does not yet approve work - the Approves Work column reads No."
+   },
+   "custom_steps": {
+    "blocks": [
+     [
+      "1. In the second tab, on the Contacts tab, click the edit icon at the right of the contact's row, tick \"Approves Work\", and click Save.",
+      "2. Switch back to the first tab, where the work order is still open. Do not reload it and do not save it.",
+      "3. Click the Authorizer row in the customer card to open its list."
+     ]
+    ],
+    "text": "1. In the second tab, on the Contacts tab, click the edit icon at the right of the contact's row, tick \"Approves Work\", and click Save.\n2. Switch back to the first tab, where the work order is still open. Do not reload it and do not save it.\n3. Click the Authorizer row in the customer card to open its list."
+   },
+   "custom_expected": {
+    "blocks": [
+     [
+      "1. The newly enabled contact appears in the work order's Authorizer list.",
+      "2. It becomes selectable without any refresh or re-save of the work order."
+     ],
+     [
+      "---",
+      "This is the expected behaviour as per epic SV-8218 and story SV-9142 (Story 3, Order Reference Fields) and the Invoice UI Refresh specification version 45, section S3-R9, read on 31 August 2026.",
+      "Last checked against build v26.35.5-8c3cc21 on 9/1/2026."
+     ],
+     [
+      "AUTOMATION: READY"
+     ]
+    ],
+    "text": "1. The newly enabled contact appears in the work order's Authorizer list.\n2. It becomes selectable without any refresh or re-save of the work order.\n\n---\nThis is the expected behaviour as per epic SV-8218 and story SV-9142 (Story 3, Order Reference Fields) and the Invoice UI Refresh specification version 45, section S3-R9, read on 31 August 2026.\nLast checked against build v26.35.5-8c3cc21 on 9/1/2026.\n\nAUTOMATION: READY"
+   }
+  }
+ },
+ "44987": {
+  "title": "Batch and imported invoices are out of scope (kept on current templates)",
+  "marker_override": "AUTOMATION: READY",
+  "fields": {
+   "custom_preconds": {
+    "blocks": [
+     [
+      "1. You are signed in to ShopView.",
+      "2. For a batch invoice: click Customers in the top menu, open a customer, and click the Invoices tab. Tick two or more invoice rows using the tick boxes on the left, or the tick box in the header row to take them all. A small toolbar appears above the list with Download, Send Email and Print buttons.",
+      "3. For an imported invoice: click Work Orders in the top menu, set the Status filter to Imported, and open a row. The document is shown on the record itself.",
+      "4. To compare against a redesigned invoice: open any ordinary work order and click its Finance tab."
+     ]
+    ],
+    "text": "1. You are signed in to ShopView.\n2. For a batch invoice: click Customers in the top menu, open a customer, and click the Invoices tab. Tick two or more invoice rows using the tick boxes on the left, or the tick box in the header row to take them all. A small toolbar appears above the list with Download, Send Email and Print buttons.\n3. For an imported invoice: click Work Orders in the top menu, set the Status filter to Imported, and open a row. The document is shown on the record itself.\n4. To compare against a redesigned invoice: open any ordinary work order and click its Finance tab."
+   },
+   "custom_steps": {
+    "blocks": [
+     [
+      "1. Produce the batch document: on the customer's Invoices tab, tick two or more invoice rows and click Print in the toolbar above the list.",
+      "2. Open an imported work order and look at the document shown on it.",
+      "3. Open an ordinary work order's Finance tab to see a redesigned invoice next to them.",
+      "4. Compare the wording on all three: whether the date at the top reads \"Invoice date\" or \"Invoice Date\", whether a settled invoice says \"Paid date\", whether the signature line reads \"Customer Signature\" or \"Customer signature:\", whether the footer says \"Powered by ShopView\" or \"Software Powered by ShopView\", whether the tax line reads \"GST (5%)\" or \"Tax\", and whether the headings \"Addresses\" and \"Summary\" are present."
+     ]
+    ],
+    "text": "1. Produce the batch document: on the customer's Invoices tab, tick two or more invoice rows and click Print in the toolbar above the list.\n2. Open an imported work order and look at the document shown on it.\n3. Open an ordinary work order's Finance tab to see a redesigned invoice next to them.\n4. Compare the wording on all three: whether the date at the top reads \"Invoice date\" or \"Invoice Date\", whether a settled invoice says \"Paid date\", whether the signature line reads \"Customer Signature\" or \"Customer signature:\", whether the footer says \"Powered by ShopView\" or \"Software Powered by ShopView\", whether the tax line reads \"GST (5%)\" or \"Tax\", and whether the headings \"Addresses\" and \"Summary\" are present."
+   },
+   "custom_expected": {
+    "blocks": [
+     [
+      "1. Batch invoices and imported invoices are not part of Story 13 or this spec.",
+      "2. They keep their current templates until the follow-up ticket (SV-9193) ships.",
+      "3. Restyling shared template partials must not half-restyle these deferred templates."
+     ],
+     [
+      "---",
+      "This is the expected behaviour as per epic SV-8218 and story SV-9195 (Story 13, Parts Sale Estimate and Invoice) and the Invoice UI Refresh specification version 45, section S13-N1, and story SV-9193 (deferred), read on 31 August 2026.",
+      "Last checked against build v26.35.5-8c3cc21 on 9/1/2026."
+     ],
+     [
+      "AUTOMATION: READY"
+     ]
+    ],
+    "text": "1. Batch invoices and imported invoices are not part of Story 13 or this spec.\n2. They keep their current templates until the follow-up ticket (SV-9193) ships.\n3. Restyling shared template partials must not half-restyle these deferred templates.\n\n---\nThis is the expected behaviour as per epic SV-8218 and story SV-9195 (Story 13, Parts Sale Estimate and Invoice) and the Invoice UI Refresh specification version 45, section S13-N1, and story SV-9193 (deferred), read on 31 August 2026.\nLast checked against build v26.35.5-8c3cc21 on 9/1/2026.\n\nAUTOMATION: READY"
+   }
+  }
+ },
+ "45185": {
+  "title": "A snapshot created before the redesign renders in the new layout with blanks and no error",
+  "marker_override": "AUTOMATION: HOLD - this case fails on a server error that has no ticket yet; change to READY - EXPECT FAIL (SV-xxxx) once the ticket is filed",
+  "fields": {
+   "custom_preconds": {
+    "blocks": [
+     [
+      "1. You are signed in to ShopView.",
+      "2. Click Work Orders in the top menu and open a work order that was invoiced BEFORE this version was built - check the dates in its history.",
+      "3. Open its History. Some entries keep a saved copy of the document as it looked at that moment; Invoice created, Invoice downloaded, Invoice emailed and Reviewed are the entries that do.",
+      "4. You will also want one saved copy made today, for comparison: create an invoice on any Complete work order now, then open the History entry it produces."
+     ]
+    ],
+    "text": "1. You are signed in to ShopView.\n2. Click Work Orders in the top menu and open a work order that was invoiced BEFORE this version was built - check the dates in its history.\n3. Open its History. Some entries keep a saved copy of the document as it looked at that moment; Invoice created, Invoice downloaded, Invoice emailed and Reviewed are the entries that do.\n4. You will also want one saved copy made today, for comparison: create an invoice on any Complete work order now, then open the History entry it produces."
+   },
+   "custom_steps": {
+    "blocks": [
+     [
+      "1. Open the saved copy of the document from an old History entry.",
+      "2. Save or print it.",
+      "3. Look at the fields that did not exist when that copy was made - the Authorizer, the licence plate, the estimate date - and check whether they are simply blank."
+     ]
+    ],
+    "text": "1. Open the saved copy of the document from an old History entry.\n2. Save or print it.\n3. Look at the fields that did not exist when that copy was made - the Authorizer, the licence plate, the estimate date - and check whether they are simply blank."
+   },
+   "custom_expected": {
+    "blocks": [
+     [
+      "1. The snapshot renders in the new layout.",
+      "2. Fields the old snapshot never stored are blank (hidden per hide-when-empty).",
+      "3. No 500 / fatal error occurs (plan D5 - the single biggest correctness risk)."
+     ],
+     [
+      "---",
+      "This is the expected behaviour as per epic SV-8218 and the Invoice UI Refresh engineering plan (item D5); verified current against the Invoice UI Refresh specification version 45, read on 31 August 2026.",
+      "Last checked against build v26.35.5-8c3cc21 on 9/1/2026."
+     ],
+     [
+      "AUTOMATION: HOLD - this case fails on a server error that has no ticket yet; change to READY - EXPECT FAIL (SV-xxxx) once the ticket is filed"
+     ]
+    ],
+    "text": "1. The snapshot renders in the new layout.\n2. Fields the old snapshot never stored are blank (hidden per hide-when-empty).\n3. No 500 / fatal error occurs (plan D5 - the single biggest correctness risk).\n\n---\nThis is the expected behaviour as per epic SV-8218 and the Invoice UI Refresh engineering plan (item D5); verified current against the Invoice UI Refresh specification version 45, read on 31 August 2026.\nLast checked against build v26.35.5-8c3cc21 on 9/1/2026.\n\nAUTOMATION: HOLD - this case fails on a server error that has no ticket yet; change to READY - EXPECT FAIL (SV-xxxx) once the ticket is filed"
+   }
+  }
+ }
+}

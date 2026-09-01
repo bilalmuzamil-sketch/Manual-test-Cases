@@ -1,0 +1,106 @@
+{
+ "45197": {
+  "provenance": [
+   "This is the expected behaviour as per epic SV-8218 and story SV-9150 (Story 11, Credit Invoice) and the Invoice UI Refresh specification version 45, section S11-R3, read on 31 August 2026."
+  ],
+  "title": "Credit Invoice renders when its originating invoice has been reversed",
+  "atm": 1,
+  "section_id": 6770,
+  "before": {
+   "custom_preconds": "<p>1. A parts-return credit whose originating invoice has since been reversed<br>2. Your active location is set to the location the credit was issued at. Credits are location-specific: a credit issued at another location does not show in the customer's Invoices list at all - no row and no print button.<br>3. To open the document: Customers, open the customer, Invoices tab, find the credit's row (its credit number, for example CM-100, appears in the Invoice # column next to ordinary invoice numbers), then click the print icon at the right of that row (its tooltip reads \"Print credit memo\").<br>4. If the credit has been fully applied or fully refunded, turn the \"Open only\" filter off first, or its row is not listed.</p>",
+   "custom_steps": "<p>1. Open the Credit Invoice preview<br>2. Check the status table and totals<br>3. Attempt the void if applicable</p>",
+   "custom_expected": "<p>1. The document renders without a 500.<br>2. The status table handles the missing/reversed origin invoice gracefully - Invoice Number shows the last known number or the documented column behaviour (S11-R3); no fatal error.<br>3. History: SV-7821 void 500s on reversed origin.</p><p>---<br>This is the expected behaviour as per epic SV-8218 and story SV-9150 (Story 11, Credit Invoice) and the Invoice UI Refresh specification version 45, section S11-R3, read on 31 August 2026.</p><p>AUTOMATION: Not available on Build to test Yet - Last checked 8/26/2026</p>"
+  }
+ },
+ "44947": {
+  "provenance": [
+   "This is the expected behaviour as per epic SV-8218 and story SV-9147 (Story 8, Paid Banner, Payments and Balance) and the Invoice UI Refresh specification version 45, section S8-R3, read on 31 August 2026."
+  ],
+  "title": "Payment method name resolves per rule (SHOPPAY shows 'Online')",
+  "atm": 1,
+  "section_id": 6749,
+  "before": {
+   "custom_preconds": "<p>1. You are signed in to ShopView.<br>2. An Invoice has a payment with a shop-configured method name, one with an unconfigured code (for example credit_card), and one made online (SHOPPAY).</p>",
+   "custom_steps": "<p>1. Generate the Invoice.<br>2. Read the method name on each payment row.</p>",
+   "custom_expected": "<p>1. A payment's method shows the shop-configured payment-method name when configured.<br>2. When not configured, it shows the payment code with each underscore replaced by a space (for example credit_card shows as \"credit card\").<br>3. The \"SHOPPAY\" code shows as \"Online\".</p><p>---<br>This is the expected behaviour as per epic SV-8218 and story SV-9147 (Story 8, Paid Banner, Payments and Balance) and the Invoice UI Refresh specification version 45, section S8-R3, read on 31 August 2026.</p><p>AUTOMATION: Not available on Build to test Yet - Last checked 8/31/2026</p>"
+  }
+ },
+ "45196": {
+  "provenance": [
+   "This is the expected behaviour as per epic SV-8218 and story SV-9149 (Story 10, Estimate and Invoice Specifics) and the Invoice UI Refresh specification version 45, section S10-R4, read on 31 August 2026."
+  ],
+  "title": "An invoice paid by mixed cash and customer credit shows the Paid date",
+  "atm": 1,
+  "section_id": 6770,
+  "before": {
+   "custom_preconds": "<p>1. An invoice paid to $0.00 via a cash payment plus an applied customer-account credit combined</p>",
+   "custom_steps": "<p>1. Apply cash for part of the Total<br>2. Apply customer credit for the remainder<br>3. Re-open the invoice preview</p>",
+   "custom_expected": "<p>1. Balance reads $0.00; 'Paid date: {date}' replaces 'Due date' (the most recent applied row date).<br>2. Both rows are listed per S8-R2 / S8-R4 (S10-R4).<br>3. History: SV-7846 (OPEN) - mixed payment not marked Paid.</p><p>---<br>This is the expected behaviour as per epic SV-8218 and story SV-9149 (Story 10, Estimate and Invoice Specifics) and the Invoice UI Refresh specification version 45, section S10-R4, read on 31 August 2026.</p><p>AUTOMATION: Not available on Build to test Yet - Last checked 8/26/2026</p>"
+  }
+ },
+ "45190": {
+  "provenance": [
+   "This is the expected behaviour as per epic SV-8218 and story SV-9142 (Story 3, Order Reference Fields) and the Invoice UI Refresh specification version 45, section S3-R5, read on 31 August 2026."
+  ],
+  "title": "Work order, imported work order and part sale customer cards still work after the Authorizer change",
+  "atm": 1,
+  "section_id": 6770,
+  "before": {
+   "custom_preconds": "<p>1. One normal work order, one imported work order, and one parts sale</p>",
+   "custom_steps": "<p>1. Open each record's customer card<br>2. Verify the Contact/Phone rows and the card actions still work</p>",
+   "custom_expected": "<p>1. The card renders and functions on all three.<br>2. The Authorizer row appears on the work order and the parts sale only - NOT on the imported work order (plan CustomerCard gate); no layout break.</p><p>---<br>This is the expected behaviour as per epic SV-8218 and story SV-9142 (Story 3, Order Reference Fields) and the Invoice UI Refresh specification version 45, section S3-R5, read on 31 August 2026.</p><p>AUTOMATION: Not available on Build to test Yet - Last checked 8/26/2026</p>"
+  }
+ },
+ "45191": {
+  "provenance": [
+   "This is the expected behaviour as per epic SV-8218 and story SV-9142 (Story 3, Order Reference Fields) and the Invoice UI Refresh specification version 45, section S3-R5, read on 31 August 2026."
+  ],
+  "title": "A user without work order edit permission sees the Authorizer as read-only",
+  "atm": 1,
+  "section_id": 6770,
+  "before": {
+   "custom_preconds": "<p>1. A user lacking the workOrders edit permission<br>2. A work order with an authorizer set</p>",
+   "custom_steps": "<p>1. Log in as the restricted user<br>2. Open the work order customer card</p>",
+   "custom_expected": "<p>1. The Authorizer shows as a static, read-only field; no select control is offered (plan CustomerCard fallback).</p><p>---<br>This is the expected behaviour as per epic SV-8218 and story SV-9142 (Story 3, Order Reference Fields) and the Invoice UI Refresh specification version 45, section S3-R5, read on 31 August 2026.</p><p>AUTOMATION: Not available on Build to test Yet - Last checked 8/26/2026</p>"
+  }
+ },
+ "44923": {
+  "provenance": [
+   "This is the expected behaviour as per epic SV-8218 and story SV-9142 (Story 3, Order Reference Fields) and the Invoice UI Refresh specification version 45, section S3-R9, read on 31 August 2026."
+  ],
+  "title": "A new 'Approves Work' contact becomes selectable immediately",
+  "atm": 1,
+  "section_id": 6744,
+  "before": {
+   "custom_preconds": "<p>1. You are signed in to ShopView.<br>2. A work order is open for a customer, and you can edit that customer's contacts.</p>",
+   "custom_steps": "<p>1. On the customer's contacts page, create or edit a contact and enable \"Approves Work\".<br>2. Return to the open work order without refreshing or re-saving it.<br>3. Open the Authorizer list.</p>",
+   "custom_expected": "<p>1. The newly enabled contact appears in the work order's Authorizer list.<br>2. It becomes selectable without any refresh or re-save of the work order.</p><p>---<br>This is the expected behaviour as per epic SV-8218 and story SV-9142 (Story 3, Order Reference Fields) and the Invoice UI Refresh specification version 45, section S3-R9, read on 31 August 2026.</p><p>AUTOMATION: Not available on Build to test Yet - Last checked 8/21/2026</p>"
+  }
+ },
+ "44987": {
+  "provenance": [
+   "This is the expected behaviour as per epic SV-8218 and story SV-9195 (Story 13, Parts Sale Estimate and Invoice) and the Invoice UI Refresh specification version 45, section S13-N1, and story SV-9193 (deferred), read on 31 August 2026."
+  ],
+  "title": "Batch and imported invoices are out of scope (kept on current templates)",
+  "atm": 1,
+  "section_id": 6754,
+  "before": {
+   "custom_preconds": "<p>1. You are signed in to ShopView.<br>2. You can generate a batch invoice and an imported invoice.</p>",
+   "custom_steps": "<p>1. Generate a batch invoice and an imported invoice.<br>2. Confirm they are not restyled by this project.</p>",
+   "custom_expected": "<p>1. Batch invoices and imported invoices are not part of Story 13 or this spec.<br>2. They keep their current templates until the follow-up ticket (SV-9193) ships.<br>3. Restyling shared template partials must not half-restyle these deferred templates.</p><p>---<br>This is the expected behaviour as per epic SV-8218 and story SV-9195 (Story 13, Parts Sale Estimate and Invoice) and the Invoice UI Refresh specification version 45, section S13-N1, and story SV-9193 (deferred), read on 31 August 2026.<br>This test case could not be build-verified on 8/31/2026 because the feature it tests was not found in the build yet - the related story is still under development. It will be re-checked in the separate build-verification run once the feature ships.</p><p>AUTOMATION: Not available on Build to test Yet - Last checked 8/31/2026</p>"
+  }
+ },
+ "45185": {
+  "provenance": [
+   "This is the expected behaviour as per epic SV-8218 and the Invoice UI Refresh engineering plan (item D5); verified current against the Invoice UI Refresh specification version 45, read on 31 August 2026."
+  ],
+  "title": "A snapshot created before the redesign renders in the new layout with blanks and no error",
+  "atm": 1,
+  "section_id": 6770,
+  "before": {
+   "custom_preconds": "<p>1. A staging invoice snapshot created BEFORE the redesign deploy</p>",
+   "custom_steps": "<p>1. Open the historical snapshot<br>2. Generate its PDF<br>3. Check fields the old snapshot never stored (authorizer, plate, estimate date, ...)</p>",
+   "custom_expected": "<p>1. The snapshot renders in the new layout.<br>2. Fields the old snapshot never stored are blank (hidden per hide-when-empty).<br>3. No 500 / fatal error occurs (plan D5 - the single biggest correctness risk).</p><p>---<br>This is the expected behaviour as per epic SV-8218 and the Invoice UI Refresh engineering plan (item D5); verified current against the Invoice UI Refresh specification version 45, read on 31 August 2026.<br>This test case could not be build-verified on 8/31/2026 because the feature it tests was not found in the build yet - the related story is still under development. It will be re-checked in the separate build-verification run once the feature ships.</p><p>AUTOMATION: Not available on Build to test Yet - Last checked 8/31/2026</p>"
+  }
+ }
+}

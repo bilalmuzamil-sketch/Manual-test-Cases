@@ -1,0 +1,398 @@
+{
+ "44946": {
+  "title": "Payments heading and each applied payment row show correctly",
+  "fields": {
+   "custom_steps": {
+    "blocks": [
+     [
+      "1. To put the document on screen: click \"Work Orders\" in the top menu, open the work order you need, then click the \"Finance\" tab. The document appears on the right. Then generate the Invoice.",
+      "2. Find the Payments section and read each payment row."
+     ]
+    ],
+    "text": "1. To put the document on screen: click \"Work Orders\" in the top menu, open the work order you need, then click the \"Finance\" tab. The document appears on the right. Then generate the Invoice.\n2. Find the Payments section and read each payment row."
+   }
+  },
+  "keep_marker": true
+ },
+ "44948": {
+  "title": "Deposit and applied customer-account credit show as labeled payment rows",
+  "fields": {
+   "custom_steps": {
+    "blocks": [
+     [
+      "1. To put the document on screen: click \"Work Orders\" in the top menu, open the work order you need, then click the \"Finance\" tab. The document appears on the right. Then generate the Invoice.",
+      "2. Read the deposit row and the applied-credit row in the Payments section."
+     ]
+    ],
+    "text": "1. To put the document on screen: click \"Work Orders\" in the top menu, open the work order you need, then click the \"Finance\" tab. The document appears on the right. Then generate the Invoice.\n2. Read the deposit row and the applied-credit row in the Payments section."
+   }
+  },
+  "keep_marker": true
+ },
+ "44959": {
+  "title": "Estimate and Invoice differ only as Section 3 specifies",
+  "fields": {
+   "custom_steps": {
+    "blocks": [
+     [
+      "1. To put the document on screen: click \"Work Orders\" in the top menu, open the work order you need, then click the \"Finance\" tab. The document appears on the right. Then generate the Estimate and the Invoice.",
+      "2. Compare them section by section."
+     ]
+    ],
+    "text": "1. To put the document on screen: click \"Work Orders\" in the top menu, open the work order you need, then click the \"Finance\" tab. The document appears on the right. Then generate the Estimate and the Invoice.\n2. Compare them section by section."
+   }
+  },
+  "keep_marker": true
+ },
+ "44964": {
+  "title": "Credit Invoice masthead shows 'Credit: {number}' and 'Issue date', no money",
+  "fields": {
+   "custom_steps": {
+    "blocks": [
+     [
+      "1. Click \"Customers\" in the top menu, open the customer, open the \"Invoices\" tab, find the credit's row (its CM- number in the \"Invoice #\" column), and click the print icon (tooltip \"Print credit memo\") to open the Credit Invoice.",
+      "2. Read the masthead on the document now on screen."
+     ]
+    ],
+    "text": "1. Click \"Customers\" in the top menu, open the customer, open the \"Invoices\" tab, find the credit's row (its CM- number in the \"Invoice #\" column), and click the print icon (tooltip \"Print credit memo\") to open the Credit Invoice.\n2. Read the masthead on the document now on screen."
+   }
+  },
+  "keep_marker": true
+ },
+ "44978": {
+  "title": "Work-section rules and dividers follow the specified treatment",
+  "fields": {
+   "custom_steps": {
+    "blocks": [
+     [
+      "1. To put the document on screen: click \"Work Orders\" in the top menu, open the work order you need, then click the \"Finance\" tab. The document appears on the right. Then generate the document.",
+      "2. Inspect the rules and dividers in the work section."
+     ]
+    ],
+    "text": "1. To put the document on screen: click \"Work Orders\" in the top menu, open the work order you need, then click the \"Finance\" tab. The document appears on the right. Then generate the document.\n2. Inspect the rules and dividers in the work section."
+   }
+  },
+  "keep_marker": true
+ },
+ "44987": {
+  "title": "Batch and imported invoices are out of scope (kept on current templates)",
+  "fields": {
+   "custom_steps": {
+    "blocks": [
+     [
+      "1. To open a batch invoice: click \"Customers\" in the top menu, open a customer, click the \"Invoices\" tab, tick two or more invoice rows, and click \"Print\" in the toolbar that appears above the list. To open an imported invoice: click \"Work Orders\" in the top menu, set the Status filter to \"Imported\", and open a row - the document is shown on the record. Then open a batch invoice and an imported invoice on the build (path to be confirmed there).",
+      "2. Confirm they are not restyled by this project."
+     ]
+    ],
+    "text": "1. To open a batch invoice: click \"Customers\" in the top menu, open a customer, click the \"Invoices\" tab, tick two or more invoice rows, and click \"Print\" in the toolbar that appears above the list. To open an imported invoice: click \"Work Orders\" in the top menu, set the Status filter to \"Imported\", and open a row - the document is shown on the record. Then open a batch invoice and an imported invoice on the build (path to be confirmed there).\n2. Confirm they are not restyled by this project."
+   }
+  },
+  "keep_marker": true
+ },
+ "45168": {
+  "title": "Credit Invoice never shows Remit Payment To and Credit To spans full width",
+  "fields": {
+   "custom_steps": {
+    "blocks": [
+     [
+      "1. To open the document: Customers, open the customer, Invoices tab, find the credit's row (its credit number, for example CM-100, appears in the Invoice # column next to ordinary invoice numbers), then click the print icon at the right of that row (its tooltip reads \"Print credit memo\"). Then open the Credit Invoice preview."
+     ]
+    ],
+    "text": "1. To open the document: Customers, open the customer, Invoices tab, find the credit's row (its credit number, for example CM-100, appears in the Invoice # column next to ordinary invoice numbers), then click the print icon at the right of that row (its tooltip reads \"Print credit memo\"). Then open the Credit Invoice preview."
+   }
+  },
+  "keep_marker": true
+ },
+ "45169": {
+  "title": "Authorizer change is rejected by the API while a non-voided invoice exists",
+  "fields": {
+   "custom_steps": {
+    "blocks": [
+     [
+      "1. Prepare the work order and its customer contacts as described in the preconditions (Work Orders to open the work order; Customers -> Contacts to set \"Approves Work\").",
+      "2. POST /api/work-orders/change-authorizer with a valid authorizer_id directly (bypass the UI) (body: {\"workOrderId\": \"<work order id>\", \"authorizerContactId\": \"<contact id>\"})."
+     ]
+    ],
+    "text": "1. Prepare the work order and its customer contacts as described in the preconditions (Work Orders to open the work order; Customers -> Contacts to set \"Approves Work\").\n2. POST /api/work-orders/change-authorizer with a valid authorizer_id directly (bypass the UI) (body: {\"workOrderId\": \"<work order id>\", \"authorizerContactId\": \"<contact id>\"})."
+   }
+  },
+  "keep_marker": true
+ },
+ "45173": {
+  "title": "Line numbers move to three digits from line 100 on a large document",
+  "fields": {
+   "custom_steps": {
+    "blocks": [
+     [
+      "1. Click \"Work Orders\" in the top menu, open the work order, click the \"Finance\" tab, and use the \"Estimate / Invoice\" toggle to show the document you need.",
+      "2. Read the document on screen and confirm what the Expected Results below describe."
+     ]
+    ],
+    "text": "1. Click \"Work Orders\" in the top menu, open the work order, click the \"Finance\" tab, and use the \"Estimate / Invoice\" toggle to show the document you need.\n2. Read the document on screen and confirm what the Expected Results below describe."
+   }
+  },
+  "keep_marker": true
+ },
+ "45174": {
+  "title": "A fully reversed payment does not appear in the Payments section",
+  "fields": {
+   "custom_steps": {
+    "blocks": [
+     [
+      "1. Click \"Work Orders\" in the top menu, open the work order, click the \"Finance\" tab, and use the \"Estimate / Invoice\" toggle to show the Invoice.",
+      "2. To reverse a payment: click \"Customers\", open the customer, open the \"Payments\" tab, click the trash icon on the payment row, and confirm with \"Reverse\".",
+      "3. Read the document on screen and confirm what the Expected Results below describe."
+     ]
+    ],
+    "text": "1. Click \"Work Orders\" in the top menu, open the work order, click the \"Finance\" tab, and use the \"Estimate / Invoice\" toggle to show the Invoice.\n2. To reverse a payment: click \"Customers\", open the customer, open the \"Payments\" tab, click the trash icon on the payment row, and confirm with \"Reverse\".\n3. Read the document on screen and confirm what the Expected Results below describe."
+   }
+  },
+  "keep_marker": true
+ },
+ "45175": {
+  "title": "Paid banner pill and title wording follow the paid state and the batch rule",
+  "fields": {
+   "custom_steps": {
+    "blocks": [
+     [
+      "1. For the shop-app PDF: \"Work Orders\" -> open the work order -> \"Finance\" tab -> the download icon.",
+      "2. For the portal PDF and paid banner: obtain the PDF from the customer (ShopPay) portal on staging.",
+      "3. Check the pill and the title wording."
+     ]
+    ],
+    "text": "1. For the shop-app PDF: \"Work Orders\" -> open the work order -> \"Finance\" tab -> the download icon.\n2. For the portal PDF and paid banner: obtain the PDF from the customer (ShopPay) portal on staging.\n3. Check the pill and the title wording."
+   }
+  },
+  "keep_marker": true
+ },
+ "45176": {
+  "title": "Paid date is the most recent applied row and may fall before the invoice date",
+  "fields": {
+   "custom_steps": {
+    "blocks": [
+     [
+      "1. Click \"Work Orders\" in the top menu, open the work order, click the \"Finance\" tab, and use the \"Estimate / Invoice\" toggle to show the document you need.",
+      "2. Read the document on screen and confirm what the Expected Results below describe."
+     ]
+    ],
+    "text": "1. Click \"Work Orders\" in the top menu, open the work order, click the \"Finance\" tab, and use the \"Estimate / Invoice\" toggle to show the document you need.\n2. Read the document on screen and confirm what the Expected Results below describe."
+   }
+  },
+  "keep_marker": true
+ },
+ "45177": {
+  "title": "Reversing a payment returns the masthead to Due date",
+  "fields": {
+   "custom_steps": {
+    "blocks": [
+     [
+      "1. Click \"Work Orders\" in the top menu, open the work order, click the \"Finance\" tab, and use the \"Estimate / Invoice\" toggle to show the Invoice.",
+      "2. To reverse a payment: click \"Customers\", open the customer, open the \"Payments\" tab, click the trash icon on the payment row, and confirm with \"Reverse\".",
+      "3. Reverse one payment so Balance > $0.00.",
+      "4. Look at the document on screen (and its PDF where the case needs it) and confirm what the Expected Results below describe."
+     ]
+    ],
+    "text": "1. Click \"Work Orders\" in the top menu, open the work order, click the \"Finance\" tab, and use the \"Estimate / Invoice\" toggle to show the Invoice.\n2. To reverse a payment: click \"Customers\", open the customer, open the \"Payments\" tab, click the trash icon on the payment row, and confirm with \"Reverse\".\n3. Reverse one payment so Balance > $0.00.\n4. Look at the document on screen (and its PDF where the case needs it) and confirm what the Expected Results below describe."
+   }
+  },
+  "keep_marker": true
+ },
+ "45178": {
+  "title": "A zero-total invoice with nothing applied is not treated as fully paid",
+  "fields": {
+   "custom_steps": {
+    "blocks": [
+     [
+      "1. Click \"Work Orders\" in the top menu, open the work order, click the \"Finance\" tab, and use the \"Estimate / Invoice\" toggle to show the document you need.",
+      "2. Read the document on screen and confirm what the Expected Results below describe."
+     ]
+    ],
+    "text": "1. Click \"Work Orders\" in the top menu, open the work order, click the \"Finance\" tab, and use the \"Estimate / Invoice\" toggle to show the document you need.\n2. Read the document on screen and confirm what the Expected Results below describe."
+   }
+  },
+  "keep_marker": true
+ },
+ "45179": {
+  "title": "Credit Invoice Balance shows the full open balance on an unapplied credit",
+  "fields": {
+   "custom_steps": {
+    "blocks": [
+     [
+      "1. Click \"Customers\" in the top menu, open the customer, open the \"Invoices\" tab, find the credit's row (its CM- number in the \"Invoice #\" column), and click the print icon (tooltip \"Print credit memo\") to open the Credit Invoice.",
+      "2. Check Payments and Balance on the document now on screen."
+     ]
+    ],
+    "text": "1. Click \"Customers\" in the top menu, open the customer, open the \"Invoices\" tab, find the credit's row (its CM- number in the \"Invoice #\" column), and click the print icon (tooltip \"Print credit memo\") to open the Credit Invoice.\n2. Check Payments and Balance on the document now on screen."
+   }
+  },
+  "keep_marker": true
+ },
+ "45180": {
+  "title": "Credit Invoice Balance shows the remaining open balance on a partially applied credit",
+  "fields": {
+   "custom_steps": {
+    "blocks": [
+     [
+      "1. To open the document: Customers, open the customer, Invoices tab, find the credit's row (its credit number, for example CM-100, appears in the Invoice # column next to ordinary invoice numbers), then click the print icon at the right of that row (its tooltip reads \"Print credit memo\"). Then open the Credit Invoice preview."
+     ]
+    ],
+    "text": "1. To open the document: Customers, open the customer, Invoices tab, find the credit's row (its credit number, for example CM-100, appears in the Invoice # column next to ordinary invoice numbers), then click the print icon at the right of that row (its tooltip reads \"Print credit memo\"). Then open the Credit Invoice preview."
+   }
+  },
+  "keep_marker": true
+ },
+ "45181": {
+  "title": "Credit Invoice Balance reads $0.00 on a fully applied credit and on a voided credit",
+  "fields": {
+   "custom_steps": {
+    "blocks": [
+     [
+      "1. To put the document on screen: click \"Work Orders\" in the top menu, open the work order you need, then click the \"Finance\" tab. The document appears on the right. Then open the fully applied credit preview.",
+      "2. Open the voided credit preview."
+     ]
+    ],
+    "text": "1. To put the document on screen: click \"Work Orders\" in the top menu, open the work order you need, then click the \"Finance\" tab. The document appears on the right. Then open the fully applied credit preview.\n2. Open the voided credit preview."
+   }
+  },
+  "keep_marker": true
+ },
+ "45182": {
+  "title": "Credit Invoice lists refund rows and shows the open balance until the credit is consumed",
+  "fields": {
+   "custom_steps": {
+    "blocks": [
+     [
+      "1. To put the document on screen: click \"Work Orders\" in the top menu, open the work order you need, then click the \"Finance\" tab. The document appears on the right. Then open the partially refunded credit preview.",
+      "2. Open the fully refunded credit preview."
+     ]
+    ],
+    "text": "1. To put the document on screen: click \"Work Orders\" in the top menu, open the work order you need, then click the \"Finance\" tab. The document appears on the right. Then open the partially refunded credit preview.\n2. Open the fully refunded credit preview."
+   }
+  },
+  "keep_marker": true
+ },
+ "45183": {
+  "title": "Credit Invoice Balance is correct when a credit is both partially refunded and partially applied",
+  "fields": {
+   "custom_steps": {
+    "blocks": [
+     [
+      "1. To open the document: Customers, open the customer, Invoices tab, find the credit's row (its credit number, for example CM-100, appears in the Invoice # column next to ordinary invoice numbers), then click the print icon at the right of that row (its tooltip reads \"Print credit memo\"). Then open the Credit Invoice preview."
+     ]
+    ],
+    "text": "1. To open the document: Customers, open the customer, Invoices tab, find the credit's row (its credit number, for example CM-100, appears in the Invoice # column next to ordinary invoice numbers), then click the print icon at the right of that row (its tooltip reads \"Print credit memo\"). Then open the Credit Invoice preview."
+   }
+  },
+  "keep_marker": true
+ },
+ "45184": {
+  "title": "Every date on every document renders in the fixed Jan 5, 2026 format",
+  "fields": {
+   "custom_steps": {
+    "blocks": [
+     [
+      "1. To put the document on screen: click \"Work Orders\" in the top menu, open the work order you need, then click the \"Finance\" tab. The document appears on the right. Then open the estimate/invoice/credit previews on both shops.",
+      "2. Check every date, including the payment rows."
+     ]
+    ],
+    "text": "1. To put the document on screen: click \"Work Orders\" in the top menu, open the work order you need, then click the \"Finance\" tab. The document appears on the right. Then open the estimate/invoice/credit previews on both shops.\n2. Check every date, including the payment rows."
+   }
+  },
+  "keep_marker": true
+ },
+ "45185": {
+  "title": "A snapshot created before the redesign renders in the new layout with blanks and no error",
+  "fields": {
+   "custom_steps": {
+    "blocks": [
+     [
+      "1. To open a saved copy: click \"Work Orders\" in the top menu, open the work order, and open its History. The entries that keep a saved copy of the document are Invoice created, Invoice downloaded, Invoice emailed and Reviewed. Then open the saved copy of the document from an old History entry.",
+      "2. Save or print it on the document now on screen.",
+      "3. Look at the fields that did not exist when that copy was made - the Authorizer, the licence plate, the estimate date - and check whether they are simply blank."
+     ]
+    ],
+    "text": "1. To open a saved copy: click \"Work Orders\" in the top menu, open the work order, and open its History. The entries that keep a saved copy of the document are Invoice created, Invoice downloaded, Invoice emailed and Reviewed. Then open the saved copy of the document from an old History entry.\n2. Save or print it on the document now on screen.\n3. Look at the fields that did not exist when that copy was made - the Authorizer, the licence plate, the estimate date - and check whether they are simply blank."
+   }
+  },
+  "keep_marker": true
+ },
+ "45189": {
+  "title": "Currency and percentage formats follow existing conventions for US and Canadian shops",
+  "fields": {
+   "custom_steps": {
+    "blocks": [
+     [
+      "1. To put the document on screen: click \"Work Orders\" in the top menu, open the work order you need, then click the \"Finance\" tab. The document appears on the right. Then open an invoice on each.",
+      "2. Check the currency and percentage formats."
+     ]
+    ],
+    "text": "1. To put the document on screen: click \"Work Orders\" in the top menu, open the work order you need, then click the \"Finance\" tab. The document appears on the right. Then open an invoice on each.\n2. Check the currency and percentage formats."
+   }
+  },
+  "keep_marker": true
+ },
+ "45190": {
+  "title": "Work order, imported work order and part sale customer cards still work after the Authorizer change",
+  "fields": {
+   "custom_steps": {
+    "blocks": [
+     [
+      "1. To open each record: an ordinary work order - click \"Work Orders\" in the top menu and open a row; an imported work order - click \"Work Orders\", set the Status filter to \"Imported\", and open a row; a parts sale - click \"Parts\" in the top menu, open \"Part Sales\", open a row. On each, the customer card is the panel down the left hand side. Then open each of the three records in turn.",
+      "2. On each one, read the customer card down the left hand side: the Contact row, the Phone row, and whether there is an Authorizer row.",
+      "3. Check the card looks right on all three - nothing overlapping, cut off or missing its heading."
+     ]
+    ],
+    "text": "1. To open each record: an ordinary work order - click \"Work Orders\" in the top menu and open a row; an imported work order - click \"Work Orders\", set the Status filter to \"Imported\", and open a row; a parts sale - click \"Parts\" in the top menu, open \"Part Sales\", open a row. On each, the customer card is the panel down the left hand side. Then open each of the three records in turn.\n2. On each one, read the customer card down the left hand side: the Contact row, the Phone row, and whether there is an Authorizer row.\n3. Check the card looks right on all three - nothing overlapping, cut off or missing its heading."
+   }
+  },
+  "keep_marker": true
+ },
+ "45193": {
+  "title": "Amounts of four digits or more render correctly with no NaN",
+  "fields": {
+   "custom_steps": {
+    "blocks": [
+     [
+      "1. To put the document on screen: click \"Work Orders\" in the top menu, open the work order you need, then click the \"Finance\" tab. The document appears on the right. Then open the Invoice preview.",
+      "2. Check the line figures, footer, summary and Balance.",
+      "3. Generate the PDF on the document now on screen."
+     ]
+    ],
+    "text": "1. To put the document on screen: click \"Work Orders\" in the top menu, open the work order you need, then click the \"Finance\" tab. The document appears on the right. Then open the Invoice preview.\n2. Check the line figures, footer, summary and Balance.\n3. Generate the PDF on the document now on screen."
+   }
+  },
+  "keep_marker": true
+ },
+ "45194": {
+  "title": "Special characters in shop and customer names render correctly on the document",
+  "fields": {
+   "custom_steps": {
+    "blocks": [
+     [
+      "1. To put the document on screen: click \"Work Orders\" in the top menu, open the work order you need, then click the \"Finance\" tab. The document appears on the right. Then open the Invoice preview.",
+      "2. Generate and download the PDF.",
+      "3. Check the masthead and Bill To."
+     ]
+    ],
+    "text": "1. To put the document on screen: click \"Work Orders\" in the top menu, open the work order you need, then click the \"Finance\" tab. The document appears on the right. Then open the Invoice preview.\n2. Generate and download the PDF.\n3. Check the masthead and Bill To."
+   }
+  },
+  "keep_marker": true
+ },
+ "45195": {
+  "title": "A multi-page invoice PDF breaks cleanly between pages",
+  "fields": {
+   "custom_steps": {
+    "blocks": [
+     [
+      "1. To put the document on screen: click \"Work Orders\" in the top menu, open the work order you need, then click the \"Finance\" tab. The document appears on the right. Then generate the PDF.",
+      "2. Inspect every page break on the document now on screen.",
+      "3. Print-preview in grayscale on the document now on screen."
+     ]
+    ],
+    "text": "1. To put the document on screen: click \"Work Orders\" in the top menu, open the work order you need, then click the \"Finance\" tab. The document appears on the right. Then generate the PDF.\n2. Inspect every page break on the document now on screen.\n3. Print-preview in grayscale on the document now on screen."
+   }
+  },
+  "keep_marker": true
+ }
+}
