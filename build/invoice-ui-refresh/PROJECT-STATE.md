@@ -111,3 +111,47 @@
   the container scanner report "0 escaping" for every case; the write-path table; the collapse-census
   correction) · skill 04 §4.5 (the can-the-tester-actually-read-it gate, run on the served page) ·
   core §2.1c (the flag follows the write path) · `check_case_render.py` docstring (not sufficient alone).
+
+## Status — 2026-08-31 (layman-UI-route pass · skill 18)
+
+- **Goal:** make every Invoice case runnable from the UI by a manual tester — no spec-level
+  precondition (a *state* assertion) and no summary step ("Generate the Invoice"). This pass rewrote
+  **PRECONDITIONS and STEPS only**; **EXPECTED was never touched** (Rule 57), verified byte-safe.
+- **Foundation:** `build/invoice-ui-refresh/NAVIGATION-MAP.md` created from `build/NAVIGATION-MAP-TEMPLATE.md`,
+  derived from the **binding design + spec v45** and corroborated by the sv8218 observation recorded in
+  skill 18 and `build-verify-2026-08-31/surface-*.txt`. **Marked PROVISIONAL — this session did not open
+  the live UI; routes are design-derived, to be re-confirmed on the build.**
+- **Scope: 119 cases** (89 ours cb=3 · 30 Mudassir cb=6, in-scope tester). Assessed all against skill 18:
+  every case had a summary step ("Generate…") and most a spec-level precondition, so **114 were rewritten**
+  (the **5 Automated** cases C44919/44920/44921/44922/44985 were NOT touched — Rule 71, held for Vlad).
+- **Route model (nav map):** WO Estimate/Invoice = Work Orders → open WO → Finance tab → Estimate/Invoice
+  toggle; Parts Sale = Customers → Part Sales tab → open → Finance (or Parts → Part Sales); Credit Invoice =
+  Customers → Invoices tab → credit row (CM- in Invoice # column) → print icon "Print credit memo";
+  Authorizer = WO customer card, "Approves Work" contacts; cog = Invoice Details display settings; reversal =
+  Customers → Payments tab → trash → Reverse.
+- **Skill-18 hard line honoured — un-routable states are NOT faked:**
+  - **Declined Work (C44937/44938/44939):** no "Show declined work" control exists in the cog dialog on the
+    observed build; the precondition/step say so and hold the case NOT AVAILABLE ON BUILD — no API substitute.
+  - **Shop-supplies % (C44942):** the "Show % on Estimates and Invoices" location setting was not located in
+    the tester UI; the case names the reachable document route and says to confirm the setting on the build.
+  - **Portal paid banner (C44947/44951/44952 + Mudassir C45175):** portal PDFs are staging-only; the case
+    gives the reachable shop-app path and states the portal PDF is obtained on staging.
+  - **Batch/imported (C44987) + pre-redesign snapshot (Mudassir C45185):** out-of-scope / staging-only,
+    stated honestly.
+  - **API-negative (Mudassir C45169/C45170):** the API POST is kept (Rule 4) and the UI setup route named.
+- **Applied through the TestRail WEB EDITOR (Froala), not the API** — so all three fields land in
+  `markdown fr-view`. Only preconds+steps were typed; the save re-serialised expected to fr-view without
+  changing its wording. **Post-write served-page sweep: 114/114 PASS** — 3 fr-view containers, 0 literal
+  tags, a real UI route present, expected provenance intact + exactly one AUTOMATION marker, atm/refs/
+  created_by unchanged, created_by preserved (Mudassir's stay 6).
+- **⚠️ CONCURRENT SESSION COLLISION (Rule 83) — a parallel session with LIVE BUILD ACCESS is running its
+  own layman-UI repair on the SAME cases** (its working files `build/inline-add-edit-parts/render-repair-2026-08-31/*-layman.jsonl`
+  are live in this tree). It re-wrote **14 cases with BUILD-OBSERVED routes that are better than this pass's
+  design-derived ones** (e.g. C44987 the real batch-print toolbar; C45185 the real Invoice History entries).
+  **Those 14 were LEFT AS-IS (not overwritten)** — build-observed beats provisional (Rule 86). Verified **0
+  markers reverted** by this pass. Split at hand-off: **100 cases carry this pass's provisional routes · 14
+  carry the concurrent session's build-observed routes · all 114 verified followable + fr-view.**
+- **Local JSONs synced to LIVE TestRail truth** for the 84 editable ours (mine where mine is live, the
+  concurrent build routes where those are live); the 5 Automated left untouched. Mudassir's 30 remain
+  TestRail-only. requirements.md / coverage-matrix.md unchanged (rule→case coverage is unaffected).
+- **Run R417 unchanged** (no case added/removed/moved). No Jira. No expected behaviour changed.
