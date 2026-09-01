@@ -1,0 +1,71 @@
+[
+  {
+    "id": "IAEP-MAN-01",
+    "testrail_id": 45250,
+    "title": "Completed line does not offer the Add Part option",
+    "area": "Add Part Button and Edit Control",
+    "source": "Manually added",
+    "preconditions": [
+      "You have a work order line whose status is Complete and that has a part on it. Reach this state with the steps below."
+    ],
+    "steps": [
+      "In the top menu, click “Work Orders”, then create a new work order (the “New Work Order” button).",
+      "On the work order's “Lines” tab, click “New Line” to add a work order line.",
+      "In that line's Parts section, click “+ Add Part” and add a part.",
+      "Pick / receive the part.",
+      "Set the line's status to Complete (the line status control)."
+    ],
+    "expected": "On the now-Complete line, the “+ Add Part” button no longer appears in its Parts section.\n\nSource: Manually added (QA lead, 2026-09-01). UI control names PROVISIONAL - confirm on the build.\nAUTOMATION: HOLD - manually added; to be build-verified."
+  },
+  {
+    "id": "IAEP-MAN-02",
+    "testrail_id": 45251,
+    "title": "Completed line: only the allowed part fields are editable (inventory vs special order)",
+    "area": "Add Part Button and Edit Control",
+    "source": "Manually added",
+    "preconditions": [
+      "You have a work order line in Complete status with a part on it (quantity 5). Reach it with the steps below."
+    ],
+    "steps": [
+      "In the top menu, click “Work Orders”, then create a new work order.",
+      "On the “Lines” tab, click “New Line”.",
+      "In the line's Parts section, click “+ Add Part”, then add and pick an INVENTORY part with quantity 5.",
+      "Also add, via Order → Receive, a SPECIAL ORDER (SPO) part with quantity 5.",
+      "Set the line's status to Complete.",
+      "Click the part and try to edit each of: Part number, Source, Vendor, Cost, Core charge, Description."
+    ],
+    "expected": "For an INVENTORY part, only these fields are editable (all others read-only): Category, Sell Price, Margin, Quantity.\nFor a SPECIAL ORDER (SPO) part, only these are editable: Description, Category, Sell Price, Margin.\nPart number, Source, Vendor, Cost and Core charge are NOT editable on a completed line.\n\nSource: Manually added (QA lead, 2026-09-01).\nAUTOMATION: HOLD - manually added; to be build-verified."
+  },
+  {
+    "id": "IAEP-MAN-03",
+    "testrail_id": 45252,
+    "title": "Add Part calculates the Sell Price from the cost via the pricing matrix",
+    "area": "Add Part Button and Edit Control",
+    "source": "Manually added",
+    "preconditions": [
+      "In the top menu, click “Work Orders”, create a new work order, and add a new line (“New Line” on the “Lines” tab)."
+    ],
+    "steps": [
+      "In the line's Parts section, click “+ Add Part”.",
+      "In the part number field, add a special order part number OR select an inventory / catalogue part from the typeahead list.",
+      "Enter the Quantity, then enter the Cost."
+    ],
+    "expected": "Entering the Cost fills in the Sell Price automatically, calculated from the pricing matrix.\n\nSource: Manually added (QA lead, 2026-09-01).\nAUTOMATION: HOLD - manually added; to be build-verified."
+  },
+  {
+    "id": "IAEP-MAN-04",
+    "testrail_id": 45253,
+    "title": "Changing the part category recalculates the Sell Price via the matrix",
+    "area": "Add Part Button and Edit Control",
+    "source": "Manually added",
+    "preconditions": [
+      "In the top menu, click “Work Orders”, create a new work order, and add a new line (“New Line” on the “Lines” tab)."
+    ],
+    "steps": [
+      "In the line's Parts section, click “+ Add Part”.",
+      "Fill in all the fields needed to add the part to the line, but do NOT click Save.",
+      "Change the Category field, cycling through different categories."
+    ],
+    "expected": "The Sell Price changes according to the selected category, for categories that have a different pricing matrix.\n\nSource: Manually added (QA lead, 2026-09-01).\nAUTOMATION: HOLD - manually added; to be build-verified."
+  }
+]
