@@ -125,3 +125,43 @@ Both are the same failure as the earlier gate mis-calibration: **a measuring ins
 looser or stricter than the thing it measures produces confident nonsense.** Every finding in this
 pass was checked against the screen before being called a defect, and every one that turned out to
 be my instrument is written down here rather than quietly dropped.
+
+---
+
+## And a readability scan: can the tester actually READ all 119 on screen?
+
+Runnable wording is worthless if the page shows raw tags. TestRail serves each field from one of two
+containers and **the API cannot see which**: `markdown fr-view` renders block HTML, while plain
+`markdown` **escapes** it so the tester literally reads `<ol><li><p>`. An API write leaves a field
+escaping; only a UI save flips it. This bit us before — a v13→v16 pass reformatted 76 cases via the
+API, all of which passed the stored-value self-check and all of which were unreadable on screen.
+
+The other session edited **42** of these cases with an unknown write path, so all 119 served pages
+were scanned:
+
+```
+scanned            : 119
+ESCAPING container : 0
+literal tags shown : 0
+```
+
+**Every field of every case renders.** The other session's writes went through the editor too.
+
+### Rule 71 — five Automated cases, all untouched
+
+The scan also reports `custom_atmstatus`. **Five cases are flagged Automated:**
+[C44919](https://shopview.testrail.io/index.php?/cases/view/44919) ·
+[C44920](https://shopview.testrail.io/index.php?/cases/view/44920) ·
+[C44921](https://shopview.testrail.io/index.php?/cases/view/44921) ·
+[C44922](https://shopview.testrail.io/index.php?/cases/view/44922) ·
+[C44985](https://shopview.testrail.io/index.php?/cases/view/44985).
+
+**None was written by this session** — the writer's Rule 71 gate re-reads `custom_atmstatus`
+immediately before every save and skips an Automated case unless it is on an explicit per-case
+allow-list, and none of these was. Their last edit is **31 August**, before this pass began. So
+**nothing is owed to Vlad under Rule 65 for this work.**
+
+They are all in *Authorizer Entry (Work Order)* and *Parts Sale*, and they pass the runnability gate
+on wording written before they were flagged. **If you want their preconditions and steps brought up
+to the same standard, that needs your go-ahead per case** — it is the one part of the suite this
+pass deliberately did not touch.
