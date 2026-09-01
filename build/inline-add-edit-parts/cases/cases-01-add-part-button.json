@@ -176,29 +176,6 @@
     "notes": ""
   },
   {
-    "id": "IAEP-BTN-09",
-    "area": "Inline Add and Edit Parts - Add Part Button and Edit Control",
-    "title": "Add Part and Edit hidden when the work order is not editable otherwise",
-    "priority": "Medium",
-    "type": "Functional",
-    "permissions_required": "Work Order Line - Create and Edit; Work Order View Mode",
-    "preconditions": [
-      "Your user has the 'Work Order Line - Create and Edit' permission enabled.",
-      "In the top menu click “Work Orders”.",
-      "Then look at any line having a status “Complete” (mark it as complete).",
-      "OR move the line to any status that does not allow you to request a part on it."
-    ],
-    "steps": [
-      "Open that work order and try to find the “Add Part” option for that line."
-    ],
-    "expected": "The “Add Part” button is not displayed.\n\n---\nThis is the expected behaviour as per epic SV-9315 and story SV-9316 (Story 1, Add Part Button on Work Order Lines) and the Inline Add and Edit Parts on Work Order Lines specification version 16, section S1-N4, read on 31 August 2026.\n\nAUTOMATION: READY",
-    "design_ref": "Claude Design “Add Part” artifact 561657da (binding visual reference), as exported 2026-08-25.",
-    "spec_ref": "requirements.md (Inline Add and Edit Parts spec v16)",
-    "refs": "SV-9316 (S1-N4)",
-    "viu_status": "source-verified-only",
-    "notes": ""
-  },
-  {
     "id": "IAEP-BTN-10",
     "area": "Inline Add and Edit Parts - Add Part Button and Edit Control",
     "title": "Add Part on another line while a row is open triggers the guard",

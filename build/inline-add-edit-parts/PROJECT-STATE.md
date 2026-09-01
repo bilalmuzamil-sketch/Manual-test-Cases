@@ -262,3 +262,12 @@ Local `cases/*.json` steps synced to match. Gate exit criterion met.
 - QA lead directed the other (build-verify) session NOT to touch 6597/6617 so this session owns them.
 - **Source re-checked LIVE 2026-09-01: Confluence 782761986 is still v16** — unchanged since the 2026-08-31 v13→v16 source verification. **Source verification remains CURRENT; no new case changes warranted.**
 - Remaining, not source work: (a) 3? no — the 2 Automated cases C45005/C45026 await Vlad for the layman-route enrichment (Rule 71); (b) build verification is blocked (Rule 85, no QA build) — routes stay PROVISIONAL until a build confirms exact labels.
+
+## Status — 2026-09-01 (C44996 split into 4 manually-added cases, per QA lead)
+- **QA lead converted C44996 into 4 new manual cases and had C44996 deleted.** C44996 was a single vague "Add Part/Edit hidden when the work order is not editable otherwise" (S1-N4) case; it is replaced by 4 concrete, single-behaviour cases in section 6755 (group 6597), source = **"Manually added"** (not the spec pipeline):
+  - **C45250** — Completed line does not offer the Add Part option.
+  - **C45251** — Completed line: only the allowed part fields are editable (inventory vs SPO).
+  - **C45252** — Add Part calculates the Sell Price from the cost via the pricing matrix.
+  - **C45253** — Changing the part category recalculates the Sell Price via the matrix.
+- All 4 verified on the served page (`markdown fr-view`) and pass `check_runnable_cases.py` (RUNNABLE). Marked **AUTOMATION: HOLD — manually added; to be build-verified** (UI control names New Work Order/New Line/line-status control are PROVISIONAL, to be confirmed by the build-verification session).
+- **C44996 deleted** (snapshot kept at `manual-cases-2026-09-01/C44996-snapshot-before-delete.json`). Run **R418** union-synced 118→122 tests (C44996 gone, 4 new in). Local: `cases/cases-15-manual-additions-2026-09-01.json` added, IAEP-BTN-09 removed from cases-01, id-map updated (121 rows).
