@@ -115,6 +115,27 @@ describe the check, and the EXPECTED RESULTS still come from the documents, neve
    **Open only** chip, which defaults to on; a credit issued at another location does not appear at
    all because the list is workplace-scoped.)*
 
+### SPLIT A VAGUE / MULTI-BEHAVIOUR CASE INTO CONCRETE SINGLE-BEHAVIOUR CASES, EACH BUILDING ITS OWN STATE (QA lead, C44996 → C45250–C45253, 2026-09-01)
+*(This supersedes an earlier retracted note — the first C44996 example had a mistake. The pattern below is taken from the QA lead's corrected split, verified live.)*
+When one case tries to cover several behaviours behind an abstract trigger ("Add Part/Edit hidden when the
+work order is not editable **otherwise**"), it is neither runnable nor provable. Split it into **several
+cases, each testing ONE behaviour**, and let each case **build its own state from scratch with named UI
+controls** instead of asserting a state in the abstract. The corrected split of C44996:
+- **C45250** — a Complete *line* offers no "+ Add Part". Steps build it: Work Orders → New Work Order →
+  Lines tab → New Line → Parts section → "+ Add Part" → pick/receive → set the line to Complete → the
+  button is gone. (Concrete trigger = a Complete line, reached by the steps — not "not editable otherwise".)
+- **C45251** — on a Complete line, only the allowed part fields edit (inventory vs SPO lists spelled out).
+- **C45252** — "+ Add Part": entering Cost fills Sell Price from the pricing matrix.
+- **C45253** — changing the Category recalculates Sell Price from the matrix.
+Each is one behaviour, each starts from "create the work order and line", each names the controls.
+
+**SOURCE = "Manually added" for QA-lead product-knowledge cases.** When the QA lead authors a case from
+product knowledge rather than the spec pipeline (e.g. field-level editability, pricing-matrix behaviour not
+spelled out in the PRD), the provenance line reads **"Source: Manually added (QA lead, <date>)"** — not the
+"as per epic … specification version …" line. Mark it **AUTOMATION: HOLD — manually added; to be
+build-verified**, and flag any UI control names as PROVISIONAL until the build-verification session confirms
+them. These still pass `check_runnable_cases.py` and render `fr-view` like any other case.
+
 ## 🛑 THE LINE THIS RULE MUST NOT CROSS
 
 **Making a step followable must never make an unreachable state reachable on paper.** If the UI has
