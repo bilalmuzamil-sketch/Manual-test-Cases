@@ -37,7 +37,7 @@ checks=[
  ("Regression: Technician Utilization technicians never locked or trimmed","PASS"),
  ("Regression: Sales By Customer customers select-all = all customers","PASS"),
  ("Regression: WO Notes tab loads on a work order with many lines","PASS"),
- ("Mobile bottom-sheet lock/notice — same shared component as desktop; recommend a 30-sec manual confirm","NOT DRIVEN"),
+ ("Mobile bottom-sheet: at the 50 cap the notice shows, options lock, and an over-cap draft cannot be applied","PASS"),
 ]
 table_rows=[row([cell(p(strong("#")),head=True),cell(p(strong("What I tested")),head=True),cell(p(strong("Result")),head=True)])]
 for i,(txt,st) in enumerate(checks,1):
@@ -57,6 +57,8 @@ doc={"type":"doc","version":1,"content":[
     "Select all (unlimited path). Parts Catalogue's Category filter has a new \"All categories\" select-all row (replacing the old \"Clear selection\" footer); empty selection means all rows and sends no IDs, so it is never capped. Same new row confirmed on Staff and Inventory."),
  *media(B+"/EX2-sharedlink-annotated.png",
     "Oversized shared link. Opening a report URL carrying 60 valid vendor UUIDs loads cleanly with no 400 / 414 / CloudFront error, clamps the selection to 50, and the X-Current-Page header measured 2,844 bytes (limit is 8,192)."),
+ *media(B+"/EX4-mobile-cap-annotated.png",
+    "Mobile bottom sheet (390-wide viewport). At the 50 cap the sheet shows the inline notice \"50 selected (max 50 across all filters)\" and every unchecked vendor is greyed and locked; tapping an unchecked one does not add it, and a blocked add shows \"This change would exceed the 50-value limit across all filters\". The valid 50-value draft applies via Apply Filters."),
  rule(),
  heading("How to reproduce (for the developer)"),
  p(strong("The cap — "),t("Reports → Inventory Value → open Vendor, then Category, and tick values one at a time. The 50th tick across the two filters is the last that applies; after that every unchecked option is disabled and the red \"50 selected (max 50 across all filters)\" line shows under the list. Untick one and a different vendor can be ticked again.")),
@@ -73,7 +75,7 @@ doc={"type":"doc","version":1,"content":[
 "GET .../inventory-value?locations=<60>&vendors=<40>  -> 200  (locations uncounted)\n\n"
 "Customer-portal find-by-ids with >50 ids  -> 200 (exempt)")]},
  p(t("The guard counts the combined total across counted params and reports it per offending parameter — confirming the cap is across all filters, not per filter. X-Current-Page no longer carries the query string (2,844 bytes on a 50-vendor page).")),
- p(strong("Not verified this run (stated for honesty, none a blocker): "),t("mobile bottom-sheet cap (same shared component as the verified desktop path; recommend a 30-second manual check); Count Sheet PDF after select-all bins; the Sales By Customer empty-selection pole (this org has no customer records); TimeSheets and Pricing Matrix dialogs. Pre-existing out-of-scope items noted in the handoff (logged-out shared link, customer-portal find-by-ids above ~170 ids, TU exclude byte-risk above ~150 technicians) were not part of this verification.")),
+ p(strong("Not verified this run (stated for honesty, none a blocker): "),t("Count Sheet PDF after select-all bins; the Sales By Customer empty-selection pole (this org has no customer records); TimeSheets and Pricing Matrix dialogs. Pre-existing out-of-scope items noted in the handoff (logged-out shared link, customer-portal find-by-ids above ~170 ids, TU exclude byte-risk above ~150 technicians) were not part of this verification.")),
 ]}
 open("/tmp/sv9478/comment.adf.json","w").write(json.dumps(doc,indent=1))
 # plain-text preview

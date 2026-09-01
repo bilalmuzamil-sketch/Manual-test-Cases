@@ -6,7 +6,7 @@
 **Org / user:** Staging Heavy Duty – 9919 (admin)
 **Implementation:** PR #2861 (branch `SV-9478-filter-cap`), full-stack FE+BE+E2E
 **Tested:** 2026-09-01
-**Overall verdict:** **PASS** — every QA-handoff checklist item that is reachable in this environment passed; the fix removes the >8 KB header/URL outage while preserving unlimited Select-all and the not-capped exemptions.
+**Overall verdict:** **PASS** — every QA-handoff checklist item reachable in this environment passed, including the mobile bottom-sheet cap; the fix removes the >8 KB header/URL outage while preserving unlimited Select-all and the not-capped exemptions.
 
 Per QA-branch finality (per-ticket branch, we passed the QA): findings are treated as final for this build. Build marker recorded above.
 
@@ -27,9 +27,9 @@ Selecting too many filter values used to grow the page URL and a hidden per-requ
 | 2 | At cap, deselecting always works; after deselecting one, a different one can be selected again | **PASS** | cap3 run: DESELECT → count drops + notice clears; RESELECT different → back at cap |
 | 3 | With exactly 50 selected, report request succeeds (no 400) and results filter | **PASS** | cap3 run: 0×400, last report status 200 |
 | 4 | Location filter at default (all your locations) does NOT consume the 50 budget | **PASS** | API: 60 locations + 40 vendors → 200 (locations uncounted) |
-| 5 | Repeat one lock/notice check on mobile viewport (bottom sheet) | **NOT DRIVEN** by automation — see Honest limits | mobile.mjs |
+| 5 | Repeat one lock/notice check on mobile viewport (filter bottom sheet); an over-cap draft can't be applied | **PASS** | EX4; mobdrive run |
 
-Cap evidence is a true before/after: **EX1** shows the vendor panel at 6 picks (all options selectable, no notice) beside the same panel at the 50 combined cap (unchecked options locked + notice).
+Cap evidence is a true before/after: **EX1** shows the vendor panel at 6 picks (all options selectable, no notice) beside the same panel at the 50 combined cap (unchecked options locked + notice). **Mobile (EX4):** the bottom sheet at the 50 cap shows the inline notice "50 selected (max 50 across all filters)"; unchecked vendors are greyed/locked (46 → 46 when tapping an unchecked one); an add beyond the cap is refused with the transient message "This change would exceed the 50-value limit across all filters", so no over-cap draft can be built; the valid 50-value draft applies via **Apply Filters**.
 
 ### 2. Select all (unlimited path)
 | # | Check | Result | Evidence |
@@ -94,12 +94,11 @@ The guard counts the **combined** total (51) and reports it **per offending para
 
 Per Rule 12 (observed, never inferred) these are stated plainly rather than passed:
 
-1. **Mobile bottom-sheet cap (checklist #5).** The desktop cap/lock/notice is fully proven and it runs through the **same shared filter component** (per the handoff, "desktop panels + mobile sheet"). At 390×844 the filter sheet rendered, but across three automation attempts I could not drive its individual-pick selection cleanly — the vendor filter is persisted at the all-selected/select-all state (1042 checked, which sends no IDs) and the sheet's deselect-all/clear control did not toggle it off under automation. Recommend a ~30-second manual mobile confirm of one lock/notice; not a blocker.
-2. **Count Sheet PDF after select-all bins (checklist #8).** Not exercised. The select-all-sends-no-IDs behavior it depends on is proven on the Inventory filters (EX3 / allrows run); the PDF export path itself was not driven.
-3. **SBC "explicitly empty = no rows" pole (checklist #12).** The all-customers pole is confirmed (select-all present, default sends no IDs). This QA org has no customer records, so the empty-selection-returns-no-rows pole could not be produced.
-4. **TimeSheets technician filter and Pricing Matrix dialog (checklist #14).** Not driven; low-risk (category lookups / technician filter are on the exempt/unchanged path).
+1. **Count Sheet PDF after select-all bins (checklist #8).** Not exercised. The select-all-sends-no-IDs behavior it depends on is proven on the Inventory filters (EX3 / allrows run); the PDF export path itself was not driven.
+2. **SBC "explicitly empty = no rows" pole (checklist #12).** The all-customers pole is confirmed (select-all present, default sends no IDs). This QA org has no customer records, so the empty-selection-returns-no-rows pole could not be produced.
+3. **TimeSheets technician filter and Pricing Matrix dialog (checklist #14).** Not driven; low-risk (category lookups / technician filter are on the exempt/unchanged path).
 
-None of the above changes the verdict: the outage the ticket describes is fixed, the cap + notice + lock work, Select-all stays unlimited, and every exempt path (locations, TU exclude, bulk-id endpoints) is confirmed uncounted.
+None of the above changes the verdict: the outage the ticket describes is fixed, the cap + notice + lock work on desktop **and mobile**, Select-all stays unlimited, and every exempt path (locations, TU exclude, bulk-id endpoints) is confirmed uncounted.
 
 ## Known / out of scope (per handoff, not this PR)
 - Shared link opened while logged out loses the query after login (pre-existing).
@@ -113,4 +112,5 @@ None of the above changes the verdict: the outage the ticket describes is fixed,
 - `evidence/EX1-cap-notice-annotated.png` — 50-cap at-cap single view (superseded by the before/after)
 - `evidence/EX2-sharedlink-annotated.png` — 60-UUID shared link clamped to 50, clean load
 - `evidence/EX3-selectall-annotated.png` — new "All categories" select-all row (Parts Catalogue)
+- `evidence/EX4-mobile-cap-annotated.png` — mobile bottom sheet at the 50 cap: notice + locked options
 - `evidence/raw-*.png` — un-annotated captures
