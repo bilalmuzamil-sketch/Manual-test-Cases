@@ -17,7 +17,7 @@ tester-facing re-check line, and is **excluded from the ready-to-automate count*
 | [C44939](https://shopview.testrail.io/index.php?/cases/view/44939) | Declined Work section hidden when nothing declined or option off | same | **SV-9145** | same read |
 | [C44942](https://shopview.testrail.io/index.php?/cases/view/44942) | Percent column shows only when the setting is on | the `"Show % on Estimates and Invoices"` setting | **SV-9146** (In Progress) | Absent from the same dialog; a source read found no backend field either — a cleaner not-built than declined work, which does have a backend path. |
 | ~~[C44987](https://shopview.testrail.io/index.php?/cases/view/44987)~~ | ~~Batch and imported invoices are out of scope~~ | — | **SV-9193** | **🔴 WITHDRAWN 2026-09-01 — THIS ROW WAS WRONG. The import IS built.** See the correction below. |
-| [C45185](https://shopview.testrail.io/index.php?/cases/view/45185) | A snapshot created before the redesign renders in the new layout with blanks | document **history snapshots** | document history | `historyEvent` = none/1/2/5/99 all return a **byte-identical** document (one sha across five values, including the nonsense `99`). Defect candidate 2. |
+| ~~[C45185](https://shopview.testrail.io/index.php?/cases/view/45185)~~ | ~~A snapshot created before the redesign renders in the new layout with blanks~~ | — | document history | **🔴 WITHDRAWN 2026-09-01 — WRONG MECHANISM. The snapshot feature is built; the case is testable and it FAILS.** See below. |
 
 ## ⚠️ A note on the strength of each row
 
@@ -48,6 +48,35 @@ keeps the current template rather than the redesigned one) — it is back on the
 deferred. Note the imported work order carries **no invoice document route** of its own
 (`/api/invoices/preview` rejects its id; `/api/work-orders-imported/{id}/pdf` is 404), which is
 itself the thing that case needs to establish.
+
+---
+
+**🔴 C45185 WAS ALSO REMOVED ON 2026-09-01 — I WAS TESTING THE WRONG THING.**
+The row rested on the `historyEvent` **query parameter** being a no-op (one sha across five values).
+It is a no-op because **it is not the snapshot mechanism at all.** The real one, read off the
+front-end bundle:
+
+> `POST /api/work-orders/invoices/snapshot {entity_event_id, work_order_id, type:"html"|"pdf"}`,
+> where `entity_event_id` is a work-order history event carrying `snapshotAvailable: true`
+> (`GET /api/work-orders/{id}/history`).
+
+That also **withdraws the `historyEvent` defect candidate** — a parameter that is not the feature is
+not a defect.
+
+**The case is testable and it FAILS:** snapshots captured **today** render (200); **every snapshot
+already on the branch returns HTTP 500** — 20 of 20 calls. Proven on one work order
+(**S8218-17113**: today 200, its own 18/13/10 August events all 500), so it is the snapshot's age,
+not the record or the document type. Written up in
+`remaining-6-2026-09-01/RESULTS.md` with the defect candidate at
+`DEFECT-CANDIDATE-snapshot-500.md` (**not filed — hold active**).
+
+---
+
+**Three of the six rows in this file were wrong, and all three failed the same way: a GUESSED ROUTE
+NAME returning 404, or a guessed parameter doing nothing.** C44987 (imported import), C44987's batch
+half (`invoices/batch-pdf`) and C45185 (the snapshot route). **Fetch the product's front-end bundle
+and grep it for the real route before writing "not built."** The four rows that remain below were
+established with a firing positive control, not with guessed routes, and they stand.
 
 ---
 
