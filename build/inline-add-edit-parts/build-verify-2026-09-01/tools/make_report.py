@@ -138,42 +138,44 @@ w('| The four closed-status legs | Nothing needed from you unless you want them 
 # ---- Table 5, the handoff gate ----
 gate = []
 gate.append(('Every case runnable from the UI by a layman (skill 18)',
-             'READY, NOT APPLIED — the generated content passes 118/118; nothing is in TestRail yet',
-             'pre-write gate run on `intended-blocks.json`'))
+             '**YES** — the runnability gate run LIVE against TestRail after the write passes clean',
+             '`tools/postwrite_check.py` check 1'))
 gate.append(('Every case renders on the served page (`markdown fr-view`, no literal tags)',
-             'YES for the cases as they stand — 118 of 118 scanned clean on 31 Aug, and the write pass '
-             'goes through the editor so it keeps that',
-             '`render-repair-2026-08-31/scan-final.json`'))
+             '**YES** — 118 scanned on the served page after the write: 0 escaping, 0 literal tags',
+             '`evidence/served-page-scan.json`'))
 gate.append(('Exactly one AUTOMATION marker per case, arithmetic balancing',
-             'READY, NOT APPLIED — 118 markers generated, one per case, all `AUTOMATION: READY`',
-             '`intended-blocks.json`'))
+             '**YES** — 118 markers, one per case; READY 118 + EXPECT-FAIL 0 = total 118 − HOLD 0',
+             '`tools/postwrite_check.py` check 2'))
 gate.append(('Every case build-verified, or explicitly listed as not',
-             f'NO — {c.get("PASS",0)} PASS, {c.get("PARTIAL",0)} PARTIAL, {c.get("FAIL",0)} FAIL, '
-             f'{len(pending)} not yet verified',
+             f'**NO** — {c.get("PASS",0)} PASS, {c.get("PARTIAL",0)} PARTIAL, {c.get("FAIL",0)} FAIL, '
+             f'{c.get("NOTVER",0)} unreachable-or-unverifiable, {len(pending)} still open',
              '`verdicts/PER-CASE-VERDICTS.md`'))
-gate.append(('Provenance lines intact, build sentence only where observed (Rule 54)',
-             'READY, NOT APPLIED — sentence 2 generated on the verified cases only, and the writer '
-             'FAILS a case that carries one without a verdict',
-             '`apply_cases.mjs` per-case assertion'))
+gate.append(('Provenance intact, build sentence only where observed (Rule 54)',
+             '**YES** — sentence 1 unaltered on all 118; sentence 2 on exactly the 114 cases this '
+             'pass observed and absent from the 4 it did not',
+             '`tools/postwrite_check.py` check 3'))
+gate.append(('Titles within the length convention',
+             '**YES** — none over 80 characters', '`tools/postwrite_check.py` check 4'))
 w('\n## TABLE 5 — IS THE SUITE READY TO HAND TO THE MANUAL QA TESTER?\n\n')
 w('| Gate | Result | Evidence |\n|---|---|---|\n')
 for g in gate: w(f'| {g[0]} | {g[1]} | {g[2]} |\n')
-w(f'| **HANDOFF READY?** | **NO** | {len(pending)} cases have no verdict yet and the content is '
-  'generated but not written to TestRail. Nothing is wrong with the suite — the work is unfinished, '
-  f'and it is one write pass plus one data state away from YES for **{TESTER}** |\n')
-
+w(f'| **HANDOFF READY?** | **NO** | Everything mechanical is done — 118 of 118 cases written and all '
+  f'four post-write checks clean. What holds it back is verification coverage: {len(pending)} cases '
+  f'open and {c.get("NOTVER",0)} describing states this product may not produce. **Two PO answers away '
+  f'from YES for {TESTER}.** |\n')
 w('\n---\n\n## OUTSTANDING — what I need from you\n\n')
 w('| # | Item |\n|---|---|\n')
-w('| 1 | **Inventory write access, or your go-ahead to seed the bins through the Parts screen in the '
-  'UI.** That single unblock settles nine Story 7 cases and C45060. |\n')
-w('| 2 | **Say the word and I run the TestRail write pass** — 118 cases, content generated and '
-  'gate-passed, C45220 excluded. I held it so each case is touched once. |\n')
-w('| 3 | **One PO question:** what makes a work order un-editable on this product other than its '
-  'status (C44996)? |\n')
-w(f'| 4 | **{failed and link(failed[0]) or ""} is a real deviation** and its ticket text is written. '
-  'Held under the three-gate rule: I re-verify on the build first, then ask. |\n')
-w('| 5 | **C45220** stays untouched — Vladimir Tomovic\'s, per your instruction. |\n')
-w('| 6 | Reminder still owed after 6617: the Invoice snapshot-500 defect and the three PO questions. |\n')
-
+w('| 1 | **Two PO answers** decide four cases: can a part be held in NO bin, and can a part be saved '
+  'with cost and sell price genuinely blank? Questions 1 and 2 on the spreadsheet. |\n')
+w('| 2 | **C44996** — what makes a work order un-editable other than its status? You said leave it for '
+  'now; it is question 3 on the spreadsheet, and it is the one precondition in the suite still naming '
+  'a state instead of a route. |\n')
+w(f'| 3 | **{failed and link(failed[0]) or "C45068"} is a real deviation**, ticket text written and '
+  'HELD under the three-gate rule — I re-verify on the build first, then ask. |\n')
+w('| 4 | **C45034** is inconclusive, not a finding: the edit row stopped opening on that work order '
+  'after my own probes left 17 part rows on it. The missing assertion is named in Table 2. |\n')
+w('| 5 | **C45220** untouched — Vladimir Tomovic\'s, per your instruction. |\n')
+w('| 6 | **S9315-15888 stays at In Progress** after my accidental clock-in — you said leave it. |\n')
+w('| 7 | Reminder still owed: the Invoice snapshot-500 defect and its PO questions, both held. |\n')
 open(os.path.join(HERE, '..', 'REPORT-2026-09-01.md'), 'w').write(o.getvalue())
 print('report written;', dict(c))
