@@ -1,0 +1,105 @@
+{
+ "W-browser-back": {
+  "armed": "ZZAUTOTEST back",
+  "browserBack": {
+   "nativeDialogs": [
+    {
+     "type": "beforeunload",
+     "message": ""
+    }
+   ],
+   "appDialog": null,
+   "rowOpen": true,
+   "url": "/workorders/c6d4b883-6f78-4c9e-ab7e-436a6d99c17a/lines"
+  },
+  "browserForward": {
+   "nativeDialogs": [
+    {
+     "type": "beforeunload",
+     "message": ""
+    },
+    {
+     "type": "beforeunload",
+     "message": ""
+    }
+   ],
+   "appDialog": null,
+   "rowOpen": true,
+   "url": "/workorders/c6d4b883-6f78-4c9e-ab7e-436a6d99c17a/lines"
+  }
+ },
+ "X-modal-exit": {
+  "modalSave": {
+   "clicked": true,
+   "dialogOpen": true,
+   "inlineRowOpen": true,
+   "toast": [],
+   "partOnLine": false
+  },
+  "modalCancel": {
+   "dialogsBefore": 1,
+   "afterCloseClick": {
+    "dialogs": 2,
+    "text": "New Part Request close Part Number arrow_drop_down Description Quantity Source Vendor arrow_drop_down Category arrow_drop_down Category is a required field Vendor arrow_drop_down $ Cost $ Core Charge $ Sell Price Margin % AI SHOPCOACH PARTS GUIDE Save Part",
+    "buttons": [
+     "close",
+     "AI SHOPCOACH PARTS GUIDE",
+     "Save Part",
+     "close",
+     "Keep Editing",
+     "Discard Part"
+    ],
+    "inlineRowOpen": true
+   },
+   "discardClicked": true,
+   "afterDiscard": {
+    "dialogs": 0,
+    "inlineRowOpen": false
+   }
+  }
+ },
+ "Y-edit-while-open": {
+  "armed": "ZZAUTOTEST editguard",
+  "editClicked": true,
+  "dialog": {
+   "text": "Edit Part Request close Part Number arrow_drop_down Description Quantity Source Vendor arrow_drop_down Category Uncategorized arrow_drop_down Vendor arrow_drop_down $ Cost $ Core Charge $ Sell Price Margin % Cancel Order Save & Close",
+   "buttons": [
+    "close",
+    "Cancel Order",
+    "Save & Close"
+   ]
+  },
+  "modal": {
+   "open": true,
+   "text": "Edit Part Request close Part Number arrow_drop_down Description Quantity Source Vendor arrow_drop_down Category Uncategorized arrow_drop_down Vendor arrow_drop_down $ Cost $ Core Charge $ Sell Price Margin % Cancel Order Save & Close"
+  },
+  "addRowStillOpen": true
+ },
+ "Z-followon-row": {
+  "freshRowOpen": true,
+  "freshValues": {
+   "desc": "",
+   "part": "",
+   "qty": "",
+   "cat": "",
+   "cost": "",
+   "sell": ""
+  },
+  "escapeOnFreshRow": {
+   "dialog": {
+    "text": "Edit Part Request close Part Number arrow_drop_down Description Quantity Source Vendor arrow_drop_down Category Uncategorized arrow_drop_down Vendor arrow_drop_down $ Cost $ Core Charge $ Sell Price Margin % Cancel Order Save & Close",
+    "buttons": [
+     "close",
+     "Cancel Order",
+     "Save & Close"
+    ]
+   },
+   "rowOpen": true
+  },
+  "reopenedEmptyRow": true,
+  "navigateFromEmptyRow": {
+   "dialog": null,
+   "url": "/workorders?tab=work_orders"
+  }
+ }
+}

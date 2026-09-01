@@ -1041,3 +1041,29 @@ that turned out to be literally true in one pass, because the frequency is the l
 
 **The cost of getting this wrong is not a wasted run — it is a false report to the QA lead.** Every
 one of the six above would have been delivered as a confident finding about the product.
+
+### The tally kept growing on the next suite (6597, Inline Add and Edit Parts, same day)
+
+| What it looked like | What it was |
+|---|---|
+| "There is no validation message at all — the row just highlights a field" | The messages are there, **verbatim** ("Enter a description, qty, cost and sell price to save this part.", "Qty must be greater than 0.", "Cost cannot be negative.", "Sell price is below cost."). They are not in `.q-field__messages` or `.q-field__bottom`, which is all the probe read. **Three cases would have been filed as deviations.** |
+| "Navigating away with data shows no confirmation" | The probe clicked a **tab inside the same work order**, which is not navigating away from it. Real in-app navigation off the work order shows the documented dialog word for word. |
+| "Browser back is not guarded" | It is — with the **native `beforeunload` prompt**, which Playwright auto-dismisses, so the run could not tell "no guard" from "guard dismissed for me". A `page.on('dialog')` listener showed it firing. |
+| "Save Part in the modal does nothing" | The modal was showing **"Category is a required field"** in text the probe never read back. |
+
+**THE RULES THOSE ADD:**
+
+7. **NEVER REPORT A MESSAGE AS ABSENT FROM A SELECTOR — SEARCH THE WHOLE RENDERED PAGE FOR THE
+   DOCUMENTED STRING.** The spec's User Feedback Summary gives the exact sentences: grep
+   `document.body.innerText` **and** `innerHTML` for each one. A component library has a dozen places
+   a message can live, and you will not guess which. This single rule prevented three false
+   deviations in one run.
+8. **RE-READ THE REQUIREMENT'S OWN WORDING BEFORE BUILDING THE PROBE, AND EXERCISE EVERY ROUTE IT
+   NAMES.** S6-R4 named three ways to leave — browser back, browser forward, in-app navigation — and
+   the first probe tried a fourth thing that the requirement never mentions.
+9. **A NATIVE BROWSER DIALOG IS INVISIBLE TO A DEFAULT PLAYWRIGHT RUN.** Automation dismisses
+   `beforeunload`/`alert`/`confirm` silently. Attach `page.on('dialog', …)` before any probe that
+   could raise one, or "not guarded" is unprovable.
+10. **WHEN AN ACTION "DOES NOTHING", READ THE SURFACE IT LEFT BEHIND BEFORE CONCLUDING ANYTHING.**
+    Dump the dialog's full text, not the two fields you expected to change. The reason is almost
+    always written on screen.
