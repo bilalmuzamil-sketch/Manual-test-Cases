@@ -2365,6 +2365,16 @@ were stale). Sources: `build/report-suite/build-verify-2026-08-18/{TU,WIP,IV}-SW
 - **INLINE-VLAD-1 OPEN** — two Automated cases changed on 6597: **C45026** (IAEP-TEDIT-04, S3-R5) escaping → repaired to fr-view + re-stamped v13→v16; **C45005** (IAEP-TADD-08, S2-R9) was already fr-view+v16, not written. `atmstatus=3` preserved on both. Note: `build/inline-add-edit-parts/render-repair-2026-08-31/FOR-VLAD-automated-cases-changed-2026-08-31.md`.
 
 #### CARRIED OVER — open, for the QA lead's decision later (per his 2026-08-31 instruction)
+- **CO-7 (Invoice) — PO-3 OPEN (Chris Ward), NEW 2026-09-01:** does S3-R5's *"every work order"*
+  include **imported** work orders? The spec says the Authorizer row is on every work order; the
+  technical plan gates it off for imported ones and the build follows the plan. Case **C45190**
+  passes as written and is unchanged; the divergence is disclosed, not resolved (Rules 30/96).
+  Sheet: `build/invoice-ui-refresh/questions-2026-08-31/PO-QUESTIONS-IMPORTED-WO.md`.
+- **CO-8 (Invoice) — FOR THE QA LEAD, NEW 2026-09-01:** two ticket references inside case Expected
+  Results **no longer reproduce** on `v26.35.5-8c3cc21` — **SV-7821** (*void 500s on a reversed
+  origin*; the void now refuses with a clean 400) and **SV-7846** (*mixed payment not marked Paid*;
+  the invoice is marked paid). Rule 61 outcome (3): reported to you, nothing filed, hold respected.
+  Both may be closable.
 - **CO-1 (Invoice) — PO-2 OPEN (Chris Ward):** un-logged pre-v39 spec edits (2026-08-13 [v38], ~2026-08-25 [v39]); the v39 one verified cosmetic. Awaiting Chris.
 - **CO-2 (Inline) — Story 7 Jira TBD (Sasha Grosman):** the spec's Story 7 (Bin Allocation) has no Jira story ticket. Our 22 new cases ref the epic SV-9315. A Story 7 ticket should be created + linked (HELD — Jira creation hold; QA lead said "Hold").
 - **CO-3 (Inline) — PO-IAEP-1 / PO-IAEP-2 OPEN (Sasha):** S3-E1 scope (PRD keeps vs tech plan D3 defers); "Imported" status guard (PRD hides Add Part/Edit vs tech plan plans no check).
