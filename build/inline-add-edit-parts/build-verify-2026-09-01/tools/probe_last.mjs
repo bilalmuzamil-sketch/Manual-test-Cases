@@ -65,9 +65,15 @@ P['L1-concurrent-change'] = async () => {
       if (!payload) { payload = route.request().postData(); url = route.request().url(); return route.abort('failed'); }
       return route.continue();
     });
-    await page.evaluate(() => document.querySelector('[data-test-id="button_edit_part"]')?.click());
-    await page.waitForTimeout(4500);
-    out.editRowOpened = await page.evaluate(() => !!document.querySelector('[data-test-id="inline_part_edit_row"]'));
+    // the edit row does not always open on the first click - try a few of the rows rather than
+    // giving up on the first one
+    for (let n = 0; n < 4; n++) {
+      await page.evaluate(i => document.querySelectorAll('[data-test-id="button_edit_part"]')[i]?.click(), n);
+      await page.waitForTimeout(4500);
+      out.editRowOpened = await page.evaluate(() => !!document.querySelector('[data-test-id="inline_part_edit_row"]'));
+      if (out.editRowOpened) { out.editedRowIndex = n; break; }
+      await land();
+    }
     await set('input_inline_part_description', 'ZZAUTOTEST capture ' + Date.now());
     await page.waitForTimeout(900);
     await page.evaluate(() => document.querySelector('[data-test-id="button_save_inline_part"]')?.click());
@@ -79,11 +85,38 @@ P['L1-concurrent-change'] = async () => {
     try { const j = JSON.parse(payload || '{}'); id = j.id || j.part_request_id || j.request_id || null; } catch (_) {}
     out.partRequestId = id;
     if (!id) return { ...out, note: 'the save payload carried no id field; see capturedPayload' };
-    // phase 2: fresh edit row, delete the part behind it, then save for real
+    // phase 2: fresh edit row - and PROVE it is editing the same record before deleting anything.
+    // The first version deleted a part and then read "no message, row still open", which looks like
+    // a defect but is worthless unless the row was actually editing THAT part. So the second save is
+    // aborted too, purely to read its id, and the ids are compared.
     await land();
-    await page.evaluate(() => document.querySelector('[data-test-id="button_edit_part"]')?.click());
-    await page.waitForTimeout(4500);
-    out.secondEditRowOpened = await page.evaluate(() => !!document.querySelector('[data-test-id="inline_part_edit_row"]'));
+    let payload2 = null;
+    await page.route('**/api/work-orders/part/change-request', route => {
+      if (!payload2) { payload2 = route.request().postData(); return route.abort('failed'); }
+      return route.continue();
+    });
+    for (let n = 0; n < 4; n++) {
+      const idx = (out.editedRowIndex ?? 0);
+      await page.evaluate(i => document.querySelectorAll('[data-test-id="button_edit_part"]')[i]?.click(), idx);
+      await page.waitForTimeout(4500);
+      out.secondEditRowOpened = await page.evaluate(() => !!document.querySelector('[data-test-id="inline_part_edit_row"]'));
+      if (out.secondEditRowOpened) break;
+      await land();
+    }
+    await set('input_inline_part_description', 'ZZAUTOTEST idcheck ' + Date.now());
+    await page.waitForTimeout(900);
+    await page.evaluate(() => document.querySelector('[data-test-id="button_save_inline_part"]')?.click());
+    await page.waitForTimeout(5000);
+    await page.unroute('**/api/work-orders/part/change-request');
+    let id2 = null;
+    try { const j = JSON.parse(payload2 || '{}'); id2 = j.id || null; } catch (_) {}
+    out.secondRowId = id2;
+    out.sameRecord = !!(id2 && id2 === id);
+    if (!out.sameRecord) {
+      return { ...out, INCONCLUSIVE: 'the second edit row is editing a different part request than '
+        + 'the one that would be deleted, so the result would say nothing about S3-E1' };
+    }
+    // the row is still open after the aborted save, so delete the record behind it and save again
     const del = await apiCall('POST', `/api/work-orders/part/remove-request/${id}`, {});
     out.deletedBehindTheRow = { status: del.status, body: JSON.stringify(del.body).slice(0, 200) };
     await set('input_inline_part_description', 'ZZAUTOTEST concurrent ' + Date.now());
