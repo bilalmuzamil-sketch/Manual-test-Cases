@@ -1,0 +1,110 @@
+{
+ "45250": {
+  "title": "Completed line does not offer the Add Part option",
+  "verdict": "new case from the QA lead, 2026-09-01",
+  "marker_override": "AUTOMATION: READY",
+  "build_sentence": null,
+  "fields": {
+   "custom_expected": {
+    "blocks": [
+     [
+      "1. On the now-Complete line, the “+ Add Part” button no longer appears in its Parts section."
+     ],
+     [
+      "NOTE FOR THE TESTER: one step here needs more than it says. A line cannot be set to Complete while a part on it is unfulfilled — the app refuses with “Line can’t be completed with unfulfilled part requests.” Approving the line moves the part to “In stock”, which is still not enough; it has to be PICKED. The part row’s own menu offers only “Move” and “Add Part Fee / Discount”, so picking is done elsewhere (the Parts area). Do the pick first, then set the line to Complete, then check the Parts section. If you cannot pick it, mark the case Blocked and say so."
+     ],
+     [
+      "---",
+      "Source: Manually added (QA lead, 2026-09-01)."
+     ],
+     [
+      "AUTOMATION: READY"
+     ]
+    ],
+    "text": "1. On the now-Complete line, the “+ Add Part” button no longer appears in its Parts section.\n\nNOTE FOR THE TESTER: one step here needs more than it says. A line cannot be set to Complete while a part on it is unfulfilled — the app refuses with “Line can’t be completed with unfulfilled part requests.” Approving the line moves the part to “In stock”, which is still not enough; it has to be PICKED. The part row’s own menu offers only “Move” and “Add Part Fee / Discount”, so picking is done elsewhere (the Parts area). Do the pick first, then set the line to Complete, then check the Parts section. If you cannot pick it, mark the case Blocked and say so.\n\n---\nSource: Manually added (QA lead, 2026-09-01).\n\nAUTOMATION: READY"
+   }
+  }
+ },
+ "45251": {
+  "title": "Completed line: only the allowed part fields are editable (inventory vs special order)",
+  "verdict": "new case from the QA lead, 2026-09-01",
+  "marker_override": "AUTOMATION: READY",
+  "build_sentence": null,
+  "fields": {
+   "custom_expected": {
+    "blocks": [
+     [
+      "1. For an INVENTORY part, only these fields are editable (all others are read-only): Category, Sell Price, Margin, Quantity.",
+      "2. For a SPECIAL ORDER (SPO) part, only these fields are editable: Description, Category, Sell Price, Margin.",
+      "3. Part number, Source, Vendor, Cost and Core charge are NOT editable on a completed line."
+     ],
+     [
+      "NOTE FOR THE TESTER: same blocker as the case above — the line will not go to Complete until the part is PICKED, not merely “In stock”, and this case also needs a special-order part that has been received. Do both first, then check each field. If you cannot get the line to Complete, mark the case Blocked and say which step stopped you."
+     ],
+     [
+      "---",
+      "Source: Manually added"
+     ],
+     [
+      "AUTOMATION: READY"
+     ]
+    ],
+    "text": "1. For an INVENTORY part, only these fields are editable (all others are read-only): Category, Sell Price, Margin, Quantity.\n2. For a SPECIAL ORDER (SPO) part, only these fields are editable: Description, Category, Sell Price, Margin.\n3. Part number, Source, Vendor, Cost and Core charge are NOT editable on a completed line.\n\nNOTE FOR THE TESTER: same blocker as the case above — the line will not go to Complete until the part is PICKED, not merely “In stock”, and this case also needs a special-order part that has been received. Do both first, then check each field. If you cannot get the line to Complete, mark the case Blocked and say which step stopped you.\n\n---\nSource: Manually added\n\nAUTOMATION: READY"
+   }
+  }
+ },
+ "45252": {
+  "title": "Add Part calculates the Sell Price from the cost via the pricing matrix",
+  "verdict": "new case from the QA lead, 2026-09-01",
+  "marker_override": "AUTOMATION: READY",
+  "build_sentence": "Last checked against build v26.35.6-598cc8a on 9/1/2026.",
+  "fields": {
+   "custom_expected": {
+    "blocks": [
+     [
+      "1. Entering the Cost fills in the Sell Price automatically, calculated from the pricing matrix."
+     ],
+     [
+      "WHAT YOU SHOULD SEE TODAY, AND IT IS A PROBLEM: the Sell price does NOT change when you enter the Cost. Checked three ways — a stocked part (cost 53.52, sell 86.32) typed up to 100.00 and 200.00 with the sell price never moving, and a catalogue part with no price at all, where the sell price stayed 0.00. Twenty-two pricing matrices are configured on this system, one of them marked Default, so it is not a case of there being no matrix to apply. (1) If that is what you see, mark the case FAILED and raise nothing new. (2) If it behaves DIFFERENTLY, that is a new problem — please report it. (3) If the Sell price does fill in from the Cost, the fix has shipped — tell the QA lead."
+     ],
+     [
+      "---",
+      "Source: Manually added",
+      "Last checked against build v26.35.6-598cc8a on 9/1/2026."
+     ],
+     [
+      "AUTOMATION: READY"
+     ]
+    ],
+    "text": "1. Entering the Cost fills in the Sell Price automatically, calculated from the pricing matrix.\n\nWHAT YOU SHOULD SEE TODAY, AND IT IS A PROBLEM: the Sell price does NOT change when you enter the Cost. Checked three ways — a stocked part (cost 53.52, sell 86.32) typed up to 100.00 and 200.00 with the sell price never moving, and a catalogue part with no price at all, where the sell price stayed 0.00. Twenty-two pricing matrices are configured on this system, one of them marked Default, so it is not a case of there being no matrix to apply. (1) If that is what you see, mark the case FAILED and raise nothing new. (2) If it behaves DIFFERENTLY, that is a new problem — please report it. (3) If the Sell price does fill in from the Cost, the fix has shipped — tell the QA lead.\n\n---\nSource: Manually added\nLast checked against build v26.35.6-598cc8a on 9/1/2026.\n\nAUTOMATION: READY"
+   }
+  }
+ },
+ "45253": {
+  "title": "Changing the part category recalculates the Sell Price via the matrix",
+  "verdict": "new case from the QA lead, 2026-09-01",
+  "marker_override": "AUTOMATION: READY",
+  "build_sentence": "Last checked against build v26.35.6-598cc8a on 9/1/2026.",
+  "fields": {
+   "custom_expected": {
+    "blocks": [
+     [
+      "1. The Sell Price changes according to the selected category, for categories that have a different pricing matrix."
+     ],
+     [
+      "WHAT YOU SHOULD SEE TODAY, AND IT IS A PROBLEM: the Sell price does NOT change when you change the Category. Tried with Uncategorized, AUTO-Brakes, 70%Override and AUTO-Batteries — the category label on the row changed every time and the sell price stayed at 86.32 throughout. (1) If that is what you see, mark the case FAILED and raise nothing new. (2) If it behaves DIFFERENTLY, that is a new problem — please report it. (3) If the Sell price moves with the category, the fix has shipped — tell the QA lead."
+     ],
+     [
+      "---",
+      "Source: Manually added",
+      "Last checked against build v26.35.6-598cc8a on 9/1/2026."
+     ],
+     [
+      "AUTOMATION: READY"
+     ]
+    ],
+    "text": "1. The Sell Price changes according to the selected category, for categories that have a different pricing matrix.\n\nWHAT YOU SHOULD SEE TODAY, AND IT IS A PROBLEM: the Sell price does NOT change when you change the Category. Tried with Uncategorized, AUTO-Brakes, 70%Override and AUTO-Batteries — the category label on the row changed every time and the sell price stayed at 86.32 throughout. (1) If that is what you see, mark the case FAILED and raise nothing new. (2) If it behaves DIFFERENTLY, that is a new problem — please report it. (3) If the Sell price moves with the category, the fix has shipped — tell the QA lead.\n\n---\nSource: Manually added\nLast checked against build v26.35.6-598cc8a on 9/1/2026.\n\nAUTOMATION: READY"
+   }
+  }
+ }
+}

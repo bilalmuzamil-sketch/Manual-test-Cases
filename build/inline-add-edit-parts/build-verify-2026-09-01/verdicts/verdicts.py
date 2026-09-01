@@ -34,18 +34,43 @@ V = {
             'same run: 0 edit controls on the Paid work order, 12 on the Estimate one. Complete / Invoiced / Declined / Imported are a branch data gap (INL-4)'),
     44995: ('PASS', 'N3-no-permission',
             'with workOrderLinesCreateAndEdit removed from the Technician role, an EDITABLE (Estimate) work order showed 0 Add Part buttons and 0 edit controls. The role was restored in the same run and verified field by field - permission list identical, view_mode unchanged'),
-    44996: ('FAIL', 'probe-last3 C44996-line-complete',
-            'DEVIATION, observed 2026-09-01. S1-N4 requires the "Add Part" button NOT to be displayed '
-            'when the line is not editable. The line status enum HAS "complete" (GET '
-            '/api/work-orders/line-statuses), so this was never a data-state gap - nobody had walked '
-            'it. Walked line 2 of S9315-14846 authorization_required -> authorized -> complete (a '
-            'direct jump answers 400 naming the allowed transition, and a line with unfulfilled part '
-            'requests cannot complete at all, so a part-free line is needed). With the badge reading '
-            '"Complete" the line STILL shows "+ Add Part" in its Parts row - visible in '
-            'evidence/last3-line-complete.png - and the page-level count of Add Part buttons stays at '
-            '3 for 3 lines. Line status restored and the restore verified'),
+    # C44996 WAS DELETED BY THE QA LEAD ON 2026-09-01 and replaced by C45250-C45253 (see below).
+    # It is not listed here: a verdict on a case that no longer exists is noise, and the FAIL this pass
+    # recorded against it was taken on a part-FREE line, which is not the state his replacement
+    # describes. get_case/44996 answers HTTP 400.
     44997: ('PASS', 'M-second-row',
             'Add Part on another line with data in the row raises "Discard this part?" Keep Editing / Discard Part'),
+    # ---------------- added by the QA lead on 2026-09-01, replacing C44996 ----------------
+    45250: ('NOTVER', 'probe-new4 + /tmp pick chain',
+            'NOT OBSERVED, and the blocker is named rather than guessed. His route is the right one - a '
+            'part must be added AND PICKED before the line can complete - and that is exactly where it '
+            'stops: a line with an unfulfilled part request answers 400 "Line can`t be completed with '
+            'unfulfilled part requests." Authorising the line moves the part from "quoted" to '
+            '"in_stock", which is still not fulfilled, and the part row\'s own context menu offers only '
+            '"Move" and "Add Part Fee / Discount" - there is no pick action there, so picking happens '
+            'elsewhere (the Parts area). What IS known: on a part-FREE line completed on this build the '
+            '"+ Add Part" button is still shown (evidence/last3-line-complete.png). That is suggestive '
+            'but it is NOT his state, so no verdict is claimed. Line status restored and verified'),
+    45251: ('NOTVER', 'probe-new4',
+            'NOT OBSERVED - same blocker as C45250 (the line will not complete until the part is '
+            'PICKED), and this case additionally needs a special-order part taken through Order → '
+            'Receive. Neither was reached, so nothing is claimed about which fields stay editable'),
+    45252: ('FAIL', 'probe-new4 C45252-cost-fills-sell-price',
+            'DEVIATION, observed 2026-09-01, and instrumented properly after a first run measured its '
+            'own instrumentation: assigning .value and dispatching input/change is NOT reliably seen by '
+            'the component that derives the sell price, so the cost is now TYPED with real key events '
+            'and Tab. Positive control: picking a stocked part fills cost 53.52 and sell 86.32, so the '
+            'row does populate prices. Typing the cost to 10.00, 100.00, 200.00 left the sell price at '
+            '86.32 every time; on a catalogue part with no price at all it stayed 0.00. Twenty-two '
+            'pricing matrices are configured (Settings → Pricing), one marked Default, so there is a '
+            'matrix to apply. Entering the Cost does not fill or recalculate the Sell Price'),
+    45253: ('FAIL', 'probe-new4 C45253-category-recalculates-sell-price',
+            'DEVIATION, observed 2026-09-01. The category is an <input>, so its value is read from '
+            '.value and the change is confirmed from the row label on screen - the first run read '
+            'innerText, got "" five times and would have called a working control broken. With the '
+            'label demonstrably moving through Uncategorized → AUTO-Brakes → 70%Override → '
+            'AUTO-Batteries, the sell price stayed 86.32 throughout. Changing the category does not '
+            'recalculate the sell price'),
     45220: ('FOREIGN', None,
             "Vladimir Tomovic's case, flagged Automated — Rules 38 and 71; not touched, not verdicted"),
     # ---------------- Story 2 - Tech View inline add (25 cases) ----------------

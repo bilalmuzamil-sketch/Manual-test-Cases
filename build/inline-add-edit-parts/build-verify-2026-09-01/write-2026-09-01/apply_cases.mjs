@@ -304,12 +304,26 @@ for (const cid of queue) {
     const nmark = lines.filter(l => l.startsWith('AUTOMATION:')).length;
     if (nmark !== 1) problems.push(`AUTOMATION marker count = ${nmark}`);
     if (/Not available on Build/.test(view.custom_expected.text)) problems.push('the deferred marker text is still present');
-    // Rule 54: sentence 1 carried byte-for-byte, sentence 2 present, NEVER merged
-    const wantS1 = norm(snap[cid].provenance[0].replace(/&amp;/g, '&').replace(/&mdash;/g, '—'));
+    // Rule 54: sentence 1 carried byte-for-byte, sentence 2 present, NEVER merged.
+    // 🆕 2026-09-01: a case authored BY HAND may carry its source in its own words ("Source: Manually
+    // added ...") rather than the "This is the expected behaviour ..." sentence this pass writes. Those
+    // cases are not reshaped - that is how the C44996 wording was lost - so when the snapshot holds no
+    // standard sentence, assert instead that whatever source line the case DID have is still present
+    // verbatim, and skip the sentence-1 shape check.
+    const wantS1 = snap[cid].provenance.length
+      ? norm(snap[cid].provenance[0].replace(/&amp;/g, '&').replace(/&mdash;/g, '—')) : null;
     const s1 = lines.filter(l => l.startsWith('This is the expected behaviour'));
+    if (wantS1 === null) {
+      for (const src of (snap[cid].own_source || [])) {
+        if (!norm(view.custom_expected.text).includes(norm(src)))
+          problems.push(`the case's own source line was lost: ${JSON.stringify(src.slice(0, 80))}`);
+      }
+    }
     const s2 = lines.filter(l => l.startsWith('Last checked against build'));
-    if (s1.length !== 1) problems.push(`provenance sentence 1 count = ${s1.length}`);
-    else if (norm(s1[0]) !== wantS1) problems.push(`provenance sentence 1 was altered`);
+    if (wantS1 !== null) {
+      if (s1.length !== 1) problems.push(`provenance sentence 1 count = ${s1.length}`);
+      else if (norm(s1[0]) !== wantS1) problems.push(`provenance sentence 1 was altered`);
+    }
     // PER CASE: a build sentence is required exactly where this pass observed the case live, and
     // FORBIDDEN everywhere else. A sentence appearing on a PENDING case is a failure, not a bonus.
     if (rec.build_sentence) {

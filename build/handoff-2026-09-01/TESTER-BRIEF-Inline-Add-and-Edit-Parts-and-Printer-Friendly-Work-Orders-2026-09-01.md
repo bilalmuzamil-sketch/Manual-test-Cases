@@ -38,11 +38,11 @@ spreadsheet, and you should still form your own verdict on every test.
 
 | Feature | Tests you can run | of which: only part of it runs today | Tests to leave alone for now | Total in the area | Where to record your results |
 |---|---|---|---|---|---|
-| Inline Add and Edit Parts | **117** | 2 | 2 | 119 | Run 418 — [open it](https://shopview.testrail.io/index.php?/runs/view/418) |
+| Inline Add and Edit Parts | **118** | 2 | 4 | 122 | Run 418 — [open it](https://shopview.testrail.io/index.php?/runs/view/418) |
 | Printer Friendly Work Orders | **39** | 1 | 5 | 44 | Run 419 — [open it](https://shopview.testrail.io/index.php?/runs/view/419) |
-| **Both together** | **156** | **3** | **7** | **163** | |
+| **Both together** | **157** | **3** | **9** | **166** | |
 
-"Tests you can run" plus "tests to leave alone" equals the total on every row — 156 + 7 = 163 — so nothing has been quietly dropped out of a count. The middle column is
+"Tests you can run" plus "tests to leave alone" equals the total on every row — 157 + 9 = 166 — so nothing has been quietly dropped out of a count. The middle column is
 **a subset of the first, not a fourth group**: those tests are yours to run, you just will not get
 to the end of them.
 
@@ -50,11 +50,11 @@ to the end of them.
 
 ## Inline Add and Edit Parts
 
-**119 tests in total.** 117 of them you can run today — 2 of those only go part of the way. 2 cannot be run here at all yet, and every one of them is listed below with the reason and what to do instead.
+**122 tests in total.** 118 of them you can run today — 2 of those only go part of the way. 4 cannot be run here at all yet, and every one of them is listed below with the reason and what to do instead.
 
-**1 of these tests was written by a colleague (Vladimir Tomovic), not by us, so it has been left exactly as it was — we are not allowed to change it.** It is still counted in the 119 above and appears in the leave-alone list below, so you are not left wondering where it went.
+**1 of these tests was written by a colleague (Vladimir Tomovic), not by us, so it has been left exactly as it was — we are not allowed to change it.** It is still counted in the 122 above and appears in the leave-alone list below, so you are not left wondering where it went.
 
-Your list is **Run 418** in TestRail: [https://shopview.testrail.io/index.php?/runs/view/418](https://shopview.testrail.io/index.php?/runs/view/418). It holds 119 tests, which is every test in this area — none is missing and none extra has crept in. **No results are recorded in it yet.**
+Your list is **Run 418** in TestRail: [https://shopview.testrail.io/index.php?/runs/view/418](https://shopview.testrail.io/index.php?/runs/view/418). It holds 122 tests, which is every test in this area — none is missing and none extra has crept in. **No results are recorded in it yet.**
 
 ### What is waiting, and on what
 
@@ -64,7 +64,9 @@ So you can see at a glance which one answer would free up how many tests.
 |---|---|---|
 | a second person working at the same time | 1 | [C45034](https://shopview.testrail.io/index.php?/cases/view/45034) |
 | nothing — it is not ours to touch | 1 | [C45220](https://shopview.testrail.io/index.php?/cases/view/45220) |
-| **total left alone for now** | **2** | |
+| a part that has been PICKED, not just in stock | 1 | [C45250](https://shopview.testrail.io/index.php?/cases/view/45250) |
+| a picked part and a received special-order part | 1 | [C45251](https://shopview.testrail.io/index.php?/cases/view/45251) |
+| **total left alone for now** | **4** | |
 
 ### Leave these alone for now — and what to do instead
 
@@ -72,6 +74,8 @@ So you can see at a glance which one answer would free up how many tests.
 |---|---|---|
 | [C45034](https://shopview.testrail.io/index.php?/cases/view/45034) | Checks what you are told when someone else changes the same part while you are editing it | THIS ONE REALLY DOES NEED A SECOND PERSON. Ask a colleague to change or delete the same part while your edit row is open, then press Save. If you cannot arrange that, leave it Untested and tell the QA lead - do not guess. We tried it from a second connection rather than a second person and could not get the row open at the right moment, so nothing is known about this behaviour either way. |
 | [C45220](https://shopview.testrail.io/index.php?/cases/view/45220) | Adding a part to a finished line | NOT YOURS TO RUN OR CHANGE - this case belongs to Vladimir Tomovic and it has no steps written in it. Leave it alone entirely. |
+| [C45250](https://shopview.testrail.io/index.php?/cases/view/45250) | Checks Add Part is gone once a line is finished | ONE STEP NEEDS MORE THAN IT SAYS. The line will not go to Complete while a part on it is unfulfilled - the app refuses with "Line can't be completed with unfulfilled part requests." Approving the line moves the part to "In stock", which is still not enough: it has to be PICKED, and the part row's own menu only offers "Move" and "Add Part Fee / Discount", so the pick happens in the Parts area. Pick it, then set the line to Complete, then check the Parts section. If you cannot pick it, mark the case Blocked and say so. |
+| [C45251](https://shopview.testrail.io/index.php?/cases/view/45251) | Checks which part fields you can still change on a finished line | SAME BLOCKER as the case above - the part must be PICKED, not just "In stock" - and this one also needs a special-order part taken through Order then Receive. Do both first, then check each field. If you cannot get the line to Complete, mark it Blocked and say which step stopped you. |
 
 ### Run these, but you will only get part of the way
 
@@ -88,12 +92,13 @@ note given here — **do not mark it Passed on the strength of the part that wor
 
 | Test | What it checks, in plain words | What to expect |
 |---|---|---|
-| [C44996](https://shopview.testrail.io/index.php?/cases/view/44996) | Checks Add Part is hidden once a line is finished | RUN IT AND EXPECT IT TO FAIL. Pick a line with NO parts on it, click Approve, then mark it Complete from the same row (going straight to Complete is refused, and a line that has parts cannot be completed at all). With the badge reading "Complete", look at that line's Parts section: the "+ Add Part" button is still there, and it should not be. Mark the case FAILED. |
 | [C45060](https://shopview.testrail.io/index.php?/cases/view/45060) | Checks the cost and price boxes when the chosen part has no cost or price recorded | RUN IT AND EXPECT IT TO FAIL. Click Add Part, type "F40010212" in the Part number box and click the suggestion marked "Catalog" (Slack Adjuster - it is stocked nowhere and has no price on record). The Cost and Sell price boxes should open EMPTY and stop you saving until you fill them; instead they open showing "0.00" and the part saves at 0.00. Mark the case FAILED. |
 | [C45068](https://shopview.testrail.io/index.php?/cases/view/45068) | Checks you are asked before your unsaved part is thrown away | RUN IT AND EXPECT IT TO FAIL. Type a part into the inline row without saving, then click the pencil on another part on the same line. The "Discard this part?" question should appear first; it does not - the Edit Part Request window opens straight away and your typed part is left behind it. Mark the case FAILED and add nothing else. |
 | [C45239](https://shopview.testrail.io/index.php?/cases/view/45239) | Checks what is shown when a part is not kept in any bin | RUNS AND PASSES - kept here only so you know how to reach the state. Click Add Part, type "F40010212" and pick the suggestion marked "Catalog": it sits in no bin, so you get no bin chip and no "Pulled from" line, which is correct. |
+| [C45252](https://shopview.testrail.io/index.php?/cases/view/45252) | Checks the Sell price fills in from the Cost | RUN IT AND EXPECT IT TO FAIL. Add a part to a line, enter a Quantity, then enter a Cost. The Sell price should fill in from the pricing matrix; it does not move at all. Checked on a stocked part (cost typed up to 200.00, sell stuck at 86.32) and on a part with no price (stayed 0.00), and 22 pricing matrices are configured, so there is a matrix to apply. Mark the case FAILED. |
+| [C45253](https://shopview.testrail.io/index.php?/cases/view/45253) | Checks the Sell price changes when you change the Category | RUN IT AND EXPECT IT TO FAIL. With the add row filled in but not saved, change the Category through a few different ones. The Sell price should change with it; it does not. Tried Uncategorized, AUTO-Brakes, 70%Override and AUTO-Batteries - the category on the row changed every time, the sell price never did. Mark the case FAILED. |
 
-**One more thing on the wording.** 118 of the 119 tests pass our own automated check that a person can follow them from the screen, run against TestRail today rather than against a saved copy. [C45220](https://shopview.testrail.io/index.php?/cases/view/45220) does not, and we are not allowed to rewrite it — see the outstanding list at the end.
+**One more thing on the wording.** 121 of the 122 tests pass our own automated check that a person can follow them from the screen, run against TestRail today rather than against a saved copy. [C45220](https://shopview.testrail.io/index.php?/cases/view/45220) does not, and we are not allowed to rewrite it — see the outstanding list at the end.
 
 ---
 

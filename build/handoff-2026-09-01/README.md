@@ -39,22 +39,23 @@ say anything passed.
 
 ## The numbers, since they are the first thing anyone asks
 
-**161 of the 163 cases carry a verdict taken on this build.**
+**162 of the 166 cases carry a verdict taken on this build.**
 
 | | Inline Add and Edit Parts | Printer Friendly Work Orders |
 |---|---|---|
-| Cases in the area | 119 | 44 |
-| **Verdict taken on the build** | **117** | **44** |
+| Cases in the area | **122** | 44 |
+| **Verdict taken on the build** | **118** | **44** |
 | PASS | 112 | 38 |
-| FAIL — run it, expect it to fail | 3 — C44996, C45060, C45068 | 0 |
+| FAIL — run it, expect it to fail | 4 — C45060, C45068, C45252, C45253 | 0 |
 | PARTIAL — run the part you can | 2 — C44993, C44994 | 1 — C45088 |
 | UNREACHABLE — the product forbids the state | 0 | 5 — C45097, C45098, C45104, C45107, C45116 |
-| No verdict yet | 1 — **C45034** (needs a real second person) | **0** |
-| Foreign, never ours | 1 — **C45220** (Vladimir Tomovic) | 0 |
-| Written by us | 118 | 43 |
+| No verdict yet | 3 — C45034, C45250, C45251 | **0** |
+| Foreign, never ours | 1 — C45220 (Vladimir Tomovic) | 0 |
+| Written by us | 121 | 43 |
 | Held, not written | 1 — C45220 (Rule 38) | 1 — C45123 (Rule 71) |
 
-Inline's 119 = 117 with a verdict + 1 without (C45034) + 1 foreign (C45220).
+Inline's 122 = 118 with a verdict + 3 without + 1 foreign. C44996 was deleted by the QA lead on
+2026-09-01 and replaced by C45250–C45253, which is why the area grew from 119.
 Every figure is printed by `census.py` and the two `verdicts.py` files; none is typed by hand.
 
 ## What is still outstanding

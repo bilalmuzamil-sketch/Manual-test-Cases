@@ -1,0 +1,54 @@
+{
+ "45250": {
+  "title": "Completed line does not offer the Add Part option",
+  "atm": 1,
+  "section_id": 6755,
+  "refs": "SV-9315 (Manually added)",
+  "provenance": [],
+  "own_source": [
+   "Source: Manually added (QA lead, 2026-09-01)."
+  ],
+  "before": {
+   "custom_expected": "<ol><li>On the now-Complete line, the “+ Add Part” button no longer appears in its Parts section.</li><li><hr><p>Source: Manually added (QA lead, 2026-09-01).</p><p><br></p><p>AUTOMATION: Ready</p></li></ol>"
+  }
+ },
+ "45251": {
+  "title": "Completed line: only the allowed part fields are editable (inventory vs special order)",
+  "atm": 1,
+  "section_id": 6755,
+  "refs": "SV-9315 (Manually added)",
+  "provenance": [],
+  "own_source": [
+   "Source: Manually added"
+  ],
+  "before": {
+   "custom_expected": "<ol><li>For an INVENTORY part, only these fields are editable (all others are read-only): Category, Sell Price, Margin, Quantity.</li><li>For a SPECIAL ORDER (SPO) part, only these fields are editable: Description, Category, Sell Price, Margin.</li><li>Part number, Source, Vendor, Cost and Core charge are NOT editable on a completed line.</li><li><hr><p>Source: Manually added&nbsp;</p><p>AUTOMATION: Ready</p></li></ol>"
+  }
+ },
+ "45252": {
+  "title": "Add Part calculates the Sell Price from the cost via the pricing matrix",
+  "atm": 1,
+  "section_id": 6755,
+  "refs": "SV-9315 (Manually added)",
+  "provenance": [],
+  "own_source": [
+   "Source: Manually added"
+  ],
+  "before": {
+   "custom_expected": "<ol><li>Entering the Cost fills in the Sell Price automatically, calculated from the pricing matrix.</li><li><hr><p>Source: Manually added</p><p>AUTOMATION: Ready</p></li></ol>"
+  }
+ },
+ "45253": {
+  "title": "Changing the part category recalculates the Sell Price via the matrix",
+  "atm": 1,
+  "section_id": 6755,
+  "refs": "SV-9315 (Manually added)",
+  "provenance": [],
+  "own_source": [
+   "Source: Manually added"
+  ],
+  "before": {
+   "custom_expected": "<ol><li>The Sell Price changes according to the selected category, for categories that have a different pricing matrix.</li><li><hr><p>Source: Manually added&nbsp;</p><p>AUTOMATION: Ready</p></li></ol>"
+  }
+ }
+}

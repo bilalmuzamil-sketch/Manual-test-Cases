@@ -1,7 +1,7 @@
 {
  "Inline Add and Edit Parts": {
-  "cases_total": 119,
-  "ours": 118,
+  "cases_total": 122,
+  "ours": 121,
   "foreign": {
    "Vladimir Tomovic": 1
   },
@@ -18,26 +18,26 @@
    45237
   ],
   "markers": {
-   "AUTOMATION: READY": 118,
+   "AUTOMATION: READY": 121,
    "NO MARKER": 1
   },
   "arithmetic": {
-   "ready": 118,
+   "ready": 121,
    "expect_fail": 0,
    "hold": 0,
-   "total": 118,
-   "ready_plus_expectfail": 118,
-   "total_minus_hold": 118,
+   "total": 121,
+   "ready_plus_expectfail": 121,
+   "total_minus_hold": 121,
    "closes": true,
    "excluded_from_the_gate": [
     45220
    ],
    "why_excluded": "C45220: foreign \u2014 written by Vladimir Tomovic (Rule 38)",
-   "suite_total_including_excluded": 119
+   "suite_total_including_excluded": 122
   },
   "run": {
    "id": 418,
-   "tests": 119,
+   "tests": 122,
    "set_equal_to_cases": true,
    "in_cases_not_in_run": [],
    "in_run_not_in_cases": [],
@@ -45,7 +45,9 @@
   },
   "without_build_sentence": [
    45034,
-   45220
+   45220,
+   45250,
+   45251
   ],
   "per_case": {
    "44988": {
@@ -112,14 +114,6 @@
     "foreign": false,
     "build_sentence": true
    },
-   "44996": {
-    "title": "Add Part and Edit hidden when the work order/line is not editable otherwise",
-    "marker": "AUTOMATION: READY",
-    "author": "Bilal Muzamil",
-    "automated": false,
-    "foreign": false,
-    "build_sentence": true
-   },
    "44997": {
     "title": "Add Part on another line while a row is open triggers the guard",
     "marker": "AUTOMATION: READY",
@@ -135,6 +129,38 @@
     "automated": true,
     "foreign": true,
     "build_sentence": false
+   },
+   "45250": {
+    "title": "Completed line does not offer the Add Part option",
+    "marker": "AUTOMATION: READY",
+    "author": "Bilal Muzamil",
+    "automated": false,
+    "foreign": false,
+    "build_sentence": false
+   },
+   "45251": {
+    "title": "Completed line: only the allowed part fields are editable (inventory vs special order)",
+    "marker": "AUTOMATION: READY",
+    "author": "Bilal Muzamil",
+    "automated": false,
+    "foreign": false,
+    "build_sentence": false
+   },
+   "45252": {
+    "title": "Add Part calculates the Sell Price from the cost via the pricing matrix",
+    "marker": "AUTOMATION: READY",
+    "author": "Bilal Muzamil",
+    "automated": false,
+    "foreign": false,
+    "build_sentence": true
+   },
+   "45253": {
+    "title": "Changing the part category recalculates the Sell Price via the matrix",
+    "marker": "AUTOMATION: READY",
+    "author": "Bilal Muzamil",
+    "automated": false,
+    "foreign": false,
+    "build_sentence": true
    },
    "44998": {
     "title": "Tech View inline add row shows exactly three fields and no pricing",

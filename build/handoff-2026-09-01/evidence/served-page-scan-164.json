@@ -159,26 +159,6 @@
    }
   ]
  },
- "44996": {
-  "count": 3,
-  "fields": [
-   {
-    "cls": "markdown fr-view",
-    "frview": true,
-    "sample": "1. Your user has the 'Work Order Line - Create and Edit' permission enabled. To check it: "
-   },
-   {
-    "cls": "markdown fr-view",
-    "frview": true,
-    "sample": "1. Open that work order and look at the Parts section and existing part lines."
-   },
-   {
-    "cls": "markdown fr-view",
-    "frview": true,
-    "sample": "1. The “Add Part” button and the Edit control are not displayed, matching today's behaviou"
-   }
-  ]
- },
  "44997": {
   "count": 3,
   "fields": [
@@ -2195,7 +2175,7 @@
    {
     "cls": "markdown fr-view",
     "frview": true,
-    "sample": "1. The customer section displays “No customer assigned”.\n\nNOTE FOR THE TESTER: this needs "
+    "sample": "1. The customer section displays “No customer assigned”.\n\nNOTE FOR THE TESTER: this case c"
    }
   ]
  },
@@ -2215,7 +2195,7 @@
    {
     "cls": "markdown fr-view",
     "frview": true,
-    "sample": "1. The vehicle section displays “No vehicle assigned”.\n\nNOTE FOR THE TESTER: this needs a "
+    "sample": "1. The vehicle section displays “No vehicle assigned”.\n\nNOTE FOR THE TESTER: this case can"
    }
   ]
  },
@@ -2465,7 +2445,7 @@
    {
     "cls": "markdown fr-view",
     "frview": true,
-    "sample": "1. In the top menu click “Work Orders” and open a work order by clicking its row. On the w"
+    "sample": "1. In the top menu click “Work Orders” and open a work order by clicking its row. Open its"
    },
    {
     "cls": "markdown fr-view",
@@ -2475,7 +2455,7 @@
    {
     "cls": "markdown fr-view",
     "frview": true,
-    "sample": "1. The tech story wraps and prints in full; it is not truncated.\n\nNOTE FOR THE TESTER: thi"
+    "sample": "1. The tech story wraps and prints in full; it is not truncated.\n\n---\nThis is the expected"
    }
   ]
  },
@@ -3155,7 +3135,7 @@
    {
     "cls": "markdown fr-view",
     "frview": true,
-    "sample": "1. The part gets no allocation and no chip.\n2. The “Pulled from” line is not displayed.\n\nN"
+    "sample": "1. The part gets no allocation and no chip.\n2. The “Pulled from” line is not displayed.\n\n-"
    }
   ]
  },
@@ -3216,6 +3196,86 @@
     "cls": "markdown fr-view",
     "frview": true,
     "sample": "1. A split allocation never shows the takes-negative warning from S7-R9; that warning appl"
+   }
+  ]
+ },
+ "45250": {
+  "count": 3,
+  "fields": [
+   {
+    "cls": "markdown fr-view",
+    "frview": true,
+    "sample": "You have a work order line whose status is Complete and that has a part on it. Reach this "
+   },
+   {
+    "cls": "markdown fr-view",
+    "frview": true,
+    "sample": "In the top menu, click “Work Orders”, then create a new work order (the “New Work Order” b"
+   },
+   {
+    "cls": "markdown fr-view",
+    "frview": true,
+    "sample": "1. On the now-Complete line, the “+ Add Part” button no longer appears in its Parts sectio"
+   }
+  ]
+ },
+ "45251": {
+  "count": 3,
+  "fields": [
+   {
+    "cls": "markdown fr-view",
+    "frview": true,
+    "sample": "You have a work order line in Complete status with a part on it (quantity 5). Reach it wit"
+   },
+   {
+    "cls": "markdown fr-view",
+    "frview": true,
+    "sample": "In the top menu, click “Work Orders”, then create a new work order.\nOn the “Lines” tab, cl"
+   },
+   {
+    "cls": "markdown fr-view",
+    "frview": true,
+    "sample": "1. For an INVENTORY part, only these fields are editable (all others are read-only): Categ"
+   }
+  ]
+ },
+ "45252": {
+  "count": 3,
+  "fields": [
+   {
+    "cls": "markdown fr-view",
+    "frview": true,
+    "sample": "In the top menu, click “Work Orders”, create a new work order, and add a new line (“New Li"
+   },
+   {
+    "cls": "markdown fr-view",
+    "frview": true,
+    "sample": "In the line's Parts section, click “+ Add Part”.\nIn the part number field, add a special o"
+   },
+   {
+    "cls": "markdown fr-view",
+    "frview": true,
+    "sample": "1. Entering the Cost fills in the Sell Price automatically, calculated from the pricing ma"
+   }
+  ]
+ },
+ "45253": {
+  "count": 3,
+  "fields": [
+   {
+    "cls": "markdown fr-view",
+    "frview": true,
+    "sample": "In the top menu, click “Work Orders”, create a new work order, and add a new line (“New Li"
+   },
+   {
+    "cls": "markdown fr-view",
+    "frview": true,
+    "sample": "In the line's Parts section, click “+ Add Part”.\nFill in all the fields needed to add the "
+   },
+   {
+    "cls": "markdown fr-view",
+    "frview": true,
+    "sample": "1. The Sell Price changes according to the selected category, for categories that have a d"
    }
   ]
  }
