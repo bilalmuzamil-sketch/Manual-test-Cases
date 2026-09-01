@@ -230,9 +230,14 @@ P['E1-concurrent-change'] = async () => {
     out.landedAsTechnician = pc;
     if (!pc.editBtns) return { ...out, POSITIVE_CONTROL_FAILED: pc };
     // which part is first on the line, so the right one can be deleted
+    // 🛑 THE work_order_id QUERY PARAM IS IGNORED by list-requests: it answers with 100 part
+    // requests from across the estate, whose work_order_id fields point at other work orders. Filter
+    // client-side or you match nothing and the probe silently tests nothing.
     const list = await apiGet(`/api/work-orders/part/list-requests?work_order_id=${WO}`);
-    const coll = (list.body?.data?.collection) || list.body?.data || [];
-    out.partRequests = Array.isArray(coll) ? coll.length : 0;
+    const raw = (list.body?.data?.collection) || list.body?.data || [];
+    const coll = (Array.isArray(raw) ? raw : []).filter(x => x.work_order_id === WO);
+    out.partRequestsReturned = Array.isArray(raw) ? raw.length : 0;
+    out.partRequestsOnThisWorkOrder = coll.length;
     await page.evaluate(() => document.querySelector('[data-test-id="button_edit_part"]')?.click());
     await page.waitForTimeout(4500);
     const opened = await surface();
@@ -284,6 +289,43 @@ P['R0-permission-route'] = async () => {
   }
   await page.screenshot({ path: `${OUT}/evidence/neg-permission-route.png`, fullPage: true });
   return out;
+};
+
+
+// ---- EH2: the SAME case, but with a SERVER ERROR rather than a dead socket.
+// S2-EH1 is "the part cannot be saved for any other reason", which in practice means the server
+// answered badly - not that the network vanished. route.abort('failed') produces a transport error,
+// and an SPA can reasonably treat those two differently, so a finding must not rest on the harsher
+// one alone. This fulfils the save with a 500 and a JSON error body, the way a real failure looks.
+P['EH2-server-error'] = async () => {
+  let seen = null;
+  await page.route('**/api/work-orders/part/make-request', async route => {
+    if (route.request().method() === 'POST' && !seen) {
+      seen = route.request().url();
+      return route.fulfill({ status: 500, contentType: 'application/json',
+        body: JSON.stringify({ errors: [{ error: 'ZZAUTOTEST forced failure' }] }) });
+    }
+    return route.continue();
+  });
+  const pc = await goLines(WO);
+  if (!pc.addPart) { await page.unroute('**/api/work-orders/part/make-request'); return { POSITIVE_CONTROL_FAILED: pc }; }
+  await page.evaluate(() => document.querySelector('[data-test-id="button_add_part"]')?.click());
+  await page.waitForTimeout(4000);
+  const tag = 'ZZAUTOTEST server500 ' + Date.now();
+  await set('input_inline_part_description', tag);
+  await set('input_inline_part_quantity', '1');
+  await set('input_inline_part_cost', '1.00');
+  await set('input_inline_part_sell_price', '2.00');
+  await page.waitForTimeout(1200);
+  await page.evaluate(() => document.querySelector('[data-test-id="button_save_inline_part"]')?.click());
+  await page.waitForTimeout(2000);
+  const early = await surface();                 // read BEFORE any toast can fade
+  await page.waitForTimeout(5000);
+  const late = await surface();
+  const pageText = await page.evaluate(() => (document.body?.innerText || '').replace(/\s+/g, ' ').slice(0, 700));
+  await page.unroute('**/api/work-orders/part/make-request');
+  await page.screenshot({ path: `${OUT}/evidence/neg-server-500.png`, fullPage: true });
+  return { tag, interceptedSave: seen, twoSecondsAfter: early, sevenSecondsAfter: late, pageText };
 };
 
 const names = Object.keys(P).filter(n => !ONLY.length || ONLY.some(o => n.startsWith(o)));
