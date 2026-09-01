@@ -128,7 +128,7 @@ total 43  -  HOLD 5            =  38
 
 ## The can-the-tester-read-it gate
 
-The served page — not the stored value — was fetched for all **4** cases written by this pass, on a logged-in browser session, and the container class of each text field was read. **Fields in an escaping container: 0.**
+The served page — not the stored value — was fetched for all **2** cases written by this pass, on a logged-in browser session, and the container class of each text field was read. **Fields in an escaping container: 0.**
 
 Every field is served in the rendering container, so what the tester opens shows formatted text and not raw tags. This is checked on the served page because the stored value cannot tell you the difference — a case can be stored perfectly and still display every tag.
 
@@ -138,7 +138,7 @@ Every field is served in the rendering container, so what the tester opens shows
 |---|---|---|---|
 | Marker census + arithmetic gate | the marker counts balance both ways over the cases in scope | CLOSES on both suites | `python3 build/handoff-2026-09-01/census.py` |
 | Runnability | a person can follow every case from the screen; read LIVE from TestRail, not from a saved copy | Inline Add and Edit Parts: 118/119 · Printer Friendly Work Orders: 43/44 — the shortfalls are the two cases we are not permitted to rewrite | `python3 build/testing-tools/check_runnable_cases.py --cases <ids>` |
-| Served-page render | what the tester actually SEES is formatted text, not raw tags — checked on the served page because the stored value cannot tell you | 4 cases, 0 escaping | `node build/inline-add-edit-parts/build-verify-2026-09-01/tools/served_page_scan.mjs` |
+| Served-page render | what the tester actually SEES is formatted text, not raw tags — checked on the served page because the stored value cannot tell you | 2 cases, 0 escaping | `node build/inline-add-edit-parts/build-verify-2026-09-01/tools/served_page_scan.mjs` |
 | Marker / provenance / formatting | one marker, last in Expected Results; provenance present; no barred phrase; no styling tag; no empty field; no contradiction candidates | ALL CLEAR | `python3 build/handoff-2026-09-01/handover_gates.py` |
 | Self-explaining held cases | every case the brief does not send the tester through end to end carries that reason in its OWN words, so a tester working straight from the run is still told | ALL CLEAR — 14 of 14, with C45220 named and excluded | `python3 build/handoff-2026-09-01/check_self_explains.py` |
 | Run sync | the run holds exactly our cases, in both directions, with no result pre-recorded | run 418: 119 tests, set-equal True, 0 results · run 419: 44 tests, set-equal True, 0 results | `census.py` prints it |

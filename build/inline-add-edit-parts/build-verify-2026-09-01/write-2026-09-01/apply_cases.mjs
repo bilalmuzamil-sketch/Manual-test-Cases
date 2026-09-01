@@ -174,6 +174,30 @@ for (const cid of queue) {
       skipped++; log(`C${cid} SKIPPED — Automated, not on the authorised list`); continue;
     }
     if (live.custom_atmstatus === 3) log(`C${cid} is AUTOMATED — writing under the QA lead's 2026-08-31 per-case go-ahead; Rule 65 report required`);
+
+    // 🛑 THE STALE-SNAPSHOT GATE, added 2026-09-01 AFTER IT BIT. A payload is built from a snapshot;
+    // between that snapshot and this write, a PERSON can edit the case in the TestRail UI. This
+    // script's own verification compares the result to MY INTENDED TEXT, which is exactly the check
+    // that cannot notice a reverted correction — so it reported 118 clean writes while two of them
+    // (C44993, C44994) had silently put back a five-status wording a human had narrowed to three.
+    // Found afterwards by build/handoff-2026-09-01/audit_clobbered.py against get_history_for_case.
+    // ⇒ Compare the LIVE field to the snapshot NOW, and refuse rather than overwrite. Set
+    // ALLOW_STALE=1 only when the divergence has been read and the overwrite is deliberate.
+    if (!process.env.ALLOW_STALE) {
+      const nrm = x => (x || '').replace(/&nbsp;/g, ' ').replace(/\s+/g, ' ').trim();
+      const before = (snap[cid] && snap[cid].before) || {};
+      const drifted = fields.filter(f => f in before && nrm(before[f]) !== nrm(live[f]));
+      if (drifted.length) {
+        const detail = drifted.map(f =>
+          `${f}: snapshot ${JSON.stringify(nrm(before[f]).slice(0, 140))} vs live ${JSON.stringify(nrm(live[f]).slice(0, 140))}`).join(' || ');
+        fs.appendFileSync(FAILED, JSON.stringify({ cid, skipped: true,
+          reason: 'STALE SNAPSHOT — the case changed after the payload was built; refusing to overwrite',
+          drifted, detail, at: new Date().toISOString() }) + '\n');
+        skipped++;
+        log(`C${cid} SKIPPED — changed since the snapshot (${drifted.join(', ')}). Re-build the payload, or set ALLOW_STALE=1 if the overwrite is intended.`);
+        continue;
+      }
+    }
     const atmBefore = live.custom_atmstatus, secBefore = live.section_id, refsBefore = live.refs || null;
 
     // 🛑 THE EDIT FORM'S ONE-SHOT TOKEN. It rotates after every successful save, so a CACHED edit

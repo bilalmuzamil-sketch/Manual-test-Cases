@@ -1,0 +1,29 @@
+{
+ "checked": 184,
+ "noop": [
+  {
+   "case": "44988",
+   "pass": "main build-verification write (6597)"
+  },
+  {
+   "case": "44990",
+   "pass": "main build-verification write (6597)"
+  }
+ ],
+ "clobbered": [
+  {
+   "case": "44994",
+   "pass": "main build-verification write (6597)",
+   "field": "custom_preconds",
+   "snapshot_before": "<p>1. Your user has the 'Work Order Line - Create and Edit' permission enabled (an administrator sets this on your user role; confirm the exact path on the build).<br>2. In the top menu click \u201cWork Orders\u201d, then open a work order whose status is Complete, Invoiced, Paid, Declined, or Imported and that has at least one part on a line (click its row); open its Lines tab. (Route PROVISIONAL \u2014 confirm on the build.)</p>",
+   "live_before": "<p>1. Your user has the 'Work Order Line - Create and Edit' permission enabled (an administrator sets this on your user role; confirm the exact path on the build).<br>2. In the top menu, click \u201cWork Orders\u201d, then open a work order whose status is Complete, Invoiced, or Paid, and that has at least one part on a line (click its row); open its Lines tab. (Route PROVISIONAL \u2014 confirm on the build.)</p>"
+  },
+  {
+   "case": "44994",
+   "pass": "main build-verification write (6597)",
+   "field": "custom_expected",
+   "snapshot_before": "<p>1. The Edit control is not displayed on part lines when the status is Complete, Invoiced, Paid, Declined, or Imported.</p><p>---<br>This is the expected behaviour as per epic SV-9315 and story SV-9316 (Story 1, Add Part Button on Work Order Lines) and the Inline Add and Edit Parts on Work Order Lines specification version 16, section S1-N2, read on 31 August 2026.</p><p>AUTOMATION: Not available on Build to test Yet - Last checked 8/31/2026</p>",
+   "live_before": "<p>1. The Edit control is not displayed on part lines when the status is Complete, Invoiced, or Paid.</p><p>---<br>This is the expected behaviour as per epic SV-9315 and story SV-9316 (Story 1, Add Part Button on Work Order Lines) and the Inline Add and Edit Parts on Work Order Lines specification version 16, section S1-N2, read on 31 August 2026.</p><p>AUTOMATION: Not available on Build to test Yet - Last checked 8/31/2026</p>"
+  }
+ ]
+}
