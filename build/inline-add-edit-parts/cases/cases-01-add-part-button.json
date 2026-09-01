@@ -183,13 +183,15 @@
     "type": "Functional",
     "permissions_required": "Work Order Line - Create and Edit; Work Order View Mode",
     "preconditions": [
-      "Your user has the 'Work Order Line - Create and Edit' permission enabled (an administrator sets this on your user role; confirm the exact path on the build).",
-      "In the top menu click “Work Orders”, then open a work order that is not editable for some other existing reason (matching today's behaviour); open its Lines tab. (Route PROVISIONAL — confirm on the build.)"
+      "Your user has the 'Work Order Line - Create and Edit' permission enabled.",
+      "In the top menu click “Work Orders”.",
+      "Then look at any line having a status “Complete” (mark it as complete).",
+      "OR move the line to any status that does not allow you to request a part on it."
     ],
     "steps": [
-      "Open that work order and look at the Parts section and existing part lines."
+      "Open that work order and try to find the “Add Part” option for that line."
     ],
-    "expected": "1. The “Add Part” button and the Edit control are not displayed, matching today's behaviour for a non-editable work order.\n\n---\nThis is the expected behaviour as per epic SV-9315 and story SV-9316 (Story 1, Add Part Button on Work Order Lines) and the Inline Add and Edit Parts on Work Order Lines specification version 16, section S1-N4, read on 31 August 2026.\n\nAUTOMATION: Not available on Build to test Yet - Last checked 8/31/2026",
+    "expected": "The “Add Part” button is not displayed.\n\n---\nThis is the expected behaviour as per epic SV-9315 and story SV-9316 (Story 1, Add Part Button on Work Order Lines) and the Inline Add and Edit Parts on Work Order Lines specification version 16, section S1-N4, read on 31 August 2026.\n\nAUTOMATION: READY",
     "design_ref": "Claude Design “Add Part” artifact 561657da (binding visual reference), as exported 2026-08-25.",
     "spec_ref": "requirements.md (Inline Add and Edit Parts spec v16)",
     "refs": "SV-9316 (S1-N4)",
