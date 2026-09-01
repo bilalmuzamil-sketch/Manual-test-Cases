@@ -7,16 +7,12 @@
    "input_inline_part_description",
    "select_inline_part_number",
    "input_inline_part_quantity",
-   "select_inline_part_category",
-   "input_inline_part_cost",
-   "input_inline_part_sell_price",
-   "button_more_options_inline_part",
    "button_save_inline_part",
    "button_cancel_inline_part"
   ],
-  "rowText": "Description Part number Qty Category Uncategorized expand_more $ Cost $ Sell price More options Save close",
-  "pricingOnRow": true,
-  "legend": "Enter save & next row · Tab next field · Esc cancel · ⇧ Enter more options",
+  "rowText": "Description Part number Qty Save Cancel",
+  "pricingOnRow": false,
+  "legend": "Enter save & next row · Tab next field · Esc cancel",
   "values": {
    "desc": "",
    "part": "",
@@ -28,45 +24,253 @@
   "errorFieldIds": [],
   "pulledFrom": null,
   "pageHasPulledFrom": false,
-  "moreOptionsPresent": true
+  "moreOptionsPresent": false
  },
  "TB-typeahead": {
-  "PROBE_ERROR": "Error: page.waitForTimeout: Target page, context or browser has been closed"
+  "onClamp": {
+   "items": [
+    "3.50-3.82\" (89-97mm) SPRING LOADED T-BOLT CLAMP N68SL-356 Inventory Qty: 7 EA PB1 7",
+    "(SS HOSE CLAMP (2-1/16\" - 3-1/16\"), 1/2\" WIDE) 4--PET-40 Inventory Qty: 6 ea ST20 6",
+    "1.57-1.69\" STAINLESS STEEL BAND w/PLATED BOLT MIKALOR CLAMP N75-4043 Inventory Qty: 2 EA PB3 2",
+    "2.17-2.32\" STAINLESS STEEL BAND w/PLATED BOLT MIKALOR CLAMP N75-5559 Inventory Qty: 6 ea PB3 6",
+    "3.58-3.82\" STAINLESS STEEL BAND w/PLATED BOLT MIKALOR CLAMP N75-9197 Inventory Qty: 4 EA PB3 4",
+    "4.25-4.57\" (108-116mm) SPRING LOADED T-BOLT CLAMP N68SL-431 Inventory Qty: 10 EA PB1 10",
+    "HF-10-SS <ALL SS> GEAR CLAMP 0.55\" - 1.06\" (14-27mm) N64-10 Inventory Qty: 5 ea BLUE CART 5",
+    "(SS HOSE CLAMP (1-1/2\" - 2\"), 1/2\" WIDE) 4--PET-24 Inventory Qty: 6 ea ST20 6",
+    "(SS HOSE CLAMP (1-13/16\" - 2-3/4\"), 1/2\" WIDE) 4--PET-36 Inventory Qty: 6 ea ST20 6",
+    "(SS HOSE CLAMP (1-3/4\" - 2-1/4\"), 1/2\" WIDE) 4--PET-28 Inventory Qty: 6 ea ST20 6",
+    "(SS HOSE CLAMP (1-3/8\" - 1-13/16\"), 1/2\" WIDE) 4--PET-20 Inventory Qty: 6 EA ST20 6",
+    "(SS HOSE CLAMP (1\" - 1-1/2\"), 1/2\" WIDE) 4--PET-16 Inventory Qty: 6 ea ST20 6"
+   ],
+   "menuText": "3.50-3.82\" (89-97mm) SPRING LOADED T-BOLT CLAMP N68SL-356 Inventory Qty: 7 EA PB1 7 (SS HOSE CLAMP (2-1/16\" - 3-1/16\"), 1/2\" WIDE) 4--PET-40 Inventory Qty: 6 ea ST20 6 1.57-1.69\" STAINLESS STEEL BAND w/PLATED BOLT MIKALOR CLAMP N75-4043 Inventory Qty: 2 EA PB3 2 2.17-2.32\" STAINLESS STEEL BAND w/PLA"
+  },
+  "onNonsense": {
+   "items": [],
+   "menuText": "No results"
+  },
+  "createOfferedInTechView": false
  },
  "TC-select": {
-  "PROBE_ERROR": "Error: page.waitForTimeout: Target page, context or browser has been closed"
+  "chosen": "3.50-3.82\" (89-97mm) SPRING LOADED T-BOLT CLAMP N68SL-356 Inventory Qty: 7 EA PB1 7",
+  "addRowOpen": true,
+  "editRowOpen": false,
+  "rowIds": [
+   "input_inline_part_description",
+   "select_inline_part_number",
+   "input_inline_part_quantity",
+   "button_save_inline_part",
+   "button_cancel_inline_part"
+  ],
+  "rowText": "Description Part number Qty Save Cancel",
+  "pricingOnRow": false,
+  "legend": "Enter save & next row · Tab next field · Esc cancel",
+  "values": {
+   "desc": "\t3.50-3.82\" (89-97mm) SPRING LOADED T-BOLT CLAMP",
+   "part": "N68SL-356",
+   "qty": ""
+  },
+  "focused": "input_inline_part_quantity",
+  "dialog": null,
+  "toast": [],
+  "errorFieldIds": [],
+  "pulledFrom": "PB1 expand_more",
+  "pageHasPulledFrom": true,
+  "moreOptionsPresent": false
  },
  "TD-validation": {
-  "PROBE_ERROR": "Error: page.waitForTimeout: Target page, context or browser has been closed"
+  "emptyErrors": [
+   "input_inline_part_description"
+  ],
+  "emptyFocus": "input_inline_part_description",
+  "noQtyErrors": [
+   "input_inline_part_quantity"
+  ],
+  "noQtyFocus": "input_inline_part_quantity",
+  "zeroErrors": [
+   "input_inline_part_quantity"
+  ],
+  "afterFixErrors": [],
+  "sentences": {
+   "hasSaveThisPart": false,
+   "hasQtyGreater": false
+  }
  },
  "TE-save": {
-  "PROBE_ERROR": "Error: page.waitForTimeout: Target page, context or browser has been closed"
+  "editBtnsBefore": 10,
+  "toast": [
+   "check_circle Part added Close"
+  ],
+  "freshRowOpen": true,
+  "freshValues": {
+   "desc": "",
+   "part": "",
+   "qty": ""
+  },
+  "focusAfterSave": "input_inline_part_description",
+  "topRows": [
+   "drag_indicator (-) ZZAUTOTEST tv save 1788252688333 edit more_vert 1 Requested",
+   "drag_indicator (N68SL-356) 3.50-3.82\" (89-97mm) SPRING LOADED T-BOLT CLAMP edit more_vert 1 Quoted",
+   "drag_indicator (-) ZZAUTOTEST cat-set 1788250961172 edit more_vert 2 Requested"
+  ]
  },
  "TF-keyboard": {
-  "PROBE_ERROR": "Error: page.waitForTimeout: Target page, context or browser has been closed"
+  "tabSequence": [
+   {
+    "id": "input_inline_part_description",
+    "inRow": true
+   },
+   {
+    "id": "select_inline_part_number",
+    "inRow": true
+   },
+   {
+    "id": "input_inline_part_quantity",
+    "inRow": true
+   },
+   {
+    "id": "button_save_inline_part",
+    "inRow": true
+   },
+   {
+    "id": "button_cancel_inline_part",
+    "inRow": true
+   },
+   {
+    "id": "input_inline_part_description",
+    "inRow": true
+   },
+   {
+    "id": "select_inline_part_number",
+    "inRow": true
+   },
+   {
+    "id": "input_inline_part_quantity",
+    "inRow": true
+   }
+  ],
+  "everLeftRow": false,
+  "afterEnter": {
+   "rowOpen": true,
+   "toast": [
+    "check_circle Part added Close"
+   ],
+   "values": {
+    "desc": "",
+    "part": "",
+    "qty": ""
+   }
+  },
+  "afterShiftEnter": {
+   "dialog": null,
+   "rowOpen": true
+  }
  },
  "TG-close": {
-  "PROBE_ERROR": "Error: page.waitForTimeout: Target page, context or browser has been closed"
+  "emptyEscape": {
+   "rowOpen": false,
+   "dialog": null
+  },
+  "populatedX": {
+   "rowOpen": true,
+   "dialog": {
+    "text": "Discard this part? close The details you entered will be lost. Keep Editing Discard Part",
+    "buttons": [
+     "close",
+     "Keep Editing",
+     "Discard Part"
+    ]
+   }
+  }
  },
  "TH-click-outside": {
-  "PROBE_ERROR": "Error: page.waitForTimeout: Target page, context or browser has been closed"
+  "rowOpen": true,
+  "values": {
+   "desc": "ZZAUTOTEST tv outside",
+   "part": "",
+   "qty": "3"
+  },
+  "dialog": null
  },
  "TI-edit-row": {
-  "PROBE_ERROR": "Error: page.waitForTimeout: Target page, context or browser has been closed"
+  "open": true,
+  "addRowOpen": false,
+  "editRowOpen": true,
+  "rowIds": [
+   "input_inline_part_description",
+   "select_inline_part_number",
+   "input_inline_part_quantity",
+   "button_save_inline_part",
+   "button_cancel_inline_part"
+  ],
+  "rowText": "Description Part number Qty Save Cancel",
+  "pricingOnRow": false,
+  "legend": "Enter save · Tab next field · Esc cancel",
+  "values": {
+   "desc": "ZZAUTOTEST tv enter 1788252727613",
+   "part": "",
+   "qty": "1"
+  },
+  "focused": "input_inline_part_description",
+  "dialog": null,
+  "toast": [],
+  "errorFieldIds": [],
+  "pulledFrom": null,
+  "pageHasPulledFrom": false,
+  "moreOptionsPresent": false
  },
  "TJ-edit-save": {
-  "PROBE_ERROR": "Error: page.waitForTimeout: Target page, context or browser has been closed"
+  "valuesBefore": {
+   "desc": "ZZAUTOTEST tv enter 1788252727613",
+   "part": "",
+   "qty": "1"
+  },
+  "newDesc": "ZZAUTOTEST tv edited 1788252828390",
+  "toast": [],
+  "editRowStillOpen": false,
+  "newAddRowOpened": false,
+  "updatedInPlace": true,
+  "rows": [
+   "drag_indicator (-) ZZAUTOTEST tv edited 1788252828390 edit more_vert 1 Requested",
+   "drag_indicator (-) ZZAUTOTEST tv save 1788252688333 edit more_vert 1 Requested",
+   "drag_indicator (N68SL-356) 3.50-3.82\" (89-97mm) SPRING LOADED T-BOLT CLAMP edit more_vert 1 Quoted"
+  ]
  },
  "TK-edit-guard": {
-  "PROBE_ERROR": "Error: page.waitForTimeout: Target page, context or browser has been closed"
+  "originalValues": {
+   "desc": "ZZAUTOTEST tv edited 1788252828390",
+   "part": "",
+   "qty": "1"
+  },
+  "changedThenEscape": {
+   "dialog": {
+    "text": "Discard these changes? close The changes you made will be lost. Keep Editing Discard Part",
+    "buttons": [
+     "close",
+     "Keep Editing",
+     "Discard Part"
+    ]
+   },
+   "rowOpen": true
+  },
+  "discardClicked": true,
+  "unchangedThenEscape": {
+   "dialog": null,
+   "rowOpen": false
+  }
  },
  "TL-edit-relink": {
-  "PROBE_ERROR": "Error: page.waitForTimeout: Target page, context or browser has been closed"
- },
- "TM-edit-clear-desc": {
-  "PROBE_ERROR": "Error: page.waitForTimeout: Target page, context or browser has been closed"
- },
- "TN-bins": {
-  "PROBE_ERROR": "Error: page.waitForTimeout: Target page, context or browser has been closed"
+  "before": {
+   "desc": "ZZAUTOTEST tv edited 1788252828390",
+   "part": "",
+   "qty": "1"
+  },
+  "chosen": "3.50-3.82\" (89-97mm) SPRING LOADED T-BOLT CLAMP N68SL-356 Inventory Qty: 7 EA PB1 7",
+  "after": {
+   "desc": "\t3.50-3.82\" (89-97mm) SPRING LOADED T-BOLT CLAMP",
+   "part": "N68SL-356",
+   "qty": "1"
+  },
+  "focusAfter": "input_inline_part_quantity",
+  "chip": "PB1 expand_more"
  }
 }

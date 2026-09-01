@@ -58,6 +58,26 @@ export async function apiPost(path, payload) {
   return { status: r.status, body };
 }
 
+// apiPost with an explicit method, so PUT/DELETE routes (e.g. PUT /api/roles/{id}) are reachable
+// without a second client. Session rotation is handled exactly as in apiPost.
+export async function apiCall(method, path, payload) {
+  const r = await fetch(API + path, {
+    method,
+    headers: { Cookie: SESS, 'Content-Type': 'application/json', Accept: 'application/json' },
+    body: payload === undefined ? undefined : JSON.stringify(payload ?? {}),
+  });
+  let body = null; try { body = await r.json(); } catch (_) {}
+  const sc = r.headers.getSetCookie ? r.headers.getSetCookie() : [];
+  for (const c of sc) {
+    const m = /^PHPSESSID=([^;]+)/.exec(c);
+    if (m) {
+      SESS = SESS.replace(/PHPSESSID=[^;]*/, `PHPSESSID=${m[1]}`);
+      try { fs.writeFileSync('/tmp/qa-cookies/sv9315-live-session.txt', SESS, { mode: 0o600 }); } catch (_) {}
+    }
+  }
+  return { status: r.status, body };
+}
+
 export async function quickLogin(key = 'admin') {
   const r = await apiPost('/api/quick-login', { key });
   if (r.status !== 200) return { ok: false, status: r.status, body: r.body };
