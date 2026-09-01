@@ -138,3 +138,8 @@
 
 ## TestRail run (2026-08-25)
 - **Full-suite run R418** — all 96 cases — https://shopview.testrail.io/index.php?/runs/view/418. C-IDs backfilled into testrail-id-map.csv. New cases: append via `build/testing-tools/sync_runs.py --apply` (union-only, Rule 34).
+
+## Status — 2026-09-01 (source currency re-confirmed; QA lead cleared 6597 to this session)
+- QA lead directed the other (build-verify) session NOT to touch 6597/6617 so this session owns them.
+- **Source re-checked LIVE 2026-09-01: Confluence 782761986 is still v16** — unchanged since the 2026-08-31 v13→v16 source verification. **Source verification remains CURRENT; no new case changes warranted.**
+- Remaining, not source work: (a) 3? no — the 2 Automated cases C45005/C45026 await Vlad for the layman-route enrichment (Rule 71); (b) build verification is blocked (Rule 85, no QA build) — routes stay PROVISIONAL until a build confirms exact labels.
