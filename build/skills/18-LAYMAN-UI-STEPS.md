@@ -36,10 +36,10 @@
 > *"make sure that all the tests which you have build verified have got the Steps or reproduction and
 > preconditions which a lay many and a manual tester can easily follow from the UI"*
 > *"steps of reproduction/preconditions should be from the UI preferably so that the Manual QA tester
-> Victoria can easily follow the steps of replication and set the preconditions from the UI. Those
+> Viktoria can easily follow the steps of replication and set the preconditions from the UI. Those
 > steps of replication and preconditions should be super easier for a lay man to follow"*
 
-Named testers so far: **Victoria** (new suites, sv9315) · **Mudassir Qamar** (Invoice UI Refresh).
+Named testers, assigned PER SUITE (QA lead, 2026-09-01): **Mudassir Qamar** — Invoice UI Refresh · **Viktoria Videnovic** — Inline Add and Edit Parts (6597) and Printer Friendly WO (6617), on sv9315. The spelling is **Viktoria**; older notes have "Victoria".
 
 ## 🛑 SCOPE — UNIVERSAL (QA lead, 2026-08-31, reaffirmed)
 **This applies to EVERY case in EVERY suite — not only build-verified ones.** No case may ship with a

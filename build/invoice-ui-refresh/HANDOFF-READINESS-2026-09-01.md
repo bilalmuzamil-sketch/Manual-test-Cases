@@ -1,6 +1,6 @@
 # Invoice UI Refresh — handoff readiness statement
 
-**For:** Bilal Muzamil (QA lead) · **Date:** 1 September 2026 · **Suite:** 119 cases
+**For:** Bilal Muzamil (QA lead) · **Manual QA tester for this suite:** Mudassir Qamar · **Date:** 1 September 2026 · **Suite:** 119 cases
 **Build:** sv8218 `v26.35.5-8c3cc21` · **Spec:** Confluence v45
 
 You asked me to confirm five things before we move to sv9315. Taking them one at a time, with the
@@ -9,6 +9,10 @@ qualifications stated rather than buried.
 ---
 
 ## 1. Is it ready to hand to the manual QA tester?
+
+> **Correction, 2026-09-01.** An earlier draft of this statement named Viktoria as this suite's
+> tester. That was wrong: **Invoice UI Refresh belongs to Mudassir Qamar**; Viktoria Videnovic owns
+> Inline Add and Edit Parts (6597) and Printer Friendly WO (6617).
 
 **Yes, with one thing you should decide first** (item 5 below).
 
@@ -81,7 +85,7 @@ and the tester-facing *"could not be build-verified because the feature was not 
 removed from each, because it was not true. Requirement text and provenance are untouched.
 
 **Why HOLD and not the Rule 69 not-built marker:** Rule 69 is for a feature that is absent from the
-build. This feature is present; only the test data route is unresolved. Telling Viktoria the feature
+build. This feature is present; only the test data route is unresolved. Telling Mudassir the feature
 is missing would have been a lie, and it would have sent her looking for something that is there.
 Being a HOLD, both are excluded from the ready-to-automate arithmetic, which is also correct — they
 are not ready to automate until the PO answers.
@@ -118,7 +122,7 @@ Yes, in four places:
 
 ## OUTSTANDING
 
-1. **Nothing blocking. The suite is ready to hand to Viktoria.**
+1. **Nothing blocking. The suite is ready to hand to Mudassir Qamar.**
 2. **Reminder deferred at your instruction** — to be raised only after Inline Add and Edit Parts
    (6597) and Printer Friendly WO (6617) are done: the snapshot-500 defect is prepared and **not filed**
    (`build-verify-2026-08-31/DEFECT-CANDIDATE-snapshot-500.md`), and three PO questions are parked —

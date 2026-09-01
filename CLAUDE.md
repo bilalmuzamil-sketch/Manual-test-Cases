@@ -147,10 +147,11 @@ These are stated here **in full** because a session that gets only this far must
   source-verify it, keep it tester-ready, update it.** The QA lead names who the tester is per project;
   once named, that person's cases on that project are ours to maintain. **Recorded testers:** Invoice UI
   Refresh → **Mudassir Qamar** (TestRail user 6, mudassir.qamar@shopview.com), confirmed 2026-08-31.
-  **MANUAL QA TESTER: VIKTORIA — spelled that way by the QA lead on 2026-09-01** (*"Viktoria is the Manual
-  Qa tester"*); earlier notes spell it "Victoria". **Use Viktoria.** He named her when asked who owns the
-  next two suites (**Inline Add and Edit Parts 6597**, **Printer Friendly WO 6617**), so treat her as the
-  manual QA owner for those unless he says otherwise.
+  **THE TWO MANUAL QA TESTERS ARE ASSIGNED PER SUITE — do not merge them (QA lead, 2026-09-01,
+  verbatim: _"invoice refresh os for the manual QA tester Mudassir. 6597/6617 is for Viktoria."_):**
+  **Invoice UI Refresh → Mudassir Qamar** (TestRail user 6) · **Inline Add and Edit Parts (6597) and
+  Printer Friendly WO (6617) → Viktoria Videnovic** (TestRail user 4). **Spelling is "Viktoria"**, not
+  "Victoria" — older notes have it wrong. A handover names the tester who actually owns that suite.
   (Still respect Rule 71: never change a case flagged **Automated** without the QA lead — even a tester's.)
 
 ---

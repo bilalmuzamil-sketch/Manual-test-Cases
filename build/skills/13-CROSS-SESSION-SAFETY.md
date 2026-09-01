@@ -437,8 +437,8 @@ design-derived ones**, three of them materially wrong. Nobody noticed until a li
 
 | Suite / group | Owner | Since | Status |
 |---|---|---|---|
-| **Invoice UI Refresh** (TestRail sections under *Invoice Refresh (Aug 2026)*), branch **sv8218** | **this build-verification session** | 2026-09-01 | the other session was stopped from changing it by the QA lead |
-| **Inline Add and Edit Parts (6597)** and **Printer Friendly WO (6617)**, branch **sv9315** | **the other session** — source verification in progress | 2026-09-01 | 🛑 **DO NOT TOUCH.** QA lead: *"dont touch them, I will let you know when yiu can proceed with Build verification on them."* |
+| **Invoice UI Refresh** (sections under *Invoice Refresh (Aug 2026)*), branch **sv8218** — manual QA tester **Mudassir Qamar** | **this build-verification session** | 2026-09-01 | the other session was stopped from changing it by the QA lead |
+| **Inline Add and Edit Parts (6597)** and **Printer Friendly WO (6617)**, branch **sv9315** — manual QA tester **Viktoria Videnovic** | **the other session** — source verification in progress | 2026-09-01 | 🛑 **DO NOT TOUCH.** QA lead: *"dont touch them, I will let you know when yiu can proceed with Build verification on them."* |
 
 **Having the credentials for a branch is not permission to work on it.** The sv9315 cookies and the
 corrected `sv_sso_session` name are recorded because they were hard to find, not because the lane is
