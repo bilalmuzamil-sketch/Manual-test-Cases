@@ -60,6 +60,16 @@ case's route has two states:
    build's own on-screen labels, confirms every screen/menu/control is really there and the setup state
    is reachable, and stamps `AUTOMATION: READY` + the build marker. The provisional route is superseded.
 
+**HANDOFF GATE (learned 2026-09-01):** before a build-verification session is asked to take a suite,
+CERTIFY it source-side first — drive `check_runnable_cases.py` to **NOT RUNNABLE = 0 for every
+non-Automated case** (Automated/foreign holds are the only allowed exceptions, Rule 71/38), confirm all
+cases render `fr-view`, and confirm coverage is complete. This hands the build-verify session a clean
+baseline so it spends its build access confirming exact labels, not fixing spec-level basics. **Do NOT
+skip build verification on the strength of this certification** — the routes are still PROVISIONAL until
+a build confirms them; a junior tester on unconfirmed labels is the failure this prevents. And build
+verification needs a QA build to EXIST for the feature — a Rule-85 (no-build) suite cannot be
+build-verified yet, only certified runnable-on-paper.
+
 ## 🛑 COORDINATION — CHECK FOR A BUILD AND AN ACTIVE BUILD-VERIFY SESSION BEFORE ANY RUNNABILITY PASS (learned the hard way, 2026-08-31)
 Before launching a runnability pass on a suite, VERIFY LIVE (Rule 86 — never trust a PROJECT-STATE line):
 - **Does a QA build exist now?** A `PROJECT-STATE.md` "QA env: none → Rule 85" line CAN BE STALE — another
