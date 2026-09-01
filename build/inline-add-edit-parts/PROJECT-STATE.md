@@ -41,6 +41,39 @@ that reason **inside the case**, at the end of Expected Results (skill 04 §4). 
 `build/handoff-2026-09-01/check_self_explains.py`.
 
 
+
+### 🆕 2026-09-01 (LAST) — C44996 REPLACED BY FOUR CASES FROM THE QA LEAD; SUITE IS NOW 122
+
+He deleted **C44996** and added **C45250, C45251, C45252, C45253** in section 6755. `get_case/44996`
+answers HTTP 400. The FAIL this pass had recorded against C44996 was taken on a part-**free** line,
+which is not the state his replacement describes — so it is not carried over, and the verdicts file
+says so where the entry used to be.
+
+| Case | Verdict | What settled it |
+|---|---|---|
+| **C45252** | **FAIL** | Entering the Cost does not fill or recalculate the Sell price. Instrumented properly after a first run measured its own instrumentation: assigning `.value` is not reliably seen by the component that derives the sell price, so the cost is TYPED with real key events. Positive control: picking a stocked part fills cost 53.52 / sell 86.32, so the row does populate prices. Typing 10.00, 100.00, 200.00 left it at 86.32 every time; on a priceless catalogue part it stayed 0.00. **22 pricing matrices are configured** (Settings → Pricing), one marked Default |
+| **C45253** | **FAIL** | Changing the Category does not move the Sell price. The category is an `<input>`, so its value reads from `.value` — the first run read `innerText`, got `""` five times, and would have called a working control broken. With the row label demonstrably moving Uncategorized → AUTO-Brakes → 70%Override → AUTO-Batteries, the sell price stayed 86.32 |
+| **C45250** | **NOT VERIFIED** | His route is the right one and that is exactly where it stops. A line will not complete while a part on it is unfulfilled — *"Line can`t be completed with unfulfilled part requests."* Authorising the line moves the part from `quoted` to **`in_stock`**, still not fulfilled, and the part row's context menu offers only "Move" and "Add Part Fee / Discount", so the pick happens in the Parts area. Not claimed as a verdict |
+| **C45251** | **NOT VERIFIED** | Same blocker, plus a special-order part taken through Order → Receive |
+
+**HIS WORDING WAS NOT TOUCHED — that is the C44996 lesson applied.** Three additive changes only:
+the **marker literal** (`AUTOMATION: Ready` → `AUTOMATION: READY` — every census, gate and arithmetic
+check in this repo matches on that exact string, so as written the four read as having no marker and
+the suite's gate would not have closed), the **build sentence** on the two that were observed, and a
+**tester note**. His preconditions, steps, expected text and his own *"Source: Manually added"* line
+are carried through verbatim; the writer now asserts that source line survives instead of reshaping it
+into our standard sentence.
+
+**Two parser traps worth keeping.** His cases use `<ol><li>`, not `<p>` — a `<p>`-only parser silently
+dropped the whole expectation on the first attempt. And the workbook generator read case titles from a
+saved `cases-*.json` snapshot, which died on a `KeyError` the moment a case was added; it now reads
+titles from the live census.
+
+**Suite totals: 122 cases** — 112 PASS · 4 FAIL (C45060, C45068, C45252, C45253) · 2 PARTIAL (C44993,
+C44994) · 3 NOT VERIFIED (C45034, C45250, C45251) · 1 FOREIGN (C45220). Run 418 re-synced,
+**122 tests, set-equal in both directions, 0 results recorded.** Arithmetic gate: READY 121 + 0 = 121,
+121 − 0 HOLD = 121 → closes.
+
 ### 🆕 Later on 2026-09-01 — FOUR MORE CASES SETTLED BY SEEDING THE DATA STATE, AND TWO NEW DEVIATIONS
 
 QA lead, verbatim: *"You are never supposed to create defect, you are supposed to make the tests

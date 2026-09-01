@@ -375,3 +375,29 @@ build marker is captured by the same preflight) · 50 (verify exhaustively and e
 creation hold) · 68 (a blocker blocks only what it actually blocks) · 76 (do not spend spawns
 retry-looping) · 82 (the real secret-scan gate) · 83 (lane write locks — do not steal a shared login) ·
 **89 (this skill is that rule's operator form)** · 90 (report the quota spend).
+
+## 🆕 THE BRIDGE PORT GOES STALE ON A CONTAINER RESTART, AND IT LOOKS LIKE DEAD CREDENTIALS (2026-09-01)
+
+**Symptom, in the order you meet it.** Playwright answers
+`page.fill: Timeout 60000ms exceeded — waiting for locator('#name')` on the TestRail login page, or
+`page.goto: net::ERR_CONNECTION_RESET`. Nothing is wrong with the credentials, the site or the account.
+
+**Cause.** `/tmp/atlassian/bridge-port.txt` still holds the port from before the restart, and the MITM
+bridge that was listening there is gone. Worse, `$HTTPS_PROXY` has ALSO moved, so the bridge's own
+egress target is stale even if you restart it by hand — and pointing the file straight at
+`$HTTPS_PROXY`'s port does not work either: the browser needs the bridge, not the raw agent proxy, and
+you get `ERR_CONNECTION_RESET`.
+
+**Fix, and it is one line, already in the repo:**
+
+```
+bash build/testing-tools/ensure_bridge.sh
+```
+
+It detects the stale egress (`bridge: STALE egress — logged 'http://127.0.0.1:42811' but HTTPS_PROXY is
+'http://127.0.0.1:44607'`), restarts the bridge against the current proxy, and rewrites
+`bridge-port.txt`. **Run it after ANY container restart, before the first Playwright call** — every UI
+writer and the served-page scanner read that file at startup.
+
+**Do not** edit `bridge-port.txt` by hand, and do not conclude the session's credentials died: a
+Playwright timeout on a login form is a fact about the transport, not about the account (Rule 68).

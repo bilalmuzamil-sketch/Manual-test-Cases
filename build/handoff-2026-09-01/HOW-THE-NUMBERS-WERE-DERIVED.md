@@ -15,21 +15,21 @@ per-case verdict files and the tester's own run.
 
 | Marker found in the case | Cases |
 |---|---|
-| `AUTOMATION: READY` | 118 |
+| `AUTOMATION: READY` | 121 |
 | `NO MARKER` | 1 |
-| **suite total** | **119** |
+| **suite total** | **122** |
 
 ### The arithmetic gate, shown BOTH ways
 
 A gate shown one way is not a gate. Over the cases this pass actually wrote:
 
 ```
-READY 118  +  EXPECT-FAIL 0   =  118
-total 118  -  HOLD 0            =  118
+READY 121  +  EXPECT-FAIL 0   =  121
+total 121  -  HOLD 0            =  121
                                        -> CLOSES
 ```
 
-**Excluded from the gate, and why:** C45220: foreign — written by Vladimir Tomovic (Rule 38). Counting a case this pass was not permitted to write would fail the gate for a reason that has nothing to do with the markers, so the exclusion is named rather than hidden. Suite total including it: 119.
+**Excluded from the gate, and why:** C45220: foreign — written by Vladimir Tomovic (Rule 38). Counting a case this pass was not permitted to write would fail the gate for a reason that has nothing to do with the markers, so the exclusion is named rather than hidden. Suite total including it: 122.
 
 ### Foreign cases, named with their author
 
@@ -47,13 +47,13 @@ total 118  -  HOLD 0            =  118
 
 ### The run, and the set-equality proof
 
-- Run **418** holds **119** tests; the area holds **119** cases.
+- Run **418** holds **122** tests; the area holds **122** cases.
 - Set-equal in **both** directions: `True`. Cases missing from the run: `none`. Tests in the run with no case: `none`.
 - Results already recorded against any test in it: **0**. So no held case is sitting on a Passed result from an earlier pass, and every result the tester records will be the first.
 
 ### Runnability, run live against TestRail
 
-`check_runnable_cases.py` read all 119 cases from the live API: **118 runnable, 1 not**.
+`check_runnable_cases.py` read all 122 cases from the live API: **121 runnable, 1 not**.
 - **C45220** fails it, and is one we are not permitted to rewrite (foreign). It is on the outstanding list, not quietly excluded.
 
 ### Where the verdicts came from
@@ -61,11 +61,11 @@ total 118  -  HOLD 0            =  118
 | Verdict | Cases | What it means |
 |---|---|---|
 | PASS | 112 | observed on the build, behaving as the document requires |
-| FAIL | 3 | observed on the build, NOT behaving as the document requires |
+| FAIL | 4 | observed on the build, NOT behaving as the document requires |
+| NOTVER | 3 | not observed — the data state or account it needs does not exist here |
 | PARTIAL | 2 | part of the case was observed; the rest needs data this system does not have |
 | FOREIGN | 1 | someone else's case, deliberately untouched |
-| NOTVER | 1 | not observed — the data state or account it needs does not exist here |
-| **total** | **119** | |
+| **total** | **122** | |
 
 ---
 
@@ -128,7 +128,7 @@ total 43  -  HOLD 5            =  38
 
 ## The can-the-tester-read-it gate
 
-The served page — not the stored value — was fetched for all **2** cases written by this pass, on a logged-in browser session, and the container class of each text field was read. **Fields in an escaping container: 0.**
+The served page — not the stored value — was fetched for all **164** cases written by this pass, on a logged-in browser session, and the container class of each text field was read. **Fields in an escaping container: 0.**
 
 Every field is served in the rendering container, so what the tester opens shows formatted text and not raw tags. This is checked on the served page because the stored value cannot tell you the difference — a case can be stored perfectly and still display every tag.
 
@@ -137,11 +137,11 @@ Every field is served in the rendering container, so what the tester opens shows
 | Gate | What it proves | Result | Re-run it with |
 |---|---|---|---|
 | Marker census + arithmetic gate | the marker counts balance both ways over the cases in scope | CLOSES on both suites | `python3 build/handoff-2026-09-01/census.py` |
-| Runnability | a person can follow every case from the screen; read LIVE from TestRail, not from a saved copy | Inline Add and Edit Parts: 118/119 · Printer Friendly Work Orders: 43/44 — the shortfalls are the two cases we are not permitted to rewrite | `python3 build/testing-tools/check_runnable_cases.py --cases <ids>` |
-| Served-page render | what the tester actually SEES is formatted text, not raw tags — checked on the served page because the stored value cannot tell you | 2 cases, 0 escaping | `node build/inline-add-edit-parts/build-verify-2026-09-01/tools/served_page_scan.mjs` |
+| Runnability | a person can follow every case from the screen; read LIVE from TestRail, not from a saved copy | Inline Add and Edit Parts: 121/122 · Printer Friendly Work Orders: 43/44 — the shortfalls are the two cases we are not permitted to rewrite | `python3 build/testing-tools/check_runnable_cases.py --cases <ids>` |
+| Served-page render | what the tester actually SEES is formatted text, not raw tags — checked on the served page because the stored value cannot tell you | 164 cases, 0 escaping | `node build/inline-add-edit-parts/build-verify-2026-09-01/tools/served_page_scan.mjs` |
 | Marker / provenance / formatting | one marker, last in Expected Results; provenance present; no barred phrase; no styling tag; no empty field; no contradiction candidates | ALL CLEAR | `python3 build/handoff-2026-09-01/handover_gates.py` |
 | Self-explaining held cases | every case the brief does not send the tester through end to end carries that reason in its OWN words, so a tester working straight from the run is still told | ALL CLEAR — 14 of 14, with C45220 named and excluded | `python3 build/handoff-2026-09-01/check_self_explains.py` |
-| Run sync | the run holds exactly our cases, in both directions, with no result pre-recorded | run 418: 119 tests, set-equal True, 0 results · run 419: 44 tests, set-equal True, 0 results | `census.py` prints it |
+| Run sync | the run holds exactly our cases, in both directions, with no result pre-recorded | run 418: 122 tests, set-equal True, 0 results · run 419: 44 tests, set-equal True, 0 results | `census.py` prints it |
 
 **One correction worth recording, because it nearly went out as a finding.** The formatting gate's
 first version flagged 350 "inline tags" and 124 "entities" across the 161 cases. That was wrong.

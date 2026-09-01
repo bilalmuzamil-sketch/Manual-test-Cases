@@ -18,11 +18,24 @@ BUILD = 'v26.35.6-598cc8a'
 BADGE = f'GREEN - checked 1 Sep 2026 on build {BUILD} (0 days old)'
 link = lambda i: f'https://shopview.testrail.io/index.php?/cases/view/{i}'
 
+# 🛑 TITLES COME FROM THE LIVE CENSUS, NOT FROM A SAVED cases-*.json. The saved file is a snapshot and
+# it goes stale the moment a case is added or deleted - the QA lead deleted C44996 and added
+# C45250-C45253 on 2026-09-01 and this script died on a KeyError. census.json is regenerated from
+# TestRail every run, so it is the only list that cannot drift.
+_CENSUS = json.load(open('/tmp/handoff/census.json'))
+_LIVE_TITLES = {int(cid): meta['title']
+                for suite in _CENSUS.values() for cid, meta in suite['per_case'].items()}
+
 def load(path, cases_json):
     sys.path.insert(0, path)
     import importlib, verdicts
     importlib.reload(verdicts)
-    cases = {c['id']: c for c in json.load(open(cases_json))}
+    cases = {}
+    if os.path.exists(cases_json):
+        cases = {c['id']: c for c in json.load(open(cases_json))}
+    for cid, title in _LIVE_TITLES.items():
+        cases.setdefault(cid, {})['title'] = title      # live title always wins
+        cases[cid]['title'] = title
     v = dict(verdicts.V)
     sys.path.remove(path)
     del sys.modules['verdicts']
@@ -53,10 +66,26 @@ NEXT = {
  44994: 'Same as the case above, for the pencil (Edit) control instead of the Add Part button. Note: '
         'this case had been narrowed by hand to three statuses and my write pass reverted it; that is '
         'repaired, and the case you open now says three.',
- 44996: 'RUN IT AND EXPECT IT TO FAIL. Pick a line with NO parts on it, click Approve, then mark it '
-        'Complete from the same row (going straight to Complete is refused, and a line that has parts '
-        'cannot be completed at all). With the badge reading "Complete", look at that line\'s Parts '
-        'section: the "+ Add Part" button is still there, and it should not be. Mark the case FAILED.',
+ # C44996 was DELETED by the QA lead on 2026-09-01 and replaced by C45250-C45253.
+ 45250: 'ONE STEP NEEDS MORE THAN IT SAYS. The line will not go to Complete while a part on it is '
+        'unfulfilled - the app refuses with "Line can\'t be completed with unfulfilled part requests." '
+        'Approving the line moves the part to "In stock", which is still not enough: it has to be '
+        'PICKED, and the part row\'s own menu only offers "Move" and "Add Part Fee / Discount", so the '
+        'pick happens in the Parts area. Pick it, then set the line to Complete, then check the Parts '
+        'section. If you cannot pick it, mark the case Blocked and say so.',
+ 45251: 'SAME BLOCKER as the case above - the part must be PICKED, not just "In stock" - and this one '
+        'also needs a special-order part taken through Order then Receive. Do both first, then check '
+        'each field. If you cannot get the line to Complete, mark it Blocked and say which step '
+        'stopped you.',
+ 45252: 'RUN IT AND EXPECT IT TO FAIL. Add a part to a line, enter a Quantity, then enter a Cost. The '
+        'Sell price should fill in from the pricing matrix; it does not move at all. Checked on a '
+        'stocked part (cost typed up to 200.00, sell stuck at 86.32) and on a part with no price '
+        '(stayed 0.00), and 22 pricing matrices are configured, so there is a matrix to apply. Mark '
+        'the case FAILED.',
+ 45253: 'RUN IT AND EXPECT IT TO FAIL. With the add row filled in but not saved, change the Category '
+        'through a few different ones. The Sell price should change with it; it does not. Tried '
+        'Uncategorized, AUTO-Brakes, 70%Override and AUTO-Batteries - the category on the row changed '
+        'every time, the sell price never did. Mark the case FAILED.',
  45034: 'THIS ONE REALLY DOES NEED A SECOND PERSON. Ask a colleague to change or delete the same part '
         'while your edit row is open, then press Save. If you cannot arrange that, leave it Untested '
         'and tell the QA lead - do not guess. We tried it from a second connection rather than a '

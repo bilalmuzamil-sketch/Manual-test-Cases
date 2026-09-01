@@ -57,14 +57,20 @@ WHY = {  # the thing each un-runnable case is actually waiting on - used to GROU
  45116: 'a product-owner ruling — the app forbids the state',
  45034: 'a second person working at the same time',
  45220: 'nothing — it is not ours to touch',
- 44996: 'nothing — RUN IT, it is a known problem',
+ 45252: 'nothing — RUN IT, it is a known problem',
+ 45253: 'nothing — RUN IT, it is a known problem',
+ 45250: 'a part that has been PICKED, not just in stock',
+ 45251: 'a picked part and a received special-order part',
  45060: 'nothing — RUN IT, it is a known problem',
  45068: 'nothing — RUN IT, it is a known problem',
 }
 PLAIN = {  # "what it is, in plain words" - never the raw case title, which carries jargon
  44993: 'Checks the Add Part button is hidden on work orders that can no longer be changed',
  44994: 'Checks the pencil (Edit) control is hidden on work orders that can no longer be changed',
- 44996: 'Checks Add Part is hidden once a line is finished',
+ 45250: 'Checks Add Part is gone once a line is finished',
+ 45251: 'Checks which part fields you can still change on a finished line',
+ 45252: 'Checks the Sell price fills in from the Cost',
+ 45253: 'Checks the Sell price changes when you change the Category',
  45034: 'Checks what you are told when someone else changes the same part while you are editing it',
  45060: 'Checks the cost and price boxes when the chosen part has no cost or price recorded',
  45068: 'Checks you are asked before your unsaved part is thrown away',
@@ -230,7 +236,7 @@ for d in data:
               f"{NEXT.get(cid, 'ASK THE QA LEAD - no instruction has been written for this one.')} |")
         w('')
     # cases that run end to end but carry an instruction
-    extra = [cid for cid in (44996, 45060, 45068, 45090, 45111, 45123, 45239) if cid in d['V']
+    extra = [cid for cid in (45060, 45068, 45090, 45111, 45123, 45239, 45252, 45253) if cid in d['V']
              and cid not in d['dont_run'] and cid not in d['part_only']]
     if extra:
         w('### Run these, but read the note first')
