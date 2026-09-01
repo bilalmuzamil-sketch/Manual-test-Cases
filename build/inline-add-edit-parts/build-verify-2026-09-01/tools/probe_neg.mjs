@@ -11,7 +11,7 @@
 //  * S2-E3 / S3-E2 / S4-E3 — the work order stops being editable WHILE the row is open.
 //  * S2-EH1 / S4-EH1 — any other save failure: the save request is aborted at the network layer.
 //  * S3-E1 — the part is changed by someone else while the edit row is open.
-import { boot, APP, apiGet, apiPost } from './boot9315.mjs';
+import { boot, APP, apiGet, apiPost, apiCall } from './boot9315.mjs';
 import fs from 'fs';
 const OUT = 'build/inline-add-edit-parts/build-verify-2026-09-01';
 const ONLY = (process.env.ONLY || '').split(',').filter(Boolean);
@@ -78,35 +78,57 @@ P['N1-paid-work-order'] = async () => {
 
 // ---- N3: a role WITHOUT 'Work Order Line - Create and Edit' ----
 P['N3-no-permission'] = async () => {
+  // The first attempt tried to CREATE a throwaway role; POST /api/roles wants `organization` and
+  // `cross_toggles` as well, which are not worth guessing. Editing the Technician role in place and
+  // putting it back is the recorded pattern (Rule 26, and the QA lead's standing instruction that
+  // role swaps go on the Technician quick-login user and never on the Admin).
+  //
+  // 🛑 SAFETY: the original role body is written to /tmp/inl6597/ROLE-RESTORE.json BEFORE the edit,
+  // and the restore runs in a finally block, so a crash mid-probe still leaves the exact list on
+  // disk to put back by hand.
   const before = await apiGet(`/api/roles/${TECH_ROLE}`);
-  const perms = (before.body?.data?.fe_permissions || []).map(p => p.code || p.name);
-  // build a throwaway role from the Technician role minus workOrderLinesCreateAndEdit
-  const src = before.body?.data || {};
+  if (before.status !== 200) return { readRoleFailed: before.status };
+  const src = before.body.data;
+  const codes = (src.fe_permissions || []).map(p => p.code || p.name);
+  fs.mkdirSync('/tmp/inl6597', { recursive: true });
+  fs.writeFileSync('/tmp/inl6597/ROLE-RESTORE.json', JSON.stringify(src, null, 1));
   const keep = (src.fe_permissions || []).filter(p => (p.code || p.name) !== 'workOrderLinesCreateAndEdit');
-  const created = await apiPost('/api/roles', {
-    name: 'ZZAUTOTEST no create-edit', description: 'throwaway, 6597 build verification',
-    view_mode: 'tech', fe_permissions: keep.map(p => p.id), template_id: src.template_id,
-  });
-  let assigned = null, observed = null, restored = null, newRole = created.body?.data?.id;
-  if (created.status === 200 || created.status === 201) {
-    assigned = await apiPost(`/api/users/${TECH}/role`, { role_id: newRole });
-    if (assigned.status >= 400) assigned = await apiPost(`/api/staff/${TECH}`, { role_id: newRole });
-    await apiPost('/api/exit-switch-user', {}).catch(() => {});
-    const sw = await apiPost('/api/switch-user', { user_id: TECH });
-    if (sw.status < 400) {
-      await page.reload({ waitUntil: 'domcontentloaded' }).catch(() => {});
-      observed = await goLines(WO);
-      await page.screenshot({ path: `${OUT}/evidence/neg-no-permission.png`, fullPage: true });
+  const payload = { name: src.name, description: src.description, view_mode: src.view_mode,
+                    cross_toggles: src.cross_toggles, template_id: src.template_id };
+
+  let stripped = null, observed = null, restored = null, verify = null;
+  try {
+    stripped = await apiCall('PUT', '/api/roles/' + TECH_ROLE, { ...payload, fe_permissions: keep.map(p => p.id) });
+    if (stripped.status < 400) {
+      await apiPost('/api/exit-switch-user', {}).catch(() => {});
+      const sw = await apiPost('/api/switch-user', { user_id: TECH });
+      if (sw.status < 400) {
+        // the SPA reads permissions out of localStorage, so re-hydrate or the page still shows the
+        // admin's controls and the probe would report a false "still visible"
+        const fe = await apiGet('/api/auth/me/fe-permissions');
+        await page.goto(APP + '/login', { waitUntil: 'domcontentloaded', timeout: 60000 }).catch(() => {});
+        await page.evaluate(f => localStorage.setItem('fe_permissions_wrapper', JSON.stringify(f)), fe.body?.data);
+        observed = await goLines(WO);
+        observed.permissionsSeenByThePage = fe.body?.data?.fe_permissions;
+        await page.screenshot({ path: `${OUT}/evidence/neg-no-permission.png`, fullPage: true });
+      } else observed = { impersonateFailed: sw.status };
+      await apiPost('/api/exit-switch-user', {}).catch(() => {});
     }
-    await apiPost('/api/exit-switch-user', {}).catch(() => {});
-    // put the technician back, then delete the throwaway role
-    restored = await apiPost(`/api/users/${TECH}/role`, { role_id: TECH_ROLE });
-    if (restored.status >= 400) restored = await apiPost(`/api/staff/${TECH}`, { role_id: TECH_ROLE });
+  } finally {
+    restored = await apiCall('PUT', '/api/roles/' + TECH_ROLE,
+      { ...payload, fe_permissions: (src.fe_permissions || []).map(p => p.id) });
+    const after = await apiGet(`/api/roles/${TECH_ROLE}`);
+    const nowCodes = (after.body?.data?.fe_permissions || []).map(p => p.code || p.name);
+    verify = { status: after.status,
+               permissionsBefore: codes.slice().sort(), permissionsAfter: nowCodes.slice().sort(),
+               identical: JSON.stringify(codes.slice().sort()) === JSON.stringify(nowCodes.slice().sort()),
+               viewModeBefore: src.view_mode, viewModeAfter: after.body?.data?.view_mode };
   }
-  return { technicianPermissionsBefore: perms, roleCreate: { status: created.status, id: newRole, body: JSON.stringify(created.body).slice(0, 300) },
-           roleAssign: assigned && { status: assigned.status, body: JSON.stringify(assigned.body).slice(0, 200) },
+  return { technicianPermissionsBefore: codes,
+           strip: stripped && { status: stripped.status, body: JSON.stringify(stripped.body).slice(0, 200) },
            screenWithoutThePermission: observed,
-           roleRestored: restored && { status: restored.status } };
+           restore: restored && { status: restored.status },
+           RESTORE_VERIFIED: verify };
 };
 
 // ---- E3: the work order stops being editable while the row is open ----
@@ -120,14 +142,15 @@ P['E3-becomes-uneditable'] = async () => {
   await set('input_inline_part_sell_price', '2.00');
   await page.waitForTimeout(1200);
   // flip the status behind the open row
+  // POST /api/work-orders/change-status is the route the SPA itself uses (updateStatus)
   const flip = await apiPost('/api/work-orders/change-status', { id: WO, status: 'paid' });
-  const flip2 = flip.status >= 400 ? await apiPost(`/api/work-orders/${WO}/status`, { status: 'paid' }) : null;
+  const flip2 = flip.status >= 400 ? await apiPost('/api/work-orders/change-status', { work_order_id: WO, status: 'paid' }) : null;
   await page.evaluate(() => document.querySelector('[data-test-id="button_save_inline_part"]')?.click());
   await page.waitForTimeout(5000);
   const s = await surface();
   // put the status back whatever happened
   const back = await apiPost('/api/work-orders/change-status', { id: WO, status: 'estimate' });
-  const back2 = back.status >= 400 ? await apiPost(`/api/work-orders/${WO}/status`, { status: 'estimate' }) : null;
+  const back2 = back.status >= 400 ? await apiPost('/api/work-orders/change-status', { work_order_id: WO, status: 'estimate' }) : null;
   await page.screenshot({ path: `${OUT}/evidence/neg-uneditable.png`, fullPage: true });
   return { landed: ok, statusFlip: { a: flip.status, aBody: JSON.stringify(flip.body).slice(0, 200), b: flip2 && flip2.status },
            afterSave: s, statusRestored: { a: back.status, b: back2 && back2.status } };
@@ -164,13 +187,15 @@ P['E1-concurrent-change'] = async () => {
   await page.evaluate(() => document.querySelector('[data-test-id="button_edit_part"]')?.click());
   await page.waitForTimeout(4500);
   const opened = await surface();
-  const parts = await apiGet(`/api/work-orders/${WO}/part-requests`);
+  const parts = await apiGet(`/api/work-orders/part/list-requests?work_order_id=${WO}`);
   let deleted = null;
   const list = parts.body?.data;
-  const first = Array.isArray(list) ? list[0] : (list && Array.isArray(list.part_requests) ? list.part_requests[0] : null);
+  const first = Array.isArray(list) ? list[0]
+    : (list && (Array.isArray(list.collection) ? list.collection[0]
+       : Array.isArray(list.part_requests) ? list.part_requests[0] : null));
   if (first?.id) {
-    deleted = await apiPost('/api/work-orders/part-requests/delete', { ids: [first.id] });
-    if (deleted.status >= 400) deleted = await apiPost(`/api/part-requests/${first.id}/delete`, {});
+    // deletePartRequest in the SPA's own client: POST work-orders/part/remove-request/{id}
+    deleted = await apiPost(`/api/work-orders/part/remove-request/${first.id}`, {});
   }
   await set('input_inline_part_description', 'ZZAUTOTEST concurrent ' + Date.now());
   await page.waitForTimeout(900);

@@ -5,7 +5,7 @@
 // view_mode 'tech'. The technician must be at the WORK ORDER'S OWN workplace or the Parts controls
 // never render — that mismatch produced a false "Add Part missing in Tech View" earlier today.
 // Impersonation is ended with POST /api/exit-switch-user; quick-login does NOT end it.
-import { boot, APP, apiPost } from './boot9315.mjs';
+import { boot, APP, apiGet, apiPost } from './boot9315.mjs';
 import fs from 'fs';
 const OUT = 'build/inline-add-edit-parts/build-verify-2026-09-01';
 const WO = process.env.WO || 'c6d4b883-6f78-4c9e-ab7e-436a6d99c17a';   // S9315-14846 @ Heavy Duty 9919
