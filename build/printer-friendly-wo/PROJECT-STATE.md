@@ -2,6 +2,42 @@
 
 **Canonical cold-resume doc.** Status derived live (Rule 92 / skill 15 §7).
 
+## 🆕 Update — 2026-09-01 (LATEST) — BUILD-VERIFIED ON A LIVE QA BUILD AND HANDED OFF TO THE MANUAL QA TESTER
+
+**The "QA env: none / Rule 85 source-verified only" line below is now STALE.** The suite was verified
+live on **sv9315.qa.shopview.com, build `v26.35.6-598cc8a`**, on 1 September 2026.
+
+**Verdicts, 44 cases:** 36 PASS · 1 PARTIAL · 2 UNREACHABLE · 5 NOT VERIFIED (data states this system
+does not have). Per case: `build-verify-2026-09-01/verdicts/PER-CASE-VERDICTS.md`. Report:
+`build-verify-2026-09-01/REPORT-2026-09-01.md`.
+
+**Writes: 43 of 43 applied through the TestRail UI editor, 0 failures.** C45123 held (Automated,
+Rule 71 — no per-case go-ahead). All four post-write checks clean.
+
+**How the paper was actually checked, with no printer.** `window.print` stubbed to prove the click
+reaches it; `emulateMedia({media:'print'})` to apply the print stylesheet; `page.pdf()` on Letter and
+A4 plus text extraction **page by page**. A 33-line work order paginates to 13 pages with
+`WO #S2-13958` as the last line of **every** page, and there is not one dollar sign anywhere in the
+output. Field omission was proved on work orders that genuinely lack the fields, never by inference.
+
+**The spec contradicts itself, and two cases can never be run.** Key Decisions say printing is
+disabled when a work order has no line items — confirmed on the build, the option is greyed out —
+while S3-N1 and S4-N1 describe that very printout. **C45107 and C45116 are UNREACHABLE**; on
+2026-09-01 their marker was changed from `AUTOMATION: READY` to `AUTOMATION: HOLD` with the reason in
+plain words, because telling an automation engineer a case is ready when nobody can run it is a false
+claim. Arithmetic gate re-derived: READY 41 + EXPECT-FAIL 0 = 41, and 43 − HOLD 2 = 41 → closes.
+**A product-owner ruling is outstanding** (register row HO-3).
+
+**Handed off to Viktoria Videnovic** (TestRail user 4) on 2026-09-01. Run **419**, 44 tests, set-equal
+to the cases in both directions, zero results pre-recorded. Deliverables in `build/handoff-2026-09-01/`:
+the brief, `HOW-THE-NUMBERS-WERE-DERIVED.md`, and the `Defects-for-Testers` workbook. Six gates were
+run at handover and every one is re-runnable from that folder.
+
+**Also on 2026-09-01:** the 8 cases the brief does not send the tester through end to end now carry
+that reason **inside the case**, at the end of Expected Results, so a tester working straight from
+the run is told the same thing the brief tells them (skill 04 §4). Gate:
+`build/handoff-2026-09-01/check_self_explains.py`.
+
 ## Update — 2026-09-01 (runnable-steps gate: NOT RUNNABLE = 0 for all non-Automated cases)
 Ran `build/testing-tools/check_runnable_cases.py` (reads TestRail live) over the whole suite: it flagged
 11 cases NOT RUNNABLE (all R4 — the FIRST step, e.g. "Read the header area of the printout.", did not say
@@ -18,7 +54,7 @@ RUNNABLE** — the one remaining is **C45123** (Automated atm=3) → left untouc
 - **Epic:** SV-9383 · **PO / Owner:** **TBD** (must be confirmed — PO-PFWO-1)
 - **Spec:** Confluence **519176194**, live **v8** (as of 2026-08-25)
 - **Design:** none (TBD on every story) · **Tech plan:** none
-- **QA env:** none → **Rule 85 SOURCE-VERIFIED ONLY**
+- **QA env:** **sv9315.qa.shopview.com** — build-verified 2026-09-01 on `v26.35.6-598cc8a` (the old "none → Rule 85" reading is superseded; see the 2026-09-01 update at the top)
 - **Case source:** `cases/` · internal ID prefix **PFWO** (`PFWO-<AREA>-NN`)
 
 ## Scope (from spec v8)

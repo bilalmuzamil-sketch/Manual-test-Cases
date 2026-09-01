@@ -1,0 +1,373 @@
+{
+ "44993": {
+  "title": "Add Part button hidden on Complete, Invoiced, or Paid",
+  "verdict": "held/partial - tester note added",
+  "marker_override": "AUTOMATION: READY",
+  "build_sentence": "Last checked against build v26.35.6-598cc8a on 9/1/2026.",
+  "fields": {
+   "custom_expected": {
+    "blocks": [
+     [
+      "1. The “Add Part” button is not displayed on any work order line when the status is Complete, Invoiced, Paid, Declined, or Imported."
+     ],
+     [
+      "NOTE FOR THE TESTER: only the Paid status exists on this test system. Check the button on a Paid work order; Complete, Invoiced, Declined and Imported cannot be set up here, so mark this case Blocked and say which status you were able to check - do not pass it on Paid alone."
+     ],
+     [
+      "---",
+      "This is the expected behaviour as per epic SV-9315 and story SV-9316 (Story 1, Add Part Button on Work Order Lines) and the Inline Add and Edit Parts on Work Order Lines specification version 16, section S1-N1, read on 31 August 2026.",
+      "Last checked against build v26.35.6-598cc8a on 9/1/2026."
+     ],
+     [
+      "AUTOMATION: READY"
+     ]
+    ],
+    "text": "1. The “Add Part” button is not displayed on any work order line when the status is Complete, Invoiced, Paid, Declined, or Imported.\n\nNOTE FOR THE TESTER: only the Paid status exists on this test system. Check the button on a Paid work order; Complete, Invoiced, Declined and Imported cannot be set up here, so mark this case Blocked and say which status you were able to check - do not pass it on Paid alone.\n\n---\nThis is the expected behaviour as per epic SV-9315 and story SV-9316 (Story 1, Add Part Button on Work Order Lines) and the Inline Add and Edit Parts on Work Order Lines specification version 16, section S1-N1, read on 31 August 2026.\nLast checked against build v26.35.6-598cc8a on 9/1/2026.\n\nAUTOMATION: READY"
+   }
+  }
+ },
+ "44994": {
+  "title": "Edit control hidden on Complete, Invoiced, or Paid",
+  "verdict": "held/partial - tester note added",
+  "marker_override": "AUTOMATION: READY",
+  "build_sentence": "Last checked against build v26.35.6-598cc8a on 9/1/2026.",
+  "fields": {
+   "custom_expected": {
+    "blocks": [
+     [
+      "1. The Edit control is not displayed on part lines when the status is Complete, Invoiced, Paid, Declined, or Imported."
+     ],
+     [
+      "NOTE FOR THE TESTER: only the Paid status exists on this test system. Check the control on a Paid work order; Complete, Invoiced, Declined and Imported cannot be set up here, so mark this case Blocked and say which status you were able to check - do not pass it on Paid alone."
+     ],
+     [
+      "---",
+      "This is the expected behaviour as per epic SV-9315 and story SV-9316 (Story 1, Add Part Button on Work Order Lines) and the Inline Add and Edit Parts on Work Order Lines specification version 16, section S1-N2, read on 31 August 2026.",
+      "Last checked against build v26.35.6-598cc8a on 9/1/2026."
+     ],
+     [
+      "AUTOMATION: READY"
+     ]
+    ],
+    "text": "1. The Edit control is not displayed on part lines when the status is Complete, Invoiced, Paid, Declined, or Imported.\n\nNOTE FOR THE TESTER: only the Paid status exists on this test system. Check the control on a Paid work order; Complete, Invoiced, Declined and Imported cannot be set up here, so mark this case Blocked and say which status you were able to check - do not pass it on Paid alone.\n\n---\nThis is the expected behaviour as per epic SV-9315 and story SV-9316 (Story 1, Add Part Button on Work Order Lines) and the Inline Add and Edit Parts on Work Order Lines specification version 16, section S1-N2, read on 31 August 2026.\nLast checked against build v26.35.6-598cc8a on 9/1/2026.\n\nAUTOMATION: READY"
+   }
+  }
+ },
+ "44996": {
+  "title": "Add Part and Edit hidden when the work order is not editable otherwise",
+  "verdict": "held/partial - tester note added",
+  "marker_override": "AUTOMATION: READY",
+  "build_sentence": null,
+  "fields": {
+   "custom_expected": {
+    "blocks": [
+     [
+      "1. The “Add Part” button and the Edit control are not displayed, matching today's behaviour for a non-editable work order."
+     ],
+     [
+      "NOTE FOR THE TESTER: this case cannot be set up yet. Nothing other than the work order status is known to make a work order un-editable, so there is no way to produce the situation the case describes. Leave it Untested until the product owner has answered."
+     ],
+     [
+      "---",
+      "This is the expected behaviour as per epic SV-9315 and story SV-9316 (Story 1, Add Part Button on Work Order Lines) and the Inline Add and Edit Parts on Work Order Lines specification version 16, section S1-N4, read on 31 August 2026."
+     ],
+     [
+      "AUTOMATION: READY"
+     ]
+    ],
+    "text": "1. The “Add Part” button and the Edit control are not displayed, matching today's behaviour for a non-editable work order.\n\nNOTE FOR THE TESTER: this case cannot be set up yet. Nothing other than the work order status is known to make a work order un-editable, so there is no way to produce the situation the case describes. Leave it Untested until the product owner has answered.\n\n---\nThis is the expected behaviour as per epic SV-9315 and story SV-9316 (Story 1, Add Part Button on Work Order Lines) and the Inline Add and Edit Parts on Work Order Lines specification version 16, section S1-N4, read on 31 August 2026.\n\nAUTOMATION: READY"
+   }
+  }
+ },
+ "45034": {
+  "title": "Concurrent change by another user fails the edit save with a message",
+  "verdict": "held/partial - tester note added",
+  "marker_override": "AUTOMATION: READY",
+  "build_sentence": null,
+  "fields": {
+   "custom_expected": {
+    "blocks": [
+     [
+      "1. The save fails and an alert is shown: “This part was changed by someone else. Refresh to see the latest.”"
+     ],
+     [
+      "NOTE FOR THE TESTER: this needs a second person changing the same part at the same moment as you. If you can arrange that, run it; otherwise leave it Untested and tell the QA lead."
+     ],
+     [
+      "---",
+      "This is the expected behaviour as per epic SV-9315 and story SV-9318 (Story 3, Inline Edit Part - Tech View) and the Inline Add and Edit Parts on Work Order Lines specification version 16, section S3-E1, read on 31 August 2026."
+     ],
+     [
+      "AUTOMATION: READY"
+     ]
+    ],
+    "text": "1. The save fails and an alert is shown: “This part was changed by someone else. Refresh to see the latest.”\n\nNOTE FOR THE TESTER: this needs a second person changing the same part at the same moment as you. If you can arrange that, run it; otherwise leave it Untested and tell the QA lead.\n\n---\nThis is the expected behaviour as per epic SV-9315 and story SV-9318 (Story 3, Inline Edit Part - Tech View) and the Inline Add and Edit Parts on Work Order Lines specification version 16, section S3-E1, read on 31 August 2026.\n\nAUTOMATION: READY"
+   }
+  }
+ },
+ "45060": {
+  "title": "Selected part with no cost or sell price opens those fields empty",
+  "verdict": "held/partial - tester note added",
+  "marker_override": "AUTOMATION: READY",
+  "build_sentence": null,
+  "fields": {
+   "custom_expected": {
+    "blocks": [
+     [
+      "1. Those fields open empty and the user must enter them before saving inline.",
+      "2. The user may instead select “More options” to complete the part in the modal."
+     ],
+     [
+      "NOTE FOR THE TESTER: this needs a part with no cost and no sell price recorded at all. Every part on this test system holds 0.00 in those boxes, which is not the same as empty, so the case cannot be set up here yet."
+     ],
+     [
+      "---",
+      "This is the expected behaviour as per epic SV-9315 and story SV-9319 (Story 4, Inline Add Part - Full View) and the Inline Add and Edit Parts on Work Order Lines specification version 16, section S4-E1, read on 31 August 2026."
+     ],
+     [
+      "AUTOMATION: READY"
+     ]
+    ],
+    "text": "1. Those fields open empty and the user must enter them before saving inline.\n2. The user may instead select “More options” to complete the part in the modal.\n\nNOTE FOR THE TESTER: this needs a part with no cost and no sell price recorded at all. Every part on this test system holds 0.00 in those boxes, which is not the same as empty, so the case cannot be set up here yet.\n\n---\nThis is the expected behaviour as per epic SV-9315 and story SV-9319 (Story 4, Inline Add Part - Full View) and the Inline Add and Edit Parts on Work Order Lines specification version 16, section S4-E1, read on 31 August 2026.\n\nAUTOMATION: READY"
+   }
+  }
+ },
+ "45088": {
+  "title": "Print option is available on every work order status",
+  "verdict": "held/partial - tester note added",
+  "marker_override": "AUTOMATION: READY",
+  "build_sentence": "Last checked against build v26.35.6-598cc8a on 9/1/2026.",
+  "fields": {
+   "custom_expected": {
+    "blocks": [
+     [
+      "1. The Print option is available on all of those statuses."
+     ],
+     [
+      "NOTE FOR THE TESTER: only the Estimate, Approved and Paid statuses exist on this test system. Check those three; the others cannot be set up here, so mark this case Blocked and say which statuses you were able to check - do not pass it on three out of ten."
+     ],
+     [
+      "---",
+      "This is the expected behaviour as per epic SV-9383 and story SV-9384 (Story 1, Print Option in More Menu) and the Printer Friendly Work Orders specification version 8, section S1-R5, read on 25 August 2026.",
+      "Last checked against build v26.35.6-598cc8a on 9/1/2026."
+     ],
+     [
+      "AUTOMATION: READY"
+     ]
+    ],
+    "text": "1. The Print option is available on all of those statuses.\n\nNOTE FOR THE TESTER: only the Estimate, Approved and Paid statuses exist on this test system. Check those three; the others cannot be set up here, so mark this case Blocked and say which statuses you were able to check - do not pass it on three out of ten.\n\n---\nThis is the expected behaviour as per epic SV-9383 and story SV-9384 (Story 1, Print Option in More Menu) and the Printer Friendly Work Orders specification version 8, section S1-R5, read on 25 August 2026.\nLast checked against build v26.35.6-598cc8a on 9/1/2026.\n\nAUTOMATION: READY"
+   }
+  }
+ },
+ "45090": {
+  "title": "Users without view permission cannot reach the print option",
+  "verdict": "held/partial - tester note added",
+  "marker_override": "AUTOMATION: READY",
+  "build_sentence": null,
+  "fields": {
+   "custom_expected": {
+    "blocks": [
+     [
+      "1. You cannot access the work order detail page and therefore cannot reach the print option (enforced by existing access control)."
+     ],
+     [
+      "NOTE FOR THE TESTER: this needs a sign-in that cannot open work orders at all. Ask the QA lead to set one up; until then leave the case Untested."
+     ],
+     [
+      "---",
+      "This is the expected behaviour as per epic SV-9383 and story SV-9384 (Story 1, Print Option in More Menu) and the Printer Friendly Work Orders specification version 8, section S1-N1, read on 25 August 2026."
+     ],
+     [
+      "AUTOMATION: READY"
+     ]
+    ],
+    "text": "1. You cannot access the work order detail page and therefore cannot reach the print option (enforced by existing access control).\n\nNOTE FOR THE TESTER: this needs a sign-in that cannot open work orders at all. Ask the QA lead to set one up; until then leave the case Untested.\n\n---\nThis is the expected behaviour as per epic SV-9383 and story SV-9384 (Story 1, Print Option in More Menu) and the Printer Friendly Work Orders specification version 8, section S1-N1, read on 25 August 2026.\n\nAUTOMATION: READY"
+   }
+  }
+ },
+ "45097": {
+  "title": "No customer assigned prints an explicit placeholder",
+  "verdict": "held/partial - tester note added",
+  "marker_override": "AUTOMATION: READY",
+  "build_sentence": null,
+  "fields": {
+   "custom_expected": {
+    "blocks": [
+     [
+      "1. The customer section displays “No customer assigned”."
+     ],
+     [
+      "NOTE FOR THE TESTER: this needs a work order with no customer on it. Every work order on this test system has one, so the case cannot be set up here yet."
+     ],
+     [
+      "---",
+      "This is the expected behaviour as per epic SV-9383 and story SV-9385 (Story 2, Print Layout - Work Order Header) and the Printer Friendly Work Orders specification version 8, section S2-N1, read on 25 August 2026."
+     ],
+     [
+      "AUTOMATION: READY"
+     ]
+    ],
+    "text": "1. The customer section displays “No customer assigned”.\n\nNOTE FOR THE TESTER: this needs a work order with no customer on it. Every work order on this test system has one, so the case cannot be set up here yet.\n\n---\nThis is the expected behaviour as per epic SV-9383 and story SV-9385 (Story 2, Print Layout - Work Order Header) and the Printer Friendly Work Orders specification version 8, section S2-N1, read on 25 August 2026.\n\nAUTOMATION: READY"
+   }
+  }
+ },
+ "45098": {
+  "title": "No vehicle assigned prints an explicit placeholder",
+  "verdict": "held/partial - tester note added",
+  "marker_override": "AUTOMATION: READY",
+  "build_sentence": null,
+  "fields": {
+   "custom_expected": {
+    "blocks": [
+     [
+      "1. The vehicle section displays “No vehicle assigned”."
+     ],
+     [
+      "NOTE FOR THE TESTER: this needs a work order with no vehicle on it. Every work order on this test system has one, so the case cannot be set up here yet."
+     ],
+     [
+      "---",
+      "This is the expected behaviour as per epic SV-9383 and story SV-9385 (Story 2, Print Layout - Work Order Header) and the Printer Friendly Work Orders specification version 8, section S2-N2, read on 25 August 2026."
+     ],
+     [
+      "AUTOMATION: READY"
+     ]
+    ],
+    "text": "1. The vehicle section displays “No vehicle assigned”.\n\nNOTE FOR THE TESTER: this needs a work order with no vehicle on it. Every work order on this test system has one, so the case cannot be set up here yet.\n\n---\nThis is the expected behaviour as per epic SV-9383 and story SV-9385 (Story 2, Print Layout - Work Order Header) and the Printer Friendly Work Orders specification version 8, section S2-N2, read on 25 August 2026.\n\nAUTOMATION: READY"
+   }
+  }
+ },
+ "45104": {
+  "title": "Cancelled lines still print if visible on screen",
+  "verdict": "held/partial - tester note added",
+  "marker_override": "AUTOMATION: READY",
+  "build_sentence": null,
+  "fields": {
+   "custom_expected": {
+    "blocks": [
+     [
+      "1. Line items with a status of “Cancelled” still appear on the printout if they are visible on screen, with their status clearly indicated."
+     ],
+     [
+      "NOTE FOR THE TESTER: this needs a work order line whose status is Cancelled, and none of the work orders checked had one. If you can set a line to Cancelled yourself, do that and then run the case; otherwise leave it Untested."
+     ],
+     [
+      "---",
+      "This is the expected behaviour as per epic SV-9383 and story SV-9386 (Story 3, Print Layout - Line Items) and the Printer Friendly Work Orders specification version 8, section S3-R6, read on 25 August 2026."
+     ],
+     [
+      "AUTOMATION: READY"
+     ]
+    ],
+    "text": "1. Line items with a status of “Cancelled” still appear on the printout if they are visible on screen, with their status clearly indicated.\n\nNOTE FOR THE TESTER: this needs a work order line whose status is Cancelled, and none of the work orders checked had one. If you can set a line to Cancelled yourself, do that and then run the case; otherwise leave it Untested.\n\n---\nThis is the expected behaviour as per epic SV-9383 and story SV-9386 (Story 3, Print Layout - Line Items) and the Printer Friendly Work Orders specification version 8, section S3-R6, read on 25 August 2026.\n\nAUTOMATION: READY"
+   }
+  }
+ },
+ "45107": {
+  "title": "No line items prints an explicit placeholder",
+  "verdict": "held/partial - tester note added",
+  "marker_override": "AUTOMATION: HOLD - a work order with no line items cannot be printed at all, so this printout can never be reached; awaiting a product-owner ruling on the contradiction",
+  "build_sentence": "Last checked against build v26.35.6-598cc8a on 9/1/2026.",
+  "fields": {
+   "custom_expected": {
+    "blocks": [
+     [
+      "1. The line items section displays “No lines on this work order”."
+     ],
+     [
+      "NOTE FOR THE TESTER: this case cannot be run at all. On a work order with no line items the “Print Work Order” option is greyed out, so the printout described here can never be opened. The written description asserts both things and the product owner has to settle it. Leave the case Untested."
+     ],
+     [
+      "---",
+      "This is the expected behaviour as per epic SV-9383 and story SV-9386 (Story 3, Print Layout - Line Items) and the Printer Friendly Work Orders specification version 8, section S3-N1, read on 25 August 2026.",
+      "Last checked against build v26.35.6-598cc8a on 9/1/2026."
+     ],
+     [
+      "AUTOMATION: HOLD - a work order with no line items cannot be printed at all, so this printout can never be reached; awaiting a product-owner ruling on the contradiction"
+     ]
+    ],
+    "text": "1. The line items section displays “No lines on this work order”.\n\nNOTE FOR THE TESTER: this case cannot be run at all. On a work order with no line items the “Print Work Order” option is greyed out, so the printout described here can never be opened. The written description asserts both things and the product owner has to settle it. Leave the case Untested.\n\n---\nThis is the expected behaviour as per epic SV-9383 and story SV-9386 (Story 3, Print Layout - Line Items) and the Printer Friendly Work Orders specification version 8, section S3-N1, read on 25 August 2026.\nLast checked against build v26.35.6-598cc8a on 9/1/2026.\n\nAUTOMATION: HOLD - a work order with no line items cannot be printed at all, so this printout can never be reached; awaiting a product-owner ruling on the contradiction"
+   }
+  }
+ },
+ "45111": {
+  "title": "A very long tech story wraps and prints in full",
+  "verdict": "held/partial - tester note added",
+  "marker_override": "AUTOMATION: READY",
+  "build_sentence": null,
+  "fields": {
+   "custom_expected": {
+    "blocks": [
+     [
+      "1. The tech story wraps and prints in full; it is not truncated."
+     ],
+     [
+      "NOTE FOR THE TESTER: this needs a tech story of at least 500 characters - about a full paragraph. If you can paste that much text into a line’s tech story, do that and then run the case; otherwise leave it Untested."
+     ],
+     [
+      "---",
+      "This is the expected behaviour as per epic SV-9383 and story SV-9386 (Story 3, Print Layout - Line Items) and the Printer Friendly Work Orders specification version 8, section S3-E2, read on 25 August 2026."
+     ],
+     [
+      "AUTOMATION: READY"
+     ]
+    ],
+    "text": "1. The tech story wraps and prints in full; it is not truncated.\n\nNOTE FOR THE TESTER: this needs a tech story of at least 500 characters - about a full paragraph. If you can paste that much text into a line’s tech story, do that and then run the case; otherwise leave it Untested.\n\n---\nThis is the expected behaviour as per epic SV-9383 and story SV-9386 (Story 3, Print Layout - Line Items) and the Printer Friendly Work Orders specification version 8, section S3-E2, read on 25 August 2026.\n\nAUTOMATION: READY"
+   }
+  }
+ },
+ "45116": {
+  "title": "With no line items the summary shows zero totals",
+  "verdict": "held/partial - tester note added",
+  "marker_override": "AUTOMATION: HOLD - a work order with no line items cannot be printed at all, so this summary can never be reached; awaiting a product-owner ruling on the contradiction",
+  "build_sentence": "Last checked against build v26.35.6-598cc8a on 9/1/2026.",
+  "fields": {
+   "custom_expected": {
+    "blocks": [
+     [
+      "1. The summary shows zero totals rather than being hidden."
+     ],
+     [
+      "NOTE FOR THE TESTER: this case cannot be run at all, for the same reason as the case about printing a work order with no line items - the “Print Work Order” option is greyed out when there are no lines, so there is no printout to read a summary from. Leave it Untested."
+     ],
+     [
+      "---",
+      "This is the expected behaviour as per epic SV-9383 and story SV-9387 (Story 4, Print Layout - Summary and Footer) and the Printer Friendly Work Orders specification version 8, section S4-N1, read on 25 August 2026.",
+      "Last checked against build v26.35.6-598cc8a on 9/1/2026."
+     ],
+     [
+      "AUTOMATION: HOLD - a work order with no line items cannot be printed at all, so this summary can never be reached; awaiting a product-owner ruling on the contradiction"
+     ]
+    ],
+    "text": "1. The summary shows zero totals rather than being hidden.\n\nNOTE FOR THE TESTER: this case cannot be run at all, for the same reason as the case about printing a work order with no line items - the “Print Work Order” option is greyed out when there are no lines, so there is no printout to read a summary from. Leave it Untested.\n\n---\nThis is the expected behaviour as per epic SV-9383 and story SV-9387 (Story 4, Print Layout - Summary and Footer) and the Printer Friendly Work Orders specification version 8, section S4-N1, read on 25 August 2026.\nLast checked against build v26.35.6-598cc8a on 9/1/2026.\n\nAUTOMATION: HOLD - a work order with no line items cannot be printed at all, so this summary can never be reached; awaiting a product-owner ruling on the contradiction"
+   }
+  }
+ },
+ "45239": {
+  "title": "A part with no bins gets no allocation and no chip",
+  "verdict": "held/partial - tester note added",
+  "marker_override": "AUTOMATION: READY",
+  "build_sentence": null,
+  "fields": {
+   "custom_expected": {
+    "blocks": [
+     [
+      "1. The part gets no allocation and no chip.",
+      "2. The “Pulled from” line is not displayed."
+     ],
+     [
+      "NOTE FOR THE TESTER: this needs a part that is not kept in any bin. Every part on this test system sits in at least one bin, so the case cannot be set up here yet."
+     ],
+     [
+      "---",
+      "This is the expected behaviour as per epic SV-9315 and Story 7 (Bin Allocation on the Inline Row); the Story 7 Jira ticket is TBD and the Inline Add and Edit Parts on Work Order Lines specification version 16, section S7-N1, read on 31 August 2026."
+     ],
+     [
+      "AUTOMATION: READY"
+     ]
+    ],
+    "text": "1. The part gets no allocation and no chip.\n2. The “Pulled from” line is not displayed.\n\nNOTE FOR THE TESTER: this needs a part that is not kept in any bin. Every part on this test system sits in at least one bin, so the case cannot be set up here yet.\n\n---\nThis is the expected behaviour as per epic SV-9315 and Story 7 (Bin Allocation on the Inline Row); the Story 7 Jira ticket is TBD and the Inline Add and Edit Parts on Work Order Lines specification version 16, section S7-N1, read on 31 August 2026.\n\nAUTOMATION: READY"
+   }
+  }
+ }
+}

@@ -1,0 +1,1403 @@
+{
+ "Inline Add and Edit Parts": {
+  "cases_total": 119,
+  "ours": 118,
+  "foreign": {
+   "Vladimir Tomovic": 1
+  },
+  "foreign_ids": [
+   45220
+  ],
+  "automated_ids": [
+   45220,
+   45005,
+   45026
+  ],
+  "markers": {
+   "AUTOMATION: READY": 118,
+   "NO MARKER": 1
+  },
+  "arithmetic": {
+   "ready": 118,
+   "expect_fail": 0,
+   "hold": 0,
+   "total": 118,
+   "ready_plus_expectfail": 118,
+   "total_minus_hold": 118,
+   "closes": true,
+   "excluded_from_the_gate": [
+    45220
+   ],
+   "why_excluded": "C45220: foreign \u2014 written by Vladimir Tomovic (Rule 38)",
+   "suite_total_including_excluded": 119
+  },
+  "run": {
+   "id": 418,
+   "tests": 119,
+   "set_equal_to_cases": true,
+   "in_cases_not_in_run": [],
+   "in_run_not_in_cases": [],
+   "results_already_recorded": []
+  },
+  "without_build_sentence": [
+   44996,
+   45034,
+   45060,
+   45220,
+   45239
+  ],
+  "per_case": {
+   "44988": {
+    "title": "Add Part button appears in the Parts section of each work order line",
+    "marker": "AUTOMATION: READY",
+    "author": "Bilal Muzamil",
+    "automated": false,
+    "foreign": false,
+    "build_sentence": true
+   },
+   "44989": {
+    "title": "Add Part opens an inline row above existing parts with cursor in description",
+    "marker": "AUTOMATION: READY",
+    "author": "Bilal Muzamil",
+    "automated": false,
+    "foreign": false,
+    "build_sentence": true
+   },
+   "44990": {
+    "title": "Inline add row content follows the user's view mode",
+    "marker": "AUTOMATION: READY",
+    "author": "Bilal Muzamil",
+    "automated": false,
+    "foreign": false,
+    "build_sentence": true
+   },
+   "44991": {
+    "title": "Edit control is revealed on hover and on keyboard focus of a part line",
+    "marker": "AUTOMATION: READY",
+    "author": "Bilal Muzamil",
+    "automated": false,
+    "foreign": false,
+    "build_sentence": true
+   },
+   "44992": {
+    "title": "Edit routing follows the user's view mode",
+    "marker": "AUTOMATION: READY",
+    "author": "Bilal Muzamil",
+    "automated": false,
+    "foreign": false,
+    "build_sentence": true
+   },
+   "44993": {
+    "title": "Add Part button hidden on Complete, Invoiced, or Paid",
+    "marker": "AUTOMATION: READY",
+    "author": "Bilal Muzamil",
+    "automated": false,
+    "foreign": false,
+    "build_sentence": true
+   },
+   "44994": {
+    "title": "Edit control hidden on Complete, Invoiced, or Paid",
+    "marker": "AUTOMATION: READY",
+    "author": "Bilal Muzamil",
+    "automated": false,
+    "foreign": false,
+    "build_sentence": true
+   },
+   "44995": {
+    "title": "Add Part and Edit hidden without the Create and Edit setting",
+    "marker": "AUTOMATION: READY",
+    "author": "Bilal Muzamil",
+    "automated": false,
+    "foreign": false,
+    "build_sentence": true
+   },
+   "44996": {
+    "title": "Add Part and Edit hidden when the work order is not editable otherwise",
+    "marker": "AUTOMATION: READY",
+    "author": "Bilal Muzamil",
+    "automated": false,
+    "foreign": false,
+    "build_sentence": false
+   },
+   "44997": {
+    "title": "Add Part on another line while a row is open triggers the guard",
+    "marker": "AUTOMATION: READY",
+    "author": "Bilal Muzamil",
+    "automated": false,
+    "foreign": false,
+    "build_sentence": true
+   },
+   "45220": {
+    "title": "Adding a part to a completed line reopens the line",
+    "marker": "NO MARKER",
+    "author": "Vladimir Tomovic",
+    "automated": true,
+    "foreign": true,
+    "build_sentence": false
+   },
+   "44998": {
+    "title": "Tech View inline add row shows exactly three fields and no pricing",
+    "marker": "AUTOMATION: READY",
+    "author": "Bilal Muzamil",
+    "automated": false,
+    "foreign": false,
+    "build_sentence": true
+   },
+   "44999": {
+    "title": "Part number field is the existing catalog typeahead",
+    "marker": "AUTOMATION: READY",
+    "author": "Bilal Muzamil",
+    "automated": false,
+    "foreign": false,
+    "build_sentence": true
+   },
+   "45000": {
+    "title": "Selecting a catalog part populates fields and moves focus to quantity",
+    "marker": "AUTOMATION: READY",
+    "author": "Bilal Muzamil",
+    "automated": false,
+    "foreign": false,
+    "build_sentence": true
+   },
+   "45001": {
+    "title": "User can overwrite the populated description after selection",
+    "marker": "AUTOMATION: READY",
+    "author": "Bilal Muzamil",
+    "automated": false,
+    "foreign": false,
+    "build_sentence": true
+   },
+   "45002": {
+    "title": "Quantity starts empty and is required",
+    "marker": "AUTOMATION: READY",
+    "author": "Bilal Muzamil",
+    "automated": false,
+    "foreign": false,
+    "build_sentence": true
+   },
+   "45003": {
+    "title": "Inline row shows a Save action and an X close action",
+    "marker": "AUTOMATION: READY",
+    "author": "Bilal Muzamil",
+    "automated": false,
+    "foreign": false,
+    "build_sentence": true
+   },
+   "45004": {
+    "title": "Save requires a description and a quantity; part number optional",
+    "marker": "AUTOMATION: READY",
+    "author": "Bilal Muzamil",
+    "automated": false,
+    "foreign": false,
+    "build_sentence": true
+   },
+   "45005": {
+    "title": "Saving adds the part at the top of the list with a Part added toast",
+    "marker": "AUTOMATION: READY",
+    "author": "Bilal Muzamil",
+    "automated": true,
+    "foreign": false,
+    "build_sentence": true
+   },
+   "45006": {
+    "title": "After a save a fresh empty row opens with cursor in description",
+    "marker": "AUTOMATION: READY",
+    "author": "Bilal Muzamil",
+    "automated": false,
+    "foreign": false,
+    "build_sentence": true
+   },
+   "45007": {
+    "title": "Tech View added part is categorized Uncategorized and category not shown",
+    "marker": "AUTOMATION: READY",
+    "author": "Bilal Muzamil",
+    "automated": false,
+    "foreign": false,
+    "build_sentence": true
+   },
+   "45008": {
+    "title": "Pressing Enter from any field saves the row",
+    "marker": "AUTOMATION: READY",
+    "author": "Bilal Muzamil",
+    "automated": false,
+    "foreign": false,
+    "build_sentence": true
+   },
+   "45009": {
+    "title": "Tab moves through the Tech View add row and never leaves it",
+    "marker": "AUTOMATION: READY",
+    "author": "Bilal Muzamil",
+    "automated": false,
+    "foreign": false,
+    "build_sentence": true
+   },
+   "45010": {
+    "title": "Escape closes the inline row like the X action",
+    "marker": "AUTOMATION: READY",
+    "author": "Bilal Muzamil",
+    "automated": false,
+    "foreign": false,
+    "build_sentence": true
+   },
+   "45011": {
+    "title": "X closes the row without saving; with data it triggers the guard",
+    "marker": "AUTOMATION: READY",
+    "author": "Bilal Muzamil",
+    "automated": false,
+    "foreign": false,
+    "build_sentence": true
+   },
+   "45012": {
+    "title": "Clicking outside a populated row keeps it open with data preserved",
+    "marker": "AUTOMATION: READY",
+    "author": "Bilal Muzamil",
+    "automated": false,
+    "foreign": false,
+    "build_sentence": true
+   },
+   "45013": {
+    "title": "Free-typed part saves as Requested and is flagged as needing details",
+    "marker": "AUTOMATION: READY",
+    "author": "Bilal Muzamil",
+    "automated": false,
+    "foreign": false,
+    "build_sentence": true
+   },
+   "45014": {
+    "title": "Inline row shows the keyboard hint legend",
+    "marker": "AUTOMATION: READY",
+    "author": "Bilal Muzamil",
+    "automated": false,
+    "foreign": false,
+    "build_sentence": true
+   },
+   "45015": {
+    "title": "Combined validation message names only the missing required fields",
+    "marker": "AUTOMATION: READY",
+    "author": "Bilal Muzamil",
+    "automated": false,
+    "foreign": false,
+    "build_sentence": true
+   },
+   "45016": {
+    "title": "Quantity of zero or less is rejected with a specific message",
+    "marker": "AUTOMATION: READY",
+    "author": "Bilal Muzamil",
+    "automated": false,
+    "foreign": false,
+    "build_sentence": true
+   },
+   "45017": {
+    "title": "Invalid field is highlighted and focus moves to the first invalid field",
+    "marker": "AUTOMATION: READY",
+    "author": "Bilal Muzamil",
+    "automated": false,
+    "foreign": false,
+    "build_sentence": true
+   },
+   "45018": {
+    "title": "Validation messages clear as soon as the field is corrected",
+    "marker": "AUTOMATION: READY",
+    "author": "Bilal Muzamil",
+    "automated": false,
+    "foreign": false,
+    "build_sentence": true
+   },
+   "45019": {
+    "title": "Empty row closes immediately with no confirmation",
+    "marker": "AUTOMATION: READY",
+    "author": "Bilal Muzamil",
+    "automated": false,
+    "foreign": false,
+    "build_sentence": true
+   },
+   "45020": {
+    "title": "Adding the same part twice creates two separate part lines",
+    "marker": "AUTOMATION: READY",
+    "author": "Bilal Muzamil",
+    "automated": false,
+    "foreign": false,
+    "build_sentence": true
+   },
+   "45021": {
+    "title": "Save fails cleanly when the work order becomes non-editable mid-entry",
+    "marker": "AUTOMATION: READY",
+    "author": "Bilal Muzamil",
+    "automated": false,
+    "foreign": false,
+    "build_sentence": true
+   },
+   "45022": {
+    "title": "Any other save failure keeps the row open with data intact",
+    "marker": "AUTOMATION: READY",
+    "author": "Bilal Muzamil",
+    "automated": false,
+    "foreign": false,
+    "build_sentence": true
+   },
+   "45023": {
+    "title": "Edit opens an inline row below the part with the same three fields",
+    "marker": "AUTOMATION: READY",
+    "author": "Bilal Muzamil",
+    "automated": false,
+    "foreign": false,
+    "build_sentence": true
+   },
+   "45024": {
+    "title": "Edit row is pre-populated and cursor lands in description",
+    "marker": "AUTOMATION: READY",
+    "author": "Bilal Muzamil",
+    "automated": false,
+    "foreign": false,
+    "build_sentence": true
+   },
+   "45025": {
+    "title": "Edit row reuses Story 2 behaviour with a shortened hint legend",
+    "marker": "AUTOMATION: READY",
+    "author": "Bilal Muzamil",
+    "automated": false,
+    "foreign": false,
+    "build_sentence": true
+   },
+   "45026": {
+    "title": "Saving an edit updates the part line in place and closes the row",
+    "marker": "AUTOMATION: READY",
+    "author": "Bilal Muzamil",
+    "automated": true,
+    "foreign": false,
+    "build_sentence": true
+   },
+   "45027": {
+    "title": "Saving an edit does not open a new empty row",
+    "marker": "AUTOMATION: READY",
+    "author": "Bilal Muzamil",
+    "automated": false,
+    "foreign": false,
+    "build_sentence": true
+   },
+   "45028": {
+    "title": "Hidden pricing and category are preserved on a Tech View edit",
+    "marker": "AUTOMATION: READY",
+    "author": "Bilal Muzamil",
+    "automated": false,
+    "foreign": false,
+    "build_sentence": true
+   },
+   "45029": {
+    "title": "Closing an edit row with changes triggers the discard guard",
+    "marker": "AUTOMATION: READY",
+    "author": "Bilal Muzamil",
+    "automated": false,
+    "foreign": false,
+    "build_sentence": true
+   },
+   "45030": {
+    "title": "Linking a different catalog part repopulates the edit row",
+    "marker": "AUTOMATION: READY",
+    "author": "Bilal Muzamil",
+    "automated": false,
+    "foreign": false,
+    "build_sentence": true
+   },
+   "45031": {
+    "title": "Opening an edit row and changing nothing records no update",
+    "marker": "AUTOMATION: READY",
+    "author": "Bilal Muzamil",
+    "automated": false,
+    "foreign": false,
+    "build_sentence": true
+   },
+   "45032": {
+    "title": "Edit control not displayed without the Create and Edit setting",
+    "marker": "AUTOMATION: READY",
+    "author": "Bilal Muzamil",
+    "automated": false,
+    "foreign": false,
+    "build_sentence": true
+   },
+   "45033": {
+    "title": "Clearing the description blocks the edit save with validation",
+    "marker": "AUTOMATION: READY",
+    "author": "Bilal Muzamil",
+    "automated": false,
+    "foreign": false,
+    "build_sentence": true
+   },
+   "45034": {
+    "title": "Concurrent change by another user fails the edit save with a message",
+    "marker": "AUTOMATION: READY",
+    "author": "Bilal Muzamil",
+    "automated": false,
+    "foreign": false,
+    "build_sentence": false
+   },
+   "45035": {
+    "title": "Work order becoming non-editable during edit fails the save",
+    "marker": "AUTOMATION: READY",
+    "author": "Bilal Muzamil",
+    "automated": false,
+    "foreign": false,
+    "build_sentence": true
+   },
+   "45036": {
+    "title": "Full View inline add row shows six fields in order",
+    "marker": "AUTOMATION: READY",
+    "author": "Bilal Muzamil",
+    "automated": false,
+    "foreign": false,
+    "build_sentence": true
+   },
+   "45037": {
+    "title": "Description, part number and quantity behave as in Tech View",
+    "marker": "AUTOMATION: READY",
+    "author": "Bilal Muzamil",
+    "automated": false,
+    "foreign": false,
+    "build_sentence": true
+   },
+   "45038": {
+    "title": "Selecting a catalog part populates cost and sell price with a dollar prefix",
+    "marker": "AUTOMATION: READY",
+    "author": "Bilal Muzamil",
+    "automated": false,
+    "foreign": false,
+    "build_sentence": true
+   },
+   "45039": {
+    "title": "User can overwrite the populated cost and sell price",
+    "marker": "AUTOMATION: READY",
+    "author": "Bilal Muzamil",
+    "automated": false,
+    "foreign": false,
+    "build_sentence": true
+   },
+   "45040": {
+    "title": "Category is a select and empty saves as Uncategorized",
+    "marker": "AUTOMATION: READY",
+    "author": "Bilal Muzamil",
+    "automated": false,
+    "foreign": false,
+    "build_sentence": true
+   },
+   "45041": {
+    "title": "Full View inline row shows Save, More Options and X actions",
+    "marker": "AUTOMATION: READY",
+    "author": "Bilal Muzamil",
+    "automated": false,
+    "foreign": false,
+    "build_sentence": true
+   },
+   "45042": {
+    "title": "Save requires description, quantity, cost and sell price",
+    "marker": "AUTOMATION: READY",
+    "author": "Bilal Muzamil",
+    "automated": false,
+    "foreign": false,
+    "build_sentence": true
+   },
+   "45043": {
+    "title": "Saving adds the part at the top, shows the toast and opens a fresh row",
+    "marker": "AUTOMATION: READY",
+    "author": "Bilal Muzamil",
+    "automated": false,
+    "foreign": false,
+    "build_sentence": true
+   },
+   "45044": {
+    "title": "More Options opens the part details modal",
+    "marker": "AUTOMATION: READY",
+    "author": "Bilal Muzamil",
+    "automated": false,
+    "foreign": false,
+    "build_sentence": true
+   },
+   "45045": {
+    "title": "Values entered inline carry over into the modal",
+    "marker": "AUTOMATION: READY",
+    "author": "Bilal Muzamil",
+    "automated": false,
+    "foreign": false,
+    "build_sentence": true
+   },
+   "45046": {
+    "title": "Saving from the modal closes both the modal and the inline row",
+    "marker": "AUTOMATION: READY",
+    "author": "Bilal Muzamil",
+    "automated": false,
+    "foreign": false,
+    "build_sentence": true
+   },
+   "45047": {
+    "title": "Cancelling the modal confirms then discards and closes both surfaces",
+    "marker": "AUTOMATION: READY",
+    "author": "Bilal Muzamil",
+    "automated": false,
+    "foreign": false,
+    "build_sentence": true
+   },
+   "45048": {
+    "title": "Pressing Enter saves the Full View row",
+    "marker": "AUTOMATION: READY",
+    "author": "Bilal Muzamil",
+    "automated": false,
+    "foreign": false,
+    "build_sentence": true
+   },
+   "45049": {
+    "title": "Shift+Enter opens the More Options modal",
+    "marker": "AUTOMATION: READY",
+    "author": "Bilal Muzamil",
+    "automated": false,
+    "foreign": false,
+    "build_sentence": true
+   },
+   "45050": {
+    "title": "Tab moves through the Full View add row and never leaves it",
+    "marker": "AUTOMATION: READY",
+    "author": "Bilal Muzamil",
+    "automated": false,
+    "foreign": false,
+    "build_sentence": true
+   },
+   "45051": {
+    "title": "Escape closes the Full View inline row",
+    "marker": "AUTOMATION: READY",
+    "author": "Bilal Muzamil",
+    "automated": false,
+    "foreign": false,
+    "build_sentence": true
+   },
+   "45052": {
+    "title": "Clicking outside a populated Full View row keeps it open",
+    "marker": "AUTOMATION: READY",
+    "author": "Bilal Muzamil",
+    "automated": false,
+    "foreign": false,
+    "build_sentence": true
+   },
+   "45053": {
+    "title": "Hint legend adds a More Options row for Full View only",
+    "marker": "AUTOMATION: READY",
+    "author": "Bilal Muzamil",
+    "automated": false,
+    "foreign": false,
+    "build_sentence": true
+   },
+   "45054": {
+    "title": "Requested flow applies in Full View when no catalog part is selected",
+    "marker": "AUTOMATION: READY",
+    "author": "Bilal Muzamil",
+    "automated": false,
+    "foreign": false,
+    "build_sentence": true
+   },
+   "45055": {
+    "title": "Typeahead offers Create as a new part for Full View users only",
+    "marker": "AUTOMATION: READY",
+    "author": "Bilal Muzamil",
+    "automated": false,
+    "foreign": false,
+    "build_sentence": true
+   },
+   "45056": {
+    "title": "Combined validation names empty cost and sell price too",
+    "marker": "AUTOMATION: READY",
+    "author": "Bilal Muzamil",
+    "automated": false,
+    "foreign": false,
+    "build_sentence": true
+   },
+   "45057": {
+    "title": "More Options bypasses inline validation",
+    "marker": "AUTOMATION: READY",
+    "author": "Bilal Muzamil",
+    "automated": false,
+    "foreign": false,
+    "build_sentence": true
+   },
+   "45058": {
+    "title": "Non-numeric or negative cost or sell price is rejected by field",
+    "marker": "AUTOMATION: READY",
+    "author": "Bilal Muzamil",
+    "automated": false,
+    "foreign": false,
+    "build_sentence": true
+   },
+   "45059": {
+    "title": "Sell price below cost shows a non-blocking note and still saves",
+    "marker": "AUTOMATION: READY",
+    "author": "Bilal Muzamil",
+    "automated": false,
+    "foreign": false,
+    "build_sentence": true
+   },
+   "45060": {
+    "title": "Selected part with no cost or sell price opens those fields empty",
+    "marker": "AUTOMATION: READY",
+    "author": "Bilal Muzamil",
+    "automated": false,
+    "foreign": false,
+    "build_sentence": false
+   },
+   "45061": {
+    "title": "Work order becoming non-editable during Full View add fails the save",
+    "marker": "AUTOMATION: READY",
+    "author": "Bilal Muzamil",
+    "automated": false,
+    "foreign": false,
+    "build_sentence": true
+   },
+   "45062": {
+    "title": "Any other Full View save failure keeps the row open with data",
+    "marker": "AUTOMATION: READY",
+    "author": "Bilal Muzamil",
+    "automated": false,
+    "foreign": false,
+    "build_sentence": true
+   },
+   "45063": {
+    "title": "Full View Edit opens the part details modal pre-populated",
+    "marker": "AUTOMATION: READY",
+    "author": "Bilal Muzamil",
+    "automated": false,
+    "foreign": false,
+    "build_sentence": true
+   },
+   "45064": {
+    "title": "Full View has no inline edit row",
+    "marker": "AUTOMATION: READY",
+    "author": "Bilal Muzamil",
+    "automated": false,
+    "foreign": false,
+    "build_sentence": true
+   },
+   "45065": {
+    "title": "Saving from the modal updates the part line and opens no inline row",
+    "marker": "AUTOMATION: READY",
+    "author": "Bilal Muzamil",
+    "automated": false,
+    "foreign": false,
+    "build_sentence": true
+   },
+   "45066": {
+    "title": "Edit control not displayed without the Create and Edit setting",
+    "marker": "AUTOMATION: READY",
+    "author": "Bilal Muzamil",
+    "automated": false,
+    "foreign": false,
+    "build_sentence": true
+   },
+   "45067": {
+    "title": "Cancelling the modal discards changes and leaves the part unchanged",
+    "marker": "AUTOMATION: READY",
+    "author": "Bilal Muzamil",
+    "automated": false,
+    "foreign": false,
+    "build_sentence": true
+   },
+   "45068": {
+    "title": "Edit while an inline add row is open triggers the guard first",
+    "marker": "AUTOMATION: READY",
+    "author": "Bilal Muzamil",
+    "automated": false,
+    "foreign": false,
+    "build_sentence": true
+   },
+   "45069": {
+    "title": "Closing a populated add row shows the discard-part confirmation",
+    "marker": "AUTOMATION: READY",
+    "author": "Bilal Muzamil",
+    "automated": false,
+    "foreign": false,
+    "build_sentence": true
+   },
+   "45070": {
+    "title": "Closing a changed edit row shows the discard-changes confirmation",
+    "marker": "AUTOMATION: READY",
+    "author": "Bilal Muzamil",
+    "automated": false,
+    "foreign": false,
+    "build_sentence": true
+   },
+   "45071": {
+    "title": "Keep Editing returns to the row with data intact",
+    "marker": "AUTOMATION: READY",
+    "author": "Bilal Muzamil",
+    "automated": false,
+    "foreign": false,
+    "build_sentence": true
+   },
+   "45072": {
+    "title": "Discard Part closes the row and restores saved values on edit",
+    "marker": "AUTOMATION: READY",
+    "author": "Bilal Muzamil",
+    "automated": false,
+    "foreign": false,
+    "build_sentence": true
+   },
+   "45073": {
+    "title": "Navigating away with data shows the leave-without-saving confirmation",
+    "marker": "AUTOMATION: READY",
+    "author": "Bilal Muzamil",
+    "automated": false,
+    "foreign": false,
+    "build_sentence": true
+   },
+   "45074": {
+    "title": "Opening another row with data prompts, then swaps or keeps",
+    "marker": "AUTOMATION: READY",
+    "author": "Bilal Muzamil",
+    "automated": false,
+    "foreign": false,
+    "build_sentence": true
+   },
+   "45075": {
+    "title": "Only one inline row can be open on a work order at a time",
+    "marker": "AUTOMATION: READY",
+    "author": "Bilal Muzamil",
+    "automated": false,
+    "foreign": false,
+    "build_sentence": true
+   },
+   "45076": {
+    "title": "Empty row closes with no confirmation",
+    "marker": "AUTOMATION: READY",
+    "author": "Bilal Muzamil",
+    "automated": false,
+    "foreign": false,
+    "build_sentence": true
+   },
+   "45077": {
+    "title": "Navigating away from an empty row proceeds with no confirmation",
+    "marker": "AUTOMATION: READY",
+    "author": "Bilal Muzamil",
+    "automated": false,
+    "foreign": false,
+    "build_sentence": true
+   },
+   "45078": {
+    "title": "Unchanged edit row closes or navigates with no confirmation",
+    "marker": "AUTOMATION: READY",
+    "author": "Bilal Muzamil",
+    "automated": false,
+    "foreign": false,
+    "build_sentence": true
+   },
+   "45079": {
+    "title": "Navigation is unaffected when no inline row is open",
+    "marker": "AUTOMATION: READY",
+    "author": "Bilal Muzamil",
+    "automated": false,
+    "foreign": false,
+    "build_sentence": true
+   },
+   "45080": {
+    "title": "Clicking outside never triggers a leave confirmation",
+    "marker": "AUTOMATION: READY",
+    "author": "Bilal Muzamil",
+    "automated": false,
+    "foreign": false,
+    "build_sentence": true
+   },
+   "45081": {
+    "title": "Untouched follow-on empty row after a save prompts nothing",
+    "marker": "AUTOMATION: READY",
+    "author": "Bilal Muzamil",
+    "automated": false,
+    "foreign": false,
+    "build_sentence": true
+   },
+   "45082": {
+    "title": "Leave discards the entered part and completes navigation",
+    "marker": "AUTOMATION: READY",
+    "author": "Bilal Muzamil",
+    "automated": false,
+    "foreign": false,
+    "build_sentence": true
+   },
+   "45083": {
+    "title": "Stay on Work Order cancels navigation and refocuses the row",
+    "marker": "AUTOMATION: READY",
+    "author": "Bilal Muzamil",
+    "automated": false,
+    "foreign": false,
+    "build_sentence": true
+   },
+   "45221": {
+    "title": "Catalog part carries named bins with on-hand quantity and one Default",
+    "marker": "AUTOMATION: READY",
+    "author": "Bilal Muzamil",
+    "automated": false,
+    "foreign": false,
+    "build_sentence": true
+   },
+   "45222": {
+    "title": "Typeahead result cards show inventory quantity and bin chips",
+    "marker": "AUTOMATION: READY",
+    "author": "Bilal Muzamil",
+    "automated": false,
+    "foreign": false,
+    "build_sentence": true
+   },
+   "45223": {
+    "title": "Selecting a part auto-allocates the full quantity to a single bin",
+    "marker": "AUTOMATION: READY",
+    "author": "Bilal Muzamil",
+    "automated": false,
+    "foreign": false,
+    "build_sentence": true
+   },
+   "45224": {
+    "title": "Allocation is shown below the row as a Pulled from chip",
+    "marker": "AUTOMATION: READY",
+    "author": "Bilal Muzamil",
+    "automated": false,
+    "foreign": false,
+    "build_sentence": true
+   },
+   "45225": {
+    "title": "Chip label is the bin name for one bin and N bins for a split",
+    "marker": "AUTOMATION: READY",
+    "author": "Bilal Muzamil",
+    "automated": false,
+    "foreign": false,
+    "build_sentence": true
+   },
+   "45226": {
+    "title": "Selecting the chip opens a bin picker listing every bin",
+    "marker": "AUTOMATION: READY",
+    "author": "Bilal Muzamil",
+    "automated": false,
+    "foreign": false,
+    "build_sentence": true
+   },
+   "45227": {
+    "title": "Choosing a bin from the picker moves the full quantity into it",
+    "marker": "AUTOMATION: READY",
+    "author": "Bilal Muzamil",
+    "automated": false,
+    "foreign": false,
+    "build_sentence": true
+   },
+   "45228": {
+    "title": "Allocating more than a bin holds is permitted and only warns",
+    "marker": "AUTOMATION: READY",
+    "author": "Bilal Muzamil",
+    "automated": false,
+    "foreign": false,
+    "build_sentence": true
+   },
+   "45229": {
+    "title": "A short single-bin allocation shows the takes-negative warning",
+    "marker": "AUTOMATION: READY",
+    "author": "Bilal Muzamil",
+    "automated": false,
+    "foreign": false,
+    "build_sentence": true
+   },
+   "45230": {
+    "title": "Auto-switching off the Default bin shows an informational note",
+    "marker": "AUTOMATION: READY",
+    "author": "Bilal Muzamil",
+    "automated": false,
+    "foreign": false,
+    "build_sentence": true
+   },
+   "45231": {
+    "title": "Editing the quantity re-runs allocation per manual or automatic state",
+    "marker": "AUTOMATION: READY",
+    "author": "Bilal Muzamil",
+    "automated": false,
+    "foreign": false,
+    "build_sentence": true
+   },
+   "45232": {
+    "title": "Split across bins opens the right modal for each view mode",
+    "marker": "AUTOMATION: READY",
+    "author": "Bilal Muzamil",
+    "automated": false,
+    "foreign": false,
+    "build_sentence": true
+   },
+   "45233": {
+    "title": "Bin Locations modal lists a row per bin with Auto and Apply",
+    "marker": "AUTOMATION: READY",
+    "author": "Bilal Muzamil",
+    "automated": false,
+    "foreign": false,
+    "build_sentence": true
+   },
+   "45234": {
+    "title": "Applying a split writes it back and sets quantity to the sum",
+    "marker": "AUTOMATION: READY",
+    "author": "Bilal Muzamil",
+    "automated": false,
+    "foreign": false,
+    "build_sentence": true
+   },
+   "45235": {
+    "title": "Already-negative bins show in error styling but do not block",
+    "marker": "AUTOMATION: READY",
+    "author": "Bilal Muzamil",
+    "automated": false,
+    "foreign": false,
+    "build_sentence": true
+   },
+   "45236": {
+    "title": "Tech View edit row carries the same allocation UI and restores stored splits",
+    "marker": "AUTOMATION: READY",
+    "author": "Bilal Muzamil",
+    "automated": false,
+    "foreign": false,
+    "build_sentence": true
+   },
+   "45237": {
+    "title": "Allocation is stored on save and not shown on the saved part row",
+    "marker": "AUTOMATION: READY",
+    "author": "Bilal Muzamil",
+    "automated": false,
+    "foreign": false,
+    "build_sentence": true
+   },
+   "45238": {
+    "title": "The Pulled from chip is reachable by Tab",
+    "marker": "AUTOMATION: READY",
+    "author": "Bilal Muzamil",
+    "automated": false,
+    "foreign": false,
+    "build_sentence": true
+   },
+   "45239": {
+    "title": "A part with no bins gets no allocation and no chip",
+    "marker": "AUTOMATION: READY",
+    "author": "Bilal Muzamil",
+    "automated": false,
+    "foreign": false,
+    "build_sentence": false
+   },
+   "45240": {
+    "title": "A part not linked to the catalog gets no allocation and no chip",
+    "marker": "AUTOMATION: READY",
+    "author": "Bilal Muzamil",
+    "automated": false,
+    "foreign": false,
+    "build_sentence": true
+   },
+   "45242": {
+    "title": "No note is shown when the Default bin covers the quantity",
+    "marker": "AUTOMATION: READY",
+    "author": "Bilal Muzamil",
+    "automated": false,
+    "foreign": false,
+    "build_sentence": true
+   },
+   "45243": {
+    "title": "A split allocation never shows the takes-negative warning",
+    "marker": "AUTOMATION: READY",
+    "author": "Bilal Muzamil",
+    "automated": false,
+    "foreign": false,
+    "build_sentence": true
+   }
+  }
+ },
+ "Printer Friendly Work Orders": {
+  "cases_total": 44,
+  "ours": 44,
+  "foreign": {},
+  "foreign_ids": [],
+  "automated_ids": [
+   45123
+  ],
+  "markers": {
+   "AUTOMATION: READY": 41,
+   "AUTOMATION: HOLD - a work order with no line items cannot be printed at all, so this printout can never be reached; awaiting a product-owner ruling on the contradiction": 1,
+   "AUTOMATION: HOLD - a work order with no line items cannot be printed at all, so this summary can never be reached; awaiting a product-owner ruling on the contradiction": 1,
+   "AUTOMATION: Not available on Build to test Yet - Last checked 8/25/2026": 1
+  },
+  "arithmetic": {
+   "ready": 41,
+   "expect_fail": 0,
+   "hold": 2,
+   "total": 43,
+   "ready_plus_expectfail": 41,
+   "total_minus_hold": 41,
+   "closes": true,
+   "excluded_from_the_gate": [
+    45123
+   ],
+   "why_excluded": "C45123: flagged Automated and no per-case go-ahead given (Rule 71)",
+   "suite_total_including_excluded": 44
+  },
+  "run": {
+   "id": 419,
+   "tests": 44,
+   "set_equal_to_cases": true,
+   "in_cases_not_in_run": [],
+   "in_run_not_in_cases": [],
+   "results_already_recorded": []
+  },
+  "without_build_sentence": [
+   45090,
+   45097,
+   45098,
+   45104,
+   45111,
+   45123
+  ],
+  "per_case": {
+   "45084": {
+    "title": "Print Work Order appears in the More menu",
+    "marker": "AUTOMATION: READY",
+    "author": "Bilal Muzamil",
+    "automated": false,
+    "foreign": false,
+    "build_sentence": true
+   },
+   "45085": {
+    "title": "Print menu item is labelled Print Work Order with no icon",
+    "marker": "AUTOMATION: READY",
+    "author": "Bilal Muzamil",
+    "automated": false,
+    "foreign": false,
+    "build_sentence": true
+   },
+   "45086": {
+    "title": "Print item sits below Timesheets and above Delete Work Order",
+    "marker": "AUTOMATION: READY",
+    "author": "Bilal Muzamil",
+    "automated": false,
+    "foreign": false,
+    "build_sentence": true
+   },
+   "45087": {
+    "title": "Selecting Print Work Order opens the browser print dialog",
+    "marker": "AUTOMATION: READY",
+    "author": "Bilal Muzamil",
+    "automated": false,
+    "foreign": false,
+    "build_sentence": true
+   },
+   "45088": {
+    "title": "Print option is available on every work order status",
+    "marker": "AUTOMATION: READY",
+    "author": "Bilal Muzamil",
+    "automated": false,
+    "foreign": false,
+    "build_sentence": true
+   },
+   "45089": {
+    "title": "Print option is available on desktop and mobile",
+    "marker": "AUTOMATION: READY",
+    "author": "Bilal Muzamil",
+    "automated": false,
+    "foreign": false,
+    "build_sentence": true
+   },
+   "45090": {
+    "title": "Users without view permission cannot reach the print option",
+    "marker": "AUTOMATION: READY",
+    "author": "Bilal Muzamil",
+    "automated": false,
+    "foreign": false,
+    "build_sentence": false
+   },
+   "45091": {
+    "title": "Print is disabled until line item data has loaded",
+    "marker": "AUTOMATION: READY",
+    "author": "Bilal Muzamil",
+    "automated": false,
+    "foreign": false,
+    "build_sentence": true
+   },
+   "45092": {
+    "title": "Work order number is shown prominently at the top",
+    "marker": "AUTOMATION: READY",
+    "author": "Bilal Muzamil",
+    "automated": false,
+    "foreign": false,
+    "build_sentence": true
+   },
+   "45093": {
+    "title": "Work order status is shown next to the work order number",
+    "marker": "AUTOMATION: READY",
+    "author": "Bilal Muzamil",
+    "automated": false,
+    "foreign": false,
+    "build_sentence": true
+   },
+   "45094": {
+    "title": "Header shows customer, vehicle, advisor, lead tech and start date",
+    "marker": "AUTOMATION: READY",
+    "author": "Bilal Muzamil",
+    "automated": false,
+    "foreign": false,
+    "build_sentence": true
+   },
+   "45095": {
+    "title": "Header omits fields that have no value rather than showing blanks",
+    "marker": "AUTOMATION: READY",
+    "author": "Bilal Muzamil",
+    "automated": false,
+    "foreign": false,
+    "build_sentence": true
+   },
+   "45096": {
+    "title": "Header shows the shop or organization name",
+    "marker": "AUTOMATION: READY",
+    "author": "Bilal Muzamil",
+    "automated": false,
+    "foreign": false,
+    "build_sentence": true
+   },
+   "45097": {
+    "title": "No customer assigned prints an explicit placeholder",
+    "marker": "AUTOMATION: READY",
+    "author": "Bilal Muzamil",
+    "automated": false,
+    "foreign": false,
+    "build_sentence": false
+   },
+   "45098": {
+    "title": "No vehicle assigned prints an explicit placeholder",
+    "marker": "AUTOMATION: READY",
+    "author": "Bilal Muzamil",
+    "automated": false,
+    "foreign": false,
+    "build_sentence": false
+   },
+   "45099": {
+    "title": "Each line shows number, description, status, time, story and techs",
+    "marker": "AUTOMATION: READY",
+    "author": "Bilal Muzamil",
+    "automated": false,
+    "foreign": false,
+    "build_sentence": true
+   },
+   "45100": {
+    "title": "Parts under a line show description, part number and quantity",
+    "marker": "AUTOMATION: READY",
+    "author": "Bilal Muzamil",
+    "automated": false,
+    "foreign": false,
+    "build_sentence": true
+   },
+   "45101": {
+    "title": "Pricing is never shown on line items",
+    "marker": "AUTOMATION: READY",
+    "author": "Bilal Muzamil",
+    "automated": false,
+    "foreign": false,
+    "build_sentence": true
+   },
+   "45102": {
+    "title": "Action and Progress columns are removed from the printout",
+    "marker": "AUTOMATION: READY",
+    "author": "Bilal Muzamil",
+    "automated": false,
+    "foreign": false,
+    "build_sentence": true
+   },
+   "45103": {
+    "title": "Lines print in the same order as on screen",
+    "marker": "AUTOMATION: READY",
+    "author": "Bilal Muzamil",
+    "automated": false,
+    "foreign": false,
+    "build_sentence": true
+   },
+   "45104": {
+    "title": "Cancelled lines still print if visible on screen",
+    "marker": "AUTOMATION: READY",
+    "author": "Bilal Muzamil",
+    "automated": false,
+    "foreign": false,
+    "build_sentence": false
+   },
+   "45105": {
+    "title": "Line groups are separated by a thick border and note space",
+    "marker": "AUTOMATION: READY",
+    "author": "Bilal Muzamil",
+    "automated": false,
+    "foreign": false,
+    "build_sentence": true
+   },
+   "45106": {
+    "title": "Empty tech story row is omitted with no placeholder",
+    "marker": "AUTOMATION: READY",
+    "author": "Bilal Muzamil",
+    "automated": false,
+    "foreign": false,
+    "build_sentence": true
+   },
+   "45107": {
+    "title": "No line items prints an explicit placeholder",
+    "marker": "AUTOMATION: HOLD - a work order with no line items cannot be printed at all, so this printout can never be reached; awaiting a product-owner ruling on the contradiction",
+    "author": "Bilal Muzamil",
+    "automated": false,
+    "foreign": false,
+    "build_sentence": true
+   },
+   "45108": {
+    "title": "A line with no parts shows no parts section",
+    "marker": "AUTOMATION: READY",
+    "author": "Bilal Muzamil",
+    "automated": false,
+    "foreign": false,
+    "build_sentence": true
+   },
+   "45109": {
+    "title": "A line with no assigned technicians omits the technician area",
+    "marker": "AUTOMATION: READY",
+    "author": "Bilal Muzamil",
+    "automated": false,
+    "foreign": false,
+    "build_sentence": true
+   },
+   "45110": {
+    "title": "Many lines flow across pages without splitting a line if avoidable",
+    "marker": "AUTOMATION: READY",
+    "author": "Bilal Muzamil",
+    "automated": false,
+    "foreign": false,
+    "build_sentence": true
+   },
+   "45111": {
+    "title": "A very long tech story wraps and prints in full",
+    "marker": "AUTOMATION: READY",
+    "author": "Bilal Muzamil",
+    "automated": false,
+    "foreign": false,
+    "build_sentence": false
+   },
+   "45112": {
+    "title": "Summary shows total actual and estimated time",
+    "marker": "AUTOMATION: READY",
+    "author": "Bilal Muzamil",
+    "automated": false,
+    "foreign": false,
+    "build_sentence": true
+   },
+   "45113": {
+    "title": "Summary never shows pricing",
+    "marker": "AUTOMATION: READY",
+    "author": "Bilal Muzamil",
+    "automated": false,
+    "foreign": false,
+    "build_sentence": true
+   },
+   "45114": {
+    "title": "Print timestamp appears at the bottom of the printout",
+    "marker": "AUTOMATION: READY",
+    "author": "Bilal Muzamil",
+    "automated": false,
+    "foreign": false,
+    "build_sentence": true
+   },
+   "45115": {
+    "title": "Work order number repeats in the footer of each page",
+    "marker": "AUTOMATION: READY",
+    "author": "Bilal Muzamil",
+    "automated": false,
+    "foreign": false,
+    "build_sentence": true
+   },
+   "45116": {
+    "title": "With no line items the summary shows zero totals",
+    "marker": "AUTOMATION: HOLD - a work order with no line items cannot be printed at all, so this summary can never be reached; awaiting a product-owner ruling on the contradiction",
+    "author": "Bilal Muzamil",
+    "automated": false,
+    "foreign": false,
+    "build_sentence": true
+   },
+   "45117": {
+    "title": "All interactive and navigation elements are hidden on the printout",
+    "marker": "AUTOMATION: READY",
+    "author": "Bilal Muzamil",
+    "automated": false,
+    "foreign": false,
+    "build_sentence": true
+   },
+   "45118": {
+    "title": "Printout uses black text on white regardless of theme",
+    "marker": "AUTOMATION: READY",
+    "author": "Bilal Muzamil",
+    "automated": false,
+    "foreign": false,
+    "build_sentence": true
+   },
+   "45119": {
+    "title": "Text is sized for comfortable reading on paper",
+    "marker": "AUTOMATION: READY",
+    "author": "Bilal Muzamil",
+    "automated": false,
+    "foreign": false,
+    "build_sentence": true
+   },
+   "45120": {
+    "title": "Layout is optimized for portrait US Letter or A4",
+    "marker": "AUTOMATION: READY",
+    "author": "Bilal Muzamil",
+    "automated": false,
+    "foreign": false,
+    "build_sentence": true
+   },
+   "45121": {
+    "title": "Status badges print as plain text labels not colored chips",
+    "marker": "AUTOMATION: READY",
+    "author": "Bilal Muzamil",
+    "automated": false,
+    "foreign": false,
+    "build_sentence": true
+   },
+   "45122": {
+    "title": "Landscape orientation remains readable without clipping",
+    "marker": "AUTOMATION: READY",
+    "author": "Bilal Muzamil",
+    "automated": false,
+    "foreign": false,
+    "build_sentence": true
+   },
+   "45123": {
+    "title": "Printing logs a Work Order Printed event in audit history",
+    "marker": "AUTOMATION: Not available on Build to test Yet - Last checked 8/25/2026",
+    "author": "Bilal Muzamil",
+    "automated": true,
+    "foreign": false,
+    "build_sentence": false
+   },
+   "45124": {
+    "title": "Audit entry records the user and the date and time",
+    "marker": "AUTOMATION: READY",
+    "author": "Bilal Muzamil",
+    "automated": false,
+    "foreign": false,
+    "build_sentence": true
+   },
+   "45125": {
+    "title": "Print event is visible in the History tab like estimate and invoice prints",
+    "marker": "AUTOMATION: READY",
+    "author": "Bilal Muzamil",
+    "automated": false,
+    "foreign": false,
+    "build_sentence": true
+   },
+   "45126": {
+    "title": "Cancelling the browser print dialog still logs the event",
+    "marker": "AUTOMATION: READY",
+    "author": "Bilal Muzamil",
+    "automated": false,
+    "foreign": false,
+    "build_sentence": true
+   },
+   "45127": {
+    "title": "Printing multiple times creates a separate entry each time",
+    "marker": "AUTOMATION: READY",
+    "author": "Bilal Muzamil",
+    "automated": false,
+    "foreign": false,
+    "build_sentence": true
+   }
+  }
+ }
+}

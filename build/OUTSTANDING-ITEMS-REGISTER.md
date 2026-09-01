@@ -2,13 +2,33 @@
 
 > **⚠️ REFERENCE ONLY — this register is history and other sessions' work. It is NOT a backlog and does not authorise action (Rule 92).** Reading an open item here does **not** mean it is yours to work on; a lane session acts only on the project the QA lead has NAMED.
 
-## 🆕 2026-09-01 — 6597 BUILD VERIFICATION IS HALTED BY A DEAD SHARED SSO SESSION; ONE ASK
+## 🆕🆕 2026-09-01 (LATEST) — BOTH SUITES BUILD-VERIFIED, WRITTEN AND HANDED OFF TO THE MANUAL QA TESTER. FIVE ASKS.
+
+**Tester for both suites: Viktoria Videnovic** (TestRail user 4). Deliverables:
+`build/handoff-2026-09-01/` — the brief, the working (`HOW-THE-NUMBERS-WERE-DERIVED.md`), and the
+`Defects-for-Testers` workbook. Runs **418** (Inline, 119 tests) and **419** (Printer Friendly, 44),
+both set-equal to the cases in both directions, both with **zero** results recorded.
 
 | Row | Item | Who | Status |
 |---|---|---|---|
-| **SSO-1** | **A fresh `sv_sso_session` cookie value for `*.qa.shopview.com`** — by that name; nothing else is needed (this estate has no Cloudflare, so no `cf_clearance`, and `PHPSESSID` is re-minted by `quick-login` once SSO is alive). Both branches 401 `sso_required` at once on a byte-identical token, the refusal is JSON from the app, nothing returns 409 — the exact signature in core §6.1. `quick-login` is itself SSO-gated and also answers 401. Proof and the six searches: `build/BLOCKED-shopview-sso-session-2026-09-01.md` | **QA lead** | **OPEN — blocks the remaining 69 verdicts on 6597 and all of 6617. Nothing else is blocked: TestRail still answers and the case content is being prepared offline** |
+| **HO-1** | **A per-case go-ahead for [C45123](https://shopview.testrail.io/index.php?/cases/view/45123)** (Printer Friendly, flagged **Automated**). It is the only case in 6617 that fails the runnability gate — its steps do not name where on the screen to look. Rule 71 needs the go-ahead per case | **QA lead** | **OPEN — held, not touched. Its behaviour is verified PASS; only the wording is short** |
+| **HO-2** | **A ruling on [C45220](https://shopview.testrail.io/index.php?/cases/view/45220)** — Vladimir Tomovic's, **Automated**, **no steps at all**. You said his cases are never changed, so it goes to the tester as an empty case | **QA lead** | **OPEN — carried in from INL-1 below, unchanged** |
+| **HO-3** | **Five product-owner answers**, already in the two layman spreadsheets. They decide C44996, C45060, C45239 (Inline) and the C45107/C45116 contradiction (Printer Friendly) | **PO, via the QA lead** | **OPEN — those cases stay Untested until answered** |
+| **HO-4** | **Permission to file one defect: [C45068](https://shopview.testrail.io/index.php?/cases/view/45068)** — no discard confirmation when the pencil is clicked with a populated inline add row open. Observed twice. Per your 2026-09-01 instruction I will re-verify on the build first and then ask per candidate | **QA lead** | **OPEN — text ready, nothing filed** |
+| **HO-5** | **Five data states 6617 needs** and sv9315 does not have: a work order with no customer, one with no vehicle, a line whose status is Cancelled, a 500-character tech story, and a sign-in that cannot view work orders. Four of the five a tester can create; the sign-in needs you | **me / QA lead** | **OPEN — each case now says so in its own words, so nothing is silently un-runnable** |
+
+**Closed by this pass:** SSO-1 (fresh cookies supplied 2026-09-01; both suites verified on
+`v26.35.6-598cc8a`) · INL-2 (the bin data states existed all along — `/api/inventory/parts` ignores
+`rowsPerPage`/`page`, so an earlier read saw 100 of 6,879 parts; playbook §S). INL-3 is carried
+forward as HO-4.
+
+## 2026-09-01 (superseded, kept for the record) — 6597 BUILD VERIFICATION WAS HALTED BY A DEAD SHARED SSO SESSION; ONE ASK
+
+| Row | Item | Who | Status |
+|---|---|---|---|
+| **SSO-1** | **A fresh `sv_sso_session` cookie value for `*.qa.shopview.com`** — by that name; nothing else is needed (this estate has no Cloudflare, so no `cf_clearance`, and `PHPSESSID` is re-minted by `quick-login` once SSO is alive). Both branches 401 `sso_required` at once on a byte-identical token, the refusal is JSON from the app, nothing returns 409 — the exact signature in core §6.1. `quick-login` is itself SSO-gated and also answers 401. Proof and the six searches: `build/BLOCKED-shopview-sso-session-2026-09-01.md` | **QA lead** | **✅ CLOSED 2026-09-01 — fresh cookies supplied the same day; all 119 + 44 verdicts taken on `v26.35.6-598cc8a`** |
 | **INL-1** | **[C45220](https://shopview.testrail.io/index.php?/cases/view/45220)** — Vladimir Tomovic's case, flagged **Automated**, and it has **no steps at all**, so it is the only case in suite 6597 that fails the runnability gate. Rules 38 and 71 both apply and the QA lead's override covers another *session's* writes, not a person's case | **QA lead** | **OPEN — flagged, not touched. Say the word and I will write its steps** |
-| **INL-2** | Two bin data states do not exist on sv9315: a catalog part with **no** bins (for the "Not stocked" card) and one held in **more than three** bins (for the "+ N" collapse chip). Every one of the 100 inventory parts the API returns holds exactly one bin | **me, once the session is back** | **OPEN — seed them; they are data states, not findings** |
+| **INL-2** | Two bin data states do not exist on sv9315: a catalog part with **no** bins (for the "Not stocked" card) and one held in **more than three** bins (for the "+ N" collapse chip). Every one of the 100 inventory parts the API returns holds exactly one bin | **me** | **✅ CLOSED 2026-09-01 — they existed all along. `/api/inventory/parts` ignores `rowsPerPage`/`page`, so the earlier read saw 100 of 6,879 parts and concluded wrongly. Recorded as playbook §S** |
 | **INL-3** | **A deviation found live: C45068.** Selecting Edit on a part line while a POPULATED inline add row is open opens the Edit Part Request modal immediately, with **no** discard confirmation, and leaves the add row open. Observed twice. S5-E1 requires S6-R5's confirmation first. **Jira hold is active, so no ticket** — the text is ready | **QA lead** | **OPEN — awaiting permission to file** |
 
 ## 2026-08-28 — THE FOUR-JOB APPROVED BATCH RAN IN FULL: 19 DAMAGED CASES RESTORED, 3 WIP CASES AUTHORED, 8 ANCHOR CITATIONS REPAIRED, TWO INDEX COUNTS CORRECTED, THE SWEEP CLOSED OUT
