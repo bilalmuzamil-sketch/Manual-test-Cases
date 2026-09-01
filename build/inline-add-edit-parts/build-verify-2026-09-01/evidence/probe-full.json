@@ -1,105 +1,144 @@
 {
- "W-browser-back": {
-  "armed": "ZZAUTOTEST back",
-  "browserBack": {
-   "nativeDialogs": [
-    {
-     "type": "beforeunload",
-     "message": ""
-    }
-   ],
-   "appDialog": null,
-   "rowOpen": true,
-   "url": "/workorders/c6d4b883-6f78-4c9e-ab7e-436a6d99c17a/lines"
+ "P-edit": {
+  "editControl": {
+   "present": true,
+   "opacity": "0",
+   "visibility": "visible",
+   "display": "flex",
+   "text": "edit"
   },
-  "browserForward": {
-   "nativeDialogs": [
-    {
-     "type": "beforeunload",
-     "message": ""
-    },
-    {
-     "type": "beforeunload",
-     "message": ""
-    }
-   ],
-   "appDialog": null,
-   "rowOpen": true,
-   "url": "/workorders/c6d4b883-6f78-4c9e-ab7e-436a6d99c17a/lines"
-  }
- },
- "X-modal-exit": {
-  "modalSave": {
-   "clicked": true,
-   "dialogOpen": true,
-   "inlineRowOpen": true,
-   "toast": [],
-   "partOnLine": false
-  },
-  "modalCancel": {
-   "dialogsBefore": 1,
-   "afterCloseClick": {
-    "dialogs": 2,
-    "text": "New Part Request close Part Number arrow_drop_down Description Quantity Source Vendor arrow_drop_down Category arrow_drop_down Category is a required field Vendor arrow_drop_down $ Cost $ Core Charge $ Sell Price Margin % AI SHOPCOACH PARTS GUIDE Save Part",
-    "buttons": [
-     "close",
-     "AI SHOPCOACH PARTS GUIDE",
-     "Save Part",
-     "close",
-     "Keep Editing",
-     "Discard Part"
-    ],
-    "inlineRowOpen": true
-   },
-   "discardClicked": true,
-   "afterDiscard": {
-    "dialogs": 0,
-    "inlineRowOpen": false
-   }
-  }
- },
- "Y-edit-while-open": {
-  "armed": "ZZAUTOTEST editguard",
-  "editClicked": true,
-  "dialog": {
+  "modal": {
+   "open": true,
    "text": "Edit Part Request close Part Number arrow_drop_down Description Quantity Source Vendor arrow_drop_down Category Uncategorized arrow_drop_down Vendor arrow_drop_down $ Cost $ Core Charge $ Sell Price Margin % Cancel Order Save & Close",
+   "populatedInputs": [
+    "ZZAUTOTEST followon 1788250677257",
+    "1",
+    "Vendor",
+    "1.00000",
+    "0.00",
+    "2.00",
+    "50"
+   ],
    "buttons": [
     "close",
     "Cancel Order",
     "Save & Close"
    ]
   },
-  "modal": {
-   "open": true,
-   "text": "Edit Part Request close Part Number arrow_drop_down Description Quantity Source Vendor arrow_drop_down Category Uncategorized arrow_drop_down Vendor arrow_drop_down $ Cost $ Core Charge $ Sell Price Margin % Cancel Order Save & Close"
-  },
-  "addRowStillOpen": true
+  "inlineEditRowInFullView": false
  },
- "Z-followon-row": {
-  "freshRowOpen": true,
-  "freshValues": {
-   "desc": "",
-   "part": "",
-   "qty": "",
-   "cat": "",
-   "cost": "",
-   "sell": ""
-  },
-  "escapeOnFreshRow": {
-   "dialog": {
-    "text": "Edit Part Request close Part Number arrow_drop_down Description Quantity Source Vendor arrow_drop_down Category Uncategorized arrow_drop_down Vendor arrow_drop_down $ Cost $ Core Charge $ Sell Price Margin % Cancel Order Save & Close",
-    "buttons": [
-     "close",
-     "Cancel Order",
-     "Save & Close"
-    ]
-   },
-   "rowOpen": true
-  },
-  "reopenedEmptyRow": true,
-  "navigateFromEmptyRow": {
-   "dialog": null,
-   "url": "/workorders?tab=work_orders"
+ "Q-bins": {
+  "chip": null,
+  "rowText": null,
+  "picker": null,
+  "splitClicked": false,
+  "splitModal": {
+   "open": false
   }
- }
+ },
+ "R-bin-warning": {
+  "chosen": "3.50-3.82\" (89-97mm) SPRING LOADED T-BOLT CLAMP N68SL-356 Inventory Qty: 7 EA PB1 7",
+  "baseChip": "PB1 expand_more",
+  "baseRow": "Description Part number Qty Category Uncategorized expand_more $ Cost $ Sell price More options Save close",
+  "overChip": "PB1 expand_more",
+  "overRow": "Description Part number Qty Category Uncategorized expand_more $ Cost $ Sell price More options Save close",
+  "overMessages": [
+   "location_on"
+  ]
+ },
+ "AA-category-carryover": {
+  "categoryLeftAlone": {
+   "modalOpen": true,
+   "categoryRequiredShown": false,
+   "values": [
+    {
+     "id": "input_workorder_part_description",
+     "v": "ZZAUTOTEST cat-none 1788250946494"
+    },
+    {
+     "id": "input_workorder_part_quantity",
+     "v": "2"
+    },
+    {
+     "id": "select_workorder_part_source",
+     "v": "Vendor"
+    },
+    {
+     "id": "input_part_cost",
+     "v": "5.00000"
+    },
+    {
+     "id": "input_workorder_part_sell_price",
+     "v": "9.00"
+    },
+    {
+     "id": "input_workorder_part_margin",
+     "v": "44.44444"
+    }
+   ]
+  },
+  "categoryChosenInline": "AUTO-Batteries",
+  "modalWithCategory": {
+   "modalOpen": true,
+   "categoryRequiredShown": false,
+   "modalText": "New Part Request close Part Number arrow_drop_down Description Quantity Source Vendor arrow_drop_down Category AUTO-Batteries arrow_drop_down Vendor arrow_drop_down $ Cost $ Core Charge $ Sell Price Margin % AI SHOPCOACH PARTS GUIDE Save Part",
+   "values": [
+    {
+     "id": "input_workorder_part_description",
+     "v": "ZZAUTOTEST cat-set 1788250961172"
+    },
+    {
+     "id": "input_workorder_part_quantity",
+     "v": "2"
+    },
+    {
+     "id": "select_workorder_part_source",
+     "v": "Vendor"
+    },
+    {
+     "id": "input_part_cost",
+     "v": "5.00000"
+    },
+    {
+     "id": "input_workorder_part_sell_price",
+     "v": "9.00"
+    },
+    {
+     "id": "input_workorder_part_margin",
+     "v": "44.44444"
+    }
+   ]
+  },
+  "savePartClicked": true,
+  "afterSavePart": {
+   "modalOpen": false,
+   "inlineRowOpen": false,
+   "toast": [],
+   "partOnLine": true
+  }
+ },
+ "AB-edit-guard-recheck": [
+  {
+   "which": "edit-control",
+   "armedDesc": "ZZAUTOTEST guard edit-control",
+   "dialogCount": 1,
+   "dialogs": [
+    "Edit Part Request close Part Number arrow_drop_down Description Quantity Source Vendor arrow_drop_down Category AUTO-Batteries arrow_drop_down Vendor arrow_drop"
+   ],
+   "discardConfirmationShown": false,
+   "editModalShown": true,
+   "addRowStillOpen": true
+  },
+  {
+   "which": "edit-control-again",
+   "armedDesc": "ZZAUTOTEST guard edit-control-again",
+   "dialogCount": 1,
+   "dialogs": [
+    "Edit Part Request close Part Number arrow_drop_down Description Quantity Source Vendor arrow_drop_down Category AUTO-Batteries arrow_drop_down Vendor arrow_drop"
+   ],
+   "discardConfirmationShown": false,
+   "editModalShown": true,
+   "addRowStillOpen": true
+  }
+ ]
 }

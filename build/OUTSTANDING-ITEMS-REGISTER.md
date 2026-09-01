@@ -2,7 +2,16 @@
 
 > **⚠️ REFERENCE ONLY — this register is history and other sessions' work. It is NOT a backlog and does not authorise action (Rule 92).** Reading an open item here does **not** mean it is yours to work on; a lane session acts only on the project the QA lead has NAMED.
 
-## 🆕 2026-08-28 (latest) — THE FOUR-JOB APPROVED BATCH RAN IN FULL: 19 DAMAGED CASES RESTORED, 3 WIP CASES AUTHORED, 8 ANCHOR CITATIONS REPAIRED, TWO INDEX COUNTS CORRECTED, THE SWEEP CLOSED OUT
+## 🆕 2026-09-01 — 6597 BUILD VERIFICATION IS HALTED BY A DEAD SHARED SSO SESSION; ONE ASK
+
+| Row | Item | Who | Status |
+|---|---|---|---|
+| **SSO-1** | **A fresh `sv_sso_session` cookie value for `*.qa.shopview.com`** — by that name; nothing else is needed (this estate has no Cloudflare, so no `cf_clearance`, and `PHPSESSID` is re-minted by `quick-login` once SSO is alive). Both branches 401 `sso_required` at once on a byte-identical token, the refusal is JSON from the app, nothing returns 409 — the exact signature in core §6.1. `quick-login` is itself SSO-gated and also answers 401. Proof and the six searches: `build/BLOCKED-shopview-sso-session-2026-09-01.md` | **QA lead** | **OPEN — blocks the remaining 69 verdicts on 6597 and all of 6617. Nothing else is blocked: TestRail still answers and the case content is being prepared offline** |
+| **INL-1** | **[C45220](https://shopview.testrail.io/index.php?/cases/view/45220)** — Vladimir Tomovic's case, flagged **Automated**, and it has **no steps at all**, so it is the only case in suite 6597 that fails the runnability gate. Rules 38 and 71 both apply and the QA lead's override covers another *session's* writes, not a person's case | **QA lead** | **OPEN — flagged, not touched. Say the word and I will write its steps** |
+| **INL-2** | Two bin data states do not exist on sv9315: a catalog part with **no** bins (for the "Not stocked" card) and one held in **more than three** bins (for the "+ N" collapse chip). Every one of the 100 inventory parts the API returns holds exactly one bin | **me, once the session is back** | **OPEN — seed them; they are data states, not findings** |
+| **INL-3** | **A deviation found live: C45068.** Selecting Edit on a part line while a POPULATED inline add row is open opens the Edit Part Request modal immediately, with **no** discard confirmation, and leaves the add row open. Observed twice. S5-E1 requires S6-R5's confirmation first. **Jira hold is active, so no ticket** — the text is ready | **QA lead** | **OPEN — awaiting permission to file** |
+
+## 2026-08-28 — THE FOUR-JOB APPROVED BATCH RAN IN FULL: 19 DAMAGED CASES RESTORED, 3 WIP CASES AUTHORED, 8 ANCHOR CITATIONS REPAIRED, TWO INDEX COUNTS CORRECTED, THE SWEEP CLOSED OUT
 
 **Everything below was explicitly approved by the QA lead on 2026-08-28, including C29955 (Automated).
 Nothing came back wrong; no run had to be stopped.**
