@@ -61,3 +61,8 @@
 
 ## TestRail run (2026-08-25)
 - **Full-suite run R419** — all 44 cases — https://shopview.testrail.io/index.php?/runs/view/419. C-IDs backfilled into testrail-id-map.csv. New cases: append via `build/testing-tools/sync_runs.py --apply` (union-only, Rule 34).
+
+## Status — 2026-09-01 (source currency re-confirmed; QA lead cleared 6617 to this session)
+- QA lead directed the other (build-verify) session NOT to touch 6597/6617 so this session owns them.
+- **Source re-checked LIVE 2026-09-01: Confluence 519176194 is still v9** — unchanged since the 2026-08-31 v8→v9 (non-substantive) check. **Source verification remains CURRENT; no new case changes warranted.**
+- Remaining, not source work: (a) 1 Automated case C45123 awaits Vlad for the layman-route enrichment (Rule 71); (b) build verification blocked (Rule 85, no QA build) — routes PROVISIONAL until a build; (c) PO/Owner still TBD (PO-PFWO-1).
