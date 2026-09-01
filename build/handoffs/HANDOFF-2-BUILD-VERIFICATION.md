@@ -272,8 +272,9 @@ AUTOMATION: HOLD - customer portal only exists on staging; this case cannot run 
 
 **It is a HOLD, not a fifth literal**, so the CLAUDE.md arithmetic gate **READY + EXPECT-FAIL =
 total − HOLD** is unaffected; a portal that does not exist on the branch is *"a genuinely unobtainable
-thing"*, so this is not the barred tool-flag excuse. **The wording is provisional — the QA lead may
-rename it.**
+thing"*, so this is not the barred tool-flag excuse. **The wording is FINAL — the QA lead confirmed
+this exact string on 2026-08-31; it is never reworded, abbreviated or re-punctuated in isolation, and
+`00-COMMON-CORE.md` §5.0-b holds the LOCATIONS list a rename would have to sweep.**
 
 **⇒ SCOPE IT FROM THE CASE'S PRECONDITIONS, NEVER FROM THE WORD "PORTAL".** Only a case whose
 **preconditions require a portal-generated artefact** gets the marker. **A case that verifies the

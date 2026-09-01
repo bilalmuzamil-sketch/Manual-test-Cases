@@ -706,8 +706,47 @@ AUTOMATION: HOLD - customer portal only exists on staging; this case cannot run 
 **Why HOLD and not a fifth literal:** the CLAUDE.md arithmetic gate is
 **READY + EXPECT-FAIL = total − HOLD**, and a new literal would silently break it; and the marker
 convention permits HOLD for *"a genuinely unobtainable thing"* — a portal that does not exist on the
-branch qualifies, so this is not the barred tool-flag excuse. **The wording is provisional: the QA
-lead may rename it.**
+branch qualifies, so this is not the barred tool-flag excuse.
+
+**🔴 THE WORDING IS FINAL — CONFIRMED BY THE QA LEAD ON 2026-08-31.** It was recorded as provisional
+when first written that morning; **that provisional note is now spent and is replaced by this
+confirmation.** The string above is a **fixed, machine-findable literal**, exactly like
+`AUTOMATION: READY` and `AUTOMATION: Not available on Build to test Yet - Last checked <M/D/YYYY>`:
+**never reworded, never abbreviated, never re-punctuated, never re-cased, and never "tidied" in one
+file in isolation.** Copy it byte-for-byte — one space either side of the hyphen after `HOLD`, a
+semicolon before `this case`, no full stop, no trailing whitespace. If the QA lead ever does rename
+it, it is renamed **everywhere in one pass**, using the LOCATIONS list below.
+
+**⇒ LOCATIONS — every file that currently carries the literal (established by grep, 2026-08-31).**
+**This list is part of the rule: whenever a new location is added, add its row here in the same
+pass** (Rule 93), so a future rename is a findable sweep and never a guess.
+
+| File | What the copy is for |
+|---|---|
+| `build/skills/00-COMMON-CORE.md` (this section) | **CANONICAL — every other copy is a working copy and loses any disagreement with this one** |
+| `build/skills/03-RUN-CHECK.md` §7 | the run-check procedure's marker table |
+| `CLAUDE.md` §5 (deliverable conventions) | the index entry pointing back here |
+| `build/handoffs/HANDOFF-1-TEST-CASE-CREATION.md` | authoring-lane startup copy |
+| `build/handoffs/HANDOFF-2-BUILD-VERIFICATION.md` §3b | build-verification-lane startup copy |
+| `build/handoffs/HANDOFF-3-VIU.md` | VIU-lane startup copy |
+| `build/handoffs/HANDOFF-4-TEST-EXECUTION-AND-DEFECTS.md` | execution/defect-lane startup copy |
+| `build/invoice-ui-refresh/build-verify-2026-08-31/CREDIT-INVOICE-CASES-2026-08-31.md` | dated pass record — **historical evidence, never retro-edited** |
+| `build/invoice-ui-refresh/build-verify-2026-08-31/HANDOVER-AUTOMATION-READY-2026-08-31.md` | dated pass record — historical evidence |
+| `build/invoice-ui-refresh/build-verify-2026-08-31/markers/credit-cases.json` | dated pass data — historical evidence |
+| `build/invoice-ui-refresh/build-verify-2026-08-31/markers/intended-blocks.json` | dated pass data — historical evidence |
+| `build/invoice-ui-refresh/build-verify-2026-08-31/markers/PRE-rest-snapshot.json` | pre-write TestRail snapshot — **never edited, it is the before-image** |
+| `build/invoice-ui-refresh/build-verify-2026-08-31/markers/make_handover.py` | generator that emits the literal |
+
+**Regenerate the list with exactly this command** (run from the repo root; it also finds any live
+TestRail body that was exported into the repo):
+
+```
+grep -rn "customer portal only exists on staging" --binary-files=without-match . | grep -v '^\./\.git/'
+```
+
+**A rename sweep also has to reach the live TestRail cases carrying the marker** — the repo copies
+are the instruction, the case bodies are the deployment (2026-08-31: C44947 / C44951 / C44952 /
+C45175 on Invoice UI Refresh).
 
 **⇒ SCOPE IT FROM THE PRECONDITIONS, NOT FROM THE WORD "PORTAL".** Only a case whose **preconditions
 require a portal-generated artefact** gets the marker. A case that verifies the portal feature's
