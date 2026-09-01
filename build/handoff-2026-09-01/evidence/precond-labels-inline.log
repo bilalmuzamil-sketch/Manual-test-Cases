@@ -1,0 +1,12 @@
+cases checked      : 122
+observed-label file: build/OBSERVED-UI-LABELS-sv9315.md
+
+🛑 BARRED LABELS PRESENT — these are known NOT to exist on the build:
+   /Work Order Line\s*-\s*Create and Edit/  in 6 case(s): ['C45005', 'C45026', 'C45223', 'C45224', 'C45227', 'C45237']
+      the role screen has a “Work order lines” section with a “Create & Edit” toggle; this string does not exist
+   /Work Order View Mode/  in 6 case(s): ['C45005', 'C45026', 'C45223', 'C45224', 'C45227', 'C45237']
+      the role screen calls it “View mode”, inside the “Work orders” section
+
+every quoted precondition label is present in the observed-label file
+
+PRECONDITION-LABEL GATE: PROBLEMS ABOVE
