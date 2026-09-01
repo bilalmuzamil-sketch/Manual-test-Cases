@@ -1,0 +1,76 @@
+[
+ {
+  "claim": "Work Orders -> Finance",
+  "cited": 179,
+  "url": "/workorders/8c5c5751-549e-405c-8d1c-ed7896eb802b",
+  "tab": "Finance",
+  "verdict": "ROUTE OK",
+  "detail": "tabs on screen: [\"Lines (2)\",\"Parts (1)\",\"Notes (1)\",\"Timesheets (4)\",\"History\",\"Stats\",\"Finance\"]"
+ },
+ {
+  "claim": "Customers -> Invoices",
+  "cited": 37,
+  "url": "/customers/97734382-36a3-4f04-9226-a97bd662ec24",
+  "tab": "Invoices",
+  "verdict": "ROUTE OK",
+  "detail": "tabs on screen: [\"Work Orders (50)\",\"Part Sales\",\"Contacts (6)\",\"Assets (19)\",\"Notes\",\"Invoices\",\"Payments (30)\",\"Deposits\",\"Fees & Discounts (0)\"]"
+ },
+ {
+  "claim": "Parts -> Part Sales",
+  "cited": 13,
+  "url": "/parts/part-sale/10ec6899-316b-409e-993a-72ca87460d5b",
+  "tab": null,
+  "expectMenu": "Parts",
+  "verdict": "ROUTE OK",
+  "detail": "landed /parts/part-sale/10ec6899-316b-409e-993a-72ca87460d5b/part-requests (1096 chars)"
+ },
+ {
+  "claim": "Customers -> Payments",
+  "cited": 6,
+  "url": "/customers/97734382-36a3-4f04-9226-a97bd662ec24",
+  "tab": "Payments",
+  "verdict": "ROUTE OK",
+  "detail": "tabs on screen: [\"Work Orders (50)\",\"Part Sales\",\"Contacts (6)\",\"Assets (19)\",\"Notes\",\"Invoices\",\"Payments (30)\",\"Deposits\",\"Fees & Discounts (0)\"]"
+ },
+ {
+  "claim": "Work Orders -> Imported filter",
+  "cited": 4,
+  "url": "/workorders?status=imported",
+  "tab": null,
+  "expectRow": "ZZAUTOTEST-IMP-001",
+  "verdict": "ROUTE OK",
+  "detail": "looked for ZZAUTOTEST-IMP-001"
+ },
+ {
+  "claim": "Parts sale -> Finance",
+  "cited": 3,
+  "url": "/parts/part-sale/10ec6899-316b-409e-993a-72ca87460d5b",
+  "tab": "Finance",
+  "verdict": "ROUTE OK",
+  "detail": "tabs on screen: [\"Parts (1)\",\"Statistics\",\"Finance\"]"
+ },
+ {
+  "claim": "Customers -> Contacts",
+  "cited": 2,
+  "url": "/customers/97734382-36a3-4f04-9226-a97bd662ec24",
+  "tab": "Contacts",
+  "verdict": "ROUTE OK",
+  "detail": "tabs on screen: [\"Work Orders (50)\",\"Part Sales\",\"Contacts (6)\",\"Assets (19)\",\"Notes\",\"Invoices\",\"Payments (30)\",\"Deposits\",\"Fees & Discounts (0)\"]"
+ },
+ {
+  "claim": "Work Orders -> Contacts",
+  "cited": 1,
+  "url": "/workorders/8c5c5751-549e-405c-8d1c-ed7896eb802b",
+  "tab": "Contacts",
+  "verdict": "TAB NOT FOUND",
+  "detail": "tabs on screen: [\"Lines\",\"Parts (1)\",\"Notes (1)\",\"Timesheets (4)\",\"History\",\"Stats\",\"Finance\"]"
+ },
+ {
+  "claim": "Customers -> Part Sales",
+  "cited": 1,
+  "url": "/customers/97734382-36a3-4f04-9226-a97bd662ec24",
+  "tab": "Part Sales",
+  "verdict": "ROUTE OK",
+  "detail": "tabs on screen: [\"Work Orders (50)\",\"Part Sales\",\"Contacts (6)\",\"Assets (19)\",\"Notes\",\"Invoices\",\"Payments (30)\",\"Deposits\",\"Fees & Discounts (0)\"]"
+ }
+]
