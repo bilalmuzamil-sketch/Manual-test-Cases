@@ -1,0 +1,128 @@
+{
+ "44919": {
+  "provenance": [
+   "This is the expected behaviour as per epic SV-8218 and story SV-9142 (Story 3, Order Reference Fields) and the Invoice UI Refresh specification version 45, section S3-R5, read on 31 August 2026."
+  ],
+  "marker_carried": "AUTOMATION: READY - EXPECT FAIL (SV-9599)",
+  "title": "Authorizer is selected in the work order customer contact card",
+  "atm": 3,
+  "section_id": 6744,
+  "before_expected_s2": null,
+  "before": {
+   "custom_preconds": "<p>1. You are signed in to ShopView with access to work orders.<br>2. A work order exists for a customer that has at least one contact with 'Approves Work' enabled, and other contacts without it.<br>3. To put the document on screen: click \"Work Orders\" in the top menu, open the work order you need, then click the \"Finance\" tab. The document appears on the right.<br>4. Use the \"Estimate/Invoice\" toggle above the document to switch between the Estimate and the Invoice.<br>5. The printer icon prints the document and the download icon saves it. The cog icon opens the invoice display settings (Labor rate, Labor hours, Labor price, Summarize labor total, Summarize parts total, Part number, Part description).</p>",
+   "custom_steps": "<p>1. Open the work order.<br>2. Look at the customer contact card on the left side of the work order, below the Contact and Phone values.<br>3. Select the \"Authorizer\" row and look at the list of choices offered.</p>"
+  }
+ },
+ "44920": {
+  "provenance": [
+   "This is the expected behaviour as per epic SV-8218 and story SV-9142 (Story 3, Order Reference Fields) and the Invoice UI Refresh specification version 45, section S3-R6, read on 31 August 2026."
+  ],
+  "marker_carried": "AUTOMATION: READY",
+  "title": "Authorizer is optional and can be cleared with 'No authorizer'",
+  "atm": 3,
+  "section_id": 6744,
+  "before_expected_s2": null,
+  "before": {
+   "custom_preconds": "<p>1. You are signed in to ShopView.<br>2. A work order exists whose customer has 'Approves Work' contacts.<br>3. To put the document on screen: click \"Work Orders\" in the top menu, open the work order you need, then click the \"Finance\" tab. The document appears on the right.<br>4. Use the \"Estimate/Invoice\" toggle above the document to switch between the Estimate and the Invoice.<br>5. The printer icon prints the document and the download icon saves it. The cog icon opens the invoice display settings (Labor rate, Labor hours, Labor price, Summarize labor total, Summarize parts total, Part number, Part description).</p>",
+   "custom_steps": "<p>1. Open a work order with no Authorizer selected and look at the Authorizer row.<br>2. Open the Authorizer list and note the options.<br>3. Select an authorizer, then reopen the list and choose \"No authorizer\".</p>"
+  }
+ },
+ "44921": {
+  "provenance": [
+   "This is the expected behaviour as per epic SV-8218 and story SV-9142 (Story 3, Order Reference Fields) and the Invoice UI Refresh specification version 45, section S3-R7, read on 31 August 2026."
+  ],
+  "marker_carried": "AUTOMATION: READY",
+  "title": "Authorizer's phone shows below the name when the contact has one",
+  "atm": 3,
+  "section_id": 6744,
+  "before_expected_s2": null,
+  "before": {
+   "custom_preconds": "<p>1. You are signed in to ShopView.<br>2. A work order's customer has one 'Approves Work' contact WITH a phone number and one WITHOUT.<br>3. To put the document on screen: click \"Work Orders\" in the top menu, open the work order you need, then click the \"Finance\" tab. The document appears on the right.<br>4. Use the \"Estimate/Invoice\" toggle above the document to switch between the Estimate and the Invoice.<br>5. The printer icon prints the document and the download icon saves it. The cog icon opens the invoice display settings (Labor rate, Labor hours, Labor price, Summarize labor total, Summarize parts total, Part number, Part description).</p>",
+   "custom_steps": "<p>1. Open the work order and select the authorizer whose contact has a phone number; look at the contact card.<br>2. Select the authorizer whose contact has no phone number; look at the contact card.</p>"
+  }
+ },
+ "44922": {
+  "provenance": [
+   "This is the expected behaviour as per epic SV-8218 and story SV-9142 (Story 3, Order Reference Fields) and the Invoice UI Refresh specification version 45, section S3-R8, read on 31 August 2026."
+  ],
+  "marker_carried": "AUTOMATION: READY",
+  "title": "Authorizer is locked once the work order is invoiced",
+  "atm": 3,
+  "section_id": 6744,
+  "before_expected_s2": null,
+  "before": {
+   "custom_preconds": "<p>1. You are signed in to ShopView.<br>2. A work order that has been invoiced exists, with (or without) an Authorizer selected.<br>3. To put the document on screen: click \"Work Orders\" in the top menu, open the work order you need, then click the \"Finance\" tab. The document appears on the right.<br>4. Use the \"Estimate/Invoice\" toggle above the document to switch between the Estimate and the Invoice.<br>5. The printer icon prints the document and the download icon saves it. The cog icon opens the invoice display settings (Labor rate, Labor hours, Labor price, Summarize labor total, Summarize parts total, Part number, Part description).</p>",
+   "custom_steps": "<p>1. Open the invoiced work order.<br>2. Try to change the Authorizer in the customer contact card.</p>"
+  }
+ },
+ "44985": {
+  "provenance": [
+   "This is the expected behaviour as per epic SV-8218 and story SV-9195 (Story 13, Parts Sale Estimate and Invoice) and the Invoice UI Refresh specification version 45, section S13-R6, read on 31 August 2026."
+  ],
+  "marker_carried": "AUTOMATION: READY",
+  "title": "Parts sale receives the Authorizer treatment (net-new)",
+  "atm": 3,
+  "section_id": 6754,
+  "before_expected_s2": null,
+  "before": {
+   "custom_preconds": "<p>1. You are signed in to ShopView with access to parts sales.<br>2. A parts sale exists for a customer with 'Approves Work' contacts.<br>3. To put the Parts Sale document on screen: click \"Customers\" in the top menu, open the customer, click the \"Part Sales\" tab, open the part sale, then click the \"Finance\" tab.<br>4. Use the \"Estimate/Invoice\" toggle above the document to switch between the Parts Sale Estimate and the Parts Sale Invoice.</p>",
+   "custom_steps": "<p>1. Open the parts sale record and find the Authorizer field.<br>2. Select an authorizer from the offered list, then invoice the parts sale and try to change it.<br>3. Generate the Parts Sale document and read the Authorizer reference field.</p>"
+  }
+ },
+ "45169": {
+  "provenance": [
+   "This is the expected behaviour as per epic SV-8218 and story SV-9142 (Story 3, Order Reference Fields) and the Invoice UI Refresh specification version 45, section S3-R8, read on 31 August 2026."
+  ],
+  "marker_carried": "AUTOMATION: READY",
+  "title": "Authorizer change is rejected by the API while a non-voided invoice exists",
+  "atm": 1,
+  "section_id": 6744,
+  "before_expected_s2": null,
+  "before": {
+   "custom_preconds": "<p>1. You are signed in to ShopView. You also need a way to send a request to the system directly, outside the screens - a developer or the automation engineer will have this.<br>2. You need a work order that has been invoiced and has not been voided or reversed. To reach it: click \"Work Orders\" in the top menu and open the work order.<br>3. You need the customer to have a contact who approves work. To check or set that: click \"Customers\" in the top menu, open the customer, click the \"Contacts\" tab, click the edit icon on a contact's row and tick \"Approves Work\".<br>4. This case deliberately checks the back end rather than the screen: on screen the Authorizer is already locked once the work order is invoiced, and the point here is that the lock also holds when the screen is bypassed.</p>",
+   "custom_steps": "<p>1. Click \"Work Orders\" in the top menu and open the invoiced work order, so you can see the Authorizer row in the customer card on the left and note the name it currently shows.<br>2. Send a change-authorizer request to the system directly, bypassing the screen: POST /api/work-orders/change-authorizer with body {\"workOrderId\": \"&lt;the work order id&gt;\", \"authorizerContactId\": \"&lt;the id of a contact who approves work&gt;\"}.<br>3. Read the response the system gives back.<br>4. Return to the work order in the app, reload it, and look at the Authorizer row again.</p>"
+  }
+ },
+ "45170": {
+  "provenance": [
+   "This is the expected behaviour as per epic SV-8218 and story SV-9142 (Story 3, Order Reference Fields) and the Invoice UI Refresh specification version 45, section S3-R5, read on 31 August 2026."
+  ],
+  "marker_carried": "AUTOMATION: READY",
+  "title": "Authorizer API rejects a contact that does not approve work or belongs to another company",
+  "atm": 1,
+  "section_id": 6744,
+  "before_expected_s2": null,
+  "before": {
+   "custom_preconds": "<p>1. You are signed in to ShopView and have API access (a valid session token).<br>2. Un-invoiced work order<br>3. Contact IDs: (a) same company without 'Approves Work'; (b) another company's contact<br>4. To reach the work order in the app: click \"Work Orders\" in the top menu and open the work order.<br>5. To set up the customer's contacts: click \"Customers\" in the top menu, open the customer, click the \"Contacts\" tab (the \"Approves Work\" checkbox marks a contact as an approver).</p>",
+   "custom_steps": "<p>1. Prepare the work order and its customer contacts as described in the preconditions (Work Orders to open the work order; Customers -&gt; Contacts to set \"Approves Work\").<br>2. POST authorizer_id = contact (a)<br>3. POST authorizer_id = contact (b)</p>"
+  }
+ },
+ "45190": {
+  "provenance": [
+   "This is the expected behaviour as per epic SV-8218 and story SV-9142 (Story 3, Order Reference Fields) and the Invoice UI Refresh specification version 45, section S3-R5, read on 31 August 2026."
+  ],
+  "marker_carried": "AUTOMATION: READY",
+  "title": "Work order, imported work order and part sale customer cards still work after the Authorizer change",
+  "atm": 1,
+  "section_id": 6770,
+  "before_expected_s2": null,
+  "before": {
+   "custom_preconds": "<p>1. You are signed in to ShopView.<br>2. You need three records: an ordinary work order, an imported work order, and a parts sale.<br>3. An ordinary work order: click \"Work Orders\" in the top menu and open any row.<br>4. An imported work order: click \"Work Orders\" in the top menu, set the Status filter to \"Imported\", and open a row. Imported work orders appear only under that filter.<br>5. A parts sale: click \"Parts\" in the top menu, open \"Part Sales\", and open any row.<br>6. On all three, the customer card is the panel down the left-hand side of the screen.</p>",
+   "custom_steps": "<p>1. Click \"Work Orders\" in the top menu, open an ordinary work order, and read the customer card on the left: the Contact row, the Phone row, and whether an Authorizer row is present.<br>2. Click \"Work Orders\" again, set the Status filter to \"Imported\", open a row, and read the same card on the left.<br>3. Click \"Parts\" in the top menu, open \"Part Sales\", open a row, and read the same card again.<br>4. On each of the three, check the card is intact - nothing overlapping, cut off, or missing its heading - and that its buttons still respond.</p>"
+  }
+ },
+ "45185": {
+  "provenance": [
+   "This is the expected behaviour as per epic SV-8218 and the Invoice UI Refresh engineering plan (item D5); verified current against the Invoice UI Refresh specification version 45, read on 31 August 2026."
+  ],
+  "marker_carried": "AUTOMATION: HOLD - this case fails on a server error that has no ticket yet; change to READY - EXPECT FAIL (SV-xxxx) once the ticket is filed",
+  "title": "A snapshot created before the redesign renders in the new layout with blanks and no error",
+  "atm": 1,
+  "section_id": 6770,
+  "before_expected_s2": null,
+  "before": {
+   "custom_preconds": "<p>1. You are signed in to ShopView.<br>2. You need a work order that was invoiced BEFORE this version was built - check the dates in its history.<br>3. To open a saved copy of a document: click \"Work Orders\" in the top menu, open the work order, and open its History. The entries that keep a saved copy are \"Invoice created\", \"Invoice downloaded\", \"Invoice emailed\" and \"Reviewed\"; open the saved copy from one of those entries.<br>4. For comparison you also want a saved copy made today: click \"Work Orders\", open a work order that is Complete, click its \"Finance\" tab and create an invoice, then open the History entry that appears.</p>",
+   "custom_steps": "<p>1. Click \"Work Orders\" in the top menu, open the old work order, and open its History.<br>2. Open the saved copy of the document from an entry dated before this version was built.<br>3. Check that the document opens at all, and that no error message appears in place of it.<br>4. Read its layout, then save or print it and read that too.<br>5. Look at the fields that did not exist when that copy was made - the Authorizer, the licence plate, the estimate date - and check whether they are simply left blank rather than showing an error.</p>"
+  }
+ }
+}

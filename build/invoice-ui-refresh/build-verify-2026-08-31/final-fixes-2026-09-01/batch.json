@@ -1,0 +1,230 @@
+{
+ "44919": {
+  "title": "Authorizer is selected in the work order customer contact card",
+  "atm": 3,
+  "marker_carried": "AUTOMATION: READY - EXPECT FAIL (SV-9599)",
+  "fields": {
+   "custom_preconds": {
+    "blocks": [
+     [
+      "1. You are signed in to ShopView.",
+      "2. You need a customer with at least one contact who approves work AND at least one who does not. To mark a contact as one who approves work: click \"Customers\" in the top menu, open the customer, click the \"Contacts\" tab, click the edit icon at the right of the contact's row, tick \"Approves Work\" and click \"Save\".",
+      "3. You need one of that customer's work orders. Use a work order that has NOT been invoiced - one still reading Estimate, Approved, In progress, Review or Complete. Once a work order is invoiced the Authorizer is locked and cannot be changed, so the check cannot be done on it.",
+      "4. Click \"Work Orders\" in the top menu and open the work order (click its row).",
+      "5. The customer card is the panel down the left-hand side of the work order. The \"Authorizer\" row sits inside it, below the \"Contact\" and \"Phone\" rows."
+     ]
+    ],
+    "text": "1. You are signed in to ShopView.\n2. You need a customer with at least one contact who approves work AND at least one who does not. To mark a contact as one who approves work: click \"Customers\" in the top menu, open the customer, click the \"Contacts\" tab, click the edit icon at the right of the contact's row, tick \"Approves Work\" and click \"Save\".\n3. You need one of that customer's work orders. Use a work order that has NOT been invoiced - one still reading Estimate, Approved, In progress, Review or Complete. Once a work order is invoiced the Authorizer is locked and cannot be changed, so the check cannot be done on it.\n4. Click \"Work Orders\" in the top menu and open the work order (click its row).\n5. The customer card is the panel down the left-hand side of the work order. The \"Authorizer\" row sits inside it, below the \"Contact\" and \"Phone\" rows."
+   },
+   "custom_steps": {
+    "blocks": [
+     [
+      "1. Click \"Work Orders\" in the top menu and open the work order.",
+      "2. Look at the customer card down the left-hand side and find the \"Authorizer\" row - check where it sits relative to the \"Contact\" and \"Phone\" rows above it, and whether it is styled the same way.",
+      "3. Click the \"Authorizer\" row to open its list.",
+      "4. Read every name the list offers, and compare that against the customer's full contact list on the \"Contacts\" tab.",
+      "5. Try to type a name of your own into the field."
+     ]
+    ],
+    "text": "1. Click \"Work Orders\" in the top menu and open the work order.\n2. Look at the customer card down the left-hand side and find the \"Authorizer\" row - check where it sits relative to the \"Contact\" and \"Phone\" rows above it, and whether it is styled the same way.\n3. Click the \"Authorizer\" row to open its list.\n4. Read every name the list offers, and compare that against the customer's full contact list on the \"Contacts\" tab.\n5. Try to type a name of your own into the field."
+   }
+  }
+ },
+ "44920": {
+  "title": "Authorizer is optional and can be cleared with 'No authorizer'",
+  "atm": 3,
+  "marker_carried": "AUTOMATION: READY",
+  "fields": {
+   "custom_preconds": {
+    "blocks": [
+     [
+      "1. You are signed in to ShopView.",
+      "2. You need a customer who has at least one contact who approves work. To mark a contact as one who approves work: click \"Customers\" in the top menu, open the customer, click the \"Contacts\" tab, click the edit icon at the right of the contact's row, tick \"Approves Work\" and click \"Save\".",
+      "3. You need one of that customer's work orders with no Authorizer chosen yet. Use a work order that has NOT been invoiced - one still reading Estimate, Approved, In progress, Review or Complete. Once a work order is invoiced the Authorizer is locked and cannot be changed, so the check cannot be done on it.",
+      "4. Click \"Work Orders\" in the top menu and open the work order (click its row).",
+      "5. The customer card is the panel down the left-hand side of the work order. The \"Authorizer\" row sits inside it, below the \"Contact\" and \"Phone\" rows."
+     ]
+    ],
+    "text": "1. You are signed in to ShopView.\n2. You need a customer who has at least one contact who approves work. To mark a contact as one who approves work: click \"Customers\" in the top menu, open the customer, click the \"Contacts\" tab, click the edit icon at the right of the contact's row, tick \"Approves Work\" and click \"Save\".\n3. You need one of that customer's work orders with no Authorizer chosen yet. Use a work order that has NOT been invoiced - one still reading Estimate, Approved, In progress, Review or Complete. Once a work order is invoiced the Authorizer is locked and cannot be changed, so the check cannot be done on it.\n4. Click \"Work Orders\" in the top menu and open the work order (click its row).\n5. The customer card is the panel down the left-hand side of the work order. The \"Authorizer\" row sits inside it, below the \"Contact\" and \"Phone\" rows."
+   },
+   "custom_steps": {
+    "blocks": [
+     [
+      "1. Click \"Work Orders\" in the top menu and open the work order.",
+      "2. Look at the \"Authorizer\" row in the customer card on the left and note what it shows before anything is chosen.",
+      "3. Click the row to open its list and read the options offered at the top of it.",
+      "4. Choose a name from the list, and check the row now shows it.",
+      "5. Click the row again and choose the option that clears it, then look at the row once more."
+     ]
+    ],
+    "text": "1. Click \"Work Orders\" in the top menu and open the work order.\n2. Look at the \"Authorizer\" row in the customer card on the left and note what it shows before anything is chosen.\n3. Click the row to open its list and read the options offered at the top of it.\n4. Choose a name from the list, and check the row now shows it.\n5. Click the row again and choose the option that clears it, then look at the row once more."
+   }
+  }
+ },
+ "44921": {
+  "title": "Authorizer's phone shows below the name when the contact has one",
+  "atm": 3,
+  "marker_carried": "AUTOMATION: READY",
+  "fields": {
+   "custom_preconds": {
+    "blocks": [
+     [
+      "1. You are signed in to ShopView.",
+      "2. You need a customer with two contacts who approve work: one WITH a telephone number on the contact record and one WITHOUT. To mark a contact as one who approves work: click \"Customers\" in the top menu, open the customer, click the \"Contacts\" tab, click the edit icon at the right of the contact's row, tick \"Approves Work\" and click \"Save\". The telephone is on the same contact form.",
+      "3. You need one of that customer's work orders. Use a work order that has NOT been invoiced - one still reading Estimate, Approved, In progress, Review or Complete. Once a work order is invoiced the Authorizer is locked and cannot be changed, so the check cannot be done on it.",
+      "4. Click \"Work Orders\" in the top menu and open the work order (click its row).",
+      "5. The customer card is the panel down the left-hand side of the work order. The \"Authorizer\" row sits inside it, below the \"Contact\" and \"Phone\" rows."
+     ]
+    ],
+    "text": "1. You are signed in to ShopView.\n2. You need a customer with two contacts who approve work: one WITH a telephone number on the contact record and one WITHOUT. To mark a contact as one who approves work: click \"Customers\" in the top menu, open the customer, click the \"Contacts\" tab, click the edit icon at the right of the contact's row, tick \"Approves Work\" and click \"Save\". The telephone is on the same contact form.\n3. You need one of that customer's work orders. Use a work order that has NOT been invoiced - one still reading Estimate, Approved, In progress, Review or Complete. Once a work order is invoiced the Authorizer is locked and cannot be changed, so the check cannot be done on it.\n4. Click \"Work Orders\" in the top menu and open the work order (click its row).\n5. The customer card is the panel down the left-hand side of the work order. The \"Authorizer\" row sits inside it, below the \"Contact\" and \"Phone\" rows."
+   },
+   "custom_steps": {
+    "blocks": [
+     [
+      "1. Click \"Work Orders\" in the top menu and open the work order.",
+      "2. Click the \"Authorizer\" row in the customer card on the left and choose the contact who HAS a telephone number.",
+      "3. Look at the card directly below the authorizer's name and note whether a telephone number is shown there, and whether it is styled like the Contact's own phone above it.",
+      "4. Click the \"Authorizer\" row again and choose the contact who has NO telephone number.",
+      "5. Look directly below the authorizer's name again."
+     ]
+    ],
+    "text": "1. Click \"Work Orders\" in the top menu and open the work order.\n2. Click the \"Authorizer\" row in the customer card on the left and choose the contact who HAS a telephone number.\n3. Look at the card directly below the authorizer's name and note whether a telephone number is shown there, and whether it is styled like the Contact's own phone above it.\n4. Click the \"Authorizer\" row again and choose the contact who has NO telephone number.\n5. Look directly below the authorizer's name again."
+   }
+  }
+ },
+ "44922": {
+  "title": "Authorizer is locked once the work order is invoiced",
+  "atm": 3,
+  "marker_carried": "AUTOMATION: READY",
+  "fields": {
+   "custom_preconds": {
+    "blocks": [
+     [
+      "1. You are signed in to ShopView.",
+      "2. You need one work order that has been INVOICED. To invoice one: click \"Work Orders\" in the top menu, open a work order that is Complete, click its \"Finance\" tab and create the invoice.",
+      "3. It is worth looking at the same work order BEFORE you invoice it, so you can see the difference.",
+      "4. Click \"Work Orders\" in the top menu and open the work order (click its row).",
+      "5. The customer card is the panel down the left-hand side of the work order. The \"Authorizer\" row sits inside it, below the \"Contact\" and \"Phone\" rows."
+     ]
+    ],
+    "text": "1. You are signed in to ShopView.\n2. You need one work order that has been INVOICED. To invoice one: click \"Work Orders\" in the top menu, open a work order that is Complete, click its \"Finance\" tab and create the invoice.\n3. It is worth looking at the same work order BEFORE you invoice it, so you can see the difference.\n4. Click \"Work Orders\" in the top menu and open the work order (click its row).\n5. The customer card is the panel down the left-hand side of the work order. The \"Authorizer\" row sits inside it, below the \"Contact\" and \"Phone\" rows."
+   },
+   "custom_steps": {
+    "blocks": [
+     [
+      "1. Click \"Work Orders\" in the top menu and open a work order that is NOT yet invoiced. Click the \"Authorizer\" row in the customer card on the left and confirm the list opens and a name can be chosen.",
+      "2. Click the \"Finance\" tab on that work order and create the invoice.",
+      "3. Go back to the work order and click the \"Authorizer\" row in the customer card again.",
+      "4. Note whether the row responds at all, and whether it now looks greyed out rather than selectable.",
+      "5. If you can reverse or void that invoice (the invoice's three-dot menu on the \"Finance\" tab offers \"Reverse\"), do so and then look at the \"Authorizer\" row once more."
+     ]
+    ],
+    "text": "1. Click \"Work Orders\" in the top menu and open a work order that is NOT yet invoiced. Click the \"Authorizer\" row in the customer card on the left and confirm the list opens and a name can be chosen.\n2. Click the \"Finance\" tab on that work order and create the invoice.\n3. Go back to the work order and click the \"Authorizer\" row in the customer card again.\n4. Note whether the row responds at all, and whether it now looks greyed out rather than selectable.\n5. If you can reverse or void that invoice (the invoice's three-dot menu on the \"Finance\" tab offers \"Reverse\"), do so and then look at the \"Authorizer\" row once more."
+   }
+  }
+ },
+ "44985": {
+  "title": "Parts sale receives the Authorizer treatment (net-new)",
+  "atm": 3,
+  "marker_carried": "AUTOMATION: READY",
+  "fields": {
+   "custom_preconds": {
+    "blocks": [
+     [
+      "1. You are signed in to ShopView.",
+      "2. You need a customer with at least one contact who approves work. To mark a contact as one who approves work: click \"Customers\" in the top menu, open the customer, click the \"Contacts\" tab, click the edit icon at the right of the contact's row, tick \"Approves Work\" and click \"Save\".",
+      "3. You need one of that customer's parts sales that has NOT been invoiced yet. To find one: click \"Parts\" in the top menu, open \"Part Sales\", and open a row that is not yet Paid.",
+      "4. A parts sale has a customer card down the left-hand side just as a work order does, with the \"Authorizer\" row below \"Contact\" and \"Phone\".",
+      "5. To see the parts sale document: on the part sale, click the \"Finance\" tab."
+     ]
+    ],
+    "text": "1. You are signed in to ShopView.\n2. You need a customer with at least one contact who approves work. To mark a contact as one who approves work: click \"Customers\" in the top menu, open the customer, click the \"Contacts\" tab, click the edit icon at the right of the contact's row, tick \"Approves Work\" and click \"Save\".\n3. You need one of that customer's parts sales that has NOT been invoiced yet. To find one: click \"Parts\" in the top menu, open \"Part Sales\", and open a row that is not yet Paid.\n4. A parts sale has a customer card down the left-hand side just as a work order does, with the \"Authorizer\" row below \"Contact\" and \"Phone\".\n5. To see the parts sale document: on the part sale, click the \"Finance\" tab."
+   },
+   "custom_steps": {
+    "blocks": [
+     [
+      "1. Click \"Parts\" in the top menu, open \"Part Sales\", and open the parts sale.",
+      "2. Look at the customer card down the left-hand side and find the \"Authorizer\" row. Click it and read the names offered.",
+      "3. Choose one of them, then click the \"Finance\" tab and create the invoice for the parts sale.",
+      "4. Go back and click the \"Authorizer\" row again - note whether it still responds.",
+      "5. If you can reverse or void that invoice, do so and click the \"Authorizer\" row once more.",
+      "6. Click the \"Finance\" tab to put the parts sale document on screen and read the reference fields near the top for the authorizer's name."
+     ]
+    ],
+    "text": "1. Click \"Parts\" in the top menu, open \"Part Sales\", and open the parts sale.\n2. Look at the customer card down the left-hand side and find the \"Authorizer\" row. Click it and read the names offered.\n3. Choose one of them, then click the \"Finance\" tab and create the invoice for the parts sale.\n4. Go back and click the \"Authorizer\" row again - note whether it still responds.\n5. If you can reverse or void that invoice, do so and click the \"Authorizer\" row once more.\n6. Click the \"Finance\" tab to put the parts sale document on screen and read the reference fields near the top for the authorizer's name."
+   }
+  }
+ },
+ "45169": {
+  "title": "Authorizer change is rejected by the API while a non-voided invoice exists",
+  "atm": 1,
+  "marker_carried": "AUTOMATION: READY",
+  "fields": {
+   "custom_preconds": {
+    "blocks": [
+     [
+      "1. You are signed in to ShopView. You also need a way to send a request to the system directly, outside the screens - a developer or the automation engineer will have this.",
+      "2. You need one work order that has been INVOICED and has not since been voided or reversed. To invoice one: click \"Work Orders\" in the top menu, open a work order that is Complete, click its \"Finance\" tab and create the invoice.",
+      "3. You need the customer to have a contact who approves work. To mark a contact as one who approves work: click \"Customers\" in the top menu, open the customer, click the \"Contacts\" tab, click the edit icon at the right of the contact's row, tick \"Approves Work\" and click \"Save\".",
+      "4. Click \"Work Orders\" in the top menu and open the work order (click its row). The customer card is the panel down the left-hand side of the work order. The \"Authorizer\" row sits inside it, below the \"Contact\" and \"Phone\" rows.",
+      "5. This case deliberately checks the back end rather than the screen. On screen the Authorizer is already locked once the work order is invoiced; the point here is that the lock still holds when the screen is bypassed altogether."
+     ]
+    ],
+    "text": "1. You are signed in to ShopView. You also need a way to send a request to the system directly, outside the screens - a developer or the automation engineer will have this.\n2. You need one work order that has been INVOICED and has not since been voided or reversed. To invoice one: click \"Work Orders\" in the top menu, open a work order that is Complete, click its \"Finance\" tab and create the invoice.\n3. You need the customer to have a contact who approves work. To mark a contact as one who approves work: click \"Customers\" in the top menu, open the customer, click the \"Contacts\" tab, click the edit icon at the right of the contact's row, tick \"Approves Work\" and click \"Save\".\n4. Click \"Work Orders\" in the top menu and open the work order (click its row). The customer card is the panel down the left-hand side of the work order. The \"Authorizer\" row sits inside it, below the \"Contact\" and \"Phone\" rows.\n5. This case deliberately checks the back end rather than the screen. On screen the Authorizer is already locked once the work order is invoiced; the point here is that the lock still holds when the screen is bypassed altogether."
+   },
+   "custom_steps": {
+    "blocks": [
+     [
+      "1. Click \"Work Orders\" in the top menu and open the invoiced work order. Look at the \"Authorizer\" row in the customer card on the left and write down the name it shows.",
+      "2. Send a change-authorizer request straight to the system, bypassing the screen: POST /api/work-orders/change-authorizer with body {\"workOrderId\": \"<the work order id>\", \"authorizerContactId\": \"<the id of a contact who approves work>\"}.",
+      "3. Read the response code and message the system sends back.",
+      "4. Return to the work order in the app, reload the page, and look at the \"Authorizer\" row again to see whether the name changed."
+     ]
+    ],
+    "text": "1. Click \"Work Orders\" in the top menu and open the invoiced work order. Look at the \"Authorizer\" row in the customer card on the left and write down the name it shows.\n2. Send a change-authorizer request straight to the system, bypassing the screen: POST /api/work-orders/change-authorizer with body {\"workOrderId\": \"<the work order id>\", \"authorizerContactId\": \"<the id of a contact who approves work>\"}.\n3. Read the response code and message the system sends back.\n4. Return to the work order in the app, reload the page, and look at the \"Authorizer\" row again to see whether the name changed."
+   }
+  }
+ },
+ "45170": {
+  "title": "Authorizer API rejects a contact that does not approve work or belongs to another company",
+  "atm": 1,
+  "marker_carried": "AUTOMATION: READY",
+  "fields": {
+   "custom_preconds": {
+    "blocks": [
+     [
+      "1. You are signed in to ShopView. You also need a way to send a request to the system directly, outside the screens - a developer or the automation engineer will have this.",
+      "2. You need one work order that has NOT been invoiced. Click \"Work Orders\" in the top menu and open the work order (click its row).",
+      "3. You need two contacts to try, and neither should be allowed as an authorizer: (a) a contact of the SAME customer who does NOT approve work, and (b) a contact belonging to a DIFFERENT customer. To see and set these: click \"Customers\" in the top menu, open the customer, click the \"Contacts\" tab - the \"Approves Work\" column shows Yes or No for each contact, and the edit icon on a row opens the contact to change it.",
+      "4. Note down the two contact ids you intend to try, and open the work order first so you can see the \"Authorizer\" row before and after. The customer card is the panel down the left-hand side of the work order. The \"Authorizer\" row sits inside it, below the \"Contact\" and \"Phone\" rows."
+     ]
+    ],
+    "text": "1. You are signed in to ShopView. You also need a way to send a request to the system directly, outside the screens - a developer or the automation engineer will have this.\n2. You need one work order that has NOT been invoiced. Click \"Work Orders\" in the top menu and open the work order (click its row).\n3. You need two contacts to try, and neither should be allowed as an authorizer: (a) a contact of the SAME customer who does NOT approve work, and (b) a contact belonging to a DIFFERENT customer. To see and set these: click \"Customers\" in the top menu, open the customer, click the \"Contacts\" tab - the \"Approves Work\" column shows Yes or No for each contact, and the edit icon on a row opens the contact to change it.\n4. Note down the two contact ids you intend to try, and open the work order first so you can see the \"Authorizer\" row before and after. The customer card is the panel down the left-hand side of the work order. The \"Authorizer\" row sits inside it, below the \"Contact\" and \"Phone\" rows."
+   },
+   "custom_steps": {
+    "blocks": [
+     [
+      "1. Click \"Work Orders\" in the top menu and open the work order that has not been invoiced. Look at the \"Authorizer\" row in the customer card on the left and write down what it shows.",
+      "2. Send a change-authorizer request straight to the system using contact (a), the same customer's contact who does NOT approve work: POST /api/work-orders/change-authorizer with body {\"workOrderId\": \"<the work order id>\", \"authorizerContactId\": \"<contact a>\"}. Read the response code.",
+      "3. Send the same request again using contact (b), a contact belonging to a different customer. Read the response code.",
+      "4. Return to the work order in the app, reload the page, and look at the \"Authorizer\" row to see whether either attempt changed it."
+     ]
+    ],
+    "text": "1. Click \"Work Orders\" in the top menu and open the work order that has not been invoiced. Look at the \"Authorizer\" row in the customer card on the left and write down what it shows.\n2. Send a change-authorizer request straight to the system using contact (a), the same customer's contact who does NOT approve work: POST /api/work-orders/change-authorizer with body {\"workOrderId\": \"<the work order id>\", \"authorizerContactId\": \"<contact a>\"}. Read the response code.\n3. Send the same request again using contact (b), a contact belonging to a different customer. Read the response code.\n4. Return to the work order in the app, reload the page, and look at the \"Authorizer\" row to see whether either attempt changed it."
+   }
+  },
+  "new_title": "Authorizer API rejects a non-approver or another company's contact"
+ },
+ "45190": {
+  "title": "Work order, imported work order and part sale customer cards still work after the Authorizer change",
+  "fields": {},
+  "new_title": "Customer card still works on work order, imported work order and part sale",
+  "marker_carried": "AUTOMATION: READY"
+ },
+ "45185": {
+  "title": "A snapshot created before the redesign renders in the new layout with blanks and no error",
+  "fields": {},
+  "new_title": "A pre-redesign snapshot renders in the new layout with blanks, no error",
+  "marker_carried": "AUTOMATION: HOLD - this case fails on a server error that has no ticket yet; change to READY - EXPECT FAIL (SV-xxxx) once the ticket is filed"
+ }
+}

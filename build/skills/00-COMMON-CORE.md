@@ -2184,3 +2184,24 @@ and the case-body snapshots that make a foreign edit diffable.
 > **25 %** · **10 % reserve**. **Report your spend with your work**; at **50 % of your own budget**
 > compare spend against work completed and **STOP AND REPORT if spend is outpacing progress**; **never
 > consume the reserve without the QA lead's say-so.** Full texts: `build/rules/RULES-61-97.md`.
+
+
+---
+
+## §6.4 — TESTRAIL WRITE MECHANICS LEARNED 2026-09-01
+
+- **The UI password file name is not stable.** `/tmp/testrail/ui-creds.json` `{ui_password}` and
+  `/tmp/testrail/creds-ui.json` `{password}` have both existed; `/tmp` is ephemeral so either can be
+  the one present. **Accept both**, and never fall back to `creds.json.password` — that is the API
+  key, and posting it lands you silently back on the login form.
+- **`#title` on the case edit page matches TWO elements** — Playwright reports a strict-mode
+  violation. Use `input[data-testid="addEditCaseTitle"]`.
+- **`Deadlock found when trying to get lock; try restarting transaction`** is the common save failure
+  under concurrent load, and it is retryable by definition. A checkpointing retry loop clears it in
+  two or three passes. Do not confuse it with the editor's one-shot-token 302, which looks identical
+  from outside — **dump the page to tell them apart**.
+- **`Title is too long` can appear in that dump on a case whose title is 69 characters.** It is a
+  latent validation template in the DOM, not a live error. Measure the title before believing it.
+- **`move_cases_to_section` changes placement without rewriting any text field**, so unlike
+  `update_case` it cannot push a field into the escaping container. Use it for section moves.
+- **A section is created with `add_section`**; mirror the estate's naming (`<Project> / API — <topic>`).

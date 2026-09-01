@@ -1004,3 +1004,40 @@ name — that is why it is usable evidence rather than a list of edits) ·
 | Ask the PO about an unsourced behaviour | **[`07-PO-QUESTIONS`](07-PO-QUESTIONS.md)** |
 
 **And it never marks a case Passed or Failed** — that verdict is the manual tester's.
+
+
+---
+
+## §8.0-b — WHEN YOUR OWN INSTRUMENT IS THE DEFECT (learned 2026-09-01, Invoice UI Refresh)
+
+§8.0-a says a failing check is a statement about your check. This section is the tally of how often
+that turned out to be literally true in one pass, because the frequency is the lesson: **six of the
+"findings" in a single build-verification pass were the measuring instrument, not the product.**
+
+| What it looked like | What it was |
+|---|---|
+| "All 9 settings labels absent from the dialog" | The dialog never opened. Fixed by asserting a positive control first. |
+| "Contact / Phone / Authorizer all absent from the customer card" | The read fired before the card mounted (148 body characters). |
+| "Every route lands on `/` — the route guard is rejecting us" | The **environment had gone to sleep**; every route serves a 148-character "Environment Sleeping" page. |
+| "101 of 101 cases are UI-followable" | The checker passed any case containing the words *"open the"*. |
+| "Customers → Payments: tab not found" | The tab label carries a row count — **"Payments (30)"** — and the matcher compared to the bare word. |
+| "Work Orders → Contacts is a broken route" | The harvesting regex allowed 160 characters of slack and **stitched two sentences together**; no case asks for that route. |
+
+**THE RULES THAT FALL OUT OF THIS, AND THEY ARE CHEAP:**
+
+1. **Every probe carries a positive control.** Something you already know is present must be found in
+   the same read. If the control does not fire, the result is discarded — not recorded as an absence.
+2. **Assert the landing before reading the page.** Body-character count, URL, and a known anchor. A
+   ~148-character page is the sleeping environment, not a missing feature.
+3. **Normalise both sides before comparing text.** Tab labels carry counts; table cells are separate
+   `<td>`s so a row reads `Olivia\tSims`, and `includes("Olivia Sims")` misses every row.
+4. **A pattern with slack in it will span things you did not mean.** Bound it, or verify each hit.
+5. **Prove a new gate FAILS on a known-bad input before trusting it to pass anything.** Both checkers
+   written in this pass were wrong on first build — one too loose, one so strict it flagged 72 of 119
+   cases. A gate is not finished until it is tested in both directions.
+6. **When one case fails twice the same way, stop retrying and dump the page.** Two identical
+   failures are not a race. Doing this named the cause in one line: a database deadlock, plus a
+   `Title is too long` string that turned out to be a **latent DOM template, not a live error**.
+
+**The cost of getting this wrong is not a wasted run — it is a false report to the QA lead.** Every
+one of the six above would have been delivered as a confident finding about the product.
