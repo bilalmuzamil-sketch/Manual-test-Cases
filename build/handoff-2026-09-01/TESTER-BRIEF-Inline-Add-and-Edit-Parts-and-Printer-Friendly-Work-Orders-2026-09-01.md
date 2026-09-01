@@ -81,8 +81,8 @@ note given here — **do not mark it Passed on the strength of the part that wor
 
 | Test | What it checks, in plain words | What to do |
 |---|---|---|
-| [C44993](https://shopview.testrail.io/index.php?/cases/view/44993) | Checks the Add Part button is hidden on work orders that can no longer be changed | RUN THE PART YOU CAN. Open a work order whose status is Paid and check the Add Part button is not there - that part is confirmed working. Of the other four the case names, Declined and Imported are not statuses this product has at all (its list is Estimate, Approved, In progress, Review, Complete, Invoiced, Paid), and no work order here is Complete or Invoiced. Mark the case Blocked with the note "only the Paid status could be checked". |
-| [C44994](https://shopview.testrail.io/index.php?/cases/view/44994) | Checks the pencil (Edit) control is hidden on work orders that can no longer be changed | Same as the case above, for the pencil (Edit) control instead of the Add Part button. |
+| [C44993](https://shopview.testrail.io/index.php?/cases/view/44993) | Checks the Add Part button is hidden on work orders that can no longer be changed | RUN THE PART YOU CAN. The case now names three statuses - Complete, Invoiced, Paid - and only Paid exists in the data here. Open a Paid work order and check the Add Part button is not there; that part is confirmed working. Then mark the case Blocked with the note "only the Paid status could be checked". (Two statuses this case used to name, Declined and Imported, are not statuses this product has at all.) |
+| [C44994](https://shopview.testrail.io/index.php?/cases/view/44994) | Checks the pencil (Edit) control is hidden on work orders that can no longer be changed | Same as the case above, for the pencil (Edit) control instead of the Add Part button. Note: this case had been narrowed by hand to three statuses and my write pass reverted it; that is repaired, and the case you open now says three. |
 
 ### Run these, but read the note first
 

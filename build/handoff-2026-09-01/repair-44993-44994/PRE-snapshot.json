@@ -1,0 +1,30 @@
+{
+ "44993": {
+  "title": "Add Part button hidden on Complete, Invoiced, or Paid",
+  "atm": 1,
+  "section_id": 6755,
+  "refs": "SV-9316 (S1-N1)",
+  "provenance": [
+   "This is the expected behaviour as per epic SV-9315 and story SV-9316 (Story 1, Add Part Button on Work Order Lines) and the Inline Add and Edit Parts on Work Order Lines specification version 16, section S1-N1, read on 31 August 2026."
+  ],
+  "before": {
+   "custom_preconds": "<p>1. Your user has the 'Work Order Line - Create and Edit' permission enabled. To check it: open “Settings”, click “Roles &amp; Permissions” in the sidebar, then click the pencil on the role your user is on, and look for “Work Order Line - Create and Edit”.<br>2. In the top menu click “Work Orders”, then open a work order whose status is Complete, Invoiced, Paid, Declined, or Imported (click its row). Open its “Lines” tab. Each work order line has its own Parts section beneath it: the “Add Part” button sits in that section, and every part already on the line has an “edit” control at the right-hand end of its row — that control stays invisible until you move the mouse over the row.</p>",
+   "custom_steps": "<p>1. Open a work order in each of those statuses and look at the Parts section of its lines.</p>",
+   "custom_expected": "<p>1. The “Add Part” button is not displayed on any work order line when the status is Complete, Invoiced, Paid, Declined, or Imported.</p><p>NOTE FOR THE TESTER: only the Paid status exists on this test system. Check the button on a Paid work order; Complete, Invoiced, Declined and Imported cannot be set up here, so mark this case Blocked and say which status you were able to check - do not pass it on Paid alone.</p><p>---<br>This is the expected behaviour as per epic SV-9315 and story SV-9316 (Story 1, Add Part Button on Work Order Lines) and the Inline Add and Edit Parts on Work Order Lines specification version 16, section S1-N1, read on 31 August 2026.<br>Last checked against build v26.35.6-598cc8a on 9/1/2026.</p><p>AUTOMATION: READY</p>"
+  }
+ },
+ "44994": {
+  "title": "Edit control hidden on Complete, Invoiced, or Paid",
+  "atm": 1,
+  "section_id": 6755,
+  "refs": "SV-9316 (S1-N2)",
+  "provenance": [
+   "This is the expected behaviour as per epic SV-9315 and story SV-9316 (Story 1, Add Part Button on Work Order Lines) and the Inline Add and Edit Parts on Work Order Lines specification version 16, section S1-N2, read on 31 August 2026."
+  ],
+  "before": {
+   "custom_preconds": "<p>1. Your user has the 'Work Order Line - Create and Edit' permission enabled. To check it: open “Settings”, click “Roles &amp; Permissions” in the sidebar, then click the pencil on the role your user is on, and look for “Work Order Line - Create and Edit”.<br>2. In the top menu click “Work Orders”, then open a work order whose status is Complete, Invoiced, Paid, Declined, or Imported and that has at least one part on a line (click its row). Open its “Lines” tab. Each work order line has its own Parts section beneath it: the “Add Part” button sits in that section, and every part already on the line has an “edit” control at the right-hand end of its row — that control stays invisible until you move the mouse over the row.</p>",
+   "custom_steps": "<p>1. Open a work order in each of those statuses and hover/focus its existing part lines.</p>",
+   "custom_expected": "<p>1. The Edit control is not displayed on part lines when the status is Complete, Invoiced, Paid, Declined, or Imported.</p><p>NOTE FOR THE TESTER: only the Paid status exists on this test system. Check the control on a Paid work order; Complete, Invoiced, Declined and Imported cannot be set up here, so mark this case Blocked and say which status you were able to check - do not pass it on Paid alone.</p><p>---<br>This is the expected behaviour as per epic SV-9315 and story SV-9316 (Story 1, Add Part Button on Work Order Lines) and the Inline Add and Edit Parts on Work Order Lines specification version 16, section S1-N2, read on 31 August 2026.<br>Last checked against build v26.35.6-598cc8a on 9/1/2026.</p><p>AUTOMATION: READY</p>"
+  }
+ }
+}

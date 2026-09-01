@@ -45,12 +45,14 @@ NEXT = {
         'pencil on another part on the same line. The "Discard this part?" question should appear '
         'first; it does not - the Edit Part Request window opens straight away and your typed part is '
         'left behind it. Mark the case FAILED and add nothing else.',
- 44993: 'RUN THE PART YOU CAN. Open a work order whose status is Paid and check the Add Part button is '
-        'not there - that part is confirmed working. Of the other four the case names, Declined and '
-        'Imported are not statuses this product has at all (its list is Estimate, Approved, In '
-        'progress, Review, Complete, Invoiced, Paid), and no work order here is Complete or Invoiced. '
-        'Mark the case Blocked with the note "only the Paid status could be checked".',
- 44994: 'Same as the case above, for the pencil (Edit) control instead of the Add Part button.',
+ 44993: 'RUN THE PART YOU CAN. The case now names three statuses - Complete, Invoiced, Paid - and only '
+        'Paid exists in the data here. Open a Paid work order and check the Add Part button is not '
+        'there; that part is confirmed working. Then mark the case Blocked with the note "only the '
+        'Paid status could be checked". (Two statuses this case used to name, Declined and Imported, '
+        'are not statuses this product has at all.)',
+ 44994: 'Same as the case above, for the pencil (Edit) control instead of the Add Part button. Note: '
+        'this case had been narrowed by hand to three statuses and my write pass reverted it; that is '
+        'repaired, and the case you open now says three.',
  44996: 'RUN IT AND EXPECT IT TO FAIL. Pick a line with NO parts on it, click Approve, then mark it '
         'Complete from the same row (going straight to Complete is refused, and a line that has parts '
         'cannot be completed at all). With the badge reading "Complete", look at that line\'s Parts '

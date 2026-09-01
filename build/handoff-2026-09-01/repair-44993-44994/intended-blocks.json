@@ -1,0 +1,74 @@
+{
+ "44993": {
+  "title": "Add Part button hidden on Complete, Invoiced, or Paid",
+  "verdict": "repair of a reverted hand correction",
+  "marker_override": "AUTOMATION: READY",
+  "build_sentence": "Last checked against build v26.35.6-598cc8a on 9/1/2026.",
+  "fields": {
+   "custom_preconds": {
+    "blocks": [
+     [
+      "1. Your user has the 'Work Order Line - Create and Edit' permission enabled. To check it: open “Settings”, click “Roles & Permissions” in the sidebar, then click the pencil on the role your user is on, and look for “Work Order Line - Create and Edit”.",
+      "2. In the top menu click “Work Orders”, then open a work order whose status is Complete, Invoiced, or Paid (click its row). Open its “Lines” tab. Each work order line has its own Parts section beneath it: the “Add Part” button sits in that section, and every part already on the line has an “edit” control at the right-hand end of its row — that control stays invisible until you move the mouse over the row."
+     ]
+    ],
+    "text": "1. Your user has the 'Work Order Line - Create and Edit' permission enabled. To check it: open “Settings”, click “Roles & Permissions” in the sidebar, then click the pencil on the role your user is on, and look for “Work Order Line - Create and Edit”.\n2. In the top menu click “Work Orders”, then open a work order whose status is Complete, Invoiced, or Paid (click its row). Open its “Lines” tab. Each work order line has its own Parts section beneath it: the “Add Part” button sits in that section, and every part already on the line has an “edit” control at the right-hand end of its row — that control stays invisible until you move the mouse over the row."
+   },
+   "custom_expected": {
+    "blocks": [
+     [
+      "1. The “Add Part” button is not displayed on any work order line when the status is Complete, Invoiced, or Paid."
+     ],
+     [
+      "NOTE FOR THE TESTER: of those three statuses only Paid exists in the data on this test system, so check it on a Paid work order and mark the case Blocked saying so — do not pass it on Paid alone. (Two statuses this case used to name, “Declined” and “Imported”, are not statuses this product has at all; the list is Estimate, Approved, In progress, Review, Complete, Invoiced, Paid.)"
+     ],
+     [
+      "---",
+      "This is the expected behaviour as per epic SV-9315 and story SV-9316 (Story 1, Add Part Button on Work Order Lines) and the Inline Add and Edit Parts on Work Order Lines specification version 16, section S1-N1, read on 31 August 2026.",
+      "Last checked against build v26.35.6-598cc8a on 9/1/2026."
+     ],
+     [
+      "AUTOMATION: READY"
+     ]
+    ],
+    "text": "1. The “Add Part” button is not displayed on any work order line when the status is Complete, Invoiced, or Paid.\n\nNOTE FOR THE TESTER: of those three statuses only Paid exists in the data on this test system, so check it on a Paid work order and mark the case Blocked saying so — do not pass it on Paid alone. (Two statuses this case used to name, “Declined” and “Imported”, are not statuses this product has at all; the list is Estimate, Approved, In progress, Review, Complete, Invoiced, Paid.)\n\n---\nThis is the expected behaviour as per epic SV-9315 and story SV-9316 (Story 1, Add Part Button on Work Order Lines) and the Inline Add and Edit Parts on Work Order Lines specification version 16, section S1-N1, read on 31 August 2026.\nLast checked against build v26.35.6-598cc8a on 9/1/2026.\n\nAUTOMATION: READY"
+   }
+  }
+ },
+ "44994": {
+  "title": "Edit control hidden on Complete, Invoiced, or Paid",
+  "verdict": "repair of a reverted hand correction",
+  "marker_override": "AUTOMATION: READY",
+  "build_sentence": "Last checked against build v26.35.6-598cc8a on 9/1/2026.",
+  "fields": {
+   "custom_preconds": {
+    "blocks": [
+     [
+      "1. Your user has the 'Work Order Line - Create and Edit' permission enabled. To check it: open “Settings”, click “Roles & Permissions” in the sidebar, then click the pencil on the role your user is on, and look for “Work Order Line - Create and Edit”.",
+      "2. In the top menu click “Work Orders”, then open a work order whose status is Complete, Invoiced, or Paid and that has at least one part on a line (click its row). Open its “Lines” tab. Each work order line has its own Parts section beneath it: the “Add Part” button sits in that section, and every part already on the line has an “edit” control at the right-hand end of its row — that control stays invisible until you move the mouse over the row."
+     ]
+    ],
+    "text": "1. Your user has the 'Work Order Line - Create and Edit' permission enabled. To check it: open “Settings”, click “Roles & Permissions” in the sidebar, then click the pencil on the role your user is on, and look for “Work Order Line - Create and Edit”.\n2. In the top menu click “Work Orders”, then open a work order whose status is Complete, Invoiced, or Paid and that has at least one part on a line (click its row). Open its “Lines” tab. Each work order line has its own Parts section beneath it: the “Add Part” button sits in that section, and every part already on the line has an “edit” control at the right-hand end of its row — that control stays invisible until you move the mouse over the row."
+   },
+   "custom_expected": {
+    "blocks": [
+     [
+      "1. The Edit control is not displayed on part lines when the status is Complete, Invoiced, or Paid."
+     ],
+     [
+      "NOTE FOR THE TESTER: of those three statuses only Paid exists in the data on this test system, so check it on a Paid work order and mark the case Blocked saying so — do not pass it on Paid alone. (Two statuses this case used to name, “Declined” and “Imported”, are not statuses this product has at all; the list is Estimate, Approved, In progress, Review, Complete, Invoiced, Paid.)"
+     ],
+     [
+      "---",
+      "This is the expected behaviour as per epic SV-9315 and story SV-9316 (Story 1, Add Part Button on Work Order Lines) and the Inline Add and Edit Parts on Work Order Lines specification version 16, section S1-N2, read on 31 August 2026.",
+      "Last checked against build v26.35.6-598cc8a on 9/1/2026."
+     ],
+     [
+      "AUTOMATION: READY"
+     ]
+    ],
+    "text": "1. The Edit control is not displayed on part lines when the status is Complete, Invoiced, or Paid.\n\nNOTE FOR THE TESTER: of those three statuses only Paid exists in the data on this test system, so check it on a Paid work order and mark the case Blocked saying so — do not pass it on Paid alone. (Two statuses this case used to name, “Declined” and “Imported”, are not statuses this product has at all; the list is Estimate, Approved, In progress, Review, Complete, Invoiced, Paid.)\n\n---\nThis is the expected behaviour as per epic SV-9315 and story SV-9316 (Story 1, Add Part Button on Work Order Lines) and the Inline Add and Edit Parts on Work Order Lines specification version 16, section S1-N2, read on 31 August 2026.\nLast checked against build v26.35.6-598cc8a on 9/1/2026.\n\nAUTOMATION: READY"
+   }
+  }
+ }
+}
