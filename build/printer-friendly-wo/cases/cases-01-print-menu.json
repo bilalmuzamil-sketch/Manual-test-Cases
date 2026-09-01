@@ -7,7 +7,7 @@
     "type": "Functional",
     "permissions_required": "View Work Order (no new permission introduced)",
     "preconditions": [
-      "You are on the work order detail view and can view the work order."
+      "In the top menu click “Work Orders”, then open a work order (click its row) to reach its detail view. You have permission to view it. (Route drafted from the spec and marked PROVISIONAL — confirm the exact toolbar/labels on the build.)"
     ],
     "steps": [
       "Open the More (overflow/actions) menu on the work order toolbar."
@@ -27,7 +27,7 @@
     "type": "Functional",
     "permissions_required": "View Work Order (no new permission introduced)",
     "preconditions": [
-      "You are on the work order detail view and can view the work order."
+      "In the top menu click “Work Orders”, then open a work order (click its row) to reach its detail view. You have permission to view it. (Route drafted from the spec and marked PROVISIONAL — confirm the exact toolbar/labels on the build.)"
     ],
     "steps": [
       "Open the More menu and inspect the Print item."
@@ -47,7 +47,7 @@
     "type": "Functional",
     "permissions_required": "View Work Order (no new permission introduced)",
     "preconditions": [
-      "You are on the work order detail view and can view the work order."
+      "In the top menu click “Work Orders”, then open a work order (click its row) to reach its detail view. You have permission to view it. (Route drafted from the spec and marked PROVISIONAL — confirm the exact toolbar/labels on the build.)"
     ],
     "steps": [
       "Open the More menu and note the order of items."
@@ -67,8 +67,8 @@
     "type": "Functional",
     "permissions_required": "View Work Order (no new permission introduced)",
     "preconditions": [
-      "You are on the work order detail view and can view the work order.",
-      "The work order has at least one line item."
+      "In the top menu click “Work Orders”, then open a work order (click its row) to reach its detail view. You have permission to view it. (Route drafted from the spec and marked PROVISIONAL — confirm the exact toolbar/labels on the build.)",
+      "The open work order has at least one line item on its Lines tab."
     ],
     "steps": [
       "Select “Print Work Order” from the More menu."
@@ -88,7 +88,7 @@
     "type": "Functional",
     "permissions_required": "View Work Order (no new permission introduced)",
     "preconditions": [
-      "You are on the work order detail view and can view the work order."
+      "In the top menu click “Work Orders”, then open a work order (click its row) to reach its detail view. You have permission to view it. (Route drafted from the spec and marked PROVISIONAL — confirm the exact toolbar/labels on the build.)"
     ],
     "steps": [
       "Open work orders with each status: Estimate, Approved, In Progress, Review, Complete, Invoiced, Paid, Hold, Declined, Imported.",
@@ -109,7 +109,7 @@
     "type": "Functional",
     "permissions_required": "View Work Order (no new permission introduced)",
     "preconditions": [
-      "You are on the work order detail view and can view the work order."
+      "In the top menu click “Work Orders”, then open a work order (click its row) to reach its detail view. You have permission to view it. (Route drafted from the spec and marked PROVISIONAL — confirm the exact toolbar/labels on the build.)"
     ],
     "steps": [
       "Open the More menu on a desktop view.",
@@ -130,7 +130,7 @@
     "type": "Functional",
     "permissions_required": "View Work Order (no new permission introduced)",
     "preconditions": [
-      "You do NOT have permission to view the target work order."
+      "Your user does NOT have permission to view the target work order (an administrator controls this; confirm on the build). In the top menu click “Work Orders” and try to open the target work order — existing access control prevents you from reaching its detail view. (Route PROVISIONAL — confirm on the build.)"
     ],
     "steps": [
       "Attempt to open the work order detail page."
@@ -150,7 +150,7 @@
     "type": "Functional",
     "permissions_required": "View Work Order (no new permission introduced)",
     "preconditions": [
-      "You are on the work order detail view and can view the work order."
+      "In the top menu click “Work Orders”, then open a work order (click its row) to reach its detail view. You have permission to view it. (Route drafted from the spec and marked PROVISIONAL — confirm the exact toolbar/labels on the build.)"
     ],
     "steps": [
       "Open the work order and open the More menu while line item data is still loading (or when no line items exist).",

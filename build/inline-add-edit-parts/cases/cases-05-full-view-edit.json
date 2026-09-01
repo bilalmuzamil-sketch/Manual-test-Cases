@@ -7,10 +7,10 @@
     "type": "Functional",
     "permissions_required": "Work Order Line - Create and Edit; Work Order View Mode",
     "preconditions": [
-      "A work order is open with status Estimate, Approved, In Progress, or Review.",
-      "You have the 'Work Order Line - Create and Edit' setting enabled.",
-      "Your 'Work Orders → Work Order View Mode' permission is set to Full View.",
-      "The work order line already has at least one part on it."
+      "In the top menu click “Work Orders”, then open a work order whose status is Estimate, Approved, In Progress, or Review (click its row in the list). Open its Lines tab — each work order line has its own Parts section beneath it, where the “Add Part” button and part lines appear. (Route drafted from the spec/design and marked PROVISIONAL — confirm the exact tab name and Parts-section placement on the build.)",
+      "Your user has the 'Work Order Line - Create and Edit' permission enabled (an administrator sets this on your user role; confirm the exact path on the build).",
+      "Your 'Work Orders → Work Order View Mode' permission is set to Full View (an administrator sets this on your user role; confirm the exact path on the build).",
+      "The work order line already has at least one part listed in its Parts section (if not, add one first with “Add Part”)."
     ],
     "steps": [
       "Select Edit on an existing part line."
@@ -30,10 +30,10 @@
     "type": "Functional",
     "permissions_required": "Work Order Line - Create and Edit; Work Order View Mode",
     "preconditions": [
-      "A work order is open with status Estimate, Approved, In Progress, or Review.",
-      "You have the 'Work Order Line - Create and Edit' setting enabled.",
-      "Your 'Work Orders → Work Order View Mode' permission is set to Full View.",
-      "The work order line already has at least one part on it."
+      "In the top menu click “Work Orders”, then open a work order whose status is Estimate, Approved, In Progress, or Review (click its row in the list). Open its Lines tab — each work order line has its own Parts section beneath it, where the “Add Part” button and part lines appear. (Route drafted from the spec/design and marked PROVISIONAL — confirm the exact tab name and Parts-section placement on the build.)",
+      "Your user has the 'Work Order Line - Create and Edit' permission enabled (an administrator sets this on your user role; confirm the exact path on the build).",
+      "Your 'Work Orders → Work Order View Mode' permission is set to Full View (an administrator sets this on your user role; confirm the exact path on the build).",
+      "The work order line already has at least one part listed in its Parts section (if not, add one first with “Add Part”)."
     ],
     "steps": [
       "Select Edit on an existing part line and observe the part line."
@@ -53,11 +53,11 @@
     "type": "Functional",
     "permissions_required": "Work Order Line - Create and Edit; Work Order View Mode",
     "preconditions": [
-      "A work order is open with status Estimate, Approved, In Progress, or Review.",
-      "You have the 'Work Order Line - Create and Edit' setting enabled.",
-      "Your 'Work Orders → Work Order View Mode' permission is set to Full View.",
-      "The work order line already has at least one part on it.",
-      "The part details modal is open via Edit."
+      "In the top menu click “Work Orders”, then open a work order whose status is Estimate, Approved, In Progress, or Review (click its row in the list). Open its Lines tab — each work order line has its own Parts section beneath it, where the “Add Part” button and part lines appear. (Route drafted from the spec/design and marked PROVISIONAL — confirm the exact tab name and Parts-section placement on the build.)",
+      "Your user has the 'Work Order Line - Create and Edit' permission enabled (an administrator sets this on your user role; confirm the exact path on the build).",
+      "Your 'Work Orders → Work Order View Mode' permission is set to Full View (an administrator sets this on your user role; confirm the exact path on the build).",
+      "The work order line already has at least one part listed in its Parts section (if not, add one first with “Add Part”).",
+      "The part details modal is open — as a Full View user you clicked “Edit” on an existing part line."
     ],
     "steps": [
       "Change a value and save from the modal."
@@ -77,10 +77,10 @@
     "type": "Functional",
     "permissions_required": "Work Order Line - Create and Edit; Work Order View Mode",
     "preconditions": [
-      "A work order is open with status Estimate, Approved, In Progress, or Review.",
-      "Your 'Work Orders → Work Order View Mode' permission is set to Full View.",
-      "The work order line already has at least one part on it.",
-      "Your 'Work Order Line - Create and Edit' setting is NOT enabled."
+      "In the top menu click “Work Orders”, then open a work order whose status is Estimate, Approved, In Progress, or Review (click its row in the list). Open its Lines tab — each work order line has its own Parts section beneath it, where the “Add Part” button and part lines appear. (Route drafted from the spec/design and marked PROVISIONAL — confirm the exact tab name and Parts-section placement on the build.)",
+      "Your 'Work Orders → Work Order View Mode' permission is set to Full View (an administrator sets this on your user role; confirm the exact path on the build).",
+      "The work order line already has at least one part listed in its Parts section (if not, add one first with “Add Part”).",
+      "Your user does NOT have the 'Work Order Line - Create and Edit' permission enabled (an administrator sets this on your user role; confirm the exact path on the build)."
     ],
     "steps": [
       "Hover or focus an existing part line."
@@ -100,11 +100,11 @@
     "type": "Functional",
     "permissions_required": "Work Order Line - Create and Edit; Work Order View Mode",
     "preconditions": [
-      "A work order is open with status Estimate, Approved, In Progress, or Review.",
-      "You have the 'Work Order Line - Create and Edit' setting enabled.",
-      "Your 'Work Orders → Work Order View Mode' permission is set to Full View.",
-      "The work order line already has at least one part on it.",
-      "The part details modal is open via Edit and changes were made."
+      "In the top menu click “Work Orders”, then open a work order whose status is Estimate, Approved, In Progress, or Review (click its row in the list). Open its Lines tab — each work order line has its own Parts section beneath it, where the “Add Part” button and part lines appear. (Route drafted from the spec/design and marked PROVISIONAL — confirm the exact tab name and Parts-section placement on the build.)",
+      "Your user has the 'Work Order Line - Create and Edit' permission enabled (an administrator sets this on your user role; confirm the exact path on the build).",
+      "Your 'Work Orders → Work Order View Mode' permission is set to Full View (an administrator sets this on your user role; confirm the exact path on the build).",
+      "The work order line already has at least one part listed in its Parts section (if not, add one first with “Add Part”).",
+      "The part details modal is open — as a Full View user you clicked “Edit” on an existing part line — and you have changed at least one value."
     ],
     "steps": [
       "Cancel the modal."
@@ -124,11 +124,11 @@
     "type": "Functional",
     "permissions_required": "Work Order Line - Create and Edit; Work Order View Mode",
     "preconditions": [
-      "A work order is open with status Estimate, Approved, In Progress, or Review.",
-      "You have the 'Work Order Line - Create and Edit' setting enabled.",
-      "Your 'Work Orders → Work Order View Mode' permission is set to Full View.",
-      "The work order line already has at least one part on it.",
-      "An inline add row is open on the work order and contains data."
+      "In the top menu click “Work Orders”, then open a work order whose status is Estimate, Approved, In Progress, or Review (click its row in the list). Open its Lines tab — each work order line has its own Parts section beneath it, where the “Add Part” button and part lines appear. (Route drafted from the spec/design and marked PROVISIONAL — confirm the exact tab name and Parts-section placement on the build.)",
+      "Your user has the 'Work Order Line - Create and Edit' permission enabled (an administrator sets this on your user role; confirm the exact path on the build).",
+      "Your 'Work Orders → Work Order View Mode' permission is set to Full View (an administrator sets this on your user role; confirm the exact path on the build).",
+      "The work order line already has at least one part listed in its Parts section (if not, add one first with “Add Part”).",
+      "An inline “Add Part” row is open on a work order line and contains data you have typed."
     ],
     "steps": [
       "Select Edit on an existing part line."

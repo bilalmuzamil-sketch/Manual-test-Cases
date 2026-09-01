@@ -7,9 +7,9 @@
     "type": "Functional",
     "permissions_required": "Work Order Line - Create and Edit; Work Order View Mode",
     "preconditions": [
-      "A work order is open with status Estimate, Approved, In Progress, or Review.",
-      "You have the 'Work Order Line - Create and Edit' setting enabled.",
-      "You can inspect a catalog part's bins (via the typeahead card, the bin picker, or the Bin Locations modal)."
+      "In the top menu click “Work Orders”, then open a work order whose status is Estimate, Approved, In Progress, or Review (click its row in the list). Open its Lines tab — each work order line has its own Parts section beneath it, where the “Add Part” button and part lines appear. (Route drafted from the spec/design and marked PROVISIONAL — confirm the exact tab name and Parts-section placement on the build.)",
+      "Your user has the 'Work Order Line - Create and Edit' permission enabled (an administrator sets this on your user role; confirm the exact path on the build).",
+      "On an open inline row (via “Add Part”), you can inspect a catalog part's bins through the part-number typeahead card, the bin picker, or the “Bin Locations” modal."
     ],
     "steps": [
       "Look at the set of bins on a catalog part that is held in stock."
@@ -29,9 +29,9 @@
     "type": "Functional",
     "permissions_required": "Work Order Line - Create and Edit; Work Order View Mode",
     "preconditions": [
-      "A work order is open with status Estimate, Approved, In Progress, or Review.",
-      "You have the 'Work Order Line - Create and Edit' setting enabled.",
-      "Your 'Work Orders → Work Order View Mode' permission is set to Tech View."
+      "In the top menu click “Work Orders”, then open a work order whose status is Estimate, Approved, In Progress, or Review (click its row in the list). Open its Lines tab — each work order line has its own Parts section beneath it, where the “Add Part” button and part lines appear. (Route drafted from the spec/design and marked PROVISIONAL — confirm the exact tab name and Parts-section placement on the build.)",
+      "Your user has the 'Work Order Line - Create and Edit' permission enabled (an administrator sets this on your user role; confirm the exact path on the build).",
+      "Your 'Work Orders → Work Order View Mode' permission is set to Tech View (an administrator sets this on your user role; confirm the exact path on the build)."
     ],
     "steps": [
       "Open the inline row and search the part number typeahead.",
@@ -53,10 +53,10 @@
     "type": "Functional",
     "permissions_required": "Work Order Line - Create and Edit; Work Order View Mode",
     "preconditions": [
-      "A work order is open with status Estimate, Approved, In Progress, or Review.",
-      "You have the 'Work Order Line - Create and Edit' setting enabled.",
-      "Your 'Work Orders → Work Order View Mode' permission is set to Tech View.",
-      "The row is linked to a catalog part that is held in at least one bin (a part with no bins is treated as not stocked and this story does not apply)."
+      "In the top menu click “Work Orders”, then open a work order whose status is Estimate, Approved, In Progress, or Review (click its row in the list). Open its Lines tab — each work order line has its own Parts section beneath it, where the “Add Part” button and part lines appear. (Route drafted from the spec/design and marked PROVISIONAL — confirm the exact tab name and Parts-section placement on the build.)",
+      "Your user has the 'Work Order Line - Create and Edit' permission enabled (an administrator sets this on your user role; confirm the exact path on the build).",
+      "Your 'Work Orders → Work Order View Mode' permission is set to Tech View (an administrator sets this on your user role; confirm the exact path on the build).",
+      "On an open inline row (via “Add Part” or “Edit”) you have selected a catalog part that is held in at least one bin (a part with no bins is treated as not stocked and this story does not apply)."
     ],
     "steps": [
       "Select a catalog part whose Default bin covers the quantity and note the allocation.",
@@ -78,10 +78,10 @@
     "type": "Functional",
     "permissions_required": "Work Order Line - Create and Edit; Work Order View Mode",
     "preconditions": [
-      "A work order is open with status Estimate, Approved, In Progress, or Review.",
-      "You have the 'Work Order Line - Create and Edit' setting enabled.",
-      "Your 'Work Orders → Work Order View Mode' permission is set to Tech View.",
-      "The row is linked to a catalog part that is held in at least one bin (a part with no bins is treated as not stocked and this story does not apply)."
+      "In the top menu click “Work Orders”, then open a work order whose status is Estimate, Approved, In Progress, or Review (click its row in the list). Open its Lines tab — each work order line has its own Parts section beneath it, where the “Add Part” button and part lines appear. (Route drafted from the spec/design and marked PROVISIONAL — confirm the exact tab name and Parts-section placement on the build.)",
+      "Your user has the 'Work Order Line - Create and Edit' permission enabled (an administrator sets this on your user role; confirm the exact path on the build).",
+      "Your 'Work Orders → Work Order View Mode' permission is set to Tech View (an administrator sets this on your user role; confirm the exact path on the build).",
+      "On an open inline row (via “Add Part” or “Edit”) you have selected a catalog part that is held in at least one bin (a part with no bins is treated as not stocked and this story does not apply)."
     ],
     "steps": [
       "Select a stocked catalog part and look below the inline row.",
@@ -102,10 +102,10 @@
     "type": "Functional",
     "permissions_required": "Work Order Line - Create and Edit; Work Order View Mode",
     "preconditions": [
-      "A work order is open with status Estimate, Approved, In Progress, or Review.",
-      "You have the 'Work Order Line - Create and Edit' setting enabled.",
-      "Your 'Work Orders → Work Order View Mode' permission is set to Tech View.",
-      "The row is linked to a catalog part that is held in at least one bin (a part with no bins is treated as not stocked and this story does not apply)."
+      "In the top menu click “Work Orders”, then open a work order whose status is Estimate, Approved, In Progress, or Review (click its row in the list). Open its Lines tab — each work order line has its own Parts section beneath it, where the “Add Part” button and part lines appear. (Route drafted from the spec/design and marked PROVISIONAL — confirm the exact tab name and Parts-section placement on the build.)",
+      "Your user has the 'Work Order Line - Create and Edit' permission enabled (an administrator sets this on your user role; confirm the exact path on the build).",
+      "Your 'Work Orders → Work Order View Mode' permission is set to Tech View (an administrator sets this on your user role; confirm the exact path on the build).",
+      "On an open inline row (via “Add Part” or “Edit”) you have selected a catalog part that is held in at least one bin (a part with no bins is treated as not stocked and this story does not apply)."
     ],
     "steps": [
       "Allocate the whole quantity to a single bin and read the chip label.",
@@ -126,11 +126,11 @@
     "type": "Functional",
     "permissions_required": "Work Order Line - Create and Edit; Work Order View Mode",
     "preconditions": [
-      "A work order is open with status Estimate, Approved, In Progress, or Review.",
-      "You have the 'Work Order Line - Create and Edit' setting enabled.",
-      "Your 'Work Orders → Work Order View Mode' permission is set to Tech View.",
-      "The row is linked to a catalog part that is held in at least one bin (a part with no bins is treated as not stocked and this story does not apply).",
-      "An allocation exists so the Pulled from chip is shown."
+      "In the top menu click “Work Orders”, then open a work order whose status is Estimate, Approved, In Progress, or Review (click its row in the list). Open its Lines tab — each work order line has its own Parts section beneath it, where the “Add Part” button and part lines appear. (Route drafted from the spec/design and marked PROVISIONAL — confirm the exact tab name and Parts-section placement on the build.)",
+      "Your user has the 'Work Order Line - Create and Edit' permission enabled (an administrator sets this on your user role; confirm the exact path on the build).",
+      "Your 'Work Orders → Work Order View Mode' permission is set to Tech View (an administrator sets this on your user role; confirm the exact path on the build).",
+      "On an open inline row (via “Add Part” or “Edit”) you have selected a catalog part that is held in at least one bin (a part with no bins is treated as not stocked and this story does not apply).",
+      "A catalog part stocked in a bin is on the inline row, so its “Pulled from” chip is shown beneath the row."
     ],
     "steps": [
       "Select the “Pulled from” chip."
@@ -150,11 +150,11 @@
     "type": "Functional",
     "permissions_required": "Work Order Line - Create and Edit; Work Order View Mode",
     "preconditions": [
-      "A work order is open with status Estimate, Approved, In Progress, or Review.",
-      "You have the 'Work Order Line - Create and Edit' setting enabled.",
-      "Your 'Work Orders → Work Order View Mode' permission is set to Tech View.",
-      "The row is linked to a catalog part that is held in at least one bin (a part with no bins is treated as not stocked and this story does not apply).",
-      "The bin picker is open."
+      "In the top menu click “Work Orders”, then open a work order whose status is Estimate, Approved, In Progress, or Review (click its row in the list). Open its Lines tab — each work order line has its own Parts section beneath it, where the “Add Part” button and part lines appear. (Route drafted from the spec/design and marked PROVISIONAL — confirm the exact tab name and Parts-section placement on the build.)",
+      "Your user has the 'Work Order Line - Create and Edit' permission enabled (an administrator sets this on your user role; confirm the exact path on the build).",
+      "Your 'Work Orders → Work Order View Mode' permission is set to Tech View (an administrator sets this on your user role; confirm the exact path on the build).",
+      "On an open inline row (via “Add Part” or “Edit”) you have selected a catalog part that is held in at least one bin (a part with no bins is treated as not stocked and this story does not apply).",
+      "The bin picker is open — on an open inline row with a stocked part, click the “Pulled from” chip beneath the row."
     ],
     "steps": [
       "Choose a bin other than the current one from the picker."
@@ -174,10 +174,10 @@
     "type": "Functional",
     "permissions_required": "Work Order Line - Create and Edit; Work Order View Mode",
     "preconditions": [
-      "A work order is open with status Estimate, Approved, In Progress, or Review.",
-      "You have the 'Work Order Line - Create and Edit' setting enabled.",
-      "Your 'Work Orders → Work Order View Mode' permission is set to Tech View.",
-      "The row is linked to a catalog part that is held in at least one bin (a part with no bins is treated as not stocked and this story does not apply)."
+      "In the top menu click “Work Orders”, then open a work order whose status is Estimate, Approved, In Progress, or Review (click its row in the list). Open its Lines tab — each work order line has its own Parts section beneath it, where the “Add Part” button and part lines appear. (Route drafted from the spec/design and marked PROVISIONAL — confirm the exact tab name and Parts-section placement on the build.)",
+      "Your user has the 'Work Order Line - Create and Edit' permission enabled (an administrator sets this on your user role; confirm the exact path on the build).",
+      "Your 'Work Orders → Work Order View Mode' permission is set to Tech View (an administrator sets this on your user role; confirm the exact path on the build).",
+      "On an open inline row (via “Add Part” or “Edit”) you have selected a catalog part that is held in at least one bin (a part with no bins is treated as not stocked and this story does not apply)."
     ],
     "steps": [
       "Allocate a quantity larger than the chosen bin's on-hand quantity.",
@@ -198,11 +198,11 @@
     "type": "Functional",
     "permissions_required": "Work Order Line - Create and Edit; Work Order View Mode",
     "preconditions": [
-      "A work order is open with status Estimate, Approved, In Progress, or Review.",
-      "You have the 'Work Order Line - Create and Edit' setting enabled.",
-      "Your 'Work Orders → Work Order View Mode' permission is set to Tech View.",
-      "The row is linked to a catalog part that is held in at least one bin (a part with no bins is treated as not stocked and this story does not apply).",
-      "The full quantity is allocated to a single bin whose on-hand is below that quantity."
+      "In the top menu click “Work Orders”, then open a work order whose status is Estimate, Approved, In Progress, or Review (click its row in the list). Open its Lines tab — each work order line has its own Parts section beneath it, where the “Add Part” button and part lines appear. (Route drafted from the spec/design and marked PROVISIONAL — confirm the exact tab name and Parts-section placement on the build.)",
+      "Your user has the 'Work Order Line - Create and Edit' permission enabled (an administrator sets this on your user role; confirm the exact path on the build).",
+      "Your 'Work Orders → Work Order View Mode' permission is set to Tech View (an administrator sets this on your user role; confirm the exact path on the build).",
+      "On an open inline row (via “Add Part” or “Edit”) you have selected a catalog part that is held in at least one bin (a part with no bins is treated as not stocked and this story does not apply).",
+      "On an open inline row, the full quantity is allocated to a single bin whose on-hand is below that quantity (choose such a bin in the bin picker)."
     ],
     "steps": [
       "Look at the chip and the note beside it."
@@ -222,11 +222,11 @@
     "type": "Functional",
     "permissions_required": "Work Order Line - Create and Edit; Work Order View Mode",
     "preconditions": [
-      "A work order is open with status Estimate, Approved, In Progress, or Review.",
-      "You have the 'Work Order Line - Create and Edit' setting enabled.",
-      "Your 'Work Orders → Work Order View Mode' permission is set to Tech View.",
-      "The row is linked to a catalog part that is held in at least one bin (a part with no bins is treated as not stocked and this story does not apply).",
-      "The Default bin is below the quantity but another single bin covers it, so auto-allocation moved off the Default."
+      "In the top menu click “Work Orders”, then open a work order whose status is Estimate, Approved, In Progress, or Review (click its row in the list). Open its Lines tab — each work order line has its own Parts section beneath it, where the “Add Part” button and part lines appear. (Route drafted from the spec/design and marked PROVISIONAL — confirm the exact tab name and Parts-section placement on the build.)",
+      "Your user has the 'Work Order Line - Create and Edit' permission enabled (an administrator sets this on your user role; confirm the exact path on the build).",
+      "Your 'Work Orders → Work Order View Mode' permission is set to Tech View (an administrator sets this on your user role; confirm the exact path on the build).",
+      "On an open inline row (via “Add Part” or “Edit”) you have selected a catalog part that is held in at least one bin (a part with no bins is treated as not stocked and this story does not apply).",
+      "On an open inline row, the Default bin is below the quantity but another single bin covers it, so auto-allocation moved off the Default."
     ],
     "steps": [
       "Look at the note beside the chip."
@@ -246,10 +246,10 @@
     "type": "Functional",
     "permissions_required": "Work Order Line - Create and Edit; Work Order View Mode",
     "preconditions": [
-      "A work order is open with status Estimate, Approved, In Progress, or Review.",
-      "You have the 'Work Order Line - Create and Edit' setting enabled.",
-      "Your 'Work Orders → Work Order View Mode' permission is set to Tech View.",
-      "The row is linked to a catalog part that is held in at least one bin (a part with no bins is treated as not stocked and this story does not apply)."
+      "In the top menu click “Work Orders”, then open a work order whose status is Estimate, Approved, In Progress, or Review (click its row in the list). Open its Lines tab — each work order line has its own Parts section beneath it, where the “Add Part” button and part lines appear. (Route drafted from the spec/design and marked PROVISIONAL — confirm the exact tab name and Parts-section placement on the build.)",
+      "Your user has the 'Work Order Line - Create and Edit' permission enabled (an administrator sets this on your user role; confirm the exact path on the build).",
+      "Your 'Work Orders → Work Order View Mode' permission is set to Tech View (an administrator sets this on your user role; confirm the exact path on the build).",
+      "On an open inline row (via “Add Part” or “Edit”) you have selected a catalog part that is held in at least one bin (a part with no bins is treated as not stocked and this story does not apply)."
     ],
     "steps": [
       "With a manually chosen single bin, change the quantity.",
@@ -270,10 +270,10 @@
     "type": "Functional",
     "permissions_required": "Work Order Line - Create and Edit; Work Order View Mode",
     "preconditions": [
-      "A work order is open with status Estimate, Approved, In Progress, or Review.",
-      "You have the 'Work Order Line - Create and Edit' setting enabled.",
-      "The row is linked to a catalog part that is held in at least one bin (a part with no bins is treated as not stocked and this story does not apply).",
-      "The bin picker is open on an add row."
+      "In the top menu click “Work Orders”, then open a work order whose status is Estimate, Approved, In Progress, or Review (click its row in the list). Open its Lines tab — each work order line has its own Parts section beneath it, where the “Add Part” button and part lines appear. (Route drafted from the spec/design and marked PROVISIONAL — confirm the exact tab name and Parts-section placement on the build.)",
+      "Your user has the 'Work Order Line - Create and Edit' permission enabled (an administrator sets this on your user role; confirm the exact path on the build).",
+      "On an open inline row (via “Add Part” or “Edit”) you have selected a catalog part that is held in at least one bin (a part with no bins is treated as not stocked and this story does not apply).",
+      "The bin picker is open on an “Add Part” row — click the “Pulled from” chip beneath the row."
     ],
     "steps": [
       "As a Tech View user, select “Split across bins…”.",
@@ -294,11 +294,11 @@
     "type": "Functional",
     "permissions_required": "Work Order Line - Create and Edit; Work Order View Mode",
     "preconditions": [
-      "A work order is open with status Estimate, Approved, In Progress, or Review.",
-      "You have the 'Work Order Line - Create and Edit' setting enabled.",
-      "Your 'Work Orders → Work Order View Mode' permission is set to Tech View.",
-      "The row is linked to a catalog part that is held in at least one bin (a part with no bins is treated as not stocked and this story does not apply).",
-      "The Bin Locations modal is open via “Split across bins…”."
+      "In the top menu click “Work Orders”, then open a work order whose status is Estimate, Approved, In Progress, or Review (click its row in the list). Open its Lines tab — each work order line has its own Parts section beneath it, where the “Add Part” button and part lines appear. (Route drafted from the spec/design and marked PROVISIONAL — confirm the exact tab name and Parts-section placement on the build.)",
+      "Your user has the 'Work Order Line - Create and Edit' permission enabled (an administrator sets this on your user role; confirm the exact path on the build).",
+      "Your 'Work Orders → Work Order View Mode' permission is set to Tech View (an administrator sets this on your user role; confirm the exact path on the build).",
+      "On an open inline row (via “Add Part” or “Edit”) you have selected a catalog part that is held in at least one bin (a part with no bins is treated as not stocked and this story does not apply).",
+      "The “Bin Locations” modal is open — on an open inline row you clicked “Split across bins…”."
     ],
     "steps": [
       "Inspect the modal's rows and actions.",
@@ -319,11 +319,11 @@
     "type": "Functional",
     "permissions_required": "Work Order Line - Create and Edit; Work Order View Mode",
     "preconditions": [
-      "A work order is open with status Estimate, Approved, In Progress, or Review.",
-      "You have the 'Work Order Line - Create and Edit' setting enabled.",
-      "Your 'Work Orders → Work Order View Mode' permission is set to Tech View.",
-      "The row is linked to a catalog part that is held in at least one bin (a part with no bins is treated as not stocked and this story does not apply).",
-      "The Bin Locations modal is open with per-bin allocations entered."
+      "In the top menu click “Work Orders”, then open a work order whose status is Estimate, Approved, In Progress, or Review (click its row in the list). Open its Lines tab — each work order line has its own Parts section beneath it, where the “Add Part” button and part lines appear. (Route drafted from the spec/design and marked PROVISIONAL — confirm the exact tab name and Parts-section placement on the build.)",
+      "Your user has the 'Work Order Line - Create and Edit' permission enabled (an administrator sets this on your user role; confirm the exact path on the build).",
+      "Your 'Work Orders → Work Order View Mode' permission is set to Tech View (an administrator sets this on your user role; confirm the exact path on the build).",
+      "On an open inline row (via “Add Part” or “Edit”) you have selected a catalog part that is held in at least one bin (a part with no bins is treated as not stocked and this story does not apply).",
+      "The “Bin Locations” modal is open — on an open inline row you clicked “Split across bins…” — and you have entered per-bin allocations."
     ],
     "steps": [
       "Enter allocations across two or more bins and select Apply."
@@ -343,12 +343,12 @@
     "type": "Functional",
     "permissions_required": "Work Order Line - Create and Edit; Work Order View Mode",
     "preconditions": [
-      "A work order is open with status Estimate, Approved, In Progress, or Review.",
-      "You have the 'Work Order Line - Create and Edit' setting enabled.",
-      "Your 'Work Orders → Work Order View Mode' permission is set to Tech View.",
-      "The row is linked to a catalog part that is held in at least one bin (a part with no bins is treated as not stocked and this story does not apply).",
-      "At least one bin is already at a negative on-hand quantity.",
-      "The Bin Locations modal is open."
+      "In the top menu click “Work Orders”, then open a work order whose status is Estimate, Approved, In Progress, or Review (click its row in the list). Open its Lines tab — each work order line has its own Parts section beneath it, where the “Add Part” button and part lines appear. (Route drafted from the spec/design and marked PROVISIONAL — confirm the exact tab name and Parts-section placement on the build.)",
+      "Your user has the 'Work Order Line - Create and Edit' permission enabled (an administrator sets this on your user role; confirm the exact path on the build).",
+      "Your 'Work Orders → Work Order View Mode' permission is set to Tech View (an administrator sets this on your user role; confirm the exact path on the build).",
+      "On an open inline row (via “Add Part” or “Edit”) you have selected a catalog part that is held in at least one bin (a part with no bins is treated as not stocked and this story does not apply).",
+      "A catalog part with at least one bin already at a negative on-hand quantity is available to select on the inline row.",
+      "The “Bin Locations” modal is open — on an open inline row click “Split across bins…”."
     ],
     "steps": [
       "Look at the row for the already-negative bin.",
@@ -369,11 +369,11 @@
     "type": "Functional",
     "permissions_required": "Work Order Line - Create and Edit; Work Order View Mode",
     "preconditions": [
-      "A work order is open with status Estimate, Approved, In Progress, or Review.",
-      "You have the 'Work Order Line - Create and Edit' setting enabled.",
-      "Your 'Work Orders → Work Order View Mode' permission is set to Tech View.",
-      "The work order line already has at least one part on it.",
-      "The row is linked to a catalog part that is held in at least one bin (a part with no bins is treated as not stocked and this story does not apply)."
+      "In the top menu click “Work Orders”, then open a work order whose status is Estimate, Approved, In Progress, or Review (click its row in the list). Open its Lines tab — each work order line has its own Parts section beneath it, where the “Add Part” button and part lines appear. (Route drafted from the spec/design and marked PROVISIONAL — confirm the exact tab name and Parts-section placement on the build.)",
+      "Your user has the 'Work Order Line - Create and Edit' permission enabled (an administrator sets this on your user role; confirm the exact path on the build).",
+      "Your 'Work Orders → Work Order View Mode' permission is set to Tech View (an administrator sets this on your user role; confirm the exact path on the build).",
+      "The work order line already has at least one part listed in its Parts section (if not, add one first with “Add Part”).",
+      "On an open inline row (via “Add Part” or “Edit”) you have selected a catalog part that is held in at least one bin (a part with no bins is treated as not stocked and this story does not apply)."
     ],
     "steps": [
       "Open the Tech View inline edit row on a part that already has a stored allocation.",
@@ -394,10 +394,10 @@
     "type": "Functional",
     "permissions_required": "Work Order Line - Create and Edit; Work Order View Mode",
     "preconditions": [
-      "A work order is open with status Estimate, Approved, In Progress, or Review.",
-      "You have the 'Work Order Line - Create and Edit' setting enabled.",
-      "Your 'Work Orders → Work Order View Mode' permission is set to Tech View.",
-      "The row is linked to a catalog part that is held in at least one bin (a part with no bins is treated as not stocked and this story does not apply)."
+      "In the top menu click “Work Orders”, then open a work order whose status is Estimate, Approved, In Progress, or Review (click its row in the list). Open its Lines tab — each work order line has its own Parts section beneath it, where the “Add Part” button and part lines appear. (Route drafted from the spec/design and marked PROVISIONAL — confirm the exact tab name and Parts-section placement on the build.)",
+      "Your user has the 'Work Order Line - Create and Edit' permission enabled (an administrator sets this on your user role; confirm the exact path on the build).",
+      "Your 'Work Orders → Work Order View Mode' permission is set to Tech View (an administrator sets this on your user role; confirm the exact path on the build).",
+      "On an open inline row (via “Add Part” or “Edit”) you have selected a catalog part that is held in at least one bin (a part with no bins is treated as not stocked and this story does not apply)."
     ],
     "steps": [
       "Allocate a bin, save the part, and look at the saved part row."
@@ -417,11 +417,11 @@
     "type": "Functional",
     "permissions_required": "Work Order Line - Create and Edit; Work Order View Mode",
     "preconditions": [
-      "A work order is open with status Estimate, Approved, In Progress, or Review.",
-      "You have the 'Work Order Line - Create and Edit' setting enabled.",
-      "Your 'Work Orders → Work Order View Mode' permission is set to Tech View.",
-      "The row is linked to a catalog part that is held in at least one bin (a part with no bins is treated as not stocked and this story does not apply).",
-      "An allocation exists so the Pulled from chip is shown."
+      "In the top menu click “Work Orders”, then open a work order whose status is Estimate, Approved, In Progress, or Review (click its row in the list). Open its Lines tab — each work order line has its own Parts section beneath it, where the “Add Part” button and part lines appear. (Route drafted from the spec/design and marked PROVISIONAL — confirm the exact tab name and Parts-section placement on the build.)",
+      "Your user has the 'Work Order Line - Create and Edit' permission enabled (an administrator sets this on your user role; confirm the exact path on the build).",
+      "Your 'Work Orders → Work Order View Mode' permission is set to Tech View (an administrator sets this on your user role; confirm the exact path on the build).",
+      "On an open inline row (via “Add Part” or “Edit”) you have selected a catalog part that is held in at least one bin (a part with no bins is treated as not stocked and this story does not apply).",
+      "A catalog part stocked in a bin is on the inline row, so its “Pulled from” chip is shown beneath the row."
     ],
     "steps": [
       "From the row's last field, Tab toward the chip (per the spec's Keyboard Model — Inline Row)."
@@ -441,9 +441,9 @@
     "type": "Functional",
     "permissions_required": "Work Order Line - Create and Edit; Work Order View Mode",
     "preconditions": [
-      "A work order is open with status Estimate, Approved, In Progress, or Review.",
-      "You have the 'Work Order Line - Create and Edit' setting enabled.",
-      "Your 'Work Orders → Work Order View Mode' permission is set to Tech View."
+      "In the top menu click “Work Orders”, then open a work order whose status is Estimate, Approved, In Progress, or Review (click its row in the list). Open its Lines tab — each work order line has its own Parts section beneath it, where the “Add Part” button and part lines appear. (Route drafted from the spec/design and marked PROVISIONAL — confirm the exact tab name and Parts-section placement on the build.)",
+      "Your user has the 'Work Order Line - Create and Edit' permission enabled (an administrator sets this on your user role; confirm the exact path on the build).",
+      "Your 'Work Orders → Work Order View Mode' permission is set to Tech View (an administrator sets this on your user role; confirm the exact path on the build)."
     ],
     "steps": [
       "Select a catalog part that is held in no bins (not stocked)."
@@ -463,9 +463,9 @@
     "type": "Functional",
     "permissions_required": "Work Order Line - Create and Edit; Work Order View Mode",
     "preconditions": [
-      "A work order is open with status Estimate, Approved, In Progress, or Review.",
-      "You have the 'Work Order Line - Create and Edit' setting enabled.",
-      "Your 'Work Orders → Work Order View Mode' permission is set to Tech View."
+      "In the top menu click “Work Orders”, then open a work order whose status is Estimate, Approved, In Progress, or Review (click its row in the list). Open its Lines tab — each work order line has its own Parts section beneath it, where the “Add Part” button and part lines appear. (Route drafted from the spec/design and marked PROVISIONAL — confirm the exact tab name and Parts-section placement on the build.)",
+      "Your user has the 'Work Order Line - Create and Edit' permission enabled (an administrator sets this on your user role; confirm the exact path on the build).",
+      "Your 'Work Orders → Work Order View Mode' permission is set to Tech View (an administrator sets this on your user role; confirm the exact path on the build)."
     ],
     "steps": [
       "Free-type a description with no catalog part selected."
@@ -485,11 +485,11 @@
     "type": "Functional",
     "permissions_required": "Work Order Line - Create and Edit; Work Order View Mode",
     "preconditions": [
-      "A work order is open with status Estimate, Approved, In Progress, or Review.",
-      "You have the 'Work Order Line - Create and Edit' setting enabled.",
-      "Your 'Work Orders → Work Order View Mode' permission is set to Tech View.",
-      "The row is linked to a catalog part that is held in at least one bin (a part with no bins is treated as not stocked and this story does not apply).",
-      "The Default bin's on-hand covers the quantity, and other bins would also cover it."
+      "In the top menu click “Work Orders”, then open a work order whose status is Estimate, Approved, In Progress, or Review (click its row in the list). Open its Lines tab — each work order line has its own Parts section beneath it, where the “Add Part” button and part lines appear. (Route drafted from the spec/design and marked PROVISIONAL — confirm the exact tab name and Parts-section placement on the build.)",
+      "Your user has the 'Work Order Line - Create and Edit' permission enabled (an administrator sets this on your user role; confirm the exact path on the build).",
+      "Your 'Work Orders → Work Order View Mode' permission is set to Tech View (an administrator sets this on your user role; confirm the exact path on the build).",
+      "On an open inline row (via “Add Part” or “Edit”) you have selected a catalog part that is held in at least one bin (a part with no bins is treated as not stocked and this story does not apply).",
+      "On an open inline row, you have selected a part whose Default bin's on-hand covers the quantity and whose other bins would also cover it."
     ],
     "steps": [
       "Select the part and look for a switched-bin note."
@@ -509,11 +509,11 @@
     "type": "Functional",
     "permissions_required": "Work Order Line - Create and Edit; Work Order View Mode",
     "preconditions": [
-      "A work order is open with status Estimate, Approved, In Progress, or Review.",
-      "You have the 'Work Order Line - Create and Edit' setting enabled.",
-      "Your 'Work Orders → Work Order View Mode' permission is set to Tech View.",
-      "The row is linked to a catalog part that is held in at least one bin (a part with no bins is treated as not stocked and this story does not apply).",
-      "The quantity is split across two or more bins."
+      "In the top menu click “Work Orders”, then open a work order whose status is Estimate, Approved, In Progress, or Review (click its row in the list). Open its Lines tab — each work order line has its own Parts section beneath it, where the “Add Part” button and part lines appear. (Route drafted from the spec/design and marked PROVISIONAL — confirm the exact tab name and Parts-section placement on the build.)",
+      "Your user has the 'Work Order Line - Create and Edit' permission enabled (an administrator sets this on your user role; confirm the exact path on the build).",
+      "Your 'Work Orders → Work Order View Mode' permission is set to Tech View (an administrator sets this on your user role; confirm the exact path on the build).",
+      "On an open inline row (via “Add Part” or “Edit”) you have selected a catalog part that is held in at least one bin (a part with no bins is treated as not stocked and this story does not apply).",
+      "On an open inline row, the quantity is split across two or more bins (use “Split across bins…” in the “Bin Locations” modal)."
     ],
     "steps": [
       "Create a split allocation and look for the takes-negative warning."
