@@ -1,30 +1,53 @@
 {
  "E3-becomes-uneditable": {
-  "POSITIVE_CONTROL_FAILED": {
+  "landed": {
    "onLogin": false,
-   "chars": 1460,
-   "addPart": 0,
-   "editBtns": 0,
-   "statusOnScreen": "Skip to main content Work Orders Schedule Customers Parts Reports Loading... Ctrl+K timer Clock In notifications Staging Heavy Duty - 9919 AS S9315-14.. Estimate Started: May 1, 2026 Total Hours: 2.0 "
+   "chars": 2893,
+   "addPart": 3,
+   "editBtns": 12,
+   "statusOnScreen": "Skip to main content Work Orders Schedule Customers Parts Reports Search Ctrl+K timer Clock In notifications Staging Heavy Duty - 9919 AS S9315-14.. Estimate Started: May 1, 2026 Total Hours: 2.0 hrs "
   },
-  "why": "Add Part is not even present before the probe starts, so nothing this probe measured would be about the build. Refusing to report a result."
+  "statusFlip": {
+   "a": 201,
+   "aBody": "{\"data\":{\"work_order_id\":\"c6d4b883-6f78-4c9e-ab7e-436a6d99c17a\",\"message\":\"Status changed.\"}}",
+   "b": null
+  },
+  "afterSave": {
+   "addRowOpen": true,
+   "editRowOpen": false,
+   "values": {
+    "desc": "ZZAUTOTEST uneditable 1788253518793",
+    "qty": "1"
+   },
+   "dialog": null,
+   "toast": [],
+   "sentences": {
+    "noLongerEditable": true,
+    "couldntAdd": false,
+    "changedBySomeoneElse": false
+   },
+   "rowText": " Description Part number Qty Category Uncategorized expand_more $ Cost $ Sell price More options Save close"
+  },
+  "statusRestored": {
+   "a": 201,
+   "b": null
+  }
  },
  "EH1-save-failure": {
-  "POSITIVE_CONTROL_FAILED": {
-   "onLogin": false,
-   "chars": 1434,
-   "addPart": 0,
-   "editBtns": 0,
-   "statusOnScreen": "Skip to main content Work Orders Schedule Customers Parts Reports Loading... Ctrl+K timer Clock In notifications Staging Heavy Duty - 9919 AS S9315-14.. Estimate Started: May 1, 2026 Total Hours: 2.0 "
-  }
- },
- "E1-concurrent-change": {
-  "POSITIVE_CONTROL_FAILED": {
-   "onLogin": false,
-   "chars": 1423,
-   "addPart": 0,
-   "editBtns": 0,
-   "statusOnScreen": "Skip to main content Work Orders Schedule Customers Parts Reports Loading... Ctrl+K timer Clock In notifications Staging Heavy Duty - 9919 AS Estimate Started: May 1, 2026 Total Hours: 2.0 hrs locatio"
-  }
+  "tag": "ZZAUTOTEST failed save 1788253542942",
+  "addRowOpen": false,
+  "editRowOpen": false,
+  "values": {
+   "desc": null,
+   "qty": null
+  },
+  "dialog": null,
+  "toast": [],
+  "sentences": {
+   "noLongerEditable": false,
+   "couldntAdd": false,
+   "changedBySomeoneElse": false
+  },
+  "rowText": null
  }
 }

@@ -13,7 +13,13 @@ import fs from 'fs';
 const OUT = 'build/inline-add-edit-parts/build-verify-2026-09-01';
 const WO = process.env.WO || 'c6d4b883-6f78-4c9e-ab7e-436a6d99c17a';
 const ONLY = (process.env.ONLY || '').split(',').filter(Boolean);
-const results = {};
+// MERGE, never replace: a run with ONLY=... must not delete the probes it did not re-run.
+// The first version overwrote this file every run, and a targeted re-run silently dropped
+// two verified results that only survived because they were already committed.
+const RESULTS_FILE = `${OUT}/evidence/probe-gaps.json`;
+const results = (() => {
+  try { return JSON.parse(fs.readFileSync(RESULTS_FILE, 'utf8')); } catch (_) { return {}; }
+})();
 const { browser, page } = await boot('/workorders');
 const settle = async () => {
   // wait for the anchor, not a character count: the shell alone passes any count while
@@ -154,11 +160,67 @@ P['C3b-edit-modal-save'] = async () => {
            saveButtonLabel: saveLabel, straightAfter, afterReload };
 };
 
+
+// ---- R1: how a tester REACHES the roles screen, and what the two permissions are LABELLED there.
+// The preconditions tell the tester to switch two settings on their role. R0 proved the screen is at
+// /administration/roles-permissions, but a tester does not type URLs - they need the click that gets
+// them into the admin area, and the exact label to look for once the role is open.
+P['R1-role-screen-labels'] = async () => {
+  await page.goto(APP + '/workorders', { waitUntil: 'domcontentloaded', timeout: 60000 }).catch(() => {});
+  await page.waitForTimeout(4000);
+  // what is in the header, and what does the avatar / gear menu contain?
+  const header = await page.evaluate(() => {
+    const t = document.body?.innerText || '';
+    const clickable = [...document.querySelectorAll('header button, header a, .q-header button, .q-header a, [aria-label]')]
+      .map(e => ({ label: (e.innerText || e.getAttribute('aria-label') || '').replace(/\s+/g, ' ').trim(),
+                   id: e.getAttribute('data-test-id') }))
+      .filter(x => x.label || x.id).slice(0, 25);
+    return { headerText: t.slice(0, 220), clickable };
+  });
+  // open whatever looks like the account / settings entry and read the menu
+  const menu = await page.evaluate(() => {
+    const cand = [...document.querySelectorAll('button, .q-btn, [role="button"]')]
+      .find(e => /settings|account|profile|admin/i.test((e.innerText || '') + ' ' + (e.getAttribute('aria-label') || ''))
+                 || /^[A-Z]{2}$/.test((e.innerText || '').trim()));
+    if (!cand) return { opened: false };
+    cand.click();
+    return { opened: true, clicked: (cand.innerText || cand.getAttribute('aria-label') || '').replace(/\s+/g,' ').trim() };
+  });
+  await page.waitForTimeout(2500);
+  const menuItems = await page.evaluate(() => [...document.querySelectorAll('.q-menu .q-item, .q-menu a')]
+    .map(e => (e.innerText || '').replace(/\s+/g, ' ').trim()).filter(Boolean).slice(0, 20));
+  // now the role edit screen itself
+  await page.goto(APP + '/administration/roles-permissions', { waitUntil: 'domcontentloaded', timeout: 60000 }).catch(() => {});
+  await page.waitForTimeout(5000);
+  const opened = await page.evaluate(() => {
+    const rows = [...document.querySelectorAll('tr')];
+    const row = rows.find(r => /\bTechnician\b/.test(r.innerText || '') && !/Parts Technician/.test(r.innerText || ''));
+    if (!row) return false;
+    const pencil = [...row.querySelectorAll('button, i, a')].find(e => /edit/i.test(e.innerText || e.textContent || ''));
+    if (!pencil) return false;
+    pencil.click(); return true;
+  });
+  await page.waitForTimeout(6000);
+  const roleScreen = await page.evaluate(() => {
+    const t = (document.body?.innerText || '');
+    const lines = t.split('\n').map(x => x.trim()).filter(Boolean);
+    return {
+      url: location.pathname,
+      hasCreateAndEdit: /Create and Edit/i.test(t),
+      hasViewMode: /View Mode/i.test(t),
+      matchingLabels: lines.filter(l => /create and edit|view mode|tech view|full view/i.test(l)).slice(0, 12),
+      headings: lines.filter(l => l.length < 40).slice(0, 30),
+    };
+  });
+  await page.screenshot({ path: `${OUT}/evidence/gap-role-screen.png`, fullPage: true });
+  return { header, accountMenu: { ...menu, items: menuItems }, technicianRoleOpened: opened, roleScreen };
+};
+
 const names = Object.keys(P).filter(n => !ONLY.length || ONLY.some(o => n.startsWith(o)));
 for (const n of names) {
   process.stdout.write(`\n### ${n}\n`);
   try { results[n] = await P[n](); console.log(JSON.stringify(results[n], null, 1).slice(0, 3000)); }
   catch (e) { results[n] = { PROBE_ERROR: String(e).slice(0, 300) }; console.log('PROBE ERROR', String(e).slice(0, 300)); }
-  fs.writeFileSync(`${OUT}/evidence/probe-gaps.json`, JSON.stringify(results, null, 1));
+  fs.writeFileSync(RESULTS_FILE, JSON.stringify(results, null, 1));
 }
 await browser.close();
