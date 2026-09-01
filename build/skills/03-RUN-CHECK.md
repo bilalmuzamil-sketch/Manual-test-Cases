@@ -700,6 +700,25 @@ the multi-login work, or use a **SEPARATE BROWSER CONTEXT / a FRESH STAFF LOGIN*
 disturbed — **but that safeguard may NEVER become the excuse to skip a case.** If no sibling is live,
 log in freely.
 
+### 8.2-w 🛑 A FALLBACK IS FINE FOR A READ AND NEVER FOR A WRITE (added 2026-08-31, after a live mistake)
+
+Seeding is pre-authorised on disposable environments, and §8.2 above is emphatic that a data state is
+never a blocker. **That permission is precisely why this guard is needed here.**
+
+On 2026-08-31, walking C45177 (reverse a payment so the masthead returns to *Due date*), a script
+could not match a payment to the target invoice and fell back to `cand = pays[0]` — the first payment
+on the account — then reversed it. It returned **201** and removed a real **$9,607.23 MASTERCARD**
+payment that had nothing to do with the case. The tell was that the masthead did not change.
+
+> **A write must NAME ITS TARGET or refuse to run.** "If I cannot identify the right record, use the
+> first one" is a sensible default while you are only *looking*. In a mutating call it means
+> *"change something, I don't mind what"*.
+
+**In practice:** build the target from a positive identification (the invoice id appearing in the
+payment record, the row the UI itself links to). If that lookup fails, **stop and say the lookup
+failed** — do not proceed with a nearby record. Print every non-GET call at exit (core §7.5) so an
+unintended write is visible in seconds rather than at the next diff; that is how this one was caught.
+
 ### 8.2a MULTI-LOGIN STANDARD PRACTICE — the Technician-role-swap method (PREFERRED)
 
 > **🔴 HARDENED TO A STANDING RULE, 2026-08-31 — THE ADMIN'S ROLE IS NEVER CHANGED. EVER.**
