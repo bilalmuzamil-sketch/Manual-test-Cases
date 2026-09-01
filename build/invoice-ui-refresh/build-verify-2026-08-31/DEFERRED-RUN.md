@@ -16,10 +16,40 @@ tester-facing re-check line, and is **excluded from the ready-to-automate count*
 | [C44938](https://shopview.testrail.io/index.php?/cases/view/44938) | Declined lines show no prices, no line numbers, and no status pill | same | **SV-9145** | same read |
 | [C44939](https://shopview.testrail.io/index.php?/cases/view/44939) | Declined Work section hidden when nothing declined or option off | same | **SV-9145** | same read |
 | [C44942](https://shopview.testrail.io/index.php?/cases/view/44942) | Percent column shows only when the setting is on | the `"Show % on Estimates and Invoices"` setting | **SV-9146** (In Progress) | Absent from the same dialog; a source read found no backend field either — a cleaner not-built than declined work, which does have a backend path. |
-| [C44987](https://shopview.testrail.io/index.php?/cases/view/44987) | Batch and imported invoices are out of scope (kept on current templates) | invoice **import / batch** | **SV-9193** (deferred) | `/api/invoices/import`, `/api/invoices/batch`, `/api/work-orders/import`, `/api/imported-work-orders` → all 404; no import/type field in the work-order listing; templates explicitly deferred. |
+| ~~[C44987](https://shopview.testrail.io/index.php?/cases/view/44987)~~ | ~~Batch and imported invoices are out of scope~~ | — | **SV-9193** | **🔴 WITHDRAWN 2026-09-01 — THIS ROW WAS WRONG. The import IS built.** See the correction below. |
 | [C45185](https://shopview.testrail.io/index.php?/cases/view/45185) | A snapshot created before the redesign renders in the new layout with blanks | document **history snapshots** | document history | `historyEvent` = none/1/2/5/99 all return a **byte-identical** document (one sha across five values, including the nonsense `99`). Defect candidate 2. |
 
 ## ⚠️ A note on the strength of each row
+
+**🔴 C44987 WAS REMOVED FROM THIS LIST ON 2026-09-01 — THE FEATURE IS BUILT.**
+The row rested on four **guessed** route shapes all answering 404, and the row's own caveat said so
+(*"a guessed route and a wrong id 404 identically"*). Reading the product's own front-end bundle
+instead of guessing found the real routes immediately:
+
+| What | Where |
+|---|---|
+| List imported work orders | `GET /api/work-orders-imported` — **200** (it was simply empty) |
+| One imported work order | `GET /api/work-orders-imported/{id}` — **200** |
+| Ingest them | `POST /api/imports/work-order-historical` (multipart, field name `file`) |
+| The screen | route `/imported-work-orders/:id`, component `ImportedWorkOrderLeftSection` |
+| The CSV contract | the product ships its own template inline in `InvoicesDataImport` — 24 columns, 10 required |
+
+**An imported work order was then seeded and exists on the branch**: `ZZAUTOTEST-IMP-001`
+(`c457a7fa-a42d-4994-bc85-0dff770f2314`), status `imported`, $105.00, customer Una Truck Center.
+The CSV headers came from the product's own shipped template, so this is a contract-based write,
+not a guessed one (skill 03 §8.2-w).
+
+**The lesson, recorded:** *four 404s from guessed routes are not evidence of absence.* The bundle is
+the authority on which routes the product calls, it is one fetch away, and it should be consulted
+**before** any "not built" verdict. Folded into the playbook.
+
+**C44987 now needs re-verification against its actual assertion** (that a batch/imported invoice
+keeps the current template rather than the redesigned one) — it is back on the to-do list, not
+deferred. Note the imported work order carries **no invoice document route** of its own
+(`/api/invoices/preview` rejects its id; `/api/work-orders-imported/{id}/pdf` is 404), which is
+itself the thing that case needs to establish.
+
+---
 
 **C44937–C44939 and C44942 are strong**: a probe that demonstrably fires found the sibling settings
 and not these. **C44987 is weaker on its own** — four guessed 404 routes prove little by themselves
