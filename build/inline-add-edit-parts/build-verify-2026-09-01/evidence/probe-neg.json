@@ -54,16 +54,17 @@
  "E1-concurrent-change": {
   "landedAsTechnician": {
    "onLogin": false,
-   "chars": 2284,
+   "chars": 2651,
    "addPart": 3,
-   "editBtns": 13,
+   "editBtns": 17,
    "statusOnScreen": "Skip to main content Work Orders Schedule Customers Search Ctrl+K timer Clock In notifications Staging Heavy Duty - 9919 CS S9315-14.. Estimate Started: May 1, 2026 Total Tech Hours: 2.0 hrs location_"
   },
-  "partRequests": 100,
+  "partRequestsReturned": 100,
+  "partRequestsOnThisWorkOrder": 0,
   "editRowOpened": true,
   "editRowValues": {
-   "desc": "ZZAUTOTEST tvcat 1788254082013",
-   "qty": "1"
+   "desc": "ZZAUTOTEST preserve 1788254283111 edited",
+   "qty": "2"
   },
   "matchedPartRequest": null,
   "afterSave": {
@@ -85,5 +86,46 @@
  },
  "N1-paid-work-order": {
   "PROBE_ERROR": "Error: page.waitForTimeout: Target page, context or browser has been closed"
+ },
+ "EH2-server-error": {
+  "tag": "ZZAUTOTEST server500 1788254414964",
+  "interceptedSave": "https://sv9315api.qa.shopview.com/api/work-orders/part/make-request",
+  "twoSecondsAfter": {
+   "addRowOpen": true,
+   "editRowOpen": false,
+   "values": {
+    "desc": "ZZAUTOTEST server500 1788254414964",
+    "qty": "1"
+   },
+   "dialog": null,
+   "toast": [
+    "warning Ooooops! An error occurred Close"
+   ],
+   "sentences": {
+    "noLongerEditable": false,
+    "couldntAdd": true,
+    "changedBySomeoneElse": false
+   },
+   "rowText": " Description Part number Qty Category Uncategorized expand_more $ Cost $ Sell price More options Save close"
+  },
+  "sevenSecondsAfter": {
+   "addRowOpen": true,
+   "editRowOpen": false,
+   "values": {
+    "desc": "ZZAUTOTEST server500 1788254414964",
+    "qty": "1"
+   },
+   "dialog": null,
+   "toast": [
+    "warning Ooooops! An error occurred Close"
+   ],
+   "sentences": {
+    "noLongerEditable": false,
+    "couldntAdd": true,
+    "changedBySomeoneElse": false
+   },
+   "rowText": " Description Part number Qty Category Uncategorized expand_more $ Cost $ Sell price More options Save close"
+  },
+  "pageText": "Skip to main content Work Orders Schedule Customers Parts Reports Search Ctrl+K timer Clock In notifications Staging Heavy Duty - 9919 AS S9315-14.. Estimate Started: May 1, 2026 Total Hours: 2.0 hrs location_on Progress 0% Lead Technician William Johns arrow_drop_down Service Advisor Kimberly Barnes arrow_drop_down Sales Representative Unassigned arrow_drop_down swap_horiz Aagate Landscaping push_pin Pinned Notes: At perspiciatis labore esse consequatur molestiae doloremque. Minima laboriosam error. Non nihil porro fuga quasi assumenda est. Contact Jose Stewart arrow_drop_down Phone 054-594-7007 IBS#: 867252 swap_horiz Komatsu 6NB41E 189 Unit # 189 VIN/Serial # CT17X26004 content_copy Milea"
  }
 }

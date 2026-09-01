@@ -57,6 +57,40 @@ const partByDescription = async (desc) => {
   return list.find(x => (x.description || '').trim() === desc.trim()) || null;
 };
 
+
+// read cost / sell price / category off the FULL VIEW EDIT MODAL, which is where a Full View user
+// actually sees them. The API route list-requests answers with the first 100 part requests estate
+// wide and ignores both work_order_id and rowsPerPage, so a freshly created part is simply not in
+// the page it returns - which is why the first two attempts read nulls. The modal is also better
+// evidence: it is what the requirement is about.
+const modalValuesFor = async (desc) => {
+  await land();
+  const clicked = await page.evaluate(t => {
+    const b = [...document.querySelectorAll('[data-test-id="button_edit_part"]')]
+      .find(x => ((x.closest('tr') || x.parentElement?.closest('div'))?.innerText || '').includes(t));
+    if (!b) return false; b.click(); return true; }, desc);
+  if (!clicked) return { found: false };
+  await page.waitForTimeout(4500);
+  const v = await page.evaluate(() => {
+    const d = document.querySelector('.q-dialog');
+    const get = id => { const e = d?.querySelector(`[data-test-id="${id}"]`);
+      const i = e && (e.matches('input') ? e : e.querySelector('input')); return i ? i.value : null; };
+    const t = (d?.innerText || '').replace(/\s+/g, ' ');
+    const m = t.match(/Category\s+([A-Za-z0-9 ,()&/-]+?)\s+arrow_drop_down/);
+    return { description: get('input_workorder_part_description'), quantity: get('input_workorder_part_quantity'),
+             cost: get('input_part_cost'), sell: get('input_workorder_part_sell_price'),
+             category: m ? m[1].trim() : null };
+  });
+  // close it again so the next read starts clean
+  await page.evaluate(() => {
+    const b = [...document.querySelectorAll('.q-dialog button')].find(x => /close/i.test(x.innerText || '') || x.querySelector('i')?.textContent === 'close');
+    b?.click(); });
+  await page.waitForTimeout(2500);
+  await page.evaluate(() => { const b = [...document.querySelectorAll('.q-dialog button')].find(x => /discard/i.test(x.innerText||'')); b?.click(); });
+  await page.waitForTimeout(2000);
+  return { found: true, ...v };
+};
+
 const P = {};
 
 // C45007 — a part added by a TECHNICIAN must come out categorised Uncategorized
@@ -124,9 +158,7 @@ P['X2-hidden-values-preserved'] = async () => {
   await page.waitForTimeout(2000);
   await page.evaluate(() => document.querySelector('[data-test-id="button_save_inline_part"]')?.click());
   await page.waitForTimeout(6000);
-  const created = await partByDescription(tag);
-  const before = created ? { cost: created.cost, sell: created.sell_price,
-                             category: created.part_category_id } : null;
+  const before = await modalValuesFor(tag);
 
   // 2. as the TECHNICIAN, edit only the description
   const newTag = tag + ' edited';
@@ -154,13 +186,13 @@ P['X2-hidden-values-preserved'] = async () => {
   } finally { await apiPost('/api/exit-switch-user', {}).catch(() => {}); }
 
   // 3. as the admin again, read the hidden values back
-  const after = await partByDescription(newTag);
-  const afterVals = after ? { cost: after.cost, sell: after.sell_price,
-                              category: after.part_category_id } : null;
+  const afterVals = await modalValuesFor(newTag);
   await page.screenshot({ path: `${OUT}/evidence/cross-preserved.png`, fullPage: true });
   return { tag, newTag, rowOpened: opened, chosenCategory, before, techLeg, after: afterVals,
-           preserved: !!(before && afterVals && String(before.cost) === String(afterVals.cost)
-             && String(before.sell) === String(afterVals.sell) && String(before.category) === String(afterVals.category)) };
+           preserved: !!(before?.found && afterVals?.found
+             && String(before.cost) === String(afterVals.cost)
+             && String(before.sell) === String(afterVals.sell)
+             && String(before.category) === String(afterVals.category)) };
 };
 
 const ONLY = (process.env.ONLY || '').split(',').filter(Boolean);
