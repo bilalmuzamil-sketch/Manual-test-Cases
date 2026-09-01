@@ -1,6 +1,19 @@
 {
  "N1-paid-work-order": {
-  "PROBE_ERROR": "Error: page.waitForTimeout: Target page, context or browser has been closed"
+  "paidWorkOrder": {
+   "onLogin": false,
+   "chars": 7643,
+   "addPart": 0,
+   "editBtns": 0,
+   "statusOnScreen": "Skip to main content Work Orders Schedule Customers Parts Reports Search Ctrl+K timer Clock In notifications Staging Heavy Duty - 9919 AS S2-15522 Paid Started: Jun 1, 2026 Total Hours: 5.0 hrs locati"
+  },
+  "positiveControlEditableWorkOrder": {
+   "onLogin": false,
+   "chars": 2893,
+   "addPart": 3,
+   "editBtns": 12,
+   "statusOnScreen": "Skip to main content Work Orders Schedule Customers Parts Reports Search Ctrl+K timer Clock In notifications Staging Heavy Duty - 9919 AS S9315-14.. Estimate Started: May 1, 2026 Total Hours: 2.0 hrs "
+  }
  },
  "N3-no-permission": {
   "technicianPermissionsBefore": [
@@ -11,24 +24,123 @@
    "scheduleView",
    "workOrdersView"
   ],
-  "roleCreate": {
-   "status": 400,
-   "body": "{\"errors\":[{\"organization\":\"Missing required parameter\"},{\"cross_toggles\":\"Missing required parameter\"}]}"
+  "strip": {
+   "status": 200,
+   "body": "{\"data\":{\"id\":\"2d4b8464-81a9-4c1e-96c6-a2a64f02a389\",\"name\":\"Technician\",\"description\":\"Assigned work orders and time tracking (Tech View)\",\"default\":true,\"editable\":true,\"deletable\":false,\"fe_permiss"
   },
-  "roleAssign": null,
-  "screenWithoutThePermission": null,
-  "roleRestored": null
+  "screenWithoutThePermission": {
+   "onLogin": false,
+   "chars": 1710,
+   "addPart": 0,
+   "editBtns": 0,
+   "statusOnScreen": "Skip to main content Work Orders Schedule Customers Search Ctrl+K timer Clock In notifications Staging Heavy Duty - 9919 CS S9315-14.. Estimate Started: May 1, 2026 Total Tech Hours: 2.0 hrs location_",
+   "permissionsSeenByThePage": [
+    "customersView",
+    "scheduleView",
+    "woPickParts",
+    "workOrdersView",
+    "woTechViewMode"
+   ]
+  },
+  "restore": {
+   "status": 200
+  },
+  "RESTORE_VERIFIED": {
+   "status": 200,
+   "permissionsBefore": [
+    "customersView",
+    "scheduleView",
+    "woPickParts",
+    "woTechViewMode",
+    "workOrderLinesCreateAndEdit",
+    "workOrdersView"
+   ],
+   "permissionsAfter": [
+    "customersView",
+    "scheduleView",
+    "woPickParts",
+    "woTechViewMode",
+    "workOrderLinesCreateAndEdit",
+    "workOrdersView"
+   ],
+   "identical": true,
+   "viewModeBefore": "tech",
+   "viewModeAfter": "tech"
+  }
  },
  "E3-becomes-uneditable": {
-  "PROBE_ERROR": "Error: page.waitForTimeout: Target page, context or browser has been closed"
+  "landed": {
+   "onLogin": false,
+   "chars": 1710,
+   "addPart": 0,
+   "editBtns": 0,
+   "statusOnScreen": "Skip to main content Work Orders Schedule Customers Search Ctrl+K timer Clock In notifications Staging Heavy Duty - 9919 AS S9315-14.. Estimate Started: May 1, 2026 Total Tech Hours: 2.0 hrs location_"
+  },
+  "statusFlip": {
+   "a": 201,
+   "aBody": "{\"data\":{\"work_order_id\":\"c6d4b883-6f78-4c9e-ab7e-436a6d99c17a\",\"message\":\"Status changed.\"}}",
+   "b": null
+  },
+  "afterSave": {
+   "addRowOpen": false,
+   "editRowOpen": false,
+   "values": {
+    "desc": null,
+    "qty": null
+   },
+   "dialog": null,
+   "toast": [],
+   "sentences": {
+    "noLongerEditable": false,
+    "couldntAdd": false,
+    "changedBySomeoneElse": false
+   },
+   "rowText": null
+  },
+  "statusRestored": {
+   "a": 201,
+   "b": null
+  }
  },
  "EH1-save-failure": {
-  "PROBE_ERROR": "Error: page.waitForTimeout: Target page, context or browser has been closed"
+  "tag": "ZZAUTOTEST failed save 1788253031152",
+  "addRowOpen": false,
+  "editRowOpen": false,
+  "values": {
+   "desc": null,
+   "qty": null
+  },
+  "dialog": null,
+  "toast": [],
+  "sentences": {
+   "noLongerEditable": false,
+   "couldntAdd": false,
+   "changedBySomeoneElse": false
+  },
+  "rowText": null
  },
  "E1-concurrent-change": {
-  "PROBE_ERROR": "Error: page.waitForTimeout: Target page, context or browser has been closed"
- },
- "R0-permission-route": {
-  "PROBE_ERROR": "Error: page.waitForTimeout: Target page, context or browser has been closed"
+  "editRowOpened": false,
+  "partRequestsCall": 200,
+  "deleteAttempt": {
+   "status": 200,
+   "body": "{\"data\":[]}"
+  },
+  "afterSave": {
+   "addRowOpen": false,
+   "editRowOpen": false,
+   "values": {
+    "desc": null,
+    "qty": null
+   },
+   "dialog": null,
+   "toast": [],
+   "sentences": {
+    "noLongerEditable": false,
+    "couldntAdd": false,
+    "changedBySomeoneElse": false
+   },
+   "rowText": null
+  }
  }
 }
