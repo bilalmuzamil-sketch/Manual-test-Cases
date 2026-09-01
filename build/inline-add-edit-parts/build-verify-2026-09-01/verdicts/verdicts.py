@@ -7,6 +7,9 @@
 #   FAIL      the documented behaviour was observed NOT to happen (a deviation; ticket candidate)
 #   NOTBUILT  the surface the case needs does not exist on the build at all
 #   NODATA    the feature is built but the DATA STATE the case needs does not exist on this branch
+#   PARTIAL   part of the case was observed and part could not be, because the DATA STATE for the
+#             rest does not exist on this branch. The covered and uncovered legs are both named in
+#             the note; a PARTIAL is never reported as a pass.
 #   NOTVER    not observable through the UI on this branch (needs a second user, a forced failure,
 #             or a permission change that this session may not make) — never guessed either way
 #
@@ -20,9 +23,9 @@ V = {
  44990: ('PASS', 'A-add-row + TA-add-row', 'admin (view_mode full) gets six fields, technician (view_mode tech) gets three'),
 44991: ('PASS', 'C1-edit-reveal', 'the edit control sits on every part row at opacity 0 and goes to opacity 1 on hover. The keyboard-focus half of S1-R7 is re-probed separately - see C1b'),
  44992: ('PASS', 'P-edit + TI-edit-row', 'Full View Edit opens the New Part Request modal; Tech View Edit opens inline_part_edit_row'),
- 44993: (None, None, ''),
- 44994: (None, None, ''),
- 44995: (None, None, ''),
+44993: ('PARTIAL', 'N1-paid-work-order', 'on the PAID work order S2-15522 the Add Part button is absent on every line (addPart=0) while the Estimate work order in the same run shows 3 - a clean positive control. The other four statuses the requirement names (Complete, Invoiced, Declined, Imported) DO NOT EXIST on this branch: 3,000 work orders were paged and only estimate, approved and paid are present, so those legs are unverified, not passing'),
+44994: ('PARTIAL', 'N1-paid-work-order', 'same run: 0 edit controls on the Paid work order, 12 on the Estimate one. Complete / Invoiced / Declined / Imported are a branch data gap (INL-4)'),
+44995: ('PASS', 'N3-no-permission', 'with workOrderLinesCreateAndEdit removed from the Technician role, an EDITABLE (Estimate) work order showed 0 Add Part buttons and 0 edit controls. The role was restored in the same run and verified field by field - permission list identical, view_mode unchanged'),
  44996: (None, None, ''),
  44997: ('PASS', 'M-second-row', 'Add Part on another line with data in the row raises "Discard this part?" Keep Editing / Discard Part'),
  45220: ('FOREIGN', None, "Vladimir Tomovic's case, flagged Automated — Rules 38 and 71; not touched, not verdicted"),
@@ -56,8 +59,8 @@ V = {
 
  # ---------------- Story 3: Tech View inline edit (13 cases) ----------------
 45023: ('PASS', 'TI-edit-row', 'Edit opens inline_part_edit_row directly below the part with the same three fields in the same order'),45024: ('PASS', 'TI-edit-row', "the edit row came up pre-populated with the part's description and quantity, cursor in description"),45025: ('PASS', 'techview-edit-diff', 'the edit row legend reads "Enter save - Tab next field - Esc cancel" with no "& next row", exactly the shortened form'),45026: ('PASS', 'TJ-edit-save', "the part line was updated in place and the edit row closed (Automated case, written under the QA lead's 2026-09-01 go-ahead; Rule 65 report filed)"),
-45027: ('PASS', 'TJ-edit-save', 'no new empty row opened after the edit save - the repeat-entry behaviour is add-only'), 45028: (None, None, ''), 45029: (None, None, ''), 45030: (None, None, ''),
- 45031: (None, None, ''), 45032: (None, None, ''), 45033: (None, None, ''), 45034: (None, None, ''),
+45027: ('PASS', 'TJ-edit-save', 'no new empty row opened after the edit save - the repeat-entry behaviour is add-only'), 45028: (None, None, ''),45029: ('PASS', 'TK-edit-guard', 'the edit row uses the edit wording verbatim: "Discard these changes?" / "The changes you made will be lost." / Keep Editing / Discard Part'),45030: ('PASS', 'TL-edit-relink', 'selecting a different catalog part in the edit row repopulated description and part number, KEPT the quantity the user had entered, moved focus to quantity, and produced the bin chip'),
+45031: ('PASS', 'TK-edit-guard', 'an edit row opened and closed with nothing changed raised no confirmation and the row simply closed'),45032: ('PASS', 'N3-no-permission', 'the same run: no edit control anywhere on the part lines without the permission'),45033: ('PASS', 'TM-edit-clear-desc', 'clearing the description blocked the save, flagged the description field, moved focus to it, and showed the documented combined sentence'), 45034: (None, None, ''),
  45035: (None, None, ''),
 
  # ---------------- Story 4: Full View inline add (27 cases) ----------------
@@ -91,19 +94,19 @@ V = {
 
  # ---------------- Story 5: Full View edit (6 cases) ----------------
  45063: (None, None, ''),45064: ('PASS', 'P-edit', 'no inline edit row appears for a Full View user; the part row is not replaced'), 45065: (None, None, ''),
- 45066: (None, None, ''),45067: ('PASS', 'C3-edit-modal', 'a change typed into the Edit Part Request modal and then cancelled left the part line byte-identical'),45068: ('FAIL', 'AB-edit-guard-recheck', 'Edit on a part line while a POPULATED add row is open opens the Edit Part Request modal immediately, with no discard confirmation, and leaves the add row open. Observed twice. S5-E1 requires S6-R5 first.'),
+45066: ('PASS', 'N3-no-permission', 'the same run, read as a Full View user would see it: no edit control without the permission'),45067: ('PASS', 'C3-edit-modal', 'a change typed into the Edit Part Request modal and then cancelled left the part line byte-identical'),45068: ('FAIL', 'AB-edit-guard-recheck', 'Edit on a part line while a POPULATED add row is open opens the Edit Part Request modal immediately, with no discard confirmation, and leaves the add row open. Observed twice. S5-E1 requires S6-R5 first.'),
 
  # ---------------- Story 6: unsaved-data protection (15 cases) ----------------
  45069: ('PASS', 'J-close', 'verbatim "Discard this part?" / "The details you entered will be lost." / Keep Editing / Discard Part'),
- 45070: (None, None, ''),
+45070: ('PASS', 'TK-edit-guard', 'the edit-row confirmation is the edit-worded one, not the add-row wording'),
  45071: ('PASS', 'J-close', 'Keep Editing returned to the row with the typed description intact and focus back in the row'),
- 45072: (None, None, ''),
+45072: ('PASS', 'J-close + TK-edit-guard', 'Discard Part closed the add row without saving, and on the edit row it closed the row and left the part line at its saved values'),
  45073: ('PASS', 'N-navigate-away + W-browser-back', 'in-app navigation off the work order shows the documented dialog verbatim ("Leave without saving?" / "This part hasn\'t been added to the work order yet. Leaving will discard it." / Stay On Work Order / Leave). On browser back and forward the app raises the BROWSER\'S OWN prompt instead of that dialog - the data is still protected; wording divergence recorded'),
  45074: ('PASS', 'M-second-row', 'the discard confirmation is raised before the requested row opens'),
  45075: ('PASS', 'M-second-row', 'never more than one inline row in the DOM at a time'),
  45076: ('PASS', 'J-close', 'an empty row closed on Escape with no confirmation'),
  45077: ('PASS', 'Z-followon-row', 'navigating away from an empty row went through with no confirmation'),
- 45078: (None, None, ''),
+45078: ('PASS', 'TK-edit-guard', 'an unchanged edit row closed on Escape with no confirmation at all'),
 45079: ('PASS', 'C5-no-row-navigation', 'with no inline row open, navigating from the Lines tab to the work orders list raised nothing'),
  45080: ('PASS', 'K-click-outside', 'no confirmation of any kind on a click outside the row'),
  45081: ('PASS', 'Z-followon-row', 'the untouched follow-on row after a save raised nothing on Escape or on navigation'),
@@ -113,8 +116,8 @@ V = {
  # ---------------- Story 7: bin allocation (22 cases) ----------------
  45221: (None, None, ''),45222: ('PASS', 'B1-cards', 'result cards read "Inventory Qty: 7 EA" then the per-bin chip "PB1 7" - total first, then per-bin quantity. The "+ N" collapse chip and the "Not stocked" card have no data on this branch to show them (INL-2)'),45223: ('PASS', 'B2-picker', 'selecting a stocked part allocated the whole quantity to its single Default bin, PB1, with no split'),45224: ('PASS', 'B2-picker', 'the allocation appears below the row as "Pulled from" followed by a chip; with no allocation there is no chip (B7)'),
 45225: ('PASS', 'B2-picker', 'the chip label is the bin name, "PB1", for a single-bin allocation. The "N bins" split label needs a multi-bin part (INL-2)'),45226: ('PASS', 'B2-picker', 'the chip opens a picker reading "check PB1 Default 7" then "Split across bins…" - the check on the current selection, the Default badge, the on-hand quantity and the split action'), 45227: (None, None, ''),45228: ('PASS', 'B4-over-allocate', 'a quantity of 999 against a bin holding 7 was accepted and only warned; nothing blocked the row'),
-45229: ('PASS', 'B4-over-allocate', 'verbatim "Only 7 here. Pulling 999 takes this bin negative." beside the chip, and the chip picks up the warning class inline-part-row__bin-chip--warn'), 45230: (None, None, ''), 45231: (None, None, ''), 45232: (None, None, ''),
- 45233: (None, None, ''), 45234: (None, None, ''), 45235: (None, None, ''), 45236: (None, None, ''),
+45229: ('PASS', 'B4-over-allocate', 'verbatim "Only 7 here. Pulling 999 takes this bin negative." beside the chip, and the chip picks up the warning class inline-part-row__bin-chip--warn'), 45230: (None, None, ''), 45231: (None, None, ''),45232: ('PASS', 'TN-bins + B5-split', 'Tech View "Split across bins…" opens the Bin Locations modal; the same action as a Full View user on the add row opens the New Part Request modal with a per-bin allocation table instead - both branches of S7-R12 observed'),
+45233: ('PASS', 'TN-bins', 'the Bin Locations modal lists BIN NAME / QUANTITY IN STOCK / AMOUNT with the row "PB1 Default 7", an amount input per bin, and Auto, Cancel and Apply actions. It exposes no cost, sell price or category'), 45234: (None, None, ''), 45235: (None, None, ''),45236: ('PASS', 'TL-edit-relink + TN-bins', 'the Tech View edit row carries the same chip, picker and Bin Locations modal as the add row, and auto-allocation runs when the row is linked to a catalog part'),
 45237: ('PASS', 'B8-saved-row', 'after saving, the part line reads "(N68SL-356) … 1 Quoted $8.13" and names no bin anywhere'),45238: ('PASS', 'B6-tab-to-chip', 'Tab reached the chip in the documented position: description, part number, qty, category, cost, sell price, Save, close, More options, then button_pulled_from_bin'), 45239: (None, None, ''),45240: ('PASS', 'B7-no-catalog-part', 'a free-typed description with no catalog part got no chip and no "Pulled from" line at all'),
  45242: (None, None, ''), 45243: (None, None, ''),
 }

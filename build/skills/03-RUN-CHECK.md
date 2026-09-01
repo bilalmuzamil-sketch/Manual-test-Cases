@@ -1067,3 +1067,21 @@ one of the six above would have been delivered as a confident finding about the 
 10. **WHEN AN ACTION "DOES NOTHING", READ THE SURFACE IT LEFT BEHIND BEFORE CONCLUDING ANYTHING.**
     Dump the dialog's full text, not the two fields you expected to change. The reason is almost
     always written on screen.
+
+### And two more, both about WHO the page thinks you are (same suite, same day)
+
+| What it looked like | What it was |
+|---|---|
+| "Tech View shows six fields WITH pricing" | `boot()` had hydrated `localStorage` from `quick-login {admin}`. **The SPA reads `view_mode` and the permission list out of localStorage, not off the wire**, so `switch-user` moved the API to the technician while the page stayed Full View. |
+| "Add Part is absent, so the row cannot be opened" — on an ordinary Estimate work order | The probe before it had **stripped a permission and impersonated**, and when it handed the session back, localStorage still held the reduced set. Three later probes measured a page that thought it was a technician with no create permission. |
+
+11. **IN AN SPA, IDENTITY LIVES IN `localStorage` — RE-SYNC IT ON EVERY LANDING, NOT ONCE AT BOOT.**
+    After any `switch-user` / `exit-switch-user` / role edit, re-read `/api/auth/me/fe-permissions`
+    and write it back before navigating. **Then assert the identity you expect** (`view_mode === 'tech'`)
+    and stop the run if it is wrong, rather than reporting Full View as Tech View.
+12. **A PROBE THAT MUTATES SHARED STATE MUST HAND IT BACK, AND THE NEXT PROBE MUST NOT TRUST THAT IT
+    DID.** The permission probe restored the role correctly and verified it field by field — and still
+    poisoned the three probes after it, through the browser rather than the API. **So every edge probe
+    carries its own positive control** (`addPart > 0` before it starts) and returns
+    `POSITIVE_CONTROL_FAILED` instead of a result. A refused measurement is cheap; a false finding is
+    not.

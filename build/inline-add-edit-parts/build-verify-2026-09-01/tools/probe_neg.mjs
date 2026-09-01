@@ -25,7 +25,21 @@ const settle = async (m = 1200) => {
   await page.waitForFunction(x => (document.body?.innerText || '').length > x, m, { timeout: 60000 }).catch(() => {});
   await page.waitForTimeout(3200);
 };
+// 🛑 THE PAGE'S IDENTITY MUST BE RE-SYNCED BEFORE EVERY LANDING, AND THIS COST A WHOLE RUN.
+// The SPA reads permissions and view mode out of localStorage. N3 strips a permission and
+// impersonates; when it hands the session back, localStorage still holds the STRIPPED technician
+// set, so every later probe in the same browser sees addPart: 0 and reports "no row could be
+// opened" as if that were the build's behaviour. Re-reading fe-permissions and writing it back on
+// every landing makes the page always match whoever the API currently is.
+const syncIdentity = async () => {
+  const fe = await apiGet('/api/auth/me/fe-permissions');
+  if (fe.status !== 200) return null;
+  await page.goto(APP + '/login', { waitUntil: 'domcontentloaded', timeout: 60000 }).catch(() => {});
+  await page.evaluate(f => localStorage.setItem('fe_permissions_wrapper', JSON.stringify(f)), fe.body?.data);
+  return fe.body?.data;
+};
 const goLines = async (id) => {
+  await syncIdentity();
   await page.goto(`${APP}/workorders/${id}/lines`, { waitUntil: 'domcontentloaded', timeout: 60000 }).catch(() => {});
   await settle();
   return page.evaluate(() => ({
@@ -134,6 +148,9 @@ P['N3-no-permission'] = async () => {
 // ---- E3: the work order stops being editable while the row is open ----
 P['E3-becomes-uneditable'] = async () => {
   const ok = await goLines(WO);
+  if (!ok.addPart) return { POSITIVE_CONTROL_FAILED: ok,
+    why: 'Add Part is not even present before the probe starts, so nothing this probe measured '
+       + 'would be about the build. Refusing to report a result.' };
   await page.evaluate(() => document.querySelector('[data-test-id="button_add_part"]')?.click());
   await page.waitForTimeout(4000);
   await set('input_inline_part_description', 'ZZAUTOTEST uneditable ' + Date.now());
@@ -158,7 +175,8 @@ P['E3-becomes-uneditable'] = async () => {
 
 // ---- EH1: any other save failure — abort the save request at the network layer ----
 P['EH1-save-failure'] = async () => {
-  await goLines(WO);
+  const pc = await goLines(WO);
+  if (!pc.addPart) return { POSITIVE_CONTROL_FAILED: pc };
   await page.route('**/api/**part**', route => {
     if (route.request().method() === 'POST') return route.abort('failed');
     return route.continue();
@@ -181,7 +199,8 @@ P['EH1-save-failure'] = async () => {
 
 // ---- S3-E1: someone else changes the part while the edit row is open ----
 P['E1-concurrent-change'] = async () => {
-  await goLines(WO);
+  const pc = await goLines(WO);
+  if (!pc.editBtns) return { POSITIVE_CONTROL_FAILED: pc };
   // find the line's parts through the API so the right one can be deleted behind the row
   const wo = await apiGet(`/api/work-orders/${WO}`);
   await page.evaluate(() => document.querySelector('[data-test-id="button_edit_part"]')?.click());
