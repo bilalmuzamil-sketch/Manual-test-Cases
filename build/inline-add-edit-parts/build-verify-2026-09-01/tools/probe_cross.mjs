@@ -48,10 +48,12 @@ const openAddRow = async () => { await land();
   await page.waitForTimeout(4000);
   return page.evaluate(() => !!document.querySelector('[data-test-id="inline_part_row"]')); };
 // read a part's full record from the API, which is where category / cost / sell live
+// 🛑 list-requests IGNORES work_order_id and answers with 100 rows from across the estate, so the
+// filter has to happen here. Without it every lookup matches nothing.
 const partByDescription = async (desc) => {
-  const r = await apiGet(`/api/work-orders/part/list-requests?work_order_id=${WO}`);
-  const coll = (r.body?.data?.collection) || r.body?.data || [];
-  const list = Array.isArray(coll) ? coll : [];
+  const r = await apiGet(`/api/work-orders/part/list-requests?work_order_id=${WO}&rowsPerPage=250`);
+  const raw = (r.body?.data?.collection) || r.body?.data || [];
+  const list = (Array.isArray(raw) ? raw : []).filter(x => x.work_order_id === WO);
   return list.find(x => (x.description || '').trim() === desc.trim()) || null;
 };
 
@@ -82,10 +84,9 @@ P['X1-tech-added-category'] = async () => {
   }
   // back as the admin: read the category off the record and off the Full View edit modal
   const rec = await partByDescription(tag);
-  asAdmin.record = rec ? { description: rec.description, category: rec.category,
-                           category_label: rec.category_label ?? rec.categoryLabel ?? null,
-                           cost: rec.cost, sell_price: rec.sell_price ?? rec.sellPrice ?? null,
-                           status: rec.status ?? rec.status_label ?? null } : null;
+  asAdmin.record = rec ? { description: rec.description, part_category_id: rec.part_category_id,
+                           cost: rec.cost, sell_price: rec.sell_price,
+                           status: rec.status, status_label: rec.status_label } : null;
   await land();
   asAdmin.modal = await page.evaluate(t => {
     const b = [...document.querySelectorAll('[data-test-id="button_edit_part"]')]
@@ -124,8 +125,8 @@ P['X2-hidden-values-preserved'] = async () => {
   await page.evaluate(() => document.querySelector('[data-test-id="button_save_inline_part"]')?.click());
   await page.waitForTimeout(6000);
   const created = await partByDescription(tag);
-  const before = created ? { cost: created.cost, sell: created.sell_price ?? created.sellPrice,
-                             category: created.category, category_label: created.category_label ?? created.categoryLabel } : null;
+  const before = created ? { cost: created.cost, sell: created.sell_price,
+                             category: created.part_category_id } : null;
 
   // 2. as the TECHNICIAN, edit only the description
   const newTag = tag + ' edited';
@@ -154,8 +155,8 @@ P['X2-hidden-values-preserved'] = async () => {
 
   // 3. as the admin again, read the hidden values back
   const after = await partByDescription(newTag);
-  const afterVals = after ? { cost: after.cost, sell: after.sell_price ?? after.sellPrice,
-                              category: after.category, category_label: after.category_label ?? after.categoryLabel } : null;
+  const afterVals = after ? { cost: after.cost, sell: after.sell_price,
+                              category: after.part_category_id } : null;
   await page.screenshot({ path: `${OUT}/evidence/cross-preserved.png`, fullPage: true });
   return { tag, newTag, rowOpened: opened, chosenCategory, before, techLeg, after: afterVals,
            preserved: !!(before && afterVals && String(before.cost) === String(afterVals.cost)
