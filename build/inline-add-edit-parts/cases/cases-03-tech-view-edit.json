@@ -1,311 +1,311 @@
 [
-  {
-    "id": "IAEP-TEDIT-01",
-    "area": "Inline Add and Edit Parts - Tech View Inline Edit",
-    "title": "Edit opens an inline row below the part with the same three fields",
-    "priority": "Medium",
-    "type": "Functional",
-    "permissions_required": "Work Order Line - Create and Edit; Work Order View Mode",
-    "preconditions": [
-      "In the top menu click “Work Orders”, then open a work order whose status is Estimate, Approved, In Progress, or Review (click its row in the list). Open its Lines tab — each work order line has its own Parts section beneath it, where the “Add Part” button and part lines appear. (Route drafted from the spec/design and marked PROVISIONAL — confirm the exact tab name and Parts-section placement on the build.)",
-      "Your user has the 'Work Order Line - Create and Edit' permission enabled (an administrator sets this on your user role; confirm the exact path on the build).",
-      "Your 'Work Orders → Work Order View Mode' permission is set to Tech View (an administrator sets this on your user role; confirm the exact path on the build).",
-      "The work order line already has at least one part listed in its Parts section (if not, add one first with “Add Part”)."
-    ],
-    "steps": [
-      "Select Edit on an existing part line."
-    ],
-    "expected": "1. An inline edit row opens directly below that part line.\n2. It contains the same three fields as the add flow in the same order: description, part number, quantity.\n\n---\nThis is the expected behaviour as per epic SV-9315 and story SV-9318 (Story 3, Inline Edit Part - Tech View) and the Inline Add and Edit Parts on Work Order Lines specification version 16, section S3-R1, read on 31 August 2026.\n\nAUTOMATION: Not available on Build to test Yet - Last checked 8/31/2026",
-    "design_ref": "Claude Design “Add Part” artifact 561657da (binding visual reference), as exported 2026-08-25.",
-    "spec_ref": "requirements.md (Inline Add and Edit Parts spec v16)",
-    "refs": "SV-9318 (S3-R1)",
-    "viu_status": "source-verified-only",
-    "notes": ""
-  },
-  {
-    "id": "IAEP-TEDIT-02",
-    "area": "Inline Add and Edit Parts - Tech View Inline Edit",
-    "title": "Edit row is pre-populated and cursor lands in description",
-    "priority": "Medium",
-    "type": "Functional",
-    "permissions_required": "Work Order Line - Create and Edit; Work Order View Mode",
-    "preconditions": [
-      "In the top menu click “Work Orders”, then open a work order whose status is Estimate, Approved, In Progress, or Review (click its row in the list). Open its Lines tab — each work order line has its own Parts section beneath it, where the “Add Part” button and part lines appear. (Route drafted from the spec/design and marked PROVISIONAL — confirm the exact tab name and Parts-section placement on the build.)",
-      "Your user has the 'Work Order Line - Create and Edit' permission enabled (an administrator sets this on your user role; confirm the exact path on the build).",
-      "Your 'Work Orders → Work Order View Mode' permission is set to Tech View (an administrator sets this on your user role; confirm the exact path on the build).",
-      "The work order line already has at least one part listed in its Parts section (if not, add one first with “Add Part”)."
-    ],
-    "steps": [
-      "Select Edit on an existing part line and inspect the row."
-    ],
-    "expected": "1. The inline row is pre-populated with the part's current description, part number, and quantity.\n2. The cursor is placed in the description field when the row opens.\n\n---\nThis is the expected behaviour as per epic SV-9315 and story SV-9318 (Story 3, Inline Edit Part - Tech View) and the Inline Add and Edit Parts on Work Order Lines specification version 16, section S3-R2, S3-R3, read on 31 August 2026.\n\nAUTOMATION: Not available on Build to test Yet - Last checked 8/31/2026",
-    "design_ref": "Claude Design “Add Part” artifact 561657da (binding visual reference), as exported 2026-08-25.",
-    "spec_ref": "requirements.md (Inline Add and Edit Parts spec v16)",
-    "refs": "SV-9318 (S3-R2; S3-R3)",
-    "viu_status": "source-verified-only",
-    "notes": ""
-  },
-  {
-    "id": "IAEP-TEDIT-03",
-    "area": "Inline Add and Edit Parts - Tech View Inline Edit",
-    "title": "Edit row reuses Story 2 behaviour with a shortened hint legend",
-    "priority": "Medium",
-    "type": "Functional",
-    "permissions_required": "Work Order Line - Create and Edit; Work Order View Mode",
-    "preconditions": [
-      "In the top menu click “Work Orders”, then open a work order whose status is Estimate, Approved, In Progress, or Review (click its row in the list). Open its Lines tab — each work order line has its own Parts section beneath it, where the “Add Part” button and part lines appear. (Route drafted from the spec/design and marked PROVISIONAL — confirm the exact tab name and Parts-section placement on the build.)",
-      "Your user has the 'Work Order Line - Create and Edit' permission enabled (an administrator sets this on your user role; confirm the exact path on the build).",
-      "Your 'Work Orders → Work Order View Mode' permission is set to Tech View (an administrator sets this on your user role; confirm the exact path on the build).",
-      "The work order line already has at least one part listed in its Parts section (if not, add one first with “Add Part”)."
-    ],
-    "steps": [
-      "Open an edit row and exercise the fields, keyboard, and validation.",
-      "Press Tab repeatedly through the whole edit row.",
-      "Read the keyboard hint legend."
-    ],
-    "expected": "1. All field, keyboard, and validation behaviour from Story 2 applies identically to the edit row.\n2. The edit-row Tab order matches the Tech View add row (per the spec's Keyboard Model — Inline Row): description, part number, quantity, Save, Cancel (X), then the “Pulled from” bin chip when one is shown; the edit row has no “More Options” button.\n3. The edit row's hint legend reads Enter — save · Tab — next field · Esc — cancel, without “& next row”, because saving an edit does not open a new row.\n\n---\nThis is the expected behaviour as per epic SV-9315 and story SV-9318 (Story 3, Inline Edit Part - Tech View) and the Inline Add and Edit Parts on Work Order Lines specification version 16, section S3-R4 and Keyboard Model - Inline Row, read on 31 August 2026.\n\nAUTOMATION: Not available on Build to test Yet - Last checked 8/31/2026",
-    "design_ref": "Claude Design “Add Part” artifact 561657da (binding visual reference), as exported 2026-08-25.",
-    "spec_ref": "requirements.md (Inline Add and Edit Parts spec v16)",
-    "refs": "SV-9318 (S3-R4)",
-    "viu_status": "source-verified-only",
-    "notes": ""
-  },
-  {
-    "id": "IAEP-TEDIT-04",
-    "area": "Inline Add and Edit Parts - Tech View Inline Edit",
-    "title": "Saving an edit updates the part line in place and closes the row",
-    "priority": "Medium",
-    "type": "Functional",
-    "permissions_required": "Work Order Line - Create and Edit; Work Order View Mode",
-    "preconditions": [
-      "In the top menu click “Work Orders”, then open a work order whose status is Estimate, Approved, In Progress, or Review (click its row in the list). Open its Lines tab — each work order line has its own Parts section beneath it, where the “Add Part” button and part lines appear. (Route drafted from the spec/design and marked PROVISIONAL — confirm the exact tab name and Parts-section placement on the build.)",
-      "Your user has the 'Work Order Line - Create and Edit' permission enabled (an administrator sets this on your user role; confirm the exact path on the build).",
-      "Your 'Work Orders → Work Order View Mode' permission is set to Tech View (an administrator sets this on your user role; confirm the exact path on the build).",
-      "The work order line already has at least one part listed in its Parts section (if not, add one first with “Add Part”)."
-    ],
-    "steps": [
-      "Open an edit row, change a value, and Save."
-    ],
-    "expected": "1. The part line is updated in place and the inline row closes, returning to the normal part line display.\n\n---\nThis is the expected behaviour as per epic SV-9315 and story SV-9318 (Story 3, Inline Edit Part - Tech View) and the Inline Add and Edit Parts on Work Order Lines specification version 16, section S3-R5, read on 31 August 2026.\n\nAUTOMATION: Not available on Build to test Yet - Last checked 8/31/2026",
-    "design_ref": "Claude Design “Add Part” artifact 561657da (binding visual reference), as exported 2026-08-25.",
-    "spec_ref": "requirements.md (Inline Add and Edit Parts spec v16)",
-    "refs": "SV-9318 (S3-R5)",
-    "viu_status": "source-verified-only",
-    "notes": ""
-  },
-  {
-    "id": "IAEP-TEDIT-05",
-    "area": "Inline Add and Edit Parts - Tech View Inline Edit",
-    "title": "Saving an edit does not open a new empty row",
-    "priority": "Medium",
-    "type": "Functional",
-    "permissions_required": "Work Order Line - Create and Edit; Work Order View Mode",
-    "preconditions": [
-      "In the top menu click “Work Orders”, then open a work order whose status is Estimate, Approved, In Progress, or Review (click its row in the list). Open its Lines tab — each work order line has its own Parts section beneath it, where the “Add Part” button and part lines appear. (Route drafted from the spec/design and marked PROVISIONAL — confirm the exact tab name and Parts-section placement on the build.)",
-      "Your user has the 'Work Order Line - Create and Edit' permission enabled (an administrator sets this on your user role; confirm the exact path on the build).",
-      "Your 'Work Orders → Work Order View Mode' permission is set to Tech View (an administrator sets this on your user role; confirm the exact path on the build).",
-      "The work order line already has at least one part listed in its Parts section (if not, add one first with “Add Part”)."
-    ],
-    "steps": [
-      "Open an edit row, change a value, and Save.",
-      "Observe whether a new empty row opens."
-    ],
-    "expected": "1. No new empty inline row opens after an edit save; the repeat-entry behaviour applies only to the add flow.\n\n---\nThis is the expected behaviour as per epic SV-9315 and story SV-9318 (Story 3, Inline Edit Part - Tech View) and the Inline Add and Edit Parts on Work Order Lines specification version 16, section S3-R6, read on 31 August 2026.\n\nAUTOMATION: Not available on Build to test Yet - Last checked 8/31/2026",
-    "design_ref": "Claude Design “Add Part” artifact 561657da (binding visual reference), as exported 2026-08-25.",
-    "spec_ref": "requirements.md (Inline Add and Edit Parts spec v16)",
-    "refs": "SV-9318 (S3-R6)",
-    "viu_status": "source-verified-only",
-    "notes": ""
-  },
-  {
-    "id": "IAEP-TEDIT-06",
-    "area": "Inline Add and Edit Parts - Tech View Inline Edit",
-    "title": "Hidden pricing and category are preserved on a Tech View edit",
-    "priority": "Medium",
-    "type": "Functional",
-    "permissions_required": "Work Order Line - Create and Edit; Work Order View Mode",
-    "preconditions": [
-      "In the top menu click “Work Orders”, then open a work order whose status is Estimate, Approved, In Progress, or Review (click its row in the list). Open its Lines tab — each work order line has its own Parts section beneath it, where the “Add Part” button and part lines appear. (Route drafted from the spec/design and marked PROVISIONAL — confirm the exact tab name and Parts-section placement on the build.)",
-      "Your user has the 'Work Order Line - Create and Edit' permission enabled (an administrator sets this on your user role; confirm the exact path on the build).",
-      "Your 'Work Orders → Work Order View Mode' permission is set to Tech View (an administrator sets this on your user role; confirm the exact path on the build).",
-      "You are editing an existing part (clicked “Edit” on a part line) that already has a cost, a sell price, and a non-default category on record."
-    ],
-    "steps": [
-      "Open the edit row, change only the quantity (do not re-link a catalog part), and Save.",
-      "Have a Full View user inspect the part's cost, sell price, and category."
-    ],
-    "expected": "1. Cost, sell price, and category are preserved unchanged when the Tech View user saves the inline edit, because they are not displayed in Tech View and were not re-linked.\n\n---\nThis is the expected behaviour as per epic SV-9315 and story SV-9318 (Story 3, Inline Edit Part - Tech View) and the Inline Add and Edit Parts on Work Order Lines specification version 16, section S3-R7, read on 31 August 2026.\n\nAUTOMATION: Not available on Build to test Yet - Last checked 8/31/2026",
-    "design_ref": "Claude Design “Add Part” artifact 561657da (binding visual reference), as exported 2026-08-25.",
-    "spec_ref": "requirements.md (Inline Add and Edit Parts spec v16)",
-    "refs": "SV-9318 (S3-R7)",
-    "viu_status": "source-verified-only",
-    "notes": ""
-  },
-  {
-    "id": "IAEP-TEDIT-07",
-    "area": "Inline Add and Edit Parts - Tech View Inline Edit",
-    "title": "Closing an edit row with changes triggers the discard guard",
-    "priority": "Medium",
-    "type": "Functional",
-    "permissions_required": "Work Order Line - Create and Edit; Work Order View Mode",
-    "preconditions": [
-      "In the top menu click “Work Orders”, then open a work order whose status is Estimate, Approved, In Progress, or Review (click its row in the list). Open its Lines tab — each work order line has its own Parts section beneath it, where the “Add Part” button and part lines appear. (Route drafted from the spec/design and marked PROVISIONAL — confirm the exact tab name and Parts-section placement on the build.)",
-      "Your user has the 'Work Order Line - Create and Edit' permission enabled (an administrator sets this on your user role; confirm the exact path on the build).",
-      "Your 'Work Orders → Work Order View Mode' permission is set to Tech View (an administrator sets this on your user role; confirm the exact path on the build).",
-      "The work order line already has at least one part listed in its Parts section (if not, add one first with “Add Part”)."
-    ],
-    "steps": [
-      "Open an edit row, change a field, then select X or press Escape.",
-      "Choose Discard on the confirmation."
-    ],
-    "expected": "1. Because a field was changed, the discard confirmation from S6-R1 is shown.\n2. On Discard the row closes without saving and the part line returns to its previously saved values.\n\n---\nThis is the expected behaviour as per epic SV-9315 and story SV-9318 (Story 3, Inline Edit Part - Tech View) and the Inline Add and Edit Parts on Work Order Lines specification version 16, section S3-R8, read on 31 August 2026.\n\nAUTOMATION: Not available on Build to test Yet - Last checked 8/31/2026",
-    "design_ref": "Claude Design “Add Part” artifact 561657da (binding visual reference), as exported 2026-08-25.",
-    "spec_ref": "requirements.md (Inline Add and Edit Parts spec v16)",
-    "refs": "SV-9318 (S3-R8)",
-    "viu_status": "source-verified-only",
-    "notes": ""
-  },
-  {
-    "id": "IAEP-TEDIT-08",
-    "area": "Inline Add and Edit Parts - Tech View Inline Edit",
-    "title": "Linking a different catalog part repopulates the edit row",
-    "priority": "Medium",
-    "type": "Functional",
-    "permissions_required": "Work Order Line - Create and Edit; Work Order View Mode",
-    "preconditions": [
-      "In the top menu click “Work Orders”, then open a work order whose status is Estimate, Approved, In Progress, or Review (click its row in the list). Open its Lines tab — each work order line has its own Parts section beneath it, where the “Add Part” button and part lines appear. (Route drafted from the spec/design and marked PROVISIONAL — confirm the exact tab name and Parts-section placement on the build.)",
-      "Your user has the 'Work Order Line - Create and Edit' permission enabled (an administrator sets this on your user role; confirm the exact path on the build).",
-      "Your 'Work Orders → Work Order View Mode' permission is set to Tech View (an administrator sets this on your user role; confirm the exact path on the build).",
-      "The work order line already has at least one part listed in its Parts section (if not, add one first with “Add Part”)."
-    ],
-    "steps": [
-      "Open an edit row and enter a quantity value.",
-      "In the part number field, select a different catalog part."
-    ],
-    "expected": "1. The row is repopulated from the newly selected part — description, cost, sell price, and category — matching the add flow.\n2. The quantity you entered stays as it is and focus moves to it.\n3. This is the one case where the values protected by S3-R7 are overwritten.\n\n---\nThis is the expected behaviour as per epic SV-9315 and story SV-9318 (Story 3, Inline Edit Part - Tech View) and the Inline Add and Edit Parts on Work Order Lines specification version 16, section S3-R9, read on 31 August 2026.\n\nAUTOMATION: Not available on Build to test Yet - Last checked 8/31/2026",
-    "design_ref": "Claude Design “Add Part” artifact 561657da (binding visual reference), as exported 2026-08-25.",
-    "spec_ref": "requirements.md (Inline Add and Edit Parts spec v16)",
-    "refs": "SV-9318 (S3-R9)",
-    "viu_status": "source-verified-only",
-    "notes": ""
-  },
-  {
-    "id": "IAEP-TEDIT-09",
-    "area": "Inline Add and Edit Parts - Tech View Inline Edit",
-    "title": "Opening an edit row and changing nothing records no update",
-    "priority": "Medium",
-    "type": "Functional",
-    "permissions_required": "Work Order Line - Create and Edit; Work Order View Mode",
-    "preconditions": [
-      "In the top menu click “Work Orders”, then open a work order whose status is Estimate, Approved, In Progress, or Review (click its row in the list). Open its Lines tab — each work order line has its own Parts section beneath it, where the “Add Part” button and part lines appear. (Route drafted from the spec/design and marked PROVISIONAL — confirm the exact tab name and Parts-section placement on the build.)",
-      "Your user has the 'Work Order Line - Create and Edit' permission enabled (an administrator sets this on your user role; confirm the exact path on the build).",
-      "Your 'Work Orders → Work Order View Mode' permission is set to Tech View (an administrator sets this on your user role; confirm the exact path on the build).",
-      "The work order line already has at least one part listed in its Parts section (if not, add one first with “Add Part”)."
-    ],
-    "steps": [
-      "Open an edit row, change nothing, and close it."
-    ],
-    "expected": "1. No confirmation is shown and no update is recorded.\n\n---\nThis is the expected behaviour as per epic SV-9315 and story SV-9318 (Story 3, Inline Edit Part - Tech View) and the Inline Add and Edit Parts on Work Order Lines specification version 16, section S3-N1, read on 31 August 2026.\n\nAUTOMATION: Not available on Build to test Yet - Last checked 8/31/2026",
-    "design_ref": "Claude Design “Add Part” artifact 561657da (binding visual reference), as exported 2026-08-25.",
-    "spec_ref": "requirements.md (Inline Add and Edit Parts spec v16)",
-    "refs": "SV-9318 (S3-N1)",
-    "viu_status": "source-verified-only",
-    "notes": ""
-  },
-  {
-    "id": "IAEP-TEDIT-10",
-    "area": "Inline Add and Edit Parts - Tech View Inline Edit",
-    "title": "Edit control not displayed without the Create and Edit setting",
-    "priority": "Medium",
-    "type": "Functional",
-    "permissions_required": "Work Order Line - Create and Edit; Work Order View Mode",
-    "preconditions": [
-      "In the top menu click “Work Orders”, then open a work order whose status is Estimate, Approved, In Progress, or Review (click its row in the list). Open its Lines tab — each work order line has its own Parts section beneath it, where the “Add Part” button and part lines appear. (Route drafted from the spec/design and marked PROVISIONAL — confirm the exact tab name and Parts-section placement on the build.)",
-      "Your 'Work Orders → Work Order View Mode' permission is set to Tech View (an administrator sets this on your user role; confirm the exact path on the build).",
-      "The work order line already has at least one part listed in its Parts section (if not, add one first with “Add Part”).",
-      "Your user does NOT have the 'Work Order Line - Create and Edit' permission enabled (an administrator sets this on your user role; confirm the exact path on the build)."
-    ],
-    "steps": [
-      "Hover or focus an existing part line."
-    ],
-    "expected": "1. The Edit control is not displayed.\n\n---\nThis is the expected behaviour as per epic SV-9315 and story SV-9318 (Story 3, Inline Edit Part - Tech View) and the Inline Add and Edit Parts on Work Order Lines specification version 16, section S3-N2, read on 31 August 2026.\n\nAUTOMATION: Not available on Build to test Yet - Last checked 8/31/2026",
-    "design_ref": "Claude Design “Add Part” artifact 561657da (binding visual reference), as exported 2026-08-25.",
-    "spec_ref": "requirements.md (Inline Add and Edit Parts spec v16)",
-    "refs": "SV-9318 (S3-N2)",
-    "viu_status": "source-verified-only",
-    "notes": ""
-  },
-  {
-    "id": "IAEP-TEDIT-11",
-    "area": "Inline Add and Edit Parts - Tech View Inline Edit",
-    "title": "Clearing the description blocks the edit save with validation",
-    "priority": "Medium",
-    "type": "Functional",
-    "permissions_required": "Work Order Line - Create and Edit; Work Order View Mode",
-    "preconditions": [
-      "In the top menu click “Work Orders”, then open a work order whose status is Estimate, Approved, In Progress, or Review (click its row in the list). Open its Lines tab — each work order line has its own Parts section beneath it, where the “Add Part” button and part lines appear. (Route drafted from the spec/design and marked PROVISIONAL — confirm the exact tab name and Parts-section placement on the build.)",
-      "Your user has the 'Work Order Line - Create and Edit' permission enabled (an administrator sets this on your user role; confirm the exact path on the build).",
-      "Your 'Work Orders → Work Order View Mode' permission is set to Tech View (an administrator sets this on your user role; confirm the exact path on the build).",
-      "The work order line already has at least one part listed in its Parts section (if not, add one first with “Add Part”)."
-    ],
-    "steps": [
-      "Open an edit row, clear the description, and attempt to Save."
-    ],
-    "expected": "1. The row does not save and the combined validation from S2-N1 applies (the description is named as missing).\n\n---\nThis is the expected behaviour as per epic SV-9315 and story SV-9318 (Story 3, Inline Edit Part - Tech View) and the Inline Add and Edit Parts on Work Order Lines specification version 16, section S3-N3, read on 31 August 2026.\n\nAUTOMATION: Not available on Build to test Yet - Last checked 8/31/2026",
-    "design_ref": "Claude Design “Add Part” artifact 561657da (binding visual reference), as exported 2026-08-25.",
-    "spec_ref": "requirements.md (Inline Add and Edit Parts spec v16)",
-    "refs": "SV-9318 (S3-N3)",
-    "viu_status": "source-verified-only",
-    "notes": ""
-  },
-  {
-    "id": "IAEP-TEDIT-12",
-    "area": "Inline Add and Edit Parts - Tech View Inline Edit",
-    "title": "Concurrent change by another user fails the edit save with a message",
-    "priority": "Medium",
-    "type": "Functional",
-    "permissions_required": "Work Order Line - Create and Edit; Work Order View Mode",
-    "preconditions": [
-      "In the top menu click “Work Orders”, then open a work order whose status is Estimate, Approved, In Progress, or Review (click its row in the list). Open its Lines tab — each work order line has its own Parts section beneath it, where the “Add Part” button and part lines appear. (Route drafted from the spec/design and marked PROVISIONAL — confirm the exact tab name and Parts-section placement on the build.)",
-      "Your user has the 'Work Order Line - Create and Edit' permission enabled (an administrator sets this on your user role; confirm the exact path on the build).",
-      "Your 'Work Orders → Work Order View Mode' permission is set to Tech View (an administrator sets this on your user role; confirm the exact path on the build).",
-      "The work order line already has at least one part listed in its Parts section (if not, add one first with “Add Part”)."
-    ],
-    "steps": [
-      "Open an edit row.",
-      "Have another user modify or delete the same part while your row is open.",
-      "Attempt to Save."
-    ],
-    "expected": "1. The save fails and an alert is shown: “This part was changed by someone else. Refresh to see the latest.”\n\n---\nThis is the expected behaviour as per epic SV-9315 and story SV-9318 (Story 3, Inline Edit Part - Tech View) and the Inline Add and Edit Parts on Work Order Lines specification version 16, section S3-E1, read on 31 August 2026.\n\nAUTOMATION: Not available on Build to test Yet - Last checked 8/31/2026",
-    "design_ref": "Claude Design “Add Part” artifact 561657da (binding visual reference), as exported 2026-08-25.",
-    "spec_ref": "requirements.md (Inline Add and Edit Parts spec v16)",
-    "refs": "SV-9318 (S3-E1)",
-    "viu_status": "source-verified-only",
-    "notes": "Tech plan D3 marks S3-E1 concurrency detection out of scope; PRD v13 still specifies it. Divergence disclosed - PO question PO-IAEP-1."
-  },
-  {
-    "id": "IAEP-TEDIT-13",
-    "area": "Inline Add and Edit Parts - Tech View Inline Edit",
-    "title": "Work order becoming non-editable during edit fails the save",
-    "priority": "Medium",
-    "type": "Functional",
-    "permissions_required": "Work Order Line - Create and Edit; Work Order View Mode",
-    "preconditions": [
-      "In the top menu click “Work Orders”, then open a work order whose status is Estimate, Approved, In Progress, or Review (click its row in the list). Open its Lines tab — each work order line has its own Parts section beneath it, where the “Add Part” button and part lines appear. (Route drafted from the spec/design and marked PROVISIONAL — confirm the exact tab name and Parts-section placement on the build.)",
-      "Your user has the 'Work Order Line - Create and Edit' permission enabled (an administrator sets this on your user role; confirm the exact path on the build).",
-      "Your 'Work Orders → Work Order View Mode' permission is set to Tech View (an administrator sets this on your user role; confirm the exact path on the build).",
-      "The work order line already has at least one part listed in its Parts section (if not, add one first with “Add Part”)."
-    ],
-    "steps": [
-      "Open an edit row with changes.",
-      "Have the work order move to a status that does not permit editing.",
-      "Attempt to Save."
-    ],
-    "expected": "1. The save fails exactly as S2-E3: the alert “This work order can no longer be edited. Refresh to see the latest.” is shown and the entered data remains.\n\n---\nThis is the expected behaviour as per epic SV-9315 and story SV-9318 (Story 3, Inline Edit Part - Tech View) and the Inline Add and Edit Parts on Work Order Lines specification version 16, section S3-E2, read on 31 August 2026.\n\nAUTOMATION: Not available on Build to test Yet - Last checked 8/31/2026",
-    "design_ref": "Claude Design “Add Part” artifact 561657da (binding visual reference), as exported 2026-08-25.",
-    "spec_ref": "requirements.md (Inline Add and Edit Parts spec v16)",
-    "refs": "SV-9318 (S3-E2)",
-    "viu_status": "source-verified-only",
-    "notes": ""
-  }
+ {
+  "id": "IAEP-TEDIT-01",
+  "area": "Inline Add and Edit Parts - Tech View Inline Edit",
+  "title": "Edit opens an inline row below the part with the same three fields",
+  "priority": "Medium",
+  "type": "Functional",
+  "permissions_required": "Work Order Line - Create and Edit; Work Order View Mode",
+  "preconditions": [
+   "In the top menu click “Work Orders”, then open a work order whose status is Estimate, Approved, In Progress, or Review (click its row in the list). Open its Lines tab — each work order line has its own Parts section beneath it, where the “Add Part” button and part lines appear. (Route drafted from the spec/design and marked PROVISIONAL — confirm the exact tab name and Parts-section placement on the build.)",
+   "Your user has the 'Work Order Line - Create and Edit' permission enabled (an administrator sets this on your user role; confirm the exact path on the build).",
+   "Your 'Work Orders → Work Order View Mode' permission is set to Tech View (an administrator sets this on your user role; confirm the exact path on the build).",
+   "The work order line already has at least one part listed in its Parts section (if not, add one first with “Add Part”)."
+  ],
+  "steps": [
+   "In the work order line's Parts section (see Preconditions), select Edit on an existing part line."
+  ],
+  "expected": "1. An inline edit row opens directly below that part line.\n2. It contains the same three fields as the add flow in the same order: description, part number, quantity.\n\n---\nThis is the expected behaviour as per epic SV-9315 and story SV-9318 (Story 3, Inline Edit Part - Tech View) and the Inline Add and Edit Parts on Work Order Lines specification version 16, section S3-R1, read on 31 August 2026.\n\nAUTOMATION: Not available on Build to test Yet - Last checked 8/31/2026",
+  "design_ref": "Claude Design “Add Part” artifact 561657da (binding visual reference), as exported 2026-08-25.",
+  "spec_ref": "requirements.md (Inline Add and Edit Parts spec v16)",
+  "refs": "SV-9318 (S3-R1)",
+  "viu_status": "source-verified-only",
+  "notes": ""
+ },
+ {
+  "id": "IAEP-TEDIT-02",
+  "area": "Inline Add and Edit Parts - Tech View Inline Edit",
+  "title": "Edit row is pre-populated and cursor lands in description",
+  "priority": "Medium",
+  "type": "Functional",
+  "permissions_required": "Work Order Line - Create and Edit; Work Order View Mode",
+  "preconditions": [
+   "In the top menu click “Work Orders”, then open a work order whose status is Estimate, Approved, In Progress, or Review (click its row in the list). Open its Lines tab — each work order line has its own Parts section beneath it, where the “Add Part” button and part lines appear. (Route drafted from the spec/design and marked PROVISIONAL — confirm the exact tab name and Parts-section placement on the build.)",
+   "Your user has the 'Work Order Line - Create and Edit' permission enabled (an administrator sets this on your user role; confirm the exact path on the build).",
+   "Your 'Work Orders → Work Order View Mode' permission is set to Tech View (an administrator sets this on your user role; confirm the exact path on the build).",
+   "The work order line already has at least one part listed in its Parts section (if not, add one first with “Add Part”)."
+  ],
+  "steps": [
+   "Select Edit on an existing part line and inspect the row."
+  ],
+  "expected": "1. The inline row is pre-populated with the part's current description, part number, and quantity.\n2. The cursor is placed in the description field when the row opens.\n\n---\nThis is the expected behaviour as per epic SV-9315 and story SV-9318 (Story 3, Inline Edit Part - Tech View) and the Inline Add and Edit Parts on Work Order Lines specification version 16, section S3-R2, S3-R3, read on 31 August 2026.\n\nAUTOMATION: Not available on Build to test Yet - Last checked 8/31/2026",
+  "design_ref": "Claude Design “Add Part” artifact 561657da (binding visual reference), as exported 2026-08-25.",
+  "spec_ref": "requirements.md (Inline Add and Edit Parts spec v16)",
+  "refs": "SV-9318 (S3-R2; S3-R3)",
+  "viu_status": "source-verified-only",
+  "notes": ""
+ },
+ {
+  "id": "IAEP-TEDIT-03",
+  "area": "Inline Add and Edit Parts - Tech View Inline Edit",
+  "title": "Edit row reuses Story 2 behaviour with a shortened hint legend",
+  "priority": "Medium",
+  "type": "Functional",
+  "permissions_required": "Work Order Line - Create and Edit; Work Order View Mode",
+  "preconditions": [
+   "In the top menu click “Work Orders”, then open a work order whose status is Estimate, Approved, In Progress, or Review (click its row in the list). Open its Lines tab — each work order line has its own Parts section beneath it, where the “Add Part” button and part lines appear. (Route drafted from the spec/design and marked PROVISIONAL — confirm the exact tab name and Parts-section placement on the build.)",
+   "Your user has the 'Work Order Line - Create and Edit' permission enabled (an administrator sets this on your user role; confirm the exact path on the build).",
+   "Your 'Work Orders → Work Order View Mode' permission is set to Tech View (an administrator sets this on your user role; confirm the exact path on the build).",
+   "The work order line already has at least one part listed in its Parts section (if not, add one first with “Add Part”)."
+  ],
+  "steps": [
+   "Open an edit row and exercise the fields, keyboard, and validation.",
+   "Press Tab repeatedly through the whole edit row.",
+   "Read the keyboard hint legend."
+  ],
+  "expected": "1. All field, keyboard, and validation behaviour from Story 2 applies identically to the edit row.\n2. The edit-row Tab order matches the Tech View add row (per the spec's Keyboard Model — Inline Row): description, part number, quantity, Save, Cancel (X), then the “Pulled from” bin chip when one is shown; the edit row has no “More Options” button.\n3. The edit row's hint legend reads Enter — save · Tab — next field · Esc — cancel, without “& next row”, because saving an edit does not open a new row.\n\n---\nThis is the expected behaviour as per epic SV-9315 and story SV-9318 (Story 3, Inline Edit Part - Tech View) and the Inline Add and Edit Parts on Work Order Lines specification version 16, section S3-R4 and Keyboard Model - Inline Row, read on 31 August 2026.\n\nAUTOMATION: Not available on Build to test Yet - Last checked 8/31/2026",
+  "design_ref": "Claude Design “Add Part” artifact 561657da (binding visual reference), as exported 2026-08-25.",
+  "spec_ref": "requirements.md (Inline Add and Edit Parts spec v16)",
+  "refs": "SV-9318 (S3-R4)",
+  "viu_status": "source-verified-only",
+  "notes": ""
+ },
+ {
+  "id": "IAEP-TEDIT-04",
+  "area": "Inline Add and Edit Parts - Tech View Inline Edit",
+  "title": "Saving an edit updates the part line in place and closes the row",
+  "priority": "Medium",
+  "type": "Functional",
+  "permissions_required": "Work Order Line - Create and Edit; Work Order View Mode",
+  "preconditions": [
+   "In the top menu click “Work Orders”, then open a work order whose status is Estimate, Approved, In Progress, or Review (click its row in the list). Open its Lines tab — each work order line has its own Parts section beneath it, where the “Add Part” button and part lines appear. (Route drafted from the spec/design and marked PROVISIONAL — confirm the exact tab name and Parts-section placement on the build.)",
+   "Your user has the 'Work Order Line - Create and Edit' permission enabled (an administrator sets this on your user role; confirm the exact path on the build).",
+   "Your 'Work Orders → Work Order View Mode' permission is set to Tech View (an administrator sets this on your user role; confirm the exact path on the build).",
+   "The work order line already has at least one part listed in its Parts section (if not, add one first with “Add Part”)."
+  ],
+  "steps": [
+   "Open an edit row, change a value, and Save."
+  ],
+  "expected": "1. The part line is updated in place and the inline row closes, returning to the normal part line display.\n\n---\nThis is the expected behaviour as per epic SV-9315 and story SV-9318 (Story 3, Inline Edit Part - Tech View) and the Inline Add and Edit Parts on Work Order Lines specification version 16, section S3-R5, read on 31 August 2026.\n\nAUTOMATION: Not available on Build to test Yet - Last checked 8/31/2026",
+  "design_ref": "Claude Design “Add Part” artifact 561657da (binding visual reference), as exported 2026-08-25.",
+  "spec_ref": "requirements.md (Inline Add and Edit Parts spec v16)",
+  "refs": "SV-9318 (S3-R5)",
+  "viu_status": "source-verified-only",
+  "notes": ""
+ },
+ {
+  "id": "IAEP-TEDIT-05",
+  "area": "Inline Add and Edit Parts - Tech View Inline Edit",
+  "title": "Saving an edit does not open a new empty row",
+  "priority": "Medium",
+  "type": "Functional",
+  "permissions_required": "Work Order Line - Create and Edit; Work Order View Mode",
+  "preconditions": [
+   "In the top menu click “Work Orders”, then open a work order whose status is Estimate, Approved, In Progress, or Review (click its row in the list). Open its Lines tab — each work order line has its own Parts section beneath it, where the “Add Part” button and part lines appear. (Route drafted from the spec/design and marked PROVISIONAL — confirm the exact tab name and Parts-section placement on the build.)",
+   "Your user has the 'Work Order Line - Create and Edit' permission enabled (an administrator sets this on your user role; confirm the exact path on the build).",
+   "Your 'Work Orders → Work Order View Mode' permission is set to Tech View (an administrator sets this on your user role; confirm the exact path on the build).",
+   "The work order line already has at least one part listed in its Parts section (if not, add one first with “Add Part”)."
+  ],
+  "steps": [
+   "Open an edit row, change a value, and Save.",
+   "Observe whether a new empty row opens."
+  ],
+  "expected": "1. No new empty inline row opens after an edit save; the repeat-entry behaviour applies only to the add flow.\n\n---\nThis is the expected behaviour as per epic SV-9315 and story SV-9318 (Story 3, Inline Edit Part - Tech View) and the Inline Add and Edit Parts on Work Order Lines specification version 16, section S3-R6, read on 31 August 2026.\n\nAUTOMATION: Not available on Build to test Yet - Last checked 8/31/2026",
+  "design_ref": "Claude Design “Add Part” artifact 561657da (binding visual reference), as exported 2026-08-25.",
+  "spec_ref": "requirements.md (Inline Add and Edit Parts spec v16)",
+  "refs": "SV-9318 (S3-R6)",
+  "viu_status": "source-verified-only",
+  "notes": ""
+ },
+ {
+  "id": "IAEP-TEDIT-06",
+  "area": "Inline Add and Edit Parts - Tech View Inline Edit",
+  "title": "Hidden pricing and category are preserved on a Tech View edit",
+  "priority": "Medium",
+  "type": "Functional",
+  "permissions_required": "Work Order Line - Create and Edit; Work Order View Mode",
+  "preconditions": [
+   "In the top menu click “Work Orders”, then open a work order whose status is Estimate, Approved, In Progress, or Review (click its row in the list). Open its Lines tab — each work order line has its own Parts section beneath it, where the “Add Part” button and part lines appear. (Route drafted from the spec/design and marked PROVISIONAL — confirm the exact tab name and Parts-section placement on the build.)",
+   "Your user has the 'Work Order Line - Create and Edit' permission enabled (an administrator sets this on your user role; confirm the exact path on the build).",
+   "Your 'Work Orders → Work Order View Mode' permission is set to Tech View (an administrator sets this on your user role; confirm the exact path on the build).",
+   "You are editing an existing part (clicked “Edit” on a part line) that already has a cost, a sell price, and a non-default category on record."
+  ],
+  "steps": [
+   "Open the edit row, change only the quantity (do not re-link a catalog part), and Save.",
+   "Have a Full View user inspect the part's cost, sell price, and category."
+  ],
+  "expected": "1. Cost, sell price, and category are preserved unchanged when the Tech View user saves the inline edit, because they are not displayed in Tech View and were not re-linked.\n\n---\nThis is the expected behaviour as per epic SV-9315 and story SV-9318 (Story 3, Inline Edit Part - Tech View) and the Inline Add and Edit Parts on Work Order Lines specification version 16, section S3-R7, read on 31 August 2026.\n\nAUTOMATION: Not available on Build to test Yet - Last checked 8/31/2026",
+  "design_ref": "Claude Design “Add Part” artifact 561657da (binding visual reference), as exported 2026-08-25.",
+  "spec_ref": "requirements.md (Inline Add and Edit Parts spec v16)",
+  "refs": "SV-9318 (S3-R7)",
+  "viu_status": "source-verified-only",
+  "notes": ""
+ },
+ {
+  "id": "IAEP-TEDIT-07",
+  "area": "Inline Add and Edit Parts - Tech View Inline Edit",
+  "title": "Closing an edit row with changes triggers the discard guard",
+  "priority": "Medium",
+  "type": "Functional",
+  "permissions_required": "Work Order Line - Create and Edit; Work Order View Mode",
+  "preconditions": [
+   "In the top menu click “Work Orders”, then open a work order whose status is Estimate, Approved, In Progress, or Review (click its row in the list). Open its Lines tab — each work order line has its own Parts section beneath it, where the “Add Part” button and part lines appear. (Route drafted from the spec/design and marked PROVISIONAL — confirm the exact tab name and Parts-section placement on the build.)",
+   "Your user has the 'Work Order Line - Create and Edit' permission enabled (an administrator sets this on your user role; confirm the exact path on the build).",
+   "Your 'Work Orders → Work Order View Mode' permission is set to Tech View (an administrator sets this on your user role; confirm the exact path on the build).",
+   "The work order line already has at least one part listed in its Parts section (if not, add one first with “Add Part”)."
+  ],
+  "steps": [
+   "Open an edit row, change a field, then select X or press Escape.",
+   "Choose Discard on the confirmation."
+  ],
+  "expected": "1. Because a field was changed, the discard confirmation from S6-R1 is shown.\n2. On Discard the row closes without saving and the part line returns to its previously saved values.\n\n---\nThis is the expected behaviour as per epic SV-9315 and story SV-9318 (Story 3, Inline Edit Part - Tech View) and the Inline Add and Edit Parts on Work Order Lines specification version 16, section S3-R8, read on 31 August 2026.\n\nAUTOMATION: Not available on Build to test Yet - Last checked 8/31/2026",
+  "design_ref": "Claude Design “Add Part” artifact 561657da (binding visual reference), as exported 2026-08-25.",
+  "spec_ref": "requirements.md (Inline Add and Edit Parts spec v16)",
+  "refs": "SV-9318 (S3-R8)",
+  "viu_status": "source-verified-only",
+  "notes": ""
+ },
+ {
+  "id": "IAEP-TEDIT-08",
+  "area": "Inline Add and Edit Parts - Tech View Inline Edit",
+  "title": "Linking a different catalog part repopulates the edit row",
+  "priority": "Medium",
+  "type": "Functional",
+  "permissions_required": "Work Order Line - Create and Edit; Work Order View Mode",
+  "preconditions": [
+   "In the top menu click “Work Orders”, then open a work order whose status is Estimate, Approved, In Progress, or Review (click its row in the list). Open its Lines tab — each work order line has its own Parts section beneath it, where the “Add Part” button and part lines appear. (Route drafted from the spec/design and marked PROVISIONAL — confirm the exact tab name and Parts-section placement on the build.)",
+   "Your user has the 'Work Order Line - Create and Edit' permission enabled (an administrator sets this on your user role; confirm the exact path on the build).",
+   "Your 'Work Orders → Work Order View Mode' permission is set to Tech View (an administrator sets this on your user role; confirm the exact path on the build).",
+   "The work order line already has at least one part listed in its Parts section (if not, add one first with “Add Part”)."
+  ],
+  "steps": [
+   "Open an edit row and enter a quantity value.",
+   "In the part number field, select a different catalog part."
+  ],
+  "expected": "1. The row is repopulated from the newly selected part — description, cost, sell price, and category — matching the add flow.\n2. The quantity you entered stays as it is and focus moves to it.\n3. This is the one case where the values protected by S3-R7 are overwritten.\n\n---\nThis is the expected behaviour as per epic SV-9315 and story SV-9318 (Story 3, Inline Edit Part - Tech View) and the Inline Add and Edit Parts on Work Order Lines specification version 16, section S3-R9, read on 31 August 2026.\n\nAUTOMATION: Not available on Build to test Yet - Last checked 8/31/2026",
+  "design_ref": "Claude Design “Add Part” artifact 561657da (binding visual reference), as exported 2026-08-25.",
+  "spec_ref": "requirements.md (Inline Add and Edit Parts spec v16)",
+  "refs": "SV-9318 (S3-R9)",
+  "viu_status": "source-verified-only",
+  "notes": ""
+ },
+ {
+  "id": "IAEP-TEDIT-09",
+  "area": "Inline Add and Edit Parts - Tech View Inline Edit",
+  "title": "Opening an edit row and changing nothing records no update",
+  "priority": "Medium",
+  "type": "Functional",
+  "permissions_required": "Work Order Line - Create and Edit; Work Order View Mode",
+  "preconditions": [
+   "In the top menu click “Work Orders”, then open a work order whose status is Estimate, Approved, In Progress, or Review (click its row in the list). Open its Lines tab — each work order line has its own Parts section beneath it, where the “Add Part” button and part lines appear. (Route drafted from the spec/design and marked PROVISIONAL — confirm the exact tab name and Parts-section placement on the build.)",
+   "Your user has the 'Work Order Line - Create and Edit' permission enabled (an administrator sets this on your user role; confirm the exact path on the build).",
+   "Your 'Work Orders → Work Order View Mode' permission is set to Tech View (an administrator sets this on your user role; confirm the exact path on the build).",
+   "The work order line already has at least one part listed in its Parts section (if not, add one first with “Add Part”)."
+  ],
+  "steps": [
+   "Open an edit row, change nothing, and close it."
+  ],
+  "expected": "1. No confirmation is shown and no update is recorded.\n\n---\nThis is the expected behaviour as per epic SV-9315 and story SV-9318 (Story 3, Inline Edit Part - Tech View) and the Inline Add and Edit Parts on Work Order Lines specification version 16, section S3-N1, read on 31 August 2026.\n\nAUTOMATION: Not available on Build to test Yet - Last checked 8/31/2026",
+  "design_ref": "Claude Design “Add Part” artifact 561657da (binding visual reference), as exported 2026-08-25.",
+  "spec_ref": "requirements.md (Inline Add and Edit Parts spec v16)",
+  "refs": "SV-9318 (S3-N1)",
+  "viu_status": "source-verified-only",
+  "notes": ""
+ },
+ {
+  "id": "IAEP-TEDIT-10",
+  "area": "Inline Add and Edit Parts - Tech View Inline Edit",
+  "title": "Edit control not displayed without the Create and Edit setting",
+  "priority": "Medium",
+  "type": "Functional",
+  "permissions_required": "Work Order Line - Create and Edit; Work Order View Mode",
+  "preconditions": [
+   "In the top menu click “Work Orders”, then open a work order whose status is Estimate, Approved, In Progress, or Review (click its row in the list). Open its Lines tab — each work order line has its own Parts section beneath it, where the “Add Part” button and part lines appear. (Route drafted from the spec/design and marked PROVISIONAL — confirm the exact tab name and Parts-section placement on the build.)",
+   "Your 'Work Orders → Work Order View Mode' permission is set to Tech View (an administrator sets this on your user role; confirm the exact path on the build).",
+   "The work order line already has at least one part listed in its Parts section (if not, add one first with “Add Part”).",
+   "Your user does NOT have the 'Work Order Line - Create and Edit' permission enabled (an administrator sets this on your user role; confirm the exact path on the build)."
+  ],
+  "steps": [
+   "Hover or focus an existing part line."
+  ],
+  "expected": "1. The Edit control is not displayed.\n\n---\nThis is the expected behaviour as per epic SV-9315 and story SV-9318 (Story 3, Inline Edit Part - Tech View) and the Inline Add and Edit Parts on Work Order Lines specification version 16, section S3-N2, read on 31 August 2026.\n\nAUTOMATION: Not available on Build to test Yet - Last checked 8/31/2026",
+  "design_ref": "Claude Design “Add Part” artifact 561657da (binding visual reference), as exported 2026-08-25.",
+  "spec_ref": "requirements.md (Inline Add and Edit Parts spec v16)",
+  "refs": "SV-9318 (S3-N2)",
+  "viu_status": "source-verified-only",
+  "notes": ""
+ },
+ {
+  "id": "IAEP-TEDIT-11",
+  "area": "Inline Add and Edit Parts - Tech View Inline Edit",
+  "title": "Clearing the description blocks the edit save with validation",
+  "priority": "Medium",
+  "type": "Functional",
+  "permissions_required": "Work Order Line - Create and Edit; Work Order View Mode",
+  "preconditions": [
+   "In the top menu click “Work Orders”, then open a work order whose status is Estimate, Approved, In Progress, or Review (click its row in the list). Open its Lines tab — each work order line has its own Parts section beneath it, where the “Add Part” button and part lines appear. (Route drafted from the spec/design and marked PROVISIONAL — confirm the exact tab name and Parts-section placement on the build.)",
+   "Your user has the 'Work Order Line - Create and Edit' permission enabled (an administrator sets this on your user role; confirm the exact path on the build).",
+   "Your 'Work Orders → Work Order View Mode' permission is set to Tech View (an administrator sets this on your user role; confirm the exact path on the build).",
+   "The work order line already has at least one part listed in its Parts section (if not, add one first with “Add Part”)."
+  ],
+  "steps": [
+   "Open an edit row, clear the description, and attempt to Save."
+  ],
+  "expected": "1. The row does not save and the combined validation from S2-N1 applies (the description is named as missing).\n\n---\nThis is the expected behaviour as per epic SV-9315 and story SV-9318 (Story 3, Inline Edit Part - Tech View) and the Inline Add and Edit Parts on Work Order Lines specification version 16, section S3-N3, read on 31 August 2026.\n\nAUTOMATION: Not available on Build to test Yet - Last checked 8/31/2026",
+  "design_ref": "Claude Design “Add Part” artifact 561657da (binding visual reference), as exported 2026-08-25.",
+  "spec_ref": "requirements.md (Inline Add and Edit Parts spec v16)",
+  "refs": "SV-9318 (S3-N3)",
+  "viu_status": "source-verified-only",
+  "notes": ""
+ },
+ {
+  "id": "IAEP-TEDIT-12",
+  "area": "Inline Add and Edit Parts - Tech View Inline Edit",
+  "title": "Concurrent change by another user fails the edit save with a message",
+  "priority": "Medium",
+  "type": "Functional",
+  "permissions_required": "Work Order Line - Create and Edit; Work Order View Mode",
+  "preconditions": [
+   "In the top menu click “Work Orders”, then open a work order whose status is Estimate, Approved, In Progress, or Review (click its row in the list). Open its Lines tab — each work order line has its own Parts section beneath it, where the “Add Part” button and part lines appear. (Route drafted from the spec/design and marked PROVISIONAL — confirm the exact tab name and Parts-section placement on the build.)",
+   "Your user has the 'Work Order Line - Create and Edit' permission enabled (an administrator sets this on your user role; confirm the exact path on the build).",
+   "Your 'Work Orders → Work Order View Mode' permission is set to Tech View (an administrator sets this on your user role; confirm the exact path on the build).",
+   "The work order line already has at least one part listed in its Parts section (if not, add one first with “Add Part”)."
+  ],
+  "steps": [
+   "Open an edit row.",
+   "Have another user modify or delete the same part while your row is open.",
+   "Attempt to Save using the Save control on the inline row."
+  ],
+  "expected": "1. The save fails and an alert is shown: “This part was changed by someone else. Refresh to see the latest.”\n\n---\nThis is the expected behaviour as per epic SV-9315 and story SV-9318 (Story 3, Inline Edit Part - Tech View) and the Inline Add and Edit Parts on Work Order Lines specification version 16, section S3-E1, read on 31 August 2026.\n\nAUTOMATION: Not available on Build to test Yet - Last checked 8/31/2026",
+  "design_ref": "Claude Design “Add Part” artifact 561657da (binding visual reference), as exported 2026-08-25.",
+  "spec_ref": "requirements.md (Inline Add and Edit Parts spec v16)",
+  "refs": "SV-9318 (S3-E1)",
+  "viu_status": "source-verified-only",
+  "notes": "Tech plan D3 marks S3-E1 concurrency detection out of scope; PRD v13 still specifies it. Divergence disclosed - PO question PO-IAEP-1."
+ },
+ {
+  "id": "IAEP-TEDIT-13",
+  "area": "Inline Add and Edit Parts - Tech View Inline Edit",
+  "title": "Work order becoming non-editable during edit fails the save",
+  "priority": "Medium",
+  "type": "Functional",
+  "permissions_required": "Work Order Line - Create and Edit; Work Order View Mode",
+  "preconditions": [
+   "In the top menu click “Work Orders”, then open a work order whose status is Estimate, Approved, In Progress, or Review (click its row in the list). Open its Lines tab — each work order line has its own Parts section beneath it, where the “Add Part” button and part lines appear. (Route drafted from the spec/design and marked PROVISIONAL — confirm the exact tab name and Parts-section placement on the build.)",
+   "Your user has the 'Work Order Line - Create and Edit' permission enabled (an administrator sets this on your user role; confirm the exact path on the build).",
+   "Your 'Work Orders → Work Order View Mode' permission is set to Tech View (an administrator sets this on your user role; confirm the exact path on the build).",
+   "The work order line already has at least one part listed in its Parts section (if not, add one first with “Add Part”)."
+  ],
+  "steps": [
+   "Open an edit row with changes.",
+   "Have the work order move to a status that does not permit editing.",
+   "Attempt to Save using the Save control on the inline row."
+  ],
+  "expected": "1. The save fails exactly as S2-E3: the alert “This work order can no longer be edited. Refresh to see the latest.” is shown and the entered data remains.\n\n---\nThis is the expected behaviour as per epic SV-9315 and story SV-9318 (Story 3, Inline Edit Part - Tech View) and the Inline Add and Edit Parts on Work Order Lines specification version 16, section S3-E2, read on 31 August 2026.\n\nAUTOMATION: Not available on Build to test Yet - Last checked 8/31/2026",
+  "design_ref": "Claude Design “Add Part” artifact 561657da (binding visual reference), as exported 2026-08-25.",
+  "spec_ref": "requirements.md (Inline Add and Edit Parts spec v16)",
+  "refs": "SV-9318 (S3-E2)",
+  "viu_status": "source-verified-only",
+  "notes": ""
+ }
 ]
