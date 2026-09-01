@@ -115,6 +115,14 @@ These are stated here **in full** because a session that gets only this far must
   that is true; never omit the section. Keep `build/OUTSTANDING-ITEMS-REGISTER.md` current.
 - **PLAIN LAYMAN WORDING (7/9).** Tester-facing and PO-facing text uses the build's exact labels and
   no jargon — no case IDs, spec anchors, HTTP terms or internal names in what they read.
+- **🛑 RUNNABILITY IS A DELIVERABLE OF BUILD VERIFICATION, NOT A TIDY-UP (QA lead, 2026-09-01).** Verbatim:
+  *"ONE of the major part of build verification is TO make the steps of replication and preconditions
+  RUNNABLE and not to keep those test cases the spec level test cases … this thing never bites me."*
+  **A build-verification pass is NOT done when the verdicts are in** — it is done when **every case in
+  the suite**, verified this run or not, carries UI preconditions and steps a manual tester can follow.
+  **Gate: `python3 build/testing-tools/check_runnable_cases.py --section-prefix "<suite>"`** — reads
+  TestRail LIVE, exit 1 on any failure; drive it to zero before reporting a suite done. It replaces
+  `check_layman_steps.py`, which passed any case containing the words *"open the"*. Skill: `build/skills/18-LAYMAN-UI-STEPS.md`.
 - **🛑 EVERY CASE IS RUNNABLE FROM THE UI BY A LAYMAN — NO SPEC-LEVEL PRECONDITIONS OR STEPS (skill 18,
   QA lead 2026-08-31, UNIVERSAL — ALL cases, ALL suites, NOT only build-verified ones).** A precondition
   that asserts a *state* ("a document exists whose work order has … set") or a step that *summarizes* an

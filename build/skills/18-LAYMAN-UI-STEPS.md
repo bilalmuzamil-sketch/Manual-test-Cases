@@ -1,4 +1,36 @@
-# 18 · LAYMAN UI STEPS — a manual tester must be able to follow every case from the screen alone
+# 18 — EVERY CASE IS RUNNABLE FROM THE UI BY A LAYMAN
+
+> ## 🔴 THIS IS THE PRIMARY JOB OF A BUILD-VERIFICATION SESSION (QA lead, 2026-09-01)
+>
+> Verbatim: *"ONE of the major part of build verification is TO make the steps of replication and
+> preconditions RUNNABLE and not to keep those test cases the spec level test cases. Make sure you
+> do never fail in that part and this thing never bites me."*
+>
+> And, assigning the lane: *"Make sure ALL the test cases in the invoice refresh are moved from Spec
+> level to UI based Runnable test cases with UI runnable preconditions and steps of reproduction for
+> a manual tester. This is the primary job of this session."*
+>
+> **So build verification is NOT done when the verdicts are in.** A pass that establishes a case
+> passes but leaves its preconditions and steps spec-level has **not finished the job**. Runnability
+> is a deliverable of equal standing with the verdict, on **every** case in the suite — not only the
+> ones that happened to be verified this run.
+>
+> **THE GATE IS `build/testing-tools/check_runnable_cases.py`** — run it against the suite and drive
+> it to zero failures before reporting a suite done. It reads TestRail LIVE, so it cannot be fooled
+> by a stale local file. It supersedes `check_layman_steps.py`, which passed any case containing the
+> words *"open the"* and therefore reported a suite clean when 26 of 119 cases were not.
+>
+> **CALIBRATION, LEARNED THE HARD WAY (2026-09-01).** Requiring *every* step to name a place
+> over-fires: once step 1 has the document on screen, *"Look at the masthead"* is exactly right and
+> repeating the click path in every step is noise. Demanding it flagged 72 of 119 cases, nearly all
+> of them wrongly. **The rule that matters is that the FIRST step must put the tester somewhere** —
+> a screen, an on-screen anchor, or an explicit pointer back at the preconditions. A first step of
+> *"Generate the Invoice."* strands the tester; *"Look at the addresses area"* as step 2 does not.
+>
+> **A GATE THAT CANNOT FAIL IS NOT A GATE.** Both times a checker here was too permissive it was
+> because it looked for the presence of some friendly-looking word rather than for the thing a
+> tester actually needs. When you write or change this gate, first prove it FAILS on a known-bad
+> case, then prove it PASSES a known-good one.
 
 **Standing requirement, QA lead 2026-08-31, verbatim:**
 > *"make sure that all the tests which you have build verified have got the Steps or reproduction and
