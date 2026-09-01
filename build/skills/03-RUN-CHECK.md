@@ -1085,6 +1085,23 @@ one of the six above would have been delivered as a confident finding about the 
     carries its own positive control** (`addPart > 0` before it starts) and returns
     `POSITIVE_CONTROL_FAILED` instead of a result. A refused measurement is cheap; a false finding is
     not.
+### The one that nearly went out as a finding, and the check that stopped it
+
+**"The save-failure message is wrong: the toast says 'Ooooops! An error occurred', not the documented
+'Couldn't add the part. Please try again.'"** — that was ready to write up. One DOM walk later: the
+documented sentence is rendered **visibly in the row**, as
+`<span class="inline-part-row__message text-negative">`, 201×16 px. The generic toast is an
+*additional* surface, not a replacement. **A toast is not the only place a message can live, and a
+string found in `innerText` is not yet proof of what the tester reads either — pin the element.**
+
+14. **BEFORE REPORTING A WORDING DEVIATION, WALK THE DOM FOR THE DOCUMENTED STRING AND REPORT THE
+    ELEMENT: tag, classes, size and computed visibility.** "Not in the toast" is not "not on screen",
+    and "in innerText" is not "on screen" either.
+15. **AN INCONCLUSIVE RUN IS NOT A FINDING — SAY WHAT WOULD MAKE IT CONCLUSIVE.** The
+    concurrent-change case ended with no message and an open row, which looks like a defect until you
+    notice the probe never re-confirmed that the row was editing the record it had deleted. The
+    verdict stayed NOT VERIFIED with the missing assertion named, rather than becoming a ticket.
+
 13. **🛑 A CHARACTER COUNT IS NOT A LANDING SIGNAL — WAIT FOR THE ANCHOR THE PROBE ACTUALLY NEEDS.**
     Every probe in this pass used `waitForFunction(body.innerText.length > 1200)`. **The page shell
     alone clears 1,200 characters while the header still reads "Loading…" and the section under test
