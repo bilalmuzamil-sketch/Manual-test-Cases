@@ -1,0 +1,25 @@
+(node:3878) [UNDICI-EHPA] Warning: EnvHttpProxyAgent is experimental, expect them to change at any time.
+(Use `node --trace-warnings ...` to show where the warning was created)
+04:27:52 queued 116 of 118 (checkpointed: 2)
+04:28:33 C44989 save attempt 1 rejected (Deadlock found when trying to get lock; try restarting transaction | Title is too long) — retrying
+04:28:41 C44989 FIXED (deterministic) — fr-view, numbers visible, marker last (atm=1)
+04:29:15 C44990 save attempt 1 rejected (Deadlock found when trying to get lock; try restarting transaction | Title is too long) — retrying
+04:29:22 C44990 FAILED: save rejected: Deadlock found when trying to get lock; try restarting transaction | Title is too long
+04:29:29 C44991 FIXED (deterministic) — fr-view, numbers visible, marker last (atm=1)
+04:30:03 C44992 save attempt 1 rejected (Deadlock found when trying to get lock; try restarting transaction | Title is too long) — retrying
+04:30:12 C44992 FIXED (deterministic) — fr-view, numbers visible, marker last (atm=1)
+04:30:45 C44993 save attempt 1 rejected (Deadlock found when trying to get lock; try restarting transaction | Title is too long) — retrying
+04:30:53 C44993 FIXED (deterministic) — fr-view, numbers visible, marker last (atm=1)
+04:31:27 C44994 save attempt 1 rejected (Deadlock found when trying to get lock; try restarting transaction | Title is too long) — retrying
+04:31:36 C44994 FIXED (deterministic) — fr-view, numbers visible, marker last (atm=1)
+04:31:38 C44995 ERROR Error: page.goto: net::ERR_ABORTED; maybe frame was detached?
+Call log:
+[2m  - navigating to "https://shopview.testrail.io/index.php?/cases/edit/44995", waitin
+node:internal/modules/run_main:123
+    triggerUncaughtException(
+    ^
+
+page.waitForTimeout: Target page, context or browser has been closed
+    at /home/user/Manual-test-Cases/build/inline-add-edit-parts/render-repair-2026-08-31/layman_fix.mjs:174:14
+
+Node.js v22.22.2
