@@ -115,6 +115,23 @@ describe the check, and the EXPECTED RESULTS still come from the documents, neve
    **Open only** chip, which defaults to on; a credit issued at another location does not appear at
    all because the list is workplace-scoped.)*
 
+### 🛑 A NEGATIVE CASE MUST NAME A CONCRETE, REACHABLE INSTANCE OF ITS TRIGGER — NOT RESTATE THE SPEC'S ABSTRACTION (QA lead manual correction, C44996, 2026-09-01)
+When the spec's triggering condition is abstract — *"a work order not editable for some other reason"*,
+*"a line in a state that does not permit editing"*, *"a credit in some status"* — a precondition that
+just repeats that abstraction is NOT runnable: a tester cannot act on "some other reason." Name a
+**concrete, tester-reachable instance AND the action to reach it**, and offer alternatives with OR.
+- **Worked example (C44996, S1-N4).** ❌ *"open a work order that is not editable for some other existing
+  reason."* → ✅ *"1. Your user has the 'Work Order Line - Create and Edit' permission. 2. Work Orders →
+  open a work order. 3. Look at a line with status **Complete** (mark it complete) — OR move the line to
+  any status that does not allow requesting a part. → try to find 'Add Part' for that line → it is not
+  displayed."*
+- **Keep the positive baseline.** State the thing that is NOT the cause as satisfied (here: the user HAS
+  the permission), so the negative result is attributable to the tested condition and nothing else. This
+  is the "positive control" idea: for a permission-negative, show a permitted user WOULD see the control
+  on that same record, then the non-permitted user does not.
+- **Trim.** Action-first, concise preconditions — do not over-explain where a control sits or how a hover
+  reveal works unless the check needs it.
+
 ## 🛑 THE LINE THIS RULE MUST NOT CROSS
 
 **Making a step followable must never make an unreachable state reachable on paper.** If the UI has
