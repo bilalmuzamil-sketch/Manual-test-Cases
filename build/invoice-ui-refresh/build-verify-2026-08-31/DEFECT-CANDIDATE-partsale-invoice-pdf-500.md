@@ -63,3 +63,56 @@ general document route, so this is a finding to hand the developer, not an obsta
 
 Nothing is parked. The 9 Parts Sale cases were verified against the documents captured through the
 preview route, which is the path the case steps use.
+
+---
+
+# CANDIDATE 2 — `historyEvent` is accepted but changes nothing
+
+**Status: CANDIDATE, NOT FILED** (Jira hold active).
+
+`GET /api/invoices/preview?invoice_id=8ed189b1-…&type=html&isEstimate=0&includeDeclined=0&historyEvent=<v>`
+returns a **byte-identical** document for **every** value tried:
+
+| `historyEvent` | visible chars | sha256 of the visible text (first 16) |
+|---|---|---|
+| *(empty)* | 4366 | `acdc00f5ced2f4c6` |
+| `1` | 4366 | `acdc00f5ced2f4c6` |
+| `2` | 4366 | `acdc00f5ced2f4c6` |
+| `5` | 4366 | `acdc00f5ced2f4c6` |
+| `99` | 4366 | `acdc00f5ced2f4c6` |
+
+**One distinct rendering across five values, including a nonsense one (`99`).** The parameter is on the
+DTO and binds without error, so a caller has no way to tell that it did nothing.
+
+**Two readings, and we cannot separate them from outside:** either this invoice has no history events
+(in which case a silent fall-through to "current" is arguably fine, though `99` returning 200 is not),
+or the value is ignored on this branch. **A nonsense value returning a normal document rather than a
+validation error is the part worth a developer's eye.**
+
+**Consequence for testing:** the snapshot state [C45185](https://shopview.testrail.io/index.php?/cases/view/45185)
+needs cannot be produced, so that case is a Rule 69 not-built case rather than a failure.
+
+**Draft ticket:** `Story Defect`, parent **SV-9142**/the owning story for document history, Priority
+`Medium`, summary *"invoices/preview historyEvent accepted but ignored — any value, including an
+invalid one, returns the current document"*.
+
+---
+
+# CANDIDATE 3 — credit-memo cash-out does not validate `payment_method`
+
+**Status: CANDIDATE, NOT FILED.**
+
+`POST /api/credit-memos/{id}/cash-out` with `{"amount":1.00,"payment_method":"zzz_not_a_method"}`
+returned **HTTP 200** and performed the refund — `openBalance` went 2500 → 2400 and the memo moved to
+`partially_applied`, with a `refundPaymentId` issued against a payment method that does not exist.
+
+Observed 2026-08-31 on CM-101 (`9ebee29b-…`), a `ZZAUTOTEST` seed. **Disclosure: that call was meant as
+a validation probe and it changed the record** — CM-101 is a throwaway seed on a disposable branch, and
+the state change is recorded here rather than left to be discovered.
+
+**Why it matters:** the payment method reaches the customer's financial record and prints on the
+document as the method name (S8-R2 renders rows as `{date} - {method}`). An unvalidated free-text
+method can put arbitrary text on a customer-facing document and into the payments ledger.
+
+**Draft ticket:** `Story Defect`, parent the owning payments story, Priority `Medium`, summary
+*"credit-memo cash-out accepts an arbitrary payment_method string with no validation"*.

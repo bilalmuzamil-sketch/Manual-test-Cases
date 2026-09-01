@@ -165,15 +165,14 @@
   "section_id": 6747,
   "refs": "SV-9145 (S6-R1; S6-R2)",
   "atm": 1,
-  "custom_expected": "<ol>\n<li>Declined work appears in its own section headed exactly \"Declined Work\", separate from the main work section.</li>\n<li>Each declined line shows its name, and its description when a description is present.</li>\n<li>A declined line never shows a scope-of-work note (the technician's internal write-up) - that note does not print for declined work on any customer document.</li>\n<hr><p>This is the expected behaviour as per epic SV-8218 and story SV-9145 (Story 6, Declined Work) and the Invoice UI Refresh specification version 45, sections S6-R1 and S6-R2, read on 31 August 2026.</p><p>AUTOMATION: Not available on Build to test Yet - Last checked 8/21/2026</p></ol>\n",
-  "custom_steps": "<ol>\n<li>Generate the Estimate or Invoice.</li>\n<li>Find the Declined Work section and read its lines.</li>\n</ol>\n",
-  "custom_preconds": "<ol>\n<li>You are signed in to ShopView.</li>\n<li>A document exists whose work order has declined work lines (with names, descriptions, and internal scope-of-work notes), and the \"Show declined work\" option is enabled.</li>\n</ol>\n",
+  "custom_expected": "<p>1. Declined work appears in its own section headed exactly \"Declined Work\", separate from the main work section.<br>2. Each declined line shows its name, and its description when a description is present.<br>3. A declined line never shows a scope-of-work note (the technician's internal write-up) - that note does not print for declined work on any customer document.</p><p>---<br>This is the expected behaviour as per epic SV-8218 and story SV-9145 (Story 6, Declined Work) and the Invoice UI Refresh specification version 45, sections S6-R1 and S6-R2, read on 31 August 2026.</p><p>AUTOMATION: Not available on Build to test Yet - Last checked 8/21/2026</p>",
   "markers": [
    "AUTOMATION: Not available on Build to test Yet - Last checked 8/21/2026"
   ],
   "provenance": [
    "This is the expected behaviour as per epic SV-8218 and story SV-9145 (Story 6, Declined Work) and the Invoice UI Refresh specification version 45, sections S6-R1 and S6-R2, read on 31 August 2026."
-  ]
+  ],
+  "build_sentence": []
  },
  "44938": {
   "id": "44938",
@@ -181,15 +180,14 @@
   "section_id": 6747,
   "refs": "SV-9145 (S6-R3; S6-R4; S6-R5)",
   "atm": 1,
-  "custom_expected": "<ol>\n<li>Declined lines show no prices, no labor totals, and no parts totals.</li>\n<li>Declined lines are never included in any total on the document.</li>\n<li>Declined lines do not show a line number.</li>\n<li>No status pill is shown on declined lines; the \"Declined Work\" heading is the only indicator of declined status.</li>\n<hr><p>This is the expected behaviour as per epic SV-8218 and story SV-9145 (Story 6, Declined Work) and the Invoice UI Refresh specification version 45, sections S6-R3, S6-R4 and S6-R5, read on 31 August 2026.</p><p>AUTOMATION: Not available on Build to test Yet - Last checked 8/21/2026</p></ol>\n",
-  "custom_steps": "<ol>\n<li>Generate the document.</li>\n<li>Read the Declined Work section and check the totals elsewhere on the document.</li>\n</ol>\n",
-  "custom_preconds": "<ol>\n<li>You are signed in to ShopView.</li>\n<li>A document exists with declined work lines and \"Show declined work\" enabled.</li>\n</ol>\n",
+  "custom_expected": "<p>1. Declined lines show no prices, no labor totals, and no parts totals.<br>2. Declined lines are never included in any total on the document.<br>3. Declined lines do not show a line number.<br>4. No status pill is shown on declined lines; the \"Declined Work\" heading is the only indicator of declined status.</p><p>---<br>This is the expected behaviour as per epic SV-8218 and story SV-9145 (Story 6, Declined Work) and the Invoice UI Refresh specification version 45, sections S6-R3, S6-R4 and S6-R5, read on 31 August 2026.</p><p>AUTOMATION: Not available on Build to test Yet - Last checked 8/21/2026</p>",
   "markers": [
    "AUTOMATION: Not available on Build to test Yet - Last checked 8/21/2026"
   ],
   "provenance": [
    "This is the expected behaviour as per epic SV-8218 and story SV-9145 (Story 6, Declined Work) and the Invoice UI Refresh specification version 45, sections S6-R3, S6-R4 and S6-R5, read on 31 August 2026."
-  ]
+  ],
+  "build_sentence": []
  },
  "44939": {
   "id": "44939",
@@ -197,15 +195,14 @@
   "section_id": 6747,
   "refs": "SV-9145 (S6-N1)",
   "atm": 1,
-  "custom_expected": "<ol>\n<li>When there are no declined lines, the Declined Work section is not shown.</li>\n<li>When the \"Show declined work\" option is off, the Declined Work section is not shown even if declined lines exist.</li>\n<hr><p>This is the expected behaviour as per epic SV-8218 and story SV-9145 (Story 6, Declined Work) and the Invoice UI Refresh specification version 45, section S6-N1, read on 31 August 2026.</p><p>AUTOMATION: Not available on Build to test Yet - Last checked 8/21/2026</p></ol>\n",
-  "custom_steps": "<ol>\n<li>Generate a document with no declined lines; look for a Declined Work section.</li>\n<li>Generate a document that has declined lines but with \"Show declined work\" off; look for a Declined Work section.</li>\n</ol>\n",
-  "custom_preconds": "<ol>\n<li>You are signed in to ShopView.</li>\n<li>You can reach a document with no declined lines, and one that has declined lines but with \"Show declined work\" turned off.</li>\n</ol>\n",
+  "custom_expected": "<p>1. When there are no declined lines, the Declined Work section is not shown.<br>2. When the \"Show declined work\" option is off, the Declined Work section is not shown even if declined lines exist.</p><p>---<br>This is the expected behaviour as per epic SV-8218 and story SV-9145 (Story 6, Declined Work) and the Invoice UI Refresh specification version 45, section S6-N1, read on 31 August 2026.</p><p>AUTOMATION: Not available on Build to test Yet - Last checked 8/21/2026</p>",
   "markers": [
    "AUTOMATION: Not available on Build to test Yet - Last checked 8/21/2026"
   ],
   "provenance": [
    "This is the expected behaviour as per epic SV-8218 and story SV-9145 (Story 6, Declined Work) and the Invoice UI Refresh specification version 45, section S6-N1, read on 31 August 2026."
-  ]
+  ],
+  "build_sentence": []
  },
  "44940": {
   "id": "44940",
@@ -229,15 +226,14 @@
   "section_id": 6748,
   "refs": "SV-9146 (S7-R3)",
   "atm": 1,
-  "custom_expected": "<ol>\n<li>When the location's \"Show % on Estimates and Invoices\" setting is enabled and shop supplies are charged as a percentage of labor, the percentage is shown alongside the shop supplies amount.</li>\n<li>Otherwise the shop supplies amount is shown alone.</li>\n<hr><p>This is the expected behaviour as per epic SV-8218 and story SV-9146 (Story 7, Financial Summary) and the Invoice UI Refresh specification version 45, section S7-R3, read on 31 August 2026.</p><p>AUTOMATION: Not available on Build to test Yet - Last checked 8/21/2026</p></ol>\n",
-  "custom_steps": "<ol>\n<li>Generate a document with the setting enabled and read the Shop supplies row.</li>\n<li>Generate one with the setting disabled and read the Shop supplies row.</li>\n</ol>\n",
-  "custom_preconds": "<ol>\n<li>You are signed in to ShopView.</li>\n<li>You can reach a document whose location has \"Show % on Estimates and Invoices\" enabled and shop supplies charged as a percentage of labor, and one with the setting disabled.</li>\n</ol>\n",
+  "custom_expected": "<p>1. When the location's \"Show % on Estimates and Invoices\" setting is enabled and shop supplies are charged as a percentage of labor, the percentage is shown alongside the shop supplies amount.<br>2. Otherwise the shop supplies amount is shown alone.</p><p>---<br>This is the expected behaviour as per epic SV-8218 and story SV-9146 (Story 7, Financial Summary) and the Invoice UI Refresh specification version 45, section S7-R3, read on 31 August 2026.</p><p>AUTOMATION: Not available on Build to test Yet - Last checked 8/21/2026</p>",
   "markers": [
    "AUTOMATION: Not available on Build to test Yet - Last checked 8/21/2026"
   ],
   "provenance": [
    "This is the expected behaviour as per epic SV-8218 and story SV-9146 (Story 7, Financial Summary) and the Invoice UI Refresh specification version 45, section S7-R3, read on 31 August 2026."
-  ]
+  ],
+  "build_sentence": []
  },
  "44943": {
   "id": "44943",
@@ -261,15 +257,14 @@
   "section_id": 6749,
   "refs": "SV-9147 (S8-R3)",
   "atm": 1,
-  "custom_expected": "<ol>\n<li>A payment's method shows the shop-configured payment-method name when configured.</li>\n<li>When not configured, it shows the payment code with each underscore replaced by a space (for example credit_card shows as \"credit card\").</li>\n<li>The \"SHOPPAY\" code shows as \"Online\".</li>\n<hr><p>This is the expected behaviour as per epic SV-8218 and story SV-9147 (Story 8, Paid Banner, Payments and Balance) and the Invoice UI Refresh specification version 45, section S8-R3, read on 31 August 2026.</p><p>AUTOMATION: Not available on Build to test Yet - Last checked 8/21/2026</p></ol>\n",
-  "custom_steps": "<ol>\n<li>Generate the Invoice.</li>\n<li>Read the method name on each payment row.</li>\n</ol>\n",
-  "custom_preconds": "<ol>\n<li>You are signed in to ShopView.</li>\n<li>An Invoice has a payment with a shop-configured method name, one with an unconfigured code (for example credit_card), and one made online (SHOPPAY).</li>\n</ol>\n",
+  "custom_expected": "<p>1. A payment's method shows the shop-configured payment-method name when configured.<br>2. When not configured, it shows the payment code with each underscore replaced by a space (for example credit_card shows as \"credit card\").<br>3. The \"SHOPPAY\" code shows as \"Online\".</p><p>---<br>This is the expected behaviour as per epic SV-8218 and story SV-9147 (Story 8, Paid Banner, Payments and Balance) and the Invoice UI Refresh specification version 45, section S8-R3, read on 31 August 2026.<br>Last checked against build v26.35.5-8c3cc21 on 8/31/2026.</p><p>AUTOMATION: HOLD - customer portal only exists on staging; this case cannot run on the QA branch</p>",
   "markers": [
-   "AUTOMATION: Not available on Build to test Yet - Last checked 8/21/2026"
+   "AUTOMATION: HOLD - customer portal only exists on staging; this case cannot run on the QA branch"
   ],
   "provenance": [
    "This is the expected behaviour as per epic SV-8218 and story SV-9147 (Story 8, Paid Banner, Payments and Balance) and the Invoice UI Refresh specification version 45, section S8-R3, read on 31 August 2026."
-  ]
+  ],
+  "build_sentence": []
  },
  "44951": {
   "id": "44951",
@@ -789,15 +784,14 @@
   "section_id": 6770,
   "refs": "SV-8218 (Plan D5)",
   "atm": 1,
-  "custom_expected": "<ol>\n<li>The snapshot renders in the new layout.</li>\n<li>Fields the old snapshot never stored are blank (hidden per hide-when-empty).</li>\n<li>No 500 / fatal error occurs (plan D5 - the single biggest correctness risk).</li>\n<hr><p>This is the expected behaviour as per epic SV-8218 and the Invoice UI Refresh engineering plan (item D5); verified current against the Invoice UI Refresh specification version 45, read on 31 August 2026.</p><p>AUTOMATION: Not available on Build to test Yet - Last checked 8/26/2026</p></ol>\n",
-  "custom_steps": "<ol>\n<li>Open the historical snapshot</li>\n<li>Generate its PDF</li>\n<li>Check fields the old snapshot never stored (authorizer, plate, estimate date, ...)</li>\n</ol>\n",
-  "custom_preconds": "<ol>\n<li>A staging invoice snapshot created BEFORE the redesign deploy</li>\n</ol>\n",
+  "custom_expected": "<p>1. The snapshot renders in the new layout.<br>2. Fields the old snapshot never stored are blank (hidden per hide-when-empty).<br>3. No 500 / fatal error occurs (plan D5 - the single biggest correctness risk).</p><p>---<br>This is the expected behaviour as per epic SV-8218 and the Invoice UI Refresh engineering plan (item D5); verified current against the Invoice UI Refresh specification version 45, read on 31 August 2026.</p><p>AUTOMATION: Not available on Build to test Yet - Last checked 8/26/2026</p>",
   "markers": [
    "AUTOMATION: Not available on Build to test Yet - Last checked 8/26/2026"
   ],
   "provenance": [
    "This is the expected behaviour as per epic SV-8218 and the Invoice UI Refresh engineering plan (item D5); verified current against the Invoice UI Refresh specification version 45, read on 31 August 2026."
-  ]
+  ],
+  "build_sentence": []
  },
  "45190": {
   "id": "45190",
@@ -891,6 +885,21 @@
   ],
   "provenance": [
    "This is the expected behaviour as per epic SV-8218 and story SV-9150 (Story 11, Credit Invoice) and the Invoice UI Refresh specification version 45, section S11-R3, read on 31 August 2026."
+  ],
+  "build_sentence": []
+ },
+ "44987": {
+  "id": "44987",
+  "title": "Batch and imported invoices are out of scope (kept on current templates)",
+  "section_id": 6754,
+  "refs": "SV-9195 (S13-N1); SV-9193 (deferred)",
+  "atm": 1,
+  "custom_expected": "<ol>\n<li>Batch invoices and imported invoices are not part of Story 13 or this spec.</li>\n<li>They keep their current templates until the follow-up ticket (SV-9193) ships.</li>\n<li>Restyling shared template partials must not half-restyle these deferred templates.</li>\n<hr><p>This is the expected behaviour as per epic SV-8218 and story SV-9195 (Story 13, Parts Sale Estimate and Invoice) and the Invoice UI Refresh specification version 45, section S13-N1, and story SV-9193 (deferred), read on 31 August 2026.</p><p>AUTOMATION: Not available on Build to test Yet - Last checked 8/21/2026</p></ol>\n",
+  "markers": [
+   "AUTOMATION: Not available on Build to test Yet - Last checked 8/21/2026"
+  ],
+  "provenance": [
+   "This is the expected behaviour as per epic SV-8218 and story SV-9195 (Story 13, Parts Sale Estimate and Invoice) and the Invoice UI Refresh specification version 45, section S13-N1, and story SV-9193 (deferred), read on 31 August 2026."
   ],
   "build_sentence": []
  }
