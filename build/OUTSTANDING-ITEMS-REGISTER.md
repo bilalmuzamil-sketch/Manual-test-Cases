@@ -17,6 +17,8 @@ both set-equal to the cases in both directions, both with **zero** results recor
 | **HO-4** | **Permission to file one defect: [C45068](https://shopview.testrail.io/index.php?/cases/view/45068)** — no discard confirmation when the pencil is clicked with a populated inline add row open. Observed twice. Per your 2026-09-01 instruction I will re-verify on the build first and then ask per candidate | **QA lead** | **OPEN — text ready, nothing filed** |
 | **HO-5** | **Five data states 6617 needs** and sv9315 does not have: a work order with no customer, one with no vehicle, a line whose status is Cancelled, a 500-character tech story, and a sign-in that cannot view work orders. Four of the five a tester can create; the sign-in needs you | **me / QA lead** | **OPEN — each case now says so in its own words, so nothing is silently un-runnable** |
 
+| **HO-6** | **Rule 65 notice for Vlad: two Automated cases were changed on 6597 today** — [C45005](https://shopview.testrail.io/index.php?/cases/view/45005) and [C45026](https://shopview.testrail.io/index.php?/cases/view/45026), both under the QA lead's 2026-09-01 *"Permitted"*. Route wording and the build sentence only; `custom_atmstatus` re-read before and after and still **3**. Notice: `build/handoff-2026-09-01/FOR-VLAD-automated-cases-changed-2026-09-01.md` | **QA lead to pass to Vlad** | **OPEN — written, not yet sent** |
+
 **Closed by this pass:** SSO-1 (fresh cookies supplied 2026-09-01; both suites verified on
 `v26.35.6-598cc8a`) · INL-2 (the bin data states existed all along — `/api/inventory/parts` ignores
 `rowsPerPage`/`page`, so an earlier read saw 100 of 6,879 parts; playbook §S). INL-3 is carried
