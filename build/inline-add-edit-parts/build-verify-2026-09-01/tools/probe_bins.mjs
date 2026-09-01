@@ -10,9 +10,15 @@ const WO = process.env.WO || 'c6d4b883-6f78-4c9e-ab7e-436a6d99c17a';
 const ONLY = (process.env.ONLY || '').split(',').filter(Boolean);
 const results = {};
 const { browser, page } = await boot('/workorders');
-const settle = async (m = 1200) => {
-  await page.waitForFunction(x => (document.body?.innerText || '').length > x, m, { timeout: 60000 }).catch(() => {});
-  await page.waitForTimeout(3200);
+const settle = async () => {
+  // wait for the anchor, not a character count: the shell alone passes any count while
+  // "Loading..." is still on screen and the Parts section is unmounted (proven 2026-09-01)
+  await page.waitForFunction(sel => {
+    const t = document.body?.innerText || '';
+    if (/\bLoading\.\.\./.test(t)) return false;
+    return !!document.querySelector(sel) || t.length > 4000;
+  }, '[data-test-id="button_add_part"]', { timeout: 60000 }).catch(() => {});
+  await page.waitForTimeout(2500);
 };
 const openRow = async () => {
   for (let a = 0; a < 3; a++) {

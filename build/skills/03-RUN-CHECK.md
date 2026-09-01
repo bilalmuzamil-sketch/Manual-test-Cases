@@ -1085,3 +1085,12 @@ one of the six above would have been delivered as a confident finding about the 
     carries its own positive control** (`addPart > 0` before it starts) and returns
     `POSITIVE_CONTROL_FAILED` instead of a result. A refused measurement is cheap; a false finding is
     not.
+13. **🛑 A CHARACTER COUNT IS NOT A LANDING SIGNAL — WAIT FOR THE ANCHOR THE PROBE ACTUALLY NEEDS.**
+    Every probe in this pass used `waitForFunction(body.innerText.length > 1200)`. **The page shell
+    alone clears 1,200 characters while the header still reads "Loading…" and the section under test
+    is unmounted**, so the probe reads the page too early and every control comes back absent. That is
+    what §8.0-b's very first row ("all 9 settings labels absent") was, all over again, six probes
+    later. **Wait for the selector — `[data-test-id="button_add_part"]` — and treat a body containing
+    "Loading…" as not landed.** The positive control (rule 12) is what caught it: it refused to report
+    rather than filing three false negatives, and the refusal message carried the word "Loading..."
+    which named the cause immediately.

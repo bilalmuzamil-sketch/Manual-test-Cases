@@ -21,9 +21,17 @@ const TECH = '2d36a5f5-c957-45e0-a376-46d24df2a44c';                  // Christo
 const TECH_ROLE = '2d4b8464-81a9-4c1e-96c6-a2a64f02a389';             // Technician
 const results = {};
 const { browser, page } = await boot('/workorders');
-const settle = async (m = 1200) => {
-  await page.waitForFunction(x => (document.body?.innerText || '').length > x, m, { timeout: 60000 }).catch(() => {});
-  await page.waitForTimeout(3200);
+// 🛑 A CHARACTER COUNT IS NOT A LANDING SIGNAL. The page shell alone is already over 1,200
+// characters and still shows "Loading..." in the header while the Parts section is unmounted, so a
+// count-based settle proceeds too early and every control reads as absent. Wait for the ANCHOR the
+// probe actually needs, and treat "Loading..." as not landed.
+const settle = async (anchor = '[data-test-id="button_add_part"]') => {
+  await page.waitForFunction(sel => {
+    const t = document.body?.innerText || '';
+    if (/\bLoading\.\.\./.test(t)) return false;
+    return !!document.querySelector(sel) || t.length > 4000;
+  }, anchor, { timeout: 60000 }).catch(() => {});
+  await page.waitForTimeout(2500);
 };
 // 🛑 THE PAGE'S IDENTITY MUST BE RE-SYNCED BEFORE EVERY LANDING, AND THIS COST A WHOLE RUN.
 // The SPA reads permissions and view mode out of localStorage. N3 strips a permission and
@@ -230,7 +238,11 @@ P['E1-concurrent-change'] = async () => {
 // ---- where the two permissions actually live in the UI, so the preconditions can say it ----
 P['R0-permission-route'] = async () => {
   const out = {};
-  for (const r of ['/settings', '/settings/roles', '/roles', '/settings/users', '/settings/staff']) {
+  // The route was already written down: build/APP-ACTIONS-PLAYBOOK.md records
+  // "Settings sidebar -> Roles & Permissions (/administration/roles-permissions)". The first version
+  // of this probe guessed /settings, /settings/roles, /roles ... - five routes that do not exist, so
+  // it spent five 60-second SPA waits proving nothing. Rule 97: search the repo before probing.
+  for (const r of ['/administration/roles-permissions', '/administration/staff', '/administration/settings']) {
     await page.goto(APP + r, { waitUntil: 'domcontentloaded', timeout: 60000 }).catch(() => {});
     await settle();
     out[r] = await page.evaluate(() => ({
@@ -241,6 +253,10 @@ P['R0-permission-route'] = async () => {
       menuItems: [...document.querySelectorAll('.q-item__label, .q-tab')].map(e => (e.innerText||'').replace(/\s+/g,' ').trim()).filter(Boolean).slice(0, 30),
       viewModeWords: /view mode/i.test(document.body?.innerText || ''),
       createAndEdit: /create and edit/i.test(document.body?.innerText || ''),
+      // the labels a tester has to find, verbatim off the screen
+      roleRows: [...document.querySelectorAll('tr, .q-item')]
+        .map(e => (e.innerText || '').replace(/\s+/g, ' ').trim()).filter(Boolean).slice(0, 15),
+      pencilPresent: !!document.querySelector('[data-test-id*="edit"], .q-btn i.notranslate'),
     }));
   }
   await page.screenshot({ path: `${OUT}/evidence/neg-permission-route.png`, fullPage: true });
