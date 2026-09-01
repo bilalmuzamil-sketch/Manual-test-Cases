@@ -1,0 +1,262 @@
+{
+ "C1b-keyboard-focus": {
+  "stopsInsideAPartRow": [],
+  "revealedOnKeyboardFocus": false
+ },
+ "TD2-tech-sentences": {
+  "atFailure": {
+   "combined": true,
+   "qtyRule": false,
+   "matched": [
+    "Enter a description, qty, cost and sell price to save this part."
+   ]
+  },
+  "atZeroQty": {
+   "combined": false,
+   "qtyRule": true,
+   "matched": [
+    "Qty must be greater than 0."
+   ]
+  },
+  "afterCorrection": {
+   "combined": false,
+   "qtyRule": false,
+   "matched": []
+  },
+  "note": "S2-N5 says the message clears as soon as the field is corrected, so an empty afterCorrection is the requirement being met, not the message being absent"
+ },
+ "C3b-edit-modal-save": {
+  "tag": "ZZAUTOTEST modaledit 1788253787979",
+  "rowsBefore": [
+   "drag_indicator (-) ZZAUTOTEST tv edited 1788252828390 edit more_vert 1 Requested $0.00 100% -",
+   "drag_indicator (-) ZZAUTOTEST tv save 1788252688333 edit more_vert 1 Requested $0.00 100% -",
+   "drag_indicator (N68SL-356) 3.50-3.82\" (89-97mm) SPRING LOADED T-BOLT CLAMP edit more_vert 1 Quoted $8.13 54% $8.13"
+  ],
+  "modal": {
+   "open": true,
+   "ids": [
+    "dialog_title",
+    "button_close_dialog",
+    "select_part",
+    "input_workorder_part_description",
+    "input_workorder_part_quantity",
+    "select_workorder_part_source",
+    "select_part_category",
+    "select_part_vendor",
+    "input_part_cost",
+    "input_workorder_part_core_charge",
+    "input_workorder_part_sell_price",
+    "input_workorder_part_margin",
+    "button_workorder_part_return",
+    "button_workorder_part_save"
+   ],
+   "values": [
+    {
+     "id": "input_workorder_part_description",
+     "v": "ZZAUTOTEST tv edited 1788252828390"
+    },
+    {
+     "id": "input_workorder_part_quantity",
+     "v": "1"
+    },
+    {
+     "id": "select_workorder_part_source",
+     "v": "Vendor"
+    },
+    {
+     "id": "input_part_cost",
+     "v": "0.00000"
+    },
+    {
+     "id": "input_workorder_part_core_charge",
+     "v": "0.00"
+    },
+    {
+     "id": "input_workorder_part_sell_price",
+     "v": "0.00"
+    }
+   ]
+  },
+  "typedInto": "[data-test-id=\"input_workorder_part_description\"]",
+  "saveButtonLabel": "Save & Close",
+  "straightAfter": {
+   "modalOpen": false,
+   "inlineRowOpen": false,
+   "editRowOpen": false,
+   "toast": [],
+   "lineNamesIt": true
+  },
+  "afterReload": {
+   "lineNamesIt": true,
+   "rows": [
+    "drag_indicator (-) ZZAUTOTEST modaledit 1788253787979 edit more_vert 1 Requested $0.00 100% -",
+    "drag_indicator (-) ZZAUTOTEST tv save 1788252688333 edit more_vert 1 Requested $0.00 100% -",
+    "drag_indicator (N68SL-356) 3.50-3.82\" (89-97mm) SPRING LOADED T-BOLT CLAMP edit more_vert 1 Quoted $8.13 54% $8.13"
+   ]
+  }
+ },
+ "R1-role-screen-labels": {
+  "header": {
+   "headerText": "Skip to main content\nWork Orders\nSchedule\nCustomers\nParts\nReports\nSearch\nCtrl+K\ntimer\nClock In\nnotifications\nStaging Heavy Duty - 9919\nAS\nAll\nEstimates\nWork Orders\nCompleted\nsearch\nSearch\nAssigned to me\nAsset on Site\nkey",
+   "clickable": [
+    {
+     "label": "Work Orders",
+     "id": "button_desktop_nav_link"
+    },
+    {
+     "label": "Schedule",
+     "id": "button_desktop_nav_link"
+    },
+    {
+     "label": "Customers",
+     "id": "button_desktop_nav_link"
+    },
+    {
+     "label": "Parts",
+     "id": "button_desktop_nav_link"
+    },
+    {
+     "label": "Reports",
+     "id": "button_desktop_nav_link"
+    },
+    {
+     "label": "Search",
+     "id": "select_global_search"
+    },
+    {
+     "label": "timer Clock In",
+     "id": "clock_in_button"
+    },
+    {
+     "label": "notifications",
+     "id": "button_notifications"
+    },
+    {
+     "label": "Staging Heavy Duty - 9919 AS",
+     "id": "profile_menu_button"
+    },
+    {
+     "label": "search Search",
+     "id": "page_search_toggle"
+    },
+    {
+     "label": "width_normal",
+     "id": "button_column_selection"
+    },
+    {
+     "label": "Create Work Order",
+     "id": "button_new_work_order"
+    },
+    {
+     "label": "Approved",
+     "id": null
+    },
+    {
+     "label": "1",
+     "id": null
+    },
+    {
+     "label": "content_copy",
+     "id": "button_copy_vin"
+    },
+    {
+     "label": "0%",
+     "id": null
+    },
+    {
+     "label": "Approved",
+     "id": null
+    },
+    {
+     "label": "2",
+     "id": null
+    },
+    {
+     "label": "content_copy",
+     "id": "button_copy_vin"
+    },
+    {
+     "label": "44%",
+     "id": null
+    },
+    {
+     "label": "Approved",
+     "id": null
+    },
+    {
+     "label": "content_copy",
+     "id": "button_copy_vin"
+    },
+    {
+     "label": "0%",
+     "id": null
+    },
+    {
+     "label": "Approved",
+     "id": null
+    },
+    {
+     "label": "1",
+     "id": null
+    }
+   ]
+  },
+  "accountMenu": {
+   "opened": true,
+   "clicked": "Staging Heavy Duty - 9919 AS",
+   "items": [
+    "AS Admin ShopView admin@shopview.com Edit Profile",
+    "Change Location: Staging Heavy Duty - 9919",
+    "event_note My Timesheets",
+    "co_present Customer Portal New open_in_new",
+    "settings Settings",
+    "logout Logout",
+    "light_mode Light dark_mode Dark"
+   ]
+  },
+  "technicianRoleOpened": true,
+  "roleScreen": {
+   "url": "/administration/roles-permissions/2d4b8464-81a9-4c1e-96c6-a2a64f02a389/edit",
+   "hasCreateAndEdit": false,
+   "hasViewMode": true,
+   "matchingLabels": [
+    "View mode",
+    "Full View",
+    "Tech view",
+    "Tech view"
+   ],
+   "headings": [
+    "Skip to main content",
+    "Work Orders",
+    "Schedule",
+    "Customers",
+    "Parts",
+    "Reports",
+    "Search",
+    "Ctrl+K",
+    "timer",
+    "Clock In",
+    "notifications",
+    "Staging Heavy Duty - 9919",
+    "AS",
+    "DEV TOOLS info",
+    "flag",
+    "Feature Flags",
+    "SETTINGS",
+    "info",
+    "Settings",
+    "supervisor_account",
+    "Staff",
+    "verified_user",
+    "Roles & Permissions",
+    "location_on",
+    "Locations",
+    "apartment",
+    "Departments",
+    "attach_money",
+    "Taxes",
+    "SERVICE"
+   ]
+  }
+ }
+}

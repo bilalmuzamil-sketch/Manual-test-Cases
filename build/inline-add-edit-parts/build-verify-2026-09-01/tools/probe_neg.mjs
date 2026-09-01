@@ -189,12 +189,16 @@ P['E3-becomes-uneditable'] = async () => {
 
 // ---- EH1: any other save failure — abort the save request at the network layer ----
 P['EH1-save-failure'] = async () => {
-  const pc = await goLines(WO);
-  if (!pc.addPart) return { POSITIVE_CONTROL_FAILED: pc };
-  await page.route('**/api/**part**', route => {
-    if (route.request().method() === 'POST') return route.abort('failed');
+  // The first version routed '**/api/**part**' and aborted every matching request, GETs included, so
+  // the parts list never loaded and no row could open. Abort ONLY the save POST the SPA uses to
+  // create a part request (work-orders/part/make-request), and only once.
+  let aborted = null;
+  await page.route('**/api/work-orders/part/make-request', route => {
+    if (route.request().method() === 'POST' && !aborted) { aborted = route.request().url(); return route.abort('failed'); }
     return route.continue();
   });
+  const pc = await goLines(WO);
+  if (!pc.addPart) { await page.unroute('**/api/work-orders/part/make-request'); return { POSITIVE_CONTROL_FAILED: pc }; }
   await page.evaluate(() => document.querySelector('[data-test-id="button_add_part"]')?.click());
   await page.waitForTimeout(4000);
   const tag = 'ZZAUTOTEST failed save ' + Date.now();
@@ -202,43 +206,56 @@ P['EH1-save-failure'] = async () => {
   await set('input_inline_part_quantity', '1');
   await set('input_inline_part_cost', '1.00');
   await set('input_inline_part_sell_price', '2.00');
-  await page.waitForTimeout(1000);
+  await page.waitForTimeout(1200);
   await page.evaluate(() => document.querySelector('[data-test-id="button_save_inline_part"]')?.click());
-  await page.waitForTimeout(6000);
-  const s = await surface();
-  await page.unroute('**/api/**part**');
+  await page.waitForTimeout(7000);
+  const sfc = await surface();
+  await page.unroute('**/api/work-orders/part/make-request');
   await page.screenshot({ path: `${OUT}/evidence/neg-save-failure.png`, fullPage: true });
-  return { tag, ...s };
+  return { tag, saveRequestAborted: aborted, ...sfc };
 };
 
 // ---- S3-E1: someone else changes the part while the edit row is open ----
 P['E1-concurrent-change'] = async () => {
-  const pc = await goLines(WO);
-  if (!pc.editBtns) return { POSITIVE_CONTROL_FAILED: pc };
-  // find the line's parts through the API so the right one can be deleted behind the row
-  const wo = await apiGet(`/api/work-orders/${WO}`);
-  await page.evaluate(() => document.querySelector('[data-test-id="button_edit_part"]')?.click());
-  await page.waitForTimeout(4500);
-  const opened = await surface();
-  const parts = await apiGet(`/api/work-orders/part/list-requests?work_order_id=${WO}`);
-  let deleted = null;
-  const list = parts.body?.data;
-  const first = Array.isArray(list) ? list[0]
-    : (list && (Array.isArray(list.collection) ? list.collection[0]
-       : Array.isArray(list.part_requests) ? list.part_requests[0] : null));
-  if (first?.id) {
-    // deletePartRequest in the SPA's own client: POST work-orders/part/remove-request/{id}
-    deleted = await apiPost(`/api/work-orders/part/remove-request/${first.id}`, {});
+  // S3-E1 belongs to Story 3, which is the TECH VIEW inline edit row. In Full View clicking Edit
+  // opens the part details modal (S5-R2), which is why the first attempt found no inline edit row
+  // and measured nothing. So: impersonate the technician, open the inline edit row, delete THAT
+  // part behind it over the API, then save.
+  await apiPost('/api/exit-switch-user', {}).catch(() => {});
+  const sw = await apiPost('/api/switch-user', { user_id: TECH });
+  if (sw.status >= 400) return { impersonateFailed: sw.status };
+  let out = {};
+  try {
+    const pc = await goLines(WO);
+    out.landedAsTechnician = pc;
+    if (!pc.editBtns) return { ...out, POSITIVE_CONTROL_FAILED: pc };
+    // which part is first on the line, so the right one can be deleted
+    const list = await apiGet(`/api/work-orders/part/list-requests?work_order_id=${WO}`);
+    const coll = (list.body?.data?.collection) || list.body?.data || [];
+    out.partRequests = Array.isArray(coll) ? coll.length : 0;
+    await page.evaluate(() => document.querySelector('[data-test-id="button_edit_part"]')?.click());
+    await page.waitForTimeout(4500);
+    const opened = await surface();
+    out.editRowOpened = opened.editRowOpen;
+    out.editRowValues = opened.values;
+    // find the part request whose description matches what the row is showing
+    const desc = opened.values.desc;
+    const match = Array.isArray(coll) ? coll.find(x => (x.description || x.name || '') === (desc || '').trim()) : null;
+    out.matchedPartRequest = match ? { id: match.id, description: match.description } : null;
+    if (match?.id) {
+      const del = await apiCall('POST', `/api/work-orders/part/remove-request/${match.id}`, {});
+      out.deletedBehindTheRow = { status: del.status, body: JSON.stringify(del.body).slice(0, 150) };
+    }
+    await set('input_inline_part_description', 'ZZAUTOTEST concurrent ' + Date.now());
+    await page.waitForTimeout(1000);
+    await page.evaluate(() => document.querySelector('[data-test-id="button_save_inline_part"]')?.click());
+    await page.waitForTimeout(7000);
+    out.afterSave = await surface();
+    await page.screenshot({ path: `${OUT}/evidence/neg-concurrent.png`, fullPage: true });
+  } finally {
+    await apiPost('/api/exit-switch-user', {}).catch(() => {});
   }
-  await set('input_inline_part_description', 'ZZAUTOTEST concurrent ' + Date.now());
-  await page.waitForTimeout(900);
-  await page.evaluate(() => document.querySelector('[data-test-id="button_save_inline_part"]')?.click());
-  await page.waitForTimeout(6000);
-  const s = await surface();
-  await page.screenshot({ path: `${OUT}/evidence/neg-concurrent.png`, fullPage: true });
-  return { editRowOpened: opened.editRowOpen, partRequestsCall: parts.status,
-           deleteAttempt: deleted && { status: deleted.status, body: JSON.stringify(deleted.body).slice(0, 200) },
-           afterSave: s };
+  return out;
 };
 
 // ---- where the two permissions actually live in the UI, so the preconditions can say it ----
