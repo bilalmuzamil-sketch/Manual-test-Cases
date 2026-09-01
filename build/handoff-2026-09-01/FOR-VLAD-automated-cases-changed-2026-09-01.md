@@ -32,3 +32,35 @@ served-page container scan `build/handoff-2026-09-01/evidence/served-page-scan-1
 `build/inline-add-edit-parts/render-repair-2026-08-31/FOR-VLAD-automated-cases-changed-2026-08-31.md`
 covers the 2026-08-31 render repair of C45026. Today's pass is a second, separate change to the same
 two cases.
+
+
+---
+
+## 🆕 ADDED 18:20 UTC, and this is the part worth reading first
+
+**Vlad flagged four more cases Automated himself at 12:47 today** — `custom_atmstatus 1 → 3` by
+TestRail user **1**, confirmed from `get_history_for_case`:
+
+| Case | Flagged Automated |
+|---|---|
+| [C45223](https://shopview.testrail.io/index.php?/cases/view/45223) | 2026-09-01 12:47:57 |
+| [C45224](https://shopview.testrail.io/index.php?/cases/view/45224) | 2026-09-01 12:47:58 |
+| [C45227](https://shopview.testrail.io/index.php?/cases/view/45227) | 2026-09-01 12:47:58 |
+| [C45237](https://shopview.testrail.io/index.php?/cases/view/45237) | 2026-09-01 12:47:59 |
+
+They were written by our pass at 09:5x, **before** the flag existed, so nothing was written to a
+protected case.
+
+**⚠️ BUT ALL SIX AUTOMATED CASES STILL CARRY A PRECONDITION THAT NAMES A CONTROL THAT DOES NOT EXIST.**
+C45005, C45026, C45223, C45224, C45227 and C45237 still say the user needs the
+**“Work Order Line - Create and Edit”** permission and that **“Work Orders → Work Order View Mode”**
+is set to Full View / Tech View. Neither string is on the screen. The build has:
+
+* a **“Work order lines”** section whose toggle is **“Create & Edit”**, and
+* a **“View mode”** setting inside the **“Work orders”** section, offering **“Full View”** and **“Tech view”**.
+
+The other 116 Inline cases were corrected on 2026-09-01; these six were held under Rule 71 because
+they are Automated. **If Vlad is writing automation against them today, he is reading a setup step
+that cannot be followed** — worth telling him before he does, and worth one go-ahead from the QA lead
+so all six can be corrected. Evidence: `build/OBSERVED-UI-LABELS-sv9315.md` (role edit screen, read
+verbatim) and `build/handoff-2026-09-01/evidence/precond-labels-inline.log`.
