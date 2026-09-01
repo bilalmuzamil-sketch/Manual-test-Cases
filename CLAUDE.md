@@ -498,6 +498,14 @@ Compact form — **the rule named in brackets is the authority; read it before r
   PO answer file with link and date). Sentence 2 is optional and records the check: *"Last checked
   against build v3.5-16cf83f on 8/5/2026."* Re-stamped on every spec/epic/build re-check — a stale
   stamp is a finding. Never the word "VIU", never a flag name. [54]
+- **"MANUALLY ADDED" SOURCE — for a case the QA lead authors from PRODUCT KNOWLEDGE, not the spec
+  pipeline** (field-level editability, pricing-matrix behaviour, etc. not spelled out in the PRD): the
+  provenance reads **"Source: Manually added (QA lead, <date>)"** instead of the "as per epic …
+  specification version …" sentence, and it carries **AUTOMATION: HOLD — manually added; to be
+  build-verified** with any UI labels flagged PROVISIONAL. It must still be runnable
+  (`check_runnable_cases.py`) and render `fr-view`. Worked example: C44996 was split into the manually-added
+  C45250–C45253 (Inline). Full pattern (split one vague case into concrete single-behaviour cases, each
+  building its own state) in `build/skills/18-LAYMAN-UI-STEPS.md`. [2026-09-01]
 - **The build is named ONLY as what a case was last checked against.** *"as per the build tested on…"*
   is **BARRED**. Not yet checked against any build ⇒ omit sentence 2 or say plainly it has not been
   checked. [54, 57]
