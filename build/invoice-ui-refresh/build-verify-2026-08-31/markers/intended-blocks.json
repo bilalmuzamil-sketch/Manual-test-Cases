@@ -5362,5 +5362,49 @@
     "text": "1. Open the historical snapshot\n2. Generate its PDF\n3. Check fields the old snapshot never stored (authorizer, plate, estimate date, ...)"
    }
   }
+ },
+ "45177": {
+  "title": "Reversing a payment returns the masthead to Due date",
+  "atm": 1,
+  "section_id": 6751,
+  "escaping": true,
+  "marker_override": "AUTOMATION: READY",
+  "fields": {
+   "custom_expected": {
+    "blocks": [
+     [
+      "1. 'Due date: {date}' returns and 'Paid date' is gone - the label is decided by the invoice state at render time (S10-R4)."
+     ],
+     [
+      "---",
+      "This is the expected behaviour as per epic SV-8218 and story SV-9149 (Story 10, Estimate and Invoice Specifics) and the Invoice UI Refresh specification version 45, section S10-R4, read on 31 August 2026.",
+      "Last checked against build v26.35.5-8c3cc21 on 8/31/2026."
+     ],
+     [
+      "AUTOMATION: READY"
+     ]
+    ],
+    "text": "1. 'Due date: {date}' returns and 'Paid date' is gone - the label is decided by the invoice state at render time (S10-R4).\n\n---\nThis is the expected behaviour as per epic SV-8218 and story SV-9149 (Story 10, Estimate and Invoice Specifics) and the Invoice UI Refresh specification version 45, section S10-R4, read on 31 August 2026.\nLast checked against build v26.35.5-8c3cc21 on 8/31/2026.\n\nAUTOMATION: READY"
+   },
+   "custom_preconds": {
+    "blocks": [
+     [
+      "1. A fully paid invoice showing 'Paid date'",
+      "2. To put the document on screen: click \"Work Orders\" in the top menu, open the work order you need, then click the \"Finance\" tab. The document appears on the right.",
+      "3. To reverse a payment: click \"Customers\" in the top menu, open the customer, click the \"Payments\" tab, then click the delete (trash) icon on the payment row. A confirmation appears reading \"This action will reverse the payment for all invoices associated with it. The payment record is preserved for audit history.\" Click \"Reverse\"."
+     ]
+    ],
+    "text": "1. A fully paid invoice showing 'Paid date'\n2. To put the document on screen: click \"Work Orders\" in the top menu, open the work order you need, then click the \"Finance\" tab. The document appears on the right.\n3. To reverse a payment: click \"Customers\" in the top menu, open the customer, click the \"Payments\" tab, then click the delete (trash) icon on the payment row. A confirmation appears reading \"This action will reverse the payment for all invoices associated with it. The payment record is preserved for audit history.\" Click \"Reverse\"."
+   },
+   "custom_steps": {
+    "blocks": [
+     [
+      "1. Reverse one payment so Balance > $0.00",
+      "2. Re-open the preview"
+     ]
+    ],
+    "text": "1. Reverse one payment so Balance > $0.00\n2. Re-open the preview"
+   }
+  }
  }
 }
