@@ -134,6 +134,12 @@ These are stated here **in full** because a session that gets only this far must
   hard line) — where a route needs the live build to confirm and no build exists yet (Rule 85), draft it
   from the **design/spec** and mark it PROVISIONAL, never fabricated. This is part of the tester-readiness
   gate (84): a case with spec-level preconditions/steps is NOT tester-ready. Skill: `build/skills/18-LAYMAN-UI-STEPS.md`.
+  **RUNNABILITY LIFECYCLE: provisional at source-verification (no build) → FINALISED at build-verification**
+  (the build's own labels + `AUTOMATION: READY`; QA lead: *"build verification is the final touch-up … to
+  make the tests runnable"*). **COORDINATION (verify live, Rule 86): before any runnability pass on a suite,
+  check whether a QA build now exists (a "QA env: none" line can be STALE) and whether a parallel session is
+  already build-verifying it — if so, that session OWNS the suite's routes; DEFER, do not run a
+  design-provisional pass over it (concurrent UI edits collide / can downgrade a build-verified route).**
 - **FOREIGN CASES AND TICKETS ARE HANDS-OFF (38).** Report, never edit. State both numbers: ours N /
   live total M. **ALWAYS NAME THE CREATOR when you call a case foreign** (look up the TestRail user, e.g.
   `get_user/<id>`) — the QA lead decides scope by who authored it. **A case authored by the project's
