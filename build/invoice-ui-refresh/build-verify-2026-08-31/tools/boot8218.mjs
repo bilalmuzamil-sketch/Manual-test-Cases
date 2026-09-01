@@ -89,7 +89,30 @@ export async function boot(dest = '/workorders', key = 'admin') {
 
   await page.goto(APP + dest, { waitUntil: 'domcontentloaded', timeout: 60000 });
   await page.waitForTimeout(3500);
-  return { browser, ctx, page, feData, errs, role: ql.role };
+
+  // 🛑 SLEEP GUARD. sv8218 auto-sleeps and then EVERY route serves sleep.qa.shopview.com — a ~148
+  // character page reading "Environment Sleeping". A run that does not check this reports every
+  // field on every screen as absent, which is what happened on 2026-09-01 before the guard existed.
+  // The API answers for a while after the SPA host sleeps, so quick-login succeeding proves nothing.
+  const asleep = async () => page.evaluate(() =>
+    /Environment Sleeping|sleep\.qa\.shopview\.com/i.test(document.body?.innerText || '') ||
+    location.host.startsWith('sleep.'));
+  if (await asleep()) {
+    console.log('ENVIRONMENT ASLEEP — waking sv8218 and retrying');
+    await fetch('https://fz4hhptxi8.execute-api.ca-central-1.amazonaws.com/default/toggleQaEnv', {
+      method: 'POST', headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ action: 'wake', env: 'sv8218' }),
+    }).catch(() => {});
+    for (let i = 0; i < 20; i++) {
+      await page.waitForTimeout(15000);
+      await page.goto(APP + dest, { waitUntil: 'domcontentloaded', timeout: 60000 }).catch(() => {});
+      await page.waitForTimeout(3000);
+      if (!(await asleep())) break;
+    }
+    if (await asleep()) { console.log('sv8218 still asleep after waking — STOP'); process.exit(3); }
+    console.log('sv8218 awake, continuing');
+  }
+  return { browser, ctx, page, feData, errs, role: ql.role, asleep };
 }
 
 if (import.meta.url === `file://${process.argv[1]}`) {

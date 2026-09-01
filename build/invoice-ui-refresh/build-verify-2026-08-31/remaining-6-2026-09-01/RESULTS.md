@@ -12,15 +12,31 @@ failure was transient, not a property of the environment. Everything else in tha
 
 ---
 
-## Score: 3 of 6 verified so far — all PASS
+## Score: 6 of 6 — ALL PASS
 
 | Case | Verdict | What was observed |
 |---|---|---|
 | [C45197](https://shopview.testrail.io/index.php?/cases/view/45197) | **PASS** | Credit renders after its origin invoice is reversed; no 500; void refuses gracefully |
 | [C44947](https://shopview.testrail.io/index.php?/cases/view/44947) | **PASS** | All three payment-method-name rules, proven on one invoice |
 | [C45196](https://shopview.testrail.io/index.php?/cases/view/45196) | **PASS** | Mixed cash + credit closes the invoice and flips Due date → Paid date |
+| [C45190](https://shopview.testrail.io/index.php?/cases/view/45190) | **PASS** ⚠️ | Authorizer on the work order and parts sale, absent on the imported one — but see the spec conflict |
+| [C45191](https://shopview.testrail.io/index.php?/cases/view/45191) | **PASS** | Admin gets a select, a user without work-order edit gets a read-only field |
+| [C44923](https://shopview.testrail.io/index.php?/cases/view/44923) | **PASS** | A newly ticked "Approves Work" contact appears without any refresh |
 
-Remaining: C44923, C45190, C45191 (all three are customer-card / Authorizer observations).
+**This closes the Invoice UI Refresh build verification: 108 of 119 cases verified.** The remaining
+11 are 5 finished under Rule 69 (feature not built), 3 customer-portal/staging-only, 2 held on the
+IBS question, and **C44987, which is back on the to-do list** now that the import turns out to be
+built (see `DEFERRED-RUN.md`).
+
+**Rules confirmed incidentally, at no extra cost:** S3-R6 (the "No authorizer" clear option is
+present), S3-R8 (the Authorizer is locked once the work order is invoiced — observed as a disabled
+control on a paid work order), and S11-R6a (a voided credit's Balance reads $0.00).
+
+**Seed data restored.** The Technician role was never changed (none was needed); the impersonated
+session was returned to the admin; the temporary payment method was deleted; the contact flag ticked
+for C44923 was set back to unticked and re-read to confirm. What remains on the branch is the
+tagged `ZZAUTOTEST-IMP-001` imported work order and the ZZAUTOTEST payments and credits, all of
+which are wanted as fixtures for re-runs.
 
 ---
 
@@ -159,3 +175,134 @@ Results as history notes — but the same reporting duty applies:
 ## OUTSTANDING — what I need from you
 
 Nothing on these three. Three cases remain (C44923, C45190, C45191) and I am continuing on them.
+
+---
+
+## C45190 — Work order, imported work order and part sale customer cards after the Authorizer change
+
+**The imported work order did not exist on the branch, so I made one** rather than reporting a
+missing data state (Rule 14). The details, and the correction to the "not built" verdict this
+overturns, are in `DEFERRED-RUN.md`; in short, the surface was always built and four guessed 404s
+were mistaken for its absence.
+
+All three surfaces observed live, each reached the way a tester reaches it:
+
+| Surface | Reached by | Contact | Phone | **Authorizer** | Card renders |
+|---|---|---|---|---|---|
+| Normal work order | Work Orders → the row | select | static field | **select — present** | yes |
+| Parts sale | Parts → Part Sales → the row | select | static field | **select — present** | yes |
+| Imported work order | Work Orders → **Imported** status chip → the row | — | — | **absent** | yes |
+
+**Against the case's two expectations:**
+
+1. *"The card renders and functions on all three."* — **met.** The imported card renders its
+   customer (Una Truck Center), `VIN/Serial #`, Financial Info and the full document preview
+   (`Invoice: INV-ZZAUTOTEST-IMP-001`, line, subtotal $100.00, tax $5.00, total $105.00, signature
+   block). No layout break anywhere.
+2. *"The Authorizer row appears on the work order and the parts sale only — NOT on the imported work
+   order."* — **met exactly.**
+
+**⚠️ BUT THE CASE'S OWN EXPECTATION COMES FROM THE TECHNICAL PLAN AND CONTRADICTS THE SPEC.**
+The case cites *"(plan CustomerCard gate)"*. The specification's **S11/S3-R5** says, verbatim:
+
+> *"The Authorizer is selected in the customer contact card on the left side of **every work order**,
+> in an 'Authorizer' row directly below the Contact and Phone values…"*
+
+An imported work order **is** a work order in the product's own navigation (it appears in the Work
+Orders list under an Imported status chip), and it carries **no Contact or Phone rows at all**, so
+the spec's *"directly below the Contact and Phone values"* has nothing to sit below there.
+
+Rule 30 says the technical plan **informs but never overrules**; Rule 96 says a code-versus-document
+conflict is a **PO decision item, never a silent invariant**. So the case is **left exactly as it is
+and reported as passing**, and the conflict goes to Chris Ward as a question (below). Nothing was
+rewritten to match the build.
+
+Evidence: `evidence/final-observations.log`, `evidence/final-observations.json`,
+`evidence/final-imported.png`, `evidence/final-partsale.png`.
+
+---
+
+## C45191 — A user without work order edit permission sees the Authorizer as read-only
+
+**No role swap was needed, so none was made.** Skill 03 §8.2a's five-step Technician-role-swap exists
+for when no suitable role holder exists — but reading the roles live showed the **Technician role
+already lacks `workOrdersCreateAndEdit`**:
+
+| Role | `workOrder*` permissions |
+|---|---|
+| Admin | `workOrdersView`, `workOrdersCreateAndEdit`, `workOrdersDelete`, `workOrderLinesCreateAndEdit`, `workOrderLinesDelete` |
+| **Technician** | `workOrdersView`, `workOrderLinesCreateAndEdit` — **no `workOrdersCreateAndEdit`** |
+
+So the restricted user the case asks for already exists. Nothing was changed, so step 5 (restore the
+Technician role) has nothing to restore — the pass leaves the organisation's roles untouched.
+
+Observed as a controlled A/B on **the same work order**, via `POST /api/switch-user` (the recorded
+simpler fallback, playbook §G) to **Brandi Smith**, an active Technician:
+
+| Viewer | `workOrdersCreateAndEdit` | Authorizer renders as | `[data-test-id="authorizer_readonly"]` |
+|---|---|---|---|
+| Admin (positive control) | **yes** | an editable **select** | absent |
+| Brandi Smith, Technician | **no** | a **static field** | **present** |
+
+Under the restricted user the static field labels read
+`Lead technician · Service advisor · Sales representative · Contact · Phone · Authorizer · Title ·
+Unit # · VIN/Serial #` — **and no select control is offered at all** (the only `.q-select` left on
+the page is the global Search box).
+
+*"The Authorizer shows as a static, read-only field; no select control is offered"* — **met**, and
+the read-only rendering also puts Authorizer **directly below Contact and Phone**, which is S3-R5's
+required position.
+
+The session was returned to the admin at the end of the run (`quick-login` → 200), so the branch is
+left as it was found.
+
+Evidence: `evidence/final-observations.log`, `evidence/final-c45191.png`.
+
+---
+
+## C44923 — A new 'Approves Work' contact becomes selectable immediately
+
+Observed exactly as the case describes, with **the work order tab never reloaded or re-saved** — a
+reload would test nothing.
+
+| Step | Observed |
+|---|---|
+| Work order **S8218-17358** open (status *estimate*), Authorizer list opened | `No authorizer`, `Peter Soto` |
+| **Olivia Sims** present in that list? | **no** — and her record read `is_authorizer: false` |
+| Second tab → Customers → the customer → **Contacts** tab → her row's **edit** icon → ticked **"Approves Work"** → **Save** | dialog control found and saved |
+| Her record re-read from the API | **`is_authorizer: true`** |
+| Back to the **untouched** work order tab (never reloaded), Authorizer list opened again | `No authorizer`, `Peter Soto`, **`Olivia Sims`** |
+
+1. *"The newly enabled contact appears in the work order's Authorizer list."* — **met.**
+2. *"It becomes selectable without any refresh or re-save of the work order."* — **met.** The tab's
+   URL is unchanged across the whole run and no reload was issued.
+
+**Every reading carries a positive control.** The list must contain **"No authorizer"** (S3-R6's
+clear option) or the reader is treated as not having fired and the result is discarded. The control
+fired on both the before and the after read, so the change from *absent* to *present* is real.
+
+**Two rules confirmed incidentally:** the list offers **only** contacts with "Approves Work" enabled
+(S3-R5 — Olivia Sims was excluded until the moment she qualified), and the **"No authorizer"** clear
+option is present (S3-R6).
+
+Evidence: `evidence/c44923-final.log`, `evidence/c44923.json`, `evidence/c44923-after.png`.
+
+### Three wrong readings on the way here, and why none of them was a defect
+
+All three were **my instrument**, not the build (skill 03 §8.0-a). Recording them because each is a
+trap the next session will hit:
+
+1. **The first target work order was PAID.** Its Authorizer select carries `q-field--disabled` /
+   `aria-disabled="true"`, so the dropdown can never open and every read returned an empty list.
+   That is **S3-R8 working correctly** — *"locked once the work order is invoiced"*. **C44923 needs a
+   work order that has not been invoiced** (estimate / approved / in progress / review / complete).
+   An incidental live confirmation of S3-R8.
+2. **`/customers/{id}` redirects to the work-orders tab.** The contacts tab is
+   **`/customers/{id}/contacts`**; a run pointed at the bare customer URL searches a work-order table
+   for a contact and reports "contact not found".
+3. **Table cells are separate `<td>`s**, so a row's `innerText` is `Olivia\tSims` and
+   `includes("Olivia Sims")` never matches. **Normalise whitespace on both sides before comparing.**
+   And the row is not clickable — each row carries an **`edit_note` icon** that opens the editor.
+
+The positive control is what caught all three: without it, three separate runs would have reported a
+passing case as failing.
