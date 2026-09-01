@@ -87,3 +87,41 @@ C45169 and C45170 sit in *Authorizer Entry (Work Order)*. Not moved — that is 
 2. Two titles exceed the ≤ ~80 character convention and will truncate on the case page —
    C45190 (99) and C45185 (89). One-line fix on your word.
 3. Still parked at your instruction: the snapshot defect (not filed) and the three PO questions.
+
+---
+
+## Beyond the gate: every route was WALKED on the live build
+
+The text gate proves a route is **present**. It cannot prove one is **correct** — and a case that
+sends Victoria to a tab that does not exist still fails her. So the distinct routes the 119 cases
+tell a tester to follow were harvested and **each one walked on sv8218**.
+
+There are only **eight** distinct routes across the whole suite, and **all eight work**:
+
+| Route | Cases citing it | Walked result |
+|---|---|---|
+| Work Orders → **Finance** tab | 179 | ✅ tabs on screen: Lines · Parts · Notes · Timesheets · History · Stats · **Finance** |
+| Customers → **Invoices** tab | 37 | ✅ |
+| Parts → **Part Sales** → the part sale | 13 | ✅ lands on the part sale |
+| Customers → **Payments** tab | 6 | ✅ (label reads **"Payments (30)"** — it carries a row count) |
+| Work Orders → **Imported** status filter | 4 | ✅ the imported row is listed under it and nowhere else |
+| Part sale → **Finance** tab | 3 | ✅ tabs: Parts · Statistics · **Finance** |
+| Customers → **Contacts** tab | 2 | ✅ (label reads **"Contacts (6)"**) |
+| Customers → **Part Sales** tab | 1 | ✅ — so a part sale is reachable **two** ways, and both cited routes are real |
+
+Evidence: `route-verification.log`, `route-verification.json`.
+
+### Two false alarms, both mine — worth recording so they are not chased again
+
+1. **"Customers → Payments: TAB NOT FOUND"** while the screenshot listed `Payments (30)`. Tab labels
+   carry a row count, and I was comparing against the bare word. **The matcher, not the build.**
+2. **"Work Orders → Contacts: TAB NOT FOUND"** — there is genuinely no Contacts tab on a work order,
+   but **no case ever asks for one.** My harvesting regex allowed 160 characters of anything between
+   a screen name and a tab name, so on C45170 it stitched the end of one sentence to the start of the
+   next: *"…open the work order. **5.** To set up the customer's contacts: click **Customers** … the
+   **Contacts** tab"*. The real route there is Customers → Contacts, which is correct and passes.
+
+Both are the same failure as the earlier gate mis-calibration: **a measuring instrument that is
+looser or stricter than the thing it measures produces confident nonsense.** Every finding in this
+pass was checked against the screen before being called a defect, and every one that turned out to
+be my instrument is written down here rather than quietly dropped.
