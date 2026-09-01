@@ -7,14 +7,22 @@ this script and holds.py, read LIVE from TestRail.
 Core §3.3 trap: get_sections and get_cases must be PAGED - an unpaged call returns 250 and silently
 finds nothing.
 """
-import json, base64, urllib.request, re, html, collections, os
+import json, base64, urllib.request, re, html, collections, os, time
 
 C = json.load(open('/tmp/testrail/creds.json'))
 AUTH = base64.b64encode(f"{C['email']}:{C['password']}".encode()).decode()
 BASE = 'https://shopview.testrail.io/index.php?/api/v2/'
-def get(p):
-    r = urllib.request.Request(BASE + p, headers={'Authorization': 'Basic ' + AUTH})
-    return json.load(urllib.request.urlopen(r, timeout=180))
+def get(p, tries=6):
+    # The agent proxy resets a connection now and then. Every figure in the brief comes from this
+    # script, so it must not die halfway and leave a half-written census behind (measured 2026-09-01:
+    # "Connection reset by peer" mid-run).
+    for a in range(tries):
+        try:
+            r = urllib.request.Request(BASE + p, headers={'Authorization': 'Basic ' + AUTH})
+            return json.load(urllib.request.urlopen(r, timeout=180))
+        except Exception:
+            if a == tries - 1: raise
+            time.sleep(2 ** a)
 def paged(p, key):
     out, off = [], 0
     while True:

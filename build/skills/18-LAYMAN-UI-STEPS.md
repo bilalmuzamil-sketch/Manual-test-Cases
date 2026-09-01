@@ -179,3 +179,58 @@ contact record (**Customers** → customer → **Contacts** tab → edit a conta
 UI route (no screen name, no tab, no click). Run it before any handover; pair it with the
 served-page render check (skill 04 §4.5), because a case can be perfectly worded and still unreadable
 on screen.
+
+
+---
+
+# 🛑 RUNNABLE-SHAPED IS NOT BUILD-VERIFIED. THE LABELS HAVE TO BE READ OFF THE SCREEN. (2026-09-01)
+
+**The question that exposed this, from the QA lead, verbatim:** *"kindly confirm if the preconditions
+are also Build verified and runnable"*.
+
+They were **runnable** — `check_runnable_cases.py` said 121/122 and 43/44, live. They were **not all
+build-verified**, and the difference cost 118 cases:
+
+| Claimed by the preconditions | Cases | What the build actually says |
+|---|---|---|
+| `“Work Order Line - Create and Edit”` | **117** | the role screen has a **“Work order lines”** section with a **“Create & Edit”** toggle. That exact string does not exist |
+| `“Work Orders → Work Order View Mode”` | **90** | the **“Work orders”** section contains **“View mode”**, offering **“Full View”** and **“Tech view”** |
+| `“Tech Story”` box on a line | 1 | the row is labelled **“Story”**, placeholder *“Add tech story for this line”* |
+| *"the menu holds five items"* | 42 | five on an editable work order; **three on a Paid one** (no Fee / Discount, no Delete) |
+
+**Why the gate could not catch it, and this is the point.** `check_runnable_cases.py` says so in its own
+header: *"WHAT THIS CANNOT CHECK. Whether a route is CORRECT or still exists on the build — only that
+one is present and tester-shaped."* A precondition can name a screen, give a click and point at a
+control, and pass — while the control it names has never existed. **A green runnability score is not an
+answer to "are the preconditions build-verified".**
+
+## THE RULE
+
+**A precondition is build-verified only when every UI label it QUOTES has been read off the served page
+in a probe whose evidence is committed.** Not from an API field name (`workOrderLinesCreateAndEdit` is
+not a label), not from the spec, not from a note in this repo, not from memory.
+
+## THE TWO-PART GATE, from now on
+
+```
+python3 build/testing-tools/check_runnable_cases.py  --section-prefix "<suite>"   # is it tester-SHAPED?
+python3 build/testing-tools/check_precond_labels.py --sections <ids> \
+        --observed build/OBSERVED-UI-LABELS-<env>.md                              # are the labels REAL?
+```
+
+The second one compares every quoted label against **`build/OBSERVED-UI-LABELS-<env>.md`** — the
+labels seen on that build, each row naming its evidence — and fails on any label never observed, plus
+any label on its BARRED list (strings proven not to exist). Keep that file per environment and grow it
+from probes.
+
+**It caught its own maintainer within minutes of existing.** It flagged 42 correct cases because I had
+copied `Fee & Discount` from an old note into the observed file when the build says `Fee / Discount`.
+**The cases were right and my reference file was wrong** — so the file's own rule is now the first thing
+in it: a label goes in only from a probe with committed evidence.
+
+## AND STATE IT HONESTLY IN THE REPORT
+
+"Runnable" and "build-verified" are two claims. Report them separately, per case, with numbers:
+*"121 of 122 are runnable; the preconditions of the 118 that were walked on the build are build-verified;
+the labels in all of them are now confirmed against the observed-label file."* **Never let a
+runnability score stand in for a label check.**

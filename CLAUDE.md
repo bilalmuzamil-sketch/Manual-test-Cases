@@ -164,6 +164,19 @@ These are stated here **in full** because a session that gets only this far must
   **Gate: `python3 build/testing-tools/check_runnable_cases.py --section-prefix "<suite>"`** — reads
   TestRail LIVE, exit 1 on any failure; drive it to zero before reporting a suite done. It replaces
   `check_layman_steps.py`, which passed any case containing the words *"open the"*. Skill: `build/skills/18-LAYMAN-UI-STEPS.md`.
+- **🛑 RUNNABLE-SHAPED IS NOT BUILD-VERIFIED — THE LABELS MUST BE READ OFF THE SCREEN (2026-09-01).**
+  `check_runnable_cases.py` proves a precondition is tester-SHAPED and says in its own header that it
+  **cannot** prove the route is correct. Asked *"confirm if the preconditions are also Build verified"*,
+  a label inventory found **117 cases naming a permission “Work Order Line - Create and Edit” and 90
+  naming “Work Orders → Work Order View Mode” — neither string exists**; the build says the
+  **“Work order lines”** section's **“Create & Edit”** toggle and the **“Work orders”** section's
+  **“View mode”** (`Full View` / `Tech view`). **⇒ TWO GATES, ALWAYS BOTH:**
+  `check_runnable_cases.py` (shape) **and**
+  `python3 build/testing-tools/check_precond_labels.py --sections <ids> --observed build/OBSERVED-UI-LABELS-<env>.md`
+  (are the quoted labels real). A label enters the observed file **only from a probe with committed
+  evidence** — never from an API field name, a spec, or a note in this repo: copying `Fee & Discount`
+  from an old note when the build says `Fee / Discount` made the new gate flag 42 correct cases.
+  Full text: `build/skills/18-LAYMAN-UI-STEPS.md`.
 - **🛑 EVERY CASE IS RUNNABLE FROM THE UI BY A LAYMAN — NO SPEC-LEVEL PRECONDITIONS OR STEPS (skill 18,
   QA lead 2026-08-31, UNIVERSAL — ALL cases, ALL suites, NOT only build-verified ones).** A precondition
   that asserts a *state* ("a document exists whose work order has … set") or a step that *summarizes* an

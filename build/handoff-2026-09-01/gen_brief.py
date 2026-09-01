@@ -275,35 +275,40 @@ w('')
 w('| # | What I need | Why it matters | What happens without it |')
 w('|---|---|---|---|')
 rows = [
+ ('Go-ahead to correct SIX cases whose preconditions name a permission that does not exist',
+  f'[C45005]({link(45005)}), [C45026]({link(45026)}), [C45223]({link(45223)}), '
+  f'[C45224]({link(45224)}), [C45227]({link(45227)}), [C45237]({link(45237)}) still say '
+  '“Work Order Line - Create and Edit” and “Work Orders → Work Order View Mode”. Neither string is on '
+  'the screen — the build has a “Work order lines” section with a “Create & Edit” toggle, and a '
+  '“View mode” setting inside “Work orders”. The other 116 are already corrected; these six are '
+  'flagged Automated, so Rule 71 holds them.',
+  'Six cases send the tester hunting for a setting that is not there.'),
  ('Go-ahead to rewrite one Printer Friendly test',
-  f'[C45123]({link(45123)}) is flagged Automated, so it cannot be touched without your say-so per '
-  'case. Its behaviour is verified as correct; only its steps are short of naming where on the screen '
-  'to look, which is why it is the one case in that suite failing the runnability check.',
+  f'[C45123]({link(45123)}) is flagged Automated. Its behaviour is verified as correct; only its steps '
+  'are short of naming where on the screen to look, which is why it is the one case in that suite '
+  'failing the runnability check.',
   'It goes to the tester with vaguer instructions than the other 43.'),
  ('A product-owner ruling on five tests the application forbids',
   f'[C45097]({link(45097)}) and [C45098]({link(45098)}) describe a work order with no customer / no '
   f'vehicle — the app answers "Customer is a required field" and "Asset is a required field" and '
   f'creates nothing. [C45104]({link(45104)}) needs a Cancelled line status, which the product does not '
-  f'have (its list is Authorization required, Declined, Authorized, Complete). '
-  f'[C45107]({link(45107)}) and [C45116]({link(45116)}) describe the printout of a work order with no '
-  'lines, which cannot be printed at all. In every case the written requirement asks for behaviour in '
-  'a state the product does not permit.',
-  'Those five stay Untested — nobody can run them, now or later, until the requirement changes.'),
+  f'have. [C45107]({link(45107)}) and [C45116]({link(45116)}) describe the printout of a work order '
+  'with no lines, which cannot be printed at all. **You said you would look at these five yourself** — '
+  'nothing has been chased with the PO and nothing has been rewritten.',
+  'Those five stay Untested — nobody can run them until the requirement changes.'),
  ('A colleague for one test',
   f'[C45034]({link(45034)}) needs a second person changing the same part while the tester\'s edit row '
-  'is open. Two attempts from a second connection could not get the row open at the right moment, so '
-  'nothing is known about the behaviour either way.',
+  'is open.',
   'It stays Untested; a tester with a colleague settles it in a minute.'),
+ ('The part-picking route, for two of the new cases',
+  f'[C45250]({link(45250)}) and [C45251]({link(45251)}) need a part PICKED before the line will go to '
+  'Complete — "In stock" is not enough, and the part row\'s menu has no pick action, so it happens in '
+  'the Parts area. Point me at that screen and both become runnable end to end.',
+  'Two of the four new cases stay Untested.'),
  ('Nothing on Vladimir Tomovic\'s case — recorded, not asked',
   f'[C45220]({link(45220)}) has no steps and is the one Inline case failing the runnability check. '
-  'Your instruction is recorded and I have not touched it, and I am not asking again.',
+  'Your instruction is recorded and I have not touched it.',
   'The tester will open an empty test; the brief tells her to leave it alone.'),
- ('For your information — four more cases became Automated today',
-  f'[C45223]({link(45223)}), [C45224]({link(45224)}), [C45227]({link(45227)}) and '
-  f'[C45237]({link(45237)}) are now flagged Automated in TestRail; this morning only '
-  f'[C45005]({link(45005)}), [C45026]({link(45026)}) and [C45220]({link(45220)}) were. All four were '
-  'written before the flag appeared, so nothing was written to a protected case.',
-  'From now on those four need a per-case go-ahead like any other Automated case.'),
 ]
 for i, (a, b, cc) in enumerate(rows, 1):
     w(f'| {i} | **{a}** | {b} | {cc} |')
@@ -449,6 +454,10 @@ k('| Marker / provenance / formatting | one marker, last in Expected Results; pr
   'barred phrase; no styling tag; no empty field; no contradiction candidates | '
   + ('ALL CLEAR' if gates and not gates['fails'] else 'see the file') +
   ' | `python3 build/handoff-2026-09-01/handover_gates.py` |')
+k('| **Precondition labels are real** | every UI label a precondition QUOTES has been read off the '
+  'served page — the check the runnability gate explicitly cannot do | Printer Friendly ALL CLEAR; '
+  'Inline clear on 116 of 122, with the 6 exceptions named below | '
+  '`python3 build/testing-tools/check_precond_labels.py --sections <ids> --observed build/OBSERVED-UI-LABELS-sv9315.md` |')
 k('| Self-explaining held cases | every case the brief does not send the tester through end to end '
   'carries that reason in its OWN words, so a tester working straight from the run is still told | '
   'ALL CLEAR — 14 of 14, with C45220 named and excluded | '
@@ -469,6 +478,16 @@ k('to run only partly carried no such note inside the case. They now do — writ
 k('re-scanned, and re-gated. Two of them (the printout of a work order with no line items) also moved')
 k('from `AUTOMATION: READY` to `AUTOMATION: HOLD`, because nobody can run them: the print option is')
 k('greyed out in exactly that situation. Both suites\' gates were re-derived afterwards and still close.')
+k('')
+k('**The preconditions were runnable before they were correct, and that is worth stating.** Asked')
+k('directly whether the preconditions were build-verified, a label inventory over all 166 cases found')
+k('two strings that do not exist on the build: a permission called “Work Order Line - Create and Edit”')
+k('(117 cases) and “Work Orders → Work Order View Mode” (90). The build calls them the “Work order')
+k('lines” section’s “Create & Edit” toggle and the “Work orders” section’s “View mode”. Also corrected:')
+k('one case said “Tech Story” where the row is labelled “Story”, and 42 said the More menu “holds five')
+k('items” when a Paid work order shows three. 154 preconditions were rewritten; 6 could not be')
+k('(Automated, Rule 71) and are named in the outstanding list. All of this passed the runnability gate')
+k('the whole time — that gate proves a precondition is tester-SHAPED, never that its route is real.')
 k('')
 k('## What this working does NOT establish')
 k('')
