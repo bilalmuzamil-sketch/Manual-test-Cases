@@ -50,6 +50,31 @@ build confirms exact labels/filters, and NEVER invent an unreachable path or sta
 On a no-build suite the EXPECTED results still come only from the documents (Rule 57); it is the
 PRECONDITIONS/STEPS route that is drafted-from-design and confirmed at build time.
 
+## RUNNABILITY LIFECYCLE — provisional at source-verification, FINALISED at build-verification (QA lead, 2026-08-31)
+**"Build verification is the final touch-up after source verification to make the tests runnable."** So a
+case's route has two states:
+1. **PROVISIONAL (no build yet, Rule 85):** the route is drafted from the **design + spec**, marked
+   *"provisional — to be confirmed on the build"*, and never fabricated. This is done at/after source
+   verification so the case reads as runnable in the meantime.
+2. **FINALISED (build exists):** the build-verification pass (skill 11/03) rewrites the route in the
+   build's own on-screen labels, confirms every screen/menu/control is really there and the setup state
+   is reachable, and stamps `AUTOMATION: READY` + the build marker. The provisional route is superseded.
+
+## 🛑 COORDINATION — CHECK FOR A BUILD AND AN ACTIVE BUILD-VERIFY SESSION BEFORE ANY RUNNABILITY PASS (learned the hard way, 2026-08-31)
+Before launching a runnability pass on a suite, VERIFY LIVE (Rule 86 — never trust a PROJECT-STATE line):
+- **Does a QA build exist now?** A `PROJECT-STATE.md` "QA env: none → Rule 85" line CAN BE STALE — another
+  session may have recovered/created a build. Check recent commits (`git log --oneline -- build/<suite>/`),
+  the suite's `build-verify-*/HANDOVER*.md`, and live `AUTOMATION: READY` + build markers on the cases.
+- **Is a parallel session already build-verifying it?** If cases are turning `AUTOMATION: READY` on a real
+  build and being made layman-followable, **that session OWNS the suite's runnability — DEFER to it, do
+  NOT run a design-provisional pass over it.** Two sessions UI-editing the same cases collide (deadlocks,
+  last-writer-wins overwrites that can downgrade a build-verified route to a provisional one).
+- **What went wrong once:** a design-provisional Invoice pass was launched while a build-verify session
+  held the recovered sv8218 build and had already made 100+/119 cases build-verified + layman-followable.
+  No damage resulted (all stayed `fr-view`; the READY count only rose), but the pass was redundant and
+  risked overwriting superior build-checked routes. **Provisional routes are ONLY for suites with no build
+  and no active build-verify owner.**
+
 ## THE RULE
 
 **A case is not tester-ready until a person who has never seen the feature can open the right screen
