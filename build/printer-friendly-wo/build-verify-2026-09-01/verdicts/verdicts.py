@@ -39,11 +39,16 @@ V = {
  45089: ('PASS', 'C-mobile',
          'at a 390x844 mobile viewport the same five-item menu appears and Print Work Order is '
          'present and enabled'),
- 45090: ('NOTVER', 'not exercised',
-         'needs a user who cannot view the work order at all. The requirement says this is enforced '
-         'by existing access control rather than by this feature, so proving it means stripping '
-         "'Work Orders - View' from a role and confirming the detail page itself is unreachable. "
-         'Doable the same way the Inline suite proved its permission negative; not run here'),
+ 45090: ('PASS', 'probe-print4 C45090-no-view-permission',
+         "VERIFIED 2026-09-01 on the QA lead's authorisation to change a technician's permissions. "
+         'Positive control first: the technician WITH the permission reaches the work order and the '
+         'More menu offers an enabled "Print Work Order". Then the work-orders view permission was '
+         'removed from the Technician role. NOTE, and it is why a 200 is not proof: removing '
+         "'workOrdersView' ALONE does nothing - the PUT answers 200 and the role reads back with it "
+         'still on, because the line-edit and pick-parts permissions depend on it. Removing the whole '
+         'dependent group does take effect, and then the technician is redirected off the work order '
+         'URL to /timesheets, "Work Orders" is gone from the top menu, there is no More menu and so '
+         'no print option. Role restored and the restore verified identical, view mode included'),
  45091: ('PASS', 'B-across-statuses + F-no-lines',
          'on S9315-15889, a work order with zero lines, the Print Work Order item is present but '
          'DISABLED, while on the two work orders with lines it is enabled'),
@@ -65,11 +70,18 @@ V = {
          'on S2-13958, which has them'),
  45096: ('PASS', 'E-header-contents',
          'the shop name "Staging Heavy Duty - 9919" prints in wo-print__shop in the header'),
- 45097: ('NOTVER', 'not exercised',
-         'needs a work order with no customer assigned. All 100 work orders read carry a customer, so '
-         'the state does not exist here and was not seeded'),
- 45098: ('NOTVER', 'not exercised',
-         'needs a work order with no vehicle assigned. All 100 work orders read carry a vehicle'),
+ 45097: ('UNREACHABLE', 'probe-print5 C45097-C45098-create-without-customer-or-vehicle',
+         'THE STATE CANNOT EXIST ON THIS BUILD, and that is now proved rather than inferred from the '
+         '100 work orders that happen to have a customer: pressing Save on the New Work Order dialog '
+         'with the Customer select empty answers "Customer is a required field" and sends no request '
+         'at all. So no work order can exist without a customer, and the placeholder this case asks '
+         'for can never be printed. A product-owner ruling is needed on what the requirement means'),
+ 45098: ('UNREACHABLE', 'probe-print5 C45097-C45098-create-without-customer-or-vehicle',
+         'THE STATE CANNOT EXIST ON THIS BUILD. The Asset (vehicle) select shows no required marker, '
+         'so this was attempted properly: a customer was chosen and Save pressed with the Asset select '
+         'empty - the dialog answers "Asset is a required field" and sends no request. Nearest real '
+         'data is S2-6107, whose vehicle carries only a year, and it prints as "Vehicle: 1993", which '
+         'is a vehicle with sparse data rather than none. A product-owner ruling is needed'),
 
  # ---------------- Story 3 - the printed line items (13) ----------------
  45099: ('PASS', 'I-line-details + probe-print-final',
@@ -88,9 +100,14 @@ V = {
  45103: ('PASS', 'probe-print-final',
          'the line groups print in screen order - 1, 2, 3 on the three-line work order and 1 to 7 on '
          'the seven-line one'),
- 45104: ('NOTVER', 'not exercised',
-         'needs a line whose status is Cancelled. No line on the work orders used had that status, '
-         'and the word "cancel" appears nowhere on the printouts read'),
+ 45104: ('UNREACHABLE', 'probe-print5 C45104-cancelled-line-status',
+         'THERE IS NO CANCELLED LINE STATUS IN THE APPLICATION. Asked the build rather than the data: '
+         'GET /api/work-orders/line-statuses returns exactly authorization_required, '
+         'authorization_declined, authorized and complete, and posting status "cancelled" against a '
+         'REAL line id answers 400 with the status field alone rejected as an invalid value. The '
+         "line's own on-screen action buttons offer only Authorized and Declined. So the case names a "
+         'status the product does not have - a specification-versus-build question for the PO, not a '
+         'missing data state'),
  45105: ('PASS', 'probe-print-final',
          'every wo-print__group carries a 2px top border - the thick separator - and there is exactly '
          'one wo-print__row--note per line (3 notes on the three-line work order, 7 on the seven-line '
@@ -113,9 +130,14 @@ V = {
  45110: ('PASS', 'J-pagination + probe-omission',
          'a 7-line work order printed to 3 pages and a 33-line work order to 13, and every '
          'wo-print__group carries break-inside: avoid, so a line is not split across a page break'),
- 45111: ('NOTVER', 'not exercised',
-         'needs a tech story of 500+ characters. The longest on the work orders used is about 45 '
-         'characters, so the wrapping behaviour has nothing to demonstrate it'),
+ 45111: ('PASS', 'probe-print5 C45111-long-tech-story',
+         'VERIFIED 2026-09-01 by seeding the state instead of reporting it missing (Rule 14). A '
+         '560-character story was written to a line with POST /api/work-orders/lines/change-story '
+         '(NOT /lines/change, which answers 500), the work order was printed with the print '
+         'stylesheet applied, and the story appears on the paper IN FULL - all ten repetitions of the '
+         'seeded phrase, 600 characters of it visible, and no ellipsis, "Show more" or any other '
+         'truncation marker anywhere on the printout. The original story was restored and the restore '
+         'verified character for character'),
 
  # ---------------- Story 4 - summary and footer (5) ----------------
  45112: ('PASS', 'probe-print-final',

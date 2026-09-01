@@ -51,6 +51,19 @@ These are stated here **in full** because a session that gets only this far must
   new artefact in any other external system of record; **TestRail cases are expressly carved out**.
   **This hold is TEMPORARY with a lift condition (his next order) — a session reading this later must
   CHECK whether it has been lifted, not assume it is standing law.** Register row **H1**.
+- **🛑 WE DO NOT CREATE DEFECTS — WE MAKE THE TESTS RUNNABLE (QA lead, 2026-09-01).** Verbatim: *"You
+  are never supposed to create defect, you are supposed to make the tests RUNNABLE."* **A pass no longer
+  ends with a defect candidate awaiting permission.** Where the build does not match the document: the
+  documented expectation STAYS (57), the case gains the **three outcomes** in plain words so the tester
+  runs it and marks it **Failed**, the marker stays `AUTOMATION: READY` (an `EXPECT FAIL` marker needs a
+  live ticket and there is none), and the finding is reported **with its C-id** — no ticket text, no ask,
+  no candidate file. This **supersedes Rules 51/52/53/62/73/94 and `build/skills/06-DEFECT-PREP.md` for
+  the lane's own output**; skill 06's shape still governs *if he asks for a ticket*. Worked examples,
+  2026-09-01: **C45068**, **C45060**, **C44996**. Full text: `build/rules/RULES-61-98.md` rule 62
+  amendment of 2026-09-01.
+- **🛑 ALWAYS GIVE THE TEST CASE NUMBERS (QA lead, 2026-09-01).** Verbatim: *"ALways give test case
+  numbers."* Every report row names its **C-ids**, never just a count; a completed-versus-left figure
+  states **both numbers AND lists the ids of what is left**. Rule 98 amendment.
 - **🛑 A DEFECT CANDIDATE IS RE-VERIFIED ON THE BUILD *AFTER* THE GO-AHEAD, AND ONLY THEN ASKED ABOUT
   (QA lead, 2026-09-01).** Verbatim: *"Hold all such tickets for now - for other suites too, we may
   need to create them after verifying the build once again when I will give you a go ahead, but make
@@ -174,9 +187,13 @@ These are stated here **in full** because a session that gets only this far must
   designated MANUAL QA TESTER is NOT foreign — treat it as IN-SCOPE (as if created by the QA lead):
   source-verify it, keep it tester-ready, update it.** The QA lead names who the tester is per project;
   once named, that person's cases on that project are ours to maintain.
-  **🛑 VLADIMIR TOMOVIC'S CASES ARE NEVER CHANGED (QA lead, 2026-09-01, verbatim: _"C45220 and others
-  where the creator of the test case is Vladimir, do not change them."_)** — TestRail user **1**,
-  `created_by = 1`. Report them, never edit them, whatever else a session has been authorised to
+  **🛑 VLADIMIR TOMOVIC'S CASES ARE NEVER CHANGED — RE-CONFIRMED 2026-09-01, verbatim: _"If the creator
+  is Vladimir leave the test cases as is - remember this rule."_ (and earlier the same day: _"C45220 and
+  others where the creator of the test case is Vladimir, do not change them."_)** — TestRail user **1**,
+  `created_by = 1`. **The test is `created_by == 1` checked before the write, never the title.** It does
+  not matter that the case fails a gate, has no steps, or is the only thing between a suite and a clean
+  score: report it, name the author, leave it. **No general go-ahead reaches his cases and we do not
+  re-ask per case.** Report them, never edit them, whatever else a session has been authorised to
   override. Check `created_by` before any write, not the title. **Recorded testers:** Invoice UI
   Refresh → **Mudassir Qamar** (TestRail user 6, mudassir.qamar@shopview.com), confirmed 2026-08-31.
   **THE TWO MANUAL QA TESTERS ARE ASSIGNED PER SUITE — do not merge them (QA lead, 2026-09-01,

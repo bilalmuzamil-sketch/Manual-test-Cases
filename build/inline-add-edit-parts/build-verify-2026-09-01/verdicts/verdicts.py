@@ -34,8 +34,16 @@ V = {
             'same run: 0 edit controls on the Paid work order, 12 on the Estimate one. Complete / Invoiced / Declined / Imported are a branch data gap (INL-4)'),
     44995: ('PASS', 'N3-no-permission',
             'with workOrderLinesCreateAndEdit removed from the Technician role, an EDITABLE (Estimate) work order showed 0 Add Part buttons and 0 edit controls. The role was restored in the same run and verified field by field - permission list identical, view_mode unchanged'),
-    44996: (None, None,
-            ''),
+    44996: ('FAIL', 'probe-last3 C44996-line-complete',
+            'DEVIATION, observed 2026-09-01. S1-N4 requires the "Add Part" button NOT to be displayed '
+            'when the line is not editable. The line status enum HAS "complete" (GET '
+            '/api/work-orders/line-statuses), so this was never a data-state gap - nobody had walked '
+            'it. Walked line 2 of S9315-14846 authorization_required -> authorized -> complete (a '
+            'direct jump answers 400 naming the allowed transition, and a line with unfulfilled part '
+            'requests cannot complete at all, so a part-free line is needed). With the badge reading '
+            '"Complete" the line STILL shows "+ Add Part" in its Parts row - visible in '
+            'evidence/last3-line-complete.png - and the page-level count of Add Part buttons stays at '
+            '3 for 3 lines. Line status restored and the restore verified'),
     44997: ('PASS', 'M-second-row',
             'Add Part on another line with data in the row raises "Discard this part?" Keep Editing / Discard Part'),
     45220: ('FOREIGN', None,
@@ -114,8 +122,14 @@ V = {
             'the same run: no edit control anywhere on the part lines without the permission'),
     45033: ('PASS', 'TM-edit-clear-desc',
             'clearing the description blocked the save, flagged the description field, moved focus to it, and showed the documented combined sentence'),
-    45034: (None, None,
-            ''),
+    45034: ('NOTVER', 'probe-neg E1 + probe-last3 C45034-concurrent-change',
+            'STILL NOT OBSERVED, and this one is honest rather than unseeded. It needs a genuine '
+            'second actor changing the same part while the edit row is open. Two attempts: changing '
+            'the part through the API while the browser row was open, and deleting it outright. '
+            'Neither produced the documented sentence, but neither run reliably had the edit row open '
+            'at the moment of the change, so the runs prove nothing either way and are NOT reported '
+            'as a deviation. A tester with a colleague can settle it in a minute, and the case now '
+            'says so in its own words'),
     45035: ('PASS', 'E3-becomes-uneditable',
             'same run - the edit path shares S2-E3'),
     # ---------------- Story 4 - Full View inline add (27 cases) ----------------
@@ -167,8 +181,17 @@ V = {
             '"Cost cannot be negative." verbatim; a non-numeric entry is refused by the field itself so the row never reaches the "must be a number" branch'),
     45059: ('PASS', 'V-message-hunt',
             'sell 10 under cost 100 shows "Sell price is below cost." and does not block'),
-    45060: ('NOTVER', 'C6-part-without-prices + seed_edit_part',
-            'the state may not be reachable either. All 18 zero-price parts on the branch hold 0.00, which is a value rather than an empty field, and the Edit Inventory Part form carries no field with the id the New form uses for cost. Same PO question: does this product ever store a catalog part with NO cost or sell price on record?'),
+    45060: ('FAIL', 'probe-nobin + probe-last3 C45060-no-cost-no-sell',
+            'DEVIATION, observed 2026-09-01, and the earlier "the state may not be reachable" was '
+            'wrong: it was drawn from the INVENTORY list (stocked parts) when the case is about a '
+            'CATALOGUE part. F40010212 "Slack Adjuster" is a catalogue part whose record carries no '
+            'cost and no sell-price field at all and which /api/inventory/parts?search= returns '
+            'nothing for, so it is genuinely priceless. S4-E1 requires those fields to open EMPTY and '
+            'the user to enter them before saving inline. Selecting it opens cost "0.00" and sell '
+            '"0.00" - values, not empty - and pressing Save SUCCEEDED: HTTP 201 with the "Part added" '
+            'confirmation and no "Enter a description, qty, cost and sell price" message. So a part '
+            'can be added at zero price without the user entering anything, which is what the '
+            'requirement exists to prevent. The seeded part was removed afterwards'),
     45061: ('PASS', 'E3-becomes-uneditable',
             'same run, observed as a Full View user on the six-field row'),
     45062: ('PASS', 'EH2-server-error + L2-where-is-the-message',
@@ -254,8 +277,15 @@ V = {
             'after saving, the part line reads "(N68SL-356) … 1 Quoted $8.13" and names no bin anywhere'),
     45238: ('PASS', 'B6-tab-to-chip',
             'Tab reached the chip in the documented position: description, part number, qty, category, cost, sell price, Save, close, More options, then button_pulled_from_bin'),
-    45239: ('NOTVER', 'S1-card-chips + seed_edit_part',
-            'the state may not be reachable in this product at all. NO inventory part on the branch has zero bins - all 6,879 hold at least one - and the Edit Inventory Part form gives no way to remove the only bin row (the per-row delete appears only once a second row exists). Clearing the bin select and saving left the part byte-identical. Raised as a PO question: if a part can never have zero bins, S7-N1 and the "Not stocked" card may be unreachable by design'),
+    45239: ('PASS', 'probe-nobin C45239-C45060-catalogue-part-with-no-bin',
+            'VERIFIED 2026-09-01, and the earlier "may not be reachable in this product at all" was '
+            'wrong for the same reason C45060 was: it looked at the INVENTORY list. The build has an '
+            'endpoint that names the state outright - GET '
+            '/api/parts-catalogue/catalogue-parts-that-are-not-on-location returns 19,496 catalogue '
+            'parts held on no bin location. Selecting one (F40010212, which the typeahead labels '
+            '"Catalog") into the inline row gives NO bin chip and no allocation, and no "Pulled from" '
+            'line, exactly as S7-N1 requires. Positive control in the same run: a stocked part '
+            'selected the same way shows the chip "H3B"'),
     45240: ('PASS', 'B7-no-catalog-part',
             'a free-typed description with no catalog part got no chip and no "Pulled from" line at all'),
     45242: ('PASS', 'S2-auto-switch + S7-default-switch',

@@ -44,44 +44,59 @@ NEXT = {
  45068: 'RUN IT AND EXPECT IT TO FAIL. Type a part into the inline row without saving, then click the '
         'pencil on another part on the same line. The "Discard this part?" question should appear '
         'first; it does not - the Edit Part Request window opens straight away and your typed part is '
-        'left behind it. Mark the case FAILED and add nothing else; the ticket for it is already '
-        'written and waiting on the QA lead.',
+        'left behind it. Mark the case FAILED and add nothing else.',
  44993: 'RUN THE PART YOU CAN. Open a work order whose status is Paid and check the Add Part button is '
-        'not there - that part is confirmed working. The other four statuses the case names (Complete, '
-        'Invoiced, Declined, Imported) do not exist on this test system, so SKIP those and mark the '
-        'case Blocked with the note "no work order in that status exists here".',
+        'not there - that part is confirmed working. Of the other four the case names, Declined and '
+        'Imported are not statuses this product has at all (its list is Estimate, Approved, In '
+        'progress, Review, Complete, Invoiced, Paid), and no work order here is Complete or Invoiced. '
+        'Mark the case Blocked with the note "only the Paid status could be checked".',
  44994: 'Same as the case above, for the pencil (Edit) control instead of the Add Part button.',
- 44996: 'DO NOT RUN IT YET. Nobody knows yet what makes a work order un-editable other than its '
-        'status, so there is no way to set the situation up. It is waiting on an answer from the '
-        'product owner. Leave it Untested.',
- 45034: 'DO NOT RUN IT YET. It needs a second person to change the same part while your edit row is '
-        'open. If you can get a colleague to do that at the same time, run it; otherwise leave it '
-        'Untested and tell the QA lead.',
- 45060: 'DO NOT RUN IT YET. It needs a part that has no cost and no sell price recorded at all. Every '
-        'part on this test system has at least 0.00 in those boxes, which is not the same as empty. '
-        'Waiting on an answer from the product owner.',
- 45239: 'DO NOT RUN IT YET. It needs a part that is not kept in any bin. Every part on this test system '
-        'is in at least one bin. Waiting on an answer from the product owner.',
+ 44996: 'RUN IT AND EXPECT IT TO FAIL. Pick a line with NO parts on it, click Approve, then mark it '
+        'Complete from the same row (going straight to Complete is refused, and a line that has parts '
+        'cannot be completed at all). With the badge reading "Complete", look at that line\'s Parts '
+        'section: the "+ Add Part" button is still there, and it should not be. Mark the case FAILED.',
+ 45034: 'THIS ONE REALLY DOES NEED A SECOND PERSON. Ask a colleague to change or delete the same part '
+        'while your edit row is open, then press Save. If you cannot arrange that, leave it Untested '
+        'and tell the QA lead - do not guess. We tried it from a second connection rather than a '
+        'second person and could not get the row open at the right moment, so nothing is known about '
+        'this behaviour either way.',
+ 45060: 'RUN IT AND EXPECT IT TO FAIL. Click Add Part, type "F40010212" in the Part number box and '
+        'click the suggestion marked "Catalog" (Slack Adjuster - it is stocked nowhere and has no '
+        'price on record). The Cost and Sell price boxes should open EMPTY and stop you saving until '
+        'you fill them; instead they open showing "0.00" and the part saves at 0.00. Mark the case '
+        'FAILED.',
+ 45239: 'RUNS AND PASSES - kept here only so you know how to reach the state. Click Add Part, type '
+        '"F40010212" and pick the suggestion marked "Catalog": it sits in no bin, so you get no bin '
+        'chip and no "Pulled from" line, which is correct.',
  45220: 'NOT YOURS TO RUN OR CHANGE - this case belongs to Vladimir Tomovic and it has no steps '
         'written in it. Leave it alone entirely.',
  45088: 'RUN THE THREE YOU CAN. The Print option is confirmed present on Estimate, Approved and Paid '
-        'work orders. The other seven statuses the case names do not exist on this test system - skip '
-        'those and mark the case Blocked with the note "only three of the ten statuses exist here".',
+        'work orders. Note that the product itself only has seven work order statuses - Estimate, '
+        'Approved, In progress, Review, Complete, Invoiced, Paid - and only those three exist in the '
+        'data here, so mark the case Blocked with the note "only three of the statuses exist here".',
  45107: 'DO NOT RUN IT. It cannot be done: on a work order with no lines the Print option is greyed '
         'out, so you can never see the printout it describes. The written description contradicts '
         'itself here and the product owner has to settle it. Leave it Untested.',
  45116: 'DO NOT RUN IT - same reason as the case above. You cannot print a work order that has no '
         'lines, so there is no summary to look at.',
- 45090: 'DO NOT RUN IT YET. It needs an account that cannot open work orders at all. Ask the QA lead '
-        'to set one up, or leave it Untested.',
- 45097: 'DO NOT RUN IT YET. It needs a work order with no customer on it, and every work order on this '
-        'test system has one.',
- 45098: 'DO NOT RUN IT YET. It needs a work order with no vehicle on it, and every work order on this '
-        'test system has one.',
- 45104: 'DO NOT RUN IT YET. It needs a line whose status is Cancelled, and none of the work orders '
-        'checked had one. If you can set a line to Cancelled yourself, do that and then run it.',
- 45111: 'DO NOT RUN IT YET. It needs a tech story at least 500 characters long - roughly a full '
-        'paragraph. If you can paste that much text into a line\'s tech story, do that and then run it.',
+ 45090: 'RUNS AND PASSES. To set it up: Settings > Roles & Permissions > pencil on a role > switch its '
+        'work-order viewing OFF, and switch the work-order line editing and part-picking permissions '
+        'off in the same role (viewing alone will not stay off - the others depend on it). A user on '
+        'that role is then bounced off the work order entirely, "Work Orders" disappears from the top '
+        'menu, and there is no More menu and no print option. Put the permissions back afterwards.',
+ 45097: 'DO NOT RUN IT - it cannot be done. The app will not create a work order without a customer: '
+        'leaving Customer empty on the New Work Order window answers "Customer is a required field" '
+        'and nothing is saved. So the printout this case describes can never exist. It is waiting on a '
+        'product-owner ruling. Leave it Untested.',
+ 45098: 'DO NOT RUN IT - it cannot be done, same as the customer one. Choosing a customer and pressing '
+        'Save with Add Asset empty answers "Asset is a required field". Waiting on a product-owner '
+        'ruling. Leave it Untested.',
+ 45104: 'DO NOT RUN IT - there is no "Cancelled" status for a work order line in this product. A line '
+        'offers only Authorization required, Declined, Authorized and Complete, and those are the only '
+        'four the system accepts. Waiting on a product-owner ruling. Leave it Untested.',
+ 45111: 'RUNS AND PASSES. To set it up: open the work order\'s Lines tab, click a line, paste about a '
+        'full paragraph (500+ characters) into its Tech Story box and save. The whole story then '
+        'prints, with no cut-off and no "Show more".',
  45123: 'RUN IT NORMALLY - the behaviour is correct. One thing to expect: the history row is called '
         '"Work order printed history", not "Work Order Printed" as the case says. That difference is '
         'already reported, so do NOT raise it again; pass the case on the behaviour.',

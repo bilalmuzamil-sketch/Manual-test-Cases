@@ -40,6 +40,40 @@ handover and every one is re-runnable from that folder.
 that reason **inside the case**, at the end of Expected Results (skill 04 §4). Gate:
 `build/handoff-2026-09-01/check_self_explains.py`.
 
+
+### 🆕 Later on 2026-09-01 — FOUR MORE CASES SETTLED BY SEEDING THE DATA STATE, AND TWO NEW DEVIATIONS
+
+QA lead, verbatim: *"You are never supposed to create defect, you are supposed to make the tests
+RUNNABLE."* So the four cases reported as NOT VERIFIED were seeded rather than left blocked:
+
+| Case | Was | Now | What settled it |
+|---|---|---|---|
+| **C45239** | NOT VERIFIED | **PASS** | `GET /api/parts-catalogue/catalogue-parts-that-are-not-on-location` returns **19,496** catalogue parts held on no bin. Selecting one (F40010212, labelled "Catalog" in the typeahead) gives no bin chip, no allocation, no "Pulled from" line — S7-N1 met. Positive control: a stocked part shows chip "H3B" |
+| **C45060** | NOT VERIFIED | **FAIL** | The same part's catalogue record has **no cost or sell-price field at all** and it is stocked nowhere. S4-E1 requires the boxes to open EMPTY and the user to fill them before saving. They open **0.00**, and Save **succeeded** — HTTP 201, "Part added", no validation message. A part can be added at zero price with nothing typed |
+| **C44996** | NOT VERIFIED | **FAIL** | The line status enum HAS `complete`, so this was never a data gap. Walked a part-free line `authorization_required → authorized → complete` (a direct jump answers 400 naming the transition; a line with parts cannot complete at all). With the badge reading "Complete" the line **still shows "+ Add Part"** — `evidence/last3-line-complete.png`. S1-N4 requires it hidden |
+| **C45034** | NOT VERIFIED | **still NOT VERIFIED** | Honestly unseeded: it needs a real second actor. Two attempts from a second connection could not get the edit row open at the change moment, so nothing is claimed either way |
+
+**NO TICKETS WERE PREPARED for the three deviations (C44996, C45060, C45068).** Each case now carries
+the three outcomes in plain words so the tester runs it and marks it Failed, and keeps
+`AUTOMATION: READY` — an EXPECT FAIL marker needs a live ticket and there is none.
+
+**THE MISTAKE BEHIND TWO OF THESE, WRITTEN DOWN SO IT IS NOT REPEATED.** C45060 and C45239 were both
+reported "the state may not be reachable in this product at all". Both conclusions came from
+`/api/inventory/parts` — the **stocked** parts — while both cases are about **catalogue** parts, a
+different set. Same shape as the earlier `rowsPerPage` error (playbook §S): **a conclusion drawn from
+the wrong list.** Before reporting a data state as non-existent, name the list you looked in and ask
+whether it is the list the case is about.
+
+**Test data restored:** the seeded catalogue part was removed, the 13 ZZAUTOTEST part rows left on
+S9315-14846 by earlier probes were removed (verified 0 remaining), the line status was walked back and
+verified, and the shared **Technician role** was put back to its pre-write snapshot — it had drifted to
+Full View, most likely from a stray keyboard Enter on the role edit screen during an earlier probe, and
+that repair is recorded in `build/printer-friendly-wo/build-verify-2026-09-01/evidence/tech-role-restore.json`.
+
+**FOUR MORE CASES ARE NOW FLAGGED AUTOMATED — C45223, C45224, C45227, C45237.** This morning only
+C45005, C45026 and C45220 were. All four were written before the flag appeared, so nothing was written
+to a protected case; from now on they need a per-case go-ahead (Rule 71).
+
 ## Update — 2026-09-01 (runnable-steps gate: NOT RUNNABLE = 0 for all non-Automated cases)
 Ran `build/testing-tools/check_runnable_cases.py` (reads TestRail live) over the whole suite: it flagged
 22 cases NOT RUNNABLE (all R4 — the FIRST step, or a bare "Attempt to Save" later step, did not say where

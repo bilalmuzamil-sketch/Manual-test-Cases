@@ -40,6 +40,10 @@ total 118  -  HOLD 0            =  118
 - **C45220** — HELD, not written: needs a per-case go-ahead.
 - **C45005** — written under the go-ahead given on 1 Sep 2026.
 - **C45026** — written under the go-ahead given on 1 Sep 2026.
+- **C45223** — written under the go-ahead given on 1 Sep 2026.
+- **C45224** — written under the go-ahead given on 1 Sep 2026.
+- **C45227** — written under the go-ahead given on 1 Sep 2026.
+- **C45237** — written under the go-ahead given on 1 Sep 2026.
 
 ### The run, and the set-equality proof
 
@@ -56,12 +60,11 @@ total 118  -  HOLD 0            =  118
 
 | Verdict | Cases | What it means |
 |---|---|---|
-| PASS | 111 | observed on the build, behaving as the document requires |
+| PASS | 112 | observed on the build, behaving as the document requires |
+| FAIL | 3 | observed on the build, NOT behaving as the document requires |
 | PARTIAL | 2 | part of the case was observed; the rest needs data this system does not have |
-| open question | 2 | open question with the product owner; deliberately not decided by looking at the build |
-| NOTVER | 2 | not observed — the data state or account it needs does not exist here |
 | FOREIGN | 1 | someone else's case, deliberately untouched |
-| FAIL | 1 | observed on the build, NOT behaving as the document requires |
+| NOTVER | 1 | not observed — the data state or account it needs does not exist here |
 | **total** | **119** | |
 
 ---
@@ -72,7 +75,10 @@ total 118  -  HOLD 0            =  118
 
 | Marker found in the case | Cases |
 |---|---|
-| `AUTOMATION: READY` | 41 |
+| `AUTOMATION: READY` | 38 |
+| `AUTOMATION: HOLD - a work order cannot be created without a customer ("Customer is a required field"), so this printout can never be reached; awaiting a product-owner ruling` | 1 |
+| `AUTOMATION: HOLD - a work order cannot be created without a vehicle ("Asset is a required field"), so this printout can never be reached; awaiting a product-owner ruling` | 1 |
+| `AUTOMATION: HOLD - the product has no Cancelled line status (only Authorization required, Declined, Authorized and Complete), so this state cannot be reached; awaiting a product-owner ruling` | 1 |
 | `AUTOMATION: HOLD - a work order with no line items cannot be printed at all, so this printout can never be reached; awaiting a product-owner ruling on the contradiction` | 1 |
 | `AUTOMATION: HOLD - a work order with no line items cannot be printed at all, so this summary can never be reached; awaiting a product-owner ruling on the contradiction` | 1 |
 | `AUTOMATION: Not available on Build to test Yet - Last checked 8/25/2026` | 1 |
@@ -83,8 +89,8 @@ total 118  -  HOLD 0            =  118
 A gate shown one way is not a gate. Over the cases this pass actually wrote:
 
 ```
-READY 41  +  EXPECT-FAIL 0   =  41
-total 43  -  HOLD 2            =  41
+READY 38  +  EXPECT-FAIL 0   =  38
+total 43  -  HOLD 5            =  38
                                        -> CLOSES
 ```
 
@@ -113,9 +119,8 @@ total 43  -  HOLD 2            =  41
 
 | Verdict | Cases | What it means |
 |---|---|---|
-| PASS | 36 | observed on the build, behaving as the document requires |
-| NOTVER | 5 | not observed — the data state or account it needs does not exist here |
-| UNREACHABLE | 2 | cannot be observed by anyone: the document contradicts itself |
+| PASS | 38 | observed on the build, behaving as the document requires |
+| UNREACHABLE | 5 | cannot be observed by anyone: the document contradicts itself |
 | PARTIAL | 1 | part of the case was observed; the rest needs data this system does not have |
 | **total** | **44** | |
 
@@ -123,7 +128,7 @@ total 43  -  HOLD 2            =  41
 
 ## The can-the-tester-read-it gate
 
-The served page — not the stored value — was fetched for all **161** cases written by this pass, on a logged-in browser session, and the container class of each text field was read. **Fields in an escaping container: 0.**
+The served page — not the stored value — was fetched for all **4** cases written by this pass, on a logged-in browser session, and the container class of each text field was read. **Fields in an escaping container: 0.**
 
 Every field is served in the rendering container, so what the tester opens shows formatted text and not raw tags. This is checked on the served page because the stored value cannot tell you the difference — a case can be stored perfectly and still display every tag.
 
@@ -133,7 +138,7 @@ Every field is served in the rendering container, so what the tester opens shows
 |---|---|---|---|
 | Marker census + arithmetic gate | the marker counts balance both ways over the cases in scope | CLOSES on both suites | `python3 build/handoff-2026-09-01/census.py` |
 | Runnability | a person can follow every case from the screen; read LIVE from TestRail, not from a saved copy | Inline Add and Edit Parts: 118/119 · Printer Friendly Work Orders: 43/44 — the shortfalls are the two cases we are not permitted to rewrite | `python3 build/testing-tools/check_runnable_cases.py --cases <ids>` |
-| Served-page render | what the tester actually SEES is formatted text, not raw tags — checked on the served page because the stored value cannot tell you | 161 cases, 0 escaping | `node build/inline-add-edit-parts/build-verify-2026-09-01/tools/served_page_scan.mjs` |
+| Served-page render | what the tester actually SEES is formatted text, not raw tags — checked on the served page because the stored value cannot tell you | 4 cases, 0 escaping | `node build/inline-add-edit-parts/build-verify-2026-09-01/tools/served_page_scan.mjs` |
 | Marker / provenance / formatting | one marker, last in Expected Results; provenance present; no barred phrase; no styling tag; no empty field; no contradiction candidates | ALL CLEAR | `python3 build/handoff-2026-09-01/handover_gates.py` |
 | Self-explaining held cases | every case the brief does not send the tester through end to end carries that reason in its OWN words, so a tester working straight from the run is still told | ALL CLEAR — 14 of 14, with C45220 named and excluded | `python3 build/handoff-2026-09-01/check_self_explains.py` |
 | Run sync | the run holds exactly our cases, in both directions, with no result pre-recorded | run 418: 119 tests, set-equal True, 0 results · run 419: 44 tests, set-equal True, 0 results | `census.py` prints it |

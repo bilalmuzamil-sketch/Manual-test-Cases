@@ -773,6 +773,21 @@ Index: CLAUDE.md (rule index table). Other rule files: build/rules/RULES-01-20.m
     is a question for its author, not a licence to change either side. Canonical evidence pack:
     `build/testrail-foreign-cases-2026-07-31/FOREIGN-CASES.md`. Ties to Standing Rules 6 (never write
     to TestRail without permission), 8 (always give the C-id), 17, 20, 25, 33 and 34.
+    **⇒ AMENDMENT, 2026-09-01 — VLADIMIR TOMOVIC'S CASES ARE LEFT EXACTLY AS THEY ARE, FULL STOP, AND
+    THIS IS NOW A NAMED-PERSON RULE RATHER THAN A CATEGORY ONE.** QA lead, 2026-09-01, verbatim:
+    *"If the creator is Vladimir leave the test cases as is - remember this rule."* Restating his
+    2026-09-01 earlier wording: *"C45220 and others where the creator of the test case is Vladimir,
+    do not change them."*
+    **THE TEST IS `created_by == 1`, CHECKED BEFORE THE WRITE — never the title, never the section,
+    never "it looks like ours".** It does not matter that the case fails a gate, has no steps at all,
+    contradicts one of ours, or is the single item standing between a suite and a clean runnability
+    score: **it is reported, named with its author, and left untouched.** C45220 is the standing
+    example — it is the only case in suite 6597 that fails the runnability gate, it has no steps, and
+    it stays that way; the gate result is reported as 118 of 119 with the one exclusion named.
+    **This overrides any general authorisation to write.** A go-ahead for a pass, a batch, a suite or
+    a lane never reaches his cases; only he can, and he has said not to. **Do not ask again per case
+    either** — the answer is recorded, and re-asking is how a standing ruling gets eroded.
+
 39. **When someone else's test cases CONTRADICT ours, establish BOTH sides' sources and bring them
     to the QA lead (all projects).** USER DIRECTIVE (2026-07-31, verbatim): *"If what we have done
     is based on the specs/technical Plan/Loom Videos/Answers of the questins, then retain the latest

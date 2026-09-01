@@ -37,11 +37,34 @@ markdown by hand.
 steps a person can follow on this build. It does not say 151 requirements are covered and it does not
 say anything passed.
 
+## The numbers, since they are the first thing anyone asks
+
+**161 of the 163 cases carry a verdict taken on this build.**
+
+| | Inline Add and Edit Parts | Printer Friendly Work Orders |
+|---|---|---|
+| Cases in the area | 119 | 44 |
+| **Verdict taken on the build** | **117** | **44** |
+| PASS | 112 | 38 |
+| FAIL — run it, expect it to fail | 3 — C44996, C45060, C45068 | 0 |
+| PARTIAL — run the part you can | 2 — C44993, C44994 | 1 — C45088 |
+| UNREACHABLE — the product forbids the state | 0 | 5 — C45097, C45098, C45104, C45107, C45116 |
+| No verdict yet | 1 — **C45034** (needs a real second person) | **0** |
+| Foreign, never ours | 1 — **C45220** (Vladimir Tomovic) | 0 |
+| Written by us | 118 | 43 |
+| Held, not written | 1 — C45220 (Rule 38) | 1 — C45123 (Rule 71) |
+
+Inline's 119 = 117 with a verdict + 1 without (C45034) + 1 foreign (C45220).
+Every figure is printed by `census.py` and the two `verdicts.py` files; none is typed by hand.
+
 ## What is still outstanding
 
-Five items, in `build/OUTSTANDING-ITEMS-REGISTER.md` rows **HO-1 … HO-5**: a per-case go-ahead for
-C45123, a ruling on Vladimir Tomovic's C45220, five product-owner answers, permission to file the one
-C45068 defect, and five data states 6617 needs that sv9315 does not have.
+`build/OUTSTANDING-ITEMS-REGISTER.md` rows **HO-1 … HO-5c**: a per-case go-ahead for **C45123**; a
+product-owner ruling on the five cases the application forbids (**C45097, C45098, C45104, C45107,
+C45116**); a colleague for **C45034**; and, for information, four cases that became Automated during
+the pass (**C45223, C45224, C45227, C45237**). **No defect ticket is outstanding** — the QA lead's
+instruction of 2026-09-01 is that this lane makes tests runnable rather than creating defects, so the
+three deviations ride in the cases themselves.
 
 ## Subfolders
 

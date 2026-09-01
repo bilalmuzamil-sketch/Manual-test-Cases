@@ -1,0 +1,150 @@
+{
+ "45090": {
+  "title": "Users without view permission cannot reach the print option",
+  "verdict": "verdict changed 2026-09-01",
+  "marker_override": "AUTOMATION: READY",
+  "build_sentence": "Last checked against build v26.35.6-598cc8a on 9/1/2026.",
+  "fields": {
+   "custom_expected": {
+    "blocks": [
+     [
+      "1. You cannot access the work order detail page and therefore cannot reach the print option (enforced by existing access control)."
+     ],
+     [
+      "---",
+      "This is the expected behaviour as per epic SV-9383 and story SV-9384 (Story 1, Print Option in More Menu) and the Printer Friendly Work Orders specification version 8, section S1-N1, read on 25 August 2026.",
+      "Last checked against build v26.35.6-598cc8a on 9/1/2026."
+     ],
+     [
+      "AUTOMATION: READY"
+     ]
+    ],
+    "text": "1. You cannot access the work order detail page and therefore cannot reach the print option (enforced by existing access control).\n\n---\nThis is the expected behaviour as per epic SV-9383 and story SV-9384 (Story 1, Print Option in More Menu) and the Printer Friendly Work Orders specification version 8, section S1-N1, read on 25 August 2026.\nLast checked against build v26.35.6-598cc8a on 9/1/2026.\n\nAUTOMATION: READY"
+   },
+   "custom_preconds": {
+    "blocks": [
+     [
+      "1. Sign in as a user whose role cannot view work orders, or have an administrator create one. To set a role up that way: open “Settings” from the menu behind your name at the top right, click “Roles & Permissions” in the sidebar, then click the pencil on the role in question and switch its work-order viewing permission off.",
+      "2. Switching work-order viewing off on its own is not enough — the role keeps it. Switch off the work-order line editing and part-picking permissions in the same role as well, save, and the viewing permission then stays off.",
+      "3. Then, in the top menu, try to reach “Work Orders” at all."
+     ]
+    ],
+    "text": "1. Sign in as a user whose role cannot view work orders, or have an administrator create one. To set a role up that way: open “Settings” from the menu behind your name at the top right, click “Roles & Permissions” in the sidebar, then click the pencil on the role in question and switch its work-order viewing permission off.\n2. Switching work-order viewing off on its own is not enough — the role keeps it. Switch off the work-order line editing and part-picking permissions in the same role as well, save, and the viewing permission then stays off.\n3. Then, in the top menu, try to reach “Work Orders” at all."
+   }
+  }
+ },
+ "45097": {
+  "title": "No customer assigned prints an explicit placeholder",
+  "verdict": "verdict changed 2026-09-01",
+  "marker_override": "AUTOMATION: HOLD - a work order cannot be created without a customer (\"Customer is a required field\"), so this printout can never be reached; awaiting a product-owner ruling",
+  "build_sentence": "Last checked against build v26.35.6-598cc8a on 9/1/2026.",
+  "fields": {
+   "custom_expected": {
+    "blocks": [
+     [
+      "1. The customer section displays “No customer assigned”."
+     ],
+     [
+      "NOTE FOR THE TESTER: this case cannot be run on this build, and it was tried properly rather than assumed. On the “New Work Order” window, leaving “Customer” empty and clicking “Save” answers “Customer is a required field” and nothing is created — so a work order with no customer cannot exist here at all, and the placeholder this case describes can never be printed. It is waiting on a product-owner ruling. Leave the case Untested."
+     ],
+     [
+      "---",
+      "This is the expected behaviour as per epic SV-9383 and story SV-9385 (Story 2, Print Layout - Work Order Header) and the Printer Friendly Work Orders specification version 8, section S2-N1, read on 25 August 2026.",
+      "Last checked against build v26.35.6-598cc8a on 9/1/2026."
+     ],
+     [
+      "AUTOMATION: HOLD - a work order cannot be created without a customer (\"Customer is a required field\"), so this printout can never be reached; awaiting a product-owner ruling"
+     ]
+    ],
+    "text": "1. The customer section displays “No customer assigned”.\n\nNOTE FOR THE TESTER: this case cannot be run on this build, and it was tried properly rather than assumed. On the “New Work Order” window, leaving “Customer” empty and clicking “Save” answers “Customer is a required field” and nothing is created — so a work order with no customer cannot exist here at all, and the placeholder this case describes can never be printed. It is waiting on a product-owner ruling. Leave the case Untested.\n\n---\nThis is the expected behaviour as per epic SV-9383 and story SV-9385 (Story 2, Print Layout - Work Order Header) and the Printer Friendly Work Orders specification version 8, section S2-N1, read on 25 August 2026.\nLast checked against build v26.35.6-598cc8a on 9/1/2026.\n\nAUTOMATION: HOLD - a work order cannot be created without a customer (\"Customer is a required field\"), so this printout can never be reached; awaiting a product-owner ruling"
+   }
+  }
+ },
+ "45098": {
+  "title": "No vehicle assigned prints an explicit placeholder",
+  "verdict": "verdict changed 2026-09-01",
+  "marker_override": "AUTOMATION: HOLD - a work order cannot be created without a vehicle (\"Asset is a required field\"), so this printout can never be reached; awaiting a product-owner ruling",
+  "build_sentence": "Last checked against build v26.35.6-598cc8a on 9/1/2026.",
+  "fields": {
+   "custom_expected": {
+    "blocks": [
+     [
+      "1. The vehicle section displays “No vehicle assigned”."
+     ],
+     [
+      "NOTE FOR THE TESTER: this case cannot be run on this build, and it was tried properly rather than assumed. On the “New Work Order” window, choosing a customer and then clicking “Save” with “Add Asset” left empty answers “Asset is a required field” and nothing is created — so a work order with no vehicle cannot exist here at all. The nearest real work order, S2-6107, has a vehicle with only a year recorded and prints it as “Vehicle: 1993”, which is sparse data rather than none. Waiting on a product-owner ruling. Leave the case Untested."
+     ],
+     [
+      "---",
+      "This is the expected behaviour as per epic SV-9383 and story SV-9385 (Story 2, Print Layout - Work Order Header) and the Printer Friendly Work Orders specification version 8, section S2-N2, read on 25 August 2026.",
+      "Last checked against build v26.35.6-598cc8a on 9/1/2026."
+     ],
+     [
+      "AUTOMATION: HOLD - a work order cannot be created without a vehicle (\"Asset is a required field\"), so this printout can never be reached; awaiting a product-owner ruling"
+     ]
+    ],
+    "text": "1. The vehicle section displays “No vehicle assigned”.\n\nNOTE FOR THE TESTER: this case cannot be run on this build, and it was tried properly rather than assumed. On the “New Work Order” window, choosing a customer and then clicking “Save” with “Add Asset” left empty answers “Asset is a required field” and nothing is created — so a work order with no vehicle cannot exist here at all. The nearest real work order, S2-6107, has a vehicle with only a year recorded and prints it as “Vehicle: 1993”, which is sparse data rather than none. Waiting on a product-owner ruling. Leave the case Untested.\n\n---\nThis is the expected behaviour as per epic SV-9383 and story SV-9385 (Story 2, Print Layout - Work Order Header) and the Printer Friendly Work Orders specification version 8, section S2-N2, read on 25 August 2026.\nLast checked against build v26.35.6-598cc8a on 9/1/2026.\n\nAUTOMATION: HOLD - a work order cannot be created without a vehicle (\"Asset is a required field\"), so this printout can never be reached; awaiting a product-owner ruling"
+   }
+  }
+ },
+ "45104": {
+  "title": "Cancelled lines still print if visible on screen",
+  "verdict": "verdict changed 2026-09-01",
+  "marker_override": "AUTOMATION: HOLD - the product has no Cancelled line status (only Authorization required, Declined, Authorized and Complete), so this state cannot be reached; awaiting a product-owner ruling",
+  "build_sentence": "Last checked against build v26.35.6-598cc8a on 9/1/2026.",
+  "fields": {
+   "custom_expected": {
+    "blocks": [
+     [
+      "1. Line items with a status of “Cancelled” still appear on the printout if they are visible on screen, with their status clearly indicated."
+     ],
+     [
+      "NOTE FOR THE TESTER: this case cannot be run on this build. There is no “Cancelled” status for a work order line in this product — a line offers only “Authorization required”, “Declined”, “Authorized” and “Complete”, and those are the only four the system will accept. So no line can be put into the status this case describes. It is waiting on a product-owner ruling on what the requirement means. Leave the case Untested."
+     ],
+     [
+      "---",
+      "This is the expected behaviour as per epic SV-9383 and story SV-9386 (Story 3, Print Layout - Line Items) and the Printer Friendly Work Orders specification version 8, section S3-R6, read on 25 August 2026.",
+      "Last checked against build v26.35.6-598cc8a on 9/1/2026."
+     ],
+     [
+      "AUTOMATION: HOLD - the product has no Cancelled line status (only Authorization required, Declined, Authorized and Complete), so this state cannot be reached; awaiting a product-owner ruling"
+     ]
+    ],
+    "text": "1. Line items with a status of “Cancelled” still appear on the printout if they are visible on screen, with their status clearly indicated.\n\nNOTE FOR THE TESTER: this case cannot be run on this build. There is no “Cancelled” status for a work order line in this product — a line offers only “Authorization required”, “Declined”, “Authorized” and “Complete”, and those are the only four the system will accept. So no line can be put into the status this case describes. It is waiting on a product-owner ruling on what the requirement means. Leave the case Untested.\n\n---\nThis is the expected behaviour as per epic SV-9383 and story SV-9386 (Story 3, Print Layout - Line Items) and the Printer Friendly Work Orders specification version 8, section S3-R6, read on 25 August 2026.\nLast checked against build v26.35.6-598cc8a on 9/1/2026.\n\nAUTOMATION: HOLD - the product has no Cancelled line status (only Authorization required, Declined, Authorized and Complete), so this state cannot be reached; awaiting a product-owner ruling"
+   }
+  }
+ },
+ "45111": {
+  "title": "A very long tech story wraps and prints in full",
+  "verdict": "verdict changed 2026-09-01",
+  "marker_override": "AUTOMATION: READY",
+  "build_sentence": "Last checked against build v26.35.6-598cc8a on 9/1/2026.",
+  "fields": {
+   "custom_expected": {
+    "blocks": [
+     [
+      "1. The tech story wraps and prints in full; it is not truncated."
+     ],
+     [
+      "---",
+      "This is the expected behaviour as per epic SV-9383 and story SV-9386 (Story 3, Print Layout - Line Items) and the Printer Friendly Work Orders specification version 8, section S3-E2, read on 25 August 2026.",
+      "Last checked against build v26.35.6-598cc8a on 9/1/2026."
+     ],
+     [
+      "AUTOMATION: READY"
+     ]
+    ],
+    "text": "1. The tech story wraps and prints in full; it is not truncated.\n\n---\nThis is the expected behaviour as per epic SV-9383 and story SV-9386 (Story 3, Print Layout - Line Items) and the Printer Friendly Work Orders specification version 8, section S3-E2, read on 25 August 2026.\nLast checked against build v26.35.6-598cc8a on 9/1/2026.\n\nAUTOMATION: READY"
+   },
+   "custom_preconds": {
+    "blocks": [
+     [
+      "1. In the top menu click “Work Orders” and open a work order by clicking its row. Open its “Lines” tab, click a line to open it, and paste at least 500 characters — about a full paragraph — into its “Tech Story” box, then save the line.",
+      "2. Back on the work order’s toolbar click the three-dots button at the top right, then choose “Print Work Order”. The menu holds five items in this order: “Audit Log”, “Timesheets”, “Add Work Order Fee / Discount”, “Print Work Order”, “Delete Work Order”. Choosing it opens your browser’s own print dialog — the printout is what you are checking, so use your browser’s print preview to look at it."
+     ]
+    ],
+    "text": "1. In the top menu click “Work Orders” and open a work order by clicking its row. Open its “Lines” tab, click a line to open it, and paste at least 500 characters — about a full paragraph — into its “Tech Story” box, then save the line.\n2. Back on the work order’s toolbar click the three-dots button at the top right, then choose “Print Work Order”. The menu holds five items in this order: “Audit Log”, “Timesheets”, “Add Work Order Fee / Discount”, “Print Work Order”, “Delete Work Order”. Choosing it opens your browser’s own print dialog — the printout is what you are checking, so use your browser’s print preview to look at it."
+   }
+  }
+ }
+}
