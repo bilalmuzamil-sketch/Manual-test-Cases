@@ -1,0 +1,60 @@
+create controls: {"buttons":[{"label":"Work Orders","id":"button_desktop_nav_link"},{"label":"Schedule","id":"button_desktop_nav_link"},{"label":"Customers","id":"button_desktop_nav_link"},{"label":"Parts","id":"button_desktop_nav_link"},{"label":"Reports","id":"button_desktop_nav_link"},{"label":"stop_circle 00:04:30 S-15888","id":"clock_in_button"},{"label":"notifications","id":"button_notifications"},{"label":"Staging Heavy Duty - 9919 0.07 Hrs Today AS","id":"profile_menu_button"},{"label":"search Search","id":"page_search_toggle"},{"label":"place Bin Location keyboard_arrow_down","id":"filter_chip_gridLocation"},{"label":"list Category keyboard_arrow_down","id":"filter_chip_category"},{"label":"inventory_2 Supply keyboard_arrow_down","id":"filter_chip_supply"},{"label":"width_normal","id":"button_column_selection"},{"label":"more_vert","id":"button_inventory_actions"},{"label":"New Inventory Part","
+clicked: New Inventory Part
+create dialog: {
+ "open": true,
+ "url": "/parts/inventory",
+ "title": "New Inventory Part close Catalog Part arrow_drop_down Vendor arrow_drop_down Category arrow_drop_down Manufacturer arrow_drop_down $ Cost $ ",
+ "ids": [
+  "dialog_title",
+  "button_close_dialog",
+  "select_catalogue_part",
+  "select_vendor",
+  "select_category",
+  "select_manufacturer",
+  "input_cost",
+  "input_sell_price",
+  "input_core_charge",
+  "input_min",
+  "input_max",
+  "select_tags",
+  "select_bin_location_0",
+  "input_quantity_0",
+  "default_badge",
+  "button_add_bin_location",
+  "button_confirm_dialog"
+ ],
+ "requiredish": [
+  "New Inventory Part",
+  "close",
+  "Catalog Part",
+  "arrow_drop_down",
+  "Vendor",
+  "arrow_drop_down",
+  "Category",
+  "arrow_drop_down",
+  "Manufacturer",
+  "arrow_drop_down",
+  "$",
+  "Cost",
+  "$",
+  "Sell Price",
+  "$",
+  "Core Charge",
+  "Min",
+  "Max",
+  "Tags",
+  "Inventory",
+  "Bin Location",
+  "General Storage",
+  "arrow_drop_down",
+  "Quantity",
+  "Default",
+  "Add Bin Location",
+  "Save"
+ ],
+ "buttons": [
+  "close",
+  "Add Bin Location",
+  "Save"
+ ]
+}
