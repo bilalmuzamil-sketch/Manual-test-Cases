@@ -1,0 +1,16 @@
+invoices/create P8218-209 -> 201 {"data": {"invoice_id": "16b67594-9a1d-4b7a-b4df-81ca6b644d05", "customer_account_id": "906856f2-c5cc-4283-b105-7a4d5d6d297b", "auto_paid": false, "auto_paid_credit_id": null, "auto_paid_credit_amount": 0, "auto_paid_deposit_amount": 0, "auto_apply_status": null, "remaining_balan
+INV 16b67594-9a1d-4b7a-b4df-81ca6b644d05 ACC 906856f2-c5cc-4283-b105-7a4d5d6d297b bal 160.84
+HEADER BEFORE: page, turning the five-page invoice into six and taking the worst | content: "Invoice: INV\2D P8218\2D 209"; | content: "INV-P8218-209 - Page " counter(page) " / " counter(pages);
+BEFORE any payment, doc 200
+  header: Staging Heavy Duty - 9919 | 9919 Shepard Road SE | Calgary, Alberta | T2C 4M5 | (403) 523 - 0488 | Invoice: INV-P8218-209 | Invoice date: | Aug 31, 2026 | Due date: | Sep 30, 2026 | Addresses | Bill To
+  money tail: Parts | $153.17 | Subtotal | $153.17 | GST (5%) | $7.67 | Total | $160.84 | Payments | Balance | $160.84 | Any warranties on the parts and accessories sold hereby are made by the manufacturer. You understand and agree that we make no warranties of any kind unless expressed in writing. You hereby authorize us to perform the repair work herein set forth and to purchase the necessary material and parts to perform such repair work. You agree that we are not responsible for loss or damage to your vehicle or articles left in your vehicle in case of fire, theft, or any other cause beyond our control or for any delays caused by unavailability of parts or delays in part shipments by the supplier or transporter. In addition, you agree that we are not responsible for damages to your vehicle from freezing due to lack of antifreeze. You hereby grant our employees permission to operate your vehicle on streets, highways, or elsewhere for the purpose of testing and/or inspection. You acknowledge and agree that an express mechanic's lien on your vehicle is granted to secure payment of this invoice for the repair work detailed in this invoice. | Customer Signature | Printed Name | Date | GST# 812694966 RT0001 · INV-P8218-209
+create account credit -> 201 {"data": {"creditMemoId": "530aeb54-9ba0-46ce-9c43-7853d3346fa0", "creditNumber": "CM-4191", "totalAmount": 608400, "openBalance": 608400, "status": "open", "refundPaymentId": null}}
+CM 530aeb54-9ba0-46ce-9c43-7853d3346fa0 CM-4191
+open rows: [('invoice', 'P8218-209', 160.84), ('credit', 'CM-4191', -6084)]
+cash $100 -> 201 {"data": {"id": "03064fad-9306-4683-ab0f-543913de1e08", "bookkeepingSyncDeferred": true}}
+void oversized CM-4191 -> 200 {"data": {"creditMemoId": "530aeb54-9ba0-46ce-9c43-7853d3346fa0", "status": "voided", "voidedAt": "2026-09-01T03:15:07+00:00"}}
+invoice remaining balance 60.84
+create credit for remainder -> 201 {"data": {"creditMemoId": "09101d09-80c7-4c29-8213-555dacbfc602", "creditNumber": "CM-4192", "totalAmount": 6084, "openBalance": 6084, "status": "open", "refundPaymentId": null}}
+open rows: [('invoice', 'P8218-209', 60.84, '04121907-8414-4b7a-8133-5bf4493a4df9'), ('credit', 'CM-4192', -60.84, '09101d09-80c7-4c29-8213-555dacbfc602')]
+apply credit $60.84 -> 201 {"data": {"id": "0b5bb1d2-f242-4ca7-9c4f-99e498fa4a7d", "bookkeepingSyncDeferred": false}}
+open rows after: []

@@ -1,0 +1,21 @@
+WO view for part sale P2-242 -> 200
+invoice_id = 4a1420b1-a343-464a-92ec-ecbb70a4c952 | status Paid | number P-242
+customer/company id = e68a67fb-2554-4519-b0fc-ebc6c13ae1c4
+list-credit-available-parts -> 400
+{"errors": [{"invoiceId": "Not found"}]}BEFORE reverse: credit pdf -> 200 187598
+  sha 66a0a49c4ce78a0b
+REVERSE origin invoice -> 400 {"errors": [{"error": "Customer transaction cannot be deleted."}]}
+AFTER reverse: credit pdf -> 200 187596
+  sha 4ce5e7651733b215
+invoices/create -> 201 {"data": {"invoice_id": "4eda3fc1-f72a-4e01-98f6-307fd5ed3480", "customer_account_id": "af202532-3134-4ce7-9c91-721f981ccd5a", "auto_paid": false, "auto_paid_credit_id": null, "auto_paid_credit_amount": 0, "auto_paid_deposit_amount": 0, "auto_apply_status": null, "remaining_balance": 95.64}}
+INV 4eda3fc1-f72a-4e01-98f6-307fd5ed3480 ACC af202532-3134-4ce7-9c91-721f981ccd5a
+creditable parts -> 200 2
+create credit -> 201 {"data": {"creditMemoId": "a7609cad-fa2a-431b-93aa-dc1e5f45773c", "creditNumber": "CM-4190", "totalAmount": 1094, "openBalance": 1094, "status": "open", "refundPaymentId": null}}
+CM a7609cad-fa2a-431b-93aa-dc1e5f45773c CM-4190
+credit pdf BEFORE reverse -> 200 187073
+REVERSE origin invoice -> 200 {"data": "44caaa49-a380-4693-a1e0-a97bd3eb6ad7"}
+credit pdf AFTER reverse -> 200 185746
+origin invoice after reverse -> 400 {"errors": [{"error": "The invoice doesn't exist"}]}
+origin invoice preview -> 400 {'errors': [{'invoice_id': 'Not found'}]}
+EXPLICIT void on already-voided credit -> 400 {"errors": [{"error": "Cannot void a credit memo while it is in status \"voided\"."}]}
+credit pdf after void attempt -> 200 185749
