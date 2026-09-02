@@ -1,13 +1,13 @@
 {
  "path": "build/questions-2026-09-02/ShopView-QA-questions-2026-09-02.xlsx",
- "title": "ShopView QA — three questions, 2 September 2026",
- "intro": "Three things we need decided before the tests can be finished. Each row says what we see today, the question, and the choices — tick one in the last column and we will make the tests match. Where the written requirements say two different things, both are quoted word for word so you can see it for yourself. None of this is holding the testers up: they are working today, and these three points affect nine tests out of two hundred and five.",
+ "title": "ShopView QA — three questions, 2 September 2026 · asked by Bilal Muzamil (QA lead)",
+ "intro": "Three things we need decided before the tests can be finished. Every row names the suite it belongs to and who it is for.\n\nRow 1 is for the PRODUCT OWNER of Printer Friendly Work Orders. Rows 2 and 3 are for the DEVELOPER on Invoice UI Refresh, whose product owner is Chris Ward.\n\nEach row says what we see today, the question, and the choices — tick one in the last column and we will make the tests match. Where the written requirements say two different things, both are quoted word for word so you can see it yourself. None of this is holding the testers up: they are working today, and these three points affect nine tests out of two hundred and five.",
  "sheets": [
   {
    "name": "Printing a work order",
    "rows": [
     {
-     "topic": "For the product owner — printing a work order that has no jobs on it yet",
+     "topic": "SUITE: Printer Friendly Work Orders  ·  FOR: the product owner  ·  TOPIC: printing a work order that has no jobs on it yet",
      "now": "The requirements say two opposite things, in the same document.\n\nOne place says the print option must be switched OFF while a work order has no jobs on it. Its words: \"Print disabled until lines data loads — disabled while fetching and when no line items exist.\"\n\nAnother place describes what the PRINTED PAGE should look like in exactly that situation. Its words: \"If the work order has no line items, the line items section will display 'No lines on this work order'\" and \"If there are no line items, the summary will show zero totals rather than being hidden.\"\n\nThe app does the first one. Open a work order with no jobs on it and \"Print Work Order\" is greyed out — you cannot click it. So the printed page the second one describes can never be produced by anyone, and the two tests written from it can never be run.",
      "question": "Which one do you want to be true — the print option stays switched off for an empty work order, or an empty work order can be printed?",
      "options": "(a) Keep it switched off. We delete the two tests, and nothing changes in the app.\n(b) Allow printing. We keep the two tests, and the developers need to switch the option on, because today it is greyed out.\n(c) Neither — tell us what should happen and we will write it up."
@@ -18,13 +18,13 @@
    "name": "Credit notes",
    "rows": [
     {
-     "topic": "For the developer — on a cancelled credit note, does the \"amount still owing\" line disappear?",
+     "topic": "SUITE: Invoice UI Refresh (Chris Ward)  ·  FOR: the developer  ·  TOPIC: a cancelled credit note — does the “amount still owing” line disappear?",
      "now": "A credit note is what a customer gets when money is being given back to them. Its printed page has a line at the bottom showing how much is still owing.\n\nThe requirements say that line is ALWAYS printed, and that on a cancelled credit note it reads zero.\n\nYour answer described it differently — that the line appears \"in every non-voided status\". Read strictly, that could mean the line DISAPPEARS on a cancelled credit note instead of reading zero. We do not know which you meant.\n\nWe cannot settle it by looking, because we have not been able to open a printed credit note in the app at all — that is the next question.",
      "question": "On a credit note that has been cancelled, is the \"amount still owing\" line still printed showing zero, or is it not printed at all?",
      "options": "(a) It is still printed and reads zero.\n(b) It is not printed at all.\n(c) Not decided yet — we will hold that one test until it is."
     },
     {
-     "topic": "For the developer — what does a person click to produce a printed credit note?",
+     "topic": "SUITE: Invoice UI Refresh (Chris Ward)  ·  FOR: the developer  ·  TOPIC: what does a person click to produce a printed credit note?",
      "now": "We can find the credit note records in the app, but we cannot find the screen and the button a person uses to produce the PRINTED version. We tried the places the other printed documents come from and none of them produced one.\n\nBecause of that, seven tests about the printed credit note have never been checked against the app. They are written and ready — there is just nowhere to run them.\n\nYour earlier answer named the internal file the system uses to build that page, so we know it exists. We just do not know how a person reaches it.",
      "question": "Where does a person go in the app to produce a printed credit note — which screen, and what do they click when they are there?",
      "options": "(a) Reply with the screen and the click. We will check all seven tests straight away.\n(b) Show us once on a screen share. We will write the route into the tests ourselves.\n(c) It is not built yet. Say so and we will park those seven tests with the reason recorded, so nobody thinks they were forgotten."
@@ -36,20 +36,20 @@
   [
    "Printing 1",
    "C45107, C45116 (and it explains why C45097/C45098/C45104 are held separately)",
-   "Key Decisions bullet 7 vs S3-N1 and S4-N1, Printer Friendly Work Orders spec v8",
-   "Not a defect: the build matches the Key Decisions bullet, so nothing is misbehaving. The document holds both positions and only the product owner can choose. Both cases carry AUTOMATION: HOLD with the reason in plain words. Rule 58 - an ambiguous source is never resolved by looking at the build."
+   "Printer Friendly Work Orders, epic SV-9383, spec v8 — Key Decisions bullet 7 vs S3-N1 and S4-N1",
+   "⚠️ NO CONFIRMED RECIPIENT. The epic's PO/Owner is TBD (register PO-PFWO-1, open since 2026-08-25); the spec was drafted by Sasha Grosman and the requirements came from Fabian. This row cannot be delivered until the QA lead names the PO. Not a defect: the build matches the Key Decisions bullet, so nothing is misbehaving - the document holds both positions and only the PO can choose. Both cases carry AUTOMATION: HOLD with the reason in plain words. Rule 58 - an ambiguous source is never resolved by looking at the build."
   ],
   [
    "Credits 1",
    "C44967 (line 6 of its Expected Results)",
-   "S11-R6a, Invoice UI Refresh spec; developer note relayed 2026-09-01",
-   "Not a defect: the developer's sentence and our requirement can both be read as true, and the design artifact shows an Unapplied credit so it cannot settle a voided one. Nothing written until the answer comes back. Rule 57 - code is fact, never expectation."
+   "Invoice UI Refresh, epic SV-8218 (PO Chris Ward), S11-R6a; developer note relayed by the QA lead 2026-09-01",
+   "⚠️ THE DEVELOPER IS NOT NAMED in any of our records - both answers reached us relayed by the QA lead. Ask him for the name before sending. Not a defect: the developer's sentence and our requirement can both be read as true, and the design artifact shows an Unapplied credit so it cannot settle a voided one. Nothing written until the answer comes back. Rule 57 - code is fact, never expectation."
   ],
   [
    "Credits 2",
    "C44963, C44964, C44965, C44966, C44967, C44968, C44969",
-   "S11-R1 to S11-R6a, Invoice UI Refresh spec",
-   "Not a defect: the render path exists (the developer named the template and the two data providers), we have not found the user-facing route. Searched again 2026-09-02 with a signed-in browser and did not find it; the unpaid-transactions endpoint is the wrong list for an applied credit. These seven are the suite's only cases never checked on a build."
+   "Invoice UI Refresh, epic SV-8218 (PO Chris Ward), S11-R1 to S11-R6a",
+   "Same unnamed developer as Credits 1. Not a defect: the render path exists (he named the template and the two data providers), we have not found the user-facing route. Searched again 2026-09-02 with a signed-in browser and still did not find it; the unpaid-transactions endpoint is the wrong list for an applied credit. These seven are the suite's only cases never checked on a build."
   ]
  ]
 }
