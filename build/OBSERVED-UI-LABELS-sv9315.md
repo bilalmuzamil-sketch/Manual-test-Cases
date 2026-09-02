@@ -154,3 +154,35 @@ row glued the icon's text onto the label. Every other word in that string is a d
 it** — the specific cell, mapped to its column header — never from a container's flattened `innerText`.
 And a label that reads like broken English ("printed history") is the tell: go and look again before
 reporting a divergence.
+
+## Two labels confirmed 2026-09-02 by scanning the front-end bundles
+
+**Why this method, and its limit.** The QA lead's build session was renewed on 2026-09-02, but the
+front end still would not render (its own `/api/api/sso/check` answers 404 on this build and the
+single-page app falls back to the sign-in form), while **the API host answers normally**. So the two
+labels below were confirmed by fetching the app's JavaScript chunks and searching them, 400 chunks
+scanned — every string the interface can display is in there.
+
+**The limit is measured, not assumed.** Four labels already proven by screenshot were scanned as
+controls: `Work order lines` and `Create & Edit` were found, **`View mode` and `Tech view` were not**
+(the scan hit its 400-chunk cap). **So this method can confirm that a label EXISTS; it can never prove
+one does not.** No negative result from a bundle scan may be reported as "this label does not exist".
+
+| Label | Which chunk carries it | What that tells us |
+|---|---|---|
+| **`Approves Work`** | `ContactDialog.DtOfuEGu.js` | it is a tick on the **customer contact** form, not a permission. Reached by `Customers` → open the customer → the `Contacts` tab → the edit icon on the contact's row |
+| **`Part Sales`** | `index.Bl7X34W2.js`, `Parts.CYvVBS1a.js`, `Customer.Dgsv6YDE.js` (7 chunks) | it is a section under the top-menu `Parts` area, and it also appears on the customer screen |
+
+**Both were quoted by Invoice UI Refresh cases that the label gate had flagged as unconfirmed
+(C44919, C44920, C44921, C44985). The cases were RIGHT** — they already describe `Approves Work` as a
+tick on the contact form, reached exactly that way. **The gap was in this file, not in the cases**, and
+no case needed changing. That is the second time in two days the gate flagged correct cases because
+this reference was incomplete rather than because the cases were wrong (the first was `Fee / Discount`,
+42 cases). **When the gate flags a label, check this file before you touch a case.**
+
+## Build marker moved
+
+This file was written against **`v26.35.6-598cc8a`**. On 2026-09-02 the branch serves
+**`v26.35.6-0f8d60b`** (read from the `app-version` meta tag). Every label above was either read off a
+screenshot taken on the new build or found in the new build's own chunks; the role-screen rows recorded
+earlier were re-confirmed against the 2026-09-02 screenshots and are unchanged.
