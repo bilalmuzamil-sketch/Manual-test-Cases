@@ -114,6 +114,33 @@ The six checkable requirements are in **`00-COMMON-CORE.md` §11.4** — read th
 
 ---
 
+## 1b. 🔑 IF THIS LANE DOES TOUCH THE BUILD — THE QA-BRANCH LOGIN, IN ONE COMMAND
+
+**This lane needs no build (§1a), but it does have build-contact steps — the up-front live-check ask
+(hard gate 22) and the session cookies you request at §6. When you get there, do NOT re-discover the
+login and do NOT hand-assemble a session.**
+
+```
+source build/testing-tools/ensure_bridge.sh            # fresh MITM bridge; port rotates, never hard-code it
+node build/testing-tools/qa-branch-boot.mjs <branch> <path> <admin|tech>
+```
+The harness clicks the sign-in screen's **`DEV MODE — QUICK LOGIN`** panel and **the app logs itself
+in**, so the role and permissions come from the server, never from a blob we wrote (Rules 12, 26).
+
+- **Ask the QA lead for `sv_sso_session` ONLY** — never `PHPSESSID`, never `cf_clearance`. Put it in
+  **`/tmp/qa-cookies/<branch>-sso.txt`**, **`chmod 600`**, `/tmp` only, **never committed** (Rule 82).
+- **Cookies are scoped HOST-ONLY, never `.qa.shopview.com`.** Parent-domain scoping sends two
+  same-name `PHPSESSID`s and you get a **409 immediately after a 200 login** — that is duplicate
+  cookies, **not** a dead session and **not** a dead branch.
+- **One session per QA branch (Rule 83).** Every quick-login rotates that branch's `PHPSESSID`, so two
+  sessions evict each other. **A mid-test 401/409 is a re-boot, not a blocker and not a reason to
+  contact the QA lead** — re-run the harness and continue.
+
+**Canonical: `build/APP-ACTIONS-PLAYBOOK.md` §A "THE AUTHENTIC QA-BRANCH LOGIN" and
+`build/skills/14-ACCESS-RESILIENCE.md` §3 + §3.1.**
+
+---
+
 ## 2. READ THESE FIRST, IN THIS ORDER
 
 1. **`build/skills/10-TEST-CASE-CREATION.md`** — your own skill. Read it fully; it is the operating
@@ -308,8 +335,9 @@ paste back to the QA lead:
    editable share link, say so — it cannot be dated, so latest-wins cannot be applied to it.
 4. **The epic / Jira key** — plus confirmation of the child story set.
 5. **The engineering tech plan** (Rule 30) — if it was not supplied, remind him.
-6. **The QA branch / environment + the feature-flag or settings state** — and fresh session cookies
-   when live work begins.
+6. **The QA branch / environment + the feature-flag or settings state** — and, when live work begins,
+   **`sv_sso_session` only** (that one cookie, host-only — §1b; asking for `PHPSESSID` or
+   `cf_clearance` walks you into the 409 trap).
 7. **The TestRail target** — which section/group the new cases belong in, and whether a test run
    exists that will need a union sync afterwards (Rules 34/47).
 
