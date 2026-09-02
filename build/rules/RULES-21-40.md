@@ -787,6 +787,33 @@ Index: CLAUDE.md (rule index table). Other rule files: build/rules/RULES-01-20.m
     **This overrides any general authorisation to write.** A go-ahead for a pass, a batch, a suite or
     a lane never reaches his cases; only he can, and he has said not to. **Do not ask again per case
     either** — the answer is recorded, and re-asking is how a standing ruling gets eroded.
+    **⇒ AMENDMENT, 2026-08-31, RECORDED IN THIS FILE 2026-09-02 — THE PROJECT'S DESIGNATED MANUAL QA
+    OWNER IS *IN SCOPE*, NOT FOREIGN. THIS IS THE ONE CARVE-OUT TO THE HANDS-OFF RULE.** QA lead,
+    verbatim: *"If they are created by Mudassir, then treat them as the test cases which you need to
+    build verify too because mudassir is the Manual QA owner for this testing suite/project. Going
+    forward for such foreign cases tell me the name of the creator/updater of those test cases and if I
+    tell you in the reply that the person you have named is the Maual QA owner, then you must treat
+    those test cases as other test cases."*
+    **⇒ SO A CASE AUTHORED BY THE PROJECT'S NAMED MANUAL QA OWNER IS TREATED EXACTLY AS IF WE HAD
+    AUTHORED IT** — source-verify it, build-verify it, keep it tester-ready, update it (Rule 71 still
+    applies if TestRail flags it Automated). **The NAMING STEP IS THE WHOLE POINT:** resolve the author
+    to a name LIVE with `get_user/{id}`, report the name to the QA lead, and the carve-out applies only
+    once **he** confirms that person is the manual QA owner **of that project**. **Recorded owners:**
+    Invoice UI Refresh → **Mudassir Qamar** (user **6**, Manual QA owner — *not* the automation
+    engineer; he corrected that in writing on 2026-08-31, verbatim: *"Layman/Manual QA"*) · Inline Add
+    and Edit Parts (6597) and Printer Friendly WO (6617) → **Viktoria Videnovic** (user **4**;
+    spelling is "Viktoria", not "Victoria"). **Vladimir Tomovic (user 1) is the exception in the other
+    direction and is NEVER in scope, on any project** — see the 2026-09-01 amendment above.
+    **⇒ AND THE GENERAL LESSON, WHICH IS WHY THIS AMENDMENT IS WRITTEN HERE AND NOT ONLY IN CLAUDE.md:
+    A RULE'S AMENDMENT IS PART OF THE RULE.** On 2026-09-02 a payload builder implemented this rule as
+    the bare headline — `created_by != 3 → "foreign (Rule 38)"` — and **rejected all 30 of the manual
+    QA owner's cases on Invoice UI Refresh**, i.e. it enforced the rule's first paragraph while
+    breaking its amendment. **Read the rule in its file to the END, amendments included** — the
+    CLAUDE.md index line is not the rule and says so itself — **and when a check implements a rule,
+    encode the amendment in the check, SCOPED TO THE PROJECT it belongs to, never as a blanket
+    allowance.** Worked example and the ten-check gate that now enforces it:
+    `build/skills/00-COMMON-CORE.md` §5.0 / §5.0-a and its "A RULE'S AMENDMENT IS PART OF THE RULE"
+    section.
 
 39. **When someone else's test cases CONTRADICT ours, establish BOTH sides' sources and bring them
     to the QA lead (all projects).** USER DIRECTIVE (2026-07-31, verbatim): *"If what we have done

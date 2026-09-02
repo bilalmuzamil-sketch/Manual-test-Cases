@@ -30,7 +30,17 @@ old file did; grep it, or read the relevant `RULES-*.md`.
 
 ## 1 · CRITICAL CORE — obey these even if you read nothing else
 
-These are stated here **in full** because a session that gets only this far must still be safe.
+Every **imperative** here is stated in full, because a session that gets only this far must still be
+safe. The **evidence** for each one lives in the rule or skill the bullet points at.
+
+> **🔒 §1 ADMISSION GATE — approved by the QA lead 2026-09-02 (Rule 72); recorded in
+> `build/rules/INTEGRITY.md`.** A §1 bullet is **≤ 400 bytes and states the IMPERATIVE ONLY.** The
+> **verbatim quote, the worked example and the incident history live in the rule or the skill**, reached
+> by the pointer the bullet carries — **§1 carries the instruction, the authority carries the evidence.**
+> A **refinement AMENDS the existing bullet** on that subject; it never adds a second bullet about it.
+> **§1 is hard-capped at 20,000 bytes** — at the cap, the next admission must demote something first.
+> **NOTHING IS DELETED BY THIS GATE:** content is MOVED to its rule/skill and pointed at, and the move is
+> verified by grep before the §1 text is shortened. **A gate that loses a ruling has failed.**
 
 - **NO TESTRAIL WRITE WITHOUT EXPLICIT PERMISSION (6).** TestRail is the only real production system.
   No `add_case` / `update_case` / `delete_case` / run write / result write without the QA lead's
@@ -86,21 +96,11 @@ These are stated here **in full** because a session that gets only this far must
   build differs, the case KEEPS the documented expectation and becomes a deviation with a ticket.
   **A closed ticket is not a spec change. An ambiguous source is never resolved by looking at the
   build (58) — hold the case and ask.**
-- **🛑 A LABEL IS READ FROM THE SMALLEST ELEMENT THAT OWNS IT, NEVER FROM A CONTAINER (2026-09-02).**
-  QA lead: *"learn WHY do you miss to build verify these things, you are doing something seriously wrong
-  being blind towards something which exists in the build."* C45123's event label was recorded as
-  **`Work order printed history`** and a wording divergence raised on it; the build says **`Work order
-  printed`** and the extra word was **a clock icon's own text**, glued on because `probe_print3.mjs:52`
-  read each table row with `tr.innerText`. **Third instance of the same class** (`Fee & Discount` from a
-  note → 42 correct cases flagged; a category `<input>` read with `innerText` → `""`). **⇒ read
-  `cells[i]` mapped to its column header, `value` for an input, `textContent` for everything else; strip
-  `svg`/`i`/`[class*=icon]` first; flattened text may answer "does this appear" and NEVER "this is the
-  label". A label that reads like broken English is the tell — look again before reporting.
-  Capitalisation alone is NOT a divergence (57 takes labels from the build).** And two process facts:
-  **a PASS verdict is not the end of a case** — capture the behaviour AND the route in the same visit,
-  or the route becomes a permission request later; **a WRITE-hold is not an OBSERVATION-hold** — Rule 71
-  stops you editing an Automated case, never reading its screen, and C45123 fell out of the pass
-  entirely because it sat on the "cannot write" list. Full text: `build/skills/03-RUN-CHECK.md`.
+- **🛑 A LABEL IS READ FROM THE SMALLEST ELEMENT THAT OWNS IT, NEVER A CONTAINER (2026-09-02).**
+  `cells[i]` per column header, `value` for an input, `textContent` otherwise, icons stripped.
+  Flattened text answers "does this appear", NEVER "this is the label". Capitalisation alone is no
+  divergence. A WRITE-hold (71) is not an OBSERVATION-hold.
+  Full text: `build/skills/03-RUN-CHECK.md`.
 - **VERIFIED MEANS OBSERVED, NEVER INFERRED (12).** Only mark Verified / Pass / Fail / present /
   absent if it was observed live, with evidence captured that run. Anything not observed is labelled
   **NOT VERIFIED** or **Blocked-with-reason**. Never fill a gap with inference to look complete.
@@ -109,37 +109,18 @@ These are stated here **in full** because a session that gets only this far must
   silence is escalated as a PO question rather than assumed. **Documents establish intent; code
   establishes fact** — and a code-vs-document conflict is a **PO DECISION ITEM, never a silent
   invariant.** Skill: `build/skills/17-REGRESSION-IMPACT-V1-TO-V2.md`.
-- **🛑 COUNT FROM THE SYSTEM OF RECORD, NEVER FROM A LOCAL SNAPSHOT (2026-09-02).** Three times in two
-  days a claim came from the wrong list: *"every part is in at least one bin"* and *"every part holds
-  0.00"* were read off `/api/inventory/parts` (the **stocked** parts, not the catalogue — 19,496
-  catalogue parts sit on no bin), and **"all 89 Invoice UI Refresh cases" came from
-  `testrail-id-map.csv` when the suite holds 119 live** — 30 of them the manual QA tester's. **Cases,
-  sections and runs are counted LIVE from TestRail, paged**; app facts come from the endpoint that
-  answers the question (playbook §U). **Never the id-map, never `cases/*.json`, never a note in this
-  repo, never a figure remembered from earlier in the session.** The tell: before stating a number, ask
-  *"which list did this come from, and is it the list the question is about?"* Full text:
-  `build/skills/00-COMMON-CORE.md`.
-- **🛑 A RULE'S AMENDMENT IS PART OF THE RULE.** A check that implemented Rule 38 as `created_by != 3 →
-  foreign` rejected all 30 of the tester's cases — Rule 38's amendment says the project's **designated
-  manual QA tester is IN SCOPE, not foreign** (Invoice UI Refresh → **Mudassir Qamar, user 6**). Read
-  the rule in its file to the end, amendments included, and encode the amendment in the check,
-  **project-scoped, never a blanket allowance**. Vladimir Tomovic (user 1) stays the exception in the
-  other direction: never in scope, on any project.
-- **🛑 THE MISTAKE-PREVENTION MECHANISM IS TWO FILES, NOT A CHECKLIST (QA lead, 2026-09-02).** Verbatim:
-  *"you must have a mechanism to ensure that while keeping the test cases Authentic/not invented/and
-  RUnnable by a manual QA tester you dont make the mistakes."* **Before reporting a suite, run
-  `python3 build/testing-tools/verify_suite.py --root <section id> --observed build/OBSERVED-UI-LABELS-<env>.md
-  [--run <id>] [--build <marker>] [--authorised <json>]`** — ten checks in one command (live census ·
-  author scope incl. Vladimir never-write and the tester in-scope amendment · Rule-71 Automated
-  inventory · **every case has a source, which is what "not invented" means** · marker literal ·
-  marker arithmetic · runnability · precondition labels · build-sentence honesty · run set-equality),
-  exit 0 only when all ten pass. **Before reading anything off the build, use
-  `build/testing-tools/probe_lib.mjs`** — it makes every recorded reading mistake throw instead of
-  returning a plausible lie (container-vs-element labels, the SPA-shell 200, unconfirmed field names,
-  silently-ignored paging, negatives without controls, probing while signed out). **And the two
-  judgement rules no tool can hold: when a gate flags a label, check the REFERENCE before touching a
-  case (it was the reference that was wrong twice); and a PASS verdict is not the end of a case —
-  capture the behaviour and the route in the same visit.** Full text: `build/skills/00-COMMON-CORE.md`.
+- **🛑 COUNT FROM THE SYSTEM OF RECORD, NEVER A LOCAL SNAPSHOT (2026-09-02).** Cases, sections
+  and runs are counted LIVE from TestRail, paged; app facts come from the endpoint that answers the
+  question. Never the id-map, a `cases/*.json`, a repo note, or a figure remembered. Ask: "which list
+  did this come from, and is it the list the question is about?" `build/skills/00-COMMON-CORE.md`.
+- **🛑 A RULE'S AMENDMENT IS PART OF THE RULE.** Read the rule in its file to the END,
+  amendments included, and encode the amendment in any check you write — project-scoped, never a
+  blanket allowance. Worked miss: `build/rules/RULES-21-40.md` rule 38 amendment of 2026-09-02 and
+  `build/skills/00-COMMON-CORE.md` §5.0.
+- **🛑 THE MISTAKE-PREVENTION MECHANISM IS TWO FILES, NOT A CHECKLIST (QA lead, 2026-09-02).**
+  Before reporting a suite run `python3 build/testing-tools/verify_suite.py`; before reading anything
+  off the build use `build/testing-tools/probe_lib.mjs`. When a gate flags a label, check the
+  REFERENCE first; a PASS is not the end of a case. Full text: `build/skills/00-COMMON-CORE.md`.
 - **NEVER BULK-READ; SCRIPT THE BULK WORK (88).** A session with direct tools must not read hundreds
   of cases, spec bodies or archives into its own context. Write a script, run it, read its SUMMARY.
   Never read `CLAUDE-FULL-ARCHIVE-2026-08-21.md` (or any 100 KB+ artefact) whole.
@@ -184,20 +165,11 @@ These are stated here **in full** because a session that gets only this far must
   **`build/testing-tools/qa-branch-boot.mjs`** held the whole answer, dated 2026-08-31. **⇒ Before the
   first probe of any environment: `grep -n "<the thing>" build/APP-ACTIONS-PLAYBOOK.md` and
   `ls build/testing-tools/`. A committed harness is reused, never rebuilt.**
-- **🛑 QUICK-LOGIN IS THE CORRECT ROUTE, AND ONE COOKIE IS ALL YOU CARRY (2026-09-02).** The QA
-  branch's sign-in screen has a **`DEV MODE — QUICK LOGIN`** panel; clicking **`Admin`** makes the SPA
-  call `POST /api/quick-login` itself and mint `user` + `fe_permissions_wrapper` from the server's
-  response — **authentic role and permissions, nothing hand-assembled** (Rules 12, 26). Run
-  `node build/testing-tools/qa-branch-boot.mjs <branch> <route> admin`. **Carry `sv_sso_session`
-  ONLY**, in `/tmp/qa-cookies/<branch>-sso.txt` at `chmod 600`; `PHPSESSID` is minted by the login and
-  `cf_clearance` is inert on these hosts. **Scope cookies HOST-ONLY, never `.qa.shopview.com`** — a
-  domain-scoped `PHPSESSID` sends two same-name cookies to the API host and produces a **409 right
-  after a 200 login, which looks exactly like a dead session and is not one.** Chromium needs a
-  **fresh MITM bridge per run** (the port rotates — never hard-code it), and
-  `getByRole('button',{name:/^Admin$/})` does **not** match these Quasar buttons: use
-  `button:has-text("Admin")`. **Judge the session by `fe_permissions.length` + `template_slug` (both in
-  `fe_permissions_wrapper`), never by `role.name`** — on sv9315 an administrator session reads
-  `role.name: "Tech View"` with 41 permissions and `template_slug: administrator`.
+- **🛑 QUICK-LOGIN IS THE ROUTE, AND ONE COOKIE ONLY (2026-09-02).** Run
+  `node build/testing-tools/qa-branch-boot.mjs <branch> <route> admin`. Carry `sv_sso_session` ONLY,
+  scoped **HOST-ONLY** — a domain-scoped cookie 409s right after a 200 login, which looks like a dead
+  session and is not. Judge by `fe_permissions.length`, not `role.name`.
+  Traps: `build/APP-ACTIONS-PLAYBOOK.md` §A.
 - **AUTOMATED CASES ARE READ-ASSESSED, THEN HELD FOR THE QA LEAD (71).** Never change or delete a case
   TestRail flags as Automated without his go-ahead; if a pass does change one, TELL VLAD (65).
 - **COMMIT AND PUSH AFTER EVERY STEP, PATH-SCOPED (29).** Git is the only durable store; the container
@@ -212,19 +184,11 @@ These are stated here **in full** because a session that gets only this far must
   execute it without asking · Table 3 must name what the blocker does NOT block (68) · Table 5's last
   row is a bare YES or NO and is NO unless every gate above it passed.** Rule 36's OUTSTANDING section
   still closes the report. Full text: `build/rules/RULES-61-99.md` rule 98.
-- **🛑 EVERY ASK IS SELF-CONTAINED AND EXECUTABLE (99, QA lead 2026-09-02).** He read an OUTSTANDING
-  section and answered two of its four items with **"what is this"**, then gave the rule verbatim:
-  *"please make it the rule to always explain properly that helps be execute what is needed."* Every
-  item he is asked to decide carries **five things in plain words: (1) WHAT IT IS** in the product's
-  own on-screen labels · **(2) HOW IT CAME UP**, one sentence, because he was not in the session ·
-  **(3) THE QUESTION**, answerable with no further reading · **(4) THE OPTIONS**, two or three he can
-  answer by picking one, each saying what we would then DO · **(5) THE COST OF SILENCE**, and what it
-  does *not* block (68). **A row that names only an id, a rule number, a register row, a filename or a
-  count is non-compliant** — those are the receipt, never the explanation (Rule 8's id + link still
-  ride along). **Self-check: if answering the row needs a file opened, an earlier session remembered,
-  or the build looked at, it is not finished.** Governs the OUTSTANDING section, Tables 2 and 4 of the
-  five-table report, PO/dev question sheets, every permission request, and every Rule-65 notice to
-  Vlad. Full text: `build/rules/RULES-61-99.md` rule 99.
+- **🛑 EVERY ASK IS SELF-CONTAINED AND EXECUTABLE (99, 2026-09-02).** Each item he must
+  decide carries five, in plain words: **what it is** · **how it came up** · **the question** ·
+  **the options**, each saying what we would then DO · **the cost of silence** and what it does not
+  block (68). If answering needs a file opened, it is not finished.
+  `build/rules/RULES-61-99.md` rule 99.
 - **EVERY REPORT ENDS WITH "OUTSTANDING — what I need from you" (36).** Say *"nothing outstanding"* if
   that is true; never omit the section. Keep `build/OUTSTANDING-ITEMS-REGISTER.md` current.
 - **🛑 A QUESTION SHEET IS ALWAYS A SPREADSHEET, NEVER A MARKDOWN TABLE (QA lead, 2026-09-01).**
@@ -237,21 +201,11 @@ These are stated here **in full** because a session that gets only this far must
   ticking one. Generator + the enforced layman check: `build/testing-tools/make_question_sheet.py`.
   Still governed by Rule 55 (project and feature named on every row, answerable by a non-technical
   reader) and Rule 66 (the sheet is the LAST thing sent).
-- **🎨 A DESIGN REFERENCE IS A LINK *AND* A ROUTE — never the link alone (QA lead, 2026-09-01).** Verbatim:
-  *"if the source for something is the design, you can add the reference for the design with this link …
-  But do tell where in the design that reference can be found."* An interactive design artifact is an
-  **application**, not a picture: the same block looks different depending on its view button, document
-  switcher and field toggles. So the provenance sentence reads **`Design: the Design Document (<link>) —
-  open "<view>" → "<document>", then <the block it is about>. (<toggle that must be on>.)`**, in the
-  design's **own button labels, read out of the file** (`<button>` text — headings are useless in a React
-  artifact). **Every anchor is verified against the design before it is written**, and a case is never
-  excluded from a reference on a hunch. **The stylesheet encodes the toggles**, so grepping it VERIFIES a
-  conditional claim (`.wrap.no-remit .addr-row{max-width:none}` proved "no Remit To ⇒ Bill To full
-  width"). **And read the design BEFORE escalating a question** — one needless developer question was
-  sent about whether a credit can mix a returned-part line and a money-only line, when the design shows
-  exactly that document. Design is a source of expectation (57); code is fact, never expectation (96).
-  Full technique: `build/skills/02-SOURCE-CHECK.md` §"Reading and citing a design"; the per-project
-  shape: `build/invoice-ui-refresh/DESIGN-REFERENCE-CONVENTION.md`.
+- **🎨 A DESIGN REFERENCE IS A LINK *AND* A ROUTE (QA lead, 2026-09-01).** Provenance reads
+  `Design: the Design Document (<link>) — open "<view>" → "<document>", then <the block>.
+  (<toggle>.)` in the design's **own button labels, read out of the file**. Verify every anchor
+  before writing it; read the design BEFORE escalating a question.
+  Technique: `build/skills/02-SOURCE-CHECK.md`.
 - **PLAIN LAYMAN WORDING (7/9).** Tester-facing and PO-facing text uses the build's exact labels and
   no jargon — no case IDs, spec anchors, HTTP terms or internal names in what they read.
 - **🛑 RUNNABILITY IS A DELIVERABLE OF BUILD VERIFICATION, NOT A TIDY-UP (QA lead, 2026-09-01).** Verbatim:
@@ -441,44 +395,16 @@ rule. Generated from the split files' own headers.
 | **98** | EVERY REPORT IS A TABLE THAT ANSWERS FIVE QUESTIONS — DONE · LEFT · BLOCKED · HOW TO UNBLOCK · HANDOFF-READY |
 | **99** | EVERY ASK IS SELF-CONTAINED AND EXECUTABLE — HE MUST NEVER HAVE TO LOOK SOMETHING UP TO UNDERSTAND WHAT IS BEING ASKED |
 
-**Rule 95 (the Token-Discipline Charter)** was added 2026-08-26 in `build/rules/RULES-61-99.md`. Its
-canonical one-page operator form is **`build/skills/TOKEN-DISCIPLINE-CHARTER.md`** — twelve clauses
-(strategy first · never bulk-read, script it · the reading rule · spawn discipline · never poll · batch
-writes · piggyback cheap checks · never re-do work · answer in text · the budget · the week-start guard ·
-**quality is never the thing cut**). **EVERY handoff embeds the twelve clauses VERBATIM and every session
-applies them from its first turn; a handoff without them is non-compliant and must not be issued.**
-Routers take it by pointer only.
-
-**Rule 96 (the V1→V2 invariant set)** was added 2026-08-26 in `build/rules/RULES-61-99.md`, which was
-renamed on the same day from its previous 61-to-95 filename. Operator form:
-**`build/skills/17-REGRESSION-IMPACT-V1-TO-V2.md`**. **A V2 spec describes only what CHANGES and is
-SILENT about everything else, so a V2 build can break a V1 behaviour with every case still passing.**
-Derive **INVARIANTS = V1 baseline − (changed ∪ removed ∪ replaced)**; **silence defaults to "must not
-change"**, and a **high-collateral-risk silence is escalated as a PO question, never assumed**.
-**Documents establish INTENT; product source code establishes FACT and is NEVER a source of expectation
-(57) — a code-vs-document conflict is a PO DECISION ITEM, never a silent invariant, and the case is HELD
-(58).** Superseded V1 cases are **retired or rewritten, never preserved** (94). The project type is asked
-at intake — **(i) NEW · (ii) V2/UPGRADE · (iii) REVIVAL** — in `build/skills/15-NEW-PROJECT-INTAKE.md`
-§1a, and **type (ii) triggers the skill**.
-
-**Rule 97 (search before you give up)** was added 2026-08-28 in `build/rules/RULES-61-99.md`, which was
-renamed on the same day from its previous 61-to-96 filename. **QA lead, verbatim:** *"I want that
-session if it is giving up to go and see if you ever did something similar and it worked for you and to
-learn from you then."* The **SEARCH BEFORE YOU GIVE UP** drill is carried INLINE by all four handoffs
-(`build/handoffs/`), is a **required section of every future handoff** (`build/handoffs/README.md` and
-`build/PROCESS-AUTHORING-STANDARD.md`, the same treatment Rule 95's charter got), and is pointed at from
-the four routers (`10`/`11`/`12`/`16`), `13-CROSS-SESSION-SAFETY.md` and `00-COMMON-CORE.md`.
-
-**Rules 89 (access resilience + MCP hygiene) and 90 (shared-quota budget allocation)** were added
-2026-08-21 and live in `build/rules/RULES-61-99.md` with 61–88. Rule 89's operator form is
-`build/skills/14-ACCESS-RESILIENCE.md`.
-
-**Rule 91 (the verification freshness badge)** was added 2026-08-21 in the same file. **Its second
-half is a CORRECTION: the branches are NOT final** — they are continuously updated as ad-hoc
-decisions are made and will not be final until release day, so **Rules 49 and 60 remain in force**
-and a gap is **possibly-unfinished** rather than automatically a defect. Badges: **✅ ≤7 days ·
-🟠 8–14 days · 🔴 >14 days · ❌ never build-verified**, always with the date (and build marker or
-spec version). Tool: `build/testing-tools/verification_badge.py` (requires `--today`).
+**Operator forms** (the rule bodies are all in `build/rules/RULES-61-99.md`): **95** →
+`build/skills/TOKEN-DISCIPLINE-CHARTER.md` · **96** → `build/skills/17-REGRESSION-IMPACT-V1-TO-V2.md`
+(project type asked at intake, `15-NEW-PROJECT-INTAKE.md` §1a) · **97** → the SEARCH-BEFORE-YOU-GIVE-UP
+drill, carried inline by every handoff · **89** → `build/skills/14-ACCESS-RESILIENCE.md` ·
+**91** → `build/testing-tools/verification_badge.py`. When each rule was added, and the file's rename
+history, are in `build/rules/INTEGRITY.md`.
+**Rule 91 badges: ✅ ≤7 days · 🟠 8–14 days · 🔴 >14 days · ❌ never build-verified** — always with the
+date (and build marker or spec version). Rule 91's correction (**the branches are NOT final**, so Rules
+49 and 60 stay in force and a gap is possibly-unfinished, not automatically a defect) is stated in full
+in `build/skills/00-COMMON-CORE.md` §16.0.
 
 ---
 
@@ -667,36 +593,40 @@ Compact form — **the rule named in brackets is the authority; read it before r
   needs to be done / Other actions"), action-first, table-form where it helps. [70]
 - **Concise TestRail titles — ≤ ~80 characters**, so nothing truncates on the case page. [ref: title
   convention]
-- **🛑 TESTRAIL CASE-FIELD FORMATTING — `<p>`/`<br>`/LIST BLOCKS ONLY, NEVER STYLING INLINE TAGS,
-  NEVER PLAIN NEWLINES.** The `preconds`/`steps`/`expected` fields are Markdown but TestRail wraps every
-  submitted value in ONE outer `<p>`, so plain `\n\n` **loses all line breaks** (collapses to a wall of
-  text) and **styling** inline tags (`<b>`, `<i>`, `<code>`, `<em>`, `<strong>`) **show literally**.
-  **`<br>` is ORIGIN-DEPENDENT: it renders from a UI edit but shows LITERALLY when written via the API**
-  — so **never emit `<br>` (or any inline tag) in an API payload**; to put lines on their own rows use
+- **🛑 TESTRAIL CASE-FIELD FORMATTING AND THE API-WRITE ESCAPING-CONTAINER TRAP — ONE BULLET, TWO HALVES
+  (merged 2026-09-02; full trap, round-trip evidence and the served-page scanner:
+  `build/APP-ACTIONS-PLAYBOOK.md` §J).**
+  **(i) WHAT TO EMIT — `<p>`/LIST BLOCKS ONLY, NEVER STYLING INLINE TAGS, NEVER PLAIN NEWLINES.** The
+  `preconds`/`steps`/`expected` fields are Markdown but TestRail wraps every submitted value in ONE
+  outer `<p>`, so plain `\n\n` **loses all line breaks** (collapses to a wall of text) and **styling**
+  inline tags (`<b>`, `<i>`, `<code>`, `<em>`, `<strong>`) **show literally**. **`<br>` is
+  ORIGIN-DEPENDENT: it renders from a UI edit but shows LITERALLY when written via the API** — so
+  **never emit `<br>` (or any inline tag) in an API payload**; to put lines on their own rows use
   separate `<p>` blocks or a `<ul><li>` list. Format with block tags only: **`<p>` per paragraph,
   `<ol>/<ul><li>` for lists, `<hr />` for a separator** — and put the **source / provenance BELOW the
-  expected behaviour after an `<hr />`**, as a `<p>` label + `<ul><li>` list + a final `<p>` date. When editing a case after source verification, **keep formatting 100%
-  intact**: copy the proven-good structure (e.g. Global Search C44804) or reuse the block-only
-  converters in `build/global-search/apply_to_testrail.py`; never hand-author inline HTML. Full trap +
-  round-trip evidence: `build/APP-ACTIONS-PLAYBOOK.md` §J. [proven live 2026-08-28, C27800]
-- **🛑 THE API-WRITE ESCAPING-CONTAINER TRAP — BLOCK HTML WRITTEN VIA THE API IS OFTEN UNREADABLE, AND
+  expected behaviour after an `<hr />`**, as a `<p>` label + `<ul><li>` list + a final `<p>` date. When
+  editing a case after source verification, **keep formatting 100% intact**: copy the proven-good
+  structure (e.g. Global Search C44804) or reuse the block-only converters in
+  `build/global-search/apply_to_testrail.py`; never hand-author inline HTML. [proven live 2026-08-28,
+  C27800]
+  **(ii) WHERE IT LANDS — BLOCK HTML WRITTEN VIA THE API IS OFTEN UNREADABLE, AND
   `check_case_render.py` CANNOT SEE IT (measured 2026-08-31).** TestRail serves each field in one of two
   containers, invisible to the API: `<div class="markdown fr-view">` renders block HTML; plain
   `<div class="markdown">` **ESCAPES it** so the tester literally reads `<ol><li><p>`. **An API
   `update_case`/`add_case` leaves the field in the ESCAPING container; only a UI SAVE flips it to
   `fr-view`.** So a case can PASS `check_case_render.py` (which reads the API-stored value) and still be
-  unreadable on screen. Proven live: a v13→v16 pass reformatted 76 Inline cases to block HTML via the
-  API — all passed the self-check, all 76 were escaping/unreadable on the served page. **⇒ (a) the
+  unreadable on screen. **⇒ (a) the
   post-write check is TWO steps now: the stored-value check AND a served-page container scan (log into the
   UI, GET `/index.php?/cases/view/<id>`, require `markdown fr-view`); (b) repair escaping cases through
   the UI editor (Playwright), NEVER by another API write — proven recipe in
   `build/build-verify-session-2026-08-21/repair-2026-08-25/` and playbook §J; (c) plain text in an
   escaping container still renders as text, so do NOT "upgrade" a readable plain-text case to block HTML
-  via the API — that makes it WORSE.** Full evidence + the served-page scanner: `build/APP-ACTIONS-PLAYBOOK.md` §J.
+  via the API — that makes it WORSE.**
   **🆕 STANDARD (QA lead, 2026-08-31): after ANY API-write pass, the served-page container scan + UI-repair
   of every escaping case to `fr-view` is the REQUIRED post-step — not optional.** Proven recipe (Playwright →
   Froala `html.set` → deadlock-retry): `build/inline-add-edit-parts/render-repair-2026-08-31/` and
-  `build/build-verify-session-2026-08-21/repair-2026-08-25/`.
+  `build/build-verify-session-2026-08-21/repair-2026-08-25/`. The 76-of-118 worked example that
+  established this is in `build/inline-add-edit-parts/PROJECT-STATE.md`.
 - **🛑 POST-WRITE RENDER SELF-CHECK — after ANY case create/update, fetch it back and confirm it
   renders correctly before calling it done.** Never assume the write looks right; verify it. Run
   `python3 build/testing-tools/check_case_render.py <C-ID> …` (fails on inline tags, wall-of-text, or
