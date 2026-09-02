@@ -425,14 +425,55 @@ any endpoint/ID not recorded here or in `CLAUDE.md`** — if only partly known, 
     one only the QA lead can re-mint, and it is a different symptom.
   - **Re-read the build marker after any re-boot** — an eviction and a redeploy look identical from
     the inside, and a redeploy splits your verdicts across two builds (Rules 49, 54).
+- **✅ CONFIDENCE — THE REFACTORED HARNESS WAS RE-PROVEN LIVE ON 2026-09-02 against `sv9315`, build
+  marker `v26.35.6-0f8d60b`.** `qa-branch-boot.mjs` was refactored in commit `f6e602b3` **after** the
+  original proof (the body moved into `bootOrigin()`, `boot()` kept as a thin wrapper), so by Rule 12
+  the file as it now stands had never been observed working. It has now been observed, three ways —
+  the CLI entry point, the exported `boot()`, and the exported `bootOrigin()` — all clean:
+  **exit 0** · `localStorage["user"]` **present** (with `fe_permissions_wrapper`, `location`,
+  `current_shop_id`, `timezone`, `country_code`, `organization_features`, `bookkeeping_enabled`,
+  `mode`) · landed URL **`https://sv9315.qa.shopview.com/customers`**, *not* `/login` ·
+  `GET /api/auth/me/fe-permissions` → **200** · `fe_permissions.length` = **40** ·
+  `template_slug` = **`administrator`**. **No "not re-verified" caveat remains on this file.**
+  - **⚠️ `ensure_bridge.sh` DOES NOT GENERATE THE BRIDGE'S TLS CERT — prerequisite (a) is not
+    self-sufficient.** With `/tmp/atlassian/mitm.key` absent the bridge dies instantly with
+    `ENOENT`, `bridge-port.txt` stays empty, and `ensure_bridge.sh` reports
+    `bridge: restarted -> , egress ` — an **empty** port and egress, which is the tell. Generate the
+    cert first (§A(2) above; use the WIDE SAN list) and re-source. Hit again 2026-09-02.
+  - **🛑 JUDGE THE SESSION BY `template_slug`, NEVER BY `role.name`.** On `sv9315` the **`admin`**
+    quick-login user's `user.data.role.name` reads **"Tech View"** while `fe-permissions` reports
+    `template_slug` = **`administrator`** / 40 permissions. The harness's own summary line prints
+    `role: Tech View`, which makes a correct admin login look like it landed on the wrong role.
+    Assert on `template_slug` + permission count. (`GET /api/quick-login/users` on sv9315 returns
+    exactly two entries — `admin`→"Admin", `tech`→"Tech" — so there is no third button to mis-click.)
+- **🟡 STAGING QUICK-LOGIN — ESTABLISHED FROM THE REPO RECORD 2026-09-02: THE FACILITY IS REAL, THE
+  UI PANEL IS STILL UNOBSERVED. DO NOT CONFLATE THE TWO.** The QA lead is right that quick login was
+  used on staging during the Custom Roles project — but every recorded staging use is the **API
+  endpoint** `POST /api/quick-login {key:'admin'|'tech'}`, called from Node under the **three
+  cookies** and followed by **hand-writing `localStorage`**, *not* a click on a `DEV MODE` panel:
+  `build/TESTING-RUNBOOK.md` §3 ("DEV login is gated by valid session cookies (the three in section
+  2)") · `build/testing-tools/staging-admin.mjs` `login()` · `build/custom-roles-run/RUN331-STATE.md`
+  ("Auth: DEV `POST /api/quick-login`") · `build/custom-roles-run/live-ui-2026-07-16/staging/approve-decline-TECH-PT.json`
+  (`"method": "quick-login tech (real session)"`) · and as recently as 2026-08-19
+  `build/filters/build-verify-2026-08-19/tools/mobile.mjs`, which visits `/login` only as a
+  same-origin landing pad for `localStorage.setItem(...)` and **never clicks a button**.
+  **No observation of a `DEV MODE — QUICK LOGIN` panel on `app.staging.shopview.com/login` exists
+  anywhere in this repo.** Staging also sits behind **Cloudflare** (`cf_clearance` at the edge),
+  unlike the CloudFront+nginx QA branches, so even "`sv_sso_session` alone" is unproven there.
+  Could not be settled live: we hold no staging `sv_sso_session` and stored staging cookies return
+  401 (`build/BLOCKED-shopview-app-session.md`). **The staging caveat therefore STANDS, narrowed.**
 - **Chromium UI automation — `staging-boot2.mjs`. 🔴 CONVERTED 2026-09-02: it now delegates to
-  `qa-branch-boot.mjs` for any QA branch and no longer hand-hydrates `localStorage`.** The old text
-  here said *"the DEV login BUTTONS don't reliably work"* — **that was a selector bug, not a button
-  bug** (`getByRole('button',{name:/^Admin$/})` does not match a Quasar `q-btn`;
-  `button:has-text("Admin")` does), and it is the sentence that kept sending sessions down the
-  hand-minting path. **Hand-hydration is now reserved for a host with NO DEV MODE panel** and is
-  marked as such in the script. Both scripts read `$HTTPS_PROXY`/the bridge port LIVE — the port
-  rotates. *Source: CLAUDE.md, TESTING-RUNBOOK.md; correction proven on `sv9315` 2026-08-31.*
+  `qa-branch-boot.mjs` for any QA branch and no longer hand-hydrates `localStorage`.** An earlier
+  version of this bullet said the recorded note *"the DEV login BUTTONS don't reliably work"* **"was
+  a selector bug, not a button bug"**. **Half-corrected 2026-09-02: the selector bug is REAL and
+  proven** (`getByRole('button',{name:/^Admin$/})` does not match a Quasar `q-btn`;
+  `button:has-text("Admin")` does) **— but it was proven on a QA BRANCH, and the note it was
+  explaining was recorded about STAGING** (`build/custom-roles-run/WORDING-VIU-STATE-2026-07-13.md`).
+  So the selector bug is a **plausible, not a demonstrated,** explanation of that staging note; the
+  staging panel has never been observed either way. **Hand-hydration is reserved for a host with no
+  DEV MODE panel** and is marked as such in the script. Both scripts read `$HTTPS_PROXY`/the bridge
+  port LIVE — the port rotates. *Source: CLAUDE.md, TESTING-RUNBOOK.md; selector correction proven on
+  `sv9315` 2026-08-31, re-proven 2026-09-02; staging scope corrected 2026-09-02.*
 - **Fresh MITM bridge (fallback when the direct proxy path fails):** `staging-bridge.mjs` — a small
   local proxy that accepts Chromium's CONNECT and relays via Node fetch (honours
   `NODE_USE_ENV_PROXY=1` + `NODE_EXTRA_CA_CERTS=/root/.ccr/ca-bundle.crt`). Reads `$HTTPS_PROXY`
