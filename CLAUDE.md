@@ -174,17 +174,30 @@ These are stated here **in full** because a session that gets only this far must
   last 3 builds / 3 source versions still COUNTS, with its date shown (77).
 - **SOURCE VERIFICATION IS OFFERED AND GATED, NEVER AUTO-RUN (81).** Make the source current FIRST,
   but ask before spending the quota on it.
-- **🛑 NEVER CALL QUICK-LOGIN ON A SESSION YOU DID NOT MINT (2026-09-02, learned the hard way).**
-  Clicking the login page's own **`Admin`** button fires `POST /api/quick-login`, which **rotates the
-  shared session server-side and evicts everyone else on that branch** (Rule 83). It answers **200 and
-  returns a PHPSESSID that 409s for ever** — QA lead: *"persist that cookie and you are latched into
-  permanent logout."* On 2026-09-02 that one click **destroyed the QA lead's live QA session** minutes
-  after it had paged 2,821 work orders successfully, and cost him a re-mint. **A direct instruction to
-  "use the quick-login control" is the moment to surface the Rule-83 conflict (Rule 63), not to
-  click.** Also: **never write a post-quick-login cookie back to the cookie file** (keep the supplied
-  set immutable, verify by fingerprint), **a `token` in that response is not a bearer token** (119k of
-  permission JSON on this build; `Bearer`/`Token`/`JWT`/`X-AUTH-TOKEN` all fail), and **409 `Session
-  has expired.` means stop, never retry.** Full account: `build/APP-ACTIONS-PLAYBOOK.md`.
+- **🛑 SEARCH THE PLAYBOOK BEFORE THE FIRST EXPERIMENT, NOT AFTER THE FIRST FAILURE (97, amended
+  2026-09-02).** QA lead: *"What went wrong was sequencing — you experimented before searching the
+  repo, and everything above was recorded on 2026-08-28."* Rule 97 already forbids declaring a blocker
+  unsearched; the amendment is that it also forbids **probing** unsearched. Getting a signed-in QA
+  browser cost eight probes, a wrong root cause, a false alarm that the QA lead's session had been
+  destroyed, and an ask he had to reject twice — while
+  **`build/APP-ACTIONS-PLAYBOOK.md` §A "THE AUTHENTIC QA-BRANCH LOGIN"** and the harness
+  **`build/testing-tools/qa-branch-boot.mjs`** held the whole answer, dated 2026-08-31. **⇒ Before the
+  first probe of any environment: `grep -n "<the thing>" build/APP-ACTIONS-PLAYBOOK.md` and
+  `ls build/testing-tools/`. A committed harness is reused, never rebuilt.**
+- **🛑 QUICK-LOGIN IS THE CORRECT ROUTE, AND ONE COOKIE IS ALL YOU CARRY (2026-09-02).** The QA
+  branch's sign-in screen has a **`DEV MODE — QUICK LOGIN`** panel; clicking **`Admin`** makes the SPA
+  call `POST /api/quick-login` itself and mint `user` + `fe_permissions_wrapper` from the server's
+  response — **authentic role and permissions, nothing hand-assembled** (Rules 12, 26). Run
+  `node build/testing-tools/qa-branch-boot.mjs <branch> <route> admin`. **Carry `sv_sso_session`
+  ONLY**, in `/tmp/qa-cookies/<branch>-sso.txt` at `chmod 600`; `PHPSESSID` is minted by the login and
+  `cf_clearance` is inert on these hosts. **Scope cookies HOST-ONLY, never `.qa.shopview.com`** — a
+  domain-scoped `PHPSESSID` sends two same-name cookies to the API host and produces a **409 right
+  after a 200 login, which looks exactly like a dead session and is not one.** Chromium needs a
+  **fresh MITM bridge per run** (the port rotates — never hard-code it), and
+  `getByRole('button',{name:/^Admin$/})` does **not** match these Quasar buttons: use
+  `button:has-text("Admin")`. **Judge the session by `fe_permissions.length` + `template_slug` (both in
+  `fe_permissions_wrapper`), never by `role.name`** — on sv9315 an administrator session reads
+  `role.name: "Tech View"` with 41 permissions and `template_slug: administrator`.
 - **AUTOMATED CASES ARE READ-ASSESSED, THEN HELD FOR THE QA LEAD (71).** Never change or delete a case
   TestRail flags as Automated without his go-ahead; if a pass does change one, TELL VLAD (65).
 - **COMMIT AND PUSH AFTER EVERY STEP, PATH-SCOPED (29).** Git is the only durable store; the container
