@@ -1,0 +1,10 @@
+{
+ "from": "the \"Invoice #\" column",
+ "to": "the \"No.\" column",
+ "fields": ["custom_preconds", "custom_steps"],
+ "expect_per_field": 1,
+ "outdir": "build/invoice-ui-refresh/column-fix-2026-09-02",
+ "authorised_automated": [],
+ "cases": [44903,44904,44905,44906,45168,44955,44956,44964,44965,44966,44967,44968,44969,44970,45179,45180,45181,45182,45183,44971,45197],
+ "why": "The customer's Invoices tab has NO \"Invoice #\" column. Its columns, read off the screen and confirmed by the QA lead's screenshot, are: (select) Date, Type, No., Memo, Total, Balance, Status, Action. 21 cases send a tester to a column that is not there. 'Invoice #' IS a real label elsewhere in the build (the OpenInvoicesCard component), which is why check_precond_labels.py passed it - a label being real is not the same as it being on THAT screen."
+}

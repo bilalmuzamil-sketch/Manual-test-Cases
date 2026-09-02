@@ -264,3 +264,30 @@ on **sv9315** with a signed-in browser on 2026-09-02: **no credit exists on the 
 (read at `data.response.collection`, the correct key). **So the route is confirmed and the DATA is
 absent on sv9315** — the 12 Credit Invoice cases still need either a seeded credit on that branch or a
 run on the environment the screenshot came from. Two different gaps; do not conflate them.
+
+## 🛑 A LABEL BEING REAL IS NOT THE SAME AS IT BEING ON *THAT* SCREEN (2026-09-02)
+
+**The gate's blind spot, found the hard way.** 21 Invoice UI Refresh cases told a tester to find a
+credit by its number **"in the `Invoice #` column"** of the customer's `Invoices` tab. **That tab has no
+such column.** Its columns are, read off the screen and confirmed by the QA lead's screenshot:
+
+```
+(select checkbox) · Date · Type · No. · Memo · Total · Balance · Status · Action
+```
+
+**`check_precond_labels.py` passed all 21** — because `Invoice #` **is** a real label in this build; it
+lives in the `OpenInvoicesCard` component, a different screen. The gate asks *"does this string exist
+somewhere in the build?"* when the question a tester needs answered is *"is it on the screen this case
+sends me to?"*
+
+**⇒ Two consequences, both now in force:**
+1. **This file records the SCREEN each label belongs to**, not just the label. A bare list of strings
+   cannot catch a right-label-wrong-screen error.
+2. **When a case names a column, a tab or a field, check it against the columns of the screen its own
+   route names** — the route is in the case's preconditions, and the columns are in the route registry
+   (`node build/testing-tools/route_registry.mjs find "<thing>"`). A label lifted from another screen
+   is exactly as useless to a tester as one that does not exist.
+
+Fixed on all 21 by surgical replacement (`the "Invoice #" column` → `the "No." column`), 33 occurrences
+across preconditions and steps, every write verified byte-identical apart from the replacement:
+`build/invoice-ui-refresh/column-fix-2026-09-02/`.
