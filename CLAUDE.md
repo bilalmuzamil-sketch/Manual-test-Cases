@@ -125,6 +125,21 @@ These are stated here **in full** because a session that gets only this far must
   the rule in its file to the end, amendments included, and encode the amendment in the check,
   **project-scoped, never a blanket allowance**. Vladimir Tomovic (user 1) stays the exception in the
   other direction: never in scope, on any project.
+- **🛑 THE MISTAKE-PREVENTION MECHANISM IS TWO FILES, NOT A CHECKLIST (QA lead, 2026-09-02).** Verbatim:
+  *"you must have a mechanism to ensure that while keeping the test cases Authentic/not invented/and
+  RUnnable by a manual QA tester you dont make the mistakes."* **Before reporting a suite, run
+  `python3 build/testing-tools/verify_suite.py --root <section id> --observed build/OBSERVED-UI-LABELS-<env>.md
+  [--run <id>] [--build <marker>] [--authorised <json>]`** — ten checks in one command (live census ·
+  author scope incl. Vladimir never-write and the tester in-scope amendment · Rule-71 Automated
+  inventory · **every case has a source, which is what "not invented" means** · marker literal ·
+  marker arithmetic · runnability · precondition labels · build-sentence honesty · run set-equality),
+  exit 0 only when all ten pass. **Before reading anything off the build, use
+  `build/testing-tools/probe_lib.mjs`** — it makes every recorded reading mistake throw instead of
+  returning a plausible lie (container-vs-element labels, the SPA-shell 200, unconfirmed field names,
+  silently-ignored paging, negatives without controls, probing while signed out). **And the two
+  judgement rules no tool can hold: when a gate flags a label, check the REFERENCE before touching a
+  case (it was the reference that was wrong twice); and a PASS verdict is not the end of a case —
+  capture the behaviour and the route in the same visit.** Full text: `build/skills/00-COMMON-CORE.md`.
 - **NEVER BULK-READ; SCRIPT THE BULK WORK (88).** A session with direct tools must not read hundreds
   of cases, spec bodies or archives into its own context. Write a script, run it, read its SUMMARY.
   Never read `CLAUDE-FULL-ARCHIVE-2026-08-21.md` (or any 100 KB+ artefact) whole.

@@ -44,6 +44,17 @@ BARRED = [
 # things that are never UI labels, so never worth flagging
 IGNORE = re.compile(r'^(Escape|Enter|Tab|Shift\+Enter|Ctrl\+|F\d|\d+(\.\d+)?|[A-Z0-9\-]{4,}|x|×|s “X)$', re.I)
 
+# A quoted string that is DATA is not a label, and flagging it sends someone hunting the screen for a
+# value. Measured 2026-09-02 on the Invoice suite: “GST# 812694966 RT0001” (given in the case as "for
+# example ...") and “CM-” (a credit number's prefix) were both reported as unobserved labels. Neither
+# is on any screen as written; both are examples of content.
+DATA_LOOKING = re.compile(r'''
+      ^\S*\#\s*\d                # a reference number:  GST# 812694966
+    | \d{4,}                       # any run of 4+ digits: an id, a tax number, a total
+    | ^[A-Z]{2,4}-$                # a number PREFIX quoted on its own: CM-, INV-
+    | ^\$                          # a money amount
+''', re.X)
+
 
 def api(path, auth, tries=5):
     for a in range(tries):
@@ -85,7 +96,24 @@ def main():
 
     observed = open(a.observed, encoding='utf-8').read()
     # the observed file is prose + tables; a label counts as seen if it appears anywhere in it
-    seen = lambda label: label.lower() in observed.lower()
+    # Compare with the spacing around separators collapsed. The build writes the document toggle as
+    # “Estimate/Invoice” and 89 cases write “Estimate / Invoice”; that is the same control and no
+    # tester is misled by it, so failing 89 cases over two spaces is the gate crying wolf (it already
+    # did that once, over “Fee / Discount”). A DIFFERENT separator character is still caught: “Fee /
+    # Discount” and “Fee & Discount” do not normalise to each other.
+    # The observed file writes every confirmed label in backticks. That is the gate's vocabulary of
+    # things known to be on a screen, and it is what lets the silence check below ask the RIGHT
+    # question: "does this case name anything that exists on the build?" rather than "does this case
+    # use quote marks?". Measured 2026-09-02: C44947 names Parts, Part Sales, the Finance tab, New
+    # Payment, the Payments block and Balance -- a complete route -- but writes them bare, and the
+    # quote-only check called it silent. That was the gate being wrong about a correct case, the
+    # third such false alarm in two days.
+    VOCAB = sorted({m.strip() for m in re.findall(r'`([^`\n]{3,60})`', observed)}, key=len, reverse=True)
+
+    def _n(t):
+        return re.sub(r'\s*([/&+|:>-])\s*', r'\1', (t or '')).lower()
+    observed_n = _n(observed)
+    seen = lambda label: label.lower() in observed.lower() or _n(label) in observed_n
 
     cases = []
     if a.cases:
@@ -99,11 +127,18 @@ def main():
 
     unconfirmed = collections.defaultdict(list)
     barred_hits = collections.defaultdict(list)
-    # 🛑 SILENCE USED TO PASS. This gate only ever inspected the labels a case QUOTES, so a
-    # precondition that names nothing at all scored a clean pass -- it had no labels to be wrong
-    # about. C45123 was exactly that: "Open the work order's audit history", no route, no label,
-    # green on this gate, and a tester had nowhere to click. A precondition with no quoted label is
-    # not a case that got the labels right; it is a case that has not been build-verified yet.
+    # 🛑 SILENCE USED TO PASS. This gate only ever inspected the labels a case QUOTES, so a case that
+    # names nothing at all scored a clean pass -- it had no labels to be wrong about. A case with no
+    # label is not a case that got the labels right; it is a case nobody has build-verified.
+    #
+    # CORRECTION, 2026-09-02: this check is NOT what would have caught C45123, and an earlier version
+    # of this comment claimed it was. C45123's steps DID quote a label -- "Print Work Order" -- while
+    # saying only "Open the work order's audit history" for the part that mattered. What caught it was
+    # check_runnable_cases.py ("R3 nothing to aim at"), which worked exactly as designed. The failure
+    # after that was mine, not a gate's: the case sat on the Rule-71 write-hold list, so its route was
+    # never read off the screen and the gate's finding was turned into a permission request instead.
+    # A write-hold is not an observation-hold. This check is a real but NARROWER improvement: it
+    # catches the case that names nothing whatsoever.
     silent = []
     for case in cases:
         pre = txt(case.get('custom_preconds') or '')
@@ -113,12 +148,16 @@ def main():
         found = {a or b for a, b in QUOTED.findall(pre)}
         for label in sorted(found):
             label = label.strip().rstrip('.,;:')
-            if not label or IGNORE.match(label): continue
+            if not label or IGNORE.match(label) or DATA_LOOKING.search(label): continue
             if not seen(label):
                 unconfirmed[label].append(case['id'])
         stp = txt(case.get('custom_steps') or '')
-        if not {a or b for a, b in QUOTED.findall(pre + '\n' + stp)}:
-            silent.append((case['id'], case.get('title', '')))
+        body = pre + '\n' + stp
+        if not {a or b for a, b in QUOTED.findall(body)}:
+            low = body.lower()
+            named = [v for v in VOCAB if v.lower() in low]
+            if not named:
+                silent.append((case['id'], case.get('title', '')))
 
     print(f'cases checked      : {len(cases)}')
     print(f'observed-label file: {a.observed}')

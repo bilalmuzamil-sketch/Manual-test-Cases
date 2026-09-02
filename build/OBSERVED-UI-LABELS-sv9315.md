@@ -186,3 +186,52 @@ This file was written against **`v26.35.6-598cc8a`**. On 2026-09-02 the branch s
 **`v26.35.6-0f8d60b`** (read from the `app-version` meta tag). Every label above was either read off a
 screenshot taken on the new build or found in the new build's own chunks; the role-screen rows recorded
 earlier were re-confirmed against the 2026-09-02 screenshots and are unchanged.
+
+## Invoice UI Refresh labels — confirmed 2026-09-02 by a COMPLETE bundle sweep
+
+**The sweep was exhaustive this time: 611 chunks, queue emptied, no cap reached — and ALL SIX control
+labels came back FOUND**, including `View mode` and `Tech view`, which a truncated 400-chunk run had
+missed. So this run's negatives carry weight (a string could still be assembled at runtime, which is
+exactly what happened to one of them below).
+
+| Label, verbatim | The chunk that owns it — i.e. which screen |
+|---|---|
+| `Invoice #` | `OpenInvoicesCard` — the customer's invoice list column |
+| `Print credit memo` | `UnpaidTransactionsTable`, `TransactionsPaymentsTable` — the print icon's tooltip on a transaction row |
+| `Open only` | `UnpaidTransactionsTable`, `DepositsTable` — the default-on filter on those tables |
+| `Show declined work` | `InvoiceContentSettings` — a document option |
+| `Summarize labor total` · `Summarize parts total` | `Invoice`, `InvoiceDetails` |
+| `Show % on Estimates and Invoices` | `WorkplaceDialog` — a shop setting |
+| `New Payment` · `Add Deposit` | `InvoiceActionBar` |
+| `Issue Credit` | `UnpaidTransactionsTable`, `IssueCreditMemoDialog` |
+| `Send Email` | `UnpaidTransactionsTable`, `OrderItems` |
+| `Invoice created` · `Invoice downloaded` · `Invoice emailed` | `WorkOrderHistory` — event names in the history window |
+| **`View mode` · `Tech view`** | `WoSettingsRow` — confirming the role-screen rows recorded earlier |
+
+### 🛑 The document toggle is `Estimate/Invoice` — NO SPACES around the slash
+
+`InvoiceContentSettings.Cvu7znOs.js` carries it verbatim:
+
+```
+class:"invoice-toggle", color:"primary", label:"Estimate/Invoice"
+```
+
+**89 of our cases write it as `Estimate / Invoice`, with spaces.** That is the same control and no tester
+is misled, so **the cases were not rewritten** — 89 editor writes for two spaces is churn with a
+clobbering risk and no benefit. Instead `check_precond_labels.py` now collapses spacing **around a
+separator** before comparing, so `Estimate / Invoice` matches `Estimate/Invoice`. A **different**
+separator character is still caught: `Fee / Discount` does not normalise to `Fee & Discount`.
+
+### Two of the four "not found" were never labels
+
+`GST# 812694966 RT0001` (C44957) and `CM-` (C44964) are **data**, quoted in the cases as examples of a
+tax identifier and of a credit number's prefix. The gate now skips quoted strings that look like data
+(a `#` followed by digits, a run of four or more digits, a bare `XX-` prefix, a money amount) instead of
+sending someone to hunt the screen for a value.
+
+### `Remit Payment To` is on the printed page, not in the front-end
+
+C45168 quotes it, and the sweep did not find it — **expected**: it is a block of the printed document,
+rendered server-side into the invoice template, so no front-end chunk contains it. It is present
+verbatim in the design document, and the suite's 2026-08-31 pass verified it on the printed output.
+**A printed-document string can only be confirmed from the rendered document, never from a bundle scan.**
