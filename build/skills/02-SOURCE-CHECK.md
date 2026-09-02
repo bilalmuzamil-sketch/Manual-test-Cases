@@ -423,3 +423,105 @@ Sources read at pass start: <UTC>   ·   re-read at write start: <UTC>   ·   ve
 
 **And it never treats the BUILD as a source of expected behaviour** — the build is not on the list
 (core §11.2).
+
+
+---
+
+# 🎨 READING AND CITING A DESIGN — the technique, learned 2026-09-01/02
+
+**The instruction that produced this (QA lead, 2026-09-01):** *"if the source for something is the
+design, you can add the reference for the design with this link … **But do tell where in the design
+that reference can be found.**"*
+
+## 1 · A design artifact is an APPLICATION, not a picture
+
+The ShopView Design Document is an interactive artifact with a **view row**, a **document switcher**,
+**field toggles** and a **settings panel**. The same area of the same document looks different
+depending on what is switched on. So **"see the design" is not a reference** — the reader has to press
+the same buttons you did.
+
+## 2 · THE SHAPE OF A DESIGN REFERENCE — link **and** route, never link alone
+
+> **Design:** the Design Document (&lt;link&gt;) — open **"&lt;view&gt;"** → **"&lt;document&gt;"**, then
+> **&lt;the block it is about&gt;**. *(&lt;any toggle that must be on&gt;.)*
+
+Worked example, and note it names the row rather than the table:
+
+> Design: the Design Document (…) — open "Customer Documents" → "Credit Invoice", then the
+> credited-items table — the returned part "TH-2247 - Thermostat, heavy duty" at -1, $175.16, a $10.00
+> restocking fee and -$165.16, and beneath it the money-only line "Goodwill adjustment — warranty
+> follow-up" showing "--" for Quantity and Rate, a $0.00 restocking fee and -$50.00.
+
+**When one route would serve a whole area, give each case its own instead.** Seven Credit Invoice cases
+all pointing at "the credit sheet" is not a location; seven pointing at seven blocks is.
+
+## 3 · USE THE DESIGN'S OWN BUTTON LABELS, READ OUT OF THE FILE
+
+Never paraphrase a control. Pull the vocabulary from the artifact itself:
+
+```
+python3 - <<'PY'
+import re, html
+s = open('<design>.html', encoding='utf-8', errors='replace').read()
+print([html.unescape(re.sub(r'<[^>]+>','',m)).strip()
+       for m in re.findall(r'<button[^>]*>(.*?)</button>', s, re.S)])
+PY
+```
+
+That one call returned the whole control vocabulary — the view row, the document row and every field
+toggle. Headings are useless in a React artifact (one `<h1>` for the whole page); **buttons and visible
+text are where the words are.**
+
+## 4 · 🛑 VERIFY EVERY ANCHOR BEFORE YOU WRITE IT
+
+The generator **fails rather than emit a location it could not find** in the design text. This is the
+same rule as `build/OBSERVED-UI-LABELS-<env>.md` for build labels, and it exists for the same reason: a
+label copied from a note instead of read from the source made a gate flag 42 correct cases.
+**A location nobody can find is worse than no location.**
+
+**And never exclude a case from a design reference on a hunch.** The first run of the generator dropped
+a case guessing that "field order and label punctuation" had no picture. It does. Check, then exclude.
+
+## 5 · 🔑 THE CSS ENCODES THE CONDITIONAL RULES — use it to VERIFY a claim
+
+An interactive design's toggles are implemented in its stylesheet, so the stylesheet states the
+conditional behaviour outright. Real example:
+
+```css
+/* field toggles */
+.wrap.no-remit .addr-remit{ display:none; }
+/* no Remit To -> Bill To spans the full width */
+.wrap.no-remit .addr-row{ max-width:none; }
+```
+
+That confirms, from the binding source, exactly what a case asserted: **no "Remit Payment To" ⇒ the
+"Bill To" block spans the full width.** `grep` the design's CSS for a toggle's class before writing a
+conditional expectation — it is faster than clicking and it is quotable.
+
+## 6 · 🛑 READ THE DESIGN BEFORE ESCALATING A QUESTION
+
+**This cost a needless question to a developer.** Reasoning from a code detail (two PDF providers), a
+pass asked whether one Credit Invoice could carry a returned-part line *and* a money-only line. **The
+design shows exactly that document** — both rows, in one credited-items table. The question should
+never have been sent.
+
+**The precedence is Rule 57 and Rule 96 and it is not subtle:** the design is a **source of
+expectation**; product source code is **fact, never expectation**. So when code and design seem to
+disagree about what a document contains, **the design answers it** — and a code-shaped worry is checked
+against the design first.
+
+## 7 · THE DESIGN'S FIXTURE VALUES ARE USABLE
+
+It carries concrete figures — `CM-4176`, `-$165.16`, `Total Credit -$225.92`, `Balance $225.92`,
+`TH-2247`. Use them to point at a row unambiguously, and as the arithmetic a case can be checked
+against. They are also how you tell which document variant you are looking at.
+
+## 8 · WHEN THE LINK CANNOT BE OPENED
+
+An artifact URL is often unreachable from a session. **Ask for the downloaded copy** — the QA lead has
+supplied one twice without being asked twice. Then work from the saved HTML: extract the visible text
+once to a file, and grep that for anchors instead of re-parsing.
+
+**Keep the extract dated** next to the project (`reconcile-<date>/design-extract-<date>.txt`), because
+the design moves: this one caught up to spec v45 on 2026-08-31, and the dated extract is what makes the
+next diff possible.
