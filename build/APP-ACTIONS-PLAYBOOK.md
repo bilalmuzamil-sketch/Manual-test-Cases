@@ -122,6 +122,11 @@ evidenced in the committed artifacts — confirm before relying on it.
 > Symptom: `ENOENT: no such file or directory, open '/tmp/atlassian/mitm.key'`. The `openssl` line in
 > `build/ATLASSIAN-JIRA-ACCESS-METHOD.md` covers only `*.atlassian.net` — **add the hosts you actually
 > need**: `-addext "subjectAltName=DNS:*.atlassian.net,DNS:*.atlassian.com,DNS:*.testrail.io,DNS:*.qa.shopview.com"`.
+> **✅ 2026-09-02 — YOU NO LONGER RUN THIS BY HAND: `build/testing-tools/ensure_bridge.sh` GENERATES
+> THE PAIR ITSELF**, idempotently, from exactly this recipe (SAN widened once more, with
+> `DNS:*.staging.shopview.com`) — and it now **exits non-zero** if the bridge comes up with no port or
+> no egress instead of reporting success. Use the launcher; keep this line as the authority for what
+> it emits, and widen its `SAN=` variable if you need another host.
 >
 > **(3) 🔑 COOKIES ALONE DO NOT GET YOU IN — THE SPA NEEDS `user` + `token` IN `localStorage`.**
 > **🟢 SUPERSEDED 2026-08-31 — PREFER THE UI ROUTE, and read §A "THE AUTHENTIC QA-BRANCH LOGIN"
@@ -435,16 +440,47 @@ any endpoint/ID not recorded here or in `CLAUDE.md`** — if only partly known, 
   `mode`) · landed URL **`https://sv9315.qa.shopview.com/customers`**, *not* `/login` ·
   `GET /api/auth/me/fe-permissions` → **200** · `fe_permissions.length` = **40** ·
   `template_slug` = **`administrator`**. **No "not re-verified" caveat remains on this file.**
-  - **⚠️ `ensure_bridge.sh` DOES NOT GENERATE THE BRIDGE'S TLS CERT — prerequisite (a) is not
-    self-sufficient.** With `/tmp/atlassian/mitm.key` absent the bridge dies instantly with
-    `ENOENT`, `bridge-port.txt` stays empty, and `ensure_bridge.sh` reports
-    `bridge: restarted -> , egress ` — an **empty** port and egress, which is the tell. Generate the
-    cert first (§A(2) above; use the WIDE SAN list) and re-source. Hit again 2026-09-02.
+- **✅ CONFIDENCE, RE-STAMPED — RE-PROVEN LIVE AGAIN ON 2026-09-02 (LATER), AFTER `ensure_bridge.sh`
+  AND THE HARNESS SUMMARY LINE WERE BOTH EDITED, against `sv9315`, build marker
+  `v26.35.6-0f8d60b`.** By Rule 12 an edited file is no longer a proven file, so both changes were
+  re-observed rather than assumed. Command run exactly as documented —
+  `bash build/testing-tools/ensure_bridge.sh` then
+  `node build/testing-tools/qa-branch-boot.mjs sv9315 /customers admin` — and observed:
+  **exit 0** · bridge reported a real port and a real egress (`BRIDGE_PORT=33499`,
+  `egress=http://127.0.0.1:34791`) · `localStorage["user"]` **present** · landed URL
+  **`https://sv9315.qa.shopview.com/customers`**, *not* `/login`, title `Customers | ShopView`,
+  **2,867** body chars · `GET /api/auth/me/fe-permissions` → **200** ·
+  `fe_permissions.length` = **40** · `template_slug` = **`administrator`** ·
+  `GET /api/api/sso/check` → 404 (the harmless noise, as recorded). Read-only throughout: no ShopView
+  record was created, modified or deleted; the only POST was the app's own `/api/quick-login`.
+  - **✅ FIXED 2026-09-02 — `ensure_bridge.sh` NOW GENERATES THE BRIDGE'S TLS CERT ITSELF, so
+    prerequisite (a) IS self-sufficient. This replaces the ⚠️ warning that stood here.** It creates
+    `mitm.key`/`mitm.crt` **idempotently** — only when the pair is absent or within 2 days of expiry,
+    so it never disturbs a bridge already serving (verified: re-running it against a live bridge left
+    the cert and the process untouched and reported `bridge: healthy on port …`) — using this §A(2)
+    openssl recipe and the wide SAN list
+    (`*.atlassian.net`, `*.atlassian.com`, `*.testrail.io`, `*.qa.shopview.com`,
+    `*.staging.shopview.com`). **Need another host: widen that one `SAN=` line and delete
+    `/tmp/atlassian/mitm.crt` to force a regen.**
+  - **✅ AND THE EMPTY-PORT CASE NOW FAILS LOUDLY (non-zero) INSTEAD OF REPORTING SUCCESS.** The old
+    launcher printed `bridge: restarted -> , egress ` and returned 0, so the `ENOENT` death on the
+    missing cert read as a pass — the single most expensive false pass in this harness. It now
+    refuses: no numeric port, or an empty egress, or an egress that no longer matches `$HTTPS_PROXY`,
+    each print `bridge: FAILED -- …` plus the **last 5 lines of `/tmp/atlassian/bridge.log`** (which
+    is what names the real cause) and exit non-zero; the success path prints
+    `bridge: OK -- BRIDGE_PORT=<port> egress=<proxy>`. It `return`s when sourced and `exit`s when
+    executed, so `source`ing a failure no longer kills the calling shell.
   - **🛑 JUDGE THE SESSION BY `template_slug`, NEVER BY `role.name`.** On `sv9315` the **`admin`**
     quick-login user's `user.data.role.name` reads **"Tech View"** while `fe-permissions` reports
-    `template_slug` = **`administrator`** / 40 permissions. The harness's own summary line prints
-    `role: Tech View`, which makes a correct admin login look like it landed on the wrong role.
-    Assert on `template_slug` + permission count. (`GET /api/quick-login/users` on sv9315 returns
+    `template_slug` = **`administrator`** / 40 permissions.
+    **✅ FIXED 2026-09-02 — the harness summary line no longer misleads.** It used to print
+    `role: Tech View`, which made a correct admin login look like it landed on the wrong role; it now
+    prints the identity first and flags the label as untrustworthy, observed live as:
+    `identity    : template_slug=administrator | fe_permissions=40   [role.name="Tech View"/40 — UNRELIABLE, do not assert on it]`
+    `boot()`/`bootOrigin()` also return **`templateSlug`** and **`nFePerms`** now, alongside the
+    unchanged `role`/`nPerms` — **assert on the former**; both are read from
+    `localStorage["fe_permissions_wrapper"]`, never from `user.data.role`, which has no
+    `template_slug` field at all. (`GET /api/quick-login/users` on sv9315 returns
     exactly two entries — `admin`→"Admin", `tech`→"Tech" — so there is no third button to mis-click.)
 - **🟡 STAGING QUICK-LOGIN — ESTABLISHED FROM THE REPO RECORD 2026-09-02: THE FACILITY IS REAL, THE
   UI PANEL IS STILL UNOBSERVED. DO NOT CONFLATE THE TWO.** The QA lead is right that quick login was

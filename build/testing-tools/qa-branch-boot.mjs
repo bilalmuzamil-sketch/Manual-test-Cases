@@ -12,8 +12,13 @@
 //
 // 🛑 JUDGE THE SESSION BY template_slug, NEVER BY role.name. On sv9315 the ADMIN quick-login user's
 // user.data.role.name reads "Tech View" while fe-permissions reports template_slug=administrator
-// with 40 permissions — so the summary line below printing `role: Tech View` for an `admin` boot is
-// CORRECT and expected, not a wrong-role landing. Assert on template_slug + permission count.
+// with 40 permissions — a CORRECT admin boot, not a wrong-role landing.
+//
+// 🆕 2026-09-02 — THE SUMMARY LINE NOW SAYS SO. It used to print `role: Tech View`, which made every
+// correct admin boot look failed and cost sessions time chasing it. It now prints the IDENTITY —
+// `template_slug` + `fe_permissions` count, read from localStorage["fe_permissions_wrapper"] — and
+// carries role.name only as a trailing, explicitly-UNRELIABLE label. `boot()`/`bootOrigin()` return
+// `templateSlug` and `nFePerms` alongside the unchanged `role`/`nPerms`; assert on the former.
 //
 // THE METHOD: let the APP log itself in. Every QA branch's sign-in screen carries a
 // "DEV MODE — QUICK LOGIN" panel with Admin / Tech buttons (populated from
@@ -35,11 +40,12 @@
 //  (a) a FRESH MITM bridge:  source build/testing-tools/ensure_bridge.sh
 //      (bridge itself: build/atlassian-login/bridge.mjs — committed; it writes the ROTATING port to
 //      /tmp/atlassian/bridge-port.txt, which this script reads. NEVER hard-code a port.)
-//      ⚠️ ensure_bridge.sh does NOT generate the bridge's TLS cert, so (a) is not self-sufficient.
-//      With /tmp/atlassian/mitm.key absent the bridge dies instantly (ENOENT), bridge-port.txt stays
-//      EMPTY, and ensure_bridge.sh prints "bridge: restarted -> , egress " — the empty port and
-//      egress are the tell. Generate the cert first (openssl recipe + the WIDE SAN list:
-//      build/APP-ACTIONS-PLAYBOOK.md §A(2)), then re-source. Hit again 2026-09-02.
+//      ✅ FIXED 2026-09-02 — ensure_bridge.sh IS now self-sufficient: it generates mitm.key/mitm.crt
+//      itself, idempotently (only when absent or within 2 days of expiry), from the §A(2) openssl
+//      recipe with the WIDE SAN list, and it FAILS NON-ZERO with the bridge log tail if the bridge
+//      comes up with no port or no egress. It used to print "bridge: restarted -> , egress " and
+//      report success, so the ENOENT death on the missing cert read as a pass. No manual openssl
+//      step is needed any more; just source it and check its exit status.
 //  (b) `sv_sso_session` ALONE in /tmp/qa-cookies/<branch>-sso.txt as `sv_sso_session=<value>`,
 //      chmod 600, /tmp only, NEVER committed — this repo is public (Rule 82).
 //  (c) playwright at /opt/node22/lib/node_modules/playwright/index.js and Chromium at
@@ -122,11 +128,27 @@ export async function bootOrigin({ app, apiHost, ssoFile, label = app, route = '
     await page.goto(APP + route, { waitUntil: 'domcontentloaded' });
     await page.waitForTimeout(8000);
   }
+  // IDENTITY comes from fe_permissions_wrapper (template_slug + fe_permissions), NOT from
+  // user.data.role.name -- see the 🛑 note at the top of this file. `user.data.role` carries no
+  // template_slug field at all, so looking for it there returns null and reads as a failure.
   const who = await page.evaluate(() => {
-    const u = JSON.parse(localStorage.getItem('user') || 'null');
-    return { role: u?.data?.role?.name, nPerms: u?.data?.role?.fePermissions?.length };
+    let u = null, w = null;
+    try { u = JSON.parse(localStorage.getItem('user') || 'null'); } catch (e) { /* keep null */ }
+    try { w = JSON.parse(localStorage.getItem('fe_permissions_wrapper') || 'null'); } catch (e) { /* keep null */ }
+    const wd = w?.data ?? w;                       // wrapper has been seen both flat and under .data
+    const fe = wd?.fe_permissions ?? wd?.fePermissions;
+    return {
+      templateSlug: wd?.template_slug ?? wd?.templateSlug ?? null,
+      nFePerms: Array.isArray(fe) ? fe.length : (fe && typeof fe === 'object' ? Object.keys(fe).length : null),
+      role: u?.data?.role?.name,                   // UNRELIABLE label -- never assert on it
+      nPerms: u?.data?.role?.fePermissions?.length,
+    };
   });
-  return { browser, ctx, page, api, APP, APIH, role: who.role, nPerms: who.nPerms };
+  return {
+    browser, ctx, page, api, APP, APIH,
+    templateSlug: who.templateSlug, nFePerms: who.nFePerms,
+    role: who.role, nPerms: who.nPerms,            // kept for callers; secondary, not identity
+  };
 }
 
 if (import.meta.url === `file://${process.argv[1]}`) {
@@ -144,9 +166,10 @@ if (import.meta.url === `file://${process.argv[1]}`) {
     console.log('Canonical recipe: build/APP-ACTIONS-PLAYBOOK.md §A "THE AUTHENTIC QA-BRANCH LOGIN"');
     process.exit(1);
   }
-  const { browser, page, role, nPerms, api } = await boot(branch, route, key);
+  const { browser, page, templateSlug, nFePerms, role, nPerms, api } = await boot(branch, route, key);
   console.log('build marker:', await page.evaluate(() => document.querySelector('meta[name=app-version]')?.content));
-  console.log('role        :', role, '|', nPerms, 'permissions');
+  console.log('identity    : template_slug=' + templateSlug + ' | fe_permissions=' + nFePerms +
+              '   [role.name="' + role + '"/' + nPerms + ' — UNRELIABLE, do not assert on it]');
   console.log('landed url  :', page.url(), '| title:', await page.title());
   console.log('body chars  :', (await page.evaluate(() => document.body?.innerText || '')).length);
   console.log('api calls   :'); [...new Set(api)].slice(0, 15).forEach(x => console.log('   ' + x));
