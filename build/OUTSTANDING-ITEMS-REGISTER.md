@@ -2,6 +2,18 @@
 
 > **⚠️ REFERENCE ONLY — this register is history and other sessions' work. It is NOT a backlog and does not authorise action (Rule 92).** Reading an open item here does **not** mean it is yours to work on; a lane session acts only on the project the QA lead has NAMED.
 
+## 🆕🆕🆕🆕 2026-09-02 (LATEST) — A SIGNED-IN QA BROWSER, AND TWO ASKS WITHDRAWN
+
+| Row | Item | Who | Status |
+|---|---|---|---|
+| **ACC-1** | **WITHDRAWN — "send me `localStorage['user']`".** Never needed. The QA branch's sign-in screen carries a **`DEV MODE — QUICK LOGIN`** panel; clicking **`Admin`** makes the app call `POST /api/quick-login` itself and mint `user` + `fe_permissions_wrapper` from the server's response — authentic role and permissions, nothing hand-assembled (Rules 12, 26). Harness: **`build/testing-tools/qa-branch-boot.mjs`**, committed and now used, not rebuilt | — | **✅ CLOSED** |
+| **ACC-2** | **WITHDRAWN AND CORRECTED — "your session is destroyed, please re-mint".** It was not. I scoped the cookies to `.qa.shopview.com`, so a domain-scoped `PHPSESSID` went to the API host alongside the host-only one quick-login sets; the server read the stale one and `fe-permissions` answered **409 right after a 200 quick-login**. That is **trap 2 of playbook §A, recorded 2026-08-31**, and its symptom is exactly "their session must be dead". `qa-branch-boot.mjs` then signed in **first try on the same values** — build `v26.35.6-0f8d60b`, `/customers` at 2,867 body chars, `fe-permissions` **200**, `template_slug: administrator`, **41** permissions | — | **✅ CLOSED. No re-mint needed; the apology stands** |
+| **E-1b** | **C45104 now confirmed ON SCREEN as well as from the endpoint.** The line-status chips read `Approved` · `Auth to order` · `Declined` · `Needs Approval` · `Requested`. **No `Cancelled`.** Together with `/api/work-orders/line-statuses` (the complete set, with labels) the case is settled on two independent readings | — | **✅ SETTLED** |
+| **L1** | **The build stamps do NOT need re-cutting.** Inline and Printer say `v26.35.6-598cc8a`; the branch serves `v26.35.6-0f8d60b` — **one build apart, inside Rule 77's three-build validity window**, so the 2026-09-01 verification still counts and is shown with its date. `verify_suite.py` reports it as a NOTE, not a failure, which is correct | — | **✅ NO ACTION** |
+| **R97** | **Rule 97 amended: it now covers the FIRST EXPERIMENT, not only the first blocker.** QA lead: *"you experimented before searching the repo, and everything above was recorded on 2026-08-28."* Getting a signed-in browser cost eight probes, a wrong root cause, a false alarm and two rejected asks, while §A and the harness held the whole answer. **The tell: you are on a third variation of the same probe — stop and search.** And a symptom that looks like someone else's credentials expiring is the one to search hardest before reporting, because reporting it costs them the work | — | **✅ RECORDED** |
+
+---
+
 ## 🆕🆕🆕 2026-09-02 (LATEST) — THE AUTOMATED CASES ARE RUNNABLE, EVERY QUOTED LABEL IS CONFIRMED, AND THE MECHANISM IS NOW EXECUTABLE
 
 **Authorisation (QA lead, verbatim):** *"yes this case needs to be updated, and all those test case
