@@ -155,6 +155,21 @@ async function readView(cid) {
 }
 
 let ok = 0, bad = 0, skipped = 0, consecutiveFail = 0;
+// 🛑 THE WATCHDOG, added 2026-09-02 AFTER IT COST TWO HOURS.
+// Under heavy TestRail contention the deadlock-retry path can leave a Playwright call waiting with no
+// bound: the process stays alive, the log goes silent, nothing happens. It happened twice on one batch
+// - 95 minutes on C44945 and 20 on C44980 - and both times the cure was to notice, kill and resume.
+// So every awaited page interaction in the write phase races a timer. A batch that cannot hang is
+// worth more than one that never fails: the case is logged as a timeout and the loop moves on, and the
+// checkpoint means a later run picks it up.
+const STEP_TIMEOUT_MS = Number(process.env.STEP_TIMEOUT_MS || 120000);
+const guard = (promise, what) => Promise.race([
+  Promise.resolve(promise),
+  new Promise((_, rej) => setTimeout(
+    () => rej(new Error(`WATCHDOG: "${what}" exceeded ${STEP_TIMEOUT_MS / 1000}s — abandoned, not hung`)),
+    STEP_TIMEOUT_MS)),
+]);
+
 for (const cid of queue) {
   if (!fs.existsSync(RUNFLAG)) { log('run flag gone — stopping'); break; }
   const rec = data[cid];
@@ -233,8 +248,8 @@ for (const cid of queue) {
     if (await page.locator('#accept').isDisabled()) {
       log(`C${cid} save button disabled — content already matches; verifying`);
     } else {
-      await page.click('#accept', { timeout: 30000 });
-      await page.waitForLoadState('networkidle');
+      await guard(page.click('#accept', { timeout: 30000 }), `save click C${cid}`);
+      await guard(page.waitForLoadState('networkidle'), `settle after save C${cid}`);
       for (let w = 0; w < 40 && /cases\/edit/.test(page.url()); w++) await page.waitForTimeout(500);
       if (/cases\/edit/.test(page.url())) {
         // A DEADLOCK IS RETRYABLE AND IT IS THE COMMON CASE HERE. TestRail answers
@@ -250,8 +265,8 @@ for (const cid of queue) {
           if (!isDeadlock) break;
           log(`C${cid} deadlock on save — retrying (${dl + 1}/3)`);
           await page.waitForTimeout(3000 * (dl + 1));
-          await page.click('#accept', { timeout: 30000 }).catch(() => {});
-          await page.waitForLoadState('networkidle');
+          await guard(page.click('#accept', { timeout: 30000 }).catch(() => {}), `retry click C${cid}`);
+          await guard(page.waitForLoadState('networkidle'), `retry settle C${cid}`);
           for (let w = 0; w < 40 && /cases\/edit/.test(page.url()); w++) await page.waitForTimeout(500);
           if (!/cases\/edit/.test(page.url())) break;
         }
@@ -275,7 +290,7 @@ for (const cid of queue) {
     if (after.section_id !== secBefore) throw new Error(`section_id changed ${secBefore} -> ${after.section_id}`);
     if ((after.refs || null) !== refsBefore) throw new Error(`refs changed ${refsBefore} -> ${after.refs}`);
 
-    const view = await readView(cid);
+    const view = await guard(readView(cid), `post-write read C${cid}`);
     const problems = [];
     const evidence = { view_containers: view._count };
     if (view._count !== 3) problems.push(`expected 3 anonymous markdown containers, found ${view._count}`);
@@ -351,6 +366,9 @@ for (const cid of queue) {
     bad++; consecutiveFail++;
     fs.appendFileSync(FAILED, JSON.stringify({ cid, ok: false, fields, error: String(e).slice(0, 900), at: new Date().toISOString() }) + '\n');
     log(`C${cid} FAILED: ${String(e).slice(0, 240)}`);
+    // A watchdog trip is contention, not a defect in the payload, so it does not count toward the
+    // three-strikes stop - otherwise a busy TestRail ends the batch instead of merely slowing it.
+    if (/WATCHDOG:/.test(String(e))) consecutiveFail = 0;
     if (consecutiveFail >= 3) { log('3 consecutive failures — STOPPING the batch'); break; }
   }
 }

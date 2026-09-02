@@ -1,0 +1,138 @@
+{
+ "44919": {
+  "title": "Authorizer is selected in the work order customer contact card",
+  "verdict": "design reference added under the 2026-09-02 go-ahead (Rule 71)",
+  "marker_override": "AUTOMATION: READY - EXPECT FAIL (SV-9599)",
+  "build_sentence": "Last checked against build v26.35.5-8c3cc21 on 8/31/2026.",
+  "fields": {
+   "custom_expected": {
+    "blocks": [
+     [
+      "1. An \"Authorizer\" row appears in the customer contact card, directly below the Contact and Phone values, in the same label-and-value style.",
+      "2. Selecting the row opens a list of only the customer's contacts that have \"Approves Work\" enabled.",
+      "3. No other contact is offered, and no free-typed name can be entered.",
+      "4. This is the only place the Authorizer can be selected."
+     ],
+     [
+      "---",
+      "This is the expected behaviour as per epic SV-8218 and story SV-9142 (Story 3, Order Reference Fields) and the Invoice UI Refresh specification version 45, section S3-R5, read on 31 August 2026.",
+      "Design: the Design Document (https://claude.ai/code/artifact/c88ee207-3197-4f54-8cb9-bac3deb84354) — open \"Authorizer Entry (Work Order)\", then the work order page mock: the customer contact card on the left, its \"Authorizer\" row, the open dropdown, and the \"Contacts on the customer record\" table beneath.",
+      "Last checked against build v26.35.5-8c3cc21 on 8/31/2026."
+     ],
+     [
+      "AUTOMATION: READY - EXPECT FAIL (SV-9599)"
+     ]
+    ],
+    "text": "1. An \"Authorizer\" row appears in the customer contact card, directly below the Contact and Phone values, in the same label-and-value style.\n2. Selecting the row opens a list of only the customer's contacts that have \"Approves Work\" enabled.\n3. No other contact is offered, and no free-typed name can be entered.\n4. This is the only place the Authorizer can be selected.\n\n---\nThis is the expected behaviour as per epic SV-8218 and story SV-9142 (Story 3, Order Reference Fields) and the Invoice UI Refresh specification version 45, section S3-R5, read on 31 August 2026.\nDesign: the Design Document (https://claude.ai/code/artifact/c88ee207-3197-4f54-8cb9-bac3deb84354) — open \"Authorizer Entry (Work Order)\", then the work order page mock: the customer contact card on the left, its \"Authorizer\" row, the open dropdown, and the \"Contacts on the customer record\" table beneath.\nLast checked against build v26.35.5-8c3cc21 on 8/31/2026.\n\nAUTOMATION: READY - EXPECT FAIL (SV-9599)"
+   }
+  }
+ },
+ "44920": {
+  "title": "Authorizer is optional and can be cleared with 'No authorizer'",
+  "verdict": "design reference added under the 2026-09-02 go-ahead (Rule 71)",
+  "marker_override": "AUTOMATION: READY",
+  "build_sentence": "Last checked against build v26.35.5-8c3cc21 on 8/31/2026.",
+  "fields": {
+   "custom_expected": {
+    "blocks": [
+     [
+      "1. The Authorizer is not required and defaults to empty on a new work order.",
+      "2. The Authorizer list includes a \"No authorizer\" option.",
+      "3. Choosing \"No authorizer\" clears the selection back to empty."
+     ],
+     [
+      "---",
+      "This is the expected behaviour as per epic SV-8218 and story SV-9142 (Story 3, Order Reference Fields) and the Invoice UI Refresh specification version 45, section S3-R6, read on 31 August 2026.",
+      "Design: the Design Document (https://claude.ai/code/artifact/c88ee207-3197-4f54-8cb9-bac3deb84354) — open \"Authorizer Entry (Work Order)\", then the open Authorizer dropdown — its first option is \"No authorizer\", and the footnote reads \"Only contacts with 'Approves Work' on\".",
+      "Last checked against build v26.35.5-8c3cc21 on 8/31/2026."
+     ],
+     [
+      "AUTOMATION: READY"
+     ]
+    ],
+    "text": "1. The Authorizer is not required and defaults to empty on a new work order.\n2. The Authorizer list includes a \"No authorizer\" option.\n3. Choosing \"No authorizer\" clears the selection back to empty.\n\n---\nThis is the expected behaviour as per epic SV-8218 and story SV-9142 (Story 3, Order Reference Fields) and the Invoice UI Refresh specification version 45, section S3-R6, read on 31 August 2026.\nDesign: the Design Document (https://claude.ai/code/artifact/c88ee207-3197-4f54-8cb9-bac3deb84354) — open \"Authorizer Entry (Work Order)\", then the open Authorizer dropdown — its first option is \"No authorizer\", and the footnote reads \"Only contacts with 'Approves Work' on\".\nLast checked against build v26.35.5-8c3cc21 on 8/31/2026.\n\nAUTOMATION: READY"
+   }
+  }
+ },
+ "44921": {
+  "title": "Authorizer's phone shows below the name when the contact has one",
+  "verdict": "design reference added under the 2026-09-02 go-ahead (Rule 71)",
+  "marker_override": "AUTOMATION: READY",
+  "build_sentence": "Last checked against build v26.35.5-8c3cc21 on 8/31/2026.",
+  "fields": {
+   "custom_expected": {
+    "blocks": [
+     [
+      "1. When the selected authorizer's contact record has a phone number, the phone shows in the card directly below the authorizer's name, styled like the Contact's phone.",
+      "2. When the contact record has no phone number, no phone row is shown under the authorizer's name."
+     ],
+     [
+      "---",
+      "This is the expected behaviour as per epic SV-8218 and story SV-9142 (Story 3, Order Reference Fields) and the Invoice UI Refresh specification version 45, section S3-R7, read on 31 August 2026.",
+      "Design: the Design Document (https://claude.ai/code/artifact/c88ee207-3197-4f54-8cb9-bac3deb84354) — open \"Authorizer Entry (Work Order)\", then the contact card — the \"Phone\" row that sits directly under the selected Authorizer's name; the contacts table shows Priya Sharma-Vanderbroek with \"no phone entered\" for the no-phone case.",
+      "Last checked against build v26.35.5-8c3cc21 on 8/31/2026."
+     ],
+     [
+      "AUTOMATION: READY"
+     ]
+    ],
+    "text": "1. When the selected authorizer's contact record has a phone number, the phone shows in the card directly below the authorizer's name, styled like the Contact's phone.\n2. When the contact record has no phone number, no phone row is shown under the authorizer's name.\n\n---\nThis is the expected behaviour as per epic SV-8218 and story SV-9142 (Story 3, Order Reference Fields) and the Invoice UI Refresh specification version 45, section S3-R7, read on 31 August 2026.\nDesign: the Design Document (https://claude.ai/code/artifact/c88ee207-3197-4f54-8cb9-bac3deb84354) — open \"Authorizer Entry (Work Order)\", then the contact card — the \"Phone\" row that sits directly under the selected Authorizer's name; the contacts table shows Priya Sharma-Vanderbroek with \"no phone entered\" for the no-phone case.\nLast checked against build v26.35.5-8c3cc21 on 8/31/2026.\n\nAUTOMATION: READY"
+   }
+  }
+ },
+ "44922": {
+  "title": "Authorizer is locked once the work order is invoiced",
+  "verdict": "design reference added under the 2026-09-02 go-ahead (Rule 71)",
+  "marker_override": "AUTOMATION: READY",
+  "build_sentence": "Last checked against build v26.35.5-8c3cc21 on 8/31/2026.",
+  "fields": {
+   "custom_expected": {
+    "blocks": [
+     [
+      "1. Once the work order is invoiced, the Authorizer row is locked and its value cannot be changed.",
+      "2. Before invoicing the row is editable; from the point of invoicing it is read-only.",
+      "3. If the invoice is later voided or reversed, the work order returns to Complete and the Authorizer row is re-enabled."
+     ],
+     [
+      "---",
+      "This is the expected behaviour as per epic SV-8218 and story SV-9142 (Story 3, Order Reference Fields) and the Invoice UI Refresh specification version 45, section S3-R8, read on 31 August 2026.",
+      "Design: the Design Document (https://claude.ai/code/artifact/c88ee207-3197-4f54-8cb9-bac3deb84354) — open \"Authorizer Entry (Work Order)\", then the \"Work order invoiced\" toggle beneath the mock — turn it on and the Authorizer row locks.",
+      "Last checked against build v26.35.5-8c3cc21 on 8/31/2026."
+     ],
+     [
+      "AUTOMATION: READY"
+     ]
+    ],
+    "text": "1. Once the work order is invoiced, the Authorizer row is locked and its value cannot be changed.\n2. Before invoicing the row is editable; from the point of invoicing it is read-only.\n3. If the invoice is later voided or reversed, the work order returns to Complete and the Authorizer row is re-enabled.\n\n---\nThis is the expected behaviour as per epic SV-8218 and story SV-9142 (Story 3, Order Reference Fields) and the Invoice UI Refresh specification version 45, section S3-R8, read on 31 August 2026.\nDesign: the Design Document (https://claude.ai/code/artifact/c88ee207-3197-4f54-8cb9-bac3deb84354) — open \"Authorizer Entry (Work Order)\", then the \"Work order invoiced\" toggle beneath the mock — turn it on and the Authorizer row locks.\nLast checked against build v26.35.5-8c3cc21 on 8/31/2026.\n\nAUTOMATION: READY"
+   }
+  }
+ },
+ "44985": {
+  "title": "Parts sale receives the Authorizer treatment (net-new)",
+  "verdict": "design reference added under the 2026-09-02 go-ahead (Rule 71)",
+  "marker_override": "AUTOMATION: READY",
+  "build_sentence": "Last checked against build v26.35.5-8c3cc21 on 8/31/2026.",
+  "fields": {
+   "custom_expected": {
+    "blocks": [
+     [
+      "1. The parts sale has an Authorizer field offering the customer's \"Approves Work\" contacts, empty by default, filled by the user.",
+      "2. It is locked once the parts sale is invoiced.",
+      "3. If that invoice is voided or reversed, the Authorizer becomes editable again (mirrors S3-R8).",
+      "4. When set, the authorizer's name prints in the document's Authorizer reference field."
+     ],
+     [
+      "---",
+      "This is the expected behaviour as per epic SV-8218 and story SV-9195 (Story 13, Parts Sale Estimate and Invoice) and the Invoice UI Refresh specification version 45, section S13-R6, read on 31 August 2026.",
+      "Design: the Design Document (https://claude.ai/code/artifact/c88ee207-3197-4f54-8cb9-bac3deb84354) — open \"Customer Documents\" → \"Parts Sale Estimate\", then the parts-sale sheet — the flat item table in place of the work lines; switch to \"Parts Sale Invoice\" for the invoiced variant, and to the \"Authorizer Entry (Parts Sale)\" view for its authorizer row.",
+      "Last checked against build v26.35.5-8c3cc21 on 8/31/2026."
+     ],
+     [
+      "AUTOMATION: READY"
+     ]
+    ],
+    "text": "1. The parts sale has an Authorizer field offering the customer's \"Approves Work\" contacts, empty by default, filled by the user.\n2. It is locked once the parts sale is invoiced.\n3. If that invoice is voided or reversed, the Authorizer becomes editable again (mirrors S3-R8).\n4. When set, the authorizer's name prints in the document's Authorizer reference field.\n\n---\nThis is the expected behaviour as per epic SV-8218 and story SV-9195 (Story 13, Parts Sale Estimate and Invoice) and the Invoice UI Refresh specification version 45, section S13-R6, read on 31 August 2026.\nDesign: the Design Document (https://claude.ai/code/artifact/c88ee207-3197-4f54-8cb9-bac3deb84354) — open \"Customer Documents\" → \"Parts Sale Estimate\", then the parts-sale sheet — the flat item table in place of the work lines; switch to \"Parts Sale Invoice\" for the invoiced variant, and to the \"Authorizer Entry (Parts Sale)\" view for its authorizer row.\nLast checked against build v26.35.5-8c3cc21 on 8/31/2026.\n\nAUTOMATION: READY"
+   }
+  }
+ }
+}
