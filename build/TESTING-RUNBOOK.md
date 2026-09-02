@@ -281,7 +281,9 @@ the real cause is usually a blank/missing part number.
 - `template_id 1` (Test Case (Text)), `type_id 6` (Functional).
 - Populated free-text: `custom_preconds`, `custom_steps`, `custom_expected`.
 - **Creating a case sends** `custom_atmstatus: 1` (= "Not Automated") and
-  `custom_automation_type: 0`. **NEVER `3`.** (corrected 2026-08-21: 3 = Automated
+  **a REAL `custom_automation_type` — `1 E2E · 2 Functional · 3 Unit`, NEVER `0`/None
+  (QA lead 2026-09-02); the same Automation Type per case in any CSV/XML upload file.**
+  `custom_atmstatus` is **NEVER `3`.** (corrected 2026-08-21: 3 = Automated
   and would corrupt the automation signal; authored cases are created Not Automated
   = 1. `custom_atmstatus` is `is_required: true` on project 1 but its `default_value`
   is `"1"`, so `3` was never required by anything — the field is Vladimir Tomovic's

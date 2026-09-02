@@ -457,10 +457,22 @@ the summary is where to look, not what is true.**
 
 ### 3.1 🛑 NEVER set `custom_atmstatus: 3` on `add_case`
 
-Send **`custom_atmstatus: 1`** ("Not Automated") **+ `custom_automation_type: 0`**.
+Send **`custom_atmstatus: 1`** ("Not Automated") **+ a REAL `custom_automation_type` (1/2/3 — never `0`)**.
 
 **✅ QA-lead-confirmed 2026-08-17, verbatim: *"1 is correct"* — manual cases = `custom_atmstatus 1`;
 `3` = Automated (reserved, e.g. Vladimir Tomovic's). No future `add_case` pass may revert to `3`.**
+
+**🛑 AUTOMATION TYPE IS SET ON CREATION, NEVER LEFT `0`/None (QA lead, 2026-09-02, verbatim: _"going
+forward every test case you directly create in Testrail or if you give me the CSV/XML file to upload
+these must contain the AUTOMATION type for each test case, so that we never have to edit the testrail
+test cases for this again."_).** Field map: `custom_automation_type` **`0 None · 1 E2E · 2 Functional ·
+3 Unit`**. Every `add_case` (and every CSV/XML/import deliverable handed over for upload) carries a real
+type per case — **1/2/3, never 0/None, never blank.** Rubric: **Unit (3)** = isolated calculation /
+format / single-field validation · **E2E (1)** = cross-feature journey, browser print dialog, audit
+trail, or email/PDF delivery · **Functional (2)** = single-feature UI behaviour (default). This is
+DISTINCT from the `AUTOMATION: READY/HOLD` marker literal (Rule 61) and from `custom_atmstatus` — a
+not-yet-automated case (`custom_atmstatus: 1`) still declares the KIND of automated test it would become.
+**This supersedes the older "`custom_automation_type: 0`" instruction wherever it still appears.**
 
 **`3` is Vladimir Tomovic's OWN flag for what HE has automated**, and the whole tell-Vlad duty
 (Standing Rule 65) keys off it — so a case born `3` corrupts a signal he and we both rely on. The

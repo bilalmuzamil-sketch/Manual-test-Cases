@@ -551,6 +551,19 @@ Compact form — **the rule named in brackets is the authority; read it before r
   that differs from an earlier source** — where the PO asked for it (file + link + date), where it
   differs, and that we take the latest as prevailing. **Never added where nothing contradicted it.**
   [56]
+- **🛑 AUTOMATION TYPE FIELD IS SET ON CREATION, NEVER LEFT NONE (QA lead, 2026-09-02).** Verbatim:
+  *"going forward every test case you directly create in Testrail or if you give me the CSV/XML file to
+  upload these must contain the AUTOMATION type for each test case, so that we never have to edit the
+  testrail test cases for this again."* This is the TestRail **`custom_automation_type`** field
+  (`0 None · 1 E2E · 2 Functional · 3 Unit`) — **DISTINCT from the `AUTOMATION:` marker literal below
+  and from `custom_atmstatus`.** Every `add_case`, and every **CSV/XML/import deliverable** handed over
+  for upload, carries a **real type per case — 1/2/3, never 0/None, never blank.** Rubric: **Unit** =
+  isolated calculation / format / single-field validation · **E2E** = cross-feature journey, browser
+  print dialog, audit trail, or email/PDF delivery · **Functional** = single-feature UI behaviour
+  (default). A not-yet-automated case (`custom_atmstatus: 1`) still declares the KIND of automated test
+  it would become. **This supersedes the older "`custom_automation_type: 0`" instruction** (a 285-case
+  sweep on 2026-09-02 had to backfill the field precisely because cases were born `0`). Full text +
+  the corrected field map: `build/skills/01-CASE-BUILD.md`, `build/skills/00-COMMON-CORE.md` §3.1. [61]
 - **AUTOMATION MARKER — the LAST thing in Expected Results**, after the provenance line, blank line
   before and a line break after. Exactly one of: `AUTOMATION: READY` ·
   `AUTOMATION: READY - EXPECT FAIL (SV-xxxx)` · `AUTOMATION: HOLD - <short plain reason>`. A machine-

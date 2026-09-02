@@ -400,16 +400,34 @@ do not make sense"*. **No suite we deliver may ever substantiate that claim** �
 
 **Only with explicit permission, per ask** (core §2).
 
-**🛑 EVERY `add_case` SENDS `custom_atmstatus: 1` ("Not Automated") + `custom_automation_type: 0` —
-NEVER `3`** (core §3.1; QA-lead-confirmed 2026-08-17, verbatim *"1 is correct"*). **WHY: `3` means
-"Automated" — it is TestRail's own field and Vladimir Tomovic's record of what HE has automated, so a
-case born `3` claims to be automated when nobody automated it and corrupts the Rule-65 hand-off signal
-to Vlad** (it both tells him he automated something he never touched and pollutes the flag Rule 65
-reads). The field is `is_required: true` on project 1 but its `default_value` is `"1"`, so `3` was
-never required by anything. **Use `build/testing-tools/testrail_add_case.py`** (sets `1`, raises on
-`3`) and **run `build/testing-tools/check_add_case_payloads.py` before committing.** (corrected
-2026-08-21: 3 = Automated and would corrupt the automation signal; authored cases are created Not
-Automated = 1.)
+**🛑 EVERY `add_case` SENDS `custom_atmstatus: 1` ("Not Automated") — NEVER `3`** (core §3.1;
+QA-lead-confirmed 2026-08-17, verbatim *"1 is correct"*). **WHY: `3` means "Automated" — it is
+TestRail's own field and Vladimir Tomovic's record of what HE has automated, so a case born `3` claims
+to be automated when nobody automated it and corrupts the Rule-65 hand-off signal to Vlad** (it both
+tells him he automated something he never touched and pollutes the flag Rule 65 reads). The field is
+`is_required: true` on project 1 but its `default_value` is `"1"`, so `3` was never required by
+anything. (corrected 2026-08-21: 3 = Automated and would corrupt the automation signal; authored
+cases are created Not Automated = 1.)
+
+**🛑 AND EVERY `add_case` SETS `custom_automation_type` TO A REAL CLASSIFICATION — NEVER `0` (None)
+(QA lead, 2026-09-02).** Verbatim: *"going forward every test case you directly create in Testrail or
+if you give me the CSV/XML file to upload these must contain the AUTOMATION type for each test case, so
+that we never have to edit the testrail test cases for this again."* **Field map: `custom_automation_type`
+`0 None · 1 E2E · 2 Functional · 3 Unit`.** Send **1 / 2 / 3**, never `0`. **This supersedes the old
+"`custom_automation_type: 0`" instruction everywhere it still appears** (a 2026-09-02 bulk pass had to
+set the type on 285 existing cases precisely because they were all born `0`; we do not repeat that).
+**Classification rubric:** **Unit (3)** = an isolated calculation, format, or single-field validation
+rule · **E2E (1)** = a cross-feature journey, a browser print dialog, an audit-trail check, or
+email/PDF delivery · **Functional (2)** = a single-feature UI behaviour (the default when neither Unit
+nor E2E fits). This is a SEPARATE thing from the `AUTOMATION: READY/HOLD` marker literal in the
+Expected body (Rule 61) and from `custom_atmstatus`: a case can be `custom_atmstatus: 1` (not yet
+automated) and still carry a real `custom_automation_type` — the type says what KIND of automated test
+it would become, the status says whether it has been automated yet. **The same applies to any CSV / XML
+/ import file handed to the QA lead for upload: it MUST carry an "Automation Type" column/element,
+populated per case with E2E / Functional / Unit — never blank, never None.** **Use
+`build/testing-tools/testrail_add_case.py`** (sets `custom_atmstatus: 1`, raises on `3`, and now
+requires a non-zero `custom_automation_type`) and **run
+`build/testing-tools/check_add_case_payloads.py` before committing.**
 
 Then **immediately**:
 - **Run-sync, union-only** (core §4) — a fixed-selection run **never auto-picks up new cases**, and a
