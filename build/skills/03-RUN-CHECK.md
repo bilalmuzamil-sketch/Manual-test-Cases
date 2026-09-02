@@ -841,7 +841,7 @@ Standing Rule 74 in `CLAUDE.md`.
 
 ---
 
-# 9 · 🔑 THE NAVIGATION MAP — OBSERVE THE PATH ONCE, RECORD IT, REUSE IT (approved 2026-09-02)
+# 9 · 🔑 THE NAVIGATION MAP — OBSERVE THE PATH ONCE, RECORD IT, REUSE IT (approved 2026-08-31)
 
 Every project keeps a **`build/<project>/NAVIGATION-MAP.md`**: how you actually reach each screen in
 this build, written down the first time somebody reaches it, so the next session **reads it instead of
