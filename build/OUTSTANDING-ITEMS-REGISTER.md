@@ -2,6 +2,23 @@
 
 > **⚠️ REFERENCE ONLY — this register is history and other sessions' work. It is NOT a backlog and does not authorise action (Rule 92).** Reading an open item here does **not** mean it is yours to work on; a lane session acts only on the project the QA lead has NAMED.
 
+## 🆕🆕🆕🆕🆕🆕🆕 2026-09-02 (LATEST, overnight) — THE CREDIT DOCUMENT IS RENDERED, AND 21 CASES POINTED AT A COLUMN THAT DOES NOT EXIST
+
+| Row | Item | Who | Status |
+|---|---|---|---|
+| **CRD-1** | **The printed credit note has been rendered and read.** Route from the QA lead's screenshot: `Customers` → the customer → the **`Invoices`** tab → the row whose `Type` chip reads **`Credit`** → the printer icon in the **`Action`** column (tooltip **`Print credit memo`**). It fires **`GET /api/credit-memos/{id}/pdf`** and returns **application/pdf, 185,780 bytes**. **The 2026-08-31 conclusion that the document "is not rendered on the sv8218 branch" is WITHDRAWN** — that pass guessed 13 API shapes, never tried the `/pdf` suffix, and looked for a preview when it is a download | — | **✅ DONE.** PDF + full extracted text: `build/invoice-ui-refresh/credit-doc-verify-2026-09-02/` |
+| **CRD-2** | **12 Credit Invoice cases verified against the real document** (credit `CM8218-4189`, Unapplied, money-only, −$500.00): **6 PASS · 1 PARTIAL · 6 NOT VERIFIED · 0 FAIL.** Nothing contradicts a documented expectation, so **no defect is raised**. The six NOT VERIFIED need only DATA — a credit in the partially-applied, applied, voided, refunded, and partly-refunded-and-applied states. **A seeding job, no longer a blocker** | **QA lead** | **OPEN — seed or defer.** `credit-doc-verify-2026-09-02/VERDICTS.md` |
+| **CRD-3** | **⚠️ 21 cases sent a tester to a column that does not exist** — *"in the `Invoice #` column"*; that tab's columns are `Date · Type · No. · Memo · Total · Balance · Status · Action`. **Fixed on all 21**, 33 occurrences across preconditions and steps, each write verified byte-identical apart from the replacement and still in `fr-view`. 0 failures, 0 remaining, confirmed live | — | **✅ DONE**, `build/invoice-ui-refresh/column-fix-2026-09-02/` |
+| **CRD-4** | **🛑 MY LABEL GATE COULD NOT CATCH CRD-3.** `Invoice #` **is** real in this build — in the `OpenInvoicesCard` component, a different screen. The gate asks *"does this string exist somewhere in the build?"*; the tester's question is *"is it on the screen this case sends me to?"* **⇒ the observed-labels file now records the SCREEN each label belongs to, and a column/tab/field name is checked against the screen the case's own route names** | — | **✅ RECORDED** |
+| **CRD-5** | **Two things deliberately not asserted.** C44970's disclaimer half — no disclaimer text in the credit document, and the control (the same shop's ordinary invoice) could not be rendered: that row has **no print icon at all**, and the preview route needs an `invoice_id` that is not the account transaction id. C45168 line 2 (`Credit To` full width) is a layout assertion text extraction cannot answer | **QA lead** | **OPEN — 2 observations, 0 claims** |
+| **MECH-2** | **Three tools, all from tonight's mistakes.** `route_registry.mjs` — every proven UI route with branch, build, click path, the request it fires and its evidence; `find` it before probing, and `record()` refuses an entry that produced nothing so a guess cannot be written down. `find_ui_route.mjs` — enumerates every control in a scope, **hovers each to read its tooltip**, clicks the match, captures what fires. `surgical_replace.mjs` — changes one exact string in case fields and proves the result byte-identical apart from the replacement | — | **✅ DONE** |
+
+**Invoice UI Refresh gates after all of it, live:** 119 cases · **precondition labels ALL CLEAR** ·
+runnability **0 not runnable** · sourced 119/119 · marker literals 119/119 · arithmetic closes
+(READY 108 + EXPECT-FAIL 1 = 109; 119 − HOLD 6 − NOT-BUILT 4 = 109).
+
+---
+
 ## 🆕🆕🆕🆕🆕🆕 2026-09-02 (LATEST) — GLOBAL SEARCH V2 FULLY SOURCE-VERIFIED (118 cases). ONE PO SHEET.
 
 | Row | Item | Who | Status |
