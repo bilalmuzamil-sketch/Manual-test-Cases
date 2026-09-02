@@ -67,5 +67,21 @@
       "Change the Category field, cycling through different categories."
     ],
     "expected": "The Sell Price changes according to the selected category, for categories that have a different pricing matrix.\n\nSource: Manually added (QA lead, 2026-09-01).\nAUTOMATION: HOLD - manually added; to be build-verified."
+  },
+  {
+    "id": "IAEP-MAN-05",
+    "testrail_id": 45254,
+    "title": "Add Part: cannot enter a custom Cost for an inventory part",
+    "area": "Add Part Button and Edit Control",
+    "source": "Manually added",
+    "preconditions": [
+      "In the top menu, click “Work Orders”, then open a work order that has at least one line (or create a work order and add a line with “New Line” on the “Lines” tab)."
+    ],
+    "steps": [
+      "In the work order line's Parts section, click “+ Add Part”.",
+      "Select an INVENTORY part from the list (the part-number typeahead).",
+      "Try to enter a custom Cost and a Sell price, fill in the other mandatory fields, and click Save."
+    ],
+    "expected": "You are NOT allowed to enter a custom Cost for an inventory part — the Cost field is not editable; the cost comes from the catalogue. (You can still set the Sell price and the other allowed fields.)\n\nSource: Manually added (QA lead, 2026-09-01).\nAUTOMATION: HOLD - manually added; to be build-verified."
   }
 ]
