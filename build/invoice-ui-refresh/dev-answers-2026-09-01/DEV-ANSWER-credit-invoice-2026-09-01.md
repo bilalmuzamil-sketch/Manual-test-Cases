@@ -178,3 +178,54 @@ those in this build, or design-only for now?"*
 developer's scope description is a signal about the build, and the build is never a source (Rule 57).
 If he answers "design-only for now", the right response is Rule 69's marker on the affected cases —
 `AUTOMATION: Not available on Build to test Yet` — not a rewrite of what they expect.
+
+---
+
+# CORRECTION — 2026-09-02, after reading the design the QA lead supplied
+
+Two things I said earlier were wrong or incomplete. Both are corrected here rather than quietly edited
+away.
+
+## 1. Question 1 to the developer is WITHDRAWN — the design answers it
+
+I asked: *"Can one Credit Invoice carry a returned-part line **and** a money-only line at the same
+time?"*, on the reasoning that his two providers might not mix.
+
+**The binding Design Document shows exactly that document.** Its Credit Invoice's credited-items table
+carries both rows, together:
+
+| Description | Quantity | Rate | Restocking Fee | Total |
+|---|---|---|---|---|
+| TH-2247 - Thermostat, heavy duty | -1 | $175.16 | $10.00 | -$165.16 |
+| Goodwill adjustment — warranty follow-up | `--` | `--` | $0.00 | -$50.00 |
+
+The design is a **source of expectation** (Rule 57); the provider split is **code**, which is fact and
+never expectation (Rule 96). So **C44967's precondition is supported by the design and stands as
+written.** The concern was mine, and I should have checked the design before raising it.
+
+**Question 2 stands** — on a *voided* credit, is the Balance row printed showing `$0.00`, or absent?
+The design shows an **Unapplied** credit, so it cannot answer that one.
+
+## 2. "There is no QA build for this project (Rule 85)" was STALE
+
+I said that twice. It has not been true since **2026-08-31**: the suite was build-verified on
+**v26.35.5-8c3cc21**, and 84 of the 89 cases carry a `Last checked against build v26.35.5-8c3cc21 on
+8/31/2026` sentence and `AUTOMATION: READY`. Evidence: `build-verify-2026-08-31/`.
+
+**What IS true, and is the sharper fact:** the **Credit Invoice cases specifically were not
+build-verified**, because the credit *document* render path could not be found on the build — the
+credit memo RECORD exists (CM-100) but nothing rendered the PDF
+(`build-verify-2026-08-31/NOT-BUILD-VERIFIED-ANALYSIS-2026-08-31.md`).
+
+**That makes the developer's first answer more valuable than I credited it.** He named the render path
+outright — `api/templates/invoices/credit-invoice.html.twig`, reached through
+`CreditMemoPdfDataProvider` and `PartSaleCreditPdfDataProvider`. That is the missing piece the
+2026-08-31 pass searched for and did not find. **Worth one question back to him: what does a user click
+to produce that PDF?** — with that, the seven Credit Invoice cases become verifiable instead of
+deferred.
+
+## 3. Five cases became Automated since the last pass
+
+`C44919`, `C44920`, `C44921`, `C44922` (work-order Authorizer) and `C44985` (parts-sale Authorizer) now
+carry `custom_atmstatus = 3`. They were **skipped** by the design-reference pass under Rule 71 and are
+the only five of the 89 without a design reference. One go-ahead covers all five.
