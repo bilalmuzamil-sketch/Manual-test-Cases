@@ -1,7 +1,7 @@
 {
  "path": "build/questions-2026-09-02/ShopView-QA-questions-2026-09-02.xlsx",
- "title": "ShopView QA — three questions, 2 September 2026 · asked by Bilal Muzamil (QA lead)",
- "intro": "Three things we need decided before the tests can be finished. Every row names the suite it belongs to and who it is for.\n\nRow 1 is for the PRODUCT OWNER of Printer Friendly Work Orders. Rows 2 and 3 are for MILOMIR KOTLAJIC, the developer on Invoice UI Refresh, whose product owner is Chris Ward.\n\nEach row says what we see today, the question, and the choices — tick one in the last column and we will make the tests match. Where the written requirements say two different things, both are quoted word for word so you can see it yourself. None of this is holding the testers up: they are working today, and these three points affect nine tests out of two hundred and five.",
+ "title": "ShopView QA — two questions, 2 September 2026 · asked by Bilal Muzamil (QA lead)",
+ "intro": "Two things we need decided before the tests can be finished. Every row names the suite it belongs to and who it is for.\n\nRow 1 is for the PRODUCT OWNER of Printer Friendly Work Orders. Row 2 is for Milomir Kotlajic, the developer on Invoice UI Refresh, whose product owner is Chris Ward.\n\nEach row says what we see today, the question, and the choices — tick one in the last column and we will make the tests match. Where the written requirements say two different things, both are quoted word for word so you can see it yourself. Neither point is holding the testers up: they are working today.",
  "sheets": [
   {
    "name": "Printing a work order",
@@ -22,12 +22,6 @@
      "now": "A credit note is what a customer gets when money is being given back to them. Its printed page has a line at the bottom showing how much is still owing.\n\nThe requirements say that line is ALWAYS printed, and that on a cancelled credit note it reads zero.\n\nYour answer described it differently — that the line appears \"in every non-voided status\". Read strictly, that could mean the line DISAPPEARS on a cancelled credit note instead of reading zero. We do not know which you meant.\n\nWe cannot settle it by looking, because we have not been able to open a printed credit note in the app at all — that is the next question.",
      "question": "On a credit note that has been cancelled, is the \"amount still owing\" line still printed showing zero, or is it not printed at all?",
      "options": "(a) It is still printed and reads zero.\n(b) It is not printed at all.\n(c) Not decided yet — we will hold that one test until it is."
-    },
-    {
-     "topic": "SUITE: Invoice UI Refresh (Chris Ward)  ·  FOR: Milomir Kotlajic (developer)  ·  TOPIC: what does a person click to produce a printed credit note?",
-     "now": "We can find the credit note records in the app, but we cannot find the screen and the button a person uses to produce the PRINTED version. We tried the places the other printed documents come from and none of them produced one.\n\nBecause of that, seven tests about the printed credit note have never been checked against the app. They are written and ready — there is just nowhere to run them.\n\nYour earlier answer named the internal file the system uses to build that page, so we know it exists. We just do not know how a person reaches it.",
-     "question": "Where does a person go in the app to produce a printed credit note — which screen, and what do they click when they are there?",
-     "options": "(a) Reply with the screen and the click. We will check all seven tests straight away.\n(b) Show us once on a screen share. We will write the route into the tests ourselves.\n(c) It is not built yet. Say so and we will park those seven tests with the reason recorded, so nobody thinks they were forgotten."
     }
    ]
   }
@@ -46,10 +40,10 @@
    "⚠️ CORRECTED 2026-09-02: earlier notes named C44967 for this, which is wrong - C44967 is the credited-items TABLE (columns, negative quantities, restocking fee) and says nothing about voiding. The voided-balance assertion is C45181 line 2: 'Voided: Balance reads $0.00; items and totals render unchanged'. Developer: Milomir Kotlajic. Not a defect: his sentence and our requirement can both be read as true, and the design shows an Unapplied credit so it cannot settle a voided one."
   ],
   [
-   "Credits 2",
+   "Credits 2 — CLOSED, not asked",
    "the Credit Invoice section (6752), 12 cases: C44964-C44970 and C45179-C45183",
-   "Invoice UI Refresh, epic SV-8218 (PO Chris Ward), S11-R1 to S11-R6a; story SV-9150 is Open",
-   "⚠️ CORRECTED 2026-09-02, twice over: earlier notes said 'seven cases never checked' and listed C44963, which is in section 6751 (Estimate and Invoice Specifics) and is not a credit case at all. The section holds 12. And all 12 DO carry a build sentence and AUTOMATION: READY - everything about them except the document render was verified on v26.35.5-8c3cc21. What is missing is only the route to the printed document. The 2026-08-31 pass documented its search: 13 candidate routes, the customer's Invoices/Payments/Deposits tabs, the originating work order's finance tab, and the app's own traffic - all negative; that pass already framed this exact question for Milomir Kotlajic. Re-searched 2026-09-02 with a signed-in browser: still not found, and the unpaid-transactions endpoint is the wrong list for an applied credit."
+   "Invoice UI Refresh, epic SV-8218 (PO Chris Ward), S11-R1 to S11-R6a",
+   "ANSWERED by the QA lead's screenshot, 2026-09-02, so it was never sent. The route: Customers -> open the customer -> the 'Invoices' tab -> the row whose 'Type' is 'Credit' (its 'No.' begins 'CM') -> the print icon in the 'Action' column, tooltip 'Print credit memo'. The screenshot also gives the table's columns (Date, Type, No., Memo, Total, Balance, Status, Action), the 'Open only' filter being on by default, and 'Unapplied' as a status value. This is exactly what our cases already described, and what the 2026-08-31 pass searched 13 candidate API routes for without finding."
   ]
  ]
 }

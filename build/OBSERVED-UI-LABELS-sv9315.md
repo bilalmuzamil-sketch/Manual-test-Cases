@@ -235,3 +235,32 @@ C45168 quotes it, and the sweep did not find it — **expected**: it is a block 
 rendered server-side into the invoice template, so no front-end chunk contains it. It is present
 verbatim in the design document, and the suite's 2026-08-31 pass verified it on the printed output.
 **A printed-document string can only be confirmed from the rendered document, never from a bundle scan.**
+
+## The printed credit note — route and labels (QA lead's screenshot, 2026-09-02)
+
+**This is the route the 2026-08-31 pass searched 13 candidate API routes for and never found.** It was
+never an API route: it is a per-row action in the customer's invoice list.
+
+**Route:** top menu **`Customers`** → open the customer → the **`Invoices`** tab (its label carries a
+count, e.g. `Invoices (2)`) → the row whose **`Type`** column shows the orange **`Credit`** chip and
+whose **`No.`** begins **`CM`** → the **print icon in the `Action` column**, whose tooltip reads
+**`Print credit memo`**.
+
+| Thing | Verbatim on screen |
+|---|---|
+| the tab | `Invoices` with a count — `Invoices (2)` |
+| sibling tabs | `Work Orders` · `Part Sales` · `Contacts (2)` · `Assets (2)` · `Notes` · `Invoices (2)` · `Payments (1)` · `Deposits` · `Fees & Discounts (0)` |
+| the table's columns | a select checkbox · `Date` · `Type` · `No.` · `Memo` · `Total` · `Balance` · `Status` · `Action` |
+| the type chip on a credit | **`Credit`** (orange) — an ordinary invoice shows **`Invoice`** (blue) |
+| a credit's number | begins **`CM`**, e.g. `CM8218-4189` |
+| a credit's status | **`Unapplied`** |
+| a credit's money | `Total` and `Balance` are NEGATIVE, e.g. `-$500.00` |
+| the toolbar above the table | `Balance: $562.26` · `Search` · a **`Open only`** toggle, **ON by default** · a download icon · an email icon · a print icon · `Issue Credit` · `New Payment` |
+| the row's own print icon | tooltip **`Print credit memo`** |
+
+**⚠️ THE SCREENSHOT IS NOT FROM sv9315.** Its credit number is `CM8218-4189` and its shop reads
+`Staging Heavy Duty - 9919` — so it comes from the **sv8218 / staging** data set. Walked the same route
+on **sv9315** with a signed-in browser on 2026-09-02: **no credit exists on the first 120 customers**
+(read at `data.response.collection`, the correct key). **So the route is confirmed and the DATA is
+absent on sv9315** — the 12 Credit Invoice cases still need either a seeded credit on that branch or a
+run on the environment the screenshot came from. Two different gaps; do not conflate them.
