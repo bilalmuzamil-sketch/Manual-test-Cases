@@ -1,0 +1,15 @@
+sections paged : 686
+cases paged    : 4624
+cases matching : 3
+  byte-exact   : 3  C44951 C44952 C45175
+  VARIANT      : 0  
+
+  C44951  EXACT   sec 6749  Invoice Refresh (Aug 2026) > Paid Banner, Payments and Balance
+          title: Paid banner appears only on portal-generated Invoice PDFs, before all content
+          [BYTE-EXACT] custom_expected: AUTOMATION: HOLD - customer portal only exists on staging; this case cannot run on the QA branch
+  C44952  EXACT   sec 6749  Invoice Refresh (Aug 2026) > Paid Banner, Payments and Balance
+          title: Each banner payment shows its labeled fields and conditional fees/marker
+          [BYTE-EXACT] custom_expected: AUTOMATION: HOLD - customer portal only exists on staging; this case cannot run on the QA branch
+  C45175  EXACT   sec 6749  Invoice Refresh (Aug 2026) > Paid Banner, Payments and Balance
+          title: Paid banner pill and title wording follow the paid state and the batch rule
+          [BYTE-EXACT] custom_expected: AUTOMATION: HOLD - customer portal only exists on staging; this case cannot run on the QA branch
