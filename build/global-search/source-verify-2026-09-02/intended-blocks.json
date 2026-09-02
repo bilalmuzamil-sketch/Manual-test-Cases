@@ -4432,5 +4432,43 @@
     "text": "1. Vendor Invoices appear as their own searchable entity, grouped under a 'Vendor Invoices' heading with a true count and a scope tab (subject to permission).\n2. A vendor-invoice row carries the file-text icon; the primary line shows the invoice number + vendor, with the total and the invoice date on the second line.\n3. The payment status badge shows the real status using the app's design-system status colours — Paid, Partially paid, or Unpaid (all states, not just Paid/Unpaid).\n4. A Vendor Invoice row has no quick action.\n5. Vendor Invoice results are gated by 'Vendor & Order Management' access.\nOPEN QUESTION (PO): the spec/design also show an invoice 'type (Invoice / Sublet)'. Sublet does not exist as a concept in the platform, so whether the type label is shown at all is being confirmed with Product — do not fail the case on the type label until that is settled.\n\n---\nThis is the expected behaviour as per epic SV-9160 and the Global Search - Product Requirements specification version 1.3 (Confluence page 576978945), sections 4, 5.3 and 9, read on 2 September 2026.\nNote: earlier this case said the badge is 'Paid or Unpaid' with 'Partially paid' only a known variance. Engineering (2026-08-17) and the designer confirmed the badge is tri-state / all statuses; this case follows that latest decision. The 'Invoice/Sublet' type is held as an open PO question.\nAUTOMATION: Not available on Build to test Yet - Last checked 9/2/2026"
    }
   }
+ },
+ "45140": {
+  "title": "Search telemetry (impression/click logging) is out of v1 scope",
+  "fields": {
+   "custom_preconds": {
+    "blocks": [
+     [
+      "1. Sign in to ShopView. In the app header, click the search field (or press ⌘K / Ctrl+K) to open the global search, which searches across work orders, customers, parts and more; results appear grouped by type under a tab strip."
+     ]
+    ],
+    "text": "1. Sign in to ShopView. In the app header, click the search field (or press ⌘K / Ctrl+K) to open the global search, which searches across work orders, customers, parts and more; results appear grouped by type under a tab strip."
+   },
+   "custom_steps": {
+    "blocks": [
+     [
+      "1. In the search box, type a term so result rows are shown, then click a result row.",
+      "2. (Reference only) note that no search-event impression/click logging is expected in v1."
+     ]
+    ],
+    "text": "1. In the search box, type a term so result rows are shown, then click a result row.\n2. (Reference only) note that no search-event impression/click logging is expected in v1."
+   },
+   "custom_expected": {
+    "blocks": [
+     [
+      "1. EXCLUDED FROM V1 — not tested in this release. Search telemetry (the search_event schema and impression/click logging described in PRD §6.4) has been deferred out of v1.",
+      "2. The owning story SV-9167 has been moved to a later release, and engineering removed the telemetry schema from the v1 plan (PRD page comment, 2026-08-20).",
+      "3. Do not execute this against the v1 build; kept for the future release in which telemetry ships."
+     ],
+     [
+      "---",
+      "This is the expected behaviour as per epic SV-9160 and the Global Search - Product Requirements specification version 1.3 (Confluence page 576978945), section 6.4 (telemetry) and section 8, read on 2 September 2026.",
+      "Note: spec v1.3 §6.4 still describes telemetry 'in place from day 1', but the epic (SV-9167 backlogged) and the PRD page comment of 2026-08-20 deferred it out of v1. This case follows that latest decision.",
+      "AUTOMATION: Not available on Build to test Yet - Last checked 9/2/2026"
+     ]
+    ],
+    "text": "1. EXCLUDED FROM V1 — not tested in this release. Search telemetry (the search_event schema and impression/click logging described in PRD §6.4) has been deferred out of v1.\n2. The owning story SV-9167 has been moved to a later release, and engineering removed the telemetry schema from the v1 plan (PRD page comment, 2026-08-20).\n3. Do not execute this against the v1 build; kept for the future release in which telemetry ships.\n\n---\nThis is the expected behaviour as per epic SV-9160 and the Global Search - Product Requirements specification version 1.3 (Confluence page 576978945), section 6.4 (telemetry) and section 8, read on 2 September 2026.\nNote: spec v1.3 §6.4 still describes telemetry 'in place from day 1', but the epic (SV-9167 backlogged) and the PRD page comment of 2026-08-20 deferred it out of v1. This case follows that latest decision.\nAUTOMATION: Not available on Build to test Yet - Last checked 9/2/2026"
+   }
+  }
  }
 }
