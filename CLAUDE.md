@@ -437,7 +437,8 @@ project's spec page has in fact moved since its last check (§3 of the evidence 
 | **Custom Roles & Permissions** (epic **SV-7388** — **269** children) | **RECURRING** — re-run the 4-layer permission VIU after EVERY feature release (it regresses when other features ship). **515 cases ours** live under group 3527 (714 total, **199 foreign**) and **no `testrail-id-map.csv` exists**, so current scope cannot be reconciled locally | 🔴 **2026-07-27** (staging now `v3.10-49b5fe3`) | 🔴 **2026-07-27** — spec page unchanged since 2026-07-17 | **Sasha Grosman** (recorded 2026-08-28; TestRail user 9 spells it "Grossman" — spelling unconfirmed with him) · `build/custom-roles/PROJECT-STATE.md` |
 
 **BLOCKED, with the exact ask in each file (all in `build/OUTSTANDING-ITEMS-REGISTER.md` as R1–R6):**
-`BLOCKED-shopview-app-session.md` (every stored cookie → **HTTP 401**; blocks every live verdict) ·
+`BLOCKED-shopview-app-session.md` (**STAGING ONLY** since 2026-09-02 — QA-branch login is proven and
+routine: playbook §A) ·
 `BLOCKED-confluence-version-integers.md` (12 of 13 version integers unread — access is fine, the only
 version-bearing MCP call returns the whole page body) · `BLOCKED-qa-branch-sv8582.md` (**HTTP 502** ×3)
 · `BLOCKED-global-search-build.md`.
