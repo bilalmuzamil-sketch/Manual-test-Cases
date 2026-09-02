@@ -83,6 +83,27 @@
     never duplicate. Routers and other skills take it **by pointer only**. Authority:
     `build/rules/RULES-61-99.md`.
 
+14. **EVERY HANDOFF CARRIES A §1a — "I CANNOT OBSERVE THIS ON THE BUILD" IS NOT "BLOCKED".** Any
+    session handoff you author or revise MUST carry a section numbered **§1a** — before its reading
+    list, so the session hits it first — stating that **work in a lane almost never STOPS, it CHANGES
+    SHAPE**, and carrying **INLINE and in full** the **outcome list**: feature not built ⇒ **Rule 69**
+    NOT-AVAILABLE-ON-BUILD marker (a finished case, not a blocker) · precondition needs the customer
+    portal ⇒ the **staging-only HOLD** marker, judged from the preconditions and never from the word
+    "portal" (`build/skills/00-COMMON-CORE.md` §5.0-b) · source ambiguous ⇒ **Rule 58 hold and ask** ·
+    data state missing ⇒ **Rule 14 SEED IT**, never NOT-VERIFIED for a data state · control not found
+    ⇒ the **Rule 97 search drill + Rule 26 role reset** · genuinely your own unfinished work ⇒ say so
+    plainly, **"MINE"**. Plus the two statements that make the list bind: **"blocked" is what is LEFT
+    OVER after every outcome above has been ruled out in writing, and is NEVER the default**, and
+    **then Rule 68 applies — DECOMPOSE and state the residual**, because a blocker blocks only what it
+    actually blocks. **The section is WEIGHTED PER LANE, not pasted identically** — same outcomes,
+    ordered and phrased for the lane's own work; the four **worked examples** are the §1a sections in
+    `build/handoffs/HANDOFF-1..4`. Every §1a points at the canonical fuller treatment
+    **`build/skills/03-RUN-CHECK.md` §8.0-a** and no §1a replaces it. **A handoff without it is
+    NON-COMPLIANT and MUST NOT BE ISSUED.** Merge, never duplicate. Routers and other skills take it
+    **by pointer only**. Authority: the QA lead, 2026-08-31 (*"WHY are you failing to unblock
+    yourself?"* — 18 cases parked as blocked with a defined outcome already written down for every
+    one); Rules 12, 14, 26, 57, 58, 68, 69, 74, 97.
+
 ## The one-page checklist (tick every box)
 - [ ] Read the raw transcript; listed every relevant user turn + correction.
 - [ ] Purpose (plain English) + trigger phrases + kickoff prompt.
@@ -96,3 +117,4 @@
 - [ ] Told the user the name + how to call it; offered a dry-run.
 - [ ] **If the artefact is a HANDOFF: the Token Discipline Charter's twelve clauses embedded VERBATIM (Rule 95) — without it the handoff must not be issued.**
 - [ ] **If the artefact is a HANDOFF: the "SEARCH BEFORE YOU GIVE UP" section embedded INLINE and in full (Rule 97) — drill + the four places + the write-it-down duty; without it the handoff must not be issued.**
+- [ ] **If the artefact is a HANDOFF: a §1a "'I cannot observe this on the build' is NOT 'blocked'" section, INLINE and in full, WEIGHTED FOR THAT LANE — the six-outcome list (Rule 69 marker · staging-only portal HOLD · Rule 58 hold-and-ask · Rule 14 seed it · Rule 97 drill + Rule 26 role reset · "MINE"), "blocked" as the LEFT-OVER and never the default, Rule 68 decomposition, and a pointer to `build/skills/03-RUN-CHECK.md` §8.0-a; without it the handoff must not be issued.**

@@ -56,6 +56,60 @@ it **by pointer only**. Authority: **Standing Rule 97** (`build/rules/RULES-61-9
 
 ---
 
+## 🔴 EVERY HANDOFF AUTHORED FROM NOW ON MUST ALSO CARRY A **§1a** — "I CANNOT OBSERVE THIS ON THE BUILD" IS **NOT** "BLOCKED"
+
+**REQUIRED SECTION — same treatment as the charter and the search drill above, and it sits at §1a so a
+session hits it BEFORE its reading list.** Every handoff in this folder — existing and future — carries
+a section numbered **§1a** stating that **"I cannot observe this on the build" is NOT "blocked"**, and
+that work in a lane **almost never STOPS — it CHANGES SHAPE.** It is **INLINE and in full**, because
+**a session must not have to open another file to learn that its blocker list is mostly not blockers.**
+
+**It carries the OUTCOME LIST — the outcome already defined for each thing you actually hit:**
+
+| What you actually hit | The outcome that is already defined for it |
+|---|---|
+| **Feature is not built yet** | **Rule 69** — the `AUTOMATION: Not available on Build to test Yet - Last checked <M/D/YYYY>` marker, the under-development line, `DEFERRED-RUN.md`. **A finished case**, not a blocker. |
+| **A precondition needs the CUSTOMER PORTAL** | The **staging-only HOLD** marker (`00-COMMON-CORE.md` §5.0-b). Judge it from the **preconditions**, never from the word "portal". |
+| **The source is ambiguous** | **Rule 58** — **hold the case and ask** (a PO-question row). An ambiguous source is **NEVER** resolved by looking at the build. |
+| **A data state you need does not exist** | **Rule 14 — SEED IT.** Pre-authorised, permanently, on a disposable environment. **Never NOT-VERIFIED for a data state.** |
+| **The feature is there but you cannot find the control** | **The Rule 97 search drill** (playbook first, the exact error text) **+ Rule 26 role reset** — a control you cannot see may be one role reset away. |
+| **It is genuinely your own unfinished work** | **Say so plainly — "MINE".** That is the honest name for it, and it is never filed under a blocker. |
+
+**And it carries the two statements that make the list bind:**
+
+1. **BLOCKED IS WHAT IS LEFT OVER, AND IT IS NEVER THE DEFAULT.** Nothing earns the word "blocked"
+   until every outcome above has been ruled out, one at a time, in writing.
+2. **THEN RULE 68 APPLIES — DECOMPOSE AND STATE THE RESIDUAL.** A blocker blocks only what it
+   actually blocks; part of the group is almost always testable, so the group is split and the
+   residual is named. A category-wide "not built" derived from one missing artefact is the exact
+   failure this section exists to stop.
+
+**THE SECTION IS WEIGHTED PER LANE — NOT PASTED IDENTICALLY.** The outcome list is the same set of
+outcomes, but each lane leans on a different part of it, so each handoff phrases and orders it for its
+own work: the **creation** lane's §1a is *"no build access is not a blocker on this lane — and you
+still own the markers"* (Rule 57's corollary: a case can be fully authored, tester-ready and FINISHED
+with zero build access); the **build-verification** and **VIU** lanes' §1a leads with the observation
+outcomes; the **test-execution & defect** lane's adds *"— and it is not a defect either"*, because on
+that lane the wrong turn is filing rather than parking. **The four existing sections are the worked
+examples — copy the nearest one and re-weight it, do not paste it blind:**
+`HANDOFF-1-TEST-CASE-CREATION.md` §1a · `HANDOFF-2-BUILD-VERIFICATION.md` §1a ·
+`HANDOFF-3-VIU.md` §1a · `HANDOFF-4-TEST-EXECUTION-AND-DEFECTS.md` §1a.
+
+**Canonical fuller treatment, which every §1a must point at and no §1a replaces:
+`../skills/03-RUN-CHECK.md` §8.0-a** — *a check that fails is a statement about YOUR CHECK until you
+prove otherwise*: the positive-control gate, the one-token variant, and the
+**MINE / BLOCKED-PROVEN / BLOCKED-EVIDENCED / NOT-YET-PROVEN** classification a lane must report
+counts for.
+
+**A HANDOFF WITHOUT IT IS NON-COMPLIANT AND MUST NOT BE ISSUED.** Merge rather than duplicate if a
+handoff already has a blocked-handling section. Routers and other skills take it **by pointer only**.
+Authority: the QA lead, **2026-08-31** (*"WHY are you failing to unblock yourself?"*) — the incident
+was **18 cases parked as "blocked" when every one had a defined outcome already written down, and 12
+more called blocked before the search was finished.** It ties Rules **12, 14, 26, 57, 58, 68, 69, 74,
+97** (`build/rules/RULES-01-20.md`, `RULES-41-60.md`, `RULES-61-99.md`).
+
+---
+
 ## Lanes do not overlap — and that is deliberate
 
 - The **creation** session does not run build verification and does not rewrite existing wording.
