@@ -147,6 +147,46 @@ Index: CLAUDE.md (rule index table). Other rule files: build/rules/RULES-01-20.m
     build, so that does not make your previous pass as stale."* **UNCHANGED: an expect-fail marker
     still needs LIVE BACKING (this rule's 2026-08-11 amendment) — a fix shipping is a reason to REMOVE
     a marker once reported, never a reason to assert a build fact nobody observed (Rule 12).**
+    **⇒ AMENDMENT, BACKFILLED 2026-09-02 — THE PERMITTED MARKER SET IS **NOT** THREE STRINGS. THIS
+    RULE'S OWN TEXT NAMES ONLY THREE, AND A GATE CODED FROM IT HAS ALREADY MISFIRED.**
+    This rule (and `CLAUDE.md` §5) refer throughout to **`AUTOMATION: READY`**,
+    **`AUTOMATION: READY - EXPECT FAIL (SV-xxxx)`** and **`AUTOMATION: HOLD - <short plain reason>`**.
+    **Two further sanctioned forms exist and are part of this rule:**
+    **(4) THE NOT-AVAILABLE-ON-BUILD MARKER — SANCTIONED BY STANDING RULE 69'S OWN BODY**, which calls
+    it *"a **FOURTH permitted marker string**, dated"*. Byte-exact:
+    `AUTOMATION: Not available on Build to test Yet - Last checked <M/D/YYYY>`
+    It is used where a case's **Steps of reproduction and Preconditions cannot be verified against the
+    build** — the build is not ready for that feature, the feature is not present yet, or build
+    verification was deliberately **DEFERRED** for the pass. **The `<date>` is the day the build was last
+    checked for that case.** It substitutes for a **plain `AUTOMATION: READY`**; it is **never** flipped
+    onto a case that is genuinely READY, and a **NOT-BUILT case is excluded from any ready-to-automate
+    figure**. Placement is this rule's placement — **VERY END of Expected Results, AFTER the Rule-54
+    provenance line, blank line before and a line break after.** **Read rule 69's body in full before
+    applying it** (`build/rules/RULES-61-99.md`).
+    **(5) THE STAGING-ONLY CUSTOMER-PORTAL HOLD — a FORM of `AUTOMATION: HOLD`, first used 2026-08-31,
+    WORDING CONFIRMED FINAL BY THE QA LEAD 2026-09-02.** Byte-exact:
+    `AUTOMATION: HOLD - customer portal only exists on staging; this case cannot run on the QA branch`
+    QA lead, 2026-08-31, verbatim: *"Customer portal related tickets can only be tested on staging and
+    not on the QA branch. We need to put this marker on such tickets aswell."* **Why a HOLD and not a
+    sixth literal:** the arithmetic gate is **READY + EXPECT-FAIL = total − HOLD**, and a new
+    non-HOLD literal would silently break it; the marker convention already permits HOLD for *"a
+    genuinely unobtainable thing"*, and a portal that does not exist on the branch qualifies — **so this
+    is not the barred tool-flag excuse.** **SCOPE IT FROM THE PRECONDITIONS, NEVER FROM THE WORD
+    "portal":** a case that verifies the portal feature's **ABSENCE** on the shop-app path **is** testable
+    on the branch and must not be parked. Full treatment + the worked example (spec S8-R8, the paid
+    banner): `build/skills/00-COMMON-CORE.md` §5.0-b.
+    **BOTH STRINGS ARE FIXED, MACHINE-FINDABLE LITERALS — never reworded, never abbreviated, never
+    re-punctuated, never re-cased, never "tidied" in one file in isolation.** Copy them byte-for-byte;
+    if the QA lead ever renames one, it is renamed **everywhere in one pass** using the LOCATIONS list in
+    `build/skills/00-COMMON-CORE.md` §5.0-b.
+    **🔴 WHY THIS BACKFILL EXISTS — IT HAS ALREADY BITTEN, AND IT IS THE RULE-38 SHAPE EXACTLY.**
+    Recorded at **`build/skills/00-COMMON-CORE.md:2378`**: *"4 Invoice cases carry an invalid automation
+    marker — **the gate**: it was coded with three literals when **Rule 69 sanctions a fourth**"*. A
+    check was written from this rule's three-string enumeration and **flagged four correct cases as
+    invalid** — the same failure as the payload builder that rejected all 30 of the manual QA owner's
+    cases by implementing rule 38's headline without its amendment. **A rule's amendment is part of the
+    rule; when a check implements this rule, it must encode all five forms.** Audit:
+    `build/rules/SECTION1-AND-AMENDMENT-AUDIT-2026-09-02.md` Part B.
 62. **NO *JIRA TICKET* IS EVER CREATED WITHOUT THE QA LEAD'S EXPLICIT PERMISSION, ASKED FOR AND
     GRANTED FIRST (all projects, every ticket type).**
 
@@ -1341,6 +1381,63 @@ Index: CLAUDE.md (rule index table). Other rule files: build/rules/RULES-01-20.m
 73. **WHEN THE JIRA CREATION HOLD LIFTS, RESUME ONE TICKET AT A TIME — AND EVERY TICKET MUST CLEAR THE
     DEFECT-TICKET QUALITY CHECKLIST BEFORE IT IS PROPOSED FOR CREATION (all projects; reinforces Rules
     51/52/53/62).**
+    > **🛑 SUPERSESSION NOTICE, 2026-09-01 — READ THIS BEFORE THE RECIPE BELOW. THE LANE'S JOB IS
+    > RUNNABLE TESTS, NOT TICKETS. STOP PREPARING DEFECTS.** QA lead, 2026-09-01, verbatim: *"You are
+    > never supposed to create defect, you are supposed to make the tests RUNNABLE."*
+    >
+    > **THE FULL, AUTHORITATIVE TEXT OF THIS AMENDMENT IS IN STANDING RULE 62**
+    > (`build/rules/RULES-61-99.md`, the block headed *"⇒ AMENDMENT, 2026-09-01 — THE LANE'S JOB IS
+    > RUNNABLE TESTS, NOT TICKETS. STOP PREPARING DEFECTS."*) — **read it there before acting on
+    > anything in this rule.** In one line: a build-verification / VIU / execution pass **no longer ends
+    > with a defect candidate awaiting permission.** When the build does not match the document, the
+    > deliverable is the **CASE**, made runnable and honest — the documented expectation STAYS (Rule 57),
+    > the case carries the **three outcomes** in plain words (Rule 61's expect-fail shape) so the tester
+    > runs it, sees the problem and marks it **Failed**, the marker stays **`AUTOMATION: READY`**, and
+    > **no ticket text is drafted, no permission is asked for, and no defect candidate file is opened.**
+    > Report the finding in the pass report with its **C-id**, and move on.
+    >
+    > **RULE 62 STATES THE CONFLICT RATHER THAN SILENTLY RESOLVING IT (Rule 63), AND NAMES THIS RULE**,
+    > verbatim: *"Rules 51, 52, 53, 62, 73 and 94 and the whole of `build/skills/06-DEFECT-PREP.md` are
+    > written around producing an unchallengeable ticket and stopping at the button; the three-gate rule
+    > recorded earlier the same day (hold → re-verify on the build → ask per candidate) assumes candidates
+    > exist to hold. **This instruction supersedes all of that for the lane's own output.**"*
+    >
+    > **⇒ SO WHAT FOLLOWS IS GATED, NOT DELETED.** The recipe below is **not withdrawn and remains correct
+    > for its purpose**; it **applies only if and when the QA lead directs a ticket to be filed.** Rule 62,
+    > verbatim: *"What survives: if he asks for a ticket, skill 06's shape (`Story Defect`, parented to the
+    > owning story, `Medium`, never `High`) is still how it is filed. **The already-prepared candidates are
+    > NOT filed and NOT re-raised as asks** — they stay in the repo as records and the cases carry the
+    > behaviour instead."*
+    >
+    > **🔴 FOR RULE 73 SPECIFICALLY — THIS IS THE RULE A SESSION OPENS WHEN THE HOLD LIFTS, AND ITS
+    > HEADLINE NOW GIVES THE WRONG ANSWER. READ THIS PARAGRAPH BEFORE THE HEADLINE.** *"RESUME ONE TICKET
+    > AT A TIME"* is **not** what happens when the hold lifts. **TWO** things changed on 2026-09-01, both
+    > recorded in rule 62's body:
+    > **(a) THE LANE DOES NOT PRODUCE TICKETS AT ALL** — the supersession above. A lifted hold does not
+    > turn the lane back into a ticket factory.
+    > **(b) HIS GO-AHEAD IS PERMISSION TO *LOOK AGAIN*, NOT PERMISSION TO FILE — THREE GATES, IN ORDER.**
+    > QA lead, 2026-09-01, verbatim: *"Hold all such tickets for now - for other suites too, we may need to
+    > create them after verifying the build once again when I will give you a go ahead, but make sure even
+    > when I give you a go ahead I will verify on the build once again and if you still find the issue then
+    > you will ask me for the permission to create the ticket."*
+    > **(1) HELD** — every candidate, on every suite, prepared to the button and stopped
+    > (`build/skills/06-DEFECT-PREP.md` §A10 / §A10-b). **(2) HIS GO-AHEAD = RE-VERIFY** — it authorises a
+    > fresh look at the build; **it is not the filing permission, and treating it as one is the failure
+    > this exists to stop.** **(3) RE-VERIFY, THEN ASK** — reproduce it on the build **as it stands that
+    > day** (the branches redeploy continuously and are never final, Rules 49/60). **If it no longer
+    > reproduces: close the candidate and say so — do not file it.** If it still reproduces: **ask for
+    > permission to create the ticket, per candidate.** This COMPOUNDS with rule 62's *"permission is PER
+    > ASK"*; the re-verification comes **before** the ask and never replaces it.
+    > **⇒ THE ONE-AT-A-TIME DISCIPLINE AND THE QUALITY CHECKLIST BELOW ARE STILL RIGHT — they simply apply
+    > only AFTER he has directed a specific ticket**, i.e. after gate (3), never on the strength of a
+    > lifted hold alone.
+    >
+    > **BACKFILLED INTO THIS RULE 2026-09-02.** The ruling had reached **rule 62's body and `CLAUDE.md`
+    > §1 only** — **not rules 51, 52, 53, 73 or 94** — so a session reading only this rule reached the
+    > wrong answer. Recorded as HIGH severity in
+    > `build/rules/SECTION1-AND-AMENDMENT-AUDIT-2026-09-02.md` Part B. **A rule's amendment is part of the
+    > rule (Rule 38's own 2026-09-02 lesson).**
+    >
     USER DIRECTIVE (2026-08-17): the QA lead instructed that a **defect-ticket quality standard** and a
     **one-at-a-time resume process** be RECORDED as a rule, **because previously-created tickets "did
     bite us."** He restated the standing hold in the same period, verbatim: ***"Lets hold them until we
@@ -1567,12 +1664,74 @@ Index: CLAUDE.md (rule index table). Other rule files: build/rules/RULES-01-20.m
     Ties to Standing Rules 6, 29, 38, 50, 75, 76.
 
 84. **THE TESTER-READINESS GATE — nothing reaches a manual tester until it passes (all projects, permanent).**
-    **THE RULE:** before **ANY** case set is handed to manual testers, it passes the gate in **`build/TESTER-READINESS-CHECKLIST.md`** — line breaks that genuinely render as separate lines (**`<br>`**, never a bare `\n` in an HTML-rendered field); **no raw `<ol>` / `<li>` / `<p>` markup visible to the tester**; **exactly one** automation marker, **last** in Expected Results with a blank line before it; a **Rule-54 provenance line present exactly once**, sentence 1 naming **documents only**; title **≤ 80 characters**; the **C-id in every deliverable** that names the case (Rule 8); **no jargon or §-anchors** in tester-facing text bar the authorised requirement reference and source link; **preconditions reachable and steps executable in order** (Rule 28 dimension 2); and **every non-passed row carrying a plain "what needs to be done"**.
+    **THE RULE:** before **ANY** case set is handed to manual testers, it passes the gate in **`build/TESTER-READINESS-CHECKLIST.md`** — line breaks that genuinely render as separate lines (~~**`<br>`**~~ **⚠️ THE `<br>` INSTRUCTION IN THIS CLAUSE IS SUPERSEDED, 2026-08-28 / BACKFILLED HERE 2026-09-02 — see the amendment at the end of this rule; emit separate `<p>` blocks or a `<ul><li>` list instead**, never a bare `\n` in an HTML-rendered field); **no raw `<ol>` / `<li>` / `<p>` markup visible to the tester**; **exactly one** automation marker, **last** in Expected Results with a blank line before it; a **Rule-54 provenance line present exactly once**, sentence 1 naming **documents only**; title **≤ 80 characters**; the **C-id in every deliverable** that names the case (Rule 8); **no jargon or §-anchors** in tester-facing text bar the authorised requirement reference and source link; **preconditions reachable and steps executable in order** (Rule 28 dimension 2); and **every non-passed row carrying a plain "what needs to be done"**.
     **SCORED OVER 100% OF THE SET — NO SAMPLING (Rule 50) — AND THE HANDOVER REPORT STATES THE COUNTS PASSED / FAILED**, per check, out of the exact population.
     **THE MECHANICAL SUBSET IS AUTOMATED, THE REST IS NOT, AND THE DIFFERENCE MUST BE STATED:** `build/testing-tools/check_tester_readiness.py` (read-only, credentials from `/tmp`) covers the markup / marker / provenance / title / jargon / no-build checks. **The C-id-in-deliverables check and the two cold-read checks are HUMAN**, so a clean script run is reported as **"the mechanical subset passed"** and **NEVER** as *"the readiness gate passed"* — claiming the second from the first is the overstated-verification failure mode this workspace has already been bitten by.
     **A FAILED CHECK IS A FINDING, NOT A BLOCKER TO HIDE** — reported with the C-ids; repairing cases is a TestRail write needing the QA lead's go-ahead (Rule 6). **The gate certifies RUNNABLE AND READABLE, not CORRECT** — a case can pass all ten checks and still assert the wrong thing (Rules 43/45/57).
     **RATIONALE (2026-08-20):** cases had been sitting with **bare `\n` line breaks that TestRail collapsed into one run-on paragraph** — numbered steps a tester was meant to follow in order arrived as a wall of text — **and we did not find it; a tester waited two days.** Separately, **~14 Filters cases still show raw `<ol>` / `<li>` to the tester, and 11 of the 15 were last written by our own pass**, so it is ours rather than drift. **Both defects are INVISIBLE in the payload we send and visible only in what the tester actually sees** — which is precisely why the gate exists: it turns *"I think they're fine"* into a **measured pass/fail against the rendered case**.
-    Ties to Standing Rules 7, 8, 9, 28, 50.
+    **⇒ AMENDMENT, 2026-08-28, BACKFILLED INTO THIS RULE 2026-09-02 — `<br>` IS SUPERSEDED. IT IS
+    ORIGIN-DEPENDENT, AND IT MUST NEVER BE EMITTED IN AN API PAYLOAD.** This rule's own "THE RULE"
+    clause above, and **`build/TESTER-READINESS-CHECKLIST.md` §1**, which this rule makes the
+    authority, both positively instructed `<br>`. **That instruction is superseded and is marked as
+    superseded in both places rather than deleted.** The correction — recorded in `CLAUDE.md` §5 and,
+    canonically, in **`build/APP-ACTIONS-PLAYBOOK.md` §J** (round-trip evidence; **§J is the
+    authority for anything in this amendment**) — is:
+    **`<br>` is ORIGIN-DEPENDENT: it renders from a UI edit but shows LITERALLY when written via the
+    API** — so **never emit `<br>` (or any inline tag) in an API payload**; to put lines on their own
+    rows use separate `<p>` blocks or a `<ul><li>` list. **Format with block tags only: `<p>` per
+    paragraph, `<ol>/<ul><li>` for lists, `<hr />` for a separator** — and put the **source /
+    provenance BELOW the expected behaviour after an `<hr />`**, as a `<p>` label + `<ul><li>` list +
+    a final `<p>` date. **STYLING inline tags (`<b>`, `<i>`, `<u>`, `<code>`, `<em>`, `<strong>`) show
+    LITERALLY** and are never used for formatting. **A `<br>` seen on a live case is normally a
+    human's UI edit — leave it; just never generate one.**
+    **WHY IT IS HERE: THE DAMAGE IS MEASURED, NOT HYPOTHETICAL.** The correction was made on
+    2026-08-28 after the QA lead observed one of our API updates print `<br>` as text (C27800), and it
+    **appeared in no rule body at all** until this backfill — so a session reading only rule 84 and its
+    checklist emitted `<br>` via the API and the tester read the literal tag. **76 cases were left
+    unreadable** by a pass that followed the superseded instruction.
+    **AND THE SECOND HALF OF §J STILL APPLIES: BLOCK HTML WRITTEN VIA THE API LANDS IN AN ESCAPING
+    CONTAINER.** `check_case_render.py` reads the API-stored value and **cannot see** it, so the
+    post-write check is TWO steps — the stored-value check **and** a served-page container scan
+    requiring `<div class="markdown fr-view">`; an escaping case is repaired **through the UI editor**,
+    never by another API write. **Plain text in an escaping container still renders as text, so do NOT
+    "upgrade" a readable plain-text case to block HTML via the API — that makes it WORSE.** Full trap,
+    round-trip evidence and the served-page scanner: `build/APP-ACTIONS-PLAYBOOK.md` §J.
+    **⇒ AMENDMENT, 2026-08-31 / 2026-09-01, BACKFILLED INTO THIS RULE 2026-09-02 — 84(i) NOW CARRIES
+    THE RUNNABILITY STANDARD: A CASE WITH SPEC-LEVEL PRECONDITIONS OR STEPS IS **NOT** TESTER-READY.**
+    This rule's clause *"preconditions reachable and steps executable in order (Rule 28 dimension 2)"*
+    was the whole of the readiness gate's runnability test; it is not enough. QA lead, 2026-09-01,
+    verbatim: *"ONE of the major part of build verification is TO make the steps of replication and
+    preconditions RUNNABLE and not to keep those test cases the spec level test cases … this thing
+    never bites me."*
+    **THE STANDARD (universal — ALL cases, ALL suites, NOT only build-verified ones; QA lead
+    2026-08-31).** A precondition that asserts a *state* ("a document exists whose work order has …
+    set") or a step that *summarizes* an action ("Generate the Invoice") is **DEFECTIVE**.
+    Preconditions carry the **route as UI clicks** — the five things: **(1)** entry point
+    (top-menu/screen, exact label) · **(2)** which record to open and how you know it is the right one
+    · **(3)** the tab/panel · **(4)** where the thing appears · **(5)** any default-on filter that
+    hides it. Steps describe the check; **Expected Results still come from the documents, never the
+    build (Rule 57)**. **NEVER make a step followable by inventing a path or a state a tester cannot
+    actually reach** (skill 18's hard line) — where a route needs the live build to confirm and no
+    build exists yet (Rule 85), draft it from the **design/spec** and mark it **PROVISIONAL**, never
+    fabricated.
+    **TWO GATES, ALWAYS BOTH — a shape gate and a label gate:**
+      · **`python3 build/testing-tools/check_runnable_cases.py --section-prefix "<suite>"`** — reads
+        TestRail LIVE, exit 1 on any failure; drive it to zero before reporting a suite done. It
+        replaces `check_layman_steps.py`, which passed any case containing the words *"open the"*.
+      · **`python3 build/testing-tools/check_precond_labels.py --sections <ids> --observed build/OBSERVED-UI-LABELS-<env>.md`**
+        — are the quoted labels REAL. **RUNNABLE-SHAPED IS NOT BUILD-VERIFIED (2026-09-01):**
+        `check_runnable_cases.py` proves a precondition is tester-SHAPED and says in its own header
+        that it **cannot** prove the route is correct — a label inventory found **117 cases naming a
+        permission "Work Order Line - Create and Edit" and 90 naming "Work Orders → Work Order View
+        Mode", neither of which exists.** A label enters the observed file **only from a probe with
+        committed evidence** — never from an API field name, a spec, or a note in this repo.
+    **RUNNABILITY LIFECYCLE: provisional at source-verification (no build) → FINALISED at
+    build-verification** (the build's own labels + `AUTOMATION: READY`; QA lead: *"build verification
+    is the final touch-up … to make the tests runnable"*). **A build-verification pass is NOT done when
+    the verdicts are in** — it is done when **every case in the suite**, verified this run or not,
+    carries UI preconditions and steps a manual tester can follow.
+    Full text, the five things, the hard line and the observed routes: **`build/skills/18-LAYMAN-UI-STEPS.md`**.
+    Ties to Standing Rules 7, 8, 9, 28, 50, 57, 85.
 
 85. **A PROJECT WITH NO QA BUILD IS REPORTED AS "SOURCE-VERIFIED ONLY — NO BUILD EXISTS YET" (all projects, permanent).**
     **THE RULE:** where **no QA build exists** for a project, every status line, report, readiness figure and handover states — **in those words** — **"SOURCE-VERIFIED ONLY — NO BUILD EXISTS YET"**. Its cases carry **Rule-54 state 1** (sentence 1 only, **no build sentence at all**) and the **Rule-69 marker form**, and they may **NEVER** be described as **build-verified**, **VIU'd**, or simply **"verified"**.
@@ -1946,6 +2105,46 @@ Index: CLAUDE.md (rule index table). Other rule files: build/rules/RULES-01-20.m
 
 94. **THE DEFECT ADMISSIBILITY GATE — NO TICKET IS FILED UNTIL IT PASSES EVERY CHECK, AND THE LANE'S
     OUTPUT IS APPROVED CANDIDATES, NOT FILED TICKETS (all projects, permanent).**
+    > **🛑 SUPERSESSION NOTICE, 2026-09-01 — READ THIS BEFORE THE RECIPE BELOW. THE LANE'S JOB IS
+    > RUNNABLE TESTS, NOT TICKETS. STOP PREPARING DEFECTS.** QA lead, 2026-09-01, verbatim: *"You are
+    > never supposed to create defect, you are supposed to make the tests RUNNABLE."*
+    >
+    > **THE FULL, AUTHORITATIVE TEXT OF THIS AMENDMENT IS IN STANDING RULE 62**
+    > (`build/rules/RULES-61-99.md`, the block headed *"⇒ AMENDMENT, 2026-09-01 — THE LANE'S JOB IS
+    > RUNNABLE TESTS, NOT TICKETS. STOP PREPARING DEFECTS."*) — **read it there before acting on
+    > anything in this rule.** In one line: a build-verification / VIU / execution pass **no longer ends
+    > with a defect candidate awaiting permission.** When the build does not match the document, the
+    > deliverable is the **CASE**, made runnable and honest — the documented expectation STAYS (Rule 57),
+    > the case carries the **three outcomes** in plain words (Rule 61's expect-fail shape) so the tester
+    > runs it, sees the problem and marks it **Failed**, the marker stays **`AUTOMATION: READY`**, and
+    > **no ticket text is drafted, no permission is asked for, and no defect candidate file is opened.**
+    > Report the finding in the pass report with its **C-id**, and move on.
+    >
+    > **RULE 62 STATES THE CONFLICT RATHER THAN SILENTLY RESOLVING IT (Rule 63), AND NAMES THIS RULE**,
+    > verbatim: *"Rules 51, 52, 53, 62, 73 and 94 and the whole of `build/skills/06-DEFECT-PREP.md` are
+    > written around producing an unchallengeable ticket and stopping at the button; the three-gate rule
+    > recorded earlier the same day (hold → re-verify on the build → ask per candidate) assumes candidates
+    > exist to hold. **This instruction supersedes all of that for the lane's own output.**"*
+    >
+    > **⇒ SO WHAT FOLLOWS IS GATED, NOT DELETED.** The recipe below is **not withdrawn and remains correct
+    > for its purpose**; it **applies only if and when the QA lead directs a ticket to be filed.** Rule 62,
+    > verbatim: *"What survives: if he asks for a ticket, skill 06's shape (`Story Defect`, parented to the
+    > owning story, `Medium`, never `High`) is still how it is filed. **The already-prepared candidates are
+    > NOT filed and NOT re-raised as asks** — they stay in the repo as records and the cases carry the
+    > behaviour instead."*
+    >
+    > **FOR RULE 94 SPECIFICALLY.** Its headline and body say the lane's output is **"approved candidates,
+    > not filed tickets"**. **Since 2026-09-01 the lane's output is a RUNNABLE TEST AND A C-ID** — not a
+    > candidate. The admissibility checks below are **not retired**: they are the bar that any ticket the
+    > QA lead directs must clear, and they are the reason a finding can be reported honestly in a pass
+    > report without a ticket behind it.
+    >
+    > **BACKFILLED INTO THIS RULE 2026-09-02.** The ruling had reached **rule 62's body and `CLAUDE.md`
+    > §1 only** — **not rules 51, 52, 53, 73 or 94** — so a session reading only this rule reached the
+    > wrong answer. Recorded as HIGH severity in
+    > `build/rules/SECTION1-AND-AMENDMENT-AUDIT-2026-09-02.md` Part B. **A rule's amendment is part of the
+    > rule (Rule 38's own 2026-09-02 lesson).**
+    >
     **ORIGIN — the QA lead, 2026-08-21, verbatim:** *"The last time you created the tickets were cause
     me to get bitten because they refused those tickets saying they are irrelevant and marked them
     obsolete, though a few of them were accepted as genuine tickets."*

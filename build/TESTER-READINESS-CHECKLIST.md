@@ -38,10 +38,36 @@ Every check names **how to check it**, because a check without a method is an op
 **Requirement:** numbered Preconditions / Steps / Expected Results appear as
 **separate lines** to the tester.
 
-**How to check:** the field must use **`<br>`** (or genuinely separate `<p>` blocks) —
+> **🛑 SUPERSEDED, 2026-08-28 — CORRECTED HERE 2026-09-02. THE TWO `<br>` INSTRUCTIONS BELOW ARE
+> NO LONGER THE METHOD.** They are kept, struck through, because a recorded instruction is never
+> silently deleted — but **do not follow them.**
+>
+> **`<br>` is ORIGIN-DEPENDENT: it renders from a UI edit but shows LITERALLY when written via the
+> API** — so **never emit `<br>` (or any inline tag) in an API payload.** To put lines on their own
+> rows use **separate `<p>` blocks** (wider gap) or a **`<ul><li>` list** (tight lines).
+> **Format with block tags only: `<p>` per paragraph, `<ol>/<ul><li>` for lists, `<hr />` for a
+> separator.** **STYLING inline tags (`<b>`, `<i>`, `<u>`, `<code>`, `<em>`, `<strong>`) show
+> LITERALLY** and are never used for formatting. A `<br>` seen on a live case is normally a human's
+> UI edit — **leave it; just never generate one.**
+>
+> **The bare `\n` half of the check below is STILL CORRECT and still a FAIL.**
+>
+> **CANONICAL AUTHORITY: `build/APP-ACTIONS-PLAYBOOK.md` §J** (round-trip evidence). Also
+> `CLAUDE.md` §5 and Standing Rule 84's 2026-08-28 amendment in `build/rules/RULES-61-99.md`.
+> **The measured damage:** a pass that followed the superseded instruction left **76 cases
+> unreadable**.
+>
+> **AND THE SECOND STEP §J ADDS:** block HTML written via the API lands in an **escaping container**
+> that `check_case_render.py` cannot see, so the post-write check is TWO steps — the stored-value
+> check **and** a served-page scan requiring `<div class="markdown fr-view">`; repair an escaping
+> case **through the UI editor**, never by another API write.
+
+**How to check (PARTLY SUPERSEDED — see the box above):** the field must use ~~**`<br>`** (or~~
+genuinely separate `<p>` blocks ~~)~~ **or a `<ul><li>`/`<ol><li>` list** —
 **a bare `\n` inside an HTML-rendered field is COLLAPSED by TestRail and is a FAIL.**
-Read the case back with `get_case` and inspect the stored text; where the field
-contains HTML tags at all, every intended break needs an explicit `<br>`.
+Read the case back with `get_case` and inspect the stored text; ~~where the field
+contains HTML tags at all, every intended break needs an explicit `<br>`.~~
+**Current method: every intended break is a separate `<p>` block or a `<ul><li>`/`<ol><li>` item.**
 
 **Why it is not obvious:** the payload we send looks perfectly well-formed. The defect
 exists only in the rendering.

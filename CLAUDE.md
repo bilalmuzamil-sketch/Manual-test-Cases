@@ -567,7 +567,9 @@ Compact form — **the rule named in brackets is the authority; read it before r
   the corrected field map: `build/skills/01-CASE-BUILD.md`, `build/skills/00-COMMON-CORE.md` §3.1. [61]
 - **AUTOMATION MARKER — the LAST thing in Expected Results**, after the provenance line, blank line
   before and a line break after. Exactly one of: `AUTOMATION: READY` ·
-  `AUTOMATION: READY - EXPECT FAIL (SV-xxxx)` · `AUTOMATION: HOLD - <short plain reason>`. A machine-
+  `AUTOMATION: READY - EXPECT FAIL (SV-xxxx)` · `AUTOMATION: HOLD - <short plain reason>` ·
+  `AUTOMATION: Not available on Build to test Yet - Last checked <M/D/YYYY>` (**the FOURTH form, Rule
+  69 — a gate coded from a three-string list flagged 4 valid cases**). A machine-
   findable literal — never reworded or abbreviated, exactly one per case. **A tool flag never justifies
   HOLD** (devtools, DOM/network, PDF/CSV reading, seeded data, viewports are all automatable); only a
   genuinely unobtainable thing does. **NOT-BUILT cases are excluded from any ready-to-automate figure.**
