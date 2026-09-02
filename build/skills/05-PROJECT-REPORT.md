@@ -13,7 +13,7 @@ to get unblocked on that and if the suite is ready to be handded of to the Manua
 
 **Five tables, in this order, in EVERY report — status updates included, not just end-of-project
 ones.** The full text with all the column definitions is Rule 98 in
-[`../rules/RULES-61-98.md`](../rules/RULES-61-98.md); the skeleton is:
+[`../rules/RULES-61-99.md`](../rules/RULES-61-99.md); the skeleton is:
 
 | # | Table | The column that people forget, and why it matters |
 |---|---|---|
@@ -344,3 +344,36 @@ cheap to fix an hour earlier.
 | Write the questions that would clear column 7 | **[`07-PO-QUESTIONS`](07-PO-QUESTIONS.md)** — and **the sheet goes out attached to THIS report**, once it says everything else is done |
 
 **And it never writes to TestRail.**
+
+---
+
+## THE ASK-QUALITY GATE — Rule 99 (added 2026-09-02)
+
+The five tables are only half the report. **Tables 2 and 4 and the closing OUTSTANDING section are
+ASKS, and an ask he cannot act on is worse than no ask** — it costs him a reply and returns nothing.
+
+**QA lead, 2026-09-02, verbatim:** *"please make it the rule to always explain properly that helps be
+execute what is needed."* He said it after answering two of four OUTSTANDING items with
+**"what is this"**.
+
+**Every row he is asked to decide carries five things, in plain words, in this order:**
+
+1. **WHAT IT IS** — in the product's own on-screen labels, quoting the words a user sees. Never an
+   internal name, a rule number, a register row, a filename or a bare C-id **as the identifier**.
+2. **HOW IT CAME UP** — one sentence: what was looked at, what was found. He was not in the session.
+3. **THE QUESTION** — one question, answerable with no further reading. Two answers ⇒ two rows.
+4. **THE OPTIONS** — two or three concrete choices he can answer by picking one, each saying what we
+   would then DO.
+5. **THE COST OF SILENCE** — what stays undone, and what does **not** (Rule 68). If nothing is
+   blocked and it is simply a decision he may want to take, say exactly that.
+
+**The four non-compliant shapes:** the **shorthand row** (a phrase only this session understands) ·
+the **pointer row** (*"the two developer questions"* — a path is not an ask; restate the content and
+put the path at the end) · the **id-only row** (*"C45123 needs your clarification"* — say what the case
+tests and what the two readings would mean; Rule 8's id and link ride **alongside**, never instead) ·
+the **count row** (*"5 cases blocked on data"* — Rule 98 already demands the ids; Rule 99 adds what
+they are about and what unblocks them).
+
+**SELF-CHECK BEFORE SENDING:** read each row as if you have never seen this project. **If answering it
+would require opening a file, remembering an earlier session, or looking at the build, it is not
+finished.** Rewrite until picking an option is the only thing left to do.

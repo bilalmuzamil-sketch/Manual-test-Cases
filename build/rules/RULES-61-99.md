@@ -1,9 +1,9 @@
-# ShopView QA — Standing Rules 61–98
+# ShopView QA — Standing Rules 61–99
 
-This file holds the FULL, VERBATIM text of Standing Rules 61–97.
+This file holds the FULL, VERBATIM text of Standing Rules 61–99.
 
 Full archive: build/rules/CLAUDE-FULL-ARCHIVE-2026-08-21.md
-Index: CLAUDE.md (rule index table). Other rule files: build/rules/RULES-01-20.md, build/rules/RULES-21-40.md, build/rules/RULES-41-60.md, build/rules/RULES-61-98.md
+Index: CLAUDE.md (rule index table). Other rule files: build/rules/RULES-01-20.md, build/rules/RULES-21-40.md, build/rules/RULES-41-60.md, build/rules/RULES-61-99.md
 
 **Read the rule you are about to apply here, in full — the index is not the rule.**
 
@@ -2277,7 +2277,7 @@ Index: CLAUDE.md (rule index table). Other rule files: build/rules/RULES-01-20.m
     did not exist.
     **DURABLE FACT — THE RULES ARE NO LONGER IN `CLAUDE.md`.** The Standing Rules moved OUT of
     `CLAUDE.md` into `build/rules/RULES-01-20.md` / `RULES-21-40.md` / `RULES-41-60.md` /
-    `RULES-61-98.md` on **2026-08-21**; **`CLAUDE.md` is now an INDEX.** **A session asserting "the
+    `RULES-61-99.md` on **2026-08-21**; **`CLAUDE.md` is now an INDEX.** **A session asserting "the
     rules live inside CLAUDE.md" is describing a PRE-2026-08-21 state and is therefore STALE — that
     assertion is itself the signal to `git fetch origin` and re-check before it reports anything else.**
     **THE SEARCH DRILL — run these, verbatim, substituting your own strings:**
@@ -2428,3 +2428,58 @@ Index: CLAUDE.md (rule index table). Other rule files: build/rules/RULES-01-20.m
     blocks only what it blocks — Table 3 column 4), **70** (action-first, plain-language, table-form —
     this rule makes "table-form" mandatory rather than preferred), **80** (say when it was last done),
     **84** (the tester-readiness gate is Table 5) and **97** (Table 3's proof column names the searches).
+
+---
+
+99. **EVERY ASK IS SELF-CONTAINED AND EXECUTABLE — HE MUST NEVER HAVE TO GO AND LOOK SOMETHING UP TO
+    UNDERSTAND WHAT IS BEING ASKED (all projects, permanent).**
+    **ORIGIN (2026-09-02).** The QA lead read an OUTSTANDING section and replied to two of its four
+    items with **"what is this"** and **"What is this?"**, and then gave the rule, verbatim:
+    *"please make it the rule to always explain properly that helps be execute what is needed."*
+    The items were not wrong — they were written as reminders **to me**, in the shorthand of the
+    session that raised them ("the unpriced-parts approval gate — in scope for Inline Add and Edit
+    Parts, or is it Work Order Line's?"; "the two developer questions"). To him they were riddles. An
+    ask he cannot act on is worse than no ask: it consumes a reply and returns nothing.
+
+    **THE FIVE THINGS EVERY ASK CARRIES, IN PLAIN WORDS, IN THIS ORDER:**
+
+    | # | Part | Test it must pass |
+    |---|---|---|
+    | 1 | **WHAT IT IS** | Named in the product's own on-screen labels, quoting the exact words a user sees. Never an internal name, a rule number, a register row, a filename or a bare C-id as the *identifier* of the thing |
+    | 2 | **HOW IT CAME UP** | One sentence: what was looked at, and what was found. He has not been in the session and does not remember the thread that raised it |
+    | 3 | **THE QUESTION** | One question, answerable without any further reading. If it needs two answers it is two rows |
+    | 4 | **THE OPTIONS** | Two or three concrete choices he can answer by picking one — plus what each one makes us DO next. "Is this in scope?" alone is not an option set |
+    | 5 | **THE COST OF SILENCE** | What stays undone until he answers, and what does **not** (Rule 68). If the answer is "nothing is blocked, this is a decision you may want to take", say exactly that |
+
+    **NON-COMPLIANT ROWS — the four shapes that produced this rule:**
+    - **The shorthand row.** *"The unpriced-parts approval gate — in scope, or Work Order Line's?"*
+      He has never seen that dialog. Compliant: *"The design shows a warning when a line is approved
+      while parts have no price — it says `3 parts unpriced`, `Margin on this line is provisional`,
+      and offers `Price them first` or `Approve anyway`. No case in the suite tests it (I searched all
+      122). Should this be covered here, or does it belong to the Work Order Line suite?"*
+    - **The pointer row.** *"the two developer questions"* / *"the Rule-65 notices to Vlad"*. A
+      pointer is not an ask. Restate the question or the notice **in the row**; the file path goes at
+      the end as *where it is written down*, never instead of the content.
+    - **The id-only row.** *"C45123 needs your '1. 5' clarification."* Say what the case tests, what
+      is ambiguous, and what the two readings would each mean. **Rule 8 still applies — the C-id and
+      its link are always there — but the id is the receipt, not the explanation.**
+    - **The count row.** *"5 cases blocked on data."* Rule 98's amendment already requires the ids;
+      this rule adds that it also requires **what the five cases are about** and what unblocks them.
+
+    **THIS IS NOT ONLY FOR OUTSTANDING SECTIONS.** It governs every place he is asked to decide
+    something: the OUTSTANDING section (36), Table 2 and Table 4 of the five-table report (98), a PO or
+    developer question sheet (7, 55 — where it is already the standard, in a spreadsheet with options
+    to tick), a permission request for a Jira ticket (62) or a TestRail write, a Rule-63 conflict
+    surfaced for a ruling, and a Rule-65 notice to Vlad.
+
+    **THE SELF-CHECK BEFORE ANY ASK IS SENT:** read the row as if you have never seen this project.
+    **If answering it would require opening a file, remembering an earlier session, or looking at the
+    build, it is not finished.** Rewrite it until picking an option is the only thing left to do.
+
+    **RELATED:** **7** and **9** (plain layman wording, the build's own labels, no case ids or spec
+    anchors in what a non-technical reader is given) · **8** (pair the id with its link — alongside the
+    explanation, never instead of it) · **36** (every report ends with OUTSTANDING) · **48** (never say
+    "waiting on you" without the context — quote the ruling) · **55** (a questionnaire names the project
+    and feature on every row and is answerable by a non-technical reader) · **68** (say what the blocker
+    does not block) · **70** (action-first, plain language, table form) · **98** (the five tables, and
+    the amendment requiring the case numbers).
