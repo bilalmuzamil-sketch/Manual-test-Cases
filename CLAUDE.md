@@ -665,7 +665,7 @@ Compact form — **the rule named in brackets is the authority; read it before r
 | Standing Rules 1–20 (full text) | `build/rules/RULES-01-20.md` |
 | Standing Rules 21–40 (full text) | `build/rules/RULES-21-40.md` |
 | Standing Rules 41–60 (full text) | `build/rules/RULES-41-60.md` |
-| Standing Rules 61–98 (full text) | `build/rules/RULES-61-99.md` |
+| Standing Rules 61–99 (full text) | `build/rules/RULES-61-99.md` |
 | Per-project narrative history (projects 1–7) | `build/rules/PROJECT-HISTORY-ARCHIVE.md` |
 | Byte-verification hashes for the split | `build/rules/INTEGRITY.md` |
 | Staging/QA/prod action recipes, TestRail traps | `build/APP-ACTIONS-PLAYBOOK.md` |
