@@ -130,17 +130,24 @@ for (const cid of queue) {
         }
       }
     }
-    await page.waitForTimeout(700);
-    lastPost = null;
-    if (await page.locator('#accept').isDisabled()) {
-      log(`C${cid} save disabled — stored content already matches; verifying anyway`);
-    } else {
+    // Blur the editor so Froala flushes its change event, then settle — fast insertText
+    // can otherwise leave the form 'not dirty' and Save no-ops with a 302 back to edit.
+    await page.locator('body').click({ position: { x: 5, y: 5 } }).catch(() => {});
+    await page.waitForTimeout(1400);
+    // Up to 3 save attempts: click Save, wait; if still on the edit URL, retype nothing but
+    // re-click after a settle. The served-page verify below remains the authority.
+    for (let attempt = 0; attempt < 3; attempt++) {
+      if (await page.locator('#accept').isDisabled()) {
+        if (attempt === 0) log(`C${cid} save disabled — stored content already matches; verifying anyway`);
+        break;
+      }
+      lastPost = null;
       await page.click('#accept', { timeout: 30000 });
       await page.waitForLoadState('networkidle').catch(() => {});
-      for (let w = 0; w < 60 && /cases\/edit/.test(page.url()); w++) await page.waitForTimeout(500);
-      // A 302 back to the edit URL is a false negative (the save DID commit, PRG timing);
-      // do NOT throw — the served-page verification below is the authority. Just note it.
-      if (/cases\/edit/.test(page.url())) log(`C${cid} still on edit URL after Save (POST: ${lastPost || 'none'}) — verifying served page anyway`);
+      for (let w = 0; w < 40 && /cases\/edit/.test(page.url()); w++) await page.waitForTimeout(500);
+      if (!/cases\/edit/.test(page.url())) break;
+      log(`C${cid} still on edit URL after Save attempt ${attempt + 1} (POST: ${lastPost || 'none'}) — retrying`);
+      await page.waitForTimeout(1200);
     }
 
     // ---- VERIFY ----
