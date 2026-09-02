@@ -2,7 +2,16 @@
 
 > **⚠️ REFERENCE ONLY — this register is history and other sessions' work. It is NOT a backlog and does not authorise action (Rule 92).** Reading an open item here does **not** mean it is yours to work on; a lane session acts only on the project the QA lead has NAMED.
 
-## 🆕🆕🆕🆕 2026-09-02 (LATEST) — A SIGNED-IN QA BROWSER, AND TWO ASKS WITHDRAWN
+## 🆕🆕🆕🆕🆕 2026-09-02 (LATEST) — AUTOMATION TYPE SET ON ALL THREE SUITES (285 cases). ONE NOTICE FOR VLAD.
+
+| Row | Item | Who | Status |
+|---|---|---|---|
+| **ATYPE-1** | **✅ DONE 2026-09-02 — Automation Type set on every case in the three active suites, per the QA lead's direct instruction ("write directly").** Only the `custom_automation_type` field was written; nothing else touched (the QA lead was explicit these are automation-ready and no other field could change). Live-verified read-back on all 285: **Invoice** 106 Functional / 7 Unit / 6 E2E · **Inline** 116 Functional / 6 Unit (C45220 left E2E) · **Printer** 38 Functional / 6 E2E. **0 cases left at None. 0 failures.** Rubric: Unit = isolated calc/format/single-field-validation; E2E = cross-feature journey, browser print dialog, audit trail, or email/PDF delivery; Functional = single-feature UI behaviour (default). Record: `build/Automation-Type-Classification-2026-09-02.xlsx`; audit: `build/Automation-Type-audit-2026-09-02.json` | **me — done** | **✅ CLOSED 2026-09-02** |
+| **ATYPE-2** | **🛑 Rule 65 notice for Vlad — 12 TestRail-flagged Automated cases had their Automation Type set** (Invoice C44919/C44920/C44921/C44922/C44985; Inline C45005/C45026/C45223/C45224/C45227/C45237; Printer C45123). Included per the QA lead's explicit go-ahead 2026-09-02. `custom_atmstatus` re-verified **3 (Automated)** on all 12, unchanged; only `custom_automation_type` written. **Vladimir's C45220 NOT touched** (already E2E). Notice: `build/FOR-VLAD-automation-type-set-2026-09-02.md` | **QA lead to pass to Vlad** | **OPEN — notice written, not yet sent** |
+
+---
+
+## 🆕🆕🆕🆕 2026-09-02 — A SIGNED-IN QA BROWSER, AND TWO ASKS WITHDRAWN
 
 | Row | Item | Who | Status |
 |---|---|---|---|
@@ -43,7 +52,7 @@ closes on both handed-off suites.
 
 ---
 
-## 🆕🆕 2026-09-01 (LATEST) — BOTH SUITES BUILD-VERIFIED, WRITTEN AND HANDED OFF TO THE MANUAL QA TESTER. FIVE ASKS.
+## 🆕🆕 2026-09-01 — BOTH SUITES BUILD-VERIFIED, WRITTEN AND HANDED OFF TO THE MANUAL QA TESTER. FIVE ASKS.
 
 **Tester for both suites: Viktoria Videnovic** (TestRail user 4). Deliverables:
 `build/handoff-2026-09-01/` — the brief, the working (`HOW-THE-NUMBERS-WERE-DERIVED.md`), and the
