@@ -34,6 +34,7 @@ Usage:
     python3 build/testing-tools/check_runnable_cases.py --cases 44923,45197
 Exit code 1 if any case in scope fails, so it can gate a handover or a marker push.
 """
+import time
 import argparse, base64, html, json, re, sys, urllib.request
 
 HOST = 'https://shopview.testrail.io'
@@ -111,9 +112,19 @@ def main():
     a = ap.parse_args()
     cr = json.load(open(a.creds))
     auth = base64.b64encode(f"{cr['user']}:{cr['password']}".encode()).decode()
-    def get(p):
-        r = urllib.request.Request(f'{HOST}/index.php?/api/v2/{p}', headers={'Authorization': 'Basic ' + auth})
-        return json.load(urllib.request.urlopen(r, timeout=180))
+    def get(p, tries=5):
+        # RETRY. The agent proxy resets connections mid-run; on 2026-09-02 a 119-case sweep died on
+        # "[Errno 104] Connection reset by peer" after doing most of the work. A gate that cannot
+        # finish is a gate nobody runs, so a transient must not end the pass.
+        for attempt in range(tries):
+            try:
+                r = urllib.request.Request(f'{HOST}/index.php?/api/v2/{p}',
+                                           headers={'Authorization': 'Basic ' + auth})
+                return json.load(urllib.request.urlopen(r, timeout=180))
+            except Exception:
+                if attempt == tries - 1:
+                    raise
+                time.sleep(2 ** attempt)
 
     if a.cases:
         cases = [get(f'get_case/{c.strip().lstrip("Cc")}') for c in a.cases.split(',')]

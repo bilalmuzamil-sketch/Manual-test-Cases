@@ -2253,3 +2253,71 @@ IN_SCOPE_AUTHORS = {3: 'us', 6: 'Mudassir Qamar — this project’s manual QA t
 
 Vladimir Tomovic (user 1) is the standing exception in the other direction: **never** in scope, on any
 project, whatever else has been authorised.
+
+---
+
+## 🛑 THE MISTAKE-PREVENTION MECHANISM — TWO FILES, NOT A CHECKLIST TO REMEMBER (2026-09-02)
+
+**QA lead, 2026-09-02, verbatim:** *"Keep on learning and improving the mechanism to not repeat the
+mistakes and do the same things faster if asked again and avoid making new mistakes - you must have a
+mechanism to ensure that while keeping the test cases Authentic/not invented/and RUnnable by a manual
+QA tester you dont make the mistakes."*
+
+**A rule written in prose is a rule someone has to remember. These two files FAIL THE RUN instead.**
+Read them, use them, and add to them the moment you pay for a new mistake.
+
+### 1 · Before reporting a suite: `verify_suite.py`
+
+```
+python3 build/testing-tools/verify_suite.py --root <section id> \
+    --observed build/OBSERVED-UI-LABELS-<env>.md \
+    [--run <id>] [--build <marker>] [--authorised <json list of Automated ids>]
+```
+
+Ten checks in one command, each one there because a specific mistake reached him. Exit 0 only when all
+ten pass. It reads TestRail **live** and never writes.
+
+| # | Check | The mistake it prevents |
+|---|---|---|
+| 1 | live census | *"all 89 Invoice cases"* came from `testrail-id-map.csv`; the suite holds **119** |
+| 2 | author scope | a check coded `created_by != 3 → foreign` rejected all **30** of the manual tester's cases; and Vladimir's must never be written |
+| 3 | Automated inventory | Rule 71 needs a **per-case** go-ahead — and a write-hold is not an observation-hold |
+| 4 | every case has a source | Rule 64. **A case with no source is the definition of invented** |
+| 5 | marker literal | `AUTOMATION: Ready` made a case invisible to the arithmetic gate |
+| 6 | marker arithmetic | READY + EXPECT-FAIL must equal (marked − HOLD) |
+| 7 | runnability | spec-level preconditions a tester cannot follow |
+| 8 | precondition labels | 117 cases named a permission that does not exist — **and twice the gate flagged CORRECT cases because this reference was incomplete** |
+| 9 | build-sentence honesty | a build sentence on a case never checked (Rule 12); a deferred marker left on a case that IS verified |
+| 10 | run membership | Rule 34 — a run not set-equal to the suite hides cases from the tester |
+
+### 2 · Before reading anything off the build: `probe_lib.mjs`
+
+`build/testing-tools/probe_lib.mjs` encodes every build-reading mistake as a function that **throws
+rather than returning a plausible lie**:
+
+- **`READ_LABEL_FN` / `READ_TABLE_FN`** — one element, icons stripped, `value` for form controls; a
+  table read per cell against its column header. *Stops `tr.innerText` gluing a clock icon's text
+  onto a label, which is how `Work order printed history` was invented and a divergence raised on it.*
+- **`assertLabelSane`** — rejects a "label" with an internal double space, over 60 characters, or
+  containing a money amount or a long number. *All three are the signature of a container read.*
+- **`GET_JSON_FN` + `unwrap`** — a 200 whose body is the single-page app's HTML is **not an answer**.
+  *Stops "the endpoint returned 200" when the request went to the app host instead of the API host.*
+- **`requireFields`** — refuses to count a field that is not in the payload. *Stops both halves of the
+  same bug: "0 of 2,821 have a customer" and "100 of 100 have no customer".*
+- **`fetchAllPages` + `PAGING_SHAPES`** — proves the paging parameter actually changes the results
+  before trusting a total. *`?page=`/`?limit=` are silently ignored on this product and return page 1
+  with HTTP 200, so a loop re-reads 100 records for ever and calls it the population.*
+- **`negativesAreTrustworthy`** — a search may report a **negative** only if known-present control
+  strings were all found. *A 400-chunk bundle sweep missed `View mode` and `Tech view`, which a
+  screenshot proves exist; at 611 chunks it found them.*
+- **`assertSignedIn`** — a probe run against the sign-in page measures the sign-in page.
+
+### 3 · The two rules that are about JUDGEMENT, so no tool can hold them
+
+- **When a gate flags a label, check the reference file BEFORE you touch a case.** It has been the
+  reference that was wrong twice (`Fee / Discount`, 42 cases; `Approves Work` and `Part Sales`, 5
+  cases) and the cases that were wrong once (117 + 90). **The gate says "these disagree", never "the
+  case is wrong".**
+- **A PASS verdict is not the end of a case.** Capture the behaviour **and** the route in the same
+  visit to the screen. C45123 was verified PASS on 1 September and still shipped un-runnable, because
+  the pass took the verdict and never read the route — which then had to be asked for as a permission.
