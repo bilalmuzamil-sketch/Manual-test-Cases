@@ -20,7 +20,7 @@ The previous CLAUDE.md was **738 KB / roughly 183,000 tokens**, and it was **TRU
 AT RULE 62**. Sessions were therefore running with **Rules 63–88 SILENTLY ABSENT** while believing
 they had read the whole file. A rule you have never seen is a rule you will break.
 
-**THEREFORE: NEVER ASSUME YOU HAVE SEEN ALL THE RULES.** There are **98 numbered Standing Rules**.
+**THEREFORE: NEVER ASSUME YOU HAVE SEEN ALL THE RULES.** There are **99 numbered Standing Rules**.
 Count them in the index below. If you are
 about to apply a rule, open its file and read it. **NEVER read
 `build/rules/CLAUDE-FULL-ARCHIVE-2026-08-21.md` whole** — it will exhaust your context exactly as the
@@ -59,7 +59,7 @@ These are stated here **in full** because a session that gets only this far must
   live ticket and there is none), and the finding is reported **with its C-id** — no ticket text, no ask,
   no candidate file. This **supersedes Rules 51/52/53/62/73/94 and `build/skills/06-DEFECT-PREP.md` for
   the lane's own output**; skill 06's shape still governs *if he asks for a ticket*. Worked examples,
-  2026-09-01: **C45068**, **C45060**, **C44996**. Full text: `build/rules/RULES-61-98.md` rule 62
+  2026-09-01: **C45068**, **C45060**, **C44996**. Full text: `build/rules/RULES-61-99.md` rule 62
   amendment of 2026-09-01.
 - **🛑 ALWAYS GIVE THE TEST CASE NUMBERS (QA lead, 2026-09-01).** Verbatim: *"ALways give test case
   numbers."* Every report row names its **C-ids**, never just a count; a completed-versus-left figure
@@ -157,7 +157,20 @@ These are stated here **in full** because a session that gets only this far must
   a report. **Table 2 must say how to finish each item concretely enough for a DIFFERENT session to
   execute it without asking · Table 3 must name what the blocker does NOT block (68) · Table 5's last
   row is a bare YES or NO and is NO unless every gate above it passed.** Rule 36's OUTSTANDING section
-  still closes the report. Full text: `build/rules/RULES-61-98.md` rule 98.
+  still closes the report. Full text: `build/rules/RULES-61-99.md` rule 98.
+- **🛑 EVERY ASK IS SELF-CONTAINED AND EXECUTABLE (99, QA lead 2026-09-02).** He read an OUTSTANDING
+  section and answered two of its four items with **"what is this"**, then gave the rule verbatim:
+  *"please make it the rule to always explain properly that helps be execute what is needed."* Every
+  item he is asked to decide carries **five things in plain words: (1) WHAT IT IS** in the product's
+  own on-screen labels · **(2) HOW IT CAME UP**, one sentence, because he was not in the session ·
+  **(3) THE QUESTION**, answerable with no further reading · **(4) THE OPTIONS**, two or three he can
+  answer by picking one, each saying what we would then DO · **(5) THE COST OF SILENCE**, and what it
+  does *not* block (68). **A row that names only an id, a rule number, a register row, a filename or a
+  count is non-compliant** — those are the receipt, never the explanation (Rule 8's id + link still
+  ride along). **Self-check: if answering the row needs a file opened, an earlier session remembered,
+  or the build looked at, it is not finished.** Governs the OUTSTANDING section, Tables 2 and 4 of the
+  five-table report, PO/dev question sheets, every permission request, and every Rule-65 notice to
+  Vlad. Full text: `build/rules/RULES-61-99.md` rule 99.
 - **EVERY REPORT ENDS WITH "OUTSTANDING — what I need from you" (36).** Say *"nothing outstanding"* if
   that is true; never omit the section. Keep `build/OUTSTANDING-ITEMS-REGISTER.md` current.
 - **🛑 A QUESTION SHEET IS ALWAYS A SPREADSHEET, NEVER A MARKDOWN TABLE (QA lead, 2026-09-01).**
@@ -249,7 +262,7 @@ These are stated here **in full** because a session that gets only this far must
 
 ---
 
-## 2 · THE RULE INDEX — all 98 rules, and where each one lives
+## 2 · THE RULE INDEX — all 99 rules, and where each one lives
 
 **Read the rule in its file before applying it.** One line per rule; the line is a locator, not the
 rule. Generated from the split files' own headers.
@@ -330,7 +343,7 @@ rule. Generated from the split files' own headers.
 | **59** | RE-READ THE SOURCES IMMEDIATELY BEFORE THE WRITES BEGIN — a second currency check, not only the |
 | **60** | THE BUILD WILL NEVER BE DECLARED FINAL — SEPARATE WHAT DEPENDS ON THE BUILD FROM WHAT DOES NOT |
 
-### `build/rules/RULES-61-98.md` — rules 61–98
+### `build/rules/RULES-61-99.md` — rules 61–99
 
 | # | Rule (short title) |
 |---|---|
@@ -372,8 +385,9 @@ rule. Generated from the split files' own headers.
 | **96** | A V2 / UPGRADE PROJECT MUST DERIVE AND TEST THE INVARIANT SET — WHAT THE SPEC DOES NOT MENTION IS STILL A REQUIREMENT |
 | **97** | NEVER DECLARE A BLOCKER WITHOUT SEARCHING THE REPO FIRST — THE ANSWER IS USUALLY ALREADY WRITTEN DOWN |
 | **98** | EVERY REPORT IS A TABLE THAT ANSWERS FIVE QUESTIONS — DONE · LEFT · BLOCKED · HOW TO UNBLOCK · HANDOFF-READY |
+| **99** | EVERY ASK IS SELF-CONTAINED AND EXECUTABLE — HE MUST NEVER HAVE TO LOOK SOMETHING UP TO UNDERSTAND WHAT IS BEING ASKED |
 
-**Rule 95 (the Token-Discipline Charter)** was added 2026-08-26 in `build/rules/RULES-61-98.md`. Its
+**Rule 95 (the Token-Discipline Charter)** was added 2026-08-26 in `build/rules/RULES-61-99.md`. Its
 canonical one-page operator form is **`build/skills/TOKEN-DISCIPLINE-CHARTER.md`** — twelve clauses
 (strategy first · never bulk-read, script it · the reading rule · spawn discipline · never poll · batch
 writes · piggyback cheap checks · never re-do work · answer in text · the budget · the week-start guard ·
@@ -381,7 +395,7 @@ writes · piggyback cheap checks · never re-do work · answer in text · the bu
 applies them from its first turn; a handoff without them is non-compliant and must not be issued.**
 Routers take it by pointer only.
 
-**Rule 96 (the V1→V2 invariant set)** was added 2026-08-26 in `build/rules/RULES-61-98.md`, which was
+**Rule 96 (the V1→V2 invariant set)** was added 2026-08-26 in `build/rules/RULES-61-99.md`, which was
 renamed on the same day from its previous 61-to-95 filename. Operator form:
 **`build/skills/17-REGRESSION-IMPACT-V1-TO-V2.md`**. **A V2 spec describes only what CHANGES and is
 SILENT about everything else, so a V2 build can break a V1 behaviour with every case still passing.**
@@ -393,7 +407,7 @@ change"**, and a **high-collateral-risk silence is escalated as a PO question, n
 at intake — **(i) NEW · (ii) V2/UPGRADE · (iii) REVIVAL** — in `build/skills/15-NEW-PROJECT-INTAKE.md`
 §1a, and **type (ii) triggers the skill**.
 
-**Rule 97 (search before you give up)** was added 2026-08-28 in `build/rules/RULES-61-98.md`, which was
+**Rule 97 (search before you give up)** was added 2026-08-28 in `build/rules/RULES-61-99.md`, which was
 renamed on the same day from its previous 61-to-96 filename. **QA lead, verbatim:** *"I want that
 session if it is giving up to go and see if you ever did something similar and it worked for you and to
 learn from you then."* The **SEARCH BEFORE YOU GIVE UP** drill is carried INLINE by all four handoffs
@@ -402,7 +416,7 @@ learn from you then."* The **SEARCH BEFORE YOU GIVE UP** drill is carried INLINE
 the four routers (`10`/`11`/`12`/`16`), `13-CROSS-SESSION-SAFETY.md` and `00-COMMON-CORE.md`.
 
 **Rules 89 (access resilience + MCP hygiene) and 90 (shared-quota budget allocation)** were added
-2026-08-21 and live in `build/rules/RULES-61-98.md` with 61–88. Rule 89's operator form is
+2026-08-21 and live in `build/rules/RULES-61-99.md` with 61–88. Rule 89's operator form is
 `build/skills/14-ACCESS-RESILIENCE.md`.
 
 **Rule 91 (the verification freshness badge)** was added 2026-08-21 in the same file. **Its second
@@ -651,7 +665,7 @@ Compact form — **the rule named in brackets is the authority; read it before r
 | Standing Rules 1–20 (full text) | `build/rules/RULES-01-20.md` |
 | Standing Rules 21–40 (full text) | `build/rules/RULES-21-40.md` |
 | Standing Rules 41–60 (full text) | `build/rules/RULES-41-60.md` |
-| Standing Rules 61–98 (full text) | `build/rules/RULES-61-98.md` |
+| Standing Rules 61–98 (full text) | `build/rules/RULES-61-99.md` |
 | Per-project narrative history (projects 1–7) | `build/rules/PROJECT-HISTORY-ARCHIVE.md` |
 | Byte-verification hashes for the split | `build/rules/INTEGRITY.md` |
 | Staging/QA/prod action recipes, TestRail traps | `build/APP-ACTIONS-PLAYBOOK.md` |

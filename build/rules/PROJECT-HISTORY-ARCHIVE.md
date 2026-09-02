@@ -7,7 +7,7 @@ used to sit in CLAUDE.md. NOTHING was deleted — this is the same text, moved.
 Read that first; this archive is the history behind it.
 
 Full archive of the whole former CLAUDE.md: build/rules/CLAUDE-FULL-ARCHIVE-2026-08-21.md
-Rule texts: build/rules/RULES-01-20.md, RULES-21-40.md, RULES-41-60.md, RULES-61-98.md
+Rule texts: build/rules/RULES-01-20.md, RULES-21-40.md, RULES-41-60.md, RULES-61-99.md
 
 ---
 

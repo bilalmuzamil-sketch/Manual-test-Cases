@@ -23,7 +23,7 @@
 never bulk-read / script it (88), the reading rule, spawn discipline (76/88), never poll (75), batch
 writes, piggyback cheap checks (78), never re-do work (77/80), answer in text, the budget (90), the
 week-start guard, and **clause 12: quality is never the thing cut**. **This skill points at the
-charter; it does not restate it.** Rule text: `build/rules/RULES-61-98.md`.
+charter; it does not restate it.** Rule text: `build/rules/RULES-61-99.md`.
 
 **Companion files:** authoring itself is `01-CASE-BUILD.md` · source currency is `02-SOURCE-CHECK.md` ·
 intake and the project-type question are `15-NEW-PROJECT-INTAKE.md` · defect admissibility is
@@ -375,7 +375,7 @@ establish what the system **CURRENTLY DOES** (fact, §3.3) and to build the **co
 
 ## 9 · GOVERNING RULES
 
-**Standing Rule 96** is this skill's rule. Read it in full in `build/rules/RULES-61-98.md` before
+**Standing Rule 96** is this skill's rule. Read it in full in `build/rules/RULES-61-99.md` before
 applying it — the index line is not the rule.
 
 **It ties to:** **1** (never start on a half-set) · **12** (verified means observed, never inferred) ·

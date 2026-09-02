@@ -401,3 +401,32 @@ writer and the served-page scanner read that file at startup.
 
 **Do not** edit `bridge-port.txt` by hand, and do not conclude the session's credentials died: a
 Playwright timeout on a login form is a fact about the transport, not about the account (Rule 68).
+
+---
+
+## CREDENTIALS LIVE IN THREE PLACES — CHECK ALL THREE BEFORE SAYING YOU HAVE NONE (2026-09-02)
+
+A session reported *"this container came up with no TestRail credentials"* and stood a whole pass down
+as blocked. **`/tmp/testrail/creds.json` was on disk the whole time and worked on the first call.** The
+QA lead's reply was one line: *"You already had those credentials."* That is a Rule-97 false blocker,
+and it cost a report cycle.
+
+**The three sources, in order — `build/testing-tools/load_creds.py` now tries all three and raises a
+message naming them if all three miss:**
+
+| # | Source | Shape |
+|---|---|---|
+| 1 | environment variables | `TESTRAIL_EMAIL` (or `CLAUDE_USERNAME`) + `TESTRAIL_API_KEY` |
+| 2 | `/tmp/shopview-creds.env` | materialized from those by `build/testing-tools/init_creds.sh` |
+| 3 | **`/tmp/testrail/creds.json`** | `{"host","user","email","password"}` — **`password` IS the API key**. This is what the Playwright/Node writers (`apply_cases.mjs`) read, so it survives when the env vars do not |
+
+Also on disk and easy to overlook: **`/tmp/testrail/creds-ui.json`** (the TestRail *web* password, for
+the Froala/`fr-view` UI writes) and **`/tmp/qa-cookies/`** (`sv9315.json`,
+`sv9315-live-session.txt`, and the sv8218 pair) for the ShopView build.
+
+**A 400 is not an auth failure.** After the creds resolved, `get_sections/1&suite_id=6597` answered
+**HTTP 400** — because project 1 is **single-suite mode (`suite_mode 1`)**, so `suite_id` is rejected
+outright, and **6597 is a top-level SECTION id, not a suite id**. Page `get_sections/1` and
+`get_cases/1` whole and filter to the descendants of the root section. Verified live 2026-09-02:
+**686 sections / 4,622 cases** in the estate; root **6597 → 8 sections, 122 cases** · **6617 → 7
+sections, 44 cases** · **6559 → 17 sections, 119 cases**. Working fetcher: `/tmp/dx/fetch2.py`.

@@ -1,7 +1,7 @@
 # TOKEN DISCIPLINE CHARTER — mandatory in every session and every handoff (Standing Rule 95)
 
 **Status:** canonical · created 2026-08-26 · all projects, permanent · authority = **Standing Rule 95**
-(`build/rules/RULES-61-98.md`), which ties Rules 12, 50, 75, 76, 77, 78, 79, 80, 86, 88, 90.
+(`build/rules/RULES-61-99.md`), which ties Rules 12, 50, 75, 76, 77, 78, 79, 80, 86, 88, 90.
 
 > **THE QA LEAD, 2026-08-21, VERBATIM:** *"Also make sure that this session is smartest one about token
 > usage as I do not want once again the weekly tokens to be burnt at the start of the week. Make it a
