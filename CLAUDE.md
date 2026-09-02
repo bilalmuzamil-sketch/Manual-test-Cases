@@ -154,6 +154,21 @@ These are stated here **in full** because a session that gets only this far must
   ticking one. Generator + the enforced layman check: `build/testing-tools/make_question_sheet.py`.
   Still governed by Rule 55 (project and feature named on every row, answerable by a non-technical
   reader) and Rule 66 (the sheet is the LAST thing sent).
+- **🎨 A DESIGN REFERENCE IS A LINK *AND* A ROUTE — never the link alone (QA lead, 2026-09-01).** Verbatim:
+  *"if the source for something is the design, you can add the reference for the design with this link …
+  But do tell where in the design that reference can be found."* An interactive design artifact is an
+  **application**, not a picture: the same block looks different depending on its view button, document
+  switcher and field toggles. So the provenance sentence reads **`Design: the Design Document (<link>) —
+  open "<view>" → "<document>", then <the block it is about>. (<toggle that must be on>.)`**, in the
+  design's **own button labels, read out of the file** (`<button>` text — headings are useless in a React
+  artifact). **Every anchor is verified against the design before it is written**, and a case is never
+  excluded from a reference on a hunch. **The stylesheet encodes the toggles**, so grepping it VERIFIES a
+  conditional claim (`.wrap.no-remit .addr-row{max-width:none}` proved "no Remit To ⇒ Bill To full
+  width"). **And read the design BEFORE escalating a question** — one needless developer question was
+  sent about whether a credit can mix a returned-part line and a money-only line, when the design shows
+  exactly that document. Design is a source of expectation (57); code is fact, never expectation (96).
+  Full technique: `build/skills/02-SOURCE-CHECK.md` §"Reading and citing a design"; the per-project
+  shape: `build/invoice-ui-refresh/DESIGN-REFERENCE-CONVENTION.md`.
 - **PLAIN LAYMAN WORDING (7/9).** Tester-facing and PO-facing text uses the build's exact labels and
   no jargon — no case IDs, spec anchors, HTTP terms or internal names in what they read.
 - **🛑 RUNNABILITY IS A DELIVERABLE OF BUILD VERIFICATION, NOT A TIDY-UP (QA lead, 2026-09-01).** Verbatim:
