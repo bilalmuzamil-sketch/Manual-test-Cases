@@ -1204,7 +1204,8 @@ with `sv_sso_session` and `cf_clearance` **byte-identical** to the set that was 
   | `/api/customers/view/{id}` | GET | the customer record (NOT `/api/customers/{id}`) |
   | `/api/customer-payment/list` | GET | customer payments |
   | `/api/customer-deposits/list` | GET | customer deposits |
-  | `/api/customer-account/list-unpaid-transaction` | GET | unpaid transactions on the account |
+  | `/api/customer-account/list-unpaid-transaction?account_id=<id>` | GET | **the rows are at `data.response.collection`, NOT `data.collection`** — alongside `unpaid_transactions_count` and a `groupByDueDateData` ageing block. Reading `data.collection` returns `undefined`, which a loop silently treats as "no rows" and reports as zero for every account. **And it is the UNPAID list only**, so it is the wrong list for finding a credit that has been applied — ask the endpoint that answers the question (2026-09-02) |
+  | `account_id` itself | — | **`customer_account_id`, and it is ONLY on `/api/customers/view/<id>`** — the customers LIST does not carry it. Passing the customer id instead returns HTTP 200 with zero rows, on every account (2026-09-02) |
   | `/api/customers/{id}/default-adjustments` | GET | fees & discounts defaults |
   | `/api/part-sales` | GET | **53 part sales**, statuses paid/complete/estimate; fields include `number`, `status`, `invoiceShopId`, `invoicedDate` — but **no `invoice_id`**, and `/api/part-sales/view/{id}` is a **404**, so the part-sale document route is still unfound |
   | `/api/credit-memos` | **POST only** | GET answers **405 `Allow: POST`**; a bare POST answers 400 *"customer_account_id: Missing required parameter, amount: Missing required parameter"* ⇒ **credit memos are created against a CUSTOMER ACCOUNT, not a work order** |
