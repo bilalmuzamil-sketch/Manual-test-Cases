@@ -1,5 +1,6 @@
 import json
 IMG="https://raw.githubusercontent.com/bilalmuzamil-sketch/Manual-test-Cases/claude/heic-upload-iphone-test-sz7h5p/build/sv9627-mobile-logout-2026-09-02/evidence/EX1-localstorage-purge-logout.png"
+GIF="https://raw.githubusercontent.com/bilalmuzamil-sketch/Manual-test-Cases/claude/heic-upload-iphone-test-sz7h5p/build/sv9627-mobile-logout-2026-09-02/evidence/EX2-stop-clockout-logout-demo.gif"
 def t(s,m=None):
     n={"type":"text","text":s}
     if m: n["marks"]=m
@@ -33,6 +34,9 @@ doc={"type":"doc","version":1,"content":[
  ),
  p(t("Whichever happens, the tech "),strong("looks signed out to the app"),t(", and the app has "),strong("no “quietly sign me back in” step"),t(" — so the very next tap (which, at the end of a job, is STOP) bounces them to the login screen. They sign in again, tap STOP again, and it works. That is the “intermittent re-login before clock out” the customer is describing. Because iPhones auto-wipe and Android does not, this will hit iPhone users far more often.")),
 
+ h("Reproduced on production (recording)"),
+ *media(GIF,"Step-by-step recording on a phone-sized screen: signed in and working the job → mid-job the phone clears the saved login → returning to clock out lands on the Login screen → log in again → back to work. Reproduced on production; no data created or deleted."),
+ p(t("If the image above does not animate in your view, open the recording here: "),link("session-loss recording (GIF)",GIF),t(".")),
  h("Does the STOP button itself log them out? No."),
  p(t("We opened up the STOP button in the live app. All it does is send the “clock me out” request — it contains "),strong("nothing"),t(" that signs a user out. The sign-out is a separate, app-wide rule that fires whenever the server says “your session is gone,” and STOP is simply the request that happens to hit the dead session first.")),
 
