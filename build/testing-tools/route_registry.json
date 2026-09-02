@@ -1,0 +1,86 @@
+{
+ "version": 1,
+ "routes": [
+  {
+   "name": "the role screen’s work-order permissions",
+   "feature": "Custom Roles & Permissions",
+   "branch": "sv9315",
+   "build": "v26.35.6-0f8d60b",
+   "ui_path": "“Settings” → “Roles & Permissions” in the sidebar → the pencil on a role → the “Work order lines” section (column “Create & Edit”), and the “Work orders” section with the “View mode” block beneath it → “Save”",
+   "screen": "the role edit screen",
+   "labels": [
+    "Settings",
+    "Roles & Permissions",
+    "Work order lines",
+    "Create & Edit",
+    "Delete",
+    "Work orders",
+    "View",
+    "View mode",
+    "Full View",
+    "Tech view",
+    "Save"
+   ],
+   "evidence": "the QA lead's screenshots 2026-09-02",
+   "note": "“Work Order Line - Create and Edit” and “Work Orders → Work Order View Mode” DO NOT EXIST. 117 and 90 cases respectively named them.",
+   "recorded": "2026-09-02"
+  },
+  {
+   "name": "print a credit note (credit memo)",
+   "feature": "Invoice UI Refresh",
+   "branch": "sv8218",
+   "build": "v26.35.6-8454936",
+   "ui_path": "top menu “Customers” → open the customer → the “Invoices” tab (label carries a count) → the row whose “Type” chip reads “Credit” and whose “No.” begins “CM” → in the “Action” column, the printer icon (hover tooltip “Print credit memo”)",
+   "api": "GET /api/credit-memos/{creditMemoId}/pdf",
+   "download": "Credit memo - <M_D_YYYY>.pdf",
+   "labels": [
+    "Invoices",
+    "Date",
+    "Type",
+    "No.",
+    "Memo",
+    "Total",
+    "Balance",
+    "Status",
+    "Action",
+    "Credit",
+    "Invoice",
+    "Unapplied",
+    "Unpaid",
+    "Open only",
+    "Issue Credit",
+    "New Payment",
+    "Print credit memo",
+    "Cash Out",
+    "Reverse"
+   ],
+   "evidence": "build/probe-2026-09-02/credit-doc2.json",
+   "note": "The 2026-08-31 pass tried 13 API shapes including /api/credit-memos/{id} and concluded the document was \"not rendered on this branch\". It IS - the route is a /pdf SUFFIX and it is a DOWNLOAD, not a preview. The Action column also offers “Cash Out” and “Reverse”. The tooltip is a hover-only Quasar q-tooltip, absent from the DOM until hovered, so searching title/aria-label finds nothing. And the Type cell textContent is lowercase \"credit\" - the capitalised \"Credit\" a tester sees comes from CSS text-transform.",
+   "recorded": "2026-09-02"
+  },
+  {
+   "name": "the work order audit history",
+   "feature": "Printer Friendly Work Orders",
+   "branch": "sv9315",
+   "build": "v26.35.6-0f8d60b",
+   "ui_path": "open a work order → the three-dots button at the top right, between “SHOPCOACH ANALYSIS” and “New Line” → “Audit Log”",
+   "screen": "a window titled “Work Order Log”",
+   "labels": [
+    "Audit Log",
+    "Work Order Log",
+    "Search",
+    "Event",
+    "User",
+    "Line",
+    "Details",
+    "Date",
+    "Time",
+    "Work order printed",
+    "Line created"
+   ],
+   "evidence": "the QA lead's screenshots 2026-09-02; build/OBSERVED-UI-LABELS-sv9315.md",
+   "note": "The menu item is “Audit Log” but the window it opens is titled “Work Order Log” - different names. The event text is “Work order printed”; “Work order printed history” never existed (a clock icon's own text glued on by a tr.innerText read).",
+   "recorded": "2026-09-02"
+  }
+ ]
+}

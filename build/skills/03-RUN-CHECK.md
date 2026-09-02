@@ -1189,3 +1189,75 @@ clock icon whose own text is `history`**. Everything after "printed" is a differ
    what you are allowed to write.**
 7. **A screenshot from the QA lead outranks any scrape.** When one is offered, it settles the label. Put
    it in the observed-labels file with the screenshot named as its evidence.
+
+---
+
+## 🛑 FINDING A ROUTE: UI FIRST, API ONLY AS A FALLBACK — AND WRITE IT DOWN (2026-09-02)
+
+**QA lead, 2026-09-02:** *"how you missed to find the path and what approach should you use to find the
+path for something. Maybe UI first and then API path as a fallback? DO what is best for this purpose
+scientifically … we need to ensure that the preconditions and the steps of replication are not invented
+and build verified + RUnnable by the manual QA tester. Also you should have a mechanism to auto keep on
+saving the paths."*
+
+### What went wrong, measured
+
+The printed credit note. On **2026-08-31** a pass hunted the document render path by **guessing API
+routes** — thirteen of them, singular and plural, path-param and query-param — plus three screens, plus
+watching the app's traffic. All negative. It concluded: *"the credit memo document is **not rendered on
+the sv8218 branch**."* That conclusion went into the project state, and a developer question was raised.
+
+**It was wrong.** On 2026-09-02, one hover-and-click in the UI produced:
+
+```
+GET /api/credit-memos/{creditMemoId}/pdf        →  downloads "Credit memo - 9_2_2026.pdf"
+```
+
+The thirteen guesses included `/api/credit-memos/{id}` — but nobody tried the **`/pdf` suffix**, and
+everyone was looking for a **preview** when it is a **download**.
+
+### Why UI-first is not a preference but the correct method
+
+| | Guess the API | Walk the UI |
+|---|---|---|
+| search space | **unbounded** — every noun × every verb × every param shape | **bounded** — a screen has a finite number of controls |
+| feedback per attempt | a 404 tells you nothing about where to look next | every hover names what the control does |
+| a negative result means | nothing (you may simply not have guessed it) | something (this screen does not offer it) |
+| what it yields for a case | an endpoint, **which a manual tester cannot use** | **the clicks themselves** — the precondition and the steps |
+| risk of invention | high — a plausible-looking route can be written into a case unwitnessed | **nil** — the route was witnessed, so it cannot be invented |
+
+**That last row is the whole argument.** Build verification must produce preconditions and steps that
+are **not invented, build-verified, and runnable by a manual tester** (Rule 12, skill 18). A route found
+by clicking satisfies all three in one act: the tester's clicks and our evidence are the same artefact.
+A route found by guessing satisfies none of them.
+
+**⇒ THE ORDER, and the only two exceptions.** UI first, always. Drop to the API only to
+**(a) SEED** a state the UI cannot reach (Rule 14), or **(b) READ a complete set** the screen only
+samples — e.g. every status a control can offer, where the screen shows only those in use. **Never to
+find a route.**
+
+### The drill, in order
+
+1. **LOOK IT UP FIRST.** `node build/testing-tools/route_registry.mjs find "<thing>"`. Rule 97 — the
+   answer is usually already written down.
+2. **Sign in properly:** `node build/testing-tools/qa-branch-boot.mjs <branch> <route> admin`.
+3. **Enumerate, do not guess:** `node build/testing-tools/find_ui_route.mjs <branch> <route> "<label>"
+   [scope]` — it marks every control in scope, **hovers each one to read its tooltip**, clicks the
+   match, and captures every request, popup and download it fires.
+4. **Record it:** set `RECORD_AS=` and `RECORD_FEATURE=` and the run appends to the registry, with its
+   branch, build marker, date and evidence file. `record()` **refuses** an entry that produced nothing —
+   an unwitnessed route is a guess, and guesses are not written down.
+5. **Put the clicks in the case**, not the endpoint. The endpoint belongs in the registry and the
+   playbook; the tester gets the labels.
+
+### Three DOM traps this exercise exposed, all costing a wrong conclusion
+
+- **Quasar tooltips are hover-only.** `Print credit memo` exists nowhere in the DOM until the control is
+  hovered — a search of `title`/`aria-label` returns nothing and looks like "the control is not there".
+  **⇒ hover, then read `.q-tooltip`.**
+- **`textContent` does not reflect `text-transform`.** The credit row's `Type` cell reads **`credit`**
+  in the DOM; the **`Credit`** a tester sees is CSS. **⇒ a case must quote what is DISPLAYED, so read
+  the computed style or a screenshot before asserting casing.**
+- **A row's actions may all look alike.** That `Action` cell holds three icons — `Print credit memo`,
+  `Cash Out`, `Reverse`. Clicking "the printer one" by position is a guess; hovering all three and
+  matching the tooltip is not.
