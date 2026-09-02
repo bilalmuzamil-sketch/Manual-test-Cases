@@ -47,10 +47,11 @@
     ],
     "steps": [
       "In the line's Parts section, click “+ Add Part”.",
-      "In the part number field, add a special order part number OR select an inventory / catalogue part from the typeahead list.",
+      "In the part number field, add a special order part number from the typeahead list.",
       "Enter the Quantity, then enter the Cost."
     ],
-    "expected": "Entering the Cost fills in the Sell Price automatically, calculated from the pricing matrix.\n\nSource: Manually added (QA lead, 2026-09-01).\nAUTOMATION: HOLD - manually added; to be build-verified."
+    "expected": "1. Entering the Cost fills in the Sell Price automatically, calculated from the pricing matrix.\n\nWHAT YOU SHOULD SEE TODAY, AND IT IS A PROBLEM: the Sell price does NOT change when you enter the Cost. Checked three ways — a stocked part (cost 53.52, sell 86.32) typed up to 100.00 and 200.00 with the sell price never moving, and a catalogue part with no price at all, where the sell price stayed 0.00. Twenty-two pricing matrices are configured on this system, one of them marked Default, so it is not a case of there being no matrix to apply. (1) If that is what you see, mark the case FAILED and raise nothing new. (2) If it behaves DIFFERENTLY, that is a new problem — please report it. (3) If the Sell price does fill in from the Cost, the fix has shipped — tell the QA lead.\n\nSource: Manually added\nLast checked against build v26.35.6-598cc8a on 9/1/2026.\n\nAUTOMATION: READY",
+    "note": "QA lead manually edited this case in the TestRail UI on 2026-09-01: (a) scoped the part-number step to a SPECIAL ORDER part (removing the inventory/catalogue overlap with C45254), and (b) rewrote Expected as an EXPECT-FAIL / three-outcomes case documenting a live defect — the Sell Price does not recalculate from Cost today. Marker moved HOLD -> READY (build-verified 2026-09-01). Do NOT re-write via API: the source block uses <br> which renders from a UI save but would show literally if written through the API."
   },
   {
     "id": "IAEP-MAN-04",
