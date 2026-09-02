@@ -132,6 +132,24 @@ safe. The **evidence** for each one lives in the rule or skill the bullet points
 - **MINIMISE SUBAGENT SPAWNS (76).** Every spawn pays the full context tax. Batch related work into
   one worker; piggyback cheap checks onto the next substantive worker (78) rather than spending a
   dedicated spawn on them.
+- **🛑 FIND A ROUTE BY WALKING THE UI, NEVER BY GUESSING API ROUTES — AND RECORD IT (2026-09-02).**
+  Guessing is search over an unbounded space with no feedback: on 2026-08-31 **thirteen** guessed
+  routes for the printed credit note all 404'd and the pass concluded the document *"is not rendered on
+  this branch"*. **It is.** One hover-and-click on 2026-09-02 produced
+  `GET /api/credit-memos/{id}/pdf` — a `/pdf` **suffix**, and a **download** not a preview, a shape no
+  guess had tried. **UI-first is the correct method, not a preference: a route found by clicking IS the
+  precondition and the steps — build-verified, runnable by a tester, and impossible to invent because
+  it was witnessed. A guessed endpoint is none of those and cannot go in a case at all.** Drop to the
+  API only to **SEED** a state the UI cannot reach (14) or to **READ a complete set** the screen only
+  samples; never to find a route. **The drill: look it up first
+  (`node build/testing-tools/route_registry.mjs find "<thing>"`) → sign in with `qa-branch-boot.mjs` →
+  `find_ui_route.mjs <branch> <route> "<label>"`, which hovers every control to read its tooltip and
+  captures what the click fires → record it with `RECORD_AS=`.** The registry refuses an entry that
+  produced nothing, so a guess can never be written down. **Three DOM traps that each caused a wrong
+  conclusion: Quasar tooltips are hover-only (absent from the DOM, so a `title`/`aria-label` search
+  looks like "not there"); `textContent` does not reflect `text-transform` (the DOM says `credit`, the
+  tester sees `Credit`); and a row's action icons look alike — hover all of them rather than clicking by
+  position.** Full text: `build/skills/03-RUN-CHECK.md`.
 - **NEVER DECLARE A BLOCKER WITHOUT SEARCHING THE REPO FIRST (97).** **STEP 0 IS `git fetch origin` —
   never search, measure or report a repository fact from a stale checkout** — and **if you are on a
   different branch, search the canonical one without checking it out**:
