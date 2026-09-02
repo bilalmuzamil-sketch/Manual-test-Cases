@@ -29,18 +29,34 @@ It is **not** a customer choosing to log out. The **session silently dies** whil
 
 ---
 
+## 2b. LIVE VERIFICATION — logged into production 2026-09-02 (bilal.muzamil@shopview.com)
+
+Four live tests on `app.shopview.com` / `api.shopview.com`. No production data was created or deleted.
+
+| Test | What I did | Result |
+|------|-----------|--------|
+| **Auth cookie set** | Logged in, read all cookies | The **only** auth cookie is `PHPSESSID` — `expires` exactly **24 h** after login, `HttpOnly; Secure; SameSite=None`. `_ga*` are analytics. **There is NO long-lived SSO cookie and NO "remember me"/refresh token.** So once `PHPSESSID` dies there is *nothing* to silently re-auth with. |
+| **T1 — localStorage purge, cookie kept** | Cleared **only** localStorage (confirmed `PHPSESSID` still present), reloaded | **Forced to `/login?redirect=/workorders`.** A storage purge logs the tech out even though the session cookie is alive. **This is the iOS Safari mechanism, proven.** |
+| **T2 — sliding vs absolute** | Made an authed request, read `Set-Cookie` | Cookie is **sliding**: every response re-issues `PHPSESSID` with a fresh `Max-Age=86400` (session id also rotates). So the death is **24 h of *inactivity***, not 24 h since login. |
+| **T3 — cookie deleted, localStorage kept** | Deleted `PHPSESSID`, kept `localStorage["user"]`, navigated | Every API call returns **409**, but the app **stays on the page** (because `getUser()` still finds the localStorage user) — the tech sees a half-broken screen where actions fail, rather than a clean re-login. |
+| **T4 — session-id rotation race** | Reused the pre-rotation session id after a request rotated it | Old id still returns **200** (grace) → **no parallel-request race.** Ruled out, so devs need not chase it. |
+
+Evidence: `evidence/EX1-localstorage-purge-logout.png` (before = logged in on mobile; after = clearing localStorage forces the Login screen, cookie untouched).
+
+---
+
 ## 3. The ways a technician gets logged out (the gaps to fill)
 
 Ranked by likely contribution. Each marked **VERIFIED** (observed in code/headers this session) or **HYPOTHESIS** (grounded, dev to confirm).
 
 ### A. Server / session-lifetime
-1. **24-hour absolute session cookie.** `PHPSESSID` Max-Age is exactly 86 400 s. A tech who logged in yesterday is force-logged-out today the moment they act — e.g. at clock-out. **VERIFIED.** *Intermittent because each tech crosses the 24 h line at a different moment.*
+1. **24-hour *sliding* session cookie.** `PHPSESSID` Max-Age is 86 400 s, **refreshed on every request** (T2). So a tech whose app makes no requests for 24 h (overnight/weekend, phone asleep) is logged out on the next action — e.g. at clock-out. **VERIFIED.** *Intermittent because it depends on the gap since the last request.*
 2. **Server-side idle expiry during a job.** If PHP's `session.gc_maxlifetime` (or an app idle-TTL) is shorter than a shift, a session with no requests for that window is GC'd server-side even while the cookie is still valid → next request 409. A tech pockets the phone for the whole job, so no requests go out. **HYPOTHESIS — dev to confirm the idle TTL and whether the cookie is *sliding* (renewed per request) or absolute.** *This is the single best fit for "intermittent, right before clock-out."*
 3. **No silent re-authentication.** Any 409 immediately dumps the user to the Login screen; the code never attempts to silently re-auth (no refresh token; the 409 path does **not** try the SSO `sso_redirect` flow that the 401 path uses). **VERIFIED.** So even a perfectly recoverable session forces a manual login.
 4. **Deploy invalidates sessions mid-shift.** A production deploy that rotates the session store / signing changes kills active sessions; the next request 409s. **HYPOTHESIS (known behavior on these apps).**
 
 ### B. Mobile browser / device (Chris's "client-side browser/device")
-5. **`localStorage["user"]` purge → logout even with a live cookie.** `getUser()` is localStorage-only; iOS Safari's ITP caps *all script-writable storage* (localStorage + JS-set cookies) at **~7 days** and evicts it (and evicts under storage pressure). Once `user` is gone, `getUser()` is null → routed to Login, and `isUserAbleToClock`/`getStaffId` fail — **the clock-out itself can't proceed.** **VERIFIED by code + documented iOS behavior.**
+5. **`localStorage["user"]` purge → logout even with a live cookie. VERIFIED LIVE ON PRODUCTION (T1).** `getUser()` is localStorage-only; iOS Safari's ITP caps *all script-writable storage* (localStorage + JS-set cookies) at **~7 days** and evicts it (and evicts under storage pressure). I cleared only localStorage with a valid cookie and the app force-redirected to Login. Once `user` is gone, `getUser()` is null → routed to Login, and `isUserAbleToClock`/`getStaffId` fail — **the clock-out itself can't proceed.** *This is the strongest single explanation for a mobile-only, intermittent logout, and it matches Chris's "client-side browser/device" hunch.*
 6. **`SameSite=none` auth cookie dropped/partitioned on mobile.** iOS treats `SameSite=none` cookies as cross-site and can partition or purge them (especially with an SSO login on a different domain), so the cookie isn't sent → 409. **HYPOTHESIS grounded in the verified `SameSite=none`.**
 7. **Backgrounded tab discarded (memory pressure).** iOS/Android reclaim backgrounded web views; `sessionStorage` is lost and the page reloads. On return the `visibilitychange` refetch/reload fires against a missing session/storage → Login. **VERIFIED handler + known behavior.**
 8. **Private browsing / "clear on close" / Add-to-Home-Screen vs Safari-tab storage partition.** A tech who logs in inside one context and opens another, or uses private mode, starts unauthenticated. **Known behavior.**
@@ -55,6 +71,19 @@ Ranked by likely contribution. Each marked **VERIFIED** (observed in code/header
 3. Tech reopens the app to clock **out** → a `visibilitychange` refetch fires, or the clock-out POST fires → server returns **409** → the SPA logs them out and shows **Login**.
 
 The clock-out is not special; it is just the **next request after a long idle/background window**, which is precisely when a dead session is discovered.
+
+---
+
+## 4b. The STOP button specifically — does clicking STOP log the technician out?
+
+**No — STOP does not log anyone out by itself.** Verified from the code (`MyTimesheets` chunk):
+
+- The red **"Stop"** button (`data-test-id-suffix="stop_timesheet"`) renders on any open timesheet row (`row.clock_out ? nothing : Stop`). Its `onClick` calls `be()` → `Re()`, which fires the **clock-out API request**.
+- **The STOP handler contains no `logout`, `removeUser`, `clear`, `signOut`, or session code whatsoever** — I searched the entire chunk. It cannot be an active cause of the logout.
+
+**So the chain is:** tap STOP → clock-out request goes out → **if the session already died during the job, the server returns `409 "Session has expired"` → the app's *global* error handler runs `logout()` + `removeUser()` + redirect to Login** (no silent refresh). The technician re-logs-in, taps STOP again, and it works.
+
+**STOP is simply the first authenticated request after the technician's long idle/backgrounded job**, so it is the request that *discovers* the already-dead session and triggers the global logout. Any action taken at that moment would do the same; STOP just happens to be the one they always take at the end of a job. The fix is therefore **not** in the STOP button — it is in session lifetime + the global 409 handler + the localStorage dependency (§6).
 
 ---
 
