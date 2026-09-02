@@ -1,0 +1,128 @@
+{
+ "44814": {
+  "title": "The scope tab strip lists All plus the eight entity tabs in the exact order",
+  "fields": {
+   "custom_preconds": {
+    "blocks": [
+     [
+      "1. Sign in to ShopView with a role that can see work orders and customers.",
+      "2. Have records that share a few letters in their names (for example several work orders and customers), so a short query returns results across more than one type."
+     ]
+    ],
+    "text": "1. Sign in to ShopView with a role that can see work orders and customers.\n2. Have records that share a few letters in their names (for example several work orders and customers), so a short query returns results across more than one type."
+   },
+   "custom_steps": {
+    "blocks": [
+     [
+      "1. In the app header, click the search field (or press ⌘K / Ctrl+K) to open the global search.",
+      "2. Type a few letters that match several work orders and customers so results appear.",
+      "3. Read the horizontal tab strip directly under the search box, left to right."
+     ]
+    ],
+    "text": "1. In the app header, click the search field (or press ⌘K / Ctrl+K) to open the global search.\n2. Type a few letters that match several work orders and customers so results appear.\n3. Read the horizontal tab strip directly under the search box, left to right."
+   },
+   "custom_expected": {
+    "blocks": [
+     [
+      "1. The tabs read, in this exact left-to-right order: All, Work Orders, Customers, Assets, Parts, Vendors, Part Sales, Purchase Orders, Vendor Invoices.",
+      "2. There is no Contacts tab.",
+      "3. The 'All' tab is selected by default.",
+      "4. Each tab carries its total result count over the full result set (for example 'All (12)', 'Work Orders (8)').",
+      "5. The strip scrolls sideways, since the nine tabs (All plus eight entity tabs) do not all fit the 640px-wide search box.",
+      "6. A tab is shown only for an entity type the user has permission to see."
+     ],
+     [
+      "---",
+      "This is the expected behaviour as per epic SV-9160 and the Global Search - Product Requirements specification version 1.3 (Confluence page 576978945), section 5.2 (tab strip), read on 2 September 2026.",
+      "Note: earlier cases listed a Contacts tab. Contacts were removed as a standalone entity in spec v1.3 (2026-09-01); this case follows the current spec.",
+      "AUTOMATION: Not available on Build to test Yet - Last checked 9/2/2026"
+     ]
+    ],
+    "text": "1. The tabs read, in this exact left-to-right order: All, Work Orders, Customers, Assets, Parts, Vendors, Part Sales, Purchase Orders, Vendor Invoices.\n2. There is no Contacts tab.\n3. The 'All' tab is selected by default.\n4. Each tab carries its total result count over the full result set (for example 'All (12)', 'Work Orders (8)').\n5. The strip scrolls sideways, since the nine tabs (All plus eight entity tabs) do not all fit the 640px-wide search box.\n6. A tab is shown only for an entity type the user has permission to see.\n\n---\nThis is the expected behaviour as per epic SV-9160 and the Global Search - Product Requirements specification version 1.3 (Confluence page 576978945), section 5.2 (tab strip), read on 2 September 2026.\nNote: earlier cases listed a Contacts tab. Contacts were removed as a standalone entity in spec v1.3 (2026-09-01); this case follows the current spec.\nAUTOMATION: Not available on Build to test Yet - Last checked 9/2/2026"
+   }
+  }
+ },
+ "44895": {
+  "title": "A contact match returns its company row (Contacts are not a separate group)",
+  "fields": {
+   "custom_preconds": {
+    "blocks": [
+     [
+      "1. Sign in to ShopView with access to Customers.",
+      "2. Have a customer whose contact has a distinctive name, phone number or email; note that contact detail — you will search for it."
+     ]
+    ],
+    "text": "1. Sign in to ShopView with access to Customers.\n2. Have a customer whose contact has a distinctive name, phone number or email; note that contact detail — you will search for it."
+   },
+   "custom_steps": {
+    "blocks": [
+     [
+      "1. In the app header, click the search field (or press ⌘K / Ctrl+K) to open the global search.",
+      "2. Type the contact's name, phone number or email.",
+      "3. Look at the result rows, the group headings and the tab strip."
+     ]
+    ],
+    "text": "1. In the app header, click the search field (or press ⌘K / Ctrl+K) to open the global search.\n2. Type the contact's name, phone number or email.\n3. Look at the result rows, the group headings and the tab strip."
+   },
+   "custom_expected": {
+    "blocks": [
+     [
+      "1. There is no 'Contacts' group and no 'Contacts' tab — contacts are not a separate entity in v2.",
+      "2. The matching contact surfaces its parent company instead: the Customer row (or Vendor row) appears, with a 'Contact match' note on its second line.",
+      "3. The tab strip lists only: All, Work Orders, Customers, Assets, Parts, Vendors, Part Sales, Purchase Orders, Vendor Invoices.",
+      "4. Searching the contact's phone or email still finds the company, because a contact's name, phone and email are indexed on the parent customer or vendor."
+     ],
+     [
+      "---",
+      "This is the expected behaviour as per epic SV-9160 and the Global Search - Product Requirements specification version 1.3 (Confluence page 576978945), sections 2 and 4, read on 2 September 2026.",
+      "Note: earlier cases treated Contacts as their own searchable entity with a Contacts tab. Spec v1.3 (2026-09-01) removed that — contacts are indexed on their parent company and a contact match returns the company row. This case follows the current spec.",
+      "AUTOMATION: Not available on Build to test Yet - Last checked 9/2/2026"
+     ]
+    ],
+    "text": "1. There is no 'Contacts' group and no 'Contacts' tab — contacts are not a separate entity in v2.\n2. The matching contact surfaces its parent company instead: the Customer row (or Vendor row) appears, with a 'Contact match' note on its second line.\n3. The tab strip lists only: All, Work Orders, Customers, Assets, Parts, Vendors, Part Sales, Purchase Orders, Vendor Invoices.\n4. Searching the contact's phone or email still finds the company, because a contact's name, phone and email are indexed on the parent customer or vendor.\n\n---\nThis is the expected behaviour as per epic SV-9160 and the Global Search - Product Requirements specification version 1.3 (Confluence page 576978945), sections 2 and 4, read on 2 September 2026.\nNote: earlier cases treated Contacts as their own searchable entity with a Contacts tab. Spec v1.3 (2026-09-01) removed that — contacts are indexed on their parent company and a contact match returns the company row. This case follows the current spec.\nAUTOMATION: Not available on Build to test Yet - Last checked 9/2/2026"
+   }
+  }
+ },
+ "44873": {
+  "title": "Quick actions on hover are shown for each entity (v1)",
+  "fields": {
+   "custom_preconds": {
+    "blocks": [
+     [
+      "1. Sign in to ShopView on a desktop computer with a mouse (hover actions do not appear on touch screens).",
+      "2. Have records across several types (work orders, customers, assets, parts, vendors, part sales, purchase orders) that match a common search term.",
+      "3. Optional: be part-way through editing a work order elsewhere in the app, so the actions that need a 'current work order' can be checked."
+     ]
+    ],
+    "text": "1. Sign in to ShopView on a desktop computer with a mouse (hover actions do not appear on touch screens).\n2. Have records across several types (work orders, customers, assets, parts, vendors, part sales, purchase orders) that match a common search term.\n3. Optional: be part-way through editing a work order elsewhere in the app, so the actions that need a 'current work order' can be checked."
+   },
+   "custom_steps": {
+    "blocks": [
+     [
+      "1. In the app header, click the search field (or press ⌘K / Ctrl+K) to open the global search.",
+      "2. Type a term that returns results across the entity types.",
+      "3. Move the mouse over each result row and read the action button(s) that appear on the right."
+     ]
+    ],
+    "text": "1. In the app header, click the search field (or press ⌘K / Ctrl+K) to open the global search.\n2. Type a term that returns results across the entity types.\n3. Move the mouse over each result row and read the action button(s) that appear on the right."
+   },
+   "custom_expected": {
+    "blocks": [
+     [
+      "1. On hover, a quick-action button appears on the right of the row for each entity that has one — shown unconditionally (there is no state that hides the action for an entity that has one).",
+      "2. The actions by entity are: Work Order → 'Add new line'; Customer → 'New work order' and 'New contact'; Asset → 'New work order' plus history and invoices icon buttons; Part → 'Add to work order' and 'View part history'; Vendor → 'Add contact'; Part Sale → 'Add part'; Purchase Order → 'Receive'; Vendor Invoice → none.",
+      "3. Actions that need a target work order ('Add new line', 'Add to work order') act on the work order the user is currently editing elsewhere in the app.",
+      "4. No quick action deletes or changes data destructively, and every action is also reachable from the entity's own record and by keyboard."
+     ],
+     [
+      "---",
+      "This is the expected behaviour as per epic SV-9160 and the Global Search - Product Requirements specification version 1.3 (Confluence page 576978945), section 5.4 (quick actions), read on 2 September 2026.",
+      "Note: these quick actions were previously parked as out-of-v1. Spec v1.3 (2026-09-01, section 5.4) brings them back into v1 — shown unconditionally, with 'View part history' added to Part rows — and the design shows them; this is newer than the epic's out-of-scope note, so this case follows the current spec.",
+      "AUTOMATION: Not available on Build to test Yet - Last checked 9/2/2026"
+     ]
+    ],
+    "text": "1. On hover, a quick-action button appears on the right of the row for each entity that has one — shown unconditionally (there is no state that hides the action for an entity that has one).\n2. The actions by entity are: Work Order → 'Add new line'; Customer → 'New work order' and 'New contact'; Asset → 'New work order' plus history and invoices icon buttons; Part → 'Add to work order' and 'View part history'; Vendor → 'Add contact'; Part Sale → 'Add part'; Purchase Order → 'Receive'; Vendor Invoice → none.\n3. Actions that need a target work order ('Add new line', 'Add to work order') act on the work order the user is currently editing elsewhere in the app.\n4. No quick action deletes or changes data destructively, and every action is also reachable from the entity's own record and by keyboard.\n\n---\nThis is the expected behaviour as per epic SV-9160 and the Global Search - Product Requirements specification version 1.3 (Confluence page 576978945), section 5.4 (quick actions), read on 2 September 2026.\nNote: these quick actions were previously parked as out-of-v1. Spec v1.3 (2026-09-01, section 5.4) brings them back into v1 — shown unconditionally, with 'View part history' added to Part rows — and the design shows them; this is newer than the epic's out-of-scope note, so this case follows the current spec.\nAUTOMATION: Not available on Build to test Yet - Last checked 9/2/2026"
+   }
+  }
+ }
+}
