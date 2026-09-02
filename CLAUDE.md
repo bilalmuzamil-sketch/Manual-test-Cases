@@ -437,7 +437,8 @@ project's spec page has in fact moved since its last check (§3 of the evidence 
 | **Custom Roles & Permissions** (epic **SV-7388** — **269** children) | **RECURRING** — re-run the 4-layer permission VIU after EVERY feature release (it regresses when other features ship). **515 cases ours** live under group 3527 (714 total, **199 foreign**) and **no `testrail-id-map.csv` exists**, so current scope cannot be reconciled locally | 🔴 **2026-07-27** (staging now `v3.10-49b5fe3`) | 🔴 **2026-07-27** — spec page unchanged since 2026-07-17 | **Sasha Grosman** (recorded 2026-08-28; TestRail user 9 spells it "Grossman" — spelling unconfirmed with him) · `build/custom-roles/PROJECT-STATE.md` |
 
 **BLOCKED, with the exact ask in each file (all in `build/OUTSTANDING-ITEMS-REGISTER.md` as R1–R6):**
-`BLOCKED-shopview-app-session.md` (every stored cookie → **HTTP 401**; blocks every live verdict) ·
+`BLOCKED-shopview-app-session.md` (**STAGING ONLY** since 2026-09-02 — QA-branch login is proven and
+routine: playbook §A) ·
 `BLOCKED-confluence-version-integers.md` (12 of 13 version integers unread — access is fine, the only
 version-bearing MCP call returns the whole page body) · `BLOCKED-qa-branch-sv8582.md` (**HTTP 502** ×3)
 · `BLOCKED-global-search-build.md`.
@@ -551,9 +552,24 @@ Compact form — **the rule named in brackets is the authority; read it before r
   that differs from an earlier source** — where the PO asked for it (file + link + date), where it
   differs, and that we take the latest as prevailing. **Never added where nothing contradicted it.**
   [56]
+- **🛑 AUTOMATION TYPE FIELD IS SET ON CREATION, NEVER LEFT NONE (QA lead, 2026-09-02).** Verbatim:
+  *"going forward every test case you directly create in Testrail or if you give me the CSV/XML file to
+  upload these must contain the AUTOMATION type for each test case, so that we never have to edit the
+  testrail test cases for this again."* This is the TestRail **`custom_automation_type`** field
+  (`0 None · 1 E2E · 2 Functional · 3 Unit`) — **DISTINCT from the `AUTOMATION:` marker literal below
+  and from `custom_atmstatus`.** Every `add_case`, and every **CSV/XML/import deliverable** handed over
+  for upload, carries a **real type per case — 1/2/3, never 0/None, never blank.** Rubric: **Unit** =
+  isolated calculation / format / single-field validation · **E2E** = cross-feature journey, browser
+  print dialog, audit trail, or email/PDF delivery · **Functional** = single-feature UI behaviour
+  (default). A not-yet-automated case (`custom_atmstatus: 1`) still declares the KIND of automated test
+  it would become. **This supersedes the older "`custom_automation_type: 0`" instruction** (a 285-case
+  sweep on 2026-09-02 had to backfill the field precisely because cases were born `0`). Full text +
+  the corrected field map: `build/skills/01-CASE-BUILD.md`, `build/skills/00-COMMON-CORE.md` §3.1. [61]
 - **AUTOMATION MARKER — the LAST thing in Expected Results**, after the provenance line, blank line
   before and a line break after. Exactly one of: `AUTOMATION: READY` ·
-  `AUTOMATION: READY - EXPECT FAIL (SV-xxxx)` · `AUTOMATION: HOLD - <short plain reason>`. A machine-
+  `AUTOMATION: READY - EXPECT FAIL (SV-xxxx)` · `AUTOMATION: HOLD - <short plain reason>` ·
+  `AUTOMATION: Not available on Build to test Yet - Last checked <M/D/YYYY>` (**the FOURTH form, Rule
+  69 — a gate coded from a three-string list flagged 4 valid cases**). A machine-
   findable literal — never reworded or abbreviated, exactly one per case. **A tool flag never justifies
   HOLD** (devtools, DOM/network, PDF/CSV reading, seeded data, viewports are all automatable); only a
   genuinely unobtainable thing does. **NOT-BUILT cases are excluded from any ready-to-automate figure.**
@@ -649,7 +665,7 @@ Compact form — **the rule named in brackets is the authority; read it before r
 | Standing Rules 1–20 (full text) | `build/rules/RULES-01-20.md` |
 | Standing Rules 21–40 (full text) | `build/rules/RULES-21-40.md` |
 | Standing Rules 41–60 (full text) | `build/rules/RULES-41-60.md` |
-| Standing Rules 61–98 (full text) | `build/rules/RULES-61-99.md` |
+| Standing Rules 61–99 (full text) | `build/rules/RULES-61-99.md` |
 | Per-project narrative history (projects 1–7) | `build/rules/PROJECT-HISTORY-ARCHIVE.md` |
 | Byte-verification hashes for the split | `build/rules/INTEGRITY.md` |
 | Staging/QA/prod action recipes, TestRail traps | `build/APP-ACTIONS-PLAYBOOK.md` |

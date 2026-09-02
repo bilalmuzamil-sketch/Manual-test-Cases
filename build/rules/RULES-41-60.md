@@ -656,6 +656,46 @@ Index: CLAUDE.md (rule index table). Other rule files: build/rules/RULES-01-20.m
     (protect Automated cases — the audit that surfaced this).
 51. **NEVER file an API-related ticket without ASKING — every time, even inside an approved batch (all
     projects).**
+    > **🛑 SUPERSESSION NOTICE, 2026-09-01 — READ THIS BEFORE THE RECIPE BELOW. THE LANE'S JOB IS
+    > RUNNABLE TESTS, NOT TICKETS. STOP PREPARING DEFECTS.** QA lead, 2026-09-01, verbatim: *"You are
+    > never supposed to create defect, you are supposed to make the tests RUNNABLE."*
+    >
+    > **THE FULL, AUTHORITATIVE TEXT OF THIS AMENDMENT IS IN STANDING RULE 62**
+    > (`build/rules/RULES-61-99.md`, the block headed *"⇒ AMENDMENT, 2026-09-01 — THE LANE'S JOB IS
+    > RUNNABLE TESTS, NOT TICKETS. STOP PREPARING DEFECTS."*) — **read it there before acting on
+    > anything in this rule.** In one line: a build-verification / VIU / execution pass **no longer ends
+    > with a defect candidate awaiting permission.** When the build does not match the document, the
+    > deliverable is the **CASE**, made runnable and honest — the documented expectation STAYS (Rule 57),
+    > the case carries the **three outcomes** in plain words (Rule 61's expect-fail shape) so the tester
+    > runs it, sees the problem and marks it **Failed**, the marker stays **`AUTOMATION: READY`**, and
+    > **no ticket text is drafted, no permission is asked for, and no defect candidate file is opened.**
+    > Report the finding in the pass report with its **C-id**, and move on.
+    >
+    > **RULE 62 STATES THE CONFLICT RATHER THAN SILENTLY RESOLVING IT (Rule 63), AND NAMES THIS RULE**,
+    > verbatim: *"Rules 51, 52, 53, 62, 73 and 94 and the whole of `build/skills/06-DEFECT-PREP.md` are
+    > written around producing an unchallengeable ticket and stopping at the button; the three-gate rule
+    > recorded earlier the same day (hold → re-verify on the build → ask per candidate) assumes candidates
+    > exist to hold. **This instruction supersedes all of that for the lane's own output.**"*
+    >
+    > **⇒ SO WHAT FOLLOWS IS GATED, NOT DELETED.** The recipe below is **not withdrawn and remains correct
+    > for its purpose**; it **applies only if and when the QA lead directs a ticket to be filed.** Rule 62,
+    > verbatim: *"What survives: if he asks for a ticket, skill 06's shape (`Story Defect`, parented to the
+    > owning story, `Medium`, never `High`) is still how it is filed. **The already-prepared candidates are
+    > NOT filed and NOT re-raised as asks** — they stay in the repo as records and the cases carry the
+    > behaviour instead."*
+    >
+    > **FOR RULE 51 SPECIFICALLY.** Its **API-reachability test is untouched** — it still classifies a
+    > finding and still decides how the finding is presented, and that is the part of this rule a session
+    > actually needs. What is superseded is *"ask before filing an API ticket"* **as the live next step**:
+    > we do not file at all, so there is normally nothing to ask about. The withdrawal procedure below
+    > applies to a ticket he has directed.
+    >
+    > **BACKFILLED INTO THIS RULE 2026-09-02.** The ruling had reached **rule 62's body and `CLAUDE.md`
+    > §1 only** — **not rules 51, 52, 53, 73 or 94** — so a session reading only this rule reached the
+    > wrong answer. Recorded as HIGH severity in
+    > `build/rules/SECTION1-AND-AMENDMENT-AUDIT-2026-09-02.md` Part B. **A rule's amendment is part of the
+    > rule (Rule 38's own 2026-09-02 lesson).**
+    >
     **⚠️ SUBSUMED BY STANDING RULE 62 (2026-08-10) — ASKING IS NOW UNIVERSAL, NOT SPECIAL TO API
     TICKETS: NO Jira ticket of ANY type may be created without the QA lead's explicit permission, asked
     for and granted first. THIS RULE STANDS UNCHANGED — its reachability test still classifies a finding
@@ -715,6 +755,46 @@ Index: CLAUDE.md (rule index table). Other rule files: build/rules/RULES-01-20.m
 52. **A defect ticket is filed as a `Story Defect` parented to the OWNING STORY — and because that story
     is itself a child of the epic, the defect STILL ROLLS UP TO THE EPIC (all projects; this SUPERSEDES
     the Bug-on-an-epic-parent convention of 2026-08-04, which is preserved below as dated history).**
+    > **🛑 SUPERSESSION NOTICE, 2026-09-01 — READ THIS BEFORE THE RECIPE BELOW. THE LANE'S JOB IS
+    > RUNNABLE TESTS, NOT TICKETS. STOP PREPARING DEFECTS.** QA lead, 2026-09-01, verbatim: *"You are
+    > never supposed to create defect, you are supposed to make the tests RUNNABLE."*
+    >
+    > **THE FULL, AUTHORITATIVE TEXT OF THIS AMENDMENT IS IN STANDING RULE 62**
+    > (`build/rules/RULES-61-99.md`, the block headed *"⇒ AMENDMENT, 2026-09-01 — THE LANE'S JOB IS
+    > RUNNABLE TESTS, NOT TICKETS. STOP PREPARING DEFECTS."*) — **read it there before acting on
+    > anything in this rule.** In one line: a build-verification / VIU / execution pass **no longer ends
+    > with a defect candidate awaiting permission.** When the build does not match the document, the
+    > deliverable is the **CASE**, made runnable and honest — the documented expectation STAYS (Rule 57),
+    > the case carries the **three outcomes** in plain words (Rule 61's expect-fail shape) so the tester
+    > runs it, sees the problem and marks it **Failed**, the marker stays **`AUTOMATION: READY`**, and
+    > **no ticket text is drafted, no permission is asked for, and no defect candidate file is opened.**
+    > Report the finding in the pass report with its **C-id**, and move on.
+    >
+    > **RULE 62 STATES THE CONFLICT RATHER THAN SILENTLY RESOLVING IT (Rule 63), AND NAMES THIS RULE**,
+    > verbatim: *"Rules 51, 52, 53, 62, 73 and 94 and the whole of `build/skills/06-DEFECT-PREP.md` are
+    > written around producing an unchallengeable ticket and stopping at the button; the three-gate rule
+    > recorded earlier the same day (hold → re-verify on the build → ask per candidate) assumes candidates
+    > exist to hold. **This instruction supersedes all of that for the lane's own output.**"*
+    >
+    > **⇒ SO WHAT FOLLOWS IS GATED, NOT DELETED.** The recipe below is **not withdrawn and remains correct
+    > for its purpose**; it **applies only if and when the QA lead directs a ticket to be filed.** Rule 62,
+    > verbatim: *"What survives: if he asks for a ticket, skill 06's shape (`Story Defect`, parented to the
+    > owning story, `Medium`, never `High`) is still how it is filed. **The already-prepared candidates are
+    > NOT filed and NOT re-raised as asks** — they stay in the repo as records and the cases carry the
+    > behaviour instead."*
+    >
+    > **FOR RULE 52 SPECIFICALLY — THIS IS THE SINGLE MOST LIKELY WRONG ACTION IN THE REPO.** The
+    > 27 KB ticket-shape recipe below reads as a standing instruction to build a ticket. **It is not.**
+    > Do not draft a `Story Defect`, do not resolve an owning story, do not open a candidate file unless
+    > the QA lead has directed that specific ticket. When he has, the shape below is exactly how it is
+    > filed and nothing in it has changed.
+    >
+    > **BACKFILLED INTO THIS RULE 2026-09-02.** The ruling had reached **rule 62's body and `CLAUDE.md`
+    > §1 only** — **not rules 51, 52, 53, 73 or 94** — so a session reading only this rule reached the
+    > wrong answer. Recorded as HIGH severity in
+    > `build/rules/SECTION1-AND-AMENDMENT-AUDIT-2026-09-02.md` Part B. **A rule's amendment is part of the
+    > rule (Rule 38's own 2026-09-02 lesson).**
+    >
     **⚠️ THE ROLL-UP HALF OF THAT HEADLINE IS FACTUALLY WRONG — CORRECTED 2026-08-06 BELOW; THE REQUIRED
     SHAPE IS UNCHANGED.**
     **🔴🔴 ⇒ AMENDMENT, 2026-08-12 — THE EVIDENCE BAR: A DEFECT TICKET WE FILE MUST BE UNCHALLENGEABLE.
@@ -995,6 +1075,45 @@ Index: CLAUDE.md (rule index table). Other rule files: build/rules/RULES-01-20.m
 53. **NEVER set a ticket's priority to High — always file at Medium; and NEVER "restore" a field the QA
     lead has changed (all projects; the required value became `Medium` on 2026-08-06, superseding `Low`,
     which is preserved below as dated history).**
+    > **🛑 SUPERSESSION NOTICE, 2026-09-01 — READ THIS BEFORE THE RECIPE BELOW. THE LANE'S JOB IS
+    > RUNNABLE TESTS, NOT TICKETS. STOP PREPARING DEFECTS.** QA lead, 2026-09-01, verbatim: *"You are
+    > never supposed to create defect, you are supposed to make the tests RUNNABLE."*
+    >
+    > **THE FULL, AUTHORITATIVE TEXT OF THIS AMENDMENT IS IN STANDING RULE 62**
+    > (`build/rules/RULES-61-99.md`, the block headed *"⇒ AMENDMENT, 2026-09-01 — THE LANE'S JOB IS
+    > RUNNABLE TESTS, NOT TICKETS. STOP PREPARING DEFECTS."*) — **read it there before acting on
+    > anything in this rule.** In one line: a build-verification / VIU / execution pass **no longer ends
+    > with a defect candidate awaiting permission.** When the build does not match the document, the
+    > deliverable is the **CASE**, made runnable and honest — the documented expectation STAYS (Rule 57),
+    > the case carries the **three outcomes** in plain words (Rule 61's expect-fail shape) so the tester
+    > runs it, sees the problem and marks it **Failed**, the marker stays **`AUTOMATION: READY`**, and
+    > **no ticket text is drafted, no permission is asked for, and no defect candidate file is opened.**
+    > Report the finding in the pass report with its **C-id**, and move on.
+    >
+    > **RULE 62 STATES THE CONFLICT RATHER THAN SILENTLY RESOLVING IT (Rule 63), AND NAMES THIS RULE**,
+    > verbatim: *"Rules 51, 52, 53, 62, 73 and 94 and the whole of `build/skills/06-DEFECT-PREP.md` are
+    > written around producing an unchallengeable ticket and stopping at the button; the three-gate rule
+    > recorded earlier the same day (hold → re-verify on the build → ask per candidate) assumes candidates
+    > exist to hold. **This instruction supersedes all of that for the lane's own output.**"*
+    >
+    > **⇒ SO WHAT FOLLOWS IS GATED, NOT DELETED.** The recipe below is **not withdrawn and remains correct
+    > for its purpose**; it **applies only if and when the QA lead directs a ticket to be filed.** Rule 62,
+    > verbatim: *"What survives: if he asks for a ticket, skill 06's shape (`Story Defect`, parented to the
+    > owning story, `Medium`, never `High`) is still how it is filed. **The already-prepared candidates are
+    > NOT filed and NOT re-raised as asks** — they stay in the repo as records and the cases carry the
+    > behaviour instead."*
+    >
+    > **FOR RULE 53 SPECIFICALLY.** The priority values below (**`Medium`**, and **`High` is barred**)
+    > apply to **a ticket he has directed** — they are not a licence to file one. The rule's **second
+    > half is entirely unaffected**: *never "restore" a field the QA lead has changed* is ticket hygiene
+    > on tickets that already exist, and it stands in full.
+    >
+    > **BACKFILLED INTO THIS RULE 2026-09-02.** The ruling had reached **rule 62's body and `CLAUDE.md`
+    > §1 only** — **not rules 51, 52, 53, 73 or 94** — so a session reading only this rule reached the
+    > wrong answer. Recorded as HIGH severity in
+    > `build/rules/SECTION1-AND-AMENDMENT-AUDIT-2026-09-02.md` Part B. **A rule's amendment is part of the
+    > rule (Rule 38's own 2026-09-02 lesson).**
+    >
     USER DIRECTIVE (2026-08-06, verbatim — this SUPERSEDES the 2026-08-04 directive quoted further
     down): *"One thing which I want to correct, please keep the priority of the tickets which you create
     to Medium instead of keeping them to LOW."*
@@ -1239,6 +1358,36 @@ Index: CLAUDE.md (rule index table). Other rule files: build/rules/RULES-01-20.m
     navigation and labels — while sentence 1 stays documents-only)**.
 55. **A PO QUESTIONNAIRE NAMES THE PROJECT AND THE FEATURE ON EVERY ROW, IS ANSWERABLE BY A
     NON-TECHNICAL READER, AND GOES BACK OUT WHENEVER AN ANSWER IS UNCLEAR (all projects).**
+    > **🛑 AMENDMENT, 2026-09-01 — BACKFILLED INTO THIS RULE 2026-09-02. THE DELIVERABLE IS A
+    > SPREADSHEET. A MARKDOWN TABLE IS NOT A QUESTION SHEET ANY MORE.** QA lead, 2026-09-01, verbatim:
+    > *"the questions should always be in Excel or google soreadsheet, in a lay man language for a
+    > nontechnical person to understand."*
+    >
+    > Produce **`.xlsx`** (or a Google Sheet) with these **six columns** — the shape is
+    > `build/skills/07-PO-QUESTIONS.md` §0, which is the authority for anything in this note:
+    >
+    > | Column | What goes in it |
+    > |---|---|
+    > | **#** | 1, 2, 3 — so he can answer "1: B" in a chat message |
+    > | **Topic** | the feature in the words a shop uses, e.g. *"Parts that are not kept in a bin"* |
+    > | **What happens now** | what we actually saw, in plain words, with numbers where they help (*"all 6,879 of them"*) |
+    > | **The question** | one question, answerable in one sitting, no jargon |
+    > | **Options** | **A) / B) / C)** — always offer choices, including *"Not sure — please check with the engineers"* |
+    > | **Your answer** | left empty for him |
+    >
+    > **One sheet per feature**, then a final **"QA internal — not for the PO"** sheet holding the case
+    > ids, the requirement anchors and why each item is a question rather than a defect. **The PO-facing
+    > sheets carry none of that.**
+    > **Use `build/testing-tools/make_question_sheet.py`** — it writes the format and then **FAILS the
+    > run** if a PO-facing cell contains a case id, a specification anchor, an API or HTTP term, a
+    > camelCase identifier or a database field name. Feed it a small JSON spec; worked example:
+    > `build/inline-add-edit-parts/questions-2026-09-01/`.
+    > **WHY THE BACKFILL:** the ruling lived in `CLAUDE.md` §1 and skill 07 only. **This rule's body
+    > named `.xlsx` files merely as examples of past deliverables and did not REQUIRE a spreadsheet**, so
+    > a session reading only rule 55 delivered a markdown table — which he has now rejected. Audit:
+    > `build/rules/SECTION1-AND-AMENDMENT-AUDIT-2026-09-02.md` Part B. **Rule 66's timing answer (the
+    > sheet is the LAST thing sent) is unaffected; the FORM is this rule's job.**
+    >
     USER DIRECTIVE (2026-08-05, verbatim): *"Anything which is not clear we need to ask him again.
     Make sure that thre is a possibility that one PO is handling more than one project/feature so
     whenever you create a questionnaire for them do mention for them the project name/feature name,

@@ -27,7 +27,7 @@ CLAUDE.md into `build/rules/`. Nothing was deleted; the whole former file is arc
 - `build/rules/RULES-01-20.md` — rules 1-20 (20 rules)
 - `build/rules/RULES-21-40.md` — rules 21-40 (20 rules)
 - `build/rules/RULES-41-60.md` — rules 41-60 (20 rules)
-- `build/rules/RULES-61-99.md` — rules 61-99 (**39 rules**; 89-90 added 2026-08-21, 91-93 added 2026-08-21, **94 and 95 added 2026-08-26, 96 added 2026-08-26, 97 added 2026-08-28, 98 added 2026-09-01 (`924ee158`), 99 added 2026-09-02 (`5b6f0f8d`)**). **The file has been renamed on every rule addition and has carried, in order, the filenames `RULES-61-93.md` → `-94` → `-95` → `-96` → `-97` → `-98` → `RULES-61-99.md` (current since 2026-09-02).** On each occasion the new rule was appended and the file renamed by `git mv`, and every reference in the repo was updated in the same commit, so **a grep for any of those old filenames must return nothing** — verified 2026-09-02.
+- `build/rules/RULES-61-99.md` — rules 61-99 (**39 rules**; 89-90 added 2026-08-21, 91-93 added 2026-08-21, **94 and 95 added 2026-08-26, 96 added 2026-08-26, 97 added 2026-08-28, 98 added 2026-09-01 (`924ee158`), 99 added 2026-09-02 (`5b6f0f8d`)**). **The file has been renamed on every rule addition and has carried, in order, the filenames `RULES-61-93.md` → `-94` → `-95` → `-96` → `-97` → `-98` → `RULES-61-99.md` (current since 2026-09-02).** On each occasion the new rule was appended and the file renamed by `git mv`, and every reference in the repo was updated in the same commit, so **a grep for any of those old filenames must return no LIVE POINTER**. Two classes of hit are expected and must NOT be "fixed": **(i) this rename-history line itself**, which names `RULES-61-93.md` on purpose, and **(ii) dated evidence artefacts and archives** (`CLAUDE-FULL-ARCHIVE-2026-08-21.md`, `CLAUDE-MD-SIZE-DIAGNOSIS-2026-09-02.md`, `SECTION1-AND-AMENDMENT-AUDIT-2026-09-02.md`, `PROJECT-HISTORY-ARCHIVE.md`), which record what was true on their date. Anything else is a broken pointer. Re-derive, do not trust: `git grep -noE "RULES-61-[0-9]+" -- . | grep -v "RULES-61-99"` — verified 2026-09-02, only the two expected classes remain.
 - **⚠️ THE FILENAME AND THE COUNTS IN THIS FILE GO STALE EVERY TIME A RULE IS ADDED.** They went stale on **2026-09-01** the moment rule 98 landed and were still stale on 2026-09-02 (this file said "rules 61-97, 37 rules" while 98 and 99 existed), which meant **the no-loss assertion below would have PASSED while silently missing two rules** — the same class of failure as the 2026-08-21 truncation. **Whoever appends rule N must update this section in the same commit**, and any session relying on the numbers must re-derive them rather than trust them: `grep -cE '^[0-9]+\. \*\*' build/rules/RULES-*.md`.
 - `build/rules/PROJECT-HISTORY-ARCHIVE.md` — the 7 per-project narrative blocks
 - `CLAUDE.md` — rewritten as a loadable INDEX (see its READ THIS FIRST header)
@@ -89,11 +89,36 @@ problem; the FORM they arrive in is. **Do not delete a ruling to make a number. 
 gate: move the evidence to its rule/skill, verify by grep that it landed, then shorten §1's text.**
 
 **Before overwriting CLAUDE.md, assert first that nothing would be lost:** every rule in the CURRENT
-range (**1..99 as of 2026-09-02 — re-derive it with
-`grep -cE '^[0-9]+\. \*\*' build/rules/RULES-*.md` and compare against the row count of CLAUDE.md §2;
-do not hard-code a range that will silently pass while missing the newest rules**) has a body in a
-`RULES-*.md` file, in both directions, and the archive's sha256 still matches the value recorded above.
-If either check fails, STOP and report rather than overwrite.
+range has a body in a `RULES-*.md` file, in both directions, and the archive's sha256 still matches the
+value recorded above. If either check fails, STOP and report rather than overwrite.
+
+**🛑 THE ASSERTION MUST DERIVE ITS OWN RANGE. NEVER HARD-CODE ONE — a hard-coded range PASSES while
+silently ignoring every rule added after it was written**, which is exactly how "rules 1..97" certified
+completeness on 2026-09-02 while rules 98 and 99 existed. **N is whatever the rule bodies say it is, and
+it is read fresh every time.** Run this — it takes the max rule number from the bodies, never from any
+number written in this file or in CLAUDE.md:
+
+```sh
+git fetch origin                                   # Rule 97 step 0 — never measure from a stale checkout
+BODIES=$(grep -hoE '^[0-9]+\. \*\*' build/rules/RULES-*.md | grep -oE '^[0-9]+' | sort -n)
+INDEX=$(grep -oE '^\| \*\*[0-9]+\*\*' CLAUDE.md      | grep -oE '[0-9]+'      | sort -n)
+N=$(echo "$BODIES" | tail -1)
+echo "rule bodies: $(echo "$BODIES" | wc -l)  highest: $N"
+echo "gaps/dupes in bodies : $(echo "$BODIES" | uniq -c | awk '$1!=1 || $2!=++e {print $2}' | tr '\n' ' ')"
+echo "in bodies, NOT in CLAUDE.md §2 : $(comm -23 <(echo "$BODIES") <(echo "$INDEX") | tr '\n' ' ')"
+echo "in CLAUDE.md §2, NOT in bodies : $(comm -13 <(echo "$BODIES") <(echo "$INDEX") | tr '\n' ' ')"
+sha256sum build/rules/CLAUDE-FULL-ARCHIVE-2026-08-21.md
+```
+
+**PASS requires ALL of:** body count == N · no gaps or duplicates · **both `comm` lines EMPTY** · the
+sha256 equal to the value recorded above. **A non-empty "in bodies, NOT in CLAUDE.md §2" line is the
+truncation failure of 2026-08-21 in its quiet form: the rule exists but no session can find it.**
+
+**⚠️ EVERY COUNT AND RANGE WRITTEN IN THIS FILE — including `N = 99` and "rules 61-99" above — GOES
+STALE THE MOMENT A RULE IS ADDED.** They are a dated record of the last run, **not the check**. The
+check is the block above, and it must be **RE-RUN, never trusted**: a session that reads a number here
+and reports it as current is reporting history. Whoever appends rule N+1 updates this file **and** adds
+its §2 index row in the same commit, then re-runs the block to prove both landed.
 
 ---
 

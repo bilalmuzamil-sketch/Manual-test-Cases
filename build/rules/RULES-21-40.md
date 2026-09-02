@@ -804,6 +804,18 @@ Index: CLAUDE.md (rule index table). Other rule files: build/rules/RULES-01-20.m
     and Edit Parts (6597) and Printer Friendly WO (6617) → **Viktoria Videnovic** (user **4**;
     spelling is "Viktoria", not "Victoria"). **Vladimir Tomovic (user 1) is the exception in the other
     direction and is NEVER in scope, on any project** — see the 2026-09-01 amendment above.
+    **⇒ THE PER-SUITE ASSIGNMENT IS THE QA LEAD'S OWN WORDS — RECORDED HERE VERBATIM 2026-09-02 SO IT
+    LIVES IN THE RULE AND NOT ONLY IN THE INDEX. THE TWO MANUAL QA OWNERS ARE ASSIGNED PER SUITE — DO
+    NOT MERGE THEM.** QA lead, 2026-09-01, verbatim, his typing preserved exactly as he wrote it because
+    Rule 25 applies to his instructions as it does to a spec:
+    > *"invoice refresh os for the manual QA tester Mudassir. 6597/6617 is for Viktoria."*
+    **READ IT AS AN ASSIGNMENT, NOT A LIST:** the carve-out is **per project/suite**, so being a named
+    manual QA owner **somewhere** does not make a person in scope **everywhere**. Mudassir Qamar
+    (user **6**) is the owner on **Invoice UI Refresh**; Viktoria Videnovic (user **4**) is the owner on
+    **6597 (Inline Add and Edit Parts)** and **6617 (Printer Friendly WO)**. **A handover names the owner
+    who actually owns that suite.** (This quote existed only in `CLAUDE.md` §1 until this backfill —
+    `build/rules/SECTION1-AND-AMENDMENT-AUDIT-2026-09-02.md` Part B; §1 is consolidated separately, and
+    without the quote here it would have been lost.)
     **⇒ AND THE GENERAL LESSON, WHICH IS WHY THIS AMENDMENT IS WRITTEN HERE AND NOT ONLY IN CLAUDE.md:
     A RULE'S AMENDMENT IS PART OF THE RULE.** On 2026-09-02 a payload builder implemented this rule as
     the bare headline — `created_by != 3 → "foreign (Rule 38)"` — and **rejected all 30 of the manual

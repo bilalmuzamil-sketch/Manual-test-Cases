@@ -122,6 +122,11 @@ evidenced in the committed artifacts — confirm before relying on it.
 > Symptom: `ENOENT: no such file or directory, open '/tmp/atlassian/mitm.key'`. The `openssl` line in
 > `build/ATLASSIAN-JIRA-ACCESS-METHOD.md` covers only `*.atlassian.net` — **add the hosts you actually
 > need**: `-addext "subjectAltName=DNS:*.atlassian.net,DNS:*.atlassian.com,DNS:*.testrail.io,DNS:*.qa.shopview.com"`.
+> **✅ 2026-09-02 — YOU NO LONGER RUN THIS BY HAND: `build/testing-tools/ensure_bridge.sh` GENERATES
+> THE PAIR ITSELF**, idempotently, from exactly this recipe (SAN widened once more, with
+> `DNS:*.staging.shopview.com`) — and it now **exits non-zero** if the bridge comes up with no port or
+> no egress instead of reporting success. Use the launcher; keep this line as the authority for what
+> it emits, and widen its `SAN=` variable if you need another host.
 >
 > **(3) 🔑 COOKIES ALONE DO NOT GET YOU IN — THE SPA NEEDS `user` + `token` IN `localStorage`.**
 > **🟢 SUPERSEDED 2026-08-31 — PREFER THE UI ROUTE, and read §A "THE AUTHENTIC QA-BRANCH LOGIN"
@@ -425,14 +430,112 @@ any endpoint/ID not recorded here or in `CLAUDE.md`** — if only partly known, 
     one only the QA lead can re-mint, and it is a different symptom.
   - **Re-read the build marker after any re-boot** — an eviction and a redeploy look identical from
     the inside, and a redeploy splits your verdicts across two builds (Rules 49, 54).
+- **✅ CONFIDENCE — THE REFACTORED HARNESS WAS RE-PROVEN LIVE ON 2026-09-02 against `sv9315`, build
+  marker `v26.35.6-0f8d60b`.** `qa-branch-boot.mjs` was refactored in commit `f6e602b3` **after** the
+  original proof (the body moved into `bootOrigin()`, `boot()` kept as a thin wrapper), so by Rule 12
+  the file as it now stands had never been observed working. It has now been observed, three ways —
+  the CLI entry point, the exported `boot()`, and the exported `bootOrigin()` — all clean:
+  **exit 0** · `localStorage["user"]` **present** (with `fe_permissions_wrapper`, `location`,
+  `current_shop_id`, `timezone`, `country_code`, `organization_features`, `bookkeeping_enabled`,
+  `mode`) · landed URL **`https://sv9315.qa.shopview.com/customers`**, *not* `/login` ·
+  `GET /api/auth/me/fe-permissions` → **200** · `fe_permissions.length` = **40** ·
+  `template_slug` = **`administrator`**. **No "not re-verified" caveat remains on this file.**
+- **✅ CONFIDENCE, RE-STAMPED — RE-PROVEN LIVE AGAIN ON 2026-09-02 (LATER), AFTER `ensure_bridge.sh`
+  AND THE HARNESS SUMMARY LINE WERE BOTH EDITED, against `sv9315`, build marker
+  `v26.35.6-0f8d60b`.** By Rule 12 an edited file is no longer a proven file, so both changes were
+  re-observed rather than assumed. Command run exactly as documented —
+  `bash build/testing-tools/ensure_bridge.sh` then
+  `node build/testing-tools/qa-branch-boot.mjs sv9315 /customers admin` — and observed:
+  **exit 0** · bridge reported a real port and a real egress (`BRIDGE_PORT=33499`,
+  `egress=http://127.0.0.1:34791`) · `localStorage["user"]` **present** · landed URL
+  **`https://sv9315.qa.shopview.com/customers`**, *not* `/login`, title `Customers | ShopView`,
+  **2,867** body chars · `GET /api/auth/me/fe-permissions` → **200** ·
+  `fe_permissions.length` = **40** · `template_slug` = **`administrator`** ·
+  `GET /api/api/sso/check` → 404 (the harmless noise, as recorded). Read-only throughout: no ShopView
+  record was created, modified or deleted; the only POST was the app's own `/api/quick-login`.
+  - **✅ FIXED 2026-09-02 — `ensure_bridge.sh` NOW GENERATES THE BRIDGE'S TLS CERT ITSELF, so
+    prerequisite (a) IS self-sufficient. This replaces the ⚠️ warning that stood here.** It creates
+    `mitm.key`/`mitm.crt` **idempotently** — only when the pair is absent or within 2 days of expiry,
+    so it never disturbs a bridge already serving (verified: re-running it against a live bridge left
+    the cert and the process untouched and reported `bridge: healthy on port …`) — using this §A(2)
+    openssl recipe and the wide SAN list
+    (`*.atlassian.net`, `*.atlassian.com`, `*.testrail.io`, `*.qa.shopview.com`,
+    `*.staging.shopview.com`). **Need another host: widen that one `SAN=` line and delete
+    `/tmp/atlassian/mitm.crt` to force a regen.**
+  - **✅ AND THE EMPTY-PORT CASE NOW FAILS LOUDLY (non-zero) INSTEAD OF REPORTING SUCCESS.** The old
+    launcher printed `bridge: restarted -> , egress ` and returned 0, so the `ENOENT` death on the
+    missing cert read as a pass — the single most expensive false pass in this harness. It now
+    refuses: no numeric port, or an empty egress, or an egress that no longer matches `$HTTPS_PROXY`,
+    each print `bridge: FAILED -- …` plus the **last 5 lines of `/tmp/atlassian/bridge.log`** (which
+    is what names the real cause) and exit non-zero; the success path prints
+    `bridge: OK -- BRIDGE_PORT=<port> egress=<proxy>`. It `return`s when sourced and `exit`s when
+    executed, so `source`ing a failure no longer kills the calling shell.
+  - **🛑 JUDGE THE SESSION BY `template_slug`, NEVER BY `role.name`.** On `sv9315` the **`admin`**
+    quick-login user's `user.data.role.name` reads **"Tech View"** while `fe-permissions` reports
+    `template_slug` = **`administrator`** / 40 permissions.
+    **✅ FIXED 2026-09-02 — the harness summary line no longer misleads.** It used to print
+    `role: Tech View`, which made a correct admin login look like it landed on the wrong role; it now
+    prints the identity first and flags the label as untrustworthy, observed live as:
+    `identity    : template_slug=administrator | fe_permissions=40   [role.name="Tech View"/40 — UNRELIABLE, do not assert on it]`
+    `boot()`/`bootOrigin()` also return **`templateSlug`** and **`nFePerms`** now, alongside the
+    unchanged `role`/`nPerms` — **assert on the former**; both are read from
+    `localStorage["fe_permissions_wrapper"]`, never from `user.data.role`, which has no
+    `template_slug` field at all. (`GET /api/quick-login/users` on sv9315 returns
+    exactly two entries — `admin`→"Admin", `tech`→"Tech" — so there is no third button to mis-click.)
+- **🟢 STAGING *DOES* HAVE THE `DEV MODE — QUICK LOGIN` PANEL — SETTLED 2026-09-02 BY THE QA LEAD'S
+  OWN OBSERVATION. WHAT IS STILL OPEN IS THE ROUTE, NOT THE PANEL.**
+  **THE FACT:** `https://app.staging.shopview.com/login` renders a `DEV MODE — QUICK LOGIN` panel
+  with `Admin` and `Tech` buttons, **visually identical in placement and labelling to the QA-branch
+  panel**. The staging login card also carries a normal **email + password** sign-in form above the
+  panel.
+  **PROVENANCE (Rule 12 — read this before citing the fact): observed by the QA lead via a
+  screenshot of the live staging login page, 2026-09-02.** It was **not** executed, clicked or
+  reproduced by a session, and it is **not** evidence that the staging quick-login *flow* works
+  headlessly — only that the panel renders.
+  **⇒ THIS RETIRES the line this bullet used to carry** — *"No observation of a `DEV MODE — QUICK
+  LOGIN` panel on `app.staging.shopview.com/login` exists anywhere in this repo"* — **and it retires
+  any statement or implication that staging has no panel, or that hand-hydration is the staging path
+  *because* there is no panel.** That was never the reason; the reason is that no session has yet
+  driven the click route on staging.
+  **WHAT REMAINS TRUE, unchanged:** every *recorded* staging use is the **API endpoint**
+  `POST /api/quick-login {key:'admin'|'tech'}`, called from Node under the **three cookies** and
+  followed by **hand-writing `localStorage`**, *not* a click on the panel:
+  `build/TESTING-RUNBOOK.md` §3 ("DEV login is gated by valid session cookies (the three in section
+  2)") · `build/testing-tools/staging-admin.mjs` `login()` · `build/custom-roles-run/RUN331-STATE.md`
+  ("Auth: DEV `POST /api/quick-login`") · `build/custom-roles-run/live-ui-2026-07-16/staging/approve-decline-TECH-PT.json`
+  (`"method": "quick-login tech (real session)"`) · and as recently as 2026-08-19
+  `build/filters/build-verify-2026-08-19/tools/mobile.mjs`, which visits `/login` only as a
+  same-origin landing pad for `localStorage.setItem(...)` and **never clicks a button**.
+  **⇒ THE HONEST POSITION: the panel is there; the staging click route is NOT yet proven end to end
+  by a session; so hand-hydration remains the RECORDED STAGING FALLBACK until someone proves the
+  click route with a valid staging session.** Not because staging lacks a panel — it does not lack
+  one — but because the click route there is unexercised.
+  **STILL UNSETTLED, both ways (do not treat either as decided):**
+  **(a)** whether **clicking the panel headlessly on staging completes the login** the way it does on
+  a QA branch; **(b)** whether **`sv_sso_session` ALONE suffices on staging** — staging sits behind
+  **Cloudflare** (`cf_clearance` at the edge), unlike the CloudFront+nginx QA branches, **so the
+  QA-branch finding that `cf_clearance` is inert does NOT transfer**.
+  Neither could be settled live: we hold no staging `sv_sso_session` and stored staging cookies
+  return 401 (`build/BLOCKED-shopview-app-session.md`), and **the QA lead has asked not to be
+  re-prompted for a staging cookie**. **The staging caveat therefore STANDS, narrowed to (a) and (b)
+  — the panel question is closed.**
 - **Chromium UI automation — `staging-boot2.mjs`. 🔴 CONVERTED 2026-09-02: it now delegates to
-  `qa-branch-boot.mjs` for any QA branch and no longer hand-hydrates `localStorage`.** The old text
-  here said *"the DEV login BUTTONS don't reliably work"* — **that was a selector bug, not a button
-  bug** (`getByRole('button',{name:/^Admin$/})` does not match a Quasar `q-btn`;
-  `button:has-text("Admin")` does), and it is the sentence that kept sending sessions down the
-  hand-minting path. **Hand-hydration is now reserved for a host with NO DEV MODE panel** and is
-  marked as such in the script. Both scripts read `$HTTPS_PROXY`/the bridge port LIVE — the port
-  rotates. *Source: CLAUDE.md, TESTING-RUNBOOK.md; correction proven on `sv9315` 2026-08-31.*
+  `qa-branch-boot.mjs` for any QA branch and no longer hand-hydrates `localStorage`.** An earlier
+  version of this bullet said the recorded note *"the DEV login BUTTONS don't reliably work"* **"was
+  a selector bug, not a button bug"**. **Half-corrected 2026-09-02: the selector bug is REAL and
+  proven** (`getByRole('button',{name:/^Admin$/})` does not match a Quasar `q-btn`;
+  `button:has-text("Admin")` does) **— but it was proven on a QA BRANCH, and the note it was
+  explaining was recorded about STAGING** (`build/custom-roles-run/WORDING-VIU-STATE-2026-07-13.md`).
+  **Strengthened, but only one notch, 2026-09-02:** now that staging is known to render **the same
+  panel** (QA lead's screenshot, same date, bullet above), the selector bug is a **MORE LIKELY — and
+  still NOT demonstrated —** explanation of that staging note. **State it at exactly that strength;
+  it has not been reproduced on staging.** **Hand-hydration is the recorded staging fallback until
+  the click route is proven there** — *not* because staging has no panel (it has one) but because no
+  session has driven that route on staging — and it stays reserved for a host where the panel click
+  does not land. Marked as such in the script. Both scripts read `$HTTPS_PROXY`/the bridge
+  port LIVE — the port rotates. *Source: CLAUDE.md, TESTING-RUNBOOK.md; selector correction proven on
+  `sv9315` 2026-08-31, re-proven 2026-09-02; staging scope corrected 2026-09-02; staging panel
+  confirmed by the QA lead's screenshot 2026-09-02.*
 - **Fresh MITM bridge (fallback when the direct proxy path fails):** `staging-bridge.mjs` — a small
   local proxy that accepts Chromium's CONNECT and relays via Node fetch (honours
   `NODE_USE_ENV_PROXY=1` + `NODE_EXTRA_CA_CERTS=/root/.ccr/ca-bundle.crt`). Reads `$HTTPS_PROXY`
@@ -935,9 +1038,14 @@ with `sv_sso_session` and `cf_clearance` **byte-identical** to the set that was 
 - **Project 1 / single suite 1 "Master"**; API v2, Basic auth. Helper `testrail-api.mjs` reads creds
   from `/tmp/testrail/creds.json` (email + password-OR-key + host) — **never hard-code creds.** Calls
   hit `{host}/index.php?/api/v2/{path}`.
-- **🛑 `add_case` MUST SEND `custom_atmstatus:1` (= "Not Automated") + `custom_automation_type:0`.
-  NEVER `3`. CORRECTED 2026-08-11 — the bullet that stood here said the opposite and was wrong on
-  both halves.** Place any case with API content in a section whose title includes "API" (Rule 4).
+- **🛑 `add_case` MUST SEND `custom_atmstatus:1` (= "Not Automated") + a REAL `custom_automation_type`
+  (`1 E2E · 2 Functional · 3 Unit` — NEVER `0`/None; QA lead 2026-09-02). `custom_atmstatus` is NEVER
+  `3`. CORRECTED 2026-08-11 for atmstatus; automation_type made mandatory-non-zero 2026-09-02.** The
+  type is set at birth in the TestRail case AND in any CSV/XML upload file, so it is never bulk-edited
+  later (a 285-case sweep on 2026-09-02 fixed cases that were all born `0`). Rubric: Unit = isolated
+  calc/format/single-field validation; E2E = cross-feature journey / browser print / audit trail /
+  email-PDF delivery; Functional = single-feature UI behaviour (default).
+  Place any case with API content in a section whose title includes "API" (Rule 4).
   **⚠️ SUPERSEDED WORDING, KEPT VISIBLE AND DATED (the Rules 31/52/53 pattern) — until 2026-08-11
   this bullet read: *"`add_case` REQUIRES `custom_atmstatus:3` + `custom_automation_type:0`
   (non-API cases)."* **THAT IS THE INSTRUCTION THAT MADE EVERY API-CREATED CASE IN THIS WORKSPACE
@@ -1393,8 +1501,10 @@ with `sv_sso_session` and `cf_clearance` **byte-identical** to the set that was 
 
 - **🔧 `add_case` REQUIRES `custom_automation_type` AS WELL AS `custom_atmstatus` (2026-08-26).**
   Omitting it returns HTTP 400 `{"error":"Field :custom_automation_type is a required field."}`.
-  Both are required on this instance; `0` = None, and `custom_atmstatus: 1` = Not Automated (**never
-  send `3` on a throwaway** — that is the Automated flag Rule 71 protects).
+  Both are required on this instance. **`custom_automation_type` must be a REAL type — `1 E2E ·
+  2 Functional · 3 Unit`, NEVER `0`/None (QA lead 2026-09-02)**; `custom_atmstatus: 1` = Not Automated
+  (**never send `3` on a throwaway** — that is the Automated flag Rule 71 protects). Same requirement on
+  any CSV/XML upload file: an Automation Type per case, never blank.
 
 - **🛑🛑 DECLARED HAZARD #6 — `update_case` NOW RENDERS THE MARKDOWN FIELDS TO HTML AND STORES THE HTML
   ON *EVERY* WRITE — A TESTRAIL-SIDE CHANGE ON 2026-08-19, AND IT IS A HARD BLOCK ON ALL TEXT-FIELD
@@ -1713,12 +1823,13 @@ with `sv_sso_session` and `cf_clearance` **byte-identical** to the set that was 
     Amjad · 8 Chris Amani · 9 Sasha Grossman. Ids 10+ do not exist.
   - **Practical tells beyond `created_by`** (measured over 474 of our Report Suite cases vs his 5):
     **`refs` empty** (ours: 474/474 populated — Rule 20 means we never ship a case without one) ·
-    **`template_id` 2 = Steps** (ours: 1 = Text, 474/474) · **`custom_automation_type` unset** (ours:
-    always 0) · **`type_id` 7 "Other"** (ours: 6/5/1/2) · **titles over 80 chars** (ours: 0/474 —
+    **`template_id` 2 = Steps** (ours: 1 = Text, 474/474) · **`custom_automation_type` unset/`0`** (ours:
+    now always a real type 1/2/3 per the 2026-09-02 rule; historically `0`) · **`type_id` 7 "Other"** (ours: 6/5/1/2) · **titles over 80 chars** (ours: 0/474 —
     the ≤80 title rule) · **no expected results at all** (automated cases keep the assertion in code).
     **⚠️ `custom_atmstatus` is NOT a usable tell** — it is 3 ("Automated") on his cases AND on 16 of
     ours. Field decode from `get_case_fields`: atmstatus `1 Not Automated · 2 Cannot be automated ·
-    3 Automated · 4 Pending`; automation_type `0 None · 1 Ranorex`.
+    3 Automated · 4 Pending`; **automation_type `0 None · 1 E2E · 2 Functional · 3 Unit`** (verified live
+    from `get_case_fields` 2026-09-02 — an earlier note saying "1 Ranorex" was wrong).
   - **The reusable READ-ONLY checker:** `build/testrail-foreign-cases-2026-07-31/foreign_overlap_check.py`
     — pulls every live case under a group, splits ours vs foreign by `created_by`, and ranks the
     best-matching OF-OURS cases per foreign case on **normalised assertion text** (title + preconds +
