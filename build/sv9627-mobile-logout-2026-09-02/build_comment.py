@@ -2,55 +2,63 @@ import json
 IMG="https://raw.githubusercontent.com/bilalmuzamil-sketch/Manual-test-Cases/claude/heic-upload-iphone-test-sz7h5p/build/sv9627-mobile-logout-2026-09-02/evidence/EX1-localstorage-purge-logout.png"
 def t(s,m=None):
     n={"type":"text","text":s}
-    if m:n["marks"]=m
+    if m: n["marks"]=m
     return n
-def p(*c):return {"type":"paragraph","content":list(c)}
-def strong(s):return t(s,[{"type":"strong"}])
-def code(s):return t(s,[{"type":"code"}])
-def h(s,l=3):return {"type":"heading","attrs":{"level":l},"content":[t(s)]}
-def panel(k,*c):return {"type":"panel","attrs":{"panelType":k},"content":list(c)}
-def bullet(*items):return {"type":"bulletList","content":[{"type":"listItem","content":[p(*(it if isinstance(it,list) else [it]))]} for it in items]}
-def cell(*c,head=False):return {"type":"tableHeader" if head else "tableCell","attrs":{},"content":list(c)}
-def row(cs):return {"type":"tableRow","content":cs}
-def media(url,cap):
-    return [{"type":"mediaSingle","attrs":{"layout":"full-width"},"content":[{"type":"media","attrs":{"type":"external","url":url}}]}, p(t(cap,[{"type":"em"}]))]
-
+def p(*c): return {"type":"paragraph","content":list(c)}
+def strong(s): return t(s,[{"type":"strong"}])
+def code(s): return t(s,[{"type":"code"}])
+def link(s,u): return t(s,[{"type":"link","attrs":{"href":u}}])
+def h(s,l=3): return {"type":"heading","attrs":{"level":l},"content":[t(s)]}
+def panel(k,*c): return {"type":"panel","attrs":{"panelType":k},"content":list(c)}
+def li(*content): return {"type":"listItem","content":[p(*content)]}
+def bl(*items): return {"type":"bulletList","content":list(items)}
+def cell(*c,head=False): return {"type":"tableHeader" if head else "tableCell","attrs":{},"content":list(c)}
+def row(cs): return {"type":"tableRow","content":cs}
+def rule(): return {"type":"rule"}
+def media(url,cap): return [{"type":"mediaSingle","attrs":{"layout":"full-width"},"content":[{"type":"media","attrs":{"type":"external","url":url}}]}, p(t(cap,[{"type":"em"}]))]
 tbl=lambda rows: {"type":"table","attrs":{"isNumberColumnEnabled":False,"layout":"default"},"content":rows}
 
 doc={"type":"doc","version":1,"content":[
  panel("note",
-   p(strong("Root cause found and reproduced on production."),t(" Short version: the STOP button is not what logs the technician out. STOP only sends a clock-out request. If the technician's session has already expired during the job, the server rejects that request and the app has a single global rule that logs the user out and sends them to the Login screen — with no silent re-login. STOP is just the first request after a long idle/backgrounded job, so it is the action that discovers the dead session.")),
+   p(strong("In one line: "),t("the STOP button is not logging anyone out. The technician gets quietly signed out during the job, and tapping STOP is just the first moment the app notices — so it sends them to the login screen before they can clock out. We reproduced the cause on production.")))
+ ,
+ h("In plain words (for anyone)"),
+ p(t("To keep a technician signed in, the app relies on two things: a "),strong("session pass"),t(" the server gives out at login, and a "),strong("copy of “who you are” saved on the phone."),t(" If either goes missing while the tech is on a job, the app treats them as signed out.")),
+ p(t("Things that quietly remove one of those during a job:")),
+ bl(
+   li(strong("iPhones wipe a website’s saved data on their own. "),t("Apple deletes a site’s saved data after about 7 days of using Safari without opening that site (any time they open it resets the clock). When the “who you are” copy is wiped, the app no longer knows who the tech is — even though nothing is wrong on the server. This is an iPhone behaviour; Android phones do not do this on a timer.")),
+   li(strong("“Cleaner” / privacy apps and “clear browsing data” "),t("wipe the same saved login — on both iPhone and Android — and cause the identical sign-out.")),
+   li(strong("The session pass lapses after ~24 hours of not using the app "),t("(left overnight or over a weekend). This is the app’s own setting and is the same on every phone — it is not an iPhone or Android behaviour.")),
+   li(strong("Occasionally, the phone reclaiming space "),t("when storage is nearly full, or an app update, can clear it too.")),
  ),
- h("The STOP button specifically"),
- p(t("I traced the STOP button in the production build (the My Timesheets component). The red \"Stop\" button ("),code("data-test-id-suffix=\"stop_timesheet\""),t(") renders on any timesheet row that is not yet clocked out, and its click handler only fires the clock-out request. "),strong("That handler contains no logout, no user-clearing and no session code at all"),t(" — I searched the whole chunk. So STOP cannot log anyone out by itself.")),
- p(strong("The chain is:"),t(" tap STOP → clock-out request → if the session already died, the server returns "),code("409 Session has expired"),t(" → the app's global error handler runs logout + redirect to Login (no refresh attempt) → the technician re-logs-in and taps STOP again, which works. Any action taken at that moment would trigger the same thing; STOP is simply the one they always take at the end of a job.")),
- h("What actually kills the session (verified live on production, 02 Sep 2026)"),
- p(t("I logged in on production and tested the session mechanics directly. No production data was created or deleted.")),
+ p(t("Whichever happens, the tech "),strong("looks signed out to the app"),t(", and the app has "),strong("no “quietly sign me back in” step"),t(" — so the very next tap (which, at the end of a job, is STOP) bounces them to the login screen. They sign in again, tap STOP again, and it works. That is the “intermittent re-login before clock out” the customer is describing. Because iPhones auto-wipe and Android does not, this will hit iPhone users far more often.")),
+
+ h("Does the STOP button itself log them out? No."),
+ p(t("We opened up the STOP button in the live app. All it does is send the “clock me out” request — it contains "),strong("nothing"),t(" that signs a user out. The sign-out is a separate, app-wide rule that fires whenever the server says “your session is gone,” and STOP is simply the request that happens to hit the dead session first.")),
+
+ *media(IMG,"Reproduced on production, phone-sized screen. Left: the technician is signed in. Right: after the phone’s saved app data is cleared (nothing else touched), the app immediately shows the login screen — exactly what an iPhone does to saved data after about a week, and what a cleaner app does on any phone."),
+
+ h("What we recommend fixing"),
+ bl(
+   li(strong("Re-fetch “who you are” from the server when the phone has wiped it "),t("(the session pass is often still valid) — this alone would stop most of these sign-outs. Biggest win.")),
+   li(strong("Add a “quietly sign me back in” step "),t("so a lapsed session refreshes on its own instead of throwing the tech to a login screen.")),
+   li(strong("Never lose the clock-out. "),t("Hold the tap and finish it after re-login, keeping the original time — so no punch is lost and admins stop hand-editing timesheets.")),
+   li(strong("Keep technicians signed in longer "),t("through a normal shift/overnight, and handle app updates without signing people out.")),
+ ),
+
+ rule(),
+ h("Technical details (for the developers)"),
+ p(t("Verified live on production, 02 Sep 2026 (analyst account; no data created or deleted).")),
  tbl([
    row([cell(p(strong("Check")),head=True),cell(p(strong("Result")),head=True)]),
-   row([cell(p(t("Auth cookie set"))),cell(p(t("The only auth cookie is "),code("PHPSESSID"),t(", expiring exactly 24h after login, HttpOnly/Secure/SameSite=None. There is no long-lived SSO cookie and no remember-me/refresh token, so once it dies there is nothing to silently re-auth with.")))]),
-   row([cell(p(strong("localStorage purge (cookie kept)"))),cell(p(t("Cleared only localStorage with a valid cookie still present → the app force-redirected to the Login screen. The user identity is read only from localStorage, with no re-fetch from the server. "),strong("This is the strongest fit for a mobile-only intermittent logout — iOS Safari wipes app storage after ~7 days / under storage pressure.")))]),
-   row([cell(p(t("Cookie is sliding"))),cell(p(t("Every response re-issues PHPSESSID with a fresh 24h expiry, so the session dies after 24h of "),strong("inactivity"),t(" (phone asleep overnight/weekend), not 24h since login.")))]),
-   row([cell(p(t("Cookie deleted (localStorage kept)"))),cell(p(t("Every API call returns 409 but the app stays on the page (identity still in localStorage) — the technician sees a half-broken screen where clock-out fails, rather than a clean re-login.")))]),
-   row([cell(p(t("Session-id rotation"))),cell(p(t("The rotated-away id still works (grace) → no parallel-request race. Ruled out.")))]),
+   row([cell(p(t("Auth"))),cell(p(t("Only auth cookie is "),code("PHPSESSID"),t(" — 24h "),strong("sliding"),t(" (refreshed each response), HttpOnly/Secure/SameSite=None. No SSO cookie, no refresh token, so nothing to silently re-auth with once it lapses. The 24h is server-set and browser/OS-agnostic — not an iOS/Android behaviour.")))]),
+   row([cell(p(t("localStorage cleared, cookie kept"))),cell(p(t("App force-redirects to Login. "),code("getUser()"),t(" reads identity from localStorage only, with no API re-hydration; "),code("isUserAbleToClock"),t("/"),code("getStaffId"),t(" derive from it.")))]),
+   row([cell(p(t("Cookie deleted, localStorage kept"))),cell(p(t("Every API call → "),code("409 “Session has expired”"),t("; app stays on the page in a broken state (identity still cached).")))]),
+   row([cell(p(t("Session-id rotation"))),cell(p(t("Pre-rotation id still returns 200 (grace) → no parallel-request race. Ruled out.")))]),
+   row([cell(p(t("STOP button"))),cell(p(code("stop_timesheet"),t(" onClick fires the clock-out request only; the chunk has no logout/removeUser/session code. Global interceptor logs out on "),code("[401,403,404,409,422]"),t(": 409 → "),code("logout()+removeUser()+push(Login)"),t(", no refresh.")))]),
  ]),
- *media(IMG,"Reproduced on production (iPhone-sized viewport). Left: technician logged in on the Work Orders screen, session cookie valid. Right: after clearing only localStorage (cookie untouched), a reload forces the Login screen — exactly what iOS Safari does to stored data after about 7 days."),
- h("Why it is intermittent and mobile-only"),
- bullet(
-   [strong("iOS Safari storage eviction "),t("(~7 days of not opening the app, or under storage pressure) wipes localStorage → instant logout even though the cookie is valid. Proven above.")],
-   [strong("24h of app inactivity "),t("expires the sliding session cookie (overnight/weekend, phone asleep).")],
-   [strong("SameSite=None cookie "),t("can be dropped or partitioned by iOS in cross-site contexts.")],
-   [strong("A production deploy "),t("mid-shift invalidates active sessions.")],
-   [t("In every case there is "),strong("no silent re-login"),t(", so the next request (usually STOP) drops the technician on the Login screen.")],
- ),
- h("Recommended fixes (the gaps to close)"),
- bullet(
-   [strong("Re-hydrate the user from the API on load "),t("when localStorage is missing but the session cookie is still valid — this makes an iOS storage wipe self-healing instead of a logout. Biggest single win.")],
-   [strong("Silent re-auth before forcing Login "),t("on a 409 session-expiry (and/or a refresh token), so a recoverable session does not dump the user to a login screen.")],
-   [strong("Never lose the clock-out "),t("— queue it locally with its original timestamp and replay after re-auth, so the punch is not lost and admins stop hand-editing timesheets.")],
-   [strong("Longer/sliding idle window "),t("tuned for a technician on a job, and graceful handling of deploys.")],
- ),
- p(t("The fix is in session lifetime + the global 409 handler + the localStorage dependency — "),strong("not in the STOP button."),t(" Full technical write-up with the exact cookie attributes, the 409 body and the code references is available on request.")),
+ p(strong("Platform facts (confirmed): "),t("iOS/WebKit (every browser on iPhone) deletes all script-writable storage — localStorage, sessionStorage, IndexedDB, JS-set cookies — after 7 days of Safari use without interacting with the site; a real interaction resets the timer ("),link("WebKit blog","https://webkit.org/blog/10218/full-third-party-cookie-blocking-and-more/"),t("). Chrome/Chromium (Android + desktop) has no such time-based purge; storage is removed only by the user, a cleaner app, or storage-pressure eviction. So the auto-wipe path is iPhone-specific; Android hits this mainly via cleaner apps / manual clear / the 24h inactivity lapse.")),
+ p(strong("Fixes, technically: "),t("(1) on boot, if the localStorage user is absent but the cookie is valid, hydrate from "),code("GET /api/auth/me…"),t("; (2) on 409, attempt silent re-auth / add a refresh token before routing to Login; (3) persist + replay the clock-out mutation across re-auth with the original timestamp; (4) longer/sliding idle window + graceful deploy handling; consider a first-party auth domain to avoid SameSite=None.")),
 ]}
 open("comment.adf.json","w").write(json.dumps(doc))
-print("built; length", len(json.dumps(doc)))
+print("built OK; length", len(json.dumps(doc)))

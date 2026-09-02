@@ -57,6 +57,7 @@ Ranked by likely contribution. Each marked **VERIFIED** (observed in code/header
 
 ### B. Mobile browser / device (Chris's "client-side browser/device")
 5. **`localStorage["user"]` purge → logout even with a live cookie. VERIFIED LIVE ON PRODUCTION (T1).** `getUser()` is localStorage-only; iOS Safari's ITP caps *all script-writable storage* (localStorage + JS-set cookies) at **~7 days** and evicts it (and evicts under storage pressure). I cleared only localStorage with a valid cookie and the app force-redirected to Login. Once `user` is gone, `getUser()` is null → routed to Login, and `isUserAbleToClock`/`getStaffId` fail — **the clock-out itself can't proceed.** *This is the strongest single explanation for a mobile-only, intermittent logout, and it matches Chris's "client-side browser/device" hunch.*
+5b. **"Cleaner"/privacy apps and "clear browsing data" wipe the saved login** (on BOTH iOS and Android) → same logout as §5. A very common real-world trigger. **Grounded (known behavior).**
 6. **`SameSite=none` auth cookie dropped/partitioned on mobile.** iOS treats `SameSite=none` cookies as cross-site and can partition or purge them (especially with an SSO login on a different domain), so the cookie isn't sent → 409. **HYPOTHESIS grounded in the verified `SameSite=none`.**
 7. **Backgrounded tab discarded (memory pressure).** iOS/Android reclaim backgrounded web views; `sessionStorage` is lost and the page reloads. On return the `visibilitychange` refetch/reload fires against a missing session/storage → Login. **VERIFIED handler + known behavior.**
 8. **Private browsing / "clear on close" / Add-to-Home-Screen vs Safari-tab storage partition.** A tech who logs in inside one context and opens another, or uses private mode, starts unauthenticated. **Known behavior.**
@@ -109,6 +110,14 @@ The clock-out is not special; it is just the **next request after a long idle/ba
 7. **Graceful deploys:** version-check and soft-reload the SPA without dropping the session.
 
 ---
+
+## 6b. Platform facts (confirmed via WebKit/Chromium sources 2026-09-02)
+
+- **The 24-hour expiry is NOT an OS behavior** — it is ShopView's own `PHPSESSID` cookie (server-set, 24h sliding, verified live). It applies identically on iOS, Android and desktop. Do not attribute it to iPhone/Android.
+- **iOS (WebKit — every browser on iPhone) deletes all script-writable storage** (localStorage, sessionStorage, IndexedDB, JS-set cookies) **after 7 days of Safari use without interacting with the site**; any real interaction resets the timer. Home-screen web apps keep their own timer. Source: WebKit blog "Full Third-Party Cookie Blocking and More" (webkit.org/blog/10218). This wipes the on-device identity → logout even with a valid cookie (matches T1).
+- **Android / Chrome / Chromium has NO time-based purge** — storage is removed only by the user, a cleaner app, or storage-pressure eviction. So the automatic-wipe logout is **iPhone-specific**; Android is affected mainly via cleaner apps, manual clear, or the 24h inactivity lapse. Source: Chromium groups discussion (localStorage does not expire by default).
+
+**Conclusion: this bug will hit iPhone technicians far more often than Android**, because only iOS auto-wipes storage on a timer.
 
 ## 7. Honest limits (not verified this session — for dev confirmation)
 
