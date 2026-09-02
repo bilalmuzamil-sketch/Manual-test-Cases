@@ -303,7 +303,13 @@ for (const cid of queue) {
     if (last !== wantMarker) problems.push(`marker is not ${JSON.stringify(wantMarker)} and last: ${JSON.stringify(last.slice(0, 70))}`);
     const nmark = lines.filter(l => l.startsWith('AUTOMATION:')).length;
     if (nmark !== 1) problems.push(`AUTOMATION marker count = ${nmark}`);
-    if (/Not available on Build/.test(view.custom_expected.text)) problems.push('the deferred marker text is still present');
+    // 🛑 THIS CHECK IS ONLY MEANINGFUL WHEN THE PASS IS LIFTING THE DEFERRED MARKER. It was written for
+    // the Inline suite, where every case moved off "Not available on Build to test Yet". Reused on a
+    // project that legitimately still carries that marker (Invoice UI Refresh, Rule 69) it failed two
+    // correct writes. The marker itself is already asserted to equal marker_override character for
+    // character above, which is the real check; this one only guards against a leftover.
+    if (!/Not available on Build/.test(wantMarker) && /Not available on Build/.test(view.custom_expected.text))
+      problems.push('the deferred marker text is still present');
     // Rule 54: sentence 1 carried byte-for-byte, sentence 2 present, NEVER merged.
     // 🆕 2026-09-01: a case authored BY HAND may carry its source in its own words ("Source: Manually
     // added ...") rather than the "This is the expected behaviour ..." sentence this pass writes. Those
