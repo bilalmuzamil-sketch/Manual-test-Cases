@@ -708,16 +708,16 @@ AUTOMATION: HOLD - customer portal only exists on staging; this case cannot run 
 convention permits HOLD for *"a genuinely unobtainable thing"* — a portal that does not exist on the
 branch qualifies, so this is not the barred tool-flag excuse.
 
-**🔴 THE WORDING IS FINAL — CONFIRMED BY THE QA LEAD ON 2026-08-31.** It was recorded as provisional
-when first written that morning; **that provisional note is now spent and is replaced by this
-confirmation.** The string above is a **fixed, machine-findable literal**, exactly like
+**🔴 THE WORDING IS FINAL — CONFIRMED BY THE QA LEAD ON 2026-09-02.** It was recorded as provisional
+when first written on **2026-08-31** (the date of his ruling); **that provisional note is now spent
+and is replaced by this confirmation.** The string above is a **fixed, machine-findable literal**, exactly like
 `AUTOMATION: READY` and `AUTOMATION: Not available on Build to test Yet - Last checked <M/D/YYYY>`:
 **never reworded, never abbreviated, never re-punctuated, never re-cased, and never "tidied" in one
 file in isolation.** Copy it byte-for-byte — one space either side of the hyphen after `HOLD`, a
 semicolon before `this case`, no full stop, no trailing whitespace. If the QA lead ever does rename
 it, it is renamed **everywhere in one pass**, using the LOCATIONS list below.
 
-**⇒ LOCATIONS — every file that currently carries the literal (established by grep, 2026-08-31).**
+**⇒ LOCATIONS — every file that currently carries the literal (established by grep, 2026-09-02).**
 **This list is part of the rule: whenever a new location is added, add its row here in the same
 pass** (Rule 93), so a future rename is a findable sweep and never a guess.
 
@@ -762,9 +762,11 @@ and reads `AUTOMATION: READY`: it was reclassified **IN SCOPE** because it is ab
 on the invoice's Payments rows (S8-R2), not the paid banner**, so it never needed the portal
 (`build/invoice-ui-refresh/build-verify-2026-08-31/RECLASSIFIED-18-2026-08-31.md` §2, and the marker
 write logged in that pass's `markers-2026-09-01/TESTRAIL-EXECUTION-LOG-2026-09-01.md`). **The
-decision was right; nobody propagated it.** ⚠️ **The same stale four-id list still stands in
-`03-RUN-CHECK.md` §7's worked example and in all four `build/handoffs/HANDOFF-*.md` files** — left
-there deliberately, reported to the QA lead rather than rewritten by the inventory pass.
+decision was right; nobody propagated it.** ✅ **PROPAGATED 2026-09-02 — the same stale four-id list
+was carried by `03-RUN-CHECK.md` §7.5's worked example and by all four `build/handoffs/HANDOFF-*.md`
+files, and every one of them now reads C44951 / C44952 / C45175 staging-only with C44947 IN SCOPE.**
+The worked example is STRONGER for it: it now demonstrates the preconditions-not-the-word scoping
+caveat with a real case that was mis-parked first and then correctly reclassified.
 
 **This is the point of keeping a TestRail half at all:** the repo said four, the deployment said
 three. Re-derive it — never quote it from memory — with the read-only sweep that produced it:

@@ -273,17 +273,25 @@ AUTOMATION: HOLD - customer portal only exists on staging; this case cannot run 
 **It is a HOLD, not a fifth literal**, so the CLAUDE.md arithmetic gate **READY + EXPECT-FAIL =
 total − HOLD** is unaffected; a portal that does not exist on the branch is *"a genuinely unobtainable
 thing"*, so this is not the barred tool-flag excuse. **The wording is FINAL — the QA lead confirmed
-this exact string on 2026-08-31; it is never reworded, abbreviated or re-punctuated in isolation, and
+this exact string on 2026-09-02; it is never reworded, abbreviated or re-punctuated in isolation, and
 `00-COMMON-CORE.md` §5.0-b holds the LOCATIONS list a rename would have to sweep.**
 
 **⇒ SCOPE IT FROM THE CASE'S PRECONDITIONS, NEVER FROM THE WORD "PORTAL".** Only a case whose
 **preconditions require a portal-generated artefact** gets the marker. **A case that verifies the
 portal feature's ABSENCE on the shop-app path is fully testable on the QA branch and must NOT be
 parked.** Worked example, 2026-08-31 (Invoice UI Refresh): **C44954** — *"No paid banner when the
-invoice has no portal-processed payment"* — **is build verified**, while **C44947 / C44951 / C44952 /
-C45175** are staging-only. Four further cases mention the banner in passing and **C45184** names it as
-an **exclusion** (*"The only exception is the Paid banner's 'Date / Time' field"*) — **none of those
-five are portal-gated.**
+invoice has no portal-processed payment"* — **is build verified**, while **C44951 / C44952 / C45175**
+are staging-only and carry the HOLD. **C44947 is IN SCOPE and testable on the QA branch** — it was
+mis-parked with those three at first, then correctly reclassified because it is about the **payment
+method name on the invoice's Payments rows (S8-R2), not the paid banner**, so it never needed the
+portal; it is live at `AUTOMATION: READY`
+(`build/invoice-ui-refresh/build-verify-2026-08-31/RECLASSIFIED-18-2026-08-31.md` §2). **The id that
+looked portal-gated was not — which is precisely why you scope from the preconditions and never from
+the word "portal".** **It is THREE cases, not four**, measured live over the whole estate (686
+sections / 4,624 cases paged to exhaustion, byte-exact, zero variants):
+`build/testrail-writes/portal-hold-inventory-2026-08-31/INVENTORY.md`. Four further cases mention the
+banner in passing and **C45184** names it as an **exclusion** (*"The only exception is the Paid
+banner's 'Date / Time' field"*) — **none of those five are portal-gated.**
 
 ---
 
