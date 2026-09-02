@@ -174,6 +174,17 @@ These are stated here **in full** because a session that gets only this far must
   last 3 builds / 3 source versions still COUNTS, with its date shown (77).
 - **SOURCE VERIFICATION IS OFFERED AND GATED, NEVER AUTO-RUN (81).** Make the source current FIRST,
   but ask before spending the quota on it.
+- **🛑 NEVER CALL QUICK-LOGIN ON A SESSION YOU DID NOT MINT (2026-09-02, learned the hard way).**
+  Clicking the login page's own **`Admin`** button fires `POST /api/quick-login`, which **rotates the
+  shared session server-side and evicts everyone else on that branch** (Rule 83). It answers **200 and
+  returns a PHPSESSID that 409s for ever** — QA lead: *"persist that cookie and you are latched into
+  permanent logout."* On 2026-09-02 that one click **destroyed the QA lead's live QA session** minutes
+  after it had paged 2,821 work orders successfully, and cost him a re-mint. **A direct instruction to
+  "use the quick-login control" is the moment to surface the Rule-83 conflict (Rule 63), not to
+  click.** Also: **never write a post-quick-login cookie back to the cookie file** (keep the supplied
+  set immutable, verify by fingerprint), **a `token` in that response is not a bearer token** (119k of
+  permission JSON on this build; `Bearer`/`Token`/`JWT`/`X-AUTH-TOKEN` all fail), and **409 `Session
+  has expired.` means stop, never retry.** Full account: `build/APP-ACTIONS-PLAYBOOK.md`.
 - **AUTOMATED CASES ARE READ-ASSESSED, THEN HELD FOR THE QA LEAD (71).** Never change or delete a case
   TestRail flags as Automated without his go-ahead; if a pass does change one, TELL VLAD (65).
 - **COMMIT AND PUSH AFTER EVERY STEP, PATH-SCOPED (29).** Git is the only durable store; the container

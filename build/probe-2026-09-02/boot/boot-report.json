@@ -1,0 +1,65 @@
+{
+ "url": "https://sv9315.qa.shopview.com/login",
+ "calls": [
+  "404 GET /api/api/sso/check",
+  "200 GET /api/quick-login/users"
+ ],
+ "controls": [
+  {
+   "tag": "BUTTON",
+   "text": "Light",
+   "href": null,
+   "cls": "q-btn q-btn-item non-selectable no-outline q-btn--"
+  },
+  {
+   "tag": "BUTTON",
+   "text": "Dark",
+   "href": null,
+   "cls": "q-btn q-btn-item non-selectable no-outline q-btn--"
+  },
+  {
+   "tag": "BUTTON",
+   "text": "Login",
+   "href": null,
+   "cls": "q-btn q-btn-item non-selectable no-outline q-btn--"
+  },
+  {
+   "tag": "A",
+   "text": "Forgot password?",
+   "href": "/forgot-password",
+   "cls": "link forgot-link"
+  },
+  {
+   "tag": "BUTTON",
+   "text": "Admin",
+   "href": null,
+   "cls": "q-btn q-btn-item non-selectable no-outline q-btn--"
+  },
+  {
+   "tag": "BUTTON",
+   "text": "Tech",
+   "href": null,
+   "cls": "q-btn q-btn-item non-selectable no-outline q-btn--"
+  },
+  {
+   "tag": "A",
+   "text": "Privacy Policy",
+   "href": "https://shopview.com/privacy",
+   "cls": "footer-link"
+  },
+  {
+   "tag": "A",
+   "text": "Terms of Use",
+   "href": "https://shopview.com/terms",
+   "cls": "footer-link"
+  }
+ ],
+ "storage": {
+  "local": [
+   "mode"
+  ],
+  "session": [
+   "sentryReplaySession"
+  ]
+ }
+}

@@ -226,6 +226,44 @@ any endpoint/ID not recorded here or in `CLAUDE.md`** — if only partly known, 
   **doubled `/api/api/`**, which is what the front end actually requests.
   **⇒ Any 200 whose body starts `<!doctype html>` is NOT an answer. Assert JSON before believing a
   reply.**
+- **🛑🛑 2026-09-02 — I KILLED A WORKING QA SESSION BY CLICKING THE LOGIN PAGE'S OWN "Admin" BUTTON.
+  NEVER CALL QUICK-LOGIN ON A SESSION YOU DID NOT MINT.** The sequence, verbatim from the run logs:
+
+  | Time | What happened |
+  |---|---|
+  | before | `GET /api/auth/me/fe-permissions` **200**; 2,821 work orders paged with the QA lead's cookies |
+  | — | the app still landed on `/login` even after a full SPA boot with cookies pre-seeded on all three hosts, so I used the branch's own quick-login control, as instructed |
+  | click | the login page's **`Admin`** button fires **`POST /api/quick-login`** → **200** |
+  | immediately after | `GET /api/auth/me/fe-permissions` → **409 `{"errors":[{"error":"Session has expired."}]}`** |
+  | and in a FRESH context with the ORIGINAL cookies | **409 `Session has expired.`** — the QA lead's own session was gone |
+
+  **`POST /api/quick-login` ROTATES THE SHARED SESSION SERVER-SIDE AND EVICTS EVERY OTHER HOLDER OF IT**
+  (Rule 83 says exactly this: *"quick-login EVICTS any other worker on that branch"*). With an
+  SSO-minted session it answers **200 and hands back a PHPSESSID that 409s for ever** — the QA lead's
+  words: *"persist that cookie and you are latched into permanent logout."* The 200 is not success.
+
+  **⇒ THE RULES, and they are absolute:**
+  1. **Do not call quick-login — or click a quick-login control — on cookies somebody else minted.**
+     It is not a read. Rule 83 requires confirming with the QA lead first, and a direct instruction to
+     "use the quick-login control" is exactly the moment to surface that conflict (Rule 63) rather
+     than to click.
+  2. **Never write a post-quick-login cookie back to the cookie file.** Keep the supplied set
+     immutable and verify it by fingerprint afterwards; a rotated PHPSESSID on disk is the latch.
+  3. **A `token` field in the quick-login body is NOT a bearer token.** On this build it is **119,039
+     characters of whitespace-bearing permission JSON**. There is no header-auth fallback: `Bearer`,
+     `Token`, `JWT` and `X-AUTH-TOKEN` are all dead ends.
+  4. **409 `Session has expired.` is the recorded signal** (`staging-boot2.mjs` already checks for it
+     at `fe-permissions`). Treat any 409 there as "stop, the session is gone", never as "retry".
+
+- **⚠️ CORRECTION to the entry below ("the one value that fixes it"): IT WAS WRONG, AND UNTESTABLE.**
+  Seeding `localStorage["user"]` cannot help while every API call answers 409 — the blocker is the
+  **session**, not the user store. And the underlying puzzle is still open, now unmeasurable: **with a
+  LIVE session, cookies seeded on all three hosts before first navigation, and the SPA booted normally
+  from `/`, the app STILL landed on `/login`.** So cookies alone did not sign the app in even while
+  they were valid. The only proven path to a rendered UI on this branch remains **a real Google SSO
+  sign-in in a person's browser**. The key names in that entry (`user`, `fe_permissions_wrapper`) are
+  still correct and still useful; the conclusion drawn from them was not.
+
 - **🆕 2026-09-02 — WHY A VALID COOKIE SET STILL LANDS ON THE SIGN-IN FORM, AND THE ONE VALUE THAT FIXES
   IT.** The QA lead's cookies for sv9315 authenticate perfectly **against the API host** — 2,821 work
   orders paged, `/api/auth/me/fe-permissions` 200 — and the single-page app *still* shows
