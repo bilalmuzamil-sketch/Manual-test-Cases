@@ -88,11 +88,31 @@ AREA = {
                                   ['Parts Sale Estimate', 'Parts Sale Invoice', 'Authorizer Entry (Parts Sale)',
                                    'Parts sale invoiced'], None),
 }
+# The two sections the id-map never contained, because they were added after our authoring pass.
+AREA['Cross-Cutting and Regression'] = (
+    CD, None,
+    'any document — this area is checked across all of them; use the "B&W print preview" and '
+    '"Dark mode" view buttons and the document switcher to compare',
+    ['B&W print preview', 'Dark mode'], None)
+AREA['API — Authorizer Entry'] = (None, None, None, [], None)   # no design; see NO_DESIGN below
+
 # 🛑 NO CASE IS EXCLUDED ON A GUESS. The first version of this script excluded C44913 on the hunch
 # that "field order and label punctuation" had no picture - it does: the order-reference row shows
 # Work Order / Customer PO / Authorizer / Approval Code / Terms in that order, unpunctuated. Checked
 # before excluding, and the exclusion list is now empty.
-NO_DESIGN = set()
+# ...but a case whose subject the design genuinely does not depict gets NO reference, with the reason
+# stated. The design shows printed documents and the two authorizer screens. It shows nothing about
+# API responses, e-mail delivery, stored snapshots, or permissions.
+NO_DESIGN = {
+ 'C45169': 'API behaviour — the design shows documents, not API responses (Rule 4)',
+ 'C45170': 'API behaviour — the design shows documents, not API responses (Rule 4)',
+ 'C45185': 'a stored pre-redesign snapshot — the design shows no snapshot data',
+ 'C45186': 'a stored post-redesign snapshot — the design shows no snapshot data',
+ 'C45187': 'e-mail delivery — the design shows no mail path',
+ 'C45190': 'the customer card across record types — the design shows only the work order and parts sale',
+ 'C45191': 'a permission state — the design shows no permission behaviour',
+ 'C45197': 'depends on a reversed originating invoice — a record state the design does not depict',
+}
 
 # WHERE THE AREA ROUTE IS TOO COARSE, the case gets its own. Seven Credit Invoice cases all pointing
 # at "the whole credit sheet" is not a location; each of these names the block it is about.
@@ -121,18 +141,63 @@ PER_CASE = {
             ['Authorizer', 'Phone', 'no phone entered'], None),
 }
 
-rows = list(csv.DictReader(open(f'{ROOT}/testrail-id-map.csv')))
+# 🛑 THE CASE LIST COMES FROM TESTRAIL, NOT FROM testrail-id-map.csv.
+# The id-map is a snapshot of what OUR authoring pass created. Sourcing from it made this script
+# report "89 cases" when the suite holds 119 - the QA lead caught it. The other 30 are the manual QA
+# tester Mudassir Qamar's, and Rule 38 as amended says the designated tester's cases are IN SCOPE,
+# not foreign. Third "conclusion drawn from the wrong list" of the day; the fix is to always ask the
+# system of record. get_sections and get_cases are PAGED - unpaged returns 250 and silently finds
+# nothing (core 3.3).
+import base64, urllib.request, time, collections
+_C = json.load(open('/tmp/testrail/creds.json'))
+_A = base64.b64encode(f"{_C['email']}:{_C['password']}".encode()).decode()
+def _get(pth):
+    for a in range(6):
+        try:
+            r = urllib.request.Request('https://shopview.testrail.io/index.php?/api/v2/' + pth,
+                                       headers={'Authorization': 'Basic ' + _A})
+            return json.load(urllib.request.urlopen(r, timeout=180))
+        except Exception:
+            if a == 5: raise
+            time.sleep(2 ** a)
+def _paged(pth, key):
+    out, off = [], 0
+    while True:
+        j = _get(f'{pth}&limit=250&offset={off}')
+        ch = j[key] if isinstance(j, dict) else j
+        out += ch
+        if len(ch) < 250: break
+        off += 250
+    return out
+GROUP = 6559
+_secs = _paged('get_sections/1', 'sections')
+_byparent = collections.defaultdict(list)
+for _s in _secs: _byparent[_s.get('parent_id')].append(_s)
+_ids, _stack = [GROUP], [GROUP]
+_names = {GROUP: 'Invoice UI Refresh'}
+while _stack:
+    for _ch in _byparent.get(_stack.pop(), []):
+        _ids.append(_ch['id']); _stack.append(_ch['id']); _names[_ch['id']] = _ch['name']
+_live = []
+for _sid in _ids:
+    _live += _paged(f'get_cases/1&section_id={_sid}', 'cases')
+rows = [{'testrail_case_id': f"C{c['id']}", 'internal_id': '', 'title': c['title'],
+         'section': _names.get(c['section_id'], str(c['section_id'])), 'refs': c.get('refs') or ''}
+        for c in _live]
+print(f'live cases in group {GROUP}: {len(rows)} across {len(_ids)} sections')
 out, skipped, bad = {}, [], []
 for r in rows:
     cid, area = r['testrail_case_id'], r['section']
     if area not in AREA:
         bad.append((cid, f'no design route defined for area {area!r}')); continue
     view, doc, where, anchors, toggle = PER_CASE.get(cid, AREA[area])
+    if view is None:
+        skipped.append((cid, r['title'][:52], f'area {area!r} has no design counterpart')); continue
     missing = [a for a in anchors if not anchor_ok(a)]
     if missing:
         bad.append((cid, f'anchors NOT in the design: {missing}')); continue
     if cid in NO_DESIGN:
-        skipped.append((cid, r['internal_id'], 'the rule has no visual in the design')); continue
+        skipped.append((cid, r['title'][:52], NO_DESIGN[cid])); continue
     path = f'"{view}"'
     if doc: path += f' → "{doc}"'
     sentence = (f'Design: the Design Document ({DESIGN_LINK}) — open {path}, then {where}.')

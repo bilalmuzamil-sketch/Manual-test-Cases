@@ -2205,3 +2205,51 @@ and the case-body snapshots that make a foreign edit diffable.
 - **`move_cases_to_section` changes placement without rewriting any text field**, so unlike
   `update_case` it cannot push a field into the escaping container. Use it for section moves.
 - **A section is created with `add_section`**; mirror the estate's naming (`<Project> / API — <topic>`).
+
+
+---
+
+# 🛑 COUNT FROM THE SYSTEM OF RECORD, NEVER FROM A LOCAL SNAPSHOT (2026-09-02)
+
+**Three times in two days a conclusion was drawn from the wrong list, and each one reached the QA lead
+before it was caught.**
+
+| What was claimed | Where the number came from | The truth |
+|---|---|---|
+| "every part on this system is in at least one bin" | `/api/inventory/parts` — the **stocked** parts | 19,496 catalogue parts are on no bin at all |
+| "every part holds 0.00 in cost" | the same inventory list | a catalogue part has no cost field at all |
+| **"all 89 Invoice UI Refresh cases"** | **`testrail-id-map.csv`** — our own authoring snapshot | **the suite holds 119 live**; 30 are the manual QA tester's |
+
+**THE RULE.** A count, a coverage claim, or a "there is no such thing" conclusion is taken from the
+**system of record**, live, at the moment of the claim:
+
+* cases, sections, runs → **TestRail**, paged (`get_sections` / `get_cases` unpaged return 250 and
+  silently find nothing);
+* app data → the endpoint that actually answers the question, and check you are asking the right list
+  (playbook §U);
+* never `testrail-id-map.csv`, never `cases/*.json`, never a note in this repo, never a figure
+  remembered from earlier in the session.
+
+**A local file is a snapshot and the estate moves underneath it** — the QA lead deleted a case and added
+four, the tester added thirty, and Vlad flagged four Automated, all in one day.
+
+**THE TELL:** if you are about to state a number, ask *"which list did this come from, and is it the
+list the question is about?"* If the answer is a file in this repo, go and ask the server.
+
+# 🛑 A RULE'S AMENDMENT IS PART OF THE RULE (same day, same pass)
+
+The payload builder for that suite rejected all 30 of the tester's cases with `created_by != 3 →
+"foreign (Rule 38)"`. **Rule 38 has an amendment that says the opposite for exactly this case:** *"A
+case authored by the project's designated MANUAL QA TESTER is NOT foreign — treat it as IN-SCOPE (as if
+created by the QA lead)."* Invoice UI Refresh's recorded tester is **Mudassir Qamar (TestRail user 6)**.
+
+**So: read the rule in its file, to the end, including the amendments — the CLAUDE.md index line is not
+the rule (it says so itself).** And when a check implements a rule, encode the amendment in the check,
+scoped to the project it belongs to, never as a blanket allowance:
+
+```python
+IN_SCOPE_AUTHORS = {3: 'us', 6: 'Mudassir Qamar — this project’s manual QA tester'}
+```
+
+Vladimir Tomovic (user 1) is the standing exception in the other direction: **never** in scope, on any
+project, whatever else has been authorised.

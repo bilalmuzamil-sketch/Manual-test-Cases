@@ -94,6 +94,22 @@ These are stated here **in full** because a session that gets only this far must
   silence is escalated as a PO question rather than assumed. **Documents establish intent; code
   establishes fact** — and a code-vs-document conflict is a **PO DECISION ITEM, never a silent
   invariant.** Skill: `build/skills/17-REGRESSION-IMPACT-V1-TO-V2.md`.
+- **🛑 COUNT FROM THE SYSTEM OF RECORD, NEVER FROM A LOCAL SNAPSHOT (2026-09-02).** Three times in two
+  days a claim came from the wrong list: *"every part is in at least one bin"* and *"every part holds
+  0.00"* were read off `/api/inventory/parts` (the **stocked** parts, not the catalogue — 19,496
+  catalogue parts sit on no bin), and **"all 89 Invoice UI Refresh cases" came from
+  `testrail-id-map.csv` when the suite holds 119 live** — 30 of them the manual QA tester's. **Cases,
+  sections and runs are counted LIVE from TestRail, paged**; app facts come from the endpoint that
+  answers the question (playbook §U). **Never the id-map, never `cases/*.json`, never a note in this
+  repo, never a figure remembered from earlier in the session.** The tell: before stating a number, ask
+  *"which list did this come from, and is it the list the question is about?"* Full text:
+  `build/skills/00-COMMON-CORE.md`.
+- **🛑 A RULE'S AMENDMENT IS PART OF THE RULE.** A check that implemented Rule 38 as `created_by != 3 →
+  foreign` rejected all 30 of the tester's cases — Rule 38's amendment says the project's **designated
+  manual QA tester is IN SCOPE, not foreign** (Invoice UI Refresh → **Mudassir Qamar, user 6**). Read
+  the rule in its file to the end, amendments included, and encode the amendment in the check,
+  **project-scoped, never a blanket allowance**. Vladimir Tomovic (user 1) stays the exception in the
+  other direction: never in scope, on any project.
 - **NEVER BULK-READ; SCRIPT THE BULK WORK (88).** A session with direct tools must not read hundreds
   of cases, spec bodies or archives into its own context. Write a script, run it, read its SUMMARY.
   Never read `CLAUDE-FULL-ARCHIVE-2026-08-21.md` (or any 100 KB+ artefact) whole.

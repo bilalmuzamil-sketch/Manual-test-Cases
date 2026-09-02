@@ -1,123 +1,6 @@
 {
- "44901": {
-  "title": "Masthead shows the shop location's full identity details",
-  "atm": 1,
-  "section_id": 6741,
-  "refs": "SV-9140 (S1-R1)",
-  "provenance": [
-   "This is the expected behaviour as per epic SV-8218 and story SV-9140 (Story 1, Masthead and Letterhead) and the Invoice UI Refresh specification version 45, section S1-R1, read on 31 August 2026."
-  ],
-  "own_source": [],
-  "before": {
-   "custom_expected": "<p>1. The masthead shows the shop location's name.<br>2. It shows the shop location's street address, city, state or province, postal code, and phone number.<br>3. All of these identity details read exactly as they are entered for the shop location.</p><p>---<br>This is the expected behaviour as per epic SV-8218 and story SV-9140 (Story 1, Masthead and Letterhead) and the Invoice UI Refresh specification version 45, section S1-R1, read on 31 August 2026.<br>Last checked against build v26.35.5-8c3cc21 on 8/31/2026.</p><p>AUTOMATION: READY</p>"
-  }
- },
- "44902": {
-  "title": "Shop logo shows when set; nothing (no placeholder) shows when unset",
-  "atm": 1,
-  "section_id": 6741,
-  "refs": "SV-9140 (S1-R2)",
-  "provenance": [
-   "This is the expected behaviour as per epic SV-8218 and story SV-9140 (Story 1, Masthead and Letterhead) and the Invoice UI Refresh specification version 45, section S1-R2, read on 31 August 2026."
-  ],
-  "own_source": [],
-  "before": {
-   "custom_expected": "<p>1. When the shop has a logo set, the masthead shows that logo.<br>2. When the shop has no logo set, the masthead shows no logo at all — and no placeholder image, box or 'no logo' text appears in its place.</p><p>---<br>This is the expected behaviour as per epic SV-8218 and story SV-9140 (Story 1, Masthead and Letterhead) and the Invoice UI Refresh specification version 45, section S1-R2, read on 31 August 2026.<br>Last checked against build v26.35.5-8c3cc21 on 8/31/2026.</p><p>AUTOMATION: READY</p>"
-  }
- },
- "44903": {
-  "title": "Document label names the type before the number on each document",
-  "atm": 1,
-  "section_id": 6741,
-  "refs": "SV-9140 (S1-R3; S1-R4)",
-  "provenance": [
-   "This is the expected behaviour as per epic SV-8218 and story SV-9140 (Story 1, Masthead and Letterhead) and the Invoice UI Refresh specification version 45, sections S1-R3 and S1-R4, read on 31 August 2026."
-  ],
-  "own_source": [],
-  "before": {
-   "custom_expected": "<p>1. The Estimate label reads exactly \"Estimate: {number}\", for example \"Estimate: EST-4176\".<br>2. The Invoice label reads exactly \"Invoice: {number}\", for example \"Invoice: INV-4176\".<br>3. The Credit Invoice label reads exactly \"Credit: {number}\", for example \"Credit: CM-2202\".<br>4. In every case the number always includes its type prefix (EST-, INV-, or CM-), and the type word comes before the number.</p><p>---<br>This is the expected behaviour as per epic SV-8218 and story SV-9140 (Story 1, Masthead and Letterhead) and the Invoice UI Refresh specification version 45, sections S1-R3 and S1-R4, read on 31 August 2026.<br>Last checked against build v26.35.5-8c3cc21 on 8/31/2026.</p><p>AUTOMATION: READY</p>"
-  }
- },
- "44904": {
-  "title": "No status pill appears in the masthead on any document",
-  "atm": 1,
-  "section_id": 6741,
-  "refs": "SV-9140 (S1-R5)",
-  "provenance": [
-   "This is the expected behaviour as per epic SV-8218 and story SV-9140 (Story 1, Masthead and Letterhead) and the Invoice UI Refresh specification version 45, section S1-R5, read on 31 August 2026."
-  ],
-  "own_source": [],
-  "before": {
-   "custom_expected": "<p>1. No status label or pill (for example \"PAID\", \"PAID IN FULL\", \"DRAFT\", \"VOIDED\") appears anywhere in the masthead of any document.<br>2. The only place a status indicator appears is with the content that proves it: the Paid banner's pill (on portal-generated Invoice PDFs) and the Status column in the Credit Invoice's status table.</p><p>---<br>This is the expected behaviour as per epic SV-8218 and story SV-9140 (Story 1, Masthead and Letterhead) and the Invoice UI Refresh specification version 45, section S1-R5, read on 31 August 2026.<br>Last checked against build v26.35.5-8c3cc21 on 8/31/2026.</p><p>AUTOMATION: READY</p>"
-  }
- },
- "44905": {
-  "title": "No money figure in the masthead; headline figure is the boxed total",
-  "atm": 1,
-  "section_id": 6741,
-  "refs": "SV-9140 (S1-R6)",
-  "provenance": [
-   "This is the expected behaviour as per epic SV-8218 and story SV-9140 (Story 1, Masthead and Letterhead) and the Invoice UI Refresh specification version 45, section S1-R6, read on 31 August 2026."
-  ],
-  "own_source": [],
-  "before": {
-   "custom_expected": "<p>1. No monetary amount appears anywhere in the masthead of any document.<br>2. On the Estimate the single headline figure appears once, as the boxed figure at the end of the totals block, labeled \"Estimated Total\".<br>3. On the Invoice the boxed headline figure at the end of the totals block is labeled \"Balance\".<br>4. The Credit Invoice has no boxed headline figure; its masthead carries only \"Credit: {number}\" and \"Issue date: {date}\", and its key figure (Total Credit) sits in the totals block.</p><p>---<br>This is the expected behaviour as per epic SV-8218 and story SV-9140 (Story 1, Masthead and Letterhead) and the Invoice UI Refresh specification version 45, section S1-R6, read on 31 August 2026.<br>Last checked against build v26.35.5-8c3cc21 on 8/31/2026.</p><p>AUTOMATION: READY</p>"
-  }
- },
- "44906": {
-  "title": "Masthead date labels read correctly for each document type",
-  "atm": 1,
-  "section_id": 6741,
-  "refs": "SV-9140 (S1-R7; G-R1)",
-  "provenance": [
-   "This is the expected behaviour as per epic SV-8218 and story SV-9140 (Story 1, Masthead and Letterhead) and the Invoice UI Refresh specification version 45, sections S1-R7 and G-R1, read on 31 August 2026. The paid-date swap detail is in S10-R4 (see the Estimate and Invoice Specifics cases)."
-  ],
-  "own_source": [],
-  "before": {
-   "custom_expected": "<p>1. The Estimate masthead shows \"Estimate date: {date}\" and no due date.<br>2. The unpaid Invoice masthead shows \"Invoice date: {date}\" and \"Due date: {date}\".<br>3. The fully paid Invoice masthead shows \"Invoice date: {date}\" and \"Paid date: {date}\" (Paid date replaces Due date).<br>4. The Credit Invoice masthead shows \"Issue date: {date}\".<br>5. Every date reads in the fixed format, for example \"Jan 5, 2026\".</p><p>---<br>This is the expected behaviour as per epic SV-8218 and story SV-9140 (Story 1, Masthead and Letterhead) and the Invoice UI Refresh specification version 45, sections S1-R7 and G-R1, read on 31 August 2026. The paid-date swap detail is in S10-R4 (see the Estimate and Invoice Specifics cases).<br>Last checked against build v26.35.5-8c3cc21 on 8/31/2026.</p><p>AUTOMATION: READY</p>"
-  }
- },
- "44907": {
-  "title": "Masthead identity fields each hide when empty",
-  "atm": 1,
-  "section_id": 6741,
-  "refs": "SV-9140 (S1-N1)",
-  "provenance": [
-   "This is the expected behaviour as per epic SV-8218 and story SV-9140 (Story 1, Masthead and Letterhead) and the Invoice UI Refresh specification version 45, section S1-N1, read on 31 August 2026."
-  ],
-  "own_source": [],
-  "before": {
-   "custom_expected": "<p>1. Each missing field among the street address, city, state or province, postal code, and phone number is hidden — no blank line and no empty label is left where it would have been.<br>2. The fields that do have values still show normally.</p><p>---<br>This is the expected behaviour as per epic SV-8218 and story SV-9140 (Story 1, Masthead and Letterhead) and the Invoice UI Refresh specification version 45, section S1-N1, read on 31 August 2026.<br>Last checked against build v26.35.5-8c3cc21 on 8/31/2026.</p><p>AUTOMATION: READY</p>"
-  }
- },
- "44908": {
-  "title": "Bill To block shows the customer name and address",
-  "atm": 1,
-  "section_id": 6742,
-  "refs": "SV-9141 (S2-R1)",
-  "provenance": [
-   "This is the expected behaviour as per epic SV-8218 and story SV-9141 (Story 2, Addresses) and the Invoice UI Refresh specification version 45, section S2-R1, read on 31 August 2026."
-  ],
-  "own_source": [],
-  "before": {
-   "custom_expected": "<p>1. A block labeled exactly \"Bill To\" is shown.<br>2. It shows the customer's name — the company name when the customer has one, otherwise the customer's personal name.<br>3. It shows the customer's street address, city, state or province, and postal code.</p><p>---<br>This is the expected behaviour as per epic SV-8218 and story SV-9141 (Story 2, Addresses) and the Invoice UI Refresh specification version 45, section S2-R1, read on 31 August 2026.<br>Last checked against build v26.35.5-8c3cc21 on 8/31/2026.</p><p>AUTOMATION: READY</p>"
-  }
- },
- "44909": {
-  "title": "Remit Payment To shows when a payee is configured (both mechanisms)",
-  "atm": 1,
-  "section_id": 6742,
-  "refs": "SV-9141 (S2-R2)",
-  "provenance": [
-   "This is the expected behaviour as per epic SV-8218 and story SV-9141 (Story 2, Addresses) and the Invoice UI Refresh specification version 45, section S2-R2, read on 31 August 2026."
-  ],
-  "own_source": [],
-  "before": {
-   "custom_expected": "<p>1. A block labeled exactly \"Remit Payment To\" is shown, holding the payee address.<br>2. The payee resolves from either mechanism: the shop's integrated-billing remit-to, or the location's own remit-to setting.<br>3. The block appears on the Estimate and Invoice (not on the Credit Invoice).</p><p>---<br>This is the expected behaviour as per epic SV-8218 and story SV-9141 (Story 2, Addresses) and the Invoice UI Refresh specification version 45, section S2-R2, read on 31 August 2026.<br>Last checked against build v26.35.5-8c3cc21 on 8/31/2026.</p><p>AUTOMATION: READY</p>"
-  }
- },
- "44910": {
-  "title": "Bill To spans full width when Remit Payment To is absent",
+ "45168": {
+  "title": "Credit Invoice never shows Remit Payment To and Credit To spans full width",
   "atm": 1,
   "section_id": 6742,
   "refs": "SV-9141 (S2-R3)",
@@ -126,245 +9,24 @@
   ],
   "own_source": [],
   "before": {
-   "custom_expected": "<p>1. When there is no Remit Payment To block, the Bill To block spans the full width of the addresses area (it does not stay at half width).<br>2. When a Remit Payment To block is present, Bill To and Remit Payment To sit side by side.<br>3. On the Credit Invoice, where Remit Payment To never appears, the Credit To block is always full width.</p><p>---<br>This is the expected behaviour as per epic SV-8218 and story SV-9141 (Story 2, Addresses) and the Invoice UI Refresh specification version 45, section S2-R3, read on 31 August 2026.<br>Last checked against build v26.35.5-8c3cc21 on 8/31/2026.</p><p>AUTOMATION: READY</p>"
+   "custom_expected": "<p>1. No Remit Payment To block appears on the Credit Invoice even though a remit-to payee exists.<br>2. The 'Credit To' block spans the full width of the addresses area (S2-R3, Section 3 matrix).</p><p>---<br>This is the expected behaviour as per epic SV-8218 and story SV-9141 (Story 2, Addresses) and the Invoice UI Refresh specification version 45, section S2-R3, read on 31 August 2026.<br>Last checked against build v26.35.5-8c3cc21 on 8/31/2026.</p><p>AUTOMATION: READY</p>"
   }
  },
- "44911": {
-  "title": "Remit Payment To is hidden when no payee is configured",
-  "atm": 1,
-  "section_id": 6742,
-  "refs": "SV-9141 (S2-N2; S2-R2)",
-  "provenance": [
-   "This is the expected behaviour as per epic SV-8218 and story SV-9141 (Story 2, Addresses) and the Invoice UI Refresh specification version 45, sections S2-N2 and S2-R2, read on 31 August 2026."
-  ],
-  "own_source": [],
-  "before": {
-   "custom_expected": "<p>1. No \"Remit Payment To\" block is shown.<br>2. The shop's own address is NOT printed as a fallback remit-to (this fallback has been removed).</p><p>---<br>This is the expected behaviour as per epic SV-8218 and story SV-9141 (Story 2, Addresses) and the Invoice UI Refresh specification version 45, sections S2-N2 and S2-R2, read on 31 August 2026.<br>Last checked against build v26.35.5-8c3cc21 on 8/31/2026.</p><p>AUTOMATION: READY</p>"
-  }
- },
- "44912": {
-  "title": "Bill To address fields hide when empty; the name line always shows",
-  "atm": 1,
-  "section_id": 6742,
-  "refs": "SV-9141 (S2-N1)",
-  "provenance": [
-   "This is the expected behaviour as per epic SV-8218 and story SV-9141 (Story 2, Addresses) and the Invoice UI Refresh specification version 45, section S2-N1, read on 31 August 2026."
-  ],
-  "own_source": [],
-  "before": {
-   "custom_expected": "<p>1. Each missing field among the street address, city, state or province, and postal code is hidden — no blank line is left.<br>2. The name line is always shown, even when the address fields are empty.</p><p>---<br>This is the expected behaviour as per epic SV-8218 and story SV-9141 (Story 2, Addresses) and the Invoice UI Refresh specification version 45, section S2-N1, read on 31 August 2026.<br>Last checked against build v26.35.5-8c3cc21 on 8/31/2026.</p><p>AUTOMATION: READY</p>"
-  }
- },
- "44913": {
-  "title": "Order reference fields show in the fixed order with no label punctuation",
-  "atm": 1,
-  "section_id": 6743,
-  "refs": "SV-9142 (S3-R1)",
-  "provenance": [
-   "This is the expected behaviour as per epic SV-8218 and story SV-9142 (Story 3, Order Reference Fields) and the Invoice UI Refresh specification version 45, section S3-R1, read on 31 August 2026."
-  ],
-  "own_source": [],
-  "before": {
-   "custom_expected": "<p>1. Up to five fields can appear, in this exact order: \"Work Order\", \"Customer PO\", \"Authorizer\", \"Approval Code\", \"Terms\".<br>2. Each field label has no punctuation after it (no colon).<br>3. The labels read exactly as listed.</p><p>---<br>This is the expected behaviour as per epic SV-8218 and story SV-9142 (Story 3, Order Reference Fields) and the Invoice UI Refresh specification version 45, section S3-R1, read on 31 August 2026.</p><p>AUTOMATION: HOLD - held pending the PO answer on how a tester obtains an Approval Code</p>"
-  }
- },
- "44914": {
-  "title": "Terms field always shows, even when no terms are set",
-  "atm": 1,
-  "section_id": 6743,
-  "refs": "SV-9142 (S3-R2; S3-N4)",
-  "provenance": [
-   "This is the expected behaviour as per epic SV-8218 and story SV-9142 (Story 3, Order Reference Fields) and the Invoice UI Refresh specification version 45, sections S3-R2 and S3-N4, read on 31 August 2026."
-  ],
-  "own_source": [],
-  "before": {
-   "custom_expected": "<p>1. When terms are set, the Terms field shows the value (for example \"Net 30\").<br>2. When no terms are set, the field still shows: the text reads exactly \"Terms\" with an empty value area — no colon, and no placeholder text.<br>3. Terms is the one order reference field that always shows (all others hide when empty).</p><p>---<br>This is the expected behaviour as per epic SV-8218 and story SV-9142 (Story 3, Order Reference Fields) and the Invoice UI Refresh specification version 45, sections S3-R2 and S3-N4, read on 31 August 2026.<br>Last checked against build v26.35.5-8c3cc21 on 8/31/2026.</p><p>AUTOMATION: READY</p>"
-  }
- },
- "44915": {
-  "title": "Authorizer field shows the selected authorizer's full name",
-  "atm": 1,
-  "section_id": 6743,
-  "refs": "SV-9142 (S3-R3)",
-  "provenance": [
-   "This is the expected behaviour as per epic SV-8218 and story SV-9142 (Story 3, Order Reference Fields) and the Invoice UI Refresh specification version 45, section S3-R3, read on 31 August 2026."
-  ],
-  "own_source": [],
-  "before": {
-   "custom_expected": "<p>1. The Authorizer field shows the full name of the work order's selected authorizer.<br>2. The name matches the selected 'Approves Work' contact on the work order.</p><p>---<br>This is the expected behaviour as per epic SV-8218 and story SV-9142 (Story 3, Order Reference Fields) and the Invoice UI Refresh specification version 45, section S3-R3, read on 31 August 2026.<br>Last checked against build v26.35.5-8c3cc21 on 8/31/2026.</p><p>AUTOMATION: READY</p>"
-  }
- },
- "44916": {
-  "title": "Approval Code field shows the integrated-billing approval code",
-  "atm": 1,
-  "section_id": 6743,
-  "refs": "SV-9142 (S3-R4)",
-  "provenance": [
-   "This is the expected behaviour as per epic SV-8218 and story SV-9142 (Story 3, Order Reference Fields) and the Invoice UI Refresh specification version 45, section S3-R4, read on 31 August 2026."
-  ],
-  "own_source": [],
-  "before": {
-   "custom_expected": "<p>1. The Approval Code field shows the work order's integrated-billing approval code, in its own field labeled exactly \"Approval Code\".<br>2. The approval code is no longer shown under the \"Authorizer\" label (net-new placement).</p><p>---<br>This is the expected behaviour as per epic SV-8218 and story SV-9142 (Story 3, Order Reference Fields) and the Invoice UI Refresh specification version 45, section S3-R4, read on 31 August 2026.</p><p>AUTOMATION: HOLD - held pending the PO answer on how a tester obtains an Approval Code</p>"
-  }
- },
- "44917": {
-  "title": "Work Order field hides when it equals the document number's trailing digits",
-  "atm": 1,
-  "section_id": 6743,
-  "refs": "SV-9142 (S3-N1)",
-  "provenance": [
-   "This is the expected behaviour as per epic SV-8218 and story SV-9142 (Story 3, Order Reference Fields) and the Invoice UI Refresh specification version 45, section S3-N1, read on 31 August 2026."
-  ],
-  "own_source": [],
-  "before": {
-   "custom_expected": "<p>1. When the work order number equals the unbroken digits at the end of the document number, the Work Order field is hidden.<br>2. When they differ, the Work Order field is shown with its value.<br>3. Trailing digits example: \"4176\" in \"INV-4176\"; \"24914\" in \"INV-S-24914\".</p><p>---<br>This is the expected behaviour as per epic SV-8218 and story SV-9142 (Story 3, Order Reference Fields) and the Invoice UI Refresh specification version 45, section S3-N1, read on 31 August 2026.<br>Last checked against build v26.35.5-8c3cc21 on 8/31/2026.</p><p>AUTOMATION: READY</p>"
-  }
- },
- "44918": {
-  "title": "Customer PO, Authorizer and Approval Code each hide when empty",
-  "atm": 1,
-  "section_id": 6743,
-  "refs": "SV-9142 (S3-N2; S3-N3; S3-N5)",
-  "provenance": [
-   "This is the expected behaviour as per epic SV-8218 and story SV-9142 (Story 3, Order Reference Fields) and the Invoice UI Refresh specification version 45, sections S3-N2, S3-N3 and S3-N5, read on 31 August 2026."
-  ],
-  "own_source": [],
-  "before": {
-   "custom_expected": "<p>1. The Customer PO field is hidden (no label, no empty value).<br>2. The Authorizer field is hidden — no label and no empty value area; an empty authorizer never prints on any document.<br>3. The Approval Code field is hidden (no label, no empty value area).<br>4. Terms still shows (it is the always-show exception).</p><p>---<br>This is the expected behaviour as per epic SV-8218 and story SV-9142 (Story 3, Order Reference Fields) and the Invoice UI Refresh specification version 45, sections S3-N2, S3-N3 and S3-N5, read on 31 August 2026.<br>Last checked against build v26.35.5-8c3cc21 on 8/31/2026.</p><p>AUTOMATION: READY</p>"
-  }
- },
- "44923": {
-  "title": "A new 'Approves Work' contact becomes selectable immediately",
-  "atm": 1,
-  "section_id": 6744,
-  "refs": "SV-9142 (S3-R9)",
-  "provenance": [
-   "This is the expected behaviour as per epic SV-8218 and story SV-9142 (Story 3, Order Reference Fields) and the Invoice UI Refresh specification version 45, section S3-R9, read on 31 August 2026."
-  ],
-  "own_source": [],
-  "before": {
-   "custom_expected": "<p>1. The newly enabled contact appears in the work order's Authorizer list.<br>2. It becomes selectable without any refresh or re-save of the work order.</p><p>---<br>This is the expected behaviour as per epic SV-8218 and story SV-9142 (Story 3, Order Reference Fields) and the Invoice UI Refresh specification version 45, section S3-R9, read on 31 August 2026.<br>Last checked against build v26.35.5-8c3cc21 on 9/1/2026.</p><p>AUTOMATION: READY</p>"
-  }
- },
- "44924": {
-  "title": "Asset section shows Asset name and VIN / Serial when present",
+ "45171": {
+  "title": "Asset section is hidden when the work order has no asset attached",
   "atm": 1,
   "section_id": 6745,
-  "refs": "SV-9143 (S4-R1)",
+  "refs": "SV-9143 (S4-N3)",
   "provenance": [
-   "This is the expected behaviour as per epic SV-8218 and story SV-9143 (Story 4, Asset Section) and the Invoice UI Refresh specification version 45, section S4-R1, read on 31 August 2026."
+   "This is the expected behaviour as per epic SV-8218 and story SV-9143 (Story 4, Asset Section) and the Invoice UI Refresh specification version 45, section S4-N3, read on 31 August 2026."
   ],
   "own_source": [],
   "before": {
-   "custom_expected": "<p>1. The asset section shows the asset name, labeled exactly \"Asset\".<br>2. When the asset has a VIN, one value labeled exactly \"VIN / Serial\" shows the VIN.<br>3. When the asset has no VIN but has a serial number, the \"VIN / Serial\" value shows the serial number.<br>4. The VIN is preferred when both exist.</p><p>---<br>This is the expected behaviour as per epic SV-8218 and story SV-9143 (Story 4, Asset Section) and the Invoice UI Refresh specification version 45, section S4-R1, read on 31 August 2026.<br>Last checked against build v26.35.5-8c3cc21 on 8/31/2026.</p><p>AUTOMATION: READY</p>"
+   "custom_expected": "<p>1. The entire asset section is absent on both documents (S4-N3).</p><p>---<br>This is the expected behaviour as per epic SV-8218 and story SV-9143 (Story 4, Asset Section) and the Invoice UI Refresh specification version 45, section S4-N3, read on 31 August 2026.<br>Last checked against build v26.35.5-8c3cc21 on 8/31/2026.</p><p>AUTOMATION: READY</p>"
   }
  },
- "44925": {
-  "title": "Asset section can show Unit, Plate, Mileage and Eng Hrs",
-  "atm": 1,
-  "section_id": 6745,
-  "refs": "SV-9143 (S4-R2)",
-  "provenance": [
-   "This is the expected behaviour as per epic SV-8218 and story SV-9143 (Story 4, Asset Section) and the Invoice UI Refresh specification version 45, section S4-R2, read on 31 August 2026."
-  ],
-  "own_source": [],
-  "before": {
-   "custom_expected": "<p>1. The asset section shows fields labeled exactly \"Unit\", \"Plate\", \"Mileage\", and \"Eng Hrs\" with their values.</p><p>---<br>This is the expected behaviour as per epic SV-8218 and story SV-9143 (Story 4, Asset Section) and the Invoice UI Refresh specification version 45, section S4-R2, read on 31 August 2026.<br>Last checked against build v26.35.5-8c3cc21 on 8/31/2026.</p><p>AUTOMATION: READY</p>"
-  }
- },
- "44926": {
-  "title": "Unit, Plate, Mileage and Eng Hrs each hide when empty",
-  "atm": 1,
-  "section_id": 6745,
-  "refs": "SV-9143 (S4-N1)",
-  "provenance": [
-   "This is the expected behaviour as per epic SV-8218 and story SV-9143 (Story 4, Asset Section) and the Invoice UI Refresh specification version 45, section S4-N1, read on 31 August 2026."
-  ],
-  "own_source": [],
-  "before": {
-   "custom_expected": "<p>1. Each of Unit, Plate, Mileage and Eng Hrs is hidden when it has no value — no blank label is left.<br>2. The fields that do have values still show.</p><p>---<br>This is the expected behaviour as per epic SV-8218 and story SV-9143 (Story 4, Asset Section) and the Invoice UI Refresh specification version 45, section S4-N1, read on 31 August 2026.<br>Last checked against build v26.35.5-8c3cc21 on 8/31/2026.</p><p>AUTOMATION: READY</p>"
-  }
- },
- "44927": {
-  "title": "VIN / Serial hides when the asset has neither; Asset name still shows",
-  "atm": 1,
-  "section_id": 6745,
-  "refs": "SV-9143 (S4-N2)",
-  "provenance": [
-   "This is the expected behaviour as per epic SV-8218 and story SV-9143 (Story 4, Asset Section) and the Invoice UI Refresh specification version 45, section S4-N2, read on 31 August 2026."
-  ],
-  "own_source": [],
-  "before": {
-   "custom_expected": "<p>1. The \"VIN / Serial\" field is hidden when the asset has neither a VIN nor a serial number.<br>2. The Asset name still shows.</p><p>---<br>This is the expected behaviour as per epic SV-8218 and story SV-9143 (Story 4, Asset Section) and the Invoice UI Refresh specification version 45, section S4-N2, read on 31 August 2026.<br>Last checked against build v26.35.5-8c3cc21 on 8/31/2026.</p><p>AUTOMATION: READY</p>"
-  }
- },
- "44928": {
-  "title": "Asset section shows whenever the work order has an asset (parts sales too)",
-  "atm": 1,
-  "section_id": 6745,
-  "refs": "SV-9143 (S4-N3; Story 4 prerequisite)",
-  "provenance": [
-   "This is the expected behaviour as per epic SV-8218 and story SV-9143 (Story 4, Asset Section) and the Invoice UI Refresh specification version 45, sections S4-N3 and the Story 4 prerequisite, read on 31 August 2026."
-  ],
-  "own_source": [],
-  "before": {
-   "custom_expected": "<p>1. The asset section shows whenever the work order has an asset attached — including on part sales, treated the same as service work orders.<br>2. When the work order has no asset attached, the asset section is hidden entirely.</p><p>---<br>This is the expected behaviour as per epic SV-8218 and story SV-9143 (Story 4, Asset Section) and the Invoice UI Refresh specification version 45, sections S4-N3 and the Story 4 prerequisite, read on 31 August 2026.<br>Last checked against build v26.35.5-8c3cc21 on 8/31/2026.</p><p>AUTOMATION: READY</p>"
-  }
- },
- "44929": {
-  "title": "Work heading is 'Work Summary' on Estimate and 'Work Performed' on Invoice",
-  "atm": 1,
-  "section_id": 6746,
-  "refs": "SV-9144 (S5-R1)",
-  "provenance": [
-   "This is the expected behaviour as per epic SV-8218 and story SV-9144 (Story 5, Work Section) and the Invoice UI Refresh specification version 45, section S5-R1, read on 31 August 2026."
-  ],
-  "own_source": [],
-  "before": {
-   "custom_expected": "<p>1. On the Estimate the work section heading reads exactly \"Work Summary\".<br>2. On the Invoice the same section heading reads exactly \"Work Performed\".</p><p>---<br>This is the expected behaviour as per epic SV-8218 and story SV-9144 (Story 5, Work Section) and the Invoice UI Refresh specification version 45, section S5-R1, read on 31 August 2026.<br>Last checked against build v26.35.5-8c3cc21 on 8/31/2026.</p><p>AUTOMATION: READY</p>"
-  }
- },
- "44930": {
-  "title": "Work line numbers are sequential and zero-padded to two digits",
-  "atm": 1,
-  "section_id": 6746,
-  "refs": "SV-9144 (S5-R2)",
-  "provenance": [
-   "This is the expected behaviour as per epic SV-8218 and story SV-9144 (Story 5, Work Section) and the Invoice UI Refresh specification version 45, section S5-R2, read on 31 August 2026."
-  ],
-  "own_source": [],
-  "before": {
-   "custom_expected": "<p>1. Line numbers are sequential with no gaps.<br>2. Lines 1 to 99 are zero-padded to two digits: 01, 02 ... 10, 11.<br>3. When the document has 100 or more lines, lines 1-99 still show two digits and lines 100 and above show three digits (100, 101 ...).</p><p>---<br>This is the expected behaviour as per epic SV-8218 and story SV-9144 (Story 5, Work Section) and the Invoice UI Refresh specification version 45, section S5-R2, read on 31 August 2026.<br>Last checked against build v26.35.5-8c3cc21 on 8/31/2026.</p><p>AUTOMATION: READY</p>"
-  }
- },
- "44931": {
-  "title": "Each work line shows name, and description and scope-of-work note when present",
-  "atm": 1,
-  "section_id": 6746,
-  "refs": "SV-9144 (S5-R3; S5-R4; S5-R5)",
-  "provenance": [
-   "This is the expected behaviour as per epic SV-8218 and story SV-9144 (Story 5, Work Section) and the Invoice UI Refresh specification version 45, sections S5-R3, S5-R4 and S5-R5, read on 31 August 2026."
-  ],
-  "own_source": [],
-  "before": {
-   "custom_expected": "<p>1. Each work line shows its name.<br>2. A line shows its description when a description is present.<br>3. A line shows its scope-of-work note when a scope-of-work note is present (shown below the description).<br>4. A line with no description and no scope-of-work note shows just its name (no empty rows).</p><p>---<br>This is the expected behaviour as per epic SV-8218 and story SV-9144 (Story 5, Work Section) and the Invoice UI Refresh specification version 45, sections S5-R3, S5-R4 and S5-R5, read on 31 August 2026.<br>Last checked against build v26.35.5-8c3cc21 on 8/31/2026.</p><p>AUTOMATION: READY</p>"
-  }
- },
- "44932": {
-  "title": "Labor and Parts entries are labeled exactly 'Labor' and 'Parts'",
-  "atm": 1,
-  "section_id": 6746,
-  "refs": "SV-9144 (S5-R6)",
-  "provenance": [
-   "This is the expected behaviour as per epic SV-8218 and story SV-9144 (Story 5, Work Section) and the Invoice UI Refresh specification version 45, section S5-R6, read on 31 August 2026."
-  ],
-  "own_source": [],
-  "before": {
-   "custom_expected": "<p>1. A labor entry within a line is labeled exactly \"Labor\".<br>2. A parts entry within a line is labeled exactly \"Parts\".</p><p>---<br>This is the expected behaviour as per epic SV-8218 and story SV-9144 (Story 5, Work Section) and the Invoice UI Refresh specification version 45, section S5-R6, read on 31 August 2026.<br>Last checked against build v26.35.5-8c3cc21 on 8/31/2026.</p><p>AUTOMATION: READY</p>"
-  }
- },
- "44933": {
-  "title": "Invoice Details settings show or hide the per-entry figures",
+ "45172": {
+  "title": "Summarize labor total and Summarize parts total control the line footer figures",
   "atm": 1,
   "section_id": 6746,
   "refs": "SV-9144 (S5-R7)",
@@ -373,232 +35,37 @@
   ],
   "own_source": [],
   "before": {
-   "custom_expected": "<p>1. When \"Labor hours\", \"Labor rate\", \"Labor price\", \"Part quantity\", \"Part price\", \"Part number\" and \"Part description\" are on, each per-entry figure, the part number, and the part description show on their labor/part entry.<br>2. Turning a setting off hides its per-entry figure; turning \"Part number\" off hides the part number on every parts entry, and turning \"Part description\" off hides the part description on every parts entry.<br>3. Turning \"Labor price\" off also hides the line footer's \"Labor\" figure; turning \"Part price\" off also hides the line footer's \"Parts\" figure.<br>4. The itemized labor and parts entries themselves are never collapsed or hidden by any setting; \"Line total\" and the financial summary always show their amounts.</p><p>---<br>This is the expected behaviour as per epic SV-8218 and story SV-9144 (Story 5, Work Section) and the Invoice UI Refresh specification version 45, section S5-R7, read on 31 August 2026.<br>Last checked against build v26.35.5-8c3cc21 on 8/31/2026.</p><p>AUTOMATION: READY</p>"
+   "custom_expected": "<p>1. After Step 1: the footer 'Labor' figure is hidden; 'Parts' and 'Line total' remain.<br>2. After Step 2: both the 'Labor' and 'Parts' footer figures are hidden; 'Line total' stands alone WITHOUT the vertical divider (S5-R7, S5-R9).<br>3. 'Line total' is always shown.</p><p>---<br>This is the expected behaviour as per epic SV-8218 and story SV-9144 (Story 5, Work Section) and the Invoice UI Refresh specification version 45, section S5-R7, read on 31 August 2026.<br>Last checked against build v26.35.5-8c3cc21 on 8/31/2026.</p><p>AUTOMATION: READY</p>"
   }
  },
- "44934": {
-  "title": "Line-level fee shows as a plain amount; discount shows in parentheses",
+ "45173": {
+  "title": "Line numbers move to three digits from line 100 on a large document",
   "atm": 1,
   "section_id": 6746,
-  "refs": "SV-9144 (S5-R8)",
+  "refs": "SV-9144 (S5-R2)",
   "provenance": [
-   "This is the expected behaviour as per epic SV-8218 and story SV-9144 (Story 5, Work Section) and the Invoice UI Refresh specification version 45, section S5-R8, read on 31 August 2026."
+   "This is the expected behaviour as per epic SV-8218 and story SV-9144 (Story 5, Work Section) and the Invoice UI Refresh specification version 45, section S5-R2, read on 31 August 2026."
   ],
   "own_source": [],
   "before": {
-   "custom_expected": "<p>1. A fee that applies to a single labor or parts line is shown with that line as a plain amount.<br>2. A discount that applies to a single line is shown with that line in parentheses (the accounting convention for a subtraction).<br>3. The parentheses are required wording, not styling.</p><p>---<br>This is the expected behaviour as per epic SV-8218 and story SV-9144 (Story 5, Work Section) and the Invoice UI Refresh specification version 45, section S5-R8, read on 31 August 2026.<br>Last checked against build v26.35.5-8c3cc21 on 8/31/2026.</p><p>AUTOMATION: READY</p>"
+   "custom_expected": "<p>1. Lines 1-99 stay two digits; line 100 and above show three digits (S5-R2).<br>2. The document renders without timeout (NFR-004).</p><p>---<br>This is the expected behaviour as per epic SV-8218 and story SV-9144 (Story 5, Work Section) and the Invoice UI Refresh specification version 45, section S5-R2, read on 31 August 2026.<br>Last checked against build v26.35.5-8c3cc21 on 8/31/2026.</p><p>AUTOMATION: READY</p>"
   }
  },
- "44935": {
-  "title": "Line footer shows Labor, Parts and Line total with the divider rule",
-  "atm": 1,
-  "section_id": 6746,
-  "refs": "SV-9144 (S5-R7; S5-R9; S5-R10)",
-  "provenance": [
-   "This is the expected behaviour as per epic SV-8218 and story SV-9144 (Story 5, Work Section) and the Invoice UI Refresh specification version 45, sections S5-R7, S5-R9 and S5-R10, read on 31 August 2026."
-  ],
-  "own_source": [],
-  "before": {
-   "custom_expected": "<p>1. Each work line has a footer with figures labeled exactly \"Labor\", \"Parts\", and \"Line total\".<br>2. The Labor and Parts figures are that line's own totals after its line-level fees and discounts; \"Line total\" is their sum.<br>3. A \"Labor\" or \"Parts\" footer figure shows only when its summarize setting is on; it is hidden when that setting is off, when its value is $0.00, or when its matching price setting is off (a negative value is shown with its sign).<br>4. The vertical divider before \"Line total\" shows only when at least one Labor or Parts figure is visible; when neither is, \"Line total\" stands alone with no divider.<br>5. \"Line total\" always shows, appears once per line, and shows even when it reads $0.00.</p><p>---<br>This is the expected behaviour as per epic SV-8218 and story SV-9144 (Story 5, Work Section) and the Invoice UI Refresh specification version 45, sections S5-R7, S5-R9 and S5-R10, read on 31 August 2026.<br>Last checked against build v26.35.5-8c3cc21 on 8/31/2026.</p><p>AUTOMATION: READY</p>"
-  }
- },
- "44936": {
-  "title": "Empty work section shows heading; Summary divider still precedes summary",
-  "atm": 1,
-  "section_id": 6746,
-  "refs": "SV-9144 (S5-N1)",
-  "provenance": [
-   "This is the expected behaviour as per epic SV-8218 and story SV-9144 (Story 5, Work Section) and the Invoice UI Refresh specification version 45, section S5-N1, read on 31 August 2026."
-  ],
-  "own_source": [],
-  "before": {
-   "custom_expected": "<p>1. The work section shows its heading with no lines beneath it.<br>2. The \"Summary\" divider still appears and precedes the financial summary.</p><p>---<br>This is the expected behaviour as per epic SV-8218 and story SV-9144 (Story 5, Work Section) and the Invoice UI Refresh specification version 45, section S5-N1, read on 31 August 2026.<br>Last checked against build v26.35.5-8c3cc21 on 8/31/2026.</p><p>AUTOMATION: READY</p>"
-  }
- },
- "44937": {
-  "title": "Declined Work shows in its own section with names and descriptions only",
-  "atm": 1,
-  "section_id": 6747,
-  "refs": "SV-9145 (S6-R1; S6-R2)",
-  "provenance": [
-   "This is the expected behaviour as per epic SV-8218 and story SV-9145 (Story 6, Declined Work) and the Invoice UI Refresh specification version 45, sections S6-R1 and S6-R2, read on 31 August 2026."
-  ],
-  "own_source": [],
-  "before": {
-   "custom_expected": "<p>1. Declined work appears in its own section headed exactly \"Declined Work\", separate from the main work section.<br>2. Each declined line shows its name, and its description when a description is present.<br>3. A declined line never shows a scope-of-work note (the technician's internal write-up) - that note does not print for declined work on any customer document.</p><p>---<br>This is the expected behaviour as per epic SV-8218 and story SV-9145 (Story 6, Declined Work) and the Invoice UI Refresh specification version 45, sections S6-R1 and S6-R2, read on 31 August 2026.<br>This test case could not be build-verified on 8/31/2026 because the feature it tests was not found in the build yet - the related story is still under development. It will be re-checked in the separate build-verification run once the feature ships.</p><p>AUTOMATION: Not available on Build to test Yet - Last checked 8/31/2026</p>"
-  }
- },
- "44938": {
-  "title": "Declined lines show no prices, no line numbers, and no status pill",
-  "atm": 1,
-  "section_id": 6747,
-  "refs": "SV-9145 (S6-R3; S6-R4; S6-R5)",
-  "provenance": [
-   "This is the expected behaviour as per epic SV-8218 and story SV-9145 (Story 6, Declined Work) and the Invoice UI Refresh specification version 45, sections S6-R3, S6-R4 and S6-R5, read on 31 August 2026."
-  ],
-  "own_source": [],
-  "before": {
-   "custom_expected": "<p>1. Declined lines show no prices, no labor totals, and no parts totals.<br>2. Declined lines are never included in any total on the document.<br>3. Declined lines do not show a line number.<br>4. No status pill is shown on declined lines; the \"Declined Work\" heading is the only indicator of declined status.</p><p>---<br>This is the expected behaviour as per epic SV-8218 and story SV-9145 (Story 6, Declined Work) and the Invoice UI Refresh specification version 45, sections S6-R3, S6-R4 and S6-R5, read on 31 August 2026.<br>This test case could not be build-verified on 8/31/2026 because the feature it tests was not found in the build yet - the related story is still under development. It will be re-checked in the separate build-verification run once the feature ships.</p><p>AUTOMATION: Not available on Build to test Yet - Last checked 8/31/2026</p>"
-  }
- },
- "44939": {
-  "title": "Declined Work section hidden when nothing declined or option off",
-  "atm": 1,
-  "section_id": 6747,
-  "refs": "SV-9145 (S6-N1)",
-  "provenance": [
-   "This is the expected behaviour as per epic SV-8218 and story SV-9145 (Story 6, Declined Work) and the Invoice UI Refresh specification version 45, section S6-N1, read on 31 August 2026."
-  ],
-  "own_source": [],
-  "before": {
-   "custom_expected": "<p>1. When there are no declined lines, the Declined Work section is not shown.<br>2. When the \"Show declined work\" option is off, the Declined Work section is not shown even if declined lines exist.</p><p>---<br>This is the expected behaviour as per epic SV-8218 and story SV-9145 (Story 6, Declined Work) and the Invoice UI Refresh specification version 45, section S6-N1, read on 31 August 2026.<br>This test case could not be build-verified on 8/31/2026 because the feature it tests was not found in the build yet - the related story is still under development. It will be re-checked in the separate build-verification run once the feature ships.</p><p>AUTOMATION: Not available on Build to test Yet - Last checked 8/31/2026</p>"
-  }
- },
- "44940": {
-  "title": "'Summary' divider precedes the financial summary",
-  "atm": 1,
-  "section_id": 6748,
-  "refs": "SV-9146 (S7-R1)",
-  "provenance": [
-   "This is the expected behaviour as per epic SV-8218 and story SV-9146 (Story 7, Financial Summary) and the Invoice UI Refresh specification version 45, section S7-R1, read on 31 August 2026."
-  ],
-  "own_source": [],
-  "before": {
-   "custom_expected": "<p>1. A divider labeled exactly \"Summary\" precedes the financial summary.</p><p>---<br>This is the expected behaviour as per epic SV-8218 and story SV-9146 (Story 7, Financial Summary) and the Invoice UI Refresh specification version 45, section S7-R1, read on 31 August 2026.<br>Last checked against build v26.35.5-8c3cc21 on 8/31/2026.</p><p>AUTOMATION: READY</p>"
-  }
- },
- "44941": {
-  "title": "Summary shows gross Labor and Parts rows, and Shop supplies when charged",
-  "atm": 1,
-  "section_id": 6748,
-  "refs": "SV-9146 (S7-R2; S7-R6)",
-  "provenance": [
-   "This is the expected behaviour as per epic SV-8218 and story SV-9146 (Story 7, Financial Summary) and the Invoice UI Refresh specification version 45, sections S7-R2 and S7-R6, read on 31 August 2026."
-  ],
-  "own_source": [],
-  "before": {
-   "custom_expected": "<p>1. The summary shows a row labeled exactly \"Labor\" and a row labeled exactly \"Parts\".<br>2. Each shows the gross amount - before any fees or discounts.<br>3. A row labeled exactly \"Shop supplies\" shows only when a shop-supplies charge applies.</p><p>---<br>This is the expected behaviour as per epic SV-8218 and story SV-9146 (Story 7, Financial Summary) and the Invoice UI Refresh specification version 45, sections S7-R2 and S7-R6, read on 31 August 2026.<br>Last checked against build v26.35.5-8c3cc21 on 8/31/2026.</p><p>AUTOMATION: READY</p>"
-  }
- },
- "44942": {
-  "title": "Shop supplies shows its percentage when the location setting is enabled",
-  "atm": 1,
-  "section_id": 6748,
-  "refs": "SV-9146 (S7-R3)",
-  "provenance": [
-   "This is the expected behaviour as per epic SV-8218 and story SV-9146 (Story 7, Financial Summary) and the Invoice UI Refresh specification version 45, section S7-R3, read on 31 August 2026."
-  ],
-  "own_source": [],
-  "before": {
-   "custom_expected": "<p>1. When the location's \"Show % on Estimates and Invoices\" setting is enabled and shop supplies are charged as a percentage of labor, the percentage is shown alongside the shop supplies amount.<br>2. Otherwise the shop supplies amount is shown alone.</p><p>---<br>This is the expected behaviour as per epic SV-8218 and story SV-9146 (Story 7, Financial Summary) and the Invoice UI Refresh specification version 45, section S7-R3, read on 31 August 2026.<br>This test case could not be build-verified on 8/31/2026 because the feature it tests was not found in the build yet - the related story is still under development. It will be re-checked in the separate build-verification run once the feature ships.</p><p>AUTOMATION: Not available on Build to test Yet - Last checked 8/31/2026</p>"
-  }
- },
- "44943": {
-  "title": "Adjustments group shows rollup Labor/Parts then each work-order-wide row",
-  "atm": 1,
-  "section_id": 6748,
-  "refs": "SV-9146 (S7-R4; S7-R5)",
-  "provenance": [
-   "This is the expected behaviour as per epic SV-8218 and story SV-9146 (Story 7, Financial Summary) and the Invoice UI Refresh specification version 45, sections S7-R4 and S7-R5, read on 31 August 2026."
-  ],
-  "own_source": [],
-  "before": {
-   "custom_expected": "<p>1. Fees and discounts are grouped under a heading labeled exactly \"Adjustments\", which carries no amount of its own.<br>2. Under it, in this order: a rollup row labeled \"Labor\" totaling all line-level labor fees and discounts, a rollup row labeled \"Parts\" totaling all line-level parts fees and discounts, then each work-order-wide fee or discount as its own named row in the order it was added.<br>3. A \"Labor\" or \"Parts\" rollup row shows only when its total is not zero; a negative rollup shows in parentheses, a positive rollup as a plain amount.<br>4. A work-order-wide discount shows in parentheses; a work-order-wide fee shows as a plain amount.<br>5. There are intentionally two \"Labor\" rows and two \"Parts\" rows in the summary; the Adjustments pair is distinguished by sitting under the Adjustments heading.</p><p>---<br>This is the expected behaviour as per epic SV-8218 and story SV-9146 (Story 7, Financial Summary) and the Invoice UI Refresh specification version 45, sections S7-R4 and S7-R5, read on 31 August 2026.<br>Last checked against build v26.35.5-8c3cc21 on 8/31/2026.</p><p>AUTOMATION: READY</p>"
-  }
- },
- "44944": {
-  "title": "Summary shows Subtotal, one row per tax, and the grand Total",
-  "atm": 1,
-  "section_id": 6748,
-  "refs": "SV-9146 (S7-R7; S7-R8; S7-R9; S7-R10)",
-  "provenance": [
-   "This is the expected behaviour as per epic SV-8218 and story SV-9146 (Story 7, Financial Summary) and the Invoice UI Refresh specification version 45, sections S7-R7, S7-R8, S7-R9 and S7-R10, read on 31 August 2026."
-  ],
-  "own_source": [],
-  "before": {
-   "custom_expected": "<p>1. The summary shows a row labeled exactly \"Subtotal\".<br>2. It shows one tax row per applicable tax, each labeled with the tax name and its rate.<br>3. It shows the grand total labeled exactly \"Total\".<br>4. Every row that contributes to the Subtotal is displayed; no contributing summary row is hidden.<br>5. The visible math holds: gross Labor + gross Parts + Shop supplies + all Adjustments rows = Subtotal.</p><p>---<br>This is the expected behaviour as per epic SV-8218 and story SV-9146 (Story 7, Financial Summary) and the Invoice UI Refresh specification version 45, sections S7-R7, S7-R8, S7-R9 and S7-R10, read on 31 August 2026.<br>Last checked against build v26.35.5-8c3cc21 on 8/31/2026.</p><p>AUTOMATION: READY</p>"
-  }
- },
- "44945": {
-  "title": "Adjustments heading and tax rows hide when nothing applies",
-  "atm": 1,
-  "section_id": 6748,
-  "refs": "SV-9146 (S7-N1; S7-N2)",
-  "provenance": [
-   "This is the expected behaviour as per epic SV-8218 and story SV-9146 (Story 7, Financial Summary) and the Invoice UI Refresh specification version 45, sections S7-N1 and S7-N2, read on 31 August 2026."
-  ],
-  "own_source": [],
-  "before": {
-   "custom_expected": "<p>1. The Adjustments heading is not shown when there is nothing to list under it (no work-order-wide fees or discounts and both rollup totals at zero).<br>2. When no tax applies, no tax row is shown.</p><p>---<br>This is the expected behaviour as per epic SV-8218 and story SV-9146 (Story 7, Financial Summary) and the Invoice UI Refresh specification version 45, sections S7-N1 and S7-N2, read on 31 August 2026.<br>Last checked against build v26.35.5-8c3cc21 on 8/31/2026.</p><p>AUTOMATION: READY</p>"
-  }
- },
- "44946": {
-  "title": "Payments heading and each applied payment row show correctly",
+ "45174": {
+  "title": "A fully reversed payment does not appear in the Payments section",
   "atm": 1,
   "section_id": 6749,
-  "refs": "SV-9147 (S8-R1; S8-R2)",
+  "refs": "SV-9147 (S8-R2)",
   "provenance": [
    "This is the expected behaviour as per epic SV-8218 and story SV-9147 (Story 8, Paid Banner, Payments and Balance) and the Invoice UI Refresh specification version 45, section S8-R2, read on 31 August 2026."
   ],
   "own_source": [],
   "before": {
-   "custom_expected": "<p>1. The Invoice shows a heading labeled exactly \"Payments\".<br>2. Each applied payment shows as a row reading \"{date} - {method}\" (for example \"Jul 30, 2026 - Cash\"), where the hyphen is a literal character.<br>3. The amount shown is the applied amount when present, otherwise the payment amount.<br>4. Rows list applied payments only, ordered by date and then by the order the payments were recorded; a fully reversed payment does not appear.</p><p>---<br>This is the expected behaviour as per epic SV-8218 and story SV-9147 (Story 8, Paid Banner, Payments and Balance) and the Invoice UI Refresh specification version 45, section S8-R2, read on 31 August 2026.<br>Last checked against build v26.35.5-8c3cc21 on 8/31/2026.</p><p>AUTOMATION: READY</p>"
+   "custom_expected": "<p>1. Only the active payment is listed; the fully reversed payment is absent (a fully reversed payment is no longer applied and does not appear).<br>2. Balance reflects only the applied amounts (S8-R2).</p><p>---<br>This is the expected behaviour as per epic SV-8218 and story SV-9147 (Story 8, Paid Banner, Payments and Balance) and the Invoice UI Refresh specification version 45, section S8-R2, read on 31 August 2026.<br>Last checked against build v26.35.5-8c3cc21 on 8/31/2026.</p><p>AUTOMATION: READY</p>"
   }
  },
- "44947": {
-  "title": "Payment method name resolves per rule (SHOPPAY shows 'Online')",
-  "atm": 1,
-  "section_id": 6749,
-  "refs": "SV-9147 (S8-R3)",
-  "provenance": [
-   "This is the expected behaviour as per epic SV-8218 and story SV-9147 (Story 8, Paid Banner, Payments and Balance) and the Invoice UI Refresh specification version 45, section S8-R3, read on 31 August 2026."
-  ],
-  "own_source": [],
-  "before": {
-   "custom_expected": "<p>1. A payment's method shows the shop-configured payment-method name when configured.<br>2. When not configured, it shows the payment code with each underscore replaced by a space (for example credit_card shows as \"credit card\").<br>3. The \"SHOPPAY\" code shows as \"Online\".</p><p>---<br>This is the expected behaviour as per epic SV-8218 and story SV-9147 (Story 8, Paid Banner, Payments and Balance) and the Invoice UI Refresh specification version 45, section S8-R3, read on 31 August 2026.<br>Last checked against build v26.35.5-8c3cc21 on 9/1/2026.</p><p>AUTOMATION: READY</p>"
-  }
- },
- "44948": {
-  "title": "Deposit and applied customer-account credit show as labeled payment rows",
-  "atm": 1,
-  "section_id": 6749,
-  "refs": "SV-9147 (S8-R4)",
-  "provenance": [
-   "This is the expected behaviour as per epic SV-8218 and story SV-9147 (Story 8, Paid Banner, Payments and Balance) and the Invoice UI Refresh specification version 45, section S8-R4, read on 31 August 2026."
-  ],
-  "own_source": [],
-  "before": {
-   "custom_expected": "<p>1. A deposit shows as a payment row labeled \"(Deposit) {date} - {method}\", where {date} is the date the deposit was collected.<br>2. An applied customer-account credit shows as a payment row labeled \"(Credit) {date} - {credit number}\", where {credit number} is the full CM-prefixed number and {date} is the date the credit was applied.</p><p>---<br>This is the expected behaviour as per epic SV-8218 and story SV-9147 (Story 8, Paid Banner, Payments and Balance) and the Invoice UI Refresh specification version 45, section S8-R4, read on 31 August 2026.<br>Last checked against build v26.35.5-8c3cc21 on 8/31/2026.</p><p>AUTOMATION: READY</p>"
-  }
- },
- "44949": {
-  "title": "Excess payment sub-line reads exactly per the credited/ to-be-credited rule",
-  "atm": 1,
-  "section_id": 6749,
-  "refs": "SV-9147 (S8-R5)",
-  "provenance": [
-   "This is the expected behaviour as per epic SV-8218 and story SV-9147 (Story 8, Paid Banner, Payments and Balance) and the Invoice UI Refresh specification version 45, section S8-R5, read on 31 August 2026."
-  ],
-  "own_source": [],
-  "before": {
-   "custom_expected": "<p>1. A sub-line is shown beneath any payment or deposit whose amount applied to this invoice is less than its full amount - this is not limited to deposits and includes a regular payment spread across more than one invoice. It gates on applied being less than the full amount, never on whether the row is a deposit.<br>2. When the excess has become a customer-account credit with a number, the sub-line reads exactly \"of {full amount} — {excess} → Credit {credit number}\" (for example \"of $500.00 — $150.00 → Credit CM-1042\").<br>3. Otherwise it reads exactly \"of {full amount} — {excess} will be credited\".<br>4. {full amount} is the payment's or deposit's full amount; {excess} is the full amount minus the amount applied to this invoice.<br>5. The em dash and the arrow are literal separator characters, not subtraction.</p><p>---<br>This is the expected behaviour as per epic SV-8218 and story SV-9147 (Story 8, Paid Banner, Payments and Balance) and the Invoice UI Refresh specification version 45, section S8-R5, read on 31 August 2026.<br>Last checked against build v26.35.5-8c3cc21 on 8/31/2026.</p><p>AUTOMATION: READY</p>"
-  }
- },
- "44950": {
-  "title": "Balance equals Total minus all applied amounts, floored at $0.00",
-  "atm": 1,
-  "section_id": 6749,
-  "refs": "SV-9147 (S8-R6)",
-  "provenance": [
-   "This is the expected behaviour as per epic SV-8218 and story SV-9147 (Story 8, Paid Banner, Payments and Balance) and the Invoice UI Refresh specification version 45, section S8-R6, read on 31 August 2026."
-  ],
-  "own_source": [],
-  "before": {
-   "custom_expected": "<p>1. The Invoice shows a row labeled exactly \"Balance\".<br>2. Balance equals the Total minus all applied payments (any method), applied deposits, and applied customer-account credits.<br>3. Balance is floored at $0.00: an overpaid invoice shows \"Balance\" with \"$0.00\" - never a negative amount and never a hidden row.</p><p>---<br>This is the expected behaviour as per epic SV-8218 and story SV-9147 (Story 8, Paid Banner, Payments and Balance) and the Invoice UI Refresh specification version 45, section S8-R6, read on 31 August 2026.<br>Last checked against build v26.35.5-8c3cc21 on 8/31/2026.</p><p>AUTOMATION: READY</p>"
-  }
- },
- "44951": {
-  "title": "Paid banner appears only on portal-generated Invoice PDFs, before all content",
+ "45175": {
+  "title": "Paid banner pill and title wording follow the paid state and the batch rule",
   "atm": 1,
   "section_id": 6749,
   "refs": "SV-9147 (S8-R8)",
@@ -607,141 +74,11 @@
   ],
   "own_source": [],
   "before": {
-   "custom_expected": "<p>1. On the portal-generated PDF the paid banner appears before all other invoice content, including the masthead.<br>2. The banner lists only portal-processed payments; shop-recorded payments appear only in the Payments section.<br>3. An Invoice PDF generated in the shop app never carries the banner, whether or not portal payments exist.<br>4. The banner shows a fixed status pill: exactly \"PAID IN FULL\" when the invoice is fully paid at generation time, otherwise exactly \"PARTIALLY PAID\".<br>5. The banner title reads exactly \"Payment Receipt (Batch) - Payments by ShopView\" when every listed payment was part of a batch, otherwise exactly \"Payment Receipt - Payments by ShopView\".</p><p>---<br>This is the expected behaviour as per epic SV-8218 and story SV-9147 (Story 8, Paid Banner, Payments and Balance) and the Invoice UI Refresh specification version 45, section S8-R8, read on 31 August 2026.<br>Last checked against build v26.35.5-8c3cc21 on 8/31/2026.</p><p>AUTOMATION: HOLD - customer portal only exists on staging; this case cannot run on the QA branch</p>"
+   "custom_expected": "<p>1. Fully paid: the pill reads exactly 'PAID IN FULL'; partially paid: exactly 'PARTIALLY PAID'.<br>2. Title reads exactly 'Payment Receipt - Payments by ShopView'.<br>3. When every payment is a batch payment: the title reads exactly 'Payment Receipt (Batch) - Payments by ShopView' (S8-R8).</p><p>---<br>This is the expected behaviour as per epic SV-8218 and story SV-9147 (Story 8, Paid Banner, Payments and Balance) and the Invoice UI Refresh specification version 45, section S8-R8, read on 31 August 2026.<br>Last checked against build v26.35.5-8c3cc21 on 8/31/2026.</p><p>AUTOMATION: HOLD - customer portal only exists on staging; this case cannot run on the QA branch</p>"
   }
  },
- "44952": {
-  "title": "Each banner payment shows its labeled fields and conditional fees/marker",
-  "atm": 1,
-  "section_id": 6749,
-  "refs": "SV-9147 (S8-R9; G-R1)",
-  "provenance": [
-   "This is the expected behaviour as per epic SV-8218 and story SV-9147 (Story 8, Paid Banner, Payments and Balance) and the Invoice UI Refresh specification version 45, sections S8-R9 and G-R1, read on 31 August 2026."
-  ],
-  "own_source": [],
-  "before": {
-   "custom_expected": "<p>1. Each banner payment shows fields labeled exactly: \"Date / Time\", \"Paid By\", \"Method\", \"Invoice Amount\", and \"Total Charged\".<br>2. \"Total Charged\" is labeled \"Total Charged (Batch)\" for a batch payment and then covers the whole batch.<br>3. \"Convenience Fee\" and \"Late Fee\" each show only when the portal charged one (a non-zero amount).<br>4. \"Remaining Balance\" shows only when the balance immediately after that payment was greater than $0.00.<br>5. In a batch, each payment carries a \"Payment X of Y - Batch\" marker.<br>6. \"Date / Time\" reads in the format \"Jan 5, 2026 - 2:41 PM MST\" (date, then time with timezone).</p><p>---<br>This is the expected behaviour as per epic SV-8218 and story SV-9147 (Story 8, Paid Banner, Payments and Balance) and the Invoice UI Refresh specification version 45, sections S8-R9 and G-R1, read on 31 August 2026.<br>Last checked against build v26.35.5-8c3cc21 on 8/31/2026.</p><p>AUTOMATION: HOLD - customer portal only exists on staging; this case cannot run on the QA branch</p>"
-  }
- },
- "44953": {
-  "title": "$0.00 payment rows hidden; no-payments state shows heading with Balance = Total",
-  "atm": 1,
-  "section_id": 6749,
-  "refs": "SV-9147 (S8-R7; S8-N1)",
-  "provenance": [
-   "This is the expected behaviour as per epic SV-8218 and story SV-9147 (Story 8, Paid Banner, Payments and Balance) and the Invoice UI Refresh specification version 45, sections S8-R7 and S8-N1, read on 31 August 2026."
-  ],
-  "own_source": [],
-  "before": {
-   "custom_expected": "<p>1. A payment row whose amount is $0.00 is not shown.<br>2. When no payments, deposits or customer-account credits have been applied, the Payments heading shows with no rows and the Balance equals the Total.</p><p>---<br>This is the expected behaviour as per epic SV-8218 and story SV-9147 (Story 8, Paid Banner, Payments and Balance) and the Invoice UI Refresh specification version 45, sections S8-R7 and S8-N1, read on 31 August 2026.<br>Last checked against build v26.35.5-8c3cc21 on 8/31/2026.</p><p>AUTOMATION: READY</p>"
-  }
- },
- "44954": {
-  "title": "No paid banner when the invoice has no portal-processed payment",
-  "atm": 1,
-  "section_id": 6749,
-  "refs": "SV-9147 (S8-N2)",
-  "provenance": [
-   "This is the expected behaviour as per epic SV-8218 and story SV-9147 (Story 8, Paid Banner, Payments and Balance) and the Invoice UI Refresh specification version 45, section S8-N2, read on 31 August 2026."
-  ],
-  "own_source": [],
-  "before": {
-   "custom_expected": "<p>1. When the invoice has no portal-processed payment, the paid banner is not shown - a shop-recorded payment never produces the banner.<br>2. An Invoice PDF generated in the shop app shows no banner in any case.</p><p>---<br>This is the expected behaviour as per epic SV-8218 and story SV-9147 (Story 8, Paid Banner, Payments and Balance) and the Invoice UI Refresh specification version 45, section S8-N2, read on 31 August 2026.<br>Last checked against build v26.35.5-8c3cc21 on 8/31/2026.</p><p>AUTOMATION: READY</p>"
-  }
- },
- "44955": {
-  "title": "Shop disclaimer shows with no heading, identical on every document",
-  "atm": 1,
-  "section_id": 6750,
-  "refs": "SV-9148 (S9-R1)",
-  "provenance": [
-   "This is the expected behaviour as per epic SV-8218 and story SV-9148 (Story 9, Disclaimer, Signature and Footer) and the Invoice UI Refresh specification version 45, section S9-R1, read on 31 August 2026."
-  ],
-  "own_source": [],
-  "before": {
-   "custom_expected": "<p>1. Each document shows the shop's configured disclaimer text, with no heading above it.<br>2. The disclaimer is identical on every document that carries it.</p><p>---<br>This is the expected behaviour as per epic SV-8218 and story SV-9148 (Story 9, Disclaimer, Signature and Footer) and the Invoice UI Refresh specification version 45, section S9-R1, read on 31 August 2026.<br>Last checked against build v26.35.5-8c3cc21 on 8/31/2026.</p><p>AUTOMATION: READY</p>"
-  }
- },
- "44956": {
-  "title": "Signature area has exactly three labeled lines and no acknowledgment sentence",
-  "atm": 1,
-  "section_id": 6750,
-  "refs": "SV-9148 (S9-R2; S9-R3)",
-  "provenance": [
-   "This is the expected behaviour as per epic SV-8218 and story SV-9148 (Story 9, Disclaimer, Signature and Footer) and the Invoice UI Refresh specification version 45, sections S9-R2 and S9-R3, read on 31 August 2026."
-  ],
-  "own_source": [],
-  "before": {
-   "custom_expected": "<p>1. The signature area shows three lines labeled exactly \"Customer Signature\", \"Printed Name\", and \"Date\".<br>2. The three lines are identical on every document that carries the area.<br>3. The signature area contains no authorization or acknowledgment sentence - only the three lines.</p><p>---<br>This is the expected behaviour as per epic SV-8218 and story SV-9148 (Story 9, Disclaimer, Signature and Footer) and the Invoice UI Refresh specification version 45, sections S9-R2 and S9-R3, read on 31 August 2026.<br>Last checked against build v26.35.5-8c3cc21 on 8/31/2026.</p><p>AUTOMATION: READY</p>"
-  }
- },
- "44957": {
-  "title": "Footer shows the shop tax identifier exactly, with no added label",
-  "atm": 1,
-  "section_id": 6750,
-  "refs": "SV-9148 (S9-R4)",
-  "provenance": [
-   "This is the expected behaviour as per epic SV-8218 and story SV-9148 (Story 9, Disclaimer, Signature and Footer) and the Invoice UI Refresh specification version 45, section S9-R4, read on 31 August 2026."
-  ],
-  "own_source": [],
-  "before": {
-   "custom_expected": "<p>1. The footer shows the shop's tax identifier exactly as the shop entered it.<br>2. No label is added in front of it (the shop types its own label into the field).</p><p>---<br>This is the expected behaviour as per epic SV-8218 and story SV-9148 (Story 9, Disclaimer, Signature and Footer) and the Invoice UI Refresh specification version 45, section S9-R4, read on 31 August 2026.<br>Last checked against build v26.35.5-8c3cc21 on 8/31/2026.</p><p>AUTOMATION: READY</p>"
-  }
- },
- "44958": {
-  "title": "Disclaimer and footer tax identifier hide when not configured",
-  "atm": 1,
-  "section_id": 6750,
-  "refs": "SV-9148 (S9-N1; S9-N2)",
-  "provenance": [
-   "This is the expected behaviour as per epic SV-8218 and story SV-9148 (Story 9, Disclaimer, Signature and Footer) and the Invoice UI Refresh specification version 45, sections S9-N1 and S9-N2, read on 31 August 2026."
-  ],
-  "own_source": [],
-  "before": {
-   "custom_expected": "<p>1. When the shop has no configured disclaimer, the disclaimer area is not shown.<br>2. When the shop has no tax identifier configured, the footer tax identifier is not shown.</p><p>---<br>This is the expected behaviour as per epic SV-8218 and story SV-9148 (Story 9, Disclaimer, Signature and Footer) and the Invoice UI Refresh specification version 45, sections S9-N1 and S9-N2, read on 31 August 2026.<br>Last checked against build v26.35.5-8c3cc21 on 8/31/2026.</p><p>AUTOMATION: READY</p>"
-  }
- },
- "44959": {
-  "title": "Estimate and Invoice differ only as Section 3 specifies",
-  "atm": 1,
-  "section_id": 6751,
-  "refs": "SV-9149 (S10-R1)",
-  "provenance": [
-   "This is the expected behaviour as per epic SV-8218 and story SV-9149 (Story 10, Estimate and Invoice Specifics) and the Invoice UI Refresh specification version 45, section S10-R1, read on 31 August 2026."
-  ],
-  "own_source": [],
-  "before": {
-   "custom_expected": "<p>1. The Estimate and Invoice carry the same content, differing only in: the document label, the dates, the work-section heading, the headline figure label, and the presence of the Paid banner and the Payments and Balance sections on the Invoice.</p><p>---<br>This is the expected behaviour as per epic SV-8218 and story SV-9149 (Story 10, Estimate and Invoice Specifics) and the Invoice UI Refresh specification version 45, section S10-R1, read on 31 August 2026.<br>Last checked against build v26.35.5-8c3cc21 on 8/31/2026.</p><p>AUTOMATION: READY</p>"
-  }
- },
- "44960": {
-  "title": "Estimate shows 'Work Summary', 'Estimated Total', and 'Estimate date'",
-  "atm": 1,
-  "section_id": 6751,
-  "refs": "SV-9149 (S10-R2)",
-  "provenance": [
-   "This is the expected behaviour as per epic SV-8218 and story SV-9149 (Story 10, Estimate and Invoice Specifics) and the Invoice UI Refresh specification version 45, section S10-R2, read on 31 August 2026."
-  ],
-  "own_source": [],
-  "before": {
-   "custom_expected": "<p>1. The work-section heading reads \"Work Summary\".<br>2. The boxed headline figure is labeled \"Estimated Total\".<br>3. The masthead shows \"Estimate date: {date}\".<br>4. No validity or expiry date is shown; no due-date line is shown.<br>5. The signature area's \"Date\" line is unaffected.</p><p>---<br>This is the expected behaviour as per epic SV-8218 and story SV-9149 (Story 10, Estimate and Invoice Specifics) and the Invoice UI Refresh specification version 45, section S10-R2, read on 31 August 2026.<br>Last checked against build v26.35.5-8c3cc21 on 8/31/2026.</p><p>AUTOMATION: READY</p>"
-  }
- },
- "44961": {
-  "title": "Invoice shows 'Work Performed', 'Balance', 'Invoice date' and 'Due date'",
-  "atm": 1,
-  "section_id": 6751,
-  "refs": "SV-9149 (S10-R3)",
-  "provenance": [
-   "This is the expected behaviour as per epic SV-8218 and story SV-9149 (Story 10, Estimate and Invoice Specifics) and the Invoice UI Refresh specification version 45, section S10-R3, read on 31 August 2026."
-  ],
-  "own_source": [],
-  "before": {
-   "custom_expected": "<p>1. The work-section heading reads \"Work Performed\".<br>2. The boxed headline figure is labeled \"Balance\".<br>3. The masthead shows \"Invoice date: {date}\" and \"Due date: {date}\".</p><p>---<br>This is the expected behaviour as per epic SV-8218 and story SV-9149 (Story 10, Estimate and Invoice Specifics) and the Invoice UI Refresh specification version 45, section S10-R3, read on 31 August 2026.<br>Last checked against build v26.35.5-8c3cc21 on 8/31/2026.</p><p>AUTOMATION: READY</p>"
-  }
- },
- "44962": {
-  "title": "Fully paid Invoice stays an Invoice; 'Paid date' replaces 'Due date'",
+ "45176": {
+  "title": "Paid date is the most recent applied row and may fall before the invoice date",
   "atm": 1,
   "section_id": 6751,
   "refs": "SV-9149 (S10-R4)",
@@ -750,345 +87,202 @@
   ],
   "own_source": [],
   "before": {
-   "custom_expected": "<p>1. The fully paid Invoice keeps the label \"Invoice: {number}\" - it is never renamed to \"Receipt\"; no separate receipt document exists.<br>2. It lists its payments and shows a Balance of $0.00.<br>3. \"Paid date: {date}\" replaces \"Due date: {date}\" in the masthead; the paid date is the most recent date among the applied payment, deposit and credit rows.<br>4. If a later change (payment reversal, voided credit, or edit) makes the Balance greater than $0.00, the invoice is no longer fully paid and \"Due date: {date}\" returns.<br>5. A paid date earlier than the invoice date (for example a deposit collected before invoicing) is shown as-is.</p><p>---<br>This is the expected behaviour as per epic SV-8218 and story SV-9149 (Story 10, Estimate and Invoice Specifics) and the Invoice UI Refresh specification version 45, section S10-R4, read on 31 August 2026.<br>Last checked against build v26.35.5-8c3cc21 on 8/31/2026.</p><p>AUTOMATION: READY</p>"
+   "custom_expected": "<p>1. Deposit-paid: 'Paid date' equals the deposit collection date, even though it is earlier than the invoice date - shown as-is.<br>2. 2-payment: 'Paid date' equals the LATEST of the applied dates (S10-R4).</p><p>---<br>This is the expected behaviour as per epic SV-8218 and story SV-9149 (Story 10, Estimate and Invoice Specifics) and the Invoice UI Refresh specification version 45, section S10-R4, read on 31 August 2026.<br>Last checked against build v26.35.5-8c3cc21 on 8/31/2026.</p><p>AUTOMATION: READY</p>"
   }
  },
- "44963": {
-  "title": "Invoice with no due date shows no Due date line; paid swap still applies",
+ "45177": {
+  "title": "Reversing a payment returns the masthead to Due date",
   "atm": 1,
   "section_id": 6751,
-  "refs": "SV-9149 (S10-N1)",
+  "refs": "SV-9149 (S10-R4)",
   "provenance": [
-   "This is the expected behaviour as per epic SV-8218 and story SV-9149 (Story 10, Estimate and Invoice Specifics) and the Invoice UI Refresh specification version 45, section S10-N1, read on 31 August 2026."
+   "This is the expected behaviour as per epic SV-8218 and story SV-9149 (Story 10, Estimate and Invoice Specifics) and the Invoice UI Refresh specification version 45, section S10-R4, read on 31 August 2026."
   ],
   "own_source": [],
   "before": {
-   "custom_expected": "<p>1. An Invoice with no due date set shows \"Invoice date: {date}\" and no \"Due date\" line (the old quirk of rendering a null due date as today's date is retired).<br>2. When such an invoice becomes fully paid, \"Paid date: {date}\" is shown.</p><p>---<br>This is the expected behaviour as per epic SV-8218 and story SV-9149 (Story 10, Estimate and Invoice Specifics) and the Invoice UI Refresh specification version 45, section S10-N1, read on 31 August 2026.<br>Last checked against build v26.35.5-8c3cc21 on 8/31/2026.</p><p>AUTOMATION: READY</p>"
+   "custom_expected": "<p>1. 'Due date: {date}' returns and 'Paid date' is gone - the label is decided by the invoice state at render time (S10-R4).</p><p>---<br>This is the expected behaviour as per epic SV-8218 and story SV-9149 (Story 10, Estimate and Invoice Specifics) and the Invoice UI Refresh specification version 45, section S10-R4, read on 31 August 2026.<br>Last checked against build v26.35.5-8c3cc21 on 8/31/2026.</p><p>AUTOMATION: READY</p>"
   }
  },
- "44964": {
-  "title": "Credit Invoice masthead shows 'Credit: {number}' and 'Issue date', no money",
+ "45178": {
+  "title": "A zero-total invoice with nothing applied is not treated as fully paid",
+  "atm": 1,
+  "section_id": 6751,
+  "refs": "SV-9149 (S10-R4)",
+  "provenance": [
+   "This is the expected behaviour as per epic SV-8218 and story SV-9149 (Story 10, Estimate and Invoice Specifics) and the Invoice UI Refresh specification version 45, section S10-R4, read on 31 August 2026."
+  ],
+  "own_source": [],
+  "before": {
+   "custom_expected": "<p>1. Shows 'Due date: {date}' (or no due-date line if unset) - NOT 'Paid date'.<br>2. Fully paid requires Balance $0.00 AND at least one applied row (Section 6 definition, S10-R4).</p><p>---<br>This is the expected behaviour as per epic SV-8218 and story SV-9149 (Story 10, Estimate and Invoice Specifics) and the Invoice UI Refresh specification version 45, section S10-R4, read on 31 August 2026.<br>Last checked against build v26.35.5-8c3cc21 on 8/31/2026.</p><p>AUTOMATION: READY</p>"
+  }
+ },
+ "45179": {
+  "title": "Credit Invoice Balance shows the full open balance on an unapplied credit",
   "atm": 1,
   "section_id": 6752,
-  "refs": "SV-9150 (S11-R1; S1-R6)",
+  "refs": "SV-9150 (S11-R6a)",
   "provenance": [
-   "This is the expected behaviour as per epic SV-8218 and story SV-9150 (Story 11, Credit Invoice) and the Invoice UI Refresh specification version 45, sections S11-R1 and S1-R6, read on 31 August 2026."
+   "This is the expected behaviour as per epic SV-8218 and story SV-9150 (Story 11, Credit Invoice) and the Invoice UI Refresh specification version 45, section S11-R6a, read on 31 August 2026."
   ],
   "own_source": [],
   "before": {
-   "custom_expected": "<p>1. The masthead shows \"Credit: {number}\", where the credit number carries the \"CM-\" prefix (for example \"Credit: CM-2202\").<br>2. The masthead shows \"Issue date: {date}\".<br>3. The masthead shows no money figure and no boxed headline figure.</p><p>---<br>This is the expected behaviour as per epic SV-8218 and story SV-9150 (Story 11, Credit Invoice) and the Invoice UI Refresh specification version 45, sections S11-R1 and S1-R6, read on 31 August 2026.<br>Last checked against build v26.35.5-8c3cc21 on 8/31/2026.</p><p>AUTOMATION: READY</p>"
+   "custom_expected": "<p>1. 'Payments' shows the label with no rows.<br>2. 'Balance' reads $200.00, positive - the credit's open balance (net-new, S11-R6a). A flat $0.00 rendering here is a defect.</p><p>---<br>This is the expected behaviour as per epic SV-8218 and story SV-9150 (Story 11, Credit Invoice) and the Invoice UI Refresh specification version 45, section S11-R6a, read on 31 August 2026.<br>Last checked against build v26.35.5-8c3cc21 on 8/31/2026.</p><p>AUTOMATION: READY</p>"
   }
  },
- "44965": {
-  "title": "Customer address block is labeled 'Credit To' on the Credit Invoice",
+ "45180": {
+  "title": "Credit Balance shows the remaining open balance when partly applied",
   "atm": 1,
   "section_id": 6752,
-  "refs": "SV-9150 (S11-R2; S2-R1; S2-R3)",
+  "refs": "SV-9150 (S11-R6a)",
   "provenance": [
-   "This is the expected behaviour as per epic SV-8218 and story SV-9150 (Story 11, Credit Invoice) and the Invoice UI Refresh specification version 45, sections S11-R2, S2-R1 and S2-R3, read on 31 August 2026."
+   "This is the expected behaviour as per epic SV-8218 and story SV-9150 (Story 11, Credit Invoice) and the Invoice UI Refresh specification version 45, section S11-R6a, read on 31 August 2026."
   ],
   "own_source": [],
   "before": {
-   "custom_expected": "<p>1. The customer address block is labeled exactly \"Credit To\" (not \"Bill To\").<br>2. Every other address rule applies to it unchanged (name always shown, address fields hide when empty).<br>3. Remit Payment To never appears on the Credit Invoice, so the Credit To block is always full width.</p><p>---<br>This is the expected behaviour as per epic SV-8218 and story SV-9150 (Story 11, Credit Invoice) and the Invoice UI Refresh specification version 45, sections S11-R2, S2-R1 and S2-R3, read on 31 August 2026.<br>Last checked against build v26.35.5-8c3cc21 on 8/31/2026.</p><p>AUTOMATION: READY</p>"
+   "custom_expected": "<p>1. 'Payments' shows the label with no rows (applications to invoices are not listed).<br>2. 'Balance' reads $120.00, positive - the open balance (original minus amounts applied to invoices) (S11-R6a).</p><p>---<br>This is the expected behaviour as per epic SV-8218 and story SV-9150 (Story 11, Credit Invoice) and the Invoice UI Refresh specification version 45, section S11-R6a, read on 31 August 2026.<br>Last checked against build v26.35.5-8c3cc21 on 8/31/2026.</p><p>AUTOMATION: READY</p>"
   }
  },
- "44966": {
-  "title": "Status table shows Credit Number, Status, Invoice Number correctly",
+ "45181": {
+  "title": "Credit Balance reads $0.00 when fully applied and when voided",
   "atm": 1,
   "section_id": 6752,
-  "refs": "SV-9150 (S11-R3)",
+  "refs": "SV-9150 (S11-R6a)",
   "provenance": [
-   "This is the expected behaviour as per epic SV-8218 and story SV-9150 (Story 11, Credit Invoice) and the Invoice UI Refresh specification version 45, section S11-R3, read on 31 August 2026."
+   "This is the expected behaviour as per epic SV-8218 and story SV-9150 (Story 11, Credit Invoice) and the Invoice UI Refresh specification version 45, section S11-R6a, read on 31 August 2026."
   ],
   "own_source": [],
   "before": {
-   "custom_expected": "<p>1. A status table shows three columns labeled exactly \"Credit Number\", \"Status\", and \"Invoice Number\".<br>2. Status shows the credit's current state: one of \"Unapplied\", \"Partially applied\", \"Applied\", \"Refunded\", or \"Voided\".<br>3. Invoice Number shows the originating invoice's full document number (for example \"INV-S-24914\").<br>4. For an account-level credit with no origin invoice, the whole Invoice Number column is hidden.</p><p>---<br>This is the expected behaviour as per epic SV-8218 and story SV-9150 (Story 11, Credit Invoice) and the Invoice UI Refresh specification version 45, section S11-R3, read on 31 August 2026.<br>Last checked against build v26.35.5-8c3cc21 on 8/31/2026.</p><p>AUTOMATION: READY</p>"
+   "custom_expected": "<p>1. Fully applied: Balance reads $0.00.<br>2. Voided: Balance reads $0.00; items and totals render unchanged; 'Voided' in the status table is the only indicator (S11-R6a; context note).</p><p>---<br>This is the expected behaviour as per epic SV-8218 and story SV-9150 (Story 11, Credit Invoice) and the Invoice UI Refresh specification version 45, section S11-R6a, read on 31 August 2026.<br>Last checked against build v26.35.5-8c3cc21 on 8/31/2026.</p><p>AUTOMATION: READY</p>"
   }
  },
- "44967": {
-  "title": "Credited items table shows returned parts and money-only lines correctly",
+ "45182": {
+  "title": "Credit Invoice lists refund rows and the open balance until consumed",
   "atm": 1,
   "section_id": 6752,
-  "refs": "SV-9150 (S11-R4; S11-R5)",
+  "refs": "SV-9150 (S11-R6a)",
   "provenance": [
-   "This is the expected behaviour as per epic SV-8218 and story SV-9150 (Story 11, Credit Invoice) and the Invoice UI Refresh specification version 45, sections S11-R4 and S11-R5, read on 31 August 2026."
+   "This is the expected behaviour as per epic SV-8218 and story SV-9150 (Story 11, Credit Invoice) and the Invoice UI Refresh specification version 45, section S11-R6a, read on 31 August 2026."
   ],
   "own_source": [],
   "before": {
-   "custom_expected": "<p>1. The credited items appear in a table with columns labeled exactly \"Description\", \"Quantity\", \"Rate\", \"Restocking Fee\", and \"Total\".<br>2. A returned part shows its actual quantity as a negative number, and its rate.<br>3. A money-only credit line shows \"--\" for Quantity and Rate.<br>4. The Restocking Fee column is always shown, reading \"$0.00\" when there is no fee.<br>5. Totals are negative, formatted with a leading minus (for example \"-$100.00\") - not the parentheses convention used for discounts.<br>6. A money-only line's Description comes from the credit's reason if entered, otherwise the memo text, otherwise \"Refund\".</p><p>---<br>This is the expected behaviour as per epic SV-8218 and story SV-9150 (Story 11, Credit Invoice) and the Invoice UI Refresh specification version 45, sections S11-R4 and S11-R5, read on 31 August 2026.<br>Last checked against build v26.35.5-8c3cc21 on 8/31/2026.</p><p>AUTOMATION: READY</p>"
+   "custom_expected": "<p>1. Refund rows read '{date} - {method}' with negative amounts.<br>2. Partially refunded: Balance reads $150.00, positive.<br>3. Fully consumed: Balance reads $0.00 (S11-R6a - preserves the shipped SV-7754 rendering; a regression here is Critical).</p><p>---<br>This is the expected behaviour as per epic SV-8218 and story SV-9150 (Story 11, Credit Invoice) and the Invoice UI Refresh specification version 45, section S11-R6a, read on 31 August 2026.<br>Last checked against build v26.35.5-8c3cc21 on 8/31/2026.</p><p>AUTOMATION: READY</p>"
   }
  },
- "44968": {
-  "title": "Restocking fee reduces a returned-part credit total as specified",
+ "45183": {
+  "title": "Credit Balance is correct when partly refunded and partly applied",
   "atm": 1,
   "section_id": 6752,
-  "refs": "SV-9150 (S11-R5)",
+  "refs": "SV-9150 (S11-R6a)",
   "provenance": [
-   "This is the expected behaviour as per epic SV-8218 and story SV-9150 (Story 11, Credit Invoice) and the Invoice UI Refresh specification version 45, section S11-R5, read on 31 August 2026."
+   "This is the expected behaviour as per epic SV-8218 and story SV-9150 (Story 11, Credit Invoice) and the Invoice UI Refresh specification version 45, section S11-R6a, read on 31 August 2026."
   ],
   "own_source": [],
   "before": {
-   "custom_expected": "<p>1. The restocking fee reduces the credit: quantity -2 at rate $50.00 with a $10.00 restocking fee produces Total -$90.00.<br>2. For a money-only line, Total is the credited amount.</p><p>---<br>This is the expected behaviour as per epic SV-8218 and story SV-9150 (Story 11, Credit Invoice) and the Invoice UI Refresh specification version 45, section S11-R5, read on 31 August 2026.<br>Last checked against build v26.35.5-8c3cc21 on 8/31/2026.</p><p>AUTOMATION: READY</p>"
+   "custom_expected": "<p>1. Balance reads $70.00 - the open balance (original credit total minus amounts refunded minus amounts applied to invoices), shown positive (S11-R6a).</p><p>---<br>This is the expected behaviour as per epic SV-8218 and story SV-9150 (Story 11, Credit Invoice) and the Invoice UI Refresh specification version 45, section S11-R6a, read on 31 August 2026.<br>Last checked against build v26.35.5-8c3cc21 on 8/31/2026.</p><p>AUTOMATION: READY</p>"
   }
  },
- "44969": {
-  "title": "Totals block rows and Balance follow the credit's status",
+ "45184": {
+  "title": "Every date on every document renders in the fixed Jan 5, 2026 format",
   "atm": 1,
-  "section_id": 6752,
-  "refs": "SV-9150 (S11-R6; S11-R6a)",
+  "section_id": 6770,
+  "refs": "SV-8218 (G-R1)",
   "provenance": [
-   "This is the expected behaviour as per epic SV-8218 and story SV-9150 (Story 11, Credit Invoice) and the Invoice UI Refresh specification version 45, sections S11-R6 and S11-R6a, read on 31 August 2026."
+   "This is the expected behaviour as per epic SV-8218 and the Invoice UI Refresh specification version 45, section G-R1, read on 31 August 2026."
   ],
   "own_source": [],
   "before": {
-   "custom_expected": "<p>1. The totals block shows rows labeled exactly: \"Subtotal\" (sum of item totals, negative), \"Tax\" (one row; negative when tax applies, \"$0.00\" when none), \"Total Credit\" (negative, the document's key figure), \"Payments\", and \"Balance\".<br>2. Unapplied: Payments shows the label with no rows; Balance shows the full credit amount, positive (its open balance).<br>3. Partially applied: Payments shows the label with no rows; Balance shows the open balance, positive (original credit total minus amounts refunded minus amounts applied to invoices).<br>4. Applied: Payments shows the label with no rows; Balance reads $0.00.<br>5. Refunded: one row per refund payment reading \"{date} - {method}\" with the refunded amount (negative); Balance reads $0.00 once fully consumed, otherwise the open balance, positive.<br>6. Voided: Payments shows the label with no rows; Balance reads $0.00.<br>7. On the Credit Invoice, \"Balance\" is the credit's open balance — the original credit total minus amounts refunded minus amounts applied to invoices — shown positive, reading $0.00 once nothing remains or the credit is voided; it does not follow the Invoice's Total-minus-payments formula.<br>8. A credit that is both partially refunded and partially applied takes the \"Partially applied\" status (one of the five states, not a new one), and its refund rows still list in the Payments section.</p><p>---<br>This is the expected behaviour as per epic SV-8218 and story SV-9150 (Story 11, Credit Invoice) and the Invoice UI Refresh specification version 45, sections S11-R6 and S11-R6a, read on 31 August 2026.<br>Last checked against build v26.35.5-8c3cc21 on 8/31/2026.</p><p>AUTOMATION: READY</p>"
+   "custom_expected": "<p>1. All dates render in the 'Jan 5, 2026' style - abbreviated English month, day of the month without a leading zero, a comma, and the four-digit year.<br>2. The format is identical for US and Canadian shops and no shop or user setting changes it (G-R1).<br>3. The only exception is the Paid banner's 'Date / Time' field.</p><p>---<br>This is the expected behaviour as per epic SV-8218 and the Invoice UI Refresh specification version 45, section G-R1, read on 31 August 2026.<br>Last checked against build v26.35.5-8c3cc21 on 8/31/2026.</p><p>AUTOMATION: READY</p>"
   }
  },
- "44970": {
-  "title": "Credit Invoice shows the disclaimer and standard signature area",
+ "45188": {
+  "title": "The on-screen preview matches the generated PDF with no markup stripped",
   "atm": 1,
-  "section_id": 6752,
-  "refs": "SV-9150 (S11-R7; S9-R2)",
+  "section_id": 6770,
+  "refs": "SV-8218 (Plan Phase 4)",
   "provenance": [
-   "This is the expected behaviour as per epic SV-8218 and story SV-9150 (Story 11, Credit Invoice) and the Invoice UI Refresh specification version 45, sections S11-R7 and S9-R2, read on 31 August 2026."
+   "This is the expected behaviour as per epic SV-8218 and the Invoice UI Refresh engineering plan (Phase 4); verified current against the Invoice UI Refresh specification version 45, read on 31 August 2026."
   ],
   "own_source": [],
   "before": {
-   "custom_expected": "<p>1. The Credit Invoice shows the shop's configured disclaimer.<br>2. It shows the standard signature area with the three lines \"Customer Signature\", \"Printed Name\", and \"Date\".</p><p>---<br>This is the expected behaviour as per epic SV-8218 and story SV-9150 (Story 11, Credit Invoice) and the Invoice UI Refresh specification version 45, sections S11-R7 and S9-R2, read on 31 August 2026.<br>Last checked against build v26.35.5-8c3cc21 on 8/31/2026.</p><p>AUTOMATION: READY</p>"
+   "custom_expected": "<p>1. The preview shows all sections and styles - DOMPurify must not strip the new markup (plan Phase 4 watch-item).</p><p>---<br>This is the expected behaviour as per epic SV-8218 and the Invoice UI Refresh engineering plan (Phase 4); verified current against the Invoice UI Refresh specification version 45, read on 31 August 2026.<br>Last checked against build v26.35.5-8c3cc21 on 8/31/2026.</p><p>AUTOMATION: READY</p>"
   }
  },
- "44971": {
-  "title": "Document layout matches the Design Document structure",
+ "45189": {
+  "title": "Currency and percentage formats follow US and Canadian conventions",
   "atm": 1,
-  "section_id": 6753,
-  "refs": "SV-9151 (S12-R1)",
+  "section_id": 6770,
+  "refs": "SV-8218 (Shipped-behaviour note)",
   "provenance": [
-   "This is the expected behaviour as per epic SV-8218 and story SV-9151 (Story 12, Document Visual Standard) and the Invoice UI Refresh specification version 45, section S12-R1, and the Design Document, read on 31 August 2026."
+   "This is the expected behaviour as per epic SV-8218 and the Invoice UI Refresh PRD shipped-behaviour note; verified current against the Invoice UI Refresh specification version 45, read on 31 August 2026."
   ],
   "own_source": [],
   "before": {
-   "custom_expected": "<p>1. The document layout follows the Design Document exactly: masthead with the shop letterhead left, the shop logo center, and the document block right over a 2px ink rule; a bordered Addresses row; the asset band; the order reference chips; numbered work lines; the \"Summary\" break bar; a two-column tail with the disclaimer left and the totals right; the boxed headline figure; the three-line signature row; the single-line footer.</p><p>---<br>This is the expected behaviour as per epic SV-8218 and story SV-9151 (Story 12, Document Visual Standard) and the Invoice UI Refresh specification version 45, section S12-R1, and the Design Document, read on 31 August 2026.<br>Last checked against build v26.35.5-8c3cc21 on 8/31/2026.</p><p>AUTOMATION: READY</p>"
+   "custom_expected": "<p>1. Number, currency and percentage formats follow ShopView's existing locale-aware conventions - the redesign must not alter them (PRD shipped-behaviour note).</p><p>---<br>This is the expected behaviour as per epic SV-8218 and the Invoice UI Refresh PRD shipped-behaviour note; verified current against the Invoice UI Refresh specification version 45, read on 31 August 2026.<br>Last checked against build v26.35.5-8c3cc21 on 8/31/2026.</p><p>AUTOMATION: READY</p>"
   }
  },
- "44972": {
-  "title": "Only the closed palette colours appear on any document",
+ "45192": {
+  "title": "Invoice preview fits a mobile viewport with no clipping and no header overlap",
   "atm": 1,
-  "section_id": 6753,
-  "refs": "SV-9151 (S12-R2)",
+  "section_id": 6770,
+  "refs": "SV-9151 (S12-R11); SV-9441",
   "provenance": [
-   "This is the expected behaviour as per epic SV-8218 and story SV-9151 (Story 12, Document Visual Standard) and the Invoice UI Refresh specification version 45, section S12-R2, and the Design Document, read on 31 August 2026."
+   "This is the expected behaviour as per epic SV-8218 and story SV-9151 (Story 12, Document Visual Standard) and the Invoice UI Refresh specification version 45, section S12-R11, read on 31 August 2026."
   ],
   "own_source": [],
   "before": {
-   "custom_expected": "<p>1. The only colours on the light printed document are: ink #121926, body text #364152, muted text #697586, faint labels #9AA4B2, hairlines #E3E8EF, row dividers #EEF2F6, paid-banner surface #F8FAFC, accent #257CFF, negative #B42318, paper #FFFFFF.<br>2. No colour outside this set appears on the printed document; the print and black-and-white output adds only the inks S12-R5 lists, and the Design Document's demo chrome and dark-mode preview are not part of any document.</p><p>---<br>This is the expected behaviour as per epic SV-8218 and story SV-9151 (Story 12, Document Visual Standard) and the Invoice UI Refresh specification version 45, section S12-R2, and the Design Document, read on 31 August 2026.<br>Last checked against build v26.35.5-8c3cc21 on 8/31/2026.</p><p>AUTOMATION: READY</p>"
+   "custom_expected": "<p>1. The document fits within the viewport with no content clipped; there is no left-edge clipping, the logo does not overlap the label/dates, and the phone number does not break mid-number.<br>2. Any element wider than the viewport (for example a wide table) scrolls horizontally within its own container rather than clipping or forcing the whole page to scroll sideways (v45 S12-R11).<br>3. History: 5th recurrence risk - SV-9441 open on the old template (SV-3362 / SV-3994 / SV-4946 / SV-5123 prior).</p><p>---<br>This is the expected behaviour as per epic SV-8218 and story SV-9151 (Story 12, Document Visual Standard) and the Invoice UI Refresh specification version 45, section S12-R11, read on 31 August 2026.<br>Last checked against build v26.35.5-8c3cc21 on 8/31/2026.</p><p>AUTOMATION: READY</p>"
   }
  },
- "44973": {
-  "title": "Accent colour appears only on line numbers and the footer 'ShopView'",
+ "45193": {
+  "title": "Amounts of four digits or more render correctly with no NaN",
   "atm": 1,
-  "section_id": 6753,
-  "refs": "SV-9151 (S12-R3)",
+  "section_id": 6770,
+  "refs": "SV-9144 (S5-R9)",
   "provenance": [
-   "This is the expected behaviour as per epic SV-8218 and story SV-9151 (Story 12, Document Visual Standard) and the Invoice UI Refresh specification version 45, section S12-R3, and the Design Document, read on 31 August 2026."
+   "This is the expected behaviour as per epic SV-8218 and story SV-9144 (Story 5, Work Section) and the Invoice UI Refresh specification version 45, section S5-R9, read on 31 August 2026."
   ],
   "own_source": [],
   "before": {
-   "custom_expected": "<p>1. The accent #257CFF appears only on the work line numbers and on the word \"ShopView\" in the footer.<br>2. On the Parts Sale document, which has no numbered work lines, the accent appears only on the word \"ShopView\" in the footer.<br>3. Nothing else on the document uses the accent.</p><p>---<br>This is the expected behaviour as per epic SV-8218 and story SV-9151 (Story 12, Document Visual Standard) and the Invoice UI Refresh specification version 45, section S12-R3, and the Design Document, read on 31 August 2026.<br>Last checked against build v26.35.5-8c3cc21 on 8/31/2026.</p><p>AUTOMATION: READY</p>"
+   "custom_expected": "<p>1. All amounts render as formatted currency; there is no $NaN anywhere.<br>2. History: SV-8680 / SV-8581 showed $NaN at 4+ digits.</p><p>---<br>This is the expected behaviour as per epic SV-8218 and story SV-9144 (Story 5, Work Section) and the Invoice UI Refresh specification version 45, section S5-R9, read on 31 August 2026.<br>Last checked against build v26.35.5-8c3cc21 on 8/31/2026.</p><p>AUTOMATION: READY</p>"
   }
  },
- "44974": {
-  "title": "Typography uses Inter with the specified weights",
+ "45194": {
+  "title": "Special characters in shop and customer names render correctly on the document",
   "atm": 1,
-  "section_id": 6753,
-  "refs": "SV-9151 (S12-R4)",
+  "section_id": 6770,
+  "refs": "SV-9140 (S1-R1)",
   "provenance": [
-   "This is the expected behaviour as per epic SV-8218 and story SV-9151 (Story 12, Document Visual Standard) and the Invoice UI Refresh specification version 45, section S12-R4, and the Design Document, read on 31 August 2026."
+   "This is the expected behaviour as per epic SV-8218 and story SV-9140 (Story 1, Masthead) and the Invoice UI Refresh specification version 45, section S1-R1, read on 31 August 2026."
   ],
   "own_source": [],
   "before": {
-   "custom_expected": "<p>1. The typeface is Inter with a system sans-serif fallback, applied identically on screen and in PDF output, so the on-screen preview and the PDF wrap line for line.<br>2. Weight 400 for body text; 600 and 700 for emphasis and totals; 700 for the in-job section labels; 800 for the shop name, the document label, the headline figure, and the line numbers.<br>3. Uppercase micro-labels carry letterspacing as in the Design Document.</p><p>---<br>This is the expected behaviour as per epic SV-8218 and story SV-9151 (Story 12, Document Visual Standard) and the Invoice UI Refresh specification version 45, section S12-R4, and the Design Document, read on 31 August 2026.<br>Last checked against build v26.35.5-8c3cc21 on 8/31/2026.</p><p>AUTOMATION: READY</p>"
+   "custom_expected": "<p>1. Characters render exactly as entered - an ampersand shows as &amp; and never as an escaped entity; no mojibake; no missing glyphs in Inter.<br>2. History: SV-4406.</p><p>---<br>This is the expected behaviour as per epic SV-8218 and story SV-9140 (Story 1, Masthead) and the Invoice UI Refresh specification version 45, section S1-R1, read on 31 August 2026.<br>Last checked against build v26.35.5-8c3cc21 on 8/31/2026.</p><p>AUTOMATION: READY</p>"
   }
  },
- "44975": {
-  "title": "Print/PDF ink floor keeps text and rules dark enough",
+ "45195": {
+  "title": "A multi-page invoice PDF breaks cleanly between pages",
   "atm": 1,
-  "section_id": 6753,
-  "refs": "SV-9151 (S12-R5)",
+  "section_id": 6770,
+  "refs": "SV-9151 (S12-R1,S12-R10)",
   "provenance": [
-   "This is the expected behaviour as per epic SV-8218 and story SV-9151 (Story 12, Document Visual Standard) and the Invoice UI Refresh specification version 45, section S12-R5, and the Design Document, read on 31 August 2026."
+   "This is the expected behaviour as per epic SV-8218 and story SV-9151 (Story 12, Document Visual Standard) and the Invoice UI Refresh specification version 45, section S12-R1 and S12-R10, read on 31 August 2026."
   ],
   "own_source": [],
   "before": {
-   "custom_expected": "<p>1. In print and PDF output, no text renders lighter than #4B5565.<br>2. Text smaller than 10px renders no lighter than #364152.<br>3. Hairline rules render no lighter than #CDD5DF.</p><p>---<br>This is the expected behaviour as per epic SV-8218 and story SV-9151 (Story 12, Document Visual Standard) and the Invoice UI Refresh specification version 45, section S12-R5, and the Design Document, read on 31 August 2026.<br>Last checked against build v26.35.5-8c3cc21 on 8/31/2026.</p><p>AUTOMATION: READY</p>"
+   "custom_expected": "<p>1. No content is cut mid-row; descriptions do not split illegibly across pages; the totals and signature block are not orphaned oddly (S12-R1).<br>2. Per v45 S12-R10: every page after the first opens with a single identification line (shop location name on the left, document number on the right); the full masthead does not repeat on later pages.<br>3. Per v45 S12-R10: the totals block is not split across a page break; a work line and its own footer stay together on the same page; the signature row does not land alone on a final page; and no single row is orphaned by itself on a page.<br>4. History: SV-8914 (Ready to Fix - ACTIVE) + SV-8189.</p><p>---<br>This is the expected behaviour as per epic SV-8218 and story SV-9151 (Story 12, Document Visual Standard) and the Invoice UI Refresh specification version 45, section S12-R1 and S12-R10, read on 31 August 2026.<br>Last checked against build v26.35.5-8c3cc21 on 8/31/2026.</p><p>AUTOMATION: READY</p>"
   }
  },
- "44976": {
-  "title": "Every document is fully legible in grayscale",
+ "45196": {
+  "title": "An invoice paid by mixed cash and customer credit shows the Paid date",
   "atm": 1,
-  "section_id": 6753,
-  "refs": "SV-9151 (S12-R6)",
+  "section_id": 6770,
+  "refs": "SV-9149 (S10-R4)",
   "provenance": [
-   "This is the expected behaviour as per epic SV-8218 and story SV-9151 (Story 12, Document Visual Standard) and the Invoice UI Refresh specification version 45, section S12-R6, and the Design Document, read on 31 August 2026."
+   "This is the expected behaviour as per epic SV-8218 and story SV-9149 (Story 10, Estimate and Invoice Specifics) and the Invoice UI Refresh specification version 45, section S10-R4, read on 31 August 2026."
   ],
   "own_source": [],
   "before": {
-   "custom_expected": "<p>1. Every document is fully legible printed in grayscale.<br>2. Colour is never the only signal: credit amounts also carry the leading minus, and discounts also carry parentheses.</p><p>---<br>This is the expected behaviour as per epic SV-8218 and story SV-9151 (Story 12, Document Visual Standard) and the Invoice UI Refresh specification version 45, section S12-R6, and the Design Document, read on 31 August 2026.<br>Last checked against build v26.35.5-8c3cc21 on 8/31/2026.</p><p>AUTOMATION: READY</p>"
-  }
- },
- "44977": {
-  "title": "Prototype chrome does not appear on any real document",
-  "atm": 1,
-  "section_id": 6753,
-  "refs": "SV-9151 (S12-R7; S12-N1)",
-  "provenance": [
-   "This is the expected behaviour as per epic SV-8218 and story SV-9151 (Story 12, Document Visual Standard) and the Invoice UI Refresh specification version 45, sections S12-R7 and S12-N1, read on 31 August 2026."
-  ],
-  "own_source": [],
-  "before": {
-   "custom_expected": "<p>1. The Design Document's control strips (the document and field toggles, the settings menu, the theme controls) do not appear on any real document.<br>2. Only the white sheet is the document.<br>3. The PDF output carries no drop shadow and no rounded sheet corners (those are screen-prototype presentation only).</p><p>---<br>This is the expected behaviour as per epic SV-8218 and story SV-9151 (Story 12, Document Visual Standard) and the Invoice UI Refresh specification version 45, sections S12-R7 and S12-N1, read on 31 August 2026.<br>Last checked against build v26.35.5-8c3cc21 on 8/31/2026.</p><p>AUTOMATION: READY</p>"
-  }
- },
- "44978": {
-  "title": "Work-section rules and dividers follow the specified treatment",
-  "atm": 1,
-  "section_id": 6753,
-  "refs": "SV-9151 (S12-R8)",
-  "provenance": [
-   "This is the expected behaviour as per epic SV-8218 and story SV-9151 (Story 12, Document Visual Standard) and the Invoice UI Refresh specification version 45, section S12-R8, and the Design Document, read on 31 August 2026."
-  ],
-  "own_source": [],
-  "before": {
-   "custom_expected": "<p>1. The work section opens with a 2px ink rule under the section label.<br>2. Numbered jobs are separated by a 1px ink (#121926) rule.<br>3. Charge rows inside a job are separated by #EEF2F6 row dividers.<br>4. The \"Labor\" and \"Parts\" sub-section labels carry no underline rule.<br>5. When a line has fee or discount adjustment rows, the row divider follows the line's last adjustment row - never between the line and its adjustments - so the line and its adjustments read as one group.</p><p>---<br>This is the expected behaviour as per epic SV-8218 and story SV-9151 (Story 12, Document Visual Standard) and the Invoice UI Refresh specification version 45, section S12-R8, and the Design Document, read on 31 August 2026.<br>Last checked against build v26.35.5-8c3cc21 on 8/31/2026.</p><p>AUTOMATION: READY</p>"
-  }
- },
- "44979": {
-  "title": "Section labels use the three-tier hierarchy with exact sizes and inks",
-  "atm": 1,
-  "section_id": 6753,
-  "refs": "SV-9151 (S12-R9)",
-  "provenance": [
-   "This is the expected behaviour as per epic SV-8218 and story SV-9151 (Story 12, Document Visual Standard) and the Invoice UI Refresh specification version 45, section S12-R9, and the Design Document, read on 31 August 2026."
-  ],
-  "own_source": [],
-  "before": {
-   "custom_expected": "<p>1. The document section label (\"Work Summary\" / \"Work Performed\" / \"Parts\") is 11px weight 700 in muted ink #697586.<br>2. \"Scope of work\" is 10px weight 700 in body ink #364152.<br>3. The in-job \"Labor\" and \"Parts\" labels are 10.5px weight 700 in full ink #121926.<br>4. All three sit visually below the 16px weight-700 job titles, with letterspacing per the Design Document.</p><p>---<br>This is the expected behaviour as per epic SV-8218 and story SV-9151 (Story 12, Document Visual Standard) and the Invoice UI Refresh specification version 45, section S12-R9, and the Design Document, read on 31 August 2026.<br>Last checked against build v26.35.5-8c3cc21 on 8/31/2026.</p><p>AUTOMATION: READY</p>"
-  }
- },
- "44980": {
-  "title": "Parts Sale documents behave as the Estimate/Invoice except as stated",
-  "atm": 1,
-  "section_id": 6754,
-  "refs": "SV-9195 (S13-R1)",
-  "provenance": [
-   "This is the expected behaviour as per epic SV-8218 and story SV-9195 (Story 13, Parts Sale Estimate and Invoice) and the Invoice UI Refresh specification version 45, section S13-R1, read on 31 August 2026."
-  ],
-  "own_source": [],
-  "before": {
-   "custom_expected": "<p>1. The Parts Sale Estimate behaves as the Estimate, and the Parts Sale Invoice as the Invoice, throughout the spec: masthead and date labels (including \"Estimate date\" and the Due/Paid date swap), addresses and Remit Payment To, asset section, financial summary, payments and Balance, the paid banner rule, disclaimer and signature, and the visual standard - except as Story 13 states.</p><p>---<br>This is the expected behaviour as per epic SV-8218 and story SV-9195 (Story 13, Parts Sale Estimate and Invoice) and the Invoice UI Refresh specification version 45, section S13-R1, read on 31 August 2026.<br>Last checked against build v26.35.5-8c3cc21 on 8/31/2026.</p><p>AUTOMATION: READY</p>"
-  }
- },
- "44981": {
-  "title": "Parts Sale body is a single flat 'Parts' section, no jobs",
-  "atm": 1,
-  "section_id": 6754,
-  "refs": "SV-9195 (S13-R2)",
-  "provenance": [
-   "This is the expected behaviour as per epic SV-8218 and story SV-9195 (Story 13, Parts Sale Estimate and Invoice) and the Invoice UI Refresh specification version 45, section S13-R2, read on 31 August 2026."
-  ],
-  "own_source": [],
-  "before": {
-   "custom_expected": "<p>1. The body is a single section headed \"Parts\".<br>2. It shows flat part lines, each with part number, description, quantity, rate, and amount.<br>3. There are no job blocks, no \"Scope of work\", no Labor section, and no Declined Work section on a parts sale document.</p><p>---<br>This is the expected behaviour as per epic SV-8218 and story SV-9195 (Story 13, Parts Sale Estimate and Invoice) and the Invoice UI Refresh specification version 45, section S13-R2, read on 31 August 2026.<br>Last checked against build v26.35.5-8c3cc21 on 8/31/2026.</p><p>AUTOMATION: READY</p>"
-  }
- },
- "44982": {
-  "title": "Parts Sale line-level fees/discounts render as on the Invoice",
-  "atm": 1,
-  "section_id": 6754,
-  "refs": "SV-9195 (S13-R3; S12-R8)",
-  "provenance": [
-   "This is the expected behaviour as per epic SV-8218 and story SV-9195 (Story 13, Parts Sale Estimate and Invoice) and the Invoice UI Refresh specification version 45, sections S13-R3 and S12-R8, read on 31 August 2026."
-  ],
-  "own_source": [],
-  "before": {
-   "custom_expected": "<p>1. Line-level fees and discounts render exactly as on the Invoice: indented under their part line.<br>2. The row divider follows the part's last adjustment row, rather than sitting between the part and its adjustments.</p><p>---<br>This is the expected behaviour as per epic SV-8218 and story SV-9195 (Story 13, Parts Sale Estimate and Invoice) and the Invoice UI Refresh specification version 45, sections S13-R3 and S12-R8, read on 31 August 2026.<br>Last checked against build v26.35.5-8c3cc21 on 8/31/2026.</p><p>AUTOMATION: READY</p>"
-  }
- },
- "44983": {
-  "title": "Parts Sale document number keeps parts-sale numbering",
-  "atm": 1,
-  "section_id": 6754,
-  "refs": "SV-9195 (S13-R4)",
-  "provenance": [
-   "This is the expected behaviour as per epic SV-8218 and story SV-9195 (Story 13, Parts Sale Estimate and Invoice) and the Invoice UI Refresh specification version 45, section S13-R4, read on 31 August 2026."
-  ],
-  "own_source": [],
-  "before": {
-   "custom_expected": "<p>1. The document number uses the parts-sale numbering through the existing document numbering.<br>2. For example the Estimate reads \"Estimate: EST-P2-1088\" and the Invoice reads \"Invoice: INV-P2-1088\".</p><p>---<br>This is the expected behaviour as per epic SV-8218 and story SV-9195 (Story 13, Parts Sale Estimate and Invoice) and the Invoice UI Refresh specification version 45, section S13-R4, read on 31 August 2026.<br>Last checked against build v26.35.5-8c3cc21 on 8/31/2026.</p><p>AUTOMATION: READY</p>"
-  }
- },
- "44984": {
-  "title": "Parts Sale reference fields drop Work Order and Approval Code",
-  "atm": 1,
-  "section_id": 6754,
-  "refs": "SV-9195 (S13-R5)",
-  "provenance": [
-   "This is the expected behaviour as per epic SV-8218 and story SV-9195 (Story 13, Parts Sale Estimate and Invoice) and the Invoice UI Refresh specification version 45, section S13-R5, read on 31 August 2026."
-  ],
-  "own_source": [],
-  "before": {
-   "custom_expected": "<p>1. The Work Order field and the Approval Code field are not shown on a parts sale document.<br>2. Customer PO and Terms are unchanged (Terms always shows).<br>3. Authorizer follows the parts-sale Authorizer treatment (S13-R6).</p><p>---<br>This is the expected behaviour as per epic SV-8218 and story SV-9195 (Story 13, Parts Sale Estimate and Invoice) and the Invoice UI Refresh specification version 45, section S13-R5, read on 31 August 2026.<br>Last checked against build v26.35.5-8c3cc21 on 8/31/2026.</p><p>AUTOMATION: READY</p>"
-  }
- },
- "44986": {
-  "title": "Parts Sale financial summary shows no Labor and no Shop supplies row",
-  "atm": 1,
-  "section_id": 6754,
-  "refs": "SV-9195 (S13-R7)",
-  "provenance": [
-   "This is the expected behaviour as per epic SV-8218 and story SV-9195 (Story 13, Parts Sale Estimate and Invoice) and the Invoice UI Refresh specification version 45, section S13-R7, read on 31 August 2026."
-  ],
-  "own_source": [],
-  "before": {
-   "custom_expected": "<p>1. The financial summary shows no \"Labor\" row and no \"Shop supplies\" row.<br>2. The \"Parts\" row, the adjustment rows, \"Subtotal\", \"Tax\", \"Total\", \"Payments\", and \"Balance\" are identical to the Invoice.</p><p>---<br>This is the expected behaviour as per epic SV-8218 and story SV-9195 (Story 13, Parts Sale Estimate and Invoice) and the Invoice UI Refresh specification version 45, section S13-R7, read on 31 August 2026.<br>Last checked against build v26.35.5-8c3cc21 on 8/31/2026.</p><p>AUTOMATION: READY</p>"
-  }
- },
- "44987": {
-  "title": "Batch and imported invoices are out of scope (kept on current templates)",
-  "atm": 1,
-  "section_id": 6754,
-  "refs": "SV-9195 (S13-N1); SV-9193 (deferred)",
-  "provenance": [
-   "This is the expected behaviour as per epic SV-8218 and story SV-9195 (Story 13, Parts Sale Estimate and Invoice) and the Invoice UI Refresh specification version 45, section S13-N1, and story SV-9193 (deferred), read on 31 August 2026."
-  ],
-  "own_source": [],
-  "before": {
-   "custom_expected": "<p>1. Batch invoices and imported invoices are not part of Story 13 or this spec.<br>2. They keep their current templates until the follow-up ticket (SV-9193) ships.<br>3. Restyling shared template partials must not half-restyle these deferred templates.</p><p>---<br>This is the expected behaviour as per epic SV-8218 and story SV-9195 (Story 13, Parts Sale Estimate and Invoice) and the Invoice UI Refresh specification version 45, section S13-N1, and story SV-9193 (deferred), read on 31 August 2026.<br>Last checked against build v26.35.5-8c3cc21 on 9/1/2026.</p><p>AUTOMATION: READY</p>"
-  }
- },
- "45213": {
-  "title": "Multi-page document uses standard page-break behaviour",
-  "atm": 1,
-  "section_id": 6753,
-  "refs": "SV-9151 (S12-R10)",
-  "provenance": [
-   "This is the expected behaviour as per epic SV-8218 and story SV-9151 (Story 12, Document Visual Standard) and the Invoice UI Refresh specification version 45, section S12-R10, and the Design Document, read on 31 August 2026."
-  ],
-  "own_source": [],
-  "before": {
-   "custom_expected": "<p>1. Long documents paginate using standard, globally accepted page-break behaviour, not custom pagination.<br>2. Every page after the first opens with a single identification line: the shop location's name on the left and the document number on the right (for example \"Heavy Duty - 9919\" on the left and \"Invoice: INV-S2-4802\" on the right).<br>3. The full masthead does not repeat on later pages.<br>4. The totals block is not split across a page break.<br>5. A work line and its own footer stay together on the same page.<br>6. The signature row does not land alone on a final page.<br>7. No single row is orphaned by itself on a page.</p><p>---<br>This is the expected behaviour as per epic SV-8218 and story SV-9151 (Story 12, Document Visual Standard) and the Invoice UI Refresh specification version 45, section S12-R10, and the Design Document, read on 31 August 2026.<br>Last checked against build v26.35.5-8c3cc21 on 8/31/2026.</p><p>AUTOMATION: READY</p>"
-  }
- },
- "45214": {
-  "title": "On-screen document fits the viewport; wide elements scroll separately",
-  "atm": 1,
-  "section_id": 6753,
-  "refs": "SV-9151 (S12-R11)",
-  "provenance": [
-   "This is the expected behaviour as per epic SV-8218 and story SV-9151 (Story 12, Document Visual Standard) and the Invoice UI Refresh specification version 45, section S12-R11, and the Design Document, read on 31 August 2026."
-  ],
-  "own_source": [],
-  "before": {
-   "custom_expected": "<p>1. On screen the document fits within the viewport with no content clipped.<br>2. Any element wider than the viewport (for example a wide table) scrolls horizontally within its own container, rather than clipping or forcing the whole page to scroll sideways.</p><p>---<br>This is the expected behaviour as per epic SV-8218 and story SV-9151 (Story 12, Document Visual Standard) and the Invoice UI Refresh specification version 45, section S12-R11, and the Design Document, read on 31 August 2026.<br>Last checked against build v26.35.5-8c3cc21 on 8/31/2026.</p><p>AUTOMATION: READY</p>"
+   "custom_expected": "<p>1. Balance reads $0.00; 'Paid date: {date}' replaces 'Due date' (the most recent applied row date).<br>2. Both rows are listed per S8-R2 / S8-R4 (S10-R4).<br>3. History: SV-7846 (OPEN) - mixed payment not marked Paid.</p><p>---<br>This is the expected behaviour as per epic SV-8218 and story SV-9149 (Story 10, Estimate and Invoice Specifics) and the Invoice UI Refresh specification version 45, section S10-R4, read on 31 August 2026.<br>Last checked against build v26.35.5-8c3cc21 on 9/1/2026.</p><p>AUTOMATION: READY</p>"
   }
  }
 }

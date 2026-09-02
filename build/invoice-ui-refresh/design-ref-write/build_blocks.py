@@ -43,8 +43,16 @@ intended, snap, skipped = {}, {}, []
 for key, meta in sorted(REFS.items()):
     cid = int(key.lstrip('C'))
     c = get(f'get_case/{cid}')
-    if c['created_by'] != 3:
-        skipped.append((cid, 'foreign (Rule 38)')); continue
+    # 🛑 RULE 38 HAS AN AMENDMENT AND THE FIRST VERSION OF THIS CHECK IGNORED IT.
+    # "A case authored by the project's designated MANUAL QA TESTER is NOT foreign — treat it as
+    # IN-SCOPE (as if created by the QA lead)". For Invoice UI Refresh the recorded tester is
+    # **Mudassir Qamar, TestRail user 6** (CLAUDE.md, confirmed 2026-08-31), and 30 of the suite's 119
+    # cases are his. A bare `created_by != 3` rejected all 30 as foreign. The allowance is
+    # PROJECT-SCOPED and explicit - never a blanket "any author".
+    IN_SCOPE_AUTHORS = {3: 'us (Bilal Muzamil)', 6: 'Mudassir Qamar — this project’s manual QA tester'}
+    if c['created_by'] not in IN_SCOPE_AUTHORS:
+        skipped.append((cid, f'foreign — author {c["created_by"]} is neither us nor this project’s '
+                             f'designated tester (Rule 38)')); continue
     if c.get('custom_atmstatus') == 3:
         skipped.append((cid, 'Automated, no per-case go-ahead (Rule 71)')); continue
     bl = blocks_of(c['custom_expected'])
@@ -79,6 +87,9 @@ json.dump(intended, open(f'{DIR}/intended-blocks.json', 'w'), indent=1, ensure_a
 json.dump(snap, open(f'{DIR}/PRE-snapshot.json', 'w'), indent=1, ensure_ascii=False)
 print(f'to write: {len(intended)}   skipped: {len(skipped)}')
 for cid, why in skipped: print(f'   C{cid}: {why}')
-k = sorted(intended)[0]
-print(f'\n--- C{k} will read:\n')
-print(intended[k]['fields']['custom_expected']['text'])
+if intended:
+    k = sorted(intended)[0]
+    print(f'\n--- C{k} will read:\n')
+    print(intended[k]['fields']['custom_expected']['text'])
+else:
+    print('\nnothing to write — every case in scope already carries its design reference')
