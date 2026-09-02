@@ -79,6 +79,13 @@ chmod 600 /tmp/atlassian/creds.json
 # 1) FRESH MITM bridge. Chromium CANNOT TLS through the egress proxy directly
 #    (proven: --proxy-server=$HTTPS_PROXY -> net::ERR_CONNECTION_RESET on every navigation).
 #    Read $HTTPS_PROXY LIVE — the port rotates between sessions. Needs a local cert:
+#
+# ⚠️ 2026-09-02 — YOU NO LONGER RUN THE openssl LINE BY HAND, AND THE SAN IS WIDER NOW.
+#    `bash build/testing-tools/ensure_bridge.sh` generates the bridge cert itself, with FIVE hosts:
+#    *.atlassian.net, *.atlassian.com, *.testrail.io, *.qa.shopview.com, *.staging.shopview.com
+#    — so one bridge covers Atlassian, TestRail AND the ShopView estate. See that script and
+#    `build/APP-ACTIONS-PLAYBOOK.md` §A prerequisite 1 ("A fresh MITM bridge").
+#    The two-host command below is the ORIGINAL text and stays as the historical authority.
 cd /tmp/atlassian
 openssl req -x509 -newkey rsa:2048 -nodes -keyout mitm.key -out mitm.crt -days 30 \
   -subj "/CN=mitm" -addext "subjectAltName=DNS:*.atlassian.net,DNS:*.atlassian.com"
