@@ -38,7 +38,15 @@ HOST = 'https://shopview.testrail.io'
 sys.path.insert(0, 'build/testing-tools')
 from load_creds import testrail_creds
 
-MARKERS = ('AUTOMATION: READY', 'AUTOMATION: READY - EXPECT FAIL', 'AUTOMATION: HOLD')
+# FOUR legitimate markers, not three. CLAUDE.md's deliverable conventions list three, but RULE 69
+# sanctions a fourth for a case whose steps cannot yet be build-verified:
+#   AUTOMATION: Not available on Build to test Yet - Last checked <M/D/YYYY>
+# Coded with only three, this gate failed C44937/C44938/C44939/C44942 - four CORRECT cases on a
+# Rule-69 project. That is the third time a gate here has cried wolf at correct cases, so: READ THE
+# RULE IN ITS FILE BEFORE FAILING A CASE, and encode what the rule actually allows.
+MARKERS = ('AUTOMATION: READY - EXPECT FAIL', 'AUTOMATION: READY', 'AUTOMATION: HOLD',
+           'AUTOMATION: Not available on Build')
+DEFERRED_MARKER = 'AUTOMATION: Not available on Build'
 NEVER_WRITE = {1: 'Vladimir Tomovic'}          # his cases are reported, never changed - no exceptions
 IN_SCOPE_TESTER = {                            # Rule 38's amendment, per project, never a blanket rule
     6559: (6, 'Mudassir Qamar'),
@@ -110,7 +118,13 @@ def main():
         for s in secs:
             if s['id'] not in keep and s.get('parent_id') in keep:
                 keep.add(s['id']); changed = True
-    cases = [c for c in paged('get_cases/1', 'cases', auth) if c['section_id'] in keep]
+    # SPEED. Paging the whole project meant 4,600+ cases parsed to look at 44 of them, and the run
+    # took minutes. `get_cases/1&section_id=<id>` returns ONE section exactly (verified: asking for
+    # 6760 returns only 6760, no children), so fetch the suite's sections and nothing else. Still
+    # read live from TestRail, which is the part that must never be traded away for speed.
+    cases = []
+    for sid in sorted(keep):
+        cases += paged(f'get_cases/1&section_id={sid}', 'cases', auth)
     print(f'1  LIVE CENSUS         {len(cases)} cases in {len(keep)} sections, read from TestRail')
     if not cases:
         print('   nothing to check'); return 1
@@ -182,10 +196,13 @@ def main():
         else:
             fails.append(f'C{i} marker is not one of the three literals ({t})')
     ready, ef, hold = counts['AUTOMATION: READY'], counts['AUTOMATION: READY - EXPECT FAIL'], counts['AUTOMATION: HOLD']
-    marked = ready + ef + hold
-    ok6 = (ready + ef) == (marked - hold)
-    print(f'6  MARKER ARITHMETIC   READY {ready} + EXPECT-FAIL {ef} = {ready+ef} ; {marked} marked - HOLD {hold} = {marked-hold}'
-          f'   {"closes" if ok6 else "DOES NOT CLOSE"}')
+    defer = counts[DEFERRED_MARKER]
+    # A NOT-BUILT case is excluded from any ready-to-automate figure (Rules 60/69), so it leaves the
+    # arithmetic rather than breaking it.
+    marked = ready + ef + hold + defer
+    ok6 = (ready + ef) == (marked - hold - defer)
+    print(f'6  MARKER ARITHMETIC   READY {ready} + EXPECT-FAIL {ef} = {ready+ef} ; {marked} marked '
+          f'- HOLD {hold} - NOT-BUILT {defer} = {marked-hold-defer}   {"closes" if ok6 else "DOES NOT CLOSE"}')
     if not ok6:
         fails.append('the marker arithmetic does not close')
     if a.build:
@@ -195,9 +212,10 @@ def main():
         if wrong:
             notes.append(f'build sentences name {wrong} but the build is {a.build} - re-stamp or re-check (Rule 91)')
     if deferred:
-        notes.append(f'{len(deferred)} case(s) still say "Not available on Build": '
+        notes.append(f'{len(deferred)} case(s) carry the Rule-69 NOT-BUILT marker: '
                      + ', '.join('C%d' % i for i in deferred[:8])
-                     + ' - if the feature IS on the build now, that marker is a false statement')
+                     + ' - legitimate, but if the feature IS on the build now it is a false statement '
+                       'about the build and must be lifted (that is what happened to C45123)')
 
     # 7/8 -- delegate to the two gates that already exist, so there is ONE implementation of each.
     ids = ','.join(str(c['id']) for c in cases)
@@ -206,13 +224,32 @@ def main():
                         '--observed', a.observed])):
         r = subprocess.run(cmd, capture_output=True, text=True)
         tail = [l for l in r.stdout.strip().split('\n') if l.strip()]
+        err = [l for l in (r.stderr or '').strip().split('\n') if l.strip()]
         label = 'RUNNABILITY' if n == 7 else 'PRECOND LABELS'
+        # A protected author's case is reported, never failed on - same reason as checks 4 and 5.
+        flagged = {int(m.group(1)) for m in re.finditer(r'\bC(\d{5})\b', r.stdout or '')}
+        if flagged and flagged <= prot:
+            print(f'{n}  {label:18} only ' + ', '.join('C%d' % i for i in sorted(flagged))
+                  + " - Vladimir Tomovic's, reported not edited")
+            for i in sorted(flagged):
+                notes.append(f'C{i} fails the {label.lower()} gate - but it is Vladimir Tomovic\'s, '
+                             f'so report it and leave it (Rule 38)')
+            continue
         print(f'{n}  {label:18} ' + (tail[-1] if tail else f'(no output, exit {r.returncode})'))
         if r.returncode != 0:
-            fails.append(f'{label} gate failed - run it directly for the detail:\n     ' + ' '.join(cmd[:4]) + ' …')
-            for l in tail:
-                if re.match(r'\s*(C\d+|-|🛑|\d+ case)', l):
-                    print('     ' + l.strip()[:150])
+            # SURFACE THE REASON. A delegated gate that fails with its stderr thrown away is a gate
+            # nobody can act on - the first version of this printed "(no output, exit 1)" and left
+            # the actual exception unread. If a child crashed, its last stderr lines say why.
+            if not tail and err:
+                fails.append(f'{label} gate CRASHED (exit {r.returncode}). Last error line:\n     '
+                             + err[-1][:200] + '\n     re-run: ' + ' '.join(cmd[:3]) + ' --cases …')
+                for l in err[-4:]:
+                    print('     ! ' + l.strip()[:150])
+            else:
+                fails.append(f'{label} gate failed - run it directly for the detail:\n     ' + ' '.join(cmd[:3]) + ' --cases …')
+                for l in tail:
+                    if re.match(r'\s*(C\d+|-|🛑|\d+ case)', l):
+                        print('     ' + l.strip()[:150])
 
     # 10 -- RUN MEMBERSHIP.
     if a.run:

@@ -2321,3 +2321,20 @@ rather than returning a plausible lie**:
 - **A PASS verdict is not the end of a case.** Capture the behaviour **and** the route in the same
   visit to the screen. C45123 was verified PASS on 1 September and still shipped un-runnable, because
   the pass took the verdict and never read the route — which then had to be asked for as a permission.
+
+### 4 · The gate itself is a thing that can be wrong — three times so far
+
+`verify_suite.py` and the two gates it calls have now **cried wolf at correct cases three times**, and
+each time the reflex "the gate failed, so fix the case" would have damaged good work:
+
+| When | What the gate said | What was actually wrong |
+|---|---|---|
+| 2026-09-01 | 42 Inline cases quote a label that does not exist (`Fee & Discount`) | **the reference file** — I had copied the label from an old note; the build says `Fee / Discount` |
+| 2026-09-02 | 5 Invoice cases quote unobserved labels (`Approves Work`, `Part Sales`) | **the reference file** — both labels exist; the cases already describe them correctly |
+| 2026-09-02 | 4 Invoice cases carry an invalid automation marker | **the gate** — it was coded with three literals when **Rule 69 sanctions a fourth**, `AUTOMATION: Not available on Build to test Yet - Last checked <M/D/YYYY>` |
+
+**So the order of suspicion, when a gate fails, is: (1) the reference file · (2) the gate's own
+encoding of the rule — read the rule in its file, amendments included · (3) only then the case.**
+And a gate must **never fail on a case by an author on the never-write list** — a gate that can never
+go green is a gate people stop running, and then it protects nothing. `verify_suite.py` reports those
+as NOTES on all five checks that can hit them.
