@@ -119,9 +119,11 @@ HTTP 429 ⇒ back off; do not hammer.
   ≤ 248 chars. Verify under `','.join(p.strip() for p in s.split(','))`.
 - **`get_sections` NEEDS PAGING.** 625 sections exist; an unpaged call returns 250 and **silently finds
   ZERO** of a project's sections. Page it, always.
-- **`add_case` MUST SEND** `custom_atmstatus: 1` (= "Not Automated") + `custom_automation_type: 0`.
-  **NEVER `3`** — `3` is *Automated*, Vladimir Tomovic's own flag, and a case born `3` corrupts the
-  Rule-65 tell-Vlad signal. (Corrected 2026-08-21; this line previously said `3`, matching the wrong
+- **`add_case` MUST SEND** `custom_atmstatus: 1` (= "Not Automated") + **a REAL `custom_automation_type`
+  (`1 E2E · 2 Functional · 3 Unit` — NEVER `0`/None; QA lead 2026-09-02).** The type is set on creation,
+  in TestRail cases and in any CSV/XML upload file alike, so we never bulk-edit it again.
+  **`custom_atmstatus` is NEVER `3`** — `3` is *Automated*, Vladimir Tomovic's own flag, and a case born
+  `3` corrupts the Rule-65 tell-Vlad signal. (Corrected 2026-08-21; this line previously said `3`, matching the wrong
   instruction the playbook corrected on 2026-08-11.)
 - **BARE `\n` INSIDE `<p>` WITH NO `<br>` RENDERS AS ONE COLLAPSED RUN-ON PARAGRAPH** — unreadable to
   the tester. **The fix is `<br>` tags**, by either API `update_case` (rewrite the breaks only, never

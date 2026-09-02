@@ -16,9 +16,19 @@ Every TestRail push in this workspace has been a one-off script, and each one co
       items         : 1, Not Automated | 2, Cannot be automated | 3, Automated | 4, Pending
 
     custom_automation_type
-      is_required   : False
+      is_required   : False (on the API) but MANDATORY BY POLICY (QA lead 2026-09-02)
       default_value : "0"
-      items         : 0, None | 1, Ranorex
+      items         : 0, None | 1, E2E | 2, Functional | 3, Unit   (live get_case_fields 2026-09-02;
+                      an earlier note here said "1, Ranorex" and was wrong)
+
+QA lead, 2026-09-02, verbatim:
+    "going forward every test case you directly create in Testrail or if you give me the CSV/XML
+     file to upload these must contain the AUTOMATION type for each test case, so that we never
+     have to edit the testrail test cases for this again."
+So `automation_type` is REQUIRED of every caller and may never be 0 ("None"). Choose it by the
+rubric: Unit (3) = isolated calculation / format / single-field validation; E2E (1) = cross-feature
+journey, browser print dialog, audit trail, or email/PDF delivery; Functional (2) = single-feature
+UI behaviour (default when neither Unit nor E2E fits).
 
 So every case we created by API landed in TestRail flagged **Automated when nobody had
 automated it**. That field is how Vladimir Tomovic records what he has actually automated, and
@@ -67,21 +77,44 @@ AUTOMATION_STATUS = {
 #: What we send on every case we create. Never change this to 3.
 DEFAULT_ATMSTATUS = AUTOMATION_STATUS["Not Automated"]  # == 1
 
-#: `custom_automation_type` is NOT required; 0 ("None") is also its own default.
-DEFAULT_AUTOMATION_TYPE = 0
+# The Automation Type dropdown, verbatim from get_case_fields (project 1, read live 2026-09-02).
+AUTOMATION_TYPE = {
+    "None": 0,
+    "E2E": 1,
+    "Functional": 2,
+    "Unit": 3,
+}
+
+#: There is NO default automation type. Every caller must choose 1/2/3 (QA lead 2026-09-02);
+#: 0 ("None") is refused. This sentinel exists only so a caller who forgets the argument gets a
+#: clear error instead of silently shipping None.
+_AUTOMATION_TYPE_REQUIRED = object()
 
 
 def add_case_payload(title, refs=None, preconds=None, steps=None, expected=None,
                      type_id=1, priority_id=1, template_id=1,
                      atmstatus=DEFAULT_ATMSTATUS,
-                     automation_type=DEFAULT_AUTOMATION_TYPE,
+                     automation_type=_AUTOMATION_TYPE_REQUIRED,
                      **extra):
-    """Build an `add_case` body with a truthful automation status.
+    """Build an `add_case` body with a truthful automation status AND a real automation type.
 
     `atmstatus` defaults to 1 ("Not Automated"). Setting it to 3 ("Automated") is the
     automation engineer's call, not ours — if a caller passes 3 it must be a deliberate,
     reviewed act, so this raises rather than letting it through silently.
+
+    `automation_type` is REQUIRED (QA lead 2026-09-02): pass 1 (E2E), 2 (Functional) or 3 (Unit).
+    Omitting it, or passing 0 ("None"), raises — so no case is ever born without a type again.
     """
+    if automation_type is _AUTOMATION_TYPE_REQUIRED:
+        raise ValueError(
+            "automation_type is required (QA lead 2026-09-02): pass AUTOMATION_TYPE['E2E'] (1), "
+            "['Functional'] (2) or ['Unit'] (3). A case may never be created with type 0 ('None')."
+        )
+    if automation_type not in (AUTOMATION_TYPE["E2E"], AUTOMATION_TYPE["Functional"], AUTOMATION_TYPE["Unit"]):
+        raise ValueError(
+            f"custom_automation_type must be 1 (E2E), 2 (Functional) or 3 (Unit) — never 0/None; "
+            f"got {automation_type!r} (QA lead 2026-09-02)."
+        )
     if atmstatus == AUTOMATION_STATUS["Automated"]:
         raise ValueError(
             "custom_atmstatus=3 ('Automated') is the automation engineer's flag to set, not "
@@ -142,17 +175,26 @@ def verify_created_case(case_body, expected_atmstatus=DEFAULT_ATMSTATUS):
     got = case_body.get("custom_atmstatus")
     if got != expected_atmstatus:
         problems.append(f"custom_atmstatus is {got!r}, expected {expected_atmstatus!r}")
-    if case_body.get("custom_automation_type") != DEFAULT_AUTOMATION_TYPE:
-        problems.append(f"custom_automation_type is {case_body.get('custom_automation_type')!r}, "
-                        f"expected {DEFAULT_AUTOMATION_TYPE!r}")
+    at = case_body.get("custom_automation_type")
+    if at not in (AUTOMATION_TYPE["E2E"], AUTOMATION_TYPE["Functional"], AUTOMATION_TYPE["Unit"]):
+        problems.append(f"custom_automation_type is {at!r}, expected a real type "
+                        f"1 (E2E) / 2 (Functional) / 3 (Unit), never 0/None (QA lead 2026-09-02)")
     return (not problems), problems
 
 
 if __name__ == "__main__":
     import json
-    print("Canonical add_case payload (no title/refs/text supplied):")
-    print(json.dumps(add_case_payload(title="<title>"), indent=2))
+    print("Canonical add_case payload (Functional example):")
+    print(json.dumps(add_case_payload(title="<title>", automation_type=AUTOMATION_TYPE["Functional"]), indent=2))
     try:
-        add_case_payload(title="x", atmstatus=3)
+        add_case_payload(title="x", automation_type=AUTOMATION_TYPE["Functional"], atmstatus=3)
     except ValueError as e:
         print("\nGuard works — atmstatus=3 is refused:\n  " + str(e))
+    try:
+        add_case_payload(title="x")  # no automation_type
+    except ValueError as e:
+        print("\nGuard works — a missing automation_type is refused:\n  " + str(e))
+    try:
+        add_case_payload(title="x", automation_type=0)  # None
+    except ValueError as e:
+        print("\nGuard works — automation_type=0 (None) is refused:\n  " + str(e))

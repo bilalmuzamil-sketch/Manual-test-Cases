@@ -935,9 +935,14 @@ with `sv_sso_session` and `cf_clearance` **byte-identical** to the set that was 
 - **Project 1 / single suite 1 "Master"**; API v2, Basic auth. Helper `testrail-api.mjs` reads creds
   from `/tmp/testrail/creds.json` (email + password-OR-key + host) — **never hard-code creds.** Calls
   hit `{host}/index.php?/api/v2/{path}`.
-- **🛑 `add_case` MUST SEND `custom_atmstatus:1` (= "Not Automated") + `custom_automation_type:0`.
-  NEVER `3`. CORRECTED 2026-08-11 — the bullet that stood here said the opposite and was wrong on
-  both halves.** Place any case with API content in a section whose title includes "API" (Rule 4).
+- **🛑 `add_case` MUST SEND `custom_atmstatus:1` (= "Not Automated") + a REAL `custom_automation_type`
+  (`1 E2E · 2 Functional · 3 Unit` — NEVER `0`/None; QA lead 2026-09-02). `custom_atmstatus` is NEVER
+  `3`. CORRECTED 2026-08-11 for atmstatus; automation_type made mandatory-non-zero 2026-09-02.** The
+  type is set at birth in the TestRail case AND in any CSV/XML upload file, so it is never bulk-edited
+  later (a 285-case sweep on 2026-09-02 fixed cases that were all born `0`). Rubric: Unit = isolated
+  calc/format/single-field validation; E2E = cross-feature journey / browser print / audit trail /
+  email-PDF delivery; Functional = single-feature UI behaviour (default).
+  Place any case with API content in a section whose title includes "API" (Rule 4).
   **⚠️ SUPERSEDED WORDING, KEPT VISIBLE AND DATED (the Rules 31/52/53 pattern) — until 2026-08-11
   this bullet read: *"`add_case` REQUIRES `custom_atmstatus:3` + `custom_automation_type:0`
   (non-API cases)."* **THAT IS THE INSTRUCTION THAT MADE EVERY API-CREATED CASE IN THIS WORKSPACE
@@ -1393,8 +1398,10 @@ with `sv_sso_session` and `cf_clearance` **byte-identical** to the set that was 
 
 - **🔧 `add_case` REQUIRES `custom_automation_type` AS WELL AS `custom_atmstatus` (2026-08-26).**
   Omitting it returns HTTP 400 `{"error":"Field :custom_automation_type is a required field."}`.
-  Both are required on this instance; `0` = None, and `custom_atmstatus: 1` = Not Automated (**never
-  send `3` on a throwaway** — that is the Automated flag Rule 71 protects).
+  Both are required on this instance. **`custom_automation_type` must be a REAL type — `1 E2E ·
+  2 Functional · 3 Unit`, NEVER `0`/None (QA lead 2026-09-02)**; `custom_atmstatus: 1` = Not Automated
+  (**never send `3` on a throwaway** — that is the Automated flag Rule 71 protects). Same requirement on
+  any CSV/XML upload file: an Automation Type per case, never blank.
 
 - **🛑🛑 DECLARED HAZARD #6 — `update_case` NOW RENDERS THE MARKDOWN FIELDS TO HTML AND STORES THE HTML
   ON *EVERY* WRITE — A TESTRAIL-SIDE CHANGE ON 2026-08-19, AND IT IS A HARD BLOCK ON ALL TEXT-FIELD
@@ -1713,12 +1720,13 @@ with `sv_sso_session` and `cf_clearance` **byte-identical** to the set that was 
     Amjad · 8 Chris Amani · 9 Sasha Grossman. Ids 10+ do not exist.
   - **Practical tells beyond `created_by`** (measured over 474 of our Report Suite cases vs his 5):
     **`refs` empty** (ours: 474/474 populated — Rule 20 means we never ship a case without one) ·
-    **`template_id` 2 = Steps** (ours: 1 = Text, 474/474) · **`custom_automation_type` unset** (ours:
-    always 0) · **`type_id` 7 "Other"** (ours: 6/5/1/2) · **titles over 80 chars** (ours: 0/474 —
+    **`template_id` 2 = Steps** (ours: 1 = Text, 474/474) · **`custom_automation_type` unset/`0`** (ours:
+    now always a real type 1/2/3 per the 2026-09-02 rule; historically `0`) · **`type_id` 7 "Other"** (ours: 6/5/1/2) · **titles over 80 chars** (ours: 0/474 —
     the ≤80 title rule) · **no expected results at all** (automated cases keep the assertion in code).
     **⚠️ `custom_atmstatus` is NOT a usable tell** — it is 3 ("Automated") on his cases AND on 16 of
     ours. Field decode from `get_case_fields`: atmstatus `1 Not Automated · 2 Cannot be automated ·
-    3 Automated · 4 Pending`; automation_type `0 None · 1 Ranorex`.
+    3 Automated · 4 Pending`; **automation_type `0 None · 1 E2E · 2 Functional · 3 Unit`** (verified live
+    from `get_case_fields` 2026-09-02 — an earlier note saying "1 Ranorex" was wrong).
   - **The reusable READ-ONLY checker:** `build/testrail-foreign-cases-2026-07-31/foreign_overlap_check.py`
     — pulls every live case under a group, splits ours vs foreign by `created_by`, and ranks the
     best-matching OF-OURS cases per foreign case on **normalised assertion text** (title + preconds +
