@@ -216,8 +216,39 @@ ticket — conversion is UI-only and silently wipes Product Area (Rule 52).
 >   permission-dependent verdict (Rules 12, 26). It is also unnecessary — see above.
 > - Judge the session by **`fe_permissions.length` + `template_slug`**, never by `role.name`.
 >
+> **PREREQUISITES, all three:** (a) a **fresh MITM bridge** — `source build/testing-tools/ensure_bridge.sh`
+> (bridge itself: `build/atlassian-login/bridge.mjs`; it writes the rotating port to
+> `/tmp/atlassian/bridge-port.txt`, which the harness reads — never hard-code a port);
+> (b) **`sv_sso_session` ALONE** in `/tmp/qa-cookies/<branch>-sso.txt`, `chmod 600`, `/tmp` only,
+> never committed (Rule 82); (c) playwright at `/opt/node22/lib/node_modules/playwright/index.js`.
+> **The one command:** `node build/testing-tools/qa-branch-boot.mjs <branch> <path> <admin|tech>`.
+>
 > The cookie/API material below remains correct for staging, production, and any branch with no
 > DEV MODE panel.
+
+### 3.1 · EVICTION — "IT KILLED MY SESSION WHILE I WAS TESTING" (recorded 2026-09-02)
+
+**THE FACT, MEASURED, NOT INFERRED:** every quick-login **rotates that branch's `PHPSESSID`**.
+Proving the `sv9315` recipe rotated it **seven times** across the 2026-08-31/2026-09-02 runs. So
+**eviction is expected behaviour of the branch, not a fault in the branch and not a fault in your
+cookies.** The recipe does not fix eviction — it makes eviction **cheap**, because a re-boot costs
+seconds and needs nothing from a human.
+
+- **ONE SESSION PER QA BRANCH (Rule 83 lane ownership).** Claim the branch in your lane before you
+  drive it. If two sessions genuinely must share one branch, **expect to evict each other** and say
+  so up front rather than discovering it as a mystery mid-pass.
+- **🛑 A MID-TEST 401 OR 409 IS NOT A BLOCKER AND IS NOT A REASON TO CONTACT THE QA LEAD.
+  IT IS A RE-BOOT.** Re-run `qa-branch-boot.mjs` and carry on from the case you were on.
+  **Asking a human to "log out of ShopView" so your session survives is the exact failure mode this
+  entry exists to eliminate** — it costs him an interruption and you a pass, to fix something that
+  fixes itself in seconds.
+- **NEVER REUSE A `PHPSESSID` YOU DID NOT JUST MINT, AND NEVER PERSIST ONE BETWEEN RUNS.** A stored
+  `PHPSESSID` is the 409 latch: it is stale by definition the moment anyone else logs in. Turn
+  browser cookie persistence OFF; carry `sv_sso_session` only, which does **not** rotate.
+- **Only escalate when `sv_sso_session` itself is refused** (a genuine ~24 h expiry or a deploy) —
+  that one only the QA lead can re-mint, and it is a different symptom from a 401/409 mid-pass.
+- **Re-read the build marker after any re-boot.** An eviction and a redeploy look alike from the
+  inside, and a redeploy means your verdicts span two builds (Rule 49 / Rule 54 sentence 2).
 
 **PRIMARY — session cookies from `/tmp` plus the DEV quick-login.**
 - Cookies: **`sv_sso_session`, `PHPSESSID`, `cf_clearance`** (domain `.qa.shopview.com` for QA
@@ -225,8 +256,9 @@ ticket — conversion is UI-only and silently wipes Product Area (Rule 52).
 - `POST /api/quick-login {key:'admin'|'tech'}` is gated by those cookies and is **stateful on the
   shared `PHPSESSID`** — probe roles strictly **sequentially**.
 - **On a shared estate, `quick-login` and `switch-user` ROTATE THE SESSION.** If a sibling worker
-  shares the login, calling either will break them. **Say so and do not call them** rather than
-  stealing the session (Rule 83 lane locks).
+  shares the login, calling either will evict them. **Claim the branch as your lane first (Rule 83)**
+  rather than stealing an occupied one. **Corrected 2026-09-02:** this is *not* a reason to refuse to
+  log in at all — on a branch that is yours, log in freely, and if *you* get evicted, re-boot (§3.1).
 - **🔑 "QUICK-LOGIN LOGS ME OUT" — MEASURED AND SETTLED 2026-08-28 on `sv9500`. Read the recipe before
   you call it: `build/QUICK-LOGIN-DIAGNOSIS-2026-08-28.md`, mirrored in
   `build/APP-ACTIONS-PLAYBOOK.md` §A.** In one line each: **rotation is CONFIRMED** (old jar → 409
@@ -244,11 +276,16 @@ ticket — conversion is UI-only and silently wipes Product Area (Rule 52).
 
 **PLAYWRIGHT / UI AUTOMATION — two non-negotiable mechanics:**
 - Chromium **cannot TLS through the egress proxy directly**. Build a **FRESH MITM bridge per run**; the
-  **port rotates**, so read **`$HTTPS_PROXY` live** — never hard-code it.
-  (`build/testing-tools/staging-bridge.mjs`.)
-- Use the **`boot2` hydration pattern**: seed cookies + `localStorage` (`user`,
-  `fe_permissions_wrapper`, `token`) and **then** navigate. The DEV login **buttons do not reliably
-  work**. (`build/testing-tools/staging-boot2.mjs`.)
+  **port rotates**, so read **`$HTTPS_PROXY` live** — never hard-code it. Committed bridge:
+  **`build/atlassian-login/bridge.mjs`**, launched idempotently by
+  **`source build/testing-tools/ensure_bridge.sh`** (also `build/testing-tools/staging-bridge.mjs`).
+- **🔴 CORRECTED 2026-09-02 — DO NOT USE THE `boot2` HAND-HYDRATION PATTERN ON A QA BRANCH.** The old
+  text here said the DEV login *"buttons do not reliably work"*; that was a **selector** problem, not a
+  button problem — `getByRole('button', {name:/^Admin$/})` does not match these Quasar `q-btn`
+  elements, and `button:has-text("Admin")` does. The buttons work, and the UI route is the only one
+  that yields an **authentic** role/permission set (Rules 12, 26). **Use
+  `build/testing-tools/qa-branch-boot.mjs`.** `staging-boot2.mjs` and the per-project `bootNNNN.mjs`
+  scripts now delegate to it; hand-seeding `localStorage` is reserved for a host with no DEV MODE panel.
 - Quasar UI: click by **element-centre coordinate** (`page.mouse.click`) rather than Playwright
   actionability clicks, which time out on backdrops. If a control is below the fold,
   `scrollIntoViewIfNeeded()` **then** click — a coordinate click on an off-screen control lands on

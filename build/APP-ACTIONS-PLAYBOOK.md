@@ -394,15 +394,45 @@ any endpoint/ID not recorded here or in `CLAUDE.md`** — if only partly known, 
   - **Landing proof to assert** (so a false success cannot pass): `localStorage["user"]` exists **and**
     the URL does not match `/login`. The real Customers screen is ~2,870 body chars vs 225 for sign-in.
 
+  **THE THREE PREREQUISITES, and the harness fails loudly without each:**
+  1. **A fresh MITM bridge.** `source build/testing-tools/ensure_bridge.sh` (it restarts the bridge
+     only when the egress it captured has gone stale, and exports `BRIDGE_PORT`). The bridge itself is
+     **committed at `build/atlassian-login/bridge.mjs`** and writes its rotating port to
+     `/tmp/atlassian/bridge-port.txt`, which `qa-branch-boot.mjs` reads. **Never hard-code the port.**
+  2. **`sv_sso_session` and nothing else**, as `sv_sso_session=<value>` in
+     **`/tmp/qa-cookies/<branch>-sso.txt`**, `chmod 600`. `/tmp` only, never committed (Rule 82).
+  3. **Playwright** at `/opt/node22/lib/node_modules/playwright/index.js` and Chromium at
+     `/opt/pw-browsers/chromium-1194/chrome-linux/chrome` (override with `$CHROME_BIN`).
+
   **Confidence: High — executed live on `https://sv9315.qa.shopview.com` on 2026-08-31 against build
   marker `v26.35.6-0f8d60b` (`last-modified: Wed, 02 Sep 2026 08:11:58 GMT`), read-only throughout: no
   ShopView record was created, modified or deleted.**
-- **Chromium UI automation (boot2 hydration):** Chromium can't TLS through the egress proxy directly.
-  `boot2(roleKey, opts)` in `staging-boot2.mjs` does quick-login → optionally `change-location` →
-  reads `GET /api/auth/me/fe-permissions` → seeds cookies + localStorage (`user`,
-  `fe_permissions_wrapper`, `token`) THEN navigates (the DEV login BUTTONS don't reliably work).
-  It points Playwright at `$HTTPS_PROXY` (read LIVE — port rotates). Exits code 2 with
-  `COOKIES_EXPIRED` on a 409. *Source: CLAUDE.md, TESTING-RUNBOOK.md.*
+- **🔴 2026-09-02 — EVICTION: "IT KILLED MY SESSION WHILE I WAS TESTING". THE HONEST POSITION, AND THE
+  OPERATING RULE.** **Every quick-login rotates that branch's `PHPSESSID`** — the proving runs rotated
+  `sv9315`'s **seven times**. **So two sessions working the same QA branch WILL evict each other, and
+  that is expected behaviour of the branch, not a fault in the branch and not dead cookies.** The UI
+  recipe above does **not** fix eviction; what it does is make eviction **cheap** — a re-boot costs
+  seconds and needs nothing from a human.
+  - **ONE SESSION PER QA BRANCH (Rule 83 lane ownership).** Claim it before you drive it. If two
+    sessions genuinely must share one, expect eviction and say so up front.
+  - **🛑 A MID-TEST 401 OR 409 IS NOT A BLOCKER AND IS NOT A REASON TO CONTACT THE QA LEAD — IT IS A
+    RE-BOOT.** Re-run `qa-branch-boot.mjs` and continue from the case you were on. **Escalating to a
+    human to "log out of ShopView" so your session survives is the failure mode being eliminated
+    here.**
+  - **NEVER REUSE A `PHPSESSID` YOU DID NOT JUST MINT, AND NEVER PERSIST ONE BETWEEN RUNS.** A stored
+    `PHPSESSID` is the 409 latch. Carry `sv_sso_session` only — it does **not** rotate.
+  - **Escalate only when `sv_sso_session` itself is refused** (true ~24 h expiry, or a deploy). That
+    one only the QA lead can re-mint, and it is a different symptom.
+  - **Re-read the build marker after any re-boot** — an eviction and a redeploy look identical from
+    the inside, and a redeploy splits your verdicts across two builds (Rules 49, 54).
+- **Chromium UI automation — `staging-boot2.mjs`. 🔴 CONVERTED 2026-09-02: it now delegates to
+  `qa-branch-boot.mjs` for any QA branch and no longer hand-hydrates `localStorage`.** The old text
+  here said *"the DEV login BUTTONS don't reliably work"* — **that was a selector bug, not a button
+  bug** (`getByRole('button',{name:/^Admin$/})` does not match a Quasar `q-btn`;
+  `button:has-text("Admin")` does), and it is the sentence that kept sending sessions down the
+  hand-minting path. **Hand-hydration is now reserved for a host with NO DEV MODE panel** and is
+  marked as such in the script. Both scripts read `$HTTPS_PROXY`/the bridge port LIVE — the port
+  rotates. *Source: CLAUDE.md, TESTING-RUNBOOK.md; correction proven on `sv9315` 2026-08-31.*
 - **Fresh MITM bridge (fallback when the direct proxy path fails):** `staging-bridge.mjs` — a small
   local proxy that accepts Chromium's CONNECT and relays via Node fetch (honours
   `NODE_USE_ENV_PROXY=1` + `NODE_EXTRA_CA_CERTS=/root/.ccr/ca-bundle.crt`). Reads `$HTTPS_PROXY`
