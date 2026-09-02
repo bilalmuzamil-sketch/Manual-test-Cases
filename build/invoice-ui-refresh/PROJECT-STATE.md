@@ -2,6 +2,25 @@
 
 **Canonical cold-resume doc.** Status derived live; do not trust remembered figures (Rule 92 / skill 15 §7).
 
+## 🆕 Update — 2026-09-02 (LATEST) — AUTOMATED CASES MADE RUNNABLE; EVERY QUOTED LABEL CONFIRMED
+
+**Invoice UI Refresh: 119 cases live** (counted from TestRail, paged — never from `testrail-id-map.csv`).
+no run yet. Build on the branch moved to **`v26.35.6-0f8d60b`**.
+
+**QA lead authorisation, 2026-09-02, verbatim:** *"yes this case needs to be updated, and all those
+test case also need to be updated which are automated but yet they should be updated to make them
+runnable and Build verified. This authorization is for these three suites for now. 1. Invoice refresh
+2. Inline Add Part 3. Workorder Print"* — **Vladimir Tomovic's cases stay excluded regardless.**
+
+**Precondition-label gate: ALL CLEAR.** Every label quoted anywhere in this suite is now recorded in
+`build/OBSERVED-UI-LABELS-sv9315.md` with the evidence that confirmed it.
+
+**Run the one-command gate before reporting this suite:**
+`python3 build/testing-tools/verify_suite.py --root <section> --observed build/OBSERVED-UI-LABELS-sv9315.md`
+— ten checks, exit 0 only when all pass. Full detail: `build/skills/00-COMMON-CORE.md`, and the
+per-suite outcomes in `build/OUTSTANDING-ITEMS-REGISTER.md` rows AUT-1 … MECH-1.
+
+
 ## Identity
 - **Epic:** SV-8218 (owner/assignee Chris Ward) · **PO:** Chris Ward
 - **Spec:** Confluence **755990532**, live **v45** (as of 2026-08-31; authored at v38, re-verified at v39 then re-verified at **v45** 2026-08-31 — 14 rules changed + 2 net-new); tech plan built against **v36**

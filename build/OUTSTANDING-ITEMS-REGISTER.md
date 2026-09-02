@@ -2,6 +2,35 @@
 
 > **⚠️ REFERENCE ONLY — this register is history and other sessions' work. It is NOT a backlog and does not authorise action (Rule 92).** Reading an open item here does **not** mean it is yours to work on; a lane session acts only on the project the QA lead has NAMED.
 
+## 🆕🆕🆕 2026-09-02 (LATEST) — THE AUTOMATED CASES ARE RUNNABLE, EVERY QUOTED LABEL IS CONFIRMED, AND THE MECHANISM IS NOW EXECUTABLE
+
+**Authorisation (QA lead, verbatim):** *"yes this case needs to be updated, and all those test case
+also need to be updated which are automated but yet they should be updated to make them runnable and
+Build verified. This authorization is for these three suites for now. 1. Invoice refresh 2. Inline Add
+Part 3. Workorder Print"* · and *"OK correct the Marker then"* · and a **renewed build session** for
+sv9315 (build moved to **`v26.35.6-0f8d60b`**).
+
+| Row | Item | Who | Status |
+|---|---|---|---|
+| **AUT-1** | **7 Automated cases written.** Inline C45005, C45026, C45223, C45224, C45227, C45237 — preconditions only, the two non-existent permission names replaced with the role screen's real wording (`Work order lines` → `Create & Edit`; `Work orders` → `View mode` → `Full View`/`Tech view`), from his screenshots. Printer **C45123** — all three fields: the route (three dots → `Audit Log` → the window titled `Work Order Log`), the event label corrected to **`Work order printed`**, marker lifted to `AUTOMATION: READY` + build sentence | — | **✅ DONE.** Four post-write checks clean. Rule-65 notice for Vlad written: `build/automated-cases-2026-09-02/FOR-VLAD-automated-cases-changed-2026-09-02.md` |
+| **AUT-2** | **A finding of mine WITHDRAWN.** The "wording divergence" on C45123 was my own reading error — `probe_print3.mjs:52` read each row with `tr.innerText`, gluing the Event cell's clock-icon text (`history`) onto the label. **`Work order printed history` has never existed.** Any automation asserting on it is asserting on nothing | — | **✅ CORRECTED**, cause recorded in CLAUDE.md's critical core and skill 03 |
+| **AUT-3** | **The 5 Invoice Automated cases need NO change.** `Approves Work` lives in `ContactDialog` and `Part Sales` in the `Parts`/`Customer` chunks, and C44919/C44920/C44921/C44985 already describe them exactly that way. The gate flagged them because the reference file was incomplete — the second time in two days | — | **✅ CLOSED, no writes.** Both labels added to `build/OBSERVED-UI-LABELS-sv9315.md` |
+| **AUT-4** | **C45254** (his own new case) — marker was `AUTOMATION: Ready`, now the exact literal `AUTOMATION: READY`. Done through Froala `html.set`, so the stored HTML is byte-identical apart from those five characters and his own markup is untouched | — | **✅ DONE** |
+| **E-1** | **Three of the five "product-forbidden" Printer cases re-checked properly**, applying his own lesson. **C45104:** `/api/work-orders/line-statuses` returns value AND **label** — `Authorization required`, `Declined`, `Authorized`, `Complete`. **No Cancelled.** Previously claimed from internal enum keys; now it is the labels the interface is actually handed. **C45097/C45098:** **2,821** work orders paged — **zero** with no customer, **zero** with no asset. Previously claimed from the create form refusing to save, which was never evidence about existing records | — | **✅ SETTLED. All five stay HOLD**, now on real evidence |
+| **E-2** | **C45107 / C45116 survive as a genuine product-owner question** — the Printer spec holds both positions: *"Print disabled … when no line items exist"* (Key Decisions) vs *"the line items section will display 'No lines on this work order'"* (S3-N1) and *"the summary will show zero totals"* (S4-N1) | **QA lead → PO** | **OPEN** — question 1 on the spreadsheet |
+| **F-1** | **The question sheet is delivered as a spreadsheet**, `build/questions-2026-09-02/ShopView-QA-questions-2026-09-02.xlsx`: two sheets for the PO/developer (no case ids, no spec anchors, no technical terms, options to tick, the requirements' own words quoted where the document is unclear) plus a **QA internal** sheet with the ids and anchors they are not meant to read | **QA lead** | **OPEN — to send.** Three questions: the printing contradiction; the voided credit's Balance row; what a user clicks to produce a printed credit note |
+| **F-2** | **Two remaining developer questions**, both on the sheet: on a **cancelled** credit, is the "amount still owing" line printed as zero or absent? · **what does a person click to produce the printed credit note?** — that second answer turns **seven** Credit Invoice cases from never-checked into testable. A third question of mine was **withdrawn**: the design already shows a credit mixing a returned-part line and a money-only line | **QA lead → developer** | **OPEN** |
+| **MECH-1** | **The mistake-prevention mechanism is now executable, not prose.** `build/testing-tools/verify_suite.py` — one command, ten checks, exit 0 only when all pass (live census · author scope incl. Vladimir-never-write and the tester in-scope amendment · Rule-71 inventory · **every case has a source, which is what "not invented" means** · marker literal · marker arithmetic · runnability · precondition labels · build-sentence honesty · run set-equality). `build/testing-tools/probe_lib.mjs` — every recorded build-reading mistake as a function that throws instead of returning a plausible lie | — | **✅ DONE**, both self-tested; 6617 passes all ten |
+| **AUT-5** | **A parallel session is writing the same suite.** Two pushes landed on our branch mid-pass (C45254's records, then a C45252 sync). The stale-snapshot gate refused to overwrite rather than silently reverting, which is what happened to C44993/C44994 on 1 September | **QA lead** | **OPEN — informational.** Say if one of us should stop |
+| **ACC-1** | **A build-session fact worth keeping:** the renewed cookies authenticate against the **API host** (`sv9315api.qa.shopview.com`) but the front end still will not render — its own `/api/api/sso/check` answers 404 on this build and the app falls back to the sign-in form. So API reads and bundle reads work; **on-screen reads do not**. A `/api/...` call to the APP host answers **200 with the app's HTML shell**, which is not an answer | **QA lead / dev** | **OPEN** — a working UI session would let the remaining on-screen confirmations be done directly |
+
+**Suite state, all three verified live 2026-09-02.** Inline **123** cases (run 418, 123 tests,
+set-equal) · Printer Friendly **44** (run 419, 44, set-equal) · Invoice UI Refresh **119**.
+**Precondition-label gate: ALL CLEAR on all three.** Printer runnability **44/44**. Marker arithmetic
+closes on both handed-off suites.
+
+---
+
 ## 🆕🆕 2026-09-01 (LATEST) — BOTH SUITES BUILD-VERIFIED, WRITTEN AND HANDED OFF TO THE MANUAL QA TESTER. FIVE ASKS.
 
 **Tester for both suites: Viktoria Videnovic** (TestRail user 4). Deliverables:

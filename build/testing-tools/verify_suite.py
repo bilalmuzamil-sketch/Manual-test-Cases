@@ -163,13 +163,22 @@ def main():
             deferred.append(c['id'])
     print(f'4  EVERY CASE SOURCED  {len(cases)-len(no_source)}/{len(cases)}'
           + ('' if not no_source else '   MISSING: ' + ', '.join('C%d' % i for i in no_source[:10])))
-    if no_source:
-        fails.append(f'{len(no_source)} case(s) have no source (Rule 64) - that is the definition of invented')
+    # A protected author's case is REPORTED, never failed on. A gate that can never go green on a
+    # suite containing one of Vladimir's cases is a gate people stop running - and then it protects
+    # nothing. Measured on 6597: C45220 has no source and no marker, and must stay exactly as it is.
+    prot = set(protected)
+    mine_no_source = [i for i in no_source if i not in prot]
+    for i in no_source:
+        if i in prot:
+            notes.append(f'C{i} has no source - but it is Vladimir Tomovic\'s, so report it and leave it (Rule 38)')
+    if mine_no_source:
+        fails.append(f'{len(mine_no_source)} case(s) of OURS have no source (Rule 64) - that is the '
+                     f'definition of invented: ' + ', '.join('C%d' % i for i in mine_no_source[:10]))
     print(f'5  MARKER LITERAL      {len(cases)-len(bad_marker)}/{len(cases)} exact'
           + ('' if not bad_marker else '   ' + '; '.join(f'C{i}: {t}' for i, t in bad_marker[:6])))
     for i, t in bad_marker:
-        if any(c['id'] == i and c['created_by'] in NEVER_WRITE for c in cases):
-            notes.append(f'C{i} marker: {t} - but it is Vladimir\'s, so report it and leave it')
+        if i in prot:
+            notes.append(f'C{i} marker: {t} - but it is Vladimir Tomovic\'s, so report it and leave it (Rule 38)')
         else:
             fails.append(f'C{i} marker is not one of the three literals ({t})')
     ready, ef, hold = counts['AUTOMATION: READY'], counts['AUTOMATION: READY - EXPECT FAIL'], counts['AUTOMATION: HOLD']
