@@ -226,6 +226,41 @@ any endpoint/ID not recorded here or in `CLAUDE.md`** — if only partly known, 
   **doubled `/api/api/`**, which is what the front end actually requests.
   **⇒ Any 200 whose body starts `<!doctype html>` is NOT an answer. Assert JSON before believing a
   reply.**
+- **🆕 2026-09-02 — WHY A VALID COOKIE SET STILL LANDS ON THE SIGN-IN FORM, AND THE ONE VALUE THAT FIXES
+  IT.** The QA lead's cookies for sv9315 authenticate perfectly **against the API host** — 2,821 work
+  orders paged, `/api/auth/me/fe-permissions` 200 — and the single-page app *still* shows
+  "Sign in to your account to continue". Read out of the deployed bundle (`index.Bl7X34W2.js`), the
+  cause is precise:
+
+  ```js
+  const Dt = "user", St = "impersonated_user", ks = "bookkeeping_enabled", Ot = "fe_permissions_wrapper",
+        k = { getUser: () => ie(Dt) || null, saveUser: e => { oe(Dt, e) }, ... };
+  // and, elsewhere:
+  ...if (a") && !k.getUser()) try { yield s.get("/api/sso/check") } catch (e) {}
+  ```
+
+  **Three facts that each kill a plausible wrong theory:**
+  1. **The `/api/api/sso/check` 404 is NOT the blocker.** The doubled `/api/api/` is real — the axios
+     base is `https://<branch>api.qa.shopview.com/api/` and the code calls `s.get("/api/sso/check")` —
+     but the call sits inside `try { … } catch (e) {}`, so the failure is **swallowed**. No
+     `sso/check` route exists on this API in any form (`/api/api/sso/check`, `/api/sso/check`,
+     `/sso/check`, `/api/auth/sso/check` all 404). Do not report it as the cause.
+  2. **The gate is `!k.getUser()` — an empty user store.** The app is signed in when
+     **`localStorage["user"]`** holds the user object, shaped
+     `{ data: { role: "...", details: { staff_id, clockable, default_workplace, avatar_url, intercom_data, … } } }`.
+     `localStorage["fe_permissions_wrapper"]` is the companion, and **that one is fetchable**:
+     `GET /api/auth/me/fe-permissions` → 200.
+  3. **`staging-boot2.mjs`'s localStorage keys are still CORRECT** (`user`, `fe_permissions_wrapper`);
+     what is stale is where it gets the user object. **`/api/users/me`, `/api/auth/me`, `/api/iam/me`
+     and six other guesses all 404 on this build** — the user object is minted by the login/quick-login
+     response and by nothing else. A scan for `localStorage.getItem("…")` finds **nothing**, because
+     every access goes through the `ie`/`oe` wrappers with a *variable* key; grep for the key constants
+     (`Dt="user"`) instead.
+
+  **⇒ THE CHEAPEST UNBLOCK, and it is one value:** ask for the contents of **`localStorage["user"]`**
+  from a browser where the app is already open (DevTools → Application → Local Storage → the branch
+  origin → the `user` row). With that plus the fetchable `fe_permissions_wrapper`, seed both and the
+  SPA renders. Cookies alone are necessary and **not sufficient** on this build.
 - **🆕 2026-09-02 — THE sv9315 COOKIES EXPIRED, and the tell is a 401 followed by a Google redirect.**
   `/tmp/qa-cookies/sv9315-live-session.txt` (minted 2026-09-01 16:15) now yields
   `401 GET https://sv9315api.qa.shopview.com/api/api/sso/check` and Playwright lands on
