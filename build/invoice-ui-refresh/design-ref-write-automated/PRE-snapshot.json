@@ -1,0 +1,67 @@
+{
+ "44919": {
+  "title": "Authorizer is selected in the work order customer contact card",
+  "atm": 3,
+  "section_id": 6744,
+  "refs": "SV-9142 (S3-R5)",
+  "provenance": [
+   "This is the expected behaviour as per epic SV-8218 and story SV-9142 (Story 3, Order Reference Fields) and the Invoice UI Refresh specification version 45, section S3-R5, read on 31 August 2026."
+  ],
+  "own_source": [],
+  "before": {
+   "custom_expected": "<p>1. An \"Authorizer\" row appears in the customer contact card, directly below the Contact and Phone values, in the same label-and-value style.<br>2. Selecting the row opens a list of only the customer's contacts that have \"Approves Work\" enabled.<br>3. No other contact is offered, and no free-typed name can be entered.<br>4. This is the only place the Authorizer can be selected.</p><p>---<br>This is the expected behaviour as per epic SV-8218 and story SV-9142 (Story 3, Order Reference Fields) and the Invoice UI Refresh specification version 45, section S3-R5, read on 31 August 2026.<br>Last checked against build v26.35.5-8c3cc21 on 8/31/2026.</p><p>AUTOMATION: READY - EXPECT FAIL (SV-9599)</p>"
+  }
+ },
+ "44920": {
+  "title": "Authorizer is optional and can be cleared with 'No authorizer'",
+  "atm": 3,
+  "section_id": 6744,
+  "refs": "SV-9142 (S3-R6)",
+  "provenance": [
+   "This is the expected behaviour as per epic SV-8218 and story SV-9142 (Story 3, Order Reference Fields) and the Invoice UI Refresh specification version 45, section S3-R6, read on 31 August 2026."
+  ],
+  "own_source": [],
+  "before": {
+   "custom_expected": "<p>1. The Authorizer is not required and defaults to empty on a new work order.<br>2. The Authorizer list includes a \"No authorizer\" option.<br>3. Choosing \"No authorizer\" clears the selection back to empty.</p><p>---<br>This is the expected behaviour as per epic SV-8218 and story SV-9142 (Story 3, Order Reference Fields) and the Invoice UI Refresh specification version 45, section S3-R6, read on 31 August 2026.<br>Last checked against build v26.35.5-8c3cc21 on 8/31/2026.</p><p>AUTOMATION: READY</p>"
+  }
+ },
+ "44921": {
+  "title": "Authorizer's phone shows below the name when the contact has one",
+  "atm": 3,
+  "section_id": 6744,
+  "refs": "SV-9142 (S3-R7)",
+  "provenance": [
+   "This is the expected behaviour as per epic SV-8218 and story SV-9142 (Story 3, Order Reference Fields) and the Invoice UI Refresh specification version 45, section S3-R7, read on 31 August 2026."
+  ],
+  "own_source": [],
+  "before": {
+   "custom_expected": "<p>1. When the selected authorizer's contact record has a phone number, the phone shows in the card directly below the authorizer's name, styled like the Contact's phone.<br>2. When the contact record has no phone number, no phone row is shown under the authorizer's name.</p><p>---<br>This is the expected behaviour as per epic SV-8218 and story SV-9142 (Story 3, Order Reference Fields) and the Invoice UI Refresh specification version 45, section S3-R7, read on 31 August 2026.<br>Last checked against build v26.35.5-8c3cc21 on 8/31/2026.</p><p>AUTOMATION: READY</p>"
+  }
+ },
+ "44922": {
+  "title": "Authorizer is locked once the work order is invoiced",
+  "atm": 3,
+  "section_id": 6744,
+  "refs": "SV-9142 (S3-R8)",
+  "provenance": [
+   "This is the expected behaviour as per epic SV-8218 and story SV-9142 (Story 3, Order Reference Fields) and the Invoice UI Refresh specification version 45, section S3-R8, read on 31 August 2026."
+  ],
+  "own_source": [],
+  "before": {
+   "custom_expected": "<p>1. Once the work order is invoiced, the Authorizer row is locked and its value cannot be changed.<br>2. Before invoicing the row is editable; from the point of invoicing it is read-only.<br>3. If the invoice is later voided or reversed, the work order returns to Complete and the Authorizer row is re-enabled.</p><p>---<br>This is the expected behaviour as per epic SV-8218 and story SV-9142 (Story 3, Order Reference Fields) and the Invoice UI Refresh specification version 45, section S3-R8, read on 31 August 2026.<br>Last checked against build v26.35.5-8c3cc21 on 8/31/2026.</p><p>AUTOMATION: READY</p>"
+  }
+ },
+ "44985": {
+  "title": "Parts sale receives the Authorizer treatment (net-new)",
+  "atm": 3,
+  "section_id": 6754,
+  "refs": "SV-9195 (S13-R6)",
+  "provenance": [
+   "This is the expected behaviour as per epic SV-8218 and story SV-9195 (Story 13, Parts Sale Estimate and Invoice) and the Invoice UI Refresh specification version 45, section S13-R6, read on 31 August 2026."
+  ],
+  "own_source": [],
+  "before": {
+   "custom_expected": "<p>1. The parts sale has an Authorizer field offering the customer's \"Approves Work\" contacts, empty by default, filled by the user.<br>2. It is locked once the parts sale is invoiced.<br>3. If that invoice is voided or reversed, the Authorizer becomes editable again (mirrors S3-R8).<br>4. When set, the authorizer's name prints in the document's Authorizer reference field.</p><p>---<br>This is the expected behaviour as per epic SV-8218 and story SV-9195 (Story 13, Parts Sale Estimate and Invoice) and the Invoice UI Refresh specification version 45, section S13-R6, read on 31 August 2026.<br>Last checked against build v26.35.5-8c3cc21 on 8/31/2026.</p><p>AUTOMATION: READY</p>"
+  }
+ }
+}
