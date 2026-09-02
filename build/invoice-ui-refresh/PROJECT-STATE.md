@@ -31,6 +31,57 @@
 - Re-supplied design + tech plan are IDENTICAL to authoring inputs (design content byte-identical; tech plan md5-identical). PRD moved **v38→v39**, delta non-substantive (Slack-link row only). **No case content changed**; provenance re-stamped v38→v39 on all 87; import regenerated (0 shredded, 87/87). Detail: reconcile-2026-08-25/RECONCILIATION-2026-08-25.md.
 
 
+## 🆕 Status — 2026-09-02 — THE SUITE IS 119 CASES LIVE, NOT 89; DESIGN REFERENCES ON 111
+
+**🛑 A COUNT CORRECTION FIRST.** Every recent report of this suite's size said **89**. That is the
+number of cases **our** authoring pass created and it came from `testrail-id-map.csv`. **The suite
+holds 119 live.** The QA lead caught it: *"Invoice refresh is more than 89 cases, why do you always
+bring this number 89"*.
+
+Live count over group **6559**, sections paged (`get_sections`/`get_cases` unpaged return 250 and
+silently find nothing):
+
+| Author | Cases |
+|---|---|
+| Bilal Muzamil (us) | **89** |
+| **Mudassir Qamar** — this project's designated manual QA tester | **30** |
+| **Total live** | **119** |
+
+**Two sections the id-map never contained:** **6770 Cross-Cutting and Regression** (14 cases) and
+**6772 API — Authorizer Entry** (2).
+
+**Rule 38's amendment applies to the 30:** the project's designated manual QA tester's cases are
+**IN SCOPE, not foreign** — they are ours to maintain. A first version of the payload builder rejected
+all 30 on a bare `created_by != 3`; the check now carries the amendment, scoped to this project
+(`{3: us, 6: Mudassir Qamar}`).
+
+## Design references — 111 of 119
+
+Each carries the link **and** where in the design to find it, built from the design's own button
+labels with **every anchor verified against the design file before writing**. Convention:
+`DESIGN-REFERENCE-CONVENTION.md`; technique: `build/skills/02-SOURCE-CHECK.md`.
+
+**Eight deliberately have none, with the reason recorded per case** — the design shows printed
+documents and the two authorizer screens, and nothing about these:
+
+| Case | Why no design reference |
+|---|---|
+| C45169, C45170 | API behaviour — the design shows documents, not API responses (Rule 4) |
+| C45185, C45186 | stored snapshots — the design shows no snapshot data |
+| C45187 | e-mail delivery — no mail path in the design |
+| C45190 | the customer card across record types — the design shows only the work order and the parts sale |
+| C45191 | a permission state — the design shows no permission behaviour |
+| C45197 | depends on a reversed originating invoice — a record state the design does not depict |
+
+**Five Automated cases were written under the QA lead's 2026-09-02 go-ahead** — C44919, C44920,
+C44921, C44922, C44985 — `custom_atmstatus` re-read before and after, still **3** on all five. Rule 65
+notice: `design-ref-write-automated/FOR-VLAD-automated-cases-changed-2026-09-02.md`.
+
+**Served-page scan clean on every case written:** 0 escaping containers, 0 literal tags.
+
+**The generator now sources its case list LIVE from TestRail** rather than the id-map, so this count
+cannot drift again: `build_design_refs.py`.
+
 ## 🆕 Status — 2026-09-01 (developer answer on the Credit Invoice — CORROBORATION, plus one coverage gap)
 
 The QA lead relayed the developer's answer to *"what is a Credit Invoice"*. Recorded verbatim with a
