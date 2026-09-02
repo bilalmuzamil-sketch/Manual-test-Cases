@@ -2340,6 +2340,34 @@ Index: CLAUDE.md (rule index table). Other rule files: build/rules/RULES-01-20.m
     never from a session's self-report), **88** (never bulk-read; script it and grep it), **89**
     (access resilience — every session keeps a working path to every source), **90** (the shared quota
     that re-discovery burns) and **93** (the learning loop that Rule 97 feeds).
+    ---
+
+    **AMENDMENT — 2026-09-02: THE RULE COVERS THE FIRST EXPERIMENT, NOT ONLY THE FIRST BLOCKER.**
+    QA lead, verbatim: *"What went wrong was sequencing — you experimented before searching the repo,
+    and everything above was recorded on 2026-08-28."*
+
+    As written, Rule 97 fires when a session is about to **declare** something blocked. That is too
+    late. On 2026-09-02 getting a signed-in QA browser cost **eight probes**, a wrong root cause
+    (blaming the app's swallowed `/api/api/sso/check` 404), a **false alarm that the QA lead's live QA
+    session had been destroyed**, and an ask he had to reject twice ("send me
+    `localStorage['user']`") — while the complete answer sat in
+    **`build/APP-ACTIONS-PLAYBOOK.md` §A "THE AUTHENTIC QA-BRANCH LOGIN"** with a committed harness,
+    **`build/testing-tools/qa-branch-boot.mjs`**, dated 2026-08-31. Every single finding of those
+    eight probes was already written down, including the two traps that were actually costing the
+    time: carry `sv_sso_session` only, and scope cookies host-only.
+
+    **⇒ BEFORE THE FIRST PROBE OF ANY ENVIRONMENT — not before the first complaint about it:**
+    1. `grep -n "<the thing you are about to try>" build/APP-ACTIONS-PLAYBOOK.md`
+    2. `ls build/testing-tools/` — **a committed harness is reused, never rebuilt** (Rule 27).
+    3. Only then write a probe, and write it as a *use* of the recipe, not a rediscovery of it.
+
+    **The tell that this rule has been broken:** you are on your third variation of the same probe.
+    Stop and search. Three variations means the recipe exists and you have not read it.
+
+    **And a correction discipline that belongs here:** a symptom that looks like somebody else's
+    credentials expiring is the one you must search hardest before reporting, because reporting it
+    costs *them* the work. The 409-after-200 signature in §A trap 2 is exactly that shape.
+
 98. **EVERY REPORT IS A TABLE THAT ANSWERS FIVE QUESTIONS — DONE · LEFT · BLOCKED · HOW TO UNBLOCK ·
     HANDOFF-READY (all projects, every report, permanent).**
 

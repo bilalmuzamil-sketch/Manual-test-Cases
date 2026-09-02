@@ -233,6 +233,32 @@ any endpoint/ID not recorded here or in `CLAUDE.md`** — if only partly known, 
   **doubled `/api/api/`**, which is what the front end actually requests.
   **⇒ Any 200 whose body starts `<!doctype html>` is NOT an answer. Assert JSON before believing a
   reply.**
+- **✅ 2026-09-02 (LATER) — THE TWO BULLETS BELOW WERE MY OWN MISDIAGNOSIS. THE SESSION WAS NEVER DEAD,
+  AND `qa-branch-boot.mjs` SIGNED IN FIRST TRY ON THE SAME CREDENTIALS.** Run log: build
+  `v26.35.6-0f8d60b`, landed on `/customers` (2,867 body chars vs 225 for sign-in),
+  `GET /api/auth/me/fe-permissions` **200**, `fe_permissions_wrapper.template_slug`
+  **`administrator`**, **41** permissions.
+
+  **What I got wrong, and it is worth naming precisely:** I scoped the cookies to
+  **`.qa.shopview.com`**, so a domain-scoped `PHPSESSID` was sent alongside the host-only one
+  quick-login sets — two same-name cookies, the server read the stale one, and `fe-permissions`
+  answered **409 immediately after a 200 quick-login**. **That is trap 2 in §A, recorded on 2026-08-31,
+  and its symptom is exactly "the QA lead's session must be dead".** It is not. I then reported the
+  session as destroyed and asked him to re-mint. **A 409 right after a 200 quick-login is duplicate
+  cookies, never a dead session** — check the cookie scoping before you tell anybody their session is
+  gone.
+
+  **Two field locations, because looking in the wrong place produced a `null` I nearly reported:**
+  `template_slug` and `fe_permissions` live in **`localStorage["fe_permissions_wrapper"]`**, NOT in
+  `localStorage["user"]` — `user.data` holds only `{token, role, details}`, and `user.data.role`
+  has **no** `templateSlug`/`template_slug` field at all. `user.data.role.fePermissions.length` does
+  exist and agrees with the wrapper. **Permission count observed today is 41, against 42 recorded on
+  2026-08-31** — one difference, so read it, never assert the remembered number.
+
+  **The keys the app mints for itself** (proof nothing is hand-assembled): `user`,
+  `fe_permissions_wrapper`, `bookkeeping_enabled`, `organization_features`,
+  `organization_features_timestamp`, `location`, `current_shop_id`, `timezone`, `country_code`, `mode`.
+
 - **🛑🛑 2026-09-02 — I KILLED A WORKING QA SESSION BY CLICKING THE LOGIN PAGE'S OWN "Admin" BUTTON.
   NEVER CALL QUICK-LOGIN ON A SESSION YOU DID NOT MINT.** The sequence, verbatim from the run logs:
 
