@@ -745,14 +745,38 @@ grep -rn "customer portal only exists on staging" --binary-files=without-match .
 ```
 
 **A rename sweep also has to reach the live TestRail cases carrying the marker** — the repo copies
-are the instruction, the case bodies are the deployment (2026-08-31: C44947 / C44951 / C44952 /
-C45175 on Invoice UI Refresh).
+are the instruction, the case bodies are the deployment.
+
+**THE TESTRAIL HALF OF THE SWEEP LIST — MEASURED LIVE 2026-09-02, WHOLE ESTATE PAGED (686 sections /
+4,624 cases). THREE CASES CARRY IT, ALL BYTE-EXACT, ZERO VARIANTS:**
+
+| C-id | Title | Section | Field |
+|---|---|---|---|
+| **C44951** | Paid banner appears only on portal-generated Invoice PDFs, before all content | `Invoice Refresh (Aug 2026) > Paid Banner, Payments and Balance` (**6749**) | `custom_expected` |
+| **C44952** | Each banner payment shows its labeled fields and conditional fees/marker | same section **6749** | `custom_expected` |
+| **C45175** | Paid banner pill and title wording follow the paid state and the batch rule | same section **6749** | `custom_expected` |
+
+**🔴 IT IS THREE, NOT FOUR — `C44947` DOES NOT CARRY THE MARKER AND HAS NOT SINCE 2026-09-01.** This
+paragraph said "C44947 / C44951 / C44952 / C45175" and that list was stale. C44947 is live, healthy
+and reads `AUTOMATION: READY`: it was reclassified **IN SCOPE** because it is about the **method name
+on the invoice's Payments rows (S8-R2), not the paid banner**, so it never needed the portal
+(`build/invoice-ui-refresh/build-verify-2026-08-31/RECLASSIFIED-18-2026-08-31.md` §2, and the marker
+write logged in that pass's `markers-2026-09-01/TESTRAIL-EXECUTION-LOG-2026-09-01.md`). **The
+decision was right; nobody propagated it.** ⚠️ **The same stale four-id list still stands in
+`03-RUN-CHECK.md` §7's worked example and in all four `build/handoffs/HANDOFF-*.md` files** — left
+there deliberately, reported to the QA lead rather than rewritten by the inventory pass.
+
+**This is the point of keeping a TestRail half at all:** the repo said four, the deployment said
+three. Re-derive it — never quote it from memory — with the read-only sweep that produced it:
+`build/testrail-writes/portal-hold-inventory-2026-08-31/inventory_portal_hold.py`
+(full report + method + the candidate cases it turned up: `INVENTORY.md` beside it).
 
 **⇒ SCOPE IT FROM THE PRECONDITIONS, NOT FROM THE WORD "PORTAL".** Only a case whose **preconditions
 require a portal-generated artefact** gets the marker. A case that verifies the portal feature's
 **ABSENCE** on the shop-app path is fully testable on the branch and must NOT be parked — on
 2026-08-31, C44954 (*"No paid banner when the invoice has no portal-processed payment"*) is build
-verified, while C44947/C44951/C44952/C45175 are staging-only. Four other cases mention the banner in
+verified, while C44951/C44952/C45175 are staging-only (**C44947 was removed from this list
+2026-09-02 — see the measured table above; it is build-verified and READY**). Four other cases mention the banner in
 passing, and C45184 names it as an **exclusion** (*"The only exception is the Paid banner's
 'Date / Time' field"*) — none of those five are portal-gated.
 
