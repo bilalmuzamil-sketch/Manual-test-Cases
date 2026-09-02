@@ -2,7 +2,15 @@
 
 > **⚠️ REFERENCE ONLY — this register is history and other sessions' work. It is NOT a backlog and does not authorise action (Rule 92).** Reading an open item here does **not** mean it is yours to work on; a lane session acts only on the project the QA lead has NAMED.
 
-## 🆕🆕🆕🆕🆕 2026-09-02 (LATEST) — AUTOMATION TYPE SET ON ALL THREE SUITES (285 cases). ONE NOTICE FOR VLAD.
+## 🆕🆕🆕🆕🆕🆕 2026-09-02 (LATEST) — GLOBAL SEARCH V2 FULLY SOURCE-VERIFIED (118 cases). ONE PO SHEET.
+
+| Row | Item | Who | Status |
+|---|---|---|---|
+| **GS-SV-1** | **✅ DONE 2026-09-02 — Global Search V2 (group 6720, 118 cases) re-source-verified against spec v1.3 (2026-09-01), epic SV-9160 (26 children, 8-31), the Claude Design export, and the two Slack Q&A threads.** QA-lead precedence: latest-wins + disclose; Show-all = Branko's no-banner flow; direct writes authorised. All 118 rewritten runnable (open from header) + re-stamped v1.3; **runnable-gate 118/118, fr-view on every case.** 18 rulings applied (Contacts no longer a group → 8 entities; quick actions back in v1 → new section 6774; telemetry out → C45140 to Out-of-V1; WO row unit#+ymm; part→inventory; empty-state no quick-create; customer created-90d dropped; VI badge tri-state). Run R415 = 118, set-equal. Decision record: `build/global-search/SOURCE-VERIFY-2026-09-02.md`; harness/evidence: `build/global-search/source-verify-2026-09-02/`. **No Vladimir cases and no Automated (atmstatus=3) cases in this suite, so Rules 38/71 did not bite.** | **me — done** | **✅ CLOSED 2026-09-02** |
+| **GS-SV-2** | **🛑 PO question sheet delivered (2 open items) — `build/global-search/questions-2026-09-02/Global-Search-questions-2026-09-02.xlsx`.** (1) **Vendor Invoice "type (Invoice/Sublet)"** — Sublet has no data source anywhere in the platform (eng comment 8-17; Sinisa/Milos Slack unresolved); whether the type label ships is a product decision. (2) **Empty-state helper wording** — spec v1.3 says "Search for something", the design renders "Type to start searching for work orders, parts, customers and more". Cases follow the spec meanwhile. Layman-clean, options offered. | **QA lead → Branko/Milos** | **OPEN — sheet ready to send** |
+| **GS-SV-3** | **Doc-vs-doc conflict logged, resolved by latest-wins:** the epic (8-31) still lists hover quick-actions as out of scope, but spec v1.3 (9-01) + the design both put them back in v1 — cases follow v1.3. If Product actually intends quick actions OUT, C44866–C44873 (+ C44873) revert to Out-of-V1. | **QA lead (FYI)** | **OPEN — informational, no action unless Product disagrees** |
+
+## 🆕🆕🆕🆕🆕 2026-09-02 — AUTOMATION TYPE SET ON ALL THREE SUITES (285 cases). ONE NOTICE FOR VLAD.
 
 | Row | Item | Who | Status |
 |---|---|---|---|
