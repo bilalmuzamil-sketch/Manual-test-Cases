@@ -1,7 +1,56 @@
 # Global Search — PROJECT STATE (canonical cold-resume doc)
 - **TestRail parent folder (group):** group_id **6720**, suite 1 — cases live in the sub-sections inside it, not directly in the folder. Link: https://shopview.testrail.io/index.php?/suites/view/1&group_by=cases:section_id&group_order=asc&display=compact&display_deleted_cases=0&group_id=6720 (recorded 2026-08-25)
 
-## §0-COUNT-CORRECTION-2026-08-28 (LATEST) — the case count is **118**, not 86
+## §0-SOURCE-VERIFY-2026-09-02 (LATEST) — full re-verification against spec v1.3 + design + Slack decisions
+
+**Trigger:** QA lead asked to re-source-verify the suite (his manual testing suite). This is a **V2**
+(Rule 96): V2 must not break V1 unless the design/PRD says to drop it. Full decision record + the 18
+rulings: **`build/global-search/SOURCE-VERIFY-2026-09-02.md`**.
+
+**Sources re-read live 2026-09-02:** spec **v1.2 → v1.3** (2026-09-01, Branko), epic SV-9160 (**26
+children**, 2026-08-31), design (Claude Design export v9=v10=v11, byte-identical — behavioural source
+`global-search.jsx`), + **2 Slack Q&A threads** (Branko designer+PO; Milos PO).
+
+**QA-lead precedence ruling (2026-09-02):** *latest decision wins + disclose*; Show-all landing =
+Branko's **no-banner / filters-reset / term-in-search-box**; **direct TestRail writes authorised**.
+
+**RESULT — all 118 cases re-verified and written, live on TestRail:**
+- **Runnable-gate clean: 118/118** (`check_runnable_cases.py`) — every case now opens global search
+  from the header (the old "the palette is open" spec-level preconds are gone). 75 of the untouched
+  cases had failed the gate before this pass.
+- **Render: fr-view on every case** (written via the UI editor, harness-verified per case; a served-page
+  sample re-confirmed). No literal tags, AUTOMATION marker last.
+- **Provenance re-stamped to v1.3 (read 2026-09-02)**; a divergence line added wherever a case follows
+  a Slack/comment/design decision over stale spec text (Rule 56).
+
+**The 18 rulings applied** (R1–R18 in the decision record): Contacts no longer a group (8 entities,
+9 tabs incl. All; a contact match returns the company row with a "Contact match" label) · quick actions
+back in v1 (moved to a new **"Quick Actions on Hover (v1)"** section 6774) · Show-all = no banner /
+filters reset / term in the page search box · assets get no Show-all · WO row shows unit#+year/make/model
+(not lead-tech/date) · Part rows open the inventory part not catalogue · empty state has no quick-create
+buttons · customer "created in last 90 days" ranking signal dropped (create = a recent-views touch) ·
+VI badge is tri-state (Paid/Partially paid/Unpaid) · telemetry out of v1 (**C45140 reframed + moved to
+Out-of-V1** section 6767) · AI stays out.
+
+**Section moves:** 8 quick-action cases → "Quick Actions on Hover (v1)" (6774); C45140 telemetry →
+Out-of-V1 (6767); C44895 (contact-match) → Per-Entity Result Shape (6724).
+
+**Run R415:** unchanged — no cases added or deleted (all in-place updates + section moves), so it stays
+118, set-equal.
+
+**OPEN — PO question sheet delivered:** `build/global-search/questions-2026-09-02/Global-Search-questions-2026-09-02.xlsx`
+— (1) Vendor Invoice "type (Invoice/Sublet)" — Sublet has no data source anywhere; (2) empty-state
+helper wording — spec says "Search for something", the design renders "Type to start searching…".
+Both held as PO questions, cases follow the spec meanwhile.
+
+**Harness (reusable):** `build/global-search/source-verify-2026-09-02/` — `apply.mjs` (UI-editor writer,
+blur+settle+3× save-retry), `run.sh` (self-converges the ~50% transient-save flake), `preflight_gate.py`
+(runs the runnable audit on authored text BEFORE writing), `intended-blocks.json` (all 118 authored
+bodies), `REPAIRED.jsonl` (per-case fr-view evidence).
+
+---
+
+## §0-COUNT-CORRECTION-2026-08-28 — the case count is **118**, not 86
 
 **Approved by the QA lead 2026-08-28.** The CLAUDE.md project index said *"all 86 cases ARE LIVE in
 TestRail (group 4094, every one ours)"*. Re-derived live today from a fully paged `get_cases`:
