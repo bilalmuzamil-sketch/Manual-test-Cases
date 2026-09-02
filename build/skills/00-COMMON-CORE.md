@@ -1029,10 +1029,16 @@ that one value into the existing header, leaving `sv_sso_session` and `cf_cleara
   deployment.
 - **`node-fetch` ignores the proxy** → use undici `ProxyAgent`, or Node global `fetch` with
   `NODE_USE_ENV_PROXY=1`.
-- **Chromium cannot TLS through the egress proxy directly** → `boot2` hydration (seed cookies +
-  localStorage `user` / `fe_permissions_wrapper` / `token`, **then** navigate; the DEV login buttons
-  do not reliably work), and rebuild the MITM bridge every run — **the port rotates, never hard-code
-  it**.
+- **Chromium cannot TLS through the egress proxy directly** → rebuild the MITM bridge every run —
+  **the port rotates, never hard-code it**. **🟠 CORRECTED 2026-09-02 — the parenthesis here used to
+  read "the DEV login buttons do not reliably work", and that is not a reason to hand-hydrate.**
+  On a **QA branch**, hand-writing `localStorage` is **barred** (Rules 12, 26) — click the
+  `DEV MODE — QUICK LOGIN` panel via `build/testing-tools/qa-branch-boot.mjs`. **Staging renders the
+  same panel** — observed by the QA lead via a screenshot of the live staging login page, 2026-09-02
+  (not executed by a session, and not proof the flow works headlessly). `boot2` hand-hydration is the
+  recorded **staging** fallback only, and only because **no session has driven the click route
+  there** — seed cookies + localStorage `user` / `fe_permissions_wrapper` / `token`, **then**
+  navigate. Detail: `build/APP-ACTIONS-PLAYBOOK.md` §A.
 - **Cookie VALUES are secrets: `/tmp` only, never in the repo.** Cookie *names* are fine.
 
 ---

@@ -115,8 +115,32 @@ Run Node with:
     when the direct proxy path fails.)
 
 ### SPA hydration (the `boot2` pattern)
-The DEV-MODE Tech/Admin login **buttons do not reliably work**. Hydrate the SPA
-manually instead:
+**🟠 CORRECTED 2026-09-02 — READ THIS BEFORE THE STEPS.** The old text here said the
+DEV-MODE Tech/Admin login **"buttons do not reliably work"** and left the impression that
+staging has no panel to click. **It does.** `https://app.staging.shopview.com/login`
+renders a `DEV MODE — QUICK LOGIN` panel with `Admin` and `Tech` buttons, visually
+identical in placement and labelling to the QA-branch panel, above which sits a normal
+email + password sign-in form. **Provenance: observed by the QA lead via a screenshot of
+the live staging login page, 2026-09-02** — **not** executed or reproduced by a session,
+and **not** a proof that the staging quick-login *flow* works headlessly, only that the
+panel renders (Rule 12).
+
+**On a QA branch the hand-hydration below is BARRED** — a hand-written `user` object makes
+role and permissions ours rather than the server's and invalidates every
+permission-dependent verdict (Rules 12, 26). Use
+`build/testing-tools/qa-branch-boot.mjs`, which clicks the panel.
+
+**On staging, hand-hydration is still the recorded fallback** — not because the panel is
+missing, but because **no session has yet driven the click route there**; it is unproven
+end to end, as is whether `sv_sso_session` alone gets past staging's Cloudflare edge.
+(The original "don't reliably work" note was recorded about **staging**; the Quasar
+selector bug that explains it — `getByRole('button',{name:/^Admin$/})` not matching a
+`q-btn`, where `button:has-text("Admin")` does — was proven on a **QA branch**, so now
+that staging is known to render the same panel it is a **more likely, still not
+demonstrated,** explanation there.) See `build/BLOCKED-shopview-app-session.md` and
+`build/APP-ACTIONS-PLAYBOOK.md` §A.
+
+Hydrate the SPA manually:
 1. quick-login (section above) to get the fresh session + the quick-login
    response JSON.
 2. Seed the browser context cookies from the fresh session

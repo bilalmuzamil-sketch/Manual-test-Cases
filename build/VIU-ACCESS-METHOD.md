@@ -113,19 +113,33 @@ reason to contact the QA lead**: run the harness again and carry on. Never persi
   gated by the three session cookies, **not** by clicking a DEV MODE panel.
   Evidence: `build/TESTING-RUNBOOK.md` §3 · `build/testing-tools/staging-admin.mjs`
   `login()` · `build/APP-ACTIONS-PLAYBOOK.md` §A · `build/custom-roles-run/RUN331-STATE.md`.
-- **Whether staging's `/login` renders a clickable `DEV MODE — QUICK LOGIN` panel has
-  never been observed.** The only recorded remark on it is **negative**:
-  *"DEV login buttons don't reliably work"*
-  (`build/custom-roles-run/WORDING-VIU-STATE-2026-07-13.md`), which is exactly why
-  `boot2` hand-hydrated instead.
-- **Staging is behind Cloudflare** (`cf_clearance` is required at the edge), unlike the
-  QA branches. So even trap 1 above — "`sv_sso_session` only" — is **unproven on
-  staging**.
+- **✅ SETTLED 2026-09-02 — STAGING'S `/login` DOES RENDER A `DEV MODE — QUICK LOGIN`
+  PANEL** with `Admin` and `Tech` buttons, visually identical in placement and labelling
+  to the QA-branch panel; the login card also carries a normal **email + password** form
+  above it. **PROVENANCE: observed by the QA lead via a screenshot of the live staging
+  login page, 2026-09-02** — **not** executed or reproduced by a session, and **not** a
+  proof that the staging quick-login *flow* works headlessly, only that the panel
+  renders. **This retires the line that used to sit here** (*"has never been observed"*).
+  The negative remark *"DEV login buttons don't reliably work"*
+  (`build/custom-roles-run/WORDING-VIU-STATE-2026-07-13.md`) **can no longer mean the
+  panel is absent**; the QA-branch selector bug is now a **more likely, still not
+  demonstrated,** explanation of it on staging. `boot2` hand-hydrated because no session
+  had driven the click route there — **not** because the panel was missing.
+- **🟡 STILL OPEN — whether clicking that panel HEADLESSLY on staging completes the
+  login.** The rendering is settled; the click-through is not. Every recorded staging use
+  is still the API route plus hand-hydration, so **hand-hydration remains the recorded
+  staging fallback** until someone proves the click route with a valid staging session.
+- **🟡 STILL OPEN — Staging is behind Cloudflare** (`cf_clearance` at the edge), unlike
+  the CloudFront + bare-nginx QA branches. So even trap 1 above — "`sv_sso_session` only"
+  — is **unproven on staging**, and **the QA-branch finding that `cf_clearance` is inert
+  does NOT transfer.**
 
 ⇒ `build/testing-tools/staging-boot2.mjs` now delegates to the proven QA-branch recipe,
-but **carries a NOT-YET-VERIFIED-LIVE marker for staging and keeps it** until someone
-observes it. **We hold no staging `sv_sso_session`** and stored staging cookies return
-401 (`build/BLOCKED-shopview-app-session.md`), so this could not be settled live.
+but **keeps its NOT-YET-VERIFIED-LIVE marker for staging, NARROWED to the two open
+questions above** — the panel question is closed. **We hold no staging `sv_sso_session`**
+and stored staging cookies return 401 (`build/BLOCKED-shopview-app-session.md`), so the
+remaining two could not be settled live; **do not attempt a staging login, and do not
+re-prompt the QA lead for a staging cookie.**
 
 ---
 
@@ -189,7 +203,9 @@ values into the repo, logs, or commit messages.
 > doing this on 2026-08-19). **That is barred** — it makes role and permissions ours
 > rather than the server's and invalidates every permission-dependent verdict (Rules 12,
 > 26). On a QA branch, **click the DEV MODE panel and let the app hydrate itself** (§0).
-> The staging status of the UI panel is unresolved — §0a.
+> **Staging HAS the same panel** (QA lead's screenshot, 2026-09-02 — §0a), but **no
+> session has driven the click route there**, so on staging hand-hydration is still the
+> recorded fallback until it is proven — §0a.
 
 - Hydrate the SPA through the dev-login (Admin / Tech buttons), which performs the
   real `fe-permissions` hydration path.

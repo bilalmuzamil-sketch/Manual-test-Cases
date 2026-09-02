@@ -287,7 +287,18 @@ seconds and needs nothing from a human.
   elements, and `button:has-text("Admin")` does. The buttons work, and the UI route is the only one
   that yields an **authentic** role/permission set (Rules 12, 26). **Use
   `build/testing-tools/qa-branch-boot.mjs`.** `staging-boot2.mjs` and the per-project `bootNNNN.mjs`
-  scripts now delegate to it; hand-seeding `localStorage` is reserved for a host with no DEV MODE panel.
+  scripts now delegate to it; hand-seeding `localStorage` is reserved for a host where the panel click
+  does not land.
+  **⚠️ SCOPE, added 2026-09-02 — the note being corrected was recorded about STAGING, the selector fix
+  was proven on a QA BRANCH.** Staging **does** render the same `DEV MODE — QUICK LOGIN` panel with
+  `Admin` and `Tech` buttons — **observed by the QA lead via a screenshot of the live staging login
+  page, 2026-09-02; not executed or reproduced by a session, and not proof that the staging flow works
+  headlessly** (Rule 12). So the selector explanation is now **more likely for the staging note too,
+  but still not demonstrated on staging** — state it at exactly that strength. **Two things stay open
+  on staging:** whether a headless click there completes the login, and whether `sv_sso_session` alone
+  passes staging's **Cloudflare** edge (the QA-branch "`cf_clearance` is inert" finding does **not**
+  transfer). Hand-hydration therefore remains the recorded **staging** fallback until the click route
+  is proven there. See `build/BLOCKED-shopview-app-session.md` and `build/APP-ACTIONS-PLAYBOOK.md` §A.
 - Quasar UI: click by **element-centre coordinate** (`page.mouse.click`) rather than Playwright
   actionability clicks, which time out on backdrops. If a control is below the fold,
   `scrollIntoViewIfNeeded()` **then** click — a coordinate click on an off-screen control lands on
