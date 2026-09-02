@@ -3,6 +3,18 @@
 // PROVEN LIVE on sv9315 (build v26.35.6-0f8d60b) on 2026-08-31/2026-09-02. See
 // build/APP-ACTIONS-PLAYBOOK.md §A "THE AUTHENTIC QA-BRANCH LOGIN".
 //
+// ✅ RE-PROVEN 2026-09-02, AFTER the bootOrigin() refactor (commit f6e602b3) — the refactor landed
+// after the original proof, so by Rule 12 the file as it stands had never been observed working.
+// All THREE entry points were exercised clean against sv9315 / v26.35.6-0f8d60b: the CLI, the
+// exported boot(), and the exported bootOrigin(). Observed: exit 0 · localStorage.user present ·
+// landed https://sv9315.qa.shopview.com/customers (NOT /login) · GET /api/auth/me/fe-permissions 200
+// · fe_permissions.length = 40 · template_slug = "administrator".
+//
+// 🛑 JUDGE THE SESSION BY template_slug, NEVER BY role.name. On sv9315 the ADMIN quick-login user's
+// user.data.role.name reads "Tech View" while fe-permissions reports template_slug=administrator
+// with 40 permissions — so the summary line below printing `role: Tech View` for an `admin` boot is
+// CORRECT and expected, not a wrong-role landing. Assert on template_slug + permission count.
+//
 // THE METHOD: let the APP log itself in. Every QA branch's sign-in screen carries a
 // "DEV MODE — QUICK LOGIN" panel with Admin / Tech buttons (populated from
 // GET /api/quick-login/users). Clicking one makes the SPA call POST /api/quick-login itself and
@@ -23,6 +35,11 @@
 //  (a) a FRESH MITM bridge:  source build/testing-tools/ensure_bridge.sh
 //      (bridge itself: build/atlassian-login/bridge.mjs — committed; it writes the ROTATING port to
 //      /tmp/atlassian/bridge-port.txt, which this script reads. NEVER hard-code a port.)
+//      ⚠️ ensure_bridge.sh does NOT generate the bridge's TLS cert, so (a) is not self-sufficient.
+//      With /tmp/atlassian/mitm.key absent the bridge dies instantly (ENOENT), bridge-port.txt stays
+//      EMPTY, and ensure_bridge.sh prints "bridge: restarted -> , egress " — the empty port and
+//      egress are the tell. Generate the cert first (openssl recipe + the WIDE SAN list:
+//      build/APP-ACTIONS-PLAYBOOK.md §A(2)), then re-source. Hit again 2026-09-02.
 //  (b) `sv_sso_session` ALONE in /tmp/qa-cookies/<branch>-sso.txt as `sv_sso_session=<value>`,
 //      chmod 600, /tmp only, NEVER committed — this repo is public (Rule 82).
 //  (c) playwright at /opt/node22/lib/node_modules/playwright/index.js and Chromium at

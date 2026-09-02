@@ -1,11 +1,34 @@
 // staging-boot2.mjs — sign a headless Chromium into ShopView STAGING, the authentic way.
 //
-// 🟠 NOT YET VERIFIED LIVE — converted 2026-09-02 from the proven sv9315 recipe; first user must
-//    confirm. Specifically UNCONFIRMED on staging: whether `app.staging.shopview.com/login` renders a
-//    `DEV MODE — QUICK LOGIN` panel at all. It is proven on QA BRANCHES, not on staging. If the panel
-//    is absent the run STOPS with `no DEV MODE "Admin" button` — that is the honest outcome, not a
-//    crash. Fall back to §A's hand-hydration recipe in build/APP-ACTIONS-PLAYBOOK.md ONLY in that
-//    case, and record what you observed here.
+// 🟠 NOT YET VERIFIED LIVE ON STAGING — converted 2026-09-02 from the proven sv9315 recipe; first
+//    user must confirm. The marker was NARROWED on 2026-09-02 after a repo-evidence pass; what is
+//    SETTLED and what is NOT is now separated, so nobody re-litigates the settled half:
+//
+//    ✅ SETTLED (repo record, 2026-09-02): quick login DOES exist on staging and was used
+//       throughout the Custom Roles project — but every recorded staging use is the API endpoint
+//       `POST /api/quick-login {key:'admin'|'tech'}` called from Node under the THREE cookies and
+//       followed by HAND-WRITING localStorage, never a click on a DEV MODE panel. See
+//       build/TESTING-RUNBOOK.md §3 · staging-admin.mjs login() · custom-roles-run/RUN331-STATE.md ·
+//       custom-roles-run/live-ui-2026-07-16/staging/approve-decline-TECH-PT.json · and as recently
+//       as 2026-08-19 filters/build-verify-2026-08-19/tools/mobile.mjs, which opens /login only as a
+//       same-origin landing pad for localStorage.setItem() and never clicks anything.
+//
+//    ❌ STILL UNOBSERVED — exactly two things, and this script depends on BOTH:
+//       1. Whether `app.staging.shopview.com/login` renders a CLICKABLE `DEV MODE — QUICK LOGIN`
+//          panel. No observation of one exists anywhere in this repo. The only recorded remark is
+//          NEGATIVE — "DEV login buttons don't reliably work"
+//          (custom-roles-run/WORDING-VIU-STATE-2026-07-13.md). On QA branches that remark is
+//          explained by a Quasar selector bug (getByRole does not match q-btn), but that was proven
+//          on a QA BRANCH and is a PLAUSIBLE, not a demonstrated, explanation of the staging note.
+//       2. Whether `sv_sso_session` ALONE gets past staging's edge. Staging sits behind CLOUDFLARE
+//          (cf_clearance), unlike the CloudFront+nginx QA branches, so trap 1 of the recipe
+//          ("one cookie is enough") is unproven here and may be false.
+//
+//    Could not be settled live on 2026-09-02: we hold no staging `sv_sso_session`, and stored
+//    staging cookies return 401 (build/BLOCKED-shopview-app-session.md).
+//    If the panel is absent the run STOPS with `no DEV MODE "Admin" button` — that is the honest
+//    outcome, not a crash. Fall back to §A's hand-hydration recipe in
+//    build/APP-ACTIONS-PLAYBOOK.md ONLY in that case, and RECORD WHAT YOU OBSERVED here.
 //
 // 🔴 WHAT CHANGED, AND WHY THE OLD VERSION WAS DANGEROUS. Until 2026-09-02 this script did its own
 //    `POST /api/quick-login`, then HAND-WROTE localStorage.user / fe_permissions_wrapper / token, and
