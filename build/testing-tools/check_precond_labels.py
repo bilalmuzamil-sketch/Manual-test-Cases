@@ -99,6 +99,12 @@ def main():
 
     unconfirmed = collections.defaultdict(list)
     barred_hits = collections.defaultdict(list)
+    # 🛑 SILENCE USED TO PASS. This gate only ever inspected the labels a case QUOTES, so a
+    # precondition that names nothing at all scored a clean pass -- it had no labels to be wrong
+    # about. C45123 was exactly that: "Open the work order's audit history", no route, no label,
+    # green on this gate, and a tester had nowhere to click. A precondition with no quoted label is
+    # not a case that got the labels right; it is a case that has not been build-verified yet.
+    silent = []
     for case in cases:
         pre = txt(case.get('custom_preconds') or '')
         for rx, why in BARRED:
@@ -110,6 +116,9 @@ def main():
             if not label or IGNORE.match(label): continue
             if not seen(label):
                 unconfirmed[label].append(case['id'])
+        stp = txt(case.get('custom_steps') or '')
+        if not {a or b for a, b in QUOTED.findall(pre + '\n' + stp)}:
+            silent.append((case['id'], case.get('title', '')))
 
     print(f'cases checked      : {len(cases)}')
     print(f'observed-label file: {a.observed}')
@@ -132,7 +141,16 @@ def main():
         print('file with its evidence — or correct the case to the wording the build actually uses.')
     else:
         print('every quoted precondition label is present in the observed-label file')
-    bad = bool(barred_hits) or bool(unconfirmed)
+    if silent:
+        print()
+        print('🛑 NO LABEL QUOTED AT ALL — the preconditions and steps name nothing on the screen,')
+        print('   so this gate has nothing to check and a tester has nothing to click:')
+        for cid, title in silent[:20]:
+            print(f'   C{cid}  {title[:70]}')
+        if len(silent) > 20:
+            print(f'   ... and {len(silent) - 20} more')
+        print('   Read the route off the build and quote its labels. A silent case is NOT a clean case.')
+    bad = bool(barred_hits) or bool(unconfirmed) or bool(silent)
     print()
     print('PRECONDITION-LABEL GATE:', 'PROBLEMS ABOVE' if bad else 'ALL CLEAR')
     sys.exit(1 if bad else 0)

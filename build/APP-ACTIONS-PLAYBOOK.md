@@ -217,6 +217,24 @@ any endpoint/ID not recorded here or in `CLAUDE.md`** — if only partly known, 
   them rather than inventing a path:** `/tmp/staging-cookie.txt` (single-line header form) or
   `/tmp/cln/cookies.json` (json form); a QA branch set went to `/tmp/sv9500/cookies.txt` on
   2026-08-28.
+- **🆕 2026-09-02 — THE API HOST IS `sv9315api.qa.shopview.com`, AND A CURL TO `/api/...` ON THE APP HOST
+  IS A SILENT TRAP.** `curl https://sv9315.qa.shopview.com/api/work-orders/statuses` answers **HTTP 200
+  with the SPA shell** (`<!doctype html><title>ShopView</title>`), not JSON, and not an error — so a
+  session can read it as "the endpoint returned 200" and conclude something false about the data. The
+  API lives on the **separate `sv9315api` host** (§A's "no dot before `api`" rule), and the app's own
+  first authenticated call is `GET https://sv9315api.qa.shopview.com/api/api/sso/check` — note the
+  **doubled `/api/api/`**, which is what the front end actually requests.
+  **⇒ Any 200 whose body starts `<!doctype html>` is NOT an answer. Assert JSON before believing a
+  reply.**
+- **🆕 2026-09-02 — THE sv9315 COOKIES EXPIRED, and the tell is a 401 followed by a Google redirect.**
+  `/tmp/qa-cookies/sv9315-live-session.txt` (minted 2026-09-01 16:15) now yields
+  `401 GET https://sv9315api.qa.shopview.com/api/api/sso/check` and Playwright lands on
+  `accounts.google.com/v3/signin/identifier?...redirect_uri=https://auth.qa.shopview.com/callback`.
+  That is the documented end state above: **cookies are mintable only by the QA lead** (register row
+  **SCH-BV-1**). It is not a bridge fault and not a dead branch — the bridge proxied the request fine.
+  **Check `signedIn` by URL before trusting any probe result**, or a whole probe silently measures the
+  login page. Also: **curl through the bridge needs `--cacert /tmp/atlassian/mitm.crt`**; without it
+  curl exits 60 and looks exactly like a broken bridge, while Playwright (`ignoreHTTPSErrors`) works.
 - **Chromium UI automation (boot2 hydration):** Chromium can't TLS through the egress proxy directly.
   `boot2(roleKey, opts)` in `staging-boot2.mjs` does quick-login → optionally `change-location` →
   reads `GET /api/auth/me/fe-permissions` → seeds cookies + localStorage (`user`,

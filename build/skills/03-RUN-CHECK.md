@@ -1120,3 +1120,65 @@ string found in `innerText` is not yet proof of what the tester reads either —
     "Loading…" as not landed.** The positive control (rule 12) is what caught it: it refused to report
     rather than filing three false negatives, and the refusal message carried the word "Loading..."
     which named the cause immediately.
+
+---
+
+## 🛑 READ A LABEL FROM THE SMALLEST ELEMENT THAT OWNS IT — NEVER FROM A CONTAINER (2026-09-02)
+
+**QA lead, 2026-09-02, verbatim:** *"learn WHY do you miss to build verify these things, you are doing
+something seriously wrong being blind towards something which exists in the build."* He was right, and
+this is the mechanism.
+
+**What happened.** C45123 asserts that printing writes an entry in the work order's audit history. The
+2026-09-01 pass verdicted it **PASS** — the behaviour was genuinely observed. But it recorded the event
+label as **`Work order printed history`** and raised a **wording divergence** against the requirement's
+"Work Order Printed". **There is no divergence. The build says `Work order printed`.** The extra word
+was an icon.
+
+**The exact line that caused it** — `build/printer-friendly-wo/build-verify-2026-09-01/tools/probe_print3.mjs:52`:
+
+```js
+firstRows: [...src.querySelectorAll('tr, .q-item')].map(r => (r.innerText || '').replace(/\s+/g,' '))
+```
+
+which produced:
+
+```
+"Work order printed history Admin ShopView - Total: $1,682.39 Sep 1, 2026 10:35 AM"
+```
+
+Six columns and one icon, flattened into a single string. The `Event` cell holds the event name **and a
+clock icon whose own text is `history`**. Everything after "printed" is a different column.
+
+**This is the THIRD time the same class of error has cost real work:**
+
+| Date | The wrong reading | Where it came from |
+|---|---|---|
+| 2026-09-01 | `Fee & Discount` (build says `Fee / Discount`) | copied from an old note, not read off the screen — the gate then flagged **42 correct cases** |
+| 2026-09-01 | the part category read as `""` | `innerText` on what is actually an `<input>` — its value is not its text |
+| 2026-09-02 | `Work order printed history` | `tr.innerText` glued an icon's text onto a cell's label |
+
+### THE RULE
+
+1. **Target the owning element.** For a table, read `cells[i]` and map it to `theadRow.cells[i]`, one
+   cell at a time. For a control, read `value` when it is an `<input>`/`<select>` and `textContent`
+   when it is not. Never `innerText` on a `<tr>`, a row, a card, a dialog or `body` **when the output
+   is going to be treated as a label**. Flattened text is fine for *"does this string appear anywhere"*
+   and is never fine for *"this is what the label says"*.
+2. **Strip icon-bearing children before reading.** Clone the node, remove every `svg`, `i`, `[class*=icon]`
+   and `[aria-hidden=true]`, then read what is left.
+3. **A label that reads like broken English is the tell.** "printed history" is not a phrase a designer
+   writes. When a label reads oddly, go and look again — never report a divergence off it.
+4. **A DIVERGENCE IS RE-READ FROM AN ISOLATED ELEMENT BEFORE IT IS REPORTED**, and a difference that
+   is only capitalisation (`Work Order Printed` vs `Work order printed`) is **not** a divergence: Rule 57
+   takes on-screen labels from the build, so the build's casing simply wins.
+5. **A PASS verdict is not the end of the case.** C45123 was verified and still shipped un-runnable,
+   because the pass captured the *behaviour* and never captured the *route*. Verifying a case and
+   making it runnable are two outputs of one visit to the screen — **do both while you are there**,
+   or the route has to be asked for later as a permission (which is what happened).
+6. **A WRITE-HOLD IS NOT AN OBSERVATION-HOLD.** Rule 71 stops you *editing* an Automated case. It does
+   not stop you *reading the screen* for it. C45123 fell out of the pass entirely because it was on the
+   "cannot write" list, so nobody ever went and looked at its route. **Observe every case; write only
+   what you are allowed to write.**
+7. **A screenshot from the QA lead outranks any scrape.** When one is offered, it settles the label. Put
+   it in the observed-labels file with the screenshot named as its evidence.

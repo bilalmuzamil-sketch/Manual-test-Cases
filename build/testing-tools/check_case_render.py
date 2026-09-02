@@ -50,18 +50,15 @@ Read-only: this script never writes to TestRail.
 import sys, os, re, ssl, json, base64, urllib.request, urllib.error
 
 def creds():
-    c = {}
-    p = "/tmp/shopview-creds.env"
-    if os.path.exists(p):
-        for line in open(p):
-            line = line.strip()
-            if line and not line.startswith("#") and "=" in line:
-                k, v = line.split("=", 1); c[k] = v
-    email = os.environ.get("TESTRAIL_EMAIL") or os.environ.get("CLAUDE_USERNAME") or c.get("CLAUDE_USERNAME")
-    key = os.environ.get("TESTRAIL_API_KEY") or c.get("TESTRAIL_API_KEY")
-    if not (email and key):
-        sys.exit("no creds: set /tmp/shopview-creds.env or TESTRAIL_API_KEY / CLAUDE_USERNAME")
-    return email, key
+    """Delegate to load_creds.py, which knows ALL THREE places credentials live.
+
+    2026-09-02: this function used to look only at /tmp/shopview-creds.env and the env vars, so it
+    exited "no creds" while /tmp/testrail/creds.json sat on disk and worked. Never re-implement the
+    lookup here - a second copy is a second thing to be wrong (Rule 97).
+    """
+    sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+    from load_creds import testrail_creds
+    return testrail_creds()
 
 EMAIL, KEY = creds()
 BASE = "https://shopview.testrail.io/index.php?/api/v2/"

@@ -1,0 +1,55 @@
+{
+ "path": "build/questions-2026-09-02/ShopView-QA-questions-2026-09-02.xlsx",
+ "title": "ShopView QA — three questions, 2 September 2026",
+ "intro": "Three open points from checking the tests against the written requirements and the current version of the app. Each row says what we see today, what we need decided, and the choices — pick one in the last column and we will write the tests to match. Where the requirements document itself is unclear, its own words are quoted so nothing is being paraphrased at you. Nothing here is blocking the testers: they are working today, and these three points affect nine tests out of the two hundred and five in these two areas.",
+ "sheets": [
+  {
+   "name": "Printing a work order",
+   "rows": [
+    {
+     "topic": "For the product owner — printing a work order that has no jobs on it yet",
+     "now": "The requirements document says two opposite things about this, and both are in the same document.\n\nUnder \"Key Decisions\" it says the print option must be switched OFF while a work order has no jobs listed on it. Its exact words: \"Print disabled until lines data loads — disabled while fetching and when no line items exist; does not enable on the UI skeleton.\"\n\nUnder \"Requirements\" the same document twice describes what the PRINTED PAGE should look like in exactly that situation. Its exact words: \"If the work order has no line items, the line items section will display 'No lines on this work order'\" and \"If there are no line items, the summary will show zero totals rather than being hidden.\"\n\nIn the current version of the app the first one is what actually happens: open a work order with no jobs on it, and \"Print Work Order\" is greyed out and cannot be clicked. So the two printed pages the document describes can never be produced by anybody, and the two tests written from them can never be run.",
+     "question": "Which of the two do you want to be true — the print option stays switched off for an empty work order, or an empty work order can be printed and shows \"No lines on this work order\" with zero totals?",
+     "options": "(a) Keep it switched off. We delete the two tests that describe printing an empty work order, and nothing needs to change in the app.\n(b) Allow it. We keep the two tests, and this becomes a change request for the developers, because today the option is greyed out.\n(c) Neither of these is right — tell us what should happen and we will write it up."
+    }
+   ]
+  },
+  {
+   "name": "Credit notes",
+   "rows": [
+    {
+     "topic": "For the developer — a cancelled credit note: does the \"amount still owing\" line disappear?",
+     "now": "A credit note is the document a customer gets when money is being given back to them. The printed version of it has a line at the bottom showing how much is still owing.\n\nThe requirements say that line is ALWAYS printed, and that on a credit note which has been cancelled it reads zero.\n\nWhen we asked about credit notes, the answer described it differently — that the line appears \"in every non-voided status\". Read strictly, that could mean the line VANISHES on a cancelled credit note rather than reading zero. We do not know which was meant.\n\nWe cannot settle it by looking, because we have not yet been able to open a printed credit note in the app at all — that is the next question.",
+     "question": "On a credit note that has been cancelled, should the printed page still show the \"amount still owing\" line reading zero, or should that line not be printed at all?",
+     "options": "(a) The line is still printed and reads zero.\n(b) The line is not printed at all on a cancelled credit note.\n(c) Not decided yet — we will hold that one test until it is."
+    },
+    {
+     "topic": "For the developer — what does a person click to produce a printed credit note?",
+     "now": "We can find the credit note records in the app, but we have not found the screen and the button a person uses to produce the PRINTED credit note. We tried the places the other printed documents come from and none of them produced one.\n\nBecause of that, seven tests about the printed credit note have never been checked against the app. They are written and ready; they just have nowhere to be run.\n\nThe answer we already have named the internal file the system uses to build that page, which tells us it exists — but not how a person gets to it.",
+     "question": "Where does a person go in the app to produce a printed credit note — which screen, and what do they click once they are there?",
+     "options": "(a) Reply with the screen and the click, and we will check all seven tests straight away.\n(b) Show us once on a screen share and we will write the route into the tests ourselves.\n(c) It is not built yet — say so and we will park those seven tests with the reason recorded, so nobody thinks they were forgotten."
+    }
+   ]
+  }
+ ],
+ "internal": [
+  [
+   "Printing 1",
+   "C45107, C45116 (and it settles the reason C45097/C45098/C45104 are held separately)",
+   "Key Decisions bullet 7 vs S3-N1 and S4-N1, Printer Friendly Work Orders spec v8",
+   "Not a defect: the build matches the Key Decisions bullet, so nothing is misbehaving. It is the document that holds both positions, and only the product owner can choose. Both cases carry AUTOMATION: HOLD with the reason in plain words, so a tester reading the run is told why. Rule 58 - an ambiguous source is never resolved by looking at the build."
+  ],
+  [
+   "Credits 1",
+   "C44967 (line 6 of its Expected Results)",
+   "S11-R6a, Invoice UI Refresh spec; developer note relayed 2026-09-01",
+   "Not a defect: the developer's sentence and our requirement can both be read as true, and the design artifact shows an Unapplied credit, so it cannot settle a voided one. Nothing is written until the answer comes back. Rule 57 - code is fact, never expectation."
+  ],
+  [
+   "Credits 2",
+   "C44963, C44964, C44965, C44966, C44967, C44968, C44969",
+   "S11-R1 to S11-R6a, Invoice UI Refresh spec",
+   "Not a defect: the render path exists (the developer named the template and the two data providers), we simply have not found the user-facing route. The 2026-08-31 pass searched for it and did not find it, which is recorded. These seven are the suite's only cases never checked on a build."
+  ]
+ ]
+}
