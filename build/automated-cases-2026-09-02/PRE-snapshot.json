@@ -1,0 +1,74 @@
+{
+ "45005": {
+  "title": "Saving adds the part at the top of the list with a Part added toast",
+  "atm": 3,
+  "section_id": 6756,
+  "refs": "SV-9317 (S2-R9)",
+  "provenance": [],
+  "before": {
+   "custom_preconds": "<p>1. A work order is open with status Estimate, Approved, In Progress, or Review.<br>2. You have the 'Work Order Line - Create and Edit' setting enabled. To check it: open “Settings”, click “Roles &amp; Permissions” in the sidebar, then click the pencil on the role your user is on, and look for “Work Order Line - Create and Edit”.<br>3. Your “Work Orders → Work Order View Mode” permission is set to Tech View. To check or change it: open “Settings”, click “Roles &amp; Permissions” in the sidebar, then click the pencil on the role your user is on, then set “Work Order View Mode” to Tech View.</p>"
+  }
+ },
+ "45026": {
+  "title": "Saving an edit updates the part line in place and closes the row",
+  "atm": 3,
+  "section_id": 6757,
+  "refs": "SV-9318 (S3-R5)",
+  "provenance": [],
+  "before": {
+   "custom_preconds": "<p>1. A work order is open with status Estimate, Approved, In Progress, or Review.<br>2. You have the 'Work Order Line - Create and Edit' setting enabled. To check it: open “Settings”, click “Roles &amp; Permissions” in the sidebar, then click the pencil on the role your user is on, and look for “Work Order Line - Create and Edit”.<br>3. Your “Work Orders → Work Order View Mode” permission is set to Tech View. To check or change it: open “Settings”, click “Roles &amp; Permissions” in the sidebar, then click the pencil on the role your user is on, then set “Work Order View Mode” to Tech View.<br>4. The work order line already has at least one part on it.</p>"
+  }
+ },
+ "45223": {
+  "title": "Selecting a part auto-allocates the full quantity to a single bin",
+  "atm": 3,
+  "section_id": 6771,
+  "refs": "SV-9315 (S7-R3)",
+  "provenance": [],
+  "before": {
+   "custom_preconds": "<p>1. In the top menu click “Work Orders”, then open a work order whose status is Estimate, Approved, In Progress, or Review (click its row in the list). Open its “Lines” tab. Each work order line has its own Parts section beneath it: the “Add Part” button sits in that section, and every part already on the line has an “edit” control at the right-hand end of its row — that control stays invisible until you move the mouse over the row.<br>2. Your user has the 'Work Order Line - Create and Edit' permission enabled. To check it: open “Settings”, click “Roles &amp; Permissions” in the sidebar, then click the pencil on the role your user is on, and look for “Work Order Line - Create and Edit”.<br>3. Your “Work Orders → Work Order View Mode” permission is set to Tech View. To check or change it: open “Settings”, click “Roles &amp; Permissions” in the sidebar, then click the pencil on the role your user is on, then set “Work Order View Mode” to Tech View.<br>4. On an open inline row (via “Add Part” or “Edit”) you have selected a catalog part that is held in at least one bin (a part with no bins is treated as not stocked and this story does not apply).</p>"
+  }
+ },
+ "45224": {
+  "title": "Allocation is shown below the row as a Pulled from chip",
+  "atm": 3,
+  "section_id": 6771,
+  "refs": "SV-9315 (S7-R4)",
+  "provenance": [],
+  "before": {
+   "custom_preconds": "<p>1. In the top menu click “Work Orders”, then open a work order whose status is Estimate, Approved, In Progress, or Review (click its row in the list). Open its “Lines” tab. Each work order line has its own Parts section beneath it: the “Add Part” button sits in that section, and every part already on the line has an “edit” control at the right-hand end of its row — that control stays invisible until you move the mouse over the row.<br>2. Your user has the 'Work Order Line - Create and Edit' permission enabled. To check it: open “Settings”, click “Roles &amp; Permissions” in the sidebar, then click the pencil on the role your user is on, and look for “Work Order Line - Create and Edit”.<br>3. Your “Work Orders → Work Order View Mode” permission is set to Tech View. To check or change it: open “Settings”, click “Roles &amp; Permissions” in the sidebar, then click the pencil on the role your user is on, then set “Work Order View Mode” to Tech View.<br>4. On an open inline row (via “Add Part” or “Edit”) you have selected a catalog part that is held in at least one bin (a part with no bins is treated as not stocked and this story does not apply).</p>"
+  }
+ },
+ "45227": {
+  "title": "Choosing a bin from the picker moves the full quantity into it",
+  "atm": 3,
+  "section_id": 6771,
+  "refs": "SV-9315 (S7-R7)",
+  "provenance": [],
+  "before": {
+   "custom_preconds": "<p>1. In the top menu click “Work Orders”, then open a work order whose status is Estimate, Approved, In Progress, or Review (click its row in the list). Open its “Lines” tab. Each work order line has its own Parts section beneath it: the “Add Part” button sits in that section, and every part already on the line has an “edit” control at the right-hand end of its row — that control stays invisible until you move the mouse over the row.<br>2. Your user has the 'Work Order Line - Create and Edit' permission enabled. To check it: open “Settings”, click “Roles &amp; Permissions” in the sidebar, then click the pencil on the role your user is on, and look for “Work Order Line - Create and Edit”.<br>3. Your “Work Orders → Work Order View Mode” permission is set to Tech View. To check or change it: open “Settings”, click “Roles &amp; Permissions” in the sidebar, then click the pencil on the role your user is on, then set “Work Order View Mode” to Tech View.<br>4. On an open inline row (via “Add Part” or “Edit”) you have selected a catalog part that is held in at least one bin (a part with no bins is treated as not stocked and this story does not apply).<br>5. The bin picker is open — on an open inline row with a stocked part, click the “Pulled from” chip beneath the row.</p>"
+  }
+ },
+ "45237": {
+  "title": "Allocation is stored on save and not shown on the saved part row",
+  "atm": 3,
+  "section_id": 6771,
+  "refs": "SV-9315 (S7-R17)",
+  "provenance": [],
+  "before": {
+   "custom_preconds": "<p>1. In the top menu click “Work Orders”, then open a work order whose status is Estimate, Approved, In Progress, or Review (click its row in the list). Open its “Lines” tab. Each work order line has its own Parts section beneath it: the “Add Part” button sits in that section, and every part already on the line has an “edit” control at the right-hand end of its row — that control stays invisible until you move the mouse over the row.<br>2. Your user has the 'Work Order Line - Create and Edit' permission enabled. To check it: open “Settings”, click “Roles &amp; Permissions” in the sidebar, then click the pencil on the role your user is on, and look for “Work Order Line - Create and Edit”.<br>3. Your “Work Orders → Work Order View Mode” permission is set to Tech View. To check or change it: open “Settings”, click “Roles &amp; Permissions” in the sidebar, then click the pencil on the role your user is on, then set “Work Order View Mode” to Tech View.<br>4. On an open inline row (via “Add Part” or “Edit”) you have selected a catalog part that is held in at least one bin (a part with no bins is treated as not stocked and this story does not apply).</p>"
+  }
+ },
+ "45123": {
+  "title": "Printing logs a Work Order Printed event in audit history",
+  "atm": 3,
+  "section_id": 6766,
+  "refs": "SV-9389 (S6-R1)",
+  "provenance": [],
+  "before": {
+   "custom_preconds": "<p>You are on the work order detail view and can view the work order.<br />The work order has at least one line item.</p>\n",
+   "custom_steps": "<p>Select “Print Work Order”.<br />Open the work order's audit history.</p>\n",
+   "custom_expected": "<ol>\n<li>A “Work Order Printed” event is logged in the work order's audit history.</li>\n</ol>\n\n<hr />\n\n<p>This is the expected behaviour as per epic SV-9383 and story SV-9389 (Story 6, Audit Trail) and the Printer Friendly Work Orders specification version 8, section S6-R1, read on 25 August 2026.</p>\n\n<p>AUTOMATION: Not available on Build to test Yet - Last checked 8/25/2026</p>\n"
+  }
+ }
+}

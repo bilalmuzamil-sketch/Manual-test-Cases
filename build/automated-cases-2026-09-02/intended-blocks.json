@@ -1,0 +1,162 @@
+{
+ "45005": {
+  "title": "Saving adds the part at the top of the list with a Part added toast",
+  "verdict": "PASS",
+  "marker_override": "AUTOMATION: READY",
+  "build_sentence": "Last checked against build v26.35.6-598cc8a on 9/1/2026.",
+  "fields": {
+   "custom_preconds": {
+    "blocks": [
+     [
+      "1. A work order is open with status Estimate, Approved, In Progress, or Review.",
+      "2. Your role can add and edit part lines. To check it: open “Settings”, click “Roles & Permissions” in the sidebar, click the pencil on the role your user is on, and scroll to the section headed “Work order lines” — it is the one about adding, editing and removing the labor and part lines on a work order. Make sure the box in its “Create & Edit” column is ticked.",
+      "3. Your role is on Tech view. On the same role screen, find the section headed “Work orders”, and directly beneath it the block headed “View mode”, which controls interface complexity rather than access. It offers “Full View” and “Tech view” — click “Tech view”, then click “Save” at the bottom of the role screen."
+     ]
+    ],
+    "text": "1. A work order is open with status Estimate, Approved, In Progress, or Review.\n2. Your role can add and edit part lines. To check it: open “Settings”, click “Roles & Permissions” in the sidebar, click the pencil on the role your user is on, and scroll to the section headed “Work order lines” — it is the one about adding, editing and removing the labor and part lines on a work order. Make sure the box in its “Create & Edit” column is ticked.\n3. Your role is on Tech view. On the same role screen, find the section headed “Work orders”, and directly beneath it the block headed “View mode”, which controls interface complexity rather than access. It offers “Full View” and “Tech view” — click “Tech view”, then click “Save” at the bottom of the role screen."
+   }
+  }
+ },
+ "45026": {
+  "title": "Saving an edit updates the part line in place and closes the row",
+  "verdict": "PASS",
+  "marker_override": "AUTOMATION: READY",
+  "build_sentence": "Last checked against build v26.35.6-598cc8a on 9/1/2026.",
+  "fields": {
+   "custom_preconds": {
+    "blocks": [
+     [
+      "1. A work order is open with status Estimate, Approved, In Progress, or Review.",
+      "2. Your role can add and edit part lines. To check it: open “Settings”, click “Roles & Permissions” in the sidebar, click the pencil on the role your user is on, and scroll to the section headed “Work order lines” — it is the one about adding, editing and removing the labor and part lines on a work order. Make sure the box in its “Create & Edit” column is ticked.",
+      "3. Your role is on Tech view. On the same role screen, find the section headed “Work orders”, and directly beneath it the block headed “View mode”, which controls interface complexity rather than access. It offers “Full View” and “Tech view” — click “Tech view”, then click “Save” at the bottom of the role screen.",
+      "4. The work order line already has at least one part on it."
+     ]
+    ],
+    "text": "1. A work order is open with status Estimate, Approved, In Progress, or Review.\n2. Your role can add and edit part lines. To check it: open “Settings”, click “Roles & Permissions” in the sidebar, click the pencil on the role your user is on, and scroll to the section headed “Work order lines” — it is the one about adding, editing and removing the labor and part lines on a work order. Make sure the box in its “Create & Edit” column is ticked.\n3. Your role is on Tech view. On the same role screen, find the section headed “Work orders”, and directly beneath it the block headed “View mode”, which controls interface complexity rather than access. It offers “Full View” and “Tech view” — click “Tech view”, then click “Save” at the bottom of the role screen.\n4. The work order line already has at least one part on it."
+   }
+  }
+ },
+ "45223": {
+  "title": "Selecting a part auto-allocates the full quantity to a single bin",
+  "verdict": "PASS",
+  "marker_override": "AUTOMATION: READY",
+  "build_sentence": "Last checked against build v26.35.6-598cc8a on 9/1/2026.",
+  "fields": {
+   "custom_preconds": {
+    "blocks": [
+     [
+      "1. In the top menu click “Work Orders”, then open a work order whose status is Estimate, Approved, In Progress, or Review (click its row in the list). Open its “Lines” tab. Each work order line has its own Parts section beneath it: the “Add Part” button sits in that section, and every part already on the line has an “edit” control at the right-hand end of its row — that control stays invisible until you move the mouse over the row.",
+      "2. Your role can add and edit part lines. To check it: open “Settings”, click “Roles & Permissions” in the sidebar, click the pencil on the role your user is on, and scroll to the section headed “Work order lines” — it is the one about adding, editing and removing the labor and part lines on a work order. Make sure the box in its “Create & Edit” column is ticked.",
+      "3. Your role is on Tech view. On the same role screen, find the section headed “Work orders”, and directly beneath it the block headed “View mode”, which controls interface complexity rather than access. It offers “Full View” and “Tech view” — click “Tech view”, then click “Save” at the bottom of the role screen.",
+      "4. On an open inline row (via “Add Part” or “Edit”) you have selected a catalog part that is held in at least one bin (a part with no bins is treated as not stocked and this story does not apply)."
+     ]
+    ],
+    "text": "1. In the top menu click “Work Orders”, then open a work order whose status is Estimate, Approved, In Progress, or Review (click its row in the list). Open its “Lines” tab. Each work order line has its own Parts section beneath it: the “Add Part” button sits in that section, and every part already on the line has an “edit” control at the right-hand end of its row — that control stays invisible until you move the mouse over the row.\n2. Your role can add and edit part lines. To check it: open “Settings”, click “Roles & Permissions” in the sidebar, click the pencil on the role your user is on, and scroll to the section headed “Work order lines” — it is the one about adding, editing and removing the labor and part lines on a work order. Make sure the box in its “Create & Edit” column is ticked.\n3. Your role is on Tech view. On the same role screen, find the section headed “Work orders”, and directly beneath it the block headed “View mode”, which controls interface complexity rather than access. It offers “Full View” and “Tech view” — click “Tech view”, then click “Save” at the bottom of the role screen.\n4. On an open inline row (via “Add Part” or “Edit”) you have selected a catalog part that is held in at least one bin (a part with no bins is treated as not stocked and this story does not apply)."
+   }
+  }
+ },
+ "45224": {
+  "title": "Allocation is shown below the row as a Pulled from chip",
+  "verdict": "PASS",
+  "marker_override": "AUTOMATION: READY",
+  "build_sentence": "Last checked against build v26.35.6-598cc8a on 9/1/2026.",
+  "fields": {
+   "custom_preconds": {
+    "blocks": [
+     [
+      "1. In the top menu click “Work Orders”, then open a work order whose status is Estimate, Approved, In Progress, or Review (click its row in the list). Open its “Lines” tab. Each work order line has its own Parts section beneath it: the “Add Part” button sits in that section, and every part already on the line has an “edit” control at the right-hand end of its row — that control stays invisible until you move the mouse over the row.",
+      "2. Your role can add and edit part lines. To check it: open “Settings”, click “Roles & Permissions” in the sidebar, click the pencil on the role your user is on, and scroll to the section headed “Work order lines” — it is the one about adding, editing and removing the labor and part lines on a work order. Make sure the box in its “Create & Edit” column is ticked.",
+      "3. Your role is on Tech view. On the same role screen, find the section headed “Work orders”, and directly beneath it the block headed “View mode”, which controls interface complexity rather than access. It offers “Full View” and “Tech view” — click “Tech view”, then click “Save” at the bottom of the role screen.",
+      "4. On an open inline row (via “Add Part” or “Edit”) you have selected a catalog part that is held in at least one bin (a part with no bins is treated as not stocked and this story does not apply)."
+     ]
+    ],
+    "text": "1. In the top menu click “Work Orders”, then open a work order whose status is Estimate, Approved, In Progress, or Review (click its row in the list). Open its “Lines” tab. Each work order line has its own Parts section beneath it: the “Add Part” button sits in that section, and every part already on the line has an “edit” control at the right-hand end of its row — that control stays invisible until you move the mouse over the row.\n2. Your role can add and edit part lines. To check it: open “Settings”, click “Roles & Permissions” in the sidebar, click the pencil on the role your user is on, and scroll to the section headed “Work order lines” — it is the one about adding, editing and removing the labor and part lines on a work order. Make sure the box in its “Create & Edit” column is ticked.\n3. Your role is on Tech view. On the same role screen, find the section headed “Work orders”, and directly beneath it the block headed “View mode”, which controls interface complexity rather than access. It offers “Full View” and “Tech view” — click “Tech view”, then click “Save” at the bottom of the role screen.\n4. On an open inline row (via “Add Part” or “Edit”) you have selected a catalog part that is held in at least one bin (a part with no bins is treated as not stocked and this story does not apply)."
+   }
+  }
+ },
+ "45227": {
+  "title": "Choosing a bin from the picker moves the full quantity into it",
+  "verdict": "PASS",
+  "marker_override": "AUTOMATION: READY",
+  "build_sentence": "Last checked against build v26.35.6-598cc8a on 9/1/2026.",
+  "fields": {
+   "custom_preconds": {
+    "blocks": [
+     [
+      "1. In the top menu click “Work Orders”, then open a work order whose status is Estimate, Approved, In Progress, or Review (click its row in the list). Open its “Lines” tab. Each work order line has its own Parts section beneath it: the “Add Part” button sits in that section, and every part already on the line has an “edit” control at the right-hand end of its row — that control stays invisible until you move the mouse over the row.",
+      "2. Your role can add and edit part lines. To check it: open “Settings”, click “Roles & Permissions” in the sidebar, click the pencil on the role your user is on, and scroll to the section headed “Work order lines” — it is the one about adding, editing and removing the labor and part lines on a work order. Make sure the box in its “Create & Edit” column is ticked.",
+      "3. Your role is on Tech view. On the same role screen, find the section headed “Work orders”, and directly beneath it the block headed “View mode”, which controls interface complexity rather than access. It offers “Full View” and “Tech view” — click “Tech view”, then click “Save” at the bottom of the role screen.",
+      "4. On an open inline row (via “Add Part” or “Edit”) you have selected a catalog part that is held in at least one bin (a part with no bins is treated as not stocked and this story does not apply).",
+      "5. The bin picker is open — on an open inline row with a stocked part, click the “Pulled from” chip beneath the row."
+     ]
+    ],
+    "text": "1. In the top menu click “Work Orders”, then open a work order whose status is Estimate, Approved, In Progress, or Review (click its row in the list). Open its “Lines” tab. Each work order line has its own Parts section beneath it: the “Add Part” button sits in that section, and every part already on the line has an “edit” control at the right-hand end of its row — that control stays invisible until you move the mouse over the row.\n2. Your role can add and edit part lines. To check it: open “Settings”, click “Roles & Permissions” in the sidebar, click the pencil on the role your user is on, and scroll to the section headed “Work order lines” — it is the one about adding, editing and removing the labor and part lines on a work order. Make sure the box in its “Create & Edit” column is ticked.\n3. Your role is on Tech view. On the same role screen, find the section headed “Work orders”, and directly beneath it the block headed “View mode”, which controls interface complexity rather than access. It offers “Full View” and “Tech view” — click “Tech view”, then click “Save” at the bottom of the role screen.\n4. On an open inline row (via “Add Part” or “Edit”) you have selected a catalog part that is held in at least one bin (a part with no bins is treated as not stocked and this story does not apply).\n5. The bin picker is open — on an open inline row with a stocked part, click the “Pulled from” chip beneath the row."
+   }
+  }
+ },
+ "45237": {
+  "title": "Allocation is stored on save and not shown on the saved part row",
+  "verdict": "PASS",
+  "marker_override": "AUTOMATION: READY",
+  "build_sentence": "Last checked against build v26.35.6-598cc8a on 9/1/2026.",
+  "fields": {
+   "custom_preconds": {
+    "blocks": [
+     [
+      "1. In the top menu click “Work Orders”, then open a work order whose status is Estimate, Approved, In Progress, or Review (click its row in the list). Open its “Lines” tab. Each work order line has its own Parts section beneath it: the “Add Part” button sits in that section, and every part already on the line has an “edit” control at the right-hand end of its row — that control stays invisible until you move the mouse over the row.",
+      "2. Your role can add and edit part lines. To check it: open “Settings”, click “Roles & Permissions” in the sidebar, click the pencil on the role your user is on, and scroll to the section headed “Work order lines” — it is the one about adding, editing and removing the labor and part lines on a work order. Make sure the box in its “Create & Edit” column is ticked.",
+      "3. Your role is on Tech view. On the same role screen, find the section headed “Work orders”, and directly beneath it the block headed “View mode”, which controls interface complexity rather than access. It offers “Full View” and “Tech view” — click “Tech view”, then click “Save” at the bottom of the role screen.",
+      "4. On an open inline row (via “Add Part” or “Edit”) you have selected a catalog part that is held in at least one bin (a part with no bins is treated as not stocked and this story does not apply)."
+     ]
+    ],
+    "text": "1. In the top menu click “Work Orders”, then open a work order whose status is Estimate, Approved, In Progress, or Review (click its row in the list). Open its “Lines” tab. Each work order line has its own Parts section beneath it: the “Add Part” button sits in that section, and every part already on the line has an “edit” control at the right-hand end of its row — that control stays invisible until you move the mouse over the row.\n2. Your role can add and edit part lines. To check it: open “Settings”, click “Roles & Permissions” in the sidebar, click the pencil on the role your user is on, and scroll to the section headed “Work order lines” — it is the one about adding, editing and removing the labor and part lines on a work order. Make sure the box in its “Create & Edit” column is ticked.\n3. Your role is on Tech view. On the same role screen, find the section headed “Work orders”, and directly beneath it the block headed “View mode”, which controls interface complexity rather than access. It offers “Full View” and “Tech view” — click “Tech view”, then click “Save” at the bottom of the role screen.\n4. On an open inline row (via “Add Part” or “Edit”) you have selected a catalog part that is held in at least one bin (a part with no bins is treated as not stocked and this story does not apply)."
+   }
+  }
+ },
+ "45123": {
+  "title": "Printing logs a Work Order Printed event in audit history",
+  "verdict": "PASS",
+  "marker_override": "AUTOMATION: READY",
+  "build_sentence": "Last checked against build v26.35.6-598cc8a on 9/2/2026.",
+  "fields": {
+   "custom_preconds": {
+    "blocks": [
+     [
+      "1. In the top menu click “Work Orders”, then click a work order’s row in the list to open it. It opens on its “Lines” tab.",
+      "2. The work order has at least one line item — the “Lines” tab shows a count beside it and that count is not zero. With no line items the print option is greyed out and this case cannot be run."
+     ]
+    ],
+    "text": "1. In the top menu click “Work Orders”, then click a work order’s row in the list to open it. It opens on its “Lines” tab.\n2. The work order has at least one line item — the “Lines” tab shows a count beside it and that count is not zero. With no line items the print option is greyed out and this case cannot be run."
+   },
+   "custom_steps": {
+    "blocks": [
+     [
+      "1. At the top right of the work order, between “SHOPCOACH ANALYSIS” and the “New Line” button, click the three-dots button, then choose “Print Work Order”. Send or cancel the print dialog your browser opens — the event is logged either way.",
+      "2. Click the same three-dots button again and choose “Audit Log”.",
+      "3. A window titled “Work Order Log” opens, with a “Search” box and the columns “Event”, “User”, “Line”, “Details”, “Date” and “Time”. Read its top row."
+     ]
+    ],
+    "text": "1. At the top right of the work order, between “SHOPCOACH ANALYSIS” and the “New Line” button, click the three-dots button, then choose “Print Work Order”. Send or cancel the print dialog your browser opens — the event is logged either way.\n2. Click the same three-dots button again and choose “Audit Log”.\n3. A window titled “Work Order Log” opens, with a “Search” box and the columns “Event”, “User”, “Line”, “Details”, “Date” and “Time”. Read its top row."
+   },
+   "custom_expected": {
+    "blocks": [
+     [
+      "1. The top row of the “Event” column reads “Work order printed”, and it is the most recent entry in the window.",
+      "2. On that row: “User” names the person who printed, “Line” shows “-”, “Details” shows the work order total (for example “Total: $6,389.62”), and “Date” and “Time” show when the print happened."
+     ],
+     [
+      "---"
+     ],
+     [
+      "This is the expected behaviour as per epic SV-9383 and story SV-9389 (Story 6, Audit Trail) and the Printer Friendly Work Orders specification version 8, section S6-R1, read on 25 August 2026.",
+      "Last checked against build v26.35.6-598cc8a on 9/2/2026."
+     ],
+     [
+      "AUTOMATION: READY"
+     ]
+    ],
+    "text": "1. The top row of the “Event” column reads “Work order printed”, and it is the most recent entry in the window.\n2. On that row: “User” names the person who printed, “Line” shows “-”, “Details” shows the work order total (for example “Total: $6,389.62”), and “Date” and “Time” show when the print happened.\n\n---\n\nThis is the expected behaviour as per epic SV-9383 and story SV-9389 (Story 6, Audit Trail) and the Printer Friendly Work Orders specification version 8, section S6-R1, read on 25 August 2026.\nLast checked against build v26.35.6-598cc8a on 9/2/2026.\n\nAUTOMATION: READY"
+   }
+  }
+ }
+}

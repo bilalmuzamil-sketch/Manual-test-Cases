@@ -86,6 +86,21 @@ These are stated here **in full** because a session that gets only this far must
   build differs, the case KEEPS the documented expectation and becomes a deviation with a ticket.
   **A closed ticket is not a spec change. An ambiguous source is never resolved by looking at the
   build (58) — hold the case and ask.**
+- **🛑 A LABEL IS READ FROM THE SMALLEST ELEMENT THAT OWNS IT, NEVER FROM A CONTAINER (2026-09-02).**
+  QA lead: *"learn WHY do you miss to build verify these things, you are doing something seriously wrong
+  being blind towards something which exists in the build."* C45123's event label was recorded as
+  **`Work order printed history`** and a wording divergence raised on it; the build says **`Work order
+  printed`** and the extra word was **a clock icon's own text**, glued on because `probe_print3.mjs:52`
+  read each table row with `tr.innerText`. **Third instance of the same class** (`Fee & Discount` from a
+  note → 42 correct cases flagged; a category `<input>` read with `innerText` → `""`). **⇒ read
+  `cells[i]` mapped to its column header, `value` for an input, `textContent` for everything else; strip
+  `svg`/`i`/`[class*=icon]` first; flattened text may answer "does this appear" and NEVER "this is the
+  label". A label that reads like broken English is the tell — look again before reporting.
+  Capitalisation alone is NOT a divergence (57 takes labels from the build).** And two process facts:
+  **a PASS verdict is not the end of a case** — capture the behaviour AND the route in the same visit,
+  or the route becomes a permission request later; **a WRITE-hold is not an OBSERVATION-hold** — Rule 71
+  stops you editing an Automated case, never reading its screen, and C45123 fell out of the pass
+  entirely because it sat on the "cannot write" list. Full text: `build/skills/03-RUN-CHECK.md`.
 - **VERIFIED MEANS OBSERVED, NEVER INFERRED (12).** Only mark Verified / Pass / Fail / present /
   absent if it was observed live, with evidence captured that run. Anything not observed is labelled
   **NOT VERIFIED** or **Blocked-with-reason**. Never fill a gap with inference to look complete.

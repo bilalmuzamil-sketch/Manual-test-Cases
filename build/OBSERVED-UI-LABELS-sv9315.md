@@ -116,3 +116,41 @@ the bin chip. Evidence: probe_gaps C3b, probe_bins.
 (default `General Storage`) · `Quantity` · `Default` · `Add Bin Location` · `Save`.
 Settings › Pricing: `Pricing Matrices(22)` · `Fixed Rules(30)` · `New Price Matrix`, one matrix marked
 `Default`. Evidence: /tmp/parts_form2.mjs, /tmp/pricing.mjs.
+
+## The audit history — route, window title and event wording (added 2026-09-02)
+
+**Evidence: the QA lead's own screenshots of `sv9315.qa.shopview.com/workorders/98d0e444-4ad2-4ee6-bc8a-32aa033790f0/lines`,
+sent 2026-09-02.** Six screenshots, two of them the same view at different resolutions.
+
+| Thing | Verbatim on screen |
+|---|---|
+| the button that opens the menu | the **three-dots** button at the top right of the work order, between `SHOPCOACH ANALYSIS` and the `New Line` button |
+| the menu item that opens the history | **`Audit Log`** — the FIRST item in the menu |
+| the menu, on an **Approved** work order | `Audit Log` · `Timesheets (0)` · `Add Work Order Fee / Discount` · `Print Work Order` · `Delete Work Order` (five items, confirming the status-dependence recorded above) |
+| the window that opens | titled **`Work Order Log`** — **NOT** "Audit Log". The menu item and the window it opens have different names |
+| its controls | a **`Search`** box |
+| its columns | `Event` · `User` · `Line` · `Details` · `Date` · `Time` |
+| the print event, verbatim | **`Work order printed`** — sentence case |
+| a print row's other cells | `User` = the person (e.g. `Admin ShopView`, `Viktoria Videnovic`) · `Line` = `-` · `Details` = `Total: $6,389.62` · `Date` = `Sep 2, 2026` · `Time` = `02:11 AM` |
+| another event seen in the same window | `Line created`, which DOES carry a line name in its `Line` column (`Replace - Brake pot`) |
+
+### 🛑 `Work order printed history` DOES NOT EXIST. It was my own reading error.
+
+The 2026-09-01 pass recorded the event as **"Work order printed history"** and raised a **wording
+divergence** against the requirement's "Work Order Printed". **There is no divergence** — the build says
+`Work order printed`, and the only difference from the requirement is capitalisation.
+
+**Where the phantom word came from.** `build/printer-friendly-wo/build-verify-2026-09-01/tools/probe_print3.mjs`
+line 52 read every row as `tr.innerText`, flattening the whole row into one string:
+
+```
+"Work order printed history Admin ShopView - Total: $1,682.39 Sep 1, 2026 10:35 AM"
+```
+
+The `Event` cell contains the event name **and a clock icon** whose own text is `history`. Flattening the
+row glued the icon's text onto the label. Every other word in that string is a different column.
+
+**The lesson, which is now a rule of this file:** a label is read from **the smallest element that owns
+it** — the specific cell, mapped to its column header — never from a container's flattened `innerText`.
+And a label that reads like broken English ("printed history") is the tell: go and look again before
+reporting a divergence.
