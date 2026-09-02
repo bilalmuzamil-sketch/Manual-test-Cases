@@ -645,9 +645,16 @@ require a portal-generated artefact** gets the marker. **A case that verifies th
 ABSENCE on the shop-app path is fully testable on the branch and must NOT be parked.** Worked example,
 2026-08-31 (Invoice UI Refresh, spec S8-R8 — the paid banner appears only on a **portal-generated**
 Invoice PDF): **C44954** (*"No paid banner when the invoice has no portal-processed payment"*) **is
-build verified**, while **C44947 / C44951 / C44952 / C45175** are staging-only. Four other cases
-mention the banner in passing and **C45184** names it as an **exclusion** — **none of those five are
-portal-gated.**
+build verified**, while **C44951 / C44952 / C45175** are staging-only and carry the HOLD. **C44947 is
+IN SCOPE and testable on the QA branch** — it was mis-parked with those three at first, then correctly
+reclassified because it is about the **payment method name on the invoice's Payments rows (S8-R2), not
+the paid banner**, so it never needed the portal; it is live at `AUTOMATION: READY`
+(`build/invoice-ui-refresh/build-verify-2026-08-31/RECLASSIFIED-18-2026-08-31.md` §2). **That is the
+whole point of scoping from the preconditions rather than the word "portal": the id that looked
+portal-gated was not.** Four other cases mention the banner in passing and **C45184** names it as an
+**exclusion** — **none of those five are portal-gated.** **It is THREE cases, not four** — measured
+live over the whole estate (686 sections / 4,624 cases paged to exhaustion, byte-exact, zero
+variants): `build/testrail-writes/portal-hold-inventory-2026-08-31/INVENTORY.md`.
 
 **Ties:** §7.2 (do not let this fall into the "not found" row), §8.4 (the only permitted un-verified
 state is genuine feature absence — this is a *surface* absence and is marked, not left un-verified),
@@ -834,7 +841,7 @@ Standing Rule 74 in `CLAUDE.md`.
 
 ---
 
-# 9 · 🔑 THE NAVIGATION MAP — OBSERVE THE PATH ONCE, RECORD IT, REUSE IT (approved 2026-08-31)
+# 9 · 🔑 THE NAVIGATION MAP — OBSERVE THE PATH ONCE, RECORD IT, REUSE IT (approved 2026-09-02)
 
 Every project keeps a **`build/<project>/NAVIGATION-MAP.md`**: how you actually reach each screen in
 this build, written down the first time somebody reaches it, so the next session **reads it instead of

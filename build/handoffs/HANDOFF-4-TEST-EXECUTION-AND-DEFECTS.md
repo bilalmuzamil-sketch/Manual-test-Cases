@@ -132,8 +132,13 @@ without this marker it becomes a false Failed and then a refused ticket. **SCOPE
 PRECONDITIONS, NEVER FROM THE WORD "PORTAL":** only a case whose preconditions require a
 **portal-generated artefact** gets it; **a case verifying the portal feature's ABSENCE on the shop-app
 path is fully executable on the QA branch and must NOT be parked** (2026-08-31: C44954 is build
-verified; C44947 / C44951 / C44952 / C45175 are staging-only). It is a **HOLD**, so the gate
-**READY + EXPECT-FAIL = total − HOLD** is unaffected.
+verified; **C44951 / C44952 / C45175** are staging-only and carry the HOLD). **C44947 is IN SCOPE** —
+mis-parked with those three at first, then correctly reclassified because it is about the **payment
+method name on the Payments rows (S8-R2), not the paid banner**, so it never needed the portal; it is
+live at `AUTOMATION: READY`. **The id that looked portal-gated was not — scope from the preconditions,
+never from the word "portal".** **Three cases carry the literal, not four**, measured live over the
+whole estate: `build/testrail-writes/portal-hold-inventory-2026-08-31/INVENTORY.md`.
+It is a **HOLD**, so the gate **READY + EXPECT-FAIL = total − HOLD** is unaffected.
 
 **ONLY AFTER ALL OF THE ABOVE does anything earn the word "blocked"** — and the disciplined-Blocked
 bullet in §3 (Rule 68) then applies in full: **"blocked" is a property of a QUESTION about a case, not

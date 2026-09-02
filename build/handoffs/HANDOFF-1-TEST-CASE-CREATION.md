@@ -88,7 +88,12 @@ machine-findable literals — **byte-exact, never reworded**:
 whose **preconditions require a portal-generated artefact** gets it. **A case that verifies the portal
 feature's ABSENCE on the shop-app path is fully testable on the QA branch and must NOT be parked** —
 2026-08-31 worked example: C44954 (*"No paid banner when the invoice has no portal-processed
-payment"*) is build verified, while C44947 / C44951 / C44952 / C45175 are staging-only. It is a
+payment"*) is build verified, while **C44951 / C44952 / C45175** are staging-only and carry the HOLD.
+**C44947 is IN SCOPE** — mis-parked with those three at first, then correctly reclassified because it
+is about the **payment method name on the Payments rows (S8-R2), not the paid banner**, so it never
+needed the portal; it is live at `AUTOMATION: READY`. **That is exactly why you scope from the
+preconditions and not from the word "portal".** **Three cases carry the literal, not four** — measured
+live, whole estate: `build/testrail-writes/portal-hold-inventory-2026-08-31/INVENTORY.md`. It is a
 **HOLD**, so the CLAUDE.md arithmetic gate **READY + EXPECT-FAIL = total − HOLD** is unaffected.
 
 **THE OTHER TWO SHAPES YOU WILL HIT WHILE AUTHORING, AND NEITHER IS "BLOCKED":**
