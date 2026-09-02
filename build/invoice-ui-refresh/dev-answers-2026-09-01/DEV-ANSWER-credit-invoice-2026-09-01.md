@@ -130,3 +130,51 @@ SV-7754 for the Balance rendering but have never recorded SV-7772. A one-line `r
   expectation (Rules 57 and 96).
 * **No defect was raised** — per the QA lead's 2026-09-01 instruction, this lane makes tests runnable
   and does not create defects.
+
+---
+
+# ADDENDUM — the developer's follow-up, 2026-09-01
+
+> "it is just a design improvement - and there is authorizer added in the sidebar in the workorder page."
+
+## The Authorizer half: he confirms us exactly, and corrects nothing
+
+**S3-R5 already reads:** *"The Authorizer is selected in the customer contact card **on the left side of
+every work order**, in an 'Authorizer' row directly below the Contact and Phone values."* — that is his
+sidebar. **C44919 (INV-AUTH-01)** step 2 says *"Look at the customer contact card on the left side of
+the work order, below the Contact and Phone values."*
+
+All five Authorizer cases stand as written: **C44919, C44920, C44921, C44922, C44923**, plus the two
+printed-document fields **C44915** (Authorizer name) and **C44916** (Approval Code).
+
+## The "just a design improvement" half: accurate for most of the suite, and it understates the spec
+
+He is right that the bulk of Invoice UI Refresh is the printed documents' visual standard — that is
+Story 12 and the label/date rules, and nothing there needs changing.
+
+**But spec v45 marks a number of rules as behaviour that does not exist today, beyond the work-order
+Authorizer.** If the build being written is "design + the work-order authorizer", these cases will fail
+on their first run — not because the cases are wrong (the spec governs, Rule 57), but because scope may
+have drifted between the spec and what is being built. Worth settling before a tester finds it.
+
+| Rule | Case | What it asserts that is NOT a visual change |
+|---|---|---|
+| **S13-R6** | **C44985** | The **parts sale** gets the same Authorizer treatment — its own field, the "Approves Work" list, locked at invoicing. He mentioned only the work order page. Key Decisions line: *"Authorizer entry extends to parts sales (net-new)"* |
+| **S11-R6a** | **C44969** | Credit Invoice **Balance** shows the open balance on no-refund memos, where **production prints a flat $0.00 today**. A value change, decided with engineering 2026-08-12 (option b) — and he confirmed this decision himself in his first answer |
+| **S2-R2** | **C44909**, **C44911** | Remit Payment To resolves from two mechanisms, with the shop-self-address fallback **dropped** |
+| **S5-R7 / S5-R9** | **C44933**, **C44935** | The Invoice-Details settings, including "Summarize labor total" / "Summarize parts total", control what prints |
+| **S8-R2 / S8-R4 / S8-R5** | **C44946**, **C44948**, **C44949** | Payment ordering with its tiebreak, deposits and applied account credits as labeled payment rows, and the excess-payment sub-line |
+| **S4 asset section** | **C44924**, **C44925** | The asset section shows whenever the work order **has an asset**, broader than today's service-order / VIN-or-serial condition |
+
+## Suggested question back — one line
+
+*"Besides the work-order Authorizer, spec v45 also specs behaviour that isn't in production today:
+the parts-sale Authorizer (S13-R6), the Credit Invoice open balance on no-refund memos (S11-R6a), the
+Remit Payment To fallback being dropped (S2-R2), the payment rows and ordering (S8-R2/R4/R5), the
+Invoice-Details summarize settings (S5-R7/R9) and the widened asset-section condition (Story 4). Are
+those in this build, or design-only for now?"*
+
+**Nothing changed in any case on the strength of this.** The spec is the source of expectation; a
+developer's scope description is a signal about the build, and the build is never a source (Rule 57).
+If he answers "design-only for now", the right response is Rule 69's marker on the affected cases —
+`AUTOMATION: Not available on Build to test Yet` — not a rewrite of what they expect.
