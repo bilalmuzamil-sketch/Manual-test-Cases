@@ -149,6 +149,58 @@ BLOCKED-PROVEN / BLOCKED-EVIDENCED / NOT-YET-PROVEN classification you must repo
 
 ---
 
+## 1b. 🔑 GETTING ONTO THE QA BRANCH — ONE COMMAND, THREE TRAPS, AND WHY A 409 IS NOT A BLOCKER
+
+**Do not re-discover this and do not hand-assemble a session.** Canonical text:
+**`build/APP-ACTIONS-PLAYBOOK.md` §A "THE AUTHENTIC QA-BRANCH LOGIN"** ·
+**`build/skills/14-ACCESS-RESILIENCE.md` §3 + §3.1**. Proven live six consecutive times on `sv9315`
+(build `v26.35.6-0f8d60b`, 2026-08-31/2026-09-02).
+
+**THE ONE COMMAND**
+```
+source build/testing-tools/ensure_bridge.sh            # fresh MITM bridge; port rotates, never hard-code it
+node build/testing-tools/qa-branch-boot.mjs <branch> <path> <admin|tech>
+#  e.g.  node build/testing-tools/qa-branch-boot.mjs sv9315 /customers admin
+```
+The QA branch's sign-in screen carries a **`DEV MODE — QUICK LOGIN`** panel; the harness clicks it and
+**the app logs itself in**, writing `localStorage` from the server's own response. **Nothing is
+hand-minted, so the role and permissions are authentic** (Rules 12, 26).
+
+**PREREQUISITES**
+1. A **fresh MITM bridge** — Chromium cannot TLS through the egress proxy. `ensure_bridge.sh` launches
+   `build/atlassian-login/bridge.mjs` and writes the port to `/tmp/atlassian/bridge-port.txt`.
+2. **`sv_sso_session` ONLY**, as `sv_sso_session=<value>` in **`/tmp/qa-cookies/<branch>-sso.txt`**,
+   **`chmod 600`**. `/tmp` only, **never committed** — this repo is public (Rule 82).
+3. Playwright at `/opt/node22/lib/node_modules/playwright/index.js`.
+
+**THE THREE TRAPS**
+- **CARRY `sv_sso_session` ONLY — never `PHPSESSID`, never `cf_clearance`.** `PHPSESSID` is minted
+  fresh by the login itself and a stale one you brought is the whole "409 Session has expired" latch;
+  `cf_clearance` is inert here (app host = CloudFront, API host = bare nginx).
+- **SCOPE COOKIES HOST-ONLY, NEVER `.qa.shopview.com`.** A parent-domain cookie collides with the
+  host-only one the login sets — two same-name `PHPSESSID`s reach the API host, the server reads the
+  stale one, and **`GET /api/auth/me/fe-permissions` answers 409 immediately after a 200 quick-login.**
+  **Recognise that symptom: it is duplicate cookies, NOT a dead session and NOT a dead branch.**
+- **`getByRole('button', {name:/^Admin$/})` does not match these Quasar `q-btn` elements** — use
+  `button:has-text("Admin")`. And **judge the session by `fe_permissions.length` + `template_slug`,
+  never by `role.name`.**
+
+**🛑 EVICTION — THE OPERATING RULE (recorded 2026-09-02)**
+Every quick-login **rotates that branch's `PHPSESSID`** (measured: seven rotations on `sv9315`), so
+**two sessions on one QA branch will evict each other.** That is expected branch behaviour, not a
+fault.
+- **One session per QA branch (Rule 83 lane ownership).** Claim it before you drive it; if a branch
+  must be shared, expect eviction and say so up front.
+- **A mid-test 401 or 409 is NOT a blocker and NOT a reason to contact the QA lead — it is a re-boot.**
+  Re-run the harness and carry on from the case you were on. Recovery is seconds. **Asking a human to
+  log out so your session survives is the failure mode this block exists to eliminate.**
+- **Never reuse a `PHPSESSID` you did not just mint, and never persist one between runs.**
+- **Escalate only if `sv_sso_session` itself is refused** (true ~24 h expiry, or a deploy) — that one
+  only the QA lead can re-mint. Re-read the build marker after any re-boot: eviction and redeploy look
+  identical from the inside.
+
+---
+
 ## 2. READ THESE FIRST, IN THIS ORDER
 
 | # | File | Why / which parts |

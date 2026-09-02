@@ -7,8 +7,13 @@
 // start-up; the proxy port rotates between sessions, so rebuild it every run and
 // never hard-code a port.
 //
-// boot2 (staging-boot2.mjs) points Playwright straight at $HTTPS_PROXY and
-// usually works; use this bridge as the FALLBACK when the direct proxy path fails.
+// 🔴 CORRECTED 2026-09-02: this bridge is no longer a fallback, it is REQUIRED. The old note here
+// said boot2 "points Playwright straight at $HTTPS_PROXY and usually works" — Chromium cannot TLS
+// through the egress proxy, and both qa-branch-boot.mjs and the converted staging-boot2.mjs now read
+// the bridge port from /tmp/atlassian/bridge-port.txt. Start it idempotently with
+//   source build/testing-tools/ensure_bridge.sh
+// which launches the committed build/atlassian-login/bridge.mjs and restarts it when the egress it
+// captured has gone stale. The port ROTATES within a session — never hard-code it.
 //
 // SECRET-FREE: no cookies/tokens here — it only relays bytes. Secrets live in the
 // browser session driven on top of it.
