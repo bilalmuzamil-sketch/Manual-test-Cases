@@ -124,5 +124,433 @@
     "text": "1. On hover, a quick-action button appears on the right of the row for each entity that has one — shown unconditionally (there is no state that hides the action for an entity that has one).\n2. The actions by entity are: Work Order → 'Add new line'; Customer → 'New work order' and 'New contact'; Asset → 'New work order' plus history and invoices icon buttons; Part → 'Add to work order' and 'View part history'; Vendor → 'Add contact'; Part Sale → 'Add part'; Purchase Order → 'Receive'; Vendor Invoice → none.\n3. Actions that need a target work order ('Add new line', 'Add to work order') act on the work order the user is currently editing elsewhere in the app.\n4. No quick action deletes or changes data destructively, and every action is also reachable from the entity's own record and by keyboard.\n\n---\nThis is the expected behaviour as per epic SV-9160 and the Global Search - Product Requirements specification version 1.3 (Confluence page 576978945), section 5.4 (quick actions), read on 2 September 2026.\nNote: these quick actions were previously parked as out-of-v1. Spec v1.3 (2026-09-01, section 5.4) brings them back into v1 — shown unconditionally, with 'View part history' added to Part rows — and the design shows them; this is newer than the epic's out-of-scope note, so this case follows the current spec.\nAUTOMATION: Not available on Build to test Yet - Last checked 9/2/2026"
    }
   }
+ },
+ "44866": {
+  "title": "Hovering a Work Order result shows an 'Add new line' action",
+  "fields": {
+   "custom_preconds": {
+    "blocks": [
+     [
+      "1. Sign in to ShopView on a desktop computer with a mouse (hover quick actions do not appear on touch screens).",
+      "2. In the app header, click the search field (or press ⌘K / Ctrl+K) to open the global search, then type a term that returns at least one Work Order (for example a term matching 'S1-644 Fisquare Farms')."
+     ]
+    ],
+    "text": "1. Sign in to ShopView on a desktop computer with a mouse (hover quick actions do not appear on touch screens).\n2. In the app header, click the search field (or press ⌘K / Ctrl+K) to open the global search, then type a term that returns at least one Work Order (for example a term matching 'S1-644 Fisquare Farms')."
+   },
+   "custom_steps": {
+    "blocks": [
+     [
+      "1. Move the mouse pointer over the Work Order row.",
+      "2. Look at the button(s) that appear on the right side of the row."
+     ]
+    ],
+    "text": "1. Move the mouse pointer over the Work Order row.\n2. Look at the button(s) that appear on the right side of the row."
+   },
+   "custom_expected": {
+    "blocks": [
+     [
+      "1. On hover, a right-aligned 'Add new line' button appears on the Work Order row.",
+      "2. 'Add new line' acts on the work order the user is currently editing elsewhere in the app; it is shown unconditionally (it does not disappear when no work order is being edited).",
+      "3. The action is non-destructive and is also reachable from the work order's own record and by keyboard."
+     ],
+     [
+      "---",
+      "This is the expected behaviour as per epic SV-9160 and the Global Search - Product Requirements specification version 1.3 (Confluence page 576978945), section 5.4 (quick actions), read on 2 September 2026.",
+      "Note: these quick actions were previously parked as out-of-v1. Spec v1.3 (2026-09-01, section 5.4) brings quick actions back into v1, shown unconditionally, and the design shows them; this is newer than the epic's out-of-scope note, so this case follows the current spec.",
+      "AUTOMATION: Not available on Build to test Yet - Last checked 9/2/2026"
+     ]
+    ],
+    "text": "1. On hover, a right-aligned 'Add new line' button appears on the Work Order row.\n2. 'Add new line' acts on the work order the user is currently editing elsewhere in the app; it is shown unconditionally (it does not disappear when no work order is being edited).\n3. The action is non-destructive and is also reachable from the work order's own record and by keyboard.\n\n---\nThis is the expected behaviour as per epic SV-9160 and the Global Search - Product Requirements specification version 1.3 (Confluence page 576978945), section 5.4 (quick actions), read on 2 September 2026.\nNote: these quick actions were previously parked as out-of-v1. Spec v1.3 (2026-09-01, section 5.4) brings quick actions back into v1, shown unconditionally, and the design shows them; this is newer than the epic's out-of-scope note, so this case follows the current spec.\nAUTOMATION: Not available on Build to test Yet - Last checked 9/2/2026"
+   }
+  }
+ },
+ "44867": {
+  "title": "Hovering an Asset result shows 'New work order' plus history and invoices icons",
+  "fields": {
+   "custom_preconds": {
+    "blocks": [
+     [
+      "1. Sign in to ShopView on a desktop computer with a mouse (hover quick actions do not appear on touch screens).",
+      "2. In the app header, click the search field (or press ⌘K / Ctrl+K) to open the global search, then type a term that returns at least one Asset (for example '2025 Freightliner M2')."
+     ]
+    ],
+    "text": "1. Sign in to ShopView on a desktop computer with a mouse (hover quick actions do not appear on touch screens).\n2. In the app header, click the search field (or press ⌘K / Ctrl+K) to open the global search, then type a term that returns at least one Asset (for example '2025 Freightliner M2')."
+   },
+   "custom_steps": {
+    "blocks": [
+     [
+      "1. Move the mouse pointer over the Asset row.",
+      "2. Look at the button(s) that appear on the right side of the row."
+     ]
+    ],
+    "text": "1. Move the mouse pointer over the Asset row.\n2. Look at the button(s) that appear on the right side of the row."
+   },
+   "custom_expected": {
+    "blocks": [
+     [
+      "1. On hover, a 'New work order' button appears, plus two secondary icon buttons: a history (clock) icon and an invoices icon.",
+      "2. The actions are non-destructive and are also reachable from the asset's own record and by keyboard."
+     ],
+     [
+      "---",
+      "This is the expected behaviour as per epic SV-9160 and the Global Search - Product Requirements specification version 1.3 (Confluence page 576978945), section 5.4 (quick actions), read on 2 September 2026.",
+      "Note: these quick actions were previously parked as out-of-v1. Spec v1.3 (2026-09-01, section 5.4) brings quick actions back into v1, shown unconditionally, and the design shows them; this is newer than the epic's out-of-scope note, so this case follows the current spec.",
+      "AUTOMATION: Not available on Build to test Yet - Last checked 9/2/2026"
+     ]
+    ],
+    "text": "1. On hover, a 'New work order' button appears, plus two secondary icon buttons: a history (clock) icon and an invoices icon.\n2. The actions are non-destructive and are also reachable from the asset's own record and by keyboard.\n\n---\nThis is the expected behaviour as per epic SV-9160 and the Global Search - Product Requirements specification version 1.3 (Confluence page 576978945), section 5.4 (quick actions), read on 2 September 2026.\nNote: these quick actions were previously parked as out-of-v1. Spec v1.3 (2026-09-01, section 5.4) brings quick actions back into v1, shown unconditionally, and the design shows them; this is newer than the epic's out-of-scope note, so this case follows the current spec.\nAUTOMATION: Not available on Build to test Yet - Last checked 9/2/2026"
+   }
+  }
+ },
+ "44868": {
+  "title": "Hovering a Customer result shows 'New work order' and 'New contact'",
+  "fields": {
+   "custom_preconds": {
+    "blocks": [
+     [
+      "1. Sign in to ShopView on a desktop computer with a mouse (hover quick actions do not appear on touch screens).",
+      "2. In the app header, click the search field (or press ⌘K / Ctrl+K) to open the global search, then type a term that returns at least one Customer (for example 'Adale Transport')."
+     ]
+    ],
+    "text": "1. Sign in to ShopView on a desktop computer with a mouse (hover quick actions do not appear on touch screens).\n2. In the app header, click the search field (or press ⌘K / Ctrl+K) to open the global search, then type a term that returns at least one Customer (for example 'Adale Transport')."
+   },
+   "custom_steps": {
+    "blocks": [
+     [
+      "1. Move the mouse pointer over the Customer row.",
+      "2. Look at the button(s) that appear on the right side of the row."
+     ]
+    ],
+    "text": "1. Move the mouse pointer over the Customer row.\n2. Look at the button(s) that appear on the right side of the row."
+   },
+   "custom_expected": {
+    "blocks": [
+     [
+      "1. On hover, a 'New work order' button and a 'New contact' button appear on the Customer row.",
+      "2. The actions are non-destructive and are also reachable from the customer's own record and by keyboard."
+     ],
+     [
+      "---",
+      "This is the expected behaviour as per epic SV-9160 and the Global Search - Product Requirements specification version 1.3 (Confluence page 576978945), section 5.4 (quick actions), read on 2 September 2026.",
+      "Note: these quick actions were previously parked as out-of-v1. Spec v1.3 (2026-09-01, section 5.4) brings quick actions back into v1, shown unconditionally, and the design shows them; this is newer than the epic's out-of-scope note, so this case follows the current spec.",
+      "AUTOMATION: Not available on Build to test Yet - Last checked 9/2/2026"
+     ]
+    ],
+    "text": "1. On hover, a 'New work order' button and a 'New contact' button appear on the Customer row.\n2. The actions are non-destructive and are also reachable from the customer's own record and by keyboard.\n\n---\nThis is the expected behaviour as per epic SV-9160 and the Global Search - Product Requirements specification version 1.3 (Confluence page 576978945), section 5.4 (quick actions), read on 2 September 2026.\nNote: these quick actions were previously parked as out-of-v1. Spec v1.3 (2026-09-01, section 5.4) brings quick actions back into v1, shown unconditionally, and the design shows them; this is newer than the epic's out-of-scope note, so this case follows the current spec.\nAUTOMATION: Not available on Build to test Yet - Last checked 9/2/2026"
+   }
+  }
+ },
+ "44869": {
+  "title": "Hovering a Part result shows 'Add to work order' or 'Add part'",
+  "fields": {
+   "custom_preconds": {
+    "blocks": [
+     [
+      "1. Sign in to ShopView on a desktop computer with a mouse (hover quick actions do not appear on touch screens).",
+      "2. In the app header, click the search field (or press ⌘K / Ctrl+K) to open the global search, then type a term that returns at least one Part (for example 'Rear Shock')."
+     ]
+    ],
+    "text": "1. Sign in to ShopView on a desktop computer with a mouse (hover quick actions do not appear on touch screens).\n2. In the app header, click the search field (or press ⌘K / Ctrl+K) to open the global search, then type a term that returns at least one Part (for example 'Rear Shock')."
+   },
+   "custom_steps": {
+    "blocks": [
+     [
+      "1. Move the mouse pointer over the Part row.",
+      "2. Look at the button(s) that appear on the right side of the row."
+     ]
+    ],
+    "text": "1. Move the mouse pointer over the Part row.\n2. Look at the button(s) that appear on the right side of the row."
+   },
+   "custom_expected": {
+    "blocks": [
+     [
+      "1. On hover, the Part quick action appears: 'Add to work order' when you are currently editing a work order, otherwise 'Add part'. 'View part history' is also offered.",
+      "2. Clicking the Part row itself opens the INVENTORY part (on-hand quantity and stock status), not the catalogue entry.",
+      "3. The actions are non-destructive and are also reachable from the part's own record and by keyboard."
+     ],
+     [
+      "---",
+      "This is the expected behaviour as per epic SV-9160 and the Global Search - Product Requirements specification version 1.3 (Confluence page 576978945), section 5.4 (quick actions), read on 2 September 2026.",
+      "Note: these quick actions were previously parked as out-of-v1. Spec v1.3 (2026-09-01, section 5.4) brings quick actions back into v1, shown unconditionally, and the design shows them; this is newer than the epic's out-of-scope note, so this case follows the current spec.",
+      "AUTOMATION: Not available on Build to test Yet - Last checked 9/2/2026"
+     ]
+    ],
+    "text": "1. On hover, the Part quick action appears: 'Add to work order' when you are currently editing a work order, otherwise 'Add part'. 'View part history' is also offered.\n2. Clicking the Part row itself opens the INVENTORY part (on-hand quantity and stock status), not the catalogue entry.\n3. The actions are non-destructive and are also reachable from the part's own record and by keyboard.\n\n---\nThis is the expected behaviour as per epic SV-9160 and the Global Search - Product Requirements specification version 1.3 (Confluence page 576978945), section 5.4 (quick actions), read on 2 September 2026.\nNote: these quick actions were previously parked as out-of-v1. Spec v1.3 (2026-09-01, section 5.4) brings quick actions back into v1, shown unconditionally, and the design shows them; this is newer than the epic's out-of-scope note, so this case follows the current spec.\nAUTOMATION: Not available on Build to test Yet - Last checked 9/2/2026"
+   }
+  }
+ },
+ "44870": {
+  "title": "Hovering a Vendor result shows 'Add contact'",
+  "fields": {
+   "custom_preconds": {
+    "blocks": [
+     [
+      "1. Sign in to ShopView on a desktop computer with a mouse (hover quick actions do not appear on touch screens).",
+      "2. In the app header, click the search field (or press ⌘K / Ctrl+K) to open the global search, then type a term that returns at least one Vendor (for example 'Report Beverages')."
+     ]
+    ],
+    "text": "1. Sign in to ShopView on a desktop computer with a mouse (hover quick actions do not appear on touch screens).\n2. In the app header, click the search field (or press ⌘K / Ctrl+K) to open the global search, then type a term that returns at least one Vendor (for example 'Report Beverages')."
+   },
+   "custom_steps": {
+    "blocks": [
+     [
+      "1. Move the mouse pointer over the Vendor row.",
+      "2. Look at the button(s) that appear on the right side of the row."
+     ]
+    ],
+    "text": "1. Move the mouse pointer over the Vendor row.\n2. Look at the button(s) that appear on the right side of the row."
+   },
+   "custom_expected": {
+    "blocks": [
+     [
+      "1. On hover, an 'Add contact' button appears on the Vendor row.",
+      "2. The action is non-destructive and is also reachable from the vendor's own record and by keyboard."
+     ],
+     [
+      "---",
+      "This is the expected behaviour as per epic SV-9160 and the Global Search - Product Requirements specification version 1.3 (Confluence page 576978945), section 5.4 (quick actions), read on 2 September 2026.",
+      "Note: these quick actions were previously parked as out-of-v1. Spec v1.3 (2026-09-01, section 5.4) brings quick actions back into v1, shown unconditionally, and the design shows them; this is newer than the epic's out-of-scope note, so this case follows the current spec.",
+      "AUTOMATION: Not available on Build to test Yet - Last checked 9/2/2026"
+     ]
+    ],
+    "text": "1. On hover, an 'Add contact' button appears on the Vendor row.\n2. The action is non-destructive and is also reachable from the vendor's own record and by keyboard.\n\n---\nThis is the expected behaviour as per epic SV-9160 and the Global Search - Product Requirements specification version 1.3 (Confluence page 576978945), section 5.4 (quick actions), read on 2 September 2026.\nNote: these quick actions were previously parked as out-of-v1. Spec v1.3 (2026-09-01, section 5.4) brings quick actions back into v1, shown unconditionally, and the design shows them; this is newer than the epic's out-of-scope note, so this case follows the current spec.\nAUTOMATION: Not available on Build to test Yet - Last checked 9/2/2026"
+   }
+  }
+ },
+ "44871": {
+  "title": "Hovering a Part while editing a work order shows 'Add to work order'",
+  "fields": {
+   "custom_preconds": {
+    "blocks": [
+     [
+      "1. Sign in to ShopView on a desktop computer with a mouse (hover quick actions do not appear on touch screens).",
+      "2. Start editing a work order in the app (open a work order and begin adding a line), then — without leaving that work order — in the app header click the search field (or press ⌘K / Ctrl+K) and type a term that returns a Part row (for example 'Rear Shock')."
+     ]
+    ],
+    "text": "1. Sign in to ShopView on a desktop computer with a mouse (hover quick actions do not appear on touch screens).\n2. Start editing a work order in the app (open a work order and begin adding a line), then — without leaving that work order — in the app header click the search field (or press ⌘K / Ctrl+K) and type a term that returns a Part row (for example 'Rear Shock')."
+   },
+   "custom_steps": {
+    "blocks": [
+     [
+      "1. Move the mouse pointer over the Part row (while you are editing a work order elsewhere).",
+      "2. Look at the button(s) that appear on the right side of the row."
+     ]
+    ],
+    "text": "1. Move the mouse pointer over the Part row (while you are editing a work order elsewhere).\n2. Look at the button(s) that appear on the right side of the row."
+   },
+   "custom_expected": {
+    "blocks": [
+     [
+      "1. While you are editing a work order elsewhere in the app, hovering a Part row shows an 'Add to work order' button.",
+      "2. Using it adds the part to the work order you are editing (an inline add) — non-destructive.",
+      "3. The action is also reachable from the part's own record and by keyboard."
+     ],
+     [
+      "---",
+      "This is the expected behaviour as per epic SV-9160 and the Global Search - Product Requirements specification version 1.3 (Confluence page 576978945), section 5.4 (quick actions), read on 2 September 2026.",
+      "Note: these quick actions were previously parked as out-of-v1. Spec v1.3 (2026-09-01, section 5.4) brings quick actions back into v1, shown unconditionally, and the design shows them; this is newer than the epic's out-of-scope note, so this case follows the current spec.",
+      "AUTOMATION: Not available on Build to test Yet - Last checked 9/2/2026"
+     ]
+    ],
+    "text": "1. While you are editing a work order elsewhere in the app, hovering a Part row shows an 'Add to work order' button.\n2. Using it adds the part to the work order you are editing (an inline add) — non-destructive.\n3. The action is also reachable from the part's own record and by keyboard.\n\n---\nThis is the expected behaviour as per epic SV-9160 and the Global Search - Product Requirements specification version 1.3 (Confluence page 576978945), section 5.4 (quick actions), read on 2 September 2026.\nNote: these quick actions were previously parked as out-of-v1. Spec v1.3 (2026-09-01, section 5.4) brings quick actions back into v1, shown unconditionally, and the design shows them; this is newer than the epic's out-of-scope note, so this case follows the current spec.\nAUTOMATION: Not available on Build to test Yet - Last checked 9/2/2026"
+   }
+  }
+ },
+ "44872": {
+  "title": "Quick actions never trigger a destructive operation",
+  "fields": {
+   "custom_preconds": {
+    "blocks": [
+     [
+      "1. Sign in to ShopView on a desktop computer with a mouse (hover quick actions do not appear on touch screens).",
+      "2. In the app header, click the search field (or press ⌘K / Ctrl+K) to open the global search, then type a term that returns rows across several entity types."
+     ]
+    ],
+    "text": "1. Sign in to ShopView on a desktop computer with a mouse (hover quick actions do not appear on touch screens).\n2. In the app header, click the search field (or press ⌘K / Ctrl+K) to open the global search, then type a term that returns rows across several entity types."
+   },
+   "custom_steps": {
+    "blocks": [
+     [
+      "1. Move the mouse pointer over the rows of several different entity types, one at a time.",
+      "2. Look at the button(s) that appear on the right side of the row."
+     ]
+    ],
+    "text": "1. Move the mouse pointer over the rows of several different entity types, one at a time.\n2. Look at the button(s) that appear on the right side of the row."
+   },
+   "custom_expected": {
+    "blocks": [
+     [
+      "1. Every quick action offered is an add/create-style action — none deletes, voids, or otherwise destroys data.",
+      "2. Every quick action is also reachable from the entity's own record, so hover is non-essential, and each has a keyboard path."
+     ],
+     [
+      "---",
+      "This is the expected behaviour as per epic SV-9160 and the Global Search - Product Requirements specification version 1.3 (Confluence page 576978945), section 5.4 (quick actions), read on 2 September 2026.",
+      "Note: these quick actions were previously parked as out-of-v1. Spec v1.3 (2026-09-01, section 5.4) brings quick actions back into v1, shown unconditionally, and the design shows them; this is newer than the epic's out-of-scope note, so this case follows the current spec.",
+      "AUTOMATION: Not available on Build to test Yet - Last checked 9/2/2026"
+     ]
+    ],
+    "text": "1. Every quick action offered is an add/create-style action — none deletes, voids, or otherwise destroys data.\n2. Every quick action is also reachable from the entity's own record, so hover is non-essential, and each has a keyboard path.\n\n---\nThis is the expected behaviour as per epic SV-9160 and the Global Search - Product Requirements specification version 1.3 (Confluence page 576978945), section 5.4 (quick actions), read on 2 September 2026.\nNote: these quick actions were previously parked as out-of-v1. Spec v1.3 (2026-09-01, section 5.4) brings quick actions back into v1, shown unconditionally, and the design shows them; this is newer than the epic's out-of-scope note, so this case follows the current spec.\nAUTOMATION: Not available on Build to test Yet - Last checked 9/2/2026"
+   }
+  }
+ },
+ "44815": {
+  "title": "The 'All' tab shows results from every entity group together",
+  "fields": {
+   "custom_preconds": {
+    "blocks": [
+     [
+      "1. Sign in to ShopView with access to several record types.",
+      "2. Have data so that one short query (for example 'Fib') matches work orders, customers, assets, parts and vendors."
+     ]
+    ],
+    "text": "1. Sign in to ShopView with access to several record types.\n2. Have data so that one short query (for example 'Fib') matches work orders, customers, assets, parts and vendors."
+   },
+   "custom_steps": {
+    "blocks": [
+     [
+      "1. In the app header, click the search field (or press ⌘K / Ctrl+K) to open the global search.",
+      "2. Make sure the 'All' tab is selected.",
+      "3. Type the query (for example 'Fib') and read the grouped results."
+     ]
+    ],
+    "text": "1. In the app header, click the search field (or press ⌘K / Ctrl+K) to open the global search.\n2. Make sure the 'All' tab is selected.\n3. Type the query (for example 'Fib') and read the grouped results."
+   },
+   "custom_expected": {
+    "blocks": [
+     [
+      "1. Results from every matching entity type appear, each under its own group heading with a true count (for example 'Work Orders (12)', 'Customers (2)').",
+      "2. Groups appear in this fixed order: Work Orders, Customers, Assets, Parts, Vendors, Part Sales, Purchase Orders, Vendor Invoices.",
+      "3. There is no Contacts group — a contact match appears under its parent company."
+     ],
+     [
+      "---",
+      "This is the expected behaviour as per epic SV-9160 and the Global Search - Product Requirements specification version 1.3 (Confluence page 576978945), sections 5.2 and 6.2 (group order), read on 2 September 2026.",
+      "Note: earlier cases listed Contacts in the group order. Spec v1.3 (2026-09-01) removed Contacts as a group; this case follows the current spec.",
+      "AUTOMATION: Not available on Build to test Yet - Last checked 9/2/2026"
+     ]
+    ],
+    "text": "1. Results from every matching entity type appear, each under its own group heading with a true count (for example 'Work Orders (12)', 'Customers (2)').\n2. Groups appear in this fixed order: Work Orders, Customers, Assets, Parts, Vendors, Part Sales, Purchase Orders, Vendor Invoices.\n3. There is no Contacts group — a contact match appears under its parent company.\n\n---\nThis is the expected behaviour as per epic SV-9160 and the Global Search - Product Requirements specification version 1.3 (Confluence page 576978945), sections 5.2 and 6.2 (group order), read on 2 September 2026.\nNote: earlier cases listed Contacts in the group order. Spec v1.3 (2026-09-01) removed Contacts as a group; this case follows the current spec.\nAUTOMATION: Not available on Build to test Yet - Last checked 9/2/2026"
+   }
+  }
+ },
+ "44827": {
+  "title": "Groups appear in the fixed order Work Orders, Customers, Assets, Parts, Vendors, Part Sales, Purchase Orders, Vendor Invoices",
+  "fields": {
+   "custom_preconds": {
+    "blocks": [
+     [
+      "1. Sign in to ShopView with access to several record types.",
+      "2. Have data so that one query matches every entity type at once."
+     ]
+    ],
+    "text": "1. Sign in to ShopView with access to several record types.\n2. Have data so that one query matches every entity type at once."
+   },
+   "custom_steps": {
+    "blocks": [
+     [
+      "1. In the app header, click the search field (or press ⌘K / Ctrl+K) to open the global search.",
+      "2. Type the query on the 'All' tab.",
+      "3. Read the group headings top to bottom."
+     ]
+    ],
+    "text": "1. In the app header, click the search field (or press ⌘K / Ctrl+K) to open the global search.\n2. Type the query on the 'All' tab.\n3. Read the group headings top to bottom."
+   },
+   "custom_expected": {
+    "blocks": [
+     [
+      "1. The groups appear top to bottom in this order: Work Orders, Customers, Assets, Parts, Vendors, Part Sales, Purchase Orders, Vendor Invoices.",
+      "2. There is no Contacts group.",
+      "3. The order does not change based on how many matches each group has."
+     ],
+     [
+      "---",
+      "This is the expected behaviour as per epic SV-9160 and the Global Search - Product Requirements specification version 1.3 (Confluence page 576978945), section 6.2 (group display order), read on 2 September 2026.",
+      "Note: earlier cases included Contacts in the order. Spec v1.3 (2026-09-01) removed Contacts as a group; this case follows the current spec.",
+      "AUTOMATION: Not available on Build to test Yet - Last checked 9/2/2026"
+     ]
+    ],
+    "text": "1. The groups appear top to bottom in this order: Work Orders, Customers, Assets, Parts, Vendors, Part Sales, Purchase Orders, Vendor Invoices.\n2. There is no Contacts group.\n3. The order does not change based on how many matches each group has.\n\n---\nThis is the expected behaviour as per epic SV-9160 and the Global Search - Product Requirements specification version 1.3 (Confluence page 576978945), section 6.2 (group display order), read on 2 September 2026.\nNote: earlier cases included Contacts in the order. Spec v1.3 (2026-09-01) removed Contacts as a group; this case follows the current spec.\nAUTOMATION: Not available on Build to test Yet - Last checked 9/2/2026"
+   }
+  }
+ },
+ "44830": {
+  "title": "Group order follows the v2 eight-entity sequence; pinned top hit above groups",
+  "fields": {
+   "custom_preconds": {
+    "blocks": [
+     [
+      "1. Sign in to ShopView.",
+      "2. Have data so a broad query matches across several entity types, and know an exact identifier (for example a full work order number) that matches a single record."
+     ]
+    ],
+    "text": "1. Sign in to ShopView.\n2. Have data so a broad query matches across several entity types, and know an exact identifier (for example a full work order number) that matches a single record."
+   },
+   "custom_steps": {
+    "blocks": [
+     [
+      "1. In the app header, click the search field (or press ⌘K / Ctrl+K) to open the global search.",
+      "2. Search a broad term and read the group order on the 'All' view.",
+      "3. Search an exact identifier (for example a full work order number) and look above the groups."
+     ]
+    ],
+    "text": "1. In the app header, click the search field (or press ⌘K / Ctrl+K) to open the global search.\n2. Search a broad term and read the group order on the 'All' view.\n3. Search an exact identifier (for example a full work order number) and look above the groups."
+   },
+   "custom_expected": {
+    "blocks": [
+     [
+      "1. Group display order on 'All' is: Work Orders, Customers, Assets, Parts, Vendors, Part Sales, Purchase Orders, Vendor Invoices (no Contacts group).",
+      "2. Within each group, rows are sorted by score, most relevant first; ties break by most recent.",
+      "3. When the top result across all groups is an exact identifier match (score above 0.95), it is pinned as a single row above the groups, carrying its entity icon."
+     ],
+     [
+      "---",
+      "This is the expected behaviour as per epic SV-9160 and the Global Search - Product Requirements specification version 1.3 (Confluence page 576978945), section 6.2 (cross-entity ordering), read on 2 September 2026.",
+      "Note: earlier wording said 'nine-entity' and included Contacts. Spec v1.3 (2026-09-01) makes it eight entities with no Contacts group; this case follows the current spec.",
+      "AUTOMATION: Not available on Build to test Yet - Last checked 9/2/2026"
+     ]
+    ],
+    "text": "1. Group display order on 'All' is: Work Orders, Customers, Assets, Parts, Vendors, Part Sales, Purchase Orders, Vendor Invoices (no Contacts group).\n2. Within each group, rows are sorted by score, most relevant first; ties break by most recent.\n3. When the top result across all groups is an exact identifier match (score above 0.95), it is pinned as a single row above the groups, carrying its entity icon.\n\n---\nThis is the expected behaviour as per epic SV-9160 and the Global Search - Product Requirements specification version 1.3 (Confluence page 576978945), section 6.2 (cross-entity ordering), read on 2 September 2026.\nNote: earlier wording said 'nine-entity' and included Contacts. Spec v1.3 (2026-09-01) makes it eight entities with no Contacts group; this case follows the current spec.\nAUTOMATION: Not available on Build to test Yet - Last checked 9/2/2026"
+   }
+  }
+ },
+ "45129": {
+  "title": "No Contacts tab or group appears; a contact match returns its company",
+  "fields": {
+   "custom_preconds": {
+    "blocks": [
+     [
+      "1. Sign in to ShopView with access to Customers.",
+      "2. Have a customer whose CONTACT has a distinctive name, phone or email that does NOT appear in the company's own name — note that contact detail."
+     ]
+    ],
+    "text": "1. Sign in to ShopView with access to Customers.\n2. Have a customer whose CONTACT has a distinctive name, phone or email that does NOT appear in the company's own name — note that contact detail."
+   },
+   "custom_steps": {
+    "blocks": [
+     [
+      "1. In the app header, click the search field (or press ⌘K / Ctrl+K) to open the global search.",
+      "2. Type the contact's distinctive name, phone or email.",
+      "3. Read the tab strip and the group headings."
+     ]
+    ],
+    "text": "1. In the app header, click the search field (or press ⌘K / Ctrl+K) to open the global search.\n2. Type the contact's distinctive name, phone or email.\n3. Read the tab strip and the group headings."
+   },
+   "custom_expected": {
+    "blocks": [
+     [
+      "1. There is no 'Contacts' tab in the tab strip and no 'Contacts' group in the results.",
+      "2. The contact's parent company appears instead (the Customer row, or Vendor row), with a 'Contact match' note on its second line — even though the query did not match the company's own name."
+     ],
+     [
+      "---",
+      "This is the expected behaviour as per epic SV-9160 and the Global Search - Product Requirements specification version 1.3 (Confluence page 576978945), sections 2, 4 and 5.2, read on 2 September 2026.",
+      "Note: this case previously tested a 'Contacts' tab. Spec v1.3 (2026-09-01) removed Contacts as a standalone entity; a contact match now returns the company row. This case follows the current spec.",
+      "AUTOMATION: Not available on Build to test Yet - Last checked 9/2/2026"
+     ]
+    ],
+    "text": "1. There is no 'Contacts' tab in the tab strip and no 'Contacts' group in the results.\n2. The contact's parent company appears instead (the Customer row, or Vendor row), with a 'Contact match' note on its second line — even though the query did not match the company's own name.\n\n---\nThis is the expected behaviour as per epic SV-9160 and the Global Search - Product Requirements specification version 1.3 (Confluence page 576978945), sections 2, 4 and 5.2, read on 2 September 2026.\nNote: this case previously tested a 'Contacts' tab. Spec v1.3 (2026-09-01) removed Contacts as a standalone entity; a contact match now returns the company row. This case follows the current spec.\nAUTOMATION: Not available on Build to test Yet - Last checked 9/2/2026"
+   }
+  }
  }
 }
