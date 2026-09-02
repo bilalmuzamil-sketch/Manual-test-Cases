@@ -552,5 +552,744 @@
     "text": "1. There is no 'Contacts' tab in the tab strip and no 'Contacts' group in the results.\n2. The contact's parent company appears instead (the Customer row, or Vendor row), with a 'Contact match' note on its second line — even though the query did not match the company's own name.\n\n---\nThis is the expected behaviour as per epic SV-9160 and the Global Search - Product Requirements specification version 1.3 (Confluence page 576978945), sections 2, 4 and 5.2, read on 2 September 2026.\nNote: this case previously tested a 'Contacts' tab. Spec v1.3 (2026-09-01) removed Contacts as a standalone entity; a contact match now returns the company row. This case follows the current spec.\nAUTOMATION: Not available on Build to test Yet - Last checked 9/2/2026"
    }
   }
+ },
+ "44826": {
+  "title": "Clicking 'Show all N' opens the entity's list page filtered by the term (no banner)",
+  "fields": {
+   "custom_preconds": {
+    "blocks": [
+     [
+      "1. Sign in to ShopView. In the app header, click the search field (or press ⌘K / Ctrl+K) to open the global search, which searches across work orders, customers, parts and more; results appear as rows grouped by type under a tab strip.",
+      "2. Type a term that returns a Work Orders group with more than five matches, so a 'Show all N' link appears on the Work Orders group heading."
+     ]
+    ],
+    "text": "1. Sign in to ShopView. In the app header, click the search field (or press ⌘K / Ctrl+K) to open the global search, which searches across work orders, customers, parts and more; results appear as rows grouped by type under a tab strip.\n2. Type a term that returns a Work Orders group with more than five matches, so a 'Show all N' link appears on the Work Orders group heading."
+   },
+   "custom_steps": {
+    "blocks": [
+     [
+      "2. Click the 'Show all N work orders' link on the Work Orders group heading.",
+      "3. Look at the page you land on: the list, its search box, and any filters."
+     ]
+    ],
+    "text": "2. Click the 'Show all N work orders' link on the Work Orders group heading.\n3. Look at the page you land on: the list, its search box, and any filters."
+   },
+   "custom_expected": {
+    "blocks": [
+     [
+      "1. The search modal closes and you land on the Work Orders list page.",
+      "2. The search term is placed into the list page's own search box, and the list is filtered by it — there is NO separate banner.",
+      "3. Any filters previously saved on that list page are reset, so the list really shows all the matches for the term.",
+      "4. Clearing the search box clears the term and shows the unfiltered list.",
+      "5. This full-page hand-off is built for Work Orders; each other entity list needs the same treatment."
+     ],
+     [
+      "---",
+      "This is the expected behaviour as per epic SV-9160 and the Global Search - Product Requirements specification version 1.3 (Confluence page 576978945), section 5.2 (Show all) and the designer's confirmation, read on 2 September 2026.",
+      "Note: earlier this case described a banner that read 'Showing N … matching «query»' with the page search box left empty. The designer/PO (Branko) confirmed the current behaviour: no banner — the term goes into the page's own search box and any saved filters are reset. This case follows that latest decision.",
+      "AUTOMATION: Not available on Build to test Yet - Last checked 9/2/2026"
+     ]
+    ],
+    "text": "1. The search modal closes and you land on the Work Orders list page.\n2. The search term is placed into the list page's own search box, and the list is filtered by it — there is NO separate banner.\n3. Any filters previously saved on that list page are reset, so the list really shows all the matches for the term.\n4. Clearing the search box clears the term and shows the unfiltered list.\n5. This full-page hand-off is built for Work Orders; each other entity list needs the same treatment.\n\n---\nThis is the expected behaviour as per epic SV-9160 and the Global Search - Product Requirements specification version 1.3 (Confluence page 576978945), section 5.2 (Show all) and the designer's confirmation, read on 2 September 2026.\nNote: earlier this case described a banner that read 'Showing N … matching «query»' with the page search box left empty. The designer/PO (Branko) confirmed the current behaviour: no banner — the term goes into the page's own search box and any saved filters are reset. This case follows that latest decision.\nAUTOMATION: Not available on Build to test Yet - Last checked 9/2/2026"
+   }
+  }
+ },
+ "44874": {
+  "title": "Searching the in-page Work Orders list filters the list, with the term in the search box",
+  "fields": {
+   "custom_preconds": {
+    "blocks": [
+     [
+      "1. Sign in to ShopView and open the Work Orders list page (top menu → Work Orders).",
+      "2. Have work orders whose text contains a common term (for example 'Fib')."
+     ]
+    ],
+    "text": "1. Sign in to ShopView and open the Work Orders list page (top menu → Work Orders).\n2. Have work orders whose text contains a common term (for example 'Fib')."
+   },
+   "custom_steps": {
+    "blocks": [
+     [
+      "1. Type the term (for example 'Fib') into the Work Orders list page's own search box.",
+      "2. Read the list and the search box."
+     ]
+    ],
+    "text": "1. Type the term (for example 'Fib') into the Work Orders list page's own search box.\n2. Read the list and the search box."
+   },
+   "custom_expected": {
+    "blocks": [
+     [
+      "1. The Work Orders list filters to only the rows matching the term.",
+      "2. The term stays in the list's search box — there is no separate 'Showing N … matching' banner.",
+      "3. The list columns remain: On Site, Status, Number, Customer, Asset, Unit, VIN/Serial #, Progress, Service Advisor, Lead Technician, Clocked In, Lines, Total Price."
+     ],
+     [
+      "---",
+      "This is the expected behaviour as per epic SV-9160 and the Global Search - Product Requirements specification version 1.3 (Confluence page 576978945), section 5.2 and the designer's confirmation, read on 2 September 2026.",
+      "Note: earlier this case described a banner that read 'Showing N … matching «query»' with the page search box left empty. The designer/PO (Branko) confirmed the current behaviour: no banner — the term goes into the page's own search box and any saved filters are reset. This case follows that latest decision.",
+      "AUTOMATION: Not available on Build to test Yet - Last checked 9/2/2026"
+     ]
+    ],
+    "text": "1. The Work Orders list filters to only the rows matching the term.\n2. The term stays in the list's search box — there is no separate 'Showing N … matching' banner.\n3. The list columns remain: On Site, Status, Number, Customer, Asset, Unit, VIN/Serial #, Progress, Service Advisor, Lead Technician, Clocked In, Lines, Total Price.\n\n---\nThis is the expected behaviour as per epic SV-9160 and the Global Search - Product Requirements specification version 1.3 (Confluence page 576978945), section 5.2 and the designer's confirmation, read on 2 September 2026.\nNote: earlier this case described a banner that read 'Showing N … matching «query»' with the page search box left empty. The designer/PO (Branko) confirmed the current behaviour: no banner — the term goes into the page's own search box and any saved filters are reset. This case follows that latest decision.\nAUTOMATION: Not available on Build to test Yet - Last checked 9/2/2026"
+   }
+  }
+ },
+ "44875": {
+  "title": "Clearing the in-page Work Orders search restores the full list",
+  "fields": {
+   "custom_preconds": {
+    "blocks": [
+     [
+      "1. Sign in to ShopView, open the Work Orders list page, and type a term in its search box so the list is filtered."
+     ]
+    ],
+    "text": "1. Sign in to ShopView, open the Work Orders list page, and type a term in its search box so the list is filtered."
+   },
+   "custom_steps": {
+    "blocks": [
+     [
+      "1. Clear the term from the Work Orders list search box.",
+      "2. Read the list."
+     ]
+    ],
+    "text": "1. Clear the term from the Work Orders list search box.\n2. Read the list."
+   },
+   "custom_expected": {
+    "blocks": [
+     [
+      "1. The filter is removed and the full Work Orders list is shown again.",
+      "2. There is no banner to dismiss — clearing the search box is what restores the list."
+     ],
+     [
+      "---",
+      "This is the expected behaviour as per epic SV-9160 and the Global Search - Product Requirements specification version 1.3 (Confluence page 576978945), section 5.2 and the designer's confirmation, read on 2 September 2026.",
+      "Note: earlier this case described a banner that read 'Showing N … matching «query»' with the page search box left empty. The designer/PO (Branko) confirmed the current behaviour: no banner — the term goes into the page's own search box and any saved filters are reset. This case follows that latest decision.",
+      "AUTOMATION: Not available on Build to test Yet - Last checked 9/2/2026"
+     ]
+    ],
+    "text": "1. The filter is removed and the full Work Orders list is shown again.\n2. There is no banner to dismiss — clearing the search box is what restores the list.\n\n---\nThis is the expected behaviour as per epic SV-9160 and the Global Search - Product Requirements specification version 1.3 (Confluence page 576978945), section 5.2 and the designer's confirmation, read on 2 September 2026.\nNote: earlier this case described a banner that read 'Showing N … matching «query»' with the page search box left empty. The designer/PO (Branko) confirmed the current behaviour: no banner — the term goes into the page's own search box and any saved filters are reset. This case follows that latest decision.\nAUTOMATION: Not available on Build to test Yet - Last checked 9/2/2026"
+   }
+  }
+ },
+ "44831": {
+  "title": "A Work Order result row shows number + customer, status badge, and unit + year/make/model",
+  "fields": {
+   "custom_preconds": {
+    "blocks": [
+     [
+      "1. Sign in to ShopView. In the app header, click the search field (or press ⌘K / Ctrl+K) to open the global search, which searches across work orders, customers, parts and more; results appear as rows grouped by type under a tab strip.",
+      "2. Have a work order whose asset has a unit number and a year/make/model (for example 'S1-644 Fibridge Commercial', unit 'TRK 412', a 2019 Freightliner Cascadia)."
+     ]
+    ],
+    "text": "1. Sign in to ShopView. In the app header, click the search field (or press ⌘K / Ctrl+K) to open the global search, which searches across work orders, customers, parts and more; results appear as rows grouped by type under a tab strip.\n2. Have a work order whose asset has a unit number and a year/make/model (for example 'S1-644 Fibridge Commercial', unit 'TRK 412', a 2019 Freightliner Cascadia)."
+   },
+   "custom_steps": {
+    "blocks": [
+     [
+      "2. Type a term that matches that work order.",
+      "3. Read the Work Order result row."
+     ]
+    ],
+    "text": "2. Type a term that matches that work order.\n3. Read the Work Order result row."
+   },
+   "custom_expected": {
+    "blocks": [
+     [
+      "1. The main (bold) line shows the work order number and customer name (for example 'S1-644 Fibridge Commercial').",
+      "2. A coloured status badge is shown (for example Approved, Estimate, Invoiced).",
+      "3. The second line shows the unit number and the year/make/model (for example 'TRK 412 · 2019 Freightliner Cascadia'). When the asset has no unit number, the year/make/model stands alone.",
+      "4. The lead technician, service advisor and dates are NOT shown on the row (they remain indexed and rankable, just not displayed).",
+      "5. A work-order (clipboard) icon is shown on the left of the row."
+     ],
+     [
+      "---",
+      "This is the expected behaviour as per epic SV-9160 and the Global Search - Product Requirements specification version 1.3 (Confluence page 576978945), section 4 (Work Orders displayed fields), read on 2 September 2026.",
+      "Note: earlier this case showed the lead technician/assignee name and a date. Spec v1.3 (2026-09-01) changed the Work Order row to show unit number + year/make/model instead; this case follows the current spec.",
+      "AUTOMATION: Not available on Build to test Yet - Last checked 9/2/2026"
+     ]
+    ],
+    "text": "1. The main (bold) line shows the work order number and customer name (for example 'S1-644 Fibridge Commercial').\n2. A coloured status badge is shown (for example Approved, Estimate, Invoiced).\n3. The second line shows the unit number and the year/make/model (for example 'TRK 412 · 2019 Freightliner Cascadia'). When the asset has no unit number, the year/make/model stands alone.\n4. The lead technician, service advisor and dates are NOT shown on the row (they remain indexed and rankable, just not displayed).\n5. A work-order (clipboard) icon is shown on the left of the row.\n\n---\nThis is the expected behaviour as per epic SV-9160 and the Global Search - Product Requirements specification version 1.3 (Confluence page 576978945), section 4 (Work Orders displayed fields), read on 2 September 2026.\nNote: earlier this case showed the lead technician/assignee name and a date. Spec v1.3 (2026-09-01) changed the Work Order row to show unit number + year/make/model instead; this case follows the current spec.\nAUTOMATION: Not available on Build to test Yet - Last checked 9/2/2026"
+   }
+  }
+ },
+ "44837": {
+  "title": "A customer or vendor matched on a contact field shows 'Contact match'",
+  "fields": {
+   "custom_preconds": {
+    "blocks": [
+     [
+      "1. Sign in to ShopView. In the app header, click the search field (or press ⌘K / Ctrl+K) to open the global search, which searches across work orders, customers, parts and more; results appear as rows grouped by type under a tab strip.",
+      "2. Have a customer whose telephone or email contains a distinctive value that its company name does NOT contain — note that value."
+     ]
+    ],
+    "text": "1. Sign in to ShopView. In the app header, click the search field (or press ⌘K / Ctrl+K) to open the global search, which searches across work orders, customers, parts and more; results appear as rows grouped by type under a tab strip.\n2. Have a customer whose telephone or email contains a distinctive value that its company name does NOT contain — note that value."
+   },
+   "custom_steps": {
+    "blocks": [
+     [
+      "2. Type the customer's contact phone digits or email (a value that matches a contact field, not the company name).",
+      "3. Read the matched customer or vendor row's second line and the group headings."
+     ]
+    ],
+    "text": "2. Type the customer's contact phone digits or email (a value that matches a contact field, not the company name).\n3. Read the matched customer or vendor row's second line and the group headings."
+   },
+   "custom_expected": {
+    "blocks": [
+     [
+      "1. The customer (or vendor) still appears in the results — matched via its contact's phone/email.",
+      "2. Its second line shows 'Contact match', showing the match was on a contact field rather than the company name.",
+      "3. There is no separate 'Contacts' group or row — the company row is the only row returned for the match."
+     ],
+     [
+      "---",
+      "This is the expected behaviour as per epic SV-9160 and the Global Search - Product Requirements specification version 1.3 (Confluence page 576978945), section 4 (contact-field matches), read on 2 September 2026.",
+      "Note: earlier this case said two rows are returned (a contact row in a Contacts group plus the company). Spec v1.3 (2026-09-01) removed Contacts as a group; only the company row is returned, carrying the 'Contact match' label. This case follows the current spec.",
+      "AUTOMATION: Not available on Build to test Yet - Last checked 9/2/2026"
+     ]
+    ],
+    "text": "1. The customer (or vendor) still appears in the results — matched via its contact's phone/email.\n2. Its second line shows 'Contact match', showing the match was on a contact field rather than the company name.\n3. There is no separate 'Contacts' group or row — the company row is the only row returned for the match.\n\n---\nThis is the expected behaviour as per epic SV-9160 and the Global Search - Product Requirements specification version 1.3 (Confluence page 576978945), section 4 (contact-field matches), read on 2 September 2026.\nNote: earlier this case said two rows are returned (a contact row in a Contacts group plus the company). Spec v1.3 (2026-09-01) removed Contacts as a group; only the company row is returned, carrying the 'Contact match' label. This case follows the current spec.\nAUTOMATION: Not available on Build to test Yet - Last checked 9/2/2026"
+   }
+  }
+ },
+ "44855": {
+  "title": "First-time empty state shows the placeholder and a single helper line (no quick-create buttons)",
+  "fields": {
+   "custom_preconds": {
+    "blocks": [
+     [
+      "1. Sign in as a user with no recent search activity.",
+      "2. In the app header, click the search field (or press ⌘K / Ctrl+K) to open the global search (which searches work orders, customers, parts and more), and do not type anything."
+     ]
+    ],
+    "text": "1. Sign in as a user with no recent search activity.\n2. In the app header, click the search field (or press ⌘K / Ctrl+K) to open the global search (which searches work orders, customers, parts and more), and do not type anything."
+   },
+   "custom_steps": {
+    "blocks": [
+     [
+      "2. Without typing, read the search box placeholder, the helper text below the box, and the keyboard-legend row in the footer."
+     ]
+    ],
+    "text": "2. Without typing, read the search box placeholder, the helper text below the box, and the keyboard-legend row in the footer."
+   },
+   "custom_expected": {
+    "blocks": [
+     [
+      "1. The input shows the placeholder 'Search work orders, customers, parts and more' (no 'ask a question' / AI wording — AI is out of scope in v1).",
+      "2. Below the input there is a single helper line and NO quick-create buttons. The helper line reads 'Search for something' (per the spec). ",
+      "3. The footer keyboard legend is visible: ↓↑ Navigate · ⏎ Select · Esc Close."
+     ],
+     [
+      "---",
+      "This is the expected behaviour as per epic SV-9160 and the Global Search - Product Requirements specification version 1.3 (Confluence page 576978945), section 5.2 (first-time state), read on 2 September 2026.",
+      "Note: earlier this case listed three quick-create buttons and a longer helper line. Spec v1.3 (2026-09-01) removed the quick-create buttons and made the empty state a single 'Search for something' line. The uploaded design renders a longer helper string ('Type to start searching for work orders, parts, customers and more') — the exact wording is a PO/build confirm; this case follows the spec wording meanwhile.",
+      "AUTOMATION: Not available on Build to test Yet - Last checked 9/2/2026"
+     ]
+    ],
+    "text": "1. The input shows the placeholder 'Search work orders, customers, parts and more' (no 'ask a question' / AI wording — AI is out of scope in v1).\n2. Below the input there is a single helper line and NO quick-create buttons. The helper line reads 'Search for something' (per the spec). \n3. The footer keyboard legend is visible: ↓↑ Navigate · ⏎ Select · Esc Close.\n\n---\nThis is the expected behaviour as per epic SV-9160 and the Global Search - Product Requirements specification version 1.3 (Confluence page 576978945), section 5.2 (first-time state), read on 2 September 2026.\nNote: earlier this case listed three quick-create buttons and a longer helper line. Spec v1.3 (2026-09-01) removed the quick-create buttons and made the empty state a single 'Search for something' line. The uploaded design renders a longer helper string ('Type to start searching for work orders, parts, customers and more') — the exact wording is a PO/build confirm; this case follows the spec wording meanwhile.\nAUTOMATION: Not available on Build to test Yet - Last checked 9/2/2026"
+   }
+  }
+ },
+ "44856": {
+  "title": "The first-time and no-results states offer no quick-create buttons",
+  "fields": {
+   "custom_preconds": {
+    "blocks": [
+     [
+      "1. Sign in to ShopView with access to work orders, customers and parts.",
+      "2. In the app header, click the search field (or press ⌘K / Ctrl+K) to open the global search."
+     ]
+    ],
+    "text": "1. Sign in to ShopView with access to work orders, customers and parts.\n2. In the app header, click the search field (or press ⌘K / Ctrl+K) to open the global search."
+   },
+   "custom_steps": {
+    "blocks": [
+     [
+      "1. Look at the search box and the list area below it before typing (the first-time state).",
+      "2. Type a term that returns no matches and look at the no-results area."
+     ]
+    ],
+    "text": "1. Look at the search box and the list area below it before typing (the first-time state).\n2. Type a term that returns no matches and look at the no-results area."
+   },
+   "custom_expected": {
+    "blocks": [
+     [
+      "1. Neither the first-time empty state nor the no-results state shows any quick-create buttons ('New work order', 'New customer', 'New inventory part' are not present).",
+      "2. The first-time state shows only the helper line; the no-results state shows only the 'No results for …' message."
+     ],
+     [
+      "---",
+      "This is the expected behaviour as per epic SV-9160 and the Global Search - Product Requirements specification version 1.3 (Confluence page 576978945), section 5.2 (first-time and no-results states), read on 2 September 2026.",
+      "Note: this case previously tested that the three quick-create buttons start their create flows. Spec v1.3 (2026-09-01) removed those buttons, so this case now confirms their absence. This follows the current spec.",
+      "AUTOMATION: Not available on Build to test Yet - Last checked 9/2/2026"
+     ]
+    ],
+    "text": "1. Neither the first-time empty state nor the no-results state shows any quick-create buttons ('New work order', 'New customer', 'New inventory part' are not present).\n2. The first-time state shows only the helper line; the no-results state shows only the 'No results for …' message.\n\n---\nThis is the expected behaviour as per epic SV-9160 and the Global Search - Product Requirements specification version 1.3 (Confluence page 576978945), section 5.2 (first-time and no-results states), read on 2 September 2026.\nNote: this case previously tested that the three quick-create buttons start their create flows. Spec v1.3 (2026-09-01) removed those buttons, so this case now confirms their absence. This follows the current spec.\nAUTOMATION: Not available on Build to test Yet - Last checked 9/2/2026"
+   }
+  }
+ },
+ "45153": {
+  "title": "Selecting each result type opens the correct record (a Part opens the inventory part)",
+  "fields": {
+   "custom_preconds": {
+    "blocks": [
+     [
+      "1. Sign in to ShopView as a user permitted to see all record types.",
+      "2. Have data for each type: Work Order, Part Sale, Customer, Asset (vehicle), Vendor, and an inventory Part."
+     ]
+    ],
+    "text": "1. Sign in to ShopView as a user permitted to see all record types.\n2. Have data for each type: Work Order, Part Sale, Customer, Asset (vehicle), Vendor, and an inventory Part."
+   },
+   "custom_steps": {
+    "blocks": [
+     [
+      "1. Sign in to ShopView. In the app header, click the search field (or press ⌘K / Ctrl+K) to open the global search, which searches across work orders, customers, parts and more; results appear as rows grouped by type under a tab strip.",
+      "2. For each type in turn, type a term that matches a record of that type and select the row.",
+      "3. Confirm which page opens."
+     ]
+    ],
+    "text": "1. Sign in to ShopView. In the app header, click the search field (or press ⌘K / Ctrl+K) to open the global search, which searches across work orders, customers, parts and more; results appear as rows grouped by type under a tab strip.\n2. For each type in turn, type a term that matches a record of that type and select the row.\n3. Confirm which page opens."
+   },
+   "custom_expected": {
+    "blocks": [
+     [
+      "1. Work Order opens the Work Order page; Part Sale opens the Part Sale page; Customer opens the customer's work-orders page; Asset opens the vehicle's work-orders page; Vendor opens the Vendor page.",
+      "2. A Part opens the INVENTORY part (showing on-hand quantity and stock status), NOT the catalogue entry.",
+      "3. For an Asset, the correct owning customer is used."
+     ],
+     [
+      "---",
+      "This is the expected behaviour as per epic SV-9160 and the Global Search - Product Requirements specification version 1.3 (Confluence page 576978945), section 5.3 (result-row navigation), read on 2 September 2026.",
+      "Note: earlier this case said a Part opens the catalogue part page. Spec v1.3 (2026-09-01, §5.3) changed it to open the inventory part; this case follows the current spec.",
+      "AUTOMATION: Not available on Build to test Yet - Last checked 9/2/2026"
+     ]
+    ],
+    "text": "1. Work Order opens the Work Order page; Part Sale opens the Part Sale page; Customer opens the customer's work-orders page; Asset opens the vehicle's work-orders page; Vendor opens the Vendor page.\n2. A Part opens the INVENTORY part (showing on-hand quantity and stock status), NOT the catalogue entry.\n3. For an Asset, the correct owning customer is used.\n\n---\nThis is the expected behaviour as per epic SV-9160 and the Global Search - Product Requirements specification version 1.3 (Confluence page 576978945), section 5.3 (result-row navigation), read on 2 September 2026.\nNote: earlier this case said a Part opens the catalogue part page. Spec v1.3 (2026-09-01, §5.3) changed it to open the inventory part; this case follows the current spec.\nAUTOMATION: Not available on Build to test Yet - Last checked 9/2/2026"
+   }
+  }
+ },
+ "44882": {
+  "title": "Permission bundles hide whole groups, their counts and tabs; prices masked without financial access",
+  "fields": {
+   "custom_preconds": {
+    "blocks": [
+     [
+      "1. You can sign in as roles with different view bundles, as one without 'See Financial Data', and as a TimeClock-only user.",
+      "2. Records exist across all eight entity types."
+     ]
+    ],
+    "text": "1. You can sign in as roles with different view bundles, as one without 'See Financial Data', and as a TimeClock-only user.\n2. Records exist across all eight entity types."
+   },
+   "custom_steps": {
+    "blocks": [
+     [
+      "1. Sign in to ShopView. In the app header, click the search field (or press ⌘K / Ctrl+K) to open the global search, which searches across work orders, customers, parts and more; results appear as rows grouped by type under a tab strip.",
+      "2. As a role missing a bundle (for example no 'Vendor & Order Management'), search and check Purchase Orders / Vendor Invoices / Vendors.",
+      "3. As a user without 'See Financial Data', check the price fields in results.",
+      "4. As a TimeClock-only user, search anything."
+     ]
+    ],
+    "text": "1. Sign in to ShopView. In the app header, click the search field (or press ⌘K / Ctrl+K) to open the global search, which searches across work orders, customers, parts and more; results appear as rows grouped by type under a tab strip.\n2. As a role missing a bundle (for example no 'Vendor & Order Management'), search and check Purchase Orders / Vendor Invoices / Vendors.\n3. As a user without 'See Financial Data', check the price fields in results.\n4. As a TimeClock-only user, search anything."
+   },
+   "custom_expected": {
+    "blocks": [
+     [
+      "1. Permission filtering follows the eight-entity bundle mapping: Work Orders → Work Orders: View; Part Sales → Part Sales: View; Customers and Assets → Customers: View; Parts → Catalog & Inventory: View; Vendors, Purchase Orders and Vendor Invoices → Vendor & Order Management: View. (A contact match rides its parent company's Customers/Vendor permission.)",
+      "2. A hidden entity group leaks neither its rows nor its count, and no scope tab appears for it.",
+      "3. Without 'See Financial Data', every price field is masked in results (part purchase/sell price, part-sale total, work-order total, PO total, vendor-invoice total).",
+      "4. A TimeClock-only user sees no results they are not permitted to see."
+     ],
+     [
+      "---",
+      "This is the expected behaviour as per epic SV-9160 and the Global Search - Product Requirements specification version 1.3 (Confluence page 576978945), section 9 (role-based access), read on 2 September 2026.",
+      "Note: earlier this case described a 'nine-entity' mapping including Contacts. Spec v1.3 (2026-09-01) makes it eight entities with no Contacts group; a contact match rides its parent company's permission. This case follows the current spec.",
+      "AUTOMATION: Not available on Build to test Yet - Last checked 9/2/2026"
+     ]
+    ],
+    "text": "1. Permission filtering follows the eight-entity bundle mapping: Work Orders → Work Orders: View; Part Sales → Part Sales: View; Customers and Assets → Customers: View; Parts → Catalog & Inventory: View; Vendors, Purchase Orders and Vendor Invoices → Vendor & Order Management: View. (A contact match rides its parent company's Customers/Vendor permission.)\n2. A hidden entity group leaks neither its rows nor its count, and no scope tab appears for it.\n3. Without 'See Financial Data', every price field is masked in results (part purchase/sell price, part-sale total, work-order total, PO total, vendor-invoice total).\n4. A TimeClock-only user sees no results they are not permitted to see.\n\n---\nThis is the expected behaviour as per epic SV-9160 and the Global Search - Product Requirements specification version 1.3 (Confluence page 576978945), section 9 (role-based access), read on 2 September 2026.\nNote: earlier this case described a 'nine-entity' mapping including Contacts. Spec v1.3 (2026-09-01) makes it eight entities with no Contacts group; a contact match rides its parent company's permission. This case follows the current spec.\nAUTOMATION: Not available on Build to test Yet - Last checked 9/2/2026"
+   }
+  }
+ },
+ "45139": {
+  "title": "A contact-field match scores as a secondary-field match on its company",
+  "fields": {
+   "custom_preconds": {
+    "blocks": [
+     [
+      "1. Sign in to ShopView with access to Customers.",
+      "2. Have a customer that can be matched both by its own name and by a contact's field (phone/email)."
+     ]
+    ],
+    "text": "1. Sign in to ShopView with access to Customers.\n2. Have a customer that can be matched both by its own name and by a contact's field (phone/email)."
+   },
+   "custom_steps": {
+    "blocks": [
+     [
+      "1. Sign in to ShopView. In the app header, click the search field (or press ⌘K / Ctrl+K) to open the global search, which searches across work orders, customers, parts and more; results appear as rows grouped by type under a tab strip.",
+      "2. Search a value that matches the company on a contact field (phone/email).",
+      "3. Compare its ranking with a company matched on its own name."
+     ]
+    ],
+    "text": "1. Sign in to ShopView. In the app header, click the search field (or press ⌘K / Ctrl+K) to open the global search, which searches across work orders, customers, parts and more; results appear as rows grouped by type under a tab strip.\n2. Search a value that matches the company on a contact field (phone/email).\n3. Compare its ranking with a company matched on its own name."
+   },
+   "custom_expected": {
+    "blocks": [
+     [
+      "1. A match on a contact field (name, phone or email) is treated as a secondary-field match on the parent company, and does NOT receive the primary-name-match bonus.",
+      "2. Contacts are not ranked or grouped on their own — the company row carries the result."
+     ],
+     [
+      "---",
+      "This is the expected behaviour as per epic SV-9160 and the Global Search - Product Requirements specification version 1.3 (Confluence page 576978945), section 6.1 (match-quality component) and section 4, read on 2 September 2026.",
+      "Note: this case previously ranked Contacts as their own entity. Spec v1.3 (2026-09-01) removed Contacts as an entity; a contact-field match now scores on the parent company. This case follows the current spec.",
+      "AUTOMATION: Not available on Build to test Yet - Last checked 9/2/2026"
+     ]
+    ],
+    "text": "1. A match on a contact field (name, phone or email) is treated as a secondary-field match on the parent company, and does NOT receive the primary-name-match bonus.\n2. Contacts are not ranked or grouped on their own — the company row carries the result.\n\n---\nThis is the expected behaviour as per epic SV-9160 and the Global Search - Product Requirements specification version 1.3 (Confluence page 576978945), section 6.1 (match-quality component) and section 4, read on 2 September 2026.\nNote: this case previously ranked Contacts as their own entity. Spec v1.3 (2026-09-01) removed Contacts as an entity; a contact-field match now scores on the parent company. This case follows the current spec.\nAUTOMATION: Not available on Build to test Yet - Last checked 9/2/2026"
+   }
+  }
+ },
+ "45135": {
+  "title": "Mobile first-time, recent and no-results states match web (no quick-create buttons)",
+  "fields": {
+   "custom_preconds": {
+    "blocks": [
+     [
+      "1. On a phone (or a narrow, phone-sized browser), sign in to ShopView and tap the search field in the app header to open the full-screen global search, which searches across work orders, customers, parts and more; results appear grouped by type and you tap a row to open its record."
+     ]
+    ],
+    "text": "1. On a phone (or a narrow, phone-sized browser), sign in to ShopView and tap the search field in the app header to open the full-screen global search, which searches across work orders, customers, parts and more; results appear grouped by type and you tap a row to open its record."
+   },
+   "custom_steps": {
+    "blocks": [
+     [
+      "2. Look at the first-time screen (before typing), the recent-searches list, and the no-results screen (type a term with no matches).",
+      "3. Use the 'Clear all' button on the recent searches list."
+     ]
+    ],
+    "text": "2. Look at the first-time screen (before typing), the recent-searches list, and the no-results screen (type a term with no matches).\n3. Use the 'Clear all' button on the recent searches list."
+   },
+   "custom_expected": {
+    "blocks": [
+     [
+      "1. The first-time, recent-searches and no-results states match the web states.",
+      "2. There are no quick-create buttons (they were removed in v1.3); the first-time state shows only the helper line.",
+      "3. 'Clear all' behaves as on web: clearing the history returns the screen to the first-time state."
+     ],
+     [
+      "---",
+      "This is the expected behaviour as per epic SV-9160 and the Global Search - Product Requirements specification version 1.3 (Confluence page 576978945), section 5.6 (mobile), read on 2 September 2026.",
+      "Note: earlier this case said the quick-create buttons are stacked full-width on mobile. Spec v1.3 (2026-09-01) removed those buttons; this case follows the current spec.",
+      "AUTOMATION: Not available on Build to test Yet - Last checked 9/2/2026"
+     ]
+    ],
+    "text": "1. The first-time, recent-searches and no-results states match the web states.\n2. There are no quick-create buttons (they were removed in v1.3); the first-time state shows only the helper line.\n3. 'Clear all' behaves as on web: clearing the history returns the screen to the first-time state.\n\n---\nThis is the expected behaviour as per epic SV-9160 and the Global Search - Product Requirements specification version 1.3 (Confluence page 576978945), section 5.6 (mobile), read on 2 September 2026.\nNote: earlier this case said the quick-create buttons are stacked full-width on mobile. Spec v1.3 (2026-09-01) removed those buttons; this case follows the current spec.\nAUTOMATION: Not available on Build to test Yet - Last checked 9/2/2026"
+   }
+  }
+ },
+ "44825": {
+  "title": "A 'Show all N' link appears when a group has more than five matches",
+  "fields": {
+   "custom_preconds": {
+    "blocks": [
+     [
+      "1. Sign in to ShopView. In the app header, click the search field (or press ⌘K / Ctrl+K) to open the global search, which searches across work orders, customers, parts and more; results appear as rows grouped by type under a tab strip.",
+      "2. Have a term that returns more than five Work Order matches (for example twelve)."
+     ]
+    ],
+    "text": "1. Sign in to ShopView. In the app header, click the search field (or press ⌘K / Ctrl+K) to open the global search, which searches across work orders, customers, parts and more; results appear as rows grouped by type under a tab strip.\n2. Have a term that returns more than five Work Order matches (for example twelve)."
+   },
+   "custom_steps": {
+    "blocks": [
+     [
+      "2. Type the term.",
+      "3. Look at the Work Orders group heading."
+     ]
+    ],
+    "text": "2. Type the term.\n3. Look at the Work Orders group heading."
+   },
+   "custom_expected": {
+    "blocks": [
+     [
+      "1. When a result group has more than five matches, a 'Show all N' link appears on that group's heading (for example 'Show all 12').",
+      "2. A group with five or fewer matches shows no 'Show all' link.",
+      "3. N is the true total for that entity in the current query, not the capped five.",
+      "4. Assets are the exception: an Assets group shows no 'Show all' link, because there is no vehicles list page to open."
+     ],
+     [
+      "---",
+      "This is the expected behaviour as per epic SV-9160 and the Global Search - Product Requirements specification version 1.3 (Confluence page 576978945), section 5.2 (Show all) and the designer's confirmation, read on 2 September 2026.",
+      "Note: the Assets exception is per the designer's confirmation (Branko); the rest is unchanged from the spec.",
+      "AUTOMATION: Not available on Build to test Yet - Last checked 9/2/2026"
+     ]
+    ],
+    "text": "1. When a result group has more than five matches, a 'Show all N' link appears on that group's heading (for example 'Show all 12').\n2. A group with five or fewer matches shows no 'Show all' link.\n3. N is the true total for that entity in the current query, not the capped five.\n4. Assets are the exception: an Assets group shows no 'Show all' link, because there is no vehicles list page to open.\n\n---\nThis is the expected behaviour as per epic SV-9160 and the Global Search - Product Requirements specification version 1.3 (Confluence page 576978945), section 5.2 (Show all) and the designer's confirmation, read on 2 September 2026.\nNote: the Assets exception is per the designer's confirmation (Branko); the rest is unchanged from the spec.\nAUTOMATION: Not available on Build to test Yet - Last checked 9/2/2026"
+   }
+  }
+ },
+ "44822": {
+  "title": "Selecting a scope tab shows only that entity's results with its count",
+  "fields": {
+   "custom_preconds": {
+    "blocks": [
+     [
+      "1. Sign in to ShopView. In the app header, click the search field (or press ⌘K / Ctrl+K) to open the global search, which searches across work orders, customers, parts and more; results appear as rows grouped by type under a tab strip.",
+      "2. Have a term that returns more than five results in at least one entity group."
+     ]
+    ],
+    "text": "1. Sign in to ShopView. In the app header, click the search field (or press ⌘K / Ctrl+K) to open the global search, which searches across work orders, customers, parts and more; results appear as rows grouped by type under a tab strip.\n2. Have a term that returns more than five results in at least one entity group."
+   },
+   "custom_steps": {
+    "blocks": [
+     [
+      "2. Type a term with many matches.",
+      "3. Note that each group is capped at five with a 'Show all N' link.",
+      "4. Click an entity's scope tab and scroll the scoped list."
+     ]
+    ],
+    "text": "2. Type a term with many matches.\n3. Note that each group is capped at five with a 'Show all N' link.\n4. Click an entity's scope tab and scroll the scoped list."
+   },
+   "custom_expected": {
+    "blocks": [
+     [
+      "1. Selecting an entity scope tab scopes the query to that entity type only.",
+      "2. Within the scoped tab, the heading carries that entity's true total count.",
+      "3. When the scoped entity has more than five matches, the same 'Show all N' link is available (the full-page hand-off — no banner, term in the list's search box, filters reset)."
+     ],
+     [
+      "---",
+      "This is the expected behaviour as per epic SV-9160 and the Global Search - Product Requirements specification version 1.3 (Confluence page 576978945), section 5.2 (scope tabs), read on 2 September 2026.",
+      "AUTOMATION: Not available on Build to test Yet - Last checked 9/2/2026"
+     ]
+    ],
+    "text": "1. Selecting an entity scope tab scopes the query to that entity type only.\n2. Within the scoped tab, the heading carries that entity's true total count.\n3. When the scoped entity has more than five matches, the same 'Show all N' link is available (the full-page hand-off — no banner, term in the list's search box, filters reset).\n\n---\nThis is the expected behaviour as per epic SV-9160 and the Global Search - Product Requirements specification version 1.3 (Confluence page 576978945), section 5.2 (scope tabs), read on 2 September 2026.\nAUTOMATION: Not available on Build to test Yet - Last checked 9/2/2026"
+   }
+  }
+ },
+ "44851": {
+  "title": "Within a group, more relevant results appear first",
+  "fields": {
+   "custom_preconds": {
+    "blocks": [
+     [
+      "1. Sign in to ShopView. In the app header, click the search field (or press ⌘K / Ctrl+K) to open the global search, which searches across work orders, customers, parts and more; results appear as rows grouped by type under a tab strip.",
+      "2. Have several work orders matching one term — some open/active (Approved, In Progress, Review) and recently updated, some old and Completed/Invoiced."
+     ]
+    ],
+    "text": "1. Sign in to ShopView. In the app header, click the search field (or press ⌘K / Ctrl+K) to open the global search, which searches across work orders, customers, parts and more; results appear as rows grouped by type under a tab strip.\n2. Have several work orders matching one term — some open/active (Approved, In Progress, Review) and recently updated, some old and Completed/Invoiced."
+   },
+   "custom_steps": {
+    "blocks": [
+     [
+      "2. Type a term that matches many work orders.",
+      "3. Read the order of the Work Order rows."
+     ]
+    ],
+    "text": "2. Type a term that matches many work orders.\n3. Read the order of the Work Order rows."
+   },
+   "custom_expected": {
+    "blocks": [
+     [
+      "1. Open/active and recently-updated work orders rank above old, closed ones.",
+      "2. Work orders assigned to, or recently viewed by, the signed-in user are boosted.",
+      "3. Closed/Invoiced work orders older than 90 days are pushed down."
+     ],
+     [
+      "---",
+      "This is the expected behaviour as per epic SV-9160 and the Global Search - Product Requirements specification version 1.3 (Confluence page 576978945), section 6.1 (per-entity score, Work Orders), read on 2 September 2026.",
+      "AUTOMATION: Not available on Build to test Yet - Last checked 9/2/2026"
+     ]
+    ],
+    "text": "1. Open/active and recently-updated work orders rank above old, closed ones.\n2. Work orders assigned to, or recently viewed by, the signed-in user are boosted.\n3. Closed/Invoiced work orders older than 90 days are pushed down.\n\n---\nThis is the expected behaviour as per epic SV-9160 and the Global Search - Product Requirements specification version 1.3 (Confluence page 576978945), section 6.1 (per-entity score, Work Orders), read on 2 September 2026.\nAUTOMATION: Not available on Build to test Yet - Last checked 9/2/2026"
+   }
+  }
+ },
+ "44876": {
+  "title": "A search failure shows the 'Search unavailable, retry' banner",
+  "fields": {
+   "custom_preconds": {
+    "blocks": [
+     [
+      "1. Sign in to ShopView. In the app header, click the search field (or press ⌘K / Ctrl+K) to open the global search, which searches across work orders, customers, parts and more; results appear as rows grouped by type under a tab strip.",
+      "2. You can simulate a network/back-end failure of the search request (for example go offline or block the search endpoint)."
+     ]
+    ],
+    "text": "1. Sign in to ShopView. In the app header, click the search field (or press ⌘K / Ctrl+K) to open the global search, which searches across work orders, customers, parts and more; results appear as rows grouped by type under a tab strip.\n2. You can simulate a network/back-end failure of the search request (for example go offline or block the search endpoint)."
+   },
+   "custom_steps": {
+    "blocks": [
+     [
+      "2. With the search back end unreachable, type a term.",
+      "3. Read the message shown in the palette.",
+      "4. Restore connectivity and use the retry affordance."
+     ]
+    ],
+    "text": "2. With the search back end unreachable, type a term.\n3. Read the message shown in the palette.\n4. Restore connectivity and use the retry affordance."
+   },
+   "custom_expected": {
+    "blocks": [
+     [
+      "1. An inline banner reads 'Search unavailable, retry'.",
+      "2. The palette degrades gracefully — it does not crash or show a blank screen.",
+      "3. Retrying after connectivity is restored re-runs the search and shows results."
+     ],
+     [
+      "---",
+      "This is the expected behaviour as per epic SV-9160 and the Global Search - Product Requirements specification version 1.3 (Confluence page 576978945), section 8 (functional requirements — offline/failure), read on 2 September 2026.",
+      "AUTOMATION: Not available on Build to test Yet - Last checked 9/2/2026"
+     ]
+    ],
+    "text": "1. An inline banner reads 'Search unavailable, retry'.\n2. The palette degrades gracefully — it does not crash or show a blank screen.\n3. Retrying after connectivity is restored re-runs the search and shows results.\n\n---\nThis is the expected behaviour as per epic SV-9160 and the Global Search - Product Requirements specification version 1.3 (Confluence page 576978945), section 8 (functional requirements — offline/failure), read on 2 September 2026.\nAUTOMATION: Not available on Build to test Yet - Last checked 9/2/2026"
+   }
+  }
+ },
+ "45134": {
+  "title": "On mobile, results are uncapped and scroll with sticky group headers",
+  "fields": {
+   "custom_preconds": {
+    "blocks": [
+     [
+      "1. On a phone (or a narrow, phone-sized browser), sign in to ShopView and tap the search field in the app header to open the full-screen global search, which searches across work orders, customers, parts and more; results appear grouped by type and you tap a row to open its record."
+     ]
+    ],
+    "text": "1. On a phone (or a narrow, phone-sized browser), sign in to ShopView and tap the search field in the app header to open the full-screen global search, which searches across work orders, customers, parts and more; results appear grouped by type and you tap a row to open its record."
+   },
+   "custom_steps": {
+    "blocks": [
+     [
+      "2. Type a term that returns many results across groups.",
+      "3. Scroll the results."
+     ]
+    ],
+    "text": "2. Type a term that returns many results across groups.\n3. Scroll the results."
+   },
+   "custom_expected": {
+    "blocks": [
+     [
+      "1. Results are not capped per group and there is no 'Show all' overflow on mobile — you scroll the full grouped list.",
+      "2. Group headers stick to the top of the list while scrolling.",
+      "3. A tap on a row opens the record."
+     ],
+     [
+      "---",
+      "This is the expected behaviour as per epic SV-9160 and the Global Search - Product Requirements specification version 1.3 (Confluence page 576978945), section 5.6 (mobile), read on 2 September 2026.",
+      "AUTOMATION: Not available on Build to test Yet - Last checked 9/2/2026"
+     ]
+    ],
+    "text": "1. Results are not capped per group and there is no 'Show all' overflow on mobile — you scroll the full grouped list.\n2. Group headers stick to the top of the list while scrolling.\n3. A tap on a row opens the record.\n\n---\nThis is the expected behaviour as per epic SV-9160 and the Global Search - Product Requirements specification version 1.3 (Confluence page 576978945), section 5.6 (mobile), read on 2 September 2026.\nAUTOMATION: Not available on Build to test Yet - Last checked 9/2/2026"
+   }
+  }
+ },
+ "45136": {
+  "title": "On mobile, the full-page hand-off and keyboard navigation do not apply",
+  "fields": {
+   "custom_preconds": {
+    "blocks": [
+     [
+      "1. On a phone (or a narrow, phone-sized browser), sign in to ShopView and tap the search field in the app header to open the full-screen global search, which searches across work orders, customers, parts and more; results appear grouped by type and you tap a row to open its record."
+     ]
+    ],
+    "text": "1. On a phone (or a narrow, phone-sized browser), sign in to ShopView and tap the search field in the app header to open the full-screen global search, which searches across work orders, customers, parts and more; results appear grouped by type and you tap a row to open its record."
+   },
+   "custom_steps": {
+    "blocks": [
+     [
+      "2. Type a term that returns results and look for a 'Show all' / full-page hand-off.",
+      "3. Note that there is no physical keyboard navigation on the phone."
+     ]
+    ],
+    "text": "2. Type a term that returns results and look for a 'Show all' / full-page hand-off.\n3. Note that there is no physical keyboard navigation on the phone."
+   },
+   "custom_expected": {
+    "blocks": [
+     [
+      "1. The full-page result hand-off (the web 'Show all' behaviour) does not apply on mobile in v1 — the mobile lists have no query hand-off.",
+      "2. Keyboard navigation does not apply on mobile."
+     ],
+     [
+      "---",
+      "This is the expected behaviour as per epic SV-9160 and the Global Search - Product Requirements specification version 1.3 (Confluence page 576978945), section 5.6 (mobile — deferred items), read on 2 September 2026.",
+      "AUTOMATION: Not available on Build to test Yet - Last checked 9/2/2026"
+     ]
+    ],
+    "text": "1. The full-page result hand-off (the web 'Show all' behaviour) does not apply on mobile in v1 — the mobile lists have no query hand-off.\n2. Keyboard navigation does not apply on mobile.\n\n---\nThis is the expected behaviour as per epic SV-9160 and the Global Search - Product Requirements specification version 1.3 (Confluence page 576978945), section 5.6 (mobile — deferred items), read on 2 September 2026.\nAUTOMATION: Not available on Build to test Yet - Last checked 9/2/2026"
+   }
+  }
+ },
+ "45143": {
+  "title": "A Part-Sales-only role sees Part Sales but not Parts or Vendors",
+  "fields": {
+   "custom_preconds": {
+    "blocks": [
+     [
+      "1. Have a user whose role grants Part Sales access only (no 'Catalog & Inventory' access, no Vendor access).",
+      "2. Data exists that would match a Part Sale, a Part, and a Vendor for the word you search."
+     ]
+    ],
+    "text": "1. Have a user whose role grants Part Sales access only (no 'Catalog & Inventory' access, no Vendor access).\n2. Data exists that would match a Part Sale, a Part, and a Vendor for the word you search."
+   },
+   "custom_steps": {
+    "blocks": [
+     [
+      "1. Sign in as this Part-Sales-only user. In the app header, click the search field (or press ⌘K / Ctrl+K) to open the global search, which searches across work orders, customers, parts and more; results appear as rows grouped by type under a tab strip.",
+      "2. Search a word that matches a Part Sale, a Part and a Vendor.",
+      "3. Look at which groups appear."
+     ]
+    ],
+    "text": "1. Sign in as this Part-Sales-only user. In the app header, click the search field (or press ⌘K / Ctrl+K) to open the global search, which searches across work orders, customers, parts and more; results appear as rows grouped by type under a tab strip.\n2. Search a word that matches a Part Sale, a Part and a Vendor.\n3. Look at which groups appear."
+   },
+   "custom_expected": {
+    "blocks": [
+     [
+      "1. Part Sale results appear.",
+      "2. NO Part results appear.",
+      "3. NO Vendor results appear."
+     ],
+     [
+      "---",
+      "This is the expected behaviour as per epic SV-9160 and the Global Search - Product Requirements specification version 1.3 (Confluence page 576978945), section 9 (role-based access), read on 2 September 2026.",
+      "AUTOMATION: Not available on Build to test Yet - Last checked 9/2/2026"
+     ]
+    ],
+    "text": "1. Part Sale results appear.\n2. NO Part results appear.\n3. NO Vendor results appear.\n\n---\nThis is the expected behaviour as per epic SV-9160 and the Global Search - Product Requirements specification version 1.3 (Confluence page 576978945), section 9 (role-based access), read on 2 September 2026.\nAUTOMATION: Not available on Build to test Yet - Last checked 9/2/2026"
+   }
+  }
+ },
+ "45144": {
+  "title": "Part results appear only with Catalog & Inventory access",
+  "fields": {
+   "custom_preconds": {
+    "blocks": [
+     [
+      "1. Have User A with 'Catalog & Inventory - View' and User B without it.",
+      "2. An inventory part exists that matches the search word."
+     ]
+    ],
+    "text": "1. Have User A with 'Catalog & Inventory - View' and User B without it.\n2. An inventory part exists that matches the search word."
+   },
+   "custom_steps": {
+    "blocks": [
+     [
+      "1. Sign in as User A. In the app header, click the search field (or press ⌘K / Ctrl+K) to open the global search, which searches across work orders, customers, parts and more; results appear as rows grouped by type under a tab strip.",
+      "2. Search a word matching the part; note whether Part results appear.",
+      "3. Sign in as User B and repeat the same search."
+     ]
+    ],
+    "text": "1. Sign in as User A. In the app header, click the search field (or press ⌘K / Ctrl+K) to open the global search, which searches across work orders, customers, parts and more; results appear as rows grouped by type under a tab strip.\n2. Search a word matching the part; note whether Part results appear.\n3. Sign in as User B and repeat the same search."
+   },
+   "custom_expected": {
+    "blocks": [
+     [
+      "1. User A sees Part results.",
+      "2. User B sees NO Part results.",
+      "3. A Part result, when opened, shows the inventory part (on-hand quantity and stock status), not the catalogue entry."
+     ],
+     [
+      "---",
+      "This is the expected behaviour as per epic SV-9160 and the Global Search - Product Requirements specification version 1.3 (Confluence page 576978945), section 9 (role-based access) and section 5.3, read on 2 September 2026.",
+      "AUTOMATION: Not available on Build to test Yet - Last checked 9/2/2026"
+     ]
+    ],
+    "text": "1. User A sees Part results.\n2. User B sees NO Part results.\n3. A Part result, when opened, shows the inventory part (on-hand quantity and stock status), not the catalogue entry.\n\n---\nThis is the expected behaviour as per epic SV-9160 and the Global Search - Product Requirements specification version 1.3 (Confluence page 576978945), section 9 (role-based access) and section 5.3, read on 2 September 2026.\nAUTOMATION: Not available on Build to test Yet - Last checked 9/2/2026"
+   }
+  }
  }
 }
