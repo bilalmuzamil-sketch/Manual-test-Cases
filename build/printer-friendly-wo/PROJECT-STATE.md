@@ -2,6 +2,25 @@
 
 **Canonical cold-resume doc.** Status derived live (Rule 92 / skill 15 §7).
 
+## 🆕 Update — 2026-09-02 (LATEST) — AUTOMATED CASES MADE RUNNABLE; EVERY QUOTED LABEL CONFIRMED
+
+**Printer Friendly Work Orders: 44 cases live** (counted from TestRail, paged — never from `testrail-id-map.csv`).
+run 419, 44 tests, set-equal. Build on the branch moved to **`v26.35.6-0f8d60b`**.
+
+**QA lead authorisation, 2026-09-02, verbatim:** *"yes this case needs to be updated, and all those
+test case also need to be updated which are automated but yet they should be updated to make them
+runnable and Build verified. This authorization is for these three suites for now. 1. Invoice refresh
+2. Inline Add Part 3. Workorder Print"* — **Vladimir Tomovic's cases stay excluded regardless.**
+
+**Precondition-label gate: ALL CLEAR.** Every label quoted anywhere in this suite is now recorded in
+`build/OBSERVED-UI-LABELS-sv9315.md` with the evidence that confirmed it.
+
+**Run the one-command gate before reporting this suite:**
+`python3 build/testing-tools/verify_suite.py --root <section> --observed build/OBSERVED-UI-LABELS-sv9315.md`
+— ten checks, exit 0 only when all pass. Full detail: `build/skills/00-COMMON-CORE.md`, and the
+per-suite outcomes in `build/OUTSTANDING-ITEMS-REGISTER.md` rows AUT-1 … MECH-1.
+
+
 ## 🆕 Update — 2026-09-01 (LATEST) — BUILD-VERIFIED ON A LIVE QA BUILD AND HANDED OFF TO THE MANUAL QA TESTER
 
 **The "QA env: none / Rule 85 source-verified only" line below is now STALE.** The suite was verified
