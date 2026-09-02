@@ -35,8 +35,12 @@ Full adjudicated output for 2026-09-02:
 import re, glob, os, unicodedata, sys
 
 ROOT = os.getcwd()
-RULEFILES = ['build/rules/RULES-01-20.md', 'build/rules/RULES-21-40.md',
-             'build/rules/RULES-41-60.md', 'build/rules/RULES-61-99.md']
+# 🛑 THE RULE FILES ARE DISCOVERED, NEVER LISTED. Failure this prevents: the file
+# holding rules 61+ has been renamed on every rule addition (RULES-61-93 -> -94 ->
+# -95 -> -96 -> -97 -> -98 -> -99), so a hard-coded filename silently drops every
+# rule in it and the sweep reports a clean run over a corpus it never read.
+RULEFILES = sorted(os.path.relpath(p, ROOT) for p in
+                   glob.glob(os.path.join(ROOT, 'build/rules/RULES-*.md')))
 NAMES = ['Mudassir', 'Qamar', 'Viktoria', 'Videnovic', 'Vladimir Tomovic',
          'Sasha', 'Grosman', 'Grossman', 'Branko', 'Chris Ward', 'Milos']
 AMEND = ['amend', 'corrected', 'correction', 'supersede', 'clarif', 'carve-out',
@@ -60,6 +64,8 @@ def read(p):
 
 # ---- rule bodies ----
 bodies = {}
+seen_at = {}
+dupes = []
 for f in RULEFILES:
     lines = read(f).split('\n')
     st = [(int(m.group(1)), i) for i, l in enumerate(lines)
@@ -67,9 +73,42 @@ for f in RULEFILES:
     for k, (n, i) in enumerate(st):
         end = st[k + 1][1] if k + 1 < len(st) else len(lines)
         raw = '\n'.join(lines[i:end])
+        if n in bodies:
+            dupes.append((n, seen_at[n], '%s:%d' % (f, i + 1)))
+        seen_at[n] = '%s:%d' % (f, i + 1)
         bodies[n] = {'file': f, 'line': i + 1, 'raw': raw,
                      'norm': norm(raw), 'bytes': len(raw.encode())}
-missing = [n for n in range(1, 100) if n not in bodies]
+
+# 🛑 THE RANGE IS MEASURED FROM THE BODIES, NEVER WRITTEN DOWN. Failure this
+# prevents: a literal ceiling (this line used to read `range(1, 100)`) makes the
+# sweep report "missing: NONE" over rules 1..99 while never looking at rule 100 —
+# a completeness check that passes by ignoring the newest rule. Same failure shape
+# as the 2026-08-21 CLAUDE.md truncation and as INTEGRITY.md's hard-coded
+# assertion; this derivation deliberately mirrors the no-loss assertion in
+# build/rules/INTEGRITY.md (max of the rule numbers the bodies actually carry) so
+# the two cannot diverge.
+if not bodies:
+    sys.exit('FATAL: no rule bodies found in %s — expected lines of the form\n'
+             '       "<n>. **<TITLE>" in build/rules/RULES-*.md. Nothing swept.'
+             % (', '.join(RULEFILES) or 'build/rules/RULES-*.md'))
+RULE_MAX = max(bodies)
+missing = [n for n in range(1, RULE_MAX + 1) if n not in bodies]
+
+# A gap or a duplicate means a rule body is absent or double-counted, so every
+# "carried / not carried" verdict below is computed over a corpus we cannot vouch
+# for. FAIL LOUDLY — never print a clean sweep over a broken corpus.
+if missing or dupes:
+    print('== RULE-AMENDMENT DIVERGENCE SWEEP v2 — CORPUS CHECK FAILED ==')
+    print('rule files (globbed): %s' % ', '.join(RULEFILES))
+    print('rule bodies found: %d   highest rule number: %d'
+          % (len(bodies), RULE_MAX))
+    if missing:
+        print('GAPS — no body for rule(s): %s'
+              % ', '.join(str(n) for n in missing))
+    for n, first, second in dupes:
+        print('DUPLICATE — rule %d has bodies at %s and %s' % (n, first, second))
+    sys.exit('REFUSING TO SWEEP: the rule corpus is incomplete, so no result '
+             'from this tool would be trustworthy. Fix the corpus, then re-run.')
 
 # ---- CLAUDE.md ----
 cml = read('CLAUDE.md').split('\n')
@@ -105,13 +144,13 @@ for b in bullets:
                 prim.add(int(m2.group(1)))
     for grp in re.findall(r'[Rr]ules?\s+([\d/,\s]*\d)', head):
         prim |= {int(x) for x in re.findall(r'\d{1,2}', grp)}
-    b['primary'] = sorted(n for n in prim if 1 <= n <= 99)
+    b['primary'] = sorted(n for n in prim if 1 <= n <= RULE_MAX)
     allc = set(b['primary'])
     for grp in re.findall(r'[Rr]ules?\s+([\d/,\s]*\d)', b['raw']):
         allc |= {int(x) for x in re.findall(r'\d{1,2}', grp)}
     for grp in re.findall(r'\(([\d/]+)\)', b['raw']):
         allc |= {int(x) for x in re.findall(r'\d{1,2}', grp)}
-    b['all'] = sorted(n for n in allc if 1 <= n <= 99)
+    b['all'] = sorted(n for n in allc if 1 <= n <= RULE_MAX)
 
 index_rows = {}
 for i in range(sec[2], sec[3]):
@@ -125,7 +164,7 @@ for para in re.split(r'\n\s*\n', s2):
     if para.lstrip().startswith('|') or para.lstrip().startswith('###'):
         continue
     for n in {int(x) for x in re.findall(r'[Rr]ule\s+(\d{1,2})', para)}:
-        if 1 <= n <= 99:
+        if 1 <= n <= RULE_MAX:
             narr.setdefault(n, []).append(para)
 
 # ---- skills / handoffs, SENTENCE-level ----
@@ -147,7 +186,7 @@ for p in cite_files:
                 or re.search(r'2026-0\d-\d\d', sent)
                 or re.search(r'[*_]{1,2}"', sent)):
             continue
-        for n in sorted(x for x in ns if 1 <= x <= 99):
+        for n in sorted(x for x in ns if 1 <= x <= RULE_MAX):
             skill_sent.setdefault(n, []).append((rel, sent.strip()))
 
 # ---- atoms ----
@@ -182,7 +221,10 @@ def carried(kind, val, bn):
 
 
 rows = []
-for n in range(1, 100):
+# Sweep the MEASURED range, not a literal one: `range(1, 100)` here checked 1..99
+# and would have skipped rule 100 the day it landed, while still printing
+# "missing: NONE" — the newest rule is the one most likely to be un-backfilled.
+for n in range(1, RULE_MAX + 1):
     bn = bodies[n]['norm']
     srcs = [('CLAUDE.md §1 L%d' % b['line'], b['raw'], 'S1')
             for b in bullets if n in b['primary']]
@@ -213,10 +255,15 @@ for n in range(1, 100):
                      'tags': sorted({m[1] for m in miss})})
 
 print('== RULE-AMENDMENT DIVERGENCE SWEEP v2 ==')
-print('rule bodies parsed 1..99: %d   missing: %s' % (len(bodies), missing or 'NONE'))
+# Every label below reports a MEASURED value. A literal in a label is a lie the
+# moment a rule is added: "rule bodies parsed 1..99" kept claiming 99 was the top
+# of the corpus no matter how many rules existed above it.
+print('rule bodies parsed 1..%d: %d   missing: %s'
+      % (RULE_MAX, len(bodies), missing or 'NONE'))
+print('rule files (globbed): %s' % ', '.join(os.path.basename(f) for f in RULEFILES))
 print('§1 bullets: %d   §2 index rows: %d   skill/handoff files: %d'
       % (len(bullets), len(index_rows), len(cite_files)))
-print('rules checked: 99   flagged (>=1 uncarried atom): %d' % len(rows))
+print('rules checked: %d   flagged (>=1 uncarried atom): %d' % (RULE_MAX, len(rows)))
 s1only = [r for r in rows if 'S1' in r['tags'] or 'S2' in r['tags']]
 print('  of which the divergence is in CLAUDE.md itself (§1/§2): %d' % len(s1only))
 print()
