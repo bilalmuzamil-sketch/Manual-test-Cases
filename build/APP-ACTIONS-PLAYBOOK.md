@@ -124,6 +124,13 @@ evidenced in the committed artifacts — confirm before relying on it.
 > need**: `-addext "subjectAltName=DNS:*.atlassian.net,DNS:*.atlassian.com,DNS:*.testrail.io,DNS:*.qa.shopview.com"`.
 >
 > **(3) 🔑 COOKIES ALONE DO NOT GET YOU IN — THE SPA NEEDS `user` + `token` IN `localStorage`.**
+> **🟢 SUPERSEDED 2026-08-31 — PREFER THE UI ROUTE, and read §A "THE AUTHENTIC QA-BRANCH LOGIN"
+> FIRST.** The hydration below still works, but you no longer need it and it is the more fragile
+> path. **Click the sign-in screen's `DEV MODE — QUICK LOGIN` → `Admin` button in the browser and the
+> app mints and writes all of `localStorage` itself, from ONE cookie (`sv_sso_session`) — no
+> `PHPSESSID`, no `cf_clearance`, no 409, and nothing hand-assembled.** Harness:
+> `build/testing-tools/qa-branch-boot.mjs`. Proven on `sv9315`, 2026-08-31. Keep reading only if a
+> branch has no DEV MODE panel.
 > Symptom, and it looks like dead cookies but is not: the API probe returns **HTTP 200 with a real
 > permissions payload**, yet the browser lands on **`/login?redirect=/workorders`** showing the
 > sign-in form. Seeding `fe_permissions_wrapper` alone is not enough.
@@ -308,6 +315,62 @@ any endpoint/ID not recorded here or in `CLAUDE.md`** — if only partly known, 
   **Check `signedIn` by URL before trusting any probe result**, or a whole probe silently measures the
   login page. Also: **curl through the bridge needs `--cacert /tmp/atlassian/mitm.crt`**; without it
   curl exits 60 and looks exactly like a broken bridge, while Playwright (`ignoreHTTPSErrors`) works.
+- **🟢 2026-08-31 — THE AUTHENTIC QA-BRANCH LOGIN: LET THE APP LOG *ITSELF* IN. ONE COOKIE, NO
+  HAND-MINTING, NO 409 EVER. — SUPERSEDES THE TWO BULLETS DIRECTLY ABOVE.** Proven live end to end on
+  **`sv9315`**, six consecutive clean runs. **You do NOT need `localStorage["user"]` from a human's
+  browser, and you must never hand-assemble it** — a hand-written user object means the role and
+  permissions come from a blob we wrote, not the server, which silently invalidates every
+  permission-dependent verdict (Rules 12, 26). **There is no need: the app mints it for you.**
+
+  **Every QA branch's sign-in screen carries a `DEV MODE — QUICK LOGIN` panel with `Admin` and `Tech`
+  buttons** (populated from `GET /api/quick-login/users` → 200, `data.collection[]` of
+  `{key,label,description,icon}`). **Click the button in a real browser.** The SPA then calls
+  `POST /api/quick-login` itself and writes `user`, `fe_permissions_wrapper`, `token`,
+  `bookkeeping_enabled`, `organization_features`, `location`, `current_shop_id`, `timezone`,
+  `country_code` into `localStorage` from the server's own response. Harness:
+  **`build/testing-tools/qa-branch-boot.mjs`** — `node build/testing-tools/qa-branch-boot.mjs sv9315 /customers admin`.
+
+  **🔑 ONLY `sv_sso_session` IS NEEDED. Carry NOTHING else into the browser.** Measured as a
+  controlled A/B: `sv_sso_session` + `cf_clearance` → signed in; **`sv_sso_session` ALONE → signed
+  in**, identical result. `PHPSESSID` is minted fresh by the quick-login the app performs, and
+  `cf_clearance` is pointless here (app host = **CloudFront/AmazonS3**, API host = **nginx** — no
+  Cloudflare in the path, same as `sv9500`). **⇒ The "cookies expired" and "409 Session has expired"
+  blocker class disappears entirely, because the only value you carry is the one that never rotates.**
+  A dead `PHPSESSID` is not a blocker; it is a cookie you should not have been holding.
+
+  **⚠️ TRAP — SCOPE COOKIES HOST-ONLY, NEVER TO `.qa.shopview.com`. This is what makes a correct
+  login look like a failed one.** Scoped to the parent domain, your `PHPSESSID` matches the API host
+  *as well as* the host-only one quick-login sets — **two same-name cookies are then sent on every
+  request, the server reads the stale one, and `GET /api/auth/me/fe-permissions` answers 409 even
+  though `POST /api/quick-login` just answered 200.** Observed exactly that way on `sv9315`, and fixed
+  by the single-variable change to host-only scoping. **⇒ `domain: '<branch>api.qa.shopview.com'` and
+  `domain: '<branch>.qa.shopview.com'` as two separate entries — never a leading dot.**
+  **A 409 immediately after a 200 quick-login means duplicate cookies, not a dead session.**
+
+  **Other measured facts:**
+  - **Cookies alone genuinely are not enough** — that much of the bullet above is right. With all
+    three cookies set and a normal navigation to `/` and to `/customers`, `localStorage` holds only
+    `{"mode"}`, and the browser lands on `/login?redirect=/customers` (225-char sign-in page). **The
+    SPA does not self-hydrate from cookies; it needs the login response.** The gate is real.
+  - **`GET /api/api/sso/check` → 404 is harmless noise**, swallowed by `try{}catch(e){}`. Still true,
+    still not the cause. Do not chase it.
+  - **`getByRole('button', {name: /^Admin$/})` does NOT match these buttons** (Quasar `q-btn`, text is
+    `admin_panel_settings Admin` with the ligature icon inline). Use
+    **`page.locator('button:has-text("Admin")').first()`**.
+  - **Role selection works and must be read, not assumed.** `Tech` → `role.name` **"Technician", 6
+    permissions**. `Admin` → **42 permissions, `template_slug: administrator`**, `cross_toggles`
+    `seeFinancialData/seeApArData/viewHistoryLogs` all true — but `role.name` reads **"Tech View"** and
+    `view_mode` reads **`tech`** on this branch's data. **⇒ Judge the session by
+    `fe_permissions.length` + `template_slug`, never by `role.name`.**
+  - **`{"key":"tech"}` returned 200 here**, not the 403 seen on `sv9500`. The old "a failed `tech`
+    burns the session" warning does not apply to the UI route — and cannot, since nothing you hold
+    can be burned.
+  - **Landing proof to assert** (so a false success cannot pass): `localStorage["user"]` exists **and**
+    the URL does not match `/login`. The real Customers screen is ~2,870 body chars vs 225 for sign-in.
+
+  **Confidence: High — executed live on `https://sv9315.qa.shopview.com` on 2026-08-31 against build
+  marker `v26.35.6-0f8d60b` (`last-modified: Wed, 02 Sep 2026 08:11:58 GMT`), read-only throughout: no
+  ShopView record was created, modified or deleted.**
 - **Chromium UI automation (boot2 hydration):** Chromium can't TLS through the egress proxy directly.
   `boot2(roleKey, opts)` in `staging-boot2.mjs` does quick-login → optionally `change-location` →
   reads `GET /api/auth/me/fe-permissions` → seeds cookies + localStorage (`user`,

@@ -198,6 +198,27 @@ ticket — conversion is UI-only and silently wipes Product Area (Rule 52).
 
 ## 3 · SHOPVIEW — QA BRANCHES, STAGING, PRODUCTION
 
+> **🟢 START HERE FOR A QA BRANCH (proven live on `sv9315`, 2026-08-31, build `v26.35.6-0f8d60b`):
+> LET THE APP LOG ITSELF IN — you need ONE cookie and you never touch `localStorage` by hand.**
+> Drive a real browser to `https://<branch>.qa.shopview.com/login`, click the sign-in screen's
+> **`DEV MODE — QUICK LOGIN` → `Admin`** button, and the SPA performs `POST /api/quick-login` itself
+> and writes `user` / `fe_permissions_wrapper` / `token` from the server's own response.
+> Harness: **`build/testing-tools/qa-branch-boot.mjs`**. Full recipe + traps:
+> **`build/APP-ACTIONS-PLAYBOOK.md` §A "THE AUTHENTIC QA-BRANCH LOGIN"**.
+> - **Carry `sv_sso_session` and NOTHING else.** `PHPSESSID` is minted fresh by that login and
+>   `cf_clearance` is not used on these hosts — so **"the cookies expired" and the 409 dead-session
+>   latch stop being blockers at all.** A dead `PHPSESSID` is a cookie you should not be holding.
+> - **Scope cookies HOST-ONLY, never `.qa.shopview.com`.** A parent-domain cookie collides with the
+>   host-only one the login sets, and **`fe-permissions` then 409s right after a 200 quick-login** —
+>   that is duplicate cookies, not a dead session.
+> - **NEVER hand-assemble `localStorage["user"]`** to make the app "look" signed in: the role and
+>   permissions would come from a blob we wrote rather than the server, silently invalidating every
+>   permission-dependent verdict (Rules 12, 26). It is also unnecessary — see above.
+> - Judge the session by **`fe_permissions.length` + `template_slug`**, never by `role.name`.
+>
+> The cookie/API material below remains correct for staging, production, and any branch with no
+> DEV MODE panel.
+
 **PRIMARY — session cookies from `/tmp` plus the DEV quick-login.**
 - Cookies: **`sv_sso_session`, `PHPSESSID`, `cf_clearance`** (domain `.qa.shopview.com` for QA
   branches). **Lifetime ~24 hours OR until a deployment** — whichever comes first.
