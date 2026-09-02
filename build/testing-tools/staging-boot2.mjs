@@ -1,8 +1,9 @@
 // staging-boot2.mjs — sign a headless Chromium into ShopView STAGING, the authentic way.
 //
 // 🟠 NOT YET VERIFIED LIVE ON STAGING — converted 2026-09-02 from the proven sv9315 recipe; first
-//    user must confirm. The marker was NARROWED on 2026-09-02 after a repo-evidence pass; what is
-//    SETTLED and what is NOT is now separated, so nobody re-litigates the settled half:
+//    user must confirm. The marker was NARROWED TWICE on 2026-09-02 — first after a repo-evidence
+//    pass, then again when the QA lead settled the panel question by direct observation. What is
+//    SETTLED and what is NOT is separated, so nobody re-litigates the settled half:
 //
 //    ✅ SETTLED (repo record, 2026-09-02): quick login DOES exist on staging and was used
 //       throughout the Custom Roles project — but every recorded staging use is the API endpoint
@@ -13,21 +14,36 @@
 //       as 2026-08-19 filters/build-verify-2026-08-19/tools/mobile.mjs, which opens /login only as a
 //       same-origin landing pad for localStorage.setItem() and never clicks anything.
 //
+//    ✅ SETTLED 2026-09-02 — THE PANEL IS THERE. `https://app.staging.shopview.com/login` DOES
+//       render a `DEV MODE — QUICK LOGIN` panel with `Admin` and `Tech` buttons, visually identical
+//       in placement and labelling to the QA-branch panel. The login card also carries a normal
+//       email + password sign-in form above it.
+//       PROVENANCE: **observed by the QA lead via a screenshot of the live staging login page,
+//       2026-09-02.** NOT executed or reproduced by a session, and NOT a proof that a headless
+//       click completes the login (that is question 2 below). This retires the earlier
+//       "no observation of a DEV MODE panel on staging exists anywhere in this repo" note, and the
+//       negative remark "DEV login buttons don't reliably work"
+//       (custom-roles-run/WORDING-VIU-STATE-2026-07-13.md) — recorded about STAGING — can no longer
+//       mean the panel is absent. On QA branches that remark is explained by a Quasar selector bug
+//       (getByRole does not match q-btn; `button:has-text("Admin")` does), proven on a QA BRANCH.
+//       Now that staging is known to render the SAME panel, that explanation is MORE LIKELY for the
+//       staging note too — but it is still NOT demonstrated on staging. Do not state it stronger.
+//
 //    ❌ STILL UNOBSERVED — exactly two things, and this script depends on BOTH:
-//       1. Whether `app.staging.shopview.com/login` renders a CLICKABLE `DEV MODE — QUICK LOGIN`
-//          panel. No observation of one exists anywhere in this repo. The only recorded remark is
-//          NEGATIVE — "DEV login buttons don't reliably work"
-//          (custom-roles-run/WORDING-VIU-STATE-2026-07-13.md). On QA branches that remark is
-//          explained by a Quasar selector bug (getByRole does not match q-btn), but that was proven
-//          on a QA BRANCH and is a PLAUSIBLE, not a demonstrated, explanation of the staging note.
-//       2. Whether `sv_sso_session` ALONE gets past staging's edge. Staging sits behind CLOUDFLARE
+//       1. Whether `sv_sso_session` ALONE gets past staging's edge. Staging sits behind CLOUDFLARE
 //          (cf_clearance), unlike the CloudFront+nginx QA branches, so trap 1 of the recipe
 //          ("one cookie is enough") is unproven here and may be false.
+//       2. Whether CLICKING that panel HEADLESSLY on staging completes the login the way it does on
+//          a QA branch. The panel rendering is settled; the click-through is not. Every recorded
+//          staging use to date is the API route plus hand-hydration, so this script's end-to-end
+//          path on staging has never been executed by anyone.
 //
 //    Could not be settled live on 2026-09-02: we hold no staging `sv_sso_session`, and stored
-//    staging cookies return 401 (build/BLOCKED-shopview-app-session.md).
-//    If the panel is absent the run STOPS with `no DEV MODE "Admin" button` — that is the honest
-//    outcome, not a crash. Fall back to §A's hand-hydration recipe in
+//    staging cookies return 401 (build/BLOCKED-shopview-app-session.md). Do NOT attempt a staging
+//    login to settle it, and do NOT re-prompt the QA lead for a staging cookie — he has asked not
+//    to be re-prompted on that.
+//    If the click does not land, the run STOPS with `no DEV MODE "Admin" button` — that is the
+//    honest outcome, not a crash. Fall back to §A's hand-hydration recipe in
 //    build/APP-ACTIONS-PLAYBOOK.md ONLY in that case, and RECORD WHAT YOU OBSERVED here.
 //
 // 🔴 WHAT CHANGED, AND WHY THE OLD VERSION WAS DANGEROUS. Until 2026-09-02 this script did its own

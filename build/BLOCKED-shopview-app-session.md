@@ -100,28 +100,54 @@ edge). **So the QA-branch finding that `cf_clearance` is inert does NOT transfer
 
 ---
 
+## ✅ SETTLED FOR STAGING 2026-09-02 — THE `DEV MODE — QUICK LOGIN` PANEL IS THERE
+
+**`https://app.staging.shopview.com/login` DOES render a `DEV MODE — QUICK LOGIN` panel with `Admin`
+and `Tech` buttons**, visually identical in placement and labelling to the QA-branch panel. The
+staging login card also carries a normal **email + password** sign-in form above the panel.
+
+**PROVENANCE — read it before citing the fact (Rule 12): observed by the QA lead via a screenshot of
+the live staging login page, 2026-09-02.** **Not** executed, clicked or reproduced by a session, and
+**not** evidence that the staging quick-login *flow* works headlessly — only that the panel renders.
+
+**This closes what this file used to list as open question 1**, which said *"No observation of a
+`DEV MODE` panel on staging exists anywhere in this repo… Panel present? Unknown. Panel absent? Also
+unknown."* **Panel present. Settled.** What remains true is only that **every recorded staging *use*
+is the API endpoint** — `POST /api/quick-login {key:'admin'|'tech'}`, called from Node under the
+**three cookies** and followed by hand-writing `localStorage`: `build/TESTING-RUNBOOK.md` §3,
+`build/testing-tools/staging-admin.mjs` `login()`, `build/custom-roles-run/RUN331-STATE.md`,
+`build/custom-roles-run/live-ui-2026-07-16/staging/approve-decline-TECH-PT.json`
+(`"method": "quick-login tech (real session)"`), and as recently as 2026-08-19
+`build/filters/build-verify-2026-08-19/tools/mobile.mjs`, which visits `/login` only as a same-origin
+landing pad and **never clicks a button**.
+
+The old negative remark about staging buttons (*"the DEV login BUTTONS don't reliably work"*,
+`build/custom-roles-run/WORDING-VIU-STATE-2026-07-13.md`) **can no longer mean the panel is absent**.
+The selector bug that explains it on a QA branch (`getByRole('button',{name:/^Admin$/})` not matching
+a Quasar `q-btn`; `button:has-text("Admin")` does) was proven on a **QA branch**; now that staging is
+known to render the same panel, that explanation is **more likely — and still not demonstrated on
+staging.** Do not state it stronger than that.
+
+---
+
 ## 🟡 STILL UNOBSERVED FOR STAGING — unsettled, not decided
 
 Recorded so the next session does not treat either as settled in **either** direction:
 
-1. **Whether `app.staging.shopview.com/login` renders a clickable `DEV MODE — QUICK LOGIN` panel at
-   all.** The facility is real on staging but **every recorded staging use is the API endpoint** —
-   `POST /api/quick-login {key:'admin'|'tech'}`, called from Node under the **three cookies** and
-   followed by hand-writing `localStorage`: `build/TESTING-RUNBOOK.md` §3,
-   `build/testing-tools/staging-admin.mjs` `login()`, `build/custom-roles-run/RUN331-STATE.md`,
-   `build/custom-roles-run/live-ui-2026-07-16/staging/approve-decline-TECH-PT.json`
-   (`"method": "quick-login tech (real session)"`), and as recently as 2026-08-19
-   `build/filters/build-verify-2026-08-19/tools/mobile.mjs`, which visits `/login` only as a
-   same-origin landing pad and **never clicks a button**. **No observation of a `DEV MODE` panel on
-   staging exists anywhere in this repo**, and the only remark about staging buttons is a negative one
-   (*"the DEV login BUTTONS don't reliably work"*) — which is itself unproven on staging, since the
-   selector bug that explained it (`getByRole('button',{name:/^Admin$/})` not matching a Quasar
-   `q-btn`) was proven on a **QA branch**. **Panel present? Unknown. Panel absent? Also unknown.**
+1. **Whether clicking that panel HEADLESSLY on staging completes the login** the way it does on a QA
+   branch. The panel **rendering** is settled (above); the **click-through is not**. Every recorded
+   staging use to date is the API route plus hand-hydration, so the click route on staging has never
+   been executed by anyone. ⇒ **Hand-hydration remains the recorded staging fallback** until someone
+   proves the click route with a valid staging session — not because staging lacks a panel, but
+   because that route there is unexercised.
 2. **Whether `sv_sso_session` alone suffices on staging.** Proven on QA branches, **unproven here**
-   because of Cloudflare (above). Do not assume either way.
+   because of Cloudflare (above): **the QA-branch finding that `cf_clearance` is inert does NOT
+   transfer** — QA branches are CloudFront + bare nginx, staging is behind Cloudflare. Do not assume
+   either way.
 
 Neither can be settled from what is held: we have **no staging `sv_sso_session`**, and probing further
-is not authorised.
+is not authorised. **Do not attempt a staging login to settle them, and do not re-prompt the QA lead
+for a staging cookie.**
 
 ---
 
@@ -162,9 +188,31 @@ is the STAGING shape; on a QA branch it is superseded — `sv_sso_session` alone
 
 ## Who can clear the remaining half
 
-The QA lead — **for staging only**, and it is now a much smaller ask than the original: a fresh
-**`sv_sso_session` for `app.staging.shopview.com`** (plus `cf_clearance` if Cloudflare demands it),
-into `/tmp` only, naming the host. Tracked in `build/OUTSTANDING-ITEMS-REGISTER.md`.
+The QA lead — **for staging only**, and it is now a much smaller ask than the original. **Two options
+exist; both need HIM, and only he can choose between them.**
 
-**Do not re-prompt him for it unbidden** — he has asked not to be re-prompted on staging cookies. Raise
-it only when a piece of work genuinely needs staging, and say which piece.
+**Option 1 — a fresh cookie (the standing ask).** A fresh **`sv_sso_session` for
+`app.staging.shopview.com`** (plus `cf_clearance` if Cloudflare demands it), into `/tmp` only, naming
+the host. Tracked in `build/OUTSTANDING-ITEMS-REGISTER.md` row **R1**. **Clears the blocker for one
+session's lifetime only** — the cookie dies in ~24 h or on a deploy, so the ask recurs.
+
+**Option 2 — NEW, and only a POSSIBILITY: a staging account whose credentials a session may use.**
+The QA lead's 2026-09-02 screenshot shows the staging login card carries a normal **email + password**
+sign-in form above the DEV MODE panel. **That is a potential route to a staging session that does not
+depend on him pasting a cookie**, and it would **clear the staging blocker permanently rather than for
+one session's lifetime**.
+
+**🛑 IT NEEDS HIS EXPLICIT AUTHORISATION, AND NOTHING HAS BEEN TRIED.** A credential is for a system
+he has **not** authorised us to log into, so:
+* **Not attempted.** No credential has been used, sought or assumed; **do not assume such an account
+  exists.** Recording the option is not permission to exercise it.
+* **Never in the repo.** If he ever authorises it, the values are `/tmp` only, `chmod 600`, never
+  committed — this repo is PUBLIC (Rule 82).
+* **Not known to work even if authorised.** `POST https://api.staging.shopview.com/api/login
+  {username,password}` was probed on 2026-08-28 and answered **HTTP 401 `sso_required`** (table
+  above), so the *API* credential route is already refused there. The **UI form** is a different path
+  and may hand off to `auth.staging.shopview.com` / Google SSO instead — **unknown, and it stays
+  unknown until he rules.**
+
+**Do not re-prompt him for either option unbidden** — he has asked not to be re-prompted on staging
+cookies. Raise it only when a piece of work genuinely needs staging, and say which piece.

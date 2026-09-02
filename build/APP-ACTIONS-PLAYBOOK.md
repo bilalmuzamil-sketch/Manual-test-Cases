@@ -482,22 +482,43 @@ any endpoint/ID not recorded here or in `CLAUDE.md`** — if only partly known, 
     `localStorage["fe_permissions_wrapper"]`, never from `user.data.role`, which has no
     `template_slug` field at all. (`GET /api/quick-login/users` on sv9315 returns
     exactly two entries — `admin`→"Admin", `tech`→"Tech" — so there is no third button to mis-click.)
-- **🟡 STAGING QUICK-LOGIN — ESTABLISHED FROM THE REPO RECORD 2026-09-02: THE FACILITY IS REAL, THE
-  UI PANEL IS STILL UNOBSERVED. DO NOT CONFLATE THE TWO.** The QA lead is right that quick login was
-  used on staging during the Custom Roles project — but every recorded staging use is the **API
-  endpoint** `POST /api/quick-login {key:'admin'|'tech'}`, called from Node under the **three
-  cookies** and followed by **hand-writing `localStorage`**, *not* a click on a `DEV MODE` panel:
+- **🟢 STAGING *DOES* HAVE THE `DEV MODE — QUICK LOGIN` PANEL — SETTLED 2026-09-02 BY THE QA LEAD'S
+  OWN OBSERVATION. WHAT IS STILL OPEN IS THE ROUTE, NOT THE PANEL.**
+  **THE FACT:** `https://app.staging.shopview.com/login` renders a `DEV MODE — QUICK LOGIN` panel
+  with `Admin` and `Tech` buttons, **visually identical in placement and labelling to the QA-branch
+  panel**. The staging login card also carries a normal **email + password** sign-in form above the
+  panel.
+  **PROVENANCE (Rule 12 — read this before citing the fact): observed by the QA lead via a
+  screenshot of the live staging login page, 2026-09-02.** It was **not** executed, clicked or
+  reproduced by a session, and it is **not** evidence that the staging quick-login *flow* works
+  headlessly — only that the panel renders.
+  **⇒ THIS RETIRES the line this bullet used to carry** — *"No observation of a `DEV MODE — QUICK
+  LOGIN` panel on `app.staging.shopview.com/login` exists anywhere in this repo"* — **and it retires
+  any statement or implication that staging has no panel, or that hand-hydration is the staging path
+  *because* there is no panel.** That was never the reason; the reason is that no session has yet
+  driven the click route on staging.
+  **WHAT REMAINS TRUE, unchanged:** every *recorded* staging use is the **API endpoint**
+  `POST /api/quick-login {key:'admin'|'tech'}`, called from Node under the **three cookies** and
+  followed by **hand-writing `localStorage`**, *not* a click on the panel:
   `build/TESTING-RUNBOOK.md` §3 ("DEV login is gated by valid session cookies (the three in section
   2)") · `build/testing-tools/staging-admin.mjs` `login()` · `build/custom-roles-run/RUN331-STATE.md`
   ("Auth: DEV `POST /api/quick-login`") · `build/custom-roles-run/live-ui-2026-07-16/staging/approve-decline-TECH-PT.json`
   (`"method": "quick-login tech (real session)"`) · and as recently as 2026-08-19
   `build/filters/build-verify-2026-08-19/tools/mobile.mjs`, which visits `/login` only as a
   same-origin landing pad for `localStorage.setItem(...)` and **never clicks a button**.
-  **No observation of a `DEV MODE — QUICK LOGIN` panel on `app.staging.shopview.com/login` exists
-  anywhere in this repo.** Staging also sits behind **Cloudflare** (`cf_clearance` at the edge),
-  unlike the CloudFront+nginx QA branches, so even "`sv_sso_session` alone" is unproven there.
-  Could not be settled live: we hold no staging `sv_sso_session` and stored staging cookies return
-  401 (`build/BLOCKED-shopview-app-session.md`). **The staging caveat therefore STANDS, narrowed.**
+  **⇒ THE HONEST POSITION: the panel is there; the staging click route is NOT yet proven end to end
+  by a session; so hand-hydration remains the RECORDED STAGING FALLBACK until someone proves the
+  click route with a valid staging session.** Not because staging lacks a panel — it does not lack
+  one — but because the click route there is unexercised.
+  **STILL UNSETTLED, both ways (do not treat either as decided):**
+  **(a)** whether **clicking the panel headlessly on staging completes the login** the way it does on
+  a QA branch; **(b)** whether **`sv_sso_session` ALONE suffices on staging** — staging sits behind
+  **Cloudflare** (`cf_clearance` at the edge), unlike the CloudFront+nginx QA branches, **so the
+  QA-branch finding that `cf_clearance` is inert does NOT transfer**.
+  Neither could be settled live: we hold no staging `sv_sso_session` and stored staging cookies
+  return 401 (`build/BLOCKED-shopview-app-session.md`), and **the QA lead has asked not to be
+  re-prompted for a staging cookie**. **The staging caveat therefore STANDS, narrowed to (a) and (b)
+  — the panel question is closed.**
 - **Chromium UI automation — `staging-boot2.mjs`. 🔴 CONVERTED 2026-09-02: it now delegates to
   `qa-branch-boot.mjs` for any QA branch and no longer hand-hydrates `localStorage`.** An earlier
   version of this bullet said the recorded note *"the DEV login BUTTONS don't reliably work"* **"was
@@ -505,11 +526,16 @@ any endpoint/ID not recorded here or in `CLAUDE.md`** — if only partly known, 
   proven** (`getByRole('button',{name:/^Admin$/})` does not match a Quasar `q-btn`;
   `button:has-text("Admin")` does) **— but it was proven on a QA BRANCH, and the note it was
   explaining was recorded about STAGING** (`build/custom-roles-run/WORDING-VIU-STATE-2026-07-13.md`).
-  So the selector bug is a **plausible, not a demonstrated,** explanation of that staging note; the
-  staging panel has never been observed either way. **Hand-hydration is reserved for a host with no
-  DEV MODE panel** and is marked as such in the script. Both scripts read `$HTTPS_PROXY`/the bridge
+  **Strengthened, but only one notch, 2026-09-02:** now that staging is known to render **the same
+  panel** (QA lead's screenshot, same date, bullet above), the selector bug is a **MORE LIKELY — and
+  still NOT demonstrated —** explanation of that staging note. **State it at exactly that strength;
+  it has not been reproduced on staging.** **Hand-hydration is the recorded staging fallback until
+  the click route is proven there** — *not* because staging has no panel (it has one) but because no
+  session has driven that route on staging — and it stays reserved for a host where the panel click
+  does not land. Marked as such in the script. Both scripts read `$HTTPS_PROXY`/the bridge
   port LIVE — the port rotates. *Source: CLAUDE.md, TESTING-RUNBOOK.md; selector correction proven on
-  `sv9315` 2026-08-31, re-proven 2026-09-02; staging scope corrected 2026-09-02.*
+  `sv9315` 2026-08-31, re-proven 2026-09-02; staging scope corrected 2026-09-02; staging panel
+  confirmed by the QA lead's screenshot 2026-09-02.*
 - **Fresh MITM bridge (fallback when the direct proxy path fails):** `staging-bridge.mjs` — a small
   local proxy that accepts Chromium's CONNECT and relays via Node fetch (honours
   `NODE_USE_ENV_PROXY=1` + `NODE_EXTRA_CA_CERTS=/root/.ccr/ca-bundle.crt`). Reads `$HTTPS_PROXY`
