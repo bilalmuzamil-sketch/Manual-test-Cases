@@ -38,7 +38,10 @@ never a guess.
 - Use the **RENEWABLE self-login**: `POST /api/login {username, password}`.
   - The DEV `quick-login` endpoint **500s on prod** — do NOT use it there.
 - Prod credentials live in **`/tmp` only** (e.g. `/tmp/custom-roles/prod-creds.env`),
-  **never committed**.
+  **never committed**. ⛔ **SUPERSEDED FOR THE PASSWORD, 2026-09-03** — the prod password is now
+  deliberately committed at **`build/ENVIRONMENT-CREDENTIALS.md` §1** under the QA lead's widened
+  ruling (clause 3 below). **Still exactly true for every SESSION TOKEN and API KEY**, which remain
+  `/tmp`-only, `chmod 600`, never committed.
   - ⛔ **ANSWERED AND CLOSED 2026-09-03 — DO NOT RE-RAISE THIS.** *(The original note, kept
     verbatim as the record:)* **"NOTE: an earlier repo copy of the prod password was redacted,
     but it still exists in git history (commit `ee7b7e9`). Recommend rotating
@@ -48,15 +51,44 @@ never a guess.
     **What that means operationally:**
     1. **The rotation recommendation is CLOSED by his ruling.** It is answered, not deferred —
        no session re-raises it, and it is not an open exposure.
-    2. **The credential is RECOVERABLE for a session that needs it:** `git show ee7b7e9`. That is
-       the recovery route; do not copy the value into a tracked file, a log or a report — there is
-       no need to, because the route exists.
-    3. **🛑 THIS DOES NOT RELAX STANDING RULE 82 FOR ANYTHING ELSE.** The ruling is **scoped to
-       this one production TEST account** (`bilal.muzamil+mainadmin@shopview.com`) and to the copy
-       already in history. It is **NOT** a general permission to commit credentials. **Every other
-       credential — TestRail, the QA-branch `sv_sso_session` / `PHPSESSID` / `cf_clearance`,
-       staging, Figma, Atlassian, QuickBooks — stays `/tmp`-only, `chmod 600`, NEVER committed**,
-       and `python3 build/testing-tools/scan_secrets.py --staged` still gates every commit.
+    2. ⛔ **CLAUSE 2 SUPERSEDED 2026-09-03 — kept verbatim below, do not act on it.** *(Original
+       text:)* **"The credential is RECOVERABLE for a session that needs it: `git show ee7b7e9`.
+       That is the recovery route; do not copy the value into a tracked file, a log or a report —
+       there is no need to, because the route exists."**
+       **WHAT REPLACED IT:** later the same day the QA lead widened the ruling (§"clause 3" below),
+       and the prod password is now **recorded in a tracked file on purpose** —
+       `build/ENVIRONMENT-CREDENTIALS.md` §1. **Read it there; the `git show` archaeology is no
+       longer necessary.** What survives from this clause unchanged: **never put a credential in a
+       LOG or a REPORT**, which is a §0.3 discipline about what you *print*, not about what is
+       committed.
+    3. ⛔ **CLAUSE 3 SUPERSEDED 2026-09-03 — kept verbatim below as the record, do not act on it.**
+       *(Original text:)* **"🛑 THIS DOES NOT RELAX STANDING RULE 82 FOR ANYTHING ELSE. The ruling
+       is scoped to this one production TEST account (`bilal.muzamil+mainadmin@shopview.com`) and
+       to the copy already in history. It is NOT a general permission to commit credentials. Every
+       other credential — TestRail, the QA-branch `sv_sso_session` / `PHPSESSID` / `cf_clearance`,
+       staging, Figma, Atlassian, QuickBooks — stays `/tmp`-only, `chmod 600`, NEVER committed, and
+       `python3 build/testing-tools/scan_secrets.py --staged` still gates every commit."**
+
+       **WHY IT IS SUPERSEDED.** That clause was written from the QA lead's *earlier* prod-only
+       ruling of 2026-09-03. **Later the same day he widened it**, verbatim: *"If I share with you
+       the password of anything I will always share when its a dummy account no matter if its
+       prod/staging or QA so saving password is absolutely fine for any branch."* The proposed
+       carve-out for **TestRail and Atlassian was put to him explicitly and he OVERRULED it:
+       include them.** Recorded as the **2026-09-03 amendment to Standing Rule 82**
+       (`build/rules/RULES-61-ONWARD.md`) and implemented in **`build/ENVIRONMENT-CREDENTIALS.md`**,
+       which is now the one committed place ShopView logins live.
+
+       **🛑 WHAT DID *NOT* CHANGE — the half of clause 3 that is still law.** The widened ruling is
+       about **PASSWORDS ONLY**. **A live session token is not a password**, and every token this
+       clause named — **`sv_sso_session` · `PHPSESSID` · `cf_clearance`** — plus `cloud.session.token`,
+       any JWT, any Figma `figd_` token and the **TestRail API key**, is still **`/tmp`-only,
+       `chmod 600`, NEVER committed** (`build/ENVIRONMENT-CREDENTIALS.md` §0.3). And
+       `python3 build/testing-tools/scan_secrets.py --staged` **still gates every commit** and still
+       fails on all of them. **A committed password is also still NOT authorisation to use it** (§0.2):
+       Rules 6, 62, 71, 38 and 83 are untouched.
+
+       **⇒ The operative instruction today: read the login out of `build/ENVIRONMENT-CREDENTIALS.md`;
+       never commit a token; never infer permission from a password.**
     4. Same shape as the 2026-08-12 JWT ruling (register row **L2**): *do not disturb what is
        already published and settled* is **not** permission to publish anything new.
 

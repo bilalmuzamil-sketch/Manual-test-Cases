@@ -162,11 +162,37 @@ inert on these hosts (app = CloudFront/S3, API = nginx — **no Cloudflare in th
 |---|---|
 | **SPA URL** | `https://app.staging.shopview.com` |
 | **API URL** | `https://api.staging.shopview.com` |
-| **Account / password** | **N/A — entry is by session cookie, per his ruling above.** |
+| **Account / password** | **N/A — entry is by session cookie, per his ruling above. A username+password login was TESTED on 2026-09-03 and does not exist on this host — see "TESTED AND RULED OUT" below. Do not hunt for one.** |
 | **Entry credential** | **Session cookies supplied by the QA lead**, into `/tmp`, `chmod 600`, **never committed** (§0.3). Historically the set is `sv_sso_session` / `PHPSESSID` / `cf_clearance`. |
 | **Login method (recorded)** | `POST /api/quick-login {key:'admin'\|'tech'}` from Node, **gated by those cookies**, followed by hand-writing `localStorage`. |
 | **What it returns** | 200 + `data.{token, role, details}` and a rotated `PHPSESSID` — the same shape as a QA branch, but the SPA does not do the writing for you on this route. |
 | **Authority** | `build/APP-ACTIONS-PLAYBOOK.md` §A (staging DEV MODE entry, 2026-09-02) · `build/TESTING-RUNBOOK.md` §3 · `build/testing-tools/staging-admin.mjs` `login()` · `build/PROD-VS-STAGING-COMPARE-METHOD.md` §1. |
+
+### 🔴 TESTED AND RULED OUT — 2026-09-03 — the username+password route on staging
+
+**A third ShopView account exists** and it was tested against staging on **2026-09-03**, end to end,
+read-only. **It does not get in.** Recorded here so nobody spends another pass rediscovering it.
+
+| Field | Value |
+|---|---|
+| **Account tested** | `bilalmuzamil+shopview@gmail.com` |
+| **Password** | **The same string already committed in §4/§5** — so no new value was introduced by this test, and none needed adding to the scanner allowlist. |
+| **Where it came from** | This repository's git history, commit **`89758f48`** (redacted from HEAD by `4631f79b`), inside archived Jira tickets whose own steps read *"Log in to Staging using the credentials above."* |
+| **Authorisation** | The QA lead's ruling in §0.1 — dummy accounts, username+password login is fine. **Permission was never the obstacle.** |
+| **Route 1 — `POST https://api.staging.shopview.com/api/login {username,password}`** | **HTTP 401** `{"error":"sso_required","sso_redirect_url":"https://auth.staging.shopview.com/login?return_to=https%3A%2F%2Fauth.staging.shopview.com%2Fcallback"}`. **Byte-identical to the 2026-08-28 attempt with a DIFFERENT account** ⇒ the 401 belongs to the **route**, not the account. |
+| **Route 2 — the UI form at `https://app.staging.shopview.com/login`** | **There is no form.** Driven in a real Chromium through the MITM bridge from a cookieless jar: the ShopView origin paints an **empty body** for ~2.1 s, then redirects to `accounts.google.com/v3/signin/identifier` (`hd=shopview.com`, `redirect_uri=https://auth.staging.shopview.com/callback`). Sampled every 0.7 s for 10.5 s — **no password input and no `DEV MODE` panel ever painted.** |
+| **Route 2, continued — the Google identifier step** | Submitting the address lands on **`accounts.google.com/v3/signin/rejected`** — *"Couldn't sign you in. This browser or app may not be secure."* **Google's automation detection fires before any account decision**, so **the account was never adjudicated** (Rule 12 — we did *not* observe it to be invalid). |
+| **Success criteria, all four** | landed URL = `accounts.google.com/v3/signin/rejected`, **not** the app · `localStorage` **empty (`[]`)** · `GET /api/auth/me/fe-permissions` → **401 `sso_required`** · therefore **no `fe_permissions.length`, no `template_slug`**. |
+| **Build marker staging was serving that day** | **`v26.35.8-414f13c`** (unauthenticated `<meta name="app-version">`; it was `v26.35.6-49e216a` on 2026-08-31). |
+| **DEV MODE click route on staging** | **Still UNPROVEN — and not provable from a cold jar**, because the panel never renders before the Google redirect. Settling it requires a valid staging session, which is the blocked thing itself. |
+
+**⇒ THE CONCLUSION, AND IT IS A REAL DELIVERABLE:** staging is blocked by **Google SSO plus Google's
+bot detection**, **not** by a missing password and **not** by a missing permission. **No password the
+QA lead can share will open it**, so **do not ask him for one** — the ask that can actually clear it is
+a live `sv_sso_session` (or a non-SSO test account), and it is stated in
+`build/BLOCKED-shopview-app-session.md`. **A labelled inference, never measured:** `hd=shopview.com` is
+a Workspace hosted-domain restriction and the tested identity is `@gmail.com`, i.e. outside it — but
+barrier 2 fired first, so this was **not** observed.
 
 ### What is settled about staging, and what is not
 
@@ -177,13 +203,16 @@ inert on these hosts (app = CloudFront/S3, API = nginx — **no Cloudflare in th
 - **❌ NOT PROVEN:** that **clicking that panel headlessly completes the login on staging** the way it
   does on a QA branch. The click route on staging is **unexercised end-to-end by any session**, so
   **hand-hydration remains the recorded staging fallback** — not because staging lacks a panel (it does
-  not lack one), but because nobody has driven it.
+  not lack one), but because nobody has driven it. **🆕 2026-09-03: driving it was ATTEMPTED and the
+  panel did not render at all from a cookieless jar** (the page redirects to Google first), so this is
+  **not settleable without a valid staging session** — see "TESTED AND RULED OUT" above.
 - **❌ NOT PROVEN — and do NOT assume it:** that **`sv_sso_session` ALONE suffices on staging**.
   **Staging sits behind Cloudflare** (`cf_clearance` at the edge), unlike the CloudFront+nginx QA
   branches, **so the QA-branch "one cookie is enough" finding does NOT transfer.**
 - **The prod `POST /api/login {username, password}` recipe does NOT transfer to staging** — tried
   2026-08-28, **HTTP 401 `sso_required`** (`build/BLOCKED-shopview-app-session.md`). This is a further
-  reason the entry here is cookie-based.
+  reason the entry here is cookie-based. **CONFIRMED AGAIN 2026-09-03 with a second, different account
+  and the identical 401** — see "TESTED AND RULED OUT" above. **This question is closed.**
 - **We hold no valid staging session cookie.** Stored staging sets return **HTTP 401**
   (register row **R1**). Cookie lifetime is ~**24 h** or until a deploy — plan a long staging run
   inside one window.

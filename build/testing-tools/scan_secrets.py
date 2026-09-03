@@ -113,10 +113,13 @@ AUTHORISED_PUBLIC_CREDENTIALS = {
     # ShopView PRODUCTION dummy account `bilal.muzamil+mainadmin@shopview.com`.
     # QA lead, 2026-09-03: "Prod is a test account no problem sharing its
     # password in public repo." Recorded at RULES-61-ONWARD.md rule 82 (a).
-    # (No current rule actually fires on this value -- a bare password in a
-    # markdown table matches no keyword pattern. Listed anyway so the authorised
-    # set is complete and auditable in one place, and so a future rule that does
-    # catch it does not silently start blocking the authorised file.)
+    # ⚠️ UPDATED 2026-09-03: this entry used to read "no current rule actually
+    # fires on this value -- a bare password in a markdown table matches no
+    # keyword pattern", and it was listed defensively "so a future rule that does
+    # catch it does not silently start blocking the authorised file". That future
+    # rule is now here: `unquoted_password_value` closes exactly that gap, DOES
+    # fire on this value, and the defensive listing is what keeps _CRED_FILE
+    # passing. Caught by `unquoted_password_value`; suppressed ONLY in _CRED_FILE.
     "0854634a195713356985243c071e5571d4d0fb762f103462e89f401d065f8717":
         (_CRED_FILE, "QA lead ruling 2026-09-03 (prod dummy account password)"),
 
@@ -251,6 +254,40 @@ RULES = [
         "A password or API key assigned a literal value. A value read from a file "
         "or an environment variable at runtime is not flagged, and neither is a "
         "documentation placeholder such as \"<password>\" or \"your-key-here\".",
+    ),
+    (
+        "unquoted_password_value",
+        "MEDIUM",
+        re.compile(
+            # LABEL. `password`/`passwd`/`pwd` may be followed by a colon OR a
+            # markdown table pipe. `pass`/`pw` are colon-ONLY on purpose -- see
+            # the note below; `| PASS |` is the commonest cell in this repo.
+            r"""(?:^|\|)\s*[*_`\s]*"""
+            r"""(?:(?:password|passwd|pwd)[*_`\s]*(?:\||:)|(?:pass|pw)[*_`\s]*:)\s*[*_`]*"""
+            # NOT a build marker, a ticket id or a URL.
+            r"""(?!v\d+[._]\d)(?!SV-)(?!C\d{4,})(?!https?:)"""
+            # NOT a filename -- a path or an artefact name is not a credential.
+            r"""(?![^\s|]*\.(?:json|jsonl|md|py|mjs|js|csv|txt|html|xml|log|sh|ya?ml)\b)"""
+            # VALUE: 6-64 chars, no whitespace/pipe, and credential-SHAPED --
+            # it must carry at least one letter AND at least one digit. That one
+            # requirement is what removes the noise: prose words, verdicts
+            # (CONFIRMED / CHANGED / DEVIATION) and placeholders have no digit.
+            r"""((?=[^\s|]{6,64}(?:\s|\||$))(?=[^\s|]*[A-Za-z])(?=[^\s|]*\d)"""
+            r"""[A-Za-z0-9._~!@#$%^&*+=?-]{6,64})"""
+            r"""(?![A-Za-z0-9._~!@#$%^&*+=?-])""",
+            re.I,
+        ),
+        "A password sitting UNQUOTED after a Password:/Pass:/pwd: label or in a "
+        "markdown table cell. THE MEASURED GAP (2026-09-03): `password_literal` "
+        "requires the value to be QUOTED, so `| **Password** | somevalue |` -- the "
+        "shape credentials actually take in this repo's documentation -- tripped no "
+        "rule at all. Of the two passwords committed on 2026-09-03 one was caught "
+        "only by `literal_credential_shape` (its tilde) and the other by nothing. "
+        "Tightened against the whole tracked tree: 199 raw hits -> 3, and those 3 "
+        "are the authorised values in build/ENVIRONMENT-CREDENTIALS.md. "
+        "NOTE `pass`/`pw` are accepted ONLY with a colon: this is a QA repository "
+        "full of `| **PASS** | ... |` verdict tables, which is where every "
+        "remaining false positive came from.",
     ),
     (
         "literal_credential_shape",
@@ -456,6 +493,12 @@ SELFTEST_POSITIVE = [
     ("figma_token", 'FIGMA = "figd_AbCdEfGhIjKlMnOpQrStUvWxYz012345"'),  # scan-secrets:allow
     ("password_literal", 'password = "hunter2hunter2"'),  # scan-secrets:allow
     ("private_key", "-----BEGIN RSA PRIVATE KEY-----"),  # scan-secrets:allow
+    # THE 2026-09-03 GAP: unquoted, in the markdown table cell that is how a
+    # credential is actually written down in this repo. Before this rule existed
+    # the line below tripped NOTHING.
+    ("unquoted_password_value", "| **Password** | tr0ub4dor3stanza |"),  # scan-secrets:allow
+    # ...and the same value after a bare label, still unquoted.
+    ("unquoted_password_value", "Password: tr0ub4dor3stanza"),  # scan-secrets:allow
 ]
 
 SELFTEST_NEGATIVE = [
@@ -474,6 +517,16 @@ SELFTEST_NEGATIVE = [
     '"password": "<api_key_or_password>"',
     'password = "your-password-here"',
     'apiKey: "REDACTED"',
+    # NEAR-MISSES for `unquoted_password_value`. These are the shapes that made
+    # the broad first draft fire 199 times across the tracked tree; each one must
+    # stay clean or the rule is unusable in a QA repository.
+    "| [C45183](https://shopview.testrail.io/index.php?/cases/view/45183) | **PASS** | CM-4197 |",
+    "| Result | PASS | CONFIRMED |",
+    "| **C45111** | NOT VERIFIED | **PASS** | 560-character story seeded by API |",
+    "| **Password** | N/A -- entry is by session cookie |",
+    "Password: see /tmp/testrail/creds.json for the value",
+    "| Build marker | v3.10-49b5fe3 |",
+    "| Password | <the-value-he-shares> |",
 ]
 
 
