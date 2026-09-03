@@ -346,6 +346,25 @@ any endpoint/ID not recorded here or in `CLAUDE.md`** — if only partly known, 
   **Check `signedIn` by URL before trusting any probe result**, or a whole probe silently measures the
   login page. Also: **curl through the bridge needs `--cacert /tmp/atlassian/mitm.crt`**; without it
   curl exits 60 and looks exactly like a broken bridge, while Playwright (`ignoreHTTPSErrors`) works.
+- **🛑 2026-09-03 — A SLEEPING BRANCH LOOKS EXACTLY LIKE EXPIRED CREDENTIALS. CHECK THE URL.** QA
+  branches are **paused to save resources**. The app host then redirects to
+  **`https://sleep.qa.shopview.com/?app=<branch>&api=<branch>`**, which serves *"Environment Sleeping
+  — This environment is currently paused to save resources. Click below to wake it up — it usually
+  takes around 1 minute."* with a single **`Wake Up`** button and **no sign-in form** — so the
+  `DEV MODE — QUICK LOGIN` panel is absent and `qa-branch-boot.mjs` stopped with
+  *"no DEV MODE Admin button"*. **That reads as a dead token and is nothing of the kind.**
+
+  **The tells, in order of reliability:** the URL contains **`sleep.qa.shopview.com`** · the page's
+  only button is `Wake Up` · the body text starts `Environment Sleeping`. **`GET /` still answers
+  HTTP 200 with a valid `app-version` meta tag**, so a reachability check does NOT reveal it, and
+  `/api/quick-login/users` answers **403** rather than anything sleep-specific.
+
+  **`qa-branch-boot.mjs` now wakes it automatically** — clicks `Wake Up`, waits up to ~2.5 minutes for
+  the redirect to clear, reloads, and retries up to three times. **Detect by URL and POLL:** the
+  redirect takes several seconds, and a first fix that checked once at +4s never fired because the
+  page had not yet moved. Nothing else about the login changes; after waking, quick-login and
+  `fe-permissions` both answer 200 on the same `sv_sso_session`.
+
 - **🟢 2026-08-31 — THE AUTHENTIC QA-BRANCH LOGIN: LET THE APP LOG *ITSELF* IN. ONE COOKIE, NO
   HAND-MINTING, NO 409 EVER. — SUPERSEDES THE TWO BULLETS DIRECTLY ABOVE.** Proven live end to end on
   **`sv9315`**, six consecutive clean runs. **You do NOT need `localStorage["user"]` from a human's
