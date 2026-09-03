@@ -19,13 +19,12 @@ sort → leave & return → reload). Written through the TestRail UI editor so t
   `AUTOMATION: READY` marker (still last).
 - **Title** — unchanged.
 - **`custom_atmstatus`** — still `3` (AUTOMATED).
-- **`custom_automation_type`** — still `0` (untouched; see note below).
+- **`custom_automation_type`** — set `0 (None)` → **`2 (Functional)`** in a separate API-only write
+  (QA lead go-ahead 2026-09-03). Functional = single-feature UI behaviour (remembered-view
+  persistence within the Parts Velocity report); not Unit (no isolated calculation) and not E2E (no
+  cross-feature journey). The write touched ONLY that field — preconds/steps/Expected are byte-identical
+  and still serve `markdown fr-view` (served-page scan re-run after the type write).
 
 **Verification:** runnable gate `check_runnable_cases.py --cases 30354` → RUNNABLE (1/1);
-served-page container scan → both edited fields `markdown fr-view`; API re-GET confirms Expected /
-title / atmstatus unchanged.
-
-**Open note (not acted on):** `custom_automation_type` is `0 (None)`, which the 2026-09-02 standing
-rule says should never be left None. It was **left as-is** because the go-ahead was scoped to
-"make it runnable" (preconds/steps only) — changing the automation-type field is a separate edit and
-needs its own go-ahead. Flag for the QA lead.
+served-page container scan → all three fields `markdown fr-view`; API re-GET confirms Expected /
+title / atmstatus (=3) unchanged across both writes; automation_type now `2`.
