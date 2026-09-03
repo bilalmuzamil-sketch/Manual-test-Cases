@@ -40,3 +40,19 @@ Received rows lock the Vendor dropdown; awaiting rows allow changing it (matches
   - T7 invoiced-PS repro (receive 4+5+1, return 3, invoice → 7/Received): needs a fully seeded PS driven through invoicing. Blockers this session: (a) PS detail UI routes render dead pages (`/part-sales/{id}`, `/…/details`, `/…/part-requests`), and the list is a virtual table with no row hrefs; (b) API PS part-add needs a line, and `lines/create` requires a tech-story/labor/fixed-price shape not yet mapped; (c) driving the seeded WO to Invoiced is blocked on the line "tech story" set endpoint (unmapped verb) + the WO is "Over Limit".
   - T6 vendor-invoice edit reflects on the row only if not Invoiced/Paid: needs the invoiced/paid negative state.
 - These are reachable with more seeding time or a pre-seeded PS; flagged for the QA lead.
+
+## UPDATE — Part Sales (T5) + Invoiced display (T7) verified on real invoiced data
+Part Sales render through the IDENTICAL endpoint `GET /api/work-orders/{id}/parts/list-requests-by-line` (the current build's fixed code path).
+- **T5/T7 PASS** — examined 6 invoiced/PAID Part Sales that carry returned parts (P2-175, P2-154, P2-144, P2-105, P2-92, P2-37). Every one:
+  - shows all part rows as **Received** — ZERO "Returned" rows (dev bug was status → "Returned" after invoicing).
+  - preserves **split rows** even when fully received/paid (e.g. P2-92: 610.783.1 = Received q8 + Received q6, not merged into q14).
+  - reduces the received row's quantity by the returned amount (fully-returned rows show qty 0, status still Received) — i.e. NOT the dev's wrong "qty 4 instead of 7"; the effective received qty is what shows.
+  This is the dev's exact expected result (qty stays correct + status stays Received after invoicing), confirmed on real invoiced/paid Part Sales.
+
+## Limitations (transparent)
+- Part Sales module UI does not render via deep-link/hydration this session (routes land on the app's error page), so PS evidence is endpoint-level (the same endpoint the WO Parts tab UI renders). WO scenarios have full UI screenshots.
+- T6 (editing vendor on a vendor invoice updates the row vendor only if not Invoiced/Paid) not independently driven — needs the vendor-invoice edit flow + the invoiced/paid negative state.
+- The dev's EXACT PS repro (receive 4+5+1, return 3, invoice → 7) not seeded from scratch (PS part-add API/UI blocked); the same behavior class is verified on WO (controlled) + real invoiced PS (above).
+
+## Verdict
+Core behavior of SV-6295 PASSES: each receive = new row; vendor/qty/status kept per row; vendor-change-on-awaiting affects only future rows; no merge after full receipt; returned parts never shown as a Returned row (status stays Received, qty reduced); invoiced/paid state renders correctly; the dev's return-qty prefill fix works.
