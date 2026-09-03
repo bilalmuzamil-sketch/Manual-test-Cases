@@ -142,7 +142,7 @@ def ttf_gid_to_unicode(font):
     return g2u
 
 
-def extract(path):
+def extract(path, collect=None):
     data = open(path, 'rb').read()
     objs = expand_object_streams(objects(data))
 
@@ -222,10 +222,14 @@ def extract(path):
                         s += cur.get(int(blob[i:i + 4], 16), '')
                 if s.strip():
                     lines[round(y, 1)].append((x, s))
+                    if collect is not None:
+                        collect.append((round(y, 2), round(x, 2), s))
             elif t.group('lit') is not None:
                 s = re.sub(r'\\(.)', r'\1', t.group('lit'))
                 if s.strip():
                     lines[round(y, 1)].append((x, s))
+                    if collect is not None:
+                        collect.append((round(y, 2), round(x, 2), s))
 
     out = []
     for yy in sorted(lines):
@@ -233,7 +237,29 @@ def extract(path):
     return '\n'.join(out)
 
 
+def positions(path):
+    """Same decode, but keep each run's x/y so LAYOUT questions can be answered - e.g. 'does the
+    Credit To block span the full width, or is something sitting beside it?'. Text extraction alone
+    cannot answer those, which is why one assertion stayed NOT VERIFIED on 2026-09-02."""
+    import io
+    buf, out = io.StringIO(), []
+    real_print = print
+    # reuse extract's machinery by re-running it with a collector
+    global _COLLECT
+    _COLLECT = out
+    extract(path, collect=out)
+    return out
+
+
 if __name__ == '__main__':
-    for p in sys.argv[1:]:
+    args = [a for a in sys.argv[1:] if not a.startswith('--')]
+    want_pos = '--positions' in sys.argv
+    for p in args:
         print(f'===== {p} =====')
-        print(extract(p))
+        if want_pos:
+            runs = []
+            extract(p, collect=runs)
+            for y, x, t in sorted(runs):
+                print(f'  y={y:8.2f}  x={x:8.2f}  {t}')
+        else:
+            print(extract(p))
