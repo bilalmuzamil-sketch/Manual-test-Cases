@@ -84,7 +84,7 @@ not get to stop — you pick the right outcome from this list:
 | What you actually hit | The outcome that is already defined for it |
 |---|---|
 | **Feature is not built yet** | **Rule 69** — `AUTOMATION: Not available on Build to test Yet - Last checked <M/D/YYYY>`, under-development line, `DEFERRED-RUN.md`. **A finished case**, not a blocker. (`03-RUN-CHECK.md` §7) |
-| **A precondition needs the CUSTOMER PORTAL** | The **staging-only HOLD** marker — see **§3b** below and **`00-COMMON-CORE.md` §5.0-b**. Judge it from the **preconditions**, never from the word "portal". |
+| **A precondition *or a step* needs a CUSTOMER-PORTAL SCREEN** | The **staging-only HOLD** marker — see **§3b** below and **`00-COMMON-CORE.md` §5.0-b**. Judge it from the **preconditions AND the steps** (corrected 2026-09-03), never from the word "portal", and never park a portal **data state** that a seed can reach. |
 | **The source is ambiguous** | **Rule 58** — **hold the case and add a PO-question row.** An ambiguous source is **NEVER** resolved by looking at the build. |
 | **A data state you need does not exist** | **Rule 14 — SEED IT.** Seeding on a disposable environment is **pre-authorised, permanently** (`00-COMMON-CORE.md` §5.0-b(1)). **Never NOT-VERIFIED for a data state.** |
 | **The feature is there but you cannot find the control** | **Rule 97 search drill** (playbook first — the exact error text) **+ Rule 26 role reset** (it may be permission-gated and simply not rendered) **+ the network tab + grep the served JS bundle.** A control you cannot see may be one role-reset away. |
@@ -328,8 +328,22 @@ thing"*, so this is not the barred tool-flag excuse. **The wording is FINAL — 
 this exact string on 2026-09-02; it is never reworded, abbreviated or re-punctuated in isolation, and
 `00-COMMON-CORE.md` §5.0-b holds the LOCATIONS list a rename would have to sweep.**
 
-**⇒ SCOPE IT FROM THE CASE'S PRECONDITIONS, NEVER FROM THE WORD "PORTAL".** Only a case whose
-**preconditions require a portal-generated artefact** gets the marker. **A case that verifies the
+**⇒ THE SCOPING TEST — THREE PARTS, CORRECTED 2026-09-03. Full text: `00-COMMON-CORE.md` §5.0-b(2).**
+
+> **⛔ SUPERSEDED 2026-09-03** (kept visible so a session mid-task on the old text sees it changed):
+> *"⇒ SCOPE IT FROM THE CASE'S PRECONDITIONS, NEVER FROM THE WORD 'PORTAL'. Only a case whose
+> **preconditions** require a portal-generated artefact gets the marker."* **It read the preconditions
+> only** — a 2026-09-03 assessment of 11 candidates found four cases it misses.
+
+**(1) READ THE PRECONDITIONS *AND* THE STEPS** — if **either** puts the tester on a **portal screen**,
+the case cannot run on a QA branch and it carries the HOLD. **A precondition-only scan is not a scan.**
+Worked miss, 2026-09-03 — *the precondition was silent and the step was not*: **C18671 / C18728** (sole
+step *"Open the invoice in the customer portal before its due date."*) and **C18672 / C18729** (sole
+step *"Open the invoice in the customer portal during the grace period (1–29 days overdue)."*) all have
+data-state preconditions that never mention the portal, and all four assert on the portal invoice view
+(`build/testrail-writes/portal-candidates-2026-09-03/ASSESSMENT.md`).
+
+**(2) NEVER SCOPE FROM THE WORD "PORTAL" ALONE — unchanged.** **A case that verifies the
 portal feature's ABSENCE on the shop-app path is fully testable on the QA branch and must NOT be
 parked.** Worked example, 2026-08-31 (Invoice UI Refresh): **C44954** — *"No paid banner when the
 invoice has no portal-processed payment"* — **is build verified**, while **C44951 / C44952 / C45175**
@@ -344,6 +358,15 @@ sections / 4,624 cases paged to exhaustion, byte-exact, zero variants):
 `build/testrail-writes/portal-hold-inventory-2026-08-31/INVENTORY.md`. Four further cases mention the
 banner in passing and **C45184** names it as an **exclusion** (*"The only exception is the Paid
 banner's 'Date / Time' field"*) — **none of those five are portal-gated.**
+
+**(3) 🆕 A PORTAL *SCREEN* IS NOT A PORTAL *DATA STATE*.** A case needing a **record created via the
+portal** but asserting **only on shop-app screens** is a **data-state** case — **Rule 14 says a missing
+data state is SEEDED, not parked**, so it does **NOT** automatically get the HOLD. Settle it by asking
+whether the seeding route is reachable with an **ordinary session**; only if the state needs a **portal
+credential** is it a HOLD. Worked example **C45245** (deposit *"created via
+`POST /api/external/customer-portal/deposits`"* — an API endpoint on the app's own API host, not a
+portal UI screen — with every assertion on shop-app screens). **It is Vladimir Tomovic's, so it is
+HANDS-OFF whatever the verdict (Rule 38)**: cited for the test, not as work to do.
 
 ---
 
