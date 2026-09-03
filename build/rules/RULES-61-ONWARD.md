@@ -2324,6 +2324,42 @@ Index: CLAUDE.md (rule index table). Other rule files: build/rules/RULES-01-20.m
     **THE PROOF OBLIGATION:** a pass that says *"secret scan clean"* must have **actually invoked the tool** and be able to name the mode and the population (e.g. *"clean — 13,502 tracked files"*). **`--selftest` exists so that a clean result means something** — it proves detection fires on planted material and that clean text still passes. **A tool nobody has ever seen fail is indistinguishable from a tool that cannot fail.**
     **RATIONALE (2026-08-20 — and the embarrassment is entirely ours):** CLAUDE.md instructed every pass to run `build/testing-tools/scan_secrets.py`, and **THE FILE DID NOT EXIST for weeks.** Workers reached the instruction, found no tool, fell back to manual greps, and **reported "scan clean"** — so a **mandatory guardrail on a PUBLIC repository was imaginary**, and every report asserting it had run was, without anyone intending it, false. **Nothing leaked, and that is luck rather than process.** The related precedent shows the stakes: on **2026-08-11 twelve Mercure JWT bearer tokens were found in thirteen tracked files, committed since 4 August**, and every scan before that date had "passed" because `eyJ` was not among the patterns. **A credential that reaches a commit on a public repo is disclosed the moment it is pushed, and rewriting history does NOT un-disclose it — the value must be rotated.**
     Ties to Standing Rules 6, 12, 29, 50.
+    **⇒ AMENDMENT, 2026-09-03 — THE QA LEAD'S PASSWORD RULING. NOTHING ABOVE IS DELETED; THE SCAN GATE
+    IS UNCHANGED AND STILL MANDATORY. What changes is WHICH VALUES ARE SECRET.**
+    **HIS WORDS, verbatim (2026-09-03):** *"If I share with you the password of anything I will always
+    share when its a dummy account no matter if its prod/staging or QA so saving password is absolutely
+    fine for any branch."* — and, on the production account: *"Prod is a test account no problem sharing
+    its password in public repo."* **Given twice, each time after the risk was put to him in full** (the
+    repository is PUBLIC; one password string opens both TestRail and Atlassian). On the second occasion
+    a proposed carve-out excluding TestRail and Atlassian was put to him explicitly and **he overruled
+    it: include them.** **This is his decision and it is not re-litigated in the files that carry it.**
+    **⇒ (a) WHAT MAY NOW BE COMMITTED — PASSWORDS ONLY, AND ONLY IN ONE PLACE.** The **account
+    passwords** for the ShopView estate — **production**, **TestRail**, **Atlassian/Jira/Confluence** —
+    are recorded in **`build/ENVIRONMENT-CREDENTIALS.md`**, each with the account, the URL, the login
+    method, what that method returns, and its traps. **That file is the ONLY authorised location.** A
+    password for one of these accounts appearing anywhere else in the repository is still a finding.
+    **Staging and the QA branches contribute no password at all** — his ruling of the same day:
+    *"No staging and QA branches a relooged in through Cookies etc"* — **so there is nothing to commit
+    for them, and none is to be invented.**
+    **⇒ (b) WHAT IS STILL SECRET, AND THIS HALF IS ABSOLUTE.** **His ruling is about PASSWORDS. A LIVE
+    SESSION TOKEN IS NOT A PASSWORD.** `sv_sso_session` · `PHPSESSID` · `cf_clearance` ·
+    `cloud.session.token` · `tenant.session.token` · **any JWT** · any Figma `figd_` token · **the
+    TestRail API key** — all stay **`/tmp` only, `chmod 600`, NEVER committed**, together with any
+    credential for a system holding real customer data. **A token rotates and goes stale within hours,
+    so a committed one is WORSE than useless:** the next session tries a dead value and misdiagnoses a
+    rotated cookie as a login failure — the false-blocker loop of Rule 97. The 2026-08-11 Mercure-JWT
+    incident in the rationale above is exactly this class and stands unamended.
+    **⇒ (c) A COMMITTED PASSWORD IS NEVER AUTHORISATION TO USE IT.** **Rule 6 is UNCHANGED — TestRail
+    remains the only real production system**, and **no `add_case` / `update_case` / `delete_case` / run
+    write / result write happens without his explicit per-task go-ahead**; **Rule 62's Jira
+    artefact-creation hold is unchanged**; Rules 71, 38 and 83 are unchanged. **A session that finds a
+    password in a committed file and infers permission from its presence has misread this amendment.**
+    **⇒ (d) THE SCANNER IS NARROWED, NEVER WEAKENED.** `build/testing-tools/scan_secrets.py` carries an
+    explicit **per-value, path-keyed allowlist** — each entry dated and naming this ruling — for exactly
+    the values in `build/ENVIRONMENT-CREDENTIALS.md`. **It still fails on every other credential, and on
+    those same values appearing anywhere else.** **A detector loosened to make a commit pass, or a
+    selftest weakened for the same reason, is the failure this whole rule exists to prevent.**
+    Full record, all five entries and their traps: **`build/ENVIRONMENT-CREDENTIALS.md`**.
 
 83. **LANE OWNERSHIP AND WRITE LOCKS — four sessions, one TestRail, one branch, one login (all projects, permanent).**
     **THE RULE:** per **`build/LOCKS/README.md`** — **CLAIM before you write** (one claim file per project, `build/LOCKS/<project-slug>.lock.md`, naming the lane, the exact intent, an ISO start time and an expected release), **CHECK for a foreign claim first** (`git pull` first — a claim you have not fetched is a claim you cannot see), **RELEASE when done**, and **report stale claims rather than overwriting them** (older than 6 h may be cleared, with who cleared it and on what basis recorded).

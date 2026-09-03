@@ -200,6 +200,14 @@ ticket — conversion is UI-only and silently wipes Product Area (Rule 52).
 
 ## 3 · SHOPVIEW — QA BRANCHES, STAGING, PRODUCTION
 
+> **🔑 ACCOUNTS AND PASSWORDS: `build/ENVIRONMENT-CREDENTIALS.md`** — the one committed record, covering
+> **production**, **TestRail** and **Atlassian** (URL · account · password · login method · what it
+> returns · traps), committed under the QA lead's ruling of **2026-09-03** (Rule 82 amendment).
+> **Staging and the QA branches have NO password** — entry is by **session cookie**, supplied by him per
+> branch into `/tmp` at `chmod 600` (`/tmp/qa-cookies/<branch>-sso.txt`). **Tokens are still never
+> committed** — they rotate within hours, so a committed one just produces a false "login failed".
+> **A committed password is not authorisation: Rule 6 still gates every TestRail write.**
+
 > **🟢 START HERE FOR A QA BRANCH (proven live on `sv9315`, 2026-08-31, build `v26.35.6-0f8d60b`):
 > LET THE APP LOG ITSELF IN — you need ONE cookie and you never touch `localStorage` by hand.**
 > Drive a real browser to `https://<branch>.qa.shopview.com/login`, click the sign-in screen's

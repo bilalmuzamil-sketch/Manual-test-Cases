@@ -39,11 +39,38 @@ never on names:
     "sv_sso_session": "${CK.sv_sso_session}"        -> NOT flagged (a template)
     "sv_sso_session": "a1b2c3d4e5f6a7b8c9d0e1f2"    ->     flagged   scan-secrets:allow
 
-KNOWN-SECRET FINGERPRINTS ARE NOT COMMITTED
--------------------------------------------
-This repository is PUBLIC. Committing the TestRail / Jira / production
-passwords -- even hashed -- would publish a brute-forceable target, so this
-file deliberately contains no secret material of any kind. Instead:
+AUTHORISED PUBLIC CREDENTIALS (added 2026-09-03 -- see the allowlist below)
+--------------------------------------------------------------------------
+The QA lead ruled on 2026-09-03 that the ShopView estate's ACCOUNT PASSWORDS
+may be committed to this public repository, and reaffirmed it after the risk
+was put to him in full. They live in exactly one file,
+`build/ENVIRONMENT-CREDENTIALS.md`. AUTHORISED_PUBLIC_CREDENTIALS below
+suppresses a finding ONLY for those exact values and ONLY in that exact path.
+
+The DETECTOR IS UNCHANGED. Every rule still fires everywhere else, and those
+same values are still flagged if they turn up in any other file.
+
+    ** SUPERSEDED 2026-09-03, kept dated. This section previously read:
+
+        "KNOWN-SECRET FINGERPRINTS ARE NOT COMMITTED
+         This repository is PUBLIC. Committing the TestRail / Jira /
+         production passwords -- even hashed -- would publish a
+         brute-forceable target, so this file deliberately contains no
+         secret material of any kind."
+
+    The expectation it encoded -- NO credential may ever be committed, not
+    even as a hash -- is superseded for the named account passwords by the
+    QA lead's ruling. It remains in force for EVERYTHING ELSE, and this
+    file still stores no secret VALUE: the allowlist holds SHA-256 hashes
+    only, of values he has authorised for public commit anyway. **
+
+Session tokens are NOT covered by that ruling and are NOT allowlisted:
+sv_sso_session, PHPSESSID, cf_clearance, cloud.session.token, any JWT and the
+TestRail API key stay /tmp-only. A password is a stable shared secret; a live
+session token authenticates as an already-signed-in user and rotates within
+hours, so a committed one is worse than useless.
+
+For real secrets that must never be committed at all:
 
     python3 scan_secrets.py --build-fingerprints   # reads /tmp, writes /tmp
 
@@ -69,6 +96,62 @@ import tempfile
 
 ALLOW_MARKER = "scan-secrets:allow"
 FINGERPRINT_FILE = "/tmp/secret-fingerprints.json"
+
+# ---------------------------------------------------------------------------
+# AUTHORISED PUBLIC CREDENTIALS -- a NARROW, PER-VALUE, PATH-KEYED allowlist.
+#
+# Each entry is sha256(value) -> (the ONE path where that value is permitted,
+# the dated ruling that authorises it). Nothing else is suppressed: every rule
+# still fires on every other value, and on THESE values in any other file.
+#
+# DO NOT add an entry to make a commit pass. If the scanner fires on something
+# not listed here, the finding is real (Standing Rule 82, amendment 2026-09-03).
+# ---------------------------------------------------------------------------
+_CRED_FILE = "build/ENVIRONMENT-CREDENTIALS.md"
+
+AUTHORISED_PUBLIC_CREDENTIALS = {
+    # ShopView PRODUCTION dummy account `bilal.muzamil+mainadmin@shopview.com`.
+    # QA lead, 2026-09-03: "Prod is a test account no problem sharing its
+    # password in public repo." Recorded at RULES-61-ONWARD.md rule 82 (a).
+    # (No current rule actually fires on this value -- a bare password in a
+    # markdown table matches no keyword pattern. Listed anyway so the authorised
+    # set is complete and auditable in one place, and so a future rule that does
+    # catch it does not silently start blocking the authorised file.)
+    "0854634a195713356985243c071e5571d4d0fb762f103462e89f401d065f8717":
+        (_CRED_FILE, "QA lead ruling 2026-09-03 (prod dummy account password)"),
+
+    # TestRail + Atlassian account `bilal.muzamil@shopview.com` -- ONE string
+    # opens both. QA lead, 2026-09-03: "If I share with you the password of
+    # anything I will always share when its a dummy account ... so saving
+    # password is absolutely fine for any branch", and he explicitly OVERRULED
+    # the proposed TestRail/Atlassian carve-out put to him the same day.
+    # Caught by `literal_credential_shape`; suppressed ONLY in _CRED_FILE.
+    # NOTE: this authorises the value in that file. It does NOT authorise any
+    # TestRail write -- Standing Rule 6 is unchanged (rule 82 (c)).
+    "07dde1c59b4d885dbcea3e8849442aa9cda3fd1abcbf3ff89a95a68540de41ee":
+        (_CRED_FILE, "QA lead ruling 2026-09-03 (TestRail + Atlassian password)"),
+}
+
+# Characters that cannot appear inside one of these values, used to chop a line
+# or a regex match into candidate tokens for the allowlist check only.
+_TOKEN_SPLIT = re.compile(r"""[\s"'`,;()\[\]{}|<>]+""")
+
+
+def authorised_here(path, text):
+    """True if `text` carries a value explicitly authorised for THIS path.
+
+    Path-keyed on purpose: the same password appearing in any other file is
+    still a finding. Compares hashes only, so no secret value lives in this file.
+    """
+    allowed = {h for h, (p, _) in AUTHORISED_PUBLIC_CREDENTIALS.items()
+               if path == p or (path or "").endswith("/" + p)}
+    if not allowed:
+        return False
+    for tok in _TOKEN_SPLIT.split(text or ""):
+        for cand in (tok, tok.strip("*_.:#")):
+            if len(cand) >= 6 and hashlib.sha256(cand.encode()).hexdigest() in allowed:
+                return True
+    return False
 
 # Value characters seen in cookies, tokens and base64 payloads.
 V = r"A-Za-z0-9%._\-+/="
@@ -301,10 +384,16 @@ def scan_text(text, path, fingerprints):
         for name, sev, rx, why in RULES:
             m = rx.search(line)
             if m:
+                # Suppressed ONLY when the matched text IS an authorised value
+                # AND this is the one path authorised to carry it.
+                if authorised_here(path, m.group(0)):
+                    continue
                 findings.append((path, lineno, name, sev, why, m.group(0)[:24]))
         if fingerprints:
             for cand in candidates(line):
                 if hashlib.sha256(cand.encode()).hexdigest() in fingerprints:
+                    if authorised_here(path, cand):
+                        continue
                     findings.append((path, lineno, "known_secret", "HIGH",
                                      "Byte-for-byte match against a real credential held in /tmp.",
                                      cand[:6] + "..."))
@@ -407,6 +496,38 @@ def selftest():
         label = sample[:62].replace("\n", " ")
         print(f"  [{'PASS' if good else 'FAIL'}] {label!r}"
               + ("" if good else f"  <-- wrongly flagged as {[f[2] for f in got]}"))
+
+    print("\nALLOWLIST control -- the authorised file passes, the same value elsewhere does NOT:")
+    print("  (Standing Rule 82 amendment, 2026-09-03. The superseded expectation was")
+    print("   'no credential may ever be committed'; the new one is 'only the QA lead's")
+    print("   authorised account passwords, only in " + _CRED_FILE + "'.)")
+    repo = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+    cred_path = os.path.join(repo, _CRED_FILE)
+    try:
+        cred_text = open(cred_path, encoding="utf-8", errors="replace").read()
+    except Exception as exc:                       # a live allowlist with no file is a fault
+        cred_text = None
+        print(f"  [FAIL] cannot read {_CRED_FILE}: {exc}")
+        ok = False
+
+    if cred_text is not None:
+        clean = not scan_text(cred_text, _CRED_FILE, set())
+        ok &= clean
+        print(f"  [{'PASS' if clean else 'FAIL'}] authorised values pass in {_CRED_FILE}")
+
+        # The SAME bytes under any other path must still be caught. This is the
+        # control that proves the allowlist is path-keyed and not a global mute.
+        moved = bool(scan_text(cred_text, "build/somewhere-else.md", set()))
+        ok &= moved
+        print(f"  [{'PASS' if moved else 'FAIL'}] the same content elsewhere is still caught")
+
+    # A credential that is NOT allowlisted must still be caught INSIDE the
+    # authorised file -- the allowlist mutes two values, not a whole path.
+    other = 'Zz9synthetic~9876'                                    # scan-secrets:allow
+    caught_other = bool(scan_text(f"| Password | {other} |", _CRED_FILE, set()))
+    ok &= caught_other
+    print(f"  [{'PASS' if caught_other else 'FAIL'}] a NON-allowlisted credential is still "
+          f"caught inside {_CRED_FILE}")
 
     print("\nFINGERPRINT control -- a known secret matched by hash, with no secret in this file:")
     secret = "correct-horse-battery-staple-12345"  # scan-secrets:allow
