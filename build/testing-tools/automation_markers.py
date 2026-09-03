@@ -49,8 +49,9 @@ no-loss assertion in `build/rules/INTEGRITY.md` — derive, diff both ways, refu
 on a corpus you cannot vouch for — so the two cannot drift apart.
 
 CANON. The sanctioning statements, in precedence order:
-  * `build/rules/RULES-61-99.md` rule 61, and its 2026-09-02 backfill amendment, which says
-    in terms: "when a check implements this rule, it must encode all five forms."
+  * rule 61 and its 2026-09-02 backfill amendment, which says in terms: "when a check
+    implements this rule, it must encode all five forms." (In `build/rules/RULES-*.md` — the
+    file is GLOBBED, never named: it is renamed on every rule addition.)
   * `CLAUDE.md` §5, the AUTOMATION MARKER bullet.
   * `build/skills/00-COMMON-CORE.md` §5.0-b, the staging-only customer-portal HOLD.
 
@@ -59,6 +60,7 @@ run `python3 build/testing-tools/automation_markers.py` to prove the audit close
 literals are FIXED, MACHINE-FINDABLE strings (rule 61): never reworded, abbreviated,
 re-punctuated, re-cased or "tidied" in one file in isolation.
 """
+import glob
 import os
 import re
 import sys
@@ -70,11 +72,30 @@ _SELF = os.path.relpath(os.path.abspath(__file__), REPO)
 
 # The files that SANCTION a marker. The audit reads these; it never reads a note, a project
 # state file or a remembered figure (same discipline as "count from the system of record").
-CANON_FILES = (
-    'CLAUDE.md',
-    'build/rules/RULES-61-99.md',
-    'build/skills/00-COMMON-CORE.md',
-)
+#
+# 🛑 THE RULE FILE IS DISCOVERED, NEVER NAMED. Naming 'build/rules/RULES-61-99.md' here would
+# reintroduce the very trap this module exists to remove: that file is RENAMED on every rule
+# addition (RULES-61-93 -> -94 -> -95 -> -96 -> -97 -> -98 -> -99), so the day rule 100 lands
+# the name changes and a hard-coded entry breaks. Globbing is what the sibling sweep does for
+# the same reason (check_rule_amendments.py, "THE RULE FILES ARE DISCOVERED, NEVER LISTED").
+def _canon_files():
+    rules = sorted(os.path.relpath(p, REPO) for p in
+                   glob.glob(os.path.join(REPO, 'build/rules/RULES-*.md')))
+    if not rules:
+        raise StaleMarkerList(
+            'no build/rules/RULES-*.md found under %s, so rule 61 cannot be read and the '
+            'sanctioned-marker list cannot be proven current. Run from the repo.' % REPO)
+    return ('CLAUDE.md',) + tuple(rules) + ('build/skills/00-COMMON-CORE.md',)
+
+
+# Overridable by tests; None means "discover on each use".
+CANON_FILES = None
+
+
+def canon_files():
+    """The canon file list actually used: an explicit CANON_FILES override, else discovery."""
+    return tuple(CANON_FILES) if CANON_FILES else _canon_files()
+
 
 # ---------------------------------------------------------------------------------------
 # THE DECLARATION. Five sanctioned forms (rule 61's backfill amendment, 2026-09-02).
@@ -155,7 +176,7 @@ def _canon_literals():
     failure -- an audit that cannot read its source has not passed, it has not run.
     """
     found = {}
-    for rel in CANON_FILES:
+    for rel in canon_files():
         path = os.path.join(REPO, rel)
         try:
             text = open(path, encoding='utf-8').read()
@@ -196,7 +217,7 @@ def audit():
         unknown[lit] = sorted(where)
 
     joined = {rel: open(os.path.join(REPO, rel), encoding='utf-8').read()
-              for rel in CANON_FILES}
+              for rel in canon_files()}
     vanished = [c for c in fulls if not any(c in t for t in joined.values())]
     return unknown, vanished
 
@@ -221,7 +242,7 @@ def assert_current():
     for c in vanished:
         msg.append('  DECLARED form no longer found anywhere in canon: %r' % c)
         msg.append('    -> it was renamed or withdrawn; this file still accepts the old spelling.')
-    msg.append('Canon: %s' % ', '.join(CANON_FILES))
+    msg.append('Canon: %s' % ', '.join(canon_files()))
     raise StaleMarkerList('\n'.join(msg))
 
 
@@ -233,7 +254,7 @@ def main():
         print('  %-34s   (%s)' % ('', why))
     print('\naccept-prefixes (%d): %s' % (len(MARKERS), ', '.join(repr(m) for m in MARKERS)))
     print('deferred marker      : %r' % DEFERRED_MARKER)
-    print('\nAUDIT vs canon (%s)' % ', '.join(CANON_FILES))
+    print('\nAUDIT vs canon (%s)' % ', '.join(canon_files()))
     print('  canon literals examined : %d' % len(_canon_literals()))
     print('  unknown (canon -> here) : %s'
           % ('NONE' if not unknown else ', '.join(repr(k) for k in sorted(unknown))))
