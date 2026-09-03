@@ -1,5 +1,33 @@
 # 06 · DEFECT-PREP — build a defect ticket that cannot be challenged, then stop at the button
 
+> # 🛑 GATE — READ THIS BEFORE ANY OF WHAT FOLLOWS (added 2026-09-03)
+>
+> **THE LANE DOES NOT PRODUCE TICKETS. IT PRODUCES RUNNABLE TESTS.** QA lead, **2026-09-01**, verbatim:
+> ***"You are never supposed to create defect, you are supposed to make the tests RUNNABLE."***
+> **EVERYTHING BELOW THIS BOX APPLIES ONLY IF THE QA LEAD HAS DIRECTED A TICKET.** Absent that
+> direction it is **reference, not a procedure to run** — and it is **not** the output of a
+> build-verification, VIU, test-execution or case-authoring pass.
+>
+> **WHAT A PASS DOES INSTEAD, when the build does not match the document** (Standing Rule 62, amendment
+> of 2026-09-01; `CLAUDE.md` §1): the **documented expectation STAYS** (Rule 57) · the case gains the
+> **three outcomes in plain words** so the tester runs it and marks it **Failed** · the marker stays
+> **`AUTOMATION: READY`** (an `EXPECT FAIL` marker needs a **live ticket** and there is none) · the
+> finding is **reported with its C-id** — **no ticket text, no ask, no candidate file.** Worked
+> examples, 2026-09-01: **C45068**, **C45060**, **C44996**.
+>
+> **WHY THIS BOX EXISTS.** On **2026-09-03** (commit `d1879102`) Standing Rules **51, 52, 53 and 94**
+> were retired into Rule 62 for exactly this reason: **their headlines still read as standing
+> instructions to build a ticket**, and a hurried session acts on the headline. **This skill was the
+> same trap in skill form** — it still holds the full ticket-prep procedure and Rule 62 names it as
+> **superseded for the lane's own output**, while its own opening pointed straight at the
+> admissibility gate. **The shape below still governs *if he asks for a ticket*; it never authorises
+> starting one.**
+>
+> **AND IF HE EVER SAYS "GO AHEAD", THAT IS PERMISSION TO LOOK AGAIN, NOT TO FILE** — three gates in
+> order: every candidate is **HELD**, on every suite · the go-ahead means **re-open the question** ·
+> **reproduce it on the build as it stands that day** — if it no longer reproduces, **CLOSE** the
+> candidate and say so; if it does, **ASK per candidate**. See **§A10-b** below, and Rule 62.
+
 > **🔴 READ [`00-COMMON-CORE.md`](00-COMMON-CORE.md) FIRST** — especially **§11.1, the active creation
 > hold**.
 >

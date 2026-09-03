@@ -208,10 +208,29 @@ Index: CLAUDE.md (rule index table). Other rule files: build/rules/RULES-01-20.m
     sixth literal:** the arithmetic gate is **READY + EXPECT-FAIL = total − HOLD**, and a new
     non-HOLD literal would silently break it; the marker convention already permits HOLD for *"a
     genuinely unobtainable thing"*, and a portal that does not exist on the branch qualifies — **so this
-    is not the barred tool-flag excuse.** **SCOPE IT FROM THE PRECONDITIONS, NEVER FROM THE WORD
-    "portal":** a case that verifies the portal feature's **ABSENCE** on the shop-app path **is** testable
-    on the branch and must not be parked. Full treatment + the worked example (spec S8-R8, the paid
-    banner): `build/skills/00-COMMON-CORE.md` §5.0-b.
+    is not the barred tool-flag excuse.**
+    **⇒ THE SCOPING TEST — THREE PARTS, CORRECTED 2026-09-03. RUN ALL THREE BEFORE PARKING ANYTHING.**
+    **(i) READ THE PRECONDITIONS *AND* THE STEPS.** If **either** field puts the tester on a
+    **customer-portal SCREEN**, the case carries the HOLD. **A precondition-only scan is not a scan** —
+    on 2026-09-03 **C18671, C18672, C18728 and C18729** were found with a precondition that never names
+    the portal and a sole STEP that opens the invoice **in the customer portal**; the old
+    preconditions-only test called all four branch-testable and would have walled the tester at step 1.
+    **(ii) NEVER SCOPE FROM THE WORD "portal" ALONE** (unchanged, still right): a case that verifies the
+    portal feature's **ABSENCE** on the shop-app path **is** testable on the branch and must not be
+    parked. **(iii) A PORTAL *SCREEN* IS NOT A PORTAL *DATA STATE*** — a case needing a record **created
+    via** the portal but asserting **only on shop-app screens** is a data-state case, and **Rule 14 says
+    a missing data state is SEEDED, never parked**. It takes the HOLD **only if the seeding route needs a
+    portal credential** (worked example **C45245**, which is **Vladimir Tomovic's and hands-off, Rule 38**
+    — cited for the test, not as work). **CANONICAL, and every part's evidence:**
+    `build/skills/00-COMMON-CORE.md` §5.0-b; the worked example of the marker itself (spec S8-R8, the
+    paid banner) is there too.
+    > **⛔ SUPERSEDED 2026-09-03 — the wording this rule carried from 2026-08-31 to 2026-09-02, kept
+    > visible and dated rather than deleted (Rules 32/33) so a session mid-task on the old text can see
+    > that it changed and why:** *"**SCOPE IT FROM THE PRECONDITIONS, NEVER FROM THE WORD "portal":** a
+    > case that verifies the portal feature's **ABSENCE** on the shop-app path **is** testable on the
+    > branch and must not be parked."* It read the **preconditions only**; part (i) above is the fix and
+    > part (iii) is new. Evidence: `build/testrail-writes/portal-candidates-2026-09-03/ASSESSMENT.md`,
+    > commit `ec34a835`.
     **BOTH STRINGS ARE FIXED, MACHINE-FINDABLE LITERALS — never reworded, never abbreviated, never
     re-punctuated, never re-cased, never "tidied" in one file in isolation.** Copy them byte-for-byte;
     if the QA lead ever renames one, it is renamed **everywhere in one pass** using the LOCATIONS list in
@@ -3213,3 +3232,59 @@ Index: CLAUDE.md (rule index table). Other rule files: build/rules/RULES-01-20.m
     and feature on every row and is answerable by a non-technical reader) · **68** (say what the blocker
     does not block) · **70** (action-first, plain language, table form) · **98** (the five tables, and
     the amendment requiring the case numbers).
+
+---
+
+100. **AN INJECTED OR REMEMBERED COPY OF A FILE IS NOT EVIDENCE ABOUT THAT FILE — MEASURE IT ON DISK
+    (all projects, permanent).**
+    **ORIGIN — TWICE IN ONE DAY, 2026-09-03.** The orchestrating session reported a repository fact
+    wrongly **twice in a single working day**, and in both cases the cause was identical: it read the
+    copy of `CLAUDE.md` that had been **injected into its context** (the auto-loaded project
+    instructions) and reported from that, instead of reading the file on disk.
+    - **INCIDENT 1 — "CLAUDE.md has re-inflated."** The session announced that the file had grown
+      back past its size guard. It had not. A worker measured `wc -c CLAUDE.md` against a freshly
+      fetched checkout and the file was the size the last commit had left it. The injected copy was
+      a snapshot taken **before** the consolidation commit landed.
+    - **INCIDENT 2 — "§2 points at a rules file that does not exist."** The session reported a broken
+      pointer in `CLAUDE.md` §2. The pointer resolved. `ls build/rules/` and a `git grep` for the
+      filename both found it immediately. Again the injected copy predated the rename that had
+      already been committed and pushed.
+    **THE COST.** **Two workers were dispatched on false premises** — spawns spent (Rule 76), a
+    correction round-trip each, and in both cases the "finding" was only caught because the worker
+    disobeyed the premise and measured. **A false report about the repository is more expensive than
+    no report**, because it is acted on.
+    **THE RULE — BEFORE REPORTING ANY FACT ABOUT A REPOSITORY FILE, MEASURE IT ON DISK.** This covers
+    **its size · its contents · whether a pointer in it resolves · whether a rule, a section, a
+    bullet or a literal exists in it · what it "used to say"**. A file's contents **as they appear in
+    your context, in a system prompt, in an auto-loaded instruction block, in a handoff, or in your
+    own memory of reading it earlier in the session** may be **STALE BY HOURS OR BY COMMITS** — other
+    sessions and other workers commit to this branch continuously, and **nothing re-injects the file
+    when they do.** The injected copy does not announce that it is old. It answers confidently and
+    wrongly, exactly like the stale checkout in Rule 97(A).
+    **THE MEASUREMENT, IN ORDER:**
+    ```sh
+    git fetch origin                          # Rule 97 step 0 — never measure from a stale checkout
+    git status -sb                            # am I actually current with origin?
+    wc -c <path>                              # size — never quote a remembered number
+    grep -n "<the exact string>" <path>       # existence/contents — never "I recall it says…"
+    ls <dir>/                                 # does the pointed-at file exist at all
+    git show origin/<branch>:<path> | grep -n "<what you need>"   # if you are not on that branch
+    git log --oneline -5 -- <path>            # what landed on it since your copy was taken
+    ```
+    **THE TELL.** If you are about to write *"CLAUDE.md says…"*, *"the file still contains…"*, *"that
+    pointer is broken"*, *"§1 is N bytes"* or *"rule N does not exist"* — and you have **not run a
+    command against the path in this turn** — **stop and run one.** The sentence is not yet a fact.
+    **THIS APPLIES HARDEST TO THE ORCHESTRATOR.** A coordinating session is the one most likely to be
+    working from an injected copy and least likely to have a shell open on the file, and it is the
+    one whose wrong belief costs the most, because it becomes a worker's task description. **A task
+    handed to a worker states the measurement and the command that produced it, not a recollection.**
+    **AND THE CONVERSE — A WORKER WHOSE MEASUREMENT CONTRADICTS ITS TASK PREMISE REPORTS THE
+    MEASUREMENT.** It does not quietly reconcile itself to the premise. Both 2026-09-03 incidents
+    were caught precisely this way, and that is the behaviour the rule protects.
+    **RELATED:** **12** (verified means OBSERVED, never inferred — a remembered file is inferred),
+    **88** (never bulk-read; script the measurement and read its summary, rather than re-reading the
+    file into context to check it), **97** (step 0 is `git fetch origin`; a stale checkout answers
+    confidently and wrongly — this rule is the same failure with the staleness inside the context
+    window instead of the working tree), **86** (verify from committed evidence, never from a
+    session's self-report — including your own earlier self), and **68** (a fact about your copy of
+    the file is never a fact about the file).

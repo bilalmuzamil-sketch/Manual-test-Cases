@@ -87,9 +87,15 @@
     session handoff you author or revise MUST carry a section numbered **§1a** — before its reading
     list, so the session hits it first — stating that **work in a lane almost never STOPS, it CHANGES
     SHAPE**, and carrying **INLINE and in full** the **outcome list**: feature not built ⇒ **Rule 69**
-    NOT-AVAILABLE-ON-BUILD marker (a finished case, not a blocker) · precondition needs the customer
-    portal ⇒ the **staging-only HOLD** marker, judged from the preconditions and never from the word
-    "portal" (`build/skills/00-COMMON-CORE.md` §5.0-b) · source ambiguous ⇒ **Rule 58 hold and ask** ·
+    NOT-AVAILABLE-ON-BUILD marker (a finished case, not a blocker) · the case puts the tester on a
+    **customer-portal SCREEN** ⇒ the **staging-only HOLD** marker, scoped by the **three-part test
+    corrected 2026-09-03** — **(i)** read the **preconditions AND the steps**, either can gate it and a
+    precondition-only scan is not a scan · **(ii)** never from the **word "portal"** alone, a case
+    verifying the portal's ABSENCE on the shop-app path is testable · **(iii)** a portal **screen** is
+    not a portal **data state**, and a data state is **seeded, not parked** (Rule 14) — HOLD only if the
+    seeding route needs a portal credential (**CANONICAL: `build/skills/00-COMMON-CORE.md` §5.0-b**;
+    ⛔ superseded 2026-09-03: *"judged from the preconditions and never from the word 'portal'"*, which
+    read the preconditions only) · source ambiguous ⇒ **Rule 58 hold and ask** ·
     data state missing ⇒ **Rule 14 SEED IT**, never NOT-VERIFIED for a data state · control not found
     ⇒ the **Rule 97 search drill + Rule 26 role reset** · genuinely your own unfinished work ⇒ say so
     plainly, **"MINE"**. Plus the two statements that make the list bind: **"blocked" is what is LEFT

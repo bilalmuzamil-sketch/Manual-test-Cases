@@ -637,8 +637,13 @@ AUTOMATION: HOLD - customer portal only exists on staging; this case cannot run 
 
 **HOLD, not a fifth literal:** the arithmetic gate is **READY + EXPECT-FAIL = total − HOLD** and a new
 literal would silently break it; the marker convention permits HOLD for *"a genuinely unobtainable
-thing"*, which a non-existent portal is — so this is **not** the barred tool-flag excuse. **The
-wording is provisional; the QA lead may rename it.**
+thing"*, which a non-existent portal is — so this is **not** the barred tool-flag excuse.
+**🔴 THE WORDING IS FINAL — CONFIRMED BY THE QA LEAD ON 2026-09-02** (`00-COMMON-CORE.md` §5.0-b). It
+is a **fixed, machine-findable literal**: never reworded, abbreviated, re-punctuated, re-cased or
+"tidied" in one file in isolation — copy it byte-for-byte. If he ever does rename it, it is renamed
+**everywhere in one pass** using §5.0-b's LOCATIONS list (repo copies **and** the live TestRail cases).
+⛔ **SUPERSEDED 2026-09-03, kept dated:** *"The wording is provisional; the QA lead may rename it."* —
+that note was written on 2026-08-31 and was already spent by his 2026-09-02 confirmation.
 
 **⇒ THE SCOPING TEST — THREE PARTS, CORRECTED 2026-09-03. RUN ALL THREE BEFORE PARKING ANYTHING.**
 Full text and the evidence: **`00-COMMON-CORE.md` §5.0-b(2)**.
