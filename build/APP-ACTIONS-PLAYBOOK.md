@@ -3705,3 +3705,16 @@ through the obvious UI/API, work the ladder until it is:
 5. Switch UI↔API whichever works; seed the whole chain yourself (customer → asset → import rows).
 Only after genuinely exhausting the ladder AND writing down every attempt is something a real blocker,
 and even then keep looking. A "data-team/support tool" is still an endpoint — find it and call it.
+
+## §AA — UI-correct + API-only anomaly => tell the QA lead, NOT the ticket (rule, 2026-09-03)
+USER DIRECTIVE (2026-09-03, verbatim): *"If something is running as expected through the UI in that
+case you can tell me that through API a problem is happening but no need to tell in ticket the same
+thing."*
+When the feature behaves **correctly through the UI** (the path a real user takes) and the only problem
+appears through a **raw API call the UI never makes** (e.g. an incomplete/hand-crafted payload, an
+endpoint not reachable from any screen), do NOT put that API-only anomaly in the Jira ticket/QA comment.
+Report it to the QA lead in chat + keep it in the internal findings doc, but the ticket reflects the
+**user-facing** result only. Ties to Rule 24 (FE-blocks/BE-allows = PASS), Rule 51 (API tickets are
+asked separately), Rule 63 and Rule 66. Canonical example: SV-9289 edit-VIN path — the UI returns 201 and
+merges correctly; only a minimal API payload returned 500. The 500 was recorded in DISCOVERY.md and told
+to the QA lead, and REMOVED from the Jira comment.
