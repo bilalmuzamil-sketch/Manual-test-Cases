@@ -56,3 +56,10 @@ Part Sales render through the IDENTICAL endpoint `GET /api/work-orders/{id}/part
 
 ## Verdict
 Core behavior of SV-6295 PASSES: each receive = new row; vendor/qty/status kept per row; vendor-change-on-awaiting affects only future rows; no merge after full receipt; returned parts never shown as a Returned row (status stays Received, qty reduced); invoiced/paid state renders correctly; the dev's return-qty prefill fix works.
+
+## UPDATE 2026-09-03 (b) — Part Sales DRIVEN LIVE end-to-end (user seeded PS f2a5fa6f / P6295-249)
+Correct PS detail route learned: `/parts/part-sale/{id}/part-requests` (I had been using the dead `/part-sales/{id}`). PS creation/order/invoice recipe saved to APP-ACTIONS-PLAYBOOK.md §X.
+- **T5 PASS (live UI on the PS)** — part "6295" qty 10 ordered from vendor "5 Star Truck Repair"; received 4 → split into Received 4 + Awaiting 6; received 5 → Received 4 + Received 5 + Awaiting 1; received 1 → three Received rows (4+5+1), no merge. Same separate-row behaviour as the WO. Evidence PS-01/PS-02.
+- **T7 PASS — the developer's EXACT repro** — received 4+5+1 (=10) → returned 3 (from the qty-5 row → 2) → effective 7 (before invoicing: 3 Received rows = 1+2+4 = 7, no Returned row; PS-03) → set status approved→complete → **invoiced** (POST /api/invoices/create 201). After invoicing the Parts tab shows **Quantity 1+2+4 = 7, every row "Received", NO "Returned" row** (PS-04 + annotated PS-annotated-invoiced-qty7-received.png). This is exactly the developer's Expected Result (Qty stays 7, status stays Received). The reported bug (Qty 4 / "Returned" after invoicing) is FIXED. Financial Info Parts = $280 (7 × $40) corroborates.
+
+Tally: T1–T5 + T7 PASS with live UI evidence (WO + PS). T6 (edit vendor on a vendor invoice reflects on the row only if not Invoiced/Paid) still to drive.

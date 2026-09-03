@@ -3624,3 +3624,44 @@ different payload than you do. Split it explicitly:
 - **Then SAY WHICH WAS WHICH in the report** (CLAUDE.md deliverable convention) — a reader who assumes
   everything was clicked, and a reader who assumes everything was scripted, both draw wrong
   conclusions about coverage.
+
+## §X — Part Sales: create, add part, order, receive, return, invoice (proven 2026-09-03, SV-6295)
+**WHY THIS IS HERE (lesson — do not repeat):** I burned a lot of time "failing to seed a Part Sale."
+Two root causes, both simple: **(1) WRONG DETAIL ROUTE.** A Part Sale opens at
+`/parts/part-sale/{id}/part-requests` — NOT `/part-sales/{id}` (that path renders the app's error
+page: "in the shop indefinitely" / "totaled"). The part-sales LIST is `/part-sales` but the DETAIL
+lives under `/parts/part-sale/{id}/...`. **(2) EMPTY API-CREATED PS HAS NO LINE.**
+`POST /api/part-sales {company_id}` → `{data:[{id}]}` creates an EMPTY Part Sale with **no Default
+line**, so `POST /api/work-orders/part/make-request` (which requires a `line`) fails. The Default
+line is created by the UI **Add Part** flow. So either drive the UI to add the first part, or accept
+that a fresh API PS needs its line seeded first.
+
+**UI CREATE FLOW (simplest — user-confirmed):** Parts → Part Sales → New Part Sale → pick a Customer
+from the dropdown → **Save** → the Add-Part modal opens automatically (or click **Add Part**) → fill
+Part Number, Description, Quantity, keep **Source = vendor**, pick the **Vendor**, fill Cost (+ Core
+if needed), blur, **Save & Close** → the part shows status **Quoted** → click the green **Authorize**
+button → the per-part **Order** button appears → Order → part becomes **Awaiting** (ordered).
+
+**ENDPOINTS (all proven live):**
+- Part Sale detail data (same as WO): `GET /api/work-orders/{psId}/parts/list-requests-by-line`.
+- Authorize the part for ordering (green Authorize btn): `POST /api/work-orders/lines/change-status
+  {line_id, status:"authorized", workOrderId:psId}` → part Quoted → **Auth to order**.
+- Order the part (per-part "Order" btn): `POST /api/work-orders/part/perform-request-status-action
+  {part_request_id, workOrderId:psId, sellPrice}` → creates the PO, part → **Awaiting** (gets order_id).
+- Receive (same as WO): the per-AWAITING-row **Receive** button opens
+  `/order/{orderId}?receive=1&workOrderId={psId}&returnTo=PartSale`; set `input_qty_{orderItemId}`
+  + `input_invoice_{orderId}`, click `button_receive_po_{orderId}` → `POST
+  /api/orders/receive-requested-parts`. Each partial receive splits off a new **Received** row +
+  keeps the **Awaiting** remainder (received rows carry a `work_order_part_id`).
+- Return (same as WO): `POST /api/work-orders/part/make-return-request {partId=work_order_part_id,
+  quantity, returnReason}`. Reduces that received row's qty; **no "Returned" row** is created.
+- Invoice a Part Sale: it must be **complete** first. `invoiced` CANNOT be set manually
+  ("Work order status cannot be changed manually to invoiced"), and `authorized` is NOT a valid
+  status name — use **`approved`**. Sequence: `POST /api/work-orders/change-status {id:psId,
+  status:"approved"}` → `{id:psId, status:"complete"}` → `POST /api/invoices/create
+  {work_order_id:psId}` (201). PS status → **invoiced**.
+- Per-part context menu on the PS parts tab: `button_part_request_menu_{partRequestId}`; nav menu
+  `button_part_sale_nav_bar_menu` → "Set status" (submenu shows target statuses; gated "Auth
+  required" until the PS is approved).
+- Browser hydration for the PS UI is the same boot2 pattern (quick-login → capture fresh PHPSESSID
+  from Set-Cookie → seed cookies + localStorage user/fe_permissions_wrapper/token → navigate).
