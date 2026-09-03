@@ -1,0 +1,133 @@
+{
+ "at": "2026-09-03T02:40:52.127Z",
+ "before": [
+  {
+   "type": "invoice",
+   "amount": 1062.26,
+   "balance": 1062.26,
+   "status": "Unpaid",
+   "num": "S3-13180"
+  },
+  {
+   "type": "credit",
+   "amount": -500,
+   "balance": -500,
+   "status": "Unapplied",
+   "num": "CM-4189"
+  },
+  {
+   "type": "credit",
+   "amount": -150,
+   "balance": -150,
+   "status": "Unapplied",
+   "num": "CM-4192"
+  },
+  {
+   "type": "credit",
+   "amount": -300,
+   "balance": -300,
+   "status": "Unapplied",
+   "num": "CM-4191"
+  },
+  {
+   "type": "credit",
+   "amount": -200,
+   "balance": -200,
+   "status": "Unapplied",
+   "num": "CM-4190"
+  }
+ ],
+ "reverse": {
+  "tips": {
+   "0": [
+    "Print credit memo"
+   ],
+   "1": [
+    "Cash Out"
+   ],
+   "2": [
+    "Reverse"
+   ]
+  },
+  "fired": [
+   "200 POST /api/credit-memos/6a2d8c69-7406-4f91-96fe-811c834e26f3/void"
+  ],
+  "dialog": {
+   "text": "Reverse CreditThis will reverse the credit. Are you sure you want to proceed? Reverse Cancel",
+   "buttons": [
+    "Reverse",
+    "Cancel"
+   ],
+   "inputs": []
+  }
+ },
+ "cashout": {
+  "tips": {
+   "0": [
+    "Print credit memo"
+   ],
+   "1": [
+    "Cash Out"
+   ],
+   "2": [
+    "Reverse"
+   ]
+  },
+  "fired": [],
+  "dialog": {
+   "text": "Cash Out CreditDate$AmountPayment methodReasonCancelCash Out",
+   "buttons": [
+    "Cancel",
+    "Cash Out"
+   ],
+   "inputs": [
+    {
+     "t": "text",
+     "v": "09/02/2026"
+    },
+    {
+     "t": "text",
+     "v": "150.00"
+    },
+    {
+     "t": "text",
+     "v": ""
+    },
+    {
+     "t": "textarea",
+     "v": ""
+    }
+   ]
+  }
+ },
+ "after": [
+  {
+   "type": "invoice",
+   "amount": 1062.26,
+   "balance": 1062.26,
+   "status": "Unpaid",
+   "num": "S3-13180"
+  },
+  {
+   "type": "credit",
+   "amount": -500,
+   "balance": -500,
+   "status": "Unapplied",
+   "num": "CM-4189"
+  },
+  {
+   "type": "credit",
+   "amount": -150,
+   "balance": -150,
+   "status": "Unapplied",
+   "num": "CM-4192"
+  },
+  {
+   "type": "credit",
+   "amount": -200,
+   "balance": -200,
+   "status": "Unapplied",
+   "num": "CM-4190"
+  }
+ ]
+}

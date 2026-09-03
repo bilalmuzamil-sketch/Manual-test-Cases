@@ -1,0 +1,50 @@
+{
+ "at": "2026-09-03T02:48:17.384Z",
+ "before": [
+  {
+   "id": "ffa99c0d-f436-4bc0-9988-9ad88269fa36",
+   "type": "invoice",
+   "amount": 1062.26,
+   "balance": 1062.26,
+   "status": "Unpaid",
+   "num": "S3-13180"
+  },
+  {
+   "id": "3ad04480-34e3-4c3b-8de7-9e09d0d5da29",
+   "type": "credit",
+   "amount": -500,
+   "balance": -500,
+   "status": "Unapplied",
+   "num": "CM-4189"
+  },
+  {
+   "id": "ea96123d-e87c-4aa8-9b42-8a566ddf2839",
+   "type": "credit",
+   "amount": -200,
+   "balance": -200,
+   "status": "Unapplied",
+   "num": "CM-4190"
+  }
+ ],
+ "fired": [
+  "201 POST /api/customer-account/create-customer-payment"
+ ],
+ "after": [
+  {
+   "id": "3ad04480-34e3-4c3b-8de7-9e09d0d5da29",
+   "type": "credit",
+   "amount": -500,
+   "balance": -500,
+   "status": "Unapplied",
+   "num": "CM-4189"
+  },
+  {
+   "id": "ea96123d-e87c-4aa8-9b42-8a566ddf2839",
+   "type": "credit",
+   "amount": -200,
+   "balance": -200,
+   "status": "Unapplied",
+   "num": "CM-4190"
+  }
+ ]
+}
