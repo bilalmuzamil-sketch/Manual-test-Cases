@@ -95,6 +95,12 @@ Sales Representative 0767df32 / Technician 10fdbeaa / Time Clock User 36462edb
   `build/custom-roles-run/sv7388-done-tickets/SV-8165.md:101` (committed earlier by the ticket-ingestion
   task, commit ee7b7e9 — NOT this task). A live credential is in the repo. Recommend redacting it across
   the ingested tickets. Left untouched by this task (out of scope; verbatim ticket content).
+  **⛔ ANSWERED AND CLOSED 2026-09-03 — the flag above is kept as written for the record, but it is NO
+  LONGER OPEN and must not be re-raised. QA lead, verbatim: _"Prod is a test account no problem sharing
+  its password in public repo."_ So neither redaction nor rotation is owed, and the ingested ticket stays
+  as written. Scoped to that one production TEST account only — Rule 82 is unchanged for every other
+  credential, which stays `/tmp`-only and is never committed. Full record:
+  `build/PROD-VS-STAGING-COMPARE-METHOD.md` §1.**
 
 ## RESIDUAL CAPS — precise status + blockers (as of commit 93594f7, matrix 14 caps x 11 roles = 95%)
 Tractable (observable with light seeding; partially explored):
