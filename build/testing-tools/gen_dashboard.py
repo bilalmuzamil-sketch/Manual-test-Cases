@@ -13,6 +13,8 @@ Usage: python3 build/testing-tools/gen_dashboard.py [out.html]
 import urllib.request, json, base64, ssl, os, sys, datetime, html
 
 HERE = os.path.dirname(os.path.abspath(__file__))
+sys.path.insert(0, HERE)
+import testrail_statuses as TS
 CFG = json.load(open(os.path.join(HERE, "testrail_runs.json")))
 MILESTONE_ID = 3
 DUE = datetime.date(2026, 9, 21)
@@ -54,19 +56,34 @@ def uname(uid):
     if not uid: return "Unassigned"
     return USERS.get(uid, f"User {uid}")
 
-# TestRail default status ids: 1 passed, 2 blocked, 3 untested, 4 retest, 5 failed
-STATUS = [("passed", "Passed"), ("failed", "Failed"), ("blocked", "Blocked"),
-          ("retest", "Retest"), ("untested", "Untested")]
-SID = {1: "passed", 2: "blocked", 3: "untested", 4: "retest", 5: "failed"}
+# ---------------------------------------------------------------------------------------
+# STATUSES. The id -> bucket map is NOT written here: it is declared once in
+# `testrail_statuses.py` and audited against a live `get_statuses` on every run (see
+# `collect()`). Until 2026-09-03 this file carried `SID = {1..5}` and read it with
+# `SID.get(status_id, "untested")`, so any result carrying a TestRail CUSTOM status (id
+# 6-12) was silently counted as Untested — inflating "remaining", deflating "Executed %",
+# with no error. `TS.bucket()` has no default and raises instead.
+#
+# DISPLAY_ORDER is presentation only. STATUS is derived from it plus anything else the
+# module declares, so a newly declared bucket cannot be dropped from the bars by omission.
+# ---------------------------------------------------------------------------------------
+DISPLAY_ORDER = ("passed", "failed", "blocked", "retest", "untested")
+STATUS = [(k, TS.LABELS[k]) for k in DISPLAY_ORDER if k in TS.LABELS]
+STATUS += [(k, TS.LABELS[k]) for k in TS.BUCKETS if k not in DISPLAY_ORDER]
 
 def collect():
+    # Prove the declared status map still matches the instance BEFORE counting anything.
+    # A stale map stops the run; it never produces a figure the QA lead should not trust.
+    TS.assert_current(api("get_statuses"))
     ms = api(f"get_milestone/{MILESTONE_ID}")
     runs = []
     for slug, info in CFG["runs"].items():
         r = api(f"get_run/{info['run_id']}")
-        counts = {"passed": r["passed_count"], "failed": r["failed_count"],
-                  "blocked": r["blocked_count"], "retest": r["retest_count"],
-                  "untested": r["untested_count"]}
+        # Per-status run counts, keyed off the declared statuses rather than five literals,
+        # so a custom status's `custom_statusN_count` is included in the total instead of
+        # vanishing from it.
+        counts = {TS.SID[sid]: r.get(TS.run_count_field(sid), 0) or 0
+                  for sid, _b, _l, _s, _u in TS.DECLARED}
         total = sum(counts.values())
         tests = paged(f"get_tests/{info['run_id']}", "tests")
         # per-engineer status buckets for this run
@@ -74,7 +91,7 @@ def collect():
         for t in tests:
             uid = t.get("assignedto_id")
             b = by_eng.setdefault(uid, {k: 0 for k, _ in STATUS})
-            b[SID.get(t.get("status_id"), "untested")] += 1
+            b[TS.bucket(t.get("status_id"))] += 1
         owner = r.get("assignedto_id")
         runs.append({"slug": slug, "name": info["name"], "run_id": info["run_id"],
                      "url": f"{CFG['base_url']}/index.php?/runs/view/{info['run_id']}",
@@ -94,10 +111,20 @@ def collect():
             for x in rl:
                 if x.get("status_id"):
                     activity.append({"run": run["name"], "who": uname(x.get("created_by")),
-                                     "status": SID.get(x["status_id"], "untested"),
+                                     "status": TS.bucket(x["status_id"]),
                                      "on": x.get("created_on", 0), "comment": x.get("comment") or ""})
-        except Exception:
-            pass
+        except TS.UnknownStatusId:
+            # NEVER swallowed. This except-block used to be a bare `except Exception: pass`,
+            # which would have re-created the exact silent degradation `TS.bucket` exists to
+            # stop — the loud failure would have been caught and the activity feed would have
+            # quietly gone short. The activity feed is optional; a wrong number is not.
+            raise
+        except Exception as exc:                       # noqa: BLE001 - feed is best-effort
+            # The feed is decorative and its endpoint is flaky; a fetch failure must not take
+            # the dashboard down. It is REPORTED, not swallowed, so a run that lost the feed
+            # says so instead of looking complete.
+            print(f"  ! recent-activity fetch failed for run {run['run_id']}: "
+                  f"{type(exc).__name__}: {exc}", file=sys.stderr)
     activity.sort(key=lambda a: a["on"], reverse=True)
     return ms, runs, eng, activity[:15]
 
@@ -105,6 +132,15 @@ def collect():
 CLR = {"passed": "#2f8f6b", "failed": "#c0453b", "blocked": "#c98a1a",
        "retest": "#7c6bd6", "untested": "#8a94a6"}
 LABEL = dict(STATUS)
+
+# A bucket with no colour would KeyError deep inside rendering, after the API work is done
+# and with no hint of what to add. Say it here, once, naming the fix.
+_uncoloured = [k for k, _ in STATUS if k not in CLR]
+if _uncoloured:
+    raise TS.UnknownStatusId(
+        "these statuses are declared in testrail_statuses.py but have no colour in "
+        "gen_dashboard.py's CLR: %s. Add one hex colour per bucket; do not drop the bucket "
+        "from the bars, which would under-report it." % ", ".join(repr(k) for k in _uncoloured))
 
 def esc(s): return html.escape(str(s))
 
@@ -122,11 +158,11 @@ def stacked_bar(counts, total, h=14):
 
 def pct_done(counts, total):
     if total == 0: return 0
-    return round((total - counts["untested"]) / total * 100)
+    return round((total - counts[TS.UNTESTED]) / total * 100)
 
 def burndown_svg(runs):
     total = sum(r["total"] for r in runs)
-    remaining = sum(r["counts"]["untested"] for r in runs)
+    remaining = sum(r["counts"][TS.UNTESTED] for r in runs)
     days = (DUE - START).days
     W, H, pad = 720, 200, 34
     x0, y0, x1, y1 = pad, 12, W - 12, H - pad
@@ -150,7 +186,7 @@ def burndown_svg(runs):
 def render(ms, runs, eng, activity):
     total = sum(r["total"] for r in runs)
     agg = {k: sum(r["counts"][k] for r in runs) for k, _ in STATUS}
-    executed = total - agg["untested"]
+    executed = total - agg[TS.UNTESTED]
     exec_pct = round(executed / total * 100) if total else 0
     assigned = sum(n for uid, b in eng.items() if uid for n in b.values())
     assigned_pct = round(assigned / total * 100) if total else 0
@@ -192,7 +228,7 @@ def render(ms, runs, eng, activity):
     for uid, b in ordered:
         tot = sum(b.values())
         if tot == 0: continue
-        done = tot - b["untested"]
+        done = tot - b[TS.UNTESTED]
         eng_rows += (f'<div class="erow"><div class="ename">{esc(uname(uid))}'
                      f'<span class="ect">{done}/{tot}</span></div>{stacked_bar(b, tot, 12)}</div>')
     if not eng_rows:
