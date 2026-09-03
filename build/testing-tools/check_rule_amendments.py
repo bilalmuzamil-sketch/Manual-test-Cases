@@ -68,8 +68,22 @@ seen_at = {}
 dupes = []
 for f in RULEFILES:
     lines = read(f).split('\n')
+    # 🛑 A RULE NUMBER HAS NO DIGIT CEILING. This used to read `\d{1,3}`, a silent 999 limit in
+    # the ONE regex the whole corpus is derived from - RULE_MAX is the max of what this line
+    # parses. MEASURED consequence of the old form, on a synthetic corpus of rules 1..100 plus
+    # rule 1000 (2026-09-03): "1000. **TITLE**" does not match at all, so rule 1000 never
+    # enters `bodies`, RULE_MAX stays at 100, and the sweep prints
+    #       rule bodies parsed 1..100: 100   missing: NONE
+    # It does NOT report a false gap - it reports a CLEAN, COMPLETE corpus while having
+    # silently skipped the newest rule, which is worse: exactly "a completeness check that
+    # passes by ignoring the newest rule", the same failure class as the three-literal marker
+    # gate and the 2026-08-21 CLAUDE.md truncation. With `\d+` the same corpus instead stops
+    # with CORPUS CHECK FAILED (rules 101..999 genuinely have no bodies) - loud, and correct.
+    # ANCHORING: the width is unbounded but the SHAPE is not - `^`, then digits, then a literal
+    # '. ' and the '**' that opens every rule headline. A date, a version string or a bare
+    # number cannot satisfy that, so widening the count adds no false positives.
     st = [(int(m.group(1)), i) for i, l in enumerate(lines)
-          for m in [re.match(r'^(\d{1,3})\.\s+\*\*', l)] if m]
+          for m in [re.match(r'^(\d+)\.\s+\*\*', l)] if m]
     for k, (n, i) in enumerate(st):
         end = st[k + 1][1] if k + 1 < len(st) else len(lines)
         raw = '\n'.join(lines[i:end])
@@ -178,7 +192,11 @@ for b in bullets:
 
 index_rows = {}
 for i in range(sec[2], sec[3]):
-    m = re.match(r'^\|\s*\*\*(\d{1,3})\*\*\s*\|\s*(.*?)\s*\|\s*$', cml[i])
+    # Same widening as the rule-body parser above, for the same reason: at rule 1000 a
+    # `\d{1,3}` here drops the §2 index row silently, so the rule's index-row atoms are never
+    # compared against its body and the rule reads as clean. Anchored by the table-cell shape
+    # (line start, pipe, bold markers), which no date or version string can satisfy.
+    m = re.match(r'^\|\s*\*\*(\d+)\*\*\s*\|\s*(.*?)\s*\|\s*$', cml[i])
     if m:
         index_rows[int(m.group(1))] = m.group(2)
 # §2 trailing narrative paragraphs (after the tables)

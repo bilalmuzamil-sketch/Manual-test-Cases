@@ -52,6 +52,11 @@ import urllib.request
 import urllib.error
 import base64
 
+# Resolve sibling modules from THIS FILE's directory, not the caller's cwd, so the marker
+# declaration is findable however this script is launched (same reason as verify_suite.py).
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+from automation_markers import MARKERS, assert_current, StaleMarkerList
+
 # --------------------------------------------------------------------------- #
 # CREDENTIALS -- from /tmp or the environment. NEVER hardcoded.               #
 # --------------------------------------------------------------------------- #
@@ -106,8 +111,35 @@ def tr_get(path, creds):
 # THE CHECKS                                                                  #
 # --------------------------------------------------------------------------- #
 
-MARKER_RE = re.compile(r"AUTOMATION:\s*(READY\s*-\s*EXPECT\s*FAIL\s*\([^)]*\)"
-                       r"|READY|HOLD\b[^\n<]*)", re.I)
+# 🛑 THE SANCTIONED MARKERS ARE IMPORTED, NEVER RE-TYPED HERE — and the match is
+# CASE-SENSITIVE. Until 2026-09-03 this line was a SECOND, independent, hard-coded marker
+# list carrying only READY / READY-EXPECT-FAIL / HOLD, under `re.I`. It got both halves
+# wrong, and both were live:
+#   * it REJECTED `AUTOMATION: Not available on Build to test Yet - Last checked <M/D/YYYY>`,
+#     the Rule-69 fourth sanctioned form, so EVERY not-built case failed check 3 with
+#     "3 no-automation-marker". That is the identical bug that false-flagged four correct
+#     Invoice cases (C44937/C44938/C44939/C44942 — build/skills/00-COMMON-CORE.md:2378).
+#   * `re.I` made it ACCEPT the mis-cased `AUTOMATION: Ready` — the exact literal that makes
+#     a case invisible to the arithmetic gate, and which check 5 of verify_suite.py exists to
+#     reject. Two gates in one repo disagreeing about the same string is worse than either.
+# `automation_markers` declares the set ONCE and audits it against canon both ways, so a
+# newly sanctioned form is either picked up here automatically or the run stops and says the
+# list is stale. Never re-type a literal below; add it there.
+#
+# The trailing `[^\n<]*` consumes the rest of the marker LINE (the HOLD reason, the
+# EXPECT-FAIL ticket, the Rule-69 date) exactly as `classify()` treats "prefix + space +
+# anything". It stops at `<` and at a newline, so genuinely trailing content after the
+# marker is still caught by the marker-not-last check below.
+# Longest prefix first, so 'AUTOMATION: READY - EXPECT FAIL' is never eaten by the shorter
+# 'AUTOMATION: READY'. (MARKERS is already ordered that way; sorting is belt-and-braces so a
+# future reordering there cannot silently mis-classify here.)
+MARKER_RE = re.compile("(?:%s)[^\n<]*" % "|".join(
+    re.escape(p) for p in sorted(MARKERS, key=len, reverse=True)))
+
+# Anything that LOOKS like a marker line, however cased. Used only to name the offending
+# literal when no sanctioned form matched, so a mis-cased marker is reported as what it is
+# ("unsanctioned") rather than as a missing marker.
+ANY_MARKER_RE = re.compile(r"AUTOMATION:\s*[^\n<]*", re.I)
 
 # "This is the expected behaviour as per ..." -- the Rule-54 provenance sentence.
 PROVENANCE_RE = re.compile(r"This is the expected behaviou?r as per", re.I)
@@ -195,7 +227,16 @@ def check_case(case, expect_no_build=False):
     # --- check 3: exactly one automation marker, LAST ---------------------- #
     markers = MARKER_RE.findall(expected)
     if len(markers) == 0:
-        fails.append("3 no-automation-marker")
+        # Distinguish "no marker at all" from "a marker in a form nobody sanctioned" — the
+        # second is usually a mis-casing (`AUTOMATION: Ready`), and reporting it as "missing"
+        # sends the reader looking for the wrong thing.
+        stray = ANY_MARKER_RE.search(expected)
+        if stray:
+            fails.append("3 unsanctioned-automation-marker %r (sanctioned prefixes, "
+                         "case-sensitive: %s)"
+                         % (stray.group(0).strip(), ", ".join(repr(m) for m in MARKERS)))
+        else:
+            fails.append("3 no-automation-marker")
     elif len(markers) > 1:
         fails.append(f"3 duplicate-automation-marker (x{len(markers)})")
     else:
@@ -259,6 +300,19 @@ def check_case(case, expect_no_build=False):
 # SELFTEST -- proves the checks fire, so a clean run means something          #
 # --------------------------------------------------------------------------- #
 
+def _marked(marker, build_sentence=True):
+    """A valid Expected Results body carrying exactly `marker` as its last line.
+
+    Everything except the marker is held constant, so a probe that fails can only have
+    failed on the marker.
+    """
+    build = (" Last checked against build v3.4.2-280ca5a on 8/6/2026."
+             if build_sentence else "")
+    return ("1. You see five filter buttons.<br><br>"
+            "This is the expected behaviour as per epic SV-8785 and the Filters "
+            f"specification version 19 (S1-R1).{build}<br><br>{marker}")
+
+
 def selftest():
     good = {
         "id": 1, "title": "Filter bar shows the five filter buttons",
@@ -293,15 +347,66 @@ def selftest():
         ("endpoint jargon fails",
          {**good, "custom_steps": "1. Call POST /api/work-orders/create."}, False, 1),
         ("no-build mode flags a build marker", good, True, 1),
+
+        # --- EVERY SANCTIONED MARKER FORM IS ACCEPTED (rule 61 + rule 69) -------------- #
+        # Added 2026-09-03. The gate carried its own three-literal marker list until then,
+        # so these five probes are the regression test for the failure class that
+        # false-flagged four correct Invoice cases: the accept-list must be the DECLARED
+        # one, and every form in it must actually pass.
+        ("marker form: READY passes", good, False, 0),
+        ("marker form: READY - EXPECT FAIL passes",
+         {**good, "custom_expected": _marked(
+             "AUTOMATION: READY - EXPECT FAIL (SV-8582)")}, False, 0),
+        ("marker form: HOLD passes",
+         {**good, "custom_expected": _marked(
+             "AUTOMATION: HOLD - the panel is not in the build")}, False, 0),
+        ("marker form: staging-only HOLD passes (00-COMMON-CORE 5.0-b)",
+         {**good, "custom_expected": _marked(
+             "AUTOMATION: HOLD - customer portal only exists on staging; this case "
+             "cannot run on the QA branch")}, False, 0),
+        ("marker form: Rule-69 NOT-BUILT passes",
+         {**good, "custom_expected": _marked(
+             "AUTOMATION: Not available on Build to test Yet - Last checked 8/5/2026",
+             build_sentence=False)}, False, 0),
+
+        # --- AND THE MIS-CASED ONE IS REJECTED ---------------------------------------- #
+        # `AUTOMATION: Ready` is the literal that "made a case invisible to the arithmetic
+        # gate"; verify_suite.py check 5 rejects it, so this gate must too. Under the old
+        # `re.I` marker regex this case PASSED here — two gates disagreeing about one string.
+        ("mis-cased 'AUTOMATION: Ready' is rejected",
+         {**good, "custom_expected": _marked("AUTOMATION: Ready")}, False, 1,
+         "unsanctioned-automation-marker"),
+        ("mis-cased 'AUTOMATION: ready' is rejected",
+         {**good, "custom_expected": _marked("AUTOMATION: ready")}, False, 1,
+         "unsanctioned-automation-marker"),
     ]
     ok = True
     print("SELFTEST -- proving each check actually fires\n")
-    for label, case, no_build, want_min in cases:
+
+    # The accept-list is only as good as its audit: prove it still matches canon before
+    # reporting that markers were judged correctly.
+    try:
+        n_forms = assert_current()
+        print(f"  [PASS] marker list current -- {n_forms} sanctioned forms, audited "
+              f"against canon both ways\n")
+    except StaleMarkerList as exc:
+        ok = False
+        print("  [FAIL] marker list is STALE -- markers cannot be judged:\n"
+              + "\n".join("         " + l for l in str(exc).split("\n")[:6]) + "\n")
+
+    for entry in cases:
+        label, case, no_build, want_min = entry[:4]
+        want_sub = entry[4] if len(entry) > 4 else None
         fails, _ = check_case(case, expect_no_build=no_build)
         got = len(fails)
         passed = (got == 0) if want_min == 0 else (got >= want_min)
-        print(f"  [{'PASS' if passed else 'FAIL'}] {label}"
-              f"{'' if passed else f' -- expected>={want_min} got {got}'}")
+        if passed and want_sub:
+            passed = any(want_sub in f for f in fails)
+        why = ""
+        if not passed:
+            why = (f" -- expected>={want_min} got {got}" if not want_sub
+                   else f" -- expected a failure naming {want_sub!r}, got {fails}")
+        print(f"  [{'PASS' if passed else 'FAIL'}] {label}{why}")
         if not passed:
             ok = False
             print(f"          {fails}")
@@ -334,6 +439,17 @@ def main():
     if not a.cases and not a.section:
         ap.print_help()
         return 2
+
+    # PROVE THE MARKER LIST IS CURRENT BEFORE JUDGING ANY CASE AGAINST IT, and before the
+    # first network call, so a stale list stops the run instead of producing check-3
+    # verdicts nobody should trust. Raises StaleMarkerList, loudly, saying what to add.
+    try:
+        n_forms = assert_current()
+    except StaleMarkerList as exc:
+        sys.stderr.write(str(exc) + "\n")
+        return 2
+    print(f"marker list: {n_forms} sanctioned forms, audited against canon "
+          f"(declared once in automation_markers.py)")
 
     creds = load_creds()
     if not creds[0]:
