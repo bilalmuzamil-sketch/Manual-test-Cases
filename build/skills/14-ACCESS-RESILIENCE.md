@@ -307,6 +307,15 @@ seconds and needs nothing from a human.
   passes staging's **Cloudflare** edge (the QA-branch "`cf_clearance` is inert" finding does **not**
   transfer). Hand-hydration therefore remains the recorded **staging** fallback until the click route
   is proven there. See `build/BLOCKED-shopview-app-session.md` and `build/APP-ACTIONS-PLAYBOOK.md` §A.
+  **⚖️ 2026-09-03 — THE FIRST OF THOSE TWO IS SETTLED / NOT BEING CHASED, by the QA lead's decision.**
+  From a cookieless container that day **neither the panel nor the email+password form rendered** and the
+  build marker had moved (`v26.35.6-49e216a` → `v26.35.8-414f13c`). **He ruled: leave it** — **a DEV MODE
+  panel behind a login is not a way in**, so which reading is true does not change the access position.
+  **Both readings stay on the record:** his screenshot is **not** retracted and we do **not** assert
+  staging has no panel — **nobody has looked while signed in.** **Do not spend a probe on it.** The
+  Cloudflare question stays genuinely open. Staging access itself is **decided and per-need**: the QA lead
+  drops a live `sv_sso_session` into `/tmp` when a **named** piece of work needs staging — **a cookie,
+  never a password.**
 - Quasar UI: click by **element-centre coordinate** (`page.mouse.click`) rather than Playwright
   actionability clicks, which time out on backdrops. If a control is below the fold,
   `scrollIntoViewIfNeeded()` **then** click — a coordinate click on an off-screen control lands on

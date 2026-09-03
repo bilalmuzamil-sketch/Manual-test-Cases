@@ -10,7 +10,7 @@ That is no longer true.** It was written before the QA-branch login route existe
 | Surface | Status as at 2026-09-02 |
 |---|---|
 | **`*.qa.shopview.com` QA branches** | 🟢 **NOT BLOCKED.** A proven, repeatable route exists and ran clean twice today. |
-| **`app.staging.shopview.com`** | 🔴 **STILL BLOCKED.** No valid `sv_sso_session` is held; stored cookies 401. |
+| **`app.staging.shopview.com`** | 🔴 **STILL BLOCKED.** No valid `sv_sso_session` is held; stored cookies 401. **✅ BUT THE UNBLOCK IS NOW DECIDED (QA lead, 2026-09-03): PER-NEED, HE DROPS A LIVE COOKIE INTO `/tmp` WHEN A NAMED PIECE OF WORK NEEDS STAGING.** The ask is a **cookie, never a password** — the password route was tested that day and is closed. See *Who can clear the remaining half* below. |
 
 **⇒ Never cite this file to park a QA-branch verdict.** A QA-branch case that says "blocked, no
 session" is wrong, and Rule 68 requires the work to be decomposed instead: do the branch half now.
@@ -159,7 +159,19 @@ is the API endpoint** — `POST /api/quick-login {key:'admin'|'tech'}`, called f
 `build/filters/build-verify-2026-08-19/tools/mobile.mjs`, which visits `/login` only as a same-origin
 landing pad and **never clicks a button**.
 
-### ⚠️ 2026-09-03 — THE PANEL DID **NOT** REPRODUCE FROM THIS CONTAINER. Both facts stand; read both.
+### ⚖️ SETTLED / NOT BEING CHASED — 2026-09-03, BY THE QA LEAD'S DECISION. Both facts stand; read both.
+
+> **HE HAS RULED: LEAVE IT — DO NOT CHASE IT.** His 2026-09-02 screenshot showed an **email+password
+> form** and a **`DEV MODE — QUICK LOGIN` panel** on staging's login page; from a **cookieless
+> container on 2026-09-03 neither rendered**, and the build marker had moved
+> (`v26.35.6-49e216a` → `v26.35.8-414f13c`). **The reasoning that makes it safe to close: a DEV MODE
+> panel behind a login is NOT a way in — so which reading is true does not change the access
+> position.** The entry route is his cookie either way (*Who can clear the remaining half*, below).
+> **🛑 KEEP BOTH READINGS VISIBLE.** Do **not** retract his observation, and do **not** assert that
+> staging has no panel: **nobody has looked while signed in.** Do not queue this as an independently
+> answerable question, and do not spend a probe on it.
+
+**⚠️ 2026-09-03 — THE PANEL DID NOT REPRODUCE FROM THIS CONTAINER — the second reading, in full:**
 
 Driving `https://app.staging.shopview.com/login` in a real Chromium **from a cookieless jar** on
 2026-09-03, sampled every 0.7 s for 10.5 s: the ShopView origin painted an **empty body** and then
@@ -202,6 +214,9 @@ Recorded so the next session does not treat either as settled in **either** dire
    to Google before painting. **The click route on staging therefore remains UNPROVEN, and it cannot be
    proven from a cold jar at all** — settling it needs a valid staging session first, which is the very
    thing that is blocked. **Do not queue this as an independently answerable question.**
+   **⚖️ AND AS OF 2026-09-03 IT IS NOT BEING CHASED AT ALL — the QA lead ruled "leave it"** (section
+   *SETTLED / NOT BEING CHASED* above). A panel behind a login is not a way in, so the answer would not
+   change the access position. **Unsettled, and deliberately so — not an open task.**
 2. **Whether `sv_sso_session` alone suffices on staging.** Proven on QA branches, **unproven here**
    because of Cloudflare (above): **the QA-branch finding that `cf_clearance` is inert does NOT
    transfer** — QA branches are CloudFront + bare nginx, staging is behind Cloudflare. Do not assume
@@ -248,33 +263,47 @@ is the STAGING shape; on a QA branch it is superseded — `sv_sso_session` alone
 
 ---
 
-## Who can clear the remaining half
+## Who can clear the remaining half — ✅ **DECIDED BY THE QA LEAD, 2026-09-03**
 
-The QA lead — **for staging only**, and it is now a much smaller ask than the original. **Two options
-exist; both need HIM, and only he can choose between them.**
+**Three options were put to him on 2026-09-03: (a) he drops a live session cookie into `/tmp` when a
+named piece of work needs staging · (b) someone provisions a non-SSO staging test account · (c) leave
+staging blocked. HE CHOSE (a).** **Options (b) and (c) are closed — do not re-raise either.**
 
-**Option 1 — a fresh cookie (the standing ask).** A fresh **`sv_sso_session` for
-`app.staging.shopview.com`** (plus `cf_clearance` if Cloudflare demands it), into `/tmp` only, naming
-the host. Tracked in `build/OUTSTANDING-ITEMS-REGISTER.md` row **R1**. **Clears the blocker for one
-session's lifetime only** — the cookie dies in ~24 h or on a deploy, so the ask recurs.
+**⇒ THE MECHANISM, and it is PER-NEED.** When a **named** piece of work needs staging, the QA lead
+drops a live **`sv_sso_session`** for `app.staging.shopview.com` (plus **`cf_clearance`** if Cloudflare
+demands it) into **`/tmp`**, **`chmod 600`**. **There is no permanent fix, and there is no staging
+password to hunt for.** Tracked in `build/OUTSTANDING-ITEMS-REGISTER.md` row **R1**.
 
-**Option 2 — NEW, and only a POSSIBILITY: a staging account whose credentials a session may use.**
-The QA lead's 2026-09-02 screenshot shows the staging login card carries a normal **email + password**
-sign-in form above the DEV MODE panel. **That is a potential route to a staging session that does not
-depend on him pasting a cookie**, and it would **clear the staging blocker permanently rather than for
-one session's lifetime**.
+**1 · THE ASK IS A COOKIE, NEVER A PASSWORD.** The password route was **tested on 2026-09-03 and is
+closed**, so nobody should re-test it:
+* `POST https://api.staging.shopview.com/api/login` → **HTTP 401 `sso_required`**, **byte-identical for
+  two different accounts** ⇒ the 401 belongs to the **route**, not the account.
+* The login page **renders no form at all** — it redirects to **Google sign-in for `shopview.com`**,
+  which then returns **`/v3/signin/rejected` — *"This browser or app may not be secure"*** (**bot
+  detection, before any account decision**).
+* Build marker observed that day: **`v26.35.8-414f13c`**. Full evidence: the `🆕 2026-09-03` rows and
+  the *USERNAME+PASSWORD ROUTE WAS TESTED* section above, and `build/ENVIRONMENT-CREDENTIALS.md` §3.
 
-**🛑 IT NEEDS HIS EXPLICIT AUTHORISATION, AND NOTHING HAS BEEN TRIED.** A credential is for a system
-he has **not** authorised us to log into, so:
-* **Not attempted.** No credential has been used, sought or assumed; **do not assume such an account
-  exists.** Recording the option is not permission to exercise it.
-* **Never in the repo.** If he ever authorises it, the values are `/tmp` only, `chmod 600`, never
-  committed — this repo is PUBLIC (Rule 82).
-* **Not known to work even if authorised.** `POST https://api.staging.shopview.com/api/login
-  {username,password}` was probed on 2026-08-28 and answered **HTTP 401 `sso_required`** (table
-  above), so the *API* credential route is already refused there. The **UI form** is a different path
-  and may hand off to `auth.staging.shopview.com` / Google SSO instead — **unknown, and it stays
-  unknown until he rules.**
+**2 · A SESSION DOES NOT ASK SPECULATIVELY.** It **names the piece of work** that needs staging,
+**asks once**, and gets roughly a **24-hour window**. No standing request, no pre-emptive cookie, no
+re-prompting him because a session merely might want staging later.
+
+**3 · WHAT TO DO WITH THE WINDOW.** Per the **NAV-3 piggyback** already recorded in
+`build/APP-ACTIONS-PLAYBOOK.md`'s Navigation Map section (*"HOW THE 28 `❌` ROWS GET FIXED — PIGGYBACK,
+NEVER A DEDICATED PASS"*, Rule 78, recorded 2026-09-03): re-observe **only the rows the work actually
+uses** and **stamp them in the same pass** (Rule 93). **This is not a dedicated re-observation
+project** — do not spend the window walking all 28 rows.
+
+**4 · THE TOKEN IS STILL NEVER COMMITTED.** It **rotates and goes stale within hours**, so a committed
+one is **worse than useless**: the next session tries a dead value and **misdiagnoses a rotated cookie
+as a login failure**. `/tmp` only, `chmod 600`, never in a log, an error paste or a commit (Rule 82 —
+this repo is PUBLIC). **The Rule 82 amendment covers PASSWORDS only; it has never covered session
+tokens.**
+
+**5 · WHAT STAGING BLOCKS, AND WHAT IT DOES NOT (Rule 68).** It blocks the **28-row staging Navigation
+Map re-observation** and the **Custom Roles 4-layer permission VIU** (a staging process). It does
+**NOT** block **QA branches or production — both proven and routine.** Never cite this file to park a
+verdict on either.
 
 **Do not re-prompt him for either option unbidden** — he has asked not to be re-prompted on staging
 cookies. Raise it only when a piece of work genuinely needs staging, and say which piece.

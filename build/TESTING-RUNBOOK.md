@@ -133,6 +133,16 @@ permission-dependent verdict (Rules 12, 26). Use
 **On staging, hand-hydration is still the recorded fallback** — not because the panel is
 missing, but because **no session has yet driven the click route there**; it is unproven
 end to end, as is whether `sv_sso_session` alone gets past staging's Cloudflare edge.
+**⚖️ 2026-09-03 — THE CLICK-ROUTE QUESTION IS SETTLED / NOT BEING CHASED, by the QA lead's
+decision.** From a cookieless container that day **neither the panel nor the email+password
+form rendered**, and the build marker had moved (`v26.35.6-49e216a` → `v26.35.8-414f13c`).
+**He ruled: leave it** — **a DEV MODE panel behind a login is not a way in**, so which reading
+is true does not change the access position. **Both readings stay on the record:** his
+screenshot is **not** retracted and we do **not** assert staging has no panel — **nobody has
+looked while signed in.** The Cloudflare question stays genuinely open. **Staging access is
+decided and per-need: the QA lead drops a live `sv_sso_session` into `/tmp` (`chmod 600`) when
+a NAMED piece of work needs staging — a COOKIE, NEVER A PASSWORD** (the password route was
+tested 2026-09-03 and is closed). **Never commit the token — it rotates within hours.**
 (The original "don't reliably work" note was recorded about **staging**; the Quasar
 selector bug that explains it — `getByRole('button',{name:/^Admin$/})` not matching a
 `q-btn`, where `button:has-text("Admin")` does — was proven on a **QA branch**, so now

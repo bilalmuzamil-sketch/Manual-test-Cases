@@ -537,15 +537,33 @@ any endpoint/ID not recorded here or in `CLAUDE.md`** — if only partly known, 
   by a session; so hand-hydration remains the RECORDED STAGING FALLBACK until someone proves the
   click route with a valid staging session.** Not because staging lacks a panel — it does not lack
   one — but because the click route there is unexercised.
-  **STILL UNSETTLED, both ways (do not treat either as decided):**
+  **⚖️ 2026-09-03 — (a) IS NOW SETTLED / NOT BEING CHASED, BY THE QA LEAD'S DECISION; (b) STAYS OPEN:**
   **(a)** whether **clicking the panel headlessly on staging completes the login** the way it does on
-  a QA branch; **(b)** whether **`sv_sso_session` ALONE suffices on staging** — staging sits behind
-  **Cloudflare** (`cf_clearance` at the edge), unlike the CloudFront+nginx QA branches, **so the
-  QA-branch finding that `cf_clearance` is inert does NOT transfer**.
+  a QA branch. **A cookieless Chromium run on 2026-09-03 found NO panel and NO email+password form to
+  click** (the page paints empty for ~2.1 s then redirects to Google; sampled every 0.7 s for 10.5 s),
+  and **the build marker had moved** (`v26.35.6-49e216a` → **`v26.35.8-414f13c`**). **HE HAS RULED:
+  LEAVE IT — DO NOT CHASE IT**, because **a DEV MODE panel behind a login is not a way in**, so which
+  reading is true does not change the access position. **🛑 BOTH READINGS STAY ON THE RECORD** — his
+  screenshot is **not** retracted, and we do **not** assert staging has no panel: **nobody has looked
+  while signed in.** **Do not queue this as an independently answerable question and do not spend a
+  probe on it.**
+  **(b)** whether **`sv_sso_session` ALONE suffices on staging** — **genuinely still open.** Staging
+  sits behind **Cloudflare** (`cf_clearance` at the edge), unlike the CloudFront+nginx QA branches,
+  **so the QA-branch finding that `cf_clearance` is inert does NOT transfer**. Answer it opportunistically
+  inside the next staging window; do not spend a pass on it.
   Neither could be settled live: we hold no staging `sv_sso_session` and stored staging cookies
-  return 401 (`build/BLOCKED-shopview-app-session.md`), and **the QA lead has asked not to be
-  re-prompted for a staging cookie**. **The staging caveat therefore STANDS, narrowed to (a) and (b)
-  — the panel question is closed.**
+  return 401 (`build/BLOCKED-shopview-app-session.md`).
+  **✅ HOW A STAGING SESSION IS OBTAINED — DECIDED 2026-09-03, PER-NEED.** The QA lead drops a live
+  **`sv_sso_session`** (plus `cf_clearance` if Cloudflare demands it) into **`/tmp`**, **`chmod 600`**,
+  **when a NAMED piece of work needs staging**. **The ask is a COOKIE, NEVER A PASSWORD** — the
+  password route was tested on 2026-09-03 and is closed (`POST /api/login` → **401 `sso_required`**,
+  byte-identical for two different accounts; the `/login` page renders **no form**, redirecting to
+  Google, which returns **`/v3/signin/rejected`** — bot detection before any account decision). **Name
+  the work, ask ONCE, expect roughly a 24-hour window, and NEVER commit the token — it rotates within
+  hours, and a committed one makes the next session misdiagnose a rotated cookie as a login failure.**
+  Inside that window, piggyback **only the Navigation Map rows the work actually uses** (NAV-3, below).
+  Full decision: `build/BLOCKED-shopview-app-session.md` *Who can clear the remaining half* ·
+  `build/ENVIRONMENT-CREDENTIALS.md` §3 · register row **R1**.
 - **Chromium UI automation — `staging-boot2.mjs`. 🔴 CONVERTED 2026-09-02: it now delegates to
   `qa-branch-boot.mjs` for any QA branch and no longer hand-hydrates `localStorage`.** An earlier
   version of this bullet said the recorded note *"the DEV login BUTTONS don't reliably work"* **"was
@@ -2579,6 +2597,11 @@ a fresh one), and §A records that `POST /api/login {username,password}` is **pr
 same `sso_required` 401 on staging. **This is the state `build/BLOCKED-shopview-app-session.md` already
 describes — re-confirmed live on 2026-08-31, not a new blocker.** The unblock is unchanged: a fresh
 three-cookie set for `app.staging.shopview.com` from the QA lead, into `/tmp` only.
+**🆕 SUPERSEDED IN FORM, 2026-09-03 — the paragraph above is kept as the dated 2026-08-31 record.** The
+unblock is now **DECIDED and per-need**: the QA lead drops a live **`sv_sso_session`** (plus
+`cf_clearance` if Cloudflare demands it) into `/tmp`, `chmod 600`, **when a NAMED piece of work needs
+staging** — **a cookie, never a password** (the password route was tested 2026-09-03 and is closed).
+See §A *"HOW A STAGING SESSION IS OBTAINED"* and `build/BLOCKED-shopview-app-session.md`.
 
 ### 🛑 HOW THE 28 `❌` ROWS GET FIXED — **PIGGYBACK, NEVER A DEDICATED PASS** (Rule 78, recorded 2026-09-03)
 
