@@ -113,7 +113,7 @@ stop (*"irrelevant"*, *"obsolete"*).
 | What you actually hit | The outcome that is already defined for it — NOT Blocked, NOT Failed |
 |---|---|
 | **Feature is not built yet** | **Rule 69** — `AUTOMATION: Not available on Build to test Yet - Last checked <M/D/YYYY>`, the under-development line, a **`DEFERRED-RUN.md`** row. **A finished case**, not a blocker and **not a defect** (admissibility gate: *unfinished work* is refusal reason #1). Excluded from any ready-to-automate figure. (`03-RUN-CHECK.md` §7) |
-| **A precondition needs the CUSTOMER PORTAL** | The **staging-only HOLD** — the literal below. Judge it from the **preconditions**, never from the word "portal". (`00-COMMON-CORE.md` §5.0-b(2)) |
+| **A precondition *or a step* needs a CUSTOMER-PORTAL SCREEN** | The **staging-only HOLD** — the literal below. Judge it from the **preconditions AND the steps** (corrected 2026-09-03), never from the word "portal", and never park a portal **data state** that a seed can reach. (`00-COMMON-CORE.md` §5.0-b(2)) |
 | **The source is ambiguous** | **Rule 58** — **hold the case and add a PO-question row.** An ambiguous source is **NEVER** resolved by looking at the build, and **you may not raise a defect against an expectation you had to interpret.** |
 | **A data state you need does not exist** | **Rule 14 — SEED IT.** Pre-authorised, permanently, on a disposable environment (`00-COMMON-CORE.md` §5.0-b(1)). **Never NOT-VERIFIED, never Blocked, for a data state.** |
 | **The feature is there but you cannot find the control** | **Rule 97 search drill** (playbook first — the **exact error text**) **+ Rule 26 role reset**: an action you cannot find may be **role-gated and simply not rendered** — check the gate before you call it absent. **A "missing control" filed as a defect without the role reset is a refused ticket.** Then the network tab, and grep the served JS bundle. |
@@ -128,17 +128,42 @@ AUTOMATION: HOLD - customer portal only exists on staging; this case cannot run 
 **QA lead, 2026-08-31, verbatim: *"Customer portal related tickets can only be tested on staging and
 not on the QA branch. We need to put this marker on such tickets aswell."*** **A label or behaviour
 that lives on a portal surface will be reported "absent" by any QA-branch probe, forever** — so
-without this marker it becomes a false Failed and then a refused ticket. **SCOPE IT FROM THE
-PRECONDITIONS, NEVER FROM THE WORD "PORTAL":** only a case whose preconditions require a
-**portal-generated artefact** gets it; **a case verifying the portal feature's ABSENCE on the shop-app
+without this marker it becomes a false Failed and then a refused ticket.
+
+**⇒ THE SCOPING TEST — THREE PARTS, CORRECTED 2026-09-03. Full text: `00-COMMON-CORE.md` §5.0-b(2).**
+
+> **⛔ SUPERSEDED 2026-09-03** (kept visible so a session mid-task on the old text sees it changed):
+> *"SCOPE IT FROM THE PRECONDITIONS, NEVER FROM THE WORD 'PORTAL': only a case whose **preconditions**
+> require a portal-generated artefact gets it."* **It read the preconditions only** — a 2026-09-03
+> assessment of 11 candidates found four cases it misses.
+
+**(1) READ THE PRECONDITIONS *AND* THE STEPS** — if **either** puts the tester on a **portal screen**,
+the case cannot be executed on a QA branch and it carries the HOLD. **A precondition-only scan is not a
+scan**, and a tester handed one of these walls immediately. Worked miss, 2026-09-03 — *the precondition
+was silent and the step was not*: **C18671 / C18728** (sole step *"Open the invoice in the customer
+portal before its due date."*) and **C18672 / C18729** (sole step *"Open the invoice in the customer
+portal during the grace period (1–29 days overdue)."*) all have data-state preconditions that never
+mention the portal (`build/testrail-writes/portal-candidates-2026-09-03/ASSESSMENT.md`).
+
+**(2) NEVER SCOPE FROM THE WORD "PORTAL" ALONE — unchanged:**
+**a case verifying the portal feature's ABSENCE on the shop-app
 path is fully executable on the QA branch and must NOT be parked** (2026-08-31: C44954 is build
 verified; **C44951 / C44952 / C45175** are staging-only and carry the HOLD). **C44947 is IN SCOPE** —
 mis-parked with those three at first, then correctly reclassified because it is about the **payment
 method name on the Payments rows (S8-R2), not the paid banner**, so it never needed the portal; it is
-live at `AUTOMATION: READY`. **The id that looked portal-gated was not — scope from the preconditions,
-never from the word "portal".** **Three cases carry the literal, not four**, measured live over the
+live at `AUTOMATION: READY`. **The id that looked portal-gated was not — which is why you never scope
+from the word.** **Three cases carry the literal, not four**, measured live over the
 whole estate: `build/testrail-writes/portal-hold-inventory-2026-08-31/INVENTORY.md`.
 It is a **HOLD**, so the gate **READY + EXPECT-FAIL = total − HOLD** is unaffected.
+
+**(3) 🆕 A PORTAL *SCREEN* IS NOT A PORTAL *DATA STATE*.** A case needing a **record created via the
+portal** but asserting **only on shop-app screens** is a **data-state** case — **Rule 14 says a missing
+data state is SEEDED, not parked**, so it does **NOT** automatically get the HOLD, and marking it
+Blocked would be a false Blocked. Settle it by asking whether the seeding route is reachable with an
+**ordinary session**; only if the state needs a **portal credential** is it a HOLD. Worked example
+**C45245** (deposit *"created via `POST /api/external/customer-portal/deposits`"*, every assertion on
+shop-app screens) — **and it is Vladimir Tomovic's, so it is HANDS-OFF whatever the verdict (Rule 38)**:
+cited for the test, not as work to do.
 
 **ONLY AFTER ALL OF THE ABOVE does anything earn the word "blocked"** — and the disciplined-Blocked
 bullet in §3 (Rule 68) then applies in full: **"blocked" is a property of a QUESTION about a case, not

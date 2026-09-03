@@ -82,10 +82,23 @@ machine-findable literals — **byte-exact, never reworded**:
 | What the requirement needs | The marker you author it with |
 |---|---|
 | **The feature is not built yet** (Rule 69) | `AUTOMATION: Not available on Build to test Yet - Last checked <M/D/YYYY>` — plus the under-development line and a `DEFERRED-RUN.md` row. It is a **FINISHED case, NOT a blocker**, it keeps its **documented** expectation, it is **excluded from any ready-to-automate figure**, and it substitutes for a **plain `AUTOMATION: READY` only** — never over an `EXPECT FAIL` or a `HOLD`. Procedure: `03-RUN-CHECK.md` §7. |
-| **A precondition requires a customer-portal artefact** | `AUTOMATION: HOLD - customer portal only exists on staging; this case cannot run on the QA branch` — the portal does not exist on a QA branch, so the case can only ever run on staging. Canonical: `00-COMMON-CORE.md` §5.0-b(2). |
+| **A precondition *or a step* puts the tester on a customer-portal SCREEN** | `AUTOMATION: HOLD - customer portal only exists on staging; this case cannot run on the QA branch` — the portal does not exist on a QA branch, so the case can only ever run on staging. Canonical: `00-COMMON-CORE.md` §5.0-b(2). |
 
-**⇒ SCOPE THE PORTAL HOLD FROM THE CASE'S PRECONDITIONS, NEVER FROM THE WORD "PORTAL".** Only a case
-whose **preconditions require a portal-generated artefact** gets it. **A case that verifies the portal
+**⇒ THE PORTAL SCOPING TEST — THREE PARTS, CORRECTED 2026-09-03. Full text: `00-COMMON-CORE.md` §5.0-b(2).**
+
+> **⛔ SUPERSEDED 2026-09-03** (kept visible so a session mid-task on the old text sees it changed):
+> *"⇒ SCOPE THE PORTAL HOLD FROM THE CASE'S PRECONDITIONS, NEVER FROM THE WORD 'PORTAL'. Only a case
+> whose **preconditions** require a portal-generated artefact gets it."* **It read the preconditions
+> only** — a 2026-09-03 assessment of 11 candidates found four cases it misses.
+
+**(1) READ THE PRECONDITIONS *AND* THE STEPS** — if **either** puts the tester on a **portal screen**,
+it carries the HOLD. **A precondition-only scan is not a scan.** Worked miss, 2026-09-03 — *the
+precondition was silent and the step was not*: **C18671 / C18728** (sole step *"Open the invoice in the
+customer portal before its due date."*) and **C18672 / C18729** (sole step *"Open the invoice in the
+customer portal during the grace period (1–29 days overdue)."*) all have data-state preconditions that
+never mention the portal (`build/testrail-writes/portal-candidates-2026-09-03/ASSESSMENT.md`).
+
+**(2) NEVER SCOPE FROM THE WORD "PORTAL" ALONE — unchanged.** **A case that verifies the portal
 feature's ABSENCE on the shop-app path is fully testable on the QA branch and must NOT be parked** —
 2026-08-31 worked example: C44954 (*"No paid banner when the invoice has no portal-processed
 payment"*) is build verified, while **C44951 / C44952 / C45175** are staging-only and carry the HOLD.
@@ -95,6 +108,15 @@ needed the portal; it is live at `AUTOMATION: READY`. **That is exactly why you 
 preconditions and not from the word "portal".** **Three cases carry the literal, not four** — measured
 live, whole estate: `build/testrail-writes/portal-hold-inventory-2026-08-31/INVENTORY.md`. It is a
 **HOLD**, so the CLAUDE.md arithmetic gate **READY + EXPECT-FAIL = total − HOLD** is unaffected.
+
+**(3) 🆕 A PORTAL *SCREEN* IS NOT A PORTAL *DATA STATE*.** A case needing a **record created via the
+portal** but asserting **only on shop-app screens** is a **data-state** case — **Rule 14 says a missing
+data state is SEEDED, not parked**, so it does **NOT** automatically get the HOLD. Settle it by asking
+whether the seeding route is reachable with an **ordinary session**; only if the state needs a **portal
+credential** is it a HOLD. Worked example **C45245** (deposit *"created via
+`POST /api/external/customer-portal/deposits`"*, every assertion on shop-app screens) — **and it is
+Vladimir Tomovic's, so it is HANDS-OFF to us whatever the verdict (Rule 38)**: cited for the test, not
+as work to do.
 
 **THE OTHER TWO SHAPES YOU WILL HIT WHILE AUTHORING, AND NEITHER IS "BLOCKED":**
 

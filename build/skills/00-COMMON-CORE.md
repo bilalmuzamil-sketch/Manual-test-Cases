@@ -785,14 +785,55 @@ three. Re-derive it — never quote it from memory — with the read-only sweep 
 `build/testrail-writes/portal-hold-inventory-2026-08-31/inventory_portal_hold.py`
 (full report + method + the candidate cases it turned up: `INVENTORY.md` beside it).
 
-**⇒ SCOPE IT FROM THE PRECONDITIONS, NOT FROM THE WORD "PORTAL".** Only a case whose **preconditions
-require a portal-generated artefact** gets the marker. A case that verifies the portal feature's
-**ABSENCE** on the shop-app path is fully testable on the branch and must NOT be parked — on
-2026-08-31, C44954 (*"No paid banner when the invoice has no portal-processed payment"*) is build
-verified, while C44951/C44952/C45175 are staging-only (**C44947 was removed from this list
-2026-09-02 — see the measured table above; it is build-verified and READY**). Four other cases mention the banner in
-passing, and C45184 names it as an **exclusion** (*"The only exception is the Paid banner's
-'Date / Time' field"*) — none of those five are portal-gated.
+**⇒ THE SCOPING TEST — THREE PARTS, CORRECTED 2026-09-03. READ ALL THREE BEFORE PARKING ANYTHING.**
+
+> **⛔ SUPERSEDED 2026-09-03 — the wording below was the test from 2026-08-31 to 2026-09-02, and it is
+> kept visible so a session mid-task on the old text can see that it changed and why:**
+> *"⇒ SCOPE IT FROM THE PRECONDITIONS, NOT FROM THE WORD 'PORTAL'. Only a case whose **preconditions**
+> require a portal-generated artefact gets the marker."*
+> **What was wrong with it:** it read the PRECONDITIONS ONLY. A live assessment of 11 candidate cases on
+> **2026-09-03** found **four cases whose precondition never names the portal and whose STEP does** —
+> a precondition-only scan misses all four, and the tester handed one walls immediately. The second
+> half ("never from the word") was and remains correct. Part 3 below is new.
+> Evidence: `build/testrail-writes/portal-candidates-2026-09-03/ASSESSMENT.md`, commit `ec34a835`.
+
+**(1) READ THE PRECONDITIONS *AND* THE STEPS — EITHER ONE CAN GATE THE CASE.** If **either** field
+requires the tester to be **on a customer-portal screen**, the case cannot run on a QA branch and it
+carries the HOLD. **A precondition-only scan is not a scan.**
+**WORKED MISS — 2026-09-03, four cases, the precondition was silent and the step was not:**
+
+| C-id | Precondition | The step that gates it |
+|---|---|---|
+| [**C18671**](https://shopview.testrail.io/index.php?/cases/view/18671) · [**C18728**](https://shopview.testrail.io/index.php?/cases/view/18728) (byte-identical) | names a data-state only — *"An invoice is not yet overdue… Late fees are enabled."* — **the portal is never mentioned** | sole step: *"Open the invoice in the customer portal before its due date."* |
+| [**C18672**](https://shopview.testrail.io/index.php?/cases/view/18672) · [**C18729**](https://shopview.testrail.io/index.php?/cases/view/18729) (byte-identical) | a data-state only; **the portal is never mentioned** | sole step: *"Open the invoice in the customer portal during the grace period (1–29 days overdue)."* |
+
+In all four the notice is asserted **on the portal invoice view** — there is no shop-app screen in the
+case at all. Scoping from the precondition alone would have declared every one of them branch-testable.
+
+**(2) NEVER SCOPE FROM THE WORD "PORTAL" ALONE — unchanged, and still right.** A case that verifies
+the portal feature's **ABSENCE** on the shop-app path is fully testable on the branch and must **NOT**
+be parked. On 2026-08-31, C44954 (*"No paid banner when the invoice has no portal-processed payment"*)
+is build verified, while C44951/C44952/C45175 are staging-only (**C44947 was removed from this list
+2026-09-02 — see the measured table above; it is build-verified and READY**). Four other cases mention
+the banner in passing, and C45184 names it as an **exclusion** (*"The only exception is the Paid
+banner's 'Date / Time' field"*) — none of those five are portal-gated.
+
+**(3) 🆕 A PORTAL *SCREEN* IS NOT A PORTAL *DATA STATE* — AND A DATA STATE IS SEEDED, NOT PARKED.**
+A case that needs a **record created via the portal** but asserts **only on shop-app screens** is a
+**data-state** case, and **Rule 14 is explicit that a missing DATA-STATE is seeded, never a reason to
+park**. Such a case does **NOT** automatically get the HOLD. **Settle it by asking one question: is the
+seeding route reachable with an ordinary session?** Only if the state can be reached **solely through a
+portal credential** does it become a HOLD.
+**WORKED EXAMPLE — [C45245](https://shopview.testrail.io/index.php?/cases/view/45245)**
+(*"Portal-collected deposit cannot be reversed in ShopView"*): its precondition needs *"a deposit …
+collected through the Customer Portal (created via `POST /api/external/customer-portal/deposits`)"*,
+but **every assertion is shop-app** — customer profile → Deposits tab → Payments tab, Reverse control
+disabled. Nothing asks the tester to open the portal. That named route is an **API endpoint on the
+app's own API host, not a portal UI screen**: if it accepts an admin session on the QA branch the
+deposit is seedable in-app and the case takes **no marker**; if it demands a portal-issued credential
+it is a **HOLD**. **🛑 C45245 IS VLADIMIR TOMOVIC'S (`created_by = 1`) AND IS HANDS-OFF TO US WHATEVER
+THE VERDICT (Rule 38)** — report it, never edit it; the finding goes to him via the QA lead. It is cited
+here for the **test**, not as work to do.
 
 ### 5.0-a 🔑 WHO IS WHO ON INVOICE UI REFRESH — CONFIRMED BY THE QA LEAD 2026-08-31
 

@@ -640,9 +640,31 @@ literal would silently break it; the marker convention permits HOLD for *"a genu
 thing"*, which a non-existent portal is — so this is **not** the barred tool-flag excuse. **The
 wording is provisional; the QA lead may rename it.**
 
-**⇒ SCOPE IT FROM THE PRECONDITIONS, NOT FROM THE WORD "PORTAL".** Only a case whose **preconditions
-require a portal-generated artefact** gets the marker. **A case that verifies the portal feature's
-ABSENCE on the shop-app path is fully testable on the branch and must NOT be parked.** Worked example,
+**⇒ THE SCOPING TEST — THREE PARTS, CORRECTED 2026-09-03. RUN ALL THREE BEFORE PARKING ANYTHING.**
+Full text and the evidence: **`00-COMMON-CORE.md` §5.0-b(2)**.
+
+> **⛔ SUPERSEDED 2026-09-03 — this was the test carried here from 2026-09-02, kept visible so a
+> session mid-task on the old text can see that it changed:** *"⇒ SCOPE IT FROM THE PRECONDITIONS,
+> NOT FROM THE WORD 'PORTAL'. Only a case whose **preconditions** require a portal-generated artefact
+> gets the marker."* **It read the PRECONDITIONS ONLY**, and a live assessment of 11 candidate cases on
+> **2026-09-03** found four cases it misses. The "never from the word" half was and stays correct.
+
+**(1) READ THE PRECONDITIONS *AND* THE STEPS.** If **either** field requires the tester to be **on a
+customer-portal screen**, the case cannot run on a QA branch and it carries the HOLD. **A
+precondition-only scan is not a scan.** **WORKED MISS — 2026-09-03: the precondition was silent and
+the step was not.** [**C18671**](https://shopview.testrail.io/index.php?/cases/view/18671) and
+[**C18728**](https://shopview.testrail.io/index.php?/cases/view/18728) (byte-identical) have a
+data-state precondition that never mentions the portal, and the sole step *"Open the invoice in the
+customer portal before its due date."*;
+[**C18672**](https://shopview.testrail.io/index.php?/cases/view/18672) and
+[**C18729**](https://shopview.testrail.io/index.php?/cases/view/18729) (byte-identical) the same shape
+with *"Open the invoice in the customer portal during the grace period (1–29 days overdue)."* All four
+assert on the **portal invoice view**; none has a shop-app screen. Evidence:
+`build/testrail-writes/portal-candidates-2026-09-03/ASSESSMENT.md` (commit `ec34a835`).
+
+**(2) NEVER SCOPE FROM THE WORD "PORTAL" ALONE — unchanged.** **A case that verifies the portal
+feature's ABSENCE on the shop-app path is fully testable on the branch and must NOT be parked.**
+Worked example,
 2026-08-31 (Invoice UI Refresh, spec S8-R8 — the paid banner appears only on a **portal-generated**
 Invoice PDF): **C44954** (*"No paid banner when the invoice has no portal-processed payment"*) **is
 build verified**, while **C44951 / C44952 / C45175** are staging-only and carry the HOLD. **C44947 is
@@ -655,6 +677,20 @@ portal-gated was not.** Four other cases mention the banner in passing and **C45
 **exclusion** — **none of those five are portal-gated.** **It is THREE cases, not four** — measured
 live over the whole estate (686 sections / 4,624 cases paged to exhaustion, byte-exact, zero
 variants): `build/testrail-writes/portal-hold-inventory-2026-08-31/INVENTORY.md`.
+
+**(3) 🆕 A PORTAL *SCREEN* IS NOT A PORTAL *DATA STATE* — A DATA STATE IS SEEDED, NOT PARKED.** A case
+needing a **record created via the portal** but asserting **only on shop-app screens** is a
+**data-state** case, and **Rule 14 says a missing DATA-STATE is seeded, never a reason to park** — so
+it does **NOT** automatically get the HOLD. **Settle it with one question: is the seeding route
+reachable with an ordinary session?** Only if the state can be reached **solely through a portal
+credential** is it a HOLD. Worked example:
+[**C45245**](https://shopview.testrail.io/index.php?/cases/view/45245) needs a deposit *"collected
+through the Customer Portal (created via `POST /api/external/customer-portal/deposits`)"*, but every
+assertion is shop-app (customer profile → Deposits tab → Payments tab, Reverse control disabled) and
+nothing asks the tester to open the portal; that route is an **API endpoint on the app's own API host,
+not a portal UI screen**, so the verdict turns on whether it accepts an admin session on the branch.
+**🛑 C45245 is Vladimir Tomovic's (`created_by = 1`) and is HANDS-OFF whatever the verdict (Rule 38)** —
+report it, never edit it. It is cited for the **test**, not as work to do.
 
 **Ties:** §7.2 (do not let this fall into the "not found" row), §8.4 (the only permitted un-verified
 state is genuine feature absence — this is a *surface* absence and is marked, not left un-verified),
