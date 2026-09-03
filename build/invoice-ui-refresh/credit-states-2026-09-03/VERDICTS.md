@@ -179,3 +179,63 @@ that makes the right kind.
 it is not answered by anything we hold, and no case asserts it.
 
 **Credit Invoice section, final: all 12 cases fully verified against printed documents. 0 FAIL.**
+
+## The disclaimer, settled — it is a spec deviation, not a PO question (2026-09-03)
+
+**I twice reported this wrongly before getting it right.** First as a flat failure of the credit note
+(drawn from ten credits that were all one kind). Then, after `CM-4199` printed the disclaimer, as a
+difference between "invoice-raised" and "account-level" credits that needed a PO ruling. **Both were
+premature: the second because two variables had moved together, and the third because the spec answers
+it and I had not read the spec section.**
+
+### Isolating the variable
+
+`CM-4199` was **both** raised from an invoice **and** carried returned-part lines, so it could not tell
+which of those made the disclaimer appear. `CM-4200` separates them: made through the same invoice's
+`Issue Credit` dialog with **`Parts are being returned` unticked**, so it is a money-only credit — `--`
+for Quantity and Rate, exactly like the account-level ones — but still tied to invoice `INV-P-97`.
+
+| Credit | Origin invoice | Line kind | Disclaimer |
+|---|---|---|---|
+| `CM-4199` | `INV-P-97` | returned parts | **PRESENT** |
+| `CM-4200` | `INV-P-97` | money only | **PRESENT** |
+| `CM-4189` … `CM-4198` (ten) | none | money only | **absent, all ten** |
+
+**⇒ The deciding factor is the origin invoice, not the part lines.** A credit with an `INVOICE NUMBER`
+prints the shop's disclaimer; a credit with no origin invoice prints none.
+
+### What the documents require
+
+Read out of the spec body we hold, `spec-body-confluence-v39-755990532.md` (Story 9, SV-9148):
+
+> **Prerequisites:** *"The disclaimer, the signature area, and the footer tax identifier apply to
+> **every document** (Section 3)."*
+> **S9-R1:** *"The document shows the shop's configured disclaimer text, with no heading above it,
+> identical on every document that carries it."*
+> **S9-N1:** *"When the shop has no configured disclaimer, the disclaimer area is not shown."*
+
+and Story 11: **S11-R7:** *"The Credit Invoice shows the shop's configured disclaimer and the standard
+signature area (S9-R2)."*
+
+**S9-N1 is the only exemption, and it does not apply**: this shop has a disclaimer configured, which
+`CM-4199` and `CM-4200` prove by printing it. So a credit note with no origin invoice omitting it is a
+**deviation from the documents** — there is nothing ambiguous for a PO to decide.
+
+**Version note, stated rather than glossed:** the spec body in this repo is **v39**; the cases cite
+**v45**, and no v45 body is held locally. The requirement is not taken from v39 alone — **C44970's own
+Expected Results were written from v45 §S11-R7** by the 2026-08-31 pass and say *"The Credit Invoice
+shows the shop's configured disclaimer"*. v39 supplies the surrounding prerequisite and the single
+negative case. If v45 narrowed S9-R1 or S11-R7, this call changes; that is the one thing a live read of
+the Confluence page would settle.
+
+### What was done about it — no ticket
+
+Per the standing instruction (*"You are never supposed to create defect, you are supposed to make the
+tests RUNNABLE"*): the documented expectation STAYS, and **C44970 now carries the three outcomes** and
+a precondition that makes the tester produce **both** kinds of credit and read both:
+
+> (1) the invoice-raised credit shows the disclaimer and the three signature lines — that half passes ·
+> (2) the credit with no invoice number is missing the disclaimer ⇒ mark **FAILED**, noting which kind
+> was used · (3) if it appears on that one too, the fix has shipped — tell the QA lead.
+
+**Reported with its C-id, no ticket text, no candidate file: [C44970](https://shopview.testrail.io/index.php?/cases/view/44970).**

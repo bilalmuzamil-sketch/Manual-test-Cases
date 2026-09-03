@@ -1,0 +1,13 @@
+{
+ "from": "<p>WHICH CREDIT YOU OPEN DECIDES THIS, so open the right one. On a credit raised FROM AN INVOICE - its status table carries an \"INVOICE NUMBER\" - the disclaimer IS printed in full, just above the signature lines. On an account-level store credit (one made with the \"Issue Credit\" button on the customer's \"Invoices\" tab, which has no invoice number on it) the disclaimer does NOT appear at all. This case is about a credit raised from an invoice. (1) If the disclaimer and the three signature lines are both there, mark the case PASSED. (2) If either is missing, mark it FAILED and say which. (3) Separately, if you happen to open an account-level store credit and find no disclaimer on it, do not fail this case for that - tell the QA lead, it is already known.</p>",
+ "to": "<p>WHAT YOU SHOULD SEE TODAY, AND ONE HALF OF IT IS A PROBLEM: check BOTH kinds of credit, because they behave differently. A credit raised from an invoice - its status table carries an \"INVOICE NUMBER\" - DOES print the disclaimer in full, just above the signature lines. A credit made with the \"Issue Credit\" button on the customer's \"Invoices\" tab, which carries no invoice number, prints NO disclaimer at all - and the shop definitely has one configured, which the invoice-raised credit proves. (1) On the credit raised from an invoice: the disclaimer and the three signature lines should both be there, and that half passes. (2) On the credit with no invoice number: the disclaimer is missing, so mark the case FAILED and write down which kind of credit you used - the documents ask for it on every document, with the single exception of a shop that has no disclaimer configured, and this shop has one. (3) If the disclaimer now appears on a credit with no invoice number too, the fix has shipped - tell the QA lead.</p>",
+ "fields": [
+  "custom_expected"
+ ],
+ "cases": [
+  44970
+ ],
+ "authorised_automated": [],
+ "expect_per_field": 1,
+ "outdir": "build/invoice-ui-refresh/runnable-credit-2026-09-03/c44970-final"
+}
