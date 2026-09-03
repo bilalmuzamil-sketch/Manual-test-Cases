@@ -3,6 +3,16 @@
 > **🔴 READ [`00-COMMON-CORE.md`](00-COMMON-CORE.md) FIRST.** This file adds only what is specific to
 > checking sources.
 
+> **🛑 THE MANDATORY FIRST STEP OF ANY "SOURCE VERIFY" REQUEST (QA lead, 2026-09-03, verbatim):**
+> *"everytime I ask you to Source verify anything, the first thing you must ALWAYS do is to get the
+> latest from all the sources, and then proceed with the task."* **Before any analysis, disposition or
+> write, FETCH THE LATEST OF EVERY SOURCE LIVE** — the spec/PRD (Confluence version + change log +
+> comments), the epic and its child stories, the design (the file the spec links, newest export), the
+> PO's verified answers and any Slack/written decisions, and the technical design. Only once every
+> source has been pulled fresh and its currency established do you proceed. This is Rule 31/59/81 made
+> an explicit hard gate: a source-verify pass that starts from a held copy of unknown age is
+> non-compliant, however recent that copy looks.
+
 ---
 
 ## PURPOSE, IN PLAIN ENGLISH
