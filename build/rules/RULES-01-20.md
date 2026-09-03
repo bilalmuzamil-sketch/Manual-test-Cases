@@ -415,6 +415,28 @@ Index: CLAUDE.md (rule index table). Other rule files: build/rules/RULES-01-20.m
     Portal/Terminal etc.) as results when they were inferred from role
     definitions/code rather than UI-observed, and the session had expired mid-run —
     this broke user trust and must never recur.
+    **AMENDMENT 2026-09-03 — AN ABSENCE IS A CLAIM, AND IT NEEDS A SAMPLE THAT COULD HAVE
+    DISPROVED IT.** Rule 12 has always governed what may be called Verified. Its mirror image needs
+    saying too: **"X is not there" is just as much a verified/not-verified call as "X is there", and it
+    is the one that gets reported from evidence that cannot carry it.** Two misses in one night, both
+    from clean-running probes that answered a NARROWER question than the one being asked:
+    **(a)** a probe read `document.querySelector('table tbody tr')` — the FIRST row of the table, which
+    in this app's tables is an empty SPACER — printed "0 controls", and that went into a report as
+    *"a part sale's line rows carry no return action in any status"*. Every row reading `Received`
+    carries a `Return` arrow, and two blocked test cases hung off it; the QA lead found it in one
+    click. **(b)** ten credit notes were read, none carried the shop's disclaimer, and that was
+    reported as *"the credit note omits the disclaimer"* — with C44970 rewritten to be marked Failed.
+    All ten were the SAME KIND of credit (account-level); the eleventh, raised from an invoice, prints
+    it in full. The finding had to be withdrawn and the case rewritten again.
+    **⇒ Before writing any sentence that says something is absent, missing, unavailable or impossible,
+    answer one question: WHAT WOULD THIS PROBE HAVE PRINTED IF THE THING DID EXIST SOMEWHERE I DID NOT
+    LOOK? If the answer is "exactly what it printed", the probe has not measured the claim.** Name the
+    dimension the claim generalises over (every row? every status? every kind of document?) and show
+    the sample spans it — **N observations of one kind are one observation.** Enforced, not merely
+    advised: `probe_lib.mjs` `ENUMERATE_ROWS_FN` · `rowNegativeIsTrustworthy` (throws when rows went
+    unexamined or all share one state) · `sampleSpansKinds` (throws on a one-kind sample), and
+    `negativesAreTrustworthy` for bundle scans. Full treatment with both worked misses:
+    `build/skills/03-RUN-CHECK.md` §8.0-c.
 13. **Live, feature-by-feature testing is the DEFAULT standard (all projects):**
     Whenever the user asks to TEST / VERIFY / CHECK / CONFIRM anything — any
     feature, function, permission, or behavior — test it LIVE by going through each

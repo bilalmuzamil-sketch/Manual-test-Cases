@@ -1329,3 +1329,83 @@ find a route.**
 - **A row's actions may all look alike.** That `Action` cell holds three icons — `Print credit memo`,
   `Cash Out`, `Reverse`. Clicking "the printer one" by position is a guess; hovering all three and
   matching the tooltip is not.
+
+---
+
+## 🛑 §8.0-c — A NEGATIVE IS ONLY AS WIDE AS THE PROBE THAT PRODUCED IT (learned 2026-09-03)
+
+**Two conclusions in one night were wrong in the same way, and the QA lead had to correct both.** Both
+were confident sentences about the product, drawn from evidence that could only have supported a
+sentence about my own sample. Neither was a careless claim — each came from a script that ran cleanly
+and printed a tidy result. **That is what makes this class dangerous: the probe does not fail, it
+answers a narrower question than the one being asked, and the answer reads like the wide one.**
+
+### Miss 1 — one row of DOM reported as a fact about the app
+
+Two probes asked "what controls does a part-sale line carry?" like this:
+
+```js
+const tr = document.querySelector('table tbody tr');          // ← the FIRST tbody row
+[...tr.querySelectorAll('button,.q-btn')].forEach(...)
+```
+
+Both printed `controls on first line row: 0`. **In these Quasar tables the first `tbody` row is an
+empty spacer** — every table dump in the same directory shows row 0 as `[""]`, and I had read those
+dumps. The report that went out said *"a part sale's line rows carry no return action in any status"*.
+
+Every row whose `Status` reads `Received` carries a **`Return`** arrow, and the entire returned-part
+credit flow — two test cases' worth of blocked verification — hangs off it. The QA lead found it with
+one screenshot.
+
+**Two separate errors, and the second is the worse one.** The spacer row is a DOM quirk. Reporting a
+one-row sample as a property of the product is a reasoning failure that no amount of DOM knowledge
+prevents.
+
+### Miss 2 — ten samples of one kind reported as a property of the document
+
+Ten credit notes were rendered and read; none carried the shop's disclaimer. The ordinary invoice for
+the same shop does carry one, so the conclusion looked airtight: *the credit note omits the
+disclaimer*. C44970 was rewritten to tell the tester to mark it **Failed**.
+
+**All ten were account-level money credits.** The eleventh — raised from an invoice, made through a
+different dialog — prints the disclaimer in full. The sample was ten wide and one deep. The case had
+to be rewritten again and the finding withdrawn.
+
+> **N observations of one kind are one observation.** Before writing "X never happens", name the
+> dimension the claim generalises over and check the sample spans it.
+
+### Miss 3 — sequencing: the app's own code answers faster than clicking does
+
+Roughly forty minutes went into hunting the returned-part flow by opening screens and hovering
+controls. What found it was one search of the build's own JavaScript for the words the flow would have
+to contain:
+
+```
+"Restocking Fee"  →  CreateCredit.js · IssueCreditMemoDialog.js · ConfirmReturn.js · CreateReturn.js
+"Issue Credit"    →  InvoiceActionBar.js · IssueCreditMemoDialog.js · UnpaidTransactionsTable.js
+```
+
+`InvoiceActionBar` was the whole answer: the `Issue Credit` on an **invoice** is a *different dialog*
+from the `Issue Credit` on the customer's Invoices tab, and only that one has the `Parts to return`
+table. One search, and it pointed straight at a screen no amount of clicking had reached.
+
+**This does not reverse "UI first" (§ above).** A route still has to be WALKED before it goes in a
+case — a chunk name is not a runnable step. The amendment is about what to do when **the walk
+stalls**: after two or three screens turn up nothing, stop clicking and grep the bundle for the label
+the feature must contain, then go and walk what it points at. Clicking is for confirming a route;
+searching is for finding one.
+
+### The mechanism, so this cannot be repeated silently
+
+`build/testing-tools/probe_lib.mjs` now enforces all three, and each helper **throws** rather than
+returning a verdict, because the failure mode is a confident sentence in a report:
+
+| Helper | Refuses |
+|---|---|
+| `ENUMERATE_ROWS_FN` | returns every non-empty row with its cells and tagged controls — the spacer rows cannot be mistaken for the first data row |
+| `rowNegativeIsTrustworthy(rows, {examined, stateOf})` | a "no such control" verdict when fewer rows were examined than exist, **or when every row shares one state** — a control can be state-dependent, as the `Return` arrow is |
+| `sampleSpansKinds(samples, kindOf)` | a "never happens" claim whose sample covers only one kind |
+
+**And the standing question, before any sentence that says something is absent:** *what would this
+probe have printed if the thing DID exist somewhere I did not look?* If the answer is "exactly what it
+printed", the probe has not measured the claim.

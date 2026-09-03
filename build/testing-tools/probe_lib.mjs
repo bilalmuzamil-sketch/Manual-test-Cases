@@ -137,3 +137,70 @@ export function assertSignedIn(url) {
     throw new Error(`not signed in - landed on ${url.slice(0, 120)}. Renew the cookies before probing.`);
   return true;
 }
+
+// ------------------------------------------------- rows, and the homogeneous-sample trap (2026-09-03)
+
+/** Enumerate EVERY row of a table and tag its controls, skipping the spacer rows.
+ *
+ *  THE MISTAKE THIS EXISTS TO PREVENT. Two probes on 2026-09-03 read
+ *  `document.querySelector('table tbody tr')` - the FIRST tbody row - to learn what controls a row
+ *  carries. In these Quasar tables the first row is an EMPTY SPACER. Both answered "controls on first
+ *  line row: 0", and that was reported to the QA lead as "a part sale has no return action". Every
+ *  row whose Status was "Received" carried a Return arrow, and the whole returned-part credit flow
+ *  hung off it. He found it in one click and had to hand it back.
+ *
+ *  Pass this to page.evaluate. It returns one entry per NON-EMPTY row with its cells, its controls'
+ *  handles (tagged `data-qa-ctl="row:idx"`) and the row's own text, so a caller can pick the row whose
+ *  STATE matters rather than whichever row came first. */
+export const ENUMERATE_ROWS_FN = `(sel) => {
+  const strip = (e) => { const c = e.cloneNode(true);
+    c.querySelectorAll('svg,i[class*="icon"]').forEach(n => n.remove());
+    return (c.textContent || '').replace(/\\s+/g, ' ').trim(); };
+  const out = [];
+  document.querySelectorAll((sel || 'table') + ' tbody tr').forEach((tr, i) => {
+    const text = strip(tr);
+    if (!text) return;                       // the spacer rows - never the row you want
+    tr.setAttribute('data-qa-row', String(i));
+    const ctl = [...tr.querySelectorAll('button, .q-btn, [role="button"]')];
+    ctl.forEach((b, j) => b.setAttribute('data-qa-ctl', i + ':' + j));
+    out.push({ row: i, text, cells: [...tr.cells].map(strip), controls: ctl.length });
+  });
+  return out;
+}`;
+
+/** Refuse to report "this control does not exist" from a probe that cannot support it.
+ *  A negative about a TABLE is only as wide as the rows examined: if every row inspected shared one
+ *  state, the probe measured that state, not the product. Throws rather than returning a verdict,
+ *  because the failure mode is a confident sentence in a report. */
+export function rowNegativeIsTrustworthy(rows, { examined, stateOf } = {}) {
+  const nonEmpty = rows.filter(r => r.text);
+  const looked = examined ?? nonEmpty.length;
+  if (looked < nonEmpty.length)
+    throw new Error(`cannot report "no such control": ${looked} of ${nonEmpty.length} rows were examined. `
+      + `Enumerate every row (ENUMERATE_ROWS_FN) before concluding anything is absent.`);
+  if (typeof stateOf === 'function') {
+    const states = new Set(nonEmpty.map(stateOf).filter(Boolean));
+    if (states.size < 2)
+      throw new Error(`cannot report "no such control": all ${nonEmpty.length} rows are in the same state `
+        + `(${[...states][0] ?? 'unknown'}). A control can be state-dependent - the Return arrow appears only `
+        + `on rows reading "Received". Find rows in another state, or report the limit instead of a verdict.`);
+  }
+  return true;
+}
+
+/** The same trap one level up: N observations of one KIND are one observation.
+ *
+ *  Measured 2026-09-03: ten credit notes were read and none carried the shop's disclaimer, so it was
+ *  reported that "the credit note omits the disclaimer". All ten were account-level money credits. The
+ *  eleventh - raised from an invoice - prints the disclaimer in full. The sample was ten wide and one
+ *  deep, and the conclusion had to be withdrawn to the QA lead.
+ *
+ *  Call it before writing any sentence of the form "X never happens". `kindOf` returns the dimension
+ *  the claim generalises over. */
+export function sampleSpansKinds(samples, kindOf, minKinds = 2) {
+  const kinds = new Set(samples.map(kindOf));
+  return { ok: kinds.size >= minKinds, kinds: [...kinds], n: samples.length,
+    why: kinds.size >= minKinds ? null
+      : `${samples.length} sample(s) but only ${kinds.size} kind(s) (${[...kinds].join(', ')}) - `
+        + `this supports a claim about that kind, not about the document type. Get one of another kind first.` };
+}
