@@ -1,0 +1,23 @@
+{
+ "table": {
+  "h": [
+   "Numberarrow_drop_up",
+   "Statusarrow_drop_up",
+   "Customerarrow_drop_up",
+   "Asset",
+   "VIN/Serial #",
+   "Created by",
+   "Total price",
+   "Created on",
+   "Parts",
+   "Returns"
+  ],
+  "returnsIdx": 9,
+  "withReturns": [],
+  "total": 11
+ },
+ "gets": [
+  "/api/users/me/preferences/part-sales",
+  "/api/part-sales?pagination%5Bpage%5D=1&pagination%5BrowsPerPage%5D=30&pagination%5BsortBy%5D=companyName&pagination%5Bdescending%5D=false&search=&filters%5B0%5D%5Bfield%5D=status&filters%5B0%5D%5Bvalue%5D=estimate&filters%5B1%5D%5Bfield%5D=status&filters%5B1%5D%5Bvalue%5D=approved"
+ ]
+}

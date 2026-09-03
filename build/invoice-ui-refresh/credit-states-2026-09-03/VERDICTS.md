@@ -68,3 +68,54 @@ ids, so ordinary extraction returns an empty string — indistinguishable from "
 text", which is the same false negative that produced the withdrawn *"not rendered on this branch"*
 conclusion of 2026-08-31. The tool expands the compressed object streams, follows `/Font` indirect
 references and decodes through each font's `/ToUnicode` CMap.
+
+## The two assertions that were "NOT VERIFIED — needs something text extraction cannot answer"
+
+Both are now answered, and neither needed the QA lead. They were parked as questions for him on
+2026-09-02; they turned out to be missing **evidence**, not missing decisions.
+
+### C44970 line 1 — the disclaimer. **FAIL, and the case now says so in plain words**
+
+The 2026-09-02 pass could not tell whether the credit note omits the disclaimer or whether the shop
+simply has none configured, because **the control failed**: rendering the same shop's ordinary invoice.
+The route for that turned up while looking for something else — a paid part sale's **`Finance`** tab
+fires **`GET /api/invoices/preview?invoice_id={id}&type=html&isEstimate=0&includeDeclined=0&historyEvent=`**,
+which returns the whole printed invoice as HTML.
+
+**Staging Heavy Duty - 9919 does configure a disclaimer.** Its ordinary invoice (`INV-P2-97`) prints,
+immediately above `Customer Signature Printed Name Date`:
+
+> *"Any warranties on the parts and accessories sold hereby are made by the manufacturer. You
+> understand and agree that we make no warranties of any kind unless expressed in writing. You hereby
+> authorize us to perform the repair work herein set forth … you agree that we are not responsible for
+> loss or damage to your vehicle … an express mechanic's lien on your vehicle is granted to secure
+> payment of this invoice …"*
+
+**The credit note for the same shop prints none of it.** So C44970 line 1 is a genuine failure, not an
+unconfigured shop. Per the standing instruction — *"You are never supposed to create defect, you are
+supposed to make the tests RUNNABLE"* — the documented expectation stays, no ticket is prepared, and
+**C44970 now carries the three outcomes** so the tester runs it and marks it Failed:
+
+> WHAT YOU SHOULD SEE TODAY, AND IT IS A PROBLEM: the disclaimer is MISSING from the Credit Invoice…
+> (1) exactly that ⇒ mark FAILED, raise nothing new. (2) fails DIFFERENTLY ⇒ a new problem, report it.
+> (3) the disclaimer IS printed ⇒ the fix has shipped, tell the QA lead.
+
+Line 2 (the signature area) already passed on 2026-09-02 and still does.
+
+### C45168 line 2 — the `Credit To` block's width. **PASS, measured**
+
+A layout claim that text extraction genuinely cannot answer — so the extractor was given coordinates
+(`pdf_text.py --positions`). On `CM-4194`, in the band the address block occupies (**y 140–245**):
+
+| | |
+|---|---|
+| Every run in that band | `ADDRESSES` at x 69.5, then `CREDIT TO` and the three address lines at x 81.0 |
+| Largest x in the band | **81.0** |
+| Largest x anywhere on the page | **697.5** (the `TOTAL` column) |
+
+**Nothing shares that horizontal band with the `Credit To` block** — the page is 700 points wide there
+and the block has all of it, which is exactly the contrast the case is drawing with an ordinary
+invoice, where `Remit Payment To` sits beside `Bill To` (confirmed in the invoice HTML above).
+
+**Credit Invoice section, final: 11 of 12 fully verified · C44967 and C44968 each carry one line still
+NOT VERIFIED · one line (C44970 line 1) is a FAIL the tester will record.**
