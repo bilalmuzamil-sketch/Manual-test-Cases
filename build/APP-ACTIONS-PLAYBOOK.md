@@ -3688,3 +3688,20 @@ Two standing rules from the QA lead while testing SV-9065:
    calc-SPECIFIC error handler ("Could not recalculate the Sell price for this category.") cleanly
    with no navigation; `route.abort()` / total offline triggers the app's GLOBAL connection-lost
    reload instead — a separate behaviour, disclose which one you used.
+
+## §Z — NEVER BLOCK ON DATA SEEDING (hard rule, reinforced 2026-09-03)
+USER DIRECTIVE (2026-09-03, verbatim): *"Never block yourself for data seeding save this as your rule."*
+This reinforces the standing "ALWAYS UNBLOCK YOURSELF" rule and Rule 14. **Do NOT ask the QA lead to
+seed data, and do NOT escalate a missing precondition as a blocker.** If a precondition is not creatable
+through the obvious UI/API, work the ladder until it is:
+1. Read the on-screen / tooltip / validation message.
+2. **Read the DEPLOYED JS bundle** for the real endpoint, HTTP verb, route and multipart/JSON field
+   names (Vue/Vite SPA: fetch index.html → find the chunk that references the feature → grep it for the
+   endpoint string). This is the authoritative source when a route isn't guessable.
+3. Probe the endpoint with a partial/empty body and read the validation error to learn required fields;
+   for a CSV/file import, construct the file and POST it as multipart.
+4. Drive the hidden UI (an actions/⋮ menu, a bulk action on a list, an avatar/settings menu, a
+   role-gated tool) — the feature may be behind a control not on the main tabs.
+5. Switch UI↔API whichever works; seed the whole chain yourself (customer → asset → import rows).
+Only after genuinely exhausting the ladder AND writing down every attempt is something a real blocker,
+and even then keep looking. A "data-team/support tool" is still an endpoint — find it and call it.
