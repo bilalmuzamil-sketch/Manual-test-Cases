@@ -375,3 +375,35 @@ old wording would have been hunting for a button that was not there yet.
 those two amounts were **invented to match the case's own seed data** and never appeared on any screen.
 The case now describes what the row says instead of quoting figures nobody has seen. The pattern the
 build really renders is `Applies $1,211.85 · $2,788.15 remaining` (CM-4198, 2026-09-03).
+
+### The Issue Credit dialog opened from an INVOICE — sv8218 `v26.35.6-8454936`, 2026-09-03
+
+**There are two different "Issue Credit" dialogs and they are not the same dialog.** The one on the
+customer's `Invoices` tab makes an account-level money credit and offers only an `Amount`. The one on a
+**paid part sale's `Finance` tab → the toolbar's three-dot menu → `Issue Credit`** lists the parts on
+that invoice. Evidence: `build/invoice-ui-refresh/seed-2026-09-03/invoice-issue-credit.json` (+ `.png`),
+and the credit it produced, `CM-4199`, rendered at
+`build/invoice-ui-refresh/credit-states-2026-09-03/CM-4199-Unapplied.pdf`.
+
+| | Verbatim |
+|---|---|
+| Fields | `Credit Date` · a tick box **`Parts are being returned`** · `Outcome` = `Issue Store Credit` / `Issue Refund` · `Payment method` · `Reason` |
+| Section heading | **`Parts to return`** |
+| Its columns | `Part Number` · `Description` · `Sell Price` · **`Qty Available For Credit`** · **`Qty To Credit`** · **`Restocking Fee`** · `Total` |
+| Totals | `Subtotal:` · `Tax:` · `Total:` |
+| Confirm button | relabels to **`Issue Credit`** when `Issue Store Credit` is chosen |
+
+**The part-return chain that is NOT this** (recorded so nobody walks it again expecting a customer
+credit): a part sale's line whose `Status` is `Received` carries a **`Return`** arrow → `Add new part
+return request` (`Return reason`, `Quantity`, `Save & Close`) → the row appears on **`Parts` →
+`Returns`** → ticking it reveals **`Receive Credit`** → the **`Process Return`** page (`Vendor`,
+`Packaging Slip`, `Credit memo number`, `Credit Date`, a per-line `Restocking fee`, `Post Credit`).
+**That is the shop receiving a credit from its SUPPLIER** — the `Credits` tab beside `Returns` lists
+`Credit memo number · Vendor · Work Order · Vendor Invoice · Processed By · Total Cost`, and the
+customer's account gains nothing. A paid part sale's lines have no `Return` arrow at all.
+
+**🛑 THE PROBE BUG THAT HID THE `Return` ARROW FOR A WHOLE PASS.** Two probes enumerated
+`document.querySelector('table tbody tr')` — the FIRST `tbody` row — and **in these Quasar tables the
+first row is an empty spacer**. Both answered *"controls on first line row: 0"*, and that was reported
+as *"a part sale has no return action"*. It has one on every `Received` row. **Enumerate every row,
+skip rows whose text is empty, and never conclude a control is absent from one row's worth of DOM.**

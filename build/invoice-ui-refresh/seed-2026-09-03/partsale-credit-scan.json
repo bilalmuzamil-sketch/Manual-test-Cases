@@ -1,0 +1,40 @@
+{
+ "scanned": 608,
+ "hits": {
+  "credit-memos": [
+   "index.scjEL9E9.js"
+  ],
+  "Restocking Fee": [
+   "CreateReturn.GYe1M_Vu.js",
+   "CreateCredit.aZ-peaxO.js",
+   "ConfirmReturn.tTZFVwDN.js",
+   "IssueCreditMemoDialog.C3qsxQcG.js"
+  ],
+  "Issue Credit": [
+   "UnpaidTransactionsTable.D-Jgh4C8.js",
+   "IssueCreditMemoDialog.C3qsxQcG.js",
+   "InvoiceActionBar.BOZQneQU.js"
+  ],
+  "Restocking fee": [
+   "returnDetailItemColumns.H2lM1U7v.js"
+  ],
+  "part_sale_credit": [
+   "InvoiceActionBar.BOZQneQU.js"
+  ],
+  "Receive Credit": [
+   "ReturnRequests.Cf_mgtPX.js"
+  ],
+  "Return to inventory": [
+   "ReturnRequests.Cf_mgtPX.js"
+  ]
+ },
+ "ctxs": {
+  "credit-memos": "chCustomerUnpaidTransactions:e=>s.get(`customer-account/list-unpaid-transaction?${S.stringify(e)}`),fetchCustomerPayments:e=>s.get(`customer-payment/list?${S.stringify(e)}`),voidCreditMemo:e=>s.post(`credit-memos/${e}/void`),fetchCustomerPaymentMethods:()=>s.get(\"customer-account/payment-methods\"),createCustomerPayment:e=>s.post(\"customer-account/create-customer-payment\",e),reversePayment:e=>s.post(\"customer-account/reverse-customer-pay",
+  "Restocking Fee": "\"},{name:\"qtyInStock\",label:\"Qty in Stock\",align:\"left\"},{name:\"qtyToReturn\",label:\"Qty to Return\",align:\"left\"},{name:\"pricePerUnit\",label:\"Price Per Unit\",align:\"left\"},{name:\"restockingFee\",label:\"Restocking Fee\",align:\"left\"},{name:\"total\",label:\"Total\",align:\"right\"},{name:\"actions\",label:\"\",align:\"right\"}],p=C([{id:crypto.randomUUID(),part:{part_number:\"\",name:\"\",quantity:1,purchase_price:null},restockingFee:null,partBinLocations:",
+  "Issue Credit": "{key:5,class:x([\"q-mt-xs\",{\"full-width margin-top-5\":e.$q.screen.lt.sm}])},[i(n,{class:x({\"full-width\":e.$q.screen.lt.sm}),disable:!v.company||!v.company.customer_account_id||!!oe.value,\"aria-label\":\"Issue Credit\",label:\"Issue Credit\",\"data-test-id\":\"button_issue_credit_customer\",outline:\"\",onClick:st},null,8,[\"class\",\"disable\"]),oe.value?(o(),u($,{key:0},{default:l(()=>[S(At(oe.value),1)]),_:1})):_(\"\",!0)],2)):_(\"\",!0),ie.value?(o(),T(",
+  "Restocking fee": ",required:!0,align:\"left\",field:e=>e.cost_decimal,sortable:!0},{name:\"quantity_accepted\",label:\"Accepted quantity\",align:\"left\",field:e=>e.quantity_accepted,sortable:!0},{name:\"restocking_fee\",label:\"Restocking fee\",required:!0,align:\"left\",field:e=>e.restocking_fee?e.restocking_fee:\"-\",sortable:!0},{name:\"total\",label:\"Total\",required:!0,align:\"right\",field:e=>`$${e.total}`,sortable:!0}];export{t as r};\n//# sourceMappingURL=returnDetai",
+  "part_sale_credit": ">{},[\"stop\"]))},{default:a(()=>[l(N,{offset:[0,10]},{default:a(()=>[l(Q,null,{default:a(()=>{var u,I,g;return[m(v).canDelete(\"partSales\")?H((n(),o(L,{key:0,disable:((u=t.workOrder)==null?void 0:u.has_part_sale_credits)||((I=t.invoice.customer_transaction)==null?void 0:I.has_portal_payment),clickable:\"\",\"data-test-id\":\"menu_item_reverse\",onClick:J},{default:a(()=>{var P,ne;return[l(q,null,{default:a(()=>[l(R,null,{default:a(()=>[...e[13]",
+  "Receive Credit": "model-value\",\"class\"]),e.$q.screen.gt.sm?(o(),T(\"span\",Jt)):y(\"\",!0),D.value.length&&n(m).canEdit(\"vendorOrderManagement\")?(o(),s(u,{key:2,class:$([\"q-mx-xs\",{\"full-width\":e.$q.screen.lt.md}]),label:\"Receive Credit\",\"aria-label\":\"Receive Credit\",\"data-test-id\":\"button_receive_credit\",onClick:t[0]||(t[0]=a=>Xe())},null,8,[\"class\"])):n(m).canEdit(\"vendorOrderManagement\")?(o(),s(u,{key:3,class:$([\"q-mx-xs\",{\"full-width\":e.$q.screen.lt.md}]",
+  "Return to inventory": "ound:\"\",dense:\"\"},{default:r(()=>[l(St,null,{default:r(()=>[l(Dt,{class:\"action-menu\"},{default:r(()=>[We.value(a.row)?de((o(),s(le,{key:0,\"data-test-id\":\"menu_item_return_to_inventory\",\"aria-label\":\"Return to inventory\",clickable:\"\",onClick:k=>He(a.row)},{default:r(()=>[l(oe,{\"no-wrap\":\"\"},{default:r(()=>[...t[5]||(t[5]=[q(\"Return to inventory\",-1)])]),_:1})]),_:1},8,[\"onClick\"])),[[se]]):y(\"\",!0),a.row.enableCoreReturnToInventory?de(("
+ }
+}
