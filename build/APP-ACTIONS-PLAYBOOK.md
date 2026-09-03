@@ -191,6 +191,14 @@ any endpoint/ID not recorded here or in `CLAUDE.md`** — if only partly known, 
 ---
 
 ## A. Auth & session
+
+> **🔑 THE ACCOUNTS AND PASSWORDS THEMSELVES LIVE IN `build/ENVIRONMENT-CREDENTIALS.md`** — production,
+> TestRail and Atlassian, each with the URL, the account, the password, the login method, what that
+> method returns and its traps. **Committed under the QA lead's ruling of 2026-09-03** (Standing Rule 82
+> amendment). **Staging and the QA branches have NO password — entry is by session cookie**, supplied by
+> him per branch into `/tmp` at `chmod 600`; **cookies and tokens are still NEVER committed.** And a
+> committed password is **not** authorisation: **Rule 6 still governs every TestRail write.**
+
 - **Quick-login (admin/tech):** `POST /api/quick-login {key:'admin'|'tech'}` → 200 + a fresh
   `PHPSESSID`. Gated by valid session cookies. Prefer quick-login SSO over raw-cookie API (raw
   can 409). Both `{key:'admin'}` and `{key:'tech'}` return 200 on staging (tech-403 is fixed;

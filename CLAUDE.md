@@ -474,7 +474,10 @@ are FINAL" text, kept visible and dated.
 
 **Other standing infrastructure docs:** `build/PROCESS-CATALOG.md` (every callable process) ·
 `build/APP-ACTIONS-PLAYBOOK.md` (proven staging/QA action recipes — **read before any staging
-action**; §J TestRail traps, §K production access) · `build/TESTING-RUNBOOK.md` ·
+action**; §J TestRail traps, §K production access) ·
+`build/ENVIRONMENT-CREDENTIALS.md` (**the committed logins** — prod · TestRail · Atlassian; staging/QA
+are cookie-only and tokens are never committed; a password there is **not** write authorisation, Rule 6
+stands — Rule 82 amendment 2026-09-03) · `build/TESTING-RUNBOOK.md` ·
 `build/OUTSTANDING-ITEMS-REGISTER.md` · `build/NO-WORK-LOSS-STRATEGY.md` ·
 `build/QA-QUALITY-PIPELINE-EXPLAINER.md` · `build/ATLASSIAN-JIRA-ACCESS-METHOD.md` ·
 `build/RUTHLESS-USEFULNESS-AUDIT-PROCESS.md` · `build/BUILD-ACCURATE-WORDING-VIU-PROCESS.md` ·
