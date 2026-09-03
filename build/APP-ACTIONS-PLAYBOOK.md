@@ -1945,9 +1945,14 @@ Terse entries; where the full detail already lives elsewhere in this playbook, t
   reuse for API + browser + cleanup. `cf_clearance` NOT needed via the agent proxy. Full entry: §A
   "PRODUCTION access". *(proven 2026-07-29)*
 - **PROD browser automation:** boot2-style Chromium hydration works on prod — `PHPSESSID` cookie on
-  `.shopview.com` + localStorage `user` = `{data:<login-response data>}` + `fe_permissions_wrapper`;
-  Playwright pointed straight at `$HTTPS_PROXY`, **no MITM bridge needed**. Full entry: §A.
-  *(proven 2026-07-29)*
+  `.shopview.com` + localStorage `user` = `{data:<login-response data>}` + `fe_permissions_wrapper`
+  (+ `token`); Playwright. Full entry: §A. *(proven 2026-07-29)*
+  **🔴 CORRECTION 2026-09-03:** Chromium can **no longer** TLS straight through `$HTTPS_PROXY` on prod —
+  every navigation returns `net::ERR_CONNECTION_RESET`, exactly as on QA/staging. **The local MITM
+  bridge is now REQUIRED** (`build/atlassian-login/bridge.mjs`; port in `/tmp/atlassian/bridge-port.txt`,
+  rotates — never hard-code). Point Chromium at `http://127.0.0.1:<bridgePort>`. The rest of the recipe
+  (login → fe-permissions → hydrate localStorage) is unchanged. Re-proven 2026-09-03 verifying C30354
+  on `/reports/parts-velocity`.
 - **PROD test org / workplace:** org `72b2cc90-6964-4429-a207-76e55f946936`; seed WOs in
   **"Trucks Hill 2" `b617914c-16e9-4485-8e8b-193cd86aa416`** (HAS canned lines; "QA Testing"
   `8badadec-…` has none). Full entry: §A. *(proven 2026-07-29)*
