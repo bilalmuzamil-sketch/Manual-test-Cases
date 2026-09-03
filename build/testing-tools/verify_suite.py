@@ -32,21 +32,30 @@ him, and each one names that mistake so nobody "simplifies" it away.
 
 Exit code 0 only when every check passes. Read-only: this script never writes to TestRail.
 """
-import argparse, base64, collections, html, json, re, subprocess, sys, time, urllib.request
+import argparse, base64, collections, html, json, os, re, subprocess, sys, time, urllib.request
 
 HOST = 'https://shopview.testrail.io'
-sys.path.insert(0, 'build/testing-tools')
+# Resolve sibling modules from THIS FILE's directory, not from the caller's cwd: the literal
+# 'build/testing-tools' only worked when invoked from the repo root, and the marker declaration
+# imported below must be findable however this script is launched.
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from load_creds import testrail_creds
 
-# FOUR legitimate markers, not three. CLAUDE.md's deliverable conventions list three, but RULE 69
-# sanctions a fourth for a case whose steps cannot yet be build-verified:
-#   AUTOMATION: Not available on Build to test Yet - Last checked <M/D/YYYY>
-# Coded with only three, this gate failed C44937/C44938/C44939/C44942 - four CORRECT cases on a
-# Rule-69 project. That is the third time a gate here has cried wolf at correct cases, so: READ THE
-# RULE IN ITS FILE BEFORE FAILING A CASE, and encode what the rule actually allows.
-MARKERS = ('AUTOMATION: READY - EXPECT FAIL', 'AUTOMATION: READY', 'AUTOMATION: HOLD',
-           'AUTOMATION: Not available on Build')
-DEFERRED_MARKER = 'AUTOMATION: Not available on Build'
+# 🛑 THE SANCTIONED MARKERS ARE IMPORTED, NEVER RE-TYPED HERE. Failure this prevents: this file
+# used to carry the tuple as a literal, so it had to be hand-edited every time the QA lead
+# sanctioned a form - and a list nobody remembers to edit flags CORRECT cases as invalid. Coded
+# with only three literals, this gate failed C44937/C44938/C44939/C44942 - four CORRECT cases on a
+# Rule-69 project - because rule 69 sanctions a fourth. The 2026-08-31 staging-only HOLD then
+# survived the same tuple ONLY BY LUCK: it happens to start with the 'AUTOMATION: HOLD' prefix that
+# was already there. The next sanctioned form will not be lucky.
+# `automation_markers` declares the set ONCE, for this tool and every future one, and AUDITS that
+# declaration against the documents that sanction it (rule 61 + its 2026-09-02 backfill, CLAUDE.md
+# §5, 00-COMMON-CORE.md §5.0-b) in BOTH directions on every run. So a newly sanctioned marker is
+# either picked up automatically, or the run STOPS and says the list is stale - it can never
+# silently flag a valid case. Why a declared list and not a runtime scrape of the docs: canon
+# quotes INVALID markers as counter-examples (`AUTOMATION: Ready` is in 00-COMMON-CORE.md), so a
+# scraped accept-list would start accepting the exact bug check 5 exists to catch.
+from automation_markers import MARKERS, DEFERRED_MARKER, classify, assert_current
 NEVER_WRITE = {1: 'Vladimir Tomovic'}          # his cases are reported, never changed - no exceptions
 IN_SCOPE_TESTER = {                            # Rule 38's amendment, per project, never a blanket rule
     6559: (6, 'Mudassir Qamar'),
@@ -105,6 +114,13 @@ def main():
     ap.add_argument('--build', help='the build marker the build sentences should name, e.g. v26.35.6-0f8d60b')
     ap.add_argument('--authorised', help='json list of Automated case ids the QA lead has cleared')
     a = ap.parse_args()
+
+    # 0 -- PROVE THE MARKER LIST IS CURRENT BEFORE JUDGING ANY CASE AGAINST IT. This runs before
+    # the first TestRail call so a stale list stops the run instead of producing verdicts nobody
+    # should trust. It raises StaleMarkerList - loudly, with what to add and where.
+    n_forms = assert_current()
+    print(f'0  MARKER LIST          {n_forms} sanctioned forms, audited against CLAUDE.md §5, '
+          f'rule 61 and 00-COMMON-CORE.md §5.0-b - current')
 
     email, key = testrail_creds()
     auth = base64.b64encode(f'{email}:{key}'.encode()).decode()
@@ -165,7 +181,7 @@ def main():
             bad_marker.append((c['id'], f'{len(ms)} marker lines'))
         else:
             m = ms[0]
-            hit = next((k for k in MARKERS if m == k or m.startswith(k + ' ')), None)
+            hit = classify(m)
             if not hit:
                 bad_marker.append((c['id'], repr(m)))
             else:
@@ -194,7 +210,11 @@ def main():
         if i in prot:
             notes.append(f'C{i} marker: {t} - but it is Vladimir Tomovic\'s, so report it and leave it (Rule 38)')
         else:
-            fails.append(f'C{i} marker is not one of the three literals ({t})')
+            # NOT "one of the three literals" - that wording is the bug this gate paid for once
+            # already. Name the sanctioned prefixes from the imported declaration, so the message
+            # cannot go stale the way the tuple did.
+            fails.append(f'C{i} marker is not one of the sanctioned forms ({t}); '
+                         f'sanctioned prefixes: ' + ', '.join(repr(k) for k in MARKERS))
     ready, ef, hold = counts['AUTOMATION: READY'], counts['AUTOMATION: READY - EXPECT FAIL'], counts['AUTOMATION: HOLD']
     defer = counts[DEFERRED_MARKER]
     # A NOT-BUILT case is excluded from any ready-to-automate figure (Rules 60/69), so it leaves the

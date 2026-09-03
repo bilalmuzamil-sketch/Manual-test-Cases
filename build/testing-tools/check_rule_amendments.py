@@ -110,6 +110,30 @@ if missing or dupes:
     sys.exit('REFUSING TO SWEEP: the rule corpus is incomplete, so no result '
              'from this tool would be trustworthy. Fix the corpus, then re-run.')
 
+# 🛑 A CITED RULE NUMBER HAS NO DIGIT LIMIT. Failure this prevents: every attribution regex
+# below used to read `\d{1,2}`, so the moment rule 100 exists a citation to "Rule 100" parses
+# as `10` and the atom is charged to RULE 10 — a SILENT MISATTRIBUTION that simultaneously
+# hides rule 100's real divergence and invents one against rule 10. The sweep range was
+# uncapped on 2026-09-02 so rule 100 WILL be swept; without this, it would be swept and then
+# mis-filed. Same failure class as the three-literal marker gate and INTEGRITY.md's
+# hard-coded rule range: a hard limit that passes by ignoring anything new.
+#
+# ANCHORING — why `\b\d+\b` and not a bare `\d+`:
+#   * a case id cannot leak in: 'C45068' yields NOTHING (no word boundary after 'C'),
+#     where `\d{1,2}` yielded 45, 06 and 8.
+#   * a date or ticket id degrades safely: '8/5/2026' yields 2026 and 'SV-8582' yields 8582,
+#     both rejected by the corpus clamp below — where `\d{1,2}` invented rules 20/26 and
+#     85/82 out of the same strings.
+#   * the clamp `1 <= n <= RULE_MAX` is the real guard, and RULE_MAX is MEASURED from the
+#     bodies, so it widens by itself as rules are added.
+CITE_NUM = re.compile(r'\b\d+\b')
+
+
+def cited(text):
+    """Rule numbers cited in `text`: whole numbers of ANY length, clamped to the live corpus."""
+    return {n for n in (int(x) for x in CITE_NUM.findall(text)) if 1 <= n <= RULE_MAX}
+
+
 # ---- CLAUDE.md ----
 cml = read('CLAUDE.md').split('\n')
 sec = {int(m.group(1)): i for i, l in enumerate(cml)
@@ -137,19 +161,19 @@ for b in bullets:
     prim = set()
     for grp in re.findall(r'\(([^()]*?)\)', head):
         if re.fullmatch(r'[\d/,\s]*\d', grp.strip()):
-            prim |= {int(x) for x in re.findall(r'\d{1,2}', grp)}
+            prim |= cited(grp)
         else:
-            m2 = re.match(r'^(\d{1,3})\s*[,;]', grp.strip())
+            m2 = re.match(r'^(\d+)\s*[,;]', grp.strip())
             if m2:
                 prim.add(int(m2.group(1)))
     for grp in re.findall(r'[Rr]ules?\s+([\d/,\s]*\d)', head):
-        prim |= {int(x) for x in re.findall(r'\d{1,2}', grp)}
+        prim |= cited(grp)
     b['primary'] = sorted(n for n in prim if 1 <= n <= RULE_MAX)
     allc = set(b['primary'])
     for grp in re.findall(r'[Rr]ules?\s+([\d/,\s]*\d)', b['raw']):
-        allc |= {int(x) for x in re.findall(r'\d{1,2}', grp)}
+        allc |= cited(grp)
     for grp in re.findall(r'\(([\d/]+)\)', b['raw']):
-        allc |= {int(x) for x in re.findall(r'\d{1,2}', grp)}
+        allc |= cited(grp)
     b['all'] = sorted(n for n in allc if 1 <= n <= RULE_MAX)
 
 index_rows = {}
@@ -163,7 +187,7 @@ narr = {}
 for para in re.split(r'\n\s*\n', s2):
     if para.lstrip().startswith('|') or para.lstrip().startswith('###'):
         continue
-    for n in {int(x) for x in re.findall(r'[Rr]ule\s+(\d{1,2})', para)}:
+    for n in {int(x) for x in re.findall(r'[Rr]ule\s+(\d+)', para)}:
         if 1 <= n <= RULE_MAX:
             narr.setdefault(n, []).append(para)
 
@@ -179,7 +203,7 @@ for p in cite_files:
             continue
         ns = set()
         for grp in re.findall(r'[Rr]ules?\s+([\d/,\s]*\d)', sent):
-            ns |= {int(x) for x in re.findall(r'\d{1,2}', grp)}
+            ns |= cited(grp)
         if not ns:
             continue
         if not (any(a in sent.lower() for a in AMEND)
