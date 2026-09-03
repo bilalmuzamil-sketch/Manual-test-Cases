@@ -3665,3 +3665,26 @@ button → the per-part **Order** button appears → Order → part becomes **Aw
   required" until the PS is approved).
 - Browser hydration for the PS UI is the same boot2 pattern (quick-login → capture fresh PHPSESSID
   from Set-Cookie → seed cookies + localStorage user/fe_permissions_wrapper/token → navigate).
+
+## §Y — QA evidence discipline (learned 2026-09-03, SV-9065)
+Two standing rules from the QA lead while testing SV-9065:
+
+1. **Share screenshots a MANUAL tester can replicate.** Headline pass evidence must be states a
+   human QA reproduces by clicking (change a category, pick a part number, switch categories fast).
+   If a check needs a state a normal user cannot reach (a forced network failure, an injected
+   response), that is fine to test but it must be presented AS a simulation, with the exact manual
+   way to reproduce it (e.g. DevTools -> Network -> right-click the request -> Block request URL /
+   set Offline).
+
+2. **ALWAYS disclose deliberate fault-injection — every time.** Whenever a test induces a fault the
+   product would not produce on its own (block/abort/500 an endpoint, offline mode, throttle a
+   single call, seed an impossible state), the deliverable MUST state, on that exhibit AND in the
+   technical section: (a) THAT it was deliberately induced, (b) HOW it was induced, (c) WHY (which
+   requirement/PR hardening it verifies), and (d) its RELEVANCE to the ticket. Never let an
+   induced error read as a real defect or as a normal-user path. Applies to Jira comments,
+   annotated screenshots, findings docs and reports.
+
+   Harness note: for ShopView's pricing calc, `route.fulfill({status:500})` triggers the
+   calc-SPECIFIC error handler ("Could not recalculate the Sell price for this category.") cleanly
+   with no navigation; `route.abort()` / total offline triggers the app's GLOBAL connection-lost
+   reload instead — a separate behaviour, disclose which one you used.
