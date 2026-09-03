@@ -2076,6 +2076,33 @@ Terse entries; where the full detail already lives elsewhere in this playbook, t
   git commit -m "<msg>" -- <the same paths>      # THE GUARD: pathspec, immune to index state
   git show --stat --oneline HEAD                 # read the count, then push the explicit SHA
   ```
+- **🛑 AND THE PATHSPEC GUARD HAS ITS OWN BLIND SPOT: A PATHSPEC COMMIT SILENTLY DROPS A RENAME'S
+  DELETION SIDE, SHIPPING BOTH COPIES OF THE FILE (hit 2026-09-03).** `git mv old new` stages **two
+  halves** — the DELETE of `old` and the ADD of `new`. **`old` no longer exists in the worktree, so it
+  never makes it into the pathspec you type**, and a pathspec commit records only what it names: the
+  add lands, the delete does not, and **the commit contains BOTH files**. Caught by reading the stat
+  line; it would otherwise have shipped a duplicated rules file.
+  **THE TELL — and note the file COUNT does not catch this one:**
+
+  ```text
+   1 file changed, 1 insertion(+)          # pathspec = new path only  -> WRONG
+   create mode 100644 NEW.md               #   `create mode` with NO `delete mode`/`rename` line
+   1 file changed, 0 insertions(+)         # pathspec = BOTH paths     -> RIGHT
+   rename OLD.md => NEW.md (100%)          #   git says `rename` when it got both halves
+  ```
+
+  A correct rename prints **`rename old => new`**; the broken one prints **`create mode`** and nothing
+  about the old path. **`N files changed` reads `1` in BOTH cases** (re-verified in a scratch repo,
+  2026-09-03), so the count check that catches the sweeping trap is **not sufficient here** — in a
+  larger batch it shows up only as a count one off from the paths you meant to touch. **⇒ read the
+  mode/rename summary lines, not just the count.**
+  **THE FIX: name BOTH the old and the new path —** `git commit -F /tmp/msg.txt -- <old> <new>`. The
+  old path is still a valid pathspec although the file is gone (it matches the staged deletion; proven,
+  same scratch repo), and a sibling's separately staged file stayed untouched. Equivalently, run
+  **`git status --porcelain` before committing** and confirm every `R`/`D` entry you meant is covered
+  by your pathspec — an `R  old -> new` line is the warning that one pathspec entry is not enough.
+  **RECOVERY:** unpushed → `git commit --amend -F /tmp/msg.txt --only -- <old> <new>`; **pushed → leave
+  it and fix forward in a new commit — never rewrite pushed history** (the standing ruling below).
 - **✅ CORRECTION TO THE 2026-07-31 SYNTAX GOTCHA ABOVE (re-tested 2026-09-03, git 2.43.0):
   `git commit -m "<msg>" -- <paths>` WORKS.** The bullet near the top of §L says it errors with *"did
   not match any file(s)"* and routes you to `git commit -F /tmp/msg.txt -- <paths>` instead. Re-tested

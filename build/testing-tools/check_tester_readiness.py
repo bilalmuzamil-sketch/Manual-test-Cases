@@ -5,8 +5,9 @@ check_tester_readiness.py — the MECHANICAL subset of the tester-readiness gate
 Standing Rule 84 / build/TESTER-READINESS-CHECKLIST.md.
 
 READ-ONLY. This script calls `get_case` / `get_cases` and NOTHING else. It never
-writes to TestRail. Credentials are read from /tmp (or the environment) and are
-NEVER hardcoded — see build/testing-tools/README.md.
+writes to TestRail. Credentials are resolved by load_creds.testrail_creds() — env
+vars, then /tmp/shopview-creds.env, then /tmp/testrail/creds.json — and are NEVER
+hardcoded; see build/testing-tools/README.md.
 
 WHAT IT CHECKS (checks 1-7 and 10 of the checklist)
 ---------------------------------------------------
@@ -65,33 +66,34 @@ CREDS_FILE = os.environ.get("TESTRAIL_CREDS", "/tmp/testrail/creds.json")
 
 
 def load_creds():
-    """Read TestRail credentials from /tmp or the environment.
+    """(email, secret, host) -- delegated to load_creds.py, which knows ALL THREE places.
 
-    Order: TESTRAIL_* env vars, then the JSON file. Both keep the secret OUT of
-    this repository, which is public.
+    2026-09-03: this function used to run its OWN search -- TESTRAIL_EMAIL plus
+    TESTRAIL_PASSWORD/TESTRAIL_KEY, then the JSON file -- and it did NOT know about
+    /tmp/shopview-creds.env, nor about the TESTRAIL_API_KEY / CLAUDE_USERNAME spellings the
+    rest of the estate uses. A reader that checks fewer places is exactly what made a
+    session declare a false blocker on 2026-09-02 while working credentials sat on disk.
+    Never re-implement the lookup here - a second copy is a second thing to be wrong
+    (Rule 97).
+
+    The contract is unchanged: a 3-tuple, and (None, None, None) with an explanation on
+    stderr when nothing is found, so the callers below still degrade rather than traceback.
+    TESTRAIL_CREDS still overrides the JSON path.
     """
-    email = os.environ.get("TESTRAIL_EMAIL")
-    secret = os.environ.get("TESTRAIL_PASSWORD") or os.environ.get("TESTRAIL_KEY")
-    host = os.environ.get("TESTRAIL_HOST", "https://shopview.testrail.io")
-    if email and secret:
-        return email, secret, host
+    sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+    from load_creds import testrail_creds, testrail_host
     try:
-        with open(CREDS_FILE, encoding="utf-8") as fh:
-            c = json.load(fh)
-    except FileNotFoundError:
+        email, secret = testrail_creds(CREDS_FILE)
+    except RuntimeError as exc:
         sys.stderr.write(
-            f"credentials not found.\n"
-            f"  Either set TESTRAIL_EMAIL and TESTRAIL_PASSWORD (or TESTRAIL_KEY),\n"
+            f"{exc}\n"
+            f"  Either set TESTRAIL_EMAIL and TESTRAIL_API_KEY (or TESTRAIL_PASSWORD),\n"
             f"  or create {CREDS_FILE} (chmod 600, NEVER committed):\n"
             f'    {{ "email": "<you>@shopview.com", "password": "<password_or_api_key>",\n'
             f'      "host": "https://shopview.testrail.io" }}\n'
         )
         return None, None, None
-    except json.JSONDecodeError as exc:
-        sys.stderr.write(f"{CREDS_FILE} is not valid JSON: {exc}\n")
-        return None, None, None
-    return (c.get("email"), c.get("password") or c.get("key"),
-            c.get("host", host))
+    return email, secret, testrail_host(CREDS_FILE)
 
 
 def tr_get(path, creds):
