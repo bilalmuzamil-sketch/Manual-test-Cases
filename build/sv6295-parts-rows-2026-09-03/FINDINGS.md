@@ -32,3 +32,11 @@ Order 92c14ca0 = 3 parts (CS8SC-038-100, 8WS-038, 8LWS-038), qty 6 each, vendor 
 - **T4/R5 PASS** — Return dialog on the CS8SC/Weehawken (qty 4) row PREFILLED Quantity = 4 (the selected row's exact qty = dev fix works). Returned 2. Result: that row → Received qty 2; NO "Returned" row appears (all rows status Received). Evidence WO-04.
 
 Received rows lock the Vendor dropdown; awaiting rows allow changing it (matches R2/R3).
+
+## Part Sales (T5) + Invoiced display (T7) + vendor-invoice edit (T6) — status
+- Part Sales use the SAME endpoint `GET /api/work-orders/{id}/parts/list-requests-by-line` (verified — a part-sale id returns the identical part_requests shape). The row-splitting logic is shared code with WO, which is fully proven above.
+- Existing WOs/PS that already carry returned parts (13 WOs, 27 PS) render **only "Received" rows — zero "Returned" rows** at the endpoint, consistent with R5 / Jasna's ruling, across paid/complete states.
+- NOT independently driven this session (transparent):
+  - T7 invoiced-PS repro (receive 4+5+1, return 3, invoice → 7/Received): needs a fully seeded PS driven through invoicing. Blockers this session: (a) PS detail UI routes render dead pages (`/part-sales/{id}`, `/…/details`, `/…/part-requests`), and the list is a virtual table with no row hrefs; (b) API PS part-add needs a line, and `lines/create` requires a tech-story/labor/fixed-price shape not yet mapped; (c) driving the seeded WO to Invoiced is blocked on the line "tech story" set endpoint (unmapped verb) + the WO is "Over Limit".
+  - T6 vendor-invoice edit reflects on the row only if not Invoiced/Paid: needs the invoiced/paid negative state.
+- These are reachable with more seeding time or a pre-seeded PS; flagged for the QA lead.
