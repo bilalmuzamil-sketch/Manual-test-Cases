@@ -213,6 +213,14 @@ Never leave a cell NOT-VERIFIED for a missing data-state — seed it and observe
   are QA's, not ours.
 - **Secrets in `/tmp` only** (cookies/tokens/TestRail creds), `chmod 600`, never committed —
   grep the staged diff for secrets before every commit.
+  ⛔ **AMENDED 2026-09-03 for PASSWORDS ONLY.** The named account **passwords** (prod, TestRail,
+  Atlassian) are now deliberately committed at **`build/ENVIRONMENT-CREDENTIALS.md`** under the QA
+  lead's widened ruling (Standing Rule 82's 2026-09-03 amendment) — **read the login there rather
+  than asking for it.** **Everything else in this bullet stands unchanged:** every **cookie, session
+  token and API key** (`sv_sso_session` · `PHPSESSID` · `cf_clearance` · `cloud.session.token` · any
+  JWT · the TestRail **API key**) is still **`/tmp`-only, `chmod 600`, NEVER committed**, and the
+  pre-commit scan is still mandatory — run the real one:
+  `python3 build/testing-tools/scan_secrets.py --staged`.
 - **Adversarial self-audit before delivery** (Rule 15): re-derive every role×permission verdict from
   the verbatim truth table independently and diff against what the report says; ship only when the
   diff is empty. For release-critical work audit the full population, not a sample.

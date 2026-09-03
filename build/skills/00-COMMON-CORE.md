@@ -2236,7 +2236,15 @@ and belong in each `PROJECT-STATE.md`, derived live).
   `password` / `user`; `chmod 600`, **never committed** — the repository is public, §10). **`/tmp` is
   ephemeral: if the file is absent on a fresh container, ASK THE QA LEAD for the TestRail credentials
   by that path-name** — do not hunt the repository for them (they are not there, by design) and do
-  not report TestRail as unreachable without having asked. *(Scar: the 05-drill and the 08-drill of
+  not report TestRail as unreachable without having asked.
+  **🆕 AMENDED 2026-09-03 — HALF OF THIS IS NOW WRONG, AND IT IS THE HALF THAT COSTS YOU A TURN.**
+  **The TestRail *web* password IS committed**, deliberately, at **`build/ENVIRONMENT-CREDENTIALS.md`
+  §4**, under the QA lead's widened ruling of 2026-09-03 (Standing Rule 82's amendment) — he was
+  offered a TestRail carve-out and **overruled it**. **So: LOOK THERE FIRST and do NOT ask him for it.**
+  What is unchanged: the **TestRail API key is a DIFFERENT credential** and is still **`/tmp`-only,
+  never committed** (`/tmp/testrail/creds.json` → `password` **IS the API key**) — ask for *that* by
+  path-name if it is missing. **And a password is never authorisation: Rule 6 still bars every
+  TestRail write without his explicit per-task go-ahead** (§0.2 of that file). *(Scar: the 05-drill and the 08-drill of
   2026-08-13 each had to discover this file by exploring `/tmp` — the first logged it and no fix
   landed, so the second hit it again. A logged-but-unfixed defect is §7.5's "guardrail written down
   but not read".)*
