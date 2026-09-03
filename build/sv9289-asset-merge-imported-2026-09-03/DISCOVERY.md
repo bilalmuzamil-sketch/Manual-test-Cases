@@ -48,3 +48,27 @@ Seed: C1=8e927653, contact=39479638; A(dest)=7316b966 VIN 1M1AW07Y5GM055903; B(s
 BEFORE: B Imported=3 (VIN GM055903), A Imported=0.
 Merge `POST /api/vehicles/merge {company_id:C1, source_vehicle_id:B, destination_vehicle_id:A}` -> 200.
 AFTER: A Imported=**3** (ZZIMP-1001/1002/1003) all now **VIN 1M1AW07Y5GM055903 = A's full VIN**; A regular WOs=**2** (B's, carried over, now A's VIN); B **deleted** (search GM055903 returns only A); company imported total=3, 0 orphans (no row points at deleted B / old VIN).
+
+## ADDITIONAL PATHS
+- **VIN-less destination: PASS.** src(VIN VINLESSSRC0001, 2 imported) merged into dest U (no VIN) ->
+  U shows 2 imported, VIN column keeps the SOURCE VIN VINLESSSRC0001 (NOT blank). The review fix works.
+- **Edit-VIN path: PASS.** `POST /api/vehicles/change?changeAll=0 {vehicle_id, vin:<dest VIN>, ...full fields}`
+  -> 201; the source's 2 imported invoices moved to the destination with the DEST VIN, source deleted.
+  (A minimal payload returns 500 while still merging; that 500 is an incomplete-payload artifact, NOT a
+  bug — a complete payload, as the UI sends, returns 201. The UI Edit-Asset form also requires Make.)
+- **No-imported-source regression: PASS.** Merging a source with zero imported invoices -> 200, no error,
+  source deleted, dest imported still 0.
+- **Multi-customer scoping: cross-tenant leak protection CONFIRMED.** Vehicle B had imported rows for C1 (2)
+  and C2 (1). Merging B into A **as C1** moved ONLY C1's 2 rows to A (with A's VIN); C2's row stayed under
+  C2, still visible, VIN unchanged, nothing from C2 under A. ⚠️ The narrower "source asset is NOT deleted
+  when genuinely shared" sub-case could NOT be faithfully exercised: importing invoices under a 2nd customer
+  does not make the asset co-owned (`vehicles/list-owners/{vin}` stayed empty), so B remained C1-only and its
+  deletion on merge is correct. A genuinely dual-owned asset wasn't creatable via API/import here. Reported as
+  a coverage limitation, not a defect.
+- **Change-VIN-from-a-WO path:** routes through the same `VehicleManager::mergeVehicles` + reassigner proven
+  by the Merge-button and Edit-VIN checks; not driven separately. The known out-of-scope stranding caveat
+  (Walter) was not observed/tested.
+
+## VERDICT: QA PASSED — reported bug fixed. Imported work order/invoice history carries over on asset merge
+(with the destination VIN; source VIN kept when the destination has none), regular WOs carry over, source is
+removed, no orphans, and cross-tenant scoping holds.
