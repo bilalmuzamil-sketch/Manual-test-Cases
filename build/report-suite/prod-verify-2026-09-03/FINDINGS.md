@@ -12,8 +12,46 @@ sort are remembered per browser before the first fetch"*. **Project: Report Suit
 
 | | |
 |---|---|
-| **Rule 71** | C30354 is flagged **Automated** (`custom_atmstatus = 3`) — **no write without his per-case go-ahead.** His 2026-09-03 blanket authorisation to update Automated cases covered **three suites only: Invoice refresh, Inline Add Part, Workorder Print.** Report Suite is **not** among them, so nothing here was edited. 17 of the 76 cases in the Parts Velocity tree are Automated. |
+| **Rule 71** | ⛔ **THE LAST SENTENCE OF THIS ROW WAS WRONG — CORRECTED 2026-09-03 (see the correction note directly below the table).** *(Row as originally written, kept as the record:)* C30354 is flagged **Automated** (`custom_atmstatus = 3`) — **no write without his per-case go-ahead.** His 2026-09-03 blanket authorisation to update Automated cases covered **three suites only: Invoice refresh, Inline Add Part, Workorder Print.** ~~Report Suite is **not** among them, so nothing here was edited.~~ 17 of the 76 cases in the Parts Velocity tree are Automated. |
 | **Rule 81** | Source verification was **NOT run** — he re-confirmed the ask-and-wait gate an hour before this order and then went to drive, so no answer was available. Last done for Parts Velocity: **2026-08-26**, spec **v11**, page last modified 2026-08-20 (`build/report-suite/source-verify-2026-08-26/live-versions.json`). Everything below rests on that held body, not on a fresh pull. |
+
+### 🛑 CORRECTION — 2026-09-03: "nothing here was edited" IS FALSE. C30354 WAS EDITED, WITH HIS GO-AHEAD.
+
+This document was written **before** the C30354 edits happened, and it was left saying the opposite of
+what the live case shows. The wrong text is struck through above rather than deleted — **the correction
+is the record.**
+
+**Two things were wrong:**
+
+1. **Scope.** The Automated go-ahead **does extend to C30354.** The QA lead **confirmed on 2026-09-03
+   that he DID authorise the C30354 edit**, so "Report Suite is not among them" no longer describes the
+   authorisation. Recorded where the go-ahead's scope lives:
+   `build/OUTSTANDING-ITEMS-REGISTER.md`, the **2026-09-02 Authorisation block**, scope-extension note +
+   row **AUT-5**. **It is recorded at the NARROW reading — THIS CASE, not a blanket permission over
+   every Automated case in the Report Suite** — and the case-vs-suite ambiguity is flagged as AUT-5
+   rather than guessed wide. **Rules 71 and 65 stand for every other Automated case.**
+2. **Fact.** C30354 **was** edited that day.
+
+**Live evidence, measured read-only on 2026-09-03 (`get_case/30354`, no write of any kind):**
+
+| Field | Live value | What it settles |
+|---|---|---|
+| `custom_automation_type` | **`2`** (Functional) | The edit **happened**. Finding 3 below ("`custom_automation_type` is `0` (None) … **Not changed — Rule 71**") is **superseded** — it is no longer `0`. |
+| `custom_atmstatus` | `3` (Automated) | Unchanged, as intended — it is still an Automated case and Rule 71 still governs it. |
+| `updated_by` / `updated_on` | **`3`** (us) / **2026-09-03 10:53:08 UTC** | The change is ours, and it is same-day — after this document was written. |
+| `custom_preconds` (423 chars) | Concrete UI route: *"Sign in … click **"Reports"** … under the **"PARTS"** heading, click **"Parts Velocity"** …"* | Preconditions **were** rewritten from spec-level to the UI route. |
+| `custom_steps` (597 chars) | Concrete UI route: *"click the **"Type"** chip and choose **"Inventory"** … click the columns button … press **F5**"* | Steps **were** rewritten too. |
+
+Corroborated in git on this branch: commit **`3b2d04bb`** *"C30354 made runnable: preconds+steps
+rewritten to concrete UI route"* and commit **`26e64667`** *"C30354: set automation_type Functional (2)
+per QA-lead go-ahead"*.
+
+**⚠️ Date note, not corrected here because the record does not settle it:** this row calls the
+authorisation *"his 2026-09-03 blanket authorisation"*, while the register records the verbatim
+three-suite authorisation as **2026-09-02**. The **2026-09-03** date is right for the **C30354
+confirmation**; the three-suite quote is 2026-09-02. Both dates are left as each file has them.
+
+**Full account of what was changed and what was not:** `build/report-suite/prod-verify-C30354-2026-09-03.md` §3b.
 
 ## What was verified — the DOCUMENT half, and it passes
 

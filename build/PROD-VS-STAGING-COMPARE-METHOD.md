@@ -39,9 +39,26 @@ never a guess.
   - The DEV `quick-login` endpoint **500s on prod** — do NOT use it there.
 - Prod credentials live in **`/tmp` only** (e.g. `/tmp/custom-roles/prod-creds.env`),
   **never committed**.
-  - NOTE: an earlier repo copy of the prod password was redacted, but it still exists
-    in git history (commit `ee7b7e9`). **Recommend rotating**
-    `bilal.muzamil+mainadmin@shopview.com`.
+  - ⛔ **ANSWERED AND CLOSED 2026-09-03 — DO NOT RE-RAISE THIS.** *(The original note, kept
+    verbatim as the record:)* **"NOTE: an earlier repo copy of the prod password was redacted,
+    but it still exists in git history (commit `ee7b7e9`). Recommend rotating
+    `bilal.muzamil+mainadmin@shopview.com`."** — raised repeatedly since 2026-07-16.
+  - **✅ THE QA LEAD RULED ON 2026-09-03, verbatim: *"Prod is a test account no problem sharing
+    its password in public repo."***
+    **What that means operationally:**
+    1. **The rotation recommendation is CLOSED by his ruling.** It is answered, not deferred —
+       no session re-raises it, and it is not an open exposure.
+    2. **The credential is RECOVERABLE for a session that needs it:** `git show ee7b7e9`. That is
+       the recovery route; do not copy the value into a tracked file, a log or a report — there is
+       no need to, because the route exists.
+    3. **🛑 THIS DOES NOT RELAX STANDING RULE 82 FOR ANYTHING ELSE.** The ruling is **scoped to
+       this one production TEST account** (`bilal.muzamil+mainadmin@shopview.com`) and to the copy
+       already in history. It is **NOT** a general permission to commit credentials. **Every other
+       credential — TestRail, the QA-branch `sv_sso_session` / `PHPSESSID` / `cf_clearance`,
+       staging, Figma, Atlassian, QuickBooks — stays `/tmp`-only, `chmod 600`, NEVER committed**,
+       and `python3 build/testing-tools/scan_secrets.py --staged` still gates every commit.
+    4. Same shape as the 2026-08-12 JWT ruling (register row **L2**): *do not disturb what is
+       already published and settled* is **not** permission to publish anything new.
 
 ### Staging (`app.staging.shopview.com` / `api.staging.shopview.com`)
 - `POST /api/quick-login {key:'admin'|'tech'}`, gated by **fresh cookies**

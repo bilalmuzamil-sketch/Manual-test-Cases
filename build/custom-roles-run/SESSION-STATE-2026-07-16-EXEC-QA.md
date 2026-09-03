@@ -9,7 +9,7 @@ If the session/usage limit cuts off, resume EXACTLY from here. Context: user (QA
 3. The 6 deviations: Send-to-Terminal gating-model Foreman/Office/Parts-Tech (D1-D3, org-device gate vs spec Customer-Portal role-gate); Senior SA AP/AR aging = unimplemented spec grant (D4); Office User WO Notes (D5) + Part Return (D6) over-grants vs 7/14 spec (Office WO access removed). 3 contradictions: SM Invoice-Reverse (matrix vs migration-table); Technician Decline-line (§1b vs §4); Send-to-Portal PT/Office/Sales-Rep. Spec-silent: Issue Credit.
 4. EXEC deliverable for the boss — CustomRoles_Release-Readiness_Prod-vs-Staging_EXEC_2026-07-16.xlsx (4 tabs) + EXEC-SUMMARY .md, commit 86316c7, then INDEPENDENT ADVERSARIAL AUDIT verdict CLEAN (zero errors, ~40 checks) — file is APPROVED and delivered to user.
 5. Memory: Standing Rule 14 (never NOT-VERIFIED for missing data-state — seed & observe, commit 0cec1a2), Standing Rule 15 (spec calls from verbatim truth table + adversarial self-audit, commit 5718f9d), PROD-VS-STAGING-COMPARE-METHOD.md (+§10).
-6. Security: prod password redacted from HEAD (131f5bf) but STILL IN GIT HISTORY commit ee7b7e9 — user must rotate the prod credential (reminded multiple times, still open).
+6. Security: prod password redacted from HEAD (131f5bf) but STILL IN GIT HISTORY commit ee7b7e9 — user must rotate the prod credential (reminded multiple times, still open). **⛔ ANSWERED AND CLOSED 2026-09-03 — the sentence above is kept as written for the record, but it is NO LONGER OPEN and must not be re-raised. QA lead, verbatim: _"Prod is a test account no problem sharing its password in public repo."_ The rotation recommendation is closed; the credential is recoverable via `git show ee7b7e9`. This is scoped to that one production TEST account only — Rule 82 is unchanged for every other credential (TestRail, `sv_sso_session`, staging), which stay `/tmp`-only and never committed. Full record: `build/PROD-VS-STAGING-COMPARE-METHOD.md` §1.**
 
 ## RESOLVED (was "IN FLIGHT at save time") — QA pre-release checklist DONE AND DELIVERED
 The QA pre-release checklist is COMPLETE and DELIVERED:
@@ -19,10 +19,10 @@ The QA pre-release checklist is COMPLETE and DELIVERED:
 
 ## Open threads beyond this task (unchanged)
 - Vlad's Custom Roles spec-recheck vs DONE tickets (blocked: needs Atlassian access in a FRESH session, or user exports tickets).
-- Simple Flow: awaiting Milos Round-3. F&D: FD-CUST-016/FD-VAL-007 dup ruling + bug filing. Prod password rotation (above).
+- Simple Flow: awaiting Milos Round-3. F&D: FD-CUST-016/FD-VAL-007 dup ruling + bug filing. ~~Prod password rotation (above).~~ **CLOSED 2026-09-03 by the QA lead's ruling — see item 6 above. Not an open thread.**
 
 ## How to resume (ordered) — TASK COMPLETE, nothing in flight
 1. git pull; read this doc + git log -15.
 2. Steps 2/3 of the original plan are COMPLETE. Current state: ALL THREE DELIVERABLES DELIVERED — the LIVE-VERIFIED workbook + the EXEC release-readiness xlsx (audited clean, 86316c7) + the QA pre-release checklist (audited clean, aad5864). Nothing in flight.
-3. Next session: NO pending work on this task. Open threads remain (see section above): Vlad spec-recheck (needs Atlassian fresh session or exported tickets), Milos Round-3 for Simple Flow, F&D FD-CUST-016/FD-VAL-007 dup ruling + bug filing, prod password rotation (ee7b7e9).
+3. Next session: NO pending work on this task. Open threads remain (see section above): Vlad spec-recheck (needs Atlassian fresh session or exported tickets), Milos Round-3 for Simple Flow, F&D FD-CUST-016/FD-VAL-007 dup ruling + bug filing, ~~prod password rotation (ee7b7e9)~~ — **prod password rotation is CLOSED 2026-09-03 by the QA lead's ruling; do not carry it forward.**
 4. Everything user-facing: Excel, layman language, TestRail IDs+links, zero NOT-VERIFIED, build→adversarial-audit chain ALWAYS.

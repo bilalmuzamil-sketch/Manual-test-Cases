@@ -73,12 +73,33 @@ Build verified. This authorization is for these three suites for now. 1. Invoice
 Part 3. Workorder Print"* · and *"OK correct the Marker then"* · and a **renewed build session** for
 sv9315 (build moved to **`v26.35.6-0f8d60b`**).
 
+> **🆕 SCOPE EXTENSION — 2026-09-03: THE AUTOMATED GO-AHEAD ALSO COVERS [C30354](https://shopview.testrail.io/index.php?/cases/view/30354) (Report Suite → Parts Velocity).**
+> The QA lead **confirmed on 2026-09-03 that he DID authorise the C30354 edit.** C30354 is
+> `custom_atmstatus = 3` (Automated) and sits in **Report Suite**, which is **not** one of the three
+> suites named in the verbatim authorisation above — so this is an **addition to that scope, recorded
+> here because this is where the scope lives.**
+> **🛑 WRITTEN AT THE NARROW READING, DELIBERATELY: it covers THIS CASE (C30354), not every Automated
+> case in the Report Suite and not a blanket permission over Automated cases anywhere.** **The record
+> does not settle whether he meant case-scoped or suite-scoped, and the ambiguity is FLAGGED rather
+> than guessed wide** (register row **AUT-5** below). **Rules 71 and 65 stand unchanged for everything
+> else:** no other Automated case is written without his per-case go-ahead, and any Automated case we
+> do change still triggers a Rule-65 notice to Vlad.
+> What was actually done to C30354 under it (all on 2026-09-03): **preconditions + steps** rewritten to
+> the concrete UI route, and **`custom_automation_type` `0 (None)` → `2 (Functional)`**. Title,
+> Expected Results and `custom_atmstatus` unchanged. Record:
+> `build/report-suite/prod-verify-C30354-2026-09-03.md` §3b; Rule-65 notice:
+> `build/report-suite/c30354-runnable-2026-09-03/FOR-VLAD-C30354-automated-case-changed-2026-09-03.md`.
+> **Live read-back 2026-09-03 (read-only `get_case/30354`) confirms it landed:**
+> `custom_automation_type = 2`, `custom_atmstatus = 3`, `updated_by = 3`,
+> `updated_on = 2026-09-03 10:53:08 UTC`, preconds/steps = the UI route.
+
 | Row | Item | Who | Status |
 |---|---|---|---|
 | **AUT-1** | **7 Automated cases written.** Inline C45005, C45026, C45223, C45224, C45227, C45237 — preconditions only, the two non-existent permission names replaced with the role screen's real wording (`Work order lines` → `Create & Edit`; `Work orders` → `View mode` → `Full View`/`Tech view`), from his screenshots. Printer **C45123** — all three fields: the route (three dots → `Audit Log` → the window titled `Work Order Log`), the event label corrected to **`Work order printed`**, marker lifted to `AUTOMATION: READY` + build sentence | — | **✅ DONE.** Four post-write checks clean. Rule-65 notice for Vlad written: `build/automated-cases-2026-09-02/FOR-VLAD-automated-cases-changed-2026-09-02.md` |
 | **AUT-2** | **A finding of mine WITHDRAWN.** The "wording divergence" on C45123 was my own reading error — `probe_print3.mjs:52` read each row with `tr.innerText`, gluing the Event cell's clock-icon text (`history`) onto the label. **`Work order printed history` has never existed.** Any automation asserting on it is asserting on nothing | — | **✅ CORRECTED**, cause recorded in CLAUDE.md's critical core and skill 03 |
 | **AUT-3** | **The 5 Invoice Automated cases need NO change.** `Approves Work` lives in `ContactDialog` and `Part Sales` in the `Parts`/`Customer` chunks, and C44919/C44920/C44921/C44985 already describe them exactly that way. The gate flagged them because the reference file was incomplete — the second time in two days | — | **✅ CLOSED, no writes.** Both labels added to `build/OBSERVED-UI-LABELS-sv9315.md` |
 | **AUT-4** | **C45254** (his own new case) — marker was `AUTOMATION: Ready`, now the exact literal `AUTOMATION: READY`. Done through Froala `html.set`, so the stored HTML is byte-identical apart from those five characters and his own markup is untouched | — | **✅ DONE** |
+| **AUT-5** | **🆕 2026-09-03 — IS THE C30354 GO-AHEAD CASE-SCOPED OR SUITE-SCOPED?** He confirmed on 2026-09-03 that he **did** authorise the [C30354](https://shopview.testrail.io/index.php?/cases/view/30354) edit, which extends the Automated go-ahead beyond the three suites quoted above. **What is NOT settled:** whether that covers **only C30354** or **every Automated case in the Report Suite** (17 of the 76 cases in the Parts Velocity tree alone are Automated). **Recorded at the NARROW reading — this case only — and everything else still needs his per-case go-ahead (Rule 71).** *Options: (a) "just that case" ⇒ we keep asking per Automated case in Report Suite; (b) "the whole Report Suite, same as the other three" ⇒ we make the Report Suite's Automated cases runnable in one pass, with a Rule-65 notice to Vlad covering them.* **Cost of silence: none today** — the narrow reading is already recorded and C30354 is done; it only costs an extra ask the next time a Report Suite Automated case needs to become runnable. **Does NOT block** the Report Suite's non-Automated cases, nor anything in the three named suites | **QA lead** | **OPEN — flagged, not guessed** |
 | **E-1** | **Three of the five "product-forbidden" Printer cases re-checked properly**, applying his own lesson. **C45104:** `/api/work-orders/line-statuses` returns value AND **label** — `Authorization required`, `Declined`, `Authorized`, `Complete`. **No Cancelled.** Previously claimed from internal enum keys; now it is the labels the interface is actually handed. **C45097/C45098:** **2,821** work orders paged — **zero** with no customer, **zero** with no asset. Previously claimed from the create form refusing to save, which was never evidence about existing records | — | **✅ SETTLED. All five stay HOLD**, now on real evidence |
 | **E-2** | **C45107 / C45116 survive as a genuine product-owner question** — the Printer spec holds both positions: *"Print disabled … when no line items exist"* (Key Decisions) vs *"the line items section will display 'No lines on this work order'"* (S3-N1) and *"the summary will show zero totals"* (S4-N1) | **QA lead → PO** | **OPEN** — question 1 on the spreadsheet |
 | **F-1** | **The question sheet is delivered as a spreadsheet**, `build/questions-2026-09-02/ShopView-QA-questions-2026-09-02.xlsx`: two sheets for the PO/developer (no case ids, no spec anchors, no technical terms, options to tick, the requirements' own words quoted where the document is unclear) plus a **QA internal** sheet with the ids and anchors they are not meant to read | **QA lead** | **OPEN — to send.** Three questions: the printing contradiction; the voided credit's Balance row; what a user clicks to produce a printed credit note |
