@@ -1,0 +1,14 @@
+import pkg from '/opt/node22/lib/node_modules/playwright/index.js';
+const { chromium } = pkg; import fs from 'fs';
+const UI=JSON.parse(fs.readFileSync('/tmp/testrail/creds-ui.json','utf8'));
+const HOST='https://shopview.testrail.io';
+const port=fs.readFileSync('/tmp/atlassian/bridge-port.txt','utf8').trim();
+const b=await chromium.launch({executablePath:'/opt/pw-browsers/chromium-1194/chrome-linux/chrome',proxy:{server:`http://127.0.0.1:${port}`},args:['--ignore-certificate-errors']});
+const p=await (await b.newContext({ignoreHTTPSErrors:true})).newPage();
+await p.goto(`${HOST}/index.php?/auth/login/`,{waitUntil:'domcontentloaded'});
+await p.fill('#name',UI.email);await p.fill('#password',UI.password);await p.click('#button_primary');
+await p.waitForLoadState('networkidle');
+await p.goto(`${HOST}/index.php?/cases/view/30354`,{waitUntil:'networkidle'});
+const r=await p.evaluate(()=>{const ds=[...document.querySelectorAll('div[class^="markdown"]')].filter(d=>!d.id);
+ return ['custom_preconds','custom_steps','custom_expected'].map((f,i)=>ds[i]?{f,cls:ds[i].className.trim(),head:ds[i].innerText.slice(0,45)}:{f,none:true});});
+console.log(JSON.stringify(r,null,1));await b.close();
