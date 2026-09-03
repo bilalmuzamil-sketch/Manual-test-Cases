@@ -53,7 +53,7 @@ Every check names **how to check it**, because a check without a method is an op
 > **The bare `\n` half of the check below is STILL CORRECT and still a FAIL.**
 >
 > **CANONICAL AUTHORITY: `build/APP-ACTIONS-PLAYBOOK.md` §J** (round-trip evidence). Also
-> `CLAUDE.md` §5 and Standing Rule 84's 2026-08-28 amendment in `build/rules/RULES-61-99.md`.
+> `CLAUDE.md` §5 and Standing Rule 84's 2026-08-28 amendment in `build/rules/RULES-61-ONWARD.md`.
 > **The measured damage:** a pass that followed the superseded instruction left **76 cases
 > unreadable**.
 >

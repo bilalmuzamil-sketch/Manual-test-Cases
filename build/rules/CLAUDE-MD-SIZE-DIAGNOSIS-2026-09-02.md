@@ -1,5 +1,10 @@
 # CLAUDE.md SIZE GUARD — BREACH DIAGNOSIS, 2026-09-02
 
+> **📁 PATH NOTE, 2026-09-03 — `build/rules/RULES-61-99.md` NO LONGER EXISTS; IT IS NOW
+> `build/rules/RULES-61-ONWARD.md`.** The old name is left in this dated report **on purpose** — it
+> records what was measured on 2026-09-02. Substitute the new name when following a path below.
+> The range-in-filename convention was retired; see `build/rules/INTEGRITY.md`.
+
 **DIAGNOSIS ONLY. NOTHING WAS CUT FROM `CLAUDE.md` IN THIS PASS AND `CLAUDE.md` WAS NOT EDITED.**
 Every figure below was measured on disk at `HEAD` on `claude/slack-session-0sxnd9`, not recalled from
 a session snapshot — which is the lesson `build/rules/INTEGRITY.md` already records from the

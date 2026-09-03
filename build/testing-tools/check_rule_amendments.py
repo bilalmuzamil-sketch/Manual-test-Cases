@@ -36,9 +36,12 @@ import re, glob, os, unicodedata, sys
 
 ROOT = os.getcwd()
 # 🛑 THE RULE FILES ARE DISCOVERED, NEVER LISTED. Failure this prevents: the file
-# holding rules 61+ has been renamed on every rule addition (RULES-61-93 -> -94 ->
-# -95 -> -96 -> -97 -> -98 -> -99), so a hard-coded filename silently drops every
-# rule in it and the sweep reports a clean run over a corpus it never read.
+# holding rules 61+ was renamed on every rule addition (RULES-61-93 -> -94 -> -95 ->
+# -96 -> -97 -> -98 -> -99), so a hard-coded filename silently dropped every rule in
+# it and the sweep reported a clean run over a corpus it never read. That rename
+# convention was RETIRED 2026-09-03 (the file is now permanently RULES-61-ONWARD.md,
+# see build/rules/INTEGRITY.md) — the glob stays anyway, because discovering the
+# corpus is correct regardless of what the files are called.
 RULEFILES = sorted(os.path.relpath(p, ROOT) for p in
                    glob.glob(os.path.join(ROOT, 'build/rules/RULES-*.md')))
 NAMES = ['Mudassir', 'Qamar', 'Viktoria', 'Videnovic', 'Vladimir Tomovic',

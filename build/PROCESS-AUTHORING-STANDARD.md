@@ -64,7 +64,7 @@
     `build/skills/TOKEN-DISCIPLINE-CHARTER.md`. **A handoff without it is NON-COMPLIANT and MUST NOT
     BE ISSUED.** Where a handoff already has a token/quota section, **merge into it, never duplicate**.
     Routers and other skills take the charter **by pointer only**. Authority:
-    `build/rules/RULES-61-99.md`.
+    `build/rules/RULES-61-ONWARD.md`.
 
 13. **EVERY HANDOFF EMBEDS "SEARCH BEFORE YOU GIVE UP" (Standing Rule 97).** Any session handoff you
     author or revise MUST carry a section titled **"SEARCH BEFORE YOU GIVE UP (mandatory — Rule 97)"**,
@@ -81,7 +81,7 @@
     2026-08-28 false blockers, and the duty to **write a new solution into the playbook or the relevant
     skill IN THE SAME PASS**. **A handoff without it is NON-COMPLIANT and MUST NOT BE ISSUED.** Merge,
     never duplicate. Routers and other skills take it **by pointer only**. Authority:
-    `build/rules/RULES-61-99.md`.
+    `build/rules/RULES-61-ONWARD.md`.
 
 14. **EVERY HANDOFF CARRIES A §1a — "I CANNOT OBSERVE THIS ON THE BUILD" IS NOT "BLOCKED".** Any
     session handoff you author or revise MUST carry a section numbered **§1a** — before its reading

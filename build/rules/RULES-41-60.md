@@ -3,7 +3,7 @@
 This file holds the FULL, VERBATIM text of Standing Rules 41–60.
 
 Full archive: build/rules/CLAUDE-FULL-ARCHIVE-2026-08-21.md
-Index: CLAUDE.md (rule index table). Other rule files: build/rules/RULES-01-20.md, build/rules/RULES-21-40.md, build/rules/RULES-41-60.md, build/rules/RULES-61-99.md
+Index: CLAUDE.md (rule index table). Other rule files: build/rules/RULES-01-20.md, build/rules/RULES-21-40.md, build/rules/RULES-41-60.md, build/rules/RULES-61-ONWARD.md
 
 **Read the rule you are about to apply here, in full — the index is not the rule.**
 
@@ -670,7 +670,7 @@ Index: CLAUDE.md (rule index table). Other rule files: build/rules/RULES-01-20.m
     supposed to create defect, you are supposed to make the tests RUNNABLE."* **The lane produces no
     tickets, so there is normally nothing to ask about.** The full recipe is **not withdrawn** — it
     **applies only if and when the QA lead directs a ticket to be filed.**
-    **(d) WHERE THE FULL RECIPE NOW LIVES — EXACTLY:** `build/rules/RULES-61-99.md`, **Standing Rule
+    **(d) WHERE THE FULL RECIPE NOW LIVES — EXACTLY:** `build/rules/RULES-61-ONWARD.md`, **Standing Rule
     62**, the block headed *"⇒ IF AND ONLY IF HE DIRECTS A TICKET: THE SHAPE"*, subsection
     **§62-T1**. It holds the 2026-08-04 user directive, the never-file-unasked rule, the METHOD (the
     separate API split, the separate ask, the withdrawal procedure) and the SV-8822/SV-8821 rationale
@@ -687,7 +687,7 @@ Index: CLAUDE.md (rule index table). Other rule files: build/rules/RULES-01-20.m
     > never supposed to create defect, you are supposed to make the tests RUNNABLE."*
     >
     > **THE FULL, AUTHORITATIVE TEXT OF THIS AMENDMENT IS IN STANDING RULE 62**
-    > (`build/rules/RULES-61-99.md`, the block headed *"⇒ AMENDMENT, 2026-09-01 — THE LANE'S JOB IS
+    > (`build/rules/RULES-61-ONWARD.md`, the block headed *"⇒ AMENDMENT, 2026-09-01 — THE LANE'S JOB IS
     > RUNNABLE TESTS, NOT TICKETS. STOP PREPARING DEFECTS."*) — **read it there before acting on
     > anything in this rule.** In one line: a build-verification / VIU / execution pass **no longer ends
     > with a defect candidate awaiting permission.** When the build does not match the document, the
@@ -770,7 +770,7 @@ Index: CLAUDE.md (rule index table). Other rule files: build/rules/RULES-01-20.m
     remains correct for its purpose** — it **applies only if and when the QA lead directs a ticket to
     be filed.** **This was the single most likely wrong action in the repo:** roughly 27 KB of recipe
     reading as a standing instruction to build a ticket, with only a notice on top of it.
-    **(d) WHERE THE FULL RECIPE NOW LIVES — EXACTLY:** `build/rules/RULES-61-99.md`, **Standing Rule
+    **(d) WHERE THE FULL RECIPE NOW LIVES — EXACTLY:** `build/rules/RULES-61-ONWARD.md`, **Standing Rule
     62**, the block headed *"⇒ IF AND ONLY IF HE DIRECTS A TICKET: THE SHAPE"*, subsection
     **§62-T2**. Everything moved **VERBATIM** — the 2026-08-12 evidence bar and the QA lead's *"they
     did badly bite me and my job is on threat due to that"* rationale, the required five-field shape,
@@ -791,7 +791,7 @@ Index: CLAUDE.md (rule index table). Other rule files: build/rules/RULES-01-20.m
     > never supposed to create defect, you are supposed to make the tests RUNNABLE."*
     >
     > **THE FULL, AUTHORITATIVE TEXT OF THIS AMENDMENT IS IN STANDING RULE 62**
-    > (`build/rules/RULES-61-99.md`, the block headed *"⇒ AMENDMENT, 2026-09-01 — THE LANE'S JOB IS
+    > (`build/rules/RULES-61-ONWARD.md`, the block headed *"⇒ AMENDMENT, 2026-09-01 — THE LANE'S JOB IS
     > RUNNABLE TESTS, NOT TICKETS. STOP PREPARING DEFECTS."*) — **read it there before acting on
     > anything in this rule.** In one line: a build-verification / VIU / execution pass **no longer ends
     > with a defect candidate awaiting permission.** When the build does not match the document, the
@@ -845,7 +845,7 @@ Index: CLAUDE.md (rule index table). Other rule files: build/rules/RULES-01-20.m
     once
     there is a ticket, and normally there is none.** The values are **not withdrawn** — they apply
     **only if and when the QA lead directs a ticket to be filed.**
-    **(d) WHERE THE MOVED HALF NOW LIVES — EXACTLY:** `build/rules/RULES-61-99.md`, **Standing Rule
+    **(d) WHERE THE MOVED HALF NOW LIVES — EXACTLY:** `build/rules/RULES-61-ONWARD.md`, **Standing Rule
     62**, the block headed *"⇒ IF AND ONLY IF HE DIRECTS A TICKET: THE SHAPE"*, subsection
     **§62-T3** — the 2026-08-06 user directive, the `Medium` rule, the **`High` barred** ceiling and
     the dated pre-2026-08-06 `Low` history, all **VERBATIM**.
@@ -861,7 +861,7 @@ Index: CLAUDE.md (rule index table). Other rule files: build/rules/RULES-01-20.m
     > never supposed to create defect, you are supposed to make the tests RUNNABLE."*
     >
     > **THE FULL, AUTHORITATIVE TEXT OF THIS AMENDMENT IS IN STANDING RULE 62**
-    > (`build/rules/RULES-61-99.md`, the block headed *"⇒ AMENDMENT, 2026-09-01 — THE LANE'S JOB IS
+    > (`build/rules/RULES-61-ONWARD.md`, the block headed *"⇒ AMENDMENT, 2026-09-01 — THE LANE'S JOB IS
     > RUNNABLE TESTS, NOT TICKETS. STOP PREPARING DEFECTS."*) — **read it there before acting on
     > anything in this rule.** In one line: a build-verification / VIU / execution pass **no longer ends
     > with a defect candidate awaiting permission.** When the build does not match the document, the
