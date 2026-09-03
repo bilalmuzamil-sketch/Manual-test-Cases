@@ -2279,6 +2279,31 @@ Index: CLAUDE.md (rule index table). Other rule files: build/rules/RULES-01-20.m
     **⇒ DATED REFINEMENT, 2026-08-20 (QA lead, verbatim: *"Istead of automatically starting to do source verifiction ask me that I am asking you to do something for which we need to ensure that the test cases are newly source verified and then tell me the date when they were last source verified and wait for my answer wether I want to proceed with source verification or without source verification."*) — SOURCE VERIFICATION IS OFFERED AND GATED BY THE QA LEAD, NOT AUTO-RUN.**
     When build-verify / VIU / any source-dependent task is ordered, do **NOT** automatically start source verification. Instead: **(1)** tell the QA lead that the ordered task needs source-current test cases; **(2)** state the **DATE (+ spec version)** source verification was last done for that project, from the records; **(3) ASK** whether to proceed **WITH** source verification first or **WITHOUT** it; **(4) WAIT** for his answer, then proceed accordingly. The original Rule 81 requirement remains the DEFAULT LOGIC (source should be current before build-verify), but **WHETHER to run it now is HIS decision**, informed by the last-done date and Rule 77's validity window. This aligns Rule 81 with Rule 80 (tell last-done + ask before re-running).
 
+    **⇒ SUPERSEDING DIRECTIVE, 2026-09-03 (QA lead, verbatim: *"NOte everytime I ask you to build
+    verify anything, the first thing you must ALWAYS do is to get the latest from all the sources, and
+    then proceed with the task."*) — THE ASK-AND-WAIT GATE IS LIFTED FOR BUILD-VERIFY / VIU ORDERS.**
+    **This reverses the 2026-08-20 refinement above, which is HIS OWN earlier instruction and is kept
+    dated and visible rather than deleted** (Rule 32, latest wins; the conflict was surfaced to him
+    under Rule 63 when it was recorded). **THE RULE NOW:** the moment build verification or a VIU is
+    ordered, **GO AND MAKE EVERY SOURCE CURRENT — do not tell him the last-done date and wait.** "All
+    the sources" is the Rule 57 list, and it is OPEN-ENDED: **the spec/PRD at its live version · the
+    epic and ALL its child stories · the design (Claude design, Figma, technical design) · the PO's
+    verified answers · any newer written statement shared with us.** Fold in every delta (43) and only
+    then form a verdict. **What survives of the old refinement:** the **last-done date and version are
+    still REPORTED** (80, 91) — he is told what was refreshed and what moved, he is simply no longer
+    asked for permission first; and **outside a build-verify / VIU order the Rule 81 gate still
+    stands**, so a bare *"is the spec current?"* question is still answered with the date and an offer,
+    not with an unrequested pass.
+    **WHY HE CHANGED IT — the pattern that earned it.** Three passes in the days before had reached a
+    verdict, and only afterwards discovered the source had moved: the 2026-08-21 project-index refresh
+    found **every one of the seven projects' spec pages had moved since its last check** while the
+    badges still read green (Rule 91's "a green badge means the CHECK was recent, NOT that the source
+    is current"), and on 2026-09-03 a Credit Invoice pass settled a disclaimer question from the **v39**
+    spec body held in the repo while the cases cite **v45**, with no v45 body on disk — a gap that had
+    to be disclosed in the finding rather than closed. **A build-verification run against a stale
+    source is INVALID (the original rule), and asking first is how it kept happening.**
+    Ties to Standing Rules 10, 31, 32, 43, 57, 63, 77, 80, 91.
+
 82. **THE SECRET-SCAN GATE MUST BE REAL AND EXECUTABLE — never claim a scan that did not run (all projects, permanent).**
     **THE RULE:** a **pre-commit secret scan is MANDATORY** on this repository, because **the repository is PUBLIC**. The tool is **`build/testing-tools/scan_secrets.py`**, enforced by **`build/testing-tools/pre-commit`** (install once per clone: `cp build/testing-tools/pre-commit .git/hooks/pre-commit && chmod +x .git/hooks/pre-commit`). Run it **`--staged`** before every commit; the hook **BLOCKS the commit on exit 1**.
     **IF A SCAN TOOL IS MISSING, THAT IS A FINDING TO REPORT AND FIX — NEVER A STEP TO SILENTLY SKIP, AND NEVER A STEP TO FAKE WITH AN AD-HOC GREP.** An improvised `grep` for a couple of cookie names is **not** the gate: it has no allowlist, so it either floods or (far worse) it passes, and it gets **reported in the same words as the real scan**. The hook therefore **fails the commit when the scanner is absent** rather than passing quietly — **a guardrail that silently no-ops is WORSE than no guardrail at all, because it is reported as having run.**
