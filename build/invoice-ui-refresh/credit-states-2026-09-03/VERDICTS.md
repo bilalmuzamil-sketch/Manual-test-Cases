@@ -119,3 +119,63 @@ invoice, where `Remit Payment To` sits beside `Bill To` (confirmed in the invoic
 
 **Credit Invoice section, final: 11 of 12 fully verified · C44967 and C44968 each carry one line still
 NOT VERIFIED · one line (C44970 line 1) is a FAIL the tester will record.**
+
+## The returned-part credit — found, seeded, and it corrects two earlier conclusions
+
+**2026-09-03, after the QA lead pointed at the `Return` arrow.** The last two unverified lines needed a
+credit raised from a returned part carrying a restocking fee. It exists. `CM-4199` on *Alice Truck &
+Trailer Repair* is one, and its printed note settles both lines — and overturns something I reported
+earlier the same night.
+
+### How it is actually made — and the chain that is NOT it
+
+**The route:** `Parts` → `Part Sales` → a sale whose status is **`paid`** → the **`Finance`** tab → the
+toolbar's three-dot menu → **`Issue Credit`**. That dialog is **not** the one on the customer's
+`Invoices` tab: it carries a **`Parts to return`** table with `Part Number · Description · Sell Price ·
+Qty Available For Credit · Qty To Credit · Restocking Fee · Total`.
+
+**The chain that is not it** — worth recording, because it is the one that looks right. A part sale
+line whose status is `Received` has a **`Return`** arrow → `Add new part return request` → the row
+lands on `Parts` → `Returns` → tick it → **`Receive Credit`** → the **`Process Return`** page, which
+has a per-line `Restocking fee` and a `Post Credit` button. **That posts a credit the shop receives
+from its SUPPLIER.** Its `Credits` tab lists vendors and vendor invoices, and the customer's account
+gains nothing — checked directly on *Bloomingdale Diesel Repair* after walking the whole chain.
+
+### The document, and the two lines it settles
+
+```
+CREDIT NUMBER  STATUS      INVOICE NUMBER
+CM-4199        Unapplied   INV-P-97
+DESCRIPTION                                        QUANTITY   RATE      RESTOCKING FEE   TOTAL
+310206332 - XE35U.02VI-1A Pin                        -2.00    $56.26        $10.00     -$108.15
+804400054 - F381CACA080804-930-PG(P) Hose Assembly   -2.00    $42.62         $0.00      -$89.50
+805238372 - GB/T6170-2000 nut M12 (dacromet)         -4.00     $1.78         $0.00       -$7.48
+```
+
+| Case | Verdict | Why |
+|---|---|---|
+| [C44967](https://shopview.testrail.io/index.php?/cases/view/44967) line 2 | **PASS** | *"A returned part shows its actual quantity as a negative number, and its rate"* — `-2.00` and `$56.26`. **C44967 is now PASS on all six lines** |
+| [C44968](https://shopview.testrail.io/index.php?/cases/view/44968) line 1 | **PASS** | The restocking fee reduces the credit by exactly the fee. Checked on all eight lines: **Total = (quantity × rate + 5% GST) − restocking fee**, and every line matches to the cent. The Pin: 2 × $56.26 = $112.52, +5% = $118.15, −$10.00 = **−$108.15**. The case's own example (2 × $50.00 − $10.00 = $90.00) omits tax because its seeded customer is not taxed; **the rule it states holds exactly**. **C44968 is now PASS on both lines** |
+| [C44966](https://shopview.testrail.io/index.php?/cases/view/44966) line 3 | **PASS** | Line 3 needed an origin invoice's number and was unverified on 2026-09-02. This credit's status table reads `CM-4199 · Unapplied · INV-P-97` — the `INVOICE NUMBER` column is present and filled. **C44966 is now PASS on all four lines** |
+
+### ⚠️ CORRECTION — C44970's disclaimer is NOT the plain failure reported earlier tonight
+
+Earlier in this pass I wrote that *"the credit note prints none of it"* and put a three-outcome
+paragraph on C44970 telling the tester to mark it **Failed**. **That was drawn from ten credits that
+were all the same kind, and it is too broad.** With `CM-4199` in hand the picture is:
+
+| Credit | Disclaimer |
+|---|---|
+| `CM-4199` — raised from an invoice, carries `INVOICE NUMBER` | **PRESENT**, in full, above the signature lines |
+| `CM-4189` `CM-4190` `CM-4191` `CM-4192` `CM-4193` `CM-4194` `CM-4195` `CM-4196` `CM-4197` `CM-4198` — account-level store credits, no invoice number | **absent, all ten** |
+
+So the document **can** print the shop's disclaimer, and does whenever the credit came from an invoice.
+**C44970 has been corrected**: the three-outcome paragraph now tells the tester which credit this case
+is about (an invoice-raised one, where it PASSES), and says that finding no disclaimer on an
+account-level store credit is known and must not fail this case. Its precondition now carries the route
+that makes the right kind.
+
+**Whether an account-level store credit should also carry the disclaimer is a question for the PO** —
+it is not answered by anything we hold, and no case asserts it.
+
+**Credit Invoice section, final: all 12 cases fully verified against printed documents. 0 FAIL.**
