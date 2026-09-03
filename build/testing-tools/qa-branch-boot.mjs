@@ -109,6 +109,36 @@ export async function bootOrigin({ app, apiHost, ssoFile, label = app, route = '
   // land on the sign-in screen so the DEV MODE panel renders, then let the APP log in
   await page.goto(`${APP}/login?redirect=${route}`, { waitUntil: 'domcontentloaded' });
   await page.waitForTimeout(4000);
+
+  // 🛑 A SLEEPING BRANCH LOOKS EXACTLY LIKE A DEAD SESSION — AND IT REDIRECTS, SO CHECK THE URL.
+  // QA branches are paused to save resources. The app host then redirects to
+  //     https://sleep.qa.shopview.com/?app=<branch>&api=<branch>
+  // which serves "Environment Sleeping … Click below to wake it up — it usually takes around 1
+  // minute." with a single "Wake Up" button and NO sign-in form. The DEV MODE panel is therefore
+  // absent and this script used to stop with "no DEV MODE Admin button" — which reads as expired
+  // credentials, and is not. Measured on sv8218, 2026-09-03.
+  // The redirect takes several seconds, so DETECT BY URL and POLL: a first fix checked once at +4s,
+  // before the redirect had landed, and never fired.
+  for (let attempt = 0; attempt < 3; attempt++) {
+    let asleep = false;
+    for (let w = 0; w < 8; w++) {
+      asleep = /sleep\.qa\.shopview\.com/.test(page.url())
+        || (await page.locator('button:has-text("Wake Up")').count()) > 0;
+      if (asleep || /\/login/.test(page.url())) break;
+      await page.waitForTimeout(2000);
+    }
+    if (!asleep) break;
+    console.log(`${label} is ASLEEP (${page.url()}) — clicking "Wake Up"; it takes about a minute`);
+    await page.locator('button:has-text("Wake Up")').first().click({ timeout: 20000 }).catch(() => {});
+    for (let w = 0; w < 30; w++) {
+      await page.waitForTimeout(5000);
+      if (!/sleep\.qa\.shopview\.com/.test(page.url())) break;
+    }
+    await page.goto(`${APP}/login?redirect=${route}`, { waitUntil: 'domcontentloaded' }).catch(() => {});
+    await page.waitForTimeout(8000);
+    if (!/sleep\.qa\.shopview\.com/.test(page.url())) { console.log(`${label} is awake`); break; }
+  }
+
   const btnLabel = key === 'tech' ? 'Tech' : 'Admin';
   const btn = page.locator(`button:has-text("${btnLabel}")`).first();
   if (!(await btn.count())) { console.log(`no DEV MODE "${btnLabel}" button on ${label} — STOP`); await browser.close(); process.exit(2); }
