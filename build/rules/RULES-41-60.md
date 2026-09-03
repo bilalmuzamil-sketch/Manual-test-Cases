@@ -1288,9 +1288,42 @@ Index: CLAUDE.md (rule index table). Other rule files: build/rules/RULES-01-20.m
     the rule: 'the case should be matched to the build' That doesnt mean the expected behavior should
     match the build. That kills the purpose of the test case. I think when we said 'the case should
     be matched to the build' it meant that the test case should be VIU'd from the build"*.
-    **⚠️ THE SOURCE LIST WAS AMENDED 2026-08-06 — IT WAS THREE SOURCES, IT IS NOW FIVE: THE DESIGN
-    AND FIGMA ARE AUTHORITATIVE TOO. Read the AMENDMENT block below BEFORE relying on the
-    three-source list that follows, which is kept verbatim and dated rather than overwritten.**
+    **🔴 THE LIVE SOURCE LIST IS THE EIGHT-ITEM OPEN-ENDED ONE. READ THIS BLOCK BEFORE ANY LIST
+    FURTHER DOWN — BACKFILLED 2026-09-03.** **The defect it fixes is READING ORDER, not absence:**
+    the widening to **SEVEN AND EXPLICITLY OPEN-ENDED** has been in this rule since **2026-08-10**,
+    but it sits **~180 lines below** the pointer that used to open the rule, and that pointer said
+    *"IT IS NOW FIVE"* and sent the reader to the **2026-08-06** block. So a session doing exactly
+    what `CLAUDE.md` §1 instructs — *read the rule in its file before applying it* — could take
+    **FIVE** as the live list and stop, which is the same failure shape as Rule 38's missing
+    amendment. **§1's version is the QA lead's ruling and is authoritative.** §1, verbatim: *"The
+    sources are: the **spec/PRD**, the **epic's stories**, the **PO's verified answers**, the
+    **design**, **Figma**, the **technical design**, **shared `.md` files**, and **any newer written
+    statement** shared with us — and the list is **OPEN-ENDED**: a new document type counts without a
+    rule amendment."*
+    **THOSE EIGHT AND THIS RULE'S (a)–(g) ARE THE SAME LIST COUNTED TWO WAYS — NEVER TWO LISTS.**
+    §1 names the **technical design** in its own right; in the enumeration below it is **(d3)**, and
+    it is an authority by the QA lead's **2026-08-12** ruling. The mapping, in full: **(a)** the
+    **spec / PRD (Confluence)** · **(b)** the **epic's stories** — description, acceptance criteria,
+    comments · **(c)** the **PO's verified answers** in an answer sheet or message · **(d)** the
+    **DESIGN**, being **(d1)** a **Claude design** (incl. a prototype export or share page),
+    **(d2)** a **FIGMA design** — also listed in its own right as **(e)** — and **(d3)** the
+    **TECHNICAL DESIGN** he shares · **(f)** **new `.md` files shared with us** · **(g)** **any
+    written statement shared with us when it is newer**, including a message or a channel post.
+    **AND THE LIST IS OPEN-ENDED BY HIS INSTRUCTION — A NEW DOCUMENT TYPE COUNTS WITHOUT A RULE
+    AMENDMENT.** The enumeration is **illustrative, not exhaustive**; the test is **is it provided to
+    us, is it authoritative, and is it the latest** — not **is its file extension already listed
+    here.** Full text and his verbatim words: the **⇒ AMENDMENT, 2026-08-10** block below.
+    **THE THREE COMPANION CLAUSES ARE STATED IN FULL FURTHER DOWN AND ARE NOT WEAKENED BY THIS
+    BACKFILL:** **from the build we take EXACTLY TWO THINGS** — the on-screen labels/navigation and
+    the pass/fail verdict, nothing else · **a CLOSED TICKET IS NOT A SPEC CHANGE** · **an AMBIGUOUS
+    SOURCE IS NEVER RESOLVED BY LOOKING AT THE BUILD (Rule 58) — hold the case and ask.** **The
+    build is not on the source list at any width the list has ever had.**
+    **⚠️ THE SUPERSEDED POINTER, PRESERVED VERBATIM AND DATED (stood 2026-08-06 → 2026-09-03; kept,
+    never overwritten, because it is the line that made "FIVE" this rule's headline number and a
+    silently-erased pointer is how a future session re-derives the narrow list):** *"⚠️ THE SOURCE
+    LIST WAS AMENDED 2026-08-06 — IT WAS THREE SOURCES, IT IS NOW FIVE: THE DESIGN AND FIGMA ARE
+    AUTHORITATIVE TOO. Read the AMENDMENT block below BEFORE relying on the three-source list that
+    follows, which is kept verbatim and dated rather than overwritten."*
     **THE ORIGINAL THREE-SOURCE LIST (2026-08-05 — SUPERSEDED 2026-08-06 by the amendment below;
     kept visible as the record of what the rule said, exactly as Rules 31/52/53 keep theirs):**
     **EXPECTED BEHAVIOUR COMES FROM EXACTLY THREE PLACES, AND NOWHERE ELSE:** **(a)** the **PRD /
@@ -1303,6 +1336,10 @@ Index: CLAUDE.md (rule index table). Other rule files: build/rules/RULES-01-20.m
     preserved exactly as he wrote it, because Rule 25 applies to his instructions exactly as it does
     to a spec):** *"PRD/Design?Figm shuld match and then everything should match the Build."* and
     *"For now seit it as a rule but do not change any test cases in retro."*
+    **[SUPERSEDED 2026-08-10, KEPT VERBATIM AND DATED — "FIVE … AND NOWHERE ELSE" was the live list
+    only between 2026-08-06 and 2026-08-10. The live list is the EIGHT-ITEM OPEN-ENDED one at the top
+    of this rule, i.e. (a)–(g) with the technical design (d3) named in its own right. Quoting the
+    sentence below as the current list is the reading-order error the 2026-09-03 backfill fixes:]**
     **SO EXPECTED BEHAVIOUR NOW COMES FROM FIVE PLACES, AND NOWHERE ELSE:** **(a)** the **PRD /
     Confluence specification** · **(b)** the **epic's stories** — description, acceptance criteria,
     comments · **(c)** the **PO's verified answers** in an answer sheet or message · **(d)** the

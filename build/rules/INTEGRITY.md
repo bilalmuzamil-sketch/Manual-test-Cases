@@ -237,6 +237,24 @@ was shortened.** `CLAUDE.md` went **68,624 → 61,205 bytes** in the same pass (
 duplicated TestRail-formatting bullets and replaced §2's trailing rule-provenance narrative with a
 pointer to this file).
 
+**✅ LIVE STATE, 2026-09-03 (LATER THE SAME DAY — SUPERSEDES THE 21,013 B READING PRESERVED BELOW):
+§1 measures 19,797 bytes and `CLAUDE.md` measures 61,168 bytes. THE 20,000-BYTE CAP IS MET, AND
+CLAUSE 4 IS NO LONGER ACTIVE** — a §1 admission no longer has to demote something first, though
+clauses 1, 2, 3 and 5 govern its FORM exactly as before. **Measure it the same way every time:**
+`awk '/^## 1 · CRITICAL CORE/,/^## 2 · THE RULE INDEX/' CLAUDE.md | head -n -1 | wc -c` — that is the
+command the 21,013 B figure came from, so the two numbers are comparable.
+**HOW IT CAME DOWN — BY DEMOTING EVIDENCE, NOT BY CUTTING A RULING (clause 5, executed in order).**
+The **"FIND A ROUTE BY WALKING THE UI"** bullet went **1,736 B → 520 B (−1,216 B)**. The two evidence
+strings named as blockers below were **backfilled into `build/skills/03-RUN-CHECK.md` FIRST and
+grep-verified present BEFORE the §1 text was shortened** — *"is not rendered on this branch"* now at
+skill 03 line **1252** (generalised into an admissibility test: a "not rendered / not present on this
+branch" finding is **UNPROVEN** until the UI has been walked) and `GET /api/credit-memos/{id}/pdf` at
+line **1266** (with the `{id}` ≡ `{creditMemoId}` equivalence and the suffix/download lessons).
+**EVERY IMPERATIVE IN THE BULLET WAS KEPT** — the drill, the SEED/READ-only API exception, the
+displayed-label instruction and the never-guess prohibition all survive; **only evidence moved.** At
+**520 B the bullet is still above the 400 B per-subject budget, and that is reported honestly rather
+than closed by dropping an imperative** (clause 1's 2026-09-03 amendment, Rule 95 clause 12).
+**⚠️ THE SUPERSEDED READING, PRESERVED VERBATIM AND DATED (it was true earlier on 2026-09-03):**
 **🟠 LIVE STATE, 2026-09-03: §1 measures 21,013 bytes — still ABOVE the 20,000 cap, and this is the
 honest number.** It came down from **24,259 B** that day by applying the consolidation audit's six
 ranked merges (`SECTION1-AND-AMENDMENT-AUDIT-2026-09-02.md` Part A, proposals **A1–A6**), each one
@@ -256,6 +274,27 @@ grep, then demote.** Two further candidates the audit measured but did not recom
 as things stand — **rule 57's body still lists only FIVE sources (a)–(e)** and does not carry the
 "OPEN-ENDED: a new document type counts without a rule amendment" ruling at all, so moving it would
 lose substance. **Amend rule 57's body first; that gap is itself outstanding.**
+
+**✅ BOTH ITEMS IN THE SUPERSEDED BLOCK ABOVE WERE ACTIONED ON 2026-09-03 — AND ONE OF THEM WAS
+MIS-DIAGNOSED, WHICH IS WORTH RECORDING:**
+**(1) THE DEMOTION IS DONE** — evidence backfilled to skill 03, grep-verified, then §1 shortened.
+**(2) RULE 57's BODY DID *NOT* "LIST ONLY FIVE SOURCES AND NOT CARRY THE OPEN-ENDED RULING AT ALL".
+THAT SENTENCE ABOVE IS WRONG, AND IT IS LEFT STANDING (dated) BECAUSE THE CORRECTION IS THE LESSON.**
+The body has carried the widening to **SEVEN, (a)–(g), AND THE EXPLICIT "OPEN-ENDED … a new document
+type counts without a rule amendment" ruling since 2026-08-10** — verifiable by
+`grep -c "OPEN-ENDED" build/rules/RULES-41-60.md`. All three companion clauses were present too
+(*"FROM THE BUILD WE TAKE EXACTLY TWO THINGS"*, *"A CLOSED TICKET DOES NOT CHANGE THE EXPECTED
+BEHAVIOUR"*, and Rule 58's hold-and-ask). **THE REAL DEFECT WAS READING ORDER, NOT ABSENCE:** the
+pointer at the TOP of rule 57 said *"IT IS NOW FIVE"* and sent the reader to the **2026-08-06** block,
+while the amendment that actually governs sits **~180 lines further down** — so a session doing exactly
+what §1 instructs could take FIVE as the live list and stop. **Fixed 2026-09-03** by putting a live
+eight-item/(a)–(g) open-ended block at the top of the rule, mapping §1's eight to the body's seven
+letters (§1 names the **technical design** in its own right; it is **(d3)**), and preserving the old
+pointer and the *"FIVE PLACES, AND NOWHERE ELSE"* headline verbatim, both marked superseded and dated.
+**⇒ THE GENERALISABLE LESSON: "the rule does not say X" is a claim about the WHOLE body, so grep the
+whole body before writing it down.** A long rule can carry its governing amendment far below a stale
+pointer, and an audit that reads only the rule's opening will report a gap that does not exist while
+missing the one that does. Same shape as Rule 38's missing-amendment miss, one level up.
 
 ### Diagnosis of 2026-08-21 (the "459,549 bytes" report)
 
