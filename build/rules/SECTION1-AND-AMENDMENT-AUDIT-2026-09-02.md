@@ -1,5 +1,40 @@
 # §1 CONSOLIDATION PROPOSAL + RULE-AMENDMENT SWEEP — 2026-09-02
 
+> # 🛑 WARNING — 2026-09-03: THREE OF THIS FILE'S ABSENCE CLAIMS WERE WRONG. RE-GREP BEFORE YOU ACT.
+>
+> This report drives §1 consolidation decisions, and it has been caught **three times** asserting
+> *"the rule/skill body does not contain X"* when the text was there:
+>
+> 1. **Rule 38 / Mudassir Qamar's email** — claimed present in rule 38's body (A4 "Dropped", L338).
+>    **It is not, and never was** (re-verified 2026-09-03: 0 hits raw and flattened, then and now).
+> 2. **Two skill-18 citations** — reported as missing by a later worker; they were **line-wrapped**,
+>    and only a whitespace-flattened grep finds them.
+> 3. **Rule 57** — reported as listing only five sources and not carrying the open-ended ruling at all.
+>    **FALSE:** the open-ended declaration has been in rule 57's body since **2026-08-10**, ~180 lines
+>    below the pointer that misdirected the reader (re-verified 2026-09-03: `RULES-41-60.md` rule 57
+>    body, "OPEN-ENDED" ×2 at the audit's own HEAD).
+>
+> **THE COMMON FAILURE: a claim about a WHOLE rule body was made without grepping the whole body, and a
+> single-line grep misses wrapped text.**
+>
+> **⇒ EVERY REMAINING ABSENCE CLAIM IN THIS FILE MUST BE RE-GREPPED BEFORE IT IS ACTED ON — the WHOLE
+> target file AND the same file whitespace-flattened** (`tr -s '[:space:]' ' ' < <file> | grep -oEi …`).
+> **A claim of absence is valid only if BOTH find nothing.** Beware also that a byte-oriented `.` will
+> not match a multibyte character such as `→`: quote the real character.
+>
+> **A 2026-09-03 pass re-verified every remaining absence claim in this file** and annotated each one in
+> place, dated `RE-VERIFIED 2026-09-03`. The original claims are preserved verbatim and marked, never
+> deleted. **A row without a `RE-VERIFIED 2026-09-03` marker has not been re-checked — re-grep it.**
+> Consolidated result: **of the 21 absence claims re-verified, 2 were WRONG WHEN MADE, 1 was already
+> partly satisfied, 13 were CORRECT WHEN MADE and have since been FIXED by commits `ede71f31`,
+> `d1879102`, `1698aa6b` and `33ae0605`, and 5 remain CONFIRMED ABSENT today.** See
+> **§ RE-VERIFICATION LOG — 2026-09-03** at the foot of this file.
+>
+> **This file's own snapshot is stale in one further way:** it measured at `HEAD` = `9cb57fb0` and
+> states **"99 rule bodies, complete 1..99"**. At 2026-09-03 there are **100** (Rule 100 added in
+> `33ae0605`), and **§1 is 19,953 B, under the 20,000 cap** — the six merges were applied, so nothing
+> in Part A is urgent.
+
 **ANALYSIS ONLY. `CLAUDE.md` WAS NOT EDITED. NO `build/rules/RULES-*.md` FILE WAS EDITED. NO SKILL OR
 HANDOFF WAS EDITED. NO LIVE SYSTEM WAS CALLED.** The only files written by this pass are this report and
 `build/testing-tools/check_rule_amendments.py`.
@@ -75,6 +110,18 @@ Verified by exact-string count against the current §1 and against every candida
 | `AUTOMATION: HOLD - customer portal only exists on staging; this case cannot run on the QA branch` | 0 (lives in §5 L579) | — | **§5 not touched** |
 | `AUTOMATION: Not available on Build to test Yet - Last checked <M/D/YYYY>` | **0 — absent from all of `CLAUDE.md`** | — | **not touched; see Part B finding B-61, this is a real gap** |
 
+> **RE-VERIFIED 2026-09-03 — 4 of 5 rows STILL TRUE; the last row is NOW FALSE (fixed since).**
+> Counts re-taken with `grep -oF '<literal>' <§1 extract> | wc -l` on §1 (`awk '/^## 1 · CRITICAL
+> CORE/{f=1} /^## 2 · /{f=0} f' CLAUDE.md`) and on the whole `CLAUDE.md`, plus a flattened
+> cross-check `tr -s '[:space:]' ' ' < <§1 extract> | grep -coF '<literal>'`.
+> `AUTOMATION: READY` = **2** in §1 (unchanged) · `ZZAUTOTEST` = **1** (unchanged) ·
+> `AUTOMATION: READY - EXPECT FAIL (SV-xxxx)` = **0** in §1, 1 in `CLAUDE.md` (unchanged) ·
+> `AUTOMATION: HOLD - customer portal only exists on staging; …` = **0** in §1, 1 in `CLAUDE.md`
+> (unchanged). **CORRECTED:** `AUTOMATION: Not available on Build to test Yet - Last checked
+> <M/D/YYYY>` was **0 in all of `CLAUDE.md` at the audit's HEAD `9cb57fb0` (claim CORRECT when made)**
+> but is now **present once, `CLAUDE.md:544`**, flagged as "the FOURTH form, Rule 69". The gap is
+> closed; do not re-open it.
+
 ---
 
 ## A1 · RUNNABILITY — merge L211 + L219 + L232 (3,916 B → 2,432 B, saves 1,484 B) · RISK: LOWEST
@@ -97,6 +144,19 @@ merged text was drafted — the gate's no-loss condition):**
 | `check_layman_steps.py` and why it was replaced | skill 18 (2 hits) |
 | the hard line (*"making a step followable must never make an unreachable state reachable on paper"*) | `18-LAYMAN-UI-STEPS.md:141` |
 | `RUNNABILITY LIFECYCLE`, `QA env: none`, "five things" | skill 18 (1 hit each) |
+
+> **RE-VERIFIED 2026-09-03 — ALL EIGHT ROWS PRESENT in `build/skills/18-LAYMAN-UI-STEPS.md`; the
+> no-loss condition for A1 HOLDS. But TWO of them are LINE-WRAPPED and a raw grep returns nothing** —
+> which is exactly how a later worker came to report them missing.
+> Method per row: `grep -cEi -- "<needle>" build/skills/18-LAYMAN-UI-STEPS.md` **and**
+> `tr -s '[:space:]' ' ' < build/skills/18-LAYMAN-UI-STEPS.md | grep -coEi -- "<needle>"`.
+> `ONE of the major part of build verification` raw 1 / flat 1 · `the final touch-up` 1/1 ·
+> **`confirm if the preconditions are also Build verified` raw 0 / flat 1 — WRAPPED, NOT MISSING** ·
+> `Work Order Line - Create and Edit` 1/1 · `Work Orders → Work Order View Mode` 1/1 at
+> `18-LAYMAN-UI-STEPS.md:197` — **a needle written with `.` in place of `→` returns 0/0 because `→` is
+> three bytes; quote the real character** · `117` 1/1 · `90` 1/1 · `Fee & Discount` 1/1 ·
+> `Fee / Discount` 2/1 · `42` 2/1 · `check_layman_steps` 2/1 · `unreachable state reachable` 1/1 ·
+> `RUNNABILITY LIFECYCLE` 1/1 · `QA env: none` 1/1 · `five things` 1/1.
 
 ### EXACT PROPOSED TEXT (2,432 bytes)
 
@@ -278,6 +338,16 @@ this is stated twice already in `CLAUDE.md`'s own **READ THIS FIRST** block (L3�
 which load before §1. **Approve this one explicitly if you want it gone; it is the only sentence in A1–A6
 that is not covered by a grep-verified destination file.**
 
+> **RE-VERIFIED 2026-09-03 — the A3 evidence demotions are SOUND, and the parenthetical claim HOLDS.**
+> `build/rules/RULES-61-99.md`: `What went wrong was sequencing` raw 1 / flat 1 · `eight probe` 2/1 ·
+> the five false blockers are present **in different words** — rule 97 body line 72,
+> *"THE EVIDENCE — FIVE REAL CASES, ALL FROM 2026-08-28"* (a needle of `false blocker` returns 0/0 and
+> would have looked like an absence: **grep the substance, not the audit's own paraphrase**).
+> `build/APP-ACTIONS-PLAYBOOK.md`: `qa-branch-boot` 10/1 · `THE AUTHENTIC QA-BRANCH LOGIN` 2/1.
+> The parenthetical's own claim also holds: `build/rules/RULES-*.md` appears in `CLAUDE.md` L3–L30
+> (1 hit) and `RULES-01-20`/`RULES-61-99` in §6 (2 hits). **A3 was applied in `33ae0605`;** the merged
+> bullet is `CLAUDE.md` §1 and the parenthetical is gone.
+
 ---
 
 ## A4 · FOREIGN CASES — demote the evidence in L249 (2,142 B → 1,497 B, saves 645 B) · RISK: LOW-MEDIUM
@@ -294,6 +364,16 @@ body verbatim.** Rule 38's body does carry the same substance in a *different* v
 need to build verify too…"*, plus the per-suite assignment and the "Viktoria" spelling). **Under the
 gate's own no-loss condition, A4 should be applied only after Part B item B-38 puts that quote in rule
 38's body.** Do not apply A4 first.
+
+> **RE-VERIFIED 2026-09-03 — CLAIM WAS CORRECT WHEN MADE, AND HAS SINCE BEEN FIXED. THE A4
+> PREREQUISITE IS DISCHARGED.** Rule 38's body extracted from the committed `HEAD` copy of
+> `build/rules/RULES-21-40.md` (lines 786–863, 7,258 B) rather than the working tree, because another
+> session is editing that file. At the audit's HEAD `9cb57fb0`: `invoice refresh os for the manual QA
+> tester` raw 0 / flat 0 — **absent, claim correct**. At `HEAD` 2026-09-03:
+> `invoice refresh os for the manual QA tester Mudassir` raw 1 / flat 1 and
+> `6597/6617 is for Viktoria` raw 1 / flat 1 — **present**, backfilled by commit `ede71f31`.
+> **A4 is no longer conditional on B-38.** (`build/rules/RULES-21-40.md` is NOT owned by this pass and
+> was not edited.)
 
 ### EXACT PROPOSED TEXT (1,497 bytes)
 
@@ -335,8 +415,21 @@ gate's own no-loss condition, A4 should be applied only after Part B item B-38 p
 **Dropped:** the two Vladimir verbatim quotes (in rule 38's body), the *"invoice refresh os…"* quote
 (**pending B-38**), the email address `mudassir.qamar@shopview.com`, "confirmed 2026-08-31", and the
 duplicated sentences *"Check `created_by` before any write, not the title"* / *"Report them, never edit
-them"* — **both of which the current bullet says twice.** The email is in rule 38's body and in
-`build/invoice-ui-refresh/PROJECT-STATE.md`.
+them"* — **both of which the current bullet says twice.** ~~The email is in rule 38's body and in~~
+~~`build/invoice-ui-refresh/PROJECT-STATE.md`.~~
+
+> **🛑 RE-VERIFIED 2026-09-03 — THE STRUCK SENTENCE IS WRONG, AND IT IS ONE OF THE THREE CAUGHT CLAIMS.
+> `mudassir.qamar@shopview.com` IS NOT IN RULE 38'S BODY — not at the audit's HEAD, not today.**
+> `grep -cEi "mudassir\.qamar@shopview\.com"` on the extracted rule-38 body = **0** at `9cb57fb0` and
+> **0** at `HEAD`; flattened `tr -s '[:space:]' ' ' | grep -coEi` = **0** as well; **0** across the
+> whole of `build/rules/RULES-21-40.md`. **PRESENT ELSEWHERE, not in the named file:**
+> `git grep -lEi "mudassir\.qamar@shopview\.com" HEAD -- build CLAUDE.md` returns `CLAUDE.md`,
+> `build/invoice-ui-refresh/PROJECT-STATE.md`, `build/skills/00-COMMON-CORE.md`,
+> `build/RECOVERY-2026-08-11/STATE.md` and evidence artefacts.
+> **⇒ A4's no-loss condition for the email rests on `build/invoice-ui-refresh/PROJECT-STATE.md` and
+> `build/skills/00-COMMON-CORE.md` ONLY.** If a future pass wants the email in rule 38's body it must
+> put it there first; it is not there now. Do not demote the email on the strength of the struck
+> sentence.
 
 ---
 
@@ -348,6 +441,14 @@ amendment), every ask self-contained (99), and the OUTSTANDING section (36). L74
 
 **Evidence demoted (grep-verified):** the two verbatim quotes are in `build/rules/RULES-61-99.md`
 (rules 98 and 36/99) and in `build/skills/05-PROJECT-REPORT.md`.
+
+> **RE-VERIFIED 2026-09-03 — HALF-WRONG, BUT A5's NO-LOSS CONDITION STILL HOLDS.**
+> `give me the report in the table format`: `build/rules/RULES-61-99.md` raw 1 / flat 1 **and**
+> `build/skills/05-PROJECT-REPORT.md` raw 1 / flat 1 — as claimed.
+> **`ALways give test case numbers`: `build/rules/RULES-61-99.md` raw 1 / flat 1, but
+> `build/skills/05-PROJECT-REPORT.md` raw 0 / flat 0 — the skill does NOT carry that quote** (it has
+> `C-id`/`C-ids` twice, which is the substance, not the quote). The rule file alone satisfies the
+> gate's no-loss condition, so **A5 stands**; the claim's second destination is simply wrong.
 
 ### EXACT PROPOSED TEXT (1,224 bytes)
 
@@ -429,6 +530,18 @@ saving does not justify the risk.** Listed so nothing is unexamined.
 | L45 NO TESTRAIL WRITE (6) | 374 | none | — | 0 (**holds `ZZAUTOTEST`; do not touch**) |
 | L36–L43 the gate blockquote itself | 1,072 (of the 22,523) | its own rationale and the no-loss clause | `build/rules/INTEGRITY.md`, where it is already recorded | ~600, **but it is the thing that stops §1 re-inflating.** Not recommended. |
 
+> **RE-VERIFIED 2026-09-03 — ALL FIVE ROWS. Every destination named here really does hold the evidence,
+> so none of these demotions would lose anything. NO DEMOTION WAS APPLIED — §1 is 19,953 B, under the
+> 20,000 cap, so nothing here is urgent.** Verdicts row by row:
+>
+> | Row | Claim re-tested | Verdict 2026-09-03 | Evidence |
+> |---|---|---|---|
+> | **L91 (57)** — the open-ended source list would move to **rule 57's body** | is the open-ended ruling actually in rule 57's body? | **PRESENT — and it was present at the audit's own HEAD.** This is caught claim #3. | rule-57 body extracted from `build/rules/RULES-41-60.md`: at `9cb57fb0` `OPEN-ENDED\|open-ended` raw **2** / flat 1 (body lines 182 and 204: *"THE SOURCE LIST IS WIDENED AGAIN, AND IT IS DECLARED OPEN-ENDED"*, dated **2026-08-10**), `technical design` 11, `Figma` 12, `PO's verified answers` 2. At `HEAD`: `open-ended` 7, and **`newer written statement` raw 0 / flat 1** and **`a new document type counts without a rule amendment` raw 0 / flat 1 — PRESENT BUT WRAPPED.** **⇒ the demotion is safe; the "rule 57 lists only five sources" story was false.** |
+> | **L127 (95)** — *"never poll", "batch writes", "never re-do work", "answer in text" appear in §1 ONLY here* | count each in §1 | **CONFIRMED — exactly 1 each in §1, then and now**, so demoting the bullet's clause names really would remove them from §1 altogether. The audit's **"Not recommended"** stands. | §1 extract: `never poll` 1/1 · `batch writes` 1/1 · `never re-do work` 1/1 · `answer in text` 1/1 (identical at `9cb57fb0`). All four are also in `build/skills/TOKEN-DISCIPLINE-CHARTER.md` (1/1 each), so they survive in the repo — but not in §1. |
+> | **L107 (96)** — *"none — already imperative-only"* | judgement, not a text claim | **NOT A TESTABLE ABSENCE CLAIM.** Recorded as such; no grep can settle it. Saving is 0 either way. | — |
+> | **L45 (6)** — *"none"*, and *"holds `ZZAUTOTEST`; do not touch"* | is `ZZAUTOTEST` in §1 exactly once? | **CONFIRMED.** | `grep -oF 'ZZAUTOTEST' <§1 extract> \| wc -l` = **1** before and after this pass; 1 in all of `CLAUDE.md`. |
+> | **L36–L43 the gate blockquote** — *"`build/rules/INTEGRITY.md`, where it is already recorded"* | is the gate really recorded in `INTEGRITY.md`? | **CONFIRMED PRESENT.** | `build/rules/INTEGRITY.md`: `ADMISSION GATE` raw 2 / flat 1 · `20,000` raw 3 / flat 1 · `400` raw 6 / flat 1 · `no-loss\|NOTHING IS DELETED` raw 4 / flat 1. The audit's **"Not recommended"** stands on its own reasoning, not on a missing destination. |
+
 ---
 ---
 
@@ -450,7 +563,7 @@ targeted `grep`s on the shortlist only.
 | Step | Result |
 |---|---|
 | Rule set established | `RULES-01-20.md`, `RULES-21-40.md`, `RULES-41-60.md`, **`RULES-61-99.md`** |
-| Numbering confirmed by grep before analysing | **99 rule bodies, complete 1..99, no gaps, no duplicates, none out of range** |
+| Numbering confirmed by grep before analysing | **99 rule bodies, complete 1..99, no gaps, no duplicates, none out of range** — **STALE: re-derived 2026-09-03 as 100 bodies, complete 1..100** (Rule 100 added in `33ae0605`); `RULES-61-99.md` holds 61–100 and has deliberately NOT been renamed |
 | Sources compared against each body | 35 §1 bullets · 99 §2 index rows · §2 trailing narrative · 28 skill/handoff files |
 | Atoms checked per rule | verbatim quotes, `2026-0*` dates, named people, amendment keywords (`amend`/`corrected`/`superseded`/`clarified`/`carve-out`/`exception`/`re-confirmed`/`never was`) |
 | **Rules checked** | **99** |
@@ -465,6 +578,29 @@ below were each verified by hand; the 12 discarded rows were each verified by ha
 listed below is not proven clean — it is proven to have no missing quote, date or name.**
 
 ## THE TABLE
+
+> **🛑 RE-VERIFIED 2026-09-03 — EVERY "Body carries it? **NO**" CELL BELOW IS AN ABSENCE CLAIM AND EVERY
+> ONE HAS NOW BEEN RE-GREPPED, whole body + flattened, at BOTH the audit's HEAD `9cb57fb0` and today's
+> `HEAD`. Result: 10 of the 11 rows were CORRECT WHEN MADE; 8 have since been FIXED; 2 remain true; 1
+> row (rule 84's *"the `<br>`/`fr-view` correction appears in NO rule body"*) was WRONG WHEN MADE.**
+> **DO NOT re-open rows marked FIXED — the backfill already landed.** Per-row verdicts follow the table.
+>
+> Method for every row: each rule body was cut out of its `RULES-*.md` file with
+> `^\d{1,3}\. \*\*` boundaries into its own file, then tested with `grep -cEi -- "<needle>" rule-NNN.md`
+> **and** `tr -s '[:space:]' ' ' < rule-NNN.md | grep -coEi -- "<needle>"`. The extractor reports
+> **100 bodies, complete 1..100, no gaps or duplicates** at `HEAD` (99 at `9cb57fb0`).
+>
+> | Rule | Verdict 2026-09-03 | Evidence |
+> |---|---|---|
+> | **51 · 52 · 53 · 73 · 94** (the defect supersession) | **CORRECT WHEN MADE → FIXED SINCE.** All five bodies now carry it. | At `9cb57fb0`, each body: `never supposed to create defect\|make the tests RUNNABLE` raw **0** / flat **0**. At `HEAD`, each body: `never supposed to create defect` raw 1 / flat 1, `make the tests RUNNABLE` raw 2, `supersede` 2–3, `2026-09-01` 4–8. Backfilled by **`ede71f31`** ("backfill six existing rulings into the rule bodies") and **`d1879102`** ("collapse 51/52/53/94 into 62"). Live text at `build/rules/RULES-41-60.md:687, 791, 861` and `build/rules/RULES-61-99.md:1959, 2731`. |
+> | **61** (the fourth marker + the portal HOLD) | **CORRECT WHEN MADE → FIXED SINCE.** | Rule-61 body at `9cb57fb0`: `Not available on Build to test Yet` raw 0 / flat 0, `customer portal` 0/0. At `HEAD`: `Not available on Build to test Yet` 1/1, `customer portal only exists on staging` 1/1, `customer portal` 3/1. `CLAUDE.md` likewise: the fourth literal was **0 at `9cb57fb0`**, is **1 at `CLAUDE.md:544`** today. |
+> | **84 (i)** (the runnability standard) | **CORRECT WHEN MADE → FIXED SINCE.** | Rule-84 body at `9cb57fb0`: `check_runnable_cases` 0/0 · `check_precond_labels` 0/0 · `18-LAYMAN-UI-STEPS` 0/0 · `spec-level precondition` 0/0. At `HEAD`: 2/1 · 1/1 · 1/1 · 1/1. |
+> | **84 (ii)** (*"The `<br>`/`fr-view` correction appears in NO rule body"*) | **🛑 PRESENT — CLAIM WRONG WHEN MADE.** The `fr-view` half was already in a rule body at the audit's own HEAD. | Scanning **all 99** extracted bodies at `9cb57fb0` for `fr-view`: **`rule-098.md` matches** (raw 1, flat 1) — rule 98's tester-readiness gate table: *"\| Every case renders on the served page (`markdown fr-view`, no literal tags) \| \| the container scan \|"*, live at `build/rules/RULES-61-99.md:3157`. The **`<br>`-never-emit** half genuinely was absent from all 99 bodies at that HEAD (`ORIGIN-DEPENDENT\|never emit …<br>\|shows LITERALLY when written via the API` = 0/0 everywhere) and is now in rule 84's body (1 flat hit); `fr-view` now matches `rule-084.md` **and** `rule-098.md`. **⇒ the claim should have read "the `<br>` half appears in no rule body"; as written it is false.** |
+> | **84 (ii), the checklist half** (*"`build/TESTER-READINESS-CHECKLIST.md` teaches `<br>` twice"*) | **CORRECT WHEN MADE → FIXED SINCE.** | At `9cb57fb0` the file taught `<br>` at lines 41 and 44 with no correction. At `HEAD` it carries a `🛑 SUPERSEDED, 2026-08-28 — CORRECTED HERE 2026-09-02` box at line 41 and the two old instructions are struck through (lines 65, 69). |
+> | **55** (the spreadsheet ruling) | **CORRECT WHEN MADE → FIXED SINCE.** The audit's careful qualification (*"names `.xlsx` only as examples"*) was itself accurate. | Rule-55 body at `9cb57fb0`: `soreadsheet` 0/0 · `spreadsheet\|Google Sheet` 0/0 · `never a markdown table` 0/0 · but `xlsx` raw **4** — i.e. present as examples, exactly as the audit said. At `HEAD`: `soreadsheet` 1/1 · `spreadsheet\|Google Sheet` 3/1 · `xlsx` 6 · `markdown table` 2/1. |
+> | **66** (neither Excel, spreadsheet nor `.xlsx`) | **CONFIRMED ABSENT — still true today.** | Rule-66 body, both HEADs: `excel` raw 0 / flat 0 · `spreadsheet` 0/0 · `xlsx` 0/0. The audit's own **LOW** severity call (rule 66 is about *timing*; form is rule 55's job) stands. |
+> | **71** (the manual-QA-tester carve-out) | **CONFIRMED ABSENT — still true today.** | Rule-71 body (11,785 B), both HEADs: `Mudassir` raw 0 / flat 0 · `tester` 0/0. `carve-out` does return **1** hit, but it is a **different** carve-out — body line 79, *"Standing Rules 38 (foreign/Automated cases hands-off — this is the narrow permitted-correction carve-out)"* — **not** the manual-QA-tester one. A needle of `carve-out` alone would have produced a false PRESENT; read the hit before trusting it. |
+> | **38** (the *"invoice refresh os…"* verbatim quote) | **CORRECT WHEN MADE → FIXED SINCE. The A4 prerequisite is discharged.** | See the annotation under A4 above: 0/0 at `9cb57fb0`, 1/1 at `HEAD` in the rule-38 body cut from the committed copy of `build/rules/RULES-21-40.md` (lines 786–863). |
 
 | Rule | Where the amendment lives | Body carries it? | What is missing from the rule body | Severity |
 |---|---|---|---|---|
@@ -499,6 +635,20 @@ to open, and a pass that walks the 99 rules never sees them.
 sweep enforces — is itself not a numbered rule.** It cites rule 38 only as its worked miss. If §1 is ever
 trimmed by a session that has not read this report, the instruction to read amendments disappears with it.
 
+> **RE-VERIFIED 2026-09-03 — ALL SEVEN ABSENCE CLAIMS CONFIRMED AT THE AUDIT'S HEAD; TWO ARE NOW
+> RESOLVED.** Each bullet was cut out of `git show 9cb57fb0:CLAUDE.md` and scanned for a rule reference
+> in any of the three forms it could take — `Rules? NN`, `(NN)` and `(NN` followed by a separator —
+> after whitespace-flattening the bullet. **The only numeric tokens found in six of the seven were `01`
+> and `02`, which are fragments of the dates `2026-09-01` / `2026-09-02`, not rule numbers**; L116
+> matched nothing at all. **⇒ CONFIRMED for L112, L116, L120, L168, L204, L211 and L219.**
+>
+> **Now (`HEAD`, §1 re-measured bullet by bullet — 29 bullets):** **L211 and L219 are RESOLVED** — A1
+> merged them into the single runnability bullet, which cites **(57), (84), (85), (86)**. **Still
+> carrying no rule number: L112 (count from the system of record) · L116 (a rule's amendment is part of
+> the rule) · L120 (the mistake-prevention mechanism) · L168 (quick-login) · L204 (a design reference)**
+> — plus **PLAIN LAYMAN WORDING (7/9)**, whose "7/9" is a rule reference in a form no `(NN)` needle
+> matches. **Outstanding item 5 of this report is therefore still live for five bullets, not six.**
+
 ## B-EXTRA-2 · ONE THING FOUND IN PASSING
 
 `build/rules/INTEGRITY.md`'s rule counts were reported stale on 2026-09-02 in
@@ -506,6 +656,14 @@ trimmed by a session that has not read this report, the instruction to read amen
 *"`RULES-61-99.md` — rules 61-97 (37 rules)"*). **Still unfixed at this HEAD.** Its no-loss assertion
 would therefore pass while ignoring rules 98 and 99. Reported, not changed — outside this pass's scope,
 and already on the register from the earlier pass.
+
+> **RE-VERIFIED 2026-09-03 — CORRECT WHEN MADE → FIXED SINCE.** At `9cb57fb0`,
+> `grep -cE 'rules 1\.\.97|rules 61-97'` on `build/rules/INTEGRITY.md` = **1**. At `HEAD` the file
+> reads *"`build/rules/RULES-61-99.md` — **rules 61-100 (40 rules) as of 2026-09-03**"* (line 30) and
+> the only surviving `1..97` string is line 164, where it is quoted as the **history of the failure**
+> (*"which is exactly how 'rules 1..97' certified…"*) — that hit must NOT be "fixed". Fixed by commit
+> **`1698aa6b`** ("last stale rule range, and a no-loss assertion that re-derives its own range").
+> **Outstanding item 6 of this report is CLOSED.**
 
 ---
 
@@ -562,3 +720,73 @@ future §1 trim can delete a ruling that has no rule body to fall back on.
 **6 · `build/rules/INTEGRITY.md` still says "rules 1..97".** Reported on 2026-09-02 by the size-diagnosis
 pass and still unfixed. **The question:** do you want this pass's owner to fix it, or does it stay with
 whoever owns `INTEGRITY.md`? Does not block anything (68).
+
+---
+---
+
+# RE-VERIFICATION LOG — 2026-09-03
+
+**Why this section exists:** this report was caught three times asserting that a rule or skill body did
+not contain something it did contain. **The common failure was that a claim about a WHOLE body was made
+without grepping the whole body, and a single-line grep misses line-wrapped text.** Every remaining
+absence claim in this file has now been re-tested. **No demotion was applied and §1 was not trimmed** —
+§1 is **19,953 B**, under its 20,000 cap, so nothing in Part A is urgent. Part B's `textContent`
+contradiction was resolved separately, in `CLAUDE.md` §1 and `build/skills/03-RUN-CHECK.md`.
+
+## THE METHOD, SO IT CAN BE RE-RUN
+
+1. `git fetch origin` first — never measure a repository fact from a stale checkout (97).
+2. Cut each rule out of its `RULES-*.md` file into its own file, using `^\d{1,3}\. \*\*` as the body
+   boundary, so a grep covers the **WHOLE** body and cannot be fooled by a pointer near the top.
+   The extractor also asserts the numbering: **100 bodies, complete 1..100** at `HEAD`.
+3. Test every needle **twice**: `grep -cEi -- "<needle>" <file>` **and**
+   `tr -s '[:space:]' ' ' < <file> | grep -coEi -- "<needle>"`.
+   **A claim of absence is valid only if BOTH return 0.**
+4. Where the claim is about a past state, repeat step 2–3 against `git show <that HEAD>:<path>` so the
+   verdict separates *"wrong when made"* from *"correct then, fixed since"*.
+5. Read every hit before trusting it (rule 71's `carve-out` hit is a different carve-out), and quote
+   multibyte characters literally — a byte-oriented `.` does not match `→`.
+
+## THE SCOREBOARD
+
+| Claim (as this report states it) | Verdict 2026-09-03 |
+|---|---|
+| A1 · eight evidence rows are in skill 18 | **PRESENT — all eight**; 1 of them **PRESENT BUT WRAPPED** |
+| A2 · the three quotes + `C45068`/`C45060`/`C44996` are in rule 62; the re-verification is in skill 06 §A10-b | **PRESENT** — `RULES-61-99.md`: `C45068` 1/1, `C45060` 1/1, `C44996` 1/1, `SOrry new case creation is not held` 3/1, `Do not create anything until my next order` 3/1; `06-DEFECT-PREP.md`: `A10-b` 2/1, `go ahead I will verify on the build once again` 1/1 |
+| A3 · the sequencing quote, the eight-probe incident and the five false blockers are in rule 97; the playbook holds §A + the harness | **PRESENT** (the five blockers in different words — body line 72) |
+| A3 · the "Standing Rules moved out of CLAUDE.md" parenthetical is stated twice above §1 | **PRESENT** — L3–L30 (1) and §6 (2) |
+| A4 · the *"invoice refresh os…"* quote is NOT in rule 38's body | **CORRECT WHEN MADE → FIXED SINCE** (`ede71f31`); **A4 is no longer conditional** |
+| A4 · `mudassir.qamar@shopview.com` **is** in rule 38's body | **🛑 WRONG — it is not, and never was.** Present only in `CLAUDE.md`, `build/invoice-ui-refresh/PROJECT-STATE.md`, `build/skills/00-COMMON-CORE.md` and evidence artefacts |
+| A5 · both quotes are in `RULES-61-99.md` **and** `05-PROJECT-REPORT.md` | **HALF-WRONG** — `ALways give test case numbers` is 0/0 in the skill. A5's no-loss condition still holds on the rule file |
+| A6 · the question-sheet quote is in skill 07 | **PRESENT** — `the questions should always be in Excel` 1/1 |
+| Literals · 4 of the 5 machine-findable rows | **CONFIRMED, counts unchanged** |
+| Literals · the fourth marker is absent from all of `CLAUDE.md` | **CORRECT WHEN MADE → FIXED SINCE**; now `CLAUDE.md:544` |
+| A-EXTRA · L91 (57) the open-ended list would move to rule 57's body | **PRESENT IN THE DESTINATION SINCE 2026-08-10** — demotion safe; the "only five sources" story was false |
+| A-EXTRA · L127 (95) four clause names appear in §1 ONLY there | **CONFIRMED** (1 each) — "Not recommended" stands |
+| A-EXTRA · L107 (96) "none — already imperative-only" | **NOT A TESTABLE ABSENCE CLAIM** |
+| A-EXTRA · L45 (6) holds `ZZAUTOTEST` | **CONFIRMED** (1 in §1) |
+| A-EXTRA · L36–L43 the gate is already recorded in `INTEGRITY.md` | **CONFIRMED PRESENT** |
+| Part B · rules **51 · 52 · 53 · 73 · 94** lack the defect supersession | **CORRECT WHEN MADE → FIXED SINCE** (`ede71f31`, `d1879102`) |
+| Part B · rule **61** lacks the fourth marker and the portal HOLD | **CORRECT WHEN MADE → FIXED SINCE** |
+| Part B · rule **84 (i)** lacks the runnability standard | **CORRECT WHEN MADE → FIXED SINCE** |
+| Part B · *"the `<br>`/`fr-view` correction appears in NO rule body"* | **🛑 WRONG WHEN MADE** — `fr-view` was already in rule 98's body at `9cb57fb0` (`RULES-61-99.md:3157`). Only the `<br>` half was truly absent |
+| Part B · `TESTER-READINESS-CHECKLIST.md` teaches `<br>` twice | **CORRECT WHEN MADE → FIXED SINCE** (correction box dated 2026-09-02) |
+| Part B · rule **55** lacks the spreadsheet ruling | **CORRECT WHEN MADE → FIXED SINCE** |
+| Part B · rule **66** mentions neither Excel, spreadsheet nor `.xlsx` | **CONFIRMED ABSENT — still true** |
+| Part B · rule **71** never mentions the manual-QA-tester carve-out | **CONFIRMED ABSENT — still true** |
+| Part B · rule **38** is missing the verbatim quote | **CORRECT WHEN MADE → FIXED SINCE** |
+| B-EXTRA · seven §1 bullets name no numbered rule | **CONFIRMED at `9cb57fb0`**; L211 + L219 **RESOLVED** by A1, five still rule-less |
+| B-EXTRA-2 · `INTEGRITY.md` still says "rules 1..97" | **CORRECT WHEN MADE → FIXED SINCE** (`1698aa6b`); outstanding item 6 **CLOSED** |
+| METHOD · "99 rule bodies, complete 1..99" | **STALE — 100 today** |
+
+**Totals: 21 absence claims re-verified · 2 WRONG (the Mudassir email; the `<br>`/`fr-view` claim) ·
+13 CORRECT WHEN MADE and FIXED SINCE · 5 CONFIRMED ABSENT and still true (rule 66, rule 71, and the
+three §1-scope counts in A-EXTRA/literals) · 1 not testable.** Presence claims spot-checked alongside:
+**A1 all present (one wrapped) · A2, A3, A6 present · A5 half-wrong · the email claim wrong.**
+
+## WHAT THIS PASS DID **NOT** DO
+
+- **No demotion was applied.** §1 was not trimmed; the only §1 edit was Part B's `textContent` merge.
+- **`build/rules/RULES-21-40.md` was not edited** — another session owns it; rule 38 was read from the
+  committed `HEAD` copy, never from the working tree.
+- **No live system was called** — no TestRail, no Jira, no ShopView.

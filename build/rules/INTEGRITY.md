@@ -237,6 +237,32 @@ was shortened.** `CLAUDE.md` went **68,624 → 61,205 bytes** in the same pass (
 duplicated TestRail-formatting bullets and replaced §2's trailing rule-provenance narrative with a
 pointer to this file).
 
+**✅ LIVE STATE, 2026-09-03 — LATEST READING: §1 measures 19,953 bytes and `CLAUDE.md` measures 61,324
+bytes, after the `textContent` contradiction was resolved (below). THE CAP IS STILL MET, with 47 bytes
+of headroom — which is thin; the next admission should expect to demote something.**
+
+**🔀 THE `textContent` CONTRADICTION — RESOLVED 2026-09-03 UNDER CLAUSE 3 (a refinement AMENDS the
+bullet on that subject).** Two §1 bullets read as a direct clash side by side: the label-reading bullet
+said *"`cells[i]` per column header, `value` for an input, **`textContent` otherwise**"*, while the
+**FIND A ROUTE BY WALKING THE UI** bullet said *"Quote the DISPLAYED label, never `textContent`"*. Both
+were correct in their own context — the first is about **WHICH ELEMENT** to read, the second about
+**`text-transform` making the DOM lie** — but a session had no way to tell which governed. **The
+`text-transform` caveat was MERGED INTO THE LABEL-READING BULLET**, which is the bullet that owns "how
+to read a label", and the conflicting clause was **removed from the route bullet**, whose own
+imperatives (never guess an endpoint · a failed guess proves nothing · the `route_registry.mjs` →
+`qa-branch-boot.mjs` → `find_ui_route.mjs` → `RECORD_AS=` drill · API only to SEED or READ a full set ·
+the skill-03 pointer) are **all intact** — the route bullet went 520 B → **442 B**, now under the 400 B
+budget only if its drill is read as a single subject; reported honestly either way.
+The merged label bullet is **602 B** in the clause-1 labelled-parts form: **(a) WHICH ELEMENT = 190 B ·
+(b) WHICH STRING = 307 B**, both under the 400 B per-subject budget. **NOTHING WAS DROPPED TO FIT** —
+every imperative from both bullets survives, and the full technique was **grep-verified present in
+`build/skills/03-RUN-CHECK.md` §4.1 BEFORE the §1 text changed** (clause 5). Skill 03's
+*"READ A LABEL FROM THE SMALLEST ELEMENT THAT OWNS IT"* section also gained a cross-reference to §4.1,
+because its capitalisation point sat ~900 lines away from the `text-transform` treatment and could be
+read as licensing a `textContent` quote — **the same "the pointer misdirected the reader" failure that
+made the 2026-09-02 audit call rule 57 empty when it was not.**
+
+**⚠️ THE SUPERSEDED READING, PRESERVED VERBATIM AND DATED (true earlier on 2026-09-03):**
 **✅ LIVE STATE, 2026-09-03 (LATER THE SAME DAY — SUPERSEDES THE 21,013 B READING PRESERVED BELOW):
 §1 measures 19,797 bytes and `CLAUDE.md` measures 61,168 bytes. THE 20,000-BYTE CAP IS MET, AND
 CLAUSE 4 IS NO LONGER ACTIVE** — a §1 admission no longer has to demote something first, though

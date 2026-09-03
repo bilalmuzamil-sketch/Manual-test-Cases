@@ -1220,6 +1220,16 @@ clock icon whose own text is `history`**. Everything after "printed" is a differ
 4. **A DIVERGENCE IS RE-READ FROM AN ISOLATED ELEMENT BEFORE IT IS REPORTED**, and a difference that
    is only capitalisation (`Work Order Printed` vs `Work order printed`) is **not** a divergence: Rule 57
    takes on-screen labels from the build, so the build's casing simply wins.
+   **🛑 BUT "THE BUILD'S CASING" IS THE CASING THE TESTER SEES, NOT THE ONE IN THE DOM (2026-09-03).**
+   This point tells you **which element** to read; it does **not** license quoting the DOM string as the
+   label. **Where CSS `text-transform` is set, `textContent` is NOT the label** — the tab labels carry
+   `text-transform: capitalize`, so `textContent` gives `Approved - partially completed` while the
+   tester reads `Approved - Partially Completed`, and a `textContent`-only sweep would have "corrected"
+   five Work In Progress cases into wording no tester will ever see. **Read the DOM string AND the
+   computed `text-transform`, and RECONCILE them before changing a character** — and remember the
+   transform may sit on a **CHILD** of the element you measured, so that element computes `none`.
+   Neither reading alone is the label. **Full treatment, with the opposite trap (a screenshot lies about
+   casing) and the accessible-name trap: §4.1 "`textContent` versus the computed style" above.**
 5. **A PASS verdict is not the end of the case.** C45123 was verified and still shipped un-runnable,
    because the pass captured the *behaviour* and never captured the *route*. Verifying a case and
    making it runnable are two outputs of one visit to the screen — **do both while you are there**,

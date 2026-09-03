@@ -88,11 +88,12 @@ safe. The **evidence** for each one lives in the rule or skill the bullet points
   build differs, the case KEEPS the documented expectation and becomes a deviation with a ticket.
   **A closed ticket is not a spec change. An ambiguous source is never resolved by looking at the
   build (58) — hold the case and ask.**
-- **🛑 A LABEL IS READ FROM THE SMALLEST ELEMENT THAT OWNS IT, NEVER A CONTAINER (2026-09-02).**
-  `cells[i]` per column header, `value` for an input, `textContent` otherwise, icons stripped.
-  Flattened text answers "does this appear", NEVER "this is the label". Capitalisation alone is no
-  divergence. A WRITE-hold (71) is not an OBSERVATION-hold.
-  Full text: `build/skills/03-RUN-CHECK.md`.
+- **🛑 A LABEL IS READ FROM THE SMALLEST ELEMENT THAT OWNS IT, AND QUOTED AS DISPLAYED (2026-09-03).**
+  **(a) WHICH ELEMENT.** `cells[i]` per column header, `value` for an input, `textContent` otherwise,
+  icons stripped. Flattened text answers "does this appear", NEVER "this is the label".
+  **(b) WHICH STRING.** Quote what the tester SEES: where CSS `text-transform` is set, `textContent` is
+  NOT the label — RECONCILE the two before changing a character. Capitalisation alone is still no
+  divergence. A WRITE-hold (71) is not an OBSERVATION-hold. Full text: `build/skills/03-RUN-CHECK.md`.
 - **VERIFIED MEANS OBSERVED, NEVER INFERRED (12).** Only mark Verified / Pass / Fail / present /
   absent if it was observed live, with evidence captured that run. Anything not observed is labelled
   **NOT VERIFIED** or **Blocked-with-reason**. Never fill a gap with inference to look complete.
@@ -132,7 +133,7 @@ safe. The **evidence** for each one lives in the rule or skill the bullet points
   A guessed endpoint never goes in a case; a failed guess proves nothing about the build. **Drill:**
   `route_registry.mjs find` → `qa-branch-boot.mjs` → `find_ui_route.mjs` (it hovers every control) →
   `RECORD_AS=`. API only to **SEED** a state the UI cannot reach (14) or **READ a full set** — never
-  to find a route. Quote the DISPLAYED label, never `textContent`. Full: `build/skills/03-RUN-CHECK.md`.
+  to find a route. Full: `build/skills/03-RUN-CHECK.md`.
 - **NEVER DECLARE A BLOCKER — OR RUN THE FIRST PROBE — WITHOUT SEARCHING THE REPO FIRST (97, amended
   2026-09-02).** **STEP 0 IS `git fetch origin`** — never search, measure or report a repository fact from
   a stale checkout — and if you are on a different branch, search the canonical one **without checking it
