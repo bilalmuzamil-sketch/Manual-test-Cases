@@ -20,7 +20,7 @@ The previous CLAUDE.md was **738 KB / roughly 183,000 tokens**, and it was **TRU
 AT RULE 62**. Sessions were therefore running with **Rules 63–88 SILENTLY ABSENT** while believing
 they had read the whole file. A rule you have never seen is a rule you will break.
 
-**THEREFORE: NEVER ASSUME YOU HAVE SEEN ALL THE RULES.** There are **99 numbered Standing Rules**.
+**THEREFORE: NEVER ASSUME YOU HAVE SEEN ALL THE RULES.** There are **100 numbered Standing Rules**.
 Count them in the index below. If you are
 about to apply a rule, open its file and read it. **NEVER read
 `build/rules/CLAUDE-FULL-ARCHIVE-2026-08-21.md` whole** — it will exhaust your context exactly as the
@@ -33,8 +33,13 @@ old file did; grep it, or read the relevant `RULES-*.md`.
 Every **imperative** here is stated in full, because a session that gets only this far must still be
 safe. The **evidence** for each one lives in the rule or skill the bullet points at.
 
-> **🔒 §1 ADMISSION GATE — approved by the QA lead 2026-09-02 (Rule 72); recorded in
-> `build/rules/INTEGRITY.md`.** A §1 bullet is **≤ 400 bytes and states the IMPERATIVE ONLY.** The
+> **🔒 §1 ADMISSION GATE — approved by the QA lead 2026-09-02, clause 1 amended by him 2026-09-03
+> (Rule 72); recorded in `build/rules/INTEGRITY.md`.** A §1 bullet is **≤ 400 bytes PER SUBJECT and
+> states the IMPERATIVE ONLY**; a **compound standard** whose imperatives alone exceed that is **ONE
+> bullet with LABELLED PARTS** `(a)`/`(b)`/`(c)`, never two bullets (precedent 2026-09-02, the two
+> TestRail formatting halves). **400 IS A BUDGET PER SUBJECT, NOT A CEILING ON A MERGED BULLET — AN
+> IMPERATIVE IS NEVER DROPPED TO MEET A BYTE BUDGET** (95 clause 12): demote the evidence and merge the
+> bullets instead. The
 > **verbatim quote, the worked example and the incident history live in the rule or the skill**, reached
 > by the pointer the bullet carries — **§1 carries the instruction, the authority carries the evidence.**
 > A **refinement AMENDS the existing bullet** on that subject; it never adds a second bullet about it.
@@ -46,44 +51,31 @@ safe. The **evidence** for each one lives in the rule or skill the bullet points
   No `add_case` / `update_case` / `delete_case` / run write / result write without the QA lead's
   explicit go-ahead. Everything else (staging, QA, prod test orgs, QuickBooks) is disposable — act
   freely there, tag throwaway data `ZZAUTOTEST`, restore what you change.
-- **NO *JIRA TICKET* CREATION WITHOUT PERMISSION, AND A JIRA CREATION HOLD IS ACTIVE (62).**
-  **🛑 THE HOLD IS JIRA TICKETS ONLY. CREATING TESTRAIL TEST CASES IS *NOT* HELD AND NEVER WAS —
-  `add_case` and `update_case` are PERMITTED AND EXPECTED, on every project.** QA lead — recorded
-  in `build/OUTSTANDING-ITEMS-REGISTER.md` row **H1** on 2026-08-20 and relayed again 2026-08-28 —
-  verbatim: *"SOrry new case creation is not held for any project at all, see if you confused Hold on
-  Jira ticket creation with Hold on New test case creation."* (He first corrected this on 2026-08-11;
-  **two workers have since stalled real work by misreading the hold as blocking TestRail case
-  creation.** If you are about to report a requirement as uncoverable "while the hold stands", you have
-  made that mistake — **write the case**.)
-  For Jira: permission is **PER ASK** — an earlier batch approval never covers a later ticket, and a
-  finding being real and obviously worth filing is not permission. **ACTIVE HOLD (QA lead, 2026-08-10,
-  verbatim: *"Do not create anything until my next order."*)** — **no Jira ticket** of any type, and no
-  new artefact in any other external system of record; **TestRail cases are expressly carved out**.
-  **This hold is TEMPORARY with a lift condition (his next order) — a session reading this later must
-  CHECK whether it has been lifted, not assume it is standing law.** Register row **H1**.
-- **🛑 WE DO NOT CREATE DEFECTS — WE MAKE THE TESTS RUNNABLE (QA lead, 2026-09-01).** Verbatim: *"You
-  are never supposed to create defect, you are supposed to make the tests RUNNABLE."* **A pass no longer
-  ends with a defect candidate awaiting permission.** Where the build does not match the document: the
-  documented expectation STAYS (57), the case gains the **three outcomes** in plain words so the tester
-  runs it and marks it **Failed**, the marker stays `AUTOMATION: READY` (an `EXPECT FAIL` marker needs a
-  live ticket and there is none), and the finding is reported **with its C-id** — no ticket text, no ask,
-  no candidate file. This **supersedes Rules 51/52/53/62/73/94 and `build/skills/06-DEFECT-PREP.md` for
-  the lane's own output**; skill 06's shape still governs *if he asks for a ticket*. Worked examples,
-  2026-09-01: **C45068**, **C45060**, **C44996**. Full text: `build/rules/RULES-61-99.md` rule 62
-  amendment of 2026-09-01.
-- **🛑 ALWAYS GIVE THE TEST CASE NUMBERS (QA lead, 2026-09-01).** Verbatim: *"ALways give test case
-  numbers."* Every report row names its **C-ids**, never just a count; a completed-versus-left figure
-  states **both numbers AND lists the ids of what is left**. Rule 98 amendment.
-- **🛑 A DEFECT CANDIDATE IS RE-VERIFIED ON THE BUILD *AFTER* THE GO-AHEAD, AND ONLY THEN ASKED ABOUT
-  (QA lead, 2026-09-01).** Verbatim: *"Hold all such tickets for now - for other suites too, we may
-  need to create them after verifying the build once again when I will give you a go ahead, but make
-  sure even when I give you a go ahead I will verify on the build once again and if you still find the
-  issue then you will ask me for the permission to create the ticket."* **Three gates, in order:
-  (1) every candidate is HELD, on every suite · (2) his "go ahead" is permission to LOOK AGAIN, never
-  to file · (3) reproduce it on the build as it stands that day — if it no longer reproduces, CLOSE the
-  candidate and say so; if it does, ASK for permission per candidate.** Compounds with Rule 62's
-  per-ask permission; the re-verification comes BEFORE the ask, it does not replace it. Full treatment:
-  `build/skills/06-DEFECT-PREP.md` §A10-b.
+- **🛑 WE CREATE NO EXTERNAL ARTEFACT WITHOUT HIS EXPLICIT PERMISSION — AND WE DO NOT CREATE DEFECTS AT
+  ALL (62; QA lead 2026-08-10 and 2026-09-01).**
+  **(a) TESTRAIL IS NOT HELD; JIRA IS.** **CREATING TESTRAIL TEST CASES IS *NOT* HELD AND NEVER WAS —
+  `add_case` and `update_case` are PERMITTED AND EXPECTED, on every project.** If you are about to report
+  a requirement as uncoverable "while the hold stands", you have made the mistake two workers already
+  made — **write the case.** For Jira, permission is **PER ASK**: an earlier batch approval never covers a
+  later ticket, and a finding being real and obviously worth filing is not permission. **ACTIVE HOLD
+  (2026-08-10): no Jira ticket of any type, and no new artefact in any other external system of record;
+  TestRail cases are expressly carved out.** The hold is **TEMPORARY, lift condition = his next order — a
+  session reading this later must CHECK whether it has been lifted, not assume it is standing law.**
+  Register row **H1** in `build/OUTSTANDING-ITEMS-REGISTER.md`.
+  **(b) A PASS NEVER ENDS IN A DEFECT — IT ENDS IN A RUNNABLE TEST (2026-09-01).** Where the build does
+  not match the document: the documented expectation STAYS (57), the case gains the **three outcomes** in
+  plain words so the tester runs it and marks it **Failed**, the marker stays `AUTOMATION: READY` (an
+  `EXPECT FAIL` marker needs a live ticket and there is none), and the finding is reported **with its
+  C-id** — no ticket text, no ask, no candidate file. This **supersedes Rules 51/52/53/62/73/94 and
+  `build/skills/06-DEFECT-PREP.md` for the lane's own output**; skill 06's shape still governs *if he asks
+  for a ticket*.
+  **(c) IF HE EVER SAYS GO AHEAD, THAT IS PERMISSION TO LOOK AGAIN, NOT TO FILE (2026-09-01).** Three
+  gates in order: **(1)** every candidate is HELD, on every suite · **(2)** his go-ahead means re-open the
+  question, never file · **(3)** reproduce it on the build as it stands that day — if it no longer
+  reproduces, CLOSE the candidate and say so; if it does, ASK for permission **per candidate**. The
+  re-verification comes BEFORE the ask; it does not replace it.
+  Verbatim quotes, the worked examples (C45068 · C45060 · C44996) and the full treatment:
+  `build/rules/RULES-61-99.md` rule 62 (2026-09-01 amendment) and `build/skills/06-DEFECT-PREP.md` §A10-b.
 - **SECRETS: `/tmp` ONLY, `chmod 600`, NEVER COMMITTED — THIS REPO IS PUBLIC (82).** Cookies, tokens,
   passwords, OTP codes live in `/tmp` and nowhere else; never in a log, an error paste, or a commit.
   **Before every commit run the REAL scanner: `python3 build/testing-tools/scan_secrets.py --staged`**
@@ -104,6 +96,10 @@ safe. The **evidence** for each one lives in the rule or skill the bullet points
 - **VERIFIED MEANS OBSERVED, NEVER INFERRED (12).** Only mark Verified / Pass / Fail / present /
   absent if it was observed live, with evidence captured that run. Anything not observed is labelled
   **NOT VERIFIED** or **Blocked-with-reason**. Never fill a gap with inference to look complete.
+- **🛑 AN INJECTED OR REMEMBERED COPY OF A FILE IS NOT EVIDENCE ABOUT IT — MEASURE IT ON DISK (100).**
+  Context, system prompt and memory go stale by commits, silently. Before reporting a file's size, its
+  contents, whether a pointer resolves or whether a rule exists: `git fetch origin`, then `wc -c` ·
+  `grep -n` · `git show origin/<branch>:<path>`. Never hand a worker a recollection as a premise.
 - **A V2 / UPGRADE PROJECT MUST DERIVE AND TEST THE INVARIANT SET (96).** What the V2 spec does NOT
   mention is still a requirement: **silence defaults to "must not change"**, and high-collateral-risk
   silence is escalated as a PO question rather than assumed. **Documents establish intent; code
@@ -150,22 +146,25 @@ safe. The **evidence** for each one lives in the rule or skill the bullet points
   looks like "not there"); `textContent` does not reflect `text-transform` (the DOM says `credit`, the
   tester sees `Credit`); and a row's action icons look alike — hover all of them rather than clicking by
   position.** Full text: `build/skills/03-RUN-CHECK.md`.
-- **NEVER DECLARE A BLOCKER WITHOUT SEARCHING THE REPO FIRST (97).** **STEP 0 IS `git fetch origin` —
-  never search, measure or report a repository fact from a stale checkout** — and **if you are on a
-  different branch, search the canonical one without checking it out**:
-  `git grep -n "<exact error text>" origin/claude/slack-session-0sxnd9 -- build/` ·
-  `git show origin/claude/slack-session-0sxnd9:<path> | grep -n "<what you need>"`. **"Not on this
-  branch" is NEVER a reason to conclude something does not exist.** (The Standing Rules moved OUT of
-  CLAUDE.md into `build/rules/RULES-*.md` on **2026-08-21**; a session saying "the rules live inside
-  CLAUDE.md" is stale.) Before reporting anything as
-  impossible, blocked, unavailable or unreconstructable, **grep the workspace using the EXACT ERROR
-  TEXT** — that is what finds it. Four places, in order: `build/APP-ACTIONS-PLAYBOOK.md` ·
-  `build/skills/14-ACCESS-RESILIENCE.md` · `build/ATLASSIAN-JIRA-ACCESS-METHOD.md` ·
-  `build/rules/RULES-*.md` (grep, never read whole). Also `ls build/BLOCKED-*.md` — **several are
-  marked RESOLVED with the cause** — and `git log --all --grep=`. **If you still cannot find it,
-  REPORT THE SEARCHES YOU RAN** so the gap is known to be real rather than unsearched. One tool
-  failing is a fact about that tool, never about the task (68). **Solve something new ⇒ write it into
-  the playbook or the skill IN THE SAME PASS** (93). Five 2026-08-28 false blockers are in the rule.
+- **NEVER DECLARE A BLOCKER — OR RUN THE FIRST PROBE — WITHOUT SEARCHING THE REPO FIRST (97, amended
+  2026-09-02).** **STEP 0 IS `git fetch origin`** — never search, measure or report a repository fact from
+  a stale checkout — and if you are on a different branch, search the canonical one **without checking it
+  out**: `git grep -n "<exact error text>" origin/claude/slack-session-0sxnd9 -- build/` ·
+  `git show origin/claude/slack-session-0sxnd9:<path> | grep -n "<what you need>"`. **"Not on this branch"
+  is NEVER a reason to conclude something does not exist.** (The Standing Rules moved OUT of CLAUDE.md
+  into `build/rules/RULES-*.md` on **2026-08-21**; a session saying "the rules live inside CLAUDE.md" is
+  stale.) Before reporting anything as impossible, blocked, unavailable or unreconstructable — **and
+  before the FIRST PROBE of any environment, not after the first failure** — **grep the workspace using
+  the EXACT ERROR TEXT**, plus `grep -n "<the thing>" build/APP-ACTIONS-PLAYBOOK.md` and
+  `ls build/testing-tools/`. **A committed harness is reused, never rebuilt.** Four places, in order:
+  `build/APP-ACTIONS-PLAYBOOK.md` · `build/skills/14-ACCESS-RESILIENCE.md` ·
+  `build/ATLASSIAN-JIRA-ACCESS-METHOD.md` · `build/rules/RULES-*.md` (grep, never read whole). Also
+  `ls build/BLOCKED-*.md` — **several are marked RESOLVED with the cause** — and `git log --all --grep=`.
+  **If you still cannot find it, REPORT THE SEARCHES YOU RAN** so the gap is known to be real rather than
+  unsearched. One tool failing is a fact about that tool, never about the task (68). **Solve something
+  new ⇒ write it into the playbook or the skill IN THE SAME PASS** (93). The QA lead's verbatim ruling on
+  sequencing, the eight-probe incident and the five 2026-08-28 false blockers:
+  `build/rules/RULES-61-99.md` rule 97.
 - **STRATEGY FIRST (79).** Before starting ANY task, devise or recall the smartest quota-efficient
   plan — then begin. One pass, then exit.
 - **TELL THE LAST-DONE DATE AND ASK BEFORE RE-RUNNING (80).** Never silently repeat a verification,
@@ -173,16 +172,6 @@ safe. The **evidence** for each one lives in the rule or skill the bullet points
   last 3 builds / 3 source versions still COUNTS, with its date shown (77).
 - **SOURCE VERIFICATION IS OFFERED AND GATED, NEVER AUTO-RUN (81).** Make the source current FIRST,
   but ask before spending the quota on it.
-- **🛑 SEARCH THE PLAYBOOK BEFORE THE FIRST EXPERIMENT, NOT AFTER THE FIRST FAILURE (97, amended
-  2026-09-02).** QA lead: *"What went wrong was sequencing — you experimented before searching the
-  repo, and everything above was recorded on 2026-08-28."* Rule 97 already forbids declaring a blocker
-  unsearched; the amendment is that it also forbids **probing** unsearched. Getting a signed-in QA
-  browser cost eight probes, a wrong root cause, a false alarm that the QA lead's session had been
-  destroyed, and an ask he had to reject twice — while
-  **`build/APP-ACTIONS-PLAYBOOK.md` §A "THE AUTHENTIC QA-BRANCH LOGIN"** and the harness
-  **`build/testing-tools/qa-branch-boot.mjs`** held the whole answer, dated 2026-08-31. **⇒ Before the
-  first probe of any environment: `grep -n "<the thing>" build/APP-ACTIONS-PLAYBOOK.md` and
-  `ls build/testing-tools/`. A committed harness is reused, never rebuilt.**
 - **🛑 QUICK-LOGIN IS THE ROUTE, AND ONE COOKIE ONLY (2026-09-02).** Run
   `node build/testing-tools/qa-branch-boot.mjs <branch> <route> admin`. Carry `sv_sso_session` ONLY,
   scoped **HOST-ONLY** — a domain-scoped cookie 409s right after a 200 login, which looks like a dead
@@ -194,31 +183,27 @@ safe. The **evidence** for each one lives in the rule or skill the bullet points
   and `/tmp` are ephemeral. `git add -- <paths>` only — **never `git add -A` / `git add .`**.
 - **ALWAYS PAIR AN INTERNAL ID WITH ITS C-ID AND LINK (8).** Never a bare `FLT-…`/`SCH-…`: give
   `C#####` and `https://shopview.testrail.io/index.php?/cases/view/<id>` — in files AND in chat.
-- **🛑 EVERY REPORT IS FIVE TABLES: DONE · LEFT · BLOCKED · HOW TO UNBLOCK · HANDOFF-READY (98, QA lead
-  2026-09-01).** Verbatim: *"give me the report in the table format about what has been completed and
-  what is left and why and how to complete that too and what is blocked on what and how to get
-  unblocked on that and if the suite is ready to be handded of to the Manual Qa tester."* Prose is not
-  a report. **Table 2 must say how to finish each item concretely enough for a DIFFERENT session to
-  execute it without asking · Table 3 must name what the blocker does NOT block (68) · Table 5's last
-  row is a bare YES or NO and is NO unless every gate above it passed.** Rule 36's OUTSTANDING section
-  still closes the report. Full text: `build/rules/RULES-61-99.md` rule 98.
-- **🛑 EVERY ASK IS SELF-CONTAINED AND EXECUTABLE (99, 2026-09-02).** Each item he must
-  decide carries five, in plain words: **what it is** · **how it came up** · **the question** ·
-  **the options**, each saying what we would then DO · **the cost of silence** and what it does not
-  block (68). If answering needs a file opened, it is not finished.
-  `build/rules/RULES-61-99.md` rule 99.
-- **EVERY REPORT ENDS WITH "OUTSTANDING — what I need from you" (36).** Say *"nothing outstanding"* if
-  that is true; never omit the section. Keep `build/OUTSTANDING-ITEMS-REGISTER.md` current.
-- **🛑 A QUESTION SHEET IS ALWAYS A SPREADSHEET, NEVER A MARKDOWN TABLE (QA lead, 2026-09-01).**
-  Verbatim: *"the questions should always be in Excel or google soreadsheet, in a lay man language for
-  a nontechnical person to understand."* Deliver **`.xlsx`** (or a Google Sheet) in the established
-  column shape — **`# · Topic · What happens now · The question · Options · Your answer`** — one sheet
-  per feature, plus a final **QA internal** sheet carrying the case ids and requirement anchors that
-  the PO is not meant to read. **The PO-facing sheets contain no case ids, no spec anchors, no API or
-  HTTP terms, no field names** (7/9); every question offers **OPTIONS** so it can be answered by
-  ticking one. Generator + the enforced layman check: `build/testing-tools/make_question_sheet.py`.
-  Still governed by Rule 55 (project and feature named on every row, answerable by a non-technical
-  reader) and Rule 66 (the sheet is the LAST thing sent).
+- **🛑 EVERY REPORT IS FIVE TABLES, NAMES ITS C-IDS, AND ENDS WITH "OUTSTANDING — what I need from you"
+  (98 · 99 · 36; QA lead 2026-09-01).** The five tables: **DONE · LEFT · BLOCKED · HOW TO UNBLOCK ·
+  HANDOFF-READY.** **Prose is not a report.** **Table 2 must say how to finish each item concretely enough
+  for a DIFFERENT session to execute it without asking · Table 3 must name what the blocker does NOT block
+  (68) · Table 5's last row is a bare YES or NO and is NO unless every gate above it passed.** **Every row
+  names its C-ids, never just a count**, and a completed-versus-left figure states **both numbers AND
+  lists the ids of what is left.** **Every ask is SELF-CONTAINED AND EXECUTABLE (99):** each item he must
+  decide carries five things in plain words — **what it is** · **how it came up** · **the question** ·
+  **the options**, each saying what we would then DO · **the cost of silence** and what it does not block
+  (68). If answering needs a file opened, it is not finished. Say *"nothing outstanding"* if that is true;
+  never omit the section. Keep `build/OUTSTANDING-ITEMS-REGISTER.md` current. Verbatim quotes and full
+  text: `build/rules/RULES-61-99.md` rules 98 and 99.
+- **🛑 A QUESTION SHEET IS ALWAYS A SPREADSHEET, NEVER A MARKDOWN TABLE (55 · 66 · 7/9; QA lead
+  2026-09-01).** Deliver **`.xlsx`** (or a Google Sheet) in the established column shape —
+  **`# · Topic · What happens now · The question · Options · Your answer`** — one sheet per feature, plus a
+  final **QA internal** sheet carrying the case ids and requirement anchors that the PO is not meant to
+  read. **The PO-facing sheets contain no case ids, no spec anchors, no API or HTTP terms, no field names**
+  (7/9); every question offers **OPTIONS** so it can be answered by ticking one. Still governed by Rule 55
+  (project and feature named on every row, answerable by a non-technical reader) and Rule 66 (the sheet is
+  the LAST thing sent). Generator + the enforced layman check and his verbatim ruling:
+  `build/testing-tools/make_question_sheet.py`, `build/skills/07-PO-QUESTIONS.md`.
 - **🎨 A DESIGN REFERENCE IS A LINK *AND* A ROUTE (QA lead, 2026-09-01).** Provenance reads
   `Design: the Design Document (<link>) — open "<view>" → "<document>", then <the block>.
   (<toggle>.)` in the design's **own button labels, read out of the file**. Verify every anchor
@@ -226,69 +211,51 @@ safe. The **evidence** for each one lives in the rule or skill the bullet points
   Technique: `build/skills/02-SOURCE-CHECK.md`.
 - **PLAIN LAYMAN WORDING (7/9).** Tester-facing and PO-facing text uses the build's exact labels and
   no jargon — no case IDs, spec anchors, HTTP terms or internal names in what they read.
-- **🛑 RUNNABILITY IS A DELIVERABLE OF BUILD VERIFICATION, NOT A TIDY-UP (QA lead, 2026-09-01).** Verbatim:
-  *"ONE of the major part of build verification is TO make the steps of replication and preconditions
-  RUNNABLE and not to keep those test cases the spec level test cases … this thing never bites me."*
-  **A build-verification pass is NOT done when the verdicts are in** — it is done when **every case in
-  the suite**, verified this run or not, carries UI preconditions and steps a manual tester can follow.
-  **Gate: `python3 build/testing-tools/check_runnable_cases.py --section-prefix "<suite>"`** — reads
-  TestRail LIVE, exit 1 on any failure; drive it to zero before reporting a suite done. It replaces
-  `check_layman_steps.py`, which passed any case containing the words *"open the"*. Skill: `build/skills/18-LAYMAN-UI-STEPS.md`.
-- **🛑 RUNNABLE-SHAPED IS NOT BUILD-VERIFIED — THE LABELS MUST BE READ OFF THE SCREEN (2026-09-01).**
-  `check_runnable_cases.py` proves a precondition is tester-SHAPED and says in its own header that it
-  **cannot** prove the route is correct. Asked *"confirm if the preconditions are also Build verified"*,
-  a label inventory found **117 cases naming a permission “Work Order Line - Create and Edit” and 90
-  naming “Work Orders → Work Order View Mode” — neither string exists**; the build says the
-  **“Work order lines”** section's **“Create & Edit”** toggle and the **“Work orders”** section's
-  **“View mode”** (`Full View` / `Tech view`). **⇒ TWO GATES, ALWAYS BOTH:**
-  `check_runnable_cases.py` (shape) **and**
+- **🛑 EVERY CASE IS RUNNABLE FROM THE UI BY A LAYMAN, AND RUNNABILITY IS A DELIVERABLE OF BUILD
+  VERIFICATION, NOT A TIDY-UP (skill 18; QA lead 2026-08-31 + 2026-09-01; UNIVERSAL — ALL cases, ALL
+  suites, NOT only build-verified ones).**
+  **(a) THE STANDARD.** A precondition that asserts a *state* ("a document exists whose work order has …
+  set") or a step that *summarizes* an action ("Generate the Invoice") is DEFECTIVE. Preconditions carry
+  the **route as UI clicks** — the five things: (1) entry point (top-menu/screen, exact label) · (2) which
+  record to open and how you know it is the right one · (3) the tab/panel · (4) where the thing appears ·
+  (5) any default-on filter that hides it. Steps describe the check; **Expected Results still come from
+  the documents, never the build (57).** **NEVER make a step followable by inventing a path or a state a
+  tester cannot actually reach.** A build-verification pass is **NOT done when the verdicts are in** — it
+  is done when **every case in the suite**, verified this run or not, is followable; spec-level
+  preconditions or steps mean NOT tester-ready (84).
+  **(b) TWO GATES, ALWAYS BOTH — runnable-SHAPED is not build-VERIFIED, the labels are read off the
+  screen.** `python3 build/testing-tools/check_runnable_cases.py --section-prefix "<suite>"` (shape; reads
+  TestRail LIVE, exit 1 on any failure — drive it to zero before reporting a suite done) **and**
   `python3 build/testing-tools/check_precond_labels.py --sections <ids> --observed build/OBSERVED-UI-LABELS-<env>.md`
   (are the quoted labels real). A label enters the observed file **only from a probe with committed
-  evidence** — never from an API field name, a spec, or a note in this repo: copying `Fee & Discount`
-  from an old note when the build says `Fee / Discount` made the new gate flag 42 correct cases.
-  Full text: `build/skills/18-LAYMAN-UI-STEPS.md`.
-- **🛑 EVERY CASE IS RUNNABLE FROM THE UI BY A LAYMAN — NO SPEC-LEVEL PRECONDITIONS OR STEPS (skill 18,
-  QA lead 2026-08-31, UNIVERSAL — ALL cases, ALL suites, NOT only build-verified ones).** A precondition
-  that asserts a *state* ("a document exists whose work order has … set") or a step that *summarizes* an
-  action ("Generate the Invoice") is DEFECTIVE. Preconditions carry the **route as UI clicks** — the five
-  things: (1) entry point (top-menu/screen, exact label) · (2) which record to open and how you know it's
-  the right one · (3) the tab/panel · (4) where the thing appears · (5) any default-on filter that hides
-  it. Steps describe the check; **Expected Results still come from the documents, never the build (57).**
-  **NEVER make a step followable by inventing a path or a state a tester cannot actually reach** (skill 18
-  hard line) — where a route needs the live build to confirm and no build exists yet (Rule 85), draft it
-  from the **design/spec** and mark it PROVISIONAL, never fabricated. This is part of the tester-readiness
-  gate (84): a case with spec-level preconditions/steps is NOT tester-ready. Skill: `build/skills/18-LAYMAN-UI-STEPS.md`.
-  **RUNNABILITY LIFECYCLE: provisional at source-verification (no build) → FINALISED at build-verification**
-  (the build's own labels + `AUTOMATION: READY`; QA lead: *"build verification is the final touch-up … to
-  make the tests runnable"*). **COORDINATION (verify live, Rule 86): before any runnability pass on a suite,
-  check whether a QA build now exists (a "QA env: none" line can be STALE) and whether a parallel session is
-  already build-verifying it — if so, that session OWNS the suite's routes; DEFER, do not run a
-  design-provisional pass over it (concurrent UI edits collide / can downgrade a build-verified route).**
-- **FOREIGN CASES AND TICKETS ARE HANDS-OFF (38).** Report, never edit. State both numbers: ours N /
-  live total M. **ALWAYS NAME THE CREATOR when you call a case foreign** (look up the TestRail user, e.g.
+  evidence** — never from an API field name, a spec, or a note in this repo.
+  **(c) LIFECYCLE + COORDINATION.** PROVISIONAL at source-verification (no build yet, Rule 85: draft the
+  route from the design/spec and mark it provisional, never fabricated) → **FINALISED at
+  build-verification** (the build's own labels + `AUTOMATION: READY`). Before any runnability pass, verify
+  live (86) whether a QA build now exists (a "QA env: none" line can be STALE) and whether a parallel
+  session is already build-verifying that suite — if so it OWNS the routes: **DEFER**, never run a
+  design-provisional pass over it (concurrent UI edits collide / can downgrade a build-verified route).
+  Both QA-lead quotes, both label incidents, the `check_layman_steps.py` replacement and the hard line:
+  `build/skills/18-LAYMAN-UI-STEPS.md`.
+- **FOREIGN CASES AND TICKETS ARE HANDS-OFF (38).** Report, never edit. State both numbers: ours N / live
+  total M. **ALWAYS NAME THE CREATOR when you call a case foreign** (look up the TestRail user, e.g.
   `get_user/<id>`) — the QA lead decides scope by who authored it. **A case authored by the project's
   designated MANUAL QA TESTER is NOT foreign — treat it as IN-SCOPE (as if created by the QA lead):
-  source-verify it, keep it tester-ready, update it.** The QA lead names who the tester is per project;
-  once named, that person's cases on that project are ours to maintain.
-  **🛑 VLADIMIR TOMOVIC'S CASES ARE NEVER CHANGED — RE-CONFIRMED 2026-09-01, verbatim: _"If the creator
-  is Vladimir leave the test cases as is - remember this rule."_ (and earlier the same day: _"C45220 and
-  others where the creator of the test case is Vladimir, do not change them."_)** — TestRail user **1**,
-  `created_by = 1`. **The test is `created_by == 1` checked before the write, never the title.** It does
-  not matter that the case fails a gate, has no steps, or is the only thing between a suite and a clean
-  score: report it, name the author, leave it. **No general go-ahead reaches his cases and we do not
-  re-ask per case.** Report them, never edit them, whatever else a session has been authorised to
-  override. Check `created_by` before any write, not the title. **Recorded testers:** Invoice UI
-  Refresh → **Mudassir Qamar** (TestRail user 6, mudassir.qamar@shopview.com), confirmed 2026-08-31.
-  **THE TWO MANUAL QA TESTERS ARE ASSIGNED PER SUITE — do not merge them (QA lead, 2026-09-01,
-  verbatim: _"invoice refresh os for the manual QA tester Mudassir. 6597/6617 is for Viktoria."_):**
-  **Invoice UI Refresh → Mudassir Qamar** (TestRail user 6) · **Inline Add and Edit Parts (6597) and
-  Printer Friendly WO (6617) → Viktoria Videnovic** (TestRail user 4). **Spelling is "Viktoria"**, not
-  "Victoria" — older notes have it wrong. A handover names the tester who actually owns that suite.
-  (Still respect Rule 71: never change a case flagged **Automated** without the QA lead — even a tester's.)
+  source-verify it, keep it tester-ready, update it.** **THE TWO TESTERS ARE ASSIGNED PER SUITE — do not
+  merge them:** **Invoice UI Refresh → Mudassir Qamar** (TestRail user **6**, `mudassir.qamar@shopview.com`)
+  · **Inline Add and Edit Parts (6597) and Printer Friendly WO (6617) → Viktoria Videnovic** (TestRail
+  user **4**); **spelling is "Viktoria"**, not "Victoria" — older notes have it wrong, and a handover names
+  the tester who actually owns that suite. **🛑 VLADIMIR TOMOVIC'S CASES ARE NEVER CHANGED** — TestRail
+  user **1**; **the test is `created_by == 1` checked before the write, never the title.** It does not
+  matter that the case fails a gate, has no steps, or is the only thing between a suite and a clean score:
+  report it, name the author, leave it. **No general go-ahead reaches his cases and we do not re-ask per
+  case**, whatever else a session has been authorised to override. (Still respect Rule 71: never change a
+  case flagged **Automated** without the QA lead — even a tester's.) Verbatim rulings and the naming
+  history: `build/rules/RULES-21-40.md` rule 38.
 
 ---
 
-## 2 · THE RULE INDEX — all 99 rules, and where each one lives
+## 2 · THE RULE INDEX — all 100 rules, and where each one lives
 
 **Read the rule in its file before applying it.** One line per rule; the line is a locator, not the
 rule. Generated from the split files' own headers.
@@ -358,9 +325,9 @@ rule. Generated from the split files' own headers.
 | **48** | NEVER say "waiting on you" or "frozen by your ruling" without the CONTEXT — quote the ruling, |
 | **49** | A NON-FINAL BUILD yields PROVISIONAL findings ONLY — record the build marker, queue every |
 | **50** | VERIFY EXHAUSTIVELY — "byte-level" means NOTHING is skipped, sampled, or assumed |
-| **51** | NEVER file an API-related ticket without ASKING — every time, even inside an approved batch |
-| **52** | A defect ticket is filed as a `Story Defect` parented to the OWNING STORY — and because that... |
-| **53** | NEVER set a ticket's priority to High — always file at Medium; and NEVER "restore" a field th... |
+| **51** | RETIRED / SUBSUMED INTO STANDING RULE 62 ON 2026-09-03 — the filing half moved to Rule 62 §62-T1; the API-reachability test STAYS here and is still live |
+| **52** | RETIRED / SUBSUMED INTO STANDING RULE 62 ON 2026-09-03 — the whole ticket-shape recipe and the eight-item evidence bar moved to Rule 62 §62-T2 |
+| **53** | RETIRED IN PART / SUBSUMED INTO STANDING RULE 62 ON 2026-09-03 — the priority half moved to Rule 62 §62-T3; ***never "restore" a field the QA lead has changed*** STAYS here and is still live |
 | **54** | EVERY TEST CASE STATES WHAT ITS EXPECTATION IS BASED ON — a provenance line under Expected |
 | **55** | A PO QUESTIONNAIRE NAMES THE PROJECT AND THE FEATURE ON EVERY ROW, IS ANSWERABLE BY A |
 | **56** | WHERE A CASE FOLLOWS A LATER DECISION THAT DIFFERS FROM AN EARLIER SOURCE, THE CASE MUST SAY |
@@ -369,7 +336,7 @@ rule. Generated from the split files' own headers.
 | **59** | RE-READ THE SOURCES IMMEDIATELY BEFORE THE WRITES BEGIN — a second currency check, not only the |
 | **60** | THE BUILD WILL NEVER BE DECLARED FINAL — SEPARATE WHAT DEPENDS ON THE BUILD FROM WHAT DOES NOT |
 
-### `build/rules/RULES-61-99.md` — rules 61–99
+### `build/rules/RULES-61-99.md` — rules 61–100 (**the filename still says `-99`; the rename to `-100` is DEFERRED, see `build/rules/INTEGRITY.md`**)
 
 | # | Rule (short title) |
 |---|---|
@@ -385,7 +352,7 @@ rule. Generated from the split files' own headers.
 | **70** | COMMUNICATE WITH THE QA LEAD CLEARLY: ACTION-FIRST, PLAIN-LANGUAGE, TABLE-FORM — tell him |
 | **71** | PROTECT "AUTOMATED" CASES — never change or delete a case TestRail flags as Automated without |
 | **72** | PROPOSE SKILL / RULE CHANGES BEFORE RECORDING THEM — never add to the Skills or CLAUDE.md |
-| **73** | WHEN THE JIRA CREATION HOLD LIFTS, RESUME ONE TICKET AT A TIME — AND EVERY TICKET MUST CLEAR THE |
+| **73** | WHEN THE HOLD LIFTS, THE GO-AHEAD IS PERMISSION TO RE-VERIFY — NOT TO FILE (all projects; reinforces Rules 51/52/53/62) |
 | **74** | NO PRESENT FEATURE IS LEFT UN-BUILD-VERIFIED — SEED DATA AND LOG IN AS NEEDED; THE ONLY |
 | **75** | LONG-RUNNING WORK RUNS DETACHED AND SELF-COMMITTING; AN AGENT LAUNCHES IT AND EXITS — IT NEVE... |
 | **76** | QUOTA DISCIPLINE — MINIMIZE SUBAGENT SPAWNS; EVERY SPAWN PAYS THE FULL CONTEXT TAX (all proje... |
@@ -406,12 +373,13 @@ rule. Generated from the split files' own headers.
 | **91** | THE VERIFICATION FRESHNESS BADGE — every build/source verification claim is shown with a COLOUR |
 | **92** | A LANE SESSION IS A PROJECT-AGNOSTIC ENGINE — IT WORKS ONLY ON THE PROJECT IT IS GIVEN, AND EXISTING PROJECT STATE IS REFERENCE, NOT A BACKLOG |
 | **93** | THE LEARNING LOOP — EVERY PROJECT ENDS WITH A RETRO THAT PROPOSES RULE AND SKILL IMPROVEMENTS (it PROPOSES; Rule 72 records) |
-| **94** | THE DEFECT ADMISSIBILITY GATE — NO TICKET IS FILED UNTIL IT PASSES EVERY CHECK, AND THE LANE'S OUTPUT IS APPROVED CANDIDATES, NOT FILED TICKETS |
+| **94** | RETIRED / SUBSUMED INTO STANDING RULE 62 ON 2026-09-03 — the ten admissibility checks A1–A10 moved to Rule 62 §62-T4 |
 | **95** | THE TOKEN-DISCIPLINE CHARTER IS CARRIED BY EVERY SESSION AND EVERY HANDOFF — AND QUALITY IS NEVER WHAT GETS CUT |
 | **96** | A V2 / UPGRADE PROJECT MUST DERIVE AND TEST THE INVARIANT SET — WHAT THE SPEC DOES NOT MENTION IS STILL A REQUIREMENT |
 | **97** | NEVER DECLARE A BLOCKER WITHOUT SEARCHING THE REPO FIRST — THE ANSWER IS USUALLY ALREADY WRITTEN DOWN |
 | **98** | EVERY REPORT IS A TABLE THAT ANSWERS FIVE QUESTIONS — DONE · LEFT · BLOCKED · HOW TO UNBLOCK · HANDOFF-READY |
 | **99** | EVERY ASK IS SELF-CONTAINED AND EXECUTABLE — HE MUST NEVER HAVE TO LOOK SOMETHING UP TO UNDERSTAND WHAT IS BEING ASKED |
+| **100** | AN INJECTED OR REMEMBERED COPY OF A FILE IS NOT EVIDENCE ABOUT THAT FILE — MEASURE IT ON DISK |
 
 **Operator forms** (the rule bodies are all in `build/rules/RULES-61-99.md`): **95** →
 `build/skills/TOKEN-DISCIPLINE-CHARTER.md` · **96** → `build/skills/17-REGRESSION-IMPACT-V1-TO-V2.md`
@@ -592,15 +560,22 @@ Compact form — **the rule named in brackets is the authority; read it before r
   HOLD** (devtools, DOM/network, PDF/CSV reading, seeded data, viewports are all automatable); only a
   genuinely unobtainable thing does. **NOT-BUILT cases are excluded from any ready-to-automate figure.**
   Arithmetic gate: READY + EXPECT-FAIL = total − HOLD, read back from the live cases. [61, 60]
-  **🆕 2026-08-31 — THE STAGING-ONLY HOLD.** A case whose PRECONDITIONS require a **customer-portal**
-  artefact cannot be tested on a QA branch at all (QA lead, 2026-08-31: *"Customer portal related
+  **🆕 2026-08-31 — THE STAGING-ONLY HOLD.** A case that puts the tester on a **customer-portal screen**
+  cannot be tested on a QA branch at all (QA lead, 2026-08-31: *"Customer portal related
   tickets can only be tested on staging and not on the QA branch. We need to put this marker on such
   tickets aswell."*). It carries
   `AUTOMATION: HOLD - customer portal only exists on staging; this case cannot run on the QA branch`
-  — a HOLD, so the arithmetic gate above is unaffected. **Scope it from the preconditions, never from
-  the word "portal":** a case that verifies the portal feature's ABSENCE on the shop-app path is
-  testable on the branch and must not be parked. Full treatment + the worked example:
-  `build/skills/00-COMMON-CORE.md` §5.0-b.
+  — a HOLD, so the arithmetic gate above is unaffected. **⇒ THE SCOPING TEST IS THREE PARTS, CORRECTED
+  2026-09-03 — RUN ALL THREE:** **(i)** read the **PRECONDITIONS *AND* THE STEPS** — either one can put
+  the tester on a portal screen, and **a precondition-only scan is not a scan** (it missed C18671,
+  C18672, C18728, C18729, whose STEP opens the invoice in the portal) · **(ii)** never scope from the
+  **word "portal"** alone — a case verifying the portal feature's ABSENCE on the shop-app path is
+  testable and must not be parked · **(iii)** a portal **SCREEN** is not a portal **DATA STATE** — a
+  data state is **SEEDED, not parked** (Rule 14), and it is a HOLD only if the seeding route needs a
+  portal credential (example C45245, **Vladimir's and hands-off, 38**).
+  ⛔ **SUPERSEDED 2026-09-03, kept dated:** *"Scope it from the preconditions, never from the word
+  'portal'."* — preconditions-only; part (i) is the fix, part (iii) is new. **CANONICAL, full treatment
+  and every worked example: `build/skills/00-COMMON-CORE.md` §5.0-b.**
 - **An `EXPECT FAIL` case carries the SYMPTOM and ALL THREE OUTCOMES**, before the provenance line:
   what you should see today; **(1)** exactly that ⇒ mark FAILED, raise nothing new; **(2)** fails
   DIFFERENTLY ⇒ a NEW problem, report it; **(3)** PASSES ⇒ the fix shipped, tell the QA lead. Where the
