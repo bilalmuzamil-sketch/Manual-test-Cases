@@ -22,7 +22,19 @@ from openpyxl.styles import Font, Alignment, PatternFill
 from openpyxl.utils import get_column_letter
 
 BANNED = [
-    (re.compile(r'\bC\d{5}\b'), 'a TestRail case id'),
+    # 🛑 A CASE ID HAS NO DIGIT WIDTH. Until 2026-09-03 this read `\bC\d{5}\b`, so a case id of
+    # any other length would have LEAKED INTO A PO-FACING SHEET UNDETECTED - Rules 7/9, the one
+    # thing this gate exists to stop. It is not hypothetical in either direction: C281 is a live
+    # case id in this workspace today, and the estate reaches C100000 by counting.
+    # ANCHORING - `\bC\d+\b`, not a bare `C\d+` and not a wider digit count:
+    #   the literal capital C plus a LEADING word boundary is the anchor, and the match is
+    #   case-SENSITIVE, so nothing that is not C-prefixed can leak in - '8/5/2026' -> no match,
+    #   'v3.10-49b5fe3' -> no match, 'SV-8582' -> no match, 'ABC123' -> no match (no boundary
+    #   before that C). No digit floor: C281 proves short ids are real.
+    #   This gate errs toward FLAGGING: another C-prefixed code (a part number like C1608054)
+    #   is reported here too. That costs the author one re-word, whereas the miss it replaces
+    #   costs a case id in front of the PO. The message says id-shaped, not "definitely a case".
+    (re.compile(r'\bC\d+\b'), 'a case-id-shaped token (C followed by digits)'),
     (re.compile(r'\bS\d+-[RNE]\d+\b'), 'a specification anchor'),
     (re.compile(r'/api/|\bHTTP\b|\bJSON\b|\bAPI\b'), 'an API or HTTP term'),
     (re.compile(r'\b[a-z]+[A-Z][A-Za-z]*\b'), 'a camelCase identifier'),

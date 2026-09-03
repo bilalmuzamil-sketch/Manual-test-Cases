@@ -56,6 +56,51 @@ from load_creds import testrail_creds
 # quotes INVALID markers as counter-examples (`AUTOMATION: Ready` is in 00-COMMON-CORE.md), so a
 # scraped accept-list would start accepting the exact bug check 5 exists to catch.
 from automation_markers import MARKERS, DEFERRED_MARKER, classify, assert_current
+
+# 🛑 A CASE ID HAS NO DIGIT WIDTH. Until 2026-09-03 this was `\bC(\d{5})\b`, and it is used for
+# exactly one thing: re-reading a delegated gate's stdout to find which cases it flagged, so a
+# PROTECTED author's case can be reported instead of failed (Rule 38). A five-digit assumption
+# breaks that protection SILENTLY and in BOTH directions of the estate:
+#   * C281 is a live case id in this workspace TODAY - and it is Vladimir Tomovic's. A 5-digit
+#     pattern never sees it, so it drops out of `flagged`, the `flagged <= prot` suppression
+#     never fires, and HIS case is reported as a gate FAILURE - the exact Rule 38 violation
+#     this line exists to prevent, arriving with no error.
+#   * at C100000 the same thing happens to every case in the estate.
+# ANCHORING - why `\bC\d+\b` and not a bare `C\d+` or a widened digit count:
+#   * the literal capital `C` plus a LEADING word boundary is the anchor, so nothing that is
+#     not C-prefixed can leak in: '8/5/2026' -> nothing, 'v3.10-49b5fe3' -> nothing (the match
+#     is case-SENSITIVE, so a lowercase 'c' in a git sha cannot match), 'SV-8582' -> nothing,
+#     'ABC123' -> nothing (no boundary before that C).
+#   * no digit floor, because C281 proves short ids are real. The residual risk is another
+#     C-prefixed identifier (a parts CSV carries 'C1608054'); that direction is SAFE here - a
+#     spurious id makes `flagged` a NON-subset of the protected set, so the run reports the
+#     failure normally instead of suppressing it. Missing an id is what is unsafe.
+CASE_ID_RE = re.compile(r'\bC(\d+)\b')
+
+# 🛑 THESE TWO LISTS ARE HAND-MAINTAINED PEOPLE AND SECTION IDS. THEY CANNOT BE DERIVED.
+# The QA lead names them; nothing in canon or TestRail states them in a machine-readable way,
+# and inventing a discovery mechanism for NEVER_WRITE could WIDEN write permission, which is
+# the one error this file must never make. So they stay declared - but the tool PRINTS THE
+# LISTS IT ACTUALLY USED (check 2 below), so a reader can always see the scope that was
+# applied rather than assuming the one they remember.
+#
+# HOW EACH ONE FAILS ON A VALUE IT DOES NOT KNOW - they fail in OPPOSITE directions, and that
+# is deliberate:
+#   NEVER_WRITE      fails SAFE-WIDE by policy: an author missing from it is merely not
+#                    granted extra protection here; Rule 38 still governs by hand, and check 2
+#                    prints every author found so an unknown one is visible in the output. If
+#                    in doubt ADD a uid - erring wide costs nothing, erring narrow means
+#                    someone writes to a protected case.
+#   IN_SCOPE_TESTER  fails NARROW, and that is the dangerous one: a project whose root section
+#                    is not a key here gets NO in-scope note, so a newly named tester's cases
+#                    read as foreign. That is precisely the Rule-38-amendment failure that
+#                    rejected all 30 of Mudassir Qamar's cases. The run therefore says so out
+#                    loud when the root section is unknown, instead of staying quiet.
+#
+# 🛑 UPDATE BOTH OF THESE WHEN THE QA LEAD NAMES A NEW MANUAL QA TESTER, A NEW PROJECT/SUITE
+# ROOT SECTION, OR A NEW PROTECTED AUTHOR. Last confirmed 2026-09-01 (CLAUDE.md §1, Rule 38
+# bullet: "invoice refresh os for the manual QA tester Mudassir. 6597/6617 is for Viktoria.").
+# Nothing else in this file needs changing; add the row and re-run.
 NEVER_WRITE = {1: 'Vladimir Tomovic'}          # his cases are reported, never changed - no exceptions
 IN_SCOPE_TESTER = {                            # Rule 38's amendment, per project, never a blanket rule
     6559: (6, 'Mudassir Qamar'),
@@ -151,6 +196,30 @@ def main():
         names[uid] = api(f'get_user/{uid}', auth).get('name', f'user {uid}')
     tester = IN_SCOPE_TESTER.get(a.root)
     print('2  AUTHOR SCOPE        ' + ' · '.join(f'{names[u]} {n}' for u, n in who.most_common()))
+    # STATE THE SCOPE THAT WAS ACTUALLY APPLIED. These lists are hand-maintained (see the
+    # declaration), so a reader must be able to see which ones this run used rather than
+    # assume the ones they remember. A silent list is how a newly named tester becomes
+    # "foreign" without anyone noticing.
+    print('2  SCOPE APPLIED       never-write: '
+          + ', '.join(f'user {u} {n}' for u, n in sorted(NEVER_WRITE.items()))
+          + '  |  in-scope testers: '
+          + ', '.join(f'section {s} -> user {u} {n}' for s, (u, n) in sorted(IN_SCOPE_TESTER.items())))
+    if not tester:
+        # NOT a failure: most sections legitimately have no named tester. But it is said out
+        # loud, because "no in-scope tester" is indistinguishable from "the QA lead named one
+        # and nobody added the row" - and the second treats that tester's cases as foreign.
+        notes.append(f'section {a.root} is not in IN_SCOPE_TESTER, so NO author is being treated '
+                     f'as the named manual QA tester for this suite. If the QA lead has named one, '
+                     f'add the row to IN_SCOPE_TESTER in verify_suite.py before trusting the author '
+                     f'scope above (Rule 38 amendment - this is the list that rejected all 30 of '
+                     f'Mudassir Qamar\'s cases when it was wrong).')
+    unknown_authors = sorted(u for u in who if u not in NEVER_WRITE
+                             and (not tester or u != tester[0]) and u != 3)
+    if unknown_authors:
+        notes.append('authors present that are neither ours (user 3), protected, nor this '
+                     'suite\'s named tester: '
+                     + ', '.join(f'user {u} {names[u]} ({who[u]} case(s))' for u in unknown_authors)
+                     + ' - Rule 38: report them, name the creator, do not edit them')
     protected = [c['id'] for c in cases if c['created_by'] in NEVER_WRITE]
     if protected:
         notes.append(f'NEVER WRITE these ({NEVER_WRITE[cases[0]["created_by"]] if False else "Vladimir Tomovic"}): '
@@ -247,7 +316,7 @@ def main():
         err = [l for l in (r.stderr or '').strip().split('\n') if l.strip()]
         label = 'RUNNABILITY' if n == 7 else 'PRECOND LABELS'
         # A protected author's case is reported, never failed on - same reason as checks 4 and 5.
-        flagged = {int(m.group(1)) for m in re.finditer(r'\bC(\d{5})\b', r.stdout or '')}
+        flagged = {int(m.group(1)) for m in CASE_ID_RE.finditer(r.stdout or '')}
         if flagged and flagged <= prot:
             print(f'{n}  {label:18} only ' + ', '.join('C%d' % i for i in sorted(flagged))
                   + " - Vladimir Tomovic's, reported not edited")
