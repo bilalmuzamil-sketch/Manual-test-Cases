@@ -39,30 +39,44 @@ export async function bootProdLogin(route='/', opts={}) {
   const r = await ctx.request.post(`https://${APIH}/api/login`,
     { data: { username: SV_USER, password: SV_PASS }, headers: { 'Content-Type':'application/json', Accept:'application/json' }, ignoreHTTPSErrors:true });
   const rbody = await r.text();
-  if (r.status() !== 200) { await browser.close(); throw new Error(`prod login -> ${r.status()} (expected 200). Body starts: ${rbody.slice(0,120)}`); }
-  const loginData = JSON.parse(rbody)?.data;                 // SERVER-MINTED session
-  if (!loginData) { await browser.close(); throw new Error('prod login 200 but no data in the response'); }
-  log('logged in as', SV_USER, '- PHPSESSID minted by the server');
-
-  // 2) fe-permissions, same session
-  const fe = await ctx.request.get(`https://${APIH}/api/auth/me/fe-permissions`, { headers:{Accept:'application/json'}, ignoreHTTPSErrors:true });
-  const fep = fe.status()===200 ? (await fe.json())?.data : null;
-  const nFePerms = (fep?.fe_permissions || []).length;
-
-  // 3) hydrate the SPA from the login response BEFORE the first navigation - no forgery, no paste
-  await ctx.addInitScript(([user, fep]) => { try {
-    localStorage.setItem('user', JSON.stringify({ data: user }));
-    if (fep) localStorage.setItem('fe_permissions_wrapper', JSON.stringify(fep));
-    if (user?.token) localStorage.setItem('token', user.token);
-  } catch(e){} }, [loginData, fep]);
+  let loginData = r.status()===200 ? JSON.parse(rbody)?.data : null;
 
   const page = await ctx.newPage(); page.setDefaultTimeout(opts.timeout || 90000);
+
+  if (!loginData) {
+    // API login rejected (both accounts 401 at HEAD despite the working UI form) - DRIVE THE FORM.
+    // The real form carries the Origin/Referer/CSRF the bare API call lacks, and the APP writes its own
+    // localStorage on success: server-minted, nothing forged.
+    log(`POST /api/login -> ${r.status()}; driving the login form instead`);
+    await page.goto(`${APP}/login`, { waitUntil:'domcontentloaded' }); await page.waitForTimeout(6000);
+    await page.locator('input[type=email], input[autocomplete=username]').first().fill(SV_USER);
+    await page.locator('input[type=password]').first().fill(SV_PASS);      // never logged
+    await page.locator('button:has-text("Login"), button:has-text("Sign in"), button[type=submit]').first().click();
+    let ok=false;
+    for (let i=0;i<20;i++){ await page.waitForTimeout(2000); if (!/\/login/.test(page.url())) { ok=true; break; }
+      const err = await page.evaluate(()=>{ const t=document.body.innerText||''; const m=t.match(/(invalid|incorrect|failed)[^\n]{0,60}/i); return m?m[0]:null; });
+      if (err && i>3) { await browser.close(); throw new Error(`form login refused: ${err}`); } }
+    if (!ok) { await browser.close(); throw new Error(`form login did not leave /login (still ${page.url()})`); }
+    log('form login succeeded; app wrote its own session');
+  } else {
+    log('logged in as', SV_USER, '- PHPSESSID minted by POST /api/login');
+    const fe = await ctx.request.get(`https://${APIH}/api/auth/me/fe-permissions`, { headers:{Accept:'application/json'}, ignoreHTTPSErrors:true });
+    const fep = fe.status()===200 ? (await fe.json())?.data : null;
+    await ctx.addInitScript(([user, fep]) => { try {
+      localStorage.setItem('user', JSON.stringify({ data: user }));
+      if (fep) localStorage.setItem('fe_permissions_wrapper', JSON.stringify(fep));
+      if (user?.token) localStorage.setItem('token', user.token);
+    } catch(e){} }, [loginData, fep]);
+  }
+  const feNow = await ctx.request.get(`https://${APIH}/api/auth/me/fe-permissions`, { headers:{Accept:'application/json'}, ignoreHTTPSErrors:true });
+  const nFePerms = feNow.status()===200 ? ((await feNow.json())?.data?.fe_permissions || []).length : 0;
+
   await page.goto(`${APP}${route}`, { waitUntil:'domcontentloaded' });
   await page.waitForTimeout(opts.settle || 12000);
   const version = await page.evaluate(()=>document.querySelector('meta[name=app-version]')?.content || null);
-  log(`prod ${page.url()} | app-version=${version} | fe_permissions=${nFePerms} | template_slug=${fep?.template_slug}`);
+  log(`prod ${page.url()} | app-version=${version} | fe_permissions=${nFePerms}`);
   if (/\/login/.test(page.url())) log('⚠ still on /login after hydration - investigate before asserting');
-  return { browser, page, ctx, APP, APIH, version, nFePerms, templateSlug: fep?.template_slug || null };
+  return { browser, page, ctx, APP, APIH, version, nFePerms };
 }
 
 if (import.meta.url === `file://${process.argv[1]}`) {
