@@ -63,3 +63,22 @@ Correct PS detail route learned: `/parts/part-sale/{id}/part-requests` (I had be
 - **T7 PASS — the developer's EXACT repro** — received 4+5+1 (=10) → returned 3 (from the qty-5 row → 2) → effective 7 (before invoicing: 3 Received rows = 1+2+4 = 7, no Returned row; PS-03) → set status approved→complete → **invoiced** (POST /api/invoices/create 201). After invoicing the Parts tab shows **Quantity 1+2+4 = 7, every row "Received", NO "Returned" row** (PS-04 + annotated PS-annotated-invoiced-qty7-received.png). This is exactly the developer's Expected Result (Qty stays 7, status stays Received). The reported bug (Qty 4 / "Returned" after invoicing) is FIXED. Financial Info Parts = $280 (7 × $40) corroborates.
 
 Tally: T1–T5 + T7 PASS with live UI evidence (WO + PS). T6 (edit vendor on a vendor invoice reflects on the row only if not Invoiced/Paid) still to drive.
+
+## UPDATE 2026-09-03 (c) — T6 vendor-invoice edit reflects on row only if not Invoiced/Paid — PASS
+Vendor invoice = a delivery record (`/api/inventory/deliveries`); edit vendor via `POST /api/inventory/deliveries/change {delivery_id, invoice_number, vendor_id, tax, items[]}`.
+- **Positive (WO NOT invoiced):** edited the vendor invoice ZZAUTOTEST-R1 (delivery d648854f) vendor Stillwater → Weehawken → all its received parts-tab rows updated to Weehawken. Evidence T6-WO-invoice-vendor-edit-rows-updated.png.
+- **Negative (PS INVOICED):** edited vendor invoice ZZAUTOTEST-PS3 on the invoiced PS vendor 5 Star Truck Repair → Weehawken. The delivery/invoice itself DID change to Weehawken, but the parts-tab rows stayed "5 Star Truck Repair" (NOT updated) because the sale is Invoiced. Evidence T6-PS-invoiced-rows-NOT-updated.png.
+Matches the requirement exactly: the row follows the vendor-invoice edit only when the WO/PS is not Invoiced/Paid.
+
+## FINAL VERDICT — SV-6295 PASS (all requirements, Work Orders + Part Sales)
+| # | Requirement | Result |
+|---|---|---|
+| R1 | Each partial receive = a new row | PASS (WO + PS live) |
+| R2 | Row keeps vendor/qty/status at receipt | PASS |
+| R3 | Vendor change on Awaiting only affects future rows | PASS |
+| R4 | Rows never merge after full receipt | PASS (WO + PS) |
+| R5 | Returned parts not shown as a row (status stays Received) | PASS |
+| R6 | Vendor-invoice vendor edit reflects on row only if not Invoiced/Paid | PASS (both cases) |
+| R7 | Invoiced PS: receive 4+5+1, return 3 → Qty 7 / Received | PASS (dev's exact repro) |
+| dev FE | Return dialog uses the selected row's exact qty | PASS |
+Build v26.35.7-13e8586, sv6295.qa.shopview.com. No blocking issues. Note: sv6295 is a per-ticket QA branch (disposable, no cleanup required); throwaway data tagged ZZAUTOTEST.
