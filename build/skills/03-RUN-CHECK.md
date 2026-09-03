@@ -1248,14 +1248,31 @@ routes** — thirteen of them, singular and plural, path-param and query-param �
 watching the app's traffic. All negative. It concluded: *"the credit memo document is **not rendered on
 the sv8218 branch**."* That conclusion went into the project state, and a developer question was raised.
 
+**🛑 LEARN THE SHAPE OF THAT SENTENCE, BECAUSE IT IS THE ONE TO DISTRUST.** The conclusion a failed
+guessing hunt reaches is always some form of **"is not rendered on this branch"** — and a **negative
+result from guessing means NOTHING** (see the table below: you may simply not have guessed it). **A
+"not rendered / not present / not available on this branch" finding is INADMISSIBLE unless the UI was
+walked first** — it is a fact about the guesses, never about the build. If you are about to write that
+sentence, or you find it already written in a project state, treat it as **UNPROVEN** until
+`find_ui_route.mjs` has hovered every control on the screen that would offer the thing. This one cost a
+false project-state entry and a developer question that should never have been asked.
+
 **It was wrong.** On 2026-09-02, one hover-and-click in the UI produced:
 
 ```
 GET /api/credit-memos/{creditMemoId}/pdf        →  downloads "Credit memo - 9_2_2026.pdf"
 ```
 
+**Written in short form, this is the route `GET /api/credit-memos/{id}/pdf`** — the same endpoint;
+`{id}` and `{creditMemoId}` are the same path parameter, and both spellings appear in our notes and in
+`CLAUDE.md` §1, so **grep for `credit-memos` rather than for either parameter name.** The route is
+recorded in the registry (`route_registry.mjs find "credit memo"`) — look it up before hunting it again.
+
 The thirteen guesses included `/api/credit-memos/{id}` — but nobody tried the **`/pdf` suffix**, and
-everyone was looking for a **preview** when it is a **download**.
+everyone was looking for a **preview** when it is a **download**. **Two generalisable lessons, both
+carried by that one route:** a document route may hang off a **SUFFIX** on the resource path rather
+than a noun of its own, and it may be a **DOWNLOAD** (no navigation, no visible page) rather than a
+preview — so a hunt watching only for a page load sees nothing happen and calls it absent.
 
 ### Why UI-first is not a preference but the correct method
 
