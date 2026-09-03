@@ -1,0 +1,12 @@
+{
+ "cases": [
+  44969
+ ],
+ "fields": [
+  "custom_preconds"
+ ],
+ "from": "2. You can reach Credit Invoices in each status: Unapplied, Partially applied, Applied, Refunded (with a refund payment), and Voided.",
+ "to": "2. You can reach Credit Invoices in each status: \"Unapplied\", \"Partially applied\", \"Applied\", \"Refunded\" (one that carries a refund payment) and \"Voided\". All of them start from \"Customers\" in the top menu, a customer, the \"Invoices\" tab and the \"Issue Credit\" button (type the amount, choose \"Issue Store Credit\", add a short note, confirm), which gives you an \"Unapplied\" account-level credit with no origin invoice. To apply one: tick its row and an unpaid invoice's row together, click \"New Payment\", type an amount in that invoice's \"Payment\" box, choose any \"Payment method\" if \"Make payment\" is greyed out, and click \"Make payment\" - the credit reads \"Applied\" when the whole of it is used up and \"Partially applied\" when only part of it is. To refund one: click the icon in its \"Action\" column whose tooltip reads \"Cash Out\". To void one: click the icon there whose tooltip reads \"Reverse\". Use a customer with no deposit on the account, because the payment window uses a deposit before it uses a credit.",
+ "expect_per_field": 1,
+ "authorised_automated": []
+}

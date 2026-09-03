@@ -352,3 +352,26 @@ produced `Not needed — invoice fully covered` against the credit and consumed 
 `Partially applied` in any casing. That negative says nothing about the printed credit note: the PDF is
 rendered **server-side** (`GET /api/credit-memos/{id}/pdf`), so its status wording never passes through
 these chunks. The status a case asserts must be read off the rendered document, not the bundle.
+
+### The three dialogs' own labels — read off sv8218 `v26.35.6-8454936`, 2026-09-03
+
+Captured by dumping each dialog's controls, not from memory. Evidence:
+`build/invoice-ui-refresh/seed-2026-09-03/issue-credit-dialog.json` (+ `.png`),
+`credit-payments-dialog.json`, and the run logs of `apply6.mjs` / `apply7.mjs` / `cashout_partial.mjs`.
+
+| Dialog | Its labels, verbatim |
+|---|---|
+| **`Issue Credit`** (the `Issue Credit` button on the customer's `Invoices` tab) | `Credit Date` · `Amount` · **`Outcome`**, a pair of radios reading **`Issue Store Credit`** and **`Issue Refund`** · `Payment method` · `Reason` · `Cancel` · and the confirm button, which **relabels from `Issue Refund` to `Issue Credit`** the moment `Issue Store Credit` is chosen |
+| **`Cash Out Credit`** (the credit row's `Cash Out` action) | `Date` · `Amount` (opens holding the whole open balance) · `Payment method` · `Reason` · `Cancel` · `Cash Out` |
+| **`Reverse Credit`** (the credit row's `Reverse` action) | the sentence *"This will reverse the credit. Are you sure you want to proceed?"* · `Reverse` · `Cancel`. Watched firing `POST /api/credit-memos/{id}/void`; the row's `Status` then reads `Voided` |
+
+**The confirm button's relabelling is why this had to be probed rather than remembered.** Seven
+preconditions had been written telling the tester to "confirm"; the button a tester actually looks for
+says `Issue Credit`, and it says `Issue Refund` until the outcome is picked. A tester following the
+old wording would have been hunting for a button that was not there yet.
+
+**And a quoted example figure is a label too.** `check_precond_labels.py` flagged
+`Applies $80.00 · $120.00 remaining` in C45180 — a plausible sentence in the build's real format, but
+those two amounts were **invented to match the case's own seed data** and never appeared on any screen.
+The case now describes what the row says instead of quoting figures nobody has seen. The pattern the
+build really renders is `Applies $1,211.85 · $2,788.15 remaining` (CM-4198, 2026-09-03).

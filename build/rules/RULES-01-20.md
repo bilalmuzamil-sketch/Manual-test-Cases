@@ -450,6 +450,21 @@ Index: CLAUDE.md (rule index table). Other rule files: build/rules/RULES-01-20.m
     (live feature-by-feature testing): observed-not-inferred means you must first
     CREATE the conditions needed to observe, not fall back to NOT-VERIFIED. Applies
     to every deliverable and every project going forward.
+    **RE-CONFIRMED 2026-09-03, QA lead, verbatim: _"1. Always seed data, never stay blocked."_ —
+    said in answer to a report that six Credit Invoice cases could not be verified because no credit
+    existed in any state other than `Unapplied`. Worked example, the whole of it done that night on the
+    disposable branch: the states `Applied` (C45181), `Partially applied` (C45180), `Refunded` and
+    partly-refunded (C45182), and partly-applied-AND-partly-refunded (C45183) were each CREATED through
+    the UI, every credit's printed note rendered via `GET /api/credit-memos/{id}/pdf`, and all four
+    cases moved from NOT VERIFIED to PASS on real documents — after the route for applying a credit,
+    which nobody in this workspace had ever found, was discovered by clicking (the credit's own row has
+    no "apply" action; you tick the credit row AND an unpaid invoice row together and use `New
+    Payment`). **The lesson underneath it: a state nobody knows how to reach is not the same as a state
+    that cannot exist — and the difference is found by walking the UI, never by declaring a blocker.**
+    Evidence and the four recipes: `build/invoice-ui-refresh/credit-states-2026-09-03/VERDICTS.md`.
+    **What still does not yield to seeding is named honestly:** C44967 line 2 and C44968 line 1 need a
+    credit raised from a RETURNED PART with a restocking fee, which is a parts-return flow rather than
+    the account-level `Issue Credit`, and they remain NOT VERIFIED with that reason stated.**
     **SELF-SEED PLAYBOOK (learned 2026-07-23 — always try these BEFORE ever saying
     "blocked"): (a) DON'T rely on the user to unblock env/data/workplace issues — find
     the fix yourself (e.g. the location/workplace switcher, a different WO in your own
