@@ -20,6 +20,7 @@
 //                 "cases": [44964, ...], "authorised_automated": [], "expect_per_field": 1 }
 import { chromium } from '/opt/node22/lib/node_modules/playwright/index.mjs';
 import fs from 'fs';
+import path from 'path';
 
 const plan = JSON.parse(fs.readFileSync(process.argv[2], 'utf8'));
 const { from, to, fields, cases } = plan;
@@ -33,7 +34,10 @@ const api = async p => { const r = await fetch(`${HOST}/index.php?/api/v2/${p}`,
   { headers: { Authorization: AUTH, 'Content-Type': 'application/json' } }); return [r.status, await r.json()]; };
 const port = fs.readFileSync('/tmp/atlassian/bridge-port.txt', 'utf8').trim();
 const log = (...a) => console.log(new Date().toISOString().slice(11, 19), ...a);
-const OUTDIR = plan.outdir || '.';
+// Default the audit trail NEXT TO THE PLAN, never the repo root: a run on 2026-09-03 dropped
+// APPLIED.jsonl at the root, and the NEXT plan then read it as a checkpoint and silently skipped
+// seven cases it was meant to edit. A checkpoint that outlives its pass is a hazard, not a safety net.
+const OUTDIR = plan.outdir || (process.argv[2] ? path.dirname(process.argv[2]) : '.');
 const applied = `${OUTDIR}/APPLIED.jsonl`, failed = `${OUTDIR}/FAILED.jsonl`;
 const done = new Set();
 for (const f of [applied, failed]) if (fs.existsSync(f))
