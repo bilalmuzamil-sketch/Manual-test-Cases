@@ -136,17 +136,15 @@ safe. The **evidence** for each one lives in the rule or skill the bullet points
 - **NEVER DECLARE A BLOCKER — OR RUN THE FIRST PROBE — WITHOUT SEARCHING THE REPO FIRST (97, amended
   2026-09-02).** **STEP 0 IS `git fetch origin`** — never search, measure or report a repository fact from
   a stale checkout — and if you are on a different branch, search the canonical one **without checking it
-  out**: `git grep -n "<exact error text>" origin/claude/slack-session-0sxnd9 -- build/` ·
-  `git show origin/claude/slack-session-0sxnd9:<path> | grep -n "<what you need>"`. **"Not on this branch"
-  is NEVER a reason to conclude something does not exist.** (The Standing Rules moved OUT of CLAUDE.md
-  into `build/rules/RULES-*.md` on **2026-08-21**; a session saying "the rules live inside CLAUDE.md" is
-  stale.) Before reporting anything as impossible, blocked, unavailable or unreconstructable — **and
+  out**: `git grep -n "<exact error text>" origin/claude/slack-session-0sxnd9 -- build/` (and
+  `git show <branch>:<path>`). **"Not on this branch" is NEVER a reason to conclude something does not
+  exist.** Before reporting anything as impossible, blocked, unavailable or unreconstructable — **and
   before the FIRST PROBE of any environment, not after the first failure** — **grep the workspace using
   the EXACT ERROR TEXT**, plus `grep -n "<the thing>" build/APP-ACTIONS-PLAYBOOK.md` and
   `ls build/testing-tools/`. **A committed harness is reused, never rebuilt.** Four places, in order:
   `build/APP-ACTIONS-PLAYBOOK.md` · `build/skills/14-ACCESS-RESILIENCE.md` ·
   `build/ATLASSIAN-JIRA-ACCESS-METHOD.md` · `build/rules/RULES-*.md` (grep, never read whole). Also
-  `ls build/BLOCKED-*.md` — **several are marked RESOLVED with the cause** — and `git log --all --grep=`.
+  `ls build/BLOCKED-*.md` (several are RESOLVED, with the cause) and `git log --all --grep=`.
   **If you still cannot find it, REPORT THE SEARCHES YOU RAN** so the gap is known to be real rather than
   unsearched. One tool failing is a fact about that tool, never about the task (68). **Solve something
   new ⇒ write it into the playbook or the skill IN THE SAME PASS** (93). The QA lead's verbatim ruling on
@@ -157,8 +155,10 @@ safe. The **evidence** for each one lives in the rule or skill the bullet points
 - **TELL THE LAST-DONE DATE AND ASK BEFORE RE-RUNNING (80).** Never silently repeat a verification,
   VIU or ordered task: say when it was last done and ask whether to run it again. A check within the
   last 3 builds / 3 source versions still COUNTS, with its date shown (77).
-- **SOURCE VERIFICATION IS OFFERED AND GATED, NEVER AUTO-RUN (81).** Make the source current FIRST,
-  but ask before spending the quota on it.
+- **🛑 A BUILD-VERIFY ORDER REFRESHES EVERY SOURCE FIRST, WITHOUT ASKING (81; QA lead 2026-09-03).**
+  Spec · epic + stories · design · PO answers — pulled LIVE, deltas folded in (43), before the first
+  verdict. **SUPERSEDES the 2026-08-20 ask-and-wait gate.** Outside a build-verify / VIU order Rule 81's
+  gate still holds. His verbatim words: `RULES-61-ONWARD.md` rule 81.
 - **🛑 QUICK-LOGIN IS THE ROUTE, AND ONE COOKIE ONLY (2026-09-02).** Run
   `node build/testing-tools/qa-branch-boot.mjs <branch> <route> admin`. Carry `sv_sso_session` ONLY,
   scoped **HOST-ONLY** — a domain-scoped cookie 409s right after a 200 login, which looks like a dead

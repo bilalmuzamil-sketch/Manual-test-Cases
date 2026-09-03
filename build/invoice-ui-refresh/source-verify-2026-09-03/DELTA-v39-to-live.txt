@@ -1,0 +1,104 @@
+HELD v39 : 64,053 chars, 109 distinct anchors
+LIVE     : 70,345 chars, 111 distinct anchors
+
+ANCHORS ADDED   (2): ['S12-R10', 'S12-R11']
+ANCHORS REMOVED (0): []
+ANCHORS CHANGED (16): ['S11-R3', 'S12-R2', 'S12-R3', 'S12-R4', 'S12-R7', 'S12-R9', 'S13-N1', 'S13-R6', 'S2-N2', 'S2-R3', 'S3-R8', 'S5-N1', 'S5-R6', 'S5-R7', 'S8-R2', 'S8-R5']
+
+================ WORD-LEVEL DELTA, v39 -> LIVE ================
+
+  S11-R3:
+      - was: (nothing)
+        now: Context note: a credit that is both partially refunded and partially applied takes the "Partially applied" status — it remains one of the five states, not a new one — and its refund rows still list in the Payme
+
+  S12-R2:
+      - was: any
+        now: the light printed
+      - was: (nothing)
+        now: paid-banner surface #F8FAFC,
+      - was: appears.
+        now: appears on the printed document; the print / B&W output adds only the inks S12-R5 lists, and the Design Document's demo chrome and dark-mode preview (S12-R7) are not part of any document.
+
+  S12-R3:
+      - was: (nothing)
+        now: On the Parts Sale document, which has no numbered work lines, the accent appears only on the word "ShopView" in the footer.
+
+  S12-R4:
+      - was: fallback.
+        now: fallback, applied identically on screen and in PDF output, so the on-screen preview and the PDF wrap line for line.
+      - was: 750
+        now: 700
+
+  S12-R7:
+      - was: the POC badge,
+        now: (nothing)
+
+  S12-R9:
+      - was: 750
+        now: 700
+      - was: 750
+        now: 700
+      - was: Negative cases:
+        now: (nothing)
+
+  S13-N1:
+      - was: (nothing)
+        now: - Context note (S13-N1): the batch and imported templates share the document data provider, so two org-wide changes reach them before SV-9193 restyles them — they lose the shop's own-address remit-to fallback (
+      - was: (nothing)
+        now: | | 2026-08-28 | @chris / @claude | Answered Milomir's two build questions. S12-R10: the page-break rule no longer repeats the full masthead on later pages — every page after the first opens with a single ident
+      - was: (nothing)
+        now: | 2026-08-25 | @chris / @claude | Milomir's Design Document vs. spec conformance audit folded in. S5-R6 parts-entry label corrected from "Part" to "Parts" to match the binding Design Document and S12-R9 (the si
+
+  S13-R6:
+      - was: (nothing)
+        now: If that invoice is voided or reversed, the Authorizer becomes editable again (mirrors S3-R8).
+
+  S2-N2:
+      - was: only
+        now: (nothing)
+      - was: setup.
+        now: setup or from the location's own remit-to setting (S2-R2).
+
+  S2-R3:
+      - was: one of the spec's two deliberate
+        now: (nothing)
+      - was: layout rules,
+        now: on appearance,
+
+  S3-R8:
+      - was: (nothing)
+        now: If the invoice is later voided or reversed, the work order returns to Complete and the Authorizer row is re-enabled (E2E-covered, @C44922).
+
+  S5-N1:
+      - was: "Part" (singular)
+        now: The in-job section label
+      - was: intentional for an individual entry;
+        now: "Parts", consistent with S12-R9 and
+      - was: S7-R2) is plural on purpose.
+        now: S7-R2).
+
+  S5-R6:
+      - was: "Part".
+        now: "Parts".
+
+  S5-R7:
+      - was: cost,
+        now: price,
+      - was: (nothing)
+        now: "Part price", "Part number",
+      - was: price". These
+        now: description". The "Part number" and "Part description" settings hide the part number and the part description on each parts entry. The five price and quantity
+
+  S8-R2:
+      - was: {date};
+        now: {date}, then by the order the payments were recorded;
+
+  S8-R5:
+      - was: (nothing)
+        now: This is not limited to deposits: it applies to any payment or deposit whose amount applied to this invoice is less than its full amount, including a regular payment spread across more than one invoice (S8-R2, §
+
+  S12-R10  ** NEW **:
+      S12-R10 (page breaks): Long documents paginate using standard, globally accepted page-break behavior, not custom pagination. Every page after the first opens with a single identification line: the shop location's name on the left and the document number on the right (for example "Heavy Duty - 9919" and "Invoice: INV-S2-4802"). The full masthead does not repeat on later pages. The totals block is not split across a pa
+
+  S12-R11  ** NEW **:
+      S12-R11 (viewport): On screen the document fits within the viewport with no content clipped. Any element wider than the viewport (for example a wide table) scrolls horizontally within its own container rather than clipping or forcing the whole page to scroll sideways. Negative cases:
