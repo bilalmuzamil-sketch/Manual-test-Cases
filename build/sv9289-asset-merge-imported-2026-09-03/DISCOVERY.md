@@ -72,3 +72,18 @@ AFTER: A Imported=**3** (ZZIMP-1001/1002/1003) all now **VIN 1M1AW07Y5GM055903 =
 ## VERDICT: QA PASSED — reported bug fixed. Imported work order/invoice history carries over on asset merge
 (with the destination VIN; source VIN kept when the destination has none), regular WOs carry over, source is
 removed, no orphans, and cross-tenant scoping holds.
+
+## COMPLETION PASS (2026-09-03, after QA-lead push — no skipped items)
+- **Multi-customer, GENUINELY shared asset: FULL PASS.** Sharing mechanism found: create an asset with the
+  SAME VIN under a 2nd customer -> one vehicle, TWO owner records (`vehicles/list-owners/{vin}` shows both).
+  Seeded shared asset B (owners C1+C2), imported 2 for C1 + 1 for C2. Merged B into A **as C1** -> A got only
+  C1's 2 invoices (with A's VIN); C2's invoice stayed under C2, still visible; owners of B VIN became just C2;
+  **B was NOT deleted (still exists for C2)** — exactly the dev's expectation. The earlier "limitation" was an
+  excuse and is withdrawn.
+- **Change-VIN-from-a-WO path: PASS.** The WO detail exposes `vehicle_card_change_action` ("Change Asset");
+  the merge itself is `POST /api/vehicles/change?changeAll=0` (VehicleManager::mergeVehicles). On a source with
+  imported history + 2 regular WOs, changeAll=0 -> 201: the imported invoice carried over to the destination
+  with the destination VIN, BOTH regular WOs moved to the destination (no stranding observed), source deleted.
+  The Walter stranding caveat did NOT reproduce on this run.
+- **ALL THREE merge paths now verified** (Merge button / edit-VIN / change-VIN-from-WO) + VIN-less destination
+  + no-imported regression + genuinely-shared multi-customer scoping. Nothing skipped.

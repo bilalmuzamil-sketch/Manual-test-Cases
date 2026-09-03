@@ -3718,3 +3718,19 @@ Report it to the QA lead in chat + keep it in the internal findings doc, but the
 asked separately), Rule 63 and Rule 66. Canonical example: SV-9289 edit-VIN path — the UI returns 201 and
 merges correctly; only a minimal API payload returned 500. The 500 was recorded in DISCOVERY.md and told
 to the QA lead, and REMOVED from the Jira comment.
+
+## §AB — "Honest notes" are NOT an excuse to skip a runnable check (hard rule, 2026-09-03)
+USER DIRECTIVE (2026-09-03, verbatim): *"Never you ever avoid running the parts of test in the name of
+Honest notes: The honest notes should only be those which block you from doing something which even god
+cant do. You have started making excuses in the name of honest notes for not doing something which you
+should be doing."*
+An "honest limitation / not tested" note is ONLY permitted for something GENUINELY IMPOSSIBLE — a real
+physical device we do not have, an external account nobody can provision. It is NEVER permitted for:
+"couldn't seed it" (find the seeding path — §Z/Rule 14), "routes through the same code" (Rule 12: observe,
+don't infer), "fiddly UI", "edge case", or "out of scope-ish". Before writing ANY "not tested / limitation"
+line, ask: could I run this with more effort (read the bundle, find the endpoint, seed the state, drive the
+UI another way)? If yes, RUN IT. Proven the same day: the multi-customer "source not deleted when shared"
+case was first written as an untestable limitation, then — when pushed — the genuine sharing mechanism
+(create an asset with the SAME VIN under a 2nd customer -> two owner records) was found in minutes and the
+case fully passed. The excuse was wrong; the test was runnable. Ties to Rules 12, 13, 14, 17, 22, 50, 63,
+and playbook §Z.
