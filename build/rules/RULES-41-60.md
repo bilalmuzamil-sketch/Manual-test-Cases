@@ -654,8 +654,34 @@ Index: CLAUDE.md (rule index table). Other rule files: build/rules/RULES-01-20.m
     report. Ties to Standing Rules 12 (observed, never inferred), 29 (killed-pass recovery from live
     content), 38 and 65 (the tell-Vlad report must be derived from live, or it under-reports), and 71
     (protect Automated cases — the audit that surfaced this).
-51. **NEVER file an API-related ticket without ASKING — every time, even inside an approved batch (all
-    projects).**
+51. **RETIRED / SUBSUMED INTO STANDING RULE 62 ON 2026-09-03 — THE FILING HALF MOVED TO RULE 62
+    §62-T1; THE API-REACHABILITY TEST STAYS HERE AND IS STILL LIVE (all projects).**
+    > **🛑 ORIGINAL HEADLINE, PRESERVED VERBATIM AND MARKED SUPERSEDED ON 2026-09-03 — kept so this
+    > change is auditable and so anyone searching the old words still lands here:**
+    > *"NEVER file an API-related ticket without ASKING — every time, even inside an approved batch
+    > (all projects)."*
+    **(a) THIS RULE IS RETIRED / SUBSUMED INTO STANDING RULE 62 AS OF 2026-09-03.** Its number is
+    kept, it is not deleted, and the index stays 1..99.
+    **(b) WHAT IT USED TO REQUIRE, IN ONE LINE:** an API-related defect was **never filed on our own
+    initiative** — it was asked about **SEPARATELY, every time**, even inside an approved batch, and
+    filed **only** if the QA lead explicitly said to file it; an already-filed API ticket was
+    **withdrawn by transition with a plain-language comment, never deleted.**
+    **(c) WHY, AND WHEN THE RECIPE APPLIES AGAIN:** QA lead, 2026-09-01, verbatim: *"You are never
+    supposed to create defect, you are supposed to make the tests RUNNABLE."* **The lane produces no
+    tickets, so there is normally nothing to ask about.** The full recipe is **not withdrawn** — it
+    **applies only if and when the QA lead directs a ticket to be filed.**
+    **(d) WHERE THE FULL RECIPE NOW LIVES — EXACTLY:** `build/rules/RULES-61-99.md`, **Standing Rule
+    62**, the block headed *"⇒ IF AND ONLY IF HE DIRECTS A TICKET: THE SHAPE"*, subsection
+    **§62-T1**. It holds the 2026-08-04 user directive, the never-file-unasked rule, the METHOD (the
+    separate API split, the separate ask, the withdrawal procedure) and the SV-8822/SV-8821 rationale
+    — **all moved VERBATIM, nothing paraphrased and nothing dropped.**
+    **(e) WHAT STAYED HERE, BECAUSE IT IS NOT ABOUT FILING AND IT IS THE PART A SESSION ACTUALLY
+    NEEDS — THE API-REACHABILITY TEST AND THE RULE-24 TIE. BOTH ARE LIVE.** They classify a finding
+    and decide **how it is PRESENTED**, which is real work with or without a ticket.
+    **⚠️ THE DATED 2026-08-10 SUBSUMPTION NOTE FURTHER DOWN SAYS "THIS RULE STANDS UNCHANGED".** That
+    is now true **only of the two live halves kept below**; the filing half it describes moved to Rule
+    62 §62-T1 on 2026-09-03. **The note is kept and dated rather than deleted (the Rules 31/52/53
+    pattern), because a silently-erased claim is how a future session re-derives the same mistake.**
     > **🛑 SUPERSESSION NOTICE, 2026-09-01 — READ THIS BEFORE THE RECIPE BELOW. THE LANE'S JOB IS
     > RUNNABLE TESTS, NOT TICKETS. STOP PREPARING DEFECTS.** QA lead, 2026-09-01, verbatim: *"You are
     > never supposed to create defect, you are supposed to make the tests RUNNABLE."*
@@ -701,15 +727,7 @@ Index: CLAUDE.md (rule index table). Other rule files: build/rules/RULES-01-20.m
     for and granted first. THIS RULE STANDS UNCHANGED — its reachability test still classifies a finding
     and decides how to present it, and its withdrawal procedure still applies — but it is no longer the
     exception to an otherwise-permitted filing; it is one instance of the general case. See Rule 62.**
-    USER DIRECTIVE (2026-08-04, verbatim): *"do not create the tickets which are related to API , if
-    there are any ASK me (ask again if I have previously given a go ahead for the API tickets with the
-    Non API tickets) and create them ONLY if I ask you to create them"*.
-    **THE RULE:** an **API-related defect is NEVER filed on our own initiative.** It is **ASKED ABOUT
-    SEPARATELY and filed ONLY if the QA lead explicitly says to file it.** **A BATCH APPROVAL DOES NOT
-    COVER AN API ITEM** — the parenthesis in his directive is the whole point: *"ask again if I have
-    previously given a go ahead for the API tickets with the Non API tickets"*. So *"file these six"*
-    is **NOT** authorisation for the API one among the six; **ask again, naming it.** Silence is not
-    consent, and an earlier yes to the batch is not a yes to the API item.
+    **⇒ THE LIVE HALF #1 — HOW TO CLASSIFY AN API-RELATED FINDING (kept here 2026-09-03):**
     **HOW TO JUDGE WHETHER A FINDING IS API-RELATED (the test, in one line):** **if the defect is
     invisible to a user AND to a manual tester — reachable only by calling an endpoint directly with a
     request the product's own screens never send — it is API-RELATED.** **If the same failure ALSO
@@ -717,44 +735,57 @@ Index: CLAUDE.md (rule index table). Other rule files: build/rules/RULES-01-20.m
     *characterised* technically (a 500 in the response is technical *evidence*; it is not what makes
     the ticket API-related). Judge by **reachability from the product**, never by whether our evidence
     happens to be an endpoint capture.
-    **METHOD (so the split is visible BEFORE anything is filed):** **(1)** every defect pack **LISTS
-    API-RELATED FINDINGS IN THEIR OWN SEPARATE SECTION**, with the reachability reason stated per item
-    — a dated `API-SPLIT.md` beside the pack is the canonical vehicle (`build/report-suite/
-    defect-pack-2026-08-04/API-SPLIT.md`). **(2)** the ask goes to the QA lead **separately from the
-    non-API batch**, in plain layman words (Rule 7): what the defect is, that it cannot be reached from
-    any screen, and the explicit question *file it or not?* **(3)** nothing is filed until he answers.
-    **(4)** if an API ticket was already filed before this rule was known, **withdraw it on his ruling**
-    — **CLOSE it via a workflow transition with a plain-language closing comment, NEVER DELETE it**
-    (a withdrawn ticket with its reasoning on the record is worth more than a deleted one, and deletion
-    is irreversible); set **priority Medium first** (Rule 53) so it does not sit closed at the wrong
-    priority; and **keep the underlying finding written up in the defect pack** — we withdraw the
-    *ticket*, we do not discard the *finding*.
+    **⇒ THE LIVE HALF #2 — THE TIE TO RULE 24 (kept here 2026-09-03):**
     **TIE TO RULE 24 (read them together):** Rule 24 already says **front-end blocks + back-end/API
     allows = a PASS, not a defect.** This rule is its filing-side sibling: even where an API-only
     behaviour is a genuine hardening opportunity rather than a Rule-24 pass, **it is still not ours to
     raise unasked.** Between them: an FE-gated/BE-allowed action is **not a defect at all**, and an
     API-only fault that IS a defect is **not a ticket without his say-so**.
-    **RATIONALE, 2026-08-04 (the worked example that produced the rule — and it was our miss):**
-    **SV-8822** *"Saving a customer returns a server error instead of a validation error when a
-    sales-rep id is supplied"* was filed **inside the approved batch of six** defect tickets, because
-    the batch had been approved as a whole and nobody separated out the API item. It is **API-only**:
-    the fault is reachable only by sending the customer-save request directly in a shape the product's
-    own dialog never produces, so **no customer and no manual tester can see it**. The QA lead then
-    stated the rule above, and when asked, ruled verbatim: *"Yes Tickets related to API which you have
-    already created can be withdrawn"* — so SV-8822 was **transitioned to OBSOLETE (resolution Done)
-    with a plain-language withdrawal comment, not deleted**, while **SV-8821** (the create-invoice
-    server error) **stayed OPEN** precisely because that one **also fails through the product's own
-    screen** and is therefore user-facing despite its technical characterisation. **That contrast —
-    8822 withdrawn, 8821 kept — IS the reachability test in practice.** Records:
-    `build/report-suite/defect-pack-2026-08-04/API-SPLIT.md` + `FILED.md`. Ties to Standing Rules 1
-    (never proceed without the complete input set — an unanswered ask is a missing input), 6 (nothing
-    written to a system of record without permission), 7 (plain layman wording for the ask), 12
-    (observed, never inferred), 24 (FE-blocks/BE-allows is a PASS), 36 (an unanswered ask is an
-    OUTSTANDING item and belongs in the register), 48 (a blocked item cites the ruling that blocks it)
-    and 53 (priority Medium).
-52. **A defect ticket is filed as a `Story Defect` parented to the OWNING STORY — and because that story
-    is itself a child of the epic, the defect STILL ROLLS UP TO THE EPIC (all projects; this SUPERSEDES
-    the Bug-on-an-epic-parent convention of 2026-08-04, which is preserved below as dated history).**
+    **THE WORKED EXAMPLE THAT *IS* THE REACHABILITY TEST IN PRACTICE — SV-8822 withdrawn as
+    API-only, SV-8821 kept because it also fails through the product's own screen — moved with the
+    filing half and is now in Rule 62 §62-T1. Read it there; it was not lost.**
+52. **RETIRED / SUBSUMED INTO STANDING RULE 62 ON 2026-09-03 — THE WHOLE TICKET-SHAPE RECIPE AND
+    THE EIGHT-ITEM EVIDENCE BAR MOVED TO RULE 62 §62-T2 (all projects).**
+    > **🛑 ORIGINAL HEADLINE, PRESERVED VERBATIM AND MARKED SUPERSEDED ON 2026-09-03 — kept so this
+    > change is auditable and so anyone searching the old words still lands here:**
+    > *"A defect ticket is filed as a `Story Defect` parented to the OWNING STORY — and because that
+    > story is itself a child of the epic, the defect STILL ROLLS UP TO THE EPIC (all projects; this
+    > SUPERSEDES the Bug-on-an-epic-parent convention of 2026-08-04, which is preserved below as dated
+    > history)."*
+    > **(The roll-up half of that headline was already marked FACTUALLY WRONG on 2026-08-06; that
+    > correction moved with the body and is in §62-T2, unchanged.)**
+    **(a) THIS RULE IS RETIRED / SUBSUMED INTO STANDING RULE 62 AS OF 2026-09-03.** Its number is
+    kept, it is not deleted, and the index stays 1..99.
+    **(b) WHAT IT USED TO REQUIRE, IN ONE LINE:** a defect ticket is filed as `issuetype` =
+    **`Story Defect`**, `parent` = **the OWNING STORY** (an **Epic parent is rejected HTTP 400**),
+    `priority` = **`Medium`**, with the owning story **also linked `relates to`**, **no Product Area**,
+    **never `Story Defect - Archive`**, **never converting someone else's ticket** — and it must clear
+    the **eight-item evidence bar** (verbatim-quoted source · annotated screenshots · exact named test
+    data · build marker and environment · duplicate search with the queries recorded · the agreed
+    description shape with its source block · a written pre-filing self-challenge · and a check that it
+    is not a Rule-24 pass).
+    **(c) WHY, AND WHEN THE RECIPE APPLIES AGAIN:** QA lead, 2026-09-01, verbatim: *"You are never
+    supposed to create defect, you are supposed to make the tests RUNNABLE."* **The lane produces no
+    tickets at all**, so this recipe describes something we do not do. It is **not withdrawn and
+    remains correct for its purpose** — it **applies only if and when the QA lead directs a ticket to
+    be filed.** **This was the single most likely wrong action in the repo:** roughly 27 KB of recipe
+    reading as a standing instruction to build a ticket, with only a notice on top of it.
+    **(d) WHERE THE FULL RECIPE NOW LIVES — EXACTLY:** `build/rules/RULES-61-99.md`, **Standing Rule
+    62**, the block headed *"⇒ IF AND ONLY IF HE DIRECTS A TICKET: THE SHAPE"*, subsection
+    **§62-T2**. Everything moved **VERBATIM** — the 2026-08-12 evidence bar and the QA lead's *"they
+    did badly bite me and my job is on threat due to that"* rationale, the required five-field shape,
+    the 2026-08-06 factual correction about epic roll-up, the HTTP 400 / HTTP 201 proof, the six issue
+    types with their ids and hierarchy levels, the `Story Defect - Archive` warning, the field
+    differences, the dated pre-2026-08-05 `Bug`-on-an-epic convention, the no-standalone-tickets
+    clause, the `relates to` link facts, the conversion-is-UI-only facts and the silent Product Area
+    loss, the link-type list, and every rationale and ties paragraph.
+    **(e) NOTHING STAYED HERE.** This rule has no half that is independent of filing — that is why it
+    collapsed whole. **Two pointers so nothing is hunted for:** the **pasted-image loss hazard** (a
+    Jira description edited over the REST API destroys any `media` node not carried forward, and the
+    deletion is NOT logged) is also recorded in `build/APP-ACTIONS-PLAYBOOK.md` **§J declared hazard
+    #4**, with the working method and the read-only auditor; and ***never "restore" a field the QA lead
+    has changed*** — which is why a conversion someone else performed is left alone — is **Standing
+    Rule 53's live half**, which stayed in rule 53.
     > **🛑 SUPERSESSION NOTICE, 2026-09-01 — READ THIS BEFORE THE RECIPE BELOW. THE LANE'S JOB IS
     > RUNNABLE TESTS, NOT TICKETS. STOP PREPARING DEFECTS.** QA lead, 2026-09-01, verbatim: *"You are
     > never supposed to create defect, you are supposed to make the tests RUNNABLE."*
@@ -795,286 +826,36 @@ Index: CLAUDE.md (rule index table). Other rule files: build/rules/RULES-01-20.m
     > `build/rules/SECTION1-AND-AMENDMENT-AUDIT-2026-09-02.md` Part B. **A rule's amendment is part of the
     > rule (Rule 38's own 2026-09-02 lesson).**
     >
-    **⚠️ THE ROLL-UP HALF OF THAT HEADLINE IS FACTUALLY WRONG — CORRECTED 2026-08-06 BELOW; THE REQUIRED
-    SHAPE IS UNCHANGED.**
-    **🔴🔴 ⇒ AMENDMENT, 2026-08-12 — THE EVIDENCE BAR: A DEFECT TICKET WE FILE MUST BE UNCHALLENGEABLE.
-    THIS IS THE MOST IMPORTANT CLAUSE IN THIS RULE. IT GOVERNS *WHETHER A TICKET IS FIT TO FILE AT ALL*,
-    WHERE EVERYTHING ELSE IN RULE 52 GOVERNS ONLY ITS SHAPE — AND A CORRECTLY-SHAPED TICKET THAT FAILS
-    THIS BAR IS EXACTLY THE TICKET THAT BIT US.**
-    **USER DIRECTIVE (2026-08-12, verbatim, his typing preserved exactly as he wrote it because Rule 25
-    applies to his instructions as it does to a spec):** *"The Engineering manager had raised a concern
-    over creating tickets which does not make sense, so we have to make sure that the defects or tickets
-    which we create do NOT bite us like it did, and must have solid references for the expected behavior,
-    and should have the annotated screenshots in them, but this is for the future but you have to amend
-    your rule to make sure that the defects you create can not be challenged and should not bite me, they
-    did badly bite me and my job is on threat due to that. However for now the Jira ticket creation is
-    still on hold."*
-    **🛑 READ HIS LAST SENTENCE BEFORE ANY OTHER PART OF THIS AMENDMENT: *"However for now the Jira ticket
-    creation is still on hold."* THIS IS A RULE FOR THE FUTURE. THE CREATION HOLD AT RULE 62's TAIL
-    REMAINS ACTIVE AND NOTHING IS FILED NOW.** He re-stated the hold **in the same breath** as raising the
-    bar, so this amendment is **not** a signal that filing has resumed and must never be read as one. What
-    it does is make sure that **when the hold lifts, the first ticket out of the door cannot be thrown
-    back.**
-    **THE BAR — EIGHT ITEMS. EVERY ONE IS CHECKABLE, DELIBERATELY: A RULE NOBODY CAN FAIL IS A RULE NOBODY
-    FOLLOWS.** A ticket that cannot show all eight **is not ready to be put to him**, and saying so is the
-    correct outcome (Rule 12 — never dress an unfinished case up as a finished one).
-    **(1) THE EXPECTED BEHAVIOUR IS QUOTED VERBATIM FROM A NAMED SOURCE, WITH ITS VERSION AND ITS DATE.**
-    The PRD with its **Confluence version number** (never the in-body one — Rule 31 trap (a)), an **epic
-    story**, a **PO answer with its file and date**, the **design or Figma**, or the **technical design** —
-    Standing Rule 57's list at (a)–(g). **IF THE EXPECTATION CANNOT BE QUOTED BACK TO A DOCUMENT, THERE IS
-    NO TICKET.** **This single test is the one that would have prevented most of what went wrong**, and it
-    is deliberately absolute: *"the build ought to behave this way"*, *"any reasonable product would"*,
-    *"it is obviously wrong"* are **not sources**, and a ticket resting on one of them is precisely the
-    ticket an engineering manager throws back as *not making sense* — **he would be right, and we would
-    have handed him the argument.** This is **Rule 57 applied at the filing step**: expected behaviour
-    comes from the document, never from what the build ought to do.
-    **(2) ANNOTATED SCREENSHOTS.** The actual behaviour **captured and marked up** — arrow, box, caption —
-    so a reader **sees the fault without reproducing it**. A bare screenshot is not an annotated one, and a
-    file list is not an embedded image (playbook §"Filing a defect ticket" section 6). **⚠️ RECORDED
-    HAZARD, AND IT HAS ALREADY COST US ONE IMAGE: EDITING A JIRA DESCRIPTION OVER THE REST API DESTROYS ANY
-    PASTED IMAGE WHOSE `media` NODE IS NOT CARRIED FORWARD INTO THE NEW BODY, AND JIRA LOGS THE ADDITION BUT
-    NOT THE DELETION** — so the loss is invisible in the changelog and provable only from a pre-write
-    snapshot. **One image was destroyed this way on SV-8818 and is unrecoverable.** The working method, the
-    node-lifting code and the read-only auditor are in `build/APP-ACTIONS-PLAYBOOK.md` §J declared hazard
-    #4 (Rule 27 — do not re-derive it).
-    **(3) EXACT, NAMED TEST DATA (Standing Rule 50).** Every **canned line · customer · contact · part ·
-    asset · work-order state · location · role/user · date range**, named **exactly as it appears on
-    screen** — **plus what was tried and RULED OUT**. *"Create a work order with a canned line"* is **not
-    reproducible**; *"add canned line **HD CVIP air brake trailer single/tandem**"* is. **AN UNNAMED
-    VARIABLE IS AN UNVERIFIED VARIABLE:** the reader picks a different one, gets a different result, and
-    closes the ticket. **That is exactly how SV-8821 was bounced** — the QA lead could not reproduce it
-    because our steps named no canned line, and the real condition turned out to be a **missing CONTACT,
-    not the canned line at all.** **A ticket the reader cannot reproduce is a ticket that gets closed.**
-    **(4) THE BUILD MARKER AND THE ENVIRONMENT.** The **app-version string** (`<meta name="app-version">`,
-    e.g. `v3.5-16cf83f`), the **QA branch/URL and API host**, the **date and time observed**, and the
-    **true viewing context** — *"desktop browser, signed in as an Admin"*, or whatever the role actually
-    was. **State the role you were really in, not the role the case assumes** (Rule 12).
-    **(5) A DUPLICATE SEARCH RUN FIRST, WITH THE QUERIES RECORDED.** Not *"we looked"* — **the JQL, in the
-    ticket pack.** **Several tickets we filed already existed**, and a duplicate is the cheapest possible
-    way to look careless in front of the people whose queue it lands in.
-    **(6) THE SHAPE THE POs AND THE ENGINEERING MANAGER ASKED FOR, UNCHANGED** — **concise description ·
-    steps of reproduction · current behaviour in plain words · expected behaviour in plain words · a line
-    break, then the source.** This sits inside, and does not replace, the **seven-section format** in
-    `build/APP-ACTIONS-PLAYBOOK.md` § "Filing a defect ticket" (which additionally pins Branch/Environment,
-    Images and a LAST technical section); the seven-section format remains the mechanical layout, and item
-    (6) is the **reader's** view of it. **The source block at the bottom is not optional** — his ruling,
-    verbatim: *"Yes this source block MUST exist for every ticket you created."*
-    **(7) A PRE-FILING SELF-CHALLENGE, WRITTEN DOWN.** Before filing, answer **in writing**: ***what is the
-    strongest argument that this is NOT a defect?*** **If the honest answer is *"the source does not
-    actually say that"* or *"I cannot reproduce it from my own steps"* — DO NOT FILE IT.** Record the
-    challenge **and** the answer on the ticket or in the pack. **This is the hostile-reviewer lens of Rule
-    45(c) moved to the filing step**, and it exists because the argument gets made either way: **either we
-    make it first, in private, or the engineering manager makes it in public.**
-    **(8) CHECK IT IS NOT A RULE-24 PASS.** A control **hidden in the UI while the API still allows the
-    action is a PASS, not a defect** (Standing Rule 24). Filing one of those is **the literal definition of
-    a ticket that "does not make sense"**, and it is an easy mistake to make from a network capture. **The
-    inverse — the front end EXPOSING what the back end blocks — IS a defect** and stays filable.
-    **AND CHECK THE OTHER THREE THINGS THAT MAKE A TICKET NONSENSE, because (8) is only the commonest:**
-    **· a CLOSED ticket is NOT a spec change** (Rule 57) — the build failing a requirement whose ticket was
-    closed *accepted* is still a deviation, but it needs the **expect-fail treatment (Rule 61), not a new
-    ticket** · **· ticket status is never evidence about the build** (Rule 61) · **· an API-only finding is
-    classified by Rule 51's reachability test and asked about separately**, whatever else is approved.
-    **WHAT THIS DOES NOT CHANGE:** the **shape** (this rule's five fields), the **priority** (`Medium`,
-    Rule 53), the **permission requirement** (Rule 62 — asked for and granted, **per ask**), or the **active
-    hold**. **The bar is ADDITIONAL. It never licenses filing, and passing all eight is still not
-    permission.**
-    **⚠️ AND THE BAR APPLIES TO THE FIVE ALREADY-PREPARED REPORT SUITE DEFECTS BEFORE THEY ARE PUT TO HIM.**
-    They were written under the old bar; **each must be re-checked against these eight and repaired or
-    withdrawn before it is offered**, and any that cannot clear item (1) or item (3) **should be withdrawn
-    from the pack rather than filed weaker** (Rule 46 — a deliberate non-filing is recorded, so it can never
-    look like a miss).
-    **RATIONALE, 2026-08-12 — AND THE HUMAN STAKES ARE PART OF THE RULE, NOT DECORATION. A FUTURE SESSION
-    MUST UNDERSTAND *WHY* THE BAR IS THIS HIGH, OR IT WILL QUIETLY LOWER IT.** The engineering manager
-    raised a concern about **tickets that do not make sense** — the same manager who, on **2026-07-27**,
-    claimed our suites were *"serious AI slop"* and produced **Standing Rule 28**. This time the complaint
-    landed on the **QA lead personally**, and his words are the record: ***"they did badly bite me and my
-    job is on threat due to that."*** **That is the cost of a weak ticket, stated by the person who paid
-    it.** Read it against Rule 62's own rationale, which is the same lesson from the other side: a ticket is
-    **immediately visible to the whole engineering organisation** and **cannot be cleanly undone** — a
-    withdrawn ticket stays on the record for good. **So a weak ticket does not cost us a correction; it
-    costs him credibility, and credibility is what lets every other finding we raise be believed.** The
-    asymmetry is the whole argument: **a finding held back for one more day of evidence costs nothing and is
-    fully recoverable; a challengeable ticket cannot be recovered at all**, and it discredits the ninety
-    good ones filed beside it. **When a future pass is tempted to file something on "it is obviously
-    broken", the honest question is not "am I right?" but "can I prove it from a document, and can a
-    stranger reproduce it from my own steps?" — and if the answer to either is no, the correct action is to
-    hold it and say so.**
-    USER DIRECTIVE (2026-08-05, verbatim): *"Also, make sure that whenever you create a ticket it should
-    be attached to the parent ticket as its epic and that ticket should be created as STORY DEFECT"*.
-    **THE REQUIRED SHAPE — five things, and no ambiguity between them:** **`issuetype` = `Story Defect`
-    (10007)** · **`parent` = THE OWNING STORY** · **`priority` = `Medium`** (Rule 53, amended
-    2026-08-06 — it was `Low` before that date) · **ALSO link the
-    owning story `relates to`** · **DO NOT send Product Area** (`customfield_10153` does not exist on
-    this issue type).
-    **WHY THIS SATISFIES HIS INSTRUCTION, PLAINLY: the owning story is itself a child of the epic, so a
-    Story Defect under that story still hangs off the epic** — the epic remains the ticket's home in the
-    hierarchy, reached one level further down instead of directly. **A `Story Defect` CANNOT be parented
-    to an Epic at all**, so a story parent is not a substitute for what he asked for; it is the only
-    shape that delivers **both** halves of what he asked for.
-    **⚠️ FACTUAL CORRECTION 2026-08-06 — THE ROLL-UP CLAIM IMMEDIATELY ABOVE IS WRONG IN JIRA'S QUERY
-    MODEL. THE REQUIRED SHAPE IS UNCHANGED.** The two sentences above — the headline's *"because that
-    story is itself a child of the epic, the defect STILL ROLLS UP TO THE EPIC"* and *"the owning story
-    is itself a child of the epic, so a Story Defect under that story still hangs off the epic … the
-    epic remains the ticket's home in the hierarchy, reached one level further down instead of
-    directly"* — are **KEPT ABOVE AS THE CORRECTED CLAIM, NOT DELETED** (the same dated-history pattern
-    this rule already uses for the superseded Bug-on-an-epic convention and Rule 53 uses for `Low`),
-    because **a silently-erased wrong claim is how a future session re-derives the same mistake.**
-    **MEASURED LIVE 2026-08-06, BY QUERY** (`build/ticket-type-audit-2026-08-06/TYPE-AUDIT.md`, commit
-    `264cc25c`): **`parent = <epic>` returns 11 of our 14 `Bug`s and 0 of our 73 `Story Defect`s**, and
-    **`parentEpic` is no help — it returns only the epic itself**. So a Story Defect is reachable from
-    its epic **ONLY VIA A TWO-HOP JOIN (defect → story → epic), NEVER by the direct child query** — and
-    therefore **CONVERTING A `Bug` TO A `Story Defect` REMOVES IT FROM THE EPIC'S DIRECT CHILD LIST.**
-    **THE HONEST TRADE-OFF, BOTH SIDES, so this is not read as an argument to abandon the shape:** it
-    **GAINS** consistency with the project's overwhelming norm — **project SV holds 575 Story Defects,
-    367 under a Story and 0 under an Epic**, so our 11 epic-parented `Bug`s are the outliers — and it
-    **GAINS per-story visibility** (`parent = SV-8654` returns 5 Story Defects today, **with our
-    SV-8881 absent from them**; that absence is exactly what the shape buys back). It **COSTS** direct
-    epic-child visibility **and** the Product Area field. **So converting an existing `Bug` is a TIDY-UP
-    WITH A REAL COST, NOT A REPAIR.**
-    **WHAT IS UNCHANGED:** the required shape above — `Story Defect` · parent = the owning story · the
-    story also linked `relates to` · no Product Area · priority `Medium` — **is the QA LEAD'S OWN
-    INSTRUCTION AND STANDS UNTOUCHED.** Our live-verified finding **corrects a FACT in the reasoning; it
-    does NOT overrule a RULING** — Rule 33's precedence order draws exactly that line. **Whether to
-    convert the 8 existing `Bug`s the audit identified is HIS DECISION — currently put to him and
-    AWAITING HIS ANSWER.**
-    **PROOF THAT AN EPIC PARENT IS IMPOSSIBLE, NOT MERELY UNCONVENTIONAL (all read live 2026-08-05):** a
-    create with `issuetype:10007` + an Epic parent returns **HTTP 400
-    `{"errorMessages":[],"errors":{"parent":"Please select valid parent issue.","parentId":"Please select
-    valid parent issue."}}`**, while **the IDENTICAL body with a STORY as parent (SV-8689) returns HTTP
-    201** and reads back as a Story Defect at hierarchy level −1 under a Story. **The population agrees:
-    of ALL 502 Story Defects in project SV** (exhaustive, fully paged) the parents are **Story 294 ·
-    Task 149 · Bug 57 · none 2 · EPIC 0** — and **directly-epic-parented Story Defects number 0 under
-    SV-8685, 0 under SV-8785 and 0 under SV-8582.** **His own cited example, SV-8883, is a Story Defect
-    whose parent is SV-8786 — a STORY.**
-    **THE ISSUE TYPES IN PROJECT SV** (`GET /rest/api/3/issue/createmeta/SV/issuetypes` → HTTP 200, 6
-    types, read live 2026-08-05): **Task 10005 level 0** · **Epic 10006 level 1** · **`Story Defect`
-    10007, `subtask: true`, hierarchy level −1** · **Bug 10008 level 0** · **Story 10245 level 0** ·
-    **`Story Defect - Archive` 10279, level 0, NOT a subtask — a LEGACY ARCHIVED type that must NEVER be
-    used** (it is a lookalike name sitting at the wrong level, so choosing it silently reproduces the old
-    Bug shape under a Story-Defect name).
-    **FIELD DIFFERENCES THAT BITE:** `Story Defect` **REQUIRES `parent`** (and only a level-0 issue is
-    valid there) and **has NO Product Area field at all**; `Bug` **REQUIRES Product Area
-    (`customfield_10153`)** and **may** take an Epic parent. **Priority, the `relates to` story
-    link and the seven-section ADF body all work identically on both types.**
-    **THE PRE-2026-08-05 CONVENTION, PRESERVED AND DATED (Rules 32/33 — the latest ruling wins, and the
-    earlier one is DATED, never deleted):** until 2026-08-05 the required shape was **`Bug` parented to
-    the EPIC with the owning story merely LINKED**, on his 2026-08-04 clarification, verbatim: *"So Yes,
-    attach the tickets to the Epic as Parent but when you liunk th etickets to the stories they should be
-    linked as their story defects. You did it correctly before."* **That was CORRECT FOR `Bug`** — a Bug
-    is hierarchy level 0, so an Epic is the only parent it can take and a Story cannot parent a Bug at
-    all. **The tickets filed under it are therefore RIGHT FOR THEIR DATE, not errors:** **SV-8879,
-    SV-8880, SV-8881** (Report Suite) and the earlier **SV-8818, SV-8819, SV-8820, SV-8823** and
-    **SV-8848** were all filed as `Bug`s on an epic parent. **Do not "fix" them on our own initiative — see the
-    conversion facts below.** **STATUS OF THAT LIST, RE-READ LIVE 2026-08-05:** SV-8879/8880/8881 still hold
-    that exact shape (Bug · parent SV-8582 · Product Area Reports & Dashboards) · SV-8818/8819/8820/8823 are
-    still `Bug`s on parent SV-8582 · **but SV-8848 NO LONGER HAS A PARENT AT ALL** — Mudassir Qamar removed
-    it (SV-8685 → None) at **2026-08-05T09:21:39 −0500**, so it is now the one shape this rule forbids.
-    **NOT re-parented by us:** his action, Rule 53's corollary, and the QA lead's call.
-    **NO STANDALONE TICKETS — EVERY ticket we create HAS A PARENT (his 2026-08-04 clarification, still in
-    force), INCLUDING a defect we found during our testing whose UNDERLYING CAUSE SITS IN ANOTHER TEAM'S
-    AREA.** "It is not really a reporting bug" is **NOT** a reason to leave a ticket parentless: we found
-    it, we raised it from this epic's testing, so it hangs off that work. **Under the shape above the
-    parent is the OWNING STORY; where there is genuinely NO owning story, ASK the QA lead which story (or
-    which level-0 ticket) it belongs under — never leave it parentless, and never fall back to the epic,
-    which Jira rejects for this type.** **HONEST CAVEAT (a note, not an exception): a parent CAN
-    MISATTRIBUTE another squad's work** — so where the defect is not that story's own feature, **SAY SO
-    IN THE TICKET'S TECHNICAL SECTION** (name the real area/endpoint) and **KEEP the `blocks` link that
-    explains WHY we raised it**. The parent records who found and owns the report; the links and the text
-    record where the fault actually lives. **A `blocks` link and a parent COEXIST FINE** — Jira raised no
-    objection (proven live on **SV-8821**, 2026-08-04: `parent = SV-8582` set while `blocks SV-8582` +
-    `blocks SV-8592` were both retained).
-    **THE STORY LINK STILL MATTERS EVEN THOUGH IT NOW DUPLICATES THE PARENT — KEEP ADDING IT.** The
-    organisation's UI "Change work type" wizard **lands a converted ticket on the story we LINKED**:
-    **SV-8886** linked `relates to SV-8689` and landed under SV-8689; **SV-8849** linked SV-8692 and
-    landed there. **So our habit of linking the owning story is precisely what makes other people's
-    conversions land on the right story** — dropping the link as redundant would quietly break that.
-    **CONVERSION IS UI-ONLY, IT SILENTLY DESTROYS Product Area, AND IT IS NEVER OURS TO DO.** The REST
-    API cannot convert a level-0 issue into a subtask: `PUT /rest/api/3/issue/{key}` with
-    `issuetype:10007` + `parent` returns **HTTP 400 `{"pid":"Issues with this Issue Type must be created
-    in the same project as the parent."}`** (a misleading message — the parent WAS in the same project),
-    and `issuetype` alone returns **HTTP 400 `{"issuetype":"Issue type is a sub-task but parent issue key
-    or id not specified."}`** — an unwinnable pair. **RE-CONFIRMED LIVE 2026-08-06** — re-probed on
-    **SV-8881**: the same `PUT` still returns that identical HTTP 400 `pid` error, so conversion remains
-    **web-UI-wizard-only**; the probe was **proven harmless — all 59 fields byte-identical, `updated`
-    included.** **The org's UI wizard does what the API refuses: it
-    converts the type AND atomically re-parents Epic→Story in ONE action** (changelog evidence,
-    2026-08-05: **SV-8886** Mudassir Qamar 09:29:49, Bug→Story Defect **and** parent SV-8685→SV-8689 in
-    one action · **SV-8849** Mudassir 09:15:03 →SV-8692 · **SV-8871** Ahtasham Amjad 04:51:42 →SV-8795 ·
-    **SV-8846** Ahtasham 04:46:32 →SV-8797). **⚠️ CONVERSION WIPES Product Area AND THE LOSS IS NOT IN
-    THE CHANGELOG** — proven on our own **SV-8886**, filed with Product Area = Schedule and byte-verified
-    at filing (11 field checks, all PASS), which now reads **NULL**, while **SV-8848** (never converted)
-    still reads Schedule; **all 502 Story Defects in SV have Product Area null.** The QA lead has ruled on
-    the consequence, verbatim: **"Product area loss is OK"** — so the loss is accepted, **but it is still
-    a silent, unlogged loss and must never be discovered a second time.** **THEREFORE CONVERTING AN
-    EXISTING TICKET IS HIS DECISION AND IS NEVER DONE ON OUR OWN INITIATIVE** — the more so because
-    **Mudassir Qamar and Ahtasham Amjad are actively converting tickets themselves**, and **Rule 53's
-    corollary forbids cutting across another person's triage** (on this shared account their edits are
-    indistinguishable from ours in the changelog).
-    **METHOD:** create with `issuetype` = `Story Defect` and `parent` = the owning story, then attach the
-    same story via `POST /rest/api/3/issueLink`.
-    **The link TYPE is the QA lead's to name — never guessed.** The types available in this Jira
-    (`GET /rest/api/3/issueLinkType`, read live 2026-08-04) are exactly: **Blocks** (`is blocked by` /
-    `blocks`) · **Cause** (`caused by` / `causes`) · **Cloners** · **Duplicate** · **Fixes** (`Fixes` /
-    `Fixed by`) · **Polaris work item link** (`is implemented by` / `implements`) · **Relates**
-    (`relates to` / `relates to`) · **Split**. **NONE of them is a defect-of / is-defect-for type — and
-    that question is now SETTLED a different way:** the "story defect" relationship is carried by the
-    **ISSUE TYPE plus the STORY PARENT**, not by a link type, so **the link we add is `relates to`** and
-    there is nothing left to guess. **If he ever asks for a different link type, CHANGE NOTHING and ASK
-    which of the eight he means** (Rule 7 — plain question; Rule 12 — never invent a semantic).
-    **RATIONALE, 2026-08-05 — the live investigation, because the evidence is what makes the shape
-    unarguable.** He instructed the Story-Defect shape, and every part of it was then established live
-    rather than assumed: the **six issue types with their ids and hierarchy levels**; the **HTTP 400 that
-    refuses an Epic parent** beside the **HTTP 201 that accepts a Story parent** for a byte-identical
-    body; the **0-of-502** population fact; **his own cited SV-8883 sitting under a Story**; the **four
-    changelog conversions** by Mudassir Qamar and Ahtasham Amjad that show the UI doing what the API
-    refuses; and the **silent Product Area loss**, caught only because **SV-8886 had been byte-verified
-    at filing** (Rule 50) and could therefore be compared against its own filed state — nothing in the
-    changelog would ever have revealed it. **HONEST NOTE ON THE PROBE:** the create/refuse experiments
-    left one throwaway ticket, **SV-8902**, which **could not be deleted** — `DELETE` returns **HTTP 403
-    *"You do not have permission to delete issues in this project."*** — so it was **transitioned to
-    OBSOLETE / Done with a comment stating it is a disposable ZZAUTOTEST probe**. **It still exists as a
-    closed item in SV**, and that is recorded here rather than tidied out of the story: our account cannot
-    delete Jira issues, so any future probe will leave the same residue (which is itself a reason to probe
-    on purpose, once, and write the answer down here instead of re-deriving it).
-    **RATIONALE, 2026-08-04 (HISTORY — the pass that established the Bug shape):** the six Report-Suite
-    defect tickets were filed as `Bug`s parented to
-    epic **SV-8582** with the owning story merely **linked** (`Relates`) — SV-8818→SV-8591,
-    SV-8819→SV-8645, SV-8820→SV-8672, SV-8823→SV-8677. **An intermediate pass then wrongly proposed
-    CONVERTING those four into `Story Defect` subtasks parented to their stories, and the QA lead
-    corrected it: *"You did it correctly before."*** Both conversion attempts had already been
-    **rejected by Jira with the two HTTP 400s quoted above, so nothing was converted** and no repair
-    was needed — but the lesson is that **the original shape was right and the "fix" was the error.**
-    **SECOND RATIONALE, same day — the no-standalone half:** **SV-8821** (the create-invoice server error) was
-    filed with **NO parent** because its cause is work-order invoicing rather than reporting, and the QA lead
-    asked why it was not related to the Report Suite epic. It was corrected to **`parent = SV-8582`**
-    (`PUT /rest/api/3/issue/SV-8821` → **HTTP 204**, byte-verified: 58 fields compared, only `parent` and the
-    server's `updated` changed, both `blocks` links intact). **`SV-8822` was left alone** — it is
-    **OBSOLETE / Done / withdrawn**, and re-parenting a closed ticket is his decision, not ours.
-    Record: `build/report-suite/defect-pack-2026-08-04/FILED.md`. **The full field/type/conversion facts
-    are in `build/APP-ACTIONS-PLAYBOOK.md` § "Filing a defect ticket" so no session ever re-derives
-    them (Rule 27).** Ties to Standing Rules 6 (no write without permission), 12 (observed, never
-    inferred — the hierarchy levels, the refusals and the Product Area loss were all read live, not
-    assumed), 25 (quote the source and the error verbatim), 27 (recorded in the playbook so it is never
-    re-derived), 32/33 (the latest ruling wins — his 2026-08-05 Story-Defect instruction supersedes the
-    2026-08-04 Bug shape, which is kept and dated rather than deleted), 38 (another author's ticket is
-    theirs — we do not convert it), 50 (byte-verifying at filing is the ONLY reason the silent Product
-    Area loss was ever detectable — **and its EXACT-NAMED-TEST-DATA clause is item (3) of the 2026-08-12
-    evidence bar**), 51 (an API-related ticket is not filed without asking, whatever its
-    shape — **and its reachability test is part of the bar's nonsense check**), 53 (priority `Medium` since 2026-08-06, and never "restore" a field he changed — which is exactly why a
-    conversion someone else performed is left alone) **and, for the 2026-08-12 evidence bar specifically:
-    7** (the ticket is written in plain layman words), **12** (observed, never inferred — including the
-    role and the environment we claim we were in), **24** (an FE-block/BE-allow finding is a PASS and must
-    never be filed), **25** (the expectation is QUOTED verbatim from its source), **27** (the image-loss
-    hazard and the seven-section format are in the playbook — never re-derived), **31** (use the Confluence
-    version, not the in-body one), **45(c)** (the hostile-reviewer lens, moved to the filing step as the
-    pre-filing self-challenge), **46** (a defect deliberately NOT filed is RECORDED, so it can never look
-    like a miss), **57** (the expectation comes from the document — a ticket resting on how the build
-    "ought" to behave is the ticket that gets thrown back), **61** (a closed ticket is not a spec change,
-    and a known failure is handled by the expect-fail marker rather than a second ticket) and **62** (the
-    permission requirement and the ACTIVE creation hold — the bar governs FITNESS, never authorisation).
-53. **NEVER set a ticket's priority to High — always file at Medium; and NEVER "restore" a field the QA
-    lead has changed (all projects; the required value became `Medium` on 2026-08-06, superseding `Low`,
-    which is preserved below as dated history).**
+53. **RETIRED IN PART / SUBSUMED INTO STANDING RULE 62 ON 2026-09-03 — THE PRIORITY HALF MOVED TO
+    RULE 62 §62-T3; ***NEVER "RESTORE" A FIELD THE QA LEAD HAS CHANGED*** STAYS HERE AND IS STILL LIVE
+    (all projects).**
+    > **🛑 ORIGINAL HEADLINE, PRESERVED VERBATIM AND MARKED SUPERSEDED ON 2026-09-03 — kept so this
+    > change is auditable and so anyone searching the old words still lands here:**
+    > *"NEVER set a ticket's priority to High — always file at Medium; and NEVER "restore" a field the
+    > QA lead has changed (all projects; the required value became `Medium` on 2026-08-06, superseding
+    > `Low`, which is preserved below as dated history)."*
+    **(a) THIS RULE IS RETIRED IN PART / SUBSUMED INTO STANDING RULE 62 AS OF 2026-09-03.** Its number
+    is kept, it is not deleted, and the index stays 1..99. **Only the PRIORITY half moved.**
+    **(b) WHAT THE MOVED HALF USED TO REQUIRE, IN ONE LINE:** **every ticket we create is filed at
+    priority `Medium`** — not Low, not the severity the pack states, and **never `High`, which remains
+    barred however bad the defect looks to us**; priority is the QA lead's to RAISE, not ours to
+    ASSERT.
+    **(c) WHY, AND WHEN IT APPLIES AGAIN:** QA lead, 2026-09-01, verbatim: *"You are never supposed
+    to create defect, you are supposed to make the tests RUNNABLE."* **A priority value only exists
+    once
+    there is a ticket, and normally there is none.** The values are **not withdrawn** — they apply
+    **only if and when the QA lead directs a ticket to be filed.**
+    **(d) WHERE THE MOVED HALF NOW LIVES — EXACTLY:** `build/rules/RULES-61-99.md`, **Standing Rule
+    62**, the block headed *"⇒ IF AND ONLY IF HE DIRECTS A TICKET: THE SHAPE"*, subsection
+    **§62-T3** — the 2026-08-06 user directive, the `Medium` rule, the **`High` barred** ceiling and
+    the dated pre-2026-08-06 `Low` history, all **VERBATIM**.
+    **(e) WHAT STAYED HERE, BECAUSE IT IS NOT ABOUT FILING — AND IT IS THE HALF THAT ACTUALLY BURNED
+    US. IT IS LIVE AND UNAFFECTED:** ***never "restore", "correct" or "repair" a field value that has
+    changed without an action of ours***, the clause that **already-filed tickets are NOT
+    retrospectively re-prioritised**, and the `High → Low → High → Low` rationale that produced them.
+    **This is ticket hygiene on tickets that ALREADY EXIST** — it binds on every pass that so much as
+    reads a Jira field, ticket-free lane or not. **Rule 62 §62-T2/§62-T3 quote it for a filing pass's
+    benefit; THIS is its canonical home — if it is ever amended, amend it HERE.**
     > **🛑 SUPERSESSION NOTICE, 2026-09-01 — READ THIS BEFORE THE RECIPE BELOW. THE LANE'S JOB IS
     > RUNNABLE TESTS, NOT TICKETS. STOP PREPARING DEFECTS.** QA lead, 2026-09-01, verbatim: *"You are
     > never supposed to create defect, you are supposed to make the tests RUNNABLE."*
@@ -1114,22 +895,6 @@ Index: CLAUDE.md (rule index table). Other rule files: build/rules/RULES-01-20.m
     > `build/rules/SECTION1-AND-AMENDMENT-AUDIT-2026-09-02.md` Part B. **A rule's amendment is part of the
     > rule (Rule 38's own 2026-09-02 lesson).**
     >
-    USER DIRECTIVE (2026-08-06, verbatim — this SUPERSEDES the 2026-08-04 directive quoted further
-    down): *"One thing which I want to correct, please keep the priority of the tickets which you create
-    to Medium instead of keeping them to LOW."*
-    **THE RULE:** **every ticket we create is filed at priority `Medium`.** Not Low, not "the severity
-    the pack states", not High however bad the defect looks to us. **Priority is the QA lead's to
-    RAISE, not ours to ASSERT** — he triages; we report. This is unconditional and applies to every
-    project and every ticket type. **Where the finding genuinely is severe, that belongs in the ticket's
-    own words and in the project's `Severity` field — not in `Priority`.**
-    **`High` REMAINS BARRED. The amendment moved the filing value from `Low` to `Medium`; it did NOT
-    relax the ceiling** — filing at High is still never ours to do, however bad the defect looks.
-    **THE PRE-2026-08-06 VALUE, PRESERVED AND DATED (Rules 32/33 — the latest ruling wins, and the
-    earlier one is DATED, never deleted):** until 2026-08-06 the required priority was **`Low`**, on his
-    2026-08-04 directive, verbatim: *"never mark the priority as High for the tickets you create always
-    keep the priority as LOW"*. **Tickets filed at `Low` BEFORE 2026-08-06 are therefore CORRECT FOR
-    THEIR DATE and must NOT be "fixed"** — exactly the treatment Rule 52 gives the Bug-on-an-epic-parent
-    convention it superseded.
     **ALREADY-FILED TICKETS ARE NOT RETROSPECTIVELY RE-PRIORITISED.** Raising an existing ticket from
     `Low` to `Medium` is **the QA lead's decision, not ours** — it has been **put to him and is AWAITING
     HIS ANSWER**. Until he rules, existing tickets stay exactly as they are; the new value applies to
