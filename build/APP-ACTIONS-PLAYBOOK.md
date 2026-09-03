@@ -2489,6 +2489,48 @@ same `sso_required` 401 on staging. **This is the state `build/BLOCKED-shopview-
 describes — re-confirmed live on 2026-08-31, not a new blocker.** The unblock is unchanged: a fresh
 three-cookie set for `app.staging.shopview.com` from the QA lead, into `/tmp` only.
 
+### 🛑 HOW THE 28 `❌` ROWS GET FIXED — **PIGGYBACK, NEVER A DEDICATED PASS** (Rule 78, recorded 2026-09-03)
+
+**THE RULE, in one sentence: any pass that gains a working staging session re-observes THE ROWS IT
+ACTUALLY USES and stamps them in the SAME pass — nothing more, nothing less.** There is no
+re-observation project, and there is not going to be one.
+
+**Why it is written this way.** All 28 rows are **staging** paths, and staging is currently
+unreachable (register row **R1**, narrowed 2026-09-02 — a staging session cannot be self-minted; QA
+branches are no longer blocked but they are a different host and do not warrant these rows). So a
+dedicated re-observation pass **cannot run at all today**, and the moment one could, it would be
+spending a whole spawn on routes nobody had asked for. **Rule 78 says the opposite: piggyback the
+cheap check onto the next substantive worker.** Rule 93 says whatever you solve gets written into the
+playbook **in the same pass**, not queued.
+
+**What a session must actually do — four steps, and only for rows it touches:**
+
+1. **Use the `❌` row as a starting point.** It is a lead, not a licence.
+2. **🛑 A `❌` ROW IS NOT EVIDENCE.** It was recorded before the navigation-map convention existed
+   (2026-08-31), nobody has re-walked it, and **its committed date is the date the TEXT was written,
+   not the date the path was observed** — do not back-fill one from git history (Rule 12: verified
+   means observed, never inferred). **Never cite a `❌` row as a build-verified route, never quote its
+   labels into a case's preconditions, and never let it stand behind a Verified/Pass verdict.**
+   Skill `03-RUN-CHECK.md` §9 tells sessions to reuse recorded routes — **this is the boundary on that
+   reuse.**
+3. **If the row WORKS: stamp it, in the same pass.** Replace all four right-hand cells —
+   **branch + build marker · today's date · a ✅ badge · your session** — commit the stamp with the
+   work it came from. Badges: **✅ ≤7 days · 🟠 8–14 days · 🔴 >14 days · ❌ never observed / unknown.**
+4. **If the row FAILS: correct it, in the same pass, and commit the correction** (Rule 93). A
+   known-wrong path left for the next session is worse than an unbadged one — it is a route that reads
+   as authoritative and sends a manual tester somewhere that does not exist. Say what it actually is
+   now, and stamp the four cells the same way.
+
+**Do NOT re-observe a row you did not use.** Walking all 28 "while you are in there" is exactly the
+dedicated pass this rule exists to avoid — and a row observed to satisfy a checklist, rather than
+because a piece of work needed it, is the kind of stamp that goes stale unnoticed.
+
+**Consequence, stated so nobody is surprised:** the map will improve **unevenly** — the rows real work
+touches go ✅ and the rest stay ❌ indefinitely. **That is the intended outcome, not a gap.** A row
+nobody has needed in months has not earned a spawn.
+
+**Register row: `NAV-3` (opened 2026-09-02), authorised and recorded 2026-09-03.**
+
 ---
 
 ## WORK ORDERS

@@ -1,0 +1,239 @@
+====================================================================================================
+C18621  Partial payment can be initiated on an unpaid invoice via ShopPay
+  section 2486: Test Cases > Administration > Customer Portal > SV-5957 - Support Multiple / Partial Payments > Multiple Payments – Different Methods > Partial Payments – Basic Flow
+  created_by 3 = Bilal Muzamil <bilal.muzamil@shopview.com>
+  atmstatus 1 = Not automated   automation_type 0 = None
+  refs None   suite 1   updated_by 1
+  AUTOMATION markers found: NONE
+
+--- PRECONDITIONS ---
+A customer invoice exists in ShopView with a balance > $0.50. The customer portal (ShopPay) is accessible.
+
+--- STEPS ---
+- Log in to the customer portal.
+
+  - Navigate to the Invoices section.
+
+  - Open an unpaid invoice.
+
+  - Click 'Pay Now'.
+
+  - Enter a partial amount (less than the full balance but ≥ $0.50).
+
+  - Complete the payment.
+
+--- EXPECTED ---
+Payment is accepted. Invoice status changes to 'Partially Paid'. Remaining balance is updated correctly.
+
+====================================================================================================
+C18622  Payment modal pre-fills with full remaining balance
+  section 2486: Test Cases > Administration > Customer Portal > SV-5957 - Support Multiple / Partial Payments > Multiple Payments – Different Methods > Partial Payments – Basic Flow
+  created_by 3 = Bilal Muzamil <bilal.muzamil@shopview.com>
+  atmstatus 3 = AUTOMATED   automation_type 0 = None
+  refs None   suite 1   updated_by 1
+  AUTOMATION markers found: NONE
+
+--- PRECONDITIONS ---
+An unpaid invoice is open in the customer portal.
+
+--- STEPS ---
+- Open an unpaid invoice.
+
+  - Click 'Pay Now'.
+
+  - Observe the default amount in the payment modal.
+
+--- EXPECTED ---
+The payment amount field is pre-filled with the full remaining balance of the invoice.
+
+====================================================================================================
+C18649  'Partially Paid' status badge is displayed on partially paid invoices
+  section 2491: Test Cases > Administration > Customer Portal > SV-5957 - Support Multiple / Partial Payments > Multiple Payments – Different Methods > UI & Display
+  created_by 3 = Bilal Muzamil <bilal.muzamil@shopview.com>
+  atmstatus 1 = Not automated   automation_type 0 = None
+  refs None   suite 1   updated_by 3
+  AUTOMATION markers found: NONE
+
+--- PRECONDITIONS ---
+An invoice is in 'Partially Paid' state in the customer portal.
+
+--- STEPS ---
+- Navigate to the invoice list in the customer portal.
+
+  - Locate the partially paid invoice.
+
+  - Observe the status badge.
+
+--- EXPECTED ---
+A 'Partially Paid' status badge is clearly visible on the invoice in the list view.
+
+====================================================================================================
+C18671  Late fee notice shown before due date: 'A late fee may apply 30 days after the due date'
+  section 2491: Test Cases > Administration > Customer Portal > SV-5957 - Support Multiple / Partial Payments > Multiple Payments – Different Methods > UI & Display
+  created_by 3 = Bilal Muzamil <bilal.muzamil@shopview.com>
+  atmstatus 1 = Not automated   automation_type 0 = None
+  refs None   suite 1   updated_by 1
+  AUTOMATION markers found: NONE
+
+--- PRECONDITIONS ---
+An invoice is not yet overdue (before due date). Late fees are enabled.
+
+--- STEPS ---
+- Open the invoice in the customer portal before its due date.
+
+--- EXPECTED ---
+A note is displayed on the invoice stating that a late fee may apply 30 days after the due date.
+
+====================================================================================================
+C18672  Grace period reminder shown on invoice: 'Pay now to avoid a late fee'
+  section 2491: Test Cases > Administration > Customer Portal > SV-5957 - Support Multiple / Partial Payments > Multiple Payments – Different Methods > UI & Display
+  created_by 3 = Bilal Muzamil <bilal.muzamil@shopview.com>
+  atmstatus 1 = Not automated   automation_type 0 = None
+  refs None   suite 1   updated_by 1
+  AUTOMATION markers found: NONE
+
+--- PRECONDITIONS ---
+An invoice is past its due date but within the 30-day grace period. Late fees are enabled.
+
+--- STEPS ---
+- Open the invoice in the customer portal during the grace period (1–29 days overdue).
+
+--- EXPECTED ---
+A reminder message is shown (e.g., 'You are within your grace period – pay now to avoid a late fee').
+
+====================================================================================================
+C18678  Partial payment can be initiated on an unpaid invoice via ShopPay
+  section 2486: Test Cases > Administration > Customer Portal > SV-5957 - Support Multiple / Partial Payments > Multiple Payments – Different Methods > Partial Payments – Basic Flow
+  created_by 3 = Bilal Muzamil <bilal.muzamil@shopview.com>
+  atmstatus 1 = Not automated   automation_type 0 = None
+  refs None   suite 1   updated_by 1
+  AUTOMATION markers found: NONE
+
+--- PRECONDITIONS ---
+A customer invoice exists in ShopView with a balance > $0.50. The customer portal (ShopPay) is accessible.
+
+--- STEPS ---
+- Log in to the customer portal.
+
+  - Navigate to the Invoices section.
+
+  - Open an unpaid invoice.
+
+  - Click 'Pay Now'.
+
+  - Enter a partial amount (less than the full balance but ≥ $0.50).
+
+  - Complete the payment.
+
+--- EXPECTED ---
+Payment is accepted. Invoice status changes to 'Partially Paid'. Remaining balance is updated correctly.
+
+====================================================================================================
+C18679  Payment modal pre-fills with full remaining balance
+  section 2486: Test Cases > Administration > Customer Portal > SV-5957 - Support Multiple / Partial Payments > Multiple Payments – Different Methods > Partial Payments – Basic Flow
+  created_by 3 = Bilal Muzamil <bilal.muzamil@shopview.com>
+  atmstatus 3 = AUTOMATED   automation_type 0 = None
+  refs None   suite 1   updated_by 1
+  AUTOMATION markers found: NONE
+
+--- PRECONDITIONS ---
+An unpaid invoice is open in the customer portal.
+
+--- STEPS ---
+- Open an unpaid invoice.
+
+  - Click 'Pay Now'.
+
+  - Observe the default amount in the payment modal.
+
+--- EXPECTED ---
+The payment amount field is pre-filled with the full remaining balance of the invoice.
+
+====================================================================================================
+C18706  'Partially Paid' status badge is displayed on partially paid invoices
+  section 2491: Test Cases > Administration > Customer Portal > SV-5957 - Support Multiple / Partial Payments > Multiple Payments – Different Methods > UI & Display
+  created_by 3 = Bilal Muzamil <bilal.muzamil@shopview.com>
+  atmstatus 1 = Not automated   automation_type 0 = None
+  refs None   suite 1   updated_by 3
+  AUTOMATION markers found: NONE
+
+--- PRECONDITIONS ---
+An invoice is in 'Partially Paid' state in the customer portal.
+
+--- STEPS ---
+- Navigate to the invoice list in the customer portal.
+
+  - Locate the partially paid invoice.
+
+  - Observe the status badge.
+
+--- EXPECTED ---
+A 'Partially Paid' status badge is clearly visible on the invoice in the list view.
+
+====================================================================================================
+C18728  Late fee notice shown before due date: 'A late fee may apply 30 days after the due date'
+  section 2491: Test Cases > Administration > Customer Portal > SV-5957 - Support Multiple / Partial Payments > Multiple Payments – Different Methods > UI & Display
+  created_by 3 = Bilal Muzamil <bilal.muzamil@shopview.com>
+  atmstatus 1 = Not automated   automation_type 0 = None
+  refs None   suite 1   updated_by 1
+  AUTOMATION markers found: NONE
+
+--- PRECONDITIONS ---
+An invoice is not yet overdue (before due date). Late fees are enabled.
+
+--- STEPS ---
+- Open the invoice in the customer portal before its due date.
+
+--- EXPECTED ---
+A note is displayed on the invoice stating that a late fee may apply 30 days after the due date.
+
+====================================================================================================
+C18729  Grace period reminder shown on invoice: 'Pay now to avoid a late fee'
+  section 2491: Test Cases > Administration > Customer Portal > SV-5957 - Support Multiple / Partial Payments > Multiple Payments – Different Methods > UI & Display
+  created_by 3 = Bilal Muzamil <bilal.muzamil@shopview.com>
+  atmstatus 1 = Not automated   automation_type 0 = None
+  refs None   suite 1   updated_by 1
+  AUTOMATION markers found: NONE
+
+--- PRECONDITIONS ---
+An invoice is past its due date but within the 30-day grace period. Late fees are enabled.
+
+--- STEPS ---
+- Open the invoice in the customer portal during the grace period (1–29 days overdue).
+
+--- EXPECTED ---
+A reminder message is shown (e.g., 'You are within your grace period – pay now to avoid a late fee').
+
+====================================================================================================
+C45245  Portal-collected deposit cannot be reversed in ShopView
+  section 3018: Test Cases > Work Orders > Deposits - Scroll down on the left side for the tests > D. Delete, Reverse, Split Deposits
+  created_by 1 = Vladimir Tomovic <vladimir.tomovic@shopview.com>
+  atmstatus 3 = AUTOMATED   automation_type 1 = E2E
+  refs None   suite 1   updated_by 1
+  AUTOMATION markers found: NONE
+
+--- PRECONDITIONS ---
+Organization has the ShopPay feature enabled and an active location.
+A customer account with an open (estimate/approved/in_progress) work order.
+A deposit on that work order collected through the Customer Portal (created via POST /api/external/customer-portal/deposits with a gateway_reference), status held.
+A second, ordinary in-app deposit on the same customer, status held, with no gateway reference.
+Logged in as an owner/admin with Invoicing Create & Edit.
+
+--- STEPS ---
+(empty)
+
+--- EXPECTED ---
+(empty)
+
+--- STEPS (separated) ---
+1. Open the customer profile and select the Deposits tab
+   => Both deposits are listed; the portal-collected row shows payment method "Online".
+2. Inspect the Reverse control on the portal-collected deposit row
+   => The control is present but disabled.
+3. Inspect the Reverse control on the ordinary in-app deposit row
+   => The control is present and enabled.
+4. Select the Payments tab and locate the portal-collected deposit's standalone row
+   => Its remove/reverse control is disabled.
+5. Expand the payment that applied the portal-collected deposit
+   => The nested applied-deposit sub-row renders and its remove control is disabled.
+
