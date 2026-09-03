@@ -294,6 +294,40 @@ Index: CLAUDE.md (rule index table). Other rule files: build/rules/RULES-01-20.m
     `git commit -m "…" -- <paths>`, `git show --stat`, push the explicit SHA, never force) — a bare
     commit has swept a sibling's staged work three times now. **Independent proof that nothing was
     lost, and of the one thing that was: `build/loss-audit-2026-08-11/VERDICT.md`.**
+    **⇒ R7 AMENDED 2026-09-03 — `git add -- <paths>` IS NOT SUFFICIENT. THE PATHSPEC MUST BE ON THE
+    `git commit` ITSELF.** R7 has said *"`git add <explicit paths>`, `git commit -m "…" -- <paths>`"*
+    since 2026-08-11, and the count in its last line — *"three times now"* — **reached five on
+    2026-09-03, twice in that single day.** The two 2026-09-03 incidents are what this amendment
+    exists for, because in both of them the worker **did** scope its `git add` and was swept anyway:
+    a commit took **five** files (another worker's handoff and skill edits), and a second took
+    **seven** (`CLAUDE.md`, rule files, skills, `build/handoffs/README.md`,
+    `build/PROCESS-AUTHORING-STANDARD.md`). **THE MECHANISM, WHICH IS THE WHOLE POINT: several
+    workers share ONE checkout and therefore ONE git index. Between your `git add` and your
+    `git commit`, a sibling worker's `git add` mutates that index — so a bare `git commit -m "…"`
+    commits THEIR staged paths along with yours. Scoping only the `add` protects nothing, because
+    the damage happens after it.** `git commit -m "…" -- <paths>` takes the pathspec directly and
+    commits **exactly** those paths regardless of what the index holds; it is immune to the race.
+    **THEREFORE, THREE REQUIREMENTS, ALL THREE EVERY TIME:**
+    **(a) COMMIT WITH AN EXPLICIT PATHSPEC — `git commit -m "…" -- <paths>`.** Never a bare
+    `git commit`, never `git add -A` / `git add .` / `git commit -a`. Scoping the `add` as well is
+    good hygiene, but it is not the guard and must never be mistaken for it.
+    **(b) VERIFY THE COUNT BEFORE YOU PUSH — read the `N files changed` line git prints and compare
+    it to the number of files you actually changed. If N EXCEEDS your count, STOP AND FIX IT BEFORE
+    PUSHING.** That one line is what caught the second incident (`11 files changed` against an
+    expected 4). `git show --stat` gives the same answer after the fact. **A commit whose file count
+    was never read is a commit whose contents were never checked.**
+    **(c) THE SAFE RECOVERY, IF YOU HAVE NOT PUSHED — and ONLY if you have not pushed:**
+    `git reset --soft HEAD~1` (soft: the work stays in the tree and nothing is lost) · **back up
+    every affected file first**, including the foreign ones · `git restore --staged -- <the foreign
+    paths>` to unstage what is not yours · re-commit with an explicit pathspec · then **BYTE-COMPARE
+    the foreign files against the backup (`diff`/`sha256sum`) and record that they are identical** —
+    the proof that the sibling's work survived is the comparison, not the intention (R4: evidence not
+    committed did not happen). That is exactly how the second incident was closed the same day: reset
+    locally, backed up, byte-compared identical, re-committed with a pathspec, nothing lost.
+    **🛑 NEVER REWRITE PUSHED HISTORY.** Once it is on the remote, another worker may already have
+    fetched it; `git reset`/`--force` is then not a repair, it is a second, larger incident. A
+    foreign file already pushed inside your commit is REPORTED to the coordinator and left alone.
+    Operational form of this amendment: `build/APP-ACTIONS-PLAYBOOK.md` §L.
 30. **Tech plan is a standard project input — remind the user if missing (all projects).**
     USER DIRECTIVE (2026-07-29, verbatim): "Also, going forward if I miss to provide you the
     tech plan for the project, please remind me of that. Save it as a rule". Every project's

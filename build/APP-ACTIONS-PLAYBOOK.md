@@ -2063,6 +2063,57 @@ Terse entries; where the full detail already lives elsewhere in this playbook, t
   never force, never rebase, never `reset --hard`, because a sibling's unpushed-to-you commits are the
   very thing at risk. *(2026-08-11; the mechanism behind the stale ref is still unexplained and may
   recur in any container — see `build/RECOVERY-2026-08-11/STATE.md`.)*
+- **🛑 `git add -- <paths>` IS NOT THE GUARD. THE PATHSPEC HAS TO BE ON THE `git commit`. (Bit us
+  TWICE on 2026-09-03 — incidents four and five.)** Both workers **did** scope their `git add`, and
+  both were swept anyway: one commit took **five** foreign files (another worker's handoff and skill
+  edits), the next took **seven** (`CLAUDE.md`, rule files, skills, `build/handoffs/README.md`,
+  `build/PROCESS-AUTHORING-STANDARD.md`). **WHY SCOPING THE `add` CANNOT WORK: the index is shared and
+  the race is AFTER your add.** A sibling's `git add` lands between your `add` and your `commit`, and
+  a bare `git commit` then takes the whole index — theirs included. The commands, in one breath:
+
+  ```bash
+  git add    -- <your paths>                     # hygiene; NOT the guard
+  git commit -m "<msg>" -- <the same paths>      # THE GUARD: pathspec, immune to index state
+  git show --stat --oneline HEAD                 # read the count, then push the explicit SHA
+  ```
+- **✅ CORRECTION TO THE 2026-07-31 SYNTAX GOTCHA ABOVE (re-tested 2026-09-03, git 2.43.0):
+  `git commit -m "<msg>" -- <paths>` WORKS.** The bullet near the top of §L says it errors with *"did
+  not match any file(s)"* and routes you to `git commit -F /tmp/msg.txt -- <paths>` instead. Re-tested
+  directly — a scratch repo, a sibling's file staged in the index, a **multi-line** `-m` message with a
+  trailer — it committed **`1 file changed`**, left the sibling's staged file untouched, and exited 0.
+  **`-F` remains fine and is still the easier route for a long message; the point of the correction is
+  that the `-m` form is NOT broken**, and steering workers off it steered them onto the bare
+  `git commit` that causes this whole class of incident. (If it ever does error, the cause is a
+  pathspec that matches nothing — check the path, not the flag.)
+- **⚠️ BUT `-m "…"` HAS A REAL AND DIFFERENT HAZARD, AND IT IS SILENT: BACKTICKS IN THE MESSAGE ARE
+  COMMAND SUBSTITUTION (hit 2026-09-03, writing the commit for this very amendment).** A commit
+  message quoting code in backticks — e.g. a bare `` `except Exception: pass` `` — is a
+  **double-quoted bash string**, so the shell EXECUTES the backticked text and substitutes its
+  output. What landed in the commit was *"the activity feed's bare  would have swallowed the"*, with
+  the quoted code simply GONE. The only visible sign was one stray line on stderr
+  (`except: command not found`) **after** the commit had already succeeded — the commit itself
+  reported `6 files changed` and exit 0. **⇒ For any message containing backticks, `$`, `!` or `\`,
+  write it to a file and use `git commit -F /tmp/msg.txt -- <paths>`** (which is why the 2026-07-31
+  bullet reached for `-F` in the first place — the reasoning was right even though the stated error
+  was not). **And READ THE MESSAGE BACK — `git log -1 --format=%B` — before pushing**, exactly as you
+  read the `N files changed` line: the file count and the message are two different checks, and this
+  one fails without an error. Amending is safe here **only because nothing had been pushed**; do it
+  with `git commit --amend -F /tmp/msg.txt --only -- <the same paths>` so the amend cannot sweep a
+  sibling's index either.
+- **🛑 READ THE `N files changed` LINE. IT IS THE ONLY CHECK THAT ACTUALLY CATCHES THIS.** Compare N
+  against the number of files you changed; **if N is larger, STOP — do not push.** The second
+  2026-09-03 incident was caught exactly this way (`11 files changed` where 4 were expected).
+- **THE RECOVERY, AND ITS ONE PRECONDITION — NOTHING HAS BEEN PUSHED.** Then, in order:
+  `git reset --soft HEAD~1` (**soft** — the work stays in the tree) · **back up every affected file
+  first, the foreign ones included** · `git restore --staged -- <foreign paths>` · re-commit with an
+  explicit pathspec · **`diff`/`sha256sum` the foreign files against the backup and record that they
+  are identical.** The byte-comparison IS the evidence that the sibling's work survived; an uncommitted
+  comparison did not happen (Rule 29 R4). That is how incident five was closed the same day: reset,
+  backed up, byte-compared identical, re-committed path-scoped, nothing lost.
+  **ONCE IT IS PUSHED, DO NOT TOUCH IT** — no amend, no rebase, no force. A sibling may already have
+  fetched it, so a rewrite turns a documentation problem into a data-loss problem (the standing ruling
+  two bullets up, 2026-08-06). Report it to the coordinator and leave it. *(Rule 29 R7 amendment,
+  2026-09-03.)*
 
 ## M. Figma: extract ALL frames from a design link (proven 2026-07-31, Filters)
 **Use when** the user hands over one or more `figma.com/design/<fileKey>/...?node-id=A-B` links and
