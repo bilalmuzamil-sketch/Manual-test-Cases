@@ -129,11 +129,10 @@ safe. The **evidence** for each one lives in the rule or skill the bullet points
 - **MINIMISE SUBAGENT SPAWNS (76).** Every spawn pays the full context tax. Batch related work into
   one worker; piggyback cheap checks onto the next substantive worker (78) rather than spending a
   dedicated spawn on them.
-- **🛑 FIND A ROUTE BY WALKING THE UI, NEVER BY GUESSING API ROUTES — AND RECORD IT (2026-09-02).**
-  A guessed endpoint never goes in a case; a failed guess proves nothing about the build. **Drill:**
-  `route_registry.mjs find` → `qa-branch-boot.mjs` → `find_ui_route.mjs` (it hovers every control) →
-  `RECORD_AS=`. API only to **SEED** a state the UI cannot reach (14) or **READ a full set** — never
-  to find a route. Full: `build/skills/03-RUN-CHECK.md`.
+- **🛑 FIND A ROUTE BY WALKING THE UI, NEVER BY GUESSING — AND RECORD IT (2026-09-02, amended 09-03).**
+  Drill: `route_registry.mjs find` → `qa-branch-boot.mjs` → `find_ui_route.mjs` → `RECORD_AS=`.
+  **Enumerate EVERY row** (`ENUMERATE_ROWS_FN`) — a one-row or one-state "nothing here" is void.
+  **Walk stalls ⇒ grep the build's chunks.** API only to SEED (14) or READ a set. `03-RUN-CHECK.md`.
 - **NEVER DECLARE A BLOCKER — OR RUN THE FIRST PROBE — WITHOUT SEARCHING THE REPO FIRST (97, amended
   2026-09-02).** **STEP 0 IS `git fetch origin`** — never search, measure or report a repository fact from
   a stale checkout — and if you are on a different branch, search the canonical one **without checking it
