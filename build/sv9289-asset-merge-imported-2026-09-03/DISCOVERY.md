@@ -32,3 +32,19 @@ customer's imported rows move (multi-customer scoping). PR #2698.
 - ⇒ The CORE test (imported history carries over on merge) needs imported invoices seeded onto a
   source asset. Everything else (merge itself, regular WO carry-over, no-imported regression) is
   self-seedable.
+
+## SEED RECIPE (self-service — no data-team needed)
+1. Customer: `POST /api/customers/create {name}` -> returns data.company_id (the customer id).
+2. Contact: `POST /api/contacts/create {company_id, first_name}` -> data.contact_id (asset needs a contact = customer_id).
+3. Asset: `POST /api/vehicles/create {customer_id: <contact_id>, company_id, vin, unit:'N/A'}` -> data.id.
+4. Imported invoices: /administration/invoices-import — Download Template (cols: *Shop Location,*Customer,VIN,...,*Invoice Number,*Invoice Date,*Item,*Line Title,*Qty,*Rate,*Total,*Tax Amount),
+   upload CSV, click "Import Invoices" -> `POST /api/imports/work-order-historical` -> "All invoices imported successfully". Matches to the asset by VIN + customer name.
+5. Regular WO: `POST /api/work-orders/create {company_id, vehicle_id, workplace_id, start_date, is_vehicle_here:true}` -> 201.
+- Imported read (vehicle-scoped, the "Imported" status filter on the asset Work Orders tab):
+  `GET /api/work-orders-imported?filters[0][field]=vehicleId&filters[0][value]={vid}&filters[1][field]=companyId&filters[1][value]={cid}&pagination[rowsPerPage]=100&pagination[page]=1` -> data.workOrders[] (each has number, vehicleVin, totalPrice, status:'imported').
+
+## RESULT — Merge button path (CORE / reported bug): PASS
+Seed: C1=8e927653, contact=39479638; A(dest)=7316b966 VIN 1M1AW07Y5GM055903; B(src)=863f9661 VIN GM055903; 3 imported invoices (ZZIMP-1001/1002/1003) on B; 2 regular WOs on B.
+BEFORE: B Imported=3 (VIN GM055903), A Imported=0.
+Merge `POST /api/vehicles/merge {company_id:C1, source_vehicle_id:B, destination_vehicle_id:A}` -> 200.
+AFTER: A Imported=**3** (ZZIMP-1001/1002/1003) all now **VIN 1M1AW07Y5GM055903 = A's full VIN**; A regular WOs=**2** (B's, carried over, now A's VIN); B **deleted** (search GM055903 returns only A); company imported total=3, 0 orphans (no row points at deleted B / old VIN).
