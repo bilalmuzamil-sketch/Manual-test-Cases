@@ -1,0 +1,90 @@
+{
+ "at": "2026-09-03T02:37:49.184Z",
+ "branch": "sv8218",
+ "steps": [
+  {
+   "step": "store credit 200",
+   "fired": [
+    "201 POST /api/credit-memos"
+   ]
+  },
+  {
+   "step": "store credit 300",
+   "fired": [
+    "201 POST /api/credit-memos"
+   ]
+  },
+  {
+   "step": "store credit 150",
+   "fired": [
+    "201 POST /api/credit-memos"
+   ]
+  }
+ ],
+ "before": {
+  "acc": "94ea52fa-3e38-4cf5-a4b4-2ce914fe548d",
+  "rows": [
+   {
+    "id": "ffa99c0d-f436-4bc0-9988-9ad88269fa36",
+    "type": "invoice",
+    "amount": 1062.26,
+    "balance": 1062.26,
+    "status": "Unpaid",
+    "num": "S3-13180"
+   },
+   {
+    "id": "3ad04480-34e3-4c3b-8de7-9e09d0d5da29",
+    "type": "credit",
+    "amount": -500,
+    "balance": -500,
+    "status": "Unapplied",
+    "num": "CM-4189"
+   }
+  ]
+ },
+ "after": {
+  "acc": "94ea52fa-3e38-4cf5-a4b4-2ce914fe548d",
+  "rows": [
+   {
+    "id": "ffa99c0d-f436-4bc0-9988-9ad88269fa36",
+    "type": "invoice",
+    "amount": 1062.26,
+    "balance": 1062.26,
+    "status": "Unpaid",
+    "num": "S3-13180"
+   },
+   {
+    "id": "3ad04480-34e3-4c3b-8de7-9e09d0d5da29",
+    "type": "credit",
+    "amount": -500,
+    "balance": -500,
+    "status": "Unapplied",
+    "num": "CM-4189"
+   },
+   {
+    "id": "5e07135c-c0d3-4dab-bf52-a4f908dfe253",
+    "type": "credit",
+    "amount": -150,
+    "balance": -150,
+    "status": "Unapplied",
+    "num": "CM-4192"
+   },
+   {
+    "id": "6a2d8c69-7406-4f91-96fe-811c834e26f3",
+    "type": "credit",
+    "amount": -300,
+    "balance": -300,
+    "status": "Unapplied",
+    "num": "CM-4191"
+   },
+   {
+    "id": "ea96123d-e87c-4aa8-9b42-8a566ddf2839",
+    "type": "credit",
+    "amount": -200,
+    "balance": -200,
+    "status": "Unapplied",
+    "num": "CM-4190"
+   }
+  ]
+ }
+}
