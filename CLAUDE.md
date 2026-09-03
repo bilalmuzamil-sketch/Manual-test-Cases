@@ -136,8 +136,8 @@ safe. The **evidence** for each one lives in the rule or skill the bullet points
 - **NEVER DECLARE A BLOCKER — OR RUN THE FIRST PROBE — WITHOUT SEARCHING THE REPO FIRST (97, amended
   2026-09-02).** **STEP 0 IS `git fetch origin`** — never search, measure or report a repository fact from
   a stale checkout — and if you are on a different branch, search the canonical one **without checking it
-  out**: `git grep -n "<exact error text>" origin/claude/slack-session-0sxnd9 -- build/` (and
-  `git show <branch>:<path>`). **"Not on this branch" is NEVER a reason to conclude something does not
+  out**: `git grep -n "<exact error text>" origin/claude/slack-session-0sxnd9 -- build/` (or
+  `git show`). **"Not on this branch" is NEVER a reason to conclude something does not
   exist.** Before reporting anything as impossible, blocked, unavailable or unreconstructable — **and
   before the FIRST PROBE of any environment, not after the first failure** — **grep the workspace using
   the EXACT ERROR TEXT**, plus `grep -n "<the thing>" build/APP-ACTIONS-PLAYBOOK.md` and
@@ -155,10 +155,11 @@ safe. The **evidence** for each one lives in the rule or skill the bullet points
 - **TELL THE LAST-DONE DATE AND ASK BEFORE RE-RUNNING (80).** Never silently repeat a verification,
   VIU or ordered task: say when it was last done and ask whether to run it again. A check within the
   last 3 builds / 3 source versions still COUNTS, with its date shown (77).
-- **🛑 A BUILD-VERIFY ORDER REFRESHES EVERY SOURCE FIRST, WITHOUT ASKING (81; QA lead 2026-09-03).**
-  Spec · epic + stories · design · PO answers — pulled LIVE, deltas folded in (43), before the first
-  verdict. **SUPERSEDES the 2026-08-20 ask-and-wait gate.** Outside a build-verify / VIU order Rule 81's
-  gate still holds. His verbatim words: `RULES-61-ONWARD.md` rule 81.
+- **🛑 SOURCE VERIFICATION IS OFFERED AND GATED, NEVER AUTO-RUN — HE DECIDES, EVERY SESSION (81;
+  re-confirmed 2026-09-03).** On a build-verify / VIU order: name the need · give the **last-done DATE +
+  spec version** · **ASK** with-or-without · **WAIT**. Never pull sources on your own initiative, and
+  never inherit an earlier session's answer. Once he says yes, "all the sources" = the Rule 57 list.
+  Both 2026-09-03 rulings: `RULES-61-ONWARD.md` rule 81.
 - **🛑 QUICK-LOGIN IS THE ROUTE, AND ONE COOKIE ONLY (2026-09-02).** Run
   `node build/testing-tools/qa-branch-boot.mjs <branch> <route> admin`. Carry `sv_sso_session` ONLY,
   scoped **HOST-ONLY** — a domain-scoped cookie 409s right after a 200 login, which looks like a dead

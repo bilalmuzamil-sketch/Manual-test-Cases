@@ -2279,21 +2279,35 @@ Index: CLAUDE.md (rule index table). Other rule files: build/rules/RULES-01-20.m
     **⇒ DATED REFINEMENT, 2026-08-20 (QA lead, verbatim: *"Istead of automatically starting to do source verifiction ask me that I am asking you to do something for which we need to ensure that the test cases are newly source verified and then tell me the date when they were last source verified and wait for my answer wether I want to proceed with source verification or without source verification."*) — SOURCE VERIFICATION IS OFFERED AND GATED BY THE QA LEAD, NOT AUTO-RUN.**
     When build-verify / VIU / any source-dependent task is ordered, do **NOT** automatically start source verification. Instead: **(1)** tell the QA lead that the ordered task needs source-current test cases; **(2)** state the **DATE (+ spec version)** source verification was last done for that project, from the records; **(3) ASK** whether to proceed **WITH** source verification first or **WITHOUT** it; **(4) WAIT** for his answer, then proceed accordingly. The original Rule 81 requirement remains the DEFAULT LOGIC (source should be current before build-verify), but **WHETHER to run it now is HIS decision**, informed by the last-done date and Rule 77's validity window. This aligns Rule 81 with Rule 80 (tell last-done + ask before re-running).
 
-    **⇒ SUPERSEDING DIRECTIVE, 2026-09-03 (QA lead, verbatim: *"NOte everytime I ask you to build
-    verify anything, the first thing you must ALWAYS do is to get the latest from all the sources, and
-    then proceed with the task."*) — THE ASK-AND-WAIT GATE IS LIFTED FOR BUILD-VERIFY / VIU ORDERS.**
-    **This reverses the 2026-08-20 refinement above, which is HIS OWN earlier instruction and is kept
-    dated and visible rather than deleted** (Rule 32, latest wins; the conflict was surfaced to him
-    under Rule 63 when it was recorded). **THE RULE NOW:** the moment build verification or a VIU is
-    ordered, **GO AND MAKE EVERY SOURCE CURRENT — do not tell him the last-done date and wait.** "All
-    the sources" is the Rule 57 list, and it is OPEN-ENDED: **the spec/PRD at its live version · the
-    epic and ALL its child stories · the design (Claude design, Figma, technical design) · the PO's
-    verified answers · any newer written statement shared with us.** Fold in every delta (43) and only
-    then form a verdict. **What survives of the old refinement:** the **last-done date and version are
-    still REPORTED** (80, 91) — he is told what was refreshed and what moved, he is simply no longer
-    asked for permission first; and **outside a build-verify / VIU order the Rule 81 gate still
-    stands**, so a bare *"is the spec current?"* question is still answered with the date and an offer,
-    not with an unrequested pass.
+    **⇒ REFINEMENT, 2026-09-03 — AND ITS IMMEDIATE CORRECTION THE SAME DAY. READ BOTH HALVES; THE
+    SECOND ONE IS THE OPERATIVE RULE.**
+    **(a) WHAT HE SAID FIRST (verbatim):** *"NOte everytime I ask you to build verify anything, the
+    first thing you must ALWAYS do is to get the latest from all the sources, and then proceed with the
+    task."* This was recorded as lifting the 2026-08-20 ask-and-wait gate outright, and the conflict
+    with his own earlier instruction was surfaced to him under Rule 63 at the time it was recorded.
+    **(b) WHAT HE SAID WHEN THAT WAS PUT TO HIM — AND THIS GOVERNS.** Asked whether he meant it
+    unconditionally, he quoted the 2026-08-20 wording back and answered, verbatim: *"I will keep this
+    rule for this Build verification session."* **⇒ THE ASK-AND-WAIT GATE IS IN FORCE. It was never
+    lifted.** On a build-verification / VIU order: **(1)** say the ordered task needs source-current
+    cases · **(2)** give the **DATE + spec version** source verification was last done for that
+    project · **(3) ASK** whether to proceed WITH or WITHOUT it · **(4) WAIT.** **Do NOT start pulling
+    sources on your own initiative.**
+    **HOW TO HOLD BOTH:** (a) is his standing statement of the *default logic* — the source SHOULD be
+    current before a build is observed, which was already the original Rule 81 — and it raises the bar
+    on **what** "current" means when he does say yes: **the Rule 57 list, OPEN-ENDED — the spec/PRD at
+    its live version · the epic and ALL its child stories · the design (Claude design, Figma, technical
+    design) · the PO's verified answers · any newer written statement.** (b) governs **whether to run
+    it now, and that is HIS decision, per session, every time.** **The mistake to avoid is the one made
+    on 2026-09-03: reading (a) as a blanket licence and refreshing unasked.** He scopes this himself —
+    "for this Build verification session" is session-scoped by his own words, so **a later session must
+    ASK rather than inherit either answer.**
+    **WHAT THE 2026-09-03 PASS DID, recorded because it happened before (b) was said:** the Invoice UI
+    Refresh spec was pulled live and diffed under reading (a) — result in
+    `build/invoice-ui-refresh/source-verify-2026-09-03/SOURCE-CURRENCY.md` (page last modified 28 Aug,
+    cases read against v45 on 31 Aug, 2 anchors added / 16 changed of 111, **every one already covered,
+    nothing to fold in**). **The work stands and is useful; the licence it was done under does not.**
+    **AND THE LAST-DONE FIGURE THE GATE NEEDS IS NOW ON RECORD:** Invoice UI Refresh (section 6559) —
+    **source-verified 2026-09-03 against the live page, spec version 45, VERDICT CURRENT.**
     **WHY HE CHANGED IT — the pattern that earned it.** Three passes in the days before had reached a
     verdict, and only afterwards discovered the source had moved: the 2026-08-21 project-index refresh
     found **every one of the seven projects' spec pages had moved since its last check** while the
