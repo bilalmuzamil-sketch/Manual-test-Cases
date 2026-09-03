@@ -291,3 +291,64 @@ sends me to?"*
 Fixed on all 21 by surgical replacement (`the "Invoice #" column` → `the "No." column`), 33 occurrences
 across preconditions and steps, every write verified byte-identical apart from the replacement:
 `build/invoice-ui-refresh/column-fix-2026-09-02/`.
+
+## Credit states, and how a credit is APPLIED — read off sv8218, 2026-09-03
+
+**Why this section exists.** Six Credit Invoice cases (C45180–C45183, plus a line each in C44967 and
+C44968) were `NOT VERIFIED` on 2026-09-02 for want of a credit in a state other than `Unapplied`. The
+QA lead's instruction was *"Always seed data, never stay blocked"*, so the states were seeded on the
+disposable branch and the route that produces them is recorded here.
+
+**THE ROUTE — a credit is applied from the INVOICE side, never from the credit's own row.** The credit
+row's `Action` column offers only three things, confirmed by hovering every icon (the tooltips are
+hover-only Quasar tooltips, absent from the DOM until hovered): **`Print credit memo`**, **`Cash Out`**,
+**`Reverse`**. There is no "apply" action on it. Applying is done here:
+
+```
+Customers → open the customer → the "Invoices" tab
+  → tick the credit row AND the unpaid invoice row TOGETHER
+  → "New Payment"
+```
+
+**Ticking the invoice alone is what made an earlier attempt fail.** With only the invoice ticked, the
+`Amount to credit` box reads `0.00` and typing into it simply ENLARGES the payment — the invoice gets
+paid by method and the credit stays `Unapplied`. With both rows ticked the dialog grows an extra row
+for the credit and consumes it.
+
+**The New Payment dialog, verbatim** (`POST /api/customer-account/create-customer-payment`):
+
+| What it shows | Verbatim |
+|---|---|
+| Fields | `Payment date` · `Payment method` · `Reference number` · `Memo` |
+| Table columns | `No.` · `Date` · `Due` · `Balance` · `Payment` |
+| The credit's own row | `Credit` · the credit number · `Today` · and a phrase saying what will happen to it |
+| Those phrases | **`Fully consumed -$600.00`** · **`Not needed — invoice fully covered`** · **`Applies $300.00 · $300.00 remaining`** |
+| Below the table | **`Amount to credit: $`** · **`Payment amount: $8,000.85`** |
+| Buttons | **`Make payment`** · **`Send to Terminal`** |
+
+`Make payment` is **disabled until a `Payment method` is chosen**, even when the whole amount is being
+covered by a credit. The methods offered are `EFT, Visa, Cash, E-transfer, Check, Gift card, Amex,
+Debit, Payroll deduction, Mastercard, Applied credit, Exmerce`.
+
+**The credit statuses this build actually renders**, read from the customer's `Invoices` tab and from
+`/api/customer-account/list-unpaid-transaction` (`data.response.collection`, fields `status` and
+`status_label`):
+
+| `status` | `status_label` | Seeded as |
+|---|---|---|
+| `unapplied` | `Unapplied` | issue a store credit and leave it |
+| `applied` | `Applied` | **CM-4194** — $600 credit, $600 consumed against invoice S2-16654 |
+| — | `Partially applied` | seen on a **deposit** (`DEP-4704`); see the caution below |
+| — | `Held` | a deposit that has not been used |
+| — | `Voided` / `Refunded` | `POST /api/credit-memos/{id}/void` · `/cash-out` |
+
+**⚠️ A DEPOSIT ON THE ACCOUNT WILL EAT THE PAYMENT BEFORE THE CREDIT DOES.** The dialog lists **every**
+available credit and deposit automatically, not only the rows that were ticked. A partially-applied
+credit therefore has to be seeded on an account with **no deposit sitting on it** — the first attempt
+produced `Not needed — invoice fully covered` against the credit and consumed a $600 deposit instead.
+
+**⚠️ AND A BUNDLE SCAN CANNOT ANSWER THIS QUESTION.** An exhaustive sweep of this build's front end
+(**608 chunks, queue emptied, no cap**) finds `Unapplied`, `Applied` and `Refunded` but **not**
+`Partially applied` in any casing. That negative says nothing about the printed credit note: the PDF is
+rendered **server-side** (`GET /api/credit-memos/{id}/pdf`), so its status wording never passes through
+these chunks. The status a case asserts must be read off the rendered document, not the bundle.

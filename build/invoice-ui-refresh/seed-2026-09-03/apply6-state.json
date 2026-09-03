@@ -1,0 +1,128 @@
+{
+ "after": [
+  {
+   "n": "S-11720",
+   "type": "invoice",
+   "amount": 2827.77,
+   "balance": 0,
+   "status": "Paid",
+   "origin": 0
+  },
+  {
+   "n": "S-9993",
+   "type": "invoice",
+   "amount": 1601.2,
+   "balance": 0,
+   "status": "Paid",
+   "origin": 0
+  },
+  {
+   "n": "S-9688",
+   "type": "invoice",
+   "amount": 7155.17,
+   "balance": 0,
+   "status": "Paid",
+   "origin": 0
+  },
+  {
+   "n": "S-7631",
+   "type": "invoice",
+   "amount": 420.36,
+   "balance": 0,
+   "status": "Paid",
+   "origin": 0
+  },
+  {
+   "n": "S-6768",
+   "type": "invoice",
+   "amount": 62.92,
+   "balance": 0,
+   "status": "Paid",
+   "origin": 0
+  },
+  {
+   "n": "S-10265",
+   "type": "invoice",
+   "amount": 323.63,
+   "balance": 0,
+   "status": "Paid",
+   "origin": 0
+  },
+  {
+   "n": "S-16654",
+   "type": "invoice",
+   "amount": 8600.85,
+   "balance": 6800.85,
+   "status": "Partially paid",
+   "origin": 0
+  },
+  {
+   "n": "S-9666",
+   "type": "invoice",
+   "amount": 0,
+   "balance": 0,
+   "status": "Paid",
+   "origin": 0
+  },
+  {
+   "n": "S-10126",
+   "type": "invoice",
+   "amount": 264.45,
+   "balance": 0,
+   "status": "Paid",
+   "origin": 0
+  },
+  {
+   "n": "S-14092",
+   "type": "invoice",
+   "amount": 1044.42,
+   "balance": 0,
+   "status": "Paid",
+   "origin": 0
+  },
+  {
+   "n": "S-8627",
+   "type": "invoice",
+   "amount": 5197.2,
+   "balance": 0,
+   "status": "Paid",
+   "origin": 0
+  },
+  {
+   "n": "CM-4194",
+   "type": "credit",
+   "amount": -600,
+   "balance": 0,
+   "status": "Applied",
+   "origin": 0
+  },
+  {
+   "n": "CM-4195",
+   "type": "credit",
+   "amount": -900,
+   "balance": 0,
+   "status": "Applied",
+   "origin": 0
+  },
+  {
+   "n": "DEP-4705",
+   "type": "deposit",
+   "amount": -300,
+   "balance": null,
+   "status": "Held",
+   "origin": 0
+  },
+  {
+   "n": "DEP-4704",
+   "type": "deposit",
+   "amount": -300,
+   "balance": null,
+   "status": "Partially applied",
+   "origin": 0
+  }
+ ],
+ "calls": [
+  "201 POST /api/credit-memos",
+  "201 POST /api/customer-account/create-customer-payment"
+ ]
+}
