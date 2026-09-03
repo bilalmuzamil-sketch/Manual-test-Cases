@@ -32,7 +32,7 @@
 - **AFTERWARDS you MAY and SHOULD consult ANY document the task in hand needs** —
   `build/APP-ACTIONS-PLAYBOOK.md`, any `build/*-PROCESS.md`, `build/PROCESS-CATALOG.md`, a project's
   `PROJECT-STATE.md`, `build/rules/RULES-01-20.md` / `RULES-21-40.md` / `RULES-41-60.md` /
-  `RULES-61-99.md`, a past findings or audit file. **No document is off-limits to you.**
+  `RULES-61-ONWARD.md`, a past findings or audit file. **No document is off-limits to you.**
 - **BUT ALWAYS IN A TARGETED, BOUNDED WAY:** `grep -n` for the exact thing you need, or `sed -n
   '<start>,<end>p'` a bounded slice. **NEVER a bulk read "to get oriented" · NEVER a whole large
   file · NEVER `CLAUDE.md` end to end · NEVER `build/rules/CLAUDE-FULL-ARCHIVE-2026-08-21.md`.**
@@ -240,7 +240,7 @@ fault.
 | 8 | `build/skills/14-ACCESS-RESILIENCE.md` | **Before your first access call** — Rule 89, and the five MCP-hygiene hard rules |
 | 9 | `build/skills/15-NEW-PROJECT-INTAKE.md` | **The moment the QA lead NAMES a project** — Rules 92/93, including the **REVIVAL** path |
 
-**Rule texts:** `build/rules/RULES-01-20.md` · `RULES-21-40.md` · `RULES-41-60.md` · `RULES-61-99.md`.
+**Rule texts:** `build/rules/RULES-01-20.md` · `RULES-21-40.md` · `RULES-41-60.md` · `RULES-61-ONWARD.md`.
 **Read the rule you are about to apply, in full. An index is not a rule.**
 
 ---
@@ -468,7 +468,7 @@ lanes pick them up.
 
 ## SEARCH BEFORE YOU GIVE UP (mandatory — Rule 97)
 
-**This section is MANDATORY in every handoff.** Full rule text: `build/rules/RULES-61-99.md` (Rule 97,
+**This section is MANDATORY in every handoff.** Full rule text: `build/rules/RULES-61-ONWARD.md` (Rule 97,
 tying Rules 27, 29, 59, 68, 76, 79, 86, 88, 89, 93). It is reproduced **in full below** so you never
 have to open another file to get it.
 
@@ -567,7 +567,7 @@ shared quota (Rule 90). This is Rule 93's learning loop at the scale of one obst
 
 **This section is MANDATORY in every handoff and binds this session from its FIRST TURN.** Canonical
 copy: [`../skills/TOKEN-DISCIPLINE-CHARTER.md`](../skills/TOKEN-DISCIPLINE-CHARTER.md). Full rule text:
-`build/rules/RULES-61-99.md` (Rule 95, tying Rules 12, 50, 75, 76, 77, 78, 79, 80, 86, 88, 90). The
+`build/rules/RULES-61-ONWARD.md` (Rule 95, tying Rules 12, 50, 75, 76, 77, 78, 79, 80, 86, 88, 90). The
 twelve clauses are reproduced **in full below** so you never have to open another file to get them.
 
 > **THE QA LEAD, 2026-08-21, VERBATIM:** *"Also make sure that this session is smartest one about token

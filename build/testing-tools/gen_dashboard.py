@@ -6,7 +6,8 @@ engineer workload, and recent results, then renders a single self-contained HTML
 (no external calls at view time — CSP-safe for publishing as an Artifact). Re-run on a
 schedule to refresh; republishing to the same Artifact URL keeps the link stable.
 
-Creds: /tmp/shopview-creds.env (Rule 82 — never committed).
+Creds: resolved by load_creds.testrail_creds() — env vars, then /tmp/shopview-creds.env, then
+/tmp/testrail/creds.json (Rule 82 — never committed, never printed).
 Config: testrail_runs.json (run/group map) + milestone id below.
 Usage: python3 build/testing-tools/gen_dashboard.py [out.html]
 """
@@ -22,12 +23,16 @@ START = datetime.date(2026, 8, 25)
 OUT = sys.argv[1] if len(sys.argv) > 1 else os.path.join(HERE, "..", "qa-dashboard", "dashboard.html")
 
 def creds():
-    d = {}
-    for line in open("/tmp/shopview-creds.env"):
-        line = line.strip()
-        if line and not line.startswith("#") and "=" in line:
-            k, v = line.split("=", 1); d[k] = v
-    return d["CLAUDE_USERNAME"], d["TESTRAIL_API_KEY"]
+    """Delegate to load_creds.py, which knows ALL THREE places credentials live.
+
+    2026-09-03: this function used to read ONLY /tmp/shopview-creds.env, so it died with a
+    KeyError/FileNotFoundError while working credentials sat on disk at /tmp/testrail/creds.json.
+    That is the exact pattern that made a session declare a false blocker on 2026-09-02. Never
+    re-implement the lookup here - a second copy is a second thing to be wrong (Rule 97).
+    """
+    sys.path.insert(0, HERE)
+    from load_creds import testrail_creds
+    return testrail_creds()
 
 EMAIL, KEY = creds()
 BASE = CFG["base_url"] + "/index.php?/api/v2/"

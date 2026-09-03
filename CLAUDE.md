@@ -75,7 +75,7 @@ safe. The **evidence** for each one lives in the rule or skill the bullet points
   reproduces, CLOSE the candidate and say so; if it does, ASK for permission **per candidate**. The
   re-verification comes BEFORE the ask; it does not replace it.
   Verbatim quotes, the worked examples (C45068 · C45060 · C44996) and the full treatment:
-  `build/rules/RULES-61-99.md` rule 62 (2026-09-01 amendment) and `build/skills/06-DEFECT-PREP.md` §A10-b.
+  `build/rules/RULES-61-ONWARD.md` rule 62 (2026-09-01 amendment) and `build/skills/06-DEFECT-PREP.md` §A10-b.
 - **SECRETS: `/tmp` ONLY, `chmod 600`, NEVER COMMITTED — THIS REPO IS PUBLIC (82).** Cookies, tokens,
   passwords, OTP codes live in `/tmp` and nowhere else; never in a log, an error paste, or a commit.
   **Before every commit run the REAL scanner: `python3 build/testing-tools/scan_secrets.py --staged`**
@@ -151,7 +151,7 @@ safe. The **evidence** for each one lives in the rule or skill the bullet points
   unsearched. One tool failing is a fact about that tool, never about the task (68). **Solve something
   new ⇒ write it into the playbook or the skill IN THE SAME PASS** (93). The QA lead's verbatim ruling on
   sequencing, the eight-probe incident and the five 2026-08-28 false blockers:
-  `build/rules/RULES-61-99.md` rule 97.
+  `build/rules/RULES-61-ONWARD.md` rule 97.
 - **STRATEGY FIRST (79).** Before starting ANY task, devise or recall the smartest quota-efficient
   plan — then begin. One pass, then exit.
 - **TELL THE LAST-DONE DATE AND ASK BEFORE RE-RUNNING (80).** Never silently repeat a verification,
@@ -181,7 +181,7 @@ safe. The **evidence** for each one lives in the rule or skill the bullet points
   **the options**, each saying what we would then DO · **the cost of silence** and what it does not block
   (68). If answering needs a file opened, it is not finished. Say *"nothing outstanding"* if that is true;
   never omit the section. Keep `build/OUTSTANDING-ITEMS-REGISTER.md` current. Verbatim quotes and full
-  text: `build/rules/RULES-61-99.md` rules 98 and 99.
+  text: `build/rules/RULES-61-ONWARD.md` rules 98 and 99.
 - **🛑 A QUESTION SHEET IS ALWAYS A SPREADSHEET, NEVER A MARKDOWN TABLE (55 · 66 · 7/9; QA lead
   2026-09-01).** Deliver **`.xlsx`** (or a Google Sheet) in the established column shape —
   **`# · Topic · What happens now · The question · Options · Your answer`** — one sheet per feature, plus a
@@ -323,7 +323,7 @@ rule. Generated from the split files' own headers.
 | **59** | RE-READ THE SOURCES IMMEDIATELY BEFORE THE WRITES BEGIN — a second currency check, not only the |
 | **60** | THE BUILD WILL NEVER BE DECLARED FINAL — SEPARATE WHAT DEPENDS ON THE BUILD FROM WHAT DOES NOT |
 
-### `build/rules/RULES-61-99.md` — rules 61–100 (**the filename still says `-99`; the rename to `-100` is DEFERRED, see `build/rules/INTEGRITY.md`**)
+### `build/rules/RULES-61-ONWARD.md` — rules 61–100 (**range-free name, permanent since 2026-09-03 — it is NOT renamed when a rule is added; see `build/rules/INTEGRITY.md`**)
 
 | # | Rule (short title) |
 |---|---|
@@ -368,7 +368,7 @@ rule. Generated from the split files' own headers.
 | **99** | EVERY ASK IS SELF-CONTAINED AND EXECUTABLE — HE MUST NEVER HAVE TO LOOK SOMETHING UP TO UNDERSTAND WHAT IS BEING ASKED |
 | **100** | AN INJECTED OR REMEMBERED COPY OF A FILE IS NOT EVIDENCE ABOUT THAT FILE — MEASURE IT ON DISK |
 
-**Operator forms** (the rule bodies are all in `build/rules/RULES-61-99.md`): **95** →
+**Operator forms** (the rule bodies are all in `build/rules/RULES-61-ONWARD.md`): **95** →
 `build/skills/TOKEN-DISCIPLINE-CHARTER.md` · **96** → `build/skills/17-REGRESSION-IMPACT-V1-TO-V2.md`
 (project type asked at intake, `15-NEW-PROJECT-INTAKE.md` §1a) · **97** → the SEARCH-BEFORE-YOU-GIVE-UP
 drill, carried inline by every handoff · **89** → `build/skills/14-ACCESS-RESILIENCE.md` ·
@@ -645,7 +645,7 @@ Compact form — **the rule named in brackets is the authority; read it before r
 | Standing Rules 1–20 (full text) | `build/rules/RULES-01-20.md` |
 | Standing Rules 21–40 (full text) | `build/rules/RULES-21-40.md` |
 | Standing Rules 41–60 (full text) | `build/rules/RULES-41-60.md` |
-| Standing Rules 61–99 (full text) | `build/rules/RULES-61-99.md` |
+| Standing Rules 61 onward (full text — 61–100 today, and every rule added later) | `build/rules/RULES-61-ONWARD.md` |
 | Per-project narrative history (projects 1–7) | `build/rules/PROJECT-HISTORY-ARCHIVE.md` |
 | Byte-verification hashes for the split | `build/rules/INTEGRITY.md` |
 | Staging/QA/prod action recipes, TestRail traps | `build/APP-ACTIONS-PLAYBOOK.md` |

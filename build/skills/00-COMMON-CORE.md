@@ -25,7 +25,7 @@
 | § | Read it before you… |
 |---|---|
 | **0** | do anything at all — the first five minutes of any pass |
-| **1** | write a number, a verdict or the word "complete" anywhere |
+| **1** | write a number, a verdict or the word "complete" anywhere — **incl. §1.9, before claiming a file does NOT contain something** |
 | **2** | write to TestRail, or trust that a write landed |
 | **3** | build any TestRail payload or read any TestRail response |
 | **4** | touch a test run |
@@ -163,6 +163,38 @@ was measured then. Counts have moved **within a single pass** — a worker watch
 
 An unexplained gap invites the challenge; an explained one answers it in advance. **A blanket caveat
 ("the branch is not final") is barred** — it hides the number instead of explaining it (Rule 60(d)).
+
+### 1.9 🛑 THE ABSENCE-CLAIM DRILL — "the file does not contain X" is a MEASUREMENT, not an impression
+
+*(Recorded 2026-09-03 under Rule 72. **Three wrong absence claims were made in one week**, each because
+the needle did not match the text **as written** — not because the text was missing. An absence claim is
+how a real gap gets closed, so a false one either invents work or, worse, closes a gap that is still open.)*
+
+**A claim of absence is valid only when ALL of these have been done:**
+
+1. **BOTH greps return nothing — raw AND whitespace-flattened.** These rule files are hard-wrapped, so a
+   phrase that spans a line break is **invisible to a plain grep**. Flatten first:
+   `tr -s '[:space:]' ' ' < <file> > /tmp/flat.txt` and grep that too. One grep is not a measurement.
+2. **Scope the grep to the WHOLE body or file, never a section.** The rule-57 miss was a claim about an
+   entire rule made after reading only its top. Extract the rule's full line range first
+   (`sed -n '<start>,<end>p'`), then grep the extract.
+3. **READ EVERY HIT before trusting it — a hit is not a match.** `carve-out` in Rule 71 matched a
+   *different* carve-out (the marker-revert one); treating it as the manual-QA-owner carve-out would have
+   closed a real gap on a false positive. Print the hits and read them; never act on a count alone.
+4. **Quote multibyte characters literally.** A needle that writes `.` or `->` for `→` returns nothing —
+   `→` is three bytes, and so are `⇒ · ✅ 🛑 —`. Paste the real character, or grep a plain-ASCII
+   fragment either side of it.
+5. **Try a PARAPHRASE before concluding absence.** The needle `false blocker` returned 0 against text that
+   says **"FIVE REAL CASES"**. Search the *concept* two or three ways — a synonym, the QA lead's own
+   phrasing, a distinctive fragment — before writing the word "absent".
+6. **If you still find nothing, REPORT THE EXACT NEEDLES AND COMMANDS YOU RAN** (Rule 97). That is what
+   makes the gap *known to be real* rather than merely unsearched, and it lets the next reader disprove
+   you cheaply. **An unqualified "it's not there" is not reportable; "these 8 needles, raw and flattened,
+   over lines 1805–1914, all 0" is.**
+
+**Ties:** Rule 12 (observed, never inferred — an absence is a finding and needs the same evidence),
+Rule 50 (exhaustive, not sampled), §1.4 ("not established" beats a finding) and Rule 97 (never declare a
+blocker — or a gap — unsearched; report the searches).
 
 ---
 
@@ -1359,7 +1391,7 @@ end**). Also `ls build/BLOCKED-*.md` — **several are marked RESOLVED and carry
 RAN**, so the QA lead knows the gap is real rather than unsearched. **One tool failing is a fact about
 that tool, never about the task** (Rule 68). **Solve something new ⇒ write it into the playbook or the
 relevant skill IN THE SAME PASS** (Rule 93). **The full drill — with the five real 2026-08-28 false
-blockers — is INLINE in every handoff and in `build/rules/RULES-61-99.md` (Rule 97).**
+blockers — is INLINE in every handoff and in `build/rules/RULES-61-ONWARD.md` (Rule 97).**
 
 ---
 
@@ -2268,7 +2300,7 @@ and the case-body snapshots that make a foreign edit diffable.
 > **Standing Rule 90 — the weekly quota is ONE shared pool:** main/orchestrator **15 %** · each lane
 > **25 %** · **10 % reserve**. **Report your spend with your work**; at **50 % of your own budget**
 > compare spend against work completed and **STOP AND REPORT if spend is outpacing progress**; **never
-> consume the reserve without the QA lead's say-so.** Full texts: `build/rules/RULES-61-99.md`.
+> consume the reserve without the QA lead's say-so.** Full texts: `build/rules/RULES-61-ONWARD.md`.
 
 
 ---

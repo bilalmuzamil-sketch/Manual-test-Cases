@@ -1,9 +1,17 @@
-# ShopView QA — Standing Rules 61–99
+# ShopView QA — Standing Rules 61 onward
 
-This file holds the FULL, VERBATIM text of Standing Rules 61–99.
+This file holds the FULL, VERBATIM text of **Standing Rules 61 to the highest-numbered rule** — 61–100
+as at 2026-09-03, and it simply grows as rules are added.
+
+> **🔒 THIS FILENAME IS PERMANENT. DO NOT RENAME IT WHEN A RULE IS ADDED.** It was renamed seven times
+> (`RULES-61-93.md` → `-94` → `-95` → `-96` → `-97` → `-98` → `-99`), each rename forcing a repo-wide
+> pointer sweep and each sweep leaving dangling pointers behind. The range-in-the-filename convention
+> was **RETIRED on 2026-09-03** and the file became `RULES-61-ONWARD.md`. **Adding a rule means
+> appending the rule and updating `CLAUDE.md`'s index — nothing else.** Full history and the reasoning:
+> `build/rules/INTEGRITY.md`.
 
 Full archive: build/rules/CLAUDE-FULL-ARCHIVE-2026-08-21.md
-Index: CLAUDE.md (rule index table). Other rule files: build/rules/RULES-01-20.md, build/rules/RULES-21-40.md, build/rules/RULES-41-60.md, build/rules/RULES-61-99.md
+Index: CLAUDE.md (rule index table). Other rule files: build/rules/RULES-01-20.md, build/rules/RULES-21-40.md, build/rules/RULES-41-60.md, build/rules/RULES-61-ONWARD.md
 
 **Read the rule you are about to apply here, in full — the index is not the rule.**
 
@@ -199,7 +207,7 @@ Index: CLAUDE.md (rule index table). Other rule files: build/rules/RULES-01-20.m
     onto a case that is genuinely READY, and a **NOT-BUILT case is excluded from any ready-to-automate
     figure**. Placement is this rule's placement — **VERY END of Expected Results, AFTER the Rule-54
     provenance line, blank line before and a line break after.** **Read rule 69's body in full before
-    applying it** (`build/rules/RULES-61-99.md`).
+    applying it** (`build/rules/RULES-61-ONWARD.md`).
     **(5) THE STAGING-ONLY CUSTOMER-PORTAL HOLD — a FORM of `AUTOMATION: HOLD`, first used 2026-08-31,
     WORDING CONFIRMED FINAL BY THE QA LEAD 2026-09-02.** Byte-exact:
     `AUTOMATION: HOLD - customer portal only exists on staging; this case cannot run on the QA branch`
@@ -1361,6 +1369,17 @@ Index: CLAUDE.md (rule index table). Other rule files: build/rules/RULES-01-20.m
     is written; this rule governs WHEN it is sent**), 58 (an ambiguous source is never resolved by looking
     at the build — it waits for the sheet) and 62 (a blocker on creating or correcting a case is escalated
     immediately, never deferred onto the sheet).
+    **⇒ AMENDMENT, 2026-09-03 — CROSS-REFERENCE ONLY: THE THING THIS RULE HOLDS BACK IS A SPREADSHEET.
+    "WHEN" IS THIS RULE; "WHAT FORM" IS RULE 55'S.**
+    This rule's own subject is unchanged — **the sheet is the LAST thing sent.** What was missing is that
+    a session reading Rule 66 alone could picture the held artefact as a Markdown table. It is not.
+    **Per Rule 55's amendment of 2026-09-01, the deliverable is an `.xlsx` (or a Google Sheet); a
+    Markdown table is not a question sheet any more.** Read Rule 55 in `build/rules/RULES-41-60.md` for
+    the column shape, the layman check and the generator (`build/testing-tools/make_question_sheet.py`) —
+    it is **deliberately NOT duplicated here**, because two copies of a format spec drift. **The division
+    of labour already stated in this rule's ties stands: 55 governs HOW the sheet is written, 66 governs
+    WHEN it is sent** — and a sheet that is perfectly formed but sent early still breaks THIS rule,
+    exactly as a correctly-timed Markdown table still breaks Rule 55.
 67. **EACH PROJECT REPORTS BEFORE THE NEXT ONE STARTS — a per-project completion TABLE, delivered to
     the QA lead as the gate on moving on (all projects, and all future projects).**
     USER DIRECTIVE (2026-08-12, verbatim, his typing preserved exactly as he wrote it because Rule 25
@@ -1912,6 +1931,31 @@ Index: CLAUDE.md (rule index table). Other rule files: build/rules/RULES-01-20.m
       its source reference, or it is not made.
     **⇒ DATED REFINEMENT, 2026-08-20 (QA lead, verbatim: *"Yes always atleast rad to tell if they need to be changed, and then hold on me whether I want them to be changed or not. Save it in your rules and skills"*) — ALWAYS READ-ASSESS AN AUTOMATED CASE FIRST; NEVER BLANKET-SKIP IT UNEXAMINED.**
     Rule 71's ask-first gate governs **EDITING** an Automated case (`custom_atmstatus = 3`); it does **NOT** license **skipping the case unassessed.** On any pass that would touch a set of cases, an Automated case is **ALWAYS READ (read-only, which Rule 71 permits) to determine WHETHER it needs the change**, the finding is **REPORTED** (this case needs X / this case is already fine), and **THEN the case is HELD for the QA lead's decision** on whether to actually change it. **A blanket skip that never checks whether the Automated case needs the change is NON-COMPLIANT** — it leaves the QA lead unable to decide, and it can silently leave a real defect (e.g. a collapsed-rendering case) in place. **SEQUENCE: READ → ASSESS + REPORT the need → HOLD for his go-ahead → (only on his "yes") edit, coupled with build-verify where content changes, then notify Vlad (Rule 65).** **RATIONALE, 2026-08-20:** a format-reflow pass BLANKET-SKIPPED 5 `atm=3` Schedule cases (C43811, C38847, C38848, C38849, C38850) without checking; a read-only check then found **all 5 render collapsed (Steps + Preconditions)** and DO need the fix — the QA lead required the read-assessment ALWAYS happen first so he can decide with the facts, not a blind skip. Ties to Standing Rules 12 (observed, never inferred — the need is READ, never assumed), 50 (read-assess exhaustively, no sampling), 65 (tell Vlad after an authorized change), 69 (the marker) and 72 (this refinement is recorded because he asked for it).
+    **⇒ AMENDMENT, 2026-09-03 — THE NAMED MANUAL QA OWNER'S CASES ARE *IN SCOPE*, AND RULE 71 STILL
+    APPLIES TO THEM. THIS IS AN INTERACTION WITH RULE 38, NOT A BLANKET PERMISSION.**
+    **WHY THIS IS RECORDED HERE:** Rule 38's 2026-08-31 carve-out — *"a case authored by the project's
+    NAMED MANUAL QA OWNER is treated exactly as if we had authored it"* — lived only in Rule 38 and in
+    `CLAUDE.md` §1's FOREIGN CASES bullet. **A session reading Rule 71 alone never learned the carve-out
+    exists**, and Rule 71 is the rule such a session reaches when it asks "may I touch this case?".
+    **THE TWO QUESTIONS ARE SEPARATE, AND BOTH MUST BE ANSWERED:**
+    - **"Is it foreign?" is Rule 38's question.** A case authored by the project's manual QA owner —
+      **named by the QA lead for THAT project** — is **NOT foreign**: source-verify it, build-verify it,
+      keep it tester-ready, update it. **Recorded owners:** Invoice UI Refresh → **Mudassir Qamar**
+      (TestRail user **6**) · Inline Add and Edit Parts (**6597**) and Printer Friendly WO (**6617**) →
+      **Viktoria Videnovic** (TestRail user **4**; spelling is "Viktoria", not "Victoria"). The carve-out
+      is **per project/suite** — being an owner somewhere does not put a person in scope everywhere — and
+      it applies only once the QA lead confirms the name (resolve the author LIVE with `get_user/{id}`
+      and report it). **Vladimir Tomovic (user 1) is NEVER in scope, on any project.**
+    - **"Is it Automated?" is THIS rule's question, and passing Rule 38 does not answer it.** Rule 71
+      applies to a manual QA owner's case **exactly as it applies to our own** — the rule already reads
+      *"INCLUDING our OWN cases"*, and being in scope is precisely what makes this gate relevant rather
+      than moot. **If TestRail flags it `custom_atmstatus = 3`, the ask-first gate stands:** read-assess
+      it, report whether it needs the change, **HOLD for the QA lead's per-case go-ahead**, and on his
+      "yes" edit it coupled with build verification, then notify Vlad (Rule 65).
+    **⇒ IN ONE LINE: in scope for Rule 38 purposes AND still gated by Rule 71 if Automated.** Reading the
+    carve-out as "the owner's cases are ours, so I may edit them freely" is the misreading this amendment
+    exists to prevent. Ties to Standing Rules 38 (the carve-out and the naming step), 65 (tell Vlad
+    after), 71 (this gate) and 72 (recorded as an amendment, nothing deleted).
 
 72. **PROPOSE SKILL / RULE CHANGES BEFORE RECORDING THEM — never add to the Skills or CLAUDE.md
     autonomously (all projects).**
@@ -1959,7 +2003,7 @@ Index: CLAUDE.md (rule index table). Other rule files: build/rules/RULES-01-20.m
     > never supposed to create defect, you are supposed to make the tests RUNNABLE."*
     >
     > **THE FULL, AUTHORITATIVE TEXT OF THIS AMENDMENT IS IN STANDING RULE 62**
-    > (`build/rules/RULES-61-99.md`, the block headed *"⇒ AMENDMENT, 2026-09-01 — THE LANE'S JOB IS
+    > (`build/rules/RULES-61-ONWARD.md`, the block headed *"⇒ AMENDMENT, 2026-09-01 — THE LANE'S JOB IS
     > RUNNABLE TESTS, NOT TICKETS. STOP PREPARING DEFECTS."*) — **read it there before acting on
     > anything in this rule.** In one line: a build-verification / VIU / execution pass **no longer ends
     > with a defect candidate awaiting permission.** When the build does not match the document, the
@@ -2715,7 +2759,7 @@ Index: CLAUDE.md (rule index table). Other rule files: build/rules/RULES-01-20.m
     directs must clear, and **they are the reason a finding can be reported honestly in a pass report
     with no ticket behind it.** They apply **only if and when the QA lead directs a ticket to be
     filed.**
-    **(d) WHERE THE FULL RECIPE NOW LIVES — EXACTLY:** `build/rules/RULES-61-99.md`, **Standing Rule
+    **(d) WHERE THE FULL RECIPE NOW LIVES — EXACTLY:** `build/rules/RULES-61-ONWARD.md`, **Standing Rule
     62**, the block headed *"⇒ IF AND ONLY IF HE DIRECTS A TICKET: THE SHAPE"*, subsection
     **§62-T4** — A1 through A10 in full, the QA lead's 2026-08-21 *"irrelevant / obsolete"* origin
     quote, the evidence-that-the-gate-ran clause, the deliverable clause, the rationale and the ties,
@@ -2731,7 +2775,7 @@ Index: CLAUDE.md (rule index table). Other rule files: build/rules/RULES-01-20.m
     > never supposed to create defect, you are supposed to make the tests RUNNABLE."*
     >
     > **THE FULL, AUTHORITATIVE TEXT OF THIS AMENDMENT IS IN STANDING RULE 62**
-    > (`build/rules/RULES-61-99.md`, the block headed *"⇒ AMENDMENT, 2026-09-01 — THE LANE'S JOB IS
+    > (`build/rules/RULES-61-ONWARD.md`, the block headed *"⇒ AMENDMENT, 2026-09-01 — THE LANE'S JOB IS
     > RUNNABLE TESTS, NOT TICKETS. STOP PREPARING DEFECTS."*) — **read it there before acting on
     > anything in this rule.** In one line: a build-verification / VIU / execution pass **no longer ends
     > with a defect candidate awaiting permission.** When the build does not match the document, the
@@ -2998,7 +3042,7 @@ Index: CLAUDE.md (rule index table). Other rule files: build/rules/RULES-01-20.m
     did not exist.
     **DURABLE FACT — THE RULES ARE NO LONGER IN `CLAUDE.md`.** The Standing Rules moved OUT of
     `CLAUDE.md` into `build/rules/RULES-01-20.md` / `RULES-21-40.md` / `RULES-41-60.md` /
-    `RULES-61-99.md` on **2026-08-21**; **`CLAUDE.md` is now an INDEX.** **A session asserting "the
+    `RULES-61-ONWARD.md` on **2026-08-21**; **`CLAUDE.md` is now an INDEX.** **A session asserting "the
     rules live inside CLAUDE.md" is describing a PRE-2026-08-21 state and is therefore STALE — that
     assertion is itself the signal to `git fetch origin` and re-check before it reports anything else.**
     **THE SEARCH DRILL — run these, verbatim, substituting your own strings:**

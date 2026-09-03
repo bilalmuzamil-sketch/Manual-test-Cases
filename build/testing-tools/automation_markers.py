@@ -73,11 +73,12 @@ _SELF = os.path.relpath(os.path.abspath(__file__), REPO)
 # The files that SANCTION a marker. The audit reads these; it never reads a note, a project
 # state file or a remembered figure (same discipline as "count from the system of record").
 #
-# 🛑 THE RULE FILE IS DISCOVERED, NEVER NAMED. Naming 'build/rules/RULES-61-99.md' here would
-# reintroduce the very trap this module exists to remove: that file is RENAMED on every rule
-# addition (RULES-61-93 -> -94 -> -95 -> -96 -> -97 -> -98 -> -99), so the day rule 100 lands
-# the name changes and a hard-coded entry breaks. Globbing is what the sibling sweep does for
-# the same reason (check_rule_amendments.py, "THE RULE FILES ARE DISCOVERED, NEVER LISTED").
+# 🛑 THE RULE FILE IS DISCOVERED, NEVER NAMED. Historically that file was RENAMED on every rule
+# addition (RULES-61-93 -> -94 -> -95 -> -96 -> -97 -> -98 -> -99), so any hard-coded entry broke
+# the day a rule landed. The rename convention was RETIRED 2026-09-03 and the file is now
+# permanently 'build/rules/RULES-61-ONWARD.md' (see build/rules/INTEGRITY.md), but the glob STAYS:
+# it costs nothing, it survives the next reorganisation whatever it is, and it is what the sibling
+# sweep does for the same reason (check_rule_amendments.py, "DISCOVERED, NEVER LISTED").
 def _canon_files():
     rules = sorted(os.path.relpath(p, REPO) for p in
                    glob.glob(os.path.join(REPO, 'build/rules/RULES-*.md')))

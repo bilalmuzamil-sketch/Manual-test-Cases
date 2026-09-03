@@ -1,5 +1,11 @@
 # §1 CONSOLIDATION PROPOSAL + RULE-AMENDMENT SWEEP — 2026-09-02
 
+> **📁 PATH NOTE, 2026-09-03 — `build/rules/RULES-61-99.md` NO LONGER EXISTS; IT IS NOW
+> `build/rules/RULES-61-ONWARD.md`.** The old name is left in the body of this dated report **on
+> purpose**: it records the exact greps and paths used on 2026-09-02, and rewriting them would falsify
+> the evidence. **Substitute the new name when following any path below.** The range-in-filename
+> convention was retired — see `build/rules/INTEGRITY.md`.
+
 > # 🛑 WARNING — 2026-09-03: THREE OF THIS FILE'S ABSENCE CLAIMS WERE WRONG. RE-GREP BEFORE YOU ACT.
 >
 > This report drives §1 consolidation decisions, and it has been caught **three times** asserting

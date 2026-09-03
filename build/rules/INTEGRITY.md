@@ -27,23 +27,47 @@ CLAUDE.md into `build/rules/`. Nothing was deleted; the whole former file is arc
 - `build/rules/RULES-01-20.md` — rules 1-20 (20 rules)
 - `build/rules/RULES-21-40.md` — rules 21-40 (20 rules)
 - `build/rules/RULES-41-60.md` — rules 41-60 (20 rules)
-- `build/rules/RULES-61-99.md` — **rules 61-100 (40 rules) as of 2026-09-03**; 89-90 added 2026-08-21, 91-93 added 2026-08-21, **94 and 95 added 2026-08-26, 96 added 2026-08-26, 97 added 2026-08-28, 98 added 2026-09-01 (`924ee158`), 99 added 2026-09-02 (`5b6f0f8d`)**). **The file has been renamed on every rule addition and has carried, in order, the filenames `RULES-61-93.md` → `-94` → `-95` → `-96` → `-97` → `-98` → `RULES-61-99.md` (current since 2026-09-02).** On each occasion the new rule was appended and the file renamed by `git mv`, and every reference in the repo was updated in the same commit, so **a grep for any of those old filenames must return no LIVE POINTER**. Two classes of hit are expected and must NOT be "fixed": **(i) this rename-history line itself**, which names `RULES-61-93.md` on purpose, and **(ii) dated evidence artefacts and archives** (`CLAUDE-FULL-ARCHIVE-2026-08-21.md`, `CLAUDE-MD-SIZE-DIAGNOSIS-2026-09-02.md`, `SECTION1-AND-AMENDMENT-AUDIT-2026-09-02.md`, `PROJECT-HISTORY-ARCHIVE.md`), which record what was true on their date. Anything else is a broken pointer. Re-derive, do not trust: `git grep -noE "RULES-61-[0-9]+" -- . | grep -v "RULES-61-99"` — verified 2026-09-02, only the two expected classes remain.
-  **🔴 2026-09-03 — RULE 100 WAS ADDED AND THE FILE WAS *NOT* RENAMED. THE RENAME TO `RULES-61-100.md`
-  IS DEFERRED, DELIBERATELY, AND IS OUTSTANDING.** The convention above (rename on every addition, fix
-  every pointer in the same commit) was **not met and could not be met in that pass**: the session that
-  appended rule 100 was scope-fenced out of the files holding **22 of the ~40 live pointers** —
-  `build/skills/00-COMMON-CORE.md` (2), the four `build/handoffs/HANDOFF-*.md` (19) and
-  `build/testing-tools/automation_markers.py` (1) — because parallel workers were editing them at that
-  moment (Rule 83 lane ownership). **A rename that leaves 22 pointers dangling is strictly worse than a
-  filename that lags by one number**, so the rename was held rather than half-done. **⇒ THE FILE NAMED
-  `RULES-61-99.md` CONTAINS RULES 61–100. Do not conclude rule 100 is missing because the filename stops
-  at 99.** **TO CLEAR THIS**, in one commit, when no lane holds those files:
-  `git mv build/rules/RULES-61-99.md build/rules/RULES-61-100.md` · then rewrite every live pointer
-  (`git grep -ln "RULES-61-99" -- .`, excluding the two expected classes above **plus**
-  `SECTION1-AND-AMENDMENT-AUDIT-2026-09-02.md`) · then update this rename-history line to
-  `… → -99 → RULES-61-100.md` · then re-run the no-loss assertion below and the
-  `git grep -noE "RULES-61-[0-9]+"` re-derivation.
-- **⚠️ THE FILENAME AND THE COUNTS IN THIS FILE GO STALE EVERY TIME A RULE IS ADDED.** They went stale on **2026-09-01** the moment rule 98 landed and were still stale on 2026-09-02 (this file said "rules 61-97, 37 rules" while 98 and 99 existed), which meant **the no-loss assertion below would have PASSED while silently missing two rules** — the same class of failure as the 2026-08-21 truncation. **Whoever appends rule N must update this section in the same commit**, and any session relying on the numbers must re-derive them rather than trust them: `grep -cE '^[0-9]+\. \*\*' build/rules/RULES-*.md`.
+- `build/rules/RULES-61-ONWARD.md` — **rules 61-100 (40 rules) as of 2026-09-03**; 89-90 added 2026-08-21, 91-93 added 2026-08-21, **94 and 95 added 2026-08-26, 96 added 2026-08-26, 97 added 2026-08-28, 98 added 2026-09-01 (`924ee158`), 99 added 2026-09-02 (`5b6f0f8d`), 100 added 2026-09-03**.
+
+  ### 🔒 THE RANGE-IN-FILENAME CONVENTION IS **RETIRED** (2026-09-03). THIS FILE IS NEVER RENAMED AGAIN.
+
+  **THE NEW STANDING FACT:** the file is permanently **`build/rules/RULES-61-ONWARD.md`**. It holds
+  rules 61 to the highest-numbered rule, whatever that number becomes. **ADDING A RULE MEANS APPENDING
+  THE RULE AND UPDATING `CLAUDE.md`'s INDEX — THE FILENAME DOES NOT CHANGE, AND MUST NOT BE CHANGED.**
+  A future session that "helpfully" renames it to `RULES-61-101.md` is reintroducing a retired defect.
+
+  **WHY IT WAS RETIRED — the convention itself was the defect, not any one execution of it:**
+  1. **Seven renames.** The file carried, in order, `RULES-61-93.md` → `-94` → `-95` → `-96` → `-97` →
+     `-98` → `RULES-61-99.md`. Each rename forced a **repo-wide pointer sweep of ~40 references**.
+  2. **Every sweep was a chance to leave a dangling pointer, and that repeatedly happened.** The cost
+     scaled with the number of pointers while the benefit — a filename that restates a number already
+     stated inside the file and in `CLAUDE.md`'s index — was **zero**.
+  3. **It failed outright on 2026-09-03.** Rule 100 was appended but the rename was **deliberately held**:
+     the appending session was scope-fenced out of the files holding **22 of the ~40 live pointers**
+     (`build/skills/00-COMMON-CORE.md`, the four `build/handoffs/HANDOFF-*.md`,
+     `build/testing-tools/automation_markers.py`) because parallel workers held them under Rule 83. A
+     rename leaving 22 pointers dangling is strictly worse than a lagging filename, so it was held — and
+     the repo then spent a period in which **the filename said `99` while the file contained 100 rules**,
+     which is exactly the "a rule you never saw is a rule you will break" hazard `CLAUDE.md` opens with.
+  4. **A range-free name makes the whole class of failure impossible.** There is nothing left to go stale.
+
+  **THE RENAME HISTORY IS PRESERVED, AND OLD NAMES ARE STILL EXPECTED IN SOME PLACES.** A grep for any
+  historical name must return **no LIVE POINTER**, but these classes of hit are correct and must NOT be
+  "fixed": **(i) this rename-history block**, which names the old files on purpose · **(ii) dated evidence
+  artefacts and archives** — `CLAUDE-FULL-ARCHIVE-2026-08-21.md`, `CLAUDE-MD-SIZE-DIAGNOSIS-2026-09-02.md`,
+  `SECTION1-AND-AMENDMENT-AUDIT-2026-09-02.md` — which record what was true on their date · **(iii) the
+  two sweep scripts' comments** (`automation_markers.py`, `check_rule_amendments.py`), which cite the old
+  names to explain why they glob `build/rules/RULES-*.md` rather than hard-code a filename. Anything else
+  is a broken pointer. **Re-derive, do not trust:**
+  `git grep -noE "RULES-61-(ONWARD|[0-9]+)" -- . | grep -v "RULES-61-ONWARD"` — run 2026-09-03 after the
+  rename; only the three expected classes remain.
+- **⚠️ THE COUNTS IN THIS FILE GO STALE EVERY TIME A RULE IS ADDED.** (The *filename* no longer can —
+  see the retirement above — but the counts still do.) They went stale on **2026-09-01** the moment rule
+  98 landed and were still stale on 2026-09-02 (this file said "rules 61-97, 37 rules" while 98 and 99
+  existed), which meant **the no-loss assertion below would have PASSED while silently missing two
+  rules** — the same class of failure as the 2026-08-21 truncation. **Whoever appends rule N must update
+  this section in the same commit**, and any session relying on the numbers must re-derive them rather
+  than trust them: `grep -cE '^[0-9]+\. \*\*' build/rules/RULES-*.md`.
 - `build/rules/PROJECT-HISTORY-ARCHIVE.md` — the 7 per-project narrative blocks
 - `CLAUDE.md` — rewritten as a loadable INDEX (see its READ THIS FIRST header)
 
@@ -86,7 +110,7 @@ python3 - <<'PY'
 import re
 md=open("CLAUDE.md",encoding="utf-8").read()
 rows={int(m.group(1)):m.group(2) for m in re.finditer(r"^\| \*\*(\d+)\*\* \| (.*?) \|$",md,re.M)}
-for f in ["RULES-01-20","RULES-21-40","RULES-41-60","RULES-61-99"]:
+for f in ["RULES-01-20","RULES-21-40","RULES-41-60","RULES-61-ONWARD"]:
     L=open("build/rules/%s.md"%f,encoding="utf-8").read().split("\n")
     for i,l in enumerate(L):
         m=re.match(r"^(\d+)\. \*\*(.*)$",l)
@@ -147,8 +171,8 @@ without tightening the gate is theatre.
 **(a) RE-INFLATION** — a rebase or merge resurrecting pre-restructure content, a worker re-appending
 full rule bodies into the index instead of editing `build/rules/`, or a project-index refresh rewriting
 the whole file from a stale copy. **This is a defect: do not commit it.** Repair from `build/rules/`:
-the full rule texts live in `RULES-01-20.md` / `RULES-21-40.md` / `RULES-41-60.md` / `RULES-61-99.md`
-(**rules 1..99** — re-derive the range, do not trust this line), the per-project narratives in
+the full rule texts live in `RULES-01-20.md` / `RULES-21-40.md` / `RULES-41-60.md` / `RULES-61-ONWARD.md`
+(**rules 1..100 today** — re-derive the range, do not trust this line), the per-project narratives in
 `PROJECT-HISTORY-ARCHIVE.md`, and the verbatim pre-split file in `CLAUDE-FULL-ARCHIVE-2026-08-21.md`
 (sha256 recorded above — verify it before relying on it).
 **(b) LEGITIMATE ACCUMULATION** — real QA-lead rulings arriving as new §1 bullets. This is what
@@ -182,8 +206,13 @@ sha256sum build/rules/CLAUDE-FULL-ARCHIVE-2026-08-21.md
 sha256 equal to the value recorded above. **A non-empty "in bodies, NOT in CLAUDE.md §2" line is the
 truncation failure of 2026-08-21 in its quiet form: the rule exists but no session can find it.**
 
-**⚠️ EVERY COUNT AND RANGE WRITTEN IN THIS FILE — including `N = 99` and "rules 61-99" above — GOES
-STALE THE MOMENT A RULE IS ADDED.** They are a dated record of the last run, **not the check**. The
+**RAN 2026-09-03, after the rename to `RULES-61-ONWARD.md`: PASS —** `rule bodies: 100  highest: 100` ·
+no gaps or duplicates (complete 1..100) · **both `comm` lines empty** · archive sha256
+`2d715d75530c41fecbfed34120f5891b8fae02959c2d2c7d1d9d0a2e4718ba9c`, equal to the value recorded above.
+
+**⚠️ EVERY COUNT AND RANGE WRITTEN IN THIS FILE — including `N = 100` and "rules 61-100" above — GOES
+STALE THE MOMENT A RULE IS ADDED.** (The *filename* no longer does; see the retirement block above.)
+They are a dated record of the last run, **not the check**. The
 check is the block above, and it must be **RE-RUN, never trusted**: a session that reads a number here
 and reports it as current is reporting history. Whoever appends rule N+1 updates this file **and** adds
 its §2 index row in the same commit, then re-runs the block to prove both landed.

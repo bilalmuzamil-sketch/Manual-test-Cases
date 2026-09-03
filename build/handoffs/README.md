@@ -29,7 +29,7 @@ Inline and verbatim, because **a session must not have to open another file to l
 **A HANDOFF WITHOUT IT IS NON-COMPLIANT AND MUST NOT BE ISSUED.** If you are authoring or revising a
 handoff, copy the section from any of the four existing handoffs. If a handoff already has a
 token/quota section, **MERGE into it — never duplicate.** Authority: **Standing Rule 95**
-(`build/rules/RULES-61-99.md`); it ties Rules 12, 50, 75, 76, 77, 78, 79, 80, 86, 88, 90.
+(`build/rules/RULES-61-ONWARD.md`); it ties Rules 12, 50, 75, 76, 77, 78, 79, 80, 86, 88, 90.
 
 ---
 
@@ -51,7 +51,7 @@ playbook or the relevant skill IN THE SAME PASS**.
 
 **A HANDOFF WITHOUT IT IS NON-COMPLIANT AND MUST NOT BE ISSUED.** Copy the section from any of the four
 existing handoffs; merge rather than duplicate if a similar section exists. Routers and other skills take
-it **by pointer only**. Authority: **Standing Rule 97** (`build/rules/RULES-61-99.md`); it ties Rules 27,
+it **by pointer only**. Authority: **Standing Rule 97** (`build/rules/RULES-61-ONWARD.md`); it ties Rules 27,
 29, 59, 68, 76, 79, 86, 88, 89, 93.
 
 ---
@@ -106,7 +106,7 @@ handoff already has a blocked-handling section. Routers and other skills take it
 Authority: the QA lead, **2026-08-31** (*"WHY are you failing to unblock yourself?"*) — the incident
 was **18 cases parked as "blocked" when every one had a defined outcome already written down, and 12
 more called blocked before the search was finished.** It ties Rules **12, 14, 26, 57, 58, 68, 69, 74,
-97** (`build/rules/RULES-01-20.md`, `RULES-41-60.md`, `RULES-61-99.md`).
+97** (`build/rules/RULES-01-20.md`, `RULES-41-60.md`, `RULES-61-ONWARD.md`).
 
 ---
 
