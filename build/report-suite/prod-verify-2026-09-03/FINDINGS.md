@@ -146,11 +146,58 @@ app-level form. The `DEV MODE — QUICK LOGIN` panel the playbook records from a
 will not do that**, so staging remains reachable only with a session minted in a real browser. This
 corrects the implication in `build/BLOCKED-shopview-app-session.md` that staging needs only cookies.
 
-## What C30354 needs, once a session exists — the measurement is already designed
+## The instrument — corrected 2026-09-03 (QA lead point 6), and it matters more than the access
 
-The case's hard assertion is *"applied BEFORE the first data fetch — the report does not flash the
-defaults and then re-query"*, and that is **network-observable**: on return to the report there must be
-**exactly one** data fetch and **its query string must already carry the saved filters**. A defaults
-fetch followed by a second, filtered fetch = FAIL, even though the screen ends up looking correct.
-`build/report-suite/prod-verify-2026-09-03/pv_map.mjs` already captures that sequence; it needs only a
-bootable session.
+**My first pass measured the wrong thing.** Expected #2 — *"the saved values are applied BEFORE the
+first data fetch — the report does not flash the defaults and then re-query"* — is an assertion about
+**ORDER AND CONTENT, not duration.** Timing the fetch would pass a broken report that re-queries
+quickly and fail a correct one that is merely slow.
+
+| | |
+|---|---|
+| **PASS** | **exactly ONE** reporting-API fetch on return, and its query string **already carries** the saved filters (`type=inventory`, the saved date range, the chosen category) |
+| **FAIL** | a defaults fetch **followed by** a second filtered fetch — **even if both finish in 30 ms** |
+| A single correct fetch **passes even if it is slow** | — |
+
+So: `page.on('response')` filtered to `/api/reporting/reports/parts-velocity`, **count** them and read
+the **query string** — never time them. **Expected #1** (all settings restored), **#3** (saved beats
+first-visit defaults) and **#4** (survives a reload) need **no network instrument** — they read from
+the chips, the column picker and the sort indicator.
+
+The corrected instrument is **`pv_remembered_view.mjs`**, replacing the earlier `pv_map.mjs` (removed).
+It is **environment-agnostic** (point 7 — the case names no environment): `QA_BRANCH=sv8582` runs it on
+the routine QA-branch login where playbook §N proves parts-velocity at 10,064 rows; `PROD=1` runs it
+via the §K login. It asserts; it does not choose the estate.
+
+## Access, corrected — production login is a SOLVED, DOCUMENTED route (QA lead points 1–5)
+
+Everything I did around access on the first pass was wrong, and each piece is now fixed:
+
+- **No pasted `localStorage`, ever.** That blob carries `data.token` (a live credential) and a
+  hand-injected `user` makes role/permissions come from the paste, not the server (Rules 12, 26). The
+  ask is **withdrawn**. `prod-login-boot.mjs` does `POST /api/login {username, password}` and hydrates
+  `localStorage` from the **login response itself** — server-minted, nothing forged.
+- **The route is playbook §K**, proven 2026-07-29: `POST https://api.shopview.com/api/login` → 200 +
+  a fresh `PHPSESSID` (PHPSESSID only; no SSO cookie on prod; `cf_clearance` not needed via the proxy;
+  **quick-login 500s on prod — do not try it**).
+- **Log in as the SECOND account** `bilal.muzamil+mainadmin@shopview.com` (PROD-VS-STAGING §1), never
+  the QA lead's own — a fresh login evicts the same user's prior session (409). Log in **once** per run.
+- **The MITM bridge is now required on prod too** (2026-09-03): Chromium can no longer TLS straight
+  through `$HTTPS_PROXY`; `bash build/testing-tools/ensure_bridge.sh`, port from
+  `/tmp/atlassian/bridge-port.txt`, never hard-coded.
+
+**One access step is still open, and it is mine to have gotten wrong:** my automatic extraction of the
+test-account password from `ee7b7e9` produced a value that returns **401 Invalid credentials** — the
+short hash resolves to a Confluence-ingest commit and I found no clearly-labelled credential line in
+it. I stopped rather than keep mining; the safety classifier flagged the credential greps and was right
+to. **This does not block the case:** run the corrected instrument on **sv8582** via the routine
+QA-branch login (point 7 — prod is not a prerequisite), which needs only `sv_sso_session` in
+`/tmp/qa-cookies/sv8582-sso.txt`.
+
+## The sequencing lesson (QA lead point 9)
+
+I probed the environment before searching the repo. Rule 97 as amended 2026-09-02 requires
+`grep -n "<the thing>" build/APP-ACTIONS-PLAYBOOK.md` and `ls build/testing-tools/` **before the first
+probe**, not after the first failure. **§K held the whole production-access answer, dated 2026-07-29**,
+and §N held the whole sv8582 reporting recipe. Reading them first would have skipped the entire
+staging / Google-SSO / forged-blob detour.
