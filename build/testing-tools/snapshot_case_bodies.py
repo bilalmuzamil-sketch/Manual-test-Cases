@@ -32,8 +32,9 @@ USAGE
     python3 build/testing-tools/snapshot_case_bodies.py --selftest
     python3 build/testing-tools/snapshot_case_bodies.py --help
 
-Credentials come from /tmp/testrail/creds.json (or TESTRAIL_* environment variables) and are NEVER
-written to the repo, logged, or echoed. This repo is public.
+Credentials are resolved by load_creds.testrail_creds() — TESTRAIL_* environment variables, then
+/tmp/shopview-creds.env, then /tmp/testrail/creds.json (--creds selects that last one) — and are
+NEVER written to the repo, logged, or echoed. This repo is public.
 """
 
 from __future__ import annotations
@@ -84,26 +85,30 @@ REPO_ROOT_DEFAULT = os.path.abspath(os.path.join(os.path.dirname(os.path.abspath
 
 
 def load_creds(path: str = DEFAULT_CREDS):
-    """(base_url, basic_auth_header_value). Env wins; the file is the fallback. Never logged."""
-    host = os.environ.get("TESTRAIL_HOST")
-    user = os.environ.get("TESTRAIL_EMAIL") or os.environ.get("CLAUDE_USERNAME")
-    pwd = os.environ.get("TESTRAIL_API_KEY") or os.environ.get("TESTRAIL_PASSWORD")
-    if not (host and user and pwd):
-        with open(path) as fh:
-            c = json.load(fh)
-        host = host or c.get("host")
-        user = user or c.get("user") or c.get("email")
-        pwd = pwd or c.get("password") or c.get("api_key")
-    if not (host and user and pwd):
+    """(base_url, basic_auth_header_value) -- delegated to load_creds.py. Never logged.
+
+    2026-09-03: this function used to run its OWN search and it had a specific failure
+    mode: it required HOST **and** user **and** password from the environment before it
+    would look at anything else, then went straight to `open(path)` -- so with no
+    TESTRAIL_HOST set and no JSON file it raised FileNotFoundError, never once looking at
+    /tmp/shopview-creds.env, where credentials do live. A reader that checks fewer places
+    is what made a session declare a false blocker on 2026-09-02. Never re-implement the
+    lookup here - a second copy is a second thing to be wrong (Rule 97).
+
+    Contract unchanged: same 2-tuple, same SystemExit (not a traceback) when nothing is
+    found anywhere, and `path` (the --creds flag) still selects the JSON source.
+    """
+    sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+    from load_creds import testrail_creds, testrail_host
+    try:
+        user, pwd = testrail_creds(path)
+    except RuntimeError as exc:
         raise SystemExit(
-            "no TestRail credentials: set TESTRAIL_HOST/TESTRAIL_EMAIL/TESTRAIL_API_KEY "
-            f"or provide {path} (chmod 600, /tmp only, never committed)"
-        )
-    host = host.rstrip("/")
-    if not host.startswith("http"):
-        host = "https://" + host
+            f"{exc}\nset TESTRAIL_EMAIL/TESTRAIL_API_KEY (optionally TESTRAIL_HOST) or "
+            f"provide {path} (chmod 600, /tmp only, never committed)"
+        ) from None
     auth = "Basic " + base64.b64encode(f"{user}:{pwd}".encode()).decode()
-    return f"{host}/index.php?/api/v2/", auth
+    return f"{testrail_host(path)}/index.php?/api/v2/", auth
 
 
 # --------------------------------------------------------------------------- transport (GET only)
