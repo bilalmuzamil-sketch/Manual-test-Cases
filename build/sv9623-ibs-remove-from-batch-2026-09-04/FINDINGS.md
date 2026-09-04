@@ -83,3 +83,12 @@ batch-balance guard. Recommend the tooltip reflect the actual reason for this ca
     confirmed live earlier this session on this same build.
 - OUTSTANDING (from the prior update) is now CLEARED — the example batch was confirmed present; SV-9705's
   steps are reproducible right now and need no change.
+
+## Update 2026-09-04 (Rules 69 + 70; SV-9705 title + top credit line corrected)
+- Rule 69: ticket titles are concise but must explain the problem (screen/feature + what is wrong;
+  ≤ ~80 chars where the problem still fits; clarity beats brevity).
+- Rule 70: "Found while testing <ticket>" goes at the VERY TOP of a follow-up ticket, with the link,
+  then a line break, then the ticket's own description/body.
+- SV-9705 corrected: title -> "IBS Batches: misleading Remove tooltip on an unpaid invoice in a credit
+  batch" (77 chars); description now opens with "Found while testing SV-9623" (linked) + divider, then
+  the 2-line problem, reproduce steps, screenshot, technical details last. Priority still Medium.
