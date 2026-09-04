@@ -3862,6 +3862,54 @@ deliver the 7-tab management report.
     input is a bug report against our own understanding until re-derived), 57 (the source of expected
     behaviour is the document, not a convenient proxy) and 64 (annotated before/after screenshots).
 
+67. **A FOLLOW-UP TICKET WE FILE IS WRITTEN FOR A NON-TECHNICAL PO TO REPRODUCE IN THE EASIEST WAY ON
+    EARTH — a tight plain-language description + PO-runnable steps ON THE NAMED QA BRANCH + annotated
+    screenshots (all projects).**
+    USER DIRECTIVE (2026-09-04, verbatim): *"make sure that you make the ticket description super short
+    super explanatory and super easy to understand for lay man and non technical POs with the steps of
+    reproduction which are runnable by the POs in the most easiest way on the earth because if they fail
+    to reproduce the ticket you create it will bite me always."* and *"Ticket description small two line
+    or one line whatever is mandatory to summarize the issue add more line if the issue can not be
+    explained in one or two lines, make sure that in an attempt to keep the lines less in number you do
+    not underexplain the issue, but do not overexplain if that is not needed … Put the steps of
+    replication which are completely runnable on the QA branch put the QA branch link and do mention to
+    open the QA branch to replicate the issue, then put the steps of replication which are 100% runnable
+    by a manual QA member of non technical PO With the annotated screenshots."*
+    **THE RULE — every ticket we create in follow-up of a main ticket (the Rule-52 separate-finding
+    ticket, and any ticket we raise) is written so a NON-TECHNICAL PO can reproduce it unaided:**
+    **(1) DESCRIPTION — AS SHORT AS THE ISSUE ALLOWS, NEVER SHORTER.** One or two plain-English lines
+    that say what the issue is; add a line **only** where the issue genuinely needs it. **Do NOT
+    underexplain to keep the line count down, and do NOT overexplain when it is not needed** — do
+    exactly what is needed to make the reader understand what the issue is about. The test: a reader
+    who knows nothing about the feature understands the problem from the description alone. **No case
+    IDs, endpoints, HTTP codes, backend flags, or jargon in the description** (Rules 7/55).
+    **(2) STEPS TO REPRODUCE — 100% RUNNABLE ON THE QA BRANCH, BY A LAYMAN.** Start with **"Open the QA
+    branch to reproduce the issue: <full sv####.qa.shopview.com link>"**, then numbered steps a manual
+    QA member or a non-technical PO can follow **click by click** — exact on-screen labels + navigation
+    path (Rule 9), pointing at **data that already exists on the branch** wherever possible (per-ticket
+    branches need no cleanup, so the state that proves it is still there — name it on screen) so they
+    never have to build anything. **Every step is a thing you do in the screen; nothing requires a
+    tool, a console, or an endpoint.** If reproducing genuinely needs a specific data shape, give the
+    plainest UI way to get it — AND verify that data is live on the branch BEFORE naming it (a step
+    that names data since gone is the exact way a PO fails to reproduce → the bite).
+    **(3) ANNOTATED SCREENSHOTS — inline, so the reader sees exactly WHAT and WHERE** (Rule 64): boxes/
+    arrows/captions drawn on the real values.
+    **(4) TECHNICAL DETAIL GOES LAST, CLEARLY SEPARATED** — endpoints, ids, raw responses, build marker
+    live BELOW a rule under a "Technical details" heading, for the developer; **they never intrude on
+    the PO-facing description or steps.**
+    **(5) HUMAN VOICE, MEDIUM PRIORITY, CORRECTLY LINKED** — Rule 65 (no AI fingerprint), the priority
+    rule (always Medium), and Rule 52 (epic parent where one exists / match a parentless tested ticket;
+    link `Relates`) all still apply.
+    **WHY (the bite):** a follow-up ticket's whole value is that the person who reads it can SEE the
+    problem in one minute on the branch; **if the PO opens it and cannot reproduce it, the ticket reads
+    as noise or a false alarm and it bites the QA lead — every time.** Same failure family as SV-8821
+    (steps named no test data, so it could not be reproduced) and SV-9087 (a repro that did not match
+    the reported flow). Ties to Standing Rules 7 (plain layman wording), 9 (build-accurate labels +
+    navigation), 25 (exact values), 50 (name the exact test data — and verify it is live), 52 (parent/
+    link shape), 55 (extreme simplification, name the feature/project), 63 (be cheap — reuse the
+    branch's existing data), 64 (annotated screenshots), 65 (human voice) and the priority rule
+    (Medium). **Applied 2026-09-04: SV-9705 rewritten to this standard.**
+
 ## Project purpose (Custom Roles project)
 Manual test-case authoring + live staging (Verify-in-UI) verification + TestRail
 management for ShopView **"Custom Roles and Permissions"**, plus related
