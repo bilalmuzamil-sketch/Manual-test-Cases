@@ -3955,6 +3955,37 @@ deliver the 7-tab management report.
     on receiving fresh cookies, the SV-9705 reproduction was re-verified live on the branch before the
     ticket was left to stand.**
 
+69. **TICKET TITLE — CONCISE, BUT IT MUST EXPLAIN THE PROBLEM (all projects).**
+    USER DIRECTIVE (2026-09-04, verbatim): *"keep the Ticket Title concise while ensuring they title
+    explains the problem."*
+    **THE RULE:** every ticket we create or edit gets a **short one-line title a reader understands the
+    PROBLEM from at a glance** — what is wrong and where. **Not a vague label** ("tooltip issue"),
+    **not a full paragraph**, and **no case IDs / endpoints / jargon.** The test, all three: (a) it
+    names the **screen/feature** and the **actual problem**; (b) a reader knows what the ticket is about
+    **without opening it**; (c) it is as short as it can be **without dropping the problem**. Aim for
+    **≤ ~80 characters** where the problem still fits; **clarity of the problem beats brevity** — never
+    trim away what the issue IS to hit a length, and never pad. Applies to every ticket, every project,
+    going forward. **Applied 2026-09-04:** SV-9705's title shortened from a 130-char sentence to
+    *"IBS Batches: misleading Remove tooltip on an unpaid invoice in a credit batch."* Ties to Standing
+    Rules 7 (plain wording), 19 (human-readable), 67 (short description) and the concise TestRail-title
+    convention (≤ ~80 chars).
+
+70. **"FOUND WHILE TESTING <TICKET>" GOES AT THE VERY TOP OF A FOLLOW-UP TICKET, WITH THE LINK — then a
+    line break, then the ticket's own description (all projects).**
+    USER DIRECTIVE (2026-09-04, verbatim): *"when you say that it was found while testing another ticket
+    it should appear at the top with the ticket link which you were testing and you found it then give a
+    line break and then start with the ticket description and everything for the new ticket."*
+    **THE RULE:** whenever a ticket we file was discovered while testing another ticket, the **FIRST
+    line of the description is the credit line** — *"Found while testing <TICKET-KEY>"* with
+    **<TICKET-KEY> as a clickable link** to the ticket we were testing — then a **line break**, then the
+    normal ticket body begins (the short problem description per Rule 67, then How to reproduce, the
+    annotated screenshot, and Technical details last). **The credit line is NEVER buried at the bottom
+    or inside the technical section** — a reader sees where it came from first. It does **not** replace
+    the `Relates` link (Rule 52) — the link is still set on the ticket; this is the tester-visible
+    version of it at the top. **Applied 2026-09-04:** SV-9705 restructured so *"Found while testing
+    SV-9623"* (linked) is the top line. Ties to Standing Rules 52 (link Relates), 65 (human voice), 67
+    (follow-up ticket format) and 8 (name the source ticket).
+
 ## Project purpose (Custom Roles project)
 Manual test-case authoring + live staging (Verify-in-UI) verification + TestRail
 management for ShopView **"Custom Roles and Permissions"**, plus related
