@@ -92,3 +92,16 @@ batch-balance guard. Recommend the tooltip reflect the actual reason for this ca
 - SV-9705 corrected: title -> "IBS Batches: misleading Remove tooltip on an unpaid invoice in a credit
   batch" (77 chars); description now opens with "Found while testing SV-9623" (linked) + divider, then
   the 2-line problem, reproduce steps, screenshot, technical details last. Priority still Medium.
+
+## Update 2026-09-04 (SV-9705 made crystal-clear: exact row named + before/after pair)
+- Sharpened Rule 67(3): name the EXACT element to act on (on-screen name + id), never "one of the rows";
+  and show the RESTING BEFORE state, not only the after — for a hover/menu/dialog reveal, ship a BEFORE
+  (how the control/badge looks before you touch it) AND an AFTER (the reveal).
+- Live-captured a fresh before/after on sv9623.qa.shopview.com (build v26.35.8-327c626):
+  ba-before.png / ba-after.png -> annotated tooltip-before-after.png.
+  - BEFORE: Lamkin Diesel Services Inc (INV-S2-17228, $1,874.40, Unpaid); its Remove/trash icon is
+    faded (opacity 0.7, i.e. disabled) — no tooltip.
+  - AFTER: hovering that same faded icon shows "Only unpaid invoices can be removed from a batch" while
+    the row Status is still Unpaid.
+- SV-9705 updated: steps now name the exact Lamkin row and reference the BEFORE/AFTER pictures; single
+  screenshot replaced by tooltip-before-after.png. Title/priority/top-credit unchanged. URL 200.

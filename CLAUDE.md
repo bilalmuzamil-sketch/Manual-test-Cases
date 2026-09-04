@@ -3893,7 +3893,15 @@ deliver the 7-tab management report.
     plainest UI way to get it — AND verify that data is live on the branch BEFORE naming it (a step
     that names data since gone is the exact way a PO fails to reproduce → the bite).
     **(3) ANNOTATED SCREENSHOTS — inline, so the reader sees exactly WHAT and WHERE** (Rule 64): boxes/
-    arrows/captions drawn on the real values.
+    arrows/captions drawn on the real values. **NAME THE EXACT ELEMENT the reader must act on** — the
+    exact row/control by its on-screen name AND id (e.g. *"the Lamkin Diesel Services Inc row,
+    INV-S2-17228"*), **never *"one of the invoices"* / *"a row"*** — and **SHOW THE RESTING BEFORE
+    STATE, not only the after.** Where the proof is revealed by a hover, click or menu (a tooltip, a
+    dropdown, a dialog), a single after-shot leaves the reader unable to FIND the control: ship a
+    **BEFORE picture (how the icon/badge/control looks before you touch it) AND an AFTER picture (the
+    reveal)** — this is Rule 64's before/after applied to reveals, not just to value changes. Every
+    reproduction step points at the picture that proves it ("this is the BEFORE picture below").
+    **Applied 2026-09-04: SV-9705 given a before/after pair naming the exact Lamkin INV-S2-17228 row.**
     **(4) TECHNICAL DETAIL GOES LAST, CLEARLY SEPARATED** — endpoints, ids, raw responses, build marker
     live BELOW a rule under a "Technical details" heading, for the developer; **they never intrude on
     the PO-facing description or steps.**
