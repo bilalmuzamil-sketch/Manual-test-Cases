@@ -68,3 +68,6 @@ Annotated exhibits: evidence/05,06,07.
 - **Work Order S2-861 → Add Work Order Fee → "Apply From Template" → `ZZAUTOTEST PF 100pct` present.** → `evidence/09-PROD-workorder-dropdown-pf-present.png`. Matches "It works on Work Orders just fine, but not Parts sales."
 - **CONCLUSION: bug confirmed reproducible on production.** This gives a real before/after: PROD (broken, No results) vs QA branch sv9566 with PR #2900 (fixed, PF appears on part sales too).
 - Note: on prod the part-sale fee dialog showed **no** QuickBooks "map a fee item" banner (unlike the sv9566 QA branch). Not relevant to the template-appearance reproduction, but noted.
+
+## POSTED
+QA comment posted to SV-9566 — comment id **76010** (2026-09-04). Verdict PASSED; production reproduction + fix-branch before/after with 5 annotated exhibits; QB apply/sync residual flagged. Link: https://shopview.atlassian.net/browse/SV-9566?focusedCommentId=76010
