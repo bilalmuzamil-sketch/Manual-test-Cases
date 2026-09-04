@@ -49,3 +49,13 @@ batch-balance guard. Recommend the tooltip reflect the actual reason for this ca
 - QA comment posted on SV-9623 (comment id 76001) — OVERALL QA STATUS: PASSED, 9-row check table, 2 inline annotated exhibits (01-sent-remove-buttons.png, 02-happy-path-back-to-ready.png).
 - Tooltip observation re-verified LIVE before posting (had appeared as red/enabled in the first screenshot; confirmed both credit-batch unpaid invoices S-16140 & S-17228 have can_remove_from_batch=false → buttons DISABLED; hovering the unpaid Lamkin row shows "Only unpaid invoices can be removed from a batch" while the real API reason is the balance guard "the batch total that would remain is smaller than this invoice"). Evidence: tooltip-issue.png.
 - Raised as its own ticket **SV-9705** (Bug, priority Low, Product Area Billing Portal, Open), linked **Relates** to SV-9623, with the annotated tooltip-issue.png. Referenced from the SV-9623 comment.
+
+## Update 2026-09-04 (edge screenshots + comment strengthened)
+- User asked for every table row to be screenshot-backed. Captured live UI before/after for the 3 edge rows and added 3 annotated exhibits to comment 76001 (updated in place):
+  - 03-edge-multi-invoice-remove-one.png (row 8): 2-invoice batch $2,384.17 (Lansing+Dorr) -> remove Dorr -> $1,113.83, Lansing remains.
+  - 04-edge-rebatch.png (row 7): Dorr (back in Ready To Send) -> Create Batch -> new $1,270.34 Sent batch.
+  - 05-edge-remove-last.png (row 6): 5 batches incl. single-invoice Dorr batch -> remove Dorr -> 4 batches (batch gone); Dorr verified back in Ready To Send.
+- Resolved a potential bite: the credit-batch unpaid invoices (Glendale/Lamkin) DO have disabled Remove buttons (can_remove_from_batch=false) despite red icon colour — confirmed live; tooltip issue is real.
+- Removed a stale pre-break example ("$2,188.75 from $12,294.55 batch"; $2,188.75 = the paid Honest Diesel invoice, not removable) from the comment; replaced with the screenshot-backed $2,384.17->$1,113.83 numbers.
+- SV-9705 corrected Low -> Medium per QA-lead ruling 2026-09-04 (all tickets we create/edit = Medium; PO changes priority). Rule saved in CLAUDE.md (supersedes Rule 53 "Low").
+- Env note: per-ticket QA branch (sv9623) needs no cleanup (disposable); left a new Lansing single-invoice Sent batch + Dorr back in Ready To Send from the edge tests.
