@@ -3910,6 +3910,51 @@ deliver the 7-tab management report.
     branch's existing data), 64 (annotated screenshots), 65 (human voice) and the priority rule
     (Medium). **Applied 2026-09-04: SV-9705 rewritten to this standard.**
 
+68. **EVERYTHING WE DO IS BITE-PROOF, AND EVERYTHING WE DO IS LIVE-VERIFIED ON THE BRANCH — ALWAYS
+    (all projects). THE CAPSTONE RULE.**
+    USER DIRECTIVE (2026-09-04, verbatim): *"Everything you do should ALWAYS be bite proof. Everything
+    you do should be live verified on the branch ALWAYS."*
+    **THE TWO HALVES ARE ONE COIN: live verification is HOW a deliverable is made bite-proof.**
+    **(1) BITE-PROOF — NOTHING WE HAND OVER CAN EMBARRASS THE QA LEAD IF SOMEONE ACTS ON IT.** Before
+    ANYTHING leaves our hands — a Jira comment, a filed or edited ticket, a PASS/FAIL verdict, a
+    reproduction step, a screenshot or its caption, a count, a "did-not-change / untouched" claim, a
+    readiness figure, a status report, a chat answer — ask: **"if a PO, a developer, or leadership acts
+    on this, does it hold?"** If it could be false, non-reproducible, stale, or misread, it is **not
+    ready to ship.** Every factual claim carries its evidence (Rules 48/50); every reproduction is
+    runnable by the intended reader (Rule 67); every number is set-equal both ways, not a matching total
+    (Rule 50); every "we didn't touch it" is a **byte-identical snapshot including `updated_on`**
+    (Rule 50); every named piece of test data is confirmed present (Rules 50/67).
+    **(2) LIVE-VERIFIED ON THE BRANCH — ALWAYS, NOT "WHERE PRACTICAL".** No claim about the build, a
+    behaviour, an on-screen label, a data state, a reproduction, a verdict, a count or a "still there"
+    is made from **memory, inference, spec-only reading, a prior pass, or a stale screenshot.** It is
+    **OBSERVED LIVE on the QA branch with evidence captured that run** (Rules 12/13/50), and
+    **re-confirmed live at the MOMENT we rely on it** (Rule 59 — the branch and its data are sources;
+    re-read before we write/ship, not only at pass start). **A reproduction we name in a ticket is
+    re-driven live before the ticket goes out**; a screenshot reflects the **current** live state, not
+    a screenshot from hours ago.
+    **THE HARD STOP:** if the session/cookies are dead, the branch is unreachable, or the data can't be
+    confirmed, **STOP and get fresh access** (Rule 22) — **never ship the unverified claim, and never
+    substitute inference to look complete** (Rule 12). "I could not verify this live" is an OUTSTANDING
+    item (Rule 36), not a thing we quietly paper over.
+    **HONESTY CLAUSE — "always" means EXHAUST THE SELF-UNBLOCK FIRST.** Before anything is called
+    un-verifiable, run the full self-unblock (seed the data, switch UI↔API, create a fresh staff, read
+    the deployed bundle, probe the endpoint — Rules 14/`ALWAYS UNBLOCK YOURSELF`). The **only**
+    permissible non-live item is a genuinely unobtainable external dependency (real hardware, an account
+    we do not have), and even then it is a **fully-characterised, evidence-backed, LABELLED** verdict —
+    **never the bare claim dressed as observed** (Rule 12/14).
+    **WHY:** this is the through-line of the whole engagement — the SBR export gap, SV-8821's
+    unreproducible steps, SV-9087's wrong-flow repro, the "$2,188.75/$12,294.55" stale number caught in
+    the SV-9623 comment, and the SV-9705 example batch we could not confirm until fresh cookies arrived
+    — **every one was a bite that live verification at the moment of shipping would have prevented.**
+    This rule sits ABOVE and RESTATES Rules 12 (observed, never inferred), 13 (live feature-by-feature),
+    17 (complete in/out), 22 (ask for access up front), 25 (cite the evidence), 48 (a claim carries its
+    context), 49/60 (the build is a source; re-check on a redeploy), 50 (exhaustive AND exact), 59
+    (re-read immediately before writing), 62 (a per-ticket PASS is final only because it was live-
+    observed), 64 (annotated live screenshots), 66 (test the reported flow live) and 67 (the follow-up
+    ticket must be reproducible) — it is the one-line reason all of them exist. **Applied 2026-09-04:
+    on receiving fresh cookies, the SV-9705 reproduction was re-verified live on the branch before the
+    ticket was left to stand.**
+
 ## Project purpose (Custom Roles project)
 Manual test-case authoring + live staging (Verify-in-UI) verification + TestRail
 management for ShopView **"Custom Roles and Permissions"**, plus related
