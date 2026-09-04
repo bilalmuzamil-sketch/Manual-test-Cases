@@ -120,3 +120,18 @@ batch-balance guard. Recommend the tooltip reflect the actual reason for this ca
   after); "Fastest way to reproduce" deep link added after the steps. Title/priority/top-credit unchanged.
 - SEED CONFIRMED LIVE (quick-login path): the $403.91 credit batch is present - Glendale $592.17 + Lamkin
   $1,874.40, both unpaid, Remove disabled. PO needs zero setup. (Raw-cookie API 409s; SSO/quick-login 200.)
+
+## Update — SV-9705 v3 description PUSHED (2026-09-04)
+- editJiraIssue on SV-9705 executed; description replaced with v3 (desc_v3.json).
+- Verified on the returned issue: priority = Medium (id 3), title unchanged
+  ("IBS Batches: misleading Remove tooltip on an unpaid invoice in a credit batch"),
+  status Open. Description now carries, in order: "Found while testing SV-9623"
+  (linked, bold) at the TOP -> rule -> 2-line plain description -> How to reproduce
+  (QA-branch link + 6 layman steps, INCLUDING the explicit "batches are closed / click
+  the arrow to open" expand step 2-3) -> "What you should see instead" -> "Fastest way
+  to reproduce" one-click deep link (/reports/batch-transactions + the tiny remaining
+  clicks named) -> step-by-step 3-step screenshot (tooltip-3steps.png, verified 200) ->
+  Technical details LAST.
+- Data already seeded and left ready on the branch (credit batch $403.91: Glendale
+  $592.17 + Lamkin INV-S2-17228 $1,874.40, both Unpaid, can_remove_from_batch=false,
+  + North Kensington credit) — PO/manual QA needs NO setup, just follow the steps.
