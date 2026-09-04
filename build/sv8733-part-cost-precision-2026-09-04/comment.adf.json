@@ -1,0 +1,689 @@
+{
+"body": {
+"type": "doc",
+"version": 1,
+"content": [
+{
+"type": "panel",
+"attrs": {
+"panelType": "success"
+},
+"content": [
+{
+"type": "paragraph",
+"content": [
+{
+"type": "text",
+"text": "OVERALL QA STATUS: PASSED",
+"marks": [
+{
+"type": "strong"
+}
+]
+}
+]
+},
+{
+"type": "paragraph",
+"content": [
+{
+"type": "text",
+"text": "Tested on the SV-8733 QA branch (sv8733.qa.shopview.com, build v26.35.7-65e7373). The reported part-cost inconsistency is resolved \u2014 all 6 checks passed. A part cost entered as $45.78900 now stays $45.78900 on reopen and on the Bulk Receive page, with no rounding to $45.79000 or $45.78950."
+}
+]
+}
+]
+},
+{
+"type": "heading",
+"attrs": {
+"level": 3
+},
+"content": [
+{
+"type": "text",
+"text": "What I tested"
+}
+]
+},
+{
+"type": "table",
+"attrs": {
+"isNumberColumnEnabled": false,
+"layout": "default"
+},
+"content": [
+{
+"type": "tableRow",
+"content": [
+{
+"type": "tableHeader",
+"attrs": {},
+"content": [
+{
+"type": "paragraph",
+"content": [
+{
+"type": "text",
+"text": "#"
+}
+]
+}
+]
+},
+{
+"type": "tableHeader",
+"attrs": {},
+"content": [
+{
+"type": "paragraph",
+"content": [
+{
+"type": "text",
+"text": "What I tested"
+}
+]
+}
+]
+},
+{
+"type": "tableHeader",
+"attrs": {},
+"content": [
+{
+"type": "paragraph",
+"content": [
+{
+"type": "text",
+"text": "Result"
+}
+]
+}
+]
+}
+]
+},
+{
+"type": "tableRow",
+"content": [
+{
+"type": "tableCell",
+"attrs": {},
+"content": [
+{
+"type": "paragraph",
+"content": [
+{
+"type": "text",
+"text": "1"
+}
+]
+}
+]
+},
+{
+"type": "tableCell",
+"attrs": {},
+"content": [
+{
+"type": "paragraph",
+"content": [
+{
+"type": "text",
+"text": "Edit Part Request: enter cost $45.78900, Save & Close, then reopen the window \u2014 cost must not round"
+}
+]
+}
+]
+},
+{
+"type": "tableCell",
+"attrs": {},
+"content": [
+{
+"type": "paragraph",
+"content": [
+{
+"type": "text",
+"text": "PASSED \u2014 stays $45.78900 (was $45.79000)",
+"marks": [
+{
+"type": "strong"
+},
+{
+"type": "textColor",
+"attrs": {
+"color": "#216934"
+}
+}
+]
+}
+]
+}
+]
+}
+]
+},
+{
+"type": "tableRow",
+"content": [
+{
+"type": "tableCell",
+"attrs": {},
+"content": [
+{
+"type": "paragraph",
+"content": [
+{
+"type": "text",
+"text": "2"
+}
+]
+}
+]
+},
+{
+"type": "tableCell",
+"attrs": {},
+"content": [
+{
+"type": "paragraph",
+"content": [
+{
+"type": "text",
+"text": "Reopen the window and press Save & Close changing nothing \u2014 the stored cost must not be silently rounded"
+}
+]
+}
+]
+},
+{
+"type": "tableCell",
+"attrs": {},
+"content": [
+{
+"type": "paragraph",
+"content": [
+{
+"type": "text",
+"text": "PASSED \u2014 true value stays 45.78900",
+"marks": [
+{
+"type": "strong"
+},
+{
+"type": "textColor",
+"attrs": {
+"color": "#216934"
+}
+}
+]
+}
+]
+}
+]
+}
+]
+},
+{
+"type": "tableRow",
+"content": [
+{
+"type": "tableCell",
+"attrs": {},
+"content": [
+{
+"type": "paragraph",
+"content": [
+{
+"type": "text",
+"text": "3"
+}
+]
+}
+]
+},
+{
+"type": "tableCell",
+"attrs": {},
+"content": [
+{
+"type": "paragraph",
+"content": [
+{
+"type": "text",
+"text": "Same no-op Save & Close after the part is ordered \u2014 the linked purchase order must not be corrupted"
+}
+]
+}
+]
+},
+{
+"type": "tableCell",
+"attrs": {},
+"content": [
+{
+"type": "paragraph",
+"content": [
+{
+"type": "text",
+"text": "PASSED \u2014 PO cost stays 45.78900",
+"marks": [
+{
+"type": "strong"
+},
+{
+"type": "textColor",
+"attrs": {
+"color": "#216934"
+}
+}
+]
+}
+]
+}
+]
+}
+]
+},
+{
+"type": "tableRow",
+"content": [
+{
+"type": "tableCell",
+"attrs": {},
+"content": [
+{
+"type": "paragraph",
+"content": [
+{
+"type": "text",
+"text": "4"
+}
+]
+}
+]
+},
+{
+"type": "tableCell",
+"attrs": {},
+"content": [
+{
+"type": "paragraph",
+"content": [
+{
+"type": "text",
+"text": "Parts tab inline Cost cell (the independent baseline) shows the entered value"
+}
+]
+}
+]
+},
+{
+"type": "tableCell",
+"attrs": {},
+"content": [
+{
+"type": "paragraph",
+"content": [
+{
+"type": "text",
+"text": "PASSED \u2014 shows $45.78900",
+"marks": [
+{
+"type": "strong"
+},
+{
+"type": "textColor",
+"attrs": {
+"color": "#216934"
+}
+}
+]
+}
+]
+}
+]
+}
+]
+},
+{
+"type": "tableRow",
+"content": [
+{
+"type": "tableCell",
+"attrs": {},
+"content": [
+{
+"type": "paragraph",
+"content": [
+{
+"type": "text",
+"text": "5"
+}
+]
+}
+]
+},
+{
+"type": "tableCell",
+"attrs": {},
+"content": [
+{
+"type": "paragraph",
+"content": [
+{
+"type": "text",
+"text": "Bulk Receive (Receive Vendor Parts) page shows the same cost for the same part"
+}
+]
+}
+]
+},
+{
+"type": "tableCell",
+"attrs": {},
+"content": [
+{
+"type": "paragraph",
+"content": [
+{
+"type": "text",
+"text": "PASSED \u2014 shows $45.78900 (was $45.78950)",
+"marks": [
+{
+"type": "strong"
+},
+{
+"type": "textColor",
+"attrs": {
+"color": "#216934"
+}
+}
+]
+}
+]
+}
+]
+}
+]
+},
+{
+"type": "tableRow",
+"content": [
+{
+"type": "tableCell",
+"attrs": {},
+"content": [
+{
+"type": "paragraph",
+"content": [
+{
+"type": "text",
+"text": "6"
+}
+]
+}
+]
+},
+{
+"type": "tableCell",
+"attrs": {},
+"content": [
+{
+"type": "paragraph",
+"content": [
+{
+"type": "text",
+"text": "The cost is consistent across all three screens"
+}
+]
+}
+]
+},
+{
+"type": "tableCell",
+"attrs": {},
+"content": [
+{
+"type": "paragraph",
+"content": [
+{
+"type": "text",
+"text": "PASSED \u2014 all show $45.78900",
+"marks": [
+{
+"type": "strong"
+},
+{
+"type": "textColor",
+"attrs": {
+"color": "#216934"
+}
+}
+]
+}
+]
+}
+]
+}
+]
+}
+]
+},
+{
+"type": "heading",
+"attrs": {
+"level": 3
+},
+"content": [
+{
+"type": "text",
+"text": "Evidence"
+}
+]
+},
+{
+"type": "paragraph",
+"content": [
+{
+"type": "text",
+"text": "I used work order S8733-17358, line \"Repair - CW rotation solenoid valve\", part \"Seal Kit\" (C1095574), vendor GCM Truck Repair - Tysons, and followed the exact steps in the ticket with a cost of $45.78900."
+}
+]
+},
+{
+"type": "mediaSingle",
+"attrs": {
+"layout": "full-width"
+},
+"content": [
+{
+"type": "media",
+"attrs": {
+"type": "external",
+"url": "https://raw.githubusercontent.com/bilalmuzamil-sketch/Manual-test-Cases/claude/heic-upload-iphone-test-sz7h5p/build/sv8733-part-cost-precision-2026-09-04/evidence/exhibit-01-entered.png"
+}
+}
+]
+},
+{
+"type": "paragraph",
+"content": [
+{
+"type": "text",
+"text": "Step 1 \u2014 In the Edit Part Request window I entered a part cost of $45.789 and clicked Save & Close.",
+"marks": [
+{
+"type": "em"
+}
+]
+}
+]
+},
+{
+"type": "mediaSingle",
+"attrs": {
+"layout": "full-width"
+},
+"content": [
+{
+"type": "media",
+"attrs": {
+"type": "external",
+"url": "https://raw.githubusercontent.com/bilalmuzamil-sketch/Manual-test-Cases/claude/heic-upload-iphone-test-sz7h5p/build/sv8733-part-cost-precision-2026-09-04/evidence/exhibit-02-reopen.png"
+}
+}
+]
+},
+{
+"type": "paragraph",
+"content": [
+{
+"type": "text",
+"text": "Step 2 \u2014 Reopening the Edit Part Request window: the cost still reads $45.78900. It is NOT rounded to $45.79000. This is the reported rounding-on-reopen bug, and it is fixed.",
+"marks": [
+{
+"type": "em"
+}
+]
+}
+]
+},
+{
+"type": "mediaSingle",
+"attrs": {
+"layout": "full-width"
+},
+"content": [
+{
+"type": "media",
+"attrs": {
+"type": "external",
+"url": "https://raw.githubusercontent.com/bilalmuzamil-sketch/Manual-test-Cases/claude/heic-upload-iphone-test-sz7h5p/build/sv8733-part-cost-precision-2026-09-04/evidence/exhibit-03-bulk.png"
+}
+}
+]
+},
+{
+"type": "paragraph",
+"content": [
+{
+"type": "text",
+"text": "Step 3 \u2014 The Bulk Receive (Receive Vendor Parts) page for the same part shows the same $45.78900, not $45.78950. The cost now matches across all three screens.",
+"marks": [
+{
+"type": "em"
+}
+]
+}
+]
+},
+{
+"type": "rule"
+},
+{
+"type": "heading",
+"attrs": {
+"level": 3
+},
+"content": [
+{
+"type": "text",
+"text": "Technical details for developers"
+}
+]
+},
+{
+"type": "paragraph",
+"content": [
+{
+"type": "text",
+"text": "Environment: ",
+"marks": [
+{
+"type": "strong"
+}
+]
+},
+{
+"type": "text",
+"text": "sv8733.qa.shopview.com, build v26.35.7-65e7373 (index.html last-modified Thu 03 Sep 2026 11:58:29 GMT). WO S8733-17358 (d973d775\u2026), part request 15cd3691 (Seal Kit / C1095574)."
+}
+]
+},
+{
+"type": "paragraph",
+"content": [
+{
+"type": "text",
+"text": "Part request round-trip: ",
+"marks": [
+{
+"type": "strong"
+}
+]
+},
+{
+"type": "text",
+"text": "After entering 45.789 via the dialog and saving, the API shows cost=45.79 (legacy 2-decimal column, unchanged behaviour) and cost_decimal=45.789 (true value). Reopening the dialog reads 45.78900 from cost_decimal. A no-op Save & Close leaves cost_decimal=45.789 \u2014 the write-back no longer overwrites it with the rounded number."
+}
+]
+},
+{
+"type": "paragraph",
+"content": [
+{
+"type": "text",
+"text": "Linked purchase-order item: ",
+"marks": [
+{
+"type": "strong"
+}
+]
+},
+{
+"type": "text",
+"text": "Ordering the part created PO S-17358 (order 05d729a8, item 63bc67a1) with price=45.79 and price_decimal=\"45.78900\", total_cost_decimal=45.789. Reopening the Edit Part Request window on the ordered part and pressing Save & Close (changing nothing) leaves the PO item price_decimal at \"45.78900\" \u2014 the exact corruption in the root cause no longer happens."
+}
+]
+},
+{
+"type": "paragraph",
+"content": [
+{
+"type": "text",
+"text": "Baseline surface: ",
+"marks": [
+{
+"type": "strong"
+}
+]
+},
+{
+"type": "text",
+"text": "The Parts-tab inline Cost cell (input_cost) reads 45.78900, matching the dialog and the Bulk Receive page."
+}
+]
+},
+{
+"type": "paragraph",
+"content": [
+{
+"type": "text",
+"text": "Out of scope: ",
+"marks": [
+{
+"type": "strong"
+}
+]
+},
+{
+"type": "text",
+"text": "The related-not-fixed staged-part path (PartsManager::updatePartsForPartRequest writing setCost without setCostDecimal) was not tested \u2014 the dev flagged it for a separate ticket."
+}
+]
+}
+]
+}
+}
