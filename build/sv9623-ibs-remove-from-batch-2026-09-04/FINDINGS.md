@@ -105,3 +105,18 @@ batch-balance guard. Recommend the tooltip reflect the actual reason for this ca
     the row Status is still Unpaid.
 - SV-9705 updated: steps now name the exact Lamkin row and reference the BEFORE/AFTER pictures; single
   screenshot replaced by tooltip-before-after.png. Title/priority/top-credit unchanged. URL 200.
+
+## Update 2026-09-04 (SV-9705: expand step added, quick link, seed confirmed) 
+- Rule 71 saved: after the reproduction steps, add a one-click "Fastest way to reproduce" deep link that
+  lands as close to the issue as the app allows (verified live) + names the tiny remaining clicks + the
+  exact element. VERIFIED: ShopView IBS Batches does NOT deep-link the tab/expanded batch — the URL stays
+  /reports/batch-transactions across tabs (client-side), so the link opens IBS Batches and the line names
+  the Sent-tab + expand + hover clicks.
+- Rule 67(3) extended: a control inside a collapsed/closed container needs an explicit open/expand step
+  AND a picture of the collapsed starting state; data is seeded-and-left-ready on the branch, verified
+  live before shipping.
+- SV-9705 rebuilt: step 2 now says the batches are shown closed; step 3 is the explicit expand of the
+  $403.91 (Yesterday) batch; 3-step image tooltip-3steps.png (STEP1 expand -> STEP2 before -> STEP3
+  after); "Fastest way to reproduce" deep link added after the steps. Title/priority/top-credit unchanged.
+- SEED CONFIRMED LIVE (quick-login path): the $403.91 credit batch is present - Glendale $592.17 + Lamkin
+  $1,874.40, both unpaid, Remove disabled. PO needs zero setup. (Raw-cookie API 409s; SSO/quick-login 200.)

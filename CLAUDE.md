@@ -3901,7 +3901,16 @@ deliver the 7-tab management report.
     **BEFORE picture (how the icon/badge/control looks before you touch it) AND an AFTER picture (the
     reveal)** — this is Rule 64's before/after applied to reveals, not just to value changes. Every
     reproduction step points at the picture that proves it ("this is the BEFORE picture below").
-    **Applied 2026-09-04: SV-9705 given a before/after pair naming the exact Lamkin INV-S2-17228 row.**
+    **IF THE CONTROL LIVES INSIDE A COLLAPSED / CLOSED CONTAINER** (a collapsed batch/group row, an
+    accordion, a closed panel, a tab that is not the default), the steps MUST **explicitly include the
+    open/expand action** AND **show the collapsed starting state the reader actually lands on** — a
+    reader who lands on the closed list sees NO control and is stuck. **SEED-AND-LEAVE-READY:** the exact
+    data the reproduction needs is **seeded/present and left in place on the per-ticket QA branch (no
+    cleanup) and named**, and **verified live present immediately before shipping** (Rule 68), so the
+    reader does ZERO setup — just open + hover. **Applied 2026-09-04: SV-9705 given a 3-step exhibit
+    (STEP 1 open the collapsed $403.91 batch -> STEP 2 the faded trash + Unpaid badge -> STEP 3 the
+    tooltip), naming the exact Lamkin INV-S2-17228 row; the credit batch was verified seeded and live on
+    the branch.**
     **(4) TECHNICAL DETAIL GOES LAST, CLEARLY SEPARATED** — endpoints, ids, raw responses, build marker
     live BELOW a rule under a "Technical details" heading, for the developer; **they never intrude on
     the PO-facing description or steps.**
@@ -3993,6 +4002,33 @@ deliver the 7-tab management report.
     version of it at the top. **Applied 2026-09-04:** SV-9705 restructured so *"Found while testing
     SV-9623"* (linked) is the top line. Ties to Standing Rules 52 (link Relates), 65 (human voice), 67
     (follow-up ticket format) and 8 (name the source ticket).
+
+71. **AFTER THE REPRODUCTION STEPS, ADD A ONE-CLICK "FASTEST WAY TO REPRODUCE" DEEP LINK — verified,
+    honest, and as deep as the app actually allows (all projects).**
+    USER DIRECTIVE (2026-09-04, verbatim): *"provide the link with the title 'Simply slick this link and
+    mouse hover the trash icon for {{whateve ryou want to put as a reference for that row}}' … So that
+    the PO/Manual qua tester can QUickly reproduce it by directly clicking that link which takes him to
+    where this issue is and mouse hover there. note this should not replace the steps of replication
+    rather it should appear after the steps of replication end as a shortest way for the PO/manual Qa to
+    reproduce the issue, follow the same strategy in other tickets too wherever it can be applicable."*
+    **THE RULE:** after the FULL reproduction steps (this **never replaces** them), add a short
+    **"Fastest way to reproduce"** line: a **clickable deep link** that lands the reader **as close to
+    the issue as the app actually supports**, then the **exact remaining action(s)** and the **exact
+    element reference** (row/control by on-screen name + id) — e.g. *"…then hover the trash icon on the
+    Lamkin Diesel Services Inc (INV-S2-17228) row."*
+    **HONESTY / BITE-PROOF (Rule 68) — the link is LIVE-VERIFIED to land where the line says it lands.**
+    Never a URL that claims to open a screen/tab/state it does not. **Where the app CANNOT deep-link to
+    the exact spot** — a tab, an expanded row or a dialog that is client-side state, so the URL never
+    changes (VERIFIED true for ShopView IBS Batches 2026-09-04: the URL stays `/reports/batch-transactions`
+    across tabs, and selecting a tab does not change it) — the link goes **as deep as it truthfully can**
+    and the line **NAMES the tiny remaining clicks** (*"open the Sent tab, expand the $403.91 batch,
+    hover the trash icon on the Lamkin row"*) rather than pretending one click lands on the hover target.
+    A link that dumps the PO on the wrong tab with the promise "just hover" is a bite, not a shortcut.
+    **LEAVE THE STATE READY:** on per-ticket QA branches (no cleanup) the data that reproduces the issue
+    is left in place and **named**, so link + a couple of clicks + one hover actually shows it (Rule 68
+    live-verify that the named data is still there before shipping the link). **Applied 2026-09-04:
+    SV-9705.** Ties to Standing Rules 61 (say when the asked-for setup diverges from what is possible),
+    64 (annotated before/after), 67 (PO-runnable steps), 68 (bite-proof + live-verified).
 
 ## Project purpose (Custom Roles project)
 Manual test-case authoring + live staging (Verify-in-UI) verification + TestRail
