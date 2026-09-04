@@ -59,3 +59,16 @@ batch-balance guard. Recommend the tooltip reflect the actual reason for this ca
 - Removed a stale pre-break example ("$2,188.75 from $12,294.55 batch"; $2,188.75 = the paid Honest Diesel invoice, not removable) from the comment; replaced with the screenshot-backed $2,384.17->$1,113.83 numbers.
 - SV-9705 corrected Low -> Medium per QA-lead ruling 2026-09-04 (all tickets we create/edit = Medium; PO changes priority). Rule saved in CLAUDE.md (supersedes Rule 53 "Low").
 - Env note: per-ticket QA branch (sv9623) needs no cleanup (disposable); left a new Lansing single-invoice Sent batch + Dorr back in Ready To Send from the edge tests.
+
+## Update 2026-09-04 (Rule 67 + SV-9705 description rewritten for a non-technical PO)
+- Saved Standing Rule 67: every follow-up ticket we file is written for a non-technical PO to reproduce
+  in the easiest way — short plain description, PO-runnable steps that start with "Open the QA branch to
+  reproduce the issue: <link>", data-shape-based steps (not dependent on one named batch surviving),
+  annotated screenshots, technical detail last. If the PO can't reproduce it, it bites the QA lead.
+- Rewrote SV-9705 to that standard (generator build_sv9705_description.py): 2-line description; numbered
+  UI steps on sv9623.qa.shopview.com; annotated tooltip-issue.png; technical detail moved to the bottom.
+  Priority left Medium; link Relates SV-9623 intact.
+- NOTE: could not live-verify the example $403.91 credit batch this pass — sv9623 app session returned 409
+  "Session has expired". Steps are written data-shape-based ("the batch that contains two invoices plus a
+  credit") so they don't hinge on that exact batch; the screenshot proves the state. If fresh cookies are
+  supplied I will re-verify the live data and, if needed, refresh the example.
