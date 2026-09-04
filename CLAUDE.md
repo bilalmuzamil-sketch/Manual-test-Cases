@@ -4181,11 +4181,21 @@ regression / bug-fix re-testing.
   being told where to look. An API-level measurement is **supporting** evidence and belongs in the
   technical section — it never replaces the screenshot. **No replication may be reported as confirmed
   without one** (Rule 12: a claim without the capture is an assertion, not evidence).
+- **TICKET PRIORITY IS ALWAYS MEDIUM — never Low, never High/Highest (QA-lead ruling 2026-09-04,
+  verbatim: *"whenever you make new ticket or edit any ticket you must NEVER put its priority to LOW or
+  HIgh/est. You will always keep the priority to Medium as this is the job of the PO to raise or lower
+  down the priority."*).** EVERY ticket we CREATE or EDIT is set to **priority Medium** and left there —
+  it is the PO's job to raise or lower it. This **SUPERSEDES Standing Rule 53's "always Low"** (Rule 53's
+  other halves stand: never High/Highest, and never "restore"/reverse a priority the QA lead changed). Do
+  not encode severity in Priority; severity belongs in the ticket wording / the `Severity` field. All
+  projects, all ticket types, going forward. (Applied 2026-09-04: SV-9705 was created Low by mistake and
+  corrected to Medium the same session.)
 - **A SEPARATE FINDING GETS ITS OWN TICKET — created, linked, and fully specified (QA-lead ruling
   2026-08-05):** when testing a ticket surfaces an issue that is **not** what that ticket is about
   (a pre-existing bug, an out-of-scope defect, a side observation), **CREATE THE NEW TICKET** — do not
   merely "suggest a follow-up" in the comment. **(1) LINK IT to the ticket being tested as `Relates`**
-  (the link type list is fixed — see Rule 52; never invent one). Priority **Low** (Rule 53); parent =
+  (the link type list is fixed — see Rule 52; never invent one). Priority **Medium** (QA-lead ruling
+  2026-09-04 — see the priority rule below; this **SUPERSEDES the earlier "Low"** from Rule 53); parent =
   the epic where one exists (Rule 52) — where the tested ticket is itself parentless, match it and say
   so. **(2) THE NEW TICKET MUST BE COMPLETE ENOUGH FOR A DEVELOPER TO ACT WITHOUT ASKING:** what
   happens now vs what should happen, **numbered steps of reproduction naming the EXACT test data**
