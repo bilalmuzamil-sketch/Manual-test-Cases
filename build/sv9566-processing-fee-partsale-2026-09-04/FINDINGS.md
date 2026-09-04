@@ -60,3 +60,11 @@ Session cookies (`sv_sso_session` / `PHPSESSID` / `cf_clearance` for `.qa.shopvi
 
 **OVERALL: PASS.** Reported bug fixed; every testable boundary behaviour correct. Per Rule 62 (per-ticket branch, PASS ⇒ final) findings are not provisional. QB apply-gate flagged honestly.
 Annotated exhibits: evidence/05,06,07.
+
+## PRODUCTION reproduction (2026-09-04) — the bug IS reproducible on prod
+**Prod:** app.shopview.com / api.shopview.com, build **v26.35.9-20b5728** (higher than the QA branch — the fix PR #2900 targets the bugfix line and is NOT yet on prod). **Prod TEST org 72b2cc90 "Bilal-Trucks" / workplace "Trucks Hill 2"** (confirmed; never a real customer org). Login `POST /api/login`; **observation only — created/changed NOTHING on prod.**
+- Org has exactly one adjustment template: **`ZZAUTOTEST PF 100pct`** (kind processing_fee), confirmed via `GET /api/adjustment-templates`.
+- **Part Sale P2-64 → toolbar → Add Parts Sale Fee → "Apply From Template" → "No results"** (the PF is filtered out). → `evidence/08-PROD-partsale-dropdown-no-results.png`. This is Kelly's exact experience ("as though the Processing fee I saved does not exist").
+- **Work Order S2-861 → Add Work Order Fee → "Apply From Template" → `ZZAUTOTEST PF 100pct` present.** → `evidence/09-PROD-workorder-dropdown-pf-present.png`. Matches "It works on Work Orders just fine, but not Parts sales."
+- **CONCLUSION: bug confirmed reproducible on production.** This gives a real before/after: PROD (broken, No results) vs QA branch sv9566 with PR #2900 (fixed, PF appears on part sales too).
+- Note: on prod the part-sale fee dialog showed **no** QuickBooks "map a fee item" banner (unlike the sv9566 QA branch). Not relevant to the template-appearance reproduction, but noted.
