@@ -72,3 +72,14 @@ batch-balance guard. Recommend the tooltip reflect the actual reason for this ca
   "Session has expired". Steps are written data-shape-based ("the batch that contains two invoices plus a
   credit") so they don't hinge on that exact batch; the screenshot proves the state. If fresh cookies are
   supplied I will re-verify the live data and, if needed, refresh the example.
+
+## Update 2026-09-04 (Rule 68 + SV-9705 live-verified with fresh cookies)
+- Saved Standing Rule 68 (capstone): everything we do is bite-proof AND live-verified on the branch, always.
+- Fresh cookies supplied → LIVE-VERIFIED the SV-9705 reproduction on sv9623.qa.shopview.com:
+  - Build marker unchanged: v26.35.8-327c626 (matches the ticket).
+  - The named example batch is LIVE: Glendale Diesel & Fleet Repair ($592.17) + Lamkin Diesel Services Inc
+    ($1,874.40), both status=unpaid with can_remove_from_batch=false — exactly the state SV-9705 describes.
+  - The annotated screenshot (tooltip-issue.png) reflects the current live state; tooltip behaviour was
+    confirmed live earlier this session on this same build.
+- OUTSTANDING (from the prior update) is now CLEARED — the example batch was confirmed present; SV-9705's
+  steps are reproducible right now and need no change.
