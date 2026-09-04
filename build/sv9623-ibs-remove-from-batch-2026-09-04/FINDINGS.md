@@ -44,3 +44,8 @@ batch-balance guard. Recommend the tooltip reflect the actual reason for this ca
   so the per-role UI was not driven; noted rather than claimed as verified.
 
 ## VERDICT: QA PASSED — all three acceptance criteria met, edge cases handled. One minor tooltip observation.
+
+## Posted 2026-09-04
+- QA comment posted on SV-9623 (comment id 76001) — OVERALL QA STATUS: PASSED, 9-row check table, 2 inline annotated exhibits (01-sent-remove-buttons.png, 02-happy-path-back-to-ready.png).
+- Tooltip observation re-verified LIVE before posting (had appeared as red/enabled in the first screenshot; confirmed both credit-batch unpaid invoices S-16140 & S-17228 have can_remove_from_batch=false → buttons DISABLED; hovering the unpaid Lamkin row shows "Only unpaid invoices can be removed from a batch" while the real API reason is the balance guard "the batch total that would remain is smaller than this invoice"). Evidence: tooltip-issue.png.
+- Raised as its own ticket **SV-9705** (Bug, priority Low, Product Area Billing Portal, Open), linked **Relates** to SV-9623, with the annotated tooltip-issue.png. Referenced from the SV-9623 comment.
