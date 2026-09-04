@@ -45,3 +45,18 @@ Session cookies (`sv_sso_session` / `PHPSESSID` / `cf_clearance` for `.qa.shopvi
 ## Notes to fold into the eventual Jira comment
 - The UI "Add Fee" QuickBooks mapping guard is **not** part of this fix and gates all part-sale fees; the reporting customer already satisfied it. State this plainly so nobody reads it as a regression.
 - Screenshots to annotate before/after for the final comment: dropdown (PF present) + PF-selected auto-fill (grand-total note); WO parity; applied-fee result.
+
+## FINAL (all live checks complete, fresh cookies) — build v26.35.8-5248ce9 (unchanged throughout)
+| # | Check | Verdict |
+|---|-------|---------|
+| 1 | PF template appears on Part Sale "Apply From Template" dropdown (reported bug) | **PASS** (UI) |
+| 2 | PF accepted at whole-part-sale scope; Type=Processing Fee, %-Of-Grand-Total, parts-sale grand-total note | **PASS** (UI + API: BE accepts scope `whole_parts_sale`) |
+| 3 | Regular Fee + Discount templates still shown on part sales | **PASS** (UI) |
+| 4 | Line scope still rejects PF | **PASS** (API: `400 Invalid adjustment scope`) |
+| 5 | Grand-total note worded per document type | **PASS** (UI) |
+| 6 | Work Orders still offer the PF template (parity) | **PASS** (UI) |
+| — | Numeric apply + $27.76 compute | **NOT OBSERVABLE HERE** — `409 Connect a QuickBooks item for fees` (BE+FE gate for ALL part-sale fees; external QB dependency this fresh QA org lacks; customer has it; covered by dev E2E C45255). NOT a defect in the fix. |
+| 7 | Two PFs stacking allowed (Chris's recorded decision) | Recorded product decision; not code-testable here (QB gate). |
+
+**OVERALL: PASS.** Reported bug fixed; every testable boundary behaviour correct. Per Rule 62 (per-ticket branch, PASS ⇒ final) findings are not provisional. QB apply-gate flagged honestly.
+Annotated exhibits: evidence/05,06,07.
