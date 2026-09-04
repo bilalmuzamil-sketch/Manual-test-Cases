@@ -43,3 +43,13 @@ The legacy `cost`/`price` columns still display `45.79` (2-dp) by design; the tr
 
 ## Out of scope / not tested
 - The dev's related-not-fixed staged-part path (`updatePartsForPartRequest` missing `setCostDecimal`) — the dev flagged it for its own ticket; not part of this fix.
+
+## Pre-post bite-proof gate (run immediately before posting — Standing Rule 72)
+- Build marker re-read LIVE right before posting: `v26.35.7-65e7373`, last-modified Thu 03 Sep 2026 11:58:29 GMT, etag `f7be2ce98aee29f0655bf0077dd5493a` — IDENTICAL to test time (no redeploy).
+- All 3 evidence image URLs curled → HTTP 200.
+- Ticket re-read: status still TESTING QA, still 2 comments, no scope change since testing.
+- Text-node fingerprint scan clean (only "claude" occurrence is inside image URL path = branch name, not reader-facing).
+- Posted comment read back: verdict line + 6-row table + 3 inline images + technical-last confirmed.
+
+## POSTED
+QA comment posted to SV-8733 — comment id **76030** (2026-09-04). Verdict PASSED. Link: https://shopview.atlassian.net/browse/SV-8733?focusedCommentId=76030

@@ -4029,6 +4029,50 @@ deliver the 7-tab management report.
     live-verify that the named data is still there before shipping the link). **Applied 2026-09-04:
     SV-9705.** Ties to Standing Rules 61 (say when the asked-for setup diverges from what is possible),
     64 (annotated before/after), 67 (PO-runnable steps), 68 (bite-proof + live-verified).
+72. **RUN THE PRE-POST BITE-PROOF GATE IMMEDIATELY BEFORE EVERY STAKEHOLDER-FACING POST OR WRITE — always,
+    without being asked (all projects).**
+    USER DIRECTIVE (2026-09-04, verbatim): *"Before posting, let me make it bite-proof"* → *"Make it a
+    rule to always do it."* — given as I was about to post the SV-8733 QA-pass comment.
+    **THE RULE:** the last thing before **any** Jira comment, ticket create/edit, review reply, or other
+    deliverable that leaves our hands is a short, live **BITE-PROOF GATE**. It is not optional, not
+    reserved for big posts, and not skipped because the work was just done — a source can move in the
+    minutes between finishing and posting (Rule 59), so the gate runs **at the moment of posting**, every
+    time. This is the operational, always-on form of Rules 59 (re-read sources before writing) and 68
+    (everything is bite-proof and live-verified) — those say *what*; this says *do it right before you
+    hit send, every time.*
+    **THE CHECKLIST (run all that apply; each is cheap — Rule 63):**
+    **(1) BUILD MARKER — re-read it LIVE** (`index.html` app-version + last-modified/etag) and confirm it
+    matches the build the findings were taken on. If it **moved**, the branch redeployed: re-verify the
+    affected layers (Rules 49/60) before posting, or say plainly what is now unconfirmed — never post a
+    verdict against a build that no longer exists.
+    **(2) SOURCES — re-read the ticket/spec/PO state LIVE** (status, priority, newest comments). A
+    mid-pass comment or a status change can alter scope or make the post redundant/wrong (Rule 59).
+    **(3) EVIDENCE URLS — `curl` every embedded image/asset URL for a 200** at post time, from the exact
+    committed path; a broken image is a visible bite.
+    **(4) FIGURES + CLAIMS — every number, count and "unchanged/untouched" claim traces to live evidence
+    captured this pass** (Rule 50); no stale figure carried forward (the "$2,188.75" class of bite).
+    **(5) NAMED TEST DATA — confirm it is still live on the branch** where a reader is told to look
+    (Rules 50/67).
+    **(6) HUMAN VOICE / NO AI FINGERPRINT — scan the reader-facing TEXT nodes** for AI self-reference,
+    model names, attribution footers, and machine tics (Rule 65); a match inside an image URL path (a
+    branch name) is not reader-facing and is fine.
+    **(7) FORMAT — first line is the verdict, the table/checks are complete, images are captioned,
+    technical detail is last** (the Jira comment-format convention); priority Medium on any ticket
+    created/edited (the priority rule).
+    **(8) READ IT BACK AFTER POSTING** — re-fetch the posted comment/ticket and verify the first line,
+    the media count AND order, and the row counts against what was sent (the write response only echoes
+    the request). A wrong post is corrected **in place** via `commentId`, never stacked (the one-complete-
+    comment rule).
+    **STATE THE GATE RAN** in the working notes / findings doc (which checks, what they showed), so a
+    later reader can see it was done — the same way an execution log records its verification (Rule 50);
+    a post whose notes don't record the gate is treated as un-gated.
+    **HONESTY CLAUSE:** the gate is a re-verification of what is ALREADY proven and live — it is **not**
+    licence to skip the full live testing (Rules 12/13/50) and lean on a quick pre-post check instead.
+    If the gate surfaces something unverifiable, **STOP and fix or disclose it** (Rule 22/36) — never post
+    around it. Applied 2026-09-04: SV-8733 (build marker re-read identical, images 200, ticket still
+    TESTING QA with no new comment, text-node fingerprint scan clean) then posted; comment read back
+    (verdict line + 6 rows + 3 images verified). Ties to Standing Rules 25, 31, 49, 50, 54, 59, 60, 62,
+    63, 64, 65, 67, 68 and the Jira comment/ticket deliverable-format conventions.
 
 ## Project purpose (Custom Roles project)
 Manual test-case authoring + live staging (Verify-in-UI) verification + TestRail
