@@ -14,6 +14,13 @@
 were executed. **C44951 and C45175 pass; C44952 fails on one clause.** Full method and evidence:
 `PORTAL-BANNER-VERIFICATION-2026-09-07.md`.
 
+**Evidence depth, same day.** Every one of the 120 was driven against this build, but 26 passes
+originally rested on one unexercised clause. **Ten of those were closed** by further seeding —
+C44909, C44918, C44924, C44930, C44931, C44939, C44942, C44945, C44955 and C44987 — leaving **16**,
+of which 15 are states the product refuses to create and one (C44913) is blocked behind SV-9642 and
+SV-9710. Method and evidence: `GAP-CLOSURE-2026-09-07.md`. One new candidate ticket is **prepared and
+held, not filed**: `CANDIDATE-TICKETS-HELD.md`.
+
 ---
 
 ## The six failures
