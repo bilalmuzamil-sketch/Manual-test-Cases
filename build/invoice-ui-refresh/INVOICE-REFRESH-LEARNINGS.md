@@ -761,3 +761,38 @@ honestly against v45 and is a failure against v57 — the build never changed. S
 **Also worth knowing:** the manual tester Mudassir is filing actively against this suite — SV-9642,
 SV-9782, SV-9784, SV-9791 all trace to him. **Check his tickets before raising anything on Story 3,
 page size, or document dates.**
+
+---
+
+## L28 · A DIFFERENT LOGIN IS NOT A DIFFERENT ENVIRONMENT — CHECK THE IDs, NOT THE CREDENTIALS
+**Retrieve when:** handed a "new environment", a second account, or a sandbox to test something
+destructive in.
+
+The QA lead set up `bilal.muzamil+logo@shopview.com` as a new staging environment so C44902's
+no-logo state could be tested safely. **It is a second USER ACCOUNT in the SAME organisation**, not a
+separate environment. Three checks proved it in under a minute, and all three matter:
+
+| Check | Result |
+|---|---|
+| Workplace UUIDs | **Identical** — `f8a8b802`, `b3c8c820`, `25a0d576` |
+| Work order numbers | **Identical**, including S2-32266 and others I had created 20 minutes earlier |
+| Organisation logo bytes | **Identical** — 408,254 bytes, sha256 `8f26cec4649ac6ce3e93` |
+
+**Always run those checks before treating a handed-over environment as isolated.** Same host plus a
+different login usually means the same tenant. A `+alias` address is a mail alias, not a tenancy
+boundary. Had I assumed isolation and removed the logo, every document in the shared organisation
+would have lost it the night before a release.
+
+### Say so immediately
+When a sandbox turns out not to be one, tell the person straight away and say what a real one would
+need — here, an organisation with **different workplace ids**, because the logo is per organisation
+and not per location. Do not quietly proceed and do not quietly give up.
+
+### While proving it, the last search gap got closed
+Driving the logo picker with a request listener revealed the write route, which no amount of guessing
+had found: **`POST /api/organization/organization-details/upload-logo`**. Probing it completed the
+picture — `DELETE` on it is 405, `DELETE` on the read route is 405 `Allow: GET`, and `remove-logo`
+and `delete-logo` are 404 on both verbs. **There is no way to remove an organisation logo, anywhere.**
+Re-uploading the identical file first (verified byte-identical afterwards, same sha256) made the
+search itself a no-op — *when you must exercise a destructive-looking endpoint to learn its shape,
+feed it the value that is already there.*
