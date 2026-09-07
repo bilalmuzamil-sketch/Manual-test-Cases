@@ -575,3 +575,62 @@ pinned to a workplace that 500s. After that **every** authenticated call 500'd �
 
 Recovered in under two minutes once the order was right. **Do not switch workplace by API at all
 unless the case needs it** — the read you want is usually reachable from the current one.
+
+---
+
+## L24 · 🛑🛑 READ THE GEAR-ICON TOGGLES BEFORE CALLING ANY FIELD MISSING — THIS COST US A FALSE DEFECT
+**Retrieve when:** ANY case about a field being absent from a document. Read this BEFORE writing the
+finding, not after.
+
+**WHAT HAPPENED (2026-09-07).** I filed **SV-9774** saying the Parts Sale document drops the part
+number. The QA lead **obsoleted it**: the part number was missing only because the **"Part number"
+toggle was OFF** in that part sale's own per-view settings. With it on, the line reads
+`E2E-PS-1788771350534-0 - COD Credit Part 1`, exactly as the spec requires.
+
+**WHY IT GOT THROUGH, AND THIS IS THE PART THAT MATTERS.** I quoted **S5-R7 in the ticket itself**:
+
+> *"These settings appear on two surfaces. Administration → Invoice Details holds the shop-wide value…
+> The same list is also offered as a per-view override on the work order's Finance tab, seeded from the
+> shop-wide value; flipping it there changes only the document being viewed and saves nothing."*
+
+I checked the **shop-wide** value, saw it on, and built a "control exhibit" from a *different document*
+that showed the number. **Both documents have their own independent per-view state, and I never read
+either one.** Quoting a rule is not applying it. A control document only controls for what you have
+actually measured on BOTH sides.
+
+### THE RULE, FROM NOW ON
+**Before judging ANY field absent from a document, open the gear icon on that document's own Finance
+tab and confirm EVERY toggle is ON.** Nine of them: Labor rate · Labor hours · Labor price ·
+Part number · Part quantity · Part price · Part description · Summarize parts total ·
+Summarize labor total. **The per-view state is per document and is seeded, not shared** — the part
+sale next to it can differ, and so can the same record tomorrow.
+
+### HOW TO READ AND SET THEM (proven live)
+The panel is the `settings` icon in the Finance toolbar. Each row carries a stable test id, so read the
+state rather than guessing — **the ids are NOT the camel-case of the label**:
+
+| Label | `data-test-id` |
+|---|---|
+| Labor rate | `toggle_setting_laborRate` |
+| Labor hours | `toggle_setting_laborHours` |
+| **Labor price** | `toggle_setting_laborCost` ← not `laborPrice` |
+| Part number | `toggle_setting_partNumber` |
+| Part quantity | `toggle_setting_partQuantity` |
+| **Part price** | `toggle_setting_partCost` ← not `partPrice` |
+| Part description | `toggle_setting_partDescription` |
+| **Summarize parts total** | `toggle_setting_summarizePartsTotal` |
+| **Summarize labor total** | `toggle_setting_summarizeLaborTotal` |
+
+```js
+[...document.querySelectorAll('.q-menu .q-item')].map(it => ({
+  label: it.querySelector('.q-item__label').innerText.trim(),
+  id:    it.querySelector('[data-test-id]')?.getAttribute('data-test-id'),
+  on:    it.querySelector('[role=switch]')?.getAttribute('aria-checked') }))
+```
+Every one must read `on: "true"` before the document is evidence of anything being absent.
+
+### THE GENERAL LESSON, WORTH MORE THAN THE SPECIFIC ONE
+**An absence is only evidence once you have ruled out every switch that could cause it.** A present
+value proves itself; a missing value proves nothing on its own. Before reporting anything as missing,
+list what could suppress it — a per-view toggle, a shop setting, a permission, a data state — and
+show each one ruled out **on the document in front of you**, not on a neighbouring one.
