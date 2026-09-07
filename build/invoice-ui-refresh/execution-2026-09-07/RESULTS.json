@@ -522,6 +522,54 @@
    "observed": "CM-4354 built to the case's exact figures: a $200.00 credit, $50.00 cashed out and $80.00 applied to invoice S-31595. The document lists both consumption rows and 'Balance  $70.00', positive - the original credit total minus the amount refunded minus the amount applied.",
    "not_observed": null,
    "note": null
+  },
+  "C44980": {
+   "verdict": "Passed",
+   "observed": "Both documents rendered for part sale P2-1931 and for P2-1930. The Parts Sale Estimate behaves as the Estimate: 'Estimate: EST-P2-1931', 'Estimate date: Sep 7, 2026', boxed 'ESTIMATED TOTAL $186.90', no Payments block and no Balance. The Parts Sale Invoice behaves as the Invoice: 'Invoice: INV-P2-1931', 'Invoice date' and 'Due date: Sep 14, 2026', 'Payments' and 'BALANCE $186.90'. Masthead, Addresses (Bill To at full width, no Remit Payment To), financial summary, disclaimer, three-line signature row, footer and the whole visual standard match the Invoice. The Story 13 departures are the only differences and are recorded case by case below.",
+   "not_observed": null,
+   "note": null
+  },
+  "C44981": {
+   "verdict": "Failed",
+   "observed": "Clause 1 passes - the body is a single section headed 'PARTS'. Clause 3 passes - no job blocks, no line numbers, no 'Scope of work', no Labor section and no Declined Work section on either part sale document. CLAUSE 2 FAILS: the part line does NOT show the part number. On P2-1931 the line reads 'FUEL/WATER SEPARATOR, (FS19732, 33732, BF1385-SPS)  2  $80.00  $160.00' - description, quantity, rate and amount, but no 'P550848'. The same on P2-1930, whose parts carry numbers 'E2E-PS-1788771350534-0' and print without them. The setting is not the cause: the service Invoice INV-S2-32136, same shop and same Invoice Details values, prints its part as 'N68SL-356 - 3.50-3.82\" (89-97mm) SPRING LOADED T-BOLT CLAMP', part number first. So the part number renders on a service Invoice and is dropped on a Parts Sale.",
+   "not_observed": null,
+   "note": "Defect candidate raised to the QA lead. Jira searched for 'part number' - 15 results, none about the Parts Sale document."
+  },
+  "C44982": {
+   "verdict": "Passed",
+   "observed": "A line-level fee of $9.00 x qty 2 = $18.00 was added to the part on P2-1931. Clause 1 - it renders indented under its part line as '\u21b3 ZZAUTOTEST Part Handling Fee   $18.00', exactly as on the Invoice. Clause 2 - measured: the part row band ends at y=361.9 and the divider (0.75pt #CDD5DF) sits at y=361.9, below the adjustment row, never between the part and its adjustment.",
+   "not_observed": null,
+   "note": null
+  },
+  "C44983": {
+   "verdict": "Passed",
+   "observed": "Parts-sale numbering is carried through on both records and both document types: 'Estimate: EST-P2-1931' / 'Invoice: INV-P2-1931', and 'Estimate: EST-P2-1930' / 'Invoice: INV-P2-1930'.",
+   "not_observed": null,
+   "note": null
+  },
+  "C44984": {
+   "verdict": "Passed",
+   "observed": "Clause 1 - neither the Work Order field nor the Approval Code field appears on any of the four parts sale documents rendered. Clause 2 - 'Terms' always shows ('Terms  Net 7' on P2-1931, 'Terms  COD' on P2-1930); Customer PO behaves as on the Invoice, printing when set and absent when not. Clause 3 - the Authorizer follows the parts-sale treatment, verified in full under C44985.",
+   "not_observed": null,
+   "note": null
+  },
+  "C44985": {
+   "verdict": "Passed",
+   "observed": "All four clauses driven live on part sale P2-1931. Clause 1 - the Authorizer is empty by default: the first render carried no Authorizer row at all. Clause 4 - once set to the customer's 'Approves Work' contact, the document prints 'Authorizer  Savannah Tran' in the reference row. Clause 2 - with the parts sale invoiced, changing the authorizer is refused: HTTP 409 'The authorizer cannot be changed on an invoiced or paid work order'. Clause 3 - after reversing that invoice the same change succeeds (HTTP 200), so the field becomes editable again, mirroring S3-R8.",
+   "not_observed": null,
+   "note": null
+  },
+  "C44986": {
+   "verdict": "Passed",
+   "observed": "Clause 1 - the financial summary on both P2-1931 and P2-1930 shows no 'Labor' row and no 'Shop supplies' row. Clause 2 - the rows present are identical in label and treatment to the Invoice: 'Parts $160.00', 'Adjustments' with its 'Parts $18.00' rollup, 'Subtotal $178.00', 'GST (5%) $8.90', 'Total $186.90', 'Payments', 'BALANCE $186.90'. Arithmetic reconciles: 160.00 + 18.00 = 178.00; 5% of 178.00 = 8.90; 178.00 + 8.90 = 186.90.",
+   "not_observed": null,
+   "note": null
+  },
+  "C44987": {
+   "verdict": "Passed",
+   "observed": "Rendered a batch PDF (POST /api/invoices/batch-pdf over two of this pass's invoices). It comes back entirely on the OLD template and is not half-restyled: the typeface is Nunito Sans throughout, the labels are the pre-refresh ones ('Invoice Date:' with a capital D, 'Bill To' in title case, 'Parts Order', a Description/Quantity/Rate/Amount table header), and none of the refresh markers appears - no accent-coloured line numbers, no order-reference chips, no 'WORK PERFORMED' section head, no boxed headline figure. Clauses 1, 2 and 3 all hold.",
+   "not_observed": "An imported work order's document was not rendered this pass; the batch path alone was exercised.",
+   "note": "Side evidence for SV-9761: the OLD template's Nunito Sans IS embedded correctly, while the refreshed template asks for Inter and silently falls back to DejaVu Sans. The font is missing from the refreshed pipeline, not from the image generally."
   }
  },
  "seeding": {
