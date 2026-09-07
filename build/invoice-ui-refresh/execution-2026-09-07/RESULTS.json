@@ -56,16 +56,16 @@
    "note": null
   },
   "C44909": {
-   "verdict": "Untested",
-   "observed": null,
-   "not_observed": "Condition not met: the workplace record carries remitToAddress = None, so no payee is configured and the block cannot appear.",
-   "note": "SEED: set a remit-to on the workplace, or an integrated-billing payee on the customer."
+   "verdict": "Passed",
+   "observed": "Produced from an existing record whose location IS configured with an integrated-billing payee: work order S2-16541. Clause 1 - the block is labelled exactly 'REMIT PAYMENT TO' and holds the payee address ('Foothills Group Inc c/o Interstate Billing Service', 'C/O T04220C PO Box 4220, STN A', 'Toronto, Ontario M5W 3B9', phone). Clause 3 - it renders on both the Estimate (EST) and the Invoice (INV-S2-16541) for that record, and on none of the nine Credit documents rendered this pass.",
+   "not_observed": "Clause 2's second mechanism - the LOCATION's own remit-to setting, as distinct from the shop's integrated-billing remit-to - was not separately exercised. The payee here resolves through integrated billing (Interstate Billing Service).",
+   "note": "Earlier recorded as not exercised because all three workplaces on the default customer carry remit_to pointing at themselves. The condition does exist elsewhere in the estate."
   },
   "C44910": {
-   "verdict": "Untested",
-   "observed": "Clause 1 PASSES (Bill To full width, 475.3pt, when no Remit block). Clause 3 PASSES (Credit To full width on the Credit Invoice, 475.3pt).",
-   "not_observed": "Only clause 2 remains: Bill To and Remit Payment To side by side when a payee IS configured.",
-   "note": "Needs a remit payee - UI route, Administration > Locations."
+   "verdict": "Passed",
+   "observed": "Clause 1 - with no Remit block, Bill To measures x0=60.0 to x1=535.3, 475.3pt, the full content width (INV-S2-32136). Clause 2 - with a payee configured (INV-S2-16541), Bill To starts at x0=60.0 and Remit Payment To at x0=308.5 inside the same 60.0-535.3 addresses row: the two sit side by side, each about half width. Clause 3 - on the Credit Invoice the Credit To block measures the same full 475.3pt (CM-4354).",
+   "not_observed": null,
+   "note": null
   },
   "C44911": {
    "verdict": "Passed",
@@ -570,6 +570,54 @@
    "observed": "Rendered a batch PDF (POST /api/invoices/batch-pdf over two of this pass's invoices). It comes back entirely on the OLD template and is not half-restyled: the typeface is Nunito Sans throughout, the labels are the pre-refresh ones ('Invoice Date:' with a capital D, 'Bill To' in title case, 'Parts Order', a Description/Quantity/Rate/Amount table header), and none of the refresh markers appears - no accent-coloured line numbers, no order-reference chips, no 'WORK PERFORMED' section head, no boxed headline figure. Clauses 1, 2 and 3 all hold.",
    "not_observed": "An imported work order's document was not rendered this pass; the batch path alone was exercised.",
    "note": "Side evidence for SV-9761: the OLD template's Nunito Sans IS embedded correctly, while the refreshed template asks for Inter and silently falls back to DejaVu Sans. The font is missing from the refreshed pipeline, not from the image generally."
+  },
+  "C45184": {
+   "verdict": "Passed",
+   "observed": "Clause 1 - every date across all 25 documents captured this pass renders in the 'Mon D, YYYY' style: Sep 1, Sep 2, Sep 5, Sep 6, Sep 7, Sep 14, Jul 28, Jul 30 2026. Scanned for other date shapes (d/m/y, ISO) and for leading zeros - none found anywhere. Clause 3 - the only 'Date / Time' field is the paid banner's, which is not present on any shop-app document.",
+   "not_observed": "Clause 2's US half: all three workplaces in this organisation are Canadian (Calgary, Lethbridge, Toronto), so a US shop could not be rendered to prove the format does not change.",
+   "note": null
+  },
+  "C45185": {
+   "verdict": "Passed",
+   "observed": "Snapshotted a PRE-redesign event: work order S2-16541 (started 14 July 2026), its only history event, via POST /api/work-orders/invoices/snapshot. Clause 3 - HTTP 200 and a valid 7-page PDF; no 500 and no fatal error. Clause 1 - it renders in the NEW layout: 'ADDRESSES' row, structured 'ASSET' band with UNIT / PLATE / MILEAGE / ENG HRS / VIN / SERIAL, order-reference chips, 'WORK PERFORMED' heading, 'SCOPE OF WORK' labels, the refreshed summary and signature block. Clause 2 - the Authorizer, which an old snapshot never stored, is hidden entirely, with no blank line and no empty label; Customer PO ('23'), Approval Code ('rW1566') and Terms ('Net 30'), which the old snapshot did store, all print.",
+   "not_observed": null,
+   "note": null
+  },
+  "C45186": {
+   "verdict": "Passed",
+   "observed": "Snapshotted the 'Invoice created' event recorded today on work order S-32136, after the redesign. The snapshot carries the new content in full: 'Authorizer  Savannah Tran', 'PLATE  ZZP-6028', the ASSET band with UNIT / MILEAGE / ENG HRS / VIN / SERIAL, 'Customer PO  9989', the refreshed work section and summary. Byte-comparable to the live render of the same invoice.",
+   "not_observed": null,
+   "note": null
+  },
+  "C45189": {
+   "verdict": "Passed",
+   "observed": "Currency renders as $#,###.## throughout with a comma thousands separator and two decimals, verified up to five digits ($12,345.67, $13,369.04) and down to zero ($0.00); negatives on the credit documents carry a leading minus (-$200.00) and discounts parentheses (($15.00)). Percentages render as the existing convention: 'GST (5%)' and 'Shop supplies (10.5% of labor)'. Nothing in the redesign has altered them.",
+   "not_observed": null,
+   "note": null
+  },
+  "C45193": {
+   "verdict": "Passed",
+   "observed": "Seeded invoice INV-S2-32221 with a $12,345.67 work-order-wide fee. Every amount renders as formatted currency - $12,345.67, $12,732.42, $636.62, $13,369.04 - with correct thousands separators. Scanned all 25 documents captured this pass for the string 'NaN': zero occurrences. SV-8680 / SV-8581 do not reproduce.",
+   "not_observed": null,
+   "note": null
+  },
+  "C45195": {
+   "verdict": "Passed",
+   "observed": "Measured on the 2-page INV-S2-32136 and the 7-page snapshot of S2-16541. No content is cut mid-row and no description splits illegibly. Every page after the first opens with a single identification line - shop location name at x=22.5 on the left, document number at x=461.0 on the right - and the full masthead does not repeat. The totals block sits whole on one page, each work line stays with its own footer, and the signature block is not orphaned.",
+   "not_observed": null,
+   "note": null
+  },
+  "C45196": {
+   "verdict": "Passed",
+   "observed": "Invoice INV-P2-1931 ($186.90) settled with $36.90 cash plus $150.00 of customer credit CM-4352 in one transaction. Clause 1 - Balance reads $0.00 and the masthead reads 'Invoice date: Sep 7, 2026' / 'Paid date: Sep 7, 2026'; the Due date is gone. Clause 2 - both rows are listed: 'Sep 7, 2026 - Cash  $36.90' and '(Credit) Sep 7, 2026 - CM-4352  $150.00'. SV-7846's symptom (a mixed payment not marking the invoice paid) does not reproduce.",
+   "not_observed": null,
+   "note": null
+  },
+  "C45197": {
+   "verdict": "Passed",
+   "observed": "Credit CM-4355 was raised from invoice INV-S-32220; that invoice was then reversed (its payments reversed first, then POST /api/invoices/reverse-invoice, HTTP 200). Clause 1 - the credit document still renders: HTTP 200, a valid PDF, no 500. Clause 2 - it degrades exactly as S11-R3 documents: the credit moves to 'Voided' and the whole INVOICE NUMBER column disappears rather than showing a dangling or blank number; items and totals render unchanged (-$40.00). SV-7821's void 500 does not reproduce.",
+   "not_observed": null,
+   "note": null
   }
  },
  "seeding": {
