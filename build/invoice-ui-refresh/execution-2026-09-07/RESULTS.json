@@ -1,0 +1,53 @@
+{
+ "pass_meta": {
+  "date": "2026-09-07",
+  "env": "staging",
+  "build_marker": "v26.35.9-9812433",
+  "record": "WO S-32136 / docs EST-S2-32136 & INV-S2-32136, customer 4 Star Truck Repair",
+  "note": "Results held LOCALLY. Nothing written to TestRail run R417."
+ },
+ "results": {
+  "C44901": {
+   "verdict": "Passed",
+   "observed": "All five identity values match the shop record byte-for-byte: name 'Staging Heavy Duty - 9919', '9919 Shepard Road SE', 'Calgary, Alberta', 'T2C 4M5', '(403) 523 - 0488' (GET /api/workplaces).",
+   "not_observed": null,
+   "note": null
+  },
+  "C44902": {
+   "verdict": "Untested",
+   "observed": "Assertion 1 PASSES: the shop has a logo set and the masthead shows it.",
+   "not_observed": "Assertion 2 (no logo set -> no placeholder) was not exercised: this location has a logo. Changing the shop logo is a settings change on a SHARED staging org, so it was not done unilaterally.",
+   "note": "Needs either a second location with no logo, or permission to unset and restore this one."
+  },
+  "C44903": {
+   "verdict": "Untested",
+   "observed": "Estimate label reads 'Estimate: EST-S2-32136' and Invoice label 'Invoice: INV-S2-32136' - type word before the number, prefix included, both correct.",
+   "not_observed": "The Credit Invoice label ('Credit: {number}') was not exercised - no credit memo on this record.",
+   "note": null
+  },
+  "C44904": {
+   "verdict": "Passed",
+   "observed": "No status label or pill anywhere in the masthead of either document (scanned the masthead band for PAID / PAID IN FULL / DRAFT / VOID / VOIDED / UNPAID / OVERDUE - zero hits on both).",
+   "not_observed": null,
+   "note": null
+  },
+  "C44905": {
+   "verdict": "Untested",
+   "observed": "No monetary amount anywhere in either masthead (regex for a currency figure over the masthead band: zero hits). Estimate's boxed headline reads 'ESTIMATED TOTAL'; Invoice's reads 'BALANCE'.",
+   "not_observed": "The Credit Invoice clause was not exercised - no credit memo on this record.",
+   "note": null
+  },
+  "C44906": {
+   "verdict": "Untested",
+   "observed": "Estimate masthead shows 'Estimate date: Sep 6, 2026' and NO due date. Unpaid Invoice masthead shows 'Invoice date: Sep 6, 2026' and 'Due date: Sep 13, 2026'. Date format matches the fixed 'Mon D, YYYY' form.",
+   "not_observed": "The fully-paid Invoice clause (Paid date replaces Due date) and the Credit Invoice clause were not exercised - this work order is unpaid and has no credit memo.",
+   "note": null
+  },
+  "C44907": {
+   "verdict": "Untested",
+   "observed": null,
+   "not_observed": "Not exercised: every masthead identity field on this location is populated, so the hide-when-empty behaviour never fires.",
+   "note": "Needs a location with at least one empty identity field."
+  }
+ }
+}
