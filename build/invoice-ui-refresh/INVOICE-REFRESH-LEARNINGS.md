@@ -20,6 +20,7 @@
 | check a finding against the DESIGN document | **L11** | The design is a STATEFUL prototype; its CSS encodes the hide states. |
 | test ANY conditional hide-rule (the general logic) | **L13** | THE DEAD-RULE TEST. A condition true BY CONSTRUCTION kills its field. |
 | decide whether a spec/design/staging difference is a defect | **L12** | THE DECISION MATRIX. Direction matters: missing != extra. |
+| report something you hit through the API | **L16** | If the UI does it fine, an API-only failure is NOT reported. |
 | WRITE a ticket (copy the approved shape) | **L15** | ⭐ SV-9770 IS THE APPROVED TEMPLATE. Copy its section order exactly. |
 | FILE a ticket on this project (exact field shape) | **L14** | Task needs Product Area; a Task cannot be parented to a Story. |
 | decide defect vs Task vs spec-gap | **L8** | This epic routes them differently, and it matters. |
@@ -363,3 +364,28 @@ parent **the owning STORY**, no Product Area.
 - **The build plainly diverges from an agreed, current, quotable value** -> same template, filed as a
   **Story Defect** parented to the owning story.
 Either way the section order above does not change.
+
+## L16 · 🛑 IF IT WORKS THROUGH THE UI, DO NOT REPORT THE API-ONLY FAILURE (QA lead, 2026-09-07)
+**Verbatim:** *"If it is working through UI then dont report what is replicated through API only."*
+
+**⇒ THE TEST, before reporting anything found via a direct API call:** can a user do this same thing
+through the product's own screens? **If YES and it works there, the API-only failure is NOT a finding
+and is NOT reported** — not as a defect, not as an observation, not as a footnote. It is our tooling
+hitting a path the product does not use.
+**⇒ Only if the failure ALSO occurs through the screens is it real** — and then it is an ordinary
+user-facing finding, described from the screen, not from the endpoint.
+
+**Worked example, 2026-09-07 (dropped under this rule):** `POST /api/workplaces/change` answered 400
+`tax: Missing required parameter` for `tax_id`, then **500** for `tax`. Administration → Locations
+edits the same record perfectly well. **So it is not reported.** *(The record was still re-read live
+afterwards and confirmed byte-identical — core §2.6, a 500 can follow a write that landed. Verifying is
+not the same as reporting.)*
+
+**This sharpens Rule 51 rather than replacing it.** Rule 51 says an API-only finding is *asked about
+separately*; this says that where the UI does the job, there is nothing to ask about. The reachability
+test is unchanged: judge by whether a screen can reach it, never by whether our evidence happens to be
+an endpoint capture.
+
+**⇒ PRACTICAL CONSEQUENCE FOR SEEDING: an API 500 while seeding is a TOOLING problem, not a finding.**
+Switch to the UI and carry on (Rule 14/74 — never let it block the test). Record the working route in
+the playbook so the next session goes straight to it.
