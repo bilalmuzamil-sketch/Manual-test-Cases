@@ -546,3 +546,32 @@ the build. A real defect is almost never total. Confirm the selector matched som
 size (the document is ~800px wide, ~2000px tall) before believing any verdict drawn from it. The
 preview is injected straight into the app DOM — **there is no iframe** — and it renders
 `TABLE / TR / TD / SPAN / B`, so the block markup survives sanitising.
+
+## L23 · 🛑 `iam/change-location` CAN POISON THE WHOLE SESSION — AND THE RECOVERY
+**Retrieve when:** every authenticated staging call suddenly returns HTTP 500.
+
+`POST /api/iam/change-location {workplace_id}` to **QB Location** returned 500 and left the session
+pinned to a workplace that 500s. After that **every** authenticated call 500'd — `/api/workplaces`,
+`/api/work-orders`, even `/api/quick-login`. Changing back to Heavy Duty 500'd too, three times.
+
+**Prove it is the session, not the site, before reporting anything** (Rule 68):
+
+| Probe | Healthy site, broken session |
+|---|---|
+| `curl https://app.staging.shopview.com/` | **200** |
+| `curl https://api.staging.shopview.com/api/workplaces` (no cookies) | **401** ← auth layer alive |
+| the same call WITH cookies | **500** ← it is your session |
+
+**THE RECOVERY, in this order — the middle step is the one that is easy to miss:**
+
+1. `POST /api/login` with anything → **401 `sso_required`**, but it hands you a **fresh `PHPSESSID`**
+   in `Set-Cookie`. Swap that one value into the cookie header, keeping `sv_sso_session` and
+   `cf_clearance` (core §6.2 — never replace the whole header).
+2. Calls now answer **409**, not 500. **409 is progress**: the session is coherent again but not yet
+   bound. Do not read it as a failure and start over.
+3. `POST /api/quick-login {"key":"admin"}` with that header → **200**, and its `Set-Cookie` carries a
+   **rotated PHPSESSID**. Swap that in as well.
+4. Re-verify with `/api/workplaces` → 200 and a known record by number, never by assuming.
+
+Recovered in under two minutes once the order was right. **Do not switch workplace by API at all
+unless the case needs it** — the read you want is usually reachable from the current one.
