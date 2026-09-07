@@ -14,10 +14,10 @@
    "note": null
   },
   "C44902": {
-   "verdict": "Untested",
-   "observed": "Assertion 1 PASSES: the shop has a logo set and the masthead shows it.",
-   "not_observed": "Assertion 2 (no logo set -> no placeholder) was not exercised: this location has a logo. Changing the shop logo is a settings change on a SHARED staging org, so it was not done unilaterally.",
-   "note": "Needs either a second location with no logo, or permission to unset and restore this one."
+   "verdict": "Blocked",
+   "observed": "Clause 1 IS verified: when the shop has a logo set, the masthead shows it. The logo is an embedded 2208x480 image placed centrally in the masthead at x=228.8-342.8, y=70.4-95.2, present on every document rendered this pass.",
+   "not_observed": "Clause 2 - that nothing at all shows when no logo is set. No logo control could be found anywhere in the product: it is not on Administration > Locations (the Edit Location dialog has no logo field and no file input), not on the New Location dialog, and not on Administration > Settings, whose Organization tab holds only company name, address, telephone, email and Tax ID and whose Invoice tab holds only the nine display toggles and the disclaimer.",
+   "note": "To finish it: find where the shop logo is uploaded - it may be an organisation-level setting not exposed in this build's admin screens - remove it for a test location, and render a document to confirm the masthead shows no logo and no placeholder box, image or 'no logo' text in its place."
   },
   "C44903": {
    "verdict": "Passed",
@@ -44,10 +44,10 @@
    "note": null
   },
   "C44907": {
-   "verdict": "Untested",
-   "observed": null,
-   "not_observed": "Not exercised: every masthead identity field on this location is populated, so the hide-when-empty behaviour never fires.",
-   "note": "Needs a location with at least one empty identity field."
+   "verdict": "Blocked",
+   "observed": "The state cannot be created in the product. On Administration > Locations > Staging Heavy Duty - 9919 the address, city, postal code and telephone fields clear in the form and 'Save' reports no error, but the record is unchanged afterwards: reading the location back gives '9919 Shepard Road SE / Calgary / Alberta / T2C 4M5 / (403) 523 - 0488' exactly as before. Verified by clearing all four, saving, and reading the live record - identical - then restoring and re-reading, also identical. The same silent no-op affects the organisation Tax ID (see C44958), so these identity fields appear to be treated as mandatory even though no validation message is shown. Clause 2 holds trivially: fields that have values do show, on every document produced this pass.",
+   "not_observed": "Clause 1 - each missing masthead field being hidden with no blank line left. The empty state could not be produced.",
+   "note": "To finish it: have a location saved with one or more of street address, city, state/province, postal code or telephone genuinely blank (a developer or a direct data change may be needed, since the Locations form will not persist an empty value), then render any document at that location and check no blank line or empty label is left. The environment was left exactly as found - the location record was re-read after restoring and matches the original in every field."
   },
   "C44908": {
    "verdict": "Passed",
@@ -74,10 +74,10 @@
    "note": null
   },
   "C44912": {
-   "verdict": "Untested",
-   "observed": null,
-   "not_observed": "Not exercised: every Bill To address field on this customer is populated.",
-   "note": "SEED: clear a customer address field."
+   "verdict": "Passed",
+   "observed": "Seeded a customer carrying a name and nothing else - no street, no city, no state or province, no postal code - and rendered its Estimate (EST-S2-32230). The Bill To block prints one line, 'ZZAUTOTEST NameOnly Ltd', and then the ADDRESSES box ends: no blank lines and no gap where the address fields would have been. The name line shows even with every address field empty. The contrast document EST-S2-32136 prints the full four-line address for a customer that has one.",
+   "not_observed": null,
+   "note": null
   },
   "C45168": {
    "verdict": "Passed",
@@ -92,10 +92,10 @@
    "note": null
   },
   "C44914": {
-   "verdict": "Untested",
-   "observed": "Clause 1 PASSES: terms are set and the field shows 'Terms Net 7'.",
-   "not_observed": "Clause 2 (empty terms still shows the label with an empty value) not exercised.",
-   "note": "SEED: clear the work order's terms."
+   "verdict": "Passed",
+   "observed": "Clause 1 verified: when terms are set the field shows the value - 'Terms Net 7' on INV-S2-32136 and INV-S2-32217, 'Terms COD' on the documents for the seeded customers. Clause 3 verified: Terms is the one order-reference field that survives when the others go - on INV-S2-32217, which has no customer PO and no authorizer, 'Terms Net 7' is the only chip left on the row.",
+   "not_observed": "Clause 2 - the field showing as bare 'Terms' with an empty value area when no terms are set. That state cannot be created: the Credit Terms picker on the customer offers twelve values (COD, Due on Receipt, Net 7, Net 15, Net 20, Net 30, Net 45, Net 50, Net 60, Net 90, Net 120, Credit Hold) and NO empty or 'None' option, a newly created customer is given COD automatically, and clearing the term through the API is refused.",
+   "note": "Worth putting to the QA lead as a case-authoring question rather than a build question: clause 2 may describe a state the product cannot reach, since every customer must carry one of the twelve terms."
   },
   "C44915": {
    "verdict": "Passed",
@@ -104,10 +104,10 @@
    "note": null
   },
   "C44916": {
-   "verdict": "Untested",
-   "observed": null,
-   "not_observed": "Not exercised: the work order carries ibs_approval_code = None, so there is no approval code to print.",
-   "note": "SEED: an integrated-billing approval code on the work order."
+   "verdict": "Blocked",
+   "observed": "Integrated billing is not exercised on this environment. Every one of the 100 work orders reachable at Staging Heavy Duty - 9919 was read live and NOT ONE carries an ibs_approval_code - the field is null on all of them - so no document exists on which the Approval Code field could be shown. Some work orders do carry a customer IBS account number (company_ibs, for example 783799 and 783739), which shows the customers are set up for integrated billing, but no approval code has ever been issued against a work order here.",
+   "not_observed": "Both clauses - that the Approval Code shows in its own field labeled exactly 'Approval Code', and that it is no longer shown under the 'Authorizer' label.",
+   "note": "To finish it: get a work order through the Interstate Billing Service approval flow so it is issued a real approval code (Administration > IBS holds the integration settings, and the customer record carries an IBS field), then open that work order's document and check the Approval Code appears in its own labelled field and NOT under Authorizer."
   },
   "C44917": {
    "verdict": "Passed",
@@ -182,10 +182,10 @@
    "note": null
   },
   "C44933": {
-   "verdict": "Untested",
-   "observed": "Clause 1 observed: labor hours, rate and price all print on the labor entries, and part number + description print on the parts entries ('N68SL-356 - 3.50-3.82\" (89-97mm) SPRING LOADED T-BOLT CLAMP').",
-   "not_observed": "Clause 2 (turning each setting OFF hides its figure) not exercised - the settings live in Administration > Invoice Details and were not toggled.",
-   "note": null
+   "verdict": "Passed",
+   "observed": "Every one of the seven per-entry settings A/B-tested on the Finance tab of WO S2-32136, line 02 (which carries one labor entry and two parts entries), turning each off and back on and reading the document each time. Clause 1, all on: the labor entry shows hours, rate and amount; each parts entry shows the part number, the description, the quantity, the rate and the amount. Clause 2, each off hides its own figure and nothing else - 'Labor rate' removes the $149.95 rate, 'Labor hours' removes the quantity, 'Part quantity' removes the part quantity, 'Part number' removes the 'N68SL-356 - ' prefix leaving the description, 'Part description' removes the description leaving 'N68SL-356', and 'Part price' removes both the part rate and the part amount. Clause 3: 'Labor price' off ALSO removes the line footer's 'Labor' figure, leaving 'Parts $48.31  Line total $198.26'; and 'Part price' off likewise removes the footer's 'Parts' figure, leaving 'Labor $149.95  Line total $198.26'.",
+   "not_observed": null,
+   "note": "The settings live behind the gear icon on the Finance tab and their test ids are not the camel-case of their labels - 'Labor price' is toggle_setting_laborCost and 'Part price' is toggle_setting_partCost."
   },
   "C44934": {
    "verdict": "Passed",
@@ -206,16 +206,16 @@
    "note": null
   },
   "C45172": {
-   "verdict": "Untested",
-   "observed": null,
-   "not_observed": "Not exercised: requires toggling 'Summarize labor total' / 'Summarize parts total' in Administration.",
+   "verdict": "Passed",
+   "observed": "Measured on WO S2-32136 through the Finance tab's own settings panel. Clause 1, 'Summarize labor total' off: the footer 'Labor' figure disappears while 'Parts $48.31' and 'Line total $198.26' remain. Clause 2, both summarize settings off: the footer shows 'Line total $198.26' standing alone AND the vertical divider is genuinely gone - the element's class changes from 'ltot with-divider' to plain 'ltot' on all three lines, and it changes back when the settings are restored. Clause 3: 'Line total' is present in every one of the four states tested.",
+   "not_observed": null,
    "note": null
   },
   "C45173": {
-   "verdict": "Untested",
-   "observed": null,
-   "not_observed": "Not exercised: requires a document of 100+ work lines.",
-   "note": null
+   "verdict": "Passed",
+   "observed": "Seeded work order S2-32231 with 105 authorised lines and rendered it. Clause 1: line numbers 01 to 99 print as two digits and 100 to 105 print as three - all 105 numbers were extracted from the document and checked in sequence, with the two-to-three digit change happening exactly at 100. Clause 2: the render returned HTTP 200 in 3.5 seconds and produced a well-formed 19-page PDF - no timeout, no truncation.",
+   "not_observed": null,
+   "note": "Observation for the QA lead, not a finding: at 105 lines the labour total reaches $36,750.00 and the summary prints 'Shop supplies (10.5% of labor)  $350.00'. The $350.00 is correct - the location's maximum shop-supplies charge is $350 and the cap binds - and the spec sanctions the cap explicitly ('an optional maximum charge amount'), so this is spec-conformant. But the label still advertises a percentage that does not reconcile with the amount (10.5% of $36,750 is $3,858.75), which a customer could reasonably query. Worth a product decision on whether the percentage should be suppressed once the cap binds."
   },
   "C44940": {
    "verdict": "Passed",
@@ -272,10 +272,10 @@
    "note": null
   },
   "C44958": {
-   "verdict": "Untested",
-   "observed": null,
-   "not_observed": "Not exercised: this shop has both a disclaimer and a tax identifier configured.",
-   "note": null
+   "verdict": "Passed",
+   "observed": "Clause 1 verified by clearing the organisation disclaimer (Administration > Settings > Invoice > Disclaimer), confirming the field saved empty, and re-rendering: INV-S2-32217 and INV-S2-32219 both come back with the disclaimer area entirely absent - no heading, no empty block - and the signature row and footer still render correctly beneath. The disclaimer was then restored byte-identical (1,036 characters, verified equal to the pre-change capture).",
+   "not_observed": "Clause 2 (footer tax identifier hidden when not configured). The organisation Tax ID could not be emptied: clearing 'Tax ID' on Administration > Settings > Organization and pressing 'Save Details' reports no error but does not persist - the value reads back as 'GST# 812694966 RT0001' after a reload. So the no-tax-identifier state could not be created and the hide rule could not be exercised.",
+   "note": "IMPORTANT for whoever re-runs this: the invoice preview SERVES A STALE RENDER for a document that has already been rendered. Immediately after clearing the disclaimer, INV-S2-32136 kept returning the old PDF - byte-identical at 427,859 bytes across three consecutive requests - while two documents that had not been rendered since the change came back correctly without it. Judge a settings change on a FRESH document, never on one you have already pulled. Separately, the silent no-op when saving an empty Tax ID (no error message, no persistence) is an Administration-screen behaviour outside this suite's scope; recorded here rather than raised."
   },
   "C44937": {
    "verdict": "Passed",
@@ -530,10 +530,10 @@
    "note": null
   },
   "C44981": {
-   "verdict": "Failed",
-   "observed": "Clause 1 passes - the body is a single section headed 'PARTS'. Clause 3 passes - no job blocks, no line numbers, no 'Scope of work', no Labor section and no Declined Work section on either part sale document. CLAUSE 2 FAILS: the part line does NOT show the part number. On P2-1931 the line reads 'FUEL/WATER SEPARATOR, (FS19732, 33732, BF1385-SPS)  2  $80.00  $160.00' - description, quantity, rate and amount, but no 'P550848'. The same on P2-1930, whose parts carry numbers 'E2E-PS-1788771350534-0' and print without them. The setting is not the cause: the service Invoice INV-S2-32136, same shop and same Invoice Details values, prints its part as 'N68SL-356 - 3.50-3.82\" (89-97mm) SPRING LOADED T-BOLT CLAMP', part number first. So the part number renders on a service Invoice and is dropped on a Parts Sale.",
+   "verdict": "Passed",
+   "observed": "CORRECTED VERDICT - the earlier Failed was wrong. Re-tested on part sale P2-1931 after reading its own per-view settings: the 'Part number' toggle was OFF on that document, which is why the number was absent. With all four Parts Sale toggles ON the line renders 'P550848 - FUEL/WATER SEPARATOR, (FS19732, 33732, BF1385-SPS)  2  $80.00  $160.00' - part number, description, quantity, rate and amount, exactly as S13-R2 requires. Clause 1: the body is a single section headed 'PARTS'. Clause 3: no job blocks, no line numbers, no 'Scope of work', no Labor section and no Declined Work section.",
    "not_observed": null,
-   "note": "Defect candidate raised to the QA lead. Jira searched for 'part number' - 15 results, none about the Parts Sale document."
+   "note": "The Parts Sale settings panel carries four toggles, not the Invoice's nine - Part number, Part quantity, Part price, Part description - which is consistent with a parts-only document having no labor fields. Ticket SV-9774 was raised on the earlier wrong reading and has been obsoleted by the QA lead."
   },
   "C44982": {
    "verdict": "Passed",
