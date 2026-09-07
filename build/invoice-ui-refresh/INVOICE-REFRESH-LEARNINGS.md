@@ -18,6 +18,7 @@
 | read "actual behaviour" from anywhere | **L1** | THE cause of both refusals on this epic. |
 | look up a work order's real number | **L7** | `GET /api/work-orders/view/{id}` -> `data.work_order.number`. |
 | check a finding against the DESIGN document | **L11** | The design is a STATEFUL prototype; its CSS encodes the hide states. |
+| decide whether a spec/design/staging difference is a defect | **L12** | THE DECISION MATRIX. Direction matters: missing != extra. |
 | decide defect vs Task vs spec-gap | **L8** | This epic routes them differently, and it matters. |
 
 ---
@@ -176,3 +177,28 @@ Extraction recipe (the file is one huge line, so `grep -o -E '.{240}term.{240}'`
 `-S3-4176`, and `Remit Payment To — Northgate Fleet Billing Inc, c/o Interstate Billing Service` (a
 **third-party integrated-billing payee**, NOT the shop's own address). Both are the *shown* states of
 conditional elements, and both match what the spec requires. **Neither is a defect.**
+
+## L12 · 🛑 THE DECISION MATRIX — SPEC vs DESIGN vs STAGING (QA lead, 2026-09-07)
+**The direction of the difference decides the verdict. "Missing" and "extra" are NOT symmetrical.**
+
+| # | Spec / stories | Design | Staging | VERDICT |
+|---|---|---|---|---|
+| 1 | **says hide** (a stated condition) | — | hides it | **NOT a defect.** Spec owns visibility. Worked: L1 (S2-R2), L4 (S3-N1), Unit (S4-N1). |
+| 2 | **SILENT** | **SHOWS it** | **MISSING** | **🔴 STORY DEFECT — raise it, citing the DESIGN.** Say the design shows it and attach a **screenshot of the design**. Precedent on this epic: SV-9684 (*"the element IS in the binding Design Document but was never written into Story 5"*). |
+| 3 | **SILENT** | **does NOT show it** | **SHOWS it** | **NOT a defect — STAGING WINS.** Extra content the design lacks and the spec never mentions is treated as an **environment/configuration matter**, not a build fault. Worked: **"Supplies %"** (the shop-supplies percentage in the label) — it is a location setting, and the QA lead corrected it in the environment. |
+| 4 | says show | — | missing | **Story Defect** (ordinary spec-backed defect). |
+| 5 | **conflict on APPEARANCE** (size, weight, ink, spacing, order, width, treatment) | design differs from build | — | **Story Defect citing the DESIGN** — the design is the source of truth on appearance. |
+| 6 | **conflict on CONTENT / WORDING / VISIBILITY** | design differs from spec | — | **Spec wins.** Only escalate to Chris W. if the split cannot resolve it. |
+
+**The QA lead's own words, 2026-09-07:** *"if something missing is justified as per the specs but they are
+not missing in the design we need to create the story defect based on the design too and we may need to
+mention that the design shows that"* (row 2) · *"if it is not mentioned in the specs or stories to show or
+not give the staging the precedence if staging is not missing something rather showing something like
+'Supplies %' because in that case the supplies % is the configuration matter of the environment"* (row 3).
+
+**⇒ THE ONE-LINE TEST: the design can only ADD a requirement, never REMOVE one.** Something the design
+shows and the build lacks is a gap worth raising. Something the build shows and the design lacks is
+configuration, not a fault — do not raise it.
+**⇒ AND BEFORE ROW 2 FIRES, RULE OUT A DATA/STATE CONDITION** (L11(b)): check for a `.wrap.<state>` hide
+rule in the design's CSS **and** check the record's own data. Every candidate so far died on that check —
+`vehicle.unit = None` (S4-N1), `ibs_approval_code = None` (S3-R4), no remit payee (S2-R2).
