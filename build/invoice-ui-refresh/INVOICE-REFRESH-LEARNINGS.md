@@ -463,13 +463,27 @@ His five rules, verbatim in substance:
 ## Steps to reproduce     numbered 1, 2, 3 … each step a UI action a layman can follow
 ## Current behaviour      what the build does, in words
 ## Expected behaviour     what it should do, in words
+## Screenshots            the annotated inline images
 ## Source                 the story (link) AND the spec (rule number + link), the expectation
                           QUOTED IN EXACT WORDS from each
-## Screenshots            the annotated inline images, last
+                          ← a LINE BREAK, then:
+**Where this was seen:**  environment, build marker, record, role, date
+**What is not affected:** the scope limit
 ```
 
-**Do NOT reorder these, do NOT merge Current into Expected, and do NOT put the screenshots first.**
-Applied to SV-9773 and SV-9774 on 2026-09-07.
+**Do NOT reorder these and do NOT merge Current into Expected.**
+
+> **🛑 AMENDED BY HIM 2026-09-07, SAME DAY:** *"the Source should appear just above the 'Where it was
+> seen' with a line break."* So **Source is the LAST titled section**, the screenshots move ABOVE it,
+> and **Source is separated from "Where this was seen" by a LINE BREAK — not a horizontal rule.**
+> Emit `&nbsp;` on its own line for that break; a bare blank line collapses and `---` draws a rule he
+> does not want. His first wording put the screenshots last; this supersedes it.
+
+**⚠️ THE CONVERTER REORDERS YOU IF YOU FIGHT IT.** Submitting `## Source` before `## Screenshots`
+came back stored with **Screenshots hoisted above Source** — the markdown→ADF conversion moved the
+media block. Write the sections in the FINAL order above and the stored body matches what you sent.
+**Always re-read the issue after writing and check the section order**, because the write reports
+success either way. Applied to SV-9773 and SV-9774 on 2026-09-07.
 
 ### The annotation recipe that satisfies rule 3
 Tool: `/tmp/claude-0/wk/annot.py` (PIL). Rebuild it if the container is gone — the shape that works:
@@ -496,3 +510,39 @@ Tool: `/tmp/claude-0/wk/annot.py` (PIL). Rebuild it if the container is gone —
 - `editJiraIssue` preserves `parent`, `priority` and issue links — verified on both tickets — but
   re-read the issue afterwards and confirm, because a lost media node is invisible in the changelog
   (skill 06's recorded hazard).
+
+---
+
+## L21 · THE SEEDING RECIPES THAT UNLOCKED THIS SUITE — REUSE, DO NOT REDISCOVER
+**Retrieve when:** a case needs a data state the sample records do not have. All proven live on
+staging 2026-09-07, build v26.35.9-9812433. Payload details are in `build/APP-ACTIONS-PLAYBOOK.md`.
+
+| State needed | How |
+|---|---|
+| An invoice | `POST /api/work-orders/change-status {id, status:'complete'}` then `POST /api/invoices/create {work_order_id}` → 201. **"Work order is not complete" is the status, not a bug.** |
+| A partial / full payment | `POST /api/customer-account/create-customer-payment` — the transaction row must be the FULL object from `list-unpaid-transaction` with `transaction_payment_amount` added |
+| An applied customer credit | same call, credit row in `applied_credits` → prints `(Credit) {date} - CM-xxxx` |
+| The **excess sub-line** | one payment SPLIT ACROSS TWO INVOICES (`transactions:[a,b]`). `new_credit` is IGNORED by the server, so over-applying does not create the excess — splitting does |
+| A **deposit** row | `POST /api/deposits {customer_account_id, work_order_id, amount, payment_method, deposit_date}` → 201. **Only while the WO is Estimate/Approved/In Progress/Review** — after invoicing it 400s. Invoice afterwards and it auto-applies (`auto_paid:true`) |
+| A **paid date earlier than the invoice date** | back-date the deposit; the deposit-paid invoice prints `Paid date` = the deposit date |
+| Line-level and WO-level **fees / discounts** | `POST /api/work-orders/adjustments/add {workOrderId, kind:'fee'\|'discount', calculationType:'flat', amount, scope:'labor_line'\|'part_line'\|'whole_wo', targetId, taxable}` |
+| **Special characters** | `POST /api/customers/create` then `/api/contacts/create` then `/api/vehicles/create` (needs BOTH `company_id` and `customer_id`) |
+| Undo it all | reverse payments (`reverse-customer-payment`) BEFORE `POST /api/invoices/reverse-invoice` — a paid invoice refuses to reverse |
+
+**Route discovery, when a route is unknown:** do NOT guess (five guesses = five 404s). Fetch
+`https://app.staging.shopview.com/` → read the `/js/index.*.js` chunk → grep for the verb
+(`createDeposit:e=>s.post("deposits",e)` gave `POST /api/deposits` immediately). Then POST `{}` and
+let the 400 name every required parameter.
+
+## L22 · THE LOCATOR THAT NEARLY BECAME A FALSE FINDING
+**Retrieve when:** reading the on-screen document preview out of the app.
+
+The rendered document container is **`.invoice-pdf-new`**. A loose `[class*=preview]` matched a
+198px-wide unrelated div and made every phrase look "missing from the preview" — a 52-of-52 miss that
+would have read as a catastrophic DOMPurify defect. **Nothing was recorded from it.**
+
+**The rule this proves:** when a check reports that EVERYTHING failed, suspect the instrument before
+the build. A real defect is almost never total. Confirm the selector matched something of a plausible
+size (the document is ~800px wide, ~2000px tall) before believing any verdict drawn from it. The
+preview is injected straight into the app DOM — **there is no iframe** — and it renders
+`TABLE / TR / TD / SPAN / B`, so the block markup survives sanitising.
