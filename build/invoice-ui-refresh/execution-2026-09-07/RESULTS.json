@@ -194,10 +194,10 @@
    "note": null
   },
   "C44935": {
-   "verdict": "Passed",
-   "observed": "Line 02's footer shows all three labels with correct figures: 'Labor $149.95', 'Parts $48.31', 'Line total $198.26' - and 149.95 + 48.31 = 198.26, so clause 2's arithmetic holds. Line 01, which has no parts, correctly shows only 'Labor $299.90' and 'Line total $299.90'.",
-   "not_observed": "Clause 3 (a footer figure hidden when its summarize setting is off) not exercised.",
-   "note": null
+   "verdict": "Failed",
+   "observed": "Clauses 1, 3 and 4 hold: every work line carries a footer, the Labor/Parts figures follow their summarize and price settings, and the vertical divider before 'Line total' behaves as specified. CLAUSE 2 FAILS. On work order S-32136 line 01 (labour 2 x $149.95 = $299.90) a line-level fee of $25.00 was added (scope labor_line). The document renders the adjustment row correctly under the line as '\u21b3 ZZAUTOTEST Line Fee  $25.00', but the line footer still reads 'Labor $299.90' and 'Line total $299.90'. S5-R9 requires the Labor and Parts figures to be the line's own totals AFTER its line-level fees and discounts, with Line total their sum - so both should read $324.90. The Design Document computes it that way in its own script: setTxt('j2-labor', money(599.80 + L + F)) and setTxt('j2-line', money(1004.88 + net)), with the comment that only the SUMMARY rows stay gross. The summary does add the fee once, under Adjustments > Labor, so the customer is charged $324.90 for a line the document totals at $299.90.",
+   "not_observed": null,
+   "note": "Re-verdicted. The earlier Passed was reached on a work order that carried no adjustments, so clause 2 was never exercised. Defect candidate raised to the QA lead; nothing filed."
   },
   "C44936": {
    "verdict": "Untested",
@@ -378,6 +378,78 @@
    "observed": "Three shop-recorded payments (cash, cheque, EFT), an applied credit and an applied deposit were all present across the two invoices, and no paid banner appeared on any shop-app-generated PDF - clause 1 and clause 2 both hold. Neither invoice has a portal-processed payment.",
    "not_observed": null,
    "note": null
+  },
+  "C44971": {
+   "verdict": "Passed",
+   "observed": "Measured on INV-S2-32136 (2pp). Masthead: shop letterhead left (x=22-160), shop logo image centred (x=228.8-342.8, y=70-95), document block right, all sitting over a 2px ink rule (.mh border-bottom: 2px solid #121926, measured 1.5pt on paper). Bordered Addresses row (.addr-row, 1px #E3E8EF, radius 8px). Asset band with top and bottom hairlines. Order-reference chips (.ochip, bordered pills). Numbered work lines 01/02/03. 'SUMMARY' break bar (two 1.5pt ink rules either side of the label at y=556.9). Two-column tail: disclaimer left at x=60, totals right at x=280. Boxed headline figure. Three-line signature row (CUSTOMER SIGNATURE / PRINTED NAME / DATE). Single-line footer.",
+   "not_observed": null,
+   "note": null
+  },
+  "C44972": {
+   "verdict": "Passed",
+   "observed": "Every vector ink on the document was extracted: text renders in #121926, #364152, #4B5565 and #257CFF only; rules render in #121926 and #CDD5DF only. #4B5565 and #CDD5DF are not palette additions - they are the print-ink floors S12-R5 names, which clamp #697586/#9AA4B2 to #4B5565 and #E3E8EF/#EEF2F6 to #CDD5DF in PDF output. The template's own S12-R2 comment lists the same closed set. No colour outside the palette-plus-floor set appears.",
+   "not_observed": null,
+   "note": "The only non-palette pixels in a raster of the page belong to the shop's own uploaded logo image (a greyscale bitmap in the masthead) and to text anti-aliasing. Neither is a document ink."
+  },
+  "C44973": {
+   "verdict": "Passed",
+   "observed": "Exactly four spans on the whole document carry the accent #257CFF: the three work-line numbers '01', '02' (page 1) and '03' (page 2), and the word 'ShopView' in the page-2 footer. Nothing else uses it - 14 accent-coloured characters in total across both pages.",
+   "not_observed": null,
+   "note": "Clause 2 (Parts Sale, accent on 'ShopView' only) belongs to the Parts Sale document and is recorded under that section."
+  },
+  "C44974": {
+   "verdict": "Failed",
+   "observed": "The typeface in the generated PDF is NOT Inter. Every embedded font on every document type is DejaVu Sans: subsets 'XKQQSR+DejaVu-Sans' and 'UWGIWA+DejaVu-Sans-Bold', and nothing else - confirmed on the Invoice (INV-S2-32136), the Estimate (EST-S2-32136), the deposit-paid Invoice (INV-S2-32217) and the Credit document (CM-4347). The template's own CSS asks for Inter ('Inter', -apple-system, 'Segoe UI', Roboto, sans-serif) and its comment asserts 'Inter ships in the WeasyPrint image (Phase 3)', so the PDF pipeline is falling back to WeasyPrint's default face. Consequence for clause 2: only two faces are embedded, regular and bold, so the 400/600/700/800 ladder the spec and the Design Document require collapses to regular-or-bold - 600, 700 and 800 are indistinguishable on paper.",
+   "not_observed": "Clause 1's screen half (whether the in-app preview renders Inter) was not measured; the failure is proven for PDF output, which is enough to fail the case since the rule requires the two to match line for line.",
+   "note": "Defect candidate raised to the QA lead with the design and spec references; nothing filed."
+  },
+  "C44975": {
+   "verdict": "Passed",
+   "observed": "Clause 1 - the lightest text ink anywhere on the document is #4B5565; nothing lighter appears. Clause 2 - the only text below 10px is at 9.5px and 9.0px and both render #364152, not lighter. Clause 3 - every hairline rule renders #CDD5DF (0.75pt stroke), the floor value exactly.",
+   "not_observed": null,
+   "note": null
+  },
+  "C44976": {
+   "verdict": "Passed",
+   "observed": "Clause 2 both halves observed. Credit amounts carry the leading minus: the Credit document CM-4347 prints 'Subtotal -$50.00' and 'Total Credit -$50.00'. Discounts carry parentheses: INV-S2-32219 prints the work-order-wide discount as 'ZZAUTOTEST Loyalty Discount  ($15.00)'. Clause 1 - grayscale legibility follows from C44975: the document uses no colour to carry meaning, the lightest ink is #4B5565 and the lightest rule #CDD5DF, so nothing depends on hue.",
+   "not_observed": null,
+   "note": null
+  },
+  "C44977": {
+   "verdict": "Passed",
+   "observed": "The template carries no box-shadow declaration at all, and no toggle, settings or theme control markup - the design prototype's control strips are absent from the rendered document. The PDF is a plain white sheet with no drop shadow and no rounded sheet corners; the only border-radius values in the document CSS are 8px on the Addresses box and 6px on the order-reference chips, both of which are design elements rather than sheet presentation.",
+   "not_observed": null,
+   "note": null
+  },
+  "C44978": {
+   "verdict": "Passed",
+   "observed": "Clause 1 - the work section opens with a 2px ink rule (.job-first border-top-width: 2px over .job border-top: 1px solid #121926; measured 1.5pt #121926 on paper). Clause 2 - numbered jobs are separated by a 1px ink #121926 rule. Clause 3 - charge rows inside a job are ruled with #EEF2F6 dividers (.work-summary-table-new tr.crow td), printed at the #CDD5DF floor. Clause 4 - the 'Labor' and 'Parts' sub-section labels carry no border declaration and none renders. Clause 5 measured on INV-S2-32219: charge row at y=459.7, adjustment row at y=480.2, divider at y=494.3 - the divider follows the last adjustment row and never sits between the line and its adjustments.",
+   "not_observed": null,
+   "note": null
+  },
+  "C44979": {
+   "verdict": "Passed",
+   "observed": "Measured on INV-S2-32136. Clause 1 - 'WORK PERFORMED' renders at 11.0px bold. Clause 2 - 'SCOPE OF WORK' at 10.0px bold. Clause 3 - the in-job 'LABOR' and 'PARTS' labels at 10.5px bold. Clause 4 - all three sit below the job titles, which render at 16.0px bold. Inks follow the print floor (C44975).",
+   "not_observed": null,
+   "note": "Weight cannot be discriminated beyond regular-vs-bold in the PDF because only two faces are embedded - that is the C44974 failure, not a separate one here. Sizes, which are what this case pins, are all exact."
+  },
+  "C45213": {
+   "verdict": "Passed",
+   "observed": "Measured on the 2-page INV-S2-32136. Clause 2 - page 2 opens with a single identification line: 'Staging Heavy Duty - 9919' at x=22.5 (left) and 'Invoice: INV-S2-32136' at x=461.0 (right), both at y=31.5. Clause 3 - no masthead repeat: no logo, no address block, no dates on page 2. Clause 4 - the whole totals block (Labor through BALANCE) sits on page 2 unsplit. Clause 5 - work line 03 and its own footer are together on page 2. Clause 6 - the signature row shares page 2 with substantial content. Clause 7 - no orphaned row. Clause 1 - the template uses standard CSS paged-media breaks, no custom pagination.",
+   "not_observed": null,
+   "note": null
+  },
+  "C44963": {
+   "verdict": "Blocked",
+   "observed": "Cannot be produced on staging as configured: every customer account in this organisation carries a credit term (4 Star Truck Repair is 'Net 7'), and the invoice derives its due date from that term, so an invoice with no due date could not be created through the API or the invoice-create path.",
+   "not_observed": null,
+   "note": "To finish it: clear the customer's payment terms (Customers > the customer > Terms) so the term is blank, then invoice a work order for that customer and read the masthead - expect 'Invoice date' with no 'Due date' line, then make it fully paid and expect 'Paid date'."
+  },
+  "C45178": {
+   "verdict": "Blocked",
+   "observed": "Cannot be produced: an invoice with a $0.00 total needs a work order whose lines total zero, and every canned line available at this location carries a price. A zero-priced line could not be created through the line-create path.",
+   "not_observed": null,
+   "note": "To finish it: build a work order with one line priced $0.00 (or discount the line to zero without applying a payment), invoice it, and read the masthead - expect 'Due date' (or no due-date line), never 'Paid date', because fully paid needs Balance $0.00 AND at least one applied row."
   }
  },
  "seeding": {
