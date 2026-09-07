@@ -711,3 +711,53 @@ is an admission, not a finding.
 the product forbids; C44902's assumes the logo is per-shop when it is per-organisation; C45275 has no
 steps and no expected results at all (and is Vladimir Tomovic's, so hands-off). Those go to the QA lead
 as authoring questions, not as environment complaints.
+
+---
+
+## L27 · ⭐ SV-9770 WAS ANSWERED — THE FIELD SHOWS, AND THE SPEC MOVED FOUR TIMES UNDER US
+**Retrieve when:** anything touches the Work Order field, or before trusting a spec snapshot.
+
+### The ruling (Chris Ward, 2026-09-07, live page v57)
+> *"Ruling: the field shows. The rule was wrong, not the build."*
+
+He identified the trailing-digits comparison as **his own 2026-09-04 revision, written to match what
+the build did**, and reversed it: *"I moved the rule to the build instead of asking whether the build
+was right."*
+
+**New S3-N1** — the Work Order field is hidden in exactly two cases, shown in every other:
+**(a)** the document has no work order behind it (a standalone Parts Sale);
+**(b)** the work order number and the document number are **character-for-character identical as whole
+strings** — nothing stripped, no digit run extracted. `S2-5468` vs `S2-5468` hides; `S2-5468` vs
+`INV-S2-5468` shows. Case (b) is duplicate-suppression, not something an ordinary document reaches.
+**New S3-R10** — the field shows the work order number exactly as on the work order, no prefix added,
+no reformatting.
+
+**Consequence:** C44917 flipped **Passed → Failed**. The defect was already tracked as **SV-9642**
+(Code Review, raised by Mudassir from the code side); Chris linked the two. **No new ticket.**
+
+### THE LESSON THAT MATTERS MOST HERE
+**A "spec-correct" verdict is only as good as the spec version it was read against.** C44917 passed
+honestly against v45 and is a failure against v57 — the build never changed. So:
+
+- **Re-pull the spec before finalising any pass**, and diff it against the snapshot you started with.
+  One `difflib` run over the two bodies found all four changes in seconds.
+- **When a ticket you raised gets a ruling, the ruling is a spec event, not just a ticket update.**
+  Go and re-read the page, diff it, and re-verdict every case the change touches — here three cases,
+  only one of which was the obvious one.
+- **A ruling can create coverage gaps.** S3-R10 and G-R4 are both brand new and no case covers either.
+  Say so; do not let a new rule pass unnoticed because no case failed.
+
+### The other three changes in the same edit
+- **New G-R4** — every document is A4 portrait, 210×297mm, fixed. Names a **718px sheet box** and a
+  **634px content box** because the two had been confused. **These are PRINT geometry**: measured
+  595.28 × 841.89pt = 210 × 297mm on all six document types, content box 475.3pt = 634px. On screen
+  the sheet is responsive (718px at a 1440 viewport, 800px at 1500), so never read those two numbers
+  as an on-screen assertion. Verified — passes.
+- **S10-R2 expanded** — the Estimate date is the issued date and **tracks the current date** until an
+  invoice exists, so two printouts of one Estimate on different days can differ. Explicitly *not* a
+  defect. This explains why estimate renders came back dated Sep 6 when a later issue date was passed.
+- Changelog rows.
+
+**Also worth knowing:** the manual tester Mudassir is filing actively against this suite — SV-9642,
+SV-9782, SV-9784, SV-9791 all trace to him. **Check his tickets before raising anything on Story 3,
+page size, or document dates.**
