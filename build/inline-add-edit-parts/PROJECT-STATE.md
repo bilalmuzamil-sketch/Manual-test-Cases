@@ -2,7 +2,36 @@
 
 **Canonical cold-resume doc.** Status derived live; do not trust remembered figures (Rule 92 / skill 15 §7).
 
-## 🆕 Update — 2026-09-02 (LATEST) — AUTOMATED CASES MADE RUNNABLE; EVERY QUOTED LABEL CONFIRMED
+## 🆕 Update — 2026-09-07 (LATEST) — SOURCE RE-VERIFIED against spec last-updated 2026-09-04
+
+Re-source-verified (QA lead, 2026-09-07; one of three suites). Pulled latest sources live first. Full
+record: `source-verify-2026-09-07/SOURCE-CURRENCY-SPEC-DIFF-2026-09-07.md`.
+
+- **Spec (Confluence 782761986) Last Updated 2026-09-04** — two change-log entries: modal-cancel
+  reversal + Story 7 formalised. **Story 7 Jira now SV-9724** (was TBD).
+- **5 substantive deltas handled (all via html.set, fr-view, 0 failures; runnable 5/5):**
+  - **S4-R12 modal-cancel REVERSED** (2026-09-04, reversing 2026-08-24): cancel discards nothing,
+    returns to the inline row → **C45047** rewritten (title changed). **Build-check line removed** —
+    the 2026-09-01 build predates the reversal, so build verification must re-check it.
+  - **S2-R5** inventory description read-only + read-only-after-save (SV-9766) → **C45001**.
+  - **S4-R4** inventory cost read-only + Found-part fields read-only → **C45039**.
+  - **S7-R12** See-Financial-Data routing of the Bin Locations vs part details modal → **C45232**
+    (refs → SV-9724).
+  - **S4-R21 new**: (a) category→sell recalc via Pricing Matrix (SV-9673) already covered by
+    manually-added **C45253**; (b) Full-View-without-See-Financial-Data three-field row → **new case
+    C53477**.
+- The 4 rewritten cases had the stale build-check line removed (expected changed post-build); all are
+  atm=1 (Rule 71 not triggered). **Automated cases (C45005/26/223/224/227/237 + manually-added
+  C45252/53/54) untouched** (their rules unchanged). **Vladimir's cases untouched (Rule 38): C45220,
+  and 3 new — C45268, C53474, C53475.**
+- **Suite now 123 ours** (122 + new C53477). **Run R418 union-synced 123 → 124.** Other ~114 cases
+  unchanged (non-substantive → provenance left as-is, project precedent).
+- **Reported, not created:** SV-9677 (deleted-inventory-part raw error; spec says a rule is still
+  needed). Build verification is a separate session.
+
+---
+
+## 🆕 Update — 2026-09-02 — AUTOMATED CASES MADE RUNNABLE; EVERY QUOTED LABEL CONFIRMED
 
 **Inline Add and Edit Parts: 123 cases live** (counted from TestRail, paged — never from `testrail-id-map.csv`).
 run 418, 123 tests, set-equal. Build on the branch moved to **`v26.35.6-0f8d60b`**.
