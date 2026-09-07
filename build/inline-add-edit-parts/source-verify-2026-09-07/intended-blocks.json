@@ -1,0 +1,208 @@
+{
+ "45047": {
+  "fields": {
+   "custom_preconds": {
+    "blocks": [
+     [
+      "1. In the top menu click “Work Orders”, then open a work order whose status is Estimate, Approved, In Progress, or Review (click its row in the list). Open its “Lines” tab. Each work order line has its own Parts section beneath it: the “Add Part” button sits in that section, and every part already on the line has an “edit” control at the right-hand end of its row — that control stays invisible until you move the mouse over the row.",
+      "2. Your user’s role can edit work order lines. To check it: open “Settings”, click “Roles & Permissions” in the sidebar, click the pencil on the role your user is on, then find the “Work order lines” section and make sure its “Create & Edit” toggle is on.",
+      "3. Your role’s work order view mode is set to “Full View”. To check or change it: open “Settings”, click “Roles & Permissions” in the sidebar, click the pencil on the role your user is on, then in the “Work orders” section set “View mode” to “Full View”.",
+      "4. The part details modal (titled “New Part Request” when you are adding a part and “Edit Part Request” when you are editing one) is open — on an open Full View inline row you clicked “More options” — and you have typed data into it."
+     ]
+    ],
+    "text": "1. In the top menu click “Work Orders”, then open a work order whose status is Estimate, Approved, In Progress, or Review (click its row in the list). Open its “Lines” tab. Each work order line has its own Parts section beneath it: the “Add Part” button sits in that section, and every part already on the line has an “edit” control at the right-hand end of its row — that control stays invisible until you move the mouse over the row.\n2. Your user’s role can edit work order lines. To check it: open “Settings”, click “Roles & Permissions” in the sidebar, click the pencil on the role your user is on, then find the “Work order lines” section and make sure its “Create & Edit” toggle is on.\n3. Your role’s work order view mode is set to “Full View”. To check or change it: open “Settings”, click “Roles & Permissions” in the sidebar, click the pencil on the role your user is on, then in the “Work orders” section set “View mode” to “Full View”.\n4. The part details modal (titled “New Part Request” when you are adding a part and “Edit Part Request” when you are editing one) is open — on an open Full View inline row you clicked “More options” — and you have typed data into it."
+   },
+   "custom_steps": {
+    "blocks": [
+     [
+      "1. On the Full View inline add row, type some values, then click “More Options” to open the part details modal.",
+      "2. Change a value inside the modal, then cancel the modal with Cancel, the X, or Escape."
+     ]
+    ],
+    "text": "1. On the Full View inline add row, type some values, then click “More Options” to open the part details modal.\n2. Change a value inside the modal, then cancel the modal with Cancel, the X, or Escape."
+   },
+   "custom_expected": {
+    "blocks": [
+     [
+      "1. Cancelling the part details modal - via Cancel, the X, or Escape - shows no confirmation and discards nothing.",
+      "2. The modal closes and you are returned to the inline row, which still holds the values it had when “More Options” was opened.",
+      "3. Any values you changed inside the modal are not carried back to the inline row."
+     ],
+     [
+      "---",
+      "This is the expected behaviour as per epic SV-9315 and story SV-9319 (Story 4, Inline Add Part - Full View) and the Inline Add and Edit Parts on Work Order Lines specification (Confluence page 782761986), section S4-R12, read on 7 September 2026.",
+      "Note: the spec update of 2026-09-04 reversed the earlier (2026-08-24) behaviour where cancelling the modal asked for confirmation and discarded both the modal and the inline row; cancel now discards nothing and returns to the inline row. This case follows the current spec."
+     ],
+     [
+      "AUTOMATION: READY"
+     ]
+    ],
+    "text": "1. Cancelling the part details modal - via Cancel, the X, or Escape - shows no confirmation and discards nothing.\n2. The modal closes and you are returned to the inline row, which still holds the values it had when “More Options” was opened.\n3. Any values you changed inside the modal are not carried back to the inline row.\n\n---\nThis is the expected behaviour as per epic SV-9315 and story SV-9319 (Story 4, Inline Add Part - Full View) and the Inline Add and Edit Parts on Work Order Lines specification (Confluence page 782761986), section S4-R12, read on 7 September 2026.\nNote: the spec update of 2026-09-04 reversed the earlier (2026-08-24) behaviour where cancelling the modal asked for confirmation and discarded both the modal and the inline row; cancel now discards nothing and returns to the inline row. This case follows the current spec.\n\nAUTOMATION: READY"
+   }
+  }
+ },
+ "45001": {
+  "fields": {
+   "custom_preconds": {
+    "blocks": [
+     [
+      "1. In the top menu click “Work Orders”, then open a work order whose status is Estimate, Approved, In Progress, or Review (click its row in the list). Open its “Lines” tab. Each work order line has its own Parts section beneath it: the “Add Part” button sits in that section, and every part already on the line has an “edit” control at the right-hand end of its row — that control stays invisible until you move the mouse over the row.",
+      "2. Your user’s role can edit work order lines. To check it: open “Settings”, click “Roles & Permissions” in the sidebar, click the pencil on the role your user is on, then find the “Work order lines” section and make sure its “Create & Edit” toggle is on.",
+      "3. Your role’s work order view mode is set to “Tech view”. To check or change it: open “Settings”, click “Roles & Permissions” in the sidebar, click the pencil on the role your user is on, then in the “Work orders” section set “View mode” to “Tech view”.",
+      "4. On an open inline row (via “Add Part”), you have searched the “part number” field and selected a matching catalog part, so the description is filled in."
+     ]
+    ],
+    "text": "1. In the top menu click “Work Orders”, then open a work order whose status is Estimate, Approved, In Progress, or Review (click its row in the list). Open its “Lines” tab. Each work order line has its own Parts section beneath it: the “Add Part” button sits in that section, and every part already on the line has an “edit” control at the right-hand end of its row — that control stays invisible until you move the mouse over the row.\n2. Your user’s role can edit work order lines. To check it: open “Settings”, click “Roles & Permissions” in the sidebar, click the pencil on the role your user is on, then find the “Work order lines” section and make sure its “Create & Edit” toggle is on.\n3. Your role’s work order view mode is set to “Tech view”. To check or change it: open “Settings”, click “Roles & Permissions” in the sidebar, click the pencil on the role your user is on, then in the “Work orders” section set “View mode” to “Tech view”.\n4. On an open inline row (via “Add Part”), you have searched the “part number” field and selected a matching catalog part, so the description is filled in."
+   },
+   "custom_steps": {
+    "blocks": [
+     [
+      "1. In the open inline add row (see Preconditions), select a catalog part from the part number typeahead and edit its description field.",
+      "2. Select an inventory part from the typeahead and try to edit its description field.",
+      "3. Save the part, then look at the description, cost, core charge and vendor fields."
+     ]
+    ],
+    "text": "1. In the open inline add row (see Preconditions), select a catalog part from the part number typeahead and edit its description field.\n2. Select an inventory part from the typeahead and try to edit its description field.\n3. Save the part, then look at the description, cost, core charge and vendor fields."
+   },
+   "custom_expected": {
+    "blocks": [
+     [
+      "1. For a catalog part, the populated description accepts your edit and can be overwritten.",
+      "2. For an inventory part, the description is read-only (matching the part details modal and the legacy modal).",
+      "3. After the inline part request is saved, description, cost, core charge and vendor become read-only; where no vendor was predefined, that field is empty and still read-only."
+     ],
+     [
+      "---",
+      "This is the expected behaviour as per epic SV-9315 and story SV-9317 (Story 2, Inline Add Part - Tech View) and the Inline Add and Edit Parts on Work Order Lines specification (Confluence page 782761986), section S2-R5, read on 7 September 2026.",
+      "Note: the spec update of 2026-09-04 (SV-9766) added the inventory-part read-only description and the after-save read-only fields; earlier this case only asserted the catalog description could be overwritten. This case follows the current spec."
+     ],
+     [
+      "AUTOMATION: READY"
+     ]
+    ],
+    "text": "1. For a catalog part, the populated description accepts your edit and can be overwritten.\n2. For an inventory part, the description is read-only (matching the part details modal and the legacy modal).\n3. After the inline part request is saved, description, cost, core charge and vendor become read-only; where no vendor was predefined, that field is empty and still read-only.\n\n---\nThis is the expected behaviour as per epic SV-9315 and story SV-9317 (Story 2, Inline Add Part - Tech View) and the Inline Add and Edit Parts on Work Order Lines specification (Confluence page 782761986), section S2-R5, read on 7 September 2026.\nNote: the spec update of 2026-09-04 (SV-9766) added the inventory-part read-only description and the after-save read-only fields; earlier this case only asserted the catalog description could be overwritten. This case follows the current spec.\n\nAUTOMATION: READY"
+   }
+  }
+ },
+ "45039": {
+  "fields": {
+   "custom_preconds": {
+    "blocks": [
+     [
+      "1. In the top menu click “Work Orders”, then open a work order whose status is Estimate, Approved, In Progress, or Review (click its row in the list). Open its “Lines” tab. Each work order line has its own Parts section beneath it: the “Add Part” button sits in that section, and every part already on the line has an “edit” control at the right-hand end of its row — that control stays invisible until you move the mouse over the row.",
+      "2. Your user’s role can edit work order lines. To check it: open “Settings”, click “Roles & Permissions” in the sidebar, click the pencil on the role your user is on, then find the “Work order lines” section and make sure its “Create & Edit” toggle is on.",
+      "3. Your role’s work order view mode is set to “Full View”. To check or change it: open “Settings”, click “Roles & Permissions” in the sidebar, click the pencil on the role your user is on, then in the “Work orders” section set “View mode” to “Full View”.",
+      "4. On an open Full View inline row (via “Add Part”), you have selected a catalog part so its cost and sell price are filled in."
+     ]
+    ],
+    "text": "1. In the top menu click “Work Orders”, then open a work order whose status is Estimate, Approved, In Progress, or Review (click its row in the list). Open its “Lines” tab. Each work order line has its own Parts section beneath it: the “Add Part” button sits in that section, and every part already on the line has an “edit” control at the right-hand end of its row — that control stays invisible until you move the mouse over the row.\n2. Your user’s role can edit work order lines. To check it: open “Settings”, click “Roles & Permissions” in the sidebar, click the pencil on the role your user is on, then find the “Work order lines” section and make sure its “Create & Edit” toggle is on.\n3. Your role’s work order view mode is set to “Full View”. To check or change it: open “Settings”, click “Roles & Permissions” in the sidebar, click the pencil on the role your user is on, then in the “Work orders” section set “View mode” to “Full View”.\n4. On an open Full View inline row (via “Add Part”), you have selected a catalog part so its cost and sell price are filled in."
+   },
+   "custom_steps": {
+    "blocks": [
+     [
+      "1. With a normal (catalog) part selected, edit the cost and the sell price fields.",
+      "2. With an inventory part selected, try to edit the cost field.",
+      "3. Set the part Source to “Found” via More Options, then look at the vendor, cost, core charge and margin fields."
+     ]
+    ],
+    "text": "1. With a normal (catalog) part selected, edit the cost and the sell price fields.\n2. With an inventory part selected, try to edit the cost field.\n3. Set the part Source to “Found” via More Options, then look at the vendor, cost, core charge and margin fields."
+   },
+   "custom_expected": {
+    "blocks": [
+     [
+      "1. For a normal part, the populated cost and sell price can both be overwritten.",
+      "2. For an inventory part, cost is read-only; the sell price can still be overwritten.",
+      "3. For a Found part (Source set to Found through More Options), vendor, cost, core charge and margin are fixed, empty and read-only."
+     ],
+     [
+      "---",
+      "This is the expected behaviour as per epic SV-9315 and story SV-9319 (Story 4, Inline Add Part - Full View) and the Inline Add and Edit Parts on Work Order Lines specification (Confluence page 782761986), section S4-R4, read on 7 September 2026.",
+      "Note: the spec update of 2026-09-04 added the inventory-part read-only cost and the Found-part read-only vendor/cost/core charge/margin; earlier this case only asserted cost and sell price could be overwritten. This case follows the current spec."
+     ],
+     [
+      "AUTOMATION: READY"
+     ]
+    ],
+    "text": "1. For a normal part, the populated cost and sell price can both be overwritten.\n2. For an inventory part, cost is read-only; the sell price can still be overwritten.\n3. For a Found part (Source set to Found through More Options), vendor, cost, core charge and margin are fixed, empty and read-only.\n\n---\nThis is the expected behaviour as per epic SV-9315 and story SV-9319 (Story 4, Inline Add Part - Full View) and the Inline Add and Edit Parts on Work Order Lines specification (Confluence page 782761986), section S4-R4, read on 7 September 2026.\nNote: the spec update of 2026-09-04 added the inventory-part read-only cost and the Found-part read-only vendor/cost/core charge/margin; earlier this case only asserted cost and sell price could be overwritten. This case follows the current spec.\n\nAUTOMATION: READY"
+   }
+  }
+ },
+ "45232": {
+  "fields": {
+   "custom_preconds": {
+    "blocks": [
+     [
+      "1. In the top menu click “Work Orders”, then open a work order whose status is Estimate, Approved, In Progress, or Review (click its row in the list). Open its “Lines” tab. Each work order line has its own Parts section beneath it: the “Add Part” button sits in that section, and every part already on the line has an “edit” control at the right-hand end of its row — that control stays invisible until you move the mouse over the row.",
+      "2. Your user’s role can edit work order lines. To check it: open “Settings”, click “Roles & Permissions” in the sidebar, click the pencil on the role your user is on, then find the “Work order lines” section and make sure its “Create & Edit” toggle is on.",
+      "3. On an open inline row (via “Add Part” or “Edit”) you have selected a catalog part that is held in at least one bin (a part with no bins is treated as not stocked and this story does not apply).",
+      "4. The bin picker is open on an “Add Part” row — click the “Pulled from” chip beneath the row."
+     ]
+    ],
+    "text": "1. In the top menu click “Work Orders”, then open a work order whose status is Estimate, Approved, In Progress, or Review (click its row in the list). Open its “Lines” tab. Each work order line has its own Parts section beneath it: the “Add Part” button sits in that section, and every part already on the line has an “edit” control at the right-hand end of its row — that control stays invisible until you move the mouse over the row.\n2. Your user’s role can edit work order lines. To check it: open “Settings”, click “Roles & Permissions” in the sidebar, click the pencil on the role your user is on, then find the “Work order lines” section and make sure its “Create & Edit” toggle is on.\n3. On an open inline row (via “Add Part” or “Edit”) you have selected a catalog part that is held in at least one bin (a part with no bins is treated as not stocked and this story does not apply).\n4. The bin picker is open on an “Add Part” row — click the “Pulled from” chip beneath the row."
+   },
+   "custom_steps": {
+    "blocks": [
+     [
+      "1. As a Tech View user, select “Split across bins…”.",
+      "2. As a Full View user on the add row, select “Split across bins…”."
+     ]
+    ],
+    "text": "1. As a Tech View user, select “Split across bins…”.\n2. As a Full View user on the add row, select “Split across bins…”."
+   },
+   "custom_expected": {
+    "blocks": [
+     [
+      "1. For a Tech View user - and for a Full View user WITHOUT the See Financial Data permission - “Split across bins…” opens the Bin Locations modal.",
+      "2. For a Full View user WITH the See Financial Data permission, on the add row it opens the part details modal instead."
+     ],
+     [
+      "---",
+      "This is the expected behaviour as per epic SV-9315 and story SV-9724 (Story 7, Bin Allocation on the Inline Row) and the Inline Add and Edit Parts on Work Order Lines specification (Confluence page 782761986), section S7-R12, read on 7 September 2026.",
+      "Note: the spec update of 2026-09-04 routed the Bin Locations modal to Full View users without the See Financial Data permission (and the part details modal only to Full View users with it), and dropped the earlier per-bin-allocation-table detail. This case follows the current spec. Story 7's Jira ticket, previously TBD, is now SV-9724."
+     ],
+     [
+      "AUTOMATION: READY"
+     ]
+    ],
+    "text": "1. For a Tech View user - and for a Full View user WITHOUT the See Financial Data permission - “Split across bins…” opens the Bin Locations modal.\n2. For a Full View user WITH the See Financial Data permission, on the add row it opens the part details modal instead.\n\n---\nThis is the expected behaviour as per epic SV-9315 and story SV-9724 (Story 7, Bin Allocation on the Inline Row) and the Inline Add and Edit Parts on Work Order Lines specification (Confluence page 782761986), section S7-R12, read on 7 September 2026.\nNote: the spec update of 2026-09-04 routed the Bin Locations modal to Full View users without the See Financial Data permission (and the part details modal only to Full View users with it), and dropped the earlier per-bin-allocation-table detail. This case follows the current spec. Story 7's Jira ticket, previously TBD, is now SV-9724.\n\nAUTOMATION: READY"
+   }
+  }
+ },
+ "53477": {
+  "fields": {
+   "custom_preconds": {
+    "blocks": [
+     [
+      "1. In the top menu click “Work Orders”, then open a work order whose status is Estimate, Approved, In Progress, or Review (click its row). Open its “Lines” tab; each work order line has its own Parts section with an “Add Part” button.",
+      "2. Your user’s role has Work Order View Mode set to Full View, but does NOT have the “See Financial Data” permission (an administrator sets both on your user role under Settings; confirm the exact path on the build)."
+     ]
+    ],
+    "text": "1. In the top menu click “Work Orders”, then open a work order whose status is Estimate, Approved, In Progress, or Review (click its row). Open its “Lines” tab; each work order line has its own Parts section with an “Add Part” button.\n2. Your user’s role has Work Order View Mode set to Full View, but does NOT have the “See Financial Data” permission (an administrator sets both on your user role under Settings; confirm the exact path on the build)."
+   },
+   "custom_steps": {
+    "blocks": [
+     [
+      "1. In a work order line’s Parts section, click “Add Part” to open the inline add row.",
+      "2. Look at the fields shown in the inline row and the actions at the end of the row."
+     ]
+    ],
+    "text": "1. In a work order line’s Parts section, click “Add Part” to open the inline add row.\n2. Look at the fields shown in the inline row and the actions at the end of the row."
+   },
+   "custom_expected": {
+    "blocks": [
+     [
+      "1. The inline add row shows only three fields: description, part number, quantity.",
+      "2. There is no cost field, no sell price field, and no “More Options” action.",
+      "3. This is the same three-field row a Tech View user gets - because the user lacks the See Financial Data permission, even though their view mode is Full View."
+     ],
+     [
+      "---",
+      "This is the expected behaviour as per epic SV-9315 and story SV-9319 (Story 4, Inline Add Part - Full View) and the Inline Add and Edit Parts on Work Order Lines specification (Confluence page 782761986), section S4-R21, read on 7 September 2026.",
+      "AUTOMATION: READY"
+     ]
+    ],
+    "text": "1. The inline add row shows only three fields: description, part number, quantity.\n2. There is no cost field, no sell price field, and no “More Options” action.\n3. This is the same three-field row a Tech View user gets - because the user lacks the See Financial Data permission, even though their view mode is Full View.\n\n---\nThis is the expected behaviour as per epic SV-9315 and story SV-9319 (Story 4, Inline Add Part - Full View) and the Inline Add and Edit Parts on Work Order Lines specification (Confluence page 782761986), section S4-R21, read on 7 September 2026.\nAUTOMATION: READY"
+   }
+  }
+ }
+}
