@@ -12,5 +12,9 @@
 - **Design Document** (owns appearance): keeps the Summary Labor/Parts rows GROSS and rolls line-level fees/discounts up as their own rows under the Adjustments heading — which is what the Summary correctly does.
 - **Spec** S5-R9 / S12 (live Confluence): a line's Labor and Parts figures are that line's own totals **after** its line-level fees and discounts; "Line total" is their sum. The build's line footer violates this.
 
-## Filed
-- SV-9769-style follow-up ticket created (see below), parent = epic SV-8218, Relates → SV-9149, priority Medium.
+## Filed — SV-9777
+https://shopview.atlassian.net/browse/SV-9777 (Bug, Open, priority Medium, Product Area Work Orders).
+- **Parent = epic SV-8218** (per Rule 52: defect parents to the epic, story is linked — NOT parented to the story as the other session proposed).
+- **Relates → SV-9144 (Story 5 – Work Section)** — chosen over the other session's proposed Story 10 (SV-9149) because **S5-R9 is Story 5's requirement** (verified in live Confluence). SV-9144 is currently in TESTING QA, consistent with the defect surfacing during Story 5 QA. Easy to relink to SV-9149 if the QA lead prefers.
+- Design-then-spec citation (never the test case C44935). Two annotated exhibits embedded.
+- Read-back verified: parent SV-8218 ✓, priority Medium ✓, Product Area Work Orders ✓, Relates SV-9144 ✓, both images HTTP 200 ✓, build marker unchanged v26.35.9-9812433 ✓.
