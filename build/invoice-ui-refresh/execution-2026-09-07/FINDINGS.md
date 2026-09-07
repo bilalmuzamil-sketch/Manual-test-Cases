@@ -5,27 +5,28 @@
 
 | Verdict | Cases |
 |---|---|
-| **Passed** | **106** |
-| **Failed** | **4** |
-| **Blocked** | **10** |
+| **Passed** | **108** |
+| **Failed** | **5** |
+| **Blocked** | **7** |
 | **Total** | **120** |
 
 ---
 
-## The four failures
+## The five failures
 
 | Case | What is wrong | Ticket |
 |---|---|---|
 | **C44935** | The work-line footer excludes that line's own fees and discounts. Line 01 of S2-32136 carries a $25.00 fee; the footer still reads `Labor $299.90` / `Line total $299.90` where both should read `$324.90`. The Summary charges the fee, so the same page disagrees with itself. | **[SV-9773](https://shopview.atlassian.net/browse/SV-9773)** — raised this pass |
 | **C44926** | `Mileage` and `Eng Hrs` print `0` instead of hiding when the asset has no reading. `Unit` and `Plate` hide correctly. Reproduced on four records whose live values are null. | **[SV-9680](https://shopview.atlassian.net/browse/SV-9680)** — already open, Code Review. Not re-raised. |
 | **C44974** | Every generated PDF embeds **DejaVu Sans**, never Inter — Invoice, Estimate, deposit-paid Invoice and Credit all four. The 400/600/700/800 weight ladder collapses to regular-or-bold. | **[SV-9761](https://shopview.atlassian.net/browse/SV-9761)** — already open. Not re-raised. |
-| **C44970** | A credit with no originating invoice prints no disclaimer (eight documents). A credit raised from an invoice does print it, which proves the shop has one configured. | None. This is outcome (2) in the case's own text, so the case says mark it Failed and raise nothing. |
+| **C44970** | A credit with no originating invoice prints no disclaimer. A credit raised from an invoice does print it, which proves the shop has one configured. | **[SV-9790](https://shopview.atlassian.net/browse/SV-9790)** — raised this pass on the QA lead's instruction |
+| **C44917** | The Work Order field is hidden. Chris Ward's ruling of 7 Sep (spec v57) rewrote S3-N1: the field must now **show** unless the document has no work order or the two numbers are character-for-character identical. `S-32136` and `INV-S2-32136` are not identical. | **[SV-9642](https://shopview.atlassian.net/browse/SV-9642)** — already open, Code Review. Not re-raised. Chris linked it to SV-9770 |
 
 **[SV-9774](https://shopview.atlassian.net/browse/SV-9774) was raised this pass and has been OBSOLETED by the QA lead.** It claimed the Parts Sale document drops the part number. It does not — the "Part number" toggle was off in that part sale's own per-view settings. With it on the line reads `P550848 - FUEL/WATER SEPARATOR…`. **C44981 is corrected to Passed.** The lesson is recorded as L24 in `../INVOICE-REFRESH-LEARNINGS.md`.
 
 ---
 
-## The ten blocked, and what each needs
+## The seven blocked, and why each is genuinely blocked
 
 | Case | Verified | Cannot be produced | To finish it |
 |---|---|---|---|
@@ -33,10 +34,9 @@
 | **C44907** | Fields that have values do show | Any masthead identity field being empty | The Locations form clears the field, reports success and does not persist it. Needs a data change |
 | **C44916** | — | The Approval Code field | All 100 work orders here have a null `ibs_approval_code`. Needs a work order taken through the IBS approval flow |
 | **C44951 · C44952 · C45175** | No shop-app PDF ever carries the paid banner (C44951 clause 3) | The banner itself | The banner exists only on a **customer-portal** PDF. No portal host resolves and no portal payment exists on the test customer |
-| **C44963** | — | An invoice with no due date | Every customer carries a credit term, so a due date is always derived. Clear a customer's terms first |
-| **C45178** | — | A $0.00 invoice | Every canned line here is priced. Needs a zero-priced line |
-| **C45190** | The card and the Authorizer row are correct on a work order and on a part sale | The imported-work-order half | No imported work order exists in this organisation |
-| **C45275** | — | — | Needs the authorizer entry screens |
+| **C45275** | — | Anything | The case has **no Steps and no Expected Results at all**. It is also Vladimir Tomovic's (`created_by 1`), so hands-off — report, never edit |
+
+**C44963, C45178 and C45190 are no longer blocked** — all three now pass. C45190 was unblocked by importing a historical work order through the route our own playbook documents; C45178 by discounting a work order to exactly $0.00; C44963 by the QA lead's correction that the document with no due date is the Estimate view.
 
 ---
 
@@ -51,6 +51,15 @@
 
 ---
 
-## Source currency
+## Source currency — the spec moved during this pass
 
-All 120 cases cite **specification version 45**. The live Confluence page (755990532) was last modified **5 September 2026** and now carries rules the suite predates — **G-R2** (PDF filename) and the **2026-09-04 correction to S12-R4** making the document label 24px, which the build renders at 18px. Bringing the suite up to the current spec is authoring work and was not done in this lane.
+All 120 cases cite **specification version 45**. The live page is now **v57**, and Chris Ward changed
+four things on 7 September, after our snapshot. Full analysis in `SPEC-CHANGES-2026-09-07-v57.md`:
+
+1. **S3-N1 rewritten + new S3-R10** — the Work Order field must now SHOW. This flipped **C44917 from Passed to Failed** and is tracked by SV-9642.
+2. **New G-R4** — A4 portrait, 718px sheet box, 634px content box. **Verified this pass and it passes**, on all six document types.
+3. **S10-R2 expanded** — the Estimate date tracks the current date until an invoice exists; explicitly not a defect. Consistent with what we saw.
+4. Changelog rows.
+
+**Rules with no case at all:** G-R2 (PDF filename, 2026-09-04), S3-R10 and G-R4 (both 2026-09-07).
+Bringing the suite current is authoring work and was not done in this lane.
