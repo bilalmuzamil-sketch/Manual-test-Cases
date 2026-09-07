@@ -47,15 +47,15 @@ unless something looks different on your machine.
    and the build has not caught up. Reported as **SV-9642**.
 6. **The paid banner leaves out the "Remaining Balance" line.** On a customer-portal document, a
    payment that did not settle the invoice should say how much was still owing; it does not. Reported
-   as **SV-9797**, where it is being treated as a wording correction to the specification rather than
+   as **SV-9803**, where it is being treated as a wording correction to the specification rather than
    a fault in the build.
 
 ## The four that need something we could not set up
 
 | What it needs | Cases | Where it is tracked |
 |---|---|---|
-| A shop with **no logo** — one can be added or replaced but never removed | C44902 | **SV-9799** |
-| A shop location with a **blank address, city, state, postal code or phone** — all five are compulsory | C44907 | **SV-9800** |
+| A shop with **no logo** — one can be added or replaced but never removed | C44902 | **SV-9804** |
+| A shop location with a **blank address, city, state, postal code or phone** — all five are compulsory | C44907 | **SV-9805** |
 | A work order that has been through **Interstate Billing** approval | C44916 | **SV-9710** |
 | The case itself — it has **no steps and no expected results** and belongs to another author | C45275 | — |
 
