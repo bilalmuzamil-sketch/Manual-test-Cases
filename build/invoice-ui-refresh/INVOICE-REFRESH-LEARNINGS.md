@@ -20,6 +20,7 @@
 | check a finding against the DESIGN document | **L11** | The design is a STATEFUL prototype; its CSS encodes the hide states. |
 | test ANY conditional hide-rule (the general logic) | **L13** | THE DEAD-RULE TEST. A condition true BY CONSTRUCTION kills its field. |
 | decide whether a spec/design/staging difference is a defect | **L12** | THE DECISION MATRIX. Direction matters: missing != extra. |
+| WRITE a ticket (copy the approved shape) | **L15** | ⭐ SV-9770 IS THE APPROVED TEMPLATE. Copy its section order exactly. |
 | FILE a ticket on this project (exact field shape) | **L14** | Task needs Product Area; a Task cannot be parented to a Story. |
 | decide defect vs Task vs spec-gap | **L8** | This epic routes them differently, and it matters. |
 
@@ -321,3 +322,44 @@ not have (`invoice_id: ''`) - the Estimate/Invoice toggle previews an invoice be
 
 **🛑 NEVER put a TestRail case id, C-id or TestRail link in a ticket body** (QA lead, 2026-09-07). Design
 reference first, then the spec reference. The case mapping stays in our records only.
+
+## L15 · ⭐ THE APPROVED TICKET TEMPLATE — SV-9770 (QA lead, 2026-09-07)
+**QA lead, verbatim, on [SV-9770](https://shopview.atlassian.net/browse/SV-9770):** *"Exactly that is how
+you will create cases in similar situations."*
+**⇒ SV-9770 IS THE CANONICAL PATTERN. Open it, copy its shape, do not invent a layout (Rule 16).**
+
+### The section order — this order is the approved part, not just the content
+1. **One plain sentence saying what decision is needed** (or what is wrong). No preamble.
+2. **`What the design shows`** — **the DESIGN REFERENCE COMES FIRST**, always.
+   Then the annotated design exhibit inline, then one italic caption line explaining that the mock's
+   values are sample data and the **presence of the element** is the requirement.
+3. **`What the build shows today`** — the plain statement, then the annotated build exhibit inline.
+   Name the document number, the record number and the customer.
+4. **`What the specification says`** — **the SPEC REFERENCE COMES SECOND**. Name the rule id, the
+   Confluence page id and the date read, then **quote the rule verbatim in a blockquote**.
+   Where the build follows the rule correctly, **say so plainly** — "this is not a coding mistake" —
+   because that is what stops a reviewer arguing the point instead of answering it.
+5. **`Why we think it needs a decision`** — the argument, with a short bullet list of concrete
+   worked examples (ours, the design's, and the spec's own example).
+6. **`rule` divider**, then **`Where this was seen`** LAST — environment, build marker, date, the exact
+   record, and the click path.
+
+### The hard rules baked into it
+- **🛑 NEVER a TestRail case id, C-id or TestRail link in the body.** That mapping stays in our records.
+- **Design reference first, spec reference second.** That ordering is the QA lead's explicit instruction.
+- **Plain layman English throughout.** No endpoints, no HTTP codes, no internal field names, no jargon.
+- **Both exhibits inline and annotated** — box on the exact element, arrow, caption in a band BELOW the
+  image so nothing is covered. Green = the correct/expected state, red = what the build does.
+- **Every number traceable to something captured this pass on the running build**, with the build marker.
+- **Concise.** SV-9770 is about one screen of reading. A long ticket is one nobody finishes.
+
+### Field shape (see L14 for the full table)
+`Task` + label **`Clarification_needed`** + parent **the EPIC** + **`relates to` the owning story** +
+priority **Medium** + Product Area set. For a build-vs-agreed-value defect instead: `Story Defect`,
+parent **the owning STORY**, no Product Area.
+
+### When to use which
+- **A question / a rule that needs a ruling** -> this template, as a **Task + `Clarification_needed`**.
+- **The build plainly diverges from an agreed, current, quotable value** -> same template, filed as a
+  **Story Defect** parented to the owning story.
+Either way the section order above does not change.
