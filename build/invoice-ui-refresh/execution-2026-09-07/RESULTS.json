@@ -87,9 +87,9 @@
   },
   "C44913": {
    "verdict": "Passed",
-   "observed": "Labels read exactly and carry NO punctuation: 'Customer PO 9989', 'Authorizer Savannah Tran', 'Terms Net 7'. The three present appear in the specified relative order (Customer PO -> Authorizer -> Terms).",
-   "not_observed": "Work Order and Approval Code were not present, so the full five-field order was not exercised - both are correctly hidden by their own rules on this record (and see SV-9770 on Work Order).",
-   "note": null
+   "observed": "Clause 2 - no label carries punctuation: 'Customer PO 9989', 'Authorizer Savannah Tran', 'Terms Net 7', no colons. Clause 3 - the labels read exactly as the rule lists them. Clause 1 - the three fields present appear in the specified relative order, Customer PO then Authorizer then Terms.",
+   "not_observed": "The full five-field order could not be observed. The 'Work Order' field, which leads the fixed order, is absent from the build, and the 'Approval Code' field has never been populated on this environment (C44916). So the order was verified across three of the five, not all five.",
+   "note": "The missing Work Order field is the SV-9642 defect recorded under C44917, not a separate fault of this case. Once that is fixed, re-run this case to confirm the Work Order field takes first position in the row."
   },
   "C44914": {
    "verdict": "Passed",
@@ -110,10 +110,10 @@
    "note": "The approval code is issued by the external Interstate Billing Service when a work order is authorised through it, so it cannot be seeded from inside ShopView. To finish it, someone needs to put a staging work order through a real IBS authorisation - or a developer needs to write an approval code onto a work order directly - and then open that work order's document and read the order-reference row."
   },
   "C44917": {
-   "verdict": "Passed",
-   "observed": "Clause 1 holds on the build. Work order S-32136 (the value GET /api/work-orders/view returns; the Work Orders grid shows it as S2-32136) against documents EST-S2-32136 and INV-S2-32136: the unbroken trailing digits are '32136' on both sides, they are equal, and the Work Order field is correctly absent from the order-reference row on both documents.",
-   "not_observed": "Clause 2 - the field SHOWING when the two differ. It could not be produced: a document number is derived from the work order number, so on an ordinary document the trailing digits always match and the hide condition is always true.",
-   "note": "Clause 2's unproducibility is the substance of the open question already raised as SV-9770 (a Task carrying the Clarification_needed label, awaiting Chris Ward). Nothing further to raise here - the build follows the rule as written."
+   "verdict": "Failed",
+   "observed": "VERDICT FLIPPED after Chris Ward's ruling on SV-9770 (7 September 2026, spec live page v57). S3-N1 has been rewritten and the trailing-digits comparison is retired: the Work Order field is now hidden in exactly two cases - the document has no work order behind it, or the work order number and the document number are character-for-character identical as whole strings - and shown in every other case. Re-checked live on the current build: work order 'S-32136', document 'INV-S2-32136'. The two strings are NOT identical, so under the rewritten rule the field must SHOW. The build still hides it - the order-reference row renders only 'Customer PO 9989', 'Authorizer Savannah Tran', 'Terms Net 7'.",
+   "not_observed": "Nothing further - the rule now has a definite answer and the build does not meet it.",
+   "note": "ALREADY TRACKED - SV-9642, 'Work Order chip hidden when the WO number does not match the document number', Story Defect under SV-9142 (Story 3), status Code Review, raised by Mudassir. Chris linked it to SV-9770 and said whichever is picked up first should close both. NO new ticket raised. THE CASE ITSELF NOW NEEDS REWRITING: its title and all three clauses describe the retired trailing-digits rule. It should be re-authored against the new S3-N1 (two enumerated hide cases) and the new S3-R10 (the field shows the work order number exactly as it appears on the work order, no prefix added, no reformatting - 'S-32136' reads 'S-32136' on a document numbered 'INV-S2-32136'). That is authoring work, not this lane's."
   },
   "C44918": {
    "verdict": "Passed",
@@ -549,9 +549,9 @@
   },
   "C44984": {
    "verdict": "Passed",
-   "observed": "Clause 1 - neither the Work Order field nor the Approval Code field appears on any of the four parts sale documents rendered. Clause 2 - 'Terms' always shows ('Terms  Net 7' on P2-1931, 'Terms  COD' on P2-1930); Customer PO behaves as on the Invoice, printing when set and absent when not. Clause 3 - the Authorizer follows the parts-sale treatment, verified in full under C44985.",
+   "observed": "Clause 1 - neither the Work Order field nor the Approval Code field appears on any of the four parts sale documents rendered. Clause 2 - 'Terms' always shows ('Terms Net 7' on P2-1931, 'Terms COD' on P2-1930); Customer PO behaves as on the Invoice, printing when set and absent when not. Clause 3 - the Authorizer follows the parts-sale treatment.",
    "not_observed": null,
-   "note": null
+   "note": "STRENGTHENED by the 2026-09-07 rewrite of S3-N1. Clause 1 used to rest on a Story 13 statement alone; the rewritten S3-N1 now names this case explicitly as hide-case (a): 'The document has no work order behind it. A standalone Parts Sale Estimate or Parts Sale Invoice has none, so the field is omitted there: no label and no empty value area.' The observation is unchanged and is now directly cited."
   },
   "C44985": {
    "verdict": "Passed",
