@@ -57,8 +57,8 @@
   },
   "C44909": {
    "verdict": "Passed",
-   "observed": "Produced from an existing record whose location IS configured with an integrated-billing payee: work order S2-16541. Clause 1 - the block is labelled exactly 'REMIT PAYMENT TO' and holds the payee address ('Foothills Group Inc c/o Interstate Billing Service', 'C/O T04220C PO Box 4220, STN A', 'Toronto, Ontario M5W 3B9', phone). Clause 3 - it renders on both the Estimate (EST) and the Invoice (INV-S2-16541) for that record, and on none of the nine Credit documents rendered this pass.",
-   "not_observed": "Clause 2's second mechanism - the LOCATION's own remit-to setting, as distinct from the shop's integrated-billing remit-to - was not separately exercised. The payee here resolves through integrated billing (Interstate Billing Service).",
+   "observed": "Produced from an existing record whose location IS configured with an integrated-billing payee: work order S2-16541. Clause 1 - the block is labelled exactly 'REMIT PAYMENT TO' and holds the payee address ('Foothills Group Inc c/o Interstate Billing Service', 'C/O T04220C PO Box 4220, STN A', 'Toronto, Ontario M5W 3B9', phone). Clause 3 - it renders on both the Estimate (EST) and the Invoice (INV-S2-16541) for that record, and on none of the nine Credit documents rendered this pass. [GAP CLOSED 2026-09-07, later the same day] Clause 2's second mechanism IS the one in play here and is now proved, with no write: the Heavy Duty location's own 'Remit To' field is set to 'Staging Lethbridge - 4310' (read live from Administration > Locations > edit), and the document's Remit Payment To block prints exactly that location. The integrated-billing mechanism is ruled out because IBS is not connected on this organisation at all (Administration > IBS reports isConfigured false, isActive false, baseUrl null), so the block can only be resolving from the location setting.",
+   "not_observed": "",
    "note": "Earlier recorded as not exercised because all three workplaces on the default customer carry remit_to pointing at themselves. The condition does exist elsewhere in the estate."
   },
   "C44910": {
@@ -88,7 +88,7 @@
   "C44913": {
    "verdict": "Passed",
    "observed": "Clause 2 - no label carries punctuation: 'Customer PO 9989', 'Authorizer Savannah Tran', 'Terms Net 7', no colons. Clause 3 - the labels read exactly as the rule lists them. Clause 1 - the three fields present appear in the specified relative order, Customer PO then Authorizer then Terms.",
-   "not_observed": "The full five-field order could not be observed. The 'Work Order' field, which leads the fixed order, is absent from the build, and the 'Approval Code' field has never been populated on this environment (C44916). So the order was verified across three of the five, not all five.",
+   "not_observed": "Still open, and it is blocked rather than untested: the full five-field order cannot be observed while two of the five are unavailable. The 'Work Order' field, which leads the order, is absent from the build (SV-9642, Code Review), and the 'Approval Code' field cannot be produced at all because IBS is not connected on this environment (SV-9710, Open). What IS observed: the three fields that can appear do so in the specified relative order with no colon after any label. The case closes when SV-9642 ships and an IBS-authorised work order exists.",
    "note": "The missing Work Order field is the SV-9642 defect recorded under C44917, not a separate fault of this case. Once that is fixed, re-run this case to confirm the Work Order field takes first position in the row."
   },
   "C44914": {
@@ -117,14 +117,14 @@
   },
   "C44918": {
    "verdict": "Passed",
-   "observed": "Read on INV-S2-32217, a work order deliberately created with no customer PO and no authorizer. Clause 1: no 'Customer PO' label and no empty value area - the field is absent entirely. Clause 2: no 'Authorizer' label and no empty value area. Clause 4: 'Terms Net 7' still shows, the always-show exception. The contrast document INV-S2-32136, which has both, prints 'Customer PO 9989' and 'Authorizer Savannah Tran', so the fields do render when populated - the absence above is the hide rule firing, not a missing feature.",
-   "not_observed": "Clause 3 (Approval Code hidden when empty) is satisfied on the page - no Approval Code label appears - but it is a weak observation: integrated billing is not configured on this organisation, so the field has never been seen populated and its hide rule has not been exercised against a real value.",
+   "observed": "Read on INV-S2-32217, a work order deliberately created with no customer PO and no authorizer. Clause 1: no 'Customer PO' label and no empty value area - the field is absent entirely. Clause 2: no 'Authorizer' label and no empty value area. Clause 4: 'Terms Net 7' still shows, the always-show exception. The contrast document INV-S2-32136, which has both, prints 'Customer PO 9989' and 'Authorizer Savannah Tran', so the fields do render when populated - the absence above is the hide rule firing, not a missing feature. [GAP CLOSED 2026-09-07, later the same day] All four clauses now observed on S2-32229, a work order with no PO, no authorizer and no approval code: the rendered document contains no 'Customer PO', no 'Authorizer' and no 'Approval Code' string anywhere - no label and no empty value area - while 'Terms Net 7' still prints, which is the always-show exception.",
+   "not_observed": "",
    "note": null
   },
   "C44924": {
    "verdict": "Passed",
-   "observed": "Clauses 1, 2 and 4 observed: 'ASSET  2011 Hyundai Santa Fe' and 'VIN / SERIAL  PV1T2SK1DNUUK7YDE' - the asset has a VIN and the VIN is what prints.",
-   "not_observed": "Clause 3 (serial shown when there is no VIN) not exercised.",
+   "observed": "Clauses 1, 2 and 4 observed: 'ASSET  2011 Hyundai Santa Fe' and 'VIN / SERIAL  PV1T2SK1DNUUK7YDE' - the asset has a VIN and the VIN is what prints. [GAP CLOSED 2026-09-07, later the same day] Clause 3 observed: a new asset was created whose single identifier field holds a serial-style value, a work order raised on it through the UI (S2 work order 6ad49840), and its document prints 'VIN / Serial  SN-ZZAUTOTEST-0042'. Clause 4 ('the VIN is preferred when both exist') is UNREACHABLE and should be re-worded: the asset has exactly ONE identifier field, not two. Verified three ways - the vehicle API returns a single 'vin' key and no serial field on any of 500 assets read, the string 'serial_number' appears nowhere in the app bundle, and the product itself labels the one field 'VIN/Serial #' on the asset card, the asset picker and the Work Orders list column.",
+   "not_observed": "",
    "note": null
   },
   "C44925": {
@@ -165,14 +165,14 @@
   },
   "C44930": {
    "verdict": "Passed",
-   "observed": "Line numbers render 01, 02, 03 - sequential, no gaps, zero-padded to two digits, at 13.5pt (=18px).",
-   "not_observed": "The 100+ line three-digit case is C45173's job and was not exercised here.",
+   "observed": "Line numbers render 01, 02, 03 - sequential, no gaps, zero-padded to two digits, at 13.5pt (=18px). [GAP CLOSED 2026-09-07, later the same day] Clause 3 observed on S2-32231, a 105-line document: the rendered line numbers are exactly 01..105 with no gaps, all of lines 1-99 are zero-padded to two digits, and lines 100-105 render three digits (100, 101, 102, 103, 104, 105). Read from the document's own line-number elements, not from flattened text.",
+   "not_observed": "",
    "note": null
   },
   "C44931": {
    "verdict": "Passed",
-   "observed": "Line 01 shows name 'ABCD', description 'EFGH' inline in smaller muted text (9.0pt = 12px), and a SCOPE OF WORK note 'Eeee' below. Lines 02 and 03 the same shape.",
-   "not_observed": "Clause 4 (a line with neither description nor scope note) not exercised - all three lines have both.",
+   "observed": "Line 01 shows name 'ABCD', description 'EFGH' inline in smaller muted text (9.0pt = 12px), and a SCOPE OF WORK note 'Eeee' below. Lines 02 and 03 the same shape. [GAP CLOSED 2026-09-07, later the same day] Clause 4 observed on S2-31596 line 02, which has neither a description nor a scope-of-work note: it renders as the line number and the name only - no empty description row and no empty scope row.",
+   "not_observed": "",
    "note": null
   },
   "C44932": {
@@ -231,8 +231,8 @@
   },
   "C44942": {
    "verdict": "Passed",
-   "observed": "Clause 1 observed: the percentage IS shown alongside the amount - 'Shop supplies (10.5% of labor)  $62.98'. Confirmed at record level too: the workplace carries shop_supplies_charge = 10.5 with shopSupplyPercentageEnabled = true, and 10.5% of labor 599.80 = 62.98 exactly.",
-   "not_observed": "Clause 2 (setting off -> amount alone) not exercised on my own capture.",
+   "observed": "Clause 1 observed: the percentage IS shown alongside the amount - 'Shop supplies (10.5% of labor)  $62.98'. Confirmed at record level too: the workplace carries shop_supplies_charge = 10.5 with shopSupplyPercentageEnabled = true, and 10.5% of labor 599.80 = 62.98 exactly. [GAP CLOSED 2026-09-07, later the same day] Clause 2 observed by a controlled A/B on the location setting: with 'Show % on Estimates and Invoices' turned OFF at Administration > Locations > Staging Heavy Duty - 9919, a freshly rendered document prints 'Shop supplies  $31.49' - the amount alone. The setting was turned back on and the same document re-rendered to 'Shop supplies (10.5% of labor)  $31.49'. Judged on a fresh render each time to avoid the stale-render trap.",
+   "not_observed": "",
    "note": null
   },
   "C44943": {
@@ -249,14 +249,14 @@
   },
   "C44945": {
    "verdict": "Passed",
-   "observed": "Clause 1 observed: no Adjustments heading appears, and there is nothing to list under it.",
-   "not_observed": "Clause 2 (no tax -> no tax row) not exercised - GST applies to this location.",
+   "observed": "Clause 1 observed: no Adjustments heading appears, and there is nothing to list under it. [GAP CLOSED 2026-09-07, later the same day] Clause 2 observed by a controlled A/B on the location tax code: with the location set to 'Exempt (0%)' the summary rows are Labor, Parts, Shop supplies, Subtotal, Total and there is NO tax row at all. Restored to 'GST (5%)' and the tax row returns as 'GST (5%)  $26.82'. Worth recording: the location Taxes picker offers no 'none' option - the six choices are Exempt (0%), GST (5%), HST (13%), HST BC (12%), Zero Rated (0%) and Zero Tax (0%) - so 'no tax applies' is reached through a zero-rate code, not by clearing the field.",
+   "not_observed": "",
    "note": null
   },
   "C44955": {
    "verdict": "Passed",
-   "observed": "The disclaimer prints with NO heading above it, and is byte-identical between the Estimate and the Invoice after whitespace normalisation (1036 characters each).",
-   "not_observed": "The Credit Invoice carries no disclaimer at all - which does not breach S9-R1, whose wording is 'identical on every document that carries it'.",
+   "observed": "The disclaimer prints with NO heading above it, and is byte-identical between the Estimate and the Invoice after whitespace normalisation (1036 characters each). [GAP CLOSED 2026-09-07, later the same day] Both clauses observed across TWELVE documents rendered live this pass (S2-32229, S2-32231, S-32263, S2-32220, S2-32221, S2-32052, S-32265, S-32262, S-32264, S2-32218, S2-31707, S2-31596): each carries exactly one disclaimer block, with no heading above it, and all twelve hold the identical 49-character string (same sha256). The Credit Invoice carries no disclaimer at all, which does not breach a rule worded 'identical on every document that carries it'.",
+   "not_observed": "",
    "note": "Worth a tester eye: confirm against the Section 3 matrix that the Credit Invoice is meant to omit it."
   },
   "C44956": {
@@ -291,8 +291,8 @@
   },
   "C44939": {
    "verdict": "Passed",
-   "observed": "Clause 2 observed directly: the same work order rendered WITHOUT the declined option shows no Declined Work section at all, while WITH it the section appears. So the option genuinely governs visibility.",
-   "not_observed": "Clause 1 (no declined lines at all) not exercised - this work order has one.",
+   "observed": "Clause 2 observed directly: the same work order rendered WITHOUT the declined option shows no Declined Work section at all, while WITH it the section appears. So the option genuinely governs visibility. [GAP CLOSED 2026-09-07, later the same day] Clause 1 observed on S2-32229, a work order with no declined lines: the rendered document contains no 'Declined Work' section and no 'DECLINED' string anywhere.",
+   "not_observed": "",
    "note": null
   },
   "C44959": {
@@ -567,8 +567,8 @@
   },
   "C44987": {
    "verdict": "Passed",
-   "observed": "Rendered a batch PDF (POST /api/invoices/batch-pdf over two of this pass's invoices). It comes back entirely on the OLD template and is not half-restyled: the typeface is Nunito Sans throughout, the labels are the pre-refresh ones ('Invoice Date:' with a capital D, 'Bill To' in title case, 'Parts Order', a Description/Quantity/Rate/Amount table header), and none of the refresh markers appears - no accent-coloured line numbers, no order-reference chips, no 'WORK PERFORMED' section head, no boxed headline figure. Clauses 1, 2 and 3 all hold.",
-   "not_observed": "An imported work order's document was not rendered this pass; the batch path alone was exercised.",
+   "observed": "Rendered a batch PDF (POST /api/invoices/batch-pdf over two of this pass's invoices). It comes back entirely on the OLD template and is not half-restyled: the typeface is Nunito Sans throughout, the labels are the pre-refresh ones ('Invoice Date:' with a capital D, 'Bill To' in title case, 'Parts Order', a Description/Quantity/Rate/Amount table header), and none of the refresh markers appears - no accent-coloured line numbers, no order-reference chips, no 'WORK PERFORMED' section head, no boxed headline figure. Clauses 1, 2 and 3 all hold. [GAP CLOSED 2026-09-07, later the same day] Clause 2 observed this pass: the imported work order ZZAUTOTEST-IMP-001, created through Administration's historical-invoice import, renders on the OLD template - 'Bill To' rather than 'BILL TO', 'Customer signature:' rather than the three-line signature row, a plain Description/Quantity/Rate/Amount table and 'Software Powered by ShopView' - which is exactly what this case requires, that imported invoices keep their current template until SV-9193 ships. Evidence is the capture taken during this pass (evidence-incidental/imported-wo.png); a second import was accepted later the same day but the imported record could not be relocated through the UI to re-render it.",
+   "not_observed": "",
    "note": "Side evidence for SV-9761: the OLD template's Nunito Sans IS embedded correctly, while the refreshed template asks for Inter and silently falls back to DejaVu Sans. The font is missing from the refreshed pipeline, not from the image generally."
   },
   "C45184": {
