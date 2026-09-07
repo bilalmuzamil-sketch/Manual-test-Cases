@@ -4,7 +4,7 @@
   "env": "staging",
   "build_marker": "v26.35.9-9812433",
   "record": "WO S-32136 / docs EST-S2-32136 & INV-S2-32136, customer 4 Star Truck Repair",
-  "note": "Results held LOCALLY. Nothing written to TestRail run R417."
+  "note": "Results recorded locally. Writing all 120 into shared run R417 was authorised by the QA lead on 2026-09-07 but the session's permission layer refused the TestRail result write; R417 still carries 0 results. The run itself was union-synced to all 120 cases (Rule 34)."
  },
  "results": {
   "C44901": {
@@ -17,7 +17,7 @@
    "verdict": "Blocked",
    "observed": "Clause 1 verified: when a logo is set the masthead shows it - a 2208x480 JPEG, 408,254 bytes, placed centrally in the masthead at x=228.8-342.8 on every document rendered this pass.",
    "not_observed": "Clause 2 - that nothing shows when no logo is set. The search is now exhaustive and the state cannot be produced. (1) The logo is ORGANISATION-level, not per-location: no logo field exists on any location record, so the case's precondition of one shop with a logo and one without cannot exist. (2) The UI offers no removal: the only control is a pencil overlay on the image at Administration > Settings > Organization, and it opens a file picker (accept '.jpg, image/*') - replace only. (3) The API has no removal either. The read route GET /api/organization/organization-details/logo answers 405 'Allow: GET' to DELETE. The write route was found by driving the picker with a request listener - POST /api/organization/organization-details/upload-logo - and it answers 405 to DELETE. Guessed removal routes remove-logo and delete-logo are both 404 on POST and DELETE.",
-   "note": "Raised as SV-9804, a Story Defect under SV-9140 (a shop logo \u2014 cannot be removed). It was first filed as the Task SV-9799, which was the wrong issue type and is now OBSOLETE. Re-proved today from a fourth direction: `organization/organization-details/change`, the only organisation-update endpoint the app has, does not carry a logo field at all (its contract is company name, state/province, city, address 1, postal code, telephone, email, tax code, country code), so there is no remove path even at the API. Organisations created fresh DO start with no logo \u2014 the staging estate has ~100 E2E-Bootstrap organisations whose logo is null \u2014 but ShopView exposes no way to switch into another organisation, and the Team Tools admin (staging.teamtools.portal.shopview.com) needs its own login. Clause 1 (a logo, when set, shows) stays verified."
+   "note": "Raised as SV-9804, a Story Defect under SV-9140 (a shop logo — cannot be removed). The replacement Story Defect was deliberately closed as OBSOLETE by the QA lead on 2026-09-07, so this finding currently has no open ticket and none is to be raised without him."
   },
   "C44903": {
    "verdict": "Passed",
@@ -47,7 +47,7 @@
    "verdict": "Blocked",
    "observed": "Clause 2 holds: fields that have values do show, on every document produced this pass. Clause 1's state cannot exist in the product, now proven from two directions. (a) AT CREATION: Administration > Locations > New Location refuses to save without them - attempting a location with only a name and shop id returns 'Address is a required field' and 'City is a required field', and supplying those two then returns 'State/Province is a required field', 'ZIP/Postal code is a required field' and 'Telephone is a required field' (plus Country and Timezone). Every one of the five masthead identity fields is mandatory. (b) AT EDIT: clearing all four editable ones on an existing location and saving reports no error but does not persist - the record reads back unchanged, verified by clearing, saving, re-reading, then restoring and re-reading again.",
    "not_observed": "Clause 1 - each missing masthead field being hidden with no blank line left.",
-   "note": "Raised as SV-9805, a Story Defect under SV-9140 (masthead identity fields are all mandatory). It was first filed as the Task SV-9800, which was the wrong issue type and is now OBSOLETE. Re-proved through the UI today: Administration > Locations > New location, name only, Save & Close, marks Address 1, City, State/Province, Country, ZIP/Postal Code, Timezone and Telephone red as required even though only Name carries the asterisk. Clause 2 (fields with values show normally) stays verified on every document produced this pass."
+   "note": "Raised as SV-9805, a Story Defect under SV-9140 (masthead identity fields are all mandatory). The replacement Story Defect was deliberately closed as OBSOLETE by the QA lead on 2026-09-07, so this finding currently has no open ticket and none is to be raised without him."
   },
   "C44908": {
    "verdict": "Passed",
@@ -107,7 +107,7 @@
    "verdict": "Blocked",
    "observed": "Integrated billing IS configured on this organisation - Administration > IBS carries a remit-to payee (Punta Gorda Truck Service & Repair) and customers carry IBS account numbers, for example East Moline Diesel Repair with company_ibs 875790. But no work order has ever been issued an approval code: ibs_approval_code is null on all 100 work orders read live at Staging Heavy Duty - 9919, and null on S-17466 too, which belongs to an IBS customer. There is also no way to seed one - the app exposes no route that sets an approval code (the only 'approval' routes are createApprovalRequest and checkApprovalRequestExists, which are the customer work-approval feature, and every IBS route is about batches and payments: create-batch, list-batches, batch-export, list-payments, list-transactions, payment, reverse-payment).",
    "not_observed": "Both clauses - the Approval Code showing in its own field labeled exactly 'Approval Code', and it no longer appearing under the 'Authorizer' label.",
-   "note": "Maps to the EXISTING ticket SV-9710 (IBS approval cannot be requested on QA \u2014 Approval Code chip (S3-R4) unverifiable), which was Open before this pass; a comment was added recording that it reproduces on staging. Staging is one level worse than QA: the IBS integration is not connected at all on this organisation (Administration > IBS: isConfigured false, isActive false, baseUrl null) and all three shop locations have an empty IBS Location ID. No new ticket was raised because SV-9710 already carries this."
+   "note": "Maps to the EXISTING ticket SV-9710 (IBS approval cannot be requested on QA — Approval Code chip (S3-R4) unverifiable), which was Open before this pass; a comment was added recording that it reproduces on staging. Staging is one level worse than QA: the IBS integration is not connected at all on this organisation (Administration > IBS: isConfigured false, isActive false, baseUrl null) and all three shop locations have an empty IBS Location ID. No new ticket was raised because SV-9710 already carries this."
   },
   "C44917": {
    "verdict": "Failed",
@@ -125,7 +125,7 @@
    "verdict": "Passed",
    "observed": "Clauses 1, 2 and 4 observed: 'ASSET  2011 Hyundai Santa Fe' and 'VIN / SERIAL  PV1T2SK1DNUUK7YDE' - the asset has a VIN and the VIN is what prints. [GAP CLOSED 2026-09-07, later the same day] Clause 3 observed: a new asset was created whose single identifier field holds a serial-style value, a work order raised on it through the UI (S2 work order 6ad49840), and its document prints 'VIN / Serial  SN-ZZAUTOTEST-0042'. Clause 4 ('the VIN is preferred when both exist') is UNREACHABLE and should be re-worded: the asset has exactly ONE identifier field, not two. Verified three ways - the vehicle API returns a single 'vin' key and no serial field on any of 500 assets read, the string 'serial_number' appears nowhere in the app bundle, and the product itself labels the one field 'VIN/Serial #' on the asset card, the asset picker and the Work Orders list column.",
    "not_observed": "",
-   "note": null
+   "note": "Clause 4 is a specification wording problem, not a build fault. Re-verified on build v26.35.9-9812433 on 2026-09-07 (500 assets read, all carrying one identifier field; work order S2-32270 prints 'VIN / SERIAL  SN-ZZAUTOTEST-0042') and FILED AS SV-9812 (Story Defect, Medium, parent SV-9143, assigned to Milomir Kotlajic) on the QA lead's go-ahead."
   },
   "C44925": {
    "verdict": "Passed",
@@ -189,15 +189,15 @@
   },
   "C44934": {
    "verdict": "Passed",
-   "observed": "On work order S2-32229, line 01 carries a labor-scoped fee of $20.00 and a labor-scoped discount of $5.00. The document prints them beneath the line as '\u21b3 ZZ Labor Fee   $20.00' (a plain amount) and '\u21b3 ZZ Labor Discount   ($5.00)' (in parentheses). Clause 3 holds literally: the parentheses are characters in the extracted text, not a colour or a font treatment - the same figure without parentheses would extract differently.",
+   "observed": "On work order S2-32229, line 01 carries a labor-scoped fee of $20.00 and a labor-scoped discount of $5.00. The document prints them beneath the line as '↳ ZZ Labor Fee   $20.00' (a plain amount) and '↳ ZZ Labor Discount   ($5.00)' (in parentheses). Clause 3 holds literally: the parentheses are characters in the extracted text, not a colour or a font treatment - the same figure without parentheses would extract differently.",
    "not_observed": null,
    "note": null
   },
   "C44935": {
    "verdict": "Failed",
-   "observed": "Clauses 1, 3 and 4 hold: every work line carries a footer, the Labor/Parts figures follow their summarize and price settings, and the vertical divider before 'Line total' behaves as specified. CLAUSE 2 FAILS. On work order S-32136 line 01 (labour 2 x $149.95 = $299.90) a line-level fee of $25.00 was added (scope labor_line). The document renders the adjustment row correctly under the line as '\u21b3 ZZAUTOTEST Line Fee  $25.00', but the line footer still reads 'Labor $299.90' and 'Line total $299.90'. S5-R9 requires the Labor and Parts figures to be the line's own totals AFTER its line-level fees and discounts, with Line total their sum - so both should read $324.90. The Design Document computes it that way in its own script: setTxt('j2-labor', money(599.80 + L + F)) and setTxt('j2-line', money(1004.88 + net)), with the comment that only the SUMMARY rows stay gross. The summary does add the fee once, under Adjustments > Labor, so the customer is charged $324.90 for a line the document totals at $299.90.",
+   "observed": "Clauses 1, 3 and 4 hold: every work line carries a footer, the Labor/Parts figures follow their summarize and price settings, and the vertical divider before 'Line total' behaves as specified. CLAUSE 2 FAILS. On work order S-32136 line 01 (labour 2 x $149.95 = $299.90) a line-level fee of $25.00 was added (scope labor_line). The document renders the adjustment row correctly under the line as '↳ ZZAUTOTEST Line Fee  $25.00', but the line footer still reads 'Labor $299.90' and 'Line total $299.90'. S5-R9 requires the Labor and Parts figures to be the line's own totals AFTER its line-level fees and discounts, with Line total their sum - so both should read $324.90. The Design Document computes it that way in its own script: setTxt('j2-labor', money(599.80 + L + F)) and setTxt('j2-line', money(1004.88 + net)), with the comment that only the SUMMARY rows stay gross. The summary does add the fee once, under Adjustments > Labor, so the customer is charged $324.90 for a line the document totals at $299.90.",
    "not_observed": null,
-   "note": "Re-verdicted. The earlier Passed was reached on a work order that carried no adjustments, so clause 2 was never exercised. Defect candidate raised to the QA lead; nothing filed."
+   "note": "Re-verdicted. The earlier Passed was reached on a work order that carried no adjustments, so clause 2 was never exercised. FILED AS SV-9773 (Story Defect, Medium, parent SV-9144), status Open. The earlier note saying 'nothing filed' was stale."
   },
   "C44936": {
    "verdict": "Passed",
@@ -471,7 +471,7 @@
   },
   "C44967": {
    "verdict": "Passed",
-   "observed": "Clause 1 - the table's columns read exactly 'DESCRIPTION', 'QUANTITY', 'RATE', 'RESTOCKING FEE', 'TOTAL'. Clause 3 - a money-only credit line prints '--' for Quantity and '--' for Rate. Clause 4 - the Restocking Fee column is present on every credit document and reads '$0.00' where there is no fee. Clause 5 - totals are negative with a leading minus ('-$200.00', '-$40.00'), never the parentheses convention. Clause 6 - the money-only line's Description is the credit's reason where one was entered ('ZZAUTOTEST credit A'), and falls back to the memo where it was not (CM-4324 renders '100 \u2014 Admin ShopView').",
+   "observed": "Clause 1 - the table's columns read exactly 'DESCRIPTION', 'QUANTITY', 'RATE', 'RESTOCKING FEE', 'TOTAL'. Clause 3 - a money-only credit line prints '--' for Quantity and '--' for Rate. Clause 4 - the Restocking Fee column is present on every credit document and reads '$0.00' where there is no fee. Clause 5 - totals are negative with a leading minus ('-$200.00', '-$40.00'), never the parentheses convention. Clause 6 - the money-only line's Description is the credit's reason where one was entered ('ZZAUTOTEST credit A'), and falls back to the memo where it was not (CM-4324 renders '100 — Admin ShopView').",
    "not_observed": "Clause 2 - a returned part showing a negative quantity and its rate was not produced. The parts-return picker is part-sale only; a service work order's credit is a plain amount, so a part-sale invoice with lines is needed.",
    "note": null
   },
@@ -537,7 +537,7 @@
   },
   "C44982": {
    "verdict": "Passed",
-   "observed": "A line-level fee of $9.00 x qty 2 = $18.00 was added to the part on P2-1931. Clause 1 - it renders indented under its part line as '\u21b3 ZZAUTOTEST Part Handling Fee   $18.00', exactly as on the Invoice. Clause 2 - measured: the part row band ends at y=361.9 and the divider (0.75pt #CDD5DF) sits at y=361.9, below the adjustment row, never between the part and its adjustment.",
+   "observed": "A line-level fee of $9.00 x qty 2 = $18.00 was added to the part on P2-1931. Clause 1 - it renders indented under its part line as '↳ ZZAUTOTEST Part Handling Fee   $18.00', exactly as on the Invoice. Clause 2 - measured: the part row band ends at y=361.9 and the divider (0.75pt #CDD5DF) sits at y=361.9, below the adjustment row, never between the part and its adjustment.",
    "not_observed": null,
    "note": null
   },
@@ -707,7 +707,7 @@
    "verdict": "Failed",
    "observed": "Clauses 1, 2, 3, 5 and 6 all PASS, observed live in the customer portal on staging. (1) Labels read exactly 'Date / Time', 'Paid By', 'Method', 'Invoice Amount', 'Total Charged'. (2) On the batch payments (S-32264 and S-12725) the label reads exactly 'Total Charged (Batch)' and carries the whole batch - S-32264 shows Invoice Amount CA$406.09 against Total Charged (Batch) CA$14,230.01. (3) 'Convenience Fee' shows on every payment that carried one; 'Late Fee' shows only on S-12725, whose payment carried a CA$4.73 late fee, and is absent everywhere the late fee was zero. (5) On S-32220, which has one single payment then one batch payment, the markers read 'Payment 1 of 2' and 'Payment 2 of 2 - Batch' with a middle dot, exactly as spec v57 S8-R9 writes it. (6) 'Date / Time' read 'Sep 7, 2026 - 10:23 AM MDT' - date, then 12-hour time with the shop timezone abbreviation.",
    "not_observed": "",
-   "note": "FAILS clause 4. 'Remaining Balance' never appears. Tested on four invoices where the balance immediately after a listed payment was greater than $0.00: S-32263 ($306.09 after payment 1 of 2), S-32220 ($150.23 after payment 1 of 2), S-32052 ($7.45 after the portal payment, still PARTIALLY PAID) and the partially paid state of S-32263. The string 'Remaining Balance' does not exist anywhere in the portal front end: all 133 JS assets in the portal build manifest were downloaded and searched, zero occurrences. The banner is rendered entirely client-side by PreviewInvoice-DQmgXtBb.js - the server's own invoice HTML carries none of the banner strings. PRODUCTION carries the same code: portal.shopview.com serves PreviewInvoice-DQmgXtBb.js byte-identical to staging (sha256 626a1d5723ef32a340fc78161caad3a6b4153313dd7f0e97e49babac1d4c1c77). Because S8-R8 states the banner is 'Behavior already in production, restated unchanged' and S8-R9 is not marked net-new, the spec's own precedence rule applies: a non-net-new rule that disagrees with production is amended to describe production. The finding is therefore raised as a SPEC CORRECTION, not as a build defect - but as a STORY DEFECT under the owning story, per the standing ticket shape. Ticket: SV-9803 (Story Defect, parent SV-9147). It was first filed as the Task SV-9797, which was the wrong issue type and is now OBSOLETE."
+   "note": "FAILS clause 4. 'Remaining Balance' never appears. Tested on four invoices where the balance immediately after a listed payment was greater than $0.00. It was raised as SV-9803, which the QA lead confirmed on 2026-09-07 was deliberately closed as OBSOLETE, so there is no open ticket for this finding and none is to be raised without him. The case's outcome text no longer cites the closed ticket."
   },
   "C45175": {
    "verdict": "Passed",
@@ -723,7 +723,7 @@
   },
   "C45194": {
    "verdict": "Passed",
-   "observed": "Seeded a customer, contact and asset carrying every awkward character and invoiced them (INV-S2-32223). Everything renders exactly as entered, with no escaping and no mojibake. Bill To reads 'ZZAUTOTEST Backer & Sons \"Trucks\" <Ltd> - Cafe N' with the real diacritics (B\u00e4cker, Caf\u00e9 \u00d1): the AMPERSAND prints as & and never as an escaped entity, the straight quotes survive, and the angle brackets in <Ltd> are NOT stripped as markup. Address '12 Rue de l'Epee & Co.' keeps its apostrophe, its \u00c9 and a second ampersand; 'Montr\u00e9al, Qu\u00e9bec' is correct. Asset UNIT '\u00dc-99' and PLATE 'A\u00c9-1234' are correct. Authorizer reads 'Ren\u00e9e O'Brien-M\u00fcller'. The Scope of work line renders 'Caf\u00e9 & cr\u00e8me \u2014 \u201cquoted\u201d <tags> \u00f1 \u00fc \u00e9' complete with curly quotes and an em dash. No missing-glyph boxes anywhere.",
+   "observed": "Seeded a customer, contact and asset carrying every awkward character and invoiced them (INV-S2-32223). Everything renders exactly as entered, with no escaping and no mojibake. Bill To reads 'ZZAUTOTEST Backer & Sons \"Trucks\" <Ltd> - Cafe N' with the real diacritics (Bäcker, Café Ñ): the AMPERSAND prints as & and never as an escaped entity, the straight quotes survive, and the angle brackets in <Ltd> are NOT stripped as markup. Address '12 Rue de l'Epee & Co.' keeps its apostrophe, its É and a second ampersand; 'Montréal, Québec' is correct. Asset UNIT 'Ü-99' and PLATE 'AÉ-1234' are correct. Authorizer reads 'Renée O'Brien-Müller'. The Scope of work line renders 'Café & crème — “quoted” <tags> ñ ü é' complete with curly quotes and an em dash. No missing-glyph boxes anywhere.",
    "not_observed": null,
    "note": "Clause 1 says 'no missing glyphs in Inter'. The PDF face is DejaVu Sans, not Inter (SV-9761), but no glyph is missing in any of these strings, so the clause's substance holds on the face actually shipping."
   }
