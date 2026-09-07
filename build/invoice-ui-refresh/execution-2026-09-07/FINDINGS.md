@@ -57,7 +57,19 @@ now carry that route in their preconditions and pass `check_runnable_cases.py`.
 3. **PDF filename rule G-R2 has no case.** Added to the spec on 2026-09-04, after this suite was written. The app download obeys it (`INV-S2-32136.pdf`); the **email attachment does not** (`invoice-for-order-S2-32136.pdf`). G-R2 says "the same however the PDF is produced, in the app or from the customer portal" and does not mention email, so whether it binds here is a genuine question.
 4. **Terms cannot be empty.** C44914 clause 2 describes a state the product cannot reach — the picker offers twelve values and no empty option, and new customers are given COD automatically.
 5. **The document preview serves a stale render.** After a settings change, an already-rendered document keeps returning the old PDF (byte-identical across three requests) while unrendered documents come back correct. Judge any settings change on a fresh document.
-6. **Saving an empty value silently does nothing.** The organisation Tax ID and the location address fields all clear in the form, report no error on save, and are unchanged afterwards. This is an Administration-screen behaviour, outside this suite's scope.
+6. **`undefined%` in the asset's Invoices list.** Customers → 4 Star Truck Repair → Assets → 2011
+   Hyundai Santa Fe → **Invoices**: the **Tax Rate** column prints the literal word `undefined%` on
+   every row, while the Discount column beside it renders `0.00%` correctly. Outside this suite, but
+   unambiguous and reproducible in five clicks — **raised as
+   [SV-9802](https://shopview.atlassian.net/browse/SV-9802)**.
+7. **`undefined, undefined, undefined` on the imported work order's document.** Seen earlier this pass
+   on ZZAUTOTEST-IMP-001, where the shop address belongs, on the OLD (unrefreshed) imported template.
+   **Not ticketed**, deliberately: the imported record could not be located again through the UI this
+   afternoon, so no repro steps could be verified, and a ticket without runnable steps is worse than
+   none. Screenshot kept at `evidence-incidental/imported-wo.png`. It needs a fresh historical import
+   and a confirmed route before it is filed. The imported template's restyle is already deferred to
+   **SV-9193**, but a missing shop address is a data fault, not styling.
+8. **Saving an empty value silently does nothing.** The organisation Tax ID and the location address fields all clear in the form, report no error on save, and are unchanged afterwards. This is an Administration-screen behaviour, outside this suite's scope.
 
 ---
 
