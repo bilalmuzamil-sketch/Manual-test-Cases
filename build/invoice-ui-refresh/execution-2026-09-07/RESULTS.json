@@ -156,6 +156,144 @@
    "observed": null,
    "not_observed": "Not exercised: this work order has an asset.",
    "note": "SEED: a work order with no asset attached."
+  },
+  "C44929": {
+   "verdict": "Passed",
+   "observed": "Estimate heading reads 'WORK SUMMARY'; Invoice heading reads 'WORK PERFORMED'. Both captured from the build; the difference is exactly as specified.",
+   "not_observed": null,
+   "note": null
+  },
+  "C44930": {
+   "verdict": "Passed",
+   "observed": "Line numbers render 01, 02, 03 - sequential, no gaps, zero-padded to two digits, at 13.5pt (=18px).",
+   "not_observed": "The 100+ line three-digit case is C45173's job and was not exercised here.",
+   "note": null
+  },
+  "C44931": {
+   "verdict": "Passed",
+   "observed": "Line 01 shows name 'ABCD', description 'EFGH' inline in smaller muted text (9.0pt = 12px), and a SCOPE OF WORK note 'Eeee' below. Lines 02 and 03 the same shape.",
+   "not_observed": "Clause 4 (a line with neither description nor scope note) not exercised - all three lines have both.",
+   "note": null
+  },
+  "C44932": {
+   "verdict": "Passed",
+   "observed": "Labor entries are labeled 'LABOR' and parts entries 'PARTS' (uppercase is the document's text-transform; capitalisation alone is not a divergence).",
+   "not_observed": null,
+   "note": null
+  },
+  "C44933": {
+   "verdict": "Untested",
+   "observed": "Clause 1 observed: labor hours, rate and price all print on the labor entries, and part number + description print on the parts entries ('N68SL-356 - 3.50-3.82\" (89-97mm) SPRING LOADED T-BOLT CLAMP').",
+   "not_observed": "Clause 2 (turning each setting OFF hides its figure) not exercised - the settings live in Administration > Invoice Details and were not toggled.",
+   "note": null
+  },
+  "C44934": {
+   "verdict": "Untested",
+   "observed": null,
+   "not_observed": "Not exercised: this work order carries no line-level fee or discount, so neither the plain-amount nor the parenthesised form appears.",
+   "note": null
+  },
+  "C44935": {
+   "verdict": "Passed",
+   "observed": "Line 02's footer shows all three labels with correct figures: 'Labor $149.95', 'Parts $48.31', 'Line total $198.26' - and 149.95 + 48.31 = 198.26, so clause 2's arithmetic holds. Line 01, which has no parts, correctly shows only 'Labor $299.90' and 'Line total $299.90'.",
+   "not_observed": "Clause 3 (a footer figure hidden when its summarize setting is off) not exercised.",
+   "note": null
+  },
+  "C44936": {
+   "verdict": "Untested",
+   "observed": null,
+   "not_observed": "Not exercised: the work section has three lines, so the empty-section case never occurs.",
+   "note": null
+  },
+  "C45172": {
+   "verdict": "Untested",
+   "observed": null,
+   "not_observed": "Not exercised: requires toggling 'Summarize labor total' / 'Summarize parts total' in Administration.",
+   "note": null
+  },
+  "C45173": {
+   "verdict": "Untested",
+   "observed": null,
+   "not_observed": "Not exercised: requires a document of 100+ work lines.",
+   "note": null
+  },
+  "C44940": {
+   "verdict": "Passed",
+   "observed": "A divider labeled 'SUMMARY' sits at y=220.4, immediately above the financial summary block which starts at y=247.9. Order confirmed by coordinate, not by text order.",
+   "not_observed": null,
+   "note": null
+  },
+  "C44941": {
+   "verdict": "Passed",
+   "observed": "Rows labeled 'Labor' ($599.80), 'Parts' ($48.31) and 'Shop supplies (10.5% of labor)' ($62.98) all present. Labor reconciles to the three line labor amounts (299.90+149.95+149.95) and Parts to the two part amounts (8.31+40.00), i.e. gross.",
+   "not_observed": null,
+   "note": null
+  },
+  "C44942": {
+   "verdict": "Passed",
+   "observed": "Clause 1 observed: the percentage IS shown alongside the amount - 'Shop supplies (10.5% of labor)  $62.98'. Confirmed at record level too: the workplace carries shop_supplies_charge = 10.5 with shopSupplyPercentageEnabled = true, and 10.5% of labor 599.80 = 62.98 exactly.",
+   "not_observed": "Clause 2 (setting off -> amount alone) not exercised on my own capture.",
+   "note": null
+  },
+  "C44943": {
+   "verdict": "Untested",
+   "observed": null,
+   "not_observed": "Not exercised: this work order has no adjustments, so the Adjustments group never renders.",
+   "note": null
+  },
+  "C44944": {
+   "verdict": "Passed",
+   "observed": "All four clauses hold. 'Subtotal $711.09'; one tax row per tax, labeled with name and rate, 'GST (5%) $35.57'; grand 'Total $746.66'. The visible math reconciles: 599.80 + 48.31 + 62.98 = 711.09, and 711.09 + 35.57 = 746.66. (The tax is not a flat 5% of the subtotal because the location's salesTaxRoundingMode is 'line_by_line' - tax summed per line.)",
+   "not_observed": null,
+   "note": null
+  },
+  "C44945": {
+   "verdict": "Passed",
+   "observed": "Clause 1 observed: no Adjustments heading appears, and there is nothing to list under it.",
+   "not_observed": "Clause 2 (no tax -> no tax row) not exercised - GST applies to this location.",
+   "note": null
+  },
+  "C44955": {
+   "verdict": "Passed",
+   "observed": "The disclaimer prints with NO heading above it, and is byte-identical between the Estimate and the Invoice after whitespace normalisation (1036 characters each).",
+   "not_observed": "The Credit Invoice carries no disclaimer at all - which does not breach S9-R1, whose wording is 'identical on every document that carries it'.",
+   "note": "Worth a tester eye: confirm against the Section 3 matrix that the Credit Invoice is meant to omit it."
+  },
+  "C44956": {
+   "verdict": "Passed",
+   "observed": "Exactly three lines labeled 'CUSTOMER SIGNATURE', 'PRINTED NAME' and 'DATE', present and identical on the Estimate, the Invoice AND the Credit Invoice. No authorization or acknowledgment sentence sits inside the signature area.",
+   "not_observed": null,
+   "note": null
+  },
+  "C44957": {
+   "verdict": "Passed",
+   "observed": "The footer prints 'GST# 812694966 RT0001' with no label added in front of it - the shop's own typed label is what appears.",
+   "not_observed": null,
+   "note": null
+  },
+  "C44958": {
+   "verdict": "Untested",
+   "observed": null,
+   "not_observed": "Not exercised: this shop has both a disclaimer and a tax identifier configured.",
+   "note": null
+  },
+  "C44937": {
+   "verdict": "Passed",
+   "observed": "With declined work shown, a section headed exactly 'DECLINED WORK' renders separately from the work section. The declined line shows its name ('What are you doing 4th line (Decline)') and its description ('Whya re you doing 4th line (Decline)'). Clause 3 holds: NO scope-of-work note appears under it - the next element is the SUMMARY divider.",
+   "not_observed": null,
+   "note": null
+  },
+  "C44938": {
+   "verdict": "Passed",
+   "observed": "All four clauses. The declined line carries no price, no labor or parts figure, and no line number (the numbered lines stop at 03). No status pill. And it enters no total: the summary figures are IDENTICAL between the plain and declined captures - $711.09 / $35.57 / $746.66 in both.",
+   "not_observed": null,
+   "note": null
+  },
+  "C44939": {
+   "verdict": "Passed",
+   "observed": "Clause 2 observed directly: the same work order rendered WITHOUT the declined option shows no Declined Work section at all, while WITH it the section appears. So the option genuinely governs visibility.",
+   "not_observed": "Clause 1 (no declined lines at all) not exercised - this work order has one.",
+   "note": null
   }
  },
  "seeding": {
