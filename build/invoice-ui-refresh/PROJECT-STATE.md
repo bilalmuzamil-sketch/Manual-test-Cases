@@ -1,5 +1,11 @@
 # PROJECT-STATE — Invoice UI Refresh
 
+> **📕 BEFORE MEASURING OR FILING ANYTHING ON THIS PROJECT, READ**
+> **[`INVOICE-REFRESH-LEARNINGS.md`](INVOICE-REFRESH-LEARNINGS.md)** — the lookup index at its top
+> routes you to the exact trap for what you are about to do (px/pt conversion, PDF visual order,
+> "production has it and staging does not", the S3-N1 trailing-digit rule, spec currency, and the
+> already-known tickets to check before filing). Started 2026-09-07; append, never rewrite.
+
 **Canonical cold-resume doc.** Status derived live; do not trust remembered figures (Rule 92 / skill 15 §7).
 
 ## 🆕 Update — 2026-09-02 (LATEST) — AUTOMATED CASES MADE RUNNABLE; EVERY QUOTED LABEL CONFIRMED
