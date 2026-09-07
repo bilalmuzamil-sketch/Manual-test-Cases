@@ -20,6 +20,7 @@
 | check a finding against the DESIGN document | **L11** | The design is a STATEFUL prototype; its CSS encodes the hide states. |
 | test ANY conditional hide-rule (the general logic) | **L13** | THE DEAD-RULE TEST. A condition true BY CONSTRUCTION kills its field. |
 | decide whether a spec/design/staging difference is a defect | **L12** | THE DECISION MATRIX. Direction matters: missing != extra. |
+| FILE a ticket on this project (exact field shape) | **L14** | Task needs Product Area; a Task cannot be parented to a Story. |
 | decide defect vs Task vs spec-gap | **L8** | This epic routes them differently, and it matters. |
 
 ---
@@ -286,3 +287,37 @@ not "a field is missing", it is "one rule in seventeen is written so it can neve
 When a case expects a field and the document does not show it, **do not stop at "a hide-rule covers it"**.
 Run the four questions. Most of the time the rule is legitimate and the case passes; when the condition is
 structural, you have found a real defect that the literal spec text would otherwise have hidden from you.
+
+## L14 · FILING ON THIS PROJECT — the exact field shape, learned by doing it (2026-09-07)
+**Filed: [SV-9770](https://shopview.atlassian.net/browse/SV-9770)** - Task, "Work Order number never
+appears on the Estimate or Invoice", label `Clarification_needed`, parent SV-8218, relates to SV-9142.
+
+| Thing | Task (hierarchy 0) | Story Defect (hierarchy -1) |
+|---|---|---|
+| **Product Area** (`customfield_10153`) | **REQUIRED** - creation fails `"Product Area is required"` until set. Invoice work = **"Work Orders"** (`id 10120`) | **absent on the type** - do not send it |
+| **parent** | the **EPIC** (SV-8218). A Task **CANNOT** be parented to a Story - same hierarchy level | the **owning STORY**. An Epic parent is rejected HTTP 400 |
+| attaching it to the owning story | **`relates to` link** (this is how "attach to the story" is satisfied for a Task) | parent + also a `relates to` link |
+| priority | Medium | Medium |
+
+**⇒ CLAUDE.md's "no Product Area (absent on this type)" is TRUE FOR STORY DEFECT ONLY.** On a Task it is
+mandatory. That one line cost a failed create; it is written here so the next one does not.
+
+**Inline images that actually render:** commit the annotated PNGs to this PUBLIC repo, push, **curl each
+raw URL for 200 BEFORE posting**, then use an ADF `mediaSingle` > `media` node with
+`{"type":"external","url":"<raw.githubusercontent.com URL>"}`. External media needs no attachment upload
+and no media-services UUID. Raw URL shape:
+`https://raw.githubusercontent.com/bilalmuzamil-sketch/Manual-test-Cases/<branch>/<path>/<file>.png`
+
+**Playwright on this image:** the pip package expects browser build **1234**, the image ships **1194**.
+Launch with `executable_path="/opt/pw-browsers/chromium-1194/chrome-linux/chrome"` and `--no-sandbox`.
+**Never run `playwright install`.** Geometry for annotation boxes comes from `element.bounding_box()`
+(design) or the PDF text bbox scaled by `150/72` (a 150-dpi page render).
+
+**Capturing the live document (the evidence that makes a ticket stick):**
+`POST /api/work-orders/invoices/estimate` with `{work_order_id, type, issue_date, due_date}` -
+`type=html` and `type=pdf` both return **200**. `type=invoice`/`estimate` return 500. The
+`/api/invoices/preview?invoice_id=...` route needs an invoice_id, which an **un-invoiced** work order does
+not have (`invoice_id: ''`) - the Estimate/Invoice toggle previews an invoice before one exists.
+
+**🛑 NEVER put a TestRail case id, C-id or TestRail link in a ticket body** (QA lead, 2026-09-07). Design
+reference first, then the spec reference. The case mapping stays in our records only.
