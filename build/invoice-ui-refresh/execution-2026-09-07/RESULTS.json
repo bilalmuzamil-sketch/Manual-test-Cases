@@ -20,10 +20,10 @@
    "note": "Needs either a second location with no logo, or permission to unset and restore this one."
   },
   "C44903": {
-   "verdict": "Untested",
-   "observed": "Estimate label reads 'Estimate: EST-S2-32136' and Invoice label 'Invoice: INV-S2-32136' - type word before the number, prefix included, both correct.",
-   "not_observed": "The Credit Invoice label ('Credit: {number}') was not exercised - no credit memo on this record.",
-   "note": null
+   "verdict": "Passed",
+   "observed": "All three document labels now observed: 'Estimate: EST-S2-32136', 'Invoice: INV-S2-32136' and 'Credit: CM-4347'. In each the type word precedes the number and the number carries its type prefix (EST- / INV- / CM-).",
+   "not_observed": null,
+   "note": "The Invoices LIST renders the credit as 'CM2-4347', but the DOCUMENT reads 'CM-4347' - the document is what this case asserts, and it is correct."
   },
   "C44904": {
    "verdict": "Passed",
@@ -32,16 +32,16 @@
    "note": null
   },
   "C44905": {
-   "verdict": "Untested",
-   "observed": "No monetary amount anywhere in either masthead (regex for a currency figure over the masthead band: zero hits). Estimate's boxed headline reads 'ESTIMATED TOTAL'; Invoice's reads 'BALANCE'.",
-   "not_observed": "The Credit Invoice clause was not exercised - no credit memo on this record.",
+   "verdict": "Passed",
+   "observed": "No monetary amount in any of the three mastheads (checked by y-coordinate over the masthead band, not by text order). Estimate's boxed headline reads 'ESTIMATED TOTAL'; Invoice's reads 'BALANCE'; the Credit Invoice has NO boxed headline and its masthead carries only 'Credit: CM-4347' and 'Issue date: Sep 7, 2026'.",
+   "not_observed": null,
    "note": null
   },
   "C44906": {
    "verdict": "Untested",
-   "observed": "Estimate masthead shows 'Estimate date: Sep 6, 2026' and NO due date. Unpaid Invoice masthead shows 'Invoice date: Sep 6, 2026' and 'Due date: Sep 13, 2026'. Date format matches the fixed 'Mon D, YYYY' form.",
-   "not_observed": "The fully-paid Invoice clause (Paid date replaces Due date) and the Credit Invoice clause were not exercised - this work order is unpaid and has no credit memo.",
-   "note": null
+   "observed": "Estimate: 'Estimate date: Sep 6, 2026', no due date. Unpaid Invoice: 'Invoice date: Sep 6, 2026' + 'Due date: Sep 13, 2026'. Credit Invoice: 'Issue date: Sep 7, 2026'. All dates in the fixed 'Mon D, YYYY' form.",
+   "not_observed": "Only the fully-paid Invoice clause remains unexercised (Paid date replaces Due date).",
+   "note": "SEED: apply a full payment to an invoice."
   },
   "C44907": {
    "verdict": "Untested",
@@ -63,9 +63,9 @@
   },
   "C44910": {
    "verdict": "Untested",
-   "observed": "Clause 1 PASSES: with no Remit Payment To block, the Bill To card measures x0=60.0 -> x1=535.3 = 475.3pt, the full content width (page.get_drawings()).",
-   "not_observed": "Clause 2 (side-by-side when a payee exists) and clause 3 (Credit To full width on a Credit Invoice) not exercised.",
-   "note": "SEED a remit payee; Credit Invoice document is UI-render only."
+   "observed": "Clause 1 PASSES (Bill To full width, 475.3pt, when no Remit block). Clause 3 PASSES (Credit To full width on the Credit Invoice, 475.3pt).",
+   "not_observed": "Only clause 2 remains: Bill To and Remit Payment To side by side when a payee IS configured.",
+   "note": "Needs a remit payee - UI route, Administration > Locations."
   },
   "C44911": {
    "verdict": "Passed",
@@ -80,10 +80,10 @@
    "note": "SEED: clear a customer address field."
   },
   "C45168": {
-   "verdict": "Untested",
-   "observed": null,
-   "not_observed": "Needs the Credit Invoice document, which renders only through the UI print route.",
-   "note": "Credit memo CM-4347 seeded and available."
+   "verdict": "Passed",
+   "observed": "Both clauses. No 'Remit Payment To' block anywhere on the Credit Invoice, and the 'CREDIT TO' card measures x0=60.0 -> x1=535.3 = 475.3pt, the full content width (page.get_drawings()).",
+   "not_observed": null,
+   "note": null
   },
   "C44913": {
    "verdict": "Passed",

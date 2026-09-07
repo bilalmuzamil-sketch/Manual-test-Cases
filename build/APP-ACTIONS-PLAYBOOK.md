@@ -1449,7 +1449,7 @@ with `sv_sso_session` and `cf_clearance` **byte-identical** to the set that was 
   `GET /api/customers/view/{customerId}`** — it is NOT the customer id. The **invoice menu's
   "Issue Credit" action DOES create a genuine customer credit memo** (a session on 2026-08-31 first
   concluded it made "only a part-sale credit" — wrong; the `has_part_sale_credits: true` flag was a
-  side effect). **The credit memo's document could not be rendered:** it is absent from the customer's
+  side effect). **✅ CORRECTED 2026-09-07 - THE CREDIT MEMO DOCUMENT *CAN* BE RENDERED: `GET /api/credit-memos/{creditMemoId}/pdf` -> 200, a one-page PDF.** Found by clicking the `print` action on the credit row (Customers -> the customer -> Invoices tab) with a request listener attached, rather than by guessing routes - the app DOES call a credit route, contrary to the note below. Verified live on staging build v26.35.9-9812433 with CM-4347. **Two gotchas:** the print control opens NO popup and triggers NO download, so `expect_page`/`expect_download` both time out - watch the network instead; and the row in the Invoices tab displays the number as **CM2-4347** while the DOCUMENT itself reads **CM-4347**. *(Superseded note kept verbatim below, per the dated-correction pattern:)* **The credit memo's document could not be rendered:** it is absent from the customer's
   Invoices/Payments/Deposits tabs and from the originating work order's finance tab, 13 candidate
   routes all 404, `/api/invoices/preview` rejects a credit memo id, and the app never calls a
   credit/preview route. **Before re-running that hunt, read this list — it is the searched set.**
