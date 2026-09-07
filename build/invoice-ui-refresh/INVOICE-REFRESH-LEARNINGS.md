@@ -923,9 +923,13 @@ story `relates to`** · **no Product Area** (absent on this type). Never `Story 
 **Does the behaviour belong to a story inside an epic?** If yes → **Story Defect, parent = that
 story**, whatever the finding "feels" like. A finding can argue in its body that the *specification*
 should change; that argument goes in **Expected behavior**, and it does not change the issue type.
-Only a finding with **no owning story anywhere** is a `Bug` — SV-9802 (`undefined%` on the Customers →
-asset → Invoices tab) is the one that genuinely qualified, and the check was made by listing every
-open Epic and finding none that covers that screen.
+**Corrected the same day, and this is the half I got wrong twice:** I kept SV-9802 (`undefined%` on
+the Customers → asset → Invoices tab) as a `Bug` because no story owns that screen — I listed every
+open Epic to check. **The QA lead ruled it is still a Story Defect.** So the test is NOT "is there a
+story that owns this screen"; it is **"was this found while working an epic's feature"** — if yes it
+is a Story Defect, parented to the nearest sensible story, with the ticket saying which was chosen and
+inviting a move. Re-filed as SV-9806 under SV-9143 (Story 4, Asset Section) and assigned. **A `Bug`
+is for something found entirely outside any epic's work, and that is rarer than it looks.**
 
 ### Mechanics — the correction is re-file-and-obsolete, never a re-type
 **`Story Defect` is a SUBTASK type** (`subtask: true`, `hierarchyLevel: -1`). The REST API therefore
@@ -940,6 +944,8 @@ route that works:
 2. `createIssueLink` type `Relates` to the same story.
 3. Comment on the mis-typed original naming the replacement, then transition it to **OBSOLETE**
    (`transition id 8` in this project).
+   **Assignee:** `assignee_account_id` on create; look the person up with `lookupJiraAccountId`
+   (Milomir Kotlajic = `712020:655c2bc0-ee59-46d8-9da3-f61e54739e55`).
 4. **Re-point every downstream reference** — the TestRail case's three-outcomes text, `RESULTS.json`,
    `FINDINGS.md`, the tester brief, the session report. A case that names an obsoleted ticket sends
    a tester to a dead end.

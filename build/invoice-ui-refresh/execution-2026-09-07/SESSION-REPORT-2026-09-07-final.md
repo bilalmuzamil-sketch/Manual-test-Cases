@@ -20,7 +20,7 @@
 | **The customer portal was reached** and the last three blocked cases run | **C44951 Passed · C45175 Passed · C44952 Failed** (one clause). Route, method and evidence: `PORTAL-BANNER-VERIFICATION-2026-09-07.md` |
 | **Every failure carries a ticket** | C44935→SV-9773 · C44926→SV-9680 · C44974→SV-9761 · C44970→SV-9790 · C44917→SV-9642 · **C44952→SV-9803 (new)** |
 | **Every remaining blocker carries a ticket** | C44902→**SV-9804 (new)** · C44907→**SV-9805 (new)** · C44916→SV-9710 (existing, commented) |
-| **One incidental defect raised** | **SV-9802 (new)** — the asset Invoices tab prints `undefined%` in Tax Rate |
+| **One incidental defect raised** | **SV-9806 (new)** — the asset Invoices tab prints `undefined%` in Tax Rate; assigned to Milomir Kotlajic |
 | **Three cases made properly runnable** | C44951, C44952, C45175 now carry the portal route step by step; `check_runnable_cases.py` returns 3/3 runnable, and all three render `markdown fr-view` with no literal tags |
 | **One case-text error corrected** | C44952 clause 5 said `"Payment X of Y - Batch"`; spec v45 and v57 both write `"Payment X of Y · Batch"` and the build renders the middle dot. The case was wrong, not the build |
 | **Learnings recorded** | L29 (how to reach the portal) · L30 (a rule that restates production is a spec correction) · L31 (`created_by 6` is in scope) · L32 (edit `fr-view` cases through the UI, never the API). Playbook gains a Customer Portal section |
@@ -75,11 +75,11 @@
 | **[SV-9803](https://shopview.atlassian.net/browse/SV-9803)** | Story Defect | **SV-9147** — Story 8 | The paid banner omits the "Remaining Balance" row required by S8-R9. The body argues for a **spec correction** rather than a build change — production serves the byte-identical portal chunk, and the spec's own rule says a non-net-new rule that disagrees with production is amended to describe production |
 | **[SV-9804](https://shopview.atlassian.net/browse/SV-9804)** | Story Defect | **SV-9140** — Story 1 | A shop logo cannot be removed, so the "no logo" masthead rule (S1-R2) cannot be tested by anyone |
 | **[SV-9805](https://shopview.atlassian.net/browse/SV-9805)** | Story Defect | **SV-9140** — Story 1 | Masthead identity fields are all mandatory, so the "hide when empty" rule (S1-N1) cannot be tested |
-| **[SV-9802](https://shopview.atlassian.net/browse/SV-9802)** | Bug | none | The asset Invoices tab prints the word `undefined%` in the Tax Rate column on every row. **Stays a Bug**: that screen belongs to no story in any open epic, and a Story Defect must have a Story parent |
+| **[SV-9806](https://shopview.atlassian.net/browse/SV-9806)** | Story Defect | **SV-9143** — Story 4, Asset Section | The asset Invoices tab prints the word `undefined%` in the Tax Rate column on every row. Assigned to **Milomir Kotlajic**. No story owns that screen outright; SV-9143 was chosen as the nearest asset-scoped story and the ticket says so |
 
 ### Correction — three of these were first filed with the wrong issue type
 
-**SV-9797, SV-9799 and SV-9800 were created as Tasks.** The standing ticket shape (CLAUDE.md §5, Rules 52/53/62) requires **`Story Defect`** with the **owning story as parent** for anything belonging to a story inside an epic. All three have been **re-filed correctly** as SV-9803, SV-9804 and SV-9805, each parented to its owning story and additionally linked `relates to` it; the three Tasks carry a comment naming their replacement and have been transitioned to **OBSOLETE**. The API cannot re-type an existing issue into `Story Defect` because that type is a **subtask** (`hierarchyLevel -1`), which is why re-file-and-obsolete was the only route.
+**SV-9797, SV-9799 and SV-9800 were created as Tasks, and SV-9802 as a Bug.** The standing ticket shape (CLAUDE.md §5, Rules 52/53/62) requires **`Story Defect`** with the **owning story as parent** for anything belonging to a story inside an epic. All four have been **re-filed correctly** as SV-9803, SV-9804, SV-9805 and SV-9806, each parented to its owning story and additionally linked `relates to` it; the four originals carry a comment naming their replacement and have been transitioned to **OBSOLETE**. The API cannot re-type an existing issue into `Story Defect` because that type is a **subtask** (`hierarchyLevel -1`), which is why re-file-and-obsolete was the only route.
 
 **A comment was added to [SV-9710](https://shopview.atlassian.net/browse/SV-9710)** recording that it reproduces on staging, where IBS is not connected at all.
 

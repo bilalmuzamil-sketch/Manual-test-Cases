@@ -61,8 +61,10 @@ now carry that route in their preconditions and pass `check_runnable_cases.py`.
    Hyundai Santa Fe → **Invoices**: the **Tax Rate** column prints the literal word `undefined%` on
    every row, while the Discount column beside it renders `0.00%` correctly. Outside this suite, but
    unambiguous and reproducible in five clicks — **raised as
-   [SV-9802](https://shopview.atlassian.net/browse/SV-9802)**, and this one stays a **Bug**: the Customers → asset →
-   Invoices screen belongs to no story in any open epic, and a Story Defect must have a Story parent.
+   [SV-9806](https://shopview.atlassian.net/browse/SV-9806)**, a Story Defect under **SV-9143 (Story 4, Asset
+   Section)**, assigned to **Milomir Kotlajic**. No story owns that screen outright, so SV-9143 was chosen as
+   the nearest asset-scoped story and the ticket says so — move it if another story is the right home.
+   (First filed as the Bug SV-9802 — wrong issue type, now OBSOLETE.)
 7. **`undefined, undefined, undefined` on the imported work order's document.** Seen earlier this pass
    on ZZAUTOTEST-IMP-001, where the shop address belongs, on the OLD (unrefreshed) imported template.
    **Not ticketed**, deliberately: the imported record could not be located again through the UI this
