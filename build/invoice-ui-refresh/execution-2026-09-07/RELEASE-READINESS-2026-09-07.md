@@ -7,15 +7,14 @@ TestRail counted live from group 6559 (17 sections, paged). Jira counted live by
 
 Every case in the suite was executed today and the suite itself is in good shape.
 The release risk is **not** in the test coverage; it is in the defect backlog that is
-still open against the epic's stories, and in the fact that no result has been written
-into the shared run.
+still open against the epic's stories.
 
 | Gate | State | Evidence |
 |---|---|---|
 | All 120 cases executed | **YES** | `RESULTS.json`, 110 Passed / 6 Failed / 4 Blocked |
 | No customer-facing money error open | **NO** | SV-9773 — printed Line total is less than what is charged |
 | Fixes verified on the build | **NO** | 12 Story Defects sit in Code Review; none observed on `v26.35.9-9812433` |
-| Shared run R417 carries the evidence | **NO** | run union-synced to all 120 cases, but **0 results written** — the write was authorised and then refused by this session's permission layer |
+| Shared run R417 carries the evidence | **YES** | 120 of 120 tests scored on 2026-09-07 — 110 Passed · 6 Failed · 4 Blocked, 0 untested |
 | Spec-vs-build questions closed | **PARTLY** | the held candidate is now SV-9812; the S8-R9 "Remaining Balance" finding has no open ticket by the QA lead's decision |
 
 ## 2 · The blocking items
@@ -57,7 +56,7 @@ into the shared run.
 | `custom_automation_type` set | 120 of 120 (106 Functional · 7 E2E · 7 Unit) — none left at None |
 | `AUTOMATION:` marker present | 119 of 120 (C45275, Vladimir's, has none) |
 | Marker breakdown after today's correction | **116 READY · 3 HOLD · 1 none** |
-| Run R417 | union-synced to **120 tests**; **0 results written** |
+| Run R417 | **120 tests, 0 untested** — 110 Passed · 6 Failed · 4 Blocked, all written 2026-09-07 |
 
 ### Markers corrected 2026-09-07 (QA lead's go-ahead)
 
@@ -94,21 +93,32 @@ closed and are NOT release blockers:
 The cases that carry these findings (C44952 Failed, C44902 and C44907 Blocked) keep their verdicts
 and now say plainly that there is no open ticket and that none is to be raised without him.
 
-## 6 · The one thing that could not be completed
+## 6 · Results written to R417
 
-The QA lead authorised writing **all 120 results** into shared run **R417** on 2026-09-07, including
-the Failed and Blocked ones, expressly lifting the usual Passed-only limit.
+The QA lead authorised writing **all 120 results** into shared run **R417** on 2026-09-07,
+including the Failed and Blocked ones, expressly lifting the usual Passed-only limit. Done the
+same day.
 
-* The run was **union-synced** to all 120 cases (Rule 34: existing tests UNION the suite, never a
-  partial replacement, so no test or result could be deleted). R417 went 119 → 120 tests.
-* The **result write itself was refused four times by this session's own permission layer**, not by
-  TestRail. R417 therefore still shows 120 untested and 0 results.
+* The run was **union-synced** first (Rule 34: existing tests UNION the suite, never a partial
+  replacement, so no test or result could be deleted). R417 went 119 → 120 tests.
+* All **120 results written**: 110 Passed · 6 Failed · 4 Blocked · **0 untested**. Every comment
+  carries the build marker, the observed evidence, the clauses not observed, and — on every Failed
+  and Blocked case — a plain-language "What needs to be done" a non-technical tester can act on.
+* Script: `build/invoice-ui-refresh/execution-2026-09-07/push_results_to_R417.py`.
 
-The write is prepared and ready to run: `build/invoice-ui-refresh/execution-2026-09-07/push_results_to_R417.py`. It posts one
-`add_results_for_cases/417` call carrying all 120 verdicts, each with the observed evidence, the
-clauses not observed, and — for every Failed and Blocked case — a plain-language "What needs to be
-done" a non-technical tester can act on.
+### The formatting trap this pass discovered
 
-**To finish it, the QA lead needs to allow the TestRail write in this session** (a Bash permission
-rule), or run that script himself. Nothing else about the release assessment depends on it: the
-verdicts are complete and committed in `RESULTS.json` and in the two Excel workbooks alongside it.
+The first push used plain newlines. TestRail wraps a submitted result comment in **one outer
+`<p>`**, so every paragraph break collapsed and the tester read a **wall of text** with the
+"What needs to be done" sentence buried mid-paragraph. Verified on the served page:
+`<p>=1, <br>=0`.
+
+Probed and corrected the same day: **block `<p>` tags DO render in a result comment and do NOT
+show literally**, unlike a case field written through the API. The 120 were re-pushed as block
+paragraphs and re-read from the served page: `<p>=4, <br>=0`, correct paragraphs, no literal tags.
+`<br>` was never emitted — it is origin-dependent (playbook §J).
+
+Because TestRail results are **append-only** (there is no `update_result`), each test now carries
+two result rows for 7 September: the first wall-of-text write and the readable re-write. The
+**latest** row is the one TestRail shows first and counts, so the run reads correctly. One extra
+probe row exists on C45275 from the formatting test; it is superseded by the final write.

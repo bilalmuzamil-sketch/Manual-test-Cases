@@ -994,3 +994,33 @@ A create call returning HTTP 200 says nothing about whether the body rendered.
 ("the VIN is preferred when both exist") rather than from the spec. The spec's actual **S4-R1**
 says *"the VIN when the asset has a VIN, otherwise the serial number"* — a different claim, and the
 one a developer will look for. **Quote the source, never a downstream restatement of it** (Rule 25).
+
+---
+
+## L35 — A TestRail RESULT comment needs block `<p>` tags, and results are append-only (2026-09-07)
+
+**The trap.** `add_results_for_cases` accepts a comment, and TestRail wraps whatever you send in
+**one outer `<p>`**. Plain `\n\n` paragraph breaks therefore **collapse**, and the tester reads a
+single wall of text. On C44952 the "What needs to be done" sentence ended up buried mid-paragraph.
+Measured on the served page: `<p>=1, <br>=0`.
+
+**What works.** Block `<p>` tags **DO render in a result comment and do NOT show literally** — this
+is the opposite of a case field written through the API, where block HTML lands in the escaping
+container and the tester reads `<ol><li><p>`. `<hr />` works too. Proven by probe, then by
+re-reading the served page: `<p>=4, <br>=0`.
+
+**Never emit `<br>`** in any API write — it is origin-dependent: it renders from a UI edit and shows
+literally from the API (playbook §J). Use one `<p>` per paragraph instead.
+
+**Results are APPEND-ONLY.** There is no `update_result` in the API. A badly formatted result cannot
+be edited — only superseded by a newer one. The latest row is what TestRail displays first and what
+the run counts use, so the run stays correct, but the history keeps both rows. **Get the formatting
+right on the first push**, or accept a permanent double row on every test.
+
+**The check that catches it.** A `200` from `add_results_for_cases` says nothing about rendering.
+Open one test on the served page (`/index.php?/tests/view/<test_id>`) and count `<p>` and `<br>` in
+the container holding the comment. One `<p>` and no line breaks means the wall of text.
+
+**The general rule.** This is the same lesson as L34 (Jira) and the playbook's §J (TestRail case
+fields), in a third place: **every system has its own container behaviour, and HTTP 200 is never
+evidence that a human can read what you wrote.** Read it back the way the reader will see it.
