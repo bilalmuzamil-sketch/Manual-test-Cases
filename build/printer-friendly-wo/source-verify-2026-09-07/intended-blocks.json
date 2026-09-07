@@ -1,0 +1,82 @@
+{
+ "45088": {
+  "fields": {
+   "custom_preconds": {
+    "blocks": [
+     [
+      "1. In the top menu click “Work Orders” and open a work order by clicking its row. Its toolbar carries a three-dots button at the top right; that is the “More” menu. On a work order you can still change, the menu holds five items in this order: “Audit Log”, “Timesheets”, “Add Work Order Fee / Discount”, “Print Work Order”, “Delete Work Order”. On a Paid work order it holds only three — “Audit Log”, “Timesheets”, “Print Work Order” — so do not treat the two missing items as a fault. “Timesheets” always shows a count in brackets."
+     ]
+    ],
+    "text": "1. In the top menu click “Work Orders” and open a work order by clicking its row. Its toolbar carries a three-dots button at the top right; that is the “More” menu. On a work order you can still change, the menu holds five items in this order: “Audit Log”, “Timesheets”, “Add Work Order Fee / Discount”, “Print Work Order”, “Delete Work Order”. On a Paid work order it holds only three — “Audit Log”, “Timesheets”, “Print Work Order” — so do not treat the two missing items as a fault. “Timesheets” always shows a count in brackets."
+   },
+   "custom_steps": {
+    "blocks": [
+     [
+      "1. Open work orders with each status: Estimate, Approved, In Progress, Review, Complete, Invoiced, Paid, Declined.",
+      "2. Open the More menu on each."
+     ]
+    ],
+    "text": "1. Open work orders with each status: Estimate, Approved, In Progress, Review, Complete, Invoiced, Paid, Declined.\n2. Open the More menu on each."
+   },
+   "custom_expected": {
+    "blocks": [
+     [
+      "1. The Print option is available on all of those statuses."
+     ],
+     [
+      "NOTE FOR THE TESTER: only the Estimate, Approved and Paid statuses exist on this test system. Check those three; the others cannot be set up here, so mark this case Blocked and say which statuses you were able to check - do not pass it on three out of eight."
+     ],
+     [
+      "---",
+      "This is the expected behaviour as per epic SV-9383 and story SV-9384 (Story 1, Print Option in More Menu) and the Printer Friendly Work Orders specification (Confluence page 519176194), section S1-R5, read on 7 September 2026.",
+      "Last checked against build v26.35.6-598cc8a on 9/1/2026."
+     ],
+     [
+      "AUTOMATION: READY"
+     ]
+    ],
+    "text": "1. The Print option is available on all of those statuses.\n\nNOTE FOR THE TESTER: only the Estimate, Approved and Paid statuses exist on this test system. Check those three; the others cannot be set up here, so mark this case Blocked and say which statuses you were able to check - do not pass it on three out of eight.\n\n---\nThis is the expected behaviour as per epic SV-9383 and story SV-9384 (Story 1, Print Option in More Menu) and the Printer Friendly Work Orders specification (Confluence page 519176194), section S1-R5, read on 7 September 2026.\nLast checked against build v26.35.6-598cc8a on 9/1/2026.\n\nAUTOMATION: READY"
+   }
+  }
+ },
+ "45116": {
+  "fields": {
+   "custom_preconds": {
+    "blocks": [
+     [
+      "1. In the top menu click “Work Orders” and open a work order by clicking its row. On the work order’s toolbar click the three-dots button at the top right, then choose “Print Work Order”. On a work order you can still change, the menu holds five items in this order: “Audit Log”, “Timesheets”, “Add Work Order Fee / Discount”, “Print Work Order”, “Delete Work Order”. On a Paid work order it holds only three — “Audit Log”, “Timesheets”, “Print Work Order” — so do not treat the two missing items as a fault. “Timesheets” always shows a count in brackets. Choosing it opens your browser’s own print dialog — the printout is what you are checking, so use your browser’s print preview to look at it.",
+      "2. The open work order has no line items on its Lines tab."
+     ]
+    ],
+    "text": "1. In the top menu click “Work Orders” and open a work order by clicking its row. On the work order’s toolbar click the three-dots button at the top right, then choose “Print Work Order”. On a work order you can still change, the menu holds five items in this order: “Audit Log”, “Timesheets”, “Add Work Order Fee / Discount”, “Print Work Order”, “Delete Work Order”. On a Paid work order it holds only three — “Audit Log”, “Timesheets”, “Print Work Order” — so do not treat the two missing items as a fault. “Timesheets” always shows a count in brackets. Choosing it opens your browser’s own print dialog — the printout is what you are checking, so use your browser’s print preview to look at it.\n2. The open work order has no line items on its Lines tab."
+   },
+   "custom_steps": {
+    "blocks": [
+     [
+      "1. Read the summary section of the printout."
+     ]
+    ],
+    "text": "1. Read the summary section of the printout."
+   },
+   "custom_expected": {
+    "blocks": [
+     [
+      "1. The summary shows zero totals rather than being hidden, and the line items area shows a single placeholder row reading “No lines on this work order”."
+     ],
+     [
+      "NOTE FOR THE TESTER: this case cannot be run at all, for the same reason as the case about printing a work order with no line items - the “Print Work Order” option is greyed out when there are no lines, so there is no printout to read a summary from. Leave it Untested."
+     ],
+     [
+      "---",
+      "This is the expected behaviour as per epic SV-9383 and story SV-9387 (Story 4, Print Layout - Summary and Footer) and the Printer Friendly Work Orders specification (Confluence page 519176194), section S4-N1, read on 7 September 2026.",
+      "Last checked against build v26.35.6-598cc8a on 9/1/2026."
+     ],
+     [
+      "AUTOMATION: HOLD - a work order with no line items cannot be printed at all, so this summary can never be reached; awaiting a product-owner ruling on the contradiction"
+     ]
+    ],
+    "text": "1. The summary shows zero totals rather than being hidden, and the line items area shows a single placeholder row reading “No lines on this work order”.\n\nNOTE FOR THE TESTER: this case cannot be run at all, for the same reason as the case about printing a work order with no line items - the “Print Work Order” option is greyed out when there are no lines, so there is no printout to read a summary from. Leave it Untested.\n\n---\nThis is the expected behaviour as per epic SV-9383 and story SV-9387 (Story 4, Print Layout - Summary and Footer) and the Printer Friendly Work Orders specification (Confluence page 519176194), section S4-N1, read on 7 September 2026.\nLast checked against build v26.35.6-598cc8a on 9/1/2026.\n\nAUTOMATION: HOLD - a work order with no line items cannot be printed at all, so this summary can never be reached; awaiting a product-owner ruling on the contradiction"
+   }
+  }
+ }
+}
