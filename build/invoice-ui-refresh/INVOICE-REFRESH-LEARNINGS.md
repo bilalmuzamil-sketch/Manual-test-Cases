@@ -898,3 +898,53 @@ b.value = inst.html.get(); b.dispatchEvent(new Event('change', {bubbles: true}))
 directly. And **Froala normalises `<b>` to `<strong>`** on save, so emit block tags and plain text
 only. Verify every edit by re-reading the view page: container `markdown fr-view`, zero literal tags,
 `AUTOMATION:` marker still last.
+
+## L33 · 🛑 EVERY FINDING THAT BELONGS TO A STORY IS A **STORY DEFECT** — PRECEDENT NEVER OVERRIDES A RECORDED RULE
+**Retrieve when:** about to file anything in Jira off the back of a test pass.
+**QA lead, 2026-09-07:** *"You have created these tickets as Bugs which is a crime to make bugs for a
+feature having stories and epic. You were supposed to make them the story defects."*
+
+### What happened
+Four tickets were filed on the Invoice Refresh pass — three as **Task** and one as **Bug**. Three of
+them belonged to stories inside epic SV-8218 and should have been **Story Defects parented to the
+owning story**. They had to be re-filed as SV-9803 / SV-9804 / SV-9805 and the originals obsoleted.
+
+### Why it happened, so the same reasoning is not repeated
+The findings *felt* like questions rather than defects — "the spec describes a state the product
+cannot reach", "this rule has never shipped" — and the project already contained Tasks in exactly
+that shape (SV-9784…SV-9789, *"Spec gap — …"*). **Precedent in the tracker was allowed to outweigh
+the rule written in CLAUDE.md §5.** That is the actual error: not a typo, a decision.
+
+**The rule, verbatim from CLAUDE.md §5:** `issuetype` = **`Story Defect`** · `parent` = **the OWNING
+STORY** (an Epic parent is rejected HTTP 400) · `priority` = **`Medium`** · **also link the owning
+story `relates to`** · **no Product Area** (absent on this type). Never `Story Defect - Archive`.
+
+### The test to apply before choosing a type — one question
+**Does the behaviour belong to a story inside an epic?** If yes → **Story Defect, parent = that
+story**, whatever the finding "feels" like. A finding can argue in its body that the *specification*
+should change; that argument goes in **Expected behavior**, and it does not change the issue type.
+Only a finding with **no owning story anywhere** is a `Bug` — SV-9802 (`undefined%` on the Customers →
+asset → Invoices tab) is the one that genuinely qualified, and the check was made by listing every
+open Epic and finding none that covers that screen.
+
+### Mechanics — the correction is re-file-and-obsolete, never a re-type
+**`Story Defect` is a SUBTASK type** (`subtask: true`, `hierarchyLevel: -1`). The REST API therefore
+**cannot** convert an existing Task or Bug into one — `editJiraIssue` with
+`issuetype: Story Defect` + `parent` fails with *"Issues with this Issue Type must be created in the
+same project as the parent."*, which is the subtask restriction wearing a misleading message. The
+route that works:
+
+1. `createJiraIssue` with `issueTypeName: "Story Defect"` and `parent: "<owning story>"`, priority
+   Medium, label `fs_invoice_refresh`, **no `customfield_10153`** (Product Area does not exist on this
+   type — supplying it is what forces `Task`/`Bug` to demand one).
+2. `createIssueLink` type `Relates` to the same story.
+3. Comment on the mis-typed original naming the replacement, then transition it to **OBSOLETE**
+   (`transition id 8` in this project).
+4. **Re-point every downstream reference** — the TestRail case's three-outcomes text, `RESULTS.json`,
+   `FINDINGS.md`, the tester brief, the session report. A case that names an obsoleted ticket sends
+   a tester to a dead end.
+
+### The broader rule this is an instance of
+**Standing Rule 63: when an instruction or a precedent conflicts with a recorded rule, STOP and
+surface the conflict — do not quietly pick a side.** Had the Task-vs-Story-Defect question been put in
+one sentence before filing, none of this rework would exist.
