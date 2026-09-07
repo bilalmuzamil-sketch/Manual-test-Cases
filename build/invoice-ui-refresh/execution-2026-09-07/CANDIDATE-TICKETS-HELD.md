@@ -1,12 +1,16 @@
-# Candidate tickets — PREPARED, NOT FILED
-**Held pending the QA lead's go-ahead.** Nothing in this file has been created in Jira.
+# Candidate tickets
+**RESOLVED 2026-09-07.** The QA lead gave the go-ahead. Candidate 1 was re-verified on the build as
+it stands that day and filed as **[SV-9812](https://shopview.atlassian.net/browse/SV-9812)** — Story
+Defect, Medium, parent SV-9143, assigned to Milomir Kotlajic, `relates to` SV-9143.
+The SV-9680 corroboration comment further down is **still held** — it was not part of that go-ahead.
 **Date:** 2026-09-07 · **Environment:** staging · **Build:** `v26.35.9-9812433`
 
 ---
 
-## CANDIDATE 1 — S1/S4 asset identifier: the spec describes two fields where the product has one
+## CANDIDATE 1 — FILED 2026-09-07 as [SV-9812](https://shopview.atlassian.net/browse/SV-9812)
+### S1/S4 asset identifier: the spec describes two fields where the product has one
 
-**Would be filed as:** `Story Defect` · parent **SV-9143 — Story 4, Asset Section** · priority `Medium` ·
+**Filed as:** `Story Defect` · parent **SV-9143 — Story 4, Asset Section** · priority `Medium` ·
 label `fs_invoice_refresh` · no Product Area · plus a `relates to` link to SV-9143.
 
 **Title:** Asset section rule assumes a separate VIN and Serial; the product has one combined field
