@@ -443,3 +443,56 @@ Of the four failures this pass, only two were new:
 The search that worked: `project = SV AND (summary ~ "<the noun>" OR text ~ "<the symptom>") ORDER BY
 created DESC`. A `text ~` search over the whole project can exceed the tool's token cap — the result is
 saved to a file the error names, and `python3 -c "import json; ..."` over that file lists the rows.
+
+---
+
+## L20 · ⭐ THE STORY-DEFECT GUIDELINE — QA LEAD, 2026-09-07. BINDING ON EVERY DEFECT.
+**Retrieve when:** about to create OR edit any Jira defect. Read this BEFORE writing a word of it.
+
+His five rules, verbatim in substance:
+
+1. **Title** — concise and clear, telling what is inside the story defect.
+2. **Always linked to the related story** — `parent` = the owning story AND a `relates to` link to it.
+3. **ALL screenshots annotated. NO screenshot without annotation.**
+4. **The most simplified steps of replication**, RUNNABLE through the UI by a manual QA tester, a PO,
+   or a very non-technical person.
+5. **THE SEQUENCE IS FIXED, IN THIS ORDER:**
+
+```
+## Description            concisely: what we are going to replicate, and what the issue is about
+## Steps to reproduce     numbered 1, 2, 3 … each step a UI action a layman can follow
+## Current behaviour      what the build does, in words
+## Expected behaviour     what it should do, in words
+## Source                 the story (link) AND the spec (rule number + link), the expectation
+                          QUOTED IN EXACT WORDS from each
+## Screenshots            the annotated inline images, last
+```
+
+**Do NOT reorder these, do NOT merge Current into Expected, and do NOT put the screenshots first.**
+Applied to SV-9773 and SV-9774 on 2026-09-07.
+
+### The annotation recipe that satisfies rule 3
+Tool: `/tmp/claude-0/wk/annot.py` (PIL). Rebuild it if the container is gone — the shape that works:
+
+- **A dark header bar** across the top: `environment · build marker · record · screen · date`. This is
+  what answers *"that is not what I see"*.
+- **The FULL screen**, never a tight crop. A cropped number proves nothing (skill 06).
+- **A coloured box on the exact element** — RED for the fault, GREEN for correct/expected/control.
+- **Numbered callouts in a RIGHT-HAND GUTTER, never over the screenshot**, each joined to its box by a
+  leader line with a dot at the box end. *Callouts placed on top of the content hide the very thing
+  they point at — that was the first attempt and it had to be redone.*
+- **A caption strip under the image** beginning `WHAT YOU SHOULD SEE:` or `WHAT ACTUALLY HAPPENS:`.
+- **Human-readable filenames** (Rule 19): `sv9773-actual-line-footer-ignores-the-line-fee.png`.
+
+### The exhibit set that makes a defect unarguable
+1. **Expected** — the Design Document with the relevant toggle on (GREEN).
+2. **Actual** — the running build, full screen with the header bar (RED).
+3. **Control**, whenever a setting could be blamed — the SAME shop, SAME settings, SAME day, showing
+   the thing working elsewhere (GREEN). This is what kills the "it is just the setting" refusal.
+
+### Mechanics that will bite
+- Commit AND push the images before editing the ticket — Jira fetches them from the raw GitHub URL.
+- Pass **plain `https://`** image URLs (L17). Never the `blob:` form read back from Jira.
+- `editJiraIssue` preserves `parent`, `priority` and issue links — verified on both tickets — but
+  re-read the issue afterwards and confirm, because a lost media node is invisible in the changelog
+  (skill 06's recorded hazard).
