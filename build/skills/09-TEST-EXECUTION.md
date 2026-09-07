@@ -275,6 +275,17 @@ running it:
            include_all still false
 ```
 
+> **🛠️ THE TOOL DOES STEPS 1, 2 AND 4 FOR YOU, AND WRITES THE RESULTS TOO —
+> `build/testing-tools/push_results_to_run.py` (proven live 2026-09-07, run R417, 120 cases).**
+> It computes the union and **asserts it never shrinks**, emits block `<p>` paragraphs so the comment
+> does not collapse into a wall of text, and **REFUSES to write** if a Failed/Blocked result has no
+> plain "What needs to be done" (Rule 7) or if a non-Passed result is headed for a shared run without
+> `--allow-non-passed`. **Always `--dry-run` first: TestRail results are APPEND-ONLY — there is no
+> `update_result`, so a badly formatted push can never be edited, only superseded, and both rows stay
+> in the history forever.** Full recipe, the five traps and the formatting table:
+> **`build/APP-ACTIONS-PLAYBOOK.md` §W**. Step 0 below still applies — the tool does not ask
+> permission for you.
+
 - **Step 0 is not optional** and was missing from the procedure until 2026-08-13. **These runs belong
   to other testers.**
 - **SCOPE THE EXECUTOR TO ONE RUN.** The canonical

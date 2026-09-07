@@ -1,4 +1,13 @@
-"""Write the 7 September 2026 execution results into TestRail run R417.
+"""SUPERSEDED 2026-09-07 by build/testing-tools/push_results_to_run.py.
+
+Kept as the record of what was actually written into run R417 on 7 September 2026.
+For any future pass use the general tool and the recipe in APP-ACTIONS-PLAYBOOK.md
+section W — it carries the union-sync guard, the block-paragraph formatting, and the
+two refusal gates this one-off script did not have.
+
+    python3 build/testing-tools/push_results_to_run.py --run <id> \
+        --results <RESULTS.json> --todo <todos.json> \
+        --build-marker <marker> --date "<date>" --allow-non-passed --dry-run
 
 The QA lead gave explicit permission on 2026-09-07 to write ALL 120 results,
 including Failed and Blocked, lifting the usual Passed-only limit on shared runs.
