@@ -38,10 +38,10 @@
    "note": null
   },
   "C44906": {
-   "verdict": "Untested",
-   "observed": "Estimate: 'Estimate date: Sep 6, 2026', no due date. Unpaid Invoice: 'Invoice date: Sep 6, 2026' + 'Due date: Sep 13, 2026'. Credit Invoice: 'Issue date: Sep 7, 2026'. All dates in the fixed 'Mon D, YYYY' form.",
-   "not_observed": "Only the fully-paid Invoice clause remains unexercised (Paid date replaces Due date).",
-   "note": "SEED: apply a full payment to an invoice."
+   "verdict": "Passed",
+   "observed": "All four document types rendered and read on 2026-09-07. (1) Estimate EST-S2-32136: 'Estimate date: Sep 7, 2026' and no due-date line anywhere. (2) Unpaid Invoice INV-S2-32136: 'Invoice date: Sep 7, 2026' and 'Due date: Sep 14, 2026'. (3) Fully paid Invoice INV-S2-32136 after two payments: 'Invoice date: Sep 7, 2026' and 'Paid date: Sep 6, 2026' - Paid date replacing Due date, re-confirmed on the deposit-paid INV-S2-32217 which reads 'Paid date: Sep 1, 2026'. (4) Credit CM-4347: 'Issue date: Sep 7, 2026'. (5) Every date is in the fixed 'Sep 7, 2026' form the clause illustrates as 'Jan 5, 2026'.",
+   "not_observed": null,
+   "note": null
   },
   "C44907": {
    "verdict": "Untested",
@@ -110,16 +110,16 @@
    "note": "SEED: an integrated-billing approval code on the work order."
   },
   "C44917": {
-   "verdict": "Untested",
-   "observed": "Clause 1 PASSES as the rule is written: work order S-32136 against document EST-S2-32136/INV-S2-32136 - trailing runs '32136' and '32136' match, and the field is hidden.",
-   "not_observed": "Clause 2 (field SHOWS when the numbers differ) not exercised - and per SV-9770 it may be unreachable, because the document number is derived from the work order number.",
-   "note": "Cross-reference SV-9770. This case encodes the disputed rule and will need rewording if Chris rules the field must show."
+   "verdict": "Passed",
+   "observed": "Clause 1 holds on the build. Work order S-32136 (the value GET /api/work-orders/view returns; the Work Orders grid shows it as S2-32136) against documents EST-S2-32136 and INV-S2-32136: the unbroken trailing digits are '32136' on both sides, they are equal, and the Work Order field is correctly absent from the order-reference row on both documents.",
+   "not_observed": "Clause 2 - the field SHOWING when the two differ. It could not be produced: a document number is derived from the work order number, so on an ordinary document the trailing digits always match and the hide condition is always true.",
+   "note": "Clause 2's unproducibility is the substance of the open question already raised as SV-9770 (a Task carrying the Clarification_needed label, awaiting Chris Ward). Nothing further to raise here - the build follows the rule as written."
   },
   "C44918": {
-   "verdict": "Untested",
-   "observed": "Clause 3 PASSES: Approval Code is empty and is hidden - no label, no empty value area. Clause 4 PASSES: Terms still shows.",
-   "not_observed": "Clauses 1 and 2 not exercised: Customer PO and Authorizer are both populated on this record.",
-   "note": "SEED: clear the PO and the authorizer."
+   "verdict": "Passed",
+   "observed": "Read on INV-S2-32217, a work order deliberately created with no customer PO and no authorizer. Clause 1: no 'Customer PO' label and no empty value area - the field is absent entirely. Clause 2: no 'Authorizer' label and no empty value area. Clause 4: 'Terms Net 7' still shows, the always-show exception. The contrast document INV-S2-32136, which has both, prints 'Customer PO 9989' and 'Authorizer Savannah Tran', so the fields do render when populated - the absence above is the hide rule firing, not a missing feature.",
+   "not_observed": "Clause 3 (Approval Code hidden when empty) is satisfied on the page - no Approval Code label appears - but it is a weak observation: integrated billing is not configured on this organisation, so the field has never been seen populated and its hide rule has not been exercised against a real value.",
+   "note": null
   },
   "C44924": {
    "verdict": "Passed",
@@ -134,28 +134,28 @@
    "note": null
   },
   "C44926": {
-   "verdict": "Untested",
-   "observed": "Show direction observed (all four print with values).",
-   "not_observed": "Hide direction not yet observed ON MY OWN CAPTURE. It was seen earlier on a supplied PDF while the record read vehicle.unit = None, but a supplied PDF carries no build marker and is not admissible as an observation.",
-   "note": "SEED: clear unit/plate/mileage/eng hrs and re-capture."
+   "verdict": "Failed",
+   "observed": "Unit and Plate follow the rule; Mileage and Eng Hrs do not. Seeded an asset with none of the four set and rendered the Estimate for work order S2-32226, where the live record reads mileage=null and engine_hours=null. The document hides UNIT and PLATE correctly - no label, no empty value - but prints 'MILEAGE 0' and 'ENG HRS 0' for the two fields that have no value at all. S4-N1 requires all four to be hidden when empty. Reproduced on a second record, INV-S2-32225, and on the invoices for S2-32219 and S2-32220, all of which print 'ENG HRS 0' against a null reading. Clause 2 holds: fields that do have values still show (INV-S2-32136 prints MILEAGE 45 and ENG HRS 9,987).",
+   "not_observed": null,
+   "note": "ALREADY REPORTED - SV-9680, 'Asset band prints Mileage 0 and Eng Hrs 0 for an asset with no recorded values', status Code Review. No new ticket raised. The fix has not reached staging build v26.35.9-9812433."
   },
   "C44927": {
-   "verdict": "Untested",
-   "observed": null,
-   "not_observed": "Not exercised: this asset has a VIN.",
-   "note": "SEED: an asset with neither VIN nor serial."
+   "verdict": "Passed",
+   "observed": "Seeded an asset with no VIN and no serial number (vehicle created with a year only) and invoiced it as INV-S2-32225. The 'VIN / SERIAL' field is absent from the asset band entirely - no label, no empty value. The asset name still shows, reading '2019'. The contrast is the reference document INV-S2-32136, whose asset does have a VIN and prints 'VIN / SERIAL  PV1T2SK1DNUUK7YDE', so the field renders when there is something to render.",
+   "not_observed": null,
+   "note": "S4-N2's 'Unknown' variant (a VIN or serial literally reading 'Unknown' in any casing counts as none) was not exercised - only the genuinely-empty case."
   },
   "C44928": {
-   "verdict": "Untested",
-   "observed": "Clause 1 observed on the service work order: the asset section shows.",
-   "not_observed": "The part-sale half and the no-asset half not exercised.",
-   "note": "Part sale aef39c9a seeded."
+   "verdict": "Passed",
+   "observed": "Both clauses, on part sales specifically. Clause 1: part sale P2-1932, created with the Santa Fe attached, renders the full asset band exactly as a service work order does - 'ASSET 2011 Hyundai Santa Fe / UNIT 665 / PLATE ZZP-6028 / MILEAGE 45 / ENG HRS 0 / VIN / SERIAL PV1T2SK1DNUUK7YDE'. Clause 2: part sale P2-1931, which has no asset, hides the section entirely. Same document type, same shop, the only difference being whether an asset is attached.",
+   "not_observed": null,
+   "note": "The 'ENG HRS 0' in the band above is the SV-9680 zero-instead-of-hidden problem recorded under C44926, not a fault of this case."
   },
   "C45171": {
-   "verdict": "Untested",
-   "observed": null,
-   "not_observed": "Not exercised: this work order has an asset.",
-   "note": "SEED: a work order with no asset attached."
+   "verdict": "Passed",
+   "observed": "Part sale P2-1931 has no asset attached - the live record reads vehicle.id = null - and its invoice INV-P2-1931 has no asset band at all. The document runs straight from the ADDRESSES block to the order-reference chips and then to PARTS: no 'ASSET' heading, no empty labels, nothing left behind.",
+   "not_observed": null,
+   "note": null
   },
   "C44929": {
    "verdict": "Passed",
@@ -188,9 +188,9 @@
    "note": null
   },
   "C44934": {
-   "verdict": "Untested",
-   "observed": null,
-   "not_observed": "Not exercised: this work order carries no line-level fee or discount, so neither the plain-amount nor the parenthesised form appears.",
+   "verdict": "Passed",
+   "observed": "On work order S2-32229, line 01 carries a labor-scoped fee of $20.00 and a labor-scoped discount of $5.00. The document prints them beneath the line as '\u21b3 ZZ Labor Fee   $20.00' (a plain amount) and '\u21b3 ZZ Labor Discount   ($5.00)' (in parentheses). Clause 3 holds literally: the parentheses are characters in the extracted text, not a colour or a font treatment - the same figure without parentheses would extract differently.",
+   "not_observed": null,
    "note": null
   },
   "C44935": {
@@ -200,9 +200,9 @@
    "note": "Re-verdicted. The earlier Passed was reached on a work order that carried no adjustments, so clause 2 was never exercised. Defect candidate raised to the QA lead; nothing filed."
   },
   "C44936": {
-   "verdict": "Untested",
-   "observed": null,
-   "not_observed": "Not exercised: the work section has three lines, so the empty-section case never occurs.",
+   "verdict": "Passed",
+   "observed": "Rendered the Estimate for work order S2-32228, created with no work lines at all. The work-section heading 'WORK SUMMARY' prints with nothing beneath it, and the 'SUMMARY' divider still follows it and precedes the financial summary. Corroborated on part sale P2-1932, whose 'PARTS' heading prints empty and is likewise followed by the SUMMARY divider.",
+   "not_observed": null,
    "note": null
   },
   "C45172": {
@@ -236,10 +236,10 @@
    "note": null
   },
   "C44943": {
-   "verdict": "Untested",
-   "observed": null,
-   "not_observed": "Not exercised: this work order has no adjustments, so the Adjustments group never renders.",
-   "note": null
+   "verdict": "Passed",
+   "observed": "All four clauses on work order S2-32229, which carries two line-level labor adjustments and two work-order-wide ones. Clause 1: the heading reads exactly 'Adjustments' and carries no amount of its own. Clause 2: the rows appear in the specified order - the 'Labor' rollup first, then each work-order-wide row in the order it was added ('ZZ WO Fee' then 'ZZ WO Discount'). Clause 3: with line-level adjustments of +$20.00 and -$5.00 the rollup shows as a plain '$15.00'; adding a further -$40.00 flips it and it then shows as '($25.00)' in parentheses - both directions observed on the same record. The 'Parts' rollup is correctly absent throughout, its total being zero. Clause 4: the work-order-wide discount shows '($100.00)' and the work-order-wide fee shows '$75.00'. The arithmetic ties out: 350.00 + 0.00 + 36.75 - 25.00 + 75.00 - 100.00 = 336.75 Subtotal, GST 5% = 16.84, Total 353.59.",
+   "not_observed": null,
+   "note": "The line footer on this document again excludes the line's own adjustments, which is the separate defect SV-9773; the Summary figures above are all correct."
   },
   "C44944": {
    "verdict": "Passed",
@@ -666,6 +666,66 @@
    "observed": "The case cannot be scored: its Steps field and its Expected Results field are both EMPTY in TestRail. Only the preconditions and the title are written, so there is nothing for a tester to follow and no documented expectation to judge against.",
    "not_observed": null,
    "note": "The behaviour its title describes was exercised anyway and holds: with the Authorizer set to Savannah Tran on S-32222, changing only the CONTACT (to ZZAUTOTEST NewApprover) left the Authorizer as Savannah Tran; changing the CUSTOMER (4 Star Truck Repair -> 7 Star Truck Repair) cleared it to None. Recorded as an observation, not a verdict. The empty case needs Steps and Expected Results before a tester can run it - reported to the QA lead, not edited (this lane does not author cases)."
+  },
+  "C45188": {
+   "verdict": "Passed",
+   "observed": "Compared the on-screen preview (.invoice-pdf-new on the Finance tab) against the PDF rendered from the same invoice id, phrase by phrase: 58 of the 60 phrases in the PDF are present on screen. The only two absent are the PDF's page-footer pagination lines ('INV-S2-32136 - Page 1 / 2' and 'Page 2 / 2'), which are paged-media artefacts the continuous on-screen document correctly has no equivalent for. Markup survives sanitising intact - the preview DOM holds 4 TABLE, 6 TR, 24 TD, 16 COL, 46 SPAN, 14 B and 91 DIV elements, so DOMPurify is not stripping the new structure. Styles survive too: the computed text colours on screen are the true palette values #364152, #121926, #697586, #9AA4B2 and the accent #257CFF.",
+   "not_observed": null,
+   "note": "Two corroborations worth keeping. (1) The on-screen colours are the UNCLAMPED palette while the PDF clamps to #4B5565/#CDD5DF - that is S12-R5's print ink floor behaving as a print-only transform, which supports C44972 and C44975. (2) The preview's computed font-family is 'Inter, -apple-system, Segoe UI, Roboto, sans-serif' while the PDF embeds only DejaVu Sans - the screen/PDF asymmetry already reported as SV-9761."
+  },
+  "C45214": {
+   "verdict": "Passed",
+   "observed": "Measured at a 1440x1000 viewport on the Finance tab. The page does not scroll sideways: document scrollWidth 1440 equals clientWidth 1440. The document itself is not overflowing its own container either: the preview's scrollWidth 718 equals its clientWidth 718, so nothing is clipped and nothing forces a horizontal page scroll.",
+   "not_observed": null,
+   "note": "Clause 2's wide-element case could not be forced on this record - no element on it exceeds the viewport. The container is set up to scroll in its own right rather than push the page, which is what the clause requires."
+  },
+  "C45192": {
+   "verdict": "Passed",
+   "observed": "Measured at a 375x812 phone viewport on the Finance tab of WO S2-32136. Clause 1: the page does not scroll sideways (document scrollWidth 375 = clientWidth 375); the document sits at x=14 to x=361 inside the 375px viewport so there is no left-edge clipping; and NOT ONE descendant of the document overflows its box (overflow count 0), so nothing is clipped. The masthead does not collide - the shop name occupies x=34-132 and the document label 'Invoice: INV-S2-32136' x=225-341, with the logo centred between them and overlapping neither. The phone number renders as a single element, '(403) 523 - 0488' at x=34-132, so it does not break mid-number. Clause 2: the sheet is pinned at 718px and scaled to fit rather than pushing the page sideways.",
+   "not_observed": null,
+   "note": "The scale-to-fit makes the body type very small on a phone. The specification already records that as a zoom consequence and a product question rather than a defect (SV-9694 close-out, 2026-09-04), so it is not raised here."
+  },
+  "C45190": {
+   "verdict": "Blocked",
+   "observed": "Two of the three record types verified, both correct. WORK ORDER S2-32136: the customer card renders in full - '4 Star Truck Repair / Contact Savannah Tran / Phone 898-021-4480 / Authorizer Savannah Tran / Phone 898-021-4480' - and the Authorizer row carries a working dropdown control. PART SALE P2-1931: the same card renders with the same fields, and the Authorizer row is present with its dropdown, which is what clause 2 requires for a parts sale. No layout break on either.",
+   "not_observed": "The IMPORTED WORK ORDER half of both clauses. There is no imported work order anywhere in this organisation: GET /api/work-orders-imported returns an empty list at Staging Heavy Duty - 9919, and the same query filtered by the customer returns none. So the card could not be seen on an imported work order, and the rule that the Authorizer row must be ABSENT there could not be exercised.",
+   "note": "To finish it: import a work order (or ask for one to be seeded), open it, and check two things - the customer card renders without a layout break, and the Authorizer row is NOT shown on it. Everything else in this case has already passed."
+  },
+  "C45187": {
+   "verdict": "Passed",
+   "observed": "Sent the invoice for WO S2-32136 from the Finance tab's email control, then pulled the delivered message back out of the mailbox and extracted the attachment. The attached PDF and the shop-app PDF for the same invoice are the SAME DOCUMENT: extracted text is byte-identical (2,421 characters each, string-equal), both are 2 pages, both embed the same two font subsets, and the files differ by a single byte (427,858 vs 427,859) which is the generation timestamp inside the PDF. Every redesign marker is present in both - 'WORK PERFORMED', 'SCOPE OF WORK', 'VIN / SERIAL', 'ENG HRS', 'SUMMARY', 'Shop supplies (10.5% of labor)', 'BALANCE' and 'Adjustments'. Single render path confirmed.",
+   "not_observed": null,
+   "note": "The email was addressed only to the QA lead's own mailbox via the dialog's 'Optional Emails' field; the four staging contacts on the picker are all @staging.shopview.local, a non-routable test domain. Attachment filename observed: 'invoice-for-order-S2-32136.pdf' - see the separate note on spec rule G-R2."
+  },
+  "C44951": {
+   "verdict": "Blocked",
+   "observed": "Clause 3 IS verified, and it is the half that can be checked from the shop app: no shop-app-generated PDF carries the banner. Confirmed across every document produced this pass - unpaid, partially paid, fully paid, deposit-paid, credit-applied and reversed - with three shop-recorded payments, an applied credit and an applied deposit between them. Not one carries a banner. The paid banner exists only on a PDF generated by the CUSTOMER PORTAL (S8-R8), which is a separate application from the shop app. It could not be reached from here: the four obvious hosts (portal./customer./pay./my.staging.shopview.com) do not resolve, and the shop-app bundle contains no portal URL at all - only the permission flags customerPortal, customerPortalPageAccess and userHasCustomerPortalAccess. There is also no portal-processed payment anywhere on the test customer: every payment ever recorded against account 4 Star Truck Repair carries the code CASH, VISA or APPLIED CREDIT, never SHOPPAY. The ShopPay and CustomerPortal feature flags ARE enabled on this organisation, so the feature exists - it simply is not reachable from the shop app.",
+   "not_observed": "Clauses 1, 2, 4 and 5 - the banner's position before the masthead, its listing only portal-processed payments, the PAID IN FULL / PARTIALLY PAID pill and the batch title wording.",
+   "note": "To finish it: get the customer-portal URL for staging and a portal login for a customer contact of 4 Star Truck Repair, then pay an invoice through ShopPay in the portal and download the invoice PDF from there. The banner should then be on that PDF, before the masthead."
+  },
+  "C44952": {
+   "verdict": "Blocked",
+   "observed": "Nothing in this case can be produced from the shop app: every field it names ('Date / Time', 'Paid By', 'Method', 'Invoice Amount', 'Total Charged', 'Convenience Fee', 'Late Fee', 'Remaining Balance', 'Payment X of Y - Batch') exists only inside the paid banner. The paid banner exists only on a PDF generated by the CUSTOMER PORTAL (S8-R8), which is a separate application from the shop app. It could not be reached from here: the four obvious hosts (portal./customer./pay./my.staging.shopview.com) do not resolve, and the shop-app bundle contains no portal URL at all - only the permission flags customerPortal, customerPortalPageAccess and userHasCustomerPortalAccess. There is also no portal-processed payment anywhere on the test customer: every payment ever recorded against account 4 Star Truck Repair carries the code CASH, VISA or APPLIED CREDIT, never SHOPPAY. The ShopPay and CustomerPortal feature flags ARE enabled on this organisation, so the feature exists - it simply is not reachable from the shop app.",
+   "not_observed": "All six clauses.",
+   "note": "To finish it: get the customer-portal URL for staging and a portal login for a customer contact of 4 Star Truck Repair, then pay an invoice through ShopPay in the portal and download the invoice PDF from there. The banner should then be on that PDF, before the masthead."
+  },
+  "C45175": {
+   "verdict": "Blocked",
+   "observed": "Nothing in this case can be produced from the shop app: the pill and the title are parts of the paid banner. The paid banner exists only on a PDF generated by the CUSTOMER PORTAL (S8-R8), which is a separate application from the shop app. It could not be reached from here: the four obvious hosts (portal./customer./pay./my.staging.shopview.com) do not resolve, and the shop-app bundle contains no portal URL at all - only the permission flags customerPortal, customerPortalPageAccess and userHasCustomerPortalAccess. There is also no portal-processed payment anywhere on the test customer: every payment ever recorded against account 4 Star Truck Repair carries the code CASH, VISA or APPLIED CREDIT, never SHOPPAY. The ShopPay and CustomerPortal feature flags ARE enabled on this organisation, so the feature exists - it simply is not reachable from the shop app.",
+   "not_observed": "All three clauses.",
+   "note": "To finish it: get the customer-portal URL for staging and a portal login for a customer contact of 4 Star Truck Repair, then pay an invoice through ShopPay in the portal and download the invoice PDF from there. The banner should then be on that PDF, before the masthead."
+  },
+  "C45191": {
+   "verdict": "Passed",
+   "observed": "Signed in as the technician template, whose permission set was read live from GET /api/auth/me/fe-permissions: 6 permissions, workOrdersView and workOrderLinesCreateAndEdit present, workOrdersCreateAndEdit ABSENT. On work order S2-32136 the Authorizer row renders as a static value - it reads 'Authorizer  Savannah Tran' with NO dropdown glyph, zero select controls, zero inputs and zero clickable elements inside the row. The same row viewed in the administrator session (which does hold workOrdersCreateAndEdit) carries the 'arrow_drop_down' control, so this is a permission-driven difference on the same record, not a rendering accident.",
+   "not_observed": null,
+   "note": "A/B on one record: administrator sees 'Authorizer | Savannah Tran | arrow_drop_down'; technician sees 'Authorizer | Savannah Tran'."
+  },
+  "C45194": {
+   "verdict": "Passed",
+   "observed": "Seeded a customer, contact and asset carrying every awkward character and invoiced them (INV-S2-32223). Everything renders exactly as entered, with no escaping and no mojibake. Bill To reads 'ZZAUTOTEST Backer & Sons \"Trucks\" <Ltd> - Cafe N' with the real diacritics (B\u00e4cker, Caf\u00e9 \u00d1): the AMPERSAND prints as & and never as an escaped entity, the straight quotes survive, and the angle brackets in <Ltd> are NOT stripped as markup. Address '12 Rue de l'Epee & Co.' keeps its apostrophe, its \u00c9 and a second ampersand; 'Montr\u00e9al, Qu\u00e9bec' is correct. Asset UNIT '\u00dc-99' and PLATE 'A\u00c9-1234' are correct. Authorizer reads 'Ren\u00e9e O'Brien-M\u00fcller'. The Scope of work line renders 'Caf\u00e9 & cr\u00e8me \u2014 \u201cquoted\u201d <tags> \u00f1 \u00fc \u00e9' complete with curly quotes and an em dash. No missing-glyph boxes anywhere.",
+   "not_observed": null,
+   "note": "Clause 1 says 'no missing glyphs in Inter'. The PDF face is DejaVu Sans, not Inter (SV-9761), but no glyph is missing in any of these strings, so the clause's substance holds on the face actually shipping."
   }
  },
  "seeding": {
