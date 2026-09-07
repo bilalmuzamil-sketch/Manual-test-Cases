@@ -392,6 +392,17 @@ any endpoint/ID not recorded here or in `CLAUDE.md`** — if only partly known, 
   pencil → Reset to Template → Save. If a role RE-DRIFTS mid-run (concurrent session), reset AGAIN and
   continue (persistently, Rule 26a). Leave roles at template when done. Custom-role reset API:
   `POST /api/roles/{id}` (re-PUT template perms).
+  **Reset-to-template UI is a TWO-CONFIRM flow (proven 2026-09-07, sv8911) — data-test-ids:** open the
+  role editor via `action_edit_{roleId}` → click **`reset_template_edit`** → a **confirm dialog** appears
+  ("Reset to template… replaces all current selections with the … template defaults"); you MUST click its
+  **Reset** button (`.q-dialog` → button text "Reset") — the toggles only flip after this. Then **Save**
+  = `submit_edit_role`; Save opens a **"Confirm Permission Updates"** diff dialog — click its **Confirm**
+  button. If, after confirming the reset dialog, the toggles don't change AND `submit_edit_role` stays
+  disabled, the role was already at template. Role perms via API: `GET /api/roles/{id}` →
+  `fe_permissions[].code` (e.g. `woMoveLabor`). Template default list (no perms field on `/api/role-templates`)
+  is only knowable by resetting + reading the role back.
+  **⚠️ Move-labor caution: at TEMPLATE DEFAULT, Parts Technician has NO `woMoveLabor` (cannot move labor).**
+  On the shared d55bc308 org it drifts ON — always reset before judging a per-role move-labor result.
 - **Impersonate a role holder (PREFERRED live-role test):** `POST /api/switch-user {user_id}` (user_id =
   staff `id` from `GET /api/staff?limit=200`, which lists `role_label` per staff). End impersonation with
   a fresh admin `login()`. *Source: CLAUDE.md Rule 14 self-seed playbook.*

@@ -22,21 +22,27 @@ A Technician with "edit labor and parts" permission can also **move labor** on a
 | §2 | Cascade: turning Work Orders: View OFF clears Move labor | **PASS** (Foreman) |
 | §3 | Keep it: Service Manager, Sr Service Advisor, Service Advisor, Foreman, Parts Manager | **PASS** (all ON — UI toggle + role def) |
 | §3 | Absent: Office User, Sales Representative, Time Clock User | **PASS** (all OFF) |
-| §3 | Absent: **Parts Technician** | **DEVIATION — Parts Technician has Move labor ON** (dev §3 expects OFF) |
+| §3 | Absent: **Parts Technician** | **PASS** — at template default, Move labor is OFF (see correction below) (exhibit-5) |
 | §4 | `POST /api/technician-tasks/move`: Technician & Foreman → **403** | **PASS** (both 403; was unauthenticated before the fix) |
 | §4 | Admin timesheet move passes the gate | **PASS** (admin 400 = validation, gate passed) |
 | §5 | Create role → clone Service Manager → prefill shows **Move labor ON** | **PASS** |
 
 ## Verdict
-**The reported customer bug is FIXED** — technicians can no longer move labor (menu item gone + backend 403), and Edit labor is retained. The out-of-scope timesheet-endpoint hole is also closed (Technician/Foreman 403).
+**The reported customer bug is FIXED** — technicians can no longer move labor (menu item gone + backend 403), and Edit labor is retained. The out-of-scope timesheet-endpoint hole is also closed (Technician/Foreman 403). **All 14 dev-checklist checks pass.**
 
-**One deviation from the dev's own §3 checklist:** **Parts Technician still carries Move labor** (confirmed at both the role-permission toggle and the role definition). This is consistent with the fix's "preserve existing behaviour" backfill (Parts Technician has "Work Order Lines: Create & Edit", which Move labor used to ride on), so it is most likely a **checklist wording error rather than a build defect** — but it contradicts the dev's stated expectation and the ticket description does not define the per-role matrix, so it needs the dev's confirmation. Not silently passed or failed.
+## CORRECTION — Parts Technician (my Rule 26 miss, fixed)
+My first pass read the Parts Technician role while it was **DRIFTED** on the shared org (a concurrent session had added extra permissions incl. Move labor), and I reported a §3 "deviation" — that was wrong. The QA lead reset the role and observed Parts Technician cannot move labor; I then re-verified live myself:
+- Opened `/administration/roles-permissions` → edited Parts Technician → **Reset To Template** (confirm dialog) → the **Move labor** toggle flipped ON→**OFF** and Save activated → **Save** (confirmed the permission-diff dialog).
+- API re-read after save: `woMoveLabor` is **absent** from Parts Technician's `fe_permissions` (19 perms, was 25 while drifted).
+- Reopened the editor: Move labor persists **OFF** (exhibit-5).
+
+So **Parts Technician's template default has no Move labor** and §3 PASSES. Lesson (Standing Rule 26): **reset every in-scope role to template BEFORE testing** on the shared org, or a drifted instance reads as a false deviation. Reset procedure now in the playbook.
 
 ## Live enforcement matrix (backend gate = `IsGranted(woMoveLabor)`, proven)
 - Technician → `tasks/move` 403 · `technician-tasks/move` 403
 - Admin → both 400 (gate passed, empty-body validation)
 - Foreman → `tasks/move` 400 (has it) · `technician-tasks/move` 403 (no timesheets C&E)
-- Move-labor toggle live: Admin/SM/SrSA/SA/Foreman/PM = ON; Technician/Office/SalesRep/TimeClock = OFF; **Parts Technician = ON**.
+- Move-labor toggle at TEMPLATE DEFAULT (roles reset first, Rule 26): Admin/SM/SrSA/SA/Foreman/PM = ON; Technician/Office/SalesRep/TimeClock/**Parts Technician** = OFF.
 
 ## Separate finding (NOT caused by this ticket) → filed as its own ticket
 On the WO Lines tab a line row shows **Labor = Unassigned** while that line's **Edit Line dialog shows assigned technicians** (line 2 "Service - Wheels off": row Unassigned, dialog shows David Haynes + Emily Madden; API `line_tech_assigned_id = null` but schedule roster has two). Per Nemanja (comment 76073) the row shows the labour-task technician while the dialog shows the SV-8685 schedule roster; `WorkOrderLineRow.vue`/`LinesDetailProvider.php` are byte-identical on prod/develop/sv8911, and SV-9486 (25 Aug) removed the roster avatars from the row, making the divergence more visible. Reporter observed it reproduces on this branch but not staging/prod (data-shape dependent). Exhibits 3 & 4. **Filed as SV-9769** (Bug, parent SV-8685, priority Medium, Product Area Work Orders, linked Relates → SV-8911). https://shopview.atlassian.net/browse/SV-9769
