@@ -48,6 +48,114 @@
    "observed": null,
    "not_observed": "Not exercised: every masthead identity field on this location is populated, so the hide-when-empty behaviour never fires.",
    "note": "Needs a location with at least one empty identity field."
+  },
+  "C44908": {
+   "verdict": "Passed",
+   "observed": "Block labeled exactly 'BILL TO' shows the company name '4 Star Truck Repair', street '6263 Elizabeth Causeway Apt. 973' and 'Raystad, British Columbia V4M 8Y2' (city, province, postal).",
+   "not_observed": null,
+   "note": null
+  },
+  "C44909": {
+   "verdict": "Untested",
+   "observed": null,
+   "not_observed": "Condition not met: the workplace record carries remitToAddress = None, so no payee is configured and the block cannot appear.",
+   "note": "SEED: set a remit-to on the workplace, or an integrated-billing payee on the customer."
+  },
+  "C44910": {
+   "verdict": "Untested",
+   "observed": "Clause 1 PASSES: with no Remit Payment To block, the Bill To card measures x0=60.0 -> x1=535.3 = 475.3pt, the full content width (page.get_drawings()).",
+   "not_observed": "Clause 2 (side-by-side when a payee exists) and clause 3 (Credit To full width on a Credit Invoice) not exercised.",
+   "note": "SEED a remit payee; Credit Invoice document is UI-render only."
+  },
+  "C44911": {
+   "verdict": "Passed",
+   "observed": "Both clauses observed. No 'Remit Payment To' block on either document, and the shop's own address appears ONLY in the masthead - it is not reprinted as a fallback remit-to. Confirmed from the record: workplace remitToAddress = None.",
+   "not_observed": null,
+   "note": null
+  },
+  "C44912": {
+   "verdict": "Untested",
+   "observed": null,
+   "not_observed": "Not exercised: every Bill To address field on this customer is populated.",
+   "note": "SEED: clear a customer address field."
+  },
+  "C45168": {
+   "verdict": "Untested",
+   "observed": null,
+   "not_observed": "Needs the Credit Invoice document, which renders only through the UI print route.",
+   "note": "Credit memo CM-4347 seeded and available."
+  },
+  "C44913": {
+   "verdict": "Passed",
+   "observed": "Labels read exactly and carry NO punctuation: 'Customer PO 9989', 'Authorizer Savannah Tran', 'Terms Net 7'. The three present appear in the specified relative order (Customer PO -> Authorizer -> Terms).",
+   "not_observed": "Work Order and Approval Code were not present, so the full five-field order was not exercised - both are correctly hidden by their own rules on this record (and see SV-9770 on Work Order).",
+   "note": null
+  },
+  "C44914": {
+   "verdict": "Untested",
+   "observed": "Clause 1 PASSES: terms are set and the field shows 'Terms Net 7'.",
+   "not_observed": "Clause 2 (empty terms still shows the label with an empty value) not exercised.",
+   "note": "SEED: clear the work order's terms."
+  },
+  "C44915": {
+   "verdict": "Passed",
+   "observed": "The document shows 'Authorizer Savannah Tran'. The work order record carries authorizer_full_name = 'Savannah Tran' - the printed name matches the selected contact exactly.",
+   "not_observed": null,
+   "note": null
+  },
+  "C44916": {
+   "verdict": "Untested",
+   "observed": null,
+   "not_observed": "Not exercised: the work order carries ibs_approval_code = None, so there is no approval code to print.",
+   "note": "SEED: an integrated-billing approval code on the work order."
+  },
+  "C44917": {
+   "verdict": "Untested",
+   "observed": "Clause 1 PASSES as the rule is written: work order S-32136 against document EST-S2-32136/INV-S2-32136 - trailing runs '32136' and '32136' match, and the field is hidden.",
+   "not_observed": "Clause 2 (field SHOWS when the numbers differ) not exercised - and per SV-9770 it may be unreachable, because the document number is derived from the work order number.",
+   "note": "Cross-reference SV-9770. This case encodes the disputed rule and will need rewording if Chris rules the field must show."
+  },
+  "C44918": {
+   "verdict": "Untested",
+   "observed": "Clause 3 PASSES: Approval Code is empty and is hidden - no label, no empty value area. Clause 4 PASSES: Terms still shows.",
+   "not_observed": "Clauses 1 and 2 not exercised: Customer PO and Authorizer are both populated on this record.",
+   "note": "SEED: clear the PO and the authorizer."
+  },
+  "C44924": {
+   "verdict": "Passed",
+   "observed": "Clauses 1, 2 and 4 observed: 'ASSET  2011 Hyundai Santa Fe' and 'VIN / SERIAL  PV1T2SK1DNUUK7YDE' - the asset has a VIN and the VIN is what prints.",
+   "not_observed": "Clause 3 (serial shown when there is no VIN) not exercised.",
+   "note": null
+  },
+  "C44925": {
+   "verdict": "Passed",
+   "observed": "All four fields present with values: 'UNIT 665', 'PLATE ZZP-6028', 'MILEAGE 45', 'ENG HRS 9,987', each labeled exactly as specified.",
+   "not_observed": null,
+   "note": null
+  },
+  "C44926": {
+   "verdict": "Untested",
+   "observed": "Show direction observed (all four print with values).",
+   "not_observed": "Hide direction not yet observed ON MY OWN CAPTURE. It was seen earlier on a supplied PDF while the record read vehicle.unit = None, but a supplied PDF carries no build marker and is not admissible as an observation.",
+   "note": "SEED: clear unit/plate/mileage/eng hrs and re-capture."
+  },
+  "C44927": {
+   "verdict": "Untested",
+   "observed": null,
+   "not_observed": "Not exercised: this asset has a VIN.",
+   "note": "SEED: an asset with neither VIN nor serial."
+  },
+  "C44928": {
+   "verdict": "Untested",
+   "observed": "Clause 1 observed on the service work order: the asset section shows.",
+   "not_observed": "The part-sale half and the no-asset half not exercised.",
+   "note": "Part sale aef39c9a seeded."
+  },
+  "C45171": {
+   "verdict": "Untested",
+   "observed": null,
+   "not_observed": "Not exercised: this work order has an asset.",
+   "note": "SEED: a work order with no asset attached."
   }
  }
 }
