@@ -92,3 +92,25 @@ the 2026-09-03 snapshot). **All four leads resolve as NOT defects.**
 
 **Net: zero admissible defect candidates from the production-vs-staging comparison.** Recorded rather
 than filed, so the non-filing can never look like a miss.
+
+## DESIGN-DOCUMENT CHECK — 2026-09-07 (QA lead's instruction)
+
+Ran against the supplied design export (`invrfrsh.zip` -> `Design invoice refresh_files/saved_resource.html`).
+**Neither L1 nor L4 is a defect against the design — the design MODELS both hide states in its own CSS:**
+
+```css
+.wrap.wo-match .chip-wo, .wrap.no-po .chip-po, .wrap.no-auth .chip-auth, ... { display:none }
+.wrap.no-remit .addr-row{ max-width:none; }   /* Remit To -> Bill To spans the full width */
+```
+
+- **L4:** `wo-match` is exactly S3-N1's condition. The design agrees the Work Order chip hides when the
+  work order's trailing digits match the document's; the mock merely renders the default (non-matching)
+  state, showing `Work Order S3-4176` on a document suffixed `-S3-4176`.
+- **L1:** the design's Remit Payment To shows a **third-party integrated-billing payee** ("Northgate
+  Fleet Billing Inc, c/o Interstate Billing Service"), i.e. the *configured-payee* case S2-R2 requires to
+  show. It is NOT the shop's own address. Staging has no payee configured, so the block hides, and the
+  design's `no-remit` rule then requires Bill To at full width - which staging measurably does (475.3pt).
+
+**Authority split applied (live spec, verbatim):** *"Where the prototype and this spec disagree on content
+or wording, this spec is the source of truth; on appearance, the Design Document is the source of truth."*
+Visibility is content, so the spec governs both of these; and in fact the design does not disagree.

@@ -17,6 +17,7 @@
 | quote a spec rule in a ticket | **L6** | The spec moved v45 -> v52; all 120 cases still cite v45. |
 | read "actual behaviour" from anywhere | **L1** | THE cause of both refusals on this epic. |
 | look up a work order's real number | **L7** | `GET /api/work-orders/view/{id}` -> `data.work_order.number`. |
+| check a finding against the DESIGN document | **L11** | The design is a STATEFUL prototype; its CSS encodes the hide states. |
 | decide defect vs Task vs spec-gap | **L8** | This epic routes them differently, and it matters. |
 
 ---
@@ -132,3 +133,46 @@ Useful siblings on that payload: `authorizer_full_name`, `ibs_approval_code` (dr
 All 14 stories under SV-8218 are **`TESTING QA`** (development done, handed to QA), so a gap is **not**
 "pending work" and findings ARE admissible on that axis. **The epic itself is `In Progress` — that is
 the EPIC's status and it does not make a story's gap unfinished work.** Check the owning STORY.
+
+## L11 · 🛑 CHECKING THE DESIGN — IT IS A STATEFUL PROTOTYPE, NOT A STATIC PICTURE
+**The QA lead's standing instruction (2026-09-07):** where something absent from the build is justified
+by the spec **but the DESIGN shows it**, that is a **Story Defect against the design**, and the ticket
+says the design shows it. **So the design check is mandatory, not optional.** But run it correctly:
+
+**(a) THE AUTHORITY SPLIT, verbatim from the live spec — read it before calling anything a conflict:**
+> *"This spec defines the information and the exact wording that must appear on each document, **and the
+> rules for when each piece of content is shown or hidden.** The Design Document is the **binding visual
+> reference**… **Where the prototype and this spec disagree on content or wording, this spec is the
+> source of truth; on appearance, the Design Document is the source of truth.** A conflict that cannot be
+> resolved by that split goes to Chris W."*
+
+**⇒ VISIBILITY (whether a thing shows) is the SPEC's. APPEARANCE (size, weight, ink, spacing, order,
+width, treatment) is the DESIGN's — and there the design WINS and a divergence IS a Story Defect.**
+
+**(b) 🔑 THE TRAP THAT WOULD HAVE PRODUCED A FALSE DEFECT.** The design export is an interactive HTML
+prototype (`Design invoice refresh_files/saved_resource.html`, ~1.9 MB, ONE line). Its mock renders **one
+example state**, and **its CSS encodes all the other states as `.wrap.<state>` classes.** So *"the mock
+shows the Work Order field"* does **NOT** mean *"the design requires it always"*.
+Proven 2026-09-07 — the design's own rule:
+```css
+/* conditional order + asset fields, and work-state */
+.wrap.wo-match .chip-wo, .wrap.no-po .chip-po, .wrap.no-auth .chip-auth, … { display:none }
+.wrap.no-remit .addr-row{ max-width:none; }   /* Remit To -> Bill To spans the full width */
+.wrap.ps .chip-wo, .wrap.ps .chip-appr{ display:none; }   /* parts sale */
+```
+`wo-match` **is S3-N1's condition modelled in the design.** The design therefore AGREES that the Work
+Order chip hides when the numbers match; the mock just shows the default state. Same for `no-remit`.
+
+**⇒ THE DRILL, before claiming the design and the build disagree:**
+1. `grep -o 'chip-<thing>\|<thing>' ` the design HTML to find the element's class.
+2. **Search the CSS for a `.wrap.<state> .<class>{display:none}` rule.** If one exists, the design models
+   the hide and there is **no conflict** — the mock is just one state.
+3. Only if **no** state rule exists, and the spec is silent or the difference is APPEARANCE, is it a
+   Story Defect citing the design.
+Extraction recipe (the file is one huge line, so `grep -o -E '.{240}term.{240}'` FAILS — use Python):
+`re.finditer(term, s)` -> slice ±250 chars -> `re.sub(r'<[^>]+>',' | ',seg)` -> `html.unescape`.
+
+**(c) WORKED RESULT, 2026-09-07.** Design mock shows `Work Order S3-4176` on a document suffixed
+`-S3-4176`, and `Remit Payment To — Northgate Fleet Billing Inc, c/o Interstate Billing Service` (a
+**third-party integrated-billing payee**, NOT the shop's own address). Both are the *shown* states of
+conditional elements, and both match what the spec requires. **Neither is a defect.**
