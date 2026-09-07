@@ -13,11 +13,12 @@
 | say "production has X and staging does not, so it is a defect" | **L4** | The refresh DELIBERATELY drops things. This killed 2 of 4 leads. |
 | measure a font size in a PDF | **L3** | 1px = 0.75pt. A 12pt title IS the spec'd 16px. |
 | claim a layout / ordering defect from extracted PDF text | **L2** | Content-stream order is NOT visual order. |
-| say a field is missing from the order-reference area | **L5** | S3-N1 hides "Work Order" when trailing digits match. |
+| say a missing Work Order field is correct | **L5** | ⛔ SUPERSEDED 2026-09-07 — the QA lead ruled the Work Order number MUST appear. |
 | quote a spec rule in a ticket | **L6** | The spec moved v45 -> v52; all 120 cases still cite v45. |
 | read "actual behaviour" from anywhere | **L1** | THE cause of both refusals on this epic. |
 | look up a work order's real number | **L7** | `GET /api/work-orders/view/{id}` -> `data.work_order.number`. |
 | check a finding against the DESIGN document | **L11** | The design is a STATEFUL prototype; its CSS encodes the hide states. |
+| test ANY conditional hide-rule (the general logic) | **L13** | THE DEAD-RULE TEST. A condition true BY CONSTRUCTION kills its field. |
 | decide whether a spec/design/staging difference is a defect | **L12** | THE DECISION MATRIX. Direction matters: missing != extra. |
 | decide defect vs Task vs spec-gap | **L8** | This epic routes them differently, and it matters. |
 
@@ -78,7 +79,42 @@ masthead) — i.e. exactly the fallback the refresh dropped on purpose. **Stagin
 full width. Measured on the staging PDF via `page.get_drawings()`: card rect **x0=60.0 -> x1=535.3
 (475.3pt) = the full content width. PASSES.**
 
-## L5 · S3-N1 — A MISSING "WORK ORDER" FIELD IS USUALLY CORRECT
+## L5 · ⛔ SUPERSEDED 2026-09-07 BY THE QA LEAD — THE WORK ORDER NUMBER **MUST** APPEAR
+**QA LEAD'S RULING, 2026-09-07 (binding, supersedes the reading below):** *"the Work order number should
+appear on the invoice like it is apeparing in the design, the number can be different from teh design
+because the design is just a design with mock data."*
+**⇒ THE EXPECTATION IS: the Work Order number APPEARS on the Estimate and the Invoice.** The design's
+mock number (`S3-4176`) is mock data — the VALUE is irrelevant, the PRESENCE of the field is the
+requirement. **Do not treat a missing Work Order field as correct.**
+
+**WHY THIS IS A STRONG FINDING AND NOT JUST AN OVERRIDE — the arithmetic of S3-N1 makes the field DEAD.**
+S3-N1 (revised 2026-09-04) hides the field when *"the trailing digits of the work order number equal the
+trailing digits of the document number"*. **But the document number is DERIVED FROM the work order
+number**, so those runs match by construction on every ordinary record:
+
+| | work order | document | trailing run | S3-N1 verdict |
+|---|---|---|---|---|
+| live staging, 2026-09-07 | `S-32136` | `EST-S2-32136` | `32136` = `32136` | hidden |
+| the DESIGN's own mock | `S3-4176` | `EST-S3-4176` | `4176` = `4176` | would hide — **yet the design SHOWS it** |
+| spec's own example | `S2-5468` | `INV-S2-5468` | `5468` = `5468` | hidden |
+
+**⇒ Under S3-N1 as revised, the Work Order field can essentially NEVER appear on a normal document — and
+the design, production, and the QA lead all say it should.** The design even contradicts S3-N1 in its own
+default state. That is a **spec-vs-design conflict on visibility**, and the spec's own closing clause
+sends exactly that to the PO: *"A conflict that cannot be resolved by that split goes to Chris W."*
+**⇒ FRAME THE TICKET THAT WAY — "S3-N1 hides the field on every document, contradicting the binding
+design and production" — NOT as a bare "the field is missing".** The bare version invites the reply
+"working as specified, see S3-N1"; the framed version cannot be answered that way.
+
+*(Kept for the record, the reading this supersedes: until 2026-09-07 this lane read S3-N1 literally and
+concluded a missing Work Order field was spec-correct. The QA lead corrected it. The literal reading was
+not careless — it was the current spec text — which is exactly why the design and the real-world effect
+of a rule must be checked against a rule, not just the rule read on its own.)*
+
+**Also still true and independent of the above:** production labels the field **"Service Order"**; S3-R1
+labels it **"Work Order"**, with **no colon** after order-reference labels.
+
+## L5-OLD · [SUPERSEDED] the literal S3-N1 reading
 > *"The Work Order field is hidden when the trailing digits of the work order number equal the trailing
 > digits of the document number… document 'INV-S-24914' with work order '24914' hides it."*
 
@@ -202,3 +238,51 @@ configuration, not a fault — do not raise it.
 **⇒ AND BEFORE ROW 2 FIRES, RULE OUT A DATA/STATE CONDITION** (L11(b)): check for a `.wrap.<state>` hide
 rule in the design's CSS **and** check the record's own data. Every candidate so far died on that check —
 `vehicle.unit = None` (S4-N1), `ibs_approval_code = None` (S3-R4), no remit payee (S2-R2).
+
+## L13 · 🔑 THE DEAD-RULE TEST — apply this to EVERY conditional hide-rule, not just the Work Order one
+**Generalised 2026-09-07 at the QA lead's instruction (*"understand the logic for similar things in other
+tests too"*).** L5's Work Order finding is one instance of a reusable test.
+
+### The test — four questions, in order
+1. **What is the hide condition?** Quote it from the LIVE spec.
+2. **🔑 CAN THAT CONDITION EVER BE FALSE IN NORMAL DATA?** If it is satisfied **BY CONSTRUCTION** — because
+   one value is *derived from* the other, or defaulted, or always equal — then **the rule hides the field
+   on every ordinary record and the field is DEAD.** A field that can never appear is almost never the
+   intent.
+3. **What does the DESIGN do in that same case?** If the design's own default state SHOWS the field where
+   the rule would hide it, that is a **spec-vs-design conflict on visibility**.
+4. **What does PRODUCTION do?** Production showing it corroborates that the field is expected.
+**⇒ Dead by construction + design shows it + production shows it = RAISE IT. Frame it as "the rule hides
+the field on every document", never as "the field is missing" — the bare version is answered with
+"working as specified".**
+
+### Applied to all 17 hide-rules in the live spec (2026-09-07)
+
+| Rule | Hide condition | Can it be false in normal data? | Verdict |
+|---|---|---|---|
+| **S3-N1** Work Order | trailing digits of WO == trailing digits of document | **NO — the document number is DERIVED from the work order number, so they match by construction** | **🔴 DEAD RULE — the only one. Raise it.** |
+| S1-N1 masthead address parts | each empty | yes — data | live, correct |
+| S2-N1 Bill To address parts | each empty | yes — data | live, correct |
+| S2-N2 Remit Payment To | no payee configured | yes — configuration | live, correct |
+| S3-N2 Customer PO | empty | yes — staging SHOWS `Customer PO 9989` | live, correct |
+| S3-N3 Authorizer | empty | yes — staging SHOWS `Authorizer Savannah Tran` | live, correct |
+| S3-N5 Approval Code | empty | yes — `ibs_approval_code = None` here | live, correct |
+| S4-N1 Unit / Plate / Mileage / Eng Hrs | each empty | yes — staging shows Plate, Mileage, Eng Hrs and hides ONLY Unit, which is genuinely `None` | live, correct |
+| S4-N2 VIN / Serial | none, or literal "Unknown" | yes — data | live, correct |
+| S4-N3 asset section | no asset attached | yes — data | live, correct |
+| S5-R7 labor/parts figures | per-setting | yes — configuration | live, correct |
+| S6-N1 Declined Work | no declined lines, or toggle off | yes — data + toggle | live, correct |
+| S7-N1 Adjustments heading | no adjustments | yes — data | live, correct |
+| S8-R7 $0.00 payment row | amount is $0.00 | yes — data | live, correct |
+| S8-N2 paid banner | no portal payment | yes — data | live, correct |
+| S9-N1 disclaimer | none configured | yes — configuration | live, correct |
+| S9-N2 footer tax identifier | none configured | yes — staging SHOWS `GST# 812694966 RT0001` | live, correct |
+
+**⇒ RESULT: 16 of 17 hide-rules are data- or configuration-dependent and behave correctly on staging.
+Exactly ONE — S3-N1 — is true by construction.** That isolation is what makes the finding strong: it is
+not "a field is missing", it is "one rule in seventeen is written so it can never be false".
+
+### Carry this into execution
+When a case expects a field and the document does not show it, **do not stop at "a hide-rule covers it"**.
+Run the four questions. Most of the time the rule is legitimate and the case passes; when the condition is
+structural, you have found a real defect that the literal spec text would otherwise have hidden from you.
