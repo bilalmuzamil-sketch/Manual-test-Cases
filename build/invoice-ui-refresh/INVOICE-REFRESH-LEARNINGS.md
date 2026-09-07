@@ -670,3 +670,44 @@ saved an hour.
 is worthless if you are proving it about the wrong thing. Before investing in "this cannot be done",
 spend one minute on "am I sure this is what is being asked?" — re-read the case against its cited
 rule, and check the cheapest interpretation first. The simplest reading is usually the intended one.
+
+---
+
+## L26 · THE DIFFERENCE BETWEEN "I COULD NOT" AND "IT CANNOT BE DONE"
+**Retrieve when:** about to mark a case Blocked.
+
+The QA lead pushed back on ten Blocked cases with *"why are they blocked, they should not be unless
+there is a genuine reason"*. He was right on four of them. What separates a real block from a lazy one:
+
+| Case | What I first said | What it actually was |
+|---|---|---|
+| C45190 | "no imported work order exists" | **Passed.** Our own playbook documents `POST /api/imports/work-order-historical` with the full 24-column CSV contract. I imported one in two minutes |
+| C45178 | "every canned line is priced" | **Passed.** A work-order-wide discount equal to the subtotal gives a $0.00 total |
+| C44963 | "no due date is unreachable" | **Passed.** It was the Estimate view all along (L25) |
+| C44970 | "outcome (2), raise nothing" | **A real defect**, filed as SV-9790 |
+
+**A block is only real when you can state the mechanism that forbids the state**, not merely that you
+did not find a way. Compare:
+
+- ❌ *"No logo control could be found."* → weak; I had not looked at the Organization tab's DOM.
+- ✅ *"The logo is organisation-level, not per-shop, so the case's precondition cannot exist; the only
+  control is a pencil that opens a file picker with no remove option; and DELETE on the logo endpoint
+  answers 405 Allow: GET."* → three independent mechanisms, all measured.
+
+**The four shapes a genuine block takes, all of which are worth writing down:**
+1. **Validation forbids the state** — C44907: all five masthead fields are required at creation, and
+   the edit form silently refuses to persist them empty. Proven from both directions.
+2. **The product offers no way to undo a thing** — C44902: a logo can be set or replaced, never removed.
+3. **The value comes from outside the system** — C44916: an IBS approval code is issued by Interstate
+   Billing, and no route in the app sets one.
+4. **The surface is a different application** — the three paid-banner cases: the banner exists only on
+   a customer-portal PDF, and the portal is not reachable or discoverable from the shop app.
+
+**When you do write Blocked, the note must name what you searched**, so the next person does not repeat
+it: hostnames probed, endpoints tried, screens opened, bundle greps run. "Not found" without that list
+is an admission, not a finding.
+
+**And a block on a CASE is sometimes a finding about the CASE.** C44907's precondition asks for a state
+the product forbids; C44902's assumes the logo is per-shop when it is per-organisation; C45275 has no
+steps and no expected results at all (and is Vladimir Tomovic's, so hands-off). Those go to the QA lead
+as authoring questions, not as environment complaints.
