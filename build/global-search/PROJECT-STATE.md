@@ -33,11 +33,13 @@ suite is Automated (all atm=1), so Rule 71 did not bite.
 **PO questions:** `questions-2026-09-07/Global-Search-questions-2026-09-07.xlsx` — Assets Show-all (new),
 Vendor Invoice Invoice/Sublet (carried), empty-state wording (carried).
 
-**Writes:** UI editor (Froala, fr-view) via `source-verify-2026-09-07/` harness (converger self-heals
-the ~50% double-slash-302 save-flake over successive passes). Run R415 to be union-synced 118 → 119
-once writes complete. Still Rule 85 SOURCE-VERIFIED ONLY (no QA build); marker stays "Not available on
-Build to test Yet". Post-write gate results (runnable gate, served-page fr-view scan, arithmetic) in
-the source-verify-2026-09-07 REPORT.
+**Writes DONE:** all 119 written via the deterministic Froala **html.set** writer
+(`source-verify-2026-09-07/hs_write.mjs` — the keyboard-insertText writer had a ~50% save-flake, so it
+was switched out mid-pass): 42 already-ok + 77 fixed, **0 failures**, every field served `markdown
+fr-view`. Post-write gates: **runnable 119/119**, marker last 119/119, atmstatus=1 119/119, provenance
+= v1.4 on all 119. **Run R415 union-synced 118 → 119** (C53476 added, set-equal). Rule 85
+SOURCE-VERIFIED ONLY (no QA build); marker stays "Not available on Build to test Yet - Last checked
+9/7/2026". Full report: `source-verify-2026-09-07/REPORT-2026-09-07.md`.
 
 ---
 
