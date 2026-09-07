@@ -954,3 +954,43 @@ route that works:
 **Standing Rule 63: when an instruction or a precedent conflicts with a recorded rule, STOP and
 surface the conflict — do not quietly pick a side.** Had the Task-vs-Story-Defect question been put in
 one sentence before filing, none of this rework would exist.
+
+---
+
+## L34 — The Jira MCP takes MARKDOWN, not Jira wiki markup (2026-09-07, SV-9812)
+
+**What went wrong.** SV-9812 was filed with a description written in **Jira wiki markup**
+(`h3.` headings, `#` for numbered steps, `{{monospace}}`, `[text|url]` links, `----` rules).
+`createJiraIssue` defaults to `contentFormat: "markdown"`, so none of it was interpreted:
+
+* `h3. Steps of replication` printed **literally**, as body text
+* every `#` step became a **level-1 heading**, so five giant headings replaced the numbered list
+* `{{SN-ZZAUTOTEST-0042}}` printed with its braces
+* the footer link came out as escaped text: `\[Claude Code|https://claude.ai/code\]`
+
+**The fix.** Write the description in **Markdown** — `##` headings, `1.` / `*` lists, `**bold**`,
+`` `code` ``, `[text](url)`, `> quote`, and a plain `![](https://raw.githubusercontent.com/...)`
+for an image. The MCP converts that to wiki markup and stores correct ADF. Jira turns the raw
+GitHub image URL into a media node by itself, exactly as it did on SV-9773.
+
+**How to avoid it.** Do not invent a layout — **copy the shape of the last correct ticket on the
+same epic** (Rule 16). The established Invoice Refresh shape, proven on SV-9773, is:
+
+```
+## Description
+## Steps to reproduce      (numbered, from sign-in, exact on-screen labels)
+## Current behaviour
+## Expected behaviour
+## Screenshots             (raw.githubusercontent.com URL, committed evidence)
+## Source                  (Story · Specification + version + VERBATIM rule quote ·
+                            Where this was seen · What is not affected)
+```
+
+**Post-write check, same as a TestRail write.** Read the issue back with
+`responseContentFormat: "markdown"` and confirm the headings are `##`, not the literal text `h3.`.
+A create call returning HTTP 200 says nothing about whether the body rendered.
+
+**A second lesson from the same ticket.** The rule was quoted from the TEST CASE's paraphrase
+("the VIN is preferred when both exist") rather than from the spec. The spec's actual **S4-R1**
+says *"the VIN when the asset has a VIN, otherwise the serial number"* — a different claim, and the
+one a developer will look for. **Quote the source, never a downstream restatement of it** (Rule 25).
