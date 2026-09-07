@@ -389,3 +389,57 @@ an endpoint capture.
 **⇒ PRACTICAL CONSEQUENCE FOR SEEDING: an API 500 while seeding is a TOOLING problem, not a finding.**
 Switch to the UI and carry on (Rule 14/74 — never let it block the test). Record the working route in
 the playbook so the next session goes straight to it.
+
+---
+
+## L17 · A JIRA IMAGE URL MUST BE THE PLAIN `https://` ONE — NEVER THE WRAPPED FORM
+**Retrieve when:** filing a ticket with a screenshot, or a ticket's images render as broken.
+
+`getJiraIssue` returns an image as
+`![](blob:https://media.staging.atl-paas.net/?...&url=<percent-encoded https URL>)`.
+That wrapper is Jira's **stored** form, produced by the converter. **Copying it back into a new
+ticket makes Jira wrap it AGAIN** — the nested result percent-encodes the whole blob URL into the
+`url=` parameter and the image is dead.
+
+**Always pass the bare URL:** `![](https://raw.githubusercontent.com/<owner>/<repo>/<branch>/<path>.png)`.
+Verify by re-reading the created issue: the stored value must contain exactly ONE `blob:` and its
+`url=` must decode to a `https://raw.githubusercontent.com/...` address, not to another blob URL.
+Worked example: SV-9773 was created wrapped and had to be corrected with `editJiraIssue`; SV-9774 was
+created with plain URLs and rendered first time (both 2026-09-07).
+
+**The image must be committed AND pushed before the ticket is created** — Jira fetches it from the raw
+GitHub URL, so an unpushed exhibit is a broken image.
+
+## L18 · THE TWO FILED DEFECTS, AND THE SHAPE THAT GOT THEM ACCEPTED
+**Retrieve when:** preparing an Invoice Refresh defect, or checking whether a finding is already filed.
+
+| Ticket | Finding | Parent | How it was proven |
+|---|---|---|---|
+| **SV-9773** | The work-line footer is GROSS where S5-R9 requires NET of the line's own fees/discounts. Labor $299.90 / Line total $299.90 where both should read $324.90 after a $25.00 line fee. | SV-9144 (Story 5) | The design's own script: `setTxt('j2-labor', money(599.80 + L + F))`, plus the spec's Story-7 note that only the SUMMARY rows stay gross. The build makes both gross. |
+| **SV-9774** | The Parts Sale document prints no part number; S13-R2 requires one. | SV-9195 (Story 13) | A **control exhibit** settled it: the service Invoice at the SAME shop with the SAME Invoice Details values prints `N68SL-356 - <description>`. So it is not the "Part number" setting. |
+
+**The shape (QA lead, established by SV-9770):** design reference first with a design screenshot ·
+then the spec rule quoted verbatim with its Confluence page id and read date · then what the build
+shows with its own screenshot · then why it matters to a **customer** · then what we expect after the
+fix · then a "Where this was seen" block naming the build marker, the record and the clicks.
+**Never a test-case reference in the ticket.** Story Defect · Medium · parent = the OWNING STORY
+(an Epic parent is HTTP 400) · plus a `relates to` link to that same story · no Product Area.
+
+**⭐ THE MOVE THAT MAKES A SETTING-DEPENDENT FINDING UNCHALLENGEABLE:** find a document in the SAME
+environment, SAME shop and SAME settings that DOES show the thing, and put it in the ticket as a
+control. "It is not the setting" stops being an assertion and becomes an exhibit. Without it, A5
+(setting-dependent ⇒ could be by design) sinks the ticket.
+
+## L19 · CHECK JIRA BEFORE CALLING A FINDING NEW — TWO OF FOUR FAILURES WERE ALREADY FILED
+**Retrieve when:** about to propose a defect.
+
+Of the four failures this pass, only two were new:
+- **C44974** (staging PDFs embed DejaVu Sans, never Inter) → already **SV-9761**, Open. Also SV-9639
+  covers the QA branch. **Not filed again.**
+- **C44970** (an account-level credit prints no disclaimer) → the case's own note already predicts it;
+  outcome (2) means mark Failed and raise nothing.
+- C44935 → new, filed as SV-9773. C44981 → new, filed as SV-9774.
+
+The search that worked: `project = SV AND (summary ~ "<the noun>" OR text ~ "<the symptom>") ORDER BY
+created DESC`. A `text ~` search over the whole project can exceed the tool's token cap — the result is
+saved to a file the error names, and `python3 -c "import json; ..."` over that file lists the rows.
