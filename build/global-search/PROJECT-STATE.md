@@ -1,7 +1,47 @@
 # Global Search — PROJECT STATE (canonical cold-resume doc)
 - **TestRail parent folder (group):** group_id **6720**, suite 1 — cases live in the sub-sections inside it, not directly in the folder. Link: https://shopview.testrail.io/index.php?/suites/view/1&group_by=cases:section_id&group_order=asc&display=compact&display_deleted_cases=0&group_id=6720 (recorded 2026-08-25)
 
-## §0-SOURCE-VERIFY-2026-09-02 (LATEST) — full re-verification against spec v1.3 + design + Slack decisions
+## §0-SOURCE-VERIFY-2026-09-07 (LATEST) — re-verified against spec v1.4 (was v1.3)
+
+**Trigger:** QA lead asked (2026-09-07) to source-verify Global Search again (one of three suites this
+session, done one at a time). Standing directive: pulled the latest of every source live first. Full
+records: `source-verify-2026-09-07/SOURCE-CURRENCY-2026-09-07.md`, `SPEC-DIFF-2026-09-07.md`.
+
+**Spec moved v1.3 → v1.4** (Confluence 576978945, Last Updated 2026-09-04, Branko). Epic SV-9160 = 25
+children (was 26), consistent with v1.4; SV-9167 telemetry = Blocked (matches our Out-of-V1). Design =
+undated Claude share links (cannot be dated; spec v1.4 is explicit, cases follow the spec, Rule 57).
+
+**v1.3 → v1.4 delta (5 requirements) and what changed in the suite:**
+- **Show all N → in-modal scope tab** (no full-page results screen, no query hand-off to a list page,
+  no results banner, no Clear-search). Rewrote **C44826** (title changed), **C44822**, **C45136**
+  (mobile), **C44874/C44875** (in-page WO search decoupled from the dropped hand-off). Supersedes the
+  2026-09-02 R5.
+- **All counts capped at 20** (tabs, group headings, Show all N; groups show up to 5, scoped tab up to
+  20). New case **C53476** "No count in the search modal reads higher than 20" (Functional type, added
+  in section 6723); rewrote **C44823**, **C44825**, **C44822**.
+- **Part row's only quick action = 'View part history'** ('Add to work order'/'Add part' dropped).
+  Rewrote **C44869** (title changed), **C44871** (title changed), **C44873**.
+- **Assets 'Show all'**: the 2026-09-02 R6 exception (no Show-all on Assets) loses its reason under
+  v1.4 (Show all is in-modal now). **C44825** follows v1.4 (Assets get Show all) with a divergence line;
+  **raised PO-GS-ASSET-SHOWALL** (reverses Branko's Slack #4).
+
+**All 118 of our cases re-stamped provenance v1.3 → v1.4, read 2026-09-07** (metadata refresh; markers
+untouched, G8). Suite now **119 ours** (118 + new C53476). **Vladimir's 8 cases (created_by=1) and 5
+Filters cases (created_by=7, "Remove Global Search Page Filtering") untouched (Rule 38).** No case in the
+suite is Automated (all atm=1), so Rule 71 did not bite.
+
+**PO questions:** `questions-2026-09-07/Global-Search-questions-2026-09-07.xlsx` — Assets Show-all (new),
+Vendor Invoice Invoice/Sublet (carried), empty-state wording (carried).
+
+**Writes:** UI editor (Froala, fr-view) via `source-verify-2026-09-07/` harness (converger self-heals
+the ~50% double-slash-302 save-flake over successive passes). Run R415 to be union-synced 118 → 119
+once writes complete. Still Rule 85 SOURCE-VERIFIED ONLY (no QA build); marker stays "Not available on
+Build to test Yet". Post-write gate results (runnable gate, served-page fr-view scan, arithmetic) in
+the source-verify-2026-09-07 REPORT.
+
+---
+
+## §0-SOURCE-VERIFY-2026-09-02 — full re-verification against spec v1.3 + design + Slack decisions
 
 **Trigger:** QA lead asked to re-source-verify the suite (his manual testing suite). This is a **V2**
 (Rule 96): V2 must not break V1 unless the design/PRD says to drop it. Full decision record + the 18
