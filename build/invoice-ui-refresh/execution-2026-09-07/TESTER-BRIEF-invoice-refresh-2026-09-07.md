@@ -54,8 +54,8 @@ unless something looks different on your machine.
 
 | What it needs | Cases | Where it is tracked |
 |---|---|---|
-| A shop with **no logo** — one can be added or replaced but never removed | C44902 | **SV-9804** |
-| A shop location with a **blank address, city, state, postal code or phone** — all five are compulsory | C44907 | **SV-9805** |
+| A shop with **no logo** — one can be added or replaced but never removed | C44902 | **Not tracked in a ticket** — mark the case Failed and tell the QA lead |
+| A shop location with a **blank address, city, state, postal code or phone** — all five are compulsory | C44907 | **Not tracked in a ticket** — mark the case Failed and tell the QA lead |
 | A work order that has been through **Interstate Billing** approval | C44916 | **SV-9710** |
 | The case itself — it has **no steps and no expected results** and belongs to another author | C45275 | — |
 
