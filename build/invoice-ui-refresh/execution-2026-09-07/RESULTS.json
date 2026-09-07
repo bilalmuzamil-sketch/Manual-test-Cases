@@ -294,6 +294,90 @@
    "observed": "Clause 2 observed directly: the same work order rendered WITHOUT the declined option shows no Declined Work section at all, while WITH it the section appears. So the option genuinely governs visibility.",
    "not_observed": "Clause 1 (no declined lines at all) not exercised - this work order has one.",
    "note": null
+  },
+  "C44959": {
+   "verdict": "Passed",
+   "observed": "Estimate vs Invoice rendered from the same invoice id and diffed line by line. The ONLY content differences are the five S10-R1 permits: label 'Estimate: EST-S2-32136' vs 'Invoice: INV-S2-32136'; dates 'Estimate date: Sep 7, 2026' vs 'Invoice date: Sep 7, 2026' + 'Due date: Sep 14, 2026'; heading 'WORK SUMMARY' vs 'WORK PERFORMED'; headline 'ESTIMATED TOTAL $746.66' vs 'Payments'/'BALANCE'; and the Payments block + Balance present on the Invoice only. Remaining diff lines are line-wrap reflow of the shop name and the disclaimer, not content.",
+   "not_observed": null,
+   "note": "No Paid banner on either; the Estimate carries no Payments block even though three payments exist on the invoice."
+  },
+  "C44960": {
+   "verdict": "Passed",
+   "observed": "Estimate render: work-section heading 'WORK SUMMARY'; boxed headline 'ESTIMATED TOTAL $746.66'; masthead 'Estimate date: Sep 7, 2026'. No validity/expiry line and no due-date line anywhere on the document. The signature block still carries 'CUSTOMER SIGNATURE / PRINTED NAME / DATE'.",
+   "not_observed": null,
+   "note": null
+  },
+  "C44961": {
+   "verdict": "Passed",
+   "observed": "Unpaid Invoice render: heading 'WORK PERFORMED'; boxed headline 'BALANCE $746.66'; masthead 'Invoice date: Sep 7, 2026' and 'Due date: Sep 14, 2026' (Net 7 from the invoice date).",
+   "not_observed": null,
+   "note": null
+  },
+  "C44962": {
+   "verdict": "Passed",
+   "observed": "All five clauses observed on INV-S2-32136. (1) Fully paid, the label stayed 'Invoice: INV-S2-32136' - never 'Receipt', and no second document exists. (2) Payments listed (Sep 5 Cash $200.00, Sep 6 Check $546.66) with 'BALANCE $0.00'. (3) 'Paid date: Sep 6, 2026' REPLACED 'Due date' - Sep 6 is the most recent applied date. (4) Reversing the Sep 6 cheque put 'Due date: Sep 14, 2026' back and removed 'Paid date'. (5) Paid date Sep 6 is EARLIER than invoice date Sep 7 and was shown as-is.",
+   "not_observed": null,
+   "note": "Clause 5 re-confirmed independently on INV-S2-32217, where a deposit collected Sep 1 against an invoice dated Sep 7 printed 'Paid date: Sep 1, 2026'."
+  },
+  "C45176": {
+   "verdict": "Passed",
+   "observed": "Clause 1 - INV-S2-32217: deposit DEP-4704 of $406.09 collected 1 Sep, invoice created 7 Sep, auto-applied in full; masthead prints 'Invoice date: Sep 7, 2026' / 'Paid date: Sep 1, 2026' - the earlier date shown as-is. Clause 2 - INV-S2-32136 paid by two payments (Sep 5 Cash $200.00, Sep 6 Check $546.66): 'Paid date: Sep 6, 2026', the LATEST applied date.",
+   "not_observed": null,
+   "note": null
+  },
+  "C45177": {
+   "verdict": "Passed",
+   "observed": "INV-S2-32136 was fully paid showing 'Paid date: Sep 6, 2026'. Reversing the $546.66 cheque re-rendered the masthead as 'Invoice date: Sep 7, 2026' / 'Due date: Sep 14, 2026' with no Paid date, and BALANCE returned to $546.66 - the label is decided at render time.",
+   "not_observed": null,
+   "note": null
+  },
+  "C45174": {
+   "verdict": "Passed",
+   "observed": "After reversing the $546.66 cheque the Payments section lists only the surviving 'Sep 5, 2026 - Cash $200.00' row; the reversed payment is absent entirely. BALANCE $546.66 = $746.66 total minus the one applied amount.",
+   "not_observed": null,
+   "note": null
+  },
+  "C44946": {
+   "verdict": "Passed",
+   "observed": "Heading reads exactly 'Payments'. Rows render as '{date} - {method}' with a literal hyphen: 'Sep 5, 2026 - Cash', 'Sep 6, 2026 - Check', 'Sep 7, 2026 - Cash', 'Sep 7, 2026 - EFT'. Amount column shows the APPLIED amount, proven by the split payment whose full amount was $397.96 but which printed $50.00 (the part applied here). Rows are date-ordered, and a fully reversed payment does not appear.",
+   "not_observed": null,
+   "note": null
+  },
+  "C44947": {
+   "verdict": "Passed",
+   "observed": "Clause 1 observed for three distinct configured methods: code CASH prints 'Cash', code CHEQUE prints 'Check', code EFT prints 'EFT' - in each case the shop-configured NAME from GET /api/organizations/finance/payment-methods, not the code.",
+   "not_observed": "Clause 2 (unconfigured code, underscores to spaces) and clause 3 (SHOPPAY shows 'Online') were not produced this pass - SHOPPAY is a customer-portal payment code and cannot be recorded from the shop app.",
+   "note": "Passed on the clause that could be produced; the two unproduced clauses are listed in the not_observed field rather than assumed."
+  },
+  "C44948": {
+   "verdict": "Passed",
+   "observed": "Clause 1 - INV-S2-32217 prints '(Deposit) Sep 1, 2026 - Cash   $406.09', the date being the deposit collection date, not the invoice date. Clause 2 - INV-S2-32136 prints '(Credit) Sep 7, 2026 - CM-4347   $50.00' with the full CM- prefixed number and the date the credit was applied.",
+   "not_observed": null,
+   "note": null
+  },
+  "C44949": {
+   "verdict": "Passed",
+   "observed": "Produced with one EFT payment of $397.96 split across two invoices ($50.00 to INV-S2-32136, $347.96 to INV-S-31595). The sub-line printed beneath the payment row reads exactly 'of $397.96 - $347.96 will be credited' with a literal em dash. Clause 1 confirmed: it fired on a REGULAR payment spread across two invoices, not a deposit, and gated on applied < full. Clause 4 confirmed: $397.96 - $50.00 = $347.96.",
+   "not_observed": "Clause 2 - the 'of {full} - {excess} -> Credit CM-xxxx' variant (excess already turned into a numbered credit) was not produced.",
+   "note": "Observation, not a defect: the wording 'will be credited' printed even though the excess went to a second invoice rather than to a credit. That is exactly what S8 clause 3 prescribes ('otherwise it reads...'), so the build conforms; flagging the wording as a product question, not a bug."
+  },
+  "C44950": {
+   "verdict": "Passed",
+   "observed": "Clause 1 - the row is labelled exactly 'BALANCE'. Clause 2 - verified at four different states on INV-S2-32136: $746.66 (nothing applied), $546.66 (after $200.00 cash), $50.00 (after $446.66 cash + $50.00 credit CM-4347), $0.00 (after the split EFT). Every figure equals Total minus the sum of applied payments, deposits and credits.",
+   "not_observed": "Clause 3 - the overpaid case (floored at $0.00, never negative) was not produced: the API caps an applied amount at the outstanding balance, so an over-application could not be recorded.",
+   "note": null
+  },
+  "C44953": {
+   "verdict": "Passed",
+   "observed": "Clause 2 observed on the freshly created INV-S2-32136 before any payment: the 'Payments' heading printed with no rows beneath it and 'BALANCE $746.66' equalled 'Total $746.66'.",
+   "not_observed": "Clause 1 - a $0.00 payment row being hidden was not produced (the payment API rejects a zero applied amount).",
+   "note": null
+  },
+  "C44954": {
+   "verdict": "Passed",
+   "observed": "Three shop-recorded payments (cash, cheque, EFT), an applied credit and an applied deposit were all present across the two invoices, and no paid banner appeared on any shop-app-generated PDF - clause 1 and clause 2 both hold. Neither invoice has a portal-processed payment.",
+   "not_observed": null,
+   "note": null
   }
  },
  "seeding": {
