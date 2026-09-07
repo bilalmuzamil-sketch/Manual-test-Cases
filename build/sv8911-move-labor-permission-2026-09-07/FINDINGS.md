@@ -39,7 +39,18 @@ A Technician with "edit labor and parts" permission can also **move labor** on a
 - Move-labor toggle live: Admin/SM/SrSA/SA/Foreman/PM = ON; Technician/Office/SalesRep/TimeClock = OFF; **Parts Technician = ON**.
 
 ## Separate finding (NOT caused by this ticket) → filed as its own ticket
-On the WO Lines tab a line row shows **Labor = Unassigned** while that line's **Edit Line dialog shows assigned technicians** (line 2 "Service - Wheels off": row Unassigned, dialog shows David Haynes + Emily Madden; API `line_tech_assigned_id = null` but schedule roster has two). Per Nemanja (comment 76073) the row shows the labour-task technician while the dialog shows the SV-8685 schedule roster; `WorkOrderLineRow.vue`/`LinesDetailProvider.php` are byte-identical on prod/develop/sv8911, and SV-9486 (25 Aug) removed the roster avatars from the row, making the divergence more visible. Reporter observed it reproduces on this branch but not staging/prod (data-shape dependent). Exhibits 3 & 4. Filed separately (see the SV-8911 comment for the key).
+On the WO Lines tab a line row shows **Labor = Unassigned** while that line's **Edit Line dialog shows assigned technicians** (line 2 "Service - Wheels off": row Unassigned, dialog shows David Haynes + Emily Madden; API `line_tech_assigned_id = null` but schedule roster has two). Per Nemanja (comment 76073) the row shows the labour-task technician while the dialog shows the SV-8685 schedule roster; `WorkOrderLineRow.vue`/`LinesDetailProvider.php` are byte-identical on prod/develop/sv8911, and SV-9486 (25 Aug) removed the roster avatars from the row, making the divergence more visible. Reporter observed it reproduces on this branch but not staging/prod (data-shape dependent). Exhibits 3 & 4. **Filed as SV-9769** (Bug, parent SV-8685, priority Medium, Product Area Work Orders, linked Relates → SV-8911). https://shopview.atlassian.net/browse/SV-9769
+
+## Jira writes (done)
+- **SV-9769 created** — the display-divergence follow-up (parent SV-8685, Medium, Product Area Work Orders); linked Relates → SV-8911. Description = "Found while testing SV-8911" top line + plain description + PO-runnable steps on the QA branch + fastest-way deep link + exhibits 3 & 4 + technical details last.
+- **SV-8911 QA comment posted — id 76074** (2026-09-07). Verdict PASSED (reported bug fixed); 13/14 checks pass; Parts Technician §3 deviation flagged for dev confirmation; exhibits 1 & 2 inline; SV-9769 named.
+
+## Pre-post bite-proof gate (Rule 72 — run immediately before the writes)
+- Build marker re-read LIVE: `v26.35.9-197fce0`, last-modified Fri 04 Sep 2026 10:47:21 GMT, etag `49ffa0fdffe1976ecacf5c9ce8cd3142` — IDENTICAL to test time (no redeploy).
+- All 4 evidence image URLs curled → HTTP 200.
+- SV-8911 re-read: status REJECTED FROM TESTING, Medium, Nemanja; no scope change vs testing.
+- Reader-facing text fingerprint scan: 0 AI hits (only "claude" occurrence is the branch name inside image URL paths).
+- Read-back after posting: first line = OVERALL QA STATUS: PASSED; 13-check table; exhibit-1 then exhibit-2 inline (correct order); SV-9769 link; technical details last. Ticket SV-9769 verified created with parent/priority/product-area/link as intended.
 
 ## Honest split (UI vs API)
 - Thing under test = **UI-observed live**: the right-click menus per role (the customer's exact surface), the toggle matrix + cascade, the wizard prefill, the Admin move completion, and the divergence dialog.
