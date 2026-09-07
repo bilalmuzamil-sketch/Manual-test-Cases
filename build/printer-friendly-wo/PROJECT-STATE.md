@@ -2,7 +2,31 @@
 
 **Canonical cold-resume doc.** Status derived live (Rule 92 / skill 15 §7).
 
-## 🆕 Update — 2026-09-02 (LATEST) — AUTOMATED CASES MADE RUNNABLE; EVERY QUOTED LABEL CONFIRMED
+## 🆕 Update — 2026-09-07 (LATEST) — SOURCE RE-VERIFIED against the current spec (near-non-substantive)
+
+Re-source-verified (QA lead, 2026-09-07; one of three suites). Standing directive: pulled the latest of
+every source live first. Full record: `source-verify-2026-09-07/SOURCE-CURRENCY-2026-09-07.md`.
+
+- **Spec (Confluence 519176194) last modified 2026-09-06** — no in-body version field; Change Log
+  unchanged since 2026-04-19; 45 rule IDs (S1–S6) all intact.
+- **PO / Owner now NAMED in the spec header: Milos Vasic / Branko Cicovic** (was TBD) →
+  **PO-PFWO-1 RESOLVED.**
+- **Two small deltas, both handled:** **S1-R5** status list narrowed 10 → 8 (dropped "Hold" and
+  "Imported"); C45088's steps already listed the 8, so only its stale tester note "three out of ten" →
+  "eight" (**C45088**). **S4-N1** gained a placeholder-row clause → added to **C45116**. Both re-stamped
+  provenance read 2026-09-07, written via html.set (fr-view), runnable 2/2, markers unchanged (C45088
+  READY, C45116 HOLD).
+- **Everything else byte-materially identical** — the other 42 cases keep their provenance (project
+  precedent: a non-substantive bump is not re-stamped suite-wide). Run R419 unchanged (44 cases, no
+  add/remove).
+- **Automated cases C45107 (S3-N1) and C45123 (S6-R1)** map to unchanged rules → NOT edited (Rule 71
+  did not bite).
+- Still open (pre-existing, not new): **HO-3** the no-lines contradiction (C45107/C45116 HOLD, PO
+  ruling); **PO-PFWO-2** no design exists.
+
+---
+
+## 🆕 Update — 2026-09-02 — AUTOMATED CASES MADE RUNNABLE; EVERY QUOTED LABEL CONFIRMED
 
 **Printer Friendly Work Orders: 44 cases live** (counted from TestRail, paged — never from `testrail-id-map.csv`).
 run 419, 44 tests, set-equal. Build on the branch moved to **`v26.35.6-0f8d60b`**.
