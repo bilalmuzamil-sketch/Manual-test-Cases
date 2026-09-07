@@ -2,6 +2,12 @@
 
 The QA lead gave explicit permission on 2026-09-07 to write ALL 120 results,
 including Failed and Blocked, lifting the usual Passed-only limit on shared runs.
+
+FORMATTING (measured 2026-09-07, playbook section J):
+TestRail wraps a submitted result comment in ONE outer <p>, so plain newlines
+COLLAPSE and the tester reads a wall of text. Block <p> tags DO render in a result
+comment and do NOT show literally (unlike in a case field written via the API), so
+every paragraph here is its own <p>. Never emit <br> - that is origin-dependent.
 """
 import sys, json
 sys.path.insert(0, 'build/testing-tools')
@@ -40,20 +46,28 @@ TODO = {
            'with the QA lead.',
 }
 
+
+def esc(s):
+    """Escape only what would break the markup. Keep the tester's text otherwise."""
+    return s.replace('&', '&amp;').replace('<', '&lt;').replace('>', '&gt;')
+
+
 res = json.load(open('build/invoice-ui-refresh/execution-2026-09-07/RESULTS.json'))['results']
 
 payload = []
 for cid, r in sorted(res.items()):
-    parts = [HDR, '', r['observed'].strip()]
+    blocks = ['<p>%s</p>' % esc(HDR), '<p>%s</p>' % esc(r['observed'].strip())]
     if r.get('not_observed') and r['not_observed'].strip().lower() != 'none':
-        parts += ['', 'Not observed this run: ' + r['not_observed'].strip()]
+        blocks.append('<p>Not observed this run: %s</p>' % esc(r['not_observed'].strip()))
     if cid in TODO:
-        parts += ['', TODO[cid]]
+        blocks.append('<hr />')
+        blocks.append('<p>%s</p>' % esc(TODO[cid]))
     payload.append({'case_id': int(cid[1:]),
                     'status_id': STATUS[r['verdict']],
-                    'comment': '\n'.join(parts)})
+                    'comment': ''.join(blocks)})
 
 assert len(payload) == 120, len(payload)
+assert not any('<br' in p['comment'] for p in payload), 'never emit <br> in an API write'
 print('pushing %d results (%d passed, %d failed, %d blocked)' % (
     len(payload),
     sum(1 for p in payload if p['status_id'] == 1),
