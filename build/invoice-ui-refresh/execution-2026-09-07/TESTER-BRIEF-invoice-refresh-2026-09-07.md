@@ -28,11 +28,11 @@ unless something looks different on your machine.
 
 | | Cases | What it means for you |
 |---|---|---|
-| **Passed** | **106** | Already verified against real documents produced by this build |
-| **Known problems** | **4** | Listed below. Expect them, mark the case Failed, raise nothing new |
-| **Could not be set up** | **10** | Listed below with what each one needs |
+| **Passed** | **110** | Already verified against real documents produced by this build |
+| **Known problems** | **6** | Listed below. Expect them, mark the case Failed, raise nothing new |
+| **Could not be set up** | **4** | Listed below with what each one needs |
 
-## The four known problems — do not raise these again
+## The six known problems — do not raise these again
 
 1. **A line's own fee is left out of that line's totals.** If a work line has a fee or discount, the
    grey totals at the foot of that line ignore it, while the Summary charges it. Reported as
@@ -43,17 +43,38 @@ unless something looks different on your machine.
    all look the same. Reported as **SV-9761**.
 4. **A credit note that did not come from an invoice prints no disclaimer.** The case itself predicts
    this — mark it Failed and raise nothing.
+5. **The Work Order line is missing from the top of the document.** The rule changed on 7 September
+   and the build has not caught up. Reported as **SV-9642**.
+6. **The paid banner leaves out the "Remaining Balance" line.** On a customer-portal document, a
+   payment that did not settle the invoice should say how much was still owing; it does not. Reported
+   as **SV-9797**, where it is being treated as a wording correction to the specification rather than
+   a fault in the build.
 
-## The ten that need something we could not set up
+## The four that need something we could not set up
 
-| What it needs | Cases |
-|---|---|
-| The **customer portal** — the "paid" banner exists only on a portal-produced PDF | C44951, C44952, C45175 |
-| The **authorizer entry screens** | C45275 |
-| An **imported work order** | C45190 |
-| A work order that has been through **Interstate Billing** approval | C44916 |
-| A shop with **no logo**, or with a **blank address field** | C44902, C44907 |
-| A customer with **no payment terms**, and an invoice totalling **$0.00** | C44963, C45178 |
+| What it needs | Cases | Where it is tracked |
+|---|---|---|
+| A shop with **no logo** — one can be added or replaced but never removed | C44902 | **SV-9799** |
+| A shop location with a **blank address, city, state, postal code or phone** — all five are compulsory | C44907 | **SV-9800** |
+| A work order that has been through **Interstate Billing** approval | C44916 | **SV-9710** |
+| The case itself — it has **no steps and no expected results** and belongs to another author | C45275 | — |
+
+## How to reach the customer portal
+
+Three of these were blocked until we found the way in, and it is worth knowing:
+
+1. Click the **round avatar at the top right** of ShopView.
+2. Click **Customer Portal** in the menu. It opens in a new browser tab, already signed in — there is
+   **no separate password**.
+3. Click **Invoices** in the portal's left menu. Use **Filter by Customer** to find one quickly.
+4. To pay: open the invoice, **Pay Now**, confirm the payer, type the amount, **Continue to checkout**,
+   then the test card `4242 4242 4242 4242`, any future expiry, any 3-digit code, ZIP `94107`.
+5. To pay two invoices in one go: filter by one customer, tick two unpaid rows, click **Pay Online**.
+6. To see the paid banner: on the invoice, click the **printer icon** at the top right and choose
+   **"Print with Payment Receipt"**. The other choice, "Print Invoice", gives the same document
+   without the banner.
+
+**The portal only exists on staging.** These cases cannot be run on a QA branch.
 
 ## If you find something
 

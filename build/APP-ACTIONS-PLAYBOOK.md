@@ -4202,3 +4202,35 @@ id) · `/api/customer-account/list-unpaid-transaction?accountId=…&openOnly=fal
 embed subset fonts and write text as raw glyph ids, so every ordinary extractor returns an empty
 string — which reads exactly like "the document has no text" and is the same false negative that
 produced the withdrawn *"the credit note is not rendered on this branch"* conclusion.
+
+## CUSTOMER PORTAL (ShopPay) — staging entry, proven live 2026-09-07
+
+- **Entry (there is NO portal password):** in the shop app click the **round avatar, top right** →
+  **"Customer Portal"**. A new tab opens at `https://staging.portal.shopview.com/invoices`; the click
+  does `POST https://staging.portal.shopview.com/sso-login` and mints
+  `shopview_customer_portal_session` for the same signed-in shop user. Production is
+  `https://portal.shopview.com`.
+- **It is a separate Laravel + Inertia app.** Its host is in NO shop-app bundle, NO invoice email and
+  on NO API route — only the lazy chunk `usePortalRedirect.*.js`, fetched when the menu item is
+  clicked. Do not conclude it is unreachable from a bundle grep.
+- **Free route map:** the portal's login HTML carries an inline `const Ziggy={…}` block with all 161
+  routes (invoices, payments, batch-payments, disputes, payouts, terminal, admin). Parse it instead of
+  guessing.
+- **Reading pages as JSON:** every page embeds `data-page="app" type="application/json">{…}</script>`.
+  Sending `X-Inertia: true` answers **409** (version mismatch) — fetch the HTML and parse that block.
+- **The paid-banner document:** on an invoice, the **printer icon** → **"Print with Payment Receipt"**
+  → `/invoices/{id}/preview?include_receipt=1`. 🛑 **The banner is rendered CLIENT-SIDE** by
+  `build/assets/PreviewInvoice-*.js`; the server's `props.htmlContent` has none of the banner strings,
+  so a server-side fetch makes the feature look missing. Render it and read
+  `#portal-paid-invoice-summary`.
+- **Pay an invoice:** open it → **Pay Now** → confirm payer → amount → **Continue to checkout** →
+  Stripe **sandbox** (`is_test_mode: true`), card `4242 4242 4242 4242`, any future expiry, any CVC,
+  **ZIP `94107`** (checkout defaults Country = United States, so a Canadian postal code is rejected).
+- **Batch payment:** Invoices list → **Filter by Customer** → tick two unpaid rows → **Pay Online**.
+  The row checkbox is a `<button>` inside the first `<td>`, not an `<input type=checkbox>`.
+- **Two payer-dialog shapes:** "Who is this payment for?" with a picker (several contacts) or
+  "Confirm payment recipient" with just **Next** (one contact). Handle both.
+- **`/invoices/{id}/preview` → 404** means the invoice is outside the portal's current scope, not that
+  it is missing.
+- **Build manifest** `/build/manifest.json` on both hosts lists every JS asset — the cheapest way to
+  prove what production actually ships (compare chunk names and sha256 against staging).

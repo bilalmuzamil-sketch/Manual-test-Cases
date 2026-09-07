@@ -796,3 +796,105 @@ and `delete-logo` are 404 on both verbs. **There is no way to remove an organisa
 Re-uploading the identical file first (verified byte-identical afterwards, same sha256) made the
 search itself a no-op — *when you must exercise a destructive-looking endpoint to learn its shape,
 feed it the value that is already there.*
+
+## L29 · ⭐ HOW TO REACH THE CUSTOMER PORTAL — AND WHY EVERY EARLIER SEARCH MISSED IT
+**Retrieve when:** anything needs the ShopPay customer portal, the paid banner, portal payments,
+batch payments, disputes, payouts or the portal's own invoice document.
+
+**The route is the shop app's own account menu.** Click the round avatar at the top right →
+**"Customer Portal"** (badged *New*) → a new tab opens at
+`https://staging.portal.shopview.com/invoices`. The click does `POST https://staging.portal.shopview.com/sso-login`
+and mints a `shopview_customer_portal_session` cookie for the same signed-in shop user. **There is no
+separate portal password**, and the `+alias` accounts do not have one either.
+
+**Why eight earlier searches missed it.** The portal is a **separate Laravel + Inertia application**.
+Its host appears nowhere in the shop app's Quasar bundle, nowhere in the invoice email, and on no API
+route. The only trace in the shop app is the lazy chunk `usePortalRedirect.*.js`, loaded when the menu
+item is clicked. **The lesson: when a feature is a different application, grep the app that LINKS to
+it for the link, not for the host — and click every menu item before concluding a surface is
+unreachable.**
+
+**The portal's own route map is free.** Its login HTML carries an inline `Ziggy` block listing all
+161 routes. `python3 -c "…re.search(r'const Ziggy=(\{.*?\});', html, re.S)…"` gives invoices,
+payments, batch-payments, disputes, payouts, terminal and admin routes in one read — no guessing.
+
+**The banner document.** On an invoice, the **printer icon** at the top right offers
+**"Print Invoice"** and **"Print with Payment Receipt"**. The second loads
+`/invoices/{id}/preview?include_receipt=1`. 🛑 **The banner is rendered CLIENT-SIDE**, by
+`build/assets/PreviewInvoice-*.js`; the server's `props.htmlContent` contains none of the banner
+strings. Fetching that page server-side and grepping for "PAID IN FULL" returns nothing and looks
+like the feature is missing. **Render it in a browser and read
+`document.getElementById('portal-paid-invoice-summary').innerText`.**
+
+**Seeding every banner state (all proven live 2026-09-07):**
+
+| State | How |
+|---|---|
+| A portal payment | invoice → **Pay Now** → confirm payer → amount → **Continue to checkout** → Stripe test card `4242 4242 4242 4242`, any future expiry, any CVC, **ZIP `94107`** |
+| A PARTIAL payment | type an amount smaller than the balance in that same box |
+| A **batch** payment | Invoices list → **Filter by Customer** → tick two unpaid rows (the checkbox is a `<button>` in the first `<td>`, not an `<input>`) → **Pay Online** |
+| A batch marker AND a plain marker on one invoice | one single payment, then include the same invoice in a batch |
+| A payment with a **late fee** | none could be created; the existing S-12725 (Apr 17 2026) carries one |
+| A shop payment and a portal payment on one invoice | `create-customer-payment` for the shop side, then Pay Now for the portal side |
+
+**Traps.** The payer dialog has **two shapes** — "Who is this payment for?" with a picker when the
+customer has several contacts, "Confirm payment recipient" with just **Next** when it has one; handle
+both or the flow hangs. Stripe checkout defaults **Country = United States**, so a Canadian postal
+code fails validation — use a US ZIP. Only invoices in the portal's current scope resolve;
+`/invoices/{id}/preview` answers **404** for the rest, and that 404 is scope, not a missing invoice.
+
+## L30 · 🛑 A RULE THAT RESTATES PRODUCTION IS A SPEC CORRECTION, NOT A DEFECT — CHECK THE SHIPPED BUNDLE
+**Retrieve when:** the build does not do what a rule says, and the rule describes existing behaviour.
+
+C44952 clause 4 requires a "Remaining Balance" row in the paid banner. It is not drawn. The reflex is
+a Story Defect. **The right answer was a spec correction**, and two checks decided it:
+
+1. **Read the rule's own preamble.** S8-R8 opens *"Behavior already in production, restated unchanged
+   — this spec adds no new banner work"*, and S8-R9 is not marked net-new. The spec then carries a
+   standing principle: *"Where a rule in this spec is found to disagree with what production already
+   does, and that rule is not marked net-new, the rule is amended to describe production rather than
+   production being changed to match the rule."*
+2. **Prove what production ships, without touching production data.** Both environments serve a Vite
+   build manifest at `/build/manifest.json`. The same chunk name appeared in both, and
+   `sha256` of `portal.shopview.com/…/PreviewInvoice-DQmgXtBb.js` equalled staging's byte for byte.
+   **Downloading a public JS asset is a read of the shipped code, not a production test** — it is
+   cheap, safe, and it is the difference between "regression" and "never existed".
+
+**Also worth the two minutes:** the whole front end was searched, not one file — all 133 JS assets in
+the manifest, zero occurrences of the string. *"I could not find it on the screen"* is weak;
+*"it is not in the shipped bundle"* is not arguable.
+
+## L31 · THE PROJECT'S MANUAL TESTER IS NOT A FOREIGN AUTHOR — `created_by 6` IS IN SCOPE
+**Retrieve when:** a script guards a TestRail write with `created_by !== 3`.
+
+A write guard of `created_by !== 3` **skipped C45175** as foreign. It is **Mudassir Qamar** (TestRail
+user **6**), the designated manual QA tester for Invoice UI Refresh, and Rule 38's amendment puts his
+cases IN SCOPE — source-verify them, keep them tester-ready, update them. The guard must be
+`[3, 6].includes(created_by)` on this suite (user **4**, Viktoria Videnovic, plays the same role on
+Inline Add and Edit Parts 6597 and Printer Friendly WO 6617). **`created_by === 1` — Vladimir
+Tomovic — stays hands-off, always.**
+
+## L32 · EDITING A CASE THAT ALREADY RENDERS `fr-view` — GO THROUGH THE UI, NEVER THE API
+**Retrieve when:** a one-line correction is needed in a case body.
+
+Scan first: `div[class^="markdown"]` on `/index.php?/cases/view/<id>` tells you the container. All
+three portal cases were **`markdown fr-view`** — an API `update_case` would have dropped them into the
+escaping container and turned their `<br>` tags into literal text. **A one-character fix is still a UI
+edit.**
+
+The minimal, deterministic recipe (no keystroke retyping, so no autoformat surprises):
+
+```js
+const inst = window.FroalaEditor.INSTANCES.find(i => i.$oel[0].id === f + '_display');
+let html = inst.html.get();
+html = html.replace('…old…', '…new…');          // or splice a block in before '<p>---'
+inst.html.set(html); inst.undo.saveStep();
+const b = document.querySelector('#' + f);
+b.value = inst.html.get(); b.dispatchEvent(new Event('change', {bubbles: true}));
+```
+
+**Two traps.** `#accept` can still read **disabled** after `html.set` — dispatch `input` on
+`inst.$el[0]` as well, wait ~1s, and only then click; if it is still disabled, clear `disabled`
+directly. And **Froala normalises `<b>` to `<strong>`** on save, so emit block tags and plain text
+only. Verify every edit by re-reading the view page: container `markdown fr-view`, zero literal tags,
+`AUTOMATION:` marker still last.
