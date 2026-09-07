@@ -450,6 +450,78 @@
    "observed": "Cannot be produced: an invoice with a $0.00 total needs a work order whose lines total zero, and every canned line available at this location carries a price. A zero-priced line could not be created through the line-create path.",
    "not_observed": null,
    "note": "To finish it: build a work order with one line priced $0.00 (or discount the line to zero without applying a payment), invoice it, and read the masthead - expect 'Due date' (or no due-date line), never 'Paid date', because fully paid needs Balance $0.00 AND at least one applied row."
+  },
+  "C44964": {
+   "verdict": "Passed",
+   "observed": "Read on eight credit documents produced this pass (CM-4348, CM-4350, CM-4351, CM-4352, CM-4353, CM-4354, CM-4324 and the invoice-origin CM-4355). Every one shows 'Credit: CM-nnnn' in the masthead with the CM- prefix, and 'Issue date: Sep 7, 2026' (CM-4324 correctly carries its own earlier date, Sep 2, 2026). No money figure appears in the masthead and no boxed headline figure appears anywhere on the document.",
+   "not_observed": null,
+   "note": null
+  },
+  "C44965": {
+   "verdict": "Passed",
+   "observed": "Clause 1 - the customer block is labelled 'CREDIT TO', never 'Bill To', on all eight credit documents. Clause 2 - the customer name, street, city/province and postcode all print exactly as on the Invoice. Clause 3 - no Remit Payment To block appears, and the Credit To box measures x0=60.0 to x1=535.3, i.e. 475.3pt, the full content width - the same measurement as the Invoice's Bill To.",
+   "not_observed": null,
+   "note": null
+  },
+  "C44966": {
+   "verdict": "Passed",
+   "observed": "Clause 1 - the status table's columns read exactly 'CREDIT NUMBER', 'STATUS' and, when an origin invoice exists, 'INVOICE NUMBER'. Clause 2 - four of the five states were produced and each renders its own label: 'Unapplied' (CM-4348), 'Applied' (CM-4350), 'Voided' (CM-4351) and 'Partially applied' (CM-4352, CM-4324, CM-4354). Clause 3 - the invoice-origin credit CM-4355 prints 'INVOICE NUMBER  INV-S-32220'. Clause 4 - on every account-level credit (no origin invoice) the whole Invoice Number column is absent, not blank.",
+   "not_observed": "The fifth status label, 'Refunded', was not produced: a credit refunded in part reports 'Partially applied', and a fully refunded one reports 'Applied'.",
+   "note": "Worth a look separately: the Invoice Number column prints 'INV-S-32220' while the invoice document itself is headed 'INV-S2-32220'. The case's own example uses the INV-S- form, so it is scored a pass, but the two numbers for one invoice are recorded in FINDINGS."
+  },
+  "C44967": {
+   "verdict": "Passed",
+   "observed": "Clause 1 - the table's columns read exactly 'DESCRIPTION', 'QUANTITY', 'RATE', 'RESTOCKING FEE', 'TOTAL'. Clause 3 - a money-only credit line prints '--' for Quantity and '--' for Rate. Clause 4 - the Restocking Fee column is present on every credit document and reads '$0.00' where there is no fee. Clause 5 - totals are negative with a leading minus ('-$200.00', '-$40.00'), never the parentheses convention. Clause 6 - the money-only line's Description is the credit's reason where one was entered ('ZZAUTOTEST credit A'), and falls back to the memo where it was not (CM-4324 renders '100 \u2014 Admin ShopView').",
+   "not_observed": "Clause 2 - a returned part showing a negative quantity and its rate was not produced. The parts-return picker is part-sale only; a service work order's credit is a plain amount, so a part-sale invoice with lines is needed.",
+   "note": null
+  },
+  "C44968": {
+   "verdict": "Passed",
+   "observed": "Clause 2 - on every money-only credit the Total equals the credited amount exactly (CM-4348 -$200.00, CM-4355 -$40.00, CM-4324 -$100.00).",
+   "not_observed": "Clause 1 - the restocking-fee arithmetic (quantity -2 at $50.00 with a $10.00 fee giving -$90.00) needs a returned part, which is part-sale only and was not produced.",
+   "note": null
+  },
+  "C44969": {
+   "verdict": "Passed",
+   "observed": "Clause 1 - the totals block prints exactly 'Subtotal', 'Tax', 'Total Credit', 'Payments', 'Balance', in that order; Subtotal is the sum of the item totals and negative, Tax is a single row reading '$0.00' where no tax applies, Total Credit is negative. Clause 2 Unapplied (CM-4348) - 'Payments' shows with no rows and Balance reads $200.00 positive. Clause 3 Partially applied to an invoice (CM-4324) - 'Payments' shows with no rows and Balance reads $49.77, the open balance after $50.23 was applied. Clause 4 Applied (CM-4350) - Balance reads $0.00.",
+   "not_observed": null,
+   "note": "Case text lags the spec on one point, and the BUILD is right: where a credit carries a refund, the Payments section DOES list rows (CM-4352 prints 'Sep 7, 2026 - Cash  -$50.00'). That is what S11-R6/R6b require since the 2026-09-04 amendment; the case still says 'the label with no rows' for partially applied. Not scored against the build."
+  },
+  "C44970": {
+   "verdict": "Failed",
+   "observed": "Outcome (2) in the case reproduces exactly. On the credit raised from an invoice (CM-4355, status table carrying 'INVOICE NUMBER  INV-S-32220') the full disclaimer prints just above the three signature lines - that half passes. On every credit with no invoice number (CM-4348, CM-4350, CM-4351, CM-4352, CM-4353, CM-4354, CM-4324, CM-4347 - eight documents) NO disclaimer prints at all, only 'CUSTOMER SIGNATURE / PRINTED NAME / DATE'. The shop does have one configured, which CM-4355 proves. Clause 2 passes on all nine documents.",
+   "not_observed": null,
+   "note": "Marked Failed per the case's own instruction; it fails in exactly the way described, so nothing new is raised. No Jira ticket exists for it - it is reported here with its C-id per the standing rule that a pass ends in a runnable test, not a defect."
+  },
+  "C45179": {
+   "verdict": "Passed",
+   "observed": "CM-4348 immediately after creation, unapplied: 'Payments' shows the label with no rows beneath it, and 'Balance' reads $200.00 - positive, the credit's full open balance. Not $0.00.",
+   "not_observed": null,
+   "note": null
+  },
+  "C45180": {
+   "verdict": "Passed",
+   "observed": "CM-4324 ($100.00 credit) applied against invoice S-32220 whose remaining balance was only $50.23, so only part of the credit was consumed. The document shows 'Payments' with no rows - the application to the invoice is not listed - and 'Balance  $49.77', positive, the original $100.00 minus the $50.23 applied.",
+   "not_observed": null,
+   "note": "The case's illustrative figures are $200/$120; the same rule was exercised at $100.00/$49.77 because the API applies the whole available credit unless the invoice balance caps it."
+  },
+  "C45181": {
+   "verdict": "Passed",
+   "observed": "Clause 1 - CM-4350, fully applied against S-32219: Balance reads $0.00. Clause 2 - CM-4351, voided: Balance reads $0.00, the items table and the totals block render exactly as on the unapplied credits (Subtotal -$200.00, Tax $0.00, Total Credit -$200.00), and the word 'Voided' in the status table is the only indication of the state.",
+   "not_observed": null,
+   "note": null
+  },
+  "C45182": {
+   "verdict": "Passed",
+   "observed": "Clause 1 - CM-4352, $50.00 cashed out: the Payments section lists 'Sep 7, 2026 - Cash   -$50.00', the '{date} - {method}' shape with a negative amount. Clause 2 - its Balance reads $150.00, positive. Clause 3 - CM-4353, fully consumed ($50.00 refunded then the remaining $150.00 applied): the Payments section lists both rows ('Sep 7, 2026 - Cash  -$50.00' and 'Sep 7, 2026 - Applied  -$150.00') and Balance reads $0.00.",
+   "not_observed": null,
+   "note": "No regression against the shipped SV-7754 rendering."
+  },
+  "C45183": {
+   "verdict": "Passed",
+   "observed": "CM-4354 built to the case's exact figures: a $200.00 credit, $50.00 cashed out and $80.00 applied to invoice S-31595. The document lists both consumption rows and 'Balance  $70.00', positive - the original credit total minus the amount refunded minus the amount applied.",
+   "not_observed": null,
+   "note": null
   }
  },
  "seeding": {
