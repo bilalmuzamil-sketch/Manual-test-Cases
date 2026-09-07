@@ -441,15 +441,15 @@
   },
   "C44963": {
    "verdict": "Blocked",
-   "observed": "Cannot be produced on staging as configured: every customer account in this organisation carries a credit term (4 Star Truck Repair is 'Net 7'), and the invoice derives its due date from that term, so an invoice with no due date could not be created through the API or the invoice-create path.",
+   "observed": "Proven unreachable rather than merely unattempted. The due date is always derived from the customer's payment terms and cannot be overridden: creating the invoice with due_date explicitly null and again with it empty both produced 'Due date: Sep 14, 2026'. Terms themselves cannot be cleared - the picker offers twelve values and no empty option, and a new customer is assigned COD automatically. Setting the shortest term, 'Due on Receipt', still yields a due date: INV-S2-32265 prints 'Invoice date: Sep 7, 2026' and 'Due date: Sep 7, 2026'. So a normally created invoice always has a due date. Clause 2's paid-swap half is proven separately under C44962 and C45177.",
    "not_observed": null,
-   "note": "To finish it: clear the customer's payment terms (Customers > the customer > Terms) so the term is blank, then invoice a work order for that customer and read the masthead - expect 'Invoice date' with no 'Due date' line, then make it fully paid and expect 'Paid date'."
+   "note": "The specification's own change log refers to null due dates in the context of BATCH and IMPORTED invoices (S13-N1), which is the likely route to this state - but an imported invoice renders on the old template, not the refreshed masthead, so it would not exercise this rule anyway. Worth a product answer on whether a null due date is reachable at all for a refreshed document."
   },
   "C45178": {
-   "verdict": "Blocked",
-   "observed": "Cannot be produced: an invoice with a $0.00 total needs a work order whose lines total zero, and every canned line available at this location carries a price. A zero-priced line could not be created through the line-create path.",
+   "verdict": "Passed",
+   "observed": "Seeded work order S2-32262 with a $350.00 line and a work-order-wide discount of $386.75, giving Subtotal $0.00, GST $0.00 and Total $0.00 with nothing applied (the invoice-create response confirms auto_paid false and no payment, deposit or credit rows). Clause 1: the masthead reads 'Invoice date: Sep 7, 2026' and 'Due date: Sep 14, 2026' - a Due date, NOT a Paid date. Clause 2 holds by construction: Balance is $0.00 but no row has been applied, and the invoice is correctly not treated as fully paid.",
    "not_observed": null,
-   "note": "To finish it: build a work order with one line priced $0.00 (or discount the line to zero without applying a payment), invoice it, and read the masthead - expect 'Due date' (or no due-date line), never 'Paid date', because fully paid needs Balance $0.00 AND at least one applied row."
+   "note": null
   },
   "C44964": {
    "verdict": "Passed",
@@ -489,9 +489,9 @@
   },
   "C44970": {
    "verdict": "Failed",
-   "observed": "Outcome (2) in the case reproduces exactly. On the credit raised from an invoice (CM-4355, status table carrying 'INVOICE NUMBER  INV-S-32220') the full disclaimer prints just above the three signature lines - that half passes. On every credit with no invoice number (CM-4348, CM-4350, CM-4351, CM-4352, CM-4353, CM-4354, CM-4324, CM-4347 - eight documents) NO disclaimer prints at all, only 'CUSTOMER SIGNATURE / PRINTED NAME / DATE'. The shop does have one configured, which CM-4355 proves. Clause 2 passes on all nine documents.",
+   "observed": "Confirmed as a real defect and filed as SV-9790. Re-verified on two credits created minutes apart on the same account, same shop, same day. CM-4357 (raised with no originating invoice): NO disclaimer at all - the column beside the totals, where it belongs, is blank, and the document runs from the credit line straight to the signature lines. CM-4358 (raised from invoice INV-S-32262): the SAME shop disclaimer prints in full in that same column. The only structural difference between the two documents is the INVOICE NUMBER column. Clause 2 passes on both: all three signature lines print. Ruled out per the toggle discipline: the disclaimer IS configured (1,036 characters at Administration > Settings > Invoice, and CM-4358 proves it renders), and there is no per-document switch for it - the gear-icon toggles cover only labor/part display and the two summarize options. Reproduced on eight further no-invoice credits earlier the same day.",
    "not_observed": null,
-   "note": "Marked Failed per the case's own instruction; it fails in exactly the way described, so nothing new is raised. No Jira ticket exists for it - it is reported here with its C-id per the standing rule that a pass ends in a runnable test, not a defect."
+   "note": "FILED AS SV-9790 (Story Defect, Medium, parent SV-9150) on the QA lead's instruction. Duplicate search run first over 'disclaimer', 'credit memo' and 'Credit Invoice' - nothing covers it; SV-8115 is a Done layout issue from an earlier build. The case's own text predicts this as outcome (2), which is why it was not filed on the first pass."
   },
   "C45179": {
    "verdict": "Passed",
@@ -686,10 +686,10 @@
    "note": "The scale-to-fit makes the body type very small on a phone. The specification already records that as a zoom consequence and a product question rather than a defect (SV-9694 close-out, 2026-09-04), so it is not raised here."
   },
   "C45190": {
-   "verdict": "Blocked",
-   "observed": "Two of the three record types verified, both correct. WORK ORDER S2-32136: the customer card renders in full - '4 Star Truck Repair / Contact Savannah Tran / Phone 898-021-4480 / Authorizer Savannah Tran / Phone 898-021-4480' - and the Authorizer row carries a working dropdown control. PART SALE P2-1931: the same card renders with the same fields, and the Authorizer row is present with its dropdown, which is what clause 2 requires for a parts sale. No layout break on either.",
-   "not_observed": "The IMPORTED WORK ORDER half of both clauses. There is no imported work order anywhere in this organisation: GET /api/work-orders-imported returns an empty list at Staging Heavy Duty - 9919, and the same query filtered by the customer returns none. So the card could not be seen on an imported work order, and the rule that the Authorizer row must be ABSENT there could not be exercised.",
-   "note": "To finish it: import a work order (or ask for one to be seeded), open it, and check two things - the customer card renders without a layout break, and the Authorizer row is NOT shown on it. Everything else in this case has already passed."
+   "verdict": "Passed",
+   "observed": "All three record types now covered. Imported work order ZZAUTOTEST-IMP-001 was created for this purpose through Administration's historical-invoice import. Clause 1: the customer card renders on all three - on the work order and the part sale it shows the customer, contact, phone and Authorizer; on the imported work order it shows the customer, asset, unit, VIN and Financial Info, with no layout break. Clause 2: the Authorizer row is present on the work order and on the part sale, and correctly ABSENT on the imported work order.",
+   "not_observed": null,
+   "note": "Separate observation, outside this case and this suite: the imported work order's own document is still the OLD template, not the refreshed one - it prints 'Bill To' rather than 'BILL TO', 'Customer signature:' rather than the three-line signature row, a plain Description/Quantity/Rate/Amount table, and 'Software Powered by ShopView'. It also prints 'undefined, undefined, undefined' where the shop address belongs. The refresh spec lists only the Estimate, Invoice and Credit Invoice as documents covered, so this is probably out of scope - but the literal 'undefined' text is worth a decision."
   },
   "C45187": {
    "verdict": "Passed",
