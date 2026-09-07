@@ -440,10 +440,10 @@
    "note": null
   },
   "C44963": {
-   "verdict": "Blocked",
-   "observed": "Proven unreachable rather than merely unattempted. The due date is always derived from the customer's payment terms and cannot be overridden: creating the invoice with due_date explicitly null and again with it empty both produced 'Due date: Sep 14, 2026'. Terms themselves cannot be cleared - the picker offers twelve values and no empty option, and a new customer is assigned COD automatically. Setting the shortest term, 'Due on Receipt', still yields a due date: INV-S2-32265 prints 'Invoice date: Sep 7, 2026' and 'Due date: Sep 7, 2026'. So a normally created invoice always has a due date. Clause 2's paid-swap half is proven separately under C44962 and C45177.",
+   "verdict": "Passed",
+   "observed": "Verified on work order S-17466 (customer East Moline Diesel Repair, terms Net 30) through the Estimate/Invoice toggle on the Finance tab. Toggle OFF, the Estimate: the masthead reads 'Estimate: EST-S2-17466' and 'Estimate date: Sep 6, 2026' with NO 'Due date' line anywhere - the old quirk of rendering a null due date as today's date is retired, which is clause 1. Toggle ON, the Invoice: 'Invoice: INV-S2-17466', 'Invoice date: Sep 6, 2026' and 'Due date: Oct 6, 2026', the Net 30 date correctly derived. Clause 2, the paid swap, is proven on two other records: INV-S2-32136 replaced 'Due date' with 'Paid date: Sep 6, 2026' once fully paid, and the deposit-paid INV-S2-32217 shows 'Paid date: Sep 1, 2026'.",
    "not_observed": null,
-   "note": "The specification's own change log refers to null due dates in the context of BATCH and IMPORTED invoices (S13-N1), which is the likely route to this state - but an imported invoice renders on the old template, not the refreshed masthead, so it would not exercise this rule anyway. Worth a product answer on whether a null due date is reachable at all for a refreshed document."
+   "note": "CORRECTED VERDICT - the earlier Blocked was my misreading. I took 'an Invoice with no due date set' to mean a record whose due-date field is null and went looking for a data state that does not exist. The case's own phrase, 'the old quirk of rendering a null due date as today's date is retired', is taken verbatim from spec rule S10-R2, which attaches it to the ESTIMATE. The document with no due date is the Estimate view, reached with the toggle. QA lead's correction, 2026-09-07."
   },
   "C45178": {
    "verdict": "Passed",

@@ -634,3 +634,39 @@ Every one must read `on: "true"` before the document is evidence of anything bei
 value proves itself; a missing value proves nothing on its own. Before reporting anything as missing,
 list what could suppress it — a per-view toggle, a shop setting, a permission, a data state — and
 show each one ruled out **on the document in front of you**, not on a neighbouring one.
+
+---
+
+## L25 · 🛑 READ THE CASE'S OWN WORDS BACK TO THE SPEC BEFORE HUNTING FOR A DATA STATE
+**Retrieve when:** a case seems to need a state the product cannot reach, and you are about to mark it
+Blocked.
+
+**WHAT HAPPENED (2026-09-07).** C44963 says *"An Invoice with no due date set shows 'Invoice date:
+{date}' and no 'Due date' line (the old quirk of rendering a null due date as today's date is
+retired)."* I read that as needing a record whose `due_date` column is null, and spent a long stretch
+proving it unreachable — the server ignores a null `due_date`, terms cannot be cleared, all twelve
+terms yield a date. I marked it Blocked with a careful proof of the wrong thing.
+
+**The QA lead answered it in one line: toggle the Estimate/Invoice switch off and there is no due
+date; toggle it on and there is.** He was right, and the spec says so:
+
+> **S10-R2:** *"…the masthead shows 'Estimate date: {date}' **(a relabel, not a new element:
+> production estimates today print "Invoice Date" and "Due date" on the estimate; this renames the
+> issued date, drops the due-date line, and retires the quirk where a null due date rendered as
+> today's date)**."*
+
+**The case's parenthetical is lifted verbatim from S10-R2.** That phrase was the pointer to the
+Estimate all along. The "document with no due date" is not an exotic data state — it is the Estimate
+view, one click away.
+
+### THE RULE
+**When a case looks unreachable, grep the SPEC for the case's own distinctive phrase before you
+conclude anything.** A case is written from the spec, so its unusual wording is nearly always a quote.
+Find the rule the phrase came from and it will tell you which document, view or toggle the case means.
+Searching `grep -n "quirk where a null due date" spec-body-*.md` would have taken ten seconds and
+saved an hour.
+
+**And the second-order lesson, which is the same one as L24:** a careful proof of an unreachable state
+is worthless if you are proving it about the wrong thing. Before investing in "this cannot be done",
+spend one minute on "am I sure this is what is being asked?" — re-read the case against its cited
+rule, and check the cheapest interpretation first. The simplest reading is usually the intended one.
