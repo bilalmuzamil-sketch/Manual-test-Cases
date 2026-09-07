@@ -1,13 +1,11 @@
 # Production vs Staging — invoice/estimate document comparison
 **Date:** 2026-09-07 · **Lane:** test-execution-and-defects · **Status:** LEADS ONLY, nothing filed.
 
-> **🛑 PRODUCTION CUSTOMER DATA IS REDACTED FROM THIS FILE AND IS NOT COMMITTED ANYWHERE.**
-> This repository is **PUBLIC** (Rule 82 / core §10). The production document names a real customer,
-> their street address, phone number and the asset VIN. Those values are **not** reproduced here and
-> the raw text/geometry extracts are deliberately **left uncommitted** (they live only in this
-> container's scratch space). Only structural facts — which blocks exist, and measured type sizes —
-> are recorded. The same restriction governs any production screenshot: it may not be committed to
-> this repo, and therefore may not be embedded in a Jira comment by the raw-URL route.
+> **DATA CLASSIFICATION.** The QA lead confirmed on 2026-09-07 that **all data in both
+> environments, production included, is dummy test data — nothing is real**. The full text and
+> geometry extracts are therefore committed under `evidence/`. Absent that confirmation they would
+> have been withheld, because this repository is **PUBLIC** (Rule 82 / core §10). Customer/shop
+> names stay redacted in the table below only because they add nothing to a structural comparison.
 
 ## What was compared
 Two documents the QA lead supplied as PDFs, both **Estimates** (not paid Invoices):
@@ -77,3 +75,20 @@ All 120 suite cases cite **specification version 45**. Chris Ward recorded **"Li
 SV-9694 (2026-09-04) and referenced **S12-R4 v52**. Under gate check **A2** an expectation must be
 quoted from the CURRENT version. **Source currency must be settled first (Rule 81 - offered, never
 auto-run).**
+
+---
+
+# RESOLUTION — 2026-09-07, after the QA lead's rulings and the live spec pull
+
+The spec was pulled live (Confluence 755990532, `lastModified` **Sep 05, 2026**; 104 lines changed since
+the 2026-09-03 snapshot). **All four leads resolve as NOT defects.**
+
+| # | Lead | Outcome | Authority |
+|---|---|---|---|
+| **L1** | Remit Payment To absent on staging | **NOT A DEFECT — intended removal** | **S2-R2**: *"When neither is configured, the block is not shown **(net-new: production previously fell back to printing the shop's own address as the remit-to)**. A location whose own remit-to setting points at that same location is not a configured payee: that is the dropped self-address case."* Production's block printed the shop's OWN address — exactly the dropped fallback. Consequence rule **S2-R3 also PASSES**: Bill To measures x0=60.0 -> x1=535.3 (475.3pt) = full content width. |
+| **L2** | Shop-supplies % missing | **FIXED — environment configuration** | QA lead corrected the environment 2026-09-07 and supplied a revised PDF. Verified: `Shop supplies (10.5% of labor)` now present (p2, y=294.4). |
+| **L3** | No Due date on the Estimate | **CORRECT** | QA lead confirmed 2026-09-07: due date does not appear for an Estimate. His screenshot shows the Invoice view carrying `Invoice date` **and** `Due date: Sep 14, 2026`. |
+| **L4** | Service Order / Work Order field absent | **NOT A DEFECT — spec-correct** | **S3-N1**: the field hides when the work order's trailing digits equal the document's. Live API: work order **`S-32136`** (`GET /api/work-orders/view/{id}` -> `data.work_order.number`), document **`EST-S2-32136`** -> trailing runs **"32136"** = **"32136"** -> hidden, correctly. Also **S3-R1** renames the field "Service Order" -> "Work Order". |
+
+**Net: zero admissible defect candidates from the production-vs-staging comparison.** Recorded rather
+than filed, so the non-filing can never look like a miss.
