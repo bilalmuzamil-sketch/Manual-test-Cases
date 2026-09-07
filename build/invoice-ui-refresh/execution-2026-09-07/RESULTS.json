@@ -157,5 +157,16 @@
    "not_observed": "Not exercised: this work order has an asset.",
    "note": "SEED: a work order with no asset attached."
   }
+ },
+ "seeding": {
+  "done": {
+   "part_sale": "aef39c9a-9dbc-4a9c-8309-8ed6a818090b (POST /api/part-sales, 200)",
+   "credit_memo": "CM-4347 / 6a62183a-c5be-4c6c-b4ae-922f4e17d7a7 (POST /api/credit-memos, 201) - $50.00, status open"
+  },
+  "blocked": {
+   "workplace remit-to payee": "POST /api/workplaces/change answers 400 'tax: Missing required parameter' when sent tax_id, then HTTP 500 when sent tax. Live re-read after the 500 shows the record BYTE-IDENTICAL (core 2.6: a 500 can follow a landed write, so this was verified, not assumed). Environment left clean. UI route remains: Administration -> Locations -> edit. Blocks C44909 and C44910 clause 2 only.",
+   "credit invoice document": "Renders only through the UI print route (Customers -> Invoices -> CM- row -> 'Print credit memo'). The playbook records a prior exhaustive API hunt - 13 candidate routes, all 404 - so it was not re-searched (Rule 97). Blocks the 12 Credit Invoice cases until driven in the browser."
+  },
+  "org_wide_observation": "All three workplaces in this org (Staging Heavy Duty - 9919, Staging Lethbridge - 4310, QB Location) carry remit_to = their own id with remit_to_type = 1 and remitToAddress = null. Under S2-R2 that is the self-address case, so Remit Payment To is correctly hidden ORG-WIDE by default - which is why the block never appeared on any document captured this pass."
  }
 }
