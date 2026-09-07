@@ -49,7 +49,7 @@ On the WO Lines tab a line row shows **Labor = Unassigned** while that line's **
 
 ## Jira writes (done)
 - **SV-9769 created** — the display-divergence follow-up (parent SV-8685, Medium, Product Area Work Orders); linked Relates → SV-8911. Description = "Found while testing SV-8911" top line + plain description + PO-runnable steps on the QA branch + fastest-way deep link + exhibits 3 & 4 + technical details last.
-- **SV-8911 QA comment posted — id 76074** (2026-09-07). Verdict PASSED (reported bug fixed); 13/14 checks pass; Parts Technician §3 deviation flagged for dev confirmation; exhibits 1 & 2 inline; SV-9769 named.
+- **SV-8911 QA comment posted — id 76074** (2026-09-07), then **AMENDED in place** after the QA lead's reset + my live re-verification: verdict PASSED, **14/14 checks pass** (Parts Technician now PASS at template default), exhibits 1, 2 & 5 inline, SV-9769 named. Build marker re-read live before amending (unchanged); all 3 image URLs 200; fingerprint scan clean; read-back verified table + 3 images in order + no warning panel.
 
 ## Pre-post bite-proof gate (Rule 72 — run immediately before the writes)
 - Build marker re-read LIVE: `v26.35.9-197fce0`, last-modified Fri 04 Sep 2026 10:47:21 GMT, etag `49ffa0fdffe1976ecacf5c9ce8cd3142` — IDENTICAL to test time (no redeploy).
