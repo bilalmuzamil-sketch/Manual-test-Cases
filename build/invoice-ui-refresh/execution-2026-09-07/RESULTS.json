@@ -618,6 +618,54 @@
    "observed": "Credit CM-4355 was raised from invoice INV-S-32220; that invoice was then reversed (its payments reversed first, then POST /api/invoices/reverse-invoice, HTTP 200). Clause 1 - the credit document still renders: HTTP 200, a valid PDF, no 500. Clause 2 - it degrades exactly as S11-R3 documents: the credit moves to 'Voided' and the whole INVOICE NUMBER column disappears rather than showing a dangling or blank number; items and totals render unchanged (-$40.00). SV-7821's void 500 does not reproduce.",
    "not_observed": null,
    "note": null
+  },
+  "C45169": {
+   "verdict": "Passed",
+   "observed": "Clause 1 - POST /api/work-orders/change-authorizer against invoiced work order S2-32221 returns HTTP 409, 'The authorizer cannot be changed on an invoiced or paid work order', and a live re-read shows authorizer_full_name still null: the server-side lock cannot be bypassed. The same 409 was reproduced independently on the invoiced parts sale P2-1931. Clause 2 - the lock is conditional, not permanent: after reversing that parts sale's invoice the identical call returned HTTP 200 and the change landed.",
+   "not_observed": null,
+   "note": null
+  },
+  "C45170": {
+   "verdict": "Passed",
+   "observed": "Both rejections driven live against un-invoiced work order S2-32222. (a) A contact of the SAME customer created without 'Approves Work' (ZZAUTOTEST NonApprover) is refused: HTTP 422, 'The contact ... cannot be used as the authorizer for this work order.' (b) ANOTHER company's contact, one that does carry 'Approves Work' (7 Star Truck Repair), is refused with the same 422. After both attempts a live re-read shows authorizer_full_name still null - unchanged in each case. Only a contact of this customer with 'Approves Work' enabled is accepted, which the positive path proved separately.",
+   "not_observed": null,
+   "note": "The cross-company contact answers 422 rather than 404; the case allows either."
+  },
+  "C44919": {
+   "verdict": "Passed",
+   "observed": "Driven in the browser on work order S-32222 (and corroborated on S2-15501). Clause 1 - an 'Authorizer' row appears in the customer contact card directly below the Contact name and its Phone, in the same label-above-value style. Clause 2 - opening it lists only the customer's contacts flagged 'Approves Work': the list showed 'No authorizer' and 'Savannah Tran'; a contact of the SAME customer created without the flag (ZZAUTOTEST NonApprover) was NOT offered. Clause 3 - no other contact is offered, and no free-typed name is possible: the control's input carries readonly and aria-autocomplete=\"none\" (data-test-id=select_authorizer). Clause 4 - select_authorizer is the only authorizer control in the app; the parts sale carries its own equivalent under S13-R6, which is the documented exception rather than a second place on the work order.",
+   "not_observed": null,
+   "note": "Route recorded: Work Orders -> the row -> /workorders/{id}/lines, customer contact card on the left."
+  },
+  "C44920": {
+   "verdict": "Passed",
+   "observed": "Clause 1 - a newly created work order shows 'Authorizer  None'; the field is not required and nothing blocks saving. Clause 2 - the list's first entry is 'No authorizer'. Clause 3 - with 'Savannah Tran' selected, choosing 'No authorizer' returned the row to 'None' and cleared the stored value (a live re-read shows authorizer_full_name null).",
+   "not_observed": null,
+   "note": null
+  },
+  "C44921": {
+   "verdict": "Passed",
+   "observed": "Clause 1 - with 'Savannah Tran' selected (contact telephone 898-021-4480), the card shows 'Phone  898-021-4480' directly below the authorizer's name, in the same treatment as the Contact's phone. Clause 2 - a purpose-made approver with no telephone on the contact record (ZZAUTOTEST NoPhoneApprover) shows the name with NO phone row beneath it.",
+   "not_observed": null,
+   "note": null
+  },
+  "C44922": {
+   "verdict": "Passed",
+   "observed": "Clause 1 - on invoiced work order S2-32221 the Authorizer control renders as static text: no input element, no role=\"combobox\", and a click times out because nothing is clickable. Clause 2 - before invoicing the same control on S-32222 carries a readonly combobox input that opens the list. Clause 3 - reversing that invoice re-enabled the row within the same session: after a reload the input and combobox were back and the list opened with all four options. The server agrees - the same change is HTTP 409 while invoiced and HTTP 200 after the reversal.",
+   "not_observed": null,
+   "note": null
+  },
+  "C44923": {
+   "verdict": "Passed",
+   "observed": "With the work order open and the Authorizer list already inspected (it held 'No authorizer' and 'Savannah Tran'), a new contact flagged 'Approves Work' was created against the same customer. Re-opening the list on the SAME page, with no reload and no re-save of the work order, showed 'No authorizer', 'ZZAUTOTEST NewApprover' and 'Savannah Tran' - the new contact is selectable immediately.",
+   "not_observed": null,
+   "note": null
+  },
+  "C45275": {
+   "verdict": "Blocked",
+   "observed": "The case cannot be scored: its Steps field and its Expected Results field are both EMPTY in TestRail. Only the preconditions and the title are written, so there is nothing for a tester to follow and no documented expectation to judge against.",
+   "not_observed": null,
+   "note": "The behaviour its title describes was exercised anyway and holds: with the Authorizer set to Savannah Tran on S-32222, changing only the CONTACT (to ZZAUTOTEST NewApprover) left the Authorizer as Savannah Tran; changing the CUSTOMER (4 Star Truck Repair -> 7 Star Truck Repair) cleared it to None. Recorded as an observation, not a verdict. The empty case needs Steps and Expected Results before a tester can run it - reported to the QA lead, not edited (this lane does not author cases)."
   }
  },
  "seeding": {
