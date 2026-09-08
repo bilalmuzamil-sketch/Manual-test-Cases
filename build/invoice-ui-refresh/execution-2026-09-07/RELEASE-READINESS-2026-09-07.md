@@ -11,10 +11,10 @@ still open against the epic's stories.
 
 | Gate | State | Evidence |
 |---|---|---|
-| All 120 cases executed | **YES** | `RESULTS.json`, **111 Passed / 5 Failed / 4 Blocked** (C44952 re-scored 8 Sep) |
+| All 120 cases executed | **YES** | `RESULTS.json`, **112 Passed / 5 Failed / 3 Blocked** (C44952 and C45275 re-scored 8 Sep) |
 | No customer-facing money error open | **NO** | SV-9773 — printed Line total is less than what is charged |
 | Fixes verified on the build | **NO** | 12 Story Defects sit in Code Review; none observed on `v26.35.9-9812433` |
-| Shared run R417 carries the evidence | **YES** | 120 of 120 scored — **111 Passed · 5 Failed · 4 Blocked**, 0 untested |
+| Shared run R417 carries the evidence | **YES** | 120 of 120 scored — **112 Passed · 5 Failed · 3 Blocked**, 0 untested |
 | Spec-vs-build questions closed | **PARTLY** | S8-R9 resolved — the spec was amended to v64 and C44952 now passes. SV-9812 was closed as not-a-defect. C44902 and C44907 still need a decision |
 
 ## 2 · The blocking items
@@ -37,7 +37,7 @@ still open against the epic's stories.
 
 ## 3 · What is safe
 
-- **111 of 120 cases pass on the build as it stands**, across all 16 populated sections.
+- **112 of 120 cases pass on the build as it stands**, across all 16 populated sections.
 - The **customer portal paid-banner feature works** — verified live in the portal today on
   six seeded payment states (partial, full, batch of two, single-then-batch, batch with a
   late fee, mixed shop-cash + portal payment). **C44952 now passes in full.**
@@ -53,9 +53,9 @@ still open against the epic's stories.
 | Cases in group 6559 | **120** (89 created by us, 30 by Mudassir Qamar, 1 by Vladimir Tomovic) |
 | Flagged Automated (`custom_atmstatus = 3`) | 6 — hands-off without the QA lead (Rule 71) |
 | `custom_automation_type` set | 120 of 120 (106 Functional · 7 E2E · 7 Unit) — none left at None |
-| `AUTOMATION:` marker present | 119 of 120 (C45275, Vladimir's, has none) |
+| `AUTOMATION:` marker present | 119 of 120 (C45275, Vladimir's, has none — his case, hands-off) |
 | Marker breakdown after today's correction | **116 READY · 3 HOLD · 1 none** |
-| Run R417 | **120 tests, 0 untested** — 111 Passed · 5 Failed · 4 Blocked |
+| Run R417 | **120 tests, 0 untested** — 112 Passed · 5 Failed · 3 Blocked |
 
 ### Markers corrected 2026-09-07 (QA lead's go-ahead)
 
@@ -117,7 +117,7 @@ same day.
 * The run was **union-synced** first (Rule 34: existing tests UNION the suite, never a partial
   replacement, so no test or result could be deleted). R417 went 119 → 120 tests.
 * All **120 results written**: at the time 110 Passed · 6 Failed · 4 Blocked · **0 untested**; now
-  **111 Passed · 5 Failed · 4 Blocked** after C44952 was re-scored on 8 September. Every comment
+  **112 Passed · 5 Failed · 3 Blocked** after C44952 and C45275 were re-scored on 8 September. Every comment
   carries the build marker, the observed evidence, the clauses not observed, and — on every Failed
   and Blocked case — a plain-language "What needs to be done" a non-technical tester can act on.
 * Script: `build/invoice-ui-refresh/execution-2026-09-07/push_results_to_R417.py`.
@@ -138,3 +138,30 @@ Because TestRail results are **append-only** (there is no `update_result`), each
 two result rows for 7 September: the first wall-of-text write and the readable re-write. The
 **latest** row is the one TestRail shows first and counts, so the run reads correctly. One extra
 probe row exists on C45275 from the formatting test; it is superseded by the final write.
+
+## 7 · C45275 — a Blocked verdict that was my mistake, not the product's
+
+Reported on 7 September as *"no steps and no expected result recorded, so there is nothing to
+check"* and scored **Blocked**. That was wrong. The case is written in TestRail's **separated-steps**
+format, so its body lives in `custom_steps_separated`; the triage read `custom_steps` and
+`custom_expected`, which are **always null** on such a case, and concluded it was blank.
+
+**Executed in full on 8 September, build `v26.35.9-9812433`. It PASSES on all five clauses.**
+
+| Step | Expected | Observed |
+|---|---|---|
+| 1 | Authorizer shows customer A's flagged contact | `Heather Best` |
+| 2 | Changing only the CONTACT leaves the Authorizer alone | Contact → `Hailey Rivera`, Authorizer still `Heather Best` |
+| 3 | Changing the CUSTOMER clears the Authorizer | Authorizer → `None` |
+| 4 | Only the new customer's Approves Work contacts, "No authorizer" first | `No authorizer`, `Taylor Lopez` — A's two contacts and B's unflagged contact all absent |
+| 5 | The choice saves against the new customer | `Taylor Lopez`, surviving a reload |
+
+Set-up: work order **S2-32272**, an estimate raised for *Abode Trucking & Repair*; customer B was
+*Ado Truck Center - Oasis*. Evidence in `evidence-c45275/`. The case is Vladimir Tomovic's and
+flagged Automated, so **nothing about it was edited** — only a result recorded (Rules 38, 71).
+
+**The scope of the underlying mistake is wider than one case.** No tool in `build/testing-tools/`
+reads `custom_steps_separated`; six of them read `custom_expected` with no fallback, so all six
+mis-handle every separated-steps case in the estate. `snapshot_case_bodies.py` is the serious one —
+Rule 87 depends on it to make a foreign edit diffable, and it is snapshotting nothing for those
+cases. Recorded as **L37**; a fix is proposed rather than made (Rule 72).
