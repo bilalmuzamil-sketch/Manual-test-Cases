@@ -33,6 +33,17 @@
 
 ## ENTRIES — newest first (id · date · tags · lesson → pointer)
 
+### L0009 · 2026-09-08 · #build-verify #rule #testrail
+**Re-stamping the build-check line (provenance Sentence 2) is a MANDATORY part of build verification —
+ALWAYS, never optional/cosmetic.** (QA lead, verbatim: *"Yes restamping should be the part of Build
+verification ALWAYS."*) A build-verification pass that observes cases against build vX on date D must, in
+the same pass, re-stamp every case it verified to `Last checked against build vX on D`. A suite is NOT
+build-verified-complete while any verified case still names an older build (`verify_suite.py` check 9 must
+be clear). Drive it to zero with `surgical_replace.mjs` (it checkpoints, so a deadlocking estate is
+retried to completion, never abandoned). Scope: `created_by=3`, authorised Automated included, Vladimir's
+(user 1) never. **Graduated-to:** `build/rules/RULES-41-60.md` rule 54 (2026-09-08 amendment),
+`build/skills/03-RUN-CHECK.md`, `build/skills/11-BUILD-VERIFICATION.md`, CLAUDE.md §5.
+
 ### L0008 · 2026-09-08 · #roles-permissions #shopview-app #rule
 **Assigning a role to `TECH@shopview.com` — RESET the role first, then assign.** When a test needs
 `TECH@shopview.com` to have a particular role, first **reset that role from Roles & Permissions** (the role
