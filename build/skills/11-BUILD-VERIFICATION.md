@@ -162,3 +162,13 @@ python3 build/testing-tools/check_runnable_cases.py --section-prefix "Invoice Re
 It reads TestRail live and exits 1 while any case is still spec-level. A green verdict table on top
 of spec-level steps is an unfinished lane, and it is the failure the QA lead has now called out
 twice. Procedure and calibration: `build/skills/18-LAYMAN-UI-STEPS.md`.
+
+## 🛑 RE-STAMP IS A REQUIRED STEP OF THIS LANE — NOT OPTIONAL (QA lead, 2026-09-08; Rule 54 amendment)
+
+Build verification is not done when the verdicts are in and the gates are green — it is done when **every
+case you verified this pass carries the CURRENT build in its provenance Sentence 2** (`Last checked against
+build vX on <today>`). Re-stamping is a **mandatory deliverable of the pass**, never a cosmetic follow-up.
+`verify_suite.py` check 9 ("BUILD SENTENCES … stale") **must be clear** before you report the suite done.
+Drive it to zero with `build/testing-tools/surgical_replace.mjs` (per-case checkpointing in `APPLIED.jsonl`,
+so a deadlock-throttled TestRail estate is **retried to completion, never abandoned**). Scope: `created_by=3`
+(ours) + authorised Automated; **never Vladimir Tomovic's (user 1)** (Rule 38). See LEARNINGS-LOG L0009.

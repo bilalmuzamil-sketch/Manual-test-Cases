@@ -517,6 +517,11 @@ Compact form — **the rule named in brackets is the authority; read it before r
   PO answer file with link and date). Sentence 2 is optional and records the check: *"Last checked
   against build v3.5-16cf83f on 8/5/2026."* Re-stamped on every spec/epic/build re-check — a stale
   stamp is a finding. Never the word "VIU", never a flag name. [54]
+  **🛑 RE-STAMPING SENTENCE 2 IS A MANDATORY DELIVERABLE OF EVERY BUILD-VERIFICATION PASS, NEVER
+  OPTIONAL/COSMETIC (QA lead 2026-09-08).** A suite is not build-verified-complete while any verified case
+  still names an older build — `verify_suite.py` check 9 must be clear; drive the re-stamp to zero
+  (`surgical_replace.mjs` checkpoints, so retry through deadlocks to completion). Scope `created_by=3`,
+  authorised Automated included, Vladimir's (user 1) never. Full text: `RULES-41-60.md` rule 54 amendment. [54, 91]
 - **"MANUALLY ADDED" SOURCE — for a case the QA lead authors from PRODUCT KNOWLEDGE, not the spec
   pipeline** (field-level editability, pricing-matrix behaviour, etc. not spelled out in the PRD): the
   provenance reads **"Source: Manually added (QA lead, <date>)"** instead of the "as per epic …

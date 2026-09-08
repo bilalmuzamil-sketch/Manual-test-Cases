@@ -973,6 +973,20 @@ Index: CLAUDE.md (rule index table). Other rule files: build/rules/RULES-01-20.m
     failure** (Rule 57). **WHERE THE CASE HAS NOT BEEN CHECKED AGAINST ANY BUILD, SENTENCE 2 IS
     OMITTED, or states plainly that it has not yet been checked** — never a date we cannot stand behind
     (Rule 12).
+    **🛑 AMENDMENT 2026-09-08 (QA lead, verbatim): "Yes restamping should be the part of Build
+    verification ALWAYS." RE-STAMPING SENTENCE 2 TO THE VERIFIED BUILD IS A MANDATORY DELIVERABLE OF
+    EVERY BUILD-VERIFICATION PASS — NEVER an optional or cosmetic follow-up.** When a build-verification
+    pass observes a suite's cases against build vX on date D, **every case it verified must, in that same
+    pass, carry `Last checked against build vX on D`** (its own read date). A pass that leaves a
+    build-verified case naming an OLDER build has not finished: a stale sentence-2 stamp is a Rule-54
+    finding and a Rule-91 freshness failure, and the suite is **NOT build-verified-complete** until
+    `verify_suite.py` shows no case naming a prior build (its check 9 "BUILD SENTENCES … stale" must be
+    clear). **Do not report a suite's build verification as done while any verified case still names the
+    previous build** — drive the re-stamp to zero first (the tool `surgical_replace.mjs` checkpoints, so
+    a deadlock-throttled estate is retried to completion, never abandoned). Scope is the ordinary write
+    scope: `created_by == 3` (ours), authorised Automated included, **Vladimir Tomovic's cases (user 1)
+    never** (Rule 38). Recorded: `build/LEARNINGS-LOG.md` L0009; operator note in `build/skills/03-RUN-CHECK.md`
+    and `build/skills/11-BUILD-VERIFICATION.md`.
     **THE TWO STATES (a case is always in exactly one of them):**
     **(1) BEFORE ANY LIVE VERIFICATION (documents only)** — **sentence 1 alone**, naming the **epic**,
     the **specification with its VERSION**, and the **governing requirement reference**. Shape:
