@@ -1,0 +1,742 @@
+{
+ "44551": {
+  "title": "'Require ordering parts' is a new setting; on by default reproduces today",
+  "fields": {
+   "custom_preconds": {
+    "blocks": [
+     [
+      "1. You are signed in with Settings > App Settings.",
+      "2. A shop upgraded to this release."
+     ]
+    ],
+    "text": "1. You are signed in with Settings > App Settings.\n2. A shop upgraded to this release."
+   },
+   "custom_steps": {
+    "blocks": [
+     [
+      "1. Open the Work Order settings page.",
+      "2. Find \"Require ordering parts\" and read its default state and description.",
+      "3. With it on, open a work order and check a qualifying part; with it off, check the same."
+     ]
+    ],
+    "text": "1. Open the Work Order settings page.\n2. Find \"Require ordering parts\" and read its default state and description.\n3. With it on, open a work order and check a qualifying part; with it off, check the same."
+   },
+   "custom_expected": {
+    "blocks": [
+     [
+      "1. \"Require ordering parts\" exists as a new toggle and defaults to on for every shop.",
+      "2. When on, an Order action appears on each qualifying part and in the bulk bar.",
+      "3. When off, no Order action appears anywhere - not on the row, not in the bulk bar, not in the ... menu - and adding a vendor part places it on a purchase order straight away and the part lands in \"Awaiting\". A purchase order is created for that vendor if none is open, or the part is added to the vendor's open one. It is a real purchase order, exactly like one made by pressing Order, and it reaches the accounting system the same way.",
+      "4. A part with no vendor is placed too, on a purchase order marked \"Vendor missing\". This happens silently, with no confirmation.",
+      "5. Because it defaults to on and nothing orders parts automatically today, an upgraded shop sees no change."
+     ],
+     [
+      "---",
+      "This is the expected behaviour as per epic SV-8683 and story SV-9247 (Story 1, Work Order settings page) and the Simple Flow V2 specification (Confluence page 771391574, revised 8 September 2026), read on 8 September 2026.",
+      "AUTOMATION: Not available on Build to test Yet - Last checked 9/8/2026"
+     ]
+    ],
+    "text": "1. \"Require ordering parts\" exists as a new toggle and defaults to on for every shop.\n2. When on, an Order action appears on each qualifying part and in the bulk bar.\n3. When off, no Order action appears anywhere - not on the row, not in the bulk bar, not in the ... menu - and adding a vendor part places it on a purchase order straight away and the part lands in \"Awaiting\". A purchase order is created for that vendor if none is open, or the part is added to the vendor's open one. It is a real purchase order, exactly like one made by pressing Order, and it reaches the accounting system the same way.\n4. A part with no vendor is placed too, on a purchase order marked \"Vendor missing\". This happens silently, with no confirmation.\n5. Because it defaults to on and nothing orders parts automatically today, an upgraded shop sees no change.\n\n---\nThis is the expected behaviour as per epic SV-8683 and story SV-9247 (Story 1, Work Order settings page) and the Simple Flow V2 specification (Confluence page 771391574, revised 8 September 2026), read on 8 September 2026.\nAUTOMATION: Not available on Build to test Yet - Last checked 9/8/2026"
+   }
+  }
+ },
+ "44554": {
+  "title": "A settings change applies to every open work order, not just new ones",
+  "fields": {
+   "custom_preconds": {
+    "blocks": [
+     [
+      "1. You are signed in with Settings > App Settings.",
+      "2. Several open work orders exist in various statuses with outstanding parts and unapproved lines."
+     ]
+    ],
+    "text": "1. You are signed in with Settings > App Settings.\n2. Several open work orders exist in various statuses with outstanding parts and unapproved lines."
+   },
+   "custom_steps": {
+    "blocks": [
+     [
+      "1. Turn \"Require ordering parts\" off and check outstanding parts across open work orders.",
+      "2. Turn \"Require picking inventory parts\" off and check outstanding inventory/found parts.",
+      "3. Turn \"Require receiving parts before completion\" off, then on, and check whether invoicing is blocked.",
+      "4. Turn \"Require approval for new lines\" off and check Needs-Approval lines."
+     ]
+    ],
+    "text": "1. Turn \"Require ordering parts\" off and check outstanding parts across open work orders.\n2. Turn \"Require picking inventory parts\" off and check outstanding inventory/found parts.\n3. Turn \"Require receiving parts before completion\" off, then on, and check whether invoicing is blocked.\n4. Turn \"Require approval for new lines\" off and check Needs-Approval lines."
+   },
+   "custom_expected": {
+    "blocks": [
+     [
+      "1. Changing a setting takes effect on every open work order, not only on work created afterwards - with one exception: turning \"Require approval for new lines\" on or off changes no line that already exists (an estimate stays an estimate, an approved line stays approved). It only decides the status a newly added line starts in.",
+      "2. Require ordering off: parts already outstanding are placed on purchase orders and move to \"Awaiting\", through the same path a manual Order press uses, so a real purchase order exists for each; the Order action then disappears.",
+      "3. Require picking off: inventory and found parts already outstanding are marked as picked and the Pick action disappears. Marking a part picked deducts it from stock - this moves real inventory (one stock movement and one inventory-history entry per part, following the part's bin where it has one and the default bin where it does not).",
+      "4. Require receiving off: outstanding parts stop blocking invoicing and stay outstanding, and Receive moves into the part's ... menu. On: outstanding parts start blocking invoicing and nothing is auto-received, so a work order that was invoiceable a moment ago may no longer be.",
+      "5. Parts on lines that are not yet approved are not swept - they are invisible to the ordering sweep.",
+      "6. Statuses change in the underlying records, not only on screen; invoicing checks the same state the buttons are drawn from.",
+      "7. Invoiced and paid work orders, and declined lines and their parts, are never touched."
+     ],
+     [
+      "---",
+      "This is the expected behaviour as per epic SV-8683 and story SV-9248 (Story 2, Settings apply to every work order) and the Simple Flow V2 specification (Confluence page 771391574, revised 8 September 2026), read on 8 September 2026.",
+      "AUTOMATION: Not available on Build to test Yet - Last checked 9/8/2026"
+     ]
+    ],
+    "text": "1. Changing a setting takes effect on every open work order, not only on work created afterwards - with one exception: turning \"Require approval for new lines\" on or off changes no line that already exists (an estimate stays an estimate, an approved line stays approved). It only decides the status a newly added line starts in.\n2. Require ordering off: parts already outstanding are placed on purchase orders and move to \"Awaiting\", through the same path a manual Order press uses, so a real purchase order exists for each; the Order action then disappears.\n3. Require picking off: inventory and found parts already outstanding are marked as picked and the Pick action disappears. Marking a part picked deducts it from stock - this moves real inventory (one stock movement and one inventory-history entry per part, following the part's bin where it has one and the default bin where it does not).\n4. Require receiving off: outstanding parts stop blocking invoicing and stay outstanding, and Receive moves into the part's ... menu. On: outstanding parts start blocking invoicing and nothing is auto-received, so a work order that was invoiceable a moment ago may no longer be.\n5. Parts on lines that are not yet approved are not swept - they are invisible to the ordering sweep.\n6. Statuses change in the underlying records, not only on screen; invoicing checks the same state the buttons are drawn from.\n7. Invoiced and paid work orders, and declined lines and their parts, are never touched.\n\n---\nThis is the expected behaviour as per epic SV-8683 and story SV-9248 (Story 2, Settings apply to every work order) and the Simple Flow V2 specification (Confluence page 771391574, revised 8 September 2026), read on 8 September 2026.\nAUTOMATION: Not available on Build to test Yet - Last checked 9/8/2026"
+   }
+  }
+ },
+ "44555": {
+  "title": "Each settings-change record is written to the audit log with its cause",
+  "fields": {
+   "custom_preconds": {
+    "blocks": [
+     [
+      "1. You are signed in with Settings > App Settings.",
+      "2. A settings change has just been applied across open work orders."
+     ]
+    ],
+    "text": "1. You are signed in with Settings > App Settings.\n2. A settings change has just been applied across open work orders."
+   },
+   "custom_steps": {
+    "blocks": [
+     [
+      "1. Apply a settings change (for example turn Require approval for new lines off).",
+      "2. Open the audit log on an affected work order and on a changed line/part."
+     ]
+    ],
+    "text": "1. Apply a settings change (for example turn Require approval for new lines off).\n2. Open the audit log on an affected work order and on a changed line/part."
+   },
+   "custom_expected": {
+    "blocks": [
+     [
+      "1. Every record changed is written to the audit log - on the work order and on each line or part changed.",
+      "2. Each entry is attributed to the admin who made the change (there is no \"system\" actor) and names the cause, for example \"Part ordered because Require ordering parts was turned off\"."
+     ],
+     [
+      "---",
+      "This is the expected behaviour as per epic SV-8683 and story SV-9248 (Story 2, Settings apply to every work order) and the Simple Flow V2 specification (Confluence page 771391574, revised 8 September 2026), read on 8 September 2026.",
+      "AUTOMATION: Not available on Build to test Yet - Last checked 9/8/2026"
+     ]
+    ],
+    "text": "1. Every record changed is written to the audit log - on the work order and on each line or part changed.\n2. Each entry is attributed to the admin who made the change (there is no \"system\" actor) and names the cause, for example \"Part ordered because Require ordering parts was turned off\".\n\n---\nThis is the expected behaviour as per epic SV-8683 and story SV-9248 (Story 2, Settings apply to every work order) and the Simple Flow V2 specification (Confluence page 771391574, revised 8 September 2026), read on 8 September 2026.\nAUTOMATION: Not available on Build to test Yet - Last checked 9/8/2026"
+   }
+  }
+ },
+ "44559": {
+  "title": "Applying a settings change blocks only the acting admin, never the organization",
+  "fields": {
+   "custom_preconds": {
+    "blocks": [
+     [
+      "1. You are signed in with Settings > App Settings.",
+      "2. A confirmed settings change affects many existing records."
+     ]
+    ],
+    "text": "1. You are signed in with Settings > App Settings.\n2. A confirmed settings change affects many existing records."
+   },
+   "custom_steps": {
+    "blocks": [
+     [
+      "1. Confirm a settings change that affects existing records.",
+      "2. Observe the app while the change is applied."
+     ]
+    ],
+    "text": "1. Confirm a settings change that affects existing records.\n2. Observe the app while the change is applied."
+   },
+   "custom_expected": {
+    "blocks": [
+     [
+      "1. While the change is being applied, the admin who made it is blocked: the settings page shows a progress indicator and does not return until every affected record has been changed.",
+      "2. Every other user in the organization keeps working normally; the organization is never locked and technicians are never stopped.",
+      "3. Another user viewing an affected work order during the run may see out-of-date values until they refresh; this is expected, because every record is committed on its own and the run can be re-run."
+     ],
+     [
+      "---",
+      "This is the expected behaviour as per epic SV-8683 and story SV-9250 (Story 4, Applying a settings change at scale) and the Simple Flow V2 specification (Confluence page 771391574, revised 8 September 2026), read on 8 September 2026.",
+      "AUTOMATION: Not available on Build to test Yet - Last checked 9/8/2026"
+     ]
+    ],
+    "text": "1. While the change is being applied, the admin who made it is blocked: the settings page shows a progress indicator and does not return until every affected record has been changed.\n2. Every other user in the organization keeps working normally; the organization is never locked and technicians are never stopped.\n3. Another user viewing an affected work order during the run may see out-of-date values until they refresh; this is expected, because every record is committed on its own and the run can be re-run.\n\n---\nThis is the expected behaviour as per epic SV-8683 and story SV-9250 (Story 4, Applying a settings change at scale) and the Simple Flow V2 specification (Confluence page 771391574, revised 8 September 2026), read on 8 September 2026.\nAUTOMATION: Not available on Build to test Yet - Last checked 9/8/2026"
+   }
+  }
+ },
+ "44563": {
+  "title": "A line reaches Complete only through the defined paths",
+  "fields": {
+   "custom_preconds": {
+    "blocks": [
+     [
+      "1. You are signed in with completion permissions.",
+      "2. A completable approved line exists."
+     ]
+    ],
+    "text": "1. You are signed in with completion permissions.\n2. A completable approved line exists."
+   },
+   "custom_steps": {
+    "blocks": [
+     [
+      "1. Complete a line via the line's own Complete.",
+      "2. Via the bulk bar Complete lines / Complete all lines.",
+      "3. Via Create invoice.",
+      "4. Via the clock-out modal's 'Clock out and complete'."
+     ]
+    ],
+    "text": "1. Complete a line via the line's own Complete.\n2. Via the bulk bar Complete lines / Complete all lines.\n3. Via Create invoice.\n4. Via the clock-out modal's 'Clock out and complete'."
+   },
+   "custom_expected": {
+    "blocks": [
+     [
+      "1. A line reaches Complete only through: Complete on the line; Complete lines / Complete all lines in the bulk action bar; Create invoice (which closes the work order's Approved lines as a consequence of invoicing); and Clock out and complete in the clock-out modal.",
+      "2. Nothing else completes a line - no timer and no background job.",
+      "3. A line in Needs Approval cannot be completed by any path; it must be Approved first, on the line or in the bulk action bar. Nothing approves a line on the way to completing it.",
+      "4. Complete lines counts only Approved lines, and Create invoice is refused while any line is still in Needs Approval.",
+      "5. Mark as reviewed is not on the list: it becomes available only once every line is already complete, so there is never an open line for it to close."
+     ],
+     [
+      "---",
+      "This is the expected behaviour as per epic SV-8683 and story SV-9251 (Story 5, Parts no longer block completing a line) and the Simple Flow V2 specification (Confluence page 771391574, revised 8 September 2026), read on 8 September 2026.",
+      "AUTOMATION: Not available on Build to test Yet - Last checked 9/8/2026"
+     ]
+    ],
+    "text": "1. A line reaches Complete only through: Complete on the line; Complete lines / Complete all lines in the bulk action bar; Create invoice (which closes the work order's Approved lines as a consequence of invoicing); and Clock out and complete in the clock-out modal.\n2. Nothing else completes a line - no timer and no background job.\n3. A line in Needs Approval cannot be completed by any path; it must be Approved first, on the line or in the bulk action bar. Nothing approves a line on the way to completing it.\n4. Complete lines counts only Approved lines, and Create invoice is refused while any line is still in Needs Approval.\n5. Mark as reviewed is not on the list: it becomes available only once every line is already complete, so there is never an open line for it to close.\n\n---\nThis is the expected behaviour as per epic SV-8683 and story SV-9251 (Story 5, Parts no longer block completing a line) and the Simple Flow V2 specification (Confluence page 771391574, revised 8 September 2026), read on 8 September 2026.\nAUTOMATION: Not available on Build to test Yet - Last checked 9/8/2026"
+   }
+  }
+ },
+ "44571": {
+  "title": "Bulk bar replaces the column headers and lists actions by one rule",
+  "fields": {
+   "custom_preconds": {
+    "blocks": [
+     [
+      "1. You are signed in with WO Lines: Create & Edit + Full View.",
+      "2. A work order has several lines in mixed statuses with parts."
+     ]
+    ],
+    "text": "1. You are signed in with WO Lines: Create & Edit + Full View.\n2. A work order has several lines in mixed statuses with parts."
+   },
+   "custom_steps": {
+    "blocks": [
+     [
+      "1. Select one or more lines.",
+      "2. Look at the bar that appears, its layout and which actions show."
+     ]
+    ],
+    "text": "1. Select one or more lines.\n2. Look at the bar that appears, its layout and which actions show."
+   },
+   "custom_expected": {
+    "blocks": [
+     [
+      "1. The bar sits at the top of the list and replaces the column headers while a selection is active; nothing on the page shifts when it appears.",
+      "2. Selecting a row highlights the whole line, including its story, labour and parts.",
+      "3. Layout is: \"n selected\", then Deselect all, then the line actions, then the parts actions, then More, then a close control - with a divider after \"n selected\", after the line group and after the parts group, always in those places.",
+      "4. Each action follows one rule: nothing in the selection qualifies -> hidden; something qualifies but is blocked -> shown disabled with the reason; qualifies and not blocked -> shown with its count.",
+      "5. Line actions count lines and parts actions count parts (\"Receive 5 parts\" may come from two lines); a count never includes what the action would skip."
+     ],
+     [
+      "---",
+      "This is the expected behaviour as per epic SV-8683 and story SV-9253 (Story 7, The bulk action bar) and the Simple Flow V2 specification (Confluence page 771391574, revised 8 September 2026), read on 8 September 2026.",
+      "AUTOMATION: Not available on Build to test Yet - Last checked 9/8/2026"
+     ]
+    ],
+    "text": "1. The bar sits at the top of the list and replaces the column headers while a selection is active; nothing on the page shifts when it appears.\n2. Selecting a row highlights the whole line, including its story, labour and parts.\n3. Layout is: \"n selected\", then Deselect all, then the line actions, then the parts actions, then More, then a close control - with a divider after \"n selected\", after the line group and after the parts group, always in those places.\n4. Each action follows one rule: nothing in the selection qualifies -> hidden; something qualifies but is blocked -> shown disabled with the reason; qualifies and not blocked -> shown with its count.\n5. Line actions count lines and parts actions count parts (\"Receive 5 parts\" may come from two lines); a count never includes what the action would skip.\n\n---\nThis is the expected behaviour as per epic SV-8683 and story SV-9253 (Story 7, The bulk action bar) and the Simple Flow V2 specification (Confluence page 771391574, revised 8 September 2026), read on 8 September 2026.\nAUTOMATION: Not available on Build to test Yet - Last checked 9/8/2026"
+   }
+  }
+ },
+ "44572": {
+  "title": "Primary slots fill in a fixed order; More holds the rest",
+  "fields": {
+   "custom_preconds": {
+    "blocks": [
+     [
+      "1. You are signed in with WO Lines: Create & Edit + Full View.",
+      "2. A selection qualifies for several actions including the finish action."
+     ]
+    ],
+    "text": "1. You are signed in with WO Lines: Create & Edit + Full View.\n2. A selection qualifies for several actions including the finish action."
+   },
+   "custom_steps": {
+    "blocks": [
+     [
+      "1. Select lines that cover every open line (and hold orderable/receivable/pickable parts).",
+      "2. Read the order of the primary buttons and the contents of More."
+     ]
+    ],
+    "text": "1. Select lines that cover every open line (and hold orderable/receivable/pickable parts).\n2. Read the order of the primary buttons and the contents of More."
+   },
+   "custom_expected": {
+    "blocks": [
+     [
+      "1. The line group shows up to three actions, in order: the finish action (when the selection covers every open line), then Complete lines, then Approve. The parts group shows up to three, in order: Order, Receive, Pick. The two groups are separate and sized independently - a parts action is never pushed into More by a line action, and neither group takes a slot from the other.",
+      "2. Decline is always in More, never in a primary slot.",
+      "3. More contains, in order: Authorization required, Split to new work order, Decline. Create invoice is not enumerated in this ordered list; it is described next and disappears once an invoice exists.",
+      "4. Create invoice acts on the whole work order whatever is selected, carries no count, and disappears once an invoice exists."
+     ],
+     [
+      "---",
+      "This is the expected behaviour as per epic SV-8683 and story SV-9253 (Story 7, The bulk action bar) and the Simple Flow V2 specification (Confluence page 771391574, revised 8 September 2026), read on 8 September 2026.",
+      "AUTOMATION: Not available on Build to test Yet - Last checked 9/8/2026"
+     ]
+    ],
+    "text": "1. The line group shows up to three actions, in order: the finish action (when the selection covers every open line), then Complete lines, then Approve. The parts group shows up to three, in order: Order, Receive, Pick. The two groups are separate and sized independently - a parts action is never pushed into More by a line action, and neither group takes a slot from the other.\n2. Decline is always in More, never in a primary slot.\n3. More contains, in order: Authorization required, Split to new work order, Decline. Create invoice is not enumerated in this ordered list; it is described next and disappears once an invoice exists.\n4. Create invoice acts on the whole work order whatever is selected, carries no count, and disappears once an invoice exists.\n\n---\nThis is the expected behaviour as per epic SV-8683 and story SV-9253 (Story 7, The bulk action bar) and the Simple Flow V2 specification (Confluence page 771391574, revised 8 September 2026), read on 8 September 2026.\nAUTOMATION: Not available on Build to test Yet - Last checked 9/8/2026"
+   }
+  }
+ },
+ "44585": {
+  "title": "Vendor-missing card requires Assign vendor first, applied to ticked parts",
+  "fields": {
+   "custom_preconds": {
+    "blocks": [
+     [
+      "1. You are signed in with Order Parts + Vendor & Order Mgmt: Create & Edit.",
+      "2. The receive modal is open with a vendor-missing card."
+     ]
+    ],
+    "text": "1. You are signed in with Order Parts + Vendor & Order Mgmt: Create & Edit.\n2. The receive modal is open with a vendor-missing card."
+   },
+   "custom_steps": {
+    "blocks": [
+     [
+      "1. Expand the vendor-missing card.",
+      "2. Search and assign a vendor to the ticked parts.",
+      "3. Check the untouched parts and the tab order."
+     ]
+    ],
+    "text": "1. Expand the vendor-missing card.\n2. Search and assign a vendor to the ticked parts.\n3. Check the untouched parts and the tab order."
+   },
+   "custom_expected": {
+    "blocks": [
+     [
+      "1. Where no vendor is set, Assign vendor is the first field in the form, marked required, as a search field with results below; everything below it is disabled until a vendor is chosen.",
+      "2. Assigning a vendor applies to the ticked parts only; the rest stay in the vendor-missing card.",
+      "3. If the typed vendor name matches nothing, a Create option appears below the results carrying that name. Choosing it opens the usual new-vendor modal with the name already filled in; name and tax rate are required and everything else is optional. On save, the modal closes, the new vendor is selected in the field, and nothing already entered is lost. Cancelling the new-vendor modal returns to the receive form with the typed name still there and no vendor selected. A user without the vendor-management permission sees results only, with no Create option. A vendor created here is a full vendor record and appears on the vendor page like any other.",
+      "4. The cursor starts in the vendor invoice number field when the vendor is known, and in the vendor field when it is not; tab order is identical in both states."
+     ],
+     [
+      "---",
+      "This is the expected behaviour as per epic SV-8683 and story SV-9259 (Story 13, Receiving from the work order) and the Simple Flow V2 specification (Confluence page 771391574, revised 8 September 2026), read on 8 September 2026.",
+      "AUTOMATION: Not available on Build to test Yet - Last checked 9/8/2026"
+     ]
+    ],
+    "text": "1. Where no vendor is set, Assign vendor is the first field in the form, marked required, as a search field with results below; everything below it is disabled until a vendor is chosen.\n2. Assigning a vendor applies to the ticked parts only; the rest stay in the vendor-missing card.\n3. If the typed vendor name matches nothing, a Create option appears below the results carrying that name. Choosing it opens the usual new-vendor modal with the name already filled in; name and tax rate are required and everything else is optional. On save, the modal closes, the new vendor is selected in the field, and nothing already entered is lost. Cancelling the new-vendor modal returns to the receive form with the typed name still there and no vendor selected. A user without the vendor-management permission sees results only, with no Create option. A vendor created here is a full vendor record and appears on the vendor page like any other.\n4. The cursor starts in the vendor invoice number field when the vendor is known, and in the vendor field when it is not; tab order is identical in both states.\n\n---\nThis is the expected behaviour as per epic SV-8683 and story SV-9259 (Story 13, Receiving from the work order) and the Simple Flow V2 specification (Confluence page 771391574, revised 8 September 2026), read on 8 September 2026.\nAUTOMATION: Not available on Build to test Yet - Last checked 9/8/2026"
+   }
+  }
+ },
+ "44589": {
+  "title": "Purchase orders group by vendor, missing vendors first, collapsed",
+  "fields": {
+   "custom_preconds": {
+    "blocks": [
+     [
+      "1. You are signed in with Vendor & Order Mgmt access.",
+      "2. Purchase orders exist across several vendors, including vendor-missing ones, spanning work orders."
+     ]
+    ],
+    "text": "1. You are signed in with Vendor & Order Mgmt access.\n2. Purchase orders exist across several vendors, including vendor-missing ones, spanning work orders."
+   },
+   "custom_steps": {
+    "blocks": [
+     [
+      "1. Open the purchase order / bulk receive page.",
+      "2. Read the grouping, headers and initial expand state."
+     ]
+    ],
+    "text": "1. Open the purchase order / bulk receive page.\n2. Read the grouping, headers and initial expand state."
+   },
+   "custom_expected": {
+    "blocks": [
+     [
+      "1. Purchase orders group by vendor, with Missing vendors first, then named vendors alphabetically.",
+      "2. Group headers carry the vendor name, a rollup such as \"3 POs, 6 parts\", and Expand all; the page header carries the vendor count.",
+      "3. Every group renders collapsed (including Missing vendors), so the page opens as a list of vendors rather than a wall of parts.",
+      "4. Each purchase order row shows its number, the work order number and the part count.",
+      "5. Missing-vendor groups carry an amber treatment and a \"Vendor missing\" label in both the collapsed and expanded states. Once a vendor is assigned, the name shows. The vendor can still be changed only while the purchase order has no received parts; once anything on it has been received, the name is shown as plain text with no way to edit it."
+     ],
+     [
+      "---",
+      "This is the expected behaviour as per epic SV-8683 and story SV-9260 (Story 14, The receive page and PO bulk receive) and the Simple Flow V2 specification (Confluence page 771391574, revised 8 September 2026), read on 8 September 2026.",
+      "AUTOMATION: Not available on Build to test Yet - Last checked 9/8/2026"
+     ]
+    ],
+    "text": "1. Purchase orders group by vendor, with Missing vendors first, then named vendors alphabetically.\n2. Group headers carry the vendor name, a rollup such as \"3 POs, 6 parts\", and Expand all; the page header carries the vendor count.\n3. Every group renders collapsed (including Missing vendors), so the page opens as a list of vendors rather than a wall of parts.\n4. Each purchase order row shows its number, the work order number and the part count.\n5. Missing-vendor groups carry an amber treatment and a \"Vendor missing\" label in both the collapsed and expanded states. Once a vendor is assigned, the name shows. The vendor can still be changed only while the purchase order has no received parts; once anything on it has been received, the name is shown as plain text with no way to edit it.\n\n---\nThis is the expected behaviour as per epic SV-8683 and story SV-9260 (Story 14, The receive page and PO bulk receive) and the Simple Flow V2 specification (Confluence page 771391574, revised 8 September 2026), read on 8 September 2026.\nAUTOMATION: Not available on Build to test Yet - Last checked 9/8/2026"
+   }
+  }
+ },
+ "44590": {
+  "title": "A panel expands per purchase order with per-PO vendor-side fields",
+  "fields": {
+   "custom_preconds": {
+    "blocks": [
+     [
+      "1. You are signed in with Vendor & Order Mgmt: Create & Edit + See Financial Data.",
+      "2. A vendor group has purchase orders with parts awaiting receipt."
+     ]
+    ],
+    "text": "1. You are signed in with Vendor & Order Mgmt: Create & Edit + See Financial Data.\n2. A vendor group has purchase orders with parts awaiting receipt."
+   },
+   "custom_steps": {
+    "blocks": [
+     [
+      "1. Expand a purchase order panel.",
+      "2. Read its fields, the tick boxes, the tax field and the primary action.",
+      "3. Assign a vendor to a collapsed row via hover, and via expand."
+     ]
+    ],
+    "text": "1. Expand a purchase order panel.\n2. Read its fields, the tick boxes, the tax field and the primary action.\n3. Assign a vendor to a collapsed row via hover, and via expand."
+   },
+   "custom_expected": {
+    "blocks": [
+     [
+      "1. A panel is expanded per purchase order, not per vendor, so every figure entered belongs to exactly one PO and one vendor bill.",
+      "2. The panel carries vendor invoice number, invoice date, delivery note, then the parts with per-part tick boxes and Deselect all, and a subtotal, editable tax and total beneath.",
+      "3. The primary action reads \"Receive parts (n)\" and is disabled while anything required is unfilled.",
+      "4. A vendor can be assigned two ways: hovering a collapsed purchase-order row reveals Assign vendor, and expanding the row makes it the required first field. Both can either link an existing vendor or create a new one - typing a name that matches nothing offers Create, which opens the usual new-vendor modal with the name filled in and name and tax rate required (the same flow as the receive modal).",
+      "5. The tax typed here is vendor-side (stored on the vendor bill; feeds what the shop owes suppliers; not the customer's sales tax); it is typed, not calculated, and does not recompute when a cost or quantity changes.",
+      "6. Sell price is shown here and only here, read-only, on every purchase order."
+     ],
+     [
+      "---",
+      "This is the expected behaviour as per epic SV-8683 and story SV-9260 (Story 14, The receive page and PO bulk receive) and the Simple Flow V2 specification (Confluence page 771391574, revised 8 September 2026), read on 8 September 2026.",
+      "AUTOMATION: Not available on Build to test Yet - Last checked 9/8/2026"
+     ]
+    ],
+    "text": "1. A panel is expanded per purchase order, not per vendor, so every figure entered belongs to exactly one PO and one vendor bill.\n2. The panel carries vendor invoice number, invoice date, delivery note, then the parts with per-part tick boxes and Deselect all, and a subtotal, editable tax and total beneath.\n3. The primary action reads \"Receive parts (n)\" and is disabled while anything required is unfilled.\n4. A vendor can be assigned two ways: hovering a collapsed purchase-order row reveals Assign vendor, and expanding the row makes it the required first field. Both can either link an existing vendor or create a new one - typing a name that matches nothing offers Create, which opens the usual new-vendor modal with the name filled in and name and tax rate required (the same flow as the receive modal).\n5. The tax typed here is vendor-side (stored on the vendor bill; feeds what the shop owes suppliers; not the customer's sales tax); it is typed, not calculated, and does not recompute when a cost or quantity changes.\n6. Sell price is shown here and only here, read-only, on every purchase order.\n\n---\nThis is the expected behaviour as per epic SV-8683 and story SV-9260 (Story 14, The receive page and PO bulk receive) and the Simple Flow V2 specification (Confluence page 771391574, revised 8 September 2026), read on 8 September 2026.\nAUTOMATION: Not available on Build to test Yet - Last checked 9/8/2026"
+   }
+  }
+ },
+ "44596": {
+  "title": "Each wizard step's own action saves and advances; no Continue button",
+  "fields": {
+   "custom_preconds": {
+    "blocks": [
+     [
+      "1. You are signed in with completion permissions.",
+      "2. The wizard is open with tech-story, pick and receive steps."
+     ]
+    ],
+    "text": "1. You are signed in with completion permissions.\n2. The wizard is open with tech-story, pick and receive steps."
+   },
+   "custom_steps": {
+    "blocks": [
+     [
+      "1. Perform the action on each step (Save, Pick all, Receive parts).",
+      "2. Open the receive step and check the modal and its per-part Received later.",
+      "3. Close and reopen the wizard."
+     ]
+    ],
+    "text": "1. Perform the action on each step (Save, Pick all, Receive parts).\n2. Open the receive step and check the modal and its per-part Received later.\n3. Close and reopen the wizard."
+   },
+   "custom_expected": {
+    "blocks": [
+     [
+      "1. There is no Continue button; each step's button is its own action (Save, Pick all, Receive parts) and performing it saves and advances in one press.",
+      "2. The action button sits with the content it acts on, not in a footer; the modal title names the current step, not the flow.",
+      "3. The receive step opens the same modal as Receiving from the work order, with the same required fields and the same per-part Received later choice; its only action is Receive parts, with no second action offering to leave the step without receiving; closing it returns to the wizard at the next step.",
+      "4. The wizard never mentions ordering, even when ordering is required (a part never marked as ordered is included anyway and ordering happens without user action when the parts are received).",
+      "5. Closing the wizard keeps everything already done; reopening shows only what is left."
+     ],
+     [
+      "---",
+      "This is the expected behaviour as per epic SV-8683 and story SV-9263 (Story 17, The completion wizard) and the Simple Flow V2 specification (Confluence page 771391574, revised 8 September 2026), read on 8 September 2026.",
+      "AUTOMATION: Not available on Build to test Yet - Last checked 9/8/2026"
+     ]
+    ],
+    "text": "1. There is no Continue button; each step's button is its own action (Save, Pick all, Receive parts) and performing it saves and advances in one press.\n2. The action button sits with the content it acts on, not in a footer; the modal title names the current step, not the flow.\n3. The receive step opens the same modal as Receiving from the work order, with the same required fields and the same per-part Received later choice; its only action is Receive parts, with no second action offering to leave the step without receiving; closing it returns to the wizard at the next step.\n4. The wizard never mentions ordering, even when ordering is required (a part never marked as ordered is included anyway and ordering happens without user action when the parts are received).\n5. Closing the wizard keeps everything already done; reopening shows only what is left.\n\n---\nThis is the expected behaviour as per epic SV-8683 and story SV-9263 (Story 17, The completion wizard) and the Simple Flow V2 specification (Confluence page 771391574, revised 8 September 2026), read on 8 September 2026.\nAUTOMATION: Not available on Build to test Yet - Last checked 9/8/2026"
+   }
+  }
+ },
+ "44599": {
+  "title": "The header offers only the one finish action that is genuinely next",
+  "fields": {
+   "custom_preconds": {
+    "blocks": [
+     [
+      "1. You are signed in with invoicing and review permissions.",
+      "2. Work orders exist in each combination of review on/off and lines open/complete/reviewed."
+     ]
+    ],
+    "text": "1. You are signed in with invoicing and review permissions.\n2. Work orders exist in each combination of review on/off and lines open/complete/reviewed."
+   },
+   "custom_steps": {
+    "blocks": [
+     [
+      "1. With review off and a line still open, read the header actions.",
+      "2. With review off and every line complete.",
+      "3. With review on and a line still open.",
+      "4. With review on, every line complete, not yet reviewed.",
+      "5. With review on, already reviewed.",
+      "6. With lines selected."
+     ]
+    ],
+    "text": "1. With review off and a line still open, read the header actions.\n2. With review off and every line complete.\n3. With review on and a line still open.\n4. With review on, every line complete, not yet reviewed.\n5. With review on, already reviewed.\n6. With lines selected."
+   },
+   "custom_expected": {
+    "blocks": [
+     [
+      "1. Review off, any line still open: New Line, Send, and a ... menu holding Create invoice.",
+      "2. Review off, every line complete: Create invoice promoted to a primary button beside New Line, then Send and ...",
+      "3. Review on, any line still open: New Line, Send, ... and no finish action at all (the next real action is completing the lines, on the line and in the bulk bar).",
+      "4. Any line still in Needs Approval: Create invoice is shown disabled (not hidden) with the reason \"All lines must be approved before invoicing\"; invoicing never approves a line as a side effect. A work order whose lines are all in Needs Approval offers no finish action at all - the next real action is approving the lines, on the line or in the bulk action bar.",
+      "5. Review on, every line complete, not yet reviewed: Mark as reviewed promoted beside New Line.",
+      "6. Review on, already reviewed: Create invoice promoted in its place.",
+      "7. Lines selected: the bulk action bar, whatever the review setting.",
+      "8. Only one finish action is ever on screen, and only ever one the user can actually press."
+     ],
+     [
+      "---",
+      "This is the expected behaviour as per epic SV-8683 and story SV-9264 (Story 18, Create invoice as the finish action) and the Simple Flow V2 specification (Confluence page 771391574, revised 8 September 2026), read on 8 September 2026.",
+      "AUTOMATION: Not available on Build to test Yet - Last checked 9/8/2026"
+     ]
+    ],
+    "text": "1. Review off, any line still open: New Line, Send, and a ... menu holding Create invoice.\n2. Review off, every line complete: Create invoice promoted to a primary button beside New Line, then Send and ...\n3. Review on, any line still open: New Line, Send, ... and no finish action at all (the next real action is completing the lines, on the line and in the bulk bar).\n4. Any line still in Needs Approval: Create invoice is shown disabled (not hidden) with the reason \"All lines must be approved before invoicing\"; invoicing never approves a line as a side effect. A work order whose lines are all in Needs Approval offers no finish action at all - the next real action is approving the lines, on the line or in the bulk action bar.\n5. Review on, every line complete, not yet reviewed: Mark as reviewed promoted beside New Line.\n6. Review on, already reviewed: Create invoice promoted in its place.\n7. Lines selected: the bulk action bar, whatever the review setting.\n8. Only one finish action is ever on screen, and only ever one the user can actually press.\n\n---\nThis is the expected behaviour as per epic SV-8683 and story SV-9264 (Story 18, Create invoice as the finish action) and the Simple Flow V2 specification (Confluence page 771391574, revised 8 September 2026), read on 8 September 2026.\nAUTOMATION: Not available on Build to test Yet - Last checked 9/8/2026"
+   }
+  }
+ },
+ "44600": {
+  "title": "Create invoice runs the wizard if needed, then invoices and opens payment",
+  "fields": {
+   "custom_preconds": {
+    "blocks": [
+     [
+      "1. You are signed in with Invoicing & Payments: Create & Edit + See Financial Data.",
+      "2. A work order has open lines, some with outstanding collectable work; and one where a deposit covers the whole amount."
+     ]
+    ],
+    "text": "1. You are signed in with Invoicing & Payments: Create & Edit + See Financial Data.\n2. A work order has open lines, some with outstanding collectable work; and one where a deposit covers the whole amount."
+   },
+   "custom_steps": {
+    "blocks": [
+     [
+      "1. Press Create invoice on a work order with outstanding required work.",
+      "2. Confirm and complete the flow.",
+      "3. Repeat where a deposit covers the whole amount."
+     ]
+    ],
+    "text": "1. Press Create invoice on a work order with outstanding required work.\n2. Confirm and complete the flow.\n3. Repeat where a deposit covers the whole amount."
+   },
+   "custom_expected": {
+    "blocks": [
+     [
+      "1. Create invoice runs the wizard first if anything required is outstanding, otherwise proceeds directly.",
+      "2. If lines are still open, the confirmation states the invoice total and how many Approved lines will be completed; declined lines are named as excluded rather than counted.",
+      "3. On completion the invoice is created, every open Approved line completes, and the Finance tab opens with the payment screen. A declined line never blocks invoicing - it is skipped entirely.",
+      "4. Where a deposit already covers the whole amount the payment screen is skipped, the work order reads Paid, and the user is told the deposit settled the invoice.",
+      "5. Everything that happens today when an invoice is created still happens from every entry point: a deposit applying, an over-payment becoming a credit, the customer being locked, the accounting sync and the snapshot."
+     ],
+     [
+      "---",
+      "This is the expected behaviour as per epic SV-8683 and story SV-9264 (Story 18, Create invoice as the finish action) and the Simple Flow V2 specification (Confluence page 771391574, revised 8 September 2026), read on 8 September 2026.",
+      "AUTOMATION: Not available on Build to test Yet - Last checked 9/8/2026"
+     ]
+    ],
+    "text": "1. Create invoice runs the wizard first if anything required is outstanding, otherwise proceeds directly.\n2. If lines are still open, the confirmation states the invoice total and how many Approved lines will be completed; declined lines are named as excluded rather than counted.\n3. On completion the invoice is created, every open Approved line completes, and the Finance tab opens with the payment screen. A declined line never blocks invoicing - it is skipped entirely.\n4. Where a deposit already covers the whole amount the payment screen is skipped, the work order reads Paid, and the user is told the deposit settled the invoice.\n5. Everything that happens today when an invoice is created still happens from every entry point: a deposit applying, an over-payment becoming a credit, the customer being locked, the accounting sync and the snapshot.\n\n---\nThis is the expected behaviour as per epic SV-8683 and story SV-9264 (Story 18, Create invoice as the finish action) and the Simple Flow V2 specification (Confluence page 771391574, revised 8 September 2026), read on 8 September 2026.\nAUTOMATION: Not available on Build to test Yet - Last checked 9/8/2026"
+   }
+  }
+ },
+ "53485": {
+  "title": "Only ordering and picking ask to confirm; picking-off warns of stock deduction",
+  "fields": {
+   "custom_preconds": {
+    "blocks": [
+     [
+      "1. You are signed in with access to Settings > App Settings.",
+      "2. Open work orders exist with outstanding parts, so a settings change affects a non-zero number of records.",
+      "3. You can also reach a state where changing a setting affects zero records."
+     ]
+    ],
+    "text": "1. You are signed in with access to Settings > App Settings.\n2. Open work orders exist with outstanding parts, so a settings change affects a non-zero number of records.\n3. You can also reach a state where changing a setting affects zero records."
+   },
+   "custom_steps": {
+    "blocks": [
+     [
+      "1. Change \"Require ordering parts\" and read the confirmation.",
+      "2. Change \"Require picking inventory parts\" off and read the confirmation.",
+      "3. Change \"Require approval for new lines\" and watch whether a confirmation appears.",
+      "4. Change \"Require receiving parts before completion\" and watch whether a confirmation appears.",
+      "5. Change a setting in a state where no existing records are affected."
+     ]
+    ],
+    "text": "1. Change \"Require ordering parts\" and read the confirmation.\n2. Change \"Require picking inventory parts\" off and read the confirmation.\n3. Change \"Require approval for new lines\" and watch whether a confirmation appears.\n4. Change \"Require receiving parts before completion\" and watch whether a confirmation appears.\n5. Change a setting in a state where no existing records are affected."
+   },
+   "custom_expected": {
+    "blocks": [
+     [
+      "1. Changing \"Require ordering parts\" or \"Require picking inventory parts\" opens a confirmation before anything is saved; the title names the setting and the direction, and the body states the number of records that will change.",
+      "2. Turning \"Require picking inventory parts\" off is shown as a warning, not just a count, and it says in words that the affected inventory parts will be marked as picked and deducted from stock.",
+      "3. Changing \"Require approval for new lines\" or \"Require receiving parts before completion\" shows no confirmation and saves directly.",
+      "4. When the number of affected records is zero, no confirmation shows and the setting saves directly.",
+      "5. Where a large number of records is affected, the confirmation also advises making the change outside working hours; where the number cannot be established it states the consequence without a figure."
+     ],
+     [
+      "---",
+      "This is the expected behaviour as per epic SV-8683 and story SV-9249 (Story 3, Confirmation before a settings change) and the Simple Flow V2 specification (Confluence page 771391574, revised 8 September 2026), read on 8 September 2026.",
+      "AUTOMATION: Not available on Build to test Yet - Last checked 9/8/2026"
+     ]
+    ],
+    "text": "1. Changing \"Require ordering parts\" or \"Require picking inventory parts\" opens a confirmation before anything is saved; the title names the setting and the direction, and the body states the number of records that will change.\n2. Turning \"Require picking inventory parts\" off is shown as a warning, not just a count, and it says in words that the affected inventory parts will be marked as picked and deducted from stock.\n3. Changing \"Require approval for new lines\" or \"Require receiving parts before completion\" shows no confirmation and saves directly.\n4. When the number of affected records is zero, no confirmation shows and the setting saves directly.\n5. Where a large number of records is affected, the confirmation also advises making the change outside working hours; where the number cannot be established it states the consequence without a figure.\n\n---\nThis is the expected behaviour as per epic SV-8683 and story SV-9249 (Story 3, Confirmation before a settings change) and the Simple Flow V2 specification (Confluence page 771391574, revised 8 September 2026), read on 8 September 2026.\nAUTOMATION: Not available on Build to test Yet - Last checked 9/8/2026"
+   }
+  }
+ },
+ "53486": {
+  "title": "Deselect all keeps the bar, close dismisses it; an empty group shows no divider",
+  "fields": {
+   "custom_preconds": {
+    "blocks": [
+     [
+      "1. You are signed in with WO Lines: Create & Edit and Full View.",
+      "2. A work order has several lines and parts, so both a line group and a parts group can appear in the bulk action bar."
+     ]
+    ],
+    "text": "1. You are signed in with WO Lines: Create & Edit and Full View.\n2. A work order has several lines and parts, so both a line group and a parts group can appear in the bulk action bar."
+   },
+   "custom_steps": {
+    "blocks": [
+     [
+      "1. Select several lines, then press Deselect all.",
+      "2. Select again, then press the close control.",
+      "3. Make a selection where only a line action applies and no parts action does, and look at the dividers."
+     ]
+    ],
+    "text": "1. Select several lines, then press Deselect all.\n2. Select again, then press the close control.\n3. Make a selection where only a line action applies and no parts action does, and look at the dividers."
+   },
+   "custom_expected": {
+    "blocks": [
+     [
+      "1. Deselect all clears the selection but leaves the bar in place; the column headers return.",
+      "2. The close control clears the selection and dismisses the bar; the column headers return, exactly as with Deselect all.",
+      "3. A group that is holding nothing renders no divider and takes no space, so the bar reads the same whatever it holds."
+     ],
+     [
+      "---",
+      "This is the expected behaviour as per epic SV-8683 and story SV-9253 (Story 7, The bulk action bar) and the Simple Flow V2 specification (Confluence page 771391574, revised 8 September 2026), read on 8 September 2026.",
+      "AUTOMATION: Not available on Build to test Yet - Last checked 9/8/2026"
+     ]
+    ],
+    "text": "1. Deselect all clears the selection but leaves the bar in place; the column headers return.\n2. The close control clears the selection and dismisses the bar; the column headers return, exactly as with Deselect all.\n3. A group that is holding nothing renders no divider and takes no space, so the bar reads the same whatever it holds.\n\n---\nThis is the expected behaviour as per epic SV-8683 and story SV-9253 (Story 7, The bulk action bar) and the Simple Flow V2 specification (Confluence page 771391574, revised 8 September 2026), read on 8 September 2026.\nAUTOMATION: Not available on Build to test Yet - Last checked 9/8/2026"
+   }
+  }
+ },
+ "53487": {
+  "title": "A vendor can be corrected until a part is received, then it is fixed",
+  "fields": {
+   "custom_preconds": {
+    "blocks": [
+     [
+      "1. You are signed in with Order Parts + Vendor & Order Mgmt: Create & Edit.",
+      "2. A purchase order was created without a vendor and its parts are still unreceived.",
+      "3. Another purchase order has a part that has already been received."
+     ]
+    ],
+    "text": "1. You are signed in with Order Parts + Vendor & Order Mgmt: Create & Edit.\n2. A purchase order was created without a vendor and its parts are still unreceived.\n3. Another purchase order has a part that has already been received."
+   },
+   "custom_steps": {
+    "blocks": [
+     [
+      "1. On the unreceived purchase order, change the assigned vendor.",
+      "2. On the one with a received part, look for a way to change the vendor.",
+      "3. Attempt to receive a part against a vendor different from the one already recorded."
+     ]
+    ],
+    "text": "1. On the unreceived purchase order, change the assigned vendor.\n2. On the one with a received part, look for a way to change the vendor.\n3. Attempt to receive a part against a vendor different from the one already recorded."
+   },
+   "custom_expected": {
+    "blocks": [
+     [
+      "1. While the purchase order has no received parts, its assigned vendor can be replaced.",
+      "2. Once any part on it is received, its vendor is fixed - there is no way to change it, because it belongs to that delivery and that vendor's bill.",
+      "3. A purchase order that already carries a named vendor offers no change of vendor at all; parts that genuinely belong to another supplier are removed and ordered again.",
+      "4. A receive is refused if it names a vendor different from the one already recorded against a received part; the rule holds on the back end, not only on screen."
+     ],
+     [
+      "---",
+      "This is the expected behaviour as per epic SV-8683 and story SV-9259 (Story 13, Receiving from the work order) and the Simple Flow V2 specification (Confluence page 771391574, revised 8 September 2026), read on 8 September 2026.",
+      "AUTOMATION: Not available on Build to test Yet - Last checked 9/8/2026"
+     ]
+    ],
+    "text": "1. While the purchase order has no received parts, its assigned vendor can be replaced.\n2. Once any part on it is received, its vendor is fixed - there is no way to change it, because it belongs to that delivery and that vendor's bill.\n3. A purchase order that already carries a named vendor offers no change of vendor at all; parts that genuinely belong to another supplier are removed and ordered again.\n4. A receive is refused if it names a vendor different from the one already recorded against a received part; the rule holds on the back end, not only on screen.\n\n---\nThis is the expected behaviour as per epic SV-8683 and story SV-9259 (Story 13, Receiving from the work order) and the Simple Flow V2 specification (Confluence page 771391574, revised 8 September 2026), read on 8 September 2026.\nAUTOMATION: Not available on Build to test Yet - Last checked 9/8/2026"
+   }
+  }
+ },
+ "53488": {
+  "title": "PO list-page selection raises the shared bulk bar; Select all covers one page",
+  "fields": {
+   "custom_preconds": {
+    "blocks": [
+     [
+      "1. You are signed in with Vendor & Order Mgmt: Create & Edit.",
+      "2. More than thirty purchase orders exist across several vendors, including at least one with no vendor, so a second page loads on scroll and a selection can span vendors."
+     ]
+    ],
+    "text": "1. You are signed in with Vendor & Order Mgmt: Create & Edit.\n2. More than thirty purchase orders exist across several vendors, including at least one with no vendor, so a second page loads on scroll and a selection can span vendors."
+   },
+   "custom_steps": {
+    "blocks": [
+     [
+      "1. Select several purchase orders and read the bar.",
+      "2. Look for Assign vendor on the bar.",
+      "3. Use Select all, then scroll to load more rows and check which are selected."
+     ]
+    ],
+    "text": "1. Select several purchase orders and read the bar.\n2. Look for Assign vendor on the bar.\n3. Use Select all, then scroll to load more rows and check which are selected."
+   },
+   "custom_expected": {
+    "blocks": [
+     [
+      "1. Selecting purchase orders raises the same bulk action bar as the work order, not a bar of its own design: \"n selected\", then Deselect all, then Receive selected as the primary action, then More, then a close control, with the same dividers.",
+      "2. Assign vendor is not the primary action; it lives in More and acts only on the selected rows that have no vendor.",
+      "3. The bar carries no amber treatment.",
+      "4. Select all selects only what is loaded - one page (thirty rows) - so after scrolling to load more, the newly loaded rows are not selected. This is expected behaviour in this release, not a defect."
+     ],
+     [
+      "---",
+      "This is the expected behaviour as per epic SV-8683 and story SV-9260 (Story 14, The receive page and PO bulk receive) and the Simple Flow V2 specification (Confluence page 771391574, revised 8 September 2026), read on 8 September 2026.",
+      "AUTOMATION: Not available on Build to test Yet - Last checked 9/8/2026"
+     ]
+    ],
+    "text": "1. Selecting purchase orders raises the same bulk action bar as the work order, not a bar of its own design: \"n selected\", then Deselect all, then Receive selected as the primary action, then More, then a close control, with the same dividers.\n2. Assign vendor is not the primary action; it lives in More and acts only on the selected rows that have no vendor.\n3. The bar carries no amber treatment.\n4. Select all selects only what is loaded - one page (thirty rows) - so after scrolling to load more, the newly loaded rows are not selected. This is expected behaviour in this release, not a defect.\n\n---\nThis is the expected behaviour as per epic SV-8683 and story SV-9260 (Story 14, The receive page and PO bulk receive) and the Simple Flow V2 specification (Confluence page 771391574, revised 8 September 2026), read on 8 September 2026.\nAUTOMATION: Not available on Build to test Yet - Last checked 9/8/2026"
+   }
+  }
+ },
+ "53489": {
+  "title": "Deferring a part with a core: the core follows the parent, never its own choice",
+  "fields": {
+   "custom_preconds": {
+    "blocks": [
+     [
+      "1. You are signed in with the Received later permission and Order Parts.",
+      "2. \"Require receiving parts before completion\" is on.",
+      "3. A work order has an approved line with a part that carries a core charge (parent plus core sibling) awaiting receipt, and a second part whose core is already resolved."
+     ]
+    ],
+    "text": "1. You are signed in with the Received later permission and Order Parts.\n2. \"Require receiving parts before completion\" is on.\n3. A work order has an approved line with a part that carries a core charge (parent plus core sibling) awaiting receipt, and a second part whose core is already resolved."
+   },
+   "custom_steps": {
+    "blocks": [
+     [
+      "1. Choose Received later on the parent part and check the core sibling's state and row.",
+      "2. Look at the line's completion requirement.",
+      "3. Receive the parent later and check the core.",
+      "4. Defer a part whose core is already resolved."
+     ]
+    ],
+    "text": "1. Choose Received later on the parent part and check the core sibling's state and row.\n2. Look at the line's completion requirement.\n3. Receive the parent later and check the core.\n4. Defer a part whose core is already resolved."
+   },
+   "custom_expected": {
+    "blocks": [
+     [
+      "1. Choosing Received later on the parent puts its core sibling into the same \"Received later\" state, so the pair stays consistent and neither blocks completion on its own.",
+      "2. The core is never offered a Received later choice of its own - while its parent is deferred it carries no caret and no row action, and it never appears as a separate row.",
+      "3. Deferring a part with a core moves no stock and creates no core credit; nothing about the core's value is decided until the parent is received.",
+      "4. Receiving the parent later resolves the core with it, in the same pass and under the same invoice number.",
+      "5. An unresolved core is still asked for before the line completes, exactly as when receiving is not required - deferring the receive defers the paperwork, not the core decision.",
+      "6. A part whose core is already resolved defers like any other part."
+     ],
+     [
+      "---",
+      "This is the expected behaviour as per epic SV-8683 and story SV-9261 (Story 15, Receive later) and the Simple Flow V2 specification (Confluence page 771391574, revised 8 September 2026), read on 8 September 2026.",
+      "AUTOMATION: Not available on Build to test Yet - Last checked 9/8/2026"
+     ]
+    ],
+    "text": "1. Choosing Received later on the parent puts its core sibling into the same \"Received later\" state, so the pair stays consistent and neither blocks completion on its own.\n2. The core is never offered a Received later choice of its own - while its parent is deferred it carries no caret and no row action, and it never appears as a separate row.\n3. Deferring a part with a core moves no stock and creates no core credit; nothing about the core's value is decided until the parent is received.\n4. Receiving the parent later resolves the core with it, in the same pass and under the same invoice number.\n5. An unresolved core is still asked for before the line completes, exactly as when receiving is not required - deferring the receive defers the paperwork, not the core decision.\n6. A part whose core is already resolved defers like any other part.\n\n---\nThis is the expected behaviour as per epic SV-8683 and story SV-9261 (Story 15, Receive later) and the Simple Flow V2 specification (Confluence page 771391574, revised 8 September 2026), read on 8 September 2026.\nAUTOMATION: Not available on Build to test Yet - Last checked 9/8/2026"
+   }
+  }
+ }
+}
