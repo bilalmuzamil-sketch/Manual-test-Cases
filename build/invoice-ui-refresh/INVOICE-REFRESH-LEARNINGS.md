@@ -1024,3 +1024,50 @@ the container holding the comment. One `<p>` and no line breaks means the wall o
 **The general rule.** This is the same lesson as L34 (Jira) and the playbook's §J (TestRail case
 fields), in a third place: **every system has its own container behaviour, and HTTP 200 is never
 evidence that a human can read what you wrote.** Read it back the way the reader will see it.
+
+---
+
+## L36 — Two tickets obsoleted in one day, same root cause: a technical observation was never translated into shop meaning (2026-09-07/08)
+
+**What happened.** Two tickets raised in this pass were manually reviewed by the QA lead and marked
+OBSOLETE. Neither was badly written. Both were **not defects at all.**
+
+| Ticket | Filed as | Why it was not a defect |
+|---|---|---|
+| **SV-9774** | "Parts Sale document prints no part number" | The **"Part number" toggle was off** in that part sale's own per-view settings. Turned on, the line reads `P550848 - FUEL/WATER SEPARATOR`. C44981 corrected to Passed |
+| **SV-9812** | "Asset section rule assumes a separate VIN and Serial; the product has one combined field" | **A truck has a VIN; a generator set has a serial number.** One field holds whichever identifier the asset in front of you carries. S4-R1 describes exactly that and is correct |
+
+**The shared root cause.** In both, a technical observation was promoted to a defect without first
+asking what the thing means to a repair shop. In SV-9812 the specific error was reading `vin` as a
+**schema fact** — "there is one column, therefore the rule's two branches cannot both exist" — when it
+is a **column name** for a field that holds either kind of identifier. **A schema fact is never a
+product fact.**
+
+**The evidence was already against me and I did not read it.** SV-9812 claimed a spec branch was
+*unreachable*, while the very same pass had observed **both branches working**: a truck asset printed
+`VIN / SERIAL  PV1T2SK1DNUUK7YDE`, and an asset holding `SN-ZZAUTOTEST-0042` printed that. That is
+S4-R1 passing on both sides — better coverage than I credited it with — and the contradiction was
+sitting in my own notes.
+
+**The sharp edge, and the reason the go-ahead did not save me.** Rule 62(c) gate 3 says reproduce it
+on the build as it stands that day. I did — 500 assets read, the document re-rendered — and filed
+anyway. **Re-verifying proves the OBSERVATION still happens. It says nothing about whether the
+observation is a DEFECT.** Two separate checks; I let the first stand in for the second.
+
+**Recorded as a gate, not a resolution:** `build/skills/06-DEFECT-PREP.md` **A5-b — the
+domain-meaning gate**, five questions answered in sentences in the candidate file before a ticket is
+admissible, plus a row in that skill's refusal table. The questions that would have killed these two:
+*"is there a toggle that produces exactly this?"* (SV-9774) and *"am I saying the rule is wrong, or did
+I misread it?"* (SV-9812).
+
+**The standing cost this protects against**, in the QA lead's own words from 2026-08-21: filed tickets
+that come back marked obsolete **discredit the ones that were right**. Ten admissible candidates he can
+walk through one at a time is a good pass; ten filed tickets, some obsoleted, is a bad one even when
+most were correct.
+
+**Also fixed:** C44924's clause 4 read *"The VIN is preferred when both exist"* — our own paraphrase,
+absent from the spec, and describing a state that never occurs. Reworded to
+*"Only one value ever shows in 'VIN / Serial' - a vehicle shows its VIN, and a machine such as a
+generator set shows its serial number."* Provenance re-stamped to spec v57 and build
+v26.35.9-9812433 (Rule 41). **Quote the source, never a downstream restatement of it** (Rule 25) — the
+same error as L34's second half, now twice in two days.

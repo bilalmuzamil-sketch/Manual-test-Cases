@@ -174,6 +174,7 @@ them:
 | **"irrelevant"** | The gap was **unfinished work on a never-final branch**, already owned by an open story | **A3** (the owning-story status check) |
 | **"irrelevant"** | **Already reported** — including reported and closed | **A4** (duplicate search including closed) |
 | **"irrelevant"** | **By design** — most often a Rule-24 front-end block | **A5** (by-design check) |
+| **"irrelevant"** | **A technical observation the filer never translated into shop meaning** — a config toggle that was off, or a field read as storage rather than as what it means to a shop (2026-09-08: SV-9774, SV-9812) | **A5-b** (the domain-meaning gate) |
 
 **THE DELIVERABLE OF THIS LANE IS A SET OF ADMISSIBLE, EVIDENCED CANDIDATES THE QA LEAD CAN APPROVE
 ONE AT A TIME — NOT A PILE OF FILED TICKETS.** Ten admissible candidates he can walk through one by
@@ -217,11 +218,19 @@ TestRail case: C##### — https://shopview.testrail.io/index.php?/cases/view/###
 | A3 | NOT an unfinished feature | ☐ | owning story + its status + sprint; flags; epic scan |
 | A4 | NOT already reported (incl. CLOSED) | ☐ | the JQL, the hits, how each closed one was closed |
 | A5 | NOT by design | ☐ | Rule-24 direction; recorded decisions; PO answers |
+| A5-b | I understood what it MEANS in a repair shop | ☐ | the five answers below — not a tick, actual sentences |
 | A6 | NOT environment / data / role | ☐ | env + build marker, role reset, seeded data, clean session |
 | A7 | Correct parent, proved from the epic's children | ☐ | story key + how ownership was established |
 | A8 | Evidence complete | ☐ | annotated screenshots, numbered steps, marker, env, role, time |
 | A9 | Adversarial self-review survived | ☐ | the six refusals argued and defeated, below |
 | A10 | Rule 62 — prepared to the button, not filed | ☐ | the ask, and his answer (or "not yet asked") |
+
+## A5-b — WHAT THIS MEANS IN A REPAIR SHOP (answer in sentences, never a tick)
+1. What the field/behaviour means to a shop, in shop words, not API or database words: <answer>
+2. Setting / toggle / per-view option that could produce exactly this: <checked which, and the result>
+3. Anything in MY OWN evidence that contradicts my claim: <answer, or "none — and here is why">
+4. Is the rule wrong, or did I misread it? The reading under which it makes sense to a shop: <answer>
+5. One sentence a shop person would recognise as a problem, no technical terms: <the sentence>
 
 ## A9 — THE SIX REFUSALS, ARGUED AND ANSWERED
 1. "This is unbuilt / not finished yet." → <the answer, with evidence>
@@ -238,7 +247,7 @@ Where it was recorded instead: <NOT-FILED.md · RECHECK-QUEUE.md · PO question 
 
 ---
 
-## THE TEN CHECKS
+## THE CHECKS — A1–A10, plus **A5-b** added 2026-09-08
 
 ### A1 · REPRODUCED **TWICE**, ON THE **CURRENT** BUILD
 
@@ -337,6 +346,46 @@ Item (5) of the evidence bar, **extended to closed and resolved issues**.
   any closed-by-design ticket found in A4.
 - **If the answer to *"is this even wrong?"* is a PO question, it is a question, not a ticket**
   (skill `07`). Filing a ticket to ask a question is how a ticket gets marked irrelevant.
+
+### A5-b · **I HAVE UNDERSTOOD WHAT THE THING MEANS IN A REPAIR SHOP** — added 2026-09-08 after two tickets in one day were obsoleted for this
+
+**Both failures came from the same move: turning a TECHNICAL OBSERVATION into a defect without first
+establishing what the thing means to the business.**
+
+| Ticket | What I filed | Why it was obsoleted |
+|---|---|---|
+| **SV-9774** | "Parts Sale document prints no part number" | The **"Part number" toggle was off** in that part sale's own per-view settings. With it on, the line reads `P550848 - FUEL/WATER SEPARATOR`. A configuration state, reported as a product fault |
+| **SV-9812** | "Asset section rule assumes a separate VIN and Serial; the product has one combined field" | **A truck has a VIN, a generator set has a serial number.** One field holds whichever identifier the asset in front of you carries. The rule is correct; I read the storage and not the meaning |
+
+**The five questions. Answer them IN WRITING in the candidate file before the ticket is admissible.**
+
+1. **What does this field or behaviour mean to a repair shop?** — not what it is called in the API or
+   the database. `vin` is a **column name**; the field holds whichever identifier the asset carries.
+   **A schema fact is never a product fact.**
+2. **Is there a setting, toggle or per-view option that produces exactly what I am seeing?** Check the
+   document's own field toggles, the shop settings, and the per-record view options **before** filing.
+   That single question kills SV-9774.
+3. **Does my own evidence contradict my own claim?** SV-9812 asserted a spec branch was *unreachable*
+   while the same pass had **observed both branches working** — a truck printing a VIN and an asset
+   printing a serial. The contradiction was sitting in my own notes. **Re-read your evidence as if a
+   reviewer wrote it.**
+4. **Am I saying the rule is wrong, or did I misread the rule?** A rule that looks **impossible to
+   satisfy** is far more likely one I have misread than one that is broken. **Find the reading under
+   which the rule makes sense to a shop, and test THAT reading first.** Only if no sensible reading
+   survives is there a finding.
+5. **Would someone who works in a repair shop recognise this as a problem, described in one sentence,
+   with no API or database terms?** If making it sound wrong needs a schema argument, it is not a
+   defect yet.
+
+> **🛑 THE SHARP EDGE — RE-VERIFYING AN OBSERVATION IS NOT VALIDATING A FINDING (Rule 62(c) gate 3).**
+> Rule 62(c) says a go-ahead means reproduce it on the build as it stands that day. **That proves the
+> OBSERVATION still happens. It says NOTHING about whether the observation is a DEFECT.** SV-9812 was
+> re-verified exactly as instructed — 500 assets read, the document re-rendered — and filed anyway,
+> because reproducing was allowed to stand in for judging. **They are two separate checks and the
+> second one is this one. Run both, in that order.**
+
+**When the answer is "the specification is worded confusingly", that is a QUESTION, not a ticket**
+(skill `07`) — same disposal as A5's last bullet.
 
 ### A6 · IT IS **NOT ENVIRONMENT / DATA / ROLE**
 

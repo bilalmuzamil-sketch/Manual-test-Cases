@@ -1,14 +1,27 @@
 # Candidate tickets
-**RESOLVED 2026-09-07.** The QA lead gave the go-ahead. Candidate 1 was re-verified on the build as
-it stands that day and filed as **[SV-9812](https://shopview.atlassian.net/browse/SV-9812)** — Story
-Defect, Medium, parent SV-9143, assigned to Milomir Kotlajic, `relates to` SV-9143.
-The SV-9680 corroboration comment further down is **still held** — it was not part of that go-ahead.
+**CLOSED 2026-09-08 — CANDIDATE 1 WAS NOT A DEFECT.** It was filed on the QA lead's go-ahead as
+**[SV-9812](https://shopview.atlassian.net/browse/SV-9812)** and he marked it **OBSOLETE**.
+
+**Why it was wrong:** a truck carries a VIN and a generator set carries a serial number, and the one
+"VIN / Serial" field holds whichever identifier the asset in front of you has. **S4-R1 describes
+exactly that and is correct.** The candidate below read `vin` as a schema fact — one column, therefore
+the rule's two branches cannot both exist — when it is simply the column's name. Worse, the same pass
+had already **observed both branches working** (a truck printing its VIN, an asset printing
+`SN-ZZAUTOTEST-0042`), so the evidence contradicted the claim.
+
+**Everything below this line is kept as the record of a rejected candidate. Do not re-file it.**
+The gate that now catches this: `build/skills/06-DEFECT-PREP.md` **A5-b**, and **L36** in
+`../INVOICE-REFRESH-LEARNINGS.md`.
+
+The SV-9680 corroboration comment further down is **still held** — it was never part of that go-ahead.
 **Date:** 2026-09-07 · **Environment:** staging · **Build:** `v26.35.9-9812433`
 
 ---
 
-## CANDIDATE 1 — FILED 2026-09-07 as [SV-9812](https://shopview.atlassian.net/browse/SV-9812)
+## CANDIDATE 1 — ❌ REJECTED. Filed as [SV-9812](https://shopview.atlassian.net/browse/SV-9812), marked OBSOLETE 2026-09-08
 ### S1/S4 asset identifier: the spec describes two fields where the product has one
+
+> **This candidate's premise is FALSE — see the note at the top of this file. Kept as a record.**
 
 **Filed as:** `Story Defect` · parent **SV-9143 — Story 4, Asset Section** · priority `Medium` ·
 label `fs_invoice_refresh` · no Product Area · plus a `relates to` link to SV-9143.
