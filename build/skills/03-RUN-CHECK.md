@@ -1409,3 +1409,18 @@ returning a verdict, because the failure mode is a confident sentence in a repor
 **And the standing question, before any sentence that says something is absent:** *what would this
 probe have printed if the thing DID exist somewhere I did not look?* If the answer is "exactly what it
 printed", the probe has not measured the claim.
+
+## 🛑 VIEW-MODE / PERMISSION STATE GATES WHAT THE UI SHOWS — DUMP `fe_permissions` FIRST (2026-09-08)
+
+Before concluding a **Full-View-gated** control is missing/renamed on the build, prove your session is
+actually in that state. On sv9315 the only quick-login (Admin) is a **Tech-View** role: its
+`fe_permissions` contain **`woTechViewMode`** and `template: tech`. In Tech View the inline Add-Part row
+CORRECTLY shows only three fields (Description · Part number · Qty) with **no** `Cost` / `Sell price` /
+`More options` — spec §S4-R21. A 2026-09-08 pass mis-read that reduced row as *"`More options` removed"*
+and nearly flagged four spec-correct cases (C45046/45047/45065/45067). It was a Tech-View artifact.
+**Editing the role's View-mode segment to "Full View" on the role screen does NOT persist and does NOT
+change the logged-in quick-login session** (verified: role reopens as its saved value; session keeps
+`woTechViewMode`). **So: dump `localStorage.fe_permissions_wrapper` and confirm the effective view mode
+before calling a Full-View-only label absent** — and to test Full-View features you need a login whose
+role is genuinely **Full View + See Financial Data**, not a role-screen toggle on a Tech-View session.
+Probe: `build/inline-add-edit-parts/build-verify-2026-09-08/probe_perms.mjs`.
