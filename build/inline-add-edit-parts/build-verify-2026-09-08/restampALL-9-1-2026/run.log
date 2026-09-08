@@ -1,0 +1,62 @@
+12:42:07 C45087 already checkpointed
+12:42:19 C45090 OK (custom_expected)  1/147
+12:42:30 C45094 OK (custom_expected)  2/147
+12:42:41 C45096 OK (custom_expected)  3/147
+12:42:50 C45098 OK (custom_expected)  4/147
+12:43:02 C45099 OK (custom_expected)  5/147
+12:43:13 C45100 OK (custom_expected)  6/147
+12:43:24 C45101 OK (custom_expected)  7/147
+12:43:35 C45102 OK (custom_expected)  8/147
+12:43:47 C45103 OK (custom_expected)  9/147
+12:43:58 C45104 OK (custom_expected)  10/147
+12:44:09 C45105 OK (custom_expected)  11/147
+12:44:19 C45106 OK (custom_expected)  12/147
+12:44:29 C45107 OK (custom_expected)  13/147
+12:44:40 C45108 OK (custom_expected)  14/147
+12:44:51 C45109 OK (custom_expected)  15/147
+12:45:03 C45110 OK (custom_expected)  16/147
+12:45:14 C45111 OK (custom_expected)  17/147
+12:45:25 C45112 OK (custom_expected)  18/147
+12:45:36 C45113 OK (custom_expected)  19/147
+12:46:01 C45114 deadlock - retry 1/3
+12:47:24 C45114 deadlock - retry 2/3
+12:48:50 C45114 deadlock - retry 3/3
+12:50:19 C45114 FAILED: still on the edit page ["Deadlock found when trying to get lock; try restarting transaction","Title is too long","You have reached max 2000 characters limit. You can't type more."]
+12:50:20 C45115 SKIP - the search string is not in any named field
+12:50:20 C45116 SKIP - the search string is not in any named field
+12:50:20 C45117 SKIP - the search string is not in any named field
+12:50:20 C45118 SKIP - the search string is not in any named field
+12:50:21 C45119 SKIP - the search string is not in any named field
+12:50:21 C45120 SKIP - the search string is not in any named field
+12:50:21 C45121 SKIP - the search string is not in any named field
+12:50:22 C45122 SKIP - the search string is not in any named field
+12:50:22 C45124 SKIP - the search string is not in any named field
+12:50:22 C45125 SKIP - the search string is not in any named field
+12:50:22 C45126 SKIP - the search string is not in any named field
+12:50:23 C45127 SKIP - the search string is not in any named field
+12:50:23 C44988 SKIP - the search string is not in any named field
+12:50:23 C44989 SKIP - the search string is not in any named field
+12:50:23 C44990 SKIP - the search string is not in any named field
+12:50:24 C44991 SKIP - the search string is not in any named field
+12:50:24 C44992 SKIP - the search string is not in any named field
+12:50:24 C44993 SKIP - the search string is not in any named field
+node:internal/deps/undici/undici:14976
+      Error.captureStackTrace(err);
+            ^
+
+TypeError: fetch failed
+    at node:internal/deps/undici/undici:14976:13
+    at async api (file:///home/user/Manual-test-Cases/build/testing-tools/surgical_replace.mjs:33:36)
+    at async file:///home/user/Manual-test-Cases/build/testing-tools/surgical_replace.mjs:58:24 {
+  [cause]: HeadersTimeoutError: Headers Timeout Error
+      at FastTimer.onParserTimeout [as _onTimeout] (node:internal/deps/undici/undici:6391:32)
+      at Timeout.onTick [as _onTimeout] (node:internal/deps/undici/undici:2354:17)
+      at listOnTimeout (node:internal/timers:585:17)
+      at process.processTimers (node:internal/timers:521:7) {
+    code: 'UND_ERR_HEADERS_TIMEOUT',
+    [Symbol(undici.error.UND_ERR)]: true,
+    [Symbol(undici.error.UND_ERR_HEADERS_TIMEOUT)]: true
+  }
+}
+
+Node.js v22.22.2
