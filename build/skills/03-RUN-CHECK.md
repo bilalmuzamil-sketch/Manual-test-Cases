@@ -1421,6 +1421,9 @@ subsequent session then landed in Tech View (the reduced three-field row) and ne
 Full-View `More options` control as *removed from the build*. It was self-inflicted damage — the QA lead
 reverted the role. **If a role genuinely must be changed for a test, change `TECH@shopview.com`'s role,
 never Admin's.** Log in as Admin and just observe; do not mutate it.
+**When assigning a role to `TECH@shopview.com`: RESET the role first** (the role edit screen's "Reset To
+Template" control) so it starts clean, **then assign it to TECH — unless the test requires modifying the
+role before assigning** (then modify, then assign). (QA lead, 2026-09-08.)
 
 ## 🛑 VIEW-MODE / PERMISSION STATE GATES WHAT THE UI SHOWS — DUMP `fe_permissions` FIRST (2026-09-08)
 
