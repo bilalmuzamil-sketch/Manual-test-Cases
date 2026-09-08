@@ -1,0 +1,18 @@
+import fs from 'fs';
+import { chromium } from '/opt/node22/lib/node_modules/playwright/index.mjs';
+const PORT=fs.readFileSync('/tmp/atlassian/bridge-port.txt','utf8').trim();
+const raw=fs.readFileSync('/tmp/qa-cookies/sv9315-sso.txt','utf8').trim();
+const val=/sv_sso_session=([^;\s]+)/.exec(raw)[1];
+const b=await chromium.launch({executablePath:'/opt/pw-browsers/chromium-1194/chrome-linux/chrome',headless:true,proxy:{server:`http://127.0.0.1:${PORT}`},args:['--no-sandbox','--ignore-certificate-errors']});
+const ctx=await b.newContext({ignoreHTTPSErrors:true});
+const sso={name:'sv_sso_session',value:val,path:'/',secure:true,sameSite:'None'};
+await ctx.addCookies([{...sso,domain:'sv9315.qa.shopview.com'},{...sso,domain:'sv9315api.qa.shopview.com'}]);
+const p=await ctx.newPage();
+await p.goto('https://sv9315.qa.shopview.com/login?redirect=/workorders',{waitUntil:'domcontentloaded'});
+await p.waitForTimeout(6000);
+console.log('URL:', p.url());
+console.log('title:', await p.title());
+const btns=await p.evaluate(()=>[...document.querySelectorAll('button')].map(e=>(e.textContent||'').replace(/\s+/g,' ').trim()).filter(Boolean).slice(0,20));
+console.log('BUTTONS:', JSON.stringify(btns));
+console.log('body[:300]:', (await p.evaluate(()=>document.body.innerText)).slice(0,300).replace(/\n/g,' | '));
+await b.close();
