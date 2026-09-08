@@ -119,24 +119,30 @@ BLOCKED = [
   '4. I report Passed or Failed the same day.\n'
   'If no such location exists anywhere, the honest answer is option B.'),
 
- (44916, 'SV-9710', 'KEEP - the case is good, only the environment is short',
-  'The case is fine. It checks that an approval code from the integrated billing service prints on the '
-  'invoice. The problem is that this environment cannot request one of those approvals, so no approval '
-  'code ever exists to print. Integrated billing IS switched on for the organisation - the remit-to '
-  'payee and customer accounts are configured - but the approval request itself cannot be made here.',
-  'Someone with access to the integrated billing service needs to do ONE of these:\n'
-  '(A) Enable approval requests on this environment, or\n'
-  '(B) Seed a single work order that already carries a real approval code, and send me its number.\n'
-  'Option B is far quicker and is enough for the test.',
-  'YOU, or whoever owns the integrated billing integration. The existing ticket SV-9710 is Open and '
-  'assigned to Milomir Kotlajic. I cannot do this myself - it needs the billing service, not the app.',
-  '1. Add a comment to SV-9710 asking: can a work order with a stored approval code be seeded on '
-  'staging?\n'
-  '2. When it exists, send me the work order number.\n'
-  '3. I open it, click Finance, and check the document shows a field labelled exactly "Approval Code" '
-  'carrying that code, and that the code no longer appears under the "Authorized By" area.\n'
-  '4. I report the same day.'),
-
+ (44916, 'SV-9710', 'KEEP - good case, but it cannot be run anywhere yet',
+  'The case is fine. It checks that an approval code from the integrated billing service prints on '
+  'the invoice. The problem is that the two things it needs are in different places and never meet. '
+  'The invoice redesign this case tests exists ONLY on staging and has not been released to '
+  'production yet. Integrated billing works ONLY in production - it has never worked on staging or '
+  'on any QA branch. So there is nowhere today that a real approval code can appear on a redesigned '
+  'invoice. On staging, integrated billing is not connected at all: no credentials, no base URL, and '
+  'every shop location has an empty IBS Location ID, even though customers carry IBS account numbers.',
+  'Nothing from you right now, and no new ticket. Milan Zivanovic (development) has already ruled on '
+  'SV-9710, 7 September 2026, in his own words: "IBS has never worked on any other env than '
+  'production, just skip testing customers that have IBS number for now". He also asked Sasha '
+  'Grosman for an IBS sandbox account: "we will need at some point that IBS sandbox/test account. We '
+  'have never received it."',
+  'SASHA GROSMAN, if we want this tested before release - she is the one Milan asked for the IBS '
+  'sandbox account. Otherwise nobody: it clears itself once the redesign reaches production.',
+  'There are only two ways this case can ever run, whichever comes first:\n'
+  '(A) Someone obtains an IBS sandbox or test account, connects it and maps the shop locations. '
+  'Milan has already asked Sasha Grosman for this on SV-9710 and it has never been supplied. Chase '
+  'that if you want the chip verified BEFORE release.\n'
+  '(B) The invoice redesign is released to production, where integrated billing already works, and '
+  'the case is run there afterwards.\n'
+  'In the meantime follow Milan\'s instruction: skip testing customers that carry an IBS number.\n'
+  'Be aware of the consequence: if we ship first, the Approval Code chip goes to production having '
+  'never been tested. That is a known and accepted gap, not an oversight.'),
 ]
 
 # ---- live case titles
