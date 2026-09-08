@@ -1410,6 +1410,18 @@ returning a verdict, because the failure mode is a confident sentence in a repor
 probe have printed if the thing DID exist somewhere I did not look?* If the answer is "exactly what it
 printed", the probe has not measured the claim.
 
+## 🛑🛑 NEVER CHANGE THE **ADMIN** ROLE — IT IS THE FULL-ACCESS BUILD-VERIFY LOGIN (QA lead, 2026-09-08)
+
+The **Admin** quick-login (`admin@shopview.com`) role is **Full View + See Financial Data = full access**,
+and it is the login used to build-verify any case that needs the full UI (the inline Add-Part row with
+`Category · Cost · Sell price · More options`, the `New/Edit Part Request` modal, `Add tech story for this
+line`, bin allocation). **DO NOT edit the Admin role's permissions or its View-mode segment — ever.**
+A 2026-09-08 pass toggled the Admin role's View mode to "Tech View" while probing and left it there; every
+subsequent session then landed in Tech View (the reduced three-field row) and nearly mis-reported the
+Full-View `More options` control as *removed from the build*. It was self-inflicted damage — the QA lead
+reverted the role. **If a role genuinely must be changed for a test, change `TECH@shopview.com`'s role,
+never Admin's.** Log in as Admin and just observe; do not mutate it.
+
 ## 🛑 VIEW-MODE / PERMISSION STATE GATES WHAT THE UI SHOWS — DUMP `fe_permissions` FIRST (2026-09-08)
 
 Before concluding a **Full-View-gated** control is missing/renamed on the build, prove your session is
