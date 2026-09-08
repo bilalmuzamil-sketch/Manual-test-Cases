@@ -4,7 +4,7 @@
   "env": "staging",
   "build_marker": "v26.35.9-9812433",
   "record": "WO S-32136 / docs EST-S2-32136 & INV-S2-32136, customer 4 Star Truck Repair",
-  "note": "All 120 results written into shared run R417 on 2026-09-07 with the QA lead's explicit permission (Failed and Blocked included). C44952 re-scored Passed on 2026-09-08 after Chris Ward amended S8-R9. Live run: 111 Passed, 5 Failed, 4 Blocked, 0 untested."
+  "note": "All 120 results in shared run R417 with the QA lead's explicit permission. Live after the 8 September corrections: 112 Passed, 5 Failed, 3 Blocked, 0 untested. C44952 re-scored Passed after Chris Ward amended S8-R9; C45275 re-scored Passed after being executed."
  },
  "results": {
   "C44901": {
@@ -662,10 +662,10 @@
    "note": null
   },
   "C45275": {
-   "verdict": "Blocked",
-   "observed": "NOT EXECUTED. Mis-triaged during the 7 September pass as an empty case. It is not empty: it is written in TestRail's SEPARATED STEPS format (custom_steps_separated), with five steps and a full expected-results block. The earlier triage read custom_steps and custom_expected, which are both null on a separated-steps case, and concluded there was nothing to check.",
-   "not_observed": "Everything. The case checks that changing only the CONTACT leaves the Authorizer alone, that changing the CUSTOMER clears it to 'None', that the picker then offers only the new customer's 'Approves Work' contacts plus the 'No authorizer' row first, and that the new selection saves. None of that was exercised.",
-   "note": "CORRECTED 2026-09-08. No defect and no ticket: the case is runnable and simply needs running. It stays Blocked in the sense of 'not yet run'. Re-running it needs a live staging session; the credential file /tmp/shopview/staging.env is ephemeral and has been cleared, so it must be re-supplied. The case is Vladimir Tomovic's and TestRail flags it Automated, so its wording must not be changed (Rules 38 and 71) - executing it and recording a result is fine."
+   "verdict": "Passed",
+   "observed": "Executed end to end through the UI on 8 September 2026, build v26.35.9-9812433. Set-up: work order S2-32272, an estimate for customer A 'Abode Trucking & Repair' (flagged contact Heather Best, unflagged Hailey Rivera); customer B is 'Ado Truck Center - Oasis' (flagged Taylor Lopez, unflagged Brent Miller). Contact and Authorizer both set to Heather Best. STEP 1 - the card shows Authorizer 'Heather Best'. PASS. STEP 2 - Change Customer with the customer left on A and the contact switched to Hailey Rivera: after reload Contact reads 'Hailey Rivera' and Authorizer STILL reads 'Heather Best'. PASS. STEP 3 - Change Customer switching A to B: after reload the Authorizer row reads 'None'. PASS. STEP 4 - the Authorizer picker offers exactly ['No authorizer', 'Taylor Lopez'], in that order. Only B's Approves Work contact is offered; neither of A's contacts and not B's unflagged Brent Miller. PASS. STEP 5 - picking Taylor Lopez saves against the new customer and survives a reload. PASS. Evidence: evidence-c45275/ (8 screenshots, observations.json, the run script).",
+   "not_observed": "",
+   "note": "Was recorded Blocked on 7 September on the false ground that the case was empty. It is written in TestRail's separated-steps format; the triage read custom_steps and custom_expected, which are null on such a case (L37). Re-scored PASSED on 8 September after being executed in full. The case is Vladimir Tomovic's and flagged Automated, so nothing about it was edited (Rules 38 and 71) - only a result recorded."
   },
   "C45188": {
    "verdict": "Passed",
