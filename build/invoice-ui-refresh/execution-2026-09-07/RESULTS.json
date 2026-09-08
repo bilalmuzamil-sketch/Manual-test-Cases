@@ -4,7 +4,7 @@
   "env": "staging",
   "build_marker": "v26.35.9-9812433",
   "record": "WO S-32136 / docs EST-S2-32136 & INV-S2-32136, customer 4 Star Truck Repair",
-  "note": "All 120 results in shared run R417 with the QA lead's explicit permission. Live after the 8 September re-runs: 113 Passed, 6 Failed, 1 Blocked, 0 untested."
+  "note": "All results in shared run R417 with the QA lead's explicit permission. Live 2026-09-08: the run now holds 121 tests - 114 Passed, 6 Failed, 1 Blocked, 0 untested. C53480 was added to the suite and run by another session on 2026-09-08 and is not part of this pass's 120."
  },
  "results": {
   "C44901": {
@@ -17,7 +17,7 @@
    "verdict": "Failed",
    "observed": "Point 1 PASSES: a shop that has a logo (Staging Heavy Duty - 9919) shows its own logo across the top middle of the document. POINT 2 FAILS. On the organisation the QA lead created with no shop logo, the document does not leave that space empty - it prints the SHOPVIEW COMPANY LOGO there. Established three ways: (a) Administration > Settings > Organization shows the grey 'Cannot load image' box, so no logo is set; (b) the organisation's logo record returns empty; (c) a document produced from scratch (new work order S1-3, one line) carries a 545x113 image in the masthead logo slot which decodes to the blue-and-grey 'ShopView' wordmark.",
    "not_observed": "",
-   "note": "Was Blocked on 7 September because no logo-free shop existed. The QA lead created one on 2026-09-08 and the case was rewritten and run. REAL CUSTOMER-FACING DEFECT: a repair shop that has not uploaded a logo sends estimates and invoices carrying the software vendor's logo instead of its own. Spec v64 S1-R2 is explicit: 'when no logo is set, no logo and no placeholder are rendered.' No ticket raised - held for the QA lead (Rule 62). Evidence in evidence-c44902/."
+   "note": "Was Blocked on 7 September because no logo-free shop existed. The QA lead created one on 2026-09-08 and the case was rewritten and run. REAL CUSTOMER-FACING DEFECT: a repair shop that has not uploaded a logo sends estimates and invoices carrying the software vendor's logo instead of its own. Spec v64 S1-R2 is explicit: 'when no logo is set, no logo and no placeholder are rendered.' FILED 2026-09-08 as SV-9819 (Story Defect, Medium, Open, parent SV-9140, assigned Milomir Kotlajic, linked to story SV-9140 and epic SV-8218) on the QA lead's go-ahead, after a duplicate search over 'logo' across the project returned 50 issues and none matched. Evidence in evidence-c44902/."
   },
   "C44903": {
    "verdict": "Passed",
