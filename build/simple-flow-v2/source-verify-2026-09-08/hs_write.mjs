@@ -14,7 +14,9 @@ import fs from 'fs';
 const DIR = '/home/user/Manual-test-Cases/build/simple-flow-v2/source-verify-2026-09-08';
 const OKLOG = `${DIR}/REPAIRED-hs.jsonl`;
 const BADLOG = `${DIR}/FAILED-hs.jsonl`;
-const AUTOMATED_OK = new Set([]);  // layman pass: NO whitelist — atm=3 skipped (Rule 71)
+// atm=3 cases are skipped (Rule 71) UNLESS explicitly whitelisted via AUTOMATED_OK env —
+// used only with a per-case QA-lead go-ahead (e.g. C44557, brought current 2026-09-08 on option A).
+const AUTOMATED_OK = new Set((process.env.AUTOMATED_OK || '').split(',').map(s => s.trim()).filter(Boolean));
 const C = JSON.parse(fs.readFileSync('/tmp/testrail/creds.json', 'utf8'));
 const UI = JSON.parse(fs.readFileSync('/tmp/testrail/creds-ui.json', 'utf8'));
 const HOST = 'https://shopview.testrail.io';

@@ -34,14 +34,15 @@ Part rows/menus + reordering (19-20) · Permissions (21). Story 10 (bulk delete)
 3. On a QA build: build-verify sync (skill 03) lifts the deferred markers.
 
 ## TestRail run (2026-08-25, resynced 2026-09-08)
-- **Full-suite run R416** — https://shopview.testrail.io/index.php?/runs/view/416. Union-synced 61 → **66** cases on 2026-09-08 (5 new added; the 2 previously-passed cases preserved — Rule 34). New cases: append via `build/testing-tools/sync_runs.py --apply` (union-only, Rule 34).
+- **Full-suite run R416** — https://shopview.testrail.io/index.php?/runs/view/416. Union-synced 61 → 66 on 2026-09-08 (5 new added; 2 passed preserved — Rule 34), then **65** after C53485 was retired (option A). New cases: append via `build/testing-tools/sync_runs.py --apply` (union-only, Rule 34).
 
 ## Status — 2026-09-08 (SOURCE RE-VERIFICATION against the 8-Sep spec revision)
 - **Spec MOVED** from v23 (2026-08-21) to the **8 September 2026** revision (Confluence 771391574); 11 stories changed. Tech plan `_2` is byte-identical to `_1` (no change). Design zips (Purchase Orders page, Work orders & settings) read — no design/spec conflict.
 - **Disposition (Rule 43):** 39 cases mapped to the 11 changed stories → **13 UPDATE · 22 UNCHANGED · 4 HELD (Automated) · 5 NEW**. The other 22 cases belong to untouched stories.
 - **13 UPDATED (atm=1):** C44551, C44554, C44555, C44559 (title changed), C44563, C44571, C44572, C44585, C44589, C44590, C44596, C44599, C44600. Automation type backfilled (E2E for C44551/44554/44555/44600, Functional for the rest).
-- **5 NEW (atm=1, type set):** **C53485** (Story 3), **C53486** (Story 7), **C53487** (Story 13), **C53488** (Story 14), **C53489** (Story 15). Now **66 cases ours** in group 6665.
-- **4 HELD Automated (Rule 71, untouched):** C44557, C44561, C44583, C44587 — only C44557 is out of date (covered live by C53485); other three re-verified spec-current. → `source-verify-2026-09-08/HELD-AUTOMATED-FOR-QA-LEAD-2026-09-08.md`.
+- **5 NEW created (atm=1, type set):** C53485 (Story 3), **C53486** (Story 7), **C53487** (Story 13), **C53488** (Story 14), **C53489** (Story 15).
+- **QA-lead option A executed 2026-09-08:** **C44557** (Automated, atm=3) brought current in place to the narrowed-confirmation rule (type=2, fr-view); the duplicate **C53485 deleted** (auto-removed from R416). **Vlad to be told (Rule 65)** — flagged. Net new cases = 4; suite is now **65 cases ours** in group 6665.
+- **4 HELD Automated (Rule 71):** C44557 (now current per option A), C44561, C44583, C44587 — the latter three re-verified spec-current, untouched. → `source-verify-2026-09-08/HELD-AUTOMATED-FOR-QA-LEAD-2026-09-08.md`.
 - **Vladimir's foreign cases (Rule 38) untouched:** C45202, C45203.
 - **Rendering:** all 18 written cases repaired to served-page `markdown fr-view` (Froala `html.set` harness); marker last, no literal tags/entities. Log `source-verify-2026-09-08/REPAIRED-hs.jsonl`.
 - **Deliverables:** `source-verify-2026-09-08/{SOURCE-CURRENCY-SPEC-DIFF-2026-09-08.md, DIFF-REPORT-2026-09-08.md, HELD-AUTOMATED-FOR-QA-LEAD-2026-09-08.md, Simple Flow V2 - Questions for Milos Vasic - 2026-09-08.xlsx}`.
