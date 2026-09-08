@@ -24,17 +24,23 @@
 > gone — treat as un-re-observed):** `More options`, `Sell price`, `Cost` (as an inline column),
 > `New Part Request` / `Edit Part Request` (part-request modal), `Split across bins…`, `Pulled from`
 > (bin allocation), `Add tech story for this line` (Tech-view line story).
-> **Observation worth a re-check:** on v26.35.9 the inline **Add Part** row rendered MINIMALLY —
-> `Description · Part number · Qty` only — in **both** the Tech-view default AND after the role's View
-> mode was set to `Full View`; the v26.35.6-documented inline columns `Category · Cost · Sell price ·
-> More options` did **not** render as inline fields/headers in the Add-Part row reached. The
-> existing-part row's action control is now aria-labelled **`Part context menu`** (menu: `Move` ·
-> `Add Part Fee / Discount` · `Move up` · `Move down`), where v26.35.6 notes called the inline control
-> `More options`. This may be a real inline-row change between 26.35.6 and 26.35.9, or a state/part-type
-> the probe did not reach (catalog vs part-request; no bin-allocated inventory part seeded). Cases
-> quoting these labels (C45046, C45047, C45060, C45065, C45067, C45111, C45226, C45227, C45232, C45233,
-> C45234, C45235, C45238, C45243) were **NOT re-stamped to v26.35.9** and need a targeted re-check with
-> a seeded bin-allocated inventory part + a part-request draft, in Full View.
+> **What WAS reached in Full View + catalog part (v26.35.9, `catalog-part-v26.35.9.png`,
+> `catalog.log`):** typing part number **`F40010212`** surfaces the suggestion **`Slack Adjuster
+> F40010212` marked `Catalog`** — so **C45060's route is followable** — and after selecting it the
+> **`Cost`** field is present. `Sell price` was not matched by exact substring (may be cased/rendered
+> differently — inconclusive, not "absent").
+> **⚠️ POSSIBLE LABEL DRIFT — a real finding for the QA lead:** across **two** Full-View probes (with
+> and without a catalog part selected) the inline row presented **NO control labelled `More options`**;
+> the row's overflow affordances are three-dot menus aria-labelled `Part context menu`,
+> `Line bulk action`, and `Add labor fee or discount`. The cases say *"on an open Full View inline row
+> you clicked 'More options'"* to open the part-request modal (`New Part Request` / `Edit Part
+> Request`). If `More options` was renamed/removed between 26.35.6 and 26.35.9, **C45046, C45047,
+> C45065, C45067** would send a tester hunting for a control that is not there. Not rewritten
+> unilaterally (behavioural cases; the correct new label + that the modal still exists must be confirmed
+> first). **These 14 cases (C45046, C45047, C45060, C45065, C45067, C45111, C45226, C45227, C45232,
+> C45233, C45234, C45235, C45238, C45243) were NOT re-stamped to v26.35.9** — they keep their
+> v26.35.6 (2026-09-01) stamp and need a targeted re-check (the part-request "New Part Request" path,
+> a seeded bin-allocated inventory part, and a Tech-view line story).
 
 **What this file is for.** `check_runnable_cases.py` proves a precondition is tester-SHAPED. It says so
 in its own header: it **cannot** prove the route it names is CORRECT. On 2026-09-01 that gap cost real
