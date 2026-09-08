@@ -20,27 +20,30 @@
 >   `Status` · `Action` · `Rate` · `Margin` · `Total`.
 > - **Settings sidebar**: `Bin Locations` · `Inventory` present.
 >
-> **⚠️ NOT RE-REACHED on v26.35.9 this pass (were confirmed on v26.35.6 2026-09-01; DO NOT treat as
-> gone — treat as un-re-observed):** `More options`, `Sell price`, `Cost` (as an inline column),
-> `New Part Request` / `Edit Part Request` (part-request modal), `Split across bins…`, `Pulled from`
-> (bin allocation), `Add tech story for this line` (Tech-view line story).
-> **What WAS reached in Full View + catalog part (v26.35.9, `catalog-part-v26.35.9.png`,
-> `catalog.log`):** typing part number **`F40010212`** surfaces the suggestion **`Slack Adjuster
-> F40010212` marked `Catalog`** — so **C45060's route is followable** — and after selecting it the
-> **`Cost`** field is present. `Sell price` was not matched by exact substring (may be cased/rendered
-> differently — inconclusive, not "absent").
-> **⚠️ POSSIBLE LABEL DRIFT — a real finding for the QA lead:** across **two** Full-View probes (with
-> and without a catalog part selected) the inline row presented **NO control labelled `More options`**;
-> the row's overflow affordances are three-dot menus aria-labelled `Part context menu`,
-> `Line bulk action`, and `Add labor fee or discount`. The cases say *"on an open Full View inline row
-> you clicked 'More options'"* to open the part-request modal (`New Part Request` / `Edit Part
-> Request`). If `More options` was renamed/removed between 26.35.6 and 26.35.9, **C45046, C45047,
-> C45065, C45067** would send a tester hunting for a control that is not there. Not rewritten
-> unilaterally (behavioural cases; the correct new label + that the modal still exists must be confirmed
-> first). **These 14 cases (C45046, C45047, C45060, C45065, C45067, C45111, C45226, C45227, C45232,
-> C45233, C45234, C45235, C45238, C45243) were NOT re-stamped to v26.35.9** — they keep their
-> v26.35.6 (2026-09-01) stamp and need a targeted re-check (the part-request "New Part Request" path,
-> a seeded bin-allocated inventory part, and a Tech-view line story).
+> **⚠️ NOT LIVE-VERIFIABLE on v26.35.9 with the access available — the Full-View-only labels.**
+> `More options`, `Sell price`, `Cost` (as an inline column), `New Part Request` / `Edit Part Request`
+> (part-request modal), `Split across bins…`, `Pulled from` (bin allocation), `Add tech story for this
+> line`. **These are Full-View features** (spec §S4-R11/R12, S5-R3/N2). The sole available quick-login,
+> **Admin, is a TECH-VIEW role** — its `fe_permissions` contain **`woTechViewMode`** and `template: tech`
+> (dumped live, `probe_perms.mjs`), so every inline-row probe this session was in **Tech View**, which
+> *correctly* shows the three-field row (`Description · Part number · Qty`) per spec **§S4-R21**. Editing
+> the role's View-mode segment to "Full View" on the role screen **does not persist** (reopens as its
+> saved value; `probe_restore.mjs`) and does **not** change the quick-login session's view mode, so a
+> **Full-View + See-Financial session could not be obtained.**
+> **🛑 METHODOLOGY CORRECTION (retracts an earlier note in this file):** a first pass here read the
+> three-field row as *"`More options` removed / label drift"* and flagged C45046/45047/45065/45067. **That
+> was wrong** — it was a Tech-View session showing the spec-documented reduced row, not a build change.
+> **Always dump `fe_permissions` and confirm the effective view mode before concluding a Full-View-gated
+> control is absent.** The four cases follow the CURRENT spec v16 (part-request modal via "More options")
+> and were **left unchanged**; their `More options` label is spec-backed and simply **could not be
+> live-verified** from a Tech-View session. **What WAS reached:** typing part number **`F40010212`**
+> surfaces the suggestion **`Slack Adjuster F40010212` marked `Catalog`** (so C45060's route is
+> followable); after saving a non-catalog part it is added inline with status **`Requested`** ("Part
+> added" toast, a new empty row opens). **14 cases (C45046, C45047, C45060, C45065, C45067, C45111,
+> C45226, C45227, C45232, C45233, C45234, C45235, C45238, C45243) keep their v26.35.6 (2026-09-01)
+> stamp** — their Full-View / bin / part-request specifics need a **Full-View + See-Financial session**
+> to re-observe. Not a defect, not a blocker: the runnability + label gates pass, and the manual tester
+> runs them under her own Full-View role.
 
 **What this file is for.** `check_runnable_cases.py` proves a precondition is tester-SHAPED. It says so
 in its own header: it **cannot** prove the route it names is CORRECT. On 2026-09-01 that gap cost real
