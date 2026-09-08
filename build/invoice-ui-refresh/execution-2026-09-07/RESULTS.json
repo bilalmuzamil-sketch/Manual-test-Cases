@@ -4,7 +4,7 @@
   "env": "staging",
   "build_marker": "v26.35.9-9812433",
   "record": "WO S-32136 / docs EST-S2-32136 & INV-S2-32136, customer 4 Star Truck Repair",
-  "note": "All 120 results in shared run R417 with the QA lead's explicit permission. Live after the 8 September corrections: 112 Passed, 5 Failed, 3 Blocked, 0 untested. C44952 re-scored Passed after Chris Ward amended S8-R9; C45275 re-scored Passed after being executed."
+  "note": "All 120 results in shared run R417 with the QA lead's explicit permission. Live after the 8 September re-runs: 113 Passed, 6 Failed, 1 Blocked, 0 untested."
  },
  "results": {
   "C44901": {
@@ -14,10 +14,10 @@
    "note": null
   },
   "C44902": {
-   "verdict": "Blocked",
-   "observed": "Clause 1 verified: when a logo is set the masthead shows it - a 2208x480 JPEG, 408,254 bytes, placed centrally in the masthead at x=228.8-342.8 on every document rendered this pass.",
-   "not_observed": "Clause 2 - that nothing shows when no logo is set. The search is now exhaustive and the state cannot be produced. (1) The logo is ORGANISATION-level, not per-location: no logo field exists on any location record, so the case's precondition of one shop with a logo and one without cannot exist. (2) The UI offers no removal: the only control is a pencil overlay on the image at Administration > Settings > Organization, and it opens a file picker (accept '.jpg, image/*') - replace only. (3) The API has no removal either. The read route GET /api/organization/organization-details/logo answers 405 'Allow: GET' to DELETE. The write route was found by driving the picker with a request listener - POST /api/organization/organization-details/upload-logo - and it answers 405 to DELETE. Guessed removal routes remove-logo and delete-logo are both 404 on POST and DELETE.",
-   "note": "Raised as SV-9804, a Story Defect under SV-9140 (a shop logo — cannot be removed). The replacement Story Defect was deliberately closed as OBSOLETE by the QA lead on 2026-09-07, so this finding currently has no open ticket and none is to be raised without him."
+   "verdict": "Failed",
+   "observed": "Point 1 PASSES: a shop that has a logo (Staging Heavy Duty - 9919) shows its own logo across the top middle of the document. POINT 2 FAILS. On the organisation the QA lead created with no shop logo, the document does not leave that space empty - it prints the SHOPVIEW COMPANY LOGO there. Established three ways: (a) Administration > Settings > Organization shows the grey 'Cannot load image' box, so no logo is set; (b) the organisation's logo record returns empty; (c) a document produced from scratch (new work order S1-3, one line) carries a 545x113 image in the masthead logo slot which decodes to the blue-and-grey 'ShopView' wordmark.",
+   "not_observed": "",
+   "note": "Was Blocked on 7 September because no logo-free shop existed. The QA lead created one on 2026-09-08 and the case was rewritten and run. REAL CUSTOMER-FACING DEFECT: a repair shop that has not uploaded a logo sends estimates and invoices carrying the software vendor's logo instead of its own. Spec v64 S1-R2 is explicit: 'when no logo is set, no logo and no placeholder are rendered.' No ticket raised - held for the QA lead (Rule 62). Evidence in evidence-c44902/."
   },
   "C44903": {
    "verdict": "Passed",
@@ -44,10 +44,10 @@
    "note": null
   },
   "C44907": {
-   "verdict": "Blocked",
-   "observed": "Clause 2 holds: fields that have values do show, on every document produced this pass. Clause 1's state cannot exist in the product, now proven from two directions. (a) AT CREATION: Administration > Locations > New Location refuses to save without them - attempting a location with only a name and shop id returns 'Address is a required field' and 'City is a required field', and supplying those two then returns 'State/Province is a required field', 'ZIP/Postal code is a required field' and 'Telephone is a required field' (plus Country and Timezone). Every one of the five masthead identity fields is mandatory. (b) AT EDIT: clearing all four editable ones on an existing location and saving reports no error but does not persist - the record reads back unchanged, verified by clearing, saving, re-reading, then restoring and re-reading again.",
-   "not_observed": "Clause 1 - each missing masthead field being hidden with no blank line left.",
-   "note": "Raised as SV-9805, a Story Defect under SV-9140 (masthead identity fields are all mandatory). The replacement Story Defect was deliberately closed as OBSOLETE by the QA lead on 2026-09-07, so this finding currently has no open ticket and none is to be raised without him."
+   "verdict": "Passed",
+   "observed": "S1-N1 exercised on the one masthead field the product allows to be empty. Shop location Staging Heavy Duty - 9919, document read from the Finance tab, each state confirmed twice (the value stored on the location and the lines the shop block renders). (1) Address 2 empty at the start: four lines, no blank line, no gap. (2) Address 2 set to 'Suite 240 ZZAUTOTEST' and saved: FIVE lines, the new value on its own line between the street address and the city line - so the field does render when it has a value. (3) Address 2 cleared and saved: back to four lines, the line gone entirely with no blank and no gap. (4) Every populated detail rendered normally throughout. PASS both directions.",
+   "not_observed": "The other five masthead identity fields - Name, Address 1, City, State/Province, ZIP/Postal Code, Telephone - are compulsory on the Edit Location form, so 'empty' cannot be produced for them through the screen. Unreachable, not failed. The case now says so.",
+   "note": "Was Blocked on 7 September on the ground that no masthead field could be emptied. Too broad: Address 2 can be, and it is part of the masthead address block. Case rewritten around Address 2 with UI-click steps and re-run on 2026-09-08. Corroboration from the customer side (Addresses story, not this one): customer '4 Star Truck Repair' has phone, address 1 and 2, city, state, postal code and country all empty, and its Bill To block on INV-S2-31594 shows the customer name alone with no blank lines."
   },
   "C44908": {
    "verdict": "Passed",
