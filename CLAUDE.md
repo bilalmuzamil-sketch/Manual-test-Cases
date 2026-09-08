@@ -472,7 +472,9 @@ cannot drift; **procedure found inside one is a bug in that router.**
 and 60 apply in full and findings stay PROVISIONAL. §16.1 is the superseded 2026-08-11 "the branches
 are FINAL" text, kept visible and dated.
 
-**Other standing infrastructure docs:** `build/PROCESS-CATALOG.md` (every callable process) ·
+**Other standing infrastructure docs:** `build/LEARNINGS-LOG.md` (**the continuous, retrievable ledger of
+every learning — append the moment you learn something durable; read/grep it to retrieve ALL learnings**) ·
+`build/PROCESS-CATALOG.md` (every callable process) ·
 `build/APP-ACTIONS-PLAYBOOK.md` (proven staging/QA action recipes — **read before any staging
 action**; §J TestRail case-field traps, §K production access, **§W writing a pass's results into a
 TestRail run — use `build/testing-tools/push_results_to_run.py`, never hand-roll it**) ·

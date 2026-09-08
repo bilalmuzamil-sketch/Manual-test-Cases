@@ -3,6 +3,13 @@
 > **Read this FIRST, then the skill you were called for.** Every skill file (`01`–`07`) points here
 > instead of repeating this material, so a fix lands in one place instead of seven.
 >
+> **📒 ALSO READ / KEEP CURRENT: `build/LEARNINGS-LOG.md`** — the continuous, retrievable ledger of every
+> durable learning (traps, fixes, access facts, corrected mistakes, QA-lead rulings). **Skim it at
+> cold-start** (or `git grep -n "#tag" build/LEARNINGS-LOG.md` for a topic), and **append to it the moment
+> you learn something durable, in the same pass** (Rule 93/97). Learnings that harden into behaviour are
+> ALSO graduated into the right rule/skill/playbook (Rule 72); the log is the always-growing index that
+> points at where each lives.
+>
 > **WHO THIS IS WRITTEN FOR: a session with NO memory of this workspace.** Nothing below assumes you
 > were here yesterday. Where a rule is referenced by number, **its substance is stated too** — a bare
 > number is useless in a fresh session.
