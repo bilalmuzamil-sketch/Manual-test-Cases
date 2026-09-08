@@ -18,8 +18,14 @@ OUT = ('build/invoice-ui-refresh/execution-2026-09-07/'
        'Invoice-UI-Refresh_Failed-and-Blocked-Cases_2026-09-08.xlsx')
 BUILD = 'v26.35.9-9812433'
 RUN = 417
-caselink = lambda i: f'https://shopview.testrail.io/index.php?/cases/view/{i}'
 tixlink = lambda k: f'https://shopview.atlassian.net/browse/{k}'
+
+# The link the QA lead wants is the case's entry IN THE RUN - the recorded result, its comment
+# and its history - not the case definition. That is /tests/view/<test_id>, and the test_id is
+# read LIVE from the run because it is per-run and cannot be derived from the C-id.
+TESTID = {}
+def runlink(cid):
+    return f'https://shopview.testrail.io/index.php?/tests/view/{TESTID[cid]}'
 
 # --- LIVE Jira statuses, read 2026-09-08 (passed in, not remembered)
 TIX = {
@@ -159,6 +165,22 @@ for cid in ids:
         sys.exit('get_case/%d failed: %s' % (cid, c))
     TITLES[cid] = c['title']
 
+# ---- live test ids for this run (paged; a test_id belongs to the run, not the case)
+_tests, _off = [], 0
+while True:
+    s, r = t.get('get_tests/%d&limit=250&offset=%d' % (RUN, _off))
+    if s != 200:
+        sys.exit('get_tests/%d failed: %s' % (RUN, r))
+    _tests += r['tests']
+    if r.get('_links', {}).get('next'):
+        _off += 250
+    else:
+        break
+TESTID.update({x['case_id']: x['id'] for x in _tests})
+missing = [c for c in ids if c not in TESTID]
+if missing:
+    sys.exit('these cases have no test in run %d: %s' % (RUN, missing))
+
 HDR = PatternFill('solid', fgColor='1F3864')
 HDRF = Font(bold=True, color='FFFFFF', size=11)
 WRAP = Alignment(vertical='top', wrap_text=True)
@@ -211,7 +233,7 @@ ws.column_dimensions['B'].width = 105
 
 # ================= Failed =================
 ws = wb.create_sheet('Failed')
-cols = ['Test case', 'Case title', 'TestRail link', 'Ticket', 'Ticket status', 'Ticket link',
+cols = ['Test case', 'Case title', 'Result in test run R417', 'Ticket', 'Ticket status', 'Ticket link',
         'What is wrong (plain words)', 'What needs to be done']
 widths = [11, 48, 52, 11, 15, 46, 62, 62]
 for i, (c, w) in enumerate(zip(cols, widths), 1):
@@ -221,7 +243,7 @@ for r, (cid, tix, what, todo) in enumerate(FAILED, 2):
     st, summ = TIX.get(tix, ('NO TICKET', ''))
     ws.cell(r, 1, f'C{cid}')
     ws.cell(r, 2, TITLES[cid])
-    ws.cell(r, 3, caselink(cid))
+    ws.cell(r, 3, runlink(cid))
     ws.cell(r, 4, tix or 'none')
     sc = ws.cell(r, 5, st if tix else 'NO OPEN TICKET')
     sc.fill = STATUS_FILL.get(st, RED); sc.font = Font(bold=True)
@@ -245,7 +267,7 @@ ws.auto_filter.ref = f'A1:H{len(FAILED) + 1}'
 
 # ================= Blocked =================
 ws = wb.create_sheet('Blocked')
-cols = ['Test case', 'Case title', 'TestRail link', 'Is the case still good?',
+cols = ['Test case', 'Case title', 'Result in test run R417', 'Is the case still good?',
         'Why it could not be run (plain words)', 'Ticket', 'Ticket status', 'Ticket link',
         'What has to happen to unblock it', 'Who can unblock it', 'Steps to follow']
 widths = [11, 46, 52, 26, 70, 11, 15, 46, 66, 40, 70]
@@ -256,7 +278,7 @@ for r, (cid, tix, keep, why, unblock, who, steps) in enumerate(BLOCKED, 2):
     st, summ = TIX.get(tix, ('NO TICKET', ''))
     ws.cell(r, 1, f'C{cid}')
     ws.cell(r, 2, TITLES[cid])
-    ws.cell(r, 3, caselink(cid))
+    ws.cell(r, 3, runlink(cid))
     kc = ws.cell(r, 4, keep); kc.font = Font(bold=True)
     kc.fill = GRN if keep.startswith('KEEP') else AMB
     ws.cell(r, 5, why)
