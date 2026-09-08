@@ -33,19 +33,7 @@
 
 ## ENTRIES — newest first (id · date · tags · lesson → pointer)
 
-<<<<<<< Updated upstream
-### L0009 · 2026-09-08 · #build-verify #rule #testrail
-**Re-stamping the build-check line (provenance Sentence 2) is a MANDATORY part of build verification —
-ALWAYS, never optional/cosmetic.** (QA lead, verbatim: *"Yes restamping should be the part of Build
-verification ALWAYS."*) A build-verification pass that observes cases against build vX on date D must, in
-the same pass, re-stamp every case it verified to `Last checked against build vX on D`. A suite is NOT
-build-verified-complete while any verified case still names an older build (`verify_suite.py` check 9 must
-be clear). Drive it to zero with `surgical_replace.mjs` (it checkpoints, so a deadlocking estate is
-retried to completion, never abandoned). Scope: `created_by=3`, authorised Automated included, Vladimir's
-(user 1) never. **Graduated-to:** `build/rules/RULES-41-60.md` rule 54 (2026-09-08 amendment),
-`build/skills/03-RUN-CHECK.md`, `build/skills/11-BUILD-VERIFICATION.md`, CLAUDE.md §5.
-=======
-### L0009 · 2026-09-08 · #testrail #render #api #mistake-corrected
+### L0011 · 2026-09-08 · #testrail #render #api #mistake-corrected
 **`add_case` lands its fields in `markdown fr-view` — the escaping-container trap is an `update_case`
 problem, not an "any API write" problem.** Measured live on C53481/C53482/C53483, created via
 `add_case` on 2026-09-08 with block-only HTML: all three fields on all three cases served as
@@ -56,7 +44,7 @@ for `add_case`. **Still scan the served page after any API write** — the scan 
 `update_case`. Scanner: `/tmp` copy of the pattern in
 `build/inline-add-edit-parts/render-repair-2026-08-31/scan.mjs`.
 
-### L0010 · 2026-09-08 · #testrail #froala #methodology
+### L0012 · 2026-09-08 · #testrail #froala #methodology
 **A UI re-save cannot flip a container when the content is identical — `#accept` stays disabled and a
 forced click is refused.** Writing a field's own stored value back through Froala leaves TestRail's form
 clean, so Save never enables; the page then shows its **latent, hidden** `Title is too long` template,
@@ -66,7 +54,18 @@ here); (b) dispatch the dirty-marking events on **`inst.$oel[0]`** (the backing 
 `inst.$el[0]`, and click `#accept` **un-forced** so Playwright waits for it to enable — the correct form is
 in `build/testing-tools/surgical_replace.mjs` lines 82-96. If a genuine flip is ever needed on unchanged
 content, save a deliberately-different version first, then save the intended one: two real UI saves.
->>>>>>> Stashed changes
+
+### L0009 · 2026-09-08 · #build-verify #rule #testrail
+**Re-stamping the build-check line (provenance Sentence 2) is a MANDATORY part of build verification —
+ALWAYS, never optional/cosmetic.** (QA lead, verbatim: *"Yes restamping should be the part of Build
+verification ALWAYS."*) A build-verification pass that observes cases against build vX on date D must, in
+the same pass, re-stamp every case it verified to `Last checked against build vX on D`. A suite is NOT
+build-verified-complete while any verified case still names an older build (`verify_suite.py` check 9 must
+be clear). Drive it to zero with `surgical_replace.mjs` (it checkpoints, so a deadlocking estate is
+retried to completion, never abandoned). Scope: `created_by=3`, authorised Automated included, Vladimir's
+(user 1) never. **Graduated-to:** `build/rules/RULES-41-60.md` rule 54 (2026-09-08 amendment),
+`build/skills/03-RUN-CHECK.md`, `build/skills/11-BUILD-VERIFICATION.md`, CLAUDE.md §5.
+
 
 ### L0008 · 2026-09-08 · #roles-permissions #shopview-app #rule
 **Assigning a role to `TECH@shopview.com` — RESET the role first, then assign.** When a test needs
