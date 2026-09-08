@@ -20,28 +20,28 @@ Automated cases in these three suites to keep them runnable and build-verified.
 **`custom_atmstatus` stays 3 (Automated) on all of them — unchanged.**
 **Vladimir Tomovic's cases (C45220, C45268, C53474, C53475) were NOT touched** (Rule 38).
 
-**⚠️ CORRECTION — only ONE Automated case has actually been re-stamped so far.** The re-stamp batch was
-stopped early (TestRail was deadlocking under concurrent load), and of the Automated cases only
-**C45123** reached the write. The other eight are **authorised and pending** — they will be re-stamped
-when the deferred bulk pass runs (estate quiet). This notice will be updated then.
+**✅ FINAL — all 11 Automated cases in these two suites are now on v26.35.9 (verified read-back on each).**
+The build-check line was re-stamped/added to `v26.35.9-7f2e4fa on 9/8/2026`; nothing else changed and
+`custom_atmstatus` is still 3 on every one.
 
-| Suite | Case | Status |
+| Suite | Case | Change |
 |---|---|---|
-| Printer Friendly WO | **C45123** | ✅ build stamp → v26.35.9-7f2e4fa 9/8/2026 (verified read-back) |
-| Printer Friendly WO | C45107 | ⏳ pending deferred re-stamp (still v26.35.6) |
-| Inline Add & Edit Parts | C45005 | ⏳ pending (still v26.35.6) |
-| Inline Add & Edit Parts | C45026 | ⏳ pending (still v26.35.6) |
-| Inline Add & Edit Parts | C45223 | ⏳ pending (still v26.35.6) |
-| Inline Add & Edit Parts | C45224 | ⏳ pending (still v26.35.6) |
-| Inline Add & Edit Parts | C45237 | ⏳ pending (still v26.35.6) |
-| Inline Add & Edit Parts | C45252 | ⏳ pending (still v26.35.6) |
-| Inline Add & Edit Parts | C45253 | ⏳ pending (still v26.35.6) |
+| Printer Friendly WO | C45107 | ✅ build stamp → v26.35.9-7f2e4fa 9/8/2026 |
+| Printer Friendly WO | C45123 | ✅ build stamp → v26.35.9-7f2e4fa 9/8/2026 |
+| Inline Add & Edit Parts | C45005 | ✅ build stamp → v26.35.9-7f2e4fa 9/8/2026 |
+| Inline Add & Edit Parts | C45026 | ✅ build stamp → v26.35.9-7f2e4fa 9/8/2026 |
+| Inline Add & Edit Parts | C45223 | ✅ build stamp → v26.35.9-7f2e4fa 9/8/2026 |
+| Inline Add & Edit Parts | C45224 | ✅ build stamp → v26.35.9-7f2e4fa 9/8/2026 |
+| Inline Add & Edit Parts | C45227 | ✅ build stamp → v26.35.9-7f2e4fa 9/8/2026 |
+| Inline Add & Edit Parts | C45237 | ✅ build stamp → v26.35.9-7f2e4fa 9/8/2026 |
+| Inline Add & Edit Parts | C45252 | ✅ build stamp → v26.35.9-7f2e4fa 9/8/2026 |
+| Inline Add & Edit Parts | C45253 | ✅ build stamp → v26.35.9-7f2e4fa 9/8/2026 |
+| Inline Add & Edit Parts | C45254 | ✅ build stamp ADDED → v26.35.9-7f2e4fa 9/8/2026 (was no sentence 2) |
 
-Only the build-check line changes (nothing else) — this is a heads-up per Rule 65 whether it lands now
-or on the deferred pass.
+Only the build-check line changed (nothing else) — a heads-up per Rule 65.
 
 Case links: `https://shopview.testrail.io/index.php?/cases/view/<id>`
 
 Per-case audit (old → new, verified read-back):
-`build/inline-add-edit-parts/build-verify-2026-09-08/restamp-9-1/APPLIED.jsonl`
-and `.../restamp-9-2/APPLIED.jsonl`.
+`build/inline-add-edit-parts/build-verify-2026-09-08/restampALL-9-1-2026/APPLIED.jsonl`
+and `.../insert-nostamp/*/APPLIED.jsonl`.
