@@ -4247,7 +4247,8 @@ regression / bug-fix re-testing.
   guard, selector and payload → probe the endpoint with a partial body and read the validation error →
   switch UI↔API whichever works → seed the state yourself. Only after all of that, and with the
   evidence written down, may something be called blocked — and even then keep looking for the way in.
-- **NEVER commit secrets** (cookies/tokens/keys/passwords) — `/tmp` only.
+- **Dummy environments — retain & reuse credentials in-session, but NEVER commit them (user ruling 2026-09-08, verbatim: "Even If I give you QA or production or Staging environments they are all dummy environments you can save their cookies/credentials etc safely with you").** ALL environments given — QA, staging, AND production — are **dummy/test** environments. So their cookies/credentials/tokens may be **SAVED and REUSED freely within the working session** (`/tmp`, local uncommitted files) **without re-asking the user each time** — do not discard them mid-session or make the user re-supply them within a session. **THE ONE HARD BOUNDARY STILL STANDS: never COMMIT them to git.** This repo is **PUBLIC** (that is how the Jira inline screenshots load over `raw.githubusercontent.com`), so anything pushed is visible to the entire internet — publishing even a dummy login there is unsafe. Keep secrets in `/tmp`/local only; `.gitignore` any local creds file. `/tmp` is ephemeral (wiped on container restart), so across a fresh container the user re-supplies — but within a live session, hold and reuse them.
+- **NEVER commit secrets** (cookies/tokens/keys/passwords) — `/tmp`/local only, never pushed to the PUBLIC repo (see the dummy-environments ruling above).
 - Git identity: `noreply@anthropic.com` / `Claude`.
 - The **"Unverified" commit stop-hook is a known false alarm** (signing key not
   registered) — ignore it.
