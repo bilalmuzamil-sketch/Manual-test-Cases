@@ -33,6 +33,28 @@
 
 ## ENTRIES — newest first (id · date · tags · lesson → pointer)
 
+### L0013 · 2026-09-08 · #rule #test-execution #qa-lead
+**STANDING INSTRUCTION (QA lead, 2026-09-08): a test whose ticket comment proves the fix verified must
+show Passed in the run.** Verbatim: *"Every test run case which has been proven as verified-fix in the
+ticket comment that test case-run should show Passed in the test run."* Run the sweep over every
+not-Passed test at the START of each pass on a suite: read each mapped ticket's comments, and where a
+same-day verified-fix is recorded, write the Passed result citing who verified it, where and when.
+First application (R417, 8 Sep): **none of six qualified** — all six tickets carried a same-day
+"still failing / not deployed" comment. Evidence table:
+`build/invoice-ui-refresh/coverage-2026-09-08/STORY-DEFECT-COVERAGE-2026-09-08.md` §A.
+
+### L0014 · 2026-09-08 · #mistake-corrected #source-currency #test-execution
+**A PASSED result can be wrong because the RULE moved, not because the observation was wrong — so a
+coverage or execution report must re-read the spec, not just the tickets.** C44949 passed on 7 Sep with
+its own result text recording the pass as firing "on a REGULAR payment… not a deposit". S8-R5 had been
+reverted on **4 Sep** to deposit-only ("A plain payment row never carries a sub-line"), three days
+BEFORE that run. The case, the run and this session's first coverage answer all inherited the
+superseded rule. Caught only by reading the live spec body for the rule text rather than trusting the
+case's own provenance line. **Two habits:** (a) when a ticket is REJECTED FROM TESTING but its mapped
+case is Passed, treat that as a contradiction to investigate, never a coincidence — it found both
+C44949 and C44927 here; (b) a provenance line naming "specification version N" is a claim about when
+the case was written, never evidence that N is current (Rule 31/59).
+
 ### L0011 · 2026-09-08 · #testrail #render #api #mistake-corrected
 **`add_case` lands its fields in `markdown fr-view` — the escaping-container trap is an `update_case`
 problem, not an "any API write" problem.** Measured live on C53481/C53482/C53483, created via
