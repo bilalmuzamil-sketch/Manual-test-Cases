@@ -1071,3 +1071,57 @@ absent from the spec, and describing a state that never occurs. Reworded to
 generator set shows its serial number."* Provenance re-stamped to spec v57 and build
 v26.35.9-9812433 (Rule 41). **Quote the source, never a downstream restatement of it** (Rule 25) — the
 same error as L34's second half, now twice in two days.
+
+---
+
+## L37 — A TestRail case can be EMPTY IN ONE FORMAT AND FULL IN ANOTHER: read `custom_steps_separated` (2026-09-08, C45275)
+
+**What went wrong.** C45275 was triaged as *"no steps and no expected result recorded, so there is
+nothing to check"*, scored Blocked, reported to the QA lead as unfixable-by-us, and written into the
+run comment, the workbook and the release record that way. **The case is not empty.** It carries
+**five steps and a full expected-results block.**
+
+**Why the check missed it.** TestRail stores a case's body in one of TWO shapes, and which one
+depends on the case's template:
+
+| Template | Where the body lives | What the other fields read |
+|---|---|---|
+| **Text** | `custom_steps` + `custom_expected` | `custom_steps_separated` absent |
+| **Steps (separated)** | `custom_steps_separated` — a LIST of `{content, expected}` | **`custom_steps` and `custom_expected` are both `null`** |
+
+The triage read `custom_steps` and `custom_expected`, saw two nulls, and concluded the case was
+blank. On a separated-steps case those two fields are **always** null. **Two nulls are evidence
+about which template the case uses, never evidence that the case is empty.**
+
+**The check that is now correct:**
+
+```python
+body = (c.get('custom_steps') or '') + (c.get('custom_expected') or '')
+if not body.strip():
+    steps = c.get('custom_steps_separated') or []
+    body = ''.join((s.get('content') or '') + (s.get('expected') or '') for s in steps)
+if not body.strip():
+    ...only NOW is the case genuinely empty
+```
+
+**Why it cost more than one wrong verdict.** It produced a confident false statement — "only its
+author can fix it" — that reached the run, the workbook and the release readiness record, and it
+invited a Jira ticket for a problem that did not exist. The QA lead asked *"if this is a real issue
+then it should have a ticket"*, and the honest answer was that there was no issue at all.
+
+**The general rule, and it is the third instance this week.** L34 (Jira markup), L35 (result
+comments), and now this: **a field being empty in the shape you looked at is not the same as the
+content being absent.** Before reporting anything as missing, blank, unreachable or unfixable —
+confirm you looked in the place that shape of record actually keeps it. This is Rule 100 applied to
+a field rather than a file: **measure the thing, do not infer it from the first field you tried.**
+
+**MEASURED 2026-09-08: the string `custom_steps_separated` appears in NO tool in
+`build/testing-tools/`.** Six of them read `custom_expected` and none of them falls back, so every
+one mis-handles a separated-steps case exactly as this triage did:
+
+`check_case_render.py` · `check_tester_readiness.py` · `snapshot_case_bodies.py` ·
+`testrail_add_case.py` · `verification_badge.py` · `verify_suite.py`
+
+`snapshot_case_bodies.py` is the one that matters most — Rule 87 relies on it to make a foreign edit
+diffable, and it is currently snapshotting **nothing** for every separated-steps case in the estate.
+Proposed as a fix to the QA lead rather than made unilaterally (Rule 72).
