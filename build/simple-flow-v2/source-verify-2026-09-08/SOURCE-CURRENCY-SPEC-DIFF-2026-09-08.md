@@ -49,19 +49,22 @@ actor** (C44555); **applying at scale blocks the admin only, never the organizat
 **receive-wizard step has one action** (C44596). Provenance re-stamped to "revised 8 September 2026,
 read on 8 September 2026"; deferred marker "Last checked 9/8/2026".
 
-### The 5 NEW cases (atm=1, automation_type set, deferred marker)
+### The NEW cases (atm=1, automation_type set, deferred marker) — 5 created, 4 net after option A
 | C-id | Story | Covers |
 |---|---|---|
-| **C53485** | SV-9249 (3) | Only ordering & picking confirm; approval/receiving save directly; picking-off warns of stock deduction; zero count = no confirmation. |
+| ~~C53485~~ | SV-9249 (3) | **RETIRED (deleted) 2026-09-08 under option A** — its content was absorbed into C44557. |
 | **C53486** | SV-9253 (7) | Deselect all keeps the bar; close dismisses it; an empty group shows no divider. |
 | **C53487** | SV-9259 (13) | A vendor is correctable until a part is received, then fixed (guard on the back end too). |
 | **C53488** | SV-9260 (14) | PO list-page selection raises the shared bulk bar; Assign vendor in More; paged Select-all covers one page. |
 | **C53489** | SV-9261 (15) | Deferring a part with a core: the core follows the parent and is never offered its own choice. |
 
-### The 4 HELD Automated cases (Rule 71 — not touched)
-C44557 (Story 3) · C44561 (Story 5) · C44583 (Story 13) · C44587 (Story 13). Only **C44557** is out of
-date (its behaviour is now covered live by the new **C53485**); the other three were re-verified
-spec-current. Full note + the QA-lead decision: **`HELD-AUTOMATED-FOR-QA-LEAD-2026-09-08.md`**.
+### The 4 HELD Automated cases (Rule 71)
+C44557 (Story 3) · C44561 (Story 5) · C44583 (Story 13) · C44587 (Story 13). **C44557 was out of date;
+per the QA lead's option A (2026-09-08) it was brought current in place** (title + all three fields
+rewritten to the narrowed-confirmation rule, type set to Functional, rendered to `fr-view`, atmstatus
+kept 3), and the duplicate **C53485 deleted**. **🔔 Rule 65: Vlad (Vladimir Tomovic, TestRail user 1)
+must be told the Automated case changed — flagged to the QA lead to relay.** The other three held cases
+were re-verified spec-current and untouched. Full record: **`HELD-AUTOMATED-FOR-QA-LEAD-2026-09-08.md`**.
 
 ## Handling notes
 - The 13 UPDATED cases had their build-check sentence omitted (this is a **no-build** suite, Rule 85);
@@ -73,13 +76,14 @@ spec-current. Full note + the QA-lead decision: **`HELD-AUTOMATED-FOR-QA-LEAD-20
 - **Rendering:** all 18 written cases repaired to the served-page `markdown fr-view` container via the
   deterministic Froala `html.set` harness (`hs_write.mjs`); served-page verified (numbers on their own
   rows, no literal tags/entities, AUTOMATION marker last). Log: `REPAIRED-hs.jsonl`.
-- **Run R416 union-synced** 61 → 66 (5 new added; the 2 previously-passed cases preserved — Rule 34).
+- **Run R416** synced 61 → 66 (5 new; 2 passed preserved — Rule 34), then → **65** after C53485 was retired (option A).
 
 ## OUTSTANDING (for the QA lead / PO)
-1. **C44557 (held Automated)** — needs a rewrite to the narrowed-confirmation rule; already covered live
-   by C53485. QA-lead decision: bring C44557 current (retire C53485) or keep C53485 (leave/retire
-   C44557)? See the held note.
-2. **3 PO questions for Milos** (spec ambiguities, cannot be answered from documents) — delivered as
-   `Simple Flow V2 - Questions for Milos Vasic - 2026-09-08.xlsx`: (a) Story 2 "approval first" vs
-   "approval changes no existing line"; (b) Story 14 paged Select-all accepted as expected; (c) Story 4
-   the two engineering volume thresholds.
+1. **C44557 (held Automated)** — ✅ **RESOLVED via option A**: brought current in place; duplicate C53485
+   deleted. **🔔 Rule 65 still open: Vlad must be told the Automated case changed** — flagged to the QA
+   lead to relay.
+2. **3 PO questions for Milos** (spec ambiguities, cannot be answered from documents) — delivered as a
+   **Google Sheet** (https://docs.google.com/spreadsheets/d/1wqxIZaQSl4LH4ju798RdSQgaaG2rV5YzgWx2jAhx5fk/edit;
+   super-simple PO questions in Part 1, all references in Part 2) and the xlsx copy in this folder:
+   (a) Story 2 "approval first" vs "approval changes no existing line"; (b) Story 14 paged Select-all
+   accepted as expected; (c) Story 4 the two engineering volume thresholds.

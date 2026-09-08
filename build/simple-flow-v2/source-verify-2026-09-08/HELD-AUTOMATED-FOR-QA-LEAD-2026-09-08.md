@@ -78,3 +78,24 @@ Left exactly as they are (Rule 71). Recorded here only so the "held" set is comp
 already covered by the new live case **C53485**, so the suite is not blocked. Do you want C44557 brought
 current (and C53485 retired), or C53485 kept and C44557 left as-is / retired? The other three held cases
 need nothing.
+
+---
+
+## ✅ RESOLUTION — 2026-09-08 (QA lead chose option A)
+
+The QA lead authorised **option A**: bring **C44557** current and retire the duplicate **C53485**.
+
+- **C44557** (still `custom_atmstatus = 3`, Automated) was **updated in place** to the narrowed-confirmation
+  rule — title, preconditions, steps and Expected now match the 8-Sep spec (identical to the content
+  authored on C53485). `custom_automation_type` set to 2 (Functional). Rendered to served-page `fr-view`
+  (whitelisted for one repair run — `AUTOMATED_OK=44557`). **atmstatus kept at 3.**
+- **C53485** was **deleted** (retired as the duplicate). TestRail auto-removed it from run **R416**, which
+  dropped **66 → 65**. Suite is now **65 cases ours**.
+
+### 🔔 FOR VLAD (Rule 65 — an Automated case changed)
+**C44557** (`custom_atmstatus = 3`, https://shopview.testrail.io/index.php?/cases/view/44557) had its
+title and all three text fields rewritten on **2026-09-08** to match the 8 September 2026 Simple Flow V2
+spec revision (Story 3 confirmation narrowed to the two record-changing settings; picking-off warning
+names the stock deduction). Change made with the QA lead's explicit go-ahead (option A). The automation
+status was **not** changed (still Automated). **Vladimir Tomovic (TestRail user 1) to be told** — flagged
+to the QA lead to relay, as there is no direct channel from this lane.

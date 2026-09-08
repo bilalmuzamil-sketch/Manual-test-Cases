@@ -531,50 +531,6 @@
    }
   }
  },
- "53485": {
-  "title": "Only ordering and picking ask to confirm; picking-off warns of stock deduction",
-  "fields": {
-   "custom_preconds": {
-    "blocks": [
-     [
-      "1. You are signed in with access to Settings > App Settings.",
-      "2. Open work orders exist with outstanding parts, so a settings change affects a non-zero number of records.",
-      "3. You can also reach a state where changing a setting affects zero records."
-     ]
-    ],
-    "text": "1. You are signed in with access to Settings > App Settings.\n2. Open work orders exist with outstanding parts, so a settings change affects a non-zero number of records.\n3. You can also reach a state where changing a setting affects zero records."
-   },
-   "custom_steps": {
-    "blocks": [
-     [
-      "1. Change \"Require ordering parts\" and read the confirmation.",
-      "2. Change \"Require picking inventory parts\" off and read the confirmation.",
-      "3. Change \"Require approval for new lines\" and watch whether a confirmation appears.",
-      "4. Change \"Require receiving parts before completion\" and watch whether a confirmation appears.",
-      "5. Change a setting in a state where no existing records are affected."
-     ]
-    ],
-    "text": "1. Change \"Require ordering parts\" and read the confirmation.\n2. Change \"Require picking inventory parts\" off and read the confirmation.\n3. Change \"Require approval for new lines\" and watch whether a confirmation appears.\n4. Change \"Require receiving parts before completion\" and watch whether a confirmation appears.\n5. Change a setting in a state where no existing records are affected."
-   },
-   "custom_expected": {
-    "blocks": [
-     [
-      "1. Changing \"Require ordering parts\" or \"Require picking inventory parts\" opens a confirmation before anything is saved; the title names the setting and the direction, and the body states the number of records that will change.",
-      "2. Turning \"Require picking inventory parts\" off is shown as a warning, not just a count, and it says in words that the affected inventory parts will be marked as picked and deducted from stock.",
-      "3. Changing \"Require approval for new lines\" or \"Require receiving parts before completion\" shows no confirmation and saves directly.",
-      "4. When the number of affected records is zero, no confirmation shows and the setting saves directly.",
-      "5. Where a large number of records is affected, the confirmation also advises making the change outside working hours; where the number cannot be established it states the consequence without a figure."
-     ],
-     [
-      "---",
-      "This is the expected behaviour as per epic SV-8683 and story SV-9249 (Story 3, Confirmation before a settings change) and the Simple Flow V2 specification (Confluence page 771391574, revised 8 September 2026), read on 8 September 2026.",
-      "AUTOMATION: Not available on Build to test Yet - Last checked 9/8/2026"
-     ]
-    ],
-    "text": "1. Changing \"Require ordering parts\" or \"Require picking inventory parts\" opens a confirmation before anything is saved; the title names the setting and the direction, and the body states the number of records that will change.\n2. Turning \"Require picking inventory parts\" off is shown as a warning, not just a count, and it says in words that the affected inventory parts will be marked as picked and deducted from stock.\n3. Changing \"Require approval for new lines\" or \"Require receiving parts before completion\" shows no confirmation and saves directly.\n4. When the number of affected records is zero, no confirmation shows and the setting saves directly.\n5. Where a large number of records is affected, the confirmation also advises making the change outside working hours; where the number cannot be established it states the consequence without a figure.\n\n---\nThis is the expected behaviour as per epic SV-8683 and story SV-9249 (Story 3, Confirmation before a settings change) and the Simple Flow V2 specification (Confluence page 771391574, revised 8 September 2026), read on 8 September 2026.\nAUTOMATION: Not available on Build to test Yet - Last checked 9/8/2026"
-   }
-  }
- },
  "53486": {
   "title": "Deselect all keeps the bar, close dismisses it; an empty group shows no divider",
   "fields": {
@@ -736,6 +692,50 @@
      ]
     ],
     "text": "1. Choosing Received later on the parent puts its core sibling into the same \"Received later\" state, so the pair stays consistent and neither blocks completion on its own.\n2. The core is never offered a Received later choice of its own - while its parent is deferred it carries no caret and no row action, and it never appears as a separate row.\n3. Deferring a part with a core moves no stock and creates no core credit; nothing about the core's value is decided until the parent is received.\n4. Receiving the parent later resolves the core with it, in the same pass and under the same invoice number.\n5. An unresolved core is still asked for before the line completes, exactly as when receiving is not required - deferring the receive defers the paperwork, not the core decision.\n6. A part whose core is already resolved defers like any other part.\n\n---\nThis is the expected behaviour as per epic SV-8683 and story SV-9261 (Story 15, Receive later) and the Simple Flow V2 specification (Confluence page 771391574, revised 8 September 2026), read on 8 September 2026.\nAUTOMATION: Not available on Build to test Yet - Last checked 9/8/2026"
+   }
+  }
+ },
+ "44557": {
+  "title": "Only ordering and picking ask to confirm; picking-off warns of stock deduction",
+  "fields": {
+   "custom_preconds": {
+    "blocks": [
+     [
+      "1. You are signed in with access to Settings > App Settings.",
+      "2. Open work orders exist with outstanding parts, so a settings change affects a non-zero number of records.",
+      "3. You can also reach a state where changing a setting affects zero records."
+     ]
+    ],
+    "text": "1. You are signed in with access to Settings > App Settings.\n2. Open work orders exist with outstanding parts, so a settings change affects a non-zero number of records.\n3. You can also reach a state where changing a setting affects zero records."
+   },
+   "custom_steps": {
+    "blocks": [
+     [
+      "1. Change \"Require ordering parts\" and read the confirmation.",
+      "2. Change \"Require picking inventory parts\" off and read the confirmation.",
+      "3. Change \"Require approval for new lines\" and watch whether a confirmation appears.",
+      "4. Change \"Require receiving parts before completion\" and watch whether a confirmation appears.",
+      "5. Change a setting in a state where no existing records are affected."
+     ]
+    ],
+    "text": "1. Change \"Require ordering parts\" and read the confirmation.\n2. Change \"Require picking inventory parts\" off and read the confirmation.\n3. Change \"Require approval for new lines\" and watch whether a confirmation appears.\n4. Change \"Require receiving parts before completion\" and watch whether a confirmation appears.\n5. Change a setting in a state where no existing records are affected."
+   },
+   "custom_expected": {
+    "blocks": [
+     [
+      "1. Changing \"Require ordering parts\" or \"Require picking inventory parts\" opens a confirmation before anything is saved; the title names the setting and the direction, and the body states the number of records that will change.",
+      "2. Turning \"Require picking inventory parts\" off is shown as a warning, not just a count, and it says in words that the affected inventory parts will be marked as picked and deducted from stock.",
+      "3. Changing \"Require approval for new lines\" or \"Require receiving parts before completion\" shows no confirmation and saves directly.",
+      "4. When the number of affected records is zero, no confirmation shows and the setting saves directly.",
+      "5. Where a large number of records is affected, the confirmation also advises making the change outside working hours; where the number cannot be established it states the consequence without a figure."
+     ],
+     [
+      "---",
+      "This is the expected behaviour as per epic SV-8683 and story SV-9249 (Story 3, Confirmation before a settings change) and the Simple Flow V2 specification (Confluence page 771391574, revised 8 September 2026), read on 8 September 2026.",
+      "AUTOMATION: Not available on Build to test Yet - Last checked 9/8/2026"
+     ]
+    ],
+    "text": "1. Changing \"Require ordering parts\" or \"Require picking inventory parts\" opens a confirmation before anything is saved; the title names the setting and the direction, and the body states the number of records that will change.\n2. Turning \"Require picking inventory parts\" off is shown as a warning, not just a count, and it says in words that the affected inventory parts will be marked as picked and deducted from stock.\n3. Changing \"Require approval for new lines\" or \"Require receiving parts before completion\" shows no confirmation and saves directly.\n4. When the number of affected records is zero, no confirmation shows and the setting saves directly.\n5. Where a large number of records is affected, the confirmation also advises making the change outside working hours; where the number cannot be established it states the consequence without a figure.\n\n---\nThis is the expected behaviour as per epic SV-8683 and story SV-9249 (Story 3, Confirmation before a settings change) and the Simple Flow V2 specification (Confluence page 771391574, revised 8 September 2026), read on 8 September 2026.\nAUTOMATION: Not available on Build to test Yet - Last checked 9/8/2026"
    }
   }
  }
