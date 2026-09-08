@@ -137,17 +137,25 @@ BLOCKED = [
   'carrying that code, and that the code no longer appears under the "Authorized By" area.\n'
   '4. I report the same day.'),
 
- (45275, None, 'CANNOT SAY - the case is empty',
-  'This case has a title and a precondition but NO steps and NO expected result recorded in TestRail. '
-  'There is literally nothing written down to check, so it cannot be passed or failed by anybody. It '
-  'was created by Vladimir Tomovic, and we never change his cases.',
-  'Vladimir needs to either finish the case or retire it. Nothing else will unblock it.',
-  'VLADIMIR TOMOVIC, or you on his behalf. I am not permitted to edit his cases under any '
-  'circumstances, so this one can only be cleared by him.',
-  '1. Ask Vladimir whether this case is still wanted.\n'
-  '2. If YES - he fills in the Steps and the Expected Result, and tells me. I run it the same day.\n'
-  '3. If NO - he retires or deletes it, and it drops out of the suite count of 120.\n'
-  '4. Either way, tell me which, so the run stops showing a blocked case nobody is working on.'),
+ (45275, None, 'KEEP - it is a good case that was never run',
+  'It was reported on 7 September as an empty case with nothing to check. THAT WAS WRONG. The case '
+  'is written in the step-by-step format, so its content sits somewhere different from the plain '
+  'Steps and Expected Result boxes, and the earlier check looked in the wrong place. It has five '
+  'steps and a full set of expected results. It checks that changing only the CONTACT on a work '
+  'order leaves the Authorizer alone, that changing the CUSTOMER clears the Authorizer to "None", '
+  'that the picker then offers only the new customer\'s "Approves Work" contacts with the '
+  '"No authorizer" row first, and that the new choice saves.',
+  'Nothing to decide and no ticket needed - there is no defect here. The case simply has to be RUN. '
+  'The only thing standing in the way is that the staging sign-in details are kept outside the '
+  'repository for security and have been wiped from this machine, so I cannot sign in to run it.',
+  'ME, as soon as you re-supply the staging sign-in details. Nobody else needs to do anything.',
+  '1. Send me the staging username and password again (they are deliberately not stored in the '
+  'repository, and this machine has been cleared).\n'
+  '2. I sign in, seed two customers each with an "Approves Work" contact, raise an estimate for the '
+  'first, and walk the five steps.\n'
+  '3. I record Passed or Failed against this case and tell you the same day.\n'
+  'Note: the case belongs to Vladimir Tomovic and is flagged Automated, so its wording will not be '
+  'touched - only a result recorded.'),
 ]
 
 # ---- live case titles

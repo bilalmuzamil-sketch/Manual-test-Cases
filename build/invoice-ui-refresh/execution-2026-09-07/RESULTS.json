@@ -663,9 +663,9 @@
   },
   "C45275": {
    "verdict": "Blocked",
-   "observed": "Nothing to verify against. The case has a precondition but its Steps and its Expected Results are both EMPTY - read raw from TestRail, custom_steps is null and custom_expected is null. There is no stated behaviour to test.",
-   "not_observed": null,
-   "note": "Unchanged and unchangeable by us: created_by = 1 (Vladimir Tomovic), and its Steps and Expected Results are both empty in TestRail. Standing rule 38 keeps his cases hands-off, so this is reported and left exactly as it is. Its author needs to supply steps and expected results before it can be run."
+   "observed": "NOT EXECUTED. Mis-triaged during the 7 September pass as an empty case. It is not empty: it is written in TestRail's SEPARATED STEPS format (custom_steps_separated), with five steps and a full expected-results block. The earlier triage read custom_steps and custom_expected, which are both null on a separated-steps case, and concluded there was nothing to check.",
+   "not_observed": "Everything. The case checks that changing only the CONTACT leaves the Authorizer alone, that changing the CUSTOMER clears it to 'None', that the picker then offers only the new customer's 'Approves Work' contacts plus the 'No authorizer' row first, and that the new selection saves. None of that was exercised.",
+   "note": "CORRECTED 2026-09-08. No defect and no ticket: the case is runnable and simply needs running. It stays Blocked in the sense of 'not yet run'. Re-running it needs a live staging session; the credential file /tmp/shopview/staging.env is ephemeral and has been cleared, so it must be re-supplied. The case is Vladimir Tomovic's and TestRail flags it Automated, so its wording must not be changed (Rules 38 and 71) - executing it and recording a result is fine."
   },
   "C45188": {
    "verdict": "Passed",
