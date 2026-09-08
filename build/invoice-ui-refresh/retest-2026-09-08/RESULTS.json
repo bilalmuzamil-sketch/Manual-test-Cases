@@ -1,0 +1,44 @@
+{
+ "pass_meta": {
+  "pass": "Gap-closure cases + three ordered retests",
+  "date": "8 September 2026",
+  "env": "staging",
+  "build": "v26.35.9-9812433",
+  "authorised_by": "QA lead, 2026-09-08",
+  "evidence_source": "Mudassir Qamar's staging retests of 8 September 2026, recorded with screenshots on the Jira tickets named in each result. Not observed by this session - the staging session held here had expired and re-minting one would have evicted the tester mid-pass."
+ },
+ "results": {
+  "C53481": {
+   "verdict": "Passed",
+   "observed": "Verified on staging on 8 September 2026 by Mudassir Qamar, the suite's manual tester, and recorded on SV-9600 (https://shopview.atlassian.net/browse/SV-9600), which is now Ready for Production. His words: 'Verified on staging Sep 8. VIN last 8 CLBP1234 bold on screen and PDF.' The fix splits the value and bolds only the tail. Chris Ward corrected the retest note beforehand so nobody scores it off a bad example: MNUKXGGLD60VSJGSP is 17 characters, so the first 9 are normal weight and the last 8 are bold. This case was written today to close a coverage gap - nothing in the suite had ever asserted the bold last-8.",
+   "not_observed": "This session did not run the case itself. The 8-or-fewer-character clause (a short serial rendering all-bold) was not exercised by that retest; the developer states no length guard is needed and such a value degrades to an all-bold string."
+  },
+  "C53482": {
+   "verdict": "Passed",
+   "observed": "Verified on staging on 8 September 2026 by Mudassir Qamar and recorded on SV-9643 (https://shopview.atlassian.net/browse/SV-9643), which is now Ready for Production. His words: 'Verified the fix on the Staging branch - WO S2-16673, both toggles. Invoice downloads as INV-S2-16673.pdf, Estimate as EST-S2-16673.pdf. Shop id intact, no download date, no double underscore; filename matches the document label.' That covers clauses 1 to 4. This case was written today to close a coverage gap - nothing in the suite had ever looked at the downloaded filename.",
+   "not_observed": "This session did not run the case itself. Clause 5 - that the filename is identical when the PDF is produced from the customer portal rather than the app - was not exercised."
+  },
+  "C53483": {
+   "verdict": "Failed",
+   "observed": "Retested on staging on 8 September 2026 by Mudassir Qamar and recorded on SV-9816 (https://shopview.atlassian.net/browse/SV-9816), which is REJECTED FROM TESTING. His words: 'Retested on staging Sep 8 - fix not on staging yet (confirmed by Minja). Chip still prints S-32267 on S2-32267. Rejecting until deployed.' Clause 1 fails: the field prints the stored number with the shop identifier missing, so it reads S-32267 where the work order itself shows S2-32267. Clauses 2 and 3 hold - nothing is prefixed and nothing else is reformatted. This case was written today to close a coverage gap - no case in the suite cited S3-R10, so nothing asserted what the field should print.",
+   "not_observed": "This session did not run the case itself.",
+   "todo": "What needs to be done: nothing for the tester. Mark this case Failed and raise nothing new - it is already reported as SV-9816 (https://shopview.atlassian.net/browse/SV-9816), whose fix is written but not yet deployed to staging. Re-run this case once the deployment lands; the field should then read the number exactly as the work order page shows it."
+  },
+  "C44917": {
+   "verdict": "Failed",
+   "observed": "Retested on staging on 8 September 2026 by Mudassir Qamar and recorded on SV-9642 (https://shopview.atlassian.net/browse/SV-9642), which is now REJECTED FROM TESTING. His words: 'Retested on staging Sep 8 - still failing. WO S2-32267, document EST-S2-32267: trailing digits are the same, so the Work Order chip must be hidden (S3-N1). It shows Work Order S-32267.' The developer's position, recorded on the same ticket, is that the field is correctly hidden when the two numbers have not diverged and that the literal trailing-digits reading would make the rule dead in practice; the specification was rewritten on 7 September to settle this, and S3-N1 now hides the field only when the document has no work order behind it or when the two numbers are character-for-character identical as whole strings. On this build the field neither hides per the old reading nor prints the displayed number, so the case fails as written.",
+   "not_observed": "This session did not run the case itself.",
+   "todo": "What needs to be done: nothing for the tester. Mark this case Failed and raise nothing new - it is already reported as SV-9642 (https://shopview.atlassian.net/browse/SV-9642), now REJECTED FROM TESTING, and is the same defect as SV-9816 seen from the code side. The case text still carries the superseded 7 September wording of S3-N1 and needs rewriting against specification version 64 before the next run; that rewrite is with the QA lead."
+  },
+  "C44935": {
+   "verdict": "Passed",
+   "observed": "Retested on staging on 8 September 2026 by Mudassir Qamar and recorded on SV-9773 (https://shopview.atlassian.net/browse/SV-9773), which is now Ready for Production. His words: 'Verified on staging Sep 8. INV-S2-32137 line 01: Labor $314.90 includes the $15 shop fee, Parts $7.48 includes the ($0.83) discount, Line total $322.38. Correct.' That is clause 2 - the Labor and Parts figures are the line's own totals after its line-level fees and discounts, and Line total is their sum - which is the clause that was failing. This supersedes the Failed result of 7 September.",
+   "not_observed": "This session did not run the case itself. Clauses 3, 4 and 5 - the summarize-setting and price-setting hide rules, the vertical divider, and Line total showing at $0.00 - were passing on 7 September and were not re-exercised in that retest."
+  },
+  "C44974": {
+   "verdict": "Passed",
+   "observed": "Retested on staging on 8 September 2026 by Mudassir Qamar and recorded on SV-9761 (https://shopview.atlassian.net/browse/SV-9761), which is now Ready for Production. His words: 'QA Status: Passed. Verified the Fixes on the Staging Branch.' The staging PDF no longer embeds DejaVu Sans in place of Inter, so clause 1 - the typeface is Inter, applied identically on screen and in PDF - now holds. This supersedes the Failed result of 7 September.",
+   "not_observed": "This session did not run the case itself. Two things stay open and are tracked elsewhere, not against this case: the production PDF server still uses the old font image, so Inter will not show after release until that is changed (SV-9781, https://shopview.atlassian.net/browse/SV-9781, Board Backlog); and the 24px size of the document label is a separate defect (SV-9762, https://shopview.atlassian.net/browse/SV-9762, Ready for Production) which no case in the suite asserts."
+  }
+ }
+}
