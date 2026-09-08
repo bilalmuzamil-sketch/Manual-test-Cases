@@ -60,12 +60,6 @@ FAILED = [
   'Nothing for you to do yet. The ticket has moved to QA Complete SINCE this test was run, so it was '
   'still failing on the build tested. RE-RUN this case on the next staging build. This is the highest '
   'risk item found - it is a money figure on a customer-facing document.'),
- (44952, None,
-  'In the customer portal, the paid-invoice banner never shows a "Remaining Balance" row, even when '
-  'money is still owed after a payment. Everything else in the banner is correct.',
-  'NO OPEN TICKET. This was raised as SV-9803 and you closed it as OBSOLETE on 7 September. The case '
-  'still fails as written. Either the rule should be dropped from the specification, or a ticket has '
-  'to be raised - your call. Nobody should raise one without you.'),
  (44970, 'SV-9790',
   'A credit note created on its own prints no disclaimer text at the bottom. One created from an '
   'invoice does print it. Both should.',
@@ -207,16 +201,17 @@ rows = [
  ('Build tested', BUILD),
  ('Date tested', '7 September 2026'),
  ('Ticket statuses read', '8 September 2026, live from Jira'),
+ ('Last updated', '8 September 2026 - C44952 re-scored Passed after the spec was amended'),
  ('', ''),
  ('Cases in the suite', '120'),
- ('Passed', '110'),
- ('Failed', '6   - see the Failed tab'),
+ ('Passed', '111'),
+ ('Failed', '5   - see the Failed tab'),
  ('Blocked', '4   - see the Blocked tab'),
  ('Untested', '0'),
  ('', ''),
  ('Read this first',
-  'FAILED means the build does not do what the documents require. Every one of these except C44952 '
-  'already has a ticket, so there is nothing for you to raise.'),
+  'FAILED means the build does not do what the documents require. Every one of these already has a '
+  'ticket, so there is nothing for you to raise.'),
  ('',
   'BLOCKED means the case could not be run at all. Three of the four are still worth keeping - they '
   'need a decision or a piece of test data from you, and each row says exactly what and who. The '
@@ -224,6 +219,10 @@ rows = [
  ('',
   'Two tickets - SV-9642 and SV-9773 - moved to QA Complete AFTER this run. Both cases were still '
   'failing on the build tested, so both need re-running on the next staging build.'),
+ ('',
+  'C44952 was Failed on 7 September and is now PASSED. It failed only on a "Remaining Balance" row '
+  'that the specification asked for. Chris Ward established that row has never existed in production '
+  'and amended S8-R9 (spec v64, SV-9803). The clause is gone from the case; the build never changed.'),
 ]
 for r, (a, b) in enumerate(rows, 1):
     ws.cell(r, 1, a).font = Font(bold=(r == 1 or (a and not b)), size=14 if r == 1 else 11)

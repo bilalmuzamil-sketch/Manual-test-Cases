@@ -4,7 +4,7 @@
   "env": "staging",
   "build_marker": "v26.35.9-9812433",
   "record": "WO S-32136 / docs EST-S2-32136 & INV-S2-32136, customer 4 Star Truck Repair",
-  "note": "Results recorded locally. Writing all 120 into shared run R417 was authorised by the QA lead on 2026-09-07 but the session's permission layer refused the TestRail result write; R417 still carries 0 results. The run itself was union-synced to all 120 cases (Rule 34)."
+  "note": "All 120 results written into shared run R417 on 2026-09-07 with the QA lead's explicit permission (Failed and Blocked included). C44952 re-scored Passed on 2026-09-08 after Chris Ward amended S8-R9. Live run: 111 Passed, 5 Failed, 4 Blocked, 0 untested."
  },
  "results": {
   "C44901": {
@@ -704,10 +704,10 @@
    "note": "Portal reached via the shop app account menu -> Customer Portal (POST /sso-login). Payments made with Stripe test card 4242 4242 4242 4242 in the portal's sandbox mode (is_test_mode true)."
   },
   "C44952": {
-   "verdict": "Failed",
-   "observed": "Clauses 1, 2, 3, 5 and 6 all PASS, observed live in the customer portal on staging. (1) Labels read exactly 'Date / Time', 'Paid By', 'Method', 'Invoice Amount', 'Total Charged'. (2) On the batch payments (S-32264 and S-12725) the label reads exactly 'Total Charged (Batch)' and carries the whole batch - S-32264 shows Invoice Amount CA$406.09 against Total Charged (Batch) CA$14,230.01. (3) 'Convenience Fee' shows on every payment that carried one; 'Late Fee' shows only on S-12725, whose payment carried a CA$4.73 late fee, and is absent everywhere the late fee was zero. (5) On S-32220, which has one single payment then one batch payment, the markers read 'Payment 1 of 2' and 'Payment 2 of 2 - Batch' with a middle dot, exactly as spec v57 S8-R9 writes it. (6) 'Date / Time' read 'Sep 7, 2026 - 10:23 AM MDT' - date, then 12-hour time with the shop timezone abbreviation.",
+   "verdict": "Passed",
+   "observed": "Every clause the amended rule asks for was observed correct in the customer portal on staging. (1) Labels read exactly 'Date / Time', 'Paid By', 'Method', 'Invoice Amount', 'Total Charged'. (2) On the batch payments (S-32264 and S-12725) the label reads exactly 'Total Charged (Batch)' and covers the whole batch - S-32264 shows Invoice Amount CA$406.09 against Total Charged (Batch) CA$14,230.01. (3) 'Convenience Fee' shows on every payment that carried one; 'Late Fee' shows only on S-12725, whose payment carried a CA$4.73 late fee. (4) On S-32220 the markers read 'Payment 1 of 2' and 'Payment 2 of 2 - Batch' with a middle dot. (5) 'Date / Time' read 'Sep 7, 2026 - 10:23 AM MDT'.",
    "not_observed": "",
-   "note": "FAILS clause 4. 'Remaining Balance' never appears. Tested on four invoices where the balance immediately after a listed payment was greater than $0.00. It was raised as SV-9803, which the QA lead confirmed on 2026-09-07 was deliberately closed as OBSOLETE, so there is no open ticket for this finding and none is to be raised without him. The case's outcome text no longer cites the closed ticket."
+   "note": "RE-SCORED Failed -> Passed on 2026-09-08. The clause this case failed on required a 'Remaining Balance' row in the paid banner. Chris Ward ruled on SV-9803 that the row has never existed in production - settled by the matching sha256 on PreviewInvoice-DQmgXtBb.js across production and staging - and amended the specification: S8-R9 loses the sentence, live at v64, with a Story 8 context note and a change-log row recording that adding one would be net-new portal work outside this epic. Verified at source 2026-09-08: 'Remaining Balance' now appears on the page only in that context note and change-log row. Clause 4 deleted from the case, clauses renumbered, provenance re-stamped to spec v64 / build v26.35.9-9812433. Nothing about the build changed. This is Rule 57 working as intended: the document is the source, and when the build and the document disagree the document is what gets examined."
   },
   "C45175": {
    "verdict": "Passed",
