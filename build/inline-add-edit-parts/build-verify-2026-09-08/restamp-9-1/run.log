@@ -1,0 +1,17 @@
+09:13:27 C45084 OK (custom_expected)  1/145
+09:13:52 C45085 deadlock - retry 1/3
+09:15:15 C45085 deadlock - retry 2/3
+09:16:41 C45085 deadlock - retry 3/3
+09:18:10 C45085 FAILED: still on the edit page ["Deadlock found when trying to get lock; try restarting transaction","Title is too long","You have reached max 2000 characters limit. You can't type more."]
+09:18:22 C45086 OK (custom_expected)  2/145
+09:18:47 C45087 deadlock - retry 1/3
+09:20:10 C45087 deadlock - retry 2/3
+09:21:36 C45087 deadlock - retry 3/3
+node:internal/modules/run_main:123
+    triggerUncaughtException(
+    ^
+
+page.waitForTimeout: Target page, context or browser has been closed
+    at /home/user/Manual-test-Cases/build/testing-tools/surgical_replace.mjs:119:81
+
+Node.js v22.22.2
