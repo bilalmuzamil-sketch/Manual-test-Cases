@@ -1,5 +1,41 @@
 # OBSERVED UI LABELS — sv9315.qa.shopview.com, build `v26.35.6-598cc8a`, read 2026-09-01
 
+> ## 🔁 RE-CONFIRMATION ON BUILD `v26.35.9-7f2e4fa` — read 2026-09-08 (build-verify of 6617 + 6597)
+>
+> The branch moved `v26.35.6-598cc8a` → **`v26.35.9-7f2e4fa`**. The distinct quoted precondition
+> labels of suites 6617 (44 cases) and 6597 (127 cases) were re-observed on the new build.
+> Evidence: `build/inline-add-edit-parts/build-verify-2026-09-08/` (roleedit-v26.35.9.png,
+> roleedit-body-v26.35.9.txt, inline-row-v26.35.9.png, part-context-menu-v26.35.9.png,
+> fullview-row-v26.35.9.png, add-flow-v26.35.9.png) + the probe scripts in the same dir.
+>
+> **RE-CONFIRMED verbatim on v26.35.9 (unchanged from v26.35.6):**
+> - **Role edit screen** (`/administration/roles-permissions/<id>/edit`, header `Edit Role`):
+>   `Roles & Permissions` · `Work orders` · `View mode` · `Full View` · `Tech view` ·
+>   `Create & Edit` · `Work order lines` · `See Financial Data` · `View and Manage AP/AR Data` ·
+>   `Reset To Template`. The View-mode control is a segmented control (`wo-settings__segment`).
+> - **WO header More menu** (Estimate WO): `Audit Log` · `Timesheets (0)` · `Add Work Order Fee / Discount` ·
+>   `Print Work Order` · `Delete Work Order` — same order, exact match.
+> - **WO Lines screen / inline add**: `Add Part` · `New Line` · `Part number` (inline field aria-label) ·
+>   `Description` · `Qty`. Parts-line table headers: `Name/Description` · `Actual/Estimate` · `Progress` ·
+>   `Status` · `Action` · `Rate` · `Margin` · `Total`.
+> - **Settings sidebar**: `Bin Locations` · `Inventory` present.
+>
+> **⚠️ NOT RE-REACHED on v26.35.9 this pass (were confirmed on v26.35.6 2026-09-01; DO NOT treat as
+> gone — treat as un-re-observed):** `More options`, `Sell price`, `Cost` (as an inline column),
+> `New Part Request` / `Edit Part Request` (part-request modal), `Split across bins…`, `Pulled from`
+> (bin allocation), `Add tech story for this line` (Tech-view line story).
+> **Observation worth a re-check:** on v26.35.9 the inline **Add Part** row rendered MINIMALLY —
+> `Description · Part number · Qty` only — in **both** the Tech-view default AND after the role's View
+> mode was set to `Full View`; the v26.35.6-documented inline columns `Category · Cost · Sell price ·
+> More options` did **not** render as inline fields/headers in the Add-Part row reached. The
+> existing-part row's action control is now aria-labelled **`Part context menu`** (menu: `Move` ·
+> `Add Part Fee / Discount` · `Move up` · `Move down`), where v26.35.6 notes called the inline control
+> `More options`. This may be a real inline-row change between 26.35.6 and 26.35.9, or a state/part-type
+> the probe did not reach (catalog vs part-request; no bin-allocated inventory part seeded). Cases
+> quoting these labels (C45046, C45047, C45060, C45065, C45067, C45111, C45226, C45227, C45232, C45233,
+> C45234, C45235, C45238, C45243) were **NOT re-stamped to v26.35.9** and need a targeted re-check with
+> a seeded bin-allocated inventory part + a part-request draft, in Full View.
+
 **What this file is for.** `check_runnable_cases.py` proves a precondition is tester-SHAPED. It says so
 in its own header: it **cannot** prove the route it names is CORRECT. On 2026-09-01 that gap cost real
 work — **117 preconditions named a permission called “Work Order Line - Create and Edit” and 90 named
