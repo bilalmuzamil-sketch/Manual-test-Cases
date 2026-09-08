@@ -33,6 +33,7 @@
 
 ## ENTRIES — newest first (id · date · tags · lesson → pointer)
 
+<<<<<<< Updated upstream
 ### L0009 · 2026-09-08 · #build-verify #rule #testrail
 **Re-stamping the build-check line (provenance Sentence 2) is a MANDATORY part of build verification —
 ALWAYS, never optional/cosmetic.** (QA lead, verbatim: *"Yes restamping should be the part of Build
@@ -43,6 +44,29 @@ be clear). Drive it to zero with `surgical_replace.mjs` (it checkpoints, so a de
 retried to completion, never abandoned). Scope: `created_by=3`, authorised Automated included, Vladimir's
 (user 1) never. **Graduated-to:** `build/rules/RULES-41-60.md` rule 54 (2026-09-08 amendment),
 `build/skills/03-RUN-CHECK.md`, `build/skills/11-BUILD-VERIFICATION.md`, CLAUDE.md §5.
+=======
+### L0009 · 2026-09-08 · #testrail #render #api #mistake-corrected
+**`add_case` lands its fields in `markdown fr-view` — the escaping-container trap is an `update_case`
+problem, not an "any API write" problem.** Measured live on C53481/C53482/C53483, created via
+`add_case` on 2026-09-08 with block-only HTML: all three fields on all three cases served as
+`<div class="markdown fr-view">` with no literal tags, needing **no** UI repair. CLAUDE.md §5 currently
+says "An API `update_case`/`add_case` leaves the field in the ESCAPING container", which over-states it
+for `add_case`. **Still scan the served page after any API write** — the scan is what proved this, and
+`update_case` is unchanged. **Proposed (Rule 72, not yet recorded):** narrow that CLAUDE.md sentence to
+`update_case`. Scanner: `/tmp` copy of the pattern in
+`build/inline-add-edit-parts/render-repair-2026-08-31/scan.mjs`.
+
+### L0010 · 2026-09-08 · #testrail #froala #methodology
+**A UI re-save cannot flip a container when the content is identical — `#accept` stays disabled and a
+forced click is refused.** Writing a field's own stored value back through Froala leaves TestRail's form
+clean, so Save never enables; the page then shows its **latent, hidden** `Title is too long` template,
+which a naive `.message-error` scrape reports as the failure reason. Two guards, both already known and
+both worth repeating: (a) filter by `offsetParent` — a hidden error is not an error (this cost ~11 minutes
+here); (b) dispatch the dirty-marking events on **`inst.$oel[0]`** (the backing element), never
+`inst.$el[0]`, and click `#accept` **un-forced** so Playwright waits for it to enable — the correct form is
+in `build/testing-tools/surgical_replace.mjs` lines 82-96. If a genuine flip is ever needed on unchanged
+content, save a deliberately-different version first, then save the intended one: two real UI saves.
+>>>>>>> Stashed changes
 
 ### L0008 · 2026-09-08 · #roles-permissions #shopview-app #rule
 **Assigning a role to `TECH@shopview.com` — RESET the role first, then assign.** When a test needs
