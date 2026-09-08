@@ -55,6 +55,16 @@ here); (b) dispatch the dirty-marking events on **`inst.$oel[0]`** (the backing 
 in `build/testing-tools/surgical_replace.mjs` lines 82-96. If a genuine flip is ever needed on unchanged
 content, save a deliberately-different version first, then save the intended one: two real UI saves.
 
+### L0010 · 2026-09-08 · #testrail #deadlock #methodology
+**The TestRail UI-editor "deadlocks" were SELF-INFLICTED — run ONE writer, never concurrent (Rule 83).**
+`surgical_replace.mjs` deadlocked at ~0.6 case/min while I had **multiple** re-stamp runs going at once
+(a background driver loop I thought had died, plus manual re-runs launched on top of it) — several
+Playwright sessions editing the same TestRail estate contend on row locks. The moment I killed the extras
+and left a **single** writer, it ran clean at **~10 s/case with zero deadlocks**. So: before launching a
+bulk TestRail-write run, `pgrep -f surgical_replace` and make sure nothing else is writing; one loop, to
+completion. (Refines L0004 — the deadlock is contention you can avoid, not an inherent tool limit.)
+**Graduated-to:** operational; keep in mind for any bulk TestRail write.
+
 ### L0009 · 2026-09-08 · #build-verify #rule #testrail
 **Re-stamping the build-check line (provenance Sentence 2) is a MANDATORY part of build verification —
 ALWAYS, never optional/cosmetic.** (QA lead, verbatim: *"Yes restamping should be the part of Build
