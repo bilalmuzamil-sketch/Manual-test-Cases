@@ -33,6 +33,17 @@
 
 ## ENTRIES — newest first (id · date · tags · lesson → pointer)
 
+### L0021 · 2026-09-09 · #rule #source-verify #qa-lead #methodology
+**STANDING DIRECTIVE (QA lead, 2026-09-09, verbatim): "NEVER run deltas, the verification should ALWAYS be
+FULL."** A source-verification ALWAYS re-reads EVERY case in the suite against the current spec and
+re-stamps EVERY case to the current version with a fresh read-date — never only the changed-story/changed-
+requirement cases. This HARDENS L0015 and REMOVES the "disclosed partial" escape hatch that L0015/§5b still
+allowed: a delta is now forbidden outright, not merely something to footnote. Confirmed by a live audit
+that caught two more delta passes I did on 2026-09-07 — **6617 Printer Friendly WO** (42 of 44 still stamped
+25 Aug, only 2 at 7 Sep) and **6597 Inline Add & Edit Parts** (113 of 123 still at 31 Aug, only 5 at 7 Sep),
+both now being brought to a full re-stamp. **Graduated-to:** `build/skills/02-SOURCE-CHECK.md` §5b clause 2
+(rewritten: "ALWAYS FULL — NEVER A DELTA"). Related: L0015 (the delta that first bit us, SFV2), L0020.
+
 ### L0020 · 2026-09-09 · #rule #testrail #test-runs #qa-lead
 **STANDING RULE (QA lead, 2026-09-09): authoring a new test case is NOT done until it is a member of that
 suite's active Test Run — and you must CONFIRM it live, every time, forever.** This is Rule 34 made into a
