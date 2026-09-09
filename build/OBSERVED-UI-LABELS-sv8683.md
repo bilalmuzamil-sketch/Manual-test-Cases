@@ -39,11 +39,29 @@ reset-then-assign. (LEARNINGS-LOG L0006/L0008.)
 **Part status badges to confirm as seeded:** `In stock` (seen) · `Requested` · `Needs Approval` ·
 `Ordered` / `Auth To Order` · `Received` — to be observed on seeded parts in the relevant states.
 
+## Settings — the completion rules (this is "App Settings", `settingsApp`)
+**Route:** top-right of the app is not it — go **Settings** (left sidebar `info Settings`,
+`/administration/settings`) → the **`Work Orders`** tab (the page has three tabs: `Organization` ·
+`Invoice` · `Work Orders`). A **`Save Settings`** button (bottom-right) commits changes. Confirmed live
+2026-09-09 on `v26.35.9-5700a76`; evidence `settings-workorders-tab-sv8683.png`, `wotab.log`.
+
+| Group heading | Toggle (verbatim) | Description on screen |
+|---|---|---|
+| `WORKFLOW` | `Require Approval for New Lines` | "When on, new work order lines require approval. When off, they are auto-approved." |
+| `WORKFLOW` | `Require Review Before Completion` | "Work orders must be reviewed and signed off before they can be completed" |
+| `LINE REQUIREMENTS` | `Require Tech Story` | "Tech story will be a required field before a line can be completed on a work order" |
+| `LINE REQUIREMENTS` | `Require Mileage` | "Mileage will be a required field before a line can be completed on a work order" |
+| `LINE REQUIREMENTS` | `Require Engine Hours` | "Engine hours will be a required field before a line can be completed on a work order" |
+| `PARTS` | `Require Ordering Parts` | "When on, you click Order on each part to record that you've ordered it. When off, parts are marked as ordered automatically." |
+| `PARTS` | `Require Receiving Parts Before Completion` | "When on, each part must be recorded as received before the work order can be completed. When off, you can finish the work order and receive later." (stored as `requireVendorInvoiceNumber` — build trap) |
+| `PARTS` | `Require Picking Inventory Parts` | "When on, you click Pick on each inventory and found part to record that it's been pulled. When off, these parts are ready as…" |
+
+**Note (Story 1 build-verify):** both the NEW setting `Require Ordering Parts` and the renamed
+`Require Picking Inventory Parts` ARE present on the build — no missing-setting finding.
+
 ---
 
 ## TO CONFIRM (next probes) — screens the cases need
-- **Settings** for completion rules: "Require receiving parts before completion", "Require Review",
-  "Require Tech Story / Mileage / Engine Hours" (App Settings / Work Order Settings).
 - **Receiving** flow (from a WO + Purchase Order pages + "Receive later").
 - **Completion wizard** + **Finish** action.
 - **Bulk action bar** (multi-select on Lines).
