@@ -266,6 +266,32 @@ re-derivation to surface it, along with the same gap on three more reports. **A 
 verdict table makes that class of slip structurally impossible: an un-verdicted row is a visible
 hole.**
 
+### 5b · 🛑 THE PROVENANCE-CURRENCY GATE — a DELTA is not a full re-verification (earned 2026-09-09, L0015)
+
+**The provenance line is the SYSTEM OF RECORD for "when was this case last source-verified, against which
+spec version".** A later session — a build-verify session, a reviewer, you next week — reads those stamps
+to decide whether the suite is current. So **the suite is "source-verified against spec vN" ONLY when
+EVERY one of its cases carries vN in its provenance** (scope `created_by=3`; authorised Automated included;
+Vladimir's user-1 cases excluded, Rule 38). Anything less is a DELTA, and a delta that is reported as a
+full pass will send the next session forward on cases that were never checked.
+
+**THE GATE — run all three, every spec-move pass, BEFORE you report the suite verified:**
+1. **AUDIT LIVE, PER CASE.** After the writes, page the suite from TestRail and read each case's provenance
+   stamp. Count `new vN` vs `old v<prev>` vs `no version stamp`. **The OLDEST stamp present is the suite's
+   true currency** — that is the number a build-verify session will (correctly) report, not the newest.
+2. **CLOSE OR DECLARE.** Either re-verify + re-stamp **every** case to vN (the default — a suite reads
+   uniformly current), OR, if a partial pass is deliberate, **record the split explicitly in
+   `PROJECT-STATE.md`**: "N re-stamped to vN; M still at v<prev> — NOT a full re-verification" — and never
+   write "source-verified against vN" anywhere without that qualifier.
+3. **"NOT IN THE CHANGE-LOG" ≠ "VERIFIED".** A story the change-log does not mention is *expected* to be
+   unchanged, but "expected" is not "observed" (Rule 12). Re-READ each such case against the current spec
+   body before its stamp moves to vN; a stamp bump with no re-read is a false claim of currency.
+
+**THE SCAR:** Simple Flow V2, 2026-09-08 — the spec moved v23 → 8-Sep; only the 18 changed-story cases were
+re-stamped, leaving **47 of 65** at v23/21-Aug. The suite was reported "re-source-verified against the 8-Sep
+revision" while its own stamps said 21-Aug. The build-verify session read 21-Aug and asked "did you miss
+something?" — the user caught it, not the pass. Full write-up: `build/LEARNINGS-LOG.md` L0015.
+
 ### 6 · 🔑 RE-READ THE SOURCES AGAIN IMMEDIATELY BEFORE THE WRITES BEGIN (Rule 59)
 
 **Step 2 runs at pass start. This is a SECOND, CHEAP check at write start** — re-fetch the governing

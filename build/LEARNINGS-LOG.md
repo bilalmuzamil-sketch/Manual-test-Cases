@@ -33,6 +33,27 @@
 
 ## ENTRIES — newest first (id · date · tags · lesson → pointer)
 
+### L0015 · 2026-09-09 · #mistake-corrected #source-verify #methodology #provenance
+**A spec-revision source-verification that re-stamps ONLY the changed-story cases is a DELTA, not a full
+re-verification — and the suite's provenance then LIES about its currency to every later session.** On
+2026-09-08 the Simple Flow V2 spec moved v23 → the 8-Sep revision; I diffed the 11 changed stories and
+re-stamped the **18** cases I touched, but left the other **47 of 65** cases at "specification version 23,
+read on 21 August 2026". The provenance stamp IS the system of record for "last source-verified", so a
+build-verify session correctly read the suite as last-verified 2026-08-21/v23 and nearly proceeded on a
+suite where 47 cases had never been checked against the current spec — a bite the user caught, not me.
+**THE RULE I NOW FOLLOW — a suite is "source-verified against spec vN" ONLY when EVERY one of its cases
+(created_by=3; authorised Automated included, Vladimir's excluded) carries vN in its provenance:**
+1. After a spec move, run a suite-wide provenance audit (live TestRail, per-case) BEFORE reporting the
+   suite verified — count new-stamp vs old-stamp; the OLDEST stamp present is the suite's true currency.
+2. Either re-verify + re-stamp EVERY case to vN (default), OR, if a delta is deliberate, record the split
+   explicitly in PROJECT-STATE ("N re-stamped to vN; M still at v<old> — NOT a full re-verification") and
+   NEVER report the suite as "source-verified against vN" without that qualifier.
+3. "Not in the change-log" ≠ "verified against the new spec" — an unchanged-story case must still be
+   re-READ against the current spec (Rule 12: observed, not assumed) before its stamp moves to vN.
+**Graduated-to:** `build/skills/02-SOURCE-CHECK.md` (the "delta vs full — the provenance-currency gate").
+Related: L0014 (a provenance line is a claim about when a case was written, never proof the version is
+current), Rules 31/54/59/43.
+
 ### L0013 · 2026-09-08 · #rule #test-execution #qa-lead
 **STANDING INSTRUCTION (QA lead, 2026-09-08): a test whose ticket comment proves the fix verified must
 show Passed in the run.** Verbatim: *"Every test run case which has been proven as verified-fix in the
