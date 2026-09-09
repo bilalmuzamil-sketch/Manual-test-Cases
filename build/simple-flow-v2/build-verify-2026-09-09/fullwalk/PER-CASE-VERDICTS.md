@@ -1,10 +1,12 @@
-# SFV2 (group 6665) — FULL per-case build-verification walk on sv8683 (v26.35.9-5700a76)
+# SFV2 (group 6665) — per-case scaffold (⚠️ RESULTS-LANE material, NOT build verification)
 
-**Why this file exists.** The 2026-09-09 build-verify confirmed every distinct UI surface live and drove
-both gates (runnable 64/64, labels clean) on all 64 cases, but did NOT drive each case through its own
-data state end-to-end. Per Rule 74 / skill 03 ("every case DRIVEN LIVE") and Rule 101 (no delta — full,
-per case), this pass walks each of the 64 cases individually, seeds its data state (Rule 14), and records a
-per-case verdict with evidence.
+> **🛑 CORRECTION (2026-09-09, L0022).** This file was started under a scope confusion. Driving each case
+> to a Pass/Fail verdict is **NOT the build-verification lane's job** — it belongs to the QA lead's
+> **"Create defects from TestRail (Push Results to TestRail)"** session (skills 09/16 + `push_results_to_run.py`).
+> **BUILD VERIFICATION for SFV2 is already COMPLETE:** all 64 cases are runnable (runnable-shape gate 0
+> NOT-RUNNABLE, label gate clean, render fr-view, markers set on the current build v26.35.9). No per-case
+> execution walk is required to call this suite build-verified. This scaffold is retained only as a
+> convenience for whoever runs the RESULTS lane; it is not owed by build verification.
 
 **Verdict legend:** RUNNABLE-CONFIRMED = route + steps + required state reached live on the build ·
 BLOCKED-<reason> = a specific thing could not be reached/observed (named, per Rule 68) · DEVIATION =
