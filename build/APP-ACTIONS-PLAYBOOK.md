@@ -3439,6 +3439,21 @@ this repo is public, so `raw.githubusercontent.com/<owner>/<repo>/<branch>/<path
 **`curl -o /dev/null -w "%{http_code}"` every URL before posting.** Full comment format (status first
 line, table, inline images, rule, technical detail last) is in CLAUDE.md.
 
+**⚠️ EVERY external-media node MUST carry `width`, `height` AND a `localId` — or Jira shows
+"Preview unavailable" (proven 2026-09-09, SV-9848).** The image renders inline (in the **description**
+and in comments alike) ONLY when the `media` node is
+`{"type":"media","attrs":{"type":"external","url":"<raw>","width":<intrinsic px>,"height":<intrinsic px>,"localId":"<12 hex>"}}`.
+Omitting them (sending `width:null, height:null, localId:null`) makes Jira unable to size the external
+media, and it renders as a grey **"Preview unavailable"** box even though the raw URL is a valid 200 PNG.
+**Read `width`/`height` from the actual file** (`PIL.Image.open(f).size`) — do not guess — and give each
+node a fresh `localId` (`secrets.token_hex(6)`). Diagnosis: the working SV-9705 description (2026-09-04)
+stored `…&localId=57a72acf53ae&…&height=1797&…&width=1300&…&type=external`, while the failing SV-9848
+first attempt stored `localId=null&height=null&width=null`; the ONLY difference was those three attrs.
+**Inline images belong in the ticket DESCRIPTION** (QA-lead standing preference 2026-09-09), not shoved
+into a comment — the description path works fine once width/height/localId are present. Always **read the
+description back** (`responseContentFormat:"adf"`, or the returned markdown's blob URL) and confirm each
+image's blob carries a non-null `width`/`height`/`localId` before calling it done.
+
 ### V.8 The exhibit set that closes the arguments
 
 One exhibit per challenge a reviewer could actually make, each captioned with the work-order number and
