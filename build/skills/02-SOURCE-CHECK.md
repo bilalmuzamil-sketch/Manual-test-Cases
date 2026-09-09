@@ -289,6 +289,20 @@ full pass will send the next session forward on cases that were never checked.
 3. **"NOT IN THE CHANGE-LOG" ≠ "VERIFIED".** A story the change-log does not mention is *expected* to be
    unchanged, but "expected" is not "observed" (Rule 12). Re-READ each such case against the current spec
    body before its stamp moves to vN; a stamp bump with no re-read is a false claim of currency.
+4. **🛑 THE TITLE IS PART OF THE CASE — RECONCILE THE WHOLE CASE, NEVER JUST THE FIELD YOU CAME FOR
+   (Rule 41; earned 2026-09-09, L0025).** The `fr-view` write harness (`hs_write.mjs`) sets ONLY
+   preconds/steps/expected and **asserts the title unchanged** — so a pass that changes an Expected and
+   trusts the harness leaves the **title silently stale**. When any field changes, re-read the TITLE (and
+   the preconds/steps) against the new Expected and fix every part that no longer matches. Worked miss:
+   C44993/C44994 kept the title "…Complete, Invoiced, or Paid" (3 statuses) after the Expected grew to 5;
+   C45007's title said "is categorized Uncategorized" after the Expected became conditional. **Mechanics:**
+   (a) a title fix is a **title-only `update_case`** — proven NOT to disturb the other fields' `fr-view`
+   container (verified 2026-09-09), so **do it AFTER the harness content pass, never before** (a title set
+   before the harness is re-submitted and can be truncated by the edit-form Save — that clobbered
+   C45250's "(auto-uncompletes)"); (b) after setting a title, **re-fetch to confirm it persisted AND
+   served-page-scan the body is still `fr-view`**; (c) sweep the suite with a title-vs-body consistency
+   check (e.g. status-word enumeration in the title must equal the assertion's set) — heuristic, so also
+   eyeball every case whose content you changed. Full write-up: `build/LEARNINGS-LOG.md` L0025.
 
 **THE SCAR:** Simple Flow V2, 2026-09-08 — the spec moved v23 → 8-Sep; only the 18 changed-story cases were
 re-stamped, leaving **47 of 65** at v23/21-Aug. The suite was reported "re-source-verified against the 8-Sep
