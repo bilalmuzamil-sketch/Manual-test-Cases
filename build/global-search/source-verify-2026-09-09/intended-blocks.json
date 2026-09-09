@@ -308,21 +308,23 @@
     "blocks": [
      [
       "1. Sign in to ShopView. In the app header, click the search field (or press ⌘K / Ctrl+K) to open the global search, which searches across work orders, customers, parts and more; results appear grouped by type under a tab strip.",
-      "1. The scope tab strip is visible under the input: All, Work Orders, Customers, Assets, Parts, Vendors, Part Sales."
+      "2. Have records that share a few letters across more than one type (for example several work orders and customers whose names or numbers contain the same letters), so a short query returns results under more than one tab."
      ]
     ],
-    "text": "1. Sign in to ShopView. In the app header, click the search field (or press ⌘K / Ctrl+K) to open the global search, which searches across work orders, customers, parts and more; results appear grouped by type under a tab strip.\n1. The scope tab strip is visible under the input: All, Work Orders, Customers, Assets, Parts, Vendors, Part Sales."
+    "text": "1. Sign in to ShopView. In the app header, click the search field (or press ⌘K / Ctrl+K) to open the global search, which searches across work orders, customers, parts and more; results appear grouped by type under a tab strip.\n2. Have records that share a few letters across more than one type (for example several work orders and customers whose names or numbers contain the same letters), so a short query returns results under more than one tab."
    },
    "custom_steps": {
     "blocks": [
      [
-      "1. Press the Tab key.",
-      "2. Press the Right arrow key a few times.",
-      "3. Press the Left arrow key a few times.",
-      "4. Watch which tab is focused/active."
+      "1. Type a few letters that match several work orders and customers so grouped results appear under the tab strip.",
+      "2. Press the Tab key until keyboard focus lands on the row of scope tabs (All, Work Orders, Customers, and so on).",
+      "3. Press the Right arrow key a few times and watch the focused/active tab move one tab to the right on each press.",
+      "4. Press the Left arrow key a few times and watch the focused/active tab move one tab to the left on each press.",
+      "5. Stop on a tab such as Work Orders and confirm the results below re-scope to that entity type.",
+      "6. Press Tab a few more times and confirm keyboard focus stays inside the search panel and does not jump to the page behind it."
      ]
     ],
-    "text": "1. Press the Tab key.\n2. Press the Right arrow key a few times.\n3. Press the Left arrow key a few times.\n4. Watch which tab is focused/active."
+    "text": "1. Type a few letters that match several work orders and customers so grouped results appear under the tab strip.\n2. Press the Tab key until keyboard focus lands on the row of scope tabs (All, Work Orders, Customers, and so on).\n3. Press the Right arrow key a few times and watch the focused/active tab move one tab to the right on each press.\n4. Press the Left arrow key a few times and watch the focused/active tab move one tab to the left on each press.\n5. Stop on a tab such as Work Orders and confirm the results below re-scope to that entity type.\n6. Press Tab a few more times and confirm keyboard focus stays inside the search panel and does not jump to the page behind it."
    },
    "custom_expected": {
     "blocks": [
@@ -385,21 +387,24 @@
    "custom_preconds": {
     "blocks": [
      [
-      "1. Sign in to ShopView with a role that can see work orders and customers.",
-      "2. Have records that share a few letters in their names (for example several work orders and customers), so a short query returns results across more than one type."
+      "1. Sign in to ShopView. In the app header, click the search field (or press ⌘K / Ctrl+K) to open the global search, which searches across work orders, customers, parts and more; results appear grouped by type under a tab strip.",
+      "2. Sign in as a user whose role can view every entity type - work orders, customers, assets, parts, vendors, part sales, purchase orders and vendor invoices - otherwise a tab is hidden for any type you cannot see.",
+      "3. Have at least one matching record of each type for one short query: make sure there exist work orders, customers, assets, parts, vendors, part sales, purchase orders and vendor invoices that all share the same few letters in their name or number (for example all containing 'Fib')."
      ]
     ],
-    "text": "1. Sign in to ShopView with a role that can see work orders and customers.\n2. Have records that share a few letters in their names (for example several work orders and customers), so a short query returns results across more than one type."
+    "text": "1. Sign in to ShopView. In the app header, click the search field (or press ⌘K / Ctrl+K) to open the global search, which searches across work orders, customers, parts and more; results appear grouped by type under a tab strip.\n2. Sign in as a user whose role can view every entity type - work orders, customers, assets, parts, vendors, part sales, purchase orders and vendor invoices - otherwise a tab is hidden for any type you cannot see.\n3. Have at least one matching record of each type for one short query: make sure there exist work orders, customers, assets, parts, vendors, part sales, purchase orders and vendor invoices that all share the same few letters in their name or number (for example all containing 'Fib')."
    },
    "custom_steps": {
     "blocks": [
      [
-      "1. In the app header, click the search field (or press ⌘K / Ctrl+K) to open the global search.",
-      "2. Type a few letters that match several work orders and customers so results appear.",
-      "3. Read the horizontal tab strip directly under the search box, left to right."
+      "1. Type the shared few letters (for example 'Fib') so results appear across every type.",
+      "2. Read the horizontal tab strip directly under the search box, left to right, scrolling it sideways to reveal all of the tabs.",
+      "3. Confirm the order reads: All, Work Orders, Customers, Assets, Parts, Vendors, Part Sales, Purchase Orders, Vendor Invoices, and that there is no Contacts tab.",
+      "4. Read the count shown in parentheses on each tab.",
+      "5. Confirm the 'All' tab is the one selected by default."
      ]
     ],
-    "text": "1. In the app header, click the search field (or press ⌘K / Ctrl+K) to open the global search.\n2. Type a few letters that match several work orders and customers so results appear.\n3. Read the horizontal tab strip directly under the search box, left to right."
+    "text": "1. Type the shared few letters (for example 'Fib') so results appear across every type.\n2. Read the horizontal tab strip directly under the search box, left to right, scrolling it sideways to reveal all of the tabs.\n3. Confirm the order reads: All, Work Orders, Customers, Assets, Parts, Vendors, Part Sales, Purchase Orders, Vendor Invoices, and that there is no Contacts tab.\n4. Read the count shown in parentheses on each tab.\n5. Confirm the 'All' tab is the one selected by default."
    },
    "custom_expected": {
     "blocks": [
@@ -428,21 +433,23 @@
    "custom_preconds": {
     "blocks": [
      [
-      "1. Sign in to ShopView with access to several record types.",
-      "2. Have data so that one short query (for example 'Fib') matches work orders, customers, assets, parts and vendors."
+      "1. Sign in to ShopView. In the app header, click the search field (or press ⌘K / Ctrl+K) to open the global search, which searches across work orders, customers, parts and more; results appear grouped by type under a tab strip.",
+      "2. Sign in as a user with access to every record type.",
+      "3. Have one short query that matches all eight types: work orders, customers, assets, parts, vendors, part sales, purchase orders and vendor invoices sharing the same few letters (for example 'Fib')."
      ]
     ],
-    "text": "1. Sign in to ShopView with access to several record types.\n2. Have data so that one short query (for example 'Fib') matches work orders, customers, assets, parts and vendors."
+    "text": "1. Sign in to ShopView. In the app header, click the search field (or press ⌘K / Ctrl+K) to open the global search, which searches across work orders, customers, parts and more; results appear grouped by type under a tab strip.\n2. Sign in as a user with access to every record type.\n3. Have one short query that matches all eight types: work orders, customers, assets, parts, vendors, part sales, purchase orders and vendor invoices sharing the same few letters (for example 'Fib')."
    },
    "custom_steps": {
     "blocks": [
      [
-      "1. In the app header, click the search field (or press ⌘K / Ctrl+K) to open the global search.",
-      "2. Make sure the 'All' tab is selected.",
-      "3. Type the query (for example 'Fib') and read the grouped results."
+      "1. Make sure the 'All' tab is selected.",
+      "2. Type the shared query (for example 'Fib') so results appear.",
+      "3. Read the group headings from top to bottom.",
+      "4. Confirm the groups appear in this order: Work Orders, Customers, Assets, Parts, Vendors, Part Sales, Purchase Orders, Vendor Invoices, each with its own count, and that there is no Contacts group."
      ]
     ],
-    "text": "1. In the app header, click the search field (or press ⌘K / Ctrl+K) to open the global search.\n2. Make sure the 'All' tab is selected.\n3. Type the query (for example 'Fib') and read the grouped results."
+    "text": "1. Make sure the 'All' tab is selected.\n2. Type the shared query (for example 'Fib') so results appear.\n3. Read the group headings from top to bottom.\n4. Confirm the groups appear in this order: Work Orders, Customers, Assets, Parts, Vendors, Part Sales, Purchase Orders, Vendor Invoices, each with its own count, and that there is no Contacts group."
    },
    "custom_expected": {
     "blocks": [
@@ -468,19 +475,23 @@
    "custom_preconds": {
     "blocks": [
      [
-      "1. Sign in to ShopView. In the app header, click the search field (or press ⌘K / Ctrl+K) to open the global search, which searches across work orders, customers, parts and more; results appear grouped by type under a tab strip."
+      "1. Sign in to ShopView. In the app header, click the search field (or press ⌘K / Ctrl+K) to open the global search, which searches across work orders, customers, parts and more; results appear grouped by type under a tab strip.",
+      "2. Have a query that matches records of several types at once, including at least one Work Order - for example seed records so a short shared term returns the work orders plus at least one other type."
      ]
     ],
-    "text": "1. Sign in to ShopView. In the app header, click the search field (or press ⌘K / Ctrl+K) to open the global search, which searches across work orders, customers, parts and more; results appear grouped by type under a tab strip."
+    "text": "1. Sign in to ShopView. In the app header, click the search field (or press ⌘K / Ctrl+K) to open the global search, which searches across work orders, customers, parts and more; results appear grouped by type under a tab strip.\n2. Have a query that matches records of several types at once, including at least one Work Order - for example seed records so a short shared term returns the work orders plus at least one other type."
    },
    "custom_steps": {
     "blocks": [
      [
-      "1. Click the 'Work Orders' tab.",
-      "2. Read the result rows and the group headings in the results list."
+      "1. Type the shared query so results appear across more than one group (the work orders plus at least one other type).",
+      "2. Confirm the 'All' tab shows several groups.",
+      "3. Click the 'Work Orders' tab.",
+      "4. Read the result rows and the group headings in the results list.",
+      "5. Confirm only Work Order results are shown, the other groups (Customers, Assets, Parts, Vendors, Part Sales) are hidden, and the 'Work Orders' tab is selected/active."
      ]
     ],
-    "text": "1. Click the 'Work Orders' tab.\n2. Read the result rows and the group headings in the results list."
+    "text": "1. Type the shared query so results appear across more than one group (the work orders plus at least one other type).\n2. Confirm the 'All' tab shows several groups.\n3. Click the 'Work Orders' tab.\n4. Read the result rows and the group headings in the results list.\n5. Confirm only Work Order results are shown, the other groups (Customers, Assets, Parts, Vendors, Part Sales) are hidden, and the 'Work Orders' tab is selected/active."
    },
    "custom_expected": {
     "blocks": [
@@ -504,19 +515,23 @@
    "custom_preconds": {
     "blocks": [
      [
-      "1. Sign in to ShopView. In the app header, click the search field (or press ⌘K / Ctrl+K) to open the global search, which searches across work orders, customers, parts and more; results appear grouped by type under a tab strip."
+      "1. Sign in to ShopView. In the app header, click the search field (or press ⌘K / Ctrl+K) to open the global search, which searches across work orders, customers, parts and more; results appear grouped by type under a tab strip.",
+      "2. Have a query that matches records of several types at once, including at least one Customer - for example seed records so a short shared term returns the customers plus at least one other type."
      ]
     ],
-    "text": "1. Sign in to ShopView. In the app header, click the search field (or press ⌘K / Ctrl+K) to open the global search, which searches across work orders, customers, parts and more; results appear grouped by type under a tab strip."
+    "text": "1. Sign in to ShopView. In the app header, click the search field (or press ⌘K / Ctrl+K) to open the global search, which searches across work orders, customers, parts and more; results appear grouped by type under a tab strip.\n2. Have a query that matches records of several types at once, including at least one Customer - for example seed records so a short shared term returns the customers plus at least one other type."
    },
    "custom_steps": {
     "blocks": [
      [
-      "1. Click the 'Customers' tab.",
-      "2. Read the result rows and the group headings in the results list."
+      "1. Type the shared query so results appear across more than one group (the customers plus at least one other type).",
+      "2. Confirm the 'All' tab shows several groups.",
+      "3. Click the 'Customers' tab.",
+      "4. Read the result rows and the group headings in the results list.",
+      "5. Confirm only Customer results are shown, the other groups (Work Orders, Assets, Parts, Vendors, Part Sales) are hidden, and the 'Customers' tab is selected/active."
      ]
     ],
-    "text": "1. Click the 'Customers' tab.\n2. Read the result rows and the group headings in the results list."
+    "text": "1. Type the shared query so results appear across more than one group (the customers plus at least one other type).\n2. Confirm the 'All' tab shows several groups.\n3. Click the 'Customers' tab.\n4. Read the result rows and the group headings in the results list.\n5. Confirm only Customer results are shown, the other groups (Work Orders, Assets, Parts, Vendors, Part Sales) are hidden, and the 'Customers' tab is selected/active."
    },
    "custom_expected": {
     "blocks": [
@@ -540,19 +555,23 @@
    "custom_preconds": {
     "blocks": [
      [
-      "1. Sign in to ShopView. In the app header, click the search field (or press ⌘K / Ctrl+K) to open the global search, which searches across work orders, customers, parts and more; results appear grouped by type under a tab strip."
+      "1. Sign in to ShopView. In the app header, click the search field (or press ⌘K / Ctrl+K) to open the global search, which searches across work orders, customers, parts and more; results appear grouped by type under a tab strip.",
+      "2. Have a query that matches records of several types at once, including at least one Asset - for example seed records so a short shared term returns the assets plus at least one other type."
      ]
     ],
-    "text": "1. Sign in to ShopView. In the app header, click the search field (or press ⌘K / Ctrl+K) to open the global search, which searches across work orders, customers, parts and more; results appear grouped by type under a tab strip."
+    "text": "1. Sign in to ShopView. In the app header, click the search field (or press ⌘K / Ctrl+K) to open the global search, which searches across work orders, customers, parts and more; results appear grouped by type under a tab strip.\n2. Have a query that matches records of several types at once, including at least one Asset - for example seed records so a short shared term returns the assets plus at least one other type."
    },
    "custom_steps": {
     "blocks": [
      [
-      "1. Click the 'Assets' tab.",
-      "2. Read the result rows and the group headings in the results list."
+      "1. Type the shared query so results appear across more than one group (the assets plus at least one other type).",
+      "2. Confirm the 'All' tab shows several groups.",
+      "3. Click the 'Assets' tab.",
+      "4. Read the result rows and the group headings in the results list.",
+      "5. Confirm only Asset results are shown, the other groups (Work Orders, Customers, Parts, Vendors, Part Sales) are hidden, and the 'Assets' tab is selected/active."
      ]
     ],
-    "text": "1. Click the 'Assets' tab.\n2. Read the result rows and the group headings in the results list."
+    "text": "1. Type the shared query so results appear across more than one group (the assets plus at least one other type).\n2. Confirm the 'All' tab shows several groups.\n3. Click the 'Assets' tab.\n4. Read the result rows and the group headings in the results list.\n5. Confirm only Asset results are shown, the other groups (Work Orders, Customers, Parts, Vendors, Part Sales) are hidden, and the 'Assets' tab is selected/active."
    },
    "custom_expected": {
     "blocks": [
@@ -576,19 +595,23 @@
    "custom_preconds": {
     "blocks": [
      [
-      "1. Sign in to ShopView. In the app header, click the search field (or press ⌘K / Ctrl+K) to open the global search, which searches across work orders, customers, parts and more; results appear grouped by type under a tab strip."
+      "1. Sign in to ShopView. In the app header, click the search field (or press ⌘K / Ctrl+K) to open the global search, which searches across work orders, customers, parts and more; results appear grouped by type under a tab strip.",
+      "2. Have a query that matches records of several types at once, including at least one Part - for example seed records so a short shared term returns the parts plus at least one other type."
      ]
     ],
-    "text": "1. Sign in to ShopView. In the app header, click the search field (or press ⌘K / Ctrl+K) to open the global search, which searches across work orders, customers, parts and more; results appear grouped by type under a tab strip."
+    "text": "1. Sign in to ShopView. In the app header, click the search field (or press ⌘K / Ctrl+K) to open the global search, which searches across work orders, customers, parts and more; results appear grouped by type under a tab strip.\n2. Have a query that matches records of several types at once, including at least one Part - for example seed records so a short shared term returns the parts plus at least one other type."
    },
    "custom_steps": {
     "blocks": [
      [
-      "1. Click the 'Parts' tab.",
-      "2. Read the result rows and the group headings in the results list."
+      "1. Type the shared query so results appear across more than one group (the parts plus at least one other type).",
+      "2. Confirm the 'All' tab shows several groups.",
+      "3. Click the 'Parts' tab.",
+      "4. Read the result rows and the group headings in the results list.",
+      "5. Confirm only Part results are shown, the other groups (Work Orders, Customers, Assets, Vendors, Part Sales) are hidden, and the 'Parts' tab is selected/active."
      ]
     ],
-    "text": "1. Click the 'Parts' tab.\n2. Read the result rows and the group headings in the results list."
+    "text": "1. Type the shared query so results appear across more than one group (the parts plus at least one other type).\n2. Confirm the 'All' tab shows several groups.\n3. Click the 'Parts' tab.\n4. Read the result rows and the group headings in the results list.\n5. Confirm only Part results are shown, the other groups (Work Orders, Customers, Assets, Vendors, Part Sales) are hidden, and the 'Parts' tab is selected/active."
    },
    "custom_expected": {
     "blocks": [
@@ -612,19 +635,23 @@
    "custom_preconds": {
     "blocks": [
      [
-      "1. Sign in to ShopView. In the app header, click the search field (or press ⌘K / Ctrl+K) to open the global search, which searches across work orders, customers, parts and more; results appear grouped by type under a tab strip."
+      "1. Sign in to ShopView. In the app header, click the search field (or press ⌘K / Ctrl+K) to open the global search, which searches across work orders, customers, parts and more; results appear grouped by type under a tab strip.",
+      "2. Have a query that matches records of several types at once, including at least one Vendor - for example seed records so a short shared term returns the vendors plus at least one other type."
      ]
     ],
-    "text": "1. Sign in to ShopView. In the app header, click the search field (or press ⌘K / Ctrl+K) to open the global search, which searches across work orders, customers, parts and more; results appear grouped by type under a tab strip."
+    "text": "1. Sign in to ShopView. In the app header, click the search field (or press ⌘K / Ctrl+K) to open the global search, which searches across work orders, customers, parts and more; results appear grouped by type under a tab strip.\n2. Have a query that matches records of several types at once, including at least one Vendor - for example seed records so a short shared term returns the vendors plus at least one other type."
    },
    "custom_steps": {
     "blocks": [
      [
-      "1. Click the 'Vendors' tab.",
-      "2. Read the result rows and the group headings in the results list."
+      "1. Type the shared query so results appear across more than one group (the vendors plus at least one other type).",
+      "2. Confirm the 'All' tab shows several groups.",
+      "3. Click the 'Vendors' tab.",
+      "4. Read the result rows and the group headings in the results list.",
+      "5. Confirm only Vendor results are shown, the other groups (Work Orders, Customers, Assets, Parts, Part Sales) are hidden, and the 'Vendors' tab is selected/active."
      ]
     ],
-    "text": "1. Click the 'Vendors' tab.\n2. Read the result rows and the group headings in the results list."
+    "text": "1. Type the shared query so results appear across more than one group (the vendors plus at least one other type).\n2. Confirm the 'All' tab shows several groups.\n3. Click the 'Vendors' tab.\n4. Read the result rows and the group headings in the results list.\n5. Confirm only Vendor results are shown, the other groups (Work Orders, Customers, Assets, Parts, Part Sales) are hidden, and the 'Vendors' tab is selected/active."
    },
    "custom_expected": {
     "blocks": [
@@ -649,19 +676,22 @@
     "blocks": [
      [
       "1. Sign in to ShopView. In the app header, click the search field (or press ⌘K / Ctrl+K) to open the global search, which searches across work orders, customers, parts and more; results appear grouped by type under a tab strip.",
-      "1. At least one Part Sale exists (for example 'P2-58')."
+      "2. Have a query that matches records of several types at once, including at least one Part Sale - for example seed records so a short shared term returns the part sales plus at least one other type."
      ]
     ],
-    "text": "1. Sign in to ShopView. In the app header, click the search field (or press ⌘K / Ctrl+K) to open the global search, which searches across work orders, customers, parts and more; results appear grouped by type under a tab strip.\n1. At least one Part Sale exists (for example 'P2-58')."
+    "text": "1. Sign in to ShopView. In the app header, click the search field (or press ⌘K / Ctrl+K) to open the global search, which searches across work orders, customers, parts and more; results appear grouped by type under a tab strip.\n2. Have a query that matches records of several types at once, including at least one Part Sale - for example seed records so a short shared term returns the part sales plus at least one other type."
    },
    "custom_steps": {
     "blocks": [
      [
-      "1. Click the 'Part Sales' tab.",
-      "2. Read the result rows and the group headings in the results list."
+      "1. Type the shared query so results appear across more than one group (the part sales plus at least one other type).",
+      "2. Confirm the 'All' tab shows several groups.",
+      "3. Click the 'Part Sales' tab.",
+      "4. Read the result rows and the group headings in the results list.",
+      "5. Confirm only Part Sale results are shown, the other groups (Work Orders, Customers, Assets, Parts, Vendors) are hidden, and the 'Part Sales' tab is selected/active."
      ]
     ],
-    "text": "1. Click the 'Part Sales' tab.\n2. Read the result rows and the group headings in the results list."
+    "text": "1. Type the shared query so results appear across more than one group (the part sales plus at least one other type).\n2. Confirm the 'All' tab shows several groups.\n3. Click the 'Part Sales' tab.\n4. Read the result rows and the group headings in the results list.\n5. Confirm only Part Sale results are shown, the other groups (Work Orders, Customers, Assets, Parts, Vendors) are hidden, and the 'Part Sales' tab is selected/active."
    },
    "custom_expected": {
     "blocks": [
@@ -685,21 +715,24 @@
    "custom_preconds": {
     "blocks": [
      [
-      "1. Sign in to ShopView. In the app header, click the search field (or press ⌘K / Ctrl+K) to open the global search, which searches across work orders, customers, parts and more; results appear as rows grouped by type under a tab strip.",
-      "2. Have a term that returns more than five results in at least one entity group."
+      "1. Sign in to ShopView. In the app header, click the search field (or press ⌘K / Ctrl+K) to open the global search, which searches across work orders, customers, parts and more; results appear grouped by type under a tab strip.",
+      "2. Have a term that returns MORE THAN 20 matches in at least one entity group - for example make sure there are at least 21 work orders whose number or customer name share the same few letters."
      ]
     ],
-    "text": "1. Sign in to ShopView. In the app header, click the search field (or press ⌘K / Ctrl+K) to open the global search, which searches across work orders, customers, parts and more; results appear as rows grouped by type under a tab strip.\n2. Have a term that returns more than five results in at least one entity group."
+    "text": "1. Sign in to ShopView. In the app header, click the search field (or press ⌘K / Ctrl+K) to open the global search, which searches across work orders, customers, parts and more; results appear grouped by type under a tab strip.\n2. Have a term that returns MORE THAN 20 matches in at least one entity group - for example make sure there are at least 21 work orders whose number or customer name share the same few letters."
    },
    "custom_steps": {
     "blocks": [
      [
-      "2. Type a term with many matches.",
-      "3. Note that each group shows up to five rows with a 'Show all N' link on its heading.",
-      "4. Click an entity's scope tab and scroll the scoped list."
+      "1. Type the term that matches more than 20 records in one group.",
+      "2. On the 'All' tab, note that each group shows up to five rows with a 'Show all N' link on its heading.",
+      "3. Click that entity's scope tab.",
+      "4. Scroll the scoped list inside the modal and confirm it shows up to 20 rows, with no pagination, no further loading, and no 'Show all' link inside the tab.",
+      "5. Confirm the tab's count reads 20, not the higher true number.",
+      "6. Confirm you stay inside the search modal - selecting the tab did not open a separate results page."
      ]
     ],
-    "text": "2. Type a term with many matches.\n3. Note that each group shows up to five rows with a 'Show all N' link on its heading.\n4. Click an entity's scope tab and scroll the scoped list."
+    "text": "1. Type the term that matches more than 20 records in one group.\n2. On the 'All' tab, note that each group shows up to five rows with a 'Show all N' link on its heading.\n3. Click that entity's scope tab.\n4. Scroll the scoped list inside the modal and confirm it shows up to 20 rows, with no pagination, no further loading, and no 'Show all' link inside the tab.\n5. Confirm the tab's count reads 20, not the higher true number.\n6. Confirm you stay inside the search modal - selecting the tab did not open a separate results page."
    },
    "custom_expected": {
     "blocks": [
@@ -727,19 +760,21 @@
     "blocks": [
      [
       "1. Sign in to ShopView. In the app header, click the search field (or press ⌘K / Ctrl+K) to open the global search, which searches across work orders, customers, parts and more; results appear grouped by type under a tab strip.",
-      "1. Test data exists so a query (for example 'Fib') returns several Work Orders and a couple of Customers."
+      "2. Have a query (for example 'Fib') that returns several Work Orders and a couple of Customers, and make sure at least one group has MORE THAN 20 matches (for example 21+ work orders sharing the same letters) so the 20 cap is visible."
      ]
     ],
-    "text": "1. Sign in to ShopView. In the app header, click the search field (or press ⌘K / Ctrl+K) to open the global search, which searches across work orders, customers, parts and more; results appear grouped by type under a tab strip.\n1. Test data exists so a query (for example 'Fib') returns several Work Orders and a couple of Customers."
+    "text": "1. Sign in to ShopView. In the app header, click the search field (or press ⌘K / Ctrl+K) to open the global search, which searches across work orders, customers, parts and more; results appear grouped by type under a tab strip.\n2. Have a query (for example 'Fib') that returns several Work Orders and a couple of Customers, and make sure at least one group has MORE THAN 20 matches (for example 21+ work orders sharing the same letters) so the 20 cap is visible."
    },
    "custom_steps": {
     "blocks": [
      [
       "1. In the search box, type the query (for example 'Fib').",
-      "2. Read each group heading."
+      "2. Read each group heading.",
+      "3. Confirm each heading shows the entity name and its match count in parentheses (for example 'Work Orders (12)', 'Customers (2)').",
+      "4. On the group with more than 20 matches, confirm the count reads 20, not the higher true number."
      ]
     ],
-    "text": "1. In the search box, type the query (for example 'Fib').\n2. Read each group heading."
+    "text": "1. In the search box, type the query (for example 'Fib').\n2. Read each group heading.\n3. Confirm each heading shows the entity name and its match count in parentheses (for example 'Work Orders (12)', 'Customers (2)').\n4. On the group with more than 20 matches, confirm the count reads 20, not the higher true number."
    },
    "custom_expected": {
     "blocks": [
@@ -801,20 +836,23 @@
    "custom_preconds": {
     "blocks": [
      [
-      "1. Sign in to ShopView. In the app header, click the search field (or press ⌘K / Ctrl+K) to open the global search, which searches across work orders, customers, parts and more; results appear as rows grouped by type under a tab strip.",
-      "2. Have a term that returns more than five Work Order matches (for example twelve)."
+      "1. Sign in to ShopView. In the app header, click the search field (or press ⌘K / Ctrl+K) to open the global search, which searches across work orders, customers, parts and more; results appear grouped by type under a tab strip.",
+      "2. Seed a query so that one group has FIVE OR FEWER matches (for example 3 customers sharing letters) and another group has MORE THAN 20 matches (for example 21+ work orders sharing the same letters); include at least one Asset match too."
      ]
     ],
-    "text": "1. Sign in to ShopView. In the app header, click the search field (or press ⌘K / Ctrl+K) to open the global search, which searches across work orders, customers, parts and more; results appear as rows grouped by type under a tab strip.\n2. Have a term that returns more than five Work Order matches (for example twelve)."
+    "text": "1. Sign in to ShopView. In the app header, click the search field (or press ⌘K / Ctrl+K) to open the global search, which searches across work orders, customers, parts and more; results appear grouped by type under a tab strip.\n2. Seed a query so that one group has FIVE OR FEWER matches (for example 3 customers sharing letters) and another group has MORE THAN 20 matches (for example 21+ work orders sharing the same letters); include at least one Asset match too."
    },
    "custom_steps": {
     "blocks": [
      [
-      "2. Type the term.",
-      "3. Look at the Work Orders group heading."
+      "1. Type the shared term so several groups appear on the 'All' tab.",
+      "2. Look at the heading of the group with more than five matches and confirm a 'Show all N' link appears (for example 'Show all 12').",
+      "3. Look at the group with five or fewer matches and confirm it shows NO 'Show all' link.",
+      "4. On the group with more than 20 matches, confirm the link reads 'Show all 20'.",
+      "5. Confirm the 'Show all' link is present for every qualifying group, including Assets."
      ]
     ],
-    "text": "2. Type the term.\n3. Look at the Work Orders group heading."
+    "text": "1. Type the shared term so several groups appear on the 'All' tab.\n2. Look at the heading of the group with more than five matches and confirm a 'Show all N' link appears (for example 'Show all 12').\n3. Look at the group with five or fewer matches and confirm it shows NO 'Show all' link.\n4. On the group with more than 20 matches, confirm the link reads 'Show all 20'.\n5. Confirm the 'Show all' link is present for every qualifying group, including Assets."
    },
    "custom_expected": {
     "blocks": [
@@ -959,19 +997,22 @@
     "blocks": [
      [
       "1. Sign in to ShopView. In the app header, click the search field (or press ⌘K / Ctrl+K) to open the global search, which searches across work orders, customers, parts and more; results appear grouped by type under a tab strip.",
-      "1. A screen reader is turned on."
+      "2. Turn on a screen reader (for example VoiceOver or NVDA).",
+      "3. Have a query that returns results across several groups."
      ]
     ],
-    "text": "1. Sign in to ShopView. In the app header, click the search field (or press ⌘K / Ctrl+K) to open the global search, which searches across work orders, customers, parts and more; results appear grouped by type under a tab strip.\n1. A screen reader is turned on."
+    "text": "1. Sign in to ShopView. In the app header, click the search field (or press ⌘K / Ctrl+K) to open the global search, which searches across work orders, customers, parts and more; results appear grouped by type under a tab strip.\n2. Turn on a screen reader (for example VoiceOver or NVDA).\n3. Have a query that returns results across several groups."
    },
    "custom_steps": {
     "blocks": [
      [
-      "1. In the search box, type a query that returns results across several groups.",
-      "2. Listen to the screen reader."
+      "1. Type a query that returns results across several groups and listen for the screen reader announcing the total count (for example 'X results found across N categories').",
+      "2. Add or remove a letter to change the result count and confirm the announced count changes.",
+      "3. Press the Tab key repeatedly to move through the input, the scope tabs, the result rows and the 'Show all' links in turn.",
+      "4. At each stop, confirm the currently focused element shows a visible focus ring/outline."
      ]
     ],
-    "text": "1. In the search box, type a query that returns results across several groups.\n2. Listen to the screen reader."
+    "text": "1. Type a query that returns results across several groups and listen for the screen reader announcing the total count (for example 'X results found across N categories').\n2. Add or remove a letter to change the result count and confirm the announced count changes.\n3. Press the Tab key repeatedly to move through the input, the scope tabs, the result rows and the 'Show all' links in turn.\n4. At each stop, confirm the currently focused element shows a visible focus ring/outline."
    },
    "custom_expected": {
     "blocks": [
@@ -995,21 +1036,24 @@
    "custom_preconds": {
     "blocks": [
      [
-      "1. Sign in to ShopView with access to work orders, customers, parts and the other record types.",
-      "2. Have data so a broad query matches across several entity types, and know an exact identifier (for example a full work order number) that matches a single record."
+      "1. Sign in to ShopView. In the app header, click the search field (or press ⌘K / Ctrl+K) to open the global search, which searches across work orders, customers, parts and more; results appear grouped by type under a tab strip.",
+      "2. Sign in with access to work orders, customers, parts and the other record types.",
+      "3. Have a broad term that matches across several entity types. Within one type, seed two records with the same relevance (a tie) but different last-updated dates - for example two work orders with near-identical matching text, one updated today and one updated last month.",
+      "4. Know an exact full identifier (for example a complete work order number) that matches exactly one record."
      ]
     ],
-    "text": "1. Sign in to ShopView with access to work orders, customers, parts and the other record types.\n2. Have data so a broad query matches across several entity types, and know an exact identifier (for example a full work order number) that matches a single record."
+    "text": "1. Sign in to ShopView. In the app header, click the search field (or press ⌘K / Ctrl+K) to open the global search, which searches across work orders, customers, parts and more; results appear grouped by type under a tab strip.\n2. Sign in with access to work orders, customers, parts and the other record types.\n3. Have a broad term that matches across several entity types. Within one type, seed two records with the same relevance (a tie) but different last-updated dates - for example two work orders with near-identical matching text, one updated today and one updated last month.\n4. Know an exact full identifier (for example a complete work order number) that matches exactly one record."
    },
    "custom_steps": {
     "blocks": [
      [
-      "1. In the app header, click the search field (or press ⌘K / Ctrl+K) to open the global search.",
-      "2. Search a broad term and read the group order in the results list on the 'All' tab.",
-      "3. Search an exact identifier (for example a full work order number) and look above the groups."
+      "1. Search the broad term and read the group order in the results list on the 'All' tab.",
+      "2. Confirm the order is: Work Orders, Customers, Assets, Parts, Vendors, Part Sales, Purchase Orders, Vendor Invoices (no Contacts group).",
+      "3. Within a group, confirm rows are most-relevant first, and that the two tied records appear with the more recently updated one ABOVE the older one.",
+      "4. Search the exact full identifier and confirm the single exact match is pinned as one row above all the groups, carrying its entity icon."
      ]
     ],
-    "text": "1. In the app header, click the search field (or press ⌘K / Ctrl+K) to open the global search.\n2. Search a broad term and read the group order in the results list on the 'All' tab.\n3. Search an exact identifier (for example a full work order number) and look above the groups."
+    "text": "1. Search the broad term and read the group order in the results list on the 'All' tab.\n2. Confirm the order is: Work Orders, Customers, Assets, Parts, Vendors, Part Sales, Purchase Orders, Vendor Invoices (no Contacts group).\n3. Within a group, confirm rows are most-relevant first, and that the two tied records appear with the more recently updated one ABOVE the older one.\n4. Search the exact full identifier and confirm the single exact match is pinned as one row above all the groups, carrying its entity icon."
    },
    "custom_expected": {
     "blocks": [
@@ -1035,20 +1079,23 @@
    "custom_preconds": {
     "blocks": [
      [
-      "1. Sign in to ShopView. In the app header, click the search field (or press ⌘K / Ctrl+K) to open the global search, which searches across work orders, customers, parts and more; results appear as rows grouped by type under a tab strip.",
-      "2. Have a work order whose asset has a unit number and a year/make/model (for example 'S1-644 Fibridge Commercial', unit 'TRK 412', a 2019 Freightliner Cascadia)."
+      "1. Sign in to ShopView. In the app header, click the search field (or press ⌘K / Ctrl+K) to open the global search, which searches across work orders, customers, parts and more; results appear grouped by type under a tab strip.",
+      "2. Have a work order whose asset HAS a unit number and a year/make/model (for example 'S1-644 Fibridge Commercial', unit 'TRK 412', a 2019 Freightliner Cascadia).",
+      "3. Also have a work order whose asset has NO unit number but does have a year/make/model, matched by the same or a similar term."
      ]
     ],
-    "text": "1. Sign in to ShopView. In the app header, click the search field (or press ⌘K / Ctrl+K) to open the global search, which searches across work orders, customers, parts and more; results appear as rows grouped by type under a tab strip.\n2. Have a work order whose asset has a unit number and a year/make/model (for example 'S1-644 Fibridge Commercial', unit 'TRK 412', a 2019 Freightliner Cascadia)."
+    "text": "1. Sign in to ShopView. In the app header, click the search field (or press ⌘K / Ctrl+K) to open the global search, which searches across work orders, customers, parts and more; results appear grouped by type under a tab strip.\n2. Have a work order whose asset HAS a unit number and a year/make/model (for example 'S1-644 Fibridge Commercial', unit 'TRK 412', a 2019 Freightliner Cascadia).\n3. Also have a work order whose asset has NO unit number but does have a year/make/model, matched by the same or a similar term."
    },
    "custom_steps": {
     "blocks": [
      [
-      "2. Type a term that matches that work order.",
-      "3. Read the Work Order result row."
+      "1. Type a term that matches both work orders.",
+      "2. Read the first work order row: confirm the bold line shows the work order number and customer name, a coloured status badge is shown, and the second line shows the unit number and the year/make/model (for example 'TRK 412 · 2019 Freightliner Cascadia').",
+      "3. Read the second work order row (asset with no unit number): confirm the second line shows the year/make/model standing alone, with no leading unit number.",
+      "4. Confirm the lead technician, service advisor and dates are NOT shown on the rows, and a work-order (clipboard) icon appears on the left of each row."
      ]
     ],
-    "text": "2. Type a term that matches that work order.\n3. Read the Work Order result row."
+    "text": "1. Type a term that matches both work orders.\n2. Read the first work order row: confirm the bold line shows the work order number and customer name, a coloured status badge is shown, and the second line shows the unit number and the year/make/model (for example 'TRK 412 · 2019 Freightliner Cascadia').\n3. Read the second work order row (asset with no unit number): confirm the second line shows the year/make/model standing alone, with no leading unit number.\n4. Confirm the lead technician, service advisor and dates are NOT shown on the rows, and a work-order (clipboard) icon appears on the left of each row."
    },
    "custom_expected": {
     "blocks": [
@@ -1154,19 +1201,21 @@
     "blocks": [
      [
       "1. Sign in to ShopView. In the app header, click the search field (or press ⌘K / Ctrl+K) to open the global search, which searches across work orders, customers, parts and more; results appear grouped by type under a tab strip.",
-      "1. Parts exist matching the query, including at least one in stock (green) and, if possible, one low (orange) and one out (red)."
+      "2. Have parts matching one query in three stock states: at least one in stock (plenty on hand), at least one low (on hand at or below its low/reorder level), and at least one out of stock (zero on hand) - for example give them similar descriptions or part numbers so one query returns all three."
      ]
     ],
-    "text": "1. Sign in to ShopView. In the app header, click the search field (or press ⌘K / Ctrl+K) to open the global search, which searches across work orders, customers, parts and more; results appear grouped by type under a tab strip.\n1. Parts exist matching the query, including at least one in stock (green) and, if possible, one low (orange) and one out (red)."
+    "text": "1. Sign in to ShopView. In the app header, click the search field (or press ⌘K / Ctrl+K) to open the global search, which searches across work orders, customers, parts and more; results appear grouped by type under a tab strip.\n2. Have parts matching one query in three stock states: at least one in stock (plenty on hand), at least one low (on hand at or below its low/reorder level), and at least one out of stock (zero on hand) - for example give them similar descriptions or part numbers so one query returns all three."
    },
    "custom_steps": {
     "blocks": [
      [
-      "1. In the search box, type a query that matches parts (for example 'Microfiber' or a part number '65547').",
-      "2. Read the Part result rows and the quantity chip color."
+      "1. Type a query that matches the seeded parts (for example 'Microfiber' or a shared part number).",
+      "2. Read each Part row: confirm the description is the main line, the part number is the secondary line, and a total quantity chip is shown.",
+      "3. Confirm the quantity chip colour: green for the in-stock part, orange for the low part, red for the out-of-stock part.",
+      "4. Confirm a tag / part icon appears on the left of each row."
      ]
     ],
-    "text": "1. In the search box, type a query that matches parts (for example 'Microfiber' or a part number '65547').\n2. Read the Part result rows and the quantity chip color."
+    "text": "1. Type a query that matches the seeded parts (for example 'Microfiber' or a shared part number).\n2. Read each Part row: confirm the description is the main line, the part number is the secondary line, and a total quantity chip is shown.\n3. Confirm the quantity chip colour: green for the in-stock part, orange for the low part, red for the out-of-stock part.\n4. Confirm a tag / part icon appears on the left of each row."
    },
    "custom_expected": {
     "blocks": [
@@ -1310,19 +1359,22 @@
     "blocks": [
      [
       "1. Sign in to ShopView. In the app header, click the search field (or press ⌘K / Ctrl+K) to open the global search, which searches across work orders, customers, parts and more; results appear grouped by type under a tab strip.",
-      "1. Work Orders exist in several statuses (Approved, Estimate, In Progress, Review, Completed, Declined, Invoiced)."
+      "2. Have Work Orders in several statuses (Approved, Estimate, In Progress, Review, Completed, Declined, Invoiced) matching one term.",
+      "3. Also have parts matching that same (or a parallel) term in three stock states - in stock, low, and out of stock - so the part stock badges appear too."
      ]
     ],
-    "text": "1. Sign in to ShopView. In the app header, click the search field (or press ⌘K / Ctrl+K) to open the global search, which searches across work orders, customers, parts and more; results appear grouped by type under a tab strip.\n1. Work Orders exist in several statuses (Approved, Estimate, In Progress, Review, Completed, Declined, Invoiced)."
+    "text": "1. Sign in to ShopView. In the app header, click the search field (or press ⌘K / Ctrl+K) to open the global search, which searches across work orders, customers, parts and more; results appear grouped by type under a tab strip.\n2. Have Work Orders in several statuses (Approved, Estimate, In Progress, Review, Completed, Declined, Invoiced) matching one term.\n3. Also have parts matching that same (or a parallel) term in three stock states - in stock, low, and out of stock - so the part stock badges appear too."
    },
    "custom_steps": {
     "blocks": [
      [
-      "1. In the search box, search so Work Orders in different statuses appear.",
-      "2. Read the status badge colors."
+      "1. Search a term so Work Orders in different statuses appear.",
+      "2. Read the status badge colours: Approved green, Estimate blue, Review yellow, In Progress blue, Completed gray, Declined red, Invoiced purple.",
+      "3. Search (or scroll to) the seeded parts so Part rows appear.",
+      "4. Read the part stock badges and confirm: green when available, orange when low, red when out of stock."
      ]
     ],
-    "text": "1. In the search box, search so Work Orders in different statuses appear.\n2. Read the status badge colors."
+    "text": "1. Search a term so Work Orders in different statuses appear.\n2. Read the status badge colours: Approved green, Estimate blue, Review yellow, In Progress blue, Completed gray, Declined red, Invoiced purple.\n3. Search (or scroll to) the seeded parts so Part rows appear.\n4. Read the part stock badges and confirm: green when available, orange when low, red when out of stock."
    },
    "custom_expected": {
     "blocks": [
@@ -1790,20 +1842,24 @@
    "custom_preconds": {
     "blocks": [
      [
-      "1. Sign in to ShopView. In the app header, click the search field (or press ⌘K / Ctrl+K) to open the global search, which searches across work orders, customers, parts and more; results appear as rows grouped by type under a tab strip.",
-      "2. Have several work orders matching one term — some open/active (Approved, In Progress, Review) and recently updated, some old and Completed/Invoiced."
+      "1. Sign in to ShopView. In the app header, click the search field (or press ⌘K / Ctrl+K) to open the global search, which searches across work orders, customers, parts and more; results appear grouped by type under a tab strip.",
+      "2. Have several work orders matching one term: some open/active (Approved, In Progress, Review) and recently updated, and some old and Completed/Invoiced. Include at least one Closed/Invoiced work order last updated MORE THAN 90 days ago.",
+      "3. Make sure at least one matching work order is assigned to the signed-in user, or open it once just before the test so it counts as recently viewed by you."
      ]
     ],
-    "text": "1. Sign in to ShopView. In the app header, click the search field (or press ⌘K / Ctrl+K) to open the global search, which searches across work orders, customers, parts and more; results appear as rows grouped by type under a tab strip.\n2. Have several work orders matching one term — some open/active (Approved, In Progress, Review) and recently updated, some old and Completed/Invoiced."
+    "text": "1. Sign in to ShopView. In the app header, click the search field (or press ⌘K / Ctrl+K) to open the global search, which searches across work orders, customers, parts and more; results appear grouped by type under a tab strip.\n2. Have several work orders matching one term: some open/active (Approved, In Progress, Review) and recently updated, and some old and Completed/Invoiced. Include at least one Closed/Invoiced work order last updated MORE THAN 90 days ago.\n3. Make sure at least one matching work order is assigned to the signed-in user, or open it once just before the test so it counts as recently viewed by you."
    },
    "custom_steps": {
     "blocks": [
      [
-      "2. Type a term that matches many work orders.",
-      "3. Read the order of the Work Order rows."
+      "1. Type the term that matches the seeded work orders.",
+      "2. Read the order of the Work Order rows.",
+      "3. Confirm open/active and recently-updated work orders appear above old, closed ones.",
+      "4. Confirm the work order assigned to, or recently viewed by, you is boosted (higher than an otherwise-equal one).",
+      "5. Confirm the Closed/Invoiced work order older than 90 days is pushed toward the bottom."
      ]
     ],
-    "text": "2. Type a term that matches many work orders.\n3. Read the order of the Work Order rows."
+    "text": "1. Type the term that matches the seeded work orders.\n2. Read the order of the Work Order rows.\n3. Confirm open/active and recently-updated work orders appear above old, closed ones.\n4. Confirm the work order assigned to, or recently viewed by, you is boosted (higher than an otherwise-equal one).\n5. Confirm the Closed/Invoiced work order older than 90 days is pushed toward the bottom."
    },
    "custom_expected": {
     "blocks": [
@@ -1866,20 +1922,22 @@
     "blocks": [
      [
       "1. Sign in to ShopView. In the app header, click the search field (or press ⌘K / Ctrl+K) to open the global search, which searches across work orders, customers, parts and more; results appear grouped by type under a tab strip.",
-      "1. You are on a specific Customer's page.",
-      "2. That customer owns some assets and work orders, and other customers have similar-matching assets/work orders."
+      "2. Be able to open a specific Customer's page. That customer owns some assets and work orders, and other customers have similar-matching assets and work orders."
      ]
     ],
-    "text": "1. Sign in to ShopView. In the app header, click the search field (or press ⌘K / Ctrl+K) to open the global search, which searches across work orders, customers, parts and more; results appear grouped by type under a tab strip.\n1. You are on a specific Customer's page.\n2. That customer owns some assets and work orders, and other customers have similar-matching assets/work orders."
+    "text": "1. Sign in to ShopView. In the app header, click the search field (or press ⌘K / Ctrl+K) to open the global search, which searches across work orders, customers, parts and more; results appear grouped by type under a tab strip.\n2. Be able to open a specific Customer's page. That customer owns some assets and work orders, and other customers have similar-matching assets and work orders."
    },
    "custom_steps": {
     "blocks": [
      [
-      "1. While on the Customer page, open the palette and type a query that matches assets/work orders belonging to several customers.",
-      "2. Read the ranking of the asset and work-order results."
+      "1. Open that Customer's page.",
+      "2. On the Customer page, open global search and type a query that matches assets and work orders belonging to several customers.",
+      "3. Note the position of that customer's assets and work orders in the results.",
+      "4. Close search, navigate to an unrelated page (for example the Dashboard or a different customer), and run the SAME query.",
+      "5. Compare: confirm that from the customer's own page, that customer's assets and work orders rank higher than they do from the unrelated page."
      ]
     ],
-    "text": "1. While on the Customer page, open the palette and type a query that matches assets/work orders belonging to several customers.\n2. Read the ranking of the asset and work-order results."
+    "text": "1. Open that Customer's page.\n2. On the Customer page, open global search and type a query that matches assets and work orders belonging to several customers.\n3. Note the position of that customer's assets and work orders in the results.\n4. Close search, navigate to an unrelated page (for example the Dashboard or a different customer), and run the SAME query.\n5. Compare: confirm that from the customer's own page, that customer's assets and work orders rank higher than they do from the unrelated page."
    },
    "custom_expected": {
     "blocks": [
@@ -1904,20 +1962,23 @@
     "blocks": [
      [
       "1. Sign in to ShopView. In the app header, click the search field (or press ⌘K / Ctrl+K) to open the global search, which searches across work orders, customers, parts and more; results appear grouped by type under a tab strip.",
-      "1. You are on a specific Work Order's page.",
-      "2. That work order already has some parts on it, and other similar-matching parts exist that are not on it."
+      "2. Be able to open a specific Work Order's page that already has some parts on it.",
+      "3. Have other matching parts that are NOT on that work order: some in the SAME category as the parts already on the work order, and some in a different category, all matching one search term."
      ]
     ],
-    "text": "1. Sign in to ShopView. In the app header, click the search field (or press ⌘K / Ctrl+K) to open the global search, which searches across work orders, customers, parts and more; results appear grouped by type under a tab strip.\n1. You are on a specific Work Order's page.\n2. That work order already has some parts on it, and other similar-matching parts exist that are not on it."
+    "text": "1. Sign in to ShopView. In the app header, click the search field (or press ⌘K / Ctrl+K) to open the global search, which searches across work orders, customers, parts and more; results appear grouped by type under a tab strip.\n2. Be able to open a specific Work Order's page that already has some parts on it.\n3. Have other matching parts that are NOT on that work order: some in the SAME category as the parts already on the work order, and some in a different category, all matching one search term."
    },
    "custom_steps": {
     "blocks": [
      [
-      "1. While on the Work Order page, open the palette and search for parts.",
-      "2. Read the ranking of the part results."
+      "1. Open that Work Order's page.",
+      "2. On the Work Order page, open global search and search for parts with the shared term.",
+      "3. Read the ranking of the part results.",
+      "4. Confirm the parts already on that work order are pushed down relative to other matching parts.",
+      "5. Confirm the not-on-this-work-order parts that share a category with the work order's existing parts get a small boost over unrelated-category parts."
      ]
     ],
-    "text": "1. While on the Work Order page, open the palette and search for parts.\n2. Read the ranking of the part results."
+    "text": "1. Open that Work Order's page.\n2. On the Work Order page, open global search and search for parts with the shared term.\n3. Read the ranking of the part results.\n4. Confirm the parts already on that work order are pushed down relative to other matching parts.\n5. Confirm the not-on-this-work-order parts that share a category with the work order's existing parts get a small boost over unrelated-category parts."
    },
    "custom_expected": {
     "blocks": [
@@ -2018,19 +2079,21 @@
     "blocks": [
      [
       "1. Sign in to ShopView. In the app header, click the search field (or press ⌘K / Ctrl+K) to open the global search, which searches across work orders, customers, parts and more; results appear grouped by type under a tab strip.",
-      "1. You are signed in as a user who has recently opened several records (across different days)."
+      "2. Be signed in as a user who has opened several different records at different times: at least one today, at least one yesterday, at least one earlier this week (2-7 days ago), and at least one 8-30 days ago. If needed, open records now and rely on existing history for the older windows."
      ]
     ],
-    "text": "1. Sign in to ShopView. In the app header, click the search field (or press ⌘K / Ctrl+K) to open the global search, which searches across work orders, customers, parts and more; results appear grouped by type under a tab strip.\n1. You are signed in as a user who has recently opened several records (across different days)."
+    "text": "1. Sign in to ShopView. In the app header, click the search field (or press ⌘K / Ctrl+K) to open the global search, which searches across work orders, customers, parts and more; results appear grouped by type under a tab strip.\n2. Be signed in as a user who has opened several different records at different times: at least one today, at least one yesterday, at least one earlier this week (2-7 days ago), and at least one 8-30 days ago. If needed, open records now and rely on existing history for the older windows."
    },
    "custom_steps": {
     "blocks": [
      [
-      "1. In the search box, open the palette without typing anything.",
-      "2. Read the group headings and the rows under them."
+      "1. Open the search panel without typing anything.",
+      "2. Confirm the panel shows your recent activity instead of the first-time helper text.",
+      "3. Read the group headings and confirm rows are grouped under 'Today', 'Yesterday', 'Past week' and 'Past 30 days'.",
+      "4. Confirm each row is a previously opened record, not just a previous search word."
      ]
     ],
-    "text": "1. In the search box, open the palette without typing anything.\n2. Read the group headings and the rows under them."
+    "text": "1. Open the search panel without typing anything.\n2. Confirm the panel shows your recent activity instead of the first-time helper text.\n3. Read the group headings and confirm rows are grouped under 'Today', 'Yesterday', 'Past week' and 'Past 30 days'.\n4. Confirm each row is a previously opened record, not just a previous search word."
    },
    "custom_expected": {
     "blocks": [
@@ -2093,19 +2156,23 @@
    "custom_preconds": {
     "blocks": [
      [
-      "1. Sign in to ShopView. In the app header, click the search field (or press ⌘K / Ctrl+K) to open the global search, which searches across work orders, customers, parts and more; results appear grouped by type under a tab strip."
+      "1. Sign in to ShopView. In the app header, click the search field (or press ⌘K / Ctrl+K) to open the global search, which searches across work orders, customers, parts and more; results appear grouped by type under a tab strip.",
+      "2. Have some recent activity, including a record that is NOT currently at the top of the recent list (for example one opened a few days ago)."
      ]
     ],
-    "text": "1. Sign in to ShopView. In the app header, click the search field (or press ⌘K / Ctrl+K) to open the global search, which searches across work orders, customers, parts and more; results appear grouped by type under a tab strip."
+    "text": "1. Sign in to ShopView. In the app header, click the search field (or press ⌘K / Ctrl+K) to open the global search, which searches across work orders, customers, parts and more; results appear grouped by type under a tab strip.\n2. Have some recent activity, including a record that is NOT currently at the top of the recent list (for example one opened a few days ago)."
    },
    "custom_steps": {
     "blocks": [
      [
-      "1. In the search box, click a recent item (for example the Work Order 'S1-644 Fisquare Farms').",
-      "2. Watch the screen."
+      "1. Open the search panel without typing and note the order of recent items; pick one that is not at the top (for example the Work Order 'S1-644 Fisquare Farms').",
+      "2. Click that recent item.",
+      "3. Confirm the panel closes and the clicked record opens.",
+      "4. Reopen the search panel without typing.",
+      "5. Confirm the record you just opened now appears at the TOP of the recent activity list (its position refreshed)."
      ]
     ],
-    "text": "1. In the search box, click a recent item (for example the Work Order 'S1-644 Fisquare Farms').\n2. Watch the screen."
+    "text": "1. Open the search panel without typing and note the order of recent items; pick one that is not at the top (for example the Work Order 'S1-644 Fisquare Farms').\n2. Click that recent item.\n3. Confirm the panel closes and the clicked record opens.\n4. Reopen the search panel without typing.\n5. Confirm the record you just opened now appears at the TOP of the recent activity list (its position refreshed)."
    },
    "custom_expected": {
     "blocks": [
@@ -2130,21 +2197,25 @@
     "blocks": [
      [
       "1. Sign in to ShopView. In the app header, click the search field (or press ⌘K / Ctrl+K) to open the global search, which searches across work orders, customers, parts and more; results appear grouped by type under a tab strip.",
-      "1. You are signed in.",
-      "2. You click search results and visit entity pages over several days."
+      "2. Be able to sign in and view several records over time. Have access to a SECOND tenant/organisation account (to check the list is per-tenant).",
+      "3. Be able to remove your permission to a record type, and to delete a record you have viewed (or have an admin do so)."
      ]
     ],
-    "text": "1. Sign in to ShopView. In the app header, click the search field (or press ⌘K / Ctrl+K) to open the global search, which searches across work orders, customers, parts and more; results appear grouped by type under a tab strip.\n1. You are signed in.\n2. You click search results and visit entity pages over several days."
+    "text": "1. Sign in to ShopView. In the app header, click the search field (or press ⌘K / Ctrl+K) to open the global search, which searches across work orders, customers, parts and more; results appear grouped by type under a tab strip.\n2. Be able to sign in and view several records over time. Have access to a SECOND tenant/organisation account (to check the list is per-tenant).\n3. Be able to remove your permission to a record type, and to delete a record you have viewed (or have an admin do so)."
    },
    "custom_steps": {
     "blocks": [
      [
-      "1. In the search box, click a result and visit some entity pages directly.",
-      "2. Reopen global search with an empty input and read the recent list.",
-      "3. Re-view an earlier entity; delete an entity you had viewed."
+      "1. Click a search result and visit a few entity pages directly.",
+      "2. Reopen global search with an empty input and confirm the records you viewed appear in the recent list.",
+      "3. Re-view an earlier record, reopen the recents, and confirm it moved to the TOP rather than appearing twice (deduplicated).",
+      "4. Delete a record you had viewed (or have it deleted), reopen the recents, and confirm it no longer appears.",
+      "5. Have your permission to a record type removed, reopen the recents, and confirm records of that type are no longer shown (permission-filtered on read).",
+      "6. Sign into a different tenant/organisation and confirm the recent list is that tenant's own, not the first tenant's.",
+      "7. Reference only: ask a developer to confirm the 30-day retention window - a viewing cannot be aged past 30 days within a single test session, so this part is not UI-observable."
      ]
     ],
-    "text": "1. In the search box, click a result and visit some entity pages directly.\n2. Reopen global search with an empty input and read the recent list.\n3. Re-view an earlier entity; delete an entity you had viewed."
+    "text": "1. Click a search result and visit a few entity pages directly.\n2. Reopen global search with an empty input and confirm the records you viewed appear in the recent list.\n3. Re-view an earlier record, reopen the recents, and confirm it moved to the TOP rather than appearing twice (deduplicated).\n4. Delete a record you had viewed (or have it deleted), reopen the recents, and confirm it no longer appears.\n5. Have your permission to a record type removed, reopen the recents, and confirm records of that type are no longer shown (permission-filtered on read).\n6. Sign into a different tenant/organisation and confirm the recent list is that tenant's own, not the first tenant's.\n7. Reference only: ask a developer to confirm the 30-day retention window - a viewing cannot be aged past 30 days within a single test session, so this part is not UI-observable."
    },
    "custom_expected": {
     "blocks": [
@@ -2479,20 +2550,23 @@
    "custom_preconds": {
     "blocks": [
      [
-      "1. Sign in to ShopView on a desktop computer with a mouse (hover quick actions do not appear on touch screens).",
-      "2. In the app header, click the search field (or press ⌘K / Ctrl+K) to open the global search, which searches across work orders, customers, parts and more; type a term that returns a Part result, for example 'Rear Shock'."
+      "1. Sign in to ShopView on a desktop computer with a mouse (hover quick actions do not appear on touch screens). In the app header, click the search field (or press ⌘K / Ctrl+K) to open the global search, which searches across work orders, customers, parts and more; results appear grouped by type under a tab strip.",
+      "2. Have an inventory part that matches a term (for example 'Rear Shock'), with a known on-hand quantity and stock status so you can confirm the inventory view opens."
      ]
     ],
-    "text": "1. Sign in to ShopView on a desktop computer with a mouse (hover quick actions do not appear on touch screens).\n2. In the app header, click the search field (or press ⌘K / Ctrl+K) to open the global search, which searches across work orders, customers, parts and more; type a term that returns a Part result, for example 'Rear Shock'."
+    "text": "1. Sign in to ShopView on a desktop computer with a mouse (hover quick actions do not appear on touch screens). In the app header, click the search field (or press ⌘K / Ctrl+K) to open the global search, which searches across work orders, customers, parts and more; results appear grouped by type under a tab strip.\n2. Have an inventory part that matches a term (for example 'Rear Shock'), with a known on-hand quantity and stock status so you can confirm the inventory view opens."
    },
    "custom_steps": {
     "blocks": [
      [
-      "1. Move the mouse pointer over the Part row.",
-      "2. Look at the button(s) that appear on the right side of the row."
+      "1. Type a term that returns a Part result (for example 'Rear Shock').",
+      "2. Move the mouse pointer over the Part row and read the button(s) that appear on the right side of the row.",
+      "3. Confirm the only quick action shown is 'View part history', and that 'Add to work order' and 'Add part' are NOT offered.",
+      "4. Click the Part row itself (not the quick-action button).",
+      "5. Confirm the INVENTORY part opens, showing on-hand quantity and stock status, not the catalogue entry."
      ]
     ],
-    "text": "1. Move the mouse pointer over the Part row.\n2. Look at the button(s) that appear on the right side of the row."
+    "text": "1. Type a term that returns a Part result (for example 'Rear Shock').\n2. Move the mouse pointer over the Part row and read the button(s) that appear on the right side of the row.\n3. Confirm the only quick action shown is 'View part history', and that 'Add to work order' and 'Add part' are NOT offered.\n4. Click the Part row itself (not the quick-action button).\n5. Confirm the INVENTORY part opens, showing on-hand quantity and stock status, not the catalogue entry."
    },
    "custom_expected": {
     "blocks": [
@@ -2634,22 +2708,24 @@
    "custom_preconds": {
     "blocks": [
      [
-      "1. Sign in to ShopView on a desktop computer with a mouse (hover actions do not appear on touch screens).",
-      "2. Have records across several types (work orders, customers, assets, parts, vendors, part sales, purchase orders) that match a common search term.",
-      "3. Optional: be part-way through editing a work order elsewhere in the app, so the actions that need a 'current work order' can be checked."
+      "1. Sign in to ShopView on a desktop computer with a mouse (hover quick actions do not appear on touch screens). In the app header, click the search field (or press ⌘K / Ctrl+K) to open the global search, which searches across work orders, customers, parts and more; results appear grouped by type under a tab strip.",
+      "2. Have records across every type that match one common term: a work order, a customer, an asset, a part, a vendor, a part sale, a purchase order and a vendor invoice.",
+      "3. Be part-way through editing a work order elsewhere in the app (open a work order in another tab), so the 'Add new line' action that needs a current work order can be checked."
      ]
     ],
-    "text": "1. Sign in to ShopView on a desktop computer with a mouse (hover actions do not appear on touch screens).\n2. Have records across several types (work orders, customers, assets, parts, vendors, part sales, purchase orders) that match a common search term.\n3. Optional: be part-way through editing a work order elsewhere in the app, so the actions that need a 'current work order' can be checked."
+    "text": "1. Sign in to ShopView on a desktop computer with a mouse (hover quick actions do not appear on touch screens). In the app header, click the search field (or press ⌘K / Ctrl+K) to open the global search, which searches across work orders, customers, parts and more; results appear grouped by type under a tab strip.\n2. Have records across every type that match one common term: a work order, a customer, an asset, a part, a vendor, a part sale, a purchase order and a vendor invoice.\n3. Be part-way through editing a work order elsewhere in the app (open a work order in another tab), so the 'Add new line' action that needs a current work order can be checked."
    },
    "custom_steps": {
     "blocks": [
      [
-      "1. In the app header, click the search field (or press ⌘K / Ctrl+K) to open the global search.",
-      "2. Type a term that returns results across the entity types.",
-      "3. Move the mouse over each result row and read the action button(s) that appear on the right."
+      "1. Type the common term so results appear across the entity types.",
+      "2. Move the mouse over each result row in turn and read the quick-action button(s) that appear on the right.",
+      "3. Confirm the actions by entity: Work Order shows 'Add new line'; Customer shows 'New work order' and 'New contact'; Asset shows 'New work order' plus history and invoices icon buttons; Part shows 'View part history'; Vendor shows 'Add contact'; Part Sale shows 'Add part'; Purchase Order shows 'Receive'; Vendor Invoice shows NO quick action.",
+      "4. Confirm each entity that has an action shows it unconditionally (there is no state that hides an action for an entity that has one).",
+      "5. On the Work Order row, click 'Add new line' and confirm it acts on the work order you are currently editing elsewhere in the app."
      ]
     ],
-    "text": "1. In the app header, click the search field (or press ⌘K / Ctrl+K) to open the global search.\n2. Type a term that returns results across the entity types.\n3. Move the mouse over each result row and read the action button(s) that appear on the right."
+    "text": "1. Type the common term so results appear across the entity types.\n2. Move the mouse over each result row in turn and read the quick-action button(s) that appear on the right.\n3. Confirm the actions by entity: Work Order shows 'Add new line'; Customer shows 'New work order' and 'New contact'; Asset shows 'New work order' plus history and invoices icon buttons; Part shows 'View part history'; Vendor shows 'Add contact'; Part Sale shows 'Add part'; Purchase Order shows 'Receive'; Vendor Invoice shows NO quick action.\n4. Confirm each entity that has an action shows it unconditionally (there is no state that hides an action for an entity that has one).\n5. On the Work Order row, click 'Add new line' and confirm it acts on the work order you are currently editing elsewhere in the app."
    },
    "custom_expected": {
     "blocks": [
@@ -2984,22 +3060,24 @@
    "custom_preconds": {
     "blocks": [
      [
-      "1. You can sign in as roles with different view bundles, as one without 'See Financial Data', and as a TimeClock-only user.",
-      "2. Records exist across all eight entity types."
+      "1. Sign in to ShopView. In the app header, click the search field (or press ⌘K / Ctrl+K) to open the global search, which searches across work orders, customers, parts and more; results appear grouped by type under a tab strip.",
+      "2. Be able to sign in as several roles, each missing exactly one view bundle in turn: no 'Work Orders: View'; no 'Part Sales: View'; no 'Customers: View'; no 'Catalog & Inventory: View'; no 'Vendor & Order Management: View'. Also a role without 'See Financial Data', and a TimeClock-only user.",
+      "3. Records exist across all eight entity types matching one term, including priced records (a part with purchase/sell price, a part sale, a work order total, a PO total and a vendor-invoice total)."
      ]
     ],
-    "text": "1. You can sign in as roles with different view bundles, as one without 'See Financial Data', and as a TimeClock-only user.\n2. Records exist across all eight entity types."
+    "text": "1. Sign in to ShopView. In the app header, click the search field (or press ⌘K / Ctrl+K) to open the global search, which searches across work orders, customers, parts and more; results appear grouped by type under a tab strip.\n2. Be able to sign in as several roles, each missing exactly one view bundle in turn: no 'Work Orders: View'; no 'Part Sales: View'; no 'Customers: View'; no 'Catalog & Inventory: View'; no 'Vendor & Order Management: View'. Also a role without 'See Financial Data', and a TimeClock-only user.\n3. Records exist across all eight entity types matching one term, including priced records (a part with purchase/sell price, a part sale, a work order total, a PO total and a vendor-invoice total)."
    },
    "custom_steps": {
     "blocks": [
      [
-      "1. Sign in to ShopView. In the app header, click the search field (or press ⌘K / Ctrl+K) to open the global search, which searches across work orders, customers, parts and more; results appear as rows grouped by type under a tab strip.",
-      "2. As a role missing a bundle (for example no 'Vendor & Order Management'), search and check Purchase Orders / Vendor Invoices / Vendors.",
-      "3. As a user without 'See Financial Data', check the price fields in results.",
-      "4. As a TimeClock-only user, search anything."
+      "1. Sign in as the role missing 'Work Orders: View', search the term, and confirm no Work Orders group, count or scope tab appears.",
+      "2. Repeat for each bundle in turn: missing 'Part Sales: View' hides Part Sales; missing 'Customers: View' hides Customers AND Assets; missing 'Catalog & Inventory: View' hides Parts; missing 'Vendor & Order Management: View' hides Vendors, Purchase Orders AND Vendor Invoices.",
+      "3. Each time, confirm the hidden group leaks neither its rows nor its count, and no scope tab appears for it.",
+      "4. Sign in without 'See Financial Data', search, and confirm every price field is masked (part purchase/sell price, part-sale total, work-order total, PO total, vendor-invoice total).",
+      "5. Sign in as a TimeClock-only user, search anything, and confirm no results appear that the user is not permitted to see."
      ]
     ],
-    "text": "1. Sign in to ShopView. In the app header, click the search field (or press ⌘K / Ctrl+K) to open the global search, which searches across work orders, customers, parts and more; results appear as rows grouped by type under a tab strip.\n2. As a role missing a bundle (for example no 'Vendor & Order Management'), search and check Purchase Orders / Vendor Invoices / Vendors.\n3. As a user without 'See Financial Data', check the price fields in results.\n4. As a TimeClock-only user, search anything."
+    "text": "1. Sign in as the role missing 'Work Orders: View', search the term, and confirm no Work Orders group, count or scope tab appears.\n2. Repeat for each bundle in turn: missing 'Part Sales: View' hides Part Sales; missing 'Customers: View' hides Customers AND Assets; missing 'Catalog & Inventory: View' hides Parts; missing 'Vendor & Order Management: View' hides Vendors, Purchase Orders AND Vendor Invoices.\n3. Each time, confirm the hidden group leaks neither its rows nor its count, and no scope tab appears for it.\n4. Sign in without 'See Financial Data', search, and confirm every price field is masked (part purchase/sell price, part-sale total, work-order total, PO total, vendor-invoice total).\n5. Sign in as a TimeClock-only user, search anything, and confirm no results appear that the user is not permitted to see."
    },
    "custom_expected": {
     "blocks": [
@@ -3068,20 +3146,23 @@
     "blocks": [
      [
       "1. Sign in to ShopView. In the app header, click the search field (or press ⌘K / Ctrl+K) to open the global search, which searches across work orders, customers, parts and more; results appear grouped by type under a tab strip.",
-      "1. You are signed in.",
-      "2. The Work Orders, Inventory Parts and Customers list pages are reachable."
+      "2. Be able to reach the Work Orders list, Inventory Parts list and Customers list pages.",
+      "3. Know a query that returns known matches in global search for work orders, for inventory parts and for customers."
      ]
     ],
-    "text": "1. Sign in to ShopView. In the app header, click the search field (or press ⌘K / Ctrl+K) to open the global search, which searches across work orders, customers, parts and more; results appear grouped by type under a tab strip.\n1. You are signed in.\n2. The Work Orders, Inventory Parts and Customers list pages are reachable."
+    "text": "1. Sign in to ShopView. In the app header, click the search field (or press ⌘K / Ctrl+K) to open the global search, which searches across work orders, customers, parts and more; results appear grouped by type under a tab strip.\n2. Be able to reach the Work Orders list, Inventory Parts list and Customers list pages.\n3. Know a query that returns known matches in global search for work orders, for inventory parts and for customers."
    },
    "custom_steps": {
     "blocks": [
      [
-      "1. On the Work Orders list page, use its in-page search and compare results to the old behaviour.",
-      "2. Repeat on the Inventory Parts list and the Customers list."
+      "1. Run a query in global search for work orders and note which records match.",
+      "2. On the Work Orders list page, use its in-page search with the same query and confirm the same records match (same normalisation, identifier parsing and fuzzy matching as global search).",
+      "3. Repeat on the Inventory Parts list and the Customers list, confirming the same matching as global search.",
+      "4. Confirm each list respects the same tenant and permission rules as global search (a record you cannot see in global search does not appear in the list search either).",
+      "5. Reference only: ask a developer to confirm that adding a new searchable entity is a single provider class plus mapping (framework extensibility), and that exports keep their existing v1 data path - these are code-level facts not visible in the UI."
      ]
     ],
-    "text": "1. On the Work Orders list page, use its in-page search and compare results to the old behaviour.\n2. Repeat on the Inventory Parts list and the Customers list."
+    "text": "1. Run a query in global search for work orders and note which records match.\n2. On the Work Orders list page, use its in-page search with the same query and confirm the same records match (same normalisation, identifier parsing and fuzzy matching as global search).\n3. Repeat on the Inventory Parts list and the Customers list, confirming the same matching as global search.\n4. Confirm each list respects the same tenant and permission rules as global search (a record you cannot see in global search does not appear in the list search either).\n5. Reference only: ask a developer to confirm that adding a new searchable entity is a single provider class plus mapping (framework extensibility), and that exports keep their existing v1 data path - these are code-level facts not visible in the UI."
    },
    "custom_expected": {
     "blocks": [
@@ -3108,20 +3189,20 @@
     "blocks": [
      [
       "1. Sign in to ShopView. In the app header, click the search field (or press ⌘K / Ctrl+K) to open the global search, which searches across work orders, customers, parts and more; results appear grouped by type under a tab strip.",
-      "1. You are signed in after the v2 rollout.",
-      "2. No feature flag gates the feature."
+      "2. Be signed in after the v2 rollout, with no feature flag gating the feature."
      ]
     ],
-    "text": "1. Sign in to ShopView. In the app header, click the search field (or press ⌘K / Ctrl+K) to open the global search, which searches across work orders, customers, parts and more; results appear grouped by type under a tab strip.\n1. You are signed in after the v2 rollout.\n2. No feature flag gates the feature."
+    "text": "1. Sign in to ShopView. In the app header, click the search field (or press ⌘K / Ctrl+K) to open the global search, which searches across work orders, customers, parts and more; results appear grouped by type under a tab strip.\n2. Be signed in after the v2 rollout, with no feature flag gating the feature."
    },
    "custom_steps": {
     "blocks": [
      [
-      "1. Use global search and the cut-over list pages.",
-      "2. Confirm the old dropdown path is gone."
+      "1. Use global search and confirm it opens the full modal with grouped results, not the old 3-results-per-category dropdown.",
+      "2. Use the cut-over list pages and confirm the old dropdown behaviour is gone.",
+      "3. Reference only: ask a developer to confirm the old GET /api/global-search/fetch endpoint, its handler and the client-side filtering have been removed after stabilisation - this backend removal is not visible in the UI."
      ]
     ],
-    "text": "1. Use global search and the cut-over list pages.\n2. Confirm the old dropdown path is gone."
+    "text": "1. Use global search and confirm it opens the full modal with grouped results, not the old 3-results-per-category dropdown.\n2. Use the cut-over list pages and confirm the old dropdown behaviour is gone.\n3. Reference only: ask a developer to confirm the old GET /api/global-search/fetch endpoint, its handler and the client-side filtering have been removed after stabilisation - this backend removal is not visible in the UI."
    },
    "custom_expected": {
     "blocks": [
@@ -3146,19 +3227,23 @@
    "custom_preconds": {
     "blocks": [
      [
-      "1. Sign in to ShopView on a phone or tablet (below Quasar's sm breakpoint). In the app header, tap the search field to open the full-screen global search, which searches across work orders, customers, parts and more; results appear grouped by type and you tap a row to open its record."
+      "1. On a phone (or a narrow, phone-sized browser window below the small breakpoint), sign in to ShopView and tap the search field in the app header to open the full-screen global search, which searches across work orders, customers, parts and more; results appear grouped by type and you tap a row to open its record.",
+      "2. Have a query that matches records across several types, with MORE THAN five matches in at least one group, so you can confirm results are not capped."
      ]
     ],
-    "text": "1. Sign in to ShopView on a phone or tablet (below Quasar's sm breakpoint). In the app header, tap the search field to open the full-screen global search, which searches across work orders, customers, parts and more; results appear grouped by type and you tap a row to open its record."
+    "text": "1. On a phone (or a narrow, phone-sized browser window below the small breakpoint), sign in to ShopView and tap the search field in the app header to open the full-screen global search, which searches across work orders, customers, parts and more; results appear grouped by type and you tap a row to open its record.\n2. Have a query that matches records across several types, with MORE THAN five matches in at least one group, so you can confirm results are not capped."
    },
    "custom_steps": {
     "blocks": [
      [
-      "1. Type a term in the search box and browse the grouped results.",
-      "2. Look at how scope selection is shown, and try to reach a row's quick action by touch."
+      "1. Type the term so grouped results appear.",
+      "2. Confirm the search fills the whole screen (not a centered modal) and the page does not scroll sideways.",
+      "3. Look at the scope selection: confirm it is a horizontal chip row that appears only once there is a query, listing only the types that actually matched (each with its count), with no Contacts chip.",
+      "4. Scroll a group with more than five matches and confirm ALL its matches are shown - there is no per-group cap and no 'Show all' link.",
+      "5. Tap a row and confirm it opens the record; confirm rows show no hover quick actions on mobile."
      ]
     ],
-    "text": "1. Type a term in the search box and browse the grouped results.\n2. Look at how scope selection is shown, and try to reach a row's quick action by touch."
+    "text": "1. Type the term so grouped results appear.\n2. Confirm the search fills the whole screen (not a centered modal) and the page does not scroll sideways.\n3. Look at the scope selection: confirm it is a horizontal chip row that appears only once there is a query, listing only the types that actually matched (each with its count), with no Contacts chip.\n4. Scroll a group with more than five matches and confirm ALL its matches are shown - there is no per-group cap and no 'Show all' link.\n5. Tap a row and confirm it opens the record; confirm rows show no hover quick actions on mobile."
    },
    "custom_expected": {
     "blocks": [
@@ -3347,18 +3432,21 @@
    "custom_preconds": {
     "blocks": [
      [
-      "1. Sign in to ShopView. In the app header, click the search field (or press ⌘K / Ctrl+K) to open the global search, which searches across work orders, customers, parts and more; results appear grouped by type under a tab strip."
+      "1. Sign in to ShopView. In the app header, click the search field (or press ⌘K / Ctrl+K) to open the global search, which searches across work orders, customers, parts and more; results appear grouped by type under a tab strip.",
+      "2. Have purchase orders and records of other types matching one common term, so the 'All' tab shows more than just POs."
      ]
     ],
-    "text": "1. Sign in to ShopView. In the app header, click the search field (or press ⌘K / Ctrl+K) to open the global search, which searches across work orders, customers, parts and more; results appear grouped by type under a tab strip."
+    "text": "1. Sign in to ShopView. In the app header, click the search field (or press ⌘K / Ctrl+K) to open the global search, which searches across work orders, customers, parts and more; results appear grouped by type under a tab strip.\n2. Have purchase orders and records of other types matching one common term, so the 'All' tab shows more than just POs."
    },
    "custom_steps": {
     "blocks": [
      [
-      "1. In the search box, perform the action described and observe the result."
+      "1. Type the common term so results appear across several groups including Purchase Orders.",
+      "2. Click the 'Purchase Orders' tab.",
+      "3. Confirm the tab carries the true PO count and only Purchase Order rows are shown (subject to your permission)."
      ]
     ],
-    "text": "1. In the search box, perform the action described and observe the result."
+    "text": "1. Type the common term so results appear across several groups including Purchase Orders.\n2. Click the 'Purchase Orders' tab.\n3. Confirm the tab carries the true PO count and only Purchase Order rows are shown (subject to your permission)."
    },
    "custom_expected": {
     "blocks": [
@@ -3382,18 +3470,21 @@
    "custom_preconds": {
     "blocks": [
      [
-      "1. Sign in to ShopView. In the app header, click the search field (or press ⌘K / Ctrl+K) to open the global search, which searches across work orders, customers, parts and more; results appear grouped by type under a tab strip."
+      "1. Sign in to ShopView. In the app header, click the search field (or press ⌘K / Ctrl+K) to open the global search, which searches across work orders, customers, parts and more; results appear grouped by type under a tab strip.",
+      "2. Have vendor invoices and records of other types matching one common term, so the 'All' tab shows more than just vendor invoices."
      ]
     ],
-    "text": "1. Sign in to ShopView. In the app header, click the search field (or press ⌘K / Ctrl+K) to open the global search, which searches across work orders, customers, parts and more; results appear grouped by type under a tab strip."
+    "text": "1. Sign in to ShopView. In the app header, click the search field (or press ⌘K / Ctrl+K) to open the global search, which searches across work orders, customers, parts and more; results appear grouped by type under a tab strip.\n2. Have vendor invoices and records of other types matching one common term, so the 'All' tab shows more than just vendor invoices."
    },
    "custom_steps": {
     "blocks": [
      [
-      "1. In the search box, perform the action described and observe the result."
+      "1. Type the common term so results appear across several groups including Vendor Invoices.",
+      "2. Click the 'Vendor Invoices' tab.",
+      "3. Confirm the tab carries the true count and only vendor-invoice rows are shown (subject to your permission)."
      ]
     ],
-    "text": "1. In the search box, perform the action described and observe the result."
+    "text": "1. Type the common term so results appear across several groups including Vendor Invoices.\n2. Click the 'Vendor Invoices' tab.\n3. Confirm the tab carries the true count and only vendor-invoice rows are shown (subject to your permission)."
    },
    "custom_expected": {
     "blocks": [
@@ -3417,18 +3508,23 @@
    "custom_preconds": {
     "blocks": [
      [
-      "1. Sign in to ShopView. In the app header, click the search field (or press ⌘K / Ctrl+K) to open the global search, which searches across work orders, customers, parts and more; results appear grouped by type under a tab strip."
+      "1. On a phone (or a narrow, phone-sized browser window below the small breakpoint), sign in to ShopView and tap the search field in the app header to open the full-screen global search, which searches across work orders, customers, parts and more; results appear grouped by type and you tap a row to open its record.",
+      "2. Have at least one record that matches a short query."
      ]
     ],
-    "text": "1. Sign in to ShopView. In the app header, click the search field (or press ⌘K / Ctrl+K) to open the global search, which searches across work orders, customers, parts and more; results appear grouped by type under a tab strip."
+    "text": "1. On a phone (or a narrow, phone-sized browser window below the small breakpoint), sign in to ShopView and tap the search field in the app header to open the full-screen global search, which searches across work orders, customers, parts and more; results appear grouped by type and you tap a row to open its record.\n2. Have at least one record that matches a short query."
    },
    "custom_steps": {
     "blocks": [
      [
-      "1. In the search box, perform the action described and observe the result."
+      "1. Tap the search field in the app header to open global search.",
+      "2. Confirm it opens as a full-screen screen that replaces the page, not a centered modal.",
+      "3. Confirm the top bar shows a 'Cancel' action next to the input.",
+      "4. Confirm the placeholder text reads 'Search everything'.",
+      "5. Type a short query and confirm there is no keyboard-hints footer at the bottom of the screen."
      ]
     ],
-    "text": "1. In the search box, perform the action described and observe the result."
+    "text": "1. Tap the search field in the app header to open global search.\n2. Confirm it opens as a full-screen screen that replaces the page, not a centered modal.\n3. Confirm the top bar shows a 'Cancel' action next to the input.\n4. Confirm the placeholder text reads 'Search everything'.\n5. Type a short query and confirm there is no keyboard-hints footer at the bottom of the screen."
    },
    "custom_expected": {
     "blocks": [
@@ -3454,18 +3550,22 @@
    "custom_preconds": {
     "blocks": [
      [
-      "1. Sign in to ShopView. In the app header, click the search field (or press ⌘K / Ctrl+K) to open the global search, which searches across work orders, customers, parts and more; results appear grouped by type under a tab strip."
+      "1. On a phone (or a narrow, phone-sized browser window below the small breakpoint), sign in to ShopView and tap the search field in the app header to open the full-screen global search, which searches across work orders, customers, parts and more; results appear grouped by type and you tap a row to open its record.",
+      "2. Have a query that matches records of several types at once (for example work orders and customers sharing a few letters)."
      ]
     ],
-    "text": "1. Sign in to ShopView. In the app header, click the search field (or press ⌘K / Ctrl+K) to open the global search, which searches across work orders, customers, parts and more; results appear grouped by type under a tab strip."
+    "text": "1. On a phone (or a narrow, phone-sized browser window below the small breakpoint), sign in to ShopView and tap the search field in the app header to open the full-screen global search, which searches across work orders, customers, parts and more; results appear grouped by type and you tap a row to open its record.\n2. Have a query that matches records of several types at once (for example work orders and customers sharing a few letters)."
    },
    "custom_steps": {
     "blocks": [
      [
-      "1. In the search box, perform the action described and observe the result."
+      "1. Open global search on the phone and, before typing anything, confirm no scope chip row is shown.",
+      "2. Type the multi-type query.",
+      "3. Confirm a horizontal chip row now appears.",
+      "4. Confirm the chip row lists only the entity types that actually matched, each with its count, and stays short (no chip for a type with no matches, and no Contacts chip)."
      ]
     ],
-    "text": "1. In the search box, perform the action described and observe the result."
+    "text": "1. Open global search on the phone and, before typing anything, confirm no scope chip row is shown.\n2. Type the multi-type query.\n3. Confirm a horizontal chip row now appears.\n4. Confirm the chip row lists only the entity types that actually matched, each with its count, and stays short (no chip for a type with no matches, and no Contacts chip)."
    },
    "custom_expected": {
     "blocks": [
@@ -3527,19 +3627,24 @@
    "custom_preconds": {
     "blocks": [
      [
-      "1. On a phone (or a narrow, phone-sized browser), sign in to ShopView and tap the search field in the app header to open the full-screen global search, which searches across work orders, customers, parts and more; results appear grouped by type and you tap a row to open its record."
+      "1. On a phone (or a narrow, phone-sized browser window below the small breakpoint), sign in to ShopView and tap the search field in the app header to open the full-screen global search, which searches across work orders, customers, parts and more; results appear grouped by type and you tap a row to open its record.",
+      "2. As this user on the phone, open several records first so there is recent search history to show.",
+      "3. Know a term that returns NO matches, to check the no-results state."
      ]
     ],
-    "text": "1. On a phone (or a narrow, phone-sized browser), sign in to ShopView and tap the search field in the app header to open the full-screen global search, which searches across work orders, customers, parts and more; results appear grouped by type and you tap a row to open its record."
+    "text": "1. On a phone (or a narrow, phone-sized browser window below the small breakpoint), sign in to ShopView and tap the search field in the app header to open the full-screen global search, which searches across work orders, customers, parts and more; results appear grouped by type and you tap a row to open its record.\n2. As this user on the phone, open several records first so there is recent search history to show.\n3. Know a term that returns NO matches, to check the no-results state."
    },
    "custom_steps": {
     "blocks": [
      [
-      "2. Look at the first-time screen (before typing), the recent-searches list, and the no-results screen (type a term with no matches).",
-      "3. Use the 'Clear all' button on the recent searches list."
+      "1. Open global search on the phone before typing and look at the first-time screen: confirm it shows only the helper line and NO quick-create buttons.",
+      "2. Confirm the recent-searches list shows your recently opened records, matching the web state.",
+      "3. Type a term with no matches and confirm the no-results screen matches the web state.",
+      "4. Clear the query, then tap 'Clear all' on the recent searches list.",
+      "5. Confirm the history clears and the screen returns to the first-time state."
      ]
     ],
-    "text": "2. Look at the first-time screen (before typing), the recent-searches list, and the no-results screen (type a term with no matches).\n3. Use the 'Clear all' button on the recent searches list."
+    "text": "1. Open global search on the phone before typing and look at the first-time screen: confirm it shows only the helper line and NO quick-create buttons.\n2. Confirm the recent-searches list shows your recently opened records, matching the web state.\n3. Type a term with no matches and confirm the no-results screen matches the web state.\n4. Clear the query, then tap 'Clear all' on the recent searches list.\n5. Confirm the history clears and the screen returns to the first-time state."
    },
    "custom_expected": {
     "blocks": [
@@ -3602,18 +3707,23 @@
    "custom_preconds": {
     "blocks": [
      [
-      "1. Sign in to ShopView. In the app header, click the search field (or press ⌘K / Ctrl+K) to open the global search, which searches across work orders, customers, parts and more; results appear grouped by type under a tab strip."
+      "1. Sign in to ShopView. In the app header, click the search field (or press ⌘K / Ctrl+K) to open the global search, which searches across work orders, customers, parts and more; results appear grouped by type under a tab strip.",
+      "2. Have several purchase orders matching one term: at least one still 'Ordered' (not yet received) and at least one 'Received'; some created recently and some created weeks ago; and at least one created by the signed-in user versus one created by someone else."
      ]
     ],
-    "text": "1. Sign in to ShopView. In the app header, click the search field (or press ⌘K / Ctrl+K) to open the global search, which searches across work orders, customers, parts and more; results appear grouped by type under a tab strip."
+    "text": "1. Sign in to ShopView. In the app header, click the search field (or press ⌘K / Ctrl+K) to open the global search, which searches across work orders, customers, parts and more; results appear grouped by type under a tab strip.\n2. Have several purchase orders matching one term: at least one still 'Ordered' (not yet received) and at least one 'Received'; some created recently and some created weeks ago; and at least one created by the signed-in user versus one created by someone else."
    },
    "custom_steps": {
     "blocks": [
      [
-      "1. In the search box, perform the action described and observe the result."
+      "1. Type the term that matches the seeded purchase orders (use the 'Purchase Orders' tab if it helps to focus on them).",
+      "2. Read the order of the PO rows.",
+      "3. Confirm an Ordered (not yet received) PO ranks above a Received one.",
+      "4. Confirm a more recently created PO ranks above an older one.",
+      "5. Confirm a PO created by you gets a small extra boost over an otherwise-equal PO created by someone else."
      ]
     ],
-    "text": "1. In the search box, perform the action described and observe the result."
+    "text": "1. Type the term that matches the seeded purchase orders (use the 'Purchase Orders' tab if it helps to focus on them).\n2. Read the order of the PO rows.\n3. Confirm an Ordered (not yet received) PO ranks above a Received one.\n4. Confirm a more recently created PO ranks above an older one.\n5. Confirm a PO created by you gets a small extra boost over an otherwise-equal PO created by someone else."
    },
    "custom_expected": {
     "blocks": [
@@ -3638,18 +3748,22 @@
    "custom_preconds": {
     "blocks": [
      [
-      "1. Sign in to ShopView. In the app header, click the search field (or press ⌘K / Ctrl+K) to open the global search, which searches across work orders, customers, parts and more; results appear grouped by type under a tab strip."
+      "1. Sign in to ShopView. In the app header, click the search field (or press ⌘K / Ctrl+K) to open the global search, which searches across work orders, customers, parts and more; results appear grouped by type under a tab strip.",
+      "2. Have several vendor invoices matching one term: at least one Unpaid and at least one Paid; some with recent invoice dates and some older."
      ]
     ],
-    "text": "1. Sign in to ShopView. In the app header, click the search field (or press ⌘K / Ctrl+K) to open the global search, which searches across work orders, customers, parts and more; results appear grouped by type under a tab strip."
+    "text": "1. Sign in to ShopView. In the app header, click the search field (or press ⌘K / Ctrl+K) to open the global search, which searches across work orders, customers, parts and more; results appear grouped by type under a tab strip.\n2. Have several vendor invoices matching one term: at least one Unpaid and at least one Paid; some with recent invoice dates and some older."
    },
    "custom_steps": {
     "blocks": [
      [
-      "1. In the search box, perform the action described and observe the result."
+      "1. Type the term that matches the seeded vendor invoices (use the 'Vendor Invoices' tab if it helps to focus on them).",
+      "2. Read the order of the invoice rows.",
+      "3. Confirm an Unpaid invoice ranks above a Paid one.",
+      "4. Confirm a more recent invoice date ranks above an older one."
      ]
     ],
-    "text": "1. In the search box, perform the action described and observe the result."
+    "text": "1. Type the term that matches the seeded vendor invoices (use the 'Vendor Invoices' tab if it helps to focus on them).\n2. Read the order of the invoice rows.\n3. Confirm an Unpaid invoice ranks above a Paid one.\n4. Confirm a more recent invoice date ranks above an older one."
    },
    "custom_expected": {
     "blocks": [
@@ -3673,21 +3787,23 @@
    "custom_preconds": {
     "blocks": [
      [
-      "1. Sign in to ShopView with access to Customers.",
-      "2. Have a customer that can be matched both by its own name and by a contact's field (phone/email)."
+      "1. Sign in to ShopView. In the app header, click the search field (or press ⌘K / Ctrl+K) to open the global search, which searches across work orders, customers, parts and more; results appear grouped by type under a tab strip.",
+      "2. Have one customer that can be matched by a CONTACT's field (a phone number or email belonging to its contact) but whose own company name does NOT contain the search value.",
+      "3. Have a second customer whose OWN company name contains that same search value, to compare ranking."
      ]
     ],
-    "text": "1. Sign in to ShopView with access to Customers.\n2. Have a customer that can be matched both by its own name and by a contact's field (phone/email)."
+    "text": "1. Sign in to ShopView. In the app header, click the search field (or press ⌘K / Ctrl+K) to open the global search, which searches across work orders, customers, parts and more; results appear grouped by type under a tab strip.\n2. Have one customer that can be matched by a CONTACT's field (a phone number or email belonging to its contact) but whose own company name does NOT contain the search value.\n3. Have a second customer whose OWN company name contains that same search value, to compare ranking."
    },
    "custom_steps": {
     "blocks": [
      [
-      "1. Sign in to ShopView. In the app header, click the search field (or press ⌘K / Ctrl+K) to open the global search, which searches across work orders, customers, parts and more; results appear as rows grouped by type under a tab strip.",
-      "2. Search a value that matches the company on a contact field (phone/email).",
-      "3. Compare its ranking with a company matched on its own name."
+      "1. Search a value that matches the first customer only through its contact's phone or email, and the second customer through its own company name.",
+      "2. Read the ranking of the two company rows.",
+      "3. Confirm the company matched on its own name ranks with the primary-name bonus, while the company matched only on a contact field does NOT get that bonus (it ranks as a secondary-field match).",
+      "4. Confirm no contact is listed on its own - each result is carried by the company row."
      ]
     ],
-    "text": "1. Sign in to ShopView. In the app header, click the search field (or press ⌘K / Ctrl+K) to open the global search, which searches across work orders, customers, parts and more; results appear as rows grouped by type under a tab strip.\n2. Search a value that matches the company on a contact field (phone/email).\n3. Compare its ranking with a company matched on its own name."
+    "text": "1. Search a value that matches the first customer only through its contact's phone or email, and the second customer through its own company name.\n2. Read the ranking of the two company rows.\n3. Confirm the company matched on its own name ranks with the primary-name bonus, while the company matched only on a contact field does NOT get that bonus (it ranks as a secondary-field match).\n4. Confirm no contact is listed on its own - each result is carried by the company row."
    },
    "custom_expected": {
     "blocks": [
@@ -3830,21 +3946,24 @@
    "custom_preconds": {
     "blocks": [
      [
-      "1. Have User A with 'Catalog & Inventory - View' and User B without it.",
-      "2. An inventory part exists that matches the search word."
+      "1. Sign in to ShopView. In the app header, click the search field (or press ⌘K / Ctrl+K) to open the global search, which searches across work orders, customers, parts and more; results appear grouped by type under a tab strip.",
+      "2. Have User A with 'Catalog & Inventory: View' and User B without it.",
+      "3. An inventory part exists that matches a search word, with a known on-hand quantity and stock status."
      ]
     ],
-    "text": "1. Have User A with 'Catalog & Inventory - View' and User B without it.\n2. An inventory part exists that matches the search word."
+    "text": "1. Sign in to ShopView. In the app header, click the search field (or press ⌘K / Ctrl+K) to open the global search, which searches across work orders, customers, parts and more; results appear grouped by type under a tab strip.\n2. Have User A with 'Catalog & Inventory: View' and User B without it.\n3. An inventory part exists that matches a search word, with a known on-hand quantity and stock status."
    },
    "custom_steps": {
     "blocks": [
      [
-      "1. Sign in as User A. In the app header, click the search field (or press ⌘K / Ctrl+K) to open the global search, which searches across work orders, customers, parts and more; results appear as rows grouped by type under a tab strip.",
-      "2. Search a word matching the part; note whether Part results appear.",
-      "3. Sign in as User B and repeat the same search."
+      "1. Sign in as User A and open global search.",
+      "2. Search the word matching the part and confirm Part results appear.",
+      "3. Open the Part result and confirm it opens the INVENTORY part (on-hand quantity and stock status), not the catalogue entry.",
+      "4. Sign out, sign in as User B, and run the same search.",
+      "5. Confirm User B sees NO Part results."
      ]
     ],
-    "text": "1. Sign in as User A. In the app header, click the search field (or press ⌘K / Ctrl+K) to open the global search, which searches across work orders, customers, parts and more; results appear as rows grouped by type under a tab strip.\n2. Search a word matching the part; note whether Part results appear.\n3. Sign in as User B and repeat the same search."
+    "text": "1. Sign in as User A and open global search.\n2. Search the word matching the part and confirm Part results appear.\n3. Open the Part result and confirm it opens the INVENTORY part (on-hand quantity and stock status), not the catalogue entry.\n4. Sign out, sign in as User B, and run the same search.\n5. Confirm User B sees NO Part results."
    },
    "custom_expected": {
     "blocks": [
@@ -4092,20 +4211,22 @@
     "blocks": [
      [
       "1. Sign in to ShopView. In the app header, click the search field (or press ⌘K / Ctrl+K) to open the global search, which searches across work orders, customers, parts and more; results appear grouped by type under a tab strip.",
-      "1. A user with access to two locations.",
-      "2. A Work Order and a Part Sale exist at another location (not the current one), matching the search word; and a Customer/Vendor exists org-wide."
+      "2. Sign in as a user with access to two locations, currently on Location 1.",
+      "3. At another location (not Location 1), have a Work Order and a Part Sale that match the search word. Also have a Customer, an Asset, a Vendor and a Part that match the same word and belong org-wide (not tied to Location 1)."
      ]
     ],
-    "text": "1. Sign in to ShopView. In the app header, click the search field (or press ⌘K / Ctrl+K) to open the global search, which searches across work orders, customers, parts and more; results appear grouped by type under a tab strip.\n1. A user with access to two locations.\n2. A Work Order and a Part Sale exist at another location (not the current one), matching the search word; and a Customer/Vendor exists org-wide."
+    "text": "1. Sign in to ShopView. In the app header, click the search field (or press ⌘K / Ctrl+K) to open the global search, which searches across work orders, customers, parts and more; results appear grouped by type under a tab strip.\n2. Sign in as a user with access to two locations, currently on Location 1.\n3. At another location (not Location 1), have a Work Order and a Part Sale that match the search word. Also have a Customer, an Asset, a Vendor and a Part that match the same word and belong org-wide (not tied to Location 1)."
    },
    "custom_steps": {
     "blocks": [
      [
-      "1. In the search box, while on Location 1, search the word matching those records.",
-      "2. Note which Work Order / Part Sale results appear."
+      "1. While on Location 1, search the word that matches all those records.",
+      "2. Look at the Work Order and Part Sale results.",
+      "3. Confirm the other-location Work Order and Part Sale do NOT appear (results limited to the current location).",
+      "4. Confirm the Customer, Asset, Vendor and Part results DO appear even though they are not tied to Location 1 (they are org-wide)."
      ]
     ],
-    "text": "1. In the search box, while on Location 1, search the word matching those records.\n2. Note which Work Order / Part Sale results appear."
+    "text": "1. While on Location 1, search the word that matches all those records.\n2. Look at the Work Order and Part Sale results.\n3. Confirm the other-location Work Order and Part Sale do NOT appear (results limited to the current location).\n4. Confirm the Customer, Asset, Vendor and Part results DO appear even though they are not tied to Location 1 (they are org-wide)."
    },
    "custom_expected": {
     "blocks": [
@@ -4207,18 +4328,22 @@
     "blocks": [
      [
       "1. Sign in to ShopView. In the app header, click the search field (or press ⌘K / Ctrl+K) to open the global search, which searches across work orders, customers, parts and more; results appear grouped by type under a tab strip.",
-      "1. A user viewing a specific record (for example a Work Order you already have open)."
+      "2. Be viewing a specific record (for example a Work Order you already have open)."
      ]
     ],
-    "text": "1. Sign in to ShopView. In the app header, click the search field (or press ⌘K / Ctrl+K) to open the global search, which searches across work orders, customers, parts and more; results appear grouped by type under a tab strip.\n1. A user viewing a specific record (for example a Work Order you already have open)."
+    "text": "1. Sign in to ShopView. In the app header, click the search field (or press ⌘K / Ctrl+K) to open the global search, which searches across work orders, customers, parts and more; results appear grouped by type under a tab strip.\n2. Be viewing a specific record (for example a Work Order you already have open)."
    },
    "custom_steps": {
     "blocks": [
      [
-      "1. In the search box, with that record open, open global search and select the SAME record from the results."
+      "1. With that record open, open global search and note the current recent activity list.",
+      "2. Search for and select the SAME record you already have open.",
+      "3. Confirm the page does not navigate or reload to that record again.",
+      "4. Reopen global search with an empty input.",
+      "5. Confirm that record was NOT re-added to the top of recent activity (its recent position is unchanged)."
      ]
     ],
-    "text": "1. In the search box, with that record open, open global search and select the SAME record from the results."
+    "text": "1. With that record open, open global search and note the current recent activity list.\n2. Search for and select the SAME record you already have open.\n3. Confirm the page does not navigate or reload to that record again.\n4. Reopen global search with an empty input.\n5. Confirm that record was NOT re-added to the top of recent activity (its recent position is unchanged)."
    },
    "custom_expected": {
     "blocks": [
