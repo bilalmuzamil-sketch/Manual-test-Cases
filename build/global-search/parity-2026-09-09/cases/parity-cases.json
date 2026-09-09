@@ -1,0 +1,39 @@
+[
+  {
+    "id": "GSREG-PLATE-01",
+    "area": "Global Search V2 - V1 Regression Suite",
+    "title": "Searching an asset's licence plate finds that asset",
+    "priority": "High",
+    "type": "Regression",
+    "permissions_required": "A user with Customers access (assets are gated on Customers access).",
+    "preconditions": [
+      "An asset (vehicle) exists with a licence plate recorded on it, and the plate is not blank.",
+      "The asset belongs to a customer in the organization you are signed in to.",
+      "Note the asset's full licence plate exactly as it is saved on the asset record.",
+      "Fewer than 20 contacts on the owning customer (see Notes - this keeps the check clean)."
+    ],
+    "steps": [
+      "Open global search from the top navigation bar.",
+      "Type the asset's FULL licence plate, exactly as it is saved on the asset record.",
+      "Look at the results list."
+    ],
+    "expected": [
+      "The asset appears in the results.",
+      "It appears under the group heading 'Assets'.",
+      "The result row identifies the asset (its year, make and model), with the owning customer shown alongside it."
+    ],
+    "provenance_intro": "This is the expected behaviour based on the EXISTING behaviour BEFORE the V2 deployment (the V1 regression baseline), not on assumption.",
+    "provenance_bullets": [
+      "Traceable source: INV-92 - ShopView/shopview@5576716 - FetchDataQueryHandler.php:292, where licence_plate is concatenated into the searchable index for assets.",
+      "The V2 spec (Global Search - Product Requirements v1.5, Confluence page 576978945) is SILENT on licence plate as an indexed asset field - the term does not appear anywhere in the specification, in requirements.md, or in any of the 119 V2 case bodies.",
+      "Under the V1-to-V2 invariant rule, silence means 'must not change', so this behaviour must still hold after V2. If a licence-plate search stops finding the asset, that is a regression to raise."
+    ],
+    "provenance_date": "Source read 9 September 2026.",
+    "automation_marker": "AUTOMATION: Not available on Build to test Yet - Last checked 9/9/2026",
+    "design_ref": "V1 behaviour baseline (fact); not a design artefact.",
+    "spec_ref": "parity-2026-09-09 invariant INV-92 (new; not in the 2026-08-26 set of 33)",
+    "refs": "SV-9160 (INV-92; V1 baseline 5576716)",
+    "viu_status": "source-verified-only",
+    "notes": "Deliberately uses the FULL licence plate. Whether a PARTIAL plate must also match is open as PO-GS-SUBSTR-1 - V1 matches identifiers by substring (useGlobalSearch.ts:90-92 uses .includes()), while V2 cases GS-FUZ-06/08/11 say identifiers 'require an exact match after normalization'. A full-plate search passes under BOTH readings, so this case is safe to run before that question is answered. The under-20-contacts precondition avoids the group_concat_max_len truncation described in build/global-search/regression-v15-recheck-2026-09-09/MATRIX-CORRECTIONS-2026-09-09.md (register item R-GCML)."
+  }
+]
