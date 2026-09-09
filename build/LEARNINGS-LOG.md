@@ -33,6 +33,35 @@
 
 ## ENTRIES — newest first (id · date · tags · lesson → pointer)
 
+### L0025 · 2026-09-09 · #mistake-corrected #rule-41 #titles #source-verify #harness #testrail
+**A SOURCE-VERIFY THAT ONLY TOUCHES THE FIELD IT CAME FOR LEAVES THE REST OF THE CASE STALE — THE TITLE
+ESPECIALLY.** The user opened C44993 and saw the title still said "…Complete, Invoiced, or Paid" (3
+statuses) while the body now asserted 5. I had changed the Expected and never reconciled the title —
+a Rule 41 violation ("touch a case, re-verify the WHOLE case"). Root cause is structural, not a one-off:
+the `fr-view` write harness `hs_write.mjs` writes ONLY preconds/steps/expected and **asserts the title
+unchanged**, and the FULL-diff work focused on per-requirement Expected verdicts (Rule 43) + provenance —
+so titles were never in the loop. Anything I changed the Expected on could carry a stale title.
+- **What I found when I swept BOTH suites (title-vs-body status-set check):** real title defects on
+  **C44993, C44994** (title 3 statuses, body 5), **C45007** (title "is categorized Uncategorized" absolute,
+  body now conditional "only if no category"), and **C45250** (title had lost its "(auto-uncompletes)"
+  suffix). WO Print C45104 flagged but was a FALSE POSITIVE (the extra status words were in the tester
+  note, not the assertion). All fixed; re-scan clean bar the known false positive.
+- **A SECOND bug surfaced:** setting a title via API and THEN running the harness let the harness's
+  edit-form Save re-submit and TRUNCATE the title (C45250 lost "(auto-uncompletes)"). **Safe order: run
+  the harness content pass FIRST, then set the title with a title-only `update_case`.** Verified
+  2026-09-09 that a title-only `update_case` does NOT knock the other fields out of `fr-view` (served-page
+  scan: all three stayed `markdown fr-view`), and the title persists on re-fetch. So no harness re-run is
+  needed for a title fix — which also dodges the clobber.
+- **Honest scope of what the re-verify DID vs DIDN'T do (so nobody over-trusts it):** Expected =
+  re-derived against the current spec and re-written; Sources/provenance = re-stamped v16 + read-date and
+  verified; **Titles = were NOT reconciled (now fixed + swept)**; **Preconds/Steps = preserved from prior
+  passes and runnable-gated (`check_runnable_cases.py`), NOT re-authored word-by-word this pass** — valid
+  under the validity window but state it, don't imply every word was re-derived. The title sweep is a
+  heuristic (status-word enumeration); it will not catch a title stale in a non-status way, so eyeball
+  every content-changed case.
+- **Graduated-to:** `build/skills/02-SOURCE-CHECK.md` §5b clause 4 (whole-case + title reconciliation, the
+  safe title-write order, the persist + fr-view re-check, the sweep). Reinforces Rule 41.
+
 ### L0024 · 2026-09-09 · #mistake-corrected #rule-57 #source-of-truth #qa-lead #methodology
 **THE SOURCES ARE ALWAYS THE AUTHORITY — a "build is right" instruction does not flip that; confirm it,
 and default to spec + three-outcomes.** On the Inline suite the QA lead first answered "Build is right"
