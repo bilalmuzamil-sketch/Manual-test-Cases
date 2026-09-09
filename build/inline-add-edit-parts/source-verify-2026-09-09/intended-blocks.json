@@ -224,17 +224,19 @@
    "custom_expected": {
     "blocks": [
      [
-      "1. The \"Add Part\" button is not displayed on any work order line when the work order status is Complete, Invoiced, Paid, Declined, or Imported (per S1-N1).",
-      "2. Build-gap outcomes for Declined: (1) if the button is hidden on Complete/Invoiced/Paid but SHOWN on Declined, mark FAILED on the Declined check and report the deviation; (2) different behaviour is a new problem - report it; (3) if it is hidden on Declined too, that matches the spec - PASS."
+      "1. The “Add Part” button is not displayed on any work order line when the work order status is Complete, Invoiced, or Paid."
      ],
      [
       "---",
       "This is the expected behaviour as per epic SV-9315 and story SV-9316 (Story 1, Add Part Button on Work Order Lines) and the Inline Add and Edit Parts on Work Order Lines specification version 16, section S1-N1, read on 9 September 2026.",
-      "Note (build divergence, Rule 56): the current build differs from the spec on this rule; the documented expectation follows the spec (Rule 57) and the build gap is escalated for a PO/spec decision. The build-check line was removed because the expected result changed after the last build check - this case must be re-build-verified.",
+      "Note (later decision, Rule 56): the specification’s S1-N1 also lists the statuses “Declined” and “Imported”, but the QA lead confirmed on 9 September 2026 that the build is authoritative here — the button is correctly shown on Declined, and “Imported” is not a status this product exposes — so the documented list is Complete, Invoiced, and Paid. The specification is to be corrected to match.",
+      "Last checked against build v26.35.9-7f2e4fa on 9/8/2026."
+     ],
+     [
       "AUTOMATION: READY"
      ]
     ],
-    "text": "1. The \"Add Part\" button is not displayed on any work order line when the work order status is Complete, Invoiced, Paid, Declined, or Imported (per S1-N1).\n2. Build-gap outcomes for Declined: (1) if the button is hidden on Complete/Invoiced/Paid but SHOWN on Declined, mark FAILED on the Declined check and report the deviation; (2) different behaviour is a new problem - report it; (3) if it is hidden on Declined too, that matches the spec - PASS.\n\n---\nThis is the expected behaviour as per epic SV-9315 and story SV-9316 (Story 1, Add Part Button on Work Order Lines) and the Inline Add and Edit Parts on Work Order Lines specification version 16, section S1-N1, read on 9 September 2026.\nNote (build divergence, Rule 56): the current build differs from the spec on this rule; the documented expectation follows the spec (Rule 57) and the build gap is escalated for a PO/spec decision. The build-check line was removed because the expected result changed after the last build check - this case must be re-build-verified.\nAUTOMATION: READY"
+    "text": "1. The “Add Part” button is not displayed on any work order line when the work order status is Complete, Invoiced, or Paid.\n\n---\nThis is the expected behaviour as per epic SV-9315 and story SV-9316 (Story 1, Add Part Button on Work Order Lines) and the Inline Add and Edit Parts on Work Order Lines specification version 16, section S1-N1, read on 9 September 2026.\nNote (later decision, Rule 56): the specification’s S1-N1 also lists the statuses “Declined” and “Imported”, but the QA lead confirmed on 9 September 2026 that the build is authoritative here — the button is correctly shown on Declined, and “Imported” is not a status this product exposes — so the documented list is Complete, Invoiced, and Paid. The specification is to be corrected to match.\nLast checked against build v26.35.9-7f2e4fa on 9/8/2026.\n\nAUTOMATION: READY"
    }
   }
  },
@@ -261,17 +263,19 @@
    "custom_expected": {
     "blocks": [
      [
-      "1. The Edit control is not displayed on part lines when the work order status is Complete, Invoiced, Paid, Declined, or Imported (per S1-N2).",
-      "2. Build-gap outcomes for Declined: (1) if the Edit control is hidden on Complete/Invoiced/Paid but SHOWN on Declined, mark FAILED on the Declined check and report the deviation; (2) different behaviour is a new problem - report it; (3) if it is hidden on Declined too, that matches the spec - PASS."
+      "1. The Edit control is not displayed on part lines when the work order status is Complete, Invoiced, or Paid."
      ],
      [
       "---",
       "This is the expected behaviour as per epic SV-9315 and story SV-9316 (Story 1, Add Part Button on Work Order Lines) and the Inline Add and Edit Parts on Work Order Lines specification version 16, section S1-N2, read on 9 September 2026.",
-      "Note (build divergence, Rule 56): the current build differs from the spec on this rule; the documented expectation follows the spec (Rule 57) and the build gap is escalated for a PO/spec decision. The build-check line was removed because the expected result changed after the last build check - this case must be re-build-verified.",
+      "Note (later decision, Rule 56): the specification’s S1-N1 also lists the statuses “Declined” and “Imported”, but the QA lead confirmed on 9 September 2026 that the build is authoritative here — the button is correctly shown on Declined, and “Imported” is not a status this product exposes — so the documented list is Complete, Invoiced, and Paid. The specification is to be corrected to match.",
+      "Last checked against build v26.35.9-7f2e4fa on 9/8/2026."
+     ],
+     [
       "AUTOMATION: READY"
      ]
     ],
-    "text": "1. The Edit control is not displayed on part lines when the work order status is Complete, Invoiced, Paid, Declined, or Imported (per S1-N2).\n2. Build-gap outcomes for Declined: (1) if the Edit control is hidden on Complete/Invoiced/Paid but SHOWN on Declined, mark FAILED on the Declined check and report the deviation; (2) different behaviour is a new problem - report it; (3) if it is hidden on Declined too, that matches the spec - PASS.\n\n---\nThis is the expected behaviour as per epic SV-9315 and story SV-9316 (Story 1, Add Part Button on Work Order Lines) and the Inline Add and Edit Parts on Work Order Lines specification version 16, section S1-N2, read on 9 September 2026.\nNote (build divergence, Rule 56): the current build differs from the spec on this rule; the documented expectation follows the spec (Rule 57) and the build gap is escalated for a PO/spec decision. The build-check line was removed because the expected result changed after the last build check - this case must be re-build-verified.\nAUTOMATION: READY"
+    "text": "1. The Edit control is not displayed on part lines when the work order status is Complete, Invoiced, or Paid.\n\n---\nThis is the expected behaviour as per epic SV-9315 and story SV-9316 (Story 1, Add Part Button on Work Order Lines) and the Inline Add and Edit Parts on Work Order Lines specification version 16, section S1-N2, read on 9 September 2026.\nNote (later decision, Rule 56): the specification’s S1-N1 also lists the statuses “Declined” and “Imported”, but the QA lead confirmed on 9 September 2026 that the build is authoritative here — the button is correctly shown on Declined, and “Imported” is not a status this product exposes — so the documented list is Complete, Invoiced, and Paid. The specification is to be corrected to match.\nLast checked against build v26.35.9-7f2e4fa on 9/8/2026.\n\nAUTOMATION: READY"
    }
   }
  },
@@ -4751,6 +4755,92 @@
      ]
     ],
     "text": "1. A split allocation never shows the takes-negative warning from S7-R9; that warning applies only to a single-bin allocation.\n\n---\nThis is the expected behaviour as per epic SV-9315 and Story 7 (Bin Allocation on the Inline Row); the Story 7 Jira ticket is TBD and the Inline Add and Edit Parts on Work Order Lines specification version 16, section S7-E2, read on 9 September 2026.\nLast checked against build v26.35.9-7f2e4fa on 9/8/2026.\n\nAUTOMATION: READY"
+   }
+  }
+ },
+ "45034": {
+  "title": "Inline edit saves normally — no concurrent-edit detection",
+  "fields": {
+   "custom_preconds": {
+    "blocks": [
+     [
+      "1. In the top menu click “Work Orders”, then open a work order whose status is Estimate, Approved, In Progress, or Review (click its row in the list). Open its “Lines” tab. Each work order line has its own Parts section beneath it: the “Add Part” button sits in that section, and every part already on the line has an “edit” control at the right-hand end of its row — that control stays invisible until you move the mouse over the row.",
+      "2. Your user’s role can edit work order lines. To check it: open “Settings”, click “Roles & Permissions” in the sidebar, click the pencil on the role your user is on, then find the “Work order lines” section and make sure its “Create & Edit” toggle is on.",
+      "3. Your role’s work order view mode is set to “Tech view”. To check or change it: open “Settings”, click “Roles & Permissions” in the sidebar, click the pencil on the role your user is on, then in the “Work orders” section set “View mode” to “Tech view”.",
+      "4. The work order line already has at least one part listed in its Parts section (if not, add one first with “Add Part”)."
+     ]
+    ],
+    "text": "1. In the top menu click “Work Orders”, then open a work order whose status is Estimate, Approved, In Progress, or Review (click its row in the list). Open its “Lines” tab. Each work order line has its own Parts section beneath it: the “Add Part” button sits in that section, and every part already on the line has an “edit” control at the right-hand end of its row — that control stays invisible until you move the mouse over the row.\n2. Your user’s role can edit work order lines. To check it: open “Settings”, click “Roles & Permissions” in the sidebar, click the pencil on the role your user is on, then find the “Work order lines” section and make sure its “Create & Edit” toggle is on.\n3. Your role’s work order view mode is set to “Tech view”. To check or change it: open “Settings”, click “Roles & Permissions” in the sidebar, click the pencil on the role your user is on, then in the “Work orders” section set “View mode” to “Tech view”.\n4. The work order line already has at least one part listed in its Parts section (if not, add one first with “Add Part”)."
+   },
+   "custom_steps": {
+    "blocks": [
+     [
+      "1. Move the mouse over an existing part row and click its “edit” control to open the inline edit row.",
+      "2. Change a field on the row (for example, the quantity).",
+      "3. Click Save on the inline row."
+     ]
+    ],
+    "text": "1. Move the mouse over an existing part row and click its “edit” control to open the inline edit row.\n2. Change a field on the row (for example, the quantity).\n3. Click Save on the inline row."
+   },
+   "custom_expected": {
+    "blocks": [
+     [
+      "1. The change saves normally and the row returns to its read-only display showing the new value.",
+      "2. There is no “This part was changed by someone else” alert and the save is not blocked: the product has no concurrent-edit detection, so a change another user made to the same part at the same time does not stop your save."
+     ],
+     [
+      "---",
+      "This is the expected behaviour as per epic SV-9315 and story SV-9318 (Story 3, Inline Edit Part - Tech View) and the Inline Add and Edit Parts on Work Order Lines specification version 16, section S3-E1, read on 9 September 2026. S3-E1 (a save-time “changed by someone else” alert) was removed from the specification as out of scope — no concurrent-edit detection exists platform-wide — so this case verifies that no such alert appears and the save proceeds."
+     ],
+     [
+      "AUTOMATION: READY"
+     ]
+    ],
+    "text": "1. The change saves normally and the row returns to its read-only display showing the new value.\n2. There is no “This part was changed by someone else” alert and the save is not blocked: the product has no concurrent-edit detection, so a change another user made to the same part at the same time does not stop your save.\n\n---\nThis is the expected behaviour as per epic SV-9315 and story SV-9318 (Story 3, Inline Edit Part - Tech View) and the Inline Add and Edit Parts on Work Order Lines specification version 16, section S3-E1, read on 9 September 2026. S3-E1 (a save-time “changed by someone else” alert) was removed from the specification as out of scope — no concurrent-edit detection exists platform-wide — so this case verifies that no such alert appears and the save proceeds.\n\nAUTOMATION: READY"
+   }
+  }
+ },
+ "45250": {
+  "title": "Add Part is available on a Complete line (auto-uncompletes)",
+  "fields": {
+   "custom_preconds": {
+    "blocks": [
+     [
+      "1. You have a work order line whose status is Complete and that has a part on it. Reach this state with the steps below."
+     ]
+    ],
+    "text": "1. You have a work order line whose status is Complete and that has a part on it. Reach this state with the steps below."
+   },
+   "custom_steps": {
+    "blocks": [
+     [
+      "1. In the top menu, click “Work Orders”, then create a new work order (the “New Work Order” button).",
+      "2. On the work order’s “Lines” tab, click “New Line” to add a work order line.",
+      "3. In that line’s Parts section, click “+ Add Part” and add a part.",
+      "4. Pick / receive the part.",
+      "5. Set the line’s status to Complete (the line status control)."
+     ]
+    ],
+    "text": "1. In the top menu, click “Work Orders”, then create a new work order (the “New Work Order” button).\n2. On the work order’s “Lines” tab, click “New Line” to add a work order line.\n3. In that line’s Parts section, click “+ Add Part” and add a part.\n4. Pick / receive the part.\n5. Set the line’s status to Complete (the line status control)."
+   },
+   "custom_expected": {
+    "blocks": [
+     [
+      "1. On the now-Complete line, the “+ Add Part” button is still available in its Parts section.",
+      "2. Clicking “+ Add Part” lets you add a part to the line; the system uncompletes the line on your behalf rather than asking you to uncomplete it first."
+     ],
+     [
+      "NOTE FOR THE TESTER: one step here needs more than it says. A line cannot be set to Complete while a part on it is unfulfilled — the app refuses with “Line can’t be completed with unfulfilled part requests.” Approving the line moves the part to “In stock”, which is still not enough; it has to be PICKED. Do the pick first, then set the line to Complete, then check the Parts section. If you cannot pick it, mark the case Blocked and say so."
+     ],
+     [
+      "---",
+      "This is the expected behaviour as per epic SV-9315 and story SV-9316 (Story 1, Add Part Button on Work Order Lines) and the Inline Add and Edit Parts on Work Order Lines specification version 16, section S1-R9, read on 9 September 2026."
+     ],
+     [
+      "AUTOMATION: READY"
+     ]
+    ],
+    "text": "1. On the now-Complete line, the “+ Add Part” button is still available in its Parts section.\n2. Clicking “+ Add Part” lets you add a part to the line; the system uncompletes the line on your behalf rather than asking you to uncomplete it first.\n\nNOTE FOR THE TESTER: one step here needs more than it says. A line cannot be set to Complete while a part on it is unfulfilled — the app refuses with “Line can’t be completed with unfulfilled part requests.” Approving the line moves the part to “In stock”, which is still not enough; it has to be PICKED. Do the pick first, then set the line to Complete, then check the Parts section. If you cannot pick it, mark the case Blocked and say so.\n\n---\nThis is the expected behaviour as per epic SV-9315 and story SV-9316 (Story 1, Add Part Button on Work Order Lines) and the Inline Add and Edit Parts on Work Order Lines specification version 16, section S1-R9, read on 9 September 2026.\n\nAUTOMATION: READY"
    }
   }
  }

@@ -2,6 +2,33 @@
 
 **Canonical cold-resume doc.** Status derived live; do not trust remembered figures (Rule 92 / skill 15 §7).
 
+## 🆕 Update — 2026-09-09 (17:00 UTC) — QA-lead rulings applied; escalations RESOLVED
+
+The 4 held/escalated items from the FULL re-verify (same day, below) were ruled on by the QA lead and
+applied. All 4 written via the fr-view harness (`ONLY=…`), `atm=1` preserved, runnable-gate clean,
+live-audited version 16 + read 9 Sep 2026, and all in run **R418**:
+- **C44993 / C44994 (S1-N1/N2) — "Build is right".** Removed Declined & Imported from the hidden-status
+  list; the cases now assert the button/Edit control is hidden on **Complete, Invoiced, Paid** only, with
+  a Rule-56 decision note (QA lead 2026-09-09: build authoritative; button correctly shown on Declined,
+  "Imported" is not a real status). **Spec S1-N1/N2 to be corrected** (report to Sasha).
+- **C45034 (S3-E1 struck) — "logical, doesn't bite".** Reframed from "save fails with a concurrent-edit
+  alert" (a behaviour the spec removed as out of scope) to a **single-user runnable** case: the inline
+  edit **saves normally, no "changed by someone else" alert** (no concurrent-edit detection platform-wide).
+  Retitled. Build-check line dropped → needs fresh build observation.
+- **C45250 (was manually-added; conflicted with S1-R9) — fixed + re-sourced.** Its wrong expectation
+  ("+ Add Part disappears on a Complete line") was corrected to S1-R9 ("+ Add Part **is available**;
+  system auto-uncompletes the line"), and the source changed from "Manually added" to **spec-derived
+  S1-R9** (Story 1, SV-9316, v16). **This closes the S1-R9 coverage gap** — a separate new case would
+  duplicate it (Rule 28), so none was created. Retitled. Build-check dropped → needs build observation.
+- **Coverage-gap decision (#4):** S1-R9 is now covered by the corrected C45250; no new case created
+  (would duplicate). S1-N4 remains a low-priority flag only. Duplicate S4-R21 numbering + §8-table stale
+  rows = spec tidy-ups for Sasha (report-only, non-blocking).
+
+**⇒ Both suites are source-verified, source-current, runnable-shape clean, fr-view — HANDOVER-READY to the
+build-verification session.** The 4 cases above carry no build-check line and must be build-verified first.
+
+---
+
 ## 🆕 Update — 2026-09-09 (LATEST) — FULL source re-verification (corrects the 2026-09-07 delta)
 
 **The 2026-09-07 pass below was a DELTA** — only 5 of 123 cases carried the re-verify date; 113 were still
