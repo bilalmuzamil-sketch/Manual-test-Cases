@@ -33,6 +33,26 @@
 
 ## ENTRIES — newest first (id · date · tags · lesson → pointer)
 
+### L0019 · 2026-09-09 · #mistake-corrected #build-verify #ui-walk #rule-97 #self-unblock
+**Two "not on the build" blockers I declared were both WRONG — the feature was there; I just hadn't
+walked the UI hard enough. The QA lead had to hand me both.** (1) I deferred the 4 PO-pages cases as
+"surface not built" after `/purchase-orders` 404'd and the Parts sub-nav (Part Sales/Inventory/Catalog/
+Returns/Vendors) showed no PO entry — but the real route was **Parts → left sidebar SUPPLY CHAIN →
+Purchase Orders (`/parts/orders`)**, a nav group I never expanded. (2) I HELD C44604 as "can't force the
+reorder from the UI" — but parts reorder by **dragging the 6-dots drag-handle** at the left of each part
+row on the WO Lines page. **The rule I broke: Rule 97 / the UI-walk drill — never declare a blocker (or
+give up on a route) without exhausting the walk first.** What I should have done, and now will by default:
+**(a)** when a guessed URL 404s, that is data about the guess, not the feature — **enumerate EVERY
+sidebar/nav group and sub-item** (`ENUMERATE_ROWS_FN`), expand collapsed groups, before concluding
+absence; **(b)** for an "action I can't perform" (reorder, expand, assign), **look for a drag-handle
+(6-dots / `drag_indicator`), a hover-reveal control, a row menu, a context menu** — interaction
+affordances are often icon-only and not in a text scan; **(c)** grep the build's JS chunks for the
+feature name when the walk stalls; **(d)** a blocker is only real after ALL of that, and I must say which
+searches I ran (Rule 68/97). "I couldn't find it" is a fact about my search, never about the build.
+Pointers: `build/simple-flow-v2/build-verify-2026-09-09/sf_po_real.mjs` (PO route found),
+`sf_reorder.mjs` (6-dots drag). Reinforces L0001 (a "build changed / missing" claim must survive a
+harder check first).
+
 ### L0018 · 2026-09-09 · #testrail #runnable-gate #skill-18
 **`check_runnable_cases.py`'s R3/R4 anchor regexes match WHOLE WORDS, so a plural noun that is the only
 anchor in a case FAILS the gate.** The `TAB` regex is `\b(tab|panel|menu|...|toggle|...)\b` — "permission

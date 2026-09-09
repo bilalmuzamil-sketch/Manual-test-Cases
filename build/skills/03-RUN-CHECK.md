@@ -389,6 +389,20 @@ element-centre coordinate** for Quasar.
 **Only after all of that genuinely fails is it a blocker — and then it is fully characterised with
 evidence (endpoint + status + requestId), never a bare "NOT VERIFIED".**
 
+**🛑 "NOT ON THE BUILD" IS A CLAIM ABOUT YOUR SEARCH, NOT ABOUT THE FEATURE (2026-09-09, L0019).** Twice
+in one pass a feature I called "not built" was there and the QA lead had to hand it to me. **A guessed URL
+that 404s is data about the guess, never proof the feature is absent** — the SFV2 PO pages were not at
+`/purchase-orders` but at **`/parts/orders`**, reached by expanding a left-sidebar nav GROUP
+(`SUPPLY CHAIN → Purchase Orders`) I never opened. And an **"action I cannot perform" is usually an
+icon-only affordance I didn't look for**: part reorder was not a "Move" menu item but a **6-dots
+`drag_indicator` drag handle** at the left of each row (drag it up/down; a "Part order updated." toast with
+**Undo** appears). So before declaring any surface or gesture absent: **(a) enumerate EVERY sidebar/nav
+group and expand the collapsed ones** (`ENUMERATE_ROWS_FN`); **(b) hunt for interaction affordances that a
+text scan misses — a drag handle (`drag_indicator`/6-dots), a hover-reveal control, a row/context menu, a
+split-button caret**; **(c) grep the build's JS chunks for the feature name when the walk stalls;
+(d) only then, if still absent, report it AND say which searches you ran** (Rule 68/97). Never park a case
+or hold a question on "couldn't find it" until (a)–(c) are exhausted.
+
 **AND LOGGING IN IS SELF-SERVICE TOO (§8.2, Standing Rule 74).** A case that needs a SECOND / DIFFERENT
 / role-specific login is **NOT** a blocker: **log in as whatever user or role it needs** — create a
 fresh staff per role and self-login, `switch-user` impersonate, or `quick-login`. The only limit is
