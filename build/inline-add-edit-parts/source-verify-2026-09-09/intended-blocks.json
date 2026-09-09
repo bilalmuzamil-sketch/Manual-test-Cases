@@ -2000,11 +2000,11 @@
     "blocks": [
      [
       "1. With a normal (catalog) part selected, edit the cost and the sell price fields.",
-      "2. With an inventory part selected, try to edit the cost field.",
+      "2. With an inventory part selected, try to edit the cost field, then try to edit the sell price field.",
       "3. Set the part Source to “Found” via More Options, then look at the vendor, cost, core charge and margin fields."
      ]
     ],
-    "text": "1. With a normal (catalog) part selected, edit the cost and the sell price fields.\n2. With an inventory part selected, try to edit the cost field.\n3. Set the part Source to “Found” via More Options, then look at the vendor, cost, core charge and margin fields."
+    "text": "1. With a normal (catalog) part selected, edit the cost and the sell price fields.\n2. With an inventory part selected, try to edit the cost field, then try to edit the sell price field.\n3. Set the part Source to “Found” via More Options, then look at the vendor, cost, core charge and margin fields."
    },
    "custom_expected": {
     "blocks": [
@@ -4306,20 +4306,22 @@
      [
       "1. In the top menu click “Work Orders”, then open a work order whose status is Estimate, Approved, In Progress, or Review (click its row in the list). Open its “Lines” tab. Each work order line has its own Parts section beneath it: the “Add Part” button sits in that section, and every part already on the line has an “edit” control at the right-hand end of its row — that control stays invisible until you move the mouse over the row.",
       "2. Your user’s role can edit work order lines. To check it: open “Settings”, click “Roles & Permissions” in the sidebar, click the pencil on the role your user is on, then find the “Work order lines” section and make sure its “Create & Edit” toggle is on.",
-      "3. On an open inline row (via “Add Part” or “Edit”) you have selected a catalog part that is held in at least one bin (a part with no bins is treated as not stocked and this story does not apply).",
-      "4. The bin picker is open on an “Add Part” row — click the “Pulled from” chip beneath the row."
+      "3. You can test with three set-ups: a Tech View role; a Full View role WITHOUT the “See Financial Data” permission; and a Full View role WITH it. View mode is set in Settings → Roles & Permissions → the role → the “Work orders” section (“View mode” = Tech View or Full View); the “See Financial Data” permission is toggled on that same role in Settings → Roles & Permissions.",
+      "4. On an open inline row (via “Add Part” or “Edit”) you have selected a catalog part that is held in at least one bin (a part with no bins is treated as not stocked and this story does not apply).",
+      "5. The bin picker is open on an “Add Part” row — click the “Pulled from” chip beneath the row."
      ]
     ],
-    "text": "1. In the top menu click “Work Orders”, then open a work order whose status is Estimate, Approved, In Progress, or Review (click its row in the list). Open its “Lines” tab. Each work order line has its own Parts section beneath it: the “Add Part” button sits in that section, and every part already on the line has an “edit” control at the right-hand end of its row — that control stays invisible until you move the mouse over the row.\n2. Your user’s role can edit work order lines. To check it: open “Settings”, click “Roles & Permissions” in the sidebar, click the pencil on the role your user is on, then find the “Work order lines” section and make sure its “Create & Edit” toggle is on.\n3. On an open inline row (via “Add Part” or “Edit”) you have selected a catalog part that is held in at least one bin (a part with no bins is treated as not stocked and this story does not apply).\n4. The bin picker is open on an “Add Part” row — click the “Pulled from” chip beneath the row."
+    "text": "1. In the top menu click “Work Orders”, then open a work order whose status is Estimate, Approved, In Progress, or Review (click its row in the list). Open its “Lines” tab. Each work order line has its own Parts section beneath it: the “Add Part” button sits in that section, and every part already on the line has an “edit” control at the right-hand end of its row — that control stays invisible until you move the mouse over the row.\n2. Your user’s role can edit work order lines. To check it: open “Settings”, click “Roles & Permissions” in the sidebar, click the pencil on the role your user is on, then find the “Work order lines” section and make sure its “Create & Edit” toggle is on.\n3. You can test with three set-ups: a Tech View role; a Full View role WITHOUT the “See Financial Data” permission; and a Full View role WITH it. View mode is set in Settings → Roles & Permissions → the role → the “Work orders” section (“View mode” = Tech View or Full View); the “See Financial Data” permission is toggled on that same role in Settings → Roles & Permissions.\n4. On an open inline row (via “Add Part” or “Edit”) you have selected a catalog part that is held in at least one bin (a part with no bins is treated as not stocked and this story does not apply).\n5. The bin picker is open on an “Add Part” row — click the “Pulled from” chip beneath the row."
    },
    "custom_steps": {
     "blocks": [
      [
-      "1. As a Tech View user, select “Split across bins…”.",
-      "2. As a Full View user on the add row, select “Split across bins…”."
+      "1. As a Tech View user, select “Split across bins…” and note which modal opens.",
+      "2. As a Full View user WITHOUT the “See Financial Data” permission, on the add row select “Split across bins…” and note which modal opens.",
+      "3. As a Full View user WITH the “See Financial Data” permission, on the add row select “Split across bins…” and note which modal opens."
      ]
     ],
-    "text": "1. As a Tech View user, select “Split across bins…”.\n2. As a Full View user on the add row, select “Split across bins…”."
+    "text": "1. As a Tech View user, select “Split across bins…” and note which modal opens.\n2. As a Full View user WITHOUT the “See Financial Data” permission, on the add row select “Split across bins…” and note which modal opens.\n3. As a Full View user WITH the “See Financial Data” permission, on the add row select “Split across bins…” and note which modal opens."
    },
    "custom_expected": {
     "blocks": [

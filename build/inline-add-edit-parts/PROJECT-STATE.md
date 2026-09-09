@@ -37,6 +37,15 @@ reachability caveat); **C45007** title made conditional and its **steps now exer
 3/3, titles persisted, live-verified. A read-only title-vs-Expected audit of all 163 cases in both suites =
 **0 genuine contradictions**. Rule 41 hardened in skill 02 §5b clause 4.
 
+**2026-09-09 (17:29) — Steps-vs-Expected COVERAGE audit (the 5th dimension).** After the title/steps
+lessons, ran a read-only coverage audit across all 163 cases (do the steps make every Expected outcome
+observable?). Found **2 real gaps**, both fixed: **C45039** step 2 only edited cost → added the sell-price
+edit so "inventory sell price still overwritable" is actually exercised; **C45232** steps covered only 2 of
+3 modal branches → steps now run Tech View, Full-View-without-See-Financial-Data, and
+Full-View-with-See-Financial-Data, and preconds give the permission route. Both fr-view, runnable 2/2,
+titles preserved. **⇒ All five dimensions (title · preconds · steps · expected · sources) now independently
+audited across both suites — handover-ready.**
+
 ---
 
 ## 🆕 Update — 2026-09-09 (LATEST) — FULL source re-verification (corrects the 2026-09-07 delta)
