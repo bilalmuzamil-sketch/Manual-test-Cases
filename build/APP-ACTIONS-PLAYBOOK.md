@@ -3469,6 +3469,25 @@ no attachment-upload tool. So on an MCP-only session: use the ONE-combined-image
 if it still won't render, ASK the user for an Atlassian API token or fresh atlassian.net cookies (keep in
 `/tmp`, never commit) and switch to the attachment route.
 
+**✅ THE ATTACHMENT ROUTE, PROVEN AGAIN 2026-09-09 (SV-9848) — this is the fix when external media is
+flaky.** External media stayed intermittent even as one combined image, so we did the real-attachment
+route end to end: **(1)** browser login via `build/atlassian-login/{bridge,login}.mjs` — note this
+account has **no email-OTP MFA**; after the password it shows an Atlassian **"Security review"**
+interstitial with **"Continue without two-step verification"**. The committed `login.mjs` does not click
+it (it only handles the 6-box OTP), so it captured no session and errored on a cross-origin `/myself`
+fetch. A one-off `/tmp/atlassian/login2.mjs` that, after the password, loops clicking any of
+`Continue without two-step verification` / `Remind me later` / `Skip for now` / `Not now` until the URL
+returns to `shopview.atlassian.net` captured `cloud.session.token` (20 cookies) — **worth folding into
+`login.mjs`.** **(2)** `curl -F file=@… POST /rest/api/3/issue/{KEY}/attachments` (headers
+`X-Atlassian-Token: no-check` + `Origin`/`Referer`), each returned `id`/`size` verified byte-equal to the
+source. **(3)** `PUT /rest/api/2/issue/{KEY}` (REST **v2**, wiki-markup string) with the description body
+embedding each image by filename: `!ex1-….png|width=900!`. **(4)** verified inline for real:
+`GET /rest/api/3/issue/{KEY}?expand=renderedFields` → 4 `mediaSingle`/`media` ADF nodes **and** 4
+`<img src=".../rest/api/3/attachment/content/<id>">` in the rendered HTML. Jira now HOSTS the images —
+no external fetch, always renders. Wiki-markup gotcha: `*bold*` at line-start is read as a bullet, so put
+the `*Expected:*` / `*Actual:*` labels **inside a `* ` bullet** (`* *Expected:* …`) rather than bare at
+column 0.
+
 ### V.8 The exhibit set that closes the arguments
 
 One exhibit per challenge a reviewer could actually make, each captioned with the work-order number and

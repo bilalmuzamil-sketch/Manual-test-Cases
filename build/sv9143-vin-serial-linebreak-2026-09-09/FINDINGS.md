@@ -41,3 +41,6 @@ Checked at an iPhone-sized viewport (390×844, touch).
 
 ## On-screen exhibit corrected
 The first on-screen crop was poor; replaced with `ev/ex3-actual-onscreen-v2.png` (clean crop of the real app view) and `ev/ex4-mobile-web.png`.
+
+## Inline images — resolved via real Jira attachments (2026-09-09)
+Jira's external-media fetch (raw.githubusercontent) rendered intermittently ("Preview unavailable" on some images even with width/height/localId set, and even as a single combined image). Fixed by uploading the 4 annotated PNGs as **real Jira attachments** (ids 60475–60478, sizes byte-verified) and setting the description via **REST v2 wiki markup** (`!file.png|width=900!`). Verified: 4 mediaSingle/media ADF nodes + 4 `<img src=.../attachment/content/...>` in rendered HTML — Jira-hosted, renders reliably. Method needed a browser login (no API token available); details + the login2 interstitial fix folded into APP-ACTIONS-PLAYBOOK.md §V.7.
