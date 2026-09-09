@@ -2,6 +2,25 @@
 
 **Canonical cold-resume doc.** Status derived live; do not trust remembered figures (Rule 92 / skill 15 §7).
 
+## 🆕 Update — 2026-09-09 (evening) — FULL BUILD VERIFICATION on sv9315 `v26.36.0-f43b2fd`
+- **The build moved `v26.35.9-7f2e4fa` → `v26.36.0-f43b2fd`.** A full (Rule 101) build-verification was run:
+  every distinct surface the 123 our-cases depend on was re-observed LIVE on the new build.
+- **All surfaces confirmed intact on v26.36.0:** inline Add-Part row (`Add Part`/`Part number`/`Description`/
+  `Qty`/`Cost`/`Sell price`/`More options`/`Save`), `New Part Request` modal (title + fields), part row
+  `edit` + `drag_indicator` reorder, discard dialog (`Discard this part?`/`Keep Editing`/`Discard Part`),
+  WO header menu, line/part table headers. **One drift:** the New Part Request modal buttons changed to
+  `Save part` / `close` / `AI ShopCoach Parts Guide` (from `Cancel Order`/`Save & Close`) — **0 of 167 cases
+  quote the old buttons, so no case impact**; recorded in `OBSERVED-UI-LABELS-sv9315.md`.
+- **Gates green (v26.36.0):** runnable-shape **123/123 RUNNABLE**; precondition-label gate **clean for all
+  123 ours** (the 2 flags are Vladimir's foreign `ZZAUTOTEST` cases C53474/C53475, hands-off, Rule 38).
+- **Rule 102 (Expected = build glossary):** the Expected fields already use the build's real terms; spot-
+  confirmed live (discard dialog wording matches exactly). The 25 Expected strings outside the nav glossary
+  are validation/dialog/status *outputs* the tester observes — documented (Rule 57), build-worded.
+- **Re-stamp to v26.36.0-f43b2fd on 9/9/2026:** all 123 ours (incl. 9 Automated: C45005/45026/45223/45224/
+  45227/45237/45252/45253/45254 — Rule-65 notice `build/FOR-VLAD-inline-woprint-restamp-2026-09-09.md`).
+  The 5 changed cases C44993/44994/45007/45034/45250 get the build-check line added (were NO-STAMP by
+  design). Evidence + probes: `build/inline-add-edit-parts/build-verify-2026-09-09-full/`.
+
 ## 🆕 Update — 2026-09-09 (17:00 UTC) — QA-lead rulings applied; escalations RESOLVED
 
 The 4 held/escalated items from the FULL re-verify (same day, below) were ruled on by the QA lead and
