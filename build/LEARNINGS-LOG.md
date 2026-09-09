@@ -41,8 +41,11 @@ requirement cases. This HARDENS L0015 and REMOVES the "disclosed partial" escape
 allowed: a delta is now forbidden outright, not merely something to footnote. Confirmed by a live audit
 that caught two more delta passes I did on 2026-09-07 — **6617 Printer Friendly WO** (42 of 44 still stamped
 25 Aug, only 2 at 7 Sep) and **6597 Inline Add & Edit Parts** (113 of 123 still at 31 Aug, only 5 at 7 Sep),
-both now being brought to a full re-stamp. **Graduated-to:** `build/skills/02-SOURCE-CHECK.md` §5b clause 2
-(rewritten: "ALWAYS FULL — NEVER A DELTA"). Related: L0015 (the delta that first bit us, SFV2), L0020.
+both now being brought to a full re-stamp. **Graduated-to:** **Standing Rule 101** ("there is no such thing
+as a DELTA verification — every verification is FULL, on every case", `build/rules/RULES-61-ONWARD.md`) +
+§1 of CLAUDE.md + `build/skills/02-SOURCE-CHECK.md` §5b clause 2 (rewritten: "ALWAYS FULL — NEVER A DELTA") +
+`build/skills/11-BUILD-VERIFICATION.md`. Same directive the QA lead also gave about the 6617/6597
+build-verify delta; both are the one rule. Related: L0015 (the delta that first bit us, SFV2).
 
 ### L0020 · 2026-09-09 · #rule #testrail #test-runs #qa-lead
 **STANDING RULE (QA lead, 2026-09-09): authoring a new test case is NOT done until it is a member of that

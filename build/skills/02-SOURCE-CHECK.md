@@ -266,7 +266,7 @@ re-derivation to surface it, along with the same gap on three more reports. **A 
 verdict table makes that class of slip structurally impossible: an un-verdicted row is a visible
 hole.**
 
-### 5b · 🛑 THE PROVENANCE-CURRENCY GATE — a DELTA is not a full re-verification (earned 2026-09-09, L0015)
+### 5b · 🛑 THE PROVENANCE-CURRENCY GATE — a DELTA is not a full re-verification (earned 2026-09-09, L0015) · **now STANDING RULE 101** (`build/rules/RULES-61-ONWARD.md`): there is no delta, every verification is full, on every case — applies to build-verify and VIU too, not only source-verify
 
 **The provenance line is the SYSTEM OF RECORD for "when was this case last source-verified, against which
 spec version".** A later session — a build-verify session, a reviewer, you next week — reads those stamps
