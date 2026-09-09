@@ -3447,4 +3447,4 @@ Index: CLAUDE.md (rule index table). Other rule files: build/rules/RULES-01-20.m
     VERIFIED THIS BUILD** (Rule 12 wording) — you never let a partial pass be recorded, stamped, or reported
     as "the suite is build-verified / source-verified." A suite is verified only when **every** case in it
     was verified in **this** pass. Operator form and the delta-trap examples: `build/skills/02-SOURCE-CHECK.md`,
-    `build/skills/03-RUN-CHECK.md`, `build/skills/11-BUILD-VERIFICATION.md`; learning L0015 and L0020.
+    `build/skills/03-RUN-CHECK.md`, `build/skills/11-BUILD-VERIFICATION.md`; learnings L0015 and L0021.
