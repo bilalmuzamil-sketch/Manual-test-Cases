@@ -210,6 +210,14 @@ truncation failure of 2026-08-21 in its quiet form: the rule exists but no sessi
 no gaps or duplicates (complete 1..100) · **both `comm` lines empty** · archive sha256
 `2d715d75530c41fecbfed34120f5891b8fae02959c2d2c7d1d9d0a2e4718ba9c`, equal to the value recorded above.
 
+**RULE 101 ADDED 2026-09-09** (QA lead order: *"there is nothing like DELTA you are always supposed to make
+the FULL verification"*) — **THERE IS NO SUCH THING AS A DELTA VERIFICATION; EVERY VERIFICATION IS FULL, ON
+EVERY CASE.** Appended to `RULES-61-ONWARD.md` (the range-free file is NOT renamed — it now holds 61–101).
+CLAUDE.md updated in the same commit: §1 critical-core bullet, §2 index row 101, and the three "100"
+count/range references bumped to 101. The rule graduates learning **L0015** (delta source-verify) and the
+2026-09-08 6617/6597 build-verify delta into standing law. Expected inventory check now: `rule bodies: 101
+highest: 101`, complete 1..101.
+
 **⚠️ EVERY COUNT AND RANGE WRITTEN IN THIS FILE — including `N = 100` and "rules 61-100" above — GOES
 STALE THE MOMENT A RULE IS ADDED.** (The *filename* no longer does; see the retirement block above.)
 They are a dated record of the last run, **not the check**. The

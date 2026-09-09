@@ -11,6 +11,19 @@
 
 ---
 
+## 🔒 RULE 101 — THERE IS NO DELTA BUILD-VERIFICATION; WALK EVERY CASE ON THE CURRENT BUILD
+**Every build-verification walks the route of EVERY case in the suite, live, on the build as it stands this
+pass — never only the cases a spec-diff touched, never only the shared/distinct labels, and never a
+build-line re-stamp standing in for a re-walk.** "The routes were walked on the previous build and the
+sources are unchanged, so I carried them over" is the forbidden delta (the 6617/6597 2026-09-08 pass — it
+re-observed shared labels + re-stamped v26.35.9 but did not re-walk each case's route, which had last been
+walked on v26.35.6; L0020). Rules 77/80 still decide *whether* to run and you still tell the last-done date
+and ask — but when you run, it is full. If you cannot finish the suite, the unreached cases are **NOT
+VERIFIED THIS BUILD** (Rule 12) and the suite is **not** reported as build-verified. Full text:
+`build/rules/RULES-61-ONWARD.md` rule 101.
+
+---
+
 ## ⛔ SCOPE GATE — YOU HAVE NO PROJECT AND NO BACKLOG UNTIL ONE IS ASSIGNED
 
 **Standing Rule 92. Read this before anything else in this file.**
