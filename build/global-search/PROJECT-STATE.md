@@ -1,7 +1,34 @@
 # Global Search — PROJECT STATE (canonical cold-resume doc)
 - **TestRail parent folder (group):** group_id **6720**, suite 1 — cases live in the sub-sections inside it, not directly in the folder. Link: https://shopview.testrail.io/index.php?/suites/view/1&group_by=cases:section_id&group_order=asc&display=compact&display_deleted_cases=0&group_id=6720 (recorded 2026-08-25)
 
-## §0-SOURCE-VERIFY-2026-09-09 (LATEST) — re-verified against spec v1.5 (was v1.4)
+## §0b-FIVE-DIMENSION-REVERIFY-2026-09-09 (LATEST) — full authenticity gate; ALL 5 dimensions clean
+
+**Re-ran the five-dimension authenticity gate (L0026 / skill 02 §5c) over all 119 cases** after the morning
+v1.5 pass — because that pass predated the title/steps-coverage lessons. It caught real misses the morning
+pass did not:
+- **Expected (3 spec-wrong cases):** C44864, C44865, C45128 asserted quick-create buttons the spec REMOVED
+  in v1.3 (v1.5 §5.2 reads "Nothing else"; confirmed live from the spec). Fixed: C44864 = no-results message
+  only; C44865 repurposed to the scoped-tab no-results variant; C45128 = clear-all returns to the
+  helper-line-only first-time state. Titles updated; fr-view.
+- **Steps-cover-Expected (was systematically weak):** a coverage audit found **41** cases whose steps did not
+  make every Expected outcome observable (many used a placeholder "perform the action described" step). All
+  re-authored (seed the exact data, type the query, exercise each branch, click/open the row, reopen search,
+  set the phone viewport). Non-UI-observable parts (C44860 retention, C44896 framework, C44897 backend
+  endpoint, C45140/C45148/C45160) correctly handed to a developer via "Reference only" steps — never
+  fabricated. Validated by RE-AUDIT to convergence: **41 → 3 → 1 → 0** coverage gaps.
+- **Titles:** full title-vs-Expected audit = **0 contradictions** (twice).
+- **Runnable shape:** driven to **119/119** (fixed C44897 + C45128 entry points).
+- **Sources:** **119/119** carry v1.5 + read 9 Sep (live-audited).
+- **Mechanical:** clean (the only flags are the "Open" verb in C44804/44805/44810/44811 titles — false positives).
+
+**⇒ Global Search five-dimension status: Title ✅ · Preconditions ✅ · Steps ✅ (0 coverage gaps) · Expected
+✅ · Sources ✅ — SOURCE-VERIFY COMPLETE.** No Automated cases (all atm=1, no Vlad notice); no cases
+added/removed (run R415 membership unchanged). Still **source-verify only — no QA build exists** (Rule 85),
+so nothing is build-observed. Reviewer prompts + tool: `build/testing-tools/audit_case_authenticity.py`.
+
+---
+
+## §0-SOURCE-VERIFY-2026-09-09 — re-verified against spec v1.5 (was v1.4)
 
 **Trigger:** QA lead asked (2026-09-09, unattended) to source-verify Global Search again. Pulled every
 source live first (Rule 81). Full records: `source-verify-2026-09-09/{SOURCE-CURRENCY-2026-09-09.md,
