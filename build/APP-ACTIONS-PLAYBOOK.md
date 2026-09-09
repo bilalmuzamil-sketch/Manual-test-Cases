@@ -1080,6 +1080,17 @@ with `sv_sso_session` and `cf_clearance` **byte-identical** to the set that was 
 - **⚠️ TestRail is the ONLY real/production system — NEVER create/update/delete cases, runs, or
   results without EXPLICIT user permission (Standing Rule 6).** Log ONLY Passed cases to a run; keep
   Failed/Retest/Blocked local.
+- **🛠️ `fr-view` WRITE HARNESS (`hs_write.mjs`) — CLONE + RE-RUN CHECKLIST (L0023, 2026-09-09).** When
+  you copy this harness into a new suite dir (sed-clone from an existing copy), three traps bite:
+  **(1)** grep its hard-coded constants first — the Automated whitelist must read
+  `const AUTOMATED_OK = new Set((process.env.AUTOMATED_OK||'').split(',').map(x=>x.trim()).filter(Boolean));`
+  (a cloned `new Set([])` silently ignores the env and skips every `custom_atmstatus=3` case, even
+  QA-lead-approved ones). **(2)** a Node process ALREADY RUNNING keeps its old code in memory — fixing
+  the file on disk does NOT fix a launched process; re-run the affected cases with the fixed file.
+  **(3)** the harness's `done` set reads BOTH `REPAIRED-hs.jsonl` and `FAILED-hs.jsonl` and treats a
+  `{skipped:true}` line as done, so a plain re-run skips them again — **delete the skip lines from
+  `FAILED-hs.jsonl` first**, then run `ONLY=<cids> AUTOMATED_OK=<cids> node hs_write.mjs`. Always
+  confirm with an independent live `get_case` audit (needle in `custom_expected`), never from the log.
 - **Project 1 / single suite 1 "Master"**; API v2, Basic auth. Helper `testrail-api.mjs` reads creds
   from `/tmp/testrail/creds.json` (email + password-OR-key + host) — **never hard-code creds.** Calls
   hit `{host}/index.php?/api/v2/{path}`.
