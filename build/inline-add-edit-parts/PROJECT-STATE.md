@@ -7,10 +7,12 @@
 The 4 held/escalated items from the FULL re-verify (same day, below) were ruled on by the QA lead and
 applied. All 4 written via the fr-view harness (`ONLY=…`), `atm=1` preserved, runnable-gate clean,
 live-audited version 16 + read 9 Sep 2026, and all in run **R418**:
-- **C44993 / C44994 (S1-N1/N2) — "Build is right".** Removed Declined & Imported from the hidden-status
-  list; the cases now assert the button/Edit control is hidden on **Complete, Invoiced, Paid** only, with
-  a Rule-56 decision note (QA lead 2026-09-09: build authoritative; button correctly shown on Declined,
-  "Imported" is not a real status). **Spec S1-N1/N2 to be corrected** (report to Sasha).
+- **C44993 / C44994 (S1-N1/N2) — SPEC IS AUTHORITATIVE.** (The QA lead first said "build is right", then
+  corrected it: for these the specs/design sources are authoritative — sources are ALWAYS the authority,
+  Rule 57.) The cases keep the documented expectation — button/Edit control hidden on **Complete,
+  Invoiced, Paid, Declined, and Imported** (per S1-N1/N2) — and the build gap (button currently shown on
+  Declined; "Imported" may be unreachable) is handled by **three-outcome tester notes** (Rule 62b), not by
+  narrowing to match the build. Rule 57 build-divergence note added; no build-check line (needs build-verify).
 - **C45034 (S3-E1 struck) — "logical, doesn't bite".** Reframed from "save fails with a concurrent-edit
   alert" (a behaviour the spec removed as out of scope) to a **single-user runnable** case: the inline
   edit **saves normally, no "changed by someone else" alert** (no concurrent-edit detection platform-wide).
