@@ -1,492 +1,204 @@
 {
- "44549": {
-  "title": "Settings page shows the four Require settings under Workflow, Line, Parts groups",
+ "44561": {
+  "title": "An approved line completes whatever the state of its parts",
   "fields": {
    "custom_preconds": {
     "blocks": [
      [
-      "1. Sign in as an Owner or Admin (top-right shows your name and the shop).",
-      "2. Open the work-order settings page: in the left sidebar under SETTINGS click \"Settings\", then click the \"Work Orders\" tab at the top of the page (the page with the WORKFLOW, LINE REQUIREMENTS and PARTS toggle groups and a \"Save Settings\" button)."
+      "1. Sign in as an Owner or Admin (completion permission).",
+      "2. In Settings -> the \"Work Orders\" tab (left sidebar \"Settings\", then the \"Work Orders\" tab), set Require Review Before Completion OFF and Require Tech Story / Mileage / Engine Hours OFF; click \"Save Settings\".",
+      "3. Open an Approved work order with an Approved line carrying three parts in three open states, via top menu \"Work Orders\" -> the \"Work Orders\" tab -> open a work order -> its \"Lines\" tab: one part never ordered (Require Ordering Parts on, no Order clicked), one ordered but not received (Order clicked, Receive not), and one in stock but not picked (an \"In stock\" part with Pick not clicked). Each part shows its status badge on its row."
      ]
     ],
-    "text": "1. Sign in as an Owner or Admin (top-right shows your name and the shop).\n2. Open the work-order settings page: in the left sidebar under SETTINGS click \"Settings\", then click the \"Work Orders\" tab at the top of the page (the page with the WORKFLOW, LINE REQUIREMENTS and PARTS toggle groups and a \"Save Settings\" button)."
+    "text": "1. Sign in as an Owner or Admin (completion permission).\n2. In Settings -> the \"Work Orders\" tab (left sidebar \"Settings\", then the \"Work Orders\" tab), set Require Review Before Completion OFF and Require Tech Story / Mileage / Engine Hours OFF; click \"Save Settings\".\n3. Open an Approved work order with an Approved line carrying three parts in three open states, via top menu \"Work Orders\" -> the \"Work Orders\" tab -> open a work order -> its \"Lines\" tab: one part never ordered (Require Ordering Parts on, no Order clicked), one ordered but not received (Order clicked, Receive not), and one in stock but not picked (an \"In stock\" part with Pick not clicked). Each part shows its status badge on its row."
    },
    "custom_steps": {
     "blocks": [
      [
-      "1. Open Settings -> the \"Work Orders\" tab (left sidebar \"Settings\", then the \"Work Orders\" tab).",
-      "2. Read the setting labels and how the page is grouped."
+      "1. On an approved line with an unordered part (ordering required), press \"Complete\".",
+      "2. On an approved line with an unpicked inventory part (picking required), press \"Complete\".",
+      "3. On an approved line with an ordered-but-unreceived part (receiving required), press \"Complete\"."
      ]
     ],
-    "text": "1. Open Settings -> the \"Work Orders\" tab (left sidebar \"Settings\", then the \"Work Orders\" tab).\n2. Read the setting labels and how the page is grouped."
+    "text": "1. On an approved line with an unordered part (ordering required), press \"Complete\".\n2. On an approved line with an unpicked inventory part (picking required), press \"Complete\".\n3. On an approved line with an ordered-but-unreceived part (receiving required), press \"Complete\"."
    },
    "custom_expected": {
     "blocks": [
      [
-      "1. The page shows four toggles: \"Require ordering parts\", \"Require picking inventory parts\", \"Require receiving parts before completion\", and \"Require approval for new lines\".",
-      "2. The page is grouped into \"Workflow\", \"Line requirements\" and \"Parts\", separated by dividers.",
-      "3. Every label reads in the \"Require...\" form, so turning one on always means more work."
+      "All three parts still show their original states -- none moved to Received or Picked"
      ],
      [
       "---",
-      "This is the expected behaviour as per epic SV-8683 and story SV-9247 (Story 1, Work Order settings page) and the Simple Flow V2 specification (Confluence page 771391574, revised 8 September 2026), read on 9 September 2026.",
+      "This is the expected behaviour as per epic SV-8683 and story SV-9251 (Story 5, Parts no longer block completing a line) and the Simple Flow V2 specification (Confluence page 771391574, revised 8 September 2026), read on 9 September 2026.",
       "Last checked against build v26.35.9-5700a76 on 9/9/2026.",
       "AUTOMATION: READY"
      ]
     ],
-    "text": "1. The page shows four toggles: \"Require ordering parts\", \"Require picking inventory parts\", \"Require receiving parts before completion\", and \"Require approval for new lines\".\n2. The page is grouped into \"Workflow\", \"Line requirements\" and \"Parts\", separated by dividers.\n3. Every label reads in the \"Require...\" form, so turning one on always means more work.\n\n---\nThis is the expected behaviour as per epic SV-8683 and story SV-9247 (Story 1, Work Order settings page) and the Simple Flow V2 specification (Confluence page 771391574, revised 8 September 2026), read on 9 September 2026.\nLast checked against build v26.35.9-5700a76 on 9/9/2026.\nAUTOMATION: READY"
+    "text": "All three parts still show their original states -- none moved to Received or Picked\n\n---\nThis is the expected behaviour as per epic SV-8683 and story SV-9251 (Story 5, Parts no longer block completing a line) and the Simple Flow V2 specification (Confluence page 771391574, revised 8 September 2026), read on 9 September 2026.\nLast checked against build v26.35.9-5700a76 on 9/9/2026.\nAUTOMATION: READY"
    }
   }
  },
- "44550": {
-  "title": "Auto-pick setting renamed to 'Require picking inventory parts' (inversion)",
+ "44562": {
+  "title": "Other line requirements still apply when their setting is on",
   "fields": {
    "custom_preconds": {
     "blocks": [
      [
-      "1. Sign in as an Owner or Admin.",
-      "2. Open the work-order settings page: in the left sidebar under SETTINGS click \"Settings\", then click the \"Work Orders\" tab at the top of the page (the page with the WORKFLOW, LINE REQUIREMENTS and PARTS toggle groups and a \"Save Settings\" button).",
-      "3. Note the shop's current picking behaviour (whether inventory/found parts must be Picked before a line can complete)."
+      "1. Sign in as an Owner or Admin (completion permission).",
+      "2. In Settings -> the \"Work Orders\" tab (left sidebar \"Settings\", then the \"Work Orders\" tab) turn ON the relevant LINE REQUIREMENTS (Require Tech Story / Require Mileage / Require Engine Hours) and Save.",
+      "3. Open an Approved line that is missing a required tech story / mileage / engine hours, or carries an unresolved core, via top menu \"Work Orders\" -> the \"Work Orders\" tab -> open a work order -> its \"Lines\" tab."
      ]
     ],
-    "text": "1. Sign in as an Owner or Admin.\n2. Open the work-order settings page: in the left sidebar under SETTINGS click \"Settings\", then click the \"Work Orders\" tab at the top of the page (the page with the WORKFLOW, LINE REQUIREMENTS and PARTS toggle groups and a \"Save Settings\" button).\n3. Note the shop's current picking behaviour (whether inventory/found parts must be Picked before a line can complete)."
+    "text": "1. Sign in as an Owner or Admin (completion permission).\n2. In Settings -> the \"Work Orders\" tab (left sidebar \"Settings\", then the \"Work Orders\" tab) turn ON the relevant LINE REQUIREMENTS (Require Tech Story / Require Mileage / Require Engine Hours) and Save.\n3. Open an Approved line that is missing a required tech story / mileage / engine hours, or carries an unresolved core, via top menu \"Work Orders\" -> the \"Work Orders\" tab -> open a work order -> its \"Lines\" tab."
    },
    "custom_steps": {
     "blocks": [
      [
-      "1. Open Settings -> the \"Work Orders\" tab.",
-      "2. Find the picking setting and read its label.",
-      "3. Confirm the shop's picking behaviour is unchanged from before the rename."
+      "1. Try to complete a line that is missing a required tech story.",
+      "2. Try to complete a line with an unresolved core where receiving is not required."
      ]
     ],
-    "text": "1. Open Settings -> the \"Work Orders\" tab.\n2. Find the picking setting and read its label.\n3. Confirm the shop's picking behaviour is unchanged from before the rename."
+    "text": "1. Try to complete a line that is missing a required tech story.\n2. Try to complete a line with an unresolved core where receiving is not required."
    },
    "custom_expected": {
     "blocks": [
      [
-      "1. The setting reads \"Require picking inventory parts\" (the old \"Automatically pick inventory parts\" label is gone).",
-      "2. The new wording is the opposite of the stored value: auto-pick off means picking required. The rename is a deliberate inversion, not just a text change.",
-      "3. The shop keeps exactly the picking behaviour it had before the rename."
+      "1. The other line-level requirements stay: tech story, mileage, engine hours (each only when its setting is on) and core resolution.",
+      "2. Where receiving is not required, an unresolved core is asked before the line completes (such a part may never pass through a receive and the invoice must still be right).",
+      "3. Satisfying the last outstanding requirement makes a line completable \u2014 it does not complete it by itself."
      ],
      [
       "---",
-      "This is the expected behaviour as per epic SV-8683 and story SV-9247 (Story 1, Work Order settings page) and the Simple Flow V2 specification (Confluence page 771391574, revised 8 September 2026), read on 9 September 2026.",
+      "This is the expected behaviour as per epic SV-8683 and story SV-9251 (Story 5, Parts no longer block completing a line) and the Simple Flow V2 specification (Confluence page 771391574, revised 8 September 2026), read on 9 September 2026.",
       "Last checked against build v26.35.9-5700a76 on 9/9/2026.",
       "AUTOMATION: READY"
      ]
     ],
-    "text": "1. The setting reads \"Require picking inventory parts\" (the old \"Automatically pick inventory parts\" label is gone).\n2. The new wording is the opposite of the stored value: auto-pick off means picking required. The rename is a deliberate inversion, not just a text change.\n3. The shop keeps exactly the picking behaviour it had before the rename.\n\n---\nThis is the expected behaviour as per epic SV-8683 and story SV-9247 (Story 1, Work Order settings page) and the Simple Flow V2 specification (Confluence page 771391574, revised 8 September 2026), read on 9 September 2026.\nLast checked against build v26.35.9-5700a76 on 9/9/2026.\nAUTOMATION: READY"
+    "text": "1. The other line-level requirements stay: tech story, mileage, engine hours (each only when its setting is on) and core resolution.\n2. Where receiving is not required, an unresolved core is asked before the line completes (such a part may never pass through a receive and the invoice must still be right).\n3. Satisfying the last outstanding requirement makes a line completable \u2014 it does not complete it by itself.\n\n---\nThis is the expected behaviour as per epic SV-8683 and story SV-9251 (Story 5, Parts no longer block completing a line) and the Simple Flow V2 specification (Confluence page 771391574, revised 8 September 2026), read on 9 September 2026.\nLast checked against build v26.35.9-5700a76 on 9/9/2026.\nAUTOMATION: READY"
    }
   }
  },
- "44551": {
-  "title": "'Require ordering parts' is a new setting; on by default reproduces today",
+ "44563": {
+  "title": "A line reaches Complete only through the defined paths",
   "fields": {
    "custom_preconds": {
     "blocks": [
      [
-      "1. Sign in as an Owner or Admin.",
-      "2. Open the work-order settings page: in the left sidebar under SETTINGS click \"Settings\", then click the \"Work Orders\" tab at the top of the page (the page with the WORKFLOW, LINE REQUIREMENTS and PARTS toggle groups and a \"Save Settings\" button).",
-      "3. Have one open (Approved) work order with a part on a line: top menu \"Work Orders\" -> the \"Work Orders\" tab -> open a work order -> the \"Lines\" tab -> a line that carries a part (use \"+ Add Part\" on a line to add one if none is present)."
+      "1. Sign in as an Owner or Admin (completion permission).",
+      "2. Have a completable Approved line, via top menu \"Work Orders\" -> the \"Work Orders\" tab -> open a work order -> its \"Lines\" tab. The paths to try are: the line's own \"Complete\" button; the bulk action bar \"Complete line\" after ticking lines; \"Create invoice\" in the work order's header three-dot (more_vert) menu; and \"Clock out and complete\" in the clock-out modal (press \"Start\" then \"Stop\" on a line)."
      ]
     ],
-    "text": "1. Sign in as an Owner or Admin.\n2. Open the work-order settings page: in the left sidebar under SETTINGS click \"Settings\", then click the \"Work Orders\" tab at the top of the page (the page with the WORKFLOW, LINE REQUIREMENTS and PARTS toggle groups and a \"Save Settings\" button).\n3. Have one open (Approved) work order with a part on a line: top menu \"Work Orders\" -> the \"Work Orders\" tab -> open a work order -> the \"Lines\" tab -> a line that carries a part (use \"+ Add Part\" on a line to add one if none is present)."
+    "text": "1. Sign in as an Owner or Admin (completion permission).\n2. Have a completable Approved line, via top menu \"Work Orders\" -> the \"Work Orders\" tab -> open a work order -> its \"Lines\" tab. The paths to try are: the line's own \"Complete\" button; the bulk action bar \"Complete line\" after ticking lines; \"Create invoice\" in the work order's header three-dot (more_vert) menu; and \"Clock out and complete\" in the clock-out modal (press \"Start\" then \"Stop\" on a line)."
    },
    "custom_steps": {
     "blocks": [
      [
-      "1. Open Settings -> the \"Work Orders\" tab.",
-      "2. Find \"Require ordering parts\" and read its default state and description.",
-      "3. With it on, open a work order and check a qualifying part; with it off, check the same."
+      "1. Complete a line via the line's own Complete.",
+      "2. Via the bulk bar Complete lines / Complete all lines.",
+      "3. Via Create invoice.",
+      "4. Via the clock-out modal's 'Clock out and complete'."
      ]
     ],
-    "text": "1. Open Settings -> the \"Work Orders\" tab.\n2. Find \"Require ordering parts\" and read its default state and description.\n3. With it on, open a work order and check a qualifying part; with it off, check the same."
+    "text": "1. Complete a line via the line's own Complete.\n2. Via the bulk bar Complete lines / Complete all lines.\n3. Via Create invoice.\n4. Via the clock-out modal's 'Clock out and complete'."
    },
    "custom_expected": {
     "blocks": [
      [
-      "1. \"Require ordering parts\" exists as a new toggle and defaults to on for every shop.",
-      "2. When on, an Order action appears on each qualifying part and in the bulk bar.",
-      "3. When off, no Order action appears anywhere - not on the row, not in the bulk bar, not in the ... menu - and adding a vendor part places it on a purchase order straight away and the part lands in \"Awaiting\". A purchase order is created for that vendor if none is open, or the part is added to the vendor's open one. It is a real purchase order, exactly like one made by pressing Order, and it reaches the accounting system the same way.",
-      "4. A part with no vendor is placed too, on a purchase order marked \"Vendor missing\". This happens silently, with no confirmation.",
-      "5. Because it defaults to on and nothing orders parts automatically today, an upgraded shop sees no change."
+      "1. A line reaches Complete only through: Complete on the line; Complete lines / Complete all lines in the bulk action bar; Create invoice (which closes the work order's Approved lines as a consequence of invoicing); and Clock out and complete in the clock-out modal.",
+      "2. Nothing else completes a line - no timer and no background job.",
+      "3. A line in Needs Approval cannot be completed by any path; it must be Approved first, on the line or in the bulk action bar. Nothing approves a line on the way to completing it.",
+      "4. Complete lines counts only Approved lines, and Create invoice is refused while any line is still in Needs Approval.",
+      "5. Mark as reviewed is not on the list: it becomes available only once every line is already complete, so there is never an open line for it to close."
      ],
      [
       "---",
-      "This is the expected behaviour as per epic SV-8683 and story SV-9247 (Story 1, Work Order settings page) and the Simple Flow V2 specification (Confluence page 771391574, revised 8 September 2026), read on 8 September 2026.",
+      "This is the expected behaviour as per epic SV-8683 and story SV-9251 (Story 5, Parts no longer block completing a line) and the Simple Flow V2 specification (Confluence page 771391574, revised 8 September 2026), read on 8 September 2026.",
       "Last checked against build v26.35.9-5700a76 on 9/9/2026.",
       "AUTOMATION: READY"
      ]
     ],
-    "text": "1. \"Require ordering parts\" exists as a new toggle and defaults to on for every shop.\n2. When on, an Order action appears on each qualifying part and in the bulk bar.\n3. When off, no Order action appears anywhere - not on the row, not in the bulk bar, not in the ... menu - and adding a vendor part places it on a purchase order straight away and the part lands in \"Awaiting\". A purchase order is created for that vendor if none is open, or the part is added to the vendor's open one. It is a real purchase order, exactly like one made by pressing Order, and it reaches the accounting system the same way.\n4. A part with no vendor is placed too, on a purchase order marked \"Vendor missing\". This happens silently, with no confirmation.\n5. Because it defaults to on and nothing orders parts automatically today, an upgraded shop sees no change.\n\n---\nThis is the expected behaviour as per epic SV-8683 and story SV-9247 (Story 1, Work Order settings page) and the Simple Flow V2 specification (Confluence page 771391574, revised 8 September 2026), read on 8 September 2026.\nLast checked against build v26.35.9-5700a76 on 9/9/2026.\nAUTOMATION: READY"
+    "text": "1. A line reaches Complete only through: Complete on the line; Complete lines / Complete all lines in the bulk action bar; Create invoice (which closes the work order's Approved lines as a consequence of invoicing); and Clock out and complete in the clock-out modal.\n2. Nothing else completes a line - no timer and no background job.\n3. A line in Needs Approval cannot be completed by any path; it must be Approved first, on the line or in the bulk action bar. Nothing approves a line on the way to completing it.\n4. Complete lines counts only Approved lines, and Create invoice is refused while any line is still in Needs Approval.\n5. Mark as reviewed is not on the list: it becomes available only once every line is already complete, so there is never an open line for it to close.\n\n---\nThis is the expected behaviour as per epic SV-8683 and story SV-9251 (Story 5, Parts no longer block completing a line) and the Simple Flow V2 specification (Confluence page 771391574, revised 8 September 2026), read on 8 September 2026.\nLast checked against build v26.35.9-5700a76 on 9/9/2026.\nAUTOMATION: READY"
    }
   }
  },
- "44552": {
-  "title": "Require picking and Require receiving control their actions and defaults",
+ "44564": {
+  "title": "Clock-out modal: two complete buttons; line-completed tick box hidden",
   "fields": {
    "custom_preconds": {
     "blocks": [
      [
-      "1. Sign in as an Owner or Admin.",
-      "2. Open the work-order settings page: in the left sidebar under SETTINGS click \"Settings\", then click the \"Work Orders\" tab at the top of the page (the page with the WORKFLOW, LINE REQUIREMENTS and PARTS toggle groups and a \"Save Settings\" button).",
-      "3. Have one open work order that carries an inventory (or found) part and a part that still needs receiving: \"Work Orders\" -> \"Work Orders\" tab -> open a work order -> \"Lines\" tab."
+      "1. Sign in as an Owner or Admin, clocked onto a line: open a work order's \"Lines\" tab and press \"Start\" on a line.",
+      "2. Review may be on or off (set in Settings -> the \"Work Orders\" tab (left sidebar \"Settings\", then the \"Work Orders\" tab) -> Require Review Before Completion)."
      ]
     ],
-    "text": "1. Sign in as an Owner or Admin.\n2. Open the work-order settings page: in the left sidebar under SETTINGS click \"Settings\", then click the \"Work Orders\" tab at the top of the page (the page with the WORKFLOW, LINE REQUIREMENTS and PARTS toggle groups and a \"Save Settings\" button).\n3. Have one open work order that carries an inventory (or found) part and a part that still needs receiving: \"Work Orders\" -> \"Work Orders\" tab -> open a work order -> \"Lines\" tab."
+    "text": "1. Sign in as an Owner or Admin, clocked onto a line: open a work order's \"Lines\" tab and press \"Start\" on a line.\n2. Review may be on or off (set in Settings -> the \"Work Orders\" tab (left sidebar \"Settings\", then the \"Work Orders\" tab) -> Require Review Before Completion)."
    },
    "custom_steps": {
     "blocks": [
      [
-      "1. With \"Require picking inventory parts\" on, open a WO and check an inventory/found part; turn it off and check again.",
-      "2. With \"Require receiving parts before completion\" on, check where Receive sits and whether outstanding parts block invoicing; turn it off and check again."
+      "1. Press \"Stop\" to open the clock-out modal.",
+      "2. Read the actions offered and look for the old 'line completed' tick box."
      ]
     ],
-    "text": "1. With \"Require picking inventory parts\" on, open a WO and check an inventory/found part; turn it off and check again.\n2. With \"Require receiving parts before completion\" on, check where Receive sits and whether outstanding parts block invoicing; turn it off and check again."
+    "text": "1. Press \"Stop\" to open the clock-out modal.\n2. Read the actions offered and look for the old 'line completed' tick box."
    },
    "custom_expected": {
     "blocks": [
      [
-      "1. Require picking on: a Pick action appears on each inventory and found part and in the bulk bar. Off: those parts are marked as picked automatically and no Pick action appears.",
-      "2. Require receiving on: outstanding parts block the work order from being invoiced, and a Receive button sits on each part row. Off: outstanding parts do not block invoicing, and Receive moves into the part's ... menu.",
-      "3. Both default to on (their behaviour today)."
+      "1. The clock-out modal carries the tech story field and two actions: \"Clock out\", and \"Clock out and complete\" (or \"Clock out and send to review\" when review is required).",
+      "2. The \"line completed\" tick box is hidden, leaving one way to complete from clock out instead of two.",
+      "3. If a tech story is required and empty, it is required at clock out.",
+      "4. The clock-out modal is otherwise unchanged."
      ],
      [
       "---",
-      "This is the expected behaviour as per epic SV-8683 and story SV-9247 (Story 1, Work Order settings page) and the Simple Flow V2 specification (Confluence page 771391574, revised 8 September 2026), read on 9 September 2026.",
+      "This is the expected behaviour as per epic SV-8683 and story SV-9251 (Story 5, Parts no longer block completing a line) and the Simple Flow V2 specification (Confluence page 771391574, revised 8 September 2026), read on 9 September 2026.",
       "Last checked against build v26.35.9-5700a76 on 9/9/2026.",
       "AUTOMATION: READY"
      ]
     ],
-    "text": "1. Require picking on: a Pick action appears on each inventory and found part and in the bulk bar. Off: those parts are marked as picked automatically and no Pick action appears.\n2. Require receiving on: outstanding parts block the work order from being invoiced, and a Receive button sits on each part row. Off: outstanding parts do not block invoicing, and Receive moves into the part's ... menu.\n3. Both default to on (their behaviour today).\n\n---\nThis is the expected behaviour as per epic SV-8683 and story SV-9247 (Story 1, Work Order settings page) and the Simple Flow V2 specification (Confluence page 771391574, revised 8 September 2026), read on 9 September 2026.\nLast checked against build v26.35.9-5700a76 on 9/9/2026.\nAUTOMATION: READY"
+    "text": "1. The clock-out modal carries the tech story field and two actions: \"Clock out\", and \"Clock out and complete\" (or \"Clock out and send to review\" when review is required).\n2. The \"line completed\" tick box is hidden, leaving one way to complete from clock out instead of two.\n3. If a tech story is required and empty, it is required at clock out.\n4. The clock-out modal is otherwise unchanged.\n\n---\nThis is the expected behaviour as per epic SV-8683 and story SV-9251 (Story 5, Parts no longer block completing a line) and the Simple Flow V2 specification (Confluence page 771391574, revised 8 September 2026), read on 9 September 2026.\nLast checked against build v26.35.9-5700a76 on 9/9/2026.\nAUTOMATION: READY"
    }
   }
  },
- "44553": {
-  "title": "Turning a Require setting on later does not retro-act on existing parts",
+ "44565": {
+  "title": "Complete is never disabled for a parts reason; reopen returns line to Approved",
   "fields": {
    "custom_preconds": {
     "blocks": [
      [
-      "1. Sign in as an Owner or Admin.",
-      "2. Open the work-order settings page: in the left sidebar under SETTINGS click \"Settings\", then click the \"Work Orders\" tab at the top of the page (the page with the WORKFLOW, LINE REQUIREMENTS and PARTS toggle groups and a \"Save Settings\" button).",
-      "3. Have a work order whose parts are already recorded as ordered and as picked: \"Work Orders\" -> \"Work Orders\" tab -> open such a work order -> \"Lines\" tab (a part shows its status badge, e.g. \"In stock\", on its row)."
+      "1. Sign in as an Owner or Admin (completion permission).",
+      "2. Have an Approved line with outstanding parts and, separately, a completed line, via top menu \"Work Orders\" -> the \"Work Orders\" tab -> open a work order -> its \"Lines\" tab. A completed line offers a \"Reopen\" control on its row.",
+      "3. For the Technician check: use the TECH@shopview.com login in Tech View (never change the Admin role)."
      ]
     ],
-    "text": "1. Sign in as an Owner or Admin.\n2. Open the work-order settings page: in the left sidebar under SETTINGS click \"Settings\", then click the \"Work Orders\" tab at the top of the page (the page with the WORKFLOW, LINE REQUIREMENTS and PARTS toggle groups and a \"Save Settings\" button).\n3. Have a work order whose parts are already recorded as ordered and as picked: \"Work Orders\" -> \"Work Orders\" tab -> open such a work order -> \"Lines\" tab (a part shows its status badge, e.g. \"In stock\", on its row)."
+    "text": "1. Sign in as an Owner or Admin (completion permission).\n2. Have an Approved line with outstanding parts and, separately, a completed line, via top menu \"Work Orders\" -> the \"Work Orders\" tab -> open a work order -> its \"Lines\" tab. A completed line offers a \"Reopen\" control on its row.\n3. For the Technician check: use the TECH@shopview.com login in Tech View (never change the Admin role)."
    },
    "custom_steps": {
     "blocks": [
      [
-      "1. Turn \"Require ordering parts\" on and check parts already recorded as ordered.",
-      "2. Turn \"Require picking inventory parts\" on and check parts already picked."
+      "1. Look at Complete on an approved line that has outstanding parts.",
+      "2. Reopen a completed line and check its status and parts.",
+      "3. As a Technician in Tech View, try to complete a line."
      ]
     ],
-    "text": "1. Turn \"Require ordering parts\" on and check parts already recorded as ordered.\n2. Turn \"Require picking inventory parts\" on and check parts already picked."
+    "text": "1. Look at Complete on an approved line that has outstanding parts.\n2. Reopen a completed line and check its status and parts.\n3. As a Technician in Tech View, try to complete a line."
    },
    "custom_expected": {
     "blocks": [
      [
-      "1. Switching Require ordering on later does not un-order anything; parts already ordered stay ordered and only parts added afterwards need the press.",
-      "2. Switching Require picking on later does not un-pick anything; parts already picked stay picked.",
-      "3. No shop's behaviour changes at the moment this ships."
+      "1. Complete is never disabled for a parts reason, anywhere.",
+      "2. A line reopened after completion returns to Approved with its parts unchanged.",
+      "3. A Technician in Tech View cannot complete (they cannot approve), but can still pick parts."
      ],
      [
       "---",
-      "This is the expected behaviour as per epic SV-8683 and story SV-9247 (Story 1, Work Order settings page) and the Simple Flow V2 specification (Confluence page 771391574, revised 8 September 2026), read on 9 September 2026.",
+      "This is the expected behaviour as per epic SV-8683 and story SV-9251 (Story 5, Parts no longer block completing a line) and the Simple Flow V2 specification (Confluence page 771391574, revised 8 September 2026), read on 9 September 2026.",
       "Last checked against build v26.35.9-5700a76 on 9/9/2026.",
       "AUTOMATION: READY"
      ]
     ],
-    "text": "1. Switching Require ordering on later does not un-order anything; parts already ordered stay ordered and only parts added afterwards need the press.\n2. Switching Require picking on later does not un-pick anything; parts already picked stay picked.\n3. No shop's behaviour changes at the moment this ships.\n\n---\nThis is the expected behaviour as per epic SV-8683 and story SV-9247 (Story 1, Work Order settings page) and the Simple Flow V2 specification (Confluence page 771391574, revised 8 September 2026), read on 9 September 2026.\nLast checked against build v26.35.9-5700a76 on 9/9/2026.\nAUTOMATION: READY"
-   }
-  }
- },
- "44554": {
-  "title": "A settings change applies to every open work order, not just new ones",
-  "fields": {
-   "custom_preconds": {
-    "blocks": [
-     [
-      "1. Sign in as an Owner or Admin.",
-      "2. Open the work-order settings page: in the left sidebar under SETTINGS click \"Settings\", then click the \"Work Orders\" tab at the top of the page (the page with the WORKFLOW, LINE REQUIREMENTS and PARTS toggle groups and a \"Save Settings\" button).",
-      "3. Have several open work orders in different statuses with outstanding parts and unapproved lines: \"Work Orders\" -> the \"Work Orders\" tab lists the open work orders."
-     ]
-    ],
-    "text": "1. Sign in as an Owner or Admin.\n2. Open the work-order settings page: in the left sidebar under SETTINGS click \"Settings\", then click the \"Work Orders\" tab at the top of the page (the page with the WORKFLOW, LINE REQUIREMENTS and PARTS toggle groups and a \"Save Settings\" button).\n3. Have several open work orders in different statuses with outstanding parts and unapproved lines: \"Work Orders\" -> the \"Work Orders\" tab lists the open work orders."
-   },
-   "custom_steps": {
-    "blocks": [
-     [
-      "1. Turn \"Require ordering parts\" off and check outstanding parts across open work orders.",
-      "2. Turn \"Require picking inventory parts\" off and check outstanding inventory/found parts.",
-      "3. Turn \"Require receiving parts before completion\" off, then on, and check whether invoicing is blocked.",
-      "4. Turn \"Require approval for new lines\" off and check Needs-Approval lines."
-     ]
-    ],
-    "text": "1. Turn \"Require ordering parts\" off and check outstanding parts across open work orders.\n2. Turn \"Require picking inventory parts\" off and check outstanding inventory/found parts.\n3. Turn \"Require receiving parts before completion\" off, then on, and check whether invoicing is blocked.\n4. Turn \"Require approval for new lines\" off and check Needs-Approval lines."
-   },
-   "custom_expected": {
-    "blocks": [
-     [
-      "1. Changing a setting takes effect on every open work order, not only on work created afterwards - with one exception: turning \"Require approval for new lines\" on or off changes no line that already exists (an estimate stays an estimate, an approved line stays approved). It only decides the status a newly added line starts in.",
-      "2. Require ordering off: parts already outstanding are placed on purchase orders and move to \"Awaiting\", through the same path a manual Order press uses, so a real purchase order exists for each; the Order action then disappears.",
-      "3. Require picking off: inventory and found parts already outstanding are marked as picked and the Pick action disappears. Marking a part picked deducts it from stock - this moves real inventory (one stock movement and one inventory-history entry per part, following the part's bin where it has one and the default bin where it does not).",
-      "4. Require receiving off: outstanding parts stop blocking invoicing and stay outstanding, and Receive moves into the part's ... menu. On: outstanding parts start blocking invoicing and nothing is auto-received, so a work order that was invoiceable a moment ago may no longer be.",
-      "5. Parts on lines that are not yet approved are not swept - they are invisible to the ordering sweep.",
-      "6. Statuses change in the underlying records, not only on screen; invoicing checks the same state the buttons are drawn from.",
-      "7. Invoiced and paid work orders, and declined lines and their parts, are never touched."
-     ],
-     [
-      "---",
-      "This is the expected behaviour as per epic SV-8683 and story SV-9248 (Story 2, Settings apply to every work order) and the Simple Flow V2 specification (Confluence page 771391574, revised 8 September 2026), read on 8 September 2026.",
-      "Last checked against build v26.35.9-5700a76 on 9/9/2026.",
-      "AUTOMATION: READY"
-     ]
-    ],
-    "text": "1. Changing a setting takes effect on every open work order, not only on work created afterwards - with one exception: turning \"Require approval for new lines\" on or off changes no line that already exists (an estimate stays an estimate, an approved line stays approved). It only decides the status a newly added line starts in.\n2. Require ordering off: parts already outstanding are placed on purchase orders and move to \"Awaiting\", through the same path a manual Order press uses, so a real purchase order exists for each; the Order action then disappears.\n3. Require picking off: inventory and found parts already outstanding are marked as picked and the Pick action disappears. Marking a part picked deducts it from stock - this moves real inventory (one stock movement and one inventory-history entry per part, following the part's bin where it has one and the default bin where it does not).\n4. Require receiving off: outstanding parts stop blocking invoicing and stay outstanding, and Receive moves into the part's ... menu. On: outstanding parts start blocking invoicing and nothing is auto-received, so a work order that was invoiceable a moment ago may no longer be.\n5. Parts on lines that are not yet approved are not swept - they are invisible to the ordering sweep.\n6. Statuses change in the underlying records, not only on screen; invoicing checks the same state the buttons are drawn from.\n7. Invoiced and paid work orders, and declined lines and their parts, are never touched.\n\n---\nThis is the expected behaviour as per epic SV-8683 and story SV-9248 (Story 2, Settings apply to every work order) and the Simple Flow V2 specification (Confluence page 771391574, revised 8 September 2026), read on 8 September 2026.\nLast checked against build v26.35.9-5700a76 on 9/9/2026.\nAUTOMATION: READY"
-   }
-  }
- },
- "44555": {
-  "title": "Each settings-change record is written to the audit log with its cause",
-  "fields": {
-   "custom_preconds": {
-    "blocks": [
-     [
-      "1. Sign in as an Owner or Admin.",
-      "2. Open the work-order settings page: in the left sidebar under SETTINGS click \"Settings\", then click the \"Work Orders\" tab at the top of the page (the page with the WORKFLOW, LINE REQUIREMENTS and PARTS toggle groups and a \"Save Settings\" button).",
-      "3. Have at least one open work order that a settings change will touch: \"Work Orders\" -> \"Work Orders\" tab -> open a work order; its audit trail is the \"History\" tab on the work order."
-     ]
-    ],
-    "text": "1. Sign in as an Owner or Admin.\n2. Open the work-order settings page: in the left sidebar under SETTINGS click \"Settings\", then click the \"Work Orders\" tab at the top of the page (the page with the WORKFLOW, LINE REQUIREMENTS and PARTS toggle groups and a \"Save Settings\" button).\n3. Have at least one open work order that a settings change will touch: \"Work Orders\" -> \"Work Orders\" tab -> open a work order; its audit trail is the \"History\" tab on the work order."
-   },
-   "custom_steps": {
-    "blocks": [
-     [
-      "1. Apply a settings change (for example turn Require approval for new lines off).",
-      "2. Open the audit log on an affected work order and on a changed line/part."
-     ]
-    ],
-    "text": "1. Apply a settings change (for example turn Require approval for new lines off).\n2. Open the audit log on an affected work order and on a changed line/part."
-   },
-   "custom_expected": {
-    "blocks": [
-     [
-      "1. Every record changed is written to the audit log - on the work order and on each line or part changed.",
-      "2. Each entry is attributed to the admin who made the change (there is no \"system\" actor) and names the cause, for example \"Part ordered because Require ordering parts was turned off\"."
-     ],
-     [
-      "---",
-      "This is the expected behaviour as per epic SV-8683 and story SV-9248 (Story 2, Settings apply to every work order) and the Simple Flow V2 specification (Confluence page 771391574, revised 8 September 2026), read on 8 September 2026.",
-      "Last checked against build v26.35.9-5700a76 on 9/9/2026.",
-      "AUTOMATION: READY"
-     ]
-    ],
-    "text": "1. Every record changed is written to the audit log - on the work order and on each line or part changed.\n2. Each entry is attributed to the admin who made the change (there is no \"system\" actor) and names the cause, for example \"Part ordered because Require ordering parts was turned off\".\n\n---\nThis is the expected behaviour as per epic SV-8683 and story SV-9248 (Story 2, Settings apply to every work order) and the Simple Flow V2 specification (Confluence page 771391574, revised 8 September 2026), read on 8 September 2026.\nLast checked against build v26.35.9-5700a76 on 9/9/2026.\nAUTOMATION: READY"
-   }
-  }
- },
- "44556": {
-  "title": "Invoiced/paid work orders and declined lines are excluded from the sweep",
-  "fields": {
-   "custom_preconds": {
-    "blocks": [
-     [
-      "1. Sign in as an Owner or Admin.",
-      "2. Open the work-order settings page: in the left sidebar under SETTINGS click \"Settings\", then click the \"Work Orders\" tab at the top of the page (the page with the WORKFLOW, LINE REQUIREMENTS and PARTS toggle groups and a \"Save Settings\" button).",
-      "3. Have one invoiced (or paid) work order and one work order with a declined line and its parts: \"Work Orders\" -> the \"Completed\" tab lists invoiced/paid work orders; the \"Work Orders\" tab lists open ones."
-     ]
-    ],
-    "text": "1. Sign in as an Owner or Admin.\n2. Open the work-order settings page: in the left sidebar under SETTINGS click \"Settings\", then click the \"Work Orders\" tab at the top of the page (the page with the WORKFLOW, LINE REQUIREMENTS and PARTS toggle groups and a \"Save Settings\" button).\n3. Have one invoiced (or paid) work order and one work order with a declined line and its parts: \"Work Orders\" -> the \"Completed\" tab lists invoiced/paid work orders; the \"Work Orders\" tab lists open ones."
-   },
-   "custom_steps": {
-    "blocks": [
-     [
-      "1. Apply each of the four settings changes.",
-      "2. Check the invoiced/paid work order and the declined line and its parts."
-     ]
-    ],
-    "text": "1. Apply each of the four settings changes.\n2. Check the invoiced/paid work order and the declined line and its parts."
-   },
-   "custom_expected": {
-    "blocks": [
-     [
-      "1. Invoiced and paid work orders are never touched by any of these changes.",
-      "2. A declined line and its parts are excluded from every one of these changes.",
-      "3. No settings change marks anything as received (receiving needs a vendor bill only a person can supply).",
-      "4. If the run fails part way, re-running finishes the remainder without repeating what was already done."
-     ],
-     [
-      "---",
-      "This is the expected behaviour as per epic SV-8683 and story SV-9248 (Story 2, Settings apply to every work order) and the Simple Flow V2 specification (Confluence page 771391574, revised 8 September 2026), read on 9 September 2026.",
-      "Last checked against build v26.35.9-5700a76 on 9/9/2026.",
-      "AUTOMATION: READY"
-     ]
-    ],
-    "text": "1. Invoiced and paid work orders are never touched by any of these changes.\n2. A declined line and its parts are excluded from every one of these changes.\n3. No settings change marks anything as received (receiving needs a vendor bill only a person can supply).\n4. If the run fails part way, re-running finishes the remainder without repeating what was already done.\n\n---\nThis is the expected behaviour as per epic SV-8683 and story SV-9248 (Story 2, Settings apply to every work order) and the Simple Flow V2 specification (Confluence page 771391574, revised 8 September 2026), read on 9 September 2026.\nLast checked against build v26.35.9-5700a76 on 9/9/2026.\nAUTOMATION: READY"
-   }
-  }
- },
- "44557": {
-  "title": "Only ordering and picking ask to confirm; picking-off warns of stock deduction",
-  "fields": {
-   "custom_preconds": {
-    "blocks": [
-     [
-      "1. Sign in as an Owner or Admin.",
-      "2. Open the work-order settings page: in the left sidebar under SETTINGS click \"Settings\", then click the \"Work Orders\" tab at the top of the page (the page with the WORKFLOW, LINE REQUIREMENTS and PARTS toggle groups and a \"Save Settings\" button).",
-      "3. Have open work orders with outstanding parts so a settings change affects a non-zero number of records (\"Work Orders\" -> \"Work Orders\" tab), and be able to reach a state where a change affects zero records (a shop with no matching open records)."
-     ]
-    ],
-    "text": "1. Sign in as an Owner or Admin.\n2. Open the work-order settings page: in the left sidebar under SETTINGS click \"Settings\", then click the \"Work Orders\" tab at the top of the page (the page with the WORKFLOW, LINE REQUIREMENTS and PARTS toggle groups and a \"Save Settings\" button).\n3. Have open work orders with outstanding parts so a settings change affects a non-zero number of records (\"Work Orders\" -> \"Work Orders\" tab), and be able to reach a state where a change affects zero records (a shop with no matching open records)."
-   },
-   "custom_steps": {
-    "blocks": [
-     [
-      "1. Change \"Require ordering parts\" and read the confirmation.",
-      "2. Change \"Require picking inventory parts\" off and read the confirmation.",
-      "3. Change \"Require approval for new lines\" and watch whether a confirmation appears.",
-      "4. Change \"Require receiving parts before completion\" and watch whether a confirmation appears.",
-      "5. Change a setting in a state where no existing records are affected."
-     ]
-    ],
-    "text": "1. Change \"Require ordering parts\" and read the confirmation.\n2. Change \"Require picking inventory parts\" off and read the confirmation.\n3. Change \"Require approval for new lines\" and watch whether a confirmation appears.\n4. Change \"Require receiving parts before completion\" and watch whether a confirmation appears.\n5. Change a setting in a state where no existing records are affected."
-   },
-   "custom_expected": {
-    "blocks": [
-     [
-      "1. Changing \"Require ordering parts\" or \"Require picking inventory parts\" opens a confirmation before anything is saved; the title names the setting and the direction, and the body states the number of records that will change.",
-      "2. Turning \"Require picking inventory parts\" off is shown as a warning, not just a count, and it says in words that the affected inventory parts will be marked as picked and deducted from stock.",
-      "3. Changing \"Require approval for new lines\" or \"Require receiving parts before completion\" shows no confirmation and saves directly.",
-      "4. When the number of affected records is zero, no confirmation shows and the setting saves directly.",
-      "5. Where a large number of records is affected, the confirmation also advises making the change outside working hours; where the number cannot be established it states the consequence without a figure."
-     ],
-     [
-      "---",
-      "This is the expected behaviour as per epic SV-8683 and story SV-9249 (Story 3, Confirmation before a settings change) and the Simple Flow V2 specification (Confluence page 771391574, revised 8 September 2026), read on 8 September 2026.",
-      "Last checked against build v26.35.9-5700a76 on 9/9/2026.",
-      "AUTOMATION: READY"
-     ]
-    ],
-    "text": "1. Changing \"Require ordering parts\" or \"Require picking inventory parts\" opens a confirmation before anything is saved; the title names the setting and the direction, and the body states the number of records that will change.\n2. Turning \"Require picking inventory parts\" off is shown as a warning, not just a count, and it says in words that the affected inventory parts will be marked as picked and deducted from stock.\n3. Changing \"Require approval for new lines\" or \"Require receiving parts before completion\" shows no confirmation and saves directly.\n4. When the number of affected records is zero, no confirmation shows and the setting saves directly.\n5. Where a large number of records is affected, the confirmation also advises making the change outside working hours; where the number cannot be established it states the consequence without a figure.\n\n---\nThis is the expected behaviour as per epic SV-8683 and story SV-9249 (Story 3, Confirmation before a settings change) and the Simple Flow V2 specification (Confluence page 771391574, revised 8 September 2026), read on 8 September 2026.\nLast checked against build v26.35.9-5700a76 on 9/9/2026.\nAUTOMATION: READY"
-   }
-  }
- },
- "44558": {
-  "title": "Cancelling a settings change leaves the setting and records unchanged",
-  "fields": {
-   "custom_preconds": {
-    "blocks": [
-     [
-      "1. Sign in as an Owner or Admin.",
-      "2. Open the work-order settings page: in the left sidebar under SETTINGS click \"Settings\", then click the \"Work Orders\" tab at the top of the page (the page with the WORKFLOW, LINE REQUIREMENTS and PARTS toggle groups and a \"Save Settings\" button).",
-      "3. Begin a settings change so its confirmation dialog is open: toggle one of the PARTS settings (\"Require Ordering Parts\" or \"Require Picking Inventory Parts\") and click \"Save Settings\"."
-     ]
-    ],
-    "text": "1. Sign in as an Owner or Admin.\n2. Open the work-order settings page: in the left sidebar under SETTINGS click \"Settings\", then click the \"Work Orders\" tab at the top of the page (the page with the WORKFLOW, LINE REQUIREMENTS and PARTS toggle groups and a \"Save Settings\" button).\n3. Begin a settings change so its confirmation dialog is open: toggle one of the PARTS settings (\"Require Ordering Parts\" or \"Require Picking Inventory Parts\") and click \"Save Settings\"."
-   },
-   "custom_steps": {
-    "blocks": [
-     [
-      "1. Begin a settings change so the confirmation opens.",
-      "2. Cancel it."
-     ]
-    ],
-    "text": "1. Begin a settings change so the confirmation opens.\n2. Cancel it."
-   },
-   "custom_expected": {
-    "blocks": [
-     [
-      "1. Cancelling leaves the setting as it was and changes no records."
-     ],
-     [
-      "---",
-      "This is the expected behaviour as per epic SV-8683 and story SV-9249 (Story 3, Confirmation before a settings change) and the Simple Flow V2 specification (Confluence page 771391574, revised 8 September 2026), read on 9 September 2026.",
-      "Last checked against build v26.35.9-5700a76 on 9/9/2026.",
-      "AUTOMATION: READY"
-     ]
-    ],
-    "text": "1. Cancelling leaves the setting as it was and changes no records.\n\n---\nThis is the expected behaviour as per epic SV-8683 and story SV-9249 (Story 3, Confirmation before a settings change) and the Simple Flow V2 specification (Confluence page 771391574, revised 8 September 2026), read on 9 September 2026.\nLast checked against build v26.35.9-5700a76 on 9/9/2026.\nAUTOMATION: READY"
-   }
-  }
- },
- "44559": {
-  "title": "Applying a settings change blocks only the acting admin, never the organization",
-  "fields": {
-   "custom_preconds": {
-    "blocks": [
-     [
-      "1. Sign in as an Owner or Admin.",
-      "2. Open the work-order settings page: in the left sidebar under SETTINGS click \"Settings\", then click the \"Work Orders\" tab at the top of the page (the page with the WORKFLOW, LINE REQUIREMENTS and PARTS toggle groups and a \"Save Settings\" button).",
-      "3. Have a settings change queued that affects many existing records: toggle \"Require Ordering Parts\" or \"Require Picking Inventory Parts\" while several open work orders carry outstanding parts."
-     ]
-    ],
-    "text": "1. Sign in as an Owner or Admin.\n2. Open the work-order settings page: in the left sidebar under SETTINGS click \"Settings\", then click the \"Work Orders\" tab at the top of the page (the page with the WORKFLOW, LINE REQUIREMENTS and PARTS toggle groups and a \"Save Settings\" button).\n3. Have a settings change queued that affects many existing records: toggle \"Require Ordering Parts\" or \"Require Picking Inventory Parts\" while several open work orders carry outstanding parts."
-   },
-   "custom_steps": {
-    "blocks": [
-     [
-      "1. Confirm a settings change that affects existing records.",
-      "2. Observe the app while the change is applied."
-     ]
-    ],
-    "text": "1. Confirm a settings change that affects existing records.\n2. Observe the app while the change is applied."
-   },
-   "custom_expected": {
-    "blocks": [
-     [
-      "1. While the change is being applied, the admin who made it is blocked: the settings page shows a progress indicator and does not return until every affected record has been changed.",
-      "2. Every other user in the organization keeps working normally; the organization is never locked and technicians are never stopped.",
-      "3. Another user viewing an affected work order during the run may see out-of-date values until they refresh; this is expected, because every record is committed on its own and the run can be re-run."
-     ],
-     [
-      "---",
-      "This is the expected behaviour as per epic SV-8683 and story SV-9250 (Story 4, Applying a settings change at scale) and the Simple Flow V2 specification (Confluence page 771391574, revised 8 September 2026), read on 8 September 2026.",
-      "Last checked against build v26.35.9-5700a76 on 9/9/2026.",
-      "AUTOMATION: READY"
-     ]
-    ],
-    "text": "1. While the change is being applied, the admin who made it is blocked: the settings page shows a progress indicator and does not return until every affected record has been changed.\n2. Every other user in the organization keeps working normally; the organization is never locked and technicians are never stopped.\n3. Another user viewing an affected work order during the run may see out-of-date values until they refresh; this is expected, because every record is committed on its own and the run can be re-run.\n\n---\nThis is the expected behaviour as per epic SV-8683 and story SV-9250 (Story 4, Applying a settings change at scale) and the Simple Flow V2 specification (Confluence page 771391574, revised 8 September 2026), read on 8 September 2026.\nLast checked against build v26.35.9-5700a76 on 9/9/2026.\nAUTOMATION: READY"
-   }
-  }
- },
- "44560": {
-  "title": "A partially applied settings change is never left visible",
-  "fields": {
-   "custom_preconds": {
-    "blocks": [
-     [
-      "1. Sign in as an Owner or Admin.",
-      "2. Open the work-order settings page: in the left sidebar under SETTINGS click \"Settings\", then click the \"Work Orders\" tab at the top of the page (the page with the WORKFLOW, LINE REQUIREMENTS and PARTS toggle groups and a \"Save Settings\" button).",
-      "3. A large settings change is applied. NOTE: forcing the change to fail part-way is not reachable from the UI (it needs fault injection); if a partial failure is ever observed in the wild, use the checks below."
-     ]
-    ],
-    "text": "1. Sign in as an Owner or Admin.\n2. Open the work-order settings page: in the left sidebar under SETTINGS click \"Settings\", then click the \"Work Orders\" tab at the top of the page (the page with the WORKFLOW, LINE REQUIREMENTS and PARTS toggle groups and a \"Save Settings\" button).\n3. A large settings change is applied. NOTE: forcing the change to fail part-way is not reachable from the UI (it needs fault injection); if a partial failure is ever observed in the wild, use the checks below."
-   },
-   "custom_steps": {
-    "blocks": [
-     [
-      "1. Trigger/observe a settings change that fails part way.",
-      "2. Check the resulting state and the message shown."
-     ]
-    ],
-    "text": "1. Trigger/observe a settings change that fails part way.\n2. Check the resulting state and the message shown."
-   },
-   "custom_expected": {
-    "blocks": [
-     [
-      "1. A partially applied change is never left visible.",
-      "2. If the run fails, either the change completes or the setting reverts, and the user is told which."
-     ],
-     [
-      "---",
-      "This is the expected behaviour as per epic SV-8683 and story SV-9250 (Story 4, Applying a settings change at scale) and the Simple Flow V2 specification (Confluence page 771391574, revised 8 September 2026), read on 9 September 2026.",
-      "Last checked against build v26.35.9-5700a76 on 9/9/2026.",
-      "AUTOMATION: HOLD - a settings change that fails part-way cannot be forced from the UI; needs fault injection"
-     ]
-    ],
-    "text": "1. A partially applied change is never left visible.\n2. If the run fails, either the change completes or the setting reverts, and the user is told which.\n\n---\nThis is the expected behaviour as per epic SV-8683 and story SV-9250 (Story 4, Applying a settings change at scale) and the Simple Flow V2 specification (Confluence page 771391574, revised 8 September 2026), read on 9 September 2026.\nLast checked against build v26.35.9-5700a76 on 9/9/2026.\nAUTOMATION: HOLD - a settings change that fails part-way cannot be forced from the UI; needs fault injection"
+    "text": "1. Complete is never disabled for a parts reason, anywhere.\n2. A line reopened after completion returns to Approved with its parts unchanged.\n3. A Technician in Tech View cannot complete (they cannot approve), but can still pick parts.\n\n---\nThis is the expected behaviour as per epic SV-8683 and story SV-9251 (Story 5, Parts no longer block completing a line) and the Simple Flow V2 specification (Confluence page 771391574, revised 8 September 2026), read on 9 September 2026.\nLast checked against build v26.35.9-5700a76 on 9/9/2026.\nAUTOMATION: READY"
    }
   }
  }
