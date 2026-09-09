@@ -33,6 +33,41 @@
 
 ## ENTRIES — newest first (id · date · tags · lesson → pointer)
 
+### L0018 · 2026-09-09 · #testrail #runnable-gate #skill-18
+**`check_runnable_cases.py`'s R3/R4 anchor regexes match WHOLE WORDS, so a plural noun that is the only
+anchor in a case FAILS the gate.** The `TAB` regex is `\b(tab|panel|menu|...|toggle|...)\b` — "permission
+toggles" (plural) does NOT satisfy it, nor does "columns"; only the singular "toggle"/"column"/"menu"/etc.
+matches. A permission case whose only UI target was "permission toggles" was flagged **R3 nothing to aim
+at** despite naming a real control. **Fix:** when a case is flagged R3/R4 but you know it names a control,
+add the SINGULAR anchor word ("...find the Received later permission **toggle**", "open the receive
+**dialog**"). Also **R4 checks the FIRST STEP** for a location even when the precondition carries the full
+route — a step-1 like "Open the line's actions" must name where ("On the work order's **Lines tab**, open
+the line's three-dot **menu**..."). Pointer: `build/simple-flow-v2/build-verify-2026-09-09/runnable-edits.json`.
+
+### L0017 · 2026-09-09 · #playwright #testrail #bridge #mistake-corrected
+**Any Playwright script that opens a shopview.testrail.io (or *.qa.shopview.com) UI page MUST launch
+chromium through the local MITM bridge — a bare `chromium.launch()` gets `net::ERR_CONNECTION_RESET`.**
+Chromium cannot TLS through the egress proxy directly. Copy the proven pattern from `surgical_replace.mjs` /
+`qa-branch-boot.mjs`: `const PORT=fs.readFileSync('/tmp/atlassian/bridge-port.txt','utf8').trim();
+chromium.launch({args:['--no-sandbox'],proxy:{server:'http://127.0.0.1:'+PORT}})` and a context with
+`ignoreHTTPSErrors:true`; run `bash build/testing-tools/ensure_bridge.sh` first (port ROTATES — never
+hard-code it). A new writer/probe script that skips this loses its first run to a connection reset.
+Pointer: `build/simple-flow-v2/build-verify-2026-09-09/apply_edits.mjs`.
+
+### L0016 · 2026-09-09 · #shopview-app #roles-permissions #build-verify #route
+**The ShopView admin area lives at `/administration/*`, NOT `/settings` (which 404s), and Roles &
+Permissions is `/administration/roles-permissions`.** Left-sidebar labels observed on sv8683: SETTINGS
+(Settings·Staff·**Roles & Permissions**·Locations·Departments·Taxes), SERVICE (Labor Rates·Canned
+Lines·Fees & Discounts·Asset Types·Inspection Templates), PARTS (Pricing·Bin Locations·Categories),
+INTEGRATIONS (QuickBooks·IBS), FINANCE (Payment Methods), IMPORTS (Contacts·Assets·Vendors·Inventory·
+Invoices). The **Edit Role** page (`.../roles-permissions/<id>/edit`) has a `Search permission` box, a
+`View`/`Create & Edit`/`Delete` header, a `Full View`/`Tech view` control, `Reset To Template`/`Cancel`/
+`Save`/`Delete Role`, and under the **Work orders** category the toggles `Review work orders`, `Pick
+parts`, `Order parts`, **`Received later`** (the new SFV2 permission). ⚠️ The permission SEARCH box
+filters by CATEGORY name: typing "receiv" collapses the WO category and hides its child toggles — to see
+"Received later" you must expand the Work orders category (search "order" or scroll), a UI quirk that can
+read as "the permission is absent" when it is present. Recorded in `build/OBSERVED-UI-LABELS-sv8683.md`.
+
 ### L0015 · 2026-09-09 · #mistake-corrected #source-verify #methodology #provenance
 **A spec-revision source-verification that re-stamps ONLY the changed-story cases is a DELTA, not a full
 re-verification — and the suite's provenance then LIES about its currency to every later session.** On
