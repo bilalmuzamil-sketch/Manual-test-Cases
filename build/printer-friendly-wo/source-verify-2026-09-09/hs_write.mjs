@@ -14,7 +14,7 @@ import fs from 'fs';
 const DIR = '/home/user/Manual-test-Cases/build/printer-friendly-wo/source-verify-2026-09-09';
 const OKLOG = `${DIR}/REPAIRED-hs.jsonl`;
 const BADLOG = `${DIR}/FAILED-hs.jsonl`;
-const AUTOMATED_OK = new Set([]);  // layman pass: NO whitelist — atm=3 skipped (Rule 71)
+const AUTOMATED_OK = new Set((process.env.AUTOMATED_OK||'').split(',').map(x=>x.trim()).filter(Boolean));
 const C = JSON.parse(fs.readFileSync('/tmp/testrail/creds.json', 'utf8'));
 const UI = JSON.parse(fs.readFileSync('/tmp/testrail/creds-ui.json', 'utf8'));
 const HOST = 'https://shopview.testrail.io';
