@@ -20,7 +20,7 @@ The previous CLAUDE.md was **738 KB / roughly 183,000 tokens**, and it was **TRU
 AT RULE 62**. Sessions were therefore running with **Rules 63–88 SILENTLY ABSENT** while believing
 they had read the whole file. A rule you have never seen is a rule you will break.
 
-**THEREFORE: NEVER ASSUME YOU HAVE SEEN ALL THE RULES.** There are **100 numbered Standing Rules**.
+**THEREFORE: NEVER ASSUME YOU HAVE SEEN ALL THE RULES.** There are **101 numbered Standing Rules**.
 Count them in the index below. If you are
 about to apply a rule, open its file and read it. **NEVER read
 `build/rules/CLAUDE-FULL-ARCHIVE-2026-08-21.md` whole** — it will exhaust your context exactly as the
@@ -160,6 +160,13 @@ safe. The **evidence** for each one lives in the rule or skill the bullet points
   spec version** · **ASK** with-or-without · **WAIT**. Never pull sources on your own initiative, and
   never inherit an earlier session's answer. Once he says yes, "all the sources" = the Rule 57 list.
   Both 2026-09-03 rulings: `RULES-61-ONWARD.md` rule 81.
+- **🛑 THERE IS NO DELTA — EVERY VERIFICATION IS FULL, ON EVERY CASE (101; QA lead 2026-09-09).** A source
+  verify, build verify, VIU or re-verify covers the **ENTIRE suite, every case**, re-read/re-walked/
+  re-observed on the CURRENT build — never only the changed stories, the shared labels, or a build-line
+  re-stamp standing in for a re-walk. **"Unchanged, so carried over" is the forbidden delta.** Rules 77/80
+  still decide WHETHER to run; when you run, it is full. Can't do it all ⇒ report the rest **NOT VERIFIED
+  THIS BUILD** (12) — never let a partial pass be stamped or reported as verified. Full text + the two
+  incidents: `RULES-61-ONWARD.md` rule 101.
 - **🛑 QUICK-LOGIN IS THE ROUTE, AND ONE COOKIE ONLY (2026-09-02).** Run
   `node build/testing-tools/qa-branch-boot.mjs <branch> <route> admin`. Carry `sv_sso_session` ONLY,
   scoped **HOST-ONLY** — a domain-scoped cookie 409s right after a 200 login, which looks like a dead
@@ -243,7 +250,7 @@ safe. The **evidence** for each one lives in the rule or skill the bullet points
 
 ---
 
-## 2 · THE RULE INDEX — all 100 rules, and where each one lives
+## 2 · THE RULE INDEX — all 101 rules, and where each one lives
 
 **Read the rule in its file before applying it.** One line per rule; the line is a locator, not the
 rule. Generated from the split files' own headers.
@@ -324,7 +331,7 @@ rule. Generated from the split files' own headers.
 | **59** | RE-READ THE SOURCES IMMEDIATELY BEFORE THE WRITES BEGIN — a second currency check, not only the |
 | **60** | THE BUILD WILL NEVER BE DECLARED FINAL — SEPARATE WHAT DEPENDS ON THE BUILD FROM WHAT DOES NOT |
 
-### `build/rules/RULES-61-ONWARD.md` — rules 61–100 (**range-free name, permanent since 2026-09-03 — it is NOT renamed when a rule is added; see `build/rules/INTEGRITY.md`**)
+### `build/rules/RULES-61-ONWARD.md` — rules 61–101 (**range-free name, permanent since 2026-09-03 — it is NOT renamed when a rule is added; see `build/rules/INTEGRITY.md`**)
 
 | # | Rule (short title) |
 |---|---|
@@ -368,6 +375,7 @@ rule. Generated from the split files' own headers.
 | **98** | EVERY REPORT IS A TABLE THAT ANSWERS FIVE QUESTIONS — DONE · LEFT · BLOCKED · HOW TO UNBLOCK · HANDOFF-READY |
 | **99** | EVERY ASK IS SELF-CONTAINED AND EXECUTABLE — HE MUST NEVER HAVE TO LOOK SOMETHING UP TO UNDERSTAND WHAT IS BEING ASKED |
 | **100** | AN INJECTED OR REMEMBERED COPY OF A FILE IS NOT EVIDENCE ABOUT THAT FILE — MEASURE IT ON DISK |
+| **101** | THERE IS NO SUCH THING AS A DELTA VERIFICATION — EVERY VERIFICATION IS FULL, ALWAYS, ON EVERY CASE |
 
 **Operator forms** (the rule bodies are all in `build/rules/RULES-61-ONWARD.md`): **95** →
 `build/skills/TOKEN-DISCIPLINE-CHARTER.md` · **96** → `build/skills/17-REGRESSION-IMPACT-V1-TO-V2.md`
@@ -657,7 +665,7 @@ Compact form — **the rule named in brackets is the authority; read it before r
 | Standing Rules 1–20 (full text) | `build/rules/RULES-01-20.md` |
 | Standing Rules 21–40 (full text) | `build/rules/RULES-21-40.md` |
 | Standing Rules 41–60 (full text) | `build/rules/RULES-41-60.md` |
-| Standing Rules 61 onward (full text — 61–100 today, and every rule added later) | `build/rules/RULES-61-ONWARD.md` |
+| Standing Rules 61 onward (full text — 61–101 today, and every rule added later) | `build/rules/RULES-61-ONWARD.md` |
 | Per-project narrative history (projects 1–7) | `build/rules/PROJECT-HISTORY-ARCHIVE.md` |
 | Byte-verification hashes for the split | `build/rules/INTEGRITY.md` |
 | Staging/QA/prod action recipes, TestRail traps | `build/APP-ACTIONS-PLAYBOOK.md` |

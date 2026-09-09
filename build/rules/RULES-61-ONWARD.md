@@ -3407,3 +3407,44 @@ Index: CLAUDE.md (rule index table). Other rule files: build/rules/RULES-01-20.m
     window instead of the working tree), **86** (verify from committed evidence, never from a
     session's self-report — including your own earlier self), and **68** (a fact about your copy of
     the file is never a fact about the file).
+
+---
+
+101. **THERE IS NO SUCH THING AS A DELTA VERIFICATION — EVERY VERIFICATION IS FULL, ALWAYS AND ON EVERY
+    CASE (all projects, permanent; QA lead, 2026-09-09).**
+    **THE ORDER, VERBATIM (QA lead, 2026-09-09):** *"Remember one thing and make it a rule forever, that
+    there is nothing like DELTA you are always supposed to make the FULL verification."*
+    **WHAT IT MEANS.** Whenever you verify — a **source verification**, a **build verification**, a **VIU**,
+    a re-verification against a moved spec or a new build — you verify the **ENTIRE suite, every case, in
+    full**. Never only the cases a diff touched, never only the "changed stories", never only the shared or
+    distinct labels, never a re-stamp of the build line standing in for a re-walk. **"The rest was unchanged,
+    so I carried it over"** is exactly the delta this rule forbids. Each case is checked on its own — its
+    sources re-read, its route walked live on the current build, its labels read off the screen, its marker
+    and its build stamp confirmed — as if for the first time.
+    **WHY (the two incidents that produced this rule).** (a) **2026-09-08 SFV2 source verification** re-read
+    only the 11 changed stories' cases and left **47 of 65 at the old spec version**, while the suite's
+    provenance told every later session it was current — a delta that **lied about its own currency**
+    (L0015). (b) **2026-09-08 build verification of 6617 + 6597** re-observed the *shared* precondition labels
+    and **re-stamped the build line to v26.35.9 without re-walking each case's route** — the real per-case
+    route-walk was the **2026-09-01** pass on the *older* build v26.35.6, carried over on the assumption
+    "sources unchanged." A UI change between builds that touched a case whose route was not re-walked would
+    pass unseen. When the QA lead asked "was that FULL or a delta?", the honest answer was *delta* — and the
+    answer he wants, forever, is that the question never arises because **the pass was full.**
+    **HOW THIS BINDS THE OTHER RULES.**
+    - **Rule 77 (validity window) and Rule 80 (last-done date, ask-before-re-run) STILL GOVERN WHETHER TO
+      RUN** — you still tell the last-done date and ask before repeating a verification. But the moment a
+      verification **is** run, it is **full**; the validity window is never a licence to run a partial pass.
+    - **Rule 81 (source precedes build) and Rule 57/59 (sources are the authority, re-read them)** — the
+      full source re-read covers every case, not the changed ones.
+    - **Rule 43 (per-requirement coverage verdict)** — a full pass emits a verdict for **every** requirement
+      and **every** case, so a delta is visible as missing rows.
+    - **Rule 12 (verified means observed)** — a case "carried over" from an earlier build was **not observed
+      on this one**; carrying it over and calling the suite verified is inference, which Rule 12 bars.
+    - **Rule 100 (measure on disk) / 86 (committed evidence)** — "I verified it last week" about a case is a
+      recollection; the full pass re-measures it now.
+    **THE ONE HONEST ALTERNATIVE TO A FULL PASS IS TO NOT CLAIM VERIFICATION AT ALL.** If time or access
+    only allows part of a suite, you report exactly which cases were verified this pass and which were **NOT
+    VERIFIED THIS BUILD** (Rule 12 wording) — you never let a partial pass be recorded, stamped, or reported
+    as "the suite is build-verified / source-verified." A suite is verified only when **every** case in it
+    was verified in **this** pass. Operator form and the delta-trap examples: `build/skills/02-SOURCE-CHECK.md`,
+    `build/skills/03-RUN-CHECK.md`, `build/skills/11-BUILD-VERIFICATION.md`; learning L0015 and L0020.
