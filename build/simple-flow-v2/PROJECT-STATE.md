@@ -70,9 +70,30 @@ Part rows/menus + reordering (19-20) · Permissions (21). Story 10 (bulk delete)
   `build/OBSERVED-UI-LABELS-sv8683.md`. Routes confirmed so far: WO Lines (Complete/New Line/Start/Pick/
   Part context menu), Settings → Work Orders tab (8 completion toggles verbatim).
 
-## 🆕 2026-09-09 — BUILD VERIFICATION COMPLETE (sv8683 v26.35.9-5700a76)
-- **61 of 65 ours cases build-verified** = 60 AUTOMATION: READY + 1 HOLD (C44560, a settings mid-run failure cannot be forced from the UI). All 61 carry `Last checked against build v26.35.9-5700a76 on 9/9/2026`; preconditions rewritten to real sv8683 UI routes; Expected preserved from spec (Rule 57).
-- **4 DEFERRED — the Purchase Order pages surface is NOT reachable on this build** (Story: PO page): C44589, C44590, C44591, C53488. `/purchase-orders` 404s; no Parts sub-nav entry; SPA router did not expose the route. Left on the "Not available on Build to test Yet" marker (Rule 69/85). **Finding: the PO-pages surface appears not built yet on sv8683, or reached by a path not yet found — needs the dev/PO to confirm the route or that it is unbuilt.**
-- **7 Automated ours cases build-verified** (go-ahead extended 2026-09-09): C44557, C44561, C44575, C44583, C44587, C44604, C44605. Rule 65 notice: `build/FOR-VLAD-sfv2-automated-2026-09-09.md`.
+## 🆕 2026-09-09 — BUILD VERIFICATION COMPLETE (sv8683 v26.35.9-5700a76) — BOTH GATES CLEAN
+- **Final marker tally (65 ours, live-counted):** **59 AUTOMATION: READY · 2 HOLD · 4 DEFERRED**, 0 unmarked.
+  **61 carry** `Last checked against build v26.35.9-5700a76 on 9/9/2026` (the 59 READY + 2 HOLD); the 4
+  DEFERRED keep the "Not available on Build" marker (no build to stamp). Preconditions rewritten to real
+  sv8683 UI routes; Expected preserved from spec (Rule 57).
+- **Both gates driven to their terminal state:** `check_runnable_cases.py --cases <65>` → **65/65 RUNNABLE,
+  0 NOT RUNNABLE** (14 step/precond wording fixes this pass — step-1 location anchors, permission-toggle
+  words, provisional PO route; artifacts `build-verify-2026-09-09/runnable-edits.json` + `remaining-edits.json`).
+  `check_precond_labels.py` → **clean for all 65 ours**; the only 2 residual flags are Vladimir's C53491
+  ("did not complete") and C45203 ("Authorized to Order"), hands-off (Rule 38/71).
+- **2 HOLD:** **C44560** (a settings change that fails part-way cannot be forced from the UI) and **C44604**
+  (reorder Undo is the open PO question SFV2-BV-C44604 — set to HOLD 2026-09-09, not handed to testers as
+  ready while the question stands; route is build-verified, only the marker holds).
+- **4 DEFERRED — the Purchase Order pages surface is NOT reachable on this build** (Stories 14–15, PO page):
+  C44589, C44590, C44591, C53488. `/purchase-orders` 404s; no Parts sub-nav entry; SPA router did not expose
+  the route. Kept on "Not available on Build to test Yet" (Rule 69/85) **and given a provisional route**
+  (top menu Parts → Purchase Orders list / bulk-receive page, marked provisional per Rule 85) so they are
+  runnable-shaped. **Finding (SFV2-BV-PO): the PO-pages surface appears not built yet on sv8683 — needs the
+  dev/PO to confirm the route or that it is unbuilt.**
+- **7 Automated ours cases build-verified** (go-ahead extended 2026-09-09): C44557, C44561, C44575, C44583,
+  C44587, C44605 → READY; **C44604 → HOLD** (per above). Rule 65 notice: `build/FOR-VLAD-sfv2-automated-2026-09-09.md`.
 - **Vladimir's 6 hands-off** (C45202, C45203, C53490–C53493), untouched (Rule 38).
+- **New observed labels this pass:** Roles & Permissions editor (`/administration/roles-permissions`; the
+  `Received later` WO-category permission toggle; `Full View`/`Tech view`; `Reset To Template`) and the
+  completion-wizard step pills (`Tech stories`/`Pick parts`/`Missing Details`). All in
+  `build/OBSERVED-UI-LABELS-sv8683.md`. Learnings L0016–L0018 in `build/LEARNINGS-LOG.md`.
 - Routes confirmed on the build: WO Lines (Complete/New Line/Start/Pick/part context menu/badges), Settings→Work Orders tab (8 completion toggles), clock-out modal (Clock out / Clock out and complete, no line-completed tick box), bulk action bar (N selected / Complete Line / Pick(n) / More / close), Receive modal ("Receive parts": Assign vendor/Vendor invoice number/Invoice date/Delivery note/Select all/Receive later/Receive parts(n)), completion wizard (step pills, step-own action button, no Continue), WO header more_vert (Audit Log/Timesheets/Create invoice/Delete). Observed labels: `build/OBSERVED-UI-LABELS-sv8683.md`. Evidence + per-case audit: `build/simple-flow-v2/build-verify-2026-09-09/`.
