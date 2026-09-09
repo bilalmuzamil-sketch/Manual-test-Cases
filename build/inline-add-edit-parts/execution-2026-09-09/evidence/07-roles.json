@@ -1,0 +1,215 @@
+{
+ "secs": [
+  "Skip to main content",
+  "Work Orders",
+  "Schedule",
+  "Customers",
+  "Parts",
+  "Reports",
+  "timerClock In",
+  "notifications",
+  "Staging Heavy Duty - 9919AS",
+  "flagFeature Flags",
+  "infoSettings",
+  "supervisor_accountStaff",
+  "verified_userRoles & Permissions",
+  "location_onLocations",
+  "apartmentDepartments",
+  "attach_moneyTaxes",
+  "groups_3Labor Rates",
+  "checklist_rtlCanned Lines",
+  "sellFees & Discounts",
+  "groups_3Asset Types",
+  "fact_checkInspection Templates",
+  "sellPricing",
+  "inventory_2Bin Locations",
+  "categoryCategories",
+  "account_balanceQuickBooks",
+  "sync_altIBS",
+  "paymentsPayment Methods",
+  "callContacts",
+  "local_shippingAssets",
+  "storeVendors",
+  "inventory_2Inventory",
+  "receipt_longInvoices",
+  "searchSearch",
+  "New location",
+  "edit_note"
+ ],
+ "roles": {
+  "rows": [
+   {
+    "cells": [
+     "",
+     "Role Namearrow_drop_up",
+     "Description",
+     "Template",
+     "Role Typearrow_drop_up",
+     "Usersarrow_drop_up",
+     "Action"
+    ]
+   },
+   {
+    "cells": [
+     ""
+    ]
+   },
+   {
+    "cells": [
+     "",
+     "Parts Technician",
+     "Parts operations and vendor management",
+     "Parts Technician",
+     "system",
+     "0",
+     "editmore_vert"
+    ]
+   },
+   {
+    "cells": [
+     "lock",
+     "Office User",
+     "Office administration, reporting, and back-office operations",
+     "Office User",
+     "system",
+     "1",
+     "visibility"
+    ]
+   },
+   {
+    "cells": [
+     "",
+     "Foreman",
+     "Oversees technicians and work orders",
+     "Foreman",
+     "system",
+     "11",
+     "editmore_vert"
+    ]
+   },
+   {
+    "cells": [
+     "",
+     "Technician",
+     "Assigned work orders and time tracking (Tech View)",
+     "Technician",
+     "system",
+     "54",
+     "editmore_vert"
+    ]
+   },
+   {
+    "cells": [
+     "",
+     "Admin",
+     "Full system access",
+     "Admin",
+     "system",
+     "81",
+     "editmore_vert"
+    ]
+   },
+   {
+    "cells": [
+     "",
+     "Service Manager",
+     "Full operational access, limited admin (App Settings + Wages only)",
+     "Service Manager",
+     "system",
+     "0",
+     "editmore_vert"
+    ]
+   },
+   {
+    "cells": [
+     "",
+     "Service Advisor",
+     "Work order and customer management with invoicing access",
+     "Service Advisor",
+     "system",
+     "0",
+     "editmore_vert"
+    ]
+   },
+   {
+    "cells": [
+     "lock",
+     "Time Clock User",
+     "Clock in/out only",
+     "Time Clock User",
+     "system",
+     "0",
+     "visibility"
+    ]
+   },
+   {
+    "cells": [
+     "",
+     "Sales Representative",
+     "Reports and financial data access only",
+     "Sales Representative",
+     "system",
+     "9",
+     "editmore_vert"
+    ]
+   },
+   {
+    "cells": [
+     "",
+     "Parts Manager",
+     "Full parts and inventory control",
+     "Parts Manager",
+     "system",
+     "0",
+     "editmore_vert"
+    ]
+   },
+   {
+    "cells": [
+     "",
+     "Senior Service Advisor",
+     "Work order and customer management with expanded access",
+     "Senior Service Advisor",
+     "system",
+     "1",
+     "editmore_vert"
+    ]
+   },
+   {
+    "cells": [
+     "",
+     "Tech View See financial ON",
+     "-",
+     "Admin",
+     "custom",
+     "1",
+     "editmore_vert"
+    ]
+   },
+   {
+    "cells": [
+     "",
+     "Full View - See Financial OFF",
+     "-",
+     "Admin",
+     "custom",
+     "0",
+     "editmore_vert"
+    ]
+   },
+   {
+    "cells": [
+     ""
+    ]
+   }
+  ],
+  "head": "Skip to main content Work Orders Schedule Customers Parts Reports Search Ctrl+K timer Clock In notifications Staging Heavy Duty - 9919 AS DEV TOOLS info flag Feature Flags SETTINGS info Settings supervisor_account Staff verified_user Roles & Permissions location_on Locations apartment Departments at"
+ },
+ "apis": [
+  "200 GET /api/technicians",
+  "200 GET /api/workplaces",
+  "200 GET /api/workplaces/timezones",
+  "200 GET /api/taxes?pagination%5BrowsPerPage%5D=1000",
+  "200 GET /api/organizations/d55bc308-e61a-438d-b5f1-c7a73c89d49f/roles?pagination%5Bpage%5D=1&pagination%5BrowsPerPage%5D=30&pagination%5BsortBy%5D=is_default&pagination%5Bdescending%5D=true"
+ ]
+}
