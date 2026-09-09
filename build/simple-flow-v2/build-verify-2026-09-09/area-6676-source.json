@@ -1,0 +1,18 @@
+[
+ {
+  "id": 44604,
+  "title": "Move up reorders a part within its line and persists",
+  "atm": 3,
+  "pre": "Logged in as Owner (Work Orders: Create & Edit).\nAn open (estimate) work order exists with one labor line carrying three part requests, all seeded over the API.",
+  "steps": "1. Drag a part to a new position within its line.\n2. Confirm the drop, then view the invoice and PDF order.\n3. Undo the drop.",
+  "exp": "Moving a part up reorders it within its line and the order persists across reloads; the confirmation toast is informational only (the Undo action was removed on user request, 2026-09-04)."
+ },
+ {
+  "id": 44605,
+  "title": "Reordering negatives: cross-line moves, invoiced WO, concurrent edits",
+  "atm": 3,
+  "pre": "Editable (estimate) WO seeded via API with line A holding 3 parts and line B holding 2\nA separate invoiced WO with parts, seeded via API",
+  "steps": "1. Try to move a part to a different line.\n2. Try to reorder on an invoiced work order.\n3. Have two users reorder the same line at once.",
+  "exp": "POSTing a reorder for a line on an INVOICED work order is rejected with 409\n---\nThis is the expected behaviour as per epic SV-8683 and story SV-9266 (Story 20, Reordering parts on a line) and the Simple Flow V2 specification (Confluence page 771391574, revised 8 September 2026), read on 9 September 2026.\nAUTOMATION: Not available on Build to test Yet - Last checked 9/9/2026"
+ }
+]
