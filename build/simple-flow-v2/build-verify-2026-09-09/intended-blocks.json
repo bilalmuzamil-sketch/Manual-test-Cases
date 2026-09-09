@@ -1,204 +1,201 @@
 {
- "44561": {
-  "title": "An approved line completes whatever the state of its parts",
+ "44566": {
+  "title": "Line actions offered match the line's status",
   "fields": {
    "custom_preconds": {
     "blocks": [
      [
-      "1. Sign in as an Owner or Admin (completion permission).",
-      "2. In Settings -> the \"Work Orders\" tab (left sidebar \"Settings\", then the \"Work Orders\" tab), set Require Review Before Completion OFF and Require Tech Story / Mileage / Engine Hours OFF; click \"Save Settings\".",
-      "3. Open an Approved work order with an Approved line carrying three parts in three open states, via top menu \"Work Orders\" -> the \"Work Orders\" tab -> open a work order -> its \"Lines\" tab: one part never ordered (Require Ordering Parts on, no Order clicked), one ordered but not received (Order clicked, Receive not), and one in stock but not picked (an \"In stock\" part with Pick not clicked). Each part shows its status badge on its row."
+      "1. Sign in as an Owner or Admin (Work Order Lines: Create & Edit, in Full View).",
+      "2. Open a work order with lines in each status, via top menu \"Work Orders\" -> the \"Work Orders\" tab -> open a work order -> its \"Lines\" tab. Reach the statuses this way: a brand-new line via \"New Line\" is Needs Approval; approve it to make it Approved; decline it (from the line's three-dot (more_vert) menu at the right of the line row) to make it Declined; complete an Approved line (its \"Complete\" button) to make it Complete."
      ]
     ],
-    "text": "1. Sign in as an Owner or Admin (completion permission).\n2. In Settings -> the \"Work Orders\" tab (left sidebar \"Settings\", then the \"Work Orders\" tab), set Require Review Before Completion OFF and Require Tech Story / Mileage / Engine Hours OFF; click \"Save Settings\".\n3. Open an Approved work order with an Approved line carrying three parts in three open states, via top menu \"Work Orders\" -> the \"Work Orders\" tab -> open a work order -> its \"Lines\" tab: one part never ordered (Require Ordering Parts on, no Order clicked), one ordered but not received (Order clicked, Receive not), and one in stock but not picked (an \"In stock\" part with Pick not clicked). Each part shows its status badge on its row."
+    "text": "1. Sign in as an Owner or Admin (Work Order Lines: Create & Edit, in Full View).\n2. Open a work order with lines in each status, via top menu \"Work Orders\" -> the \"Work Orders\" tab -> open a work order -> its \"Lines\" tab. Reach the statuses this way: a brand-new line via \"New Line\" is Needs Approval; approve it to make it Approved; decline it (from the line's three-dot (more_vert) menu at the right of the line row) to make it Declined; complete an Approved line (its \"Complete\" button) to make it Complete."
    },
    "custom_steps": {
     "blocks": [
      [
-      "1. On an approved line with an unordered part (ordering required), press \"Complete\".",
-      "2. On an approved line with an unpicked inventory part (picking required), press \"Complete\".",
-      "3. On an approved line with an ordered-but-unreceived part (receiving required), press \"Complete\"."
+      "1. Open the ... menu (and check the bulk bar) for a Needs Approval line.",
+      "2. Repeat for Approved, Declined and Complete lines."
      ]
     ],
-    "text": "1. On an approved line with an unordered part (ordering required), press \"Complete\".\n2. On an approved line with an unpicked inventory part (picking required), press \"Complete\".\n3. On an approved line with an ordered-but-unreceived part (receiving required), press \"Complete\"."
+    "text": "1. Open the ... menu (and check the bulk bar) for a Needs Approval line.\n2. Repeat for Approved, Declined and Complete lines."
    },
    "custom_expected": {
     "blocks": [
      [
-      "All three parts still show their original states -- none moved to Received or Picked"
+      "1. Needs Approval: Approve, Decline, Request part, Delete line.",
+      "2. Approved: Decline, Authorization required, Complete, Request part, Delete line.",
+      "3. Declined: Approve, Authorization required, Request part, Delete line.",
+      "4. Complete: Decline, Authorization required, Uncomplete.",
+      "5. Any action not listed for a status is not visible, on the line or in the bulk action bar.",
+      "6. Complete is not offered on a Needs Approval line and Approve is not offered on an already-Approved line (both do nothing)."
      ],
      [
       "---",
-      "This is the expected behaviour as per epic SV-8683 and story SV-9251 (Story 5, Parts no longer block completing a line) and the Simple Flow V2 specification (Confluence page 771391574, revised 8 September 2026), read on 9 September 2026.",
+      "This is the expected behaviour as per epic SV-8683 and story SV-9252 (Story 6, Which actions appear on a line and on a part) and the Simple Flow V2 specification (Confluence page 771391574, revised 8 September 2026), read on 9 September 2026.",
       "Last checked against build v26.35.9-5700a76 on 9/9/2026.",
       "AUTOMATION: READY"
      ]
     ],
-    "text": "All three parts still show their original states -- none moved to Received or Picked\n\n---\nThis is the expected behaviour as per epic SV-8683 and story SV-9251 (Story 5, Parts no longer block completing a line) and the Simple Flow V2 specification (Confluence page 771391574, revised 8 September 2026), read on 9 September 2026.\nLast checked against build v26.35.9-5700a76 on 9/9/2026.\nAUTOMATION: READY"
+    "text": "1. Needs Approval: Approve, Decline, Request part, Delete line.\n2. Approved: Decline, Authorization required, Complete, Request part, Delete line.\n3. Declined: Approve, Authorization required, Request part, Delete line.\n4. Complete: Decline, Authorization required, Uncomplete.\n5. Any action not listed for a status is not visible, on the line or in the bulk action bar.\n6. Complete is not offered on a Needs Approval line and Approve is not offered on an already-Approved line (both do nothing).\n\n---\nThis is the expected behaviour as per epic SV-8683 and story SV-9252 (Story 6, Which actions appear on a line and on a part) and the Simple Flow V2 specification (Confluence page 771391574, revised 8 September 2026), read on 9 September 2026.\nLast checked against build v26.35.9-5700a76 on 9/9/2026.\nAUTOMATION: READY"
    }
   }
  },
- "44562": {
-  "title": "Other line requirements still apply when their setting is on",
+ "44567": {
+  "title": "Decline is disabled while a line holds received or picked parts",
   "fields": {
    "custom_preconds": {
     "blocks": [
      [
-      "1. Sign in as an Owner or Admin (completion permission).",
-      "2. In Settings -> the \"Work Orders\" tab (left sidebar \"Settings\", then the \"Work Orders\" tab) turn ON the relevant LINE REQUIREMENTS (Require Tech Story / Require Mileage / Require Engine Hours) and Save.",
-      "3. Open an Approved line that is missing a required tech story / mileage / engine hours, or carries an unresolved core, via top menu \"Work Orders\" -> the \"Work Orders\" tab -> open a work order -> its \"Lines\" tab."
+      "1. Sign in as an Owner or Admin (Work Order Lines: Create & Edit, in Full View).",
+      "2. Open, via top menu \"Work Orders\" -> the \"Work Orders\" tab -> open a work order -> its \"Lines\" tab, an Approved line that holds a part which has been received or picked (the part row shows \"Received\" or has been Picked)."
      ]
     ],
-    "text": "1. Sign in as an Owner or Admin (completion permission).\n2. In Settings -> the \"Work Orders\" tab (left sidebar \"Settings\", then the \"Work Orders\" tab) turn ON the relevant LINE REQUIREMENTS (Require Tech Story / Require Mileage / Require Engine Hours) and Save.\n3. Open an Approved line that is missing a required tech story / mileage / engine hours, or carries an unresolved core, via top menu \"Work Orders\" -> the \"Work Orders\" tab -> open a work order -> its \"Lines\" tab."
+    "text": "1. Sign in as an Owner or Admin (Work Order Lines: Create & Edit, in Full View).\n2. Open, via top menu \"Work Orders\" -> the \"Work Orders\" tab -> open a work order -> its \"Lines\" tab, an Approved line that holds a part which has been received or picked (the part row shows \"Received\" or has been Picked)."
    },
    "custom_steps": {
     "blocks": [
      [
-      "1. Try to complete a line that is missing a required tech story.",
-      "2. Try to complete a line with an unresolved core where receiving is not required."
+      "1. Open the line's actions and look at Decline."
      ]
     ],
-    "text": "1. Try to complete a line that is missing a required tech story.\n2. Try to complete a line with an unresolved core where receiving is not required."
+    "text": "1. Open the line's actions and look at Decline."
    },
    "custom_expected": {
     "blocks": [
      [
-      "1. The other line-level requirements stay: tech story, mileage, engine hours (each only when its setting is on) and core resolution.",
-      "2. Where receiving is not required, an unresolved core is asked before the line completes (such a part may never pass through a receive and the invoice must still be right).",
-      "3. Satisfying the last outstanding requirement makes a line completable \u2014 it does not complete it by itself."
+      "1. Decline stays visible but is disabled while the line holds parts that were received or picked.",
+      "2. The disabled reason reads \"Return this line's received parts before declining it\"."
      ],
      [
       "---",
-      "This is the expected behaviour as per epic SV-8683 and story SV-9251 (Story 5, Parts no longer block completing a line) and the Simple Flow V2 specification (Confluence page 771391574, revised 8 September 2026), read on 9 September 2026.",
+      "This is the expected behaviour as per epic SV-8683 and story SV-9252 (Story 6, Which actions appear on a line and on a part) and the Simple Flow V2 specification (Confluence page 771391574, revised 8 September 2026), read on 9 September 2026.",
       "Last checked against build v26.35.9-5700a76 on 9/9/2026.",
       "AUTOMATION: READY"
      ]
     ],
-    "text": "1. The other line-level requirements stay: tech story, mileage, engine hours (each only when its setting is on) and core resolution.\n2. Where receiving is not required, an unresolved core is asked before the line completes (such a part may never pass through a receive and the invoice must still be right).\n3. Satisfying the last outstanding requirement makes a line completable \u2014 it does not complete it by itself.\n\n---\nThis is the expected behaviour as per epic SV-8683 and story SV-9251 (Story 5, Parts no longer block completing a line) and the Simple Flow V2 specification (Confluence page 771391574, revised 8 September 2026), read on 9 September 2026.\nLast checked against build v26.35.9-5700a76 on 9/9/2026.\nAUTOMATION: READY"
+    "text": "1. Decline stays visible but is disabled while the line holds parts that were received or picked.\n2. The disabled reason reads \"Return this line's received parts before declining it\".\n\n---\nThis is the expected behaviour as per epic SV-8683 and story SV-9252 (Story 6, Which actions appear on a line and on a part) and the Simple Flow V2 specification (Confluence page 771391574, revised 8 September 2026), read on 9 September 2026.\nLast checked against build v26.35.9-5700a76 on 9/9/2026.\nAUTOMATION: READY"
    }
   }
  },
- "44563": {
-  "title": "A line reaches Complete only through the defined paths",
+ "44568": {
+  "title": "Part actions offered match the part's state (seven states)",
   "fields": {
    "custom_preconds": {
     "blocks": [
      [
-      "1. Sign in as an Owner or Admin (completion permission).",
-      "2. Have a completable Approved line, via top menu \"Work Orders\" -> the \"Work Orders\" tab -> open a work order -> its \"Lines\" tab. The paths to try are: the line's own \"Complete\" button; the bulk action bar \"Complete line\" after ticking lines; \"Create invoice\" in the work order's header three-dot (more_vert) menu; and \"Clock out and complete\" in the clock-out modal (press \"Start\" then \"Stop\" on a line)."
+      "1. Sign in as an Owner or Admin (Work Order Lines: Create & Edit + Full View, Pick Parts and Order Parts).",
+      "2. Open a work order, via top menu \"Work Orders\" -> the \"Work Orders\" tab -> open a work order -> its \"Lines\" tab, with parts in each state on its lines: Requested, Quoted, Auth to order, In Stock (unpicked), Awaiting, Received later, and Received/picked (and a Returned part). A part's state shows as its status badge on its row; states are reached through the part lifecycle (add a part request, Order it, Receive it, Pick it, return it)."
      ]
     ],
-    "text": "1. Sign in as an Owner or Admin (completion permission).\n2. Have a completable Approved line, via top menu \"Work Orders\" -> the \"Work Orders\" tab -> open a work order -> its \"Lines\" tab. The paths to try are: the line's own \"Complete\" button; the bulk action bar \"Complete line\" after ticking lines; \"Create invoice\" in the work order's header three-dot (more_vert) menu; and \"Clock out and complete\" in the clock-out modal (press \"Start\" then \"Stop\" on a line)."
+    "text": "1. Sign in as an Owner or Admin (Work Order Lines: Create & Edit + Full View, Pick Parts and Order Parts).\n2. Open a work order, via top menu \"Work Orders\" -> the \"Work Orders\" tab -> open a work order -> its \"Lines\" tab, with parts in each state on its lines: Requested, Quoted, Auth to order, In Stock (unpicked), Awaiting, Received later, and Received/picked (and a Returned part). A part's state shows as its status badge on its row; states are reached through the part lifecycle (add a part request, Order it, Receive it, Pick it, return it)."
    },
    "custom_steps": {
     "blocks": [
      [
-      "1. Complete a line via the line's own Complete.",
-      "2. Via the bulk bar Complete lines / Complete all lines.",
-      "3. Via Create invoice.",
-      "4. Via the clock-out modal's 'Clock out and complete'."
+      "1. For a part in each state, look at the actions on its row."
      ]
     ],
-    "text": "1. Complete a line via the line's own Complete.\n2. Via the bulk bar Complete lines / Complete all lines.\n3. Via Create invoice.\n4. Via the clock-out modal's 'Clock out and complete'."
+    "text": "1. For a part in each state, look at the actions on its row."
    },
    "custom_expected": {
     "blocks": [
      [
-      "1. A line reaches Complete only through: Complete on the line; Complete lines / Complete all lines in the bulk action bar; Create invoice (which closes the work order's Approved lines as a consequence of invoicing); and Clock out and complete in the clock-out modal.",
-      "2. Nothing else completes a line - no timer and no background job.",
-      "3. A line in Needs Approval cannot be completed by any path; it must be Approved first, on the line or in the bulk action bar. Nothing approves a line on the way to completing it.",
-      "4. Complete lines counts only Approved lines, and Create invoice is refused while any line is still in Needs Approval.",
-      "5. Mark as reviewed is not on the list: it becomes available only once every line is already complete, so there is never an open line for it to close."
+      "1. Requested: nothing on the row (no price yet), but still counted in the bulk bar's Order (n).",
+      "2. Quoted: Order. Auth to order: Order.",
+      "3. In Stock and not picked: Pick.",
+      "4. Awaiting: Receive, with Received later behind its caret when receiving is required.",
+      "5. Received later: nothing on the row, Receive in the ... menu.",
+      "6. Received or picked: nothing (finished). Returned: nothing (sent back, stays visible on the line and in returns)."
      ],
      [
       "---",
-      "This is the expected behaviour as per epic SV-8683 and story SV-9251 (Story 5, Parts no longer block completing a line) and the Simple Flow V2 specification (Confluence page 771391574, revised 8 September 2026), read on 8 September 2026.",
+      "This is the expected behaviour as per epic SV-8683 and story SV-9252 (Story 6, Which actions appear on a line and on a part) and the Simple Flow V2 specification (Confluence page 771391574, revised 8 September 2026), read on 9 September 2026.",
       "Last checked against build v26.35.9-5700a76 on 9/9/2026.",
       "AUTOMATION: READY"
      ]
     ],
-    "text": "1. A line reaches Complete only through: Complete on the line; Complete lines / Complete all lines in the bulk action bar; Create invoice (which closes the work order's Approved lines as a consequence of invoicing); and Clock out and complete in the clock-out modal.\n2. Nothing else completes a line - no timer and no background job.\n3. A line in Needs Approval cannot be completed by any path; it must be Approved first, on the line or in the bulk action bar. Nothing approves a line on the way to completing it.\n4. Complete lines counts only Approved lines, and Create invoice is refused while any line is still in Needs Approval.\n5. Mark as reviewed is not on the list: it becomes available only once every line is already complete, so there is never an open line for it to close.\n\n---\nThis is the expected behaviour as per epic SV-8683 and story SV-9251 (Story 5, Parts no longer block completing a line) and the Simple Flow V2 specification (Confluence page 771391574, revised 8 September 2026), read on 8 September 2026.\nLast checked against build v26.35.9-5700a76 on 9/9/2026.\nAUTOMATION: READY"
+    "text": "1. Requested: nothing on the row (no price yet), but still counted in the bulk bar's Order (n).\n2. Quoted: Order. Auth to order: Order.\n3. In Stock and not picked: Pick.\n4. Awaiting: Receive, with Received later behind its caret when receiving is required.\n5. Received later: nothing on the row, Receive in the ... menu.\n6. Received or picked: nothing (finished). Returned: nothing (sent back, stays visible on the line and in returns).\n\n---\nThis is the expected behaviour as per epic SV-8683 and story SV-9252 (Story 6, Which actions appear on a line and on a part) and the Simple Flow V2 specification (Confluence page 771391574, revised 8 September 2026), read on 9 September 2026.\nLast checked against build v26.35.9-5700a76 on 9/9/2026.\nAUTOMATION: READY"
    }
   }
  },
- "44564": {
-  "title": "Clock-out modal: two complete buttons; line-completed tick box hidden",
+ "44569": {
+  "title": "Ordering precedes receiving; Receive placement follows the setting",
   "fields": {
    "custom_preconds": {
     "blocks": [
      [
-      "1. Sign in as an Owner or Admin, clocked onto a line: open a work order's \"Lines\" tab and press \"Start\" on a line.",
-      "2. Review may be on or off (set in Settings -> the \"Work Orders\" tab (left sidebar \"Settings\", then the \"Work Orders\" tab) -> Require Review Before Completion)."
+      "1. Sign in as an Owner or Admin (Order Parts permission).",
+      "2. Open, via top menu \"Work Orders\" -> the \"Work Orders\" tab -> open a work order -> its \"Lines\" tab, a work order with a vendor-sourced part that is unordered; you can toggle the receiving setting in Settings -> the \"Work Orders\" tab (Require Receiving Parts Before Completion)."
      ]
     ],
-    "text": "1. Sign in as an Owner or Admin, clocked onto a line: open a work order's \"Lines\" tab and press \"Start\" on a line.\n2. Review may be on or off (set in Settings -> the \"Work Orders\" tab (left sidebar \"Settings\", then the \"Work Orders\" tab) -> Require Review Before Completion)."
+    "text": "1. Sign in as an Owner or Admin (Order Parts permission).\n2. Open, via top menu \"Work Orders\" -> the \"Work Orders\" tab -> open a work order -> its \"Lines\" tab, a work order with a vendor-sourced part that is unordered; you can toggle the receiving setting in Settings -> the \"Work Orders\" tab (Require Receiving Parts Before Completion)."
    },
    "custom_steps": {
     "blocks": [
      [
-      "1. Press \"Stop\" to open the clock-out modal.",
-      "2. Read the actions offered and look for the old 'line completed' tick box."
+      "1. With ordering required, check whether Receive appears before the part is ordered.",
+      "2. With receiving not required, check where Receive appears for a part."
      ]
     ],
-    "text": "1. Press \"Stop\" to open the clock-out modal.\n2. Read the actions offered and look for the old 'line completed' tick box."
+    "text": "1. With ordering required, check whether Receive appears before the part is ordered.\n2. With receiving not required, check where Receive appears for a part."
    },
    "custom_expected": {
     "blocks": [
      [
-      "1. The clock-out modal carries the tech story field and two actions: \"Clock out\", and \"Clock out and complete\" (or \"Clock out and send to review\" when review is required).",
-      "2. The \"line completed\" tick box is hidden, leaving one way to complete from clock out instead of two.",
-      "3. If a tech story is required and empty, it is required at clock out.",
-      "4. The clock-out modal is otherwise unchanged."
+      "1. With ordering required, Receive does not appear until the part has been ordered; Order and Receive are never offered at once for the same part.",
+      "2. With receiving not required, Receive moves from the part row into the part's ... menu - it is never removed outright.",
+      "3. Ordering a Requested part only does something when the part is vendor-sourced (including a vendorless part marked Vendor missing); an inventory/found part or one with no source needs its details completed first."
      ],
      [
       "---",
-      "This is the expected behaviour as per epic SV-8683 and story SV-9251 (Story 5, Parts no longer block completing a line) and the Simple Flow V2 specification (Confluence page 771391574, revised 8 September 2026), read on 9 September 2026.",
+      "This is the expected behaviour as per epic SV-8683 and story SV-9252 (Story 6, Which actions appear on a line and on a part) and the Simple Flow V2 specification (Confluence page 771391574, revised 8 September 2026), read on 9 September 2026.",
       "Last checked against build v26.35.9-5700a76 on 9/9/2026.",
       "AUTOMATION: READY"
      ]
     ],
-    "text": "1. The clock-out modal carries the tech story field and two actions: \"Clock out\", and \"Clock out and complete\" (or \"Clock out and send to review\" when review is required).\n2. The \"line completed\" tick box is hidden, leaving one way to complete from clock out instead of two.\n3. If a tech story is required and empty, it is required at clock out.\n4. The clock-out modal is otherwise unchanged.\n\n---\nThis is the expected behaviour as per epic SV-8683 and story SV-9251 (Story 5, Parts no longer block completing a line) and the Simple Flow V2 specification (Confluence page 771391574, revised 8 September 2026), read on 9 September 2026.\nLast checked against build v26.35.9-5700a76 on 9/9/2026.\nAUTOMATION: READY"
+    "text": "1. With ordering required, Receive does not appear until the part has been ordered; Order and Receive are never offered at once for the same part.\n2. With receiving not required, Receive moves from the part row into the part's ... menu - it is never removed outright.\n3. Ordering a Requested part only does something when the part is vendor-sourced (including a vendorless part marked Vendor missing); an inventory/found part or one with no source needs its details completed first.\n\n---\nThis is the expected behaviour as per epic SV-8683 and story SV-9252 (Story 6, Which actions appear on a line and on a part) and the Simple Flow V2 specification (Confluence page 771391574, revised 8 September 2026), read on 9 September 2026.\nLast checked against build v26.35.9-5700a76 on 9/9/2026.\nAUTOMATION: READY"
    }
   }
  },
- "44565": {
-  "title": "Complete is never disabled for a parts reason; reopen returns line to Approved",
+ "44570": {
+  "title": "Declining or sending back a line returns only not-yet-arrived parts to Quoted",
   "fields": {
    "custom_preconds": {
     "blocks": [
      [
-      "1. Sign in as an Owner or Admin (completion permission).",
-      "2. Have an Approved line with outstanding parts and, separately, a completed line, via top menu \"Work Orders\" -> the \"Work Orders\" tab -> open a work order -> its \"Lines\" tab. A completed line offers a \"Reopen\" control on its row.",
-      "3. For the Technician check: use the TECH@shopview.com login in Tech View (never change the Admin role)."
+      "1. Sign in as an Owner or Admin (Work Order Lines: Create & Edit, in Full View).",
+      "2. Open, via top menu \"Work Orders\" -> the \"Work Orders\" tab -> open a work order -> its \"Lines\" tab, an Approved line holding parts in mixed states: Requested, In Stock, Quoted, Auth to order, Awaiting, Received and Returned (states shown as each part's status badge)."
      ]
     ],
-    "text": "1. Sign in as an Owner or Admin (completion permission).\n2. Have an Approved line with outstanding parts and, separately, a completed line, via top menu \"Work Orders\" -> the \"Work Orders\" tab -> open a work order -> its \"Lines\" tab. A completed line offers a \"Reopen\" control on its row.\n3. For the Technician check: use the TECH@shopview.com login in Tech View (never change the Admin role)."
+    "text": "1. Sign in as an Owner or Admin (Work Order Lines: Create & Edit, in Full View).\n2. Open, via top menu \"Work Orders\" -> the \"Work Orders\" tab -> open a work order -> its \"Lines\" tab, an Approved line holding parts in mixed states: Requested, In Stock, Quoted, Auth to order, Awaiting, Received and Returned (states shown as each part's status badge)."
    },
    "custom_steps": {
     "blocks": [
      [
-      "1. Look at Complete on an approved line that has outstanding parts.",
-      "2. Reopen a completed line and check its status and parts.",
-      "3. As a Technician in Tech View, try to complete a line."
+      "1. Decline the line (or send it back with Authorization required).",
+      "2. Check the state of each part afterwards."
      ]
     ],
-    "text": "1. Look at Complete on an approved line that has outstanding parts.\n2. Reopen a completed line and check its status and parts.\n3. As a Technician in Tech View, try to complete a line."
+    "text": "1. Decline the line (or send it back with Authorization required).\n2. Check the state of each part afterwards."
    },
    "custom_expected": {
     "blocks": [
      [
-      "1. Complete is never disabled for a parts reason, anywhere.",
-      "2. A line reopened after completion returns to Approved with its parts unchanged.",
-      "3. A Technician in Tech View cannot complete (they cannot approve), but can still pick parts."
+      "1. Only In Stock, Quoted, Auth to order and Awaiting parts are moved back to Quoted.",
+      "2. A Requested part is left where it is, and so are Received and Returned parts.",
+      "3. Parts that were received or picked are not touched by a line status change, and no stock moves because of one.",
+      "4. Declining a line does not remove its parts from a purchase order (only deleting a part does that).",
+      "5. A part action the user's role does not carry is absent even when the part's state qualifies (Pick follows Pick Parts, Order follows Order Parts)."
      ],
      [
       "---",
-      "This is the expected behaviour as per epic SV-8683 and story SV-9251 (Story 5, Parts no longer block completing a line) and the Simple Flow V2 specification (Confluence page 771391574, revised 8 September 2026), read on 9 September 2026.",
+      "This is the expected behaviour as per epic SV-8683 and story SV-9252 (Story 6, Which actions appear on a line and on a part) and the Simple Flow V2 specification (Confluence page 771391574, revised 8 September 2026), read on 9 September 2026.",
       "Last checked against build v26.35.9-5700a76 on 9/9/2026.",
       "AUTOMATION: READY"
      ]
     ],
-    "text": "1. Complete is never disabled for a parts reason, anywhere.\n2. A line reopened after completion returns to Approved with its parts unchanged.\n3. A Technician in Tech View cannot complete (they cannot approve), but can still pick parts.\n\n---\nThis is the expected behaviour as per epic SV-8683 and story SV-9251 (Story 5, Parts no longer block completing a line) and the Simple Flow V2 specification (Confluence page 771391574, revised 8 September 2026), read on 9 September 2026.\nLast checked against build v26.35.9-5700a76 on 9/9/2026.\nAUTOMATION: READY"
+    "text": "1. Only In Stock, Quoted, Auth to order and Awaiting parts are moved back to Quoted.\n2. A Requested part is left where it is, and so are Received and Returned parts.\n3. Parts that were received or picked are not touched by a line status change, and no stock moves because of one.\n4. Declining a line does not remove its parts from a purchase order (only deleting a part does that).\n5. A part action the user's role does not carry is absent even when the part's state qualifies (Pick follows Pick Parts, Order follows Order Parts).\n\n---\nThis is the expected behaviour as per epic SV-8683 and story SV-9252 (Story 6, Which actions appear on a line and on a part) and the Simple Flow V2 specification (Confluence page 771391574, revised 8 September 2026), read on 9 September 2026.\nLast checked against build v26.35.9-5700a76 on 9/9/2026.\nAUTOMATION: READY"
    }
   }
  }
