@@ -33,6 +33,26 @@
 
 ## ENTRIES — newest first (id · date · tags · lesson → pointer)
 
+### L0023 · 2026-09-09 · #testrail #playwright #harness #mistake-corrected #automated #methodology
+**A CLONED HARNESS CARRIES THE ORIGINAL'S HARD-CODED CONSTANTS — AND A RUNNING NODE PROCESS HOLDS OLD CODE
+IN MEMORY.** The `fr-view` write harness `hs_write.mjs` was sed-cloned from the Global Search copy into the
+WO Print and Inline dirs. The GS copy had `const AUTOMATED_OK = new Set([]);` (its Automated cases were
+whitelisted a different way), so the clones **silently ignored the `AUTOMATED_OK` env var** and skipped
+every `custom_atmstatus=3` case even when the QA lead had approved them. Two independent traps stacked:
+- **(1) The clone bug.** Fixed to `new Set((process.env.AUTOMATED_OK||'').split(',')…)` — env-driven, so the
+  whitelist actually applies. Lesson: after cloning any harness, **grep its hard-coded config constants**
+  (whitelists, target lists, base URLs) before trusting an env override.
+- **(2) The in-memory trap.** A WO Print harness was ALREADY RUNNING when I fixed the file on disk. A running
+  Node process does not re-read its source — it kept the buggy `new Set([])` and finished having skipped
+  C45107 & C45123 despite the correct env. **Fixing the file does not fix a process already launched from
+  it** — you must re-run the affected cases with the fixed code.
+- **(3) The re-run gotcha.** The harness's `done` set reads BOTH `REPAIRED-hs.jsonl` and `FAILED-hs.jsonl`
+  and treats a `{skipped:true}` line as done. So a naive re-run skips them again. Fix: **delete the skip
+  lines from FAILED-hs.jsonl**, then run with `ONLY=<cids> AUTOMATED_OK=<cids>`. Both re-ran clean
+  (44/44 WO Print, verified live). **Graduated-to:** `build/APP-ACTIONS-PLAYBOOK.md` §J (fr-view harness
+  notes) — record the env-driven whitelist + the "already-running process keeps old code" + "clear skip
+  lines before ONLY re-run" as the standard harness-clone checklist.
+
 ### L0022 · 2026-09-09 · #mistake-corrected #lanes #build-verify #test-execution #scope #methodology
 **KNOW WHERE BUILD VERIFICATION STOPS — it makes the cases RUNNABLE; a DIFFERENT session drives the
 results.** My repeated confusion this session: when the QA lead asked whether the SFV2 build verification
