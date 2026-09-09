@@ -31,3 +31,13 @@ No existing defect covers the VIN/Serial line break. Nearby asset-band items are
 
 ## Filed
 Story Defect on SV-9143 (parent = SV-9143), priority Medium, human voice, PO-runnable reproduction on the staging document + fastest-way deep link + 3 annotated exhibits + technical detail last.
+
+## Mobile checks (requested 2026-09-09) — build v26.35.9-58789c5
+Checked at an iPhone-sized viewport (390×844, touch).
+- **Mobile web Finance view:** the invoice document renders correctly and readably on mobile — masthead, addresses, order chips and Work Summary are all fine. The asset section shows the **same VIN / Serial line break** (VIN / Serial on its own line, empty space beside Eng Hrs). Exhibit `ev/ex4-mobile-web.png`. No mobile-specific layout breakage found (the large "IBS Location ID not configured" toast that overlays content is a pre-existing env/config banner, also present on desktop, not part of the invoice).
+- **PDF downloaded on mobile:** `EST-S2-17466.pdf` downloaded from the mobile session is the **same 8-page A4 document** as the desktop download — identical asset-band coordinates (VIN below Eng Hrs), same content. Server-generated and device-independent; md5 differs only by the embedded generation id. So the PDF is correct on mobile, carrying the same VIN / Serial defect.
+
+**Conclusion:** the VIN / Serial row break is present on desktop web, mobile web, and the downloaded PDF (desktop and mobile) — it is the shared invoice document layout. No additional mobile-only defect.
+
+## On-screen exhibit corrected
+The first on-screen crop was poor; replaced with `ev/ex3-actual-onscreen-v2.png` (clean crop of the real app view) and `ev/ex4-mobile-web.png`.
