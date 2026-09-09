@@ -75,3 +75,28 @@ reset-then-assign. (LEARNINGS-LOG L0006/L0008.)
 - **Bulk action bar** (tick line/part row checkboxes): shows `N selected`, primary actions (e.g. `Complete Line`, `Pick (n)`), a `More` (expand_more) overflow, and a `close` X — it replaces the column headers. Evidence: bulk.log, bulk-bar-sv8683.png.
 - **Receive modal** (`Receive` on a part row that is awaiting receipt; title **`Receive parts`**): fields `Assign vendor`, `Vendor invoice number`, `Invoice date`, `Delivery note`; buttons `Select all`, `Receive later`, `Receive parts (n)`. Same modal from part row / line menu / bulk bar / completion wizard. Evidence: recvobs.log, receive-modal-sv8683.png.
 - **⚠️ PO pages route NOT yet located:** `/purchase-orders` returns 404; the Parts sub-nav (`Part Sales`·`Inventory`·`Catalog`·`Returns`·`Vendors`) has no Purchase Orders entry. Area 6 (PO Pages, C44589/44590/44591/C53488) needs this route found before build-verify.
+
+## Roles & Permissions + completion wizard (confirmed 2026-09-09)
+- **Administration sub-nav** (left sidebar, reached via `/administration/settings`): under `SETTINGS` →
+  `Settings` · `Staff` · **`Roles & Permissions`** (`/administration/roles-permissions`) · `Locations` ·
+  `Departments` · `Taxes`; under `SERVICE` → `Labor Rates` · `Canned Lines` · `Fees & Discounts` ·
+  `Asset Types` · `Inspection Templates`; under `PARTS` → `Pricing` · `Bin Locations` · `Categories`;
+  under `INTEGRATIONS` → `QuickBooks` · `IBS`; under `FINANCE` → `Payment Methods`. Evidence:
+  settings-page/role-toggles/rp-list-sv8683.png, sf_perm_probe3/5 logs.
+- **Roles & Permissions page** (`/administration/roles-permissions`): a role list (roles present on
+  sv8683: `Admin`, `Sales Representative`, `Service Advisor`, `Parts Manager`, `Service Manager`,
+  `Office User`, `Time Clock User`, `Parts Technician`, `Senior Service Advisor`, `Technician`,
+  `Foreman`); each row carries an `edit` action → **Edit Role** page. Evidence: rp-list-sv8683.png.
+- **Edit Role page** (`.../roles-permissions/<id>/edit`): `Basic Details` (`Role Name`, `Description`),
+  a `Permissions` section with a `Search permission` box, a `View`/`Create & Edit`/`Delete` column
+  header row, a `View mode` control (`Full View` / `Tech view`), and per-permission toggles. Under the
+  **Work orders** permission category the toggles include `Review work orders`, `Pick parts`,
+  `Order parts`, and **`Received later`** (the one new Simple Flow V2 permission, off by default).
+  Buttons: `Reset To Template`, `Cancel`, `Save`, `Delete Role`. Evidence: rp-editor-sv8683.png,
+  sf_perm_probe6/7 logs (the WO-category child toggles render when the category is expanded).
+- **Completion wizard** (opens from `Create invoice` in the WO header three-dot menu when something is
+  still collectable): step pills across the top, each a label followed by a live count —
+  **`Tech stories`**, **`Pick parts`**, **`Missing Details`** (e.g. "Tech stories (1)",
+  "Pick parts (2)", "Missing Details (1)"); each step carries its own action button (e.g. `Save Story`,
+  `Pick`). Evidence: wizard.log, completion-wizard-sv8683.png. (The `(n)` is a dynamic count, not part
+  of the label.)
