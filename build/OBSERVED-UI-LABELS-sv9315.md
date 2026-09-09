@@ -1,5 +1,40 @@
 # OBSERVED UI LABELS — sv9315.qa.shopview.com, build `v26.35.6-598cc8a`, read 2026-09-01
 
+> ## 🔁 RE-CONFIRMATION ON BUILD `v26.36.0-f43b2fd` — read 2026-09-09 (FULL build-verify of 6597 + 6617)
+>
+> The branch moved `v26.35.9-7f2e4fa` → **`v26.36.0-f43b2fd`**. Every distinct surface the two suites'
+> cases depend on was re-observed LIVE on the new build. Evidence:
+> `build/inline-add-edit-parts/build-verify-2026-09-09-full/` (addrow-v2636.png, npr-modal-v2636.png,
+> wohdr-menu-v2636.png, printview2-v2636.png, lines-v2636.png + the probe scripts/logs).
+>
+> **RE-CONFIRMED verbatim on v26.36.0 (unchanged from v26.35.9):**
+> - **Inline Add-Part row (Full View):** `Add Part` (with a `+`/add icon) · `Part number` · `Description` ·
+>   `Qty` · `Cost` · `Sell price` · `More options` · `Save`. Line/part table headers:
+>   `Name/Description` · `Actual/Estimate` · `Progress` · `Status` · `Action` · `Rate` · `Margin` · `Total`.
+> - **New Part Request modal** (opened by `More options`): title `New Part Request`; fields `Part number` ·
+>   `Description` · `Quantity` · `Source` · `Category` · `Vendor` · `Cost` · `Core charge` · `Sell price` ·
+>   `Margin`. **⚠️ MODAL BUTTONS DRIFTED from v26.35.9:** they are now **`Save part`** and a `close` (×),
+>   plus a new **`AI ShopCoach Parts Guide`** button — the v26.35.9-recorded `Cancel Order` / `Save & Close`
+>   are GONE. **Zero cases quote the old button labels** (`grep` of all 167 bodies = 0 for "Save & Close"
+>   and "Cancel Order"), so this drift needs no case change; recorded here so the glossary is current.
+> - **Part row controls:** each part row shows an `edit` control (icon) and a `more_vert` menu, and a
+>   `drag_indicator` (6-dots) reorder handle. `Auth to order` · `Order` · `In stock` · `Pick` status/actions.
+> - **WO header more_vert menu:** `Audit Log` · `Timesheets (n)` · `Add Work Order Fee / Discount` ·
+>   **`Print Work Order`** · `Delete Work Order`.
+> - **Printer-friendly WO view** (WO header menu → `Print Work Order` → renders a print section and calls
+>   the browser print): header block `WO #<num>` · status · shop name · `Customer:` · `Company:` · `VIN:` ·
+>   `Date:` · `Vehicle:` · `Licence Plate:`; line items under `Name/Description` · `Actual/Estimate` ·
+>   `Status` with each line's parts; footer `Total Actual Time:` · `Total Estimated Time:` ·
+>   **`Printed: <date time>`**. (British spelling `Licence Plate` in the print block.)
+> - **NOT re-triggered on v26.36.0 (needs inventory-part-with-bins seeding):** `Split across bins…` /
+>   `Bin Locations` (6 cases). Confirmed on v26.35.9; no adjacent drift observed. To fully close, seed an
+>   inventory part with ≥2 bins and open its More options on the add row.
+> - **Nav / permission / view-mode labels** (`Settings`, `Roles & Permissions`, `Work order lines`,
+>   `Create & Edit`, `Tech view`, `Full View`, `View mode`, `See Financial Data`) — unchanged; the label
+>   gate is clean for all our cases against this file. Both gates on v26.36.0: **Inline 123/123 RUNNABLE,
+>   WO-Print 44/44 RUNNABLE; label gate clean for all ours** (the 2 flags are Vladimir's foreign
+>   `ZZAUTOTEST` cases C53474/C53475).
+
 > ## 🔁 RE-CONFIRMATION ON BUILD `v26.35.9-7f2e4fa` — read 2026-09-08 (build-verify of 6617 + 6597)
 >
 > The branch moved `v26.35.6-598cc8a` → **`v26.35.9-7f2e4fa`**. The distinct quoted precondition
