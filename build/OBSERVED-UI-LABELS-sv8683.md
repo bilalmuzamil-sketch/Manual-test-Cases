@@ -76,6 +76,24 @@ reset-then-assign. (LEARNINGS-LOG L0006/L0008.)
 - **Receive modal** (`Receive` on a part row that is awaiting receipt; title **`Receive parts`**): fields `Assign vendor`, `Vendor invoice number`, `Invoice date`, `Delivery note`; buttons `Select all`, `Receive later`, `Receive parts (n)`. Same modal from part row / line menu / bulk bar / completion wizard. Evidence: recvobs.log, receive-modal-sv8683.png.
 - **⚠️ PO pages route NOT yet located:** `/purchase-orders` returns 404; the Parts sub-nav (`Part Sales`·`Inventory`·`Catalog`·`Returns`·`Vendors`) has no Purchase Orders entry. Area 6 (PO Pages, C44589/44590/44591/C53488) needs this route found before build-verify.
 
+## Purchase Orders page + part reorder (confirmed 2026-09-09 — QA lead pointed out both routes)
+- **Purchase Orders page** — route: top menu **`Parts`** → left sidebar **`Purchase Orders`** (under the
+  **`SUPPLY CHAIN`** group: `Returns` · **`Purchase Orders`** · `Vendor Invoices` · `Vendors`) →
+  `/parts/orders`. Page heading **`Purchase Orders`**. It is a **single flat, sortable table** — NOT grouped
+  by vendor and with **no per-PO expand panel** (clicking a row does nothing). Columns:
+  **`Work Order` · `Purchase Order Number` · `Vendor` · `Order Status` · `Created On` · `Ordered By` ·
+  `Total Price` · `Note`**. Controls: `Search`, a column-picker icon, **`New PO`**, a per-row **`Receive`**
+  (with a split caret). Order-status pills: `Ordered`, `Partial Delivery`; vendor badge: `Vendor Missing`.
+  **Bulk bar** (tick the header select-all checkbox, or row checkboxes): **`N Purchase Orders selected`** ·
+  **`Clear`** · **`Receive Selected`** (primary). Evidence: po-orders-page/po-bulkbar/po-rowclick-sv8683.png,
+  po_real.log, po_detail.log. (⚠️ `/purchase-orders` 404s — the real path is `/parts/orders`.)
+- **Part reorder on WO Lines** — each **part** row carries a **6-dots drag handle** (`drag_indicator`
+  material icon, class `part-d…`) at its far left. **Drag the handle up/down to reorder the part within its
+  line**; the order persists. After a drop, a toast reads **`Part order updated.`** with an **`Undo`** action
+  (and a close ✕). **The reorder Undo EXISTS on the build** (matches every spec version). Evidence:
+  reorder-before/reorder-after-sv8683.png, reorder.log (part 213213 dragged from top to bottom;
+  toast "Part order updated." + Undo button observed).
+
 ## Roles & Permissions + completion wizard (confirmed 2026-09-09)
 - **Administration sub-nav** (left sidebar, reached via `/administration/settings`): under `SETTINGS` →
   `Settings` · `Staff` · **`Roles & Permissions`** (`/administration/roles-permissions`) · `Locations` ·

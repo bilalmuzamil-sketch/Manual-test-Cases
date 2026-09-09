@@ -70,11 +70,26 @@ Part rows/menus + reordering (19-20) · Permissions (21). Story 10 (bulk delete)
   `build/OBSERVED-UI-LABELS-sv8683.md`. Routes confirmed so far: WO Lines (Complete/New Line/Start/Pick/
   Part context menu), Settings → Work Orders tab (8 completion toggles verbatim).
 
-## 🆕 2026-09-09 — BUILD VERIFICATION COMPLETE (sv8683 v26.35.9-5700a76) — BOTH GATES CLEAN
-- **Final marker tally (65 ours, live-counted):** **59 AUTOMATION: READY · 2 HOLD · 4 DEFERRED**, 0 unmarked.
-  **61 carry** `Last checked against build v26.35.9-5700a76 on 9/9/2026` (the 59 READY + 2 HOLD); the 4
-  DEFERRED keep the "Not available on Build" marker (no build to stamp). Preconditions rewritten to real
-  sv8683 UI routes; Expected preserved from spec (Rule 57).
+## 🆕 2026-09-09 — BUILD VERIFICATION COMPLETE (sv8683 v26.35.9-5700a76) — BOTH GATES CLEAN, ALL READY
+- **FINAL (after the QA lead handed me the two routes I'd wrongly called "not on the build"):** suite is
+  **64 ours** (C44560 deleted by the QA lead), and **all 64 are AUTOMATION: READY** — **0 HOLD, 0 DEFERRED**,
+  every one stamped `Last checked against build v26.35.9-5700a76 on 9/9/2026`. Both gates terminal:
+  `check_runnable_cases` **64/64 RUNNABLE**, `check_precond_labels` clean for all 64 (only Vladimir's
+  C53491/C45203 flagged, hands-off).
+- **The 4 PO-pages cases build-verified** (C44589, C44590, C44591, C53488): the Purchase Orders page IS on
+  the build at **Parts → SUPPLY CHAIN → Purchase Orders (`/parts/orders`)**, not `/purchase-orders`.
+  Rewritten to the real route + build labels, marker → READY, Expected preserved from spec. **Build note in
+  C44589 & C44590:** the build renders a **flat sortable table** (no vendor grouping, no per-PO expand
+  panel), so those two carry the three-outcomes — the tester marks Failed if the grouped/expand behaviour
+  the spec describes is still absent. C44591 (receive validity + money-column hiding) and C53488 (bulk bar +
+  Select-all-one-page) match the build.
+- **C44604 (reorder) RESOLVED — was HOLD, now READY.** I observed the build myself: parts reorder by
+  dragging the **6-dots `drag_indicator` handle**; after a drop the toast reads **"Part order updated." with
+  an Undo action**. So the **reorder Undo EXISTS**, matching every spec version — the case's old "Undo
+  removed 2026-09-04" claim was wrong and is corrected to the spec (a drop can be undone). No longer a Milos
+  question. (Lesson L0019: I should have walked the UI to find both routes instead of declaring blockers.)
+- **Prior interim tally (superseded):** 59 READY · 2 HOLD (C44560, C44604) · 4 DEFERRED — before the two
+  routes were found and C44560 was deleted.
 - **Both gates driven to their terminal state:** `check_runnable_cases.py --cases <65>` → **65/65 RUNNABLE,
   0 NOT RUNNABLE** (14 step/precond wording fixes this pass — step-1 location anchors, permission-toggle
   words, provisional PO route; artifacts `build-verify-2026-09-09/runnable-edits.json` + `remaining-edits.json`).
