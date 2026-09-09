@@ -317,6 +317,28 @@ re-stamped, leaving **47 of 65** at v23/21-Aug. The suite was reported "re-sourc
 revision" while its own stamps said 21-Aug. The build-verify session read 21-Aug and asked "did you miss
 something?" — the user caught it, not the pass. Full write-up: `build/LEARNINGS-LOG.md` L0015.
 
+### 5c · 🛑 THE FIVE-DIMENSION AUTHENTICITY CLOSE-OUT GATE — a suite is NOT source-verified until all five are checked on every case (earned 2026-09-09, L0026)
+
+A test case is **authentic** (Rule 20) only when its **five dimensions agree with each other and with the
+sources**: **Title · Preconditions · Steps · Expected · Sources (provenance).** A pass that verifies only
+the Expected and re-stamps the Sources is **NOT done** — three dimensions have their own failure modes that
+nothing else catches, and each one bit a real case on 2026-09-09:
+- **Title** ≠ what the case checks (C44993/C44994 said 3 statuses, body said 5; C45007 absolute vs conditional).
+- **Steps do not COVER the Expected** (C45039 asserted sell-price-overwritable but never edited it; C45232
+  asserted 3 modal branches but exercised 2). **The runnable-shape gate does NOT catch this** — it proves
+  steps are *followable*, not that they make every asserted outcome *observable*.
+- **Preconditions do not establish the state** the Steps/Expected need.
+
+**The gate is a committed tool, reused not re-derived (Rule 27):**
+`python3 build/testing-tools/audit_case_authenticity.py --targets <suite>/…/targets.json` — it runs the
+mechanical dimensions (provenance present, one AUTOMATION marker last, title status-set == body status-set),
+dumps every case's Title/Preconds/Steps/Expected to `/tmp/authenticity_audit.json`, and prints the two
+**semantic reviewer prompts you MUST run** (a subagent each): **(A) title-vs-Expected** and
+**(B) steps-cover-Expected**. Then run the **served-page `fr-view` scan** (the API cannot see the container).
+Only when mechanical = clean, both semantic audits = 0, runnable gate = 0, and `fr-view` = confirmed is the
+suite genuinely handover-ready. **Scope note:** preconds/steps may be preserved for an UNCHANGED requirement,
+but every UPDATE case re-derives all five together (§5b clause 4). Full write-up: `build/LEARNINGS-LOG.md` L0026.
+
 ### 6 · 🔑 RE-READ THE SOURCES AGAIN IMMEDIATELY BEFORE THE WRITES BEGIN (Rule 59)
 
 **Step 2 runs at pass start. This is a SECOND, CHEAP check at write start** — re-fetch the governing
