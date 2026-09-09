@@ -121,6 +121,25 @@ suite where 47 cases had never been checked against the current spec — a bite 
 Related: L0014 (a provenance line is a claim about when a case was written, never proof the version is
 current), Rules 31/54/59/43.
 
+### L0015 · 2026-09-09 · #methodology #probe #mistake-corrected
+**Three would-be defects died on verification in one session — the cheap check is always a second,
+different measurement.** All three looked real on the first probe and were false: (a) **C45003** — the
+inline row's close control reads "Cancel" not "X", but the CASE ITSELF already says it is labelled
+"Cancel" in Tech View; read the case before calling a divergence. (b) **C44991** — the Edit control
+stayed at `opacity: 0` under a synthetic `mouseover`/`mouseenter`, because **CSS `:hover` cannot be
+triggered by a synthetic event**; a real `page.mouse.move()` gave opacity 1, and real keyboard focus
+gave opacity 1. (c) **C44997** — the discard confirmation looked absent because the probe filtered
+dialogs by `offsetParent`, which is **null for `position: fixed`** and therefore for every Quasar
+dialog; judged by geometry plus computed style, the dialog was plainly there.
+
+### L0016 · 2026-09-09 · #probe #playwright #shopview-app
+**Visibility must be judged by geometry + computed style, never by `offsetParent`.** Use
+`r.width>0 && r.height>0 && display!=='none' && visibility!=='hidden' && opacity>0.01` on
+`getBoundingClientRect()`/`getComputedStyle()`. `offsetParent` is null for fixed-position elements, so
+it reports every modal, toast and sticky bar as hidden. Matching trap already recorded for TestRail's
+hidden `Title is too long` template (L0012): filter by `offsetParent` there, by geometry here — the
+point is the same, **prove visibility with the measurement that fits the element's positioning.**
+
 ### L0013 · 2026-09-08 · #rule #test-execution #qa-lead
 **STANDING INSTRUCTION (QA lead, 2026-09-08): a test whose ticket comment proves the fix verified must
 show Passed in the run.** Verbatim: *"Every test run case which has been proven as verified-fix in the
