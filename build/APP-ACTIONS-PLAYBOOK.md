@@ -3454,6 +3454,21 @@ into a comment — the description path works fine once width/height/localId are
 description back** (`responseContentFormat:"adf"`, or the returned markdown's blob URL) and confirm each
 image's blob carries a non-null `width`/`height`/`localId` before calling it done.
 
+**⚠️ MULTIPLE external-media images render INTERMITTENTLY — prefer ONE combined image (SV-9848,
+2026-09-09).** Even with width/height/localId correct, Jira's media service fetches each external URL
+lazily and **some come back "Preview unavailable" while others on the same ticket render** (observed:
+2 of 4 failed, the 3rd rendered). The reliable-looking older tickets (e.g. SV-9705) each carried **ONE
+combined image**, not several. So **stack the exhibits into a single PNG** (labelled section headers +
+each annotated crop) with PIL and embed that ONE `media` node. Fewer external fetches = fewer failures.
+**THE FULLY RELIABLE ROUTE IS A REAL JIRA ATTACHMENT** (§ "INLINE IMAGES … proven 2026-08-04": upload via
+`POST /rest/api/3/issue/{KEY}/attachments`, then wiki-markup `!file.png|width=…!` through REST v2) —
+Jira then HOSTS the image, no external fetch, always renders. **But that needs DIRECT REST auth to
+`shopview.atlassian.net`** (an API token for Basic auth, or session cookies), which the **Atlassian MCP
+does NOT provide** — the MCP is a proxied gateway (`api.anthropic…`) with no extractable token, and it has
+no attachment-upload tool. So on an MCP-only session: use the ONE-combined-image external-media approach;
+if it still won't render, ASK the user for an Atlassian API token or fresh atlassian.net cookies (keep in
+`/tmp`, never commit) and switch to the attachment route.
+
 ### V.8 The exhibit set that closes the arguments
 
 One exhibit per challenge a reviewer could actually make, each captioned with the work-order number and
