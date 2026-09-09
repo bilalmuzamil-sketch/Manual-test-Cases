@@ -3448,3 +3448,40 @@ Index: CLAUDE.md (rule index table). Other rule files: build/rules/RULES-01-20.m
     as "the suite is build-verified / source-verified." A suite is verified only when **every** case in it
     was verified in **this** pass. Operator form and the delta-trap examples: `build/skills/02-SOURCE-CHECK.md`,
     `build/skills/03-RUN-CHECK.md`, `build/skills/11-BUILD-VERIFICATION.md`; learnings L0015 and L0021.
+
+---
+
+102. **BUILD VERIFICATION MAKES ALL THREE PARTS TESTER-RUNNABLE ON THE BUILD — PRECONDITIONS RUNNABLE,
+    STEPS RUNNABLE, AND EXPECTED KEPT INTACT BUT WORDED TO THE BUILD GLOSSARY (all projects, permanent;
+    QA lead, 2026-09-09).**
+    **THE ORDER, VERBATIM (QA lead, 2026-09-09):** *"I need everything runnable for the manual QA tester in
+    the build starting from Preconditions Runnable, Steps of replication Runnable, Expected result: Expected
+    results should remain intact, but their wording should be clear, meaningful, and consistent with the
+    Build Glossary."*
+    **THE THREE PARTS, EACH WITH ITS OWN BAR:**
+    - **PRECONDITIONS — RUNNABLE.** The tester can reach the required state by UI clicks on the build: entry
+      point (top-menu/screen, exact label) · which record and how you know it is the right one · the
+      tab/panel · where the thing appears · any default-on filter that hides it (skill 18 / Rule 84). A
+      precondition that only *asserts* a state ("a work order that is Complete") without saying how to reach
+      it is not runnable.
+    - **STEPS OF REPLICATION — RUNNABLE.** Every step is a followable action on the build, in the build's own
+      labels, reaching what it names. The runnable-shape gate (`check_runnable_cases.py`) proves the shape;
+      the label gate + a live probe prove the labels are the build's real ones.
+    - **EXPECTED — INTACT IN SUBSTANCE, CLARIFIED IN WORDING TO THE BUILD GLOSSARY.** The **requirement does
+      NOT change** — Expected still states what the *documents* require (Rule 57); you never rewrite it to
+      match the build's behaviour. **But its WORDING is made clear, meaningful, and consistent with the Build
+      Glossary** — the build's actual on-screen terms/labels (the `OBSERVED-UI-LABELS-<env>.md` file *is* the
+      glossary). So a phrasing that names a control or state by a word the build does not use is corrected to
+      the build's word **without changing the asserted outcome**. Example: the spec's "the part's
+      classification is Uncategorized" becomes "the **Category** shows **Uncategorized**" if the build labels
+      that field *Category* — same assertion, the tester's own vocabulary. **The test is: substance
+      unchanged, vocabulary = what the tester sees.**
+    **THE LINE THIS RULE DRAWS (do not cross it):** clarifying Expected *wording* to the build glossary is
+    NOT the Rule-57 violation of changing Expected to match build *behaviour*. If the build BEHAVES
+    differently from the document, the documented expectation STAYS and the case gets the three-outcomes
+    (§1 rule 62-b) — that is a behaviour conflict, not a wording fix. Rule 102 only aligns the *words* used
+    to describe the unchanged requirement to the words on the screen.
+    **RELATION TO OTHER RULES:** this is Rule 84 (tester-readiness) made explicit for all three fields, Rule
+    9/7 (build-accurate layman wording) applied to Expected, under Rule 101 (full, every case) and Rule 57
+    (Expected substance from documents). Operator form: `build/skills/11-BUILD-VERIFICATION.md`,
+    `build/skills/18-LAYMAN-UI-STEPS.md`, `build/skills/03-RUN-CHECK.md`. Learning L0027.

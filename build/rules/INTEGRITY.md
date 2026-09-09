@@ -218,6 +218,14 @@ count/range references bumped to 101. The rule graduates learning **L0015** (del
 2026-09-08 6617/6597 build-verify delta into standing law. Expected inventory check now: `rule bodies: 101
 highest: 101`, complete 1..101.
 
+**RULE 102 ADDED 2026-09-09** (QA lead order: *"I need everything runnable for the manual QA tester in the
+build starting from Preconditions Runnable, Steps of replication Runnable, Expected result: … remain intact,
+but their wording should be clear, meaningful, and consistent with the Build Glossary."*) — **BUILD
+VERIFICATION MAKES ALL THREE PARTS RUNNABLE: PRECONDITIONS · STEPS · EXPECTED (intact in substance, worded
+to the Build Glossary).** Appended to `RULES-61-ONWARD.md` (now holds 61–102). CLAUDE.md §1 bullet + §2 row
+102 + the three 101→102 count/range refs updated in the same commit. Learning L0027. Expected inventory
+now: `rule bodies: 102  highest: 102`, complete 1..102.
+
 **⚠️ EVERY COUNT AND RANGE WRITTEN IN THIS FILE — including `N = 100` and "rules 61-100" above — GOES
 STALE THE MOMENT A RULE IS ADDED.** (The *filename* no longer does; see the retirement block above.)
 They are a dated record of the last run, **not the check**. The
