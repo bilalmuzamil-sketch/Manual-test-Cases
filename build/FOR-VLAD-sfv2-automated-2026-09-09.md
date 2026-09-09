@@ -20,7 +20,7 @@ touched** (Rule 38).
 | C44575 | Bulk Action Bar | precond→build route, marker→READY, build stamp added |
 | C44583 | Receiving | precond→build route, marker→READY, build stamp added |
 | C44587 | Receiving | precond→build route, marker→READY, build stamp added |
-| C44604 | Reordering Parts | precond→build route, marker→READY (had no marker), build stamp added |
+| C44604 | Reordering Parts | precond→build route, build stamp added; marker set to **HOLD** — reorder Undo is an open PO question (case says the Undo was removed 2026-09-04; every spec version says a drop can be undone), so it is held pending Milos, not handed to testers as ready |
 | C44605 | Reordering Parts | precond→build route, marker→READY, build stamp added |
 
 Case links: `https://shopview.testrail.io/index.php?/cases/view/<id>`
