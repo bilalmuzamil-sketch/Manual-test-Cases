@@ -2,7 +2,29 @@
 
 **Canonical cold-resume doc.** Status derived live; do not trust remembered figures (Rule 92 / skill 15 §7).
 
-## 🆕 Update — 2026-09-07 (LATEST) — SOURCE RE-VERIFIED against spec last-updated 2026-09-04
+## 🆕 Update — 2026-09-09 (LATEST) — FULL source re-verification (corrects the 2026-09-07 delta)
+
+**The 2026-09-07 pass below was a DELTA** — only 5 of 123 cases carried the re-verify date; 113 were still
+"31 August 2026" (i.e. stamped against the pre-2026-09-04 spec) and 5 manually-added had no spec line. A
+live audit (QA lead, 2026-09-09) caught it; directive **L0021: always full, never delta**. Fixed today.
+- Spec 782761986 re-checked **live 2026-09-09**: **NOT moved since v16** (Last Updated 2026-09-04).
+- **FULL diff (Rule 43): 114 UNCHANGED · 4 UPDATE · 5 manually-added checked.**
+  - **UPDATED (content):** **C44993/C44994** (S1-N1/N2 — added the Declined & Imported statuses the spec
+    lists, with 62(b) three-outcomes notes for the build gap; build-check removed → re-build-verify) ·
+    **C45007** (S2-R11 — added "keeps its own category" condition).
+  - **HELD + escalated (Rule 58):** **C45034** (asserts a concurrent-edit alert the spec STRUCK as out of
+    scope) · **C45250** (manually-added; conflicts with S1-R9 "Add Part available on Complete"). Neither re-stamped.
+- **117 spec-derived cases re-stamped** to **version 16, read 9 September 2026** (5 page-id-style normalised);
+  rendered `fr-view`. **6 Automated re-stamped** (C45005/45026/45223/45224/45227/45237, QA-lead go-ahead) →
+  `source-verify-2026-09-09/FOR-VLAD-2026-09-09.md`. **4 manually-added left** (correct source): C45251-54.
+  Vladimir's 4 foreign untouched. Run R418 already holds all 123.
+- **OUTSTANDING:** C44993/C44994 (spec-vs-build Declined status; is "Imported" real?), C45034 (retire/reframe
+  + §8 tidy-up), C45250 (S1-R9 conflict), coverage gaps S1-R9/S1-N4. Detail:
+  `source-verify-2026-09-09/{SOURCE-CURRENCY-2026-09-09.md, FULL-REVERIFY-DIFF-2026-09-09.md}`.
+
+---
+
+## 🆕 Update — 2026-09-07 — SOURCE RE-VERIFIED against spec last-updated 2026-09-04
 
 Re-source-verified (QA lead, 2026-09-07; one of three suites). Pulled latest sources live first. Full
 record: `source-verify-2026-09-07/SOURCE-CURRENCY-SPEC-DIFF-2026-09-07.md`.

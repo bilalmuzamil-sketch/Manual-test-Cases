@@ -2,7 +2,22 @@
 
 **Canonical cold-resume doc.** Status derived live (Rule 92 / skill 15 §7).
 
-## 🆕 Update — 2026-09-07 (LATEST) — SOURCE RE-VERIFIED against the current spec (near-non-substantive)
+## 🆕 Update — 2026-09-09 (LATEST) — FULL source re-verification (corrects the 2026-09-07 delta)
+
+**The 2026-09-07 pass below was a DELTA** — only 2 of 44 cases carried the re-verify date; 42 were still
+stamped "25 August 2026". A live audit (QA lead asked, 2026-09-09) caught it; directive **L0021: source
+verification is ALWAYS full, never a delta**. Fixed today.
+- Spec 519176194 re-checked **live 2026-09-09**: last-modified 2026-09-07, **no substantive change**.
+- **FULL diff (Rule 43): 44 UNCHANGED, 0 UPDATE.** Every case re-read against the current spec.
+- **All 44 re-stamped** to the robust **page-id anchor** (dropped the unverifiable "version 8", Rule 42) +
+  **read 9 September 2026**; rendered to `fr-view`. **2 Automated re-stamped** (C45107, C45123) with QA-lead
+  go-ahead → `source-verify-2026-09-09/FOR-VLAD-2026-09-09.md` (Rule 65). Run R419 already holds all 44.
+- **Result: all 44 read 9 Sep — uniformly source-current, no delta gap.** Detail:
+  `source-verify-2026-09-09/{SOURCE-CURRENCY-2026-09-09.md, FULL-REVERIFY-DIFF-2026-09-09.md}`.
+
+---
+
+## 🆕 Update — 2026-09-07 — SOURCE RE-VERIFIED against the current spec (near-non-substantive)
 
 Re-source-verified (QA lead, 2026-09-07; one of three suites). Standing directive: pulled the latest of
 every source live first. Full record: `source-verify-2026-09-07/SOURCE-CURRENCY-2026-09-07.md`.
