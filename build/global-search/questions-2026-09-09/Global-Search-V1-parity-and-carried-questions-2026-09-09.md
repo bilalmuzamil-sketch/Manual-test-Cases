@@ -1,10 +1,10 @@
 # Global Search V2 — questions for the PO
 
 **Drafted 2026-09-09. NOT SENT** — a question sheet goes out last, once everything we can
-answer ourselves is answered (Rule 66). Six questions need an answer; four rows are kept
-visible with no answer needed so nothing looks quietly dropped.
+answer ourselves is answered (Rule 66). **8 questions need an answer.** Two further rows are
+kept visible with no answer needed, so nothing looks quietly dropped.
 
-## Please answer these six
+## Please answer these 8
 
 ### PO-GS-SUBSTR-1 — Searching by plate, part number or VIN
 
@@ -16,7 +16,7 @@ visible with no answer needed so nothing looks quietly dropped.
 
 **Options.** (a) a partial number still finds the record, as today; (b) the whole number must be typed exactly
 
-*Open since 2026-09-09.*
+*Needed from Branko / Milos (PO). Open since 2026-09-09.*
 
 ### PO-GS-PARTSALE-1 — Who can see Part Sale results
 
@@ -28,7 +28,7 @@ visible with no answer needed so nothing looks quietly dropped.
 
 **Options.** (a) keep today's behaviour unchanged; (b) let a Part-Sales-only person see Part Sale results
 
-*Open since 2026-09-09.*
+*Needed from Branko / Milos (PO). Open since 2026-09-09.*
 
 ### PO-REG-6 — Searching a work order by its status
 
@@ -40,7 +40,7 @@ visible with no answer needed so nothing looks quietly dropped.
 
 **Options.** (a) the removal was intended; (b) it was accidental and status should stay searchable
 
-*Open since 2026-08-26.*
+*Needed from Branko / Milos (PO). Open since 2026-08-26.*
 
 ### PO-REG-1 — How search decides what you are allowed to see
 
@@ -52,7 +52,7 @@ visible with no answer needed so nothing looks quietly dropped.
 
 **Options.** (a) leave the shared list alone and give search its own rules; (b) change the shared list (needs a full re-test of navigation and login)
 
-*Open since 2026-08-26.*
+*Needed from Branko / Milos (PO). Open since 2026-08-26.*
 
 ### PO-REG-2 — Time Clock users and search
 
@@ -64,7 +64,7 @@ visible with no answer needed so nothing looks quietly dropped.
 
 **Options.** (a) keep Time Clock users seeing nothing; (b) let them see some results (please say which)
 
-*Open since 2026-08-26.*
+*Needed from Branko / Milos (PO). Open since 2026-08-26.*
 
 ### PO-REG-3 — How many characters before search starts
 
@@ -76,14 +76,34 @@ visible with no answer needed so nothing looks quietly dropped.
 
 **Options.** (a) keep two characters; (b) a different number (please say which)
 
-*Open since 2026-08-26.*
+*Needed from Branko / Milos (PO). Open since 2026-08-26.*
+
+### PO-GS-ASSET-SHOWALL — 'Show all' on asset results
+
+**What happens today.** Not yet built - this is about the new search only.
+
+**What we need you to decide.** Do asset results get a 'Show all' link inside the search panel, now that the separate full-page results view was dropped?
+
+**Why it matters.** This reverses an earlier answer given over Slack, so we would like it confirmed in writing. Our test cases follow the newest specification in the meantime.
+
+**Options.** (a) yes, assets get 'Show all'; (b) no, they do not
+
+*Needed from Branko (designer + PO). Open since 2026-09-07.*
+
+### PO-GS-EMPTY-1 — Wording shown before you type anything
+
+**What happens today.** Not yet built - this is about the new search only.
+
+**What we need you to decide.** Which wording is correct - 'Search for something', or 'Type to start searching for work orders, parts, customers and more'?
+
+**Why it matters.** The specification and the design say different things, so one of them needs to win. Our test cases follow the specification in the meantime.
+
+**Options.** (a) the specification wording; (b) the design wording
+
+*Needed from Branko (designer + PO). Open since 2026-09-02.*
 
 ## No answer needed — kept visible for completeness
 
 - **PO-REG-4 — Recording that someone used search.** NO LONGER NEEDED - answered by the specification itself. Version 1.5 removed all of the new tracking from the project, so there is no longer any clash with the existing usage event. It simply stays as it is.
 
 - **PO-REG-5 — The order results appear in.** NO INPUT NEEDED - recorded for completeness. The new search introduces proper ranking. We treat that as an intended improvement, not something broken.
-
-- **PO-GS-ASSET-SHOWALL — 'Show all' on asset results.** Do assets get a 'Show all' inside the search panel, now that the full-page hand-off was dropped? This reverses an earlier Slack answer, so we want it confirmed in writing. Our cases follow the newest specification meanwhile.
-
-- **PO-GS-EMPTY-1 — Wording before you type anything.** Which wording is right - 'Search for something', or 'Type to start searching for work orders, parts, customers and more'? The specification and the design say different things. Our cases follow the specification meanwhile.
