@@ -1,0 +1,19 @@
+{
+ "pass_meta": {
+  "suite": "Inline Add and Edit Parts (group 6597)",
+  "run": 418,
+  "env": "sv9315.qa.shopview.com (QA branch)",
+  "build": "v26.36.0-f43b2fd",
+  "date": "9 September 2026",
+  "view_mode": "full (Admin staff restored to the Admin role)",
+  "work_order": "Estimate b90d6e97-3f47-4745-8cc6-73765802d6ab, 3 lines"
+ },
+ "results": {
+  "C44988": {"verdict":"Passed","observed":"All three work order lines show an \"Add Part\" control in their Parts section (data-test-id button_add_part), each inside a panel whose heading reads \"Parts\". Clause 2 holds: the lines carried no parts of their own at the time and the button was shown on every one of them regardless.","not_observed":null},
+  "C44989": {"verdict":"Passed","observed":"Selecting Add Part opens an editable inline row. Measured by page position: the Add Part control sits at y=316, the inline row at y=355, and the first existing part row at y=431 - so the row opens directly below the control and above the existing parts, as required. The cursor lands in the Description field automatically (document.activeElement is input_inline_part_description).","not_observed":null},
+  "C44990": {"verdict":"Passed","observed":"Clause 2 verified in Full View on this build: the inline row carries six fields - Description, Part number, Qty, Category, Cost, Sell price. Clause 1 verified earlier the same day on the same build while the session was still in Tech View: the row carried exactly three - Description, Part number, Qty - with no pricing field.","not_observed":null},
+  "C44991": {"verdict":"Passed","observed":"The Edit control on a part line sits at opacity 0 at rest. On a real mouse hover over the part row it goes to opacity 1. With the mouse moved away it returns to 0, and on real keyboard focus it goes to opacity 1 again; it matches :focus-visible and is reached by a single Tab press. Both clauses hold, so the control is usable without a mouse.","not_observed":null},
+  "C44992": {"verdict":"Passed","observed":"Clause 2 verified in Full View: selecting Edit on a part line opens the part details modal titled exactly \"Edit Part Request\", and no inline edit row is opened. Clause 1 (Tech View routing to an inline edit row) is not covered by this observation and is being run separately against a Tech View session.","not_observed":"Clause 1, the Tech View routing, was not exercised in this Full View session."},
+  "C44997": {"verdict":"Passed","observed":"With a populated inline add row open on line 1 (description \"ZZAUTOTEST guard\"), selecting Add Part on line 2 shows the confirmation before anything else happens: title \"Discard this part?\", body \"The details you entered will be lost.\", actions \"Keep Editing\" and \"Discard Part\" - the S6-R1 wording that S6-R5 requires. The requested row does not open while the confirmation stands, and the first row keeps its data.","not_observed":"The onward behaviour of the two buttons (Discard Part opens the requested row, Keep Editing cancels) belongs to C45074 and was not exercised here."}
+ }
+}
