@@ -1,7 +1,39 @@
 # Global Search — PROJECT STATE (canonical cold-resume doc)
 - **TestRail parent folder (group):** group_id **6720**, suite 1 — cases live in the sub-sections inside it, not directly in the folder. Link: https://shopview.testrail.io/index.php?/suites/view/1&group_by=cases:section_id&group_order=asc&display=compact&display_deleted_cases=0&group_id=6720 (recorded 2026-08-25)
 
-## §0-SOURCE-VERIFY-2026-09-07 (LATEST) — re-verified against spec v1.4 (was v1.3)
+## §0-SOURCE-VERIFY-2026-09-09 (LATEST) — re-verified against spec v1.5 (was v1.4)
+
+**Trigger:** QA lead asked (2026-09-09, unattended) to source-verify Global Search again. Pulled every
+source live first (Rule 81). Full records: `source-verify-2026-09-09/{SOURCE-CURRENCY-2026-09-09.md,
+SPEC-DIFF-2026-09-09.md}`.
+
+**Spec moved v1.4 → v1.5** (Confluence 576978945, Last Updated **2026-09-08**, v1.5 change-log by **Milos
+Vasic**). Epic SV-9160 = **25 children** (unchanged); SV-9167 telemetry Blocked (correct). Design =
+Shopview Design System 14 (newest of DS12/13/14 supplied) — lags v1.5 (still shows the invoice-type chip).
+
+**v1.5 delta = 5 requirements; suite impact = 1 content change:**
+- **D1 Invoice type dropped from Vendor Invoices** (§4; no Sublet concept) → **C44900 UPDATED** (removed the
+  Invoice/Sublet open-question caveat; added "no type shown/searchable"). **Resolves PO-GS-VI-1.**
+- **D2** customer "created in 90 days" ranking signal dropped, **D3** part sales-frequency kept, **D4**
+  contact phone/email still indexed → **all UNCHANGED** (no case tests D2; D3/D4 already agree).
+- **D5 telemetry removed entirely** (§6.4 deleted) → **C45140** substance unchanged (already EXCLUDED-FROM-V1);
+  provenance note updated (removal now permanent, §6.4 reference dropped).
+
+**🛑 FULL suite re-stamp (L0015 / skill 02 §5b), not a delta:** all **119 cases re-stamped v1.4 → v1.5**
+(read 9 Sep, marker 9/9) via the deterministic `html.set` fr-view harness. So the suite reads uniformly
+v1.5 and cannot mis-report currency to a later session. **0 NEW cases** → run **R415 already holds all 119**
+(verified live, Rule 34 / L0020). All 119 are atm=1 (no Automated holds). Vladimir's foreign cases untouched.
+
+**Design conflicts (findings, cases follow spec — Rule 57):** DS14 vendor-invoice type chip (v1.5 drops it);
+"View history" vs spec "View part history" (wording); empty-state "Type to start searching…" vs "Search for
+something" (carried PO-GS-EMPTY-1).
+
+**OUTSTANDING:** PO-GS-VI-1 RESOLVED (closed); PO-GS-ASSET-SHOWALL still open; PO-GS-EMPTY-1 still open;
+design update needed (drop the invoice-type chip in DS to match v1.5).
+
+---
+
+## §0-SOURCE-VERIFY-2026-09-07 — re-verified against spec v1.4 (was v1.3)
 
 **Trigger:** QA lead asked (2026-09-07) to source-verify Global Search again (one of three suites this
 session, done one at a time). Standing directive: pulled the latest of every source live first. Full
