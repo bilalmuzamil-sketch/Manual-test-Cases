@@ -279,10 +279,13 @@ full pass will send the next session forward on cases that were never checked.
 1. **AUDIT LIVE, PER CASE.** After the writes, page the suite from TestRail and read each case's provenance
    stamp. Count `new vN` vs `old v<prev>` vs `no version stamp`. **The OLDEST stamp present is the suite's
    true currency** — that is the number a build-verify session will (correctly) report, not the newest.
-2. **CLOSE OR DECLARE.** Either re-verify + re-stamp **every** case to vN (the default — a suite reads
-   uniformly current), OR, if a partial pass is deliberate, **record the split explicitly in
-   `PROJECT-STATE.md`**: "N re-stamped to vN; M still at v<prev> — NOT a full re-verification" — and never
-   write "source-verified against vN" anywhere without that qualifier.
+2. **ALWAYS FULL — NEVER A DELTA (QA lead standing directive, 2026-09-09, verbatim: "NEVER run deltas,
+   the verification should ALWAYS be FULL").** Every source-verification re-reads **every** case in the
+   suite against the current spec and re-stamps **every** case to vN with a fresh read-date — regardless
+   of how few requirements the change-log says moved. There is **no** "disclosed partial" option any more:
+   a pass that touches only the changed-story cases is forbidden, not merely something to footnote. If the
+   spec is unchanged since the last full pass, still re-read and re-stamp so the suite reads uniformly
+   current. Scope = `created_by=3` (authorised Automated included, Vladimir's user-1 excluded).
 3. **"NOT IN THE CHANGE-LOG" ≠ "VERIFIED".** A story the change-log does not mention is *expected* to be
    unchanged, but "expected" is not "observed" (Rule 12). Re-READ each such case against the current spec
    body before its stamp moves to vN; a stamp bump with no re-read is a false claim of currency.
