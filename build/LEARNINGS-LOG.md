@@ -33,6 +33,18 @@
 
 ## ENTRIES — newest first (id · date · tags · lesson → pointer)
 
+### L0020 · 2026-09-09 · #rule #testrail #test-runs #qa-lead
+**STANDING RULE (QA lead, 2026-09-09): authoring a new test case is NOT done until it is a member of that
+suite's active Test Run — and you must CONFIRM it live, every time, forever.** This is Rule 34 made into a
+mandatory close-out step: after any `add_case` in a suite that has a run, immediately union-sync the run
+(`build/testing-tools/sync_runs.py --apply`, union-only — a partial `case_ids` list DELETES tests + their
+results) and then **read the run back live** to prove the new C-id is a test in it. A case that exists but
+is not in the run is invisible to the tester and to every count. Verified live 2026-09-09 for the four new
+cases I authored: **C53486/53487/53488/53489 → R416 (SFV2)**, **C53480 → R417 (Invoice UI Refresh)**,
+**C53477 → R418 (Inline Add & Edit Parts)** — all present. **Graduated-to:** `build/rules/RULES-21-40.md`
+rule 34 (the confirm-live close-out) and `build/skills/01-CASE-BUILD.md` (case authoring is done only when
+the case renders `fr-view` AND is in the suite's run).
+
 ### L0019 · 2026-09-09 · #mistake-corrected #build-verify #ui-walk #rule-97 #self-unblock
 **Two "not on the build" blockers I declared were both WRONG — the feature was there; I just hadn't
 walked the UI hard enough. The QA lead had to hand me both.** (1) I deferred the 4 PO-pages cases as
