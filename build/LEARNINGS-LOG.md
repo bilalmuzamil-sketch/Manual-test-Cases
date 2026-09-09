@@ -286,6 +286,23 @@ filters by CATEGORY name: typing "receiv" collapses the WO category and hides it
 "Received later" you must expand the Work orders category (search "order" or scroll), a UI quirk that can
 read as "the permission is absent" when it is present. Recorded in `build/OBSERVED-UI-LABELS-sv8683.md`.
 
+### L0017 · 2026-09-09 · #probe #playwright #mistake-corrected
+**A keyboard test is void unless focus is PROVEN to be where the user's would be.** C45051 read as a
+failure ("Escape does not close the inline row") purely because an earlier step had clicked at
+(20,300), moving focus to the page body — Escape then went to the document, not the row. Re-run with
+`document.activeElement` asserted to be the row's own input first, Escape behaved perfectly: empty row
+closes silently, populated row raises the discard guard with "Keep Editing" focused. **Always capture
+`document.activeElement` immediately BEFORE a key press and record it alongside the result.**
+
+### L0018 · 2026-09-09 · #probe #shopview-app #mistake-corrected
+**An absent option may just be absent from your SELECTOR.** C45055 read as a failure ("no Create as a
+new part action in the typeahead") because the probe enumerated `.q-menu .q-item` — and this action is
+not rendered as a `q-item`, and only appears when the typed text matches NOTHING. Searching a matching
+string found 24 items and no Create; a deliberate no-match string (`ZZQQXNOMATCH123`) produced the menu
+text "Create ZZQQXNOMATCH123 as a new part". **Two rules: read the whole container's text, not just the
+rows your selector knows about; and exercise the EMPTY-RESULT state before concluding an
+empty-result affordance is missing.**
+
 ### L0015 · 2026-09-09 · #mistake-corrected #source-verify #methodology #provenance
 **A spec-revision source-verification that re-stamps ONLY the changed-story cases is a DELTA, not a full
 re-verification — and the suite's provenance then LIES about its currency to every later session.** On
