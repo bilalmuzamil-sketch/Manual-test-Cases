@@ -33,6 +33,29 @@
 
 ## ENTRIES — newest first (id · date · tags · lesson → pointer)
 
+### L0024 · 2026-09-09 · #mistake-corrected #rule-57 #source-of-truth #qa-lead #methodology
+**THE SOURCES ARE ALWAYS THE AUTHORITY — a "build is right" instruction does not flip that; confirm it,
+and default to spec + three-outcomes.** On the Inline suite the QA lead first answered "Build is right"
+for C44993/C44994 (Add Part button / Edit control hidden by work-order status). I applied it literally:
+narrowed the documented list to Complete/Invoiced/Paid and dropped Declined & Imported to match the build.
+He then corrected it twice — "For them the specs/design sources are authoritative" and "**ALWAYS the
+Sources are the authority**." I reverted: the cases keep the full documented list (Complete, Invoiced,
+Paid, Declined, Imported per S1-N1/N2) and the build gap is carried by **three-outcome tester notes**
+(Rule 62b: a pass ends in a runnable test, tester marks FAILED on the deviation), never by rewriting the
+expectation to match the build.
+- **The rule this reinforces:** Rule 57 — expected behaviour comes from the documents (spec/PRD, epic,
+  design, Figma, PO answers), NEVER from the build; from the build we take only on-screen labels and the
+  pass/fail verdict. A closed ticket or a "the build does X" observation is not a source.
+- **The trap:** even a QA-lead sentence like "build is right" reads as authorising build-as-source. It is
+  not — it is a hypothesis to confirm against the sources. When build ≠ document, the safe, standing
+  handling is: keep the documented expectation, add the three outcomes, escalate the divergence, and let
+  the build-verify pass mark it. If he truly wants the spec changed, that is a **spec correction** (his
+  call, reported to the spec author), not a silent case-narrowing.
+- **C45250 was already right** — it was fixed to follow spec S1-R9 (Add Part available on a Complete line;
+  auto-uncompletes), with no build influence, so "spec is the authority" needed no further change there.
+- **Graduated-to:** already carried by Rule 57 + Rule 62b (§1 CRITICAL CORE) — no new rule; this entry is
+  the dated incident so the reflex ("sources always win; confirm any build-is-right steer") is retrievable.
+
 ### L0023 · 2026-09-09 · #testrail #playwright #harness #mistake-corrected #automated #methodology
 **A CLONED HARNESS CARRIES THE ORIGINAL'S HARD-CODED CONSTANTS — AND A RUNNING NODE PROCESS HOLDS OLD CODE
 IN MEMORY.** The `fr-view` write harness `hs_write.mjs` was sed-cloned from the Global Search copy into the

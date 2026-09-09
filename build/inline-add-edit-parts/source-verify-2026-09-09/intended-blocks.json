@@ -224,19 +224,19 @@
    "custom_expected": {
     "blocks": [
      [
-      "1. The “Add Part” button is not displayed on any work order line when the work order status is Complete, Invoiced, or Paid."
+      "1. The “Add Part” button is not displayed on any work order line when the work order status is Complete, Invoiced, Paid, Declined, or Imported (per S1-N1).",
+      "2. Build-gap outcomes: (1) if the button is hidden on Complete, Invoiced, and Paid but SHOWN on Declined, mark the case FAILED on the Declined check and report the deviation; (2) any other difference is a new problem — report it; (3) if it is hidden on Declined too, that matches the specification — PASS. “Imported” may not be a status this product currently exposes; if you cannot reach it, note that and check the statuses you can."
      ],
      [
       "---",
       "This is the expected behaviour as per epic SV-9315 and story SV-9316 (Story 1, Add Part Button on Work Order Lines) and the Inline Add and Edit Parts on Work Order Lines specification version 16, section S1-N1, read on 9 September 2026.",
-      "Note (later decision, Rule 56): the specification’s S1-N1 also lists the statuses “Declined” and “Imported”, but the QA lead confirmed on 9 September 2026 that the build is authoritative here — the button is correctly shown on Declined, and “Imported” is not a status this product exposes — so the documented list is Complete, Invoiced, and Paid. The specification is to be corrected to match.",
-      "Last checked against build v26.35.9-7f2e4fa on 9/8/2026."
+      "Note (build divergence, Rule 57): the current build differs from the specification on this rule (the control is currently shown on the Declined status). The QA lead confirmed on 9 September 2026 that the specification and design sources are authoritative here, so the documented expectation follows the specification; the build gap is captured in the tester outcomes above and this case must be build-verified."
      ],
      [
       "AUTOMATION: READY"
      ]
     ],
-    "text": "1. The “Add Part” button is not displayed on any work order line when the work order status is Complete, Invoiced, or Paid.\n\n---\nThis is the expected behaviour as per epic SV-9315 and story SV-9316 (Story 1, Add Part Button on Work Order Lines) and the Inline Add and Edit Parts on Work Order Lines specification version 16, section S1-N1, read on 9 September 2026.\nNote (later decision, Rule 56): the specification’s S1-N1 also lists the statuses “Declined” and “Imported”, but the QA lead confirmed on 9 September 2026 that the build is authoritative here — the button is correctly shown on Declined, and “Imported” is not a status this product exposes — so the documented list is Complete, Invoiced, and Paid. The specification is to be corrected to match.\nLast checked against build v26.35.9-7f2e4fa on 9/8/2026.\n\nAUTOMATION: READY"
+    "text": "1. The “Add Part” button is not displayed on any work order line when the work order status is Complete, Invoiced, Paid, Declined, or Imported (per S1-N1).\n2. Build-gap outcomes: (1) if the button is hidden on Complete, Invoiced, and Paid but SHOWN on Declined, mark the case FAILED on the Declined check and report the deviation; (2) any other difference is a new problem — report it; (3) if it is hidden on Declined too, that matches the specification — PASS. “Imported” may not be a status this product currently exposes; if you cannot reach it, note that and check the statuses you can.\n\n---\nThis is the expected behaviour as per epic SV-9315 and story SV-9316 (Story 1, Add Part Button on Work Order Lines) and the Inline Add and Edit Parts on Work Order Lines specification version 16, section S1-N1, read on 9 September 2026.\nNote (build divergence, Rule 57): the current build differs from the specification on this rule (the control is currently shown on the Declined status). The QA lead confirmed on 9 September 2026 that the specification and design sources are authoritative here, so the documented expectation follows the specification; the build gap is captured in the tester outcomes above and this case must be build-verified.\n\nAUTOMATION: READY"
    }
   }
  },
@@ -263,19 +263,19 @@
    "custom_expected": {
     "blocks": [
      [
-      "1. The Edit control is not displayed on part lines when the work order status is Complete, Invoiced, or Paid."
+      "1. The Edit control is not displayed on part lines when the work order status is Complete, Invoiced, Paid, Declined, or Imported (per S1-N2).",
+      "2. Build-gap outcomes: (1) if the Edit control is hidden on Complete, Invoiced, and Paid but SHOWN on Declined, mark the case FAILED on the Declined check and report the deviation; (2) any other difference is a new problem — report it; (3) if it is hidden on Declined too, that matches the specification — PASS. “Imported” may not be a status this product currently exposes; if you cannot reach it, note that and check the statuses you can."
      ],
      [
       "---",
       "This is the expected behaviour as per epic SV-9315 and story SV-9316 (Story 1, Add Part Button on Work Order Lines) and the Inline Add and Edit Parts on Work Order Lines specification version 16, section S1-N2, read on 9 September 2026.",
-      "Note (later decision, Rule 56): the specification’s S1-N1 also lists the statuses “Declined” and “Imported”, but the QA lead confirmed on 9 September 2026 that the build is authoritative here — the button is correctly shown on Declined, and “Imported” is not a status this product exposes — so the documented list is Complete, Invoiced, and Paid. The specification is to be corrected to match.",
-      "Last checked against build v26.35.9-7f2e4fa on 9/8/2026."
+      "Note (build divergence, Rule 57): the current build differs from the specification on this rule (the control is currently shown on the Declined status). The QA lead confirmed on 9 September 2026 that the specification and design sources are authoritative here, so the documented expectation follows the specification; the build gap is captured in the tester outcomes above and this case must be build-verified."
      ],
      [
       "AUTOMATION: READY"
      ]
     ],
-    "text": "1. The Edit control is not displayed on part lines when the work order status is Complete, Invoiced, or Paid.\n\n---\nThis is the expected behaviour as per epic SV-9315 and story SV-9316 (Story 1, Add Part Button on Work Order Lines) and the Inline Add and Edit Parts on Work Order Lines specification version 16, section S1-N2, read on 9 September 2026.\nNote (later decision, Rule 56): the specification’s S1-N1 also lists the statuses “Declined” and “Imported”, but the QA lead confirmed on 9 September 2026 that the build is authoritative here — the button is correctly shown on Declined, and “Imported” is not a status this product exposes — so the documented list is Complete, Invoiced, and Paid. The specification is to be corrected to match.\nLast checked against build v26.35.9-7f2e4fa on 9/8/2026.\n\nAUTOMATION: READY"
+    "text": "1. The Edit control is not displayed on part lines when the work order status is Complete, Invoiced, Paid, Declined, or Imported (per S1-N2).\n2. Build-gap outcomes: (1) if the Edit control is hidden on Complete, Invoiced, and Paid but SHOWN on Declined, mark the case FAILED on the Declined check and report the deviation; (2) any other difference is a new problem — report it; (3) if it is hidden on Declined too, that matches the specification — PASS. “Imported” may not be a status this product currently exposes; if you cannot reach it, note that and check the statuses you can.\n\n---\nThis is the expected behaviour as per epic SV-9315 and story SV-9316 (Story 1, Add Part Button on Work Order Lines) and the Inline Add and Edit Parts on Work Order Lines specification version 16, section S1-N2, read on 9 September 2026.\nNote (build divergence, Rule 57): the current build differs from the specification on this rule (the control is currently shown on the Declined status). The QA lead confirmed on 9 September 2026 that the specification and design sources are authoritative here, so the documented expectation follows the specification; the build gap is captured in the tester outcomes above and this case must be build-verified.\n\nAUTOMATION: READY"
    }
   }
  },
