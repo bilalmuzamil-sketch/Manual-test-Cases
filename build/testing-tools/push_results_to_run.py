@@ -89,14 +89,17 @@ def esc(s):
     return s.replace('&', '&amp;').replace('<', '&lt;').replace('>', '&gt;')
 
 
-def comment_for(rec, todo, header, footer=None):
+def comment_for(rec, todo, header, footer=None, lead=None):
     """One <p> per paragraph. Never a <br>. Never a bare status.
 
     `footer` is a standing note appended after a rule, e.g. the QA lead's standing
     requirement (2026-09-09) that a QA-branch pass says so and says it will be
     re-tested on Staging. It is separated by <hr /> so it reads as its own line.
     """
-    blocks = ['<p>%s</p>' % esc(header), '<p>%s</p>' % esc(rec['observed'].strip())]
+    blocks = []
+    if lead:
+        blocks.append('<p>%s</p>' % esc(lead.strip()))
+    blocks += ['<p>%s</p>' % esc(header), '<p>%s</p>' % esc(rec['observed'].strip())]
     nobs = (rec.get('not_observed') or '').strip()
     if nobs and nobs.lower() != 'none':
         blocks.append('<p>Not observed this run: %s</p>' % esc(nobs))
@@ -136,6 +139,8 @@ def main():
     ap.add_argument('--no-sync', action='store_true', help='skip the union sync')
     ap.add_argument('--footer', help='standing note appended after a rule on EVERY result '
                                      '(e.g. the QA-branch / retest-on-Staging note)')
+    ap.add_argument('--lead', help='sentence placed at the VERY TOP of every result comment, before '
+                                   'the build/date header (QA lead, 2026-09-09)')
     a = ap.parse_args()
 
     res = json.load(open(a.results))['results']
@@ -175,7 +180,7 @@ def main():
         todo = r.get('todo') or todos.get(cid)
         payload.append({'case_id': int(cid[1:]),
                         'status_id': STATUS[r['verdict']],
-                        'comment': comment_for(r, todo, header, a.footer)})
+                        'comment': comment_for(r, todo, header, a.footer, a.lead)})
     assert not any('<br' in p['comment'] for p in payload), 'never emit <br> in an API write'
 
     counts = {}
