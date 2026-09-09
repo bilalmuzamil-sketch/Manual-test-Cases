@@ -1,0 +1,34 @@
+[
+ {
+  "id": 44606,
+  "title": "'Received later' is the one new permission, off by default, per role",
+  "atm": 1,
+  "pre": "1. You are signed in as an admin who can edit roles/permissions.\n2. Open the permissions page, Work Orders section.",
+  "steps": "1. Find the Received later permission in the Work Orders section.\n2. Check its shape and its default across roles.",
+  "exp": "1. A new permission \"Received later\" appears in the Work Orders section of the permissions page, as a yes/no toggle rather than a CRUD row.\n2. It allows deferring a receive that would otherwise block completion.\n3. It is off by default in every role and is granted per role.\n4. It is the only atom this release adds; everything else reuses an existing atom.\n---\nThis is the expected behaviour as per epic SV-8683 and story SV-9267 (Story 21, Permissions on the new surfaces) and the Simple Flow V2 specification (Confluence page 771391574, revised 8 September 2026), and the permission map SV-8183, read on 9 September 2026.\nAUTOMATION: Not available on Build to test Yet - Last checked 9/9/2026"
+ },
+ {
+  "id": 44607,
+  "title": "Every Simple Flow action is gated by its mapped existing atom",
+  "atm": 1,
+  "pre": "1. You can sign in as roles carrying different atoms per the SV-8183 matrix.\n2. Work orders with the relevant actions available exist.",
+  "steps": "1. For each action, sign in as a role that carries its atom and one that does not, and check whether the action is offered.",
+  "exp": "1. Settings page follows Settings > App Settings; completing a line or work order follows Work Orders: Create & Edit.\n2. Approving, declining, reordering parts, tech story, mileage, engine hours and core decisions follow WO Lines: Create & Edit plus Full View.\n3. Picking follows Pick Parts; ordering and receiving on a work order follow Order Parts (which requires See Financial Data).\n4. The purchase order pages and assigning a vendor follow Vendor & Order Mgmt: Create & Edit; fixing a part number into the catalogue follows Catalog & Inventory: Create & Edit.\n5. Marking reviewed follows Review Work Orders; creating the invoice follows Invoicing & Payments: Create & Edit plus See Financial Data.\n6. The bulk version of an action is governed by exactly the same atom as the single version - no bulk action introduces a gate of its own.\n---\nThis is the expected behaviour as per epic SV-8683 and story SV-9267 (Story 21, Permissions on the new surfaces) and the Simple Flow V2 specification (Confluence page 771391574, revised 8 September 2026), and the permission map SV-8183, read on 9 September 2026.\nAUTOMATION: Not available on Build to test Yet - Last checked 9/9/2026"
+ },
+ {
+  "id": 44608,
+  "title": "Money follows See Financial Data; work follows View mode",
+  "atm": 1,
+  "pre": "1. You can sign in as a user with See Financial Data and one without, and in Tech View and Full View.\n2. Receiving and invoicing surfaces are reachable.",
+  "steps": "1. As a user without See Financial Data, open a receive surface and check money fields.\n2. Compare Tech View vs Full View for which actions/columns of work show.",
+  "exp": "1. See Financial Data governs money (cost, tax, subtotals, totals, sell price); View mode (Tech/Full) governs which actions and columns of work a user sees - they never compete on the same row.\n2. No money field is ever both hidden and required: receiving needs a cost and a tax, both always prefilled, so a user without See Financial Data receives with those fields removed and the existing values standing.\n3. Where a user cannot see money, those fields are removed rather than masked, and no text that reveals a price by implication is rendered (such as a cost-vs-sell warning).\n---\nThis is the expected behaviour as per epic SV-8683 and story SV-9267 (Story 21, Permissions on the new surfaces) and the Simple Flow V2 specification (Confluence page 771391574, revised 8 September 2026), and the permission map SV-8183, read on 9 September 2026.\nAUTOMATION: Not available on Build to test Yet - Last checked 9/9/2026"
+ },
+ {
+  "id": 44609,
+  "title": "A user without an atom never sees the action; hidden values are not sent",
+  "atm": 1,
+  "pre": "1. You can sign in as roles missing specific atoms.\n2. Bulk bar and part rows are reachable.",
+  "steps": "1. As a user missing an atom, look for the action in the bulk bar and on the row.\n2. Inspect whether values behind hidden money fields reach the screen.",
+  "exp": "1. A user without an atom does not see the action at all, in the bulk action bar or on the row - nothing is shown and then refused.\n2. The values behind a hidden field are not sent to a screen that is not allowed to show them.\n3. Creating a new vendor keeps the existing vendor-management permission wherever it is offered.\n---\nThis is the expected behaviour as per epic SV-8683 and story SV-9267 (Story 21, Permissions on the new surfaces) and the Simple Flow V2 specification (Confluence page 771391574, revised 8 September 2026), and the permission map SV-8183, read on 9 September 2026.\nAUTOMATION: Not available on Build to test Yet - Last checked 9/9/2026"
+ }
+]

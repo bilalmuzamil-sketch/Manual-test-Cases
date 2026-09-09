@@ -1,493 +1,160 @@
 {
- "44594": {
-  "title": "The wizard opens only from defined entry points when something is collectable",
-  "fields": {
-   "custom_preconds": {
-    "blocks": [
-     [
-      "1. Sign in as an Owner or Admin (completion permission).",
-      "2. Open, via top menu \"Work Orders\" -> the \"Work Orders\" tab -> open a work order -> its \"Lines\" tab, a work order that has something outstanding (e.g. a line missing a required tech story, an unpicked inventory part). The completion wizard opens from \"Create invoice\" (in the work order header three-dot / more_vert menu) when something is still collectable; it shows step pills across the top (e.g. \"Tech stories (1)\", \"Pick parts (2)\", \"Missing Details (1)\") each with a count, and each step carries its own action button (Save Story / Pick all / Receive parts) that saves and advances - there is no Continue button. Also try opening it from the other finish paths (bulk complete, clock out and complete)."
-     ]
-    ],
-    "text": "1. Sign in as an Owner or Admin (completion permission).\n2. Open, via top menu \"Work Orders\" -> the \"Work Orders\" tab -> open a work order -> its \"Lines\" tab, a work order that has something outstanding (e.g. a line missing a required tech story, an unpicked inventory part). The completion wizard opens from \"Create invoice\" (in the work order header three-dot / more_vert menu) when something is still collectable; it shows step pills across the top (e.g. \"Tech stories (1)\", \"Pick parts (2)\", \"Missing Details (1)\") each with a count, and each step carries its own action button (Save Story / Pick all / Receive parts) that saves and advances - there is no Continue button. Also try opening it from the other finish paths (bulk complete, clock out and complete)."
-   },
-   "custom_steps": {
-    "blocks": [
-     [
-      "1. Trigger Complete on a line, Complete lines / Complete all lines, Create invoice, and Clock out and complete on a work order with outstanding items.",
-      "2. Trigger a completion on a tidy work order with nothing outstanding."
-     ]
-    ],
-    "text": "1. Trigger Complete on a line, Complete lines / Complete all lines, Create invoice, and Clock out and complete on a work order with outstanding items.\n2. Trigger a completion on a tidy work order with nothing outstanding."
-   },
-   "custom_expected": {
-    "blocks": [
-     [
-      "1. The wizard opens from exactly these entry points: Complete on a line; Complete lines; Complete all lines; Create invoice; Clock out and complete - and from nothing else (no timer, no background job, no side effect).",
-      "2. It opens only when something required is both outstanding and collectable; if nothing is, the action completes immediately and no wizard appears.",
-      "3. Collectable means: a missing tech story, a missing mileage or engine hours reading, an unpicked inventory part, an unresolved core, or an unreceived part.",
-      "4. Mark as reviewed never opens the wizard (it only becomes available once every line is complete).",
-      "5. The run records which lines it covers and whether it is heading to an invoice, fixed when the run opens.",
-      "6. A step the user's role cannot perform is not shown; where that step is the only outstanding work, the action fails with the reason instead of opening an empty wizard."
-     ],
-     [
-      "---",
-      "This is the expected behaviour as per epic SV-8683 and story SV-9262 (Story 16, When the completion wizard opens) and the Simple Flow V2 specification (Confluence page 771391574, revised 8 September 2026), read on 9 September 2026.",
-      "Last checked against build v26.35.9-5700a76 on 9/9/2026.",
-      "AUTOMATION: READY"
-     ]
-    ],
-    "text": "1. The wizard opens from exactly these entry points: Complete on a line; Complete lines; Complete all lines; Create invoice; Clock out and complete - and from nothing else (no timer, no background job, no side effect).\n2. It opens only when something required is both outstanding and collectable; if nothing is, the action completes immediately and no wizard appears.\n3. Collectable means: a missing tech story, a missing mileage or engine hours reading, an unpicked inventory part, an unresolved core, or an unreceived part.\n4. Mark as reviewed never opens the wizard (it only becomes available once every line is complete).\n5. The run records which lines it covers and whether it is heading to an invoice, fixed when the run opens.\n6. A step the user's role cannot perform is not shown; where that step is the only outstanding work, the action fails with the reason instead of opening an empty wizard.\n\n---\nThis is the expected behaviour as per epic SV-8683 and story SV-9262 (Story 16, When the completion wizard opens) and the Simple Flow V2 specification (Confluence page 771391574, revised 8 September 2026), read on 9 September 2026.\nLast checked against build v26.35.9-5700a76 on 9/9/2026.\nAUTOMATION: READY"
-   }
-  }
- },
- "44595": {
-  "title": "The wizard shows only outstanding steps in a fixed order",
+ "44606": {
+  "title": "'Received later' is the one new permission, off by default, per role",
   "fields": {
    "custom_preconds": {
     "blocks": [
      [
       "1. Sign in as an Owner or Admin.",
-      "2. Open, via top menu \"Work Orders\" -> the \"Work Orders\" tab -> open a work order -> its \"Lines\" tab, a work order with several kinds of outstanding items (tech stories, pick parts, cores, receive, missing details). The completion wizard opens from \"Create invoice\" (in the work order header three-dot / more_vert menu) when something is still collectable; it shows step pills across the top (e.g. \"Tech stories (1)\", \"Pick parts (2)\", \"Missing Details (1)\") each with a count, and each step carries its own action button (Save Story / Pick all / Receive parts) that saves and advances - there is no Continue button."
+      "2. Open Settings -> \"Roles & Permissions\" (left sidebar) -> click the pencil on a role to open its permission toggles. Find the \"Received later\" permission (the one new permission this release): confirm it is present, OFF by default, and set per role."
      ]
     ],
-    "text": "1. Sign in as an Owner or Admin.\n2. Open, via top menu \"Work Orders\" -> the \"Work Orders\" tab -> open a work order -> its \"Lines\" tab, a work order with several kinds of outstanding items (tech stories, pick parts, cores, receive, missing details). The completion wizard opens from \"Create invoice\" (in the work order header three-dot / more_vert menu) when something is still collectable; it shows step pills across the top (e.g. \"Tech stories (1)\", \"Pick parts (2)\", \"Missing Details (1)\") each with a count, and each step carries its own action button (Save Story / Pick all / Receive parts) that saves and advances - there is no Continue button."
+    "text": "1. Sign in as an Owner or Admin.\n2. Open Settings -> \"Roles & Permissions\" (left sidebar) -> click the pencil on a role to open its permission toggles. Find the \"Received later\" permission (the one new permission this release): confirm it is present, OFF by default, and set per role."
    },
    "custom_steps": {
     "blocks": [
      [
-      "1. Open the wizard on a run with outstanding tech stories, picks, cores, receives and missing details.",
-      "2. Read the step pills, their order and counts."
+      "1. Find the Received later permission in the Work Orders section.",
+      "2. Check its shape and its default across roles."
      ]
     ],
-    "text": "1. Open the wizard on a run with outstanding tech stories, picks, cores, receives and missing details.\n2. Read the step pills, their order and counts."
+    "text": "1. Find the Received later permission in the Work Orders section.\n2. Check its shape and its default across roles."
    },
    "custom_expected": {
     "blocks": [
      [
-      "1. The step list is built from the settings and what is actually outstanding, so a step whose work is done never appears and a second pass never asks twice.",
-      "2. Step order is: Tech stories, Pick parts, Resolve cores, Receive parts, Missing details.",
-      "3. Missing details (mileage and engine hours, each only when its setting is on and the value is missing) is last and is asked once per work order, only when the run is closing every remaining line.",
-      "4. Steps appear as pills across the top, each carrying a count where more than one item is outstanding.",
-      "5. A finished step shows a tick and becomes read-only; unfinished steps stay clickable so a user can skip ahead and come back.",
-      "6. Resolve cores is unchanged and appears only when a part in the run carries an unresolved core."
+      "1. A new permission \"Received later\" appears in the Work Orders section of the permissions page, as a yes/no toggle rather than a CRUD row.",
+      "2. It allows deferring a receive that would otherwise block completion.",
+      "3. It is off by default in every role and is granted per role.",
+      "4. It is the only atom this release adds; everything else reuses an existing atom."
      ],
      [
       "---",
-      "This is the expected behaviour as per epic SV-8683 and story SV-9263 (Story 17, The completion wizard) and the Simple Flow V2 specification (Confluence page 771391574, revised 8 September 2026), read on 9 September 2026.",
+      "This is the expected behaviour as per epic SV-8683 and story SV-9267 (Story 21, Permissions on the new surfaces) and the Simple Flow V2 specification (Confluence page 771391574, revised 8 September 2026), and the permission map SV-8183, read on 9 September 2026.",
       "Last checked against build v26.35.9-5700a76 on 9/9/2026.",
       "AUTOMATION: READY"
      ]
     ],
-    "text": "1. The step list is built from the settings and what is actually outstanding, so a step whose work is done never appears and a second pass never asks twice.\n2. Step order is: Tech stories, Pick parts, Resolve cores, Receive parts, Missing details.\n3. Missing details (mileage and engine hours, each only when its setting is on and the value is missing) is last and is asked once per work order, only when the run is closing every remaining line.\n4. Steps appear as pills across the top, each carrying a count where more than one item is outstanding.\n5. A finished step shows a tick and becomes read-only; unfinished steps stay clickable so a user can skip ahead and come back.\n6. Resolve cores is unchanged and appears only when a part in the run carries an unresolved core.\n\n---\nThis is the expected behaviour as per epic SV-8683 and story SV-9263 (Story 17, The completion wizard) and the Simple Flow V2 specification (Confluence page 771391574, revised 8 September 2026), read on 9 September 2026.\nLast checked against build v26.35.9-5700a76 on 9/9/2026.\nAUTOMATION: READY"
+    "text": "1. A new permission \"Received later\" appears in the Work Orders section of the permissions page, as a yes/no toggle rather than a CRUD row.\n2. It allows deferring a receive that would otherwise block completion.\n3. It is off by default in every role and is granted per role.\n4. It is the only atom this release adds; everything else reuses an existing atom.\n\n---\nThis is the expected behaviour as per epic SV-8683 and story SV-9267 (Story 21, Permissions on the new surfaces) and the Simple Flow V2 specification (Confluence page 771391574, revised 8 September 2026), and the permission map SV-8183, read on 9 September 2026.\nLast checked against build v26.35.9-5700a76 on 9/9/2026.\nAUTOMATION: READY"
    }
   }
  },
- "44596": {
-  "title": "Each wizard step's own action saves and advances; no Continue button",
+ "44607": {
+  "title": "Every Simple Flow action is gated by its mapped existing atom",
   "fields": {
    "custom_preconds": {
     "blocks": [
      [
-      "1. Sign in as an Owner or Admin.",
-      "2. Open, via top menu \"Work Orders\" -> the \"Work Orders\" tab -> open a work order -> its \"Lines\" tab, a work order with an outstanding wizard step. The completion wizard opens from \"Create invoice\" (in the work order header three-dot / more_vert menu) when something is still collectable; it shows step pills across the top (e.g. \"Tech stories (1)\", \"Pick parts (2)\", \"Missing Details (1)\") each with a count, and each step carries its own action button (Save Story / Pick all / Receive parts) that saves and advances - there is no Continue button."
+      "1. Sign in as an Owner or Admin to read the permission map in Settings -> \"Roles & Permissions\" (left sidebar) -> click the pencil on a role to open its permission toggles; then, to check gating, use TECH@shopview.com whose role is set for this test (reset the role from Settings -> Roles & Permissions, then assign it to TECH; never change the Admin role) with only the mapped atom for each Simple Flow action (WO Lines: Create & Edit; Order Parts; Pick Parts; Vendor & Order Mgmt: Create & Edit; Received later; See Financial Data).",
+      "2. For each Simple Flow action, confirm it is available only when its mapped existing atom is granted."
      ]
     ],
-    "text": "1. Sign in as an Owner or Admin.\n2. Open, via top menu \"Work Orders\" -> the \"Work Orders\" tab -> open a work order -> its \"Lines\" tab, a work order with an outstanding wizard step. The completion wizard opens from \"Create invoice\" (in the work order header three-dot / more_vert menu) when something is still collectable; it shows step pills across the top (e.g. \"Tech stories (1)\", \"Pick parts (2)\", \"Missing Details (1)\") each with a count, and each step carries its own action button (Save Story / Pick all / Receive parts) that saves and advances - there is no Continue button."
+    "text": "1. Sign in as an Owner or Admin to read the permission map in Settings -> \"Roles & Permissions\" (left sidebar) -> click the pencil on a role to open its permission toggles; then, to check gating, use TECH@shopview.com whose role is set for this test (reset the role from Settings -> Roles & Permissions, then assign it to TECH; never change the Admin role) with only the mapped atom for each Simple Flow action (WO Lines: Create & Edit; Order Parts; Pick Parts; Vendor & Order Mgmt: Create & Edit; Received later; See Financial Data).\n2. For each Simple Flow action, confirm it is available only when its mapped existing atom is granted."
    },
    "custom_steps": {
     "blocks": [
      [
-      "1. Perform the action on each step (Save, Pick all, Receive parts).",
-      "2. Open the receive step and check the modal and its per-part Received later.",
-      "3. Close and reopen the wizard."
+      "1. For each action, sign in as a role that carries its atom and one that does not, and check whether the action is offered."
      ]
     ],
-    "text": "1. Perform the action on each step (Save, Pick all, Receive parts).\n2. Open the receive step and check the modal and its per-part Received later.\n3. Close and reopen the wizard."
+    "text": "1. For each action, sign in as a role that carries its atom and one that does not, and check whether the action is offered."
    },
    "custom_expected": {
     "blocks": [
      [
-      "1. There is no Continue button; each step's button is its own action (Save, Pick all, Receive parts) and performing it saves and advances in one press.",
-      "2. The action button sits with the content it acts on, not in a footer; the modal title names the current step, not the flow.",
-      "3. The receive step opens the same modal as Receiving from the work order, with the same required fields and the same per-part Received later choice; its only action is Receive parts, with no second action offering to leave the step without receiving; closing it returns to the wizard at the next step.",
-      "4. The wizard never mentions ordering, even when ordering is required (a part never marked as ordered is included anyway and ordering happens without user action when the parts are received).",
-      "5. Closing the wizard keeps everything already done; reopening shows only what is left."
+      "1. Settings page follows Settings > App Settings; completing a line or work order follows Work Orders: Create & Edit.",
+      "2. Approving, declining, reordering parts, tech story, mileage, engine hours and core decisions follow WO Lines: Create & Edit plus Full View.",
+      "3. Picking follows Pick Parts; ordering and receiving on a work order follow Order Parts (which requires See Financial Data).",
+      "4. The purchase order pages and assigning a vendor follow Vendor & Order Mgmt: Create & Edit; fixing a part number into the catalogue follows Catalog & Inventory: Create & Edit.",
+      "5. Marking reviewed follows Review Work Orders; creating the invoice follows Invoicing & Payments: Create & Edit plus See Financial Data.",
+      "6. The bulk version of an action is governed by exactly the same atom as the single version - no bulk action introduces a gate of its own."
      ],
      [
       "---",
-      "This is the expected behaviour as per epic SV-8683 and story SV-9263 (Story 17, The completion wizard) and the Simple Flow V2 specification (Confluence page 771391574, revised 8 September 2026), read on 8 September 2026.",
+      "This is the expected behaviour as per epic SV-8683 and story SV-9267 (Story 21, Permissions on the new surfaces) and the Simple Flow V2 specification (Confluence page 771391574, revised 8 September 2026), and the permission map SV-8183, read on 9 September 2026.",
       "Last checked against build v26.35.9-5700a76 on 9/9/2026.",
       "AUTOMATION: READY"
      ]
     ],
-    "text": "1. There is no Continue button; each step's button is its own action (Save, Pick all, Receive parts) and performing it saves and advances in one press.\n2. The action button sits with the content it acts on, not in a footer; the modal title names the current step, not the flow.\n3. The receive step opens the same modal as Receiving from the work order, with the same required fields and the same per-part Received later choice; its only action is Receive parts, with no second action offering to leave the step without receiving; closing it returns to the wizard at the next step.\n4. The wizard never mentions ordering, even when ordering is required (a part never marked as ordered is included anyway and ordering happens without user action when the parts are received).\n5. Closing the wizard keeps everything already done; reopening shows only what is left.\n\n---\nThis is the expected behaviour as per epic SV-8683 and story SV-9263 (Story 17, The completion wizard) and the Simple Flow V2 specification (Confluence page 771391574, revised 8 September 2026), read on 8 September 2026.\nLast checked against build v26.35.9-5700a76 on 9/9/2026.\nAUTOMATION: READY"
+    "text": "1. Settings page follows Settings > App Settings; completing a line or work order follows Work Orders: Create & Edit.\n2. Approving, declining, reordering parts, tech story, mileage, engine hours and core decisions follow WO Lines: Create & Edit plus Full View.\n3. Picking follows Pick Parts; ordering and receiving on a work order follow Order Parts (which requires See Financial Data).\n4. The purchase order pages and assigning a vendor follow Vendor & Order Mgmt: Create & Edit; fixing a part number into the catalogue follows Catalog & Inventory: Create & Edit.\n5. Marking reviewed follows Review Work Orders; creating the invoice follows Invoicing & Payments: Create & Edit plus See Financial Data.\n6. The bulk version of an action is governed by exactly the same atom as the single version - no bulk action introduces a gate of its own.\n\n---\nThis is the expected behaviour as per epic SV-8683 and story SV-9267 (Story 21, Permissions on the new surfaces) and the Simple Flow V2 specification (Confluence page 771391574, revised 8 September 2026), and the permission map SV-8183, read on 9 September 2026.\nLast checked against build v26.35.9-5700a76 on 9/9/2026.\nAUTOMATION: READY"
    }
   }
  },
- "44597": {
-  "title": "Where a wizard run ends depends on what opened it",
+ "44608": {
+  "title": "Money follows See Financial Data; work follows View mode",
   "fields": {
    "custom_preconds": {
     "blocks": [
      [
-      "1. Sign in as an Owner or Admin.",
-      "2. Open, via top menu \"Work Orders\" -> the \"Work Orders\" tab -> open a work order -> its \"Lines\" tab, a work order and start the wizard from different entry points (Create invoice; complete/finish). The completion wizard opens from \"Create invoice\" (in the work order header three-dot / more_vert menu) when something is still collectable; it shows step pills across the top (e.g. \"Tech stories (1)\", \"Pick parts (2)\", \"Missing Details (1)\") each with a count, and each step carries its own action button (Save Story / Pick all / Receive parts) that saves and advances - there is no Continue button."
+      "1. Sign in as an Owner or Admin; for the checks, use TECH@shopview.com whose role is set for this test (reset the role from Settings -> Roles & Permissions, then assign it to TECH; never change the Admin role) with See Financial Data ON vs OFF and View mode Full vs Tech.",
+      "2. Open a work order and the receive/PO surfaces and confirm money fields follow See Financial Data and the work UI follows View mode."
      ]
     ],
-    "text": "1. Sign in as an Owner or Admin.\n2. Open, via top menu \"Work Orders\" -> the \"Work Orders\" tab -> open a work order -> its \"Lines\" tab, a work order and start the wizard from different entry points (Create invoice; complete/finish). The completion wizard opens from \"Create invoice\" (in the work order header three-dot / more_vert menu) when something is still collectable; it shows step pills across the top (e.g. \"Tech stories (1)\", \"Pick parts (2)\", \"Missing Details (1)\") each with a count, and each step carries its own action button (Save Story / Pick all / Receive parts) that saves and advances - there is no Continue button."
+    "text": "1. Sign in as an Owner or Admin; for the checks, use TECH@shopview.com whose role is set for this test (reset the role from Settings -> Roles & Permissions, then assign it to TECH; never change the Admin role) with See Financial Data ON vs OFF and View mode Full vs Tech.\n2. Open a work order and the receive/PO surfaces and confirm money fields follow See Financial Data and the work UI follows View mode."
    },
    "custom_steps": {
     "blocks": [
      [
-      "1. Finish a run opened by Complete on a line / Complete lines.",
-      "2. Finish a run opened by Complete all lines (with review required).",
-      "3. Finish a run opened by Create invoice."
+      "1. As a user without See Financial Data, open a receive surface and check money fields.",
+      "2. Compare Tech View vs Full View for which actions/columns of work show."
      ]
     ],
-    "text": "1. Finish a run opened by Complete on a line / Complete lines.\n2. Finish a run opened by Complete all lines (with review required).\n3. Finish a run opened by Create invoice."
+    "text": "1. As a user without See Financial Data, open a receive surface and check money fields.\n2. Compare Tech View vs Full View for which actions/columns of work show."
    },
    "custom_expected": {
     "blocks": [
      [
-      "1. Complete on a line, or Complete lines: those lines complete, a toast, work order untouched.",
-      "2. Complete all lines: every open line complete, a toast, still on the work order; with review required, this is the moment Mark as reviewed appears in the header.",
-      "3. Create invoice: the invoice is created, the Finance tab and the payment screen open."
+      "1. See Financial Data governs money (cost, tax, subtotals, totals, sell price); View mode (Tech/Full) governs which actions and columns of work a user sees - they never compete on the same row.",
+      "2. No money field is ever both hidden and required: receiving needs a cost and a tax, both always prefilled, so a user without See Financial Data receives with those fields removed and the existing values standing.",
+      "3. Where a user cannot see money, those fields are removed rather than masked, and no text that reveals a price by implication is rendered (such as a cost-vs-sell warning)."
      ],
      [
       "---",
-      "This is the expected behaviour as per epic SV-8683 and story SV-9263 (Story 17, The completion wizard) and the Simple Flow V2 specification (Confluence page 771391574, revised 8 September 2026), read on 9 September 2026.",
+      "This is the expected behaviour as per epic SV-8683 and story SV-9267 (Story 21, Permissions on the new surfaces) and the Simple Flow V2 specification (Confluence page 771391574, revised 8 September 2026), and the permission map SV-8183, read on 9 September 2026.",
       "Last checked against build v26.35.9-5700a76 on 9/9/2026.",
       "AUTOMATION: READY"
      ]
     ],
-    "text": "1. Complete on a line, or Complete lines: those lines complete, a toast, work order untouched.\n2. Complete all lines: every open line complete, a toast, still on the work order; with review required, this is the moment Mark as reviewed appears in the header.\n3. Create invoice: the invoice is created, the Finance tab and the payment screen open.\n\n---\nThis is the expected behaviour as per epic SV-8683 and story SV-9263 (Story 17, The completion wizard) and the Simple Flow V2 specification (Confluence page 771391574, revised 8 September 2026), read on 9 September 2026.\nLast checked against build v26.35.9-5700a76 on 9/9/2026.\nAUTOMATION: READY"
+    "text": "1. See Financial Data governs money (cost, tax, subtotals, totals, sell price); View mode (Tech/Full) governs which actions and columns of work a user sees - they never compete on the same row.\n2. No money field is ever both hidden and required: receiving needs a cost and a tax, both always prefilled, so a user without See Financial Data receives with those fields removed and the existing values standing.\n3. Where a user cannot see money, those fields are removed rather than masked, and no text that reveals a price by implication is rendered (such as a cost-vs-sell warning).\n\n---\nThis is the expected behaviour as per epic SV-8683 and story SV-9267 (Story 21, Permissions on the new surfaces) and the Simple Flow V2 specification (Confluence page 771391574, revised 8 September 2026), and the permission map SV-8183, read on 9 September 2026.\nLast checked against build v26.35.9-5700a76 on 9/9/2026.\nAUTOMATION: READY"
    }
   }
  },
- "44598": {
-  "title": "Wizard handles not-required steps, mid-run completion and server errors",
+ "44609": {
+  "title": "A user without an atom never sees the action; hidden values are not sent",
   "fields": {
    "custom_preconds": {
     "blocks": [
      [
-      "1. Sign in as an Owner or Admin.",
-      "2. Open, via top menu \"Work Orders\" -> the \"Work Orders\" tab -> open a work order -> its \"Lines\" tab, a work order with a mix of required and not-required steps. The completion wizard opens from \"Create invoice\" (in the work order header three-dot / more_vert menu) when something is still collectable; it shows step pills across the top (e.g. \"Tech stories (1)\", \"Pick parts (2)\", \"Missing Details (1)\") each with a count, and each step carries its own action button (Save Story / Pick all / Receive parts) that saves and advances - there is no Continue button."
+      "1. For each check, use TECH@shopview.com whose role is set for this test (reset the role from Settings -> Roles & Permissions, then assign it to TECH; never change the Admin role) WITHOUT the relevant atom (e.g. without Order Parts, or without Pick Parts).",
+      "2. Open the work order / receive surfaces and confirm the gated action is not shown, and that a hidden value is never submitted."
      ]
     ],
-    "text": "1. Sign in as an Owner or Admin.\n2. Open, via top menu \"Work Orders\" -> the \"Work Orders\" tab -> open a work order -> its \"Lines\" tab, a work order with a mix of required and not-required steps. The completion wizard opens from \"Create invoice\" (in the work order header three-dot / more_vert menu) when something is still collectable; it shows step pills across the top (e.g. \"Tech stories (1)\", \"Pick parts (2)\", \"Missing Details (1)\") each with a count, and each step carries its own action button (Save Story / Pick all / Receive parts) that saves and advances - there is no Continue button."
+    "text": "1. For each check, use TECH@shopview.com whose role is set for this test (reset the role from Settings -> Roles & Permissions, then assign it to TECH; never change the Admin role) WITHOUT the relevant atom (e.g. without Order Parts, or without Pick Parts).\n2. Open the work order / receive surfaces and confirm the gated action is not shown, and that a hidden value is never submitted."
    },
    "custom_steps": {
     "blocks": [
      [
-      "1. Look for a step whose work is not required.",
-      "2. Have someone else finish the outstanding work mid-run.",
-      "3. Induce a server error mid-step with values entered."
+      "1. As a user missing an atom, look for the action in the bulk bar and on the row.",
+      "2. Inspect whether values behind hidden money fields reach the screen."
      ]
     ],
-    "text": "1. Look for a step whose work is not required.\n2. Have someone else finish the outstanding work mid-run.\n3. Induce a server error mid-step with values entered."
+    "text": "1. As a user missing an atom, look for the action in the bulk bar and on the row.\n2. Inspect whether values behind hidden money fields reach the screen."
    },
    "custom_expected": {
     "blocks": [
      [
-      "1. A step for work that is not required does not exist - it is not disabled and not skippable.",
-      "2. If someone else finishes the outstanding work mid-run, the wizard closes to the outcome rather than showing an empty step.",
-      "3. A server error mid-step leaves the step open with the entered values intact."
+      "1. A user without an atom does not see the action at all, in the bulk action bar or on the row - nothing is shown and then refused.",
+      "2. The values behind a hidden field are not sent to a screen that is not allowed to show them.",
+      "3. Creating a new vendor keeps the existing vendor-management permission wherever it is offered."
      ],
      [
       "---",
-      "This is the expected behaviour as per epic SV-8683 and story SV-9263 (Story 17, The completion wizard) and the Simple Flow V2 specification (Confluence page 771391574, revised 8 September 2026), read on 9 September 2026.",
+      "This is the expected behaviour as per epic SV-8683 and story SV-9267 (Story 21, Permissions on the new surfaces) and the Simple Flow V2 specification (Confluence page 771391574, revised 8 September 2026), and the permission map SV-8183, read on 9 September 2026.",
       "Last checked against build v26.35.9-5700a76 on 9/9/2026.",
       "AUTOMATION: READY"
      ]
     ],
-    "text": "1. A step for work that is not required does not exist - it is not disabled and not skippable.\n2. If someone else finishes the outstanding work mid-run, the wizard closes to the outcome rather than showing an empty step.\n3. A server error mid-step leaves the step open with the entered values intact.\n\n---\nThis is the expected behaviour as per epic SV-8683 and story SV-9263 (Story 17, The completion wizard) and the Simple Flow V2 specification (Confluence page 771391574, revised 8 September 2026), read on 9 September 2026.\nLast checked against build v26.35.9-5700a76 on 9/9/2026.\nAUTOMATION: READY"
-   }
-  }
- },
- "44599": {
-  "title": "The header offers only the one finish action that is genuinely next",
-  "fields": {
-   "custom_preconds": {
-    "blocks": [
-     [
-      "1. Sign in as an Owner or Admin.",
-      "2. Open, via top menu \"Work Orders\" -> the \"Work Orders\" tab -> open a work order -> its \"Lines\" tab, work orders in different states. The header three-dot (more_vert) menu offers the finish action that is genuinely next (\"Create invoice\", or complete/review as applicable); \"Mark as reviewed\" appears only once every line is complete."
-     ]
-    ],
-    "text": "1. Sign in as an Owner or Admin.\n2. Open, via top menu \"Work Orders\" -> the \"Work Orders\" tab -> open a work order -> its \"Lines\" tab, work orders in different states. The header three-dot (more_vert) menu offers the finish action that is genuinely next (\"Create invoice\", or complete/review as applicable); \"Mark as reviewed\" appears only once every line is complete."
-   },
-   "custom_steps": {
-    "blocks": [
-     [
-      "1. With review off and a line still open, read the header actions.",
-      "2. With review off and every line complete.",
-      "3. With review on and a line still open.",
-      "4. With review on, every line complete, not yet reviewed.",
-      "5. With review on, already reviewed.",
-      "6. With lines selected."
-     ]
-    ],
-    "text": "1. With review off and a line still open, read the header actions.\n2. With review off and every line complete.\n3. With review on and a line still open.\n4. With review on, every line complete, not yet reviewed.\n5. With review on, already reviewed.\n6. With lines selected."
-   },
-   "custom_expected": {
-    "blocks": [
-     [
-      "1. Review off, any line still open: New Line, Send, and a ... menu holding Create invoice.",
-      "2. Review off, every line complete: Create invoice promoted to a primary button beside New Line, then Send and ...",
-      "3. Review on, any line still open: New Line, Send, ... and no finish action at all (the next real action is completing the lines, on the line and in the bulk bar).",
-      "4. Any line still in Needs Approval: Create invoice is shown disabled (not hidden) with the reason \"All lines must be approved before invoicing\"; invoicing never approves a line as a side effect. A work order whose lines are all in Needs Approval offers no finish action at all - the next real action is approving the lines, on the line or in the bulk action bar.",
-      "5. Review on, every line complete, not yet reviewed: Mark as reviewed promoted beside New Line.",
-      "6. Review on, already reviewed: Create invoice promoted in its place.",
-      "7. Lines selected: the bulk action bar, whatever the review setting.",
-      "8. Only one finish action is ever on screen, and only ever one the user can actually press."
-     ],
-     [
-      "---",
-      "This is the expected behaviour as per epic SV-8683 and story SV-9264 (Story 18, Create invoice as the finish action) and the Simple Flow V2 specification (Confluence page 771391574, revised 8 September 2026), read on 8 September 2026.",
-      "Last checked against build v26.35.9-5700a76 on 9/9/2026.",
-      "AUTOMATION: READY"
-     ]
-    ],
-    "text": "1. Review off, any line still open: New Line, Send, and a ... menu holding Create invoice.\n2. Review off, every line complete: Create invoice promoted to a primary button beside New Line, then Send and ...\n3. Review on, any line still open: New Line, Send, ... and no finish action at all (the next real action is completing the lines, on the line and in the bulk bar).\n4. Any line still in Needs Approval: Create invoice is shown disabled (not hidden) with the reason \"All lines must be approved before invoicing\"; invoicing never approves a line as a side effect. A work order whose lines are all in Needs Approval offers no finish action at all - the next real action is approving the lines, on the line or in the bulk action bar.\n5. Review on, every line complete, not yet reviewed: Mark as reviewed promoted beside New Line.\n6. Review on, already reviewed: Create invoice promoted in its place.\n7. Lines selected: the bulk action bar, whatever the review setting.\n8. Only one finish action is ever on screen, and only ever one the user can actually press.\n\n---\nThis is the expected behaviour as per epic SV-8683 and story SV-9264 (Story 18, Create invoice as the finish action) and the Simple Flow V2 specification (Confluence page 771391574, revised 8 September 2026), read on 8 September 2026.\nLast checked against build v26.35.9-5700a76 on 9/9/2026.\nAUTOMATION: READY"
-   }
-  }
- },
- "44600": {
-  "title": "Create invoice runs the wizard if needed, then invoices and opens payment",
-  "fields": {
-   "custom_preconds": {
-    "blocks": [
-     [
-      "1. Sign in as an Owner or Admin (invoicing permission).",
-      "2. Open, via top menu \"Work Orders\" -> the \"Work Orders\" tab -> open a work order -> its \"Lines\" tab, a completable work order that still has outstanding steps. Use \"Create invoice\" in the header three-dot menu: it runs the completion wizard first if needed, then invoices and opens the payment screen."
-     ]
-    ],
-    "text": "1. Sign in as an Owner or Admin (invoicing permission).\n2. Open, via top menu \"Work Orders\" -> the \"Work Orders\" tab -> open a work order -> its \"Lines\" tab, a completable work order that still has outstanding steps. Use \"Create invoice\" in the header three-dot menu: it runs the completion wizard first if needed, then invoices and opens the payment screen."
-   },
-   "custom_steps": {
-    "blocks": [
-     [
-      "1. Press Create invoice on a work order with outstanding required work.",
-      "2. Confirm and complete the flow.",
-      "3. Repeat where a deposit covers the whole amount."
-     ]
-    ],
-    "text": "1. Press Create invoice on a work order with outstanding required work.\n2. Confirm and complete the flow.\n3. Repeat where a deposit covers the whole amount."
-   },
-   "custom_expected": {
-    "blocks": [
-     [
-      "1. Create invoice runs the wizard first if anything required is outstanding, otherwise proceeds directly.",
-      "2. If lines are still open, the confirmation states the invoice total and how many Approved lines will be completed; declined lines are named as excluded rather than counted.",
-      "3. On completion the invoice is created, every open Approved line completes, and the Finance tab opens with the payment screen. A declined line never blocks invoicing - it is skipped entirely.",
-      "4. Where a deposit already covers the whole amount the payment screen is skipped, the work order reads Paid, and the user is told the deposit settled the invoice.",
-      "5. Everything that happens today when an invoice is created still happens from every entry point: a deposit applying, an over-payment becoming a credit, the customer being locked, the accounting sync and the snapshot."
-     ],
-     [
-      "---",
-      "This is the expected behaviour as per epic SV-8683 and story SV-9264 (Story 18, Create invoice as the finish action) and the Simple Flow V2 specification (Confluence page 771391574, revised 8 September 2026), read on 8 September 2026.",
-      "Last checked against build v26.35.9-5700a76 on 9/9/2026.",
-      "AUTOMATION: READY"
-     ]
-    ],
-    "text": "1. Create invoice runs the wizard first if anything required is outstanding, otherwise proceeds directly.\n2. If lines are still open, the confirmation states the invoice total and how many Approved lines will be completed; declined lines are named as excluded rather than counted.\n3. On completion the invoice is created, every open Approved line completes, and the Finance tab opens with the payment screen. A declined line never blocks invoicing - it is skipped entirely.\n4. Where a deposit already covers the whole amount the payment screen is skipped, the work order reads Paid, and the user is told the deposit settled the invoice.\n5. Everything that happens today when an invoice is created still happens from every entry point: a deposit applying, an over-payment becoming a credit, the customer being locked, the accounting sync and the snapshot.\n\n---\nThis is the expected behaviour as per epic SV-8683 and story SV-9264 (Story 18, Create invoice as the finish action) and the Simple Flow V2 specification (Confluence page 771391574, revised 8 September 2026), read on 8 September 2026.\nLast checked against build v26.35.9-5700a76 on 9/9/2026.\nAUTOMATION: READY"
-   }
-  }
- },
- "44601": {
-  "title": "Finish-action negatives: reviewer, invoice lock, declined-only, no permission",
-  "fields": {
-   "custom_preconds": {
-    "blocks": [
-     [
-      "1. Sign in as an Owner or Admin for most checks; for the no-permission check, use TECH@shopview.com whose role lacks the finish permission (reset the role from Settings -> Roles & Permissions, then assign to TECH; never change the Admin role).",
-      "2. Open, via top menu \"Work Orders\" -> the \"Work Orders\" tab -> open a work order -> its \"Lines\" tab, work orders that are: awaiting review, invoice-locked, and declined-only, to see which finish action is offered."
-     ]
-    ],
-    "text": "1. Sign in as an Owner or Admin for most checks; for the no-permission check, use TECH@shopview.com whose role lacks the finish permission (reset the role from Settings -> Roles & Permissions, then assign to TECH; never change the Admin role).\n2. Open, via top menu \"Work Orders\" -> the \"Work Orders\" tab -> open a work order -> its \"Lines\" tab, work orders that are: awaiting review, invoice-locked, and declined-only, to see which finish action is offered."
-   },
-   "custom_steps": {
-    "blocks": [
-     [
-      "1. As a review-only user, complete review and look at the header.",
-      "2. As a complete-only user, look at the header.",
-      "3. As a user without See Financial Data, look for Create invoice.",
-      "4. Check an all-declined work order and an already-invoiced one.",
-      "5. Close the payment screen after invoicing."
-     ]
-    ],
-    "text": "1. As a review-only user, complete review and look at the header.\n2. As a complete-only user, look at the header.\n3. As a user without See Financial Data, look for Create invoice.\n4. Check an all-declined work order and an already-invoiced one.\n5. Close the payment screen after invoicing."
-   },
-   "custom_expected": {
-    "blocks": [
-     [
-      "1. Mark as reviewed never completes a line, never opens the wizard and never asks for a confirmation.",
-      "2. Closing the payment screen rolls nothing back: the invoice stands, lines stay complete, the work order stays invoiced with a balance owing.",
-      "3. With review required, Create invoice is not offered until the work order is reviewed.",
-      "4. Where every line is declined there is no finish action (nothing to review or invoice).",
-      "5. Once an invoice exists, both actions are gone from the header and the ... menu.",
-      "6. A user who may review but not invoice sees Mark as reviewed then nothing further; a complete-only user sees nothing in the header; a user without See Financial Data does not see Create invoice at all."
-     ],
-     [
-      "---",
-      "This is the expected behaviour as per epic SV-8683 and story SV-9264 (Story 18, Create invoice as the finish action) and the Simple Flow V2 specification (Confluence page 771391574, revised 8 September 2026), read on 9 September 2026.",
-      "Last checked against build v26.35.9-5700a76 on 9/9/2026.",
-      "AUTOMATION: READY"
-     ]
-    ],
-    "text": "1. Mark as reviewed never completes a line, never opens the wizard and never asks for a confirmation.\n2. Closing the payment screen rolls nothing back: the invoice stands, lines stay complete, the work order stays invoiced with a balance owing.\n3. With review required, Create invoice is not offered until the work order is reviewed.\n4. Where every line is declined there is no finish action (nothing to review or invoice).\n5. Once an invoice exists, both actions are gone from the header and the ... menu.\n6. A user who may review but not invoice sees Mark as reviewed then nothing further; a complete-only user sees nothing in the header; a user without See Financial Data does not see Create invoice at all.\n\n---\nThis is the expected behaviour as per epic SV-8683 and story SV-9264 (Story 18, Create invoice as the finish action) and the Simple Flow V2 specification (Confluence page 771391574, revised 8 September 2026), read on 9 September 2026.\nLast checked against build v26.35.9-5700a76 on 9/9/2026.\nAUTOMATION: READY"
-   }
-  }
- },
- "44602": {
-  "title": "Part and line ... menus contain the actions that belong to them",
-  "fields": {
-   "custom_preconds": {
-    "blocks": [
-     [
-      "1. Sign in as an Owner or Admin (Work Order Lines: Create & Edit, Full View).",
-      "2. Open, via top menu \"Work Orders\" -> the \"Work Orders\" tab -> open a work order -> its \"Lines\" tab, a work order with lines and parts. Open the part row three-dot (more_vert, \"Part context menu\"): it holds \"Move\" and \"Add Part Fee / Discount\", and the line's three-dot menu, to read the actions each offers."
-     ]
-    ],
-    "text": "1. Sign in as an Owner or Admin (Work Order Lines: Create & Edit, Full View).\n2. Open, via top menu \"Work Orders\" -> the \"Work Orders\" tab -> open a work order -> its \"Lines\" tab, a work order with lines and parts. Open the part row three-dot (more_vert, \"Part context menu\"): it holds \"Move\" and \"Add Part Fee / Discount\", and the line's three-dot menu, to read the actions each offers."
-   },
-   "custom_steps": {
-    "blocks": [
-     [
-      "1. Open a part's ... menu and read its items.",
-      "2. Open a line's ... menu and read its items."
-     ]
-    ],
-    "text": "1. Open a part's ... menu and read its items.\n2. Open a line's ... menu and read its items."
-   },
-   "custom_expected": {
-    "blocks": [
-     [
-      "1. The part's ... menu contains Move, Return, Add part fee or discount, and Receive part (the last only when receiving is optional and always at the bottom).",
-      "2. The line's ... menu contains Request part, Uncomplete line, Add line note, Save as canned line, Edit labour, Receive parts (n) (when receiving is optional and the line has parts waiting), and Authorization required.",
-      "3. Uncomplete is existing behaviour and is already blocked once the work order is invoiced or paid; the same block applies in the bulk action bar so the two cannot drift apart."
-     ],
-     [
-      "---",
-      "This is the expected behaviour as per epic SV-8683 and story SV-9265 (Story 19, Part rows and menus) and the Simple Flow V2 specification (Confluence page 771391574, revised 8 September 2026), read on 9 September 2026.",
-      "Last checked against build v26.35.9-5700a76 on 9/9/2026.",
-      "AUTOMATION: READY"
-     ]
-    ],
-    "text": "1. The part's ... menu contains Move, Return, Add part fee or discount, and Receive part (the last only when receiving is optional and always at the bottom).\n2. The line's ... menu contains Request part, Uncomplete line, Add line note, Save as canned line, Edit labour, Receive parts (n) (when receiving is optional and the line has parts waiting), and Authorization required.\n3. Uncomplete is existing behaviour and is already blocked once the work order is invoiced or paid; the same block applies in the bulk action bar so the two cannot drift apart.\n\n---\nThis is the expected behaviour as per epic SV-8683 and story SV-9265 (Story 19, Part rows and menus) and the Simple Flow V2 specification (Confluence page 771391574, revised 8 September 2026), read on 9 September 2026.\nLast checked against build v26.35.9-5700a76 on 9/9/2026.\nAUTOMATION: READY"
-   }
-  }
- },
- "44603": {
-  "title": "Menu negatives: Request part, Uncomplete, Receive part visibility",
-  "fields": {
-   "custom_preconds": {
-    "blocks": [
-     [
-      "1. Sign in as an Owner or Admin (Work Order Lines: Create & Edit, Full View).",
-      "2. Open, via top menu \"Work Orders\" -> the \"Work Orders\" tab -> open a work order -> its \"Lines\" tab, a work order with parts in states that exercise the negatives (a part that could be requested, a completed line to Uncomplete, a part whose Receive visibility depends on the receiving setting). Open the part row three-dot (more_vert, \"Part context menu\"): it holds \"Move\" and \"Add Part Fee / Discount\" and the line's three-dot menu."
-     ]
-    ],
-    "text": "1. Sign in as an Owner or Admin (Work Order Lines: Create & Edit, Full View).\n2. Open, via top menu \"Work Orders\" -> the \"Work Orders\" tab -> open a work order -> its \"Lines\" tab, a work order with parts in states that exercise the negatives (a part that could be requested, a completed line to Uncomplete, a part whose Receive visibility depends on the receiving setting). Open the part row three-dot (more_vert, \"Part context menu\"): it holds \"Move\" and \"Add Part Fee / Discount\" and the line's three-dot menu."
-   },
-   "custom_steps": {
-    "blocks": [
-     [
-      "1. Look for Request part on a completed line.",
-      "2. Look for Uncomplete line on an uncompleted line.",
-      "3. As a user without Order Parts, look for Receive part."
-     ]
-    ],
-    "text": "1. Look for Request part on a completed line.\n2. Look for Uncomplete line on an uncompleted line.\n3. As a user without Order Parts, look for Receive part."
-   },
-   "custom_expected": {
-    "blocks": [
-     [
-      "1. Request part is hidden on a completed line.",
-      "2. Uncomplete line appears only on a completed line.",
-      "3. Receive part is absent for a user without Order Parts, whatever the setting."
-     ],
-     [
-      "---",
-      "This is the expected behaviour as per epic SV-8683 and story SV-9265 (Story 19, Part rows and menus) and the Simple Flow V2 specification (Confluence page 771391574, revised 8 September 2026), read on 9 September 2026.",
-      "Last checked against build v26.35.9-5700a76 on 9/9/2026.",
-      "AUTOMATION: READY"
-     ]
-    ],
-    "text": "1. Request part is hidden on a completed line.\n2. Uncomplete line appears only on a completed line.\n3. Receive part is absent for a user without Order Parts, whatever the setting.\n\n---\nThis is the expected behaviour as per epic SV-8683 and story SV-9265 (Story 19, Part rows and menus) and the Simple Flow V2 specification (Confluence page 771391574, revised 8 September 2026), read on 9 September 2026.\nLast checked against build v26.35.9-5700a76 on 9/9/2026.\nAUTOMATION: READY"
-   }
-  }
- },
- "44604": {
-  "title": "Move up reorders a part within its line and persists",
-  "fields": {
-   "custom_preconds": {
-    "blocks": [
-     [
-      "1. Sign in as an Owner or Admin (Work Order Lines: Create & Edit, Full View).",
-      "2. Open, via top menu \"Work Orders\" -> the \"Work Orders\" tab -> open a work order -> its \"Lines\" tab, a line that carries two or more parts. Use \"Move\" (or \"Move up\" / \"Move down\") in the part row three-dot (more_vert, \"Part context menu\"): it holds \"Move\" and \"Add Part Fee / Discount\" to reorder a part within its line; reload to confirm the order persists."
-     ]
-    ],
-    "text": "1. Sign in as an Owner or Admin (Work Order Lines: Create & Edit, Full View).\n2. Open, via top menu \"Work Orders\" -> the \"Work Orders\" tab -> open a work order -> its \"Lines\" tab, a line that carries two or more parts. Use \"Move\" (or \"Move up\" / \"Move down\") in the part row three-dot (more_vert, \"Part context menu\"): it holds \"Move\" and \"Add Part Fee / Discount\" to reorder a part within its line; reload to confirm the order persists."
-   },
-   "custom_steps": {
-    "blocks": [
-     [
-      "1. Drag a part to a new position within its line.",
-      "2. Confirm the drop, then view the invoice and PDF order.",
-      "3. Undo the drop."
-     ]
-    ],
-    "text": "1. Drag a part to a new position within its line.\n2. Confirm the drop, then view the invoice and PDF order.\n3. Undo the drop."
-   },
-   "custom_expected": {
-    "blocks": [
-     [
-      "Moving a part up reorders it within its line and the order persists across reloads; the confirmation toast is informational only (the Undo action was removed on user request, 2026-09-04).",
-      "Last checked against build v26.35.9-5700a76 on 9/9/2026.",
-      "AUTOMATION: READY"
-     ]
-    ],
-    "text": "Moving a part up reorders it within its line and the order persists across reloads; the confirmation toast is informational only (the Undo action was removed on user request, 2026-09-04).\nLast checked against build v26.35.9-5700a76 on 9/9/2026.\nAUTOMATION: READY"
-   }
-  }
- },
- "44605": {
-  "title": "Reordering negatives: cross-line moves, invoiced WO, concurrent edits",
-  "fields": {
-   "custom_preconds": {
-    "blocks": [
-     [
-      "1. Sign in as an Owner or Admin (Work Order Lines: Create & Edit, Full View).",
-      "2. Open, via top menu \"Work Orders\" -> the \"Work Orders\" tab -> open a work order -> its \"Lines\" tab, a line with parts, plus an invoiced work order, for the negatives (cross-line moves, invoiced work order, concurrent edits). Use \"Move\" in the part row three-dot (more_vert, \"Part context menu\"): it holds \"Move\" and \"Add Part Fee / Discount\"."
-     ]
-    ],
-    "text": "1. Sign in as an Owner or Admin (Work Order Lines: Create & Edit, Full View).\n2. Open, via top menu \"Work Orders\" -> the \"Work Orders\" tab -> open a work order -> its \"Lines\" tab, a line with parts, plus an invoiced work order, for the negatives (cross-line moves, invoiced work order, concurrent edits). Use \"Move\" in the part row three-dot (more_vert, \"Part context menu\"): it holds \"Move\" and \"Add Part Fee / Discount\"."
-   },
-   "custom_steps": {
-    "blocks": [
-     [
-      "1. Try to move a part to a different line.",
-      "2. Try to reorder on an invoiced work order.",
-      "3. Have two users reorder the same line at once."
-     ]
-    ],
-    "text": "1. Try to move a part to a different line.\n2. Try to reorder on an invoiced work order.\n3. Have two users reorder the same line at once."
-   },
-   "custom_expected": {
-    "blocks": [
-     [
-      "POSTing a reorder for a line on an INVOICED work order is rejected with 409"
-     ],
-     [
-      "---",
-      "This is the expected behaviour as per epic SV-8683 and story SV-9266 (Story 20, Reordering parts on a line) and the Simple Flow V2 specification (Confluence page 771391574, revised 8 September 2026), read on 9 September 2026.",
-      "Last checked against build v26.35.9-5700a76 on 9/9/2026.",
-      "AUTOMATION: READY"
-     ]
-    ],
-    "text": "POSTing a reorder for a line on an INVOICED work order is rejected with 409\n\n---\nThis is the expected behaviour as per epic SV-8683 and story SV-9266 (Story 20, Reordering parts on a line) and the Simple Flow V2 specification (Confluence page 771391574, revised 8 September 2026), read on 9 September 2026.\nLast checked against build v26.35.9-5700a76 on 9/9/2026.\nAUTOMATION: READY"
+    "text": "1. A user without an atom does not see the action at all, in the bulk action bar or on the row - nothing is shown and then refused.\n2. The values behind a hidden field are not sent to a screen that is not allowed to show them.\n3. Creating a new vendor keeps the existing vendor-management permission wherever it is offered.\n\n---\nThis is the expected behaviour as per epic SV-8683 and story SV-9267 (Story 21, Permissions on the new surfaces) and the Simple Flow V2 specification (Confluence page 771391574, revised 8 September 2026), and the permission map SV-8183, read on 9 September 2026.\nLast checked against build v26.35.9-5700a76 on 9/9/2026.\nAUTOMATION: READY"
    }
   }
  }

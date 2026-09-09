@@ -1,0 +1,34 @@
+[
+ {
+  "id": 44589,
+  "title": "Purchase orders group by vendor, missing vendors first, collapsed",
+  "atm": 1,
+  "pre": "1. You are signed in with Vendor & Order Mgmt access.\n2. Purchase orders exist across several vendors, including vendor-missing ones, spanning work orders.",
+  "steps": "1. Open the purchase order / bulk receive page.\n2. Read the grouping, headers and initial expand state.",
+  "exp": "1. Purchase orders group by vendor, with Missing vendors first, then named vendors alphabetically.\n2. Group headers carry the vendor name, a rollup such as \"3 POs, 6 parts\", and Expand all; the page header carries the vendor count.\n3. Every group renders collapsed (including Missing vendors), so the page opens as a list of vendors rather than a wall of parts.\n4. Each purchase order row shows its number, the work order number and the part count.\n5. Missing-vendor groups carry an amber treatment and a \"Vendor missing\" label in both the collapsed and expanded states. Once a vendor is assigned, the name shows. The vendor can still be changed only while the purchase order has no received parts; once anything on it has been received, the name is shown as plain text with no way to edit it.\n---\nThis is the expected behaviour as per epic SV-8683 and story SV-9260 (Story 14, The receive page and PO bulk receive) and the Simple Flow V2 specification (Confluence page 771391574, revised 8 September 2026), read on 8 September 2026.\nAUTOMATION: Not available on Build to test Yet - Last checked 9/8/2026"
+ },
+ {
+  "id": 44590,
+  "title": "A panel expands per purchase order with per-PO vendor-side fields",
+  "atm": 1,
+  "pre": "1. You are signed in with Vendor & Order Mgmt: Create & Edit + See Financial Data.\n2. A vendor group has purchase orders with parts awaiting receipt.",
+  "steps": "1. Expand a purchase order panel.\n2. Read its fields, the tick boxes, the tax field and the primary action.\n3. Assign a vendor to a collapsed row via hover, and via expand.",
+  "exp": "1. A panel is expanded per purchase order, not per vendor, so every figure entered belongs to exactly one PO and one vendor bill.\n2. The panel carries vendor invoice number, invoice date, delivery note, then the parts with per-part tick boxes and Deselect all, and a subtotal, editable tax and total beneath.\n3. The primary action reads \"Receive parts (n)\" and is disabled while anything required is unfilled.\n4. A vendor can be assigned two ways: hovering a collapsed purchase-order row reveals Assign vendor, and expanding the row makes it the required first field. Both can either link an existing vendor or create a new one - typing a name that matches nothing offers Create, which opens the usual new-vendor modal with the name filled in and name and tax rate required (the same flow as the receive modal).\n5. The tax typed here is vendor-side (stored on the vendor bill; feeds what the shop owes suppliers; not the customer's sales tax); it is typed, not calculated, and does not recompute when a cost or quantity changes.\n6. Sell price is shown here and only here, read-only, on every purchase order.\n---\nThis is the expected behaviour as per epic SV-8683 and story SV-9260 (Story 14, The receive page and PO bulk receive) and the Simple Flow V2 specification (Confluence page 771391574, revised 8 September 2026), read on 8 September 2026.\nAUTOMATION: Not available on Build to test Yet - Last checked 9/8/2026"
+ },
+ {
+  "id": 44591,
+  "title": "Receive validity on the PO page matches the modal; money hidden without the atom",
+  "atm": 1,
+  "pre": "1. You can view the PO page as a user with See Financial Data and as one without; and as Vendor & Order Mgmt: View only.\n2. A vendor has several purchase orders.",
+  "steps": "1. As a View-only user, try to receive.\n2. As a user without See Financial Data, look for cost/tax/subtotal/total/sell columns.\n3. Reuse one invoice number across two of a vendor's POs.",
+  "exp": "1. Everything that makes a receive valid is identical to the receive modal: vendor, invoice number and invoice date required; cost and tax required but able to be zero and always prefilled; same quantity rules; part number required; cost locked once invoiced or paid.\n2. The same invoice number may be reused across several of a vendor's purchase orders (typed per PO, not shared from the group header).\n3. Sell price is not shown in the receive modal or on the receive page reached from Parts.\n4. Without See Financial Data the cost, tax, subtotal, total and sell columns are absent (not masked); receiving still works because those fields arrive with a value.\n5. A Vendor & Order Mgmt: View-only user (e.g. Office) can open the page but cannot receive.\n---\nThis is the expected behaviour as per epic SV-8683 and story SV-9260 (Story 14, The receive page and PO bulk receive) and the Simple Flow V2 specification (Confluence page 771391574, revised 8 September 2026), read on 9 September 2026.\nAUTOMATION: Not available on Build to test Yet - Last checked 9/9/2026"
+ },
+ {
+  "id": 53488,
+  "title": "PO list-page selection raises the shared bulk bar; Select all covers one page",
+  "atm": 1,
+  "pre": "1. You are signed in with Vendor & Order Mgmt: Create & Edit.\n2. More than thirty purchase orders exist across several vendors, including at least one with no vendor, so a second page loads on scroll and a selection can span vendors.",
+  "steps": "1. Select several purchase orders and read the bar.\n2. Look for Assign vendor on the bar.\n3. Use Select all, then scroll to load more rows and check which are selected.",
+  "exp": "1. Selecting purchase orders raises the same bulk action bar as the work order, not a bar of its own design: \"n selected\", then Deselect all, then Receive selected as the primary action, then More, then a close control, with the same dividers.\n2. Assign vendor is not the primary action; it lives in More and acts only on the selected rows that have no vendor.\n3. The bar carries no amber treatment.\n4. Select all selects only what is loaded - one page (thirty rows) - so after scrolling to load more, the newly loaded rows are not selected. This is expected behaviour in this release, not a defect.\n---\nThis is the expected behaviour as per epic SV-8683 and story SV-9260 (Story 14, The receive page and PO bulk receive) and the Simple Flow V2 specification (Confluence page 771391574, revised 8 September 2026), read on 8 September 2026.\nAUTOMATION: Not available on Build to test Yet - Last checked 9/8/2026"
+ }
+]
