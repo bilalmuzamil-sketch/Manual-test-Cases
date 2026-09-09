@@ -119,7 +119,24 @@ try {
     log('no code prompt appeared');
   }
 
-  for (let i = 0; i < 30 && !/shopview\.atlassian\.net/.test(page.url()); i++) await page.waitForTimeout(3000);
+  // 3b) POST-PASSWORD INTERSTITIALS (added 2026-09-09, SV-9848). This account has NO email-OTP MFA:
+  // after the password Atlassian shows a "Security review" nag with "Continue without two-step
+  // verification" (and sometimes "Create a passkey" / "Remind me later"). Dismiss whatever appears
+  // until the URL returns to shopview.atlassian.net — otherwise the session is never captured.
+  const DISMISS = ['Continue without two-step verification', 'Remind me later', 'Skip for now',
+                   'Not now', 'Maybe later', 'Ask me later', 'Skip'];
+  const dl = Date.now() + 120000;
+  while (Date.now() < dl && !(/shopview\.atlassian\.net/.test(page.url()) && !/id\.atlassian/.test(page.url()))) {
+    let clicked = false;
+    for (const tx of DISMISS) {
+      const b = page.locator(`button:has-text("${tx}"), a:has-text("${tx}")`).first();
+      if (await b.isVisible({ timeout: 400 }).catch(() => false)) {
+        await b.click().catch(() => {}); log(`dismissed interstitial: ${tx}`); clicked = true;
+        await page.waitForTimeout(4000); break;
+      }
+    }
+    if (!clicked) await page.waitForTimeout(2500);
+  }
   log(`final url: ${page.url().slice(0, 80)}`);
   await shot(page, 'final');
 

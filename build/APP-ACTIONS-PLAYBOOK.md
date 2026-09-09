@@ -3434,6 +3434,16 @@ lines** (a clipped caption is a wasted exhibit). Fonts: `/usr/share/fonts/truety
 
 ### V.7 Getting them into Jira
 
+**INLINE-IMAGE FALLBACK LADDER (use in order; fall through the moment one fails to render):**
+1. **External media, ONE combined image**, media node carrying `width`/`height`/`localId` (below). Cheapest;
+   works on an MCP-only session. Read the description back and eyeball it in Jira — external fetch is flaky.
+2. **Still "Preview unavailable"? → REAL JIRA ATTACHMENTS (the reliable fix, proven 2026-09-09 SV-9848).**
+   Needs direct REST auth the MCP lacks, so log in via `build/atlassian-login/` (the account has **no
+   email-OTP** — `login.mjs` now clicks through the "Security review" interstitial), then upload with
+   `curl -F` and set the description via **REST v2 wiki markup** `!file.png|width=900!`. Details below.
+3. **No creds available? → hand the user the combined PNG** (`SendUserFile`) to drop on the ticket manually,
+   and ask for an Atlassian API token or cookies so the next one uses step 2.
+
 The Atlassian MCP has no attachment upload. Commit the PNGs and embed as **ADF external media** —
 this repo is public, so `raw.githubusercontent.com/<owner>/<repo>/<branch>/<path>.png` returns 200.
 **`curl -o /dev/null -w "%{http_code}"` every URL before posting.** Full comment format (status first
