@@ -58,3 +58,14 @@ Part rows/menus + reordering (19-20) · Permissions (21). Story 10 (bulk delete)
 - **Deliverables:** `source-verify-2026-09-08/{SOURCE-CURRENCY-SPEC-DIFF-2026-09-08.md, DIFF-REPORT-2026-09-08.md, HELD-AUTOMATED-FOR-QA-LEAD-2026-09-08.md, Simple Flow V2 - Questions for Milos Vasic - 2026-09-08.xlsx}`.
 - **Still Rule-85:** SOURCE-VERIFIED ONLY — no QA build exists yet; deferred marker on every written case. Ready for build-verification in a separate session once a build exists.
 - **OUTSTANDING:** C44557 QA-lead decision (rewrite vs keep C53485); 3 PO questions for Milos (Story 2 approval-first, Story 14 paged Select-all, Story 4 volume thresholds).
+
+## 🆕 2026-09-09 — BUILD VERIFICATION AUTHORISED + AUTOMATED GO-AHEAD EXTENDED
+- **Source is current** (full re-verification finished 2026-09-09 by the source-verify session; 46 cases read 9-Sep + 18 read 8-Sep). Green signal given.
+- **QA lead 2026-09-09: build verification proceeds on sv8683 (`v26.35.9-5700a76`), whole suite autonomously.**
+- **AUTOMATED GO-AHEAD EXTENDED to Simple Flow V2** (QA lead 2026-09-09): the 7 Automated ours cases
+  (C44557, C44561, C44575, C44583, C44587, C44604, C44605) may be build-verified + re-stamped like the
+  rest — `custom_atmstatus` stays 3; **Vlad must be told (Rule 65)**. **Vladimir's 6** (C45202, C45203,
+  C53490–C53493) stay hands-off (Rule 38).
+- **Build-verify workspace:** `build/simple-flow-v2/build-verify-2026-09-09/`; observed labels
+  `build/OBSERVED-UI-LABELS-sv8683.md`. Routes confirmed so far: WO Lines (Complete/New Line/Start/Pick/
+  Part context menu), Settings → Work Orders tab (8 completion toggles verbatim).
