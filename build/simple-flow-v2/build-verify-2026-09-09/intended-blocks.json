@@ -1,425 +1,493 @@
 {
- "44583": {
-  "title": "Receive opens a modal (no navigation) with contents depending on entry point",
+ "44594": {
+  "title": "The wizard opens only from defined entry points when something is collectable",
   "fields": {
    "custom_preconds": {
     "blocks": [
      [
-      "1. Sign in as an Owner or Admin (Order Parts).",
-      "2. Open, via top menu \"Work Orders\" -> the \"Work Orders\" tab -> open a work order -> its \"Lines\" tab, a work order with a vendor-sourced part that has been ordered and is awaiting receipt (Require Ordering Parts and Require Receiving Parts Before Completion on in Settings -> the \"Work Orders\" tab; add a vendor part to a line and click \"Order\", so its row shows it awaiting receipt).",
-      "3. On the part's row click \"Receive\" to open the \"Receive parts\" modal (fields: \"Assign vendor\", \"Vendor invoice number\", \"Invoice date\", \"Delivery note\"; buttons \"Select all\", \"Receive later\", \"Receive parts (n)\"). The modal's contents depend on the entry point (part row, line menu, bulk action bar, or completion wizard)."
+      "1. Sign in as an Owner or Admin (completion permission).",
+      "2. Open, via top menu \"Work Orders\" -> the \"Work Orders\" tab -> open a work order -> its \"Lines\" tab, a work order that has something outstanding (e.g. a line missing a required tech story, an unpicked inventory part). The completion wizard opens from \"Create invoice\" (in the work order header three-dot / more_vert menu) when something is still collectable; it shows step pills across the top (e.g. \"Tech stories (1)\", \"Pick parts (2)\", \"Missing Details (1)\") each with a count, and each step carries its own action button (Save Story / Pick all / Receive parts) that saves and advances - there is no Continue button. Also try opening it from the other finish paths (bulk complete, clock out and complete)."
      ]
     ],
-    "text": "1. Sign in as an Owner or Admin (Order Parts).\n2. Open, via top menu \"Work Orders\" -> the \"Work Orders\" tab -> open a work order -> its \"Lines\" tab, a work order with a vendor-sourced part that has been ordered and is awaiting receipt (Require Ordering Parts and Require Receiving Parts Before Completion on in Settings -> the \"Work Orders\" tab; add a vendor part to a line and click \"Order\", so its row shows it awaiting receipt).\n3. On the part's row click \"Receive\" to open the \"Receive parts\" modal (fields: \"Assign vendor\", \"Vendor invoice number\", \"Invoice date\", \"Delivery note\"; buttons \"Select all\", \"Receive later\", \"Receive parts (n)\"). The modal's contents depend on the entry point (part row, line menu, bulk action bar, or completion wizard)."
+    "text": "1. Sign in as an Owner or Admin (completion permission).\n2. Open, via top menu \"Work Orders\" -> the \"Work Orders\" tab -> open a work order -> its \"Lines\" tab, a work order that has something outstanding (e.g. a line missing a required tech story, an unpicked inventory part). The completion wizard opens from \"Create invoice\" (in the work order header three-dot / more_vert menu) when something is still collectable; it shows step pills across the top (e.g. \"Tech stories (1)\", \"Pick parts (2)\", \"Missing Details (1)\") each with a count, and each step carries its own action button (Save Story / Pick all / Receive parts) that saves and advances - there is no Continue button. Also try opening it from the other finish paths (bulk complete, clock out and complete)."
    },
    "custom_steps": {
     "blocks": [
      [
-      "1. Open Receive from a part row where the part has a vendor.",
-      "2. From a part row where the part has no vendor.",
-      "3. From a line's menu.",
-      "4. From the bulk action bar (or the completion wizard)."
+      "1. Trigger Complete on a line, Complete lines / Complete all lines, Create invoice, and Clock out and complete on a work order with outstanding items.",
+      "2. Trigger a completion on a tidy work order with nothing outstanding."
      ]
     ],
-    "text": "1. Open Receive from a part row where the part has a vendor.\n2. From a part row where the part has no vendor.\n3. From a line's menu.\n4. From the bulk action bar (or the completion wizard)."
+    "text": "1. Trigger Complete on a line, Complete lines / Complete all lines, Create invoice, and Clock out and complete on a work order with outstanding items.\n2. Trigger a completion on a tidy work order with nothing outstanding."
    },
    "custom_expected": {
     "blocks": [
      [
-      "The part is no longer awaiting receipt: its Awaiting badge is gone, the request drops out of the outstanding listing, and a staged part carries the received quantity"
+      "1. The wizard opens from exactly these entry points: Complete on a line; Complete lines; Complete all lines; Create invoice; Clock out and complete - and from nothing else (no timer, no background job, no side effect).",
+      "2. It opens only when something required is both outstanding and collectable; if nothing is, the action completes immediately and no wizard appears.",
+      "3. Collectable means: a missing tech story, a missing mileage or engine hours reading, an unpicked inventory part, an unresolved core, or an unreceived part.",
+      "4. Mark as reviewed never opens the wizard (it only becomes available once every line is complete).",
+      "5. The run records which lines it covers and whether it is heading to an invoice, fixed when the run opens.",
+      "6. A step the user's role cannot perform is not shown; where that step is the only outstanding work, the action fails with the reason instead of opening an empty wizard."
      ],
      [
       "---",
-      "This is the expected behaviour as per epic SV-8683 and story SV-9259 (Story 13, Receiving from the work order) and the Simple Flow V2 specification (Confluence page 771391574, revised 8 September 2026), read on 9 September 2026.",
+      "This is the expected behaviour as per epic SV-8683 and story SV-9262 (Story 16, When the completion wizard opens) and the Simple Flow V2 specification (Confluence page 771391574, revised 8 September 2026), read on 9 September 2026.",
       "Last checked against build v26.35.9-5700a76 on 9/9/2026.",
       "AUTOMATION: READY"
      ]
     ],
-    "text": "The part is no longer awaiting receipt: its Awaiting badge is gone, the request drops out of the outstanding listing, and a staged part carries the received quantity\n\n---\nThis is the expected behaviour as per epic SV-8683 and story SV-9259 (Story 13, Receiving from the work order) and the Simple Flow V2 specification (Confluence page 771391574, revised 8 September 2026), read on 9 September 2026.\nLast checked against build v26.35.9-5700a76 on 9/9/2026.\nAUTOMATION: READY"
+    "text": "1. The wizard opens from exactly these entry points: Complete on a line; Complete lines; Complete all lines; Create invoice; Clock out and complete - and from nothing else (no timer, no background job, no side effect).\n2. It opens only when something required is both outstanding and collectable; if nothing is, the action completes immediately and no wizard appears.\n3. Collectable means: a missing tech story, a missing mileage or engine hours reading, an unpicked inventory part, an unresolved core, or an unreceived part.\n4. Mark as reviewed never opens the wizard (it only becomes available once every line is complete).\n5. The run records which lines it covers and whether it is heading to an invoice, fixed when the run opens.\n6. A step the user's role cannot perform is not shown; where that step is the only outstanding work, the action fails with the reason instead of opening an empty wizard.\n\n---\nThis is the expected behaviour as per epic SV-8683 and story SV-9262 (Story 16, When the completion wizard opens) and the Simple Flow V2 specification (Confluence page 771391574, revised 8 September 2026), read on 9 September 2026.\nLast checked against build v26.35.9-5700a76 on 9/9/2026.\nAUTOMATION: READY"
    }
   }
  },
- "44584": {
-  "title": "Receive requires vendor, invoice number and invoice date; cost and tax prefilled",
+ "44595": {
+  "title": "The wizard shows only outstanding steps in a fixed order",
   "fields": {
    "custom_preconds": {
     "blocks": [
      [
-      "1. Sign in as an Owner or Admin (Order Parts).",
-      "2. Open, via top menu \"Work Orders\" -> the \"Work Orders\" tab -> open a work order -> its \"Lines\" tab, a work order with a vendor-sourced part that has been ordered and is awaiting receipt (Require Ordering Parts and Require Receiving Parts Before Completion on in Settings -> the \"Work Orders\" tab; add a vendor part to a line and click \"Order\", so its row shows it awaiting receipt).",
-      "3. On the part's row click \"Receive\" to open the \"Receive parts\" modal (fields: \"Assign vendor\", \"Vendor invoice number\", \"Invoice date\", \"Delivery note\"; buttons \"Select all\", \"Receive later\", \"Receive parts (n)\")."
+      "1. Sign in as an Owner or Admin.",
+      "2. Open, via top menu \"Work Orders\" -> the \"Work Orders\" tab -> open a work order -> its \"Lines\" tab, a work order with several kinds of outstanding items (tech stories, pick parts, cores, receive, missing details). The completion wizard opens from \"Create invoice\" (in the work order header three-dot / more_vert menu) when something is still collectable; it shows step pills across the top (e.g. \"Tech stories (1)\", \"Pick parts (2)\", \"Missing Details (1)\") each with a count, and each step carries its own action button (Save Story / Pick all / Receive parts) that saves and advances - there is no Continue button."
      ]
     ],
-    "text": "1. Sign in as an Owner or Admin (Order Parts).\n2. Open, via top menu \"Work Orders\" -> the \"Work Orders\" tab -> open a work order -> its \"Lines\" tab, a work order with a vendor-sourced part that has been ordered and is awaiting receipt (Require Ordering Parts and Require Receiving Parts Before Completion on in Settings -> the \"Work Orders\" tab; add a vendor part to a line and click \"Order\", so its row shows it awaiting receipt).\n3. On the part's row click \"Receive\" to open the \"Receive parts\" modal (fields: \"Assign vendor\", \"Vendor invoice number\", \"Invoice date\", \"Delivery note\"; buttons \"Select all\", \"Receive later\", \"Receive parts (n)\")."
+    "text": "1. Sign in as an Owner or Admin.\n2. Open, via top menu \"Work Orders\" -> the \"Work Orders\" tab -> open a work order -> its \"Lines\" tab, a work order with several kinds of outstanding items (tech stories, pick parts, cores, receive, missing details). The completion wizard opens from \"Create invoice\" (in the work order header three-dot / more_vert menu) when something is still collectable; it shows step pills across the top (e.g. \"Tech stories (1)\", \"Pick parts (2)\", \"Missing Details (1)\") each with a count, and each step carries its own action button (Save Story / Pick all / Receive parts) that saves and advances - there is no Continue button."
    },
    "custom_steps": {
     "blocks": [
      [
-      "1. Expand a vendor card and read the required fields and the per-part editable fields.",
-      "2. Try to receive with the invoice number blank.",
-      "3. Edit a cost and watch for a note."
+      "1. Open the wizard on a run with outstanding tech stories, picks, cores, receives and missing details.",
+      "2. Read the step pills, their order and counts."
      ]
     ],
-    "text": "1. Expand a vendor card and read the required fields and the per-part editable fields.\n2. Try to receive with the invoice number blank.\n3. Edit a cost and watch for a note."
+    "text": "1. Open the wizard on a run with outstanding tech stories, picks, cores, receives and missing details.\n2. Read the step pills, their order and counts."
    },
    "custom_expected": {
     "blocks": [
      [
-      "1. An expanded card shows vendor invoice number, invoice date and delivery note on one row, then the parts; the invoice date defaults to today and is editable.",
-      "2. Vendor, vendor invoice number and invoice date are all required; the modal marks them required and disables its receive button until they are filled, rather than submitting into an error.",
-      "3. The delivery note is optional.",
-      "4. Editable per part: part number, quantity received and cost (editing a part number into a catalogue part needs Catalog & Inventory: Create & Edit).",
-      "5. Cost is required and may be zero, arriving prefilled from the purchase order; tax is required and may be zero, prefilled from the vendor's tax rate (falling back to zero when nothing derives it).",
-      "6. Quantity received must be greater than zero, may include decimals, and may exceed what was ordered (the excess is shown but not blocked; the PO absorbs it). Changing cost shows a note that the sell price will update."
+      "1. The step list is built from the settings and what is actually outstanding, so a step whose work is done never appears and a second pass never asks twice.",
+      "2. Step order is: Tech stories, Pick parts, Resolve cores, Receive parts, Missing details.",
+      "3. Missing details (mileage and engine hours, each only when its setting is on and the value is missing) is last and is asked once per work order, only when the run is closing every remaining line.",
+      "4. Steps appear as pills across the top, each carrying a count where more than one item is outstanding.",
+      "5. A finished step shows a tick and becomes read-only; unfinished steps stay clickable so a user can skip ahead and come back.",
+      "6. Resolve cores is unchanged and appears only when a part in the run carries an unresolved core."
      ],
      [
       "---",
-      "This is the expected behaviour as per epic SV-8683 and story SV-9259 (Story 13, Receiving from the work order) and the Simple Flow V2 specification (Confluence page 771391574, revised 8 September 2026), read on 9 September 2026.",
+      "This is the expected behaviour as per epic SV-8683 and story SV-9263 (Story 17, The completion wizard) and the Simple Flow V2 specification (Confluence page 771391574, revised 8 September 2026), read on 9 September 2026.",
       "Last checked against build v26.35.9-5700a76 on 9/9/2026.",
       "AUTOMATION: READY"
      ]
     ],
-    "text": "1. An expanded card shows vendor invoice number, invoice date and delivery note on one row, then the parts; the invoice date defaults to today and is editable.\n2. Vendor, vendor invoice number and invoice date are all required; the modal marks them required and disables its receive button until they are filled, rather than submitting into an error.\n3. The delivery note is optional.\n4. Editable per part: part number, quantity received and cost (editing a part number into a catalogue part needs Catalog & Inventory: Create & Edit).\n5. Cost is required and may be zero, arriving prefilled from the purchase order; tax is required and may be zero, prefilled from the vendor's tax rate (falling back to zero when nothing derives it).\n6. Quantity received must be greater than zero, may include decimals, and may exceed what was ordered (the excess is shown but not blocked; the PO absorbs it). Changing cost shows a note that the sell price will update.\n\n---\nThis is the expected behaviour as per epic SV-8683 and story SV-9259 (Story 13, Receiving from the work order) and the Simple Flow V2 specification (Confluence page 771391574, revised 8 September 2026), read on 9 September 2026.\nLast checked against build v26.35.9-5700a76 on 9/9/2026.\nAUTOMATION: READY"
+    "text": "1. The step list is built from the settings and what is actually outstanding, so a step whose work is done never appears and a second pass never asks twice.\n2. Step order is: Tech stories, Pick parts, Resolve cores, Receive parts, Missing details.\n3. Missing details (mileage and engine hours, each only when its setting is on and the value is missing) is last and is asked once per work order, only when the run is closing every remaining line.\n4. Steps appear as pills across the top, each carrying a count where more than one item is outstanding.\n5. A finished step shows a tick and becomes read-only; unfinished steps stay clickable so a user can skip ahead and come back.\n6. Resolve cores is unchanged and appears only when a part in the run carries an unresolved core.\n\n---\nThis is the expected behaviour as per epic SV-8683 and story SV-9263 (Story 17, The completion wizard) and the Simple Flow V2 specification (Confluence page 771391574, revised 8 September 2026), read on 9 September 2026.\nLast checked against build v26.35.9-5700a76 on 9/9/2026.\nAUTOMATION: READY"
    }
   }
  },
- "44585": {
-  "title": "Vendor-missing card requires Assign vendor first, applied to ticked parts",
+ "44596": {
+  "title": "Each wizard step's own action saves and advances; no Continue button",
   "fields": {
    "custom_preconds": {
     "blocks": [
      [
-      "1. Sign in as an Owner or Admin (Order Parts + Vendor & Order Mgmt: Create & Edit).",
-      "2. Open, via top menu \"Work Orders\" -> the \"Work Orders\" tab -> open a work order -> its \"Lines\" tab, a work order with a vendor-sourced part that has been ordered and is awaiting receipt (Require Ordering Parts and Require Receiving Parts Before Completion on in Settings -> the \"Work Orders\" tab; add a vendor part to a line and click \"Order\", so its row shows it awaiting receipt). with a part whose vendor is missing.",
-      "3. On the part's row click \"Receive\" to open the \"Receive parts\" modal (fields: \"Assign vendor\", \"Vendor invoice number\", \"Invoice date\", \"Delivery note\"; buttons \"Select all\", \"Receive later\", \"Receive parts (n)\"); use \"Assign vendor\" on the vendor-missing card."
+      "1. Sign in as an Owner or Admin.",
+      "2. Open, via top menu \"Work Orders\" -> the \"Work Orders\" tab -> open a work order -> its \"Lines\" tab, a work order with an outstanding wizard step. The completion wizard opens from \"Create invoice\" (in the work order header three-dot / more_vert menu) when something is still collectable; it shows step pills across the top (e.g. \"Tech stories (1)\", \"Pick parts (2)\", \"Missing Details (1)\") each with a count, and each step carries its own action button (Save Story / Pick all / Receive parts) that saves and advances - there is no Continue button."
      ]
     ],
-    "text": "1. Sign in as an Owner or Admin (Order Parts + Vendor & Order Mgmt: Create & Edit).\n2. Open, via top menu \"Work Orders\" -> the \"Work Orders\" tab -> open a work order -> its \"Lines\" tab, a work order with a vendor-sourced part that has been ordered and is awaiting receipt (Require Ordering Parts and Require Receiving Parts Before Completion on in Settings -> the \"Work Orders\" tab; add a vendor part to a line and click \"Order\", so its row shows it awaiting receipt). with a part whose vendor is missing.\n3. On the part's row click \"Receive\" to open the \"Receive parts\" modal (fields: \"Assign vendor\", \"Vendor invoice number\", \"Invoice date\", \"Delivery note\"; buttons \"Select all\", \"Receive later\", \"Receive parts (n)\"); use \"Assign vendor\" on the vendor-missing card."
+    "text": "1. Sign in as an Owner or Admin.\n2. Open, via top menu \"Work Orders\" -> the \"Work Orders\" tab -> open a work order -> its \"Lines\" tab, a work order with an outstanding wizard step. The completion wizard opens from \"Create invoice\" (in the work order header three-dot / more_vert menu) when something is still collectable; it shows step pills across the top (e.g. \"Tech stories (1)\", \"Pick parts (2)\", \"Missing Details (1)\") each with a count, and each step carries its own action button (Save Story / Pick all / Receive parts) that saves and advances - there is no Continue button."
    },
    "custom_steps": {
     "blocks": [
      [
-      "1. Expand the vendor-missing card.",
-      "2. Search and assign a vendor to the ticked parts.",
-      "3. Check the untouched parts and the tab order."
+      "1. Perform the action on each step (Save, Pick all, Receive parts).",
+      "2. Open the receive step and check the modal and its per-part Received later.",
+      "3. Close and reopen the wizard."
      ]
     ],
-    "text": "1. Expand the vendor-missing card.\n2. Search and assign a vendor to the ticked parts.\n3. Check the untouched parts and the tab order."
+    "text": "1. Perform the action on each step (Save, Pick all, Receive parts).\n2. Open the receive step and check the modal and its per-part Received later.\n3. Close and reopen the wizard."
    },
    "custom_expected": {
     "blocks": [
      [
-      "1. Where no vendor is set, Assign vendor is the first field in the form, marked required, as a search field with results below; everything below it is disabled until a vendor is chosen.",
-      "2. Assigning a vendor applies to the ticked parts only; the rest stay in the vendor-missing card.",
-      "3. If the typed vendor name matches nothing, a Create option appears below the results carrying that name. Choosing it opens the usual new-vendor modal with the name already filled in; name and tax rate are required and everything else is optional. On save, the modal closes, the new vendor is selected in the field, and nothing already entered is lost. Cancelling the new-vendor modal returns to the receive form with the typed name still there and no vendor selected. A user without the vendor-management permission sees results only, with no Create option. A vendor created here is a full vendor record and appears on the vendor page like any other.",
-      "4. The cursor starts in the vendor invoice number field when the vendor is known, and in the vendor field when it is not; tab order is identical in both states."
+      "1. There is no Continue button; each step's button is its own action (Save, Pick all, Receive parts) and performing it saves and advances in one press.",
+      "2. The action button sits with the content it acts on, not in a footer; the modal title names the current step, not the flow.",
+      "3. The receive step opens the same modal as Receiving from the work order, with the same required fields and the same per-part Received later choice; its only action is Receive parts, with no second action offering to leave the step without receiving; closing it returns to the wizard at the next step.",
+      "4. The wizard never mentions ordering, even when ordering is required (a part never marked as ordered is included anyway and ordering happens without user action when the parts are received).",
+      "5. Closing the wizard keeps everything already done; reopening shows only what is left."
      ],
      [
       "---",
-      "This is the expected behaviour as per epic SV-8683 and story SV-9259 (Story 13, Receiving from the work order) and the Simple Flow V2 specification (Confluence page 771391574, revised 8 September 2026), read on 8 September 2026.",
+      "This is the expected behaviour as per epic SV-8683 and story SV-9263 (Story 17, The completion wizard) and the Simple Flow V2 specification (Confluence page 771391574, revised 8 September 2026), read on 8 September 2026.",
       "Last checked against build v26.35.9-5700a76 on 9/9/2026.",
       "AUTOMATION: READY"
      ]
     ],
-    "text": "1. Where no vendor is set, Assign vendor is the first field in the form, marked required, as a search field with results below; everything below it is disabled until a vendor is chosen.\n2. Assigning a vendor applies to the ticked parts only; the rest stay in the vendor-missing card.\n3. If the typed vendor name matches nothing, a Create option appears below the results carrying that name. Choosing it opens the usual new-vendor modal with the name already filled in; name and tax rate are required and everything else is optional. On save, the modal closes, the new vendor is selected in the field, and nothing already entered is lost. Cancelling the new-vendor modal returns to the receive form with the typed name still there and no vendor selected. A user without the vendor-management permission sees results only, with no Create option. A vendor created here is a full vendor record and appears on the vendor page like any other.\n4. The cursor starts in the vendor invoice number field when the vendor is known, and in the vendor field when it is not; tab order is identical in both states.\n\n---\nThis is the expected behaviour as per epic SV-8683 and story SV-9259 (Story 13, Receiving from the work order) and the Simple Flow V2 specification (Confluence page 771391574, revised 8 September 2026), read on 8 September 2026.\nLast checked against build v26.35.9-5700a76 on 9/9/2026.\nAUTOMATION: READY"
+    "text": "1. There is no Continue button; each step's button is its own action (Save, Pick all, Receive parts) and performing it saves and advances in one press.\n2. The action button sits with the content it acts on, not in a footer; the modal title names the current step, not the flow.\n3. The receive step opens the same modal as Receiving from the work order, with the same required fields and the same per-part Received later choice; its only action is Receive parts, with no second action offering to leave the step without receiving; closing it returns to the wizard at the next step.\n4. The wizard never mentions ordering, even when ordering is required (a part never marked as ordered is included anyway and ordering happens without user action when the parts are received).\n5. Closing the wizard keeps everything already done; reopening shows only what is left.\n\n---\nThis is the expected behaviour as per epic SV-8683 and story SV-9263 (Story 17, The completion wizard) and the Simple Flow V2 specification (Confluence page 771391574, revised 8 September 2026), read on 8 September 2026.\nLast checked against build v26.35.9-5700a76 on 9/9/2026.\nAUTOMATION: READY"
    }
   }
  },
- "44586": {
-  "title": "One invoice number belongs to one PO; two POs make two bills, same number",
+ "44597": {
+  "title": "Where a wizard run ends depends on what opened it",
   "fields": {
    "custom_preconds": {
     "blocks": [
      [
-      "1. Sign in as an Owner or Admin (Order Parts).",
-      "2. Open, via top menu \"Work Orders\" -> the \"Work Orders\" tab -> open a work order -> its \"Lines\" tab, a work order with a vendor-sourced part that has been ordered and is awaiting receipt (Require Ordering Parts and Require Receiving Parts Before Completion on in Settings -> the \"Work Orders\" tab; add a vendor part to a line and click \"Order\", so its row shows it awaiting receipt). with parts across two purchase orders.",
-      "3. On the part's row click \"Receive\" to open the \"Receive parts\" modal (fields: \"Assign vendor\", \"Vendor invoice number\", \"Invoice date\", \"Delivery note\"; buttons \"Select all\", \"Receive later\", \"Receive parts (n)\")."
+      "1. Sign in as an Owner or Admin.",
+      "2. Open, via top menu \"Work Orders\" -> the \"Work Orders\" tab -> open a work order -> its \"Lines\" tab, a work order and start the wizard from different entry points (Create invoice; complete/finish). The completion wizard opens from \"Create invoice\" (in the work order header three-dot / more_vert menu) when something is still collectable; it shows step pills across the top (e.g. \"Tech stories (1)\", \"Pick parts (2)\", \"Missing Details (1)\") each with a count, and each step carries its own action button (Save Story / Pick all / Receive parts) that saves and advances - there is no Continue button."
      ]
     ],
-    "text": "1. Sign in as an Owner or Admin (Order Parts).\n2. Open, via top menu \"Work Orders\" -> the \"Work Orders\" tab -> open a work order -> its \"Lines\" tab, a work order with a vendor-sourced part that has been ordered and is awaiting receipt (Require Ordering Parts and Require Receiving Parts Before Completion on in Settings -> the \"Work Orders\" tab; add a vendor part to a line and click \"Order\", so its row shows it awaiting receipt). with parts across two purchase orders.\n3. On the part's row click \"Receive\" to open the \"Receive parts\" modal (fields: \"Assign vendor\", \"Vendor invoice number\", \"Invoice date\", \"Delivery note\"; buttons \"Select all\", \"Receive later\", \"Receive parts (n)\")."
+    "text": "1. Sign in as an Owner or Admin.\n2. Open, via top menu \"Work Orders\" -> the \"Work Orders\" tab -> open a work order -> its \"Lines\" tab, a work order and start the wizard from different entry points (Create invoice; complete/finish). The completion wizard opens from \"Create invoice\" (in the work order header three-dot / more_vert menu) when something is still collectable; it shows step pills across the top (e.g. \"Tech stories (1)\", \"Pick parts (2)\", \"Missing Details (1)\") each with a count, and each step carries its own action button (Save Story / Pick all / Receive parts) that saves and advances - there is no Continue button."
    },
    "custom_steps": {
     "blocks": [
      [
-      "1. Open the receive modal on that vendor's card.",
-      "2. Enter one invoice number and receive."
+      "1. Finish a run opened by Complete on a line / Complete lines.",
+      "2. Finish a run opened by Complete all lines (with review required).",
+      "3. Finish a run opened by Create invoice."
      ]
     ],
-    "text": "1. Open the receive modal on that vendor's card.\n2. Enter one invoice number and receive."
+    "text": "1. Finish a run opened by Complete on a line / Complete lines.\n2. Finish a run opened by Complete all lines (with review required).\n3. Finish a run opened by Create invoice."
    },
    "custom_expected": {
     "blocks": [
      [
-      "1. A vendor bill always belongs to one purchase order.",
-      "2. Where one vendor's parts sit on two purchase orders, the card still shows one invoice number field, and receiving produces two vendor bills carrying that same invoice number.",
-      "3. The card says so before the user confirms.",
-      "4. Receiving uses the existing pipeline, so the vendor bill reaches the accounting system as it does today."
+      "1. Complete on a line, or Complete lines: those lines complete, a toast, work order untouched.",
+      "2. Complete all lines: every open line complete, a toast, still on the work order; with review required, this is the moment Mark as reviewed appears in the header.",
+      "3. Create invoice: the invoice is created, the Finance tab and the payment screen open."
      ],
      [
       "---",
-      "This is the expected behaviour as per epic SV-8683 and story SV-9259 (Story 13, Receiving from the work order) and the Simple Flow V2 specification (Confluence page 771391574, revised 8 September 2026), read on 9 September 2026.",
+      "This is the expected behaviour as per epic SV-8683 and story SV-9263 (Story 17, The completion wizard) and the Simple Flow V2 specification (Confluence page 771391574, revised 8 September 2026), read on 9 September 2026.",
       "Last checked against build v26.35.9-5700a76 on 9/9/2026.",
       "AUTOMATION: READY"
      ]
     ],
-    "text": "1. A vendor bill always belongs to one purchase order.\n2. Where one vendor's parts sit on two purchase orders, the card still shows one invoice number field, and receiving produces two vendor bills carrying that same invoice number.\n3. The card says so before the user confirms.\n4. Receiving uses the existing pipeline, so the vendor bill reaches the accounting system as it does today.\n\n---\nThis is the expected behaviour as per epic SV-8683 and story SV-9259 (Story 13, Receiving from the work order) and the Simple Flow V2 specification (Confluence page 771391574, revised 8 September 2026), read on 9 September 2026.\nLast checked against build v26.35.9-5700a76 on 9/9/2026.\nAUTOMATION: READY"
+    "text": "1. Complete on a line, or Complete lines: those lines complete, a toast, work order untouched.\n2. Complete all lines: every open line complete, a toast, still on the work order; with review required, this is the moment Mark as reviewed appears in the header.\n3. Create invoice: the invoice is created, the Finance tab and the payment screen open.\n\n---\nThis is the expected behaviour as per epic SV-8683 and story SV-9263 (Story 17, The completion wizard) and the Simple Flow V2 specification (Confluence page 771391574, revised 8 September 2026), read on 9 September 2026.\nLast checked against build v26.35.9-5700a76 on 9/9/2026.\nAUTOMATION: READY"
    }
   }
  },
- "44587": {
-  "title": "A user without See Financial Data can still receive; money fields removed",
+ "44598": {
+  "title": "Wizard handles not-required steps, mid-run completion and server errors",
   "fields": {
    "custom_preconds": {
     "blocks": [
      [
-      "1. For this check, sign in as TECH@shopview.com whose role is set for this test (reset the role from Settings -> Roles & Permissions, then assign it to TECH; never change the Admin role) with See Financial Data OFF but Work Orders View + Order/Receive Parts ON.",
-      "2. Open, via top menu \"Work Orders\" -> the \"Work Orders\" tab -> open a work order -> its \"Lines\" tab, a work order with a vendor-sourced part that has been ordered and is awaiting receipt (Require Ordering Parts and Require Receiving Parts Before Completion on in Settings -> the \"Work Orders\" tab; add a vendor part to a line and click \"Order\", so its row shows it awaiting receipt).",
-      "3. On the part's row click \"Receive\" to open the \"Receive parts\" modal (fields: \"Assign vendor\", \"Vendor invoice number\", \"Invoice date\", \"Delivery note\"; buttons \"Select all\", \"Receive later\", \"Receive parts (n)\") and confirm the money fields (cost, tax, sell) are removed while receiving still works."
+      "1. Sign in as an Owner or Admin.",
+      "2. Open, via top menu \"Work Orders\" -> the \"Work Orders\" tab -> open a work order -> its \"Lines\" tab, a work order with a mix of required and not-required steps. The completion wizard opens from \"Create invoice\" (in the work order header three-dot / more_vert menu) when something is still collectable; it shows step pills across the top (e.g. \"Tech stories (1)\", \"Pick parts (2)\", \"Missing Details (1)\") each with a count, and each step carries its own action button (Save Story / Pick all / Receive parts) that saves and advances - there is no Continue button."
      ]
     ],
-    "text": "1. For this check, sign in as TECH@shopview.com whose role is set for this test (reset the role from Settings -> Roles & Permissions, then assign it to TECH; never change the Admin role) with See Financial Data OFF but Work Orders View + Order/Receive Parts ON.\n2. Open, via top menu \"Work Orders\" -> the \"Work Orders\" tab -> open a work order -> its \"Lines\" tab, a work order with a vendor-sourced part that has been ordered and is awaiting receipt (Require Ordering Parts and Require Receiving Parts Before Completion on in Settings -> the \"Work Orders\" tab; add a vendor part to a line and click \"Order\", so its row shows it awaiting receipt).\n3. On the part's row click \"Receive\" to open the \"Receive parts\" modal (fields: \"Assign vendor\", \"Vendor invoice number\", \"Invoice date\", \"Delivery note\"; buttons \"Select all\", \"Receive later\", \"Receive parts (n)\") and confirm the money fields (cost, tax, sell) are removed while receiving still works."
+    "text": "1. Sign in as an Owner or Admin.\n2. Open, via top menu \"Work Orders\" -> the \"Work Orders\" tab -> open a work order -> its \"Lines\" tab, a work order with a mix of required and not-required steps. The completion wizard opens from \"Create invoice\" (in the work order header three-dot / more_vert menu) when something is still collectable; it shows step pills across the top (e.g. \"Tech stories (1)\", \"Pick parts (2)\", \"Missing Details (1)\") each with a count, and each step carries its own action button (Save Story / Pick all / Receive parts) that saves and advances - there is no Continue button."
    },
    "custom_steps": {
     "blocks": [
      [
-      "1. Open the receive modal as this user.",
-      "2. Look for cost and tax fields and try to receive."
+      "1. Look for a step whose work is not required.",
+      "2. Have someone else finish the outstanding work mid-run.",
+      "3. Induce a server error mid-step with values entered."
      ]
     ],
-    "text": "1. Open the receive modal as this user.\n2. Look for cost and tax fields and try to receive."
+    "text": "1. Look for a step whose work is not required.\n2. Have someone else finish the outstanding work mid-run.\n3. Induce a server error mid-step with values entered."
    },
    "custom_expected": {
     "blocks": [
      [
-      "The persisted part cost read back over the API equals the purchase order's cost, not zero"
+      "1. A step for work that is not required does not exist - it is not disabled and not skippable.",
+      "2. If someone else finishes the outstanding work mid-run, the wizard closes to the outcome rather than showing an empty step.",
+      "3. A server error mid-step leaves the step open with the entered values intact."
      ],
      [
       "---",
-      "This is the expected behaviour as per epic SV-8683 and story SV-9259 (Story 13, Receiving from the work order) and the Simple Flow V2 specification (Confluence page 771391574, revised 8 September 2026), read on 9 September 2026.",
+      "This is the expected behaviour as per epic SV-8683 and story SV-9263 (Story 17, The completion wizard) and the Simple Flow V2 specification (Confluence page 771391574, revised 8 September 2026), read on 9 September 2026.",
       "Last checked against build v26.35.9-5700a76 on 9/9/2026.",
       "AUTOMATION: READY"
      ]
     ],
-    "text": "The persisted part cost read back over the API equals the purchase order's cost, not zero\n\n---\nThis is the expected behaviour as per epic SV-8683 and story SV-9259 (Story 13, Receiving from the work order) and the Simple Flow V2 specification (Confluence page 771391574, revised 8 September 2026), read on 9 September 2026.\nLast checked against build v26.35.9-5700a76 on 9/9/2026.\nAUTOMATION: READY"
+    "text": "1. A step for work that is not required does not exist - it is not disabled and not skippable.\n2. If someone else finishes the outstanding work mid-run, the wizard closes to the outcome rather than showing an empty step.\n3. A server error mid-step leaves the step open with the entered values intact.\n\n---\nThis is the expected behaviour as per epic SV-8683 and story SV-9263 (Story 17, The completion wizard) and the Simple Flow V2 specification (Confluence page 771391574, revised 8 September 2026), read on 9 September 2026.\nLast checked against build v26.35.9-5700a76 on 9/9/2026.\nAUTOMATION: READY"
    }
   }
  },
- "44588": {
-  "title": "Receive modal rejects invalid parts, unordered/unapproved, and post-invoice",
+ "44599": {
+  "title": "The header offers only the one finish action that is genuinely next",
   "fields": {
    "custom_preconds": {
     "blocks": [
      [
-      "1. Sign in as an Owner or Admin (Order Parts).",
-      "2. Open, via top menu \"Work Orders\" -> the \"Work Orders\" tab -> open a work order -> its \"Lines\" tab, a work order with a vendor-sourced part that has been ordered and is awaiting receipt (Require Ordering Parts and Require Receiving Parts Before Completion on in Settings -> the \"Work Orders\" tab; add a vendor part to a line and click \"Order\", so its row shows it awaiting receipt).; also have an unordered/unapproved part and an invoiced work order for the negative checks.",
-      "3. On the part's row click \"Receive\" to open the \"Receive parts\" modal (fields: \"Assign vendor\", \"Vendor invoice number\", \"Invoice date\", \"Delivery note\"; buttons \"Select all\", \"Receive later\", \"Receive parts (n)\")."
+      "1. Sign in as an Owner or Admin.",
+      "2. Open, via top menu \"Work Orders\" -> the \"Work Orders\" tab -> open a work order -> its \"Lines\" tab, work orders in different states. The header three-dot (more_vert) menu offers the finish action that is genuinely next (\"Create invoice\", or complete/review as applicable); \"Mark as reviewed\" appears only once every line is complete."
      ]
     ],
-    "text": "1. Sign in as an Owner or Admin (Order Parts).\n2. Open, via top menu \"Work Orders\" -> the \"Work Orders\" tab -> open a work order -> its \"Lines\" tab, a work order with a vendor-sourced part that has been ordered and is awaiting receipt (Require Ordering Parts and Require Receiving Parts Before Completion on in Settings -> the \"Work Orders\" tab; add a vendor part to a line and click \"Order\", so its row shows it awaiting receipt).; also have an unordered/unapproved part and an invoiced work order for the negative checks.\n3. On the part's row click \"Receive\" to open the \"Receive parts\" modal (fields: \"Assign vendor\", \"Vendor invoice number\", \"Invoice date\", \"Delivery note\"; buttons \"Select all\", \"Receive later\", \"Receive parts (n)\")."
+    "text": "1. Sign in as an Owner or Admin.\n2. Open, via top menu \"Work Orders\" -> the \"Work Orders\" tab -> open a work order -> its \"Lines\" tab, work orders in different states. The header three-dot (more_vert) menu offers the finish action that is genuinely next (\"Create invoice\", or complete/review as applicable); \"Mark as reviewed\" appears only once every line is complete."
    },
    "custom_steps": {
     "blocks": [
      [
-      "1. Try to receive a card containing a part with no part number.",
-      "2. Enter quantity zero (or negative).",
-      "3. Check whether unordered/unapproved parts appear.",
-      "4. Invoice the work order mid-session, then try to receive.",
-      "5. Open Receive on a work order with nothing awaiting."
+      "1. With review off and a line still open, read the header actions.",
+      "2. With review off and every line complete.",
+      "3. With review on and a line still open.",
+      "4. With review on, every line complete, not yet reviewed.",
+      "5. With review on, already reviewed.",
+      "6. With lines selected."
      ]
     ],
-    "text": "1. Try to receive a card containing a part with no part number.\n2. Enter quantity zero (or negative).\n3. Check whether unordered/unapproved parts appear.\n4. Invoice the work order mid-session, then try to receive.\n5. Open Receive on a work order with nothing awaiting."
+    "text": "1. With review off and a line still open, read the header actions.\n2. With review off and every line complete.\n3. With review on and a line still open.\n4. With review on, every line complete, not yet reviewed.\n5. With review on, already reviewed.\n6. With lines selected."
    },
    "custom_expected": {
     "blocks": [
      [
-      "1. A part with no part number is outlined red and its card cannot be received until it is filled.",
-      "2. Quantity of zero or a negative number is rejected.",
-      "3. Parts not yet ordered, and parts on lines that are not approved, are never included.",
-      "4. Where every part in a card is unticked, that card's receive is disabled; one invoice number never spans two vendors.",
-      "5. There is no way to receive without a vendor bill (a user with parts but no paperwork uses Received later).",
-      "6. If the work order is invoiced mid-session, receiving is refused with the reason; the empty state reads \"Nothing to receive\"."
+      "1. Review off, any line still open: New Line, Send, and a ... menu holding Create invoice.",
+      "2. Review off, every line complete: Create invoice promoted to a primary button beside New Line, then Send and ...",
+      "3. Review on, any line still open: New Line, Send, ... and no finish action at all (the next real action is completing the lines, on the line and in the bulk bar).",
+      "4. Any line still in Needs Approval: Create invoice is shown disabled (not hidden) with the reason \"All lines must be approved before invoicing\"; invoicing never approves a line as a side effect. A work order whose lines are all in Needs Approval offers no finish action at all - the next real action is approving the lines, on the line or in the bulk action bar.",
+      "5. Review on, every line complete, not yet reviewed: Mark as reviewed promoted beside New Line.",
+      "6. Review on, already reviewed: Create invoice promoted in its place.",
+      "7. Lines selected: the bulk action bar, whatever the review setting.",
+      "8. Only one finish action is ever on screen, and only ever one the user can actually press."
      ],
      [
       "---",
-      "This is the expected behaviour as per epic SV-8683 and story SV-9259 (Story 13, Receiving from the work order) and the Simple Flow V2 specification (Confluence page 771391574, revised 8 September 2026), read on 9 September 2026.",
+      "This is the expected behaviour as per epic SV-8683 and story SV-9264 (Story 18, Create invoice as the finish action) and the Simple Flow V2 specification (Confluence page 771391574, revised 8 September 2026), read on 8 September 2026.",
       "Last checked against build v26.35.9-5700a76 on 9/9/2026.",
       "AUTOMATION: READY"
      ]
     ],
-    "text": "1. A part with no part number is outlined red and its card cannot be received until it is filled.\n2. Quantity of zero or a negative number is rejected.\n3. Parts not yet ordered, and parts on lines that are not approved, are never included.\n4. Where every part in a card is unticked, that card's receive is disabled; one invoice number never spans two vendors.\n5. There is no way to receive without a vendor bill (a user with parts but no paperwork uses Received later).\n6. If the work order is invoiced mid-session, receiving is refused with the reason; the empty state reads \"Nothing to receive\".\n\n---\nThis is the expected behaviour as per epic SV-8683 and story SV-9259 (Story 13, Receiving from the work order) and the Simple Flow V2 specification (Confluence page 771391574, revised 8 September 2026), read on 9 September 2026.\nLast checked against build v26.35.9-5700a76 on 9/9/2026.\nAUTOMATION: READY"
+    "text": "1. Review off, any line still open: New Line, Send, and a ... menu holding Create invoice.\n2. Review off, every line complete: Create invoice promoted to a primary button beside New Line, then Send and ...\n3. Review on, any line still open: New Line, Send, ... and no finish action at all (the next real action is completing the lines, on the line and in the bulk bar).\n4. Any line still in Needs Approval: Create invoice is shown disabled (not hidden) with the reason \"All lines must be approved before invoicing\"; invoicing never approves a line as a side effect. A work order whose lines are all in Needs Approval offers no finish action at all - the next real action is approving the lines, on the line or in the bulk action bar.\n5. Review on, every line complete, not yet reviewed: Mark as reviewed promoted beside New Line.\n6. Review on, already reviewed: Create invoice promoted in its place.\n7. Lines selected: the bulk action bar, whatever the review setting.\n8. Only one finish action is ever on screen, and only ever one the user can actually press.\n\n---\nThis is the expected behaviour as per epic SV-8683 and story SV-9264 (Story 18, Create invoice as the finish action) and the Simple Flow V2 specification (Confluence page 771391574, revised 8 September 2026), read on 8 September 2026.\nLast checked against build v26.35.9-5700a76 on 9/9/2026.\nAUTOMATION: READY"
    }
   }
  },
- "53487": {
-  "title": "A vendor can be corrected until a part is received, then it is fixed",
+ "44600": {
+  "title": "Create invoice runs the wizard if needed, then invoices and opens payment",
   "fields": {
    "custom_preconds": {
     "blocks": [
      [
-      "1. Sign in as an Owner or Admin (Order Parts + Vendor & Order Mgmt: Create & Edit).",
-      "2. Open, via top menu \"Work Orders\" -> the \"Work Orders\" tab -> open a work order -> its \"Lines\" tab, a work order with a vendor-sourced part that has been ordered and is awaiting receipt (Require Ordering Parts and Require Receiving Parts Before Completion on in Settings -> the \"Work Orders\" tab; add a vendor part to a line and click \"Order\", so its row shows it awaiting receipt).",
-      "3. On the part's row click \"Receive\" to open the \"Receive parts\" modal (fields: \"Assign vendor\", \"Vendor invoice number\", \"Invoice date\", \"Delivery note\"; buttons \"Select all\", \"Receive later\", \"Receive parts (n)\"); correct the vendor before the part is received, then receive it."
+      "1. Sign in as an Owner or Admin (invoicing permission).",
+      "2. Open, via top menu \"Work Orders\" -> the \"Work Orders\" tab -> open a work order -> its \"Lines\" tab, a completable work order that still has outstanding steps. Use \"Create invoice\" in the header three-dot menu: it runs the completion wizard first if needed, then invoices and opens the payment screen."
      ]
     ],
-    "text": "1. Sign in as an Owner or Admin (Order Parts + Vendor & Order Mgmt: Create & Edit).\n2. Open, via top menu \"Work Orders\" -> the \"Work Orders\" tab -> open a work order -> its \"Lines\" tab, a work order with a vendor-sourced part that has been ordered and is awaiting receipt (Require Ordering Parts and Require Receiving Parts Before Completion on in Settings -> the \"Work Orders\" tab; add a vendor part to a line and click \"Order\", so its row shows it awaiting receipt).\n3. On the part's row click \"Receive\" to open the \"Receive parts\" modal (fields: \"Assign vendor\", \"Vendor invoice number\", \"Invoice date\", \"Delivery note\"; buttons \"Select all\", \"Receive later\", \"Receive parts (n)\"); correct the vendor before the part is received, then receive it."
+    "text": "1. Sign in as an Owner or Admin (invoicing permission).\n2. Open, via top menu \"Work Orders\" -> the \"Work Orders\" tab -> open a work order -> its \"Lines\" tab, a completable work order that still has outstanding steps. Use \"Create invoice\" in the header three-dot menu: it runs the completion wizard first if needed, then invoices and opens the payment screen."
    },
    "custom_steps": {
     "blocks": [
      [
-      "1. On the unreceived purchase order, change the assigned vendor.",
-      "2. On the one with a received part, look for a way to change the vendor.",
-      "3. Attempt to receive a part against a vendor different from the one already recorded."
+      "1. Press Create invoice on a work order with outstanding required work.",
+      "2. Confirm and complete the flow.",
+      "3. Repeat where a deposit covers the whole amount."
      ]
     ],
-    "text": "1. On the unreceived purchase order, change the assigned vendor.\n2. On the one with a received part, look for a way to change the vendor.\n3. Attempt to receive a part against a vendor different from the one already recorded."
+    "text": "1. Press Create invoice on a work order with outstanding required work.\n2. Confirm and complete the flow.\n3. Repeat where a deposit covers the whole amount."
    },
    "custom_expected": {
     "blocks": [
      [
-      "1. While the purchase order has no received parts, its assigned vendor can be replaced.",
-      "2. Once any part on it is received, its vendor is fixed - there is no way to change it, because it belongs to that delivery and that vendor's bill.",
-      "3. A purchase order that already carries a named vendor offers no change of vendor at all; parts that genuinely belong to another supplier are removed and ordered again.",
-      "4. A receive is refused if it names a vendor different from the one already recorded against a received part; the rule holds on the back end, not only on screen."
+      "1. Create invoice runs the wizard first if anything required is outstanding, otherwise proceeds directly.",
+      "2. If lines are still open, the confirmation states the invoice total and how many Approved lines will be completed; declined lines are named as excluded rather than counted.",
+      "3. On completion the invoice is created, every open Approved line completes, and the Finance tab opens with the payment screen. A declined line never blocks invoicing - it is skipped entirely.",
+      "4. Where a deposit already covers the whole amount the payment screen is skipped, the work order reads Paid, and the user is told the deposit settled the invoice.",
+      "5. Everything that happens today when an invoice is created still happens from every entry point: a deposit applying, an over-payment becoming a credit, the customer being locked, the accounting sync and the snapshot."
      ],
      [
       "---",
-      "This is the expected behaviour as per epic SV-8683 and story SV-9259 (Story 13, Receiving from the work order) and the Simple Flow V2 specification (Confluence page 771391574, revised 8 September 2026), read on 8 September 2026.",
+      "This is the expected behaviour as per epic SV-8683 and story SV-9264 (Story 18, Create invoice as the finish action) and the Simple Flow V2 specification (Confluence page 771391574, revised 8 September 2026), read on 8 September 2026.",
       "Last checked against build v26.35.9-5700a76 on 9/9/2026.",
       "AUTOMATION: READY"
      ]
     ],
-    "text": "1. While the purchase order has no received parts, its assigned vendor can be replaced.\n2. Once any part on it is received, its vendor is fixed - there is no way to change it, because it belongs to that delivery and that vendor's bill.\n3. A purchase order that already carries a named vendor offers no change of vendor at all; parts that genuinely belong to another supplier are removed and ordered again.\n4. A receive is refused if it names a vendor different from the one already recorded against a received part; the rule holds on the back end, not only on screen.\n\n---\nThis is the expected behaviour as per epic SV-8683 and story SV-9259 (Story 13, Receiving from the work order) and the Simple Flow V2 specification (Confluence page 771391574, revised 8 September 2026), read on 8 September 2026.\nLast checked against build v26.35.9-5700a76 on 9/9/2026.\nAUTOMATION: READY"
+    "text": "1. Create invoice runs the wizard first if anything required is outstanding, otherwise proceeds directly.\n2. If lines are still open, the confirmation states the invoice total and how many Approved lines will be completed; declined lines are named as excluded rather than counted.\n3. On completion the invoice is created, every open Approved line completes, and the Finance tab opens with the payment screen. A declined line never blocks invoicing - it is skipped entirely.\n4. Where a deposit already covers the whole amount the payment screen is skipped, the work order reads Paid, and the user is told the deposit settled the invoice.\n5. Everything that happens today when an invoice is created still happens from every entry point: a deposit applying, an over-payment becoming a credit, the customer being locked, the accounting sync and the snapshot.\n\n---\nThis is the expected behaviour as per epic SV-8683 and story SV-9264 (Story 18, Create invoice as the finish action) and the Simple Flow V2 specification (Confluence page 771391574, revised 8 September 2026), read on 8 September 2026.\nLast checked against build v26.35.9-5700a76 on 9/9/2026.\nAUTOMATION: READY"
    }
   }
  },
- "44592": {
-  "title": "Receive becomes a split button offering Received later, chosen per part",
+ "44601": {
+  "title": "Finish-action negatives: reviewer, invoice lock, declined-only, no permission",
   "fields": {
    "custom_preconds": {
     "blocks": [
      [
-      "1. Sign in as an Owner or Admin with the Received later permission and Order Parts; Require Receiving Parts Before Completion is on (Settings -> the \"Work Orders\" tab).",
-      "2. Open, via top menu \"Work Orders\" -> the \"Work Orders\" tab -> open a work order -> its \"Lines\" tab, a work order with a vendor-sourced part that has been ordered and is awaiting receipt (Require Ordering Parts and Require Receiving Parts Before Completion on in Settings -> the \"Work Orders\" tab; add a vendor part to a line and click \"Order\", so its row shows it awaiting receipt).",
-      "3. On the part row the Receive control is a split button: \"Receive\", a divider, and a caret offering \"Received later\" (also in the bulk action bar and the completion wizard's receive step). It is chosen per part inside the \"Receive parts\" modal via \"Receive later\"."
+      "1. Sign in as an Owner or Admin for most checks; for the no-permission check, use TECH@shopview.com whose role lacks the finish permission (reset the role from Settings -> Roles & Permissions, then assign to TECH; never change the Admin role).",
+      "2. Open, via top menu \"Work Orders\" -> the \"Work Orders\" tab -> open a work order -> its \"Lines\" tab, work orders that are: awaiting review, invoice-locked, and declined-only, to see which finish action is offered."
      ]
     ],
-    "text": "1. Sign in as an Owner or Admin with the Received later permission and Order Parts; Require Receiving Parts Before Completion is on (Settings -> the \"Work Orders\" tab).\n2. Open, via top menu \"Work Orders\" -> the \"Work Orders\" tab -> open a work order -> its \"Lines\" tab, a work order with a vendor-sourced part that has been ordered and is awaiting receipt (Require Ordering Parts and Require Receiving Parts Before Completion on in Settings -> the \"Work Orders\" tab; add a vendor part to a line and click \"Order\", so its row shows it awaiting receipt).\n3. On the part row the Receive control is a split button: \"Receive\", a divider, and a caret offering \"Received later\" (also in the bulk action bar and the completion wizard's receive step). It is chosen per part inside the \"Receive parts\" modal via \"Receive later\"."
+    "text": "1. Sign in as an Owner or Admin for most checks; for the no-permission check, use TECH@shopview.com whose role lacks the finish permission (reset the role from Settings -> Roles & Permissions, then assign to TECH; never change the Admin role).\n2. Open, via top menu \"Work Orders\" -> the \"Work Orders\" tab -> open a work order -> its \"Lines\" tab, work orders that are: awaiting review, invoice-locked, and declined-only, to see which finish action is offered."
    },
    "custom_steps": {
     "blocks": [
      [
-      "1. On a part row (and in the bulk bar and the wizard's receive step), open the Receive split button's caret.",
-      "2. Choose Received later for the part without a bill.",
-      "3. Check the part's state and the completion requirement."
+      "1. As a review-only user, complete review and look at the header.",
+      "2. As a complete-only user, look at the header.",
+      "3. As a user without See Financial Data, look for Create invoice.",
+      "4. Check an all-declined work order and an already-invoiced one.",
+      "5. Close the payment screen after invoicing."
      ]
     ],
-    "text": "1. On a part row (and in the bulk bar and the wizard's receive step), open the Receive split button's caret.\n2. Choose Received later for the part without a bill.\n3. Check the part's state and the completion requirement."
+    "text": "1. As a review-only user, complete review and look at the header.\n2. As a complete-only user, look at the header.\n3. As a user without See Financial Data, look for Create invoice.\n4. Check an all-declined work order and an already-invoiced one.\n5. Close the payment screen after invoicing."
    },
    "custom_expected": {
     "blocks": [
      [
-      "1. Receive is a split button: Receive, a divider, and a caret offering Received later, available on the part row, in the bulk action bar and on the wizard's receive step.",
-      "2. It is chosen per part, never for a whole card at once, so a mixed delivery is recorded truthfully in one pass.",
-      "3. Choosing it sets the part to Received later, removes its Receive affordance from the row and confirms with a toast.",
-      "4. A part in that state satisfies the completion requirement, so the work order is no longer blocked by it.",
-      "5. It stays receivable later from its ... menu, and receiving it then asks for the invoice number as normal.",
-      "6. Deferring several at once applies straight away with a toast stating how many were deferred; a deferred part keeps counting in the Waiting on Parts column."
+      "1. Mark as reviewed never completes a line, never opens the wizard and never asks for a confirmation.",
+      "2. Closing the payment screen rolls nothing back: the invoice stands, lines stay complete, the work order stays invoiced with a balance owing.",
+      "3. With review required, Create invoice is not offered until the work order is reviewed.",
+      "4. Where every line is declined there is no finish action (nothing to review or invoice).",
+      "5. Once an invoice exists, both actions are gone from the header and the ... menu.",
+      "6. A user who may review but not invoice sees Mark as reviewed then nothing further; a complete-only user sees nothing in the header; a user without See Financial Data does not see Create invoice at all."
      ],
      [
       "---",
-      "This is the expected behaviour as per epic SV-8683 and story SV-9261 (Story 15, Receive later) and the Simple Flow V2 specification (Confluence page 771391574, revised 8 September 2026), read on 9 September 2026.",
+      "This is the expected behaviour as per epic SV-8683 and story SV-9264 (Story 18, Create invoice as the finish action) and the Simple Flow V2 specification (Confluence page 771391574, revised 8 September 2026), read on 9 September 2026.",
       "Last checked against build v26.35.9-5700a76 on 9/9/2026.",
       "AUTOMATION: READY"
      ]
     ],
-    "text": "1. Receive is a split button: Receive, a divider, and a caret offering Received later, available on the part row, in the bulk action bar and on the wizard's receive step.\n2. It is chosen per part, never for a whole card at once, so a mixed delivery is recorded truthfully in one pass.\n3. Choosing it sets the part to Received later, removes its Receive affordance from the row and confirms with a toast.\n4. A part in that state satisfies the completion requirement, so the work order is no longer blocked by it.\n5. It stays receivable later from its ... menu, and receiving it then asks for the invoice number as normal.\n6. Deferring several at once applies straight away with a toast stating how many were deferred; a deferred part keeps counting in the Waiting on Parts column.\n\n---\nThis is the expected behaviour as per epic SV-8683 and story SV-9261 (Story 15, Receive later) and the Simple Flow V2 specification (Confluence page 771391574, revised 8 September 2026), read on 9 September 2026.\nLast checked against build v26.35.9-5700a76 on 9/9/2026.\nAUTOMATION: READY"
+    "text": "1. Mark as reviewed never completes a line, never opens the wizard and never asks for a confirmation.\n2. Closing the payment screen rolls nothing back: the invoice stands, lines stay complete, the work order stays invoiced with a balance owing.\n3. With review required, Create invoice is not offered until the work order is reviewed.\n4. Where every line is declined there is no finish action (nothing to review or invoice).\n5. Once an invoice exists, both actions are gone from the header and the ... menu.\n6. A user who may review but not invoice sees Mark as reviewed then nothing further; a complete-only user sees nothing in the header; a user without See Financial Data does not see Create invoice at all.\n\n---\nThis is the expected behaviour as per epic SV-8683 and story SV-9264 (Story 18, Create invoice as the finish action) and the Simple Flow V2 specification (Confluence page 771391574, revised 8 September 2026), read on 9 September 2026.\nLast checked against build v26.35.9-5700a76 on 9/9/2026.\nAUTOMATION: READY"
    }
   }
  },
- "44593": {
-  "title": "Without the permission or the setting, no Received later option appears",
+ "44602": {
+  "title": "Part and line ... menus contain the actions that belong to them",
   "fields": {
    "custom_preconds": {
     "blocks": [
      [
-      "1. For the no-permission check, sign in as TECH@shopview.com whose role is set for this test (reset the role from Settings -> Roles & Permissions, then assign it to TECH; never change the Admin role) WITHOUT the Received later permission; and separately, with Require Receiving Parts Before Completion OFF (Settings -> the \"Work Orders\" tab).",
-      "2. Open, via top menu \"Work Orders\" -> the \"Work Orders\" tab -> open a work order -> its \"Lines\" tab, a work order with a vendor-sourced part that has been ordered and is awaiting receipt (Require Ordering Parts and Require Receiving Parts Before Completion on in Settings -> the \"Work Orders\" tab; add a vendor part to a line and click \"Order\", so its row shows it awaiting receipt).",
-      "3. Look at the Receive control on the part row and in the \"Receive parts\" modal for any \"Received later\" option."
+      "1. Sign in as an Owner or Admin (Work Order Lines: Create & Edit, Full View).",
+      "2. Open, via top menu \"Work Orders\" -> the \"Work Orders\" tab -> open a work order -> its \"Lines\" tab, a work order with lines and parts. Open the part row three-dot (more_vert, \"Part context menu\"): it holds \"Move\" and \"Add Part Fee / Discount\", and the line's three-dot menu, to read the actions each offers."
      ]
     ],
-    "text": "1. For the no-permission check, sign in as TECH@shopview.com whose role is set for this test (reset the role from Settings -> Roles & Permissions, then assign it to TECH; never change the Admin role) WITHOUT the Received later permission; and separately, with Require Receiving Parts Before Completion OFF (Settings -> the \"Work Orders\" tab).\n2. Open, via top menu \"Work Orders\" -> the \"Work Orders\" tab -> open a work order -> its \"Lines\" tab, a work order with a vendor-sourced part that has been ordered and is awaiting receipt (Require Ordering Parts and Require Receiving Parts Before Completion on in Settings -> the \"Work Orders\" tab; add a vendor part to a line and click \"Order\", so its row shows it awaiting receipt).\n3. Look at the Receive control on the part row and in the \"Receive parts\" modal for any \"Received later\" option."
+    "text": "1. Sign in as an Owner or Admin (Work Order Lines: Create & Edit, Full View).\n2. Open, via top menu \"Work Orders\" -> the \"Work Orders\" tab -> open a work order -> its \"Lines\" tab, a work order with lines and parts. Open the part row three-dot (more_vert, \"Part context menu\"): it holds \"Move\" and \"Add Part Fee / Discount\", and the line's three-dot menu, to read the actions each offers."
    },
    "custom_steps": {
     "blocks": [
      [
-      "1. As a user without the permission, look at the Receive control.",
-      "2. With the receiving setting off, look for the split button.",
-      "3. Check the part's ... menu while the split button shows."
+      "1. Open a part's ... menu and read its items.",
+      "2. Open a line's ... menu and read its items."
      ]
     ],
-    "text": "1. As a user without the permission, look at the Receive control.\n2. With the receiving setting off, look for the split button.\n3. Check the part's ... menu while the split button shows."
+    "text": "1. Open a part's ... menu and read its items.\n2. Open a line's ... menu and read its items."
    },
    "custom_expected": {
     "blocks": [
      [
-      "1. Without the permission, Receive is a plain button with no caret anywhere, and a missing vendor bill has no workaround.",
-      "2. With Require receiving off there is nothing to defer and no split button appears.",
-      "3. Received later is never duplicated in the part's ... menu while the split button is showing.",
-      "4. Deferring does not create a vendor bill, move stock or touch the accounting system - it records that the paperwork is outstanding and nothing else."
+      "1. The part's ... menu contains Move, Return, Add part fee or discount, and Receive part (the last only when receiving is optional and always at the bottom).",
+      "2. The line's ... menu contains Request part, Uncomplete line, Add line note, Save as canned line, Edit labour, Receive parts (n) (when receiving is optional and the line has parts waiting), and Authorization required.",
+      "3. Uncomplete is existing behaviour and is already blocked once the work order is invoiced or paid; the same block applies in the bulk action bar so the two cannot drift apart."
      ],
      [
       "---",
-      "This is the expected behaviour as per epic SV-8683 and story SV-9261 (Story 15, Receive later) and the Simple Flow V2 specification (Confluence page 771391574, revised 8 September 2026), read on 9 September 2026.",
+      "This is the expected behaviour as per epic SV-8683 and story SV-9265 (Story 19, Part rows and menus) and the Simple Flow V2 specification (Confluence page 771391574, revised 8 September 2026), read on 9 September 2026.",
       "Last checked against build v26.35.9-5700a76 on 9/9/2026.",
       "AUTOMATION: READY"
      ]
     ],
-    "text": "1. Without the permission, Receive is a plain button with no caret anywhere, and a missing vendor bill has no workaround.\n2. With Require receiving off there is nothing to defer and no split button appears.\n3. Received later is never duplicated in the part's ... menu while the split button is showing.\n4. Deferring does not create a vendor bill, move stock or touch the accounting system - it records that the paperwork is outstanding and nothing else.\n\n---\nThis is the expected behaviour as per epic SV-8683 and story SV-9261 (Story 15, Receive later) and the Simple Flow V2 specification (Confluence page 771391574, revised 8 September 2026), read on 9 September 2026.\nLast checked against build v26.35.9-5700a76 on 9/9/2026.\nAUTOMATION: READY"
+    "text": "1. The part's ... menu contains Move, Return, Add part fee or discount, and Receive part (the last only when receiving is optional and always at the bottom).\n2. The line's ... menu contains Request part, Uncomplete line, Add line note, Save as canned line, Edit labour, Receive parts (n) (when receiving is optional and the line has parts waiting), and Authorization required.\n3. Uncomplete is existing behaviour and is already blocked once the work order is invoiced or paid; the same block applies in the bulk action bar so the two cannot drift apart.\n\n---\nThis is the expected behaviour as per epic SV-8683 and story SV-9265 (Story 19, Part rows and menus) and the Simple Flow V2 specification (Confluence page 771391574, revised 8 September 2026), read on 9 September 2026.\nLast checked against build v26.35.9-5700a76 on 9/9/2026.\nAUTOMATION: READY"
    }
   }
  },
- "53489": {
-  "title": "Deferring a part with a core: the core follows the parent, never its own choice",
+ "44603": {
+  "title": "Menu negatives: Request part, Uncomplete, Receive part visibility",
   "fields": {
    "custom_preconds": {
     "blocks": [
      [
-      "1. Sign in as an Owner or Admin with the Received later permission and Order Parts.",
-      "2. Open, via top menu \"Work Orders\" -> the \"Work Orders\" tab -> open a work order -> its \"Lines\" tab, a work order with a vendor-sourced part that has been ordered and is awaiting receipt (Require Ordering Parts and Require Receiving Parts Before Completion on in Settings -> the \"Work Orders\" tab; add a vendor part to a line and click \"Order\", so its row shows it awaiting receipt). with a part that carries a core.",
-      "3. On the part's row click \"Receive\" to open the \"Receive parts\" modal (fields: \"Assign vendor\", \"Vendor invoice number\", \"Invoice date\", \"Delivery note\"; buttons \"Select all\", \"Receive later\", \"Receive parts (n)\") and choose \"Received later\" for the parent part."
+      "1. Sign in as an Owner or Admin (Work Order Lines: Create & Edit, Full View).",
+      "2. Open, via top menu \"Work Orders\" -> the \"Work Orders\" tab -> open a work order -> its \"Lines\" tab, a work order with parts in states that exercise the negatives (a part that could be requested, a completed line to Uncomplete, a part whose Receive visibility depends on the receiving setting). Open the part row three-dot (more_vert, \"Part context menu\"): it holds \"Move\" and \"Add Part Fee / Discount\" and the line's three-dot menu."
      ]
     ],
-    "text": "1. Sign in as an Owner or Admin with the Received later permission and Order Parts.\n2. Open, via top menu \"Work Orders\" -> the \"Work Orders\" tab -> open a work order -> its \"Lines\" tab, a work order with a vendor-sourced part that has been ordered and is awaiting receipt (Require Ordering Parts and Require Receiving Parts Before Completion on in Settings -> the \"Work Orders\" tab; add a vendor part to a line and click \"Order\", so its row shows it awaiting receipt). with a part that carries a core.\n3. On the part's row click \"Receive\" to open the \"Receive parts\" modal (fields: \"Assign vendor\", \"Vendor invoice number\", \"Invoice date\", \"Delivery note\"; buttons \"Select all\", \"Receive later\", \"Receive parts (n)\") and choose \"Received later\" for the parent part."
+    "text": "1. Sign in as an Owner or Admin (Work Order Lines: Create & Edit, Full View).\n2. Open, via top menu \"Work Orders\" -> the \"Work Orders\" tab -> open a work order -> its \"Lines\" tab, a work order with parts in states that exercise the negatives (a part that could be requested, a completed line to Uncomplete, a part whose Receive visibility depends on the receiving setting). Open the part row three-dot (more_vert, \"Part context menu\"): it holds \"Move\" and \"Add Part Fee / Discount\" and the line's three-dot menu."
    },
    "custom_steps": {
     "blocks": [
      [
-      "1. Choose Received later on the parent part and check the core sibling's state and row.",
-      "2. Look at the line's completion requirement.",
-      "3. Receive the parent later and check the core.",
-      "4. Defer a part whose core is already resolved."
+      "1. Look for Request part on a completed line.",
+      "2. Look for Uncomplete line on an uncompleted line.",
+      "3. As a user without Order Parts, look for Receive part."
      ]
     ],
-    "text": "1. Choose Received later on the parent part and check the core sibling's state and row.\n2. Look at the line's completion requirement.\n3. Receive the parent later and check the core.\n4. Defer a part whose core is already resolved."
+    "text": "1. Look for Request part on a completed line.\n2. Look for Uncomplete line on an uncompleted line.\n3. As a user without Order Parts, look for Receive part."
    },
    "custom_expected": {
     "blocks": [
      [
-      "1. Choosing Received later on the parent puts its core sibling into the same \"Received later\" state, so the pair stays consistent and neither blocks completion on its own.",
-      "2. The core is never offered a Received later choice of its own - while its parent is deferred it carries no caret and no row action, and it never appears as a separate row.",
-      "3. Deferring a part with a core moves no stock and creates no core credit; nothing about the core's value is decided until the parent is received.",
-      "4. Receiving the parent later resolves the core with it, in the same pass and under the same invoice number.",
-      "5. An unresolved core is still asked for before the line completes, exactly as when receiving is not required - deferring the receive defers the paperwork, not the core decision.",
-      "6. A part whose core is already resolved defers like any other part."
+      "1. Request part is hidden on a completed line.",
+      "2. Uncomplete line appears only on a completed line.",
+      "3. Receive part is absent for a user without Order Parts, whatever the setting."
      ],
      [
       "---",
-      "This is the expected behaviour as per epic SV-8683 and story SV-9261 (Story 15, Receive later) and the Simple Flow V2 specification (Confluence page 771391574, revised 8 September 2026), read on 8 September 2026.",
+      "This is the expected behaviour as per epic SV-8683 and story SV-9265 (Story 19, Part rows and menus) and the Simple Flow V2 specification (Confluence page 771391574, revised 8 September 2026), read on 9 September 2026.",
       "Last checked against build v26.35.9-5700a76 on 9/9/2026.",
       "AUTOMATION: READY"
      ]
     ],
-    "text": "1. Choosing Received later on the parent puts its core sibling into the same \"Received later\" state, so the pair stays consistent and neither blocks completion on its own.\n2. The core is never offered a Received later choice of its own - while its parent is deferred it carries no caret and no row action, and it never appears as a separate row.\n3. Deferring a part with a core moves no stock and creates no core credit; nothing about the core's value is decided until the parent is received.\n4. Receiving the parent later resolves the core with it, in the same pass and under the same invoice number.\n5. An unresolved core is still asked for before the line completes, exactly as when receiving is not required - deferring the receive defers the paperwork, not the core decision.\n6. A part whose core is already resolved defers like any other part.\n\n---\nThis is the expected behaviour as per epic SV-8683 and story SV-9261 (Story 15, Receive later) and the Simple Flow V2 specification (Confluence page 771391574, revised 8 September 2026), read on 8 September 2026.\nLast checked against build v26.35.9-5700a76 on 9/9/2026.\nAUTOMATION: READY"
+    "text": "1. Request part is hidden on a completed line.\n2. Uncomplete line appears only on a completed line.\n3. Receive part is absent for a user without Order Parts, whatever the setting.\n\n---\nThis is the expected behaviour as per epic SV-8683 and story SV-9265 (Story 19, Part rows and menus) and the Simple Flow V2 specification (Confluence page 771391574, revised 8 September 2026), read on 9 September 2026.\nLast checked against build v26.35.9-5700a76 on 9/9/2026.\nAUTOMATION: READY"
+   }
+  }
+ },
+ "44604": {
+  "title": "Move up reorders a part within its line and persists",
+  "fields": {
+   "custom_preconds": {
+    "blocks": [
+     [
+      "1. Sign in as an Owner or Admin (Work Order Lines: Create & Edit, Full View).",
+      "2. Open, via top menu \"Work Orders\" -> the \"Work Orders\" tab -> open a work order -> its \"Lines\" tab, a line that carries two or more parts. Use \"Move\" (or \"Move up\" / \"Move down\") in the part row three-dot (more_vert, \"Part context menu\"): it holds \"Move\" and \"Add Part Fee / Discount\" to reorder a part within its line; reload to confirm the order persists."
+     ]
+    ],
+    "text": "1. Sign in as an Owner or Admin (Work Order Lines: Create & Edit, Full View).\n2. Open, via top menu \"Work Orders\" -> the \"Work Orders\" tab -> open a work order -> its \"Lines\" tab, a line that carries two or more parts. Use \"Move\" (or \"Move up\" / \"Move down\") in the part row three-dot (more_vert, \"Part context menu\"): it holds \"Move\" and \"Add Part Fee / Discount\" to reorder a part within its line; reload to confirm the order persists."
+   },
+   "custom_steps": {
+    "blocks": [
+     [
+      "1. Drag a part to a new position within its line.",
+      "2. Confirm the drop, then view the invoice and PDF order.",
+      "3. Undo the drop."
+     ]
+    ],
+    "text": "1. Drag a part to a new position within its line.\n2. Confirm the drop, then view the invoice and PDF order.\n3. Undo the drop."
+   },
+   "custom_expected": {
+    "blocks": [
+     [
+      "Moving a part up reorders it within its line and the order persists across reloads; the confirmation toast is informational only (the Undo action was removed on user request, 2026-09-04).",
+      "Last checked against build v26.35.9-5700a76 on 9/9/2026.",
+      "AUTOMATION: READY"
+     ]
+    ],
+    "text": "Moving a part up reorders it within its line and the order persists across reloads; the confirmation toast is informational only (the Undo action was removed on user request, 2026-09-04).\nLast checked against build v26.35.9-5700a76 on 9/9/2026.\nAUTOMATION: READY"
+   }
+  }
+ },
+ "44605": {
+  "title": "Reordering negatives: cross-line moves, invoiced WO, concurrent edits",
+  "fields": {
+   "custom_preconds": {
+    "blocks": [
+     [
+      "1. Sign in as an Owner or Admin (Work Order Lines: Create & Edit, Full View).",
+      "2. Open, via top menu \"Work Orders\" -> the \"Work Orders\" tab -> open a work order -> its \"Lines\" tab, a line with parts, plus an invoiced work order, for the negatives (cross-line moves, invoiced work order, concurrent edits). Use \"Move\" in the part row three-dot (more_vert, \"Part context menu\"): it holds \"Move\" and \"Add Part Fee / Discount\"."
+     ]
+    ],
+    "text": "1. Sign in as an Owner or Admin (Work Order Lines: Create & Edit, Full View).\n2. Open, via top menu \"Work Orders\" -> the \"Work Orders\" tab -> open a work order -> its \"Lines\" tab, a line with parts, plus an invoiced work order, for the negatives (cross-line moves, invoiced work order, concurrent edits). Use \"Move\" in the part row three-dot (more_vert, \"Part context menu\"): it holds \"Move\" and \"Add Part Fee / Discount\"."
+   },
+   "custom_steps": {
+    "blocks": [
+     [
+      "1. Try to move a part to a different line.",
+      "2. Try to reorder on an invoiced work order.",
+      "3. Have two users reorder the same line at once."
+     ]
+    ],
+    "text": "1. Try to move a part to a different line.\n2. Try to reorder on an invoiced work order.\n3. Have two users reorder the same line at once."
+   },
+   "custom_expected": {
+    "blocks": [
+     [
+      "POSTing a reorder for a line on an INVOICED work order is rejected with 409"
+     ],
+     [
+      "---",
+      "This is the expected behaviour as per epic SV-8683 and story SV-9266 (Story 20, Reordering parts on a line) and the Simple Flow V2 specification (Confluence page 771391574, revised 8 September 2026), read on 9 September 2026.",
+      "Last checked against build v26.35.9-5700a76 on 9/9/2026.",
+      "AUTOMATION: READY"
+     ]
+    ],
+    "text": "POSTing a reorder for a line on an INVOICED work order is rejected with 409\n\n---\nThis is the expected behaviour as per epic SV-8683 and story SV-9266 (Story 20, Reordering parts on a line) and the Simple Flow V2 specification (Confluence page 771391574, revised 8 September 2026), read on 9 September 2026.\nLast checked against build v26.35.9-5700a76 on 9/9/2026.\nAUTOMATION: READY"
    }
   }
  }

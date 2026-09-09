@@ -1,0 +1,42 @@
+[
+ {
+  "id": 44594,
+  "title": "The wizard opens only from defined entry points when something is collectable",
+  "atm": 1,
+  "pre": "1. You are signed in with completion permissions.\n2. A work order has lines with outstanding collectable items, and a tidy work order with nothing outstanding.",
+  "steps": "1. Trigger Complete on a line, Complete lines / Complete all lines, Create invoice, and Clock out and complete on a work order with outstanding items.\n2. Trigger a completion on a tidy work order with nothing outstanding.",
+  "exp": "1. The wizard opens from exactly these entry points: Complete on a line; Complete lines; Complete all lines; Create invoice; Clock out and complete - and from nothing else (no timer, no background job, no side effect).\n2. It opens only when something required is both outstanding and collectable; if nothing is, the action completes immediately and no wizard appears.\n3. Collectable means: a missing tech story, a missing mileage or engine hours reading, an unpicked inventory part, an unresolved core, or an unreceived part.\n4. Mark as reviewed never opens the wizard (it only becomes available once every line is complete).\n5. The run records which lines it covers and whether it is heading to an invoice, fixed when the run opens.\n6. A step the user's role cannot perform is not shown; where that step is the only outstanding work, the action fails with the reason instead of opening an empty wizard.\n---\nThis is the expected behaviour as per epic SV-8683 and story SV-9262 (Story 16, When the completion wizard opens) and the Simple Flow V2 specification (Confluence page 771391574, revised 8 September 2026), read on 9 September 2026.\nAUTOMATION: Not available on Build to test Yet - Last checked 9/9/2026"
+ },
+ {
+  "id": 44595,
+  "title": "The wizard shows only outstanding steps in a fixed order",
+  "atm": 1,
+  "pre": "1. You are signed in with completion permissions.\n2. A completion run has several kinds of outstanding work across the covered lines.",
+  "steps": "1. Open the wizard on a run with outstanding tech stories, picks, cores, receives and missing details.\n2. Read the step pills, their order and counts.",
+  "exp": "1. The step list is built from the settings and what is actually outstanding, so a step whose work is done never appears and a second pass never asks twice.\n2. Step order is: Tech stories, Pick parts, Resolve cores, Receive parts, Missing details.\n3. Missing details (mileage and engine hours, each only when its setting is on and the value is missing) is last and is asked once per work order, only when the run is closing every remaining line.\n4. Steps appear as pills across the top, each carrying a count where more than one item is outstanding.\n5. A finished step shows a tick and becomes read-only; unfinished steps stay clickable so a user can skip ahead and come back.\n6. Resolve cores is unchanged and appears only when a part in the run carries an unresolved core.\n---\nThis is the expected behaviour as per epic SV-8683 and story SV-9263 (Story 17, The completion wizard) and the Simple Flow V2 specification (Confluence page 771391574, revised 8 September 2026), read on 9 September 2026.\nAUTOMATION: Not available on Build to test Yet - Last checked 9/9/2026"
+ },
+ {
+  "id": 44596,
+  "title": "Each wizard step's own action saves and advances; no Continue button",
+  "atm": 1,
+  "pre": "1. You are signed in with completion permissions.\n2. The wizard is open with tech-story, pick and receive steps.",
+  "steps": "1. Perform the action on each step (Save, Pick all, Receive parts).\n2. Open the receive step and check the modal and its per-part Received later.\n3. Close and reopen the wizard.",
+  "exp": "1. There is no Continue button; each step's button is its own action (Save, Pick all, Receive parts) and performing it saves and advances in one press.\n2. The action button sits with the content it acts on, not in a footer; the modal title names the current step, not the flow.\n3. The receive step opens the same modal as Receiving from the work order, with the same required fields and the same per-part Received later choice; its only action is Receive parts, with no second action offering to leave the step without receiving; closing it returns to the wizard at the next step.\n4. The wizard never mentions ordering, even when ordering is required (a part never marked as ordered is included anyway and ordering happens without user action when the parts are received).\n5. Closing the wizard keeps everything already done; reopening shows only what is left.\n---\nThis is the expected behaviour as per epic SV-8683 and story SV-9263 (Story 17, The completion wizard) and the Simple Flow V2 specification (Confluence page 771391574, revised 8 September 2026), read on 8 September 2026.\nAUTOMATION: Not available on Build to test Yet - Last checked 9/8/2026"
+ },
+ {
+  "id": 44597,
+  "title": "Where a wizard run ends depends on what opened it",
+  "atm": 1,
+  "pre": "1. You are signed in with completion permissions (and invoicing where relevant).\n2. Runs are opened from Complete lines, Complete all lines, and Create invoice.",
+  "steps": "1. Finish a run opened by Complete on a line / Complete lines.\n2. Finish a run opened by Complete all lines (with review required).\n3. Finish a run opened by Create invoice.",
+  "exp": "1. Complete on a line, or Complete lines: those lines complete, a toast, work order untouched.\n2. Complete all lines: every open line complete, a toast, still on the work order; with review required, this is the moment Mark as reviewed appears in the header.\n3. Create invoice: the invoice is created, the Finance tab and the payment screen open.\n---\nThis is the expected behaviour as per epic SV-8683 and story SV-9263 (Story 17, The completion wizard) and the Simple Flow V2 specification (Confluence page 771391574, revised 8 September 2026), read on 9 September 2026.\nAUTOMATION: Not available on Build to test Yet - Last checked 9/9/2026"
+ },
+ {
+  "id": 44598,
+  "title": "Wizard handles not-required steps, mid-run completion and server errors",
+  "atm": 1,
+  "pre": "1. You are signed in with completion permissions.\n2. A run has some not-required steps; another user can finish work mid-run; a server error can be induced on a step.",
+  "steps": "1. Look for a step whose work is not required.\n2. Have someone else finish the outstanding work mid-run.\n3. Induce a server error mid-step with values entered.",
+  "exp": "1. A step for work that is not required does not exist - it is not disabled and not skippable.\n2. If someone else finishes the outstanding work mid-run, the wizard closes to the outcome rather than showing an empty step.\n3. A server error mid-step leaves the step open with the entered values intact.\n---\nThis is the expected behaviour as per epic SV-8683 and story SV-9263 (Story 17, The completion wizard) and the Simple Flow V2 specification (Confluence page 771391574, revised 8 September 2026), read on 9 September 2026.\nAUTOMATION: Not available on Build to test Yet - Last checked 9/9/2026"
+ }
+]

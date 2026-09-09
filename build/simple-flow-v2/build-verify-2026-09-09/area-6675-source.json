@@ -1,0 +1,18 @@
+[
+ {
+  "id": 44602,
+  "title": "Part and line ... menus contain the actions that belong to them",
+  "atm": 1,
+  "pre": "1. You are signed in with WO Lines: Create & Edit + Full View and Order Parts.\n2. A work order has parts and lines, with receiving optional.",
+  "steps": "1. Open a part's ... menu and read its items.\n2. Open a line's ... menu and read its items.",
+  "exp": "1. The part's ... menu contains Move, Return, Add part fee or discount, and Receive part (the last only when receiving is optional and always at the bottom).\n2. The line's ... menu contains Request part, Uncomplete line, Add line note, Save as canned line, Edit labour, Receive parts (n) (when receiving is optional and the line has parts waiting), and Authorization required.\n3. Uncomplete is existing behaviour and is already blocked once the work order is invoiced or paid; the same block applies in the bulk action bar so the two cannot drift apart.\n---\nThis is the expected behaviour as per epic SV-8683 and story SV-9265 (Story 19, Part rows and menus) and the Simple Flow V2 specification (Confluence page 771391574, revised 8 September 2026), read on 9 September 2026.\nAUTOMATION: Not available on Build to test Yet - Last checked 9/9/2026"
+ },
+ {
+  "id": 44603,
+  "title": "Menu negatives: Request part, Uncomplete, Receive part visibility",
+  "atm": 1,
+  "pre": "1. You can sign in with and without Order Parts.\n2. A completed line and an uncompleted line exist.",
+  "steps": "1. Look for Request part on a completed line.\n2. Look for Uncomplete line on an uncompleted line.\n3. As a user without Order Parts, look for Receive part.",
+  "exp": "1. Request part is hidden on a completed line.\n2. Uncomplete line appears only on a completed line.\n3. Receive part is absent for a user without Order Parts, whatever the setting.\n---\nThis is the expected behaviour as per epic SV-8683 and story SV-9265 (Story 19, Part rows and menus) and the Simple Flow V2 specification (Confluence page 771391574, revised 8 September 2026), read on 9 September 2026.\nAUTOMATION: Not available on Build to test Yet - Last checked 9/9/2026"
+ }
+]
