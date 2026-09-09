@@ -36,6 +36,16 @@ Part rows/menus + reordering (19-20) · Permissions (21). Story 10 (bulk delete)
 ## TestRail run (2026-08-25, resynced 2026-09-08)
 - **Full-suite run R416** — https://shopview.testrail.io/index.php?/runs/view/416. Union-synced 61 → 66 on 2026-09-08 (5 new added; 2 passed preserved — Rule 34), then **65** after C53485 was retired (option A). New cases: append via `build/testing-tools/sync_runs.py --apply` (union-only, Rule 34).
 
+## Status — 2026-09-09 (FULL suite source RE-VERIFICATION — closes the delta-vs-full gap)
+- **⚠️ The 2026-09-08 pass below was a DELTA:** it re-stamped only the 18 changed-story cases, leaving 47 of 65 at `v23 / read 21 Aug`. A build-verify session read that and correctly reported the suite last-verified 2026-08-21. Fixed today. **Lesson: `build/LEARNINGS-LOG.md` L0015 + `build/skills/02-SOURCE-CHECK.md` §5b (provenance-currency gate).**
+- **Spec re-checked LIVE 2026-09-09:** Confluence 771391574 is STILL the 8 September 2026 revision (last edited 2026-09-08 by Milos; not moved). Epic stories + SV-8183 permission map fetched live.
+- **The 22 never-checked cases** (stories 6, 8–12, 16, 19, 20, 21) content-diffed against the live spec: **21 UNCHANGED, 1 conflict (C44604)**.
+- **Re-stamped 46 cases** to the 8-Sep revision (read 9 Sep), automation_type set (were 0), rendered to `fr-view`. **5 Automated re-stamped with QA-lead go-ahead** (C44561, C44575, C44583, C44587, C44605 → `source-verify-2026-09-09/FOR-VLAD-2026-09-09.md`).
+- **🛑 C44604 HELD, not changed (Rule 58):** its Expected says the reorder Undo was "removed on user request 2026-09-04", but every spec version says "a drop can be undone" and no record of that removal exists in the repo. Unsourced case-vs-spec conflict → PO question for Milos, not a guess.
+- **RESULT: 64 of 65 cases now carry the 8 September 2026 revision; C44604 is the one explicit hold.** Suite no longer mis-reports currency. Deliverables: `source-verify-2026-09-09/{SOURCE-CURRENCY-FULL-REVERIFY-2026-09-09.md, FULL-REVERIFY-DIFF-2026-09-09.md, FOR-VLAD-2026-09-09.md}`.
+- **Build-verify may now proceed** on the 64 (Rule-85 source-verified-only, no build yet); flag C44604's held behaviour to the tester.
+- **OUTSTANDING (2026-09-09):** PO question for Milos on C44604 (reorder Undo conflict); Rule-65 Vlad notice for the 5 Automated (+ C44557).
+
 ## Status — 2026-09-08 (SOURCE RE-VERIFICATION against the 8-Sep spec revision)
 - **Spec MOVED** from v23 (2026-08-21) to the **8 September 2026** revision (Confluence 771391574); 11 stories changed. Tech plan `_2` is byte-identical to `_1` (no change). Design zips (Purchase Orders page, Work orders & settings) read — no design/spec conflict.
 - **Disposition (Rule 43):** 39 cases mapped to the 11 changed stories → **13 UPDATE · 22 UNCHANGED · 4 HELD (Automated) · 5 NEW**. The other 22 cases belong to untouched stories.

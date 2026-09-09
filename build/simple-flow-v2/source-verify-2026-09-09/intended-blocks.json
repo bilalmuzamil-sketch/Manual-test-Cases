@@ -1758,43 +1758,6 @@
    }
   }
  },
- "44604": {
-  "title": "Move up reorders a part within its line and persists",
-  "fields": {
-   "custom_preconds": {
-    "blocks": [
-     [
-      "Logged in as Owner (Work Orders: Create & Edit).",
-      "An open (estimate) work order exists with one labor line carrying three part requests, all seeded over the API."
-     ]
-    ],
-    "text": "Logged in as Owner (Work Orders: Create & Edit).\nAn open (estimate) work order exists with one labor line carrying three part requests, all seeded over the API."
-   },
-   "custom_steps": {
-    "blocks": [
-     [
-      "1. Drag a part to a new position within its line.",
-      "2. Confirm the drop, then view the invoice and PDF order.",
-      "3. Undo the drop."
-     ]
-    ],
-    "text": "1. Drag a part to a new position within its line.\n2. Confirm the drop, then view the invoice and PDF order.\n3. Undo the drop."
-   },
-   "custom_expected": {
-    "blocks": [
-     [
-      "Moving a part up reorders it within its line and the order persists across reloads; the confirmation toast is informational only (the Undo action was removed on user request, 2026-09-04)."
-     ],
-     [
-      "---",
-      "This is the expected behaviour as per epic SV-8683 and story SV-9266 (Story 20, Reordering parts on a line) and the Simple Flow V2 specification (Confluence page 771391574, revised 8 September 2026), read on 9 September 2026.",
-      "AUTOMATION: Not available on Build to test Yet - Last checked 9/9/2026"
-     ]
-    ],
-    "text": "Moving a part up reorders it within its line and the order persists across reloads; the confirmation toast is informational only (the Undo action was removed on user request, 2026-09-04).\n\n---\nThis is the expected behaviour as per epic SV-8683 and story SV-9266 (Story 20, Reordering parts on a line) and the Simple Flow V2 specification (Confluence page 771391574, revised 8 September 2026), read on 9 September 2026.\nAUTOMATION: Not available on Build to test Yet - Last checked 9/9/2026"
-   }
-  }
- },
  "44605": {
   "title": "Reordering negatives: cross-line moves, invoiced WO, concurrent edits",
   "fields": {
