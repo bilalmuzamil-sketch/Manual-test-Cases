@@ -1,0 +1,12 @@
+import { boot } from '/home/user/Manual-test-Cases/build/testing-tools/qa-branch-boot.mjs';
+import fs from 'fs';
+const OUT='/home/user/Manual-test-Cases/build/simple-flow-v2/build-verify-2026-09-09';
+const { browser, page } = await boot('sv8683','/purchase-orders','admin');
+await page.waitForTimeout(8000);
+console.log('url:', page.url());
+console.log('PO PAGE HEADINGS/TABS:', JSON.stringify(await page.evaluate(()=>[...document.querySelectorAll('h1,h2,h3,.q-tab,[role=tab],.text-h6')].map(e=>(e.textContent||'').replace(/\s+/g,' ').trim()).filter(Boolean).slice(0,15))));
+const body=await page.evaluate(()=>document.body.innerText.replace(/\s+/g,' ').trim());
+console.log('PO PAGE TEXT (200):', JSON.stringify(body.slice(0,200)));
+for(const t of ['Purchase Order','Vendor','Receive','No purchase orders','Assign vendor']) console.log('  has',JSON.stringify(t),':',body.includes(t));
+await page.screenshot({path:OUT+'/purchase-orders-page-sv8683.png',fullPage:true}).catch(()=>{});
+await browser.close();
