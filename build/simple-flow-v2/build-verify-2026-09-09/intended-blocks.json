@@ -1,201 +1,518 @@
 {
- "44566": {
-  "title": "Line actions offered match the line's status",
+ "44571": {
+  "title": "Bulk bar replaces the column headers and lists actions by one rule",
   "fields": {
    "custom_preconds": {
     "blocks": [
      [
-      "1. Sign in as an Owner or Admin (Work Order Lines: Create & Edit, in Full View).",
-      "2. Open a work order with lines in each status, via top menu \"Work Orders\" -> the \"Work Orders\" tab -> open a work order -> its \"Lines\" tab. Reach the statuses this way: a brand-new line via \"New Line\" is Needs Approval; approve it to make it Approved; decline it (from the line's three-dot (more_vert) menu at the right of the line row) to make it Declined; complete an Approved line (its \"Complete\" button) to make it Complete."
+      "1. Sign in as an Owner or Admin (Work Order Lines: Create & Edit, Full View).",
+      "2. Open, via top menu \"Work Orders\" -> the \"Work Orders\" tab -> open a work order -> its \"Lines\" tab, a work order with several lines in mixed statuses (Needs Approval, Approved, Declined, Complete) that carry parts; tick the row checkboxes on the lines/parts to raise the bulk action bar (it shows \"N selected\", the primary actions, a \"More\" overflow, and a \"close\" X, replacing the column headers)."
      ]
     ],
-    "text": "1. Sign in as an Owner or Admin (Work Order Lines: Create & Edit, in Full View).\n2. Open a work order with lines in each status, via top menu \"Work Orders\" -> the \"Work Orders\" tab -> open a work order -> its \"Lines\" tab. Reach the statuses this way: a brand-new line via \"New Line\" is Needs Approval; approve it to make it Approved; decline it (from the line's three-dot (more_vert) menu at the right of the line row) to make it Declined; complete an Approved line (its \"Complete\" button) to make it Complete."
+    "text": "1. Sign in as an Owner or Admin (Work Order Lines: Create & Edit, Full View).\n2. Open, via top menu \"Work Orders\" -> the \"Work Orders\" tab -> open a work order -> its \"Lines\" tab, a work order with several lines in mixed statuses (Needs Approval, Approved, Declined, Complete) that carry parts; tick the row checkboxes on the lines/parts to raise the bulk action bar (it shows \"N selected\", the primary actions, a \"More\" overflow, and a \"close\" X, replacing the column headers)."
    },
    "custom_steps": {
     "blocks": [
      [
-      "1. Open the ... menu (and check the bulk bar) for a Needs Approval line.",
-      "2. Repeat for Approved, Declined and Complete lines."
+      "1. Select one or more lines.",
+      "2. Look at the bar that appears, its layout and which actions show."
      ]
     ],
-    "text": "1. Open the ... menu (and check the bulk bar) for a Needs Approval line.\n2. Repeat for Approved, Declined and Complete lines."
+    "text": "1. Select one or more lines.\n2. Look at the bar that appears, its layout and which actions show."
    },
    "custom_expected": {
     "blocks": [
      [
-      "1. Needs Approval: Approve, Decline, Request part, Delete line.",
-      "2. Approved: Decline, Authorization required, Complete, Request part, Delete line.",
-      "3. Declined: Approve, Authorization required, Request part, Delete line.",
-      "4. Complete: Decline, Authorization required, Uncomplete.",
-      "5. Any action not listed for a status is not visible, on the line or in the bulk action bar.",
-      "6. Complete is not offered on a Needs Approval line and Approve is not offered on an already-Approved line (both do nothing)."
+      "1. The bar sits at the top of the list and replaces the column headers while a selection is active; nothing on the page shifts when it appears.",
+      "2. Selecting a row highlights the whole line, including its story, labour and parts.",
+      "3. Layout is: \"n selected\", then Deselect all, then the line actions, then the parts actions, then More, then a close control - with a divider after \"n selected\", after the line group and after the parts group, always in those places.",
+      "4. Each action follows one rule: nothing in the selection qualifies -> hidden; something qualifies but is blocked -> shown disabled with the reason; qualifies and not blocked -> shown with its count.",
+      "5. Line actions count lines and parts actions count parts (\"Receive 5 parts\" may come from two lines); a count never includes what the action would skip."
      ],
      [
       "---",
-      "This is the expected behaviour as per epic SV-8683 and story SV-9252 (Story 6, Which actions appear on a line and on a part) and the Simple Flow V2 specification (Confluence page 771391574, revised 8 September 2026), read on 9 September 2026.",
+      "This is the expected behaviour as per epic SV-8683 and story SV-9253 (Story 7, The bulk action bar) and the Simple Flow V2 specification (Confluence page 771391574, revised 8 September 2026), read on 8 September 2026.",
       "Last checked against build v26.35.9-5700a76 on 9/9/2026.",
       "AUTOMATION: READY"
      ]
     ],
-    "text": "1. Needs Approval: Approve, Decline, Request part, Delete line.\n2. Approved: Decline, Authorization required, Complete, Request part, Delete line.\n3. Declined: Approve, Authorization required, Request part, Delete line.\n4. Complete: Decline, Authorization required, Uncomplete.\n5. Any action not listed for a status is not visible, on the line or in the bulk action bar.\n6. Complete is not offered on a Needs Approval line and Approve is not offered on an already-Approved line (both do nothing).\n\n---\nThis is the expected behaviour as per epic SV-8683 and story SV-9252 (Story 6, Which actions appear on a line and on a part) and the Simple Flow V2 specification (Confluence page 771391574, revised 8 September 2026), read on 9 September 2026.\nLast checked against build v26.35.9-5700a76 on 9/9/2026.\nAUTOMATION: READY"
+    "text": "1. The bar sits at the top of the list and replaces the column headers while a selection is active; nothing on the page shifts when it appears.\n2. Selecting a row highlights the whole line, including its story, labour and parts.\n3. Layout is: \"n selected\", then Deselect all, then the line actions, then the parts actions, then More, then a close control - with a divider after \"n selected\", after the line group and after the parts group, always in those places.\n4. Each action follows one rule: nothing in the selection qualifies -> hidden; something qualifies but is blocked -> shown disabled with the reason; qualifies and not blocked -> shown with its count.\n5. Line actions count lines and parts actions count parts (\"Receive 5 parts\" may come from two lines); a count never includes what the action would skip.\n\n---\nThis is the expected behaviour as per epic SV-8683 and story SV-9253 (Story 7, The bulk action bar) and the Simple Flow V2 specification (Confluence page 771391574, revised 8 September 2026), read on 8 September 2026.\nLast checked against build v26.35.9-5700a76 on 9/9/2026.\nAUTOMATION: READY"
    }
   }
  },
- "44567": {
-  "title": "Decline is disabled while a line holds received or picked parts",
+ "44572": {
+  "title": "Primary slots fill in a fixed order; More holds the rest",
   "fields": {
    "custom_preconds": {
     "blocks": [
      [
-      "1. Sign in as an Owner or Admin (Work Order Lines: Create & Edit, in Full View).",
-      "2. Open, via top menu \"Work Orders\" -> the \"Work Orders\" tab -> open a work order -> its \"Lines\" tab, an Approved line that holds a part which has been received or picked (the part row shows \"Received\" or has been Picked)."
+      "1. Sign in as an Owner or Admin (Work Order Lines: Create & Edit, Full View).",
+      "2. Open a work order via top menu \"Work Orders\" -> the \"Work Orders\" tab -> open a work order -> its \"Lines\" tab and make a selection that qualifies for several actions including the finish/complete action; tick the row checkboxes on the lines/parts to raise the bulk action bar (it shows \"N selected\", the primary actions, a \"More\" overflow, and a \"close\" X, replacing the column headers)."
      ]
     ],
-    "text": "1. Sign in as an Owner or Admin (Work Order Lines: Create & Edit, in Full View).\n2. Open, via top menu \"Work Orders\" -> the \"Work Orders\" tab -> open a work order -> its \"Lines\" tab, an Approved line that holds a part which has been received or picked (the part row shows \"Received\" or has been Picked)."
+    "text": "1. Sign in as an Owner or Admin (Work Order Lines: Create & Edit, Full View).\n2. Open a work order via top menu \"Work Orders\" -> the \"Work Orders\" tab -> open a work order -> its \"Lines\" tab and make a selection that qualifies for several actions including the finish/complete action; tick the row checkboxes on the lines/parts to raise the bulk action bar (it shows \"N selected\", the primary actions, a \"More\" overflow, and a \"close\" X, replacing the column headers)."
    },
    "custom_steps": {
     "blocks": [
      [
-      "1. Open the line's actions and look at Decline."
+      "1. Select lines that cover every open line (and hold orderable/receivable/pickable parts).",
+      "2. Read the order of the primary buttons and the contents of More."
      ]
     ],
-    "text": "1. Open the line's actions and look at Decline."
+    "text": "1. Select lines that cover every open line (and hold orderable/receivable/pickable parts).\n2. Read the order of the primary buttons and the contents of More."
    },
    "custom_expected": {
     "blocks": [
      [
-      "1. Decline stays visible but is disabled while the line holds parts that were received or picked.",
-      "2. The disabled reason reads \"Return this line's received parts before declining it\"."
+      "1. The line group shows up to three actions, in order: the finish action (when the selection covers every open line), then Complete lines, then Approve. The parts group shows up to three, in order: Order, Receive, Pick. The two groups are separate and sized independently - a parts action is never pushed into More by a line action, and neither group takes a slot from the other.",
+      "2. Decline is always in More, never in a primary slot.",
+      "3. More contains, in order: Authorization required, Split to new work order, Decline. Create invoice is not enumerated in this ordered list; it is described next and disappears once an invoice exists.",
+      "4. Create invoice acts on the whole work order whatever is selected, carries no count, and disappears once an invoice exists."
      ],
      [
       "---",
-      "This is the expected behaviour as per epic SV-8683 and story SV-9252 (Story 6, Which actions appear on a line and on a part) and the Simple Flow V2 specification (Confluence page 771391574, revised 8 September 2026), read on 9 September 2026.",
+      "This is the expected behaviour as per epic SV-8683 and story SV-9253 (Story 7, The bulk action bar) and the Simple Flow V2 specification (Confluence page 771391574, revised 8 September 2026), read on 8 September 2026.",
       "Last checked against build v26.35.9-5700a76 on 9/9/2026.",
       "AUTOMATION: READY"
      ]
     ],
-    "text": "1. Decline stays visible but is disabled while the line holds parts that were received or picked.\n2. The disabled reason reads \"Return this line's received parts before declining it\".\n\n---\nThis is the expected behaviour as per epic SV-8683 and story SV-9252 (Story 6, Which actions appear on a line and on a part) and the Simple Flow V2 specification (Confluence page 771391574, revised 8 September 2026), read on 9 September 2026.\nLast checked against build v26.35.9-5700a76 on 9/9/2026.\nAUTOMATION: READY"
+    "text": "1. The line group shows up to three actions, in order: the finish action (when the selection covers every open line), then Complete lines, then Approve. The parts group shows up to three, in order: Order, Receive, Pick. The two groups are separate and sized independently - a parts action is never pushed into More by a line action, and neither group takes a slot from the other.\n2. Decline is always in More, never in a primary slot.\n3. More contains, in order: Authorization required, Split to new work order, Decline. Create invoice is not enumerated in this ordered list; it is described next and disappears once an invoice exists.\n4. Create invoice acts on the whole work order whatever is selected, carries no count, and disappears once an invoice exists.\n\n---\nThis is the expected behaviour as per epic SV-8683 and story SV-9253 (Story 7, The bulk action bar) and the Simple Flow V2 specification (Confluence page 771391574, revised 8 September 2026), read on 8 September 2026.\nLast checked against build v26.35.9-5700a76 on 9/9/2026.\nAUTOMATION: READY"
    }
   }
  },
- "44568": {
-  "title": "Part actions offered match the part's state (seven states)",
+ "44573": {
+  "title": "Bulk actions confirm/undo per their kind and give one toast each",
   "fields": {
    "custom_preconds": {
     "blocks": [
      [
-      "1. Sign in as an Owner or Admin (Work Order Lines: Create & Edit + Full View, Pick Parts and Order Parts).",
-      "2. Open a work order, via top menu \"Work Orders\" -> the \"Work Orders\" tab -> open a work order -> its \"Lines\" tab, with parts in each state on its lines: Requested, Quoted, Auth to order, In Stock (unpicked), Awaiting, Received later, and Received/picked (and a Returned part). A part's state shows as its status badge on its row; states are reached through the part lifecycle (add a part request, Order it, Receive it, Pick it, return it)."
+      "1. Sign in as an Owner or Admin (Work Order Lines: Create & Edit, Full View).",
+      "2. Open a work order via top menu \"Work Orders\" -> the \"Work Orders\" tab -> open a work order -> its \"Lines\" tab and select lines/parts that qualify for approve, order and receive; tick the row checkboxes on the lines/parts to raise the bulk action bar (it shows \"N selected\", the primary actions, a \"More\" overflow, and a \"close\" X, replacing the column headers)."
      ]
     ],
-    "text": "1. Sign in as an Owner or Admin (Work Order Lines: Create & Edit + Full View, Pick Parts and Order Parts).\n2. Open a work order, via top menu \"Work Orders\" -> the \"Work Orders\" tab -> open a work order -> its \"Lines\" tab, with parts in each state on its lines: Requested, Quoted, Auth to order, In Stock (unpicked), Awaiting, Received later, and Received/picked (and a Returned part). A part's state shows as its status badge on its row; states are reached through the part lifecycle (add a part request, Order it, Receive it, Pick it, return it)."
+    "text": "1. Sign in as an Owner or Admin (Work Order Lines: Create & Edit, Full View).\n2. Open a work order via top menu \"Work Orders\" -> the \"Work Orders\" tab -> open a work order -> its \"Lines\" tab and select lines/parts that qualify for approve, order and receive; tick the row checkboxes on the lines/parts to raise the bulk action bar (it shows \"N selected\", the primary actions, a \"More\" overflow, and a \"close\" X, replacing the column headers)."
    },
    "custom_steps": {
     "blocks": [
      [
-      "1. For a part in each state, look at the actions on its row."
+      "1. Run Approve on a selection and look for an undo.",
+      "2. Run Order parts and look for a confirmation.",
+      "3. Run Receive and observe whether a screen opens."
      ]
     ],
-    "text": "1. For a part in each state, look at the actions on its row."
+    "text": "1. Run Approve on a selection and look for an undo.\n2. Run Order parts and look for a confirmation.\n3. Run Receive and observe whether a screen opens."
    },
    "custom_expected": {
     "blocks": [
      [
-      "1. Requested: nothing on the row (no price yet), but still counted in the bulk bar's Order (n).",
-      "2. Quoted: Order. Auth to order: Order.",
-      "3. In Stock and not picked: Pick.",
-      "4. Awaiting: Receive, with Received later behind its caret when receiving is required.",
-      "5. Received later: nothing on the row, Receive in the ... menu.",
-      "6. Received or picked: nothing (finished). Returned: nothing (sent back, stays visible on the line and in returns)."
+      "1. Approve, decline, authorization required, complete and uncomplete apply immediately and offer an undo in the result toast.",
+      "2. Ordering parts and creating an invoice ask for confirmation first and cannot be undone.",
+      "3. Receiving and picking open their own screens, so they neither confirm nor offer undo.",
+      "4. One toast per bulk action, summarising the result."
      ],
      [
       "---",
-      "This is the expected behaviour as per epic SV-8683 and story SV-9252 (Story 6, Which actions appear on a line and on a part) and the Simple Flow V2 specification (Confluence page 771391574, revised 8 September 2026), read on 9 September 2026.",
+      "This is the expected behaviour as per epic SV-8683 and story SV-9253 (Story 7, The bulk action bar) and the Simple Flow V2 specification (Confluence page 771391574, revised 8 September 2026), read on 9 September 2026.",
       "Last checked against build v26.35.9-5700a76 on 9/9/2026.",
       "AUTOMATION: READY"
      ]
     ],
-    "text": "1. Requested: nothing on the row (no price yet), but still counted in the bulk bar's Order (n).\n2. Quoted: Order. Auth to order: Order.\n3. In Stock and not picked: Pick.\n4. Awaiting: Receive, with Received later behind its caret when receiving is required.\n5. Received later: nothing on the row, Receive in the ... menu.\n6. Received or picked: nothing (finished). Returned: nothing (sent back, stays visible on the line and in returns).\n\n---\nThis is the expected behaviour as per epic SV-8683 and story SV-9252 (Story 6, Which actions appear on a line and on a part) and the Simple Flow V2 specification (Confluence page 771391574, revised 8 September 2026), read on 9 September 2026.\nLast checked against build v26.35.9-5700a76 on 9/9/2026.\nAUTOMATION: READY"
+    "text": "1. Approve, decline, authorization required, complete and uncomplete apply immediately and offer an undo in the result toast.\n2. Ordering parts and creating an invoice ask for confirmation first and cannot be undone.\n3. Receiving and picking open their own screens, so they neither confirm nor offer undo.\n4. One toast per bulk action, summarising the result.\n\n---\nThis is the expected behaviour as per epic SV-8683 and story SV-9253 (Story 7, The bulk action bar) and the Simple Flow V2 specification (Confluence page 771391574, revised 8 September 2026), read on 9 September 2026.\nLast checked against build v26.35.9-5700a76 on 9/9/2026.\nAUTOMATION: READY"
    }
   }
  },
- "44569": {
-  "title": "Ordering precedes receiving; Receive placement follows the setting",
+ "44574": {
+  "title": "Bulk bar hidden without permission; empty/zero states handled",
   "fields": {
    "custom_preconds": {
     "blocks": [
      [
-      "1. Sign in as an Owner or Admin (Order Parts permission).",
-      "2. Open, via top menu \"Work Orders\" -> the \"Work Orders\" tab -> open a work order -> its \"Lines\" tab, a work order with a vendor-sourced part that is unordered; you can toggle the receiving setting in Settings -> the \"Work Orders\" tab (Require Receiving Parts Before Completion)."
+      "1. For the no-permission check, sign in as TECH@shopview.com whose role has been set for this test (reset the role from Settings -> Roles & Permissions, then assign it to TECH; never change the Admin role) WITHOUT Work Order Lines: Create & Edit.",
+      "2. Separately, as a user WITH it, open a work order via top menu \"Work Orders\" -> the \"Work Orders\" tab -> open a work order -> its \"Lines\" tab and make a selection that qualifies for nothing (e.g. only Complete lines with no eligible action); tick the row checkboxes on the lines/parts to raise the bulk action bar (it shows \"N selected\", the primary actions, a \"More\" overflow, and a \"close\" X, replacing the column headers)."
      ]
     ],
-    "text": "1. Sign in as an Owner or Admin (Order Parts permission).\n2. Open, via top menu \"Work Orders\" -> the \"Work Orders\" tab -> open a work order -> its \"Lines\" tab, a work order with a vendor-sourced part that is unordered; you can toggle the receiving setting in Settings -> the \"Work Orders\" tab (Require Receiving Parts Before Completion)."
+    "text": "1. For the no-permission check, sign in as TECH@shopview.com whose role has been set for this test (reset the role from Settings -> Roles & Permissions, then assign it to TECH; never change the Admin role) WITHOUT Work Order Lines: Create & Edit.\n2. Separately, as a user WITH it, open a work order via top menu \"Work Orders\" -> the \"Work Orders\" tab -> open a work order -> its \"Lines\" tab and make a selection that qualifies for nothing (e.g. only Complete lines with no eligible action); tick the row checkboxes on the lines/parts to raise the bulk action bar (it shows \"N selected\", the primary actions, a \"More\" overflow, and a \"close\" X, replacing the column headers)."
    },
    "custom_steps": {
     "blocks": [
      [
-      "1. With ordering required, check whether Receive appears before the part is ordered.",
-      "2. With receiving not required, check where Receive appears for a part."
+      "1. As the user without the permission, look for checkboxes and the bar.",
+      "2. As the permitted user, select lines where nothing applies; and select where only some actions apply."
      ]
     ],
-    "text": "1. With ordering required, check whether Receive appears before the part is ordered.\n2. With receiving not required, check where Receive appears for a part."
+    "text": "1. As the user without the permission, look for checkboxes and the bar.\n2. As the permitted user, select lines where nothing applies; and select where only some actions apply."
    },
    "custom_expected": {
     "blocks": [
      [
-      "1. With ordering required, Receive does not appear until the part has been ordered; Order and Receive are never offered at once for the same part.",
-      "2. With receiving not required, Receive moves from the part row into the part's ... menu - it is never removed outright.",
-      "3. Ordering a Requested part only does something when the part is vendor-sourced (including a vendorless part marked Vendor missing); an inventory/found part or one with no source needs its details completed first."
+      "1. A user without WO Lines: Create & Edit sees no checkboxes and no bar.",
+      "2. A count of zero means the button is absent, not greyed out.",
+      "3. If More would be empty, the More button is not rendered.",
+      "4. A selection where nothing applies shows \"n selected\" and \"No actions available for this selection\".",
+      "5. Delete lines is not in the bar this release; Mark as reviewed is never in the bulk bar (it acts on the whole work order)."
      ],
      [
       "---",
-      "This is the expected behaviour as per epic SV-8683 and story SV-9252 (Story 6, Which actions appear on a line and on a part) and the Simple Flow V2 specification (Confluence page 771391574, revised 8 September 2026), read on 9 September 2026.",
+      "This is the expected behaviour as per epic SV-8683 and story SV-9253 (Story 7, The bulk action bar) and the Simple Flow V2 specification (Confluence page 771391574, revised 8 September 2026), read on 9 September 2026.",
       "Last checked against build v26.35.9-5700a76 on 9/9/2026.",
       "AUTOMATION: READY"
      ]
     ],
-    "text": "1. With ordering required, Receive does not appear until the part has been ordered; Order and Receive are never offered at once for the same part.\n2. With receiving not required, Receive moves from the part row into the part's ... menu - it is never removed outright.\n3. Ordering a Requested part only does something when the part is vendor-sourced (including a vendorless part marked Vendor missing); an inventory/found part or one with no source needs its details completed first.\n\n---\nThis is the expected behaviour as per epic SV-8683 and story SV-9252 (Story 6, Which actions appear on a line and on a part) and the Simple Flow V2 specification (Confluence page 771391574, revised 8 September 2026), read on 9 September 2026.\nLast checked against build v26.35.9-5700a76 on 9/9/2026.\nAUTOMATION: READY"
+    "text": "1. A user without WO Lines: Create & Edit sees no checkboxes and no bar.\n2. A count of zero means the button is absent, not greyed out.\n3. If More would be empty, the More button is not rendered.\n4. A selection where nothing applies shows \"n selected\" and \"No actions available for this selection\".\n5. Delete lines is not in the bar this release; Mark as reviewed is never in the bulk bar (it acts on the whole work order).\n\n---\nThis is the expected behaviour as per epic SV-8683 and story SV-9253 (Story 7, The bulk action bar) and the Simple Flow V2 specification (Confluence page 771391574, revised 8 September 2026), read on 9 September 2026.\nLast checked against build v26.35.9-5700a76 on 9/9/2026.\nAUTOMATION: READY"
    }
   }
  },
- "44570": {
-  "title": "Declining or sending back a line returns only not-yet-arrived parts to Quoted",
+ "44575": {
+  "title": "Bulk approve/decline judges each line and never sweeps a declined line",
   "fields": {
    "custom_preconds": {
     "blocks": [
      [
-      "1. Sign in as an Owner or Admin (Work Order Lines: Create & Edit, in Full View).",
-      "2. Open, via top menu \"Work Orders\" -> the \"Work Orders\" tab -> open a work order -> its \"Lines\" tab, an Approved line holding parts in mixed states: Requested, In Stock, Quoted, Auth to order, Awaiting, Received and Returned (states shown as each part's status badge)."
+      "1. Sign in as an Owner or Admin (completion permission).",
+      "2. Open, via top menu \"Work Orders\" -> the \"Work Orders\" tab -> open a work order -> its \"Lines\" tab, an Approved work order with four labour lines: two Needs Approval, one Approved, one Declined (a new \"New Line\" is Needs Approval; approve/decline via the line's three-dot menu); tick the row checkboxes on the lines/parts to raise the bulk action bar (it shows \"N selected\", the primary actions, a \"More\" overflow, and a \"close\" X, replacing the column headers)."
      ]
     ],
-    "text": "1. Sign in as an Owner or Admin (Work Order Lines: Create & Edit, in Full View).\n2. Open, via top menu \"Work Orders\" -> the \"Work Orders\" tab -> open a work order -> its \"Lines\" tab, an Approved line holding parts in mixed states: Requested, In Stock, Quoted, Auth to order, Awaiting, Received and Returned (states shown as each part's status badge)."
+    "text": "1. Sign in as an Owner or Admin (completion permission).\n2. Open, via top menu \"Work Orders\" -> the \"Work Orders\" tab -> open a work order -> its \"Lines\" tab, an Approved work order with four labour lines: two Needs Approval, one Approved, one Declined (a new \"New Line\" is Needs Approval; approve/decline via the line's three-dot menu); tick the row checkboxes on the lines/parts to raise the bulk action bar (it shows \"N selected\", the primary actions, a \"More\" overflow, and a \"close\" X, replacing the column headers)."
    },
    "custom_steps": {
     "blocks": [
      [
-      "1. Decline the line (or send it back with Authorization required).",
-      "2. Check the state of each part afterwards."
+      "1. Select the mixed set and run Approve.",
+      "2. Run Decline on a selection.",
+      "3. Run Authorization required on a selection."
      ]
     ],
-    "text": "1. Decline the line (or send it back with Authorization required).\n2. Check the state of each part afterwards."
+    "text": "1. Select the mixed set and run Approve.\n2. Run Decline on a selection.\n3. Run Authorization required on a selection."
    },
    "custom_expected": {
     "blocks": [
      [
-      "1. Only In Stock, Quoted, Auth to order and Awaiting parts are moved back to Quoted.",
-      "2. A Requested part is left where it is, and so are Received and Returned parts.",
-      "3. Parts that were received or picked are not touched by a line status change, and no stock moves because of one.",
-      "4. Declining a line does not remove its parts from a purchase order (only deleting a part does that).",
-      "5. A part action the user's role does not carry is absent even when the part's state qualifies (Pick follows Pick Parts, Order follows Order Parts)."
+      "The already-Approved line is unchanged and the Declined line is STILL Declined"
      ],
      [
       "---",
-      "This is the expected behaviour as per epic SV-8683 and story SV-9252 (Story 6, Which actions appear on a line and on a part) and the Simple Flow V2 specification (Confluence page 771391574, revised 8 September 2026), read on 9 September 2026.",
+      "This is the expected behaviour as per epic SV-8683 and story SV-9254 (Story 8, Bulk approve and decline) and the Simple Flow V2 specification (Confluence page 771391574, revised 8 September 2026), read on 9 September 2026.",
       "Last checked against build v26.35.9-5700a76 on 9/9/2026.",
       "AUTOMATION: READY"
      ]
     ],
-    "text": "1. Only In Stock, Quoted, Auth to order and Awaiting parts are moved back to Quoted.\n2. A Requested part is left where it is, and so are Received and Returned parts.\n3. Parts that were received or picked are not touched by a line status change, and no stock moves because of one.\n4. Declining a line does not remove its parts from a purchase order (only deleting a part does that).\n5. A part action the user's role does not carry is absent even when the part's state qualifies (Pick follows Pick Parts, Order follows Order Parts).\n\n---\nThis is the expected behaviour as per epic SV-8683 and story SV-9252 (Story 6, Which actions appear on a line and on a part) and the Simple Flow V2 specification (Confluence page 771391574, revised 8 September 2026), read on 9 September 2026.\nLast checked against build v26.35.9-5700a76 on 9/9/2026.\nAUTOMATION: READY"
+    "text": "The already-Approved line is unchanged and the Declined line is STILL Declined\n\n---\nThis is the expected behaviour as per epic SV-8683 and story SV-9254 (Story 8, Bulk approve and decline) and the Simple Flow V2 specification (Confluence page 771391574, revised 8 September 2026), read on 9 September 2026.\nLast checked against build v26.35.9-5700a76 on 9/9/2026.\nAUTOMATION: READY"
+   }
+  }
+ },
+ "44576": {
+  "title": "Bulk approve/decline skips ineligible lines and hides at zero count",
+  "fields": {
+   "custom_preconds": {
+    "blocks": [
+     [
+      "1. Sign in as an Owner or Admin (Work Order Lines: Create & Edit, Full View).",
+      "2. Open a work order via top menu \"Work Orders\" -> the \"Work Orders\" tab -> open a work order -> its \"Lines\" tab. Make a four-line selection where one line holds received parts, and separately a selection made entirely of declined lines; tick the row checkboxes on the lines/parts to raise the bulk action bar (it shows \"N selected\", the primary actions, a \"More\" overflow, and a \"close\" X, replacing the column headers)."
+     ]
+    ],
+    "text": "1. Sign in as an Owner or Admin (Work Order Lines: Create & Edit, Full View).\n2. Open a work order via top menu \"Work Orders\" -> the \"Work Orders\" tab -> open a work order -> its \"Lines\" tab. Make a four-line selection where one line holds received parts, and separately a selection made entirely of declined lines; tick the row checkboxes on the lines/parts to raise the bulk action bar (it shows \"N selected\", the primary actions, a \"More\" overflow, and a \"close\" X, replacing the column headers)."
+   },
+   "custom_steps": {
+    "blocks": [
+     [
+      "1. Decline a four-line selection where one holds received parts.",
+      "2. Look at Approve on a selection of only declined lines."
+     ]
+    ],
+    "text": "1. Decline a four-line selection where one holds received parts.\n2. Look at Approve on a selection of only declined lines."
+   },
+   "custom_expected": {
+    "blocks": [
+     [
+      "1. The four-line decline declines three and reports the fourth - it does not refuse all four.",
+      "2. Lines already in the target status are skipped silently and were never in the count.",
+      "3. A selection made up entirely of declined lines shows no Approve button at all (the count would be zero)."
+     ],
+     [
+      "---",
+      "This is the expected behaviour as per epic SV-8683 and story SV-9254 (Story 8, Bulk approve and decline) and the Simple Flow V2 specification (Confluence page 771391574, revised 8 September 2026), read on 9 September 2026.",
+      "Last checked against build v26.35.9-5700a76 on 9/9/2026.",
+      "AUTOMATION: READY"
+     ]
+    ],
+    "text": "1. The four-line decline declines three and reports the fourth - it does not refuse all four.\n2. Lines already in the target status are skipped silently and were never in the count.\n3. A selection made up entirely of declined lines shows no Approve button at all (the count would be zero).\n\n---\nThis is the expected behaviour as per epic SV-8683 and story SV-9254 (Story 8, Bulk approve and decline) and the Simple Flow V2 specification (Confluence page 771391574, revised 8 September 2026), read on 9 September 2026.\nLast checked against build v26.35.9-5700a76 on 9/9/2026.\nAUTOMATION: READY"
+   }
+  }
+ },
+ "44577": {
+  "title": "Bulk complete labels and counts follow the selection of Approved lines",
+  "fields": {
+   "custom_preconds": {
+    "blocks": [
+     [
+      "1. Sign in as an Owner or Admin (Work Orders: Create & Edit).",
+      "2. Open a work order via top menu \"Work Orders\" -> the \"Work Orders\" tab -> open a work order -> its \"Lines\" tab. Select Approved lines, some missing a tech story or mileage; and separately select every open line; tick the row checkboxes on the lines/parts to raise the bulk action bar (it shows \"N selected\", the primary actions, a \"More\" overflow, and a \"close\" X, replacing the column headers)."
+     ]
+    ],
+    "text": "1. Sign in as an Owner or Admin (Work Orders: Create & Edit).\n2. Open a work order via top menu \"Work Orders\" -> the \"Work Orders\" tab -> open a work order -> its \"Lines\" tab. Select Approved lines, some missing a tech story or mileage; and separately select every open line; tick the row checkboxes on the lines/parts to raise the bulk action bar (it shows \"N selected\", the primary actions, a \"More\" overflow, and a \"close\" X, replacing the column headers)."
+   },
+   "custom_steps": {
+    "blocks": [
+     [
+      "1. Select one Approved line, then several, then a selection covering every open line, and read the button label each time.",
+      "2. Complete a selection where a tech story/mileage is outstanding.",
+      "3. Complete the last open lines and observe navigation."
+     ]
+    ],
+    "text": "1. Select one Approved line, then several, then a selection covering every open line, and read the button label each time.\n2. Complete a selection where a tech story/mileage is outstanding.\n3. Complete the last open lines and observe navigation."
+   },
+   "custom_expected": {
+    "blocks": [
+     [
+      "1. The label is \"Complete line\" for one, \"Complete lines (n)\" for several, and \"Complete all lines\" when the selection covers every open line.",
+      "2. The count is of Approved lines in the selection; nothing else is counted.",
+      "3. Where something outstanding can be collected (a tech story, a mileage reading), the action opens the completion wizard rather than failing.",
+      "4. Completing the last open lines stops there - no invoice is created and the user is not navigated anywhere.",
+      "5. With review required, this is the action that makes Mark as reviewed appear (review needs every line complete first)."
+     ],
+     [
+      "---",
+      "This is the expected behaviour as per epic SV-8683 and story SV-9255 (Story 9, Bulk complete lines) and the Simple Flow V2 specification (Confluence page 771391574, revised 8 September 2026), read on 9 September 2026.",
+      "Last checked against build v26.35.9-5700a76 on 9/9/2026.",
+      "AUTOMATION: READY"
+     ]
+    ],
+    "text": "1. The label is \"Complete line\" for one, \"Complete lines (n)\" for several, and \"Complete all lines\" when the selection covers every open line.\n2. The count is of Approved lines in the selection; nothing else is counted.\n3. Where something outstanding can be collected (a tech story, a mileage reading), the action opens the completion wizard rather than failing.\n4. Completing the last open lines stops there - no invoice is created and the user is not navigated anywhere.\n5. With review required, this is the action that makes Mark as reviewed appear (review needs every line complete first).\n\n---\nThis is the expected behaviour as per epic SV-8683 and story SV-9255 (Story 9, Bulk complete lines) and the Simple Flow V2 specification (Confluence page 771391574, revised 8 September 2026), read on 9 September 2026.\nLast checked against build v26.35.9-5700a76 on 9/9/2026.\nAUTOMATION: READY"
+   }
+  }
+ },
+ "44578": {
+  "title": "Bulk delete lines is out of scope this release (no delete action in the bar)",
+  "fields": {
+   "custom_preconds": {
+    "blocks": [
+     [
+      "1. Sign in as an Owner or Admin (Work Order Lines: Create & Edit, Full View).",
+      "2. Open a work order via top menu \"Work Orders\" -> the \"Work Orders\" tab -> open a work order -> its \"Lines\" tab with several lines and select them; tick the row checkboxes on the lines/parts to raise the bulk action bar (it shows \"N selected\", the primary actions, a \"More\" overflow, and a \"close\" X, replacing the column headers)."
+     ]
+    ],
+    "text": "1. Sign in as an Owner or Admin (Work Order Lines: Create & Edit, Full View).\n2. Open a work order via top menu \"Work Orders\" -> the \"Work Orders\" tab -> open a work order -> its \"Lines\" tab with several lines and select them; tick the row checkboxes on the lines/parts to raise the bulk action bar (it shows \"N selected\", the primary actions, a \"More\" overflow, and a \"close\" X, replacing the column headers)."
+   },
+   "custom_steps": {
+    "blocks": [
+     [
+      "1. Select lines and open the bulk action bar and its More menu.",
+      "2. Look for any bulk delete action."
+     ]
+    ],
+    "text": "1. Select lines and open the bulk action bar and its More menu.\n2. Look for any bulk delete action."
+   },
+   "custom_expected": {
+    "blocks": [
+     [
+      "1. The bulk action bar carries no delete action and More does not list one.",
+      "2. Bulk deletion of lines is a documented follow-up (SV-9256), not part of Simple Flow V2.",
+      "3. Single-line delete is unchanged from V1."
+     ],
+     [
+      "---",
+      "This is the expected behaviour as per epic SV-8683 and story SV-9256 (Story 10, Bulk delete lines - out of scope) and the Simple Flow V2 specification (Confluence page 771391574, revised 8 September 2026), read on 9 September 2026.",
+      "Last checked against build v26.35.9-5700a76 on 9/9/2026.",
+      "AUTOMATION: READY"
+     ]
+    ],
+    "text": "1. The bulk action bar carries no delete action and More does not list one.\n2. Bulk deletion of lines is a documented follow-up (SV-9256), not part of Simple Flow V2.\n3. Single-line delete is unchanged from V1.\n\n---\nThis is the expected behaviour as per epic SV-8683 and story SV-9256 (Story 10, Bulk delete lines - out of scope) and the Simple Flow V2 specification (Confluence page 771391574, revised 8 September 2026), read on 9 September 2026.\nLast checked against build v26.35.9-5700a76 on 9/9/2026.\nAUTOMATION: READY"
+   }
+  }
+ },
+ "44579": {
+  "title": "Bulk order raises a purchase order per vendor and confirms first",
+  "fields": {
+   "custom_preconds": {
+    "blocks": [
+     [
+      "1. Sign in as an Owner or Admin (Order Parts + See Financial Data).",
+      "2. Open a work order via top menu \"Work Orders\" -> the \"Work Orders\" tab -> open a work order -> its \"Lines\" tab and select unordered parts spanning two vendors, plus a Requested part and a vendorless part; tick the row checkboxes on the lines/parts to raise the bulk action bar (it shows \"N selected\", the primary actions, a \"More\" overflow, and a \"close\" X, replacing the column headers)."
+     ]
+    ],
+    "text": "1. Sign in as an Owner or Admin (Order Parts + See Financial Data).\n2. Open a work order via top menu \"Work Orders\" -> the \"Work Orders\" tab -> open a work order -> its \"Lines\" tab and select unordered parts spanning two vendors, plus a Requested part and a vendorless part; tick the row checkboxes on the lines/parts to raise the bulk action bar (it shows \"N selected\", the primary actions, a \"More\" overflow, and a \"close\" X, replacing the column headers)."
+   },
+   "custom_steps": {
+    "blocks": [
+     [
+      "1. Select the parts and run Order.",
+      "2. Confirm and check the purchase orders created."
+     ]
+    ],
+    "text": "1. Select the parts and run Order.\n2. Confirm and check the purchase orders created."
+   },
+   "custom_expected": {
+    "blocks": [
+     [
+      "1. Bulk Order runs the existing single-part order once per selected part; the vendor/PO decision is the existing path.",
+      "2. A selection spanning two vendors produces a purchase order per vendor; a vendor with an open PO on this work order has its parts added to it.",
+      "3. Requested parts are included and counted alongside Quoted and Auth to order (the ordering path moves a Requested part straight to Awaiting).",
+      "4. A part with no vendor is ordered and counted like any other: the PO is created marked Vendor missing and does not sync to QuickBooks until a vendor is assigned.",
+      "5. Ordering asks for confirmation first because a purchase order is a commitment to a supplier and cannot be undone."
+     ],
+     [
+      "---",
+      "This is the expected behaviour as per epic SV-8683 and story SV-9257 (Story 11, Bulk order parts) and the Simple Flow V2 specification (Confluence page 771391574, revised 8 September 2026), read on 9 September 2026.",
+      "Last checked against build v26.35.9-5700a76 on 9/9/2026.",
+      "AUTOMATION: READY"
+     ]
+    ],
+    "text": "1. Bulk Order runs the existing single-part order once per selected part; the vendor/PO decision is the existing path.\n2. A selection spanning two vendors produces a purchase order per vendor; a vendor with an open PO on this work order has its parts added to it.\n3. Requested parts are included and counted alongside Quoted and Auth to order (the ordering path moves a Requested part straight to Awaiting).\n4. A part with no vendor is ordered and counted like any other: the PO is created marked Vendor missing and does not sync to QuickBooks until a vendor is assigned.\n5. Ordering asks for confirmation first because a purchase order is a commitment to a supplier and cannot be undone.\n\n---\nThis is the expected behaviour as per epic SV-8683 and story SV-9257 (Story 11, Bulk order parts) and the Simple Flow V2 specification (Confluence page 771391574, revised 8 September 2026), read on 9 September 2026.\nLast checked against build v26.35.9-5700a76 on 9/9/2026.\nAUTOMATION: READY"
+   }
+  }
+ },
+ "44580": {
+  "title": "Bulk order skips already-ordered and non-vendor-sourced parts",
+  "fields": {
+   "custom_preconds": {
+    "blocks": [
+     [
+      "1. Sign in as an Owner or Admin (Order Parts).",
+      "2. Open a work order via top menu \"Work Orders\" -> the \"Work Orders\" tab -> open a work order -> its \"Lines\" tab and select a mix of already-ordered parts, inventory/found parts, and a part with no source; tick the row checkboxes on the lines/parts to raise the bulk action bar (it shows \"N selected\", the primary actions, a \"More\" overflow, and a \"close\" X, replacing the column headers). For the negative check, sign in as TECH@shopview.com whose role has been set for this test (reset the role from Settings -> Roles & Permissions, then assign it to TECH; never change the Admin role) WITHOUT Order Parts."
+     ]
+    ],
+    "text": "1. Sign in as an Owner or Admin (Order Parts).\n2. Open a work order via top menu \"Work Orders\" -> the \"Work Orders\" tab -> open a work order -> its \"Lines\" tab and select a mix of already-ordered parts, inventory/found parts, and a part with no source; tick the row checkboxes on the lines/parts to raise the bulk action bar (it shows \"N selected\", the primary actions, a \"More\" overflow, and a \"close\" X, replacing the column headers). For the negative check, sign in as TECH@shopview.com whose role has been set for this test (reset the role from Settings -> Roles & Permissions, then assign it to TECH; never change the Admin role) WITHOUT Order Parts."
+   },
+   "custom_steps": {
+    "blocks": [
+     [
+      "1. Run Order on the mixed selection and read the count and result.",
+      "2. As a user without Order Parts, look for the Order action."
+     ]
+    ],
+    "text": "1. Run Order on the mixed selection and read the count and result.\n2. As a user without Order Parts, look for the Order action."
+   },
+   "custom_expected": {
+    "blocks": [
+     [
+      "1. A part already ordered is excluded from the count and not named in the result (nothing was attempted on it).",
+      "2. Only vendor-sourced parts are placed; an inventory/found part or one with no source is skipped and never counted (it is picked instead, or needs its details completed first).",
+      "3. A user without Order Parts does not see the action, in the bulk bar or on the row."
+     ],
+     [
+      "---",
+      "This is the expected behaviour as per epic SV-8683 and story SV-9257 (Story 11, Bulk order parts) and the Simple Flow V2 specification (Confluence page 771391574, revised 8 September 2026), read on 9 September 2026.",
+      "Last checked against build v26.35.9-5700a76 on 9/9/2026.",
+      "AUTOMATION: READY"
+     ]
+    ],
+    "text": "1. A part already ordered is excluded from the count and not named in the result (nothing was attempted on it).\n2. Only vendor-sourced parts are placed; an inventory/found part or one with no source is skipped and never counted (it is picked instead, or needs its details completed first).\n3. A user without Order Parts does not see the action, in the bulk bar or on the row.\n\n---\nThis is the expected behaviour as per epic SV-8683 and story SV-9257 (Story 11, Bulk order parts) and the Simple Flow V2 specification (Confluence page 771391574, revised 8 September 2026), read on 9 September 2026.\nLast checked against build v26.35.9-5700a76 on 9/9/2026.\nAUTOMATION: READY"
+   }
+  }
+ },
+ "44581": {
+  "title": "Bulk pick runs the existing pick atomically for in-stock unpicked parts",
+  "fields": {
+   "custom_preconds": {
+    "blocks": [
+     [
+      "1. Sign in as an Owner or Admin (Pick Parts).",
+      "2. Open a work order via top menu \"Work Orders\" -> the \"Work Orders\" tab -> open a work order -> its \"Lines\" tab and select several inventory/found parts that are \"In Stock\" and unpicked; tick the row checkboxes on the lines/parts to raise the bulk action bar (it shows \"N selected\", the primary actions, a \"More\" overflow, and a \"close\" X, replacing the column headers)."
+     ]
+    ],
+    "text": "1. Sign in as an Owner or Admin (Pick Parts).\n2. Open a work order via top menu \"Work Orders\" -> the \"Work Orders\" tab -> open a work order -> its \"Lines\" tab and select several inventory/found parts that are \"In Stock\" and unpicked; tick the row checkboxes on the lines/parts to raise the bulk action bar (it shows \"N selected\", the primary actions, a \"More\" overflow, and a \"close\" X, replacing the column headers)."
+   },
+   "custom_steps": {
+    "blocks": [
+     [
+      "1. Select the parts and run Pick.",
+      "2. Check the inventory movement, bins and history."
+     ]
+    ],
+    "text": "1. Select the parts and run Pick.\n2. Check the inventory movement, bins and history."
+   },
+   "custom_expected": {
+    "blocks": [
+     [
+      "1. Bulk picking runs the existing pick; the inventory movement, the bin it comes from and the history entry are identical to picking one part.",
+      "2. All picks in one run succeed or fail together, so a partial result never leaves stock half-moved.",
+      "3. Pick is offered whenever a part is In Stock and unpicked, whatever the setting says.",
+      "4. A picked part asks its core question at the moment it is picked, exactly as today (gated by WO Lines: Create & Edit)."
+     ],
+     [
+      "---",
+      "This is the expected behaviour as per epic SV-8683 and story SV-9258 (Story 12, Bulk pick parts) and the Simple Flow V2 specification (Confluence page 771391574, revised 8 September 2026), read on 9 September 2026.",
+      "Last checked against build v26.35.9-5700a76 on 9/9/2026.",
+      "AUTOMATION: READY"
+     ]
+    ],
+    "text": "1. Bulk picking runs the existing pick; the inventory movement, the bin it comes from and the history entry are identical to picking one part.\n2. All picks in one run succeed or fail together, so a partial result never leaves stock half-moved.\n3. Pick is offered whenever a part is In Stock and unpicked, whatever the setting says.\n4. A picked part asks its core question at the moment it is picked, exactly as today (gated by WO Lines: Create & Edit).\n\n---\nThis is the expected behaviour as per epic SV-8683 and story SV-9258 (Story 12, Bulk pick parts) and the Simple Flow V2 specification (Confluence page 771391574, revised 8 September 2026), read on 9 September 2026.\nLast checked against build v26.35.9-5700a76 on 9/9/2026.\nAUTOMATION: READY"
+   }
+  }
+ },
+ "44582": {
+  "title": "Bulk pick action hidden without Pick Parts permission",
+  "fields": {
+   "custom_preconds": {
+    "blocks": [
+     [
+      "1. For the no-permission check, sign in as TECH@shopview.com whose role has been set for this test (reset the role from Settings -> Roles & Permissions, then assign it to TECH; never change the Admin role) WITHOUT Pick Parts.",
+      "2. Open a work order via top menu \"Work Orders\" -> the \"Work Orders\" tab -> open a work order -> its \"Lines\" tab and select pickable parts; tick the row checkboxes on the lines/parts to raise the bulk action bar (it shows \"N selected\", the primary actions, a \"More\" overflow, and a \"close\" X, replacing the column headers)."
+     ]
+    ],
+    "text": "1. For the no-permission check, sign in as TECH@shopview.com whose role has been set for this test (reset the role from Settings -> Roles & Permissions, then assign it to TECH; never change the Admin role) WITHOUT Pick Parts.\n2. Open a work order via top menu \"Work Orders\" -> the \"Work Orders\" tab -> open a work order -> its \"Lines\" tab and select pickable parts; tick the row checkboxes on the lines/parts to raise the bulk action bar (it shows \"N selected\", the primary actions, a \"More\" overflow, and a \"close\" X, replacing the column headers)."
+   },
+   "custom_steps": {
+    "blocks": [
+     [
+      "1. Select the parts and look for the Pick action."
+     ]
+    ],
+    "text": "1. Select the parts and look for the Pick action."
+   },
+   "custom_expected": {
+    "blocks": [
+     [
+      "1. A user without Pick Parts does not see the Pick action."
+     ],
+     [
+      "---",
+      "This is the expected behaviour as per epic SV-8683 and story SV-9258 (Story 12, Bulk pick parts) and the Simple Flow V2 specification (Confluence page 771391574, revised 8 September 2026), read on 9 September 2026.",
+      "Last checked against build v26.35.9-5700a76 on 9/9/2026.",
+      "AUTOMATION: READY"
+     ]
+    ],
+    "text": "1. A user without Pick Parts does not see the Pick action.\n\n---\nThis is the expected behaviour as per epic SV-8683 and story SV-9258 (Story 12, Bulk pick parts) and the Simple Flow V2 specification (Confluence page 771391574, revised 8 September 2026), read on 9 September 2026.\nLast checked against build v26.35.9-5700a76 on 9/9/2026.\nAUTOMATION: READY"
+   }
+  }
+ },
+ "53486": {
+  "title": "Deselect all keeps the bar, close dismisses it; an empty group shows no divider",
+  "fields": {
+   "custom_preconds": {
+    "blocks": [
+     [
+      "1. Sign in as an Owner or Admin (Work Order Lines: Create & Edit, Full View).",
+      "2. Open a work order via top menu \"Work Orders\" -> the \"Work Orders\" tab -> open a work order -> its \"Lines\" tab that has several lines and parts, so both a line group and a parts group can appear in the bulk action bar; tick the row checkboxes on the lines/parts to raise the bulk action bar (it shows \"N selected\", the primary actions, a \"More\" overflow, and a \"close\" X, replacing the column headers)."
+     ]
+    ],
+    "text": "1. Sign in as an Owner or Admin (Work Order Lines: Create & Edit, Full View).\n2. Open a work order via top menu \"Work Orders\" -> the \"Work Orders\" tab -> open a work order -> its \"Lines\" tab that has several lines and parts, so both a line group and a parts group can appear in the bulk action bar; tick the row checkboxes on the lines/parts to raise the bulk action bar (it shows \"N selected\", the primary actions, a \"More\" overflow, and a \"close\" X, replacing the column headers)."
+   },
+   "custom_steps": {
+    "blocks": [
+     [
+      "1. Select several lines, then press Deselect all.",
+      "2. Select again, then press the close control.",
+      "3. Make a selection where only a line action applies and no parts action does, and look at the dividers."
+     ]
+    ],
+    "text": "1. Select several lines, then press Deselect all.\n2. Select again, then press the close control.\n3. Make a selection where only a line action applies and no parts action does, and look at the dividers."
+   },
+   "custom_expected": {
+    "blocks": [
+     [
+      "1. Deselect all clears the selection but leaves the bar in place; the column headers return.",
+      "2. The close control clears the selection and dismisses the bar; the column headers return, exactly as with Deselect all.",
+      "3. A group that is holding nothing renders no divider and takes no space, so the bar reads the same whatever it holds."
+     ],
+     [
+      "---",
+      "This is the expected behaviour as per epic SV-8683 and story SV-9253 (Story 7, The bulk action bar) and the Simple Flow V2 specification (Confluence page 771391574, revised 8 September 2026), read on 8 September 2026.",
+      "Last checked against build v26.35.9-5700a76 on 9/9/2026.",
+      "AUTOMATION: READY"
+     ]
+    ],
+    "text": "1. Deselect all clears the selection but leaves the bar in place; the column headers return.\n2. The close control clears the selection and dismisses the bar; the column headers return, exactly as with Deselect all.\n3. A group that is holding nothing renders no divider and takes no space, so the bar reads the same whatever it holds.\n\n---\nThis is the expected behaviour as per epic SV-8683 and story SV-9253 (Story 7, The bulk action bar) and the Simple Flow V2 specification (Confluence page 771391574, revised 8 September 2026), read on 8 September 2026.\nLast checked against build v26.35.9-5700a76 on 9/9/2026.\nAUTOMATION: READY"
    }
   }
  }
