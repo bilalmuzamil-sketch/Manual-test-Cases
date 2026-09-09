@@ -1524,6 +1524,21 @@ with `sv_sso_session` and `cf_clearance` **byte-identical** to the set that was 
   UI save rather than writing twice; (c) **`fr-view` is achievable, so "the tester reads tags" is never
   a permanent state.**
 
+  **⇒ ✅ CARVE-OUT (measured 2026-09-09, L0028): A STRUCTURE-PRESERVING API WRITE TO A FIELD THAT IS
+  ALREADY `fr-view` KEEPS `fr-view`.** The rule above ("API write leaves it escaping") is about the write
+  that *establishes the field's HTML* — an API write that INTRODUCES block tags into a plain field is born
+  escaping. It is NOT true of an API write that changes only **text inside HTML the field already holds and
+  that is already rendering fr-view** (e.g. a build-line re-stamp: `…v26.35.9-7f2e4fa on 9/8/2026` →
+  `…v26.36.0-f43b2fd on 9/9/2026` inside an existing `<ul><li>`). There the container is **preserved**.
+  **Evidence:** API-wrote C53477 and its served page matched UI-written C44988 (both fr-view=true,
+  blocks=true, escaped=false); a bulk API re-stamp of 123 cases (errors=0) followed by the FULL 167-case
+  served-page scan returned **escaped=true = 0, fr-view=false-on-real-field = 0**. **Practical payoff:** a
+  bulk build-line re-stamp is an API job (~3 min, checkpointed) — NOT a Froala/UI-editor job (~2 hrs, prone
+  to the L0010 deadlock). **The line not to cross:** *text-within-existing-fr-view-HTML = safe via API;
+  plain-text→block-HTML, or adding new tags = still needs a UI save.* Always confirm with the served-page
+  scan (`/tmp/check_served2.mjs`, or the committed equivalent) after any such bulk write — a green
+  API-stored-value check is not sufficient on its own.
+
   **⇒ ⚠️ CORRECTION TO THE COLLAPSE CENSUS (2026-08-28 → 2026-08-31): IT MEASURED THE WRONG ARTEFACT.**
   The census that concluded **"0 genuinely collapsed cases across the 428"** ran `genuine_collapse()`
   over the **API-stored value**. That answers *"is a newline stranded inside a `<p>`?"* — a real

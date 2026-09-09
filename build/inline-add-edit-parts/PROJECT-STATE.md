@@ -20,6 +20,11 @@
   45227/45237/45252/45253/45254 — Rule-65 notice `build/FOR-VLAD-inline-woprint-restamp-2026-09-09.md`).
   The 5 changed cases C44993/44994/45007/45034/45250 get the build-check line added (were NO-STAMP by
   design). Evidence + probes: `build/inline-add-edit-parts/build-verify-2026-09-09-full/`.
+- ✅ **CLOSED-OUT (2026-09-09, late).** Re-stamp COMPLETED via a structure-preserving **API** write
+  (L0028 — it preserves `fr-view`), not the deadlock-prone UI route: **restamped=123, errors=0**; the 5
+  changed cases stamped (all 200). **FULL 167-case served-page scan PASSED** — every field renders
+  `fr-view=true, blocks=true, escaped=false`, zero wall-of-text (`served_all.log`). **HANDOFF-READY = YES.**
+  Report: `build/inline-add-edit-parts/build-verify-2026-09-09-full/REPORT-2026-09-09.md`.
 
 ## 🆕 Update — 2026-09-09 (17:00 UTC) — QA-lead rulings applied; escalations RESOLVED
 
