@@ -83,7 +83,9 @@ were re-verified spec-current and untouched. Full record: **`HELD-AUTOMATED-FOR-
    deleted. **🔔 Rule 65 still open: Vlad must be told the Automated case changed** — flagged to the QA
    lead to relay.
 2. **3 PO questions for Milos** (spec ambiguities, cannot be answered from documents) — delivered as a
-   **Google Sheet** (https://docs.google.com/spreadsheets/d/1wqxIZaQSl4LH4ju798RdSQgaaG2rV5YzgWx2jAhx5fk/edit;
-   super-simple PO questions in Part 1, all references in Part 2) and the xlsx copy in this folder:
+   friendly **6-tab workbook** in the PO's Drive
+   (https://drive.google.com/file/d/1lX5h-gBf5pOZQB5bwBEtkMZriDdB4WED/view; opens in Google Sheets —
+   Start here · one tab per question with an answer box · All-3-at-a-glance · QA-internal references),
+   with the identical xlsx copy in this folder:
    (a) Story 2 "approval first" vs "approval changes no existing line"; (b) Story 14 paged Select-all
    accepted as expected; (c) Story 4 the two engineering volume thresholds.
