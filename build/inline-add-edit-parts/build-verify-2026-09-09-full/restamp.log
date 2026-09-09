@@ -1,1 +1,71 @@
 18:08:26 C44988 OK (custom_expected)  1/162
+18:08:51 C44989 deadlock - retry 1/3
+18:10:14 C44989 deadlock - retry 2/3
+node:internal/modules/run_main:123
+    triggerUncaughtException(
+    ^
+
+page.waitForTimeout: Target page, context or browser has been closed
+    at /home/user/Manual-test-Cases/build/testing-tools/surgical_replace.mjs:119:81
+
+Node.js v22.22.2
+18:11:13 C44988 already checkpointed
+18:11:25 C44989 OK (custom_expected)  1/162
+18:11:36 C44990 OK (custom_expected)  2/162
+18:11:48 C44991 OK (custom_expected)  3/162
+18:12:00 C44992 OK (custom_expected)  4/162
+18:12:12 C44995 OK (custom_expected)  5/162
+18:12:24 C44997 OK (custom_expected)  6/162
+18:12:35 C44998 OK (custom_expected)  7/162
+18:12:46 C44999 OK (custom_expected)  8/162
+18:13:11 C45000 deadlock - retry 1/3
+18:14:34 C45000 deadlock - retry 2/3
+18:16:00 C45000 deadlock - retry 3/3
+18:17:29 C45000 FAILED: still on the edit page ["Deadlock found when trying to get lock; try restarting transaction","Title is too long","You have reached max 2000 characters limit. You can't type more."]
+18:17:34 C45001 nothing replaced: {"custom_expected":"no editor"}
+18:17:37 C45002 nothing replaced: {"custom_expected":"no editor"}
+18:17:41 C45003 nothing replaced: {"custom_expected":"no editor"}
+18:17:44 C45004 nothing replaced: {"custom_expected":"no editor"}
+18:17:47 C45005 nothing replaced: {"custom_expected":"no editor"}
+18:17:51 C45006 nothing replaced: {"custom_expected":"no editor"}
+18:17:54 C45008 nothing replaced: {"custom_expected":"no editor"}
+18:17:58 C45009 nothing replaced: {"custom_expected":"no editor"}
+18:18:01 C45010 nothing replaced: {"custom_expected":"no editor"}
+18:18:05 C45011 nothing replaced: {"custom_expected":"no editor"}
+18:18:08 C45012 nothing replaced: {"custom_expected":"no editor"}
+18:18:11 C45013 nothing replaced: {"custom_expected":"no editor"}
+18:18:15 C45014 nothing replaced: {"custom_expected":"no editor"}
+18:18:18 C45015 nothing replaced: {"custom_expected":"no editor"}
+18:18:21 C45016 nothing replaced: {"custom_expected":"no editor"}
+18:18:25 C45017 nothing replaced: {"custom_expected":"no editor"}
+18:18:28 C45018 nothing replaced: {"custom_expected":"no editor"}
+18:18:32 C45019 nothing replaced: {"custom_expected":"no editor"}
+18:18:35 C45020 nothing replaced: {"custom_expected":"no editor"}
+18:18:38 C45021 nothing replaced: {"custom_expected":"no editor"}
+18:18:42 C45022 nothing replaced: {"custom_expected":"no editor"}
+18:18:45 C45023 nothing replaced: {"custom_expected":"no editor"}
+18:18:48 C45024 nothing replaced: {"custom_expected":"no editor"}
+18:18:52 C45025 nothing replaced: {"custom_expected":"no editor"}
+18:18:55 C45026 nothing replaced: {"custom_expected":"no editor"}
+18:18:58 C45027 nothing replaced: {"custom_expected":"no editor"}
+18:19:02 C45028 nothing replaced: {"custom_expected":"no editor"}
+18:19:05 C45029 nothing replaced: {"custom_expected":"no editor"}
+18:19:09 C45030 nothing replaced: {"custom_expected":"no editor"}
+18:19:12 C45031 nothing replaced: {"custom_expected":"no editor"}
+18:19:16 C45032 nothing replaced: {"custom_expected":"no editor"}
+18:19:19 C45033 nothing replaced: {"custom_expected":"no editor"}
+18:19:23 C45035 nothing replaced: {"custom_expected":"no editor"}
+18:19:26 C45036 nothing replaced: {"custom_expected":"no editor"}
+18:19:30 C45037 nothing replaced: {"custom_expected":"no editor"}
+18:19:33 C45038 nothing replaced: {"custom_expected":"no editor"}
+node:internal/modules/run_main:123
+    triggerUncaughtException(
+    ^
+
+page.goto: Target page, context or browser has been closed
+Call log:
+[2m  - navigating to "https://shopview.testrail.io/index.php?/cases/edit/45039&_cb=1788977974858", waiting until "networkidle"[22m
+
+    at /home/user/Manual-test-Cases/build/testing-tools/surgical_replace.mjs:70:14
+
+Node.js v22.22.2
