@@ -6,35 +6,54 @@ Executes the QA lead's five instructions of 2026-09-09. **What landed, what is b
 
 | # | Instruction | Status |
 |---|---|---|
-| 1 | Author the licence-plate parity case | ✅ **AUTHORED, validated, push-ready.** ⛔ push blocked — no TestRail credentials in this container |
-| 2 | Draft PO-GS-SUBSTR-1 | ✅ **DONE** — `../questions-2026-09-09/` |
-| 3 | Live read of C45129 | ⛔ **BLOCKED** — same credential gap |
-| 4 | Run `SELECT @@group_concat_max_len;` | ⛔ **BLOCKED** — no DB or app session. Exact command + impact formula below |
-| 5 | Carried PO-REG-1..6 + QA build | ✅ **PO items consolidated** into the one sheet (2 closed as no-longer-needed). QA build is not in our gift |
+| 1 | Author the licence-plate parity case | ✅ **DONE — pushed live as [C53516](https://shopview.testrail.io/index.php?/cases/view/53516)**, render self-check passed, added to run R415 |
+| 2 | Draft PO-GS-SUBSTR-1 | ✅ **DONE** — `../questions-2026-09-09/`, rewritten 2026-09-09 with separate PO / engineer / designer columns |
+| 3 | Live read of C45129 | ✅ **DONE — NOT an orphan.** See below |
+| 4 | Run `SELECT @@group_concat_max_len;` | ⛔ **STILL BLOCKED** — TestRail credentials do not grant DB or app access. Exact command + impact formula below |
+| 5 | Carried PO-REG-1..6 + QA build | ✅ **PO items consolidated** (2 closed without needing the PO). QA build is not in our gift |
 
-## ⛔ The credential gap — proved, not assumed (Rule 97)
+## Credentials — resolved 2026-09-09
 
-`build/skills/14-ACCESS-RESILIENCE.md` documents a session that called this a blocker while
-`/tmp/testrail/creds.json` sat on disk the whole time. **All three sources were checked here:**
+The QA lead supplied TestRail credentials, held in `/tmp/testrail/creds.json` and
+`/tmp/shopview-creds.env`, both `chmod 600`, **never committed** (Rule 82; this repo is public).
+TestRail has session/password API auth enabled, so the account password works as the basic-auth
+secret. Verified live: `get_case/45129` → HTTP 200.
 
-| # | Source | Result |
-|---|---|---|
-| 1 | env `TESTRAIL_EMAIL` / `TESTRAIL_API_KEY` / `CLAUDE_USERNAME` | **absent** (`env \| grep -c` → 0) |
-| 2 | `/tmp/shopview-creds.env` | **No such file or directory** |
-| 3 | `/tmp/testrail/creds.json` | **directory `/tmp/testrail/` does not exist** |
+**A real gap was found and fixed while doing this.** `build/testing-tools/load_creds.py` only ever
+tried **two** sources, while `build/skills/14-ACCESS-RESILIENCE.md` documented it as trying
+**three** — and source 3 (`/tmp/testrail/creds.json`) is precisely the one that produced the false
+blocker that skill records. The loader now genuinely tries all three, so the code matches the
+contract and the next session cannot repeat it.
 
-Also checked: `/tmp/qa-cookies/` **absent**; whole `/tmp` tree at depth 2 holds only Chrome,
-node cache and this session's scratch. No TestRail MCP tool exists in this session either
-(searched the connector registry). Per CLAUDE.md §Persistence secrets are ephemeral and
-**re-supplied per environment** — this container came up without them.
+**These credentials do NOT cover the ShopView application or its database** — `/tmp/qa-cookies/` is
+still absent and `build/BLOCKED-shopview-app-session.md` still stands, so instruction 4 remains
+blocked. That is a different access path, not a different permission.
 
-**To unblock:** supply any one of the three, then run the two commands in "Ready to run" below.
+## 3 · C45129 — RESOLVED, and it is NOT an orphan
+
+Read live 2026-09-09. Its **actual** title is:
+
+> **"No Contacts tab or group appears; a contact match returns its company"**
+
+So it **was** correctly rewritten during the v1.3 ingest — it now asserts the *absence* of a
+Contacts tab, which is exactly right for v1.5. **No action needed; nothing to retire.**
+
+**But it confirms the id-map problem, now with two proven cases.**
+`build/global-search/testrail-id-map.csv` still lists C45129 as *"The 'Contacts' tab shows only
+Contact results"* — the pre-v1.3 title — alongside the already-proven C45139. The live case's `refs`
+field is also stale: it still reads `SV-9160 (PRD 5.2 Contacts tab)` for a case that now asserts
+that tab does not exist.
+
+> **`testrail-id-map.csv` must be regenerated from live before anything reads it for titles.**
+> Two of two spot-checked entries were wrong.
 
 ## 1 · The case — `GSREG-PLATE-01`
 
 **Title:** "Searching an asset's licence plate finds that asset" (51 chars)
 **Target:** section **6769** "Global Search V2 - V1 Regression Suite" · run **R415**
-**Source:** `cases/parity-cases.json` · **Pusher:** `push_parity.py`
+**Source:** `cases/parity-cases.json` · **Pusher:** `push_parity.py` · **Live: C53516**
+**Fields aligned to the 20 siblings, read live:** `type_id=7`, `priority_id=2`, `template_id=1`,
+`custom_atmstatus=1`.
 
 **Why it is a genuine invariant, not an assumption.** `licence_plate` is concatenated into the
 asset search index at `FetchDataQueryHandler.php:292` (baseline `5576716`, byte-unchanged). And the
@@ -60,16 +79,25 @@ partial-plate variant is deliberately **not** authored and is held to that decis
 | `suite_id` rejected HTTP 400 — project 1 is single-suite mode | Never sent (skill 14) |
 | The **group_concat truncation** trap (below) silently breaking the check | Precondition caps the owning customer at **under 20 contacts** |
 
-### Ready to run (once credentials exist)
+### What actually ran (2026-09-09)
 
-```bash
-python3 build/global-search/parity-2026-09-09/push_parity.py --apply
-python3 build/testing-tools/check_case_render.py C<new-id>    # MANDATORY post-write self-check
+```
+add_case          GSREG-PLATE-01  C53516  HTTP 200  created
+get_case-verify   GSREG-PLATE-01  C53516  HTTP 200  verified
+update_run        GSREG-PLATE-01  C53516  HTTP 200  union 119 -> 120
 ```
 
-The pusher writes `AUDIT-LOG.csv` (operation · internal id · C-id · HTTP status · verification) per
-Rule 50, and `testrail-id-map.csv` with the real C-id. **The render self-check is not optional** —
-a green self-check is part of "done".
+`AUDIT-LOG.csv` holds that verbatim (Rule 50). **Render self-check: `C53516 ✓ renders clean`,
+exit 0** — re-verified with the real exit code, not a piped one.
+
+**Run R415 checked after the sync:** 120 tests, and **all 20** of the 2026-08-26 regression cases
+(C45142–C45161) are still present — 0 missing. The union-only write deleted no test and no result.
+
+**Dedupe was checked against the LIVE estate, not just the repo:** all **4,690** cases in project 1
+were scanned for `licen[cs]e plate|licence_plate|\bplate\b` across title, preconditions, steps and
+expected. 20 cases mention a plate — every one is about **displaying** it (Invoice UI Refresh asset
+section, Custom Roles edit permissions, asset-name fallback C30134). **None searches by it.** The
+gap was real.
 
 ## 3 · C45129 — still needs one live read
 

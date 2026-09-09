@@ -101,7 +101,8 @@ if __name__ == "__main__":
             preconds=block_list(c["preconditions"]),
             steps=block_ol(c["steps"]),
             expected=build_expected(c),
-            priority_id=3,   # Medium-High; matches the sibling regression cases
+            type_id=7,       # matches the 20 sibling regression cases (read live 2026-09-09)
+            priority_id=2,   # matches the 20 sibling regression cases (read live 2026-09-09)
         )
         if not APPLY:
             print(f"--- DRY RUN {c['id']} -> section {SECTION_ID} ---")
