@@ -1,0 +1,58 @@
+[
+ {
+  "id": 44583,
+  "title": "Receive opens a modal (no navigation) with contents depending on entry point",
+  "atm": 3,
+  "pre": "Logged in as Owner/Admin\nA vendor with a tax rate configured, so the modal has a rate to prefill tax from\nAn approved WO with an approved line carrying a vendor part, ordered onto a purchase order at a known cost",
+  "steps": "1. Open Receive from a part row where the part has a vendor.\n2. From a part row where the part has no vendor.\n3. From a line's menu.\n4. From the bulk action bar (or the completion wizard).",
+  "exp": "The part is no longer awaiting receipt: its Awaiting badge is gone, the request drops out of the outstanding listing, and a staged part carries the received quantity\n---\nThis is the expected behaviour as per epic SV-8683 and story SV-9259 (Story 13, Receiving from the work order) and the Simple Flow V2 specification (Confluence page 771391574, revised 8 September 2026), read on 9 September 2026.\nAUTOMATION: Not available on Build to test Yet - Last checked 9/9/2026"
+ },
+ {
+  "id": 44584,
+  "title": "Receive requires vendor, invoice number and invoice date; cost and tax prefilled",
+  "atm": 1,
+  "pre": "1. You are signed in with Order Parts.\n2. The receive modal is open on a vendor card with parts awaiting receipt.",
+  "steps": "1. Expand a vendor card and read the required fields and the per-part editable fields.\n2. Try to receive with the invoice number blank.\n3. Edit a cost and watch for a note.",
+  "exp": "1. An expanded card shows vendor invoice number, invoice date and delivery note on one row, then the parts; the invoice date defaults to today and is editable.\n2. Vendor, vendor invoice number and invoice date are all required; the modal marks them required and disables its receive button until they are filled, rather than submitting into an error.\n3. The delivery note is optional.\n4. Editable per part: part number, quantity received and cost (editing a part number into a catalogue part needs Catalog & Inventory: Create & Edit).\n5. Cost is required and may be zero, arriving prefilled from the purchase order; tax is required and may be zero, prefilled from the vendor's tax rate (falling back to zero when nothing derives it).\n6. Quantity received must be greater than zero, may include decimals, and may exceed what was ordered (the excess is shown but not blocked; the PO absorbs it). Changing cost shows a note that the sell price will update.\n---\nThis is the expected behaviour as per epic SV-8683 and story SV-9259 (Story 13, Receiving from the work order) and the Simple Flow V2 specification (Confluence page 771391574, revised 8 September 2026), read on 9 September 2026.\nAUTOMATION: Not available on Build to test Yet - Last checked 9/9/2026"
+ },
+ {
+  "id": 44585,
+  "title": "Vendor-missing card requires Assign vendor first, applied to ticked parts",
+  "atm": 1,
+  "pre": "1. You are signed in with Order Parts + Vendor & Order Mgmt: Create & Edit.\n2. The receive modal is open with a vendor-missing card.",
+  "steps": "1. Expand the vendor-missing card.\n2. Search and assign a vendor to the ticked parts.\n3. Check the untouched parts and the tab order.",
+  "exp": "1. Where no vendor is set, Assign vendor is the first field in the form, marked required, as a search field with results below; everything below it is disabled until a vendor is chosen.\n2. Assigning a vendor applies to the ticked parts only; the rest stay in the vendor-missing card.\n3. If the typed vendor name matches nothing, a Create option appears below the results carrying that name. Choosing it opens the usual new-vendor modal with the name already filled in; name and tax rate are required and everything else is optional. On save, the modal closes, the new vendor is selected in the field, and nothing already entered is lost. Cancelling the new-vendor modal returns to the receive form with the typed name still there and no vendor selected. A user without the vendor-management permission sees results only, with no Create option. A vendor created here is a full vendor record and appears on the vendor page like any other.\n4. The cursor starts in the vendor invoice number field when the vendor is known, and in the vendor field when it is not; tab order is identical in both states.\n---\nThis is the expected behaviour as per epic SV-8683 and story SV-9259 (Story 13, Receiving from the work order) and the Simple Flow V2 specification (Confluence page 771391574, revised 8 September 2026), read on 8 September 2026.\nAUTOMATION: Not available on Build to test Yet - Last checked 9/8/2026"
+ },
+ {
+  "id": 44586,
+  "title": "One invoice number belongs to one PO; two POs make two bills, same number",
+  "atm": 1,
+  "pre": "1. You are signed in with Order Parts.\n2. One vendor's parts on this work order sit on two purchase orders.",
+  "steps": "1. Open the receive modal on that vendor's card.\n2. Enter one invoice number and receive.",
+  "exp": "1. A vendor bill always belongs to one purchase order.\n2. Where one vendor's parts sit on two purchase orders, the card still shows one invoice number field, and receiving produces two vendor bills carrying that same invoice number.\n3. The card says so before the user confirms.\n4. Receiving uses the existing pipeline, so the vendor bill reaches the accounting system as it does today.\n---\nThis is the expected behaviour as per epic SV-8683 and story SV-9259 (Story 13, Receiving from the work order) and the Simple Flow V2 specification (Confluence page 771391574, revised 8 September 2026), read on 9 September 2026.\nAUTOMATION: Not available on Build to test Yet - Last checked 9/9/2026"
+ },
+ {
+  "id": 44587,
+  "title": "A user without See Financial Data can still receive; money fields removed",
+  "atm": 3,
+  "pre": "A custom role with See Financial Data OFF but Work Orders View + Order/Receive Parts ON, and a staff user holding it\nAn approved WO with an approved line carrying a vendor part, ordered onto a purchase order at a known cost",
+  "steps": "1. Open the receive modal as this user.\n2. Look for cost and tax fields and try to receive.",
+  "exp": "The persisted part cost read back over the API equals the purchase order's cost, not zero\n---\nThis is the expected behaviour as per epic SV-8683 and story SV-9259 (Story 13, Receiving from the work order) and the Simple Flow V2 specification (Confluence page 771391574, revised 8 September 2026), read on 9 September 2026.\nAUTOMATION: Not available on Build to test Yet - Last checked 9/9/2026"
+ },
+ {
+  "id": 44588,
+  "title": "Receive modal rejects invalid parts, unordered/unapproved, and post-invoice",
+  "atm": 1,
+  "pre": "1. You are signed in with Order Parts.\n2. A card has a part with no part number and a part with quantity zero; parts not yet ordered and on unapproved lines exist; and a work order can be invoiced mid-session.",
+  "steps": "1. Try to receive a card containing a part with no part number.\n2. Enter quantity zero (or negative).\n3. Check whether unordered/unapproved parts appear.\n4. Invoice the work order mid-session, then try to receive.\n5. Open Receive on a work order with nothing awaiting.",
+  "exp": "1. A part with no part number is outlined red and its card cannot be received until it is filled.\n2. Quantity of zero or a negative number is rejected.\n3. Parts not yet ordered, and parts on lines that are not approved, are never included.\n4. Where every part in a card is unticked, that card's receive is disabled; one invoice number never spans two vendors.\n5. There is no way to receive without a vendor bill (a user with parts but no paperwork uses Received later).\n6. If the work order is invoiced mid-session, receiving is refused with the reason; the empty state reads \"Nothing to receive\".\n---\nThis is the expected behaviour as per epic SV-8683 and story SV-9259 (Story 13, Receiving from the work order) and the Simple Flow V2 specification (Confluence page 771391574, revised 8 September 2026), read on 9 September 2026.\nAUTOMATION: Not available on Build to test Yet - Last checked 9/9/2026"
+ },
+ {
+  "id": 53487,
+  "title": "A vendor can be corrected until a part is received, then it is fixed",
+  "atm": 1,
+  "pre": "1. You are signed in with Order Parts + Vendor & Order Mgmt: Create & Edit.\n2. A purchase order was created without a vendor and its parts are still unreceived.\n3. Another purchase order has a part that has already been received.",
+  "steps": "1. On the unreceived purchase order, change the assigned vendor.\n2. On the one with a received part, look for a way to change the vendor.\n3. Attempt to receive a part against a vendor different from the one already recorded.",
+  "exp": "1. While the purchase order has no received parts, its assigned vendor can be replaced.\n2. Once any part on it is received, its vendor is fixed - there is no way to change it, because it belongs to that delivery and that vendor's bill.\n3. A purchase order that already carries a named vendor offers no change of vendor at all; parts that genuinely belong to another supplier are removed and ordered again.\n4. A receive is refused if it names a vendor different from the one already recorded against a received part; the rule holds on the back end, not only on screen.\n---\nThis is the expected behaviour as per epic SV-8683 and story SV-9259 (Story 13, Receiving from the work order) and the Simple Flow V2 specification (Confluence page 771391574, revised 8 September 2026), read on 8 September 2026.\nAUTOMATION: Not available on Build to test Yet - Last checked 9/8/2026"
+ }
+]
