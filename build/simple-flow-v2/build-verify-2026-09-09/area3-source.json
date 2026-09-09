@@ -1,0 +1,42 @@
+[
+ {
+  "id": 44566,
+  "title": "Line actions offered match the line's status",
+  "atm": 1,
+  "pre": "1. You are signed in with WO Lines: Create & Edit + Full View.\n2. A work order has lines in each status: Needs Approval, Approved, Declined, Complete.",
+  "steps": "1. Open the ... menu (and check the bulk bar) for a Needs Approval line.\n2. Repeat for Approved, Declined and Complete lines.",
+  "exp": "1. Needs Approval: Approve, Decline, Request part, Delete line.\n2. Approved: Decline, Authorization required, Complete, Request part, Delete line.\n3. Declined: Approve, Authorization required, Request part, Delete line.\n4. Complete: Decline, Authorization required, Uncomplete.\n5. Any action not listed for a status is not visible, on the line or in the bulk action bar.\n6. Complete is not offered on a Needs Approval line and Approve is not offered on an already-Approved line (both do nothing).\n---\nThis is the expected behaviour as per epic SV-8683 and story SV-9252 (Story 6, Which actions appear on a line and on a part) and the Simple Flow V2 specification (Confluence page 771391574, revised 8 September 2026), read on 9 September 2026.\nAUTOMATION: Not available on Build to test Yet - Last checked 9/9/2026"
+ },
+ {
+  "id": 44567,
+  "title": "Decline is disabled while a line holds received or picked parts",
+  "atm": 1,
+  "pre": "1. You are signed in with WO Lines: Create & Edit + Full View.\n2. An approved line holds a part that has been received or picked.",
+  "steps": "1. Open the line's actions and look at Decline.",
+  "exp": "1. Decline stays visible but is disabled while the line holds parts that were received or picked.\n2. The disabled reason reads \"Return this line's received parts before declining it\".\n---\nThis is the expected behaviour as per epic SV-8683 and story SV-9252 (Story 6, Which actions appear on a line and on a part) and the Simple Flow V2 specification (Confluence page 771391574, revised 8 September 2026), read on 9 September 2026.\nAUTOMATION: Not available on Build to test Yet - Last checked 9/9/2026"
+ },
+ {
+  "id": 44568,
+  "title": "Part actions offered match the part's state (seven states)",
+  "atm": 1,
+  "pre": "1. You are signed in with WO Lines: Create & Edit + Full View, Pick Parts and Order Parts.\n2. Parts exist in each state: Requested, Quoted, Auth to order, In Stock (unpicked), Awaiting, Received later, Received/picked, Returned.",
+  "steps": "1. For a part in each state, look at the actions on its row.",
+  "exp": "1. Requested: nothing on the row (no price yet), but still counted in the bulk bar's Order (n).\n2. Quoted: Order. Auth to order: Order.\n3. In Stock and not picked: Pick.\n4. Awaiting: Receive, with Received later behind its caret when receiving is required.\n5. Received later: nothing on the row, Receive in the ... menu.\n6. Received or picked: nothing (finished). Returned: nothing (sent back, stays visible on the line and in returns).\n---\nThis is the expected behaviour as per epic SV-8683 and story SV-9252 (Story 6, Which actions appear on a line and on a part) and the Simple Flow V2 specification (Confluence page 771391574, revised 8 September 2026), read on 9 September 2026.\nAUTOMATION: Not available on Build to test Yet - Last checked 9/9/2026"
+ },
+ {
+  "id": 44569,
+  "title": "Ordering precedes receiving; Receive placement follows the setting",
+  "atm": 1,
+  "pre": "1. You are signed in with Order Parts.\n2. A vendor-sourced part is unordered; and the receiving setting can be toggled.",
+  "steps": "1. With ordering required, check whether Receive appears before the part is ordered.\n2. With receiving not required, check where Receive appears for a part.",
+  "exp": "1. With ordering required, Receive does not appear until the part has been ordered; Order and Receive are never offered at once for the same part.\n2. With receiving not required, Receive moves from the part row into the part's ... menu - it is never removed outright.\n3. Ordering a Requested part only does something when the part is vendor-sourced (including a vendorless part marked Vendor missing); an inventory/found part or one with no source needs its details completed first.\n---\nThis is the expected behaviour as per epic SV-8683 and story SV-9252 (Story 6, Which actions appear on a line and on a part) and the Simple Flow V2 specification (Confluence page 771391574, revised 8 September 2026), read on 9 September 2026.\nAUTOMATION: Not available on Build to test Yet - Last checked 9/9/2026"
+ },
+ {
+  "id": 44570,
+  "title": "Declining or sending back a line returns only not-yet-arrived parts to Quoted",
+  "atm": 1,
+  "pre": "1. You are signed in with WO Lines: Create & Edit + Full View.\n2. An approved line holds parts in mixed states: Requested, In Stock, Quoted, Auth to order, Awaiting, Received, Returned.",
+  "steps": "1. Decline the line (or send it back with Authorization required).\n2. Check the state of each part afterwards.",
+  "exp": "1. Only In Stock, Quoted, Auth to order and Awaiting parts are moved back to Quoted.\n2. A Requested part is left where it is, and so are Received and Returned parts.\n3. Parts that were received or picked are not touched by a line status change, and no stock moves because of one.\n4. Declining a line does not remove its parts from a purchase order (only deleting a part does that).\n5. A part action the user's role does not carry is absent even when the part's state qualifies (Pick follows Pick Parts, Order follows Order Parts).\n---\nThis is the expected behaviour as per epic SV-8683 and story SV-9252 (Story 6, Which actions appear on a line and on a part) and the Simple Flow V2 specification (Confluence page 771391574, revised 8 September 2026), read on 9 September 2026.\nAUTOMATION: Not available on Build to test Yet - Last checked 9/9/2026"
+ }
+]
