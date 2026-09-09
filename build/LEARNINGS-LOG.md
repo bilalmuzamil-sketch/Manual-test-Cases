@@ -33,7 +33,23 @@
 
 ## ENTRIES — newest first (id · date · tags · lesson → pointer)
 
-### L0025 · 2026-09-09 · #mistake-corrected #rule-41 #titles #source-verify #harness #testrail
+### L0025 · 2026-09-09 · #mistake-corrected #rule-41 #titles #preconds-steps #source-verify #harness #testrail
+**A CHANGED REQUIREMENT RE-DERIVES THE WHOLE CASE — TITLE, PRECONDITIONS AND STEPS, NOT JUST THE EXPECTED.**
+Two related misses on the same pass, both caught by the user:
+- **(part 1) Titles left stale.** The user opened C44993 and saw the title still said "…Complete,
+  Invoiced, or Paid" (3 statuses) while the body asserted 5.
+- **(part 2, the deeper one) Preconds/Steps left stale on UPDATE cases.** I told the user preconds/steps
+  were "preserved and runnable-gated, not re-authored." The user rightly pushed back: that is fine ONLY
+  when the source is unchanged — when the requirement CHANGED, you cannot assume the setup and clicks are
+  still valid. Real defects: C44993/C44994 Expected grew to 5 statuses but the steps walked only 3
+  (Declined/Imported never checked); C45007 Expected became conditional (Uncategorized only if no
+  category) but the steps saved one generic part and never tested the has-category branch. All re-derived,
+  fr-view, runnable-gate 3/3, live-verified (preconds name 5 statuses, steps cover both branches).
+**THE RULE:** preserving preconds/steps is valid ONLY for a case whose requirement is UNCHANGED this pass;
+every UPDATE case re-derives preconds + steps + title + expected together (Rule 41 — no surgical edits).
+A broader read-only title-vs-expected audit of all 163 cases in both suites returned 0 genuine
+contradictions after the fixes.
+**(original part-1 detail retained below)**
 **A SOURCE-VERIFY THAT ONLY TOUCHES THE FIELD IT CAME FOR LEAVES THE REST OF THE CASE STALE — THE TITLE
 ESPECIALLY.** The user opened C44993 and saw the title still said "…Complete, Invoiced, or Paid" (3
 statuses) while the body now asserted 5. I had changed the Expected and never reconciled the title —

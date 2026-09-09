@@ -208,18 +208,18 @@
     "blocks": [
      [
       "1. Your user’s role can edit work order lines. To check it: open “Settings”, click “Roles & Permissions” in the sidebar, click the pencil on the role your user is on, then find the “Work order lines” section and make sure its “Create & Edit” toggle is on.",
-      "2. In the top menu click “Work Orders”, then open a work order whose status is Complete, Invoiced, or Paid (click its row). Open its “Lines” tab. Each work order line has its own Parts section beneath it: the “Add Part” button sits in that section, and every part already on the line has an “edit” control at the right-hand end of its row — that control stays invisible until you move the mouse over the row."
+      "2. In the top menu click “Work Orders”. You will check this on a work order in EACH status the specification names — Complete, Invoiced, Paid, Declined, and Imported. Open a work order in each of those statuses (click its row) and open its “Lines” tab. Each work order line has its own Parts section beneath it: the “Add Part” button sits in that section. If the product does not let you reach a status (for example “Imported” may not exist), record which statuses you could not test."
      ]
     ],
-    "text": "1. Your user’s role can edit work order lines. To check it: open “Settings”, click “Roles & Permissions” in the sidebar, click the pencil on the role your user is on, then find the “Work order lines” section and make sure its “Create & Edit” toggle is on.\n2. In the top menu click “Work Orders”, then open a work order whose status is Complete, Invoiced, or Paid (click its row). Open its “Lines” tab. Each work order line has its own Parts section beneath it: the “Add Part” button sits in that section, and every part already on the line has an “edit” control at the right-hand end of its row — that control stays invisible until you move the mouse over the row."
+    "text": "1. Your user’s role can edit work order lines. To check it: open “Settings”, click “Roles & Permissions” in the sidebar, click the pencil on the role your user is on, then find the “Work order lines” section and make sure its “Create & Edit” toggle is on.\n2. In the top menu click “Work Orders”. You will check this on a work order in EACH status the specification names — Complete, Invoiced, Paid, Declined, and Imported. Open a work order in each of those statuses (click its row) and open its “Lines” tab. Each work order line has its own Parts section beneath it: the “Add Part” button sits in that section. If the product does not let you reach a status (for example “Imported” may not exist), record which statuses you could not test."
    },
    "custom_steps": {
     "blocks": [
      [
-      "1. Open a work order in each of those statuses and look at the Parts section of its lines."
+      "1. For each work order status you can reach (Complete, Invoiced, Paid, Declined; and Imported if the product has it), open a work order in that status and look at the Parts section of its lines to see whether the “Add Part” button is shown."
      ]
     ],
-    "text": "1. Open a work order in each of those statuses and look at the Parts section of its lines."
+    "text": "1. For each work order status you can reach (Complete, Invoiced, Paid, Declined; and Imported if the product has it), open a work order in that status and look at the Parts section of its lines to see whether the “Add Part” button is shown."
    },
    "custom_expected": {
     "blocks": [
@@ -247,18 +247,18 @@
     "blocks": [
      [
       "1. Your user’s role can edit work order lines. To check it: open “Settings”, click “Roles & Permissions” in the sidebar, click the pencil on the role your user is on, then find the “Work order lines” section and make sure its “Create & Edit” toggle is on.",
-      "2. In the top menu click “Work Orders”, then open a work order whose status is Complete, Invoiced, or Paid and that has at least one part on a line (click its row). Open its “Lines” tab. Each work order line has its own Parts section beneath it: the “Add Part” button sits in that section, and every part already on the line has an “edit” control at the right-hand end of its row — that control stays invisible until you move the mouse over the row."
+      "2. In the top menu click “Work Orders”. You will check this on a work order in EACH status the specification names — Complete, Invoiced, Paid, Declined, and Imported — that has at least one part on a line. Open a work order in each of those statuses (click its row) and open its “Lines” tab. Each work order line has its own Parts section beneath it; every part already on a line has an “edit” control at the right-hand end of its row that stays invisible until you move the mouse over the row. If the product does not let you reach a status (for example “Imported” may not exist), record which statuses you could not test."
      ]
     ],
-    "text": "1. Your user’s role can edit work order lines. To check it: open “Settings”, click “Roles & Permissions” in the sidebar, click the pencil on the role your user is on, then find the “Work order lines” section and make sure its “Create & Edit” toggle is on.\n2. In the top menu click “Work Orders”, then open a work order whose status is Complete, Invoiced, or Paid and that has at least one part on a line (click its row). Open its “Lines” tab. Each work order line has its own Parts section beneath it: the “Add Part” button sits in that section, and every part already on the line has an “edit” control at the right-hand end of its row — that control stays invisible until you move the mouse over the row."
+    "text": "1. Your user’s role can edit work order lines. To check it: open “Settings”, click “Roles & Permissions” in the sidebar, click the pencil on the role your user is on, then find the “Work order lines” section and make sure its “Create & Edit” toggle is on.\n2. In the top menu click “Work Orders”. You will check this on a work order in EACH status the specification names — Complete, Invoiced, Paid, Declined, and Imported — that has at least one part on a line. Open a work order in each of those statuses (click its row) and open its “Lines” tab. Each work order line has its own Parts section beneath it; every part already on a line has an “edit” control at the right-hand end of its row that stays invisible until you move the mouse over the row. If the product does not let you reach a status (for example “Imported” may not exist), record which statuses you could not test."
    },
    "custom_steps": {
     "blocks": [
      [
-      "1. Open a work order in each of those statuses and hover/focus its existing part lines."
+      "1. For each work order status you can reach (Complete, Invoiced, Paid, Declined; and Imported if the product has it), open a work order in that status and hover/focus its existing part lines to see whether the Edit control is shown."
      ]
     ],
-    "text": "1. Open a work order in each of those statuses and hover/focus its existing part lines."
+    "text": "1. For each work order status you can reach (Complete, Invoiced, Paid, Declined; and Imported if the product has it), open a work order in that status and hover/focus its existing part lines to see whether the Edit control is shown."
    },
    "custom_expected": {
     "blocks": [
@@ -742,11 +742,12 @@
    "custom_steps": {
     "blocks": [
      [
-      "1. Save a part through the Tech View inline row.",
-      "2. Have a Full View user open the same work order and inspect the part's category."
+      "1. Through the Tech View inline row, add a part that has NO category of its own and save it; then have a Full View user open the same work order and inspect that part’s category.",
+      "2. Through the Tech View inline row, add a part that already HAS its own category (an inventory or catalog part) and save it; then have a Full View user inspect that part’s category.",
+      "3. As the Tech View user, confirm the category is not shown to you for either part."
      ]
     ],
-    "text": "1. Save a part through the Tech View inline row.\n2. Have a Full View user open the same work order and inspect the part's category."
+    "text": "1. Through the Tech View inline row, add a part that has NO category of its own and save it; then have a Full View user open the same work order and inspect that part’s category.\n2. Through the Tech View inline row, add a part that already HAS its own category (an inventory or catalog part) and save it; then have a Full View user inspect that part’s category.\n3. As the Tech View user, confirm the category is not shown to you for either part."
    },
    "custom_expected": {
     "blocks": [
