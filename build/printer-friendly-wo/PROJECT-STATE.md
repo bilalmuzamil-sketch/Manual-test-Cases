@@ -14,6 +14,10 @@
 - **Re-stamp to v26.36.0-f43b2fd on 9/9/2026:** all 44 ours (incl. 2 Automated: C45107, C45123 — Rule-65
   notice `build/FOR-VLAD-inline-woprint-restamp-2026-09-09.md`). Evidence:
   `build/inline-add-edit-parts/build-verify-2026-09-09-full/` (printview2-v2636.png, wohdr-menu-v2636.png).
+- ✅ **CLOSED-OUT (2026-09-09, late).** Re-stamp COMPLETED via structure-preserving **API** write (L0028):
+  all 44 done, errors=0. **FULL served-page scan PASSED** for all 44 — every field `fr-view=true,
+  escaped=false`. **HANDOFF-READY = YES.** Shared report:
+  `build/inline-add-edit-parts/build-verify-2026-09-09-full/REPORT-2026-09-09.md`.
 
 ## 🆕 Update — 2026-09-09 (LATEST) — FULL source re-verification (corrects the 2026-09-07 delta)
 

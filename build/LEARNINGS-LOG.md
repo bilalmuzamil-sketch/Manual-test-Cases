@@ -33,6 +33,24 @@
 
 ## ENTRIES — newest first (id · date · tags · lesson → pointer)
 
+### L0028 · 2026-09-09 · #testrail #fr-view #build-verify #re-stamp #efficiency #methodology #deadlock
+**A STRUCTURE-PRESERVING API `update_case` PRESERVES fr-view RENDERING — SO A BULK BUILD-LINE RE-STAMP IS
+AN API JOB (~3 MIN), NOT A UI/Froala DEADLOCK JOB (~2 HRS).** The documented trap (playbook §J) says an API
+write lands a field in the *escaping* container (`markdown`, not `markdown fr-view`), so the UI-editor route
+(surgical_replace.mjs → Froala) was treated as the only safe way to re-stamp. **Refinement proven this
+session:** that only applies when the API write *introduces new HTML structure into a plain-text field*. When
+the field is ALREADY `fr-view` and the write changes only **text inside the existing HTML** (e.g. swapping
+`v26.35.9-7f2e4fa on 9/8/2026` → `v26.36.0-f43b2fd on 9/9/2026` inside an existing `<ul><li>`), the container
+is **preserved** — the field stays `fr-view`, renders blocks, zero escaping. **Evidence:** API-wrote C53477
+and compared its served page to UI-written C44988 (both fr-view=true, blocks=true, escaped=false); then bulk
+API re-stamped 123 cases (errors=0) and the FULL 167-case served-page scan returned escaped=true=0,
+fr-view=false-on-real-field=0. **The rule of thumb:** *changing text within existing fr-view HTML = safe via
+API; converting plain-text → block HTML, or introducing new tags = still needs the UI editor.* This unblocked
+the re-stamp when the Froala loop was deadlocking (L0010) and would have missed the QA lead's morning deadline.
+Verify after ANY such bulk write with the served-page scan (`/tmp/check_served2.mjs`) — belt-and-suspenders,
+non-negotiable at this stakes. **Graduated-to:** to be added to `build/APP-ACTIONS-PLAYBOOK.md` §J as the
+"structure-preserving API write" carve-out; refines the §J trap, does not overturn it.
+
 ### L0027 · 2026-09-09 · #rule #build-verify #expected #build-glossary #tester-ready #qa-lead
 **BUILD VERIFICATION MAKES ALL THREE PARTS RUNNABLE — PRECONDITIONS · STEPS · EXPECTED — AND EXPECTED IS
 KEPT INTACT IN SUBSTANCE BUT WORDED TO THE BUILD GLOSSARY (now Standing Rule 102).** QA lead, verbatim:
