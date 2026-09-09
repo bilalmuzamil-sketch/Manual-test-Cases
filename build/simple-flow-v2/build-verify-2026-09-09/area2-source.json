@@ -1,0 +1,42 @@
+[
+ {
+  "id": 44561,
+  "title": "An approved line completes whatever the state of its parts",
+  "atm": 3,
+  "pre": "Logged in as Owner/Admin\nOrg settings: Require Review OFF, Require Tech Story / Mileage / Engine Hours OFF\nAn approved WO with an approved line carrying three parts in three different open states: one never ordered, one ordered but not received, one in stock but not picked",
+  "steps": "1. On an approved line with an unordered part (ordering required), press Complete.\n2. On an approved line with an unpicked inventory part (picking required), press Complete.\n3. On an approved line with an ordered-but-unreceived part (receiving required), press Complete.",
+  "exp": "All three parts still show their original states -- none moved to Received or Picked\n---\nThis is the expected behaviour as per epic SV-8683 and story SV-9251 (Story 5, Parts no longer block completing a line) and the Simple Flow V2 specification (Confluence page 771391574, revised 8 September 2026), read on 9 September 2026.\nAUTOMATION: Not available on Build to test Yet - Last checked 9/9/2026"
+ },
+ {
+  "id": 44562,
+  "title": "Other line requirements still apply when their setting is on",
+  "atm": 1,
+  "pre": "1. You are signed in with completion permissions.\n2. An approved line is missing a required tech story / mileage / engine hours, or carries an unresolved core, with the relevant settings on.",
+  "steps": "1. Try to complete a line that is missing a required tech story.\n2. Try to complete a line with an unresolved core where receiving is not required.",
+  "exp": "1. The other line-level requirements stay: tech story, mileage, engine hours (each only when its setting is on) and core resolution.\n2. Where receiving is not required, an unresolved core is asked before the line completes (such a part may never pass through a receive and the invoice must still be right).\n3. Satisfying the last outstanding requirement makes a line completable \u2014 it does not complete it by itself.\n---\nThis is the expected behaviour as per epic SV-8683 and story SV-9251 (Story 5, Parts no longer block completing a line) and the Simple Flow V2 specification (Confluence page 771391574, revised 8 September 2026), read on 9 September 2026.\nAUTOMATION: Not available on Build to test Yet - Last checked 9/9/2026"
+ },
+ {
+  "id": 44563,
+  "title": "A line reaches Complete only through the defined paths",
+  "atm": 1,
+  "pre": "1. You are signed in with completion permissions.\n2. A completable approved line exists.",
+  "steps": "1. Complete a line via the line's own Complete.\n2. Via the bulk bar Complete lines / Complete all lines.\n3. Via Create invoice.\n4. Via the clock-out modal's 'Clock out and complete'.",
+  "exp": "1. A line reaches Complete only through: Complete on the line; Complete lines / Complete all lines in the bulk action bar; Create invoice (which closes the work order's Approved lines as a consequence of invoicing); and Clock out and complete in the clock-out modal.\n2. Nothing else completes a line - no timer and no background job.\n3. A line in Needs Approval cannot be completed by any path; it must be Approved first, on the line or in the bulk action bar. Nothing approves a line on the way to completing it.\n4. Complete lines counts only Approved lines, and Create invoice is refused while any line is still in Needs Approval.\n5. Mark as reviewed is not on the list: it becomes available only once every line is already complete, so there is never an open line for it to close.\n---\nThis is the expected behaviour as per epic SV-8683 and story SV-9251 (Story 5, Parts no longer block completing a line) and the Simple Flow V2 specification (Confluence page 771391574, revised 8 September 2026), read on 8 September 2026.\nAUTOMATION: Not available on Build to test Yet - Last checked 9/8/2026"
+ },
+ {
+  "id": 44564,
+  "title": "Clock-out modal: two complete buttons; line-completed tick box hidden",
+  "atm": 1,
+  "pre": "1. You are signed in with completion permissions and clocked onto a line.\n2. Review may be on or off.",
+  "steps": "1. Press Stop to open the clock-out modal.\n2. Read the actions offered and look for the old 'line completed' tick box.",
+  "exp": "1. The clock-out modal carries the tech story field and two actions: \"Clock out\", and \"Clock out and complete\" (or \"Clock out and send to review\" when review is required).\n2. The \"line completed\" tick box is hidden, leaving one way to complete from clock out instead of two.\n3. If a tech story is required and empty, it is required at clock out.\n4. The clock-out modal is otherwise unchanged.\n---\nThis is the expected behaviour as per epic SV-8683 and story SV-9251 (Story 5, Parts no longer block completing a line) and the Simple Flow V2 specification (Confluence page 771391574, revised 8 September 2026), read on 9 September 2026.\nAUTOMATION: Not available on Build to test Yet - Last checked 9/9/2026"
+ },
+ {
+  "id": 44565,
+  "title": "Complete is never disabled for a parts reason; reopen returns line to Approved",
+  "atm": 1,
+  "pre": "1. You are signed in with completion permissions.\n2. An approved line with outstanding parts exists; and a completed line exists.",
+  "steps": "1. Look at Complete on an approved line that has outstanding parts.\n2. Reopen a completed line and check its status and parts.\n3. As a Technician in Tech View, try to complete a line.",
+  "exp": "1. Complete is never disabled for a parts reason, anywhere.\n2. A line reopened after completion returns to Approved with its parts unchanged.\n3. A Technician in Tech View cannot complete (they cannot approve), but can still pick parts.\n---\nThis is the expected behaviour as per epic SV-8683 and story SV-9251 (Story 5, Parts no longer block completing a line) and the Simple Flow V2 specification (Confluence page 771391574, revised 8 September 2026), read on 9 September 2026.\nAUTOMATION: Not available on Build to test Yet - Last checked 9/9/2026"
+ }
+]
