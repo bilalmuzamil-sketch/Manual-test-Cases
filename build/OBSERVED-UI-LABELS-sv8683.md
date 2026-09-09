@@ -67,3 +67,11 @@ reset-then-assign. (LEARNINGS-LOG L0006/L0008.)
 - **Bulk action bar** (multi-select on Lines).
 - **Part rows/menus** (the `Part context menu` items) + **Reordering**.
 - **Permissions** (Owner/Admin, Pick Parts, Order Parts, See Financial Data, Order Mgmt).
+
+## WO Lines — actions, clock-out, bulk bar, receive (confirmed 2026-09-09)
+- **Line/part actions:** line `Complete`, `New Line`, `Start` (labor), part `Pick`, part context menu (`Move`, `Add Part Fee / Discount`). Evidence: actions.log, wo-actions-sv8683.png.
+- **WO header three-dot (more_vert) menu:** `Audit Log` · `Timesheets (n)` · `Add Work Order Fee / Discount` · `Create invoice` · `Delete Work Order`. Evidence: clockout.log.
+- **Clock-out modal** (press `Start` then `Stop` on a line; title "Stop working on <WO>…"): actions `Clock out` and `Clock out and complete` (`Clock out and send to review` when review is required); the tech story field is present; the old "line completed" tick box is **hidden**. Evidence: clockout.log, clockout-modal-sv8683.png.
+- **Bulk action bar** (tick line/part row checkboxes): shows `N selected`, primary actions (e.g. `Complete Line`, `Pick (n)`), a `More` (expand_more) overflow, and a `close` X — it replaces the column headers. Evidence: bulk.log, bulk-bar-sv8683.png.
+- **Receive modal** (`Receive` on a part row that is awaiting receipt; title **`Receive parts`**): fields `Assign vendor`, `Vendor invoice number`, `Invoice date`, `Delivery note`; buttons `Select all`, `Receive later`, `Receive parts (n)`. Same modal from part row / line menu / bulk bar / completion wizard. Evidence: recvobs.log, receive-modal-sv8683.png.
+- **⚠️ PO pages route NOT yet located:** `/purchase-orders` returns 404; the Parts sub-nav (`Part Sales`·`Inventory`·`Catalog`·`Returns`·`Vendors`) has no Purchase Orders entry. Area 6 (PO Pages, C44589/44590/44591/C53488) needs this route found before build-verify.
