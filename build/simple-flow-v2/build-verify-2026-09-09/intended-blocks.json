@@ -1,518 +1,425 @@
 {
- "44571": {
-  "title": "Bulk bar replaces the column headers and lists actions by one rule",
-  "fields": {
-   "custom_preconds": {
-    "blocks": [
-     [
-      "1. Sign in as an Owner or Admin (Work Order Lines: Create & Edit, Full View).",
-      "2. Open, via top menu \"Work Orders\" -> the \"Work Orders\" tab -> open a work order -> its \"Lines\" tab, a work order with several lines in mixed statuses (Needs Approval, Approved, Declined, Complete) that carry parts; tick the row checkboxes on the lines/parts to raise the bulk action bar (it shows \"N selected\", the primary actions, a \"More\" overflow, and a \"close\" X, replacing the column headers)."
-     ]
-    ],
-    "text": "1. Sign in as an Owner or Admin (Work Order Lines: Create & Edit, Full View).\n2. Open, via top menu \"Work Orders\" -> the \"Work Orders\" tab -> open a work order -> its \"Lines\" tab, a work order with several lines in mixed statuses (Needs Approval, Approved, Declined, Complete) that carry parts; tick the row checkboxes on the lines/parts to raise the bulk action bar (it shows \"N selected\", the primary actions, a \"More\" overflow, and a \"close\" X, replacing the column headers)."
-   },
-   "custom_steps": {
-    "blocks": [
-     [
-      "1. Select one or more lines.",
-      "2. Look at the bar that appears, its layout and which actions show."
-     ]
-    ],
-    "text": "1. Select one or more lines.\n2. Look at the bar that appears, its layout and which actions show."
-   },
-   "custom_expected": {
-    "blocks": [
-     [
-      "1. The bar sits at the top of the list and replaces the column headers while a selection is active; nothing on the page shifts when it appears.",
-      "2. Selecting a row highlights the whole line, including its story, labour and parts.",
-      "3. Layout is: \"n selected\", then Deselect all, then the line actions, then the parts actions, then More, then a close control - with a divider after \"n selected\", after the line group and after the parts group, always in those places.",
-      "4. Each action follows one rule: nothing in the selection qualifies -> hidden; something qualifies but is blocked -> shown disabled with the reason; qualifies and not blocked -> shown with its count.",
-      "5. Line actions count lines and parts actions count parts (\"Receive 5 parts\" may come from two lines); a count never includes what the action would skip."
-     ],
-     [
-      "---",
-      "This is the expected behaviour as per epic SV-8683 and story SV-9253 (Story 7, The bulk action bar) and the Simple Flow V2 specification (Confluence page 771391574, revised 8 September 2026), read on 8 September 2026.",
-      "Last checked against build v26.35.9-5700a76 on 9/9/2026.",
-      "AUTOMATION: READY"
-     ]
-    ],
-    "text": "1. The bar sits at the top of the list and replaces the column headers while a selection is active; nothing on the page shifts when it appears.\n2. Selecting a row highlights the whole line, including its story, labour and parts.\n3. Layout is: \"n selected\", then Deselect all, then the line actions, then the parts actions, then More, then a close control - with a divider after \"n selected\", after the line group and after the parts group, always in those places.\n4. Each action follows one rule: nothing in the selection qualifies -> hidden; something qualifies but is blocked -> shown disabled with the reason; qualifies and not blocked -> shown with its count.\n5. Line actions count lines and parts actions count parts (\"Receive 5 parts\" may come from two lines); a count never includes what the action would skip.\n\n---\nThis is the expected behaviour as per epic SV-8683 and story SV-9253 (Story 7, The bulk action bar) and the Simple Flow V2 specification (Confluence page 771391574, revised 8 September 2026), read on 8 September 2026.\nLast checked against build v26.35.9-5700a76 on 9/9/2026.\nAUTOMATION: READY"
-   }
-  }
- },
- "44572": {
-  "title": "Primary slots fill in a fixed order; More holds the rest",
-  "fields": {
-   "custom_preconds": {
-    "blocks": [
-     [
-      "1. Sign in as an Owner or Admin (Work Order Lines: Create & Edit, Full View).",
-      "2. Open a work order via top menu \"Work Orders\" -> the \"Work Orders\" tab -> open a work order -> its \"Lines\" tab and make a selection that qualifies for several actions including the finish/complete action; tick the row checkboxes on the lines/parts to raise the bulk action bar (it shows \"N selected\", the primary actions, a \"More\" overflow, and a \"close\" X, replacing the column headers)."
-     ]
-    ],
-    "text": "1. Sign in as an Owner or Admin (Work Order Lines: Create & Edit, Full View).\n2. Open a work order via top menu \"Work Orders\" -> the \"Work Orders\" tab -> open a work order -> its \"Lines\" tab and make a selection that qualifies for several actions including the finish/complete action; tick the row checkboxes on the lines/parts to raise the bulk action bar (it shows \"N selected\", the primary actions, a \"More\" overflow, and a \"close\" X, replacing the column headers)."
-   },
-   "custom_steps": {
-    "blocks": [
-     [
-      "1. Select lines that cover every open line (and hold orderable/receivable/pickable parts).",
-      "2. Read the order of the primary buttons and the contents of More."
-     ]
-    ],
-    "text": "1. Select lines that cover every open line (and hold orderable/receivable/pickable parts).\n2. Read the order of the primary buttons and the contents of More."
-   },
-   "custom_expected": {
-    "blocks": [
-     [
-      "1. The line group shows up to three actions, in order: the finish action (when the selection covers every open line), then Complete lines, then Approve. The parts group shows up to three, in order: Order, Receive, Pick. The two groups are separate and sized independently - a parts action is never pushed into More by a line action, and neither group takes a slot from the other.",
-      "2. Decline is always in More, never in a primary slot.",
-      "3. More contains, in order: Authorization required, Split to new work order, Decline. Create invoice is not enumerated in this ordered list; it is described next and disappears once an invoice exists.",
-      "4. Create invoice acts on the whole work order whatever is selected, carries no count, and disappears once an invoice exists."
-     ],
-     [
-      "---",
-      "This is the expected behaviour as per epic SV-8683 and story SV-9253 (Story 7, The bulk action bar) and the Simple Flow V2 specification (Confluence page 771391574, revised 8 September 2026), read on 8 September 2026.",
-      "Last checked against build v26.35.9-5700a76 on 9/9/2026.",
-      "AUTOMATION: READY"
-     ]
-    ],
-    "text": "1. The line group shows up to three actions, in order: the finish action (when the selection covers every open line), then Complete lines, then Approve. The parts group shows up to three, in order: Order, Receive, Pick. The two groups are separate and sized independently - a parts action is never pushed into More by a line action, and neither group takes a slot from the other.\n2. Decline is always in More, never in a primary slot.\n3. More contains, in order: Authorization required, Split to new work order, Decline. Create invoice is not enumerated in this ordered list; it is described next and disappears once an invoice exists.\n4. Create invoice acts on the whole work order whatever is selected, carries no count, and disappears once an invoice exists.\n\n---\nThis is the expected behaviour as per epic SV-8683 and story SV-9253 (Story 7, The bulk action bar) and the Simple Flow V2 specification (Confluence page 771391574, revised 8 September 2026), read on 8 September 2026.\nLast checked against build v26.35.9-5700a76 on 9/9/2026.\nAUTOMATION: READY"
-   }
-  }
- },
- "44573": {
-  "title": "Bulk actions confirm/undo per their kind and give one toast each",
-  "fields": {
-   "custom_preconds": {
-    "blocks": [
-     [
-      "1. Sign in as an Owner or Admin (Work Order Lines: Create & Edit, Full View).",
-      "2. Open a work order via top menu \"Work Orders\" -> the \"Work Orders\" tab -> open a work order -> its \"Lines\" tab and select lines/parts that qualify for approve, order and receive; tick the row checkboxes on the lines/parts to raise the bulk action bar (it shows \"N selected\", the primary actions, a \"More\" overflow, and a \"close\" X, replacing the column headers)."
-     ]
-    ],
-    "text": "1. Sign in as an Owner or Admin (Work Order Lines: Create & Edit, Full View).\n2. Open a work order via top menu \"Work Orders\" -> the \"Work Orders\" tab -> open a work order -> its \"Lines\" tab and select lines/parts that qualify for approve, order and receive; tick the row checkboxes on the lines/parts to raise the bulk action bar (it shows \"N selected\", the primary actions, a \"More\" overflow, and a \"close\" X, replacing the column headers)."
-   },
-   "custom_steps": {
-    "blocks": [
-     [
-      "1. Run Approve on a selection and look for an undo.",
-      "2. Run Order parts and look for a confirmation.",
-      "3. Run Receive and observe whether a screen opens."
-     ]
-    ],
-    "text": "1. Run Approve on a selection and look for an undo.\n2. Run Order parts and look for a confirmation.\n3. Run Receive and observe whether a screen opens."
-   },
-   "custom_expected": {
-    "blocks": [
-     [
-      "1. Approve, decline, authorization required, complete and uncomplete apply immediately and offer an undo in the result toast.",
-      "2. Ordering parts and creating an invoice ask for confirmation first and cannot be undone.",
-      "3. Receiving and picking open their own screens, so they neither confirm nor offer undo.",
-      "4. One toast per bulk action, summarising the result."
-     ],
-     [
-      "---",
-      "This is the expected behaviour as per epic SV-8683 and story SV-9253 (Story 7, The bulk action bar) and the Simple Flow V2 specification (Confluence page 771391574, revised 8 September 2026), read on 9 September 2026.",
-      "Last checked against build v26.35.9-5700a76 on 9/9/2026.",
-      "AUTOMATION: READY"
-     ]
-    ],
-    "text": "1. Approve, decline, authorization required, complete and uncomplete apply immediately and offer an undo in the result toast.\n2. Ordering parts and creating an invoice ask for confirmation first and cannot be undone.\n3. Receiving and picking open their own screens, so they neither confirm nor offer undo.\n4. One toast per bulk action, summarising the result.\n\n---\nThis is the expected behaviour as per epic SV-8683 and story SV-9253 (Story 7, The bulk action bar) and the Simple Flow V2 specification (Confluence page 771391574, revised 8 September 2026), read on 9 September 2026.\nLast checked against build v26.35.9-5700a76 on 9/9/2026.\nAUTOMATION: READY"
-   }
-  }
- },
- "44574": {
-  "title": "Bulk bar hidden without permission; empty/zero states handled",
-  "fields": {
-   "custom_preconds": {
-    "blocks": [
-     [
-      "1. For the no-permission check, sign in as TECH@shopview.com whose role has been set for this test (reset the role from Settings -> Roles & Permissions, then assign it to TECH; never change the Admin role) WITHOUT Work Order Lines: Create & Edit.",
-      "2. Separately, as a user WITH it, open a work order via top menu \"Work Orders\" -> the \"Work Orders\" tab -> open a work order -> its \"Lines\" tab and make a selection that qualifies for nothing (e.g. only Complete lines with no eligible action); tick the row checkboxes on the lines/parts to raise the bulk action bar (it shows \"N selected\", the primary actions, a \"More\" overflow, and a \"close\" X, replacing the column headers)."
-     ]
-    ],
-    "text": "1. For the no-permission check, sign in as TECH@shopview.com whose role has been set for this test (reset the role from Settings -> Roles & Permissions, then assign it to TECH; never change the Admin role) WITHOUT Work Order Lines: Create & Edit.\n2. Separately, as a user WITH it, open a work order via top menu \"Work Orders\" -> the \"Work Orders\" tab -> open a work order -> its \"Lines\" tab and make a selection that qualifies for nothing (e.g. only Complete lines with no eligible action); tick the row checkboxes on the lines/parts to raise the bulk action bar (it shows \"N selected\", the primary actions, a \"More\" overflow, and a \"close\" X, replacing the column headers)."
-   },
-   "custom_steps": {
-    "blocks": [
-     [
-      "1. As the user without the permission, look for checkboxes and the bar.",
-      "2. As the permitted user, select lines where nothing applies; and select where only some actions apply."
-     ]
-    ],
-    "text": "1. As the user without the permission, look for checkboxes and the bar.\n2. As the permitted user, select lines where nothing applies; and select where only some actions apply."
-   },
-   "custom_expected": {
-    "blocks": [
-     [
-      "1. A user without WO Lines: Create & Edit sees no checkboxes and no bar.",
-      "2. A count of zero means the button is absent, not greyed out.",
-      "3. If More would be empty, the More button is not rendered.",
-      "4. A selection where nothing applies shows \"n selected\" and \"No actions available for this selection\".",
-      "5. Delete lines is not in the bar this release; Mark as reviewed is never in the bulk bar (it acts on the whole work order)."
-     ],
-     [
-      "---",
-      "This is the expected behaviour as per epic SV-8683 and story SV-9253 (Story 7, The bulk action bar) and the Simple Flow V2 specification (Confluence page 771391574, revised 8 September 2026), read on 9 September 2026.",
-      "Last checked against build v26.35.9-5700a76 on 9/9/2026.",
-      "AUTOMATION: READY"
-     ]
-    ],
-    "text": "1. A user without WO Lines: Create & Edit sees no checkboxes and no bar.\n2. A count of zero means the button is absent, not greyed out.\n3. If More would be empty, the More button is not rendered.\n4. A selection where nothing applies shows \"n selected\" and \"No actions available for this selection\".\n5. Delete lines is not in the bar this release; Mark as reviewed is never in the bulk bar (it acts on the whole work order).\n\n---\nThis is the expected behaviour as per epic SV-8683 and story SV-9253 (Story 7, The bulk action bar) and the Simple Flow V2 specification (Confluence page 771391574, revised 8 September 2026), read on 9 September 2026.\nLast checked against build v26.35.9-5700a76 on 9/9/2026.\nAUTOMATION: READY"
-   }
-  }
- },
- "44575": {
-  "title": "Bulk approve/decline judges each line and never sweeps a declined line",
-  "fields": {
-   "custom_preconds": {
-    "blocks": [
-     [
-      "1. Sign in as an Owner or Admin (completion permission).",
-      "2. Open, via top menu \"Work Orders\" -> the \"Work Orders\" tab -> open a work order -> its \"Lines\" tab, an Approved work order with four labour lines: two Needs Approval, one Approved, one Declined (a new \"New Line\" is Needs Approval; approve/decline via the line's three-dot menu); tick the row checkboxes on the lines/parts to raise the bulk action bar (it shows \"N selected\", the primary actions, a \"More\" overflow, and a \"close\" X, replacing the column headers)."
-     ]
-    ],
-    "text": "1. Sign in as an Owner or Admin (completion permission).\n2. Open, via top menu \"Work Orders\" -> the \"Work Orders\" tab -> open a work order -> its \"Lines\" tab, an Approved work order with four labour lines: two Needs Approval, one Approved, one Declined (a new \"New Line\" is Needs Approval; approve/decline via the line's three-dot menu); tick the row checkboxes on the lines/parts to raise the bulk action bar (it shows \"N selected\", the primary actions, a \"More\" overflow, and a \"close\" X, replacing the column headers)."
-   },
-   "custom_steps": {
-    "blocks": [
-     [
-      "1. Select the mixed set and run Approve.",
-      "2. Run Decline on a selection.",
-      "3. Run Authorization required on a selection."
-     ]
-    ],
-    "text": "1. Select the mixed set and run Approve.\n2. Run Decline on a selection.\n3. Run Authorization required on a selection."
-   },
-   "custom_expected": {
-    "blocks": [
-     [
-      "The already-Approved line is unchanged and the Declined line is STILL Declined"
-     ],
-     [
-      "---",
-      "This is the expected behaviour as per epic SV-8683 and story SV-9254 (Story 8, Bulk approve and decline) and the Simple Flow V2 specification (Confluence page 771391574, revised 8 September 2026), read on 9 September 2026.",
-      "Last checked against build v26.35.9-5700a76 on 9/9/2026.",
-      "AUTOMATION: READY"
-     ]
-    ],
-    "text": "The already-Approved line is unchanged and the Declined line is STILL Declined\n\n---\nThis is the expected behaviour as per epic SV-8683 and story SV-9254 (Story 8, Bulk approve and decline) and the Simple Flow V2 specification (Confluence page 771391574, revised 8 September 2026), read on 9 September 2026.\nLast checked against build v26.35.9-5700a76 on 9/9/2026.\nAUTOMATION: READY"
-   }
-  }
- },
- "44576": {
-  "title": "Bulk approve/decline skips ineligible lines and hides at zero count",
-  "fields": {
-   "custom_preconds": {
-    "blocks": [
-     [
-      "1. Sign in as an Owner or Admin (Work Order Lines: Create & Edit, Full View).",
-      "2. Open a work order via top menu \"Work Orders\" -> the \"Work Orders\" tab -> open a work order -> its \"Lines\" tab. Make a four-line selection where one line holds received parts, and separately a selection made entirely of declined lines; tick the row checkboxes on the lines/parts to raise the bulk action bar (it shows \"N selected\", the primary actions, a \"More\" overflow, and a \"close\" X, replacing the column headers)."
-     ]
-    ],
-    "text": "1. Sign in as an Owner or Admin (Work Order Lines: Create & Edit, Full View).\n2. Open a work order via top menu \"Work Orders\" -> the \"Work Orders\" tab -> open a work order -> its \"Lines\" tab. Make a four-line selection where one line holds received parts, and separately a selection made entirely of declined lines; tick the row checkboxes on the lines/parts to raise the bulk action bar (it shows \"N selected\", the primary actions, a \"More\" overflow, and a \"close\" X, replacing the column headers)."
-   },
-   "custom_steps": {
-    "blocks": [
-     [
-      "1. Decline a four-line selection where one holds received parts.",
-      "2. Look at Approve on a selection of only declined lines."
-     ]
-    ],
-    "text": "1. Decline a four-line selection where one holds received parts.\n2. Look at Approve on a selection of only declined lines."
-   },
-   "custom_expected": {
-    "blocks": [
-     [
-      "1. The four-line decline declines three and reports the fourth - it does not refuse all four.",
-      "2. Lines already in the target status are skipped silently and were never in the count.",
-      "3. A selection made up entirely of declined lines shows no Approve button at all (the count would be zero)."
-     ],
-     [
-      "---",
-      "This is the expected behaviour as per epic SV-8683 and story SV-9254 (Story 8, Bulk approve and decline) and the Simple Flow V2 specification (Confluence page 771391574, revised 8 September 2026), read on 9 September 2026.",
-      "Last checked against build v26.35.9-5700a76 on 9/9/2026.",
-      "AUTOMATION: READY"
-     ]
-    ],
-    "text": "1. The four-line decline declines three and reports the fourth - it does not refuse all four.\n2. Lines already in the target status are skipped silently and were never in the count.\n3. A selection made up entirely of declined lines shows no Approve button at all (the count would be zero).\n\n---\nThis is the expected behaviour as per epic SV-8683 and story SV-9254 (Story 8, Bulk approve and decline) and the Simple Flow V2 specification (Confluence page 771391574, revised 8 September 2026), read on 9 September 2026.\nLast checked against build v26.35.9-5700a76 on 9/9/2026.\nAUTOMATION: READY"
-   }
-  }
- },
- "44577": {
-  "title": "Bulk complete labels and counts follow the selection of Approved lines",
-  "fields": {
-   "custom_preconds": {
-    "blocks": [
-     [
-      "1. Sign in as an Owner or Admin (Work Orders: Create & Edit).",
-      "2. Open a work order via top menu \"Work Orders\" -> the \"Work Orders\" tab -> open a work order -> its \"Lines\" tab. Select Approved lines, some missing a tech story or mileage; and separately select every open line; tick the row checkboxes on the lines/parts to raise the bulk action bar (it shows \"N selected\", the primary actions, a \"More\" overflow, and a \"close\" X, replacing the column headers)."
-     ]
-    ],
-    "text": "1. Sign in as an Owner or Admin (Work Orders: Create & Edit).\n2. Open a work order via top menu \"Work Orders\" -> the \"Work Orders\" tab -> open a work order -> its \"Lines\" tab. Select Approved lines, some missing a tech story or mileage; and separately select every open line; tick the row checkboxes on the lines/parts to raise the bulk action bar (it shows \"N selected\", the primary actions, a \"More\" overflow, and a \"close\" X, replacing the column headers)."
-   },
-   "custom_steps": {
-    "blocks": [
-     [
-      "1. Select one Approved line, then several, then a selection covering every open line, and read the button label each time.",
-      "2. Complete a selection where a tech story/mileage is outstanding.",
-      "3. Complete the last open lines and observe navigation."
-     ]
-    ],
-    "text": "1. Select one Approved line, then several, then a selection covering every open line, and read the button label each time.\n2. Complete a selection where a tech story/mileage is outstanding.\n3. Complete the last open lines and observe navigation."
-   },
-   "custom_expected": {
-    "blocks": [
-     [
-      "1. The label is \"Complete line\" for one, \"Complete lines (n)\" for several, and \"Complete all lines\" when the selection covers every open line.",
-      "2. The count is of Approved lines in the selection; nothing else is counted.",
-      "3. Where something outstanding can be collected (a tech story, a mileage reading), the action opens the completion wizard rather than failing.",
-      "4. Completing the last open lines stops there - no invoice is created and the user is not navigated anywhere.",
-      "5. With review required, this is the action that makes Mark as reviewed appear (review needs every line complete first)."
-     ],
-     [
-      "---",
-      "This is the expected behaviour as per epic SV-8683 and story SV-9255 (Story 9, Bulk complete lines) and the Simple Flow V2 specification (Confluence page 771391574, revised 8 September 2026), read on 9 September 2026.",
-      "Last checked against build v26.35.9-5700a76 on 9/9/2026.",
-      "AUTOMATION: READY"
-     ]
-    ],
-    "text": "1. The label is \"Complete line\" for one, \"Complete lines (n)\" for several, and \"Complete all lines\" when the selection covers every open line.\n2. The count is of Approved lines in the selection; nothing else is counted.\n3. Where something outstanding can be collected (a tech story, a mileage reading), the action opens the completion wizard rather than failing.\n4. Completing the last open lines stops there - no invoice is created and the user is not navigated anywhere.\n5. With review required, this is the action that makes Mark as reviewed appear (review needs every line complete first).\n\n---\nThis is the expected behaviour as per epic SV-8683 and story SV-9255 (Story 9, Bulk complete lines) and the Simple Flow V2 specification (Confluence page 771391574, revised 8 September 2026), read on 9 September 2026.\nLast checked against build v26.35.9-5700a76 on 9/9/2026.\nAUTOMATION: READY"
-   }
-  }
- },
- "44578": {
-  "title": "Bulk delete lines is out of scope this release (no delete action in the bar)",
-  "fields": {
-   "custom_preconds": {
-    "blocks": [
-     [
-      "1. Sign in as an Owner or Admin (Work Order Lines: Create & Edit, Full View).",
-      "2. Open a work order via top menu \"Work Orders\" -> the \"Work Orders\" tab -> open a work order -> its \"Lines\" tab with several lines and select them; tick the row checkboxes on the lines/parts to raise the bulk action bar (it shows \"N selected\", the primary actions, a \"More\" overflow, and a \"close\" X, replacing the column headers)."
-     ]
-    ],
-    "text": "1. Sign in as an Owner or Admin (Work Order Lines: Create & Edit, Full View).\n2. Open a work order via top menu \"Work Orders\" -> the \"Work Orders\" tab -> open a work order -> its \"Lines\" tab with several lines and select them; tick the row checkboxes on the lines/parts to raise the bulk action bar (it shows \"N selected\", the primary actions, a \"More\" overflow, and a \"close\" X, replacing the column headers)."
-   },
-   "custom_steps": {
-    "blocks": [
-     [
-      "1. Select lines and open the bulk action bar and its More menu.",
-      "2. Look for any bulk delete action."
-     ]
-    ],
-    "text": "1. Select lines and open the bulk action bar and its More menu.\n2. Look for any bulk delete action."
-   },
-   "custom_expected": {
-    "blocks": [
-     [
-      "1. The bulk action bar carries no delete action and More does not list one.",
-      "2. Bulk deletion of lines is a documented follow-up (SV-9256), not part of Simple Flow V2.",
-      "3. Single-line delete is unchanged from V1."
-     ],
-     [
-      "---",
-      "This is the expected behaviour as per epic SV-8683 and story SV-9256 (Story 10, Bulk delete lines - out of scope) and the Simple Flow V2 specification (Confluence page 771391574, revised 8 September 2026), read on 9 September 2026.",
-      "Last checked against build v26.35.9-5700a76 on 9/9/2026.",
-      "AUTOMATION: READY"
-     ]
-    ],
-    "text": "1. The bulk action bar carries no delete action and More does not list one.\n2. Bulk deletion of lines is a documented follow-up (SV-9256), not part of Simple Flow V2.\n3. Single-line delete is unchanged from V1.\n\n---\nThis is the expected behaviour as per epic SV-8683 and story SV-9256 (Story 10, Bulk delete lines - out of scope) and the Simple Flow V2 specification (Confluence page 771391574, revised 8 September 2026), read on 9 September 2026.\nLast checked against build v26.35.9-5700a76 on 9/9/2026.\nAUTOMATION: READY"
-   }
-  }
- },
- "44579": {
-  "title": "Bulk order raises a purchase order per vendor and confirms first",
-  "fields": {
-   "custom_preconds": {
-    "blocks": [
-     [
-      "1. Sign in as an Owner or Admin (Order Parts + See Financial Data).",
-      "2. Open a work order via top menu \"Work Orders\" -> the \"Work Orders\" tab -> open a work order -> its \"Lines\" tab and select unordered parts spanning two vendors, plus a Requested part and a vendorless part; tick the row checkboxes on the lines/parts to raise the bulk action bar (it shows \"N selected\", the primary actions, a \"More\" overflow, and a \"close\" X, replacing the column headers)."
-     ]
-    ],
-    "text": "1. Sign in as an Owner or Admin (Order Parts + See Financial Data).\n2. Open a work order via top menu \"Work Orders\" -> the \"Work Orders\" tab -> open a work order -> its \"Lines\" tab and select unordered parts spanning two vendors, plus a Requested part and a vendorless part; tick the row checkboxes on the lines/parts to raise the bulk action bar (it shows \"N selected\", the primary actions, a \"More\" overflow, and a \"close\" X, replacing the column headers)."
-   },
-   "custom_steps": {
-    "blocks": [
-     [
-      "1. Select the parts and run Order.",
-      "2. Confirm and check the purchase orders created."
-     ]
-    ],
-    "text": "1. Select the parts and run Order.\n2. Confirm and check the purchase orders created."
-   },
-   "custom_expected": {
-    "blocks": [
-     [
-      "1. Bulk Order runs the existing single-part order once per selected part; the vendor/PO decision is the existing path.",
-      "2. A selection spanning two vendors produces a purchase order per vendor; a vendor with an open PO on this work order has its parts added to it.",
-      "3. Requested parts are included and counted alongside Quoted and Auth to order (the ordering path moves a Requested part straight to Awaiting).",
-      "4. A part with no vendor is ordered and counted like any other: the PO is created marked Vendor missing and does not sync to QuickBooks until a vendor is assigned.",
-      "5. Ordering asks for confirmation first because a purchase order is a commitment to a supplier and cannot be undone."
-     ],
-     [
-      "---",
-      "This is the expected behaviour as per epic SV-8683 and story SV-9257 (Story 11, Bulk order parts) and the Simple Flow V2 specification (Confluence page 771391574, revised 8 September 2026), read on 9 September 2026.",
-      "Last checked against build v26.35.9-5700a76 on 9/9/2026.",
-      "AUTOMATION: READY"
-     ]
-    ],
-    "text": "1. Bulk Order runs the existing single-part order once per selected part; the vendor/PO decision is the existing path.\n2. A selection spanning two vendors produces a purchase order per vendor; a vendor with an open PO on this work order has its parts added to it.\n3. Requested parts are included and counted alongside Quoted and Auth to order (the ordering path moves a Requested part straight to Awaiting).\n4. A part with no vendor is ordered and counted like any other: the PO is created marked Vendor missing and does not sync to QuickBooks until a vendor is assigned.\n5. Ordering asks for confirmation first because a purchase order is a commitment to a supplier and cannot be undone.\n\n---\nThis is the expected behaviour as per epic SV-8683 and story SV-9257 (Story 11, Bulk order parts) and the Simple Flow V2 specification (Confluence page 771391574, revised 8 September 2026), read on 9 September 2026.\nLast checked against build v26.35.9-5700a76 on 9/9/2026.\nAUTOMATION: READY"
-   }
-  }
- },
- "44580": {
-  "title": "Bulk order skips already-ordered and non-vendor-sourced parts",
+ "44583": {
+  "title": "Receive opens a modal (no navigation) with contents depending on entry point",
   "fields": {
    "custom_preconds": {
     "blocks": [
      [
       "1. Sign in as an Owner or Admin (Order Parts).",
-      "2. Open a work order via top menu \"Work Orders\" -> the \"Work Orders\" tab -> open a work order -> its \"Lines\" tab and select a mix of already-ordered parts, inventory/found parts, and a part with no source; tick the row checkboxes on the lines/parts to raise the bulk action bar (it shows \"N selected\", the primary actions, a \"More\" overflow, and a \"close\" X, replacing the column headers). For the negative check, sign in as TECH@shopview.com whose role has been set for this test (reset the role from Settings -> Roles & Permissions, then assign it to TECH; never change the Admin role) WITHOUT Order Parts."
+      "2. Open, via top menu \"Work Orders\" -> the \"Work Orders\" tab -> open a work order -> its \"Lines\" tab, a work order with a vendor-sourced part that has been ordered and is awaiting receipt (Require Ordering Parts and Require Receiving Parts Before Completion on in Settings -> the \"Work Orders\" tab; add a vendor part to a line and click \"Order\", so its row shows it awaiting receipt).",
+      "3. On the part's row click \"Receive\" to open the \"Receive parts\" modal (fields: \"Assign vendor\", \"Vendor invoice number\", \"Invoice date\", \"Delivery note\"; buttons \"Select all\", \"Receive later\", \"Receive parts (n)\"). The modal's contents depend on the entry point (part row, line menu, bulk action bar, or completion wizard)."
      ]
     ],
-    "text": "1. Sign in as an Owner or Admin (Order Parts).\n2. Open a work order via top menu \"Work Orders\" -> the \"Work Orders\" tab -> open a work order -> its \"Lines\" tab and select a mix of already-ordered parts, inventory/found parts, and a part with no source; tick the row checkboxes on the lines/parts to raise the bulk action bar (it shows \"N selected\", the primary actions, a \"More\" overflow, and a \"close\" X, replacing the column headers). For the negative check, sign in as TECH@shopview.com whose role has been set for this test (reset the role from Settings -> Roles & Permissions, then assign it to TECH; never change the Admin role) WITHOUT Order Parts."
+    "text": "1. Sign in as an Owner or Admin (Order Parts).\n2. Open, via top menu \"Work Orders\" -> the \"Work Orders\" tab -> open a work order -> its \"Lines\" tab, a work order with a vendor-sourced part that has been ordered and is awaiting receipt (Require Ordering Parts and Require Receiving Parts Before Completion on in Settings -> the \"Work Orders\" tab; add a vendor part to a line and click \"Order\", so its row shows it awaiting receipt).\n3. On the part's row click \"Receive\" to open the \"Receive parts\" modal (fields: \"Assign vendor\", \"Vendor invoice number\", \"Invoice date\", \"Delivery note\"; buttons \"Select all\", \"Receive later\", \"Receive parts (n)\"). The modal's contents depend on the entry point (part row, line menu, bulk action bar, or completion wizard)."
    },
    "custom_steps": {
     "blocks": [
      [
-      "1. Run Order on the mixed selection and read the count and result.",
-      "2. As a user without Order Parts, look for the Order action."
+      "1. Open Receive from a part row where the part has a vendor.",
+      "2. From a part row where the part has no vendor.",
+      "3. From a line's menu.",
+      "4. From the bulk action bar (or the completion wizard)."
      ]
     ],
-    "text": "1. Run Order on the mixed selection and read the count and result.\n2. As a user without Order Parts, look for the Order action."
+    "text": "1. Open Receive from a part row where the part has a vendor.\n2. From a part row where the part has no vendor.\n3. From a line's menu.\n4. From the bulk action bar (or the completion wizard)."
    },
    "custom_expected": {
     "blocks": [
      [
-      "1. A part already ordered is excluded from the count and not named in the result (nothing was attempted on it).",
-      "2. Only vendor-sourced parts are placed; an inventory/found part or one with no source is skipped and never counted (it is picked instead, or needs its details completed first).",
-      "3. A user without Order Parts does not see the action, in the bulk bar or on the row."
+      "The part is no longer awaiting receipt: its Awaiting badge is gone, the request drops out of the outstanding listing, and a staged part carries the received quantity"
      ],
      [
       "---",
-      "This is the expected behaviour as per epic SV-8683 and story SV-9257 (Story 11, Bulk order parts) and the Simple Flow V2 specification (Confluence page 771391574, revised 8 September 2026), read on 9 September 2026.",
+      "This is the expected behaviour as per epic SV-8683 and story SV-9259 (Story 13, Receiving from the work order) and the Simple Flow V2 specification (Confluence page 771391574, revised 8 September 2026), read on 9 September 2026.",
       "Last checked against build v26.35.9-5700a76 on 9/9/2026.",
       "AUTOMATION: READY"
      ]
     ],
-    "text": "1. A part already ordered is excluded from the count and not named in the result (nothing was attempted on it).\n2. Only vendor-sourced parts are placed; an inventory/found part or one with no source is skipped and never counted (it is picked instead, or needs its details completed first).\n3. A user without Order Parts does not see the action, in the bulk bar or on the row.\n\n---\nThis is the expected behaviour as per epic SV-8683 and story SV-9257 (Story 11, Bulk order parts) and the Simple Flow V2 specification (Confluence page 771391574, revised 8 September 2026), read on 9 September 2026.\nLast checked against build v26.35.9-5700a76 on 9/9/2026.\nAUTOMATION: READY"
+    "text": "The part is no longer awaiting receipt: its Awaiting badge is gone, the request drops out of the outstanding listing, and a staged part carries the received quantity\n\n---\nThis is the expected behaviour as per epic SV-8683 and story SV-9259 (Story 13, Receiving from the work order) and the Simple Flow V2 specification (Confluence page 771391574, revised 8 September 2026), read on 9 September 2026.\nLast checked against build v26.35.9-5700a76 on 9/9/2026.\nAUTOMATION: READY"
    }
   }
  },
- "44581": {
-  "title": "Bulk pick runs the existing pick atomically for in-stock unpicked parts",
+ "44584": {
+  "title": "Receive requires vendor, invoice number and invoice date; cost and tax prefilled",
   "fields": {
    "custom_preconds": {
     "blocks": [
      [
-      "1. Sign in as an Owner or Admin (Pick Parts).",
-      "2. Open a work order via top menu \"Work Orders\" -> the \"Work Orders\" tab -> open a work order -> its \"Lines\" tab and select several inventory/found parts that are \"In Stock\" and unpicked; tick the row checkboxes on the lines/parts to raise the bulk action bar (it shows \"N selected\", the primary actions, a \"More\" overflow, and a \"close\" X, replacing the column headers)."
+      "1. Sign in as an Owner or Admin (Order Parts).",
+      "2. Open, via top menu \"Work Orders\" -> the \"Work Orders\" tab -> open a work order -> its \"Lines\" tab, a work order with a vendor-sourced part that has been ordered and is awaiting receipt (Require Ordering Parts and Require Receiving Parts Before Completion on in Settings -> the \"Work Orders\" tab; add a vendor part to a line and click \"Order\", so its row shows it awaiting receipt).",
+      "3. On the part's row click \"Receive\" to open the \"Receive parts\" modal (fields: \"Assign vendor\", \"Vendor invoice number\", \"Invoice date\", \"Delivery note\"; buttons \"Select all\", \"Receive later\", \"Receive parts (n)\")."
      ]
     ],
-    "text": "1. Sign in as an Owner or Admin (Pick Parts).\n2. Open a work order via top menu \"Work Orders\" -> the \"Work Orders\" tab -> open a work order -> its \"Lines\" tab and select several inventory/found parts that are \"In Stock\" and unpicked; tick the row checkboxes on the lines/parts to raise the bulk action bar (it shows \"N selected\", the primary actions, a \"More\" overflow, and a \"close\" X, replacing the column headers)."
+    "text": "1. Sign in as an Owner or Admin (Order Parts).\n2. Open, via top menu \"Work Orders\" -> the \"Work Orders\" tab -> open a work order -> its \"Lines\" tab, a work order with a vendor-sourced part that has been ordered and is awaiting receipt (Require Ordering Parts and Require Receiving Parts Before Completion on in Settings -> the \"Work Orders\" tab; add a vendor part to a line and click \"Order\", so its row shows it awaiting receipt).\n3. On the part's row click \"Receive\" to open the \"Receive parts\" modal (fields: \"Assign vendor\", \"Vendor invoice number\", \"Invoice date\", \"Delivery note\"; buttons \"Select all\", \"Receive later\", \"Receive parts (n)\")."
    },
    "custom_steps": {
     "blocks": [
      [
-      "1. Select the parts and run Pick.",
-      "2. Check the inventory movement, bins and history."
+      "1. Expand a vendor card and read the required fields and the per-part editable fields.",
+      "2. Try to receive with the invoice number blank.",
+      "3. Edit a cost and watch for a note."
      ]
     ],
-    "text": "1. Select the parts and run Pick.\n2. Check the inventory movement, bins and history."
+    "text": "1. Expand a vendor card and read the required fields and the per-part editable fields.\n2. Try to receive with the invoice number blank.\n3. Edit a cost and watch for a note."
    },
    "custom_expected": {
     "blocks": [
      [
-      "1. Bulk picking runs the existing pick; the inventory movement, the bin it comes from and the history entry are identical to picking one part.",
-      "2. All picks in one run succeed or fail together, so a partial result never leaves stock half-moved.",
-      "3. Pick is offered whenever a part is In Stock and unpicked, whatever the setting says.",
-      "4. A picked part asks its core question at the moment it is picked, exactly as today (gated by WO Lines: Create & Edit)."
+      "1. An expanded card shows vendor invoice number, invoice date and delivery note on one row, then the parts; the invoice date defaults to today and is editable.",
+      "2. Vendor, vendor invoice number and invoice date are all required; the modal marks them required and disables its receive button until they are filled, rather than submitting into an error.",
+      "3. The delivery note is optional.",
+      "4. Editable per part: part number, quantity received and cost (editing a part number into a catalogue part needs Catalog & Inventory: Create & Edit).",
+      "5. Cost is required and may be zero, arriving prefilled from the purchase order; tax is required and may be zero, prefilled from the vendor's tax rate (falling back to zero when nothing derives it).",
+      "6. Quantity received must be greater than zero, may include decimals, and may exceed what was ordered (the excess is shown but not blocked; the PO absorbs it). Changing cost shows a note that the sell price will update."
      ],
      [
       "---",
-      "This is the expected behaviour as per epic SV-8683 and story SV-9258 (Story 12, Bulk pick parts) and the Simple Flow V2 specification (Confluence page 771391574, revised 8 September 2026), read on 9 September 2026.",
+      "This is the expected behaviour as per epic SV-8683 and story SV-9259 (Story 13, Receiving from the work order) and the Simple Flow V2 specification (Confluence page 771391574, revised 8 September 2026), read on 9 September 2026.",
       "Last checked against build v26.35.9-5700a76 on 9/9/2026.",
       "AUTOMATION: READY"
      ]
     ],
-    "text": "1. Bulk picking runs the existing pick; the inventory movement, the bin it comes from and the history entry are identical to picking one part.\n2. All picks in one run succeed or fail together, so a partial result never leaves stock half-moved.\n3. Pick is offered whenever a part is In Stock and unpicked, whatever the setting says.\n4. A picked part asks its core question at the moment it is picked, exactly as today (gated by WO Lines: Create & Edit).\n\n---\nThis is the expected behaviour as per epic SV-8683 and story SV-9258 (Story 12, Bulk pick parts) and the Simple Flow V2 specification (Confluence page 771391574, revised 8 September 2026), read on 9 September 2026.\nLast checked against build v26.35.9-5700a76 on 9/9/2026.\nAUTOMATION: READY"
+    "text": "1. An expanded card shows vendor invoice number, invoice date and delivery note on one row, then the parts; the invoice date defaults to today and is editable.\n2. Vendor, vendor invoice number and invoice date are all required; the modal marks them required and disables its receive button until they are filled, rather than submitting into an error.\n3. The delivery note is optional.\n4. Editable per part: part number, quantity received and cost (editing a part number into a catalogue part needs Catalog & Inventory: Create & Edit).\n5. Cost is required and may be zero, arriving prefilled from the purchase order; tax is required and may be zero, prefilled from the vendor's tax rate (falling back to zero when nothing derives it).\n6. Quantity received must be greater than zero, may include decimals, and may exceed what was ordered (the excess is shown but not blocked; the PO absorbs it). Changing cost shows a note that the sell price will update.\n\n---\nThis is the expected behaviour as per epic SV-8683 and story SV-9259 (Story 13, Receiving from the work order) and the Simple Flow V2 specification (Confluence page 771391574, revised 8 September 2026), read on 9 September 2026.\nLast checked against build v26.35.9-5700a76 on 9/9/2026.\nAUTOMATION: READY"
    }
   }
  },
- "44582": {
-  "title": "Bulk pick action hidden without Pick Parts permission",
+ "44585": {
+  "title": "Vendor-missing card requires Assign vendor first, applied to ticked parts",
   "fields": {
    "custom_preconds": {
     "blocks": [
      [
-      "1. For the no-permission check, sign in as TECH@shopview.com whose role has been set for this test (reset the role from Settings -> Roles & Permissions, then assign it to TECH; never change the Admin role) WITHOUT Pick Parts.",
-      "2. Open a work order via top menu \"Work Orders\" -> the \"Work Orders\" tab -> open a work order -> its \"Lines\" tab and select pickable parts; tick the row checkboxes on the lines/parts to raise the bulk action bar (it shows \"N selected\", the primary actions, a \"More\" overflow, and a \"close\" X, replacing the column headers)."
+      "1. Sign in as an Owner or Admin (Order Parts + Vendor & Order Mgmt: Create & Edit).",
+      "2. Open, via top menu \"Work Orders\" -> the \"Work Orders\" tab -> open a work order -> its \"Lines\" tab, a work order with a vendor-sourced part that has been ordered and is awaiting receipt (Require Ordering Parts and Require Receiving Parts Before Completion on in Settings -> the \"Work Orders\" tab; add a vendor part to a line and click \"Order\", so its row shows it awaiting receipt). with a part whose vendor is missing.",
+      "3. On the part's row click \"Receive\" to open the \"Receive parts\" modal (fields: \"Assign vendor\", \"Vendor invoice number\", \"Invoice date\", \"Delivery note\"; buttons \"Select all\", \"Receive later\", \"Receive parts (n)\"); use \"Assign vendor\" on the vendor-missing card."
      ]
     ],
-    "text": "1. For the no-permission check, sign in as TECH@shopview.com whose role has been set for this test (reset the role from Settings -> Roles & Permissions, then assign it to TECH; never change the Admin role) WITHOUT Pick Parts.\n2. Open a work order via top menu \"Work Orders\" -> the \"Work Orders\" tab -> open a work order -> its \"Lines\" tab and select pickable parts; tick the row checkboxes on the lines/parts to raise the bulk action bar (it shows \"N selected\", the primary actions, a \"More\" overflow, and a \"close\" X, replacing the column headers)."
+    "text": "1. Sign in as an Owner or Admin (Order Parts + Vendor & Order Mgmt: Create & Edit).\n2. Open, via top menu \"Work Orders\" -> the \"Work Orders\" tab -> open a work order -> its \"Lines\" tab, a work order with a vendor-sourced part that has been ordered and is awaiting receipt (Require Ordering Parts and Require Receiving Parts Before Completion on in Settings -> the \"Work Orders\" tab; add a vendor part to a line and click \"Order\", so its row shows it awaiting receipt). with a part whose vendor is missing.\n3. On the part's row click \"Receive\" to open the \"Receive parts\" modal (fields: \"Assign vendor\", \"Vendor invoice number\", \"Invoice date\", \"Delivery note\"; buttons \"Select all\", \"Receive later\", \"Receive parts (n)\"); use \"Assign vendor\" on the vendor-missing card."
    },
    "custom_steps": {
     "blocks": [
      [
-      "1. Select the parts and look for the Pick action."
+      "1. Expand the vendor-missing card.",
+      "2. Search and assign a vendor to the ticked parts.",
+      "3. Check the untouched parts and the tab order."
      ]
     ],
-    "text": "1. Select the parts and look for the Pick action."
+    "text": "1. Expand the vendor-missing card.\n2. Search and assign a vendor to the ticked parts.\n3. Check the untouched parts and the tab order."
    },
    "custom_expected": {
     "blocks": [
      [
-      "1. A user without Pick Parts does not see the Pick action."
+      "1. Where no vendor is set, Assign vendor is the first field in the form, marked required, as a search field with results below; everything below it is disabled until a vendor is chosen.",
+      "2. Assigning a vendor applies to the ticked parts only; the rest stay in the vendor-missing card.",
+      "3. If the typed vendor name matches nothing, a Create option appears below the results carrying that name. Choosing it opens the usual new-vendor modal with the name already filled in; name and tax rate are required and everything else is optional. On save, the modal closes, the new vendor is selected in the field, and nothing already entered is lost. Cancelling the new-vendor modal returns to the receive form with the typed name still there and no vendor selected. A user without the vendor-management permission sees results only, with no Create option. A vendor created here is a full vendor record and appears on the vendor page like any other.",
+      "4. The cursor starts in the vendor invoice number field when the vendor is known, and in the vendor field when it is not; tab order is identical in both states."
      ],
      [
       "---",
-      "This is the expected behaviour as per epic SV-8683 and story SV-9258 (Story 12, Bulk pick parts) and the Simple Flow V2 specification (Confluence page 771391574, revised 8 September 2026), read on 9 September 2026.",
+      "This is the expected behaviour as per epic SV-8683 and story SV-9259 (Story 13, Receiving from the work order) and the Simple Flow V2 specification (Confluence page 771391574, revised 8 September 2026), read on 8 September 2026.",
       "Last checked against build v26.35.9-5700a76 on 9/9/2026.",
       "AUTOMATION: READY"
      ]
     ],
-    "text": "1. A user without Pick Parts does not see the Pick action.\n\n---\nThis is the expected behaviour as per epic SV-8683 and story SV-9258 (Story 12, Bulk pick parts) and the Simple Flow V2 specification (Confluence page 771391574, revised 8 September 2026), read on 9 September 2026.\nLast checked against build v26.35.9-5700a76 on 9/9/2026.\nAUTOMATION: READY"
+    "text": "1. Where no vendor is set, Assign vendor is the first field in the form, marked required, as a search field with results below; everything below it is disabled until a vendor is chosen.\n2. Assigning a vendor applies to the ticked parts only; the rest stay in the vendor-missing card.\n3. If the typed vendor name matches nothing, a Create option appears below the results carrying that name. Choosing it opens the usual new-vendor modal with the name already filled in; name and tax rate are required and everything else is optional. On save, the modal closes, the new vendor is selected in the field, and nothing already entered is lost. Cancelling the new-vendor modal returns to the receive form with the typed name still there and no vendor selected. A user without the vendor-management permission sees results only, with no Create option. A vendor created here is a full vendor record and appears on the vendor page like any other.\n4. The cursor starts in the vendor invoice number field when the vendor is known, and in the vendor field when it is not; tab order is identical in both states.\n\n---\nThis is the expected behaviour as per epic SV-8683 and story SV-9259 (Story 13, Receiving from the work order) and the Simple Flow V2 specification (Confluence page 771391574, revised 8 September 2026), read on 8 September 2026.\nLast checked against build v26.35.9-5700a76 on 9/9/2026.\nAUTOMATION: READY"
    }
   }
  },
- "53486": {
-  "title": "Deselect all keeps the bar, close dismisses it; an empty group shows no divider",
+ "44586": {
+  "title": "One invoice number belongs to one PO; two POs make two bills, same number",
   "fields": {
    "custom_preconds": {
     "blocks": [
      [
-      "1. Sign in as an Owner or Admin (Work Order Lines: Create & Edit, Full View).",
-      "2. Open a work order via top menu \"Work Orders\" -> the \"Work Orders\" tab -> open a work order -> its \"Lines\" tab that has several lines and parts, so both a line group and a parts group can appear in the bulk action bar; tick the row checkboxes on the lines/parts to raise the bulk action bar (it shows \"N selected\", the primary actions, a \"More\" overflow, and a \"close\" X, replacing the column headers)."
+      "1. Sign in as an Owner or Admin (Order Parts).",
+      "2. Open, via top menu \"Work Orders\" -> the \"Work Orders\" tab -> open a work order -> its \"Lines\" tab, a work order with a vendor-sourced part that has been ordered and is awaiting receipt (Require Ordering Parts and Require Receiving Parts Before Completion on in Settings -> the \"Work Orders\" tab; add a vendor part to a line and click \"Order\", so its row shows it awaiting receipt). with parts across two purchase orders.",
+      "3. On the part's row click \"Receive\" to open the \"Receive parts\" modal (fields: \"Assign vendor\", \"Vendor invoice number\", \"Invoice date\", \"Delivery note\"; buttons \"Select all\", \"Receive later\", \"Receive parts (n)\")."
      ]
     ],
-    "text": "1. Sign in as an Owner or Admin (Work Order Lines: Create & Edit, Full View).\n2. Open a work order via top menu \"Work Orders\" -> the \"Work Orders\" tab -> open a work order -> its \"Lines\" tab that has several lines and parts, so both a line group and a parts group can appear in the bulk action bar; tick the row checkboxes on the lines/parts to raise the bulk action bar (it shows \"N selected\", the primary actions, a \"More\" overflow, and a \"close\" X, replacing the column headers)."
+    "text": "1. Sign in as an Owner or Admin (Order Parts).\n2. Open, via top menu \"Work Orders\" -> the \"Work Orders\" tab -> open a work order -> its \"Lines\" tab, a work order with a vendor-sourced part that has been ordered and is awaiting receipt (Require Ordering Parts and Require Receiving Parts Before Completion on in Settings -> the \"Work Orders\" tab; add a vendor part to a line and click \"Order\", so its row shows it awaiting receipt). with parts across two purchase orders.\n3. On the part's row click \"Receive\" to open the \"Receive parts\" modal (fields: \"Assign vendor\", \"Vendor invoice number\", \"Invoice date\", \"Delivery note\"; buttons \"Select all\", \"Receive later\", \"Receive parts (n)\")."
    },
    "custom_steps": {
     "blocks": [
      [
-      "1. Select several lines, then press Deselect all.",
-      "2. Select again, then press the close control.",
-      "3. Make a selection where only a line action applies and no parts action does, and look at the dividers."
+      "1. Open the receive modal on that vendor's card.",
+      "2. Enter one invoice number and receive."
      ]
     ],
-    "text": "1. Select several lines, then press Deselect all.\n2. Select again, then press the close control.\n3. Make a selection where only a line action applies and no parts action does, and look at the dividers."
+    "text": "1. Open the receive modal on that vendor's card.\n2. Enter one invoice number and receive."
    },
    "custom_expected": {
     "blocks": [
      [
-      "1. Deselect all clears the selection but leaves the bar in place; the column headers return.",
-      "2. The close control clears the selection and dismisses the bar; the column headers return, exactly as with Deselect all.",
-      "3. A group that is holding nothing renders no divider and takes no space, so the bar reads the same whatever it holds."
+      "1. A vendor bill always belongs to one purchase order.",
+      "2. Where one vendor's parts sit on two purchase orders, the card still shows one invoice number field, and receiving produces two vendor bills carrying that same invoice number.",
+      "3. The card says so before the user confirms.",
+      "4. Receiving uses the existing pipeline, so the vendor bill reaches the accounting system as it does today."
      ],
      [
       "---",
-      "This is the expected behaviour as per epic SV-8683 and story SV-9253 (Story 7, The bulk action bar) and the Simple Flow V2 specification (Confluence page 771391574, revised 8 September 2026), read on 8 September 2026.",
+      "This is the expected behaviour as per epic SV-8683 and story SV-9259 (Story 13, Receiving from the work order) and the Simple Flow V2 specification (Confluence page 771391574, revised 8 September 2026), read on 9 September 2026.",
       "Last checked against build v26.35.9-5700a76 on 9/9/2026.",
       "AUTOMATION: READY"
      ]
     ],
-    "text": "1. Deselect all clears the selection but leaves the bar in place; the column headers return.\n2. The close control clears the selection and dismisses the bar; the column headers return, exactly as with Deselect all.\n3. A group that is holding nothing renders no divider and takes no space, so the bar reads the same whatever it holds.\n\n---\nThis is the expected behaviour as per epic SV-8683 and story SV-9253 (Story 7, The bulk action bar) and the Simple Flow V2 specification (Confluence page 771391574, revised 8 September 2026), read on 8 September 2026.\nLast checked against build v26.35.9-5700a76 on 9/9/2026.\nAUTOMATION: READY"
+    "text": "1. A vendor bill always belongs to one purchase order.\n2. Where one vendor's parts sit on two purchase orders, the card still shows one invoice number field, and receiving produces two vendor bills carrying that same invoice number.\n3. The card says so before the user confirms.\n4. Receiving uses the existing pipeline, so the vendor bill reaches the accounting system as it does today.\n\n---\nThis is the expected behaviour as per epic SV-8683 and story SV-9259 (Story 13, Receiving from the work order) and the Simple Flow V2 specification (Confluence page 771391574, revised 8 September 2026), read on 9 September 2026.\nLast checked against build v26.35.9-5700a76 on 9/9/2026.\nAUTOMATION: READY"
+   }
+  }
+ },
+ "44587": {
+  "title": "A user without See Financial Data can still receive; money fields removed",
+  "fields": {
+   "custom_preconds": {
+    "blocks": [
+     [
+      "1. For this check, sign in as TECH@shopview.com whose role is set for this test (reset the role from Settings -> Roles & Permissions, then assign it to TECH; never change the Admin role) with See Financial Data OFF but Work Orders View + Order/Receive Parts ON.",
+      "2. Open, via top menu \"Work Orders\" -> the \"Work Orders\" tab -> open a work order -> its \"Lines\" tab, a work order with a vendor-sourced part that has been ordered and is awaiting receipt (Require Ordering Parts and Require Receiving Parts Before Completion on in Settings -> the \"Work Orders\" tab; add a vendor part to a line and click \"Order\", so its row shows it awaiting receipt).",
+      "3. On the part's row click \"Receive\" to open the \"Receive parts\" modal (fields: \"Assign vendor\", \"Vendor invoice number\", \"Invoice date\", \"Delivery note\"; buttons \"Select all\", \"Receive later\", \"Receive parts (n)\") and confirm the money fields (cost, tax, sell) are removed while receiving still works."
+     ]
+    ],
+    "text": "1. For this check, sign in as TECH@shopview.com whose role is set for this test (reset the role from Settings -> Roles & Permissions, then assign it to TECH; never change the Admin role) with See Financial Data OFF but Work Orders View + Order/Receive Parts ON.\n2. Open, via top menu \"Work Orders\" -> the \"Work Orders\" tab -> open a work order -> its \"Lines\" tab, a work order with a vendor-sourced part that has been ordered and is awaiting receipt (Require Ordering Parts and Require Receiving Parts Before Completion on in Settings -> the \"Work Orders\" tab; add a vendor part to a line and click \"Order\", so its row shows it awaiting receipt).\n3. On the part's row click \"Receive\" to open the \"Receive parts\" modal (fields: \"Assign vendor\", \"Vendor invoice number\", \"Invoice date\", \"Delivery note\"; buttons \"Select all\", \"Receive later\", \"Receive parts (n)\") and confirm the money fields (cost, tax, sell) are removed while receiving still works."
+   },
+   "custom_steps": {
+    "blocks": [
+     [
+      "1. Open the receive modal as this user.",
+      "2. Look for cost and tax fields and try to receive."
+     ]
+    ],
+    "text": "1. Open the receive modal as this user.\n2. Look for cost and tax fields and try to receive."
+   },
+   "custom_expected": {
+    "blocks": [
+     [
+      "The persisted part cost read back over the API equals the purchase order's cost, not zero"
+     ],
+     [
+      "---",
+      "This is the expected behaviour as per epic SV-8683 and story SV-9259 (Story 13, Receiving from the work order) and the Simple Flow V2 specification (Confluence page 771391574, revised 8 September 2026), read on 9 September 2026.",
+      "Last checked against build v26.35.9-5700a76 on 9/9/2026.",
+      "AUTOMATION: READY"
+     ]
+    ],
+    "text": "The persisted part cost read back over the API equals the purchase order's cost, not zero\n\n---\nThis is the expected behaviour as per epic SV-8683 and story SV-9259 (Story 13, Receiving from the work order) and the Simple Flow V2 specification (Confluence page 771391574, revised 8 September 2026), read on 9 September 2026.\nLast checked against build v26.35.9-5700a76 on 9/9/2026.\nAUTOMATION: READY"
+   }
+  }
+ },
+ "44588": {
+  "title": "Receive modal rejects invalid parts, unordered/unapproved, and post-invoice",
+  "fields": {
+   "custom_preconds": {
+    "blocks": [
+     [
+      "1. Sign in as an Owner or Admin (Order Parts).",
+      "2. Open, via top menu \"Work Orders\" -> the \"Work Orders\" tab -> open a work order -> its \"Lines\" tab, a work order with a vendor-sourced part that has been ordered and is awaiting receipt (Require Ordering Parts and Require Receiving Parts Before Completion on in Settings -> the \"Work Orders\" tab; add a vendor part to a line and click \"Order\", so its row shows it awaiting receipt).; also have an unordered/unapproved part and an invoiced work order for the negative checks.",
+      "3. On the part's row click \"Receive\" to open the \"Receive parts\" modal (fields: \"Assign vendor\", \"Vendor invoice number\", \"Invoice date\", \"Delivery note\"; buttons \"Select all\", \"Receive later\", \"Receive parts (n)\")."
+     ]
+    ],
+    "text": "1. Sign in as an Owner or Admin (Order Parts).\n2. Open, via top menu \"Work Orders\" -> the \"Work Orders\" tab -> open a work order -> its \"Lines\" tab, a work order with a vendor-sourced part that has been ordered and is awaiting receipt (Require Ordering Parts and Require Receiving Parts Before Completion on in Settings -> the \"Work Orders\" tab; add a vendor part to a line and click \"Order\", so its row shows it awaiting receipt).; also have an unordered/unapproved part and an invoiced work order for the negative checks.\n3. On the part's row click \"Receive\" to open the \"Receive parts\" modal (fields: \"Assign vendor\", \"Vendor invoice number\", \"Invoice date\", \"Delivery note\"; buttons \"Select all\", \"Receive later\", \"Receive parts (n)\")."
+   },
+   "custom_steps": {
+    "blocks": [
+     [
+      "1. Try to receive a card containing a part with no part number.",
+      "2. Enter quantity zero (or negative).",
+      "3. Check whether unordered/unapproved parts appear.",
+      "4. Invoice the work order mid-session, then try to receive.",
+      "5. Open Receive on a work order with nothing awaiting."
+     ]
+    ],
+    "text": "1. Try to receive a card containing a part with no part number.\n2. Enter quantity zero (or negative).\n3. Check whether unordered/unapproved parts appear.\n4. Invoice the work order mid-session, then try to receive.\n5. Open Receive on a work order with nothing awaiting."
+   },
+   "custom_expected": {
+    "blocks": [
+     [
+      "1. A part with no part number is outlined red and its card cannot be received until it is filled.",
+      "2. Quantity of zero or a negative number is rejected.",
+      "3. Parts not yet ordered, and parts on lines that are not approved, are never included.",
+      "4. Where every part in a card is unticked, that card's receive is disabled; one invoice number never spans two vendors.",
+      "5. There is no way to receive without a vendor bill (a user with parts but no paperwork uses Received later).",
+      "6. If the work order is invoiced mid-session, receiving is refused with the reason; the empty state reads \"Nothing to receive\"."
+     ],
+     [
+      "---",
+      "This is the expected behaviour as per epic SV-8683 and story SV-9259 (Story 13, Receiving from the work order) and the Simple Flow V2 specification (Confluence page 771391574, revised 8 September 2026), read on 9 September 2026.",
+      "Last checked against build v26.35.9-5700a76 on 9/9/2026.",
+      "AUTOMATION: READY"
+     ]
+    ],
+    "text": "1. A part with no part number is outlined red and its card cannot be received until it is filled.\n2. Quantity of zero or a negative number is rejected.\n3. Parts not yet ordered, and parts on lines that are not approved, are never included.\n4. Where every part in a card is unticked, that card's receive is disabled; one invoice number never spans two vendors.\n5. There is no way to receive without a vendor bill (a user with parts but no paperwork uses Received later).\n6. If the work order is invoiced mid-session, receiving is refused with the reason; the empty state reads \"Nothing to receive\".\n\n---\nThis is the expected behaviour as per epic SV-8683 and story SV-9259 (Story 13, Receiving from the work order) and the Simple Flow V2 specification (Confluence page 771391574, revised 8 September 2026), read on 9 September 2026.\nLast checked against build v26.35.9-5700a76 on 9/9/2026.\nAUTOMATION: READY"
+   }
+  }
+ },
+ "53487": {
+  "title": "A vendor can be corrected until a part is received, then it is fixed",
+  "fields": {
+   "custom_preconds": {
+    "blocks": [
+     [
+      "1. Sign in as an Owner or Admin (Order Parts + Vendor & Order Mgmt: Create & Edit).",
+      "2. Open, via top menu \"Work Orders\" -> the \"Work Orders\" tab -> open a work order -> its \"Lines\" tab, a work order with a vendor-sourced part that has been ordered and is awaiting receipt (Require Ordering Parts and Require Receiving Parts Before Completion on in Settings -> the \"Work Orders\" tab; add a vendor part to a line and click \"Order\", so its row shows it awaiting receipt).",
+      "3. On the part's row click \"Receive\" to open the \"Receive parts\" modal (fields: \"Assign vendor\", \"Vendor invoice number\", \"Invoice date\", \"Delivery note\"; buttons \"Select all\", \"Receive later\", \"Receive parts (n)\"); correct the vendor before the part is received, then receive it."
+     ]
+    ],
+    "text": "1. Sign in as an Owner or Admin (Order Parts + Vendor & Order Mgmt: Create & Edit).\n2. Open, via top menu \"Work Orders\" -> the \"Work Orders\" tab -> open a work order -> its \"Lines\" tab, a work order with a vendor-sourced part that has been ordered and is awaiting receipt (Require Ordering Parts and Require Receiving Parts Before Completion on in Settings -> the \"Work Orders\" tab; add a vendor part to a line and click \"Order\", so its row shows it awaiting receipt).\n3. On the part's row click \"Receive\" to open the \"Receive parts\" modal (fields: \"Assign vendor\", \"Vendor invoice number\", \"Invoice date\", \"Delivery note\"; buttons \"Select all\", \"Receive later\", \"Receive parts (n)\"); correct the vendor before the part is received, then receive it."
+   },
+   "custom_steps": {
+    "blocks": [
+     [
+      "1. On the unreceived purchase order, change the assigned vendor.",
+      "2. On the one with a received part, look for a way to change the vendor.",
+      "3. Attempt to receive a part against a vendor different from the one already recorded."
+     ]
+    ],
+    "text": "1. On the unreceived purchase order, change the assigned vendor.\n2. On the one with a received part, look for a way to change the vendor.\n3. Attempt to receive a part against a vendor different from the one already recorded."
+   },
+   "custom_expected": {
+    "blocks": [
+     [
+      "1. While the purchase order has no received parts, its assigned vendor can be replaced.",
+      "2. Once any part on it is received, its vendor is fixed - there is no way to change it, because it belongs to that delivery and that vendor's bill.",
+      "3. A purchase order that already carries a named vendor offers no change of vendor at all; parts that genuinely belong to another supplier are removed and ordered again.",
+      "4. A receive is refused if it names a vendor different from the one already recorded against a received part; the rule holds on the back end, not only on screen."
+     ],
+     [
+      "---",
+      "This is the expected behaviour as per epic SV-8683 and story SV-9259 (Story 13, Receiving from the work order) and the Simple Flow V2 specification (Confluence page 771391574, revised 8 September 2026), read on 8 September 2026.",
+      "Last checked against build v26.35.9-5700a76 on 9/9/2026.",
+      "AUTOMATION: READY"
+     ]
+    ],
+    "text": "1. While the purchase order has no received parts, its assigned vendor can be replaced.\n2. Once any part on it is received, its vendor is fixed - there is no way to change it, because it belongs to that delivery and that vendor's bill.\n3. A purchase order that already carries a named vendor offers no change of vendor at all; parts that genuinely belong to another supplier are removed and ordered again.\n4. A receive is refused if it names a vendor different from the one already recorded against a received part; the rule holds on the back end, not only on screen.\n\n---\nThis is the expected behaviour as per epic SV-8683 and story SV-9259 (Story 13, Receiving from the work order) and the Simple Flow V2 specification (Confluence page 771391574, revised 8 September 2026), read on 8 September 2026.\nLast checked against build v26.35.9-5700a76 on 9/9/2026.\nAUTOMATION: READY"
+   }
+  }
+ },
+ "44592": {
+  "title": "Receive becomes a split button offering Received later, chosen per part",
+  "fields": {
+   "custom_preconds": {
+    "blocks": [
+     [
+      "1. Sign in as an Owner or Admin with the Received later permission and Order Parts; Require Receiving Parts Before Completion is on (Settings -> the \"Work Orders\" tab).",
+      "2. Open, via top menu \"Work Orders\" -> the \"Work Orders\" tab -> open a work order -> its \"Lines\" tab, a work order with a vendor-sourced part that has been ordered and is awaiting receipt (Require Ordering Parts and Require Receiving Parts Before Completion on in Settings -> the \"Work Orders\" tab; add a vendor part to a line and click \"Order\", so its row shows it awaiting receipt).",
+      "3. On the part row the Receive control is a split button: \"Receive\", a divider, and a caret offering \"Received later\" (also in the bulk action bar and the completion wizard's receive step). It is chosen per part inside the \"Receive parts\" modal via \"Receive later\"."
+     ]
+    ],
+    "text": "1. Sign in as an Owner or Admin with the Received later permission and Order Parts; Require Receiving Parts Before Completion is on (Settings -> the \"Work Orders\" tab).\n2. Open, via top menu \"Work Orders\" -> the \"Work Orders\" tab -> open a work order -> its \"Lines\" tab, a work order with a vendor-sourced part that has been ordered and is awaiting receipt (Require Ordering Parts and Require Receiving Parts Before Completion on in Settings -> the \"Work Orders\" tab; add a vendor part to a line and click \"Order\", so its row shows it awaiting receipt).\n3. On the part row the Receive control is a split button: \"Receive\", a divider, and a caret offering \"Received later\" (also in the bulk action bar and the completion wizard's receive step). It is chosen per part inside the \"Receive parts\" modal via \"Receive later\"."
+   },
+   "custom_steps": {
+    "blocks": [
+     [
+      "1. On a part row (and in the bulk bar and the wizard's receive step), open the Receive split button's caret.",
+      "2. Choose Received later for the part without a bill.",
+      "3. Check the part's state and the completion requirement."
+     ]
+    ],
+    "text": "1. On a part row (and in the bulk bar and the wizard's receive step), open the Receive split button's caret.\n2. Choose Received later for the part without a bill.\n3. Check the part's state and the completion requirement."
+   },
+   "custom_expected": {
+    "blocks": [
+     [
+      "1. Receive is a split button: Receive, a divider, and a caret offering Received later, available on the part row, in the bulk action bar and on the wizard's receive step.",
+      "2. It is chosen per part, never for a whole card at once, so a mixed delivery is recorded truthfully in one pass.",
+      "3. Choosing it sets the part to Received later, removes its Receive affordance from the row and confirms with a toast.",
+      "4. A part in that state satisfies the completion requirement, so the work order is no longer blocked by it.",
+      "5. It stays receivable later from its ... menu, and receiving it then asks for the invoice number as normal.",
+      "6. Deferring several at once applies straight away with a toast stating how many were deferred; a deferred part keeps counting in the Waiting on Parts column."
+     ],
+     [
+      "---",
+      "This is the expected behaviour as per epic SV-8683 and story SV-9261 (Story 15, Receive later) and the Simple Flow V2 specification (Confluence page 771391574, revised 8 September 2026), read on 9 September 2026.",
+      "Last checked against build v26.35.9-5700a76 on 9/9/2026.",
+      "AUTOMATION: READY"
+     ]
+    ],
+    "text": "1. Receive is a split button: Receive, a divider, and a caret offering Received later, available on the part row, in the bulk action bar and on the wizard's receive step.\n2. It is chosen per part, never for a whole card at once, so a mixed delivery is recorded truthfully in one pass.\n3. Choosing it sets the part to Received later, removes its Receive affordance from the row and confirms with a toast.\n4. A part in that state satisfies the completion requirement, so the work order is no longer blocked by it.\n5. It stays receivable later from its ... menu, and receiving it then asks for the invoice number as normal.\n6. Deferring several at once applies straight away with a toast stating how many were deferred; a deferred part keeps counting in the Waiting on Parts column.\n\n---\nThis is the expected behaviour as per epic SV-8683 and story SV-9261 (Story 15, Receive later) and the Simple Flow V2 specification (Confluence page 771391574, revised 8 September 2026), read on 9 September 2026.\nLast checked against build v26.35.9-5700a76 on 9/9/2026.\nAUTOMATION: READY"
+   }
+  }
+ },
+ "44593": {
+  "title": "Without the permission or the setting, no Received later option appears",
+  "fields": {
+   "custom_preconds": {
+    "blocks": [
+     [
+      "1. For the no-permission check, sign in as TECH@shopview.com whose role is set for this test (reset the role from Settings -> Roles & Permissions, then assign it to TECH; never change the Admin role) WITHOUT the Received later permission; and separately, with Require Receiving Parts Before Completion OFF (Settings -> the \"Work Orders\" tab).",
+      "2. Open, via top menu \"Work Orders\" -> the \"Work Orders\" tab -> open a work order -> its \"Lines\" tab, a work order with a vendor-sourced part that has been ordered and is awaiting receipt (Require Ordering Parts and Require Receiving Parts Before Completion on in Settings -> the \"Work Orders\" tab; add a vendor part to a line and click \"Order\", so its row shows it awaiting receipt).",
+      "3. Look at the Receive control on the part row and in the \"Receive parts\" modal for any \"Received later\" option."
+     ]
+    ],
+    "text": "1. For the no-permission check, sign in as TECH@shopview.com whose role is set for this test (reset the role from Settings -> Roles & Permissions, then assign it to TECH; never change the Admin role) WITHOUT the Received later permission; and separately, with Require Receiving Parts Before Completion OFF (Settings -> the \"Work Orders\" tab).\n2. Open, via top menu \"Work Orders\" -> the \"Work Orders\" tab -> open a work order -> its \"Lines\" tab, a work order with a vendor-sourced part that has been ordered and is awaiting receipt (Require Ordering Parts and Require Receiving Parts Before Completion on in Settings -> the \"Work Orders\" tab; add a vendor part to a line and click \"Order\", so its row shows it awaiting receipt).\n3. Look at the Receive control on the part row and in the \"Receive parts\" modal for any \"Received later\" option."
+   },
+   "custom_steps": {
+    "blocks": [
+     [
+      "1. As a user without the permission, look at the Receive control.",
+      "2. With the receiving setting off, look for the split button.",
+      "3. Check the part's ... menu while the split button shows."
+     ]
+    ],
+    "text": "1. As a user without the permission, look at the Receive control.\n2. With the receiving setting off, look for the split button.\n3. Check the part's ... menu while the split button shows."
+   },
+   "custom_expected": {
+    "blocks": [
+     [
+      "1. Without the permission, Receive is a plain button with no caret anywhere, and a missing vendor bill has no workaround.",
+      "2. With Require receiving off there is nothing to defer and no split button appears.",
+      "3. Received later is never duplicated in the part's ... menu while the split button is showing.",
+      "4. Deferring does not create a vendor bill, move stock or touch the accounting system - it records that the paperwork is outstanding and nothing else."
+     ],
+     [
+      "---",
+      "This is the expected behaviour as per epic SV-8683 and story SV-9261 (Story 15, Receive later) and the Simple Flow V2 specification (Confluence page 771391574, revised 8 September 2026), read on 9 September 2026.",
+      "Last checked against build v26.35.9-5700a76 on 9/9/2026.",
+      "AUTOMATION: READY"
+     ]
+    ],
+    "text": "1. Without the permission, Receive is a plain button with no caret anywhere, and a missing vendor bill has no workaround.\n2. With Require receiving off there is nothing to defer and no split button appears.\n3. Received later is never duplicated in the part's ... menu while the split button is showing.\n4. Deferring does not create a vendor bill, move stock or touch the accounting system - it records that the paperwork is outstanding and nothing else.\n\n---\nThis is the expected behaviour as per epic SV-8683 and story SV-9261 (Story 15, Receive later) and the Simple Flow V2 specification (Confluence page 771391574, revised 8 September 2026), read on 9 September 2026.\nLast checked against build v26.35.9-5700a76 on 9/9/2026.\nAUTOMATION: READY"
+   }
+  }
+ },
+ "53489": {
+  "title": "Deferring a part with a core: the core follows the parent, never its own choice",
+  "fields": {
+   "custom_preconds": {
+    "blocks": [
+     [
+      "1. Sign in as an Owner or Admin with the Received later permission and Order Parts.",
+      "2. Open, via top menu \"Work Orders\" -> the \"Work Orders\" tab -> open a work order -> its \"Lines\" tab, a work order with a vendor-sourced part that has been ordered and is awaiting receipt (Require Ordering Parts and Require Receiving Parts Before Completion on in Settings -> the \"Work Orders\" tab; add a vendor part to a line and click \"Order\", so its row shows it awaiting receipt). with a part that carries a core.",
+      "3. On the part's row click \"Receive\" to open the \"Receive parts\" modal (fields: \"Assign vendor\", \"Vendor invoice number\", \"Invoice date\", \"Delivery note\"; buttons \"Select all\", \"Receive later\", \"Receive parts (n)\") and choose \"Received later\" for the parent part."
+     ]
+    ],
+    "text": "1. Sign in as an Owner or Admin with the Received later permission and Order Parts.\n2. Open, via top menu \"Work Orders\" -> the \"Work Orders\" tab -> open a work order -> its \"Lines\" tab, a work order with a vendor-sourced part that has been ordered and is awaiting receipt (Require Ordering Parts and Require Receiving Parts Before Completion on in Settings -> the \"Work Orders\" tab; add a vendor part to a line and click \"Order\", so its row shows it awaiting receipt). with a part that carries a core.\n3. On the part's row click \"Receive\" to open the \"Receive parts\" modal (fields: \"Assign vendor\", \"Vendor invoice number\", \"Invoice date\", \"Delivery note\"; buttons \"Select all\", \"Receive later\", \"Receive parts (n)\") and choose \"Received later\" for the parent part."
+   },
+   "custom_steps": {
+    "blocks": [
+     [
+      "1. Choose Received later on the parent part and check the core sibling's state and row.",
+      "2. Look at the line's completion requirement.",
+      "3. Receive the parent later and check the core.",
+      "4. Defer a part whose core is already resolved."
+     ]
+    ],
+    "text": "1. Choose Received later on the parent part and check the core sibling's state and row.\n2. Look at the line's completion requirement.\n3. Receive the parent later and check the core.\n4. Defer a part whose core is already resolved."
+   },
+   "custom_expected": {
+    "blocks": [
+     [
+      "1. Choosing Received later on the parent puts its core sibling into the same \"Received later\" state, so the pair stays consistent and neither blocks completion on its own.",
+      "2. The core is never offered a Received later choice of its own - while its parent is deferred it carries no caret and no row action, and it never appears as a separate row.",
+      "3. Deferring a part with a core moves no stock and creates no core credit; nothing about the core's value is decided until the parent is received.",
+      "4. Receiving the parent later resolves the core with it, in the same pass and under the same invoice number.",
+      "5. An unresolved core is still asked for before the line completes, exactly as when receiving is not required - deferring the receive defers the paperwork, not the core decision.",
+      "6. A part whose core is already resolved defers like any other part."
+     ],
+     [
+      "---",
+      "This is the expected behaviour as per epic SV-8683 and story SV-9261 (Story 15, Receive later) and the Simple Flow V2 specification (Confluence page 771391574, revised 8 September 2026), read on 8 September 2026.",
+      "Last checked against build v26.35.9-5700a76 on 9/9/2026.",
+      "AUTOMATION: READY"
+     ]
+    ],
+    "text": "1. Choosing Received later on the parent puts its core sibling into the same \"Received later\" state, so the pair stays consistent and neither blocks completion on its own.\n2. The core is never offered a Received later choice of its own - while its parent is deferred it carries no caret and no row action, and it never appears as a separate row.\n3. Deferring a part with a core moves no stock and creates no core credit; nothing about the core's value is decided until the parent is received.\n4. Receiving the parent later resolves the core with it, in the same pass and under the same invoice number.\n5. An unresolved core is still asked for before the line completes, exactly as when receiving is not required - deferring the receive defers the paperwork, not the core decision.\n6. A part whose core is already resolved defers like any other part.\n\n---\nThis is the expected behaviour as per epic SV-8683 and story SV-9261 (Story 15, Receive later) and the Simple Flow V2 specification (Confluence page 771391574, revised 8 September 2026), read on 8 September 2026.\nLast checked against build v26.35.9-5700a76 on 9/9/2026.\nAUTOMATION: READY"
    }
   }
  }

@@ -1,0 +1,26 @@
+[
+ {
+  "id": 44592,
+  "title": "Receive becomes a split button offering Received later, chosen per part",
+  "atm": 1,
+  "pre": "1. You are signed in with the Received later permission and Order Parts.\n2. Require receiving parts before completion is on; a delivery has some parts with a bill and one without.",
+  "steps": "1. On a part row (and in the bulk bar and the wizard's receive step), open the Receive split button's caret.\n2. Choose Received later for the part without a bill.\n3. Check the part's state and the completion requirement.",
+  "exp": "1. Receive is a split button: Receive, a divider, and a caret offering Received later, available on the part row, in the bulk action bar and on the wizard's receive step.\n2. It is chosen per part, never for a whole card at once, so a mixed delivery is recorded truthfully in one pass.\n3. Choosing it sets the part to Received later, removes its Receive affordance from the row and confirms with a toast.\n4. A part in that state satisfies the completion requirement, so the work order is no longer blocked by it.\n5. It stays receivable later from its ... menu, and receiving it then asks for the invoice number as normal.\n6. Deferring several at once applies straight away with a toast stating how many were deferred; a deferred part keeps counting in the Waiting on Parts column.\n---\nThis is the expected behaviour as per epic SV-8683 and story SV-9261 (Story 15, Receive later) and the Simple Flow V2 specification (Confluence page 771391574, revised 8 September 2026), read on 9 September 2026.\nAUTOMATION: Not available on Build to test Yet - Last checked 9/9/2026"
+ },
+ {
+  "id": 44593,
+  "title": "Without the permission or the setting, no Received later option appears",
+  "atm": 1,
+  "pre": "1. A user without the Received later permission is signed in; and separately, Require receiving parts before completion is off.\n2. A part is awaiting receipt.",
+  "steps": "1. As a user without the permission, look at the Receive control.\n2. With the receiving setting off, look for the split button.\n3. Check the part's ... menu while the split button shows.",
+  "exp": "1. Without the permission, Receive is a plain button with no caret anywhere, and a missing vendor bill has no workaround.\n2. With Require receiving off there is nothing to defer and no split button appears.\n3. Received later is never duplicated in the part's ... menu while the split button is showing.\n4. Deferring does not create a vendor bill, move stock or touch the accounting system - it records that the paperwork is outstanding and nothing else.\n---\nThis is the expected behaviour as per epic SV-8683 and story SV-9261 (Story 15, Receive later) and the Simple Flow V2 specification (Confluence page 771391574, revised 8 September 2026), read on 9 September 2026.\nAUTOMATION: Not available on Build to test Yet - Last checked 9/9/2026"
+ },
+ {
+  "id": 53489,
+  "title": "Deferring a part with a core: the core follows the parent, never its own choice",
+  "atm": 1,
+  "pre": "1. You are signed in with the Received later permission and Order Parts.\n2. \"Require receiving parts before completion\" is on.\n3. A work order has an approved line with a part that carries a core charge (parent plus core sibling) awaiting receipt, and a second part whose core is already resolved.",
+  "steps": "1. Choose Received later on the parent part and check the core sibling's state and row.\n2. Look at the line's completion requirement.\n3. Receive the parent later and check the core.\n4. Defer a part whose core is already resolved.",
+  "exp": "1. Choosing Received later on the parent puts its core sibling into the same \"Received later\" state, so the pair stays consistent and neither blocks completion on its own.\n2. The core is never offered a Received later choice of its own - while its parent is deferred it carries no caret and no row action, and it never appears as a separate row.\n3. Deferring a part with a core moves no stock and creates no core credit; nothing about the core's value is decided until the parent is received.\n4. Receiving the parent later resolves the core with it, in the same pass and under the same invoice number.\n5. An unresolved core is still asked for before the line completes, exactly as when receiving is not required - deferring the receive defers the paperwork, not the core decision.\n6. A part whose core is already resolved defers like any other part.\n---\nThis is the expected behaviour as per epic SV-8683 and story SV-9261 (Story 15, Receive later) and the Simple Flow V2 specification (Confluence page 771391574, revised 8 September 2026), read on 8 September 2026.\nAUTOMATION: Not available on Build to test Yet - Last checked 9/8/2026"
+ }
+]
