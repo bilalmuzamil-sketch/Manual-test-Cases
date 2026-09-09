@@ -2281,76 +2281,80 @@
   }
  },
  "44864": {
-  "title": "No matches shows 'No results for [query]' plus the three quick-create buttons",
+  "title": "No matches shows only a 'No results for [query]' message (no quick-create)",
   "fields": {
    "custom_preconds": {
     "blocks": [
      [
       "1. Sign in to ShopView. In the app header, click the search field (or press ⌘K / Ctrl+K) to open the global search, which searches across work orders, customers, parts and more; results appear grouped by type under a tab strip.",
-      "1. You will type a query that matches nothing (for example 'S1- 56438')."
+      "2. You will type a query that matches nothing (for example 'S1- 56438')."
      ]
     ],
-    "text": "1. Sign in to ShopView. In the app header, click the search field (or press ⌘K / Ctrl+K) to open the global search, which searches across work orders, customers, parts and more; results appear grouped by type under a tab strip.\n1. You will type a query that matches nothing (for example 'S1- 56438')."
+    "text": "1. Sign in to ShopView. In the app header, click the search field (or press ⌘K / Ctrl+K) to open the global search, which searches across work orders, customers, parts and more; results appear grouped by type under a tab strip.\n2. You will type a query that matches nothing (for example 'S1- 56438')."
    },
    "custom_steps": {
     "blocks": [
      [
       "1. In the search box, type a query with no matches (for example 'S1- 56438').",
-      "2. Read the centered message and the buttons."
+      "2. Read the centered message and confirm what, if anything, appears below it."
      ]
     ],
-    "text": "1. In the search box, type a query with no matches (for example 'S1- 56438').\n2. Read the centered message and the buttons."
+    "text": "1. In the search box, type a query with no matches (for example 'S1- 56438').\n2. Read the centered message and confirm what, if anything, appears below it."
    },
    "custom_expected": {
     "blocks": [
      [
-      "A centered message reads 'No results for \\'S1- 56438\\'' (the exact query is echoed in quotes).",
-      "The three quick-create buttons are shown: 'New work order', 'New customer', 'New inventory part'.",
-      "The footer keyboard legend is still visible."
+      "1. A centered message reads 'No results for '<query>'' (the exact query is echoed in quotes), plus ' in <Tab>' when a scope tab other than All is active.",
+      "2. Nothing else is shown below the message — there are no quick-create buttons ('New work order', 'New customer', 'New inventory part' are not present); quick-create was removed in v1.3.",
+      "3. The footer keyboard legend is still visible."
      ],
      [
       "---",
-      "This is the expected behaviour as per epic SV-9160 and the Global Search - Product Requirements specification version 1.5 (Confluence page 576978945), section 5.2 State 4 (No results for [query] + quick-create chips), read on 9 September 2026.",
+      "This is the expected behaviour as per epic SV-9160 and the Global Search - Product Requirements specification version 1.5 (Confluence page 576978945), section 5.2 (No results state), read on 9 September 2026.",
+      "Note: this case previously asserted the three quick-create buttons appeared in the no-results state. Spec v1.3 removed those buttons (§5.2 now reads 'Nothing else'), so this case now confirms their absence. This follows the current spec.",
       "AUTOMATION: Not available on Build to test Yet - Last checked 9/9/2026"
      ]
     ],
-    "text": "A centered message reads 'No results for \\'S1- 56438\\'' (the exact query is echoed in quotes).\nThe three quick-create buttons are shown: 'New work order', 'New customer', 'New inventory part'.\nThe footer keyboard legend is still visible.\n\n---\nThis is the expected behaviour as per epic SV-9160 and the Global Search - Product Requirements specification version 1.5 (Confluence page 576978945), section 5.2 State 4 (No results for [query] + quick-create chips), read on 9 September 2026.\nAUTOMATION: Not available on Build to test Yet - Last checked 9/9/2026"
+    "text": "1. A centered message reads 'No results for '<query>'' (the exact query is echoed in quotes), plus ' in <Tab>' when a scope tab other than All is active.\n2. Nothing else is shown below the message — there are no quick-create buttons ('New work order', 'New customer', 'New inventory part' are not present); quick-create was removed in v1.3.\n3. The footer keyboard legend is still visible.\n\n---\nThis is the expected behaviour as per epic SV-9160 and the Global Search - Product Requirements specification version 1.5 (Confluence page 576978945), section 5.2 (No results state), read on 9 September 2026.\nNote: this case previously asserted the three quick-create buttons appeared in the no-results state. Spec v1.3 removed those buttons (§5.2 now reads 'Nothing else'), so this case now confirms their absence. This follows the current spec.\nAUTOMATION: Not available on Build to test Yet - Last checked 9/9/2026"
    }
   }
  },
  "44865": {
-  "title": "A quick-create button in the no-results state starts the create flow",
+  "title": "No-results in a scoped tab reads 'No results for [query] in [Tab]'",
   "fields": {
    "custom_preconds": {
     "blocks": [
      [
-      "1. Sign in to ShopView. In the app header, click the search field (or press ⌘K / Ctrl+K) to open the global search, which searches across work orders, customers, parts and more; results appear grouped by type under a tab strip."
+      "1. Sign in to ShopView. In the app header, click the search field (or press ⌘K / Ctrl+K) to open the global search, which searches across work orders, customers, parts and more; results appear grouped by type under a tab strip.",
+      "2. You will scope to a tab and then search a term that matches nothing within that scope."
      ]
     ],
-    "text": "1. Sign in to ShopView. In the app header, click the search field (or press ⌘K / Ctrl+K) to open the global search, which searches across work orders, customers, parts and more; results appear grouped by type under a tab strip."
+    "text": "1. Sign in to ShopView. In the app header, click the search field (or press ⌘K / Ctrl+K) to open the global search, which searches across work orders, customers, parts and more; results appear grouped by type under a tab strip.\n2. You will scope to a tab and then search a term that matches nothing within that scope."
    },
    "custom_steps": {
     "blocks": [
      [
-      "1. In the search box, click 'New work order' (or 'New customer' / 'New inventory part').",
-      "2. Watch the screen."
+      "1. Type a query so results appear, then select a scope tab other than 'All' (for example 'Customers').",
+      "2. Change the query to one that matches nothing within that scope.",
+      "3. Read the centered message."
      ]
     ],
-    "text": "1. In the search box, click 'New work order' (or 'New customer' / 'New inventory part').\n2. Watch the screen."
+    "text": "1. Type a query so results appear, then select a scope tab other than 'All' (for example 'Customers').\n2. Change the query to one that matches nothing within that scope.\n3. Read the centered message."
    },
    "custom_expected": {
     "blocks": [
      [
-      "The matching create flow starts (create work order / customer / inventory part).",
-      "No destructive action occurs."
+      "1. The centered message reads 'No results for '<query>' in <Tab>' — the active scope tab's name is appended after ' in '.",
+      "2. Nothing else is shown — there are no quick-create buttons (removed in v1.3); the footer keyboard legend remains visible."
      ],
      [
       "---",
-      "This is the expected behaviour as per epic SV-9160 and the Global Search - Product Requirements specification version 1.5 (Confluence page 576978945), section 5.2 State 4, read on 9 September 2026.",
+      "This is the expected behaviour as per epic SV-9160 and the Global Search - Product Requirements specification version 1.5 (Confluence page 576978945), section 5.2 (No results state, scoped-tab variant), read on 9 September 2026.",
+      "Note: this case previously asserted that a quick-create button starts a create flow. Spec v1.3 removed those buttons, so it now verifies the scoped no-results message instead. (Its 'no quick-create buttons' assertion is also covered by C44856; retirement is the QA lead's call.)",
       "AUTOMATION: Not available on Build to test Yet - Last checked 9/9/2026"
      ]
     ],
-    "text": "The matching create flow starts (create work order / customer / inventory part).\nNo destructive action occurs.\n\n---\nThis is the expected behaviour as per epic SV-9160 and the Global Search - Product Requirements specification version 1.5 (Confluence page 576978945), section 5.2 State 4, read on 9 September 2026.\nAUTOMATION: Not available on Build to test Yet - Last checked 9/9/2026"
+    "text": "1. The centered message reads 'No results for '<query>' in <Tab>' — the active scope tab's name is appended after ' in '.\n2. Nothing else is shown — there are no quick-create buttons (removed in v1.3); the footer keyboard legend remains visible.\n\n---\nThis is the expected behaviour as per epic SV-9160 and the Global Search - Product Requirements specification version 1.5 (Confluence page 576978945), section 5.2 (No results state, scoped-tab variant), read on 9 September 2026.\nNote: this case previously asserted that a quick-create button starts a create flow. Spec v1.3 removed those buttons, so it now verifies the scoped no-results message instead. (Its 'no quick-create buttons' assertion is also covered by C44856; retirement is the QA lead's call.)\nAUTOMATION: Not available on Build to test Yet - Last checked 9/9/2026"
    }
   }
  },
@@ -3262,34 +3266,39 @@
    "custom_preconds": {
     "blocks": [
      [
-      "1. Sign in to ShopView. In the app header, click the search field (or press ⌘K / Ctrl+K) to open the global search, which searches across work orders, customers, parts and more; results appear grouped by type under a tab strip."
+      "1. Sign in to ShopView. In the app header, click the search field (or press ⌘K / Ctrl+K) to open the global search, which searches across work orders, customers, parts and more; results appear grouped by type under a tab strip.",
+      "2. Perform a few searches and/or open a few records first, so the recent-search history is NOT empty (recent activity is shown when you open search without typing)."
      ]
     ],
-    "text": "1. Sign in to ShopView. In the app header, click the search field (or press ⌘K / Ctrl+K) to open the global search, which searches across work orders, customers, parts and more; results appear grouped by type under a tab strip."
+    "text": "1. Sign in to ShopView. In the app header, click the search field (or press ⌘K / Ctrl+K) to open the global search, which searches across work orders, customers, parts and more; results appear grouped by type under a tab strip.\n2. Perform a few searches and/or open a few records first, so the recent-search history is NOT empty (recent activity is shown when you open search without typing)."
    },
    "custom_steps": {
     "blocks": [
      [
-      "1. In the search box, perform the action described and observe the result."
+      "1. In the app header, click the search field (or press ⌘K / Ctrl+K) to open global search WITHOUT typing, so the recent-search history is shown.",
+      "2. In the first recent-activity group header, click 'Clear all'.",
+      "3. Observe what the panel shows after clearing.",
+      "4. Repeat on a phone (or narrow, phone-sized browser) to confirm 'Clear all' is present there too."
      ]
     ],
-    "text": "1. In the search box, perform the action described and observe the result."
+    "text": "1. In the app header, click the search field (or press ⌘K / Ctrl+K) to open global search WITHOUT typing, so the recent-search history is shown.\n2. In the first recent-activity group header, click 'Clear all'.\n3. Observe what the panel shows after clearing.\n4. Repeat on a phone (or narrow, phone-sized browser) to confirm 'Clear all' is present there too."
    },
    "custom_expected": {
     "blocks": [
      [
-      "The first recent-activity group header carries a 'Clear all' action.",
-      "Selecting 'Clear all' empties the entire recent-search history.",
-      "After clearing, the panel falls back to the first-time state - helper text plus the three quick-create buttons - with no separate empty-history message.",
-      "'Clear all' is present on both web and mobile."
+      "1. The first recent-activity group header carries a 'Clear all' action.",
+      "2. Selecting 'Clear all' empties the entire recent-search history.",
+      "3. After clearing, the panel falls back to the first-time state — the placeholder and the single 'Search for something' helper line only (there are NO quick-create buttons; they were removed in v1.3) — with no separate empty-history message.",
+      "4. 'Clear all' is present on both web and mobile."
      ],
      [
       "---",
-      "This is the expected behaviour as per epic SV-9160 and the Global Search - Product Requirements specification version 1.5 (Confluence page 576978945), 5.2 / 5.6 / 8 (Clear all), read on 9 September 2026.",
+      "This is the expected behaviour as per epic SV-9160 and the Global Search - Product Requirements specification version 1.5 (Confluence page 576978945), sections 5.2 and 5.6 (Clear all / first-time state), read on 9 September 2026.",
+      "Note: the first-time state is a single helper line; the earlier 'three quick-create buttons' were removed in v1.3. This follows the current spec.",
       "AUTOMATION: Not available on Build to test Yet - Last checked 9/9/2026"
      ]
     ],
-    "text": "The first recent-activity group header carries a 'Clear all' action.\nSelecting 'Clear all' empties the entire recent-search history.\nAfter clearing, the panel falls back to the first-time state - helper text plus the three quick-create buttons - with no separate empty-history message.\n'Clear all' is present on both web and mobile.\n\n---\nThis is the expected behaviour as per epic SV-9160 and the Global Search - Product Requirements specification version 1.5 (Confluence page 576978945), 5.2 / 5.6 / 8 (Clear all), read on 9 September 2026.\nAUTOMATION: Not available on Build to test Yet - Last checked 9/9/2026"
+    "text": "1. The first recent-activity group header carries a 'Clear all' action.\n2. Selecting 'Clear all' empties the entire recent-search history.\n3. After clearing, the panel falls back to the first-time state — the placeholder and the single 'Search for something' helper line only (there are NO quick-create buttons; they were removed in v1.3) — with no separate empty-history message.\n4. 'Clear all' is present on both web and mobile.\n\n---\nThis is the expected behaviour as per epic SV-9160 and the Global Search - Product Requirements specification version 1.5 (Confluence page 576978945), sections 5.2 and 5.6 (Clear all / first-time state), read on 9 September 2026.\nNote: the first-time state is a single helper line; the earlier 'three quick-create buttons' were removed in v1.3. This follows the current spec.\nAUTOMATION: Not available on Build to test Yet - Last checked 9/9/2026"
    }
   }
  },
