@@ -11,6 +11,22 @@
 
 ---
 
+## 🛑 WHERE THIS LANE STOPS — BUILD VERIFICATION MAKES CASES RUNNABLE; A DIFFERENT SESSION DRIVES RESULTS (QA lead, 2026-09-09; L0022)
+**This lane's ONLY job is to make every case's STEPS and PRECONDITIONS 100% runnable by a manual QA
+tester** — real routes written as UI clicks, every quoted label read off the CURRENT build, every named
+state reachable via those clicks, fields render `fr-view`, the `AUTOMATION:` marker set. **DONE = the
+runnable-shape gate reports 0 NOT-RUNNABLE + the precondition-label gate is clean + render is OK** (Rule 84).
+**This lane does NOT:** run a case to Pass/Fail, decide a verdict, push results into the TestRail run, or
+create defects. **"Driven live" here means walk the route to prove it is followable and read the labels off
+the screen — never to produce a verdict.** Producing verdicts, **pushing Passed/Failed/Blocked into the
+TestRail test run with per-case comments, and raising defects is a SEPARATE session** — the QA lead's
+**"Create defects from TestRail (Push Results to TestRail)"** lane (skills **09/16** + `06`, the pusher
+`build/testing-tools/push_results_to_run.py`, playbook §W). **Do not drift into it, and never judge this
+lane's output against an execution standard** — a build-verified suite whose cases are all runnable is
+COMPLETE for this lane even though no case has a result yet. (The 2026-09-09 confusion: build verification
+was wrongly called "falling short" for not executing each case to a verdict — that verdict is the results
+lane's job, L0022.)
+
 ## 🔒 RULE 101 — THERE IS NO DELTA BUILD-VERIFICATION; WALK EVERY CASE ON THE CURRENT BUILD
 **Every build-verification walks the route of EVERY case in the suite, live, on the build as it stands this
 pass — never only the cases a spec-diff touched, never only the shared/distinct labels, and never a

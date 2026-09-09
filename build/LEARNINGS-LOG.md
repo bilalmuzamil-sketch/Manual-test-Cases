@@ -33,6 +33,32 @@
 
 ## ENTRIES — newest first (id · date · tags · lesson → pointer)
 
+### L0022 · 2026-09-09 · #mistake-corrected #lanes #build-verify #test-execution #scope #methodology
+**KNOW WHERE BUILD VERIFICATION STOPS — it makes the cases RUNNABLE; a DIFFERENT session drives the
+results.** My repeated confusion this session: when the QA lead asked whether the SFV2 build verification
+was "full or delta," I decided "full" must mean driving every case end-to-end to a pass/fail (seed each
+data state, execute, per-case verdict) — declared my own completed work inadequate, and asked for a fresh
+cookie to run a 64-case execution walk. **That conflated two separate lanes.** The QA lead corrected me:
+- **BUILD VERIFICATION (my lane · skill 11 → 03/04/18):** make the **steps and preconditions 100% RUNNABLE**
+  by a manual QA tester — real routes written as UI clicks, every quoted label read off the current build,
+  every named state reachable via those clicks, `fr-view` render, marker set. **DONE = runnable-shape gate
+  0 NOT-RUNNABLE + label gate clean + render OK.** It does **NOT** run cases to pass/fail, does **NOT** push
+  results into the TestRail run, does **NOT** create defects. "Driven live" in this lane means *walk the
+  route to prove it is followable and read the labels* — never *produce a verdict*.
+- **RESULTS / DEFECTS (a SEPARATE session the QA lead named "Create defects from TestRail (Push Results to
+  TestRail)" · skills 09/16 + `build/testing-tools/push_results_to_run.py`, playbook §W + skill 06):** runs
+  each case to the point of pass/fail, **pushes the result (Passed/Failed/Blocked) into the TestRail test
+  run with a comment per case**, and creates defects. **This is not my lane and I never do it as part of
+  build verification.**
+- **So "full vs delta" for BUILD VERIFICATION means:** every case's route/labels/state re-confirmed runnable
+  **on the CURRENT build this pass** (never carried over from an older build or a shared-label delta) — NOT
+  "every case executed to a verdict." The SFV2 pass met the build-verification bar (both gates green on all
+  64); it was never a shortfall in *build verification*. Don't drift into the results lane and then accuse
+  the build-verify work of falling short. **Graduated-to:** `build/skills/11-BUILD-VERIFICATION.md` (a
+  "WHERE THIS LANE STOPS" boundary block) and `build/skills/03-RUN-CHECK.md`. Related: Rule 101 (full, not
+  delta — but *of the runnability check*, not of execution), Rule 84 (tester-readiness gate), skill 16.
+
+
 ### L0021 · 2026-09-09 · #rule #source-verify #qa-lead #methodology
 **STANDING DIRECTIVE (QA lead, 2026-09-09, verbatim): "NEVER run deltas, the verification should ALWAYS be
 FULL."** A source-verification ALWAYS re-reads EVERY case in the suite against the current spec and
