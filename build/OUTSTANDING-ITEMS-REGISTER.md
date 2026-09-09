@@ -2,6 +2,13 @@
 
 > **⚠️ REFERENCE ONLY — this register is history and other sessions' work. It is NOT a backlog and does not authorise action (Rule 92).** Reading an open item here does **not** mean it is yours to work on; a lane session acts only on the project the QA lead has NAMED.
 
+## 🆕 2026-09-09 — SIMPLE FLOW V2 (6665) BUILD VERIFICATION IS HELD PENDING FULL SOURCE VERIFICATION
+
+| Row | Item | Who | Status |
+|---|---|---|---|
+| **SFV2-BV-HOLD** | **🛑 Build verification of Simple Flow V2 (group 6665, branch sv8683) is PAUSED until the source-verification session gives explicit go-ahead.** The 2026-09-08 source pass was a **delta only**: of 65 SFV2 cases, **18** carry the 8-Sep stamp, **47** still read *"spec v23, read 21 Aug 2026"*, and **22** were never re-read against the current 8-Sep spec (stories SV-9252/9254/9255/9256/9257/9258/9262/9265/9266/9267 + the SV-8183 permission map). The source-verify session is doing a FULL re-read + re-stamp to 8-Sep; **build verification must not run "Without" on a source that isn't current** (Rule 81/57/59). User-confirmed 2026-09-09. **No SFV2 case was written by the build-verify session** — foundation only (observed-labels `OBSERVED-UI-LABELS-sv8683.md`, core WO route, App Settings route, `build/simple-flow-v2/build-verify-2026-09-09/`), all read-only and reusable once the go-ahead comes. | **source-verify session → then me** | **HELD — awaiting full-source-verify go-ahead** |
+| **SFV2-BV-AUTO** | When build verification resumes: the **7 Automated SFV2 cases** (C44557, C44561, C44575, C44583, C44587, C44604, C44605) are HELD (Rule 71) — the 2026-09-02 Automated go-ahead named only Invoice/Inline/Printer, not Simple Flow V2. Need a per-suite go-ahead. **6 Vladimir's** (C45202, C45203, C53490–C53493) hands-off (Rule 38). | **QA lead** | **OPEN — decide when BV resumes** |
+
 ## 🆕 2026-09-08 — BUILD-VERIFY 6617 + 6597 ON v26.35.9: BOTH TESTER-READY; ONE LABEL CHANGE + A COOKIE NEEDED
 
 | Row | Item | Who | Status |
