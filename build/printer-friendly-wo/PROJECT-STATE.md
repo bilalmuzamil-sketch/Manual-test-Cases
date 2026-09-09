@@ -14,6 +14,9 @@ verification is ALWAYS full, never a delta**. Fixed today.
   go-ahead → `source-verify-2026-09-09/FOR-VLAD-2026-09-09.md` (Rule 65). Run R419 already holds all 44.
 - **Result: all 44 read 9 Sep — uniformly source-current, no delta gap.** Detail:
   `source-verify-2026-09-09/{SOURCE-CURRENCY-2026-09-09.md, FULL-REVERIFY-DIFF-2026-09-09.md}`.
+- **CONFIRMED LIVE (16:14 UTC 2026-09-09):** harness `fixed 42/0 fail`, then the 2 Automated (C45107,
+  C45123) re-run separately (buggy in-memory whitelist had skipped them) → **44/44 `fr-view`**; independent
+  live audit = **44/44 carry "read on 9 September 2026"**, 0 stale. WO Print source-verify is COMPLETE.
 
 ---
 

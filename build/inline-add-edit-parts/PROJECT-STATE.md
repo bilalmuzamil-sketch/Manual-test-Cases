@@ -21,10 +21,10 @@ live audit (QA lead, 2026-09-09) caught it; directive **L0021: always full, neve
 - **OUTSTANDING:** C44993/C44994 (spec-vs-build Declined status; is "Imported" real?), C45034 (retire/reframe
   + §8 tidy-up), C45250 (S1-R9 conflict), coverage gaps S1-R9/S1-N4. Detail:
   `source-verify-2026-09-09/{SOURCE-CURRENCY-2026-09-09.md, FULL-REVERIFY-DIFF-2026-09-09.md}`.
-
----
-
-## 🆕 Update — 2026-09-07 — SOURCE RE-VERIFIED against spec last-updated 2026-09-04
+- **CONFIRMED LIVE (16:12 UTC 2026-09-09):** harness `fixed 117/0 fail` (the 6 Automated re-stamped, not
+  skipped, once the whitelist bug was fixed) → **117/117 `fr-view`**; independent live audit = **117/117 carry
+  both "specification version 16" and "read on 9 September 2026"**, 0 stale. Content updates verified landed
+  (C44993 "Declined", C45007 "keeps its own category"). Inline source-verify is COMPLETE.
 
 Re-source-verified (QA lead, 2026-09-07; one of three suites). Pulled latest sources live first. Full
 record: `source-verify-2026-09-07/SOURCE-CURRENCY-SPEC-DIFF-2026-09-07.md`.
