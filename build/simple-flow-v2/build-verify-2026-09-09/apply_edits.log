@@ -1,0 +1,19 @@
+08:21:03 C44567 OK
+08:21:27 C44571 deadlock - retry 1/3
+08:22:20 C44571 deadlock - retry 2/3
+08:23:16 C44571 deadlock - retry 3/3
+08:24:15 C44571 FAILED: still on edit page
+08:24:16 C44575 SKIP - Automated, no go-ahead (Rule 71)
+08:24:16 C44587 SKIP - Automated, no go-ahead (Rule 71)
+08:24:25 C44595 OK
+08:24:49 C44598 deadlock - retry 1/3
+08:25:42 C44598 deadlock - retry 2/3
+08:26:38 C44598 deadlock - retry 3/3
+node:internal/modules/run_main:123
+    triggerUncaughtException(
+    ^
+
+page.waitForTimeout: Target page, context or browser has been closed
+    at /home/user/Manual-test-Cases/build/simple-flow-v2/build-verify-2026-09-09/apply_edits.mjs:62:79
+
+Node.js v22.22.2
