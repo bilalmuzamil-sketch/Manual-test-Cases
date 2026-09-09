@@ -33,6 +33,20 @@
 
 ## ENTRIES — newest first (id · date · tags · lesson → pointer)
 
+### L0027 · 2026-09-09 · #rule #build-verify #expected #build-glossary #tester-ready #qa-lead
+**BUILD VERIFICATION MAKES ALL THREE PARTS RUNNABLE — PRECONDITIONS · STEPS · EXPECTED — AND EXPECTED IS
+KEPT INTACT IN SUBSTANCE BUT WORDED TO THE BUILD GLOSSARY (now Standing Rule 102).** QA lead, verbatim:
+*"I need everything runnable for the manual QA tester in the build starting from Preconditions Runnable,
+Steps of replication Runnable, Expected result: … remain intact, but their wording should be clear,
+meaningful, and consistent with the Build Glossary."* The new/sharpened piece is the **Expected** bar: the
+*requirement* never changes (documents, Rule 57), but its *wording* is aligned to the build's real on-screen
+terms — the `OBSERVED-UI-LABELS-<env>.md` file is that glossary — so a tester reads the same words they see.
+**The line not to cross:** wording-to-glossary is NOT rewriting Expected to match build *behaviour* (that
+stays a documented expectation + three-outcomes, §1 rule 62-b). This is Rule 84 made explicit for all three
+fields and Rule 9/7 applied to Expected, under Rule 101 (full). **Graduated-to:** `RULES-61-ONWARD.md` rule
+102; §1 + §2 of CLAUDE.md; to be reflected in skills 11/18/03. Applied first on Viktoria's two suites
+(Inline 6597 + WO Print 6617) build-verified on sv9315 v26.36.0-f43b2fd, 2026-09-09.
+
 ### L0026 · 2026-09-09 · #rule #authenticity #five-dimensions #source-verify #close-out-gate #tooling #never-bite
 **A CASE IS AUTHENTIC ONLY WHEN ALL FIVE DIMENSIONS AGREE — TITLE · PRECONDITIONS · STEPS · EXPECTED ·
 SOURCES — AND A SOURCE-VERIFY IS NOT DONE UNTIL EACH IS INDEPENDENTLY CHECKED ON EVERY CASE.** This is the
