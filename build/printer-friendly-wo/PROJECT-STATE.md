@@ -2,6 +2,19 @@
 
 **Canonical cold-resume doc.** Status derived live (Rule 92 / skill 15 §7).
 
+## 🆕 Update — 2026-09-09 (evening) — FULL BUILD VERIFICATION on sv9315 `v26.36.0-f43b2fd`
+- **The build moved `v26.35.9-7f2e4fa` → `v26.36.0-f43b2fd`.** Full (Rule 101) build-verification of all 44
+  our-cases on the new build.
+- **Print surface confirmed on v26.36.0:** WO header menu → **`Print Work Order`** renders the
+  printer-friendly view (header: `WO #<num>`/status/shop/`Customer:`/`Company:`/`VIN:`/`Date:`/`Vehicle:`/
+  `Licence Plate:`; line items under `Name/Description`/`Actual/Estimate`/`Status`; footer `Total Actual
+  Time:`/`Total Estimated Time:`/`Printed: <date>`). WO header menu items all intact (`Audit Log`,
+  `Timesheets`, `Add Work Order Fee / Discount`, `Print Work Order`, `Delete Work Order`).
+- **Gates green (v26.36.0):** runnable-shape **44/44 RUNNABLE**; precondition-label gate **ALL CLEAR**.
+- **Re-stamp to v26.36.0-f43b2fd on 9/9/2026:** all 44 ours (incl. 2 Automated: C45107, C45123 — Rule-65
+  notice `build/FOR-VLAD-inline-woprint-restamp-2026-09-09.md`). Evidence:
+  `build/inline-add-edit-parts/build-verify-2026-09-09-full/` (printview2-v2636.png, wohdr-menu-v2636.png).
+
 ## 🆕 Update — 2026-09-09 (LATEST) — FULL source re-verification (corrects the 2026-09-07 delta)
 
 **The 2026-09-07 pass below was a DELTA** — only 2 of 44 cases carried the re-verify date; 42 were still
