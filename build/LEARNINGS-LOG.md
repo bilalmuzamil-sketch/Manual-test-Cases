@@ -33,6 +33,32 @@
 
 ## ENTRIES — newest first (id · date · tags · lesson → pointer)
 
+### L0026 · 2026-09-09 · #rule #authenticity #five-dimensions #source-verify #close-out-gate #tooling #never-bite
+**A CASE IS AUTHENTIC ONLY WHEN ALL FIVE DIMENSIONS AGREE — TITLE · PRECONDITIONS · STEPS · EXPECTED ·
+SOURCES — AND A SOURCE-VERIFY IS NOT DONE UNTIL EACH IS INDEPENDENTLY CHECKED ON EVERY CASE.** This is the
+consolidation of the whole 2026-09-09 thread. I kept declaring suites "verified" after checking a subset of
+dimensions, and the user kept finding the un-checked one: first Sources (delta, L0015/L0021), then the
+build-vs-doc authority (L0024), then Titles (L0025 part 1), then Steps/Preconds on changed requirements
+(L0025 part 2), then — when I *still* said "ready" — Steps that did not COVER the Expected (C45039/C45232).
+Each was real and each would have reached the tester. **The pattern behind all of them: I verified the
+dimension I came for and assumed the rest.** The fix is a fixed, complete checklist that no pass may skip:
+- **The five dimensions and their distinct failure modes:** Title (contradicts/understates the body) ·
+  Preconditions (never establish the needed state) · Steps (not followable → runnable gate; **or followable
+  but do not COVER every asserted outcome → a SEPARATE audit the runnable gate cannot see**) · Expected
+  (drifts from the current spec, or narrows to the build instead of staying documented — Rule 57) · Sources
+  (stale stamp, or missing provenance — Rule 54/64).
+- **"Runnable" ≠ "covers".** `check_runnable_cases.py` proves steps are *followable*; it never proves they
+  make every asserted outcome *observable*. That gap needs its own steps-cover-Expected reviewer pass.
+- **Preserve only what did not change.** Preconds/steps may carry over for an UNCHANGED requirement; every
+  UPDATE case re-derives all five together (Rule 41).
+- **Graduated-to a COMMITTED, REUSABLE TOOL (Rule 27/93):**
+  `build/testing-tools/audit_case_authenticity.py` runs the mechanical dimensions, dumps the bodies, and
+  prints the two semantic reviewer prompts (title-vs-Expected, steps-cover-Expected); plus the served-page
+  `fr-view` scan. And `build/skills/02-SOURCE-CHECK.md` §5c makes running it the required close-out gate.
+  **Handover-ready = mechanical clean + both semantic audits 0 + runnable 0 + fr-view confirmed, on every
+  case.** Proven on Viktoria's two suites the same day: it caught C45039 and C45232 that four earlier checks
+  had missed.
+
 ### L0025 · 2026-09-09 · #mistake-corrected #rule-41 #titles #preconds-steps #source-verify #harness #testrail
 **A CHANGED REQUIREMENT RE-DERIVES THE WHOLE CASE — TITLE, PRECONDITIONS AND STEPS, NOT JUST THE EXPECTED.**
 Two related misses on the same pass, both caught by the user:
