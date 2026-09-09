@@ -635,6 +635,12 @@ Index: CLAUDE.md (rule index table). Other rule files: build/rules/RULES-01-20.m
     the case-sync must **never touch existing RESULTS**. Where a run belongs to a COMPLETED project
     or already holds graded results, ASK the user whether to sync it at all or to create a new run
     for the unrun cases (a "finished" run becoming incomplete is a reporting decision, not a QA one).
+    **🛑 CONFIRM-LIVE CLOSE-OUT (QA lead directive 2026-09-09, L0020): authoring a new case is NOT
+    "done" until you have PROVEN, by reading the run back live (`get_tests/{run_id}`), that the new
+    C-id is a member of the suite's active run.** A case that renders perfectly but is absent from the
+    run is invisible to the tester and to every count. This live read-back is a MANDATORY final step of
+    every add_case pass, forever — not an assumption from the update_run response. Verified live
+    2026-09-09: C53486/53487/53488/53489 → R416, C53480 → R417, C53477 → R418, all present.
     **Rationale, 2026-07-31:** a junior QA's review of Filters run 352 reported "no case exists" for
     requirements we HAD already authored and pushed — the cases simply were not in his run.
     Out-of-sync runs cause **false coverage gaps and wasted review cycles**. Canonical audit +
