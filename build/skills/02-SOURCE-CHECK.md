@@ -289,13 +289,21 @@ full pass will send the next session forward on cases that were never checked.
 3. **"NOT IN THE CHANGE-LOG" ≠ "VERIFIED".** A story the change-log does not mention is *expected* to be
    unchanged, but "expected" is not "observed" (Rule 12). Re-READ each such case against the current spec
    body before its stamp moves to vN; a stamp bump with no re-read is a false claim of currency.
-4. **🛑 THE TITLE IS PART OF THE CASE — RECONCILE THE WHOLE CASE, NEVER JUST THE FIELD YOU CAME FOR
-   (Rule 41; earned 2026-09-09, L0025).** The `fr-view` write harness (`hs_write.mjs`) sets ONLY
-   preconds/steps/expected and **asserts the title unchanged** — so a pass that changes an Expected and
-   trusts the harness leaves the **title silently stale**. When any field changes, re-read the TITLE (and
-   the preconds/steps) against the new Expected and fix every part that no longer matches. Worked miss:
-   C44993/C44994 kept the title "…Complete, Invoiced, or Paid" (3 statuses) after the Expected grew to 5;
-   C45007's title said "is categorized Uncategorized" after the Expected became conditional. **Mechanics:**
+4. **🛑 A CHANGED REQUIREMENT RE-DERIVES THE WHOLE CASE — TITLE *AND* PRECONDITIONS *AND* STEPS, NEVER
+   JUST THE EXPECTED (Rule 41; earned 2026-09-09, L0025).** When the governing requirement moved, the
+   setup you must reach and the clicks you must make can move with it — you may NOT keep the old
+   preconds/steps and re-write only the Expected. Preserving preconds/steps is valid ONLY for a case whose
+   requirement is **UNCHANGED** this pass; for every **UPDATE** case, re-derive preconds/steps against the
+   new requirement and confirm they still reach every state and cover every branch the new Expected
+   asserts. Worked misses (all 2026-09-09, same pass): C44993/C44994 — Expected grew from 3 statuses to 5,
+   but the steps still walked only 3 (Declined/Imported never checked) AND the title still said 3;
+   C45007 — Expected became conditional ("Uncategorized only if no category, else keeps its own"), but the
+   steps saved a single generic part and never exercised the has-category branch, AND the title said
+   "is categorized Uncategorized" (absolute). The `fr-view` write harness (`hs_write.mjs`) sets
+   preconds/steps/expected from `intended-blocks.json` and **asserts the title unchanged** — so if your
+   intended-blocks only changed the Expected, the harness faithfully leaves stale preconds/steps and a
+   stale title behind. Build the FULL corrected case (all fields) into intended-blocks, then set the title
+   separately. **Mechanics:**
    (a) a title fix is a **title-only `update_case`** — proven NOT to disturb the other fields' `fr-view`
    container (verified 2026-09-09), so **do it AFTER the harness content pass, never before** (a title set
    before the harness is re-submitted and can be truncated by the edit-form Save — that clobbered

@@ -29,6 +29,14 @@ live-audited version 16 + read 9 Sep 2026, and all in run **R418**:
 **⇒ Both suites are source-verified, source-current, runnable-shape clean, fr-view — HANDOVER-READY to the
 build-verification session.** The 4 cases above carry no build-check line and must be build-verified first.
 
+**2026-09-09 (17:10) — whole-case reconciliation fix (L0025).** The user caught that on the UPDATE cases I
+had re-derived only the Expected, leaving Title and Preconds/Steps stale. Fixed: **C44993/C44994** titles
+now list all 5 statuses and their **preconds+steps now walk all 5** (Declined/Imported checked, with a
+reachability caveat); **C45007** title made conditional and its **steps now exercise BOTH branches**
+(no-category → Uncategorized; has-category → keeps own); **C45250** title restored. All fr-view, runnable
+3/3, titles persisted, live-verified. A read-only title-vs-Expected audit of all 163 cases in both suites =
+**0 genuine contradictions**. Rule 41 hardened in skill 02 §5b clause 4.
+
 ---
 
 ## 🆕 Update — 2026-09-09 (LATEST) — FULL source re-verification (corrects the 2026-09-07 delta)
