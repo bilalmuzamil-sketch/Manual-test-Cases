@@ -49,6 +49,28 @@ R.linesBefore = linesBefore.length;
 // ---- create the line through the app's own form
 R.openForm = await clickText(/^\+?\s*new\s+line$/);
 await page.waitForTimeout(6000);
+// "What are you doing?" and "Labor rate" are Quasar selects, not text boxes — setting .value on
+// them does nothing, which is why the first run clicked "Save & close" and fired NO api call at
+// all. They have to be opened and an option clicked.
+const chooseFromSelect = async (tid, typed)=>{
+  const opened = await page.evaluate(t=>{const i=document.querySelector(`[data-test-id="${t}"]`);
+    if(!i) return false; i.scrollIntoView({block:'center'});
+    (i.closest('.q-field')||i).dispatchEvent(new MouseEvent('click',{bubbles:true}));
+    i.dispatchEvent(new MouseEvent('click',{bubbles:true})); i.focus(); return true;}, tid);
+  if(!opened) return {opened:false};
+  await page.waitForTimeout(2500);
+  if (typed){ await setVal(tid, typed); await page.waitForTimeout(3500); }
+  const res = await page.evaluate(vis=>{const isVis=eval(vis); const t=e=>(e.textContent||'').replace(/\s+/g,' ').trim();
+    const opts=[...document.querySelectorAll('.q-menu .q-item,[role=option]')].filter(isVis);
+    if(!opts.length) return {chose:false, nOptions:0};
+    const label=t(opts[0]); opts[0].click(); return {chose:true, nOptions:opts.length, label:label.slice(0,60)};}, VIS);
+  await page.waitForTimeout(2500);
+  return {opened:true, ...res};
+};
+R.selectCannedLine = await chooseFromSelect('select_line_canned_line', null);
+R.selectLabourType = await chooseFromSelect('select_labour_type', null);
+log('what are you doing? -> %s | labor rate -> %s',
+  JSON.stringify(R.selectCannedLine), JSON.stringify(R.selectLabourType));
 R.fill = {desc: await setVal('input_line_description','ZZAUTOTEST C45250/C45251 completed-line check'),
           est:  await setVal('input_time_estimate','1'),
           tech: await setVal('input_tech_time','1')};
@@ -56,6 +78,12 @@ await page.waitForTimeout(2000);
 await page.screenshot({path:`${DIR}/evidence/109-1-newline-filled.png`, fullPage:true});
 R.saveLine = await clickText(/save\s*&\s*close/);
 await page.waitForTimeout(9000);
+// if the form refused, say WHY rather than reporting a bare failure
+R.saveRefusal = await page.evaluate(vis=>{const isVis=eval(vis); const t=e=>(e.textContent||'').replace(/\s+/g,' ').trim();
+  return {errors:[...document.querySelectorAll('.q-field--error,.q-field__messages,.text-negative,[role=alert]')]
+    .filter(isVis).map(t).filter(Boolean).slice(0,12),
+    stillOpen: !!document.querySelector('[data-test-id=input_line_description]')};}, VIS);
+log('after Save & close: %s', JSON.stringify(R.saveRefusal));
 await page.screenshot({path:`${DIR}/evidence/109-2-line-saved.png`, fullPage:true});
 R.lineCreateCalls = posts.filter(p=>/lines/i.test(p.u)).map(p=>({m:p.m,u:p.u,body:p.body}));
 const linesAfter = rowsOf((await call('GET',`/api/work-orders/lines/${WO}`)).json);
