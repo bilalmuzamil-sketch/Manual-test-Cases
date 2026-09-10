@@ -20,7 +20,7 @@ The previous CLAUDE.md was **738 KB / roughly 183,000 tokens**, and it was **TRU
 AT RULE 62**. Sessions were therefore running with **Rules 63–88 SILENTLY ABSENT** while believing
 they had read the whole file. A rule you have never seen is a rule you will break.
 
-**THEREFORE: NEVER ASSUME YOU HAVE SEEN ALL THE RULES.** There are **104 numbered Standing Rules**.
+**THEREFORE: NEVER ASSUME YOU HAVE SEEN ALL THE RULES.** There are **105 numbered Standing Rules**.
 Count them in the index below. If you are
 about to apply a rule, open its file and read it. **NEVER read
 `build/rules/CLAUDE-FULL-ARCHIVE-2026-08-21.md` whole** — it will exhaust your context exactly as the
@@ -163,8 +163,15 @@ safe. The **evidence** for each one lives in the rule or skill the bullet points
   `python3 build/testing-tools/blocker_gate.py --check <claim>` exits 0.** An unclosable proof is
   reported as an OPEN GAP, never as a proved blocker. **First `ls build/BLOCKED-*.md` — several are
   RESOLVED or WITHDRAWN with the route that worked.** Learning L0036.
-- **STRATEGY FIRST (79).** Before starting ANY task, devise or recall the smartest quota-efficient
-  plan — then begin. One pass, then exit.
+- **STRATEGY FIRST (79), AND NEVER GO IDLE WHILE WORK REMAINS (105; QA lead 2026-09-10 — *"Are you
+  done? I do not see any running task"*, asked while a finished probe sat with no successor).** Devise
+  or recall the smartest quota-efficient plan, then begin. **Queue EVERY remaining step into
+  `build/testing-tools/run_queue.sh <queue> <tag>` rather than hand-launching one at a time** — it
+  refreshes the bridge per step, spaces them for login trap 2, survives a crash, and `--status <tag>`
+  answers "is anything running?" in one line. **THE LAST ACTION BEFORE ANY REPORT IS TO START THE NEXT
+  WORK AND CONFIRM IT IS RUNNING**, and every status names the step in flight. The only legitimate
+  stops: the queue is empty · a decision only he can make, already put to him (103) · a blocker that
+  passed the gate (104). *"I finished a step and hadn't decided what's next"* is not one.
 - **TELL THE LAST-DONE DATE AND ASK BEFORE RE-RUNNING (80).** Never silently repeat a verification,
   VIU or ordered task: say when it was last done and ask whether to run it again. A check within the
   last 3 builds / 3 source versions still COUNTS, with its date shown (77).
@@ -275,7 +282,7 @@ safe. The **evidence** for each one lives in the rule or skill the bullet points
 
 ---
 
-## 2 · THE RULE INDEX — all 104 rules, and where each one lives
+## 2 · THE RULE INDEX — all 105 rules, and where each one lives
 
 **Read the rule in its file before applying it.** One line per rule; the line is a locator, not the
 rule. Generated from the split files' own headers.
@@ -404,6 +411,7 @@ rule. Generated from the split files' own headers.
 | **102** | BUILD VERIFICATION MAKES ALL THREE PARTS RUNNABLE — PRECONDITIONS · STEPS · EXPECTED (intact, but worded to the Build Glossary) |
 | **103** | EVERY ASK PUT TO THE QA LEAD IS IN HIS LANGUAGE, NOT OURS — no ids, endpoints or jargon carrying the meaning; he must act on the FIRST read |
 | **104** | A NEGATIVE FINDING MUST PROVE THE INSTRUMENT WORKED — seven proofs, enforced by `probe_guard.mjs` and `blocker_gate.py`; never re-block on something already unblocked |
+| **105** | NEVER GO IDLE WHILE WORK REMAINS — queue every step with `run_queue.sh`; the last action before any report is to START the next work |
 
 **Operator forms** (the rule bodies are all in `build/rules/RULES-61-ONWARD.md`): **95** →
 `build/skills/TOKEN-DISCIPLINE-CHARTER.md` · **96** → `build/skills/17-REGRESSION-IMPACT-V1-TO-V2.md`
@@ -693,7 +701,7 @@ Compact form — **the rule named in brackets is the authority; read it before r
 | Standing Rules 1–20 (full text) | `build/rules/RULES-01-20.md` |
 | Standing Rules 21–40 (full text) | `build/rules/RULES-21-40.md` |
 | Standing Rules 41–60 (full text) | `build/rules/RULES-41-60.md` |
-| Standing Rules 61 onward (full text — 61–104 today, and every rule added later) | `build/rules/RULES-61-ONWARD.md` |
+| Standing Rules 61 onward (full text — 61–105 today, and every rule added later) | `build/rules/RULES-61-ONWARD.md` |
 | Per-project narrative history (projects 1–7) | `build/rules/PROJECT-HISTORY-ARCHIVE.md` |
 | Byte-verification hashes for the split | `build/rules/INTEGRITY.md` |
 | Staging/QA/prod action recipes, TestRail traps | `build/APP-ACTIONS-PLAYBOOK.md` |

@@ -667,3 +667,29 @@ blocker.**
 
 **The one question that would have caught all five:** *"what is the most likely way this is my own
 mistake?"* Five for five, there was an obvious answer and I had not asked.
+
+## L0037 — 2026-09-10 · the chain went idle between steps and the QA lead had to ask
+
+**What happened.** `probe126` finished at 07:36. The next probe was not launched. At 07:39 the QA
+lead asked *"Are you done? I do not see any running task etc."* Nothing was blocked, nothing was
+finished — the session simply stopped **between** steps. Three minutes here, but in an unattended run
+that is dead time with nobody watching for it.
+
+**Why it happened.** I was hand-launching one probe at a time and deciding the next step only after
+reading the previous result. That is fine when someone is watching; it guarantees a gap when nobody
+is. The gap is not a thinking pause — it is the process having no next step queued.
+
+**The fix — `build/testing-tools/run_queue.sh`.** Put every remaining step in a queue file and let the
+runner walk it: it refreshes the QA-branch bridge before each step, pauses between steps for login
+trap 2, survives a step that crashes, and writes `/tmp/queue-<tag>.log` with `START` / `EXIT rc=` per
+step and `QUEUE-DONE` at the end. `--status <tag>` answers "is anything running?" in one line, which
+is precisely the question that had to be asked out loud.
+
+**The discipline that goes with it (Rule 105):** the last action before writing any report is to start
+the next work and confirm it is running — never the report first. And every status names the step in
+flight, so nobody has to ask.
+
+**Note the pattern with L0036.** Both of today's process failures are the same species: *I reported a
+state without checking the thing that would have told me it was wrong.* L0036 — reported "broken"
+without checking my instrument. L0037 — reported progress without checking anything was still running.
+The cure in both cases is a committed, executable check rather than an intention to remember.
