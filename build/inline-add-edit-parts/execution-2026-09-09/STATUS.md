@@ -203,3 +203,30 @@ Two lessons, both now in the probes:
 Probe 78 supersedes it: it takes the part-request ids off the line objects (the reason probe 65 had
 none to pick — `/api/work-orders/part/list-requests` ignores every filter and returns the first 100
 rows estate-wide, playbook §S), picks them, completes the line, and gates the rest on that working.
+
+## 2026-09-10 — the four role-dependent cases, unblocked and PASSED
+
+The "role changes do not save on this branch" blocker was wrong. `POST /api/roles/{id}` answers
+**405 Method Not Allowed (Allow: PUT, DELETE, GET)** — the method is named in the refusal.
+**`PUT /api/roles/{id}` persists.** probe104 set the Technician role three ways, observed the tech
+user each time, and put the role back exactly (`restoredOk: true`, 6 permissions, `view_mode: tech`).
+The Admin staff's Admin role was never involved.
+
+| Case | Role state seeded | Observed | Verdict |
+|---|---|---|---|
+| [C53477](https://shopview.testrail.io/index.php?/cases/view/53477) | Full View, See Financial Data off | row = Description · Part number · Qty; no cost, no sell, no More Options | **Passed** |
+| [C45066](https://shopview.testrail.io/index.php?/cases/view/45066) | Full View, `workOrderLinesCreateAndEdit` removed | 0 edit controls (and 0 Add Part) | **Passed** |
+| [C45032](https://shopview.testrail.io/index.php?/cases/view/45032) | Tech view, same permission removed | 0 edit controls | **Passed** |
+| [C44995](https://shopview.testrail.io/index.php?/cases/view/44995) | Tech view, same permission removed | 0 Add Part **and** 0 edit controls | **Passed** (was Blocked) |
+
+Written to [R418](https://shopview.testrail.io/index.php?/runs/view/418) — run now
+**113 Passed · 0 Failed · 3 Blocked · 8 Untested**.
+
+**The permission's real code is `workOrderLinesCreateAndEdit`.** The Technician role's full set is
+`customersView · workOrderLinesCreateAndEdit · woTechViewMode · woPickParts · scheduleView ·
+workOrdersView`; view mode is carried BOTH as `view_mode` and as the `woFullViewMode` /
+`woTechViewMode` permission, and PUT must be given both consistently or the UI disagrees with itself.
+
+**A defect falls out of this and is NOT yet drafted:** the role editor's **Save button writes
+nothing** — the only call it makes is `POST /api/check-existing-roles`. A user edits a role, sees no
+error, and the change is silently discarded. Recorded in `build/BLOCKED-sv9315-role-save.md`.
