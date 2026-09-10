@@ -1,0 +1,30 @@
+import {boot} from './b.mjs';
+import {clickId,typeId,qSelect,tableText,ids} from './po.mjs';
+const env=process.argv[2]||'qa'; const PO=process.argv[3];
+const PART=process.argv[4]||'POI5730C', QTY=process.argv[5]||'1', IPP=process.argv[6]||'19', COST=process.argv[7]||'10', TAG=process.argv[8]||'addit';
+const APP=env==='qa'?'https://sv9833.qa.shopview.com':'https://app.staging.shopview.com';
+const {browser,page,net}=await boot(env);
+try{
+  await page.goto(APP+'/order/'+PO,{waitUntil:'domcontentloaded'});
+  await page.waitForTimeout(4000);
+  await clickId(page,'button_add_order_item');
+  await page.waitForTimeout(2500);
+  console.log('dialog ids:',JSON.stringify(await ids(page)));
+  await page.screenshot({path:`/tmp/sv9833/ev-${env}-${TAG}-open.png`});
+  console.log('part ->',await qSelect(page,'select_part',PART+' Inventory',{typed:PART}));
+  await page.waitForTimeout(800);
+  console.log('after part ids:',JSON.stringify(await ids(page)));
+  await typeId(page,'input_order_item_quantity',QTY);
+  await clickId(page,'checkbox_order_item_package');
+  await page.waitForTimeout(900);
+  console.log('after package tick ids:',JSON.stringify(await ids(page)));
+  await typeId(page,'input_order_item_items_per_package',IPP);
+  await typeId(page,'input_base',COST);
+  await page.screenshot({path:`/tmp/sv9833/ev-${env}-${TAG}-filled.png`});
+  await clickId(page,'button_save_order_item');
+  await page.waitForTimeout(4000);
+  console.log('NET (app api):',JSON.stringify(net.filter(n=>/add-item|orders/.test(n.u)),null,1));
+  console.log('table:\n'+await tableText(page));
+  await page.screenshot({path:`/tmp/sv9833/ev-${env}-${TAG}-done.png`});
+}catch(e){ console.log('ERR',e.message); await page.screenshot({path:`/tmp/sv9833/ev-${env}-${TAG}-err.png`}); }
+await browser.close();

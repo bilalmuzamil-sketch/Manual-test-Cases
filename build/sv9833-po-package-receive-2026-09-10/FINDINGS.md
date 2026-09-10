@@ -254,3 +254,18 @@ Both are dummy accounts, and the per-ticket QA branch needs no cleanup — recor
 
 Comment prepared by `build_comment.py` (35 nodes, 4 media, 11 table rows) — **not yet posted, waiting
 on the QA lead's go-ahead.**
+
+---
+
+## Posted
+
+**Comment [76305](https://shopview.atlassian.net/browse/SV-9833?focusedCommentId=76305)** on SV-9833,
+10 Sep 2026 10:55:34 -0500, on the QA lead's go-ahead (*"1. Post it"*).
+
+**Read back from Jira after posting:** the comment holds 35 nodes — the success panel with
+*OVERALL QA STATUS: PASSED* as the **first** node, **4** media in the order EX1 → EX2 → EX3 → EX4 with
+the correct URLs, the checks table with its header plus all **10** rows, and the technical section last,
+after the rule at index 27. SV-9833 now carries four comments: 76242, 76243, 76288 and ours.
+
+The harness is committed under `tools/` (no secrets — cookies stay in `/tmp`), and the recipes are
+written up as **§AF** of `build/APP-ACTIONS-PLAYBOOK.md`.
