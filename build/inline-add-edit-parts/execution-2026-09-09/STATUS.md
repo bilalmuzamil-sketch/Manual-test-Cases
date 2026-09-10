@@ -159,3 +159,28 @@ the list C45001 clause 1 and C45039 clause 1 need.
 | Bin allocation | C45221–C45243 | probe 66 |
 | Complete line | C45250 C45251 | probe 65, via the recorded pick + line-status recipes |
 | C45001 clause 1 | C45001 | the description is read-only for the `special_part` parts tried so far, not only for inventory parts |
+
+## ✅ The catalogue parts found, and what they settle (2026-09-10 04:05)
+
+`GET /api/parts-catalogue/catalogue-parts-that-are-not-on-location` returns **19,510** parts with no
+inventory record, and they DO appear in the inline typeahead — their card carries the literal word
+**"Catalog"** where a stocked part's card reads *"Inventory Qty: N ea &lt;bin&gt; N"*. That word is how a
+tester tells the two apart on screen.
+
+Four of them were tried (**F40010212**, **3711355C93**, **170.V8AP**, **ZHNM8BC-20**) and all four
+behave identically:
+
+| Field | Catalog part | Inventory part |
+|---|---|---|
+| Description | **editable** — accepted an overwrite | **read-only** |
+| Cost | **editable** — accepted 13.13 | **read-only** |
+| Sell price | **editable** — accepted 26.26 | **editable** |
+
+That settles **C45001 clauses 1 and 2** and **C45039 clauses 1 and 2**, each on multiple parts in both
+directions. It also means **C45252** ("entering the Cost fills in the Sell price") is testable: a
+Catalog part is the one whose Cost can actually be typed.
+
+⚠️ **The census is three types, not two** — `inventory_part` 617 · `special_part` 46 ·
+`catalogue_part` 617 in one sweep. Every probe before this one lumped the last two together and only
+ever picked a `special_part`, whose cost is locked, so "a catalogue part's cost cannot be overwritten"
+looked true for an hour and was not.
