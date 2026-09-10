@@ -1,0 +1,63 @@
+{
+ "start": {
+  "req": "waiting_to_receive",
+  "parts": [],
+  "line": "authorized"
+ },
+ "myOrderItem": {
+  "orderItemId": "8ab0a021-382b-4ea8-94b2-7e6fd1863cf8",
+  "orderId": "c7da960c-fde7-40ee-b625-68f64748db85",
+  "pn": "F40010212",
+  "ordered": "5.00",
+  "remaining": 5,
+  "coreItemId": null
+ },
+ "orderId": "c7da960c-fde7-40ee-b625-68f64748db85",
+ "tries": {
+  "POST /api/inventory/orders/c7da960c-fde7-40ee-b625-68f64748db85/receive": {
+   "status": 404,
+   "text": "{\"errors\":[{\"error\":\"\\u0027resource\\u0027 was not found.\"}]}"
+  },
+  "PUT /api/inventory/orders/c7da960c-fde7-40ee-b625-68f64748db85/receive": {
+   "status": 404,
+   "text": "{\"errors\":[{\"error\":\"\\u0027resource\\u0027 was not found.\"}]}"
+  },
+  "POST /api/inventory/orders/receive": {
+   "status": 405,
+   "text": "{\"errors\":[{\"error\":\"No route found for \\u0022POST http:\\/\\/sv9315api.qa.shopview.com\\/api\\/inventory\\/orders\\/receive\\u0022: Method Not Allowed (Allow: GET)\"}]}"
+  },
+  "PUT /api/inventory/orders/receive": {
+   "status": 405,
+   "text": "{\"errors\":[{\"error\":\"No route found for \\u0022PUT http:\\/\\/sv9315api.qa.shopview.com\\/api\\/inventory\\/orders\\/receive\\u0022: Method Not Allowed (Allow: GET)\"}]}"
+  },
+  "POST /api/inventory/orders/receive-items": {
+   "status": 405,
+   "text": "{\"errors\":[{\"error\":\"No route found for \\u0022POST http:\\/\\/sv9315api.qa.shopview.com\\/api\\/inventory\\/orders\\/receive-items\\u0022: Method Not Allowed (Allow: GET)\"}]}"
+  },
+  "PUT /api/inventory/orders/receive-items": {
+   "status": 405,
+   "text": "{\"errors\":[{\"error\":\"No route found for \\u0022PUT http:\\/\\/sv9315api.qa.shopview.com\\/api\\/inventory\\/orders\\/receive-items\\u0022: Method Not Allowed (Allow: GET)\"}]}"
+  },
+  "POST /api/inventory/orders/receive-parts": {
+   "status": 405,
+   "text": "{\"errors\":[{\"error\":\"No route found for \\u0022POST http:\\/\\/sv9315api.qa.shopview.com\\/api\\/inventory\\/orders\\/receive-parts\\u0022: Method Not Allowed (Allow: GET)\"}]}"
+  },
+  "PUT /api/inventory/orders/receive-parts": {
+   "status": 405,
+   "text": "{\"errors\":[{\"error\":\"No route found for \\u0022PUT http:\\/\\/sv9315api.qa.shopview.com\\/api\\/inventory\\/orders\\/receive-parts\\u0022: Method Not Allowed (Allow: GET)\"}]}"
+  },
+  "POST /api/inventory/order-items/receive": {
+   "status": 404,
+   "text": "{\"errors\":[{\"error\":\"\\u0027resource\\u0027 was not found.\"}]}"
+  },
+  "POST /api/inventory/orders/receive-view/confirm": {
+   "status": 404,
+   "text": "{\"errors\":[{\"error\":\"\\u0027resource\\u0027 was not found.\"}]}"
+  }
+ },
+ "end": {
+  "req": "waiting_to_receive",
+  "parts": [],
+  "line": "authorized"
+ }
+}

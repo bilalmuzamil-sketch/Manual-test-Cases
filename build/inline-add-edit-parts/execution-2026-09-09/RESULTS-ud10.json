@@ -1,0 +1,17 @@
+{
+ "pass_meta": {
+  "suite": "Inline Add and Edit Parts (6597)",
+  "run": 418,
+  "env": "the sv9315 QA branch",
+  "build": "v26.36.0-f43b2fd",
+  "date": "10 September 2026",
+  "view_mode": "Full View"
+ },
+ "results": {
+  "C45251": {
+   "verdict": "Blocked",
+   "observed": "Two of the case's three points were checked and both are correct; the third could not be checked at all on this QA branch, so the case is marked Blocked rather than passed on part of it.\n\nWHAT WAS CHECKED AND PASSED - the INVENTORY part. A line was built for this: a new work order line on work order S9315-15899, an inventory part (Slack Adjuster, part number F40010212) added at quantity 5, picked, and the line then set to Complete. Opening that part on the completed line brings up the \"Edit Part\" window, and in it exactly the right things can be changed: Category, Sell price, Margin and the bin Quantity are editable, while Part number, Description, Vendor, Cost and Core charge are all read-only. That is point 1 and point 3 of the case, both correct.\n\nWHAT STOPPED THE THIRD POINT - the SPECIAL ORDER part. Point 2 needs a special-order part that has been ordered and received. A special-order part was created and ordered successfully (it moved to \"Awaiting Receive\"), but it cannot be received on this branch: clicking \"Receive\" on the part opens nothing at all - no window, no panel, no message - and the page records an internal error at that moment. Because the part is never received, the line can never be completed with it, so there is no completed special-order part to open. Ten different ways of receiving it were tried and none worked.\n\nWHAT VIKTORIA NEEDS TO KNOW WHEN RETESTING ON STAGING. First, the note on the case is right that the part must be PICKED and not merely \"In stock\" before the line will go to Complete. Second, run this case BEFORE the \"Add Part stays available on a Complete line\" case, or on a different line - that case adds a part to the completed line, and that new part cannot be cleared afterwards, so the line can never be put back into Complete. Third, if \"Receive\" works on Staging, the special-order half of this case can be finished there.\n\nSeparately, the \"Receive\" button doing nothing is a problem in its own right and has been reported to the QA lead - it is outside this feature, but it stops parts being received.",
+   "todo": "Retest this case on Staging once the \"Receive\" button works. Steps for the part that could not be checked here: on a work order line, add a part choosing the \"Catalog\" entry in the part picker (not the \"Inventory Qty\" one) - that makes it a special order. Click \"Order\" on it, then \"Receive\" and receive the full quantity. Set the line to Complete, then open the part and check that ONLY Description, Category, Sell price and Margin can be changed. Do this case before, or on a different line from, the \"Add Part stays available on a Complete line\" case, because that one leaves a part on the line that cannot be cleared and stops the line ever being Complete again. Separately, someone needs to look at why \"Receive\" opens nothing on the QA branch - that is a problem in its own right and has been raised with the QA lead."
+  }
+ }
+}
