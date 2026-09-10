@@ -1,0 +1,9 @@
+{
+ "pass_meta": {"suite":"Inline Add and Edit Parts (6597)","run":418,"env":"the sv9315 QA branch",
+   "build":"v26.36.0-f43b2fd","date":"10 September 2026","view_mode":"tech"},
+ "results": {
+  "C45225": {"verdict":"Passed","observed":"What was checked: what the chip under the row is labelled with when the whole quantity comes out of one bin. What happened: the chip carries the bin's own name - \"Unassigned\" for the part tried, and other parts on this system sit in bins named \"D1B\" and \"SHOP\" - so the technician reads the place, not a code or a count.","not_observed":"The other half of this case - that a quantity split across two or more bins is labelled \"N bins\" instead - could not be seen: every stocked part on this branch sits in a single bin, so no split can be made."},
+  "C45228": {"verdict":"Passed","observed":"What was checked: whether you are allowed to take more of a part than the bin actually holds - which a shop sometimes has to do - and whether the system merely warns or actually blocks you. What happened: a part whose bin holds 6 was asked for with a quantity of 99. The row warned about it in plain words but did not stop anything: Save went through and the part was added. So the bin is allowed to go negative, and the decision is left with the person doing the work.","not_observed":null},
+  "C45229": {"verdict":"Passed","observed":"What was checked: whether the user is told clearly, and visibly, when the bin they are pulling from does not hold enough. What happened: with a bin holding 6 and a quantity of 99 entered, the note beside the chip read exactly \"Only 6 here. Pulling 99 takes this bin negative.\" - naming both numbers so there is no guessing - and both the note and the bin chip itself were shown in orange warning colouring rather than the usual blue, so it catches the eye without blocking the work.","not_observed":null}
+ }
+}
