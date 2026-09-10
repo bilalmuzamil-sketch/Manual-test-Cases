@@ -91,3 +91,54 @@ name, **bin location**."
 3. **Titles must be re-read after a content correction.** Two cases (C53586/C53587) kept titles saying
    "straight away" after their bodies were corrected to a 30-second window — a title that contradicts
    its own expected result is exactly what makes a tester file a wrong defect. Both retitled.
+
+## 7 · 🔴 EPIC vs SPEC CONTRADICTION — affects 8 existing cases, needs a ruling
+
+Read live 2026-09-10: **SV-9160**, updated **2026-09-02**, status Open, label `global-search-v2`.
+
+| Source | Date | Says about quick actions on hover |
+|---|---|---|
+| **Epic SV-9160**, "Out of scope" | 2026-09-02 | "**Contextual quick actions on hover** (design-confirmed, **later release**)" |
+| **PRD v1.5** §5.4 + change-log v1.3 | 2026-09-08 | "**Quick actions are back in v1 scope** for every entity, shown unconditionally, with `View part history` added to Part rows" — and §5.4 specifies the per-entity action list in full |
+
+**Why this matters:** TestRail section **6774 "Quick Actions on Hover (v1)"** holds **8 cases**
+(C44866-C44873). If the epic is right they must not run at V2 launch; if the spec is right they must.
+
+**Rule 32 (latest information wins) points at the spec** — v1.5 (2026-09-08) is six days newer than the
+epic (2026-09-02), and the v1.3 change-log row records the reversal deliberately ("Quick actions are
+back in v1 scope"). **But Rule 33/63 forbid silently picking a side on a high-collateral conflict, and
+8 cases is high-collateral.** So this is recorded as a **PO/PM decision item**, not resolved here.
+No case was added, retired or edited on the strength of it.
+
+**Everything else in the epic agrees with the spec** and with our coverage: telemetry out of scope
+(matches v1.5 §2 and C45140), Contacts not a standalone group (matches §4 and C45129/C44895),
+list-page search on WOs / Inventory Parts / Customers served by the same tier (matches sections 6737
+and 6732).
+
+## 8 · DESIGN PACK — what it confirms
+
+Three design bundles were supplied (`Shopview_Design_System_15/16/17`; the Global Search artboards are
+`Global Search Page.html`, `preview/global-search.html`, `Mobile Global Search.html`, plus the
+`global-search.jsx` / `mobile-global-search.jsx` builds).
+
+- **No loading or skeleton state exists anywhere in the Global Search design** — the only placeholder
+  is the input copy "Search work orders, customers, parts and more". Combined with §8 (which specifies
+  a 150 ms debounce and 200 ms p95 render but no loading affordance), **the V2 spec and design are both
+  silent on a loading state**, so **C53589 (G10) correctly stands as a Rule-96 invariant.** Confirmed,
+  not assumed.
+- **"Assets" is confirmed as the user-facing label** by §5.2's tab strip
+  (`All · Work Orders · Customers · Assets · Parts · Vendors · Part Sales · Purchase Orders · Vendor
+  Invoices`) and §4's "Assets (Vehicles)" heading — so existing case **C45155** is spec-backed.
+- The design's empty/no-results/recent copy matches §5.2 ("No results for", "Recent searches",
+  "Clear all").
+
+## 9 · PROPOSED — NEW V2 coverage gap (needs permission; nothing created)
+
+PRD v1.5 §4 indexes **Parts (Inventory)** on: description, part number, **tags**, **category**,
+**manufacturer**, **vendor name**, **bin location**. Current coverage tests description and part
+number only. **Five indexed fields have no case at all.** This is a *V2 functional* gap, not a V1
+regression, so it sits outside the 6769 remit and outside the permission already given.
+
+Proposed (5 cases, section 6725 or a new Parts-search section):
+find a part by **tag** · by **category** · by **manufacturer** · by **vendor name** · by **bin
+location**. The last one is the correct home for the rewritten **C1927**.
