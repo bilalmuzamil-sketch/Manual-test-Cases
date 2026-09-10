@@ -23,6 +23,36 @@ shape with annotated screenshots. In the order I would file them:
 go ahead on a different one first · file none yet. *Cost of silence:* the five cases stay Untested or
 wrongly Passed in R418; nothing else is held up.
 
+**🆕 UPDATED 2026-09-10, LATER THE SAME DAY — #1 HAS GROWN INTO A THREE-CASE FAMILY, AND THE ROLE
+BLOCKER IS GONE.** Two more cases were run and both **fail for the same underlying reason as #1**:
+this build does not treat **Declined** as a status that stops editing. The guard is correct for
+Complete, Invoiced and Paid; only Declined is missed, and it is missed at every layer.
+
+| Candidate | Case | On a Declined work order… | Proof |
+|---|---|---|---|
+| 1 | [C44993](https://shopview.testrail.io/index.php?/cases/view/44993) · [C44994](https://shopview.testrail.io/index.php?/cases/view/44994) | the Add Part button and Edit control are still **shown**, and both work | controls counted on screen; Complete/Invoiced/Paid correctly show zero |
+| 6 | [C45061](https://shopview.testrail.io/index.php?/cases/view/45061) | an **add** still **saves** | `make-request` → **201**, toast "Part added", no alert |
+| 7 | [C45035](https://shopview.testrail.io/index.php?/cases/view/45035) | an **edit** still **saves** | `change-request` → **200**, row closes, no alert |
+
+For 6 and 7 the specification requires the save to FAIL with *"This work order can no longer be
+edited. Refresh to see the latest."* and the typed data to stay in the row. Neither happened — the
+whole page was searched for both halves of that string and neither appears.
+
+*The question:* **file these as one ticket or three?** *Options:* **one ticket** against SV-9316
+covering "Declined is not treated as non-editable", listing all five cases (my recommendation — a
+single status-check fix closes all of them, and three tickets would be three dev investigations of
+one bug) · **three tickets**, one per story (SV-9316, SV-9319, SV-9318), which keeps each story's
+defect count honest · **two**, splitting "controls are shown" from "saves are accepted".
+*Cost of silence:* five cases sit unwritten in R418; nothing else is held up.
+
+**The role blocker in item 5 below is RESOLVED and needs nothing from you.** `PUT /api/roles/{id}`
+persists a role change — the 405 from POST names the method. C53477, C45066, C45032 and C44995 are
+all now run and **Passed**. What is left over is a **new finding, not yet drafted**: the role
+editor's **Save button writes nothing at all** (its only call is `POST /api/check-existing-roles`),
+so a user edits a role, sees no error, and the change is silently discarded. That is outside this
+suite's scope but it is a real user-facing data-loss path. *Options:* I draft it as a sixth ticket ·
+you raise it with the team directly · leave it recorded here only.
+
 **2. C45001 is marked Passed in R418 and that is wrong.** I wrote the result while its third clause
 was still being checked. Clause 3 fails. It moves to Failed the moment its defect is approved.
 *Options:* approve defect #3 and I correct it · tell me to correct it now without a ticket.
