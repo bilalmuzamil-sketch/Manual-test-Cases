@@ -1,0 +1,8 @@
+{
+ "pass_meta": {"suite":"Inline Add and Edit Parts (6597)","run":418,"env":"the sv9315 QA branch",
+   "build":"v26.36.0-f43b2fd","date":"10 September 2026","view_mode":"tech"},
+ "results": {
+  "C45236": {"verdict":"Passed","observed":"What was checked: whether editing a part that is already on the work order gives you the same bin controls as adding one does. What happened: opening the edit row on a saved part showed the same \"Pulled from\" line with the bin chip on it, and clicking the chip opened the same picker - the bin's name, its \"Default\" badge, how many are in stock, and \"Split across bins…\" at the end. Nothing about the bin side of the row is cut down when you are editing rather than adding. The keyboard hint is the edit-row one, reading \"Enter save\" rather than \"Enter save & next row\", which is correct for an edit.","not_observed":"Telling apart the two ways the edit row can arrive - restoring an allocation the part was saved with, versus working one out afresh - needs a part held in more than one bin, and every stocked part on this branch sits in a single bin."},
+  "C45237": {"verdict":"Passed","observed":"What was checked: whether the bin the part was taken from is kept when the part is saved, and whether it then clutters up the parts list. What happened: a part was allocated to its bin and saved. The saved row in the parts list shows the part number and description and nothing about bins - the words \"Pulled from\" appear nowhere on the page once the row has closed - while the allocation itself is kept with the part and comes back when the row is opened for editing. So the information is held without being pushed at the reader; showing it in the part detail panel is out of scope for this work.","not_observed":null}
+ }
+}
