@@ -1,0 +1,28 @@
+{
+ "pass_meta": {
+  "suite": "Inline Add and Edit Parts (6597)",
+  "run": 418,
+  "env": "the sv9315 QA branch",
+  "build": "v26.36.0-f43b2fd",
+  "date": "10 September 2026",
+  "view_mode": "both"
+ },
+ "results": {
+  "C53477": {
+   "verdict": "Passed",
+   "observed": "What was checked: what the inline add row looks like for a user whose view mode is Full View but who is NOT allowed to see financial data. What happened: with the role set to Full View and See Financial Data left off, the row that opened from \"+ Add Part\" carried exactly three boxes, left to right - Description, Part number, Qty. There was no Cost box, no Sell price box, and no \"More Options\" action anywhere on the row. That is the same three-box row a Tech view user gets, which is what the case asks for: the view mode says Full View, but without permission to see money the user is given the simpler row. All three points in the case were met."
+  },
+  "C45066": {
+   "verdict": "Passed",
+   "observed": "What was checked: whether the Edit control disappears for a Full View user once their role loses the \"Create & Edit\" setting for work order lines. What happened: with that setting turned off and the view mode left on Full View, the work order's Lines tab was opened and every line expanded. Not a single Edit control was present on any part row - and, for completeness, no \"Add Part\" button either. Before the setting was removed the very same page showed the controls normally, so the disappearance is caused by the permission and nothing else."
+  },
+  "C45032": {
+   "verdict": "Passed",
+   "observed": "What was checked: the same thing as the Full View case, but for a Tech view user - does the Edit control vanish when the role loses \"Create & Edit\" for work order lines. What happened: with the role on Tech view and that setting turned off, the Lines tab was opened and every line expanded, and no Edit control appeared on any part row. The control was present on the same page before the setting was removed, so the permission is what hides it."
+  },
+  "C44995": {
+   "verdict": "Passed",
+   "observed": "What was checked: both of the case's points at once - with the \"Create & Edit\" setting for work order lines turned off, is the \"Add Part\" button gone, and is the Edit control gone from the part rows. What happened: on the work order's Lines tab with every line expanded, there was no \"Add Part\" button anywhere and no Edit control on any part row. Both points met. This case had previously been marked Blocked because role changes appeared not to save on this branch; the role can in fact be changed, so the case is no longer blocked and has now been run properly. Only the Technician role was used for this and it was put back exactly as it was afterwards - the admin staff role was never touched."
+  }
+ }
+}

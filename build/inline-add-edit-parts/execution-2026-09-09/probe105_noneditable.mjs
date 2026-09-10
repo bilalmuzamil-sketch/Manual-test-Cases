@@ -8,6 +8,21 @@
 // page is deliberately left stale, so this is the real race, not a simulation.
 // The work order is put back to its original status at the end.
 import { boot } from '/home/user/Manual-test-Cases/build/testing-tools/qa-branch-boot.mjs';
+// Trap 2: two quick-logins close together give a 409 on fe-permissions ("duplicate PHPSESSID").
+// Every session in this probe therefore goes through a cooldown-and-retry wrapper rather than boot().
+const rawBoot = boot;
+const sleep = ms => new Promise(r=>setTimeout(r,ms));
+const bootSafe = async (branch, route, who) => {
+  let last=null;
+  for (let attempt=1; attempt<=4; attempt++){
+    try { const s = await rawBoot(branch, route, who); if (s && s.page) return s; }
+    catch(e){ last=e; }
+    console.log(`   boot(${who}) attempt ${attempt} did not sign in; waiting out the duplicate session`);
+    await sleep(20000*attempt);
+  }
+  throw last || new Error(`could not sign in as ${who} after 4 attempts`);
+};
+
 import fs from 'fs';
 const DIR='/home/user/Manual-test-Cases/build/inline-add-edit-parts/execution-2026-09-09';
 const log=(...a)=>console.log(new Date().toISOString().slice(11,19),...a);
@@ -27,7 +42,7 @@ const rowsOf=(j)=>{const pick=o=>{ for (const k of ['collection','data','rows','
 // ---- 1. find an editable work order that already has a part on a line (C45035 precondition 4)
 let WO=null, WOSTATUS=null;
 {
-  const s = await boot('sv9315','/workorders','admin'); const call=mkCall(s.page,s.APIH);
+  const s = await bootSafe('sv9315','/workorders','admin'); const call=mkCall(s.page,s.APIH);
   const list = await call('GET','/api/work-orders?limit=200');
   const wos = rowsOf(list.json);
   R.woCount = wos.length;
@@ -51,7 +66,7 @@ save();
 
 // ---- helper: flip the work order's status from an independent session
 const setStatus = async (status)=>{
-  const s = await boot('sv9315','/workorders','admin'); const call=mkCall(s.page,s.APIH);
+  const s = await bootSafe('sv9315','/workorders','admin'); const call=mkCall(s.page,s.APIH);
   const r = await call('POST','/api/work-orders/change-status',{id:WO.id, status});
   const g = await call('GET', `/api/work-orders/${WO.id}`);
   const now = ((g.json&&(g.json.data||g.json))||{}).status;
@@ -61,7 +76,7 @@ const setStatus = async (status)=>{
 
 const runLeg = async (tag, who, openRow)=>{
   const out={who};
-  const s = await boot('sv9315', `/workorders/${WO.id}/lines`, who);
+  const s = await bootSafe('sv9315', `/workorders/${WO.id}/lines`, who);
   const {page, APP}=s;
   out.identity = await page.evaluate(()=>{try{const r=JSON.parse(localStorage.getItem('fe_permissions_wrapper')||'{}');const d=r.data??r;
     return {view_mode:d.view_mode, perms:(d.fe_permissions||[]).length};}catch(e){return{err:String(e)}}});

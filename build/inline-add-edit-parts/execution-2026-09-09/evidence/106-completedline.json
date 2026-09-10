@@ -1,0 +1,389 @@
+{
+ "target": {
+  "wo": "6a529a5f-dff9-4c13-9636-b41500e585f0",
+  "woNumber": "S9315-15899",
+  "line": "b2504a0d-8136-4c7c-a584-b055aea99372",
+  "lineStatus": "authorized",
+  "requests": [
+   {
+    "id": "bfa3f17a-2c1d-461e-bc66-42d5b011f5a9",
+    "status": "authorized_to_order",
+    "qty": 2,
+    "pn": null
+   },
+   {
+    "id": "ffa2bab2-e141-48c4-adc0-9e4f37b5db03",
+    "status": "authorized_to_order",
+    "qty": 2,
+    "pn": null
+   },
+   {
+    "id": "281fca3c-6413-45ec-9ae6-71168963daba",
+    "status": "in_stock",
+    "qty": 1,
+    "pn": "51372MP"
+   },
+   {
+    "id": "d36471e2-4108-4432-b4c4-b1b8656d843b",
+    "status": "authorized_to_order",
+    "qty": 6,
+    "pn": null
+   },
+   {
+    "id": "42b7b348-f0e2-4d4a-9870-4257f814a68a",
+    "status": "waiting_to_receive",
+    "qty": 6,
+    "pn": null
+   },
+   {
+    "id": "dbf35c8a-fad0-471c-9475-be16cae2cdf4",
+    "status": "waiting_to_receive",
+    "qty": 5,
+    "pn": null
+   },
+   {
+    "id": "259b6b6e-fe8c-46a9-97e0-f28fcb609600",
+    "status": "waiting_to_receive",
+    "qty": 6,
+    "pn": null
+   },
+   {
+    "id": "3ccce737-761d-48e2-a8e7-9772175dc69c",
+    "status": "waiting_to_receive",
+    "qty": 10,
+    "pn": "5655666655"
+   },
+   {
+    "id": "e1a19bce-dd47-49f3-a175-4fc57c515707",
+    "status": "waiting_to_receive",
+    "qty": 3,
+    "pn": "sdfs"
+   },
+   {
+    "id": "b376889e-caa0-4bc4-afba-d87b93d53650",
+    "status": "waiting_to_receive",
+    "qty": 7,
+    "pn": null
+   },
+   {
+    "id": "86707622-5457-4ad7-af9f-f654c84a4f50",
+    "status": "waiting_to_receive",
+    "qty": 8,
+    "pn": null
+   },
+   {
+    "id": "207fe273-c6ec-47ee-a5a4-999c81381345",
+    "status": "waiting_to_receive",
+    "qty": 7,
+    "pn": null
+   },
+   {
+    "id": "a27ea7ef-f3d7-40fe-b6eb-bf5f36ebcf12",
+    "status": "waiting_to_receive",
+    "qty": 1,
+    "pn": "54646854"
+   },
+   {
+    "id": "83cfeada-9435-4fa0-a5b8-9415777fbc7f",
+    "status": "waiting_to_receive",
+    "qty": 3,
+    "pn": "rdgrfsadfsdd"
+   },
+   {
+    "id": "1a3fb048-8538-4078-b3a0-0e91d980c9eb",
+    "status": "waiting_to_receive",
+    "qty": 1,
+    "pn": null
+   },
+   {
+    "id": "1d10ceef-1ac3-45dd-b75a-0d7bdaf64225",
+    "status": "waiting_to_receive",
+    "qty": 4,
+    "pn": "SERFGDR"
+   },
+   {
+    "id": "77fbe80e-79d5-42a8-a878-56a5963963b5",
+    "status": "waiting_to_receive",
+    "qty": 2,
+    "pn": "SWFSE"
+   },
+   {
+    "id": "6985b871-e32c-45ef-b189-f2bf9d489aa8",
+    "status": "waiting_to_receive",
+    "qty": 1,
+    "pn": "LF14000NN"
+   },
+   {
+    "id": "20f8b0db-abc0-435f-9590-55bf36c2e7c7",
+    "status": "waiting_to_receive",
+    "qty": 3,
+    "pn": "170.12105"
+   }
+  ]
+ },
+ "actionProbe": {
+  "bfa3f17a-2c1d-461e-bc66-42d5b011f5a9": {
+   "startedAs": "authorized_to_order",
+   "tried": {
+    "pick": {
+     "status": 201,
+     "text": "{\"data\":{\"partRequestId\":\"bfa3f17a-2c1d-461e-bc66-42d5b011f5a9\",\"workOrderId\":\"6a529a5f-dff9-4c13-9636-b41500e585f0\",\"lineId\":\"b2504a0d-8136-4c7c-a584-b055aea99372\",\"statusLabel\":\"",
+     "nowIs": "waiting_to_receive"
+    },
+    "order": {
+     "status": 400,
+     "text": "{\"errors\":[{\"error\":\"This action cannot be performed on requests that are waiting to receive.\"}]}"
+    },
+    "receive": {
+     "status": 400,
+     "text": "{\"errors\":[{\"error\":\"This action cannot be performed on requests that are waiting to receive.\"}]}"
+    },
+    "ordered": {
+     "status": 400,
+     "text": "{\"errors\":[{\"error\":\"This action cannot be performed on requests that are waiting to receive.\"}]}"
+    },
+    "received": {
+     "status": 400,
+     "text": "{\"errors\":[{\"error\":\"This action cannot be performed on requests that are waiting to receive.\"}]}"
+    },
+    "mark-as-ordered": {
+     "status": 400,
+     "text": "{\"errors\":[{\"error\":\"This action cannot be performed on requests that are waiting to receive.\"}]}"
+    },
+    "mark-as-received": {
+     "status": 400,
+     "text": "{\"errors\":[{\"error\":\"This action cannot be performed on requests that are waiting to receive.\"}]}"
+    },
+    "complete": {
+     "status": 400,
+     "text": "{\"errors\":[{\"error\":\"This action cannot be performed on requests that are waiting to receive.\"}]}"
+    }
+   }
+  },
+  "ffa2bab2-e141-48c4-adc0-9e4f37b5db03": {
+   "startedAs": "authorized_to_order",
+   "tried": {
+    "pick": {
+     "status": 201,
+     "text": "{\"data\":{\"partRequestId\":\"ffa2bab2-e141-48c4-adc0-9e4f37b5db03\",\"workOrderId\":\"6a529a5f-dff9-4c13-9636-b41500e585f0\",\"lineId\":\"b2504a0d-8136-4c7c-a584-b055aea99372\",\"statusLabel\":\"",
+     "nowIs": "waiting_to_receive"
+    },
+    "order": {
+     "status": 400,
+     "text": "{\"errors\":[{\"error\":\"This action cannot be performed on requests that are waiting to receive.\"}]}"
+    },
+    "receive": {
+     "status": 400,
+     "text": "{\"errors\":[{\"error\":\"This action cannot be performed on requests that are waiting to receive.\"}]}"
+    },
+    "ordered": {
+     "status": 400,
+     "text": "{\"errors\":[{\"error\":\"This action cannot be performed on requests that are waiting to receive.\"}]}"
+    },
+    "received": {
+     "status": 400,
+     "text": "{\"errors\":[{\"error\":\"This action cannot be performed on requests that are waiting to receive.\"}]}"
+    },
+    "mark-as-ordered": {
+     "status": 400,
+     "text": "{\"errors\":[{\"error\":\"This action cannot be performed on requests that are waiting to receive.\"}]}"
+    },
+    "mark-as-received": {
+     "status": 400,
+     "text": "{\"errors\":[{\"error\":\"This action cannot be performed on requests that are waiting to receive.\"}]}"
+    },
+    "complete": {
+     "status": 400,
+     "text": "{\"errors\":[{\"error\":\"This action cannot be performed on requests that are waiting to receive.\"}]}"
+    }
+   }
+  },
+  "281fca3c-6413-45ec-9ae6-71168963daba": {
+   "startedAs": "in_stock",
+   "tried": {
+    "pick": {
+     "status": 201,
+     "text": "{\"data\":{\"partRequestId\":\"281fca3c-6413-45ec-9ae6-71168963daba\",\"workOrderId\":\"6a529a5f-dff9-4c13-9636-b41500e585f0\",\"lineId\":\"b2504a0d-8136-4c7c-a584-b055aea99372\",\"statusLabel\":\"",
+     "nowIs": "gone from part_requests"
+    },
+    "order": {
+     "status": 400,
+     "text": "{\"errors\":[{\"error\":\"This action cannot be performed on received part requests.\"}]}"
+    },
+    "receive": {
+     "status": 400,
+     "text": "{\"errors\":[{\"error\":\"This action cannot be performed on received part requests.\"}]}"
+    },
+    "ordered": {
+     "status": 400,
+     "text": "{\"errors\":[{\"error\":\"This action cannot be performed on received part requests.\"}]}"
+    },
+    "received": {
+     "status": 400,
+     "text": "{\"errors\":[{\"error\":\"This action cannot be performed on received part requests.\"}]}"
+    },
+    "mark-as-ordered": {
+     "status": 400,
+     "text": "{\"errors\":[{\"error\":\"This action cannot be performed on received part requests.\"}]}"
+    },
+    "mark-as-received": {
+     "status": 400,
+     "text": "{\"errors\":[{\"error\":\"This action cannot be performed on received part requests.\"}]}"
+    },
+    "complete": {
+     "status": 400,
+     "text": "{\"errors\":[{\"error\":\"This action cannot be performed on received part requests.\"}]}"
+    }
+   }
+  },
+  "d36471e2-4108-4432-b4c4-b1b8656d843b": {
+   "startedAs": "authorized_to_order",
+   "tried": {
+    "pick": {
+     "status": 201,
+     "text": "{\"data\":{\"partRequestId\":\"d36471e2-4108-4432-b4c4-b1b8656d843b\",\"workOrderId\":\"6a529a5f-dff9-4c13-9636-b41500e585f0\",\"lineId\":\"b2504a0d-8136-4c7c-a584-b055aea99372\",\"statusLabel\":\"",
+     "nowIs": "waiting_to_receive"
+    },
+    "order": {
+     "status": 400,
+     "text": "{\"errors\":[{\"error\":\"This action cannot be performed on requests that are waiting to receive.\"}]}"
+    },
+    "receive": {
+     "status": 400,
+     "text": "{\"errors\":[{\"error\":\"This action cannot be performed on requests that are waiting to receive.\"}]}"
+    },
+    "ordered": {
+     "status": 400,
+     "text": "{\"errors\":[{\"error\":\"This action cannot be performed on requests that are waiting to receive.\"}]}"
+    },
+    "received": {
+     "status": 400,
+     "text": "{\"errors\":[{\"error\":\"This action cannot be performed on requests that are waiting to receive.\"}]}"
+    },
+    "mark-as-ordered": {
+     "status": 400,
+     "text": "{\"errors\":[{\"error\":\"This action cannot be performed on requests that are waiting to receive.\"}]}"
+    },
+    "mark-as-received": {
+     "status": 400,
+     "text": "{\"errors\":[{\"error\":\"This action cannot be performed on requests that are waiting to receive.\"}]}"
+    },
+    "complete": {
+     "status": 400,
+     "text": "{\"errors\":[{\"error\":\"This action cannot be performed on requests that are waiting to receive.\"}]}"
+    }
+   }
+  },
+  "42b7b348-f0e2-4d4a-9870-4257f814a68a": {
+   "startedAs": "waiting_to_receive",
+   "tried": {
+    "pick": {
+     "status": 400,
+     "text": "{\"errors\":[{\"error\":\"This action cannot be performed on requests that are waiting to receive.\"}]}"
+    },
+    "order": {
+     "status": 400,
+     "text": "{\"errors\":[{\"error\":\"This action cannot be performed on requests that are waiting to receive.\"}]}"
+    },
+    "receive": {
+     "status": 400,
+     "text": "{\"errors\":[{\"error\":\"This action cannot be performed on requests that are waiting to receive.\"}]}"
+    },
+    "ordered": {
+     "status": 400,
+     "text": "{\"errors\":[{\"error\":\"This action cannot be performed on requests that are waiting to receive.\"}]}"
+    },
+    "received": {
+     "status": 400,
+     "text": "{\"errors\":[{\"error\":\"This action cannot be performed on requests that are waiting to receive.\"}]}"
+    },
+    "mark-as-ordered": {
+     "status": 400,
+     "text": "{\"errors\":[{\"error\":\"This action cannot be performed on requests that are waiting to receive.\"}]}"
+    },
+    "mark-as-received": {
+     "status": 400,
+     "text": "{\"errors\":[{\"error\":\"This action cannot be performed on requests that are waiting to receive.\"}]}"
+    },
+    "complete": {
+     "status": 400,
+     "text": "{\"errors\":[{\"error\":\"This action cannot be performed on requests that are waiting to receive.\"}]}"
+    }
+   }
+  },
+  "dbf35c8a-fad0-471c-9475-be16cae2cdf4": {
+   "startedAs": "waiting_to_receive",
+   "tried": {
+    "pick": {
+     "status": 400,
+     "text": "{\"errors\":[{\"error\":\"This action cannot be performed on requests that are waiting to receive.\"}]}"
+    },
+    "order": {
+     "status": 400,
+     "text": "{\"errors\":[{\"error\":\"This action cannot be performed on requests that are waiting to receive.\"}]}"
+    },
+    "receive": {
+     "status": 400,
+     "text": "{\"errors\":[{\"error\":\"This action cannot be performed on requests that are waiting to receive.\"}]}"
+    },
+    "ordered": {
+     "status": 400,
+     "text": "{\"errors\":[{\"error\":\"This action cannot be performed on requests that are waiting to receive.\"}]}"
+    },
+    "received": {
+     "status": 400,
+     "text": "{\"errors\":[{\"error\":\"This action cannot be performed on requests that are waiting to receive.\"}]}"
+    },
+    "mark-as-ordered": {
+     "status": 400,
+     "text": "{\"errors\":[{\"error\":\"This action cannot be performed on requests that are waiting to receive.\"}]}"
+    },
+    "mark-as-received": {
+     "status": 400,
+     "text": "{\"errors\":[{\"error\":\"This action cannot be performed on requests that are waiting to receive.\"}]}"
+    },
+    "complete": {
+     "status": 400,
+     "text": "{\"errors\":[{\"error\":\"This action cannot be performed on requests that are waiting to receive.\"}]}"
+    }
+   }
+  },
+  "259b6b6e-fe8c-46a9-97e0-f28fcb609600": {
+   "startedAs": "waiting_to_receive",
+   "tried": {
+    "pick": {
+     "status": 400,
+     "text": "{\"errors\":[{\"error\":\"This action cannot be performed on requests that are waiting to receive.\"}]}"
+    },
+    "order": {
+     "status": 400,
+     "text": "{\"errors\":[{\"error\":\"This action cannot be performed on requests that are waiting to receive.\"}]}"
+    },
+    "receive": {
+     "status": 400,
+     "text": "{\"errors\":[{\"error\":\"This action cannot be performed on requests that are waiting to receive.\"}]}"
+    },
+    "ordered": {
+     "status": 400,
+     "text": "{\"errors\":[{\"error\":\"This action cannot be performed on requests that are waiting to receive.\"}]}"
+    },
+    "received": {
+     "status": 400,
+     "text": "{\"errors\":[{\"error\":\"This action cannot be performed on requests that are waiting to receive.\"}]}"
+    },
+    "mark-as-ordered": {
+     "status": 400,
+     "text": "{\"errors\":[{\"error\":\"This action cannot be performed on requests that are waiting to receive.\"}]}"
+    },
+    "mark-as-received": {
+     "status": 400,
+     "text": "{\"errors\":[{\"error\":\"This action cannot be performed on requests that are waiting to receive.\"}]}"
+    },
+    "complete": {
+     "status": 400,
+     "text": "{\"errors\":[{\"error\":\"This action cannot be performed on requests that are waiting to receive.\"}]}"
+    }
+   }
+  }
+ }
+}
