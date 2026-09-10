@@ -26,9 +26,71 @@
    "status": "approved"
   }
  ],
- "lineKeys": null,
+ "linesPath": "/api/work-orders/lines/6a529a5f-dff9-4c13-9636-b41500e585f0",
+ "lineKeys": [
+  "line_id",
+  "description",
+  "time_estimate",
+  "tech_time",
+  "is_diagnosis",
+  "is_warranty",
+  "is_authorized_to_repair",
+  "is_parts_required_are_authorized",
+  "line_name",
+  "work_order_number",
+  "work_order_status",
+  "tech_story",
+  "line_tech_assigned_id",
+  "labour_type_id",
+  "labour_type",
+  "labour_rate",
+  "labour_type_cost",
+  "tasks"
+ ],
  "chosen": {
-  "wo": null,
-  "line": null
+  "wo": {
+   "id": "6a529a5f-dff9-4c13-9636-b41500e585f0",
+   "num": "S9315-15899",
+   "status": "approved"
+  },
+  "line": {
+   "id": "b2504a0d-8136-4c7c-a584-b055aea99372",
+   "status": "authorized",
+   "name": ""
+  }
+ },
+ "picked": "*Duplicate* Engine Oil Filter, Ford 51372MPInventory Qty: 2 ",
+ "requests": [],
+ "lineComplete": {
+  "status": 400,
+  "json": {
+   "errors": [
+    {
+     "error": "Line can`t be completed with unfulfilled part requests."
+    }
+   ]
+  },
+  "text": "{\"errors\":[{\"error\":\"Line can`t be completed with unfulfilled part requests.\"}]}"
+ },
+ "afterComplete": {
+  "addPart": 2,
+  "addPartVisible": 2,
+  "statuses": [
+   "Approved",
+   "Approved"
+  ]
+ },
+ "rowOnComplete": {
+  "open": true
+ },
+ "afterAdd": {
+  "toast": []
+ },
+ "restore": {
+  "status": 200,
+  "json": {
+   "data": []
+  },
+  "text": "{\"data\":[]}"
  }
 }
