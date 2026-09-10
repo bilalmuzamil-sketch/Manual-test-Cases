@@ -1,0 +1,442 @@
+[
+ {
+  "cid": 45084,
+  "status": "Untested",
+  "title": "Print Work Order appears in the More menu",
+  "preconds": "1. In the top menu click \u201cWork Orders\u201d and open a work order by clicking its row. Its toolbar carries a three-dots button at the top right; that is the \u201cMore\u201d menu. On a work order you can still change, the menu holds five items in this order: \u201cAudit Log\u201d, \u201cTimesheets\u201d, \u201cAdd Work Order Fee / Discount\u201d, \u201cPrint Work Order\u201d, \u201cDelete Work Order\u201d. On a Paid work order it holds only three \u2014 \u201cAudit Log\u201d, \u201cTimesheets\u201d, \u201cPrint Work Order\u201d \u2014 so do not treat the two missing items as a fault. \u201cTimesheets\u201d always shows a count in brackets.",
+  "steps": "1. Open the More (overflow/actions) menu on the work order toolbar.",
+  "expected": "1. A \u201cPrint Work Order\u201d option appears in the More menu.\n---\nThis is the expected behaviour as per epic SV-9383 and story SV-9384 (Story 1, Print Option in More Menu) and the Printer Friendly Work Orders specification (Confluence page 519176194), section S1-R1, read on 9 September 2026.\nLast checked against build v26.36.0-f43b2fd on 9/9/2026.\nAUTOMATION: READY",
+  "automation": 1,
+  "created_by": 3
+ },
+ {
+  "cid": 45085,
+  "status": "Untested",
+  "title": "Print menu item is labelled Print Work Order with no icon",
+  "preconds": "1. In the top menu click \u201cWork Orders\u201d and open a work order by clicking its row. Its toolbar carries a three-dots button at the top right; that is the \u201cMore\u201d menu. On a work order you can still change, the menu holds five items in this order: \u201cAudit Log\u201d, \u201cTimesheets\u201d, \u201cAdd Work Order Fee / Discount\u201d, \u201cPrint Work Order\u201d, \u201cDelete Work Order\u201d. On a Paid work order it holds only three \u2014 \u201cAudit Log\u201d, \u201cTimesheets\u201d, \u201cPrint Work Order\u201d \u2014 so do not treat the two missing items as a fault. \u201cTimesheets\u201d always shows a count in brackets.",
+  "steps": "1. Open the More menu and inspect the Print item.",
+  "expected": "1. The menu item displays the label \u201cPrint Work Order\u201d.\n2. It is text only, with no icon, consistent with the other More menu items.\n---\nThis is the expected behaviour as per epic SV-9383 and story SV-9384 (Story 1, Print Option in More Menu) and the Printer Friendly Work Orders specification (Confluence page 519176194), section S1-R2, read on 9 September 2026.\nLast checked against build v26.36.0-f43b2fd on 9/9/2026.\nAUTOMATION: READY",
+  "automation": 1,
+  "created_by": 3
+ },
+ {
+  "cid": 45086,
+  "status": "Untested",
+  "title": "Print item sits below Timesheets and above Delete Work Order",
+  "preconds": "1. In the top menu click \u201cWork Orders\u201d and open a work order by clicking its row. Its toolbar carries a three-dots button at the top right; that is the \u201cMore\u201d menu. On a work order you can still change, the menu holds five items in this order: \u201cAudit Log\u201d, \u201cTimesheets\u201d, \u201cAdd Work Order Fee / Discount\u201d, \u201cPrint Work Order\u201d, \u201cDelete Work Order\u201d. On a Paid work order it holds only three \u2014 \u201cAudit Log\u201d, \u201cTimesheets\u201d, \u201cPrint Work Order\u201d \u2014 so do not treat the two missing items as a fault. \u201cTimesheets\u201d always shows a count in brackets.",
+  "steps": "1. Open the More menu and note the order of items.",
+  "expected": "1. The Print Work Order item is positioned below the Timesheets option and above the Delete Work Order option.\n---\nThis is the expected behaviour as per epic SV-9383 and story SV-9384 (Story 1, Print Option in More Menu) and the Printer Friendly Work Orders specification (Confluence page 519176194), section S1-R3, read on 9 September 2026.\nLast checked against build v26.36.0-f43b2fd on 9/9/2026.\nAUTOMATION: READY",
+  "automation": 1,
+  "created_by": 3
+ },
+ {
+  "cid": 45087,
+  "status": "Untested",
+  "title": "Selecting Print Work Order opens the browser print dialog",
+  "preconds": "1. In the top menu click \u201cWork Orders\u201d and open a work order by clicking its row. Its toolbar carries a three-dots button at the top right; that is the \u201cMore\u201d menu. On a work order you can still change, the menu holds five items in this order: \u201cAudit Log\u201d, \u201cTimesheets\u201d, \u201cAdd Work Order Fee / Discount\u201d, \u201cPrint Work Order\u201d, \u201cDelete Work Order\u201d. On a Paid work order it holds only three \u2014 \u201cAudit Log\u201d, \u201cTimesheets\u201d, \u201cPrint Work Order\u201d \u2014 so do not treat the two missing items as a fault. \u201cTimesheets\u201d always shows a count in brackets.\n2. The open work order has at least one line item on its Lines tab.",
+  "steps": "1. Select \u201cPrint Work Order\u201d from the More menu.",
+  "expected": "1. The browser's native print dialog opens.\n---\nThis is the expected behaviour as per epic SV-9383 and story SV-9384 (Story 1, Print Option in More Menu) and the Printer Friendly Work Orders specification (Confluence page 519176194), section S1-R4, read on 9 September 2026.\nLast checked against build v26.36.0-f43b2fd on 9/9/2026.\nAUTOMATION: READY",
+  "automation": 1,
+  "created_by": 3
+ },
+ {
+  "cid": 45088,
+  "status": "Untested",
+  "title": "Print option is available on every work order status",
+  "preconds": "1. In the top menu click \u201cWork Orders\u201d and open a work order by clicking its row. Its toolbar carries a three-dots button at the top right; that is the \u201cMore\u201d menu. On a work order you can still change, the menu holds five items in this order: \u201cAudit Log\u201d, \u201cTimesheets\u201d, \u201cAdd Work Order Fee / Discount\u201d, \u201cPrint Work Order\u201d, \u201cDelete Work Order\u201d. On a Paid work order it holds only three \u2014 \u201cAudit Log\u201d, \u201cTimesheets\u201d, \u201cPrint Work Order\u201d \u2014 so do not treat the two missing items as a fault. \u201cTimesheets\u201d always shows a count in brackets.",
+  "steps": "1. Open work orders with each status: Estimate, Approved, In Progress, Review, Complete, Invoiced, Paid, Declined.\n2. Open the More menu on each.",
+  "expected": "1. The Print option is available on all of those statuses.\nNOTE FOR THE TESTER: only the Estimate, Approved and Paid statuses exist on this test system. Check those three; the others cannot be set up here, so mark this case Blocked and say which statuses you were able to check - do not pass it on three out of eight.\n---\nThis is the expected behaviour as per epic SV-9383 and story SV-9384 (Story 1, Print Option in More Menu) and the Printer Friendly Work Orders specification (Confluence page 519176194), section S1-R5, read on 9 September 2026.\nLast checked against build v26.36.0-f43b2fd on 9/9/2026.\nAUTOMATION: READY",
+  "automation": 1,
+  "created_by": 3
+ },
+ {
+  "cid": 45089,
+  "status": "Untested",
+  "title": "Print option is available on desktop and mobile",
+  "preconds": "1. In the top menu click \u201cWork Orders\u201d and open a work order by clicking its row. Its toolbar carries a three-dots button at the top right; that is the \u201cMore\u201d menu. On a work order you can still change, the menu holds five items in this order: \u201cAudit Log\u201d, \u201cTimesheets\u201d, \u201cAdd Work Order Fee / Discount\u201d, \u201cPrint Work Order\u201d, \u201cDelete Work Order\u201d. On a Paid work order it holds only three \u2014 \u201cAudit Log\u201d, \u201cTimesheets\u201d, \u201cPrint Work Order\u201d \u2014 so do not treat the two missing items as a fault. \u201cTimesheets\u201d always shows a count in brackets.",
+  "steps": "1. Open the More menu on a desktop view.\n2. Open the More menu on a mobile view.",
+  "expected": "1. The Print option is available on both desktop and mobile views.\n---\nThis is the expected behaviour as per epic SV-9383 and story SV-9384 (Story 1, Print Option in More Menu) and the Printer Friendly Work Orders specification (Confluence page 519176194), section S1-R6, read on 9 September 2026.\nLast checked against build v26.36.0-f43b2fd on 9/9/2026.\nAUTOMATION: READY",
+  "automation": 1,
+  "created_by": 3
+ },
+ {
+  "cid": 45090,
+  "status": "Untested",
+  "title": "Users without view permission cannot reach the print option",
+  "preconds": "1. Sign in as a user whose role cannot view work orders, or have an administrator create one. To set a role up that way: open \u201cSettings\u201d from the menu behind your name at the top right, click \u201cRoles & Permissions\u201d in the sidebar, then click the pencil on the role in question and switch its work-order viewing permission off.\n2. Switching work-order viewing off on its own is not enough \u2014 the role keeps it. Switch off the work-order line editing and part-picking permissions in the same role as well, save, and the viewing permission then stays off.\n3. Then, in the top menu, try to reach \u201cWork Orders\u201d at all.",
+  "steps": "1. Attempt to open the work order detail page.",
+  "expected": "1. You cannot access the work order detail page and therefore cannot reach the print option (enforced by existing access control).\n---\nThis is the expected behaviour as per epic SV-9383 and story SV-9384 (Story 1, Print Option in More Menu) and the Printer Friendly Work Orders specification (Confluence page 519176194), section S1-N1, read on 9 September 2026.\nLast checked against build v26.36.0-f43b2fd on 9/9/2026.\nAUTOMATION: READY",
+  "automation": 1,
+  "created_by": 3
+ },
+ {
+  "cid": 45091,
+  "status": "Untested",
+  "title": "Print is disabled until line item data has loaded",
+  "preconds": "1. In the top menu click \u201cWork Orders\u201d and open a work order by clicking its row. Its toolbar carries a three-dots button at the top right; that is the \u201cMore\u201d menu. On a work order you can still change, the menu holds five items in this order: \u201cAudit Log\u201d, \u201cTimesheets\u201d, \u201cAdd Work Order Fee / Discount\u201d, \u201cPrint Work Order\u201d, \u201cDelete Work Order\u201d. On a Paid work order it holds only three \u2014 \u201cAudit Log\u201d, \u201cTimesheets\u201d, \u201cPrint Work Order\u201d \u2014 so do not treat the two missing items as a fault. \u201cTimesheets\u201d always shows a count in brackets.",
+  "steps": "1. Open the work order and open the More menu while line item data is still loading (or when no line items exist).\n2. Observe the Print item as the UI skeleton appears and then as the real data arrives.",
+  "expected": "1. The Print option is disabled (grayed out and non-clickable) until line item data has finished loading, and while no line items exist.\n2. It does not enable when only the UI skeleton appears \u2014 it waits for the actual data to arrive.\n---\nThis is the expected behaviour as per epic SV-9383 and story SV-9384 (Story 1, Print Option in More Menu) and the Printer Friendly Work Orders specification (Confluence page 519176194), section S1-E1, read on 9 September 2026.\nLast checked against build v26.36.0-f43b2fd on 9/9/2026.\nAUTOMATION: READY",
+  "automation": 1,
+  "created_by": 3
+ },
+ {
+  "cid": 45092,
+  "status": "Untested",
+  "title": "Work order number is shown prominently at the top",
+  "preconds": "1. In the top menu click \u201cWork Orders\u201d and open a work order by clicking its row. On the work order\u2019s toolbar click the three-dots button at the top right, then choose \u201cPrint Work Order\u201d. On a work order you can still change, the menu holds five items in this order: \u201cAudit Log\u201d, \u201cTimesheets\u201d, \u201cAdd Work Order Fee / Discount\u201d, \u201cPrint Work Order\u201d, \u201cDelete Work Order\u201d. On a Paid work order it holds only three \u2014 \u201cAudit Log\u201d, \u201cTimesheets\u201d, \u201cPrint Work Order\u201d \u2014 so do not treat the two missing items as a fault. \u201cTimesheets\u201d always shows a count in brackets. Choosing it opens your browser\u2019s own print dialog \u2014 the printout is what you are checking, so use your browser\u2019s print preview to look at it.",
+  "steps": "1. Look at the top of the printed page.",
+  "expected": "1. The printed page displays the work order number prominently at the top.\n---\nThis is the expected behaviour as per epic SV-9383 and story SV-9385 (Story 2, Print Layout - Work Order Header) and the Printer Friendly Work Orders specification (Confluence page 519176194), section S2-R1, read on 9 September 2026.\nLast checked against build v26.36.0-f43b2fd on 9/9/2026.\nAUTOMATION: READY",
+  "automation": 1,
+  "created_by": 3
+ },
+ {
+  "cid": 45093,
+  "status": "Untested",
+  "title": "Work order status is shown next to the work order number",
+  "preconds": "1. In the top menu click \u201cWork Orders\u201d and open a work order by clicking its row. On the work order\u2019s toolbar click the three-dots button at the top right, then choose \u201cPrint Work Order\u201d. On a work order you can still change, the menu holds five items in this order: \u201cAudit Log\u201d, \u201cTimesheets\u201d, \u201cAdd Work Order Fee / Discount\u201d, \u201cPrint Work Order\u201d, \u201cDelete Work Order\u201d. On a Paid work order it holds only three \u2014 \u201cAudit Log\u201d, \u201cTimesheets\u201d, \u201cPrint Work Order\u201d \u2014 so do not treat the two missing items as a fault. \u201cTimesheets\u201d always shows a count in brackets. Choosing it opens your browser\u2019s own print dialog \u2014 the printout is what you are checking, so use your browser\u2019s print preview to look at it.",
+  "steps": "1. Look at the top of the printed page next to the work order number.",
+  "expected": "1. The work order status is displayed next to the work order number.\n---\nThis is the expected behaviour as per epic SV-9383 and story SV-9385 (Story 2, Print Layout - Work Order Header) and the Printer Friendly Work Orders specification (Confluence page 519176194), section S2-R2, read on 9 September 2026.\nLast checked against build v26.36.0-f43b2fd on 9/9/2026.\nAUTOMATION: READY",
+  "automation": 1,
+  "created_by": 3
+ },
+ {
+  "cid": 45094,
+  "status": "Untested",
+  "title": "Header shows customer, vehicle, advisor, lead tech and start date",
+  "preconds": "1. In the top menu click \u201cWork Orders\u201d and open a work order by clicking its row. On the work order\u2019s toolbar click the three-dots button at the top right, then choose \u201cPrint Work Order\u201d. On a work order you can still change, the menu holds five items in this order: \u201cAudit Log\u201d, \u201cTimesheets\u201d, \u201cAdd Work Order Fee / Discount\u201d, \u201cPrint Work Order\u201d, \u201cDelete Work Order\u201d. On a Paid work order it holds only three \u2014 \u201cAudit Log\u201d, \u201cTimesheets\u201d, \u201cPrint Work Order\u201d \u2014 so do not treat the two missing items as a fault. \u201cTimesheets\u201d always shows a count in brackets. Choosing it opens your browser\u2019s own print dialog \u2014 the printout is what you are checking, so use your browser\u2019s print preview to look at it.\n2. The open work order has a customer, a vehicle, a service advisor, a lead technician and a start date set.",
+  "steps": "1. On the Print Work Order view (see Preconditions), read the header area of the printout.",
+  "expected": "1. The header displays: customer name (and company name if present); vehicle year, make, model, VIN, license plate, unit number (if present), mileage, engine hours (if present); service advisor name; lead technician name; and the work order start date.\n---\nThis is the expected behaviour as per epic SV-9383 and story SV-9385 (Story 2, Print Layout - Work Order Header) and the Printer Friendly Work Orders specification (Confluence page 519176194), section S2-R3, read on 9 September 2026.\nLast checked against build v26.36.0-f43b2fd on 9/9/2026.\nAUTOMATION: READY",
+  "automation": 1,
+  "created_by": 3
+ },
+ {
+  "cid": 45095,
+  "status": "Untested",
+  "title": "Header omits fields that have no value rather than showing blanks",
+  "preconds": "1. In the top menu click \u201cWork Orders\u201d and open a work order by clicking its row. On the work order\u2019s toolbar click the three-dots button at the top right, then choose \u201cPrint Work Order\u201d. On a work order you can still change, the menu holds five items in this order: \u201cAudit Log\u201d, \u201cTimesheets\u201d, \u201cAdd Work Order Fee / Discount\u201d, \u201cPrint Work Order\u201d, \u201cDelete Work Order\u201d. On a Paid work order it holds only three \u2014 \u201cAudit Log\u201d, \u201cTimesheets\u201d, \u201cPrint Work Order\u201d \u2014 so do not treat the two missing items as a fault. \u201cTimesheets\u201d always shows a count in brackets. Choosing it opens your browser\u2019s own print dialog \u2014 the printout is what you are checking, so use your browser\u2019s print preview to look at it.\n2. The open work order is missing some optional fields (e.g. no engine hours, no license plate).",
+  "steps": "1. On the Print Work Order view (see Preconditions), read the header area of the printout.",
+  "expected": "1. Fields that have no value are omitted from the printout rather than displayed as blank.\n---\nThis is the expected behaviour as per epic SV-9383 and story SV-9385 (Story 2, Print Layout - Work Order Header) and the Printer Friendly Work Orders specification (Confluence page 519176194), section S2-R4, read on 9 September 2026.\nLast checked against build v26.36.0-f43b2fd on 9/9/2026.\nAUTOMATION: READY",
+  "automation": 1,
+  "created_by": 3
+ },
+ {
+  "cid": 45096,
+  "status": "Untested",
+  "title": "Header shows the shop or organization name",
+  "preconds": "1. In the top menu click \u201cWork Orders\u201d and open a work order by clicking its row. On the work order\u2019s toolbar click the three-dots button at the top right, then choose \u201cPrint Work Order\u201d. On a work order you can still change, the menu holds five items in this order: \u201cAudit Log\u201d, \u201cTimesheets\u201d, \u201cAdd Work Order Fee / Discount\u201d, \u201cPrint Work Order\u201d, \u201cDelete Work Order\u201d. On a Paid work order it holds only three \u2014 \u201cAudit Log\u201d, \u201cTimesheets\u201d, \u201cPrint Work Order\u201d \u2014 so do not treat the two missing items as a fault. \u201cTimesheets\u201d always shows a count in brackets. Choosing it opens your browser\u2019s own print dialog \u2014 the printout is what you are checking, so use your browser\u2019s print preview to look at it.",
+  "steps": "1. On the Print Work Order view (see Preconditions), read the header area of the printout.",
+  "expected": "1. The shop name or organization name appears in the header area to identify the source of the printout.\n---\nThis is the expected behaviour as per epic SV-9383 and story SV-9385 (Story 2, Print Layout - Work Order Header) and the Printer Friendly Work Orders specification (Confluence page 519176194), section S2-R5, read on 9 September 2026.\nLast checked against build v26.36.0-f43b2fd on 9/9/2026.\nAUTOMATION: READY",
+  "automation": 1,
+  "created_by": 3
+ },
+ {
+  "cid": 45097,
+  "status": "Untested",
+  "title": "No customer assigned prints an explicit placeholder",
+  "preconds": "1. In the top menu click \u201cWork Orders\u201d and open a work order by clicking its row. On the work order\u2019s toolbar click the three-dots button at the top right, then choose \u201cPrint Work Order\u201d. On a work order you can still change, the menu holds five items in this order: \u201cAudit Log\u201d, \u201cTimesheets\u201d, \u201cAdd Work Order Fee / Discount\u201d, \u201cPrint Work Order\u201d, \u201cDelete Work Order\u201d. On a Paid work order it holds only three \u2014 \u201cAudit Log\u201d, \u201cTimesheets\u201d, \u201cPrint Work Order\u201d \u2014 so do not treat the two missing items as a fault. \u201cTimesheets\u201d always shows a count in brackets. Choosing it opens your browser\u2019s own print dialog \u2014 the printout is what you are checking, so use your browser\u2019s print preview to look at it.\n2. The open work order has no customer assigned.",
+  "steps": "1. Read the customer section of the printout.",
+  "expected": "1. The customer section displays \u201cNo customer assigned\u201d.\nNOTE FOR THE TESTER: this case cannot be run on this build, and it was tried properly rather than assumed. On the \u201cNew Work Order\u201d window, leaving \u201cCustomer\u201d empty and clicking \u201cSave\u201d answers \u201cCustomer is a required field\u201d and nothing is created \u2014 so a work order with no customer cannot exist here at all, and the placeholder this case describes can never be printed. It is waiting on a product-owner ruling. Leave the case Untested.\n---\nThis is the expected behaviour as per epic SV-9383 and story SV-9385 (Story 2, Print Layout - Work Order Header) and the Printer Friendly Work Orders specification (Confluence page 519176194), section S2-N1, read on 9 September 2026.\nLast checked against build v26.36.0-f43b2fd on 9/9/2026.\nAUTOMATION: HOLD - a work order cannot be created without a customer (\"Customer is a required field\"), so this printout can never be reached; awaiting a product-owner ruling",
+  "automation": 1,
+  "created_by": 3
+ },
+ {
+  "cid": 45098,
+  "status": "Untested",
+  "title": "No vehicle assigned prints an explicit placeholder",
+  "preconds": "1. In the top menu click \u201cWork Orders\u201d and open a work order by clicking its row. On the work order\u2019s toolbar click the three-dots button at the top right, then choose \u201cPrint Work Order\u201d. On a work order you can still change, the menu holds five items in this order: \u201cAudit Log\u201d, \u201cTimesheets\u201d, \u201cAdd Work Order Fee / Discount\u201d, \u201cPrint Work Order\u201d, \u201cDelete Work Order\u201d. On a Paid work order it holds only three \u2014 \u201cAudit Log\u201d, \u201cTimesheets\u201d, \u201cPrint Work Order\u201d \u2014 so do not treat the two missing items as a fault. \u201cTimesheets\u201d always shows a count in brackets. Choosing it opens your browser\u2019s own print dialog \u2014 the printout is what you are checking, so use your browser\u2019s print preview to look at it.\n2. The open work order has no vehicle assigned.",
+  "steps": "1. Read the vehicle section of the printout.",
+  "expected": "1. The vehicle section displays \u201cNo vehicle assigned\u201d.\nNOTE FOR THE TESTER: this case cannot be run on this build, and it was tried properly rather than assumed. On the \u201cNew Work Order\u201d window, choosing a customer and then clicking \u201cSave\u201d with \u201cAdd Asset\u201d left empty answers \u201cAsset is a required field\u201d and nothing is created \u2014 so a work order with no vehicle cannot exist here at all. The nearest real work order, S2-6107, has a vehicle with only a year recorded and prints it as \u201cVehicle: 1993\u201d, which is sparse data rather than none. Waiting on a product-owner ruling. Leave the case Untested.\n---\nThis is the expected behaviour as per epic SV-9383 and story SV-9385 (Story 2, Print Layout - Work Order Header) and the Printer Friendly Work Orders specification (Confluence page 519176194), section S2-N2, read on 9 September 2026.\nLast checked against build v26.36.0-f43b2fd on 9/9/2026.\nAUTOMATION: HOLD - a work order cannot be created without a vehicle (\"Asset is a required field\"), so this printout can never be reached; awaiting a product-owner ruling",
+  "automation": 1,
+  "created_by": 3
+ },
+ {
+  "cid": 45099,
+  "status": "Untested",
+  "title": "Each line shows number, description, status, time, story and techs",
+  "preconds": "1. In the top menu click \u201cWork Orders\u201d and open a work order by clicking its row. On the work order\u2019s toolbar click the three-dots button at the top right, then choose \u201cPrint Work Order\u201d. On a work order you can still change, the menu holds five items in this order: \u201cAudit Log\u201d, \u201cTimesheets\u201d, \u201cAdd Work Order Fee / Discount\u201d, \u201cPrint Work Order\u201d, \u201cDelete Work Order\u201d. On a Paid work order it holds only three \u2014 \u201cAudit Log\u201d, \u201cTimesheets\u201d, \u201cPrint Work Order\u201d \u2014 so do not treat the two missing items as a fault. \u201cTimesheets\u201d always shows a count in brackets. Choosing it opens your browser\u2019s own print dialog \u2014 the printout is what you are checking, so use your browser\u2019s print preview to look at it.\n2. The open work order has at least one line item on its Lines tab.",
+  "steps": "1. On the Print Work Order view (see Preconditions), read a line item on the printout.",
+  "expected": "1. Each line item displays: line number; line description (name); line status; actual time / estimated time; tech story (if one exists); and assigned technician(s) (if assigned).\n---\nThis is the expected behaviour as per epic SV-9383 and story SV-9386 (Story 3, Print Layout - Line Items) and the Printer Friendly Work Orders specification (Confluence page 519176194), section S3-R1, read on 9 September 2026.\nLast checked against build v26.36.0-f43b2fd on 9/9/2026.\nAUTOMATION: READY",
+  "automation": 1,
+  "created_by": 3
+ },
+ {
+  "cid": 45100,
+  "status": "Untested",
+  "title": "Parts under a line show description, part number and quantity",
+  "preconds": "1. In the top menu click \u201cWork Orders\u201d and open a work order by clicking its row. On the work order\u2019s toolbar click the three-dots button at the top right, then choose \u201cPrint Work Order\u201d. On a work order you can still change, the menu holds five items in this order: \u201cAudit Log\u201d, \u201cTimesheets\u201d, \u201cAdd Work Order Fee / Discount\u201d, \u201cPrint Work Order\u201d, \u201cDelete Work Order\u201d. On a Paid work order it holds only three \u2014 \u201cAudit Log\u201d, \u201cTimesheets\u201d, \u201cPrint Work Order\u201d \u2014 so do not treat the two missing items as a fault. \u201cTimesheets\u201d always shows a count in brackets. Choosing it opens your browser\u2019s own print dialog \u2014 the printout is what you are checking, so use your browser\u2019s print preview to look at it.\n2. At least one line on the open work order has parts under it (on the Lines tab).",
+  "steps": "1. Read the parts listed under a line on the printout.",
+  "expected": "1. Parts associated with each line are listed showing: part description, part number, and quantity.\n---\nThis is the expected behaviour as per epic SV-9383 and story SV-9386 (Story 3, Print Layout - Line Items) and the Printer Friendly Work Orders specification (Confluence page 519176194), section S3-R2, read on 9 September 2026.\nLast checked against build v26.36.0-f43b2fd on 9/9/2026.\nAUTOMATION: READY",
+  "automation": 1,
+  "created_by": 3
+ },
+ {
+  "cid": 45101,
+  "status": "Untested",
+  "title": "Pricing is never shown on line items",
+  "preconds": "1. In the top menu click \u201cWork Orders\u201d and open a work order by clicking its row. On the work order\u2019s toolbar click the three-dots button at the top right, then choose \u201cPrint Work Order\u201d. On a work order you can still change, the menu holds five items in this order: \u201cAudit Log\u201d, \u201cTimesheets\u201d, \u201cAdd Work Order Fee / Discount\u201d, \u201cPrint Work Order\u201d, \u201cDelete Work Order\u201d. On a Paid work order it holds only three \u2014 \u201cAudit Log\u201d, \u201cTimesheets\u201d, \u201cPrint Work Order\u201d \u2014 so do not treat the two missing items as a fault. \u201cTimesheets\u201d always shows a count in brackets. Choosing it opens your browser\u2019s own print dialog \u2014 the printout is what you are checking, so use your browser\u2019s print preview to look at it.\n2. The open work order has at least one line item on its Lines tab.",
+  "steps": "1. Inspect the line items and parts on the printout for any pricing.",
+  "expected": "1. No pricing is shown \u2014 no labor rates, margins, line totals, part sell prices, or part margins.\n2. The Rate, Margin, and Total columns are removed entirely.\n---\nThis is the expected behaviour as per epic SV-9383 and story SV-9386 (Story 3, Print Layout - Line Items) and the Printer Friendly Work Orders specification (Confluence page 519176194), section S3-R3, read on 9 September 2026.\nLast checked against build v26.36.0-f43b2fd on 9/9/2026.\nAUTOMATION: READY",
+  "automation": 1,
+  "created_by": 3
+ },
+ {
+  "cid": 45102,
+  "status": "Untested",
+  "title": "Action and Progress columns are removed from the printout",
+  "preconds": "1. In the top menu click \u201cWork Orders\u201d and open a work order by clicking its row. On the work order\u2019s toolbar click the three-dots button at the top right, then choose \u201cPrint Work Order\u201d. On a work order you can still change, the menu holds five items in this order: \u201cAudit Log\u201d, \u201cTimesheets\u201d, \u201cAdd Work Order Fee / Discount\u201d, \u201cPrint Work Order\u201d, \u201cDelete Work Order\u201d. On a Paid work order it holds only three \u2014 \u201cAudit Log\u201d, \u201cTimesheets\u201d, \u201cPrint Work Order\u201d \u2014 so do not treat the two missing items as a fault. \u201cTimesheets\u201d always shows a count in brackets. Choosing it opens your browser\u2019s own print dialog \u2014 the printout is what you are checking, so use your browser\u2019s print preview to look at it.\n2. The open work order has at least one line item on its Lines tab.",
+  "steps": "1. Inspect the line items on the printout.",
+  "expected": "1. The Action column (Approve, Decline, Complete buttons) and the Progress column (progress bars) are removed; the line status text column is present instead.\n---\nThis is the expected behaviour as per epic SV-9383 and story SV-9386 (Story 3, Print Layout - Line Items) and the Printer Friendly Work Orders specification (Confluence page 519176194), section S3-R4, read on 9 September 2026.\nLast checked against build v26.36.0-f43b2fd on 9/9/2026.\nAUTOMATION: READY",
+  "automation": 1,
+  "created_by": 3
+ },
+ {
+  "cid": 45103,
+  "status": "Untested",
+  "title": "Lines print in the same order as on screen",
+  "preconds": "1. In the top menu click \u201cWork Orders\u201d and open a work order by clicking its row. On the work order\u2019s toolbar click the three-dots button at the top right, then choose \u201cPrint Work Order\u201d. On a work order you can still change, the menu holds five items in this order: \u201cAudit Log\u201d, \u201cTimesheets\u201d, \u201cAdd Work Order Fee / Discount\u201d, \u201cPrint Work Order\u201d, \u201cDelete Work Order\u201d. On a Paid work order it holds only three \u2014 \u201cAudit Log\u201d, \u201cTimesheets\u201d, \u201cPrint Work Order\u201d \u2014 so do not treat the two missing items as a fault. \u201cTimesheets\u201d always shows a count in brackets. Choosing it opens your browser\u2019s own print dialog \u2014 the printout is what you are checking, so use your browser\u2019s print preview to look at it.\n2. The open work order has more than one line item on its Lines tab.",
+  "steps": "1. Compare the line order on the printout with the on-screen order.",
+  "expected": "1. Lines are printed in the same order they appear on screen (by line number).\n---\nThis is the expected behaviour as per epic SV-9383 and story SV-9386 (Story 3, Print Layout - Line Items) and the Printer Friendly Work Orders specification (Confluence page 519176194), section S3-R5, read on 9 September 2026.\nLast checked against build v26.36.0-f43b2fd on 9/9/2026.\nAUTOMATION: READY",
+  "automation": 1,
+  "created_by": 3
+ },
+ {
+  "cid": 45104,
+  "status": "Untested",
+  "title": "Cancelled lines still print if visible on screen",
+  "preconds": "1. In the top menu click \u201cWork Orders\u201d and open a work order by clicking its row. On the work order\u2019s toolbar click the three-dots button at the top right, then choose \u201cPrint Work Order\u201d. On a work order you can still change, the menu holds five items in this order: \u201cAudit Log\u201d, \u201cTimesheets\u201d, \u201cAdd Work Order Fee / Discount\u201d, \u201cPrint Work Order\u201d, \u201cDelete Work Order\u201d. On a Paid work order it holds only three \u2014 \u201cAudit Log\u201d, \u201cTimesheets\u201d, \u201cPrint Work Order\u201d \u2014 so do not treat the two missing items as a fault. \u201cTimesheets\u201d always shows a count in brackets. Choosing it opens your browser\u2019s own print dialog \u2014 the printout is what you are checking, so use your browser\u2019s print preview to look at it.\n2. The open work order has a line with a Cancelled status visible on the Lines tab.",
+  "steps": "1. On the Print Work Order view (see Preconditions), read the printout for the cancelled line.",
+  "expected": "1. Line items with a status of \u201cCancelled\u201d still appear on the printout if they are visible on screen, with their status clearly indicated.\nNOTE FOR THE TESTER: this case cannot be run on this build. There is no \u201cCancelled\u201d status for a work order line in this product \u2014 a line offers only \u201cAuthorization required\u201d, \u201cDeclined\u201d, \u201cAuthorized\u201d and \u201cComplete\u201d, and those are the only four the system will accept. So no line can be put into the status this case describes. It is waiting on a product-owner ruling on what the requirement means. Leave the case Untested.\n---\nThis is the expected behaviour as per epic SV-9383 and story SV-9386 (Story 3, Print Layout - Line Items) and the Printer Friendly Work Orders specification (Confluence page 519176194), section S3-R6, read on 9 September 2026.\nLast checked against build v26.36.0-f43b2fd on 9/9/2026.\nAUTOMATION: HOLD - the product has no Cancelled line status (only Authorization required, Declined, Authorized and Complete), so this state cannot be reached; awaiting a product-owner ruling",
+  "automation": 1,
+  "created_by": 3
+ },
+ {
+  "cid": 45105,
+  "status": "Untested",
+  "title": "Line groups are separated by a thick border and note space",
+  "preconds": "1. In the top menu click \u201cWork Orders\u201d and open a work order by clicking its row. On the work order\u2019s toolbar click the three-dots button at the top right, then choose \u201cPrint Work Order\u201d. On a work order you can still change, the menu holds five items in this order: \u201cAudit Log\u201d, \u201cTimesheets\u201d, \u201cAdd Work Order Fee / Discount\u201d, \u201cPrint Work Order\u201d, \u201cDelete Work Order\u201d. On a Paid work order it holds only three \u2014 \u201cAudit Log\u201d, \u201cTimesheets\u201d, \u201cPrint Work Order\u201d \u2014 so do not treat the two missing items as a fault. \u201cTimesheets\u201d always shows a count in brackets. Choosing it opens your browser\u2019s own print dialog \u2014 the printout is what you are checking, so use your browser\u2019s print preview to look at it.\n2. The open work order has more than one line item on its Lines tab.",
+  "steps": "1. On the Print Work Order view (see Preconditions), look at the separation between one line group and the next on the printout.",
+  "expected": "1. Each work order line group (main line plus its sub-rows for tech story, labor, parts, inspections) is visually separated from the next by a thick border and blank space below, giving room to write notes per line.\n---\nThis is the expected behaviour as per epic SV-9383 and story SV-9386 (Story 3, Print Layout - Line Items) and the Printer Friendly Work Orders specification (Confluence page 519176194), section S3-R7, read on 9 September 2026.\nLast checked against build v26.36.0-f43b2fd on 9/9/2026.\nAUTOMATION: READY",
+  "automation": 1,
+  "created_by": 3
+ },
+ {
+  "cid": 45106,
+  "status": "Untested",
+  "title": "Empty tech story row is omitted with no placeholder",
+  "preconds": "1. In the top menu click \u201cWork Orders\u201d and open a work order by clicking its row. On the work order\u2019s toolbar click the three-dots button at the top right, then choose \u201cPrint Work Order\u201d. On a work order you can still change, the menu holds five items in this order: \u201cAudit Log\u201d, \u201cTimesheets\u201d, \u201cAdd Work Order Fee / Discount\u201d, \u201cPrint Work Order\u201d, \u201cDelete Work Order\u201d. On a Paid work order it holds only three \u2014 \u201cAudit Log\u201d, \u201cTimesheets\u201d, \u201cPrint Work Order\u201d \u2014 so do not treat the two missing items as a fault. \u201cTimesheets\u201d always shows a count in brackets. Choosing it opens your browser\u2019s own print dialog \u2014 the printout is what you are checking, so use your browser\u2019s print preview to look at it.\n2. At least one line on the open work order has no tech story.",
+  "steps": "1. On the Print Work Order view (see Preconditions), read a line that has no tech story on the printout.",
+  "expected": "1. The tech story row is omitted entirely \u2014 no placeholder text (for example \u201cAdd tech story for this line\u201d) appears.\n---\nThis is the expected behaviour as per epic SV-9383 and story SV-9386 (Story 3, Print Layout - Line Items) and the Printer Friendly Work Orders specification (Confluence page 519176194), section S3-R8, S3-N3, read on 9 September 2026.\nLast checked against build v26.36.0-f43b2fd on 9/9/2026.\nAUTOMATION: READY",
+  "automation": 1,
+  "created_by": 3
+ },
+ {
+  "cid": 45107,
+  "status": "Untested",
+  "title": "No line items prints an explicit placeholder",
+  "preconds": "1. In the top menu click \u201cWork Orders\u201d and open a work order by clicking its row. On the work order\u2019s toolbar click the three-dots button at the top right, then choose \u201cPrint Work Order\u201d. On a work order you can still change, the menu holds five items in this order: \u201cAudit Log\u201d, \u201cTimesheets\u201d, \u201cAdd Work Order Fee / Discount\u201d, \u201cPrint Work Order\u201d, \u201cDelete Work Order\u201d. On a Paid work order it holds only three \u2014 \u201cAudit Log\u201d, \u201cTimesheets\u201d, \u201cPrint Work Order\u201d \u2014 so do not treat the two missing items as a fault. \u201cTimesheets\u201d always shows a count in brackets. Choosing it opens your browser\u2019s own print dialog \u2014 the printout is what you are checking, so use your browser\u2019s print preview to look at it.\n2. The open work order has no line items on its Lines tab.",
+  "steps": "1. Read the line items section of the printout.",
+  "expected": "1. The line items section displays \u201cNo lines on this work order\u201d.\nNOTE FOR THE TESTER: this case cannot be run at all. On a work order with no line items the \u201cPrint Work Order\u201d option is greyed out, so the printout described here can never be opened. The written description asserts both things and the product owner has to settle it. Leave the case Untested.\n---\nThis is the expected behaviour as per epic SV-9383 and story SV-9386 (Story 3, Print Layout - Line Items) and the Printer Friendly Work Orders specification (Confluence page 519176194), section S3-N1, read on 9 September 2026.\nLast checked against build v26.36.0-f43b2fd on 9/9/2026.\nAUTOMATION: HOLD - a work order with no line items cannot be printed at all, so this printout can never be reached; awaiting a product-owner ruling on the contradiction",
+  "automation": 3,
+  "created_by": 3
+ },
+ {
+  "cid": 45108,
+  "status": "Untested",
+  "title": "A line with no parts shows no parts section",
+  "preconds": "1. In the top menu click \u201cWork Orders\u201d and open a work order by clicking its row. On the work order\u2019s toolbar click the three-dots button at the top right, then choose \u201cPrint Work Order\u201d. On a work order you can still change, the menu holds five items in this order: \u201cAudit Log\u201d, \u201cTimesheets\u201d, \u201cAdd Work Order Fee / Discount\u201d, \u201cPrint Work Order\u201d, \u201cDelete Work Order\u201d. On a Paid work order it holds only three \u2014 \u201cAudit Log\u201d, \u201cTimesheets\u201d, \u201cPrint Work Order\u201d \u2014 so do not treat the two missing items as a fault. \u201cTimesheets\u201d always shows a count in brackets. Choosing it opens your browser\u2019s own print dialog \u2014 the printout is what you are checking, so use your browser\u2019s print preview to look at it.\n2. At least one line on the open work order has no parts under it.",
+  "steps": "1. Read a line that has no parts on the printout.",
+  "expected": "1. No parts section appears for a line that has no parts.\n---\nThis is the expected behaviour as per epic SV-9383 and story SV-9386 (Story 3, Print Layout - Line Items) and the Printer Friendly Work Orders specification (Confluence page 519176194), section S3-N2, read on 9 September 2026.\nLast checked against build v26.36.0-f43b2fd on 9/9/2026.\nAUTOMATION: READY",
+  "automation": 1,
+  "created_by": 3
+ },
+ {
+  "cid": 45109,
+  "status": "Untested",
+  "title": "A line with no assigned technicians omits the technician area",
+  "preconds": "1. In the top menu click \u201cWork Orders\u201d and open a work order by clicking its row. On the work order\u2019s toolbar click the three-dots button at the top right, then choose \u201cPrint Work Order\u201d. On a work order you can still change, the menu holds five items in this order: \u201cAudit Log\u201d, \u201cTimesheets\u201d, \u201cAdd Work Order Fee / Discount\u201d, \u201cPrint Work Order\u201d, \u201cDelete Work Order\u201d. On a Paid work order it holds only three \u2014 \u201cAudit Log\u201d, \u201cTimesheets\u201d, \u201cPrint Work Order\u201d \u2014 so do not treat the two missing items as a fault. \u201cTimesheets\u201d always shows a count in brackets. Choosing it opens your browser\u2019s own print dialog \u2014 the printout is what you are checking, so use your browser\u2019s print preview to look at it.\n2. At least one line on the open work order has no assigned technicians.",
+  "steps": "1. On the Print Work Order view (see Preconditions), read a line with no assigned technicians on the printout.",
+  "expected": "1. The technician area is omitted for a line that has no assigned technicians.\n---\nThis is the expected behaviour as per epic SV-9383 and story SV-9386 (Story 3, Print Layout - Line Items) and the Printer Friendly Work Orders specification (Confluence page 519176194), section S3-N4, read on 9 September 2026.\nLast checked against build v26.36.0-f43b2fd on 9/9/2026.\nAUTOMATION: READY",
+  "automation": 1,
+  "created_by": 3
+ },
+ {
+  "cid": 45110,
+  "status": "Passed",
+  "title": "Many lines flow across pages without splitting a line if avoidable",
+  "preconds": "1. In the top menu click \u201cWork Orders\u201d and open a work order by clicking its row. On the work order\u2019s toolbar click the three-dots button at the top right, then choose \u201cPrint Work Order\u201d. On a work order you can still change, the menu holds five items in this order: \u201cAudit Log\u201d, \u201cTimesheets\u201d, \u201cAdd Work Order Fee / Discount\u201d, \u201cPrint Work Order\u201d, \u201cDelete Work Order\u201d. On a Paid work order it holds only three \u2014 \u201cAudit Log\u201d, \u201cTimesheets\u201d, \u201cPrint Work Order\u201d \u2014 so do not treat the two missing items as a fault. \u201cTimesheets\u201d always shows a count in brackets. Choosing it opens your browser\u2019s own print dialog \u2014 the printout is what you are checking, so use your browser\u2019s print preview to look at it.\n2. The open work order has 10 or more line items on its Lines tab.",
+  "steps": "1. Print and review the multi-page output.",
+  "expected": "1. The printout flows across multiple pages with line items continuing naturally.\n2. No line item is split mid-way across a page break if it can be avoided.\n---\nThis is the expected behaviour as per epic SV-9383 and story SV-9386 (Story 3, Print Layout - Line Items) and the Printer Friendly Work Orders specification (Confluence page 519176194), section S3-E1, read on 9 September 2026.\nLast checked against build v26.36.0-f43b2fd on 9/9/2026.\nAUTOMATION: READY",
+  "automation": 1,
+  "created_by": 3
+ },
+ {
+  "cid": 45111,
+  "status": "Untested",
+  "title": "A very long tech story wraps and prints in full",
+  "preconds": "1. In the top menu click \u201cWork Orders\u201d and open a work order by clicking its row. Open its \u201cLines\u201d tab, click a line to open it, and paste at least 500 characters \u2014 about a full paragraph \u2014 into the line\u2019s \u201cStory\u201d box (it reads \u201cAdd tech story for this line\u201d when it is empty), then save the line.\n2. Back on the work order\u2019s toolbar click the three-dots button at the top right, then choose \u201cPrint Work Order\u201d. On a work order you can still change, the menu holds five items in this order: \u201cAudit Log\u201d, \u201cTimesheets\u201d, \u201cAdd Work Order Fee / Discount\u201d, \u201cPrint Work Order\u201d, \u201cDelete Work Order\u201d. On a Paid work order it holds only three \u2014 \u201cAudit Log\u201d, \u201cTimesheets\u201d, \u201cPrint Work Order\u201d \u2014 so do not treat the two missing items as a fault. \u201cTimesheets\u201d always shows a count in brackets. Choosing it opens your browser\u2019s own print dialog \u2014 the printout is what you are checking, so use your browser\u2019s print preview to look at it.",
+  "steps": "1. On the Print Work Order view (see Preconditions), read the long tech story on the printout.",
+  "expected": "1. The tech story wraps and prints in full; it is not truncated.\n---\nThis is the expected behaviour as per epic SV-9383 and story SV-9386 (Story 3, Print Layout - Line Items) and the Printer Friendly Work Orders specification (Confluence page 519176194), section S3-E2, read on 9 September 2026.\nLast checked against build v26.36.0-f43b2fd on 9/9/2026.\nAUTOMATION: READY",
+  "automation": 1,
+  "created_by": 3
+ },
+ {
+  "cid": 45112,
+  "status": "Untested",
+  "title": "Summary shows total actual and estimated time",
+  "preconds": "1. In the top menu click \u201cWork Orders\u201d and open a work order by clicking its row. On the work order\u2019s toolbar click the three-dots button at the top right, then choose \u201cPrint Work Order\u201d. On a work order you can still change, the menu holds five items in this order: \u201cAudit Log\u201d, \u201cTimesheets\u201d, \u201cAdd Work Order Fee / Discount\u201d, \u201cPrint Work Order\u201d, \u201cDelete Work Order\u201d. On a Paid work order it holds only three \u2014 \u201cAudit Log\u201d, \u201cTimesheets\u201d, \u201cPrint Work Order\u201d \u2014 so do not treat the two missing items as a fault. \u201cTimesheets\u201d always shows a count in brackets. Choosing it opens your browser\u2019s own print dialog \u2014 the printout is what you are checking, so use your browser\u2019s print preview to look at it.\n2. The open work order has at least one line item on its Lines tab.",
+  "steps": "1. Read the summary section that appears after all line items.",
+  "expected": "1. A summary section appears after all line items, displaying total actual time / total estimated time across all lines.\n---\nThis is the expected behaviour as per epic SV-9383 and story SV-9387 (Story 4, Print Layout - Summary and Footer) and the Printer Friendly Work Orders specification (Confluence page 519176194), section S4-R1, read on 9 September 2026.\nLast checked against build v26.36.0-f43b2fd on 9/9/2026.\nAUTOMATION: READY",
+  "automation": 1,
+  "created_by": 3
+ },
+ {
+  "cid": 45113,
+  "status": "Untested",
+  "title": "Summary never shows pricing",
+  "preconds": "1. In the top menu click \u201cWork Orders\u201d and open a work order by clicking its row. On the work order\u2019s toolbar click the three-dots button at the top right, then choose \u201cPrint Work Order\u201d. On a work order you can still change, the menu holds five items in this order: \u201cAudit Log\u201d, \u201cTimesheets\u201d, \u201cAdd Work Order Fee / Discount\u201d, \u201cPrint Work Order\u201d, \u201cDelete Work Order\u201d. On a Paid work order it holds only three \u2014 \u201cAudit Log\u201d, \u201cTimesheets\u201d, \u201cPrint Work Order\u201d \u2014 so do not treat the two missing items as a fault. \u201cTimesheets\u201d always shows a count in brackets. Choosing it opens your browser\u2019s own print dialog \u2014 the printout is what you are checking, so use your browser\u2019s print preview to look at it.\n2. The open work order has at least one line item on its Lines tab.",
+  "steps": "1. Inspect the summary section for any pricing.",
+  "expected": "1. No pricing is shown in the summary \u2014 no parts subtotal, labor subtotal, shop supplies, tax, or grand total. Only time totals are displayed.\n---\nThis is the expected behaviour as per epic SV-9383 and story SV-9387 (Story 4, Print Layout - Summary and Footer) and the Printer Friendly Work Orders specification (Confluence page 519176194), section S4-R2, read on 9 September 2026.\nLast checked against build v26.36.0-f43b2fd on 9/9/2026.\nAUTOMATION: READY",
+  "automation": 1,
+  "created_by": 3
+ },
+ {
+  "cid": 45114,
+  "status": "Untested",
+  "title": "Print timestamp appears at the bottom of the printout",
+  "preconds": "1. In the top menu click \u201cWork Orders\u201d and open a work order by clicking its row. On the work order\u2019s toolbar click the three-dots button at the top right, then choose \u201cPrint Work Order\u201d. On a work order you can still change, the menu holds five items in this order: \u201cAudit Log\u201d, \u201cTimesheets\u201d, \u201cAdd Work Order Fee / Discount\u201d, \u201cPrint Work Order\u201d, \u201cDelete Work Order\u201d. On a Paid work order it holds only three \u2014 \u201cAudit Log\u201d, \u201cTimesheets\u201d, \u201cPrint Work Order\u201d \u2014 so do not treat the two missing items as a fault. \u201cTimesheets\u201d always shows a count in brackets. Choosing it opens your browser\u2019s own print dialog \u2014 the printout is what you are checking, so use your browser\u2019s print preview to look at it.",
+  "steps": "1. On the Print Work Order view (see Preconditions), look at the bottom of the printout.",
+  "expected": "1. The print timestamp (date and time of printing) appears at the bottom of the printout.\n---\nThis is the expected behaviour as per epic SV-9383 and story SV-9387 (Story 4, Print Layout - Summary and Footer) and the Printer Friendly Work Orders specification (Confluence page 519176194), section S4-R3, read on 9 September 2026.\nLast checked against build v26.36.0-f43b2fd on 9/9/2026.\nAUTOMATION: READY",
+  "automation": 1,
+  "created_by": 3
+ },
+ {
+  "cid": 45115,
+  "status": "Passed",
+  "title": "Work order number repeats in the footer of each page",
+  "preconds": "1. In the top menu click \u201cWork Orders\u201d and open a work order by clicking its row. On the work order\u2019s toolbar click the three-dots button at the top right, then choose \u201cPrint Work Order\u201d. On a work order you can still change, the menu holds five items in this order: \u201cAudit Log\u201d, \u201cTimesheets\u201d, \u201cAdd Work Order Fee / Discount\u201d, \u201cPrint Work Order\u201d, \u201cDelete Work Order\u201d. On a Paid work order it holds only three \u2014 \u201cAudit Log\u201d, \u201cTimesheets\u201d, \u201cPrint Work Order\u201d \u2014 so do not treat the two missing items as a fault. \u201cTimesheets\u201d always shows a count in brackets. Choosing it opens your browser\u2019s own print dialog \u2014 the printout is what you are checking, so use your browser\u2019s print preview to look at it.\n2. The printout spans multiple pages (use a work order with enough lines to overflow one page).",
+  "steps": "1. Review the footer of each printed page.",
+  "expected": "1. The work order number repeats in the footer of each printed page for multi-page printouts.\n---\nThis is the expected behaviour as per epic SV-9383 and story SV-9387 (Story 4, Print Layout - Summary and Footer) and the Printer Friendly Work Orders specification (Confluence page 519176194), section S4-R4, read on 9 September 2026.\nLast checked against build v26.36.0-f43b2fd on 9/9/2026.\nAUTOMATION: READY",
+  "automation": 1,
+  "created_by": 3
+ },
+ {
+  "cid": 45116,
+  "status": "Untested",
+  "title": "With no line items the summary shows zero totals",
+  "preconds": "1. In the top menu click \u201cWork Orders\u201d and open a work order by clicking its row. On the work order\u2019s toolbar click the three-dots button at the top right, then choose \u201cPrint Work Order\u201d. On a work order you can still change, the menu holds five items in this order: \u201cAudit Log\u201d, \u201cTimesheets\u201d, \u201cAdd Work Order Fee / Discount\u201d, \u201cPrint Work Order\u201d, \u201cDelete Work Order\u201d. On a Paid work order it holds only three \u2014 \u201cAudit Log\u201d, \u201cTimesheets\u201d, \u201cPrint Work Order\u201d \u2014 so do not treat the two missing items as a fault. \u201cTimesheets\u201d always shows a count in brackets. Choosing it opens your browser\u2019s own print dialog \u2014 the printout is what you are checking, so use your browser\u2019s print preview to look at it.\n2. The open work order has no line items on its Lines tab.",
+  "steps": "1. Read the summary section of the printout.",
+  "expected": "1. The summary shows zero totals rather than being hidden, and the line items area shows a single placeholder row reading \u201cNo lines on this work order\u201d.\nNOTE FOR THE TESTER: this case cannot be run at all, for the same reason as the case about printing a work order with no line items - the \u201cPrint Work Order\u201d option is greyed out when there are no lines, so there is no printout to read a summary from. Leave it Untested.\n---\nThis is the expected behaviour as per epic SV-9383 and story SV-9387 (Story 4, Print Layout - Summary and Footer) and the Printer Friendly Work Orders specification (Confluence page 519176194), section S4-N1, read on 9 September 2026.\nLast checked against build v26.36.0-f43b2fd on 9/9/2026.\nAUTOMATION: HOLD - a work order with no line items cannot be printed at all, so this summary can never be reached; awaiting a product-owner ruling on the contradiction",
+  "automation": 1,
+  "created_by": 3
+ },
+ {
+  "cid": 45117,
+  "status": "Untested",
+  "title": "All interactive and navigation elements are hidden on the printout",
+  "preconds": "1. In the top menu click \u201cWork Orders\u201d and open a work order by clicking its row. On the work order\u2019s toolbar click the three-dots button at the top right, then choose \u201cPrint Work Order\u201d. On a work order you can still change, the menu holds five items in this order: \u201cAudit Log\u201d, \u201cTimesheets\u201d, \u201cAdd Work Order Fee / Discount\u201d, \u201cPrint Work Order\u201d, \u201cDelete Work Order\u201d. On a Paid work order it holds only three \u2014 \u201cAudit Log\u201d, \u201cTimesheets\u201d, \u201cPrint Work Order\u201d \u2014 so do not treat the two missing items as a fault. \u201cTimesheets\u201d always shows a count in brackets. Choosing it opens your browser\u2019s own print dialog \u2014 the printout is what you are checking, so use your browser\u2019s print preview to look at it.",
+  "steps": "1. Inspect the printout for application chrome and interactive controls.",
+  "expected": "1. The following are hidden: application navigation (sidebar, top bar, breadcrumbs); all action buttons (Print, New Line, Reviewed, Send to Portal, etc.); tab navigation (Lines, Part Requests, Notes, Time Sheets, etc.); context menus and dropdown triggers; status change buttons and workflow actions on line items; clock in/out buttons; the Progress column and progress bars; the Action column; and any floating UI elements (tooltips, popovers, modals).\n---\nThis is the expected behaviour as per epic SV-9383 and story SV-9388 (Story 5, Print Formatting - Screen Elements Hidden) and the Printer Friendly Work Orders specification (Confluence page 519176194), section S5-R1, read on 9 September 2026.\nLast checked against build v26.36.0-f43b2fd on 9/9/2026.\nAUTOMATION: READY",
+  "automation": 1,
+  "created_by": 3
+ },
+ {
+  "cid": 45118,
+  "status": "Passed",
+  "title": "Printout uses black text on white regardless of theme",
+  "preconds": "1. In the top menu click \u201cWork Orders\u201d and open a work order by clicking its row. On the work order\u2019s toolbar click the three-dots button at the top right, then choose \u201cPrint Work Order\u201d. On a work order you can still change, the menu holds five items in this order: \u201cAudit Log\u201d, \u201cTimesheets\u201d, \u201cAdd Work Order Fee / Discount\u201d, \u201cPrint Work Order\u201d, \u201cDelete Work Order\u201d. On a Paid work order it holds only three \u2014 \u201cAudit Log\u201d, \u201cTimesheets\u201d, \u201cPrint Work Order\u201d \u2014 so do not treat the two missing items as a fault. \u201cTimesheets\u201d always shows a count in brackets. Choosing it opens your browser\u2019s own print dialog \u2014 the printout is what you are checking, so use your browser\u2019s print preview to look at it.\n2. Your app theme is set to dark mode. To set it: click the menu behind your name at the top right \u2014 the same one that holds \u201cSettings\u201d \u2014 and choose \u201cDark\u201d at the bottom of it.",
+  "steps": "1. Trigger print and review the rendered print view.",
+  "expected": "1. The printout uses black text on a white background regardless of the user's theme.\n---\nThis is the expected behaviour as per epic SV-9383 and story SV-9388 (Story 5, Print Formatting - Screen Elements Hidden) and the Printer Friendly Work Orders specification (Confluence page 519176194), section S5-R2, read on 9 September 2026.\nLast checked against build v26.36.0-f43b2fd on 9/9/2026.\nAUTOMATION: READY",
+  "automation": 1,
+  "created_by": 3
+ },
+ {
+  "cid": 45119,
+  "status": "Passed",
+  "title": "Text is sized for comfortable reading on paper",
+  "preconds": "1. In the top menu click \u201cWork Orders\u201d and open a work order by clicking its row. On the work order\u2019s toolbar click the three-dots button at the top right, then choose \u201cPrint Work Order\u201d. On a work order you can still change, the menu holds five items in this order: \u201cAudit Log\u201d, \u201cTimesheets\u201d, \u201cAdd Work Order Fee / Discount\u201d, \u201cPrint Work Order\u201d, \u201cDelete Work Order\u201d. On a Paid work order it holds only three \u2014 \u201cAudit Log\u201d, \u201cTimesheets\u201d, \u201cPrint Work Order\u201d \u2014 so do not treat the two missing items as a fault. \u201cTimesheets\u201d always shows a count in brackets. Choosing it opens your browser\u2019s own print dialog \u2014 the printout is what you are checking, so use your browser\u2019s print preview to look at it.",
+  "steps": "1. Review the text size on the printout.",
+  "expected": "1. Text is sized for comfortable reading on paper (no smaller than a 10pt equivalent).\n---\nThis is the expected behaviour as per epic SV-9383 and story SV-9388 (Story 5, Print Formatting - Screen Elements Hidden) and the Printer Friendly Work Orders specification (Confluence page 519176194), section S5-R3, read on 9 September 2026.\nLast checked against build v26.36.0-f43b2fd on 9/9/2026.\nAUTOMATION: READY",
+  "automation": 1,
+  "created_by": 3
+ },
+ {
+  "cid": 45120,
+  "status": "Failed",
+  "title": "Layout is optimized for portrait US Letter or A4",
+  "preconds": "1. In the top menu click \u201cWork Orders\u201d and open a work order by clicking its row. On the work order\u2019s toolbar click the three-dots button at the top right, then choose \u201cPrint Work Order\u201d. On a work order you can still change, the menu holds five items in this order: \u201cAudit Log\u201d, \u201cTimesheets\u201d, \u201cAdd Work Order Fee / Discount\u201d, \u201cPrint Work Order\u201d, \u201cDelete Work Order\u201d. On a Paid work order it holds only three \u2014 \u201cAudit Log\u201d, \u201cTimesheets\u201d, \u201cPrint Work Order\u201d \u2014 so do not treat the two missing items as a fault. \u201cTimesheets\u201d always shows a count in brackets. Choosing it opens your browser\u2019s own print dialog \u2014 the printout is what you are checking, so use your browser\u2019s print preview to look at it.",
+  "steps": "1. Print with portrait orientation on US Letter or A4 paper and review the layout.",
+  "expected": "1. The layout is optimized for portrait orientation on US Letter or A4 paper.\n---\nThis is the expected behaviour as per epic SV-9383 and story SV-9388 (Story 5, Print Formatting - Screen Elements Hidden) and the Printer Friendly Work Orders specification (Confluence page 519176194), section S5-R4, read on 9 September 2026.\nLast checked against build v26.36.0-f43b2fd on 9/9/2026.\nAUTOMATION: READY",
+  "automation": 1,
+  "created_by": 3
+ },
+ {
+  "cid": 45121,
+  "status": "Untested",
+  "title": "Status badges print as plain text labels not colored chips",
+  "preconds": "1. In the top menu click \u201cWork Orders\u201d and open a work order by clicking its row. On the work order\u2019s toolbar click the three-dots button at the top right, then choose \u201cPrint Work Order\u201d. On a work order you can still change, the menu holds five items in this order: \u201cAudit Log\u201d, \u201cTimesheets\u201d, \u201cAdd Work Order Fee / Discount\u201d, \u201cPrint Work Order\u201d, \u201cDelete Work Order\u201d. On a Paid work order it holds only three \u2014 \u201cAudit Log\u201d, \u201cTimesheets\u201d, \u201cPrint Work Order\u201d \u2014 so do not treat the two missing items as a fault. \u201cTimesheets\u201d always shows a count in brackets. Choosing it opens your browser\u2019s own print dialog \u2014 the printout is what you are checking, so use your browser\u2019s print preview to look at it.\n2. The open work order has at least one line item on its Lines tab.",
+  "steps": "1. Inspect the status badges on the printout.",
+  "expected": "1. Status badges print as plain text labels (not colored chips) to ensure readability on black-and-white printers.\n---\nThis is the expected behaviour as per epic SV-9383 and story SV-9388 (Story 5, Print Formatting - Screen Elements Hidden) and the Printer Friendly Work Orders specification (Confluence page 519176194), section S5-R5, read on 9 September 2026.\nLast checked against build v26.36.0-f43b2fd on 9/9/2026.\nAUTOMATION: READY",
+  "automation": 1,
+  "created_by": 3
+ },
+ {
+  "cid": 45122,
+  "status": "Passed",
+  "title": "Landscape orientation remains readable without clipping",
+  "preconds": "1. In the top menu click \u201cWork Orders\u201d and open a work order by clicking its row. On the work order\u2019s toolbar click the three-dots button at the top right, then choose \u201cPrint Work Order\u201d. On a work order you can still change, the menu holds five items in this order: \u201cAudit Log\u201d, \u201cTimesheets\u201d, \u201cAdd Work Order Fee / Discount\u201d, \u201cPrint Work Order\u201d, \u201cDelete Work Order\u201d. On a Paid work order it holds only three \u2014 \u201cAudit Log\u201d, \u201cTimesheets\u201d, \u201cPrint Work Order\u201d \u2014 so do not treat the two missing items as a fault. \u201cTimesheets\u201d always shows a count in brackets. Choosing it opens your browser\u2019s own print dialog \u2014 the printout is what you are checking, so use your browser\u2019s print preview to look at it.",
+  "steps": "1. Manually select landscape orientation in the browser print dialog and review the layout.",
+  "expected": "1. The layout remains readable; content does not overflow or clip.\n---\nThis is the expected behaviour as per epic SV-9383 and story SV-9388 (Story 5, Print Formatting - Screen Elements Hidden) and the Printer Friendly Work Orders specification (Confluence page 519176194), section S5-E1, read on 9 September 2026.\nLast checked against build v26.36.0-f43b2fd on 9/9/2026.\nAUTOMATION: READY",
+  "automation": 1,
+  "created_by": 3
+ },
+ {
+  "cid": 45123,
+  "status": "Untested",
+  "title": "Printing logs a Work Order Printed event in audit history",
+  "preconds": "1. In the top menu click \u201cWork Orders\u201d, then click a work order\u2019s row in the list to open it. It opens on its \u201cLines\u201d tab.\n2. The work order has at least one line item \u2014 the \u201cLines\u201d tab shows a count beside it and that count is not zero. With no line items the print option is greyed out and this case cannot be run.",
+  "steps": "1. At the top right of the work order, between \u201cSHOPCOACH ANALYSIS\u201d and the \u201cNew Line\u201d button, click the three-dots button, then choose \u201cPrint Work Order\u201d. Send or cancel the print dialog your browser opens \u2014 the event is logged either way.\n2. Click the same three-dots button again and choose \u201cAudit Log\u201d.\n3. A window titled \u201cWork Order Log\u201d opens, with a \u201cSearch\u201d box and the columns \u201cEvent\u201d, \u201cUser\u201d, \u201cLine\u201d, \u201cDetails\u201d, \u201cDate\u201d and \u201cTime\u201d. Read its top row.",
+  "expected": "1. The top row of the \u201cEvent\u201d column reads \u201cWork order printed\u201d, and it is the most recent entry in the window.\n2. On that row: \u201cUser\u201d names the person who printed, \u201cLine\u201d shows \u201c-\u201d, \u201cDetails\u201d shows the work order total (for example \u201cTotal: $6,389.62\u201d), and \u201cDate\u201d and \u201cTime\u201d show when the print happened.\n---\nThis is the expected behaviour as per epic SV-9383 and story SV-9389 (Story 6, Audit Trail) and the Printer Friendly Work Orders specification (Confluence page 519176194), section S6-R1, read on 9 September 2026.\nLast checked against build v26.36.0-f43b2fd on 9/9/2026.\nAUTOMATION: READY",
+  "automation": 3,
+  "created_by": 3
+ },
+ {
+  "cid": 45124,
+  "status": "Untested",
+  "title": "Audit entry records the user and the date and time",
+  "preconds": "1. In the top menu click \u201cWork Orders\u201d and open a work order by clicking its row. Its toolbar carries a three-dots button at the top right; that is the \u201cMore\u201d menu. On a work order you can still change, the menu holds five items in this order: \u201cAudit Log\u201d, \u201cTimesheets\u201d, \u201cAdd Work Order Fee / Discount\u201d, \u201cPrint Work Order\u201d, \u201cDelete Work Order\u201d. On a Paid work order it holds only three \u2014 \u201cAudit Log\u201d, \u201cTimesheets\u201d, \u201cPrint Work Order\u201d \u2014 so do not treat the two missing items as a fault. \u201cTimesheets\u201d always shows a count in brackets.\n2. The open work order has at least one line item on its Lines tab.",
+  "steps": "1. Print the work order and open the audit entry.",
+  "expected": "1. The audit log entry records the user who triggered the print and the date/time.\n---\nThis is the expected behaviour as per epic SV-9383 and story SV-9389 (Story 6, Audit Trail) and the Printer Friendly Work Orders specification (Confluence page 519176194), section S6-R2, read on 9 September 2026.\nLast checked against build v26.36.0-f43b2fd on 9/9/2026.\nAUTOMATION: READY",
+  "automation": 1,
+  "created_by": 3
+ },
+ {
+  "cid": 45125,
+  "status": "Untested",
+  "title": "Print event is visible in the History tab like estimate and invoice prints",
+  "preconds": "1. In the top menu click \u201cWork Orders\u201d and open a work order by clicking its row. Its toolbar carries a three-dots button at the top right; that is the \u201cMore\u201d menu. On a work order you can still change, the menu holds five items in this order: \u201cAudit Log\u201d, \u201cTimesheets\u201d, \u201cAdd Work Order Fee / Discount\u201d, \u201cPrint Work Order\u201d, \u201cDelete Work Order\u201d. On a Paid work order it holds only three \u2014 \u201cAudit Log\u201d, \u201cTimesheets\u201d, \u201cPrint Work Order\u201d \u2014 so do not treat the two missing items as a fault. \u201cTimesheets\u201d always shows a count in brackets.\n2. The open work order has at least one line item on its Lines tab.",
+  "steps": "1. Print the work order and open the History tab.",
+  "expected": "1. The audit log entry is visible in the work order's History tab, consistent with how estimate and invoice print events are displayed today.\n---\nThis is the expected behaviour as per epic SV-9383 and story SV-9389 (Story 6, Audit Trail) and the Printer Friendly Work Orders specification (Confluence page 519176194), section S6-R3, read on 9 September 2026.\nLast checked against build v26.36.0-f43b2fd on 9/9/2026.\nAUTOMATION: READY",
+  "automation": 1,
+  "created_by": 3
+ },
+ {
+  "cid": 45126,
+  "status": "Untested",
+  "title": "Cancelling the browser print dialog still logs the event",
+  "preconds": "1. In the top menu click \u201cWork Orders\u201d and open a work order by clicking its row. Its toolbar carries a three-dots button at the top right; that is the \u201cMore\u201d menu. On a work order you can still change, the menu holds five items in this order: \u201cAudit Log\u201d, \u201cTimesheets\u201d, \u201cAdd Work Order Fee / Discount\u201d, \u201cPrint Work Order\u201d, \u201cDelete Work Order\u201d. On a Paid work order it holds only three \u2014 \u201cAudit Log\u201d, \u201cTimesheets\u201d, \u201cPrint Work Order\u201d \u2014 so do not treat the two missing items as a fault. \u201cTimesheets\u201d always shows a count in brackets.\n2. The open work order has at least one line item on its Lines tab.",
+  "steps": "1. Select \u201cPrint Work Order\u201d, then cancel the browser print dialog without printing.\n2. Open the audit history.",
+  "expected": "1. The \u201cWork Order Printed\u201d event is still logged (the system cannot detect whether the print completed from the browser dialog).\n---\nThis is the expected behaviour as per epic SV-9383 and story SV-9389 (Story 6, Audit Trail) and the Printer Friendly Work Orders specification (Confluence page 519176194), section S6-N1, read on 9 September 2026.\nLast checked against build v26.36.0-f43b2fd on 9/9/2026.\nAUTOMATION: READY",
+  "automation": 1,
+  "created_by": 3
+ },
+ {
+  "cid": 45127,
+  "status": "Untested",
+  "title": "Printing multiple times creates a separate entry each time",
+  "preconds": "1. In the top menu click \u201cWork Orders\u201d and open a work order by clicking its row. Its toolbar carries a three-dots button at the top right; that is the \u201cMore\u201d menu. On a work order you can still change, the menu holds five items in this order: \u201cAudit Log\u201d, \u201cTimesheets\u201d, \u201cAdd Work Order Fee / Discount\u201d, \u201cPrint Work Order\u201d, \u201cDelete Work Order\u201d. On a Paid work order it holds only three \u2014 \u201cAudit Log\u201d, \u201cTimesheets\u201d, \u201cPrint Work Order\u201d \u2014 so do not treat the two missing items as a fault. \u201cTimesheets\u201d always shows a count in brackets.\n2. The open work order has at least one line item on its Lines tab.",
+  "steps": "1. Print the same work order three times.\n2. Open the audit history.",
+  "expected": "1. Each print action creates a separate audit log entry.\n---\nThis is the expected behaviour as per epic SV-9383 and story SV-9389 (Story 6, Audit Trail) and the Printer Friendly Work Orders specification (Confluence page 519176194), section S6-E1, read on 9 September 2026.\nLast checked against build v26.36.0-f43b2fd on 9/9/2026.\nAUTOMATION: READY",
+  "automation": 1,
+  "created_by": 3
+ }
+]
