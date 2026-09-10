@@ -497,6 +497,60 @@ the SEVEN-SECTION FORMAT below — that remains the mechanical layout of the tic
 | **Redact at the point of capture** (core §10) — no customer data, no tokens, no cookies. **This repo is PUBLIC (Rule 82)** | A screenshot is a file in a public repo |
 | **Embedded so they RENDER** — not a file list | See **Inline images — the mechanism that actually works**, below |
 
+## 🛑 THE TICKET SHAPE HE ASKS FOR — EIGHT HEADINGS, IN THIS ORDER (QA lead, 2026-09-10)
+
+**He has asked for this repeatedly and said so: _"but this is what I always ask you but you keep on
+forgetting"_. It is not a preference, it is the layout. Write the ticket to it before writing a word
+of anything else.**
+
+His two messages, verbatim (2026-09-10, after SV-9917/9918/9919 were filed badly):
+
+> *"Listen in the description just explain the problem do NOT assume the effects of the defects etc,
+> it should always be simple what is happening and then steps of reproduction extremely easy for a
+> manual qa tester or a lay man to follow them to reproduce the issue in the most easiest way
+> possible, and it should have INLINE images annotated to clearly explain what is happening, and then
+> at the bottom QUOTE the sources and the statements with source references incase someone wants to
+> see the sources directly they can reach to the source."*
+
+> *"Yes current behavior and expected behaior should also be nicely concisely and logically described
+> in a non technical way for a lay man"*
+
+| # | Heading | What goes in it |
+|---|---|---|
+| 1 | **The problem** | Two or three plain sentences saying WHAT IS HAPPENING. **NO assumed effects** — no "who this affects and how badly", no severity, no impact paragraph, no guessing at consequences. He struck those out by name. |
+| 2 | **Current behaviour** | Short plain bullets. What the build does today. What is correct alongside it goes here too, as a bullet, not as a separate "what is not affected" essay. |
+| 3 | **Expected behaviour** | Short plain bullets. What should happen. Non-technical. |
+| 4 | **Where this was seen** | Site · build · signed in as · date · the record used. A small table. |
+| 5 | **Steps to reproduce** | Numbered, one action per line, **the easiest possible route a manual tester or a layman can follow** — including the steps that CREATE any data needed, with the exact values to type. On-screen labels only. No API. |
+| 6 | **Screenshots** | **INLINE and ANNOTATED**, each with a one-line caption saying *what actually happens* / *what you should see*. Not a file list, not attachments-only. |
+| 7 | **Sources** | **At the BOTTOM.** The document name, its page id, the date read, **a clickable link so the reader can reach the source themselves**, then each requirement quoted **verbatim** in a quote block with its own id (S1-N1, S4-E1 …). |
+| 8 | **Test cases** | The run and its link, then each case id with its link (Rule 8 as amended 2026-09-10). |
+
+**⚠️ WHICH MARKUP — THIS IS WHERE IT WENT WRONG.** The two doors take **different dialects**:
+
+| Door | Dialect | Use it for |
+|---|---|---|
+| MCP `createJiraIssue` / `editJiraIssue` | **MARKDOWN** (`##`, `>`, `1.`, `|` tables) — the tool converts to ADF | Creating the issue, and text-only edits |
+| `PUT /rest/api/2/issue/{KEY}` via `build/atlassian-login/jira.sh` | **WIKI MARKUP** (`h2.`, `{quote}`, `||`, `#`, `!file.png|width=1000!`) | **Any ticket carrying inline images** — this is the ONLY route that embeds them |
+
+**Writing wiki markup into the MCP tool prints `h2.` and `{quote}` as literal text on the page.** That
+is exactly what happened on 2026-09-10 and what he called "ugly, not friendly or understandable".
+
+**THE ROUTE THAT WORKS, END TO END (proven live 2026-09-10 on SV-9917/9918/9919):**
+1. Sign in: write `/tmp/atlassian/creds.json` `{"email","password"}` (`chmod 600`, from
+   `build/ENVIRONMENT-CREDENTIALS.md` §5) → `bash build/testing-tools/ensure_bridge.sh` →
+   `setsid nohup node build/atlassian-login/login.mjs` → `STATUS=DONE` in `/tmp/atlassian/status.txt`.
+   **There is no OTP on this account** — do not wait for a code and do not ask him for one.
+2. Annotate: `python3 build/testing-tools/annotate_shot.py IN.png OUT.png --title "…" --box "x,y,w,h:1:caption"`.
+   Capture the FULL screen with a stamp strip carrying the build and the address, so the shot proves itself.
+3. Attach: `curl -b /tmp/atlassian/cookies.txt -H 'X-Atlassian-Token: no-check' -H 'Origin: https://shopview.atlassian.net' -H 'Referer: …' -F "file=@OUT.png" https://shopview.atlassian.net/rest/api/3/issue/<KEY>/attachments` → 200.
+4. Body: `jira.sh PUT /rest/api/2/issue/<KEY> payload.json` where the description is a **wiki-markup
+   string** containing `!OUT.png|width=1000!` → 204.
+5. **VERIFY, never assume:** `GET /rest/api/3/issue/<KEY>?expand=renderedFields&fields=description` →
+   the ADF must contain `mediaSingle` nodes and `renderedFields.description` must contain real
+   `<img src=".../attachment/content/…">`, and the rendered HTML must contain **no literal `h2.`,
+   `{quote}` or `||`**.
+
 ## The ticket body — plain layman English
 
 **No jargon. No internal IDs. No endpoints, no HTTP verbs, no case IDs in the reader-facing prose.

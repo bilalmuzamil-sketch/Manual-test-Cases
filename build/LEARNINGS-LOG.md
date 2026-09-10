@@ -949,3 +949,24 @@ being told the ticket is bad.**
 The habit: before creating anything in an external system — read the skill that owns that artefact,
 confirm the markup dialect the tool actually accepts, and never file evidence-bearing work without
 the evidence attached.
+
+## L0046 — 2026-09-10 · he had told me the ticket shape before, and I wrote my own anyway
+
+Straight after the markup fix he set out the layout again and added: *"but this is what I always ask
+you but you keep on forgetting"*. What he wants, and what I keep failing to do:
+
+- **The description explains the problem and nothing else.** I had put in "who this affects and how
+  badly" and "what is not affected" — impact paragraphs I invented. He struck them: *"do NOT assume
+  the effects of the defects etc"*. The reader decides the impact; I report what happens.
+- **Current behaviour and expected behaviour get their own plain sections**, concise, non-technical.
+- **Steps are the easiest possible route a layman can follow**, including making the data.
+- **Images are INLINE and annotated**, not attachments listed at the end.
+- **Sources go at the BOTTOM, quoted, with a link so the reader can reach the source themselves.**
+
+Recorded as the eight-heading layout in `build/skills/06-DEFECT-PREP.md` with both quotes verbatim,
+and pointed at from CLAUDE.md §1.
+
+The pattern across L0043, L0044 and this one is the same and it is the thing to fix in myself:
+**when he repeats an instruction, it is because the first version was answered literally and missed
+the intent.** Before building anything he will read, find where he has already described it and
+follow that, rather than composing a shape of my own and waiting to be corrected.

@@ -658,6 +658,15 @@ Compact form — **the rule named in brackets is the authority; read it before r
   what you should see today; **(1)** exactly that ⇒ mark FAILED, raise nothing new; **(2)** fails
   DIFFERENTLY ⇒ a NEW problem, report it; **(3)** PASSES ⇒ the fix shipped, tell the QA lead. Where the
   ticket was closed without a fix, say so. **Ticket status is never evidence about the build.** [61]
+- **🛑 A TICKET IS EIGHT HEADINGS IN ORDER, AND INLINE ANNOTATED IMAGES (QA lead 2026-09-10, who added
+  *"but this is what I always ask you but you keep on forgetting"*).** **The problem** (plain, and
+  **NEVER an assumed effect/impact**) · **Current behaviour** · **Expected behaviour** (both plain
+  bullets, layman) · **Where this was seen** · **Steps to reproduce** (easiest route a layman can
+  follow, including making the data) · **Screenshots INLINE + annotated with captions** · **Sources at
+  the BOTTOM**, quoted verbatim with a link the reader can open · **Test cases** with run + links (8).
+  **MARKUP TRAP: the MCP create/edit tools take MARKDOWN; only `PUT /rest/api/2/issue/{KEY}` via
+  `jira.sh` takes WIKI markup and it is the ONLY route that embeds images.** Full recipe, his verbatim
+  words and the verification step: `build/skills/06-DEFECT-PREP.md`.
 - **DEFECT TICKET SHAPE (once permission is given):** `issuetype` = **`Story Defect`** · `parent` =
   **the OWNING STORY** (an Epic parent is rejected HTTP 400) · `priority` = **`Medium`** (was `Low`
   before 2026-08-06; earlier tickets are correct for their date; **`High` is barred**) · **also link
