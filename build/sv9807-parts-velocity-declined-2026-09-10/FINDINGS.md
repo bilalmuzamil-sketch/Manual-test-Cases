@@ -159,3 +159,99 @@ work orders carry an `S-` number prefix that belongs to neither workplace this a
   `authorization_required`, staging as `authorized`. That is org configuration, not build: it changes
   whether a freshly added part is `quoted` or immediately staged, which is exactly what made the first
   seeding attempt behave differently on the two sides.
+
+---
+
+# ADDENDUM — the developer's QA handoff arrived mid-pass, and it widened the scope
+
+**Dusan Radulovic posted a full QA handoff at 09:03 (updated 09:16), which was not on the ticket when
+I read it** — SV-9807 had zero comments at that point. The pre-post gate (Standing Rule 72) caught it
+just before the comment went out, so the comment was held and his checklist worked through. It names a
+**second, bundled fix** I had no way to know about: at invoice creation the part's stock-movement record
+is now tagged with the line the part was on **at invoicing time**, so a part moved between lines before
+invoicing is attributed correctly.
+
+## His checklist, item by item
+
+| # | His check | Result |
+|---|---|---|
+| 1 | Declined line is excluded (inventory part **picked** on the declined line) | **NOT EXECUTABLE as written** — see below |
+| 1 | Same, repeated with a **special-order (vendor) part** on the declined line | **PASSED** — no Special Order row at all on the branch; the pre-fix build shows 2 units / $50.00 / $30.00 |
+| 2 | The invoice itself is unchanged | **PASSED** — the declined part's statement line is **byte-identical on both builds** |
+| 3 | Moved part still counts (the follow-up fix) | **PASSED** — 1 unit, $28.00 revenue, $21.00 margin, Last Sale today |
+| 4 | Counter part sales still show (his regression hotspot #2) | **PASSED** — identical on both builds over eight months of data |
+| 4 | A normal invoiced work order is unchanged | **PASSED** — controls on both builds |
+| 4 | Returns from a declined line still count in Units Returned | **NOT TESTED** — declared, see below |
+
+## Scenario 1 as written cannot be executed — this is for Dusan
+
+His step is *"Line B: add a different inventory part **and pick it** … Decline authorization on line B"*.
+The application refuses that, on **both** builds and through **both** surfaces:
+
+- API `POST /api/work-orders/lines/change-status {status:'authorization_declined'}` → **400**
+  *"Can`t change status while there are staged parts. Please move parts to another line or return
+  them."*
+- The product's own UI: the line's status badge opens **Edit Line**, whose **Status** dropdown does
+  offer *Declined* (`select_line_status`, options *Authorization required · Declined · Authorized ·
+  Complete*). Choosing it and pressing **Save & Close** produces the same refusal as a toast:
+  *"Can`t change status while there are staged parts. Please move parts to another line or return
+  them."* — `POST /api/work-orders/lines/change` → 400.
+
+So a picked inventory part can never sit on a declined line. **The route that does reach the reported
+condition** — and the one this pass used — is: **part ordered while the line is authorized → line
+declined (allowed, because an awaiting part is not staged) → part received when it arrives → work
+order invoiced.** That is an ordinary shop story and it is where the defect lives.
+
+## Scenario 3 — the follow-up fix, verified
+
+Part **RFU-505** was picked on LINE-A, **moved** to LINE-B, LINE-A was then declined (it is empty, so
+the decline is allowed), and the work order was invoiced. From an all-zero September baseline the part
+reports **units_sold 1, demand 1, revenue $28.00, margin $21.00, sold via WO 1, Last Sale today** — the
+sale is not lost. The part that never moved (**GAT-G25179-0404**, on the kept line) also counts:
+**1 unit, $26.75, $12.84 margin**.
+
+**A separate observation while doing this, offered as a caution rather than a defect claim:** the
+**Move part to line** dialog (`dialog_move_part_to_line`) filled in correctly — target line selected,
+**Move To Line** button enabled — but pressing it fired **no request at all** and the part did not move,
+on two attempts using two different click methods. The same move through the API
+(`POST /api/work-orders/part/move-part-to-line {part_id, target_line_id, work_order_id}`) returned
+**200** and moved it. I cannot rule out my automation as the cause, so this is written as *could not
+complete in my run*, not as a confirmed bug — but it is worth a human trying the dialog by hand.
+
+## Scenario 2 — the invoice is untouched
+
+The declined part's statement line, read from `GET /api/invoices/{woId}/details?includeDeclined=1` on
+both builds:
+
+```
+staging  {"description":"ZZAUTOTEST SV-9807 declined vendor part","quantity":"2","cost":0,"total_cost":0,…}
+branch   {"description":"ZZAUTOTEST SV-9807 declined vendor part","quantity":"2","cost":0,"total_cost":0,…}
+```
+
+Identical. One wording note for Dusan: his checklist says the declined parts *"still appear billed at
+full quantity and price"* — the **quantity** is full on both builds, but the **money is zero** on both.
+That is not a change introduced by the fix; it is how a declined line has always statemented, and the
+work-order total confirms it (a work order with an $89.20 approved part and a $2.15 part on a declined
+line totals Parts **$89.20**).
+
+## Scenario 4 — no collateral damage, measured over eight months of real data
+
+The complete report for 1 Jan – 31 Aug 2026, both locations, pulled from both builds
+(11,976 rows branch / 12,051 staging):
+
+| Measure over the frozen window | Staging (pre-fix) | Branch (fixed) |
+|---|---|---|
+| Rows with **counter part-sale** units | **232** | **232** |
+| Total part-sale units | **661.36** | **661.36** |
+| Rows with work-order units | **4,167** | **4,167** |
+| Total work-order units | 82,928.27 | 82,925.27 |
+
+**Counter part sales are untouched** — identical row count and identical total, so the new line filter
+does not drop line-less sales (his hotspot #2). Work-order rows are identical in count and the total
+differs by exactly **3.00 units**, which is the single `GENO-1` row I already isolated (sold_via_wo
+57 → 54). Across roughly 83,000 units of eight months of history the fix removed three units and
+nothing else moved.
+
+**Not tested, declared:** returns from a declined line still counting in **Units Returned**. His
+handoff calls that deliberately unchanged and an **open product question with Chris Ward**, so it wants
+Chris's answer before it is worth asserting either way.
