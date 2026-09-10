@@ -1,0 +1,167 @@
+{
+ "before": 100,
+ "openCreate": {
+  "label": "Create Work Order",
+  "result": {
+   "clicked": true,
+   "label": "Create Work Order"
+  },
+  "before": {
+   "url": "https://app.staging.shopview.com/workorders?tab=work_orders",
+   "tabs": 1,
+   "domLength": 143101
+  },
+  "after": {
+   "url": "https://app.staging.shopview.com/workorders?tab=work_orders",
+   "tabs": 1,
+   "domLength": 149984
+  },
+  "settled": {
+   "settled": true,
+   "ms": 4226,
+   "samples": 6,
+   "url": "https://app.staging.shopview.com/workorders?tab=work_orders",
+   "domLength": 149984,
+   "label": "Create Work Order"
+  },
+  "panels": [
+   "New Work OrdercloseCustomerarrow_drop_downAddAssetarrow_drop_downAddAsset Here?Save"
+  ],
+  "writes": [],
+  "effects": {
+   "navigated": false,
+   "newTab": false,
+   "panelOpened": true,
+   "domChanged": true,
+   "wroteToServer": false
+  },
+  "nothingHappened": false,
+  "summary": "effects: panelOpened, domChanged"
+ },
+ "form": {
+  "url": "/workorders",
+  "dialog": true,
+  "heading": "New Work Order",
+  "fields": [
+   {
+    "label": "Customer",
+    "testid": "select_customer_select",
+    "value": ""
+   },
+   {
+    "label": "Asset",
+    "testid": "select_company_vehicle_select",
+    "value": ""
+   }
+  ],
+  "buttons": [
+   "close",
+   "Add",
+   "Add",
+   "Save"
+  ]
+ },
+ "customer": {
+  "found": true,
+  "testid": "select_customer_select"
+ },
+ "customerPick": {
+  "chose": true,
+  "label": "check 4 Star Truck Repair",
+  "of": 30
+ },
+ "asset": {
+  "found": true,
+  "testid": "select_company_vehicle_select"
+ },
+ "assetPick": {
+  "chose": true,
+  "label": "check2011 Hyundai Santa Fe 665 Unit: 665 VIN/Serial #: PV1T2",
+  "of": 7
+ },
+ "formAfterFill": {
+  "url": "/workorders",
+  "dialog": true,
+  "heading": "New Work Order",
+  "fields": [
+   {
+    "label": "Customer",
+    "testid": "select_customer_select",
+    "value": ""
+   },
+   {
+    "label": "Asset",
+    "testid": "select_company_vehicle_select",
+    "value": ""
+   }
+  ],
+  "buttons": [
+   "close",
+   "Add",
+   "Add",
+   "Save"
+  ]
+ },
+ "save": {
+  "label": "Save",
+  "result": {
+   "clicked": true,
+   "label": "Save"
+  },
+  "before": {
+   "url": "https://app.staging.shopview.com/workorders?tab=work_orders",
+   "tabs": 1,
+   "domLength": 151044
+  },
+  "after": {
+   "url": "https://app.staging.shopview.com/workorders?tab=work_orders",
+   "tabs": 1,
+   "domLength": 153799
+  },
+  "settled": {
+   "settled": true,
+   "ms": 4227,
+   "samples": 6,
+   "url": "https://app.staging.shopview.com/workorders?tab=work_orders",
+   "domLength": 153799,
+   "label": "Save"
+  },
+  "panels": [
+   "New Work OrdercloseCustomer4 Star Truck Repaircancelarrow_drop_downAddAsset2011 Hyundai Santa Fe 665cancelarrow_drop_downAddAsset Here? View open work ordersSave",
+   "ConfirmationcloseAre you sure you want to open a new work order? This customer is over their credit limit.CreateCancel"
+  ],
+  "writes": [],
+  "effects": {
+   "navigated": false,
+   "newTab": false,
+   "panelOpened": true,
+   "domChanged": true,
+   "wroteToServer": false
+  },
+  "nothingHappened": false,
+  "summary": "effects: panelOpened, domChanged"
+ },
+ "confirmScreen": {
+  "url": "/workorders",
+  "dialog": true,
+  "heading": "",
+  "fields": [],
+  "buttons": [
+   "close",
+   "Create",
+   "Cancel"
+  ]
+ },
+ "confirm": {
+  "clicked": true,
+  "label": "Create"
+ },
+ "created": [
+  {
+   "id": "9e1934ae-a2f7-41f1-baae-0ee5690e9a96",
+   "number": "S2-32819",
+   "status": "estimate"
+  }
+ ],
+ "landedOn": "https://app.staging.shopview.com/workorders/9e1934ae-a2f7-41f1-baae-0ee5690e9a96/lines"
+}
