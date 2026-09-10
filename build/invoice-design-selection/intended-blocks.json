@@ -1,0 +1,2300 @@
+{
+ "53518": {
+  "title": "Invoice Design pick list appears at the top of the Invoice Settings page",
+  "fields": {
+   "custom_preconds": {
+    "blocks": [
+     [
+      "1. Log in to the shop app as a user who has access to the shop's invoice settings.",
+      "2. The organization has the Invoice Design feature available (feature not yet built - this case is provisional on the final Setting UI, which is TBD)."
+     ]
+    ],
+    "text": "1. Log in to the shop app as a user who has access to the shop's invoice settings.\n2. The organization has the Invoice Design feature available (feature not yet built - this case is provisional on the final Setting UI, which is TBD)."
+   },
+   "custom_steps": {
+    "blocks": [
+     [
+      "1. Open Settings, then Settings, then Invoice to reach the Invoice Settings page.",
+      "2. Look at the very top of the Invoice Settings page.",
+      "3. Note the label of the first setting shown and confirm it is a pick list (single-choice selector)."
+     ]
+    ],
+    "text": "1. Open Settings, then Settings, then Invoice to reach the Invoice Settings page.\n2. Look at the very top of the Invoice Settings page.\n3. Note the label of the first setting shown and confirm it is a pick list (single-choice selector)."
+   },
+   "custom_expected": {
+    "blocks": [
+     [
+      "1. A pick list is present on the Invoice Settings page and it is positioned at the top of the page.",
+      "2. The pick list is labeled exactly \"Invoice Design\".",
+      "3. This one setting is where the shop chooses whether its customer documents use the legacy design or the new design."
+     ],
+     [
+      "---",
+      "This is the expected behaviour as per epic SV-8218 and the Invoice Design Selection specification (Confluence page 845447188, Revision 3), section S1-R1, FO-1, FO-2, read on 10 September 2026.",
+      "Note: this feature is not yet built (spec Status: Draft) and the setting UI is not yet designed; the route and on-screen labels here are provisional and to be finalised at build-verification."
+     ],
+     [
+      "AUTOMATION: Not available on Build to test Yet - Last checked 9/10/2026"
+     ]
+    ],
+    "text": "1. A pick list is present on the Invoice Settings page and it is positioned at the top of the page.\n2. The pick list is labeled exactly \"Invoice Design\".\n3. This one setting is where the shop chooses whether its customer documents use the legacy design or the new design.\n\n---\nThis is the expected behaviour as per epic SV-8218 and the Invoice Design Selection specification (Confluence page 845447188, Revision 3), section S1-R1, FO-1, FO-2, read on 10 September 2026.\nNote: this feature is not yet built (spec Status: Draft) and the setting UI is not yet designed; the route and on-screen labels here are provisional and to be finalised at build-verification.\n\nAUTOMATION: Not available on Build to test Yet - Last checked 9/10/2026"
+   }
+  }
+ },
+ "53519": {
+  "title": "Invoice Design offers exactly two options, Modern and Legacy, one selected",
+  "fields": {
+   "custom_preconds": {
+    "blocks": [
+     [
+      "1. Logged in with access to invoice settings; on the Invoice Settings page with the \"Invoice Design\" pick list visible (Setting UI is provisional - feature not yet built)."
+     ]
+    ],
+    "text": "1. Logged in with access to invoice settings; on the Invoice Settings page with the \"Invoice Design\" pick list visible (Setting UI is provisional - feature not yet built)."
+   },
+   "custom_steps": {
+    "blocks": [
+     [
+      "1. Open the \"Invoice Design\" pick list.",
+      "2. Read every option offered in the list.",
+      "3. Note which option is currently selected.",
+      "4. Select the other option, then re-open the list and note the selection again."
+     ]
+    ],
+    "text": "1. Open the \"Invoice Design\" pick list.\n2. Read every option offered in the list.\n3. Note which option is currently selected.\n4. Select the other option, then re-open the list and note the selection again."
+   },
+   "custom_expected": {
+    "blocks": [
+     [
+      "1. The pick list offers exactly two options, labeled exactly \"Modern\" and \"Legacy\" - no more and no fewer.",
+      "2. Exactly one option is selected at any time.",
+      "3. Selecting one option deselects the other, so exactly one is always selected."
+     ],
+     [
+      "---",
+      "This is the expected behaviour as per epic SV-8218 and the Invoice Design Selection specification (Confluence page 845447188, Revision 3), section S1-R2, read on 10 September 2026.",
+      "Note: this feature is not yet built (spec Status: Draft) and the setting UI is not yet designed; the route and on-screen labels here are provisional and to be finalised at build-verification."
+     ],
+     [
+      "AUTOMATION: Not available on Build to test Yet - Last checked 9/10/2026"
+     ]
+    ],
+    "text": "1. The pick list offers exactly two options, labeled exactly \"Modern\" and \"Legacy\" - no more and no fewer.\n2. Exactly one option is selected at any time.\n3. Selecting one option deselects the other, so exactly one is always selected.\n\n---\nThis is the expected behaviour as per epic SV-8218 and the Invoice Design Selection specification (Confluence page 845447188, Revision 3), section S1-R2, read on 10 September 2026.\nNote: this feature is not yet built (spec Status: Draft) and the setting UI is not yet designed; the route and on-screen labels here are provisional and to be finalised at build-verification.\n\nAUTOMATION: Not available on Build to test Yet - Last checked 9/10/2026"
+   }
+  }
+ },
+ "53520": {
+  "title": "Invoice Design helper text shows the exact estimates-and-invoices wording",
+  "fields": {
+   "custom_preconds": {
+    "blocks": [
+     [
+      "1. Logged in with access to invoice settings; on the Invoice Settings page with the \"Invoice Design\" pick list visible (provisional UI - feature not yet built)."
+     ]
+    ],
+    "text": "1. Logged in with access to invoice settings; on the Invoice Settings page with the \"Invoice Design\" pick list visible (provisional UI - feature not yet built)."
+   },
+   "custom_steps": {
+    "blocks": [
+     [
+      "1. Locate the explanatory text shown directly below the \"Invoice Design\" setting.",
+      "2. Read the full text, character for character."
+     ]
+    ],
+    "text": "1. Locate the explanatory text shown directly below the \"Invoice Design\" setting.\n2. Read the full text, character for character."
+   },
+   "custom_expected": {
+    "blocks": [
+     [
+      "1. The explanatory text below the setting reads exactly: \"Estimates use the current selection until their work order is invoiced, then match the invoice. Invoices and credit invoices keep the design they had when they were created.\"",
+      "2. The text is shown as static helper text (always present, not a toast or a dialog)."
+     ],
+     [
+      "---",
+      "This is the expected behaviour as per epic SV-8218 and the Invoice Design Selection specification (Confluence page 845447188, Revision 3), section S1-R3, read on 10 September 2026.",
+      "Note: this feature is not yet built (spec Status: Draft) and the setting UI is not yet designed; the route and on-screen labels here are provisional and to be finalised at build-verification."
+     ],
+     [
+      "AUTOMATION: Not available on Build to test Yet - Last checked 9/10/2026"
+     ]
+    ],
+    "text": "1. The explanatory text below the setting reads exactly: \"Estimates use the current selection until their work order is invoiced, then match the invoice. Invoices and credit invoices keep the design they had when they were created.\"\n2. The text is shown as static helper text (always present, not a toast or a dialog).\n\n---\nThis is the expected behaviour as per epic SV-8218 and the Invoice Design Selection specification (Confluence page 845447188, Revision 3), section S1-R3, read on 10 September 2026.\nNote: this feature is not yet built (spec Status: Draft) and the setting UI is not yet designed; the route and on-screen labels here are provisional and to be finalised at build-verification.\n\nAUTOMATION: Not available on Build to test Yet - Last checked 9/10/2026"
+   }
+  }
+ },
+ "53521": {
+  "title": "Invoice Design is one org-wide setting with no per-location or per-doc variant",
+  "fields": {
+   "custom_preconds": {
+    "blocks": [
+     [
+      "1. An organization that has more than one location.",
+      "2. Logged in as a user with access to invoice settings (provisional UI - feature not yet built)."
+     ]
+    ],
+    "text": "1. An organization that has more than one location.\n2. Logged in as a user with access to invoice settings (provisional UI - feature not yet built)."
+   },
+   "custom_steps": {
+    "blocks": [
+     [
+      "1. Open Settings, then Settings, then Invoice.",
+      "2. Confirm the \"Invoice Design\" setting appears once on the page.",
+      "3. Switch the app to a different location of the same organization and open the Invoice Settings page again.",
+      "4. Look for any per-location, per-customer, or per-document copy of the Invoice Design choice anywhere in settings or on a document."
+     ]
+    ],
+    "text": "1. Open Settings, then Settings, then Invoice.\n2. Confirm the \"Invoice Design\" setting appears once on the page.\n3. Switch the app to a different location of the same organization and open the Invoice Settings page again.\n4. Look for any per-location, per-customer, or per-document copy of the Invoice Design choice anywhere in settings or on a document."
+   },
+   "custom_expected": {
+    "blocks": [
+     [
+      "1. The \"Invoice Design\" setting appears exactly once and applies to the entire organization, including every location.",
+      "2. There is no per-location variant - it reads the same on every location.",
+      "3. There is no per-customer and no per-document choice of design anywhere."
+     ],
+     [
+      "---",
+      "This is the expected behaviour as per epic SV-8218 and the Invoice Design Selection specification (Confluence page 845447188, Revision 3), section S1-R4, FO-3, read on 10 September 2026.",
+      "Note: this feature is not yet built (spec Status: Draft) and the setting UI is not yet designed; the route and on-screen labels here are provisional and to be finalised at build-verification."
+     ],
+     [
+      "AUTOMATION: Not available on Build to test Yet - Last checked 9/10/2026"
+     ]
+    ],
+    "text": "1. The \"Invoice Design\" setting appears exactly once and applies to the entire organization, including every location.\n2. There is no per-location variant - it reads the same on every location.\n3. There is no per-customer and no per-document choice of design anywhere.\n\n---\nThis is the expected behaviour as per epic SV-8218 and the Invoice Design Selection specification (Confluence page 845447188, Revision 3), section S1-R4, FO-3, read on 10 September 2026.\nNote: this feature is not yet built (spec Status: Draft) and the setting UI is not yet designed; the route and on-screen labels here are provisional and to be finalised at build-verification.\n\nAUTOMATION: Not available on Build to test Yet - Last checked 9/10/2026"
+   }
+  }
+ },
+ "53522": {
+  "title": "Invoice Design starts on Modern for an organization that already exists",
+  "fields": {
+   "custom_preconds": {
+    "blocks": [
+     [
+      "1. An organization that already existed at the moment this setting shipped and has never changed the Invoice Design setting (provisional UI - feature not yet built).",
+      "2. Logged in with access to invoice settings."
+     ]
+    ],
+    "text": "1. An organization that already existed at the moment this setting shipped and has never changed the Invoice Design setting (provisional UI - feature not yet built).\n2. Logged in with access to invoice settings."
+   },
+   "custom_steps": {
+    "blocks": [
+     [
+      "1. Open Settings, then Settings, then Invoice.",
+      "2. Read the currently selected value of the \"Invoice Design\" pick list."
+     ]
+    ],
+    "text": "1. Open Settings, then Settings, then Invoice.\n2. Read the currently selected value of the \"Invoice Design\" pick list."
+   },
+   "custom_expected": {
+    "blocks": [
+     [
+      "1. For an organization that already existed when this shipped, the pick list starts on \"Modern\".",
+      "2. \"Modern\" is the new design, so the default for existing organizations is the new design - no shop's documents change on the day this ships."
+     ],
+     [
+      "---",
+      "This is the expected behaviour as per epic SV-8218 and the Invoice Design Selection specification (Confluence page 845447188, Revision 3), section S1-R5, FO-9, read on 10 September 2026.",
+      "Note: this feature is not yet built (spec Status: Draft) and the setting UI is not yet designed; the route and on-screen labels here are provisional and to be finalised at build-verification.",
+      "Design: the Design Document (https://claude.ai/code/artifact/c88ee207-3197-4f54-8cb9-bac3deb84354) shows the new (Modern) design (SV-8218); the specific view/frame anchors are not yet given in the spec (provisional)."
+     ],
+     [
+      "AUTOMATION: Not available on Build to test Yet - Last checked 9/10/2026"
+     ]
+    ],
+    "text": "1. For an organization that already existed when this shipped, the pick list starts on \"Modern\".\n2. \"Modern\" is the new design, so the default for existing organizations is the new design - no shop's documents change on the day this ships.\n\n---\nThis is the expected behaviour as per epic SV-8218 and the Invoice Design Selection specification (Confluence page 845447188, Revision 3), section S1-R5, FO-9, read on 10 September 2026.\nNote: this feature is not yet built (spec Status: Draft) and the setting UI is not yet designed; the route and on-screen labels here are provisional and to be finalised at build-verification.\nDesign: the Design Document (https://claude.ai/code/artifact/c88ee207-3197-4f54-8cb9-bac3deb84354) shows the new (Modern) design (SV-8218); the specific view/frame anchors are not yet given in the spec (provisional).\n\nAUTOMATION: Not available on Build to test Yet - Last checked 9/10/2026"
+   }
+  }
+ },
+ "53523": {
+  "title": "Invoice Design starts on Modern for a newly created organization",
+  "fields": {
+   "custom_preconds": {
+    "blocks": [
+     [
+      "1. A brand-new organization created after this setting shipped, that has never changed the Invoice Design setting (provisional UI - feature not yet built).",
+      "2. Logged in with access to that new organization's invoice settings."
+     ]
+    ],
+    "text": "1. A brand-new organization created after this setting shipped, that has never changed the Invoice Design setting (provisional UI - feature not yet built).\n2. Logged in with access to that new organization's invoice settings."
+   },
+   "custom_steps": {
+    "blocks": [
+     [
+      "1. Open Settings, then Settings, then Invoice.",
+      "2. Read the currently selected value of the \"Invoice Design\" pick list."
+     ]
+    ],
+    "text": "1. Open Settings, then Settings, then Invoice.\n2. Read the currently selected value of the \"Invoice Design\" pick list."
+   },
+   "custom_expected": {
+    "blocks": [
+     [
+      "1. For an organization created after this shipped, the pick list starts on \"Modern\".",
+      "2. \"Modern\" is the new design, so the default for newly created organizations is the new design."
+     ],
+     [
+      "---",
+      "This is the expected behaviour as per epic SV-8218 and the Invoice Design Selection specification (Confluence page 845447188, Revision 3), section S1-R6, FO-9, read on 10 September 2026.",
+      "Note: this feature is not yet built (spec Status: Draft) and the setting UI is not yet designed; the route and on-screen labels here are provisional and to be finalised at build-verification.",
+      "Design: the Design Document (https://claude.ai/code/artifact/c88ee207-3197-4f54-8cb9-bac3deb84354) shows the new (Modern) design (SV-8218); the specific view/frame anchors are not yet given in the spec (provisional)."
+     ],
+     [
+      "AUTOMATION: Not available on Build to test Yet - Last checked 9/10/2026"
+     ]
+    ],
+    "text": "1. For an organization created after this shipped, the pick list starts on \"Modern\".\n2. \"Modern\" is the new design, so the default for newly created organizations is the new design.\n\n---\nThis is the expected behaviour as per epic SV-8218 and the Invoice Design Selection specification (Confluence page 845447188, Revision 3), section S1-R6, FO-9, read on 10 September 2026.\nNote: this feature is not yet built (spec Status: Draft) and the setting UI is not yet designed; the route and on-screen labels here are provisional and to be finalised at build-verification.\nDesign: the Design Document (https://claude.ai/code/artifact/c88ee207-3197-4f54-8cb9-bac3deb84354) shows the new (Modern) design (SV-8218); the specific view/frame anchors are not yet given in the spec (provisional).\n\nAUTOMATION: Not available on Build to test Yet - Last checked 9/10/2026"
+   }
+  }
+ },
+ "53524": {
+  "title": "Switching Invoice Design to Legacy shows the exact confirmation dialog",
+  "fields": {
+   "custom_preconds": {
+    "blocks": [
+     [
+      "1. On the Invoice Settings page; \"Invoice Design\" is currently set to \"Modern\" (provisional UI - feature not yet built)."
+     ]
+    ],
+    "text": "1. On the Invoice Settings page; \"Invoice Design\" is currently set to \"Modern\" (provisional UI - feature not yet built)."
+   },
+   "custom_steps": {
+    "blocks": [
+     [
+      "1. Change the \"Invoice Design\" selection from \"Modern\" to \"Legacy\".",
+      "2. Do not confirm yet - observe the confirmation dialog that appears before the change is applied.",
+      "3. Read the dialog title, the full dialog body, and the button labels."
+     ]
+    ],
+    "text": "1. Change the \"Invoice Design\" selection from \"Modern\" to \"Legacy\".\n2. Do not confirm yet - observe the confirmation dialog that appears before the change is applied.\n3. Read the dialog title, the full dialog body, and the button labels."
+   },
+   "custom_expected": {
+    "blocks": [
+     [
+      "1. A confirmation dialog is shown before the change is applied.",
+      "2. The dialog title reads exactly: \"Switch to the Legacy design?\"",
+      "3. The dialog body reads exactly: \"Every estimate will use the Legacy design straight away. Invoices and credit invoices created from now on will use it too. Documents that already exist keep the design they were created with, and the estimate for a work order that has been invoiced matches its invoice. You can switch back at any time.\"",
+      "4. The dialog offers exactly two buttons, labeled exactly \"Switch to Legacy\" and \"Cancel\"."
+     ],
+     [
+      "---",
+      "This is the expected behaviour as per epic SV-8218 and the Invoice Design Selection specification (Confluence page 845447188, Revision 3), section S1-R7, read on 10 September 2026.",
+      "Note: this feature is not yet built (spec Status: Draft) and the setting UI is not yet designed; the route and on-screen labels here are provisional and to be finalised at build-verification."
+     ],
+     [
+      "AUTOMATION: Not available on Build to test Yet - Last checked 9/10/2026"
+     ]
+    ],
+    "text": "1. A confirmation dialog is shown before the change is applied.\n2. The dialog title reads exactly: \"Switch to the Legacy design?\"\n3. The dialog body reads exactly: \"Every estimate will use the Legacy design straight away. Invoices and credit invoices created from now on will use it too. Documents that already exist keep the design they were created with, and the estimate for a work order that has been invoiced matches its invoice. You can switch back at any time.\"\n4. The dialog offers exactly two buttons, labeled exactly \"Switch to Legacy\" and \"Cancel\".\n\n---\nThis is the expected behaviour as per epic SV-8218 and the Invoice Design Selection specification (Confluence page 845447188, Revision 3), section S1-R7, read on 10 September 2026.\nNote: this feature is not yet built (spec Status: Draft) and the setting UI is not yet designed; the route and on-screen labels here are provisional and to be finalised at build-verification.\n\nAUTOMATION: Not available on Build to test Yet - Last checked 9/10/2026"
+   }
+  }
+ },
+ "53525": {
+  "title": "Switching Invoice Design to Modern shows the exact confirmation dialog",
+  "fields": {
+   "custom_preconds": {
+    "blocks": [
+     [
+      "1. On the Invoice Settings page; \"Invoice Design\" is currently set to \"Legacy\" (provisional UI - feature not yet built)."
+     ]
+    ],
+    "text": "1. On the Invoice Settings page; \"Invoice Design\" is currently set to \"Legacy\" (provisional UI - feature not yet built)."
+   },
+   "custom_steps": {
+    "blocks": [
+     [
+      "1. Change the \"Invoice Design\" selection from \"Legacy\" to \"Modern\".",
+      "2. Do not confirm yet - observe the confirmation dialog that appears before the change is applied.",
+      "3. Read the dialog title, the full dialog body, and the button labels."
+     ]
+    ],
+    "text": "1. Change the \"Invoice Design\" selection from \"Legacy\" to \"Modern\".\n2. Do not confirm yet - observe the confirmation dialog that appears before the change is applied.\n3. Read the dialog title, the full dialog body, and the button labels."
+   },
+   "custom_expected": {
+    "blocks": [
+     [
+      "1. A confirmation dialog is shown before the change is applied.",
+      "2. The dialog title reads exactly: \"Switch to the Modern design?\"",
+      "3. The dialog body reads exactly: \"Every estimate will use the Modern design straight away. Invoices and credit invoices created from now on will use it too. Documents that already exist keep the design they were created with, and the estimate for a work order that has been invoiced matches its invoice. You can switch back at any time.\"",
+      "4. The dialog offers exactly two buttons, labeled exactly \"Switch to Modern\" and \"Cancel\"."
+     ],
+     [
+      "---",
+      "This is the expected behaviour as per epic SV-8218 and the Invoice Design Selection specification (Confluence page 845447188, Revision 3), section S1-R7, read on 10 September 2026.",
+      "Note: this feature is not yet built (spec Status: Draft) and the setting UI is not yet designed; the route and on-screen labels here are provisional and to be finalised at build-verification."
+     ],
+     [
+      "AUTOMATION: Not available on Build to test Yet - Last checked 9/10/2026"
+     ]
+    ],
+    "text": "1. A confirmation dialog is shown before the change is applied.\n2. The dialog title reads exactly: \"Switch to the Modern design?\"\n3. The dialog body reads exactly: \"Every estimate will use the Modern design straight away. Invoices and credit invoices created from now on will use it too. Documents that already exist keep the design they were created with, and the estimate for a work order that has been invoiced matches its invoice. You can switch back at any time.\"\n4. The dialog offers exactly two buttons, labeled exactly \"Switch to Modern\" and \"Cancel\".\n\n---\nThis is the expected behaviour as per epic SV-8218 and the Invoice Design Selection specification (Confluence page 845447188, Revision 3), section S1-R7, read on 10 September 2026.\nNote: this feature is not yet built (spec Status: Draft) and the setting UI is not yet designed; the route and on-screen labels here are provisional and to be finalised at build-verification.\n\nAUTOMATION: Not available on Build to test Yet - Last checked 9/10/2026"
+   }
+  }
+ },
+ "53526": {
+  "title": "Confirming an Invoice Design change shows the success toast and saves it",
+  "fields": {
+   "custom_preconds": {
+    "blocks": [
+     [
+      "1. On the Invoice Settings page; \"Invoice Design\" is set to \"Modern\" (provisional UI - feature not yet built)."
+     ]
+    ],
+    "text": "1. On the Invoice Settings page; \"Invoice Design\" is set to \"Modern\" (provisional UI - feature not yet built)."
+   },
+   "custom_steps": {
+    "blocks": [
+     [
+      "1. Change the selection to \"Legacy\" and, in the confirmation dialog, click \"Switch to Legacy\".",
+      "2. Watch for a toast message after confirming.",
+      "3. Do not click or dismiss the toast; wait and observe whether it disappears on its own.",
+      "4. Reload the Invoice Settings page and read the selected value."
+     ]
+    ],
+    "text": "1. Change the selection to \"Legacy\" and, in the confirmation dialog, click \"Switch to Legacy\".\n2. Watch for a toast message after confirming.\n3. Do not click or dismiss the toast; wait and observe whether it disappears on its own.\n4. Reload the Invoice Settings page and read the selected value."
+   },
+   "custom_expected": {
+    "blocks": [
+     [
+      "1. After confirming, a success toast is shown reading exactly: \"Invoice design updated.\"",
+      "2. The toast fades on its own without the user closing it.",
+      "3. The change is saved: after reload the pick list shows \"Legacy\"."
+     ],
+     [
+      "---",
+      "This is the expected behaviour as per epic SV-8218 and the Invoice Design Selection specification (Confluence page 845447188, Revision 3), section S1-R8, read on 10 September 2026.",
+      "Note: this feature is not yet built (spec Status: Draft) and the setting UI is not yet designed; the route and on-screen labels here are provisional and to be finalised at build-verification."
+     ],
+     [
+      "AUTOMATION: Not available on Build to test Yet - Last checked 9/10/2026"
+     ]
+    ],
+    "text": "1. After confirming, a success toast is shown reading exactly: \"Invoice design updated.\"\n2. The toast fades on its own without the user closing it.\n3. The change is saved: after reload the pick list shows \"Legacy\".\n\n---\nThis is the expected behaviour as per epic SV-8218 and the Invoice Design Selection specification (Confluence page 845447188, Revision 3), section S1-R8, read on 10 September 2026.\nNote: this feature is not yet built (spec Status: Draft) and the setting UI is not yet designed; the route and on-screen labels here are provisional and to be finalised at build-verification.\n\nAUTOMATION: Not available on Build to test Yet - Last checked 9/10/2026"
+   }
+  }
+ },
+ "53527": {
+  "title": "New Invoice Design selection takes effect immediately on next documents",
+  "fields": {
+   "custom_preconds": {
+    "blocks": [
+     [
+      "1. On the Invoice Settings page; \"Invoice Design\" is set to \"Modern\".",
+      "2. At least one work order ready to invoice and one estimate-type document available to view (provisional UI - feature not yet built)."
+     ]
+    ],
+    "text": "1. On the Invoice Settings page; \"Invoice Design\" is set to \"Modern\".\n2. At least one work order ready to invoice and one estimate-type document available to view (provisional UI - feature not yet built)."
+   },
+   "custom_steps": {
+    "blocks": [
+     [
+      "1. Change the setting to \"Legacy\" and confirm.",
+      "2. Immediately create a new invoice-type document (for example a Work Order Invoice) and open it.",
+      "3. Immediately view an estimate-type document whose work order has not been invoiced."
+     ]
+    ],
+    "text": "1. Change the setting to \"Legacy\" and confirm.\n2. Immediately create a new invoice-type document (for example a Work Order Invoice) and open it.\n3. Immediately view an estimate-type document whose work order has not been invoiced."
+   },
+   "custom_expected": {
+    "blocks": [
+     [
+      "1. The change takes effect immediately, with no delay and no re-login.",
+      "2. The next invoice-type document created renders in the newly selected design (\"Legacy\").",
+      "3. The next estimate-type document viewed renders in the newly selected design (\"Legacy\")."
+     ],
+     [
+      "---",
+      "This is the expected behaviour as per epic SV-8218 and the Invoice Design Selection specification (Confluence page 845447188, Revision 3), section S1-R9, read on 10 September 2026.",
+      "Note: this feature is not yet built (spec Status: Draft) and the setting UI is not yet designed; the route and on-screen labels here are provisional and to be finalised at build-verification."
+     ],
+     [
+      "AUTOMATION: Not available on Build to test Yet - Last checked 9/10/2026"
+     ]
+    ],
+    "text": "1. The change takes effect immediately, with no delay and no re-login.\n2. The next invoice-type document created renders in the newly selected design (\"Legacy\").\n3. The next estimate-type document viewed renders in the newly selected design (\"Legacy\").\n\n---\nThis is the expected behaviour as per epic SV-8218 and the Invoice Design Selection specification (Confluence page 845447188, Revision 3), section S1-R9, read on 10 September 2026.\nNote: this feature is not yet built (spec Status: Draft) and the setting UI is not yet designed; the route and on-screen labels here are provisional and to be finalised at build-verification.\n\nAUTOMATION: Not available on Build to test Yet - Last checked 9/10/2026"
+   }
+  }
+ },
+ "53528": {
+  "title": "Invoice Design can be changed unlimited times in either direction",
+  "fields": {
+   "custom_preconds": {
+    "blocks": [
+     [
+      "1. On the Invoice Settings page (provisional UI - feature not yet built)."
+     ]
+    ],
+    "text": "1. On the Invoice Settings page (provisional UI - feature not yet built)."
+   },
+   "custom_steps": {
+    "blocks": [
+     [
+      "1. Change the setting from \"Modern\" to \"Legacy\" and confirm.",
+      "2. Immediately change it from \"Legacy\" back to \"Modern\" and confirm.",
+      "3. Repeat the back-and-forth change several times in a row."
+     ]
+    ],
+    "text": "1. Change the setting from \"Modern\" to \"Legacy\" and confirm.\n2. Immediately change it from \"Legacy\" back to \"Modern\" and confirm.\n3. Repeat the back-and-forth change several times in a row."
+   },
+   "custom_expected": {
+    "blocks": [
+     [
+      "1. Each change is accepted; the setting can be changed as often as the shop likes.",
+      "2. Changes are accepted in either direction (Modern to Legacy and Legacy to Modern).",
+      "3. There is no limit on the number of changes and no cooling-off period blocking a rapid re-change."
+     ],
+     [
+      "---",
+      "This is the expected behaviour as per epic SV-8218 and the Invoice Design Selection specification (Confluence page 845447188, Revision 3), section S1-R10, read on 10 September 2026.",
+      "Note: this feature is not yet built (spec Status: Draft) and the setting UI is not yet designed; the route and on-screen labels here are provisional and to be finalised at build-verification."
+     ],
+     [
+      "AUTOMATION: Not available on Build to test Yet - Last checked 9/10/2026"
+     ]
+    ],
+    "text": "1. Each change is accepted; the setting can be changed as often as the shop likes.\n2. Changes are accepted in either direction (Modern to Legacy and Legacy to Modern).\n3. There is no limit on the number of changes and no cooling-off period blocking a rapid re-change.\n\n---\nThis is the expected behaviour as per epic SV-8218 and the Invoice Design Selection specification (Confluence page 845447188, Revision 3), section S1-R10, read on 10 September 2026.\nNote: this feature is not yet built (spec Status: Draft) and the setting UI is not yet designed; the route and on-screen labels here are provisional and to be finalised at build-verification.\n\nAUTOMATION: Not available on Build to test Yet - Last checked 9/10/2026"
+   }
+  }
+ },
+ "53529": {
+  "title": "User without settings access does not see the Invoice Design setting",
+  "fields": {
+   "custom_preconds": {
+    "blocks": [
+     [
+      "1. A user account that does NOT have access to the shop's invoice settings (the same access that hides the other settings on that page); no new permission is introduced by this feature.",
+      "2. Another user WITH access, for comparison (provisional UI - feature not yet built)."
+     ]
+    ],
+    "text": "1. A user account that does NOT have access to the shop's invoice settings (the same access that hides the other settings on that page); no new permission is introduced by this feature.\n2. Another user WITH access, for comparison (provisional UI - feature not yet built)."
+   },
+   "custom_steps": {
+    "blocks": [
+     [
+      "1. Log in as the user without access and attempt to open the Invoice Settings page.",
+      "2. If the page is reachable, look for the \"Invoice Design\" setting.",
+      "3. Log in as the user with access and confirm the \"Invoice Design\" setting is visible for them."
+     ]
+    ],
+    "text": "1. Log in as the user without access and attempt to open the Invoice Settings page.\n2. If the page is reachable, look for the \"Invoice Design\" setting.\n3. Log in as the user with access and confirm the \"Invoice Design\" setting is visible for them."
+   },
+   "custom_expected": {
+    "blocks": [
+     [
+      "1. The user without access does not see the \"Invoice Design\" setting, exactly as they do not see the other settings on that page.",
+      "2. The user with access does see the \"Invoice Design\" setting."
+     ],
+     [
+      "---",
+      "This is the expected behaviour as per epic SV-8218 and the Invoice Design Selection specification (Confluence page 845447188, Revision 3), section S1-N1, read on 10 September 2026.",
+      "Note: this feature is not yet built (spec Status: Draft) and the setting UI is not yet designed; the route and on-screen labels here are provisional and to be finalised at build-verification."
+     ],
+     [
+      "AUTOMATION: Not available on Build to test Yet - Last checked 9/10/2026"
+     ]
+    ],
+    "text": "1. The user without access does not see the \"Invoice Design\" setting, exactly as they do not see the other settings on that page.\n2. The user with access does see the \"Invoice Design\" setting.\n\n---\nThis is the expected behaviour as per epic SV-8218 and the Invoice Design Selection specification (Confluence page 845447188, Revision 3), section S1-N1, read on 10 September 2026.\nNote: this feature is not yet built (spec Status: Draft) and the setting UI is not yet designed; the route and on-screen labels here are provisional and to be finalised at build-verification.\n\nAUTOMATION: Not available on Build to test Yet - Last checked 9/10/2026"
+   }
+  }
+ },
+ "53530": {
+  "title": "Cancelling the Invoice Design dialog reverts the selection and saves nothing",
+  "fields": {
+   "custom_preconds": {
+    "blocks": [
+     [
+      "1. On the Invoice Settings page; \"Invoice Design\" is set to \"Modern\" (provisional UI - feature not yet built)."
+     ]
+    ],
+    "text": "1. On the Invoice Settings page; \"Invoice Design\" is set to \"Modern\" (provisional UI - feature not yet built)."
+   },
+   "custom_steps": {
+    "blocks": [
+     [
+      "1. Change the selection to \"Legacy\" so the confirmation dialog appears.",
+      "2. Click \"Cancel\" in the confirmation dialog.",
+      "3. Read the pick list value.",
+      "4. Reload the page and read the value again."
+     ]
+    ],
+    "text": "1. Change the selection to \"Legacy\" so the confirmation dialog appears.\n2. Click \"Cancel\" in the confirmation dialog.\n3. Read the pick list value.\n4. Reload the page and read the value again."
+   },
+   "custom_expected": {
+    "blocks": [
+     [
+      "1. After cancelling, the selection reverts to what it was (\"Modern\").",
+      "2. Nothing is saved: after reload the value is still \"Modern\"."
+     ],
+     [
+      "---",
+      "This is the expected behaviour as per epic SV-8218 and the Invoice Design Selection specification (Confluence page 845447188, Revision 3), section S1-N2, read on 10 September 2026.",
+      "Note: this feature is not yet built (spec Status: Draft) and the setting UI is not yet designed; the route and on-screen labels here are provisional and to be finalised at build-verification."
+     ],
+     [
+      "AUTOMATION: Not available on Build to test Yet - Last checked 9/10/2026"
+     ]
+    ],
+    "text": "1. After cancelling, the selection reverts to what it was (\"Modern\").\n2. Nothing is saved: after reload the value is still \"Modern\".\n\n---\nThis is the expected behaviour as per epic SV-8218 and the Invoice Design Selection specification (Confluence page 845447188, Revision 3), section S1-N2, read on 10 September 2026.\nNote: this feature is not yet built (spec Status: Draft) and the setting UI is not yet designed; the route and on-screen labels here are provisional and to be finalised at build-verification.\n\nAUTOMATION: Not available on Build to test Yet - Last checked 9/10/2026"
+   }
+  }
+ },
+ "53531": {
+  "title": "Changing Invoice Design does not alter any existing invoice document",
+  "fields": {
+   "custom_preconds": {
+    "blocks": [
+     [
+      "1. \"Invoice Design\" is set to \"Modern\".",
+      "2. A Work Order Invoice has already been created and issued under \"Modern\"; record its appearance, its line items/content, and its totals."
+     ]
+    ],
+    "text": "1. \"Invoice Design\" is set to \"Modern\".\n2. A Work Order Invoice has already been created and issued under \"Modern\"; record its appearance, its line items/content, and its totals."
+   },
+   "custom_steps": {
+    "blocks": [
+     [
+      "1. Open the Invoice Settings page, change the setting to \"Legacy\", and confirm.",
+      "2. Re-open the previously created Work Order Invoice.",
+      "3. Compare its design, its content/line items, and its totals against what was recorded before the change."
+     ]
+    ],
+    "text": "1. Open the Invoice Settings page, change the setting to \"Legacy\", and confirm.\n2. Re-open the previously created Work Order Invoice.\n3. Compare its design, its content/line items, and its totals against what was recorded before the change."
+   },
+   "custom_expected": {
+    "blocks": [
+     [
+      "1. Changing the setting after the document was created does not change that document in any way.",
+      "2. The already-created invoice still renders in its captured \"Modern\" design.",
+      "3. Its content and its totals are identical to before - appearance, content, and totals are all unchanged."
+     ],
+     [
+      "---",
+      "This is the expected behaviour as per epic SV-8218 and the Invoice Design Selection specification (Confluence page 845447188, Revision 3), section S1-N3, S2-R3, FO-5, read on 10 September 2026.",
+      "Note: this feature is not yet built (spec Status: Draft) and the setting UI is not yet designed; the route and on-screen labels here are provisional and to be finalised at build-verification.",
+      "Design: the Design Document (https://claude.ai/code/artifact/c88ee207-3197-4f54-8cb9-bac3deb84354) shows the new (Modern) design (SV-8218); the specific view/frame anchors are not yet given in the spec (provisional)."
+     ],
+     [
+      "AUTOMATION: Not available on Build to test Yet - Last checked 9/10/2026"
+     ]
+    ],
+    "text": "1. Changing the setting after the document was created does not change that document in any way.\n2. The already-created invoice still renders in its captured \"Modern\" design.\n3. Its content and its totals are identical to before - appearance, content, and totals are all unchanged.\n\n---\nThis is the expected behaviour as per epic SV-8218 and the Invoice Design Selection specification (Confluence page 845447188, Revision 3), section S1-N3, S2-R3, FO-5, read on 10 September 2026.\nNote: this feature is not yet built (spec Status: Draft) and the setting UI is not yet designed; the route and on-screen labels here are provisional and to be finalised at build-verification.\nDesign: the Design Document (https://claude.ai/code/artifact/c88ee207-3197-4f54-8cb9-bac3deb84354) shows the new (Modern) design (SV-8218); the specific view/frame anchors are not yet given in the spec (provisional).\n\nAUTOMATION: Not available on Build to test Yet - Last checked 9/10/2026"
+   }
+  }
+ },
+ "53532": {
+  "title": "Changing Invoice Design leaves the other invoice settings unchanged",
+  "fields": {
+   "custom_preconds": {
+    "blocks": [
+     [
+      "1. On the Invoice Settings page, which also carries other invoice settings; record the current value of each of the other settings (provisional UI - feature not yet built)."
+     ]
+    ],
+    "text": "1. On the Invoice Settings page, which also carries other invoice settings; record the current value of each of the other settings (provisional UI - feature not yet built)."
+   },
+   "custom_steps": {
+    "blocks": [
+     [
+      "1. Change the \"Invoice Design\" setting to the other option and confirm.",
+      "2. Re-read every other setting on the invoice settings page."
+     ]
+    ],
+    "text": "1. Change the \"Invoice Design\" setting to the other option and confirm.\n2. Re-read every other setting on the invoice settings page."
+   },
+   "custom_expected": {
+    "blocks": [
+     [
+      "1. The other settings on the invoice settings page keep their values - none is changed by switching the design.",
+      "2. Those other settings continue to apply to whichever design is now selected."
+     ],
+     [
+      "---",
+      "This is the expected behaviour as per epic SV-8218 and the Invoice Design Selection specification (Confluence page 845447188, Revision 3), section S1-N4, read on 10 September 2026.",
+      "Note: this feature is not yet built (spec Status: Draft) and the setting UI is not yet designed; the route and on-screen labels here are provisional and to be finalised at build-verification."
+     ],
+     [
+      "AUTOMATION: Not available on Build to test Yet - Last checked 9/10/2026"
+     ]
+    ],
+    "text": "1. The other settings on the invoice settings page keep their values - none is changed by switching the design.\n2. Those other settings continue to apply to whichever design is now selected.\n\n---\nThis is the expected behaviour as per epic SV-8218 and the Invoice Design Selection specification (Confluence page 845447188, Revision 3), section S1-N4, read on 10 September 2026.\nNote: this feature is not yet built (spec Status: Draft) and the setting UI is not yet designed; the route and on-screen labels here are provisional and to be finalised at build-verification.\n\nAUTOMATION: Not available on Build to test Yet - Last checked 9/10/2026"
+   }
+  }
+ },
+ "53533": {
+  "title": "Failed Invoice Design save reverts and shows the exact alert toast",
+  "fields": {
+   "custom_preconds": {
+    "blocks": [
+     [
+      "1. On the Invoice Settings page; \"Invoice Design\" is set to \"Modern\".",
+      "2. A way to make the save fail is arranged (for example, the save request is rejected) - provisional UI, feature not yet built."
+     ]
+    ],
+    "text": "1. On the Invoice Settings page; \"Invoice Design\" is set to \"Modern\".\n2. A way to make the save fail is arranged (for example, the save request is rejected) - provisional UI, feature not yet built."
+   },
+   "custom_steps": {
+    "blocks": [
+     [
+      "1. Change the selection to \"Legacy\" and confirm so a save is attempted that will fail.",
+      "2. Observe the toast that appears.",
+      "3. Wait to see whether the toast disappears on its own, then confirm whether it requires an explicit close.",
+      "4. Read the pick list value after the failed save."
+     ]
+    ],
+    "text": "1. Change the selection to \"Legacy\" and confirm so a save is attempted that will fail.\n2. Observe the toast that appears.\n3. Wait to see whether the toast disappears on its own, then confirm whether it requires an explicit close.\n4. Read the pick list value after the failed save."
+   },
+   "custom_expected": {
+    "blocks": [
+     [
+      "1. When the change cannot be saved, an alert toast is shown reading exactly: \"Could not update the invoice design. Please try again.\"",
+      "2. The alert does not fade on its own - it must be closed explicitly by the user.",
+      "3. The selection reverts to its previous value (\"Modern\"); the failed change is not kept."
+     ],
+     [
+      "---",
+      "This is the expected behaviour as per epic SV-8218 and the Invoice Design Selection specification (Confluence page 845447188, Revision 3), section S1-E1, read on 10 September 2026.",
+      "Note: this feature is not yet built (spec Status: Draft) and the setting UI is not yet designed; the route and on-screen labels here are provisional and to be finalised at build-verification."
+     ],
+     [
+      "AUTOMATION: Not available on Build to test Yet - Last checked 9/10/2026"
+     ]
+    ],
+    "text": "1. When the change cannot be saved, an alert toast is shown reading exactly: \"Could not update the invoice design. Please try again.\"\n2. The alert does not fade on its own - it must be closed explicitly by the user.\n3. The selection reverts to its previous value (\"Modern\"); the failed change is not kept.\n\n---\nThis is the expected behaviour as per epic SV-8218 and the Invoice Design Selection specification (Confluence page 845447188, Revision 3), section S1-E1, read on 10 September 2026.\nNote: this feature is not yet built (spec Status: Draft) and the setting UI is not yet designed; the route and on-screen labels here are provisional and to be finalised at build-verification.\n\nAUTOMATION: Not available on Build to test Yet - Last checked 9/10/2026"
+   }
+  }
+ },
+ "53534": {
+  "title": "Work Order Invoice captures the Invoice Design selected when it is created",
+  "fields": {
+   "custom_preconds": {
+    "blocks": [
+     [
+      "1. \"Invoice Design\" is set to \"Legacy\".",
+      "2. A work order ready to be invoiced."
+     ]
+    ],
+    "text": "1. \"Invoice Design\" is set to \"Legacy\".\n2. A work order ready to be invoiced."
+   },
+   "custom_steps": {
+    "blocks": [
+     [
+      "1. Create a Work Order Invoice for the work order while the setting is \"Legacy\".",
+      "2. Open the newly created Work Order Invoice and note its design.",
+      "3. Change the \"Invoice Design\" setting to \"Modern\" and confirm.",
+      "4. Re-open the same Work Order Invoice."
+     ]
+    ],
+    "text": "1. Create a Work Order Invoice for the work order while the setting is \"Legacy\".\n2. Open the newly created Work Order Invoice and note its design.\n3. Change the \"Invoice Design\" setting to \"Modern\" and confirm.\n4. Re-open the same Work Order Invoice."
+   },
+   "custom_expected": {
+    "blocks": [
+     [
+      "1. When the Work Order Invoice is created, it captures the organization's current \"Invoice Design\" selection (\"Legacy\").",
+      "2. The invoice renders in the captured \"Legacy\" design.",
+      "3. After the setting is later changed to \"Modern\", the invoice still renders in its captured \"Legacy\" design."
+     ],
+     [
+      "---",
+      "This is the expected behaviour as per epic SV-8218 and the Invoice Design Selection specification (Confluence page 845447188, Revision 3), section S2-R1, FO-5, read on 10 September 2026.",
+      "Note: this feature is not yet built (spec Status: Draft) and the setting UI is not yet designed; the route and on-screen labels here are provisional and to be finalised at build-verification.",
+      "Design: the Design Document (https://claude.ai/code/artifact/c88ee207-3197-4f54-8cb9-bac3deb84354) shows the new (Modern) design (SV-8218); the specific view/frame anchors are not yet given in the spec (provisional)."
+     ],
+     [
+      "AUTOMATION: Not available on Build to test Yet - Last checked 9/10/2026"
+     ]
+    ],
+    "text": "1. When the Work Order Invoice is created, it captures the organization's current \"Invoice Design\" selection (\"Legacy\").\n2. The invoice renders in the captured \"Legacy\" design.\n3. After the setting is later changed to \"Modern\", the invoice still renders in its captured \"Legacy\" design.\n\n---\nThis is the expected behaviour as per epic SV-8218 and the Invoice Design Selection specification (Confluence page 845447188, Revision 3), section S2-R1, FO-5, read on 10 September 2026.\nNote: this feature is not yet built (spec Status: Draft) and the setting UI is not yet designed; the route and on-screen labels here are provisional and to be finalised at build-verification.\nDesign: the Design Document (https://claude.ai/code/artifact/c88ee207-3197-4f54-8cb9-bac3deb84354) shows the new (Modern) design (SV-8218); the specific view/frame anchors are not yet given in the spec (provisional).\n\nAUTOMATION: Not available on Build to test Yet - Last checked 9/10/2026"
+   }
+  }
+ },
+ "53535": {
+  "title": "Parts Sale Invoice captures the Invoice Design selected when it is created",
+  "fields": {
+   "custom_preconds": {
+    "blocks": [
+     [
+      "1. \"Invoice Design\" is set to \"Legacy\".",
+      "2. A parts sale ready to be invoiced."
+     ]
+    ],
+    "text": "1. \"Invoice Design\" is set to \"Legacy\".\n2. A parts sale ready to be invoiced."
+   },
+   "custom_steps": {
+    "blocks": [
+     [
+      "1. Create a Parts Sale Invoice while the setting is \"Legacy\".",
+      "2. Open the newly created Parts Sale Invoice and note its design.",
+      "3. Change the setting to \"Modern\" and confirm.",
+      "4. Re-open the same Parts Sale Invoice."
+     ]
+    ],
+    "text": "1. Create a Parts Sale Invoice while the setting is \"Legacy\".\n2. Open the newly created Parts Sale Invoice and note its design.\n3. Change the setting to \"Modern\" and confirm.\n4. Re-open the same Parts Sale Invoice."
+   },
+   "custom_expected": {
+    "blocks": [
+     [
+      "1. When the Parts Sale Invoice is created, it captures the current \"Invoice Design\" selection (\"Legacy\").",
+      "2. The Parts Sale Invoice renders in its captured \"Legacy\" design.",
+      "3. After the setting is changed to \"Modern\", the Parts Sale Invoice still renders in \"Legacy\"."
+     ],
+     [
+      "---",
+      "This is the expected behaviour as per epic SV-8218 and the Invoice Design Selection specification (Confluence page 845447188, Revision 3), section S2-R1, read on 10 September 2026.",
+      "Note: this feature is not yet built (spec Status: Draft) and the setting UI is not yet designed; the route and on-screen labels here are provisional and to be finalised at build-verification.",
+      "Design: the Design Document (https://claude.ai/code/artifact/c88ee207-3197-4f54-8cb9-bac3deb84354) shows the new (Modern) design (SV-8218); the specific view/frame anchors are not yet given in the spec (provisional)."
+     ],
+     [
+      "AUTOMATION: Not available on Build to test Yet - Last checked 9/10/2026"
+     ]
+    ],
+    "text": "1. When the Parts Sale Invoice is created, it captures the current \"Invoice Design\" selection (\"Legacy\").\n2. The Parts Sale Invoice renders in its captured \"Legacy\" design.\n3. After the setting is changed to \"Modern\", the Parts Sale Invoice still renders in \"Legacy\".\n\n---\nThis is the expected behaviour as per epic SV-8218 and the Invoice Design Selection specification (Confluence page 845447188, Revision 3), section S2-R1, read on 10 September 2026.\nNote: this feature is not yet built (spec Status: Draft) and the setting UI is not yet designed; the route and on-screen labels here are provisional and to be finalised at build-verification.\nDesign: the Design Document (https://claude.ai/code/artifact/c88ee207-3197-4f54-8cb9-bac3deb84354) shows the new (Modern) design (SV-8218); the specific view/frame anchors are not yet given in the spec (provisional).\n\nAUTOMATION: Not available on Build to test Yet - Last checked 9/10/2026"
+   }
+  }
+ },
+ "53536": {
+  "title": "Credit Invoice captures current design, not the credited invoice's design",
+  "fields": {
+   "custom_preconds": {
+    "blocks": [
+     [
+      "1. An existing Work Order Invoice that was created and captured in the \"Legacy\" design.",
+      "2. \"Invoice Design\" is currently set to \"Modern\"."
+     ]
+    ],
+    "text": "1. An existing Work Order Invoice that was created and captured in the \"Legacy\" design.\n2. \"Invoice Design\" is currently set to \"Modern\"."
+   },
+   "custom_steps": {
+    "blocks": [
+     [
+      "1. Raise a Credit Invoice against that single \"Legacy\" invoice while the setting is \"Modern\".",
+      "2. Open the newly created Credit Invoice and note its design.",
+      "3. Compare the Credit Invoice's design to the credited invoice's design."
+     ]
+    ],
+    "text": "1. Raise a Credit Invoice against that single \"Legacy\" invoice while the setting is \"Modern\".\n2. Open the newly created Credit Invoice and note its design.\n3. Compare the Credit Invoice's design to the credited invoice's design."
+   },
+   "custom_expected": {
+    "blocks": [
+     [
+      "1. The Credit Invoice captures the current setting (\"Modern\") at its own creation.",
+      "2. The Credit Invoice renders in \"Modern\" and does not inherit the credited invoice's \"Legacy\" design.",
+      "3. A Modern credit against a legacy-design invoice is intended and is not a defect."
+     ],
+     [
+      "---",
+      "This is the expected behaviour as per epic SV-8218 and the Invoice Design Selection specification (Confluence page 845447188, Revision 3), section S2-R5, S2-E3, S2-R1, read on 10 September 2026.",
+      "Note: this feature is not yet built (spec Status: Draft) and the setting UI is not yet designed; the route and on-screen labels here are provisional and to be finalised at build-verification.",
+      "Design: the Design Document (https://claude.ai/code/artifact/c88ee207-3197-4f54-8cb9-bac3deb84354) shows the new (Modern) design (SV-8218); the specific view/frame anchors are not yet given in the spec (provisional)."
+     ],
+     [
+      "AUTOMATION: Not available on Build to test Yet - Last checked 9/10/2026"
+     ]
+    ],
+    "text": "1. The Credit Invoice captures the current setting (\"Modern\") at its own creation.\n2. The Credit Invoice renders in \"Modern\" and does not inherit the credited invoice's \"Legacy\" design.\n3. A Modern credit against a legacy-design invoice is intended and is not a defect.\n\n---\nThis is the expected behaviour as per epic SV-8218 and the Invoice Design Selection specification (Confluence page 845447188, Revision 3), section S2-R5, S2-E3, S2-R1, read on 10 September 2026.\nNote: this feature is not yet built (spec Status: Draft) and the setting UI is not yet designed; the route and on-screen labels here are provisional and to be finalised at build-verification.\nDesign: the Design Document (https://claude.ai/code/artifact/c88ee207-3197-4f54-8cb9-bac3deb84354) shows the new (Modern) design (SV-8218); the specific view/frame anchors are not yet given in the spec (provisional).\n\nAUTOMATION: Not available on Build to test Yet - Last checked 9/10/2026"
+   }
+  }
+ },
+ "53537": {
+  "title": "Credit Invoice against several invoices captures the current design",
+  "fields": {
+   "custom_preconds": {
+    "blocks": [
+     [
+      "1. Two or more existing invoices that can be credited together at once.",
+      "2. \"Invoice Design\" is set to \"Modern\"."
+     ]
+    ],
+    "text": "1. Two or more existing invoices that can be credited together at once.\n2. \"Invoice Design\" is set to \"Modern\"."
+   },
+   "custom_steps": {
+    "blocks": [
+     [
+      "1. Raise a single Credit Invoice that covers several invoices at once while the setting is \"Modern\".",
+      "2. Open the Credit Invoice and note its design."
+     ]
+    ],
+    "text": "1. Raise a single Credit Invoice that covers several invoices at once while the setting is \"Modern\".\n2. Open the Credit Invoice and note its design."
+   },
+   "custom_expected": {
+    "blocks": [
+     [
+      "1. The Credit Invoice covering several invoices captures the current setting (\"Modern\") at its own creation.",
+      "2. It renders in \"Modern\"; there is no single source invoice whose design it could follow."
+     ],
+     [
+      "---",
+      "This is the expected behaviour as per epic SV-8218 and the Invoice Design Selection specification (Confluence page 845447188, Revision 3), section S2-R5, S2-E4, read on 10 September 2026.",
+      "Note: this feature is not yet built (spec Status: Draft) and the setting UI is not yet designed; the route and on-screen labels here are provisional and to be finalised at build-verification.",
+      "Design: the Design Document (https://claude.ai/code/artifact/c88ee207-3197-4f54-8cb9-bac3deb84354) shows the new (Modern) design (SV-8218); the specific view/frame anchors are not yet given in the spec (provisional)."
+     ],
+     [
+      "AUTOMATION: Not available on Build to test Yet - Last checked 9/10/2026"
+     ]
+    ],
+    "text": "1. The Credit Invoice covering several invoices captures the current setting (\"Modern\") at its own creation.\n2. It renders in \"Modern\"; there is no single source invoice whose design it could follow.\n\n---\nThis is the expected behaviour as per epic SV-8218 and the Invoice Design Selection specification (Confluence page 845447188, Revision 3), section S2-R5, S2-E4, read on 10 September 2026.\nNote: this feature is not yet built (spec Status: Draft) and the setting UI is not yet designed; the route and on-screen labels here are provisional and to be finalised at build-verification.\nDesign: the Design Document (https://claude.ai/code/artifact/c88ee207-3197-4f54-8cb9-bac3deb84354) shows the new (Modern) design (SV-8218); the specific view/frame anchors are not yet given in the spec (provisional).\n\nAUTOMATION: Not available on Build to test Yet - Last checked 9/10/2026"
+   }
+  }
+ },
+ "53538": {
+  "title": "Credit Invoice with no originating invoice captures the current design",
+  "fields": {
+   "custom_preconds": {
+    "blocks": [
+     [
+      "1. \"Invoice Design\" is set to \"Modern\"."
+     ]
+    ],
+    "text": "1. \"Invoice Design\" is set to \"Modern\"."
+   },
+   "custom_steps": {
+    "blocks": [
+     [
+      "1. Raise a Credit Invoice with no originating invoice (a standalone credit) while the setting is \"Modern\".",
+      "2. Open the Credit Invoice and note its design.",
+      "3. Change the setting to \"Legacy\" and re-open the Credit Invoice."
+     ]
+    ],
+    "text": "1. Raise a Credit Invoice with no originating invoice (a standalone credit) while the setting is \"Modern\".\n2. Open the Credit Invoice and note its design.\n3. Change the setting to \"Legacy\" and re-open the Credit Invoice."
+   },
+   "custom_expected": {
+    "blocks": [
+     [
+      "1. The standalone Credit Invoice captures the current setting (\"Modern\") at its own creation.",
+      "2. It renders in \"Modern\"; with no originating invoice there is no source document to follow.",
+      "3. After the setting changes to \"Legacy\", the Credit Invoice still renders in its captured \"Modern\" design."
+     ],
+     [
+      "---",
+      "This is the expected behaviour as per epic SV-8218 and the Invoice Design Selection specification (Confluence page 845447188, Revision 3), section S2-R5, S2-E4, read on 10 September 2026.",
+      "Note: this feature is not yet built (spec Status: Draft) and the setting UI is not yet designed; the route and on-screen labels here are provisional and to be finalised at build-verification.",
+      "Design: the Design Document (https://claude.ai/code/artifact/c88ee207-3197-4f54-8cb9-bac3deb84354) shows the new (Modern) design (SV-8218); the specific view/frame anchors are not yet given in the spec (provisional)."
+     ],
+     [
+      "AUTOMATION: Not available on Build to test Yet - Last checked 9/10/2026"
+     ]
+    ],
+    "text": "1. The standalone Credit Invoice captures the current setting (\"Modern\") at its own creation.\n2. It renders in \"Modern\"; with no originating invoice there is no source document to follow.\n3. After the setting changes to \"Legacy\", the Credit Invoice still renders in its captured \"Modern\" design.\n\n---\nThis is the expected behaviour as per epic SV-8218 and the Invoice Design Selection specification (Confluence page 845447188, Revision 3), section S2-R5, S2-E4, read on 10 September 2026.\nNote: this feature is not yet built (spec Status: Draft) and the setting UI is not yet designed; the route and on-screen labels here are provisional and to be finalised at build-verification.\nDesign: the Design Document (https://claude.ai/code/artifact/c88ee207-3197-4f54-8cb9-bac3deb84354) shows the new (Modern) design (SV-8218); the specific view/frame anchors are not yet given in the spec (provisional).\n\nAUTOMATION: Not available on Build to test Yet - Last checked 9/10/2026"
+   }
+  }
+ },
+ "53539": {
+  "title": "Invoice keeps its captured design through every lifecycle state",
+  "fields": {
+   "custom_preconds": {
+    "blocks": [
+     [
+      "1. A Work Order Invoice created and captured in the \"Legacy\" design, currently unpaid.",
+      "2. Ability to record partial and full payments, and to reverse and to void an invoice.",
+      "3. Two additional Work Order Invoices, each created and captured in the \"Legacy\" design, for the reverse and the void checks."
+     ]
+    ],
+    "text": "1. A Work Order Invoice created and captured in the \"Legacy\" design, currently unpaid.\n2. Ability to record partial and full payments, and to reverse and to void an invoice.\n3. Two additional Work Order Invoices, each created and captured in the \"Legacy\" design, for the reverse and the void checks."
+   },
+   "custom_steps": {
+    "blocks": [
+     [
+      "1. View the unpaid invoice and note its design.",
+      "2. Record a partial payment so the invoice is partially paid; view it and note its design.",
+      "3. Record the remaining payment so the invoice is fully paid; view it and note its design.",
+      "4. On a second captured-\"Legacy\" invoice, reverse it; view the reversed invoice and note its design.",
+      "5. On a third captured-\"Legacy\" invoice, void it; view the voided invoice and note its design."
+     ]
+    ],
+    "text": "1. View the unpaid invoice and note its design.\n2. Record a partial payment so the invoice is partially paid; view it and note its design.\n3. Record the remaining payment so the invoice is fully paid; view it and note its design.\n4. On a second captured-\"Legacy\" invoice, reverse it; view the reversed invoice and note its design.\n5. On a third captured-\"Legacy\" invoice, void it; view the voided invoice and note its design."
+   },
+   "custom_expected": {
+    "blocks": [
+     [
+      "1. The invoice renders in its captured \"Legacy\" design while unpaid.",
+      "2. It renders in \"Legacy\" while partially paid.",
+      "3. It renders in \"Legacy\" while fully paid.",
+      "4. It renders in \"Legacy\" while reversed.",
+      "5. It renders in \"Legacy\" while voided - the captured design holds at every point in the lifecycle."
+     ],
+     [
+      "---",
+      "This is the expected behaviour as per epic SV-8218 and the Invoice Design Selection specification (Confluence page 845447188, Revision 3), section S2-R2, read on 10 September 2026.",
+      "Note: this feature is not yet built (spec Status: Draft) and the setting UI is not yet designed; the route and on-screen labels here are provisional and to be finalised at build-verification.",
+      "Design: the Design Document (https://claude.ai/code/artifact/c88ee207-3197-4f54-8cb9-bac3deb84354) shows the new (Modern) design (SV-8218); the specific view/frame anchors are not yet given in the spec (provisional)."
+     ],
+     [
+      "AUTOMATION: Not available on Build to test Yet - Last checked 9/10/2026"
+     ]
+    ],
+    "text": "1. The invoice renders in its captured \"Legacy\" design while unpaid.\n2. It renders in \"Legacy\" while partially paid.\n3. It renders in \"Legacy\" while fully paid.\n4. It renders in \"Legacy\" while reversed.\n5. It renders in \"Legacy\" while voided - the captured design holds at every point in the lifecycle.\n\n---\nThis is the expected behaviour as per epic SV-8218 and the Invoice Design Selection specification (Confluence page 845447188, Revision 3), section S2-R2, read on 10 September 2026.\nNote: this feature is not yet built (spec Status: Draft) and the setting UI is not yet designed; the route and on-screen labels here are provisional and to be finalised at build-verification.\nDesign: the Design Document (https://claude.ai/code/artifact/c88ee207-3197-4f54-8cb9-bac3deb84354) shows the new (Modern) design (SV-8218); the specific view/frame anchors are not yet given in the spec (provisional).\n\nAUTOMATION: Not available on Build to test Yet - Last checked 9/10/2026"
+   }
+  }
+ },
+ "53540": {
+  "title": "Fully paid invoice receipt shows captured design with payments and $0.00",
+  "fields": {
+   "custom_preconds": {
+    "blocks": [
+     [
+      "1. A Work Order Invoice created and captured in the \"Legacy\" design."
+     ]
+    ],
+    "text": "1. A Work Order Invoice created and captured in the \"Legacy\" design."
+   },
+   "custom_steps": {
+    "blocks": [
+     [
+      "1. Record payment(s) until the invoice is fully paid (balance reaches zero).",
+      "2. Open the fully paid invoice, which serves as the customer's receipt.",
+      "3. Look at its design, its recorded payments, and its balance figure."
+     ]
+    ],
+    "text": "1. Record payment(s) until the invoice is fully paid (balance reaches zero).\n2. Open the fully paid invoice, which serves as the customer's receipt.\n3. Look at its design, its recorded payments, and its balance figure."
+   },
+   "custom_expected": {
+    "blocks": [
+     [
+      "1. The fully paid invoice renders in its captured \"Legacy\" design.",
+      "2. Its payments are shown on the document.",
+      "3. Its balance shows $0.00."
+     ],
+     [
+      "---",
+      "This is the expected behaviour as per epic SV-8218 and the Invoice Design Selection specification (Confluence page 845447188, Revision 3), section S2-E2, read on 10 September 2026.",
+      "Note: this feature is not yet built (spec Status: Draft) and the setting UI is not yet designed; the route and on-screen labels here are provisional and to be finalised at build-verification.",
+      "Design: the Design Document (https://claude.ai/code/artifact/c88ee207-3197-4f54-8cb9-bac3deb84354) shows the new (Modern) design (SV-8218); the specific view/frame anchors are not yet given in the spec (provisional)."
+     ],
+     [
+      "AUTOMATION: Not available on Build to test Yet - Last checked 9/10/2026"
+     ]
+    ],
+    "text": "1. The fully paid invoice renders in its captured \"Legacy\" design.\n2. Its payments are shown on the document.\n3. Its balance shows $0.00.\n\n---\nThis is the expected behaviour as per epic SV-8218 and the Invoice Design Selection specification (Confluence page 845447188, Revision 3), section S2-E2, read on 10 September 2026.\nNote: this feature is not yet built (spec Status: Draft) and the setting UI is not yet designed; the route and on-screen labels here are provisional and to be finalised at build-verification.\nDesign: the Design Document (https://claude.ai/code/artifact/c88ee207-3197-4f54-8cb9-bac3deb84354) shows the new (Modern) design (SV-8218); the specific view/frame anchors are not yet given in the spec (provisional).\n\nAUTOMATION: Not available on Build to test Yet - Last checked 9/10/2026"
+   }
+  }
+ },
+ "53541": {
+  "title": "Reversed and recreated invoice captures the design in force at recreation",
+  "fields": {
+   "custom_preconds": {
+    "blocks": [
+     [
+      "1. \"Invoice Design\" is set to \"Modern\".",
+      "2. A Work Order Invoice created and captured under \"Modern\" for a given work order."
+     ]
+    ],
+    "text": "1. \"Invoice Design\" is set to \"Modern\".\n2. A Work Order Invoice created and captured under \"Modern\" for a given work order."
+   },
+   "custom_steps": {
+    "blocks": [
+     [
+      "1. Reverse the \"Modern\" Work Order Invoice.",
+      "2. Change the \"Invoice Design\" setting to \"Legacy\" and confirm.",
+      "3. Create a new invoice for the same work order while the setting is \"Legacy\".",
+      "4. Open the newly recreated invoice and compare its design to the reversed invoice's design."
+     ]
+    ],
+    "text": "1. Reverse the \"Modern\" Work Order Invoice.\n2. Change the \"Invoice Design\" setting to \"Legacy\" and confirm.\n3. Create a new invoice for the same work order while the setting is \"Legacy\".\n4. Open the newly recreated invoice and compare its design to the reversed invoice's design."
+   },
+   "custom_expected": {
+    "blocks": [
+     [
+      "1. The recreated invoice is a new creation and captures the setting in force at the moment it is created (\"Legacy\").",
+      "2. The recreated invoice renders in \"Legacy\", which differs from the reversed invoice's captured \"Modern\" design.",
+      "3. This difference between the first-received copy and the recreated copy is intended."
+     ],
+     [
+      "---",
+      "This is the expected behaviour as per epic SV-8218 and the Invoice Design Selection specification (Confluence page 845447188, Revision 3), section S2-R4, S2-E1, FO-5, read on 10 September 2026.",
+      "Note: this feature is not yet built (spec Status: Draft) and the setting UI is not yet designed; the route and on-screen labels here are provisional and to be finalised at build-verification.",
+      "Design: the Design Document (https://claude.ai/code/artifact/c88ee207-3197-4f54-8cb9-bac3deb84354) shows the new (Modern) design (SV-8218); the specific view/frame anchors are not yet given in the spec (provisional)."
+     ],
+     [
+      "AUTOMATION: Not available on Build to test Yet - Last checked 9/10/2026"
+     ]
+    ],
+    "text": "1. The recreated invoice is a new creation and captures the setting in force at the moment it is created (\"Legacy\").\n2. The recreated invoice renders in \"Legacy\", which differs from the reversed invoice's captured \"Modern\" design.\n3. This difference between the first-received copy and the recreated copy is intended.\n\n---\nThis is the expected behaviour as per epic SV-8218 and the Invoice Design Selection specification (Confluence page 845447188, Revision 3), section S2-R4, S2-E1, FO-5, read on 10 September 2026.\nNote: this feature is not yet built (spec Status: Draft) and the setting UI is not yet designed; the route and on-screen labels here are provisional and to be finalised at build-verification.\nDesign: the Design Document (https://claude.ai/code/artifact/c88ee207-3197-4f54-8cb9-bac3deb84354) shows the new (Modern) design (SV-8218); the specific view/frame anchors are not yet given in the spec (provisional).\n\nAUTOMATION: Not available on Build to test Yet - Last checked 9/10/2026"
+   }
+  }
+ },
+ "53542": {
+  "title": "There is no way to change an existing document's captured design",
+  "fields": {
+   "custom_preconds": {
+    "blocks": [
+     [
+      "1. An existing Work Order Invoice with a captured design (for example \"Legacy\")."
+     ]
+    ],
+    "text": "1. An existing Work Order Invoice with a captured design (for example \"Legacy\")."
+   },
+   "custom_steps": {
+    "blocks": [
+     [
+      "1. Open the existing invoice and look for any control to change or override its design.",
+      "2. Look on the document itself and in any invoice-level or document-level settings for a per-document design override."
+     ]
+    ],
+    "text": "1. Open the existing invoice and look for any control to change or override its design.\n2. Look on the document itself and in any invoice-level or document-level settings for a per-document design override."
+   },
+   "custom_expected": {
+    "blocks": [
+     [
+      "1. There is no control to change the captured design of an existing document.",
+      "2. There is no per-document override - the captured design cannot be edited by a user."
+     ],
+     [
+      "---",
+      "This is the expected behaviour as per epic SV-8218 and the Invoice Design Selection specification (Confluence page 845447188, Revision 3), section S2-R6, read on 10 September 2026.",
+      "Note: this feature is not yet built (spec Status: Draft) and the setting UI is not yet designed; the route and on-screen labels here are provisional and to be finalised at build-verification.",
+      "Design: the Design Document (https://claude.ai/code/artifact/c88ee207-3197-4f54-8cb9-bac3deb84354) shows the new (Modern) design (SV-8218); the specific view/frame anchors are not yet given in the spec (provisional)."
+     ],
+     [
+      "AUTOMATION: Not available on Build to test Yet - Last checked 9/10/2026"
+     ]
+    ],
+    "text": "1. There is no control to change the captured design of an existing document.\n2. There is no per-document override - the captured design cannot be edited by a user.\n\n---\nThis is the expected behaviour as per epic SV-8218 and the Invoice Design Selection specification (Confluence page 845447188, Revision 3), section S2-R6, read on 10 September 2026.\nNote: this feature is not yet built (spec Status: Draft) and the setting UI is not yet designed; the route and on-screen labels here are provisional and to be finalised at build-verification.\nDesign: the Design Document (https://claude.ai/code/artifact/c88ee207-3197-4f54-8cb9-bac3deb84354) shows the new (Modern) design (SV-8218); the specific view/frame anchors are not yet given in the spec (provisional).\n\nAUTOMATION: Not available on Build to test Yet - Last checked 9/10/2026"
+   }
+  }
+ },
+ "53543": {
+  "title": "Invoice Design selection governs all five refreshed documents",
+  "fields": {
+   "custom_preconds": {
+    "blocks": [
+     [
+      "1. \"Invoice Design\" is set to \"Modern\".",
+      "2. Ability to create/view all five refreshed documents: an Estimate, a Work Order Invoice, a Credit Invoice, a Parts Sale Estimate, and a Parts Sale Invoice."
+     ]
+    ],
+    "text": "1. \"Invoice Design\" is set to \"Modern\".\n2. Ability to create/view all five refreshed documents: an Estimate, a Work Order Invoice, a Credit Invoice, a Parts Sale Estimate, and a Parts Sale Invoice."
+   },
+   "custom_steps": {
+    "blocks": [
+     [
+      "1. With the setting on \"Modern\", create a Work Order Invoice, a Credit Invoice, and a Parts Sale Invoice, and open each.",
+      "2. With the setting on \"Modern\", view an Estimate and a Parts Sale Estimate whose work order/parts sale has not been invoiced.",
+      "3. Note the design each of the five documents renders in."
+     ]
+    ],
+    "text": "1. With the setting on \"Modern\", create a Work Order Invoice, a Credit Invoice, and a Parts Sale Invoice, and open each.\n2. With the setting on \"Modern\", view an Estimate and a Parts Sale Estimate whose work order/parts sale has not been invoiced.\n3. Note the design each of the five documents renders in."
+   },
+   "custom_expected": {
+    "blocks": [
+     [
+      "1. All five documents the refresh restyled are governed by the \"Invoice Design\" selection: the Estimate, the Work Order Invoice, the Credit Invoice, the Parts Sale Estimate, and the Parts Sale Invoice.",
+      "2. Each of the three invoice-type documents (Work Order Invoice, Credit Invoice, Parts Sale Invoice) captured \"Modern\" and renders in \"Modern\".",
+      "3. Each of the two estimate-type documents (Estimate, Parts Sale Estimate) renders in the current \"Modern\" selection."
+     ],
+     [
+      "---",
+      "This is the expected behaviour as per epic SV-8218 and the Invoice Design Selection specification (Confluence page 845447188, Revision 3), section FO-4, read on 10 September 2026.",
+      "Note: this feature is not yet built (spec Status: Draft) and the setting UI is not yet designed; the route and on-screen labels here are provisional and to be finalised at build-verification.",
+      "Design: the Design Document (https://claude.ai/code/artifact/c88ee207-3197-4f54-8cb9-bac3deb84354) shows the new (Modern) design (SV-8218); the specific view/frame anchors are not yet given in the spec (provisional)."
+     ],
+     [
+      "AUTOMATION: Not available on Build to test Yet - Last checked 9/10/2026"
+     ]
+    ],
+    "text": "1. All five documents the refresh restyled are governed by the \"Invoice Design\" selection: the Estimate, the Work Order Invoice, the Credit Invoice, the Parts Sale Estimate, and the Parts Sale Invoice.\n2. Each of the three invoice-type documents (Work Order Invoice, Credit Invoice, Parts Sale Invoice) captured \"Modern\" and renders in \"Modern\".\n3. Each of the two estimate-type documents (Estimate, Parts Sale Estimate) renders in the current \"Modern\" selection.\n\n---\nThis is the expected behaviour as per epic SV-8218 and the Invoice Design Selection specification (Confluence page 845447188, Revision 3), section FO-4, read on 10 September 2026.\nNote: this feature is not yet built (spec Status: Draft) and the setting UI is not yet designed; the route and on-screen labels here are provisional and to be finalised at build-verification.\nDesign: the Design Document (https://claude.ai/code/artifact/c88ee207-3197-4f54-8cb9-bac3deb84354) shows the new (Modern) design (SV-8218); the specific view/frame anchors are not yet given in the spec (provisional).\n\nAUTOMATION: Not available on Build to test Yet - Last checked 9/10/2026"
+   }
+  }
+ },
+ "53544": {
+  "title": "Estimate follows the live setting until its work order is invoiced",
+  "fields": {
+   "custom_preconds": {
+    "blocks": [
+     [
+      "1. A work order with an estimate, whose work order has NOT been invoiced.",
+      "2. \"Invoice Design\" is set to \"Modern\"."
+     ]
+    ],
+    "text": "1. A work order with an estimate, whose work order has NOT been invoiced.\n2. \"Invoice Design\" is set to \"Modern\"."
+   },
+   "custom_steps": {
+    "blocks": [
+     [
+      "1. View the estimate while the setting is \"Modern\" and note its design.",
+      "2. Change the setting to \"Legacy\", confirm, and view the same estimate again.",
+      "3. Invoice the work order while the setting is \"Legacy\" so its invoice captures \"Legacy\".",
+      "4. Change the setting back to \"Modern\" and confirm.",
+      "5. Open the Finance tab and switch between the Invoice view and the Estimate view for that work order."
+     ]
+    ],
+    "text": "1. View the estimate while the setting is \"Modern\" and note its design.\n2. Change the setting to \"Legacy\", confirm, and view the same estimate again.\n3. Invoice the work order while the setting is \"Legacy\" so its invoice captures \"Legacy\".\n4. Change the setting back to \"Modern\" and confirm.\n5. Open the Finance tab and switch between the Invoice view and the Estimate view for that work order."
+   },
+   "custom_expected": {
+    "blocks": [
+     [
+      "1. Before the work order is invoiced, the estimate uses the current setting - it renders \"Modern\", then \"Legacy\" after the setting changes.",
+      "2. Once the work order is invoiced, its estimate matches its invoice's captured design (\"Legacy\"), not the current \"Modern\" setting.",
+      "3. Switching the Finance tab between the Invoice and Estimate views shows both in the same design - never two different designs for the same job."
+     ],
+     [
+      "---",
+      "This is the expected behaviour as per epic SV-8218 and the Invoice Design Selection specification (Confluence page 845447188, Revision 3), section FO-6, read on 10 September 2026.",
+      "Note: this feature is not yet built (spec Status: Draft) and the setting UI is not yet designed; the route and on-screen labels here are provisional and to be finalised at build-verification.",
+      "Design: the Design Document (https://claude.ai/code/artifact/c88ee207-3197-4f54-8cb9-bac3deb84354) shows the new (Modern) design (SV-8218); the specific view/frame anchors are not yet given in the spec (provisional)."
+     ],
+     [
+      "AUTOMATION: Not available on Build to test Yet - Last checked 9/10/2026"
+     ]
+    ],
+    "text": "1. Before the work order is invoiced, the estimate uses the current setting - it renders \"Modern\", then \"Legacy\" after the setting changes.\n2. Once the work order is invoiced, its estimate matches its invoice's captured design (\"Legacy\"), not the current \"Modern\" setting.\n3. Switching the Finance tab between the Invoice and Estimate views shows both in the same design - never two different designs for the same job.\n\n---\nThis is the expected behaviour as per epic SV-8218 and the Invoice Design Selection specification (Confluence page 845447188, Revision 3), section FO-6, read on 10 September 2026.\nNote: this feature is not yet built (spec Status: Draft) and the setting UI is not yet designed; the route and on-screen labels here are provisional and to be finalised at build-verification.\nDesign: the Design Document (https://claude.ai/code/artifact/c88ee207-3197-4f54-8cb9-bac3deb84354) shows the new (Modern) design (SV-8218); the specific view/frame anchors are not yet given in the spec (provisional).\n\nAUTOMATION: Not available on Build to test Yet - Last checked 9/10/2026"
+   }
+  }
+ },
+ "53545": {
+  "title": "Invoice renders its captured design on preview, print PDF, and emailed PDF",
+  "fields": {
+   "custom_preconds": {
+    "blocks": [
+     [
+      "1. A Work Order Invoice created and captured in the \"Legacy\" design.",
+      "2. Ability to preview in-app, print/generate a PDF from the shop app, and email the PDF to a customer. (Customer portal surfaces are out of this case's scope and are covered separately.)"
+     ]
+    ],
+    "text": "1. A Work Order Invoice created and captured in the \"Legacy\" design.\n2. Ability to preview in-app, print/generate a PDF from the shop app, and email the PDF to a customer. (Customer portal surfaces are out of this case's scope and are covered separately.)"
+   },
+   "custom_steps": {
+    "blocks": [
+     [
+      "1. Open the in-app preview of the invoice and note its design.",
+      "2. Print or generate a PDF from the shop app, open it, and note its design.",
+      "3. Email the invoice PDF to a customer address, open the received PDF, and note its design."
+     ]
+    ],
+    "text": "1. Open the in-app preview of the invoice and note its design.\n2. Print or generate a PDF from the shop app, open it, and note its design.\n3. Email the invoice PDF to a customer address, open the received PDF, and note its design."
+   },
+   "custom_expected": {
+    "blocks": [
+     [
+      "1. The in-app preview renders the invoice's captured \"Legacy\" design.",
+      "2. The in-app print / generated PDF renders the captured \"Legacy\" design.",
+      "3. The emailed PDF renders the captured \"Legacy\" design - every surface honours the design the document carries."
+     ],
+     [
+      "---",
+      "This is the expected behaviour as per epic SV-8218 and the Invoice Design Selection specification (Confluence page 845447188, Revision 3), section FO-7, read on 10 September 2026.",
+      "Note: this feature is not yet built (spec Status: Draft) and the setting UI is not yet designed; the route and on-screen labels here are provisional and to be finalised at build-verification.",
+      "Design: the Design Document (https://claude.ai/code/artifact/c88ee207-3197-4f54-8cb9-bac3deb84354) shows the new (Modern) design (SV-8218); the specific view/frame anchors are not yet given in the spec (provisional)."
+     ],
+     [
+      "AUTOMATION: Not available on Build to test Yet - Last checked 9/10/2026"
+     ]
+    ],
+    "text": "1. The in-app preview renders the invoice's captured \"Legacy\" design.\n2. The in-app print / generated PDF renders the captured \"Legacy\" design.\n3. The emailed PDF renders the captured \"Legacy\" design - every surface honours the design the document carries.\n\n---\nThis is the expected behaviour as per epic SV-8218 and the Invoice Design Selection specification (Confluence page 845447188, Revision 3), section FO-7, read on 10 September 2026.\nNote: this feature is not yet built (spec Status: Draft) and the setting UI is not yet designed; the route and on-screen labels here are provisional and to be finalised at build-verification.\nDesign: the Design Document (https://claude.ai/code/artifact/c88ee207-3197-4f54-8cb9-bac3deb84354) shows the new (Modern) design (SV-8218); the specific view/frame anchors are not yet given in the spec (provisional).\n\nAUTOMATION: Not available on Build to test Yet - Last checked 9/10/2026"
+   }
+  }
+ },
+ "53546": {
+  "title": "A pre-refresh invoice reprints in its legacy design, not the live setting",
+  "fields": {
+   "custom_preconds": {
+    "blocks": [
+     [
+      "1. An invoice that was created before the refresh release (before 2026-09-09) and issued under the legacy design.",
+      "2. \"Invoice Design\" is currently set to \"Modern\".",
+      "3. This back-catalogue pinning is net-new behavior and is not yet built - the case is provisional and will fail until it ships."
+     ]
+    ],
+    "text": "1. An invoice that was created before the refresh release (before 2026-09-09) and issued under the legacy design.\n2. \"Invoice Design\" is currently set to \"Modern\".\n3. This back-catalogue pinning is net-new behavior and is not yet built - the case is provisional and will fail until it ships."
+   },
+   "custom_steps": {
+    "blocks": [
+     [
+      "1. Reprint / re-render the pre-refresh invoice while the setting is \"Modern\".",
+      "2. Note the design it renders in."
+     ]
+    ],
+    "text": "1. Reprint / re-render the pre-refresh invoice while the setting is \"Modern\".\n2. Note the design it renders in."
+   },
+   "custom_expected": {
+    "blocks": [
+     [
+      "1. Once the back-catalogue pinning is built, the pre-refresh invoice reprints in the legacy design it was issued under, not the current \"Modern\" setting.",
+      "2. This is new behavior: today, with no pinning, a pre-refresh invoice reprints in the new design, which is the gap this closes."
+     ],
+     [
+      "---",
+      "This is the expected behaviour as per epic SV-8218 and the Invoice Design Selection specification (Confluence page 845447188, Revision 3), section FO-8, read on 10 September 2026.",
+      "Note: this feature is not yet built (spec Status: Draft) and the setting UI is not yet designed; the route and on-screen labels here are provisional and to be finalised at build-verification.",
+      "Design: the Design Document (https://claude.ai/code/artifact/c88ee207-3197-4f54-8cb9-bac3deb84354) shows the new (Modern) design (SV-8218); the specific view/frame anchors are not yet given in the spec (provisional)."
+     ],
+     [
+      "AUTOMATION: Not available on Build to test Yet - Last checked 9/10/2026"
+     ]
+    ],
+    "text": "1. Once the back-catalogue pinning is built, the pre-refresh invoice reprints in the legacy design it was issued under, not the current \"Modern\" setting.\n2. This is new behavior: today, with no pinning, a pre-refresh invoice reprints in the new design, which is the gap this closes.\n\n---\nThis is the expected behaviour as per epic SV-8218 and the Invoice Design Selection specification (Confluence page 845447188, Revision 3), section FO-8, read on 10 September 2026.\nNote: this feature is not yet built (spec Status: Draft) and the setting UI is not yet designed; the route and on-screen labels here are provisional and to be finalised at build-verification.\nDesign: the Design Document (https://claude.ai/code/artifact/c88ee207-3197-4f54-8cb9-bac3deb84354) shows the new (Modern) design (SV-8218); the specific view/frame anchors are not yet given in the spec (provisional).\n\nAUTOMATION: Not available on Build to test Yet - Last checked 9/10/2026"
+   }
+  }
+ },
+ "53547": {
+  "title": "Un-invoiced estimate renders in the current Invoice Design selection",
+  "fields": {
+   "custom_preconds": {
+    "blocks": [
+     [
+      "1. Log in to the shop app as a user who can reach Settings and work orders.",
+      "2. Go to Settings > Settings > Invoice and set the \"Invoice Design\" pick list to \"Modern\".",
+      "3. Seed a work order with an estimate whose work order has NOT been invoiced (create a work order, add line items so an Estimate is available, and do not invoice it).",
+      "4. Provisional route (feature not built, Setting UI TBD): reach the estimate from the work order's Finance tab > Estimate view."
+     ]
+    ],
+    "text": "1. Log in to the shop app as a user who can reach Settings and work orders.\n2. Go to Settings > Settings > Invoice and set the \"Invoice Design\" pick list to \"Modern\".\n3. Seed a work order with an estimate whose work order has NOT been invoiced (create a work order, add line items so an Estimate is available, and do not invoice it).\n4. Provisional route (feature not built, Setting UI TBD): reach the estimate from the work order's Finance tab > Estimate view."
+   },
+   "custom_steps": {
+    "blocks": [
+     [
+      "1. Open the work order and go to its Finance tab > Estimate view (provisional route).",
+      "2. View the in-app preview of the estimate and note its design.",
+      "3. To tell the two designs apart, compare the overall Modern (new) vs Legacy look; a reliable spec-named tell is the Authorizer line, which prints on a Modern (new-design) document and is absent on a Legacy-design document.",
+      "4. Without invoicing the work order, confirm the estimate is re-rendered on each view and stores no design of its own."
+     ]
+    ],
+    "text": "1. Open the work order and go to its Finance tab > Estimate view (provisional route).\n2. View the in-app preview of the estimate and note its design.\n3. To tell the two designs apart, compare the overall Modern (new) vs Legacy look; a reliable spec-named tell is the Authorizer line, which prints on a Modern (new-design) document and is absent on a Legacy-design document.\n4. Without invoicing the work order, confirm the estimate is re-rendered on each view and stores no design of its own."
+   },
+   "custom_expected": {
+    "blocks": [
+     [
+      "1. The estimate renders in the Modern design, i.e. \"whichever design the organization's setting reads at the moment it is viewed, printed, sent, or downloaded.\"",
+      "2. \"Nothing is captured\" - the estimate stores no design of its own; it is a live view re-rendered every time."
+     ],
+     [
+      "---",
+      "This is the expected behaviour as per epic SV-8218 and the Invoice Design Selection specification (Confluence page 845447188, Revision 3), section S3-R1, read on 10 September 2026.",
+      "Note: this feature is not yet built (spec Status: Draft) and the setting UI is not yet designed; the route and on-screen labels here are provisional and to be finalised at build-verification.",
+      "Design: the Design Document (https://claude.ai/code/artifact/c88ee207-3197-4f54-8cb9-bac3deb84354) shows the new (Modern) design (SV-8218); the specific view/frame anchors are not yet given in the spec (provisional)."
+     ],
+     [
+      "AUTOMATION: Not available on Build to test Yet - Last checked 9/10/2026"
+     ]
+    ],
+    "text": "1. The estimate renders in the Modern design, i.e. \"whichever design the organization's setting reads at the moment it is viewed, printed, sent, or downloaded.\"\n2. \"Nothing is captured\" - the estimate stores no design of its own; it is a live view re-rendered every time.\n\n---\nThis is the expected behaviour as per epic SV-8218 and the Invoice Design Selection specification (Confluence page 845447188, Revision 3), section S3-R1, read on 10 September 2026.\nNote: this feature is not yet built (spec Status: Draft) and the setting UI is not yet designed; the route and on-screen labels here are provisional and to be finalised at build-verification.\nDesign: the Design Document (https://claude.ai/code/artifact/c88ee207-3197-4f54-8cb9-bac3deb84354) shows the new (Modern) design (SV-8218); the specific view/frame anchors are not yet given in the spec (provisional).\n\nAUTOMATION: Not available on Build to test Yet - Last checked 9/10/2026"
+   }
+  }
+ },
+ "53548": {
+  "title": "Invoiced work order: estimate and invoice views share the invoice design",
+  "fields": {
+   "custom_preconds": {
+    "blocks": [
+     [
+      "1. Log in as a user who can reach Settings and work orders.",
+      "2. Seed a work order that HAS been invoiced whose invoice captured the Legacy design (create and invoice the work order while \"Invoice Design\" = \"Legacy\" so the invoice captures Legacy).",
+      "3. After invoicing, go to Settings > Settings > Invoice and set \"Invoice Design\" to \"Modern\" so the current setting differs from the invoice's captured design.",
+      "4. Provisional route (feature not built): Invoice view and Estimate view are reached from the work order's Finance tab."
+     ]
+    ],
+    "text": "1. Log in as a user who can reach Settings and work orders.\n2. Seed a work order that HAS been invoiced whose invoice captured the Legacy design (create and invoice the work order while \"Invoice Design\" = \"Legacy\" so the invoice captures Legacy).\n3. After invoicing, go to Settings > Settings > Invoice and set \"Invoice Design\" to \"Modern\" so the current setting differs from the invoice's captured design.\n4. Provisional route (feature not built): Invoice view and Estimate view are reached from the work order's Finance tab."
+   },
+   "custom_steps": {
+    "blocks": [
+     [
+      "1. Open the invoiced work order and go to its Finance tab.",
+      "2. Open the Invoice view and note its design.",
+      "3. Switch to the Estimate view and note its design.",
+      "4. Distinguish the designs via the overall Modern vs Legacy look and the Authorizer line (present on Modern, absent on Legacy)."
+     ]
+    ],
+    "text": "1. Open the invoiced work order and go to its Finance tab.\n2. Open the Invoice view and note its design.\n3. Switch to the Estimate view and note its design.\n4. Distinguish the designs via the overall Modern vs Legacy look and the Authorizer line (present on Modern, absent on Legacy)."
+   },
+   "custom_expected": {
+    "blocks": [
+     [
+      "1. The Invoice view renders in Legacy (its captured design).",
+      "2. \"Once the work order or parts sale has been invoiced, its estimate renders in the same design as that invoice, whatever the organization's setting reads\" - the Estimate view also renders Legacy, though the current setting is Modern.",
+      "3. \"Switching the Finance tab between its Invoice and Estimate views therefore shows both documents in the same design.\" (S3-N2: an estimate whose work order has been invoiced does not follow the current setting; it follows its invoice.)"
+     ],
+     [
+      "---",
+      "This is the expected behaviour as per epic SV-8218 and the Invoice Design Selection specification (Confluence page 845447188, Revision 3), section S3-R2, S3-N2, read on 10 September 2026.",
+      "Note: this feature is not yet built (spec Status: Draft) and the setting UI is not yet designed; the route and on-screen labels here are provisional and to be finalised at build-verification.",
+      "Design: the Design Document (https://claude.ai/code/artifact/c88ee207-3197-4f54-8cb9-bac3deb84354) shows the new (Modern) design (SV-8218); the specific view/frame anchors are not yet given in the spec (provisional)."
+     ],
+     [
+      "AUTOMATION: Not available on Build to test Yet - Last checked 9/10/2026"
+     ]
+    ],
+    "text": "1. The Invoice view renders in Legacy (its captured design).\n2. \"Once the work order or parts sale has been invoiced, its estimate renders in the same design as that invoice, whatever the organization's setting reads\" - the Estimate view also renders Legacy, though the current setting is Modern.\n3. \"Switching the Finance tab between its Invoice and Estimate views therefore shows both documents in the same design.\" (S3-N2: an estimate whose work order has been invoiced does not follow the current setting; it follows its invoice.)\n\n---\nThis is the expected behaviour as per epic SV-8218 and the Invoice Design Selection specification (Confluence page 845447188, Revision 3), section S3-R2, S3-N2, read on 10 September 2026.\nNote: this feature is not yet built (spec Status: Draft) and the setting UI is not yet designed; the route and on-screen labels here are provisional and to be finalised at build-verification.\nDesign: the Design Document (https://claude.ai/code/artifact/c88ee207-3197-4f54-8cb9-bac3deb84354) shows the new (Modern) design (SV-8218); the specific view/frame anchors are not yet given in the spec (provisional).\n\nAUTOMATION: Not available on Build to test Yet - Last checked 9/10/2026"
+   }
+  }
+ },
+ "53549": {
+  "title": "Changing the setting re-renders old un-invoiced estimates",
+  "fields": {
+   "custom_preconds": {
+    "blocks": [
+     [
+      "1. Log in as a user who can reach Settings and work orders.",
+      "2. Go to Settings > Settings > Invoice and set \"Invoice Design\" to \"Modern\".",
+      "3. Seed an estimate created some time ago whose work order has NOT been invoiced (an older work order with an un-invoiced estimate). Provisional: an old creation date may need test-data tooling."
+     ]
+    ],
+    "text": "1. Log in as a user who can reach Settings and work orders.\n2. Go to Settings > Settings > Invoice and set \"Invoice Design\" to \"Modern\".\n3. Seed an estimate created some time ago whose work order has NOT been invoiced (an older work order with an un-invoiced estimate). Provisional: an old creation date may need test-data tooling."
+   },
+   "custom_steps": {
+    "blocks": [
+     [
+      "1. Open the old work order's Finance tab > Estimate view, view the estimate preview and note its design (Modern).",
+      "2. Go to Settings > Settings > Invoice and change \"Invoice Design\" to \"Legacy\"; confirm the \"Invoice design updated.\" success toast.",
+      "3. Return to the same old estimate and view it again; note its design."
+     ]
+    ],
+    "text": "1. Open the old work order's Finance tab > Estimate view, view the estimate preview and note its design (Modern).\n2. Go to Settings > Settings > Invoice and change \"Invoice Design\" to \"Legacy\"; confirm the \"Invoice design updated.\" success toast.\n3. Return to the same old estimate and view it again; note its design."
+   },
+   "custom_expected": {
+    "blocks": [
+     [
+      "1. Before the change, the old un-invoiced estimate renders Modern.",
+      "2. After the change, the same old estimate renders Legacy - \"every estimate whose work order has not been invoiced renders in the new selection from that moment on - including estimates created long before the change. Estimates are not limited to newly created ones.\""
+     ],
+     [
+      "---",
+      "This is the expected behaviour as per epic SV-8218 and the Invoice Design Selection specification (Confluence page 845447188, Revision 3), section S3-R3, read on 10 September 2026.",
+      "Note: this feature is not yet built (spec Status: Draft) and the setting UI is not yet designed; the route and on-screen labels here are provisional and to be finalised at build-verification.",
+      "Design: the Design Document (https://claude.ai/code/artifact/c88ee207-3197-4f54-8cb9-bac3deb84354) shows the new (Modern) design (SV-8218); the specific view/frame anchors are not yet given in the spec (provisional)."
+     ],
+     [
+      "AUTOMATION: Not available on Build to test Yet - Last checked 9/10/2026"
+     ]
+    ],
+    "text": "1. Before the change, the old un-invoiced estimate renders Modern.\n2. After the change, the same old estimate renders Legacy - \"every estimate whose work order has not been invoiced renders in the new selection from that moment on - including estimates created long before the change. Estimates are not limited to newly created ones.\"\n\n---\nThis is the expected behaviour as per epic SV-8218 and the Invoice Design Selection specification (Confluence page 845447188, Revision 3), section S3-R3, read on 10 September 2026.\nNote: this feature is not yet built (spec Status: Draft) and the setting UI is not yet designed; the route and on-screen labels here are provisional and to be finalised at build-verification.\nDesign: the Design Document (https://claude.ai/code/artifact/c88ee207-3197-4f54-8cb9-bac3deb84354) shows the new (Modern) design (SV-8218); the specific view/frame anchors are not yet given in the spec (provisional).\n\nAUTOMATION: Not available on Build to test Yet - Last checked 9/10/2026"
+   }
+  }
+ },
+ "53550": {
+  "title": "Previously downloaded estimate PDF does not change after setting change",
+  "fields": {
+   "custom_preconds": {
+    "blocks": [
+     [
+      "1. Log in as a user who can reach Settings and work orders.",
+      "2. Go to Settings > Settings > Invoice and set \"Invoice Design\" to \"Modern\".",
+      "3. Seed an un-invoiced estimate (work order with an estimate, not invoiced)."
+     ]
+    ],
+    "text": "1. Log in as a user who can reach Settings and work orders.\n2. Go to Settings > Settings > Invoice and set \"Invoice Design\" to \"Modern\".\n3. Seed an un-invoiced estimate (work order with an estimate, not invoiced)."
+   },
+   "custom_steps": {
+    "blocks": [
+     [
+      "1. From the estimate, download (or email) a PDF while the setting is \"Modern\" and keep that file - the copy the recipient would hold.",
+      "2. Change \"Invoice Design\" to \"Legacy\".",
+      "3. Re-open the previously downloaded/emailed PDF file (the copy already in hand) and note its design.",
+      "4. Separately, view or download the estimate again from the app and note that render's design."
+     ]
+    ],
+    "text": "1. From the estimate, download (or email) a PDF while the setting is \"Modern\" and keep that file - the copy the recipient would hold.\n2. Change \"Invoice Design\" to \"Legacy\".\n3. Re-open the previously downloaded/emailed PDF file (the copy already in hand) and note its design.\n4. Separately, view or download the estimate again from the app and note that render's design."
+   },
+   "custom_expected": {
+    "blocks": [
+     [
+      "1. The previously downloaded PDF file is unchanged - still Modern: \"A PDF of an estimate that was already downloaded or emailed is a file the recipient holds; it does not change.\"",
+      "2. \"Only what ShopView renders from this point on follows these rules\" - the freshly downloaded copy renders Legacy."
+     ],
+     [
+      "---",
+      "This is the expected behaviour as per epic SV-8218 and the Invoice Design Selection specification (Confluence page 845447188, Revision 3), section S3-N1, read on 10 September 2026.",
+      "Note: this feature is not yet built (spec Status: Draft) and the setting UI is not yet designed; the route and on-screen labels here are provisional and to be finalised at build-verification.",
+      "Design: the Design Document (https://claude.ai/code/artifact/c88ee207-3197-4f54-8cb9-bac3deb84354) shows the new (Modern) design (SV-8218); the specific view/frame anchors are not yet given in the spec (provisional)."
+     ],
+     [
+      "AUTOMATION: Not available on Build to test Yet - Last checked 9/10/2026"
+     ]
+    ],
+    "text": "1. The previously downloaded PDF file is unchanged - still Modern: \"A PDF of an estimate that was already downloaded or emailed is a file the recipient holds; it does not change.\"\n2. \"Only what ShopView renders from this point on follows these rules\" - the freshly downloaded copy renders Legacy.\n\n---\nThis is the expected behaviour as per epic SV-8218 and the Invoice Design Selection specification (Confluence page 845447188, Revision 3), section S3-N1, read on 10 September 2026.\nNote: this feature is not yet built (spec Status: Draft) and the setting UI is not yet designed; the route and on-screen labels here are provisional and to be finalised at build-verification.\nDesign: the Design Document (https://claude.ai/code/artifact/c88ee207-3197-4f54-8cb9-bac3deb84354) shows the new (Modern) design (SV-8218); the specific view/frame anchors are not yet given in the spec (provisional).\n\nAUTOMATION: Not available on Build to test Yet - Last checked 9/10/2026"
+   }
+  }
+ },
+ "53551": {
+  "title": "Re-sent estimate reaches the customer in the newly selected design",
+  "fields": {
+   "custom_preconds": {
+    "blocks": [
+     [
+      "1. Log in as a user who can reach Settings and work orders.",
+      "2. Go to Settings > Settings > Invoice and set \"Invoice Design\" to \"Modern\".",
+      "3. Seed an un-invoiced estimate for a customer who has an email address (its work order is not yet invoiced)."
+     ]
+    ],
+    "text": "1. Log in as a user who can reach Settings and work orders.\n2. Go to Settings > Settings > Invoice and set \"Invoice Design\" to \"Modern\".\n3. Seed an un-invoiced estimate for a customer who has an email address (its work order is not yet invoiced)."
+   },
+   "custom_steps": {
+    "blocks": [
+     [
+      "1. Email/Send the estimate to the customer while the setting is \"Modern\"; note the sent PDF's design.",
+      "2. Change \"Invoice Design\" to \"Legacy\".",
+      "3. Re-send the same estimate to the customer.",
+      "4. Compare the design of the newly sent PDF against the first."
+     ]
+    ],
+    "text": "1. Email/Send the estimate to the customer while the setting is \"Modern\"; note the sent PDF's design.\n2. Change \"Invoice Design\" to \"Legacy\".\n3. Re-send the same estimate to the customer.\n4. Compare the design of the newly sent PDF against the first."
+   },
+   "custom_expected": {
+    "blocks": [
+     [
+      "1. The re-sent estimate reaches the customer in the other design - Legacy: \"An estimate sent to a customer before its work order was invoiced, and re-sent after the setting changed, reaches the customer in the other design. This is an accepted consequence of estimates being live.\""
+     ],
+     [
+      "---",
+      "This is the expected behaviour as per epic SV-8218 and the Invoice Design Selection specification (Confluence page 845447188, Revision 3), section S3-E1, read on 10 September 2026.",
+      "Note: this feature is not yet built (spec Status: Draft) and the setting UI is not yet designed; the route and on-screen labels here are provisional and to be finalised at build-verification.",
+      "Design: the Design Document (https://claude.ai/code/artifact/c88ee207-3197-4f54-8cb9-bac3deb84354) shows the new (Modern) design (SV-8218); the specific view/frame anchors are not yet given in the spec (provisional)."
+     ],
+     [
+      "AUTOMATION: Not available on Build to test Yet - Last checked 9/10/2026"
+     ]
+    ],
+    "text": "1. The re-sent estimate reaches the customer in the other design - Legacy: \"An estimate sent to a customer before its work order was invoiced, and re-sent after the setting changed, reaches the customer in the other design. This is an accepted consequence of estimates being live.\"\n\n---\nThis is the expected behaviour as per epic SV-8218 and the Invoice Design Selection specification (Confluence page 845447188, Revision 3), section S3-E1, read on 10 September 2026.\nNote: this feature is not yet built (spec Status: Draft) and the setting UI is not yet designed; the route and on-screen labels here are provisional and to be finalised at build-verification.\nDesign: the Design Document (https://claude.ai/code/artifact/c88ee207-3197-4f54-8cb9-bac3deb84354) shows the new (Modern) design (SV-8218); the specific view/frame anchors are not yet given in the spec (provisional).\n\nAUTOMATION: Not available on Build to test Yet - Last checked 9/10/2026"
+   }
+  }
+ },
+ "53552": {
+  "title": "Reversing the invoice returns the estimate to the current setting",
+  "fields": {
+   "custom_preconds": {
+    "blocks": [
+     [
+      "1. Log in as a user who can reach Settings and work orders.",
+      "2. Seed a work order that has been invoiced with the invoice captured in the Legacy design.",
+      "3. Go to Settings > Settings > Invoice and set \"Invoice Design\" to \"Modern\" (current setting differs from the invoice's captured design).",
+      "4. Provisional route (feature not built): the invoice reverse action lives on the work order's Finance tab / invoice actions."
+     ]
+    ],
+    "text": "1. Log in as a user who can reach Settings and work orders.\n2. Seed a work order that has been invoiced with the invoice captured in the Legacy design.\n3. Go to Settings > Settings > Invoice and set \"Invoice Design\" to \"Modern\" (current setting differs from the invoice's captured design).\n4. Provisional route (feature not built): the invoice reverse action lives on the work order's Finance tab / invoice actions."
+   },
+   "custom_steps": {
+    "blocks": [
+     [
+      "1. On the work order's Finance tab > Estimate view, confirm the estimate currently follows the invoice (Legacy) per the invoiced-work-order rule.",
+      "2. Reverse the invoice for that work order (provisional: Finance tab > invoice actions > Reverse).",
+      "3. Return to the work order's Finance tab > Estimate view and view the estimate; note its design."
+     ]
+    ],
+    "text": "1. On the work order's Finance tab > Estimate view, confirm the estimate currently follows the invoice (Legacy) per the invoiced-work-order rule.\n2. Reverse the invoice for that work order (provisional: Finance tab > invoice actions > Reverse).\n3. Return to the work order's Finance tab > Estimate view and view the estimate; note its design."
+   },
+   "custom_expected": {
+    "blocks": [
+     [
+      "1. Before reversal, the estimate follows the invoice and renders Legacy.",
+      "2. After reversal, \"the work order has no invoice again and its estimate returns to following the current setting\" - Modern - \"until a new invoice is created.\""
+     ],
+     [
+      "---",
+      "This is the expected behaviour as per epic SV-8218 and the Invoice Design Selection specification (Confluence page 845447188, Revision 3), section S3-E2, read on 10 September 2026.",
+      "Note: this feature is not yet built (spec Status: Draft) and the setting UI is not yet designed; the route and on-screen labels here are provisional and to be finalised at build-verification.",
+      "Design: the Design Document (https://claude.ai/code/artifact/c88ee207-3197-4f54-8cb9-bac3deb84354) shows the new (Modern) design (SV-8218); the specific view/frame anchors are not yet given in the spec (provisional)."
+     ],
+     [
+      "AUTOMATION: Not available on Build to test Yet - Last checked 9/10/2026"
+     ]
+    ],
+    "text": "1. Before reversal, the estimate follows the invoice and renders Legacy.\n2. After reversal, \"the work order has no invoice again and its estimate returns to following the current setting\" - Modern - \"until a new invoice is created.\"\n\n---\nThis is the expected behaviour as per epic SV-8218 and the Invoice Design Selection specification (Confluence page 845447188, Revision 3), section S3-E2, read on 10 September 2026.\nNote: this feature is not yet built (spec Status: Draft) and the setting UI is not yet designed; the route and on-screen labels here are provisional and to be finalised at build-verification.\nDesign: the Design Document (https://claude.ai/code/artifact/c88ee207-3197-4f54-8cb9-bac3deb84354) shows the new (Modern) design (SV-8218); the specific view/frame anchors are not yet given in the spec (provisional).\n\nAUTOMATION: Not available on Build to test Yet - Last checked 9/10/2026"
+   }
+  }
+ },
+ "53553": {
+  "title": "Pre-refresh estimate follows current setting unless work order invoiced",
+  "fields": {
+   "custom_preconds": {
+    "blocks": [
+     [
+      "1. Log in as a user who can reach Settings and work orders.",
+      "2. Seed an estimate whose work order was created BEFORE the refresh release (before 2026-09-09) and has NOT been invoiced. Provisional: the pre-refresh creation date may need test-data tooling.",
+      "3. Go to Settings > Settings > Invoice and set \"Invoice Design\" to \"Modern\"."
+     ]
+    ],
+    "text": "1. Log in as a user who can reach Settings and work orders.\n2. Seed an estimate whose work order was created BEFORE the refresh release (before 2026-09-09) and has NOT been invoiced. Provisional: the pre-refresh creation date may need test-data tooling.\n3. Go to Settings > Settings > Invoice and set \"Invoice Design\" to \"Modern\"."
+   },
+   "custom_steps": {
+    "blocks": [
+     [
+      "1. Open the work order's Finance tab > Estimate view, view the estimate and note its design.",
+      "2. Change \"Invoice Design\" to \"Legacy\" and view the estimate again."
+     ]
+    ],
+    "text": "1. Open the work order's Finance tab > Estimate view, view the estimate and note its design.\n2. Change \"Invoice Design\" to \"Legacy\" and view the estimate again."
+   },
+   "custom_expected": {
+    "blocks": [
+     [
+      "1. With the setting on Modern, the pre-refresh un-invoiced estimate renders Modern (not Legacy): \"An estimate created before the refresh release renders in whichever design the setting currently reads, unless its work order has been invoiced.\"",
+      "2. With the setting on Legacy, the same estimate renders Legacy. \"The cohort rules in Story 4 apply to invoice-type documents only, because only those capture a design\" - they do not pin the estimate to Legacy."
+     ],
+     [
+      "---",
+      "This is the expected behaviour as per epic SV-8218 and the Invoice Design Selection specification (Confluence page 845447188, Revision 3), section S3-E3, read on 10 September 2026.",
+      "Note: this feature is not yet built (spec Status: Draft) and the setting UI is not yet designed; the route and on-screen labels here are provisional and to be finalised at build-verification.",
+      "Design: the Design Document (https://claude.ai/code/artifact/c88ee207-3197-4f54-8cb9-bac3deb84354) shows the new (Modern) design (SV-8218); the specific view/frame anchors are not yet given in the spec (provisional)."
+     ],
+     [
+      "AUTOMATION: Not available on Build to test Yet - Last checked 9/10/2026"
+     ]
+    ],
+    "text": "1. With the setting on Modern, the pre-refresh un-invoiced estimate renders Modern (not Legacy): \"An estimate created before the refresh release renders in whichever design the setting currently reads, unless its work order has been invoiced.\"\n2. With the setting on Legacy, the same estimate renders Legacy. \"The cohort rules in Story 4 apply to invoice-type documents only, because only those capture a design\" - they do not pin the estimate to Legacy.\n\n---\nThis is the expected behaviour as per epic SV-8218 and the Invoice Design Selection specification (Confluence page 845447188, Revision 3), section S3-E3, read on 10 September 2026.\nNote: this feature is not yet built (spec Status: Draft) and the setting UI is not yet designed; the route and on-screen labels here are provisional and to be finalised at build-verification.\nDesign: the Design Document (https://claude.ai/code/artifact/c88ee207-3197-4f54-8cb9-bac3deb84354) shows the new (Modern) design (SV-8218); the specific view/frame anchors are not yet given in the spec (provisional).\n\nAUTOMATION: Not available on Build to test Yet - Last checked 9/10/2026"
+   }
+  }
+ },
+ "53554": {
+  "title": "Invoice created before 2026-09-09 always reprints in the Legacy design",
+  "fields": {
+   "custom_preconds": {
+    "blocks": [
+     [
+      "1. Log in as a user who can reach Settings and invoices.",
+      "2. Seed an invoice-type document (e.g. a Work Order Invoice) created BEFORE the refresh release (before 2026-09-09). Provisional: the creation date may need test-data tooling.",
+      "3. Go to Settings > Settings > Invoice and set \"Invoice Design\" to \"Modern\" (the surprising direction - Legacy must still win)."
+     ]
+    ],
+    "text": "1. Log in as a user who can reach Settings and invoices.\n2. Seed an invoice-type document (e.g. a Work Order Invoice) created BEFORE the refresh release (before 2026-09-09). Provisional: the creation date may need test-data tooling.\n3. Go to Settings > Settings > Invoice and set \"Invoice Design\" to \"Modern\" (the surprising direction - Legacy must still win)."
+   },
+   "custom_steps": {
+    "blocks": [
+     [
+      "1. Open the invoice and view its in-app preview / reprint; note its design.",
+      "2. Distinguish the design via the overall Modern vs Legacy look and the Authorizer line (present on Modern, absent on Legacy).",
+      "3. Note: this asserts the built behaviour; on today's un-built build the pinning is not in place (see the separate S4-R5 case)."
+     ]
+    ],
+    "text": "1. Open the invoice and view its in-app preview / reprint; note its design.\n2. Distinguish the design via the overall Modern vs Legacy look and the Authorizer line (present on Modern, absent on Legacy).\n3. Note: this asserts the built behaviour; on today's un-built build the pinning is not in place (see the separate S4-R5 case)."
+   },
+   "custom_expected": {
+    "blocks": [
+     [
+      "1. The pre-refresh invoice renders in the legacy design: \"Every invoice-type document created before the refresh release (2026-09-09) renders in the legacy design, whatever the organization's setting reads\" - here the setting is Modern and the invoice is still Legacy."
+     ],
+     [
+      "---",
+      "This is the expected behaviour as per epic SV-8218 and the Invoice Design Selection specification (Confluence page 845447188, Revision 3), section S4-R1, read on 10 September 2026.",
+      "Note: this feature is not yet built (spec Status: Draft) and the setting UI is not yet designed; the route and on-screen labels here are provisional and to be finalised at build-verification.",
+      "Design: the Design Document (https://claude.ai/code/artifact/c88ee207-3197-4f54-8cb9-bac3deb84354) shows the new (Modern) design (SV-8218); the specific view/frame anchors are not yet given in the spec (provisional)."
+     ],
+     [
+      "AUTOMATION: Not available on Build to test Yet - Last checked 9/10/2026"
+     ]
+    ],
+    "text": "1. The pre-refresh invoice renders in the legacy design: \"Every invoice-type document created before the refresh release (2026-09-09) renders in the legacy design, whatever the organization's setting reads\" - here the setting is Modern and the invoice is still Legacy.\n\n---\nThis is the expected behaviour as per epic SV-8218 and the Invoice Design Selection specification (Confluence page 845447188, Revision 3), section S4-R1, read on 10 September 2026.\nNote: this feature is not yet built (spec Status: Draft) and the setting UI is not yet designed; the route and on-screen labels here are provisional and to be finalised at build-verification.\nDesign: the Design Document (https://claude.ai/code/artifact/c88ee207-3197-4f54-8cb9-bac3deb84354) shows the new (Modern) design (SV-8218); the specific view/frame anchors are not yet given in the spec (provisional).\n\nAUTOMATION: Not available on Build to test Yet - Last checked 9/10/2026"
+   }
+  }
+ },
+ "53555": {
+  "title": "Invoice from the between-releases window always reprints in Modern",
+  "fields": {
+   "custom_preconds": {
+    "blocks": [
+     [
+      "1. Log in as a user who can reach Settings and invoices.",
+      "2. Seed an invoice-type document created ON/AFTER the refresh release (2026-09-09) AND before this setting ships (the closed \"between releases\" cohort). Provisional: the \"date this setting ships\" is undefined in the spec, so seed a creation date after 2026-09-09 and before the feature's release; may need test-data tooling.",
+      "3. Go to Settings > Settings > Invoice and set \"Invoice Design\" to \"Legacy\" (the surprising direction - Modern must still win)."
+     ]
+    ],
+    "text": "1. Log in as a user who can reach Settings and invoices.\n2. Seed an invoice-type document created ON/AFTER the refresh release (2026-09-09) AND before this setting ships (the closed \"between releases\" cohort). Provisional: the \"date this setting ships\" is undefined in the spec, so seed a creation date after 2026-09-09 and before the feature's release; may need test-data tooling.\n3. Go to Settings > Settings > Invoice and set \"Invoice Design\" to \"Legacy\" (the surprising direction - Modern must still win)."
+   },
+   "custom_steps": {
+    "blocks": [
+     [
+      "1. Open the invoice and view its in-app preview / reprint; note its design.",
+      "2. Distinguish the design via the overall look and the Authorizer line."
+     ]
+    ],
+    "text": "1. Open the invoice and view its in-app preview / reprint; note its design.\n2. Distinguish the design via the overall look and the Authorizer line."
+   },
+   "custom_expected": {
+    "blocks": [
+     [
+      "1. The between-releases invoice renders in the new (Modern) design: \"Every invoice-type document created on or after the refresh release and before this setting ships renders in the new design, whatever the organization's setting reads\" - here the setting is Legacy and the invoice is still Modern."
+     ],
+     [
+      "---",
+      "This is the expected behaviour as per epic SV-8218 and the Invoice Design Selection specification (Confluence page 845447188, Revision 3), section S4-R2, read on 10 September 2026.",
+      "Note: this feature is not yet built (spec Status: Draft) and the setting UI is not yet designed; the route and on-screen labels here are provisional and to be finalised at build-verification.",
+      "Design: the Design Document (https://claude.ai/code/artifact/c88ee207-3197-4f54-8cb9-bac3deb84354) shows the new (Modern) design (SV-8218); the specific view/frame anchors are not yet given in the spec (provisional)."
+     ],
+     [
+      "AUTOMATION: Not available on Build to test Yet - Last checked 9/10/2026"
+     ]
+    ],
+    "text": "1. The between-releases invoice renders in the new (Modern) design: \"Every invoice-type document created on or after the refresh release and before this setting ships renders in the new design, whatever the organization's setting reads\" - here the setting is Legacy and the invoice is still Modern.\n\n---\nThis is the expected behaviour as per epic SV-8218 and the Invoice Design Selection specification (Confluence page 845447188, Revision 3), section S4-R2, read on 10 September 2026.\nNote: this feature is not yet built (spec Status: Draft) and the setting UI is not yet designed; the route and on-screen labels here are provisional and to be finalised at build-verification.\nDesign: the Design Document (https://claude.ai/code/artifact/c88ee207-3197-4f54-8cb9-bac3deb84354) shows the new (Modern) design (SV-8218); the specific view/frame anchors are not yet given in the spec (provisional).\n\nAUTOMATION: Not available on Build to test Yet - Last checked 9/10/2026"
+   }
+  }
+ },
+ "53556": {
+  "title": "Back-catalogue cohorts stay fixed through repeated setting changes",
+  "fields": {
+   "custom_preconds": {
+    "blocks": [
+     [
+      "1. Log in as a user who can reach Settings and invoices.",
+      "2. Seed one pre-refresh invoice (created before 2026-09-09 -> Legacy cohort) and one between-releases invoice (on/after 2026-09-09 and before the setting ships -> Modern cohort). Provisional creation dates.",
+      "3. Go to Settings > Settings > Invoice."
+     ]
+    ],
+    "text": "1. Log in as a user who can reach Settings and invoices.\n2. Seed one pre-refresh invoice (created before 2026-09-09 -> Legacy cohort) and one between-releases invoice (on/after 2026-09-09 and before the setting ships -> Modern cohort). Provisional creation dates.\n3. Go to Settings > Settings > Invoice."
+   },
+   "custom_steps": {
+    "blocks": [
+     [
+      "1. Reprint both invoices and note each design (Legacy for the pre-refresh one, Modern for the between-releases one).",
+      "2. Change \"Invoice Design\" to \"Legacy\" and reprint both again.",
+      "3. Change \"Invoice Design\" to \"Modern\" and reprint both again.",
+      "4. Repeat a couple more toggles, reprinting both each time, and note the designs."
+     ]
+    ],
+    "text": "1. Reprint both invoices and note each design (Legacy for the pre-refresh one, Modern for the between-releases one).\n2. Change \"Invoice Design\" to \"Legacy\" and reprint both again.\n3. Change \"Invoice Design\" to \"Modern\" and reprint both again.\n4. Repeat a couple more toggles, reprinting both each time, and note the designs."
+   },
+   "custom_expected": {
+    "blocks": [
+     [
+      "1. \"Both cohorts are fixed. No setting change and no user action alters them.\" The pre-refresh invoice stays Legacy and the between-releases invoice stays Modern through every toggle and reprint."
+     ],
+     [
+      "---",
+      "This is the expected behaviour as per epic SV-8218 and the Invoice Design Selection specification (Confluence page 845447188, Revision 3), section S4-R3, read on 10 September 2026.",
+      "Note: this feature is not yet built (spec Status: Draft) and the setting UI is not yet designed; the route and on-screen labels here are provisional and to be finalised at build-verification.",
+      "Design: the Design Document (https://claude.ai/code/artifact/c88ee207-3197-4f54-8cb9-bac3deb84354) shows the new (Modern) design (SV-8218); the specific view/frame anchors are not yet given in the spec (provisional)."
+     ],
+     [
+      "AUTOMATION: Not available on Build to test Yet - Last checked 9/10/2026"
+     ]
+    ],
+    "text": "1. \"Both cohorts are fixed. No setting change and no user action alters them.\" The pre-refresh invoice stays Legacy and the between-releases invoice stays Modern through every toggle and reprint.\n\n---\nThis is the expected behaviour as per epic SV-8218 and the Invoice Design Selection specification (Confluence page 845447188, Revision 3), section S4-R3, read on 10 September 2026.\nNote: this feature is not yet built (spec Status: Draft) and the setting UI is not yet designed; the route and on-screen labels here are provisional and to be finalised at build-verification.\nDesign: the Design Document (https://claude.ai/code/artifact/c88ee207-3197-4f54-8cb9-bac3deb84354) shows the new (Modern) design (SV-8218); the specific view/frame anchors are not yet given in the spec (provisional).\n\nAUTOMATION: Not available on Build to test Yet - Last checked 9/10/2026"
+   }
+  }
+ },
+ "53557": {
+  "title": "Pre-refresh invoice shows Legacy on every surface and its estimate view",
+  "fields": {
+   "custom_preconds": {
+    "blocks": [
+     [
+      "1. Log in as a user who can reach Settings, invoices and the customer portal. NB: the customer portal renders only on staging, not on a QA branch.",
+      "2. Seed a work order created BEFORE the refresh release (before 2026-09-09) that has been invoiced, so its invoice is in the Legacy cohort and its estimate view follows that invoice. Provisional creation date.",
+      "3. Go to Settings > Settings > Invoice and set \"Invoice Design\" to \"Modern\" (to show the cohort wins regardless of the setting)."
+     ]
+    ],
+    "text": "1. Log in as a user who can reach Settings, invoices and the customer portal. NB: the customer portal renders only on staging, not on a QA branch.\n2. Seed a work order created BEFORE the refresh release (before 2026-09-09) that has been invoiced, so its invoice is in the Legacy cohort and its estimate view follows that invoice. Provisional creation date.\n3. Go to Settings > Settings > Invoice and set \"Invoice Design\" to \"Modern\" (to show the cohort wins regardless of the setting)."
+   },
+   "custom_steps": {
+    "blocks": [
+     [
+      "1. View the in-app preview of the invoice; note its design.",
+      "2. Print / generate a PDF of the invoice from the shop app; note its design.",
+      "3. Email the invoice PDF to the customer; open the received PDF; note its design.",
+      "4. Open the customer portal (staging), view the invoice on screen and generate its portal PDF; note each design.",
+      "5. On the work order's Finance tab, open the Estimate view; note its design.",
+      "6. Distinguish designs via the overall look and the Authorizer line throughout."
+     ]
+    ],
+    "text": "1. View the in-app preview of the invoice; note its design.\n2. Print / generate a PDF of the invoice from the shop app; note its design.\n3. Email the invoice PDF to the customer; open the received PDF; note its design.\n4. Open the customer portal (staging), view the invoice on screen and generate its portal PDF; note each design.\n5. On the work order's Finance tab, open the Estimate view; note its design.\n6. Distinguish designs via the overall look and the Authorizer line throughout."
+   },
+   "custom_expected": {
+    "blocks": [
+     [
+      "1. On every surface - in-app preview, in-app print/PDF, emailed PDF, and the customer portal on screen and in its PDF - the pre-refresh invoice renders Legacy: \"The rules in S4-R1 and S4-R2 apply on every rendering surface listed in Story 5.\"",
+      "2. The estimate view of that invoiced work order also renders Legacy, matching the invoice: the cohort rules \"govern the estimate view of those work orders under S3-R2.\""
+     ],
+     [
+      "---",
+      "This is the expected behaviour as per epic SV-8218 and the Invoice Design Selection specification (Confluence page 845447188, Revision 3), section S4-R4, read on 10 September 2026.",
+      "Note: this feature is not yet built (spec Status: Draft) and the setting UI is not yet designed; the route and on-screen labels here are provisional and to be finalised at build-verification. This case renders on the customer portal, which exists only on staging (not the QA branch); it will carry the customer-portal staging-only HOLD at build-verification.",
+      "Design: the Design Document (https://claude.ai/code/artifact/c88ee207-3197-4f54-8cb9-bac3deb84354) shows the new (Modern) design (SV-8218); the specific view/frame anchors are not yet given in the spec (provisional)."
+     ],
+     [
+      "AUTOMATION: Not available on Build to test Yet - Last checked 9/10/2026"
+     ]
+    ],
+    "text": "1. On every surface - in-app preview, in-app print/PDF, emailed PDF, and the customer portal on screen and in its PDF - the pre-refresh invoice renders Legacy: \"The rules in S4-R1 and S4-R2 apply on every rendering surface listed in Story 5.\"\n2. The estimate view of that invoiced work order also renders Legacy, matching the invoice: the cohort rules \"govern the estimate view of those work orders under S3-R2.\"\n\n---\nThis is the expected behaviour as per epic SV-8218 and the Invoice Design Selection specification (Confluence page 845447188, Revision 3), section S4-R4, read on 10 September 2026.\nNote: this feature is not yet built (spec Status: Draft) and the setting UI is not yet designed; the route and on-screen labels here are provisional and to be finalised at build-verification. This case renders on the customer portal, which exists only on staging (not the QA branch); it will carry the customer-portal staging-only HOLD at build-verification.\nDesign: the Design Document (https://claude.ai/code/artifact/c88ee207-3197-4f54-8cb9-bac3deb84354) shows the new (Modern) design (SV-8218); the specific view/frame anchors are not yet given in the spec (provisional).\n\nAUTOMATION: Not available on Build to test Yet - Last checked 9/10/2026"
+   }
+  }
+ },
+ "53558": {
+  "title": "Pre-refresh invoice must reprint Legacy once back-catalogue pinning built",
+  "fields": {
+   "custom_preconds": {
+    "blocks": [
+     [
+      "1. Log in as a user who can reach Settings and invoices.",
+      "2. Seed an invoice created BEFORE the refresh release (before 2026-09-09). Provisional creation date.",
+      "3. Go to Settings > Settings > Invoice and set \"Invoice Design\" to any value (e.g. \"Modern\")."
+     ]
+    ],
+    "text": "1. Log in as a user who can reach Settings and invoices.\n2. Seed an invoice created BEFORE the refresh release (before 2026-09-09). Provisional creation date.\n3. Go to Settings > Settings > Invoice and set \"Invoice Design\" to any value (e.g. \"Modern\")."
+   },
+   "custom_steps": {
+    "blocks": [
+     [
+      "1. Reprint / preview the pre-refresh invoice and note its design.",
+      "2. Compare it against the legacy copy the customer holds (the design it was issued under = Legacy).",
+      "3. Distinguish designs via the overall look and the Authorizer line."
+     ]
+    ],
+    "text": "1. Reprint / preview the pre-refresh invoice and note its design.\n2. Compare it against the legacy copy the customer holds (the design it was issued under = Legacy).\n3. Distinguish designs via the overall look and the Authorizer line."
+   },
+   "custom_expected": {
+    "blocks": [
+     [
+      "1. Once built, the pre-refresh invoice must reprint in the Legacy design (S4-R1): \"S4-R1 and S4-R2 must both be built.\"",
+      "2. Three outcomes: (a) if it reprints in Legacy -> PASS, the pinning is built; (b) if it reprints in the new (Modern) design -> mark this case FAILED - that is today's un-built behaviour: \"Right now an invoice created before the refresh reprints in the new design, because no invoice records which design it was issued under\"; (c) if it reprints differently or errors -> a NEW problem, report it.",
+      "3. On today's build this case is EXPECTED TO FAIL at outcome (b): the invoice reprints in the new design because the back-catalogue pinning is net-new behaviour and is not yet built."
+     ],
+     [
+      "---",
+      "This is the expected behaviour as per epic SV-8218 and the Invoice Design Selection specification (Confluence page 845447188, Revision 3), section S4-R5, read on 10 September 2026.",
+      "Note: this feature is not yet built (spec Status: Draft) and the setting UI is not yet designed; the route and on-screen labels here are provisional and to be finalised at build-verification.",
+      "Design: the Design Document (https://claude.ai/code/artifact/c88ee207-3197-4f54-8cb9-bac3deb84354) shows the new (Modern) design (SV-8218); the specific view/frame anchors are not yet given in the spec (provisional)."
+     ],
+     [
+      "AUTOMATION: Not available on Build to test Yet - Last checked 9/10/2026"
+     ]
+    ],
+    "text": "1. Once built, the pre-refresh invoice must reprint in the Legacy design (S4-R1): \"S4-R1 and S4-R2 must both be built.\"\n2. Three outcomes: (a) if it reprints in Legacy -> PASS, the pinning is built; (b) if it reprints in the new (Modern) design -> mark this case FAILED - that is today's un-built behaviour: \"Right now an invoice created before the refresh reprints in the new design, because no invoice records which design it was issued under\"; (c) if it reprints differently or errors -> a NEW problem, report it.\n3. On today's build this case is EXPECTED TO FAIL at outcome (b): the invoice reprints in the new design because the back-catalogue pinning is net-new behaviour and is not yet built.\n\n---\nThis is the expected behaviour as per epic SV-8218 and the Invoice Design Selection specification (Confluence page 845447188, Revision 3), section S4-R5, read on 10 September 2026.\nNote: this feature is not yet built (spec Status: Draft) and the setting UI is not yet designed; the route and on-screen labels here are provisional and to be finalised at build-verification.\nDesign: the Design Document (https://claude.ai/code/artifact/c88ee207-3197-4f54-8cb9-bac3deb84354) shows the new (Modern) design (SV-8218); the specific view/frame anchors are not yet given in the spec (provisional).\n\nAUTOMATION: Not available on Build to test Yet - Last checked 9/10/2026"
+   }
+  }
+ },
+ "53559": {
+  "title": "Switching to Legacy does not convert Modern back-catalogue invoices",
+  "fields": {
+   "custom_preconds": {
+    "blocks": [
+     [
+      "1. Log in as a user who can reach Settings and invoices.",
+      "2. Seed a between-releases invoice (created on/after 2026-09-09 and before the setting ships -> Modern cohort). Provisional creation date.",
+      "3. Go to Settings > Settings > Invoice and set \"Invoice Design\" to \"Modern\"."
+     ]
+    ],
+    "text": "1. Log in as a user who can reach Settings and invoices.\n2. Seed a between-releases invoice (created on/after 2026-09-09 and before the setting ships -> Modern cohort). Provisional creation date.\n3. Go to Settings > Settings > Invoice and set \"Invoice Design\" to \"Modern\"."
+   },
+   "custom_steps": {
+    "blocks": [
+     [
+      "1. Reprint the invoice and confirm it renders Modern.",
+      "2. Change \"Invoice Design\" to \"Legacy\" (confirm the \"Switch to the Legacy design?\" dialog, then \"Switch to Legacy\").",
+      "3. Reprint the same invoice again and note its design."
+     ]
+    ],
+    "text": "1. Reprint the invoice and confirm it renders Modern.\n2. Change \"Invoice Design\" to \"Legacy\" (confirm the \"Switch to the Legacy design?\" dialog, then \"Switch to Legacy\").\n3. Reprint the same invoice again and note its design."
+   },
+   "custom_expected": {
+    "blocks": [
+     [
+      "1. \"Switching the setting to \\\"Legacy\\\" does not convert the S4-R2 cohort to the legacy design.\" The between-releases invoice still renders Modern after the switch, because \"Those customers already hold new-design copies.\""
+     ],
+     [
+      "---",
+      "This is the expected behaviour as per epic SV-8218 and the Invoice Design Selection specification (Confluence page 845447188, Revision 3), section S4-N1, read on 10 September 2026.",
+      "Note: this feature is not yet built (spec Status: Draft) and the setting UI is not yet designed; the route and on-screen labels here are provisional and to be finalised at build-verification.",
+      "Design: the Design Document (https://claude.ai/code/artifact/c88ee207-3197-4f54-8cb9-bac3deb84354) shows the new (Modern) design (SV-8218); the specific view/frame anchors are not yet given in the spec (provisional)."
+     ],
+     [
+      "AUTOMATION: Not available on Build to test Yet - Last checked 9/10/2026"
+     ]
+    ],
+    "text": "1. \"Switching the setting to \\\"Legacy\\\" does not convert the S4-R2 cohort to the legacy design.\" The between-releases invoice still renders Modern after the switch, because \"Those customers already hold new-design copies.\"\n\n---\nThis is the expected behaviour as per epic SV-8218 and the Invoice Design Selection specification (Confluence page 845447188, Revision 3), section S4-N1, read on 10 September 2026.\nNote: this feature is not yet built (spec Status: Draft) and the setting UI is not yet designed; the route and on-screen labels here are provisional and to be finalised at build-verification.\nDesign: the Design Document (https://claude.ai/code/artifact/c88ee207-3197-4f54-8cb9-bac3deb84354) shows the new (Modern) design (SV-8218); the specific view/frame anchors are not yet given in the spec (provisional).\n\nAUTOMATION: Not available on Build to test Yet - Last checked 9/10/2026"
+   }
+  }
+ },
+ "53560": {
+  "title": "Switching to Modern does not convert Legacy back-catalogue invoices",
+  "fields": {
+   "custom_preconds": {
+    "blocks": [
+     [
+      "1. Log in as a user who can reach Settings and invoices.",
+      "2. Seed a pre-refresh invoice (created before 2026-09-09 -> Legacy cohort). Provisional creation date.",
+      "3. Go to Settings > Settings > Invoice and set \"Invoice Design\" to \"Legacy\".",
+      "4. Note: this asserts the built behaviour; today's build has not built the back-catalogue pinning (see S4-R5)."
+     ]
+    ],
+    "text": "1. Log in as a user who can reach Settings and invoices.\n2. Seed a pre-refresh invoice (created before 2026-09-09 -> Legacy cohort). Provisional creation date.\n3. Go to Settings > Settings > Invoice and set \"Invoice Design\" to \"Legacy\".\n4. Note: this asserts the built behaviour; today's build has not built the back-catalogue pinning (see S4-R5)."
+   },
+   "custom_steps": {
+    "blocks": [
+     [
+      "1. Reprint the invoice and confirm it renders Legacy.",
+      "2. Change \"Invoice Design\" to \"Modern\" (confirm the \"Switch to the Modern design?\" dialog, then \"Switch to Modern\").",
+      "3. Reprint the same invoice again and note its design."
+     ]
+    ],
+    "text": "1. Reprint the invoice and confirm it renders Legacy.\n2. Change \"Invoice Design\" to \"Modern\" (confirm the \"Switch to the Modern design?\" dialog, then \"Switch to Modern\").\n3. Reprint the same invoice again and note its design."
+   },
+   "custom_expected": {
+    "blocks": [
+     [
+      "1. \"Switching the setting to \\\"Modern\\\" does not convert the S4-R1 cohort to the new design.\" The pre-refresh invoice still renders Legacy after the switch."
+     ],
+     [
+      "---",
+      "This is the expected behaviour as per epic SV-8218 and the Invoice Design Selection specification (Confluence page 845447188, Revision 3), section S4-N2, read on 10 September 2026.",
+      "Note: this feature is not yet built (spec Status: Draft) and the setting UI is not yet designed; the route and on-screen labels here are provisional and to be finalised at build-verification.",
+      "Design: the Design Document (https://claude.ai/code/artifact/c88ee207-3197-4f54-8cb9-bac3deb84354) shows the new (Modern) design (SV-8218); the specific view/frame anchors are not yet given in the spec (provisional)."
+     ],
+     [
+      "AUTOMATION: Not available on Build to test Yet - Last checked 9/10/2026"
+     ]
+    ],
+    "text": "1. \"Switching the setting to \\\"Modern\\\" does not convert the S4-R1 cohort to the new design.\" The pre-refresh invoice still renders Legacy after the switch.\n\n---\nThis is the expected behaviour as per epic SV-8218 and the Invoice Design Selection specification (Confluence page 845447188, Revision 3), section S4-N2, read on 10 September 2026.\nNote: this feature is not yet built (spec Status: Draft) and the setting UI is not yet designed; the route and on-screen labels here are provisional and to be finalised at build-verification.\nDesign: the Design Document (https://claude.ai/code/artifact/c88ee207-3197-4f54-8cb9-bac3deb84354) shows the new (Modern) design (SV-8218); the specific view/frame anchors are not yet given in the spec (provisional).\n\nAUTOMATION: Not available on Build to test Yet - Last checked 9/10/2026"
+   }
+  }
+ },
+ "53561": {
+  "title": "Reversed and recreated pre-refresh invoice captures the current setting",
+  "fields": {
+   "custom_preconds": {
+    "blocks": [
+     [
+      "1. Log in as a user who can reach Settings, work orders and invoices.",
+      "2. Seed a work order with an invoice created before the refresh release (before 2026-09-09 -> originally the Legacy cohort). Provisional creation date.",
+      "3. Run this test as if AFTER the setting ships; go to Settings > Settings > Invoice and set \"Invoice Design\" to \"Modern\".",
+      "4. Provisional route (feature not built): the invoice reverse action lives on the work order's Finance tab / invoice actions."
+     ]
+    ],
+    "text": "1. Log in as a user who can reach Settings, work orders and invoices.\n2. Seed a work order with an invoice created before the refresh release (before 2026-09-09 -> originally the Legacy cohort). Provisional creation date.\n3. Run this test as if AFTER the setting ships; go to Settings > Settings > Invoice and set \"Invoice Design\" to \"Modern\".\n4. Provisional route (feature not built): the invoice reverse action lives on the work order's Finance tab / invoice actions."
+   },
+   "custom_steps": {
+    "blocks": [
+     [
+      "1. Reverse the original pre-refresh invoice for the work order (provisional: Finance tab > invoice actions > Reverse).",
+      "2. Create a NEW invoice for the same work order while \"Invoice Design\" = \"Modern\".",
+      "3. Reprint the new invoice and note its design.",
+      "4. Confirm the new invoice behaves as a current-setting capture, not a Legacy-cohort member (e.g. it does not force Legacy)."
+     ]
+    ],
+    "text": "1. Reverse the original pre-refresh invoice for the work order (provisional: Finance tab > invoice actions > Reverse).\n2. Create a NEW invoice for the same work order while \"Invoice Design\" = \"Modern\".\n3. Reprint the new invoice and note its design.\n4. Confirm the new invoice behaves as a current-setting capture, not a Legacy-cohort member (e.g. it does not force Legacy)."
+   },
+   "custom_expected": {
+    "blocks": [
+     [
+      "1. The recreated invoice \"is a new creation. It captures the current setting under S2-R1\" - it renders Modern.",
+      "2. It \"is no longer part of the S4-R1 cohort\" - it is not pinned to Legacy."
+     ],
+     [
+      "---",
+      "This is the expected behaviour as per epic SV-8218 and the Invoice Design Selection specification (Confluence page 845447188, Revision 3), section S4-E1, read on 10 September 2026.",
+      "Note: this feature is not yet built (spec Status: Draft) and the setting UI is not yet designed; the route and on-screen labels here are provisional and to be finalised at build-verification.",
+      "Design: the Design Document (https://claude.ai/code/artifact/c88ee207-3197-4f54-8cb9-bac3deb84354) shows the new (Modern) design (SV-8218); the specific view/frame anchors are not yet given in the spec (provisional)."
+     ],
+     [
+      "AUTOMATION: Not available on Build to test Yet - Last checked 9/10/2026"
+     ]
+    ],
+    "text": "1. The recreated invoice \"is a new creation. It captures the current setting under S2-R1\" - it renders Modern.\n2. It \"is no longer part of the S4-R1 cohort\" - it is not pinned to Legacy.\n\n---\nThis is the expected behaviour as per epic SV-8218 and the Invoice Design Selection specification (Confluence page 845447188, Revision 3), section S4-E1, read on 10 September 2026.\nNote: this feature is not yet built (spec Status: Draft) and the setting UI is not yet designed; the route and on-screen labels here are provisional and to be finalised at build-verification.\nDesign: the Design Document (https://claude.ai/code/artifact/c88ee207-3197-4f54-8cb9-bac3deb84354) shows the new (Modern) design (SV-8218); the specific view/frame anchors are not yet given in the spec (provisional).\n\nAUTOMATION: Not available on Build to test Yet - Last checked 9/10/2026"
+   }
+  }
+ },
+ "53562": {
+  "title": "Invoice created after setting ships captures setting, not Modern cohort",
+  "fields": {
+   "custom_preconds": {
+    "blocks": [
+     [
+      "1. Log in as a user who can reach Settings and invoices.",
+      "2. Go to Settings > Settings > Invoice and set \"Invoice Design\" to \"Legacy\".",
+      "3. Run this test as if AFTER the setting ships: create a NEW invoice now (creation date after the setting shipped). Provisional: the \"date this setting ships\" is undefined in the spec.",
+      "4. Also have on hand a between-releases invoice (Modern cohort, created on/after 2026-09-09 and before the setting shipped) for contrast."
+     ]
+    ],
+    "text": "1. Log in as a user who can reach Settings and invoices.\n2. Go to Settings > Settings > Invoice and set \"Invoice Design\" to \"Legacy\".\n3. Run this test as if AFTER the setting ships: create a NEW invoice now (creation date after the setting shipped). Provisional: the \"date this setting ships\" is undefined in the spec.\n4. Also have on hand a between-releases invoice (Modern cohort, created on/after 2026-09-09 and before the setting shipped) for contrast."
+   },
+   "custom_steps": {
+    "blocks": [
+     [
+      "1. Reprint the just-created invoice and note its design.",
+      "2. Reprint the between-releases invoice under the same Legacy setting and note its design.",
+      "3. Compare the two."
+     ]
+    ],
+    "text": "1. Reprint the just-created invoice and note its design.\n2. Reprint the between-releases invoice under the same Legacy setting and note its design.\n3. Compare the two."
+   },
+   "custom_expected": {
+    "blocks": [
+     [
+      "1. The invoice created after the setting ships captures the current setting (\"Legacy\") under S2-R1 and renders Legacy - it does NOT auto-join the Modern cohort.",
+      "2. \"The S4-R2 cohort is closed: it stops growing the moment this setting ships, and covers only invoices created in the window between the two releases.\" The between-releases invoice still renders Modern."
+     ],
+     [
+      "---",
+      "This is the expected behaviour as per epic SV-8218 and the Invoice Design Selection specification (Confluence page 845447188, Revision 3), section S4-E2, read on 10 September 2026.",
+      "Note: this feature is not yet built (spec Status: Draft) and the setting UI is not yet designed; the route and on-screen labels here are provisional and to be finalised at build-verification.",
+      "Design: the Design Document (https://claude.ai/code/artifact/c88ee207-3197-4f54-8cb9-bac3deb84354) shows the new (Modern) design (SV-8218); the specific view/frame anchors are not yet given in the spec (provisional)."
+     ],
+     [
+      "AUTOMATION: Not available on Build to test Yet - Last checked 9/10/2026"
+     ]
+    ],
+    "text": "1. The invoice created after the setting ships captures the current setting (\"Legacy\") under S2-R1 and renders Legacy - it does NOT auto-join the Modern cohort.\n2. \"The S4-R2 cohort is closed: it stops growing the moment this setting ships, and covers only invoices created in the window between the two releases.\" The between-releases invoice still renders Modern.\n\n---\nThis is the expected behaviour as per epic SV-8218 and the Invoice Design Selection specification (Confluence page 845447188, Revision 3), section S4-E2, read on 10 September 2026.\nNote: this feature is not yet built (spec Status: Draft) and the setting UI is not yet designed; the route and on-screen labels here are provisional and to be finalised at build-verification.\nDesign: the Design Document (https://claude.ai/code/artifact/c88ee207-3197-4f54-8cb9-bac3deb84354) shows the new (Modern) design (SV-8218); the specific view/frame anchors are not yet given in the spec (provisional).\n\nAUTOMATION: Not available on Build to test Yet - Last checked 9/10/2026"
+   }
+  }
+ },
+ "53563": {
+  "title": "In-app preview renders the document's captured design",
+  "fields": {
+   "custom_preconds": {
+    "blocks": [
+     [
+      "1. Log in as a user who can reach Settings and invoices.",
+      "2. Seed an invoice-type document whose captured design differs from the current setting - e.g. an invoice that captured Legacy while the current \"Invoice Design\" setting is \"Modern\"."
+     ]
+    ],
+    "text": "1. Log in as a user who can reach Settings and invoices.\n2. Seed an invoice-type document whose captured design differs from the current setting - e.g. an invoice that captured Legacy while the current \"Invoice Design\" setting is \"Modern\"."
+   },
+   "custom_steps": {
+    "blocks": [
+     [
+      "1. Open the document and view its in-app preview.",
+      "2. Note the design; distinguish via the overall look and the Authorizer line (present on Modern, absent on Legacy)."
+     ]
+    ],
+    "text": "1. Open the document and view its in-app preview.\n2. Note the design; distinguish via the overall look and the Authorizer line (present on Modern, absent on Legacy)."
+   },
+   "custom_expected": {
+    "blocks": [
+     [
+      "1. \"The in-app document preview renders the document's design.\" The preview shows the document's captured design (Legacy), not the current setting (Modern)."
+     ],
+     [
+      "---",
+      "This is the expected behaviour as per epic SV-8218 and the Invoice Design Selection specification (Confluence page 845447188, Revision 3), section S5-R1, read on 10 September 2026.",
+      "Note: this feature is not yet built (spec Status: Draft) and the setting UI is not yet designed; the route and on-screen labels here are provisional and to be finalised at build-verification.",
+      "Design: the Design Document (https://claude.ai/code/artifact/c88ee207-3197-4f54-8cb9-bac3deb84354) shows the new (Modern) design (SV-8218); the specific view/frame anchors are not yet given in the spec (provisional)."
+     ],
+     [
+      "AUTOMATION: Not available on Build to test Yet - Last checked 9/10/2026"
+     ]
+    ],
+    "text": "1. \"The in-app document preview renders the document's design.\" The preview shows the document's captured design (Legacy), not the current setting (Modern).\n\n---\nThis is the expected behaviour as per epic SV-8218 and the Invoice Design Selection specification (Confluence page 845447188, Revision 3), section S5-R1, read on 10 September 2026.\nNote: this feature is not yet built (spec Status: Draft) and the setting UI is not yet designed; the route and on-screen labels here are provisional and to be finalised at build-verification.\nDesign: the Design Document (https://claude.ai/code/artifact/c88ee207-3197-4f54-8cb9-bac3deb84354) shows the new (Modern) design (SV-8218); the specific view/frame anchors are not yet given in the spec (provisional).\n\nAUTOMATION: Not available on Build to test Yet - Last checked 9/10/2026"
+   }
+  }
+ },
+ "53564": {
+  "title": "In-app print/PDF renders the document's captured design",
+  "fields": {
+   "custom_preconds": {
+    "blocks": [
+     [
+      "1. Log in as a user who can reach Settings and invoices.",
+      "2. Seed an invoice-type document whose captured design differs from the current setting - e.g. an invoice that captured Legacy while the current \"Invoice Design\" setting is \"Modern\"."
+     ]
+    ],
+    "text": "1. Log in as a user who can reach Settings and invoices.\n2. Seed an invoice-type document whose captured design differs from the current setting - e.g. an invoice that captured Legacy while the current \"Invoice Design\" setting is \"Modern\"."
+   },
+   "custom_steps": {
+    "blocks": [
+     [
+      "1. Open the document and use the in-app Print / generate PDF action from the shop app.",
+      "2. Note the design of the generated PDF; distinguish via the overall look and the Authorizer line."
+     ]
+    ],
+    "text": "1. Open the document and use the in-app Print / generate PDF action from the shop app.\n2. Note the design of the generated PDF; distinguish via the overall look and the Authorizer line."
+   },
+   "custom_expected": {
+    "blocks": [
+     [
+      "1. \"A PDF generated or printed from the shop app renders the document's design.\" The printed PDF shows the document's captured design (Legacy), not the current setting."
+     ],
+     [
+      "---",
+      "This is the expected behaviour as per epic SV-8218 and the Invoice Design Selection specification (Confluence page 845447188, Revision 3), section S5-R2, read on 10 September 2026.",
+      "Note: this feature is not yet built (spec Status: Draft) and the setting UI is not yet designed; the route and on-screen labels here are provisional and to be finalised at build-verification.",
+      "Design: the Design Document (https://claude.ai/code/artifact/c88ee207-3197-4f54-8cb9-bac3deb84354) shows the new (Modern) design (SV-8218); the specific view/frame anchors are not yet given in the spec (provisional)."
+     ],
+     [
+      "AUTOMATION: Not available on Build to test Yet - Last checked 9/10/2026"
+     ]
+    ],
+    "text": "1. \"A PDF generated or printed from the shop app renders the document's design.\" The printed PDF shows the document's captured design (Legacy), not the current setting.\n\n---\nThis is the expected behaviour as per epic SV-8218 and the Invoice Design Selection specification (Confluence page 845447188, Revision 3), section S5-R2, read on 10 September 2026.\nNote: this feature is not yet built (spec Status: Draft) and the setting UI is not yet designed; the route and on-screen labels here are provisional and to be finalised at build-verification.\nDesign: the Design Document (https://claude.ai/code/artifact/c88ee207-3197-4f54-8cb9-bac3deb84354) shows the new (Modern) design (SV-8218); the specific view/frame anchors are not yet given in the spec (provisional).\n\nAUTOMATION: Not available on Build to test Yet - Last checked 9/10/2026"
+   }
+  }
+ },
+ "53565": {
+  "title": "Emailed PDF renders the document's captured design",
+  "fields": {
+   "custom_preconds": {
+    "blocks": [
+     [
+      "1. Log in as a user who can reach Settings and invoices.",
+      "2. Seed an invoice-type document whose captured design differs from the current setting - e.g. an invoice that captured Legacy while the current \"Invoice Design\" setting is \"Modern\" - for a customer with an email address."
+     ]
+    ],
+    "text": "1. Log in as a user who can reach Settings and invoices.\n2. Seed an invoice-type document whose captured design differs from the current setting - e.g. an invoice that captured Legacy while the current \"Invoice Design\" setting is \"Modern\" - for a customer with an email address."
+   },
+   "custom_steps": {
+    "blocks": [
+     [
+      "1. Email the document PDF to the customer.",
+      "2. Open the received PDF and note its design; distinguish via the overall look and the Authorizer line."
+     ]
+    ],
+    "text": "1. Email the document PDF to the customer.\n2. Open the received PDF and note its design; distinguish via the overall look and the Authorizer line."
+   },
+   "custom_expected": {
+    "blocks": [
+     [
+      "1. \"A PDF emailed to a customer renders the document's design.\" The emailed PDF shows the document's captured design (Legacy), not the current setting."
+     ],
+     [
+      "---",
+      "This is the expected behaviour as per epic SV-8218 and the Invoice Design Selection specification (Confluence page 845447188, Revision 3), section S5-R3, read on 10 September 2026.",
+      "Note: this feature is not yet built (spec Status: Draft) and the setting UI is not yet designed; the route and on-screen labels here are provisional and to be finalised at build-verification.",
+      "Design: the Design Document (https://claude.ai/code/artifact/c88ee207-3197-4f54-8cb9-bac3deb84354) shows the new (Modern) design (SV-8218); the specific view/frame anchors are not yet given in the spec (provisional)."
+     ],
+     [
+      "AUTOMATION: Not available on Build to test Yet - Last checked 9/10/2026"
+     ]
+    ],
+    "text": "1. \"A PDF emailed to a customer renders the document's design.\" The emailed PDF shows the document's captured design (Legacy), not the current setting.\n\n---\nThis is the expected behaviour as per epic SV-8218 and the Invoice Design Selection specification (Confluence page 845447188, Revision 3), section S5-R3, read on 10 September 2026.\nNote: this feature is not yet built (spec Status: Draft) and the setting UI is not yet designed; the route and on-screen labels here are provisional and to be finalised at build-verification.\nDesign: the Design Document (https://claude.ai/code/artifact/c88ee207-3197-4f54-8cb9-bac3deb84354) shows the new (Modern) design (SV-8218); the specific view/frame anchors are not yet given in the spec (provisional).\n\nAUTOMATION: Not available on Build to test Yet - Last checked 9/10/2026"
+   }
+  }
+ },
+ "53566": {
+  "title": "Customer portal on-screen and portal PDF render the document's design",
+  "fields": {
+   "custom_preconds": {
+    "blocks": [
+     [
+      "1. Log in as a user who can reach invoices, plus a customer-portal account for the document's customer. NB: the customer portal renders only on staging, not on a QA branch.",
+      "2. Seed an invoice-type document whose captured design differs from the current setting - e.g. an invoice that captured Legacy while the current \"Invoice Design\" setting is \"Modern\"."
+     ]
+    ],
+    "text": "1. Log in as a user who can reach invoices, plus a customer-portal account for the document's customer. NB: the customer portal renders only on staging, not on a QA branch.\n2. Seed an invoice-type document whose captured design differs from the current setting - e.g. an invoice that captured Legacy while the current \"Invoice Design\" setting is \"Modern\"."
+   },
+   "custom_steps": {
+    "blocks": [
+     [
+      "1. Open the customer portal (staging) and view the document on screen; note its design.",
+      "2. Generate / download the document's PDF from the portal; note its design.",
+      "3. Distinguish designs via the overall look and the Authorizer line."
+     ]
+    ],
+    "text": "1. Open the customer portal (staging) and view the document on screen; note its design.\n2. Generate / download the document's PDF from the portal; note its design.\n3. Distinguish designs via the overall look and the Authorizer line."
+   },
+   "custom_expected": {
+    "blocks": [
+     [
+      "1. \"The customer portal renders the document's design, both on screen and in any PDF the portal generates.\" Both the on-screen view and the portal PDF show the document's captured design (Legacy).",
+      "2. \"The portal shows the same document the shop app does, so it follows whatever design that document carries\" - it does not follow the current setting."
+     ],
+     [
+      "---",
+      "This is the expected behaviour as per epic SV-8218 and the Invoice Design Selection specification (Confluence page 845447188, Revision 3), section S5-R4, read on 10 September 2026.",
+      "Note: this feature is not yet built (spec Status: Draft) and the setting UI is not yet designed; the route and on-screen labels here are provisional and to be finalised at build-verification. This case renders on the customer portal, which exists only on staging (not the QA branch); it will carry the customer-portal staging-only HOLD at build-verification.",
+      "Design: the Design Document (https://claude.ai/code/artifact/c88ee207-3197-4f54-8cb9-bac3deb84354) shows the new (Modern) design (SV-8218); the specific view/frame anchors are not yet given in the spec (provisional)."
+     ],
+     [
+      "AUTOMATION: Not available on Build to test Yet - Last checked 9/10/2026"
+     ]
+    ],
+    "text": "1. \"The customer portal renders the document's design, both on screen and in any PDF the portal generates.\" Both the on-screen view and the portal PDF show the document's captured design (Legacy).\n2. \"The portal shows the same document the shop app does, so it follows whatever design that document carries\" - it does not follow the current setting.\n\n---\nThis is the expected behaviour as per epic SV-8218 and the Invoice Design Selection specification (Confluence page 845447188, Revision 3), section S5-R4, read on 10 September 2026.\nNote: this feature is not yet built (spec Status: Draft) and the setting UI is not yet designed; the route and on-screen labels here are provisional and to be finalised at build-verification. This case renders on the customer portal, which exists only on staging (not the QA branch); it will carry the customer-portal staging-only HOLD at build-verification.\nDesign: the Design Document (https://claude.ai/code/artifact/c88ee207-3197-4f54-8cb9-bac3deb84354) shows the new (Modern) design (SV-8218); the specific view/frame anchors are not yet given in the spec (provisional).\n\nAUTOMATION: Not available on Build to test Yet - Last checked 9/10/2026"
+   }
+  }
+ },
+ "53567": {
+  "title": "Paid banner appears only on portal Invoice PDF, in the invoice's design",
+  "fields": {
+   "custom_preconds": {
+    "blocks": [
+     [
+      "1. Log in as a user who can reach invoices, plus a customer-portal account for the invoice's customer. NB: the customer portal renders only on staging, not on a QA branch.",
+      "2. Seed a FULLY PAID Work Order Invoice whose captured design is known - e.g. it captured Legacy while the current \"Invoice Design\" setting is \"Modern\"."
+     ]
+    ],
+    "text": "1. Log in as a user who can reach invoices, plus a customer-portal account for the invoice's customer. NB: the customer portal renders only on staging, not on a QA branch.\n2. Seed a FULLY PAID Work Order Invoice whose captured design is known - e.g. it captured Legacy while the current \"Invoice Design\" setting is \"Modern\"."
+   },
+   "custom_steps": {
+    "blocks": [
+     [
+      "1. On the customer portal (staging), generate the Invoice PDF of the paid invoice; confirm whether the paid banner appears and note the design it appears in.",
+      "2. For contrast, view the in-app preview of the same invoice and an estimate, and confirm whether the paid banner appears there.",
+      "3. Distinguish designs via the overall look and the Authorizer line."
+     ]
+    ],
+    "text": "1. On the customer portal (staging), generate the Invoice PDF of the paid invoice; confirm whether the paid banner appears and note the design it appears in.\n2. For contrast, view the in-app preview of the same invoice and an estimate, and confirm whether the paid banner appears there.\n3. Distinguish designs via the overall look and the Authorizer line."
+   },
+   "custom_expected": {
+    "blocks": [
+     [
+      "1. \"The paid banner continues to appear only on portal-generated Invoice PDFs, exactly as it does today, and appears in whichever design the invoice carries.\" The paid banner appears on the portal-generated Invoice PDF and renders in the invoice's captured design (Legacy).",
+      "2. The paid banner does not appear on non-portal renders (in-app preview) nor on non-Invoice documents (the estimate)."
+     ],
+     [
+      "---",
+      "This is the expected behaviour as per epic SV-8218 and the Invoice Design Selection specification (Confluence page 845447188, Revision 3), section S5-R5, read on 10 September 2026.",
+      "Note: this feature is not yet built (spec Status: Draft) and the setting UI is not yet designed; the route and on-screen labels here are provisional and to be finalised at build-verification. This case renders on the customer portal, which exists only on staging (not the QA branch); it will carry the customer-portal staging-only HOLD at build-verification.",
+      "Design: the Design Document (https://claude.ai/code/artifact/c88ee207-3197-4f54-8cb9-bac3deb84354) shows the new (Modern) design (SV-8218); the specific view/frame anchors are not yet given in the spec (provisional)."
+     ],
+     [
+      "AUTOMATION: Not available on Build to test Yet - Last checked 9/10/2026"
+     ]
+    ],
+    "text": "1. \"The paid banner continues to appear only on portal-generated Invoice PDFs, exactly as it does today, and appears in whichever design the invoice carries.\" The paid banner appears on the portal-generated Invoice PDF and renders in the invoice's captured design (Legacy).\n2. The paid banner does not appear on non-portal renders (in-app preview) nor on non-Invoice documents (the estimate).\n\n---\nThis is the expected behaviour as per epic SV-8218 and the Invoice Design Selection specification (Confluence page 845447188, Revision 3), section S5-R5, read on 10 September 2026.\nNote: this feature is not yet built (spec Status: Draft) and the setting UI is not yet designed; the route and on-screen labels here are provisional and to be finalised at build-verification. This case renders on the customer portal, which exists only on staging (not the QA branch); it will carry the customer-portal staging-only HOLD at build-verification.\nDesign: the Design Document (https://claude.ai/code/artifact/c88ee207-3197-4f54-8cb9-bac3deb84354) shows the new (Modern) design (SV-8218); the specific view/frame anchors are not yet given in the spec (provisional).\n\nAUTOMATION: Not available on Build to test Yet - Last checked 9/10/2026"
+   }
+  }
+ },
+ "53568": {
+  "title": "Batch and imported invoices are unaffected by the Invoice Design setting",
+  "fields": {
+   "custom_preconds": {
+    "blocks": [
+     [
+      "1. Log in as a user who can reach Settings and invoices.",
+      "2. Seed a batch invoice and an imported invoice (the documents deferred under SV-9193 that never received the new design).",
+      "3. Go to Settings > Settings > Invoice and set \"Invoice Design\" to \"Modern\"."
+     ]
+    ],
+    "text": "1. Log in as a user who can reach Settings and invoices.\n2. Seed a batch invoice and an imported invoice (the documents deferred under SV-9193 that never received the new design).\n3. Go to Settings > Settings > Invoice and set \"Invoice Design\" to \"Modern\"."
+   },
+   "custom_steps": {
+    "blocks": [
+     [
+      "1. Reprint / preview the batch invoice and the imported invoice; note each one's appearance.",
+      "2. Change \"Invoice Design\" to \"Legacy\" and reprint both again; compare with step 1."
+     ]
+    ],
+    "text": "1. Reprint / preview the batch invoice and the imported invoice; note each one's appearance.\n2. Change \"Invoice Design\" to \"Legacy\" and reprint both again; compare with step 1."
+   },
+   "custom_expected": {
+    "blocks": [
+     [
+      "1. \"Batch invoices and imported invoices are unaffected by the setting. They render their own templates, as they do today.\" Neither the Modern nor Legacy design of the five refreshed documents applies, and their appearance does not change when the setting is toggled."
+     ],
+     [
+      "---",
+      "This is the expected behaviour as per epic SV-8218 and the Invoice Design Selection specification (Confluence page 845447188, Revision 3), section S5-N1, read on 10 September 2026.",
+      "Note: this feature is not yet built (spec Status: Draft) and the setting UI is not yet designed; the route and on-screen labels here are provisional and to be finalised at build-verification.",
+      "Design: the Design Document (https://claude.ai/code/artifact/c88ee207-3197-4f54-8cb9-bac3deb84354) shows the new (Modern) design (SV-8218); the specific view/frame anchors are not yet given in the spec (provisional)."
+     ],
+     [
+      "AUTOMATION: Not available on Build to test Yet - Last checked 9/10/2026"
+     ]
+    ],
+    "text": "1. \"Batch invoices and imported invoices are unaffected by the setting. They render their own templates, as they do today.\" Neither the Modern nor Legacy design of the five refreshed documents applies, and their appearance does not change when the setting is toggled.\n\n---\nThis is the expected behaviour as per epic SV-8218 and the Invoice Design Selection specification (Confluence page 845447188, Revision 3), section S5-N1, read on 10 September 2026.\nNote: this feature is not yet built (spec Status: Draft) and the setting UI is not yet designed; the route and on-screen labels here are provisional and to be finalised at build-verification.\nDesign: the Design Document (https://claude.ai/code/artifact/c88ee207-3197-4f54-8cb9-bac3deb84354) shows the new (Modern) design (SV-8218); the specific view/frame anchors are not yet given in the spec (provisional).\n\nAUTOMATION: Not available on Build to test Yet - Last checked 9/10/2026"
+   }
+  }
+ },
+ "53569": {
+  "title": "Standalone portal Payment Receipt is unaffected by the setting",
+  "fields": {
+   "custom_preconds": {
+    "blocks": [
+     [
+      "1. Log in as a user who can reach Settings, plus a customer-portal account. NB: the customer portal renders only on staging, not on a QA branch.",
+      "2. Seed a standalone portal Payment Receipt for a customer (record a payment that produces the standalone portal Payment Receipt).",
+      "3. Note the current \"Invoice Design\" setting value."
+     ]
+    ],
+    "text": "1. Log in as a user who can reach Settings, plus a customer-portal account. NB: the customer portal renders only on staging, not on a QA branch.\n2. Seed a standalone portal Payment Receipt for a customer (record a payment that produces the standalone portal Payment Receipt).\n3. Note the current \"Invoice Design\" setting value."
+   },
+   "custom_steps": {
+    "blocks": [
+     [
+      "1. On the customer portal (staging), open the standalone Payment Receipt and note its appearance.",
+      "2. Change \"Invoice Design\" to the other option (Modern <-> Legacy).",
+      "3. Re-open the standalone Payment Receipt on the portal and compare with step 1."
+     ]
+    ],
+    "text": "1. On the customer portal (staging), open the standalone Payment Receipt and note its appearance.\n2. Change \"Invoice Design\" to the other option (Modern <-> Legacy).\n3. Re-open the standalone Payment Receipt on the portal and compare with step 1."
+   },
+   "custom_expected": {
+    "blocks": [
+     [
+      "1. \"The standalone portal Payment Receipt is unaffected by the setting.\" Its appearance does not change when the Invoice Design setting is toggled."
+     ],
+     [
+      "---",
+      "This is the expected behaviour as per epic SV-8218 and the Invoice Design Selection specification (Confluence page 845447188, Revision 3), section S5-N2, read on 10 September 2026.",
+      "Note: this feature is not yet built (spec Status: Draft) and the setting UI is not yet designed; the route and on-screen labels here are provisional and to be finalised at build-verification. This case renders on the customer portal, which exists only on staging (not the QA branch); it will carry the customer-portal staging-only HOLD at build-verification.",
+      "Design: the Design Document (https://claude.ai/code/artifact/c88ee207-3197-4f54-8cb9-bac3deb84354) shows the new (Modern) design (SV-8218); the specific view/frame anchors are not yet given in the spec (provisional)."
+     ],
+     [
+      "AUTOMATION: Not available on Build to test Yet - Last checked 9/10/2026"
+     ]
+    ],
+    "text": "1. \"The standalone portal Payment Receipt is unaffected by the setting.\" Its appearance does not change when the Invoice Design setting is toggled.\n\n---\nThis is the expected behaviour as per epic SV-8218 and the Invoice Design Selection specification (Confluence page 845447188, Revision 3), section S5-N2, read on 10 September 2026.\nNote: this feature is not yet built (spec Status: Draft) and the setting UI is not yet designed; the route and on-screen labels here are provisional and to be finalised at build-verification. This case renders on the customer portal, which exists only on staging (not the QA branch); it will carry the customer-portal staging-only HOLD at build-verification.\nDesign: the Design Document (https://claude.ai/code/artifact/c88ee207-3197-4f54-8cb9-bac3deb84354) shows the new (Modern) design (SV-8218); the specific view/frame anchors are not yet given in the spec (provisional).\n\nAUTOMATION: Not available on Build to test Yet - Last checked 9/10/2026"
+   }
+  }
+ },
+ "53570": {
+  "title": "Authorizer is omitted from a legacy-design document but kept on the WO",
+  "fields": {
+   "custom_preconds": {
+    "blocks": [
+     [
+      "1. Log in as a user who can reach Settings, work orders and invoices.",
+      "2. Seed a work order with an Authorizer selected on it.",
+      "3. Invoice that work order while \"Invoice Design\" = \"Legacy\" so its invoice captures the Legacy design."
+     ]
+    ],
+    "text": "1. Log in as a user who can reach Settings, work orders and invoices.\n2. Seed a work order with an Authorizer selected on it.\n3. Invoice that work order while \"Invoice Design\" = \"Legacy\" so its invoice captures the Legacy design."
+   },
+   "custom_steps": {
+    "blocks": [
+     [
+      "1. Print / preview the legacy-design invoice and check whether the Authorizer appears on the printed document.",
+      "2. Open the work order and confirm the Authorizer is still selected on it.",
+      "3. Confirm the Authorizer is locked (cannot be changed) now that the work order is invoiced.",
+      "4. Change \"Invoice Design\" to \"Modern\", then create a NEW document for a work order carrying an Authorizer value recorded during the legacy period; print it and check whether the Authorizer appears."
+     ]
+    ],
+    "text": "1. Print / preview the legacy-design invoice and check whether the Authorizer appears on the printed document.\n2. Open the work order and confirm the Authorizer is still selected on it.\n3. Confirm the Authorizer is locked (cannot be changed) now that the work order is invoiced.\n4. Change \"Invoice Design\" to \"Modern\", then create a NEW document for a work order carrying an Authorizer value recorded during the legacy period; print it and check whether the Authorizer appears."
+   },
+   "custom_expected": {
+    "blocks": [
+     [
+      "1. \"The Authorizer is not printed on a legacy-design document, because the legacy design has no place for it\" - it is absent on the legacy invoice print.",
+      "2. \"It is still selected on the work order and still locked once the work order is invoiced\" - present on the work order and locked.",
+      "3. \"If the organization later returns to the new design, Authorizer values recorded during the legacy period print on documents created after the switch\" - the new (Modern) document created after switching prints the Authorizer."
+     ],
+     [
+      "---",
+      "This is the expected behaviour as per epic SV-8218 and the Invoice Design Selection specification (Confluence page 845447188, Revision 3), section S5-E1, read on 10 September 2026.",
+      "Note: this feature is not yet built (spec Status: Draft) and the setting UI is not yet designed; the route and on-screen labels here are provisional and to be finalised at build-verification.",
+      "Design: the Design Document (https://claude.ai/code/artifact/c88ee207-3197-4f54-8cb9-bac3deb84354) shows the new (Modern) design (SV-8218); the specific view/frame anchors are not yet given in the spec (provisional)."
+     ],
+     [
+      "AUTOMATION: Not available on Build to test Yet - Last checked 9/10/2026"
+     ]
+    ],
+    "text": "1. \"The Authorizer is not printed on a legacy-design document, because the legacy design has no place for it\" - it is absent on the legacy invoice print.\n2. \"It is still selected on the work order and still locked once the work order is invoiced\" - present on the work order and locked.\n3. \"If the organization later returns to the new design, Authorizer values recorded during the legacy period print on documents created after the switch\" - the new (Modern) document created after switching prints the Authorizer.\n\n---\nThis is the expected behaviour as per epic SV-8218 and the Invoice Design Selection specification (Confluence page 845447188, Revision 3), section S5-E1, read on 10 September 2026.\nNote: this feature is not yet built (spec Status: Draft) and the setting UI is not yet designed; the route and on-screen labels here are provisional and to be finalised at build-verification.\nDesign: the Design Document (https://claude.ai/code/artifact/c88ee207-3197-4f54-8cb9-bac3deb84354) shows the new (Modern) design (SV-8218); the specific view/frame anchors are not yet given in the spec (provisional).\n\nAUTOMATION: Not available on Build to test Yet - Last checked 9/10/2026"
+   }
+  }
+ },
+ "53571": {
+  "title": "An org on Legacy can still hold and reprint new-design invoices",
+  "fields": {
+   "custom_preconds": {
+    "blocks": [
+     [
+      "1. Log in as a user who can reach Settings and invoices.",
+      "2. Go to Settings > Settings > Invoice and set \"Invoice Design\" to \"Legacy\".",
+      "3. Seed, for the same shop: (a) a between-releases invoice (Modern cohort, created on/after 2026-09-09 and before the setting shipped) and (b) an invoice created during an earlier period when the org was on the new design (captured Modern). Provisional creation dates. Optionally also a Legacy-captured invoice for contrast."
+     ]
+    ],
+    "text": "1. Log in as a user who can reach Settings and invoices.\n2. Go to Settings > Settings > Invoice and set \"Invoice Design\" to \"Legacy\".\n3. Seed, for the same shop: (a) a between-releases invoice (Modern cohort, created on/after 2026-09-09 and before the setting shipped) and (b) an invoice created during an earlier period when the org was on the new design (captured Modern). Provisional creation dates. Optionally also a Legacy-captured invoice for contrast."
+   },
+   "custom_steps": {
+    "blocks": [
+     [
+      "1. Open the shop's document / invoice list.",
+      "2. Reprint the between-releases invoice and the earlier new-design invoice; note each one's design.",
+      "3. Reprint a Legacy-captured invoice for contrast; note its design.",
+      "4. Distinguish designs via the overall look and the Authorizer line."
+     ]
+    ],
+    "text": "1. Open the shop's document / invoice list.\n2. Reprint the between-releases invoice and the earlier new-design invoice; note each one's design.\n3. Reprint a Legacy-captured invoice for contrast; note its design.\n4. Distinguish designs via the overall look and the Authorizer line."
+   },
+   "custom_expected": {
+    "blocks": [
+     [
+      "1. \"An organization on the legacy design can still hold invoices that render in the new design - the S4-R2 cohort, and any invoice created during an earlier period on the new design.\" Both the between-releases invoice and the earlier new-design invoice render Modern even though the current setting is Legacy.",
+      "2. \"A shop's document list can legitimately contain both designs.\""
+     ],
+     [
+      "---",
+      "This is the expected behaviour as per epic SV-8218 and the Invoice Design Selection specification (Confluence page 845447188, Revision 3), section S5-E2, read on 10 September 2026.",
+      "Note: this feature is not yet built (spec Status: Draft) and the setting UI is not yet designed; the route and on-screen labels here are provisional and to be finalised at build-verification.",
+      "Design: the Design Document (https://claude.ai/code/artifact/c88ee207-3197-4f54-8cb9-bac3deb84354) shows the new (Modern) design (SV-8218); the specific view/frame anchors are not yet given in the spec (provisional)."
+     ],
+     [
+      "AUTOMATION: Not available on Build to test Yet - Last checked 9/10/2026"
+     ]
+    ],
+    "text": "1. \"An organization on the legacy design can still hold invoices that render in the new design - the S4-R2 cohort, and any invoice created during an earlier period on the new design.\" Both the between-releases invoice and the earlier new-design invoice render Modern even though the current setting is Legacy.\n2. \"A shop's document list can legitimately contain both designs.\"\n\n---\nThis is the expected behaviour as per epic SV-8218 and the Invoice Design Selection specification (Confluence page 845447188, Revision 3), section S5-E2, read on 10 September 2026.\nNote: this feature is not yet built (spec Status: Draft) and the setting UI is not yet designed; the route and on-screen labels here are provisional and to be finalised at build-verification.\nDesign: the Design Document (https://claude.ai/code/artifact/c88ee207-3197-4f54-8cb9-bac3deb84354) shows the new (Modern) design (SV-8218); the specific view/frame anchors are not yet given in the spec (provisional).\n\nAUTOMATION: Not available on Build to test Yet - Last checked 9/10/2026"
+   }
+  }
+ }
+}

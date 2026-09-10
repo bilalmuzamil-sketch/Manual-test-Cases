@@ -1,0 +1,54 @@
+S1-R1|FO-1|FO-2::Invoice Design pick list appears at the top of the Invoice Settings page	53518	S1-R1,FO-1,FO-2	atm2	notbuilt
+S1-R2::Invoice Design offers exactly two options, Modern and Legacy, one selected	53519	S1-R2	atm3	notbuilt
+S1-R3::Invoice Design helper text shows the exact estimates-and-invoices wording	53520	S1-R3	atm3	notbuilt
+S1-R4|FO-3::Invoice Design is one org-wide setting with no per-location or per-doc variant	53521	S1-R4,FO-3	atm2	notbuilt
+S1-R5|FO-9::Invoice Design starts on Modern for an organization that already exists	53522	S1-R5,FO-9	atm2	notbuilt
+S1-R6|FO-9::Invoice Design starts on Modern for a newly created organization	53523	S1-R6,FO-9	atm2	notbuilt
+S1-R7::Switching Invoice Design to Legacy shows the exact confirmation dialog	53524	S1-R7	atm3	notbuilt
+S1-R7::Switching Invoice Design to Modern shows the exact confirmation dialog	53525	S1-R7	atm3	notbuilt
+S1-R8::Confirming an Invoice Design change shows the success toast and saves it	53526	S1-R8	atm2	notbuilt
+S1-R9::New Invoice Design selection takes effect immediately on next documents	53527	S1-R9	atm1	notbuilt
+S1-R10::Invoice Design can be changed unlimited times in either direction	53528	S1-R10	atm2	notbuilt
+S1-N1::User without settings access does not see the Invoice Design setting	53529	S1-N1	atm2	notbuilt
+S1-N2::Cancelling the Invoice Design dialog reverts the selection and saves nothing	53530	S1-N2	atm2	notbuilt
+S1-N3|S2-R3|FO-5::Changing Invoice Design does not alter any existing invoice document	53531	S1-N3,S2-R3,FO-5	atm1	notbuilt
+S1-N4::Changing Invoice Design leaves the other invoice settings unchanged	53532	S1-N4	atm2	notbuilt
+S1-E1::Failed Invoice Design save reverts and shows the exact alert toast	53533	S1-E1	atm2	notbuilt
+S2-R1|FO-5::Work Order Invoice captures the Invoice Design selected when it is created	53534	S2-R1,FO-5	atm2	notbuilt
+S2-R1::Parts Sale Invoice captures the Invoice Design selected when it is created	53535	S2-R1	atm2	notbuilt
+S2-R5|S2-E3|S2-R1::Credit Invoice captures current design, not the credited invoice's design	53536	S2-R5,S2-E3,S2-R1	atm2	notbuilt
+S2-R5|S2-E4::Credit Invoice against several invoices captures the current design	53537	S2-R5,S2-E4	atm2	notbuilt
+S2-R5|S2-E4::Credit Invoice with no originating invoice captures the current design	53538	S2-R5,S2-E4	atm2	notbuilt
+S2-R2::Invoice keeps its captured design through every lifecycle state	53539	S2-R2	atm1	notbuilt
+S2-E2::Fully paid invoice receipt shows captured design with payments and $0.00	53540	S2-E2	atm2	notbuilt
+S2-R4|S2-E1|FO-5::Reversed and recreated invoice captures the design in force at recreation	53541	S2-R4,S2-E1,FO-5	atm1	notbuilt
+S2-R6::There is no way to change an existing document's captured design	53542	S2-R6	atm2	notbuilt
+FO-4::Invoice Design selection governs all five refreshed documents	53543	FO-4	atm1	notbuilt
+FO-6::Estimate follows the live setting until its work order is invoiced	53544	FO-6	atm1	notbuilt
+FO-7::Invoice renders its captured design on preview, print PDF, and emailed PDF	53545	FO-7	atm1	notbuilt
+FO-8::A pre-refresh invoice reprints in its legacy design, not the live setting	53546	FO-8	atm2	notbuilt
+S3-R1::Un-invoiced estimate renders in the current Invoice Design selection	53547	S3-R1	atm2	notbuilt
+S3-R2|S3-N2::Invoiced work order: estimate and invoice views share the invoice design	53548	S3-R2,S3-N2	atm1	notbuilt
+S3-R3::Changing the setting re-renders old un-invoiced estimates	53549	S3-R3	atm2	notbuilt
+S3-N1::Previously downloaded estimate PDF does not change after setting change	53550	S3-N1	atm1	notbuilt
+S3-E1::Re-sent estimate reaches the customer in the newly selected design	53551	S3-E1	atm1	notbuilt
+S3-E2::Reversing the invoice returns the estimate to the current setting	53552	S3-E2	atm1	notbuilt
+S3-E3::Pre-refresh estimate follows current setting unless work order invoiced	53553	S3-E3	atm2	notbuilt
+S4-R1::Invoice created before 2026-09-09 always reprints in the Legacy design	53554	S4-R1	atm2	notbuilt
+S4-R2::Invoice from the between-releases window always reprints in Modern	53555	S4-R2	atm2	notbuilt
+S4-R3::Back-catalogue cohorts stay fixed through repeated setting changes	53556	S4-R3	atm2	notbuilt
+S4-R4::Pre-refresh invoice shows Legacy on every surface and its estimate view	53557	S4-R4	atm1	portal
+S4-R5::Pre-refresh invoice must reprint Legacy once back-catalogue pinning built	53558	S4-R5	atm2	notbuilt
+S4-N1::Switching to Legacy does not convert Modern back-catalogue invoices	53559	S4-N1	atm2	notbuilt
+S4-N2::Switching to Modern does not convert Legacy back-catalogue invoices	53560	S4-N2	atm2	notbuilt
+S4-E1::Reversed and recreated pre-refresh invoice captures the current setting	53561	S4-E1	atm1	notbuilt
+S4-E2::Invoice created after setting ships captures setting, not Modern cohort	53562	S4-E2	atm2	notbuilt
+S5-R1::In-app preview renders the document's captured design	53563	S5-R1	atm2	notbuilt
+S5-R2::In-app print/PDF renders the document's captured design	53564	S5-R2	atm2	notbuilt
+S5-R3::Emailed PDF renders the document's captured design	53565	S5-R3	atm1	notbuilt
+S5-R4::Customer portal on-screen and portal PDF render the document's design	53566	S5-R4	atm1	portal
+S5-R5::Paid banner appears only on portal Invoice PDF, in the invoice's design	53567	S5-R5	atm1	portal
+S5-N1::Batch and imported invoices are unaffected by the Invoice Design setting	53568	S5-N1	atm2	notbuilt
+S5-N2::Standalone portal Payment Receipt is unaffected by the setting	53569	S5-N2	atm1	portal
+S5-E1::Authorizer is omitted from a legacy-design document but kept on the WO	53570	S5-E1	atm1	notbuilt
+S5-E2::An org on Legacy can still hold and reprint new-design invoices	53571	S5-E2	atm2	notbuilt
