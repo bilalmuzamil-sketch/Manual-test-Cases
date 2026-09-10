@@ -57,6 +57,43 @@ else owes).
 
 ---
 
+## ⚠️⚠️⚠️⚠️⚠️⚠️⚠️ NEWEST — 2026-09-10, ~14:40 UTC. **SV-9807 QA-PASSED AND POSTED. SV-9866 STILL HELD — A REMINDER IS ARMED FOR IT AT YOUR REQUEST.**
+
+### SV-9807 — Parts Velocity counting declined-line parts as sold — **CLEARED**
+
+**QA PASSED.** Comment **[76301](https://shopview.atlassian.net/browse/SV-9807?focusedCommentId=76301)**
+posted on your go-ahead. The defect reproduces on the released build (**2.00 units, $50.00 revenue,
+$30.00 margin, demand 1** for a part on a declined line) and the fixed branch produces **no row at
+all**, with a control proving the identical part on an authorized line still counts. The bundled
+follow-up fix (movement re-tagged to the line at invoicing time) also passes. Eight months of real
+data show counter part sales untouched and a 3-unit total delta traced to one row. Record:
+`build/sv9807-parts-velocity-declined-2026-09-10/`.
+
+**Two things handed back to the developer, not blockers:** his checklist's scenario 1 **cannot be run as
+written** (a line with a picked part cannot be declined — refused in the screen and by the API on both
+builds; only the order → decline → receive route reaches the condition), and his line about the declined
+parts being *"billed at full quantity and price"* is loose — the quantity is full on both builds but the
+money is zero on both, which the fix did not change.
+
+**One caution logged, deliberately not filed as a defect:** the **Move part to line** dialog filled in
+correctly and its button was enabled, but pressing it **sent no request** and the part did not move, on
+two attempts with two click methods; the same move through the API returned 200. I cannot rule out my own
+automation, so it is written up as *could not complete in my run* and flagged for a human to try by hand.
+**Your call whether that becomes a ticket.**
+
+**Open for Chris Ward (from the developer's handoff, not from us):** whether a return from a declined
+line should still count in **Units Returned**. Dusan calls it deliberately unchanged and an open product
+question. **Not tested by us, declared as untested in the comment.**
+
+### SV-9866 — QuickBooks Unexported report — **STILL HELD, REMINDER ARMED**
+
+Unchanged from the entry below: verdict **NOT YET CONFIRMED**, nothing posted. You said *"Remind me
+later"*, so a reminder is scheduled to surface it — it does not close on its own. What unblocks it: a
+QuickBooks connection on `sv9866`, **or** one line from Dipesh that the fix is in the report query
+rather than the sync writer. Plus his answer on Credit Memo Apply (16 of 16 blank) and Credit Memo
+Refund (4 of 4) being in scope.
+
+
 ## ⚠️⚠️⚠️⚠️⚠️⚠️ NEWEST — 2026-09-10, ~12:50 UTC. **SV-9498 IS QA-PASSED AND POSTED. SV-9866 IS HELD BY YOUR OWN DECISION — YOU ASKED ME TO RE-ASK, SO IT IS RECORDED HERE TO BE RE-ASKED.**
 
 ### SV-9498 — Unable to cancel/delete manual returns — **CLEARED, nothing outstanding**
