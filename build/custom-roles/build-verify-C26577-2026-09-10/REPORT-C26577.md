@@ -1,10 +1,13 @@
 # Build verification — C26577 (See Financial Data OFF strips pricing from the Work Order PDF)
 
-> **✅ CORRECTION APPLIED 2026-09-10 (QA-lead go-ahead).** C26577 rewritten to target the **invoice
-> document** (not the WO print sheet) and to read the document **on screen** (not a PDF-text scrape).
-> Title, preconditions, steps, expected updated; Expected substance unchanged (Rule 57); `atmstatus`
-> and section untouched. Written via the Froala UI editor → renders `fr-view`; runnable-gate 1/1.
-> Rule-65 Vlad notice: `build/FOR-VLAD-C26577-corrected-2026-09-10.md`. Snapshots in `evidence/`.
+> **✅ CORRECTION APPLIED 2026-09-10 (QA-lead go-ahead) — kept as a BACKEND API TEST.** C26577 rewritten
+> to hit the **document render endpoint** (`GET /api/invoices/preview?invoice_id=<id>&type=pdf`, inspect
+> via `type=html`) as a Fin-OFF user and assert the response carries no pricing, with a **Fin-ON control
+> leg**. NOT a UI walk. The old steps' "Work Order PDF download endpoint / LinesDetailProvider path" does
+> not exist on the build (WO print is client-side window.print); the money document is the invoice render.
+> Title, preconditions, steps, expected updated; Expected substance unchanged (Rule 57); `atmstatus`,
+> section and automation_type untouched. Written via the TestRail UI editor → renders `fr-view`;
+> runnable-gate 1/1. Rule-65 Vlad notice: `build/FOR-VLAD-C26577-corrected-2026-09-10.md`.
 > **HANDOFF-READY is now YES.** The one item still open is the secondary tax-leak finding (below).
 
 
