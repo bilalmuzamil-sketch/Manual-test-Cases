@@ -1,0 +1,57 @@
+{
+ "attempts": [
+  {
+   "label": "bins with binLocationId keys",
+   "path": "/api/inventory/parts/change",
+   "status": 400,
+   "resp": "{\"errors\":[{\"[0][id]\":\"This field is missing.\"},{\"[0][binLocationId]\":\"This field was not expected.\"},{\"[1][id]\":\"This field is missing.\"},{\"[1][binLocationId]\":\"This field was not expected.\"},{\"[2][i",
+   "binsAfter": [
+    {
+     "name": "Unassigned",
+     "quantity": 6,
+     "isDefault": true
+    }
+   ],
+   "worked": false
+  },
+  {
+   "label": "a dedicated bin endpoint",
+   "path": "/api/inventory/parts/8b3512ac-36f4-4795-abdb-72c8d2868916/bins",
+   "status": 404,
+   "resp": "{\"errors\":[{\"error\":\"\\u0027resource\\u0027 was not found.\"}]}",
+   "binsAfter": [
+    {
+     "name": "Unassigned",
+     "quantity": 6,
+     "isDefault": true
+    }
+   ],
+   "worked": false
+  },
+  {
+   "label": "a transfer between bins",
+   "path": "/api/inventory/parts/transfer",
+   "status": 405,
+   "resp": "{\"errors\":[{\"error\":\"No route found for \\u0022POST http:\\/\\/sv9315api.qa.shopview.com\\/api\\/inventory\\/parts\\/transfer\\u0022: Method Not Allowed (Allow: GET)\"}]}",
+   "binsAfter": [
+    {
+     "name": "Unassigned",
+     "quantity": 6,
+     "isDefault": true
+    }
+   ],
+   "worked": false
+  }
+ ],
+ "part": {
+  "id": "8b3512ac-36f4-4795-abdb-72c8d2868916",
+  "pn": "20047"
+ },
+ "binsBefore": [
+  {
+   "name": "Unassigned",
+   "quantity": 6,
+   "isDefault": true
+  }
+ ]
+}
