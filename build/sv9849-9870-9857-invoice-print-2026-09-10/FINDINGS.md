@@ -383,3 +383,72 @@ comment contains any "we said X, actually Y" framing: each states the current re
 - **The method is stated in each technical section**: the same work orders, the same endpoint, and the
   **document display settings read and matched per work order** before rendering, so the build is the
   only variable. That sentence is what makes the comparison defensible if anyone re-runs it.
+
+---
+
+## Follow-up ticket raised from this testing — SV-9871 (2026-09-10)
+
+**The ask.** The QA lead sent the downloaded PDF of `INV-S2-8627` and asked for a follow-up ticket on
+SV-9857 saying *"the Downloaded PDF invoice breaks the line in two parts"*, highlighted in the
+screenshot, with the story defect attached to the relevant story.
+
+**What I said before writing it (Standing Rule 61).** SV-9857's own description lists **Option A —
+"Let a work line split across a page boundary"** — and that is exactly what shipped (SV-9870 change 2,
+`.job { break-inside: auto }` in the print block). A ticket reporting *"the line breaks in two parts"*
+would report **the fix we had just passed** as a defect. I put that on the table rather than writing
+it, and offered the defensible reframing: **the split is correct; what is missing is the job heading
+on the continuation page.** The QA lead chose that framing, and chose **SV-9151 (Story 12 — Document
+Visual Standard)** as the story to attach it to.
+
+**What the document actually shows** (live, `GET /api/invoices/preview?invoice_id=443f3092-8c52-4a3a-9c53-a1d8f20d01d5&type=pdf`,
+branch `sv9849.qa.shopview.com`, build `v26.36.0-3340667`):
+
+- The invoice is **5 pages**; **4 of them are continuation pages**.
+- **Only page 2 opens mid-job.** Page 1 ends mid-sentence inside job **02 Service - Transmission**
+  ("… Cleaned the oil"), and page 2 opens with the rest of that sentence — **no job number, no job
+  title, no "continued" marker** — then prints **Labor $824.75** and **Line total $1,159.49** under a
+  heading that is on the previous page.
+- **Pages 3, 4 and 5 each open with their own job heading** (06, 09, 14), so the scope is one
+  continuation page out of four, not a whole-document fault.
+
+**The ticket.** **[SV-9871](https://shopview.atlassian.net/browse/SV-9871)** — *"Printed invoice: a
+split work line has no job heading on its continuation page"* · Bug · **priority Medium** · Product
+Area **Work Orders** · status Open · **no parent** (deliberate: SV-9857 is itself parentless, so the
+follow-up matches it rather than inventing an epic). Structure: **"Found while testing SV-9857"** as
+the top line with the link (Rule 70) → blank line → short plain description (Rule 67) → "How to
+reproduce" with the branch link and five click-by-click steps → the annotated exhibit → "Fastest way
+to reproduce" (Rule 71) → rule → **"Technical details" last**.
+
+**Links, verified by read-back:** `Relates → SV-9857` and `Relates → SV-9151 (Story 12 - Document
+Visual Standard)`.
+
+**Exhibit.** `ev/exhibits/sv9857-followup-line02-split-no-continuation.png` — page-1 bottom above,
+page-2 top below, five numbered callouts with a legend: (1) page 1 is the only place the job is named
+"02 Service - Transmission"; (2) page 1 stops mid-sentence; (3) page 2 opens with the rest of that
+sentence, unlabelled; (4) Labor $824.75 prints under a heading on the previous page; (5) Line total
+$1,159.49 does the same. Callout tags sit in the left margin so **no caption covers a value being
+evidenced** (Rule 64).
+
+**Two things fixed while building the exhibit, both caught by re-reading the rendered PNG:**
+page-1 boxes were drawn 42 px high because the crop offset was applied but not the canvas paste
+offset (`O1 = P1Y - ay/Z`), and the callout circles were initially sitting on top of "$334.74" and
+"$1,159.49".
+
+**One honest cost decision:** I did **not** start the Chromium/MITM harness to read one button label,
+so the reproduction step says *"Download the invoice PDF"* rather than inventing a control name
+(Rule 63 vs Rule 9 — stated rather than papered over).
+
+### Rule-72 pre-post gate + read-back
+
+| # | Check | Result |
+|---|---|---|
+| 1 | Build marker re-read live before writing | `v26.36.0-3340667`, unchanged |
+| 2 | The PDF is the same document the QA lead attached | same invoice number `INV-S2-8627`, 5 pages, same split point |
+| 3 | Exhibit URL on `raw.githubusercontent.com` | **HTTP 200** |
+| 4 | Priority | **Medium** (never Low/High) |
+| 5 | Product Area | **Work Orders** (`customfield_10153` = 10120) — required on SV Bug creation |
+| 6 | Links | `Relates SV-9857`, `Relates SV-9151` — both read back from Jira |
+| 7 | Human voice, no AI fingerprint | scanned, clean |
+| 8 | SV-9857 comment **76274** read back after the in-place update | first line `OVERALL QA STATUS: PASSED …` intact · **2 media, correct order** (before/after, then the detail exhibit) · **6 table rows** · new section *"A separate issue was raised from this testing"* present · `updated 2026-09-10T00:40:09.921-0500` |
+
+**No new comment was stacked on SV-9857** — comment 76274 was updated in place by `commentId`.
