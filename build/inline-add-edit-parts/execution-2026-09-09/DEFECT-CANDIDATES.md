@@ -201,3 +201,29 @@ Evidence: `evidence/62-savefail2.json`, `evidence/62-c45022-abort.png`, `evidenc
 `evidence/62-c45022-control.png`.
 
 **Held** pending the QA lead's per-defect go-ahead.
+
+---
+
+## Review item (not filed, and not called a defect) — [C45222](https://shopview.testrail.io/index.php?/cases/view/45222) clause 3
+
+**"A part with no bins shows 'Not stocked' in warning styling instead of chips."**
+
+The card for a catalogue part carries the word **"Catalog"** where a stocked part's card reads
+*"Inventory Qty: 6 EA · Unassigned 6"*. It does **not** say "Not stocked", and it is not in warning
+styling. Observed on **F40010212** — *"Slack Adjuster F40010212 **Catalog** M807013…"*.
+
+**This is a question for the QA lead before it is called anything**, for two reasons:
+
+1. **The two may not be the same thing.** A *catalogue* part has no inventory record at all; the case
+   may mean an *inventory* part that happens to be held in **zero** bins — a different state, and one
+   this branch may not contain. Every stocked part looked at carries at least an "Unassigned" bin,
+   including parts whose bin holds 0 or −1.
+2. If they ARE the same thing, "Catalog" is arguably the better label — it says what the part is,
+   where "Not stocked" says only what it lacks — so this could be a case-wording change rather than a
+   build fix.
+
+**What is settled either way:** clause 1 holds — the card shows the total quantity and then a bin chip
+with its own count. Clause 2 (the "+ N" chip when a part sits in more than three bins) **has no data
+state on this branch**: no part is held in more than one bin, so it could not be tested at all.
+
+Evidence: `evidence/74-bins2.json`, `evidence/74-a-notstocked.png`.

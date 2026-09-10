@@ -1,0 +1,8 @@
+{
+ "pass_meta": {"suite":"Inline Add and Edit Parts (6597)","run":418,"env":"the sv9315 QA branch",
+   "build":"v26.36.0-f43b2fd","date":"10 September 2026","view_mode":"tech"},
+ "results": {
+  "C45221": {"verdict":"Passed","observed":"What was checked: that every bin a part is held in has a name and a count, and that exactly one of them is marked as the part's default bin. What happened: five stocked parts were looked at and all five behave the same way. Each carries a set of bins; every bin has a name - the ones seen were \"Unassigned\", \"D1B\" and \"SHOP\", so these are real named locations, not placeholders - and every bin has an on-hand count against it, including counts of 6, 4, 792, 0 and one that is already at minus 1. On each of the five parts exactly one bin, and only one, is flagged as the default.","not_observed":"Every stocked part on this branch is held in a single bin, so a part with several bins - where 'exactly one default' has more to prove - could not be checked here."},
+  "C45239": {"verdict":"Passed","observed":"What was checked: what happens for a part that is not held in stock anywhere. What happened: a catalogue part was chosen - its card in the search list reads \"Catalog\" instead of showing a stock quantity and a bin, which is how you tell them apart - and a quantity was entered. No bin was allocated, no \"Pulled from\" line appeared under the row, and no bin chip was shown anywhere. That is right: there is no stock to pull from, so there is nothing to allocate.","not_observed":null}
+ }
+}
