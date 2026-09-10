@@ -33,6 +33,56 @@
 
 ## ENTRIES — newest first (id · date · tags · lesson → pointer)
 
+### L0033 · 2026-09-10 · #shopview-app #api #probe #harness #mistake-corrected
+**THE SPA'S API LIVES ON A DIFFERENT HOST, AND ITS LIST ENDPOINTS RETURN `{collection: [...]}` — AN
+IN-PAGE `fetch('/api/...')` SILENTLY RETURNS THE SPA's OWN index.html.** On a QA branch the app is
+`https://<branch>.qa.shopview.com` and the API is `https://<branch>api.qa.shopview.com` (no dot before
+`api`); `boot()` exposes it as **`APIH`** and puts the `sv_sso_session` cookie on both hosts, so
+`fetch(\`https://\${APIH}/api/...\`, {credentials:'include'})` works from the page. Two probes died on
+`Unexpected token '<', "<!doctype "...` before this was spotted. **And the row array is not always under
+the same key** — `part/request/inventory-parts-as-options-with-remaining-catalogue-parts` returns
+`{collection:[...]}` while `/api/inventory/parts` returns `{data:{...}}`; four probes died on
+`rows is not iterable` / `rows.find is not a function`. Use a recursive picker that tries
+`collection · data · rows · items · results` and then descends, rather than one hard-coded key.
+→ `build/inline-add-edit-parts/execution-2026-09-09/probe49_bins_data.mjs`, playbook §S.
+
+### L0032 · 2026-09-10 · #playwright #harness #mistake-corrected
+**`page.evaluate` TAKES EXACTLY ONE ARGUMENT — `evaluate(fn, a, b)` THROWS AT RUNTIME, NOT AT PARSE.**
+Three probes ran most of the way through and then died on *"Too many arguments. If you need to pass more
+than 1 argument to the function wrap them in an object."*, losing the results of everything after the
+failing line because the JSON is written at the end. **Two habits fix it:** wrap every argument set in an
+object (`evaluate(({vis,idx})=>…, {vis:VIS, idx:i})`), and **write the evidence file incrementally**, not
+only on the last line, so a late crash does not discard a completed leg.
+
+### L0031 · 2026-09-10 · #shopview-app #build-verify #labels #mistake-corrected #rule-57
+**A KEYBOARD-HINT LEGEND MADE OF `<kbd>`-STYLE CHIPS IS INVISIBLE TO A `body.innerText` REGEX — READ IT
+FROM THE SCREENSHOT.** The inline row's legend renders as separate chips, so
+`innerText.match(/.{0,40}(Enter|Esc|Tab).{0,40}/g)` returns the bare words `Enter`, `Tab`, `Esc` with no
+surrounding text, which reads exactly like "the descriptions are missing" — a false defect one step away
+from being written up. The screenshots show the legends in full and they are correct, and they differ
+between the two rows exactly as the spec requires: **add row `Enter save & next row · Tab next field ·
+Esc cancel`**, **edit row `Enter save · Tab next field · Esc cancel`**. Same family as the
+`text-transform` trap (§1 of CLAUDE.md): the DOM string and the displayed string are different things.
+→ `evidence/50-a-addhint.png`, `evidence/50-b-edithint.png`.
+
+### L0030 · 2026-09-10 · #shopview-app #roles-permissions #route #build-verify
+**THE ROLE EDITOR'S "VIEW MODE" IS A SEGMENTED BUTTON PAIR, NOT A TOGGLE OR A RADIO — WHICH IS WHY A
+CHECKBOX/TOGGLE SWEEP CANNOT FIND IT.** On `/administration/roles-permissions/<roleId>/edit` (reachable
+by a direct `goto` once booted) the control is `button.wo-settings__segment` inside
+`.wo-settings__segmented`, with `wo-settings__segment--active` on the chosen one and the labels
+**"Full View"** and **"Tech view"**. In the same editor, **Work order lines → Create & Edit is
+`.q-checkbox` index 7** and **See Financial Data is a `.q-toggle`** at the bottom of the module list.
+Technician role id on sv9315: `2d4b8464-81a9-4c1e-96c6-a2a64f02a389`; its default state is Tech view ·
+Create & Edit ON · See Financial Data off. → `evidence/52-rolelabels.json`, `evidence/55-viewmode.json`.
+
+### L0029 · 2026-09-10 · #methodology #defects #never-bite #qa-lead
+**A DEFECT CANDIDATE IS NOT A CANDIDATE UNTIL IT HAS A CONTROL LEG AND A SECOND RUN.** Two findings this
+pass looked solid on one observation and did not survive: **C45080** "the row closed when I clicked
+outside" was my click landing on an interactive element, not an inert one; **C45081** "the follow-on row
+blocks navigation" reproduced in one view and not the other, so it needed a four-run matrix before it
+could be described at all. Every candidate now carries: the failing leg, a **control leg that must
+behave differently**, and a **repeat**. This is cheaper than one wrong ticket.
+
 ### L0028 · 2026-09-09 · #testrail #fr-view #build-verify #re-stamp #efficiency #methodology #deadlock
 **A STRUCTURE-PRESERVING API `update_case` PRESERVES fr-view RENDERING — SO A BULK BUILD-LINE RE-STAMP IS
 AN API JOB (~3 MIN), NOT A UI/Froala DEADLOCK JOB (~2 HRS).** The documented trap (playbook §J) says an API
