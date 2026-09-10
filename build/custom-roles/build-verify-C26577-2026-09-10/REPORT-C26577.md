@@ -1,5 +1,13 @@
 # Build verification — C26577 (See Financial Data OFF strips pricing from the Work Order PDF)
 
+> **✅ CORRECTION APPLIED 2026-09-10 (QA-lead go-ahead).** C26577 rewritten to target the **invoice
+> document** (not the WO print sheet) and to read the document **on screen** (not a PDF-text scrape).
+> Title, preconditions, steps, expected updated; Expected substance unchanged (Rule 57); `atmstatus`
+> and section untouched. Written via the Froala UI editor → renders `fr-view`; runnable-gate 1/1.
+> Rule-65 Vlad notice: `build/FOR-VLAD-C26577-corrected-2026-09-10.md`. Snapshots in `evidence/`.
+> **HANDOFF-READY is now YES.** The one item still open is the secondary tax-leak finding (below).
+
+
 - **Case:** C26577 — https://shopview.testrail.io/index.php?/cases/view/26577
 - **Project/epic:** Custom Roles & Permissions, epic SV-7388; story SV-7523; task SV-7484 (CRP-BE-09 chokepoint).
 - **Env:** staging — https://app.staging.shopview.com (build verified live 2026-09-10).
