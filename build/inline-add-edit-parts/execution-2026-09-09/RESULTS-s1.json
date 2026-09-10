@@ -1,0 +1,7 @@
+{
+ "pass_meta": {"suite":"Inline Add and Edit Parts (6597)","run":418,"env":"the sv9315 QA branch",
+   "build":"v26.36.0-f43b2fd","date":"10 September 2026","view_mode":"full"},
+ "results": {
+  "C45254": {"verdict":"Passed","observed":"What was checked: whether you can type your own Cost onto a part that comes out of stock - you should not be able to, because that part's cost belongs to the stock record. What happened: choosing a stocked part (the Detroit oil filter, part number A4731800909, whose card shows a stock quantity and a bin) filled the Cost in at 37.99 and locked it. Typing into it changed nothing: the cost still read 37.99 afterwards, and the digits went into the Sell price box instead, which shows plainly that the Cost box simply will not take a keystroke. The Sell price is a different matter and stayed fully editable - it was set to 88.88 and held that value. So the cost comes from the catalogue and the shop can still price the job.","not_observed":"The case also has the tester fill the remaining fields and press Save; the editability was settled without needing to, so no part was saved for this check."}
+ }
+}

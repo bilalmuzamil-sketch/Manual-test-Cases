@@ -19,5 +19,61 @@
    "status": 200,
    "body": "{\"data\":[]}"
   }
- ]
+ ],
+ "C45035": {
+  "key": "tech",
+  "mode": "edit",
+  "caseId": "C45035",
+  "opened": "opened",
+  "rowBefore": {
+   "open": true,
+   "desc": "ZZAUTOTEST c45035 seed",
+   "qty": "7"
+  },
+  "moved": {
+   "status": 400,
+   "json": {
+    "errors": [
+     {
+      "error": "Cannot complete work order with incomplete lines."
+     }
+    ]
+   },
+   "text": "{\"errors\":[{\"error\":\"Cannot complete work order with incomplete lines.\"}]}"
+  },
+  "skipped": "the work order would not go non-editable ({\"errors\":[{\"error\":\"Cannot complete work order with incomplete lines.\"}]}) — save NOT attempted"
+ },
+ "C45061": {
+  "key": "admin",
+  "mode": "add",
+  "caseId": "C45061",
+  "opened": "opened",
+  "rowBefore": {
+   "open": true,
+   "desc": "ZZAUTOTEST C45061 row",
+   "qty": "5"
+  },
+  "moved": {
+   "status": 400,
+   "json": {
+    "errors": [
+     {
+      "error": "Cannot complete work order with incomplete lines."
+     }
+    ]
+   },
+   "text": "{\"errors\":[{\"error\":\"Cannot complete work order with incomplete lines.\"}]}"
+  },
+  "skipped": "the work order would not go non-editable ({\"errors\":[{\"error\":\"Cannot complete work order with incomplete lines.\"}]}) — save NOT attempted"
+ },
+ "restore": {
+  "status": 201,
+  "json": {
+   "data": {
+    "work_order_id": "12c9684e-50d7-4043-86d2-f8a83d321431",
+    "message": "Status changed."
+   }
+  },
+  "text": "{\"data\":{\"work_order_id\":\"12c9684e-50d7-4043-86d2-f8a83d321431\",\"message\":\"Status changed.\"}}"
+ }
 }
