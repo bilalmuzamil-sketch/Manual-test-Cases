@@ -228,3 +228,45 @@ with its own count. Clause 2 (the "+ N" chip when a part sits in more than three
 state on this branch**: no part is held in more than one bin, so it could not be tested at all.
 
 Evidence: `evidence/74-bins2.json`, `evidence/74-a-notstocked.png`.
+
+---
+
+## Candidate 8 — OBSERVED 2026-09-10 · story SV-9317 (Story 2, S2-R5)
+
+**Case:** [C45001](https://shopview.testrail.io/index.php?/cases/view/45001) *(Description overwrite:
+editable for catalog, read-only for inventory)* · run [R418](https://shopview.testrail.io/index.php?/runs/view/418).
+
+**🛑 THIS CASE IS CURRENTLY MARKED PASSED IN R418 AND THAT IS WRONG — see the note at the end.**
+
+**The rule (S2-R5, added by the spec update of 2026-09-04, SV-9766):** *"After the inline part request
+is saved, description, cost, core charge and vendor become read-only; where no vendor was predefined,
+that field is empty and still read-only."*
+
+**What the build does:** none of the four lock after the save.
+
+A catalogue part (**F40010212**, "Slack Adjuster") was chosen, its description overwritten with
+`ZZAUTOTEST c45001 after-save`, cost set to 14.00 and sell price to 28.00, and saved. Re-opening that
+saved part request:
+
+| Field | After the save, required | After the save, observed |
+|---|---|---|
+| Description | read-only | **editable** — `ZZAUTOTEST c45001 after-save` |
+| Cost | read-only | **editable** — `14.00000` |
+| Core charge | read-only | **editable** — `0.00` |
+| Vendor | empty **and read-only** | empty but **editable** |
+| Source | (not named by the rule) | read-only — `Vendor` |
+
+So the one field that *is* locked is the one the rule does not mention, and all four that it does name
+stay open for editing.
+
+Clauses 1 and 2 of this case both **pass** and were verified repeatedly — a catalogue part's
+description can be overwritten (four parts), an inventory part's cannot (five parts). It is only
+clause 3 that fails.
+
+Evidence: `evidence/76-final.json`, `evidence/76-a-aftersave.png`.
+
+### ⚠️ A result already written to the run needs correcting
+
+C45001 was marked **Passed** in R418 earlier in this pass, with a note saying clause 3 "was still
+being checked when this result was written". Clause 3 has now been checked and it fails, so **the
+case must move to Failed** once this defect is raised and approved. Nothing else in R418 is affected.
