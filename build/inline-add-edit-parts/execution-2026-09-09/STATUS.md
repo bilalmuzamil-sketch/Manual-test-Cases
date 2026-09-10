@@ -184,3 +184,22 @@ Catalog part is the one whose Cost can actually be typed.
 `catalogue_part` 617 in one sweep. Every probe before this one lumped the last two together and only
 ever picked a `special_part`, whose cost is locked, so "a catalogue part's cost cannot be overwritten"
 looked true for an hour and was not.
+
+## ⚠️ Probe 65's C45250 legs are INVALID — do not read them as evidence
+
+Probe 65 logs `C45250 clause 1 — after the line went Complete: {"addPart":2,"addPartVisible":2,
+"statuses":["Approved","Approved"]}`. **The line never went Complete.** The
+`lines/change-status` call immediately above it was refused with *"Line can`t be completed with
+unfulfilled part requests."*, and the probe carried on regardless — so what it recorded is Add Part
+being available on an **Approved** line, which proves nothing about C45250 and would have read as a
+pass. The statuses it captured say "Approved" twice, which is the giveaway.
+
+Two lessons, both now in the probes:
+- **A probe must stop when its precondition fails.** Probe 78 checks the status code of the
+  line-completion call and only runs the observation legs if it succeeded.
+- **Capture the state you claim to have created.** Recording the line's status alongside the
+  observation is what made this catchable at all.
+
+Probe 78 supersedes it: it takes the part-request ids off the line objects (the reason probe 65 had
+none to pick — `/api/work-orders/part/list-requests` ignores every filter and returns the first 100
+rows estate-wide, playbook §S), picks them, completes the line, and gates the rest on that working.
