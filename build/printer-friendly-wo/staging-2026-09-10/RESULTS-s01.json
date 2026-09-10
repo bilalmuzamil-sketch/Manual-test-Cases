@@ -1,0 +1,23 @@
+{
+ "pass_meta": {
+  "suite": "Printer Friendly Work Orders (6617)",
+  "run": 419,
+  "env": "the Staging environment",
+  "build": "staging 2026-09-10",
+  "date": "10 September 2026",
+  "view_mode": "Full View"
+ },
+ "results": {
+  "C45092": {"verdict":"Passed","observed":"Checked on Staging, on a real work order with 105 job lines. The printed page opens with the work order number as its heading - \"WO #S2-32231\" - at the very top, before anything else. It also repeats at the very bottom of the printout, which is helpful on a multi-page print."},
+  "C45093": {"verdict":"Passed","observed":"The status is printed immediately under the work order number at the top - the heading reads \"WO #S2-32231\" and the next line is \"Approved\". They sit together as a pair, which is what the case asks for."},
+  "C45096": {"verdict":"Passed","observed":"The shop name is printed in the header block, directly under the work order number and status: \"Staging Heavy Duty - 9919\"."},
+  "C45101": {"verdict":"Passed","observed":"No price of any kind appears on the printed job lines. The printed page was searched for money amounts and there are none at all - zero. On screen the same work order shows 322 money amounts, and the line table on screen carries Rate, Margin and Total columns; none of those three columns exist on the printout. The printed line table has only three columns: Name/Description, Actual/Estimate, Status."},
+  "C45102": {"verdict":"Passed","observed":"The Action and Progress columns are gone from the printout. On screen the job line table has these columns: an expand control, Name/Description, Actual/Estimate, Progress, Status, Action, Rate, Margin, Total. On the printed page it has only Name/Description, Actual/Estimate and Status. The words \"Progress\" and \"Action\" do not appear anywhere on the printed page."},
+  "C45106": {"verdict":"Passed","observed":"On this work order none of the job lines has a technician's note written on it. On screen each of those lines shows the prompt \"Add tech story for this line\". That prompt does not appear anywhere on the printed page - the empty note row is simply left out rather than printed as a blank or a placeholder."},
+  "C45112": {"verdict":"Passed","observed":"The totals are printed at the foot of the job lines, before the print time: \"Total Actual Time: 0.00\" and \"Total Estimated Time: 367.50\". Both figures are shown, and 367.50 is the correct sum for 105 lines estimated at 3.50 hours each."},
+  "C45113": {"verdict":"Passed","observed":"The totals block shows time only - total actual time and total estimated time - and no money. The whole printed page contains no money amounts at all, so there is no pricing in the summary."},
+  "C45114": {"verdict":"Passed","observed":"A print time is printed at the bottom of the page, after the totals: \"Printed: Sep 10, 2026 02:39 AM\". It carries both the date and the time."},
+  "C45117": {"verdict":"Passed","observed":"Nothing you can click or type into survives onto the printed page. The printout contains zero buttons and zero input boxes, and none of the top menu, the tabs or the page navigation appears. On screen the same page has 434 buttons, 5 tabs and the full menu. This was confirmed two ways: by counting what is inside the printed page, and by checking that nothing outside the printed page is still showing."},
+  "C45103": {"verdict":"Passed","observed":"The job lines print in the same order they appear on screen. All 105 lines are printed, numbered 1 to 105 in sequence, matching the on-screen order captured immediately beforehand on the same work order. Worth noting for the tester: the screen limits the height of the job list and scrolls it, but the printout lifts that limit so every line prints rather than only the visible ones."}
+ }
+}
