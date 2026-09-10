@@ -6,7 +6,9 @@ the same seeded case, with a control proving that only *declined* work stopped c
 Ticket: [SV-9807](https://shopview.atlassian.net/browse/SV-9807) · Bug · TESTING QA · priority Medium ·
 reporter **Chris Ward** · assignee **Dusan Radulovic** · found by **Nemanja Djuric** while investigating
 [SV-9690](https://shopview.atlassian.net/browse/SV-9690) and split out of it on Chris's call.
-**No comments and no QA handoff on the ticket**, so this pass was written from the description.
+**No comments and no QA handoff on the ticket when this pass started**, so it was written from the
+description — **Dusan's handoff arrived mid-pass and is worked through in the ADDENDUM at the end of
+this file, which is the authoritative scope.**
 
 ## What the ticket says should happen
 
