@@ -20,7 +20,7 @@ The previous CLAUDE.md was **738 KB / roughly 183,000 tokens**, and it was **TRU
 AT RULE 62**. Sessions were therefore running with **Rules 63–88 SILENTLY ABSENT** while believing
 they had read the whole file. A rule you have never seen is a rule you will break.
 
-**THEREFORE: NEVER ASSUME YOU HAVE SEEN ALL THE RULES.** There are **103 numbered Standing Rules**.
+**THEREFORE: NEVER ASSUME YOU HAVE SEEN ALL THE RULES.** There are **104 numbered Standing Rules**.
 Count them in the index below. If you are
 about to apply a rule, open its file and read it. **NEVER read
 `build/rules/CLAUDE-FULL-ARCHIVE-2026-08-21.md` whole** — it will exhaust your context exactly as the
@@ -150,6 +150,19 @@ safe. The **evidence** for each one lives in the rule or skill the bullet points
   new ⇒ write it into the playbook or the skill IN THE SAME PASS** (93). The QA lead's verbatim ruling on
   sequencing, the eight-probe incident and the five 2026-08-28 false blockers:
   `build/rules/RULES-61-ONWARD.md` rule 97.
+  **🛑 AND PROVE THE INSTRUMENT WORKED BEFORE ANY NEGATIVE CLAIM (104; QA lead 2026-09-10 — five false
+  blockers in one day, ALL my own selector/timing/route/method blamed on the product, two of them
+  already unblocked by him earlier).** *Absent · nothing · broken · impossible · cannot* needs SEVEN
+  proofs with evidence: **positive control · through the SCREEN not a script · ≥2 attempts on a settled
+  page · navigation and new-tab checked · precondition read back (a 200 is not proof a write landed) ·
+  repo searched (97) · "what would make this MY fault, and how did I rule it out?"** Enforced, not
+  advisory: build probes on **`build/testing-tools/probe_guard.mjs`** (`assertNegative` THROWS without a
+  positive control — fix the probe, never file the finding; `afterAction` forbids "nothing happened"
+  unless navigation, new tab, panel, DOM change and server write are ALL empty), and **nothing negative
+  reaches a `BLOCKED-*.md`, a candidate, an ask, or a Blocked/Failed-as-unavailable result until
+  `python3 build/testing-tools/blocker_gate.py --check <claim>` exits 0.** An unclosable proof is
+  reported as an OPEN GAP, never as a proved blocker. **First `ls build/BLOCKED-*.md` — several are
+  RESOLVED or WITHDRAWN with the route that worked.** Learning L0036.
 - **STRATEGY FIRST (79).** Before starting ANY task, devise or recall the smartest quota-efficient
   plan — then begin. One pass, then exit.
 - **TELL THE LAST-DONE DATE AND ASK BEFORE RE-RUNNING (80).** Never silently repeat a verification,
@@ -262,7 +275,7 @@ safe. The **evidence** for each one lives in the rule or skill the bullet points
 
 ---
 
-## 2 · THE RULE INDEX — all 103 rules, and where each one lives
+## 2 · THE RULE INDEX — all 104 rules, and where each one lives
 
 **Read the rule in its file before applying it.** One line per rule; the line is a locator, not the
 rule. Generated from the split files' own headers.
@@ -390,6 +403,7 @@ rule. Generated from the split files' own headers.
 | **101** | THERE IS NO SUCH THING AS A DELTA VERIFICATION — EVERY VERIFICATION IS FULL, ALWAYS, ON EVERY CASE |
 | **102** | BUILD VERIFICATION MAKES ALL THREE PARTS RUNNABLE — PRECONDITIONS · STEPS · EXPECTED (intact, but worded to the Build Glossary) |
 | **103** | EVERY ASK PUT TO THE QA LEAD IS IN HIS LANGUAGE, NOT OURS — no ids, endpoints or jargon carrying the meaning; he must act on the FIRST read |
+| **104** | A NEGATIVE FINDING MUST PROVE THE INSTRUMENT WORKED — seven proofs, enforced by `probe_guard.mjs` and `blocker_gate.py`; never re-block on something already unblocked |
 
 **Operator forms** (the rule bodies are all in `build/rules/RULES-61-ONWARD.md`): **95** →
 `build/skills/TOKEN-DISCIPLINE-CHARTER.md` · **96** → `build/skills/17-REGRESSION-IMPACT-V1-TO-V2.md`
@@ -679,7 +693,7 @@ Compact form — **the rule named in brackets is the authority; read it before r
 | Standing Rules 1–20 (full text) | `build/rules/RULES-01-20.md` |
 | Standing Rules 21–40 (full text) | `build/rules/RULES-21-40.md` |
 | Standing Rules 41–60 (full text) | `build/rules/RULES-41-60.md` |
-| Standing Rules 61 onward (full text — 61–103 today, and every rule added later) | `build/rules/RULES-61-ONWARD.md` |
+| Standing Rules 61 onward (full text — 61–104 today, and every rule added later) | `build/rules/RULES-61-ONWARD.md` |
 | Per-project narrative history (projects 1–7) | `build/rules/PROJECT-HISTORY-ARCHIVE.md` |
 | Byte-verification hashes for the split | `build/rules/INTEGRITY.md` |
 | Staging/QA/prod action recipes, TestRail traps | `build/APP-ACTIONS-PLAYBOOK.md` |
