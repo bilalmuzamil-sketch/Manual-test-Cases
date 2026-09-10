@@ -257,3 +257,19 @@ nothing else moved.
 **Not tested, declared:** returns from a declined line still counting in **Units Returned**. His
 handoff calls that deliberately unchanged and an **open product question with Chris Ward**, so it wants
 Chris's answer before it is worth asserting either way.
+
+---
+
+## Posted
+
+**Comment [76301](https://shopview.atlassian.net/browse/SV-9807?focusedCommentId=76301)** on SV-9807,
+10 Sep 2026 09:36:25 -0500, on the QA lead's go-ahead. Structured to mirror Dusan's own checklist.
+
+**Pre-post gate (Standing Rule 72):** both build markers re-read live and **unchanged** from the
+measurements (`v26.36.2-99bab86` / 09:12:35 GMT and `v26.36.2-a678e3c` / 12:42:51 GMT); all three
+exhibit URLs HTTP 200; **the ticket was re-read and that is what caught Dusan's handoff** — it had
+landed at 09:03, after this pass began, and it widened the scope from one scenario to four, so the
+comment was held and the checklist worked through before posting. Reader-facing text scanned for AI
+self-reference — clean. The posted body was verified in the server's rendered response: verdict panel
+first, one media node with the correct raw URL, the 7-row checklist table and the 4-row regression
+table intact, technical detail last.
