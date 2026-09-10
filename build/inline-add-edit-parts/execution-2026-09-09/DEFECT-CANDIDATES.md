@@ -354,3 +354,42 @@ restore was confirmed by read-back.
 Evidence: `evidence/105-noneditable.json` (`C45061`), screenshots
 `evidence/105-c45061-1-row-ready.png` and `evidence/105-c45061-2-after-save.png`.
 **Annotated shot: not yet made.**
+
+---
+
+## Candidate 7 — CONFIRMED 2026-09-10 · story SV-9318 (Story 3, Inline Edit Part - Tech View)
+
+**Case:** [C45035](https://shopview.testrail.io/index.php?/cases/view/45035) — *Work order becoming
+non-editable during edit fails the save*
+
+**The rule (S3-E2, which points at S2-E3):** if the work order moves to a status that does not
+permit editing while an inline **edit** row is open, the save must **fail** — the alert *"This work
+order can no longer be edited. Refresh to see the latest."* is shown and **the entered data
+remains**.
+
+**What the build does — the edit is ACCEPTED.** Measured on work order **S9315-15899**, build
+`v26.36.0-f43b2fd`, **Tech view**, technician user (6 permissions, `view_mode: tech`):
+
+1. The Edit control was opened on an existing part row and the quantity changed to **7**.
+2. With that row still open, the work order was moved to **Declined** from a separate session,
+   confirmed by read-back (`status: "declined"`).
+3. **Save** was pressed on the still-open edit row.
+
+**Result:** `POST /api/work-orders/part/change-request` returned **200 OK**, the row **closed**, and
+no *"This work order can no longer be edited"* alert appeared — the page text was searched for both
+*"no longer be edited"* and *"refresh to see the latest"* and neither is present.
+
+The case fails on both halves: the save did not fail, and the row did not keep the data — it closed
+as though the edit had gone through normally, which it had.
+
+**This is the third face of the same root cause** (candidate 1: the controls are shown on a Declined
+work order; candidate 6: an *add* saves on one; this: an *edit* saves on one). It is the QA lead's
+call whether these are one ticket or three. What is now established across all three is that
+**Declined is not being treated as a non-editable status anywhere in this feature** — the guard
+works for Complete, Invoiced and Paid, and only Declined is missed.
+
+**Verdict: C45035 FAILED.** The work order was returned to **approved** afterwards.
+
+Evidence: `evidence/105-noneditable.json` (`C45035`), screenshots
+`evidence/105-c45035-1-row-ready.png` and `evidence/105-c45035-2-after-save.png`.
+**Annotated shot: not yet made.**

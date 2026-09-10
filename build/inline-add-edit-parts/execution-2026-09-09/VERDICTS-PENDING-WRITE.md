@@ -14,6 +14,7 @@ fully executed**. Nothing here is waiting on more testing.
 | [C45070](https://shopview.testrail.io/index.php?/cases/view/45070) | **Failed** | Yes — draft 3 | the edit-row discard action reads "Discard Changes" |
 | [C44993](https://shopview.testrail.io/index.php?/cases/view/44993) · [C44994](https://shopview.testrail.io/index.php?/cases/view/44994) | **Failed** | Yes — draft 1 | Add Part and Edit still offered on a Declined work order |
 | [C45061](https://shopview.testrail.io/index.php?/cases/view/45061) | **Failed** | Yes — candidate 6, no draft yet | a part SAVES successfully on a work order that went Declined under the open row; no "can no longer be edited" alert at all |
+| [C45035](https://shopview.testrail.io/index.php?/cases/view/45035) | **Failed** | Yes — candidate 7, no draft yet | the same in Tech view on an EDIT row: change-request returns 200, the row closes, no alert |
 
 ## C45060 — the detail, so it can be written without re-testing
 
