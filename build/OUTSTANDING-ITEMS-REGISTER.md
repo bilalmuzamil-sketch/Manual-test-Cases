@@ -35,6 +35,10 @@ version now? It is the largest of the invoice sets, so it is a sizeable pass.
 **Cost of saying nothing:** the main invoice-refresh tests stay a little out of date; the other three
 invoice sets are unaffected and stay usable.
 
+> **DECISION (QA lead, 2026-09-10): LEAVE IT — do not touch the main Invoice Refresh tests until he
+> asks.** They stay as they are; this entry stands as the record that they are behind the current spec
+> (moved 2026-09-09) so no one trusts them as current until he calls for the re-check.
+
 ### B. The "old documents change look on the day this ships" decision is still with the Product owner
 
 **What is happening.** The design-choice feature includes a rule that would make every invoice a shop
@@ -52,6 +56,11 @@ call is made?
 
 **Cost of saying nothing:** the ten tests stay marked provisional, which is safe; they just cannot be
 treated as final.
+
+> **DECISION (QA lead, 2026-09-10): KEEP THEM IN, marked not-final.** He said to hold them out entirely
+> **only if** they were main-Invoice-Refresh tests. They are NOT — they belong to the design-choice set
+> (Invoice Design Selection). So the condition does not apply: the ten stay in the set with their
+> not-final notes, exactly as they are now, until the Product owner settles the ship-day rule.
 
 ### C. Two small things I am tracking, no action needed unless you want it
 - A money breakdown on customer documents (the card-fee / net-received lines) is due to be brought back and
