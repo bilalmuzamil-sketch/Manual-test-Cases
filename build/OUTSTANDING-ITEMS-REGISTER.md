@@ -57,6 +57,41 @@ else owes).
 
 ---
 
+## ⚠️⚠️⚠️⚠️⚠️⚠️ NEWEST — 2026-09-10, ~12:50 UTC. **SV-9498 IS QA-PASSED AND POSTED. SV-9866 IS HELD BY YOUR OWN DECISION — YOU ASKED ME TO RE-ASK, SO IT IS RECORDED HERE TO BE RE-ASKED.**
+
+### SV-9498 — Unable to cancel/delete manual returns — **CLEARED, nothing outstanding**
+
+**QA PASSED, 10 of 10 checks.** Comment **[76291](https://shopview.atlassian.net/browse/SV-9498?focusedCommentId=76291)**
+posted on your go-ahead, with three annotated before/after exhibits. The reported failure is fixed
+(the same return record: staging **HTTP 500** with the customer's exact error → branch **HTTP 204**,
+row removed), all three manual returns can now be cleaned up, and **Chris Ward's 28 August ruling is
+implemented on both surfaces** — the screen refuses with *"Please complete or cancel the related
+return or credit first."* and the server refuses with **HTTP 400**. Record:
+`build/sv9498-manual-return-cancel-2026-09-10/`.
+
+**One thing on the record, not a blocker:** the build shipped **both** of Dipesh's options — the guard
+Chris chose, **and** a cancel that copes with an already-deleted part. The second half is what clears
+the customer's three stuck returns, so it is welcome, but it is more than the ruling asked for and the
+comment says so plainly rather than letting it pass unmentioned (Standing Rule 78).
+
+### SV-9866 — QuickBooks Unexported report, blank Customer name — **HELD BY YOUR RULING, RE-ASK**
+
+**Verdict: NOT YET CONFIRMED — and that is not a fail.** Recorded with all five Rule-48 fields:
+
+| Field | What it says |
+|---|---|
+| **Which ruling** | Yours, 2026-09-10, verbatim: *"hold it for now and ask me again"* — given in answer to my asking for a QuickBooks connection on `sv9866` (or one line from Dipesh) so the verdict could be closed. |
+| **When and in what context** | Immediately after you approved posting the SV-9498 comment; you took the SV-9498 half and deferred this one. |
+| **What it blocks** | The SV-9866 verdict. Nothing has been posted on SV-9866. The report's blank-Customer rows are proven on the old build (**54 of 586** customer rows come back with an empty Customer straight from the API — Credit Memo Apply 16/16, Credit Memo Refund 4/4, Credit Memo Create 32/79, Deposit Application 1/1, Deposit Create 1/7), and the branch shows a name on all 8 rows it can produce — **but every one of those 8 fails on the "QuickBooks needs to be reconnected" path**, and the old build shows names on that path too. The two builds were never compared on the path where the customer is actually lost. |
+| **Why the ruling was reasonable** | Chasing it further needs somebody else — either a QuickBooks connection on the branch or a sentence from Dipesh. There is nothing left for me to do on it unattended, so holding it costs nothing. |
+| **What would unblock it, and from whom** | **Either** a QuickBooks connection on `sv9866` (then clear the Customer Deposit Item mapping per the dev's own setup step, make one deposit, and the row either shows the name or it does not — decisive in minutes), **or** one line from **Dipesh** confirming the fix is in the report's read query rather than the sync writer. His own note — *"Re-check the same rows — do not regenerate them. The fix resolves existing rows too"* — reads as read-side, and if that is right the evidence already gathered is a pass. |
+
+**Also open on SV-9866, for Dipesh:** the QA plan's not-in-scope list names only *Credit Memo Create*,
+but **Credit Memo Apply is blank on 16 of 16 rows and Credit Memo Refund on 4 of 4**, and neither is
+mentioned anywhere in the plan — against a ticket that says *"every customer-related transaction"*.
+Record: `build/sv9866-qb-unexported-customer-2026-09-10/`.
+
+
 ## ⚠️⚠️⚠️⚠️⚠️ NEWEST — 2026-08-05, ~21:10 UTC, **SV-8910 RE-TESTED AT YOUR REQUEST — THE DEFECT IS CONFIRMED AND THE TICKET STANDS. SV-8781 REMAINS PASSED.**
 
 **Run unattended, as you asked** (*"I have a doubt about it. Can you test it again. You need to do this
