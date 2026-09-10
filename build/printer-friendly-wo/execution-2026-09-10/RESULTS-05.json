@@ -1,0 +1,16 @@
+{
+ "pass_meta": {
+  "suite": "Printer Friendly Work Orders (6617)",
+  "run": 419,
+  "env": "the Staging environment",
+  "build": "staging v26.36.2-617d8d1",
+  "date": "10 September 2026"
+ },
+ "results": {
+  "C45091": {
+   "verdict": "Blocked",
+   "observed": "This supersedes the earlier Passed result on this case, which was given on only the first half of what the case asks for.\n\nThe case asks two things. First, that Print stays greyed out until the job's line information has actually arrived - that was checked and it is correct. Second, that Print is also greyed out WHILE THE JOB HAS NO LINES AT ALL - that half was never checked, and when it was checked this run it is not true: on job S2-32270, which has no lines, Print is offered, is not greyed out, and prints a page reading 'No lines on this work order' with zero totals.\n\nThe written requirements disagree with themselves on this point, so it is not being called a fault in the build. The numbered requirement this case names says only that Print waits for the line information to arrive - it says nothing about a job with no lines. It is the summary of decisions at the top of the same document that adds 'or when no line items exist'. And two other numbered requirements in the same document describe exactly what a job with no lines should print - which could never be seen if Print were greyed out. Both of those are separate cases and both pass.",
+   "todo": "What needs to be done: the product owner has to settle which half of the written requirements is right. If Print should be greyed out when a job has no lines, this becomes a fault to fix and the two cases about printing a job with no lines are retired. If printing a job with no lines is correct, this case's wording is corrected to drop that half and it passes as it stands. Nothing needs doing in the build until that is decided."
+  }
+ }
+}
