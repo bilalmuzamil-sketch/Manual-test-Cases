@@ -4074,6 +4074,60 @@ deliver the 7-tab management report.
     (verdict line + 6 rows + 3 images verified). Ties to Standing Rules 25, 31, 49, 50, 54, 59, 60, 62,
     63, 64, 65, 67, 68 and the Jira comment/ticket deliverable-format conventions.
 
+73. **EVERY QA COMMENT CARRIES A BEFORE-vs-AFTER COMPARISON — the readers are non-technical people at
+    the HIGHEST positions, and a picture of the difference is what they actually read (all projects).**
+    USER DIRECTIVE (2026-09-10, verbatim): *"when I say the comments will be read by the non technical
+    people but they are at the HIGHEST positions. There should have been BEfore VS After comparison
+    screenshots too which could easily tell them what the problem was before and what the fix looks like
+    now. Always remember this and make it your rule"*.
+    **THE RULE:** every Jira QA comment on a fix — and every stakeholder-facing QA report — carries a
+    **BEFORE vs AFTER comparison exhibit**: one image (or a clearly-paired set) showing **what the
+    problem looked like before the fix** beside **what it looks like now**, so a Vice President or a
+    non-technical PO understands the change **without reading a word of the technical section**. A list
+    of PASSED rows tells them the tests passed; it does **not** tell them what was wrong or what got
+    better. **This is not the same as Rule 64's before/after** — Rule 64 pairs two states of one test
+    (before the action, after the action) to prove a change happened; **Rule 73 pairs two BUILDS**, the
+    broken one and the fixed one, to show the reader what was fixed.
+    **WHAT THE EXHIBIT MUST CONTAIN:** the **same screen / same document / same data** on both halves
+    wherever it can be had · each half **labelled BEFORE or AFTER with its environment and build
+    marker and the date it was captured** · the **difference boxed, arrowed and captioned** on the
+    image (Rule 64 annotation) · and **one plain sentence** stating the change in the reader's terms
+    (*"the same estimate printed on 8 pages before and 5 pages now"*, *"the logo sat off to the left;
+    it is centred now"*) — never in CSS, pixels or endpoint language.
+    **⚠️ THE OPERATIVE HALF — CAPTURE THE "BEFORE" FIRST, WHILE THE PRE-FIX BUILD IS STILL REACHABLE.**
+    A fix branch only ever contains the AFTER. The BEFORE lives on the pre-fix environment (staging,
+    production, or the branch as it was), and **those sessions die in ~24 h and those branches get torn
+    down** — so the before-capture is **a planned FIRST STEP of the pass, listed in the Rule-22 access
+    ask at the very start** (*"I will also need staging cookies to capture the before-state"*), never an
+    afterthought once the testing is finished. **Ask for the pre-fix access in the same breath as the QA
+    branch access.**
+    **WHERE A LEGITIMATE "BEFORE" COMES FROM, in order of preference:** (1) the **pre-fix environment**
+    rendered with the **same record/document** (best — it is a real capture of the real old build);
+    (2) the **reporter's own screenshot in the ticket**, labelled *"from the ticket"* (a real before,
+    just not ours); (3) a state on the fixed build that still shows the old behaviour (an unfixed
+    sibling case) — labelled honestly for what it is.
+    **THE HONESTY BAR, and it is absolute (Rules 12/68):** **NEVER fabricate, simulate, re-style or
+    "reconstruct" a before-image**, and **NEVER put two documents side by side as BEFORE/AFTER when they
+    are not comparable** — different records, different document types, or data that has moved since.
+    A VP reading *"8 pages → 5 pages"* off two different documents is a bite of exactly the kind this
+    engagement exists to avoid. If the before cannot be captured, **say so in the comment in one plain
+    line** (*"the pre-fix build was no longer reachable, so this comment shows the fixed state only"*)
+    and raise the missing access as an OUTSTANDING item (Rule 36) — an honest gap beats a misleading
+    picture.
+    **RATIONALE, 2026-09-10:** the three QA-pass comments for SV-9849 / SV-9870 / SV-9857 were posted
+    with annotated **after-only** exhibits. Every check was evidenced and every verdict was live — but a
+    non-technical executive reading them could see *that* the tests passed and **not** what the printed
+    invoice used to look like or how much paper the change actually saves, which is the only part of a
+    print-density fix a VP cares about. The pre-fix build (staging) had gone out of session by the time
+    the gap was noticed, so the before-capture could no longer be taken — **which is the whole reason
+    the before is now captured FIRST.** Ties to Standing Rules 7 (plain layman wording), 9
+    (build-accurate labels), 12 (observed, never inferred — a simulated before is not evidence), 13, 22
+    (**ask for the pre-fix environment access up front**), 25 (label the exact builds compared), 36 (a
+    missing before-capture is an outstanding item), 49/60 (the build marker identifies each half), 62,
+    64 (**annotated before/after within one build — this rule extends it across two builds**), 65 (human
+    voice, no AI fingerprint), 67 (the reader must be able to see the problem in a minute), 68
+    (bite-proof + live-verified) and 72 (the pre-post gate checks the exhibit's images load).
+
 ## Project purpose (Custom Roles project)
 Manual test-case authoring + live staging (Verify-in-UI) verification + TestRail
 management for ShopView **"Custom Roles and Permissions"**, plus related
@@ -4357,6 +4411,16 @@ regression / bug-fix re-testing.
   **This repo is PUBLIC, so raw.githubusercontent.com returns 200** — verify with `curl` before
   posting. Comments are updatable via `commentId`, so a wrong post is corrected in place rather than
   duplicated. Canonical example: SV-8781 comment `74580`.
+- **THE COMMENT SHOWS A BEFORE-vs-AFTER PICTURE OF THE FIX (Standing Rule 73, QA-lead ruling
+  2026-09-10):** the readers are **non-technical people at the highest positions**, so every QA comment
+  on a fix carries a **BEFORE (pre-fix build) vs AFTER (fixed build)** comparison exhibit — same
+  screen/document/data on both halves, each half labelled with its environment + build marker + capture
+  date, the difference boxed and arrowed, and one plain sentence saying what changed in the reader's
+  terms. **Capture the BEFORE at the START of the pass**, while the pre-fix environment is still in
+  session — a fix branch only ever holds the after, and those sessions die in ~24 h. Ask for the pre-fix
+  access in the same message as the QA-branch access (Rule 22). **Never simulate a before, and never
+  pair two documents that are not comparable** — if the before cannot be captured, say so in one plain
+  line in the comment.
 - **ONE COMPLETE COMMENT, AND IT STATES THE RESULT — NOT THE TESTER'S JOURNEY (QA-lead ruling
   2026-08-20, verbatim: *"Just post one new complete comment and I will delete the older comments. No
   need to add multiple comments like we did."* and *"do not post it as you were wrong before and right

@@ -3922,3 +3922,65 @@ comment; a reader who sees 48≠56 will otherwise assume a miss.
 
 Worked record: `build/sv9849-9870-9857-invoice-print-2026-09-10/FINDINGS.md` (three tickets, 11-change
 verification, 11-invoice measurement table, credit-memo divider comparison).
+
+## §AD — THE BEFORE-vs-AFTER EXHIBIT: how to build the one picture an executive actually reads (Standing Rule 73, 2026-09-10)
+
+**Who the comment is for:** non-technical people **at the highest positions**. A table of PASSED rows
+tells them the tests passed; it does not tell them **what was broken** or **what got better**. The
+before/after picture is the part they read.
+
+### AD.1 PLAN IT FIRST — the before is the perishable half
+
+**A fix branch only ever contains the AFTER.** The BEFORE lives on the pre-fix environment, and on this
+estate that means **~24 h of session life and branches that get torn down without notice** (checked
+2026-09-10: `sv8733`, `sv8911`, `sv9065`, `sv9096`, `sv6295`, `sv8218` were all already gone).
+
+So the access ask at the very start of the pass is **two** environments, not one:
+
+> *"QA branch cookies for `sv####`, and staging (or production) cookies so I can capture the
+> before-state of the same document while the pre-fix build is still reachable."*
+
+**Capture the before in the first ten minutes**, before touching the fix. It costs one render; getting it
+back later costs a round trip to the QA lead, and sometimes it is simply gone.
+
+### AD.2 Make the two halves genuinely comparable — this is where the bite lives
+
+**The pair is only evidence if the two halves differ ONLY by the build.** Check all four before pairing:
+
+1. **Same record** — the same work order / invoice / customer, by id, not "a similar one".
+2. **Same document type** — an estimate against an estimate. *(2026-09-10: the same WO rendered as an
+   `Estimate` on staging and an `Invoice` on the branch, because its status had moved — the page counts
+   were 8 and 5 and it looked like a perfect exhibit. It was not.)*
+3. **Same data** — prove it, don't assume. Compare the **money-token multiset** and the **job/line
+   numbers** across the two renders (§AC.3). *(Same 2026-09-10 pair: jobs 01–22 matched exactly, but 39
+   money tokens appeared only in the before and 8 only in the after — the cloned copy had drifted, so
+   "8 pages → 5 pages" would have been a false headline in front of a VP.)*
+4. **Same viewport / scale** for screen captures, so the reader is not comparing zoom levels.
+
+**If any of the four fails, either fix it or do not ship the pair.** A caveat under a misleading image
+is not a repair — the picture is what gets remembered.
+
+### AD.3 Building the image
+
+- **PDF pages → PNG** needs no browser: `pymupdf` `page.get_pixmap(dpi=110).save(path)`.
+- Compose the two halves on one canvas with **PIL**, each under a header band naming
+  **BEFORE / AFTER · environment · build marker · capture date**, then draw the boxes and arrows on the
+  differing region (same annotation method as §V) and put the **one plain sentence** in a caption band
+  at the bottom.
+- **One combined image beats two separate uploads** — the reader sees the comparison without scrolling,
+  and it is one attachment to verify (§V.7).
+- Attach it as a **real Jira attachment** and reference it with REST v2 wiki markup (§V.7's proven
+  route), then read the comment back and confirm the image renders.
+
+### AD.4 Where a legitimate "before" comes from, in order
+
+1. **The pre-fix environment, same record** — a real capture of the real old build. Best.
+2. **The reporter's own screenshot on the ticket** — a real before, just not ours; label it
+   *"from the ticket"*. (Check first: `getJiraIssue` with `fields:["attachment"]` is one cheap call.)
+3. **A state on the fixed build that still shows the old behaviour** (an unfixed sibling case) —
+   labelled honestly for what it is.
+
+**Never a fourth option.** Do not re-style, re-render with hand-reverted CSS, or otherwise reconstruct a
+before-image: it is not an observation (Rule 12), and if anyone ever asks how it was produced the whole
+comment loses its credibility. **If the before cannot be captured, write one plain line in the comment
+saying so** and raise the access as an outstanding item — an honest gap beats a misleading picture.
