@@ -121,8 +121,13 @@ body = [
     rule(),
     heading("Technical details for developers", 3),
     p(strong("Builds: "), txt("branch sv9498.qa.shopview.com "), code("v26.36.2-13b91e9"),
-      txt(" (index.html last-modified Thu, 10 Sep 2026 11:00:34 GMT); staging "),
-      code("v26.36.2-617d8d1"), txt(" (11:23:49 GMT); production "), code("v26.36.2-dbe16f4"),
+      txt(" (index.html last-modified Thu, 10 Sep 2026 11:00:34 GMT, identical when re-read at the "
+          "end of the pass). The before picture was captured on staging at "),
+      code("v26.36.2-617d8d1"), txt(" (11:23:49 GMT); staging then redeployed to "),
+      code("v26.36.2-a678e3c"), txt(" (12:42:51 GMT) while this pass was running and was re-checked "
+          "afterwards — still 29 fields, still no "), code("has_outstanding_return"),
+      txt(", and the orphaned return still returns 500 — so it remains a valid pre-fix reference. "
+          "Production "), code("v26.36.2-dbe16f4"),
       txt(" (08:54:50 GMT, read-only, used only for the field comparison below).")),
     p(strong("Which build has the fix: "),
       txt("the change is server-side, so the frontend version does not identify it. ")

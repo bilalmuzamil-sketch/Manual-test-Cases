@@ -136,3 +136,26 @@ return for 2 → **8** → cancel the return → **10**. Exhibit: `ev/EX3-restoc
   **`has_work_order_part`** — the quickest way to tell a post-SV-9498 build from a pre-fix one.
 - A returns/inventory page search is opened with **`page_search_toggle`** and then typed into; there is
   no separate search input in the DOM until it is toggled.
+
+---
+
+## Posted
+
+**Comment [76291](https://shopview.atlassian.net/browse/SV-9498?focusedCommentId=76291)** on SV-9498,
+10 Sep 2026 07:48:45 -0500, on the QA lead's go-ahead.
+
+**Pre-post gate (Standing Rule 72), run immediately before posting:**
+
+- Branch marker re-read live — **`v26.36.2-13b91e9`**, last-modified Thu, 10 Sep 2026 11:00:34 GMT:
+  identical to the reading at the start of the pass, so nothing redeployed under the testing.
+- **Staging redeployed mid-pass and the gate caught it** — `v26.36.2-617d8d1` → **`v26.36.2-a678e3c`**
+  (last-modified 12:42:51 GMT). Re-checked afterwards: still 29 fields, still no
+  `has_outstanding_return`, and the orphaned return still returns **500**. So the before picture
+  remains a valid pre-fix reference, and the comment names **both** staging markers rather than
+  implying the capture and the current state are the same build.
+- All three exhibit URLs returned **HTTP 200** at post time.
+- Ticket state re-read: **TESTING QA**, no new comment since Dipesh's 06:04 note.
+- Reader-facing text scanned for AI self-reference and model names — clean.
+- **Read back from Jira after posting:** verdict panel is the first node, 3 media nodes in the order
+  EX1 → EX2 → EX3 with the correct URLs, the table carries its header plus all 10 rows, and the
+  technical section sits last after the rule.
