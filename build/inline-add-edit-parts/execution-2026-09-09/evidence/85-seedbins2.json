@@ -41,6 +41,20 @@
     }
    ],
    "worked": false
+  },
+  {
+   "label": "a bin adjustment",
+   "path": "/api/inventory/parts/adjust-bins",
+   "status": 405,
+   "resp": "{\"errors\":[{\"error\":\"No route found for \\u0022POST http:\\/\\/sv9315api.qa.shopview.com\\/api\\/inventory\\/parts\\/adjust-bins\\u0022: Method Not Allowed (Allow: GET)\"}]}",
+   "binsAfter": [
+    {
+     "name": "Unassigned",
+     "quantity": 6,
+     "isDefault": true
+    }
+   ],
+   "worked": false
   }
  ],
  "part": {
@@ -53,5 +67,45 @@
    "quantity": 6,
    "isDefault": true
   }
- ]
+ ],
+ "seeded": false,
+ "binsScreen": {
+  "url": "https://sv9315.qa.shopview.com/administration/bins",
+  "headers": [
+   "Namearrow_drop_up",
+   "Inventory Partsarrow_drop_up",
+   ""
+  ],
+  "buttons": [
+   "timerClock In",
+   "Staging Heavy Duty - 9919AS",
+   "searchSearch",
+   "Add Bin Location",
+   "14",
+   "edit_note",
+   "delete_outline",
+   "20",
+   "edit_note",
+   "delete_outline",
+   "13",
+   "edit_note"
+  ],
+  "firstRows": [
+   [
+    "A1A",
+    "14",
+    "edit_notedelete_outline"
+   ],
+   [
+    "A1B",
+    "20",
+    "edit_notedelete_outline"
+   ],
+   [
+    "A1C",
+    "13",
+    "edit_notedelete_outline"
+   ]
+  ]
+ }
 }
