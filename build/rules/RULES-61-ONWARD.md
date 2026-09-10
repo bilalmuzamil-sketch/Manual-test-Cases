@@ -3726,3 +3726,38 @@ Index: CLAUDE.md (rule index table). Other rule files: build/rules/RULES-01-20.m
     never mark it not-verified) and Rule 74 (no present feature left un-verified — seed and log in as
     needed), made general and explicit so no session re-asks. Rule 104 still governs what may be
     CALLED a blocker; 107 governs how hard you must work before the question arises. Learning L0041.
+
+---
+
+108. **A SOURCE VERIFICATION READS THE WHOLE DOCUMENT AND EVERY LINK IT NAMES — NEVER JUST THE
+    REQUIREMENT SECTION (all projects, permanent; QA lead, 2026-09-10).**
+    **THE ORDER, VERBATIM (QA lead, 2026-09-10):** *"Read everything and open every ticket link always
+    read the FULL document ALWAYS including everything in that document including the links to other
+    sources given in the document."* · *"Until now there are questions and answers till Q22 that may
+    increase in future too. Then there is User feedback summary too."* · *"Also not to forget reading the
+    change log too and always read that too."* · *"Make it as a rule and save it forever."*
+    **WHAT THIS REQUIRES.** On every source-verify / build-verify / VIU / re-verify, the source is the
+    ENTIRE document plus what it points at — not the requirement body alone. Read and reconcile against
+    ALL of: **(a)** the requirement body (stories/rules); **(b)** the **full question / answer / decision
+    log** — every question and its Decision (and Accept/Object) cell, however many and however far down
+    the page, both the Product-decision block and the engineering-settled block; the count GROWS over
+    time (Q1..QN — Q22 on 2026-09-10 for Invoice Design Selection, expect more later), so never stop at a
+    remembered ceiling; **(c)** the **User Feedback Summary** and any messages/strings tables; **(d)**
+    the **Change Log** — always, for the dates, revisions and who-changed-what; **(e)** the header /
+    metadata block (Status, Owner, Related, Documents covered); and **(f)** OPEN AND READ **every ticket,
+    Confluence page and design the document links** — the epic, its stories, defect tickets, the
+    engineering-review ticket, related bugs — recursively for any that bear on the requirement.
+    **WHY IT IS A RULE.** On the Invoice Design Selection re-verification (2026-09-10) the requirement
+    body (Story 1–5) did not change at all between successive reads; every material movement lived in the
+    Section 8.1/8.2 decision cells (Q6 recorded option (a); Q10 decided; Q12 gained an option; Q17
+    refined), in the User Feedback Summary strings, in the Change Log, and in the linked tickets — the Q7
+    restored-defect cluster (SV-9819 / SV-9778 / SV-9790 / SV-9693) that Legacy reintroduces, the fee
+    breakdown ticket going OBSOLETE (SV-9821) and replaced by a live Bug still in Code Review (SV-9832),
+    and the 45%-paper set (SV-9870). A pass that read only the requirement section would have missed all
+    of it and reported a stale suite as current. A decision cell, an answered question, a feedback string,
+    a change-log row and a linked ticket are ALL sources (Rule 57).
+    **THE LINE.** Reading only the requirement section — or stopping at a remembered question ceiling, or
+    skipping the change log or a linked ticket — is an INCOMPLETE source verification and is
+    non-compliant. **RELATION TO OTHER RULES:** operationalises Rule 57 (the source list is open-ended)
+    and Rule 31/59/81 (fetch the latest of every source first); the drill lives in
+    `build/skills/02-SOURCE-CHECK.md`. Learning L0043.

@@ -13,6 +13,23 @@
 > an explicit hard gate: a source-verify pass that starts from a held copy of unknown age is
 > non-compliant, however recent that copy looks.
 
+> **🛑 AND YOU READ THE WHOLE DOCUMENT, END TO END, PLUS EVERY LINK IT NAMES — NEVER JUST THE
+> REQUIREMENT SECTION (QA lead, 2026-09-10; Standing Rule 108).** A spec's requirement body is only part
+> of the source. On the Invoice Design Selection re-verify the requirement body did not move at all
+> between reads — every material change lived elsewhere in the same page and in the tickets it linked.
+> So on EVERY source-verify, read and reconcile against ALL of:
+> **(a)** the requirement body; **(b)** the **full question/answer/decision log** — every Q and its
+> Decision/Accept-Object cell, however many (they grow over time: Q1..QN, e.g. Q22 today), including the
+> engineering-settled ones; **(c)** the **User Feedback Summary / messages-and-strings** tables;
+> **(d)** the **Change Log** (dates, revisions, who changed what — always read it); **(e)** the
+> metadata/header block (Status, Owner, Related, Documents covered); and **(f)** you **OPEN AND READ
+> every ticket, page and design the document links** — epics, stories, defect tickets, engineering-review
+> tickets, related bugs — recursively for the ones that bear on the requirement, because a decision or a
+> reversal (an Authorizer reversal, a fee-breakdown ticket going OBSOLETE→replaced, a restored-defect
+> cluster) often lives only there. A decision cell, an answered question, a feedback string, a change-log
+> row and a linked ticket are all SOURCES (Rule 57). Reading only the requirement section is an
+> INCOMPLETE source verification and is non-compliant. Worked incident: L0043.
+
 ---
 
 ## PURPOSE, IN PLAIN ENGLISH
