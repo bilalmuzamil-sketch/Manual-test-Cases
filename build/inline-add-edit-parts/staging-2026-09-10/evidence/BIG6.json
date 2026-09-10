@@ -1,0 +1,165 @@
+{
+ "editable": {
+  "id": "9e1934ae-a2f7-41f1-baae-0ee5690e9a96",
+  "number": "S2-32819",
+  "status": "approved"
+ },
+ "control_editable": {
+  "addPart": 4,
+  "addVisible": 4,
+  "edit": 8,
+  "editVisible": 1,
+  "partRows": 0
+ },
+ "byStatus": {
+  "declined": {
+   "setHttp": 201,
+   "actual": "declined",
+   "addPart": 4,
+   "addVisible": 4,
+   "edit": 8,
+   "editVisible": 1,
+   "partRows": 0
+  },
+  "paid": {
+   "setHttp": 201,
+   "actual": "paid",
+   "addPart": 0,
+   "addVisible": 0,
+   "edit": 0,
+   "editVisible": 0,
+   "partRows": 0
+  },
+  "invoiced": {
+   "setHttp": 400,
+   "actual": "paid",
+   "skipped": true
+  },
+  "ready_for_review": {
+   "setHttp": 201,
+   "actual": "ready_for_review",
+   "addPart": 4,
+   "addVisible": 4,
+   "edit": 8,
+   "editVisible": 1,
+   "partRows": 0
+  }
+ },
+ "C45060": {
+  "addRowOpened": true,
+  "emptyOnOpen": {
+   "desc": "",
+   "qty": "",
+   "cost": "",
+   "sell": ""
+  },
+  "catalog": {
+   "total": 100,
+   "withoutPrice": 0,
+   "sample": []
+  }
+ },
+ "C45070": {
+  "open": {
+   "opened": true,
+   "found": 8,
+   "tid": "button_edit_part_a719e98f-41e3-4126-a0d1-67090a4014a8"
+  },
+  "before": {
+   "desc": null,
+   "qty": null,
+   "cost": null,
+   "sell": null
+  },
+  "closeClicked": true,
+  "msgs": {
+   "toasts": [
+    "Build Lines"
+   ],
+   "fieldMsgs": [],
+   "dialog": null,
+   "noLongerEdited": false,
+   "refresh": false,
+   "couldntAdd": false
+  }
+ },
+ "C45022": {
+  "addRowOpened": true,
+  "typed": {
+   "desc": "ZZAUTOTEST failure path",
+   "qty": "3",
+   "cost": "11.50",
+   "sell": "22.75"
+  },
+  "requestsBlocked": 1,
+  "msgs": {
+   "toasts": [
+    "Couldn't add the part. Please try again.",
+    "Build Lines",
+    "warningNetwork Errorclose"
+   ],
+   "fieldMsgs": [],
+   "dialog": null,
+   "noLongerEdited": false,
+   "refresh": false,
+   "couldntAdd": true
+  },
+  "rowAfter": {
+   "desc": "ZZAUTOTEST failure path",
+   "qty": "3",
+   "cost": "11.50",
+   "sell": "22.75"
+  }
+ },
+ "C45035": {
+  "open": {
+   "opened": true,
+   "found": 8,
+   "tid": "button_edit_part_a719e98f-41e3-4126-a0d1-67090a4014a8"
+  },
+  "typed": {
+   "desc": null,
+   "qty": null,
+   "cost": null,
+   "sell": null
+  },
+  "flip": {
+   "status": 201,
+   "json": {
+    "data": {
+     "work_order_id": "9e1934ae-a2f7-41f1-baae-0ee5690e9a96",
+     "message": "Status changed."
+    }
+   },
+   "text": "{\"data\":{\"work_order_id\":\"9e1934ae-a2f7-41f1-baae-0ee5690e9a96\",\"message\":\"Status changed.\"}}"
+  },
+  "nowIs": "declined",
+  "msgs": {
+   "toasts": [
+    "Build Lines"
+   ],
+   "fieldMsgs": [],
+   "dialog": "Edit Part RequestclosePart numbercancelarrow_drop_downDescriptionQuantitySourceVendorcancelarrow_drop_downCategoryUncategorizedcancelarrow_drop_downVendorarrow_drop_down$Cost$Core charge$Sell priceMargin%Cancel orderSave & close",
+   "noLongerEdited": false,
+   "refresh": false,
+   "couldntAdd": false
+  },
+  "rowAfter": {
+   "desc": null,
+   "qty": null,
+   "cost": null,
+   "sell": null
+  },
+  "restore": {
+   "status": 201,
+   "json": {
+    "data": {
+     "work_order_id": "9e1934ae-a2f7-41f1-baae-0ee5690e9a96",
+     "message": "Status changed."
+    }
+   },
+   "text": "{\"data\":{\"work_order_id\":\"9e1934ae-a2f7-41f1-baae-0ee5690e9a96\",\"message\":\"Status changed.\"}}"
+  },
+  "restoredTo": "approved"
+ }
+}

@@ -887,3 +887,26 @@ in a dump of the page's controls and did not follow it up.
 **And a self-check that would have caught the lead-technician mistake:** its picker's first option is
 "Unassigned". Taking "the first option" from any list can assign nothing — read the label before
 accepting it, or the test proves nothing.
+
+## L0043 — 2026-09-10 · a refusal names its precondition, and a reading names its element
+
+Finishing runs 418/419 on Staging produced four misses of the same two shapes, all mine:
+
+1. **`Cannot complete work order with incomplete lines.`** I had read the earlier silence ("pressed
+   Complete Work Order, status still Approved") as *the build will not complete a job*. It was a
+   confirmation dialog whose button reads **"Complete Without Receiving"**, and behind that a plain
+   refusal naming exactly what was missing. **Read the refusal; press the button the screen actually
+   offers.** (Rule 104's "prove the instrument".)
+2. **`{"line_id":"Missing required parameter"}`** while I was sending `line` and `id`. A "missing"
+   error about a field I *was* sending is a **wrong field name**, never a missing record.
+3. **A border read off the `<tr>` instead of the cells** gave "no rules anywhere on the printed page",
+   which would have been filed as a defect against a page that has rules on 16 of 24 rows. The real
+   finding — no rule at the boundary *between* line blocks, while the rows *inside* a block do have one
+   — only appears once you read the element that owns the style. **A reading names its element.**
+4. **"Print is greyed out when a work order has no lines"** — carried in two case bodies as the reason
+   they could not be run. It is not greyed out; it prints "No lines on this work order" with zero
+   totals, and both cases pass. **A blocker written into a deliverable still has to be re-proved when
+   you next touch it** (Rule 104: never re-block on something not actually proved).
+
+The habit: before any negative claim, ask *which element did I read, and which word did the server
+actually use?* — then look at the screen, in that order.

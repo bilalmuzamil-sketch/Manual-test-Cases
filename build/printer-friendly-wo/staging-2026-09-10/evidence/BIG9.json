@@ -1,0 +1,64 @@
+{
+ "before": {
+  "wo": "Approved",
+  "lines": [
+   "authorized",
+   "authorized",
+   "authorized",
+   "authorized"
+  ]
+ },
+ "setLines": {
+  "328e949f_complete": "400 {\"errors\":[{\"line_id\":\"Missing required parameter\"}]}",
+  "328e949f_completed": "400 {\"errors\":[{\"line_id\":\"Missing required parameter\"},{\"status\":\"Invalid parameter",
+  "98a751ef_complete": "400 {\"errors\":[{\"line_id\":\"Missing required parameter\"}]}",
+  "98a751ef_completed": "400 {\"errors\":[{\"line_id\":\"Missing required parameter\"},{\"status\":\"Invalid parameter",
+  "97ffbc35_complete": "400 {\"errors\":[{\"line_id\":\"Missing required parameter\"}]}",
+  "97ffbc35_completed": "400 {\"errors\":[{\"line_id\":\"Missing required parameter\"},{\"status\":\"Invalid parameter",
+  "011491ea_complete": "400 {\"errors\":[{\"line_id\":\"Missing required parameter\"}]}",
+  "011491ea_completed": "400 {\"errors\":[{\"line_id\":\"Missing required parameter\"},{\"status\":\"Invalid parameter"
+ },
+ "linesNow": [
+  "authorized",
+  "authorized",
+  "authorized",
+  "authorized"
+ ],
+ "screen": {
+  "lineCompletes": 4,
+  "completeWo": true,
+  "dialog": "Complete Work Order close S2-32819 · Savannah Tran inventory_2 7 parts are not ordered yet Going to receive parts or completing the work order will order those parts for you. Cancel Receive Parts Complete Without Receivi"
+ },
+ "afterScreen": "Approved",
+ "direct": {
+  "complete": "400 {\"errors\":[{\"error\":\"Cannot complete work order with incomplete lines.\"}]}",
+  "completed": "400 {\"errors\":[{\"statusValid\":\"Wrong status name\"}]}",
+  "finished": "400 {\"errors\":[{\"statusValid\":\"Wrong status name\"}]}",
+  "closed": "400 {\"errors\":[{\"statusValid\":\"Wrong status name\"}]}"
+ },
+ "afterDirect": "Approved",
+ "final": {
+  "wo": "Approved",
+  "menu": {
+   "opened": true
+  },
+  "items": [
+   "Audit Log",
+   "Timesheets (0)",
+   "Add Work Order Fee / Discount",
+   "Print Work Order",
+   "Delete Work Order"
+  ],
+  "printOffered": true,
+  "chip": [
+   "Approved",
+   "Over Limit",
+   "AI",
+   "1 more_vert",
+   "0%",
+   "Approved"
+  ]
+ },
+ "restore": 201,
+ "restoredTo": "Approved"
+}

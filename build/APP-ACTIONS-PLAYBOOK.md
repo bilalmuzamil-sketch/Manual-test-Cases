@@ -4426,3 +4426,62 @@ part-request delete endpoints all answer 404.
   there): *Create Work Order → pick Customer + Asset → Save → confirm*.
 - **Setting mileage / engine hours behind the screen fails** (`work-orders/change` → 500,
   `work-orders/update` → 404). Set them on the vehicle or through the screen.
+
+### §Y.1 — WORK ORDER AND LINE STATUS, PRINTING, AND THE JOB'S HISTORY (proven live on Staging 2026-09-10)
+
+Everything here was observed on `app.staging.shopview.com` while finishing runs 418/419. Each line
+cost a probe cycle to learn; none of it needs re-deriving.
+
+- **LINE STATUS — `POST /api/work-orders/lines/change-status {line_id, status}`.** The parameter is
+  **`line_id`** — `line` or `id` gives `400 {"line_id":"Missing required parameter"}`, which reads like
+  a missing line and is really a wrong field name. Accepted values are the four the Edit Line window
+  offers: `authorization_required` · `declined` · `authorized` · **`complete`**. `completed` and
+  `cancelled` are both `400 {"status":"Invalid parameter value"}` — **there is no Cancelled line
+  status in this product** (QA lead's screenshot, 2026-09-10).
+- **WORK ORDER STATUS — `POST /api/work-orders/change-status {id, work_order, status}` → 201.**
+  Valid names: `estimate` · `approved` · `ready_for_review` · `invoiced` · `paid` · `declined` ·
+  **`complete`**. Two traps: **`complete` is refused with `"Cannot complete work order with incomplete
+  lines."`** until EVERY line is `complete` (that refusal names the precondition — read it rather than
+  trying more spellings, L0042), and **`invoiced` is refused from `paid`** — go back through `approved`.
+- **COMPLETE WORK ORDER RAISES A DIALOG WHOSE BUTTON IS NOT CALLED "Complete".** With unordered parts
+  on the job it reads *"N parts are not ordered yet … Cancel | Receive Parts | **Complete Without
+  Receiving**"*. A confirm-handler matching `^complete$` silently does nothing and the job stays
+  Approved — which looks exactly like "the build will not complete a work order" and is not.
+- **THE WORK ORDER TOOLBAR MENU IS `[data-test-id=button_work_order_nav_bar_menu]`**; the print item is
+  `[data-test-id=menu_item_print_work_order]`. Do NOT hunt for a three-dots by its glyph — the LINE
+  table has its own, and picking the last one gives you the line menu (`Add Labor Fee / Discount`),
+  which is how a whole status sweep once recorded "Print is absent" on four statuses.
+- **PRINT IS OFFERED ON EVERY STATUS, INCLUDING A JOB WITH NO LINES.** Observed offered and not greyed
+  out on estimate, approved, ready_for_review, invoiced, paid and declined, and on a job with **zero
+  lines** (S2-32270) — where it prints the row **"No lines on this work order"** with
+  `Total Actual Time: 0.00` / `Total Estimated Time: 0.00`. ⛔ **This CORRECTS the earlier note that
+  "Print is greyed out when a work order has no lines"** — that note was wrong, and it had parked two
+  cases as unrunnable. On a Paid job the menu drops to three items (Audit Log · Timesheets · Print Work
+  Order); that is not a fault.
+- **THERE IS NO "History" TAB.** The job's tabs are Lines · Parts · Notes · Stats · Finance. Its history
+  is the **Audit Log** item in the toolbar menu (API `GET /api/work-orders/{id}/history`). A print
+  writes an entry reading **`Work order printed history — <user> - Total: $<amount>`** with the
+  timestamp, in the same list and shape as the other entries.
+- **READ A BORDER OFF THE PRINTED PAGE FROM THE CELLS, NOT THE `<tr>`.** Quasar puts the rules on the
+  `td`/`th`. Measuring `getComputedStyle(tr).borderBottomWidth` returns `0px` on every row of a page
+  that plainly has rules on it — that reading produced a "no borders anywhere" finding that was purely
+  the instrument. Take `max` over the row's children, top and bottom, and keep a positive control (how
+  many ruled elements the same reader can see anywhere in the document).
+- **CLEAR THE PARTS A CANNED LINE BRINGS:** `POST /api/work-orders/part/remove-request/{requestId}`
+  → 200, one per entry in the line's `part_requests`. That is how you build a line with no parts.
+  A line created by `POST /api/work-orders/{woId}/lines/create-from-canned-line {canned_line_id,
+  status:'authorized'}` also starts with **no technician**, which is the subject for the "no technician
+  assigned" cases.
+- **IN FULL VIEW THE PART ROW'S EDIT CONTROL OPENS THE "Edit Part Request" MODAL, NOT AN INLINE ROW**
+  (Part number · Description · Quantity · Source · Category · Vendor · Cost · Core charge · Sell price ·
+  Margin % · Cancel order · Save & close). That is expected — C45064 "Full View has no inline edit row"
+  is a PASSED case. Inline-edit cases must be run in **Tech View**, i.e. as the Technician quick-login
+  user (§G: the Technician role already carries `view_mode:'tech'`, so no role change is needed).
+- **`GET /api/auth/me` 404s on staging** — read the identity from `GET /api/auth/me/fe-permissions`
+  (`fe_permissions`, `view_mode`, `cross_toggles`, `template_id`, `template_slug`, `system_role`).
+  There is no `organization_id` there, so `GET /api/organizations/{org}/roles` cannot be built from it;
+  enumerate people and their roles from **`GET /api/staff?limit=200`** (`role_label` per row).
+  Staging today: Admin 15 · Technician 11 · Senior Service Advisor 1 · Sales Representative 2 ·
+  Parts Technician 1 · **Time Clock User 1** — that last one is the ready-made "role that cannot see
+  work orders" subject, reachable with `POST /api/switch-user {user_id}` and left with
+  `POST /api/exit-switch-user`, so no role has to be edited at all.
