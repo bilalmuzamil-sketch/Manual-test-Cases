@@ -1,5 +1,8 @@
 # Defect candidates — Inline Add and Edit Parts, run R418
 
+**Live tally: 2 real · 5 closed as not-defects after verification.** Seven candidates have been
+killed by a second measurement in this pass; that is the gate working, not caution for its own sake.
+
 **HELD. Nothing is filed.** The QA lead files these one at a time, after all execution is finished,
 on his explicit per-defect go-ahead, and verifies each before the next.
 Build for all of them: **`v26.36.0-f43b2fd`** on `sv9315.qa.shopview.com`, Full View, administrator.
@@ -54,7 +57,7 @@ Evidence: `evidence/33-fv-g.json`, `evidence/31-fv-e.json`.
 
 ---
 
-## Candidate 3 — NEEDS ONE MORE CHECK before it can be called · story SV-9319
+## Candidate 3 — ❌ CLOSED, NOT A DEFECT (2026-09-10) · story SV-9319
 
 **Case:** [C45046](https://shopview.testrail.io/index.php?/cases/view/45046) / [T2724249](https://shopview.testrail.io/index.php?/tests/view/2724249)
 
@@ -65,15 +68,21 @@ closes the inline row, and opens no new row.
 "More options" then "Save part" left the **window open**, the **inline row open**, no toast, and the
 part not added.
 
-**Why it is not yet a defect:** the window carries a Source of "Vendor" and a Vendor field that may
-be required and empty, in which case the correct behaviour is exactly this refusal — with a message
-I did not capture. **Before filing: re-run and read the window's own validation messages.**
+**CLOSED — the refusal was correct.** Re-run capturing the window's own messages: it shows
+**"Category is a required field"**. Category is required in the detailed window and was empty, so the
+refusal is right. With a Category set, "Save part" added the part, closed the window, closed the quick
+row and opened no new row — every clause of S4-R11 holds. **C45046 is PASSED.**
+
+A second thing this exposed and settled: my first attempt looked for a button called "Save part" in the
+*edit* window, where the button is actually **"Save & close"**. The two windows do not share button
+names — New Part Request has `× · AI ShopCoach Parts · Save part`, Edit Part Request has
+`× · Cancel order · Save & close`.
 
 Evidence: `evidence/33-fv-g.json`.
 
 ---
 
-## Candidate 4 — NEEDS ONE MORE CHECK before it can be called · story SV-9319
+## Candidate 4 — ❌ CLOSED, NOT A DEFECT (2026-09-10) · story SV-9319
 
 **Case:** [C45040](https://shopview.testrail.io/index.php?/cases/view/45040) / [T2724243](https://shopview.testrail.io/index.php?/tests/view/2724243)
 
@@ -83,10 +92,10 @@ Evidence: `evidence/33-fv-g.json`.
 Request" with the Category box **empty**, not "Uncategorized". Clause 1 is fine — the category
 control is a genuine select listing the shop's categories.
 
-**Why it is not yet a defect:** the inline row *displays* "Uncategorized" as its category placeholder,
-so the stored value may well be Uncategorized while the edit window simply renders the box blank.
-**Before filing: read the saved part's category from the parts list or the part record, not from the
-edit window alone.**
+**CLOSED — the stored value is correct.** The work order's **Parts tab** shows every part saved from
+the quick row without a category with **Category = "Uncategorized"**, including the one in question.
+The edit window merely renders its Category box blank for such a part; the value stored and displayed
+in the Parts list is Uncategorized. **C45040 is PASSED, both clauses.**
 
 Evidence: `evidence/33-fv-g.json`.
 
