@@ -15,7 +15,11 @@ const R={};
 const boss = await boot('sv9315','/workorders','admin');
 R.pick = await boss.page.evaluate(async ({api, skip})=>{
   const r=await fetch(`https://${api}/api/work-orders?limit=100&page=1`,{headers:{Accept:'application/json'}, credentials:'include'});
-  const j=await r.json(); const rows=j.collection||j.data||j.rows||[];
+  const j=await r.json();
+  const pick=o=>{ for (const k of ['collection','data','rows','items','results']){ if (Array.isArray(o&&o[k])) return o[k]; }
+    if (Array.isArray(o)) return o;
+    for (const k of Object.keys(o||{})){ const v=pick(o[k]); if (v&&v.length) return v; } return []; };
+  const rows=pick(j);
   const ok=['estimate','approved','in_progress','ready_for_review'];
   const cand=rows.filter(w=>w.id!==skip && ok.includes(String(w.status||w.status_name||'').toLowerCase().replace(/\s+/g,'_')));
   return {status:r.status, total:rows.length, sampleKeys:Object.keys(rows[0]||{}).slice(0,18),
