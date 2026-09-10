@@ -1,0 +1,68 @@
+{
+ "lineAtStart": {
+  "status": "authorized",
+  "requests": [
+   {
+    "id": "1b1e1e07-6bbc-47dd-bf65-17f907d4bbaf",
+    "status": "waiting_to_receive",
+    "qty": 5
+   }
+  ]
+ },
+ "urlBefore": "https://sv9315.qa.shopview.com/workorders/6a529a5f-dff9-4c13-9636-b41500e585f0/lines",
+ "receiveControl": {
+  "rowsInScope": 5,
+  "buttons": [
+   {
+    "label": "Complete",
+    "testid": "button_action_complete_line_0e2c10ac-b34c-4195-91f6-d9d55c06f943"
+   },
+   {
+    "label": "more_vert",
+    "testid": "button_add_labor_adjustment_0e2c10ac-b34c-4195-91f6-d9d55c06f943"
+   },
+   {
+    "label": "Start",
+    "testid": "button_clock_toggle_task_0e2c10ac-b34c-4195-91f6-d9d55c06f943"
+   },
+   {
+    "label": "addAdd Part",
+    "testid": "button_add_part"
+   },
+   {
+    "label": "Receive",
+    "testid": "button_part_request_action"
+   }
+  ]
+ },
+ "click": {
+  "clicked": true,
+  "testid": "button_part_request_action"
+ },
+ "urlAfter": "https://sv9315.qa.shopview.com/order/c7da960c-fde7-40ee-b625-68f64748db85?receive=1&returnTo=WorkOrder&returnId=6a529a5f-dff9-4c13-9636-b41500e585f0&returnLineId=0e2c10ac-b34c-4195-91f6-d9d55c06f943&workOrderId=6a529a5f-dff9-4c13-9636-b41500e585f0&vendorless=1",
+ "appeared": {
+  "count": 0,
+  "panels": []
+ },
+ "calls": [
+  "POST /api/6364962/envelope/?sentry_version=7&sentry_key=43e86c02badd4630957b07da4aebf15a&sentry_client=sentry.javascript.vue%2F10.72.0",
+  "POST /api/6364962/envelope/?sentry_version=7&sentry_key=43e86c02badd4630957b07da4aebf15a&sentry_client=sentry.javascript.vue%2F10.72.0",
+  "POST /api/inventory/orders/receive-view"
+ ],
+ "callBodies": [
+  {
+   "u": "/api/inventory/orders/receive-view",
+   "body": "{\"workOrderId\":\"6a529a5f-dff9-4c13-9636-b41500e585f0\",\"vendorIds\":[]}"
+  }
+ ],
+ "lineAfter": {
+  "status": "authorized",
+  "requests": [
+   {
+    "id": "1b1e1e07-6bbc-47dd-bf65-17f907d4bbaf",
+    "status": "waiting_to_receive"
+   }
+  ],
+  "parts": []
+ }
+}
