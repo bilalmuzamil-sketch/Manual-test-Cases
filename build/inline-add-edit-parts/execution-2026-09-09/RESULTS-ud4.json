@@ -1,0 +1,8 @@
+{
+ "pass_meta": {"suite":"Inline Add and Edit Parts (6597)","run":418,"env":"the sv9315 QA branch",
+   "build":"v26.36.0-f43b2fd","date":"10 September 2026","view_mode":"full"},
+ "results": {
+  "C45074": {"verdict":"Passed","observed":"What was checked: what happens if you start typing a part on one work order line and then click \"Add Part\" on a different line without finishing. What happened: the second row did not just open on top. The same discard question appeared first - \"Discard this part?\" with \"Keep Editing\" and \"Discard Part\". Choosing \"Keep Editing\" cancelled the move: the original row stayed open with \"ZZAUTOTEST unsaved swap\" still in it. Repeating the move and choosing \"Discard Part\" closed the original row, threw away its typing, and opened the empty row on the other line that had been asked for.","not_observed":null},
+  "C45075": {"verdict":"Passed","observed":"What was checked: whether the work order can end up with two part rows open at once, which would let a user lose track of which one they are filling in. What happened: throughout the whole exercise - opening a row on one line, then asking for a row on another line, and both answers to the question that follows - the page never had more than one open row at a time. Asking for a second row is always handled by the discard question first, and only ever ends with one row open.","not_observed":null}
+ }
+}
