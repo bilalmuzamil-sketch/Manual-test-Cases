@@ -1,0 +1,10 @@
+{
+ "pass_meta": {"suite":"Inline Add and Edit Parts (6597)","run":418,"env":"the sv9315 QA branch",
+   "build":"v26.36.0-f43b2fd","date":"10 September 2026","view_mode":"tech"},
+ "results": {
+  "C44998": {"verdict":"Passed","observed":"What was checked: signed in with the Technician quick login (Tech view), opened a work order's Lines tab and clicked \"Add Part\" on a line, then looked at what the new row offers. What happened: the row offers exactly three boxes to fill in, left to right: Description, Part number, Qty. There is no cost box, no sell price box, no category box and no \"More options\" button anywhere on the row - the money and category details stay hidden from the technician, which is what this view is meant to do.","not_observed":null},
+  "C45002": {"verdict":"Passed","observed":"What was checked: whether the quantity box arrives already filled in with a 1, or empty. What happened: the Qty box opens completely empty - nothing is pre-filled - so the technician has to type the number themselves and cannot save a wrong quantity by accident. (That a quantity is required to save is proven separately by the validation cases.)","not_observed":"Setting the quantity from a bin split is covered by the Bin Allocation cases and was not exercised here."},
+  "C45003": {"verdict":"Passed","observed":"What was checked: which actions the open row gives you. What happened: the row shows two actions at its right-hand end - \"Save\" to keep the part, and a close action to abandon the row. In Tech view that close action is labelled \"Cancel\", which is exactly what this test case says to expect for this view.","not_observed":null},
+  "C45014": {"verdict":"Passed","observed":"What was checked: whether the row tells the user which keyboard shortcuts it supports. What happened: a small hint line is shown with the row naming all three shortcuts - Enter to save and move to the next row, Tab to move to the next box, and Esc to cancel - so a technician typing quickly never has to guess.","not_observed":null}
+ }
+}

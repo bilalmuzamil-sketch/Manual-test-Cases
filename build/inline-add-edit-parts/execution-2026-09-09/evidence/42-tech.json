@@ -1,0 +1,66 @@
+{
+ "identity": {
+  "slug": "technician",
+  "nFePerms": 6,
+  "role": "Technician"
+ },
+ "wrapper": {
+  "view_mode": "tech",
+  "cross": {
+   "seeFinancialData": false,
+   "seeApArData": false,
+   "viewHistoryLogs": false
+  },
+  "perms": 6
+ },
+ "landed": "https://sv9315.qa.shopview.com/workorders/b90d6e97-3f47-4745-8cc6-73765802d6ab/lines",
+ "controls": {
+  "addPart": 3,
+  "addPartVisible": 3,
+  "edit": 10
+ },
+ "row": {
+  "fieldCount": 3,
+  "order": [
+   "Description",
+   "Part number",
+   "Qty"
+  ],
+  "fields": [
+   {
+    "tid": "input_inline_part_description",
+    "label": "Description",
+    "value": "",
+    "focused": true,
+    "x": 440
+   },
+   {
+    "tid": "select_inline_part_number",
+    "label": "Part number",
+    "value": "",
+    "focused": false,
+    "x": 688
+   },
+   {
+    "tid": "input_inline_part_quantity",
+    "label": "Qty",
+    "value": "",
+    "focused": false,
+    "x": 812
+   }
+  ],
+  "buttons": [
+   "Save",
+   "Cancel"
+  ],
+  "hasCost": false,
+  "hasSell": false,
+  "hasCategory": false,
+  "hasMoreOptions": false,
+  "hintText": [
+   "Enter",
+   "Tab",
+   "Esc"
+  ]
+ }
+}
