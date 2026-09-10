@@ -452,3 +452,97 @@ so the reproduction step says *"Download the invoice PDF"* rather than inventing
 | 8 | SV-9857 comment **76274** read back after the in-place update | first line `OVERALL QA STATUS: PASSED …` intact · **2 media, correct order** (before/after, then the detail exhibit) · **6 table rows** · new section *"A separate issue was raised from this testing"* present · `updated 2026-09-10T00:40:09.921-0500` |
 
 **No new comment was stacked on SV-9857** — comment 76274 was updated in place by `commentId`.
+
+---
+
+## The miss the QA lead caught: SV-9857 recommended Option B, the build shipped Option A (2026-09-10)
+
+**What he said.** *"why did you not catch this 'REAL' issue? Specially when in the ticket SV-9857 Chris
+Ward said that he will recommend option B, but the fix was following the option A."*
+
+**He is right, and the recommendation is in the ticket description I read.** SV-9857's *Decision needed*
+section ends: *"Option B is the recommendation. It keeps the rule the earlier complaints produced and
+still fixes the case shops are complaining about now."* — and it warns that **Option A** *"reintroduces
+the split-line shape that SV-8914 and SV-9671 were filed about"*. The build shipped **Option A**
+(`.job break-inside: avoid` → `auto`, SV-9870 change 2).
+
+**How I missed it.** I verified (a) the reported symptom — wasted space on page 1 — and (b) all eleven
+declared changes in SV-9870. **I never checked SV-9857's Decision-needed section against what shipped,
+and never read S12-R10.** I tested the change list instead of the reporter's documented expectation.
+That is Standing Rule 66's exact failure mode on a section no rule had told me to read; it is now
+**Standing Rule 78**.
+
+### What the sources actually say (read live, 2026-09-10)
+
+| Source | Date | Says |
+|---|---|---|
+| SV-9857 description (Chris Ward) | 09 Sep 10:21 −0500 | **Option B is the recommendation**; Option A "reintroduces the split-line shape that SV-8914 and SV-9671 were filed about" |
+| SV-9870 description (Chris Ward), change 2 | 09 Sep 18:10 −0500 | *"A work line may split across a page. `.job break-inside: avoid` becomes `break-inside: auto` … This reverses SV-9671, which is recorded as the fix for SV-9857"* = **Option A** |
+| Confluence *Invoice UI Refresh* **v68**, S12-R10 (rewritten) | edited 10 Sep 01:56Z by Chris Ward | *"A work line may split across a page: its label is never orphaned … and its footer never separates from the rows above it, **but the line as a whole is not held together**. The earlier reading, that a whole line stays on one page, was SV-9671 and **was reversed in SV-9870**."* |
+| Same page, S12-R14 | same | *"A work line may split across a page (S12-R10)."* · **"(@chris ruling, 2026-09-09.)"** |
+
+**So Option A is the ratified decision and the build follows it — the PASS survives.** But **I gave that
+PASS without having read the ruling.** Had Chris not ruled, I would have passed a fix that contradicted
+the recommendation on his own ticket. Luck, not testing.
+
+**Nowhere on SV-9857 is the switch recorded.** The ticket still reads "Option B is the recommendation",
+and the only comment on it is mine. A reader of that ticket sees a recommendation that was not followed,
+with no explanation — which is precisely what the QA lead hit.
+
+### The predicted consequence, measured (this is the part the ticket asked for)
+
+Same 8 work orders, both builds, **document display settings read and matched per work order** before
+rendering, so the build is the only variable. Detector anchored on the `Line total` blocks and validated
+by job count — **103 jobs on each build, exact match** (an earlier header-regex detector reported
+"103 → 12" and was a **layout artefact**: the pre-fix job header sits at x=60 and the fixed one at x=42;
+it was discarded, not reported).
+
+| Work order | pages before → after | work lines split across a page break |
+|---|---|---|
+| 0a41cc04 | 6 → 5 | 0 → 2 |
+| 2d750857 | 5 → 3 | 0 → 0 |
+| 2dfb7f51 | 6 → 5 | 0 → 2 |
+| 3d78d797 | 3 → 2 | 0 → 0 |
+| 4c269aef | 7 → 5 | 1 → 1 |
+| 78dd906f | 4 → 3 | 0 → 1 |
+| d2cea2b7 | 12 → 8 | 0 → 5 |
+| fa8aec20 | 9 → 5 | 0 → 1 |
+| **TOTAL** | | **1 → 12** |
+
+The single pre-fix split (`4c269aef`, job **07 Diagnose - Issue starting**, p4 → p5) is the **unavoidable
+taller-than-a-page case** — measured occupying the full content box, y 63→761 on page 4 — which SV-9671
+and SV-9857 both document as expected because `break-inside: avoid` is a hint the engine drops. So the
+honest figure is **0 avoidable splits → 12**.
+
+**S12-R10 as rewritten is still satisfied** on all 12: the label is never orphaned and the footer never
+separates from the rows above it. What has gone is line-as-a-whole atomicity, deliberately.
+
+### The one thing that still needs a decision, and it is not ours
+
+**[SV-8914](https://shopview.atlassian.net/browse/SV-8914)** — reporter Ryan Fyfe, customer **Mike Austin,
+Windy Hill Repair LLC, 7 users, via Intercom**, in his own words: *"half a line is at the bottom of the
+page and the other half at the top of the next page"* — is **closed Done**. That shape is now the
+ratified design. The spec rewrite reverses **SV-9671 by name**; it says nothing about SV-8914, and
+nothing is recorded on SV-8914 itself. Chris's own SV-9857 sentence named both.
+
+**Wording worth tightening, reported not filed:** S12-R12 still lists *"a work line separated from its
+own footer (S12-R10)"* among real faults. It is reconcilable with the rewritten S12-R10 (footer-to-rows
+attachment, not line atomicity), but it reads like the old rule.
+
+### My second error, of the opposite kind — SV-9871 is not defensible as a Bug
+
+**[SV-9871](https://shopview.atlassian.net/browse/SV-9871)** asserts that a split work line should carry
+its job heading on the continuation page. **No source requires that**, and S12-R10 positively
+contemplates the opposite: *"Pages after the first … open directly with content at the standard top
+margin."* Under Standing Rule 57 an expectation with no documented source is not a defect — it is a
+question for the PO. Filing it as a Bug is the false-defect failure Rule 75 exists to prevent, and I did
+it while chasing the symptom of a decision I had not read.
+
+**Proposed (awaiting the QA lead's go-ahead — nothing done yet):**
+1. Correct the SV-9857 comment in place to state which option shipped, which was recommended, and cite
+   the spec ruling that chose it (Rule 56 disclosure). The verdict line stays PASSED.
+2. Withdraw SV-9871 — close it with a plain comment saying the split is ratified by S12-R10 and the
+   heading is a readability question, not a defect (**close, never delete** — Rule 51's pattern) — and
+   put the readability point to Chris as a question instead.
+3. Raise SV-8914 with him: a customer defect closed Done whose behaviour now ships by design needs a
+   named owner and, probably, a word to that customer.

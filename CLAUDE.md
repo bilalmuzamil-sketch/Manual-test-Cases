@@ -4333,6 +4333,63 @@ deliver the 7-tab management report.
     third outcome from the first two. Ties to Standing Rules 12, 13, 17, 22, 25, 29, 36, 50, 57, 62, 63,
     64, 65, 66, 67, 68, 72, 73, 74, 75 and 76.
 
+78. **WHEN A TICKET ASKS A QUESTION, CHECK WHICH ANSWER SHIPPED — verify the fix against the CHOSEN
+    option, and find the choice in a source (all projects).**
+    USER DIRECTIVE (2026-09-10, verbatim): *"why did you not catch this 'REAL' issue? Specially when in
+    the ticket SV-9857 Chris Ward said that he will recommend option B, but the fix was following the
+    option A. You should have caught it and reported, You MUST NOT make such mistakes I am telling you.
+    You have to be super detailed oriented when testing tickets or else you will get me fired."*
+    **THE RULE — a ticket that carries a "Decision needed", an options list, a recommendation, or any
+    open product question is NOT testable by its symptom alone.** Before a verdict is given:
+    **(a) IDENTIFY, BY OBSERVATION, WHICH OPTION THE BUILD IMPLEMENTS** — not which one the ticket
+    recommends, and not which one the developer's handoff describes.
+    **(b) FIND THE RULING THAT CHOSE IT, IN A SOURCE** — the spec (with its version and the amended
+    rule), a later PO ticket, or a PO answer/comment. **Read the spec rule the decision turns on.**
+    **(c) IF THE SHIPPED OPTION IS NOT THE RECOMMENDED ONE AND NO RULING IS RECORDED, THAT IS THE
+    FINDING** — it is reported BEFORE any PASS, and the ticket cannot be passed on its decision
+    (Rules 57/33: only a document can move an expectation, and a shipped fix is not a ruling).
+    **(d) IF A RULING DOES EXIST, THE QA COMMENT MUST SAY SO OUT LOUD** — name the option that shipped,
+    name the ticket's recommendation, and cite the ruling with document + version + date. **Passing in
+    silence leaves the reader of the original ticket looking at a recommendation that was not followed
+    with no explanation, which is exactly how this rule was earned.** That disclosure is Rule 56.
+    **(e) THE TICKET'S OWN PREDICTED CONSEQUENCE IS A TEST TO RUN, NOT COMMENTARY.** When a ticket says
+    *"Option A reintroduces the shape that X and Y were filed about"*, **MEASURE that shape on the fixed
+    build and report the number**, before and after.
+    **(f) THE TICKETS IT NAMES AS RE-BROKEN NEED AN OWNER.** A closed defect — especially a
+    customer-reported one — whose behaviour the new decision now permits by design must be named in the
+    report, so somebody decides what happens to it and to the customer who reported it.
+    **HONESTY CLAUSE:** a verified symptom is not a verified decision. **"The reported problem is gone"
+    and "the ticket is resolved the way it was asked to be" are two different verdicts**, and only the
+    second closes a ticket that asked a question.
+    **RATIONALE, 2026-09-10 — and the miss was mine.** **[SV-9857](https://shopview.atlassian.net/browse/SV-9857)**
+    ends with *"Option B is the recommendation"* and warns that Option A *"reintroduces the split-line
+    shape that SV-8914 and SV-9671 were filed about"*. The build shipped **Option A**
+    (`.job break-inside: avoid` → `auto`, SV-9870 change 2). **I passed the ticket having verified only
+    the symptom and SV-9870's eleven declared changes — I never read SV-9857's Decision-needed section
+    against what shipped, and never read S12-R10.** Chris had in fact **ruled Option A into the spec the
+    same day** — *Invoice UI Refresh* **v68**, S12-R10 rewritten (*"A work line may split across a page …
+    the line as a whole is not held together"*), S12-R14 (*"A work line may split across a page
+    (S12-R10)"*, *"@chris ruling, 2026-09-09"*), reversing **SV-9671 by name** — so **the build is
+    right and the PASS survives, but I gave it without knowing that.** That is luck, not testing: had he
+    not ruled, I would have passed a fix that contradicted the recommendation. **Measured consequence
+    (8 invoices, 103 jobs, both builds, settings matched):** work lines split across a page break went
+    from **1 → 12**, and the single pre-fix one was the unavoidable taller-than-a-page case, so
+    **0 avoidable → 12**. **[SV-8914](https://shopview.atlassian.net/browse/SV-8914)** — a customer
+    ticket (Mike Austin, Windy Hill Repair LLC, 7 users, via Intercom: *"half a line is at the bottom of
+    the page and the other half at the top of the next page"*) — is closed **Done** and describes the
+    shape that now ships by design, with nothing recorded on it; the spec rewrite names SV-9671 but not
+    SV-8914. **And the miss produced a second error of the opposite kind:** the follow-up
+    **[SV-9871](https://shopview.atlassian.net/browse/SV-9871)** asserted a job heading on the
+    continuation page that **no source requires** and that S12-R10 positively contemplates (*"pages after
+    the first … open directly with content at the standard top margin"*) — a false defect of exactly the
+    kind Rule 75 exists to prevent. Ties to Standing Rules 25 (quote the source deviated from), 32
+    (latest authoritative source wins — so FIND it), 33 (authority precedence), 44 (a contradicting
+    signal is a bug report against our own conclusion), 48 (a claim carries its context), 56 (disclose
+    the divergence rather than absorb it), 57 (only a document moves an expectation), 61 (say when what
+    shipped diverges from what the document asked for), 66 (test the description, not the handoff), 68
+    (bite-proof), 74 (account for every difference), 75 (configuration/decision first, never
+    "regression" by plausibility), 76 and 77.
+
 ## Project purpose (Custom Roles project)
 Manual test-case authoring + live staging (Verify-in-UI) verification + TestRail
 management for ShopView **"Custom Roles and Permissions"**, plus related
