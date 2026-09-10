@@ -33,6 +33,34 @@
 
 ## ENTRIES — newest first (id · date · tags · lesson → pointer)
 
+### L0038 · 2026-09-10 · #tooling #runnable-gate #separated-steps #mistake-corrected #methodology
+**`check_runnable_cases.py` WAS BLIND TO SEPARATED-STEPS CASES — IT READ ONLY `custom_steps` AND
+FALSELY REPORTED "no steps at all" (tool-level L0034).** A case using TestRail's separated-steps format
+stores its steps in `custom_steps_separated` (a list of `{content, expected}`), leaving the plain
+`custom_steps` empty. The gate read `case.get('custom_steps')` only, so both C43850 and C45275 (and any
+separated-steps case) failed the gate with "no steps / no navigation / nothing to aim at" even though
+they are fully runnable. **Fix (2026-09-10):** added `steps_text(case)` — use `custom_steps` when
+present, else fold in each separated step's **content** (NOT `expected`: the per-step expected carries
+the provenance line with its legitimate spec anchors, which the plain-steps gate never jargon-scans
+because it lives in `custom_expected`). Regression-checked: plain-steps C26577 still passes 1/1; the two
+separated cases now pass 2/2. **Graduated-to:** `build/testing-tools/check_runnable_cases.py`.
+
+### L0037 · 2026-09-10 · #build-verify #labels #false-absent #rule-104 #mistake-corrected #shopview-app
+**AN ICON-ONLY CONTROL WHOSE LABEL IS A HOVER TOOLTIP IS INVISIBLE TO A TEXT/HTML SCAN — DO NOT DECLARE
+IT ABSENT (Rule 104).** Build-verifying C45275 I searched the page text, the customer-card clickables,
+the header menu, and even `page.content()` for "Change Customer" and found nothing, and was one step from
+reporting the control absent and the case not build-verifiable. **The QA lead's screenshot showed it is
+there** — a **swap / ⇆ icon (`swap_horiz`) at the top-right of the WO customer card**, whose Quasar
+**tooltip** reads "Change Customer" and only renders into the DOM on hover, so neither `innerText` nor
+static HTML contains the string. (A second `swap_horiz` on the vehicle card is "Change Asset" — do not
+confuse them.) Clicking it opens a **Change Customer** dialog with a Customer picker, a Contact picker
+and an **Update Customer** button. **Lessons:** (1) for an icon-only control, read the tooltip/aria by
+HOVERING, or identify it by its material-icon ligature (`swap_horiz`) and position, never by a text
+search; (2) same family as the `<kbd>`-legend and `text-transform` traps — the DOM string is not the
+displayed label; (3) Rule 104's "positive control + through the screen + what would make this MY fault"
+is exactly what a screenshot from the QA lead supplied. Evidence:
+`build/custom-roles/build-verify-vlad-2026-09-10/`.
+
 ### L0036 · 2026-09-10 · #staging #build-verify #pdf #print #seeFinancialData #custom-roles #automation #methodology
 **"BUILD-VERIFY FOR AUTOMATION" MEANS PINNING THE REAL ENDPOINT + A TEXTABLE ASSERTION — THREE TRAPS
 FOUND ON C26577 (See-Financial-Data-OFF strips WO pricing), staging 2026-09-10.** A case can describe

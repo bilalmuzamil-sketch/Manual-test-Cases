@@ -1,0 +1,68 @@
+{
+ "id": 45275,
+ "title": "Changing the customer clears the Authorizer; changing only the contact does not",
+ "section_id": 6744,
+ "template_id": 2,
+ "type_id": 7,
+ "priority_id": 3,
+ "milestone_id": null,
+ "refs": null,
+ "created_by": 1,
+ "created_on": 1788570257,
+ "updated_by": 3,
+ "updated_on": 1789050836,
+ "estimate": null,
+ "estimate_forecast": "39sec",
+ "suite_id": 1,
+ "display_order": 6,
+ "is_deleted": 0,
+ "custom_ai_type": null,
+ "custom_ai_model": null,
+ "custom_automation_type": 1,
+ "custom_atmstatus": 3,
+ "custom_preconds": "<p>Two customers (A and B), each with a contact flagged \"Approves Work\"; A also has a second, unflagged contact and B an unflagged one\nAn estimate WO for customer A with one line, its primary contact set to A's flagged contact, and its Authorizer set to that same contact &mdash; all seeded via API</p>\n",
+ "custom_steps": null,
+ "custom_testrail_bdd_scenario": null,
+ "custom_expected": null,
+ "custom_steps_separated": [
+  {
+   "content": "<p>Open the work order's Lines tab and read the customer card's Authorizer row</p>\n",
+   "expected": "<p>The Authorizer row shows customer A's flagged (&ldquo;Approves Work&rdquo;) contact, the one seeded.</p>\n",
+   "additional_info": "",
+   "refs": "",
+   "markdown_editor_id": 1
+  },
+  {
+   "content": "<p>On the customer card, click the Change Customer icon (the swap / &#8646; icon at the card's top-right; its tooltip reads &ldquo;Change Customer&rdquo; &mdash; this is NOT the Change Asset icon on the vehicle card below). In the dialog leave the Customer on A, change the Contact to A's other contact, click Update Customer, and reload</p>\n",
+   "expected": "<p>The primary Contact is now A's other contact, but the Authorizer row still shows the original flagged contact &mdash; changing only the contact does not clear the Authorizer.</p>\n",
+   "additional_info": "",
+   "refs": "",
+   "markdown_editor_id": 1
+  },
+  {
+   "content": "<p>Click the Change Customer icon again, change the Customer from A to B, click Update Customer, and reload</p>\n",
+   "expected": "<p>The Authorizer row reads &ldquo;None&rdquo; &mdash; changing the work order's customer cleared the Authorizer.</p>\n",
+   "additional_info": "",
+   "refs": "",
+   "markdown_editor_id": 1
+  },
+  {
+   "content": "<p>On the customer card, open the Authorizer picker (the dropdown on the Authorizer row)</p>\n",
+   "expected": "<p>The picker offers only customer B's contacts flagged &ldquo;Approves Work&rdquo;, plus a &ldquo;No authorizer&rdquo; row that clears the selection; none of A's contacts and none of B's unflagged contacts appear.</p>\n",
+   "additional_info": "",
+   "refs": "",
+   "markdown_editor_id": 1
+  },
+  {
+   "content": "<p>Pick customer B's flagged contact</p>\n",
+   "expected": "<p>The Authorizer saves against customer B and the row shows that contact's full name.<p>---</p><p>Source: the picker rules &mdash; only contacts flagged &ldquo;Approves Work&rdquo; are offered, &ldquo;None&rdquo; shows when empty, and the &ldquo;No authorizer&rdquo; option clears it &mdash; are as per epic SV-8218 and the Invoice UI Refresh specification (Confluence page 755990532), Story 3, requirements S3-R5 and S3-R6, read on 10 September 2026.</p><p>That changing the work order's customer clears the Authorizer, and changing only the contact does not, is NOT stated in that specification (Story 3 is silent) and is Manually added (QA lead, 2026-09-10) from product knowledge.</p><p>Edited 2026-09-10 with Vladimir Tomovic's permission for this session (his cases are normally not changed).</p><p>AUTOMATION: READY</p></p>\n",
+   "additional_info": "",
+   "refs": "",
+   "markdown_editor_id": 1
+  }
+ ],
+ "custom_mission": null,
+ "custom_goals": null,
+ "ai_automated_test": null,
+ "labels": []
+}

@@ -73,9 +73,25 @@ def is_api_case(case, blob):
     but R5 is waived, because stripping the endpoint would delete the test."""
     return '/api/' in blob or re.search(r'\bAPI\b', case.get('title', '') or '') is not None
 
+def steps_text(case):
+    """The step instructions, whichever field holds them. A case using TestRail's SEPARATED-steps
+    format stores its steps in custom_steps_separated (a list of {content, expected}), NOT in the
+    plain custom_steps field -- reading only the plain field falsely reports 'no steps' (L0034).
+    Prefer the plain field when present; otherwise fold in each separated step's content + expected."""
+    plain = case.get('custom_steps')
+    if plain and plain.strip():
+        return text_of(plain)
+    # content only -- the analog of custom_steps (the "do" instructions). The per-step `expected`
+    # carries the provenance line (with its legitimate spec anchors, Rule 54), which the plain-steps
+    # gate never jargon-scans because it lives in custom_expected, not custom_steps.
+    out = []
+    for s in (case.get('custom_steps_separated') or []):
+        out += text_of(s.get('content'))
+    return out
+
 def audit(case):
     pre  = text_of(case.get('custom_preconds'))
-    step = text_of(case.get('custom_steps'))
+    step = steps_text(case)
     blob = ' '.join(pre + step)
     fails = []
     if not pre:                       fails.append('no preconditions at all')
