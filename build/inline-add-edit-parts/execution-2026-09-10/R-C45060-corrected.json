@@ -1,0 +1,10 @@
+{
+ "pass_meta": {"suite":"Inline Add and Edit Parts (6597)","run":418,"env":"the Staging environment","build":"staging v26.36.2-617d8d1","date":"10 September 2026"},
+ "results": {
+  "C45060": {
+   "verdict": "Passed",
+   "observed": "This supersedes the earlier Failed result. The QA lead ruled on 10 September 2026 that this is correct behaviour, and the bug report raised for it has been closed as obsolete. The case has been reworded to match, and it now passes.\n\nWhat was checked: what happens when a part with no price of its own is picked on the new-part row. What happened: the picker shows the word 'Catalog' beside that part, the Cost and Sell price boxes fill in as 0.00, and the part saves. That is right for a catalogue part - it is not held in stock and has no price yet, so the cost is entered later, when the part is ordered and received. Picking a part that does have a price of its own is also correct: its real figures are filled in, checked with a part priced 53.52 and 89.20.\n\nWhat was seen on the receiving screen: each part has its own Cost box and its own Sell price box, both starting at zero, and the Receive button is greyed out.",
+   "not_observed": "Exactly which box has to be filled before the Receive button turns on. Filling the invoice number and a cost on every line did not turn it on, and neither did adding a sell price as well, so something else on that screen is also required and this check could not settle it. Nothing was received. It does not affect this case, which is about the job screen, but it is worth knowing before anyone writes a case about receiving."
+  }
+ }
+}

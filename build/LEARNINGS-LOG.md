@@ -1014,3 +1014,28 @@ a control on the reader, the same code caught the toast on the first attempt.
 
 This is the fourth time in one day the same shape has bitten: a reading that named the wrong element
 or the wrong moment (L0043 borders, L0043 refusal text, L0045 markup dialect, and now this).
+
+## L0049 — 2026-09-10 · a requirement read literally against a case it was not written for
+
+SV-9918 ("a part with no price saves at 0.00") was closed as **obsolete** by the QA lead: for a
+**catalogue** part it is correct. A catalogue part is not held in stock and has no price yet — the
+cost is captured on the receiving screen when it is ordered and received. The picker even labels it
+**"Catalog"** on the row I screenshotted, and I did not stop to ask what that word meant.
+
+The requirement (S4-E1) genuinely says the boxes open empty and must be filled before saving. It does
+not carve out catalogue parts. I matched the words and filed.
+
+**What I skipped:** skill 06 **§A5-b — "I have understood what the thing means in a repair shop"**,
+which exists precisely because two tickets were obsoleted this way on 2026-09-08. Answering it here
+would have been: *a part nobody has bought yet has no cost yet; a shop learns the cost from the
+supplier's invoice at receiving.* That is a whole product concept sitting behind an empty price box,
+and it was visible on the screen I photographed.
+
+⇒ **Before filing, say out loud what the thing being tested MEANS to a shop, and check the finding
+still stands.** A specification sentence read against a case it was not written for produces a real
+quote and a wrong ticket — the most expensive kind, because the quote makes it look sound.
+
+**Second, smaller thing:** the specification still says the opposite of the ruling. Unless S4-E1 is
+amended, the next source-verification pass will re-derive the same expectation and the finding will
+come back. **A ruling that contradicts a written requirement is not finished until the requirement is
+changed** — raise it, and put it on the outstanding register.
