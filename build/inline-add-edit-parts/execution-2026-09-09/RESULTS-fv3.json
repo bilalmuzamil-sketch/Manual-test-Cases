@@ -1,0 +1,8 @@
+{
+ "pass_meta": {"suite":"Inline Add and Edit Parts (6597)","run":418,"env":"the sv9315 QA branch",
+   "build":"v26.36.0-f43b2fd","date":"10 September 2026","view_mode":"full"},
+ "results": {
+  "C45057": {"verdict":"Passed","observed":"What was checked: that pressing \"More options\" on a half-finished row is allowed - you should not be forced to complete the quick row before moving to the detailed form. What happened: with only a description filled in and the quantity, cost and sell price all still empty, pressing \"More options\" opened the \"New Part Request\" window straight away. No blocking message appeared and nothing stopped the move. The detailed form then applies its own checks when you save from there.","not_observed":null},
+  "C45059": {"verdict":"Passed","observed":"What was checked: that pricing a part below what it cost is allowed, but the user is told about it. What happened: entering a cost of 20.00 and a sell price of 5.00 showed the note \"Sell price is below cost.\" in the row while typing. Pressing Save still saved the part - the line went from seven parts to eight and the \"Part added\" message appeared. So the note warns without getting in the way, which is what the test asks for."}
+ }
+}
