@@ -61,9 +61,27 @@ const clickAddPart = (lineId)=>page.evaluate(({vis,lineId,fn})=>{const isVis=eva
   if(!r.el) return {clicked:false, ...r, el:undefined};
   r.el.scrollIntoView({block:'center'}); r.el.click();
   const {el,...rest}=r; return {clicked:true, ...rest};}, {vis:VIS, lineId, fn:addPartRowFor});
-const expandLine = (lineId)=>page.evaluate(id=>{
-  const b=document.querySelector(`[data-test-id="button_line_expand_${id}"]`);
-  if(!b) return {found:false}; b.scrollIntoView({block:'center'}); b.click(); return {found:true};}, lineId);
+// 🛑 LINES ARE EXPANDED BY DEFAULT. Clicking the expand button unconditionally COLLAPSES the line,
+// its child rows go hidden, and its "+ Add Part" row stops being rendered at all — which is exactly
+// what made the row walk return found:false for the target line while finding the other four.
+// Measured in probe114: the collapsed line's toggle reads "expand_more", an expanded one
+// "expand_less". So click only when it is actually collapsed, and verify afterwards.
+const expandLine = async (lineId)=>{
+  const state = ()=>page.evaluate(id=>{
+    const b=document.querySelector(`[data-test-id="button_line_expand_${id}"]`);
+    if(!b) return {found:false};
+    const txt=(b.textContent||'').trim();
+    return {found:true, collapsed:/expand_more/.test(txt), toggle:txt.slice(0,20)};}, lineId);
+  let st = await state();
+  if (!st.found) return {found:false};
+  if (st.collapsed){
+    await page.evaluate(id=>{const b=document.querySelector(`[data-test-id="button_line_expand_${id}"]`);
+      if(b){b.scrollIntoView({block:'center'}); b.click();}}, lineId);
+    await page.waitForTimeout(4000);
+    st = await state();
+  }
+  return {found:true, expanded:!st.collapsed, toggle:st.toggle};
+};
 const load = async ()=>{ await page.goto(`${APP}/workorders/${WO}/lines`,{waitUntil:'domcontentloaded',timeout:60000});
   await page.waitForTimeout(10000); };
 
