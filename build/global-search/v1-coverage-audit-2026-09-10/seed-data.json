@@ -1,0 +1,128 @@
+{
+ "_purpose": "Canonical seed dataset for the Global Search V1-capability regression cases. Every value carrying a search keyword is deliberately UNIQUE across the whole dataset, so a search for that keyword can only match via the field it was planted in. Prefix ZZAUTOTEST marks throwaway data (Rule 6). Seed this BEFORE running section 6769.",
+ "_v1_source": "ShopView/shopview @ 55767168 - api/src/Reporting/GlobalSearch/Application/FetchData/FetchDataQueryHandler.php",
+ "customer": {
+  "name": "ZZAUTOTEST Bridgeport Hauling",
+  "address_1": "1450 Kestrelway Industrial",
+  "address_2": "Dock 7B",
+  "city": "Fernvale",
+  "state_or_province": "Ohio",
+  "postal_code": "44872-9931",
+  "telephone": "(419) 555-0143",
+  "website": "bridgeporthauling-zzt.com",
+  "_fields_under_test": [
+   "name",
+   "address_1",
+   "city",
+   "state_or_province",
+   "postal_code",
+   "telephone",
+   "website"
+  ]
+ },
+ "customer_contact": {
+  "first_name": "Marlene",
+  "last_name": "Okonkwo",
+  "title": "Dispatch Supervisor",
+  "telephone": "(419) 555-0177",
+  "_fields_under_test": [
+   "first_name",
+   "last_name",
+   "title",
+   "telephone"
+  ]
+ },
+ "asset": {
+  "owner": "ZZAUTOTEST Bridgeport Hauling",
+  "year": "2019",
+  "maker": "Freightliner",
+  "model": "Cascadia",
+  "unit": "ZZT-4471",
+  "vin": "1FUJGLDR9KLZZ4471",
+  "licence_plate": "OHZZT471",
+  "_fields_under_test": [
+   "unit",
+   "vin",
+   "licence_plate",
+   "year",
+   "maker",
+   "model",
+   "owner_name"
+  ]
+ },
+ "vendor": {
+  "name": "ZZAUTOTEST Kestrel Parts Supply",
+  "address_1": "88 Halbrook Trace",
+  "city": "Marnston",
+  "state_or_province": "Ohio",
+  "postal_code": "43055-2210",
+  "telephone": "(614) 555-0188",
+  "email": "parts@kestrelsupply-zzt.com",
+  "_fields_under_test": [
+   "name",
+   "address_1",
+   "city",
+   "postal_code",
+   "telephone",
+   "email"
+  ]
+ },
+ "part": {
+  "name": "ZZAUTOTEST Brake Chamber Kestrel",
+  "part_number": "ZZT-88-4412",
+  "_search_forms": [
+   "ZZT-88-4412",
+   "ZZT884412"
+  ],
+  "_fields_under_test": [
+   "name",
+   "part_number_with_dashes",
+   "part_number_without_dashes"
+  ]
+ },
+ "work_orders": [
+  {
+   "label": "WO-A",
+   "customer": "ZZAUTOTEST Bridgeport Hauling",
+   "asset_unit": "ZZT-4471",
+   "start_date": "oldest  (e.g. today -21d)"
+  },
+  {
+   "label": "WO-B",
+   "customer": "ZZAUTOTEST Bridgeport Hauling",
+   "asset_unit": "ZZT-4471",
+   "start_date": "today -14d"
+  },
+  {
+   "label": "WO-C",
+   "customer": "ZZAUTOTEST Bridgeport Hauling",
+   "asset_unit": "ZZT-4471",
+   "start_date": "today -7d"
+  },
+  {
+   "label": "WO-D",
+   "customer": "ZZAUTOTEST Bridgeport Hauling",
+   "asset_unit": "ZZT-4471",
+   "start_date": "newest (today)"
+  }
+ ],
+ "part_sale": {
+  "customer": "ZZAUTOTEST Bridgeport Hauling",
+  "part": "ZZT-88-4412"
+ },
+ "_runtime_values": {
+  "_note": "Work order and part sale numbers are assigned by the system, and the shop number depends on the workplace. The seed script MUST write the real values here at seed time; the test cases refer to them by name, never to a hard-coded number.",
+  "shop_number": "<filled at seed time>",
+  "wo_a_number": "<filled at seed time>",
+  "wo_b_number": "<filled at seed time>",
+  "wo_c_number": "<filled at seed time>",
+  "wo_d_number": "<filled at seed time>",
+  "part_sale_number": "<filled at seed time>"
+ },
+ "_created_during_the_run": {
+  "_note": "These are NOT pre-seeded. Cases G1a/G1b create them during the run, because the behaviour under test is that a brand-new record is findable immediately.",
+  "new_customer_name": "ZZAUTOTEST Halloway Freight <run timestamp>",
+  "new_work_order": "created in-run for ZZAUTOTEST Bridgeport Hauling",
+  "new_part_sale": "created in-run for ZZAUTOTEST Bridgeport Hauling"
+ }
+}

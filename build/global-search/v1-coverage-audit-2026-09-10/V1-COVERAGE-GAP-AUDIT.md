@@ -62,18 +62,21 @@ Verified against the V2 delta already recorded in `build/global-search/regressio
 | WO indexed on status | **CHANGED at spec v12** — status dropped | matrix note + PO-REG-6 |
 | In-memory recents (INV-60/61/62) | REPLACED by a recent-entities API | `6728` (5) |
 
-## 3 · TWO DISCREPANCIES TO RESOLVE (not gaps — do not guess)
+## 3 · THE TWO DISCREPANCIES — NOW RESOLVED FROM EVIDENCE (2026-09-10)
 
-1. **`C252 "Search for tags"` and `C1927 "Search For Grid Location"`** sit in the legacy root section
-   **49**. **The V1 code baseline contains no tag field and no bin/grid-location field in any of the
-   five global-search haystacks** (`FetchDataQueryHandler.php:75-343`). So either these cases test the
-   **in-page inventory search** rather than global search, or they are stale. **NOT FOUND IN CODE as
-   global-search behaviour — needs a human read of the two case bodies before they are treated as V1
-   capabilities V2 must preserve.** Flagged, not resolved.
-2. **`C1789 "Try global search from each page where search is visible"`** — a real V1 capability
-   (global search rendered on desktop, tablet and mobile from the app shell, INV-50). V2's
-   `6737` Page-Search Cutover (2 cases) covers the unified engine but not "reachable from every page".
-   Worth confirming whether `C1789` is being carried into the V2 run.
+Both legacy cases were read in full. Neither is a V1 global-search capability V2 must preserve:
+
+| Case | What it actually tests | Verdict |
+|---|---|---|
+| **C252 "Search for tags"** | Preconditions put the tester on `/workorders` with the "By Status" tab active; the steps search `Estimate`, `Authorization`, `In Progress`, `Approved` and expect "all results are in <that> status". This is the **in-page Work Orders list filtered by status** — and V1's WO search text did include status (`quality_check`→`qualitycheckqc`, underscores stripped) | **NOT a global-search regression gap.** Status was **dropped from the WO indexed fields at spec v12** — already recorded as a CHANGE with PO-REG-6. In-page list search is covered by section `6732` |
+| **C1927 "Search For Grid Location"** | Preconditions put the tester on `/parts/inventory`; the step types `TO BE LOCATED` into the **global search box** and expects the inventory list to filter to parts with that grid location | **STALE.** This is the old "global search box filters the current page's list" behaviour, which **was already removed in V1** (`useGlobalSearch.ts:47-51` — *"the list-filter fan-out to `Table.vue` (Story 14) was removed once every list gained its own search input"*), and section `6499` exists precisely to remove it. Recommend retiring C1927 |
+
+**Neither needed a new regression case.** Recorded here so the next session does not re-open them.
+
+**Also worth carrying, not re-writing:** **C1789 "Try global search from each page where search is
+visible"** IS a real V1 capability (search reachable from the app shell on every page, INV-50) and
+V2's `6737` Page-Search Cutover does not cover reachability. **Recommendation: carry C1789 into the
+V2 run as-is** rather than author a duplicate.
 
 ## 4 · PROPOSED ADDITIONS — 12 cases, ready to push
 
@@ -98,3 +101,57 @@ unattended. `push_proposed_cases.py` performs the adds but refuses to run withou
    formats, G9 work-order recency under the new ranking model.
 4. **FYI, not a blocker:** the TestRail **API key you supplied returns HTTP 401**; the account
    password authenticates fine. If you want key-based auth for scripts, the key needs regenerating.
+
+---
+
+## 5 · WHAT WAS DONE — 2026-09-10 (permission granted for the push)
+
+**12 cases created in section 6769**, each read back and title-verified (Rule 50). Section 6769 is
+now **33 cases** (21 + 12). Audit log: `push-audit-2026-09-10T202059Z.json`.
+
+| Case | Gap | Title |
+|---|---|---|
+| [C53578](https://shopview.testrail.io/index.php?/cases/view/53578) | G3 | Finding a work order by its customer's name still works |
+| [C53579](https://shopview.testrail.io/index.php?/cases/view/53579) | G4 | A work order number with the shop number in front still finds it |
+| [C53580](https://shopview.testrail.io/index.php?/cases/view/53580) | G2 | Finding an asset by its unit number still works |
+| [C53581](https://shopview.testrail.io/index.php?/cases/view/53581) | G8 | Finding an asset by the customer who owns it still works |
+| [C53582](https://shopview.testrail.io/index.php?/cases/view/53582) | G6a | Finding a customer by address, city or postal code still works |
+| [C53583](https://shopview.testrail.io/index.php?/cases/view/53583) | G7 | Finding a customer by their website still works |
+| [C53584](https://shopview.testrail.io/index.php?/cases/view/53584) | G5 | Finding a vendor by email address still works |
+| [C53585](https://shopview.testrail.io/index.php?/cases/view/53585) | G6b | Finding a vendor by address, city or postal code still works |
+| [C53586](https://shopview.testrail.io/index.php?/cases/view/53586) | G1a | A newly created customer can be found in search straight away |
+| [C53587](https://shopview.testrail.io/index.php?/cases/view/53587) | G1b | A newly created work order or part sale can be found straight away |
+| [C53588](https://shopview.testrail.io/index.php?/cases/view/53588) | G9 | Work order results are listed newest first |
+| [C53589](https://shopview.testrail.io/index.php?/cases/view/53589) | G10 | The search box shows a loading state until results are ready |
+
+### Every case is SEED-THEN-SEARCH
+Each case's preconditions name the exact seeded record and the exact field value, then the steps
+search a keyword that exists **only** in that field — so a pass proves the field is *searchable*, not
+merely *displayed*. Dataset: `seed-data.json`. Proof of coverage: `KEYWORD-TRACEABILITY.md`.
+Seeder (verified endpoints, three caveats): `seed_global_search_dataset.py`.
+
+### The two PO items — decided by the repo's own rule, not left hanging
+Rule 96: **silence defaults to "must not change"**, and a high-collateral silence is *flagged*, never
+silently assumed. So both cases assert the V1 behaviour AND carry a visible
+`NOTE FOR THE PRODUCT OWNER` in their Expected Results:
+- **G4 / C53579** — asserts all four shop-prefixed WO number forms still match; the note says that if
+  V2 deliberately accepts only some, confirm which and the case is narrowed.
+- **G9 / C53588** — asserts newest-first for work orders; the note says that if the new ranking model
+  deliberately changes the order, confirm the intent and the case is rewritten.
+
+That is the documented-default pattern: the suite is complete and defensible with no reply from
+anyone, and nobody can claim either that it was never flagged or that it was invented.
+
+## OUTSTANDING — what I need from you
+
+1. **Run sync needs its OWN permission (Rule 34 + COVERAGE-MATRIX A4: an `add_case` approval is not a
+   run-sync approval).** The 12 new cases are **not yet in any test run**. Say the word and I will add
+   them union-only — a partial `case_ids` list DELETES tests and their results, so this is never done
+   casually.
+2. **Seeding cannot be executed yet** — the shared app session is blocked (every cookie 401) and no
+   Global Search QA build exists. The dataset and seeder are ready for the moment both exist.
+3. **`website` and `address_2` are not on the customer-create payload** (caveat 1 in the seeder), so
+   C53583 (G7) and half of C53582 (G6a) need those two fields set via the customer edit path when
+   seeding. Otherwise those cases are unrunnable.
+4. **Recommend retiring C1927** (stale — tests behaviour V1 already removed) and **carrying C1789**
+   into the V2 run. Both need your go; I have not touched either.
