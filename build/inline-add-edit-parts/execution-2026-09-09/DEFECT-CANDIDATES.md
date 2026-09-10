@@ -276,3 +276,35 @@ Evidence: `evidence/76-final.json`, `evidence/76-a-aftersave.png`.
 C45001 was marked **Passed** in R418 earlier in this pass, with a note saying clause 3 "was still
 being checked when this result was written". Clause 3 has now been checked and it fails, so **the
 case must move to Failed** once this defect is raised and approved. Nothing else in R418 is affected.
+
+---
+
+## Review item — [C45250](https://shopview.testrail.io/index.php?/cases/view/45250), and a correction to my own earlier reading
+
+**Clause 1 passes.** On a line whose status is **Complete**, that line's own Parts section still offers
+**"+ Add Part"** and clicking it opens the inline row. Verified by locating the Complete line's own
+block (it reads *"TEST … Complete … Add Part"*) rather than clicking the first button on the page.
+
+**Clause 2 — the part really is added.** Both test parts typed onto the Complete line are in the
+saved parts list after a full reload: *"(-) ZZAUTOTEST c45250 admin"* and *"(-) ZZAUTOTEST c45250
+tech"*. So the user is not asked to uncomplete the line first, which is the outcome the case is
+protecting.
+
+**🛑 I reported the opposite twice before getting here, and both readings were my own errors:**
+
+1. *"the save does nothing"* — the run was in Full View and my probe filled only description and
+   quantity, so the save was correctly refused with **"Enter a cost and sell price to save this part."**
+2. *"the part never landed"* — I was counting the line's `part_requests` array, which is empty for
+   this line in that response shape. The parts list on screen is the truth, and it shows both parts.
+
+**What is left genuinely open, and is a question rather than a defect:** the case says *"the system
+uncompletes the line on your behalf"*. The part is added without any demand to uncomplete, but the
+line's status still reads **complete** afterwards, in the API and in the block on screen. So either
+the case's wording overstates the mechanism, or the line should have flipped and did not.
+
+*Options:* (a) the case's clause 2 is reworded to what the build does — the part is added and the line
+is left as it is; (b) the build is changed to uncomplete the line; (c) I test it once more against
+whatever the spec says exactly. **Not filed, and no verdict written to the run.**
+
+Evidence: `evidence/96-c45250.json`, `evidence/96-c45250.png`, `evidence/84-c45250c.json`,
+`evidence/93-c45250d.json`.
