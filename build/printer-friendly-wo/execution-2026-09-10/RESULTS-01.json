@@ -1,0 +1,32 @@
+{
+ "pass_meta": {
+  "suite": "Printer Friendly Work Orders (6617)",
+  "run": 419,
+  "env": "the sv9315 QA branch",
+  "build": "v26.36.0-f43b2fd",
+  "date": "10 September 2026",
+  "view_mode": "Full View"
+ },
+ "results": {
+  "C45084": {
+   "verdict": "Passed",
+   "observed": "What was checked: whether a \"Print Work Order\" option appears in the work order's More menu (the three-dots button on the work order's own toolbar, not the three-dots on a line). What happened: it is there. The menu opened with five items and \"Print Work Order\" is the fourth of them: Audit Log, Timesheets (0), Add Work Order Fee / Discount, Print Work Order, Delete Work Order."
+  },
+  "C45085": {
+   "verdict": "Passed",
+   "observed": "What was checked: the wording of the print item and whether it carries an icon. What happened: the item reads exactly \"Print Work Order\" and has no icon at all. It matches the rest of the menu - none of the five items has an icon, so it is consistent with the others, which is what the case asks for."
+  },
+  "C45086": {
+   "verdict": "Passed",
+   "observed": "What was checked: where the print item sits in the menu. What happened: the menu lists Audit Log, then Timesheets (0), then Add Work Order Fee / Discount, then Print Work Order, then Delete Work Order. So Print Work Order is below Timesheets and above Delete Work Order, exactly as the case requires. (There is one item between it and Timesheets - Add Work Order Fee / Discount - which is what the preconditions on the case already describe, so this is the expected order and not a deviation.)"
+  },
+  "C45087": {
+   "verdict": "Passed",
+   "observed": "What was checked: whether choosing \"Print Work Order\" opens the browser's own print dialog. What happened: it does. Selecting the item triggered the browser's print request - the page asked the browser to print exactly once, which is what opens the native print dialog for a real user. This was checked by watching for the browser print request rather than by letting the dialog open on screen, because a print dialog left open would stop the rest of the checks; the request being made is the same thing the user sees as the dialog appearing."
+  },
+  "C45089": {
+   "verdict": "Passed",
+   "observed": "What was checked: whether the print option is there on both a desktop-sized screen and a phone-sized screen. What happened: it is on both. On the desktop width the More menu shows all five items including Print Work Order. The page was then narrowed to a phone size (390 by 844) and the same More menu was opened again - it still shows all five items, Print Work Order among them, and it is not hidden or cut off."
+  }
+ }
+}

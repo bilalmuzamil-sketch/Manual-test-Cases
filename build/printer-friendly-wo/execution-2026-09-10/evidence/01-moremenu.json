@@ -9,51 +9,99 @@
  "editableWo": "6a529a5f-dff9-4c13-9636-b41500e585f0",
  "openA": {
   "opened": true,
-  "testid": "button_add_labor_adjustment_0e2c10ac-b34c-4195-91f6-d9d55c06f943"
+  "testid": "button_work_order_nav_bar_menu",
+  "candidates": [
+   "button_work_order_nav_bar_menu"
+  ]
  },
  "menuA": {
   "menuOpen": true,
   "items": [
    {
-    "label": "Add Labor Fee / Discount",
+    "label": "Audit Log",
     "icons": [],
     "disabled": false,
-    "testid": "menu_item_add_labor_adjustment_0e2c10ac-b34c-4195-91f6-d9d55c06f943"
+    "testid": "menu_item_audit_log"
+   },
+   {
+    "label": "Timesheets (0)",
+    "icons": [],
+    "disabled": false,
+    "testid": "menu_item_timesheets"
+   },
+   {
+    "label": "Add Work Order Fee / Discount",
+    "icons": [],
+    "disabled": false,
+    "testid": "menu_item_add_adjustment"
+   },
+   {
+    "label": "Print Work Order",
+    "icons": [],
+    "disabled": false,
+    "testid": "menu_item_print_work_order"
+   },
+   {
+    "label": "Delete Work Order",
+    "icons": [],
+    "disabled": false,
+    "testid": "menu_item_delete_work_order"
    }
   ]
  },
  "C45084": {
-  "present": false,
+  "present": true,
   "labels": [
-   "Add Labor Fee / Discount"
+   "Audit Log",
+   "Timesheets (0)",
+   "Add Work Order Fee / Discount",
+   "Print Work Order",
+   "Delete Work Order"
   ]
  },
  "C45085": {
-  "present": false
+  "label": "Print Work Order",
+  "icons": [],
+  "iconFree": true,
+  "othersIconFree": true
  },
  "C45086": {
-  "printIdx": -1,
-  "timesheetsIdx": -1,
-  "deleteIdx": -1,
-  "belowTimesheets": false,
-  "aboveDelete": false
+  "printIdx": 3,
+  "timesheetsIdx": 1,
+  "deleteIdx": 4,
+  "belowTimesheets": true,
+  "aboveDelete": true
+ },
+ "C45087": {
+  "clicked": true,
+  "printCallsBefore": 0,
+  "printCallsAfter": 1,
+  "printDialogRequested": true
  },
  "C45088": {
   "statusesChecked": {
    "approved": {
     "wo": "S9315-15899",
     "menuOpen": true,
-    "printPresent": false,
+    "printPresent": true,
     "items": [
-     "Add Labor Fee / Discount"
+     "Audit Log",
+     "Timesheets (0)",
+     "Add Work Order Fee / Discount",
+     "Print Work Order",
+     "Delete Work Order"
     ]
    },
    "declined": {
     "wo": "S9315-15897",
     "menuOpen": true,
-    "printPresent": false,
+    "printPresent": true,
     "items": [
-     "Add Labor Fee / Discount"
+     "Audit Log",
+     "Timesheets (0)",
+     "Add Work Order Fee / Discount",
+     "Print Work Order",
+     "Delete Work Order"
     ]
    },
    "paid": {
@@ -68,18 +116,20 @@
    },
    "ready_for_review": {
     "wo": "S9315-15901",
-    "menuOpen": true,
+    "menuOpen": false,
     "printPresent": false,
-    "items": [
-     "Add Labor Fee / Discount"
-    ]
+    "items": []
    },
    "estimate": {
     "wo": "S9315-15017",
     "menuOpen": true,
-    "printPresent": false,
+    "printPresent": true,
     "items": [
-     "Add Labor Fee / Discount"
+     "Audit Log",
+     "Timesheets (0)",
+     "Add Work Order Fee / Discount",
+     "Print Work Order",
+     "Delete Work Order"
     ]
    }
   },
@@ -87,20 +137,21 @@
  },
  "openMobile": {
   "opened": true,
-  "testid": "button_line_context_menu_mobile_0e2c10ac-b34c-4195-91f6-d9d55c06f943"
+  "testid": "button_work_order_nav_bar_menu",
+  "candidates": [
+   "button_work_order_nav_bar_menu"
+  ]
  },
  "C45089": {
-  "desktop": false,
+  "desktop": true,
   "mobileMenuOpen": true,
-  "mobilePrintPresent": false,
+  "mobilePrintPresent": true,
   "mobileItems": [
-   "Request part",
-   "Add line note",
-   "Save as canned line",
-   "Story history",
-   "Audit log",
-   "Add inspection",
-   "Edit labor"
+   "Audit Log",
+   "Timesheets (0)",
+   "Add Work Order Fee / Discount",
+   "Print Work Order",
+   "Delete Work Order"
   ]
  },
  "C45091": {
