@@ -6,8 +6,8 @@
  },
  "createLineTries": {
   "POST /api/work-orders/lines/create": {
-   "status": 400,
-   "text": "{\"errors\":[{\"lineName\":\"Line name is missing.\"}]}"
+   "status": 500,
+   "text": "{\"errors\":[{\"error\":\"An error occurred. We\\u0027re sorry for this inconvenience, please try again a bit later later.\"},{\"requestId\":\"bd0f7f62-f016-4bdd-85f0-9dafbfa27ce1\"}]}"
   },
   "POST /api/work-orders/lines": {
    "status": 404,
