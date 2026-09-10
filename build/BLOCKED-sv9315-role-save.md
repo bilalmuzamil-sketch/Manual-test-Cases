@@ -1,3 +1,26 @@
+> # ✅ RESOLVED 2026-09-10 — THIS IS NOT A BLOCKER. IT IS A UI DEFECT.
+>
+> **The route exists: `PUT /api/roles/{id}` persists a role change.** The 405 returned by
+> `POST /api/roles/{id}` names it verbatim — *"Method Not Allowed (Allow: PUT, DELETE, GET)"* — which is
+> the tell that was missed for seven attempts. Proven live in
+> `build/inline-add-edit-parts/execution-2026-09-09/probe104_rolecases.mjs`: `view_mode` was set to
+> `full`, re-read as `full`, set to `tech`, re-read as `tech`, and restored exactly.
+>
+> **What the finding below actually is:** the role editor's **Save button fires no write at all** — only
+> `POST /api/check-existing-roles`. That is a front-end defect worth reporting (a user edits a role, is
+> shown no error, and the change is silently discarded), **not** an environment limit on our testing.
+>
+> **What it un-blocks:** all four cases in the table below —
+> [C53477](https://shopview.testrail.io/index.php?/cases/view/53477) ·
+> [C45066](https://shopview.testrail.io/index.php?/cases/view/45066) ·
+> [C45032](https://shopview.testrail.io/index.php?/cases/view/45032) ·
+> [C44995](https://shopview.testrail.io/index.php?/cases/view/44995) — are testable by seeding the role
+> through PUT. Only the **Technician** role is ever touched, and it is restored afterwards; the Admin
+> staff's Admin role is never involved.
+>
+> **The original investigation is kept verbatim below, dated, because it is the evidence for the UI
+> defect.**
+
 # BLOCKED — a role change cannot be saved on the sv9315 QA branch (2026-09-10)
 
 **Proved, not assumed.** `build/inline-add-edit-parts/execution-2026-09-09/probe69_rolepersist.mjs`,
