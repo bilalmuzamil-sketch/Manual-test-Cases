@@ -1,0 +1,7 @@
+{
+ "pass_meta": {"suite":"Inline Add and Edit Parts (6597)","run":418,"env":"the sv9315 QA branch",
+   "build":"v26.36.0-f43b2fd","date":"10 September 2026","view_mode":"full"},
+ "results": {
+  "C45069": {"verdict":"Passed","observed":"What was checked: exactly what the user is shown when they close a part row they have already typed into, word for word, and which of the two choices is the one the keyboard will take. What happened: with a description and a quantity filled in, closing the row brought up a confirmation headed \"Discard this part?\", with the body \"The details you entered will be lost.\" and two choices: \"Keep Editing\" and \"Discard Part\". \"Keep Editing\" was the one already selected when the box appeared, so pressing Enter by reflex keeps the typing rather than throwing it away - the safe option is the default.","not_observed":null}
+ }
+}
