@@ -168,3 +168,36 @@ legs on the same browser session before it. **Nothing is filed.**
 
 Evidence: `evidence/60-c45081.json`, `evidence/60-{admin,tech}-{1,2}.png`, and the original
 `evidence/48-unsaved.json` sighting for the record.
+
+---
+
+## Candidate 7 — OBSERVED 2026-09-10 · stories SV-9317 (Tech) and SV-9319 (Full View)
+
+**Cases:** [C45022](https://shopview.testrail.io/index.php?/cases/view/45022) *(Any other save failure
+keeps the row open with data intact)* and [C45062](https://shopview.testrail.io/index.php?/cases/view/45062)
+*(the Full View twin)* · run [R418](https://shopview.testrail.io/index.php?/runs/view/418).
+
+**The rule (S2-EH1):** when a save fails for a reason other than the work order becoming
+non-editable, an alert toast reads **"Couldn't add the part. Please try again."** and **the inline row
+remains open with the entered data intact.**
+
+**What the build does — two different failures, two different wrong answers:**
+
+| The failure | Toast required | Toast shown | Row afterwards | Typing |
+|---|---|---|---|---|
+| Server error (HTTP 500 on `POST /api/work-orders/part/make-request`) | "Couldn't add the part. Please try again." | **"Ooooops! An error occurred"** | **stays open** ✓ | **kept** ✓ |
+| Network failure (the same request cut off in flight) | "Couldn't add the part. Please try again." | **none at all** | **closes** ✗ | **lost** ✗ |
+
+The server-error case is a wording defect. **The network-failure case is worse than that**: the row
+closes as though the save had succeeded, no message of any kind is shown, and the part is not on the
+work order. A tester — or a technician on a poor connection in a shop — is told nothing and loses the
+line they just typed. Confirmed against a clean reload each time: the part count returns to 22 and the
+part is absent.
+
+**A control leg was run in the same probe** with nothing intercepted, so the harness itself is not the
+cause.
+
+Evidence: `evidence/62-savefail2.json`, `evidence/62-c45022-abort.png`, `evidence/62-c45022-500.png`,
+`evidence/62-c45022-control.png`.
+
+**Held** pending the QA lead's per-defect go-ahead.
