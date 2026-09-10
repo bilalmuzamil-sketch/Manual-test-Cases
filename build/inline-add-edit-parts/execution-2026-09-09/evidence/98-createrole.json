@@ -1,0 +1,111 @@
+{
+ "template": {
+  "keys": [
+   "id",
+   "name",
+   "description",
+   "default",
+   "editable",
+   "deletable",
+   "fe_permissions",
+   "template_id",
+   "view_mode",
+   "cross_toggles"
+  ],
+  "name": "Technician",
+  "view_mode": "tech",
+  "nPerms": 6,
+  "cross": {
+   "seeFinancialData": false,
+   "seeApArData": false,
+   "viewHistoryLogs": false
+  }
+ },
+ "rolesScreen": {
+  "url": "https://sv9315.qa.shopview.com/administration/roles-permissions",
+  "buttons": [
+   "Work Orders",
+   "Schedule",
+   "Customers",
+   "Parts",
+   "Reports",
+   "timerClock In",
+   "notifications",
+   "Staging Heavy Duty - 9919AS",
+   "searchSearch",
+   "Create custom role",
+   "edit",
+   "more_vert",
+   "visibility",
+   "edit"
+  ],
+  "rows": [
+   [
+    ""
+   ],
+   [
+    "",
+    "Parts Technician",
+    "Parts operations and vendor management"
+   ],
+   [
+    "lock",
+    "Office User",
+    "Office administration, reporting, and back-office operations"
+   ],
+   [
+    "",
+    "Foreman",
+    "Oversees technicians and work orders"
+   ],
+   [
+    "",
+    "Technician",
+    "Assigned work orders and time tracking (Tech View)"
+   ],
+   [
+    "",
+    "Admin",
+    "Full system access"
+   ],
+   [
+    "",
+    "Service Manager",
+    "Full operational access, limited admin (App Settings + Wages only)"
+   ],
+   [
+    "",
+    "Service Advisor",
+    "Work order and customer management with invoicing access"
+   ]
+  ]
+ },
+ "tries": [
+  {
+   "label": "roles/create",
+   "path": "/api/roles/create",
+   "status": 405,
+   "text": "{\"errors\":[{\"error\":\"No route found for \\u0022POST http:\\/\\/sv9315api.qa.shopview.com\\/api\\/roles\\/create\\u0022: Method Not Allowed (Allow: PUT, DELETE, GET)\"}]}"
+  },
+  {
+   "label": "roles (post)",
+   "path": "/api/roles",
+   "status": 400,
+   "text": "{\"errors\":[{\"organization\":\"Missing required parameter\"},{\"cross_toggles\":\"Missing required parameter\"}]}"
+  },
+  {
+   "label": "organizations/roles",
+   "path": "/api/organizations/roles",
+   "status": 404,
+   "text": "{\"errors\":[{\"error\":\"\\u0027resource\\u0027 was not found.\"}]}"
+  },
+  {
+   "label": "roles/change (clone)",
+   "path": "/api/roles/change",
+   "status": 405,
+   "text": "{\"errors\":[{\"error\":\"No route found for \\u0022POST http:\\/\\/sv9315api.qa.shopview.com\\/api\\/roles\\/change\\u0022: Method Not Allowed (Allow: PUT, DELETE, GET)\"}]}"
+  }
+ ],
+ "roleNames": [],
+ "newRoleThere": false
+}
