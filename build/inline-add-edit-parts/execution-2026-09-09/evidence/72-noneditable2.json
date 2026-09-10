@@ -251,5 +251,41 @@
    },
    "text": "{\"data\":{\"work_order_id\":\"6a529a5f-dff9-4c13-9636-b41500e585f0\",\"message\":\"Status changed.\"}}"
   }
+ },
+ "C45035": {
+  "key": "tech",
+  "mode": "edit",
+  "opened": "opened",
+  "rowBefore": {
+   "open": true,
+   "desc": "ZZAUTOTEST noneditable tech",
+   "qty": "6"
+  },
+  "moved": {
+   "status": 400,
+   "json": {
+    "errors": [
+     {
+      "error": "Cannot complete work order with incomplete lines."
+     }
+    ]
+   },
+   "text": "{\"errors\":[{\"error\":\"Cannot complete work order with incomplete lines.\"}]}"
+  },
+  "toast": [],
+  "rowAfter": {
+   "open": false
+  },
+  "alerts": [],
+  "restored": {
+   "status": 201,
+   "json": {
+    "data": {
+     "work_order_id": "6a529a5f-dff9-4c13-9636-b41500e585f0",
+     "message": "Status changed."
+    }
+   },
+   "text": "{\"data\":{\"work_order_id\":\"6a529a5f-dff9-4c13-9636-b41500e585f0\",\"message\":\"Status changed.\"}}"
+  }
  }
 }
