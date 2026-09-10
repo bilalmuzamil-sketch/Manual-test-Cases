@@ -20,7 +20,7 @@ The previous CLAUDE.md was **738 KB / roughly 183,000 tokens**, and it was **TRU
 AT RULE 62**. Sessions were therefore running with **Rules 63–88 SILENTLY ABSENT** while believing
 they had read the whole file. A rule you have never seen is a rule you will break.
 
-**THEREFORE: NEVER ASSUME YOU HAVE SEEN ALL THE RULES.** There are **102 numbered Standing Rules**.
+**THEREFORE: NEVER ASSUME YOU HAVE SEEN ALL THE RULES.** There are **103 numbered Standing Rules**.
 Count them in the index below. If you are
 about to apply a rule, open its file and read it. **NEVER read
 `build/rules/CLAUDE-FULL-ARCHIVE-2026-08-21.md` whole** — it will exhaust your context exactly as the
@@ -194,8 +194,14 @@ safe. The **evidence** for each one lives in the rule or skill the bullet points
   decide carries five things in plain words — **what it is** · **how it came up** · **the question** ·
   **the options**, each saying what we would then DO · **the cost of silence** and what it does not block
   (68). If answering needs a file opened, it is not finished. Say *"nothing outstanding"* if that is true;
-  never omit the section. Keep `build/OUTSTANDING-ITEMS-REGISTER.md` current. Verbatim quotes and full
-  text: `build/rules/RULES-61-ONWARD.md` rules 98 and 99.
+  never omit the section. Keep `build/OUTSTANDING-ITEMS-REGISTER.md` current.
+  **🛑 AND EVERY ASK IS IN HIS LANGUAGE, NOT OURS (103; QA lead 2026-09-10): lead with what a USER would
+  see go wrong and why it matters, then the decision, the options each saying what we would DO, and the
+  cost of silence. NO HTTP codes, API paths, field/tool/probe names or internal shorthand in the ask;
+  C-ids and ticket keys go at the END as reference (8), never as the thing carrying the meaning. If he
+  must decode it, or open anything to understand it, it is NOT WRITTEN YET — rewrite it.** Internal files
+  stay technical; 103 governs what is put to HIM. Verbatim quotes and full text:
+  `build/rules/RULES-61-ONWARD.md` rules 98, 99 and 103.
 - **🛑 A QUESTION SHEET IS ALWAYS A SPREADSHEET, NEVER A MARKDOWN TABLE (55 · 66 · 7/9; QA lead
   2026-09-01).** Deliver **`.xlsx`** (or a Google Sheet) in the established column shape —
   **`# · Topic · What happens now · The question · Options · Your answer`** — one sheet per feature, plus a
@@ -256,7 +262,7 @@ safe. The **evidence** for each one lives in the rule or skill the bullet points
 
 ---
 
-## 2 · THE RULE INDEX — all 102 rules, and where each one lives
+## 2 · THE RULE INDEX — all 103 rules, and where each one lives
 
 **Read the rule in its file before applying it.** One line per rule; the line is a locator, not the
 rule. Generated from the split files' own headers.
@@ -383,6 +389,7 @@ rule. Generated from the split files' own headers.
 | **100** | AN INJECTED OR REMEMBERED COPY OF A FILE IS NOT EVIDENCE ABOUT THAT FILE — MEASURE IT ON DISK |
 | **101** | THERE IS NO SUCH THING AS A DELTA VERIFICATION — EVERY VERIFICATION IS FULL, ALWAYS, ON EVERY CASE |
 | **102** | BUILD VERIFICATION MAKES ALL THREE PARTS RUNNABLE — PRECONDITIONS · STEPS · EXPECTED (intact, but worded to the Build Glossary) |
+| **103** | EVERY ASK PUT TO THE QA LEAD IS IN HIS LANGUAGE, NOT OURS — no ids, endpoints or jargon carrying the meaning; he must act on the FIRST read |
 
 **Operator forms** (the rule bodies are all in `build/rules/RULES-61-ONWARD.md`): **95** →
 `build/skills/TOKEN-DISCIPLINE-CHARTER.md` · **96** → `build/skills/17-REGRESSION-IMPACT-V1-TO-V2.md`
@@ -672,7 +679,7 @@ Compact form — **the rule named in brackets is the authority; read it before r
 | Standing Rules 1–20 (full text) | `build/rules/RULES-01-20.md` |
 | Standing Rules 21–40 (full text) | `build/rules/RULES-21-40.md` |
 | Standing Rules 41–60 (full text) | `build/rules/RULES-41-60.md` |
-| Standing Rules 61 onward (full text — 61–102 today, and every rule added later) | `build/rules/RULES-61-ONWARD.md` |
+| Standing Rules 61 onward (full text — 61–103 today, and every rule added later) | `build/rules/RULES-61-ONWARD.md` |
 | Per-project narrative history (projects 1–7) | `build/rules/PROJECT-HISTORY-ARCHIVE.md` |
 | Byte-verification hashes for the split | `build/rules/INTEGRITY.md` |
 | Staging/QA/prod action recipes, TestRail traps | `build/APP-ACTIONS-PLAYBOOK.md` |

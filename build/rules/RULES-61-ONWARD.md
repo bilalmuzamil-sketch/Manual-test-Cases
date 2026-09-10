@@ -3485,3 +3485,47 @@ Index: CLAUDE.md (rule index table). Other rule files: build/rules/RULES-01-20.m
     9/7 (build-accurate layman wording) applied to Expected, under Rule 101 (full, every case) and Rule 57
     (Expected substance from documents). Operator form: `build/skills/11-BUILD-VERIFICATION.md`,
     `build/skills/18-LAYMAN-UI-STEPS.md`, `build/skills/03-RUN-CHECK.md`. Learning L0027.
+
+---
+
+103. **EVERY ASK PUT TO THE QA LEAD IS WRITTEN IN HIS LANGUAGE, NOT OURS — HE MUST BE ABLE TO ACT ON IT
+    THE FIRST TIME HE READS IT (all projects, permanent; QA lead, 2026-09-10).**
+    **THE ORDER, VERBATIM (QA lead, 2026-09-10):** *"Put it simply, you use your terms your context always
+    and when I read that it explains me nothing, whenever something is outstanding on ME you MUST explain
+    that to me in a way that helps me do it, right now I keep on reading everything again and again and
+    waste my time and understand nothing."*
+    **WHAT WENT WRONG.** The 2026-09-10 outstanding list gave him items like *"C45061 — an add saves,
+    `make-request` → 201; C45035 — an edit saves, `change-request` → 200; file as one ticket against
+    SV-9316 or three?"* Every word of that is **our** shorthand: case ids he has not memorised, endpoint
+    names he has never seen, HTTP codes, story keys, and a question phrased around **our** filing
+    mechanics. He had to reconstruct the situation before he could even find the question. **An ask he must
+    decode is an ask we have not finished writing.**
+    **THE STANDARD — FIVE THINGS, IN THIS ORDER, IN PLAIN ENGLISH:**
+    1. **WHAT IS WRONG, described as a person using the product would experience it.** *"A work order that
+       has been declined still lets people add and change parts on it."* Never lead with a case id, a
+       ticket key, an endpoint, a field name or a status code.
+    2. **WHY IT MATTERS — the consequence to the shop, the customer or the data.** *"Anyone can keep
+       putting parts on a job the customer already turned down, and the app accepts it."*
+    3. **THE DECISION, phrased as a question he can answer without opening anything.**
+    4. **THE OPTIONS, each saying WHAT WE WOULD THEN DO** — and a recommendation, with the one-line reason.
+    5. **WHAT HAPPENS IF HE SAYS NOTHING**, and what it does *not* hold up (Rule 68).
+    **HARD LINES:**
+    - **NO JARGON IN THE ASK ITSELF.** Barred from the body of an ask: HTTP verbs and status codes, API
+      paths, `data-test-id`s, database or field names, tool and script names, probe numbers, file paths,
+      and internal shorthand ("the typeahead", "the modal", "the payload"). Use the words on the screen.
+    - **CASE IDS AND TICKET KEYS ARE REFERENCE, NOT CONTENT.** Rule 8 still requires the C-id and its link,
+      but they go at the END of the item, after it already makes sense — never as the thing that carries
+      the meaning. A reader who skips every id must still fully understand the ask.
+    - **HE MUST NEVER HAVE TO OPEN A FILE, A CASE OR A TICKET TO UNDERSTAND WHAT IS BEING ASKED** (Rule 99).
+      If understanding it needs a lookup, rewrite it.
+    - **ONE ASK IS ONE DECISION.** Do not bundle three decisions into one paragraph and expect one answer.
+    - **THE TEST BEFORE SENDING:** read the item as if you have never seen this project. If you cannot say
+      *what is wrong*, *why it matters* and *what you are being asked to decide* from that one read, it
+      fails — rewrite it. Applies to chat, `OUTSTANDING-ITEMS-REGISTER.md`, reports and handoffs alike.
+    **WHAT THIS DOES NOT CHANGE.** Our internal files stay technical — `STATUS.md`, `DEFECT-CANDIDATES.md`,
+    probe evidence and the learnings log are written for the next session and keep every id, endpoint and
+    status code. Rule 103 governs **what is put to HIM**. A defect ticket's own body likewise keeps its
+    reproduction detail (Rule 62 §62-T2) — but the ask asking *permission* to file it obeys this rule.
+    **RELATION TO OTHER RULES:** this is Rule 7/9 (plain layman wording for tester- and PO-facing text)
+    extended to the QA lead himself, and the enforcement half of Rule 99 (every ask self-contained and
+    executable). Rules 98 and 36 still set the report shape; 103 sets the language inside it.
