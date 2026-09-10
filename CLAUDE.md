@@ -215,13 +215,18 @@ safe. The **evidence** for each one lives in the rule or skill the bullet points
   **the options**, each saying what we would then DO · **the cost of silence** and what it does not block
   (68). If answering needs a file opened, it is not finished. Say *"nothing outstanding"* if that is true;
   never omit the section. Keep `build/OUTSTANDING-ITEMS-REGISTER.md` current.
-  **🛑 AND EVERY ASK IS IN HIS LANGUAGE, NOT OURS (103; QA lead 2026-09-10): lead with what a USER would
-  see go wrong and why it matters, then the decision, the options each saying what we would DO, and the
-  cost of silence. NO HTTP codes, API paths, field/tool/probe names or internal shorthand in the ask;
-  C-ids and ticket keys go at the END as reference (8), never as the thing carrying the meaning. If he
-  must decode it, or open anything to understand it, it is NOT WRITTEN YET — rewrite it.** Internal files
-  stay technical; 103 governs what is put to HIM. Verbatim quotes and full text:
-  `build/rules/RULES-61-ONWARD.md` rules 98, 99 and 103.
+  **🛑 AND EVERYTHING HE READS IS IN HIS LANGUAGE — EVERY MESSAGE, NOT ONLY ASKS (103; QA lead
+  2026-09-10, widened the same day after a STATUS line slipped through: *"keep things simple for me to
+  understand, for everything you share with me all the time"*).** Lead with what a USER would see and
+  why it matters, then the decision, the options each saying what we would DO, and the cost of silence.
+  **BARRED from anything he reads: run numbers · case/test ids · ticket keys · suite numbers · API
+  paths · status codes · HTTP verbs · selector/probe/tool names · payload/endpoint/DOM/JSON ·
+  precondition · verdict · settled · "not observed" · "clause 3" — and BARE TALLIES: a count is always
+  followed by what it MEANS for him (what is finished, what is left, what he must do).** C-ids and keys
+  go after a `---REFERENCE---` line (8), never carrying the meaning. **RUN THE CHECK BEFORE SENDING:
+  `python3 build/testing-tools/plain_check.py <draft>` — exit 1 names every phrase he would stop at.**
+  If he must decode it, or open anything to understand it, it is NOT WRITTEN YET. Internal files stay
+  technical; 103 governs what is put to HIM. Full text: `build/rules/RULES-61-ONWARD.md` rules 98, 99, 103.
 - **🛑 A QUESTION SHEET IS ALWAYS A SPREADSHEET, NEVER A MARKDOWN TABLE (55 · 66 · 7/9; QA lead
   2026-09-01).** Deliver **`.xlsx`** (or a Google Sheet) in the established column shape —
   **`# · Topic · What happens now · The question · Options · Your answer`** — one sheet per feature, plus a
@@ -409,7 +414,7 @@ rule. Generated from the split files' own headers.
 | **100** | AN INJECTED OR REMEMBERED COPY OF A FILE IS NOT EVIDENCE ABOUT THAT FILE — MEASURE IT ON DISK |
 | **101** | THERE IS NO SUCH THING AS A DELTA VERIFICATION — EVERY VERIFICATION IS FULL, ALWAYS, ON EVERY CASE |
 | **102** | BUILD VERIFICATION MAKES ALL THREE PARTS RUNNABLE — PRECONDITIONS · STEPS · EXPECTED (intact, but worded to the Build Glossary) |
-| **103** | EVERY ASK PUT TO THE QA LEAD IS IN HIS LANGUAGE, NOT OURS — no ids, endpoints or jargon carrying the meaning; he must act on the FIRST read |
+| **103** | EVERYTHING THE QA LEAD READS IS IN HIS LANGUAGE — every message, not only asks; no ids/codes/jargon carrying the meaning, no bare tallies; run `plain_check.py` before sending |
 | **104** | A NEGATIVE FINDING MUST PROVE THE INSTRUMENT WORKED — seven proofs, enforced by `probe_guard.mjs` and `blocker_gate.py`; never re-block on something already unblocked |
 | **105** | NEVER GO IDLE WHILE WORK REMAINS — queue every step with `run_queue.sh`; the last action before any report is to START the next work |
 
