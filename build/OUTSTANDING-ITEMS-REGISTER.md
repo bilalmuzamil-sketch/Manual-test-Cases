@@ -1,6 +1,140 @@
-# OUTSTANDING ITEMS REGISTER — everything we are waiting on, across every project
+# OUTSTANDING — what the QA lead needs to decide
 
-> **⚠️ REFERENCE ONLY — this register is history and other sessions' work. It is NOT a backlog and does not authorise action (Rule 92).** Reading an open item here does **not** mean it is yours to work on; a lane session acts only on the project the QA lead has NAMED.
+> **🛑 RULE 103 (QA lead, 2026-09-10).** Every item on this page is written in HIS language: what a
+> USER would see go wrong, why it matters, the decision, the options with what we would then do, and
+> the cost of saying nothing. **No status codes, no endpoint names, no field or tool names, no probe
+> numbers.** Case ids and ticket keys go at the END of an item as reference only — never as the thing
+> that carries the meaning. If an item cannot be understood on one read without opening anything, it
+> is not written yet.
+
+## 2026-09-10 — decisions waiting on you (Inline Add & Edit Parts, Printer Friendly Work Orders)
+
+---
+
+### 1. Declined work orders can still be edited — do you want one bug report or three?
+
+**What is wrong.** When a customer turns a job down, the work order is marked **Declined**. On this
+build a declined work order still behaves like a live one: the **Add Part** button is still there, the
+**edit** control on each part is still there, and both of them genuinely work. You can add a new part
+to a declined job and it saves. You can change an existing part on a declined job and that saves too.
+Nothing warns you and nothing stops you.
+
+**Why it matters.** Parts can keep being added to a job the customer has already refused, and the app
+records them as real. The other locked statuses are fine — Complete, Invoiced and Paid all correctly
+hide these controls. **Declined is the only one missed**, and it is missed everywhere: on the buttons,
+on adding, and on editing.
+
+**The decision.** This shows up in five test cases. Do you want it raised as **one** bug report or
+**three**?
+
+| Option | What we would do |
+|---|---|
+| **One report (recommended)** | Raise a single bug saying "Declined is not being treated as a locked status", listing all five cases. It is one cause and almost certainly one fix, so one report means one investigation. |
+| Three reports | One per area — buttons, adding, editing. Keeps each area's bug count separate, but sends developers to look at the same cause three times. |
+| Two reports | Split "the buttons are shown" from "the saves are accepted". |
+
+**If you say nothing.** Five test results stay unwritten and this suite cannot be closed off. It holds
+up nothing else — all other testing continues.
+
+*Reference: C44993, C44994, C45061, C45035, and C45001 sits alongside them.*
+
+---
+
+### 2. Eight bugs are written and waiting — may I raise the first one?
+
+**What this is.** Testing found eight real problems. Each one is already written up with the steps to
+reproduce it and annotated screenshots. **Nothing has been raised.** Your standing instruction is that
+I raise them one at a time, and wait for you to check each one before the next.
+
+**Why it matters.** They are finished work sitting still. Until they are raised, the test results that
+depend on them cannot be written, and the suite cannot be signed off.
+
+**The decision.** May I raise the first one, and which should it be?
+
+| Option | What we would do |
+|---|---|
+| **Start with the Declined one (recommended)** | It is the biggest — five test cases, and a customer-facing path where refused work still accepts parts. |
+| Start with the parts-being-lost one | A part can silently vanish when a save fails and the row closes. Smaller, but it is data loss. |
+| Start with a different one | Tell me which and I will raise that one. |
+| Not yet | Everything stays as it is. |
+
+**If you say nothing.** Nothing is raised and both suites stay open. Testing itself carries on.
+
+---
+
+### 3. A wrong "Passed" — already fixed, no action needed from you
+
+**What happened.** Earlier today I marked one case as Passed before I had finished checking its last
+requirement. That last requirement fails: **once a part has been saved onto a job, it is supposed to
+lock so it cannot be quietly changed again — and it does not lock.**
+
+**What I did about it.** I have already corrected it to **Failed**, with the reason written in plain
+words on the case. It no longer reads as working. The bug report for it is written and waits with the
+others in item 2.
+
+**Nothing is needed from you here.** Flagging it only so you know it happened and that it is closed.
+
+*Reference: C45001.*
+
+---
+
+### 4. On this build, a shop cannot receive a part it has ordered at all
+
+**What is wrong.** When a part is not in stock you order it, and when it turns up you press **Receive**
+to book it in. On this build pressing **Receive** does nothing whatsoever — no window opens, no
+message, nothing at all happens on screen. The part stays stuck at "awaiting receive" forever.
+
+**Why it matters.** This is not a cosmetic problem. If it behaves the same way on the live system, a
+shop cannot book in any ordered part, so those parts can never go on a job and the job can never be
+finished. The information the screen needs is arriving correctly — the page just fails to show it — so
+this looks like a display fault rather than lost data.
+
+**This is not part of either suite I am testing.** I hit it because one test needed an ordered part.
+
+**The decision.** How do you want this handled?
+
+| Option | What we would do |
+|---|---|
+| **I write it up as a bug (recommended)** | Write it in the same form as the others and hold it for your go-ahead like the rest. It costs you one more approval. |
+| You raise it with the team directly | It may be a known problem on this test branch, and you would know that faster than I can find out. |
+| Leave it recorded only | It stays written down here and nothing is raised. |
+
+**If you say nothing.** One test case stays unfinished. Nothing else in either suite is affected.
+
+*Reference: this blocks the special-order half of C45251.*
+
+---
+
+### 5. Editing a role appears to work but silently changes nothing
+
+**What is wrong.** In Settings, if you change what a role is allowed to do and press **Save**, the
+screen accepts it without complaint — no error, no warning. Nothing is actually saved. Reopen the role
+and your change is gone.
+
+**Why it matters.** Someone can remove or grant a permission, believe they have done it, and be wrong.
+With permissions in particular, a change you think you made and did not is a real risk — you would
+think access had been withdrawn when it had not.
+
+**Separately, and worth knowing:** one particular permission — the one that lets a user see work orders
+at all — **cannot be switched off even from behind the screen.** It reports success and stays on. That
+may be deliberate, or it may be a second fault. I cannot tell from the outside.
+
+**The decision.** How do you want this handled?
+
+| Option | What we would do |
+|---|---|
+| **I write it up as a bug (recommended)** | It is a silent failure on a permissions screen, which is the worst place for one. |
+| You check with the team first | They may know the role screen is unfinished on this branch. |
+| Leave it recorded only | Stays written down here, nothing raised. |
+
+**If you say nothing.** One test case cannot be run. Nothing else is affected.
+
+*Reference: this blocks C45090.*
+
+---
+
+<details>
+<summary>Earlier register entries (technical, for the next session — not written to Rule 103)</summary>
 
 ## 🆕🆕 2026-09-10 — INLINE ADD AND EDIT PARTS (6597) EXECUTED ON sv9315: 93 PASSED, FIVE DEFECTS DRAFTED AND HELD, ONE ROLE BLOCKER
 
@@ -2721,3 +2855,5 @@ were stale). Sources: `build/report-suite/build-verify-2026-08-18/{TU,WIP,IV}-SW
 - **CO-6 (Inline Add & Edit Parts) — SV-9635 OPEN (Blocked), surfaced 2026-09-08.** Spec contradiction: a Tech-View user with "See Financial Data" ON sees pricing in the LEGACY Add/Edit Part modal but not in the new inline row. PO owner Sasha Grosman ruled 2026-09-07 that the **inline behaviour is correct** (See Financial Data is Full-View-only; Tech View always hides pricing) and the legacy modal is the defect (out of inline scope, §2). **Our cases already match this ruling — no change made.** Milos asked whether to *align* both entry points, which could change the spec later; if so, re-verify the See-Financial-Data cases (C53477, C45232, S2 Tech View). Does NOT block build verification of the current cases.
 - **CO-5 (Printer Friendly) — PO-PFWO-1 RESOLVED 2026-09-07** (spec header now names Owner **Milos Vasic / Branko Cicovic**); **PO-PFWO-2 OPEN:** no design exists — confirm PRD is the appearance authority or a design will follow. Also **HO-3 OPEN:** the no-line-items contradiction (Key Decisions disable print when no lines, but S3-N1/S4-N1 describe that printout) — C45107 / C45116 held HOLD pending a PO ruling.
 - **CO-6 (both) — BUILD VERIFICATION BLOCKED (Rule 85):** neither suite has a QA build/environment yet, so build verification cannot start. Both are SOURCE-VERIFIED ONLY. Run skill 11 when a build lands.
+
+</details>

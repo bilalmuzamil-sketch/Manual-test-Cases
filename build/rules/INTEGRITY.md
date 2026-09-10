@@ -377,3 +377,24 @@ behind `HEAD`** — i.e. the figure came from a **stale session-context snapshot
 repository.** **Lesson: measure `CLAUDE.md` with `wc -c` on disk before concluding it has grown** — an
 injected or cached copy of the file is not evidence about its current state, and "repairing" on that
 basis would have discarded 693 commits of legitimate work.
+
+## Rule 103 added 2026-09-10
+
+**103 — EVERY ASK PUT TO THE QA LEAD IS WRITTEN IN HIS LANGUAGE, NOT OURS.** Ordered by the QA lead on
+2026-09-10, verbatim in the rule body, after the outstanding list of that day put five decisions to him
+in case ids, endpoint names, HTTP status codes and story keys. His words: *"I keep on reading everything
+again and again and waste my time and understand nothing."*
+Recorded in `build/rules/RULES-61-ONWARD.md` (rule 103), indexed in `CLAUDE.md` §2, and folded into the
+existing §1 reporting bullet as an amendment rather than a new bullet, per the §1 admission gate (a
+refinement amends the bullet on that subject; it never adds a second one). Rule count 102 → **103**.
+
+## Rule 103 added 2026-09-10
+
+**103 — EVERY ASK PUT TO THE QA LEAD IS WRITTEN IN HIS LANGUAGE, NOT OURS.** Ordered by the QA lead on
+2026-09-10, quoted verbatim in the rule body, after that day's outstanding list put five decisions to
+him in case ids, endpoint names, HTTP status codes and story keys. His words: *"I keep on reading
+everything again and again and waste my time and understand nothing."*
+Recorded in `build/rules/RULES-61-ONWARD.md` (rule 103), indexed in `CLAUDE.md` §2, and folded into the
+existing §1 reporting bullet as an **amendment** rather than a new bullet, per the §1 admission gate (a
+refinement amends the bullet on that subject; it never adds a second one about it). Rule count 102 →
+**103**.

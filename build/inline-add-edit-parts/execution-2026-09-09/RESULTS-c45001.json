@@ -1,0 +1,17 @@
+{
+ "pass_meta": {
+  "suite": "Inline Add and Edit Parts (6597)",
+  "run": 418,
+  "env": "the sv9315 QA branch",
+  "build": "v26.36.0-f43b2fd",
+  "date": "10 September 2026",
+  "view_mode": "Tech view"
+ },
+ "results": {
+  "C45001": {
+   "verdict": "Failed",
+   "observed": "CORRECTION OF AN EARLIER RESULT. This case was marked Passed earlier today. That was wrong and this result replaces it. The first two things the case asks for are fine, but the third was still being checked when the Passed was written, and it does not hold.\n\nWhat the case asks for: after a part has been saved onto a work order line, it should become locked - you should not be able to keep changing it in place.\n\nWhat actually happens: the part stays fully editable after it has been saved. You can reopen it and change it as if it had never been saved. There is no lock at any point.\n\nWhat is fine: the part does save, and it appears on the line correctly. It is only the locking afterwards that is missing.\n\nA defect ticket for this is written and is waiting for the QA lead to approve raising it. Until then this case stands as Failed so that nobody reads it as working.",
+   "todo": "Retest on Staging: add a part to a work order line and save it, then try to change that same part again straight afterwards. It should be locked and not editable in place. If you can still edit it, the case fails, same as here. Nothing needs doing to the case itself - the wording is correct, it is the app that does not lock the part."
+  }
+ }
+}
