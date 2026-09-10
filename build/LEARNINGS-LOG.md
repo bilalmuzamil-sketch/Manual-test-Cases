@@ -33,6 +33,37 @@
 
 ## ENTRIES — newest first (id · date · tags · lesson → pointer)
 
+### L0036 · 2026-09-10 · #staging #build-verify #pdf #print #seeFinancialData #custom-roles #automation #methodology
+**"BUILD-VERIFY FOR AUTOMATION" MEANS PINNING THE REAL ENDPOINT + A TEXTABLE ASSERTION — THREE TRAPS
+FOUND ON C26577 (See-Financial-Data-OFF strips WO pricing), staging 2026-09-10.** A case can describe
+the RIGHT behaviour against the WRONG mechanism; build-verification for an Automated case must confirm
+the mechanism is real and deterministic or the automation fails/falsely-passes. Three traps, all live:
+**(1) The WO "Print Work Order" (⋮ menu) is client-side `window.print()`** of a time/labour-hours
+printer-friendly sheet that shows **NO money for anyone** (same doc as suite 6617) — it is NOT a
+server PDF and NOT the money-bearing document. The money document is the **Invoice/Estimate**:
+`GET /api/invoices/preview?invoice_id=<id>&type=pdf|html`. **(2) The generated invoice PDF has NO text
+layer** (`pdffonts` empty) → "search the PDF text for money" returns 0 even for a Fin-ON admin = false
+pass; assert on **`type=html`** or the JSON payload instead. **(3) seeFinancialData chokepoint CONFIRMED
+working** on the money doc: admin (Fin-ON) invoice HTML = 11 money figures ($539.35 total…), a
+See-Financial-Data-OFF user = **0** money. Secondary: the **WO view payload** (`/api/work-orders/view`)
+zeroes the totals for a Fin-OFF user **but leaks `tax.amountTotal` ($37.29)** — a real financial leak on
+that API even though the invoice render is clean. Full write-up + proposed (unapplied, Rule 71) case fix:
+`build/custom-roles/build-verify-C26577-2026-09-10/`. **Graduated-to:** this log; report folder.
+
+### L0035 · 2026-09-10 · #staging #access #cookies #cloudflare #roles #methodology
+**STAGING FACTS SETTLED LIVE 2026-09-10 (were "unproven" in staging-boot2.mjs).** **(a)** The staging
+**browser login with `sv_sso_session` ALONE gets past Cloudflare** — `boot2('admin')` landed on
+`/workorders` with 42 perms; the headless DEV-MODE panel click-through works on staging exactly as on a
+QA branch. This retires the two "❌ STILL UNOBSERVED" caveats in `staging-boot2.mjs` lines 32-39.
+**(b)** Roles admin route = **`/administration/roles-permissions`** (sidebar "Roles & Permissions",
+`verified_user`); role editor `/administration/roles-permissions/<id>/edit` shows **"View mode:
+Full View / Tech view"** + a **"See Financial Data"** toggle. Roles API: `GET /api/roles/{id}` (has
+`view_mode`, `cross_toggles.seeFinancialData`, `fe_permissions`); list `GET /api/organizations/{org}/roles`.
+**(c) `staging-restore-tech.mjs` STAFF id has DRIFTED** — `/api/staff/{id}/change` 404s and `/api/staff`
+lists 0 rows (staging re-seeded); update the id from the Staff settings page before using it. A full-view
+Fin-OFF role already exists: **"TEST"** `e0e9b247-5432-43e8-9e35-f0c9bf3ade16`. org id
+`d55bc308-e61a-438d-b5f1-c7a73c89d49f`. **Graduated-to:** this log; to fold into `staging-boot2.mjs` header + playbook §A.
+
 ### L0034 · 2026-09-10 · #testrail #mistake-corrected #steps-format #diagnosis
 **A CASE'S STEPS/EXPECTED CAN LIVE IN `custom_steps_separated`, NOT `custom_steps` — READING ONLY THE PLAIN
 FIELD FALSELY SHOWS "EMPTY".** Diagnosing why four of Vlad's cases fail in automation, C43850 and C45275

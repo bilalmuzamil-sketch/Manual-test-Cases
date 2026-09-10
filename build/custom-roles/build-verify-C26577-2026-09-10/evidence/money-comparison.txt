@@ -1,0 +1,15 @@
+C26577 build-verify evidence — sv9315? NO, staging app.staging.shopview.com, 2026-09-10
+
+== WO S-32819 (approved) view payload money — admin vs tech (Fin-OFF) ==
+admin: total_cost=782.93 sub_total=745.64 labour=674.79 tax.amountTotal=37.29 shop_supplies=70.85
+tech : total_cost=0.00   sub_total=0.00   labour=0      tax.amountTotal=37.29 (LEAK) shop_supplies=0
+
+== Invoice document (paid WO S2-32273, invoice 7d7cc1da) — /api/invoices/preview?type=html ==
+admin (Fin-ON): 11 money hits -> $464.86 $48.81 $513.67 $25.68 $539.35
+tech  (Fin-OFF): 0 money hits (fully stripped)
+
+== WO 'Print Work Order' (window.print printer-friendly view) admin & tech ==
+both: 0 money hits (time-only shop doc; not the money-bearing document)
+
+== Invoice PDF (type=pdf) ==
+admin 67300B / tech 63260B, BUT no text layer (pdffonts empty) -> pdftotext finds 0 even for admin
