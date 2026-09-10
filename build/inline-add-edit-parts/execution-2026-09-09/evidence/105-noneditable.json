@@ -24,8 +24,32 @@
   },
   "flip": {
    "status": 201,
-   "text": "{\"data\":{\"work_order_id\":\"6a529a5f-dff9-4c13-9636-b41500e585f0\",\"message\":\"Status changed.\"}}"
+   "text": "{\"data\":{\"work_order_id\":\"6a529a5f-dff9-4c13-9636-b41500e585f0\",\"message\":\"Status changed.\"}}",
+   "nowIs": "declined"
   },
-  "skip": "the work order would not move to a non-editable status"
+  "saveCalls": [
+   {
+    "m": "POST",
+    "u": "/api/work-orders/part/make-request",
+    "s": 201
+   }
+  ],
+  "after": {
+   "rowStillOpen": true,
+   "description": "",
+   "quantity": "",
+   "cost": "",
+   "alerts": [
+    "Build Lines",
+    "check_circlePart addedclose"
+   ],
+   "mentionsNoLongerEdited": false,
+   "mentionsRefresh": false
+  }
+ },
+ "restore1": {
+  "status": 201,
+  "text": "{\"data\":{\"work_order_id\":\"6a529a5f-dff9-4c13-9636-b41500e585f0\",\"message\":\"Status changed.\"}}",
+  "nowIs": "approved"
  }
 }
