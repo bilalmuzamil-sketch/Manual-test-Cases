@@ -27,10 +27,10 @@ const closeCtl=async()=>page.evaluate(vis=>{const isVis=eval(vis); const t=e=>(e
   let box=d; for(let i=0;i<9&&box.parentElement;i++){box=box.parentElement; if(box.querySelector('[data-test-id=button_save_inline_part]')) break;}
   const b=box.querySelector('[data-test-id=button_cancel_inline_part]')||[...box.querySelectorAll('button,.q-btn')].filter(isVis).find(x=>/^(cancel|×|close)$/i.test(t(x)));
   if(!b) return 'not found'; b.click(); return t(b)||'(icon)';}, VIS);
-const dlgClick=async(re)=>page.evaluate((vis,rx)=>{const isVis=eval(vis); const t=e=>(e.textContent||'').replace(/\s+/g,' ').trim();
+const dlgClick=async(re)=>page.evaluate(({vis,rx})=>{const isVis=eval(vis); const t=e=>(e.textContent||'').replace(/\s+/g,' ').trim();
   const d=[...document.querySelectorAll('.q-dialog')].filter(isVis).pop(); if(!d) return 'no dialog';
   const b=[...d.querySelectorAll('button,.q-btn')].filter(isVis).find(x=>new RegExp(rx,'i').test(t(x)));
-  if(!b) return 'no button'; b.click(); return t(b);}, VIS, re);
+  if(!b) return 'no button'; b.click(); return t(b);}, {vis:VIS, rx:re});
 const navAway=async()=>page.evaluate(()=>{const t=e=>(e.textContent||'').replace(/\s+/g,' ').trim();
   const l=[...document.querySelectorAll('a,.q-item,.q-tab')].find(x=>/^(schedule|customers|invoices|dashboard)$/i.test(t(x)));
   if(l){ l.click(); return t(l); } history.back(); return '(browser back)';});

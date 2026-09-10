@@ -7,7 +7,7 @@ const EST='b90d6e97-3f47-4745-8cc6-73765802d6ab';
 const log=(...a)=>console.log(new Date().toISOString().slice(11,19),...a);
 const VIS=`(e)=>{const r=e.getBoundingClientRect();const c=getComputedStyle(e);
   return r.width>0&&r.height>0&&c.display!=='none'&&c.visibility!=='hidden'&&parseFloat(c.opacity)>0.01;}`;
-const s = await boot('sv9315','/workorders','tech'); const { page, APP } = s;
+const s = await boot('sv9315','/workorders','tech'); const { page, APP, APIH } = s;
 const R={}; const captured=[];
 page.on('response', async r=>{ const u=r.url();
   if(!/part/i.test(u) || !/search|catalog|parts/i.test(u)) return;
@@ -36,16 +36,32 @@ const items = await menuItems();
 R.itemTexts = items.items ? items.items.slice(0,12) : [];
 log('menu items:', JSON.stringify(R.itemTexts.slice(0,4)));
 
+// ---- 1b. find a part whose part_type is NOT inventory_part (a pure catalogue part)
+R.catalogueSearch = await page.evaluate(async (api)=>{
+  const out={inventory:[], catalogue:[]};
+  for (const q of ['OIL','FILTER','BOLT','SEAL','HOSE','BRAKE']){
+    const u=`https://${api}/api/work-orders/part/request/inventory-parts-as-options-with-remaining-catalogue-parts?pagination[rowsPerPage]=100&pagination[page]=1&search=${encodeURIComponent(q)}`;
+    const r=await fetch(u,{headers:{Accept:'application/json'}, credentials:'include'}); if(!r.ok) continue;
+    const j=await r.json(); const rows=j.collection||j.data||[];
+    for(const x of rows){ const rec={q, pn:x.part_number, name:(x.name||'').slice(0,50), type:x.part_type,
+      cost:x.cost, sell:x.sell_price, bins:(x.binLocations||[]).length};
+      if(x.part_type==='inventory_part'){ if(out.inventory.length<3) out.inventory.push(rec); }
+      else if(out.catalogue.length<6) out.catalogue.push(rec); }
+    if(out.catalogue.length>=6) break;
+  }
+  return out;}, APIH);
+log('part types found:', JSON.stringify(R.catalogueSearch));
+
 // ---- 2. C45001: pick each of the first 6 parts in turn and record read-only state
 R.descStates=[];
 for (let i=0;i<6;i++){
   await fresh(); await openRow();
   await page.click('[data-test-id=select_inline_part_number]');
   await page.keyboard.type('OIL',{delay:100}); await page.waitForTimeout(6500);
-  const label = await page.evaluate((vis,idx)=>{const isVis=eval(vis); const t=e=>(e.textContent||'').replace(/\s+/g,' ').trim();
+  const label = await page.evaluate(({vis,idx})=>{const isVis=eval(vis); const t=e=>(e.textContent||'').replace(/\s+/g,' ').trim();
     const menu=[...document.querySelectorAll('.q-menu,.q-select__dialog')].filter(isVis).pop();
     if(!menu) return null; const its=[...menu.querySelectorAll('.q-item')].filter(isVis);
-    if(!its[idx]) return null; const l=t(its[idx]).slice(0,80); its[idx].click(); return l;}, VIS, i);
+    if(!its[idx]) return null; const l=t(its[idx]).slice(0,80); its[idx].click(); return l;}, {vis:VIS, idx:i});
   if(!label){ log('item',i,'not available'); continue; }
   await page.waitForTimeout(5500);
   const st = await page.evaluate(()=>{const d=document.querySelector('[data-test-id=input_inline_part_description]');

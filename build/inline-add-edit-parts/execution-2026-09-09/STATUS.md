@@ -54,3 +54,49 @@ plus the view-mode-specific Bin Allocation case C45232 and C53477.
 Cases carry `Last checked against build v26.35.9-7f2e4fa on 9/8/2026`. The branch is now
 `v26.36.0-f43b2fd`, so every case verified in this pass gets its Sentence 2 re-stamped to the new
 marker and today's date (CLAUDE.md §5, mandatory since 2026-09-08).
+
+---
+
+# 2026-09-10 — Tech View execution (session resumed)
+
+Signed in through the **Technician quick login** (`qa-branch-boot.mjs sv9315 <route> tech`), which
+lands `view_mode: tech`, `seeFinancialData: false`, 6 fe_permissions, role **Technician**. Probe 41
+established that the Technician role **already** carries Work order lines → **Create & Edit ON** (it
+is a `.q-checkbox`, not a toggle — the first scan missed it), so **no role edit was needed** to reach
+the Tech View inline row.
+
+## Passes written to [R418](https://shopview.testrail.io/index.php?/runs/view/418) this session
+
+| Section | C-ids |
+|---|---|
+| Tech View Inline Add | C44998 C44999 C45000 C45002 C45003 C45004 C45005 C45006 C45008 C45009 C45010 C45011 C45012 C45013 C45014 C45015 C45016 C45017 C45018 C45019 C45020 |
+| Tech View Inline Edit | C45023 C45024 C45025 C45026 C45027 C45029 C45030 C45031 C45033 C45034 |
+| Unsaved Data Protection | C45069 |
+
+Every comment opens with the required line *"It was tested on the QA branch and needs to be retested
+on Staging by Viktoria."* followed by a layman explanation of what was checked and what happened.
+
+## Observations worth keeping
+
+- **The keyboard hint legend differs between the two rows, correctly.** Add row:
+  `Enter save & next row · Tab next field · Esc cancel`. Edit row: `Enter save · Tab next field ·
+  Esc cancel`. The legend renders as separate `<kbd>`-style chips, so a `body.innerText` regex
+  returns bare `Enter`/`Tab`/`Esc` with no surrounding words — **read it from the screenshot, not
+  from `innerText`**. Evidence: `evidence/50-a-addhint.png`, `evidence/50-b-edithint.png`.
+- **The typeahead endpoint is
+  `GET /api/work-orders/part/request/inventory-parts-as-options-with-remaining-catalogue-parts`**
+  on the **API host** (`sv9315api.qa.shopview.com`), not the app origin — an in-page `fetch` of a
+  relative `/api/...` path returns the SPA's `index.html`. Each row carries `part_type`
+  (`inventory_part` vs catalogue), `cost`, `sell_price` and **`binLocations`**.
+- **`page.evaluate` takes exactly one argument.** Three probes died on `evaluate(fn, a, b)`; wrap
+  the arguments in an object.
+
+## Still to do in this suite
+
+| Block | C-ids | What it needs |
+|---|---|---|
+| Tech View Inline Add | C45001 C45007 C45021 C45022 C45028 C45032 C45035 | a pure catalogue part (not `inventory_part`), a Full View cross-check, the two save-failure paths, and a role with Create & Edit OFF |
+| Unsaved Data Protection | C45070–C45083 | probe 48 rerun (it died on the `evaluate` bug after C45069) |
+| Bin Allocation | C45221–C45243 | the bin data state — playbook §S records `S31S-950` (four bins), `TP-12-1013-CH` (already negative) and `6050-P` (no prices) as present on **this** branch |
+| Full View remainder | C45039 C45058 C45060 C45061 C45062 C45066 C53477 | catalogue vs inventory parts, the two failure paths, and two role variants (Create & Edit OFF; Full View without See Financial Data) |
+| Section 1 | C45251–C45254 | a completed line with a **picked** part, and a special-order part |
