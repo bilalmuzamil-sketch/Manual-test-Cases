@@ -1,0 +1,27 @@
+{
+ "before": {
+  "view": "Tech view",
+  "sfd": false
+ },
+ "click": "clicked Full View",
+ "domAfterClick": {
+  "view": "Full View",
+  "sfd": false
+ },
+ "save": "clicked Save",
+ "network": [
+  "POST https://www.google-analytics.com/g/collect",
+  "  <- 204 https://www.google-analytics.com/g/collect",
+  "POST https://sv9315api.qa.shopview.com/api/check-existing-roles",
+  "  <- 200 https://sv9315api.qa.shopview.com/api/check-existing-roles"
+ ],
+ "afterReload": {
+  "view": "Tech view",
+  "sfd": false
+ },
+ "persisted": false,
+ "apiRole": {
+  "path": "/api/roles/2d4b8464-81a9-4c1e-96c6-a2a64f02a389",
+  "snippet": "{\"data\":{\"id\":\"2d4b8464-81a9-4c1e-96c6-a2a64f02a389\",\"name\":\"Technician\",\"description\":\"Assigned work orders and time tracking (Tech View)\",\"default\":true,\"editable\":true,\"deletable\":false,\"fe_permissions\":[{\"id\":\"4b3ff330-c3de-4033-a818-dbfe3f783e22\",\"name\":\"customersView\",\"code\":\"customersView\"},{\"id\":\"6ebb820b-e64d-4a89-b02a-5ba07c26f9fc\",\"name\":\"workOrderLinesCreateAndEdit\",\"code\":\"workOrderLinesCreateAndEdit\"},{\"id\":\"731553f0-711f-4da8-ad46-017cacb84cce\",\"name\":\"woTechViewMode\",\"code\":\"woTechViewMode\"},{\"id\":\"9ceaf1e4-c4e7-4b30-88cb-5776d10136c4\",\"name\":\"woPickParts\",\"code\":\"woPickParts\"}"
+ }
+}
