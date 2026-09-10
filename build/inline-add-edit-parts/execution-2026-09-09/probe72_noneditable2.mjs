@@ -47,18 +47,43 @@ log('chosen:', JSON.stringify(R.chosen).slice(0,500)); save();
 if (!WO){ log('no spare approved work order with lines — stopping'); await s0.browser.close(); process.exit(0); }
 
 // ---- pick every part request on it, then complete every line
-const reqs = await call(s0.page, s0.APIH, '/api/work-orders/part/list-requests');
-const mine = rowsOf(reqs.json).filter(x=>String(x.work_order_id||x.workOrderId||'')===WO.id);
+// Part-request ids come off the LINE objects. /api/work-orders/part/list-requests ignores every
+// filter and returns the first 100 rows from across the estate (playbook §S), so it cannot be used
+// to find this work order's requests; the unfiltered list matched on the work order id is the
+// fallback.
+const idsFromLines = [];
+for (const l of LINES){
+  for (const [k,v] of Object.entries(l)){
+    if (Array.isArray(v) && v.length && typeof v[0]==='object'){
+      for (const item of v){
+        if (item && (item.part_request_id||item.id) && (item.status!==undefined || item.part_number!==undefined))
+          idsFromLines.push({line:l.id, key:k, id:item.part_request_id||item.id, status:item.status});
+      }
+    }
+  }
+}
+R.requestSource = idsFromLines.length ? 'line objects' : 'unfiltered list-requests, matched on the work order id';
+let ids = idsFromLines.map(x=>x.id);
+if (!ids.length){
+  const all = await call(s0.page, s0.APIH, '/api/work-orders/part/list-requests');
+  ids = rowsOf(all.json).filter(x=>JSON.stringify(x).includes(WO.id)).map(x=>x.id).filter(Boolean);
+}
+R.requestIds = ids;
 R.picks=[];
-for (const rq of mine){
-  const res = await call(s0.page, s0.APIH, '/api/work-orders/part/perform-request-status-action', {part_request_id:rq.id, action:'pick'});
-  R.picks.push({id:rq.id, status:res.status, body:res.text.slice(0,90)});
+for (const id of ids){
+  const res = await call(s0.page, s0.APIH, '/api/work-orders/part/perform-request-status-action', {part_request_id:id, action:'pick'});
+  R.picks.push({id, status:res.status, body:res.text.slice(0,90)});
 }
 log('picked %d part requests:', R.picks.length, JSON.stringify(R.picks).slice(0,300));
 R.lineCompletes=[];
 for (const l of LINES){
+  // a line sitting at authorization_required cannot go straight to complete — authorise it first
+  if (String(l.status||'').toLowerCase()==='authorization_required'){
+    const a = await call(s0.page, s0.APIH, '/api/work-orders/lines/change-status', {line_id:l.id, status:'authorized', workOrderId:WO.id});
+    R.lineCompletes.push({id:l.id, step:'authorize', status:a.status, body:a.text.slice(0,90)});
+  }
   const res = await call(s0.page, s0.APIH, '/api/work-orders/lines/change-status', {line_id:l.id, status:'complete', workOrderId:WO.id});
-  R.lineCompletes.push({id:l.id, status:res.status, body:res.text.slice(0,110)});
+  R.lineCompletes.push({id:l.id, step:'complete', status:res.status, body:res.text.slice(0,110)});
 }
 log('lines -> complete:', JSON.stringify(R.lineCompletes).slice(0,400)); save();
 await s0.browser.close();
