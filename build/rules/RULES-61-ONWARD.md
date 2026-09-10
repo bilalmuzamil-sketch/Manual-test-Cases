@@ -3529,3 +3529,49 @@ Index: CLAUDE.md (rule index table). Other rule files: build/rules/RULES-01-20.m
     **RELATION TO OTHER RULES:** this is Rule 7/9 (plain layman wording for tester- and PO-facing text)
     extended to the QA lead himself, and the enforcement half of Rule 99 (every ask self-contained and
     executable). Rules 98 and 36 still set the report shape; 103 sets the language inside it.
+
+---
+
+104. **A NEGATIVE FINDING MUST PROVE THE INSTRUMENT WORKED — UNBLOCK YOURSELF BEFORE YOU REPORT A
+    BLOCKER, AND NEVER RE-BLOCK ON SOMETHING ALREADY UNBLOCKED (all projects, permanent; QA lead,
+    2026-09-10).**
+    **THE ORDER, VERBATIM (QA lead, 2026-09-10):** *"Keep on saving the learning for yourself for the
+    future, I do not want you to block yourself on something I have unblocked you previously, also you
+    must need to setup a mechanism to unblock yourself so that when you are doing something in an
+    unattended mode you do not get yourself trapped into a blocker which you can cross by yourself if
+    you work better than what you are currently doing."*
+    **THE FAILURE IT FIXES.** One session, 2026-09-10, produced **five** false blockers; every one was
+    that session's own automation reported as a product defect (selector × 2, timing × 1, route × 1,
+    method × 1 — the table is in learning **L0036**). **Two had already been unblocked by hand by the QA
+    lead on earlier days and were re-blocked anyway.** **Rule 97 cannot catch this class**: 97 says the
+    answer is probably written down; this is *the instrument is broken and I blamed the patient*.
+    **THE STANDARD.** A **NEGATIVE** claim — *absent · missing · nothing · broken · impossible · blocked
+    · cannot · does nothing* — is **INADMISSIBLE** until the same investigation proves the instrument
+    worked. Seven proofs, all required, each carrying evidence:
+    **(1) POSITIVE CONTROL** — the same method found this kind of thing somewhere else in the same run.
+    **(2) THROUGH THE SCREEN** — a claim about the PRODUCT is reproduced the way a user does it; an API
+    or script route failing is a fact about the script (68). **(3) WAITED AND RETRIED** — ≥2 attempts and
+    the page confirmed quiet; *a panel that never opened and an empty panel are indistinguishable*.
+    **(4) NAVIGATION CHECKED** — url-before vs url-after and the tab count; an action that navigates is
+    not an action that did nothing. **(5) PRECONDITION READ BACK** — the state you claim to be testing
+    was actually built and re-read; **a 200 is not evidence a write took effect**. **(6) REPO SEARCHED**
+    (Rule 97, unchanged). **(7) "WHAT WOULD MAKE THIS MY FAULT?"** — name the most likely self-fault and
+    how it was ruled out. *If you cannot name one, you have not looked: five for five were self-faults.*
+    **THE MECHANISM IS EXECUTABLE, NOT A CHECKLIST — BOTH FILES ARE COMMITTED AND MUST BE USED:**
+    - **`build/testing-tools/probe_guard.mjs`** — at OBSERVATION time. `settle()` waits until the page
+      genuinely stops changing and says whether it did · `afterAction()` records navigation, new tab,
+      panel, DOM change and server write, so a click cannot be written up as "nothing happened" unless
+      all five are empty · `assertNegative()` **throws** without a passing positive control, ≥2 attempts,
+      a settled page and a UI attempt. **A probe that throws is a probe to FIX, never a finding to file.**
+    - **`build/testing-tools/blocker_gate.py`** — at REPORTING time. `--new` emits a claim file, `--check`
+      exits **1** until all seven proofs carry evidence, `--questions` lists them.
+    **THE HARD GATE:** **nothing negative reaches a `BLOCKED-*.md`, a defect candidate, a PO/QA-lead ask,
+    or a Blocked / Failed-because-unavailable result until `blocker_gate.py --check` exits 0.** A proof
+    that genuinely cannot be closed is reported **as an open gap**, never as a proved blocker.
+    **AND CHECK THE HISTORY FIRST:** before declaring anything blocked, `ls build/BLOCKED-*.md` and grep
+    the register and the learnings log — **several are marked RESOLVED or WITHDRAWN with the route that
+    worked.** Re-blocking on something the QA lead has already unblocked is the specific waste this rule
+    exists to stop.
+    **RELATION TO OTHER RULES:** extends Rule 68 (a blocker blocks only what it actually blocks, and one
+    tool failing is a fact about that tool) and Rule 12 (observed, never inferred) to the *negative* case;
+    Rule 97 stays as-is for the "already written down" class. Learning **L0036**.

@@ -398,3 +398,19 @@ Recorded in `build/rules/RULES-61-ONWARD.md` (rule 103), indexed in `CLAUDE.md` 
 existing §1 reporting bullet as an **amendment** rather than a new bullet, per the §1 admission gate (a
 refinement amends the bullet on that subject; it never adds a second one about it). Rule count 102 →
 **103**.
+
+## Rule 104 added 2026-09-10
+
+**104 — A NEGATIVE FINDING MUST PROVE THE INSTRUMENT WORKED.** Ordered by the QA lead on 2026-09-10,
+quoted verbatim in the rule body, after one session produced **five** false blockers in a day — every
+one that session's own selector, timing, route or method reported as a product defect, and **two of
+them already unblocked by hand by the QA lead on earlier days**. Rule 97 could not catch this class:
+97 addresses "the answer is already written down", 104 addresses "the instrument is broken and I
+blamed the patient".
+Unlike most rules this one ships **executable enforcement**, at his explicit request for a *mechanism*
+rather than a reminder: `build/testing-tools/probe_guard.mjs` (observation time — `settle`,
+`afterAction`, `assertNegative`) and `build/testing-tools/blocker_gate.py` (reporting time — seven
+proofs, exit 1 until all carry evidence).
+Recorded in `build/rules/RULES-61-ONWARD.md` (rule 104), indexed in `CLAUDE.md` §2, and folded into the
+existing §1 blocker bullet as an **amendment** per the §1 admission gate. Evidence and the five-case
+table: learning **L0036**. Rule count 103 → **104**.

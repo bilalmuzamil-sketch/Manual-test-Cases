@@ -616,3 +616,54 @@ collapsed line at row 49 has no Add Part row beneath it at all.
 
 **Also visible in that dump:** a line carries `button_action_complete_line_<lineId>` — the UI's own
 Complete action — so a line can be completed by clicking rather than by the status API.
+
+## L0036 — 2026-09-10 · FIVE FALSE BLOCKERS IN ONE SESSION, ALL THE SAME MISTAKE: MY INSTRUMENT BROKE AND I BLAMED THE PRODUCT
+
+**The QA lead, 2026-09-10:** *"I do not want you to block yourself on something I have unblocked you
+previously... you must set up a mechanism to unblock yourself so that when you are doing something in
+an unattended mode you do not get yourself trapped into a blocker which you can cross by yourself."*
+
+**The five.** Not one was the product:
+
+| I reported | The truth | What actually failed |
+|---|---|---|
+| "no Add Part on this line" | lines are **table rows**, not `.q-expansion-item` — those two panels are the customer and vehicle headers | my selector |
+| "Print is missing on 4 of 5 statuses" | I opened a **line's** three-dots menu, not the toolbar's; Paid only looked right because it has no lines | my selector |
+| "Print absent on ready_for_review" | the menu **never opened** (`menuOpen:false`) — that is not a reading | my timing |
+| "Receive does nothing, the app throws" | Receive **navigates** to `/order/<id>?receive=1&…`; I described the page 5s in, before it rendered | my route + timing |
+| "roles cannot be saved" | roles save fine through **Settings → Roles & Permissions**; staff assignment saves too | my method (script, not screen) |
+
+**THE SHAPE, and it is always the same:** a **NEGATIVE** observation — *absent, nothing, broken,
+impossible, blocked* — produced by **my own locator, timing, or route**, never cross-checked against a
+case where the same instrument worked. Two of these the QA lead had already unblocked by hand on
+earlier days, and I re-blocked myself on them anyway.
+
+**Rule 97 did not catch any of them**, and could not: 97 says *the answer is probably already written
+down*. This class is different — **the instrument is broken and I blame the patient.** Hence Rule 104
+and a real mechanism, not another reminder.
+
+**THE MECHANISM — two files, both executable, both committed:**
+
+**1. `build/testing-tools/probe_guard.mjs` — catches it at OBSERVATION time, inside the probe.**
+- `settle(page)` — waits until the URL and DOM actually stop changing and *reports whether they did*;
+  an observation taken from an unsettled page is marked UNRELIABLE rather than recorded.
+- `afterAction(page, ctx, fn)` — wraps a click and records **navigation · new tab · panel · DOM change
+  · server write**. A click can never be written up as "nothing happened" unless all five are empty.
+  This alone kills the Receive mistake.
+- `assertNegative({what, positiveControls, attempts, userPathTried})` — **throws** unless the same run
+  contains a passing positive control, at least 2 attempts, a settled page, and a UI attempt. This
+  kills the three selector mistakes and the role mistake.
+
+**2. `build/testing-tools/blocker_gate.py` — catches it at REPORTING time.** Seven proofs, each needing
+evidence: positive control · tried through the screen · waited and retried · checked for navigation ·
+precondition read back · searched the repo (97) · **"name the most likely way this is MY fault and how
+I ruled it out"**. Exit 1 until all seven carry evidence. `--questions` prints them for a quick check.
+
+**THE ORDER OF OPERATIONS, for an unattended run:** build the probe on `probe_guard`; if
+`assertNegative` throws, **fix the probe, do not record the finding**; before anything negative reaches
+a `BLOCKED-*.md`, a defect candidate, or a Blocked/Failed-as-unavailable result, run `blocker_gate.py`
+and get exit 0. **A gap that genuinely cannot be closed is reported AS AN OPEN GAP, never as a proved
+blocker.**
+
+**The one question that would have caught all five:** *"what is the most likely way this is my own
+mistake?"* Five for five, there was an obvious answer and I had not asked.
