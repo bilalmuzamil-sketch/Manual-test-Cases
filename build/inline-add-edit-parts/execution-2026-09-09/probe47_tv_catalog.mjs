@@ -42,7 +42,11 @@ R.catalogueSearch = await page.evaluate(async (api)=>{
   for (const q of ['OIL','FILTER','BOLT','SEAL','HOSE','BRAKE']){
     const u=`https://${api}/api/work-orders/part/request/inventory-parts-as-options-with-remaining-catalogue-parts?pagination[rowsPerPage]=100&pagination[page]=1&search=${encodeURIComponent(q)}`;
     const r=await fetch(u,{headers:{Accept:'application/json'}, credentials:'include'}); if(!r.ok) continue;
-    const j=await r.json(); const rows=j.collection||j.data||j.rows||[];
+    const j=await r.json();
+    const pick=o=>{ for (const k of ['collection','data','rows','items','results']){ if (Array.isArray(o&&o[k])) return o[k]; }
+      if (Array.isArray(o)) return o;
+      for (const k of Object.keys(o||{})){ const v=pick(o[k]); if (v&&v.length) return v; } return []; };
+    const rows=pick(j);
     for(const x of rows){ const rec={q, pn:x.part_number, name:(x.name||'').slice(0,50), type:x.part_type,
       cost:x.cost, sell:x.sell_price, bins:(x.binLocations||[]).length};
       if(x.part_type==='inventory_part'){ if(out.inventory.length<3) out.inventory.push(rec); }
