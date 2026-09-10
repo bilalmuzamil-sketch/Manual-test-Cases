@@ -337,3 +337,49 @@ afterwards (HTTP 201)**, so the environment is as it was found.
   carry the before/after exhibits. They should be rebuilt as **one complete comment each, corrected
   in place by `commentId`** — never stacked — awaiting the QA lead's go-ahead.
 - No defect is outstanding from this work. The retracted one did not exist.
+
+---
+
+# The three QA comments rebuilt with before-vs-after — 2026-09-10, and the pre-post gate that ran first
+
+Authorised by the QA lead. Each comment was **rebuilt as one complete comment and updated in place by
+its comment id** — 76272 (SV-9849), 76273 (SV-9870), 76274 (SV-9857). Nothing was stacked, and no
+comment contains any "we said X, actually Y" framing: each states the current result and its evidence.
+
+## The pre-post bite-proof gate (Standing Rule 72), run immediately before the first write
+
+| # | Check | Result |
+|---|---|---|
+| 1 | Build markers re-read live on **both** environments | Branch `v26.36.0-3340667` (last-mod Thu 10 Sep 02:40:22 GMT) and staging `v26.36.0-ede3d52` (Wed 09 Sep 11:50:48 GMT) — both unchanged since the pass |
+| 2 | Ticket state re-read live | SV-9849 Ready for Production · SV-9870 Ready for Production · SV-9857 TESTING QA; **no new comment on any of the three** since ours |
+| 3 | Every embedded image URL curled | 6 of 6 returned HTTP 200 from the committed path |
+| 4 | Every figure traced to a live measurement from this pass | Yes — sheet counts, offsets, page-fill and the money comparison all come from the 8-document run |
+| 5 | Named test data still live | The named documents were rendered live this pass |
+| 6 | Human-voice / no AI fingerprint scan of reader-facing text | Clean |
+| 7 | Format — verdict first line, complete table, captioned images, technical detail last | Confirmed in all three |
+| 8 | Read back from Jira after posting | Done — see below |
+
+## Read-back after posting
+
+| Ticket | Comment | First line | Images, in order | Table rows |
+|---|---|---|---|---|
+| SV-9849 | 76272 | `OVERALL QA STATUS: PASSED — masthead logo` | ba1-sv9849-logo-centred, then ex1-sv9849-centring | header + 8 |
+| SV-9870 | 76273 | `OVERALL QA STATUS: PASSED — printed invoice paper reduction` | ba2-sv9870-paper-9-to-5, then ex3-sv9870-print | header + 11 |
+| SV-9857 | 76274 | `OVERALL QA STATUS: PASSED — a tall work line no longer leaves the rest of the page blank` | ba3-sv9857-page-fill, then ex2-sv9857-linesplit | header + 5 |
+
+## What changed in the comments, and why
+
+- **Every comment now opens its evidence with a BEFORE vs AFTER exhibit** (Standing Rule 73) — the same
+  document on the pre-fix build beside the fixed build, each half labelled with its build marker, with
+  one plain sentence of what changed. That is the part a non-technical reader actually reads.
+- **SV-9870's "we have no before version here" paragraph is gone**, because it is no longer true. It is
+  replaced by the measured comparison: **52 sheets → 36 across eight invoices, 31% less paper, all eight
+  shorter and none longer**, with the money proven identical between the two builds.
+- **SV-9857 now carries real before-and-after numbers** instead of after-only percentages: pages after
+  the first begin mid-job **28 of 28** on the fixed build against **9 of 40** before, and average page-1
+  fill rises **604 → 758**.
+- **SV-9849 now carries the measured drift it fixes** — **+37.44 to +50.40 pt off centre before,
+  +0.00 pt after, on all eight** — rather than only the after-state.
+- **The method is stated in each technical section**: the same work orders, the same endpoint, and the
+  **document display settings read and matched per work order** before rendering, so the build is the
+  only variable. That sentence is what makes the comparison defensible if anyone re-runs it.
