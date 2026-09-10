@@ -67,6 +67,22 @@ Index: CLAUDE.md (rule index table). Other rule files: build/rules/RULES-01-20.m
    name a case by its internal ID (FD-/SF-/SCH-/etc.) ANYWHERE — a chat reply, a status
    update, a summary table, a findings list — I MUST pair it with the TestRail Case ID
    (C#####) + the /cases/view/<id> link so the user can look it up in TestRail. Never
+   **🛑 AMENDED 2026-09-10 (QA lead, verbatim): "Give me the Test run of the test case link
+   ALWAYS anytime you have to share with me the test case number."** So a case number never
+   travels alone in ANYTHING he reads. Every mention of a case carries THREE things, together:
+   the **C-id**, its **case link** `https://shopview.testrail.io/index.php?/cases/view/<id>`,
+   and the **RUN it was executed in — the run number AND its link**
+   `https://shopview.testrail.io/index.php?/runs/view/<run>`. Where the exact test row inside
+   the run is known, prefer the run-scoped test link
+   `https://shopview.testrail.io/index.php?/tests/view/<test_id>` — that is the one that opens
+   on the result he wants to read — and still name the run. This binds chat, status updates,
+   reports, register rows, tables and files alike. It is a SECOND ask on the same subject as the
+   2026-07-23 extension above, which he had to repeat because the run was being left off; a case
+   link with no run makes him hunt for the result. Under Rule 103 the ids and links live after the
+   `---REFERENCE---` line and never carry the meaning — but they are never omitted.
+   The active runs for the two current suites: **Inline Add and Edit Parts = run 418**
+   (`https://shopview.testrail.io/index.php?/runs/view/418`) · **Printer Friendly Work Orders =
+   run 419** (`https://shopview.testrail.io/index.php?/runs/view/419`).
    give a bare internal ID with no C-ID. (A case not yet in TestRail — e.g. a new
    to-be-authored case — is stated as "new, no C-ID yet".) User rule: "instead of just
    such numbers also give me the TestRail test case IDs so I can look for those in

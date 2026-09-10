@@ -910,3 +910,19 @@ Finishing runs 418/419 on Staging produced four misses of the same two shapes, a
 
 The habit: before any negative claim, ask *which element did I read, and which word did the server
 actually use?* — then look at the screen, in that order.
+
+## L0044 — 2026-09-10 · a case number without its run makes him hunt
+
+He asked twice for the same thing. On 2026-07-23 it was "pair the internal id with the C-id and the
+case link"; on 2026-09-10, "Give me the Test run of the test case link ALWAYS anytime you have to
+share with me the test case number." The second ask exists because the first was satisfied literally
+and uselessly: a `/cases/view/` link opens the case, not the RESULT, and the result is what he wants
+to read. A case can sit in several runs; without the run he has to find which one.
+
+The habit: a case reference is three things or it is not written — the C-id, the case link, and the
+run (number and link; the `/tests/view/<test_id>` form when the exact row is known). Recorded as the
+Rule 8 amendment of 2026-09-10.
+
+The wider lesson, which is the same one as L0043: **when he repeats a request, the first version was
+answered to the letter and missed the point.** Ask what he was trying to DO with the thing he asked
+for, not just what he named.

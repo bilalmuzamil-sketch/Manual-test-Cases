@@ -227,8 +227,11 @@ safe. The **evidence** for each one lives in the rule or skill the bullet points
   TestRail flags as Automated without his go-ahead; if a pass does change one, TELL VLAD (65).
 - **COMMIT AND PUSH AFTER EVERY STEP, PATH-SCOPED (29).** Git is the only durable store; the container
   and `/tmp` are ephemeral. `git add -- <paths>` only — **never `git add -A` / `git add .`**.
-- **ALWAYS PAIR AN INTERNAL ID WITH ITS C-ID AND LINK (8).** Never a bare `FLT-…`/`SCH-…`: give
-  `C#####` and `https://shopview.testrail.io/index.php?/cases/view/<id>` — in files AND in chat.
+- **A CASE NUMBER NEVER TRAVELS ALONE — C-ID · CASE LINK · AND ITS RUN (8; QA lead 2026-09-10:
+  *"Give me the Test run of the test case link ALWAYS anytime you have to share with me the test case
+  number."*).** Never a bare `FLT-…`/`SCH-…` and never a bare `C#####`: give `C#####`, its
+  `/cases/view/<id>` link, and the RUN it ran in — run number **and** `/runs/view/<run>`. Files AND
+  chat. Run ids, the `/tests/view/` form and why he re-asked: `build/rules/RULES-01-20.md` rule 8.
 - **🛑 EVERY REPORT IS FIVE TABLES, NAMES ITS C-IDS, AND ENDS WITH "OUTSTANDING — what I need from you"
   (98 · 99 · 36; QA lead 2026-09-01).** The five tables: **DONE · LEFT · BLOCKED · HOW TO UNBLOCK ·
   HANDOFF-READY.** **Prose is not a report.** **Table 2 must say how to finish each item concretely enough
