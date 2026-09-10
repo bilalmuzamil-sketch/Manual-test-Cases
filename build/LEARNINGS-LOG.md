@@ -746,3 +746,40 @@ And: **always the latest version of the source, never an old record in memory.**
    between a ticket that survives review and one that bounces.
 2. **Say what you could not confirm.** Our cases claim "specification version 16". The live read
    returns no version integer, so I stated that plainly instead of repeating the number as if verified.
+
+## L0040 — 2026-09-10 · the printout is BUILT ON DEMAND into `#wo-print-root`; print media alone shows the ordinary screen
+
+**This is the sixth time today the same mistake nearly reached a report — and the first time the
+guard caught it before anything was recorded.**
+
+On the QA branch I read the work order page under print media and found the whole app still there:
+25 buttons, 5 tabs, the navigation and 20 money amounts. That looked like a dozen failing cases
+(no pricing on the printout, interactive elements hidden, and so on). I did not report it, because
+the Rule 104 control had to run first.
+
+**The control settled it in one line:** visible elements screen **3190**, print **3190** — *unchanged*.
+Print media was changing nothing at all. And the stylesheet says exactly why:
+
+```css
+@media print { body.wo-printing > :not(#wo-print-root) { display: none !important; } }
+```
+
+**How the printout actually works:** pressing *Print Work Order* (1) adds the class `wo-printing`
+to `<body>`, (2) builds a `#wo-print-root` element holding the printout, and (3) that rule hides
+every sibling. **Switch to print media without pressing Print and the body has no `wo-printing`
+class, so nothing is hidden and you are reading the ordinary screen.** Every "the printout still
+shows X" conclusion from that method is void.
+
+**The method that is correct:** press Print for real (hook `window.print` so the dialog cannot block,
+but let the app do all its preparation first), confirm `#wo-print-root` exists, then read **inside
+that element**. Also worth asserting as a control: with print media on, no sibling of the print root
+is still displayed.
+
+**The five print rules on staging, for the record:** the `wo-printing`/`#wo-print-root` rule ·
+`.print-hide { display:none }` · a dark-mode colour override · an animation-duration override ·
+and one lifting the height cap on the work-order-lines scroll container so all lines print.
+
+**Why this keeps happening, and what actually stops it.** Every one of the six was a *negative*
+observation produced by my own method, and in five of them I had no control that could have exposed
+it. The control is not paperwork — here it was a single number compared against itself, and it saved
+a dozen wrong results.
