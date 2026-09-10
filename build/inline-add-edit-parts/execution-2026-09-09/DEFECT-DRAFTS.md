@@ -125,3 +125,85 @@ the part back to its saved values. This is a wording defect.
 [R418](https://shopview.testrail.io/index.php?/runs/view/418).
 
 **Attachment:** `defect-shots/candidate5-edit-discard-label.png`
+
+---
+
+## Draft 4 — parent **SV-9317**, and a second ticket for **SV-9319**
+
+**Summary:** A failed part save is not reported — on a dropped connection the row closes and the part is lost
+
+**Description:**
+
+On the sv9315 QA branch, build **v26.36.0-f43b2fd**, a save that fails is either reported with the
+wrong message or not reported at all.
+
+**Steps to reproduce**
+1. Open **Work Orders**, open an editable work order, open its **Lines** tab and click **+ Add Part**
+   on a line.
+2. Enter a description and a quantity (and, in Full View, a cost and a sell price).
+3. Make the save request fail. Two ways were tried, and they behave differently:
+   - the request returns a server error, or
+   - the request is cut off in flight, as it would be on a dropped connection.
+4. Press **Save**.
+
+**What happens**
+
+| The failure | Toast required (S2-EH1) | Toast shown | The row | The typing |
+|---|---|---|---|---|
+| Server error | "Couldn't add the part. Please try again." | **"Ooooops! An error occurred"** | stays open | kept |
+| Connection dropped | "Couldn't add the part. Please try again." | **nothing at all** | **closes** | **lost** |
+
+The second row is the serious one: the row closes exactly as it does on a successful save, no message
+appears, and the part is not on the work order. A technician working on a weak shop connection is told
+nothing and loses the line they just typed.
+
+**Why this is the build and not the test:** the same flow with nothing interfering saves normally —
+the part count goes 22 → 23 and the part is still there after a full page reload. Both views behave
+identically: Tech view and Full View were run separately and matched.
+
+**Test cases:** [C45022](https://shopview.testrail.io/index.php?/cases/view/45022) (Tech view, story
+SV-9317) and [C45062](https://shopview.testrail.io/index.php?/cases/view/45062) (Full View, story
+SV-9319), run [R418](https://shopview.testrail.io/index.php?/runs/view/418). **Two tickets, one per
+story, since the parents differ.**
+
+**Attachments:** `evidence/62-c45022-abort.png`, `evidence/62-c45022-500.png`,
+`evidence/76-c45062-abort.png`, `evidence/76-c45062-500.png`
+
+---
+
+## Draft 5 — parent **SV-9317**
+
+**Summary:** A saved part request stays fully editable — description, cost, core charge and vendor do not lock
+
+**Description:**
+
+On the sv9315 QA branch, build **v26.36.0-f43b2fd**, none of the fields that should freeze once a part
+request is saved actually do.
+
+**Steps to reproduce**
+1. Open **Work Orders**, open an editable work order, open its **Lines** tab and click **+ Add Part**.
+2. In the part number box choose a catalogue part — its card in the list reads **"Catalog"** rather
+   than showing a stock quantity (used: **F40010212**, "Slack Adjuster").
+3. Overwrite the description, enter a quantity, a cost of 14.00 and a sell price of 28.00, and Save.
+4. Move the mouse over the saved part and open it again.
+
+**What happens**
+
+| Field | Required after the save (S2-R5) | Observed |
+|---|---|---|
+| Description | read-only | **editable** |
+| Cost | read-only | **editable** (14.00000) |
+| Core charge | read-only | **editable** (0.00) |
+| Vendor | empty **and** read-only | empty but **editable** |
+| Source | *(not named by the rule)* | read-only |
+
+The only field that locks is the one the rule does not mention.
+
+**Note on the rule's age:** S2-R5's after-save half was added by the spec update of **2026-09-04**
+(SV-9766), so this may simply not be built yet rather than having regressed.
+
+**Test case:** [C45001](https://shopview.testrail.io/index.php?/cases/view/45001), run
+[R418](https://shopview.testrail.io/index.php?/runs/view/418). Clauses 1 and 2 of that case pass and
+were verified on nine parts between them; only the after-save clause fails.
+
+**Attachment:** `evidence/76-a-aftersave.png`
