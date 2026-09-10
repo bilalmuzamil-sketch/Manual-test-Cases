@@ -4173,6 +4173,91 @@ deliver the 7-tab management report.
     S5-R9 is what makes this a defect), 66 (test what the document says, not what the handoff says), 68
     (bite-proof) and 73 (the before/after capture that makes the diff possible).
 
+75. **A DIFFERENCE BETWEEN TWO ENVIRONMENTS IS A CONFIGURATION DIFFERENCE UNTIL PROVEN OTHERWISE —
+    READ THE SETTINGS THAT GOVERN THAT SURFACE, ON BOTH, BEFORE THE WORD "REGRESSION" IS USED (all
+    projects).**
+    USER DIRECTIVE (2026-09-10, verbatim): *"You are stupid, they are missing on the QA branch because
+    from under the settings icon the options for Summarize parts total and summarize labor total were
+    toggled off. Learn from your mistakes and save this in your learning to be thorough + detailed
+    oriented"*.
+    **THE MISTAKE, and it was mine, and it was worse than the one Rule 74 records.** Comparing the same
+    invoice on staging and on the fix branch I found the per-line **Labor** and **Parts** figures absent
+    on the branch — 50 and 45 of them across 65 footers — and reported a **REGRESSION against spec
+    S5-R9**, recommended reversing SV-9870's PASS, and said the QA comment needed correcting. **It was
+    not a regression at all.** The invoice document has a **settings (gear) icon on the Finance tab**
+    whose toggles include **"Summarize parts total"** and **"Summarize labor total"**, and on the branch
+    both were **switched OFF**. Read live from `GET /api/invoices/{woId}/settings/view`: staging
+    `summarizePartsTotal:true, summarizeLaborTotal:true`; branch **`false, false`**. Setting both to
+    true on the branch brought the figures straight back — **11 footers with Labor and 8 with Parts,
+    exactly matching staging** — and with **every** display toggle matched the two documents' money
+    became **multiset-IDENTICAL, 0 differences in either direction**.
+    **THE RULE — THE ORDER OF HYPOTHESES IS FIXED, AND CONFIGURATION COMES FIRST:** when the same record
+    renders or behaves differently on two environments, the ordered list of explanations is
+    **(1) a SETTING / TOGGLE / FEATURE FLAG / PERMISSION that governs that surface · (2) the DATA ·
+    (3) the CODE.** **Code is the LAST hypothesis, not the first.** Before any cross-environment
+    difference may be called a regression, **FIND AND READ THE SETTINGS OBJECT THAT CONTROLS THAT
+    SURFACE ON BOTH ENVIRONMENTS AND DIFF IT FIELD BY FIELD** — and then **MATCH THEM** and re-render.
+    A difference that survives matched settings is a finding; a difference that disappears is a
+    configuration difference and must never be reported as anything else.
+    **HOW TO FIND THE SETTINGS OBJECT (it is always findable, cheaply):** the screen that renders the
+    thing usually carries a **gear / settings / column-chooser / display control right beside it** —
+    look at the screenshot before theorising — and the endpoint behind it is one captured request away
+    (§U.1). For ShopView invoice documents it is
+    **`GET /api/invoices/{woId}/settings/view`** → `laborRate · laborHours · laborCost · partNumber ·
+    partQuantity · partCost · partDescription · summarizePartsTotal · summarizeLaborTotal · disclaimer`,
+    written back with **`POST /api/invoices/{woId}/settings/change`** in **snake_case, ALL fields
+    required** (an empty POST lists them). Recipe: playbook **§AC.5**.
+    **THE TELL I IGNORED, and it is the cheapest signal there is:** the difference was **UNIFORM** —
+    *every* footer on *every* page of *every* document, all 65 of them, all or nothing. **A code
+    regression is rarely perfectly uniform across an entire class; a toggle always is.** Uniformity is
+    the fingerprint of configuration. Alongside it: **other fields differed in the same object in the
+    OPPOSITE direction** (`laborRate` / `laborHours` were `false` on staging and `true` on the branch),
+    which is not what a one-way regression looks like either — and I had that evidence in the same
+    output and did not read it.
+    **THE CONSEQUENCE, STATED PLAINLY BECAUSE IT IS THE POINT:** a false regression is **more expensive
+    than a missed one**. It reverses a correct PASS, sends a developer hunting a defect that does not
+    exist, puts a wrong verdict in front of the people reading these tickets, and **costs the QA lead's
+    confidence in every other verdict in the same report** — which is exactly what happened here.
+    **SO: BE THOROUGH AND DETAIL-ORIENTED.** Read the whole settings object, not the one field that
+    looks relevant. Read the screenshot the QA lead sends. Explain the difference completely before
+    naming it. **A verdict is only ready when the alternative explanations have been eliminated by
+    evidence, not by plausibility.** Ties to Standing Rules 12 (observed, never inferred — "regression"
+    was an inference), 13, 22, 25, 26 (the same reasoning as role-drift: check the configured baseline
+    before judging behaviour), 40, 44, 50 (exhaustive AND exact — reading one field of a settings object
+    is neither), 57 (the spec defines the expectation — but only a genuine deviation is a deviation),
+    68 (bite-proof — a false regression is the definition of a bite), 73 and 74 (**this rule is the
+    guard 74 still lacked: diff the output, then explain every difference CONFIGURATION-FIRST**).
+
+76. **TEST THOROUGHLY, ALWAYS — a verdict read by the company's most senior people must be 100%
+    authentic (all projects).**
+    USER DIRECTIVE (2026-09-10, verbatim): *"But Now I have lost the faith in your testng for all three
+    tickets. 1. Test them again thoroughly and save it as a rule to test thoroughly always. 2. I need
+    before and after screenshots on all three tickets Since these 3 tickets are being read by the
+    highest positions people in our company make sure that your verdict on their being passed or failed
+    is 100% authentic."*
+    **THE RULE — every ticket verdict is built to this bar, not to the bar the ticket's checklist sets:**
+    **(a) EVERY ACCEPTANCE CRITERION, EXHAUSTIVELY** (Rule 50) — each declared change verified live, at
+    its stated value, on the stated surface, and proven to be scoped as the ticket claims (print-only
+    means the base rule is also read and shown unchanged).
+    **(b) PLUS THE UNDECLARED SURFACE** (Rule 74) — the whole output diffed against the pre-fix build
+    and **every** difference explained, **configuration-first** (Rule 75).
+    **(c) MORE THAN ONE SPECIMEN.** One document, one record, one row is a sample. Where the ticket's
+    claim is statistical (*"45% more paper"*, *"97% recovered"*), measure **several** records and give
+    the per-record numbers, never one flattering example.
+    **(d) THE REPORTED SYMPTOM IN THE REPORTER'S OWN TERMS** (Rule 66) — reproduce the described flow,
+    not a convenient proxy, and state the verdict in the words the reporter used.
+    **(e) BEFORE AND AFTER, ANNOTATED, ON EVERY TICKET** (Rules 64/73) — one exhibit per ticket
+    minimum, same record on both halves, each half labelled with environment + build marker + date,
+    **display settings matched and stated**.
+    **(f) EVERY NUMBER IN THE REPORT TRACEABLE TO A LIVE MEASUREMENT** taken that pass (Rules 12/68),
+    and every limit stated in the open — what was observed, on how many specimens, and what was not.
+    **(g) NO VERDICT SHIPS WITH AN UNEXPLAINED OBSERVATION IN IT.** If something is not understood, it
+    is an open question in the report — never a guessed cause, and never quietly dropped.
+    **THE STANDARD TO HOLD IT TO:** these comments are read by **the most senior people in the company**,
+    who are non-technical and who will act on the verdict without reading the technical section. **A
+    PASS must be one nobody can overturn, and a FAIL must be one nobody can dismiss.** That is the whole
+    job. Ties to Standing Rules 12, 13, 17, 50, 57, 64, 65, 66, 68, 73, 74 and 75.
+
 ## Project purpose (Custom Roles project)
 Manual test-case authoring + live staging (Verify-in-UI) verification + TestRail
 management for ShopView **"Custom Roles and Permissions"**, plus related
