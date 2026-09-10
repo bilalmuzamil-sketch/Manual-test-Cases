@@ -8,5 +8,98 @@
    }
   ],
   "parts": []
- }
+ },
+ "settle": {
+  "settled": true,
+  "ms": 9846,
+  "samples": 14,
+  "url": "https://sv9315.qa.shopview.com/order/9d9dec3c-5a20-4120-9c45-c7998ee8b3f7?receive=1&returnTo=WorkOrder&returnId=a1098c78-f74b-4c5d-a194-0aed46e86660&returnLineId=868dd4b4-af46-43ed-a1bb-bf069cc31c49&workOrderId=a1098c78-f74b-4c5d-a194-0aed46e86660&vendorIds=1e7bd0bf-e882-45fa-8c21-835e32ffa374",
+  "domLength": 25873,
+  "label": "receive page"
+ },
+ "invoice": {
+  "found": true,
+  "now": "ZZAUTOTEST-INV-45251"
+ },
+ "qtyBefore": {
+  "tid": "input_qty_59512f5d-e20f-4a1c-b7fa-2a6913b24031",
+  "value": "5"
+ },
+ "fieldsNow": [
+  {
+   "tid": "input_invoice_9d9dec3c-5a20-4120-9c45-c7998ee8b3f7",
+   "value": "ZZAUTOTEST-INV-45251"
+  },
+  {
+   "tid": "date_input_invoice_date_9d9dec3c-5a20-4120-9c45-c7998ee8b3f7",
+   "value": "09/10/2026"
+  },
+  {
+   "tid": "input_sell_59512f5d-e20f-4a1c-b7fa-2a6913b24031",
+   "value": "40"
+  },
+  {
+   "tid": "input_qty_59512f5d-e20f-4a1c-b7fa-2a6913b24031",
+   "value": "5"
+  }
+ ],
+ "receive": {
+  "label": "Receive",
+  "result": {
+   "clicked": true
+  },
+  "before": {
+   "url": "https://sv9315.qa.shopview.com/order/9d9dec3c-5a20-4120-9c45-c7998ee8b3f7?receive=1&returnTo=WorkOrder&returnId=a1098c78-f74b-4c5d-a194-0aed46e86660&returnLineId=868dd4b4-af46-43ed-a1bb-bf069cc31c49&workOrderId=a1098c78-f74b-4c5d-a194-0aed46e86660&vendorIds=1e7bd0bf-e882-45fa-8c21-835e32ffa374",
+   "tabs": 1,
+   "domLength": 26028
+  },
+  "after": {
+   "url": "https://sv9315.qa.shopview.com/workorders/a1098c78-f74b-4c5d-a194-0aed46e86660/lines",
+   "tabs": 1,
+   "domLength": 62781
+  },
+  "settled": {
+   "settled": true,
+   "ms": 16880,
+   "samples": 24,
+   "url": "https://sv9315.qa.shopview.com/workorders/a1098c78-f74b-4c5d-a194-0aed46e86660/lines",
+   "domLength": 62781,
+   "label": "Receive"
+  },
+  "panels": [],
+  "writes": [
+   "POST /api/orders/receive-requested-parts",
+   "POST /api/inventory/orders/receive-view"
+  ],
+  "effects": {
+   "navigated": true,
+   "newTab": false,
+   "panelOpened": false,
+   "domChanged": true,
+   "wroteToServer": true
+  },
+  "nothingHappened": false,
+  "summary": "effects: navigated, domChanged, wroteToServer -> https://sv9315.qa.shopview.com/workorders/a1098c78-f74b-4c5d-a194-0aed46e86660/lines"
+ },
+ "confirm": {
+  "none": true
+ },
+ "messages": {
+  "toasts": [
+   "Build Lines"
+  ],
+  "fieldErrors": [],
+  "url": "/workorders/a1098c78-f74b-4c5d-a194-0aed46e86660/lines"
+ },
+ "after": {
+  "line": "authorized",
+  "reqs": [],
+  "parts": [
+   {
+    "pn": "Chaos",
+    "qty": 5
+   }
+  ]
+ },
+ "partLanded": true
 }
