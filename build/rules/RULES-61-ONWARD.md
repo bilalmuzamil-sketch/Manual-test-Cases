@@ -3636,3 +3636,53 @@ Index: CLAUDE.md (rule index table). Other rule files: build/rules/RULES-01-20.m
     **RELATION TO OTHER RULES:** Rule 75 (long work runs detached and self-committing) says HOW work
     runs; 105 says it must never STOP while work remains. Rule 79 (strategy first) produces the queue
     this rule insists on using. Learning **L0037**.
+
+---
+
+106. **BEFORE ANY DEFECT IS PROPOSED, RECONCILE THE TEST CASE'S EXPECTED RESULT AGAINST THE **LIVE**
+    SOURCE — IF THEY DISAGREE, THE CASE IS WRONG BEFORE THE BUILD IS (all projects, permanent; QA
+    lead, 2026-09-10).**
+    **THE ORDER, VERBATIM (QA lead, 2026-09-10):** *"when you have to file a defect ALWAYS remember
+    that when you read the expected behavior from the test case itself you MUST also go to the sources
+    and check if the expected behavior reconciles with the expected behavior as mentioned in the
+    sources too, if YES then ask me to create the ticket; if the sources say something different ask
+    me for the permission to correct the expected behavior in the test case. Also note that you must
+    always check with the latest version of the sources and not from the old source record in your
+    memory."*
+    **HOW IT SURFACED.** A defect was drafted citing spec rules **S1-N1 / S1-N2** — quoted from the
+    session's own notes and from our own case text, never from the specification. Asked *"where in the
+    specs does it say that?"*, the session had to go and read the page. The wording did hold, but that
+    was luck: **the ticket had been written without ever opening the source it cited.**
+    **THE THREE-WAY CHECK, MANDATORY BEFORE ANY DEFECT IS PUT TO HIM:**
+    **(1) THE CASE** — what the test's Expected Result asserts, read from TestRail live.
+    **(2) THE SOURCE** — what the governing document says **TODAY**, fetched live this pass and quoted
+    **VERBATIM** with its page id, requirement id and read date. **A quote from memory, from our own
+    case text, from a `requirements.md` extract, or from an earlier pass's note is NOT the source**
+    (Rule 100). The extract in the repo may be used to *locate* the rule; the quote must come from the
+    live fetch.
+    **(3) THE BUILD** — what was observed, with evidence (Rule 12, Rule 104).
+    **THE TWO OUTCOMES, AND THEY LEAD TO DIFFERENT ASKS:**
+    - **CASE AGREES WITH SOURCE, BUILD DIFFERS ⇒ a real defect.** Ask permission to file, and put the
+      verbatim source quote in the ask and in the ticket (Rule 62 keeps the hold; 103 keeps the ask
+      plain).
+    - **CASE DISAGREES WITH SOURCE ⇒ THE CASE IS THE DEFECT, NOT THE BUILD.** **Do NOT ask to file a
+      ticket.** Ask permission to **correct the test case's Expected Result** to what the source says,
+      showing both wordings side by side. Filing a ticket against the build for a requirement the
+      source does not contain is the worst outcome available: it burns a developer's time and damages
+      the suite's credibility.
+    - **SOURCE IS SILENT OR AMBIGUOUS ⇒ neither.** Hold and ask (Rule 58); never resolve it from the
+      build.
+    **ALWAYS THE LATEST VERSION.** Fetch the source in the pass that proposes the defect — not the
+    version this session ingested days ago, and never a remembered one. Record the read date and, where
+    the system exposes it, the version. **Where the version integer cannot be read** (a known
+    limitation on this Confluence), say so explicitly in the ask rather than repeating a version number
+    from our own case text as if it had been confirmed.
+    **THE RECONCILIATION IS WRITTEN DOWN, NOT DONE IN THE HEAD:** a file per defect under
+    `build/<project>/source-verify-<date>/`, carrying the verbatim quote, the case's Expected, the
+    observation, and the verdict — and it must also name the **nearest rule that appears to contradict
+    the finding**, answered in advance (worked example: S1-R9 permits Add Part on a *line* that is
+    Complete, which does not touch S1-N1's rule about the *work order* status).
+    **RELATION TO OTHER RULES:** this is Rule 57 (expectation comes from the document) enforced at the
+    moment of filing, Rule 100 (measure it, do not remember it) applied to sources, and the gate that
+    runs before Rule 62's per-candidate ask. Worked example and quotes:
+    `build/inline-add-edit-parts/source-verify-2026-09-10/DECLINED-QUOTES.md`. Learning **L0039**.
