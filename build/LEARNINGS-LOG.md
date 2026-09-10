@@ -970,3 +970,24 @@ The pattern across L0043, L0044 and this one is the same and it is the thing to 
 **when he repeats an instruction, it is because the first version was answered literally and missed
 the intent.** Before building anything he will read, find where he has already described it and
 follow that, rather than composing a shape of my own and waiting to be corrected.
+
+## L0047 — 2026-09-10 · he gave the ticket order; I had invented one an hour earlier
+
+Third correction to the same artefact in one afternoon. After the markup fix and after he set out the
+content, he gave the **section order** explicitly: Environment → The problem → Steps to reproduce →
+Inline annotated screenshots sized to fit the frame → Current behaviour → Expected behaviour →
+Sources (clearly quoted, with the reference number/key/link so anyone can navigate straight there) →
+Test cases.
+
+I had already written an order of my own that afternoon and recorded it in the skill as if it were
+his. It was not — it was mine, and it put the behaviour sections before the steps and the environment
+in the middle. **Recording my own invention into the skill is worse than not recording anything: the
+next session would have followed it and been corrected again.**
+
+Two rules for myself:
+1. **When recording a standard on his behalf, record only what he actually said, and mark anything I
+   inferred as inferred.** The superseded table is kept dated in skill 06 rather than deleted, so the
+   difference between his order and my guess stays visible.
+2. **He also wants the environment FIRST and the record's FULL LINK in it** — *"give me the full link
+   of that work order so that I can see what is happening"*. A ticket that names a record without a
+   link makes him go and find it.

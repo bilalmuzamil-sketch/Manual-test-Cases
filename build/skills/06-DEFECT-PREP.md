@@ -515,16 +515,23 @@ His two messages, verbatim (2026-09-10, after SV-9917/9918/9919 were filed badly
 > *"Yes current behavior and expected behaior should also be nicely concisely and logically described
 > in a non technical way for a lay man"*
 
+**THE ORDER IS HIS, GIVEN 2026-09-10 AND NOT TO BE REARRANGED:**
+
 | # | Heading | What goes in it |
 |---|---|---|
-| 1 | **The problem** | Two or three plain sentences saying WHAT IS HAPPENING. **NO assumed effects** — no "who this affects and how badly", no severity, no impact paragraph, no guessing at consequences. He struck those out by name. |
-| 2 | **Current behaviour** | Short plain bullets. What the build does today. What is correct alongside it goes here too, as a bullet, not as a separate "what is not affected" essay. |
-| 3 | **Expected behaviour** | Short plain bullets. What should happen. Non-technical. |
-| 4 | **Where this was seen** | Site · build · signed in as · date · the record used. A small table. |
-| 5 | **Steps to reproduce** | Numbered, one action per line, **the easiest possible route a manual tester or a layman can follow** — including the steps that CREATE any data needed, with the exact values to type. On-screen labels only. No API. |
-| 6 | **Screenshots** | **INLINE and ANNOTATED**, each with a one-line caption saying *what actually happens* / *what you should see*. Not a file list, not attachments-only. |
-| 7 | **Sources** | **At the BOTTOM.** The document name, its page id, the date read, **a clickable link so the reader can reach the source themselves**, then each requirement quoted **verbatim** in a quote block with its own id (S1-N1, S4-E1 …). |
+| 1 | **Environment** | First, so the reader knows what they are looking at before anything else. Site · build · signed in as · date · **the record used, with its FULL clickable link** so he can open it himself. |
+| 2 | **The problem** | Two or three plain sentences saying WHAT IS HAPPENING. **NO assumed effects** — no "who this affects and how badly", no severity, no impact paragraph, no guessing at consequences. He struck those out by name. |
+| 3 | **Steps to reproduce** | Numbered, one action per line, **the easiest possible route a manual tester or a layman can follow** — including the steps that CREATE any data needed, with the exact values to type. On-screen labels only. No API. |
+| 4 | **Screenshots** | **INLINE and ANNOTATED**, sized to **fill the description frame without overflowing it** — `!file.png|width=760!`. Each carries a one-line caption saying *what actually happens* / *what you should see*. Not a file list, not attachments-only. |
+| 5 | **Current behaviour** | Short plain bullets. What the build does today. What is correct alongside it goes here too, as a bullet, not as a separate essay. |
+| 6 | **Expected behaviour** | Short plain bullets. What should happen. Non-technical. |
+| 7 | **Sources** | The document name, its page id, the date read, **a clickable link**, then each requirement quoted **verbatim** in its own quote block **labelled with its id** (S1-N1, S4-E1 …) so anyone can navigate straight to it. |
 | 8 | **Test cases** | The run and its link, then each case id with its link (Rule 8 as amended 2026-09-10). |
+
+⛔ **SUPERSEDED, kept dated:** an earlier version of this table on the same day put *The problem*
+first and *Current/Expected behaviour* immediately after it, before the steps. **He reordered it on
+2026-09-10 — Environment first, and the two behaviour sections AFTER the screenshots.** Use the order
+above.
 
 **⚠️ WHICH MARKUP — THIS IS WHERE IT WENT WRONG.** The two doors take **different dialects**:
 
