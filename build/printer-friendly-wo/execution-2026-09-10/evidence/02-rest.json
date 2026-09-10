@@ -58,5 +58,38 @@
    "Print Work Order",
    "Delete Work Order"
   ]
+ },
+ "C45091": {
+  "linesRequestsHeld": 1,
+  "whileLoading": {
+   "open": {
+    "opened": true,
+    "testid": "button_work_order_nav_bar_menu"
+   },
+   "menuOpen": true,
+   "items": [
+    "Audit Log",
+    "Timesheets (0)",
+    "Add Work Order Fee / Discount",
+    "Print Work Order",
+    "Delete Work Order"
+   ],
+   "print": {
+    "found": true,
+    "disabled": true,
+    "opacity": "0.6",
+    "pointerEvents": "auto"
+   }
+  },
+  "afterLoad": {
+   "open": {
+    "opened": true,
+    "testid": "button_work_order_nav_bar_menu"
+   },
+   "menuOpen": false,
+   "print": {
+    "found": false
+   }
+  }
  }
 }
