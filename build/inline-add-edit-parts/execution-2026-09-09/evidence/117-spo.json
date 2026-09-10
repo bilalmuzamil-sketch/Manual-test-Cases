@@ -1,0 +1,80 @@
+{
+ "canned": {
+  "chose": true,
+  "label": "Service - 5th wheel adjustment HD Fleet Rate : $112.46 Total Parts: 0"
+ },
+ "line": "0e2c10ac-b34c-4195-91f6-d9d55c06f943",
+ "authorize": {
+  "status": 200,
+  "json": {
+   "data": []
+  },
+  "text": "{\"data\":[]}"
+ },
+ "addPart": {
+  "clicked": true
+ },
+ "typeahead": {
+  "chose": "catalog",
+  "label": "Slack Adjuster F40010212CatalogGeneral Storage3A1A0A1B3 + 1",
+  "cards": [
+   "Slack Adjuster F40010212Inventory Qty: 8 EAGeneral Storage3A1A0A1B3 + 1",
+   "Slack Adjuster F40010212CatalogGeneral Storage3A1A0A1B3 + 1"
+  ]
+ },
+ "afterAdd": {
+  "status": "authorized",
+  "requests": [
+   {
+    "id": "1b1e1e07-6bbc-47dd-bf65-17f907d4bbaf",
+    "status": "authorized_to_order",
+    "qty": 5
+   }
+  ],
+  "parts": []
+ },
+ "orderReceive": {
+  "order": {
+   "clicked": true,
+   "label": "Order",
+   "confirm": {
+    "dialog": false
+   },
+   "requestsNow": [
+    "waiting_to_receive"
+   ],
+   "partsNow": []
+  },
+  "receive": {
+   "clicked": true,
+   "label": "Receive",
+   "confirm": {
+    "dialog": false
+   },
+   "requestsNow": [
+    "waiting_to_receive"
+   ],
+   "partsNow": []
+  }
+ },
+ "parts": [],
+ "leftover": [
+  {
+   "id": "1b1e1e07-6bbc-47dd-bf65-17f907d4bbaf",
+   "status": "waiting_to_receive"
+  }
+ ],
+ "complete": {
+  "status": 400,
+  "json": {
+   "errors": [
+    {
+     "error": "Line can`t be completed with unfulfilled part requests."
+    }
+   ]
+  },
+  "text": "{\"errors\":[{\"error\":\"Line can`t be completed with unfulfilled part requests.\"}]}"
+ },
+ "lineStatus": "authorized",
+ "note": "the special-order line could not be completed; clause 2 of C45251 is NOT observed"
+}
