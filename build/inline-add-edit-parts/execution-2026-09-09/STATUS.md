@@ -100,3 +100,53 @@ on Staging by Viktoria."* followed by a layman explanation of what was checked a
 | Bin Allocation | C45221–C45243 | the bin data state — playbook §S records `S31S-950` (four bins), `TP-12-1013-CH` (already negative) and `6050-P` (no prices) as present on **this** branch |
 | Full View remainder | C45039 C45058 C45060 C45061 C45062 C45066 C53477 | catalogue vs inventory parts, the two failure paths, and two role variants (Create & Edit OFF; Full View without See Financial Data) |
 | Section 1 | C45251–C45254 | a completed line with a **picked** part, and a special-order part |
+
+---
+
+# 2026-09-10 — second half: the harder cases
+
+## A mistake, caught before it did any damage
+
+Probe 61 was written to set the **Technician** role to three shapes in turn (Full View, Full View
+without Create & Edit, Tech view without Create & Edit) so the four role-variant cases could run. It
+indexed into `document.querySelectorAll('.q-checkbox')` — a **checkbox-only** list — against a control
+map (probe 52) built from a **combined** `.q-checkbox,.q-toggle` list. Index 7 in the combined list is
+*Work order lines → Create & Edit*; index 7 in a checkbox-only list is **Schedule → Delete**. The
+probe was killed on its first log line, before any of its four observation legs ran.
+
+**Probe 68 then read the role back against the exact vector recorded before any edit and found it
+UNCHANGED** — checkboxes `[1,0,0,1,0,1,0,0,1,0,0,0,0,0,0,0]`, toggles `[0,1,0,0,0,0,0,0,0,0,0]`, View
+mode **Tech view** — with the Save button *disabled* because there was nothing to save. Nothing needed
+repairing. The Admin staff's Admin role was never involved at any point.
+
+Two things follow:
+1. **Target a permission control by its ROW TEXT, never by an index into a filtered list.** An index is
+   only valid against the list it was measured on, and nothing warns you when it is not.
+2. **The role save did not reach the server** — the same non-persisting behaviour the QA lead described
+   for the "Move labor" toggle. Probe 69 settles whether *any* role change persists on this branch
+   before the four role-variant cases are attempted again.
+
+## The part types on this branch, measured
+
+`GET /api/work-orders/part/request/inventory-parts-as-options-with-remaining-catalogue-parts` returns
+two kinds, and this decides which case can use which part:
+
+| `part_type` | What it is | On this branch |
+|---|---|---|
+| `inventory_part` | stocked, held in bins | e.g. **A4731800909**, cost 3799, `binLocations` length 1 |
+| `special_part` | the catalogue / special-order side | e.g. **51372MP**, **POI5935C**, cost set, `binLocations` **empty** |
+
+⚠️ **`binLocations` being empty does not mean the card shows no stock** — 51372MP's card reads
+*"Inventory Qty: 2 EA Unassigned 2"*. Read the bin chips off the card, not only off the payload.
+
+## Open at this point
+
+| Block | C-ids | State |
+|---|---|---|
+| Role variants | C53477 C45066 C45032 C44995 | waiting on probe 69's answer about whether a role save persists here |
+| Save failure | C45022 C45062 | probe 56 saw **no toast and the row closed** where the case requires a toast and the row kept open; probe 62 re-runs it with abort, a 500 and a control |
+| Non-editable status | C45021 C45035 C45061 | probe 58, using `POST /api/work-orders/change-status` on a spare work order |
+| Pricing | C45252 C45253 C45254 | probe 67 — and the first run suggests the sell price **does** recalculate on a category change (63.32 → 94.98), which is the opposite of the expect-fail note in C45253 |
+| Bin allocation | C45221–C45243 | probe 66 |
+| Complete line | C45250 C45251 | probe 65, via the recorded pick + line-status recipes |
+| C45001 clause 1 | C45001 | the description is read-only for the `special_part` parts tried so far, not only for inventory parts |
