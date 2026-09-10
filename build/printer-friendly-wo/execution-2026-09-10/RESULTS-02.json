@@ -1,0 +1,21 @@
+{
+ "pass_meta": {
+  "suite": "Printer Friendly Work Orders (6617)",
+  "run": 419,
+  "env": "the sv9315 QA branch",
+  "build": "v26.36.0-f43b2fd",
+  "date": "10 September 2026",
+  "view_mode": "Full View"
+ },
+ "results": {
+  "C45091": {
+   "verdict": "Passed",
+   "observed": "What was checked: whether \"Print Work Order\" stays greyed out until the work order's line information has actually arrived, and that it is not enabled early just because the grey loading placeholders are on screen. What happened: it behaves correctly. The work order page was opened with the request for its line information deliberately held back, so the page sat showing its loading placeholders. The More menu was opened in that state and \"Print Work Order\" was there but greyed out and not usable. The line information was then allowed through, and on a fully loaded page the same menu item is normal and clickable. So it stays disabled through the placeholder stage and only becomes available once the real data is in, which is both points of the case."
+  },
+  "C45088": {
+   "verdict": "Blocked",
+   "observed": "The case asks for eight work order statuses - Estimate, Approved, In Progress, Review, Complete, Invoiced, Paid and Declined. Only five of those exist on this QA branch, and the case's own note says not to pass it on a subset, so it is marked Blocked.\n\nWHAT WAS CHECKED, AND ALL FIVE ARE CORRECT. The More menu was opened on a work order of each status that exists here, and \"Print Work Order\" is present every time:\n- Estimate (S9315-15017) - present\n- Approved (S9315-15899) - present\n- Review (S9315-15901) - present\n- Paid (S9315-15887) - present\n- Declined (S9315-15897) - present\nOn Paid the menu is shorter, as expected - Audit Log, Timesheets and Print Work Order only - and Print is still there.\n\nWHAT COULD NOT BE CHECKED: In Progress, Complete and Invoiced. No work order in any of those three states exists on this branch and they cannot be created here.\n\nPLEASE NOTE - THE NOTE ON THIS CASE IS OUT OF DATE. It says \"only the Estimate, Approved and Paid statuses exist on this test system\". That is no longer true: Review and Declined exist as well, so five of the eight can now be checked, not three. The note should be corrected so the next tester does not check fewer statuses than they could.",
+   "todo": "Check the remaining three statuses - In Progress, Complete and Invoiced - on Staging, where work orders in those states exist. Open a work order of each, open the three-dots More menu on the work order's own toolbar (not the three-dots on a line), and confirm \"Print Work Order\" is listed. If it is present on all three, the case passes. Also worth doing while you are in the case: correct its note, which still says only Estimate, Approved and Paid exist on the test system - Review and Declined exist too."
+  }
+ }
+}
