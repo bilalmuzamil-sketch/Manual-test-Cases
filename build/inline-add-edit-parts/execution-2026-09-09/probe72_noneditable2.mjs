@@ -30,9 +30,16 @@ const list = await call(s0.page, s0.APIH, '/api/work-orders?limit=100&page=1');
 const cand = rowsOf(list.json).filter(w=>w.id!==SUITE_WO && String(w.status||'').toLowerCase()==='approved');
 let WO=null, LINES=null;
 for (const w of cand.slice(0,8)){
-  const d = await call(s0.page, s0.APIH, `/api/work-orders/${w.id}`);
-  const lines = rowsOf(d.json && (d.json.lines || (d.json.data && d.json.data.lines) || d.json));
-  if (Array.isArray(lines) && lines.length && lines.every(x=>x && x.id)){ WO=w; LINES=lines; break; }
+  let lines=[];
+  for (const p of [`/api/work-orders/${w.id}/lines`, `/api/work-orders/lines?work_order_id=${w.id}`,
+                   `/api/work-orders/${w.id}`]){
+    const d = await call(s0.page, s0.APIH, p);
+    if (d.status!==200) continue;
+    const cand = rowsOf(d.json && (d.json.lines || (d.json.data && d.json.data.lines) || d.json));
+    if (Array.isArray(cand) && cand.length && cand[0] && cand[0].id){ lines=cand; R.linesPath=p; break; }
+  }
+  R.lineKeys = lines[0] ? Object.keys(lines[0]).slice(0,18) : null;
+  if (lines.length){ WO=w; LINES=lines; break; }
 }
 R.chosen = {wo: WO && {id:WO.id, num:WO.number, status:WO.status},
             lines: (LINES||[]).map(l=>({id:l.id, status:l.status, name:(l.name||l.description||'').slice(0,30)}))};
