@@ -194,3 +194,58 @@ Branch (`sv9866`, disposable, left in place): deposits **DEP-4703, DEP-4704** (S
 Staging (shared): one deposit **DEP-4711** on S2-32274 (Aberdeen Diesel Services LLC) — it took the
 business-validation path and shows its name, so it neither proves nor pollutes anything; no settings
 were altered.
+
+---
+
+## Branch state completed — the Vendors-tab regression check now has something to look at
+
+Rather than leave the plan's regression check as "nothing to observe", a vendor-side row was seeded:
+a vendor part (`ZZQB-9866`) was added to **S9866-16174**, ordered, a vendor assigned (**5 Star Truck
+Repair**) and the parts received through the **Receive Parts screen** with vendor invoice `ZZ9866-1`.
+
+**Final branch state — every tab, every row, read from the API and seen on screen:**
+
+| Tab | Rows | Blank name |
+|---|---|---|
+| **Customers** | **7** — 2 Invoice Create (S9866-17581), 1 Payment Create, 4 Deposit Create | **0** |
+| **Vendors** | **1** — Parts Receive `ZZ9866-1`, vendor **5 Star Truck Repair** | **0** |
+| Journal Entries | 0 | — |
+
+Exhibits `ev/EX3-branch-customers-7.png`, `ev/EX4-branch-vendors.png`.
+
+**Against the QA plan:** A (Deposit Create) ✔ named · **B (Deposit Application) not producible** ·
+C (control: Payment Create / Invoice Create keep names) ✔ · Vendors-tab regression ✔ ·
+Journal-Entries regression — no rows on this branch, so not observable.
+
+The verdict above is unchanged: the branch cannot produce the **missing-mapping** error path, which is
+the only path on which staging loses the customer.
+
+## Recipes proven this pass (also appended to the playbook)
+
+- **QB Unexported report** — route `/reports/unexported-items`; endpoint
+  `GET /api/bookkeeping/unexported-items?filters[0][field]=groupName&filters[0][value]=customer|vendor|journal_entry`.
+  Row fields: `type · typeLabel · group · number · customer · referenceId · errorMessage · date`.
+- **The table is a Quasar VIRTUAL-SCROLL container, not a paginated one.** 30 rows render, the window
+  does not scroll and there is no pagination control — scroll the `.q-virtual-scroll` ancestor instead
+  (32 → 74 rows and onward). Do not report "only 30 of 588 reachable" without doing that.
+- **`/administration/QuickBooks` renders blank unless `localStorage.bookkeeping_enabled === "true"`.**
+  The route guard reads that key directly; the value comes from the login payload at
+  `data.details.bookkeeping_enabled`. Seed it in the boot script alongside `user` /
+  `fe_permissions_wrapper` / `token`.
+- **`/api/bookkeeping/settings` is PUT-only** (`GET` → 405 `Method Not Allowed (Allow: PUT)`), so the
+  bookkeeping mappings can be written but not read — you cannot snapshot them to restore afterwards.
+- **Receive a vendor part (the payload the screen actually sends):**
+  `POST /api/orders/receive-requested-parts` → 200 with
+  `{vendor_id, invoice_number, invoice_date, note, total, tax, items:[{id, cost, description, line_id, …}]}`.
+  Reached from `/order/{orderId}?receive=1&returnTo=WorkOrder&returnId={woId}`.
+  **Two traps:** the per-item checkbox **starts ticked** — clicking it turns receiving OFF (set
+  `input_qty_<itemId>` instead); and **assigning a vendor re-renders the group**, so re-enumerate the
+  `data-test-id`s afterwards rather than reusing handles.
+- **Deposits:** `POST /api/deposits {workOrderId, amount, paymentMethod, depositDate, memo}` → 201
+  `{creditNumber:"DEP-####", status:"held"}`. Add Deposit is offered on Estimate/Approved/In Progress/
+  Review, **not** on Complete or Invoiced.
+- **Customer payment:** `POST /api/customer-account/create-customer-payment` → `{bookkeepingSyncDeferred:true}`
+  when a QuickBooks sync is queued.
+- **Invoicing on this branch is gated:** Create Invoice fires `GET /api/invoices/ibs/retrieveIBSApproval`
+  → 400 while the work order shows "Over Limit"; one work order also 500s on
+  `GET /api/invoices/{id}/details`, which kills the flow before it starts.
