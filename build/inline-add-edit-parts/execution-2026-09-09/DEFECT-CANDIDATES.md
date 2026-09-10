@@ -393,3 +393,49 @@ works for Complete, Invoiced and Paid, and only Declined is missed.
 Evidence: `evidence/105-noneditable.json` (`C45035`), screenshots
 `evidence/105-c45035-1-row-ready.png` and `evidence/105-c45035-2-after-save.png`.
 **Annotated shot: not yet made.**
+
+---
+
+## Candidate 8 — CONFIRMED 2026-09-10 · OUTSIDE THIS SUITE, but serious · no story assigned
+
+**Not an Inline Add and Edit Parts defect.** It surfaced while trying to satisfy
+[C45251](https://shopview.testrail.io/index.php?/cases/view/45251) clause 2 and it blocks that
+clause, but it belongs to the Ordering / Receiving feature. Raised here so it is not lost.
+
+**In plain words: on this build a shop cannot receive an ordered part at all.**
+
+**What happens.** On a work order line, a special-order part is created and **ordered**
+successfully — it moves to *"Awaiting Receive"* (`authorized_to_order` → `waiting_to_receive`).
+Clicking **Receive** on it then does **nothing visible**: no window, no panel, no drop-down, no
+message. The part stays at *Awaiting Receive* forever, and because the line refuses to complete
+while any request is unfulfilled, the line can never be completed either.
+
+**Why this is the front end, not the data.** The click does fire its request, and the request
+succeeds:
+
+* the control is `data-test-id=button_part_request_action`
+* it calls **`POST /api/inventory/orders/receive-view`** → **200**, returning entirely valid data:
+  vendor *Aabridge Beverages*, purchase order **S-15899**, and the line items with
+  `orderItemId`, `quantityOrdered`, `quantityRemaining`, `cost`, `sellPrice`, `coreCharge`
+* at the same moment the page posts **two Sentry error envelopes** — the app is reporting its own
+  JavaScript errors
+* a DOM scan immediately after the click finds **zero** dialogs, drawers or menus on the page
+
+So the back end hands the front end everything it needs and the receiving panel fails to render.
+
+**Not a way round it.** Ten write routes were tried directly with the real `orderId` and
+`orderItemId` read out of `receive-view`: `/api/inventory/orders/{orderId}/receive` (404),
+`/api/inventory/orders/receive` · `/receive-items` · `/receive-parts` (all **405, "Allow: GET"**,
+POST and PUT alike), `/api/inventory/order-items/receive` (404),
+`/api/inventory/orders/receive-view/confirm` (404), `/api/work-orders/part/receive` (404).
+There is no API path around the broken panel.
+
+**What it blocks:** C45251 clause 2 — and, in the product, the whole receiving workflow.
+**What it does NOT block (Rule 68):** everything else in suite 6597. Inventory parts are unaffected
+— they go `in_stock` → `pick` → on the line, and C45250 and C45251's other two clauses were all
+observed normally through that path.
+
+Evidence: `evidence/117-spo.json` (order succeeds, receive does not),
+`evidence/118-receive.json` (the click, the 200, the Sentry posts, zero panels),
+`evidence/119-receive-api.json` and `evidence/120-receive-final.json` (the ten refused routes).
+**Annotated shot: not yet made.**
