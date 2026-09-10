@@ -1,0 +1,9 @@
+{
+ "pass_meta": {"suite":"Inline Add and Edit Parts (6597)","run":418,"env":"the sv9315 QA branch",
+   "build":"v26.36.0-f43b2fd","date":"10 September 2026","view_mode":"tech"},
+ "results": {
+  "C45024": {"verdict":"Passed","observed":"What was checked: whether the edit row arrives already filled in with what the part currently says, and where the cursor lands. What happened: clicking the edit control on an existing part opened a row already showing that part's description (\"ZZAUTOTEST tv validation\") and its quantity (2), with the part number box carrying what the part holds today. The cursor was already sitting in the Description box, so the first thing the user can change is the first thing on the row.","not_observed":null},
+  "C45031": {"verdict":"Passed","observed":"What was checked: whether simply opening an edit row and closing it again counts as a change. What happened: the edit row was opened on an existing part, nothing at all was typed or altered, and it was then closed with Escape. No \"are you sure\" question appeared - there was nothing to lose - and the part line was left exactly as it was, with no update recorded against it. Opening a row to look at it costs nothing.","not_observed":null},
+  "C45033": {"verdict":"Passed","observed":"What was checked: whether an existing part can be saved after its description has been emptied out. What happened: with the edit row open, the description was cleared and Save was pressed. The save was refused, the Description box turned red, and the message \"Enter a description to save this part.\" appeared - the same style of message the add row gives. The part kept its original description, so an accidental deletion cannot be saved over the top of it.","not_observed":null}
+ }
+}

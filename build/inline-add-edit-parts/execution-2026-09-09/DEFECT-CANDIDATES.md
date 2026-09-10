@@ -110,3 +110,31 @@ button labelled "Cancel"** in that window — its buttons are **×**, **"AI Shop
 **"Save part"**. Both routes that do exist behave correctly (nothing discarded, row intact, modal
 changes not carried back), so the behaviour under test holds and the case passed. The question is
 whether the case wording should drop "Cancel", or whether the window should have that button.
+
+---
+
+## Candidate 5 — OBSERVED 2026-09-10 · story SV-9321 (Story 6, Unsaved Data Protection)
+
+**Case:** [C45070](https://shopview.testrail.io/index.php?/cases/view/45070) — *Closing a changed
+edit row shows the discard-changes confirmation* · run [R418](https://shopview.testrail.io/index.php?/runs/view/418).
+
+The dialog's **title and body are exactly as specified**; the **second action's label is not**.
+
+| Element | Spec (S6-R1, spec v16) | Build v26.36.0-f43b2fd | Verdict |
+|---|---|---|---|
+| Title | "Discard these changes?" | **"Discard these changes?"** | correct |
+| Body | "The changes you made will be lost." | **"The changes you made will be lost."** | correct |
+| Action 1 | "Keep Editing" | **"Keep Editing"** | correct |
+| Action 2 | **"Discard Part"** | **"Discard changes"** | **wrong label** |
+
+The case is explicit that the actions are *"unchanged"* between the add-row and the edit-row
+dialogs. On the add row the build does show **"Discard Part"** (observed the same session,
+[C45011](https://shopview.testrail.io/index.php?/cases/view/45011) — passed), so the two dialogs
+disagree with each other in the build, not only with the spec.
+
+Behaviour is correct either way: choosing it closes the row and restores the part's saved values.
+
+Evidence: `evidence/46-tv-edit.json` (`editGuard`), `evidence/46-b-editguard.png`,
+`evidence/44-tv.json` (`guard`), `evidence/44-b-guard.png`.
+
+**Held** pending the QA lead's per-defect go-ahead (Rule 62 / his standing instruction).
