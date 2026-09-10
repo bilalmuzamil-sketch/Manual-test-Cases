@@ -1,0 +1,34 @@
+{
+ "claim": "staging session expired: sso_required on every route",
+ "_note": "fill each proof with: passed true/false, and 'evidence' naming a file, a log line or a measurement. 'passed': true with empty evidence is rejected.",
+ "proofs": {
+  "positive_control": {
+   "passed": true,
+   "evidence": "The SAME harness with the SAME cookie signed in successfully TWICE earlier today - 08:29 (admin 42 permissions, tech 6 permissions) and 09:28 (seeded work order S2-32819 through the UI). The instrument is proven; the credential died between 09:28 and 09:35."
+  },
+  "tried_through_the_screen": {
+   "passed": true,
+   "evidence": "Loaded https://app.staging.shopview.com/login in a real browser with all three cookies. It now renders the Google sign-in page (title 'Sign in - Google Accounts', 'to continue to ShopView'), not the app and not the DEV MODE panel. Screenshot /tmp/staging-login.png."
+  },
+  "waited_and_retried": {
+   "passed": true,
+   "evidence": "The harness itself polls 30s for the sign-in panel and retries the quick-login three times; it exhausted all of that. Then re-tested independently in a separate browser session."
+  },
+  "checked_for_navigation": {
+   "passed": true,
+   "evidence": "Yes - the login URL stays on app.staging.shopview.com/login and renders Google's page; the API refusal carries sso_redirect_url to auth.staging.shopview.com/login. The redirect target is recorded, not guessed."
+  },
+  "precondition_read_back": {
+   "passed": true,
+   "evidence": "Tested the session at the API directly, three cookie combinations (sv_sso_session alone; +PHPSESSID; +cf_clearance) on both hosts. All four calls, including quick-login/users, return 401 sso_required. The session is dead server-side, not mis-carried."
+  },
+  "searched_the_repo": {
+   "passed": true,
+   "evidence": "build/APP-ACTIONS-PLAYBOOK.md: 'Cookie lifetime ~24 HOURS ... A 401 sso_required before 24h => suspect a deployment or stale set -> re-request cookies.' build/ENVIRONMENT-CREDENTIALS.md section 3: staging is COOKIE ENTRY, NO PASSWORD - 'No staging username/password is recorded here, and none is to be invented' (QA lead ruling 2026-09-03)."
+  },
+  "asked_what_would_make_this_my_fault": {
+   "passed": true,
+   "evidence": "Most likely self-faults considered: (a) carrying the wrong cookie set - ruled out, all three combinations tested; (b) the bridge proxy failing - ruled out, the page loads with HTTP 200 and Google renders; (c) wrong host - ruled out, both app and api hosts tested; (d) my own boot helper broken - ruled out, it worked twice today with this same cookie. The remaining explanation matches the repo's recorded one exactly: the feature was merged to Staging today, and a DEPLOYMENT invalidates the session before the 24h lifetime."
+  }
+ }
+}
