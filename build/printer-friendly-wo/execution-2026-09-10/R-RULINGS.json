@@ -1,20 +1,25 @@
 {
  "pass_meta": {"suite":"Printer Friendly Work Orders (6617)","run":419,"env":"the Staging environment","build":"staging v26.36.2-617d8d1","date":"10 September 2026"},
  "results": {
-  "C45104": {
-   "verdict": "Blocked",
-   "observed": "The QA lead ruled on 10 September 2026 that the 'Cancelled' line status this case describes means DECLINED in this product, and that the case should be reworded to Declined and run. Trying to run it that way has turned up a separate problem that stops it.\n\nA job line cannot be put into Declined at all. Opening the line brings up the Edit Line window, whose Status list offers exactly four choices - Authorization required, Declined, Authorized and Complete. Choosing Declined does change the box on screen to read Declined. Pressing 'Save & Close' then does nothing at all: the window stays open, no message of any kind appears, and the line is still Authorized afterwards.\n\nThis was checked against a control in the same sitting. In the same window, changing the Tech Time instead and pressing the same 'Save & Close' button closes the window and the new value is saved. So the button works - it is specifically the change to Declined that is silently dropped.",
-   "todo": "What needs to be done: this case cannot be run until a job line can actually be put into Declined. That is a separate problem, now written up and waiting for the QA lead to say whether it may be raised. Once a line can be set to Declined, reword this case from 'Cancelled' to 'Declined' and run it - print the job and check the declined line still appears with its status shown."
-  },
   "C45097": {
-   "verdict": "Blocked",
-   "observed": "The QA lead ruled on 10 September 2026 that a work order should NOT be allowed to exist without a customer - a customer must be chosen when the work order is created. That is what the build does: on the New Work Order window, leaving Customer empty and pressing Save answers 'Customer is a required field' and nothing is created.\n\nSo the situation this case describes - a job with no customer, printing the words 'No customer assigned' - can never arise in this product, and the case is to be retired.",
-   "todo": "What needs to be done: nothing in the build. This case is to be retired, and the requirement it comes from should be taken out of the written specification. Do not run it."
+   "verdict":"Blocked",
+   "observed":"The QA lead ruled on 10 September 2026 that this is correct product behaviour and should not change: a work order cannot be created without a customer, and one must always be chosen. The situation this case describes can therefore never arise on this product.\n\nWhat was checked on the build: on the New Work Order window, leaving the customer empty and pressing Save answers 'Customer is a required field' and nothing is created. Every work order on the system has a customer.",
+   "todo":"What needs to be done: nothing in the build. This case is due to be retired - it has been marked as not to be run and the reason recorded on it. It only needs deleting from the suite when the QA lead says so."
   },
   "C45098": {
-   "verdict": "Blocked",
-   "observed": "The QA lead ruled on 10 September 2026 that a work order should NOT be allowed to exist without a vehicle - a vehicle must be chosen when the work order is created. That is what the build does: on the New Work Order window, choosing a customer and pressing Save with the vehicle box empty answers 'Asset is a required field' and nothing is created.\n\nSo the situation this case describes - a job with no vehicle, printing the words 'No vehicle assigned' - can never arise in this product, and the case is to be retired.",
-   "todo": "What needs to be done: nothing in the build. This case is to be retired, and the requirement it comes from should be taken out of the written specification. Do not run it."
+   "verdict":"Blocked",
+   "observed":"The QA lead ruled on 10 September 2026 that this is correct product behaviour and should not change: a work order cannot be created without a vehicle, and one must always be chosen. The situation this case describes can therefore never arise on this product.\n\nWhat was checked on the build: on the New Work Order window, choosing a customer and pressing Save with the vehicle left empty answers 'Asset is a required field' and nothing is created.",
+   "todo":"What needs to be done: nothing in the build. This case is due to be retired - it has been marked as not to be run and the reason recorded on it. It only needs deleting from the suite when the QA lead says so."
+  },
+  "C45107": {
+   "verdict":"Passed",
+   "observed":"This still passes against the build as it stands today: printing a work order with no job lines produces a page carrying the single row 'No lines on this work order'.\n\nBut it is due to be retired. The QA lead ruled on 10 September 2026 that Print should be greyed out on a work order with no job lines, and a bug report has been raised for that. Once it is fixed, this page can no longer be reached, so the behaviour this case describes will not exist. The case has been marked as superseded and should not be automated.",
+   "not_observed":"Nothing. The case has been marked so that whoever picks it up next knows the ruling before running it."
+  },
+  "C45116": {
+   "verdict":"Passed",
+   "observed":"This still passes against the build as it stands today: the printed page for a work order with no job lines shows Total Actual Time 0.00 and Total Estimated Time 0.00, above the single row 'No lines on this work order'.\n\nBut it is due to be retired, for the same reason as the other case about printing a work order with no lines. The QA lead ruled on 10 September 2026 that Print should be greyed out in that situation, and a bug report has been raised. Once it is fixed this page cannot be reached. The case has been marked as superseded and should not be automated.",
+   "not_observed":"Nothing. The case has been marked so that whoever picks it up next knows the ruling before running it."
   }
  }
 }
