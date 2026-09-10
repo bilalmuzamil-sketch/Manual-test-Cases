@@ -3575,3 +3575,37 @@ Index: CLAUDE.md (rule index table). Other rule files: build/rules/RULES-01-20.m
     **RELATION TO OTHER RULES:** extends Rule 68 (a blocker blocks only what it actually blocks, and one
     tool failing is a fact about that tool) and Rule 12 (observed, never inferred) to the *negative* case;
     Rule 97 stays as-is for the "already written down" class. Learning **L0036**.
+
+---
+
+105. **NEVER GO IDLE WHILE WORK REMAINS — THE NEXT STEP IS ALREADY RUNNING BEFORE YOU REPORT (all
+    projects, permanent; QA lead, 2026-09-10).**
+    **HOW IT SURFACED.** The QA lead: *"Are you done? I do not see any running task etc."* Nothing was
+    blocked and nothing was finished — a probe had ended, the next had not been launched, and the
+    session sat still between steps until he asked. Then: *"Make sure you never make such mistakes that
+    waste the time, learn from it and save it as your skill/rule or whatever."*
+    **THE STANDARD.** A session with remaining work is **never** without something running. Concretely:
+    **(a) QUEUE, DO NOT HAND-LAUNCH.** The moment a multi-step job is understood, write **every**
+    remaining step into a queue file and start `build/testing-tools/run_queue.sh <queue> <tag>`.
+    Finishing a step then STARTS the next automatically, and a step that crashes does not stop the
+    queue. Launching steps one at a time by hand is what creates the gap.
+    **(b) THE LAST ACTION BEFORE ANY REPORT IS TO START THE NEXT WORK**, not to write the report. Order:
+    queue the next step → confirm it is running → then report. A report that ends with nothing running,
+    while work remains, is incomplete however good its tables are.
+    **(c) SAY WHAT IS RUNNING.** Every status message names the step now in flight and how it will be
+    known to have finished, so "is anything happening?" is never a question he has to ask.
+    **(d) WHEN GENUINELY WAITING**, wait on a condition, not on a guess — poll the queue log until the
+    step ends. If there is truly nothing to run, say **"nothing is running because X"** and name what
+    is needed to resume; an idle session must be idle *on purpose and out loud*.
+    **(e) THE ONLY LEGITIMATE STOPS** are: the queue is empty and the work is done · every remaining
+    item needs a decision only the QA lead can make (and that decision has been put to him, Rule 103) ·
+    a proved blocker (Rule 104, gate passed). *"I finished a step and had not decided what to do next"*
+    is not one of them.
+    **THE MECHANISM.** `build/testing-tools/run_queue.sh` — `run_queue.sh <queue-file> <tag>` walks a
+    list of commands, refreshing the QA-branch bridge before each and pausing between them for login
+    trap 2, writing `/tmp/queue-<tag>.log` with a START/EXIT line per step and `QUEUE-DONE` at the end.
+    `run_queue.sh --status <tag>` prints *RUNNING/FINISHED — n of m*, so a session polls one file
+    instead of guessing what is alive.
+    **RELATION TO OTHER RULES:** Rule 75 (long work runs detached and self-committing) says HOW work
+    runs; 105 says it must never STOP while work remains. Rule 79 (strategy first) produces the queue
+    this rule insists on using. Learning **L0037**.

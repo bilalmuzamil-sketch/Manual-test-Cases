@@ -414,3 +414,15 @@ proofs, exit 1 until all carry evidence).
 Recorded in `build/rules/RULES-61-ONWARD.md` (rule 104), indexed in `CLAUDE.md` §2, and folded into the
 existing §1 blocker bullet as an **amendment** per the §1 admission gate. Evidence and the five-case
 table: learning **L0036**. Rule count 103 → **104**.
+
+## Rule 105 added 2026-09-10
+
+**105 — NEVER GO IDLE WHILE WORK REMAINS.** Prompted by the QA lead asking *"Are you done? I do not
+see any running task etc."* while a finished probe sat with no successor launched, followed by *"Make
+sure you never make such mistakes that waste the time, learn from it and save it as your skill/rule
+or whatever."* Ships executable enforcement, as Rule 104 does:
+`build/testing-tools/run_queue.sh` walks a queue file, refreshing the bridge before each step and
+spacing them for login trap 2, and `--status <tag>` answers "is anything running?" in one line.
+Recorded in `build/rules/RULES-61-ONWARD.md` (rule 105), indexed in `CLAUDE.md` §2, and folded into
+the existing §1 strategy bullet as an **amendment** per the §1 admission gate. Learning **L0037**.
+Rule count 104 → **105**.
