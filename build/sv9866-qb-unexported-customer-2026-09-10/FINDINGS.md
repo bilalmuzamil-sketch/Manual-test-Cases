@@ -249,3 +249,22 @@ the only path on which staging loses the customer.
 - **Invoicing on this branch is gated:** Create Invoice fires `GET /api/invoices/ibs/retrieveIBSApproval`
   → 400 while the work order shows "Over Limit"; one work order also 500s on
   `GET /api/invoices/{id}/details`, which kills the flow before it starts.
+
+---
+
+## Closing checks (re-run live before reporting)
+
+**The blank is in the API response, not the screen.** The staging rows come back from
+`GET /api/bookkeeping/unexported-items` with `"customer": ""` — an empty field, not a name the table
+fails to render. So the fix has to be server-side, and there is no point diffing the three
+environments' frontend bundles (they are all `v26.36.2` on three different commits anyway, and the
+frontend marker does not tell you the backend version). On the same rows the **`number`** field is
+empty too, on every Credit Memo Apply, Credit Memo Refund and Deposit Application row.
+
+**Production re-checked at the moment of reporting** — one read-only login, `groupName` =
+`customer` / `vendor` / `journal_entry`, `totalRecords: 0` on all three. Nothing to compare there,
+confirmed twice.
+
+**Staging is "pre-fix" by observed behaviour, not by version number.** The fix is server-side and
+the frontend marker says nothing about the backend, so the claim rests on the defect actually
+reproducing there (54 blank rows), which is evidence rather than inference.
