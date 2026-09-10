@@ -191,3 +191,61 @@ The one pair I could assemble, and why it was rejected:
 for `.shopview.com`). With those the same document type can be rendered on both builds and the pair
 becomes a true like-for-like — about fifteen minutes, and the three comments are updated in place by
 `commentId` (76272 / 76273 / 76274), not stacked.
+
+## Before-vs-after built 2026-09-10 — AND IT FOUND A REGRESSION I HAD MISSED
+
+Fresh staging cookies arrived, so the before/after was built properly. **Staging is genuinely the
+pre-fix build:** its served document contains **0** occurrences of `break-inside: auto` and **0** of
+`flex: 0 0 210px`, while the branch document has 1 and 2. Staging `v26.36.0-ede3d52`, branch
+`v26.36.0-3340667`, both read live.
+
+Method: the **same work orders** rendered on both builds through the **same endpoint with the same
+parameters** — `POST /api/work-orders/invoices/estimate {work_order_id, type:"pdf"|"html",
+issue_date, due_date}` → 200 on both. Four documents: `fa8aec20` (S-8627), `2dfb7f51`, `4c269aef`,
+`d2cea2b7`.
+
+### The two exhibits that show the fixes working
+- `ev/before-after/ba1-sv9849-logo-centre.png` — masthead, same invoice. Logo **+47.7 pt off page
+  centre before, +0.0 pt after**, measured from `page.get_image_info()`.
+- `ev/before-after/ba2-sv9870-9857-paper-9-to-5.png` — every page of the same invoice, both builds:
+  **9 sheets → 5**, with subtotal `$4,949.72` and total `$5,197.20` identical on both, and pages
+  filling to the bottom instead of stopping early (content ends at
+  `356/586/689/782/718/442/652/636/429` before, `792/733/768/760/708` after).
+
+### 🔴 THE REGRESSION — the per-line footer has lost its Labor and Parts figures
+`ev/before-after/ba3-line-footer-regression.png`.
+
+Markup, same document, same line, both builds:
+- **staging:** `<div class="job-foot avoid-break-inside"><span>Labor <b>$400.00</b></span><span
+  class="ltot with-divider">Line total <b>$400.00</b></span></div>`
+- **branch:** `<div class="job-foot avoid-break-inside"><span class="ltot">Line total
+  <b>$400.00</b></span></div>`
+
+Every job footer in the document, counted (not sampled):
+
+| build | Labor + Parts + Line total | Labor + Line total | Parts + Line total | Line total only |
+|---|---|---|---|---|
+| staging (pre-fix) | 12 | 5 | 2 | 3 |
+| branch (fixed) | 0 | 0 | 0 | **22** |
+
+Across all four documents — **65 work-line footers** — the pre-fix build prints `Labor` on 50 and
+`Parts` on 45; the branch prints **0 and 0**, while the `Line total` count is unchanged
+(13/13, 13/13, 22/22, 17/17) and the values themselves are correct.
+
+**Why this is a defect and not a density change:**
+- Spec **S5-R9**, quoted verbatim inside SV-9773: *"Each work line shows a footer with figures labeled
+  exactly "Labor", "Parts", and "Line total". The Labor and Parts figures are that line's own totals
+  after its line-level fees and discounts; "Line total" is their sum."*
+- **SV-9773 is Done** (resolved 2026-09-09) and its whole point was to make those two figures
+  *correct*, not to remove them.
+- SV-9870 states the opposite twice: *"Every step was verified to print identical money figures before
+  and after"*, *"Money figures were hashed and compared before and after every change"*, and lists
+  under **Not this ticket**: *"The per-line SCOPE OF WORK / LABOR / PARTS headings and Line total
+  rows"*. All eleven of its changes are CSS declarations; this is a markup change.
+
+**Consequence: the SV-9870 PASS I posted is wrong on this point and comment 76273 needs correcting.**
+I found it only because the QA lead required a before-vs-after comparison — the fix's own 11 changes
+all verify clean, and no amount of after-only checking would have surfaced it. That is now Standing
+Rule 73, and this is its first catch.
+
+**Not yet done, awaiting the QA lead:** correcting the three comments in place, and raising the defect.
