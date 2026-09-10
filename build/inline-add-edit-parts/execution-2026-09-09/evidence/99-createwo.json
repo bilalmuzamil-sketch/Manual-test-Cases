@@ -1,19 +1,48 @@
 {
  "shape": {
   "keys": [
-   "work_order"
-  ]
+   "deletable",
+   "deletable_reason",
+   "editable",
+   "id",
+   "number",
+   "engine_hours",
+   "tax",
+   "time_estimate",
+   "start_date",
+   "end_date",
+   "status_value",
+   "status",
+   "bay_id",
+   "priority",
+   "workplace_id",
+   "is_vehicle_here",
+   "vin",
+   "licence_plate",
+   "customer_po",
+   "service_advisor_id",
+   "sales_rep_id",
+   "sales_rep_name",
+   "sales_rep_is_inactive",
+   "customer_id",
+   "company_id",
+   "company_name"
+  ],
+  "company_id": "31938e53-e7a5-4013-8480-bceae4e9b18c",
+  "customer_id": "09a9bb3b-ddcf-4b4c-b94d-404b9be93094",
+  "workplace_id": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+  "type": "service"
  },
  "tries": [
   {
    "label": "copied from an existing work order",
-   "status": 400,
-   "text": "{\"errors\":[{\"company_id\":\"Missing required parameter\"}]}"
+   "status": 500,
+   "text": "{\"errors\":[{\"error\":\"An error occurred. We\\u0027re sorry for this inconvenience, please try again a bit later later.\"},{\"requestId\":\"410ace77-a833-44b4-a5cd-53048f93bc14\"}]}"
   },
   {
    "label": "minimal",
-   "status": 400,
-   "text": "{\"errors\":[{\"company_id\":\"Missing required parameter\"}]}"
+   "status": 500,
+   "text": "{\"errors\":[{\"error\":\"An error occurred. We\\u0027re sorry for this inconvenience, please try again a bit later later.\"},{\"requestId\":\"9b1160b9-e03e-4c17-a42c-96768d11775e\"}]}"
   }
  ]
 }

@@ -1,0 +1,8 @@
+{
+ "pass_meta": {"suite":"Inline Add and Edit Parts (6597)","run":418,"env":"the sv9315 QA branch",
+   "build":"v26.36.0-f43b2fd","date":"10 September 2026","view_mode":"full"},
+ "results": {
+  "C45230": {"verdict":"Passed","observed":"What was checked: whether the system says so when it quietly moves the allocation off the default bin. What happened: a part whose default bin (General Storage) holds only 2 was asked for with a quantity of 6, while another bin (A1A) holds 9. The allocation went to A1A and a note appeared beside the chip reading \"Default bin General Storage has 2. Switched to a bin that covers 6.\" - naming the default bin, what it actually holds, and the quantity that forced the change. Nothing is done behind the user's back.","not_observed":null},
+  "C45223": {"verdict":"Passed","observed":"What was checked: which bin the system chooses for you, across all three situations the case describes, now that parts are held in several bins. What happened. (1) Where the default bin covers the quantity - General Storage holds 8, and 3 were asked for - the whole 3 went to the default bin. (2) Where the default bin is short but another single bin can cover it - default holds 2, 6 were asked for, and A1A holds 9 - the whole 6 went to A1A. (3) Where no single bin can cover it, the allocation stays on the default bin rather than moving or giving up. In every case the whole quantity went to one bin: the system never split it between bins on its own.","not_observed":null}
+ }
+}
