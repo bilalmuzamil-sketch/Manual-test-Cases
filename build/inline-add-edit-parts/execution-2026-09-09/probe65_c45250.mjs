@@ -32,9 +32,16 @@ R.candidates = cand.slice(0,5).map(w=>({id:w.id, num:w.number||w.work_order_numb
 log('spare work orders:', JSON.stringify(R.candidates));
 let WO=null, LINE=null;
 for (const w of cand.slice(0,8)){
-  const d = await api(`/api/work-orders/${w.id}`);
-  const lines = rowsOf(d.json && (d.json.lines || (d.json.data && d.json.data.lines) || d.json));
-  const ln = (Array.isArray(lines)?lines:[]).find(x=>x && x.id && String(x.status||'').toLowerCase()!=='complete');
+  let lines=[];
+  for (const p of [`/api/work-orders/${w.id}/lines`, `/api/work-orders/lines?work_order_id=${w.id}`,
+                   `/api/work-orders/${w.id}`]){
+    const d = await api(p);
+    if (d.status!==200) continue;
+    const cand = rowsOf(d.json && (d.json.lines || (d.json.data && d.json.data.lines) || d.json));
+    if (Array.isArray(cand) && cand.length && cand[0] && cand[0].id){ lines=cand; R.linesPath=p; break; }
+  }
+  R.lineKeys = lines[0] ? Object.keys(lines[0]).slice(0,18) : null;
+  const ln = lines.find(x=>x && x.id && String(x.status||'').toLowerCase()!=='complete');
   if (ln){ WO=w; LINE=ln; break; }
 }
 R.chosen = {wo: WO && {id:WO.id, num:WO.number||WO.work_order_number, status:WO.status||WO.status_name},
