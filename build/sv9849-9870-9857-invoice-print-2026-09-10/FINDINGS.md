@@ -45,7 +45,9 @@ Also **−0.00 pt on all 11 invoices** measured (different document numbers and 
 
 **Other document types:** Estimate `EST-S9849-17358` — centred −0.00pt, 1 page, 0 ink past margin, and prints the shop name **"Staging Heavy Duty - 9919" in full** (G-R3: an estimate reads the live location). Part sales `P2-219 / P2-222 / P2-242` — centred −0.00pt, 1 page each.
 
-**Not verified this pass (honest):** the **credit memo** masthead, and the **no-logo shop** path (the logo is org-level and there is no remove option on this env — the same limitation Mudassir recorded). Long-number wrapping was verified at the CSS layer only, not driven with a 20-character number.
+**Credit memo — CM-4191** (Customers → 4 Star Truck Repair → Invoices → "Print credit memo", `GET /api/credit-memos/{id}/pdf`): logo **46×46px at −0.00pt from page centre**, 0 ink past the margin, **"CREDIT TO" block present**, **no "Remit Payment To"**, document label stacked as `Credit: CM-4191`, and the shop name prints "Staging Heavy Duty - 9919" in full. Matches Mudassir's CM-4189 result.
+
+**Not verified this pass (honest):** the **no-logo shop** path (the logo is org-level and there is no remove option on this env — the same limitation Mudassir recorded). Long-number wrapping was verified at the CSS layer only, not driven with a 20-character number.
 
 ---
 
@@ -90,6 +92,16 @@ Verified against the served document CSS (`type=html`, the exact input WeasyPrin
 - Disclaimer renders **9.0px in #4B5565** in the PDF — Chris Ward's **S12-R5b exemption** honoured (deliberately *not* darkened to #364152), while `.af-k`, `.addr-lbl`, `.grp-lbl`, `.sign-cap` remain #364152 as he listed.
 - Sheet counts sit at or below the design's targets (design: 10–24 lines → 3.33 sheets, 25+ → 7.00; here 23 lines → 5, 28 → 5, 31 → 5).
 - **Part-sale mirror correct:** flat parts body, no SCOPE OF WORK / LABOR blocks, so changes 2, 5 and 10 legitimately do not apply (S13-R2). 1 page each.
+
+### The credit-memo divider divergence is real and correct
+Milomir flagged (comment 76269) that the credit memo **keeps** its row dividers because they come off a different selector (`.pay-table tbody tr + tr td`, S11-R4) that SV-9870 never measured, and Chris endorsed leaving them. Measured, counting thin horizontal rules (<2pt tall, >40pt wide) across each whole document:
+
+| document | thin horizontal rules |
+|---|---|
+| **Invoice** S2-8627 (5 pages) | **2** — the section rule and Summary bar only, which change 7 explicitly keeps |
+| **Credit memo** CM-4191 (1 page) | **7** — its credited-item dividers, retained |
+
+So change 7 zeroed the charge-row dividers on the invoice while the credit memo's own dividers survive, exactly as intended. The credit memo also picks up the SV-9870 mirror where it applies: same 56px side inset, and the disclaimer at **9.0px / #4B5565**.
 
 ### One measurement note — not a defect, no action needed
 **The rendered side margin is 56px, not the 48px the ticket computes.** The change itself is exactly as written (`.invoice-pdf-new` padding-left/right 42px → **18px**, confirmed). The ticket's arithmetic ("with the 30px page margin that is 48px a side") omits an ~8px container margin between the `@page` margin and `.invoice-pdf-new`. Measured content box on every page: x0 = 42.0pt, x1 = 553.3pt, i.e. **56px a side**.
