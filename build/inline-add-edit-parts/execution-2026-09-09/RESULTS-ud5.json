@@ -1,0 +1,7 @@
+{
+ "pass_meta": {"suite":"Inline Add and Edit Parts (6597)","run":418,"env":"the sv9315 QA branch",
+   "build":"v26.36.0-f43b2fd","date":"10 September 2026","view_mode":"tech"},
+ "results": {
+  "C45078": {"verdict":"Passed","observed":"What was checked: whether opening an existing part to look at it, and then closing it or walking away, is treated as unsaved work. What happened: the edit row was opened on an existing part and nothing was altered. Closing it with the row's close control shut it straight away with no question asked; and on a second run, leaving the work order by clicking \"Schedule\" in the top menu went through immediately, again with no question. Looking at a part without changing it costs the user nothing.","not_observed":null}
+ }
+}
