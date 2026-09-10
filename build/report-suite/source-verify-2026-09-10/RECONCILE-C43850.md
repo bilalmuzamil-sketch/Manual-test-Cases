@@ -1,8 +1,12 @@
-# Source-verification reconciliation — C43850 (Report Suite / WIP report) — REPORT ONLY
+# Source-verification reconciliation — C43850 (Report Suite / WIP report) — CORRECTED THIS SESSION
 
 - **Case:** C43850 "Report Location scope follows the signed-in user's enrollments"
-  https://shopview.testrail.io/index.php?/cases/view/43850 · **created_by 1 = Vladimir Tomovic → HANDS-OFF
-  (Rule 38): assessed and reported, NEVER edited, and we do not ask per-case to edit it.**
+  https://shopview.testrail.io/index.php?/cases/view/43850 · **created_by 1 = Vladimir Tomovic.**
+  Normally HANDS-OFF (Rule 38); **corrected 2026-09-10 under Vladimir Tomovic's explicit permission for this
+  session only** (relayed by the QA lead; the Rule 38 conflict was surfaced per Rule 63 before editing).
+  Flagged **Automated** (`custom_atmstatus = 3`) → FOR-VLAD note filed (Rule 65),
+  `build/FOR-VLAD-2026-09-10-C43850-C45275.md`. (This file began as a REPORT-ONLY diagnosis; the case was
+  then corrected — the correction is recorded at the end.)
 - **Reconciled 2026-09-10, three ways (Rule 106):** the CASE's Expected (live from TestRail) · the SOURCE as
   it reads today (fetched live) · the BUILD (NOT observed this pass).
 
@@ -42,3 +46,16 @@ frames the report as opening at "its documented default location scope" once the
   assumption in the steps (a timing/caching question), not a source contradiction.
 - **Action:** REPORT to the QA lead. **No edit** — Vladimir's case (Rule 38). If he wants the wording aligned
   ("locations the user can access"; default = currently-active location), that is Vlad's change to make.
+
+## 6. CORRECTION APPLIED 2026-09-10 (under Vladimir's permission for this session)
+The QA lead relayed Vladimir Tomovic's permission to correct this case for this session. Corrected:
+- **Preconds + 6 steps reworded** to "locations the user can access" and the currently-active-location
+  default (S7-R9/S7-R11), so the case no longer implies "all enrolled locations."
+- **Dropped the unsupported "no browser reload" claim** — step 3 now says "a browser reload is fine"
+  (the source does not require live refresh; that assumption was the likely automation-failure cause).
+- **Added provenance** (epic SV-8582, WIP PRD page 703660034 S7-R9/S7-R11, read 10 Sep) + the
+  Vladimir-permission note + `AUTOMATION: READY`. **Automation type set Functional (2).**
+- **Render:** the preconds field (a main markdown field) first landed in an escaping container via the API
+  write and showed literal `<p>` tags; **repaired through the UI/Froala editor** so it now renders as three
+  clean paragraphs (`fr-view`). Verified live on the served page: **0 literal tags**, 6 separate step rows,
+  provenance + marker last. `custom_atmstatus` stays **3** (still Automated). Title unchanged.
