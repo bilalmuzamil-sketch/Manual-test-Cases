@@ -1,0 +1,16 @@
+{
+ "pass_meta": {
+  "suite": "Inline Add and Edit Parts (6597)",
+  "run": 418,
+  "env": "the sv9315 QA branch",
+  "build": "v26.36.0-f43b2fd",
+  "date": "10 September 2026",
+  "view_mode": "Full View"
+ },
+ "results": {
+  "C45250": {
+   "verdict": "Passed",
+   "observed": "What was checked: on a work order line that is genuinely in Complete status, is the \"+ Add Part\" button still offered, and if you use it does the system take the line out of Complete by itself instead of telling you to do that first. What happened: both points hold. A line was built for this check on work order S9315-15899 - a new line, an inventory part (Slack Adjuster, part number F40010212) added at quantity 5 and picked, then the line set to Complete. On the completed line the \"+ Add Part\" button was still present and clickable in that line's Parts section. Clicking it opened the add row normally; a part was entered and saved, and it saved successfully onto that same line. The line then showed as no longer Complete - the system had taken it back out of Complete on its own, with no message asking anyone to uncomplete it first. That is exactly what the case asks for. This case had previously been marked Blocked because a line could not be got into Complete status; the note on the case is right that the part must be PICKED and not merely In stock, and once that is done the line completes and the check runs normally."
+  }
+ }
+}

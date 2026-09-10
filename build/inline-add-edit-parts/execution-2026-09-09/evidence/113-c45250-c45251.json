@@ -41,8 +41,105 @@
    "e161eaa2",
    "cd8c3e17"
   ],
-  "found": false,
-  "visible": false
+  "found": true,
+  "visible": true
  },
- "fatal": "could not locate this line's Add Part button in the lines table"
+ "addPartClick": {
+  "clicked": true,
+  "tableFound": true,
+  "linesSeen": [
+   "b2504a0d",
+   "b80d7553",
+   "9ece02ce",
+   "e161eaa2",
+   "cd8c3e17"
+  ],
+  "found": true,
+  "visible": true
+ },
+ "typeahead": {
+  "chose": "stocked",
+  "label": "Slack Adjuster F40010212Inventory Qty: 18 EAGeneral Storage8A1A5A1B3 + 1",
+  "cards": [
+   "Slack Adjuster F40010212Inventory Qty: 18 EAGeneral Storage8A1A5A1B3 + 1",
+   "Slack Adjuster F40010212CatalogGeneral Storage8A1A5A1B3 + 1"
+  ]
+ },
+ "afterAdd": {
+  "status": "authorized",
+  "requests": [
+   {
+    "id": "3ad0b956-2971-4f3e-9bcf-7f83398d4a31",
+    "status": "in_stock",
+    "qty": 5
+   }
+  ],
+  "parts": []
+ },
+ "picks": {
+  "3ad0b956-2971-4f3e-9bcf-7f83398d4a31": {
+   "from": "in_stock",
+   "http": 201,
+   "text": "{\"data\":{\"partRequestId\":\"3ad0b956-2971-4f3e-9bcf-7f83398d4a31\",\"workOrderId\":\"6a529a5f-dff9-4c13-9636-b41500e585f0\",\"lineId\":\"cd8c3e17-27da-49cd-8a89-21931d12b893\",\"statusLabel\":\"Received\",\"status\":\""
+  }
+ },
+ "afterPick": {
+  "status": "authorized",
+  "nRequests": 0,
+  "parts": [
+   {
+    "id": "893ded77-2128-45b5-8d29-06dbcc472bad",
+    "pn": "F40010212",
+    "qty": 5
+   }
+  ]
+ },
+ "complete": {
+  "status": 200,
+  "json": {
+   "data": []
+  },
+  "text": "{\"data\":[]}"
+ },
+ "lineStatus": "complete",
+ "C45251": {
+  "F40010212": {
+   "open": false,
+   "note": "the edit control was clicked but no inline row opened"
+  }
+ },
+ "C45250": {
+  "lookup": {
+   "tableFound": true,
+   "linesSeen": [
+    "b2504a0d",
+    "b80d7553",
+    "9ece02ce",
+    "e161eaa2",
+    "cd8c3e17"
+   ],
+   "found": true,
+   "visible": true
+  },
+  "rowOpened": true,
+  "toasts": [
+   "Build Lines",
+   "Edit PartclosePart numberarrow_drop_downDescriptionSourceInventoryarrow_drop_downCategoryHD-Fastenerscancelarrow_drop_downVendorarrow_drop_down$Cost$Core charge$Sell priceMargin%InventoryBin nameQuantity in stockAmountGeneral Storage Default3Show all binsReturnSave & close"
+  ],
+  "lineStatusAfter": "authorized",
+  "uncompletedItself": true,
+  "partsAfter": [
+   {
+    "pn": "F40010212",
+    "qty": 5
+   }
+  ],
+  "requestsAfter": [
+   {
+    "status": "authorized_to_order",
+    "qty": 1
+   }
+  ],
+  "partLandedHere": true
+ }
 }

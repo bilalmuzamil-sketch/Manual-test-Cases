@@ -1,0 +1,46 @@
+{
+ "lineAtStart": {
+  "status": "authorized",
+  "parts": [
+   {
+    "id": "893ded77-2128-45b5-8d29-06dbcc472bad",
+    "pn": "F40010212",
+    "qty": 5
+   }
+  ],
+  "requests": [
+   {
+    "id": "0631628f-1067-465f-9f9d-7c1cb4dec93f",
+    "status": "authorized_to_order",
+    "qty": 1
+   }
+  ]
+ },
+ "clear": {
+  "0631628f-1067-465f-9f9d-7c1cb4dec93f": {
+   "from": "authorized_to_order",
+   "http": 201,
+   "text": "{\"data\":{\"partRequestId\":\"0631628f-1067-465f-9f9d-7c1cb4dec93f\",\"workOrderId\":\"6a529a5f-dff9-4c13-9636-b41500e585f0\",\"lineId\":\"cd8c3e17-27da-49cd-8a89-21931d12b"
+  }
+ },
+ "recomplete": {
+  "status": 400,
+  "json": {
+   "errors": [
+    {
+     "error": "Line can`t be completed with unfulfilled part requests."
+    }
+   ]
+  },
+  "text": "{\"errors\":[{\"error\":\"Line can`t be completed with unfulfilled part requests.\"}]}"
+ },
+ "lineStatus": "authorized",
+ "parts": [
+  {
+   "id": "893ded77-2128-45b5-8d29-06dbcc472bad",
+   "pn": "F40010212",
+   "qty": 5
+  }
+ ],
+ "note": "the line is not Complete, so NOTHING is reported as observed for C45251"
+}
