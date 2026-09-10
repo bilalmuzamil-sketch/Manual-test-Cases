@@ -1,0 +1,376 @@
+@media print {
+        .page {
+            page-break-after: always;
+        }
+    }
+
+/* ==== next @media print block ==== */
+
+@media print {
+        .shop-meta,
+        .shop-meta div,
+        .doc-dates,
+        .job-sub,
+        .job-foot,
+        .sec-lbl,
+        .disc,
+        .adj-item,
+        .footer,
+        .text-grey-80,
+        .job.declined,
+        .work-summary-table-new tr.adjrow td {
+            color: #4B5565;
+        }
+
+        .af-k,
+        .addr-lbl,
+        .grp-lbl,
+        .sign-cap {
+            color: #364152;
+        }
+
+        .addr-row,
+        .addr,
+        .asset-band,
+        .ochip,
+        .auth,
+        .footer {
+            border-color: #CDD5DF;
+        }
+
+        /* SV-9823, three rules because the screen value is declared three times
+           and each declaration has to be answered in kind. First the table/cell
+           fallback - the print twin of the base rule that keeps an uncoloured
+           border off WeasyPrint's UA gray, repeated here because otherwise a
+           border added without a colour would paint the SCREEN #EEF2F6 into the
+           PDF. Then the two that actually draw a divider, which outrank that
+           fallback on specificity and so would keep #EEF2F6 without their own
+           override: the between-row divider (border-TOP on each following charge
+           row) and the one closing a charge group (border-BOTTOM on its last). */
+        .work-summary-table-new,
+        .work-summary-table-new td {
+            border-color: #CDD5DF;
+        }
+
+        .work-summary-table-new tr.crow td {
+            border-top-color: #CDD5DF;
+        }
+
+        .work-summary-table-new tr:last-child td {
+            border-bottom-color: #CDD5DF;
+        }
+
+        .row-strong {
+            border-bottom-color: #CDD5DF;
+        }
+    }
+
+/* ==== next @media print block ==== */
+
+@media print {
+        /* Changes 1, 6 and 11 all land on the sheet, so its final state is
+           declared once. Vertical padding 38px/30px -> 24px/20px (change 1),
+           body type 14px/1.5 -> 13px/1.4 (change 6), side padding 42px -> 18px
+           (change 11, and see constraint 3 above). */
+        .invoice-pdf-new {
+            padding: 24px 18px 20px;
+            font-size: 13px;
+            line-height: 1.4;
+        }
+
+        /* Change 1 - vertical values only, nothing horizontal moves. Measured
+           3.16 -> 3.02 sheets on its own. */
+        .mh {
+            padding-bottom: 8px;
+        }
+
+        .grp-lbl {
+            margin: 12px 0 5px;
+        }
+
+        .addr {
+            padding: 8px 14px;
+        }
+
+        .asset-band {
+            padding: 8px 2px;
+            margin-top: 10px;
+        }
+
+        .order-chips {
+            margin-top: 10px;
+        }
+
+        .sec-lbl {
+            margin: 14px 0 3px;
+        }
+
+        /* Change 2 - the largest single saving in the ticket, 3.02 -> 2.75
+           sheets, and it REVERSES SV-9671's atomic work line. SV-9671 made a
+           line atomic because a break was landing between its Labor and Parts
+           charge sections and carrying the footer over alone, splitting the
+           line's header from its total. Under SV-9870 a line may split, and the
+           two rules that constrain HOW it splits are the ones named in
+           constraint 2 above: `.job-top` still forbids a break after the
+           header, so a label is never orphaned, and `.job-foot` still forbids
+           one immediately before the footer, so the total never separates from
+           the rows above it. Both are declared in the base rules and are
+           untouched. The padding here is change 1's 14px -> 9px. */
+        .job {
+            padding: 9px 0;
+            break-inside: auto;
+        }
+
+        /* Change 5 - the Why runs on from the What. The header stops being a
+           flex row and becomes a block with the number lifted out of flow into
+           the 38px indent the scope note and the charge sections already use,
+           so the title and its sub-line share a line instead of taking one
+           each. `.job-top` keeps its `break-after: avoid` from the base rules;
+           only its box model changes here. The 38px indent is the same distance
+           the base rules produce from `.job-no`'s 26px min-width plus the row's
+           12px gap, so a declined entry - which renders an empty number span so
+           its title lines up with the numbered work above (S6-R4) - keeps that
+           alignment. */
+        .job-top {
+            display: block;
+            position: relative;
+            padding-left: 38px;
+        }
+
+        .job-no {
+            position: absolute;
+            left: 0;
+            top: 0;
+        }
+
+        .job-ttl {
+            display: inline;
+            font-size: 15px;
+        }
+
+        .job-sub {
+            display: inline;
+            margin: 0 0 0 6px;
+            font-size: 11.5px;
+            line-height: 1.4;
+        }
+
+        .scope-lbl {
+            margin: 6px 0 2px 38px;
+        }
+
+        /* Change 1's margin, change 6's type, and change 10: the story text
+           runs the full column width. `max-width: none` rather than deleting
+           the base declaration, because the base rule is the screen preview's
+           and keeps its 70ch measure. Change 10 measured 2.29 -> 2.22 sheets. */
+        .scope {
+            margin: 0 0 7px 38px;
+            font-size: 11.5px;
+            line-height: 1.4;
+            max-width: none;
+        }
+
+        .chargesec {
+            margin: 6px 0 0 38px;
+        }
+
+        .chargesec + .chargesec {
+            margin-top: 9px;
+        }
+
+        .csec-head {
+            padding-bottom: 3px;
+        }
+
+        /* Change 6. */
+        .work-summary-table-new {
+            font-size: 12px;
+        }
+
+        /* Change 7 - the charge-row dividers are not drawn in print, which
+           REVERSES SV-9708 (which chose the divider's colour) and SV-9823
+           (which darkened it to the print ink floor) FOR THE ROW DIVIDERS ONLY.
+           The section rules and the Summary bar are untouched, and so are the
+           colour declarations in the SV-9823 block above - a zero-width border
+           paints nothing whatever colour it names, and those declarations are
+           still live for the other documents that share them. All three
+           selectors are repeated verbatim from the base rules: the two row
+           rules outrank a shorter selector on specificity, so zeroing only the
+           cell rule would leave both dividers drawn. Changes 5 to 8 together
+           measured 2.59 -> 2.29 sheets. The cell padding is change 1's
+           5px -> 3px. */
+        .work-summary-table-new td {
+            padding: 3px 0;
+            border-top: 0;
+            border-bottom: 0;
+        }
+
+        .work-summary-table-new tr.crow td {
+            border-top: 0;
+            border-bottom: 0;
+        }
+
+        .work-summary-table-new tr:last-child td {
+            border-top: 0;
+            border-bottom: 0;
+        }
+
+        .work-summary-table-new tr.adjrow td {
+            padding: 2px 0;
+        }
+
+        .job-foot {
+            margin-top: 5px;
+            padding-top: 5px;
+        }
+
+        .ps-body {
+            padding-top: 9px;
+        }
+
+        /* Change 8 - the gap above the Summary bar, 26px/16px on screen and
+           16px/10px after change 1, finally 6px/8px. This is the final value
+           and it supersedes change 1's; the bar keeps its `break-after: avoid`
+           and `.tail::before` keeps the boundary that makes it actionable
+           (SV-9767), both from the base rules. */
+        .b-break {
+            margin: 6px 0 8px;
+        }
+
+        /* Change 4 - the Summary column narrows from 340px to 280px. Layout
+           only, no sheet change on its own; it buys the disclaimer a wider wrap
+           region beside the float. `float: right` and `display: flex` stay in
+           the base rules and must not be answered here - constraint 1 above
+           records that unfloating this column to let it fragment was measured
+           and made the 4-to-9-line bucket worse. */
+        .sum {
+            width: 280px;
+            max-width: 280px;
+        }
+
+        /* Change 1, and it partially answers SV-9825. That ticket sized this
+           gutter at 30px because that was the sheet's own bottom padding, and
+           the gutter has to be CONTENT rather than padding for WeasyPrint to
+           read it when deciding whether the float fits. Both halves still hold;
+           only the number moves, and it moves because the sheet's own bottom
+           padding is now 20px in print. It is compacted, never removed - at
+           zero the BALANCE box prints flush against the footer band, which is
+           what SV-9825 reported. */
+        .sum::after {
+            height: 18px;
+        }
+
+        .bal {
+            padding: 10px 18px;
+        }
+
+        .totals-new {
+            padding: 3px 0;
+        }
+
+        .adj-item {
+            padding: 2px 0 2px 18px;
+        }
+
+        /* Change 3 - the disclaimer and the signature block, 2.75 -> 2.59
+           sheets. Constraint 4 above: `.disc`'s font size is what carries this
+           change; the signature compaction on its own moved nothing.
+
+           RESOLVED by S12-R5b, added 2026-09-09 - the disclaimer, and nothing
+           else, is exempt from S12-R5's sub-10px ink floor. It stays 9px in
+           #4B5565, so 🔴 do NOT "fix" this by darkening it to #364152 the way
+           every other sub-10px element is (`.af-k` 9px, `.addr-lbl` 9.5px,
+           `.grp-lbl` and `.sign-cap` 10px, all #364152 and all still bound by
+           the floor).
+
+           The exemption's three reasons, since a lone lighter value invites a
+           tidy-up: this paragraph was measured at that size AND that colour
+           across the 28 invoices every paper figure in SV-9870 rests on, so
+           darkening it now would move the measurement out from under the
+           numbers; the pre-refresh document ran the same text at about 8.6px,
+           so sub-10px disclaimer text is what is being restored rather than a
+           new departure; and the floor exists so weak printers do not drop
+           text, which #4B5565 at 9px does not risk. */
+        .disc {
+            font-size: 9px;
+            line-height: 1.35;
+        }
+
+        .sign-line {
+            height: 16px;
+        }
+
+        .sign-cap {
+            margin-top: 3px;
+        }
+
+        /* Changes 1 and 3 both land on these two, so only the final values are
+           declared: `.auth` 24px/16px -> 8px/6px, `.footer` 22px/12px ->
+           8px/6px. */
+        .auth {
+            margin-top: 8px;
+            padding-top: 6px;
+        }
+
+        .footer {
+            margin-top: 8px;
+            padding-top: 6px;
+        }
+    }
+
+/* ==== next @media print block ==== */
+
+@media print {
+        .mh {
+            border-bottom-width: 1px;
+        }
+
+        /* `.job-first` is the same specificity as `.job`, so it has to follow
+           it here exactly as it does in the base rules. */
+        .job {
+            border-top-width: 0.75px;
+        }
+
+        .job-first {
+            border-top-width: 1px;
+        }
+
+        .ps-body {
+            border-top-width: 1px;
+        }
+
+        /* Repeated verbatim from the base rule: a shorter selector loses to it
+           on specificity and the divider would keep its 2px. */
+        .job-foot .ltot.with-divider {
+            border-left-width: 1px;
+        }
+
+        .b-break-line {
+            height: 1px;
+        }
+
+        .row-strong {
+            border-top-width: 0.75px;
+        }
+
+        .sign-line {
+            border-bottom-width: 0.75px;
+        }
+
+        /* The figure also OVERRAN its own box, which is the objective half of
+           this defect. In print `.sum` is 280px, so the box has roughly 242px
+           of interior, and BALANCE plus a five-figure amount at 30px does not
+           fit in it. Rendered, $12,345.67 touches both borders at 30px and
+           $123,456.78 runs straight through them. 24px with 14px of side
+           padding clears $123,456.78 with room to spare, and that pair of
+           measurements is what sets both numbers. SV-9870's vertical 10px is
+           untouched, so its paper figures hold. */
+        .bal {
+            padding: 10px 14px;
+            border-width: 1px;
+        }
+
+        .bal .v {
+            font-size: 24px;
+        }
+    }
