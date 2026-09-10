@@ -1,0 +1,380 @@
+{
+ "lineShape": {
+  "keys": [
+   "line_id",
+   "description",
+   "time_estimate",
+   "tech_time",
+   "is_diagnosis",
+   "is_warranty",
+   "is_authorized_to_repair",
+   "is_parts_required_are_authorized",
+   "line_name",
+   "work_order_number",
+   "work_order_status",
+   "tech_story",
+   "line_tech_assigned_id",
+   "labour_type_id",
+   "labour_type",
+   "labour_rate",
+   "labour_type_cost",
+   "tasks",
+   "task_records",
+   "tech_times",
+   "status_display",
+   "status",
+   "part_requests",
+   "parts",
+   "part_return_requests",
+   "deletable",
+   "editable",
+   "deletable_reason",
+   "total_labour_time",
+   "total_labour_time_decimal",
+   "cost_by_minute",
+   "total_parts_sell_price",
+   "total_parts_sell_price_float",
+   "total_labour_cost",
+   "is_in_progress",
+   "line_order",
+   "fixed_price",
+   "fixed_line_total",
+   "created_from_canned_line",
+   "assigned_techs",
+   "logged_techs",
+   "labor_margin",
+   "adjustments",
+   "total_cost",
+   "progress",
+   "can_decline"
+  ],
+  "sample": "{\"line_id\":\"b2504a0d-8136-4c7c-a584-b055aea99372\",\"description\":\"\",\"time_estimate\":0,\"tech_time\":0,\"is_diagnosis\":0,\"is_warranty\":0,\"is_authorized_to_repair\":0,\"is_parts_required_are_authorized\":0,\"line_name\":\"TEST\",\"work_order_number\":\"S-15899\",\"work_order_status\":\"approved\",\"tech_story\":\"Tech story missing.\",\"line_tech_assigned_id\":null,\"labour_type_id\":\"d0480520-25a5-4741-b0c4-1ba80e4b55c3\",\"labour_type\":\"HD Mobile Rate\",\"labour_rate\":169.95,\"labour_type_cost\":16995,\"tasks\":[{\"id\":\"a40ec2d1-3787-4369-be2b-a0d073a351ec\",\"line_id\":\"b2504a0d-8136-4c7c-a584-b055aea99372\",\"tech_assigned_id\":null,\"time_estimate\":0,\"tech_time\":0,\"first_name\":\"Unassigned\",\"last_name\":null,\"start_date\":\"\",\"end_date\":\"\",\"note\":\"Tech story missing.\",\"tech_exists\":false,\"logged_time\":0,\"logged_time_cost\":0,\"logged_time_decimal\":\"0.00\",\"additional_info\":\"\",\"is_authorized\":true,\"task_records\":[],\"labour_rate\":169.95,\"can_edit\":true}],\"task_records\":[],\"tech_times\":[],\"status_display\":\"Authorized\",\"status\":\"authorized\",\"part_requests\":[{\"id\":\"42b7b348-f0e2-4d4a-9870-4257f814a68a\",\"line_id\":\"b2504a0d-8136-4c7c-a584-b055aea99372\",\"work_order_id\":\"6a529a5f-dff9-4c13-9636-b41500e585f0\",\"status\":\"authorized_to_orde"
+ },
+ "requestIds": [
+  {
+   "line": "b2504a0d-8136-4c7c-a584-b055aea99372",
+   "key": "part_requests",
+   "id": "42b7b348-f0e2-4d4a-9870-4257f814a68a",
+   "status": "authorized_to_order",
+   "pn": null
+  },
+  {
+   "line": "b2504a0d-8136-4c7c-a584-b055aea99372",
+   "key": "part_requests",
+   "id": "5728e0ff-c143-4516-bf0c-ba1d5d2f8f9a",
+   "status": "in_stock",
+   "pn": "51372MP"
+  },
+  {
+   "line": "b2504a0d-8136-4c7c-a584-b055aea99372",
+   "key": "part_requests",
+   "id": "dbf35c8a-fad0-471c-9475-be16cae2cdf4",
+   "status": "authorized_to_order",
+   "pn": null
+  },
+  {
+   "line": "b2504a0d-8136-4c7c-a584-b055aea99372",
+   "key": "part_requests",
+   "id": "259b6b6e-fe8c-46a9-97e0-f28fcb609600",
+   "status": "authorized_to_order",
+   "pn": null
+  },
+  {
+   "line": "b2504a0d-8136-4c7c-a584-b055aea99372",
+   "key": "part_requests",
+   "id": "3ccce737-761d-48e2-a8e7-9772175dc69c",
+   "status": "authorized_to_order",
+   "pn": "5655666655"
+  },
+  {
+   "line": "b2504a0d-8136-4c7c-a584-b055aea99372",
+   "key": "part_requests",
+   "id": "22cc74a8-1e4c-4f28-ba96-62813fc087ad",
+   "status": "in_stock",
+   "pn": "NBOR-04"
+  },
+  {
+   "line": "b2504a0d-8136-4c7c-a584-b055aea99372",
+   "key": "part_requests",
+   "id": "e1a19bce-dd47-49f3-a175-4fc57c515707",
+   "status": "authorized_to_order",
+   "pn": "sdfs"
+  },
+  {
+   "line": "b2504a0d-8136-4c7c-a584-b055aea99372",
+   "key": "part_requests",
+   "id": "b376889e-caa0-4bc4-afba-d87b93d53650",
+   "status": "authorized_to_order",
+   "pn": null
+  },
+  {
+   "line": "b2504a0d-8136-4c7c-a584-b055aea99372",
+   "key": "part_requests",
+   "id": "86707622-5457-4ad7-af9f-f654c84a4f50",
+   "status": "authorized_to_order",
+   "pn": null
+  },
+  {
+   "line": "b2504a0d-8136-4c7c-a584-b055aea99372",
+   "key": "part_requests",
+   "id": "207fe273-c6ec-47ee-a5a4-999c81381345",
+   "status": "authorized_to_order",
+   "pn": null
+  },
+  {
+   "line": "b2504a0d-8136-4c7c-a584-b055aea99372",
+   "key": "part_requests",
+   "id": "a27ea7ef-f3d7-40fe-b6eb-bf5f36ebcf12",
+   "status": "authorized_to_order",
+   "pn": "54646854"
+  },
+  {
+   "line": "b2504a0d-8136-4c7c-a584-b055aea99372",
+   "key": "part_requests",
+   "id": "83cfeada-9435-4fa0-a5b8-9415777fbc7f",
+   "status": "authorized_to_order",
+   "pn": "rdgrfsadfsdd"
+  },
+  {
+   "line": "b2504a0d-8136-4c7c-a584-b055aea99372",
+   "key": "part_requests",
+   "id": "1a3fb048-8538-4078-b3a0-0e91d980c9eb",
+   "status": "authorized_to_order",
+   "pn": null
+  },
+  {
+   "line": "b2504a0d-8136-4c7c-a584-b055aea99372",
+   "key": "part_requests",
+   "id": "1d10ceef-1ac3-45dd-b75a-0d7bdaf64225",
+   "status": "authorized_to_order",
+   "pn": "SERFGDR"
+  },
+  {
+   "line": "b2504a0d-8136-4c7c-a584-b055aea99372",
+   "key": "part_requests",
+   "id": "77fbe80e-79d5-42a8-a878-56a5963963b5",
+   "status": "authorized_to_order",
+   "pn": "SWFSE"
+  },
+  {
+   "line": "b2504a0d-8136-4c7c-a584-b055aea99372",
+   "key": "part_requests",
+   "id": "8dae4b02-fff1-4034-9478-4bb8add994a3",
+   "status": "in_stock",
+   "pn": "dfdsfsfsfsdfsf"
+  },
+  {
+   "line": "b2504a0d-8136-4c7c-a584-b055aea99372",
+   "key": "part_requests",
+   "id": "d5260b97-2ed8-477c-8fd8-b635d82ec03b",
+   "status": "in_stock",
+   "pn": "N231-013BR"
+  },
+  {
+   "line": "b2504a0d-8136-4c7c-a584-b055aea99372",
+   "key": "part_requests",
+   "id": "96f8ce01-95ff-4946-976a-e3690d92b666",
+   "status": "in_stock",
+   "pn": "N231-013BR"
+  },
+  {
+   "line": "b2504a0d-8136-4c7c-a584-b055aea99372",
+   "key": "part_requests",
+   "id": "b208ebe8-d337-4161-909b-1b1e3beaafdc",
+   "status": "in_stock",
+   "pn": "P550848"
+  },
+  {
+   "line": "b2504a0d-8136-4c7c-a584-b055aea99372",
+   "key": "part_requests",
+   "id": "455e0892-97a4-452b-b0de-aea0a749d086",
+   "status": "in_stock",
+   "pn": "4--PC1474S-8B"
+  },
+  {
+   "line": "b2504a0d-8136-4c7c-a584-b055aea99372",
+   "key": "part_requests",
+   "id": "6985b871-e32c-45ef-b189-f2bf9d489aa8",
+   "status": "authorized_to_order",
+   "pn": "LF14000NN"
+  },
+  {
+   "line": "b2504a0d-8136-4c7c-a584-b055aea99372",
+   "key": "part_requests",
+   "id": "20f8b0db-abc0-435f-9590-55bf36c2e7c7",
+   "status": "authorized_to_order",
+   "pn": "170.12105"
+  },
+  {
+   "line": "b2504a0d-8136-4c7c-a584-b055aea99372",
+   "key": "part_requests",
+   "id": "828c7cd2-36cb-469e-90ee-0fb944d27a44",
+   "status": "in_stock",
+   "pn": "N68SL-356"
+  },
+  {
+   "line": "b2504a0d-8136-4c7c-a584-b055aea99372",
+   "key": "parts",
+   "id": "65738c6a-dbf1-41c0-8610-080667f12fe9",
+   "status": "Authorized",
+   "pn": "IP X 1"
+  },
+  {
+   "line": "b2504a0d-8136-4c7c-a584-b055aea99372",
+   "key": "parts",
+   "id": "5b166742-a0ba-40f1-b9d2-4f8220048a23",
+   "status": "Authorized",
+   "pn": "N231-013BR"
+  },
+  {
+   "line": "b2504a0d-8136-4c7c-a584-b055aea99372",
+   "key": "parts",
+   "id": "55f2a282-b176-4365-9f80-a04327d676fd",
+   "status": "Authorized",
+   "pn": "NBOR-04"
+  }
+ ],
+ "picks": [
+  {
+   "id": "42b7b348-f0e2-4d4a-9870-4257f814a68a",
+   "status": 201,
+   "body": "{\"data\":{\"partRequestId\":\"42b7b348-f0e2-4d4a-9870-4257f814a68a\",\"workOrderId\":\"6a529a5f-dff9-4c13-9636-b41500e585f0\",\"li"
+  },
+  {
+   "id": "5728e0ff-c143-4516-bf0c-ba1d5d2f8f9a",
+   "status": 201,
+   "body": "{\"data\":{\"partRequestId\":\"5728e0ff-c143-4516-bf0c-ba1d5d2f8f9a\",\"workOrderId\":\"6a529a5f-dff9-4c13-9636-b41500e585f0\",\"li"
+  },
+  {
+   "id": "dbf35c8a-fad0-471c-9475-be16cae2cdf4",
+   "status": 201,
+   "body": "{\"data\":{\"partRequestId\":\"dbf35c8a-fad0-471c-9475-be16cae2cdf4\",\"workOrderId\":\"6a529a5f-dff9-4c13-9636-b41500e585f0\",\"li"
+  },
+  {
+   "id": "259b6b6e-fe8c-46a9-97e0-f28fcb609600",
+   "status": 201,
+   "body": "{\"data\":{\"partRequestId\":\"259b6b6e-fe8c-46a9-97e0-f28fcb609600\",\"workOrderId\":\"6a529a5f-dff9-4c13-9636-b41500e585f0\",\"li"
+  },
+  {
+   "id": "3ccce737-761d-48e2-a8e7-9772175dc69c",
+   "status": 201,
+   "body": "{\"data\":{\"partRequestId\":\"3ccce737-761d-48e2-a8e7-9772175dc69c\",\"workOrderId\":\"6a529a5f-dff9-4c13-9636-b41500e585f0\",\"li"
+  },
+  {
+   "id": "22cc74a8-1e4c-4f28-ba96-62813fc087ad",
+   "status": 201,
+   "body": "{\"data\":{\"partRequestId\":\"22cc74a8-1e4c-4f28-ba96-62813fc087ad\",\"workOrderId\":\"6a529a5f-dff9-4c13-9636-b41500e585f0\",\"li"
+  },
+  {
+   "id": "e1a19bce-dd47-49f3-a175-4fc57c515707",
+   "status": 201,
+   "body": "{\"data\":{\"partRequestId\":\"e1a19bce-dd47-49f3-a175-4fc57c515707\",\"workOrderId\":\"6a529a5f-dff9-4c13-9636-b41500e585f0\",\"li"
+  },
+  {
+   "id": "b376889e-caa0-4bc4-afba-d87b93d53650",
+   "status": 201,
+   "body": "{\"data\":{\"partRequestId\":\"b376889e-caa0-4bc4-afba-d87b93d53650\",\"workOrderId\":\"6a529a5f-dff9-4c13-9636-b41500e585f0\",\"li"
+  },
+  {
+   "id": "86707622-5457-4ad7-af9f-f654c84a4f50",
+   "status": 201,
+   "body": "{\"data\":{\"partRequestId\":\"86707622-5457-4ad7-af9f-f654c84a4f50\",\"workOrderId\":\"6a529a5f-dff9-4c13-9636-b41500e585f0\",\"li"
+  },
+  {
+   "id": "207fe273-c6ec-47ee-a5a4-999c81381345",
+   "status": 201,
+   "body": "{\"data\":{\"partRequestId\":\"207fe273-c6ec-47ee-a5a4-999c81381345\",\"workOrderId\":\"6a529a5f-dff9-4c13-9636-b41500e585f0\",\"li"
+  },
+  {
+   "id": "a27ea7ef-f3d7-40fe-b6eb-bf5f36ebcf12",
+   "status": 201,
+   "body": "{\"data\":{\"partRequestId\":\"a27ea7ef-f3d7-40fe-b6eb-bf5f36ebcf12\",\"workOrderId\":\"6a529a5f-dff9-4c13-9636-b41500e585f0\",\"li"
+  },
+  {
+   "id": "83cfeada-9435-4fa0-a5b8-9415777fbc7f",
+   "status": 201,
+   "body": "{\"data\":{\"partRequestId\":\"83cfeada-9435-4fa0-a5b8-9415777fbc7f\",\"workOrderId\":\"6a529a5f-dff9-4c13-9636-b41500e585f0\",\"li"
+  },
+  {
+   "id": "1a3fb048-8538-4078-b3a0-0e91d980c9eb",
+   "status": 201,
+   "body": "{\"data\":{\"partRequestId\":\"1a3fb048-8538-4078-b3a0-0e91d980c9eb\",\"workOrderId\":\"6a529a5f-dff9-4c13-9636-b41500e585f0\",\"li"
+  },
+  {
+   "id": "1d10ceef-1ac3-45dd-b75a-0d7bdaf64225",
+   "status": 201,
+   "body": "{\"data\":{\"partRequestId\":\"1d10ceef-1ac3-45dd-b75a-0d7bdaf64225\",\"workOrderId\":\"6a529a5f-dff9-4c13-9636-b41500e585f0\",\"li"
+  },
+  {
+   "id": "77fbe80e-79d5-42a8-a878-56a5963963b5",
+   "status": 201,
+   "body": "{\"data\":{\"partRequestId\":\"77fbe80e-79d5-42a8-a878-56a5963963b5\",\"workOrderId\":\"6a529a5f-dff9-4c13-9636-b41500e585f0\",\"li"
+  },
+  {
+   "id": "8dae4b02-fff1-4034-9478-4bb8add994a3",
+   "status": 201,
+   "body": "{\"data\":{\"partRequestId\":\"8dae4b02-fff1-4034-9478-4bb8add994a3\",\"workOrderId\":\"6a529a5f-dff9-4c13-9636-b41500e585f0\",\"li"
+  },
+  {
+   "id": "d5260b97-2ed8-477c-8fd8-b635d82ec03b",
+   "status": 201,
+   "body": "{\"data\":{\"partRequestId\":\"d5260b97-2ed8-477c-8fd8-b635d82ec03b\",\"workOrderId\":\"6a529a5f-dff9-4c13-9636-b41500e585f0\",\"li"
+  },
+  {
+   "id": "96f8ce01-95ff-4946-976a-e3690d92b666",
+   "status": 201,
+   "body": "{\"data\":{\"partRequestId\":\"96f8ce01-95ff-4946-976a-e3690d92b666\",\"workOrderId\":\"6a529a5f-dff9-4c13-9636-b41500e585f0\",\"li"
+  },
+  {
+   "id": "b208ebe8-d337-4161-909b-1b1e3beaafdc",
+   "status": 500,
+   "body": "{\"errors\":[{\"error\":\"An error occurred. We\\u0027re sorry for this inconvenience, please try again a bit later later.\"},{"
+  },
+  {
+   "id": "455e0892-97a4-452b-b0de-aea0a749d086",
+   "status": 201,
+   "body": "{\"data\":{\"partRequestId\":\"455e0892-97a4-452b-b0de-aea0a749d086\",\"workOrderId\":\"6a529a5f-dff9-4c13-9636-b41500e585f0\",\"li"
+  },
+  {
+   "id": "6985b871-e32c-45ef-b189-f2bf9d489aa8",
+   "status": 201,
+   "body": "{\"data\":{\"partRequestId\":\"6985b871-e32c-45ef-b189-f2bf9d489aa8\",\"workOrderId\":\"6a529a5f-dff9-4c13-9636-b41500e585f0\",\"li"
+  },
+  {
+   "id": "20f8b0db-abc0-435f-9590-55bf36c2e7c7",
+   "status": 201,
+   "body": "{\"data\":{\"partRequestId\":\"20f8b0db-abc0-435f-9590-55bf36c2e7c7\",\"workOrderId\":\"6a529a5f-dff9-4c13-9636-b41500e585f0\",\"li"
+  },
+  {
+   "id": "828c7cd2-36cb-469e-90ee-0fb944d27a44",
+   "status": 201,
+   "body": "{\"data\":{\"partRequestId\":\"828c7cd2-36cb-469e-90ee-0fb944d27a44\",\"workOrderId\":\"6a529a5f-dff9-4c13-9636-b41500e585f0\",\"li"
+  },
+  {
+   "id": "65738c6a-dbf1-41c0-8610-080667f12fe9",
+   "status": 400,
+   "body": "{\"errors\":[{\"error\":\"This action cannot be performed on received part requests.\"}]}"
+  },
+  {
+   "id": "5b166742-a0ba-40f1-b9d2-4f8220048a23",
+   "status": 400,
+   "body": "{\"errors\":[{\"error\":\"This action cannot be performed on received part requests.\"}]}"
+  },
+  {
+   "id": "55f2a282-b176-4365-9f80-a04327d676fd",
+   "status": 400,
+   "body": "{\"errors\":[{\"error\":\"This action cannot be performed on received part requests.\"}]}"
+  }
+ ],
+ "lineComplete": {
+  "status": 400,
+  "json": {
+   "errors": [
+    {
+     "error": "Line can`t be completed with unfulfilled part requests."
+    }
+   ]
+  },
+  "text": "{\"errors\":[{\"error\":\"Line can`t be completed with unfulfilled part requests.\"}]}"
+ }
+}
