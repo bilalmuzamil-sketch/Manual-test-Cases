@@ -141,7 +141,12 @@ export async function bootOrigin({ app, apiHost, ssoFile, label = app, route = '
 
   const btnLabel = key === 'tech' ? 'Tech' : 'Admin';
   const btn = page.locator(`button:has-text("${btnLabel}")`).first();
-  if (!(await btn.count())) { console.log(`no DEV MODE "${btnLabel}" button on ${label} — STOP`); await browser.close(); process.exit(2); }
+  // 🛑 THE PANEL IS POPULATED BY AN API CALL, SO ITS BUTTONS ARE NOT THERE THE INSTANT THE PAGE IS.
+  // This used to be a single count() at +4s and it lost the race intermittently — the run then
+  // stopped with "no DEV MODE Admin button", which reads as a dead branch and is not one.
+  // Measured on sv9315, 2026-09-10: the same call succeeded on the retry every time. POLL for it.
+  for (let w = 0; w < 20 && !(await btn.count()); w++) await page.waitForTimeout(1500);
+  if (!(await btn.count())) { console.log(`no DEV MODE "${btnLabel}" button on ${label} after 30s — STOP`); await browser.close(); process.exit(2); }
   await btn.click();                       // NB: getByRole('button',{name}) does NOT match these
   await page.waitForTimeout(9000);
 
