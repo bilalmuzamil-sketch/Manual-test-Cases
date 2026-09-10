@@ -47,9 +47,26 @@ if (!part || !R.bins || R.bins.length<2){
 const targets = R.bins.slice(0,4);
 const binPayload = targets.map((b,i)=>({id:b.id, quantity:[6,4,9,2][i], isDefault:i===0}));
 R.attempt = {bins:binPayload};
-const body = {...part, bins:binPayload};
+// the change endpoint's field names are NOT the ones the read returns:
+// catalog_part_id (read: catalogue_part_id) and category_id (read: category)
+const body = {...part,
+  catalog_part_id: part.catalog_part_id || part.catalogue_part_id,
+  category_id: part.category_id || part.category,
+  quantity: part.quantity,
+  cost: part.purchase_price_value ?? part.purchase_price ?? part.cost ?? 0,
+  tags: part.tags || [],
+  bins: binPayload};
 delete body.binLocations;
-const w = await api('/api/inventory/parts/change', body);
+R.bodyKeys = Object.keys(body).slice(0, 30);
+let w = await api('/api/inventory/parts/change', body);
+if (w.status===400){
+  R.firstError = w.text;
+  // retry with only the documented field set, in case extra read-only fields are rejected
+  const minimal = {id:part.id, catalog_part_id:body.catalog_part_id, category_id:body.category_id,
+    quantity:body.quantity, cost:body.cost, tags:body.tags, bins:binPayload};
+  R.minimalKeys = Object.keys(minimal);
+  w = await api('/api/inventory/parts/change', minimal);
+}
 R.write = {status:w.status, text:w.text};
 log('parts/change ->', JSON.stringify(R.write).slice(0,400));
 save();
