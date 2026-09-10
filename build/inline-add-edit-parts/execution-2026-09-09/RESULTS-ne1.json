@@ -1,0 +1,7 @@
+{
+ "pass_meta": {"suite":"Inline Add and Edit Parts (6597)","run":418,"env":"the sv9315 QA branch",
+   "build":"v26.36.0-f43b2fd","date":"10 September 2026","view_mode":"tech"},
+ "results": {
+  "C45021": {"verdict":"Passed","observed":"What was checked: what happens if the work order is closed off by someone else while you are still typing a part into it - the situation where a technician could lose their work through no fault of their own. What happened: with the row open and \"ZZAUTOTEST noneditable tech\" and a quantity of 5 already typed in, the work order was moved to Complete from another session. Pressing Save then refused, and said why in plain words: \"This work order can no longer be edited. Refresh to see the latest.\" Crucially the row stayed open and both values were still sitting there, so the technician can copy what they typed before refreshing rather than starting again.","not_observed":null}
+ }
+}
