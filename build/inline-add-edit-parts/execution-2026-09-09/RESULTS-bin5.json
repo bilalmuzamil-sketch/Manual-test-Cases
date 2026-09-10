@@ -1,0 +1,8 @@
+{
+ "pass_meta": {"suite":"Inline Add and Edit Parts (6597)","run":418,"env":"the sv9315 QA branch",
+   "build":"v26.36.0-f43b2fd","date":"10 September 2026","view_mode":"tech"},
+ "results": {
+  "C45233": {"verdict":"Passed","observed":"What was checked: what the window for splitting a quantity across bins actually offers. What happened: it is headed \"Bin Locations\", names the part it is for, and lays out one row per bin under three headings - BIN NAME, QUANTITY IN STOCK and AMOUNT. The row shows the bin's name, a \"Default\" badge marking it as the default bin, how many are in stock, and a box to type how many to take from it. Underneath it states plainly what will happen - \"Allocated 2 — the row quantity will be set to 2\" - and it offers three actions: \"Auto\", \"Cancel\" and \"Apply\".","not_observed":"What \"Auto\" does when it has somewhere to redistribute to - filling the default bin first and then the largest - could not be seen: every stocked part on this branch is held in a single bin, so there is nothing to spread across."},
+  "C45234": {"verdict":"Passed","observed":"What was checked: whether pressing Apply actually carries the allocation back to the row, and what it does to the quantity. What happened: with 2 allocated in the Bin Locations window, Apply closed it and the row came back showing the bin chip and a quantity of 2 - the total of what was allocated. The window says so before you press it, too: \"Allocated 2 — the row quantity will be set to 2\". So the quantity always agrees with the bins it is being taken from.","not_observed":null}
+ }
+}
