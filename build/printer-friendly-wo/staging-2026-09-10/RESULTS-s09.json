@@ -1,0 +1,16 @@
+{
+ "pass_meta": {
+  "suite": "Printer Friendly Work Orders (6617)",
+  "run": 419,
+  "env": "the Staging environment",
+  "build": "staging 2026-09-10",
+  "date": "10 September 2026",
+  "view_mode": "Full View"
+ },
+ "results": {
+  "C45121": {
+   "verdict": "Passed",
+   "observed": "What was checked: that a job line's status prints as ordinary text rather than the coloured pill you see on screen - so it stays readable on a black-and-white printer. What happened: it prints as plain text. The four status labels on the printed page were each measured: every one is black text on a white background, with no colour fill behind it. On screen the same labels are green pills. The printed page as a whole is also black on white throughout, so nothing depends on colour to be understood.\n\nAlso measured while checking this: the printed text is 10 point, which is the smallest size the requirements allow, so it is within the limit but only just."
+  }
+ }
+}
