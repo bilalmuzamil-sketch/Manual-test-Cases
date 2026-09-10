@@ -1,0 +1,16 @@
+{
+ "pass_meta": {
+  "suite": "Inline Add and Edit Parts (6597)",
+  "run": 418,
+  "env": "the sv9315 QA branch",
+  "build": "v26.36.0-f43b2fd",
+  "date": "10 September 2026",
+  "view_mode": "Full View"
+ },
+ "results": {
+  "C45251": {
+   "verdict": "Passed",
+   "observed": "CORRECTION OF AN EARLIER RESULT. This case was marked Blocked earlier today because a special-order part could not be received. That was my mistake, not the app's - the part orders and receives perfectly well. This result replaces it, and all three points of the case now pass.\n\nWHAT WAS BUILT. Two parts were put on one work order line and the line was set to Complete: an inventory part (Slack Adjuster) at quantity 5, and a special-order part - added with Source set to Vendor, then ordered with the Order button and received on the Purchase Order Details screen.\n\nPOINT 1 - INVENTORY PART. Only Category, Sell price, Margin and Quantity can be changed. Part number, Description, Vendor, Cost and Core charge are all read-only. Correct.\n\nPOINT 2 - SPECIAL ORDER PART. Only Description, Category, Sell price and Margin can be changed - exactly the four the case lists, and nothing else. Part number, Quantity, Source, Vendor, Invoice Number, Cost and Core charge are all read-only. Correct.\n\nPOINT 3 - Part number, Source, Vendor, Cost and Core charge are not editable on a completed line, for either kind of part. Correct.\n\nHOW YOU OPEN A PART ON A COMPLETED LINE - WORTH KNOWING. For an inventory part there is an edit control at the end of the row. For a special-order part there is NOT - you open it by clicking the part number itself, which is what the case means by \"click the part\". The row's only other control is a three-dots menu offering \"Add Part Fee / Discount\". This is not a fault, but it is easy to miss and read as the part being uneditable."
+  }
+ }
+}
