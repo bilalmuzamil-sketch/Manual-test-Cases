@@ -1,0 +1,90 @@
+{
+ "before": {
+  "wo": "Approved",
+  "lines": [
+   "authorized",
+   "authorized",
+   "authorized",
+   "complete"
+  ]
+ },
+ "setLines": {
+  "328e949f": "400 {\"errors\":[{\"error\":\"Line can`t be completed with unfulfilled part requests.\"}]}",
+  "98a751ef": "400 {\"errors\":[{\"error\":\"Line can`t be completed with unfulfilled part requests.\"}]}",
+  "97ffbc35": "400 {\"errors\":[{\"error\":\"Line can`t be completed with unfulfilled part requests.\"}]}",
+  "011491ea": "200 {\"data\":[]}"
+ },
+ "linesNow": [
+  "authorized",
+  "authorized",
+  "authorized",
+  "complete"
+ ],
+ "clickedCwo": true,
+ "dialog": {
+  "open": true,
+  "text": "Complete Work Order close S2-32819 · Savannah Tran inventory_2 7 parts are not ordered yet Going to receive parts or completing the work order will order those parts for you. Cancel Receive Parts Complete Without Receiving",
+  "buttons": [
+   "close",
+   "Cancel",
+   "Receive Parts",
+   "Complete Without Receiving"
+  ],
+  "pressed": "Complete Without Receiving"
+ },
+ "afterWo": "Complete",
+ "final": {
+  "wo": "Complete",
+  "chip": [
+   "Complete",
+   "Over Limit",
+   "1 more_vert",
+   "Complete",
+   "Awaiting",
+   "Awaiting"
+  ],
+  "menu": {
+   "opened": true
+  },
+  "items": [
+   {
+    "t": "Audit Log",
+    "dis": false
+   },
+   {
+    "t": "Timesheets (0)",
+    "dis": false
+   },
+   {
+    "t": "Add Work Order Fee / Discount",
+    "dis": false
+   },
+   {
+    "t": "Print Work Order",
+    "dis": false
+   },
+   {
+    "t": "Delete Work Order",
+    "dis": false
+   }
+  ],
+  "printOffered": true,
+  "printDisabled": false
+ },
+ "reopen": {
+  "approved": "400 {\"errors\":[{\"error\":\"Complete work order cannot change its status again.\"}]}",
+  "line_328e949f": 200,
+  "line_98a751ef": 200,
+  "line_97ffbc35": 200,
+  "line_011491ea": 200
+ },
+ "restoredTo": {
+  "wo": "Approved",
+  "lines": [
+   "authorized",
+   "authorized",
+   "authorized",
+   "authorized"
+  ]
+ }
+}

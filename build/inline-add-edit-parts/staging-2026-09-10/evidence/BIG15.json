@@ -1,0 +1,99 @@
+{
+ "lists": {
+  "inventory": {
+   "n": 100,
+   "keys": [
+    "id",
+    "workplace_id",
+    "vendor_id",
+    "core_part_id",
+    "min",
+    "max",
+    "quantity",
+    "grid_location",
+    "purchase_price",
+    "is_core",
+    "environmental_charge",
+    "last_cycle_count_date",
+    "core_charge",
+    "name",
+    "part_number",
+    "vendor_name",
+    "manufacturer_id",
+    "manufacturer_name",
+    "tags",
+    "category_label"
+   ],
+   "zeros": 0,
+   "zeroSample": []
+  },
+  "catalog": {
+   "n": 100,
+   "keys": [
+    "id",
+    "work_order_id",
+    "line_id",
+    "vendor_id",
+    "inventory_part_id",
+    "status",
+    "cost",
+    "core_charge",
+    "margin",
+    "discount",
+    "sell_price",
+    "arrived_date",
+    "quantity",
+    "part_number",
+    "description",
+    "number",
+    "cost_display",
+    "core_charge_display",
+    "sell_price_display"
+   ],
+   "zeros": 0,
+   "zeroSample": []
+  }
+ },
+ "control": {
+  "opened": true,
+  "searched": "P550848",
+  "options": []
+ },
+ "make": {
+  "category": {
+   "n": "HD-Fasteners"
+  },
+  "templateKeys": [
+   "id",
+   "workplace_id",
+   "vendor_id",
+   "core_part_id",
+   "min",
+   "max",
+   "quantity",
+   "grid_location",
+   "purchase_price",
+   "is_core",
+   "environmental_charge",
+   "last_cycle_count_date",
+   "core_charge",
+   "name",
+   "part_number",
+   "vendor_name",
+   "manufacturer_id",
+   "manufacturer_name",
+   "tags",
+   "category_label",
+   "category",
+   "is_fixed_price",
+   "sell_price",
+   "purchase_price_value",
+   "core_charge_value",
+   "catalogue_part_id",
+   "deletable",
+   "numberOfHistoryRecords",
+   "binLocations"
+  ],
+  "create": "400 {\"errors\":[{\"catalog_part_id\":\"Not found\"},{\"cost\":\"Missing required parameter\"}]}"
+ }
+}
