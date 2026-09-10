@@ -12,8 +12,13 @@ const TYPEAHEAD='/api/work-orders/part/request/inventory-parts-as-options-with-r
 R.rawOne = await page.evaluate(async ({api,ep})=>{
   const r=await fetch(`https://${api}${ep}?pagination[rowsPerPage]=5&pagination[page]=1&search=OIL`,
     {headers:{Accept:'application/json'}, credentials:'include'});
-  const j=await r.json(); const rows=j.collection||j.data||[];
-  return {status:r.status, keys:Object.keys(j||{}), n:rows.length, first:JSON.stringify(rows[0]||null).slice(0,1400)};
+  const j=await r.json();
+  const pick=o=>{ for (const k of ['collection','data','rows','items','results']){ if (Array.isArray(o&&o[k])) return o[k]; }
+    if (Array.isArray(o)) return o;
+    for (const k of Object.keys(o||{})){ const v=pick(o[k]); if (v&&v.length) return v; } return []; };
+  const rows=pick(j);
+  return {status:r.status, keys:Object.keys(j||{}), n:rows.length,
+          shape:JSON.stringify(j).slice(0,300), first:JSON.stringify(rows[0]||null).slice(0,1400)};
 }, {api:APIH, ep:TYPEAHEAD});
 log('raw row:', R.rawOne.status, R.rawOne.keys, R.rawOne.n);
 log(R.rawOne.first);
