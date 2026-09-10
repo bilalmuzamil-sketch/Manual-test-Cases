@@ -233,3 +233,24 @@ Both are dummy accounts, and the per-ticket QA branch needs no cleanup — recor
 - The part picker is `GET /api/work-orders/part/request/inventory-parts-as-options-with-remaining-catalogue-parts?…&search=`
   and returns two entries per part — `part_type: "inventory_part"` and `"catalogue_part"`. Neither is
   `new_part`; that value only appears when a part is created inside the dialog.
+
+---
+
+## Pre-post gate (Standing Rule 72), run before the comment goes out
+
+- **Build markers re-read live** — branch `v26.36.2-165cc79`, last-modified Thu, 10 Sep 2026 11:16:21
+  GMT, etag `68db9efce85dc1bbe628305249d6a9c6`: identical to the reading at the start of the pass, so
+  nothing redeployed under the testing. Staging `v26.36.2-a678e3c`, 12:42:51 GMT: also unchanged, so
+  the before picture is still a valid pre-fix reference.
+- **All four exhibit URLs returned HTTP 200** at gate time.
+- **Ticket state re-read:** **Code Review**, three comments, none newer than Dipesh's 10 Sep 06:32
+  note about the QA environment. No product decision opened or changed while the pass ran.
+- **Every figure in the comment traces to a measurement taken this pass** — no number carried
+  forward from an earlier reading.
+- **Reader-facing text scanned** for AI self-reference and model names: clean.
+- **Format:** verdict panel is the first node, then the plain-English summary, the before/after
+  exhibit, the ten-row table, the remaining three exhibits, the not-a-fault and not-covered sections,
+  and the technical detail last after a rule.
+
+Comment prepared by `build_comment.py` (35 nodes, 4 media, 11 table rows) — **not yet posted, waiting
+on the QA lead's go-ahead.**
