@@ -4184,3 +4184,52 @@ Zero-stock parts make the arithmetic unarguable — pick parts at **Total Quanti
 the reading. Parts used, all present on staging and the branch with identical ids: `POI5730C`,
 `19421426`, `104775`, `68175338AC`, `2--SHL55057739` (all HD-Fluids, all started at 0), control
 `122993` (started at 5).
+
+## §AG — "The button is enabled and nothing happens": how to turn that into a finding instead of a shrug (proven 2026-09-10, Move part to line)
+
+A UI control that looks armed and does nothing is the single easiest thing to write off as *"probably my
+automation"* — and that hedge is worth almost nothing to the QA lead, because it neither files a defect
+nor closes the question. **Instrument it instead.** Six readings, one run, and the shrug turns into
+either a real report or a clean dismissal:
+
+1. **Read `disabled` and the class list AT THE MOMENT OF THE CLICK**, not from the screenshot —
+   `{disabled: false, cls: false}` kills the "it was greyed out" theory outright.
+2. **Read the field's *rendered* value, not your intent.** Take
+   `el.closest('.q-field').innerText` — Quasar selects put the chosen label in the field wrapper, so
+   *"Target Line / 2 - Service - Cabin Air Filter"* is proof the model took the value, whereas the
+   `<div>`'s own `.value` is meaningless.
+3. **Sweep for a silent refusal** — `.q-field--error` and `.q-field__messages`. Empty means the form is
+   not rejecting you quietly.
+4. **Capture `console` (error + warning) AND `pageerror` across the click.** A thrown handler is the
+   most likely innocent explanation, and it is one listener away.
+5. **Watch the network with the recorder, not with your eyes.** *No request at all* is a much stronger
+   statement than *"it didn't work"*, and it locates the fault in the submit path rather than the API.
+6. **Vary the click method, then the environment, then the data state.** Locator force-click, an
+   in-page `.click()`, and a real `mouse.click` at the element's measured centre are three different
+   code paths through the browser; a second environment removes the branch; a second data state removes
+   the record.
+
+**Then say exactly what is left.** In this case: everything above was eliminated on two environments,
+so the only surviving suspect was *headless Chromium specifically* — which is a **one-click question for
+a human**, and worth handing over as such. Compare that with the earlier write-up of the same
+observation, which said *"I cannot rule out my own automation"* and left it there: same evidence, a
+fraction of the value.
+
+**Also worth reusing:** re-pick a select that **already displays** the value you want. A dialog that
+opens pre-filled from context may be showing a label with no model behind it, and re-choosing the same
+option from the dropdown is a two-second test that separates *"the form is empty"* from *"the submit is
+broken"*.
+
+**And the trap that cost a run:** `button_line_expand_<lineId>` is a **toggle**. The lines were already
+expanded, my loop clicked every expander to "open" them, and the part rows — with their
+`button_part_context_menu_*` controls — disappeared. **Read the state before toggling it**, or dump the
+test-ids first and only expand what is actually closed.
+
+**The move dialog itself** (for anyone testing parts on lines): a part row's **⋮** =
+`button_part_context_menu_<partId>_line_<lineId>` (a requested part uses
+`button_requested_part_context_menu_…`), offering **Move · Move up · Move down · Add Part Fee /
+Discount**. **Move** opens *"Move part to line:"* — `select_work_order_select` ·
+`select_move_part_target_line` · `button_move_part_action` — whose chunk is `WorkOrderSelect.*.js`.
+The server call behind it is `POST /api/work-orders/part/move-part-to-line
+{part_id, target_line_id, work_order_id}` → 200. Full record:
+`build/move-part-to-line-2026-09-10/FINDINGS.md`.
