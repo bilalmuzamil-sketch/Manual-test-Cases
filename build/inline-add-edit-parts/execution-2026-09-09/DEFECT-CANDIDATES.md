@@ -308,3 +308,49 @@ whatever the spec says exactly. **Not filed, and no verdict written to the run.*
 
 Evidence: `evidence/96-c45250.json`, `evidence/96-c45250.png`, `evidence/84-c45250c.json`,
 `evidence/93-c45250d.json`.
+
+---
+
+## Candidate 6 — CONFIRMED 2026-09-10 · story SV-9319 (Story 4, Inline Add Part - Full View)
+
+**Case:** [C45061](https://shopview.testrail.io/index.php?/cases/view/45061) — *Work order becoming
+non-editable during Full View add fails the save*
+
+**The rule (S4-E3):** if the work order moves to a status that does not permit editing while an
+inline row is open, the save must **fail** — the alert *"This work order can no longer be edited.
+Refresh to see the latest."* is shown and **the entered data remains** in the row.
+
+**What the build does — the save SUCCEEDS.** Measured on work order **S9315-15899**, build
+`v26.36.0-f43b2fd`, Full View, administrator:
+
+1. The inline add row was opened and filled with valid values (description, quantity 2, cost 10,
+   sell price 20).
+2. With that row still open, the work order was moved to **Declined** from a separate session. The
+   change is confirmed, not assumed — the work-orders list read back `status: "declined"`.
+3. **Save** was then pressed on the still-open row.
+
+**Result:** `POST /api/work-orders/part/make-request` returned **201 Created**, the on-screen toast
+read **"Part added"**, and the row cleared to a fresh empty row. There was **no** *"This work order
+can no longer be edited"* alert anywhere on the page — the whole page text was searched for both
+*"no longer be edited"* and *"refresh to see the latest"* and neither appears. The entered data was
+not preserved because there was nothing to preserve: the part went in.
+
+So the case fails on **both** halves of its expectation — the save did not fail, and no alert was
+shown. A part was added to a **Declined** work order.
+
+**Why this is the build and not the test:** the status flip is proved by a read-back, and the save
+is proved by the API's own 201 plus the app's own success toast. The probe refuses to report an
+observation unless the setup call actually succeeded.
+
+**Relationship to candidate 1:** almost certainly the same root cause — this build does not treat
+**Declined** as a non-editable status. Candidate 1 is that the controls are still *shown* on a
+Declined work order; this is that a save through them is still *accepted*. They may be one ticket or
+two; that is the QA lead's call. Worth noting that candidate 1's controls are on the same list of
+statuses (Complete, Invoiced, Paid, Declined, Imported) and only Declined misbehaves.
+
+**Verdict: C45061 FAILED.** The work order was returned to **approved** afterwards and the
+restore was confirmed by read-back.
+
+Evidence: `evidence/105-noneditable.json` (`C45061`), screenshots
+`evidence/105-c45061-1-row-ready.png` and `evidence/105-c45061-2-after-save.png`.
+**Annotated shot: not yet made.**
