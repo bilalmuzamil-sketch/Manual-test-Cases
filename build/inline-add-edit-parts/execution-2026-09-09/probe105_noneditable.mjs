@@ -68,10 +68,12 @@ save();
 const setStatus = async (status)=>{
   const s = await bootSafe('sv9315','/workorders','admin'); const call=mkCall(s.page,s.APIH);
   const r = await call('POST','/api/work-orders/change-status',{id:WO.id, status});
-  const g = await call('GET', `/api/work-orders/${WO.id}`);
-  const now = ((g.json&&(g.json.data||g.json))||{}).status;
+  // GET /api/work-orders/{id} does NOT carry a status field (measured 2026-09-10) — reading it there
+  // returned undefined and made a successful flip look like a failure. The LIST endpoint carries it.
+  const g = await call('GET','/api/work-orders?limit=200');
+  const mine = rowsOf(g.json).find(w=>w.id===WO.id) || {};
   await s.browser.close();
-  return {status:r.status, text:r.text, nowIs:now};
+  return {status:r.status, text:r.text, nowIs:mine.status};
 };
 
 const runLeg = async (tag, who, openRow)=>{
