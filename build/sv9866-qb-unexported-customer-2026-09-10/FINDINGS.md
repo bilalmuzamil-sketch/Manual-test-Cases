@@ -99,3 +99,98 @@ reads **`localStorage.bookkeeping_enabled === "true"`**, and the boot script onl
 `fe_permissions_wrapper` and `token`. The value comes from the login payload at
 `data.details.bookkeeping_enabled`. Seeding it fixed the guard (the nav item is still absent, which is
 a separate matter).
+
+---
+
+## The pre-fix reference: staging (added after staging + production access arrived)
+
+**Build markers, all read live 10 Sep 2026 — all three are on the same frontend minor, different
+commits, so the frontend version does not tell us where the backend fix is:**
+
+| Environment | app-version | index.html last-modified |
+|---|---|---|
+| staging `app.staging.shopview.com` | `v26.36.2-617d8d1` | Thu 10 Sep 11:23:49 GMT |
+| QA branch `sv9866.qa.shopview.com` | `v26.36.2-4cbf6d0` | Thu 10 Sep 09:11:57 GMT |
+| production `app.shopview.com` | `v26.36.2-dbe16f4` | Thu 10 Sep 08:54:50 GMT |
+
+### The defect reproduces on staging, on exactly the path the ticket and the QA plan describe
+
+Read from the report's own endpoint and then seen on screen (`ev/EX1-before-staging-blank-deposits.png`,
+raw capture `ev/staging-raw-deposit-rows.png`). Three rows, adjacent in the list:
+
+| Type | No. | Customer | Error |
+|---|---|---|---|
+| **Deposit Application** | *(blank)* | **BLANK** | "QuickBooks deposit-on-invoice sync skipped: required Customer Deposit Applied item mapping…" |
+| **Deposit Create** | **DEP-4710** | **BLANK** | "QuickBooks deposit sync paused: required Customer Deposits Liability mapping or Customer D…" |
+| Deposit Create | DEP-4709 | 4 Star Truck Repair | "A business validation error has occurred…" |
+
+**That is the dev's warning confirmed from the other side:** the blank is specific to the
+missing-mapping path, and a deposit that fails for a different reason keeps its name. So a populated
+name on some *other* path is not evidence about this fix.
+
+### Per-type blank counts on staging — 586 rows fetched, all of them
+
+| Type | rows | blank |
+|---|---|---|
+| Invoice Create | 451 | 0 |
+| Credit Memo Create | 79 | **32** |
+| Payment Create | 28 | 0 |
+| Credit Memo Apply | 16 | **16** |
+| Deposit Create | 7 | **1** |
+| Credit Memo Refund | 4 | **4** |
+| Deposit Application | 1 | **1** |
+
+Vendors tab 264 rows / 0 blank · Journal Entries 6 rows / 0 blank.
+
+**A coverage question for the developer, not a verdict:** the QA plan's not-in-scope list names only
+*Credit Memo Create* ("still shows Unknown"). **Credit Memo Apply (16 of 16) and Credit Memo Refund
+(4 of 4) are blank on every row and are not mentioned anywhere in the plan.** The ticket's stated
+expectation is *"Every customer-related transaction in QB Unexported should display the associated
+Customer Name"*, so whether the fix covers those two types needs answering. It cannot be tested on
+this branch (credit memos need an invoice, and invoicing is blocked here).
+
+## Verdict: NOT YET CONFIRMED — and precisely why
+
+**What is proven on the fixed branch:** 5 rows on the Customers tab, **0 blank** — 4 Deposit Create
+and 1 Payment Create, every one showing its customer (`ev/EX2-after-branch-all-named.png`).
+
+**What is not proven:** all five of those rows fail with *"QuickBooks needs to be reconnected"*,
+because this branch has **no live QuickBooks connection**. The branch therefore cannot produce a row
+on the **missing-mapping** path — the one path on which the customer is actually lost. **The two
+builds cannot be compared on the same error path**, so the branch evidence does not yet demonstrate
+the fix.
+
+**One of two things closes it in minutes:**
+1. **Connect QuickBooks on `sv9866`** (then clear the *Customer Deposit Item* mapping per the plan's
+   setup step, create a deposit, and the row either shows the name or it does not — decisive), or
+2. **Dipesh confirms the fix is in the report query rather than in the sync writer.** His own
+   verification note — *"Re-check the same rows — do not regenerate them. The fix resolves existing
+   rows too"* — says it is read-side, and if that is so the error path is irrelevant and the branch
+   evidence stands. A one-line confirmation makes it a PASS.
+
+## Two things I deliberately did not do
+
+**I did not change staging's bookkeeping settings.** `/api/bookkeeping/settings` answers
+**`Method Not Allowed (Allow: PUT)`** — it is write-only, with no readable counterpart, so I could
+not have captured the current mapping to restore it afterwards. Staging is shared (E2E suites are
+running against it) and the plan itself warns *"Re-map Customer Deposit Item once testing is
+finished, or staging deposits will keep failing to sync."* Forcing the path there was not worth
+breaking someone else's QuickBooks sync.
+
+**I nearly reported a false defect and checked it first.** The report renders 30 of 588 rows with no
+pagination control and the page does not scroll, which looked like a real "you cannot reach the rest"
+problem — squarely relevant to the customer's complaint. It is **not** a defect: the table is a
+Quasar **virtual-scroll** container, and scrolling *inside* it loaded 32 → 74 rows and kept going.
+Configuration/mechanism first, as Standing Rule 75 requires.
+
+**Production has nothing to compare.** Logged in read-only (`POST /api/login`, one login, no
+seeding); the unexported list for that org is **empty (0 rows)**, so the released build offers no
+reference either way.
+
+## What was seeded, and where
+
+Branch (`sv9866`, disposable, left in place): deposits **DEP-4703, DEP-4704** (S9866-17435),
+**DEP-4705** (S9866-15924), **DEP-4706** (S9866-16174), and a $248.22 cash payment on S2-17540.
+Staging (shared): one deposit **DEP-4711** on S2-32274 (Aberdeen Diesel Services LLC) — it took the
+business-validation path and shows its name, so it neither proves nor pollutes anything; no settings
+were altered.
