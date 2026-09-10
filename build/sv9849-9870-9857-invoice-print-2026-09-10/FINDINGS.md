@@ -615,3 +615,27 @@ Its real relationships exist only in prose:
 `2026-09-09 04:08:14` to `04:08:45 −0500` — a bulk sweep, not a verified fix. That is **6 hours 12
 minutes before Chris created SV-9857** at `10:21:06 −0500` the same day and wrote that Option A brings
 that shape back.
+
+---
+
+## Follow-up on the three answers (2026-09-10)
+
+**1. SV-9871 — exhibit rebuilt to the QA lead's own framing; left typed `Bug`.**
+He sent a screenshot as the model: the **bottom of page 1** (job 01's footer line, the job 02 heading,
+the scope text, the page footer `INV-S2-8627 - Page 1 / 5`), the **dark page gap**, then the **top of
+page 2** through `Labor $824.75 · Parts $334.74 · Line total $1,159.49`. The exhibit now reproduces
+that crop from the same live PDF (`ev/exhibits/sv9871-split-line-no-job-heading.png`), with the
+five numbered callouts and the legend removed — **one red box** around the page-2 opening and **one
+caption line**, kept because Rules 64/67 require the reader to be shown what and where. Type stays
+**Bug**, priority **Medium**, and the improvement-request wording from the previous pass is unchanged.
+**Attachments cleaned:** the inline node is now external media on the committed PNG (verified **HTTP
+200** before and after), and both stale attachments were removed, so the panel no longer offers an
+out-of-date copy — `EXH-9871.png` deleted (**204**), `image-20260910-054742.png` returned **404** to
+the delete, and the attachment list reads **0** either way.
+
+**2. SV-8914 linked to SV-9871** — `Relates`, created **HTTP 201** and read back from both sides:
+SV-9871 now carries three links (SV-9857, SV-9151, SV-8914) and SV-8914 carries its **first link ever**
+(it had zero). It stays **Done** — not reopened, not commented on; that is still his call.
+
+**3. The S12-R12 wording** (*"a work line separated from its own footer"* still listed among real
+faults) — **left as is**, on his instruction.
