@@ -546,3 +546,72 @@ it while chasing the symptom of a decision I had not read.
    put the readability point to Chris as a question instead.
 3. Raise SV-8914 with him: a customer defect closed Done whose behaviour now ships by design needs a
    named owner and, probably, a word to that customer.
+
+---
+
+## The three authorised actions, executed (2026-09-10)
+
+### A correction I owe, first
+
+I told the QA lead *"nowhere on SV-9857 is the switch recorded"* and *"passing in silence"*. **That was
+too harsh and it was wrong on the facts.** Comment **76274** already carried a section that said it:
+
+> *"The ticket recommended Option B — keep each job whole, but only move it when the space it would
+> waste is small. What actually shipped is Option A… That came in as change 2 of SV-9870, where it is
+> recorded as an agreed reversal of the earlier rule."*
+
+**What was genuinely missing from it — and is now added — is three things:** the **ruling citation**
+(it credited SV-9870's own description, not the ratifying document), the **measured consequence**
+the ticket itself asked for, and **SV-8914 by name**. **The testing miss stands unchanged:** during
+the pass I never read the Decision-needed section against the build and never read S12-R10; that
+paragraph was written from SV-9870's wording, not from checking the standard.
+
+### 1. SV-9857 comment 76274 — corrected in place (HTTP 200)
+
+Heading *"Worth noting when this ticket is closed"* replaced by **"Which option shipped, and the one
+thing it leaves open"**, carrying four plain paragraphs: Option B was recommended / Option A shipped
+(change 2 of SV-9870) · **the ruling — Invoice UI Refresh Confluence v68, S12-R10 quoted, SV-9671
+named as reversed, S12-R14 recording Chris's ruling of 9 September** · **the measurement — 1 split
+before, 12 after, 0 avoidable before, on 6 of 8 documents** · **SV-8914 needs an owner**, quoting the
+customer's own words. The verdict line is untouched: **PASSED**, because the symptom is fixed and
+Option A is ratified.
+
+**Read back and verified:** first line intact · **2 media, same order** · **6 table rows** · 6
+headings, the old one gone · every probe string present (`Option A/B`, `Confluence version 68`,
+`S12-R10`, `1 before to 12 after`, `SV-8914`, `improvement request`) · both image URLs **HTTP 200**.
+**One comment, updated by `commentId` — nothing stacked.**
+
+### 2. SV-9871 — rewritten as an individual improvement request (HTTP 204)
+
+Per the QA lead's instruction. **Title** (87 chars): *"Printed invoice: show the job heading again
+when a work line continues on the next page"* — the old one read as a defect, so it could not stay
+while the body says otherwise. **Body now opens "This is an improvement request, not a defect"**, then
+what is being asked for, then **why it is a request and not a bug**: splitting is deliberate, S12-R10
+says pages after the first *"open directly with content at the standard top margin"*, so **the invoice
+prints exactly as specified today** and changing it means changing the standard — Chris's call. The
+technical section gains the line naming **v68 S12-R10 / S12-R14 as what currently permits it, so no
+rule is being broken.**
+
+**Preserved and verified:** the annotated exhibit's media node is **byte-identical** to before (an
+uploaded attachment, `0fdc4807-…`, not external media) · the reproduction steps, the fastest-way link
+and the technical section untouched · **priority Medium** · both `Relates` links intact (SV-9857,
+SV-9151) · status Open.
+
+**Still typed `Bug`.** Project SV has no *Improvement* type — the only options are Task, Epic, Story
+Defect, Bug, Story, Story Defect - Archive. Left as-is pending his call.
+
+### 3. SV-8914 — what it is related to (his question)
+
+**Nothing. It has ZERO issue links**, no parent, priority Medium, and it is **closed Done**.
+
+Its real relationships exist only in prose:
+- **SV-9671** — the atomicity fix that SV-8914's complaint drove (`break-inside: avoid` on `.job`).
+- **SV-9857** — names SV-8914 by key in its Decision-needed section as one of the two tickets Option A
+  would reintroduce.
+- **SV-9870** — change 2 is the reversal that actually reintroduces it.
+
+**And how it was closed matters:** the changelog shows **Dusan Bulovan walked it Blocked → Ready to Fix
+→ In Progress → Code Review → TESTING QA → QA Complete → Ready for Production → Done in 31 seconds**,
+`2026-09-09 04:08:14` to `04:08:45 −0500` — a bulk sweep, not a verified fix. That is **6 hours 12
+minutes before Chris created SV-9857** at `10:21:06 −0500` the same day and wrote that Option A brings
+that shape back.
