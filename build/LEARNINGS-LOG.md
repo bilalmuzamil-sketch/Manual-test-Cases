@@ -590,3 +590,29 @@ id, which needs no line scoping at all.
 typing into `input_line_description` and then choosing a canned line leaves the line named after the
 canned line ("Out of adjustment"), so a line can NOT be found again by a description you typed.
 Find it by diffing the line-id list before and after, which is what the probes now do.
+
+
+## L0036 — 2026-09-10 · work order lines are EXPANDED BY DEFAULT, so clicking "expand" collapses them
+
+A follow-on to L0035, and the reason a corrected probe still failed. Having learned that lines are
+table rows with a `button_line_expand_<lineId>` of their own, the obvious next move — click it to
+open the line — is **wrong**: lines render expanded, so the click **collapses** the line. Its child
+rows go `hidden` and, critically, **its "+ Add Part" row stops being rendered at all**. The row walk
+then reports `found: false` for that one line while finding the other four, which reads like a
+scoping bug and is not.
+
+**The toggle tells you the state:** an expanded line's button reads **`expand_less`**, a collapsed
+one **`expand_more`**. Read it first and click only when collapsed, then verify:
+
+```js
+const st = await state();                 // {collapsed: /expand_more/.test(button.textContent)}
+if (st.collapsed) { await click(); await verify(); }
+```
+
+Measured in `probe114_rowseq.mjs`, whose row dump also confirms the pairing the walk relies on:
+each line's marker row (`button_line_expand_` · `line_number_` · `badge_line_status_`) is followed
+by its Story/Labor rows and then by exactly one `[ADD PART]` row — rows 36→39, 40→42, 45→48. The
+collapsed line at row 49 has no Add Part row beneath it at all.
+
+**Also visible in that dump:** a line carries `button_action_complete_line_<lineId>` — the UI's own
+Complete action — so a line can be completed by clicking rather than by the status API.
