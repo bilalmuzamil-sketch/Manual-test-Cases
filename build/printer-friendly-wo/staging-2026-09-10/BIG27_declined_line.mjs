@@ -60,18 +60,30 @@ if (R.dialog.open){
   R.options = await page.evaluate(vis=>{const isVis=eval(vis);
     const o=[...document.querySelectorAll('.q-menu .q-item,[role=option]')].filter(isVis);
     const texts=o.map(e=>(e.innerText||'').replace(/\s+/g,' ').trim());
-    const dec=o.find(e=>/^declined$/i.test((e.innerText||'').trim()));
+    const dec=o.find(e=>/declined/i.test(e.innerText||''));
     if(dec) dec.click();
     return {texts, pickedDeclined:!!dec};}, VIS);
   log('Status list offers: %s | picked Declined: %s', JSON.stringify(R.options.texts), R.options.pickedDeclined);
-  await page.waitForTimeout(2000);
+  await page.waitForTimeout(2500);
+  // did the pick actually land in the field, before we save anything?
+  R.fieldAfterPick = await page.evaluate(vis=>{const isVis=eval(vis); const t=e=>(e.innerText||'').replace(/\s+/g,' ').trim();
+    const d=[...document.querySelectorAll('.q-dialog')].filter(isVis).pop(); if(!d) return null;
+    const f=[...d.querySelectorAll('.q-field')].filter(isVis).find(e=>/status/i.test(t(e)));
+    if(!f) return {found:false};
+    const inp=f.querySelector('input');
+    return {found:true, shows:t(f).slice(0,60), value:inp?inp.value:null};}, VIS);
+  log('the Status field now shows: %s', JSON.stringify(R.fieldAfterPick));
   R.saved = await page.evaluate(vis=>{const isVis=eval(vis); const t=e=>(e.innerText||'').trim();
     const d=[...document.querySelectorAll('.q-dialog')].filter(isVis).pop(); if(!d) return 'no dialog';
     const b=[...d.querySelectorAll('button')].filter(isVis).find(e=>/^(save|save & close|update|apply)$/i.test(t(e)));
     if(!b) return 'buttons: '+[...d.querySelectorAll('button')].filter(isVis).map(t).join(' | ');
     if(b.disabled) return 'greyed out'; b.click(); return 'clicked '+t(b);}, VIS);
   await page.waitForTimeout(7000);
-  log('save -> %s', R.saved);
+  R.afterSaveMsgs = await page.evaluate(vis=>{const isVis=eval(vis); const t=e=>(e.innerText||'').replace(/\s+/g,' ').trim();
+    return {toasts:[...document.querySelectorAll('.q-notification,[role=alert]')].filter(isVis).map(t),
+      dialogStillOpen:[...document.querySelectorAll('.q-dialog')].filter(isVis).length>0,
+      fieldErrors:[...document.querySelectorAll('.q-field--error')].filter(isVis).map(t).slice(0,4)};}, VIS);
+  log('save -> %s | after: %s', R.saved, JSON.stringify(R.afterSaveMsgs));
 }
 await page.screenshot({path:`${DIR}/evidence/BIG27-editline.png`, fullPage:true}).catch(()=>{});
 R.linesNow = (await lines()).map(l=>({s:l.status, d:l.status_display}));
