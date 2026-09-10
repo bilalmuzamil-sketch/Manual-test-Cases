@@ -7,11 +7,17 @@ Parts Sale Estimate) follow the **live** setting until their work order is invoi
 Story 4 pins the back-catalogue by creation-date cohort. Story 5 = every render surface honours the design.
 
 - **Spec:** Confluence page **845447188** "Invoice Design Selection — Product Spec", space ~Sasha Grosman.
-  **Status: DRAFT · Revision 3 (2026-09-10)** by Sasha Grosman. Version integer not retrievable
-  (Rule 42 anchor = page-id + Rev 3 + read-date). Extraction: `SPEC-EXTRACTION-2026-09-10.md`.
-- **Epic:** **SV-8218** (Invoice UI Refresh — the user supplied this; the spec header says "Epic: TBD").
-  Story Jira keys all TBD (G3). Design artifact = the SV-8218 Design Document
-  (https://claude.ai/code/artifact/c88ee207-3197-4f54-8cb9-bac3deb84354); Setting-UI design is TBD (G2).
+  **Status: DRAFT · Revision 5 (2026-09-10)** by Sasha Grosman — Q6 to Q12 awaiting a Product decision
+  (Section 8.1). Version integer not retrievable (Rule 42 anchor = page-id + Rev 5 + read-date). Original
+  extraction: `SPEC-EXTRACTION-2026-09-10.md` (Rev 3); **Rev 3 → Rev 5 reconciliation:
+  `source-verify-2026-09-10/CHANGE-ANALYSIS-Rev5.md`.**
+- **Epic:** **SV-9892** "Invoice Design Selection" (Open) — the real epic now exists (was authored against
+  old epic SV-8218, which is the RELATED refresh epic, now Done/released v26.36.0 2026-09-09).
+  **Stories now exist (resolves G3):** Story 1 **SV-9893**, Story 2 **SV-9894**, Story 3 **SV-9895**,
+  Story 4 **SV-9896**, Story 5 **SV-9897**; engineering-review story **SV-9872**. Design artifact = the
+  SV-8218 Design Document (https://claude.ai/code/artifact/c88ee207-3197-4f54-8cb9-bac3deb84354) for Modern;
+  Legacy = the v26.35.10 templates **restored by engineering (Q13 — resolves G4/AS-1)**. Setting-UI design
+  still TBD (G2).
 - **TestRail:** new section **"Invoice Design Selection" = id 7800**, under group **6559 "Invoice Refresh
   (Aug 2026)"**, suite 1. Created 2026-09-10.
 - **Tester (Rule 38):** Mudassir Qamar (TestRail user 6) owns the Invoice Refresh tree; cases authored by us
@@ -24,6 +30,27 @@ Story 4 pins the back-catalogue by creation-date cohort. Story 5 = every render 
 - **Run (Rule 34):** cases are NOT added to a run yet — the feature is unbuilt, so a run + build-verify is
   deferred; the QA lead decides whether they get a dedicated run or union into the Invoice Refresh run R417
   when built. (Flagged, not auto-done, to avoid polluting a live run with untestable cases.)
+
+## Status — 2026-09-10 (RE-VERIFIED against spec Revision 5 + new epic/stories — all 54 corrected)
+Full source re-verification (Rule 101) after the QA lead handed over the updated sources. Reconciliation:
+`source-verify-2026-09-10/CHANGE-ANALYSIS-Rev5.md`.
+- **All 54 cases (C53518–C53571) re-pointed** from old epic SV-8218 → **epic SV-9892 + per-story key**
+  (S1→SV-9893 … S5→SV-9897; FO-4 → epic-level) and **spec Revision 3 → Revision 5**, read 10 Sep. Applied
+  via the fr-view UI/Froala harness (`hs_write_rev5.mjs`, `intended-blocks-rev5.json`); **54/54 verified
+  `fr-view`, no literal tags, marker last, atm unchanged** (harness checkView). These are our cases
+  (`created_by=3`, `custom_atmstatus=1`) — corrected directly, no Rule 38/71 constraint.
+- **Case-specific corrections:** **C53570** (S5-E1) retitled + rewritten to the **Q14** truth — the legacy
+  templates DO print an Authorizer column carrying the IBS approval code (the earlier "no place for it"
+  claim was reversed by engineering); the contact is still selected + locked on the WO. **Story-4 cases**
+  (C53554–62, C53546) pin the exact cutoff **2026-09-09 09:13:36 UTC (Q16)** and carry a **Q6-open** note
+  (the back-catalogue flip is awaiting a Product decision and may be dropped). Decision notes added for
+  **Q19** (C53541 labour-fix keeps design), **Q10** (C53520/24/25 copy under challenge), **Q9** (C53551/66
+  portal held copies), **Q21** (C53543 sixth document Part Sale Credit), **Q18** (C53552 void = reversal).
+- **Gaps resolved:** G3 (story keys), G4/AS-1 (legacy templates exist — restored from v26.35.10, Q13),
+  cohort cutoff pinned (Q16). Still open: **G2** (Setting-UI design TBD), **Q6** (Story-4 fate),
+  **Q7/Q15** (restored Legacy defects; SV-9832 fee breakdown), **Q10** (final copy).
+- **Markers unchanged** — no dated QA build yet (target v26.38.0 not created); build-verification deferred
+  (Rule 85). Run **R446** membership unchanged (still the 54 case_ids).
 
 ## Status — 2026-09-10 (AUTHORING COMPLETE — 54 cases, source-derived, all 5 dimensions audited)
 

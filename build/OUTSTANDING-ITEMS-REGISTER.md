@@ -7,6 +7,64 @@
 > that carries the meaning. If an item cannot be understood on one read without opening anything, it
 > is not written yet.
 
+## 2026-09-10 — decisions waiting on you (the invoice work, after the updated sources)
+
+### A. The main Invoice Refresh document changed again yesterday — should I re-check its tests now?
+
+**What happened.** The written spec for the main invoice-refresh documents was changed yesterday to deal
+with a real complaint: the new printed invoice was using about 45% more paper than the old one. To fix
+that, several print rules changed — a line of small print now stays a fixed size, the preview and the
+printout are no longer promised to break lines in exactly the same places, some dividers only show on
+screen, and one heading block was widened and centred on the page. Our tests for these documents were last
+checked against the version of the spec from **11 days ago (Aug 31)**, so they now sit behind these
+changes.
+
+**Why it matters.** Until we re-check, our invoice-refresh tests describe the document the way it read
+before the paper-saving fix, so a tester could mark something "wrong" that is now correct, or miss a new
+rule. This is separate from the design-choice work you pointed me at — the main invoice document simply
+moved on its own.
+
+**The decision.** Do you want me to re-check the whole main invoice-refresh set of tests against the new
+version now? It is the largest of the invoice sets, so it is a sizeable pass.
+
+| Option | What I would do |
+|---|---|
+| **Re-check it now** | Re-read every one of those tests against the new spec, update the wording to match the new print rules, and report what changed. |
+| **Not yet** | Leave them as they are and come back to it; I note here that they are behind the current spec so nobody trusts them as current in the meantime. |
+
+**Cost of saying nothing:** the main invoice-refresh tests stay a little out of date; the other three
+invoice sets are unaffected and stay usable.
+
+### B. The "old documents change look on the day this ships" decision is still with the Product owner
+
+**What is happening.** The design-choice feature includes a rule that would make every invoice a shop
+issued *before* the refresh go back to looking the way it used to, automatically, on the day this ships —
+even for shops that were happy with the new look. The Product owner has written a leaning toward keeping
+that rule but has not finalised it, and the spec itself says this part must not be built until they decide.
+
+**Why it matters.** It is the one part of the design-choice work that changes what customers see without
+anyone asking. I have written the ten tests that cover it, but I have marked them as "not final yet" so no
+one runs them as settled until the Product owner confirms.
+
+**The decision.** Nothing for you to build — this is really the Product owner's call. Do you want me to
+leave those ten tests marked provisional (my current plan), or hold them out of the set entirely until the
+call is made?
+
+**Cost of saying nothing:** the ten tests stay marked provisional, which is safe; they just cannot be
+treated as final.
+
+### C. Two small things I am tracking, no action needed unless you want it
+- A money breakdown on customer documents (the card-fee / net-received lines) is due to be brought back and
+  shown on **both** the old and new designs once its fix ships. When that happens I will need to re-check
+  the main invoice-refresh money tests. Just flagging it.
+- The exact ship instant that decides which old documents count as "old" is written two slightly different
+  ways across the sources (off by about a minute). I have used the one the spec itself states as official.
+
+---REFERENCE--- A: Invoice UI Refresh suite (group 6559, 119 cases, epic SV-8218, spec 755990532 moved
+2026-09-09: S12-R4/R5b/R8/R9/R10/R12/R14, S1-R2a; last verified v45 2026-08-31). B: Story 4 / SV-9896,
+spec Q6; cases C53554–C53562, C53546. C: Q15/SV-9832; cutoff SV-9872 09:14:35 vs spec Q16 09:13:36 UTC.
+Detail: `build/INVOICE-SUITES-RECONCILE-2026-09-10.md`, `build/invoice-design-selection/source-verify-2026-09-10/CHANGE-ANALYSIS-Rev5.md`.
+
 ## 2026-09-10 — decisions waiting on you (Inline Add & Edit Parts, Printer Friendly Work Orders)
 
 ---
