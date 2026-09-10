@@ -262,6 +262,32 @@ add the SINGULAR anchor word ("...find the Received later permission **toggle**"
 route — a step-1 like "Open the line's actions" must name where ("On the work order's **Lines tab**, open
 the line's three-dot **menu**..."). Pointer: `build/simple-flow-v2/build-verify-2026-09-09/runnable-edits.json`.
 
+### L0019 · 2026-09-10 · #rule #qa-lead #methodology
+**STANDING RULE (QA lead, 2026-09-10): never act on anyone else's comment or finding without
+consulting him first.** Verbatim: *"Dont trust viktoria's finding (though you can see anyone's finding
+in the comment if that helps you for anything but ask me always before taking any decision based on
+anyone's findings in the comment when you believe the commenter might be right on something - do not
+blindly trust but do consider them to see if they are helpful but before acting in favour or in
+accordance with those comments make sure to consult with me) so you have to see everything Logically
+and if logically the test case is correct and as per your verification it should stay as it is then
+keep it as it is."*
+
+**How to apply it.** A comment by a tester, a developer or anyone else is **input, never authority**.
+Read it — it often points somewhere useful. Then judge the case on its own merits: the documents
+(Rule 57) plus your own live verification. **If the case is logically correct and your verification
+supports it, LEAVE IT ALONE.** If you come to believe the commenter is right and something should
+change, **stop and ask him before changing anything** — the change is his call, not yours and not the
+commenter's.
+
+**Why this rule exists — the incident it is made of.** On 2026-09-09 Viktoria commented that "Declined"
+should be added to seven preconditions' status lists. It looked right, it matched what the build did,
+and I applied it to all seven. The re-verified S1-N1 says the exact opposite: on Declined the Add Part
+button must be **hidden**. So the edit sent testers to a work order where the button should not exist
+in order to find it — and I had validated a commenter's claim against the BUILD instead of the RULE,
+which is the inversion Rule 57 exists to prevent. All seven were reverted the same day. Two of her ten
+"Passed" rows were also set to Blocked, and one of the notes she left in place (`only Paid exists in
+the data`) was stale in a way that made her block two cases that actually pass.
+
 ### L0017 · 2026-09-09 · #playwright #testrail #bridge #mistake-corrected
 **Any Playwright script that opens a shopview.testrail.io (or *.qa.shopview.com) UI page MUST launch
 chromium through the local MITM bridge — a bare `chromium.launch()` gets `net::ERR_CONNECTION_RESET`.**
