@@ -145,3 +145,26 @@ Evidence: `evidence/46-tv-edit.json` (`editGuard`), `evidence/46-b-editguard.png
 **Annotated shot: `defect-shots/candidate5-edit-discard-label.png`.**
 
 **Held** pending the QA lead's per-defect go-ahead (Rule 62 / his standing instruction).
+
+---
+
+## Candidate 6 — ❌ CLOSED, NOT A DEFECT (2026-09-10) · story SV-9321
+
+**Case:** [C45081](https://shopview.testrail.io/index.php?/cases/view/45081) — *Untouched follow-on
+empty row after a save prompts nothing* — **passed**.
+
+Probe 48 saw the **"Leave without saving?"** dialog once, on an untouched follow-on row in Full
+View, where the case says navigation proceeds freely. That would have been a defect. It did not
+reproduce.
+
+Probe 60 ran the identical three legs **twice in each view** — Tech view and Full View, four runs,
+each on a freshly loaded page, each with a control leg (a plain empty row opened by "Add Part",
+which is [C45077](https://shopview.testrail.io/index.php?/cases/view/45077) and correctly shows no
+dialog). **All four runs showed no dialog on the follow-on row and navigated straight to the
+schedule.** Dismissing the untouched follow-on row instead also closed it with no confirmation.
+
+One sighting in a long sequential probe is not evidence; the single run that saw it had eight other
+legs on the same browser session before it. **Nothing is filed.**
+
+Evidence: `evidence/60-c45081.json`, `evidence/60-{admin,tech}-{1,2}.png`, and the original
+`evidence/48-unsaved.json` sighting for the record.

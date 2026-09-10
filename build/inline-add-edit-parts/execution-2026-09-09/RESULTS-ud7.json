@@ -1,0 +1,7 @@
+{
+ "pass_meta": {"suite":"Inline Add and Edit Parts (6597)","run":418,"env":"the sv9315 QA branch",
+   "build":"v26.36.0-f43b2fd","date":"10 September 2026","view_mode":"both"},
+ "results": {
+  "C45081": {"verdict":"Passed","observed":"What was checked: whether the fresh empty row that opens by itself after a save is treated as unsaved work, which would nag the user every time they finished adding parts and moved on. What happened: a part was saved, the follow-on empty row opened untouched, and the user then left the work order by clicking \"Schedule\" in the top menu - no question appeared and the page changed straight away. Dismissing that untouched row instead also closed it immediately with no question. This was run twice in Tech view and twice in Full View, four runs in all, each on a freshly loaded page, and behaved the same every time.","not_observed":null}
+ }
+}
