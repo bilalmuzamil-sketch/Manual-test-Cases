@@ -100,14 +100,29 @@ writer — if it is read-side, the evidence already gathered is a pass. Also sti
 **Credit Memo Apply** (blank on 16 of 16 rows) and **Credit Memo Refund** (4 of 4) are in scope, since
 neither appears in his plan's not-in-scope list.
 
-### The Move-part-to-line dialog — **ANSWERED WITH INSTRUCTIONS, AWAITING YOUR HAND CHECK**
+### The Move-part-to-line dialog — **NOW REPRODUCED ON THE RELEASED BUILD; ONE HAND CLICK LEFT**
 
-You asked what to do and what to expect. The instructions and the expected outcomes are in the reply of
-2026-09-10 ~16:10 UTC. In short: try it by hand on `sv9807.qa.shopview.com` (still up, HTTP 200) and on
-`app.staging.shopview.com`; **if the part moves, there is nothing to file and my automation was the
-cause**; **if the button does nothing on staging, it is a live customer-facing defect and I will file
-it.** **Yes — tell me the result either way**, because "it worked for a human" is the only thing that
-closes it, and a silent pass would leave a caution in our record that we never resolved.
+You asked what to do and what to expect, so I pushed it as far as a script can go first. **It
+reproduces on `app.staging.shopview.com` — the released build — not just on the QA branch**, and I have
+eliminated everything except "a headless browser specifically": the button is not disabled, both
+selects genuinely hold values (re-picked from their dropdowns), there is no validation message, no
+console error and no page error, four different click methods behave the same, and it fails for both a
+picked part and an awaiting-order part. **No HTTP request is sent at all**, while the same move through
+the API returns 200.
+
+**Seeded and left in place for your hand check** — staging work order **S2-32850** (4 Star Truck
+Repair, 2020 Ford Transit), line 1 *Service - Transmission service (Automatic)* holding part
+**(122993) Mobil 3309 ATF, 1L**, line 2 *Service - Cabin air filter* empty as the target:
+`https://app.staging.shopview.com/workorders/585e57f7-5a4e-41ee-ba08-cffacc363b1d/lines`
+
+**Expected if it is real:** you press **Move To Line** and absolutely nothing happens — the dialog stays
+open, no message, the part stays on line 1. **Expected if it was my automation:** the dialog closes and
+the part appears under line 2.
+
+**Yes, tell me the result either way.** If it fails for you I file it as a customer-facing defect (the
+server side is fine, so it is the dialog's submit path). If it works for you I close the caution and
+record that the harness was the cause. Record + annotated exhibit:
+`build/move-part-to-line-2026-09-10/`.
 
 ---
 
