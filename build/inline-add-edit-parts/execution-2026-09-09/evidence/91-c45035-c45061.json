@@ -1,0 +1,119 @@
+{
+ "leftovers": [
+  {
+   "id": "00afc1ac-0aa5-463f-a7c3-aac8ec78ed69",
+   "was": "waiting_to_receive",
+   "path": "/api/work-orders/part/remove-request",
+   "status": 404,
+   "body": "{\"errors\":[{\"error\":\"\\u0027resource\\u0027 was not found.\"}]}"
+  },
+  {
+   "id": "00afc1ac-0aa5-463f-a7c3-aac8ec78ed69",
+   "was": "waiting_to_receive",
+   "path": "/api/work-orders/part/delete-request",
+   "status": 404,
+   "body": "{\"errors\":[{\"error\":\"\\u0027resource\\u0027 was not found.\"}]}"
+  }
+ ],
+ "seed": "10W30 Bulk- Mobil 1 Delvac HDEO HDEO13Inventory Qty: 792 literSHOP792125148HDEODELVACOIL..",
+ "afterSeed": [
+  {
+   "id": "ed8ab6d5-1195-47eb-a9e1-3b9b246ad0cf",
+   "status": "in_stock",
+   "pn": "HDEO13"
+  },
+  {
+   "id": "00afc1ac-0aa5-463f-a7c3-aac8ec78ed69",
+   "status": "waiting_to_receive",
+   "pn": null
+  }
+ ],
+ "picks": [
+  {
+   "id": "ed8ab6d5-1195-47eb-a9e1-3b9b246ad0cf",
+   "was": "in_stock",
+   "status": 201,
+   "body": "{\"data\":{\"partRequestId\":\"ed8ab6d5-1195-47eb-a9e1-3b9b246ad0cf\",\"workOrderId\":\"1"
+  },
+  {
+   "id": "00afc1ac-0aa5-463f-a7c3-aac8ec78ed69",
+   "was": "waiting_to_receive",
+   "status": 400,
+   "body": "{\"errors\":[{\"error\":\"This action cannot be performed on requests that are waitin"
+  }
+ ],
+ "afterPick": [
+  {
+   "id": "00afc1ac-0aa5-463f-a7c3-aac8ec78ed69",
+   "status": "waiting_to_receive"
+  }
+ ],
+ "lineCompletes": [
+  {
+   "id": "a52af727-7b35-49a5-9138-e679b24c48e7",
+   "status": 400,
+   "body": "{\"errors\":[{\"error\":\"Line can`t be completed with unfulfilled part requests.\"}]}"
+  },
+  {
+   "id": "e004c99a-16c7-48b5-8ee9-1b430a526ec3",
+   "status": 200,
+   "body": "{\"data\":[]}"
+  }
+ ],
+ "C45035": {
+  "key": "tech",
+  "mode": "edit",
+  "caseId": "C45035",
+  "opened": "opened",
+  "rowBefore": {
+   "open": true,
+   "desc": "ZZAUTOTEST c45035 seed",
+   "qty": "7"
+  },
+  "moved": {
+   "status": 400,
+   "json": {
+    "errors": [
+     {
+      "error": "Cannot complete work order with incomplete lines."
+     }
+    ]
+   },
+   "text": "{\"errors\":[{\"error\":\"Cannot complete work order with incomplete lines.\"}]}"
+  },
+  "skipped": "the work order would not go non-editable ({\"errors\":[{\"error\":\"Cannot complete work order with incomplete lines.\"}]}) — save NOT attempted"
+ },
+ "C45061": {
+  "key": "admin",
+  "mode": "add",
+  "caseId": "C45061",
+  "opened": "opened",
+  "rowBefore": {
+   "open": true,
+   "desc": "ZZAUTOTEST C45061 row",
+   "qty": "5"
+  },
+  "moved": {
+   "status": 400,
+   "json": {
+    "errors": [
+     {
+      "error": "Cannot complete work order with incomplete lines."
+     }
+    ]
+   },
+   "text": "{\"errors\":[{\"error\":\"Cannot complete work order with incomplete lines.\"}]}"
+  },
+  "skipped": "the work order would not go non-editable ({\"errors\":[{\"error\":\"Cannot complete work order with incomplete lines.\"}]}) — save NOT attempted"
+ },
+ "restore": {
+  "status": 201,
+  "json": {
+   "data": {
+    "work_order_id": "12c9684e-50d7-4043-86d2-f8a83d321431",
+    "message": "Status changed."
+   }
+  },
+  "text": "{\"data\":{\"work_order_id\":\"12c9684e-50d7-4043-86d2-f8a83d321431\",\"message\":\"Status changed.\"}}"
+ }
+}
