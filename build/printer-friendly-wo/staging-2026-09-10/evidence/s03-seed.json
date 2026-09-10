@@ -1,12 +1,12 @@
 {
  "seeded": {
   "A_full": {
-   "http": 400,
-   "text": "{\"errors\":[{\"company_id\":\"Missing required parameter\"}]}"
+   "http": 500,
+   "text": "{\"errors\":[{\"error\":\"An error occurred. We\\u0027re sorry for this inconvenience, please try again a bit later later.\"},{\"requestId\":\"32d971fa-1ac5-4806-a6ae-2c9bbb8ecef6\"}]}"
   },
   "B_empty": {
-   "http": 400,
-   "text": "{\"errors\":[{\"company_id\":\"Missing required parameter\"}]}"
+   "http": 500,
+   "text": "{\"errors\":[{\"error\":\"An error occurred. We\\u0027re sorry for this inconvenience, please try again a bit later later.\"},{\"requestId\":\"1402cad8-4df3-44a3-89cb-da9a9e6bfff2\"}]}"
   },
   "C_bare": {
    "http": 400,
@@ -63,9 +63,45 @@
    "totalPrice"
   ]
  },
+ "unwrapped": {
+  "hasCompany": true,
+  "hasVehicle": false,
+  "hasWorkplace": true
+ },
  "sampleDetail": {
+  "company_id": "6a7b6afc-084d-4584-aacb-773bcd71cbcd",
+  "workplace_id": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
   "keys": [
-   "work_order"
+   "deletable",
+   "deletable_reason",
+   "editable",
+   "id",
+   "number",
+   "engine_hours",
+   "tax",
+   "time_estimate",
+   "start_date",
+   "end_date",
+   "status_value",
+   "status",
+   "bay_id",
+   "priority",
+   "workplace_id",
+   "is_vehicle_here",
+   "vin",
+   "licence_plate",
+   "customer_po",
+   "service_advisor_id",
+   "sales_rep_id",
+   "sales_rep_name",
+   "sales_rep_is_inactive",
+   "authorizer_contact_id",
+   "authorizer_full_name",
+   "authorizer_telephone",
+   "customer_id",
+   "company_id",
+   "company_name",
+   "customer_first_name"
   ]
  }
 }
