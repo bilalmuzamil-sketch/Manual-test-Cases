@@ -287,5 +287,67 @@
    },
    "text": "{\"data\":{\"work_order_id\":\"6a529a5f-dff9-4c13-9636-b41500e585f0\",\"message\":\"Status changed.\"}}"
   }
+ },
+ "C45061": {
+  "key": "admin",
+  "mode": "add",
+  "opened": "opened",
+  "rowBefore": {
+   "open": true,
+   "desc": "ZZAUTOTEST noneditable admin",
+   "qty": "5"
+  },
+  "moved": {
+   "status": 400,
+   "json": {
+    "errors": [
+     {
+      "error": "Cannot complete work order with incomplete lines."
+     }
+    ]
+   },
+   "text": "{\"errors\":[{\"error\":\"Cannot complete work order with incomplete lines.\"}]}"
+  },
+  "toast": [],
+  "rowAfter": {
+   "open": true,
+   "desc": "ZZAUTOTEST noneditable admin",
+   "qty": "5"
+  },
+  "alerts": [
+   "Enter a cost and sell price to save this part."
+  ],
+  "restored": {
+   "status": 201,
+   "json": {
+    "data": {
+     "work_order_id": "6a529a5f-dff9-4c13-9636-b41500e585f0",
+     "message": "Status changed."
+    }
+   },
+   "text": "{\"data\":{\"work_order_id\":\"6a529a5f-dff9-4c13-9636-b41500e585f0\",\"message\":\"Status changed.\"}}"
+  }
+ },
+ "lineRestore": [
+  {
+   "id": "b2504a0d-8136-4c7c-a584-b055aea99372",
+   "to": "authorized",
+   "status": 200
+  },
+  {
+   "id": "b80d7553-0a8f-45f5-910a-8052573332d5",
+   "to": "authorization_required",
+   "status": 200
+  }
+ ],
+ "woRestore": {
+  "status": 201,
+  "json": {
+   "data": {
+    "work_order_id": "6a529a5f-dff9-4c13-9636-b41500e585f0",
+    "message": "Status changed."
+   }
+  },
+  "text": "{\"data\":{\"work_order_id\":\"6a529a5f-dff9-4c13-9636-b41500e585f0\",\"message\":\"Status changed.\"}}"
  }
 }
