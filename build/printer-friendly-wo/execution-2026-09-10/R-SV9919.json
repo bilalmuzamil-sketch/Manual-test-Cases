@@ -1,0 +1,10 @@
+{
+ "pass_meta": {"suite":"Printer Friendly Work Orders (6617)","run":419,"env":"the Staging environment","build":"staging v26.36.2-617d8d1","date":"10 September 2026"},
+ "results": {
+  "C45091": {
+   "verdict":"Failed",
+   "observed":"This supersedes the earlier results on this case. The case asks two things and only the first was ever checked.\n\nFirst: that Print stays greyed out until the job's line information has arrived. That is correct - with the line information deliberately held back the option was there but greyed out and unusable, and it became usable once the information arrived.\n\nSecond: that Print is ALSO greyed out while the job has no lines at all. That is not true. On job S2-32270, which has no lines, Print is offered, is not greyed out, and prints a page reading 'No lines on this work order' with zero totals.\n\nThe written requirements disagreed with themselves on this point - the summary of decisions says greyed out, two numbered requirements describe what such a job should print. The QA lead ruled on 10 September 2026 that greyed out is correct, so this is now a fault and the bug report is named at the top of this result.",
+   "todo":"What needs to be done: the fix is on the bug report named at the top of this result. Once it is fixed, re-run this case twice - once with the line information held back, and once on a job with no lines at all - and check Print is greyed out both times. Two other cases about printing a job with no lines describe something that will no longer be reachable and are due to be retired with this fix."
+  }
+ }
+}

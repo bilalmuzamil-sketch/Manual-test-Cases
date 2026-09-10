@@ -1,0 +1,10 @@
+{
+ "pass_meta": {"suite":"Inline Add and Edit Parts (6597)","run":418,"env":"the Staging environment","build":"staging v26.36.2-617d8d1","date":"10 September 2026"},
+ "results": {
+  "C45060": {
+   "verdict":"Failed",
+   "observed":"What was checked: that picking a part which has no price recorded against it leaves the cost and price boxes empty, so the user has to type them before the part can be saved. What happened: they do not open empty and the part saves without them. There was no part on the system without a price, so one was made: the Catalog screen's New Catalog Part window has no price boxes at all - only Description, Part Number, Size, Category, Manufacturer and Tags - so a catalogue entry created there genuinely has no cost and no price. Picking that part on the new-part row filled the Cost box with 0.00 and the Sell price box with 0.00. Pressing Save without typing anything into either answered 'Part added', and the part went on at nothing.",
+   "todo":"What needs to be done: the fix is on the bug report named at the top of this result. Once it is fixed, re-run this case and check both boxes open empty and the save is refused until you type a value in each."
+  }
+ }
+}

@@ -1,0 +1,27 @@
+{
+ "pass_meta": {"suite":"Inline Add and Edit Parts (6597)","run":418,"env":"the Staging environment","build":"staging v26.36.2-617d8d1","date":"10 September 2026"},
+ "results": {
+  "C44993": {
+   "verdict":"Failed",
+   "observed":"What was checked: that the Add Part button is taken away once a job reaches a stage where it should no longer be changed. What happened: it is taken away on two of those stages and left in place on the third. On a Paid job there is no Add Part button anywhere on the page, and on a Complete job there is none either. On a DECLINED job all four Add Part buttons are still there and still work, and a part added on one does save. For comparison, on the same job while it was open and editable the same four buttons were found, so the check does see them when they are there.",
+   "not_observed":"Invoiced - a job's stage cannot be moved to Invoiced by hand on this system, and no invoiced job was available to look at. Imported is not a stage this product has at all.",
+   "todo":"What needs to be done: the fix is on the bug report named at the top of this result. Nothing is needed from the tester until it is fixed; then re-run this case on a declined job and check the Add Part button is gone."
+  },
+  "C44994": {
+   "verdict":"Failed",
+   "observed":"What was checked: that the pencil for changing a part already on a job line is taken away once a job reaches a stage where it should no longer be changed. What happened: it is taken away on two of those stages and left in place on the third. On a Paid job there are no part-edit controls at all, and on a Complete job there are none either. On a DECLINED job all eight are still there, one per part, and opening one and saving a change goes through. For comparison, on the same job while it was open and editable the same eight were found.",
+   "not_observed":"Invoiced - a job's stage cannot be moved to Invoiced by hand on this system. Imported is not a stage this product has at all.",
+   "todo":"What needs to be done: the fix is on the bug report named at the top of this result. Once it is fixed, re-run this case on a declined job and check the pencil is gone from every part row."
+  },
+  "C45035": {
+   "verdict":"Failed",
+   "observed":"What was checked: that if a job is closed to changes while somebody has a part open for editing, pressing Save is refused and they are told to refresh. What happened: it is not refused. Working as a technician, an existing part on a job line was opened for editing and its quantity changed from 1 to 9. The job was then moved to Declined, which should close it to changes. Save was pressed. No warning appeared - there was no message saying the job can no longer be edited and nothing telling the user to refresh - and the row simply closed as though the change had been accepted.",
+   "todo":"What needs to be done: the fix is on the bug report named at the top of this result. Once it is fixed, re-run this case and check the save is refused with the message about the job no longer being editable, and that what you typed is still on screen."
+  },
+  "C45061": {
+   "verdict":"Failed",
+   "observed":"What was checked: that if a job is closed to changes while somebody is part-way through adding a part, pressing Save is refused and they are told to refresh. What happened: it is not refused - the part is added. A new part row was filled in with a description, a quantity, a cost and a sell price. The job was then moved to Declined, and this was read back to be sure it had actually moved. Save was pressed. No warning appeared, and instead the page showed 'Part added'. The part went onto a job that should have been closed to changes.",
+   "todo":"What needs to be done: the fix is on the bug report named at the top of this result. Once it is fixed, re-run this case and check the save is refused with the message about the job no longer being editable."
+  }
+ }
+}

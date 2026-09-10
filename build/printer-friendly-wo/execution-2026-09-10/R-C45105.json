@@ -1,0 +1,9 @@
+{
+ "pass_meta": {"suite":"Printer Friendly Work Orders (6617)","run":419,"env":"the Staging environment","build":"staging v26.36.2-617d8d1","date":"10 September 2026"},
+ "results": {
+  "C45105": {
+   "verdict":"Passed",
+   "observed":"This supersedes the earlier result on this case, which was wrong.\n\nWhat was checked: that each block of a job line on the printed page is separated from the next by a heavy line and a gap, so a mechanic has somewhere to write. What happened: both are there, and so is the third thing the written requirements ask for.\n\nOn the printed page each job line and everything under it - the technician, the note, the parts - sit together in one block. A heavy rule two points thick is drawn across the full width at the top of every block, so each block is clearly divided from the one before it. Below each block there is a blank band about three text rows deep, which is the writing space. Inside a block the rows are separated by fainter hairlines, which is exactly what the written requirements asked for as well.\n\nWhy the earlier result was wrong: the heavy rule is drawn on the container that wraps each block, and the earlier measurement only looked at the individual rows and their cells - one level too low - so it reported no rule at all. The QA lead sent a printout showing the rule plainly, and re-measuring on the right element found it at every block boundary. The bug report that had been written for this has been withdrawn and was never raised."
+  }
+ }
+}

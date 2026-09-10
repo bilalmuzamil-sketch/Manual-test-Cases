@@ -1,0 +1,10 @@
+{
+ "pass_meta": {"suite":"Inline Add and Edit Parts (6597)","run":418,"env":"the Staging environment","build":"staging v26.36.2-617d8d1","date":"10 September 2026"},
+ "results": {
+  "C45058": {
+   "verdict":"Failed",
+   "observed":"What was checked: that typing letters, or a negative number, into the cost or the price is refused with a message that names the field and says what is wrong. What happened: half of it works. Typing a negative number gives exactly the right message, 'Cost cannot be negative.' Typing letters does not: instead of 'Cost must be a number.' the user is told 'Enter a cost and sell price to save this part.' - which reads as though the boxes had been left empty, when in fact they contain something that is not a number. The part is correctly not saved either way.",
+   "todo":"What needs to be done: nothing, for now. This was put to the QA lead on 10 September 2026 and he decided not to raise a bug report for it, so no fix is scheduled. The case stays marked as failing so the difference is on the record. Do not raise anything new for it."
+  }
+ }
+}

@@ -926,3 +926,26 @@ Rule 8 amendment of 2026-09-10.
 The wider lesson, which is the same one as L0043: **when he repeats a request, the first version was
 answered to the letter and missed the point.** Ask what he was trying to DO with the thing he asked
 for, not just what he named.
+
+## L0045 — 2026-09-10 · the ticket tool is MARKDOWN, and a ticket without pictures is not a ticket
+
+Three Story Defects were raised (SV-9917, SV-9918, SV-9919) and the QA lead's reaction was that they
+"look ugly, not friendly or understandable or reproducible by a layman". Two separate faults, both mine:
+
+1. **I wrote Jira WIKI markup (`h1.`, `{quote}`, `||`, `#`) into the MCP tool, whose `contentFormat`
+   defaults to MARKDOWN.** Every marker rendered as literal text — the reader saw `h1. What happens`
+   and `{quote}` on the page. **`createJiraIssue` / `editJiraIssue` take MARKDOWN** (`##`, `>`, `1.`,
+   `|` tables, `**bold**`) and convert it to ADF. Wiki markup is only for the raw
+   `PUT /rest/api/2/issue/{KEY}` route, which is a different door and the one the inline-image recipe
+   in skill 06 uses. **Know which door you are using before you write a character.**
+2. **I filed with no screenshots at all**, when the eight-item evidence bar (skill 06, from the
+   2026-08-12 ruling that a bad ticket put his job on the line) requires annotated ones, embedded.
+   `build/testing-tools/annotate_shot.py` already existed for exactly this and was not used.
+
+Also relearned the same day, third time in three passes: **`build/skills/06-DEFECT-PREP.md` carries a
+seven-section ticket layout and a plain-language table. Read it BEFORE writing a ticket, not after
+being told the ticket is bad.**
+
+The habit: before creating anything in an external system — read the skill that owns that artefact,
+confirm the markup dialect the tool actually accepts, and never file evidence-bearing work without
+the evidence attached.
