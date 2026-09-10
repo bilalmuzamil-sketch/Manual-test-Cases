@@ -1,0 +1,8 @@
+{
+ "pass_meta": {"suite":"Inline Add and Edit Parts (6597)","run":418,"env":"the sv9315 QA branch",
+   "build":"v26.36.0-f43b2fd","date":"10 September 2026","view_mode":"tech"},
+ "results": {
+  "C45007": {"verdict":"Passed","observed":"What was checked: what category a part ends up in when a technician adds it, in the two cases that matter - a part typed in by hand that has no category of its own, and a catalogue part that already has one. What happened: the hand-typed part \"ZZAUTOTEST tv validation\" was given the category \"Uncategorized\", which is the system's catch-all. The catalogue part the technician picked (the Detroit oil filter, part number A4731800909) kept its own category, \"HD-Filters\" - it was not overwritten with \"Uncategorized\". Both were read from the work order's Parts tab, where a Full View user sees the Category column. To the technician neither category was shown at all: the Tech view row has no category box.","not_observed":null},
+  "C45028": {"verdict":"Passed","observed":"What was checked: whether the money and category on a part survive a technician editing it, given the technician cannot see any of them. What happened: a part was first set up in Full View with a cost of 12.34, a sell price and the category \"70%override\". The technician then opened that part's edit row - which showed only description, part number and quantity, with no cost, sell price or category box - changed the quantity from 3 to 8 and saved. Reading the part back in Full View afterwards, the cost was still 12.34, the sell price was unchanged, and the Parts tab still shows the category \"70%override\". Only the quantity moved. Nothing the technician cannot see was blanked out by their save.","not_observed":null}
+ }
+}

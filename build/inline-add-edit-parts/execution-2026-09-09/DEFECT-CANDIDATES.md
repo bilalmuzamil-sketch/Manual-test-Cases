@@ -29,6 +29,7 @@ on Declined, mark the case FAILED on the Declined check and report the deviation
 what happened.
 
 Evidence: `evidence/21-c44993.json`, `evidence/23-statusmatrix.json`, `evidence/25-declined.json`.
+**Annotated shot: `defect-shots/candidate1-declined-add-part.png`.**
 
 ---
 
@@ -54,6 +55,7 @@ have entered one, just not a number. Each case was run on its own with a page re
 leftover state could confuse it.
 
 Evidence: `evidence/33-fv-g.json`, `evidence/31-fv-e.json`.
+**Annotated shot: `defect-shots/candidate2-cost-letters-message.png`.**
 
 ---
 
@@ -125,16 +127,21 @@ The dialog's **title and body are exactly as specified**; the **second action's 
 | Title | "Discard these changes?" | **"Discard these changes?"** | correct |
 | Body | "The changes you made will be lost." | **"The changes you made will be lost."** | correct |
 | Action 1 | "Keep Editing" | **"Keep Editing"** | correct |
-| Action 2 | **"Discard Part"** | **"Discard changes"** | **wrong label** |
+| Action 2 | **"Discard Part"** | **"Discard Changes"** | **wrong label** |
 
 The case is explicit that the actions are *"unchanged"* between the add-row and the edit-row
 dialogs. On the add row the build does show **"Discard Part"** (observed the same session,
 [C45011](https://shopview.testrail.io/index.php?/cases/view/45011) — passed), so the two dialogs
 disagree with each other in the build, not only with the spec.
 
+**The label is quoted as DISPLAYED.** `textContent` reads `Discard changes`; the screen reads
+**"Discard Changes"**, because the button carries a CSS `text-transform`. The rendered string is the
+one above and the one in the annotated shot.
+
 Behaviour is correct either way: choosing it closes the row and restores the part's saved values.
 
 Evidence: `evidence/46-tv-edit.json` (`editGuard`), `evidence/46-b-editguard.png`,
-`evidence/44-tv.json` (`guard`), `evidence/44-b-guard.png`.
+`evidence/48-a-discardpart.png` (the add-row dialog for comparison).
+**Annotated shot: `defect-shots/candidate5-edit-discard-label.png`.**
 
 **Held** pending the QA lead's per-defect go-ahead (Rule 62 / his standing instruction).
