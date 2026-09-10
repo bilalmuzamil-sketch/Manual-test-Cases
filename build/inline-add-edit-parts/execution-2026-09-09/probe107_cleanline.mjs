@@ -42,7 +42,10 @@ if(!wo){ R.fatal='no editable work order'; save(); await s.browser.close(); proc
 const lineBody = {workOrderId:wo.id, work_order_id:wo.id, description:'ZZAUTOTEST C45251 completed-line check',
   complaint:'ZZAUTOTEST C45251', quantity:1,
   fixed_price:100, fixedPrice:100, is_fixed_price:true, isFixedPrice:true,
-  labor_hours:0, laborHours:0, labor_rate:0, laborRate:0};
+  labor_hours:0, laborHours:0, labor_rate:0, laborRate:0,
+  // second refusal: "Line name is missing."
+  lineName:'ZZAUTOTEST C45250/C45251 completed-line check', line_name:'ZZAUTOTEST C45250/C45251 completed-line check',
+  name:'ZZAUTOTEST C45250/C45251 completed-line check'};
 R.createLineTries={};
 let LINE=null;
 for (const [m,p] of [['POST','/api/work-orders/lines/create'],['POST','/api/work-orders/lines'],

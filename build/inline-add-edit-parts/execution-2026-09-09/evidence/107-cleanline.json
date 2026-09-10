@@ -7,7 +7,7 @@
  "createLineTries": {
   "POST /api/work-orders/lines/create": {
    "status": 400,
-   "text": "{\"errors\":[{\"error\":\"Labor or fixed prices must be set.\"}]}"
+   "text": "{\"errors\":[{\"lineName\":\"Line name is missing.\"}]}"
   },
   "POST /api/work-orders/lines": {
    "status": 404,

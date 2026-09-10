@@ -540,3 +540,24 @@ neared a false "label removed" finding that was really a Tech-View session (L000
 that caught it: (a) read the SOURCE (spec §S4-R21 documented the reduced row), (b) dump `fe_permissions`.
 Build ≠ document is escalated, never resolved by rewriting cases (Rule 57/63) — and never asserted from an
 unverified session state. Keep this reflex.
+
+## L0034 — 2026-09-10 · a probe that mutates shared state must restore it in a `finally`, and the restore must not need a fresh login
+
+**What happened.** `probe105_noneditable.mjs` moves a work order to **Declined** to test the
+"work order became non-editable under your open row" cases, then puts it back. Its final restore
+opens a NEW browser session to do so — and that boot failed (`exit=2`). The probe died leaving
+**S9315-15899 sitting at Declined**, a state no other test expects. It was caught only because the
+next check read the status back; nothing in the probe itself would have reported it.
+
+**The rule this gives us.** Any probe that changes shared state (a work order status, a role, stock)
+must:
+1. wrap the whole body in `try { … } finally { …restore… }`, so a crash anywhere still restores;
+2. do the restore over a session it **already holds**, not a fresh `boot()` — a login can fail, and
+   a restore that needs a login is a restore that can be skipped;
+3. **read the state back** after restoring and log the read-back, never trust the write's 201;
+4. print a loud line if the restore did not verify, so the pass knows it left a mess.
+
+**Related.** `GET /api/work-orders/{id}` carries **no `status` field** — reading it there returns
+`undefined`, which reads as "the change failed" when it succeeded. The status lives on the LIST
+endpoint, `GET /api/work-orders?limit=200`. That misread cost a probe run and left the same work
+order Declined the first time round.
