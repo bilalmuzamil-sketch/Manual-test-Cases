@@ -51,5 +51,39 @@
   "status": 201,
   "text": "{\"data\":{\"work_order_id\":\"6a529a5f-dff9-4c13-9636-b41500e585f0\",\"message\":\"Status changed.\"}}",
   "nowIs": "approved"
+ },
+ "C45035": {
+  "who": "tech",
+  "identity": {
+   "view_mode": "tech",
+   "perms": 6
+  },
+  "opened": {
+   "ok": true,
+   "changedQuantityTo": "7"
+  },
+  "flip": {
+   "status": 201,
+   "text": "{\"data\":{\"work_order_id\":\"6a529a5f-dff9-4c13-9636-b41500e585f0\",\"message\":\"Status changed.\"}}",
+   "nowIs": "declined"
+  },
+  "saveCalls": [
+   {
+    "m": "POST",
+    "u": "/api/work-orders/part/change-request",
+    "s": 200
+   }
+  ],
+  "after": {
+   "rowStillOpen": false,
+   "description": null,
+   "quantity": null,
+   "cost": null,
+   "alerts": [
+    "Build Lines"
+   ],
+   "mentionsNoLongerEdited": false,
+   "mentionsRefresh": false
+  }
  }
 }
