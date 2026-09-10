@@ -30,7 +30,7 @@
 > stays hedged instead of asserted. A missing QA branch means **nothing is live-verified** and a
 > whole suite sits VIU-Pending.
 
-**Last updated:** 2026-08-05 (~21:10 UTC — the SV-8910 re-test, run unattended at the QA lead's request)
+**Last updated:** 2026-09-10 (~16:10 UTC — SV-9833 QA-passed and posted; SV-9866 reminder moved to tomorrow at the QA lead's request)
 **Active projects:** Report Suite · Schedule · Filters (user ruling 2026-07-27)
 **Predecessor snapshot (kept for the record):** `build/PROJECTS-NEEDS-2026-07-27.md`
 **Companion defensibility register (read before answering any QA challenge in a public channel):** `build/qa-preemptive-answers-2026-07-31/ANTICIPATED-QUESTIONS-AND-ANSWERS.md` / `.xlsx` — 65 rows of *what someone could say* → *the paste-ready answer* → *the evidence*, across the three active projects, with a TOP 10 and an open list of what we would genuinely have to concede.
@@ -54,6 +54,60 @@ we do not have) · `QUESTION` (asked, not answered) · `GO-AHEAD` (your authoriz
 we may write anything) · `ACCESS` (a login, branch, token or connected account) · `DECISION`
 (something you or the QA lead held or deferred) · `OTHER TEAM` (a PO, dev or Jira artefact someone
 else owes).
+
+---
+
+## ⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️ NEWEST — 2026-09-10, ~16:10 UTC. **SV-9833 QA-PASSED AND POSTED. SV-9866 REMINDER MOVED TO TOMORROW ON YOUR INSTRUCTION.**
+
+### SV-9833 — Package quantity and cost when receiving inventory parts — **PASSED, POSTED, CLEARED**
+
+Verdict **PASSED**, 10 of 10 checks. Comment
+**[76305](https://shopview.atlassian.net/browse/SV-9833?focusedCommentId=76305)** posted 10 Sep 2026
+10:55:34 -0500 on your go-ahead (*"1. Post it"*), read back from Jira and verified: verdict panel is
+the first node, 4 media in the order EX1→EX4, table header plus all 10 rows, technical section last
+after the rule. Record: `build/sv9833-po-package-receive-2026-09-10/FINDINGS.md`.
+
+Reproduced the customer's report on the released build and proved it gone on the branch, same part
+(`POI5730C`), same inputs, same starting stock: **1 unit at $10.00 → 19 units at $0.53**.
+
+**Two things reported to Dipesh in that comment, neither of them a defect:**
+
+1. **The ticket's root cause is incomplete, and we said so.** For the case the customer actually hit —
+   a part already in Inventory — the **released front end was sending** the pack size and the **server
+   was discarding it**; the front-end change he describes only covers the brand-new-part path. Both
+   halves work, so the verdict stands, but they were proven separately and both are named.
+2. **[SV-9721](https://shopview.atlassian.net/browse/SV-9721) is now half built** (still **Open**,
+   unassigned). The **Accept Delivery** receive screen shows Items Per Package on this branch; the
+   screen the **Receive** button actually opens does **not**, on either build. So it should stay open —
+   his *"the receiving screen still does not display the pack size"* is still true for the path a
+   receiver uses. **Nothing to do from us; his and Branko's call.**
+
+**Nothing outstanding on SV-9833.**
+
+### SV-9866 — QuickBooks Unexported report — **STILL HELD, REMINDER RESCHEDULED TO TOMORROW**
+
+Verdict **NOT YET CONFIRMED**, nothing posted. **Rule 48 context:** your ruling, verbatim, on
+2026-09-10 — first *"2. hold it for now and ask me again"*, then *"3. Remind me later"*, and today
+*"2. Remind me tomorrow"* — each in answer to my asking whether to post the SV-9866 comment. **It was
+the right call both times:** the verdict rests on a path (a customer with no QuickBooks mapping) that
+cannot be produced on `sv9866` because that organisation has no QuickBooks connection, so posting
+would assert something not observed.
+
+**Reminder now armed for 2026-09-11 05:00 UTC** (trigger `trig_01B5vc4Zq4H64mcnvtaSBmay`, rescheduled
+from today 16:41 UTC). **What unblocks it:** a QuickBooks connection on `sv9866.qa.shopview.com`,
+**or** one line from Dipesh confirming the fix sits in the report's read query rather than the sync
+writer — if it is read-side, the evidence already gathered is a pass. Also still open for him: whether
+**Credit Memo Apply** (blank on 16 of 16 rows) and **Credit Memo Refund** (4 of 4) are in scope, since
+neither appears in his plan's not-in-scope list.
+
+### The Move-part-to-line dialog — **ANSWERED WITH INSTRUCTIONS, AWAITING YOUR HAND CHECK**
+
+You asked what to do and what to expect. The instructions and the expected outcomes are in the reply of
+2026-09-10 ~16:10 UTC. In short: try it by hand on `sv9807.qa.shopview.com` (still up, HTTP 200) and on
+`app.staging.shopview.com`; **if the part moves, there is nothing to file and my automation was the
+cause**; **if the button does nothing on staging, it is a live customer-facing defect and I will file
+it.** **Yes — tell me the result either way**, because "it worked for a human" is the only thing that
+closes it, and a silent pass would leave a caution in our record that we never resolved.
 
 ---
 

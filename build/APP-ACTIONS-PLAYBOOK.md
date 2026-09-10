@@ -4035,3 +4035,152 @@ not observation. Say so. *(2026-09-10: the `sv9849` branch = staging + SV-9849 +
 masthead-only; SV-9773's fix was verified present and CORRECT on staging — `Labor $324.90`
 fee-inclusive on its own repro work order — so the footer removal came in with the print-template work.
 The behaviour is observed; the authorship is inferred, and the report must separate the two.)*
+
+## §AF — INVENTORY PURCHASE ORDERS: package quantities, the two receive screens, and the four things that look broken but are not (proven 2026-09-10, SV-9833)
+
+**What this covers:** creating an inventory purchase order, adding a line with a **package quantity**,
+and receiving it — the whole SV-9833 surface. Reuse it for any PO / receiving ticket.
+
+### AF.1 — Which purchase order is which
+
+`GET /api/inventory/orders?pagination[page]=1&pagination[rowsPerPage]=300` → `data.collection`.
+
+- **Inventory PO** = `type: 1`, `work_order_id: null`. These are the ones with a package option.
+- **Work-order PO** = `type: 0`, `workOrderId` set. **No `Add Order Item` button exists at all** on
+  these, so there is no package path to test — a stronger statement than "the checkbox is missing".
+- Detail: `GET /api/inventory/orders/{id}` → `data.order`. **The order item carries
+  `itemsPerPackage`** — this single field is the quickest way to tell whether a pack size was saved,
+  and it is what a pre-fix build stored as `null`.
+- `order.vendor_name` is often `null` even when the PO plainly has a vendor; the item-level
+  `ioi_vendor_name` is the one that is populated. Do not read a null header vendor as a defect.
+
+### AF.2 — Routes (two of these are easy to get wrong)
+
+| Screen | Route |
+|---|---|
+| PO list | `/parts/orders` |
+| **PO detail** | **`/order/{id}`** — top level, **NOT** `/parts/order/{id}`, which 404s |
+| Receive, vendor-grouped | `/order/{id}?receive=1` — **what the Receive button and the list's Receive link both open** |
+| Receive, flat | `/accept-delivery/{id}` |
+| Vendor invoice (the delivery) | `/parts/delivery/{deliveryId}` |
+| Inventory | `/parts` |
+
+Both receive screens end in `POST /api/inventory/orders/accept`.
+
+**⚠️ THE TWO RECEIVE SCREENS ARE NOT THE SAME SCREEN, AND THEY DO NOT SHOW THE SAME COLUMNS.** On the
+post-SV-9833 branch the flat one shows an **Items Per Package** column and the vendor-grouped one does
+not. So "the receiving screen shows the pack size" is true or false depending on which one you opened —
+and the one a receiver actually lands on is the vendor-grouped one. **Always name which screen.**
+(This is exactly what made SV-9721 look half-fixed.)
+
+### AF.3 — The control ids, and the trap that the same field has two of them
+
+**New Purchase Order dialog** (`button_new_po`):
+`select_order_vendor` · `select_part` · `input_order_item_description` ·
+`checkbox_order_item_package` · `input_order_item_quantity` · **`input_order_item_cost`** ·
+`input_order_item_items_per_package` (appears **only after** Package is ticked) ·
+`input_order_item_core_charge` · `select_order_item_category` · `select_order_item_manufacturer` ·
+`button_add_order_item` · `button_save_and_close_order`.
+
+**Add Order Item dialog** on a saved PO (`button_add_order_item` on `/order/{id}`) — *same fields,
+different ids*:
+`select_part` · `input_order_item_description` · `input_order_item_quantity` ·
+`checkbox_order_item_package` · `input_order_item_items_per_package` · **cost is `input_base`** ·
+category is `select_select_` · `select_order_item_manufacturer` · **`button_save_order_item`** ·
+`button_close_order_item_modal` · **`add_new_special_order_part`**.
+
+`add_new_special_order_part` only renders **once the part search returns "No results"** — that is the
+route to a brand-new part, and it is the one that sets `part_type: "new_part"`.
+
+**Receive screens:**
+- flat: `input_invoice_number` · `input_delivered_quantity_<rowIndex>` · `input_base` (tax) ·
+  `input_delivery_note` · `button_receive_delivery`
+- vendor-grouped: ids are **suffixed with the PO id** — `input_invoice_<poId>` ·
+  `date_input_invoice_date_<poId>` · `checkbox_select_all_<poId>` · `input_tax_<poId>` ·
+  `input_note_<poId>` · **`button_receive_po_<poId>`** — plus **per line**
+  `checkbox_item_<itemId>` · `input_qty_<itemId>` · `currency_text_cost_<itemId>`.
+
+**PO detail:** `button_add_order_item` · `button_receive_order` · `tab_remaining_parts` /
+`tab_received_parts` · `order_items_table` · `button_edit_order_item_<itemId>` ·
+`button_remove_order_item_<itemId>` · `button_edit_order_note`.
+
+**The Edit Order Item dialog has NO Package checkbox and NO Items Per Package field** (both builds,
+2026-09-10). So a pack size cannot be seen or changed after the line exists — which is why a line
+created before a pack-size fix has to be **deleted and added again** rather than edited.
+
+### AF.4 — Package arithmetic, and what each surface is supposed to show
+
+Order **1** package with **Items Per Package 19** at cost **10**:
+
+- the PO line reads **Quantity 1.00 · Cost $10.00000 · Total Cost $10.00** (the *package* is the unit
+  of ordering);
+- receiving with **Quantity Received 1** puts **19** units into Inventory at **Average Cost $0.53**;
+- the **Vendor Invoice keeps quantity 1.00 at $10.00** and the total is unchanged — **that is correct
+  and intended**, because it must match what the vendor billed. The pack size sits in its own column.
+
+**Costs are held to the cent, so state the rounded figure or you will chase a phantom:** $10.00 ÷ 19 =
+0.5263 → **$0.53**; $147.16 ÷ 19 = 7.7452 → **$7.75**. Receiving also **recalculates Sell Price from
+the new cost**, so that column moves too — not a side effect to report as a defect.
+
+Multiple packages and partial receipts both work off the same figure: 2 packages of 10 at $100 →
+**20 units at $10.00**; receiving 1 of those 2 → **10 units**, PO to `partial_delivery` with the line
+reading `already_received 1.00 / quantity_remaining 1`, pack size retained; the second → the other 10.
+
+### AF.5 — The four things that look broken and are not
+
+1. **A Quasar select's `data-test-id` is on the `<input>` itself, and CLICKING IT DOES NOT OPEN THE
+   MENU.** Focus it and **type** — the menu opens on input. Waiting for `.q-menu` *before* typing just
+   burns the timeout.
+2. **The option list is debounced** (`…inventory-parts-as-options-with-remaining-catalogue-parts?…&search=`,
+   200 rows). A transient **"No results"** for a part that certainly exists is a timing artefact: wait
+   ~2.5 s, nudge the query (backspace + retype the last character) and read again **before** concluding
+   the part is absent. The part picker returns **two rows per part** — `part_type: "inventory_part"`
+   and `"catalogue_part"` — so match on the compound text (`"POI5730C Inventory"`), never the bare
+   number.
+3. **A Quasar checkbox does not toggle on a coordinate click.** The ripple animates, `aria-checked`
+   does not change, and on the vendor-grouped receive screen that means Quantity Received never
+   populates and the Receive button silently does nothing. Use
+   `page.locator('[data-test-id="checkbox_item_x"]').click({force:true})` and **verify `aria-checked`
+   is `"true"`**, falling back to clicking the `.q-checkbox` ancestor. Clicking `checkbox_select_all_*`
+   by coordinate hits its **tooltip** instead of the control.
+4. **Receiving less than the ordered quantity opens a confirmation and sends NOTHING until it is
+   answered:** a **"Delivery status"** dialog — *"Delivered quantities of one or more order items are
+   less then expected"* — with **Receive As Order Fulfilled** / **Receive As Partial Delivery**. A
+   script that clicks Receive and then waits for the network sees a dead button. Handle the dialog, or
+   the partial-receive case is untestable.
+
+### AF.6 — Telling a pre-fix build from a post-fix one when the fix is server-side
+
+Frontend `app-version` is useless for this — both environments read `v26.36.2` with different commit
+suffixes and neither says anything about the API. Two things that do work:
+
+- **Capture the request and compare it with what got stored.** Drive the UI, capture
+  `POST /api/inventory/orders/add-item`, then re-read the order item. On the pre-fix build the payload
+  carried `"itemsPerPackage":19` and the stored item came back `null` — **the value was accepted and
+  discarded.** That is proof of a server-side change, and it also corrected the ticket's own root-cause
+  note, which blamed the front end for the case the customer actually hit.
+- **Diff the deployed chunk.** `index.html` → the `index.*.js` bundle → the page chunk (`Order.*.js`)
+  names its lazy children in `__vite__mapDeps`, which is how `OrderItemModal.*.js` was found on both
+  builds. The pre-fix line reads
+  `c&&!x.value&&(e.part_id=c,f.value&&(e.itemsPerPackage=D.value))` and the post-fix one
+  `c&&!M.value&&(e.part_id=c),f.value&&(e.itemsPerPackage=T.value)` — one comma, and the pack size
+  stops being conditional on having a part id. `x`/`M` is `part_type==="new_part"`.
+  **The bundle diff told me which harness to use before I spent anything: a front-end fix means the UI
+  must be driven, because an API call with the field set would pass on both builds and prove nothing.**
+
+### AF.7 — The reusable shape of the pass
+
+Because the fix had a front-end half *and* a server-side half, **one repro would have proven only one
+of them.** Two seeds, on both builds, from an identical starting state:
+
+- an **existing inventory part** (payload identical on both → isolates the server half), and
+- a **brand-new special-order part** (payload differs → isolates the front-end half).
+
+Plus, on every single case, a **non-package control line** on the same purchase order (`122993`,
+quantity 2 at $9.75) which took `+2 at $9.75` with `itemsPerPackage: null` every time on both builds.
+**A control that never moves is what lets you say "nothing else changed" and mean it.**
+
+Zero-stock parts make the arithmetic unarguable — pick parts at **Total Quantity 0** so the delta *is*
+the reading. Parts used, all present on staging and the branch with identical ids: `POI5730C`,
+`19421426`, `104775`, `68175338AC`, `2--SHL55057739` (all HD-Fluids, all started at 0), control
+`122993` (started at 5).
