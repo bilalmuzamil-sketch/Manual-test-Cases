@@ -37,8 +37,12 @@ log('work order: %s', JSON.stringify(R.workOrder)); save();
 if(!wo){ R.fatal='no editable work order'; save(); await s.browser.close(); process.exit(0); }
 
 // ---- part A: create a line. Every candidate route is tried and the answer recorded.
+// POST /api/work-orders/lines/create is the right route. Its first refusal named what was missing:
+// "Labor or fixed prices must be set." — so the line is created with a fixed price.
 const lineBody = {workOrderId:wo.id, work_order_id:wo.id, description:'ZZAUTOTEST C45251 completed-line check',
-  complaint:'ZZAUTOTEST C45251', quantity:1};
+  complaint:'ZZAUTOTEST C45251', quantity:1,
+  fixed_price:100, fixedPrice:100, is_fixed_price:true, isFixedPrice:true,
+  labor_hours:0, laborHours:0, labor_rate:0, laborRate:0};
 R.createLineTries={};
 let LINE=null;
 for (const [m,p] of [['POST','/api/work-orders/lines/create'],['POST','/api/work-orders/lines'],
@@ -155,6 +159,60 @@ if (String(R.lineStatusNow||'').toLowerCase().startsWith('complet')){
   }
 } else { R.note='the clean line still did not reach Complete; nothing is reported as observed'; }
 save();
+
+// ---- C45250, on the SAME clean Complete line: is "+ Add Part" still offered, and does using it
+// uncomplete the line by itself rather than making the user do it first?
+if (String(R.lineStatusNow||'').toLowerCase().startsWith('complet')){
+  await page.goto(`${APP}/workorders/${wo.id}/lines`,{waitUntil:'domcontentloaded',timeout:60000});
+  await page.waitForTimeout(9000);
+  await page.evaluate(()=>{[...document.querySelectorAll('.q-expansion-item')].forEach(i=>i.querySelector('.q-item')?.click());});
+  await page.waitForTimeout(7000);
+  const C={};
+  // the Add Part button that belongs to THIS line, not to some other line on the work order
+  C.addPartOnThisLine = await page.evaluate(({vis, line})=>{const isVis=eval(vis);
+    const btns=[...document.querySelectorAll('[data-test-id=button_add_part]')];
+    const mine=btns.filter(b=>{let e=b; for(let i=0;i<14&&e;i++){ e=e.parentElement;
+      if(e && (e.id===line || e.getAttribute&&e.getAttribute('data-line-id')===line
+               || (e.outerHTML||'').includes(line))) return true; } return false;});
+    return {totalOnPage:btns.length, totalVisible:btns.filter(isVis).length,
+      onThisLine:mine.length, onThisLineVisible:mine.filter(isVis).length};}, {vis:VIS, line:LINE});
+  await page.screenshot({path:`${DIR}/evidence/107-2-c45250-before.png`, fullPage:true});
+  if (C.addPartOnThisLine.onThisLineVisible){
+    await page.evaluate(({vis, line})=>{const isVis=eval(vis);
+      const b=[...document.querySelectorAll('[data-test-id=button_add_part]')].filter(b2=>{let e=b2;
+        for(let i=0;i<14&&e;i++){ e=e.parentElement; if(e && (e.outerHTML||'').includes(line)) return true; } return false;})
+        .filter(isVis)[0];
+      if(b){ b.scrollIntoView({block:'center'}); b.click(); }}, {vis:VIS, line:LINE});
+    await page.waitForTimeout(6000);
+    C.rowOpened = await page.evaluate(vis=>{const isVis=eval(vis);
+      const d=document.querySelector('[data-test-id=input_inline_part_description]');
+      return !!(d && isVis(d));}, VIS);
+    // fill it and save, then see whether the line uncompleted itself
+    const set=async(tid,val)=>page.evaluate(({tid,val})=>{const i=document.querySelector(`[data-test-id=${tid}]`);
+      if(!i) return false; i.focus(); const S=Object.getOwnPropertyDescriptor(window.HTMLInputElement.prototype,'value').set;
+      S.call(i,val); i.dispatchEvent(new Event('input',{bubbles:true})); i.dispatchEvent(new Event('change',{bubbles:true}));
+      return true;},{tid,val});
+    C.filled={desc:await set('input_inline_part_description','ZZAUTOTEST C45250 on a complete line'),
+      qty:await set('input_inline_part_quantity','1'), cost:await set('input_inline_part_cost','5'),
+      sell:await set('input_inline_part_sell_price','9')};
+    await page.waitForTimeout(2000);
+    await page.evaluate(()=>{const b=document.querySelector('[data-test-id=button_save_inline_part]');
+      if(b){b.scrollIntoView({block:'center'}); b.click();}});
+    await page.waitForTimeout(8000);
+    C.afterSaveScreenText = await page.evaluate(vis=>{const isVis=eval(vis); const t=e=>(e.textContent||'').replace(/\s+/g,' ').trim();
+      return [...document.querySelectorAll('.q-notification,.q-banner,[role=alert],.q-dialog')].filter(isVis)
+        .map(t).filter(Boolean);}, VIS);
+    await page.screenshot({path:`${DIR}/evidence/107-3-c45250-after-save.png`, fullPage:true});
+    const l2 = rowsOf((await call('GET',`/api/work-orders/lines/${wo.id}`)).json).find(l=>l.line_id===LINE)||{};
+    C.lineStatusAfter = l2.status;
+    C.partsAfter = (l2.parts||[]).map(x=>({pn:x.part_number, qty:x.quantity}));
+    C.requestsAfter = (l2.part_requests||[]).map(x=>({status:x.status, qty:x.quantity}));
+    C.lineUncompletedItself = !String(l2.status||'').toLowerCase().startsWith('complet');
+  }
+  R.C45250 = C;
+  log('C45250: %s', JSON.stringify(C));
+  save();
+}
 
 // ---- part D: where is a special-order part received? Read the app's own navigation.
 await page.goto(`${APP}/workorders`,{waitUntil:'domcontentloaded',timeout:60000});
