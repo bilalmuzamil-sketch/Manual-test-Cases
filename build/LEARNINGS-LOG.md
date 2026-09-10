@@ -561,3 +561,32 @@ must:
 `undefined`, which reads as "the change failed" when it succeeded. The status lives on the LIST
 endpoint, `GET /api/work-orders?limit=200`. That misread cost a probe run and left the same work
 order Declined the first time round.
+
+## L0035 — 2026-09-10 · a work order LINE is a table row, not an expansion panel — and it has its own test-ids
+
+**Three probe runs were lost to guessing this.** Every earlier probe in this pass opened the Lines
+tab with `[...document.querySelectorAll('.q-expansion-item')].forEach(i => i.querySelector('.q-item')?.click())`
+and then looked for a line inside those panels. There are exactly **two** `.q-expansion-item`s on the
+page and they are the **customer** and **vehicle** header panels. No line is ever inside one.
+
+**What a line actually is.** Lines are `<tr>` rows inside `[data-test-id=table_work_order_lines]`.
+The "+ Add Part" button sits in its own row, `<tr class="q-tr q-tr--no-hover line-row parts-group-header">`
+— **one such row per line**, present whether or not the line is expanded. That is why counting the
+buttons gave 5, and why walking up the DOM from one and matching a line id against `outerHTML`
+matched **all** of them: the id lives in a shared ancestor.
+
+**The real per-line anchors** (read off the page, `probe112_linedom.mjs`):
+`button_line_expand_<lineId>` · `line_number_<lineId>` · `badge_line_status_<lineId>` ·
+`button_action_complete_line_<lineId>` · `line_total_cost_<lineId>` · `line_tech_story_<lineId>`,
+and per part `button_part_context_menu_<partId>_line_<lineId>` /
+`button_requested_part_context_menu_<requestId>_line_<lineId>`.
+
+**How to address one line:** click `button_line_expand_<lineId>` to open it, then walk the table's
+rows in DOM order remembering which line the last `badge_line_status_<id>` / `button_line_expand_<id>`
+belonged to; the next `parts-group-header` row is that line's. A part is addressed directly by its
+id, which needs no line scoping at all.
+
+**Also settled:** the New Line form's **description is overwritten by the canned line** you pick —
+typing into `input_line_description` and then choosing a canned line leaves the line named after the
+canned line ("Out of adjustment"), so a line can NOT be found again by a description you typed.
+Find it by diffing the line-id list before and after, which is what the probes now do.
