@@ -3333,6 +3333,41 @@ of them as *"QuickBooks is not connected"*, which was **false**.
   `GET /api/bookkeeping/adjustment-item-mapping-status`; map a Fee item under Settings → QuickBooks"*
   is actionable, and it is the same amount of typing.
 
+### U.1 ⛔ NEVER CALL A ROUTE "NOT FOUND" UNTIL YOU HAVE DRIVEN THE SCREEN THAT USES IT (2026-09-10)
+
+**THE RULE: the app always knows the route. Guessing an endpoint from its noun is rung 5; watching the
+product ask for it is rung 0.** Before reporting that a document, export, print or download "has no
+reachable endpoint", open the screen a real user would open, click the control, and capture the traffic:
+
+```js
+page.on('request', r => { if (/\/api\//.test(r.url())) console.log(r.method(), r.url(), (r.postData()||'').slice(0,200)); });
+page.on('response', r => { if (/\/api\//.test(r.url())) console.log(r.status(), r.url()); });
+```
+
+**A route probed blind returns 404/405 and tells you nothing** — 404 means *"not that path"*, never
+*"no such feature"*. One click on the real control gives the path, the query string, the exact id
+parameter and the response content type, in one shot.
+
+**THE INCIDENT, and it is mine.** On SV-9870 I found `GET /api/invoices/preview?invoice_id=…&type=pdf`
+**by exactly this method** — driving the Finance tab and watching requests. Twenty minutes later I
+needed the **credit-memo** document, probed `/api/credit-memos/{id}/preview`, `/print`, `/document` and
+similar, collected 404s and 405s, and wrote the credit memo up as **"could not be verified"**. The QA
+lead had to point me at the control himself — **Customers → the customer → Invoices tab → the "Print
+credit memo" icon on the credit row** — and driving that screen revealed **`GET /api/credit-memos/{id}/pdf`**
+immediately. **The technique had already worked once in the same session and I did not reach for it a
+second time.** That is the failure this rung exists to prevent, and it is the one to check for first
+whenever something feels blocked.
+
+**THE GENERALISED FORM — say it to yourself before writing the word "blocked":**
+*"Which technique has already worked in this session, and have I tried it on this problem?"* A method
+that unlocked one screen almost always unlocks the next one; the reason it gets forgotten is that the
+new problem **looks like a different kind of thing** (an invoice vs a credit memo) when it is the same
+kind of thing wearing a different noun.
+
+**AND ITS COROLLARY: if you cannot find the control, ask the DOM for it rather than looking harder at a
+screenshot** (rung 2). The credit-memo control is a small icon button in a table row — invisible at
+screenshot scale, obvious in a `data-test-id` dump.
+
 **AND THE RULE THAT MAKES ALL OF IT COMPOUND (QA lead, 2026-08-19, verbatim):** *"once you learned
 save it with you in your rules/playbook/skills/recipe and keep on upskilling yourself as you learn, I
 do not want you to search for the same process from scratch again and again and spend hours to do that
@@ -3804,3 +3839,86 @@ case was first written as an untestable limitation, then — when pushed — the
 (create an asset with the SAME VIN under a 2nd customer -> two owner records) was found in minutes and the
 case fully passed. The excuse was wrong; the test was runnable. Ties to Rules 12, 13, 14, 17, 22, 50, 63,
 and playbook §Z.
+
+## §AC — PRINTED DOCUMENTS (invoice / estimate / credit memo): how to QA a print-layout ticket (proven 2026-09-10, SV-9870 · SV-9849 · SV-9857)
+
+**The problem with print tickets:** the change is CSS inside a `@media print` block, the output is a
+server-rendered PDF, and "it looks right" is not evidence. The method below verifies each requirement
+twice — **from the served stylesheet** (the exact input the renderer gets) **and from the produced PDF**
+(the geometry a human sees) — so no requirement rests on an eyeball.
+
+### AC.1 The document endpoints (ShopView, org-scoped, cookie-auth — same jar as the app)
+
+| What | Call |
+|---|---|
+| Invoice/estimate **PDF** | `GET /api/invoices/preview?invoice_id=<invoiceId>&type=pdf` |
+| The **same document as HTML** — this is the WeasyPrint input, and it carries the print CSS | `GET /api/invoices/preview?invoice_id=<invoiceId>&type=html` |
+| Get the `invoiceId` for a work order | `GET /api/work-orders/view/{woId}` → the invoice object on the WO |
+| Work orders with line counts (pick a multi-page candidate) | `GET /api/work-orders?rowsPerPage=100` → `data.work_orders[].linesCount` |
+| **Credit memo PDF** | `GET /api/credit-memos/{creditMemoId}/pdf` — **found by driving Customers → *Invoices* tab → the "Print credit memo" icon**, not by guessing (see U.1) |
+| Seed a credit memo | `POST /api/credit-memos {customer_account_id, amount}` |
+| Part sales (another document surface) | `GET /api/part-sales` |
+| **Upload the org logo** (needed for any masthead/centring requirement) | `POST /api/organization/organization-details/upload-logo`, multipart, field name **`logo`** — UI path `/administration/settings` → Organization tab → Edit icon |
+
+**Seed logo shapes deliberately.** A centring requirement is only proven across **different aspect
+ratios** — upload a wide, a tall and a square logo in turn and re-render between each. One logo proves
+nothing about `object-fit`/`margin:auto`.
+
+### AC.2 Verify the CSS from the SERVED HTML (cheap, exact, and it proves print-only)
+
+`type=html` returns the document with its `@media print` block inline. Save it, extract the block, and
+check each ticket requirement against the **declaration text**, not a rendering:
+
+```bash
+python3 - <<'PY'
+import re,pathlib
+h=pathlib.Path('doc.html').read_text()
+m=re.search(r'@media print\s*\{.*?\n\}\s*\n',h,re.S)      # the print block
+print(m.group(0)[:4000])
+PY
+```
+
+Two things this gives you that a PDF cannot:
+- **Print-only proof.** Show the *base* (screen) rule is unchanged and only the print override moved —
+  that is the difference between "they changed the print layout" and "they changed the app".
+- **`@page` truth.** `@page { margin: … }` and `@page :first { margin-top: 0 }` explain top-margin and
+  running-header requirements directly. **Do not measure page margins from text positions** — running
+  headers/footers live in the `@page` margin boxes and will give you the wrong number (this cost a
+  wrong "22.5pt" reading; the real content box came from full-width drawing rects, x0=42.0 x1=553.3).
+
+### AC.3 Measure the produced PDF with pymupdf (`pip install pymupdf`)
+
+```python
+import fitz
+d = fitz.open('doc.pdf')
+p = d[0]
+p.rect                                   # A4 = 595.28 x 841.89 pt   (1 px = 0.75 pt at 96 dpi)
+p.get_text("words")                      # [(x0,y0,x1,y1,word,block,line,word_no), …]
+p.get_text("dict")                       # spans -> size, color, font  (disclaimer 9px, greys)
+p.get_image_info()                        # logo box -> centring, max-width, object-fit
+[dr['rect'] for dr in p.get_drawings()]   # rules/hairlines -> divider counts, content box
+```
+
+What each requirement type reduces to:
+- **Density / page count** — same document before vs after, page count and page-1 fill.
+- **Top margin, running header** — exclude `y<25` and `y>800` (the `@page` boxes) before measuring the
+  content box; read the box from **full-width drawing rects**, not from text.
+- **Centring** — image box centre vs `page.rect.width/2`, repeated per logo aspect ratio.
+- **Font size / colour** — span `size` and `color` (e.g. the 9px disclaimer beside a 280px summary).
+- **Dividers** — count hairline rects (height < ~1pt). This is how a *deliberate* divergence is proven:
+  invoice kept **2** rules (section rule + Summary bar) while the credit memo kept **7** (item dividers).
+- **Nothing lost in the reflow** — extract every money token from screen and print and compare as a
+  **multiset**. Layout tickets break totals silently; word-order diffs are useless here.
+- **Line/section splitting (orphan/widow rules)** — walk pages 2+ and assert each begins **mid-job**;
+  count orphaned headings and separated footers across the whole document. Prove it on **several**
+  documents (5 documents / 39 pages was the SV-9857 sample), not one.
+
+### AC.4 Arithmetic in a ticket may not match the CSS — reconcile before calling it a defect
+
+SV-9870 asked for a 56px margin; the served CSS gives 48px. The ticket's arithmetic omitted an 8px
+container margin against the 634px content box — so the **rendered** result matches the requirement and
+the discrepancy is a **note, not a defect**. Do the reconciliation in the findings doc and say so in the
+comment; a reader who sees 48≠56 will otherwise assume a miss.
+
+Worked record: `build/sv9849-9870-9857-invoice-print-2026-09-10/FINDINGS.md` (three tickets, 11-change
+verification, 11-invoice measurement table, credit-memo divider comparison).

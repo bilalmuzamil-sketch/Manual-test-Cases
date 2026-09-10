@@ -4247,6 +4247,17 @@ regression / bug-fix re-testing.
   guard, selector and payload → probe the endpoint with a partial body and read the validation error →
   switch UI↔API whichever works → seed the state yourself. Only after all of that, and with the
   evidence written down, may something be called blocked — and even then keep looking for the way in.
+  **THE QUESTION TO ASK BEFORE THE WORD "BLOCKED" LEAVES YOUR MOUTH (added 2026-09-10):** *"which
+  technique has ALREADY worked in this session, and have I tried it on this problem?"* A method that
+  unlocked one screen almost always unlocks the next — it gets forgotten because the new problem wears
+  a different noun (an invoice vs a credit memo) while being the same kind of thing. **Specifically:
+  never report a route/endpoint as not-found until you have opened the screen a real user would open,
+  clicked the control, and captured the traffic** — the app always knows the route, and a blind probe's
+  404 means *"not that path"*, never *"no such feature"*. Own miss: I found the invoice-PDF endpoint by
+  watching the Finance tab's requests, then twenty minutes later probed blindly for the credit-memo
+  route, collected 404/405s and wrote it up as *"could not be verified"* — the QA lead had to point me
+  at **Customers → Invoices tab → "Print credit memo"**, which revealed `GET /api/credit-memos/{id}/pdf`
+  in one click. Method + the document-QA recipe: **APP-ACTIONS-PLAYBOOK.md §U.1 and §AC**.
 - **Dummy environments — retain & reuse credentials in-session, but NEVER commit them (user ruling 2026-09-08, verbatim: "Even If I give you QA or production or Staging environments they are all dummy environments you can save their cookies/credentials etc safely with you").** ALL environments given — QA, staging, AND production — are **dummy/test** environments. So their cookies/credentials/tokens may be **SAVED and REUSED freely within the working session** (`/tmp`, local uncommitted files) **without re-asking the user each time** — do not discard them mid-session or make the user re-supply them within a session. **THE ONE HARD BOUNDARY STILL STANDS: never COMMIT them to git.** This repo is **PUBLIC** (that is how the Jira inline screenshots load over `raw.githubusercontent.com`), so anything pushed is visible to the entire internet — publishing even a dummy login there is unsafe. Keep secrets in `/tmp`/local only; `.gitignore` any local creds file. `/tmp` is ephemeral (wiped on container restart), so across a fresh container the user re-supplies — but within a live session, hold and reuse them.
 - **NEVER commit secrets** (cookies/tokens/keys/passwords) — `/tmp`/local only, never pushed to the PUBLIC repo (see the dummy-environments ruling above).
 - Git identity: `noreply@anthropic.com` / `Claude`.

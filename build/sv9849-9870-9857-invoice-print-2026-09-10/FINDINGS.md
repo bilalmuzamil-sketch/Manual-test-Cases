@@ -133,3 +133,25 @@ The reported defect (page 1 ending after the identity chips, blank to the footer
 - `ev/exhibits/ex1-sv9849-centring.png` — three logo shapes against the page-centre line.
 - `ev/exhibits/ex2-sv9857-linesplit.png` — a work line splitting across the page-1/page-2 boundary.
 - `ev/exhibits/ex3-sv9870-print.png` — empty top margin on page 3; 9px/#4B5565 disclaimer beside the 280px Summary.
+
+## Learnings saved (2026-09-10)
+
+Two things from this pass were written into the standing books so they are not re-derived:
+
+1. **`APP-ACTIONS-PLAYBOOK.md` §U.1 — never call a route "not found" until you have driven the screen
+   that uses it.** My own miss this pass: I found `GET /api/invoices/preview?invoice_id=…&type=pdf` by
+   driving the Finance tab and watching the network, then twenty minutes later probed blindly for the
+   credit-memo route, collected 404/405s and reported the credit memo as *"could not be verified"*. The
+   QA lead pointed me at Customers → Invoices tab → "Print credit memo", and that one click revealed
+   `GET /api/credit-memos/{id}/pdf`. The generalised rule now in the playbook and in CLAUDE.md: before
+   the word "blocked", ask **"which technique has already worked in this session, and have I tried it on
+   this problem?"** — the failure was not lack of a method, it was not reusing one I already had.
+2. **`APP-ACTIONS-PLAYBOOK.md` §AC — the printed-document QA recipe.** All the document endpoints
+   (invoice/estimate PDF + HTML, credit-memo PDF, credit-memo seeding, logo upload with its `logo`
+   multipart field), verifying print CSS from the served `type=html` (which also proves a change is
+   print-only, and reads `@page` margins correctly instead of measuring them from text), and the
+   pymupdf measurement set — page fill, content box from full-width rects, image-box centring across
+   several logo aspect ratios, span size/colour, hairline counts for dividers, money-token multiset
+   compare, and the pages-2+ mid-job assertion for orphan/widow rules. Plus the reminder that a ticket's
+   own arithmetic can disagree with the CSS (the 56px vs 48px reconciliation) and that this is a note,
+   not a defect.
