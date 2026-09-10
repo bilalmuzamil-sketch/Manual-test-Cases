@@ -1,0 +1,7 @@
+{
+ "pass_meta": {"suite":"Inline Add and Edit Parts (6597)","run":418,"env":"the sv9315 QA branch",
+   "build":"v26.36.0-f43b2fd","date":"10 September 2026","view_mode":"tech"},
+ "results": {
+  "C45020": {"verdict":"Passed","observed":"What was checked: whether adding the very same part to a line a second time creates a second row, or quietly bumps the quantity on the first one. What happened: the same part - same description, same quantity of 1 - was added twice in a row. The line went from twelve parts to fourteen, and the description appears twice in the list as two separate rows. The two quantities were not rolled into one, which is what this case requires: each request stays its own line so it can be tracked and priced on its own.","not_observed":null}
+ }
+}

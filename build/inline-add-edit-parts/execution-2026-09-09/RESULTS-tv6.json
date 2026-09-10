@@ -1,0 +1,7 @@
+{
+ "pass_meta": {"suite":"Inline Add and Edit Parts (6597)","run":418,"env":"the sv9315 QA branch",
+   "build":"v26.36.0-f43b2fd","date":"10 September 2026","view_mode":"tech"},
+ "results": {
+  "C45029": {"verdict":"Passed","observed":"What was checked: whether changing something on an existing part and then closing the row throws the change away without asking. What happened: the quantity was changed from 2 to 7 and the row was closed with Escape. A confirmation appeared first, reading \"Discard these changes?\" with the warning \"The changes you made will be lost.\" and the choices \"Keep Editing\" and a discard action. Choosing to discard closed the row and the part went straight back to what it said before - quantity 2, description unchanged. Nothing was saved.","not_observed":null}
+ }
+}

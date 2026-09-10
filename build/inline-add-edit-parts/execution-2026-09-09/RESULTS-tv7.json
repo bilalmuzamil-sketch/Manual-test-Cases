@@ -1,0 +1,8 @@
+{
+ "pass_meta": {"suite":"Inline Add and Edit Parts (6597)","run":418,"env":"the sv9315 QA branch",
+   "build":"v26.36.0-f43b2fd","date":"10 September 2026","view_mode":"tech"},
+ "results": {
+  "C45027": {"verdict":"Passed","observed":"What was checked: whether saving a change to an existing part also opens a new blank row, the way saving a brand new part does. What happened: the quantity on an existing part was changed and saved. The row closed and that was the end of it - no new empty row appeared underneath. That is the right difference: when you are adding parts you usually have another one to add, but when you are correcting one part you are finished.","not_observed":null},
+  "C45030": {"verdict":"Passed","observed":"What was checked: what happens if, while editing an existing part, you pick a completely different part out of the catalogue list. What happened: with the quantity typed as 6, a different catalogue part was chosen from the Part number list. The row was refilled from the newly chosen part - its description and its part number both replaced what was there before - while the quantity 6 was left exactly as typed, and the cursor moved to the quantity box. So choosing a different part deliberately overwrites the part's own details, which is the one place where that is meant to happen, but it never quietly changes the quantity you asked for.","not_observed":"Cost, sell price and category are not shown at all in Tech view, so whether they are refilled could not be seen from this view; that is covered by the Full View cases."}
+ }
+}
