@@ -194,8 +194,9 @@ work order. A tester — or a technician on a poor connection in a shop — is t
 line they just typed. Confirmed against a clean reload each time: the part count returns to 22 and the
 part is absent.
 
-**A control leg was run in the same probe** with nothing intercepted, so the harness itself is not the
-cause.
+**A control leg was run in the same probe** with nothing intercepted: the save went through normally,
+the part count went 22 → 23 and the part was still there after a reload. So the harness itself is not
+the cause — the difference is entirely the failed request.
 
 Evidence: `evidence/62-savefail2.json`, `evidence/62-c45022-abort.png`, `evidence/62-c45022-500.png`,
 `evidence/62-c45022-control.png`.
