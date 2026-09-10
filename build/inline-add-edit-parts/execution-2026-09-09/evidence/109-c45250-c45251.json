@@ -4,16 +4,96 @@
   "clicked": true,
   "label": "New Line"
  },
+ "selectCannedLine": {
+  "opened": true,
+  "chose": true,
+  "nOptions": 30,
+  "label": "Replace - Brake pot HD Fleet Rate : $224.92 Total Parts: 2"
+ },
+ "selectLabourType": {
+  "opened": false
+ },
  "fill": {
-  "desc": true,
-  "est": true,
-  "tech": true
+  "desc": false,
+  "est": false,
+  "tech": false
  },
  "saveLine": {
   "clicked": true,
   "label": "Save & close"
  },
- "lineCreateCalls": [],
- "line": null,
- "fatal": "the New Line form did not produce a new line"
+ "saveRefusal": {
+  "errors": [
+   "Build Lines"
+  ],
+  "stillOpen": false
+ },
+ "lineCreateCalls": [
+  {
+   "m": "POST",
+   "u": "/api/work-orders/6a529a5f-dff9-4c13-9636-b41500e585f0/lines/create-from-canned-line",
+   "body": "{\"another\":false,\"canned_line_id\":\"358835c3-cc7f-422f-8975-c2df693bc466\",\"work_order_id\":\"6a529a5f-dff9-4c13-9636-b41500e585f0\",\"status\":\"authorization_required\"}"
+  }
+ ],
+ "line": "9ece02ce-be6f-4018-ab19-73ca40282366",
+ "addPart": {
+  "found": true
+ },
+ "picked": {
+  "found": false,
+  "seen": [
+   "Aacastle Services",
+   "`PARTS SUPPLIES",
+   "Item Cost",
+   "Parts$2,000.85",
+   "Labor$224.93",
+   "Shop Supplies$23.62"
+  ]
+ },
+ "afterAdd": {
+  "status": "authorization_required",
+  "requests": [
+   {
+    "id": "70942a5c-dc29-47d7-ba24-23900c730cb9",
+    "status": "requested",
+    "qty": 1
+   },
+   {
+    "id": "e7b9aac0-b29f-426c-a48d-db609bbdafe9",
+    "status": "requested",
+    "qty": 1
+   }
+  ],
+  "parts": []
+ },
+ "picks": {
+  "70942a5c-dc29-47d7-ba24-23900c730cb9": {
+   "from": "requested",
+   "status": 400,
+   "text": "{\"errors\":[{\"error\":\"This action can only be performed on the authorized lines.\"}]}"
+  },
+  "e7b9aac0-b29f-426c-a48d-db609bbdafe9": {
+   "from": "requested",
+   "status": 400,
+   "text": "{\"errors\":[{\"error\":\"This action can only be performed on the authorized lines.\"}]}"
+  }
+ },
+ "afterPick": {
+  "status": "authorization_required",
+  "nRequests": 2,
+  "parts": []
+ },
+ "complete": {
+  "status": 400,
+  "json": {
+   "errors": [
+    {
+     "error": "Status transition from authorization_required to complete is not allowed, Line id 9ece02ce-be6f-4018-ab19-73ca40282366"
+    }
+   ]
+  },
+  "text": "{\"errors\":[{\"error\":\"Status transition from authorization_required to complete is not allowed, Line id 9ece02ce-be6f-4018-ab19-73ca40282366\"}]}"
+ },
+ "lineStatus": "authorization_required",
+ "note": "the line did not reach Complete; nothing is reported as observed for C45250 or C45251"
 }
