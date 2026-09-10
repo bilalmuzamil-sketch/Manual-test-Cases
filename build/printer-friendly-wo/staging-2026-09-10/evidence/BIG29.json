@@ -1,0 +1,28 @@
+{
+ "before": {
+  "status": "authorized",
+  "techTime": 60,
+  "name": " Replace - Brake pot"
+ },
+ "control": {
+  "typed": true,
+  "afterSave": {
+   "open": false
+  },
+  "readBack": {
+   "techTime": 225,
+   "status": "authorized"
+  }
+ },
+ "check": {
+  "fieldShows": "Declined",
+  "afterSave": {
+   "open": true
+  },
+  "readBack": {
+   "status": "authorized",
+   "techTime": 225
+  }
+ },
+ "restored": 3600
+}
