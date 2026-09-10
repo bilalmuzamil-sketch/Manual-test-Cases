@@ -33,6 +33,17 @@
 
 ## ENTRIES — newest first (id · date · tags · lesson → pointer)
 
+### L0034 · 2026-09-10 · #testrail #mistake-corrected #steps-format #diagnosis
+**A CASE'S STEPS/EXPECTED CAN LIVE IN `custom_steps_separated`, NOT `custom_steps` — READING ONLY THE PLAIN
+FIELD FALSELY SHOWS "EMPTY".** Diagnosing why four of Vlad's cases fail in automation, C43850 and C45275
+came back with `custom_steps=None` and `custom_expected=None` and I was one step from reporting them as
+"empty, no steps". They are not empty — they use TestRail's **separated-steps** format, so the real content
+is in **`custom_steps_separated`** (a list of `{content, expected, ...}` per step). Always check both the
+plain fields AND `custom_steps_separated` before concluding a case has no steps. Worked value once read:
+C45275 turned out to have a *real* structural defect (all five per-step expecteds piled into step 5, steps
+1–4 blank) — which the plain-field read would have mislabelled as "no expected at all". Same family as the
+`text-transform`/`<kbd>`-legend traps: the field you read is not always where the content is.
+
 ### L0033 · 2026-09-10 · #shopview-app #api #probe #harness #mistake-corrected
 **THE SPA'S API LIVES ON A DIFFERENT HOST, AND ITS LIST ENDPOINTS RETURN `{collection: [...]}` — AN
 IN-PAGE `fetch('/api/...')` SILENTLY RETURNS THE SPA's OWN index.html.** On a QA branch the app is
