@@ -155,3 +155,39 @@ Two things from this pass were written into the standing books so they are not r
    compare, and the pages-2+ mid-job assertion for orphan/widow rules. Plus the reminder that a ticket's
    own arithmetic can disagree with the CSS (the 56px vs 48px reconciliation) and that this is a note,
    not a defect.
+
+## Before-vs-after exhibits — attempted 2026-09-10, NOT shipped (and why)
+
+The QA lead ruled that these comments are read by non-technical people at the highest positions and must
+carry a **before-vs-after comparison** (now Standing Rule 73 + playbook §AD). I tried to add one to all
+three comments after the fact. **It could not be done bite-proof, so nothing was posted.**
+
+What was established live:
+- **The only pre-fix environment is staging** (`app.staging.shopview.com`, `v26.36.0-ede3d52`). Its
+  session is **dead** — `POST /api/quick-login` → **401**, work-order list → **401**.
+- **Every other QA branch is torn down** — `sv8733`, `sv8911`, `sv9065`, `sv9096`, `sv6295`, `sv8218`
+  all return nothing for `index.html`.
+- **The document CSS is server-side, not in the SPA bundle** — staging's `/css/index.S7x7Gk_8.css`
+  contains 0 occurrences of `invoice-pdf-new`, `mh-logo`, `break-inside`, `organization-logo-new` — so
+  the §P "read the deployed bundle without logging in" route cannot answer it either.
+- **The ticket carries no reporter before-images**: `SV-9870`'s only attachments (60518, 60519) are the
+  two exhibits I uploaded yesterday.
+
+The one pair I could assemble, and why it was rejected:
+- I still hold a **genuine pre-fix render from 2026-09-09** — staging `v26.35.9-58789c5`, work order
+  **S2-17466**, id `bd929cc0-eef9-4276-b200-bcf1d57b57dd` — and **the same work order exists on the
+  branch** (`GET /api/work-orders?search=17466` → `S9849-17466`, same id), rendered today via
+  `POST /api/work-orders/invoices/estimate {work_order_id, type:"pdf", issue_date, due_date}` → 200.
+- The numbers look like a perfect exhibit: **8 pages → 5**, and content per page rising from
+  `716/636/762/705/700/715/639/386` to `751/783/774/769/793` (points down the 842pt page, footer
+  excluded) — the half-empty pages filling up, exactly the SV-9857 + SV-9870 story.
+- **But the two halves are not comparable.** The pre-fix render is labelled `Estimate: EST-S2-17466`
+  and today's is `Invoice:` (the WO is now Approved), and although **the job list is identical
+  (01–22 on both)**, the money differs — **39 money tokens appear only in the before and 8 only in the
+  after**, so the branch copy's data has drifted from the staging copy. "8 pages → 5 pages" in front of
+  a VP off two documents that are not the same document is precisely the bite Rule 73 exists to prevent.
+
+**What would make it airtight:** fresh staging cookies (`sv_sso_session` / `PHPSESSID` / `cf_clearance`
+for `.shopview.com`). With those the same document type can be rendered on both builds and the pair
+becomes a true like-for-like — about fifteen minutes, and the three comments are updated in place by
+`commentId` (76272 / 76273 / 76274), not stacked.
