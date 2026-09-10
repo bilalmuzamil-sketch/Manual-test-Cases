@@ -1,3 +1,27 @@
+# D5 — ⛔ WITHDRAWN 2026-09-10. NOT A DEFECT. NEVER FILED.
+
+**Why it was withdrawn.** The QA lead looked at the screen and pointed out the message I had missed.
+When a line still holds staged parts the product refuses the status change and says exactly why, in a
+toast at the bottom right:
+
+> **"Can`t change status while there are staged parts. Please move parts to another line or return
+> them. Please try to resolve this."**
+
+So the behaviour is correct and self-explaining. To decline a line you first cancel its part requests
+and return or move any part already picked from stock — which is what the message tells you to do.
+
+**How I got it wrong.** I wrote *"no message of any kind appears"* having read the page for messages
+**once, seven seconds after the click** — by which time the toast had faded. I had a positive control
+proving the SAVE BUTTON worked, and none at all proving my MESSAGE READER worked. A negative claim
+about a message needs a control on the thing reading the message. Re-run with a watcher polling from
+the moment of the click, the same reader caught the toast immediately (`evidence/BIG30.json`).
+
+**Kept, not deleted,** so the mistake stays on the record (Rule 94: a failed candidate is a record).
+
+---
+
+*The original draft follows, unchanged, for the record only. Do not file it.*
+
 # D5 — NEW FINDING, held, ready to file on his word
 Written to the QA lead's section order of 2026-09-10 (skill 06). Found while acting on his ruling
 that the requirement's "Cancelled" line status means **Declined**.

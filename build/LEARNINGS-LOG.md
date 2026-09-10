@@ -991,3 +991,26 @@ Two rules for myself:
 2. **He also wants the environment FIRST and the record's FULL LINK in it** — *"give me the full link
    of that work order so that I can see what is happening"*. A ticket that names a record without a
    link makes him go and find it.
+
+## L0048 — 2026-09-10 · "no message appeared" is a negative claim and needs its own control
+
+I wrote a defect saying a line could not be set to Declined and that *"no message of any kind
+appears"*. The QA lead opened the same screen and pointed at the message I had missed, sitting at the
+bottom right: *"Can`t change status while there are staged parts. Please move parts to another line
+or return them."* The product was refusing correctly and explaining itself. The ticket was withdrawn
+before it was filed.
+
+**The specific mistake:** I read the page for messages **once, seven seconds after the click**. The
+toast fades. Arm a watcher that polls from the moment of the action (recipe now in playbook §Y.2).
+
+**The general mistake, and it is the one that matters:** Rule 104 says a negative claim needs a
+positive control. I built one — I proved the SAVE BUTTON worked by changing Tech Time instead. But
+the claim I actually published was *"no message appeared"*, and I had **no control on the message
+reader at all**. I controlled the wrong instrument.
+
+⇒ **List every negative in the sentence you are about to write, and make sure each one has its own
+control.** "The button does nothing AND says nothing" is two claims and needs two proofs. Rerun with
+a control on the reader, the same code caught the toast on the first attempt.
+
+This is the fourth time in one day the same shape has bitten: a reading that named the wrong element
+or the wrong moment (L0043 borders, L0043 refusal text, L0045 markup dialect, and now this).

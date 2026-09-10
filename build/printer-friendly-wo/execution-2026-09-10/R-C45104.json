@@ -1,0 +1,10 @@
+{
+ "pass_meta": {"suite":"Printer Friendly Work Orders (6617)","run":419,"env":"the Staging environment","build":"staging v26.36.2-617d8d1","date":"10 September 2026"},
+ "results": {
+  "C45104": {
+   "verdict": "Passed",
+   "observed": "This supersedes the earlier result, which was wrong on two counts.\n\nThe QA lead ruled on 10 September 2026 that the 'Cancelled' line status this case describes means DECLINED in this product. Read that way, the case passes: a declined job line does still print, and its status is printed beside it.\n\nWhat was checked: the job now carries a declined line - line 5, 'Fdgdfgdfg'. Printing the job shows that line on the page in its normal place and in line order, reading '5  Fdgdfgdfg  Fdgdfgdfgf  0.00 / 0.00  Declined'. So a declined line is not dropped from the printout, and the reader can see what state it is in.\n\nOne wording point for the record, not a fault against this case: on screen that line's state reads 'Auth Declined' and on the printed page it reads 'Declined'.",
+   "not_observed": "A line cannot be moved into the declined state while it still holds staged parts - the product refuses and says so plainly: 'Can't change status while there are staged parts. Please move parts to another line or return them.' That is correct behaviour, not a fault. Cancelling the part requests on a line clears part of it, but a part already picked from stock must also be returned or moved before the state will change. The check above was therefore made on a line that was already declined rather than by declining one."
+  }
+ }
+}

@@ -4485,3 +4485,42 @@ cost a probe cycle to learn; none of it needs re-deriving.
   Parts Technician 1 · **Time Clock User 1** — that last one is the ready-made "role that cannot see
   work orders" subject, reachable with `POST /api/switch-user {user_id}` and left with
   `POST /api/exit-switch-user`, so no role has to be edited at all.
+
+### §Y.2 — WORK ORDER LINE STATUS: STAGED PARTS BLOCK IT, AND THE APP TELLS YOU SO (2026-09-10)
+
+- **A line will not change status while it holds STAGED PARTS.** Both the screen and the direct route
+  refuse. The screen refuses with a toast at the **bottom right**:
+  *"Can`t change status while there are staged parts. Please move parts to another line or return
+  them. Please try to resolve this."* The direct route refuses with
+  `400 {"status":"Invalid parameter value"}`, which says nothing useful — **the screen is where the
+  reason is**, which is one more reason to drive status changes through it.
+- **To clear a line for a status change:** cancel its part *requests*
+  (`POST /api/work-orders/part/remove-request/{requestId}` → 200, one per entry in `part_requests`)
+  **and** return or move any part already **picked** (`parts[]`). Clearing only the requests is not
+  enough — a line with `parts: 1` still refuses.
+- **The Edit Line window's Save & Close does work** — proved by a control in the same window in the
+  same sitting: changing **Tech Time** to `3.75` closes the window and the value reads back (as 225
+  minutes). So a save that does nothing is the product refusing, not a broken button. **Read the
+  toast before concluding anything.**
+- ⚠️ **Tech Time is entered in HOURS and stored in MINUTES.** `1.00` on screen reads back as `60`.
+  Typing the stored value back into the box (60) sets it to sixty HOURS (3600). Restore by typing the
+  **hours**, not the number the API returned.
+- **`authorization_declined`** displays as **"Auth Declined"** on the work order screen and prints as
+  **"Declined"** on the printed page. Two different words for the same state — do not read the
+  difference as a missing status.
+
+#### 🛑 HOW TO READ A TOAST — POLL FROM THE MOMENT OF THE CLICK, NEVER ONCE AFTERWARDS
+
+Quasar toasts auto-fade. Reading `.q-notification` **once**, several seconds after the action, finds
+nothing and looks exactly like "the app said nothing" — which is how a correct refusal was written up
+as a defect on 2026-09-10. Arm a watcher **before** the click:
+
+```js
+await page.evaluate(()=>{ window.__toasts=[];
+  const grab=()=>{ for (const n of document.querySelectorAll('.q-notification, .q-notifications__list *, [role=alert]')){
+    const t=(n.innerText||'').replace(/\s+/g,' ').trim();
+    if (t && t.length>8 && !window.__toasts.includes(t)) window.__toasts.push(t); } };
+  window.__toastTimer=setInterval(grab,250); grab(); });
+// ... do the action, wait ...
+const toasts = await page.evaluate(()=>{ const t=[...window.__toasts]; clearInterval(window.__toastTimer); return t; });
+```
