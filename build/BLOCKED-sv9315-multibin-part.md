@@ -1,3 +1,31 @@
+> # ✅ RESOLVED 2026-09-10 — THIS IS NOT A BLOCKER. THE SEEDING ROUTE WAS FOUND.
+>
+> **`POST /api/inventory/parts/create` honours a `bins` array** — `{catalog_part_id, category_id,
+> quantity, cost, tags, bins:[{id, quantity, isDefault}]}`. The seven attempts below all tried to *move*
+> stock on an existing part (`parts/change` accepted the array and ignored it, `parts/{id}/bins` 404,
+> `transfer` and `adjust-bins` 405); **creating the part with its bins already set works.** Proven in
+> `build/inline-add-edit-parts/execution-2026-09-09/probe97_createpart.mjs`.
+>
+> **Seeded on sv9315:** `F40010212` → General Storage 8 (Default) · A1A 5 · A1B 3 · A1C 2 = 18 total,
+> and `170.V8AP` → a deliberately short default of 2, plus 9 and 3 in two further bins.
+>
+> **What it un-blocks:** every case and clause in the tables below.
+> [C45227](https://shopview.testrail.io/index.php?/cases/view/45227) ·
+> [C45230](https://shopview.testrail.io/index.php?/cases/view/45230) ·
+> [C45243](https://shopview.testrail.io/index.php?/cases/view/45243) ·
+> [C45222](https://shopview.testrail.io/index.php?/cases/view/45222) cl.2, plus the four noted clauses
+> ([C45223](https://shopview.testrail.io/index.php?/cases/view/45223) cl.2 ·
+> [C45225](https://shopview.testrail.io/index.php?/cases/view/45225) cl.2 ·
+> [C45231](https://shopview.testrail.io/index.php?/cases/view/45231) cl.1 ·
+> [C45233](https://shopview.testrail.io/index.php?/cases/view/45233) Auto) — **all observed, Bin
+> Allocation finished 21 of 22 passed.**
+>
+> **A separate, real finding surfaced while proving this and is NOT resolved:** the inventory search's
+> **bin filter is silently ignored** — eight different bins each returned the same 200 rows via the API,
+> and A1A–A1D returned identical 32-row lists in the UI even when reached by clicking a bin's own count.
+>
+> **The original seven-attempt investigation is kept verbatim below, dated, because it is the evidence.**
+
 # BLOCKED — no part can be put in, or found in, more than one bin on sv9315 (2026-09-10)
 
 **Proved across seven attempts**, not assumed. Evidence: `build/inline-add-edit-parts/execution-2026-09-09/`
