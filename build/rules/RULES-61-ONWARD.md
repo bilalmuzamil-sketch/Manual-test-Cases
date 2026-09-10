@@ -3686,3 +3686,43 @@ Index: CLAUDE.md (rule index table). Other rule files: build/rules/RULES-01-20.m
     moment of filing, Rule 100 (measure it, do not remember it) applied to sources, and the gate that
     runs before Rule 62's per-candidate ask. Worked example and quotes:
     `build/inline-add-edit-parts/source-verify-2026-09-10/DECLINED-QUOTES.md`. Learning **L0039**.
+
+---
+
+107. **STANDING AUTHORISATION TO UNBLOCK — DO WHATEVER THE TEST ENVIRONMENT NEEDS, AND NEVER HAND BACK
+    A BLOCKER YOU COULD HAVE CLEARED YOURSELF (all projects, permanent; QA lead, 2026-09-10).**
+    **THE ORDER, VERBATIM (QA lead, 2026-09-10):** *"continue with test cases and keep on unblocking
+    yourself, you are authorized to do anything to unblock yourself, give it what it takes to unblock
+    you on your tasks. save it as your rule to always remember."*
+    Earlier the same day: *"Seed data where needed"*, *"these are dummy branches so change data where
+    needed"*, and *"You are just blocking yourself and not trying to unblock yourself."*
+    **WHAT THIS AUTHORISES, WITHOUT ASKING AGAIN, ON ANY QA BRANCH OR STAGING:** create, change and
+    delete test data of any kind — work orders, lines, parts, inventory, bins, vendors, purchase
+    orders, customers, vehicles · **edit roles and permissions, and assign them to staff** · switch
+    workplace or location · drive the app through the SCREEN or behind it, whichever reaches the state
+    · install or write whatever tooling the job needs · walk a feature you have not touched before to
+    reach a precondition. Tag throwaway data `ZZAUTOTEST` where a name is yours to choose, and restore
+    what you change when the change is not the point of the test (Rule 6).
+    **THE ORDER OF ATTACK BEFORE ANY "BLOCKED" IS EVEN CONSIDERED — ALL OF IT, NOT THE FIRST TWO:**
+    **(1)** search the repo — playbook, skills, `BLOCKED-*.md`, learnings (97; the answer was already
+    written down twice on 2026-09-10 alone: the create-work-order 500 and its UI recipe, and the
+    staging sign-in helper) · **(2)** read the refusal — it usually names the missing field, the
+    allowed method or the required state (`Allow: PUT` · *"Line name is missing"* · *"can only be
+    performed on the authorized lines"*) · **(3)** try the OTHER surface — behind the screen when the
+    screen fails, the screen when behind it fails · **(4)** SEED the state instead of waiting for it ·
+    **(5)** walk the neighbouring feature that produces the state (ordering and receiving a part to
+    reach a completed line) · **(6)** change the role, the permission or the data that stands in the
+    way · **(7)** prove the instrument before believing the wall is real (104).
+    **THE BAR:** a blocker may only be reported after every route above has been tried and **named in
+    the report** (97's "report the searches you ran"), and after `blocker_gate.py --check` exits 0
+    (104). *"I could not do it the way I first tried"* is not a blocker; it is step 1 of 7.
+    **🛑 WHAT THIS DOES NOT TOUCH — the standing holds are not environment friction and 107 never
+    overrides them:** **no Jira ticket or other external artefact without per-ask permission (62)** ·
+    **no TestRail case/result write without his go-ahead (6)** · **Vladimir Tomovic's cases are never
+    changed (38)** · **cases TestRail flags Automated stay held (71)** · **secrets live in `/tmp`,
+    `chmod 600`, never committed (82)** · **production is not a test environment.** Unblocking is
+    about reaching a test STATE, never about widening what we are permitted to publish or write.
+    **RELATION TO OTHER RULES:** this is the standing-permission half of Rule 14 (seed the data state,
+    never mark it not-verified) and Rule 74 (no present feature left un-verified — seed and log in as
+    needed), made general and explicit so no session re-asks. Rule 104 still governs what may be
+    CALLED a blocker; 107 governs how hard you must work before the question arises. Learning L0041.
