@@ -87,3 +87,32 @@ Re-read all sources live again on the QA lead's order. Findings:
   **while stating the header/story still lag**, and they stay **NOT-FINAL** until the spec formally closes
   Q6. All 54 re-verified for render (full, Rule 101). **Flagged to the QA lead** (register item B updated):
   is Q6 to be treated as decided, so the 10 ship-day cases can become final?
+
+## H. Third full re-verification — the spec rolled the Q-answers into the body (2026-09-10, later)
+Chris Ward rolled the answered questions into the requirement body (new 2026-09-10 revision; header now
+"Q6 and Q8–Q12 answered and written into the rules; Q7 remains open"). Full re-read of the whole document +
+the epic, five stories and SV-9872 (Rule 108). What moved and the case actions:
+- **Jira UNCHANGED** (epic + stories + SV-9872 timestamps still 08:46 / 02:32). The epic still says "Q6 can
+  still reshape Story 4" and **SV-9896 still says "do not start before Q6"** — **that Jira wording now LAGS
+  the rolled-in spec and is stale.** Spec is authoritative (Rule 32/57); the lag is disclosed on the cases
+  and flagged to the QA lead, not silently reconciled.
+- **Q6 RESOLVED in the body** (Section 2 note, JTBD 3, Story-4 warning all rewritten): the retroactive pin
+  is the INTENT, Story 4 is cleared to build. **⇒ the 10 Story-4 cases (C53554–C53562, C53546):** the note
+  changed from "awaiting/not-final" to "Q6 resolved — Story 4 confirmed"; expectations unchanged (they
+  already matched option a). Still "Not available on Build" (no build yet).
+- **S1-R7 dialog copy TIGHTENED (Q10 applied to the body)** — a real Expected change. **⇒ C53524 (Legacy)
+  and C53525 (Modern):** dialog body updated to "Estimates not yet invoiced will use the … design straight
+  away. Invoices and credit invoices created from now on will use it too. Invoices and credit invoices that
+  already exist keep the design they were created with, and the estimate for a work order or parts sale that
+  has been invoiced matches its invoice. You can switch back at any time." Note records the title-case button.
+- **S1-R3 helper text UNCHANGED** ⇒ **C53520** keeps its wording; its "under challenge" note is REMOVED (the
+  helper text is the final Q10-ruled wording).
+- **S3-E1 body now explicitly includes the portal held-copy case (Q9 rolled in)** — C53551's note stays accurate.
+- **Q8/Q11/Q12 became Key Decisions** (family capture; generic audit log enough; no rollback, edit manually).
+  No new case; C53539's Q8 note stays.
+- **Q7 STILL OPEN** (pending eng; interim: Modern keeps every fix) — C53532's Q7/SV-9790 note stays.
+- **Part Sale Credit now stated as included** (header) ⇒ C53543 note updated (sixth doc included; Section 2
+  body still says "five").
+- **Provenance re-anchored** on all 54 to "the 2026-09-10 revision that folded the Q6 and Q8–Q12 rulings into
+  the rules (post-Revision 5)", read 10 Sep.
+- **Cutoff discrepancy persists** (SV-9872 D4 09:14:35 vs spec 09:13:36) — SV-9872 not updated; spec wins.

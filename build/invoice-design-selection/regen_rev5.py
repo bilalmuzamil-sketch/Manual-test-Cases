@@ -42,20 +42,22 @@ def is_portal(cid):
 # Q6 (Story 4 ships as written), but the spec HEADER still reads "Q6 to Q12 awaiting a Product decision"
 # and the Story-4 ticket SV-9896 still says "do not start before Q6". Divergence disclosed (Rule 56); the
 # cases stay NOT-FINAL until the spec formally closes Q6 (Rule 58).
-Q6DEC = ("Q6 update (spec Section 8.1, 2026-09-10): Product has now RECORDED option (a) — the pre-refresh "
-         "back catalogue IS pinned and this story ships as written (documents before the refresh release "
-         "render Legacy; documents created on/after it and before this setting ships persist Modern; "
-         "documents after ship follow the setting). NOTE the spec header still reads \"Q6 to Q12 awaiting a "
-         "Product decision\" and the Story-4 ticket SV-9896 still says \"do not start before Q6\", so this "
-         "case stays NOT-FINAL until the spec formally closes Q6.")
+Q6DEC = ("Q6 is RESOLVED and folded into the rules (spec Section 2, Story 4 and Section 8.1; @chris ruling "
+         "2026-09-10): the retroactive pin is the INTENT and Story 4 is cleared to build — invoice-type "
+         "documents created before 2026-09-09 09:13:36 UTC render Legacy on every surface, documents from "
+         "the gap window persist Modern, and documents created after the feature ships follow the setting. "
+         "The pre-cutoff back catalogue changing to Legacy on ship day, including for organizations that "
+         "never chose Legacy, is EXPECTED behaviour that needs shop communication, not a defect. (The Jira "
+         "epic SV-9892 and story SV-9896 text still read \"Q6 open / do not start before Q6\" — that Jira "
+         "wording lags the rolled-in spec and is stale; the spec is authoritative.)")
 Q17NOTE = ("\"Created\" for the cohort boundary means the actual creation instant the system records (server "
            "insert time), NOT the invoice/credit date printed on the document, which a user can edit (Q17). "
            "Test the boundary by real creation time.")
-Q10DEC = ("Q10 decided (spec Section 8.1, option a): the dialog/helper copy will be TIGHTENED (e.g. "
-          "\"Estimates not yet invoiced…\", \"work order or parts sale\") and the app renders the button "
-          "title-case (\"Switch To Legacy\"/\"Switch To Modern\"). The spec body still shows the current "
-          "verbatim wording, so quote it exactly as-is until the body is updated — but expect these strings "
-          "to change.")
+Q10DIALOG = ("The dialog wording above is the tightened copy ruled under Q10 and folded into S1-R7 and "
+             "Section 9 (@chris 2026-09-10): \"Estimates not yet invoiced…\", \"Invoices and credit invoices "
+             "that already exist…\", and a parts sale named alongside a work order. The app-wide button "
+             "style renders the button title-case (\"Switch To Legacy\"/\"Switch To Modern\") — accepted; "
+             "capitalisation alone is not a divergence.")
 Q8NOTE = ("The captured design is a design FAMILY (Modern or Legacy), not a frozen template version (Q8): "
           "Legacy is frozen at v26.35.10, but Modern is not — a later fix to a Modern template changes "
           "Modern documents already issued, which is expected and not a breach of \"keeps its design for life\".")
@@ -74,21 +76,33 @@ NOTES = {
  '53562': ['Cohort cutoff 2026-09-09 09:13:36 UTC (Q16).', Q17NOTE, Q6DEC],
  '53546': ['Cohort cutoff 2026-09-09 09:13:36 UTC (Q16).', Q17NOTE, Q6DEC],
  '53541': ['Deliberate exception (Q19, settled): the internal labour-type fix command reverses and recreates invoices but keeps each invoice’s original design — a stated exception to S2-R4/S4-E1, not a defect.'],
- '53520': [Q10DEC],
- '53524': [Q10DEC],
- '53525': [Q10DEC],
+ '53524': [Q10DIALOG],
+ '53525': [Q10DIALOG],
  '53532': [Q7N4NOTE],
  '53539': [Q8NOTE],
  '53551': ['Exception (Q9, settled): an approval estimate already pushed to the customer portal keeps the design it was sent in — it is a held copy (like a downloaded PDF) and is not re-rendered when the setting changes.'],
  '53566': ['Exception (Q9, settled): an approval estimate already pushed to the portal keeps the design it was sent in; the portal is not re-rendered for that held copy when the setting changes.'],
- '53543': ['A sixth customer document (the Part Sale Credit) was found by engineering (Q21): new ones cannot be created, existing ones render Legacy, and this is tied to the open Q6 decision, so the “all five documents” scope is itself provisional.'],
+ '53543': ['A sixth customer document, the Part Sale Credit, is now included (spec header + Q21): new ones cannot be created and existing ones render Legacy (a ship-day change under the now-resolved Q6). The Section 2 body still says “all five documents”, so this case checks the five it names while the sixth is a known addition.'],
  '53552': ['Engineering confirms the same behaviour after a void as after a reversal (Q18): once the work order has no invoice, its estimate returns to following the current setting.'],
 }
 # behavioural-block overrides (block[0]) and title override
+_LEG_BODY = ('Estimates not yet invoiced will use the Legacy design straight away. Invoices and credit '
+             'invoices created from now on will use it too. Invoices and credit invoices that already exist '
+             'keep the design they were created with, and the estimate for a work order or parts sale that '
+             'has been invoiced matches its invoice. You can switch back at any time.')
+_MOD_BODY = _LEG_BODY.replace('Legacy', 'Modern')
 BLOCK0 = {
  '53570': ['1. "The legacy invoice and parts sale templates print their own Authorizer column, which carries the IBS approval code" - the Authorizer column is present on the legacy-design document and shows the IBS approval code (not the approving contact the Modern design prints).',
            '2. "The approving contact is still selected on the work order and still locked once the work order is invoiced while the organization is on Legacy" - present and locked on the work order.',
            '3. "It prints normally again as the approving contact on documents created after a switch back to Modern" - a Modern document created after switching back prints the approving contact.'],
+ '53524': ['1. A confirmation dialog is shown before the change is applied.',
+           '2. The dialog title reads exactly: "Switch to the Legacy design?"',
+           f'3. The dialog body reads exactly: "{_LEG_BODY}"',
+           '4. The dialog offers exactly two buttons, labeled exactly "Switch to Legacy" and "Cancel".'],
+ '53525': ['1. A confirmation dialog is shown before the change is applied.',
+           '2. The dialog title reads exactly: "Switch to the Modern design?"',
+           f'3. The dialog body reads exactly: "{_MOD_BODY}"',
+           '4. The dialog offers exactly two buttons, labeled exactly "Switch to Modern" and "Cancel".'],
 }
 TITLE = {
  '53570': 'Legacy document prints the IBS-approval-code Authorizer column; contact kept on the WO',
@@ -97,12 +111,13 @@ TITLE = {
 def provenance(cid):
     ids = req[cid]; key, title = story_for(cid)
     id_s = ", ".join(ids)
+    REV = "Confluence page 845447188, the 2026-09-10 revision that folded the Q6 and Q8–Q12 rulings into the rules (post-Revision 5)"
     if key == 'SV-9892':
         s1 = (f"This is the expected behaviour as per epic SV-9892 (Invoice Design Selection) and the Invoice "
-              f"Design Selection specification (Confluence page 845447188, Revision 5), section {id_s}, read on 10 September 2026.")
+              f"Design Selection specification ({REV}), section {id_s}, read on 10 September 2026.")
     else:
         s1 = (f"This is the expected behaviour as per epic SV-9892 and story {key} ({title}) of the Invoice "
-              f"Design Selection specification (Confluence page 845447188, Revision 5), section {id_s}, read on 10 September 2026.")
+              f"Design Selection specification ({REV}), section {id_s}, read on 10 September 2026.")
     note = ("Note: this feature is not yet built for QA (spec Status: Draft; delivery is a hotfix building on the "
             "restored legacy templates, target version not yet created) and the setting UI is not yet designed; "
             "the route and on-screen labels here are provisional and to be finalised at build-verification.")

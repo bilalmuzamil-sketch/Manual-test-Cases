@@ -31,6 +31,21 @@ Story 4 pins the back-catalogue by creation-date cohort. Story 5 = every render 
   deferred; the QA lead decides whether they get a dedicated run or union into the Invoice Refresh run R417
   when built. (Flagged, not auto-done, to avoid polluting a live run with untestable cases.)
 
+## Status — 2026-09-10 (THIRD full re-verify — spec rolled the Q-answers into the body)
+Chris Ward folded the answered questions into the requirement body (header: "Q6 and Q8–Q12 answered and
+written into the rules; Q7 remains open"). Full re-read of the whole document + epic + 5 stories + SV-9872
+(Rule 108). Detail: CHANGE-ANALYSIS-Rev5.md §H. Case actions:
+- **S1-R7 dialog copy tightened (Q10 applied) — real Expected change:** C53524 (Legacy) + C53525 (Modern)
+  dialog bodies updated to the new "Estimates not yet invoiced … / … that already exist … / work order or
+  parts sale" wording. C53520 (S1-R3 helper) unchanged; its "under challenge" note removed (now final).
+- **Q6 resolved — Story 4 cleared to build:** the 10 Story-4 cases (C53554–C53562, C53546) note changed
+  from "not-final/awaiting" to "Q6 resolved, retroactive pin is the intent"; expectations unchanged.
+- **Jira lag disclosed:** epic SV-9892 + story SV-9896 still say "Q6 open / do not start" — stale vs the
+  rolled-in spec; spec is authoritative (Rule 32/57). Flagged (register item B, now RESOLVED).
+- **Provenance re-anchored** on all 54 to the 2026-09-10 roll-in revision. Q7 still open (C53532 note stays);
+  Part Sale Credit now "included" (C53543 note updated). Cutoff discrepancy (SV-9872 09:14:35 vs spec
+  09:13:36) persists — spec wins. Markers unchanged (no QA build yet).
+
 ## Status — 2026-09-10 (SECOND full re-verify same day — Q6 decision recorded, header still lags)
 Re-read all sources again on the QA lead's order. **Jira unchanged; spec Requirements body (Story 1–5)
 byte-for-byte identical to Rev 5.** Only the Section 8.1 decision cells moved: **Q6 now records option (a)**

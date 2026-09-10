@@ -62,17 +62,15 @@ treated as final.
 > (Invoice Design Selection). So the condition does not apply: the ten stay in the set with their
 > not-final notes, exactly as they are now, until the Product owner settles the ship-day rule.
 
-> **UPDATE (2026-09-10, later — a second look at the spec):** the Product owner has now **written down a
-> decision** on the ship-day question in the spec: **yes, do it** — invoices issued before the refresh go
-> back to the old look, invoices from the short gap window stay on the new look, and everything after this
-> ships follows the setting. **But the spec is talking out of both sides of its mouth:** the top of the
-> same page still says this question is "awaiting a decision", and the task ticket for it still says "do not
-> start before this is answered". I have **recorded the decision on all ten tests** so a reader sees which
-> way it went, but I have **kept them marked not-final** until the page stops contradicting itself. **Your
-> call:** do you want me to treat the ship-day rule as settled and mark those ten tests ready — or leave
-> them not-final until the spec is cleaned up? If you say nothing, they stay not-final, which is safe.
-> ---REFERENCE--- Q6 decision cell = option (a); spec header + SV-9896 still "awaiting/do not start"; no
-> new revision in the change log. Cases C53554–C53562, C53546.
+> **RESOLVED (2026-09-10, later — Chris rolled the answers into the spec):** the ship-day question is now
+> **decided and written into the rules**: invoices issued before the refresh go back to the old look on
+> ship day (on purpose, including for shops that never asked for it — it needs a heads-up to shops, not a
+> code change), invoices from the short gap window stay on the new look, and everything after the feature
+> ships follows the setting. The ten ship-day tests now record this as decided. **One small leftover:** the
+> two task tickets behind the spec still carry the old "do not start / still open" wording — they lag the
+> spec, which is the one that counts; no action needed from you unless you want those tickets tidied.
+> ---REFERENCE--- Q6 resolved in spec body (Section 2 / Story 4 / 8.1), @chris 2026-09-10; Jira SV-9892 +
+> SV-9896 text still says "Q6 open / do not start" (stale). Cases C53554–C53562, C53546 updated.
 
 ### C. Two small things I am tracking, no action needed unless you want it
 - A money breakdown on customer documents (the card-fee / net-received lines) is due to be brought back and
