@@ -27,7 +27,9 @@ const rowsOf=(j)=>{const pick=o=>{ for (const k of ['collection','data','rows','
 const list = await api('/api/work-orders?limit=20&page=1');
 const sample = rowsOf(list.json)[0];
 const view = sample ? await api(`/api/work-orders/view/${sample.id}`) : null;
-const v = view && (view.json && (view.json.data||view.json)) || {};
+// the view response nests the record under `work_order` — the first read returned {keys:["work_order"]}
+let v = (view && view.json && (view.json.data||view.json)) || {};
+v = v.work_order || v;
 R.shape = {keys:Object.keys(v).slice(0,26), company_id:v.company_id, customer_id:v.customer_id||v.contact_id,
   vehicle_id:v.vehicle_id, workplace_id:v.workplace_id, type:v.type};
 log('an existing work order, for its shape: %s', JSON.stringify(R.shape).slice(0,420));
