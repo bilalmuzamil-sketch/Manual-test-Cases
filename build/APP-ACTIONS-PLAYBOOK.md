@@ -4375,3 +4375,54 @@ and new tabs as well as panels, so a navigation can never read as a no-op (Rule 
 picked there (*"This action can only be performed on the authorized lines."*); `pick` is the only
 action `perform-request-status-action` accepts. Order is create → **authorize** → add part → pick (or
 order+receive for a special order) → complete.
+
+## §Y — WORK ORDER LINES: EVERY STATUS AND EVERY OPERATION, FROM THE SCREEN
+### (shown by the QA lead on staging, 2026-09-10, with screenshots — do NOT re-discover this)
+
+**Read this before trying to change a line, delete a line, or reach a work order status.** Three
+sessions' worth of guessing was spent on these; every route below is the one the product actually
+offers, and each was demonstrated on screen rather than inferred.
+
+### Reaching a WORK ORDER status
+| Status wanted | How |
+|---|---|
+| **In Progress** | press **Start** on a line's **Labor** row — the work order moves to In Progress by itself |
+| **Complete** | press **Complete** on each line, then **Complete Work Order** (top right) |
+| **Estimate · Approved · Review · Invoiced · Paid** | these already exist on staging work orders; filter the list |
+| **Declined** | set the LINE status to Declined (below), or the work order's own status control |
+
+**Do not try to set a work order to In Progress or Complete directly** — they are consequences of the
+line actions above.
+
+### Reaching a LINE status — click the LINE, not the badge
+Clicking the line opens the **Edit Line** window: *What Are You Doing?* · *Why Are You Doing It?* ·
+**Status** · Delete · Save & Close. The **Status** list offers exactly four values:
+
+> **Authorization required · Declined · Authorized · Complete**
+
+**🛑 THERE IS NO "CANCELLED" LINE STATUS.** Attempts to set `cancelled` / `canceled` / `cancel` /
+`void` / `voided` / `rejected` / `on_hold` / `not_authorized` all return **400 "Invalid parameter
+value"**. Clicking the status **badge** opens nothing — the badge is not a control. If a test case
+asks for a Cancelled line, that is a **case-versus-build question** (Rule 106), not a defect to file.
+
+### Deleting a line, and the bulk menu
+**Tick the line's checkbox**, then open the **⋮ menu in the lines table header** (`button_line_bulk_action`).
+It offers:
+
+> **Set line status ▸ · Delete lines · Split work order**
+
+So `Set line status` is a **second** route to line status, for one or many lines at once, and
+**Delete lines is the only delete route** — there is no per-line delete button on the row, and the
+part-request delete endpoints all answer 404.
+
+### Other line facts proven the same day
+- A **new line lands in `authorization_required`**; a part request cannot be picked there
+  (*"This action can only be performed on the authorized lines."*).
+- The **Labor row's own ⋮** offers only *Add Labor Fee / Discount* — **a line technician is NOT
+  assigned from there**; the Labor row simply displays whoever is assigned.
+- The **lead technician** is set from `select_lead_technician` on the work order — and **its first
+  option is "Unassigned"**, so taking "the first option" assigns nobody and proves nothing.
+- **Creating a work order behind the screen 500s on staging** — use the screen (§C, and the UI recipe
+  there): *Create Work Order → pick Customer + Asset → Save → confirm*.
+- **Setting mileage / engine hours behind the screen fails** (`work-orders/change` → 500,
+  `work-orders/update` → 404). Set them on the vehicle or through the screen.

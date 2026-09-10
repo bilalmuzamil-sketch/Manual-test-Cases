@@ -855,3 +855,35 @@ I still nearly rebuilt both. **Search first is cheaper than every other route co
 **And the boundary, which the authorisation does not move:** seeding and role edits are about reaching
 a test STATE. They say nothing about what may be published — no ticket, no TestRail write, no touching
 Vladimir's cases, no committed secrets, production is not a test environment.
+
+## L0042 — 2026-09-10 · the QA lead had to show me the line operations; they are now written down
+
+**He said:** *"Keep on learning all this, I do not want to repeatedly telling you the same thing
+again and again, save this learning from where you will pick that up when needed again."*
+
+He was right to. In one session I spent probe runs guessing at three things he then showed me in two
+screenshots. **All of it is now in `build/APP-ACTIONS-PLAYBOOK.md` §Y**, which is the first place to
+look before touching a line.
+
+| What I was guessing at | What it actually is |
+|---|---|
+| how a work order reaches **In Progress** | press **Start** on a line's Labor row |
+| how it reaches **Complete** | **Complete** on each line, then **Complete Work Order** |
+| how to set a **line** status | click the **LINE** → Edit Line window → Status list |
+| why `cancelled` kept failing | **there is no Cancelled line status** — only Authorization required · Declined · Authorized · Complete |
+| how to **delete** a line | tick its checkbox → **⋮ in the table header** → Delete lines |
+
+**The two habits this should change:**
+
+**1. When a value is refused, ask the screen what values exist — do not try more spellings.** I tried
+eight variants of "cancelled" and got 400 eight times. The Status list on screen names all four
+accepted values. One look would have replaced eight guesses. The refusal *"Invalid parameter value"*
+is precisely the signal to go and read the list.
+
+**2. A control I cannot find is usually somewhere I have not looked.** Delete is not on the row; it
+is in a bulk menu that only appears once a line is ticked. I had already SEEN `button_line_bulk_action`
+in a dump of the page's controls and did not follow it up.
+
+**And a self-check that would have caught the lead-technician mistake:** its picker's first option is
+"Unassigned". Taking "the first option" from any list can assign nothing — read the label before
+accepting it, or the test proves nothing.

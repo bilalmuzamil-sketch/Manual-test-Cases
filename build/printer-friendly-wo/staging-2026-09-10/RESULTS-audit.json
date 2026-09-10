@@ -1,0 +1,24 @@
+{
+ "pass_meta": {
+  "suite": "Printer Friendly Work Orders (6617)",
+  "run": 419,
+  "env": "the Staging environment",
+  "build": "staging 2026-09-10",
+  "date": "10 September 2026",
+  "view_mode": "Full View"
+ },
+ "results": {
+  "C45123": {
+   "verdict": "Passed",
+   "observed": "What was checked: that printing a job records an entry in that job's history. What happened: it does. After printing, the job's history contains entries reading \"Work order printed\", recorded against the job that was printed. The entry is created by the act of choosing Print Work Order - no further action is needed."
+  },
+  "C45124": {
+   "verdict": "Passed",
+   "observed": "What was checked: that the history entry records who printed it and when. What happened: both are recorded. Each \"Work order printed\" entry carries the person's name - for example \"Admin ShopView\" - together with the date and the time of the print. Entries from a second person, \"Tech ShopView\", are also present and correctly carry that name instead, so the entry records whoever actually printed rather than a fixed value."
+  },
+  "C45127": {
+   "verdict": "Passed",
+   "observed": "What was checked: that printing the same job more than once creates a separate history entry each time, rather than one entry that keeps being updated. What happened: each print creates its own entry. The job was printed repeatedly during testing and the history holds twelve separate \"Work order printed\" entries, each with its own identifier and its own time. None of them replaced an earlier one."
+  }
+ }
+}
