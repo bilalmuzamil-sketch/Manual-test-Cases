@@ -1,0 +1,75 @@
+{
+ "linesTabCalls": [
+  "200 GET /api/staff/my-workplaces",
+  "200 GET /api/work-orders/statuses",
+  "200 GET /api/organization/feature-flags",
+  "200 GET /api/technician-tasks/my-current-task",
+  "200 GET /api/iam/view-profile/",
+  "200 GET /api/service-advisors",
+  "200 GET /api/organizations/settings",
+  "200 GET /api/work-orders/view/b90d6e97-3f47-4745-8cc6-73765802d6ab",
+  "200 GET /api/work-orders/lines/b90d6e97-3f47-4745-8cc6-73765802d6ab",
+  "200 GET /api/notes",
+  "200 GET /api/notifications/subscribe-token",
+  "200 GET /api/reporting/individual-punch-clock/today",
+  "200 GET /api/technicians",
+  "200 GET /api/global-search/fetch",
+  "200 GET /api/workplaces",
+  "200 GET /api/customers/view/459bb2bc-9b62-4c37-897f-88d939b8740f",
+  "200 GET /api/work-orders/line-statuses",
+  "200 GET /api/labour-type-options",
+  "200 GET /api/parts-catalogue/options",
+  "200 GET /api/work-orders/b90d6e97-3f47-4745-8cc6-73765802d6ab/inspections",
+  "200 GET /api/sales-reps",
+  "200 GET /api/parts-catalogue/categories-list"
+ ],
+ "lineProbe": [
+  {
+   "url": "/api/work-orders/b90d6e97-3f47-4745-8cc6-73765802d6ab/lines",
+   "http": 404
+  },
+  {
+   "url": "/api/work-orders/lines?work_order_id=b90d6e97-3f47-4745-8cc6-73765802d6ab",
+   "http": 404
+  },
+  {
+   "url": "/api/work-orders/b90d6e97-3f47-4745-8cc6-73765802d6ab/service-actions",
+   "http": 404
+  },
+  {
+   "url": "/api/work-orders/b90d6e97-3f47-4745-8cc6-73765802d6ab/work-order-lines",
+   "http": 404
+  },
+  {
+   "url": "/api/work-orders/lines/b90d6e97-3f47-4745-8cc6-73765802d6ab",
+   "http": 200,
+   "n": 3,
+   "keys": [
+    "line_id",
+    "description",
+    "time_estimate",
+    "tech_time",
+    "is_diagnosis",
+    "is_warranty",
+    "is_authorized_to_repair",
+    "is_parts_required_are_authorized",
+    "line_name",
+    "work_order_number",
+    "work_order_status",
+    "tech_story",
+    "line_tech_assigned_id",
+    "labour_type_id",
+    "labour_type",
+    "labour_rate"
+   ],
+   "first": {
+    "status": "authorization_required",
+    "name": "Client request "
+   }
+  },
+  {
+   "url": "/api/work-orders/b90d6e97-3f47-4745-8cc6-73765802d6ab",
+   "http": 404
+  }
+ ]
+}
