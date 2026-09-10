@@ -1,7 +1,15 @@
 // staging-boot2.mjs — sign a headless Chromium into ShopView STAGING, the authentic way.
 //
-// 🟠 NOT YET VERIFIED LIVE ON STAGING — converted 2026-09-02 from the proven sv9315 recipe; first
-//    user must confirm. The marker was NARROWED TWICE on 2026-09-02 — first after a repo-evidence
+// ✅ VERIFIED LIVE ON STAGING 2026-09-10 — a headless sign-in through this helper was EXECUTED and
+//    OBSERVED, both accounts: administrator (42 permissions, template_slug administrator, view_mode
+//    full) and technician (6 permissions, technician, tech), landing on a real Work Orders page
+//    (5.5-6.3 KB of body text; a ~225-char page would be the sign-in form). The question below
+//    ("does a headless click complete the login") is ANSWERED: yes, through this helper.
+//    Context: the sv9315 QA branch was destroyed the same day when the feature merged to Staging,
+//    so Staging is now the test environment for this work.
+//
+// 🟠 (historical, kept) NOT YET VERIFIED LIVE ON STAGING — converted 2026-09-02 from the proven
+//    sv9315 recipe; first user must confirm. The marker was NARROWED TWICE on 2026-09-02 — first after a repo-evidence
 //    pass, then again when the QA lead settled the panel question by direct observation. What is
 //    SETTLED and what is NOT is separated, so nobody re-litigates the settled half:
 //
