@@ -1,0 +1,20 @@
+{
+ "pass_meta": {
+  "suite": "Printer Friendly Work Orders (6617)",
+  "run": 419,
+  "env": "the Staging environment",
+  "build": "staging 2026-09-10",
+  "date": "10 September 2026",
+  "view_mode": "Full View"
+ },
+ "results": {
+  "C45111": {
+   "verdict": "Passed",
+   "observed": "What was checked: whether a very long technician's note prints in full rather than being cut short. What was set up: a job was created on Staging with three lines. One line was given a deliberately long note of 964 characters - the same sentence about steering linkage play repeated six times - which is well past the 500 characters the case calls for. What happened: the note printed in full. All six repetitions are on the printed page, ending in the complete final sentence, with nothing trimmed and no cut-off marker. For comparison, a short note of 43 characters on another line printed in full as well."
+  },
+  "C45106": {
+   "verdict": "Passed",
+   "observed": "Rechecked on Staging with a proper comparison, which the earlier check could not make. What was set up: three job lines on one job - the first with no technician's note, the other two with notes. What happened: the two lines that have notes each print a \"Tech Story\" row carrying the note. The line with no note prints no such row at all - not a blank row, not a heading with nothing after it, and not the \"Add tech story for this line\" prompt that appears on screen. So the row is genuinely dropped only when there is nothing to show, which is what the case asks for. This is stronger evidence than the first check, where no line had a note and the row's absence could have meant anything."
+  }
+ }
+}
