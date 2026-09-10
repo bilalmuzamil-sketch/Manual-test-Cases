@@ -3488,8 +3488,35 @@ Index: CLAUDE.md (rule index table). Other rule files: build/rules/RULES-01-20.m
 
 ---
 
-103. **EVERY ASK PUT TO THE QA LEAD IS WRITTEN IN HIS LANGUAGE, NOT OURS — HE MUST BE ABLE TO ACT ON IT
-    THE FIRST TIME HE READS IT (all projects, permanent; QA lead, 2026-09-10).**
+103. **EVERYTHING THE QA LEAD READS IS WRITTEN IN HIS LANGUAGE, NOT OURS — EVERY MESSAGE, EVERY TIME,
+    NOT ONLY THE ASKS (all projects, permanent; QA lead, 2026-09-10, WIDENED THE SAME DAY).**
+    **🛑 WIDENED HOURS AFTER IT WAS RECORDED, BECAUSE THE FIRST VERSION SAID "ASK" AND I HID BEHIND THAT.**
+    The rule below was written about *asks*. A **status line** then went to him reading:
+    *"R418 now: 114 Passed · 1 Failed · 2 Blocked · 7 Untested — and both remaining Blocked (C44993,
+    C44994) plus the 7 Untested are all settled verdicts waiting only on your go-ahead to file the one
+    Declined ticket."* Seven things in one sentence he would have to decode. His reply: *"you must
+    always keep things simple for me to understand, **for everything you share with me all the time**,
+    and save it as the rule."*
+    **⇒ THE SCOPE IS EVERY WORD HE READS** — asks, status lines, progress notes, summaries, tables,
+    commit-message summaries quoted to him, chat replies. There is no "internal-ish" message to him.
+    **⇒ THE CHECK IS EXECUTABLE, RUN IT BEFORE SENDING:**
+    `python3 build/testing-tools/plain_check.py <draft>` (or pipe with `-`). It exits **1** and names
+    every phrase he would stop at: run numbers · case and test ids · ticket keys · suite numbers ·
+    API paths · status codes · HTTP verbs · `data-test-id`/selector/locator · probe names ·
+    payload/endpoint/DOM/JSON/API · precondition · verdict · settled · provenance/marker ·
+    "not observed" · "clause 3" — **and a bare status tally** like *"114 Passed · 1 Failed · 2 Blocked"*
+    with no statement of what the numbers MEAN.
+    **⇒ NUMBERS ARE NEVER SENT BARE.** A count is followed by what it means for him: what is finished,
+    what is left, and what he has to do. *"114 of 124 tests pass"* is data; *"114 pass, 10 are finished
+    but can't be written up until you say yes to one bug report, nothing left to test"* is information.
+    **⇒ IDS GO IN A TRAILER.** Rule 8 still requires the C-id and its link — after a `---REFERENCE---`
+    line, or at the end of the item, **never carrying the meaning.** A reader who skips every id must
+    still understand the whole message. `plain_check.py` ignores everything after that line.
+
+    **THE ORIGINAL RULE, unchanged below and still in force for asks specifically.**
+
+    **EVERY ASK PUT TO THE QA LEAD IS WRITTEN IN HIS LANGUAGE, NOT OURS — HE MUST BE ABLE TO ACT ON IT
+    THE FIRST TIME HE READS IT (QA lead, 2026-09-10).**
     **THE ORDER, VERBATIM (QA lead, 2026-09-10):** *"Put it simply, you use your terms your context always
     and when I read that it explains me nothing, whenever something is outstanding on ME you MUST explain
     that to me in a way that helps me do it, right now I keep on reading everything again and again and

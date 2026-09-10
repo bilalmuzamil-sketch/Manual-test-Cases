@@ -426,3 +426,14 @@ spacing them for login trap 2, and `--status <tag>` answers "is anything running
 Recorded in `build/rules/RULES-61-ONWARD.md` (rule 105), indexed in `CLAUDE.md` §2, and folded into
 the existing §1 strategy bullet as an **amendment** per the §1 admission gate. Learning **L0037**.
 Rule count 104 → **105**.
+
+## Rule 103 WIDENED 2026-09-10 (same day it was added)
+
+Recorded as *"every ASK is in his language"*. Hours later a **status line** reached the QA lead full
+of shorthand — a run number, two case ids, "verdicts", "settled", and two bare tallies — because the
+rule's scope word was "ask" and a status line was classified as not-an-ask. His correction: *"keep
+things simple for me to understand, for everything you share with me all the time, and save it as the
+rule."* The rule now reads **everything he reads**, with no category to argue about, and ships the
+executable check `build/testing-tools/plain_check.py` (exit 1 naming each phrase, bare tallies
+included; ids exempt after a `---REFERENCE---` line so Rule 8 still holds). Learning **L0038**.
+Rule count unchanged at 105 — this is an amendment to 103, per the §1 admission gate.

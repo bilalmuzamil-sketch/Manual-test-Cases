@@ -693,3 +693,31 @@ flight, so nobody has to ask.
 state without checking the thing that would have told me it was wrong.* L0036 — reported "broken"
 without checking my instrument. L0037 — reported progress without checking anything was still running.
 The cure in both cases is a committed, executable check rather than an intention to remember.
+
+## L0038 — 2026-09-10 · Rule 103 said "ask", so a STATUS line slipped through in shorthand
+
+**Hours after recording Rule 103** ("every ask in his language"), this went to the QA lead:
+
+> *"R418 now: 114 Passed · 1 Failed · 2 Blocked · 7 Untested — and both remaining Blocked (C44993,
+> C44994) plus the 7 Untested are all settled verdicts waiting only on your go-ahead to file the one
+> Declined ticket."*
+
+Seven things to decode in one sentence: a run number, two case ids, "verdicts", "settled", and two
+bare status tallies that say nothing about what he should do. His reply: *"you must always keep things
+simple for me to understand, for **everything** you share with me **all the time**."*
+
+**The lesson is about the shape of the rule, not just the sentence.** I wrote a rule scoped to "asks",
+and then classified a status line as not-an-ask, so the rule did not fire. **A rule with a category in
+it invites me to argue the category.** Rule 103 now says *everything he reads*, with no category to
+hide behind.
+
+**The mechanism: `build/testing-tools/plain_check.py`.** Run it on any draft before sending. It exits 1
+and names each phrase he would stop at — run numbers, case/test ids, ticket keys, suite numbers, API
+paths, status codes, HTTP verbs, selector/probe names, payload/endpoint/DOM/JSON, precondition,
+verdict, settled, "not observed", "clause 3" — **and bare status tallies**, which was the part no
+word-list would have caught. Ids after a `---REFERENCE---` line are exempt, so Rule 8 still holds.
+Verified against the offending sentence: it catches all seven.
+
+**The writing rule underneath it:** a number is never sent alone. *"114 of 124 pass"* is data.
+*"114 pass; 10 are finished but can't be written up until you say yes to one bug report; nothing left
+to test"* is information he can act on.
