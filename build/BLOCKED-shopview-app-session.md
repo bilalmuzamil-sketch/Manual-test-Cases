@@ -1,3 +1,25 @@
+> # ✅ 2026-09-10 — THE QA BRANCH sv9315 IS GONE; WORK MOVED TO STAGING, AND STAGING SIGN-IN IS PROVEN
+>
+> **The Inline Add and Edit Parts feature was merged to Staging on 2026-09-10 and the sv9315 QA branch
+> was destroyed.** Any probe still pointing at `sv9315.qa.shopview.com` will fail, and that failure is
+> the branch being gone — not a login problem, not a sleeping environment.
+>
+> **Staging is now the test environment, and the QA lead has confirmed it is a dummy branch: seeding,
+> changing and deleting data are all permitted there exactly as on a QA branch.**
+>
+> **PROVEN LIVE 2026-09-10, both accounts, with the committed harness — nothing new was built:**
+> `node build/testing-tools/staging-boot2.mjs /workorders` (set `SV_KEY=admin` for the admin).
+> - **administrator** — 42 permissions, `template_slug: administrator`, `view_mode: full`
+> - **technician** — 6 permissions, `template_slug: technician`, `view_mode: tech`
+>
+> App `https://app.staging.shopview.com` · API `api.staging.shopview.com` (playbook §A, already
+> recorded). The harness reads the session cookie from **`/tmp/staging-cookie.txt`**; cookies are
+> supplied per environment, live in `/tmp` with `chmod 600`, and are **never committed** (Rule 82 —
+> this repo is public).
+>
+> **This retires the 🟠 "NOT YET VERIFIED LIVE ON STAGING" marker on `staging-boot2.mjs`:** a headless
+> sign-in through that helper is now executed and observed, not inferred.
+
 # PARTIALLY RESOLVED — the ShopView app's authenticated surface
 
 **Status: PARTIALLY RESOLVED as at 2026-09-02.** Raised 2026-08-21 by the PROJECT INDEX refresh
