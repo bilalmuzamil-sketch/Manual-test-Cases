@@ -78,58 +78,32 @@ others in item 2.
 
 ---
 
-### 4. On this build, a shop cannot receive a part it has ordered at all
+### 4. CORRECTED — ordering works; I had not used the right route
 
-**What is wrong.** When a part is not in stock you order it, and when it turns up you press **Receive**
-to book it in. On this build pressing **Receive** does nothing whatsoever — no window opens, no
-message, nothing at all happens on screen. The part stays stuck at "awaiting receive" forever.
+**I reported that a part could not be ordered or received. The ordering half was wrong.** The QA lead
+showed the route: add the part with **Source = Vendor**, and the part row then shows **Auth To Order**
+with an **Order** button next to it — pressing that orders it. That works.
 
-**Why it matters.** This is not a cosmetic problem. If it behaves the same way on the live system, a
-shop cannot book in any ordered part, so those parts can never go on a job and the job can never be
-finished. The information the screen needs is arriving correctly — the page just fails to show it — so
-this looks like a display fault rather than lost data.
+**Still being checked:** what happens after ordering, at the **Receive** step. I am working through
+that now on the work order the QA lead pointed me at, using the screen rather than going behind it.
+If Receive turns out to be fine too, there is nothing here to raise and this item disappears.
 
-**This is not part of either suite I am testing.** I hit it because one test needed an ordered part.
-
-**The decision.** How do you want this handled?
-
-| Option | What we would do |
-|---|---|
-| **I write it up as a bug (recommended)** | Write it in the same form as the others and hold it for your go-ahead like the rest. It costs you one more approval. |
-| You raise it with the team directly | It may be a known problem on this test branch, and you would know that faster than I can find out. |
-| Leave it recorded only | It stays written down here and nothing is raised. |
-
-**If you say nothing.** One test case stays unfinished. Nothing else in either suite is affected.
-
-*Reference: this blocks the special-order half of C45251.*
+**Nothing is needed from you** unless Receive genuinely turns out to be broken, in which case I will
+come back with it written up properly.
 
 ---
 
-### 5. Editing a role appears to work but silently changes nothing
+### 5. WITHDRAWN — I was wrong about role saving
 
-**What is wrong.** In Settings, if you change what a role is allowed to do and press **Save**, the
-screen accepts it without complaint — no error, no warning. Nothing is actually saved. Reopen the role
-and your change is gone.
+**I reported that editing a role silently fails to save. That was wrong and I withdraw it.** The QA
+lead rechecked it: under **Settings → Roles & Permissions** a role can be edited and saved correctly,
+and under **Settings → Staff** a role can be assigned to a staff member and that saves correctly too.
 
-**Why it matters.** Someone can remove or grant a permission, believe they have done it, and be wrong.
-With permissions in particular, a change you think you made and did not is a real risk — you would
-think access had been withdrawn when it had not.
+**What actually happened:** I was changing roles from behind the screen instead of using the screen,
+and drew a conclusion about the product from my own method failing. That is my error, not a defect.
 
-**Separately, and worth knowing:** one particular permission — the one that lets a user see work orders
-at all — **cannot be switched off even from behind the screen.** It reports success and stays on. That
-may be deliberate, or it may be a second fault. I cannot tell from the outside.
-
-**The decision.** How do you want this handled?
-
-| Option | What we would do |
-|---|---|
-| **I write it up as a bug (recommended)** | It is a silent failure on a permissions screen, which is the worst place for one. |
-| You check with the team first | They may know the role screen is unfinished on this branch. |
-| Leave it recorded only | Stays written down here, nothing raised. |
-
-**If you say nothing.** One test case cannot be run. Nothing else is affected.
-
-*Reference: this blocks C45090.*
+**Nothing is needed from you.** No bug will be raised for this. The test case that depended on it is
+being run properly now, through Settings.
 
 ---
 

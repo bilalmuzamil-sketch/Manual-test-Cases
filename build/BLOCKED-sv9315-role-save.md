@@ -1,3 +1,18 @@
+> # ⛔ WITHDRAWN 2026-09-10 — THE CLAIM IN THIS FILE IS WRONG. ROLES DO SAVE.
+>
+> **The QA lead rechecked this on 2026-09-10 and the finding does not stand.** Under
+> **Settings → Roles & Permissions** a role can be edited and **saved correctly**, and under
+> **Settings → Staff** a role can be **assigned to a staff member** and that saves correctly too.
+>
+> **What actually went wrong here was my method, not the product.** This file's investigation drove
+> the role editor through a script and concluded from its own failure that the product was broken.
+> **A finding about the product must be reproduced the way a user does it — through the screen.**
+> Writing it up as a defect candidate was an error and no ticket will be raised.
+>
+> Everything below is kept, dated and struck, as the record of the mistake. The one durable fact worth
+> keeping is that `PUT /api/roles/{id}` exists and is what a script should use — but the screen was
+> never broken.
+
 > # ✅ RESOLVED 2026-09-10 — THIS IS NOT A BLOCKER. IT IS A UI DEFECT.
 >
 > **The route exists: `PUT /api/roles/{id}` persists a role change.** The 405 returned by
