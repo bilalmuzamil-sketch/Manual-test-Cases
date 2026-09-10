@@ -147,14 +147,28 @@ export async function bootOrigin({ app, apiHost, ssoFile, label = app, route = '
   // Measured on sv9315, 2026-09-10: the same call succeeded on the retry every time. POLL for it.
   for (let w = 0; w < 20 && !(await btn.count()); w++) await page.waitForTimeout(1500);
   if (!(await btn.count())) { console.log(`no DEV MODE "${btnLabel}" button on ${label} after 30s — STOP`); await browser.close(); process.exit(2); }
-  await btn.click();                       // NB: getByRole('button',{name}) does NOT match these
-  await page.waitForTimeout(9000);
-
-  // LANDING PROOF — assert it, so a false success cannot pass
-  const signedIn = await page.evaluate(() => !!localStorage.getItem('user'));
-  const onLogin = /\/login/.test(page.url());
+  // 🛑 THE QUICK-LOGIN IS RETRIED, NOT ASSERTED ONCE. Two sessions that boot close together leave the
+  // page sitting on /login with `user` already in localStorage — the login itself returned 200, the
+  // SPA simply did not move. Exiting there stops a whole pass on a transient race, which is what it
+  // did on sv9315 on 2026-09-10 (three probes lost to it). Clearing the cookies and clicking again
+  // fixes it. The LANDING PROOF is unchanged and is still asserted — it is just given three goes.
+  let signedIn = false, onLogin = true;
+  for (let attempt = 1; attempt <= 3; attempt++) {
+    await btn.click().catch(() => {});     // NB: getByRole('button',{name}) does NOT match these
+    await page.waitForTimeout(9000);
+    signedIn = await page.evaluate(() => !!localStorage.getItem('user'));
+    onLogin = /\/login/.test(page.url());
+    if (signedIn && !onLogin) break;
+    if (attempt === 3) break;
+    console.log(`   quick-login attempt ${attempt} left the page on ${page.url()} — clearing the session and trying again`);
+    await ctx.clearCookies().catch(() => {});
+    await page.evaluate(() => { try { localStorage.clear(); sessionStorage.clear(); } catch (e) {} }).catch(() => {});
+    await page.waitForTimeout(6000 * attempt);
+    await page.goto(`${APP}/login?redirect=${route}`, { waitUntil: 'domcontentloaded' }).catch(() => {});
+    for (let w = 0; w < 20 && !(await btn.count()); w++) await page.waitForTimeout(1500);
+  }
   if (!signedIn || onLogin) {
-    console.log('NOT SIGNED IN. url=' + page.url() + ' user-in-localStorage=' + signedIn);
+    console.log('NOT SIGNED IN after 3 quick-login attempts. url=' + page.url() + ' user-in-localStorage=' + signedIn);
     console.log('api calls:'); [...new Set(api)].forEach(x => console.log('   ' + x));
     console.log('a 409 on fe-permissions after a 200 quick-login = trap 2, a duplicate PHPSESSID.');
     await browser.close(); process.exit(2);
