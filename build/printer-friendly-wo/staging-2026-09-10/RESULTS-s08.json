@@ -1,0 +1,16 @@
+{
+ "pass_meta": {
+  "suite": "Printer Friendly Work Orders (6617)",
+  "run": 419,
+  "env": "the Staging environment",
+  "build": "staging 2026-09-10",
+  "date": "10 September 2026",
+  "view_mode": "Full View"
+ },
+ "results": {
+  "C45100": {
+   "verdict": "Passed",
+   "observed": "What was checked: that each part under a job line prints its description, its part number and its quantity. What was set up: a real stocked part was added to a line from the parts picker - X107-A 1/8\" EXTRUDED BRASS STREET TEE, part number N231-013BR, quantity 2. What happened: it prints as \"(N231-013BR) X107-A 1/8\" EXTRUDED BRASS STREET TEE   2\" - part number in brackets, then the description, then the quantity. All three are present.\n\nWORTH KNOWING FOR THE RETEST. The other rows in the Parts section of these lines print with no part number - for example \"Misc hardware/ fittings   1\". Those are not parts; they are parts that have been ASKED for and not yet supplied, and they carry no part number of their own because they were never linked to a catalogue part. That is why they print without one. If you see a blank part number on a printout, check whether that row is a real part or a request before treating it as a fault."
+  }
+ }
+}
