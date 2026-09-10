@@ -192,60 +192,148 @@ for `.shopview.com`). With those the same document type can be rendered on both 
 becomes a true like-for-like — about fifteen minutes, and the three comments are updated in place by
 `commentId` (76272 / 76273 / 76274), not stacked.
 
-## Before-vs-after built 2026-09-10 — AND IT FOUND A REGRESSION I HAD MISSED
 
-Fresh staging cookies arrived, so the before/after was built properly. **Staging is genuinely the
-pre-fix build:** its served document contains **0** occurrences of `break-inside: auto` and **0** of
-`flex: 0 0 210px`, while the branch document has 1 and 2. Staging `v26.36.0-ede3d52`, branch
-`v26.36.0-3340667`, both read live.
+---
 
-Method: the **same work orders** rendered on both builds through the **same endpoint with the same
-parameters** — `POST /api/work-orders/invoices/estimate {work_order_id, type:"pdf"|"html",
-issue_date, due_date}` → 200 on both. Four documents: `fa8aec20` (S-8627), `2dfb7f51`, `4c269aef`,
-`d2cea2b7`.
+# RETRACTION — the "line-footer regression" I reported was NOT a regression
 
-### The two exhibits that show the fixes working
-- `ev/before-after/ba1-sv9849-logo-centre.png` — masthead, same invoice. Logo **+47.7 pt off page
-  centre before, +0.0 pt after**, measured from `page.get_image_info()`.
-- `ev/before-after/ba2-sv9870-9857-paper-9-to-5.png` — every page of the same invoice, both builds:
-  **9 sheets → 5**, with subtotal `$4,949.72` and total `$5,197.20` identical on both, and pages
-  filling to the bottom instead of stopping early (content ends at
-  `356/586/689/782/718/442/652/636/429` before, `792/733/768/760/708` after).
+Earlier in this file I reported that the fixed branch had lost the per-line `Labor` and `Parts`
+figures from every work-line footer, called it a breach of spec S5-R9, and recommended reversing
+SV-9870's PASS. **That was wrong and it is retracted in full.**
 
-### 🔴 THE REGRESSION — the per-line footer has lost its Labor and Parts figures
-`ev/before-after/ba3-line-footer-regression.png`.
+**The real cause:** the two toggles **"Summarize parts total"** and **"Summarize labor total"**,
+under the settings (gear) icon on the work order's Finance tab, were **switched OFF on the branch
+work orders and ON on the staging work orders**. Those toggles are what print the two figures. The
+branch code was never involved.
 
-Markup, same document, same line, both builds:
-- **staging:** `<div class="job-foot avoid-break-inside"><span>Labor <b>$400.00</b></span><span
-  class="ltot with-divider">Line total <b>$400.00</b></span></div>`
-- **branch:** `<div class="job-foot avoid-break-inside"><span class="ltot">Line total
-  <b>$400.00</b></span></div>`
+Proven live, not argued:
 
-Every job footer in the document, counted (not sampled):
+- `GET /api/invoices/{workOrderId}/settings/view` — staging `summarizePartsTotal: true`,
+  `summarizeLaborTotal: true`; branch `false` / `false` on the same work orders.
+- Setting them to `true` on the branch via `POST /api/invoices/{workOrderId}/settings/change`
+  restored the figures **exactly** — same labels, same values, same count of footers.
+- These settings are **per work order**, not per organisation (verified: they differ between work
+  orders inside the same org).
 
-| build | Labor + Parts + Line total | Labor + Line total | Parts + Line total | Line total only |
-|---|---|---|---|---|
-| staging (pre-fix) | 12 | 5 | 2 | 3 |
-| branch (fixed) | 0 | 0 | 0 | **22** |
+**What I should have noticed and did not.** The difference was **perfectly uniform** — every one of
+the 65 footers, on all four documents, in the same way. Code changes are rarely that tidy; a toggle
+always is. And other fields in the very same settings object differed in the *opposite* direction
+between the two environments, which alone said "these two environments are configured differently".
+I had the evidence an hour before I understood it, and I explained it away as data drift.
 
-Across all four documents — **65 work-line footers** — the pre-fix build prints `Labor` on 50 and
-`Parts` on 45; the branch prints **0 and 0**, while the `Line total` count is unchanged
-(13/13, 13/13, 22/22, 17/17) and the values themselves are correct.
+This is now **Standing Rule 75** — a difference between two environments is a **configuration**
+difference until proven otherwise; read the settings object on both and match it before the word
+"regression" is used. The wrong exhibit `ba3-line-footer-regression.png` has been deleted.
 
-**Why this is a defect and not a density change:**
-- Spec **S5-R9**, quoted verbatim inside SV-9773: *"Each work line shows a footer with figures labeled
-  exactly "Labor", "Parts", and "Line total". The Labor and Parts figures are that line's own totals
-  after its line-level fees and discounts; "Line total" is their sum."*
-- **SV-9773 is Done** (resolved 2026-09-09) and its whole point was to make those two figures
-  *correct*, not to remove them.
-- SV-9870 states the opposite twice: *"Every step was verified to print identical money figures before
-  and after"*, *"Money figures were hashed and compared before and after every change"*, and lists
-  under **Not this ticket**: *"The per-line SCOPE OF WORK / LABOR / PARTS headings and Line total
-  rows"*. All eleven of its changes are CSS declarations; this is a markup change.
+---
 
-**Consequence: the SV-9870 PASS I posted is wrong on this point and comment 76273 needs correcting.**
-I found it only because the QA lead required a before-vs-after comparison — the fix's own 11 changes
-all verify clean, and no amount of after-only checking would have surfaced it. That is now Standing
-Rule 73, and this is its first catch.
+# FULL RE-TEST — 2026-09-10, all three tickets, settings matched
 
-**Not yet done, awaiting the QA lead:** correcting the three comments in place, and raising the defect.
+Run after the retraction, at the QA lead's instruction, because the three comments are read by the
+company's most senior people and the verdicts have to be right.
+
+## Method
+
+- **Pre-fix build:** `app.staging.shopview.com` / `api.staging.shopview.com` —
+  `v26.36.0-ede3d52`, `index.html` last-modified Wed 09 Sep 2026 11:50:48 GMT.
+- **Fixed build:** `sv9849.qa.shopview.com` / `sv9849api.qa.shopview.com` —
+  `v26.36.0-3340667`, last-modified Thu 10 Sep 2026 02:40:22 GMT.
+- Same organisation (Foothills Group Inc, shop "Staging Heavy Duty - 9919"), **same work-order ids**
+  on both — the branch is a clone.
+- **Eight documents**, not one: `0a41cc04 · 2d750857 · 2dfb7f51 · 3d78d797 · 4c269aef · 78dd906f ·
+  d2cea2b7 · fa8aec20`, rendered through the same endpoint with the same parameters on both builds:
+  `POST /api/work-orders/invoices/estimate {work_order_id, type:"pdf"|"html", issue_date, due_date}`
+  → 200 on both.
+- **Display settings matched per work order before rendering** (the lesson above). Six of the eight
+  differed — on `partNumber`, `summarizePartsTotal` and `summarizeLaborTotal`. Every branch setting
+  was snapshotted first (`/tmp/rt/branch-settings-ORIGINAL.json`) and **restored afterwards,
+  byte-identical on 8 of 8**.
+- Staging confirmed to be genuinely the pre-fix build: **0** occurrences of `break-inside: auto` and
+  **0** of `flex: 0 0 210px` in its served document; the branch has 1 and 2.
+
+## Per-document measurements (all 8, no sampling)
+
+| doc | sheets | money identical | footers Labor/Parts | page-1 fill | pages 2+ starting mid-job | orphan headings, split footers |
+|---|---|---|---|---|---|---|
+| 0a41cc04 | 6 → 5 | YES | 10/7 → 10/7 | 738 → 784 | 1/5 → 4/4 | 0,0 → 0,0 |
+| 2d750857 | 5 → 3 | YES | 6/3 → 6/3 | 710 → 729 | 1/4 → 2/2 | 0,0 → 0,0 |
+| 2dfb7f51 | 6 → 5 | YES | 11/8 → 11/8 | 533 → 733 | 1/5 → 4/4 | 0,0 → 0,0 |
+| 3d78d797 | 3 → 2 | YES | 0/0 → 0/0 | 687 → 756 | 1/2 → 1/1 | 0,0 → 0,0 |
+| 4c269aef | 7 → 5 | YES | 11/10 → 11/10 | 672 → 766 | 2/6 → 4/4 | 0,0 → 0,0 |
+| 78dd906f | 4 → 3 | YES | 7/5 → 7/5 | 561 → 722 | 1/3 → 2/2 | 0,0 → 0,0 |
+| d2cea2b7 | 12 → 8 | YES | 17/19 → 17/19 | 581 → 784 | 1/11 → 7/7 | 0,0 → 0,0 |
+| fa8aec20 | 9 → 5 | YES | 11/8 → 11/8 | 356 → 792 | 1/8 → 4/4 | 0,0 → 0,0 |
+
+"page-1 fill" = the y-coordinate of the lowest content on page 1, out of a ~800 pt content box.
+
+## SV-9870 — print density — **PASS**
+
+- **52 sheets → 36 across the eight documents, 31% fewer paper.** Every one of the eight shrank.
+- **Money is untouched: the full multiset of money tokens is identical on all 8 documents**, in both
+  directions. Subtotals and totals match exactly.
+- **The per-line `Labor` / `Parts` footer figures are identical on all 8** once the display settings
+  are matched — the retracted "regression" does not exist.
+- **All 11 declared CSS changes verified in the branch's own served print CSS:** 41 of the 45
+  declared values match exactly; the remaining 4 (`.job-top` / `.scope-lbl` / `.csec-head`
+  `break-after: avoid`, `.job-foot` `break-before: avoid`) are in the **base** rules and change 2
+  says to KEEP them, so **45/45 accounted for**. The 26 pre-fix values are confirmed present in
+  staging's base rules.
+- **Print-only proven**, not a screen change: `.job { break-inside }` is `avoid` in the base rules
+  and `auto` only inside `@media print`.
+
+## SV-9857 — page breaks / no half-empty pages — **PASS**
+
+- Pages 2 and onward now begin **mid-job** (i.e. a job flows across the break instead of being
+  pushed whole): **28 of 28 on the branch, versus 9 of 40 on staging.**
+- **0 orphaned job headings and 0 footers separated from their line, on all 8 documents.**
+- Page-1 fill rose from an average of **604** to **758** out of ~800 pt. The worst case, `fa8aec20`,
+  went from **356 → 792** — a page that was more than half blank is now full.
+
+## SV-9849 — logo centring — **PASS**
+
+Measured from `page.get_image_info()` — horizontal offset of the logo's centre from the page centre:
+
+| doc | staging | branch |
+|---|---|---|
+| 0a41cc04 | +38.05 pt | +0.00 pt |
+| 2d750857 | +45.81 pt | +0.00 pt |
+| 2dfb7f51 | +37.44 pt | +0.00 pt |
+| 3d78d797 | +42.01 pt | +0.00 pt |
+| 4c269aef | +42.83 pt | +0.00 pt |
+| 78dd906f | +50.40 pt | +0.00 pt |
+| d2cea2b7 | +38.99 pt | +0.00 pt |
+| fa8aec20 | +47.69 pt | +0.00 pt |
+
+The pre-fix offset **varies per document** (+37.44 to +50.40) — that is the point: the logo sat
+wherever the text beside it pushed it. On the branch it is **+0.00 pt on every one**.
+
+**Logo-shape stress test — 8 different shapes uploaded and rendered (`logo-L1`…`L8`):** a tiny
+square, a wide banner, an extreme-wide strip, a tall narrow strip, and four ordinary shapes. **All
+8 render at +0.00 pt** and **none exceeds the 157.5 pt (210 px) slot** — the two wide ones clamp to
+exactly 157.5 pt. The organisation's real logo was recovered from a staging PDF and **re-uploaded
+afterwards (HTTP 201)**, so the environment is as it was found.
+
+## Before-vs-after exhibits (Standing Rule 73)
+
+- `ev/before-after/ba1-sv9849-logo-centred.png` — the masthead of the same invoice on both builds,
+  with the page-centre line drawn: **+47.69 pt off centre before, +0.00 pt after.**
+- `ev/before-after/ba2-sv9870-paper-9-to-5.png` — **every page** of the same invoice on both builds:
+  **9 sheets before, 5 after**, with the same subtotal and total on each side.
+- `ev/before-after/ba3-sv9857-page-fill.png` — page 1 of the same invoice, before (the blank half
+  boxed) and after (full).
+
+## Honest limits
+
+- Both builds are the **same organisation's** data on the **same eight work orders**; a different
+  organisation's documents were not rendered.
+- The comparison is of the **generated documents**, measured from the PDFs and the served HTML/CSS.
+  Nothing was judged by eye.
+- `sv9849.qa.shopview.com` is a per-ticket QA branch. Per Standing Rule 62, a per-ticket branch is
+  final once we pass it, so these verdicts are **not** provisional and no re-check queue is opened.
+
+## What is still open
+
+- The three posted comments (**76272** SV-9849, **76273** SV-9870, **76274** SV-9857) do **not** yet
+  carry the before/after exhibits. They should be rebuilt as **one complete comment each, corrected
+  in place by `commentId`** — never stacked — awaiting the QA lead's go-ahead.
+- No defect is outstanding from this work. The retracted one did not exist.
