@@ -4258,6 +4258,81 @@ deliver the 7-tab management report.
     PASS must be one nobody can overturn, and a FAIL must be one nobody can dismiss.** That is the whole
     job. Ties to Standing Rules 12, 13, 17, 50, 57, 64, 65, 66, 68, 73, 74 and 75.
 
+77. **THE TICKET-QA STANDARD, END TO END — test every ticket this way, comment on every ticket this
+    way, and the work must never bite the QA lead (all projects). THE OPERATING PROCEDURE.**
+    USER DIRECTIVE (2026-09-10, verbatim): *"Now save it as a rule to test and comment the tickets like
+    that and your work must never bite me"* — given after the SV-9849 / SV-9870 / SV-9857 pass was
+    re-run thoroughly and the three comments were rebuilt with before-and-after exhibits. **This rule is
+    the SEQUENCE. Rules 12/13/50/57/62/63/64/65/66/67/68/72/73/74/75/76 are its clauses; this is the
+    order they are executed in, so that no step can be reached without the one before it.** Where a
+    step is fully stated elsewhere it is named rather than restated.
+    **THE NON-NEGOTIABLE OUTCOME, stated first because every step serves it: NOTHING WE HAND OVER MAY
+    BITE THE QA LEAD.** A verdict, a figure, a screenshot caption, a reproduction step, a "nothing else
+    changed" claim — if a PO, a developer or a Vice President acts on it, it holds. **A false PASS, a
+    false FAIL and an unreproducible ticket are all the same failure**, and the false ones cost more
+    than the missed ones, because they are trusted (Rules 68, 75).
+    **STEP 1 — ASK FOR THE WHOLE ENVIRONMENT UP FRONT, INCLUDING THE PRE-FIX ONE.** In the same message
+    as the QA-branch ask: *"I will also need staging/production access to capture the before-state."*
+    A fix branch only ever holds the AFTER, and those sessions die in about 24 hours (Rules 22, 73).
+    **Also ask for the developer's QA handoff / test plan** — it is the checklist to mirror, never the
+    definition of the test (Rule 66).
+    **STEP 2 — CAPTURE THE BEFORE FIRST, BEFORE ANY OTHER TESTING.** It is the one artefact that becomes
+    unobtainable, and it is doing **two** jobs: the executive exhibit (Rule 73) **and** the diff that
+    catches what the ticket never declared (Rule 74).
+    **STEP 3 — READ THE TICKET DESCRIPTION AND EVERY COMMENT, AND TEST THE REPORTED FLOW.** The
+    reporter's words define what "fixed" means; the developer's handoff is an input (Rule 66). Where the
+    two differ, **say so** and test the description.
+    **STEP 4 — VERIFY EVERY DECLARED ACCEPTANCE CRITERION, EXHAUSTIVELY** — each at its stated value, on
+    its stated surface, with its scope proven (a print-only change means the base rule is read and shown
+    unchanged). No sampling (Rule 50).
+    **STEP 5 — DIFF THE WHOLE OUTPUT AGAINST THE PRE-FIX BUILD AND ACCOUNT FOR EVERY DIFFERENCE.**
+    Money as a multiset, labels, element counts, totals. **Any difference the ticket does not explain is
+    a finding until proven otherwise** (Rule 74) — and it is explained **CONFIGURATION FIRST: setting or
+    toggle or flag or permission → data → code** (Rule 75). **Match the settings on both environments
+    before comparing anything**, and say in the report that you did; a difference that survives matched
+    settings is real, a difference that disappears was never a defect.
+    **STEP 6 — MORE THAN ONE SPECIMEN, AND EVERY NUMBER FROM A LIVE MEASUREMENT** taken that pass
+    (Rules 12, 76). Give per-record figures, never one flattering example.
+    **STEP 7 — RESTORE WHAT YOU CHANGED ON A SHARED ENVIRONMENT**, and prove it byte-identical. Per-ticket
+    QA branches need no cleanup; staging, qb and production do.
+    **STEP 8 — BUILD THE EXHIBITS.** One **before-vs-after** exhibit per ticket minimum — same document,
+    each half labelled with environment + build marker + date, the difference boxed and captioned
+    (Rules 64, 73) — plus the after-only detail exhibits. **Never simulate a before; never pair two
+    documents that are not comparable.**
+    **STEP 9 — WRITE ONE COMPLETE COMMENT, IN THIS ORDER, AND UPDATE IT IN PLACE.** (a) the verdict as
+    the **very first line** in a success/error panel, naming environment and build marker; (b) two plain
+    sentences of what it means for a non-technical reader; (c) the **before-and-after exhibit** with its
+    one-sentence caption; (d) the **what-we-checked table**, one row per required check with its own
+    PASSED/FAILED; (e) the remaining captioned exhibits; (f) what was deliberately **not** treated as a
+    fault, and why; (g) what could **not** be tested, plainly; (h) a rule, then **Technical details for
+    developers LAST** — build markers, method, endpoints, raw figures. **Human voice, no AI fingerprint
+    anywhere** (Rule 65). **One comment, never a chain, never a "we were wrong before" narrative** — the
+    ticket gets the finding; the self-review goes in the findings doc and the playbook.
+    **STEP 10 — RUN THE PRE-POST GATE, THEN POST, THEN READ IT BACK** (Rule 72): build markers re-read
+    live, ticket state re-read, every image URL curled for 200, every figure traced, voice scan, format
+    check — then post, then **re-fetch and verify the first line, the image count AND order, and the
+    table row counts**. Record the gate in the findings doc, or it is treated as un-gated.
+    **STEP 11 — COMMIT THE EVIDENCE AND REPORT.** A dated findings folder with the measurements, the
+    exhibits and the execution log, committed and pushed (Rule 29), and a status report to the QA lead
+    in plain words that **ends with the OUTSTANDING section** — saying "nothing outstanding" when that
+    is true, never omitting it (Rule 36).
+    **THE HONESTY CLAUSE, AND IT OUTRANKS THE SEQUENCE: WHERE A STEP CANNOT BE COMPLETED, SAY SO IN THE
+    COMMENT IN ONE PLAIN LINE** — *"the pre-fix build was no longer reachable, so this comment shows the
+    fixed state only"* — and raise it as an outstanding item. **An honest gap never bites; a quiet one
+    always does.** And **exhaust the self-unblock before calling anything blocked** (Rule 68's honesty
+    clause, and the ALWAYS UNBLOCK YOURSELF ruling).
+    **CANONICAL EXAMPLE:** `build/sv9849-9870-9857-invoice-print-2026-09-10/` — the findings record, the
+    `ev/before-after/` exhibits, the retraction of a false regression that a settings toggle explained,
+    and the three rebuilt comments (SV-9849 76272, SV-9870 76273, SV-9857 76274), each updated in place
+    with its before-and-after exhibit and its gate recorded.
+    **RATIONALE, 2026-09-10:** this rule exists because the same pass produced, in one day, **a correct
+    PASS reported with after-only evidence** (which told a Vice President nothing about what was fixed),
+    **a false regression** (a configuration difference reported as a defect, which reversed a correct
+    verdict and cost the QA lead's confidence in the whole report), and then, once the before-capture was
+    built and the settings matched, **three verdicts that hold**. The order above is what separates the
+    third outcome from the first two. Ties to Standing Rules 12, 13, 17, 22, 25, 29, 36, 50, 57, 62, 63,
+    64, 65, 66, 67, 68, 72, 73, 74, 75 and 76.
+
 ## Project purpose (Custom Roles project)
 Manual test-case authoring + live staging (Verify-in-UI) verification + TestRail
 management for ShopView **"Custom Roles and Permissions"**, plus related
