@@ -451,3 +451,16 @@ build. Recorded in `build/rules/RULES-61-ONWARD.md` (rule 106), indexed in `CLAU
 into the existing §1 defect bullet as part **(d)** per the §1 admission gate. Worked example:
 `build/inline-add-edit-parts/source-verify-2026-09-10/DECLINED-QUOTES.md`. Learning **L0039**.
 Rule count 105 → **106**.
+
+## Rule 107 added 2026-09-10
+
+**107 — STANDING AUTHORISATION TO UNBLOCK.** Ordered by the QA lead on 2026-09-10, quoted verbatim in
+the rule body, after a day in which five false blockers were reported and two things the repository
+already documented were nearly re-discovered from scratch. It makes standing and explicit the
+permission he had given piecemeal that day ("seed data where needed", "these are dummy branches so
+change data where needed", "you are just blocking yourself"), and sets a seven-route bar that must be
+tried AND named before anything may be called blocked.
+It deliberately does NOT touch the standing holds — Jira/external artefacts (62), TestRail writes (6),
+Vladimir's cases (38), Automated cases (71), secrets (82), production. Unblocking concerns reaching a
+test STATE, never widening what may be published or written. Indexed in `CLAUDE.md` §2 and folded into
+the existing §1 blocker bullet as an amendment per the §1 admission gate. Rule count 106 → **107**.

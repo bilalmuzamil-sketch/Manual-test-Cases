@@ -783,3 +783,33 @@ and one lifting the height cap on the work-order-lines scroll container so all l
 observation produced by my own method, and in five of them I had no control that could have exposed
 it. The control is not paperwork — here it was a single number compared against itself, and it saved
 a dozen wrong results.
+
+## L0041 — 2026-09-10 · standing authorisation to unblock, and the seven routes that clear almost everything
+
+**The QA lead, 2026-09-10:** *"you are authorized to do anything to unblock yourself, give it what it
+takes to unblock you on your tasks."* Recorded as **Rule 107**.
+
+**What the day actually proved.** Every wall I hit came down, and none of them needed him:
+
+| Wall | What cleared it | Route |
+|---|---|---|
+| roles "cannot be saved" | they save fine through Settings — my script was the problem | other surface |
+| no part held in multiple bins | create the part with its bins set, instead of moving stock after | seed |
+| a line will not complete | create → authorize → add part → **pick** → complete | walk the neighbour |
+| special-order part cannot be received | fill the **invoice number**; the button is silent without it | read the screen |
+| "Receive does nothing" | it NAVIGATES to a receiving page — I described the page mid-navigation | prove the instrument |
+| create a work order fails | the playbook already carried the UI recipe | search the repo |
+| the printout "shows prices" | the printout is built on demand; I never pressed Print | prove the instrument |
+
+**Seven routes, in order, before "blocked" is even a candidate:** search the repo · read the refusal
+(it names the missing field or the allowed method) · try the other surface · seed the state · walk the
+neighbouring feature that produces it · change the role, permission or data in the way · prove the
+instrument. **All seven tried, and NAMED in the report, or it is not a blocker — it is step 1 of 7.**
+
+**The two that sting most are the repo ones.** The work-order-create failure and its UI workaround
+were written down months ago; so was the staging sign-in helper. Rule 97 exists precisely for that and
+I still nearly rebuilt both. **Search first is cheaper than every other route combined.**
+
+**And the boundary, which the authorisation does not move:** seeding and role edits are about reaching
+a test STATE. They say nothing about what may be published — no ticket, no TestRail write, no touching
+Vladimir's cases, no committed secrets, production is not a test environment.
