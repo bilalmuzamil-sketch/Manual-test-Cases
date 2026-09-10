@@ -198,8 +198,14 @@ part is absent.
 the part count went 22 → 23 and the part was still there after a reload. So the harness itself is not
 the cause — the difference is entirely the failed request.
 
+**Both views behave the same way.** The table above is Tech view (C45022); Full View (C45062) was run
+separately and matched it exactly — the 500 gave *"Ooooops! An error occurred"* with the row and its
+data intact, and the cut-off request gave no message at all, closed the row, and left the part count
+unchanged at 27 across a clean reload.
+
 Evidence: `evidence/62-savefail2.json`, `evidence/62-c45022-abort.png`, `evidence/62-c45022-500.png`,
-`evidence/62-c45022-control.png`.
+`evidence/62-c45022-control.png`, `evidence/76-final.json`, `evidence/76-c45062-abort.png`,
+`evidence/76-c45062-500.png`.
 
 **Held** pending the QA lead's per-defect go-ahead.
 
