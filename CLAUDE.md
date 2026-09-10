@@ -4128,6 +4128,51 @@ deliver the 7-tab management report.
     voice, no AI fingerprint), 67 (the reader must be able to see the problem in a minute), 68
     (bite-proof + live-verified) and 72 (the pre-post gate checks the exhibit's images load).
 
+74. **A FIX IS A DIFF, NOT A CHANGE LIST — verify what the ticket declared AND account for every
+    UNDECLARED difference in the output (all projects).**
+    USER DIRECTIVE (2026-09-10, verbatim): *"Learn from your mistake to never repeat it"*.
+    **THE MISTAKE, plainly, and it was mine.** On SV-9870 I verified all **eleven declared CSS changes**
+    were present, print-only and at their exact specified values, measured the page geometry, counted the
+    sheets — and passed the ticket. **I never asked what ELSE had changed in the document.** The branch
+    had also **removed the "Labor" and "Parts" figures from the bottom of every work line** — 50 Labor
+    and 45 Parts figures across 65 footers, gone — contradicting spec **S5-R9** and the ticket's own two
+    promises (*"identical money figures"*, *"Not this ticket: … Line total rows"*). **A complete,
+    exhaustive check of everything the ticket declared cannot find something the ticket never mentions.**
+    **THE RULE — TWO OBLIGATIONS, AND THE SECOND IS THE ONE THAT WAS MISSING:**
+    **(a) VERIFY THE DECLARED CHANGES** — each acceptance criterion, each stated change, exhaustively
+    (Rule 50). This half was done correctly and is not enough.
+    **(b) DIFF THE WHOLE OUTPUT AGAINST THE PRE-FIX BUILD AND ACCOUNT FOR EVERY DIFFERENCE.** Render or
+    drive the **same record** on both builds and reconcile **all** of it — **every money figure as a
+    multiset**, every label, every row and element count, the shape of every repeated block, the totals.
+    **Any difference the ticket does not explain is a FINDING until proven otherwise** — not a curiosity,
+    not a footnote. Where the two outputs cannot be made comparable, say so and narrow until they are.
+    **⚠️ THE SHARPER HALF — NEVER EXPLAIN AWAY AN UNEXPLAINED DIFFERENCE.** The evidence was in front of
+    me an hour before I understood it: comparing the two builds I found **39 money tokens present only in
+    the before**, and I wrote it off as *"the cloned data has drifted"* and moved on. It had not drifted —
+    the totals were identical on both. **"Data drift", "noise", "clone divergence", "probably a
+    different document" are HYPOTHESES, and each one must be PROVEN before it is used to dismiss a
+    difference** (Rule 12 — an inference is not an observation). The cheap proof that would have caught
+    it in one step: **compare the grand totals first** (identical ⇒ same data ⇒ every remaining
+    difference is the build), then **locate one differing value in its context**, which is precisely what
+    exposed `Labor $824.75 · Parts $334.74` vanishing from the footer.
+    **WHY THIS FAILURE MODE IS DANGEROUS:** it produces a **confident, fully-evidenced PASS**. Every
+    declared item verified, every measurement live, the audit log clean — and a real regression shipped
+    underneath it. It is invisible to any amount of *after-only* checking, however rigorous, because the
+    thing that changed was never on the list of things to look at.
+    **THE MECHANISM IS THE RULE-73 BEFORE/AFTER CAPTURE, USED AS A DIFF** — not merely as a picture for
+    the comment. The same pre-fix capture that produces the executive exhibit is what makes this diff
+    possible, which is a second reason it must be taken at the START of the pass while the pre-fix build
+    is still reachable. Method: playbook **§AD.5**.
+    **RATIONALE, 2026-09-10:** SV-9870 was passed and its QA comment posted. The QA lead then required a
+    before-vs-after comparison (Rule 73); building it surfaced the footer regression on its **first
+    use**, and the ticket's own verdict had to be reversed. Ties to Standing Rules 12 (observed, never
+    inferred — and a dismissal is an inference), 17 (complete data in/out), 25 (quote the source the
+    build deviates from), 40 (trace across every surface), 44 (a contradicting signal is a bug report
+    against our own conclusion until re-derived), 50 (exhaustive **and** exact — this rule says
+    exhaustive over the OUTPUT, not merely over the checklist), 57 (the spec defines expected behaviour —
+    S5-R9 is what makes this a defect), 66 (test what the document says, not what the handoff says), 68
+    (bite-proof) and 73 (the before/after capture that makes the diff possible).
+
 ## Project purpose (Custom Roles project)
 Manual test-case authoring + live staging (Verify-in-UI) verification + TestRail
 management for ShopView **"Custom Roles and Permissions"**, plus related

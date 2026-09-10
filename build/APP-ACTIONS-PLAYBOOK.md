@@ -3984,3 +3984,42 @@ is not a repair — the picture is what gets remembered.
 before-image: it is not an observation (Rule 12), and if anyone ever asks how it was produced the whole
 comment loses its credibility. **If the before cannot be captured, write one plain line in the comment
 saying so** and raise the access as an outstanding item — an honest gap beats a misleading picture.
+
+### AD.5 USE THE BEFORE/AFTER AS A DIFF, NOT ONLY AS A PICTURE (Standing Rule 74, learned 2026-09-10)
+
+The pre-fix capture is worth far more than the exhibit it produces. **Run it as a content diff and
+account for every difference**, because a fix carries whatever else was in the commit — and the
+ticket's change list is not the diff.
+
+**The order that finds it fastest and cheapest:**
+
+1. **Grand totals first.** If subtotal and total are identical on both renders, **the data is the same
+   and every remaining difference belongs to the build.** This single comparison converts "is this data
+   drift?" from a guess into a settled fact. *(2026-09-10: `$4,949.72` / `$5,197.20` identical on both,
+   which is what proved the missing figures were the build, not the clone.)*
+2. **Money as a multiset**, both directions:
+   `Counter(re.findall(r'\$[\d,]+\.\d\d', text))` — then `before - after` and `after - before`.
+   A strict subset in one direction is the loud signal: something stopped being printed.
+3. **Structure counts:** job/line numbers, row counts, section headings, and the **shape of every
+   repeated block**. The decisive check on 2026-09-10 was enumerating the footer of *every* work line:
+   ```python
+   feet = re.findall(r'<div class="job-foot[^"]*">(.*?)</div>', body, re.S)
+   Counter(' + '.join(re.findall(r'<span[^>]*>([A-Za-z ]+?)\s*<b>', f)) for f in feet)
+   # staging: 12 x [Labor + Parts + Line total], 5 x [Labor + Line total], 2 x [Parts + Line total], 3 x [Line total]
+   # branch : 22 x [Line total]
+   ```
+4. **Locate one differing value in its surrounding text** before theorising about it — three lines of
+   context turned "39 money tokens missing" into "the Labor and Parts figures are gone from the footer".
+5. **Strip `<style>` before diffing HTML.** Both documents embed a large commented stylesheet; raw
+   `count()` on the full file counts CSS comments and hides the body change.
+
+**THE BAR: any difference the ticket does not explain is a finding until proven otherwise.**
+*"Data drift" / "clone divergence" / "different document"* are hypotheses — step 1 proves or kills them
+in one call. Writing one of them down without that proof is how a real regression gets filed as noise.
+
+**Attribution, honestly:** with no access to the application repo, which *ticket* introduced an
+undeclared change is established **by elimination on the branch's contents** — and that is reasoning,
+not observation. Say so. *(2026-09-10: the `sv9849` branch = staging + SV-9849 + SV-9870; SV-9849 is
+masthead-only; SV-9773's fix was verified present and CORRECT on staging — `Labor $324.90`
+fee-inclusive on its own repro work order — so the footer removal came in with the print-template work.
+The behaviour is observed; the authorship is inferred, and the report must separate the two.)*
