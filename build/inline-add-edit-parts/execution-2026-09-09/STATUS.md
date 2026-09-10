@@ -126,18 +126,27 @@ Two things follow:
    for the "Move labor" toggle. Probe 69 settles whether *any* role change persists on this branch
    before the four role-variant cases are attempted again.
 
-## The part types on this branch, measured
+## 🛑 `part_type` IS A PROPERTY OF THE QUERY, NOT OF THE PART — corrected 2026-09-10 03:59
 
-`GET /api/work-orders/part/request/inventory-parts-as-options-with-remaining-catalogue-parts` returns
-two kinds, and this decides which case can use which part:
+`GET /api/work-orders/part/request/inventory-parts-as-options-with-remaining-catalogue-parts` returns a
+`part_type` of `inventory_part` or `special_part`, and **the same part number comes back as either one
+depending on what you searched for**. Measured, on this branch, minutes apart:
 
-| `part_type` | What it is | On this branch |
+| Part | in a broad `search=OIL` | in `search=<its own part number>` |
 |---|---|---|
-| `inventory_part` | stocked, held in bins | e.g. **A4731800909**, cost 3799, `binLocations` length 1 |
-| `special_part` | the catalogue / special-order side | e.g. **51372MP**, **POI5935C**, cost set, `binLocations` **empty** |
+| **POI5935C** | `special_part`, `binLocations` **empty** | **`inventory_part`**, `binLocations` length **1**, cost 899, sell 1474 |
+| **POI53129C** | `special_part`, empty | **`inventory_part`**, 1 bin |
+| **866850C** | `special_part`, empty | **`inventory_part`**, 1 bin |
+| **51372MP** | `special_part`, empty | **`inventory_part`**, 1 bin, qty 2.00 |
 
-⚠️ **`binLocations` being empty does not mean the card shows no stock** — 51372MP's card reads
-*"Inventory Qty: 2 EA Unassigned 2"*. Read the bin chips off the card, not only off the payload.
+**So `part_type` cannot be used to tell a catalogue part from an inventory part**, and an earlier note
+here that said it could was wrong. The bin data is also present-or-absent by query, which is why
+51372MP's card reads *"Inventory Qty: 2 EA Unassigned 2"* while a broad search reports it as having no
+bins at all. **Read the card, and confirm any payload fact with a second, differently-shaped query.**
+
+The pure catalogue parts — the ones with no inventory record at all — are reachable through
+`GET /api/parts-catalogue/catalogue-parts-that-are-not-on-location` (playbook: 19,496 of them). That is
+the list C45001 clause 1 and C45039 clause 1 need.
 
 ## Open at this point
 
