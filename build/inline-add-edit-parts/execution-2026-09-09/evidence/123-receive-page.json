@@ -1,0 +1,104 @@
+{
+ "before": {
+  "line": "authorized",
+  "reqs": [
+   {
+    "status": "waiting_to_receive",
+    "qty": 5
+   }
+  ],
+  "parts": []
+ },
+ "pageShape": {
+  "url": "/order/9d9dec3c-5a20-4120-9c45-c7998ee8b3f7",
+  "heading": "Purchase Order Details",
+  "buttons": [
+   "timerClock In",
+   "Staging Heavy Duty - 9919AS",
+   "arrow_backBack to Work Order",
+   "edit",
+   "Receive"
+  ],
+  "inputs": [
+   {
+    "label": "Search",
+    "value": "",
+    "testid": "select_global_search",
+    "type": "search"
+   },
+   {
+    "label": "Vendor",
+    "value": "",
+    "testid": "select_assign_vendor_9d9dec3c-5a20-4120-9c45-c7998ee8b3f7",
+    "type": "search"
+   },
+   {
+    "label": "input_invoice_9d9dec3c-5a20-4120-9c45-c7998ee8b3f7",
+    "value": "",
+    "testid": "input_invoice_9d9dec3c-5a20-4120-9c45-c7998ee8b3f7",
+    "type": "text"
+   },
+   {
+    "label": "Invoice Date",
+    "value": "09/10/2026",
+    "testid": "date_input_invoice_date_9d9dec3c-5a20-4120-9c45-c7998ee8b3f7",
+    "type": "text"
+   },
+   {
+    "label": "input_sell_59512f5d-e20f-4a1c-b7fa-2a6913b24031",
+    "value": "40",
+    "testid": "input_sell_59512f5d-e20f-4a1c-b7fa-2a6913b24031",
+    "type": "number"
+   },
+   {
+    "label": "input_qty_59512f5d-e20f-4a1c-b7fa-2a6913b24031",
+    "value": "5",
+    "testid": "input_qty_59512f5d-e20f-4a1c-b7fa-2a6913b24031",
+    "type": "number"
+   },
+   {
+    "label": "input_tax_9d9dec3c-5a20-4120-9c45-c7998ee8b3f7",
+    "value": "0.00",
+    "testid": "input_tax_9d9dec3c-5a20-4120-9c45-c7998ee8b3f7",
+    "type": "text"
+   }
+  ],
+  "tableHeaders": [
+   "Part Number",
+   "Description",
+   "Cost",
+   "Sell",
+   "Quantity Ordered",
+   "Quantity Received",
+   "Total"
+  ],
+  "rowCount": 2,
+  "head": "Skip to main content\nWork Orders\nSchedule\nCustomers\nParts\nReports\nSearch\nCtrl+K\ntimer\nClock In\nnotifications\nStaging Heavy Duty - 9919\nAS\narrow_back\nBack To Work Order\nPurchase Order Details\nWork Order Number\nS9315-15904\nopen_in_new\nDate Ordered\nSep 10, 2026\nVendor(s)\nAabridge Beverages\nOrdered By\nAdmin ShopView\nNote\n—\nVendor\nAabridge Beverages\narrow_drop_down\n1 part\nevent\nInvoice Date\nReceive Parts\n\tPart Number\tDescription\tCost\tSell\tQuantity Ordered\tQuantity Received\tTotal\n\n\tChaos\nedit\n\tABC\t$10"
+ },
+ "filled": [],
+ "action": {
+  "clicked": true,
+  "label": "Receive"
+ },
+ "confirm": {
+  "none": true
+ },
+ "writes": [
+  {
+   "m": "POST",
+   "u": "/api/inventory/orders/receive-view",
+   "body": "{\"workOrderId\":\"a1098c78-f74b-4c5d-a194-0aed46e86660\",\"vendorIds\":[\"1e7bd0bf-e882-45fa-8c21-835e32ffa374\"]}"
+  }
+ ],
+ "after": {
+  "line": "authorized",
+  "reqs": [
+   {
+    "status": "waiting_to_receive",
+    "qty": 5
+   }
+  ],
+  "parts": []
+ },
+ "partLanded": false
+}
