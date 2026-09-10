@@ -1,0 +1,7 @@
+{
+ "pass_meta": {"suite":"Inline Add and Edit Parts (6597)","run":418,"env":"the sv9315 QA branch",
+   "build":"v26.36.0-f43b2fd","date":"10 September 2026","view_mode":"full"},
+ "results": {
+  "C45252": {"verdict":"Passed","observed":"What was checked: whether typing the Cost fills the Sell price in by itself, worked out from the shop's pricing rules for that part's category. What happened: with the category set to AUTO-Batteries first, every cost typed produced a sell price immediately - 40.00 gave 80.00, 90.00 gave 180.00 and 150.00 gave 300.00, all exactly double, which is that category's mark-up. So the pricing rules are applied as you type and nobody has to work the figure out by hand. IMPORTANT - please read: this case carries a note saying the Sell price does NOT change when you enter the Cost. That is no longer what the build does, so the note should be removed. One thing does matter and is worth knowing: the Sell price only fills in once a Category has been chosen. With no category there is no pricing rule to apply and the Sell price stays empty - which is why an earlier check on this same build appeared to show it not working.","not_observed":null}
+ }
+}
