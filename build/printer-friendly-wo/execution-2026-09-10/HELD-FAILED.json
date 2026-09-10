@@ -1,0 +1,17 @@
+{
+ "pass_meta": {
+  "suite": "Printer Friendly Work Orders (6617)",
+  "run": 419,
+  "env": "the Staging environment",
+  "build": "staging v26.36.2-617d8d1",
+  "date": "10 September 2026",
+  "view_mode": "Full View"
+ },
+ "results": {
+  "C45105": {
+   "verdict": "Failed",
+   "observed": "What was checked: that each block of a job line on the printed page is separated from the next by a heavy line and a gap, so a mechanic has somewhere to write. What happened: the gap is there but the heavy line is not. Between one line's block and the next the page leaves a clear empty band about the height of three text rows, which is the writing space the requirement asks for. There is no rule drawn there at all - not a heavy one, not a light one. The measurement was taken on the printed page itself, on every row: the only heavy rule on the whole page is under the column headings at the very top, and the thin hairlines that do exist sit between the rows INSIDE a block, which is the opposite of what is wanted - the divisions within a block are drawn and the division between blocks is not. To be sure this was not a fault in how it was measured, the same measurement found the heading rule and eighty-three other ruled elements on the page, so it does see rules where there are any.",
+   "todo": "What needs to be done: on the printed page, draw a heavy rule across the full width at the end of each job line's block, just above the blank writing band that already separates it from the next line. The writing band itself is correct and should stay as it is."
+  }
+ }
+}

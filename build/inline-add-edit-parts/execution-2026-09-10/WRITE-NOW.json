@@ -1,0 +1,19 @@
+{
+ "pass_meta": {
+  "suite": "Inline Add and Edit Parts on Work Order Lines (6597)",
+  "run": 418,
+  "env": "the Staging environment",
+  "build": "staging v26.36.2-617d8d1",
+  "date": "10 September 2026"
+ },
+ "results": {
+  "C45022": {
+   "verdict": "Passed",
+   "observed": "What was checked: that when saving a new part fails for some reason other than the job being closed to changes - the connection dropping, say - the user is told plainly and does not lose what they typed. What happened: both. Working as a technician, a new part row was opened on a job line and filled in with a description and a quantity, and the save was then made to fail the way a dropped connection makes it fail. A message appeared reading 'Couldn't add the part. Please try again.' The row stayed open with everything still in it - the description and the quantity were both exactly as typed. Nothing had to be re-entered."
+  },
+  "C45062": {
+   "verdict": "Passed",
+   "observed": "What was checked: that when saving a new part from the full part row fails for some reason other than the job being closed to changes, the user is told plainly and does not lose what they typed. What happened: both. A new part row was opened on a job line and filled in with a description, a quantity of 3, a cost of 11.50 and a sell price of 22.75, and the save was then made to fail the way a dropped connection makes it fail. A message appeared reading 'Couldn't add the part. Please try again.' The row stayed open with all four values exactly as typed - nothing had to be re-entered."
+  }
+ }
+}

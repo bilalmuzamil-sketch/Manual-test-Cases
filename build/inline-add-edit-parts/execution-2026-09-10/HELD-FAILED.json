@@ -3,7 +3,7 @@
   "suite": "Inline Add and Edit Parts on Work Order Lines (6597)",
   "run": 418,
   "env": "the Staging environment",
-  "build": "staging 2026-09-10",
+  "build": "staging v26.36.2-617d8d1",
   "date": "10 September 2026"
  },
  "results": {
@@ -19,10 +19,6 @@
    "not_observed": "Invoiced. A job's stage cannot be moved to Invoiced by hand on this system, and no invoiced job was available to look at. Imported is not a stage this product has at all.",
    "todo": "What needs to be done: on a Declined job, hide the part-edit control on every part row, the same way it is already hidden on a Paid job and on a Complete job. This is the same underlying problem as the other Declined findings in this suite, so one fix should settle them together."
   },
-  "C45022": {
-   "verdict": "Passed",
-   "observed": "What was checked: that when saving a new part fails for some reason other than the job being closed to changes - the connection dropping, say - the user is told plainly and does not lose what they typed. What happened: both. Working as a technician, a new part row was opened on a job line and filled in with a description and a quantity, and the save was then made to fail the way a dropped connection makes it fail. A message appeared reading 'Couldn't add the part. Please try again.' The row stayed open with everything still in it - the description and the quantity were both exactly as typed. Nothing had to be re-entered."
-  },
   "C45035": {
    "verdict": "Failed",
    "observed": "What was checked: that if a job is closed to changes while somebody has a part open for editing, pressing Save is refused and they are told to refresh. What happened: it is not refused. Working as a technician, an existing part on a job line was opened for editing and its quantity changed from 1 to 9. The job was then moved to Declined, which should close it to changes. Save was pressed. No warning appeared - there was no 'This work order can no longer be edited' message and nothing telling the user to refresh - and the row simply closed as though the change had been accepted.",
@@ -37,10 +33,6 @@
    "verdict": "Failed",
    "observed": "What was checked: that if a job is closed to changes while somebody is part-way through adding a part, pressing Save is refused and they are told to refresh. What happened: it is not refused - the part is added. A new part row was opened on an open job and filled in with a description, a quantity, a cost and a sell price. The job was then moved to Declined, which should close it to changes, and this was read back from the system to be sure it had actually moved. Save was pressed. No warning appeared - there was no 'This work order can no longer be edited' message - and instead the page showed 'Part added'. The part went onto a job that should have been closed to changes.",
    "todo": "What needs to be done: when the job is no longer open to changes, refuse the save and show the message 'This work order can no longer be edited. Refresh to see the latest.', leaving what the user typed on screen. This is the clearest example of the Declined problem running through this suite - a Declined job is still fully editable - so one fix should settle it and the related findings together."
-  },
-  "C45062": {
-   "verdict": "Passed",
-   "observed": "What was checked: that when saving a new part from the full part row fails for some reason other than the job being closed to changes, the user is told plainly and does not lose what they typed. What happened: both. A new part row was opened on a job line and filled in with a description, a quantity of 3, a cost of 11.50 and a sell price of 22.75, and the save was then made to fail the way a dropped connection makes it fail. A message appeared reading 'Couldn't add the part. Please try again.' The row stayed open with all four values exactly as typed - nothing had to be re-entered."
   },
   "C45060": {
    "verdict": "Failed",

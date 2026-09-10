@@ -1,0 +1,77 @@
+{
+ "pass_meta": {
+  "suite": "Printer Friendly Work Orders (6617)",
+  "run": 419,
+  "env": "the Staging environment",
+  "build": "staging v26.36.2-617d8d1",
+  "date": "10 September 2026",
+  "view_mode": "Full View"
+ },
+ "results": {
+  "C45094": {
+   "verdict": "Passed",
+   "observed": "What was checked: that the top of the printed page names the customer, the vehicle, the service advisor, the lead technician and the date the job started. What happened: it does. Two jobs were printed so that every field could be seen at least once. The first printed page shows Customer: Savannah Tran, Company: 4 Star Truck Repair, the vehicle 2011 Hyundai Santa Fe with its serial number, unit number 665 and licence plate ZZP-6028, Service Advisor: Admin ShopView, Lead Technician: Aaron Jennings, and the date Sep 10, 2026. The second printed page also carries the odometer reading, shown as Mileage: 45.",
+   "not_observed": "Engine hours. No vehicle on this test system has an engine-hour reading recorded against a job, so the part of the requirement that says to show engine hours when there are some could not be exercised. The requirement only asks for it when a reading exists, and where readings do exist - the odometer - the page prints them."
+  },
+  "C45095": {
+   "verdict": "Passed",
+   "observed": "What was checked: that a detail with nothing recorded against it is left off the printed page altogether, rather than printed as an empty line. What happened: it is left off. On the first job the vehicle has no odometer reading and no engine hours, and neither line appears anywhere on the page - there is no empty 'Mileage:' waiting to be filled in. On the second job there is no lead technician, and the 'Lead Technician' line is simply not there, while the first job - which has one - prints it. The same holds further down the page: a job line with no technician's note prints no note row, and a job line with no parts prints no parts row. Nothing was printed blank."
+  },
+  "C45099": {
+   "verdict": "Passed",
+   "observed": "What was checked: that every job line on the printed page carries its number, what the work is, where it has got to, the time spent against the time allowed, the technician's note and who is assigned to it. What happened: all six are there. Line 1 prints as: 1, Replace - Brake pot, 0.00 / 1.50, Approved - that is the number, the description, the time actual against estimated, and the status. Underneath it prints Labor followed by the technician's name, Aaron Jennings. Lines 2 and 3 additionally print a Tech Story row carrying the technician's written note, both a short one and a long one that wraps over several lines without being cut off."
+  },
+  "C45107": {
+   "verdict": "Passed",
+   "observed": "What was checked: that a job with no work lines on it still prints, and says so in words. What happened: it does. Job S2-32270 has no lines at all. The Print option in its menu is offered normally and is not greyed out, the page builds, and where the lines would be it prints the single row 'No lines on this work order'.",
+   "not_observed": "An earlier note on this case said the Print option is greyed out when a job has no lines, so the case could not be run. That was wrong. It was re-checked on the screen this run: the option is offered, it is not greyed out, and it prints. The note on the case should come off."
+  },
+  "C45108": {
+   "verdict": "Passed",
+   "observed": "What was checked: that a job line with no parts on it prints no parts area. What happened: it prints none. A fourth line was added to the job and both of its parts were taken off, leaving it with nothing. On the printed page that line prints its own row - 4, Service - Transmission service (Automatic) - and then nothing but blank space; there is no Parts row underneath it. The other three lines on the same page, which do have parts, each print their Parts rows as usual, so the page is capable of printing them and simply has none to print for line 4."
+  },
+  "C45109": {
+   "verdict": "Passed",
+   "observed": "What was checked: that a job line with nobody assigned to it prints no technician area. What happened: it prints none. The fourth line on the job has no technician assigned, and on the printed page it has no Labor row and no name under it. The other three lines on the same page each print Labor followed by Aaron Jennings, so the page does print the technician when there is one."
+  },
+  "C45116": {
+   "verdict": "Passed",
+   "observed": "What was checked: that a job with no work lines still prints its totals, showing zero rather than hiding them, and shows one row saying there are no lines. What happened: both. The printed page for job S2-32270 shows Total Actual Time: 0.00 and Total Estimated Time: 0.00, and above them a single row reading 'No lines on this work order'. Nothing is hidden.",
+   "not_observed": "An earlier note on this case said it could not be run because the Print option is greyed out on a job with no lines. That was wrong and has been re-checked on the screen this run - the option is offered and the page prints. The note should come off the case."
+  },
+  "C45125": {
+   "verdict": "Passed",
+   "observed": "What was checked: that printing a job is recorded in the job's own history, the way printing an estimate or an invoice already is. What happened: it is recorded. After printing, the job's history - reached from the three-dots menu on the job's toolbar, where it is called Audit Log - shows a new entry reading 'Work order printed history - Admin ShopView - Total: $1,214.90' with the date and time, Sep 10, 2026 05:34 AM. Sixteen such print entries are listed, one for each time the job was printed, sitting alongside the other history entries in the same list and the same shape."
+  },
+  "C45097": {
+   "verdict": "Blocked",
+   "observed": "What was checked: that a job with no customer on it prints the words 'No customer assigned'. What happened: this cannot be reached on this system, and it was tried properly rather than assumed. A job cannot be created without a customer - on the New Work Order window, leaving Customer empty and pressing Save answers 'Customer is a required field' and nothing is created. Every existing job on the system has a customer. So there is no job in the state this case describes, and the words it looks for can never be printed here.",
+   "todo": "What needs to be done: this needs a ruling from the product owner. Either the product should allow a job to exist with no customer - in which case this case can then be run - or the requirement to print 'No customer assigned' does not apply to this product and the case should be retired. Nothing needs doing in the build until that is decided."
+  },
+  "C45098": {
+   "verdict": "Blocked",
+   "observed": "What was checked: that a job with no vehicle on it prints the words 'No vehicle assigned'. What happened: this cannot be reached on this system, and it was tried properly rather than assumed. A job cannot be created without a vehicle - on the New Work Order window, choosing a customer and then pressing Save with the vehicle box left empty answers 'Asset is a required field' and nothing is created. The nearest real job, S2-6107, has a vehicle with only a year recorded and prints it as 'Vehicle: 1993' - that is thin information, not none. So there is no job in the state this case describes.",
+   "todo": "What needs to be done: this needs a ruling from the product owner, the same one as the case about a job with no customer. Either a job should be allowed to exist with no vehicle, or the requirement to print 'No vehicle assigned' does not apply here and the case should be retired. Nothing needs doing in the build until that is decided."
+  },
+  "C45104": {
+   "verdict": "Blocked",
+   "observed": "What was checked: that a job line marked Cancelled still prints, with its state shown. What happened: there is no Cancelled state for a job line in this product, so no line can be put into it. Opening a line and looking at its Status list on screen shows exactly four choices - Authorization required, Declined, Authorized and Complete - and the system refuses anything else. This was checked on the screen, not guessed from an error message.",
+   "todo": "What needs to be done: this needs a ruling from the product owner on what the requirement means, since the product has no Cancelled state for a job line. Either a Cancelled state is meant to be added, or the requirement refers to something the product now calls by another name - most likely Declined - and the case should be reworded to that. Nothing needs doing in the build until that is decided."
+  },
+  "C45088": {
+   "verdict": "Passed",
+   "observed": "What was checked: that the Print option is offered whatever stage a job has reached. What happened: it is offered on every stage this product has. Each stage was set on the same job in turn and the job's own three-dots menu was opened on screen each time. Estimate, Approved, Review, Invoiced, Declined and Complete all offer Print Work Order, and it is not greyed out on any of them. On Paid the menu is shorter - Audit Log, Timesheets, Print Work Order - and Print is there. A job that has been started (a technician has pressed Start and the clock is running on a line) also offers it. Complete was reached the way it is reached in real use: every line marked Complete, then Complete Work Order, then answering the question the product asks about parts not yet ordered.",
+   "not_observed": "Imported is not a stage this product has. Invoiced was read on a job already at that stage rather than set by hand, because the product answers that Invoiced cannot be set by hand - it is reached by raising an invoice.",
+   "note": "Earlier tester note on this case said only Estimate, Approved and Paid exist here and told the tester to mark it Blocked. That is out of date - six stages plus a started job were checked this run."
+  },
+  "C45090": {
+   "verdict": "Passed",
+   "observed": "What was checked: that somebody whose access does not include seeing work orders cannot open a work order at all, and so cannot reach the Print option. What happened: they cannot. Every kind of access on this system currently includes seeing work orders, so one was set up the way the case describes - on the Roles & Permissions screen, the work-order viewing switch was turned off on a spare, unused access level, and the screen confirmed what it was removing before saving. A technician was put on that access level. Signed in as that person, going straight to the work order's own web address does not open it: there is no job page, no three-dots menu, no Print option, and Work Orders is not even offered in the top menu. Trying a second time gave the same result.\n\nTo be sure this was really the access control and not simply a broken sign-in, the identical steps were run first on a technician who IS allowed to see work orders: for them the job page opened normally and Print was offered. An administrator sees the same. So the method works, and the refusal is genuine.",
+   "note": "The spare access level and the technician were both put back exactly as they were found."
+  },
+  "C45126": {
+   "verdict": "Passed",
+   "observed": "What was checked: that the print is still recorded in the job's history even if the person closes the print window without printing. What happened: it is. Before pressing Print the job's history held fifteen print entries. Print was pressed and the print window was then refused rather than completed. The history then held sixteen, the newest reading 'Work order printed' against Admin ShopView with the time. So the record is written when Print is chosen, not when paper comes out."
+  }
+ }
+}

@@ -1,0 +1,26 @@
+{
+ "pass_meta": {
+  "suite": "Printer Friendly Work Orders (6617)",
+  "run": 419,
+  "env": "the Staging environment",
+  "build": "staging 2026-09-10",
+  "date": "10 September 2026"
+ },
+ "results": {
+  "C45088": {
+   "verdict": "Passed",
+   "observed": "What was checked: that the Print option is offered whatever stage a job has reached. What happened: it is offered on every stage this product has. Each stage was set on the same job in turn and the job's own three-dots menu was opened on screen each time. Estimate, Approved, Review, Invoiced, Declined and Complete all offer Print Work Order, and it is not greyed out on any of them. On Paid the menu is shorter - Audit Log, Timesheets, Print Work Order - and Print is there. A job that has been started (a technician has pressed Start and the clock is running on a line) also offers it. Complete was reached the way it is reached in real use: every line marked Complete, then Complete Work Order, then answering the question the product asks about parts not yet ordered.",
+   "not_observed": "Imported is not a stage this product has. Invoiced was read on a job already at that stage rather than set by hand, because the product answers that Invoiced cannot be set by hand - it is reached by raising an invoice.",
+   "note": "Earlier tester note on this case said only Estimate, Approved and Paid exist here and told the tester to mark it Blocked. That is out of date - six stages plus a started job were checked this run."
+  },
+  "C45090": {
+   "verdict": "Passed",
+   "observed": "What was checked: that somebody whose access does not include seeing work orders cannot open a work order at all, and so cannot reach the Print option. What happened: they cannot. Every kind of access on this system currently includes seeing work orders, so one was set up the way the case describes - on the Roles & Permissions screen, the work-order viewing switch was turned off on a spare, unused access level, and the screen confirmed what it was removing before saving. A technician was put on that access level. Signed in as that person, going straight to the work order's own web address does not open it: there is no job page, no three-dots menu, no Print option, and Work Orders is not even offered in the top menu. Trying a second time gave the same result.\n\nTo be sure this was really the access control and not simply a broken sign-in, the identical steps were run first on a technician who IS allowed to see work orders: for them the job page opened normally and Print was offered. An administrator sees the same. So the method works, and the refusal is genuine.",
+   "note": "The spare access level and the technician were both put back exactly as they were found."
+  },
+  "C45126": {
+   "verdict": "Passed",
+   "observed": "What was checked: that the print is still recorded in the job's history even if the person closes the print window without printing. What happened: it is. Before pressing Print the job's history held fifteen print entries. Print was pressed and the print window was then refused rather than completed. The history then held sixteen, the newest reading 'Work order printed' against Admin ShopView with the time. So the record is written when Print is chosen, not when paper comes out."
+  }
+ }
+}
