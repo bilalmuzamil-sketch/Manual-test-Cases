@@ -437,3 +437,17 @@ rule."* The rule now reads **everything he reads**, with no category to argue ab
 executable check `build/testing-tools/plain_check.py` (exit 1 naming each phrase, bare tallies
 included; ids exempt after a `---REFERENCE---` line so Rule 8 still holds). Learning **L0038**.
 Rule count unchanged at 105 — this is an amendment to 103, per the §1 admission gate.
+
+## Rule 106 added 2026-09-10
+
+**106 — RECONCILE THE CASE'S EXPECTED AGAINST THE LIVE SOURCE BEFORE PROPOSING ANY DEFECT.** Ordered
+by the QA lead on 2026-09-10, quoted verbatim in the rule body, after a defect draft cited spec rules
+**S1-N1 / S1-N2** taken from the session's own notes and from our own case text rather than from the
+specification. Asked *"I need the exact quotation from the sources"*, the session had to go and read
+the live page; the wording held, but the ticket had been written without opening the document it
+cited. The rule adds the decisive branch that did not previously exist: **if the case and the source
+disagree, the CASE is the defect** — ask to correct the case, never to file a ticket against the
+build. Recorded in `build/rules/RULES-61-ONWARD.md` (rule 106), indexed in `CLAUDE.md` §2, and folded
+into the existing §1 defect bullet as part **(d)** per the §1 admission gate. Worked example:
+`build/inline-add-edit-parts/source-verify-2026-09-10/DECLINED-QUOTES.md`. Learning **L0039**.
+Rule count 105 → **106**.

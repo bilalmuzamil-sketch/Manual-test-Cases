@@ -721,3 +721,28 @@ Verified against the offending sentence: it catches all seven.
 **The writing rule underneath it:** a number is never sent alone. *"114 of 124 pass"* is data.
 *"114 pass; 10 are finished but can't be written up until you say yes to one bug report; nothing left
 to test"* is information he can act on.
+
+## L0039 — 2026-09-10 · a defect was drafted quoting spec rules I had never opened
+
+**What happened.** The Declined defect draft cited **S1-N1** and **S1-N2** as its source. Both were
+quoted from my own notes and from our own case text. The QA lead asked *"where in the specs does it
+say that? I need the exact quotation from the sources."* I had to go and read the live Confluence page
+to answer. **The wording did hold — but that was luck, not method.** The ticket had been written
+without ever opening the document it cited.
+
+**His rule (now Rule 106):** before proposing any defect, reconcile three things — what the **case**
+says, what the **live source** says today, and what the **build** did.
+- case agrees with source, build differs → a real defect, ask to file
+- **case disagrees with source → the CASE is wrong, not the build.** Do not ask to file; ask
+  permission to correct the case's Expected Result
+- source silent or ambiguous → hold and ask, never resolve from the build
+
+And: **always the latest version of the source, never an old record in memory.**
+
+**Two things worth keeping from doing it properly this time:**
+1. **Answer the contradicting rule in advance.** S1-R9 says Add Part *is* available on a line whose
+   status is Complete — a reviewer would reach for that immediately. It is about the **line's** status;
+   S1-N1 is about the **work order's** status. Writing that down before being asked is the difference
+   between a ticket that survives review and one that bounces.
+2. **Say what you could not confirm.** Our cases claim "specification version 16". The live read
+   returns no version integer, so I stated that plainly instead of repeating the number as if verified.

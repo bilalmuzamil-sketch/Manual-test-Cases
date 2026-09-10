@@ -20,7 +20,7 @@ The previous CLAUDE.md was **738 KB / roughly 183,000 tokens**, and it was **TRU
 AT RULE 62**. Sessions were therefore running with **Rules 63–88 SILENTLY ABSENT** while believing
 they had read the whole file. A rule you have never seen is a rule you will break.
 
-**THEREFORE: NEVER ASSUME YOU HAVE SEEN ALL THE RULES.** There are **105 numbered Standing Rules**.
+**THEREFORE: NEVER ASSUME YOU HAVE SEEN ALL THE RULES.** There are **106 numbered Standing Rules**.
 Count them in the index below. If you are
 about to apply a rule, open its file and read it. **NEVER read
 `build/rules/CLAUDE-FULL-ARCHIVE-2026-08-21.md` whole** — it will exhaust your context exactly as the
@@ -76,6 +76,18 @@ safe. The **evidence** for each one lives in the rule or skill the bullet points
   re-verification comes BEFORE the ask; it does not replace it.
   Verbatim quotes, the worked examples (C45068 · C45060 · C44996) and the full treatment:
   `build/rules/RULES-61-ONWARD.md` rule 62 (2026-09-01 amendment) and `build/skills/06-DEFECT-PREP.md` §A10-b.
+  **🛑 (d) AND RECONCILE THE CASE AGAINST THE LIVE SOURCE FIRST — THREE WAYS (106; QA lead 2026-09-10,
+  after a draft cited spec rules quoted from my own notes, never opened).** Before ANY defect is put to
+  him: **the CASE's Expected** (read live from TestRail) · **the SOURCE as it reads TODAY** (fetched
+  this pass, quoted VERBATIM with page id, requirement id and read date — our own case text, a
+  `requirements.md` extract or a remembered version is NOT the source, Rule 100) · **the BUILD observed**
+  (12, 104). **Case agrees, build differs ⇒ real defect, ask to file with the quote. CASE DISAGREES WITH
+  SOURCE ⇒ THE CASE IS THE DEFECT — do NOT ask to file; ask permission to CORRECT the case's Expected,
+  showing both wordings. Source silent/ambiguous ⇒ hold and ask (58).** Always the LATEST version; where
+  the version integer cannot be read, say so rather than repeating one from our own text. Write the
+  reconciliation to `build/<project>/source-verify-<date>/`, and **answer the nearest apparently
+  contradicting rule in advance**. Worked example:
+  `build/inline-add-edit-parts/source-verify-2026-09-10/DECLINED-QUOTES.md`.
 - **SECRETS: `/tmp` ONLY, `chmod 600`, NEVER COMMITTED — THIS REPO IS PUBLIC (82).** Cookies, tokens,
   passwords, OTP codes live in `/tmp` and nowhere else; never in a log, an error paste, or a commit.
   **Before every commit run the REAL scanner: `python3 build/testing-tools/scan_secrets.py --staged`**
@@ -287,7 +299,7 @@ safe. The **evidence** for each one lives in the rule or skill the bullet points
 
 ---
 
-## 2 · THE RULE INDEX — all 105 rules, and where each one lives
+## 2 · THE RULE INDEX — all 106 rules, and where each one lives
 
 **Read the rule in its file before applying it.** One line per rule; the line is a locator, not the
 rule. Generated from the split files' own headers.
@@ -417,6 +429,7 @@ rule. Generated from the split files' own headers.
 | **103** | EVERYTHING THE QA LEAD READS IS IN HIS LANGUAGE — every message, not only asks; no ids/codes/jargon carrying the meaning, no bare tallies; run `plain_check.py` before sending |
 | **104** | A NEGATIVE FINDING MUST PROVE THE INSTRUMENT WORKED — seven proofs, enforced by `probe_guard.mjs` and `blocker_gate.py`; never re-block on something already unblocked |
 | **105** | NEVER GO IDLE WHILE WORK REMAINS — queue every step with `run_queue.sh`; the last action before any report is to START the next work |
+| **106** | BEFORE PROPOSING A DEFECT, RECONCILE THE CASE'S EXPECTED AGAINST THE **LIVE** SOURCE — if they disagree the CASE is wrong, ask to fix the case, not to file a ticket |
 
 **Operator forms** (the rule bodies are all in `build/rules/RULES-61-ONWARD.md`): **95** →
 `build/skills/TOKEN-DISCIPLINE-CHARTER.md` · **96** → `build/skills/17-REGRESSION-IMPACT-V1-TO-V2.md`
@@ -706,7 +719,7 @@ Compact form — **the rule named in brackets is the authority; read it before r
 | Standing Rules 1–20 (full text) | `build/rules/RULES-01-20.md` |
 | Standing Rules 21–40 (full text) | `build/rules/RULES-21-40.md` |
 | Standing Rules 41–60 (full text) | `build/rules/RULES-41-60.md` |
-| Standing Rules 61 onward (full text — 61–105 today, and every rule added later) | `build/rules/RULES-61-ONWARD.md` |
+| Standing Rules 61 onward (full text — 61–106 today, and every rule added later) | `build/rules/RULES-61-ONWARD.md` |
 | Per-project narrative history (projects 1–7) | `build/rules/PROJECT-HISTORY-ARCHIVE.md` |
 | Byte-verification hashes for the split | `build/rules/INTEGRITY.md` |
 | Staging/QA/prod action recipes, TestRail traps | `build/APP-ACTIONS-PLAYBOOK.md` |
