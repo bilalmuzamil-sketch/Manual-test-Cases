@@ -1,0 +1,39 @@
+03:06:25 C45015/C45017 empty save: {"messages":["Description","Enter a description and qty to save this part."],"focus":{"tid":"input_inline_part_description","label":"Description","tag":"INPUT"},"errFields":[{"label":"Description","tid":"input_inline_part_description"}],"rowOpen":true}
+03:06:28 C45018 after typing description: {"messages":["Enter a qty to save this part."],"errFields":[]}
+03:06:32 C45015b qty missing: {"messages":["Qty","Enter a qty to save this part."],"focus":{"tid":"input_inline_part_quantity","label":"Qty","tag":"INPUT"},"errFields":[{"label":"Qty","tid":"input_inline_part_quantity"}]}
+03:06:37 C45016 qty=0: {"messages":["Qty","Qty must be greater than 0."],"value":"0"}
+03:06:42 C45016 qty=-3: {"messages":["Qty","Qty must be greater than 0."],"value":"-3"}
+03:06:44 C45018 after correcting qty: {"messages":[],"errFields":[]}
+03:06:52 C45004/45005/45006 save-no-partnumber: {"before":10,"after":11,"toast":["check_circle Part added Close"],"newRowOpen":true,"newRowValue":"","focus":{"tid":"input_inline_part_description","label":"Description","tag":"INPUT"},"topRows":["drag_indicator (-) ZZAUTOTEST tv validation edit more_vert 2 Requested","drag_indicator (-) ZZAUTOTEST noqty edit more_vert 1 Requested","drag_indicator (-) ZZAUTOTEST modalsave4 edit more_vert 2 Requested","drag_indicator (-) ZZAUTOTEST requested flow edit more_vert 9 Requested"]}
+03:07:18 C44999 typeahead: {"menu":true,"count":24,"items":["**DUPLICATE** OIL FILTER Detroit DD13/15/16 (LF17511, 57909, P551005, P7505) A4731800909Inventory Qty: 0 eaUnassigned0DUPLICATE","**Upgrade to LF14001NN** - Engine Oil Filter, X15 LF14000NNInventory Qty: 0 eaUnassigned0","*DUPLICATE* Engine Oil Filter 57151Inventory Qty: 0 EAUnassigned0","*Duplicate* Engine Oil Filter, Ford 51372MPInventory Qty: 2 EAUnassigned2","*DUPLICATE* OIL FILTER, Cummins (51748XD, DBL7300, B40142, LF3000, LF9009, LF14009) LF14009NNInventory Qty: 0 eaUnassigned0","*DUPLICATE* Oil Filter, ISB, PX-6/7 (57182, P550428, B7177) LF3970Inventory Qty: 0 eaUnassigned0"]}
+03:07:24 C45000 after select: {"desc":"**DUPLICATE** OIL FILTER Detroit DD13/15/16 (LF17511, 57909, P551005, P7505)","pn":"A4731800909","focus":{"tid":"input_inline_part_quantity","label":"Qty","tag":"INPUT"},"descReadOnly":true}
+node:internal/modules/run_main:123
+    triggerUncaughtException(
+    ^
+
+page.fill: Timeout 60000ms exceeded.
+Call log:
+[2m  - waiting for locator('[data-test-id=input_inline_part_description]')[22m
+[2m    - locator resolved to <input disabled type="text" tabindex="0" aria-label="Description" class="q-field__native q-placeholder" id="f_e9e603da-71eb-40e7-b32b-0c2091136131" data-test-id="input_inline_part_description" value="**DUPLICATE** OIL FILTER Detroit DD13/15/16 (LF17511, 57909, P551005, P7505)"/>[22m
+[2m    - fill("EDITED CATALOG DESCRIPTION")[22m
+[2m  - attempting fill action[22m
+[2m    2 × waiting for element to be visible, enabled and editable[22m
+[2m      - element is not enabled[22m
+[2m    - retrying fill action[22m
+[2m    - waiting 20ms[22m
+[2m    2 × waiting for element to be visible, enabled and editable[22m
+[2m      - element is not enabled[22m
+[2m    - retrying fill action[22m
+[2m      - waiting 100ms[22m
+[2m    119 × waiting for element to be visible, enabled and editable[22m
+[2m        - element is not enabled[22m
+[2m      - retrying fill action[22m
+[2m        - waiting 500ms[22m
+
+    at /home/user/Manual-test-Cases/build/inline-add-edit-parts/execution-2026-09-09/probe43_tv_validation.mjs:109:14 {
+  name: 'TimeoutError'
+}
+
+Node.js v22.22.2
+
+[exited with code 0]
