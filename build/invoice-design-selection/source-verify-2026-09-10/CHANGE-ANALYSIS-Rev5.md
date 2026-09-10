@@ -64,3 +64,26 @@ Every case's provenance names **epic SV-8218** and **spec Revision 3** (audited 
 3. **Q10 (Low):** final dialog/helper wording — the S1 copy cases follow it.
 4. **G2:** the Setting-UI design is still TBD — S1 routes stay provisional.
 5. **Cutoff timestamp** discrepancy (E above).
+
+## G. Second full re-verification, same day (2026-09-10, after another source touch)
+Re-read all sources live again on the QA lead's order. Findings:
+- **Jira unchanged** — epic SV-9892, stories SV-9893–9897, engineering story SV-9872: identical to the
+  first read (updated timestamps unchanged, 2026-09-10 08:46 / 02:32). SV-9896 still says "do not start
+  before Q6"; the epic still says "Q6 can still reshape Story 4".
+- **Spec page touched (~6 min before the read) but the REQUIREMENTS BODY (Story 1–5, S1..S5) is byte-for-byte
+  identical to Rev 5.** The change is confined to the Section 8.1 decision cells:
+  - **Q6 decision cell now records option (a)** ("A) … retroactively changing all Invoice-type documents
+    created prior to Sep 9 2026 … Documents created on/after Sep 9 and before this feature persist Modern …
+    Documents after release respect the new setting"). This is the spec as written (S4-R1..R5).
+  - Q7, Q8 decision cells now prefixed "A)"; **Q12** gained option "(C) edit manually as needed" and its
+    decision includes (C); **Q17** decision adds "run through AI again to simplify … before deciding";
+    Q15 typo fixed. None of these change any requirement or any case expectation.
+- **⚠️ The spec is internally contradictory on Q6:** the decision cell says (a), but the **header still
+  reads "Q6 to Q12 awaiting a Product decision"**, the **change log has no new revision**, and **SV-9896
+  still says "do not start before Q6"**. Per Rule 56 the divergence is disclosed, not silently resolved;
+  per Rule 58 the affected cases are not over-committed.
+- **Action:** requirement text unchanged ⇒ **no expectation changes on any of the 54.** The 10 Story-4
+  cases (C53554–C53562, C53546) get their Q6 note updated to record that Product has now written option (a)
+  **while stating the header/story still lag**, and they stay **NOT-FINAL** until the spec formally closes
+  Q6. All 54 re-verified for render (full, Rule 101). **Flagged to the QA lead** (register item B updated):
+  is Q6 to be treated as decided, so the 10 ship-day cases can become final?

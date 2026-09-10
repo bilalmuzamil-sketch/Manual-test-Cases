@@ -38,24 +38,47 @@ def is_portal(cid):
     return orig[cid]['fields']['custom_expected']['blocks'][1] and any('customer portal' in l for l in orig[cid]['fields']['custom_expected']['blocks'][1])
 
 # --- case-specific decision notes appended to provenance (Rule 106 / open-question disclosure) ---
+# Q6 update 2026-09-10 (2nd re-verify): the spec's Section 8.1 decision cell now records option (a) for
+# Q6 (Story 4 ships as written), but the spec HEADER still reads "Q6 to Q12 awaiting a Product decision"
+# and the Story-4 ticket SV-9896 still says "do not start before Q6". Divergence disclosed (Rule 56); the
+# cases stay NOT-FINAL until the spec formally closes Q6 (Rule 58).
+Q6DEC = ("Q6 update (spec Section 8.1, 2026-09-10): Product has now RECORDED option (a) — the pre-refresh "
+         "back catalogue IS pinned and this story ships as written (documents before the refresh release "
+         "render Legacy; documents created on/after it and before this setting ships persist Modern; "
+         "documents after ship follow the setting). NOTE the spec header still reads \"Q6 to Q12 awaiting a "
+         "Product decision\" and the Story-4 ticket SV-9896 still says \"do not start before Q6\", so this "
+         "case stays NOT-FINAL until the spec formally closes Q6.")
+Q17NOTE = ("\"Created\" for the cohort boundary means the actual creation instant the system records (server "
+           "insert time), NOT the invoice/credit date printed on the document, which a user can edit (Q17). "
+           "Test the boundary by real creation time.")
+Q10DEC = ("Q10 decided (spec Section 8.1, option a): the dialog/helper copy will be TIGHTENED (e.g. "
+          "\"Estimates not yet invoiced…\", \"work order or parts sale\") and the app renders the button "
+          "title-case (\"Switch To Legacy\"/\"Switch To Modern\"). The spec body still shows the current "
+          "verbatim wording, so quote it exactly as-is until the body is updated — but expect these strings "
+          "to change.")
+Q8NOTE = ("The captured design is a design FAMILY (Modern or Legacy), not a frozen template version (Q8): "
+          "Legacy is frozen at v26.35.10, but Modern is not — a later fix to a Modern template changes "
+          "Modern documents already issued, which is expected and not a breach of \"keeps its design for life\".")
+Q7N4NOTE = ("Known Legacy exception (Q7 / SV-9790): a restored v26.35.10 defect means a credit note raised "
+            "with no originating invoice ignores the shop's invoice settings and prints no disclaimer while "
+            "the organization is on Legacy, so S1-N4 does not hold for that one document on Legacy.")
 NOTES = {
- '53554': ['Cohort cutoff: the refresh release is 2026-09-09 at 09:13:36 UTC (spec Terminology / S4-R1, confirmed by engineering Q16).',
-           'OPEN (Q6, High): whether Story 4 ships is awaiting a Product decision; the spec says this story must not start before Q6, and one option is to drop S4-R1 entirely. Treat this cohort behaviour as provisional until Q6 lands.'],
- '53555': ['Cohort cutoff: the refresh release is 2026-09-09 at 09:13:36 UTC (Q16). The between-releases cohort is closed and stops growing when this setting ships.',
-           'OPEN (Q6): the whole back-catalogue behaviour is awaiting a Product decision (provisional).'],
- '53556': ['OPEN (Q6): the back-catalogue cohorts are awaiting a Product decision (provisional).'],
- '53557': ['Cohort cutoff 2026-09-09 09:13:36 UTC (Q16).', 'OPEN (Q6): provisional until the Story-4 decision lands.'],
- '53558': ['Cohort cutoff 2026-09-09 09:13:36 UTC (Q16).', 'OPEN (Q6): building this pinning flips every organization’s pre-refresh back catalogue to Legacy on ship day, including organizations that never chose Legacy; it is awaiting a Product decision and may be dropped.'],
- '53559': ['OPEN (Q6): provisional until the Story-4 decision lands.'],
- '53560': ['OPEN (Q6): provisional until the Story-4 decision lands.'],
- '53561': ['Deliberate exception (Q19, settled): the internal labour-type fix command reverses and recreates an invoice but keeps its original design, so a reversed-and-recreated invoice from that command stays in its old design rather than capturing the current setting.',
-           'OPEN (Q6): provisional until the Story-4 decision lands.'],
- '53562': ['Cohort cutoff 2026-09-09 09:13:36 UTC (Q16).', 'OPEN (Q6): provisional until the Story-4 decision lands.'],
- '53546': ['Cohort cutoff 2026-09-09 09:13:36 UTC (Q16).', 'OPEN (Q6): the pre-refresh-reprints-Legacy behaviour is awaiting a Product decision (provisional).'],
+ '53554': ['Cohort cutoff: the refresh release is 2026-09-09 at 09:13:36 UTC (spec Terminology / S4-R1, confirmed by engineering Q16).', Q17NOTE, Q6DEC],
+ '53555': ['Cohort cutoff: the refresh release is 2026-09-09 at 09:13:36 UTC (Q16). The between-releases cohort is closed and stops growing when this setting ships.', Q17NOTE, Q6DEC],
+ '53556': [Q6DEC],
+ '53557': ['Cohort cutoff 2026-09-09 09:13:36 UTC (Q16).', Q6DEC],
+ '53558': ['Cohort cutoff 2026-09-09 09:13:36 UTC (Q16).', Q17NOTE, Q6DEC],
+ '53559': [Q6DEC],
+ '53560': [Q6DEC],
+ '53561': ['Deliberate exception (Q19, settled): the internal labour-type fix command reverses and recreates an invoice but keeps its original design, so a reversed-and-recreated invoice from that command stays in its old design rather than capturing the current setting.', Q17NOTE, Q6DEC],
+ '53562': ['Cohort cutoff 2026-09-09 09:13:36 UTC (Q16).', Q17NOTE, Q6DEC],
+ '53546': ['Cohort cutoff 2026-09-09 09:13:36 UTC (Q16).', Q17NOTE, Q6DEC],
  '53541': ['Deliberate exception (Q19, settled): the internal labour-type fix command reverses and recreates invoices but keeps each invoice’s original design — a stated exception to S2-R4/S4-E1, not a defect.'],
- '53520': ['The helper-text wording is under challenge (Q10, Low): Product leans toward tightening it (e.g. “Estimates not yet invoiced…”), so treat the exact string as provisional.'],
- '53524': ['The dialog wording is under challenge (Q10, Low): the app-wide button style renders the button as title-case “Switch To Legacy”, and Product leans toward tightening the body copy — treat the exact strings as provisional.'],
- '53525': ['The dialog wording is under challenge (Q10, Low): the app-wide button style renders the button as title-case “Switch To Modern”, and Product leans toward tightening the body copy — treat the exact strings as provisional.'],
+ '53520': [Q10DEC],
+ '53524': [Q10DEC],
+ '53525': [Q10DEC],
+ '53532': [Q7N4NOTE],
+ '53539': [Q8NOTE],
  '53551': ['Exception (Q9, settled): an approval estimate already pushed to the customer portal keeps the design it was sent in — it is a held copy (like a downloaded PDF) and is not re-rendered when the setting changes.'],
  '53566': ['Exception (Q9, settled): an approval estimate already pushed to the portal keeps the design it was sent in; the portal is not re-rendered for that held copy when the setting changes.'],
  '53543': ['A sixth customer document (the Part Sale Credit) was found by engineering (Q21): new ones cannot be created, existing ones render Legacy, and this is tied to the open Q6 decision, so the “all five documents” scope is itself provisional.'],

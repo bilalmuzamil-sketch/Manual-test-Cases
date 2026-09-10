@@ -31,6 +31,17 @@ Story 4 pins the back-catalogue by creation-date cohort. Story 5 = every render 
   deferred; the QA lead decides whether they get a dedicated run or union into the Invoice Refresh run R417
   when built. (Flagged, not auto-done, to avoid polluting a live run with untestable cases.)
 
+## Status — 2026-09-10 (SECOND full re-verify same day — Q6 decision recorded, header still lags)
+Re-read all sources again on the QA lead's order. **Jira unchanged; spec Requirements body (Story 1–5)
+byte-for-byte identical to Rev 5.** Only the Section 8.1 decision cells moved: **Q6 now records option (a)**
+(the pre-refresh back catalogue IS pinned; Story 4 ships as written), Q7/Q8 prefixed "A)", Q12 gains a
+"(C) edit manually", Q17 still pending. **The spec is internally contradictory on Q6** — decision cell says
+(a) but the header still reads "awaiting", SV-9896 still says "do not start", no new revision. ⇒ **No
+expectation changes on any of the 54** (body unchanged). The **10 Story-4 cases (C53554–C53562, C53546)**
+had their Q6 note updated to record option (a) **while disclosing the header/story lag**; they stay
+**NOT-FINAL** (Rule 56/58). All 54 re-verified for render. Flagged to the QA lead (register item B): treat
+Q6 as decided (make the ten final) or hold until the spec is cleaned up? Detail: CHANGE-ANALYSIS-Rev5.md §G.
+
 ## Status — 2026-09-10 (RE-VERIFIED against spec Revision 5 + new epic/stories — all 54 corrected)
 Full source re-verification (Rule 101) after the QA lead handed over the updated sources. Reconciliation:
 `source-verify-2026-09-10/CHANGE-ANALYSIS-Rev5.md`.

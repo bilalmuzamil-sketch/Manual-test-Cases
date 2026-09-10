@@ -62,6 +62,18 @@ treated as final.
 > (Invoice Design Selection). So the condition does not apply: the ten stay in the set with their
 > not-final notes, exactly as they are now, until the Product owner settles the ship-day rule.
 
+> **UPDATE (2026-09-10, later — a second look at the spec):** the Product owner has now **written down a
+> decision** on the ship-day question in the spec: **yes, do it** — invoices issued before the refresh go
+> back to the old look, invoices from the short gap window stay on the new look, and everything after this
+> ships follows the setting. **But the spec is talking out of both sides of its mouth:** the top of the
+> same page still says this question is "awaiting a decision", and the task ticket for it still says "do not
+> start before this is answered". I have **recorded the decision on all ten tests** so a reader sees which
+> way it went, but I have **kept them marked not-final** until the page stops contradicting itself. **Your
+> call:** do you want me to treat the ship-day rule as settled and mark those ten tests ready — or leave
+> them not-final until the spec is cleaned up? If you say nothing, they stay not-final, which is safe.
+> ---REFERENCE--- Q6 decision cell = option (a); spec header + SV-9896 still "awaiting/do not start"; no
+> new revision in the change log. Cases C53554–C53562, C53546.
+
 ### C. Two small things I am tracking, no action needed unless you want it
 - A money breakdown on customer documents (the card-fee / net-received lines) is due to be brought back and
   shown on **both** the old and new designs once its fix ships. When that happens I will need to re-check
