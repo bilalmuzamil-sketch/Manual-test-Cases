@@ -1,0 +1,23 @@
+{
+ "pass_meta": {
+  "suite": "Invoice Design Selection (7800)",
+  "run": 446,
+  "env": "the sv9872 QA branch",
+  "build": "sv9872 v26.36.2-12974d6",
+  "date": "11 September 2026"
+ },
+ "results": {
+  "C53570": {
+   "verdict": "Passed",
+   "observed": "What was checked: that on the old look a document prints the billing-service approval reference in its Authorizer column rather than the person who approved the work, that the person is still recorded on the job and can no longer be changed once it is invoiced, and that the new look goes back to printing the person. What happened: all three are true. A job that had Savannah Tran recorded as the approving person was invoiced with the shop on the old look. The printed document shows an Authorizer heading with the billing-service reference under it, and Savannah Tran's name does not appear anywhere on it. The shop's choice was then changed to the new look and the same document shows Authorizer: Savannah Tran. Back on the job itself, both the Contact and the Authorizer still read Savannah Tran and both are now greyed out, so nobody can change them after invoicing."
+  },
+  "C53551": {
+   "verdict": "Passed",
+   "observed": "What was checked: that an estimate sent again after the shop changes its choice of look reaches the customer in the new one. What happened: it does. The same estimate was emailed twice - once with the shop on the old look and once on the new - and both sends reported success. The send was watched from the moment of the click: ShopView builds the PDF first, through exactly the step that follows the shop's current choice, and only then hands it to the mail, so the second send carries the new look. A copy already sitting in someone's inbox or downloads folder is a file they hold and is not touched by a later switch - a separate check confirmed a kept file is unchanged. Not seen on this branch: the arriving message itself, because the customer addresses on this test shop are not real mailboxes; what was seen is the document ShopView produced and handed to the mail."
+  },
+  "C53565": {
+   "verdict": "Passed",
+   "observed": "What was checked: that the PDF emailed to a customer is in the shop's current look at the moment it is produced. What happened: it is. Pressing Send Email was watched from the click: before anything is sent, ShopView generates the PDF through the very same step used for viewing and printing - the step that was separately proven to follow the shop's choice, producing a visibly different document on each setting - and only then passes it to the mail. The send reported success. Not seen on this branch: the arriving message itself, because the customer addresses on this test shop are not real mailboxes; what was seen is the document ShopView produced and handed to the mail."
+  }
+ }
+}

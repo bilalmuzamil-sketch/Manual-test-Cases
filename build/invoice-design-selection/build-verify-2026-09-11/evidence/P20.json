@@ -1,0 +1,100 @@
+{
+ "seedTarget": {
+  "wo": "e98e678b-731e-4140-a24c-e2e7a6db8dad",
+  "num": "S-17580",
+  "contact": "Savannah Tran"
+ },
+ "designAtInvoice": "legacy",
+ "beforeInvoice": {
+  "controls": [
+   "Work Orders|Work Orders",
+   "Schedule|Schedule",
+   "Customers|Customers",
+   "Parts|Parts",
+   "Reports|Reports",
+   "|timer Clock In",
+   "Notifications|notifications",
+   "Profile|Staging Heavy Duty - 9919 AS",
+   "|location_on",
+   "View asset|2011 Hyundai Santa Fe 1234",
+   "Copy VIN/Serial # to clipboard|content_copy",
+   "|Fault Code Service Temporarily Unavailable",
+   "|more_vert",
+   "Download|get_app",
+   "Send email|email",
+   "Print|print",
+   "Settings|settings",
+   "|Request IBS Approval",
+   "Create invoice|Create Invoice"
+  ],
+  "text": "Skip to main content Work Orders Schedule Customers Parts Reports Search Ctrl+K timer Clock In notifications Staging Heavy Duty - 9919 AS S9872-17.. Complete Over Limit Started: Yesterday Total Hours: 17.0 hrs location_on Progress 0% Lead Technician Admin ShopView arrow_drop_down Service Advisor Admin ShopView arrow_drop_down Sales Representative Angelica Harper arrow_drop_down swap_horiz 4 Star T"
+ },
+ "invoiced": {
+  "clicked": "Create Invoice",
+  "confirm": [
+   "close",
+   "Make Payment",
+   "Charge Account",
+   "Send to Terminal"
+  ],
+  "calls": [
+   "POST /api/invoices/create"
+  ],
+  "toasts": []
+ },
+ "afterInvoice": {
+  "invoiceId": "c3334c2a-5388-4160-9885-698def43bb7c",
+  "status": "Invoiced",
+  "contact": "Savannah Tran",
+  "code": null,
+  "contactId": "9c1d996a-e8aa-4d95-9253-83499ba8d759"
+ },
+ "authorizerRead": {
+  "Legacy": {
+   "stored": "legacy",
+   "len": 49923,
+   "authorizerWord": true,
+   "ibs": true,
+   "contactPrinted": false,
+   "around": [
+    "Due date",
+    "Customer PO",
+    "Authorizer",
+    "S9872-17580",
+    "Due on Receipt",
+    "Sep 11, 2026",
+    "9989"
+   ]
+  },
+  "Modern": {
+   "stored": "modern",
+   "len": 103004,
+   "authorizerWord": true,
+   "ibs": false,
+   "contactPrinted": true,
+   "around": [
+    "Customer PO",
+    "9989",
+    "Authorizer",
+    "Savannah Tran",
+    "Terms",
+    "Due on Receipt",
+    "Work Performed"
+   ]
+  }
+ },
+ "contactLocked": [
+  {
+   "tag": "LABEL",
+   "disabled": true,
+   "readOnly": false,
+   "text": "Contact Savannah Tran arrow_drop_down"
+  },
+  {
+   "tag": "LABEL",
+   "disabled": true,
+   "readOnly": false,
+   "text": "Authorizer Savannah Tran arrow_drop_down"
+  }
+ ]
+}

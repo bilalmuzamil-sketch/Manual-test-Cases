@@ -1063,3 +1063,106 @@ The route and the four traps are recorded in
 The general form, which is the same lesson as L0043 and L0048 at a different altitude: **before
 concluding a thing is not there, prove the instrument reached the place it would be.** A walk that
 visited nothing, and a grep of code that was never loaded, are not evidence of absence.
+
+---
+
+## L0051 — 2026-09-11 — A SHARED BRANCH MOVES UNDER YOU: GUARD EVERY READING, DO NOT TRUST ONE
+
+**Incident.** Run 446 was executed on sv9872 while several people were testing the same feature on the
+same branch. The QA lead warned: *"many people are testing on the same branch so someone might turn to
+modern mode when you are running legacy mode… bear with this thing."* Twice a probe set the design to
+Modern, and a render taken seconds later came back Legacy because somebody else had switched it. A
+figure read across such a switch is not a finding — it is an artefact, and reporting it would have been
+a false defect.
+
+**The rule.** On any shared environment, a reading is only admissible if the state it depends on held
+STILL ACROSS IT. Read the state from the system of record **immediately before and immediately after**
+every observation, and **DISCARD** the observation if the two disagree — never average, never assume,
+never report it. Count the discards and say how many there were.
+
+```js
+const guarded = async (label, fn) => {
+  const a = await stored(); const out = await fn(); const b = await stored();
+  if (a !== b) { discards.push({label, before:a, after:b}); return null; }   // DISCARD, do not report
+  return {state:a, ...out};
+};
+```
+
+**And read the state from the API, not the screen.** A UI read costs a page load plus a tab click plus
+a settle wait (~12 s), can be stale, and returns `null` whenever the tab was not clicked first — which
+silently turned a restore step into a no-op earlier the same day. One API call answers it in under a
+second and cannot be stale. For Invoice Design that call is
+`GET /api/organizations/invoice-settings/view` → `data.documentDesign` (`"modern"` | `"legacy"`).
+
+**Corollary — a UI write must be VERIFIED AND RETRIED.** `setDesign('Modern')` silently failed once
+because an anchored option matcher (`^Modern$`) missed the menu item's padding. The pass then rendered
+three "different" designs that were all the same one. Every UI write now: perform → read the stored
+value → retry up to 3 times → **log loudly if it never took**, and skip that half of the comparison
+rather than reporting it.
+
+---
+
+## L0052 — 2026-09-11 — TWO TEMPLATES PRINT THE SAME MONEY IN A DIFFERENT ORDER: COMPARE THE SET, NOT THE LIST
+
+**Incident.** Comparing a parts-sale invoice across the two designs, a positional comparison of the
+money strings reported `sameMoneySet: false` — which reads as "the figures changed", the single most
+serious thing this feature could do wrong. It had not. The Modern template adds a "Parts" subtotal row,
+so the same values appear a different number of times and in a different order. The correct measure —
+`onlyInLegacy: []`, `onlyInModern: []` — showed **not one value present in one design and absent in the
+other**.
+
+**The rule.** Never compare two renderings of the same document by the ORDER of what they contain. Two
+templates lay the same data out differently; that is what a template is. Compare:
+1. the **set difference** both ways (`onlyInA`, `onlyInB`) — this is the one that answers "did a figure change";
+2. the **labelled** figures (`Subtotal`, `Total`, `Balance`, `Shop supplies`, each with the value beside it);
+3. the **document number**.
+A label that appears in one design and not the other is a LAYOUT difference to report as an observation,
+never a wrong figure. Worked example: on an estimate view, Legacy prints a Payments row and a $0.00
+Balance and Modern prints neither — every figure they both print is identical.
+
+**Precedent.** This is the third time a crude money comparison has produced a phantom finding (see the
+2026-09-10 `Total`/`Subtotal` regex that matched both). A comparison that cannot tell `Total` from
+`Subtotal`, or ordering from value, is not evidence and must not reach a report.
+
+---
+
+## L0053 — 2026-09-11 — RUN THE POSITIVE CONTROL IN THE SAME PROBE, NOT AS A SEPARATE ERRAND
+
+**Incident.** C53529 asks that a user without settings access cannot see the Invoice Design setting.
+The earlier attempt at this class of check (2026-09-10) cleared `localStorage` and got the sign-in
+screen, which proves nothing about permissions. This time the probe took a single function
+`check(who)` and ran it **twice in the same pass**: once as `tech`, once as `admin`.
+
+- `tech` → `/administration/settings` redirects to `/workorders`; the sidebar offers only Work Orders,
+  Schedule, Customers; "Invoice Design" appears nowhere.
+- `admin`, thirty seconds later, same code path → lands on the settings page, 13 controls, and the
+  chooser reading "Invoice Design Modern" with its helper text.
+
+The admin run is what makes the tech run mean something: it proves the instrument can see the thing it
+reported absent.
+
+**The rule (Rule 104, made concrete).** A negative finding's positive control is not a separate task to
+be done afterwards — write the probe as **one parameterised function run over both subjects**, so the
+control cannot drift, cannot be skipped, and cannot be run against a different build, route or moment.
+If the control does not produce the positive result, the probe is broken; fix the probe, never file the
+finding.
+
+---
+
+## L0054 — 2026-09-11 — ROUTES AND MECHANICS LEARNED ON sv9872 (Invoice Design Selection)
+
+Recorded so no session re-discovers them. All observed live on `v26.36.2-12974d6`.
+
+| Thing | How to reach it |
+|---|---|
+| The design setting | Settings → **Invoice** tab. Stored at `GET /api/organizations/invoice-settings/view` → `documentDesign`; saved by `POST /api/organizations/invoice-settings/change-design` |
+| Any invoice/estimate document | `GET /api/invoices/preview?invoice_id=<id>&type=html|pdf&isEstimate=0|1&includeDeclined=0&historyEvent=` — `type=pdf` returns a real `application/pdf` |
+| A work order's invoice id | `GET /api/work-orders/view/<woId>` → `invoice_id` |
+| History + snapshots | `GET /api/work-orders/<woId>/history` → `data.history[]`, each with `id` and `snapshotAvailable`; pass that `id` as `historyEvent=` on the preview route |
+| **Part Sales** | `/parts/part-sales` (NOT `/part-sales`, which renders an empty page). Detail: `/parts/part-sale/<id>/finance`, which uses the same `invoices/preview` route |
+| **Reverse** an invoice, **Issue Credit** | the kebab (`more_vert`) on the work order's **Finance** tab — not on the customer page |
+| Emailing a document | the `Send email` button generates `GET …/preview?type=pdf…` FIRST, then `POST /api/work-order/invoice/send-email`. So the emailed copy is produced by the same renderer that follows the setting — capturing that pair is how you evidence the email path without a mailbox |
+| Create an invoice | `Create Invoice` on the Finance tab → `POST /api/invoices/create` (no confirmation dialog; the dialog that opens afterwards is the payment one) |
+| Approving contact | `authorizer_contact_id` / `authorizer_full_name` / `company_ibs` / `ibs_approval_code` on the work order. Legacy prints an Authorizer column carrying the billing-service reference; Modern prints the contact's name. Both fields grey out once the work order is invoiced |
+| Quick-login roles available | `admin` and `tech` only (`GET /api/quick-login/users`) — `tech` is the ready-made no-settings-access user |
+| Not present on this branch | credit documents (none exist; `GET /api/credit-memos` is 405, POST-only), batch invoicing, imported invoices, a second selectable location in the profile menu, any way to create an organisation |

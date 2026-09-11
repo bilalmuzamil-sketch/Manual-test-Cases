@@ -1,0 +1,36 @@
+{
+ "wo": {
+  "status": "Invoiced",
+  "invoiceId": "2ea5a37a-ac41-4a21-855e-b2f80c7c16a0",
+  "customer": "9c1d996a-e8aa-4d95-9253-83499ba8d759"
+ },
+ "design": "modern",
+ "creditDialog": {
+  "text": "Issue Credit close event Credit Date Parts are being returned Outcome Issue Store Credit Issue Refund Reason Parts to return Part Number Description Sell Price Qty Available For Credit Qty To Credit Restocking Fee Total Bug Part SPO VVV $40.00 1 $ $43.60 N68SL-356 3.50-3.82\" (89-97mm) SPRING LOADED T-BOLT CLAMP $8.31 2 $ $18.11 N68SL-356 3.50-3.82\" (89-97mm) SPRING LOADED T-BOLT CLAMP $8.31 1 $ $9.06 Subtotal:$64.93 Tax: $5.84 Total:$70.77 Cancel Issue Credit",
+  "fields": [
+   "event Credit Date",
+   "Payment methodarrow_drop_down",
+   "Reason",
+   "",
+   "$",
+   "",
+   "$",
+   "",
+   "$"
+  ],
+  "buttons": [
+   "close",
+   "Cancel",
+   "Issue Credit"
+  ]
+ },
+ "creditSubmit": {
+  "clicked": "Issue Credit",
+  "writes": [
+   "POST /api/credit-memos"
+  ],
+  "toasts": []
+ },
+ "creditDocs": [],
+ "custRows": []
+}

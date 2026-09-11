@@ -1,0 +1,58 @@
+{
+ "pass_meta": {
+  "suite": "Invoice Design Selection (7800)",
+  "run": 446,
+  "env": "the sv9872 QA branch",
+  "build": "sv9872 v26.36.2-12974d6",
+  "date": "11 September 2026"
+ },
+ "results": {
+  "C53529": {
+   "verdict": "Passed",
+   "observed": "What was checked: that someone who is not allowed into the shop's settings cannot see the look chooser, while someone who is allowed can. What happened: exactly that. Signed in as a technician, the settings address simply sends you back to the work-order list; the side menu offers only Work Orders, Schedule and Customers, with no Settings at all, and the words 'Invoice Design' appear nowhere on any page reached. The same check run moments later as an administrator lands on the settings page and shows the Invoice Design chooser reading Modern with its explanation underneath - so the check itself was working, and the technician's blank result is a real absence rather than a broken test."
+  },
+  "C53541": {
+   "verdict": "Passed",
+   "observed": "What was checked: that an invoice which is cancelled and then raised again comes out in the shop's current look, not the one it was first made under. What happened: it does. A job was invoiced with the shop on the old look, the invoice was reversed - the job went back to Complete and the invoice was gone - and a new invoice was raised for the same job, again on the old look. It came out in the old look. The shop's choice was then changed to the new look and the very same re-raised invoice came out in the new look, more than twice the length of page. Nothing about a look is carried by the invoice itself, whether it is the first one or a replacement."
+  },
+  "C53521": {
+   "verdict": "Passed",
+   "observed": "What was checked: that the look is one single choice for the whole business - not one per branch, not one per customer, and not one per document. What happened: it is one choice. The settings page carries exactly one chooser, and the value is held once against the whole business rather than against a branch, so both of this shop's locations read from the same one. A separate check of an individual invoice found no way to give it a look of its own: its settings offer only what detail to print, nothing about design. Not seen on this branch: the chooser read on screen while signed in to the second location, because the location menu on this test account offers only the branch it is already on."
+  },
+  "C53522": {
+   "verdict": "Blocked",
+   "observed": "What was checked: what the chooser starts on for a shop that already existed when this feature shipped and has never touched it. What happened: this cannot be answered on this branch. There is only one shop here and its choice has been changed many times already - by this testing and by other people working on the same branch today - so whatever it reads now says nothing about what it started on.",
+   "todo": "What needs to be done: run this on a shop that has never had the setting touched - either a freshly restored copy of the test data, or the first shop to see the feature when it reaches Staging. Read the chooser once, before anybody changes it."
+  },
+  "C53523": {
+   "verdict": "Blocked",
+   "observed": "What was checked: what the chooser starts on for a shop created after this feature shipped. What happened: this cannot be answered on this branch. A new shop cannot be created from inside the app - every address that might do it lands on a page with nothing on it - so there is no never-touched shop here to read.",
+   "todo": "What needs to be done: have a brand-new shop created on Staging once the feature reaches there, and read the chooser on it before anybody changes it."
+  },
+  "C53536": {
+   "verdict": "Blocked",
+   "observed": "What was checked: how a credit document behaves when the shop changes its look. What happened: there is no credit document on this shop to look at. Raising a credit from a job offers a form about money and returned parts - a date, an amount, store credit or refund, a reason, and which parts are coming back - and it records a credit against the customer. No credit paperwork of the kind this test needs appeared afterwards, on the customer's invoices list or anywhere else, and this shop has never had one.",
+   "todo": "What needs to be done: ask the team for a shop that already has a credit document on it, or have one raised for us, then re-run this. Everything else about the feature - that every document follows the shop's current choice with nothing pinned to it - has been proven on invoices, estimates, parts sales, paid receipts and saved copies, so this is about confirming credits behave the same way, not about doubting the rule."
+  },
+  "C53537": {
+   "verdict": "Blocked",
+   "observed": "What was checked: how a credit document behaves when the shop changes its look. What happened: there is no credit document on this shop to look at. Raising a credit from a job offers a form about money and returned parts - a date, an amount, store credit or refund, a reason, and which parts are coming back - and it records a credit against the customer. No credit paperwork of the kind this test needs appeared afterwards, on the customer's invoices list or anywhere else, and this shop has never had one.",
+   "todo": "What needs to be done: ask the team for a shop that already has a credit document on it, or have one raised for us, then re-run this. Everything else about the feature - that every document follows the shop's current choice with nothing pinned to it - has been proven on invoices, estimates, parts sales, paid receipts and saved copies, so this is about confirming credits behave the same way, not about doubting the rule."
+  },
+  "C53538": {
+   "verdict": "Blocked",
+   "observed": "What was checked: how a credit document behaves when the shop changes its look. What happened: there is no credit document on this shop to look at. Raising a credit from a job offers a form about money and returned parts - a date, an amount, store credit or refund, a reason, and which parts are coming back - and it records a credit against the customer. No credit paperwork of the kind this test needs appeared afterwards, on the customer's invoices list or anywhere else, and this shop has never had one.",
+   "todo": "What needs to be done: ask the team for a shop that already has a credit document on it, or have one raised for us, then re-run this. Everything else about the feature - that every document follows the shop's current choice with nothing pinned to it - has been proven on invoices, estimates, parts sales, paid receipts and saved copies, so this is about confirming credits behave the same way, not about doubting the rule."
+  },
+  "C53543": {
+   "verdict": "Blocked",
+   "observed": "What was checked: that the shop's choice governs all six kinds of customer paperwork. What happened: three of the six are proven and three could not be reached on this shop. Proven: the estimate, the work order invoice and the parts sale invoice all came out in the old look and then in the new one, with their numbers and money unchanged. Not reached: the credit invoice and the parts sale credit, because this shop has none and none could be raised, and the parts sale estimate, whose page builds its document a different way that this pass did not get to.",
+   "todo": "What needs to be done: re-run the three that were not reached once a shop with a credit document is available - the same two switches, checking each document comes out in whichever look the shop is on."
+  },
+  "C53568": {
+   "verdict": "Blocked",
+   "observed": "What was checked: that the two older kinds of invoice - the ones produced in bulk and the ones brought in from elsewhere - are left alone by this setting. What happened: there are none of either on this shop, and no screen for producing them, so there was nothing to look at. Note this is a test that things do NOT change, so an empty shop cannot stand in for it.",
+   "todo": "What needs to be done: run this on a shop that has at least one bulk-produced invoice and one brought-in invoice. Print each one, change the shop's look, print them again, and confirm they look exactly the same both times."
+  }
+ }
+}
