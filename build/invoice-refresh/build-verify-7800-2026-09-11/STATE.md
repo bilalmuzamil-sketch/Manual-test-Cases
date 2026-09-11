@@ -18,3 +18,5 @@
 ## Note
 - Cases were pre-built PROVISIONALLY ("feature not yet built"); the feature is now live and every quoted
   string matches the build — a strong source-accuracy result. Design left on Modern.
+
+## Served-page scan (2026-09-11): all 45 active cases render fr-view, escaped=true=0 (only empty placeholder slots show fr-view=false). QUALITY CONFIRMED.
