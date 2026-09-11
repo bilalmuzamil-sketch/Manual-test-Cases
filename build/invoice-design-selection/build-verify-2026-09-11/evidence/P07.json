@@ -1,0 +1,1342 @@
+{
+ "endpoints": {
+  "locations": {
+   "status": 404,
+   "rows": 0,
+   "sample": [],
+   "keys": null,
+   "text": "{\"errors\":[{\"error\":\"\\u0027resource\\u0027 was not found.\"}]}"
+  },
+  "my-workplaces": {
+   "status": 200,
+   "rows": 2,
+   "sample": [
+    {
+     "id": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+     "name": "Staging Heavy Duty - 9919",
+     "color": "#d66c00",
+     "timezone": "America/Edmonton",
+     "country_code": "CA",
+     "telephone": "(403) 523 - 0488",
+     "shop_id": "9872",
+     "remit_to": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+     "shop_supplies_charge": 10.5,
+     "max_shop_supplies_charge": 350,
+     "min_shop_supplies_charge": 0,
+     "address_1": "9919 Shepard Road SE"
+    },
+    {
+     "id": "f8a8b802-7780-4b16-bf10-343caeb616b2",
+     "name": "Staging Lethbridge - 4310",
+     "color": "#00a300",
+     "timezone": "America/Edmonton",
+     "country_code": "CA",
+     "telephone": "(403) 327 - 3405",
+     "shop_id": "9872",
+     "remit_to": "f8a8b802-7780-4b16-bf10-343caeb616b2",
+     "shop_supplies_charge": 10.5,
+     "max_shop_supplies_charge": 350,
+     "min_shop_supplies_charge": 0,
+     "address_1": "4310 9 Avenue North"
+    }
+   ],
+   "keys": [
+    "id",
+    "name",
+    "color",
+    "timezone",
+    "country_code",
+    "telephone",
+    "shop_id",
+    "remit_to",
+    "shop_supplies_charge",
+    "max_shop_supplies_charge",
+    "min_shop_supplies_charge",
+    "address_1",
+    "address_2",
+    "city",
+    "state_or_province",
+    "postal_code",
+    "is_default",
+    "shopSupplyPercentageEnabled",
+    "has_terminal_readers"
+   ]
+  },
+  "organizations": {
+   "status": 200,
+   "rows": 2,
+   "sample": [
+    {
+     "id": "32b4d057-fd80-4f66-b897-1f46df195bc7",
+     "name": "Dteem",
+     "email": "bilal.muzamil+invoicedesign@shopview.com"
+    },
+    {
+     "id": "d55bc308-e61a-438d-b5f1-c7a73c89d49f",
+     "name": "Foothills Group Inc",
+     "email": "timothy.wolf@staging.shopview.local"
+    }
+   ],
+   "keys": [
+    "id",
+    "name",
+    "email"
+   ]
+  },
+  "org-settings": {
+   "status": 404,
+   "rows": 0,
+   "sample": [],
+   "keys": null,
+   "text": "{\"errors\":[{\"error\":\"\\u0027resource\\u0027 was not found.\"}]}"
+  },
+  "roles": {
+   "status": 405,
+   "rows": 0,
+   "sample": [],
+   "keys": null,
+   "text": "{\"errors\":[{\"error\":\"No route found for \\u0022GET http:\\/\\/sv9872api.qa.shopview.com\\/api\\/roles\\u0022: Method Not Allowed (Allow: POST)\"}]}"
+  },
+  "staff": {
+   "status": 200,
+   "rows": 66,
+   "sample": [
+    {
+     "id": "00fea40e-5f3b-4a35-abc2-d00d0e0046b5",
+     "email": "cory.galvan@staging.shopview.local",
+     "first_name": "Cory",
+     "last_name": "Galvan",
+     "created_on": "2024-12-11 14:47:01",
+     "confirmed_invitation_on": "2024-12-11 14:47:36",
+     "avatar_url": null,
+     "is_active": false,
+     "role_label": "Admin",
+     "staff_id": "d6ce228e-da73-45c5-830a-50e915c0c3c2",
+     "job_title": "ShopView Support",
+     "salary_type": null
+    },
+    {
+     "id": "013cc113-9b3b-43ae-be65-bc5311b7605b",
+     "email": "troy.stein@staging.shopview.local",
+     "first_name": "Troy",
+     "last_name": "Stein",
+     "created_on": "2023-12-27 08:54:45",
+     "confirmed_invitation_on": "2023-12-28 16:33:55",
+     "avatar_url": null,
+     "is_active": false,
+     "role_label": "Admin",
+     "staff_id": "eba4be23-e3ae-4477-89c9-97b6701ed9e0",
+     "job_title": "ShopView Support",
+     "salary_type": "salary"
+    }
+   ],
+   "keys": [
+    "id",
+    "email",
+    "first_name",
+    "last_name",
+    "created_on",
+    "confirmed_invitation_on",
+    "avatar_url",
+    "is_active",
+    "role_label",
+    "staff_id",
+    "job_title",
+    "salary_type",
+    "salary",
+    "billable",
+    "clockable",
+    "is_sales_rep",
+    "is_default",
+    "departments",
+    "defaultWorkplace",
+    "defaultWorkplaceName",
+    "salary_type_label",
+    "workplace_id",
+    "deletable",
+    "role_id"
+   ]
+  },
+  "part-sales": {
+   "status": 200,
+   "rows": 93,
+   "sample": [
+    {
+     "totalPrice": 11102,
+     "partRequestsCount": 10,
+     "statusRequestedCount": 0,
+     "statusAuthToOrderCount": 0,
+     "statusInStock": 0,
+     "partReturnRequestsCount": 0,
+     "id": "4f7287b3-4fda-4d9f-8501-e4b0eb916d04",
+     "startDate": "2026-08-28 23:41:02",
+     "number": "P9872-247",
+     "status": "complete",
+     "createdByFirstName": "Ashlee",
+     "createdByLastName": "Thomas"
+    },
+    {
+     "totalPrice": 18980,
+     "partRequestsCount": 1,
+     "statusRequestedCount": 0,
+     "statusAuthToOrderCount": 0,
+     "statusInStock": 0,
+     "partReturnRequestsCount": 0,
+     "id": "196d3947-ca3a-4491-8594-0dec324a970d",
+     "startDate": "2026-08-28 15:53:06",
+     "number": "P9872-246",
+     "status": "estimate",
+     "createdByFirstName": "Jeffrey",
+     "createdByLastName": "Jordan"
+    }
+   ],
+   "keys": [
+    "totalPrice",
+    "partRequestsCount",
+    "statusRequestedCount",
+    "statusAuthToOrderCount",
+    "statusInStock",
+    "partReturnRequestsCount",
+    "id",
+    "startDate",
+    "number",
+    "status",
+    "createdByFirstName",
+    "createdByLastName",
+    "vehicleModelName",
+    "vehicleMakeName",
+    "vehicleVin",
+    "unit",
+    "companyName",
+    "invoicedDate",
+    "invoiceShopId"
+   ]
+  },
+  "partsales2": {
+   "status": 404,
+   "rows": 0,
+   "sample": [],
+   "keys": null,
+   "text": "{\"errors\":[{\"error\":\"\\u0027resource\\u0027 was not found.\"}]}"
+  },
+  "credit-invoices": {
+   "status": 404,
+   "rows": 0,
+   "sample": [],
+   "keys": null,
+   "text": "{\"errors\":[{\"error\":\"\\u0027resource\\u0027 was not found.\"}]}"
+  },
+  "invoices": {
+   "status": 404,
+   "rows": 0,
+   "sample": [],
+   "keys": null,
+   "text": "{\"errors\":[{\"error\":\"\\u0027resource\\u0027 was not found.\"}]}"
+  },
+  "customers": {
+   "status": 200,
+   "rows": 100,
+   "sample": [
+    {
+     "id": "6a7b6afc-084d-4584-aacb-773bcd71cbcd",
+     "name": "4 Star Truck Repair",
+     "address_1": "6263 Elizabeth Causeway Apt. 973",
+     "address_2": null,
+     "state_or_province": "British Columbia",
+     "postal_code": "V4M 8Y2",
+     "city": "Raystad",
+     "telephone": "730-246-8895",
+     "notes": null,
+     "pin_notes": 0,
+     "sales_rep_first_name": "Holly",
+     "sales_rep_last_name": "Rodriguez"
+    },
+    {
+     "id": "b3406baf-3b85-424a-a2c8-c3ed5f4da4b0",
+     "name": "7 Star Truck Repair",
+     "address_1": "305 Harris Cape",
+     "address_2": null,
+     "state_or_province": "Nunavut",
+     "postal_code": "H8A3X9",
+     "city": "Priscillabury",
+     "telephone": "609-461-6502",
+     "notes": "Libero voluptas quos deleniti quasi. Quae excepturi adipisci enim aspernatur. Ex illo id ut.",
+     "pin_notes": 1,
+     "sales_rep_first_name": "Nicholas",
+     "sales_rep_last_name": "Gonzalez"
+    }
+   ],
+   "keys": [
+    "id",
+    "name",
+    "address_1",
+    "address_2",
+    "state_or_province",
+    "postal_code",
+    "city",
+    "telephone",
+    "notes",
+    "pin_notes",
+    "sales_rep_first_name",
+    "sales_rep_last_name",
+    "sales_rep_id",
+    "website",
+    "shop_supplies_charge",
+    "max_shop_supplies_charge",
+    "credit_term",
+    "organization_id",
+    "ibs",
+    "labour_type_id",
+    "require_po",
+    "country_code",
+    "min_shop_supplies_charge",
+    "tax_exempt_local",
+    "tax_exempt_federal",
+    "is_system_default",
+    "external_id",
+    "external_source",
+    "vehicle_count",
+    "number_of_customers",
+    "first_name",
+    "last_name",
+    "deletable"
+   ]
+  },
+  "batch-invoices": {
+   "status": 404,
+   "rows": 0,
+   "sample": [],
+   "keys": null,
+   "text": "{\"errors\":[{\"error\":\"\\u0027resource\\u0027 was not found.\"}]}"
+  },
+  "work-orders": {
+   "status": 200,
+   "rows": 100,
+   "sample": [
+    {
+     "linesCount": 4,
+     "serviceActionsCount": 0,
+     "partRequestsCount": 4,
+     "statusRequestedCount": 0,
+     "statusAuthToOrderCount": 0,
+     "statusInStock": 0,
+     "partReturnRequestsCount": 0,
+     "progress": 0,
+     "unreceivedPartRequestsCount": 0,
+     "orderId": "e48fd708-48fa-4186-940e-839fd578fdc5",
+     "clockedInTechnicians": [],
+     "id": "e98e678b-731e-4140-a24c-e2e7a6db8dad"
+    },
+    {
+     "linesCount": 8,
+     "serviceActionsCount": 0,
+     "partRequestsCount": 23,
+     "statusRequestedCount": 0,
+     "statusAuthToOrderCount": 0,
+     "statusInStock": 0,
+     "partReturnRequestsCount": 0,
+     "progress": 95,
+     "unreceivedPartRequestsCount": 0,
+     "orderId": "871966f3-b872-48ce-b3c4-43061e793fe6",
+     "clockedInTechnicians": [],
+     "id": "04ab678b-a2c2-4fd7-bcd9-76b6a23a419f"
+    }
+   ],
+   "keys": [
+    "linesCount",
+    "serviceActionsCount",
+    "partRequestsCount",
+    "statusRequestedCount",
+    "statusAuthToOrderCount",
+    "statusInStock",
+    "partReturnRequestsCount",
+    "progress",
+    "unreceivedPartRequestsCount",
+    "orderId",
+    "clockedInTechnicians",
+    "id",
+    "startDate",
+    "number",
+    "status",
+    "vehicleHere",
+    "vehicleModelName",
+    "vehicleMakeName",
+    "engineHours",
+    "mileage",
+    "timeEstimate",
+    "totalPrice",
+    "vin",
+    "unit",
+    "licencePlate",
+    "companyName",
+    "invoicedDate",
+    "serviceAdvisorFirstName",
+    "serviceAdvisorLastName",
+    "techAssignedFirstName",
+    "clockedInTechniciansCount",
+    "techAssignedLastName",
+    "priority"
+   ]
+  }
+ },
+ "wo": {
+  "total": 100,
+  "withInvoice": [
+   {
+    "id": "04ab678b-a2c2-4fd7-bcd9-76b6a23a419f",
+    "num": "S-4219",
+    "status": "Paid",
+    "invoiceId": "aac99a06-20af-424a-afdb-56e865b1553b",
+    "authorizer": null,
+    "balance": 0,
+    "total": null,
+    "customer": "f6b18290-749e-44c2-a820-fe1b975b2835"
+   },
+   {
+    "id": "e9dae5c1-2917-43db-917f-a72268f52e49",
+    "num": "S-13311",
+    "status": "Paid",
+    "invoiceId": "1f04c536-6e9a-4cdd-9c56-3428a6cf6b62",
+    "authorizer": null,
+    "balance": 0,
+    "total": null,
+    "customer": "d6145dd5-9685-4b6e-8caf-c9ca3b661bf4"
+   },
+   {
+    "id": "89b2e570-fb5e-48d2-8cc5-d2247b7b60c1",
+    "num": "S-10601",
+    "status": "Paid",
+    "invoiceId": "c18af1ab-226b-4e44-ba00-48a22ca08689",
+    "authorizer": null,
+    "balance": 0,
+    "total": null,
+    "customer": "d6145dd5-9685-4b6e-8caf-c9ca3b661bf4"
+   },
+   {
+    "id": "7ad31e88-66b0-4c5a-a657-900b7af27346",
+    "num": "S-10250",
+    "status": "Paid",
+    "invoiceId": "009244f7-59e9-41bf-b3e1-7883b79cf17c",
+    "authorizer": null,
+    "balance": 0,
+    "total": null,
+    "customer": "d6145dd5-9685-4b6e-8caf-c9ca3b661bf4"
+   },
+   {
+    "id": "50a2add3-49f0-4ce8-9a9c-fef5a7eee0df",
+    "num": "S-10142",
+    "status": "Paid",
+    "invoiceId": "5e3b3224-e4e7-4235-a275-6dd5bf9dd550",
+    "authorizer": null,
+    "balance": 0,
+    "total": null,
+    "customer": "d6145dd5-9685-4b6e-8caf-c9ca3b661bf4"
+   },
+   {
+    "id": "035320cb-1406-4923-9653-2ca9a83be458",
+    "num": "S-5468",
+    "status": "Paid",
+    "invoiceId": "bb7ea3f0-084c-49f4-9317-f3b39f955b78",
+    "authorizer": null,
+    "balance": 0,
+    "total": null,
+    "customer": "d6145dd5-9685-4b6e-8caf-c9ca3b661bf4"
+   },
+   {
+    "id": "d431ef43-f1f2-4e81-a4bf-1b3fbea798f3",
+    "num": "S-4963",
+    "status": "Paid",
+    "invoiceId": "50cd283a-749b-42c9-99f0-d0f808b6b45e",
+    "authorizer": null,
+    "balance": 0,
+    "total": null,
+    "customer": "d6145dd5-9685-4b6e-8caf-c9ca3b661bf4"
+   },
+   {
+    "id": "5ca7d48e-5c0b-4672-a6e9-69312c3fa930",
+    "num": "S-6889",
+    "status": "Paid",
+    "invoiceId": "d51674a4-4393-4420-a79e-76c61f161dbf",
+    "authorizer": null,
+    "balance": 154038,
+    "total": null,
+    "customer": "f5929b88-1240-4b4c-b6a6-2d0a129c4898"
+   },
+   {
+    "id": "bfd93840-b028-46a0-bbe4-17dcfd55594b",
+    "num": "S-4807",
+    "status": "Paid",
+    "invoiceId": "ee3e3ccf-38b8-4440-8a5d-d9485b81362c",
+    "authorizer": null,
+    "balance": 154038,
+    "total": null,
+    "customer": "f5929b88-1240-4b4c-b6a6-2d0a129c4898"
+   },
+   {
+    "id": "1d061025-e496-4319-a427-6ac75b826a47",
+    "num": "S-16012",
+    "status": "Paid",
+    "invoiceId": "89e751f3-e6dc-429e-9d76-3652102839d4",
+    "authorizer": null,
+    "balance": 78874,
+    "total": null,
+    "customer": "2828415f-ca75-4f95-aa01-4d5851106421"
+   },
+   {
+    "id": "afe6814b-e68b-4ab4-814c-220f2c3e0dda",
+    "num": "S-13230",
+    "status": "Paid",
+    "invoiceId": "7cca4e63-b370-4fa2-891d-ef2dd69ab32b",
+    "authorizer": null,
+    "balance": 78874,
+    "total": null,
+    "customer": "39710b5c-7051-4631-af21-128c490af40f"
+   },
+   {
+    "id": "17230341-33f7-4c57-8176-74172b2c0aa5",
+    "num": "S-13205",
+    "status": "Paid",
+    "invoiceId": "a1afa9a5-16e5-4aa5-b67f-4f672d0dc032",
+    "authorizer": null,
+    "balance": 78874,
+    "total": null,
+    "customer": "3ddadf61-4440-4c55-af76-e81778f4f428"
+   },
+   {
+    "id": "61d3a682-1d0b-422d-85fa-2029813b6104",
+    "num": "S-12853",
+    "status": "Paid",
+    "invoiceId": "cb13bcda-4e9d-45a5-9172-d721eb9363ca",
+    "authorizer": null,
+    "balance": 78874,
+    "total": null,
+    "customer": "c7d24dc6-b421-4927-a4cb-741431b5189f"
+   },
+   {
+    "id": "84da521a-90c6-4a07-97df-75b0836fd50c",
+    "num": "S-12802",
+    "status": "Paid",
+    "invoiceId": "955213f4-109a-4d5d-9a4e-0c5f70a52edd",
+    "authorizer": null,
+    "balance": 78874,
+    "total": null,
+    "customer": "c7d24dc6-b421-4927-a4cb-741431b5189f"
+   },
+   {
+    "id": "61a534b9-83f3-4d46-b47e-4effdaabafd4",
+    "num": "S-11312",
+    "status": "Paid",
+    "invoiceId": "7c410a06-b3ae-4d10-a5ea-cdad57c38c22",
+    "authorizer": null,
+    "balance": 78874,
+    "total": null,
+    "customer": "87bdfaac-34aa-4017-aa60-abc398024a0d"
+   },
+   {
+    "id": "2b55ad20-e17a-472d-8b3a-2c06a4c9cdd1",
+    "num": "S-11274",
+    "status": "Paid",
+    "invoiceId": "fb9a1f98-1a0f-43e5-9453-7e01584553ad",
+    "authorizer": null,
+    "balance": 78874,
+    "total": null,
+    "customer": "39710b5c-7051-4631-af21-128c490af40f"
+   },
+   {
+    "id": "9248349b-f5e4-4e65-b6ac-01d31fbcaba6",
+    "num": "S-10682",
+    "status": "Paid",
+    "invoiceId": "b21610cd-56c4-498d-99c2-67ef34efe33d",
+    "authorizer": null,
+    "balance": 78874,
+    "total": null,
+    "customer": "87bdfaac-34aa-4017-aa60-abc398024a0d"
+   },
+   {
+    "id": "4015c174-735b-402f-a353-ed502fd8a743",
+    "num": "S-6263",
+    "status": "Paid",
+    "invoiceId": "e67da16d-c7ea-49d1-a2ca-a68eaee48672",
+    "authorizer": null,
+    "balance": 78874,
+    "total": null,
+    "customer": "87bdfaac-34aa-4017-aa60-abc398024a0d"
+   },
+   {
+    "id": "3af83be5-c47d-4611-aca8-2c2119deb19e",
+    "num": "S-5994",
+    "status": "Paid",
+    "invoiceId": "479aae7c-2ae3-4c7d-8952-195a2aa5f60a",
+    "authorizer": null,
+    "balance": 78874,
+    "total": null,
+    "customer": "87bdfaac-34aa-4017-aa60-abc398024a0d"
+   },
+   {
+    "id": "1dd8c7e4-27f7-4932-861e-296ea1759b46",
+    "num": "S-5947",
+    "status": "Paid",
+    "invoiceId": "b050553b-9411-4395-88b8-38d87ec8acd9",
+    "authorizer": null,
+    "balance": 78874,
+    "total": null,
+    "customer": "87bdfaac-34aa-4017-aa60-abc398024a0d"
+   },
+   {
+    "id": "228d3ae4-6ca9-4544-becb-d306da493756",
+    "num": "S-5928",
+    "status": "Paid",
+    "invoiceId": "6697e13a-a6c4-4499-8dba-2b239102cff3",
+    "authorizer": null,
+    "balance": 78874,
+    "total": null,
+    "customer": "87bdfaac-34aa-4017-aa60-abc398024a0d"
+   },
+   {
+    "id": "227bca97-459a-448c-b77e-87671d78dadd",
+    "num": "S-5123",
+    "status": "Paid",
+    "invoiceId": "c26b5ad9-702a-4faf-8218-322e546e5961",
+    "authorizer": null,
+    "balance": 78874,
+    "total": null,
+    "customer": "87bdfaac-34aa-4017-aa60-abc398024a0d"
+   },
+   {
+    "id": "5b46b68e-f8db-446e-8baa-4461b76ef729",
+    "num": "S-4080",
+    "status": "Paid",
+    "invoiceId": "77b743e9-d2af-4577-9afd-3c3c089548b3",
+    "authorizer": null,
+    "balance": 78874,
+    "total": null,
+    "customer": "87bdfaac-34aa-4017-aa60-abc398024a0d"
+   },
+   {
+    "id": "6badcd96-fc4b-420c-b5fe-31a3d4941bfb",
+    "num": "S-16066",
+    "status": "Paid",
+    "invoiceId": "6f286301-f869-4839-9130-e48f4816a592",
+    "authorizer": null,
+    "balance": 0,
+    "total": null,
+    "customer": "30e749fe-6a45-41ba-97a7-be355947d20d"
+   },
+   {
+    "id": "ba630d61-a715-47c7-baf4-eeede8f3b508",
+    "num": "S-16926",
+    "status": "Paid",
+    "invoiceId": "0b03319e-156e-4033-87cf-ea8924308765",
+    "authorizer": null,
+    "balance": 17398,
+    "total": null,
+    "customer": "aee89de7-f289-4e87-ac7c-48e01ad14958"
+   },
+   {
+    "id": "8e28ff77-64be-4251-a7b2-ff38092b2bae",
+    "num": "S-16696",
+    "status": "Paid",
+    "invoiceId": "02fc7ec5-1cde-41c8-819e-adc0ffcd47c0",
+    "authorizer": null,
+    "balance": 17398,
+    "total": null,
+    "customer": "aee89de7-f289-4e87-ac7c-48e01ad14958"
+   },
+   {
+    "id": "4c269aef-6694-4939-a572-4cc6c8afee84",
+    "num": "S-16541",
+    "status": "Paid",
+    "invoiceId": "e27980b0-0374-454c-a721-bad88aa24055",
+    "authorizer": null,
+    "balance": 17398,
+    "total": null,
+    "customer": "aee89de7-f289-4e87-ac7c-48e01ad14958"
+   },
+   {
+    "id": "d2cea2b7-3afa-44d1-9100-e7bcf172b430",
+    "num": "S-15586",
+    "status": "Paid",
+    "invoiceId": "ab9a3525-5db5-48bc-b41d-db81d61814eb",
+    "authorizer": null,
+    "balance": 17398,
+    "total": null,
+    "customer": "aee89de7-f289-4e87-ac7c-48e01ad14958"
+   },
+   {
+    "id": "57552066-3d40-4ca9-b106-66df472afd69",
+    "num": "S-15022",
+    "status": "Paid",
+    "invoiceId": "dce200eb-d038-48d7-b456-6f3f63dd67ba",
+    "authorizer": null,
+    "balance": 17398,
+    "total": null,
+    "customer": "aee89de7-f289-4e87-ac7c-48e01ad14958"
+   },
+   {
+    "id": "0a31f162-2ea0-4743-84b9-cab3dcc1eb5a",
+    "num": "S-14894",
+    "status": "Paid",
+    "invoiceId": "9b60e76a-d066-4fb5-abce-b3676020652c",
+    "authorizer": null,
+    "balance": 17398,
+    "total": null,
+    "customer": "aee89de7-f289-4e87-ac7c-48e01ad14958"
+   },
+   {
+    "id": "7bca0575-5de4-4459-a667-1b705741f984",
+    "num": "S-11302",
+    "status": "Paid",
+    "invoiceId": "bbc2ab2e-c236-4006-9b84-5bfb51147c57",
+    "authorizer": null,
+    "balance": 17398,
+    "total": null,
+    "customer": "aee89de7-f289-4e87-ac7c-48e01ad14958"
+   },
+   {
+    "id": "df9f3d56-99e0-4cf1-b067-95f28b76f468",
+    "num": "S-11167",
+    "status": "Paid",
+    "invoiceId": "8ce4364f-6fd0-4862-be97-1b6d51d35134",
+    "authorizer": null,
+    "balance": 17398,
+    "total": null,
+    "customer": "aee89de7-f289-4e87-ac7c-48e01ad14958"
+   },
+   {
+    "id": "214fb454-ff61-4118-9bf0-891daa0e57c3",
+    "num": "S-10470",
+    "status": "Paid",
+    "invoiceId": "4a386107-7d66-407f-a440-c6e1981ac309",
+    "authorizer": null,
+    "balance": 17398,
+    "total": null,
+    "customer": "aee89de7-f289-4e87-ac7c-48e01ad14958"
+   },
+   {
+    "id": "39e4b17d-69d0-4793-a684-1af3448bac98",
+    "num": "S-10287",
+    "status": "Paid",
+    "invoiceId": "09adb75a-d02e-444e-875f-8324aff9e893",
+    "authorizer": null,
+    "balance": 17398,
+    "total": null,
+    "customer": "aee89de7-f289-4e87-ac7c-48e01ad14958"
+   },
+   {
+    "id": "0b8a5b8e-6164-4f18-b86f-626aea3ecba1",
+    "num": "S-10143",
+    "status": "Paid",
+    "invoiceId": "35eef157-bdcc-4f06-86d3-c5d2771fbaee",
+    "authorizer": null,
+    "balance": 17398,
+    "total": null,
+    "customer": "aee89de7-f289-4e87-ac7c-48e01ad14958"
+   },
+   {
+    "id": "95dec8d2-55d6-4cd7-8397-6fbd2480a7f2",
+    "num": "S-10062",
+    "status": "Paid",
+    "invoiceId": "50097d72-e821-456a-8993-f505b4099622",
+    "authorizer": null,
+    "balance": 17398,
+    "total": null,
+    "customer": "aee89de7-f289-4e87-ac7c-48e01ad14958"
+   },
+   {
+    "id": "2dfb7f51-8a28-45d5-bb66-c39340584c92",
+    "num": "S-10056",
+    "status": "Paid",
+    "invoiceId": "d2e3f412-2c06-423f-a59b-425899f3ae5c",
+    "authorizer": null,
+    "balance": 17398,
+    "total": null,
+    "customer": "aee89de7-f289-4e87-ac7c-48e01ad14958"
+   },
+   {
+    "id": "d98559a2-da5a-4107-b398-5806c0497c51",
+    "num": "S-10050",
+    "status": "Paid",
+    "invoiceId": "6cb20884-26be-433e-acff-517123a42f9b",
+    "authorizer": null,
+    "balance": 17398,
+    "total": null,
+    "customer": "aee89de7-f289-4e87-ac7c-48e01ad14958"
+   },
+   {
+    "id": "5fe0774e-7c9e-4d3d-bebb-b381a9f98ddd",
+    "num": "S-9940",
+    "status": "Paid",
+    "invoiceId": "c6e42dd4-5dd6-4026-b801-1df2c4d19200",
+    "authorizer": null,
+    "balance": 17398,
+    "total": null,
+    "customer": "124262ac-cd9a-4f69-93b1-e73531b077c3"
+   },
+   {
+    "id": "09991993-aafc-47d5-8f6e-560d2badb660",
+    "num": "S-9924",
+    "status": "Paid",
+    "invoiceId": "7d77b3d0-2169-4d62-ba81-a29f9a8e6a2a",
+    "authorizer": null,
+    "balance": 17398,
+    "total": null,
+    "customer": "124262ac-cd9a-4f69-93b1-e73531b077c3"
+   },
+   {
+    "id": "3d78d797-ab9d-447e-a980-a4dbbd3f72bf",
+    "num": "S-16154",
+    "status": "Paid",
+    "invoiceId": "fbaebf8c-2902-4817-b821-0d7e970cafc3",
+    "authorizer": null,
+    "balance": 843779,
+    "total": null,
+    "customer": "efb46f9f-9cd2-4499-900a-1211ad76f347"
+   },
+   {
+    "id": "c5eb1acc-f1e2-4ab6-ad5e-40ceb764c8cd",
+    "num": "S-17286",
+    "status": "Paid",
+    "invoiceId": "5064a6aa-f043-4a2c-a567-a1804a99710f",
+    "authorizer": null,
+    "balance": 0,
+    "total": null,
+    "customer": "f2539b29-2910-4977-aa72-7e6c58b46368"
+   },
+   {
+    "id": "92b8c01e-9a41-4a76-bc14-8e67c7e9b7a4",
+    "num": "S-10168",
+    "status": "Paid",
+    "invoiceId": "1e16ae43-4722-429f-9233-91b8b7cdbc6f",
+    "authorizer": null,
+    "balance": 0,
+    "total": null,
+    "customer": "6b2074fe-8eff-493a-bb05-ca333f73f046"
+   },
+   {
+    "id": "c244b165-ccf4-48ba-9319-7dc577920864",
+    "num": "S-9141",
+    "status": "Paid",
+    "invoiceId": "c2bbe309-40d9-46dc-b4f3-c4a23b2f6d18",
+    "authorizer": null,
+    "balance": 0,
+    "total": null,
+    "customer": "6b2074fe-8eff-493a-bb05-ca333f73f046"
+   },
+   {
+    "id": "ad0295b3-2a5b-48a8-942c-e66f7df4992e",
+    "num": "S-9031",
+    "status": "Paid",
+    "invoiceId": "8fc26e65-ce8c-4dfd-bf85-036fc94bf624",
+    "authorizer": null,
+    "balance": 0,
+    "total": null,
+    "customer": "6b2074fe-8eff-493a-bb05-ca333f73f046"
+   },
+   {
+    "id": "0a41cc04-a2d1-4379-abbb-06fcd2ae2017",
+    "num": "S-16654",
+    "status": "Invoiced",
+    "invoiceId": "1d00250c-8065-40c1-8cdd-63d6c34111f4",
+    "authorizer": null,
+    "balance": 860085,
+    "total": null,
+    "customer": "f2911244-8f2b-42ce-b43b-fbf5b5863077"
+   },
+   {
+    "id": "4de85edc-5e47-4db0-bfae-ade23767acd9",
+    "num": "S-14092",
+    "status": "Paid",
+    "invoiceId": "fba3f4e6-d8b3-4265-9244-b195371707af",
+    "authorizer": null,
+    "balance": 860085,
+    "total": null,
+    "customer": "43f2d745-6929-46be-a42e-6e2d78c572f2"
+   },
+   {
+    "id": "412dcdb4-6332-41f4-8e7f-180ee709f0b8",
+    "num": "S-11720",
+    "status": "Paid",
+    "invoiceId": "72b93a91-650d-41a1-ba50-0a22f1b5608d",
+    "authorizer": null,
+    "balance": 860085,
+    "total": null,
+    "customer": "43f2d745-6929-46be-a42e-6e2d78c572f2"
+   },
+   {
+    "id": "497d9bb6-d3cf-406b-a9b1-3aebd23e63c2",
+    "num": "S-10265",
+    "status": "Paid",
+    "invoiceId": "7f1d1ce0-a6d2-4528-ace5-3ae5d71a8230",
+    "authorizer": null,
+    "balance": 860085,
+    "total": null,
+    "customer": "43f2d745-6929-46be-a42e-6e2d78c572f2"
+   },
+   {
+    "id": "b38314de-9ec1-4e76-98d6-4239c264ba79",
+    "num": "S-10126",
+    "status": "Paid",
+    "invoiceId": "bc275bcc-654b-4b41-84f9-0378a27bebcf",
+    "authorizer": null,
+    "balance": 860085,
+    "total": null,
+    "customer": "43f2d745-6929-46be-a42e-6e2d78c572f2"
+   },
+   {
+    "id": "9211cdcb-6292-494d-9dc4-d5539824beba",
+    "num": "S-9993",
+    "status": "Paid",
+    "invoiceId": "482b6589-e067-438d-ba03-06d08fd32605",
+    "authorizer": null,
+    "balance": 860085,
+    "total": null,
+    "customer": "3710275e-bc7c-40f8-a5bb-4b3e7b7c4ab0"
+   },
+   {
+    "id": "b716a487-0e52-4c3d-bb32-32a762bfaad5",
+    "num": "S-9688",
+    "status": "Paid",
+    "invoiceId": "458a7df0-1e97-406e-83d6-64a850370394",
+    "authorizer": null,
+    "balance": 860085,
+    "total": null,
+    "customer": "3710275e-bc7c-40f8-a5bb-4b3e7b7c4ab0"
+   },
+   {
+    "id": "aadd199b-cf83-4272-b20a-a36bf7a18c26",
+    "num": "S-9666",
+    "status": "Paid",
+    "invoiceId": "da906979-02b6-4a02-913a-1f768df676d9",
+    "authorizer": null,
+    "balance": 860085,
+    "total": null,
+    "customer": "43f2d745-6929-46be-a42e-6e2d78c572f2"
+   },
+   {
+    "id": "fa8aec20-86c5-4023-9fd2-9cb9930dde40",
+    "num": "S-8627",
+    "status": "Paid",
+    "invoiceId": "443f3092-8c52-4a3a-9c53-a1d8f20d01d5",
+    "authorizer": null,
+    "balance": 860085,
+    "total": null,
+    "customer": "3710275e-bc7c-40f8-a5bb-4b3e7b7c4ab0"
+   },
+   {
+    "id": "45141bc4-0a9f-4122-8e7a-363a1db077f7",
+    "num": "S-7631",
+    "status": "Paid",
+    "invoiceId": "20cbeae7-dbad-4d05-ad19-9c04f11ee3fa",
+    "authorizer": null,
+    "balance": 860085,
+    "total": null,
+    "customer": "199be0bb-5c1e-4da5-a41f-45a5db2c4f6d"
+   },
+   {
+    "id": "2c15c3b1-f20a-4c99-a7a7-2faf8d48f239",
+    "num": "S-6768",
+    "status": "Paid",
+    "invoiceId": "dc1e471c-be09-49ac-bb87-d83577021208",
+    "authorizer": null,
+    "balance": 860085,
+    "total": null,
+    "customer": "3710275e-bc7c-40f8-a5bb-4b3e7b7c4ab0"
+   },
+   {
+    "id": "1c188299-ea70-474b-b927-8a512e6fd05a",
+    "num": "S-17269",
+    "status": "Paid",
+    "invoiceId": "38f96146-a20d-4de5-bb6a-85d597084983",
+    "authorizer": null,
+    "balance": 0,
+    "total": null,
+    "customer": "9f5ff2ae-1f3d-45d1-b822-0f00c0d93bb5"
+   },
+   {
+    "id": "cc86cd14-7a98-4026-8714-dfaeaebf5753",
+    "num": "S-17046",
+    "status": "Paid",
+    "invoiceId": "bf865243-6509-47fc-aea3-5897b3579e89",
+    "authorizer": null,
+    "balance": 0,
+    "total": null,
+    "customer": "9f5ff2ae-1f3d-45d1-b822-0f00c0d93bb5"
+   },
+   {
+    "id": "b7ce5398-a9d3-4c76-8f01-100a3095d93f",
+    "num": "S-16383",
+    "status": "Paid",
+    "invoiceId": "e8c334d1-86c9-4d3c-aeb7-da2d4c0f4a45",
+    "authorizer": null,
+    "balance": 0,
+    "total": null,
+    "customer": "9f5ff2ae-1f3d-45d1-b822-0f00c0d93bb5"
+   },
+   {
+    "id": "38c4d16f-a5fa-4889-8804-5843e291b16d",
+    "num": "S-16171",
+    "status": "Paid",
+    "invoiceId": "66c9fe51-eb4f-47c8-8623-e69eb5ca5f85",
+    "authorizer": null,
+    "balance": 0,
+    "total": null,
+    "customer": "9f5ff2ae-1f3d-45d1-b822-0f00c0d93bb5"
+   },
+   {
+    "id": "3923328f-e04a-4948-a2c4-ee689c2e2244",
+    "num": "S-12305",
+    "status": "Paid",
+    "invoiceId": "39ccc13b-2e08-484e-8b6c-12718b137faf",
+    "authorizer": null,
+    "balance": 0,
+    "total": null,
+    "customer": "9f5ff2ae-1f3d-45d1-b822-0f00c0d93bb5"
+   },
+   {
+    "id": "e78f487a-ac8c-4a35-a048-a07f658d4c16",
+    "num": "S-11568",
+    "status": "Paid",
+    "invoiceId": "08d8ef54-7ec4-42cf-a7dc-f77d293b2b13",
+    "authorizer": null,
+    "balance": 0,
+    "total": null,
+    "customer": "d1e79310-15a2-46f4-aaa4-7038a6789458"
+   },
+   {
+    "id": "9fdf0f2f-b1ed-41e5-a286-127fd18cff02",
+    "num": "S-9997",
+    "status": "Paid",
+    "invoiceId": "18d4394a-e0da-42c9-8a5d-7ecc766c9d34",
+    "authorizer": null,
+    "balance": 0,
+    "total": null,
+    "customer": "d1e79310-15a2-46f4-aaa4-7038a6789458"
+   },
+   {
+    "id": "69ab3dba-b3d3-4e82-84be-2298f3c63856",
+    "num": "S-8455",
+    "status": "Paid",
+    "invoiceId": "269b6128-a4bf-4603-874c-b352f03cb08f",
+    "authorizer": null,
+    "balance": 0,
+    "total": null,
+    "customer": "d1e79310-15a2-46f4-aaa4-7038a6789458"
+   },
+   {
+    "id": "d5c01ac3-5886-400c-9897-895a9f1e160e",
+    "num": "S-9950",
+    "status": "Paid",
+    "invoiceId": "56214bb7-a128-4ece-9f3c-f47d656abb4d",
+    "authorizer": null,
+    "balance": 0,
+    "total": null,
+    "customer": "bac1cccb-1e47-435f-b6d3-de7049ac20c7"
+   },
+   {
+    "id": "78dd906f-0726-4775-976a-051c5e3a1a3a",
+    "num": "S-5105",
+    "status": "Paid",
+    "invoiceId": "5d7daf99-44a3-4ea1-b936-aad28aba0d05",
+    "authorizer": null,
+    "balance": 0,
+    "total": null,
+    "customer": "83c9c5fb-6bad-40dd-aa7b-0ec32221cc20"
+   },
+   {
+    "id": "288085ac-f681-4891-b4da-298899901811",
+    "num": "S-4587",
+    "status": "Paid",
+    "invoiceId": "ee500346-4fa8-46f6-a9ee-fe958282daba",
+    "authorizer": null,
+    "balance": 0,
+    "total": null,
+    "customer": "83c9c5fb-6bad-40dd-aa7b-0ec32221cc20"
+   }
+  ],
+  "estimatesOnly": [
+   {
+    "id": "e98e678b-731e-4140-a24c-e2e7a6db8dad",
+    "num": "S-17580",
+    "status": "Complete",
+    "invoiceId": null,
+    "authorizer": null,
+    "balance": 1514860,
+    "total": null,
+    "customer": "9c1d996a-e8aa-4d95-9253-83499ba8d759"
+   },
+   {
+    "id": "d973d775-8e53-443b-912d-a56f6dafd54d",
+    "num": "S-17358",
+    "status": "Approved",
+    "invoiceId": null,
+    "authorizer": null,
+    "balance": 0,
+    "total": null,
+    "customer": "9359801d-87a6-4081-9333-f092f3d465ba"
+   },
+   {
+    "id": "b94d839f-0d91-4fdd-bf00-26fdd3d557ac",
+    "num": "S-17435",
+    "status": "Approved",
+    "invoiceId": null,
+    "authorizer": null,
+    "balance": 860085,
+    "total": null,
+    "customer": "3710275e-bc7c-40f8-a5bb-4b3e7b7c4ab0"
+   }
+  ],
+  "paid": [
+   {
+    "id": "04ab678b-a2c2-4fd7-bcd9-76b6a23a419f",
+    "num": "S-4219",
+    "status": "Paid",
+    "invoiceId": "aac99a06-20af-424a-afdb-56e865b1553b",
+    "authorizer": null,
+    "balance": 0,
+    "total": null,
+    "customer": "f6b18290-749e-44c2-a820-fe1b975b2835"
+   },
+   {
+    "id": "e9dae5c1-2917-43db-917f-a72268f52e49",
+    "num": "S-13311",
+    "status": "Paid",
+    "invoiceId": "1f04c536-6e9a-4cdd-9c56-3428a6cf6b62",
+    "authorizer": null,
+    "balance": 0,
+    "total": null,
+    "customer": "d6145dd5-9685-4b6e-8caf-c9ca3b661bf4"
+   },
+   {
+    "id": "89b2e570-fb5e-48d2-8cc5-d2247b7b60c1",
+    "num": "S-10601",
+    "status": "Paid",
+    "invoiceId": "c18af1ab-226b-4e44-ba00-48a22ca08689",
+    "authorizer": null,
+    "balance": 0,
+    "total": null,
+    "customer": "d6145dd5-9685-4b6e-8caf-c9ca3b661bf4"
+   },
+   {
+    "id": "7ad31e88-66b0-4c5a-a657-900b7af27346",
+    "num": "S-10250",
+    "status": "Paid",
+    "invoiceId": "009244f7-59e9-41bf-b3e1-7883b79cf17c",
+    "authorizer": null,
+    "balance": 0,
+    "total": null,
+    "customer": "d6145dd5-9685-4b6e-8caf-c9ca3b661bf4"
+   },
+   {
+    "id": "50a2add3-49f0-4ce8-9a9c-fef5a7eee0df",
+    "num": "S-10142",
+    "status": "Paid",
+    "invoiceId": "5e3b3224-e4e7-4235-a275-6dd5bf9dd550",
+    "authorizer": null,
+    "balance": 0,
+    "total": null,
+    "customer": "d6145dd5-9685-4b6e-8caf-c9ca3b661bf4"
+   },
+   {
+    "id": "035320cb-1406-4923-9653-2ca9a83be458",
+    "num": "S-5468",
+    "status": "Paid",
+    "invoiceId": "bb7ea3f0-084c-49f4-9317-f3b39f955b78",
+    "authorizer": null,
+    "balance": 0,
+    "total": null,
+    "customer": "d6145dd5-9685-4b6e-8caf-c9ca3b661bf4"
+   },
+   {
+    "id": "d431ef43-f1f2-4e81-a4bf-1b3fbea798f3",
+    "num": "S-4963",
+    "status": "Paid",
+    "invoiceId": "50cd283a-749b-42c9-99f0-d0f808b6b45e",
+    "authorizer": null,
+    "balance": 0,
+    "total": null,
+    "customer": "d6145dd5-9685-4b6e-8caf-c9ca3b661bf4"
+   },
+   {
+    "id": "6badcd96-fc4b-420c-b5fe-31a3d4941bfb",
+    "num": "S-16066",
+    "status": "Paid",
+    "invoiceId": "6f286301-f869-4839-9130-e48f4816a592",
+    "authorizer": null,
+    "balance": 0,
+    "total": null,
+    "customer": "30e749fe-6a45-41ba-97a7-be355947d20d"
+   },
+   {
+    "id": "c5eb1acc-f1e2-4ab6-ad5e-40ceb764c8cd",
+    "num": "S-17286",
+    "status": "Paid",
+    "invoiceId": "5064a6aa-f043-4a2c-a567-a1804a99710f",
+    "authorizer": null,
+    "balance": 0,
+    "total": null,
+    "customer": "f2539b29-2910-4977-aa72-7e6c58b46368"
+   },
+   {
+    "id": "92b8c01e-9a41-4a76-bc14-8e67c7e9b7a4",
+    "num": "S-10168",
+    "status": "Paid",
+    "invoiceId": "1e16ae43-4722-429f-9233-91b8b7cdbc6f",
+    "authorizer": null,
+    "balance": 0,
+    "total": null,
+    "customer": "6b2074fe-8eff-493a-bb05-ca333f73f046"
+   },
+   {
+    "id": "c244b165-ccf4-48ba-9319-7dc577920864",
+    "num": "S-9141",
+    "status": "Paid",
+    "invoiceId": "c2bbe309-40d9-46dc-b4f3-c4a23b2f6d18",
+    "authorizer": null,
+    "balance": 0,
+    "total": null,
+    "customer": "6b2074fe-8eff-493a-bb05-ca333f73f046"
+   },
+   {
+    "id": "ad0295b3-2a5b-48a8-942c-e66f7df4992e",
+    "num": "S-9031",
+    "status": "Paid",
+    "invoiceId": "8fc26e65-ce8c-4dfd-bf85-036fc94bf624",
+    "authorizer": null,
+    "balance": 0,
+    "total": null,
+    "customer": "6b2074fe-8eff-493a-bb05-ca333f73f046"
+   },
+   {
+    "id": "1c188299-ea70-474b-b927-8a512e6fd05a",
+    "num": "S-17269",
+    "status": "Paid",
+    "invoiceId": "38f96146-a20d-4de5-bb6a-85d597084983",
+    "authorizer": null,
+    "balance": 0,
+    "total": null,
+    "customer": "9f5ff2ae-1f3d-45d1-b822-0f00c0d93bb5"
+   },
+   {
+    "id": "cc86cd14-7a98-4026-8714-dfaeaebf5753",
+    "num": "S-17046",
+    "status": "Paid",
+    "invoiceId": "bf865243-6509-47fc-aea3-5897b3579e89",
+    "authorizer": null,
+    "balance": 0,
+    "total": null,
+    "customer": "9f5ff2ae-1f3d-45d1-b822-0f00c0d93bb5"
+   },
+   {
+    "id": "b7ce5398-a9d3-4c76-8f01-100a3095d93f",
+    "num": "S-16383",
+    "status": "Paid",
+    "invoiceId": "e8c334d1-86c9-4d3c-aeb7-da2d4c0f4a45",
+    "authorizer": null,
+    "balance": 0,
+    "total": null,
+    "customer": "9f5ff2ae-1f3d-45d1-b822-0f00c0d93bb5"
+   },
+   {
+    "id": "38c4d16f-a5fa-4889-8804-5843e291b16d",
+    "num": "S-16171",
+    "status": "Paid",
+    "invoiceId": "66c9fe51-eb4f-47c8-8623-e69eb5ca5f85",
+    "authorizer": null,
+    "balance": 0,
+    "total": null,
+    "customer": "9f5ff2ae-1f3d-45d1-b822-0f00c0d93bb5"
+   },
+   {
+    "id": "3923328f-e04a-4948-a2c4-ee689c2e2244",
+    "num": "S-12305",
+    "status": "Paid",
+    "invoiceId": "39ccc13b-2e08-484e-8b6c-12718b137faf",
+    "authorizer": null,
+    "balance": 0,
+    "total": null,
+    "customer": "9f5ff2ae-1f3d-45d1-b822-0f00c0d93bb5"
+   },
+   {
+    "id": "e78f487a-ac8c-4a35-a048-a07f658d4c16",
+    "num": "S-11568",
+    "status": "Paid",
+    "invoiceId": "08d8ef54-7ec4-42cf-a7dc-f77d293b2b13",
+    "authorizer": null,
+    "balance": 0,
+    "total": null,
+    "customer": "d1e79310-15a2-46f4-aaa4-7038a6789458"
+   },
+   {
+    "id": "9fdf0f2f-b1ed-41e5-a286-127fd18cff02",
+    "num": "S-9997",
+    "status": "Paid",
+    "invoiceId": "18d4394a-e0da-42c9-8a5d-7ecc766c9d34",
+    "authorizer": null,
+    "balance": 0,
+    "total": null,
+    "customer": "d1e79310-15a2-46f4-aaa4-7038a6789458"
+   },
+   {
+    "id": "69ab3dba-b3d3-4e82-84be-2298f3c63856",
+    "num": "S-8455",
+    "status": "Paid",
+    "invoiceId": "269b6128-a4bf-4603-874c-b352f03cb08f",
+    "authorizer": null,
+    "balance": 0,
+    "total": null,
+    "customer": "d1e79310-15a2-46f4-aaa4-7038a6789458"
+   },
+   {
+    "id": "d5c01ac3-5886-400c-9897-895a9f1e160e",
+    "num": "S-9950",
+    "status": "Paid",
+    "invoiceId": "56214bb7-a128-4ece-9f3c-f47d656abb4d",
+    "authorizer": null,
+    "balance": 0,
+    "total": null,
+    "customer": "bac1cccb-1e47-435f-b6d3-de7049ac20c7"
+   },
+   {
+    "id": "78dd906f-0726-4775-976a-051c5e3a1a3a",
+    "num": "S-5105",
+    "status": "Paid",
+    "invoiceId": "5d7daf99-44a3-4ea1-b936-aad28aba0d05",
+    "authorizer": null,
+    "balance": 0,
+    "total": null,
+    "customer": "83c9c5fb-6bad-40dd-aa7b-0ec32221cc20"
+   },
+   {
+    "id": "288085ac-f681-4891-b4da-298899901811",
+    "num": "S-4587",
+    "status": "Paid",
+    "invoiceId": "ee500346-4fa8-46f6-a9ee-fe958282daba",
+    "authorizer": null,
+    "balance": 0,
+    "total": null,
+    "customer": "83c9c5fb-6bad-40dd-aa7b-0ec32221cc20"
+   }
+  ],
+  "withAuthorizer": []
+ },
+ "previewVariants": {
+  "invoice": {
+   "status": 200,
+   "len": 79384,
+   "head": "<style>\n    * {\n        box-sizing: border-box;\n    }\n\n    @page {\n        size: A4 portrait;\n        font-size: 0.8rem;",
+   "ctype": "text/html; charset=UTF-8"
+  },
+  "estimate": {
+   "status": 200,
+   "len": 79385,
+   "head": "<style>\n    * {\n        box-sizing: border-box;\n    }\n\n    @page {\n        size: A4 portrait;\n        font-size: 0.8rem;",
+   "ctype": "text/html; charset=UTF-8"
+  },
+  "pdf": {
+   "status": 200,
+   "len": 31317,
+   "head": "%PDF-1.7\n%🖤\n5 0 obj\n<</Filter /FlateDecode/Length 3385>>\nstream\nx��\\I��\u0011��_������\u000e\u0018}\bb\u001b�)\u0003�c�F\u000e���I0�%??E���Hj陶'\b\u001a=�'��",
+   "ctype": "application/pdf"
+  }
+ }
+}

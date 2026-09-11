@@ -1,0 +1,237 @@
+{
+ "partSaleStatuses": {
+  "complete": 5,
+  "estimate": 9,
+  "paid": 74,
+  "approved": 2,
+  "declined": 3
+ },
+ "partSalePicks": {
+  "invoiced": {
+   "id": "4f7287b3-4fda-4d9f-8501-e4b0eb916d04",
+   "number": "P9872-247",
+   "status": "complete",
+   "invoicedDate": null
+  },
+  "estimate": {
+   "id": "196d3947-ca3a-4491-8594-0dec324a970d",
+   "number": "P9872-246",
+   "status": "estimate"
+  }
+ },
+ "creditProbe": {
+  "/api/credit-invoices": {
+   "status": 404,
+   "rows": 0,
+   "keys": null
+  },
+  "/api/invoices/credits": {
+   "status": 404,
+   "rows": 0,
+   "keys": null
+  },
+  "/api/customer-invoices": {
+   "status": 404,
+   "rows": 0,
+   "keys": null
+  },
+  "/api/customers/f6b18290-749e-44c2-a820-fe1b975b2835/invoices": {
+   "status": 404,
+   "rows": 0,
+   "keys": null
+  },
+  "/api/customers/view/f6b18290-749e-44c2-a820-fe1b975b2835": {
+   "status": 400,
+   "rows": 0,
+   "keys": null
+  },
+  "/api/invoices/list?limit=20": {
+   "status": 200,
+   "rows": 100,
+   "keys": [
+    "id",
+    "invoice_number",
+    "status",
+    "work_order_id",
+    "customer_id",
+    "company_id",
+    "work_place_id",
+    "subtotal",
+    "subtotal_with_discount",
+    "subtotal_with_tax",
+    "total_balance",
+    "discount",
+    "work_order_number",
+    "customer_first_name",
+    "customer_last_name",
+    "customer_company_name",
+    "payment_status",
+    "sub_total",
+    "sub_total_with_discount",
+    "sub_total_with_tax",
+    "deletable",
+    "payment_status_label"
+   ]
+  },
+  "/api/invoices/search?limit=20": {
+   "status": 404,
+   "rows": 0,
+   "keys": null
+  }
+ },
+ "historyProbe": {
+  "/api/work-orders/04ab678b-a2c2-4fd7-bcd9-76b6a23a419f/history": {
+   "status": 200,
+   "rows": 1,
+   "sample": [
+    {
+     "id": "68dffc04-7f01-4394-88e8-c066329eaf01",
+     "eventType": "work_order.invoice.downloaded",
+     "eventName": "Invoice downloaded",
+     "workOrderId": "04ab678b-a2c2-4fd7-bcd9-76b6a23a419f",
+     "workOrderNumber": "04ab678b-a2c2-4fd7-bcd9-76b6a23a419f",
+     "userId": "6d71382d-4ddb-4707-a0f3-33b4bb78b0b8",
+     "userName": "Admin ShopView",
+     "workplaceId": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+     "lineId": null,
+     "lineName": null
+    }
+   ]
+  },
+  "/api/work-orders/view/04ab678b-a2c2-4fd7-bcd9-76b6a23a419f/history": {
+   "status": 404,
+   "rows": 0,
+   "sample": []
+  },
+  "/api/invoices/aac99a06-20af-424a-afdb-56e865b1553b/history": {
+   "status": 404,
+   "rows": 0,
+   "sample": []
+  },
+  "/api/history?work_order_id=04ab678b-a2c2-4fd7-bcd9-76b6a23a419f": {
+   "status": 404,
+   "rows": 0,
+   "sample": []
+  },
+  "/api/work-orders/history/04ab678b-a2c2-4fd7-bcd9-76b6a23a419f": {
+   "status": 404,
+   "rows": 0,
+   "sample": []
+  }
+ },
+ "woKeys": [
+  "deletable",
+  "deletable_reason",
+  "editable",
+  "id",
+  "number",
+  "engine_hours",
+  "tax",
+  "time_estimate",
+  "start_date",
+  "end_date",
+  "status_value",
+  "status",
+  "bay_id",
+  "priority",
+  "workplace_id",
+  "is_vehicle_here",
+  "vin",
+  "licence_plate",
+  "customer_po",
+  "service_advisor_id",
+  "sales_rep_id",
+  "sales_rep_name",
+  "sales_rep_is_inactive",
+  "authorizer_contact_id",
+  "authorizer_full_name",
+  "authorizer_telephone",
+  "customer_id",
+  "company_id",
+  "company_name",
+  "customer_first_name",
+  "customer_last_name",
+  "company_notes",
+  "company_pin_notes",
+  "company_ibs",
+  "company_labour_type_id",
+  "customer_require_po",
+  "tech_assigned_id",
+  "technician_first_name",
+  "technician_last_name",
+  "purchase_order",
+  "mileage",
+  "vehicle",
+  "invoice_status",
+  "invoice_id",
+  "is_invoice_created",
+  "paid_balance",
+  "amount_paid",
+  "refunded_amount",
+  "total_parts_cost",
+  "total_labour_cost",
+  "total_tech_time",
+  "total_time",
+  "total_labour_cost_amount",
+  "total_tax_cost_amount",
+  "total_tax_cost",
+  "total_cost",
+  "progress",
+  "tech_progress",
+  "tech_tasks",
+  "total_clocked_time",
+  "clocked_labor",
+  "total_received_quantity",
+  "total_returned_quantity",
+  "part_request_count",
+  "part_return_request_count",
+  "notes_count",
+  "clock_ins_count",
+  "credit_term",
+  "balance",
+  "credit_limit",
+  "is_over_limit",
+  "payment_method",
+  "customer_account_id",
+  "sub_total",
+  "customer_payments",
+  "deposits",
+  "deposit_total",
+  "has_deposits",
+  "adjustments",
+  "totalAdjustments",
+  "adjustmentsSummary",
+  "invoice_balance",
+  "payments_applied",
+  "open_balance",
+  "has_part_sale_credits",
+  "cores_pending",
+  "shop_supplies_cost",
+  "work_order_shop_supplies_charge",
+  "shop_supplies_charge",
+  "max_shop_supplies_charge",
+  "min_shop_supplies_charge",
+  "invoice_shop_supplies_charge",
+  "invoice_tax",
+  "history_count",
+  "type",
+  "ibs_approval_code",
+  "invoice_shop_id"
+ ],
+ "authorizerish": {
+  "authorizer_contact_id": null,
+  "authorizer_full_name": null,
+  "authorizer_telephone": null,
+  "company_ibs": "783799",
+  "ibs_approval_code": null
+ },
+ "portal": {
+  "https://sv9872.qa.shopview.com/portal": {
+   "status": 200,
+   "type": "basic"
+  },
+  "https://portal.sv9872.qa.shopview.com/": {
+   "error": "Error: page.evaluate: TypeError: Failed to fetch (portal.sv9872.qa.shopview.com)\n    at https://sv9872.qa.shopview.com/j"
+  }
+ }
+}

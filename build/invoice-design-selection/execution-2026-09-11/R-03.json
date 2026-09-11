@@ -1,0 +1,36 @@
+{
+ "pass_meta": {
+  "suite": "Invoice Design Selection (7800)",
+  "run": 446,
+  "env": "the sv9872 QA branch",
+  "build": "sv9872 v26.36.2-12974d6",
+  "date": "11 September 2026"
+ },
+ "results": {
+  "C53518": {
+   "verdict": "Blocked",
+   "observed": "What was checked: whether the shop's chooser for the invoice look matches what the written requirements now ask for. What happened: it does not, and the test itself is out of date too. This test was written on 10 September from the requirements as they read that morning, which asked for a drop-down list named 'Invoice Design' at the top of the page. Later the same day the requirements were rewritten to ask for an on/off switch named 'Legacy invoice layout' at the bottom of the list of switches, with its own wording. The branch we are testing still shows the drop-down list - which is what this test expects - but the branch appears to have been built before that rewrite, so this is not proof the product is wrong. Marking it passed would sign off something the requirements no longer ask for; marking it failed would accuse the product of a fault it may not have.",
+   "todo": "What needs to be done: the QA lead needs to confirm whether the branch under test was built before the requirements were rewritten on 10 September. If it was, this test should be reworded to the on/off switch and re-run on a newer branch. If it was not, the product is behind the requirements and a defect should be raised. Nothing for the tester to do until that is settled."
+  },
+  "C53520": {
+   "verdict": "Blocked",
+   "observed": "What was checked: whether the shop's chooser for the invoice look matches what the written requirements now ask for. What happened: it does not, and the test itself is out of date too. This test was written on 10 September from the requirements as they read that morning, which asked for a drop-down list named 'Invoice Design' at the top of the page. Later the same day the requirements were rewritten to ask for an on/off switch named 'Legacy invoice layout' at the bottom of the list of switches, with its own wording. The branch we are testing still shows the drop-down list - which is what this test expects - but the branch appears to have been built before that rewrite, so this is not proof the product is wrong. Marking it passed would sign off something the requirements no longer ask for; marking it failed would accuse the product of a fault it may not have.",
+   "todo": "What needs to be done: the QA lead needs to confirm whether the branch under test was built before the requirements were rewritten on 10 September. If it was, this test should be reworded to the on/off switch and re-run on a newer branch. If it was not, the product is behind the requirements and a defect should be raised. Nothing for the tester to do until that is settled."
+  },
+  "C53566": {
+   "verdict": "Blocked",
+   "observed": "What was checked: whether this test, which puts the tester on the screens a customer sees when they open a link from your shop, can be run here. What happened: it cannot. Those customer-facing screens only exist on the shared Staging site, not on a branch built for a single feature, so there is nothing here for the tester to open. The shop-side behaviour this feature changes has been checked separately and works; only the customer-facing half is untested.",
+   "todo": "What needs to be done: run this test on the shared Staging site once the feature reaches there. It cannot be run on this branch because the customer-facing screens do not exist on it."
+  },
+  "C53567": {
+   "verdict": "Blocked",
+   "observed": "What was checked: whether this test, which puts the tester on the screens a customer sees when they open a link from your shop, can be run here. What happened: it cannot. Those customer-facing screens only exist on the shared Staging site, not on a branch built for a single feature, so there is nothing here for the tester to open. The shop-side behaviour this feature changes has been checked separately and works; only the customer-facing half is untested.",
+   "todo": "What needs to be done: run this test on the shared Staging site once the feature reaches there. It cannot be run on this branch because the customer-facing screens do not exist on it."
+  },
+  "C53569": {
+   "verdict": "Blocked",
+   "observed": "What was checked: whether this test, which puts the tester on the screens a customer sees when they open a link from your shop, can be run here. What happened: it cannot. Those customer-facing screens only exist on the shared Staging site, not on a branch built for a single feature, so there is nothing here for the tester to open. The shop-side behaviour this feature changes has been checked separately and works; only the customer-facing half is untested.",
+   "todo": "What needs to be done: run this test on the shared Staging site once the feature reaches there. It cannot be run on this branch because the customer-facing screens do not exist on it."
+  }
+ }
+}

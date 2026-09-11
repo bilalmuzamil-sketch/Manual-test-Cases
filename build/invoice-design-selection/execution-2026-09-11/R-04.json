@@ -1,0 +1,35 @@
+{
+ "pass_meta": {
+  "suite": "Invoice Design Selection (7800)",
+  "run": 446,
+  "env": "the sv9872 QA branch",
+  "build": "sv9872 v26.36.2-12974d6",
+  "date": "11 September 2026"
+ },
+ "results": {
+  "C53540": {
+   "verdict": "Passed",
+   "observed": "What was checked: that an invoice the customer has already paid in full - the copy that acts as their receipt - follows the shop's current choice of look, and still shows the payments and the zero balance. What happened: it does. A fully paid job was opened with the shop set to the old look: it showed the payment taken on 28 January 2025 by Mastercard and a balance of $0.00. The shop's choice was then changed to the new look and the same paid invoice was opened again: it came back in the new look, with the same payment and the same $0.00 balance. Nothing about the look is kept on the invoice itself - it simply follows whatever the shop has chosen at the moment someone opens it."
+  },
+  "C53564": {
+   "verdict": "Passed",
+   "observed": "What was checked: that printing an invoice, or making a PDF of it from inside ShopView, produces the look the shop has currently chosen. What happened: it does. The same invoice was turned into a PDF twice, once with the shop on the old look and once on the new. The two PDFs are plainly different documents: the old one lays the page out in the familiar way and prints the approval-code line beside the customer's name, while the new one uses the refreshed layout with its large section headings. The invoice number and every money figure are the same in both."
+  },
+  "C53571": {
+   "verdict": "Passed",
+   "observed": "What was checked: that a shop never ends up with a mixture of looks - some paperwork old, some new. What happened: it never does. Eight different jobs of different ages, all already invoiced and paid, were opened one after another with the shop on the old look, and every one of them came back old. The shop's choice was then changed and all eight were opened again: every one of them came back new. Not one document stayed behind in the other look, so a shop's paperwork is always all one style."
+  },
+  "C53590": {
+   "verdict": "Passed",
+   "observed": "What was checked: that when you open a saved copy of a document from a job's History, it shows in the shop's current look rather than the look that was in force when it was saved. What happened: it does. A saved copy recorded earlier the same day was opened with the shop on the old look and came back old; the shop's choice was changed and the very same saved copy was opened again and came back new, matching the live invoice exactly. When the copy was recorded makes no difference to how it looks."
+  },
+  "C53592": {
+   "verdict": "Passed",
+   "observed": "What was checked: that changing the look does not change any of the money on the page, and that the 'remit payment to' block is part of the look rather than one of the figures. What happened: the money is untouched. On the same invoice, shop supplies $318.13, subtotal $4,623.35, total $4,854.52 and balance $0.00 read exactly the same in both looks, as did the invoice number INV-S2-4219 and every line on the job. A 'remit payment to' address printed in both looks - the old one shows it in ordinary type beside the customer, the new one under a heading - which is a difference of presentation, not of figures, and is not a fault either way."
+  },
+  "C53550": {
+   "verdict": "Passed",
+   "observed": "What was checked: that a PDF someone already downloaded stays exactly as it was after the shop changes its choice of look, while a freshly downloaded copy picks up the new choice. What happened: both are true. A PDF was downloaded with the shop on the old look and kept; the shop's choice was then changed to the new look. The kept file was opened again and was completely unchanged - it is a file the recipient holds, and nothing ShopView does afterwards reaches into it. Downloading the same document again from ShopView produced a visibly different PDF in the new look."
+  }
+ }
+}
