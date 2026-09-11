@@ -31,6 +31,21 @@ Story 4 pins the back-catalogue by creation-date cohort. Story 5 = every render 
   deferred; the QA lead decides whether they get a dedicated run or union into the Invoice Refresh run R417
   when built. (Flagged, not auto-done, to avoid polluting a live run with untestable cases.)
 
+## Status — 2026-09-11 (build-verify feedback: C53537 / C53543 corrected; C53537 made generic)
+Build-verify session flagged two cases it could not honestly pass. Both fixed:
+- **C53537** (Credit Invoice against several invoices): provenance had cited withdrawn S2-R5/S2-E4 →
+  re-anchored to Terminology + S2-R1/R2; marker now `AUTOMATION: READY`; last-checked stamp
+  `v26.36.2-12974d6 9/11/2026`. **Then** the QA lead gave a concrete multi-invoice-credit recipe and
+  asked to keep the case **generic (no hardcoded ids)**: preconditions now carry the full
+  create-a-multi-invoice-credit route (Customers → the customer → Invoices tab → tick one CM credit +
+  two or more open invoices → New Payment → untick credit / choose card / re-tick credit → Make
+  Payment) and the steps open "the credit (a CM row) applied across two or more invoices" and note the
+  design — **no CM1-105 / S1-5 / S1-6 literals**. Verified `fr-view` / 0 literal tags / marker last /
+  title + atm unchanged (`hs_repair_one.mjs`, single-case idempotent repair — API write stayed fr-view,
+  no UI repair needed). Still in run R446, Untested, Mudassir (6).
+- **C53543** (Parts Sale Credit): preconds/steps had lagged at five documents while title/expected
+  named six — expanded to the six-document set (part-sale credit = existing only). fr-view verified.
+
 ## Status — 2026-09-11 (FULL re-verify + RE-AUTHOR to the Q23 "live switch" model)
 Spec rule changed overnight (Q23, 2026-09-10): the setting is a **live organization-wide switch** — no
 document captures or is pinned to a design; it renders in whatever the org has selected at the moment of
