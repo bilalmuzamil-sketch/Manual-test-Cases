@@ -1166,3 +1166,99 @@ Recorded so no session re-discovers them. All observed live on `v26.36.2-12974d6
 | Approving contact | `authorizer_contact_id` / `authorizer_full_name` / `company_ibs` / `ibs_approval_code` on the work order. Legacy prints an Authorizer column carrying the billing-service reference; Modern prints the contact's name. Both fields grey out once the work order is invoiced |
 | Quick-login roles available | `admin` and `tech` only (`GET /api/quick-login/users`) — `tech` is the ready-made no-settings-access user |
 | Not present on this branch | credit documents (none exist; `GET /api/credit-memos` is 405, POST-only), batch invoicing, imported invoices, a second selectable location in the profile menu, any way to create an organisation |
+
+---
+
+## L0055 — 2026-09-11 — ONE BRANCH CAN HOST MORE THAN ONE ORGANISATION, AND THE DEV LOGIN REACHES ONLY ONE
+
+**Incident.** The QA lead seeded a credit for a customer on sv9872 and said "test it". Every search
+came back empty and I twice concluded "this shop has no credits". The customer was real — it simply
+lived in a **different organisation on the same branch**. `sv9872` carries at least two: **Foothills
+Group Inc** (`d55bc308…`, workplaces "Staging Heavy Duty - 9919" and "Staging Lethbridge - 4310") and
+**Dteem** (`32b4d057…`, workplace "Location1" `e2131c05…`). The branch's dev quick-login lands in
+Foothills and **cannot reach Dteem at all**: there is no organisation switcher in the app, and
+`iam/change-location` pointed at Location1 returns 200 but yields an empty session.
+
+**The rule.** Before hunting for a record you were told exists, read **`organization_id` off the
+record itself** (`GET /api/customers/view/<id>` → `data.company.organization_id`) and compare it with
+the organisation your session is in. A 404/`companyId: Not found`/empty list is far more often
+"wrong organisation" than "no such data". `GET /api/organizations` listing two rows is the tell.
+
+**And a session that can READ is not a session that can CLICK.** The QA lead's own cookies
+(`sv_sso_session` + `PHPSESSID` + `cf_clearance`, all three — one alone gives "Session has expired")
+authenticate every API call in his organisation. But the SPA still renders the login page, because
+its own auth probe `GET /api/api/sso/check` 404s on this branch and the app falls back to the
+dev quick-login panel. So with a borrowed session you can **read and print, but not tick a box**.
+Decide at the START whether the task needs clicks: if it does, a borrowed session will not do it, and
+saying so early is worth an hour.
+
+---
+
+## L0056 — 2026-09-11 — `iam/change-location` IS NOT A SAFE WAY TO SWITCH LOCATION — AND REPEATING A KNOWN-BROKEN CALL IS THE REAL FAULT
+
+**Incident.** `POST /api/iam/change-location {workplace_id}` returns **200** and looks successful. It
+then leaves the session showing **no location in the top bar and zero invoices/customers**. I used it
+**five times** across five probes, each time watching it break the session, each time re-booting and
+trying a variant. That is the expensive part of this pass — not the first failure, the four repeats.
+
+**The rule (mechanics).** Never call `iam/change-location` directly. A location switch is only safe
+through the UI control, and on a session that has been broken by it the fix is a **fresh
+`qa-branch-boot.mjs` login**, which recovers fully (verified: location back, 100 invoices visible, no
+data harmed). Note the profile menu's "Change Location" row lists **only the current location** when
+the user is enrolled in one workplace for that organisation — an empty submenu is not a bug to chase.
+
+**The rule (judgement) — this is the durable one.** When an approach fails in a way you do not
+understand, the second attempt must change the *hypothesis*, not just the parameters. Cap it: **two
+failures of the same mechanism ⇒ stop, report what you know, and name the cheapest thing the human
+could do instead.** In an emergency the honest "I need two minutes of your time" beats another forty
+minutes of variants. The QA lead had already told me the branch was shared and time was short.
+
+---
+
+## L0057 — 2026-09-11 — `limit=N` IS SILENTLY IGNORED ON THIS API; IT CAPS AT 100
+
+`GET /api/invoices/list?limit=300` returns **100** rows and no warning. Every "how many are there"
+and "is X present" conclusion drawn from such a call is wrong by construction. I reported "only one
+customer has two or more unpaid invoices" from a single capped page; paging properly found many more.
+**Always page:** `?pagination[page]=N&pagination[rowsPerPage]=100`, loop until a short page comes
+back. Applies to `invoices/list`, `customers`, `work-orders`, `part-sales`. (`customers?search=` is
+not a valid shape on its own — it 500s; filter client-side while paging.)
+
+---
+
+## L0058 — 2026-09-11 — CREDIT MEMOS: WHERE THEY LIVE AND WHAT "RAISED AGAINST" MEANS
+
+Found only by grepping the app's own bundle (`/js/index.*.js`) after route-guessing failed ten times.
+
+| Need | Route |
+|---|---|
+| The credit document itself | `GET /api/credit-memos/{id}/pdf` (real `application/pdf`) |
+| Credits **including unapplied ones**, with their origins | `GET /api/customer-account/list-unpaid-transaction?account_id=<customer_account_id>&pagination[...]` → rows with `type:"credit"` |
+| Credits that have been **applied** | `GET /api/customer-payment/list?account_id=…` → `applied_credit_memos[]` |
+| The account id | `GET /api/customers/view/<customerId>` → `data.company.customer_account_id` (NOT the customer id) |
+| Create / void | `POST credit-memos`, `POST credit-memos/{id}/void` |
+
+**`origin_invoices` is the authority** on what a credit was *raised against* — `[]` means a standalone
+credit with no originating invoice. Do not infer this from the PDF alone (though the two agree: a
+credit with origins prints an "Invoice Number" column, one without omits it). **Applied ≠ raised
+against:** CM-103's origin is S-3 while it was *applied* on the payment for S-4. A credit that is
+unapplied is invisible to `customer-payment/list` entirely — which is why an early sweep "found no
+credits" that existed.
+
+---
+
+## L0059 — 2026-09-11 — SEEDING AN IMPORTED INVOICE (two traps, both cost a round each)
+
+Settings → **Invoices Import** (`/administration/invoices-import`), CSV upload, `POST
+/api/imports/work-order-historical`; listed by `GET /api/work-orders-imported`, printed by
+`GET /api/imported-work-orders/{id}/pdf`.
+
+1. **Keep the asterisks.** Use the screen's own *Download Template* and send its header row verbatim —
+   `*Shop Location,*Customer,…`. Stripping the asterisks (the on-screen instructions list the columns
+   without them) gives `400 Invalid file headers provided!`.
+2. **Shop Location must name the location the session is actually on**, and Customer must exist at
+   that location, or the POST returns `200 {"duplicatedInvoices":[]}` and imports nothing — a silent
+   success that looks like a product bug and is not.
+
+Worked example: `ZZAUTOTEST-IMP-003`, $262.50, and the C53568 proof (identical text under both
+designs, with an ordinary invoice as the positive control changing by ~9,500 bytes in the same pass).
