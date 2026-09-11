@@ -31,6 +31,22 @@ Story 4 pins the back-catalogue by creation-date cohort. Story 5 = every render 
   deferred; the QA lead decides whether they get a dedicated run or union into the Invoice Refresh run R417
   when built. (Flagged, not auto-done, to avoid polluting a live run with untestable cases.)
 
+## Status — 2026-09-11 (spec control changed: pick list → "Legacy invoice layout" toggle; 14 cases rewritten)
+While checking C53543 vs the live spec (QA lead: "Check if this is per the specs" for test 2924628),
+found the design control was changed on **2026-09-10** from an **"Invoice Design" pick list at the top**
+to a **"Legacy invoice layout" toggle** (last row on Settings → Invoice; off = Modern, on = Legacy;
+S1-R2 "no pick list") — still current per the 2026-09-11 change-log entry. Also found **11 cases citing
+stale "FO-1..FO-9" section anchors** that no longer exist in the spec (renumbered to S#-R#).
+- **7 pure citation fixes** (behaviour already per spec): C53531, C53534, C53541, C53543, C53544,
+  C53545, C53546 — FO-* replaced with current S#-R# ids.
+- **14 pick-list cases rewritten to the toggle** (QA lead go-ahead, `regen_toggle.py`): C53518, C53519,
+  C53520, C53521, C53522, C53523, C53524, C53525, C53526, C53528, C53530, C53532, C53533, C53547.
+  Behaviour from documents (Rule 57); 4 held FO anchors folded in; C53518/C53519 retitled; all fr-view.
+- **Build status open:** the toggle was NOT observed on the QA build this pass (SSO login not seeded).
+  The "Last checked v26.36.2" stamp on the 14 was replaced with a pending-re-check note; READY left as-is
+  (settings page is runnable). Build-verify lane must confirm toggle-vs-pick-list on the QA build.
+Reconciliation: `source-verify-2026-09-11/RECONCILE-C53543-FO-anchors.md`.
+
 ## Status — 2026-09-11 (build-verify feedback: C53537 / C53543 corrected; C53537 made generic)
 Build-verify session flagged two cases it could not honestly pass. Both fixed:
 - **C53537** (Credit Invoice against several invoices): provenance had cited withdrawn S2-R5/S2-E4 →
