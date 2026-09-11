@@ -89,3 +89,25 @@ Settings → Invoice; **off = Modern, on = Legacy**; helper text S1-R3; confirm 
 **Not a product defect — a CASE defect (Rule 106).** The build may already show the toggle; our cases
 lag the spec. Awaiting the QA lead's go-ahead to rewrite the 14 pick-list cases to the toggle model
 (and fold in the 4 held FO citations in the same pass).
+
+---
+## UPDATE 2 — 2026-09-11: all 14 pick-list cases rewritten to the toggle (QA lead go-ahead)
+
+QA lead: "Rewrite all 14 tests to the new 'Legacy invoice layout' on/off switch." Done via
+`regen_toggle.py` (committed). All 14 (C53518, C53519, C53520, C53521, C53522, C53523, C53524,
+C53525, C53526, C53528, C53530, C53532, C53533, C53547) now describe the toggle: last row on
+Settings → Invoice, titled exactly "Legacy invoice layout", off = Modern / on = Legacy, no pick list
+(S1-R1/S1-R2). Behaviour taken from the documents (Rule 57): helper text S1-R3, dialogs S1-R7, toast
+S1-R8, cancel S1-N2, other-settings S1-N4, failed-save S1-E1, org-wide S1-R4, defaults S1-R5/S1-R6,
+unlimited S1-R10, estimate S3-R1/S3-R2. The 4 held FO anchors folded in (C53518→S1-R1/S1-R2,
+C53521→S1-R4, C53522→S1-R5, C53523→S1-R6). Two retitled (C53518, C53519 — they asserted the pick-list
+control). All verified `fr-view` / 0 literal tags / marker last; entities clean (no double-escape).
+
+**Build status flagged, NOT silently resolved.** All 14 still carried "AUTOMATION: READY" + "Last
+checked against build v26.36.2-12974d6 9/11/2026". The QA build could not be reached this pass (SSO
+login ceremony), so the toggle was NOT observed on the build. Per Rule 12/54, the unsupportable
+build-checked stamp was replaced with an honest note: the control changed in the spec 2026-09-10 and
+the case is pending re-check on the build. The READY marker was LEFT AS-IS (not flipped) — the settings
+page is runnable, so a tester runs it and, if the build still shows a pick list, marks it Failed, which
+is the correct signal that the build lags the spec. Open item for the build-verify lane: confirm on the
+QA build whether the toggle or the old pick list is present, and re-stamp accordingly.
