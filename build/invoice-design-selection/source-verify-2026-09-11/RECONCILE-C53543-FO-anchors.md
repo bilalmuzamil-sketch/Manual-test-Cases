@@ -111,3 +111,19 @@ the case is pending re-check on the build. The READY marker was LEFT AS-IS (not 
 page is runnable, so a tester runs it and, if the build still shows a pick list, marks it Failed, which
 is the correct signal that the build lags the spec. Open item for the build-verify lane: confirm on the
 QA build whether the toggle or the old pick list is present, and re-stamp accordingly.
+
+---
+## UPDATE 3 — 2026-09-11: build CONFIRMS the toggle (QA lead screenshot)
+
+The QA lead shared a screenshot of **sv9872.qa.shopview.com → Settings → Invoice**. The build matches
+the spec: the **"Legacy invoice layout"** toggle is the **last row** (below "Summarize labor total",
+above the Disclaimer), a two-state on/off switch (no pick list), with the helper text **exactly**:
+"Every estimate, invoice and credit invoice your shop shows, prints or sends uses the legacy design
+while this is on, including documents created before you changed it." — verbatim what S1-R3 and the
+rewritten C53520 carry. So the rewrite is confirmed against the real build, not only the spec.
+The per-case note on all 14 was upgraded from "pending re-check" to "confirmed on the sv9872 QA build
+(QA lead screenshot, 11 September 2026)". Directly build-confirmed by the screenshot: the control's
+label, position and helper text (C53518, C53519, C53520, and the toggle-route preconditions on all 14).
+Still tester-to-run on the build: the dialogs (C53524/C53525), toast (C53526), cancel (C53530),
+failed-save (C53533), defaults (C53522/C53523), org-wide (C53521), unlimited (C53528), other-settings
+(C53532), estimate rendering (C53547).

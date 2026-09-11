@@ -42,9 +42,10 @@ stale "FO-1..FO-9" section anchors** that no longer exist in the spec (renumbere
 - **14 pick-list cases rewritten to the toggle** (QA lead go-ahead, `regen_toggle.py`): C53518, C53519,
   C53520, C53521, C53522, C53523, C53524, C53525, C53526, C53528, C53530, C53532, C53533, C53547.
   Behaviour from documents (Rule 57); 4 held FO anchors folded in; C53518/C53519 retitled; all fr-view.
-- **Build status open:** the toggle was NOT observed on the QA build this pass (SSO login not seeded).
-  The "Last checked v26.36.2" stamp on the 14 was replaced with a pending-re-check note; READY left as-is
-  (settings page is runnable). Build-verify lane must confirm toggle-vs-pick-list on the QA build.
+- **Build CONFIRMS the toggle (QA lead screenshot, sv9872, 2026-09-11):** the "Legacy invoice layout"
+  toggle is the last row on Settings → Invoice with the exact helper text — matches the spec and the
+  rewrite. The 14 notes now read "confirmed on the sv9872 QA build"; control label/position/helper text
+  build-confirmed, the behavioural steps (dialogs, toast, defaults, rendering) remain for the tester to run.
 Reconciliation: `source-verify-2026-09-11/RECONCILE-C53543-FO-anchors.md`.
 
 ## Status — 2026-09-11 (build-verify feedback: C53537 / C53543 corrected; C53537 made generic)
