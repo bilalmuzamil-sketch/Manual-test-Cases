@@ -30,7 +30,7 @@
 > stays hedged instead of asserted. A missing QA branch means **nothing is live-verified** and a
 > whole suite sits VIU-Pending.
 
-**Last updated:** 2026-09-10 (~16:10 UTC — SV-9833 QA-passed and posted; SV-9866 reminder moved to tomorrow at the QA lead's request)
+**Last updated:** 2026-09-11 (~05:05 UTC — SV-9866 cleared: it reached Ready for Production without us; SV-9890 stopped on instruction)
 **Active projects:** Report Suite · Schedule · Filters (user ruling 2026-07-27)
 **Predecessor snapshot (kept for the record):** `build/PROJECTS-NEEDS-2026-07-27.md`
 **Companion defensibility register (read before answering any QA challenge in a public channel):** `build/qa-preemptive-answers-2026-07-31/ANTICIPATED-QUESTIONS-AND-ANSWERS.md` / `.xlsx` — 65 rows of *what someone could say* → *the paste-ready answer* → *the evidence*, across the three active projects, with a TOP 10 and an open list of what we would genuinely have to concede.
@@ -84,21 +84,30 @@ Reproduced the customer's report on the released build and proved it gone on the
 
 **Nothing outstanding on SV-9833.**
 
-### SV-9866 — QuickBooks Unexported report — **STILL HELD, REMINDER RESCHEDULED TO TOMORROW**
+### SV-9866 — QuickBooks Unexported report — **CLOSED WITHOUT US; NOTHING POSTED**
 
-Verdict **NOT YET CONFIRMED**, nothing posted. **Rule 48 context:** your ruling, verbatim, on
-2026-09-10 — first *"2. hold it for now and ask me again"*, then *"3. Remind me later"*, and today
-*"2. Remind me tomorrow"* — each in answer to my asking whether to post the SV-9866 comment. **It was
-the right call both times:** the verdict rests on a path (a customer with no QuickBooks mapping) that
-cannot be produced on `sv9866` because that organisation has no QuickBooks connection, so posting
-would assert something not observed.
+**Cleared 2026-09-11 05:00 UTC.** The reminder fired as scheduled, and re-reading the ticket before
+acting on it is what mattered: **SV-9866 has moved on without us.** Nebojsa Glavinic commented
+*"Ready for Staging."* with a screenshot on 10 Sep 10:51 -0500, and the ticket now sits at
+**Ready for Production** (updated 10 Sep 11:00 -0500).
 
-**Reminder now armed for 2026-09-11 05:00 UTC** (trigger `trig_01B5vc4Zq4H64mcnvtaSBmay`, rescheduled
-from today 16:41 UTC). **What unblocks it:** a QuickBooks connection on `sv9866.qa.shopview.com`,
-**or** one line from Dipesh confirming the fix sits in the report's read query rather than the sync
-writer — if it is read-side, the evidence already gathered is a pass. Also still open for him: whether
-**Credit Memo Apply** (blank on 16 of 16 rows) and **Credit Memo Refund** (4 of 4) are in scope, since
-neither appears in his plan's not-in-scope list.
+**So there is nothing for us to post, and nothing was posted.** Our own verdict never got past
+**NOT YET CONFIRMED** — the missing-mapping path could not be produced on `sv9866.qa.shopview.com`
+because that organisation has no QuickBooks connection — so the sign-off that carried this ticket is
+someone else's, not ours, and we should not represent it otherwise. Record kept at
+`build/sv9866-qb-unexported-customer-2026-09-10/`.
+
+**One thing that did not get answered and is now a separate question, not a blocker:** on the rows we
+looked at, **Credit Memo Apply was blank on 16 of 16** and **Credit Memo Refund on 4 of 4**. Dipesh's
+not-in-scope list covers *Credit Memo Create* showing "Unknown" and the blank **No.** column — it does
+not mention either of those two. Worth one line to him as a possible follow-up ticket; **not raised,
+awaiting the QA lead's call.**
+
+**LESSON, and it is the second time this exact shelf-life has caught us** (the first was SV-8825, where
+a readiness report went out five and a half hours after the PO had already answered and closed the
+blocking ticket): **a reminder asserts a state that was true when it was written.** Re-read the ticket
+at the moment the reminder fires, before saying anything to anyone. Standing Rules 31 and 59 already
+say this about specs and blocking tickets; it applies to our own scheduled check-ins too.
 
 ### The Move-part-to-line dialog — **NOW REPRODUCED ON THE RELEASED BUILD; ONE HAND CLICK LEFT**
 
