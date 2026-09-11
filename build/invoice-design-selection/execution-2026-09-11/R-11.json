@@ -1,0 +1,15 @@
+{
+ "pass_meta": {
+  "suite": "Invoice Design Selection (7800)",
+  "run": 446,
+  "env": "the sv9872 QA branch",
+  "build": "sv9872 v26.36.2-12974d6",
+  "date": "11 September 2026"
+ },
+ "results": {
+  "C53538": {
+   "verdict": "Passed",
+   "observed": "What was checked: that a credit raised on its own, with no invoice behind it, follows the shop's current choice of look. What happened: it does, and this has now been confirmed on two separate credits. CM-105 is recorded in the shop's own books as having no originating invoice at all - the list of credits shows its 'raised against' entry as empty, where CM-103 shows invoice S-3 and CM-102 shows invoice S-4. Its printed document agrees: it shows only a credit number and a status of Unapplied, with no invoice number beside them. CM-105 was produced with the shop on the old look and again on the new one and came out in whichever look was selected at the moment: the old one prints 'Credit To' and 'Credit Number / Status' in ordinary type, the new one prints ADDRESSES and CREDIT TO as large headings. CM-104 behaves the same way. With no invoice behind it there is nothing else its look could come from, so the shop's current choice really is the only thing deciding it."
+  }
+ }
+}
