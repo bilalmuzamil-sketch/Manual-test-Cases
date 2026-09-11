@@ -163,3 +163,26 @@ Stated plainly so nothing here is over-claimed.
 | `ev/EX3-totals-block.png` | the totals block: Subtotal and Total bold on the old, not on the new |
 
 Rebuild them with `python3 make_exhibits.py` (boxes are drawn from PDF coordinates, not by eye).
+
+---
+
+# CORRECTION, 2026-09-11 — most of the "lost bold" is a REQUIREMENT
+
+After this comparison was written the QA lead pointed at
+**[SV-4314 "BE Invoice view enhancement"](https://shopview.atlassian.net/browse/SV-4314)** (Done,
+QAcomplete, Staging_Verified, October 2025). It **requires** the un-bolding of the part
+number/description, "Parts Total", "Labor Total", the line-total amount, and — by Jasna Mladenovic's
+ruling of 2025-10-09 — the **Subtotal and Total amounts**; and it **requires** the "Labor"/"Parts"
+gutter labels this document calls a "new column".
+
+So section C above, and points 2 and 4 of "What it would take to make the new one match the old", are
+**wrong as recommendations**: those changes are deliberate and shipped, not regressions.
+
+The reason the difference appeared at all is that **`OLD-EST-S1113-1190.pdf` is a pre-SV-4314 render**
+— it is older than the v26.35.10 baseline the restored Legacy design is defined against.
+
+The geometry findings (sections A, B, D) and the footer/label wording (section E) are **unaffected**
+and remain unexplained by SV-4314. "Issue date:" → "Invoice Date:" is separately ratified by a
+@chris ruling of 2026-09-11 on SV-9892.
+
+Full analysis: **`SV-4314-BOLD-REQUIREMENT.md`** beside this file.
