@@ -1039,3 +1039,27 @@ quote and a wrong ticket — the most expensive kind, because the quote makes it
 amended, the next source-verification pass will re-derive the same expectation and the finding will
 come back. **A ruling that contradicts a written requirement is not finished until the requirement is
 changed** — raise it, and put it on the outstanding register.
+
+## L0050 — 2026-09-11 · a tab is a surface, and lazily-loaded code cannot be grepped before you click
+
+Opening the Invoice Design work I could not find the feature and was three probes into deciding it was
+not on the branch. The QA lead sent a screenshot: it is the **first control on the Invoice tab** of
+`/administration/settings`. Four separate readings had each failed in a way that looked like absence:
+
+1. **The sidebar enumerator returned 0 rows**, so the "walk every row" loop walked nothing — and a
+   loop that iterates an empty list prints no failures. **An enumeration that finds zero rows is a
+   broken enumerator, not an empty screen.** Assert the row count before trusting the walk.
+2. **I never clicked the tabs across the top.** A page can have a second navigation surface that the
+   sidebar selectors do not see. The standing rule says enumerate EVERY row; it needs to say every
+   row of every navigation surface on the page — sidebar, tabs, and sub-tabs.
+3. **I guessed five routes.** All five render a not-found page that looks like an empty settings page
+   (2 controls, no heading). Guessing routes is barred for exactly this reason and I did it anyway.
+4. **I grepped the shipped code and found nothing** — because the tab's code is fetched only when the
+   tab is clicked. **A code grep before the feature's screen has been opened proves nothing.**
+
+The route and the four traps are recorded in
+`build/invoice-design-selection/NAVIGATION-MAP.md`.
+
+The general form, which is the same lesson as L0043 and L0048 at a different altitude: **before
+concluding a thing is not there, prove the instrument reached the place it would be.** A walk that
+visited nothing, and a grep of code that was never loaded, are not evidence of absence.
