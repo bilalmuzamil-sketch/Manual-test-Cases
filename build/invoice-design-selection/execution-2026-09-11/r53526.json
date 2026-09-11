@@ -1,0 +1,15 @@
+{
+ "pass_meta": {
+  "suite": "Invoice Design Selection (7800)",
+  "run": 446,
+  "env": "the sv9872 QA branch",
+  "build": "sv9872 v26.36.2-12974d6",
+  "date": "11 September 2026"
+ },
+ "results": {
+  "C53526": {
+   "verdict": "Passed",
+   "observed": "What was checked: that confirming the change saves it, says so, and that the message goes away on its own. What happened: all three. The message reads exactly 'Invoice design updated.', it fades by itself without anyone closing it, and after reloading the page the choice is still Legacy."
+  }
+ }
+}

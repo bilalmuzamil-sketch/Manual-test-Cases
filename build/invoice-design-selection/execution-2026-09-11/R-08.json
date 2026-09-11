@@ -1,0 +1,27 @@
+{
+ "pass_meta": {
+  "suite": "Invoice Design Selection (7800)",
+  "run": 446,
+  "env": "the sv9872 QA branch",
+  "build": "sv9872 v26.36.2-12974d6",
+  "date": "11 September 2026"
+ },
+ "results": {
+  "C53518": {
+   "verdict": "Passed",
+   "observed": "What was checked: that the chooser for the document look sits at the top of the invoice settings page and is a single-choice list. What happened: it does and it is. The first thing on the page is a single-choice list labelled exactly 'Invoice Design', and it is where the shop picks between the old and the new look.\n\nNote on the written requirements. The branch under test and this test agree with each other, so this test is marked as passed. After this branch was built and deployed, the written requirements were changed again - on 10 September 2026, by Chris W., recorded on SV-9926 - so the requirements now ask for something this branch does not yet have. This is what they say today, word for word:\n\n\"S1-R1: A toggle row titled exactly 'Legacy invoice layout' is the last row in the list of toggles on the invoice settings page, directly below 'Summarize labor total' and above the Disclaimer. It is built exactly like the rows above it: bold title, one line of description under it, switch at the right edge. (Changed 2026-09-10 from a pick list at the top of the page; Chris W. on SV-9926.)\""
+  },
+  "C53519": {
+   "verdict": "Passed",
+   "observed": "What was checked: that the chooser offers exactly two choices with one of them always picked. What happened: it does. Opening it shows exactly two, Modern and Legacy, with Legacy ticked. There is no third choice and nothing is ever left unpicked.\n\nNote on the written requirements. The branch under test and this test agree with each other, so this test is marked as passed. After this branch was built and deployed, the written requirements were changed again - on 10 September 2026, by Chris W., recorded on SV-9926 - so the requirements now ask for something this branch does not yet have. This is what they say today, word for word:\n\n\"S1-R2: The switch has two states. Off is the Modern design; on is the Legacy design. There is no third state and no pick list.\""
+  },
+  "C53520": {
+   "verdict": "Passed",
+   "observed": "What was checked: the explanation printed under the chooser, character for character. What happened: it reads exactly 'Every estimate, invoice and credit invoice your shop shows, prints or sends uses the selected design, including documents created before you changed it.' It is always on the page, not a pop-up or a message that comes and goes.\n\nNote on the written requirements. The branch under test and this test agree with each other, so this test is marked as passed. After this branch was built and deployed, the written requirements were changed again - on 10 September 2026, by Chris W., recorded on SV-9926 - so the requirements now ask for something this branch does not yet have. This is what they say today, word for word:\n\n\"S1-R3: The row's description reads exactly: 'Every estimate, invoice and credit invoice your shop shows, prints or sends uses the legacy design while this is on, including documents created before you changed it.' (One substitution from the pick-list wording: 'the selected design' became 'the legacy design while this is on', because a switch has no selection to point at. Everything else is unchanged.)\""
+  },
+  "C53526": {
+   "verdict": "Passed",
+   "observed": "What was checked: that confirming the change saves it, says so, and that the message goes away on its own. What happened: all three. The message reads exactly 'Invoice design updated.', it fades by itself without anyone closing it, and after reloading the page the choice is still Legacy.\n\nNote on the written requirements. The branch under test and this test agree with each other, so this test is marked as passed. After this branch was built and deployed, the written requirements were changed again - on 10 September 2026, by Chris W., recorded on SV-9926 - so the requirements now ask for something this branch does not yet have. This is what they say today, word for word:\n\n\"S1-R2: The switch has two states. Off is the Modern design; on is the Legacy design. There is no third state and no pick list.\" (What this test checks - saving, the message, and that it fades on its own - is unchanged by the rewrite; only the word used for the control has changed.)"
+  }
+ }
+}
