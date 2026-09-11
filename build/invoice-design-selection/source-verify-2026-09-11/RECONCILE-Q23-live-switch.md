@@ -123,3 +123,10 @@ Build-verify session (build v26.36.2-12974d6) flagged C53537 and C53543. Checked
   omitted the Part Sale Credit. Fixed: preconds + steps now cover all six, and spell out that the Part Sale
   Credit must be an **existing** one (no new ones can be created). Verified fr-view, 0 literal tags.
 Both remain in run R446 (57 cases, all Mudassir). Ready for a re-run of build verification.
+
+## G. C53537 made runnable (2026-09-11) — data-creation route added
+The QA lead supplied the concrete route to create the multi-invoice-credit data on the QA build
+(sv9872.qa): Customers → customer → Invoices → tick a CM-credit + two or more open invoices → New Payment →
+in the New Customer Payment dialog untick the credit, choose a card method (e.g. VISA), tick the credit
+again → Make Payment (applies one credit across the selected invoices). Added to C53537's preconditions and
+step 1 so the test is runnable (Rule 18) — it is no longer blocked on "no such data exists." Verified fr-view.
