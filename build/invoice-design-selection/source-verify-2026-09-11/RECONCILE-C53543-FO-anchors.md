@@ -127,3 +127,26 @@ label, position and helper text (C53518, C53519, C53520, and the toggle-route pr
 Still tester-to-run on the build: the dialogs (C53524/C53525), toast (C53526), cancel (C53530),
 failed-save (C53533), defaults (C53522/C53523), org-wide (C53521), unlimited (C53528), other-settings
 (C53532), estimate rendering (C53547).
+
+---
+## UPDATE 4 — 2026-09-11: Part Sale Credit CAN be created (QA lead) — spec Q21 is wrong
+
+QA lead, on test 2924628 (C53543): the "no new Part Sale Credit can be created" claim is WRONG, with the
+build recipe. Reconciled (Rule 106/57): CASE said "cannot be created" · SOURCE (spec Q21, live) says "New
+ones cannot be created" · BUILD (QA lead, sv9872) — a new Part Sale Credit CAN be created. Build differs
+from source on a factual claim. Fixed C53543 to the build:
+- Preconditions now carry the generic creation recipe: a customer with credit terms "Due on receipt" →
+  create a part sale, add an inventory part, take to Finance → Create Invoice → New Customer Payment,
+  "Charge account", blue "Charge account" button → back in Finance, three-dots → Issue Credit → "Parts
+  being returned" checked, "Issue store credit" selected, enter reason, check the parts under "Parts to
+  return" → Issue Credit → the credit appears under Customers → the customer → Invoices.
+- Removed the "cannot be created" wording from preconds, steps and Expected.
+- Precond 1 moved to the "Legacy invoice layout" toggle (off = Modern).
+- Disclosed divergence (Rule 56) in the Expected: spec Q21 says no new ones can be created; the build
+  allows it; the case follows the build for runnability and flags the spec wording for correction.
+- fr-view verified; marker AUTOMATION: READY; build stamp v26.36.2-12974d6 9/11/2026.
+
+**OPEN — spec correction for the PO/spec owner (Sasha/Chris):** the spec (Q21, the "Documents covered"
+row, and the Section 2 line "plus the Part Sale Credit, of which no new ones can be created") still asserts
+Part Sale Credits cannot be created. The build contradicts this. The spec text should be corrected. Not a
+product defect and not filed anywhere — a spec-accuracy item flagged to the QA lead.
