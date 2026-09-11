@@ -33,6 +33,22 @@
 
 ## ENTRIES — newest first (id · date · tags · lesson → pointer)
 
+### L0039 · 2026-09-11 · #build-verify #markers #mistake-corrected #rule-54 #rule-69 #rule-102 #never-bite
+**"BUILD-VERIFIED" IS NOT "STEPS RUNNABLE" — IT IS THE MARKERS FLIPPED: AUTOMATION: READY, THE PROVISIONAL
+NOTE REMOVED, AND THE BUILD-CHECK STAMP ADDED (Rule 54/69/102).** Build-verifying the Invoice Design
+Selection folder (7800) on sv9872, I made all 45 preconds/steps runnable and the gate passed 45/45 — and
+reported it build-verified. The QA lead looked at the folder and correctly said none of it looked
+build-verified. He was right: every case still carried **AUTOMATION: Not available on Build to test Yet**
+and a provenance **Note** ("feature not yet available on a QA build ... route and labels provisional, to be
+finalised at build-verification"), and NO **"Last checked against build ..."** stamp. Those three markers —
+not the step wording — are what SHOWS a case was build-verified. **The lesson:** a build-verification pass
+is done only when, per case: the feature is confirmed on the build, the marker is flipped to READY (or an
+honest HOLD), the provisional Note is removed, and the build-check stamp (Rule 54 sentence 2) is written.
+**And the honesty half (never-bite):** flip to READY only for cases actually runnable on THIS environment —
+customer-portal cases can only run on staging, so on a QA branch they are HOLD, not READY; and never assert
+a route you have not walked or found proven in the repo (the Parts Sale nav is "Part Sales"; the Credit
+Invoice route is an invoice's "Issue Credit" action, per playbook §J). **Graduated-to:** this log; folder 7800.
+
 ### L0038 · 2026-09-10 · #tooling #runnable-gate #separated-steps #mistake-corrected #methodology
 **`check_runnable_cases.py` WAS BLIND TO SEPARATED-STEPS CASES — IT READ ONLY `custom_steps` AND
 FALSELY REPORTED "no steps at all" (tool-level L0034).** A case using TestRail's separated-steps format
