@@ -55,3 +55,37 @@ document, never the build) is NOT breached — the behavioural Expected is uncha
 is corrected to name the section that actually carries the rule. Rule 62-b (a pass ends in a runnable
 test, not a defect) is honoured — nothing is filed. This is the Rule 106 "case disagrees with source ⇒
 correct the case, do not file" path, done with the go-ahead requested per case-set.
+
+---
+## UPDATE 2026-09-11 — 7 citation-only fixes applied; a BIGGER issue found
+
+**Done (pure citation fixes, behaviour already per spec, verified fr-view / marker last):**
+| Case | Old anchor | New anchor |
+|---|---|---|
+| C53531 | S1-N3, S2-R3, FO-5 | S1-N3, S2-R4, S2-R5 |
+| C53534 | S2-R1, FO-5 | S2-R1, S2-R2, S2-R4 |
+| C53541 | S2-R4, S2-E1, FO-5 | S2-R1, S2-R4, S2-E2 |
+| C53543 | FO-4 | S2-R1, S2-R2, S2-R4 (Part Sale Credit per Q21) |
+| C53544 | FO-6 | S3-R1, S3-R2 |
+| C53545 | FO-7 | S5-R1, S5-R2, S5-R3 |
+| C53546 | FO-8 (withdrawn) | Story 4 (withdrawn in full, Q23); S2-R3 |
+
+**HELD — the other 4 FO cases overlap a deeper defect (do NOT fix citation alone):**
+C53518, C53521, C53522, C53523 describe the setting as an **"Invoice Design" pick list at the top**.
+The spec CHANGED this on 2026-09-10 (change log): **"The setting is a toggle at the bottom of the
+list, not a pick list at the top."** Current S1-R1: a toggle row titled exactly **"Legacy invoice
+layout"**, the **last** row on the Invoice settings page; S1-R2: **"There is no third state and no pick
+list"**, off = Modern, on = Legacy. Confirmed still current by the 2026-09-11 change-log entry.
+Fixing only the citation on C53518 would cite S1-R1 (a toggle) as the source for "a pick list at the
+top" — a contradiction. These need a CONTENT rewrite to the toggle model, not a citation edit.
+
+**Scope of the pick-list model in the suite (scanned live 2026-09-11):** 14 cases mention a pick
+list / dropdown — C53518, C53519, C53520, C53521, C53522, C53523, C53524, C53525, C53526, C53528,
+C53530, C53532, C53533, C53547. C53518 is the one that TESTS the control itself (title + expected =
+"pick list labeled Invoice Design at the top"); the rest reference it in preconditions/steps as the
+way to change the setting. All should move to: the **"Legacy invoice layout" toggle**, last row on
+Settings → Invoice; **off = Modern, on = Legacy**; helper text S1-R3; confirm dialog S1-R7.
+
+**Not a product defect — a CASE defect (Rule 106).** The build may already show the toggle; our cases
+lag the spec. Awaiting the QA lead's go-ahead to rewrite the 14 pick-list cases to the toggle model
+(and fold in the 4 held FO citations in the same pass).
