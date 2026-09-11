@@ -1262,3 +1262,54 @@ Settings → **Invoices Import** (`/administration/invoices-import`), CSV upload
 
 Worked example: `ZZAUTOTEST-IMP-003`, $262.50, and the C53568 proof (identical text under both
 designs, with an ordinary invoice as the positive control changing by ~9,500 bytes in the same pass).
+
+---
+
+## L0056 — 2026-09-11 — ONE BRANCH CAN HOLD TWO ORGANISATIONS, AND THE DEV LOGIN ONLY REACHES ONE
+
+**Incident.** The QA lead pointed at a customer and said "I have added credit here". Every screen came
+back empty and the customer could not be found among 600 records. I concluded twice that the data did
+not exist. It did — in a **second organisation on the same branch** that the dev quick-login cannot
+reach. Cost: well over an hour, across two separate sessions of thrashing.
+
+**The rule.** On any branch, before hunting for data a person says is there, **establish which
+organisation and which location the session is in, and whether the record lives there.** The tell is
+exact: `GET /api/customers/view/<id>` answering `{"errors":[{"companyId":"Not found"}]}` while the
+session is otherwise healthy means **wrong organisation**, not missing data. Say that immediately.
+
+**The corollary that cost the most.** `POST /api/iam/change-location` answers **200** and then leaves
+the session showing zero customers and zero invoices with a null location. I called it five times
+across an hour, each time reading the empty result as a fact about the product. **An API call that
+"succeeds" and empties your view has broken your instrument, not revealed the truth.** One failure
+should have been enough to stop. Full mechanics: `build/APP-ACTIONS-PLAYBOOK.md` §Z.1.
+
+## L0057 — 2026-09-11 — A SESSION THAT READS IS NOT A SESSION THAT CLICKS
+
+The QA lead's cookies gave a fully working API session in his organisation — every read, every
+document, every PDF. The SPA still landed on `/login` every time, because its own auth check requests
+a route that does not exist on that branch (`/api/api/sso/check`, 404 on every host and spelling).
+
+**So state the two halves separately when reporting access:** what can be *read* and what can be
+*done*. "I have access" is not a useful sentence. Here it was: everything the test needed to *observe*
+was reachable, and everything the test needed to *click* was not — which meant the honest ask was
+"tick these three boxes for me", not "give me another cookie". I asked for cookies twice before
+working that out.
+
+## L0058 — 2026-09-11 — WHEN WALKING STALLS, GREP THE SERVED BUNDLE; DO NOT GUESS URLS
+
+Ten guessed endpoints for the credit-memo document all returned 404. One grep of the app's own served
+JavaScript returned `printCreditMemoPDF:e=>s.get(\`credit-memos/${e}/pdf\`)` — the exact route, first
+try. The same grep later produced the imported-invoice route and the change-location route.
+
+**Rule:** after the SECOND guessed route 404s, stop guessing and read the bundle. Recipe in
+`build/APP-ACTIONS-PLAYBOOK.md` §Z.7. Guessing is not "trying to unblock yourself" — it is the slowest
+possible search over a space the answer is already written down in.
+
+## L0059 — 2026-09-11 — AN EVIDENCE AUDIT IS DELIVERED ONCE, AND HIS RULING CLOSES IT
+
+I delivered an audit of every pass in a run, grouped by how well the evidence supported the verdict.
+He ruled on each group. **A ruled item is closed**: it is recorded in the project state and never
+raised, re-counted or quoted back at him. Re-surfacing closed items reads as not listening and spends
+the one thing he was short of.
+
+Recorded rulings for run 446: `build/invoice-design-selection/PROJECT-STATE.md`.
