@@ -31,6 +31,29 @@ Story 4 pins the back-catalogue by creation-date cohort. Story 5 = every render 
   deferred; the QA lead decides whether they get a dedicated run or union into the Invoice Refresh run R417
   when built. (Flagged, not auto-done, to avoid polluting a live run with untestable cases.)
 
+## Status — 2026-09-11 (FULL re-verify + RE-AUTHOR to the Q23 "live switch" model)
+Spec rule changed overnight (Q23, 2026-09-10): the setting is a **live organization-wide switch** — no
+document captures or is pinned to a design; it renders in whatever the org has selected at the moment of
+render. Release changes nothing; a switch re-renders the whole back catalogue both ways. Full source
+verification + re-author done on the QA lead's order (2026-09-11). Reconciliation:
+`source-verify-2026-09-11/RECONCILE-Q23-live-switch.md`. Generator: `regen_q23.py`.
+- **All 57 cases applied via the fr-view UI harness, verified `fr-view` / 0 literal tags / marker last.**
+  - **26 rewritten/reworded** to "every document follows the current setting" (Story 2 flipped from capture;
+    render cases reworded; S5-E2 flipped to "one design, no mix"; S1-R3 helper + S1-R7 dialogs to Q23 copy;
+    C53532 dropped the Q7/SV-9790 note — that defect is now fixed on Legacy).
+  - **12 marked "[WITHDRAWN - do not run]"** in place (kept, not deleted; HOLD marker; withdrawn reason):
+    the 9 Story-4 back-catalogue cases (C53554–C53562) + C53546 (FO-8) + C53548 (invoiced-estimate matches)
+    + C53552 (reversal returns estimate). Story 4 was withdrawn in full; its migration reverted.
+  - **3 new cases** for new/uncovered rules: **C53590** (S5-R6 history/snapshots follow the setting),
+    **C53591** (S2-R6 switch symmetry), **C53592** (S2-R7/S2-E3 figures identical + remit-to belongs to the design).
+  - **29 titles updated** via API after the harness (12 withdrawn prefixes + 17 retitles).
+- **Run R446 updated: 45 LIVE tests** (54 − 12 withdrawn + 3 new), all **Untested**, all assigned to
+  **Mudassir (user 6)**; the 12 withdrawn cases stay in section 7800 but are OUT of the run. Verified live.
+- **Provenance** re-anchored on all to the Q23 revision (page 845447188), read 11 Sep. Markers still
+  "Not available on Build" (no dated QA build; v26.36.x hotfix, QA build "underway" per change log).
+- **Jira lag flagged:** stories SV-9894/9895/9896 still describe the withdrawn capture/pin model (stale);
+  spec is authoritative. Q7 ruled (Legacy = layout not defects); cutoff discrepancy closed (09:13:36 UTC).
+
 ## Status — 2026-09-10 (THIRD full re-verify — spec rolled the Q-answers into the body)
 Chris Ward folded the answered questions into the requirement body (header: "Q6 and Q8–Q12 answered and
 written into the rules; Q7 remains open"). Full re-read of the whole document + epic + 5 stories + SV-9872
