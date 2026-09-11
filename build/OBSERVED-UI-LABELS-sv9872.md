@@ -19,3 +19,14 @@
 ## Behaviour observed
 - Selecting an option opens the confirm dialog; confirming saves immediately and the picker shows the new value.
 - Both directions (Modern↔Legacy) show the same dialog shape. Switchable repeatedly.
+
+## Invoice / estimate document surfaces (Work Order Finance tab)
+- Reach a document: **Work Orders → open the work order → Finance tab** (route `/workorders/<id>/finance`).
+- The Finance tab shows the document with a financial summary (Parts, Labor, Shop Supplies, Subtotal, tax %, Total, Balance) and these document controls:
+  - **print** (icon) — print / generate PDF
+  - **email** (icon) — email the PDF to the customer
+  - **get_app** (icon) — download the PDF
+  - **Create Invoice** (button) — turns an estimate into an invoice
+  - **Estimate/Invoice** — the document-type view toggle
+  - **Request IBS Approval** (button)
+- Customer/asset cards carry a **swap_horiz (⇆)** icon = **Change Customer** / **Change Asset** (tooltip on hover).

@@ -1,17 +1,20 @@
-# Build-verify — Invoice Design Selection (folder 7800) on sv9872 — IN PROGRESS
+# Build-verify — Invoice Design Selection (folder 7800) on sv9872 — COMPLETE (pending served scan)
 
 - Branch sv9872.qa.shopview.com, build **v26.36.2-12974d6**, 2026-09-11.
-- 57 cases; **12 WITHDRAWN** (excluded): C53546,53548,53552,53554-53562. **45 active**, all ours (created_by=3, atm=1).
-- Anchor observed LIVE and matches the cases' quoted wording exactly (helper text, options Modern/Legacy,
-  "Switch to the <X> design?" dialog + body + Cancel/"Switch To <X>" buttons, "Invoice design updated." toast).
-  Observed labels: `build/OBSERVED-UI-LABELS-sv9872.md`.
+- 57 cases; **12 WITHDRAWN** excluded (C53546,53548,53552,53554-53562). **45 active**, all ours (created_by=3, atm=1).
+- **All 45 active cases: runnable-gate 45/45; stored render check 45/45 clean.**
 
-## DONE (setting-picker cluster — 14 cases, runnable-gate clean, render fr-view)
-C53518, C53519, C53520, C53521, C53522, C53523, C53524, C53525, C53526, C53528, C53529, C53530, C53532, C53533.
-Fix pattern: concrete route (Settings → Invoice tab → "Invoice Design" pick list), dropped the now-false
-"provisional / feature not yet built" caveats, used observed button casing. Expected fields untouched (Rule 57).
+## Anchor (observed LIVE, matches the cases' quoted wording exactly)
+- Settings → Invoice tab → **Invoice Design** pick list (top). Options **Modern / Legacy**.
+- Helper text, "Switch to the <X> design?" dialog + body + **Cancel** / **Switch To <X>** buttons, **"Invoice design updated."** toast — all verbatim matches.
+- Document surfaces: Work Orders → the work order → **Finance** tab; **print / email / get_app (download)** controls; **Create Invoice**; **Estimate/Invoice** view.
+- Observed labels: `build/OBSERVED-UI-LABELS-sv9872.md`.
 
-## LEFT (document-rendering cluster — ~31 cases)
-C53527,53531,53534-53545,53547,53549,53550,53551,53553,53563-53571,53590,53591,53592, plus 53542,53543.
-These render invoices/estimates/credit-invoices/parts-sales across surfaces (preview, print/PDF, email, portal).
-Need concrete document routes observed on the build, then the same fix pattern. Design left on MODERN for these.
+## What was corrected (Expected fields untouched, Rule 57)
+- Setting-picker cluster (14): concrete route + observed labels; dropped provisional caveats.
+- Document cluster (31): concrete Finance-tab document route attached; block-formatted; provisional dropped;
+  4 cases (C53542/53545/53563/53564) given a concrete first step (entry point).
+
+## Note
+- Cases were pre-built PROVISIONALLY ("feature not yet built"); the feature is now live and every quoted
+  string matches the build — a strong source-accuracy result. Design left on Modern.
