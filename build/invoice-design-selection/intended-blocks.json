@@ -1208,6 +1208,28 @@
    "custom_expected": {
     "blocks": [
      [
+      "WITHDRAWN - DO NOT RUN THIS TEST.",
+      "The behaviour this test checks was removed from the written requirements on 10 September 2026 by Chris W. Story 4 pinned each document to the look it was created under; that whole idea is gone. A document now has no look of its own and simply renders in whatever the shop has selected at the moment it is opened."
+     ],
+     [
+      "What the specification says today, word for word:",
+      "Story 4: Withdrawn - documents created before this setting existed. \"This story pinned every invoice-type document created before the refresh to Legacy and every document created between the refresh and this feature to Modern, by creation instant against a 09:13:36 UTC cutoff. It is withdrawn in full. Under S2-R3 a document's creation date has no bearing on its design. The migration that pinned 243,640 production invoices is reverted rather than shipped, the credit-date rules and their correction command are dropped, and no design column is stored. The story number is kept so the question log and change log still read. (Q23, Chris W., 2026-09-10.)\"",
+      "S2-R3: \"This applies to every document regardless of when it was created: today, before this feature shipped, or before the refresh.\"",
+      "S2-R4: \"Nothing is stored on a document about its design. There is no captured design, no cohort, no cutoff and no migration.\"",
+      "Q23 - rule change, 2026-09-10 (Chris W.): \"The setting is a live organization-wide switch. Nothing is captured at creation, nothing is pinned by date, nothing is migrated.\"",
+      "Source: Invoice Design Selection - Product Spec, Confluence page 845447188, read live on 11 September 2026."
+     ],
+     [
+      "IF STORY 4 IS REVIVED: delete everything above the line below, and put the automation marker back to what it was before the withdrawal. The expected behaviour under the line is the original, untouched, and is ready to be used again as it stands.",
+      "On revival the marker goes back to: AUTOMATION: Not available on Build to test Yet - Last checked 9/10/2026"
+     ],
+     [
+      "--------------------------------------------------------------------"
+     ],
+     [
+      "THE ORIGINAL EXPECTED BEHAVIOUR, UNCHANGED, IS BELOW THIS LINE:"
+     ],
+     [
       "1. Once the back-catalogue pinning is built, the pre-refresh invoice reprints in the legacy design it was issued under, not the current \"Modern\" setting.",
       "2. This is new behavior: today, with no pinning, a pre-refresh invoice reprints in the new design, which is the gap this closes."
      ],
@@ -1218,10 +1240,10 @@
       "Design: the Design Document (https://claude.ai/code/artifact/c88ee207-3197-4f54-8cb9-bac3deb84354) shows the new (Modern) design (SV-8218); the specific view/frame anchors are not yet given in the spec (provisional)."
      ],
      [
-      "AUTOMATION: Not available on Build to test Yet - Last checked 9/10/2026"
+      "AUTOMATION: HOLD - Story 4 withdrawn in full by the specification on 2026-09-10 (Q23, Chris W.); do not run until the story is revived"
      ]
     ],
-    "text": "1. Once the back-catalogue pinning is built, the pre-refresh invoice reprints in the legacy design it was issued under, not the current \"Modern\" setting.\n2. This is new behavior: today, with no pinning, a pre-refresh invoice reprints in the new design, which is the gap this closes.\n\n---\nThis is the expected behaviour as per epic SV-8218 and the Invoice Design Selection specification (Confluence page 845447188, Revision 3), section FO-8, read on 10 September 2026.\nNote: this feature is not yet built (spec Status: Draft) and the setting UI is not yet designed; the route and on-screen labels here are provisional and to be finalised at build-verification.\nDesign: the Design Document (https://claude.ai/code/artifact/c88ee207-3197-4f54-8cb9-bac3deb84354) shows the new (Modern) design (SV-8218); the specific view/frame anchors are not yet given in the spec (provisional).\n\nAUTOMATION: Not available on Build to test Yet - Last checked 9/10/2026"
+    "text": "WITHDRAWN - DO NOT RUN THIS TEST.\nThe behaviour this test checks was removed from the written requirements on 10 September 2026 by Chris W. Story 4 pinned each document to the look it was created under; that whole idea is gone. A document now has no look of its own and simply renders in whatever the shop has selected at the moment it is opened.\n\nWhat the specification says today, word for word:\nStory 4: Withdrawn - documents created before this setting existed. \"This story pinned every invoice-type document created before the refresh to Legacy and every document created between the refresh and this feature to Modern, by creation instant against a 09:13:36 UTC cutoff. It is withdrawn in full. Under S2-R3 a document's creation date has no bearing on its design. The migration that pinned 243,640 production invoices is reverted rather than shipped, the credit-date rules and their correction command are dropped, and no design column is stored. The story number is kept so the question log and change log still read. (Q23, Chris W., 2026-09-10.)\"\nS2-R3: \"This applies to every document regardless of when it was created: today, before this feature shipped, or before the refresh.\"\nS2-R4: \"Nothing is stored on a document about its design. There is no captured design, no cohort, no cutoff and no migration.\"\nQ23 - rule change, 2026-09-10 (Chris W.): \"The setting is a live organization-wide switch. Nothing is captured at creation, nothing is pinned by date, nothing is migrated.\"\nSource: Invoice Design Selection - Product Spec, Confluence page 845447188, read live on 11 September 2026.\n\nIF STORY 4 IS REVIVED: delete everything above the line below, and put the automation marker back to what it was before the withdrawal. The expected behaviour under the line is the original, untouched, and is ready to be used again as it stands.\nOn revival the marker goes back to: AUTOMATION: Not available on Build to test Yet - Last checked 9/10/2026\n\n--------------------------------------------------------------------\n\nTHE ORIGINAL EXPECTED BEHAVIOUR, UNCHANGED, IS BELOW THIS LINE:\n\n1. Once the back-catalogue pinning is built, the pre-refresh invoice reprints in the legacy design it was issued under, not the current \"Modern\" setting.\n2. This is new behavior: today, with no pinning, a pre-refresh invoice reprints in the new design, which is the gap this closes.\n\n---\nThis is the expected behaviour as per epic SV-8218 and the Invoice Design Selection specification (Confluence page 845447188, Revision 3), section FO-8, read on 10 September 2026.\nNote: this feature is not yet built (spec Status: Draft) and the setting UI is not yet designed; the route and on-screen labels here are provisional and to be finalised at build-verification.\nDesign: the Design Document (https://claude.ai/code/artifact/c88ee207-3197-4f54-8cb9-bac3deb84354) shows the new (Modern) design (SV-8218); the specific view/frame anchors are not yet given in the spec (provisional).\n\nAUTOMATION: HOLD - Story 4 withdrawn in full by the specification on 2026-09-10 (Q23, Chris W.); do not run until the story is revived"
    }
   }
  },
@@ -1299,6 +1321,28 @@
    "custom_expected": {
     "blocks": [
      [
+      "WITHDRAWN - DO NOT RUN THIS TEST.",
+      "The behaviour this test checks was removed from the written requirements on 10 September 2026 by Chris W. Story 4 pinned each document to the look it was created under; that whole idea is gone. A document now has no look of its own and simply renders in whatever the shop has selected at the moment it is opened."
+     ],
+     [
+      "What the specification says today, word for word:",
+      "Story 4: Withdrawn - documents created before this setting existed. \"This story pinned every invoice-type document created before the refresh to Legacy and every document created between the refresh and this feature to Modern, by creation instant against a 09:13:36 UTC cutoff. It is withdrawn in full. Under S2-R3 a document's creation date has no bearing on its design. The migration that pinned 243,640 production invoices is reverted rather than shipped, the credit-date rules and their correction command are dropped, and no design column is stored. The story number is kept so the question log and change log still read. (Q23, Chris W., 2026-09-10.)\"",
+      "S2-R3: \"This applies to every document regardless of when it was created: today, before this feature shipped, or before the refresh.\"",
+      "S2-R4: \"Nothing is stored on a document about its design. There is no captured design, no cohort, no cutoff and no migration.\"",
+      "Q23 - rule change, 2026-09-10 (Chris W.): \"The setting is a live organization-wide switch. Nothing is captured at creation, nothing is pinned by date, nothing is migrated.\"",
+      "Source: Invoice Design Selection - Product Spec, Confluence page 845447188, read live on 11 September 2026."
+     ],
+     [
+      "IF STORY 4 IS REVIVED: delete everything above the line below, and put the automation marker back to what it was before the withdrawal. The expected behaviour under the line is the original, untouched, and is ready to be used again as it stands.",
+      "On revival the marker goes back to: AUTOMATION: Not available on Build to test Yet - Last checked 9/10/2026"
+     ],
+     [
+      "--------------------------------------------------------------------"
+     ],
+     [
+      "THE ORIGINAL EXPECTED BEHAVIOUR, UNCHANGED, IS BELOW THIS LINE:"
+     ],
+     [
       "1. The Invoice view renders in Legacy (its captured design).",
       "2. \"Once the work order or parts sale has been invoiced, its estimate renders in the same design as that invoice, whatever the organization's setting reads\" - the Estimate view also renders Legacy, though the current setting is Modern.",
       "3. \"Switching the Finance tab between its Invoice and Estimate views therefore shows both documents in the same design.\" (S3-N2: an estimate whose work order has been invoiced does not follow the current setting; it follows its invoice.)"
@@ -1310,10 +1354,10 @@
       "Design: the Design Document (https://claude.ai/code/artifact/c88ee207-3197-4f54-8cb9-bac3deb84354) shows the new (Modern) design (SV-8218); the specific view/frame anchors are not yet given in the spec (provisional)."
      ],
      [
-      "AUTOMATION: Not available on Build to test Yet - Last checked 9/10/2026"
+      "AUTOMATION: HOLD - Story 4 withdrawn in full by the specification on 2026-09-10 (Q23, Chris W.); do not run until the story is revived"
      ]
     ],
-    "text": "1. The Invoice view renders in Legacy (its captured design).\n2. \"Once the work order or parts sale has been invoiced, its estimate renders in the same design as that invoice, whatever the organization's setting reads\" - the Estimate view also renders Legacy, though the current setting is Modern.\n3. \"Switching the Finance tab between its Invoice and Estimate views therefore shows both documents in the same design.\" (S3-N2: an estimate whose work order has been invoiced does not follow the current setting; it follows its invoice.)\n\n---\nThis is the expected behaviour as per epic SV-8218 and the Invoice Design Selection specification (Confluence page 845447188, Revision 3), section S3-R2, S3-N2, read on 10 September 2026.\nNote: this feature is not yet built (spec Status: Draft) and the setting UI is not yet designed; the route and on-screen labels here are provisional and to be finalised at build-verification.\nDesign: the Design Document (https://claude.ai/code/artifact/c88ee207-3197-4f54-8cb9-bac3deb84354) shows the new (Modern) design (SV-8218); the specific view/frame anchors are not yet given in the spec (provisional).\n\nAUTOMATION: Not available on Build to test Yet - Last checked 9/10/2026"
+    "text": "WITHDRAWN - DO NOT RUN THIS TEST.\nThe behaviour this test checks was removed from the written requirements on 10 September 2026 by Chris W. Story 4 pinned each document to the look it was created under; that whole idea is gone. A document now has no look of its own and simply renders in whatever the shop has selected at the moment it is opened.\n\nWhat the specification says today, word for word:\nStory 4: Withdrawn - documents created before this setting existed. \"This story pinned every invoice-type document created before the refresh to Legacy and every document created between the refresh and this feature to Modern, by creation instant against a 09:13:36 UTC cutoff. It is withdrawn in full. Under S2-R3 a document's creation date has no bearing on its design. The migration that pinned 243,640 production invoices is reverted rather than shipped, the credit-date rules and their correction command are dropped, and no design column is stored. The story number is kept so the question log and change log still read. (Q23, Chris W., 2026-09-10.)\"\nS2-R3: \"This applies to every document regardless of when it was created: today, before this feature shipped, or before the refresh.\"\nS2-R4: \"Nothing is stored on a document about its design. There is no captured design, no cohort, no cutoff and no migration.\"\nQ23 - rule change, 2026-09-10 (Chris W.): \"The setting is a live organization-wide switch. Nothing is captured at creation, nothing is pinned by date, nothing is migrated.\"\nSource: Invoice Design Selection - Product Spec, Confluence page 845447188, read live on 11 September 2026.\n\nIF STORY 4 IS REVIVED: delete everything above the line below, and put the automation marker back to what it was before the withdrawal. The expected behaviour under the line is the original, untouched, and is ready to be used again as it stands.\nOn revival the marker goes back to: AUTOMATION: Not available on Build to test Yet - Last checked 9/10/2026\n\n--------------------------------------------------------------------\n\nTHE ORIGINAL EXPECTED BEHAVIOUR, UNCHANGED, IS BELOW THIS LINE:\n\n1. The Invoice view renders in Legacy (its captured design).\n2. \"Once the work order or parts sale has been invoiced, its estimate renders in the same design as that invoice, whatever the organization's setting reads\" - the Estimate view also renders Legacy, though the current setting is Modern.\n3. \"Switching the Finance tab between its Invoice and Estimate views therefore shows both documents in the same design.\" (S3-N2: an estimate whose work order has been invoiced does not follow the current setting; it follows its invoice.)\n\n---\nThis is the expected behaviour as per epic SV-8218 and the Invoice Design Selection specification (Confluence page 845447188, Revision 3), section S3-R2, S3-N2, read on 10 September 2026.\nNote: this feature is not yet built (spec Status: Draft) and the setting UI is not yet designed; the route and on-screen labels here are provisional and to be finalised at build-verification.\nDesign: the Design Document (https://claude.ai/code/artifact/c88ee207-3197-4f54-8cb9-bac3deb84354) shows the new (Modern) design (SV-8218); the specific view/frame anchors are not yet given in the spec (provisional).\n\nAUTOMATION: HOLD - Story 4 withdrawn in full by the specification on 2026-09-10 (Q23, Chris W.); do not run until the story is revived"
    }
   }
  },
@@ -1474,6 +1518,28 @@
    "custom_expected": {
     "blocks": [
      [
+      "WITHDRAWN - DO NOT RUN THIS TEST.",
+      "The behaviour this test checks was removed from the written requirements on 10 September 2026 by Chris W. Story 4 pinned each document to the look it was created under; that whole idea is gone. A document now has no look of its own and simply renders in whatever the shop has selected at the moment it is opened."
+     ],
+     [
+      "What the specification says today, word for word:",
+      "Story 4: Withdrawn - documents created before this setting existed. \"This story pinned every invoice-type document created before the refresh to Legacy and every document created between the refresh and this feature to Modern, by creation instant against a 09:13:36 UTC cutoff. It is withdrawn in full. Under S2-R3 a document's creation date has no bearing on its design. The migration that pinned 243,640 production invoices is reverted rather than shipped, the credit-date rules and their correction command are dropped, and no design column is stored. The story number is kept so the question log and change log still read. (Q23, Chris W., 2026-09-10.)\"",
+      "S2-R3: \"This applies to every document regardless of when it was created: today, before this feature shipped, or before the refresh.\"",
+      "S2-R4: \"Nothing is stored on a document about its design. There is no captured design, no cohort, no cutoff and no migration.\"",
+      "Q23 - rule change, 2026-09-10 (Chris W.): \"The setting is a live organization-wide switch. Nothing is captured at creation, nothing is pinned by date, nothing is migrated.\"",
+      "Source: Invoice Design Selection - Product Spec, Confluence page 845447188, read live on 11 September 2026."
+     ],
+     [
+      "IF STORY 4 IS REVIVED: delete everything above the line below, and put the automation marker back to what it was before the withdrawal. The expected behaviour under the line is the original, untouched, and is ready to be used again as it stands.",
+      "On revival the marker goes back to: AUTOMATION: Not available on Build to test Yet - Last checked 9/10/2026"
+     ],
+     [
+      "--------------------------------------------------------------------"
+     ],
+     [
+      "THE ORIGINAL EXPECTED BEHAVIOUR, UNCHANGED, IS BELOW THIS LINE:"
+     ],
+     [
       "1. Before reversal, the estimate follows the invoice and renders Legacy.",
       "2. After reversal, \"the work order has no invoice again and its estimate returns to following the current setting\" - Modern - \"until a new invoice is created.\""
      ],
@@ -1484,10 +1550,10 @@
       "Design: the Design Document (https://claude.ai/code/artifact/c88ee207-3197-4f54-8cb9-bac3deb84354) shows the new (Modern) design (SV-8218); the specific view/frame anchors are not yet given in the spec (provisional)."
      ],
      [
-      "AUTOMATION: Not available on Build to test Yet - Last checked 9/10/2026"
+      "AUTOMATION: HOLD - Story 4 withdrawn in full by the specification on 2026-09-10 (Q23, Chris W.); do not run until the story is revived"
      ]
     ],
-    "text": "1. Before reversal, the estimate follows the invoice and renders Legacy.\n2. After reversal, \"the work order has no invoice again and its estimate returns to following the current setting\" - Modern - \"until a new invoice is created.\"\n\n---\nThis is the expected behaviour as per epic SV-8218 and the Invoice Design Selection specification (Confluence page 845447188, Revision 3), section S3-E2, read on 10 September 2026.\nNote: this feature is not yet built (spec Status: Draft) and the setting UI is not yet designed; the route and on-screen labels here are provisional and to be finalised at build-verification.\nDesign: the Design Document (https://claude.ai/code/artifact/c88ee207-3197-4f54-8cb9-bac3deb84354) shows the new (Modern) design (SV-8218); the specific view/frame anchors are not yet given in the spec (provisional).\n\nAUTOMATION: Not available on Build to test Yet - Last checked 9/10/2026"
+    "text": "WITHDRAWN - DO NOT RUN THIS TEST.\nThe behaviour this test checks was removed from the written requirements on 10 September 2026 by Chris W. Story 4 pinned each document to the look it was created under; that whole idea is gone. A document now has no look of its own and simply renders in whatever the shop has selected at the moment it is opened.\n\nWhat the specification says today, word for word:\nStory 4: Withdrawn - documents created before this setting existed. \"This story pinned every invoice-type document created before the refresh to Legacy and every document created between the refresh and this feature to Modern, by creation instant against a 09:13:36 UTC cutoff. It is withdrawn in full. Under S2-R3 a document's creation date has no bearing on its design. The migration that pinned 243,640 production invoices is reverted rather than shipped, the credit-date rules and their correction command are dropped, and no design column is stored. The story number is kept so the question log and change log still read. (Q23, Chris W., 2026-09-10.)\"\nS2-R3: \"This applies to every document regardless of when it was created: today, before this feature shipped, or before the refresh.\"\nS2-R4: \"Nothing is stored on a document about its design. There is no captured design, no cohort, no cutoff and no migration.\"\nQ23 - rule change, 2026-09-10 (Chris W.): \"The setting is a live organization-wide switch. Nothing is captured at creation, nothing is pinned by date, nothing is migrated.\"\nSource: Invoice Design Selection - Product Spec, Confluence page 845447188, read live on 11 September 2026.\n\nIF STORY 4 IS REVIVED: delete everything above the line below, and put the automation marker back to what it was before the withdrawal. The expected behaviour under the line is the original, untouched, and is ready to be used again as it stands.\nOn revival the marker goes back to: AUTOMATION: Not available on Build to test Yet - Last checked 9/10/2026\n\n--------------------------------------------------------------------\n\nTHE ORIGINAL EXPECTED BEHAVIOUR, UNCHANGED, IS BELOW THIS LINE:\n\n1. Before reversal, the estimate follows the invoice and renders Legacy.\n2. After reversal, \"the work order has no invoice again and its estimate returns to following the current setting\" - Modern - \"until a new invoice is created.\"\n\n---\nThis is the expected behaviour as per epic SV-8218 and the Invoice Design Selection specification (Confluence page 845447188, Revision 3), section S3-E2, read on 10 September 2026.\nNote: this feature is not yet built (spec Status: Draft) and the setting UI is not yet designed; the route and on-screen labels here are provisional and to be finalised at build-verification.\nDesign: the Design Document (https://claude.ai/code/artifact/c88ee207-3197-4f54-8cb9-bac3deb84354) shows the new (Modern) design (SV-8218); the specific view/frame anchors are not yet given in the spec (provisional).\n\nAUTOMATION: HOLD - Story 4 withdrawn in full by the specification on 2026-09-10 (Q23, Chris W.); do not run until the story is revived"
    }
   }
  },
@@ -1559,6 +1625,28 @@
    "custom_expected": {
     "blocks": [
      [
+      "WITHDRAWN - DO NOT RUN THIS TEST.",
+      "The behaviour this test checks was removed from the written requirements on 10 September 2026 by Chris W. Story 4 pinned each document to the look it was created under; that whole idea is gone. A document now has no look of its own and simply renders in whatever the shop has selected at the moment it is opened."
+     ],
+     [
+      "What the specification says today, word for word:",
+      "Story 4: Withdrawn - documents created before this setting existed. \"This story pinned every invoice-type document created before the refresh to Legacy and every document created between the refresh and this feature to Modern, by creation instant against a 09:13:36 UTC cutoff. It is withdrawn in full. Under S2-R3 a document's creation date has no bearing on its design. The migration that pinned 243,640 production invoices is reverted rather than shipped, the credit-date rules and their correction command are dropped, and no design column is stored. The story number is kept so the question log and change log still read. (Q23, Chris W., 2026-09-10.)\"",
+      "S2-R3: \"This applies to every document regardless of when it was created: today, before this feature shipped, or before the refresh.\"",
+      "S2-R4: \"Nothing is stored on a document about its design. There is no captured design, no cohort, no cutoff and no migration.\"",
+      "Q23 - rule change, 2026-09-10 (Chris W.): \"The setting is a live organization-wide switch. Nothing is captured at creation, nothing is pinned by date, nothing is migrated.\"",
+      "Source: Invoice Design Selection - Product Spec, Confluence page 845447188, read live on 11 September 2026."
+     ],
+     [
+      "IF STORY 4 IS REVIVED: delete everything above the line below, and put the automation marker back to what it was before the withdrawal. The expected behaviour under the line is the original, untouched, and is ready to be used again as it stands.",
+      "On revival the marker goes back to: AUTOMATION: Not available on Build to test Yet - Last checked 9/10/2026"
+     ],
+     [
+      "--------------------------------------------------------------------"
+     ],
+     [
+      "THE ORIGINAL EXPECTED BEHAVIOUR, UNCHANGED, IS BELOW THIS LINE:"
+     ],
+     [
       "1. The pre-refresh invoice renders in the legacy design: \"Every invoice-type document created before the refresh release (2026-09-09) renders in the legacy design, whatever the organization's setting reads\" - here the setting is Modern and the invoice is still Legacy."
      ],
      [
@@ -1568,10 +1656,10 @@
       "Design: the Design Document (https://claude.ai/code/artifact/c88ee207-3197-4f54-8cb9-bac3deb84354) shows the new (Modern) design (SV-8218); the specific view/frame anchors are not yet given in the spec (provisional)."
      ],
      [
-      "AUTOMATION: Not available on Build to test Yet - Last checked 9/10/2026"
+      "AUTOMATION: HOLD - Story 4 withdrawn in full by the specification on 2026-09-10 (Q23, Chris W.); do not run until the story is revived"
      ]
     ],
-    "text": "1. The pre-refresh invoice renders in the legacy design: \"Every invoice-type document created before the refresh release (2026-09-09) renders in the legacy design, whatever the organization's setting reads\" - here the setting is Modern and the invoice is still Legacy.\n\n---\nThis is the expected behaviour as per epic SV-8218 and the Invoice Design Selection specification (Confluence page 845447188, Revision 3), section S4-R1, read on 10 September 2026.\nNote: this feature is not yet built (spec Status: Draft) and the setting UI is not yet designed; the route and on-screen labels here are provisional and to be finalised at build-verification.\nDesign: the Design Document (https://claude.ai/code/artifact/c88ee207-3197-4f54-8cb9-bac3deb84354) shows the new (Modern) design (SV-8218); the specific view/frame anchors are not yet given in the spec (provisional).\n\nAUTOMATION: Not available on Build to test Yet - Last checked 9/10/2026"
+    "text": "WITHDRAWN - DO NOT RUN THIS TEST.\nThe behaviour this test checks was removed from the written requirements on 10 September 2026 by Chris W. Story 4 pinned each document to the look it was created under; that whole idea is gone. A document now has no look of its own and simply renders in whatever the shop has selected at the moment it is opened.\n\nWhat the specification says today, word for word:\nStory 4: Withdrawn - documents created before this setting existed. \"This story pinned every invoice-type document created before the refresh to Legacy and every document created between the refresh and this feature to Modern, by creation instant against a 09:13:36 UTC cutoff. It is withdrawn in full. Under S2-R3 a document's creation date has no bearing on its design. The migration that pinned 243,640 production invoices is reverted rather than shipped, the credit-date rules and their correction command are dropped, and no design column is stored. The story number is kept so the question log and change log still read. (Q23, Chris W., 2026-09-10.)\"\nS2-R3: \"This applies to every document regardless of when it was created: today, before this feature shipped, or before the refresh.\"\nS2-R4: \"Nothing is stored on a document about its design. There is no captured design, no cohort, no cutoff and no migration.\"\nQ23 - rule change, 2026-09-10 (Chris W.): \"The setting is a live organization-wide switch. Nothing is captured at creation, nothing is pinned by date, nothing is migrated.\"\nSource: Invoice Design Selection - Product Spec, Confluence page 845447188, read live on 11 September 2026.\n\nIF STORY 4 IS REVIVED: delete everything above the line below, and put the automation marker back to what it was before the withdrawal. The expected behaviour under the line is the original, untouched, and is ready to be used again as it stands.\nOn revival the marker goes back to: AUTOMATION: Not available on Build to test Yet - Last checked 9/10/2026\n\n--------------------------------------------------------------------\n\nTHE ORIGINAL EXPECTED BEHAVIOUR, UNCHANGED, IS BELOW THIS LINE:\n\n1. The pre-refresh invoice renders in the legacy design: \"Every invoice-type document created before the refresh release (2026-09-09) renders in the legacy design, whatever the organization's setting reads\" - here the setting is Modern and the invoice is still Legacy.\n\n---\nThis is the expected behaviour as per epic SV-8218 and the Invoice Design Selection specification (Confluence page 845447188, Revision 3), section S4-R1, read on 10 September 2026.\nNote: this feature is not yet built (spec Status: Draft) and the setting UI is not yet designed; the route and on-screen labels here are provisional and to be finalised at build-verification.\nDesign: the Design Document (https://claude.ai/code/artifact/c88ee207-3197-4f54-8cb9-bac3deb84354) shows the new (Modern) design (SV-8218); the specific view/frame anchors are not yet given in the spec (provisional).\n\nAUTOMATION: HOLD - Story 4 withdrawn in full by the specification on 2026-09-10 (Q23, Chris W.); do not run until the story is revived"
    }
   }
  },
@@ -1600,6 +1688,28 @@
    "custom_expected": {
     "blocks": [
      [
+      "WITHDRAWN - DO NOT RUN THIS TEST.",
+      "The behaviour this test checks was removed from the written requirements on 10 September 2026 by Chris W. Story 4 pinned each document to the look it was created under; that whole idea is gone. A document now has no look of its own and simply renders in whatever the shop has selected at the moment it is opened."
+     ],
+     [
+      "What the specification says today, word for word:",
+      "Story 4: Withdrawn - documents created before this setting existed. \"This story pinned every invoice-type document created before the refresh to Legacy and every document created between the refresh and this feature to Modern, by creation instant against a 09:13:36 UTC cutoff. It is withdrawn in full. Under S2-R3 a document's creation date has no bearing on its design. The migration that pinned 243,640 production invoices is reverted rather than shipped, the credit-date rules and their correction command are dropped, and no design column is stored. The story number is kept so the question log and change log still read. (Q23, Chris W., 2026-09-10.)\"",
+      "S2-R3: \"This applies to every document regardless of when it was created: today, before this feature shipped, or before the refresh.\"",
+      "S2-R4: \"Nothing is stored on a document about its design. There is no captured design, no cohort, no cutoff and no migration.\"",
+      "Q23 - rule change, 2026-09-10 (Chris W.): \"The setting is a live organization-wide switch. Nothing is captured at creation, nothing is pinned by date, nothing is migrated.\"",
+      "Source: Invoice Design Selection - Product Spec, Confluence page 845447188, read live on 11 September 2026."
+     ],
+     [
+      "IF STORY 4 IS REVIVED: delete everything above the line below, and put the automation marker back to what it was before the withdrawal. The expected behaviour under the line is the original, untouched, and is ready to be used again as it stands.",
+      "On revival the marker goes back to: AUTOMATION: Not available on Build to test Yet - Last checked 9/10/2026"
+     ],
+     [
+      "--------------------------------------------------------------------"
+     ],
+     [
+      "THE ORIGINAL EXPECTED BEHAVIOUR, UNCHANGED, IS BELOW THIS LINE:"
+     ],
+     [
       "1. The between-releases invoice renders in the new (Modern) design: \"Every invoice-type document created on or after the refresh release and before this setting ships renders in the new design, whatever the organization's setting reads\" - here the setting is Legacy and the invoice is still Modern."
      ],
      [
@@ -1609,10 +1719,10 @@
       "Design: the Design Document (https://claude.ai/code/artifact/c88ee207-3197-4f54-8cb9-bac3deb84354) shows the new (Modern) design (SV-8218); the specific view/frame anchors are not yet given in the spec (provisional)."
      ],
      [
-      "AUTOMATION: Not available on Build to test Yet - Last checked 9/10/2026"
+      "AUTOMATION: HOLD - Story 4 withdrawn in full by the specification on 2026-09-10 (Q23, Chris W.); do not run until the story is revived"
      ]
     ],
-    "text": "1. The between-releases invoice renders in the new (Modern) design: \"Every invoice-type document created on or after the refresh release and before this setting ships renders in the new design, whatever the organization's setting reads\" - here the setting is Legacy and the invoice is still Modern.\n\n---\nThis is the expected behaviour as per epic SV-8218 and the Invoice Design Selection specification (Confluence page 845447188, Revision 3), section S4-R2, read on 10 September 2026.\nNote: this feature is not yet built (spec Status: Draft) and the setting UI is not yet designed; the route and on-screen labels here are provisional and to be finalised at build-verification.\nDesign: the Design Document (https://claude.ai/code/artifact/c88ee207-3197-4f54-8cb9-bac3deb84354) shows the new (Modern) design (SV-8218); the specific view/frame anchors are not yet given in the spec (provisional).\n\nAUTOMATION: Not available on Build to test Yet - Last checked 9/10/2026"
+    "text": "WITHDRAWN - DO NOT RUN THIS TEST.\nThe behaviour this test checks was removed from the written requirements on 10 September 2026 by Chris W. Story 4 pinned each document to the look it was created under; that whole idea is gone. A document now has no look of its own and simply renders in whatever the shop has selected at the moment it is opened.\n\nWhat the specification says today, word for word:\nStory 4: Withdrawn - documents created before this setting existed. \"This story pinned every invoice-type document created before the refresh to Legacy and every document created between the refresh and this feature to Modern, by creation instant against a 09:13:36 UTC cutoff. It is withdrawn in full. Under S2-R3 a document's creation date has no bearing on its design. The migration that pinned 243,640 production invoices is reverted rather than shipped, the credit-date rules and their correction command are dropped, and no design column is stored. The story number is kept so the question log and change log still read. (Q23, Chris W., 2026-09-10.)\"\nS2-R3: \"This applies to every document regardless of when it was created: today, before this feature shipped, or before the refresh.\"\nS2-R4: \"Nothing is stored on a document about its design. There is no captured design, no cohort, no cutoff and no migration.\"\nQ23 - rule change, 2026-09-10 (Chris W.): \"The setting is a live organization-wide switch. Nothing is captured at creation, nothing is pinned by date, nothing is migrated.\"\nSource: Invoice Design Selection - Product Spec, Confluence page 845447188, read live on 11 September 2026.\n\nIF STORY 4 IS REVIVED: delete everything above the line below, and put the automation marker back to what it was before the withdrawal. The expected behaviour under the line is the original, untouched, and is ready to be used again as it stands.\nOn revival the marker goes back to: AUTOMATION: Not available on Build to test Yet - Last checked 9/10/2026\n\n--------------------------------------------------------------------\n\nTHE ORIGINAL EXPECTED BEHAVIOUR, UNCHANGED, IS BELOW THIS LINE:\n\n1. The between-releases invoice renders in the new (Modern) design: \"Every invoice-type document created on or after the refresh release and before this setting ships renders in the new design, whatever the organization's setting reads\" - here the setting is Legacy and the invoice is still Modern.\n\n---\nThis is the expected behaviour as per epic SV-8218 and the Invoice Design Selection specification (Confluence page 845447188, Revision 3), section S4-R2, read on 10 September 2026.\nNote: this feature is not yet built (spec Status: Draft) and the setting UI is not yet designed; the route and on-screen labels here are provisional and to be finalised at build-verification.\nDesign: the Design Document (https://claude.ai/code/artifact/c88ee207-3197-4f54-8cb9-bac3deb84354) shows the new (Modern) design (SV-8218); the specific view/frame anchors are not yet given in the spec (provisional).\n\nAUTOMATION: HOLD - Story 4 withdrawn in full by the specification on 2026-09-10 (Q23, Chris W.); do not run until the story is revived"
    }
   }
  },
@@ -1643,6 +1753,28 @@
    "custom_expected": {
     "blocks": [
      [
+      "WITHDRAWN - DO NOT RUN THIS TEST.",
+      "The behaviour this test checks was removed from the written requirements on 10 September 2026 by Chris W. Story 4 pinned each document to the look it was created under; that whole idea is gone. A document now has no look of its own and simply renders in whatever the shop has selected at the moment it is opened."
+     ],
+     [
+      "What the specification says today, word for word:",
+      "Story 4: Withdrawn - documents created before this setting existed. \"This story pinned every invoice-type document created before the refresh to Legacy and every document created between the refresh and this feature to Modern, by creation instant against a 09:13:36 UTC cutoff. It is withdrawn in full. Under S2-R3 a document's creation date has no bearing on its design. The migration that pinned 243,640 production invoices is reverted rather than shipped, the credit-date rules and their correction command are dropped, and no design column is stored. The story number is kept so the question log and change log still read. (Q23, Chris W., 2026-09-10.)\"",
+      "S2-R3: \"This applies to every document regardless of when it was created: today, before this feature shipped, or before the refresh.\"",
+      "S2-R4: \"Nothing is stored on a document about its design. There is no captured design, no cohort, no cutoff and no migration.\"",
+      "Q23 - rule change, 2026-09-10 (Chris W.): \"The setting is a live organization-wide switch. Nothing is captured at creation, nothing is pinned by date, nothing is migrated.\"",
+      "Source: Invoice Design Selection - Product Spec, Confluence page 845447188, read live on 11 September 2026."
+     ],
+     [
+      "IF STORY 4 IS REVIVED: delete everything above the line below, and put the automation marker back to what it was before the withdrawal. The expected behaviour under the line is the original, untouched, and is ready to be used again as it stands.",
+      "On revival the marker goes back to: AUTOMATION: Not available on Build to test Yet - Last checked 9/10/2026"
+     ],
+     [
+      "--------------------------------------------------------------------"
+     ],
+     [
+      "THE ORIGINAL EXPECTED BEHAVIOUR, UNCHANGED, IS BELOW THIS LINE:"
+     ],
+     [
       "1. \"Both cohorts are fixed. No setting change and no user action alters them.\" The pre-refresh invoice stays Legacy and the between-releases invoice stays Modern through every toggle and reprint."
      ],
      [
@@ -1652,10 +1784,10 @@
       "Design: the Design Document (https://claude.ai/code/artifact/c88ee207-3197-4f54-8cb9-bac3deb84354) shows the new (Modern) design (SV-8218); the specific view/frame anchors are not yet given in the spec (provisional)."
      ],
      [
-      "AUTOMATION: Not available on Build to test Yet - Last checked 9/10/2026"
+      "AUTOMATION: HOLD - Story 4 withdrawn in full by the specification on 2026-09-10 (Q23, Chris W.); do not run until the story is revived"
      ]
     ],
-    "text": "1. \"Both cohorts are fixed. No setting change and no user action alters them.\" The pre-refresh invoice stays Legacy and the between-releases invoice stays Modern through every toggle and reprint.\n\n---\nThis is the expected behaviour as per epic SV-8218 and the Invoice Design Selection specification (Confluence page 845447188, Revision 3), section S4-R3, read on 10 September 2026.\nNote: this feature is not yet built (spec Status: Draft) and the setting UI is not yet designed; the route and on-screen labels here are provisional and to be finalised at build-verification.\nDesign: the Design Document (https://claude.ai/code/artifact/c88ee207-3197-4f54-8cb9-bac3deb84354) shows the new (Modern) design (SV-8218); the specific view/frame anchors are not yet given in the spec (provisional).\n\nAUTOMATION: Not available on Build to test Yet - Last checked 9/10/2026"
+    "text": "WITHDRAWN - DO NOT RUN THIS TEST.\nThe behaviour this test checks was removed from the written requirements on 10 September 2026 by Chris W. Story 4 pinned each document to the look it was created under; that whole idea is gone. A document now has no look of its own and simply renders in whatever the shop has selected at the moment it is opened.\n\nWhat the specification says today, word for word:\nStory 4: Withdrawn - documents created before this setting existed. \"This story pinned every invoice-type document created before the refresh to Legacy and every document created between the refresh and this feature to Modern, by creation instant against a 09:13:36 UTC cutoff. It is withdrawn in full. Under S2-R3 a document's creation date has no bearing on its design. The migration that pinned 243,640 production invoices is reverted rather than shipped, the credit-date rules and their correction command are dropped, and no design column is stored. The story number is kept so the question log and change log still read. (Q23, Chris W., 2026-09-10.)\"\nS2-R3: \"This applies to every document regardless of when it was created: today, before this feature shipped, or before the refresh.\"\nS2-R4: \"Nothing is stored on a document about its design. There is no captured design, no cohort, no cutoff and no migration.\"\nQ23 - rule change, 2026-09-10 (Chris W.): \"The setting is a live organization-wide switch. Nothing is captured at creation, nothing is pinned by date, nothing is migrated.\"\nSource: Invoice Design Selection - Product Spec, Confluence page 845447188, read live on 11 September 2026.\n\nIF STORY 4 IS REVIVED: delete everything above the line below, and put the automation marker back to what it was before the withdrawal. The expected behaviour under the line is the original, untouched, and is ready to be used again as it stands.\nOn revival the marker goes back to: AUTOMATION: Not available on Build to test Yet - Last checked 9/10/2026\n\n--------------------------------------------------------------------\n\nTHE ORIGINAL EXPECTED BEHAVIOUR, UNCHANGED, IS BELOW THIS LINE:\n\n1. \"Both cohorts are fixed. No setting change and no user action alters them.\" The pre-refresh invoice stays Legacy and the between-releases invoice stays Modern through every toggle and reprint.\n\n---\nThis is the expected behaviour as per epic SV-8218 and the Invoice Design Selection specification (Confluence page 845447188, Revision 3), section S4-R3, read on 10 September 2026.\nNote: this feature is not yet built (spec Status: Draft) and the setting UI is not yet designed; the route and on-screen labels here are provisional and to be finalised at build-verification.\nDesign: the Design Document (https://claude.ai/code/artifact/c88ee207-3197-4f54-8cb9-bac3deb84354) shows the new (Modern) design (SV-8218); the specific view/frame anchors are not yet given in the spec (provisional).\n\nAUTOMATION: HOLD - Story 4 withdrawn in full by the specification on 2026-09-10 (Q23, Chris W.); do not run until the story is revived"
    }
   }
  },
@@ -1688,6 +1820,28 @@
    "custom_expected": {
     "blocks": [
      [
+      "WITHDRAWN - DO NOT RUN THIS TEST.",
+      "The behaviour this test checks was removed from the written requirements on 10 September 2026 by Chris W. Story 4 pinned each document to the look it was created under; that whole idea is gone. A document now has no look of its own and simply renders in whatever the shop has selected at the moment it is opened."
+     ],
+     [
+      "What the specification says today, word for word:",
+      "Story 4: Withdrawn - documents created before this setting existed. \"This story pinned every invoice-type document created before the refresh to Legacy and every document created between the refresh and this feature to Modern, by creation instant against a 09:13:36 UTC cutoff. It is withdrawn in full. Under S2-R3 a document's creation date has no bearing on its design. The migration that pinned 243,640 production invoices is reverted rather than shipped, the credit-date rules and their correction command are dropped, and no design column is stored. The story number is kept so the question log and change log still read. (Q23, Chris W., 2026-09-10.)\"",
+      "S2-R3: \"This applies to every document regardless of when it was created: today, before this feature shipped, or before the refresh.\"",
+      "S2-R4: \"Nothing is stored on a document about its design. There is no captured design, no cohort, no cutoff and no migration.\"",
+      "Q23 - rule change, 2026-09-10 (Chris W.): \"The setting is a live organization-wide switch. Nothing is captured at creation, nothing is pinned by date, nothing is migrated.\"",
+      "Source: Invoice Design Selection - Product Spec, Confluence page 845447188, read live on 11 September 2026."
+     ],
+     [
+      "IF STORY 4 IS REVIVED: delete everything above the line below, and put the automation marker back to what it was before the withdrawal. The expected behaviour under the line is the original, untouched, and is ready to be used again as it stands.",
+      "On revival the marker goes back to: AUTOMATION: Not available on Build to test Yet - Last checked 9/10/2026"
+     ],
+     [
+      "--------------------------------------------------------------------"
+     ],
+     [
+      "THE ORIGINAL EXPECTED BEHAVIOUR, UNCHANGED, IS BELOW THIS LINE:"
+     ],
+     [
       "1. On every surface - in-app preview, in-app print/PDF, emailed PDF, and the customer portal on screen and in its PDF - the pre-refresh invoice renders Legacy: \"The rules in S4-R1 and S4-R2 apply on every rendering surface listed in Story 5.\"",
       "2. The estimate view of that invoiced work order also renders Legacy, matching the invoice: the cohort rules \"govern the estimate view of those work orders under S3-R2.\""
      ],
@@ -1698,10 +1852,10 @@
       "Design: the Design Document (https://claude.ai/code/artifact/c88ee207-3197-4f54-8cb9-bac3deb84354) shows the new (Modern) design (SV-8218); the specific view/frame anchors are not yet given in the spec (provisional)."
      ],
      [
-      "AUTOMATION: Not available on Build to test Yet - Last checked 9/10/2026"
+      "AUTOMATION: HOLD - Story 4 withdrawn in full by the specification on 2026-09-10 (Q23, Chris W.); do not run until the story is revived"
      ]
     ],
-    "text": "1. On every surface - in-app preview, in-app print/PDF, emailed PDF, and the customer portal on screen and in its PDF - the pre-refresh invoice renders Legacy: \"The rules in S4-R1 and S4-R2 apply on every rendering surface listed in Story 5.\"\n2. The estimate view of that invoiced work order also renders Legacy, matching the invoice: the cohort rules \"govern the estimate view of those work orders under S3-R2.\"\n\n---\nThis is the expected behaviour as per epic SV-8218 and the Invoice Design Selection specification (Confluence page 845447188, Revision 3), section S4-R4, read on 10 September 2026.\nNote: this feature is not yet built (spec Status: Draft) and the setting UI is not yet designed; the route and on-screen labels here are provisional and to be finalised at build-verification. This case renders on the customer portal, which exists only on staging (not the QA branch); it will carry the customer-portal staging-only HOLD at build-verification.\nDesign: the Design Document (https://claude.ai/code/artifact/c88ee207-3197-4f54-8cb9-bac3deb84354) shows the new (Modern) design (SV-8218); the specific view/frame anchors are not yet given in the spec (provisional).\n\nAUTOMATION: Not available on Build to test Yet - Last checked 9/10/2026"
+    "text": "WITHDRAWN - DO NOT RUN THIS TEST.\nThe behaviour this test checks was removed from the written requirements on 10 September 2026 by Chris W. Story 4 pinned each document to the look it was created under; that whole idea is gone. A document now has no look of its own and simply renders in whatever the shop has selected at the moment it is opened.\n\nWhat the specification says today, word for word:\nStory 4: Withdrawn - documents created before this setting existed. \"This story pinned every invoice-type document created before the refresh to Legacy and every document created between the refresh and this feature to Modern, by creation instant against a 09:13:36 UTC cutoff. It is withdrawn in full. Under S2-R3 a document's creation date has no bearing on its design. The migration that pinned 243,640 production invoices is reverted rather than shipped, the credit-date rules and their correction command are dropped, and no design column is stored. The story number is kept so the question log and change log still read. (Q23, Chris W., 2026-09-10.)\"\nS2-R3: \"This applies to every document regardless of when it was created: today, before this feature shipped, or before the refresh.\"\nS2-R4: \"Nothing is stored on a document about its design. There is no captured design, no cohort, no cutoff and no migration.\"\nQ23 - rule change, 2026-09-10 (Chris W.): \"The setting is a live organization-wide switch. Nothing is captured at creation, nothing is pinned by date, nothing is migrated.\"\nSource: Invoice Design Selection - Product Spec, Confluence page 845447188, read live on 11 September 2026.\n\nIF STORY 4 IS REVIVED: delete everything above the line below, and put the automation marker back to what it was before the withdrawal. The expected behaviour under the line is the original, untouched, and is ready to be used again as it stands.\nOn revival the marker goes back to: AUTOMATION: Not available on Build to test Yet - Last checked 9/10/2026\n\n--------------------------------------------------------------------\n\nTHE ORIGINAL EXPECTED BEHAVIOUR, UNCHANGED, IS BELOW THIS LINE:\n\n1. On every surface - in-app preview, in-app print/PDF, emailed PDF, and the customer portal on screen and in its PDF - the pre-refresh invoice renders Legacy: \"The rules in S4-R1 and S4-R2 apply on every rendering surface listed in Story 5.\"\n2. The estimate view of that invoiced work order also renders Legacy, matching the invoice: the cohort rules \"govern the estimate view of those work orders under S3-R2.\"\n\n---\nThis is the expected behaviour as per epic SV-8218 and the Invoice Design Selection specification (Confluence page 845447188, Revision 3), section S4-R4, read on 10 September 2026.\nNote: this feature is not yet built (spec Status: Draft) and the setting UI is not yet designed; the route and on-screen labels here are provisional and to be finalised at build-verification. This case renders on the customer portal, which exists only on staging (not the QA branch); it will carry the customer-portal staging-only HOLD at build-verification.\nDesign: the Design Document (https://claude.ai/code/artifact/c88ee207-3197-4f54-8cb9-bac3deb84354) shows the new (Modern) design (SV-8218); the specific view/frame anchors are not yet given in the spec (provisional).\n\nAUTOMATION: HOLD - Story 4 withdrawn in full by the specification on 2026-09-10 (Q23, Chris W.); do not run until the story is revived"
    }
   }
  },
@@ -1731,6 +1885,28 @@
    "custom_expected": {
     "blocks": [
      [
+      "WITHDRAWN - DO NOT RUN THIS TEST.",
+      "The behaviour this test checks was removed from the written requirements on 10 September 2026 by Chris W. Story 4 pinned each document to the look it was created under; that whole idea is gone. A document now has no look of its own and simply renders in whatever the shop has selected at the moment it is opened."
+     ],
+     [
+      "What the specification says today, word for word:",
+      "Story 4: Withdrawn - documents created before this setting existed. \"This story pinned every invoice-type document created before the refresh to Legacy and every document created between the refresh and this feature to Modern, by creation instant against a 09:13:36 UTC cutoff. It is withdrawn in full. Under S2-R3 a document's creation date has no bearing on its design. The migration that pinned 243,640 production invoices is reverted rather than shipped, the credit-date rules and their correction command are dropped, and no design column is stored. The story number is kept so the question log and change log still read. (Q23, Chris W., 2026-09-10.)\"",
+      "S2-R3: \"This applies to every document regardless of when it was created: today, before this feature shipped, or before the refresh.\"",
+      "S2-R4: \"Nothing is stored on a document about its design. There is no captured design, no cohort, no cutoff and no migration.\"",
+      "Q23 - rule change, 2026-09-10 (Chris W.): \"The setting is a live organization-wide switch. Nothing is captured at creation, nothing is pinned by date, nothing is migrated.\"",
+      "Source: Invoice Design Selection - Product Spec, Confluence page 845447188, read live on 11 September 2026."
+     ],
+     [
+      "IF STORY 4 IS REVIVED: delete everything above the line below, and put the automation marker back to what it was before the withdrawal. The expected behaviour under the line is the original, untouched, and is ready to be used again as it stands.",
+      "On revival the marker goes back to: AUTOMATION: Not available on Build to test Yet - Last checked 9/10/2026"
+     ],
+     [
+      "--------------------------------------------------------------------"
+     ],
+     [
+      "THE ORIGINAL EXPECTED BEHAVIOUR, UNCHANGED, IS BELOW THIS LINE:"
+     ],
+     [
       "1. Once built, the pre-refresh invoice must reprint in the Legacy design (S4-R1): \"S4-R1 and S4-R2 must both be built.\"",
       "2. Three outcomes: (a) if it reprints in Legacy -> PASS, the pinning is built; (b) if it reprints in the new (Modern) design -> mark this case FAILED - that is today's un-built behaviour: \"Right now an invoice created before the refresh reprints in the new design, because no invoice records which design it was issued under\"; (c) if it reprints differently or errors -> a NEW problem, report it.",
       "3. On today's build this case is EXPECTED TO FAIL at outcome (b): the invoice reprints in the new design because the back-catalogue pinning is net-new behaviour and is not yet built."
@@ -1742,10 +1918,10 @@
       "Design: the Design Document (https://claude.ai/code/artifact/c88ee207-3197-4f54-8cb9-bac3deb84354) shows the new (Modern) design (SV-8218); the specific view/frame anchors are not yet given in the spec (provisional)."
      ],
      [
-      "AUTOMATION: Not available on Build to test Yet - Last checked 9/10/2026"
+      "AUTOMATION: HOLD - Story 4 withdrawn in full by the specification on 2026-09-10 (Q23, Chris W.); do not run until the story is revived"
      ]
     ],
-    "text": "1. Once built, the pre-refresh invoice must reprint in the Legacy design (S4-R1): \"S4-R1 and S4-R2 must both be built.\"\n2. Three outcomes: (a) if it reprints in Legacy -> PASS, the pinning is built; (b) if it reprints in the new (Modern) design -> mark this case FAILED - that is today's un-built behaviour: \"Right now an invoice created before the refresh reprints in the new design, because no invoice records which design it was issued under\"; (c) if it reprints differently or errors -> a NEW problem, report it.\n3. On today's build this case is EXPECTED TO FAIL at outcome (b): the invoice reprints in the new design because the back-catalogue pinning is net-new behaviour and is not yet built.\n\n---\nThis is the expected behaviour as per epic SV-8218 and the Invoice Design Selection specification (Confluence page 845447188, Revision 3), section S4-R5, read on 10 September 2026.\nNote: this feature is not yet built (spec Status: Draft) and the setting UI is not yet designed; the route and on-screen labels here are provisional and to be finalised at build-verification.\nDesign: the Design Document (https://claude.ai/code/artifact/c88ee207-3197-4f54-8cb9-bac3deb84354) shows the new (Modern) design (SV-8218); the specific view/frame anchors are not yet given in the spec (provisional).\n\nAUTOMATION: Not available on Build to test Yet - Last checked 9/10/2026"
+    "text": "WITHDRAWN - DO NOT RUN THIS TEST.\nThe behaviour this test checks was removed from the written requirements on 10 September 2026 by Chris W. Story 4 pinned each document to the look it was created under; that whole idea is gone. A document now has no look of its own and simply renders in whatever the shop has selected at the moment it is opened.\n\nWhat the specification says today, word for word:\nStory 4: Withdrawn - documents created before this setting existed. \"This story pinned every invoice-type document created before the refresh to Legacy and every document created between the refresh and this feature to Modern, by creation instant against a 09:13:36 UTC cutoff. It is withdrawn in full. Under S2-R3 a document's creation date has no bearing on its design. The migration that pinned 243,640 production invoices is reverted rather than shipped, the credit-date rules and their correction command are dropped, and no design column is stored. The story number is kept so the question log and change log still read. (Q23, Chris W., 2026-09-10.)\"\nS2-R3: \"This applies to every document regardless of when it was created: today, before this feature shipped, or before the refresh.\"\nS2-R4: \"Nothing is stored on a document about its design. There is no captured design, no cohort, no cutoff and no migration.\"\nQ23 - rule change, 2026-09-10 (Chris W.): \"The setting is a live organization-wide switch. Nothing is captured at creation, nothing is pinned by date, nothing is migrated.\"\nSource: Invoice Design Selection - Product Spec, Confluence page 845447188, read live on 11 September 2026.\n\nIF STORY 4 IS REVIVED: delete everything above the line below, and put the automation marker back to what it was before the withdrawal. The expected behaviour under the line is the original, untouched, and is ready to be used again as it stands.\nOn revival the marker goes back to: AUTOMATION: Not available on Build to test Yet - Last checked 9/10/2026\n\n--------------------------------------------------------------------\n\nTHE ORIGINAL EXPECTED BEHAVIOUR, UNCHANGED, IS BELOW THIS LINE:\n\n1. Once built, the pre-refresh invoice must reprint in the Legacy design (S4-R1): \"S4-R1 and S4-R2 must both be built.\"\n2. Three outcomes: (a) if it reprints in Legacy -> PASS, the pinning is built; (b) if it reprints in the new (Modern) design -> mark this case FAILED - that is today's un-built behaviour: \"Right now an invoice created before the refresh reprints in the new design, because no invoice records which design it was issued under\"; (c) if it reprints differently or errors -> a NEW problem, report it.\n3. On today's build this case is EXPECTED TO FAIL at outcome (b): the invoice reprints in the new design because the back-catalogue pinning is net-new behaviour and is not yet built.\n\n---\nThis is the expected behaviour as per epic SV-8218 and the Invoice Design Selection specification (Confluence page 845447188, Revision 3), section S4-R5, read on 10 September 2026.\nNote: this feature is not yet built (spec Status: Draft) and the setting UI is not yet designed; the route and on-screen labels here are provisional and to be finalised at build-verification.\nDesign: the Design Document (https://claude.ai/code/artifact/c88ee207-3197-4f54-8cb9-bac3deb84354) shows the new (Modern) design (SV-8218); the specific view/frame anchors are not yet given in the spec (provisional).\n\nAUTOMATION: HOLD - Story 4 withdrawn in full by the specification on 2026-09-10 (Q23, Chris W.); do not run until the story is revived"
    }
   }
  },
@@ -1775,6 +1951,28 @@
    "custom_expected": {
     "blocks": [
      [
+      "WITHDRAWN - DO NOT RUN THIS TEST.",
+      "The behaviour this test checks was removed from the written requirements on 10 September 2026 by Chris W. Story 4 pinned each document to the look it was created under; that whole idea is gone. A document now has no look of its own and simply renders in whatever the shop has selected at the moment it is opened."
+     ],
+     [
+      "What the specification says today, word for word:",
+      "Story 4: Withdrawn - documents created before this setting existed. \"This story pinned every invoice-type document created before the refresh to Legacy and every document created between the refresh and this feature to Modern, by creation instant against a 09:13:36 UTC cutoff. It is withdrawn in full. Under S2-R3 a document's creation date has no bearing on its design. The migration that pinned 243,640 production invoices is reverted rather than shipped, the credit-date rules and their correction command are dropped, and no design column is stored. The story number is kept so the question log and change log still read. (Q23, Chris W., 2026-09-10.)\"",
+      "S2-R3: \"This applies to every document regardless of when it was created: today, before this feature shipped, or before the refresh.\"",
+      "S2-R4: \"Nothing is stored on a document about its design. There is no captured design, no cohort, no cutoff and no migration.\"",
+      "Q23 - rule change, 2026-09-10 (Chris W.): \"The setting is a live organization-wide switch. Nothing is captured at creation, nothing is pinned by date, nothing is migrated.\"",
+      "Source: Invoice Design Selection - Product Spec, Confluence page 845447188, read live on 11 September 2026."
+     ],
+     [
+      "IF STORY 4 IS REVIVED: delete everything above the line below, and put the automation marker back to what it was before the withdrawal. The expected behaviour under the line is the original, untouched, and is ready to be used again as it stands.",
+      "On revival the marker goes back to: AUTOMATION: Not available on Build to test Yet - Last checked 9/10/2026"
+     ],
+     [
+      "--------------------------------------------------------------------"
+     ],
+     [
+      "THE ORIGINAL EXPECTED BEHAVIOUR, UNCHANGED, IS BELOW THIS LINE:"
+     ],
+     [
       "1. \"Switching the setting to \\\"Legacy\\\" does not convert the S4-R2 cohort to the legacy design.\" The between-releases invoice still renders Modern after the switch, because \"Those customers already hold new-design copies.\""
      ],
      [
@@ -1784,10 +1982,10 @@
       "Design: the Design Document (https://claude.ai/code/artifact/c88ee207-3197-4f54-8cb9-bac3deb84354) shows the new (Modern) design (SV-8218); the specific view/frame anchors are not yet given in the spec (provisional)."
      ],
      [
-      "AUTOMATION: Not available on Build to test Yet - Last checked 9/10/2026"
+      "AUTOMATION: HOLD - Story 4 withdrawn in full by the specification on 2026-09-10 (Q23, Chris W.); do not run until the story is revived"
      ]
     ],
-    "text": "1. \"Switching the setting to \\\"Legacy\\\" does not convert the S4-R2 cohort to the legacy design.\" The between-releases invoice still renders Modern after the switch, because \"Those customers already hold new-design copies.\"\n\n---\nThis is the expected behaviour as per epic SV-8218 and the Invoice Design Selection specification (Confluence page 845447188, Revision 3), section S4-N1, read on 10 September 2026.\nNote: this feature is not yet built (spec Status: Draft) and the setting UI is not yet designed; the route and on-screen labels here are provisional and to be finalised at build-verification.\nDesign: the Design Document (https://claude.ai/code/artifact/c88ee207-3197-4f54-8cb9-bac3deb84354) shows the new (Modern) design (SV-8218); the specific view/frame anchors are not yet given in the spec (provisional).\n\nAUTOMATION: Not available on Build to test Yet - Last checked 9/10/2026"
+    "text": "WITHDRAWN - DO NOT RUN THIS TEST.\nThe behaviour this test checks was removed from the written requirements on 10 September 2026 by Chris W. Story 4 pinned each document to the look it was created under; that whole idea is gone. A document now has no look of its own and simply renders in whatever the shop has selected at the moment it is opened.\n\nWhat the specification says today, word for word:\nStory 4: Withdrawn - documents created before this setting existed. \"This story pinned every invoice-type document created before the refresh to Legacy and every document created between the refresh and this feature to Modern, by creation instant against a 09:13:36 UTC cutoff. It is withdrawn in full. Under S2-R3 a document's creation date has no bearing on its design. The migration that pinned 243,640 production invoices is reverted rather than shipped, the credit-date rules and their correction command are dropped, and no design column is stored. The story number is kept so the question log and change log still read. (Q23, Chris W., 2026-09-10.)\"\nS2-R3: \"This applies to every document regardless of when it was created: today, before this feature shipped, or before the refresh.\"\nS2-R4: \"Nothing is stored on a document about its design. There is no captured design, no cohort, no cutoff and no migration.\"\nQ23 - rule change, 2026-09-10 (Chris W.): \"The setting is a live organization-wide switch. Nothing is captured at creation, nothing is pinned by date, nothing is migrated.\"\nSource: Invoice Design Selection - Product Spec, Confluence page 845447188, read live on 11 September 2026.\n\nIF STORY 4 IS REVIVED: delete everything above the line below, and put the automation marker back to what it was before the withdrawal. The expected behaviour under the line is the original, untouched, and is ready to be used again as it stands.\nOn revival the marker goes back to: AUTOMATION: Not available on Build to test Yet - Last checked 9/10/2026\n\n--------------------------------------------------------------------\n\nTHE ORIGINAL EXPECTED BEHAVIOUR, UNCHANGED, IS BELOW THIS LINE:\n\n1. \"Switching the setting to \\\"Legacy\\\" does not convert the S4-R2 cohort to the legacy design.\" The between-releases invoice still renders Modern after the switch, because \"Those customers already hold new-design copies.\"\n\n---\nThis is the expected behaviour as per epic SV-8218 and the Invoice Design Selection specification (Confluence page 845447188, Revision 3), section S4-N1, read on 10 September 2026.\nNote: this feature is not yet built (spec Status: Draft) and the setting UI is not yet designed; the route and on-screen labels here are provisional and to be finalised at build-verification.\nDesign: the Design Document (https://claude.ai/code/artifact/c88ee207-3197-4f54-8cb9-bac3deb84354) shows the new (Modern) design (SV-8218); the specific view/frame anchors are not yet given in the spec (provisional).\n\nAUTOMATION: HOLD - Story 4 withdrawn in full by the specification on 2026-09-10 (Q23, Chris W.); do not run until the story is revived"
    }
   }
  },
@@ -1818,6 +2016,28 @@
    "custom_expected": {
     "blocks": [
      [
+      "WITHDRAWN - DO NOT RUN THIS TEST.",
+      "The behaviour this test checks was removed from the written requirements on 10 September 2026 by Chris W. Story 4 pinned each document to the look it was created under; that whole idea is gone. A document now has no look of its own and simply renders in whatever the shop has selected at the moment it is opened."
+     ],
+     [
+      "What the specification says today, word for word:",
+      "Story 4: Withdrawn - documents created before this setting existed. \"This story pinned every invoice-type document created before the refresh to Legacy and every document created between the refresh and this feature to Modern, by creation instant against a 09:13:36 UTC cutoff. It is withdrawn in full. Under S2-R3 a document's creation date has no bearing on its design. The migration that pinned 243,640 production invoices is reverted rather than shipped, the credit-date rules and their correction command are dropped, and no design column is stored. The story number is kept so the question log and change log still read. (Q23, Chris W., 2026-09-10.)\"",
+      "S2-R3: \"This applies to every document regardless of when it was created: today, before this feature shipped, or before the refresh.\"",
+      "S2-R4: \"Nothing is stored on a document about its design. There is no captured design, no cohort, no cutoff and no migration.\"",
+      "Q23 - rule change, 2026-09-10 (Chris W.): \"The setting is a live organization-wide switch. Nothing is captured at creation, nothing is pinned by date, nothing is migrated.\"",
+      "Source: Invoice Design Selection - Product Spec, Confluence page 845447188, read live on 11 September 2026."
+     ],
+     [
+      "IF STORY 4 IS REVIVED: delete everything above the line below, and put the automation marker back to what it was before the withdrawal. The expected behaviour under the line is the original, untouched, and is ready to be used again as it stands.",
+      "On revival the marker goes back to: AUTOMATION: Not available on Build to test Yet - Last checked 9/10/2026"
+     ],
+     [
+      "--------------------------------------------------------------------"
+     ],
+     [
+      "THE ORIGINAL EXPECTED BEHAVIOUR, UNCHANGED, IS BELOW THIS LINE:"
+     ],
+     [
       "1. \"Switching the setting to \\\"Modern\\\" does not convert the S4-R1 cohort to the new design.\" The pre-refresh invoice still renders Legacy after the switch."
      ],
      [
@@ -1827,10 +2047,10 @@
       "Design: the Design Document (https://claude.ai/code/artifact/c88ee207-3197-4f54-8cb9-bac3deb84354) shows the new (Modern) design (SV-8218); the specific view/frame anchors are not yet given in the spec (provisional)."
      ],
      [
-      "AUTOMATION: Not available on Build to test Yet - Last checked 9/10/2026"
+      "AUTOMATION: HOLD - Story 4 withdrawn in full by the specification on 2026-09-10 (Q23, Chris W.); do not run until the story is revived"
      ]
     ],
-    "text": "1. \"Switching the setting to \\\"Modern\\\" does not convert the S4-R1 cohort to the new design.\" The pre-refresh invoice still renders Legacy after the switch.\n\n---\nThis is the expected behaviour as per epic SV-8218 and the Invoice Design Selection specification (Confluence page 845447188, Revision 3), section S4-N2, read on 10 September 2026.\nNote: this feature is not yet built (spec Status: Draft) and the setting UI is not yet designed; the route and on-screen labels here are provisional and to be finalised at build-verification.\nDesign: the Design Document (https://claude.ai/code/artifact/c88ee207-3197-4f54-8cb9-bac3deb84354) shows the new (Modern) design (SV-8218); the specific view/frame anchors are not yet given in the spec (provisional).\n\nAUTOMATION: Not available on Build to test Yet - Last checked 9/10/2026"
+    "text": "WITHDRAWN - DO NOT RUN THIS TEST.\nThe behaviour this test checks was removed from the written requirements on 10 September 2026 by Chris W. Story 4 pinned each document to the look it was created under; that whole idea is gone. A document now has no look of its own and simply renders in whatever the shop has selected at the moment it is opened.\n\nWhat the specification says today, word for word:\nStory 4: Withdrawn - documents created before this setting existed. \"This story pinned every invoice-type document created before the refresh to Legacy and every document created between the refresh and this feature to Modern, by creation instant against a 09:13:36 UTC cutoff. It is withdrawn in full. Under S2-R3 a document's creation date has no bearing on its design. The migration that pinned 243,640 production invoices is reverted rather than shipped, the credit-date rules and their correction command are dropped, and no design column is stored. The story number is kept so the question log and change log still read. (Q23, Chris W., 2026-09-10.)\"\nS2-R3: \"This applies to every document regardless of when it was created: today, before this feature shipped, or before the refresh.\"\nS2-R4: \"Nothing is stored on a document about its design. There is no captured design, no cohort, no cutoff and no migration.\"\nQ23 - rule change, 2026-09-10 (Chris W.): \"The setting is a live organization-wide switch. Nothing is captured at creation, nothing is pinned by date, nothing is migrated.\"\nSource: Invoice Design Selection - Product Spec, Confluence page 845447188, read live on 11 September 2026.\n\nIF STORY 4 IS REVIVED: delete everything above the line below, and put the automation marker back to what it was before the withdrawal. The expected behaviour under the line is the original, untouched, and is ready to be used again as it stands.\nOn revival the marker goes back to: AUTOMATION: Not available on Build to test Yet - Last checked 9/10/2026\n\n--------------------------------------------------------------------\n\nTHE ORIGINAL EXPECTED BEHAVIOUR, UNCHANGED, IS BELOW THIS LINE:\n\n1. \"Switching the setting to \\\"Modern\\\" does not convert the S4-R1 cohort to the new design.\" The pre-refresh invoice still renders Legacy after the switch.\n\n---\nThis is the expected behaviour as per epic SV-8218 and the Invoice Design Selection specification (Confluence page 845447188, Revision 3), section S4-N2, read on 10 September 2026.\nNote: this feature is not yet built (spec Status: Draft) and the setting UI is not yet designed; the route and on-screen labels here are provisional and to be finalised at build-verification.\nDesign: the Design Document (https://claude.ai/code/artifact/c88ee207-3197-4f54-8cb9-bac3deb84354) shows the new (Modern) design (SV-8218); the specific view/frame anchors are not yet given in the spec (provisional).\n\nAUTOMATION: HOLD - Story 4 withdrawn in full by the specification on 2026-09-10 (Q23, Chris W.); do not run until the story is revived"
    }
   }
  },
@@ -1862,6 +2082,28 @@
    "custom_expected": {
     "blocks": [
      [
+      "WITHDRAWN - DO NOT RUN THIS TEST.",
+      "The behaviour this test checks was removed from the written requirements on 10 September 2026 by Chris W. Story 4 pinned each document to the look it was created under; that whole idea is gone. A document now has no look of its own and simply renders in whatever the shop has selected at the moment it is opened."
+     ],
+     [
+      "What the specification says today, word for word:",
+      "Story 4: Withdrawn - documents created before this setting existed. \"This story pinned every invoice-type document created before the refresh to Legacy and every document created between the refresh and this feature to Modern, by creation instant against a 09:13:36 UTC cutoff. It is withdrawn in full. Under S2-R3 a document's creation date has no bearing on its design. The migration that pinned 243,640 production invoices is reverted rather than shipped, the credit-date rules and their correction command are dropped, and no design column is stored. The story number is kept so the question log and change log still read. (Q23, Chris W., 2026-09-10.)\"",
+      "S2-R3: \"This applies to every document regardless of when it was created: today, before this feature shipped, or before the refresh.\"",
+      "S2-R4: \"Nothing is stored on a document about its design. There is no captured design, no cohort, no cutoff and no migration.\"",
+      "Q23 - rule change, 2026-09-10 (Chris W.): \"The setting is a live organization-wide switch. Nothing is captured at creation, nothing is pinned by date, nothing is migrated.\"",
+      "Source: Invoice Design Selection - Product Spec, Confluence page 845447188, read live on 11 September 2026."
+     ],
+     [
+      "IF STORY 4 IS REVIVED: delete everything above the line below, and put the automation marker back to what it was before the withdrawal. The expected behaviour under the line is the original, untouched, and is ready to be used again as it stands.",
+      "On revival the marker goes back to: AUTOMATION: Not available on Build to test Yet - Last checked 9/10/2026"
+     ],
+     [
+      "--------------------------------------------------------------------"
+     ],
+     [
+      "THE ORIGINAL EXPECTED BEHAVIOUR, UNCHANGED, IS BELOW THIS LINE:"
+     ],
+     [
       "1. The recreated invoice \"is a new creation. It captures the current setting under S2-R1\" - it renders Modern.",
       "2. It \"is no longer part of the S4-R1 cohort\" - it is not pinned to Legacy."
      ],
@@ -1872,10 +2114,10 @@
       "Design: the Design Document (https://claude.ai/code/artifact/c88ee207-3197-4f54-8cb9-bac3deb84354) shows the new (Modern) design (SV-8218); the specific view/frame anchors are not yet given in the spec (provisional)."
      ],
      [
-      "AUTOMATION: Not available on Build to test Yet - Last checked 9/10/2026"
+      "AUTOMATION: HOLD - Story 4 withdrawn in full by the specification on 2026-09-10 (Q23, Chris W.); do not run until the story is revived"
      ]
     ],
-    "text": "1. The recreated invoice \"is a new creation. It captures the current setting under S2-R1\" - it renders Modern.\n2. It \"is no longer part of the S4-R1 cohort\" - it is not pinned to Legacy.\n\n---\nThis is the expected behaviour as per epic SV-8218 and the Invoice Design Selection specification (Confluence page 845447188, Revision 3), section S4-E1, read on 10 September 2026.\nNote: this feature is not yet built (spec Status: Draft) and the setting UI is not yet designed; the route and on-screen labels here are provisional and to be finalised at build-verification.\nDesign: the Design Document (https://claude.ai/code/artifact/c88ee207-3197-4f54-8cb9-bac3deb84354) shows the new (Modern) design (SV-8218); the specific view/frame anchors are not yet given in the spec (provisional).\n\nAUTOMATION: Not available on Build to test Yet - Last checked 9/10/2026"
+    "text": "WITHDRAWN - DO NOT RUN THIS TEST.\nThe behaviour this test checks was removed from the written requirements on 10 September 2026 by Chris W. Story 4 pinned each document to the look it was created under; that whole idea is gone. A document now has no look of its own and simply renders in whatever the shop has selected at the moment it is opened.\n\nWhat the specification says today, word for word:\nStory 4: Withdrawn - documents created before this setting existed. \"This story pinned every invoice-type document created before the refresh to Legacy and every document created between the refresh and this feature to Modern, by creation instant against a 09:13:36 UTC cutoff. It is withdrawn in full. Under S2-R3 a document's creation date has no bearing on its design. The migration that pinned 243,640 production invoices is reverted rather than shipped, the credit-date rules and their correction command are dropped, and no design column is stored. The story number is kept so the question log and change log still read. (Q23, Chris W., 2026-09-10.)\"\nS2-R3: \"This applies to every document regardless of when it was created: today, before this feature shipped, or before the refresh.\"\nS2-R4: \"Nothing is stored on a document about its design. There is no captured design, no cohort, no cutoff and no migration.\"\nQ23 - rule change, 2026-09-10 (Chris W.): \"The setting is a live organization-wide switch. Nothing is captured at creation, nothing is pinned by date, nothing is migrated.\"\nSource: Invoice Design Selection - Product Spec, Confluence page 845447188, read live on 11 September 2026.\n\nIF STORY 4 IS REVIVED: delete everything above the line below, and put the automation marker back to what it was before the withdrawal. The expected behaviour under the line is the original, untouched, and is ready to be used again as it stands.\nOn revival the marker goes back to: AUTOMATION: Not available on Build to test Yet - Last checked 9/10/2026\n\n--------------------------------------------------------------------\n\nTHE ORIGINAL EXPECTED BEHAVIOUR, UNCHANGED, IS BELOW THIS LINE:\n\n1. The recreated invoice \"is a new creation. It captures the current setting under S2-R1\" - it renders Modern.\n2. It \"is no longer part of the S4-R1 cohort\" - it is not pinned to Legacy.\n\n---\nThis is the expected behaviour as per epic SV-8218 and the Invoice Design Selection specification (Confluence page 845447188, Revision 3), section S4-E1, read on 10 September 2026.\nNote: this feature is not yet built (spec Status: Draft) and the setting UI is not yet designed; the route and on-screen labels here are provisional and to be finalised at build-verification.\nDesign: the Design Document (https://claude.ai/code/artifact/c88ee207-3197-4f54-8cb9-bac3deb84354) shows the new (Modern) design (SV-8218); the specific view/frame anchors are not yet given in the spec (provisional).\n\nAUTOMATION: HOLD - Story 4 withdrawn in full by the specification on 2026-09-10 (Q23, Chris W.); do not run until the story is revived"
    }
   }
  },
@@ -1906,6 +2148,28 @@
    "custom_expected": {
     "blocks": [
      [
+      "WITHDRAWN - DO NOT RUN THIS TEST.",
+      "The behaviour this test checks was removed from the written requirements on 10 September 2026 by Chris W. Story 4 pinned each document to the look it was created under; that whole idea is gone. A document now has no look of its own and simply renders in whatever the shop has selected at the moment it is opened."
+     ],
+     [
+      "What the specification says today, word for word:",
+      "Story 4: Withdrawn - documents created before this setting existed. \"This story pinned every invoice-type document created before the refresh to Legacy and every document created between the refresh and this feature to Modern, by creation instant against a 09:13:36 UTC cutoff. It is withdrawn in full. Under S2-R3 a document's creation date has no bearing on its design. The migration that pinned 243,640 production invoices is reverted rather than shipped, the credit-date rules and their correction command are dropped, and no design column is stored. The story number is kept so the question log and change log still read. (Q23, Chris W., 2026-09-10.)\"",
+      "S2-R3: \"This applies to every document regardless of when it was created: today, before this feature shipped, or before the refresh.\"",
+      "S2-R4: \"Nothing is stored on a document about its design. There is no captured design, no cohort, no cutoff and no migration.\"",
+      "Q23 - rule change, 2026-09-10 (Chris W.): \"The setting is a live organization-wide switch. Nothing is captured at creation, nothing is pinned by date, nothing is migrated.\"",
+      "Source: Invoice Design Selection - Product Spec, Confluence page 845447188, read live on 11 September 2026."
+     ],
+     [
+      "IF STORY 4 IS REVIVED: delete everything above the line below, and put the automation marker back to what it was before the withdrawal. The expected behaviour under the line is the original, untouched, and is ready to be used again as it stands.",
+      "On revival the marker goes back to: AUTOMATION: Not available on Build to test Yet - Last checked 9/10/2026"
+     ],
+     [
+      "--------------------------------------------------------------------"
+     ],
+     [
+      "THE ORIGINAL EXPECTED BEHAVIOUR, UNCHANGED, IS BELOW THIS LINE:"
+     ],
+     [
       "1. The invoice created after the setting ships captures the current setting (\"Legacy\") under S2-R1 and renders Legacy - it does NOT auto-join the Modern cohort.",
       "2. \"The S4-R2 cohort is closed: it stops growing the moment this setting ships, and covers only invoices created in the window between the two releases.\" The between-releases invoice still renders Modern."
      ],
@@ -1916,10 +2180,10 @@
       "Design: the Design Document (https://claude.ai/code/artifact/c88ee207-3197-4f54-8cb9-bac3deb84354) shows the new (Modern) design (SV-8218); the specific view/frame anchors are not yet given in the spec (provisional)."
      ],
      [
-      "AUTOMATION: Not available on Build to test Yet - Last checked 9/10/2026"
+      "AUTOMATION: HOLD - Story 4 withdrawn in full by the specification on 2026-09-10 (Q23, Chris W.); do not run until the story is revived"
      ]
     ],
-    "text": "1. The invoice created after the setting ships captures the current setting (\"Legacy\") under S2-R1 and renders Legacy - it does NOT auto-join the Modern cohort.\n2. \"The S4-R2 cohort is closed: it stops growing the moment this setting ships, and covers only invoices created in the window between the two releases.\" The between-releases invoice still renders Modern.\n\n---\nThis is the expected behaviour as per epic SV-8218 and the Invoice Design Selection specification (Confluence page 845447188, Revision 3), section S4-E2, read on 10 September 2026.\nNote: this feature is not yet built (spec Status: Draft) and the setting UI is not yet designed; the route and on-screen labels here are provisional and to be finalised at build-verification.\nDesign: the Design Document (https://claude.ai/code/artifact/c88ee207-3197-4f54-8cb9-bac3deb84354) shows the new (Modern) design (SV-8218); the specific view/frame anchors are not yet given in the spec (provisional).\n\nAUTOMATION: Not available on Build to test Yet - Last checked 9/10/2026"
+    "text": "WITHDRAWN - DO NOT RUN THIS TEST.\nThe behaviour this test checks was removed from the written requirements on 10 September 2026 by Chris W. Story 4 pinned each document to the look it was created under; that whole idea is gone. A document now has no look of its own and simply renders in whatever the shop has selected at the moment it is opened.\n\nWhat the specification says today, word for word:\nStory 4: Withdrawn - documents created before this setting existed. \"This story pinned every invoice-type document created before the refresh to Legacy and every document created between the refresh and this feature to Modern, by creation instant against a 09:13:36 UTC cutoff. It is withdrawn in full. Under S2-R3 a document's creation date has no bearing on its design. The migration that pinned 243,640 production invoices is reverted rather than shipped, the credit-date rules and their correction command are dropped, and no design column is stored. The story number is kept so the question log and change log still read. (Q23, Chris W., 2026-09-10.)\"\nS2-R3: \"This applies to every document regardless of when it was created: today, before this feature shipped, or before the refresh.\"\nS2-R4: \"Nothing is stored on a document about its design. There is no captured design, no cohort, no cutoff and no migration.\"\nQ23 - rule change, 2026-09-10 (Chris W.): \"The setting is a live organization-wide switch. Nothing is captured at creation, nothing is pinned by date, nothing is migrated.\"\nSource: Invoice Design Selection - Product Spec, Confluence page 845447188, read live on 11 September 2026.\n\nIF STORY 4 IS REVIVED: delete everything above the line below, and put the automation marker back to what it was before the withdrawal. The expected behaviour under the line is the original, untouched, and is ready to be used again as it stands.\nOn revival the marker goes back to: AUTOMATION: Not available on Build to test Yet - Last checked 9/10/2026\n\n--------------------------------------------------------------------\n\nTHE ORIGINAL EXPECTED BEHAVIOUR, UNCHANGED, IS BELOW THIS LINE:\n\n1. The invoice created after the setting ships captures the current setting (\"Legacy\") under S2-R1 and renders Legacy - it does NOT auto-join the Modern cohort.\n2. \"The S4-R2 cohort is closed: it stops growing the moment this setting ships, and covers only invoices created in the window between the two releases.\" The between-releases invoice still renders Modern.\n\n---\nThis is the expected behaviour as per epic SV-8218 and the Invoice Design Selection specification (Confluence page 845447188, Revision 3), section S4-E2, read on 10 September 2026.\nNote: this feature is not yet built (spec Status: Draft) and the setting UI is not yet designed; the route and on-screen labels here are provisional and to be finalised at build-verification.\nDesign: the Design Document (https://claude.ai/code/artifact/c88ee207-3197-4f54-8cb9-bac3deb84354) shows the new (Modern) design (SV-8218); the specific view/frame anchors are not yet given in the spec (provisional).\n\nAUTOMATION: HOLD - Story 4 withdrawn in full by the specification on 2026-09-10 (Q23, Chris W.); do not run until the story is revived"
    }
   }
  },
