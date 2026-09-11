@@ -1,0 +1,43 @@
+{
+ "url": "https://sv9872.qa.shopview.com/customers/f6ed9314-2c93-41d5-bd89-f09d5327e5e9/work-orders",
+ "tabs": [
+  "Skip to main content",
+  "Work Orders",
+  "Schedule",
+  "Customers",
+  "Parts",
+  "Reports",
+  "notifications",
+  "Work Orders",
+  "Part Sales",
+  "Contacts",
+  "Assets",
+  "Notes",
+  "Invoices",
+  "Payments",
+  "Deposits",
+  "Fees & Discounts (0)"
+ ],
+ "afterClick": {
+  "clicked": "Invoices",
+  "url": "https://sv9872.qa.shopview.com/customers/f6ed9314-2c93-41d5-bd89-f09d5327e5e9/invoices",
+  "calls": [
+   "POST /api/6364962/envelope/?sentry_version=7&sentry_key=43e86c02badd4630957b07da4aebf15a&sentry_client=sentry.javascript.vue%2F10.72.0",
+   "POST /api/6364962/envelope/?sentry_version=7&sentry_key=43e86c02badd4630957b07da4aebf15a&sentry_client=sentry.javascript.vue%2F10.72.0"
+  ],
+  "rows": [],
+  "text": "Skip to main content Work Orders Schedule Customers Parts Reports Search Ctrl+K timer Clock In notifications Staging Heavy Duty - 9919 AS edit_note Contacts Assets Work Orders Part Sales Contacts Assets Notes Invoices Payments Deposits Fees & Discounts (0)"
+ },
+ "api_/api/invoices/list?limit=300": {
+  "status": 200,
+  "text": "{\"data\":{\"collection\":[{\"id\":\"fc1b84f4-81f8-4192-9c65-bb389f728e04\",\"invoice_number\":\"S-4802\",\"status\":\"paid\",\"work_order_id\":\"000ffa4d-9517-45c3-b03e-6c37d3c96408\",\"customer_id\":\"48126801-6621-4cf8-86e3-d8df70f24fb7\",\"company_id\":\"bc6dd826-4776-49e5-87a9-360d59792269\",\"work_place_id\":\"b3c8c820-f815"
+ },
+ "api_/api/customers/f6ed9314-2c93-41d5-bd89-f09d5327e5e9/credit-memos": {
+  "status": 404,
+  "text": "{\"errors\":[{\"error\":\"\\u0027resource\\u0027 was not found.\"}]}"
+ },
+ "api_/api/credit-memos?customer_id=f6ed9314-2c93-41d5-bd89-f09d5327e5e9": {
+  "status": 405,
+  "text": "{\"errors\":[{\"error\":\"No route found for \\u0022GET http:\\/\\/sv9872api.qa.shopview.com\\/api\\/credit-memos\\u0022: Method Not Allowed (Allow: POST)\"}]}"
+ }
+}

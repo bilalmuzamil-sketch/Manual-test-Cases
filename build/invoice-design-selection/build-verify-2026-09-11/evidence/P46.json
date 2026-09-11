@@ -1,0 +1,51 @@
+{
+ "guardDiscards": [],
+ "found": "modern",
+ "renders": {
+  "legacy": {
+   "CM-103": {
+    "design": "legacy",
+    "status": 200,
+    "len": 55542,
+    "ctype": "application/pdf; charset=UTF-8"
+   },
+   "CM-104": {
+    "design": "legacy",
+    "status": 200,
+    "len": 54927,
+    "ctype": "application/pdf; charset=UTF-8"
+   }
+  },
+  "modern": {
+   "CM-103": {
+    "design": "modern",
+    "status": 200,
+    "len": 63333,
+    "ctype": "application/pdf; charset=UTF-8"
+   },
+   "CM-104": {
+    "design": "modern",
+    "status": 200,
+    "len": 62771,
+    "ctype": "application/pdf; charset=UTF-8"
+   }
+  }
+ },
+ "compare": [
+  {
+   "cm": "CM-103",
+   "legacyBytes": 55542,
+   "modernBytes": 63333,
+   "differs": true,
+   "bothPdf": true
+  },
+  {
+   "cm": "CM-104",
+   "legacyBytes": 54927,
+   "modernBytes": 62771,
+   "differs": true,
+   "bothPdf": true
+  }
+ ],
+ "restored": "modern"
+}

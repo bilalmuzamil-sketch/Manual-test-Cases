@@ -1,0 +1,125 @@
+{
+ "setting": {
+  "data": {
+   "laborRate": true,
+   "laborHours": true,
+   "laborCost": true,
+   "partNumber": true,
+   "partQuantity": true,
+   "partCost": true,
+   "partDescription": true,
+   "summarizePartsTotal": true,
+   "summarizeLaborTotal": true,
+   "disclaimer": "Any warranties on the parts and accessories sold hereby are made by the manufacturer. You understand and agree that we make no warranties of any kind unless expressed in writing. You hereby authorize us to perform the repair work herein set forth and to purchase the necessary material and parts to perform such repair work. You agree that we are not responsible for loss or damage to your vehicle or articles left in your vehicle in case of fire, theft, or any other cause beyond our control or for any delays caused by unavailability of parts or delays in part shipments by the supplier or transporter. In addition, you agree that we are not responsible for damages to your vehicle from freezing due to lack of antifreeze. You hereby grant our employees permission to operate your vehicle on streets, highways, or elsewhere for the purpose of testing and/or inspection. You acknowledge and agree that an express mechanic's lien on your vehicle is granted to secure payment of this invoice for the repair work detailed in this invoice.",
+   "documentDesign": "modern"
+  }
+ },
+ "design": "modern",
+ "me": "{\"errors\":[{\"error\":\"\\u0027resource\\u0027 was not found.\"}]}",
+ "customerName": "Customer 1",
+ "hunt": {
+  "/api/invoices/list?limit=300": {
+   "status": 200,
+   "rows": 2,
+   "numbers": [
+    "S-3",
+    "S-4"
+   ],
+   "keys": [
+    "id",
+    "invoice_number",
+    "status",
+    "work_order_id",
+    "customer_id",
+    "company_id",
+    "work_place_id",
+    "subtotal",
+    "subtotal_with_discount",
+    "subtotal_with_tax",
+    "total_balance",
+    "discount",
+    "work_order_number",
+    "customer_first_name",
+    "customer_last_name",
+    "customer_company_name",
+    "payment_status",
+    "sub_total",
+    "sub_total_with_discount",
+    "sub_total_with_tax",
+    "deletable",
+    "payment_status_label"
+   ]
+  },
+  "/api/customers/f6ed9314-2c93-41d5-bd89-f09d5327e5e9/invoices": {
+   "status": 404,
+   "rows": 0,
+   "numbers": [],
+   "keys": null
+  },
+  "/api/invoices/list?customer_id=f6ed9314-2c93-41d5-bd89-f09d5327e5e9&limit=300": {
+   "status": 200,
+   "rows": 2,
+   "numbers": [
+    "S-3",
+    "S-4"
+   ],
+   "keys": [
+    "id",
+    "invoice_number",
+    "status",
+    "work_order_id",
+    "customer_id",
+    "company_id",
+    "work_place_id",
+    "subtotal",
+    "subtotal_with_discount",
+    "subtotal_with_tax",
+    "total_balance",
+    "discount",
+    "work_order_number",
+    "customer_first_name",
+    "customer_last_name",
+    "customer_company_name",
+    "payment_status",
+    "sub_total",
+    "sub_total_with_discount",
+    "sub_total_with_tax",
+    "deletable",
+    "payment_status_label"
+   ]
+  },
+  "/api/invoices/list?filters[0][field]=customer&filters[0][value]=f6ed9314-2c93-41d5-bd89-f09d5327e5e9&limit=300": {
+   "status": 400,
+   "rows": 0,
+   "numbers": [],
+   "keys": null
+  },
+  "/api/credit-memos/list": {
+   "status": 404,
+   "rows": 0,
+   "numbers": [],
+   "keys": null
+  },
+  "/api/credit-memos/view": {
+   "status": 404,
+   "rows": 0,
+   "numbers": [],
+   "keys": null
+  },
+  "/api/customers/f6ed9314-2c93-41d5-bd89-f09d5327e5e9/credit-memos": {
+   "status": 404,
+   "rows": 0,
+   "numbers": [],
+   "keys": null
+  },
+  "/api/customers/view/f6ed9314-2c93-41d5-bd89-f09d5327e5e9/invoices": {
+   "status": 404,
+   "rows": 0,
+   "numbers": [],
+   "keys": null
+  }
+ },
+ "uiCalls": [],
+ "uiRows": [],
+ "uiText": "light_mode Light dark_mode Dark Sign in to your account to continue Email Password visibility Login Forgot password? science DEV MODE — QUICK LOGIN info admin_panel_settings Admin schedule Tech Privacy Policy · Terms of Use"
+}

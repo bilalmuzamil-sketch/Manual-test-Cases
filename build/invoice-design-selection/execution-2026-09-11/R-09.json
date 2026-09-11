@@ -1,0 +1,19 @@
+{
+ "pass_meta": {
+  "suite": "Invoice Design Selection (7800)",
+  "run": 446,
+  "env": "the sv9872 QA branch",
+  "build": "sv9872 v26.36.2-12974d6",
+  "date": "11 September 2026"
+ },
+ "results": {
+  "C53536": {
+   "verdict": "Passed",
+   "observed": "What was checked: that a credit raised against an invoice comes out in the look the shop has chosen right now, and does not copy the look of the invoice it credits. What happened: it follows the shop's current choice. Credit CM-103, which credits invoice INV-S-3, was produced twice - once with the shop on the old look and once on the new. The two are plainly different documents: the old one prints 'Credit To' and a row reading 'Credit Number / Status / Invoice Number' in ordinary type, while the new one prints the same information under large headings such as ADDRESSES and CREDIT TO. The credit number, the customer, the invoice it credits and every money figure are the same in both, including the returned parts at -$500.00 and -$125.00. Nothing about a look is kept on the credit itself."
+  },
+  "C53538": {
+   "verdict": "Passed",
+   "observed": "What was checked: that a credit raised on its own, with no invoice behind it, also follows the shop's current choice. What happened: it does. Credit CM-104 has no originating invoice - the document itself shows only a credit number and a status, with no invoice number beside them, unlike CM-103 which names the invoice it credits. CM-104 was produced with the shop on the old look and again on the new one, and came out in whichever look was selected at the time, with its $124.00 unchanged. With no invoice behind it there is nothing else its look could have come from, so the shop's current choice really is the only thing deciding it."
+  }
+ }
+}

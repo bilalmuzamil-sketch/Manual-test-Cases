@@ -1,0 +1,195 @@
+{
+ "guardDiscards": [],
+ "found": "modern",
+ "creditDetail": {
+  "S1-3": {
+   "number": "S-3",
+   "status": "Paid",
+   "credited": null,
+   "has_part_sale_credits": true,
+   "invoice_id": "4278f8ee-dd00-444d-8544-9c1ff693c381",
+   "creditKeys": [
+    "credit_term",
+    "credit_limit",
+    "has_part_sale_credits"
+   ]
+  },
+  "S1-4": {
+   "number": "S-4",
+   "status": "Paid",
+   "credited": null,
+   "has_part_sale_credits": false,
+   "invoice_id": "a6ab5c03-6551-46f9-bc5d-3b5ecae2f447",
+   "creditKeys": [
+    "credit_term",
+    "credit_limit",
+    "has_part_sale_credits"
+   ]
+  }
+ },
+ "renders": {
+  "legacy": {
+   "S-3": {
+    "design": "legacy",
+    "len": 116258,
+    "ibs": false,
+    "caps": false,
+    "sentence": true,
+    "docNo": "INV-S1-3",
+    "money": [
+     "$0.00",
+     "$0.00",
+     "$0.00",
+     "$1,155.00",
+     "$1,445.00",
+     "$10.00",
+     "$124.00",
+     "$135.00",
+     "$135.00",
+     "$135.00",
+     "$2,610.00",
+     "$20.00",
+     "$255.00",
+     "$3,637.00",
+     "$3,761.00",
+     "$3,761.00",
+     "$50.00",
+     "$50.00",
+     "$50.00",
+     "$500.00",
+     "$540.00",
+     "$540.00",
+     "$540.00",
+     "$6.00",
+     "$675.00",
+     "$675.00",
+     "$800.00",
+     "$930.00",
+     "$945.00",
+     "$945.00"
+    ],
+    "head": "Location1 | This is address line 1 | This is address line 2 | City Name, | Alberta, | 0000 | (971) 545 - 4544 | Invoice: INV-S1-3 | Invoice Date: | Sep 11, 2026"
+   },
+   "S-4": {
+    "design": "legacy",
+    "len": 100741,
+    "ibs": false,
+    "caps": false,
+    "sentence": true,
+    "docNo": "INV-S1-4",
+    "money": [
+     "$0.00",
+     "$0.00",
+     "$0.00",
+     "$10.00",
+     "$124.00",
+     "$124.00",
+     "$124.00",
+     "$128.00",
+     "$128.00",
+     "$128.00",
+     "$128.00",
+     "$128.00",
+     "$20.00",
+     "$6.00"
+    ],
+    "head": "Location1 | This is address line 1 | This is address line 2 | City Name, | Alberta, | 0000 | (971) 545 - 4544 | Invoice: INV-S1-4 | Invoice Date: | Sep 11, 2026"
+   }
+  },
+  "modern": {
+   "S-3": {
+    "design": "modern",
+    "len": 166786,
+    "ibs": false,
+    "caps": false,
+    "sentence": true,
+    "docNo": "INV-S1-3",
+    "money": [
+     "$0.00",
+     "$1,155.00",
+     "$1,445.00",
+     "$10.00",
+     "$124.00",
+     "$135.00",
+     "$135.00",
+     "$135.00",
+     "$2,610.00",
+     "$20.00",
+     "$255.00",
+     "$3,637.00",
+     "$3,761.00",
+     "$3,761.00",
+     "$50.00",
+     "$50.00",
+     "$50.00",
+     "$500.00",
+     "$540.00",
+     "$540.00",
+     "$540.00",
+     "$6.00",
+     "$675.00",
+     "$675.00",
+     "$800.00",
+     "$930.00",
+     "$945.00",
+     "$945.00"
+    ],
+    "head": "Location1 | This is address line 1 | This is address line 2 | City Name, Alberta | 0000 | (971) 545 - 4544 | Invoice: | INV-S1-3 | Invoice date: | Sep 11, 2026"
+   },
+   "S-4": {
+    "design": "modern",
+    "len": 157103,
+    "ibs": false,
+    "caps": false,
+    "sentence": true,
+    "docNo": "INV-S1-4",
+    "money": [
+     "$0.00",
+     "$0.00",
+     "$10.00",
+     "$124.00",
+     "$124.00",
+     "$124.00",
+     "$128.00",
+     "$128.00",
+     "$128.00",
+     "$128.00",
+     "$128.00",
+     "$20.00",
+     "$6.00"
+    ],
+    "head": "Location1 | This is address line 1 | This is address line 2 | City Name, Alberta | 0000 | (971) 545 - 4544 | Invoice: | INV-S1-4 | Invoice date: | Sep 11, 2026"
+   }
+  }
+ },
+ "changeDesignPayload": {
+  "documentDesign": "modern"
+ },
+ "verdict": [
+  {
+   "doc": "S-3",
+   "legacyLen": 116258,
+   "modernLen": 166786,
+   "looksDifferent": true,
+   "docNoSame": true,
+   "docNo": "INV-S1-3",
+   "moneyOnlyLegacy": [],
+   "moneyOnlyModern": [],
+   "ibsL": false,
+   "ibsM": false
+  },
+  {
+   "doc": "S-4",
+   "legacyLen": 100741,
+   "modernLen": 157103,
+   "looksDifferent": true,
+   "docNoSame": true,
+   "docNo": "INV-S1-4",
+   "moneyOnlyLegacy": [],
+   "moneyOnlyModern": [],
+   "ibsL": false,
+   "ibsM": false
+  }
+ ],
+ "restored": "modern"
+}
