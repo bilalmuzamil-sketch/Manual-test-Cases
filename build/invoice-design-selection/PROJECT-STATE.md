@@ -64,3 +64,31 @@ Story 4 pins the back-catalogue by creation-date cohort. Story 5 = every render 
   design (G2), story keys (G3), **legacy templates exist? (G4/AS-1 — gates every Legacy render case)**,
   permission model (G5), voided-vs-reversed (G6), parts-sale "invoiced" trigger (G7), emailed-estimate design
   timing (G8), version integer (G9), Rev-3 string currency (G10).
+
+---
+
+## 🛑 QA LEAD RULINGS — RUN 446 EVIDENCE AUDIT (2026-09-11). DO NOT RE-RAISE THESE.
+
+He reviewed the evidence audit of run 446 and closed the following **permanently**. A later session
+must NOT list, question or re-audit them, and must not quote them back to him:
+
+| Test | Case | His ruling |
+|---|---|---|
+| T2924622 | C53537 Credit Invoice against several invoices | **He personally tested it and left his feedback in the run.** Never quote again. |
+| T2924607 | C53522 Existing organization starts on Modern | **He personally verified.** Never quote again. |
+| T2924608 | C53523 New organization starts on Modern | **He personally verified.** Never quote again. |
+| T2924603 | C53518 "Legacy invoice layout" toggle is the last row | Ignore. Never quote again. |
+| T2924604 | C53519 Toggle has two states | Ignore. Never quote again. |
+| T2924605 | C53520 Helper text wording | Ignore. Never quote again. |
+| T2924611 | C53526 Confirming shows the success toast | Ignore. Never quote again. |
+| T2924606 | C53521 One org-wide setting, no per-location variant | Ignore. Never quote again. |
+| T2924636 | C53551 Re-sent estimate reaches customer in new design | Ignore. Never quote again. |
+| T2924650 | C53565 Emailed PDF renders the current selection | Ignore. Never quote again. |
+| T2924653 | C53568 Batch and imported invoices unaffected | Ignore. Never quote again. |
+
+**The ONLY item still open from that audit:** **C53543 / T2924628 — "Invoice Design selection governs
+all six customer documents."** Four of six are proven (Estimate, Work Order Invoice, Parts Sale
+Invoice, Credit Invoice). Still to prove: **Parts Sale Estimate** and **Parts Sale Credit**.
+
+**Rule learned (L0055):** an evidence audit is delivered ONCE. When he rules on an item, that ruling
+is final and is recorded here; re-surfacing a closed item wastes his time and reads as not listening.
