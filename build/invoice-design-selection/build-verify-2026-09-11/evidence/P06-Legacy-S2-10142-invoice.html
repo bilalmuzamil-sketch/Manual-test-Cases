@@ -1,0 +1,1336 @@
+<style>
+    * {
+        box-sizing: border-box;
+    }
+
+    @page {
+        size: A4 portrait;
+        font-size: 0.8rem;
+        font-family: 'Nunito Sans', sans-serif;
+        margin: 30px;
+        margin-bottom: 15mm;
+
+        @bottom-left {
+            content: "GST\23 \20 812694966\20 RT0001";
+        }
+
+        @bottom-center {
+            content: "Powered by ShopView";
+        }
+
+        @bottom-right {
+            content: "INV-S2-10142 - Page " counter(page) " / " counter(pages);
+        }
+    }
+
+    @page :first {
+        margin-top: 0;
+    }
+
+    @media print {
+        .page {
+            page-break-after: always;
+        }
+    }
+
+    .invoice-pdf-new {
+        padding-inline: 40px;
+        background-color: white;
+        width: 100%;
+        font-family: 'Nunito Sans', sans-serif;
+        color: black;
+    }
+
+    .organization-logo-new {
+        width: 238px;
+        height: 120px;
+        background-size: contain;
+        background-position: center;
+        background-repeat: no-repeat;
+    }
+
+    .fab-center-div {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        z-index: 1050;
+        margin-top: 32px;
+    }
+
+    .flex-row {
+        display: flex;
+        flex-wrap: wrap;
+    }
+
+    .info-title-new {
+        color: black;
+        font-weight: 700;
+        font-size: 1.2rem;
+        margin: 0;
+        display: block;
+        max-width: 100%;
+        white-space: normal;
+        word-break: break-word;
+        overflow-wrap: break-word;
+    }
+
+    .invoice-number {
+        white-space: wrap;
+    }
+
+    .no-spacing {
+        margin: 0;
+    }
+
+    .flex-col-4 {
+        height: auto;
+        width: 33.3333%;
+    }
+
+    .spacing-bottom-sm {
+        padding-bottom: 8px;
+    }
+
+    .info-text-new {
+        color: black;
+        font-size: 0.9rem;
+        margin: 0;
+        display: block;
+        max-width: 100%;
+        white-space: normal;
+        word-break: break-word;
+        overflow-wrap: break-word;
+    }
+
+    .text-align-center {
+        text-align: center;
+    }
+
+    .text-align-right {
+        text-align: right;
+    }
+
+    .text-align-left {
+        text-align: left;
+    }
+
+    .margin-bottom-zero {
+        margin-bottom: 0;
+    }
+
+    .remit-payment-section-new {
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-end;
+        align-items: flex-end;
+        margin-left: auto;
+    }
+
+    .flex-col-6 {
+        height: auto;
+        width: 50%;
+    }
+
+    .full-width-100 {
+        width: 100%;
+    }
+
+    .custom-table {
+        width: 100%;
+        border-collapse: collapse;
+        font-size: 14px;
+        margin-bottom: 10px;
+    }
+
+    .custom-table th,
+    .custom-table td {
+        padding: 4px 6px;
+    }
+
+    .custom-table .cell-padding-top-md {
+        padding-top: 16px;
+    }
+
+    .custom-table thead {
+        font-weight: bold;
+    }
+
+    .column-width-15 {
+        width: 15%;
+    }
+
+    .column-width-20 {
+        width: 20%;
+    }
+
+    .column-with-25 {
+        width: 25%;
+    }
+
+    .column-width-30 {
+        width: 30%;
+    }
+
+    .text-truncate {
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+    }
+
+    .table-column-border {
+        border-right: 1px solid #ccc;
+    }
+
+    /* Remove the last column's border */
+    .table-column-border:last-child {
+        border-right: none;
+    }
+
+    .table-column-spacing {
+        padding-left: 8px;
+        padding-right: 8px;
+        box-sizing: border-box;
+    }
+
+    .bg-dark-gray {
+        background-color: darkgray;
+    }
+
+    .margin-top-xs {
+        margin-top: 4px;
+    }
+
+    .flex-col-12 {
+        height: auto;
+        width: 100%;
+    }
+
+    .avoid-break-inside {
+        break-inside: avoid;
+    }
+
+    .display-formatted-html {
+        white-space: pre-line;
+    }
+
+    .flex-column {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .padding-top-md {
+        padding-top: 16px;
+    }
+
+    .table-cell-width-80 {
+        width: 80px;
+    }
+
+    .table-cell-width-40 {
+        width: 40px;
+    }
+
+    .vertical-align-bottom {
+        vertical-align: bottom;
+    }
+
+    .vertical-align-top {
+        vertical-align: top;
+    }
+
+    .font-weight-bold {
+        font-weight: 700;
+    }
+
+    .total-row-total {
+        white-space: nowrap;
+        padding-top: 2px;
+        border-top: 1px solid rgba(0, 0, 0, 0.12);
+    }
+
+    .height-0 {
+        height: 0px;
+    }
+
+    .no-padding {
+        padding: 0;
+    }
+
+    .height-1 {
+        height: 1px;
+    }
+
+    .totals-position-new {
+        flex: 0 0 85%;
+        max-width: 85%;
+    }
+
+    .totals-new {
+        color: black;
+        font-size: 0.8rem;
+    }
+
+    .hr-separator {
+        border: none;
+        height: 1px;
+        background: rgba(0, 0, 0, 0.12);
+    }
+
+    .normal-white-space {
+        white-space: normal;
+    }
+
+    .justify-content-end {
+        justify-content: flex-end;
+    }
+
+    .margin-top-sm {
+        margin-top: 8px;
+    }
+
+    .custom-col-md-width-14 {
+        flex: 0 0 14%;
+        max-width: 14%;
+    }
+
+    .margin-y-sm {
+        margin-top: 8px;
+        margin-bottom: 8px;
+    }
+
+    .margin-y-md {
+        margin-top: 16px;
+        margin-bottom: 16px;
+    }
+
+    .text-grey-80 {
+        color: #424242;
+    }
+
+    .signature-block {
+        margin-top: 24px;
+    }
+
+    .signature-row {
+        display: flex;
+        flex-wrap: nowrap;
+        align-items: flex-end;
+        gap: 10px;
+        margin-top: 12px;
+        break-inside: avoid;
+    }
+
+    .signature-label {
+        flex: 0 0 auto;
+        white-space: nowrap;
+    }
+
+    .signature-line {
+        flex: 1 1 0;
+        border-bottom: 1px solid black;
+        height: 1.1em;
+    }
+
+    /* Hug the payment row directly above (margin-top: 0) and leave a clear gap
+       before the next payment (margin-bottom) so the breakdown reads as belonging
+       to the payment it sits under. */
+    .payment-fee-breakdown {
+        margin-top: 0;
+        margin-bottom: 16px;
+    }
+
+    /* Labels/note lighter than the black payment line so the breakdown reads as
+       secondary, informational detail; the amounts stay black for legibility. */
+    .payment-fee-breakdown .totals-new {
+        color: #383838;
+        font-size: 0.65rem;
+    }
+
+    .payment-fee-breakdown .custom-col-md-width-14 {
+        color: black;
+    }
+
+    /* Cross-border shortfall note — app warning red (Quasar $negative), matching
+       the Transactions payments view. Overrides the grey breakdown text. */
+    .payment-fee-shortfall {
+        color: #c10015;
+    }
+
+    .signature-line--name {
+        flex: 2 1 0;
+    }
+
+    .signature-line--date {
+        flex: 1 1 0;
+    }
+
+    .margin-top-md {
+        margin-top: 16px;
+    }
+
+    .justify-content-between {
+        justify-content: space-between;
+    }
+
+    .disclaimer-font {
+        font-size: 0.54rem;
+        white-space: pre-line;
+    }
+
+    .margin-top-lg {
+        margin-top: 24px;
+    }
+
+    .padding-y-xl {
+        padding-top: 32px;
+        padding-bottom: 32px;
+    }
+
+    .hr-separator-dark {
+        border: none;
+        height: 1px;
+        background-color: darkgrey;
+    }
+
+    .work-summary-table-new {
+        width: 100%;
+        font-size: 0.8rem;
+    }
+
+    .description-cell {
+        overflow: hidden;
+        text-overflow: ellipsis;
+        word-break: break-word;
+    }
+
+    .padding-left-20 {
+        padding-left: 20px;
+    }
+
+    .column-width-6 {
+        width: 6%;
+    }
+
+    .column-width-50 {
+        width: 50%;
+    }
+
+    .column-width-14 {
+        width: 14%;
+    }
+</style>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<div class="page">
+    <section class="invoice-pdf-new padding-y-xl">
+        <div class="fab-center-div"></div>
+                <div class="flex-row">
+            <div class="flex-col-4 spacing-bottom-sm">
+                <p class="info-title-new no-spacing">
+                    Heavy Duty - 9919
+                </p>
+                <p class="info-text-new no-spacing">
+                    9919 Shepard Road SE
+                </p>
+                                <p class="info-text-new no-spacing">
+                    Calgary,
+                    Alberta,
+                    T2C 4M5
+                </p>
+                <p class="info-text-new no-spacing">
+                    (403) 523 - 0488
+                </p>
+            </div>
+            <div class="flex-col-4 text-align-center margin-top-sm">
+                <div style="background-image: url('data:image/png;base64,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')" class="organization-logo-new"></div>
+            </div>
+            <div class="flex-col-4 spacing-bottom-sm text-align-right">
+                <p class="info-title-new invoice-number margin-bottom-zero">
+                                            Invoice: INV-S2-10142
+                                    </p>
+                <p class="info-text-new no-spacing">
+                    Invoice Date:
+                    <span id="invoiceIssueDate">Oct 14, 2025</span>
+                </p>
+                <p class="info-text-new no-spacing">
+                    Due date:
+                    <span id="invoiceDueDate">Nov 13, 2025</span>
+                </p>
+            </div>
+        </div>
+        <div class="flex-row">
+            <div class="flex-col-6 spacing-bottom-sm">
+                <p class="info-title-new">Bill To</p>
+                <p class="info-text-new no-spacing">
+                    Affordable Fleet Services
+                                            <span>(IBS#: 783739)</span>
+                                    </p>
+                <p class="info-text-new">
+                    348 Ramos Field Suite 079
+                </p>
+                                <p class="info-text-new">
+                                            Millertown,
+                                                                New Brunswick,
+                                                                S6C 8J2
+                                    </p>
+            </div>
+
+            <div class="flex-col-6 spacing-bottom-sm text-align-right">
+                <p class="info-title-new">Remit payment to</p>
+                <p class="info-text-new no-spacing">
+                    Foothills Group Inc c/o Interstate Billing Service
+                </p>
+                <p class="info-text-new no-spacing">
+                    C/O T04220C PO Box 4220, STN A
+                </p>
+                <p class="info-text-new no-spacing">
+                    Toronto,
+                    Ontario,
+                    M5W 3B9
+                </p>
+                <p class="info-text-new no-spacing">
+                    (403) 523 - 0488
+                </p>
+            </div>
+        </div>
+        <div class="full-width-100">
+            <table class="custom-table">
+                                    <tr>
+                        <th class="text-align-center column-width-15 cell-padding-top-md">
+                            Unit
+                        </th>
+                        <th class="text-align-center column-with-25 cell-padding-top-md">
+                            VIN/Serial #
+                        </th>
+                        <th class="text-align-center column-with-25 cell-padding-top-md">
+                            Asset
+                        </th>
+                        <th class="text-align-center column-width-20 cell-padding-top-md">
+                            Mileage
+                        </th>
+                        <th class="text-align-center column-width-15 cell-padding-top-md">
+                            Eng Hrs
+                        </th>
+                    </tr>
+                    <tr>
+                        <td class="text-align-center description-cell column-width-15">
+                            ST165
+                        </td>
+                        <td class="text-align-center description-cell column-with-25">
+                            78VVA991W1518AFJH
+                        </td>
+                        <td class="text-align-center description-cell column-with-25">
+                            2024
+                            Ford
+                            F-550
+                        </td>
+                        <td class="text-align-center column-width-20">
+                            40,259
+                        </td>
+                        <td class="text-align-center column-width-15">
+                            300
+                        </td>
+                    </tr>
+                                <tr>
+                    <th class="text-align-center column-width-15 cell-padding-top-md">
+                        Service Order
+                    </th>
+                    <th class="text-align-center column-with-25 cell-padding-top-md">
+                        Terms
+                    </th>
+                    <th class="text-align-center column-with-25 cell-padding-top-md">
+                        Due date
+                    </th>
+                    <th class="text-align-center column-width-20 cell-padding-top-md">
+                        Customer PO
+                    </th>
+                    <th class="text-align-center column-width-15 cell-padding-top-md">
+                        Authorizer
+                    </th>
+                </tr>
+                <tr>
+                    <td class="text-align-center column-width-15">
+                        S2-10142
+                    </td>
+                    <td class="text-align-center text-truncate column-with-25">
+                        Net 30
+                    </td>
+                    <td class="text-align-center column-with-25">
+                        <span id="invoiceTableDueDate">Nov 13, 2025</span>
+                    </td>
+                    <td class="text-align-center text-truncate column-width-20">
+                        <div id="workOrderCustomerPo">
+                            GPO030947
+                        </div>
+                    </td>
+                    <td class="text-align-center text-truncate column-width-15">
+                        <span id="ibsApprovalCodeDom"></span>
+                    </td>
+                </tr>
+            </table>
+        </div>
+
+
+        <div class="full-width-100">
+            <hr class="hr-separator-dark"/>
+        </div>
+        <div class="full-width-100">
+            <table class="work-summary-table-new">
+                <colgroup>
+                    <col class="column-width-6">
+                    <col class="column-width-50">
+                    <col class="column-width-14">
+                    <col class="column-width-15">
+                    <col class="column-width-15">
+                </colgroup>
+                <thead>
+                <tr>
+                    <th></th>
+                    <th class="text-align-left">Description</th>
+                    <th class="text-align-center">Quantity</th>
+                    <th class="text-align-right">Rate</th>
+                    <th class="text-align-right">Amount</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td colspan="5">
+                        <hr class="hr-separator"/>
+                    </td>
+                </tr>
+                                                            <tr class="full-width-100 no-spacing no-padding">
+                            <td class="vertical-align-top table-cell-width-40">
+                                <div class="font-weight-bold" aria-hidden="true">&nbsp;</div>
+                                Labor
+                            </td>
+                            <td class="description-cell">
+                                <div>
+                                    <div>
+                                        <div class="font-weight-bold">
+                                             Service - CVIP inspection single or tandem axle
+                                        </div>
+                                        <p class="no-spacing">Annual inspection</p>
+                                    </div>
+                                                                            <div id="0-story">
+                                            <p class="no-spacing">TK: Performed CVIP inspection; unit did not pass and was marked as failed in the system. Job completed.</p>
+                                        </div>
+                                                                    </div>
+                            </td>
+                            <td class="table-cell-width-80 vertical-align-bottom text-align-center">
+                                                            </td>
+                            <td class="table-cell-width-80 vertical-align-bottom">
+                                                            </td>
+                            <td class="table-cell-width-80 vertical-align-bottom">
+                                                                    <div class="avoid-break-inside text-align-right">
+                                        $400.00
+                                    </div>
+                                                            </td>
+                        </tr>
+                                                                                                                        
+                                        
+                                                                <tr class="avoid-break-inside">
+                            <td colspan="3"></td>
+                            <td class="total-row-total text-align-right avoid-break-inside">
+                                Parts Total
+                            </td>
+                            <td
+                                    class="total-row-total text-align-right avoid-break-inside"
+                            >
+                                $0.00
+                            </td>
+                        </tr>
+                                                                <tr class="avoid-break-inside">
+                            <td colspan="3"></td>
+                            <td class="total-row-total text-align-right avoid-break-inside">
+                                Labor Total
+                            </td>
+                            <td
+                                    class="total-row-total text-align-right avoid-break-inside"
+                            >
+                                $400.00
+                            </td>
+                        </tr>
+                    
+                                            <tr class="avoid-break-inside">
+                            <td colspan="3"></td>
+                            <td
+                                    class="total-row-total font-weight-bold text-align-right avoid-break-inside"
+                            >
+                                Line Total
+                            </td>
+                            <td class="total-row-total text-align-right avoid-break-inside">
+                                $400.00
+                            </td>
+                        </tr>
+                    
+                    <tr class="avoid-break-inside full-width-100">
+                        <td colspan="5" class="no-spacing height-0 no-padding">
+                            <hr class="hr-separator"/>
+                        </td>
+                    </tr>
+                                                            <tr class="full-width-100 no-spacing no-padding">
+                            <td class="vertical-align-top table-cell-width-40">
+                                <div class="font-weight-bold" aria-hidden="true">&nbsp;</div>
+                                Labor
+                            </td>
+                            <td class="description-cell">
+                                <div>
+                                    <div>
+                                        <div class="font-weight-bold">
+                                             Service - Remove wheels for annual inspection
+                                        </div>
+                                        <p class="no-spacing"></p>
+                                    </div>
+                                                                            <div id="1-story">
+                                            <p class="no-spacing">MH: Raised unit and removed wheels for annual inspection. Completed inspection, reinstalled and torqued wheels, then lowered unit. Installed torque tag on signal selector. Job completed.</p>
+                                        </div>
+                                                                    </div>
+                            </td>
+                            <td class="table-cell-width-80 vertical-align-bottom text-align-center">
+                                                            </td>
+                            <td class="table-cell-width-80 vertical-align-bottom">
+                                                            </td>
+                            <td class="table-cell-width-80 vertical-align-bottom">
+                                                                    <div class="avoid-break-inside text-align-right">
+                                        $150.00
+                                    </div>
+                                                            </td>
+                        </tr>
+                                                                                                                        
+                                        
+                                                                <tr class="avoid-break-inside">
+                            <td colspan="3"></td>
+                            <td class="total-row-total text-align-right avoid-break-inside">
+                                Parts Total
+                            </td>
+                            <td
+                                    class="total-row-total text-align-right avoid-break-inside"
+                            >
+                                $0.00
+                            </td>
+                        </tr>
+                                                                <tr class="avoid-break-inside">
+                            <td colspan="3"></td>
+                            <td class="total-row-total text-align-right avoid-break-inside">
+                                Labor Total
+                            </td>
+                            <td
+                                    class="total-row-total text-align-right avoid-break-inside"
+                            >
+                                $150.00
+                            </td>
+                        </tr>
+                    
+                                            <tr class="avoid-break-inside">
+                            <td colspan="3"></td>
+                            <td
+                                    class="total-row-total font-weight-bold text-align-right avoid-break-inside"
+                            >
+                                Line Total
+                            </td>
+                            <td class="total-row-total text-align-right avoid-break-inside">
+                                $150.00
+                            </td>
+                        </tr>
+                    
+                    <tr class="avoid-break-inside full-width-100">
+                        <td colspan="5" class="no-spacing height-0 no-padding">
+                            <hr class="hr-separator"/>
+                        </td>
+                    </tr>
+                                                            <tr class="full-width-100 no-spacing no-padding">
+                            <td class="vertical-align-top table-cell-width-40">
+                                <div class="font-weight-bold" aria-hidden="true">&nbsp;</div>
+                                Labor
+                            </td>
+                            <td class="description-cell">
+                                <div>
+                                    <div>
+                                        <div class="font-weight-bold">
+                                             Service - Perform LOF and inspection
+                                        </div>
+                                        <p class="no-spacing"></p>
+                                    </div>
+                                                                            <div id="2-story">
+                                            <p class="no-spacing">SK: Checked all fluids, completed oil change, greased all fittings, filled washer fluid, set oil level, reset oil life, and installed service sticker. Job completed.</p>
+                                        </div>
+                                                                    </div>
+                            </td>
+                            <td class="table-cell-width-80 vertical-align-bottom text-align-center">
+                                                                    <div class="avoid-break-inside">
+                                        1.5
+                                    </div>
+                                                            </td>
+                            <td class="table-cell-width-80 vertical-align-bottom">
+                                                                    <div class="avoid-break-inside text-align-right">
+                                        $149.95
+                                    </div>
+                                                            </td>
+                            <td class="table-cell-width-80 vertical-align-bottom">
+                                                                    <div class="avoid-break-inside text-align-right">
+                                        $224.93
+                                    </div>
+                                                            </td>
+                        </tr>
+                                                                                                                        
+                                                                                            <tr class="full-width-100 avoid-break-inside">
+                                <td class="vertical-align-top table-cell-width-40">
+                                    Parts
+                                </td>
+                                <td class="description-cell">
+                                    <div>
+                                        BRAKECLEAN - BRAKE AND PARTS CLEANER (KL-CH8630, MG-409, 313)
+                                    </div>
+                                </td>
+                                <td class="text-align-center vertical-align-top">
+                                                                            <div>
+                                            1
+                                        </div>
+                                                                    </td>
+                                <td class="text-align-right vertical-align-top">
+                                                                            <div>
+                                            $6.94
+                                        </div>
+                                                                    </td>
+                                <td class="text-align-right vertical-align-top">
+                                                                            <div>
+                                            $6.94
+                                        </div>
+                                                                    </td>
+                            </tr>
+                                                                                                                                                                                                                    <tr class="full-width-100 avoid-break-inside">
+                                <td class="vertical-align-top table-cell-width-40">
+                                    Parts
+                                </td>
+                                <td class="description-cell">
+                                    <div>
+                                        10W30BULK - 10W30 OIL BULK
+                                    </div>
+                                </td>
+                                <td class="text-align-center vertical-align-top">
+                                                                            <div>
+                                            17
+                                        </div>
+                                                                    </td>
+                                <td class="text-align-right vertical-align-top">
+                                                                            <div>
+                                            $6.80
+                                        </div>
+                                                                    </td>
+                                <td class="text-align-right vertical-align-top">
+                                                                            <div>
+                                            $115.60
+                                        </div>
+                                                                    </td>
+                            </tr>
+                                                                                                                                                                                                                    <tr class="full-width-100 avoid-break-inside">
+                                <td class="vertical-align-top table-cell-width-40">
+                                    Parts
+                                </td>
+                                <td class="description-cell">
+                                    <div>
+                                        57151 - Engine Oil Filter
+                                    </div>
+                                </td>
+                                <td class="text-align-center vertical-align-top">
+                                                                            <div>
+                                            1
+                                        </div>
+                                                                    </td>
+                                <td class="text-align-right vertical-align-top">
+                                                                            <div>
+                                            $66.90
+                                        </div>
+                                                                    </td>
+                                <td class="text-align-right vertical-align-top">
+                                                                            <div>
+                                            $66.90
+                                        </div>
+                                                                    </td>
+                            </tr>
+                                                                                                                                                                                                                    <tr class="full-width-100 avoid-break-inside">
+                                <td class="vertical-align-top table-cell-width-40">
+                                    Parts
+                                </td>
+                                <td class="description-cell">
+                                    <div>
+                                        WWF - WINDSHIELD WASHER FLUID, 4L
+                                    </div>
+                                </td>
+                                <td class="text-align-center vertical-align-top">
+                                                                            <div>
+                                            1
+                                        </div>
+                                                                    </td>
+                                <td class="text-align-right vertical-align-top">
+                                                                            <div>
+                                            $6.65
+                                        </div>
+                                                                    </td>
+                                <td class="text-align-right vertical-align-top">
+                                                                            <div>
+                                            $6.65
+                                        </div>
+                                                                    </td>
+                            </tr>
+                                                                                                                                                                                                                    <tr class="full-width-100 avoid-break-inside">
+                                <td class="vertical-align-top table-cell-width-40">
+                                    Parts
+                                </td>
+                                <td class="description-cell">
+                                    <div>
+                                        GREASEBULK - RED TACKY MP EP2 GREASE
+                                    </div>
+                                </td>
+                                <td class="text-align-center vertical-align-top">
+                                                                            <div>
+                                            1
+                                        </div>
+                                                                    </td>
+                                <td class="text-align-right vertical-align-top">
+                                                                            <div>
+                                            $9.99
+                                        </div>
+                                                                    </td>
+                                <td class="text-align-right vertical-align-top">
+                                                                            <div>
+                                            $9.99
+                                        </div>
+                                                                    </td>
+                            </tr>
+                                                                                                                                                                
+                                                                <tr class="avoid-break-inside">
+                            <td colspan="3"></td>
+                            <td class="total-row-total text-align-right avoid-break-inside">
+                                Parts Total
+                            </td>
+                            <td
+                                    class="total-row-total text-align-right avoid-break-inside"
+                            >
+                                $206.08
+                            </td>
+                        </tr>
+                                                                <tr class="avoid-break-inside">
+                            <td colspan="3"></td>
+                            <td class="total-row-total text-align-right avoid-break-inside">
+                                Labor Total
+                            </td>
+                            <td
+                                    class="total-row-total text-align-right avoid-break-inside"
+                            >
+                                $224.93
+                            </td>
+                        </tr>
+                    
+                                            <tr class="avoid-break-inside">
+                            <td colspan="3"></td>
+                            <td
+                                    class="total-row-total font-weight-bold text-align-right avoid-break-inside"
+                            >
+                                Line Total
+                            </td>
+                            <td class="total-row-total text-align-right avoid-break-inside">
+                                $431.01
+                            </td>
+                        </tr>
+                    
+                    <tr class="avoid-break-inside full-width-100">
+                        <td colspan="5" class="no-spacing height-0 no-padding">
+                            <hr class="hr-separator"/>
+                        </td>
+                    </tr>
+                                                            <tr class="full-width-100 no-spacing no-padding">
+                            <td class="vertical-align-top table-cell-width-40">
+                                <div class="font-weight-bold" aria-hidden="true">&nbsp;</div>
+                                Labor
+                            </td>
+                            <td class="description-cell">
+                                <div>
+                                    <div>
+                                        <div class="font-weight-bold">
+                                             Service - Replace fuel filters
+                                        </div>
+                                        <p class="no-spacing"></p>
+                                    </div>
+                                                                            <div id="3-story">
+                                            <p class="no-spacing">SK: Replaced fuel filters, primed the fuel system, and ran the engine to verify proper operation. Job completed.</p>
+                                        </div>
+                                                                    </div>
+                            </td>
+                            <td class="table-cell-width-80 vertical-align-bottom text-align-center">
+                                                                    <div class="avoid-break-inside">
+                                        0.8
+                                    </div>
+                                                            </td>
+                            <td class="table-cell-width-80 vertical-align-bottom">
+                                                                    <div class="avoid-break-inside text-align-right">
+                                        $149.95
+                                    </div>
+                                                            </td>
+                            <td class="table-cell-width-80 vertical-align-bottom">
+                                                                    <div class="avoid-break-inside text-align-right">
+                                        $119.96
+                                    </div>
+                                                            </td>
+                        </tr>
+                                                                                                                        
+                                                                                            <tr class="full-width-100 avoid-break-inside">
+                                <td class="vertical-align-top table-cell-width-40">
+                                    Parts
+                                </td>
+                                <td class="description-cell">
+                                    <div>
+                                        FD-4641 - FUEL FILTER (REPLACES FD-4625)
+                                    </div>
+                                </td>
+                                <td class="text-align-center vertical-align-top">
+                                                                            <div>
+                                            1
+                                        </div>
+                                                                    </td>
+                                <td class="text-align-right vertical-align-top">
+                                                                            <div>
+                                            $167.43
+                                        </div>
+                                                                    </td>
+                                <td class="text-align-right vertical-align-top">
+                                                                            <div>
+                                            $167.43
+                                        </div>
+                                                                    </td>
+                            </tr>
+                                                                                                                                                                
+                                                                <tr class="avoid-break-inside">
+                            <td colspan="3"></td>
+                            <td class="total-row-total text-align-right avoid-break-inside">
+                                Parts Total
+                            </td>
+                            <td
+                                    class="total-row-total text-align-right avoid-break-inside"
+                            >
+                                $167.43
+                            </td>
+                        </tr>
+                                                                <tr class="avoid-break-inside">
+                            <td colspan="3"></td>
+                            <td class="total-row-total text-align-right avoid-break-inside">
+                                Labor Total
+                            </td>
+                            <td
+                                    class="total-row-total text-align-right avoid-break-inside"
+                            >
+                                $119.96
+                            </td>
+                        </tr>
+                    
+                                            <tr class="avoid-break-inside">
+                            <td colspan="3"></td>
+                            <td
+                                    class="total-row-total font-weight-bold text-align-right avoid-break-inside"
+                            >
+                                Line Total
+                            </td>
+                            <td class="total-row-total text-align-right avoid-break-inside">
+                                $287.39
+                            </td>
+                        </tr>
+                    
+                    <tr class="avoid-break-inside full-width-100">
+                        <td colspan="5" class="no-spacing height-0 no-padding">
+                            <hr class="hr-separator"/>
+                        </td>
+                    </tr>
+                                                            <tr class="full-width-100 no-spacing no-padding">
+                            <td class="vertical-align-top table-cell-width-40">
+                                <div class="font-weight-bold" aria-hidden="true">&nbsp;</div>
+                                Labor
+                            </td>
+                            <td class="description-cell">
+                                <div>
+                                    <div>
+                                        <div class="font-weight-bold">
+                                             Diagnose  - Rear trio lights 
+                                        </div>
+                                        <p class="no-spacing">Flickering and shutting off (Safety)</p>
+                                    </div>
+                                                                            <div id="4-story">
+                                            <p class="no-spacing">MH: Rear trio light harness inspected; corrosion found on male/female connectors. Continuity in lights tested and confirmed good. Replacement of corroded connections and resecuring of trio light harness recommended. Diagnosis complete. Job completed.</p>
+                                        </div>
+                                                                    </div>
+                            </td>
+                            <td class="table-cell-width-80 vertical-align-bottom text-align-center">
+                                                                    <div class="avoid-break-inside">
+                                        1.36
+                                    </div>
+                                                            </td>
+                            <td class="table-cell-width-80 vertical-align-bottom">
+                                                                    <div class="avoid-break-inside text-align-right">
+                                        $149.95
+                                    </div>
+                                                            </td>
+                            <td class="table-cell-width-80 vertical-align-bottom">
+                                                                    <div class="avoid-break-inside text-align-right">
+                                        $203.93
+                                    </div>
+                                                            </td>
+                        </tr>
+                                                                                                                        
+                                        
+                                                                <tr class="avoid-break-inside">
+                            <td colspan="3"></td>
+                            <td class="total-row-total text-align-right avoid-break-inside">
+                                Parts Total
+                            </td>
+                            <td
+                                    class="total-row-total text-align-right avoid-break-inside"
+                            >
+                                $0.00
+                            </td>
+                        </tr>
+                                                                <tr class="avoid-break-inside">
+                            <td colspan="3"></td>
+                            <td class="total-row-total text-align-right avoid-break-inside">
+                                Labor Total
+                            </td>
+                            <td
+                                    class="total-row-total text-align-right avoid-break-inside"
+                            >
+                                $203.93
+                            </td>
+                        </tr>
+                    
+                                            <tr class="avoid-break-inside">
+                            <td colspan="3"></td>
+                            <td
+                                    class="total-row-total font-weight-bold text-align-right avoid-break-inside"
+                            >
+                                Line Total
+                            </td>
+                            <td class="total-row-total text-align-right avoid-break-inside">
+                                $203.93
+                            </td>
+                        </tr>
+                    
+                    <tr class="avoid-break-inside full-width-100">
+                        <td colspan="5" class="no-spacing height-0 no-padding">
+                            <hr class="hr-separator"/>
+                        </td>
+                    </tr>
+                                                            <tr class="full-width-100 no-spacing no-padding">
+                            <td class="vertical-align-top table-cell-width-40">
+                                <div class="font-weight-bold" aria-hidden="true">&nbsp;</div>
+                                Labor
+                            </td>
+                            <td class="description-cell">
+                                <div>
+                                    <div>
+                                        <div class="font-weight-bold">
+                                             Service - Replace wiper blades
+                                        </div>
+                                        <p class="no-spacing">Streaky (Safety)</p>
+                                    </div>
+                                                                            <div id="5-story">
+                                            <p class="no-spacing">MH: Removed and replaced wiper blades due to streaking. Tested operation to confirm proper function. Job completed.</p>
+                                        </div>
+                                                                    </div>
+                            </td>
+                            <td class="table-cell-width-80 vertical-align-bottom text-align-center">
+                                                                    <div class="avoid-break-inside">
+                                        0.3
+                                    </div>
+                                                            </td>
+                            <td class="table-cell-width-80 vertical-align-bottom">
+                                                                    <div class="avoid-break-inside text-align-right">
+                                        $149.95
+                                    </div>
+                                                            </td>
+                            <td class="table-cell-width-80 vertical-align-bottom">
+                                                                    <div class="avoid-break-inside text-align-right">
+                                        $44.99
+                                    </div>
+                                                            </td>
+                        </tr>
+                                                                                                                        
+                                                                                            <tr class="full-width-100 avoid-break-inside">
+                                <td class="vertical-align-top table-cell-width-40">
+                                    Parts
+                                </td>
+                                <td class="description-cell">
+                                    <div>
+                                        47022 - 22&quot; WIPER BLADE
+                                    </div>
+                                </td>
+                                <td class="text-align-center vertical-align-top">
+                                                                            <div>
+                                            2
+                                        </div>
+                                                                    </td>
+                                <td class="text-align-right vertical-align-top">
+                                                                            <div>
+                                            $21.26
+                                        </div>
+                                                                    </td>
+                                <td class="text-align-right vertical-align-top">
+                                                                            <div>
+                                            $42.52
+                                        </div>
+                                                                    </td>
+                            </tr>
+                                                                                                                                                                
+                                                                <tr class="avoid-break-inside">
+                            <td colspan="3"></td>
+                            <td class="total-row-total text-align-right avoid-break-inside">
+                                Parts Total
+                            </td>
+                            <td
+                                    class="total-row-total text-align-right avoid-break-inside"
+                            >
+                                $42.52
+                            </td>
+                        </tr>
+                                                                <tr class="avoid-break-inside">
+                            <td colspan="3"></td>
+                            <td class="total-row-total text-align-right avoid-break-inside">
+                                Labor Total
+                            </td>
+                            <td
+                                    class="total-row-total text-align-right avoid-break-inside"
+                            >
+                                $44.99
+                            </td>
+                        </tr>
+                    
+                                            <tr class="avoid-break-inside">
+                            <td colspan="3"></td>
+                            <td
+                                    class="total-row-total font-weight-bold text-align-right avoid-break-inside"
+                            >
+                                Line Total
+                            </td>
+                            <td class="total-row-total text-align-right avoid-break-inside">
+                                $87.51
+                            </td>
+                        </tr>
+                    
+                    <tr class="avoid-break-inside full-width-100">
+                        <td colspan="5" class="no-spacing height-0 no-padding">
+                            <hr class="hr-separator"/>
+                        </td>
+                    </tr>
+                                </tbody>
+            </table>
+        </div>
+                        <div>
+            <div class="flex-row justify-content-end avoid-break-inside">
+                                                                    <div class="full-width-100 flex-row totals-new justify-content-end margin-top-sm">
+                      <span class="totals-position-new text-align-right font-weight-bold">
+                          Labor
+                      </span>
+                        <span class="custom-col-md-width-14 text-align-right">
+                        $1,143.81
+                      </span>
+                    </div>
+                
+                                    <div class="full-width-100 flex-row totals-new justify-content-end">
+                      <span
+                              class="totals-position-new text-align-right font-weight-bold"
+                      >Parts</span
+                      >
+                        <span class="custom-col-md-width-14 text-align-right">
+                        $416.03
+                      </span>
+                    </div>
+                
+                                    <div class="full-width-100 flex-row totals-new justify-content-end">
+                        <span class="totals-position-new text-align-right font-weight-bold">
+                            Shop supplies
+                                                    </span>
+                        <span class="custom-col-md-width-14 text-align-right">
+                            $120.10
+                        </span>
+                    </div>
+                                                                <div class="full-width-100 flex-row totals-new justify-content-end">
+                      <span class="totals-position-new text-align-right font-weight-bold">
+                        Subtotal
+                      </span>
+                    <span class="custom-col-md-width-14 text-align-right">
+                        $1,679.94
+                      </span>
+                </div>
+
+                                                            <div id="rate-f98f5826-14d7-475e-8d1b-3fc10bf400bc" class="full-width-100 flex-row totals-new justify-content-end">
+                        <span
+                                class="totals-position-new text-align-right font-weight-bold"
+                        >
+                          GST (5%)
+                        </span>
+                            <span class="custom-col-md-width-14 text-align-right">
+                          $84.02
+                        </span>
+                        </div>
+                                                    <div class="full-width-100 flex-row totals-new justify-content-end">
+                    <span class="totals-position-new text-align-right font-weight-bold">Total</span>
+                    <span class="custom-col-md-width-14 text-align-right">
+                    $1,763.96
+                  </span>
+                </div>
+                <div class="full-width-100 flex-row totals-new justify-content-end">
+                  <span class="totals-position-new text-align-right text-bold">
+                    Payments
+                  </span>
+                    <span class="custom-col-md-width-14 text-align-right"></span>
+                </div>
+                                    <div class="full-width-100">
+                                                                                                                                                                                                                                                            <div id="payment-8937a723-b1c6-4152-a44c-45a9865f3ea2"
+                                     class="flex-row totals-new justify-content-end">
+                        <span class="totals-position-new text-align-right">
+                          Oct 17, 2025 - EFT
+                                                    </span>
+                                    <span class="custom-col-md-width-14 text-align-right">
+                          $1,763.96                        </span>
+                                </div>
+                                                                                                                                                                        </div>
+                                <div class="full-width-100 flex-row totals-new justify-content-end">
+                  <span class="totals-position-new text-align-right text-bold">
+                    Balance
+                  </span>
+                    <span class="custom-col-md-width-14 text-align-right">
+                    $0.00
+                  </span>
+                </div>
+                            </div>
+            <div class="flex-col-12 avoid-break-inside text-grey-80 margin-y-md">
+                <p class="margin-y-sm avoid-break-inside disclaimer-font">
+                    Any warranties on the parts and accessories sold hereby are made by the manufacturer. You understand and agree that we make no warranties of any kind unless expressed in writing. You hereby authorize us to perform the repair work herein set forth and to purchase the necessary material and parts to perform such repair work. You agree that we are not responsible for loss or damage to your vehicle or articles left in your vehicle in case of fire, theft, or any other cause beyond our control or for any delays caused by unavailability of parts or delays in part shipments by the supplier or transporter. In addition, you agree that we are not responsible for damages to your vehicle from freezing due to lack of antifreeze. You hereby grant our employees permission to operate your vehicle on streets, highways, or elsewhere for the purpose of testing and/or inspection. You acknowledge and agree that an express mechanic&#039;s lien on your vehicle is granted to secure payment of this invoice for the repair work detailed in this invoice.
+                </p>
+                <div class="full-width-100 totals-new font-weight-bold avoid-break-inside signature-block">
+                    <div class="signature-row">
+                        <span class="signature-label">Customer signature:</span>
+                        <span class="signature-line"></span>
+                    </div>
+                    <div class="signature-row">
+                        <span class="signature-label">Printed name:</span>
+                        <span class="signature-line signature-line--name"></span>
+                        <span class="signature-label">Date:</span>
+                        <span class="signature-line signature-line--date"></span>
+                    </div>
+                </div>
+                                    <div class="margin-top-md full-width-100 flex-row justify-content-between avoid-break-inside">
+                        <p class="info-text-new no-spacing">
+                            GST# 812694966 RT0001
+                        </p>
+                        <p class="info-text-new no-spacing">
+                            Powered by ShopView
+                        </p>
+                    </div>
+                            </div>
+        </div>
+    </section>
+</div>
+</body>
+</html>
