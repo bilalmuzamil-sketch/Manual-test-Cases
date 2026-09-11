@@ -52,3 +52,62 @@ ticket.
 
 `ev/EX1-service-order-wrap.png` — the two states side by side, with the measured column widths.
 Raw captures and geometry: `ev/so-unfixed.png`, `ev/so-fixed.png`, and the matching `.json`.
+
+---
+
+# VIN/Serial # — the same column, and the older build breaks it earlier
+
+Asked to check the VIN column too, because it breaks sooner on one of the documents.
+
+## In the printed PDF it never breaks
+
+Every PDF I hold prints the VIN on one line, and the column sits at the same place on both builds
+(header x 166.3→227.2 on the v26.35.10 and v26.36.2 renders of S-16810). Checked across seven
+documents: `1LH930VHXK1E27469` · `NKLXH84FY4MY5U7B2` · `8M5W3KR3WLJBG0W4B` · `KZUGZYRTJV6G5L64N` ·
+`BEEJJJJ2SK23R9RYR` — **one line, all of them.** This is a screen-preview matter only.
+
+## On screen, the older build gives the column less room
+
+Same positional rule as "Service Order": the VIN is column 2, base `width: 25%`, raised to **27%** by
+the `@media screen` override that exists only on v26.36.2.
+
+| | VIN column | text room after padding |
+|---|---|---|
+| **v26.35.10** (no override) | 159.5px | **147.5px** |
+| **v26.36.2** (override active) | 172.3px | **160.3px** |
+
+**+12.8px, and that is the whole of the difference.** The older build breaks it earlier.
+
+## Why the same 17-character field breaks on one document and not the next
+
+Every VIN is 17 characters, but the **pixel width is not** — it depends on which letters it contains.
+Measured at the preview's own font:
+
+| VIN | width | v26.35.10 | v26.36.2 |
+|---|---|---|---|
+| `1LH930VHXK1E27469` | 143.2px | one line | one line |
+| `3AKJHHDR5LSLX8888` | 147.1px | one line | one line |
+| `BEEJJJJ2SK23R9RYR` | 145.3px | one line | one line |
+| `1FUJGLDR8CLBP8834` | 147.9px | **breaks** | one line |
+| `KZUGZYRTJV6G5L64N` | 151.5px | **breaks** | one line |
+| `NKLXH84FY4MY5U7B2` | 151.8px | **breaks** | one line |
+| **`8M5W3KR3WLJBG0W4B`** | **161.8px** | **breaks** | **still breaks** |
+
+The middle three are the ones that make it look inconsistent: they fall **between** the two column
+widths, so they wrap on the old build and fit on the new one.
+
+Verified by substitution, not by arithmetic — each VIN was put into the real preview on each branch
+and the rendered line boxes counted.
+
+## The residual worth reporting
+
+**The fix does not cover the widest VINs.** `8M5W3KR3WLJBG0W4B` is **161.8px** against the corrected
+column's **160.3px** — **1.5px short** — so on v26.36.2 it still wraps, leaving a lone **"B"** on the
+second line. That VIN is not hypothetical: it is the one on **EST-S1-17520**, one of the documents
+supplied earlier in this thread.
+
+So the 27% override fixes the common case and leaves the wide-glyph case. Options for whoever picks it
+up: a little more width, or letting that cell shrink its text, or not pinning the preview to 718px at
+all. **Not filed — the call is the PO's and the QA lead's.**
+
+Exhibit: `ev/EX2-vin-column.png` (raw captures `ev/v-a.png`, `ev/v-b.png`, `ev/v-c.png` with geometry).
