@@ -1,0 +1,15 @@
+{
+ "pass_meta": {
+  "suite": "Invoice Design Selection (7800)",
+  "run": 446,
+  "env": "the sv9872 QA branch",
+  "build": "sv9872 v26.36.2-12974d6",
+  "date": "11 September 2026"
+ },
+ "results": {
+  "C53568": {
+   "verdict": "Passed",
+   "observed": "What was checked: that an invoice brought in from elsewhere keeps its own appearance and is not touched when the shop changes its choice of look. What happened: it is not touched. An invoice was brought in through Settings, Invoices Import (reference ZZAUTOTEST-IMP-003, $262.50, for 4 Star Truck Repair at the Lethbridge shop), then printed with the shop on the old look and again on the new one. The two printouts read word for word the same - every heading, address, line and figure identical. To prove the check itself was working, an ordinary invoice was printed in the very same pass, at the same two moments: it changed substantially between the two looks. So the brought-in invoice really is being left alone, rather than the test failing to notice a change. Not seen on this branch: the other half of this test, the invoices produced in bulk. This shop has none, and none could be produced without setting up the billing-service batching first."
+  }
+ }
+}

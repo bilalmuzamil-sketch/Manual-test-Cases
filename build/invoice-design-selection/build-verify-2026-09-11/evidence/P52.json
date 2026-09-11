@@ -1,0 +1,32 @@
+{
+ "afterFile": {
+  "text": "Invoices Import Preview cloud_upload Zzautotest-Import.Csv cloud_download Download Template Import Invoices To do a invoices import you need to have a csv file with following columns: Shop Location, Customer, VIN, Year, Make, Model, Unit #, Unit Type, Mileage, Hours, Invoice Number, Invoice Date, PO, Service Advisor, Item, Line Title - What are you doing, Line Description - Why are you doing it, Tech Story, Part #, Part Description, Qty, Rate, Total, Tax Amount. Your file's first row must contain these columns. Also, new line separator is used for new row, comma for columns. Your rows must contain valid values for all required columns, otherwise all rows associated with that invoice will be skipped.",
+  "rows": 0,
+  "buttons": [
+   "Work Orders",
+   "Schedule",
+   "Customers",
+   "Parts",
+   "Reports",
+   "timer Clock In",
+   "notifications",
+   "Staging Lethbridge - 4310 AS",
+   "cloud_download Download Template",
+   "Import Invoices"
+  ]
+ },
+ "import": {
+  "clicked": "Import Invoices",
+  "writes": [
+   "POST /api/imports/work-order-historical"
+  ],
+  "toasts": [
+   "To do a invoices import you need to have a csv file with following columns: Shop Location, Customer, VIN, Year, Make, Model, Unit #, Unit Type, Mileage, Hours, Invoice Number, Invoice Date, PO, Service Advisor, Item, Line Title - What are you doing, Line Description - Why are you doing it, Tech Story, Part #, Part Description, Qty, Rate, Total, Tax Amount. Your file's first row must contain these columns. Also, new line separator is used for new row, comma for columns. Your rows must contain valid values for all required columns, otherwise all rows associated with that invoice will be skipped."
+  ],
+  "text": "voices Import Preview cloud_upload Select CSV File cloud_download Download Template Import Invoices To do a invoices import you need to have a csv file with following columns: Shop Location, Customer, VIN, Year, Make, Model, Unit #, Unit Type, Mileage, Hours, Invoice Number, Invoice Date, PO, Service Advisor, Item, Line Title - What are you doing, Line Description - Why are you doing it, Tech Story, Part #, Part Description, Qty, Rate, Total, Tax Amount. Your file's first row must contain these columns. Also, new line separator is used for new row, comma for columns. Your rows must contain valid values for all required columns, otherwise all rows associated with that invoice will be skipped."
+ },
+ "importedAfter": {
+  "s": 200,
+  "t": "{\"data\":{\"workOrders\":[],\"pagination\":{\"sortBy\":null,\"descending\":false,\"page\":1,\"rowsPerPage\":50,\"totalWorkOrderPrice\":0}}}"
+ }
+}

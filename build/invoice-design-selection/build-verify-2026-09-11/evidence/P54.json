@@ -1,0 +1,21 @@
+{
+ "workplaces": [
+  "Staging Heavy Duty - 9919",
+  "Staging Lethbridge - 4310"
+ ],
+ "customers": [
+  "4 Star Truck Repair",
+  "7 Star Truck Repair",
+  "A & J Truck & Trailer Repair",
+  "Aberdeen Diesel Services LLC",
+  "Aberdeen Truck Repair"
+ ],
+ "bar": "Staging Lethbridge - 4310 AS",
+ "csv": "*Shop Location,*Customer,VIN,Year,Make,Model,Unit #,Unit Type,Mileage,Hours,*Invoice Number,*Invoice Date,PO,Service Advisor,*Item,*Line Title - What are you doing,Line Description - Why are you doing it,Tech Story,Part #,Part Description,*Qty,*Rate,*Total,*Tax Amount\nStaging Lethbridge - 4310,4 Star Truck Repair,,2015,Freightliner,Cascadia,ZZAUTOTEST-1,Truck,120000,,ZZAUTOTEST-IMP-003,09/11/2026,ZZAUTOTEST,,Labor,ZZAUTOTEST labor line,Imported invoice design check,,,,2,100.00,200.00,10.00\nStaging Lethbridge - 4310,4 Star Truck Repair,,2015,Freightliner,Cascadia,ZZAUTOTEST-1,Truck,120000,,ZZAUTOTEST-IMP-003,09/11/2026,ZZAUTOTEST,,Part,ZZAUTOTEST part line,Imported invoice design check,,ZZP-1,ZZAUTOTEST Part,1,50.00,50.00,2.50\n",
+ "postStatus": 200,
+ "postBody": "{\"duplicatedInvoices\":[]}",
+ "toasts": [
+  "To do a invoices import you need to have a csv file with following columns: Shop Location, Customer, VIN, Year, Make, Model, Unit #, Unit Type, Mileage, Hours, Invoice Number, Invoice Date, PO, Servic"
+ ],
+ "importedAfter": "{\"data\":{\"workOrders\":[{\"id\":\"63c3a6db-4282-4e65-8531-7380b03a7368\",\"number\":\"ZZAUTOTEST-IMP-003\",\"invoiceDate\":\"2026-09-11\",\"companyName\":\"4 Star Truck Repair\",\"serviceAdvisor\":null,\"vehicleModel\":\"Cascadia\",\"vehicleMake\":\"Freightliner\",\"vehicleVin\":null,\"vehicleUnit\":\"ZZAUTOTEST-1\",\"totalPrice\":262.5,\"status\":\"imported\"}],\"pagination\":{\"sortBy\":null,\"descending\":false,\"page\":1,\"rowsPerPage\":50,\"totalWorkOrderPrice\":262.5}}}"
+}
