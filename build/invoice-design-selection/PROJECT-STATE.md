@@ -47,8 +47,12 @@ verification + re-author done on the QA lead's order (2026-09-11). Reconciliatio
   - **3 new cases** for new/uncovered rules: **C53590** (S5-R6 history/snapshots follow the setting),
     **C53591** (S2-R6 switch symmetry), **C53592** (S2-R7/S2-E3 figures identical + remit-to belongs to the design).
   - **29 titles updated** via API after the harness (12 withdrawn prefixes + 17 retitles).
-- **Run R446 updated: 45 LIVE tests** (54 − 12 withdrawn + 3 new), all **Untested**, all assigned to
-  **Mudassir (user 6)**; the 12 withdrawn cases stay in section 7800 but are OUT of the run. Verified live.
+- **Run R446: ALL 57 cases in the run** (QA lead 2026-09-11 — "make them all part of the run"), all
+  **Untested**, all assigned to **Mudassir (user 6)**. This includes the 12 "[WITHDRAWN - do not run]"
+  cases (their title/body still say withdrawn so the tester skips them, but they are in the run for
+  completeness). Verified live: section 7800 = 57 cases, run 446 = 57 tests, all assignee 6.
+  *(Earlier this pass the 12 withdrawn were removed from the run; the QA lead reversed that — all in.)*
+  https://shopview.testrail.io/index.php?/runs/view/446
 - **Provenance** re-anchored on all to the Q23 revision (page 845447188), read 11 Sep. Markers still
   "Not available on Build" (no dated QA build; v26.36.x hotfix, QA build "underway" per change log).
 - **Jira lag flagged:** stories SV-9894/9895/9896 still describe the withdrawn capture/pin model (stale);
