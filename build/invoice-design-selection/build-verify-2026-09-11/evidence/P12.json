@@ -25,5 +25,123 @@
    "u": "/api/organizations/invoice-settings/view"
   }
  ],
- "designAsFound": "Modern"
+ "designAsFound": "Modern",
+ "locations": [
+  {
+   "id": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+   "name": "Staging Heavy Duty - 9919"
+  },
+  {
+   "id": "f8a8b802-7780-4b16-bf10-343caeb616b2",
+   "name": "Staging Lethbridge - 4310"
+  }
+ ],
+ "perLocation": {
+  "(as found)": {
+   "location": "Staging Heavy Duty - 9919 AS",
+   "design": "Modern"
+  },
+  "Staging Heavy Duty - 9919": {
+   "switcherLabel": "Staging Heavy Duty - 9919 AS",
+   "picked": "Change Location: Staging Heavy Duty - 9919",
+   "design": "Modern"
+  },
+  "Staging Lethbridge - 4310": {
+   "switcherLabel": "Staging Heavy Duty - 9919 AS",
+   "picked": null,
+   "design": "Modern"
+  }
+ },
+ "defaults": {},
+ "orgCreate": {
+  "/administration/organization": {
+   "controls": 10,
+   "text": "Skip to main content Work Orders Schedule Customers Parts Reports Loading... Ctrl+K timer Clock In notifications Staging Heavy Duty - 9919 AS Error: Page not found. Have you tried turning it off and o"
+  },
+  "/organizations/new": {
+   "controls": 10,
+   "text": "Skip to main content Work Orders Schedule Customers Parts Reports Loading... Ctrl+K timer Clock In notifications Staging Heavy Duty - 9919 AS Looks like this page took a coffee break... permanently ☕ "
+  },
+  "/administration/organizations": {
+   "controls": 10,
+   "text": "Skip to main content Work Orders Schedule Customers Parts Reports Search Ctrl+K timer Clock In notifications Staging Heavy Duty - 9919 AS Looks like this page took a coffee break... permanently ☕ home"
+  }
+ },
+ "financeCalls": [
+  "GET /api/organizations/settings",
+  "GET /api/invoices/04ab678b-a2c2-4fd7-bcd9-76b6a23a419f/settings/view",
+  "GET /api/invoices/aac99a06-20af-424a-afdb-56e865b1553b/view",
+  "GET /api/invoices/preview?invoice_id=aac99a06-20af-424a-afdb-56e865b1553b&type=html&isEstimate=0&includeDeclined=0&historyEvent="
+ ],
+ "invoiceSettings": {
+  "status": 200,
+  "keys": [
+   "laborRate",
+   "laborHours",
+   "laborCost",
+   "partNumber",
+   "partQuantity",
+   "partCost",
+   "partDescription",
+   "summarizePartsTotal",
+   "summarizeLaborTotal",
+   "disclaimer"
+  ],
+  "designHits": []
+ },
+ "docSettingsDialog": {
+  "opened": true,
+  "controls": {
+   "text": "Labor rate Labor hours Labor price Part number Part quantity Part price Part description Summarize parts total Summarize labor total",
+   "items": [
+    "Labor rate",
+    "on",
+    "Labor hours",
+    "on",
+    "Labor price",
+    "on",
+    "Part number",
+    "on",
+    "Part quantity",
+    "on",
+    "Part price",
+    "on",
+    "Part description",
+    "on",
+    "Summarize parts total",
+    "on",
+    "Summarize labor total",
+    "on"
+   ]
+  }
+ },
+ "failTest": {
+  "before": "Modern",
+  "target": "Legacy",
+  "blocked": [
+   "POST /api/organizations/invoice-settings/change-design"
+  ],
+  "toastsAt2s": [
+   "warning Could not update the invoice design. Please try again. Close Close",
+   "warning Could not update the invoice design. Please try again.",
+   "Could not update the invoice design. Please try again.",
+   "Close Close"
+  ],
+  "toastsAt12s": [
+   "warning Could not update the invoice design. Please try again. Close Close",
+   "warning Could not update the invoice design. Please try again.",
+   "Could not update the invoice design. Please try again.",
+   "Close Close"
+  ],
+  "stillOnScreenAt12s": [
+   "warning Could not update the invoice design. Please try again. Close Close"
+  ],
+  "hasCloseButton": [
+   "warning",
+   "Close",
+   "Close"
+  ],
+  "valueAfter": "Modern",
+  "valueAfterReload": "Modern"
+ }
 }

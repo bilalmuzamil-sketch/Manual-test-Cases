@@ -1,0 +1,107 @@
+{
+ "designRead": {
+  "/api/organization/organization-details/view": {
+   "status": 200,
+   "hits": [],
+   "keys": [
+    "organization_details"
+   ]
+  },
+  "/api/organizations/invoice-settings/view": {
+   "status": 200,
+   "hits": [
+    "\"documentDesign\":\"modern\""
+   ],
+   "keys": [
+    "laborRate",
+    "laborHours",
+    "laborCost",
+    "partNumber",
+    "partQuantity",
+    "partCost",
+    "partDescription",
+    "summarizePartsTotal",
+    "summarizeLaborTotal",
+    "disclaimer",
+    "documentDesign"
+   ]
+  },
+  "/api/organizations/invoice-settings/design": {
+   "status": 404
+  },
+  "/api/organization/settings/view": {
+   "status": 404
+  },
+  "/api/organization/feature-flags": {
+   "status": 400
+  }
+ },
+ "partsMenu": {
+  "clicked": true,
+  "items": []
+ },
+ "partSalesRoute": {
+  "click": "(clicked)",
+  "url": "https://sv9872.qa.shopview.com/parts/part-sales?status=estimate&status=approved",
+  "rows": 13,
+  "calls": [
+   "GET /api/users/me/preferences/part-sales",
+   "GET /api/part-sales?pagination%5Bpage%5D=1&pagination%5BrowsPerPage%5D=30&pagination%5BsortBy%5D=companyName&pagination%5Bdescending%5D=false&search=&filters%5B0%5D%5Bfield%5D=status&filters%5B0%5D%5Bvalue%5D=estimate&filters%5B1%5D%5Bfield%5D=status&filters%5B1%5D%5Bvalue%5D=approved"
+  ]
+ },
+ "partSaleOpened": {
+  "num": "P9872-147",
+  "url": "https://sv9872.qa.shopview.com/parts/part-sale/0ff71593-ccc3-4d1c-af74-5b958c5950f6/part-requests",
+  "calls": [
+   "GET /api/parts-catalogue/categories-list?",
+   "GET /api/work-orders/0ff71593-ccc3-4d1c-af74-5b958c5950f6/parts/list-requests-by-line?search=&filters%5B0%5D%5Bfield%5D=work_order&filters%5B0%5D%5Bvalue%5D=0ff71593-ccc3-4d1c-af74-5b958c5950f6",
+   "GET /api/work-orders/part/request/inventory-parts-as-options-with-remaining-catalogue-parts?",
+   "GET /api/parts-catalogue/options",
+   "GET /api/parts-catalogue/categories-list?ids%5B0%5D=f79b4b29-c1b6-4ca4-a29f-e4fcf1f6966f&ids%5B1%5D=0044fbd9-5ce3-4d33-9b27-b2db6a6ba075&pagination%5BrowsPerPage%5D=300&pagination%5Bpage%5D=1&pagination%5Bdescending%5D=false"
+  ],
+  "tabs": [
+   "Parts (6)",
+   "Statistics",
+   "Finance"
+  ]
+ },
+ "partSaleFinance": {
+  "clicked": true,
+  "url": "https://sv9872.qa.shopview.com/parts/part-sale/0ff71593-ccc3-4d1c-af74-5b958c5950f6/finance",
+  "calls": [
+   "GET /api/invoices/0ff71593-ccc3-4d1c-af74-5b958c5950f6/settings/view",
+   "GET /api/invoices/0ff71593-ccc3-4d1c-af74-5b958c5950f6/details?includeDeclined=0",
+   "POST /api/work-orders/invoices/estimate",
+   "POST /api/work-orders/invoices/estimate"
+  ]
+ },
+ "loc": {
+  "before": "Staging Heavy Duty - 9919 AS",
+  "menu": [
+   "AS Admin ShopView admin@shopview.com Edit Profile",
+   "AS",
+   "AS",
+   "AS",
+   "Admin ShopView admin@shopview.com Edit Profile",
+   "Admin ShopView",
+   "Admin ShopView",
+   "Admin ShopView",
+   "admin@shopview.com",
+   "admin@shopview.com",
+   "admin@shopview.com",
+   "Edit Profile",
+   "Change Location: Staging Heavy Duty - 9919",
+   "Change Location: Staging Heavy Duty - 9919",
+   "Change Location:",
+   "Staging Heavy Duty - 9919",
+   "Staging Heavy Duty - 9919",
+   "Staging Heavy Duty - 9919",
+   "Staging Heavy Duty - 9919",
+   "Staging Heavy Duty - 9919"
+  ],
+  "picked": null,
+  "after": "Staging Heavy Duty - 9919 AS",
+  "designHere": "Legacy",
+  "barHere": "Staging Heavy Duty - 9919 AS"
+ }
+}

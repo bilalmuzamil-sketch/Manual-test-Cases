@@ -1,0 +1,82 @@
+{
+ "settingEndpoint": {
+  "status": 200,
+  "json": {
+   "data": {
+    "laborRate": true,
+    "laborHours": true,
+    "laborCost": true,
+    "partNumber": true,
+    "partQuantity": true,
+    "partCost": true,
+    "partDescription": true,
+    "summarizePartsTotal": true,
+    "summarizeLaborTotal": true,
+    "disclaimer": "Any warranties on the parts and accessories sold hereby are made by the manufacturer. You understand and agree that we make no warranties of any kind unless expressed in writing. You hereby authorize us to perform the repair work herein set forth and to purchase the necessary material and parts to perform such repair work. You agree that we are not responsible for loss or damage to your vehicle or articles left in your vehicle in case of fire, theft, or any other cause beyond our control or for any delays caused by unavailability of parts or delays in part shipments by the supplier or transporter. In addition, you agree that we are not responsible for damages to your vehicle from freezing due to lack of antifreeze. You hereby grant our employees permission to operate your vehicle on streets, highways, or elsewhere for the purpose of testing and/or inspection. You acknowledge and agree that an express mechanic's lien on your vehicle is granted to secure payment of this invoice for the repair work detailed in this invoice.",
+    "documentDesign": "modern"
+   }
+  },
+  "text": "{\"data\":{\"laborRate\":true,\"laborHours\":true,\"laborCost\":true,\"partNumber\":true,\"partQuantity\":true,\"partCost\":true,\"partDescription\":true,\"summarizePartsTotal\":true,\"summarizeLaborTotal\":true,\"disclaimer\":\"Any warranties on the parts and accessories sold hereby are made by the manufacturer. You understand and agree that we make no warranties of any kind unless expressed in writing. You hereby authorize us to perform the repair work herein set forth and to purchase the necessary material and parts to perform such repair work. You agree that we are not responsible for loss or damage to your vehi"
+ },
+ "locationProof": {
+  "start": "Staging Heavy Duty - 9919 AS"
+ },
+ "partSales": {
+  "url": "https://sv9872.qa.shopview.com/part-sales",
+  "rows": 0,
+  "text": "Skip to main content Work Orders Schedule Customers Parts Reports Search Ctrl+K timer Clock In notifications Staging Heavy Duty - 9919 AS Our wrench could not fix this one. The page does not exist! 🔧 home Back To Work Orders"
+ },
+ "partSaleOpen": {
+  "clicked": null,
+  "url": "https://sv9872.qa.shopview.com/part-sales",
+  "calls": []
+ },
+ "partSaleTabs": [
+  "Skip to main content",
+  "Work Orders",
+  "Schedule",
+  "Customers",
+  "Parts",
+  "Reports",
+  "notifications",
+  "home Back To Work Orders"
+ ],
+ "partSaleFinance": {
+  "clicked": false,
+  "url": "https://sv9872.qa.shopview.com/part-sales",
+  "calls": []
+ },
+ "custInvoices": {
+  "url": "https://sv9872.qa.shopview.com/customers/6a7b6afc-084d-4584-aacb-773bcd71cbcd/invoices",
+  "calls": [
+   "GET /api/organization/feature-flags?organization_id=d55bc308-e61a-438d-b5f1-c7a73c89d49f",
+   "GET /api/technician-tasks/my-current-task",
+   "GET /api/global-search/fetch",
+   "GET /api/iam/view-profile/",
+   "GET /api/notes?mention_id=6d71382d-4ddb-4707-a0f3-33b4bb78b0b8&is_read=false",
+   "GET /api/notifications/subscribe-token",
+   "GET /api/reporting/individual-punch-clock/today?range=today",
+   "GET /api/reporting/individual-punch-clock/today?range=today",
+   "GET /api/customers/6a7b6afc-084d-4584-aacb-773bcd71cbcd/default-adjustments",
+   "GET /api/customer-deposits/list?accountId=64b71259-e376-4208-93c8-9b815b65fb98",
+   "GET /api/customer-account/list-unpaid-transaction?accountId=64b71259-e376-4208-93c8-9b815b65fb98&pagination%5BrowsPerPage%5D=1000&pagination%5BsortBy%5D=date&pagination%5Bdescending%5D=true&search=&openOnly=true",
+   "GET /api/customer-payment/list?accountId=64b71259-e376-4208-93c8-9b815b65fb98&pagination%5BrowsPerPage%5D=1000&pagination%5BsortBy%5D=date&pagination%5Bdescending%5D=true"
+  ],
+  "text": "Skip to main content Work Orders Schedule Customers Parts Reports Search Ctrl+K timer Clock In notifications Staging Heavy Duty - 9919 AS 4 Star Truck Repair edit_note Address 6263 Elizabeth Causeway Apt. 973 Raystad, British Columbia V4M 8Y2 Phone 730-246-8895 Credit term Due on Receipt Credit limit $0.00 Sales Representative N/A Website N/A IBS 9698 Contacts 1 Assets 5 Work Orders (1) Part Sales Contacts (1) Assets (5) Notes Invoices Payments (2) Deposits Fees & Discounts (0) Balance: $0.00 search Search Open only get_app email print Issue Credit New Payment Datearrow_drop_up Typearrow_drop_"
+ },
+ "issueCredit": {
+  "clicked": true,
+  "url": "https://sv9872.qa.shopview.com/customers/6a7b6afc-084d-4584-aacb-773bcd71cbcd/invoices",
+  "calls": [
+   "GET /api/customer-account/payment-methods"
+  ],
+  "dialog": {
+   "text": "Issue Credit close event Credit Date $ Amount Outcome Issue Store Credit Issue Refund Payment Method arrow_drop_down Reason Cancel Issue Refund",
+   "buttons": [
+    "close",
+    "Cancel",
+    "Issue Refund"
+   ]
+  }
+ }
+}

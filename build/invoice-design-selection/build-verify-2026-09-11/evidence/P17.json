@@ -1,0 +1,115 @@
+{
+ "partSale": {
+  "Legacy": {
+   "stored": "legacy",
+   "len": 35919,
+   "figures": {
+    "Subtotal": [
+     "21.85"
+    ],
+    "Total": [
+     "22.94"
+    ],
+    "Balance": [
+     "0.00"
+    ]
+   },
+   "allMoneySorted": [
+    "$0.00",
+    "$1.09",
+    "$21.85",
+    "$21.85",
+    "$21.85",
+    "$22.94",
+    "$22.94"
+   ],
+   "docNo": "INV-P2-242"
+  },
+  "Modern": {
+   "stored": "modern",
+   "len": 94091,
+   "figures": {
+    "Parts": [
+     "21.85"
+    ],
+    "Subtotal": [
+     "21.85"
+    ],
+    "Total": [
+     "22.94"
+    ],
+    "Balance": [
+     "0.00"
+    ]
+   },
+   "allMoneySorted": [
+    "$0.00",
+    "$1.09",
+    "$21.85",
+    "$21.85",
+    "$21.85",
+    "$21.85",
+    "$22.94",
+    "$22.94"
+   ],
+   "docNo": "INV-P2-242"
+  }
+ },
+ "partSaleVerdict": {
+  "sameMoneySet": false,
+  "sameFigures": false,
+  "docNoSame": true,
+  "docNo": "INV-P2-242",
+  "lenDiffers": true,
+  "onlyInLegacy": [],
+  "onlyInModern": []
+ },
+ "estimateWo": {
+  "id": "e98e678b-731e-4140-a24c-e2e7a6db8dad",
+  "num": "S-17580",
+  "status": "Complete"
+ },
+ "estimateEmail": [
+  {
+   "design": "modern",
+   "clicked": "Send Email",
+   "calls": [
+    "POST /api/work-order/invoice/send-email"
+   ],
+   "toasts": [
+    "check_circle Successfully sent invoice to email. Close"
+   ]
+  },
+  {
+   "design": "modern",
+   "clicked": "Send Email",
+   "calls": [
+    "POST /api/work-order/invoice/send-email"
+   ],
+   "toasts": [
+    "check_circle Successfully sent invoice to email. Close"
+   ]
+  }
+ ],
+ "authorizerHunt": {
+  "looked": 90,
+  "withContact": [
+   {
+    "id": "e98e678b-731e-4140-a24c-e2e7a6db8dad",
+    "num": "S-17580",
+    "status": "Complete",
+    "contact": "Savannah Tran",
+    "code": null,
+    "invoiceId": ""
+   },
+   {
+    "id": "b94d839f-0d91-4fdd-bf00-26fdd3d557ac",
+    "num": "S-17435",
+    "status": "Approved",
+    "contact": "Tina Stephens",
+    "code": null,
+    "invoiceId": ""
+   }
+  ]
+ }
+}

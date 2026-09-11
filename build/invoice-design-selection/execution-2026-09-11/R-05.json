@@ -1,0 +1,31 @@
+{
+ "pass_meta": {
+  "suite": "Invoice Design Selection (7800)",
+  "run": 446,
+  "env": "the sv9872 QA branch",
+  "build": "sv9872 v26.36.2-12974d6",
+  "date": "11 September 2026"
+ },
+ "results": {
+  "C53533": {
+   "verdict": "Passed",
+   "observed": "What was checked: what a user sees when the change cannot be saved - the warning, whether it stays on screen, and whether the choice snaps back. What happened: all three behave as they should. The save was deliberately made to fail, and a warning appeared reading exactly 'Could not update the invoice design. Please try again.' It was still sitting on the screen ten seconds later, so it does not fade away by itself, and it carries a Close button the user has to press. The choice went straight back to what it was before, and it was still the old value after the page was reloaded, so the failed change was not kept anywhere."
+  },
+  "C53535": {
+   "verdict": "Passed",
+   "observed": "What was checked: that a parts-sale invoice follows the shop's current choice of look, and does not keep the look it was made under. What happened: it follows the current choice. A paid parts sale was opened with the shop on the old look and again on the new one, and the two are visibly different documents - the new one is more than twice the length of page and lays the parts out under their own heading. The invoice number INV-P2-242 and every money figure are the same in both: subtotal $21.85, total $22.94, balance $0.00. Nothing about the look is stored on the parts sale itself."
+  },
+  "C53542": {
+   "verdict": "Passed",
+   "observed": "What was checked: whether anyone can choose a different look for one single document, instead of for the whole shop. What happened: they cannot - there is no such control anywhere. The settings button on an invoice was opened and it offers exactly nine choices, all about what detail to show on the page: labour rate, labour hours, labour price, part number, part quantity, part price, part description, and whether to summarise the parts and labour totals. There is nothing about the look of the document. The shop-wide choice is the only place the look can be set."
+  },
+  "C53545": {
+   "verdict": "Passed",
+   "observed": "What was checked: that an invoice comes out in the shop's current look whichever way it is produced - viewed on screen, printed or made into a PDF, or emailed to the customer. What happened: all three do. On screen the same invoice looked plainly different with the shop on the old look and on the new one. A PDF made from it was a different document in each look while keeping the same invoice number and the same money. Sending it to the customer was watched from the click: ShopView produces the PDF first, using exactly the same step that follows the shop's choice, and only then hands it to the mail - so the copy that goes out is the one the shop has currently chosen. The send reported success."
+  },
+  "C53591": {
+   "verdict": "Passed",
+   "observed": "What was checked: that switching to the old look and back to the new one really is reversible - that nothing is left behind or changed permanently by the round trip. What happened: it is exactly reversible. The same invoice was captured three times in a row: on the old look, then on the new look, then on the old look again. The first and third came back character for character identical, and the middle one was plainly the new design. Whatever switching one way changes, switching back changes back."
+  }
+ }
+}

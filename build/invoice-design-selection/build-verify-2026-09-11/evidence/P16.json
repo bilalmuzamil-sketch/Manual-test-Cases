@@ -1,0 +1,220 @@
+{
+ "guardDiscards": [],
+ "start": "modern",
+ "partSaleTargets": {
+  "paid": {
+   "number": "P2-242",
+   "status": "paid",
+   "id": "10ec6899-316b-409e-993a-72ca87460d5b",
+   "invoiceId": "4a1420b1-a343-464a-92ec-ecbb70a4c952",
+   "isEstimate": "0",
+   "previewSeen": 3
+  },
+  "estimate": {
+   "number": "P9872-246",
+   "status": "estimate",
+   "id": "196d3947-ca3a-4491-8594-0dec324a970d",
+   "invoiceId": null,
+   "isEstimate": null,
+   "previewSeen": 0
+  }
+ },
+ "estimateWo": {
+  "id": "e98e678b-731e-4140-a24c-e2e7a6db8dad",
+  "num": "S-17580",
+  "status": "Complete"
+ },
+ "docMatrix": {
+  "Legacy": {
+   "Work Order Invoice (S-4219)": {
+    "design": "legacy",
+    "ok": true,
+    "len": 41692,
+    "allCaps": false,
+    "ibs": true,
+    "money": [
+     "$0.00",
+     "$0.00",
+     "$0.00",
+     "$0.00",
+     "$607.81",
+     "$189.67",
+     "$379.34",
+     "$84.81",
+     "$84.81",
+     "$84.92"
+    ],
+    "docNo": "INV-S2-4219"
+   },
+   "Estimate view of S-4219": {
+    "design": "legacy",
+    "ok": true,
+    "len": 41693,
+    "allCaps": false,
+    "ibs": true,
+    "money": [
+     "$0.00",
+     "$0.00",
+     "$0.00",
+     "$0.00",
+     "$607.81",
+     "$189.67",
+     "$379.34",
+     "$84.81",
+     "$84.81",
+     "$84.92"
+    ],
+    "docNo": "EST-S2-4219"
+   },
+   "Parts Sale Invoice (P2-242)": {
+    "design": "legacy",
+    "ok": true,
+    "len": 9702,
+    "allCaps": false,
+    "ibs": false,
+    "money": [
+     "$21.85",
+     "$21.85",
+     "$21.85",
+     "$1.09",
+     "$22.94",
+     "$22.94",
+     "$0.00"
+    ],
+    "docNo": "INV-P2-242"
+   }
+  },
+  "Modern": {
+   "Work Order Invoice (S-4219)": {
+    "design": "modern",
+    "ok": true,
+    "len": 29519,
+    "allCaps": false,
+    "ibs": false,
+    "money": [
+     "$0.00",
+     "$0.00",
+     "$0.00",
+     "$0.00",
+     "$607.81",
+     "$189.67",
+     "$379.34",
+     "$84.81",
+     "$84.81",
+     "$84.92"
+    ],
+    "docNo": "INV-S2-4219"
+   },
+   "Estimate view of S-4219": {
+    "design": "modern",
+    "ok": true,
+    "len": 28055,
+    "allCaps": false,
+    "ibs": false,
+    "money": [
+     "$0.00",
+     "$0.00",
+     "$0.00",
+     "$0.00",
+     "$607.81",
+     "$189.67",
+     "$379.34",
+     "$84.81",
+     "$84.81",
+     "$84.92"
+    ],
+    "docNo": "EST-S2-4219"
+   },
+   "Parts Sale Invoice (P2-242)": {
+    "design": "modern",
+    "ok": true,
+    "len": 7645,
+    "allCaps": false,
+    "ibs": false,
+    "money": [
+     "$21.85",
+     "$21.85",
+     "$21.85",
+     "$21.85",
+     "$1.09",
+     "$22.94",
+     "$22.94",
+     "$0.00"
+    ],
+    "docNo": "INV-P2-242"
+   }
+  }
+ },
+ "docCompare": [
+  {
+   "doc": "Work Order Invoice (S-4219)",
+   "legacyLen": 41692,
+   "modernLen": 29519,
+   "looksDifferent": true,
+   "moneySame": true,
+   "money": [
+    "$0.00",
+    "$0.00",
+    "$0.00",
+    "$0.00"
+   ],
+   "ibsLegacy": true,
+   "ibsModern": false,
+   "capsLegacy": false,
+   "capsModern": false
+  },
+  {
+   "doc": "Estimate view of S-4219",
+   "legacyLen": 41693,
+   "modernLen": 28055,
+   "looksDifferent": true,
+   "moneySame": true,
+   "money": [
+    "$0.00",
+    "$0.00",
+    "$0.00",
+    "$0.00"
+   ],
+   "ibsLegacy": true,
+   "ibsModern": false,
+   "capsLegacy": false,
+   "capsModern": false
+  },
+  {
+   "doc": "Parts Sale Invoice (P2-242)",
+   "legacyLen": 9702,
+   "modernLen": 7645,
+   "looksDifferent": true,
+   "moneySame": false,
+   "money": [
+    "$21.85",
+    "$21.85",
+    "$21.85",
+    "$1.09"
+   ],
+   "ibsLegacy": false,
+   "ibsModern": false,
+   "capsLegacy": false,
+   "capsModern": false
+  }
+ ],
+ "emailSend": {
+  "clicked": "Send Email",
+  "calls": [
+   {
+    "m": "GET",
+    "u": "/api/invoices/preview?invoice_id=aac99a06-20af-424a-afdb-56e865b1553b&type=pdf&isEstimate=0&includeDeclined=0&historyEvent=",
+    "b": ""
+   },
+   {
+    "m": "POST",
+    "u": "/api/work-order/invoice/send-email",
+    "b": ""
+   }
+  ],
+  "toasts": [
+   "check_circle Successfully sent invoice to email. Close"
+  ]
+ },
+ "end": "modern"
+}
