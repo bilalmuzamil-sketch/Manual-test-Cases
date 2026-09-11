@@ -111,3 +111,15 @@ verify live before build-verify). Portal cases (C53566/67/69 and formerly C53557
 2. **Jira stories SV-9894/9895/9896 lag the spec** (still the old capture/pin model) — flag to Chris to update.
 3. **Q15 fee breakdown** — fixed on both designs but sequenced AFTER this ships (watch item).
 4. **Setting UI still TBD** (G2) — S1 routes stay provisional.
+
+## F. Two build-verify feedback fixes (2026-09-11)
+Build-verify session (build v26.36.2-12974d6) flagged C53537 and C53543. Checked both vs the live spec:
+- **C53537** (multi-invoice credit) — behaviour CORRECT per spec (Terminology: a Credit Invoice "may be
+  raised … against several at once"; renders current setting, S2-R1/R2). Provenance had cited the withdrawn
+  ids **S2-R5, S2-E4** → re-pointed to "the Credit Invoice definition in Terminology and section S2-R1, S2-R2".
+  The run-blocker is a DATA gap (no credit spanning ≥2 invoices) → seed one (Rule 14); if the app cannot
+  raise a multi-invoice credit, that is a finding, not a skip.
+- **C53543** (all six documents) — Expected/title already said six, but preconds/steps still listed FIVE and
+  omitted the Part Sale Credit. Fixed: preconds + steps now cover all six, and spell out that the Part Sale
+  Credit must be an **existing** one (no new ones can be created). Verified fr-view, 0 literal tags.
+Both remain in run R446 (57 cases, all Mudassir). Ready for a re-run of build verification.
