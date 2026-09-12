@@ -79,7 +79,7 @@ def exhibit(n, area, qa_c, pr_c, checks, note, verdict):
     if nl:
         y+=8; d.line([X0,y,W-X0,y],fill=LINE,width=1); y+=10
         for ln in nl: d.text((X0,y),ln,font=fN,fill=GREY); y+=24
-    p=os.path.join(OUT,f'{n:02d}-{area.lower().replace(" ","-").replace("/","-").replace(",","")}.png')
+    p=os.path.join(OUT,f'{n:02d}-{area.lower().replace(' ','-').replace('/','-').replace(',','').replace('(','').replace(')','')}.png')
     img.save(p); print(f'  {n:02d} {area:34} {img.size[0]}x{img.size[1]}  {verdict}')
     return p
 
