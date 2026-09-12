@@ -1,0 +1,15 @@
+{
+ "pass_meta": {
+  "suite": "Invoice Design Selection (7800)",
+  "run": 446,
+  "env": "the Production account (app.shopview.com)",
+  "build": "v26.36.4-3e1c643",
+  "date": "12 September 2026"
+ },
+ "results": {
+  "C53527": {
+   "verdict": "Passed",
+   "observed": "Checked on the live Production site by actually creating a new document straight after a change. The shop was put on the new look, then switched to the old look, and immediately afterwards job S1-852 was invoiced - it moved from Complete to Invoiced and a brand-new invoice INV-S1-852 was produced. That brand-new document was read at once, while the shop was still on the old look, and it came out in the old look - the classic layout with \"Remit payment to\" and \"Line Total\", with none of the newer blocks. The shop was then switched back to the new look and the very same new invoice was read again: it came out in the new look. So a change takes effect straight away on the next document created, with no waiting and no re-issuing, and that document then goes on following the setting like every other. Worth recording for whoever runs this by hand: a job must be at Complete before it can be invoiced - the Create Invoice button is present but greyed out on jobs still at Estimate or Approved. Nine jobs were checked at those two stages and the button was unavailable on every one; the first Complete job had it available."
+  }
+ }
+}
