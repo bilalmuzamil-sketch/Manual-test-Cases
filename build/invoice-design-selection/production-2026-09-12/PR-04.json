@@ -1,0 +1,23 @@
+{
+ "pass_meta": {
+  "suite": "Invoice Design Selection (7800)",
+  "run": 446,
+  "env": "the Production account (app.shopview.com)",
+  "build": "v26.36.4-3e1c643",
+  "date": "12 September 2026"
+ },
+ "results": {
+  "C53535": {
+   "verdict": "Passed",
+   "observed": "Checked on the live Production site on two parts sales - P2-62, which is paid, and P2-65, which is complete. Each one's invoice was opened on its Finance tab with the shop on the old look and again on the new look. Both changed: the old look draws the familiar table, the new look draws the newer layout with its ADDRESSES, BILL TO, REMIT PAYMENT TO, PARTS, SUMMARY and BALANCE blocks. The parts sale invoice number was the same on both - INV-P2-62 and INV-P2-65 - and so was every amount. The setting was read back immediately before and after each reading; nothing drifted."
+  },
+  "C53564": {
+   "verdict": "Passed",
+   "observed": "Checked on the live Production site on paid job S2-792. The print button on the Finance tab was clicked exactly as a person would click it. It builds a real PDF and opens it in a new tab, and that PDF file itself was taken and read - not a picture of the screen. Done once with the shop on the old look and once on the new look, the two PDFs are genuinely different documents: the old-look one is the classic table headed \"Invoice Date\", 29,208 bytes; the new-look one leads with the summary and balance blocks, 36,575 bytes. Both carry the same invoice number INV-S2-792 and exactly the same six amounts - $0.00, $1.00, $1.50, $135.00, $50.00 and $52.50. So a PDF printed from inside the app follows whichever look is switched on at the time."
+  },
+  "C53540": {
+   "verdict": "Passed",
+   "observed": "Checked on the live Production site on job S2-792, which is fully paid. Its invoice - the document that serves as the customer's receipt - was opened under both looks, on screen and as a printed PDF. In both looks it shows the recorded payment (a Mastercard payment of $52.50 on 29 July 2026) and a balance of $0.00, and in both it carries the same invoice number and the same amounts. The old look drew it as the classic table; the new look drew it with the newer summary and balance blocks. So a fully paid invoice follows the shop's current setting like any other document, and nothing about it is fixed at the moment it was created."
+  }
+ }
+}
