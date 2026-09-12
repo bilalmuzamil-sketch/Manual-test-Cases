@@ -1429,3 +1429,51 @@ its condition:
 against that condition. The condition is usually one grep away in the served bundle (L0058), and it is
 almost always a property of the RECORD, not of the build. Then pick a record that qualifies — on a
 test environment you are authorised to make one (Rule 107).
+
+## L0066 — 2026-09-12 — REWRITING SOMEONE ELSE'S TICKET: SNAPSHOT FIRST, TWO API VERSIONS, ONE CHANGE ONLY
+
+The QA lead asked for SV-9974 (Mudassir's) to be made explanatory, with inline images, "but save the
+original description before you change anything". The working shape:
+
+1. **Snapshot before touching anything, and commit that snapshot on its own.** Save the whole issue
+   (`GET /rest/api/3/issue/<KEY>?expand=renderedFields`) plus the description **as ADF**, because ADF
+   is what a rollback has to PUT back. Write the rollback command into a `ROLLBACK.md` next to it and
+   commit before the first write. A snapshot that is still only in `/tmp` is not a snapshot.
+2. **The two API versions are not interchangeable, and this is the whole trick.**
+   **`/rest/api/3/`** stores and returns **ADF** — use it to READ and to ROLL BACK.
+   **`/rest/api/2/`** accepts **wiki markup** — and it is the only route that embeds images inline:
+   `!name.png|width=760!` resolves against the issue's own attachments and renders as a real `<img>`.
+   Attach first (multipart `POST /rest/api/3/issue/<KEY>/attachments`, needs
+   `X-Atlassian-Token: no-check` plus Origin and Referer or it is a 403 XSRF), then PUT the wiki text.
+3. **Verify by re-reading `renderedFields`, never by the 204.** Count the `<img>` tags and check they
+   point at `/rest/api/3/attachment/content/<id>`; check no `blob:` survived; check the `<h2>`s are
+   the ones you wrote; check no `&lt;p&gt;` escaped. A 204 says the write landed, not that it reads.
+4. **Change exactly what you were asked to change, and write down what you did not.** Summary, type,
+   priority, status, Product Area, reporter, links and the reporter's own attachments were all left
+   alone, and `ROLLBACK.md` says so explicitly. Where the evidence contradicted the *title* as well,
+   that was raised as an ask rather than edited — a colleague's ticket title is how everyone refers
+   to it.
+
+**A broken image in a Jira description is usually a `blob:` URL.** Pasting a screenshot into the Jira
+editor can leave `![](blob:https://media.staging.atl-paas.net/?...)` in the stored description while
+the real file sits in the attachments perfectly fine. The fix is to reference the attachment by
+filename in wiki markup; do not ask the reporter to re-upload.
+
+## L0067 — 2026-09-12 — "ANOTHER COMPANY'S NAME" WAS THIS COMPANY'S OWN NAME, ONE FIELD AWAY
+
+Two tickets (SV-9973, SV-9974) both carried the same reasonable-sounding hypothesis: an unrelated
+company name is appearing, so this may be a **cross-tenant data leak**. It was neither hardcoded nor
+cross-tenant. The portal page for the invoice is served with an account record whose id is *the same
+id* as the invoice's own organisation, and the shop app's **Settings → Company Name** for that
+account literally reads that name. The invoice document prints the **Location** instead. Two real
+names, one account, two different surfaces.
+
+**The check that settled it took one probe:** read `props.tenant.id` off the portal page and compare
+it with `props.invoice.organization.id`. Equal ids ⇒ same tenant ⇒ the hypothesis is dead. Then
+corroborate on the other surface (Settings) and on a third artefact (the Tax ID printed on the
+invoice matched the Tax ID in Settings).
+
+**Rule:** when a name "belongs to someone else", find the id behind it before anyone says the words
+*cross-tenant*. Comparing two ids is cheaper than a security investigation, and getting it wrong in
+either direction is expensive — a false leak alarm burns a developer's week, and a real one must not
+be written off as cosmetic.

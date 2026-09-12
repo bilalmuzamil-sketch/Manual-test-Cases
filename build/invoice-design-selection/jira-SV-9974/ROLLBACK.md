@@ -35,3 +35,32 @@ A 204 means it is back. Re-read it with
 Note: the REST v3 endpoint takes **ADF**, which is why the rollback payload is stored as ADF rather
 than as text. The rewrite itself is written through **`/rest/api/2/`**, which takes wiki markup and is
 the only route that embeds images inline.
+
+---
+
+## What was changed on 2026-09-12, and what was not
+
+**Changed — the description only.** Rewritten to the nine-heading house shape with three inline
+annotated screenshots. Source kept here as `new-description.wiki`; the result as
+`AFTER-SV-9974-description.rendered.html` and `AFTER-SV-9974-screenshot.png`.
+
+**Added — three attachments** (`SV-9974-1-the-email.png`, `SV-9974-2-where-the-name-comes-from.png`,
+`SV-9974-3-the-invoice-itself.png`), built by `build/testing-tools/annotate_shot.py` from the sources
+in this folder and in `../staging-2026-09-12/evidence/`.
+
+**Not touched:** summary · issue type · priority · status · Product Area · QA Assignee · reporter ·
+the `relates to` link to SV-9973 · Mudassir's own attachment `image-20260912-101939.png` (still
+attached, and image 1 is a cropped and annotated version of it).
+
+**The one correction the ticket now carries.** The original "Note for dev" asked whether the string
+was hardcoded or read from another organisation's record, and warned it might be a cross-tenant data
+issue. It is neither: the portal serves invoice S-32981 with an account record whose id
+`d55bc308-e61a-438d-b5f1-c7a73c89d49f` is *the same id* as the invoice's own organisation, and the
+shop app's Settings for that account shows Company Name = "Bravo Mechanical Services" with the same
+Tax ID that prints on the invoice. The email reads the **Company Name**; the document prints the
+**Location**. Evidence: `../staging-2026-09-12/evidence/S30.json` and `S33-company-name-card.png`.
+
+**Still open, deliberately not done:** the summary still reads "an unrelated company name", which the
+evidence above contradicts. Changing a colleague's ticket title was left for the QA lead to approve.
+Proposed replacement: *"Emailed invoice names the account's Company Name while the invoice itself
+names the Location"*. SV-9973 carries the same disproved cross-tenant note and has not been touched.

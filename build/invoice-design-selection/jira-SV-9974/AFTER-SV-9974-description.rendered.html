@@ -1,0 +1,130 @@
+<h2><a name="1.Environment"></a>1. Environment</h2>
+
+<ul>
+	<li><b>Site:</b> Staging — shop app <a href="https://app.staging.shopview.com" class="external-link" rel="nofollow noreferrer">https://app.staging.shopview.com</a> · customer portal <a href="https://staging.portal.shopview.com" class="external-link" rel="nofollow noreferrer">https://staging.portal.shopview.com</a></li>
+	<li><b>Build:</b> v26.36.2-38f5dd6</li>
+	<li><b>Invoice used:</b> <b>S-32981</b> — <a href="https://staging.portal.shopview.com/invoices/21c5d7e5-f42d-4398-bd25-cf40c7650bb7" class="external-link" rel="nofollow noreferrer">https://staging.portal.shopview.com/invoices/21c5d7e5-f42d-4398-bd25-cf40c7650bb7</a></li>
+	<li><b>Account (Settings → Company Name):</b> Bravo Mechanical Services</li>
+	<li><b>Location that issued the invoice:</b> Staging Heavy Duty - 9919</li>
+	<li><b>Observed:</b> 12 September 2026</li>
+</ul>
+
+
+<h2><a name="2.Theproblem"></a>2. The problem</h2>
+
+<p>When an invoice is emailed to a customer from the customer portal, the email names the business as <b>Bravo Mechanical Services</b> — in the subject, in the first line of the body, in the contact line, and in the footer.</p>
+
+<p>The invoice attached to that same email, and the invoice on screen, name the business as <b>Staging Heavy Duty - 9919</b>.</p>
+
+<p>Both names belong to this one account. "Bravo Mechanical Services" is the account's <b>Company Name</b> (Settings). "Staging Heavy Duty - 9919" is one of its <b>Locations</b>, and it is the location the work was done at. So the email and the document the customer opens give two different business names for the same invoice.</p>
+
+<h2><a name="3.Stepstoreproduce"></a>3. Steps to reproduce</h2>
+
+<ol>
+	<li>Open the customer portal for this account: <a href="https://staging.portal.shopview.com/invoices" class="external-link" rel="nofollow noreferrer">https://staging.portal.shopview.com/invoices</a></li>
+	<li>Open invoice <b>S-32981</b>.</li>
+	<li>Click the <b>mail</b> icon at the top right and send the invoice to an address you can read.</li>
+	<li>Open the email, and open the PDF attached to it.</li>
+	<li>Compare the business name in the email with the business name printed on the PDF.</li>
+</ol>
+
+
+<p>To see where each name is set:</p>
+<ul>
+	<li><b>Settings</b> → <b>Company Name</b> reads "Bravo Mechanical Services".</li>
+	<li><b>Settings</b> → <b>Locations</b> holds "Staging Heavy Duty - 9919", which is what the invoice prints.</li>
+</ul>
+
+
+<h2><a name="4.Screenshots"></a>4. Screenshots</h2>
+
+<p><b>The email a customer receives — the four places the name appears:</b></p>
+
+<p><span class="image-wrap" style=""><img src="https://shopview.atlassian.net/rest/api/3/attachment/content/60630" width="760" style="border: 0px solid black" /></span></p>
+
+<p><b>Where that name comes from — Settings for this same account:</b></p>
+
+<p><span class="image-wrap" style=""><img src="https://shopview.atlassian.net/rest/api/3/attachment/content/60631" width="760" style="border: 0px solid black" /></span></p>
+
+<p><b>The same invoice, S-32981 — the document names the location instead:</b></p>
+
+<p><span class="image-wrap" style=""><img src="https://shopview.atlassian.net/rest/api/3/attachment/content/60632" width="760" style="border: 0px solid black" /></span></p>
+
+<h2><a name="5.Currentbehaviour"></a>5. Current behaviour</h2>
+
+<ul>
+	<li>The email <b>subject</b> reads: "Invoice #S-32981 - Bravo Mechanical Services"</li>
+	<li>The email <b>body</b> opens: "Bravo Mechanical Services has shared an invoice with you."</li>
+	<li>Lower in the body: "If you have any questions about this invoice, please don't hesitate to contact Bravo Mechanical Services directly."</li>
+	<li>The email <b>footer</b> reads: "Sent by ShopView on behalf of Bravo Mechanical Services"</li>
+	<li>The <b>attached invoice</b> prints "Staging Heavy Duty - 9919" as the letterhead and "Staging Lethbridge - 4310" as the remit-to address.</li>
+	<li>The <b>attachment file name</b> is "Invoice-S-32981.pdf", which is correct.</li>
+</ul>
+
+
+<h2><a name="6.Expectedbehaviour"></a>6. Expected behaviour</h2>
+
+<ul>
+	<li>A customer opening the email and the invoice should see <b>one</b> business named, not two.</li>
+	<li>The name in the email should match the business named on the invoice the customer opens.</li>
+</ul>
+
+
+<p>Which of the two names is the right one to show a customer is a product decision that has not been written down anywhere (see Sources). Whatever is chosen, the email and the invoice need to agree.</p>
+
+<h2><a name="7.Sources"></a>7. Sources</h2>
+
+<p><b>(a) Correction to the "Note for dev" this ticket was raised with.</b> The original note read, verbatim:</p>
+
+<blockquote><p>Worth confirming whether that string is hardcoded or read from another organisation's record. If the latter, it's a cross-tenant data issue.</p></blockquote>
+
+<p><b>It is neither.</b> It was checked on 12 September 2026 on the build above, and the name is this account's own:</p>
+
+<ul>
+	<li>The portal page for invoice S-32981 is served with an account record whose id is <tt>d55bc308-e61a-438d-b5f1-c7a73c89d49f</tt> and whose name is "Bravo Mechanical Services".</li>
+	<li>The invoice's own organisation id on that same page is <b>the same</b> <tt>d55bc308-e61a-438d-b5f1-c7a73c89d49f</tt>.</li>
+	<li>In the shop app, <b>Settings</b> for this account shows <b>Company Name</b> = "Bravo Mechanical Services", with the <b>Tax ID</b> "GST# 812694966 RT0001" — the same tax number that prints on invoice S-32981 (screenshots 2 and 3 above).</li>
+</ul>
+
+
+<p><b>So there is no other tenant involved and nothing is hardcoded.</b> The email is reading the account's <b>Company Name</b>; the invoice document is printing the <b>Location</b>. That is the whole of the difference, and it means this is a wording/consistency defect rather than a data-isolation one.</p>
+
+<p><b>(b) What the written requirements say about it: nothing.</b> The Invoice Design Selection specification — Confluence page <tt>845447188</tt>, "Invoice Design Selection — Product Spec", <b>version 27</b>, last edited 2026-09-11, read on 12 September 2026 — was searched for "company name", "organisation name", "email subject", "on behalf of", "sender", "location name" and "shop name". It contains no requirement on which business name a customer-facing email or document carries; it governs how the documents <b>look</b>. The choice therefore needs a product answer, not just a code fix.</p>
+
+<h2><a name="8.Testcases"></a>8. Test cases</h2>
+
+<p>Test run <b>446 — Invoice Design Selection</b>: <a href="https://shopview.testrail.io/index.php?/runs/view/446" class="external-link" rel="nofollow noreferrer">https://shopview.testrail.io/index.php?/runs/view/446</a></p>
+
+<div class='table-wrap'>
+<table class='confluenceTable'><tbody>
+<tr>
+<th class='confluenceTh'> Case </th>
+<th class='confluenceTh'> What it covers </th>
+<th class='confluenceTh'> Result </th>
+</tr>
+<tr>
+<td class='confluenceTd'> C53565 — <a href="https://shopview.testrail.io/index.php?/cases/view/53565" class="external-link" rel="nofollow noreferrer">https://shopview.testrail.io/index.php?/cases/view/53565</a> · test <a href="https://shopview.testrail.io/index.php?/tests/view/2924650" class="external-link" rel="nofollow noreferrer">https://shopview.testrail.io/index.php?/tests/view/2924650</a> </td>
+<td class='confluenceTd'> Emailed PDF renders the current Invoice Design selection </td>
+<td class='confluenceTd'> Passed </td>
+</tr>
+<tr>
+<td class='confluenceTd'> C53545 — <a href="https://shopview.testrail.io/index.php?/cases/view/53545" class="external-link" rel="nofollow noreferrer">https://shopview.testrail.io/index.php?/cases/view/53545</a> · test <a href="https://shopview.testrail.io/index.php?/tests/view/2924630" class="external-link" rel="nofollow noreferrer">https://shopview.testrail.io/index.php?/tests/view/2924630</a> </td>
+<td class='confluenceTd'> Invoice renders the current design on preview, print PDF, and emailed PDF </td>
+<td class='confluenceTd'> Passed </td>
+</tr>
+<tr>
+<td class='confluenceTd'> C53566 — <a href="https://shopview.testrail.io/index.php?/cases/view/53566" class="external-link" rel="nofollow noreferrer">https://shopview.testrail.io/index.php?/cases/view/53566</a> · test <a href="https://shopview.testrail.io/index.php?/tests/view/2924651" class="external-link" rel="nofollow noreferrer">https://shopview.testrail.io/index.php?/tests/view/2924651</a> </td>
+<td class='confluenceTd'> Customer portal on-screen and PDF render the current setting </td>
+<td class='confluenceTd'> Passed </td>
+</tr>
+</tbody></table>
+</div>
+
+
+<p>These cases check that the emailed and portal documents are drawn in the <b>design</b> that is switched on. None of them asserts which business <b>name</b> appears in the email, which is why this was reported separately rather than showing up as a failed test. If the behaviour is changed, a new case will be needed to cover the naming.</p>
+
+<h2><a name="9.Related"></a>9. Related</h2>
+
+<ul>
+	<li><b>SV-9973</b> — the same account name appears as the portal print page's title, and so becomes the saved file's name. Same root cause as this ticket, and the same correction applies to its "Note for dev": it is not a cross-tenant issue.</li>
+</ul>
