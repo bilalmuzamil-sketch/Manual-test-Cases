@@ -64,3 +64,27 @@ if __name__ == '__main__':
         sys.exit(3)
     print(f'GUARD: OK - document is {got.upper()} as expected')
     sys.exit(0)
+
+# ---------------------------------------------------------------------------
+# HOW TO SWITCH THE DESIGN (found live 2026-09-12, production)
+#
+#   READ   GET  /api/organizations/invoice-settings/view   -> data.documentDesign
+#                                                             = 'legacy' | 'modern'
+#
+#   WRITE  *** the API does NOT accept it. ***
+#          POST /api/organizations/invoice-settings/change returns 200 and
+#          silently ignores documentDesign / document_design / design /
+#          invoice_design / documentDesignType / document_type / template
+#          (all six tried live, all 200, value never moved).
+#
+#          The ONLY thing that writes it is the UI toggle:
+#            Settings -> Invoice tab -> "Legacy invoice layout" -> Save Details
+#          The toggle sits at the FAR RIGHT of its row (x ~1410 at 1500px wide),
+#          not beside its label. Click the .q-toggle host by coordinate; the
+#          hidden input's .checked lags, so do not assert on it - assert on
+#          GET .../invoice-settings/view afterwards.
+#          Working script: switch_design.mjs / probe_toggle.mjs in this folder.
+#
+#   Browser needs all THREE localStorage keys or it bounces to /login:
+#     user, token, fe_permissions_wrapper  (playbook R.2), plus the MITM bridge.
+# ---------------------------------------------------------------------------
