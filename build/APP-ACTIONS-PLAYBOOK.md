@@ -3935,6 +3935,48 @@ comment; a reader who sees 48≠56 will otherwise assume a miss.
 Worked record: `build/sv9849-9870-9857-invoice-print-2026-09-10/FINDINGS.md` (three tickets, 11-change
 verification, 11-invoice measurement table, credit-memo divider comparison).
 
+### §AC.6 — Comparing two rendered documents: run BOTH axes, and get a skeleton (2026-09-12)
+
+A document comparison has **two independent axes**. Running only the first is the mistake that produced
+Standing Rule 79.
+
+**Axis 1 — geometry.** Page size, producer, embedded font subset tags, margins, the page card, rules and
+cell boxes, column x, right-align edges, the logo slot, every vertical gap, every row pitch, and the
+weight map. Compare **unrounded** with a ~0.05 pt tolerance; below that is glyph ink, not layout.
+Canonical script: `build/invoice-legacy-qa-vs-prod-2026-09-12/design_check.py` (70 checks, parameterised
+by two file paths — copy it, do not rewrite it).
+
+**Axis 2 — vocabulary.** Every header, column name, field label, section heading and static string.
+Extract the set from each document and diff **both ways**. This is the axis the customer and the PO
+actually read, and two documents can pass axis 1 perfectly while failing it.
+
+**Ask for a SKELETON / EMPTY / zero-state render.** An "empty" invoice (no lines, no totals) shows
+exactly what the template emits with no data, which is the only clean way to separate *"the label is
+missing"* from *"there was no data under it"*. `QA_Legacy_Empty.pdf` in that folder is the worked example.
+
+**The four traps that produce a FALSE "missing", all hit in one pass:**
+1. **A wrapped label is two spans.** `Service Order` came back as `Service` at x 76.14 and `Order` at
+   x 79.89 because the cell wrapped. Exact-string matching fails. Match on the joined page text, or on
+   all the words.
+2. **A longer label starts further left.** `Shop supplies (10% of labor)` starts at x 341.01, not
+   x > 400, because the block is **right-aligned** — its right edge is identical (472.42) but its left
+   edge moves with the text. **Filter on the right edge for right-aligned content, never the left.**
+3. **A different document type legitimately lacks a type-specific label.** An Estimate prints
+   `Estimate:`, an Invoice prints `Invoice:`. Neither is missing anything.
+4. **Org-named values look like labels.** A tax row (`GST (5%)` vs `2% VAT (2%)`) and a fee name are
+   **data the org types in**, not template strings.
+
+**Then check the VALUE SLOTS, not just the labels** — for each header, is a value printed under it on
+both? A slot blank on *all* documents (Customer PO, Authorizer) is no data entered, not a rendering
+fault.
+
+**Useful pymupdf one-liners:** `page.get_image_bbox(img)` gives the logo slot (compare x-span and the
+vertical **centre** — the image's height inside the slot follows its own aspect ratio);
+`doc.get_page_fonts(pno, full=True)` gives the subset tag, and **identical subset tags mean the same
+font file subset the same way** — the strongest single signal that one template rendered both; and the
+**wrap points of a long fixed paragraph** (a disclaimer) are the cleanest proof two text columns are the
+same width, because the renderer must break at the same x on both.
+
 ## §AD — THE BEFORE-vs-AFTER EXHIBIT: how to build the one picture an executive actually reads (Standing Rule 73, 2026-09-10)
 
 **Who the comment is for:** non-technical people **at the highest positions**. A table of PASSED rows

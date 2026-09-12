@@ -4390,6 +4390,53 @@ deliver the 7-tab management report.
     (bite-proof), 74 (account for every difference), 75 (configuration/decision first, never
     "regression" by plausibility), 76 and 77.
 
+79. **READ THE WHOLE ARTEFACT, AND COMPARE THE WORDS AS WELL AS THE GEOMETRY — a negative result is a
+    defect in your own checker until you have re-derived it a second way (all projects).**
+    USER DIRECTIVE (2026-09-12, verbatim): *"Learn from the mistakes and save it to never repeat them
+    and what you learn should be reusable for you the next time instead of learning it again unless
+    really needed. You should always read the full document if that is shared with you, use your common
+    sense."*
+    **THE THREE HALVES, and each was earned by a separate mistake in one pass:**
+    **(a) READ ALL OF IT BEFORE CHARACTERISING ANY OF IT.** When a document, file, export, log or
+    transcript is shared, **read EVERY page** before making a statement about what it contains. Do not
+    read page 1 and generalise. **AND USE COMMON SENSE ON WHAT YOU HAVE ALREADY READ: a total, a
+    summary, a count or an index that contradicts your impression is the document telling you that you
+    have not read enough.** A characterisation is a claim, and Rule 12 applies to it exactly as it
+    applies to a verdict.
+    **(b) COMPARING TWO ARTEFACTS MEANS COMPARING THE WORDS, NOT ONLY THE MEASUREMENTS.** Layout,
+    spacing, sizes and colour are one axis; the **VOCABULARY — every header, column name, field label,
+    section heading, button caption and static string — is a SECOND, INDEPENDENT axis**, and it is the
+    one a customer or a PO actually reads. Two outputs can be identical to the hundredth of a point and
+    still be missing a heading. **Always run both axes, and say so in the deliverable.** Where a
+    **skeleton / empty / zero-state artefact** is available, it is the **reference for what the template
+    emits** — ask for one if it is not offered, because it separates "the label is absent" from "there
+    was no data to put under it". Then run the diff in **BOTH directions** (Rule 45): labels in A not in
+    B, **and** labels in B not in A.
+    **(c) A "MISSING" / "ABSENT" / "NOT FOUND" RESULT IS A BUG IN YOUR OWN CHECK UNTIL PROVEN.** Before
+    reporting anything as missing, **re-derive it a second way** — widen the filter, drop the x/y window,
+    match on a prefix instead of an exact string, search the raw text, look at the rendered page. In one
+    pass, **three out of three "missing" labels were my own predicate artefacts**: a wrapped heading split
+    across two spans defeated an exact-string match; a longer label started left of a hard-coded `x > 400`
+    window; and a different **document type** (an Estimate vs an Invoice) made a type-specific label
+    legitimately absent. **A false "missing" is a false regression (Rule 75) and costs the QA lead's
+    confidence in every other line of the report.**
+    **RATIONALE, 2026-09-12 — all three mistakes were mine, in the same comparison.** Comparing a Legacy
+    invoice from a QA branch against one from production I (i) read page 1 of a **6-page** invoice and
+    wrote *"labour-only (Parts $0.00 on every line)"* in a committed findings document — while **the
+    summary block on the last page said `Parts $613.78`** and the invoice carried **11 part rows**, which
+    is exactly the common-sense contradiction (a) exists to catch; (ii) produced a **70-measurement
+    geometry comparison that never once checked whether the headers said the same words**, until the QA
+    lead asked *"you were supposed to test if the titles/headers/column names are similar… If QA shows
+    the header 'Unit' the Production should also show 'Unit'"* and supplied an **empty invoice as the
+    reference skeleton**; and (iii) on first running that label check, reported **three labels missing on
+    production that were all present**. Recipe:
+    `build/APP-ACTIONS-PLAYBOOK.md` **§AC.6**. Ties to Standing Rules 12 (observed, never inferred — a
+    characterisation is a claim), 17 (complete data in, complete data out — **all pages is part of
+    "complete in"**), 25 (quote the exact text), 40 (every surface), 45 (both directions; both texts
+    quoted side by side), 50 (exhaustive **and** exact — this is the reading-side twin), 63 (be cheap —
+    but cheapness is skipping redundant reads, **never skipping pages of the thing under test**), 74
+    (account for every difference), 75 (a false finding costs more than a missed one) and 76/77.
+
 ## Project purpose (Custom Roles project)
 Manual test-case authoring + live staging (Verify-in-UI) verification + TestRail
 management for ShopView **"Custom Roles and Permissions"**, plus related
