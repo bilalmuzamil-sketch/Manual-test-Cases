@@ -25,6 +25,23 @@ Product Area **Work Orders**, linked to each other as **Relates**.
 - States honestly that it reproduces on the QA branch too, so it is a template limitation, not a production regression.
 - Technical details: `.column-width-15 { width: 15% }` + `padding: 4px 6px` → 62.29 pt of text space vs the 69.21 pt the heading needs (short by 6.92 pt); `table-layout` auto makes 15% a minimum; threshold ≥ 69.21 pt of order number; predictor 3 of 3; the 695 CSS px screen threshold vs the print path's 634 px; all 100 sampled production numbers are 6 characters; two suggested fixes.
 
+## Images: switched to real Jira attachments (2026-09-12)
+
+The first version of both tickets embedded the screenshots as ADF **external media** pointing at
+`raw.githubusercontent.com`. Every URL returned HTTP 200 with `content-type: image/png`, but Jira's
+media service rendered only some of them — the rest showed *"Something went wrong. We couldn't
+generate a preview for this file."*, and in the **description** the images did not render at all.
+
+Fixed by uploading the PNGs as **genuine Jira attachments** and rewriting both comments in wiki markup
+through the v2 API, which Jira converts into real `type: file` media nodes:
+
+- SV-9976 — 2 attachments (60638, 60639), comment **76393** rewritten, 2 media nodes verified.
+- SV-9977 — 15 attachments, comment **76394** rewritten, **15 media nodes verified in order 1 to 15**,
+  each with the correct width/height so nothing is squashed.
+- Both descriptions rewritten **text-only**, pointing at the comment, so no broken image boxes remain.
+
+Recipe recorded in `build/APP-ACTIONS-PLAYBOOK.md` **§V.0** — external media is no longer the method.
+
 ## Pre-post gate (Standing Rule 72)
 
 - Build markers re-read live immediately before filing: production `v26.36.4-3e1c643`, QA `sv9901 v26.35.10-7b9a47d` — both unchanged from the pass.

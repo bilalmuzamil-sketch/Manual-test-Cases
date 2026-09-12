@@ -3399,6 +3399,48 @@ The bar the QA lead set: *"i dont want any front end or backend developers to ch
 or the client to say that its not fixed."* Everything below was learned by getting it wrong first on
 2026-08-19 (see `build/LESSONS-2026-08-19.md`).
 
+### V.0 PUT THE IMAGES IN AS REAL ATTACHMENTS — external media is unreliable (proven 2026-09-12)
+
+**Do not embed evidence with ADF external media (`{"type":"media","attrs":{"type":"external","url":…}}`)
+any more.** It worked on SV-8781/SV-8815 and then failed in the open on SV-9976/SV-9977: with 15 images
+in one body, **some rendered and some showed "Something went wrong. We couldn't generate a preview for
+this file."** — while every URL returned **HTTP 200 with `content-type: image/png`**, so the fault is
+Atlassian's media fetcher, not the files, and curling the URLs does **not** prove the reader will see
+them. **External media also fails in a DESCRIPTION far more often than in a comment** — SV-9976's
+description showed an empty grey box where the image should be.
+
+**The reliable path, and it is cheap:**
+
+1. **Upload the PNGs as genuine Jira attachments** (cookies from `/tmp/atlassian/cookies.txt`, method
+   `build/ATLASSIAN-JIRA-ACCESS-METHOD.md`):
+   ```bash
+   curl -s -b /tmp/atlassian/cookies.txt -H "X-Atlassian-Token: no-check" \
+     -F "file=@06-service-order-table.png" -F "file=@EX7.png" \
+     "https://shopview.atlassian.net/rest/api/3/issue/SV-9976/attachments"
+   ```
+   Multiple `-F file=@…` in one call works (15 uploaded in a single request).
+2. **Write the comment in WIKI MARKUP through the v2 API** — Jira converts it server-side into real
+   `{"type":"media","attrs":{"type":"file","id":"<uuid>"…}}` nodes:
+   ```bash
+   curl -s -X PUT -b /tmp/atlassian/cookies.txt -H "Content-Type: application/json" \
+     -H "X-Atlassian-Token: no-check" -d @body.json \
+     "https://shopview.atlassian.net/rest/api/2/issue/SV-9977/comment/76394"
+   ```
+   `{"body": "h4. 1. Heading\n\n!01-file.png|width=900,height=934!\n\n_caption_"}` — POST to
+   `/rest/api/2/issue/{key}/comment` for a new one, PUT with the comment id to update in place.
+   The same works for the description: `PUT /rest/api/2/issue/{key}` with
+   `{"fields":{"description":"<wiki>"}}` → 204.
+3. **ALWAYS pass BOTH `width` and `height`.** `!file.png!` alone renders a **200×183 thumbnail** (too
+   small to read), and `|width=900!` alone leaves height at 183 so the picture is **squashed**. Compute
+   `height = round(900 * h / w)` from the real image and pass `width=900,height=<that>`.
+4. **Verify by reading the comment back in ADF** (`GET /rest/api/3/issue/{key}/comment/{id}`) and
+   counting `mediaSingle` nodes and their `attrs` — `"type":"file"` with a uuid `id` means a real
+   attachment; `"type":"external"` means it is still the unreliable kind.
+
+Wiki-markup cheatsheet for these bodies: `h3.`/`h4.` headings · `*bold*` · `_italic_` · `{{code}}` ·
+`----` horizontal rule · `{panel:bgColor=#e3fcef}…{panel}` for the green verdict box · tables as
+`||Header||Header||` then `|cell|cell|`.
+
 ### V.1 Screenshot a FROZEN state, never a live one
 
 **A ShopView work order that has not been invoiced RE-PRICES against its location's current settings.**
