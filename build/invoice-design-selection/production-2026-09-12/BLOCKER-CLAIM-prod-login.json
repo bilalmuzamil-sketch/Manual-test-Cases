@@ -1,0 +1,33 @@
+{
+ "claim": "the recorded production password no longer signs in: POST /api/login returns 401 Invalid credentials for bilal.muzamil+mainadmin@shopview.com",
+ "proofs": {
+  "positive_control": {
+   "passed": true,
+   "evidence": "The same browser, the same bridge and the same request context reached production perfectly: https://app.shopview.com/login loaded, rendered its real sign-in card and served meta[name=app-version] = v26.36.4-3e1c643. So the network path, the proxy and TLS all work; only the credential is refused. Screenshot build/invoice-design-selection/production-2026-09-12/PRdiag-login.png."
+  },
+  "tried_through_the_screen": {
+   "passed": true,
+   "evidence": "prod-login-boot.mjs falls back to driving the real login FORM when the API refuses; it typed the credentials into the page's own email and password fields and the page answered 'Invalid credentials.' So the refusal reproduces through the screen, not only through a script."
+  },
+  "waited_and_retried": {
+   "passed": true,
+   "evidence": "Two independent attempts: prod-login-boot.mjs at 17:33 (API 401, then the form), and a single deliberate API call at 17:36. Deliberately capped at two attempts on one account to avoid causing a lockout. Both identical."
+  },
+  "checked_for_navigation": {
+   "passed": true,
+   "evidence": "The login page does NOT redirect anywhere -- it stays on https://app.shopview.com/login and renders input[type=password] = true. That rules out the staging pattern where the route has moved to Google SSO."
+  },
+  "precondition_read_back": {
+   "passed": true,
+   "evidence": "The credential file was read back after writing: /tmp/shopview/prod-login.env holds SV_USER=bilal.muzamil+mainadmin@shopview.com and an 8-character password, which matches the account and password recorded in build/ENVIRONMENT-CREDENTIALS.md section 1 exactly. So the right values were sent."
+  },
+  "searched_the_repo": {
+   "passed": true,
+   "evidence": "grep over build/ENVIRONMENT-CREDENTIALS.md for password/credential corrections, rotations and 401s: section 0.4 covers TestRail and Atlassian sharing one password, not production; section 1 records the production password with the 2026-09-03 ruling that it is committed deliberately and the rotate recommendation is CLOSED. No correction anywhere says the production password changed, and only ONE production account is recorded, so there is no second account to test the route against."
+  },
+  "asked_what_would_make_this_my_fault": {
+   "passed": true,
+   "evidence": "Most likely mine: (a) I extracted the wrong string from the markdown table -- ruled out by reading the env file back and matching it character-count and account against the document; (b) wrong host -- ruled out, app.shopview.com and api.shopview.com are the recorded pair and the page served its real build marker; (c) the bridge -- ruled out, ensure_bridge.sh reported healthy and the same browser loaded the page over it; (d) the route moved to SSO as staging did -- ruled out, the body is 'Invalid credentials.' not 'sso_required', and the page renders a password field. What remains is the credential itself."
+  }
+ }
+}
