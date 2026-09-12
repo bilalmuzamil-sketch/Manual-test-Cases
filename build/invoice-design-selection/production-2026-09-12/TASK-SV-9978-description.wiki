@@ -1,0 +1,101 @@
+h2. 1. Environment
+
+* *Site:* Production — [https://app.shopview.com] and the customer portal [https://portal.shopview.com]
+* *Build:* v26.36.4-3e1c643
+* *Organisation:* Bilal-Trucks · *Location:* Truck Hill 1
+* *Records used:* invoice *INV-S1-764* ([https://app.shopview.com/workorders/58bfdc33-1f89-4c4a-94c3-e02b3bc843f6/finance]) and estimates *S2-864* and *S2-833*
+* *Observed:* 12 September 2026
+
+h2. 2. The problem
+
+Two things look different between the Legacy and the Modern design on the same document. Neither is
+a rule breach on the face of the specification — both are asked about here so the Product Manager can
+say whether they are intended.
+
+*(a) Per-line fees are grouped differently.* On invoice INV-S1-764 the labour line carries a *Flat Fee
+of $12.00* and the parts line a *Percentage processing Fee of $12.00*. Legacy leaves those out of the
+per-line subtotals; Modern folds them in.
+
+*(b) A Legacy estimate prints a Payments and Balance block that the Modern estimate does not.*
+
+h2. 3. Steps to reproduce
+
+# Open the invoice for a job that has per-line fees — for example [https://app.shopview.com/workorders/58bfdc33-1f89-4c4a-94c3-e02b3bc843f6/finance] — or open it on the customer portal.
+# In *Settings → Invoice*, turn the *"Legacy invoice layout"* switch *on*, confirm, and read the per-line subtotals.
+# Turn the switch *off* (Modern), confirm, and read the same subtotals again.
+# For (b), view an estimate for a job that has payments recorded against it, under each setting.
+
+h2. 4. Screenshots
+
+*The old (Legacy) design — the per-line block:*
+
+!TASK-1-old-look.png|width=760!
+
+*The new (Modern) design — the same invoice:*
+
+!TASK-2-new-look.png|width=760!
+
+h2. 5. Current behaviour
+
+*(a) The per-line block:*
+
+|| || Legacy || Modern ||
+| Labour subtotal | {{Labor Total $135.00}} | {{Labor $147.00}} (135 + the 12.00 flat fee) |
+| Parts subtotal | {{Parts Total $90.00}} | {{Parts $102.00}} (90 + the 12.00 processing fee) |
+| Line total | {{Line Total $225.00}} | {{Line total $249.00}} |
+
+*The summary block below it is identical in both:* {{Labor $135.00}}, {{Parts $90.00}}, then an
+Adjustments section carrying the same figures. Modern additionally itemises the two fees there as
+{{Labor $12.00}} and {{Parts $12.00}}. *Every grand total on the document is the same in both designs*
+— {{$304.94}}, {{$317.39}}, {{$206.39}}, {{$111.00}}, {{$32.00}}, {{$15.00}}, {{$14.94}}, {{$29.88}},
+{{$4.98}}, {{$7.47}}. The customer is billed the same amount either way.
+
+*(b) On an estimate*, Legacy prints a Payments and Balance block that Modern omits entirely. On S2-864
+that reads {{Payments (Deposit) Sep 9, 2026 - Check $500.00 (Deposit) Sep 9, 2026 - DEBIT CARD of
+$600.00 — $348.09 will be credited $251.91 Balance $0.00}}, and on S2-833 {{Payments Balance $149.27}}.
+Word counts across the two renders of S2-864: {{Payments}} legacy 1 / modern 0, {{Balance}} legacy 1 /
+modern 0, {{Deposit}} legacy 2 / modern 0. The estimate's own figures are identical in both.
+
+h2. 6. Expected behaviour
+
+Unknown — that is the question. Either:
+
+* both are intended, because each design keeps its own way of laying a document out; or
+* a customer who receives the same invoice in the two designs should not see a different line total, and
+  an estimate should not show payments in one design and not the other.
+
+h2. 7. Sources
+
+The specification permits a layout difference of this kind. Confluence page {{845447188}}, "Invoice
+Design Selection — Product Spec", *version 27*, last edited 2026-09-11, read on 12 September 2026:
+
+{quote}S2-R7: A document's figures, totals, line items and numbering are identical in both designs.
+Blocks that belong to a design's layout may differ between the two; the remit-to block is the known
+case (S2-E3).{quote}
+
+and, naming this behaviour directly:
+
+{quote}Three pre-refresh behaviours are kept for fidelity because they change layout rather than
+figures: the remit-to fallback, *the Adjustments grouping*, and the VIN placeholder word (Q7).{quote}
+
+So on the written requirement both observations are compliant: the figures, totals, line items and
+numbering do match, and the grouping is a deliberately kept Legacy behaviour. *What the specification
+does not say is whether the resulting difference is acceptable to a customer*, which is why this is a
+question rather than a defect.
+
+h2. 8. Test cases
+
+Test run *446 — Invoice Design Selection*: [https://shopview.testrail.io/index.php?/runs/view/446]
+
+|| Case || Result on Production || Note ||
+| C53592 — [https://shopview.testrail.io/index.php?/cases/view/53592] · test [https://shopview.testrail.io/index.php?/tests/view/2924676] | Passed | Figures identical in both designs; the difference above is recorded in the result |
+| C53566 — [https://shopview.testrail.io/index.php?/cases/view/53566] · test [https://shopview.testrail.io/index.php?/tests/view/2924651] | Passed | The portal invoice where (a) was seen |
+| C53544 — [https://shopview.testrail.io/index.php?/cases/view/53544] · test [https://shopview.testrail.io/index.php?/tests/view/2924658] | Passed | Estimates follow the setting |
+
+*No test case has been failed for either observation*, on the QA lead's instruction of 12 September:
+the Product Manager confirms first whether this is expected, and the cases are then marked accordingly.
+
+h2. 9. Related
+
+Epic *SV-9892*. Linked to *SV-9895* (estimate-type documents use the current setting) and *SV-9897*
+(every surface renders the document's design).

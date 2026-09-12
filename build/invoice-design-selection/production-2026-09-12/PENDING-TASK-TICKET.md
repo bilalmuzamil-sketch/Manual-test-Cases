@@ -1,4 +1,24 @@
-# PENDING — one TASK ticket, to be created AFTER the whole production run is finished
+# CREATED — TASK **SV-9978**, 12 September 2026
+
+**Status: DONE.** The ticket authorised below was created on 12 September 2026 as
+**[SV-9978](https://shopview.atlassian.net/browse/SV-9978)** — issue type **Task**, priority Medium,
+Product Area *Work Orders*, `Relates to` **SV-9895** (*Estimate-type documents use the current
+setting*) and **SV-9897** (*Every surface renders the document's design*), both children of epic
+**SV-9892**.
+
+The description was written as the nine headings with both annotated screenshots embedded inline at
+`|width=760!`, and was **verified after the write** by re-fetching `renderedFields`: nine `<h2>`
+headings, two `<img>` tags at `width="760"` pointing at `/rest/api/3/attachment/content/`, no escaped
+markup, 20 working links. Body kept at
+`build/invoice-design-selection/production-2026-09-12/TASK-SV-9978-description.wiki`; images at
+`evidence/TASK-1-old-look.png` and `evidence/TASK-2-new-look.png`.
+
+**No test case was failed for either observation**, exactly as the QA lead required. The ticket says
+so in its own words, so the Product Manager reads it as a question and not as a bug report.
+
+---
+
+# The original plan (kept for the record) — one TASK ticket, to be created AFTER the whole production run is finished
 
 **Authorised by the QA lead, 12 September 2026, verbatim:**
 
@@ -80,10 +100,17 @@ processing Fee $12.00** on the parts line. Both fees appear on both documents.
 
 | | Legacy | Modern |
 |---|---|---|
-| Labour subtotal | `Labor Total $135.00` | `Labor $147.00` (135 + the 12.00 flat fee) |
-| Parts subtotal | `Parts Total $90.00` | `Parts $102.00` (90 + the 12.00 processing fee) |
-| Line total | `Line Total $225.00` | `Line total $249.00` |
-| Then | `Labor $135.00 Parts $90.00 Adjustment…` | — |
+| Per-line labour subtotal | `Labor Total $135.00` | `Labor $147.00` (135 + the 12.00 flat fee) |
+| Per-line parts subtotal | `Parts Total $90.00` | `Parts $102.00` (90 + the 12.00 processing fee) |
+| Per-line total | `Line Total $225.00` | `Line total $249.00` |
+| Summary block below it | `Labor $135.00` · `Parts $90.00` · an Adjustments block itemising `Labor $12.00` / `Parts $12.00` | **the same** — `Labor $135.00` · `Parts $90.00` · an Adjustments block itemising `Labor $12.00` / `Parts $12.00` |
+
+**🛑 CORRECTED 2026-09-12, after the annotated screenshots were built.** My first framing of this was
+too strong. It said the Legacy design groups the fees separately and the Modern one does not. That is
+wrong: **the summary block is identical in both designs** — both print `Labor $135.00`, `Parts $90.00`
+and an Adjustments block that itemises the two $12.00 fees. **The only difference is the per-line
+block**, where Modern folds each fee into that line's own subtotal and Legacy holds it out. The
+annotated images in the ticket show exactly this and nothing wider.
 
 **The grand totals are identical in both**: `$304.94`, `$317.39`, `$206.39`, `$111.00`, `$32.00`,
 `$15.00`, `$14.94`, `$29.88`, `$4.98`, `$7.47` all appear in each. The customer is billed the same

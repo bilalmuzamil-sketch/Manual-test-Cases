@@ -1,0 +1,181 @@
+{
+ "at": "2026-09-12T22:38:34.116Z",
+ "docs": {
+  "legacy": {
+   "partSaleEstimate": {
+    "onRightPage": true,
+    "legacyLook": false,
+    "modernLook": false,
+    "authorizer": true,
+    "documentRendered": true,
+    "docNo": [
+     "EST-P1-66",
+     "P1-66"
+    ],
+    "money": [
+     "$0.00",
+     "$50.00"
+    ],
+    "len": 2565
+   },
+   "partSaleInvoice": {
+    "onRightPage": true,
+    "legacyLook": false,
+    "modernLook": false,
+    "authorizer": true,
+    "documentRendered": true,
+    "docNo": [
+     "INV-P1-48",
+     "P1-48"
+    ],
+    "money": [
+     "$0.00",
+     "$90.00",
+     "$900.00",
+     "$910.00"
+    ],
+    "len": 2159
+   },
+   "workOrderInvoice": {
+    "onRightPage": true,
+    "legacyLook": true,
+    "modernLook": false,
+    "authorizer": true,
+    "documentRendered": true,
+    "docNo": [
+     "INV-S1-764"
+    ],
+    "money": [
+     "$0.00",
+     "$111.00",
+     "$12.00",
+     "$12.45",
+     "$135.00",
+     "$14.94",
+     "$15.00",
+     "$206.39",
+     "$225.00",
+     "$29.88",
+     "$304.94",
+     "$317.39",
+     "$32.00",
+     "$4.98",
+     "$7.47",
+     "$79.94",
+     "$90.00"
+    ],
+    "len": 3170
+   }
+  },
+  "modern": {
+   "partSaleEstimate": {
+    "onRightPage": true,
+    "legacyLook": false,
+    "modernLook": true,
+    "authorizer": true,
+    "documentRendered": true,
+    "docNo": [
+     "EST-P1-66",
+     "P1-66"
+    ],
+    "money": [
+     "$0.00",
+     "$50.00"
+    ],
+    "len": 2186
+   },
+   "partSaleInvoice": {
+    "onRightPage": true,
+    "legacyLook": false,
+    "modernLook": true,
+    "authorizer": true,
+    "documentRendered": true,
+    "docNo": [
+     "INV-P1-48",
+     "P1-48"
+    ],
+    "money": [
+     "$0.00",
+     "$90.00",
+     "$900.00",
+     "$910.00"
+    ],
+    "len": 2101
+   },
+   "workOrderInvoice": {
+    "onRightPage": true,
+    "legacyLook": false,
+    "modernLook": true,
+    "authorizer": true,
+    "documentRendered": true,
+    "docNo": [
+     "INV-S1-764"
+    ],
+    "money": [
+     "$0.00",
+     "$102.00",
+     "$111.00",
+     "$12.00",
+     "$12.45",
+     "$135.00",
+     "$14.94",
+     "$147.00",
+     "$15.00",
+     "$206.39",
+     "$249.00",
+     "$29.88",
+     "$304.94",
+     "$317.39",
+     "$32.00",
+     "$4.98",
+     "$7.47",
+     "$79.94",
+     "$90.00"
+    ],
+    "len": 3082
+   }
+  }
+ },
+ "drift": [],
+ "build": "v26.36.4-3e1c643",
+ "subjects": {
+  "partSaleEstimate": {
+   "n": "P1-66",
+   "id": "dea11f22-d18e-4740-ba94-e662a74c3697",
+   "st": "estimate"
+  },
+  "partSaleInvoice": {
+   "n": "P1-48",
+   "id": "c2c70c2b-ad44-485b-8fb0-da2470dea359",
+   "st": "paid"
+  },
+  "workOrder": {
+   "n": "S1-764",
+   "id": "58bfdc33-1f89-4c4a-94c3-e02b3bc843f6",
+   "st": "invoiced"
+  }
+ },
+ "compare": {
+  "partSaleEstimate": {
+   "followedTheSetting": false,
+   "docsSame": true,
+   "moneySame": true,
+   "authorizerLegacy": true,
+   "authorizerModern": true
+  },
+  "partSaleInvoice": {
+   "followedTheSetting": false,
+   "docsSame": true,
+   "moneySame": true,
+   "authorizerLegacy": true,
+   "authorizerModern": true
+  },
+  "workOrderInvoice": {
+   "followedTheSetting": true,
+   "docsSame": true,
+   "moneySame": false,
+   "authorizerLegacy": true,
+   "authorizerModern": true
+  }
+ }
+}
