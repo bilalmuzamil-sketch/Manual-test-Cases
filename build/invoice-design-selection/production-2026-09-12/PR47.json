@@ -1,0 +1,132 @@
+{
+ "at": "2026-09-12T23:24:07.925Z",
+ "case": "C53570",
+ "steps": {
+  "options": [
+   "check No authorizer",
+   "check Sadasd Sdasd",
+   "check ABCD EFGH",
+   "check Test 91 Happy2",
+   "check Adam Zampa"
+  ],
+  "picked": "Sadasd Sdasd",
+  "afterPick": {
+   "status": "Complete",
+   "invoiceId": null,
+   "editable": false,
+   "authorizer": "Sadasd Sdasd",
+   "authorizerId": "77f953d2-80a8-487a-a053-196a82fa3ea6"
+  },
+  "design1": "legacy",
+  "beforeInvoice": {
+   "status": "Complete",
+   "invoiceId": null,
+   "editable": false,
+   "authorizer": "Sadasd Sdasd",
+   "authorizerId": "77f953d2-80a8-487a-a053-196a82fa3ea6"
+  },
+  "createLegacy": {
+   "dialog": {
+    "text": "New Customer Payment close event Payment Date Payment Method Charge Account arrow_drop_down Reference Number Memo No. Datearrow_drop_up Due Balance Payment S2-863 Today Oct 12, 2026 $2,461.38 S1-852 T",
+    "buttons": [
+     "close",
+     "Make Payment",
+     "Charge Account"
+    ]
+   },
+   "after": {
+    "status": "Invoiced",
+    "invoiceId": "a878d728-2078-476f-bc33-37aac085a57c",
+    "editable": false,
+    "authorizer": "Sadasd Sdasd",
+    "authorizerId": "77f953d2-80a8-487a-a053-196a82fa3ea6"
+   }
+  },
+  "legacyDoc": {
+   "design": "legacy",
+   "authorizerLabel": true,
+   "authorizerValue": false,
+   "who": "Sadasd Sdasd",
+   "context": "Unit VIN/Serial # Asset Mileage Eng Hrs 1GCEC29J09Z253557 1m Custom Car Transports, Inc. 8,588 454 Service Order Terms Due date Customer PO Authorizer S2-863 Net 30 Oct 12, 2026 Description Quantity Rate Amount Labor AAAAAAA BBBBBBBB 6 $149.95 $899.70 Parts Margin Test Prod - 1 10 $90.00 $900.00 Parts SPOPartBilal - sdss 5 $90.00 $450.00 Parts Total $1,350.00 Labor Total $899.7",
+   "settingWhileRead": "legacy"
+  },
+  "lock": {
+   "present": true,
+   "shown": "Sadasd Sdasd",
+   "disabledClass": false,
+   "ariaDisabled": null,
+   "inputDisabled": null,
+   "inputReadonly": null
+  },
+  "woAfter": {
+   "status": "Invoiced",
+   "invoiceId": "a878d728-2078-476f-bc33-37aac085a57c",
+   "editable": false,
+   "authorizer": "Sadasd Sdasd",
+   "authorizerId": "77f953d2-80a8-487a-a053-196a82fa3ea6"
+  },
+  "reversed": {
+   "status": "Complete",
+   "invoiceId": null,
+   "editable": false,
+   "authorizer": "Sadasd Sdasd",
+   "authorizerId": "77f953d2-80a8-487a-a053-196a82fa3ea6"
+  },
+  "design2": "modern",
+  "createModern": {
+   "dialog": {
+    "text": "New Customer Payment close event Payment Date Payment Method Charge Account arrow_drop_down Reference Number Memo No. Datearrow_drop_up Due Balance Payment S2-863 Today Oct 12, 2026 $2,461.38 S1-852 T",
+    "buttons": [
+     "close",
+     "Make Payment",
+     "Charge Account"
+    ]
+   },
+   "after": {
+    "status": "Invoiced",
+    "invoiceId": "554663bd-c3f9-4fbd-8fa5-5df0e65e39b6",
+    "editable": false,
+    "authorizer": "Sadasd Sdasd",
+    "authorizerId": "77f953d2-80a8-487a-a053-196a82fa3ea6"
+   }
+  },
+  "modernDoc": {
+   "design": "modern",
+   "authorizerLabel": true,
+   "authorizerValue": true,
+   "who": "Sadasd Sdasd",
+   "context": "jman, Dubai 0000 Asset 1m Custom Car Transports, Inc. Plate 555 Mileage 8,588 Eng Hrs 454 VIN / Serial 1GCEC29J0 9Z253557 Work Order S2-863 Authorizer Sadasd Sdasd Terms Net 30 Work Performed 01 AAAAAAA BBBBBBBB Labor AAAAAAA 6 $149.95 $899.70 Parts Margin Test Prod - 1 10 $90.00 $900.00 SPOPartBilal - sdss 5 $90.00 $450.00 Labor $899.70 Parts $1,350.00 Line total $2,249.70 Sum",
+   "settingWhileRead": "modern"
+  }
+ },
+ "drift": [],
+ "build": "v26.36.4-3e1c643",
+ "subject": {
+  "n": "S2-863",
+  "id": "93b1516a-5639-4b4b-a722-2a0895dc3a57",
+  "status": "Complete"
+ },
+ "verdict": {
+  "authorizer": "Sadasd Sdasd",
+  "legacy": {
+   "design": "legacy",
+   "label": true,
+   "value": false
+  },
+  "modern": {
+   "design": "modern",
+   "label": true,
+   "value": true
+  },
+  "stillOnWorkOrder": "Sadasd Sdasd",
+  "lock": {
+   "present": true,
+   "shown": "Sadasd Sdasd",
+   "disabledClass": false,
+   "ariaDisabled": null,
+   "inputDisabled": null,
+   "inputReadonly": null
+  },
+  "drift": 0
+ }
+}

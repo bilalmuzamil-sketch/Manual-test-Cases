@@ -1530,3 +1530,39 @@ It had rendered perfectly on that same id two hours earlier, which is exactly wh
   straight to the last one.
 
 Cost: two wasted passes and a wrong statement to the QA lead that I had to correct myself.
+
+---
+
+### L0070 — "the control offers nothing" is usually "this record does not qualify" (second instance in two days)
+**2026-09-12, production, C53570.** The Authorizer dropdown on work order S2-861 offered only
+"No authorizer". I very nearly wrote that up. The dropdown is populated from the **customer's
+contacts**, and that work order's customer has none; the customer the QA lead had been using has
+**four**. This is the same shape as L0067 (Create Invoice "not responding" → the job was not Complete)
+and L0069 (assert page identity first). **Before reporting an empty control, find the thing that fills
+it and check that thing exists.** A list with one option is evidence about the data, not the feature.
+
+### L0071 — three guesses at a route cost more than one listener
+Same probe. I guessed `/api/companies/{id}/contacts`, `/api/customers/{id}/contacts` and
+`/api/contacts?company_id=`; all three missed, and the miss then *looked like* "this customer has no
+contacts" — a wrong conclusion built on a wrong route. The Contacts tab in fact makes **no contacts
+call at all** and the count sits on the tab label. Rule 97 says walk the UI; the cheaper reading is:
+**when a negative depends on a route I guessed, the route is the first suspect, not the data.**
+
+### L0072 — strip `<style>` before matching anything in a rendered document
+PR34 reported "money differs between the two designs" on four estimates. It did not: my `marks()`
+helper stripped tags but not the `<style>` block, and the two designs ship different CSS. Stripped
+properly, every figure matched. Same family as the `pdf_text.py` banner false positive (L0063):
+**a tool's own framing is not content.** Strip style and script, then match.
+
+### L0073 — a reversed invoice stops existing; capture before you destroy
+C53541 asks you to compare a reversed invoice's design with the recreated one's. After the Reverse
+action the old invoice's preview answers **400** — the dialog says it will "re-open and undo the
+invoice" and it means it. The comparison is only possible if the document was captured **before** the
+reversal. Generalises: **when a step's own wording says it undoes something, capture the before-state
+in the same pass, not afterwards.**
+
+### L0074 — the run badge counts every environment, so it cannot answer "did you test this on production?"
+After posting two production results, run 446 read "passed 45, untested 0" — while only **34** of the
+45 carried a production comment; the other 11 still showed their QA-branch or Staging result. The QA
+lead has already been burned once by a run that looked complete. **Report the number of cases with a
+result from THIS environment, never the run's own totals**, and name the ones that do not have one.

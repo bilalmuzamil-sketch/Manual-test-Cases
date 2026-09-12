@@ -4747,3 +4747,58 @@ both and was still invoiceable. Only the status did.
   Account, Reference Number, Memo). The invoice is created regardless; the dialog can be dismissed.
 - Confirm the outcome from the record, not the screen: `GET /api/work-orders/view/<id>` → `status`
   moves to `Invoiced` and `invoice_id` is populated.
+
+---
+
+## INVOICE-DESIGN LANE — ROUTES AND CONTROLS PROVEN ON PRODUCTION, 12 SEPTEMBER 2026
+
+Build `v26.36.4-3e1c643`, account `bilal.muzamil+serviceadvisornoreports@shopview.com`, org Bilal-Trucks.
+Every one of these was found by **walking the screen with a request listener attached**, never by
+guessing a route. Two of them replace guesses that 404'd.
+
+### The estimate document of a NEVER-INVOICED job
+An estimate-status work order carries **no `invoice_id`**, so `/api/invoices/preview` cannot be called
+for it from the list payload. The finance screen uses its own route:
+
+```
+POST /api/work-orders/invoices/estimate
+{"work_order_id":"<wo id>","type":"html","isEstimate":1,"includeDeclined":0,
+ "issueDate":"<ISO>","dueDate":"<ISO>","historyEvent":null}   -> 200, the document HTML in the body
+```
+
+⚠ **Blank `issueDate`/`dueDate` make it 500.** The screen itself sent blanks for work order S1-860 and
+got two 500s; four other estimate jobs on the same screen, same session, returned 200. So a 500 here is
+about that record, not about the route — supply real dates when you call it yourself.
+
+### The invoice kebab: Reverse and Issue Credit
+`[data-test-id="button_wo_invoice_menu"]` on the Finance tab → **Reverse** · **Issue Credit**.
+Reverse raises *"This action will re-open and undo the invoice. Are you sure you want to proceed?"*
+with a **Reverse** button. **After a reversal the old invoice's `/api/invoices/preview` answers 400** —
+the document genuinely no longer exists, so capture anything you need to compare BEFORE reversing.
+The work-order kebab is a different control: `[data-test-id="button_work_order_nav_bar_menu"]` →
+Audit Log · Timesheets · Set status.
+
+### Changing workplace (location)
+Profile menu → **click the SELECT `[data-test-id="select_location"]`, not the "Change Location" label**.
+Clicking the label does nothing and looks like the control is absent. The select offers every workplace
+(here: Truck Hill 1 · Trucks Hill 2 · SANKAN); the choice **persists across later logins**, so a probe
+that assumes it starts at the default will be looking at the wrong workplace's records.
+
+### The part-sale credit document
+Customers → the customer → Invoices → the credit row's own print icon
+`[data-test-id="button_print_credit_memo_<id>"]` → **`GET /api/credit-memos/<id>/pdf`** → 200,
+`application/pdf`. The row shows the number as `CM2-4398` while the document itself reads `CM-4398`
+(the same display-vs-document split already recorded for staging).
+
+### The Authorizer
+`[data-test-id="select_authorizer"]` on the **Lines** and **Finance** tabs; the work-order record
+carries `authorizer_contact_id`, `authorizer_full_name`, `authorizer_telephone`, `ibs_approval_code`.
+🔑 **The dropdown is populated from the CUSTOMER'S CONTACTS.** A customer with none offers only
+"No authorizer", which reads exactly like a broken control and is not one. **Contacts are NOT in the
+`/api/customers/view/{id}` payload and the Contacts tab makes no separate call** — the count is on the
+tab itself, `[data-test-id="tab_contacts"]` reading `Contacts (4)`. Check there before concluding
+anything about a missing Authorizer.
+
+### Create Invoice
+Still gated on the work order being **Complete** (recorded earlier the same day). Set it through
+`button_work_order_nav_bar_menu` → Set status → Complete.
