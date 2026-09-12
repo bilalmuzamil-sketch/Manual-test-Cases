@@ -1,0 +1,226 @@
+{
+ "at": "2026-09-12T22:59:08.626Z",
+ "purpose": "does the Legacy Payments/Balance block appear on a never-invoiced, never-paid estimate?",
+ "subjects": [
+  {
+   "num": "S1-816",
+   "id": "893072a2-09ad-45b5-a567-8a3f1c018de0",
+   "status": "Estimate",
+   "invoiceId": null,
+   "payments": 0
+  },
+  {
+   "num": "S1-822",
+   "id": "6ba7d87c-2a16-428a-9ba8-d142aa7af012",
+   "status": "Estimate",
+   "invoiceId": null,
+   "payments": 0
+  },
+  {
+   "num": "S1-821",
+   "id": "02703d1f-faf2-4d01-9afb-dfb60083865e",
+   "status": "Estimate",
+   "invoiceId": null,
+   "payments": 0
+  },
+  {
+   "num": "S1-818",
+   "id": "c4dc42fb-efe0-4c63-a024-c05de5024e7e",
+   "status": "Estimate",
+   "invoiceId": null,
+   "payments": 0
+  }
+ ],
+ "renders": {
+  "legacy": {
+   "S1-816": {
+    "legacy": true,
+    "modern": false,
+    "payments": 2,
+    "balance": 1,
+    "deposit": 0,
+    "money": [
+     "$1,350.00",
+     "$110.84",
+     "$135.00",
+     "$17.55",
+     "$2,700.00",
+     "$2,835.00",
+     "$3,694.41",
+     "$3,879.14",
+     "$311.85",
+     "$340.20",
+     "$357.21",
+     "$450.00",
+     "$513.00",
+     "$73.89"
+    ],
+    "len": 11663
+   },
+   "S1-822": {
+    "legacy": false,
+    "modern": false,
+    "payments": 2,
+    "balance": 1,
+    "deposit": 0,
+    "money": [
+     "$0.00"
+    ],
+    "len": 11422
+   },
+   "S1-821": {
+    "legacy": true,
+    "modern": false,
+    "payments": 2,
+    "balance": 1,
+    "deposit": 0,
+    "money": [
+     "$0.00",
+     "$10.11",
+     "$135.00",
+     "$14.85",
+     "$16.20",
+     "$17.01",
+     "$17.55",
+     "$202.23",
+     "$212.34"
+    ],
+    "len": 11575
+   },
+   "S1-818": {
+    "legacy": false,
+    "modern": false,
+    "payments": 2,
+    "balance": 1,
+    "deposit": 0,
+    "money": [
+     "$0.00"
+    ],
+    "len": 11408
+   }
+  },
+  "modern": {
+   "S1-816": {
+    "legacy": true,
+    "modern": true,
+    "payments": 0,
+    "balance": 7,
+    "deposit": 0,
+    "money": [
+     "$1,350.00",
+     "$110.84",
+     "$12,345.67",
+     "$123,456.78",
+     "$135.00",
+     "$17.55",
+     "$2,700.00",
+     "$2,835.00",
+     "$3,694.41",
+     "$3,879.14",
+     "$311.85",
+     "$340.20",
+     "$357.21",
+     "$450.00",
+     "$513.00",
+     "$73.89"
+    ],
+    "len": 67515
+   },
+   "S1-822": {
+    "legacy": true,
+    "modern": true,
+    "payments": 0,
+    "balance": 7,
+    "deposit": 0,
+    "money": [
+     "$0.00",
+     "$12,345.67",
+     "$123,456.78"
+    ],
+    "len": 67200
+   },
+   "S1-821": {
+    "legacy": true,
+    "modern": true,
+    "payments": 0,
+    "balance": 7,
+    "deposit": 0,
+    "money": [
+     "$0.00",
+     "$10.11",
+     "$12,345.67",
+     "$123,456.78",
+     "$135.00",
+     "$14.85",
+     "$16.20",
+     "$17.01",
+     "$17.55",
+     "$202.23",
+     "$212.34"
+    ],
+    "len": 67339
+   },
+   "S1-818": {
+    "legacy": true,
+    "modern": true,
+    "payments": 0,
+    "balance": 7,
+    "deposit": 0,
+    "money": [
+     "$0.00",
+     "$12,345.67",
+     "$123,456.78"
+    ],
+    "len": 67185
+   }
+  }
+ },
+ "drift": [],
+ "build": "v26.36.4-3e1c643",
+ "verdict": [
+  {
+   "num": "S1-816",
+   "designChanged": true,
+   "paymentsL": 2,
+   "paymentsM": 0,
+   "balanceL": 1,
+   "balanceM": 7,
+   "blockOnUnpaidEstimate": true,
+   "onlyInLegacy": true,
+   "moneySame": false
+  },
+  {
+   "num": "S1-822",
+   "designChanged": false,
+   "paymentsL": 2,
+   "paymentsM": 0,
+   "balanceL": 1,
+   "balanceM": 7,
+   "blockOnUnpaidEstimate": true,
+   "onlyInLegacy": true,
+   "moneySame": false
+  },
+  {
+   "num": "S1-821",
+   "designChanged": true,
+   "paymentsL": 2,
+   "paymentsM": 0,
+   "balanceL": 1,
+   "balanceM": 7,
+   "blockOnUnpaidEstimate": true,
+   "onlyInLegacy": true,
+   "moneySame": false
+  },
+  {
+   "num": "S1-818",
+   "designChanged": false,
+   "paymentsL": 2,
+   "paymentsM": 0,
+   "balanceL": 1,
+   "balanceM": 7,
+   "blockOnUnpaidEstimate": true,
+   "onlyInLegacy": true,
+   "moneySame": false
+  }
+ ]
+}

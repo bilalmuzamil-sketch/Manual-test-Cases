@@ -1,0 +1,2066 @@
+<style>
+    * {
+        box-sizing: border-box;
+    }
+
+    @page {
+        size: A4 portrait;
+        font-size: 0.8rem;
+        font-family: 'Inter', -apple-system, 'Segoe UI', Roboto, sans-serif;
+        margin: 30px;
+        margin-bottom: 15mm;
+
+        /* SV-9870 (change 9): no running header after page one, and the page's
+           own top margin drops from the 50pt that reserved room for it to the
+           30px the other three sides already carry.
+
+           Print-only by construction, which is why it sits at top level rather
+           than in the SV-9870 block at the foot of this sheet: an at-page rule
+           and its margin boxes never apply in screen media at all, so the SPA
+           preview cannot see this. The preview keeps today's spacing
+           deliberately - see that block for the whole reasoning.
+
+           This REVERSES S12-R10 (v45): "Every page after the first opens with a
+           single identification line: the shop location's name on the left and
+           the document number on the right. The full masthead does not repeat
+           on later pages." SV-9870 is a paper-reduction ticket, and the line
+           was measured per DOCUMENT rather than per page: it spends 50pt of top
+           margin on every continuation page plus its own height, on a document
+           whose sheet count is the thing being reduced. No page becomes
+           unidentifiable - the document number and page x-of-y still print in
+           at-bottom-right on every page, including page one.
+
+           Kept as the record of the reading this one replaced: the
+           full-masthead reading was built and measured before v45 was settled -
+           as a `position: running()` element it costs ~105pt of every page,
+           turning the five-page invoice into six and taking the worst
+           mid-document gap from 82pt to 163pt.
+
+           The 9pt type size that used to be declared on both boxes went with
+           the content it sized. It existed so a page-identification line was
+           never the largest type on the page (S12-R9, spec v49), and there is
+           no line left to size. `content: none` rather than deleting the boxes,
+           so the reversal is legible where the rule used to be - and it is
+           exactly what the at-page-first rule below already does for page one.
+
+           CONTRADICTION, recorded rather than resolved: the note this replaces
+           measured that shrinking this margin "walks a page break onto a
+           label-before-table boundary where WeasyPrint does not honour
+           `break-after: avoid`, orphaning a Parts heading - measured at every
+           margin from 110pt to 132pt". That sweep was run with the header line
+           PRESENT and with the old spacing, both of which SV-9870 changes, and
+           the sheet counts for this change set were measured whole rather than
+           for this margin alone. If a Parts heading orphans in the field, this
+           margin is the first thing to re-measure - not `.csec-head`'s
+           `break-after: avoid`, which is untouched. */
+        margin-top: 30px;
+
+        @top-left {
+            content: none;
+        }
+
+        @top-right {
+            content: none;
+        }
+
+        /* The three running-footer boxes had no size of their own, so they
+           inherited @page's 0.8rem == 9.6pt and read as the loudest thing on the
+           page. 7.5pt matches the in-flow `.footer`, which is 10px == 7.5pt.
+           (It was 6pt against the 0.75-scaled 7.5px footer; SV-9694 restored
+           absolute sizes.) The 15mm bottom margin is fixed, so this cannot move
+           a page break. */
+        @bottom-left {
+            content: "5454545454544544";
+            font-size: 7.5pt;
+            color: #121926;
+        }
+
+        @bottom-center {
+            /* Size and colour ride on #pdf-footer-brand below. */
+            content: element(shopFooter);
+        }
+
+        @bottom-right {
+            content: "EST-S1-816 - Page " counter(page) " / " counter(pages);
+            font-size: 7.5pt;
+            color: #121926;
+        }
+    }
+
+    @page :first {
+        margin-top: 0;
+
+        /* The masthead itself is in flow on page one. */
+        @top-left {
+            content: none;
+        }
+
+        @top-right {
+            content: none;
+        }
+    }
+
+    /* SV-9678 / SV-9679: a page margin box does not inherit from `body`, so the
+       three running footers were painting at the initial #000000 - a colour
+       neither S12-R2's closed set nor S12-R5's print additions contain, and
+       darker than the document's own #121926 ink. Verified against WeasyPrint
+       69: a margin box with only `font-size` emits `0 0 0 rg`, and the same box
+       with `color` emits the colour asked for.
+
+       The centre box needs more than a colour. S12-R3 puts the accent on the
+       word "ShopView", and CSS generated content cannot style a SUBSTRING of
+       `content` - the on-screen footer gets it right only because it is real
+       markup, the brand word sitting in its own bold element. (Naming that
+       element in brackets here would strip the whole stylesheet out of the
+       preview - see StylesheetHasNoMarkupTokensGuardTest.) So the centre box
+       takes a running
+       element, which carries that markup into the margin box; the probe
+       confirms the `b` paints #257CFF while the rest stays #121926. */
+    #pdf-footer-brand {
+        position: running(shopFooter);
+        font-size: 7.5pt;
+        color: #121926;
+    }
+
+    #pdf-footer-brand b {
+        color: #257CFF; /* S12-R3 */
+        font-weight: 700;
+    }
+
+    @media print {
+        .page {
+            page-break-after: always;
+        }
+    }
+
+    /*
+     * S12-R2 closed palette (light printed document): ink #121926, body
+     * #364152, muted #697586, faint #9AA4B2, hairline #E3E8EF, row divider
+     * #EEF2F6, banner surface #F8FAFC, accent #257CFF, negative #B42318,
+     * paper #FFFFFF. Every element pins its own color and background: the
+     * in-app preview is injected straight into the app DOM (no iframe), so
+     * global app CSS and dark-mode styles cascade in (D8).
+     *
+     * S12-R4 typography: Inter ships in the WeasyPrint image (Phase 3) AND is
+     * loaded by the app (app.scss), so per v45 it applies identically on screen
+     * and in PDF output - the preview and the PDF wrap line for line. Do not
+     * reintroduce a system-sans-only preview; that scoping was reversed.
+     * Font weights are multiples of 100 ONLY - WeasyPrint drops anything
+     * else at CSS parse time and the element silently renders at 400
+     * (FontWeightGuardTest enforces this).
+     */
+    /* SV-9694 keeps this: it is not a type-scale rule. The preview injects this
+       HTML into the app DOM with no iframe, and app.scss opens with a universal
+       `font-family: Nunito Sans`. A matching declaration beats an inherited one
+       however specific the ancestor, so pinning the family on the sheet alone
+       styled exactly one element and left every descendant in Nunito Sans - which
+       Google serves at 300-700, so the 800-weight masthead silently clamped to
+       700. The descendant selector outweighs the universal one; the PDF, which
+       never sees app.scss, is unaffected. S12-R4 wants the preview to wrap line
+       for line with the PDF, which this is what delivers. */
+    .invoice-pdf-new,
+    .invoice-pdf-new * {
+        font-family: 'Inter', -apple-system, 'Segoe UI', Roboto, sans-serif;
+    }
+
+    .invoice-pdf-new {
+        /* Design Document `.sheet`. */
+        padding: 38px 42px 30px;
+        background-color: #FFFFFF;
+        width: 100%;
+        font-family: 'Inter', -apple-system, 'Segoe UI', Roboto, sans-serif;
+        color: #364152;
+        font-size: 14px;
+        line-height: 1.5;
+        font-weight: 400;
+    }
+
+    .fab-center-div {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        z-index: 1050;
+        margin-top: 32px;
+    }
+
+    .avoid-break-inside {
+        break-inside: avoid;
+    }
+
+    /* ===== Page-break grouping (SV-8914) =====
+       The row-level `avoid-break-inside` above stops a single row splitting, but
+       nothing stopped a LABEL being left behind at the foot of a page while the
+       rows it introduces rendered overleaf. That is what SV-8914 reported as
+       "half a line at the bottom of the page and the other half at the top of
+       the next" - and it recurred because the old print path let the BROWSER
+       repaginate the HTML, so it varied by machine and printer. Print now serves
+       the WeasyPrint PDF, which makes pagination deterministic; these rules make
+       it correct as well.
+
+       `break-after: avoid` is honoured by WeasyPrint 69 between in-flow siblings
+       (measured), which is exactly the label-to-content relationship here. It is
+       NOT honoured across a deferred float - see `.sum`. */
+    .sec-lbl {
+        break-after: avoid;
+    }
+
+    .scope-lbl,
+    .csec-head,
+    .job-top {
+        break-after: avoid;
+    }
+
+    /* S12-R10: "A work line and its own footer stay together on the same page."
+       `break-before: avoid` IS honoured (measured 3/3: without it the last row
+       stayed on the previous page while the footer moved on alone). */
+    .job-foot {
+        break-before: avoid;
+    }
+
+    /* SV-9671: the rule above is necessary but NOT sufficient, and it fails in a
+       way that looks like it is working. It only forbids a break IMMEDIATELY
+       before the footer, so the engine breaks one box earlier instead - between
+       the Labor chargesec and the Parts chargesec - and then carries the Parts
+       section AND the footer over together. `break-before: avoid` is honoured,
+       the footer does stay glued to the rows above it, and the line is still
+       split across two pages: header + Labor on one, "PARTS" + "Line total" on
+       the next. That is exactly what was reported.
+
+       Making the whole line atomic is what S12-R10 actually asks for. Measured
+       by sweeping the work section's start offset in 30px steps across 20
+       positions with the real stylesheet: 13 of 20 offsets split a line from
+       its footer without this rule (including head p9 -> foot p10, the reported
+       shape), 0 of 20 with it.
+
+       It costs nothing. Page counts are identical at every offset measured
+       (11/11, 11/11, 12/12, 12/12), so this does not trade a split line for an
+       extra page or a bigger mid-document gap.
+
+       Safe on a line taller than a page: `break-inside: avoid` is a hint an
+       engine drops when it cannot be honoured. A 90-part line still fragments
+       and still renders complete (14 pages, nothing lost) - it is not a way to
+       lose content. */
+    .job {
+        break-inside: avoid;
+    }
+
+    .flex-row {
+        display: flex;
+        flex-wrap: wrap;
+    }
+
+    .full-width-100 {
+        width: 100%;
+    }
+
+    .justify-content-end {
+        justify-content: flex-end;
+    }
+
+    /* ===== Masthead (S1, S12-R1): letterhead left, logo center, document
+       block right, over a 2px ink rule. No monetary figure (S1-R6). ===== */
+    /* Headings level, not blocks centred. `align-items: center` - which the Design
+       Document specifies, and which additionally nudges its own `.docid` down with an
+       inline `margin-top: 8px` - centres the letterhead and the document block against
+       each other, so the shop name and the `Invoice: ...` heading land 23pt apart and
+       the offset drifts with however many address lines the shop has. `flex-start`
+       puts both headings on the same line: measured 23.0pt -> 0.0pt on the staging
+       masthead, with every x-extent, the 2px rule and the addresses band below it
+       byte-identical. Safe by construction - this is a cross-axis property, so it
+       cannot perturb the intrinsic-width measurement this masthead is fragile about
+       (see `.shop-name` and `.doc-dates` below); measured to confirm rather than
+       assumed. `align-items: baseline` measures identically in WeasyPrint 69 and was
+       passed over as the less predictable of the two now that both headings are 18px.
+       DELIBERATE DIVERGENCE from the Design Document, taken with the user. */
+    /* SV-9849: `gap: 0`, with the 20px it used to declare carried instead as
+       margins on the two columns that always exist - `.mh-brand`'s
+       `margin-right` and `.mh-doc`'s `margin-left`. The pairing is the point,
+       and neither half stands alone.
+
+       In WeasyPrint 69 `gap` is COMPRESSIBLE: when the row over-subscribes, the
+       engine pays the overflow out of the gap instead of shrinking the
+       shrinkable item, contrary to spec. Measured with `gap: 20px` kept
+       alongside this ticket's `flex: 0 1 auto`, a 21-character shop name
+       collapses the logo-to-document clearance to 3.2px on an invoice and 2.6px
+       on an estimate - the logo visually touching the document block, which is
+       the reported defect from the other side. A margin on an item is not
+       compressible, so the same 40px carried as margins holds a hard
+       20.4 / 20.5px floor at EVERY name length swept (worst case at 30
+       characters, unchanged from before this ticket).
+
+       And `gap: 0` alone would leave a shop with no logo no declared spacing at
+       all - 0.0px between shop name and document block at a 60-character name -
+       because the middle column is not rendered for them. `.mh-brand` below
+       carries that measurement.
+
+       `justify-content: space-between` above is inert under the SV-9849 design
+       ruling, and is left in place deliberately rather than relied on: both
+       side columns now grow from a ZERO basis (`.mh-brand` and `.mh-doc`
+       below), so the row has no free space left for it to distribute. The logo
+       is centred by the fixed 210px centre column sitting between two equal
+       side columns, not by any distribution rule - see `.mh-logo`. */
+    .mh {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+        gap: 0;
+        padding-bottom: 12px;
+        border-bottom: 2px solid #121926;
+    }
+
+    /* SV-9849 (design ruling): `flex: 1 1 0`, `min-width: 0` and
+       `margin-right: 20px`. The first two are the mechanism that centres the
+       logo, and they are asserted as a PAIR with `.mh-doc`'s identical values
+       in MastheadShopNameWidthGuardTest - if either side column differs, the
+       logo goes off centre.
+
+       The ruling: the logo must land in the same place on every document a shop
+       prints, not in whatever space the other two columns leave. Measured
+       before this change it swung 276.5px across four invoice-number lengths -
+       89.5px right of centre at the shortest, 187px left at the longest.
+       Target: 0.0px off centre at every content length.
+
+       Equal `flex-grow` from a ZERO basis on both side columns derives that
+       with no hardcoded pixel constant. Each side column asks for nothing
+       intrinsically, so the row's free space is the content box less the logo
+       slot and the two 20px margins, and the two columns split it evenly: on
+       A4's 633.7px content box each resolves to (633.7 - 210 - 40) / 2 =
+       191.85px, which is the ruling's cap, and a fixed centre slot between two
+       equal side columns is on the page centre by construction. Deliberately
+       not `calc()` - unreliable in WeasyPrint 69 - and deliberately not CSS
+       grid: the ruling records that WeasyPrint 69 sizes three grid columns
+       evenly but then lets the right-hand one OVERRUN, printing the document
+       number 46px past the sheet edge.
+
+       `flex-basis: 0` rather than `auto` is the load-bearing half of the flex
+       shorthand. At `auto` each column is sized from an intrinsic-width
+       measurement first and only the remainder is distributed, so the two sides
+       end up unequal whenever their contents are - which is the swing above.
+       This REVERSES the `flex: 0 1 auto` this column carried two commits ago,
+       deliberately and under the ruling; the guard test that forbade a non-zero
+       `flex-grow` here has been replaced by the paired invariant.
+
+       `min-width: 0` (SV-9814) makes the column's width its ALLOTMENT rather
+       than a measurement, and it stays. WeasyPrint 69 gets the intrinsic width
+       wrong once wrapping is involved and then paints lines LONGER than the box
+       it settled on: measured at a 54-character shop name, box 312px against a
+       336px painted line, so the name ran 3.2pt into the logo slot - 43.8pt
+       with a long document number - and a 50-character single token painted
+       157px through the logo and into the document block. Without it the
+       equal-grow allotment above is not what the column is actually sized by.
+
+       `margin-right: 20px` is half of the incompressible spacing pair - `.mh`
+       above explains why a `gap` cannot do this job. It sits here rather than on
+       `.mh-logo` because that column only renders when the shop HAS a logo
+       (SV-9814 moved the `if data.logo` guard to wrap the whole column), so
+       spacing declared there gives a logo-less shop none at all: measured at a
+       60-character name, the shop name butts against the document block at
+       0.0px. Margins on opposite sides of adjacent flex items do not collapse,
+       so the pair does not double.
+
+       A shop with NO logo gets no caps and needs no extra rule: `.mh-logo` is
+       not rendered, so the two side columns split the row in half at 296.85px
+       each. */
+    .mh-brand {
+        flex: 1 1 0;
+        min-width: 0;
+        margin-right: 20px;
+    }
+
+    /* No letter-spacing here or on `.doc-label`, though the Design Document
+       sets -0.01em on both. WeasyPrint 69 under-measures the intrinsic width of
+       a letter-spaced line, so as a flex item this block was sized narrower than
+       the text it then painted and the shop name broke onto a second line with
+       ~320px of the masthead standing empty. Isolated: -0.01em wraps, -0.18px
+       (the same distance) wraps, +0.08em wraps, `0` and `normal` do not. At
+       18px the declaration is worth 0.18px per character - invisible - so it
+       goes rather than the layout. (0.14px when this was measured, at the 13.5px
+       the size carried before SV-9694 restored it to the design's 18px.) */
+    .shop-name {
+        font-size: 18px;
+        /* SV-9900: 700, down from 800 — matched with `.doc-label`, which is the
+           weight the pre-refresh document used on both headings. */
+        font-weight: 700;
+        color: #121926;
+        /* SV-9814: a shop name has no atomicity requirement - unlike the
+           document number, which must never break - and without this a single
+           long token has no break opportunity at all and paints straight
+           through the logo slot into the document block (measured: 157px of
+           overrun on a 50-character token). This is the shop name's own
+           guarantee that it stays inside its column; `.mh-brand`'s
+           `min-width: 0` above is the column's. */
+        overflow-wrap: break-word;
+    }
+
+    .shop-meta {
+        font-size: 12.5px;
+        line-height: 1.45;
+        color: #697586;
+        margin-top: 2.25px;
+    }
+
+    .shop-meta div {
+        color: #697586;
+    }
+
+    /* `align-self: center` is load-bearing, not decoration: it re-pins the logo to the
+       vertical centre `.mh`'s `align-items` used to give it. Without it `flex-start`
+       top-aligns the logo against the shop name (measured y 32.6pt -> 6.0pt) and no
+       text assertion would catch it - the logo is a background image, invisible to
+       pdftotext. Guarded by MastheadAlignmentGuardTest. */
+    /* SV-9849 (design ruling): `flex: 0 0 210px`, where this carried
+       `flex: 0 0 auto`. A FIXED centre column is the other half of the
+       equal-grow mechanism on `.mh-brand` and `.mh-doc` below: two equal side
+       columns around a fixed centre put that centre on the sheet's centre by
+       construction, at every content length. With `auto` the slot is sized by
+       the logo instead and the centre moves with it.
+
+       The ruling is that the logo must land in the same place on every document
+       a shop prints. Measured before this change it swung 276.5px across four
+       invoice-number lengths - 89.5px right of centre at the shortest, 187px
+       left of centre at the longest. Target, and what this achieves: 0.0px off
+       centre at every content length, with nothing else in the masthead able to
+       move it - not a long shop name, not a long document number.
+
+       210px, up from the 152px this slot carried, for two reasons. It is the
+       Design Document's own drawn logo width taken as an ABSOLUTE rather than
+       as the 24% share it represents on the design's 876px sheet (24% of A4's
+       633.7px content box is where the old 152px came from), so the slot is
+       33.1% of the sheet here against the design's 24%. And 152px under-fills
+       the slot's own height for a real wordmark: the reported Foothills mark is
+       1352x298, i.e. 4.54:1, which at a 152px ceiling renders 33.5px tall in a
+       46px slot, while at 210px it renders 46.3px and fills it. This basis must
+       stay equal to `.organization-logo-new`'s `max-width` below - the slot
+       reserves 210px either way, so a lower ceiling there just leaves part of
+       it empty. Both values are asserted in MastheadShopNameWidthGuardTest.
+
+       A shop with NO logo does not render this column at all (S1-R2), so it
+       gets no fixed centre and no caps: its two side columns simply split the
+       row in half at 296.85px each. That is correct and needs no extra rule. */
+    .mh-logo {
+        flex: 0 0 210px;
+        align-self: center;
+        text-align: center;
+    }
+
+    /* The Design Document's logo is a 557x110 wordmark drawn at 210px wide on
+       an 876px sheet - 24% of its content width - and it paints 41px tall. This
+       box carried that WIDTH but a 110px height - the wordmark's viewBox, not
+       its rendered height - which made the slot 2.7x too tall and the widest
+       column in the masthead. It pushed the letterhead and the document block
+       down to ~140px of intrinsic width each and broke all four masthead values
+       onto second lines. So the height is the design's RENDERED height rather
+       than its 24%-scaled 31px: a shop's logo is any aspect ratio, not a 5:1
+       wordmark, and `contain` would shrink a square one to 31px. 46px still
+       clears the letterhead block's own ~66px, so the logo never decides the
+       masthead's height. */
+    /* SV-9814: an image element sized by its own aspect ratio, not a fixed box
+       painting a background. Under `contain` a fixed box letterboxes any logo
+       that is not the design's wordmark ratio and reserves the remainder
+       anyway: measured on the reported shop, the logo painted 35.0 x 23.4px
+       inside the slot and ~106px of the masthead was held for nothing while the
+       shop name wrapped two columns to the left.
+
+       `width: auto` against a fixed height makes the image ask for the logo's
+       real width - WeasyPrint 69 sizes a replaced element from its intrinsic
+       aspect ratio - and `max-width` is the ceiling. `object-fit: contain`
+       preserves the ratio once `max-width` clamps a very wide logo, exactly as
+       `background-size: contain` did. `display: block` keeps the
+       inline-baseline gap out of the masthead's height, and `margin: 0 auto`
+       centres a logo narrower than the slot inside it.
+
+       Verified lossless against the background it replaces: identical painted
+       ink in both variants (wordmark 115.8 x 16.0px, square 36.5 x 24.3px).
+       Only the reservation changes, never the rendering.
+
+       SV-9849 (design ruling): `max-width: 210px`, up from 152px. It must stay
+       equal to `.mh-logo`'s flex basis above, because the slot reserves 210px
+       either way and a lower ceiling here just leaves part of it empty. 210px
+       is chosen so a 4.54:1 wordmark - the reported Foothills mark, 1352x298 -
+       renders 46.3px tall and fills the 46px slot height, instead of the 33.5px
+       it manages at 152px. Both 210px values are asserted in
+       MastheadShopNameWidthGuardTest so they cannot drift apart.
+
+       SV-9862: `height` 46px -> 88px, retuned to 72px by SV-9900 below. A
+       logo narrower than the crossover ratio is HEIGHT-bound in this slot, so
+       `max-width` never reaches it - SV-9849's 152px -> 210px widening left a
+       1:3 logo painting an unreadable 15 x 46px strip, and the reporter
+       confirmed it was identical at both widths. Height is the only lever,
+       and the ceiling is the largest value that does not break S1-R2a's "the
+       logo never decides how tall the masthead is".
+
+       The ticket called that rule a conflict and asked for a product decision.
+       It is not a conflict: the masthead is already taller than the logo slot
+       because the letterhead and the document column set its height, and 46px
+       was leaving most of the slot empty. Measured on real WeasyPrint 69
+       renders of ALL THREE documents, at the WORST case for this - a
+       name-only letterhead, the shortest the left column can be - against the
+       pre-SV-9900 masthead type (label 24px/800):
+
+           logo height   46px    72px    88px    100px
+           masthead      99.3    99.3    99.3    110.2   (CSS px, all three)
+
+       88px was free there because the 24px document label was holding the
+       masthead open at 99.3px. SV-9900 equalised the masthead type (label
+       24px/800 -> 18px/700, shop name 800 -> 700), the document column got
+       shorter, and the ceiling moved with it. Re-measured, same fixtures,
+       same three documents, SV-9900 type applied:
+
+           logo height   46px    60px    72px    73px    76px    88px
+           masthead      82.6    82.6    82.6    83.0    86.2    98.0
+
+       So under the equalised type 72px is the exact ceiling - at 73px the
+       LOGO is already deciding the masthead height, which is the one thing
+       S1-R2a forbids. 72px also held under the old type (99.3px, flat), so it
+       is the "whichever number holds under both" that Chris's SV-9862 ruling
+       conditioned the merge on. With a normal 5-line letterhead the masthead
+       is 135.1px and there is slack everywhere; the guarantee is taken
+       against the shortest letterhead because that is where it can fail.
+       A 1:3 logo goes 15 x 46 -> 24 x 71.
+
+       🔴 This is NOT only a tall-logo change. The width cap binds at
+       210/72 = 2.92:1, so every logo squarer than that grows (a square logo
+       goes 46 x 46 -> 72 x 72) while wide wordmarks past 4.57:1 are untouched,
+       still width-bound at 210px. That breadth is the trade, and it is the
+       same "reserved and empty" defect SV-9814 fixed one column to the left.
+
+       `MastheadLogoSlotExtension::SLOT_HEIGHT_PX` still reads 46.0 and is NOT
+       the live value - it belongs to the retired inline-label path that
+       SV-9849's ruling stopped calling. Do not "resync" the CSS to it. */
+    .organization-logo-new {
+        display: block;
+        width: auto;
+        height: 72px;
+        max-width: 210px;
+        object-fit: contain;
+        margin: 0 auto;
+    }
+
+    /* SV-9849 (design ruling): `flex: 1 1 0` and `min-width: 0`, matching
+       `.mh-brand` above exactly - equal grow from a ZERO basis on BOTH side
+       columns is what centres the logo, and if either side differs the logo
+       goes off centre. `.mh-brand` carries the measurements and the derivation.
+       `margin-left: 20px` is the other half of the incompressible 20px pair
+       that replaced `.mh`'s `gap`.
+
+       🔴 This REVERSES SV-9762's `flex: 0 0 auto`, deliberately and under the
+       ruling. SV-9762 pinned this column so the logo slot could not squeeze it:
+       at the 24px label S12-R4 asks for, a shrinkable column was squeezed until
+       `.doc-label`'s own `word-break: break-word` split the identifier
+       mid-token - a two-line document label for any shop with a logo, broken
+       after the type prefix.
+
+       The ruling takes the other side of that trade. A column pinned to its own
+       contents cannot coexist with a logo on the page centre, because the
+       centre then moves with the contents: measured, the logo swung 276.5px
+       across four document-number lengths. So the column now gets a GUARANTEED
+       half of the row's free space - 191.85px on A4, which it can neither
+       exceed nor be squeezed below - and the number is permitted to wrap inside
+       it instead, at its own hyphens first (`.doc-num` below). SV-9762's defect
+       was an unpredictable squeeze; this is a fixed allotment. */
+    .mh-doc {
+        flex: 1 1 0;
+        min-width: 0;
+        margin-left: 20px;
+        text-align: right;
+    }
+
+    .doc-label {
+        /* SV-9900: 18px / 700, equal to `.shop-name` above — the pre-refresh
+           relationship restored (one shared class set both headings at
+           19.2px/700 there). This REVERSES the 24px/800 that S12-R4 (revised
+           2026-09-04 under SV-9694) took from the Design Document's `.docid`
+           rule, deliberately: the two headings read as a matched pair, equal
+           type gives equal line boxes, and the first baselines then align
+           under `.mh`'s `align-items: flex-start` with no extra alignment
+           property — measured, the two headings' boxes are byte-identical
+           (y 25.28..41.61pt both sides) where 24px put the label's box 6pt
+           deeper than the name's. The label was also the only masthead element
+           the refresh made BIGGER; everything else came down. S12-R4's
+           amendment is Chris's, held until this lands (SV-9862 comment
+           thread).
+
+           The stacked number (`.doc-num` below) STAYS at 18px, measured rather
+           than assumed: "Estimate: EST-S2-32267" inline still exceeds the
+           191.85px the column is guaranteed, and WeasyPrint 69 breaks the
+           number after "EST-" — the SV-9762 defect back again. The invoice
+           variant looks like it fits inline, but at 201.4px painted from a
+           191.85px box that is the paint-wider-than-its-box overflow, not a
+           fit. `white-space: normal` here is what lets the label word and the
+           number sit on separate lines. */
+        font-size: 18px;
+        font-weight: 700;
+        color: #121926;
+        white-space: normal;
+    }
+
+    /* SV-9814: the document number takes its own line, and `word-break:
+       break-word` is gone from `.doc-label` above in favour of this. At 24px on
+       one line "Estimate: EST-S2-17358" measures 288px - 45% of the page's
+       whole 633.7px content box, against 33% of the 876px the Design Document
+       draws it on - and that single line is what starved the shop name. The
+       label word above the number returns 118px of it (288px -> 170px).
+       SV-9849's ruling keeps the stacked form for every document that has a
+       logo: "Invoice:" / "Estimate:" on its own line with the number
+       underneath.
+
+       Sanctioned by S12-R12: the Design Document binds appearance but not where
+       a line breaks, and a break is a defect only when it clips a value, pushes
+       a figure out of its column, orphans a row, or splits a work line from its
+       footer.
+
+       🔴 SV-9849 (design ruling): `overflow-wrap: break-word`, and the
+       `white-space: nowrap` this carried is REMOVED. That reverses SV-9762
+       deliberately. The note that used to stand here argued that
+       `word-break: normal` does NOT keep a number whole, because a document
+       number is full of hyphens - legal break opportunities - and WeasyPrint 69
+       duly split "EST-S2-17358" after "EST-" the moment the block could shrink.
+       Under the ruling that is now the DESIRED behaviour: the number is allowed
+       to wrap, and it breaks at its own hyphens first, so "INV-S2-104882"
+       splits at the separators a reader already uses.
+
+       `overflow-wrap: break-word` is the backstop for a fragment that still
+       will not fit, and it is what guarantees the number never crosses the
+       content-box edge whatever its length - including the 26-character worst
+       case, "INV-" plus a type letter, a `shop_id` (VARCHAR(10), no
+       application-level validation) and a `raw_number` (signed INT, so 10
+       digits).
+
+       The reason is the column. `.mh-doc` above is now a guaranteed 191.85px on
+       A4, so the number must either fit that width or wrap, and wrapping beats
+       overflowing the sheet. The alternative the ruling rejected - letting the
+       column grow to the number - is exactly what swung the logo 276.5px off
+       centre. */
+    .doc-num {
+        display: block;
+        overflow-wrap: break-word;
+    }
+
+    /* SV-9814: the number rejoins the label word on ONE line, and SV-9849's
+       design ruling changed the gate on `.mh` to a plain `not data.logo`.
+
+       A shop WITH a logo always gets the stacked form now. The ruling puts
+       "Invoice:" / "Estimate:" on its own line with the number underneath, and
+       at the 191.85px the side columns resolve to beside a 210px logo slot an
+       inline label would wrap badly anyway. A shop with NO logo keeps the
+       inline label it already has: `.mh-logo` is not rendered for it, so its
+       side columns are 296.85px each. `MastheadLogoSlotExtension` already
+       answered true for a null logo, so this preserves current behaviour there
+       rather than changing it - the class is left in place but SV-9849 stopped
+       wiring it into these templates.
+
+       The measurement that used to gate this no longer applies and is recorded
+       so nobody re-derives it: a one-line label used to pin `.mh-doc` to its
+       own max-content whatever the name did - 272.4px on an invoice, 288.2px on
+       an estimate, against 172px and 170px stacked - which took 100-118px off
+       the letterhead. At `flex: 1 1 0` the column cannot exceed its allotment
+       at all, so an inline label wraps inside it instead of spending the
+       letterhead's width. */
+    .mh--label-inline .doc-num {
+        display: inline;
+    }
+
+    /* Block with inline-block dates, where the Design Document has a flex row
+       with `gap: 10.5px`. Same class of WeasyPrint 69 defect as `.shop-name`
+       above, one level out: a nested flex container contributes far too little
+       to its flex-item parent's intrinsic width, so the date row was measured at
+       the document number's width and both dates wrapped under their labels.
+       `.mh-doc` already carries `text-align: right`, so dropping the flex
+       container costs nothing visually - `margin-left` reproduces the gap. */
+    .doc-dates {
+        margin-top: 6px;
+        font-size: 11.5px;
+        color: #697586;
+    }
+
+    /* SV-9814: one date per line, where the Design Document has them side by
+       side with a 10.5px gap.
+
+       When this was measured `.mh-doc` was `flex: 0 0 auto` and therefore sized
+       to its widest child, and on an INVOICE that child was this row: two dates
+       side by side measure 287.7px of max-content, wider than the document
+       label asks for at either line count. It set the whole column and the
+       letterhead got what was left, which is why the shop name wrapped on
+       invoices and not on estimates - an estimate carries one date (S10-R2), so
+       the row was never the widest child there.
+
+       Measured on the reported shop name "Staging Heavy Duty - 9919" (25
+       chars) with a 152px logo, invoice with two dates:
+
+         document column   275.8px -> 168.2px
+         letterhead        165.9px -> 273.5px
+         shop name         2 lines -> 1 line
+         single-line budget    17  ->  29 characters
+         masthead height   128.8px -> 112.5px
+
+       SV-9849 changed the reason without changing the rule, so the measurement
+       above is history rather than justification. The column is now
+       `flex: 1 1 0` and can no longer be sized by this row at all, so stacking
+       the dates buys the letterhead nothing. It is kept because the column it
+       lives in is a guaranteed 191.85px on A4 and the row has to fit that: at
+       275.8px of max-content the two dates were already breaking across THREE
+       ragged lines, and one per line is two clean ones. The Design Document
+       draws this row on an 876px sheet where both dates fit beside each other;
+       A4 gives the sheet 633.7px, so they do not. */
+    .doc-dates span {
+        display: block;
+        margin-left: 0;
+    }
+
+    /* SV-9814: where the one-line label applies, the dates rejoin one row too -
+       the Design Document's `.docdates` layout, restored in full. SV-9849 moved
+       the gate from "the logo paid for it" to "there is no logo", so this is
+       now the logo-less masthead's row, where the side columns are 296.85px
+       each rather than 191.85px and there is room for it.
+
+       Scoped to the modifier, never global: a shop WITH a logo keeps the
+       stacked dates above, because its document column is 191.85px and two
+       dates side by side measure 287.7px of max-content. Making this rule
+       global puts that row three ragged lines deep on every document that has
+       a logo. */
+    .mh--label-inline .doc-dates span {
+        display: inline-block;
+        margin-left: 10.5px;
+    }
+
+    .doc-dates b {
+        color: #121926;
+        font-weight: 600;
+    }
+
+    /* ===== Addresses (S2): bordered row; Bill To spans full width when no
+       Remit Payment To payee is present (S2-R3, binding layout rule). ===== */
+    .grp-lbl {
+        font-size: 10px;
+        font-weight: 700;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        color: #9AA4B2;
+        margin: 18px 0 8px;
+    }
+
+    .addr-row {
+        display: flex;
+        border: 1px solid #E3E8EF;
+        border-radius: 8px;
+        background-color: #FFFFFF;
+    }
+
+    .addr {
+        flex: 1 1 0;
+        padding: 11px 14px;
+        border-left: 1px solid #E3E8EF;
+    }
+
+    .addr:first-child {
+        border-left: none;
+    }
+
+    .addr-lbl {
+        font-size: 9.5px;
+        font-weight: 700;
+        letter-spacing: 0.06em;
+        text-transform: uppercase;
+        color: #121926;
+    }
+
+    .addr-co {
+        font-size: 13px;
+        font-weight: 700;
+        color: #121926;
+        margin-top: 4px;
+    }
+
+    .addr-ln {
+        font-size: 12px;
+        line-height: 1.45;
+        color: #364152;
+        margin-top: 1px;
+    }
+
+    /* ===== Asset band (S4) and order reference chips (S3) ===== */
+    .asset-band {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 4px 26px;
+        padding: 11px 2px;
+        border-top: 1px solid #E3E8EF;
+        border-bottom: 1px solid #E3E8EF;
+        margin-top: 16px;
+    }
+
+    .af-k {
+        font-size: 9px;
+        font-weight: 700;
+        letter-spacing: 0.04em;
+        text-transform: uppercase;
+        color: #9AA4B2;
+    }
+
+    .af-v {
+        font-size: 13px;
+        color: #121926;
+    }
+
+    /* The Design Document's `.af .v b` - the last 8 of the VIN. Pinned to 700
+       rather than left to the UA's `bolder` keyword, like every other `b` in this
+       stylesheet, because WeasyPrint only honours weights it can resolve to a
+       face it has (FontWeightGuardTest). */
+    .af-v b {
+        font-weight: 700;
+    }
+
+    /* The Design Document's `.tnum`, which it puts on the VIN value: tabular
+       figures so the digits of a VIN sit on a common width. */
+    .tnum {
+        font-variant-numeric: tabular-nums;
+    }
+
+    .order-chips {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+        margin-top: 14px;
+    }
+
+    .ochip {
+        /* WeasyPrint paints the border TWICE on an inline element that a flex
+           container blockifies, giving every chip a doubled outline ~11px apart.
+           Isolated: a bordered inline span in `display: flex` renders two rings;
+           the same span as block/inline-block, or a block element, renders one.
+
+           NOTE: no angle-bracket tag names anywhere in this stylesheet. The
+           preview sanitiser (DOMPurify) treats markup-looking text inside a
+           style element as an mXSS vector and drops the WHOLE stylesheet, so a
+           single angle-bracketed tag name in a comment renders the on-screen
+           unstyled plain text while the PDF stays perfect. Guarded by
+           StylesheetHasNoMarkupTokensGuardTest. Declaring a
+           display here is the smallest fix and keeps the Design Document's flex
+           row. Do not remove without re-rendering the chips. */
+        display: inline-block;
+        font-size: 11px;
+        color: #364152;
+        border: 1px solid #E3E8EF;
+        border-radius: 6px;
+        padding: 4px 10px;
+    }
+
+    .ochip b {
+        color: #121926;
+        font-weight: 700;
+    }
+
+    /* ===== Work section (S5, S12-R8/R9): opens with a 2px ink rule, 1px ink
+       rule between numbered jobs, #EEF2F6 row dividers inside a job. The row
+       divider is drawn as border-TOP on each subsequent charge row, so it
+       always follows a line's LAST adjustment row (S12-R8). ===== */
+    .sec-lbl {
+        font-size: 11px;
+        font-weight: 700;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        color: #697586;
+        margin: 24px 0 4px;
+    }
+
+    .job {
+        padding: 14px 0;
+        border-top: 1px solid #121926;
+    }
+
+    .job-first {
+        border-top-width: 2px;
+    }
+
+    .job-top {
+        display: flex;
+        align-items: baseline;
+        gap: 12px;
+    }
+
+    .job-no {
+        font-size: 18px;
+        font-weight: 800;
+        color: #257CFF; /* S12-R3: accent only here and on the footer "ShopView" */
+        min-width: 26px;
+    }
+
+    .job-ttl {
+        font-size: 16px;
+        font-weight: 700;
+        color: #121926;
+    }
+
+    .job-sub {
+        font-size: 12px;
+        color: #697586;
+        margin-left: 4px;
+    }
+
+    .scope-lbl {
+        font-size: 10px;
+        font-weight: 700;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        color: #364152;
+        margin: 10px 0 3px 38px;
+    }
+
+    .scope {
+        font-size: 12.5px;
+        line-height: 1.5;
+        color: #364152;
+        margin: 0 0 10px 38px;
+        max-width: 70ch;
+    }
+
+    .chargesec {
+        margin: 8px 0 0 38px;
+    }
+
+    /* SV-9694 keeps this, at the restored scale. A second charge group in the
+       same line - "Parts" under "Labor" - follows a charge row rather than the
+       scope paragraph, so it inherits only that row's 5px of padding and read as
+       butted against the row above. The Design Document's uniform 8px assumes the
+       scope block's own bottom margin is there; when it is not, replace it here.
+       14px, not the 10.5px this carried under the 0.75 rescale. */
+    .chargesec + .chargesec {
+        margin-top: 14px;
+    }
+
+    .csec-head {
+        font-size: 10.5px;
+        font-weight: 700;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        color: #121926;
+        padding-bottom: 4px;
+    }
+
+    .work-summary-table-new {
+        width: 100%;
+        border-collapse: collapse;
+        font-size: 13px;
+    }
+
+    /* SV-9694 keeps this: not a type-scale rule. Top, not the table default. The
+       Design Document lays a charge row out as a grid, whose items align to the
+       start of the row, so a description that wraps to two lines keeps its
+       qty/rate/amount level with its FIRST line. As a table the same row centred
+       them against the whole cell, dropping every figure half a line below the
+       description it belongs to. */
+    .work-summary-table-new td {
+        padding: 5px 0;
+        color: #364152;
+        vertical-align: top;
+    }
+
+    .work-summary-table-new .col-qty {
+        width: 56px;
+    }
+
+    .work-summary-table-new .col-rate {
+        width: 90px;
+    }
+
+    .work-summary-table-new .col-amt {
+        width: 96px;
+    }
+
+    /* Name the divider colour on the table AND its cells, not only on the rules
+       that draw a divider. WeasyPrint's UA stylesheet carries
+       `table, td, th { border-color: gray }` (html5_ua.css:102), so any future
+       border-width or border-style written here without a colour paints #808080 -
+       the off-palette rule SV-9708 reported under the description column, and the
+       only source of that colour reachable from this document. Naming it once
+       makes the whole class of defect unrepresentable rather than merely absent. */
+    .work-summary-table-new,
+    .work-summary-table-new td {
+        border-color: #EEF2F6;
+    }
+
+    .work-summary-table-new tr.crow td {
+        border-top: 1px solid #EEF2F6;
+    }
+
+    .work-summary-table-new tr:first-child td {
+        border-top: none;
+    }
+
+    /* S12-R8: the divider that CLOSES a charge group. The dividers between rows
+       are border-TOP on each subsequent row, so that they always fall after a
+       line's last adjustment row rather than between the line and its
+       adjustments. The side effect is that the last row of a group has nothing
+       under it: the "Parts" label butts straight up against the final labor row,
+       and the line footer against the final parts row - and a group of exactly
+       one row gets no rule at all. The Design Document rules off every charge
+       row, so close the group here. Matched on `tr` rather than `tr.crow` so a
+       line with adjustments is still closed after its LAST adjustment row. */
+    .work-summary-table-new tr:last-child td {
+        border-bottom: 1px solid #EEF2F6;
+    }
+
+    .rt {
+        text-align: right;
+        font-variant-numeric: tabular-nums;
+    }
+
+    .description-cell {
+        overflow: hidden;
+        text-overflow: ellipsis;
+        word-break: break-word;
+    }
+
+    .work-summary-table-new tr.adjrow td {
+        font-size: 11.5px;
+        color: #697586;
+        padding: 3px 0;
+    }
+
+    .work-summary-table-new tr.adjrow td.description-cell {
+        padding-left: 20px;
+    }
+
+    .job-foot {
+        display: flex;
+        align-items: baseline;
+        justify-content: flex-end;
+        gap: 22px;
+        margin-top: 8px;
+        padding-top: 6px;
+        font-size: 12.5px;
+        color: #697586;
+    }
+
+    .job-foot b {
+        color: #121926;
+        font-weight: 700;
+    }
+
+    .job-foot .ltot {
+        color: #121926;
+    }
+
+    .job-foot .ltot b {
+        font-size: 15px;
+    }
+
+    /* S5-R9: the vertical divider before "Line total" only when a Labor or
+       Parts figure is visible before it. */
+    .job-foot .ltot.with-divider {
+        /* Same WeasyPrint trap as `.ochip`, found while verifying SV-9773: this
+           is a bordered INLINE element inside a `display: flex` row, and
+           WeasyPrint paints the border of a blockified inline element twice —
+           so the single 2px divider rendered as TWO bars. Measured out of the
+           vector output: 1.5pt rules at x=403.7 (h=16.86) and x=420.1
+           (h=9.36), the taller being the block box and the shorter the inline
+           box. Declaring a display collapses it to one.
+
+           `display` looks redundant on a flex item, which is why it is guarded
+           by a test — removing it silently restores the doubled divider. Do not
+           remove without re-rendering the footer and counting the rules. */
+        display: inline-block;
+        padding-left: 20px;
+        border-left: 2px solid #121926;
+    }
+
+    .job.declined {
+        color: #697586;
+    }
+
+    .job.declined .job-ttl {
+        color: #364152;
+    }
+
+    /* Parts sale (S13-R2): flat Parts body, no job blocks. */
+    .ps-body {
+        border-top: 2px solid #121926;
+        padding-top: 14px;
+        margin-top: 4px;
+    }
+
+    /* ===== "Summary" break bar (S7-R1) and two-column tail (S12-R1):
+       disclaimer left, totals right. ===== */
+    .b-break {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        margin: 26px 0 16px;
+        /* Keeps the bar with the totals it introduces. This is HALF of the rule -
+           it does nothing on its own unless .tail::before is also present. Read
+           that rule before touching either. SV-9767. */
+        break-after: avoid;
+    }
+
+    .b-break-line {
+        flex: 1 1 0;
+        height: 2px;
+        background-color: #121926;
+        /* Same trap as `.ochip`: WeasyPrint paints an inline element that a flex
+           container blockifies TWICE. On the bordered chips that showed up as a
+           doubled outline; on these EMPTY rule spans the second paint uses the
+           inline box instead of the 2px block, i.e. a zero-width, line-height-tall
+           sliver hanging off each rule's left edge - the vertical ticks either side
+           of "Summary". Declaring a display is the same one-line fix and keeps the
+           Design Document's flex row. Do not remove without re-rendering the bar. */
+        display: block;
+    }
+
+    .b-break-label {
+        font-size: 10px;
+        font-weight: 700;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        color: #121926;
+    }
+
+    /* Block, not flex. A flex container is laid out atomically by WeasyPrint, so the
+       tall disclaimer used to be welded to the totals and shoved both to the next
+       page, stranding ~244pt of white. As a block the disclaimer is normal flow and
+       wraps beside the floated totals, fragmenting freely across pages. */
+    .tail {
+        display: block;
+    }
+
+    /* SV-9767 - the other half of `.b-break { break-after: avoid }`, and the
+       reason the orphaning survived the first fix.
+
+       `break-after: avoid` asks the fragmenter to move the break to an EARLIER
+       boundary. .b-break is the first child of .tail, so the only earlier
+       boundary is the one before .tail itself, and WeasyPrint does not propagate
+       an avoid upward into the parent - it gives up and breaks after the bar
+       anyway. The bar then labels an empty strip while its totals print
+       overleaf, which is exactly what SV-9767 reports.
+
+       An empty first child gives the fragmenter a boundary it CAN use: the break
+       lands between this box and the bar, so `avoid` pushes the bar onto the
+       next page with the totals. The box has no content, no height, no
+       background and no border, so it paints nothing - it only exists to be a
+       break opportunity. Do not "tidy" it away.
+
+       Measured on WeasyPrint 69 by sweeping the tail's start offset across a
+       full page (0..1100 in 50px steps) and reading the page index of the bar
+       and of .sum off the box tree:
+
+         before  orphaned at 7 of 23 offsets (the 680..960 band)
+         after   0 of 23, on four disclaimer shapes - normal, 5x long, absent,
+                 and a single line - with the page count and every visible box
+                 position unchanged.
+
+       Rejected, all measured, do not re-try:
+         `break-inside: avoid` on .tail       fixes it, but welds the disclaimer
+                                              in and costs an extra page once the
+                                              disclaimer is long
+         `break-inside: avoid` on .b-break    no effect
+         `break-before: avoid` on .disc/.sum  no effect
+         hoisting the bar above .tail         orphans at EVERY offset - this was
+                                              the arrangement before the bar was
+                                              moved inside .tail */
+    .tail::before {
+        content: "";
+        display: block;
+    }
+
+    /* .sum is floated, i.e. out of flow: without this the tail box collapses and the
+       signature row rides up over the totals. */
+    .tail::after {
+        content: "";
+        display: block;
+        clear: both;
+    }
+
+    /* Starts level with the first totals row, not with the Summary bar: the bar now
+       lives in the right-hand column, so without this the rule cuts across the same
+       band as the disclaimer's opening line. Height of .b-break + its 10px margin. */
+    .disc {
+        font-size: 11.5px;
+        line-height: 1.5;
+        color: #697586;
+        white-space: pre-line;
+    }
+
+    /* Floated right so the disclaimer wraps beside it, and a flex container so it is
+       laid out ATOMICALLY - measured, `display: flex` is the only reliable way to stop
+       WeasyPrint fragmenting this box; `break-inside: avoid` does NOT hold on a float
+       and let the balance box strand on the next page.
+
+       The Design Document specifies `display: grid; grid-template-columns: 1fr 340px`
+       here. That is deliberately NOT used: WeasyPrint fragments a grid container, so
+       the totals split - measured, Subtotal on one page and the balance box on the
+       next. Adding `break-inside: avoid` to the grid item stops the split but then
+       re-welds the row to the disclaimer and strands ~244pt. The float is the only
+       arrangement that keeps the totals whole AND lets the disclaimer flow. */
+    .sum {
+        float: right;
+        display: flex;
+        flex-direction: column;
+        width: 340px;
+        max-width: 340px;
+        margin-left: 26px;
+    }
+
+    /* SV-9825: the totals column must not end flush against the bottom of the
+       page. Reported from staging on work order S2-10951 - the BALANCE box printed hard
+       against the footer band with no gap under it, and the signature block was
+       pushed onto a page of its own behind it.
+
+       The sheet carries its own bottom gutter (`.invoice-pdf-new` is
+       `padding: 38px 42px 30px`), but WeasyPrint applies a fragmented box's
+       bottom padding to its LAST fragment only, so a page that continues has no
+       gutter at all and content runs to the raw content-box edge.
+
+       This gutter has to be CONTENT, not padding or margin. WeasyPrint decides
+       whether a float fits with `position_y + height` (block.py
+       `_out_of_flow_layout`) - the margin-box top plus the CONTENT height - so
+       `padding-bottom` and `margin-bottom` on `.sum` are invisible to that test.
+       Both were measured: byte-identical output to no rule at all. A flex item
+       is inside the content height, so it is the only form the fragmenter reads.
+
+       30px is the sheet's own bottom padding, i.e. the gutter the design already
+       specifies; the totals column simply stops eating it.
+
+       Measured over 87 real documents (42 invoices + 42 estimates from one shop,
+       plus the reported three, rendered through /api/invoices/preview in the
+       production WeasyPrint 69 image, PDF flow):
+
+         clearance under the BALANCE box   min 0.2px -> min 39.9px
+         documents with under 30px of it   6 -> 0
+         signature alone on a closing page 16 -> 12
+         total pages                       360 -> 362
+
+       The two extra pages are the part-sale pair P-175 / P-217, one-page documents whose
+       signature block already ended within a few px of the bottom: a taller float
+       narrows the wrap region, so the disclaimer gains a line or two and pushes
+       them over. That cost is the same at 12px, 18px and 24px - it comes from the
+       reflow, not from the size - while only 30px clears every tight gutter, so
+       there is no cheaper setting to buy. Do not shrink it without re-measuring
+       the corpus. */
+    .sum::after {
+        content: "";
+        display: block;
+        flex: 0 0 auto;
+        height: 30px;
+    }
+
+    /* Legacy hook classes (totals-new / totals-position-new /
+       custom-col-md-width-14) kept on every summary row: the E2E document
+       readers (finance.page.ts, wo-document-adjustments.spec.ts) anchor on
+       this exact class pair. Restyled, never renamed. */
+    .totals-new {
+        display: flex;
+        justify-content: space-between;
+        font-size: 14px;
+        padding: 5px 0;
+        color: #364152;
+    }
+
+    .totals-position-new {
+        flex: 1 1 auto;
+        text-align: left;
+        color: inherit;
+    }
+
+    .custom-col-md-width-14 {
+        flex: 0 0 auto;
+        text-align: right;
+        font-variant-numeric: tabular-nums;
+        color: inherit;
+    }
+
+    .adj-head {
+        padding-bottom: 1px;
+    }
+
+    .adj-item {
+        font-size: 12.5px;
+        color: #697586;
+        padding: 3px 0 3px 18px;
+    }
+
+    .row-strong {
+        border-top: 1px solid #121926;
+        border-bottom: 1px solid #E3E8EF;
+        font-weight: 700;
+        color: #121926;
+    }
+
+    /* Boxed headline figure (S1-R6): end of the totals block, never in the
+       masthead. */
+    .bal {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-top: 10px;
+        padding: 14px 18px;
+        border: 2px solid #121926;
+        border-radius: 8px;
+        background-color: #FFFFFF;
+    }
+
+    .bal .k {
+        font-size: 12px;
+        font-weight: 800;
+        letter-spacing: 0.04em;
+        text-transform: uppercase;
+        color: #121926;
+    }
+
+    .bal .v {
+        font-size: 30px;
+        font-weight: 800;
+        color: #121926;
+        letter-spacing: -0.02em;
+    }
+
+    .text-grey-80 {
+        color: #697586;
+    }
+
+    /* ===== Signature area (S9-R2) and footer (S9-R4) ===== */
+    .auth {
+        margin-top: 24px;
+        padding-top: 16px;
+        border-top: 1px solid #E3E8EF;
+    }
+
+    .sign {
+        display: flex;
+        gap: 26px;
+    }
+
+    .sign-c {
+        flex: 1 1 0;
+    }
+
+    .sign-line {
+        border-bottom: 1px solid #121926;
+        height: 24px;
+    }
+
+    .sign-cap {
+        font-size: 10px;
+        letter-spacing: 0.04em;
+        text-transform: uppercase;
+        color: #9AA4B2;
+        margin-top: 5px;
+    }
+
+    .footer {
+        display: flex;
+        justify-content: space-between;
+        margin-top: 22px;
+        padding-top: 12px;
+        border-top: 1px solid #E3E8EF;
+        font-size: 10px;
+        color: #697586;
+    }
+
+    .footer b {
+        color: #257CFF; /* S12-R3: the accent's second (and last) allowed use */
+        font-weight: 700;
+    }
+
+    /* S12-R5 print ink floor - WeasyPrint renders with print media, so the
+       PDF gets these; the on-screen preview keeps the screen palette. No text
+       lighter than #4B5565; text under 10px no lighter than #364152; hairlines
+       no lighter than #CDD5DF.
+
+       The charge-row dividers are ON that hairline list. This has now been
+       decided twice in OPPOSITE directions, so read the whole note before
+       flipping it a third time.
+
+       The Design Document draws the divider as
+       `.crow { border-bottom: 1px solid var(--g100) }` and defines --g100 twice:
+       #EEF2F6 in `:root` / `[data-theme=light]`, #CDD5DF under its optional
+       `.wrap.bw` toggle. Both are "the design", so the Design Document cannot
+       settle the value and S12-R5 does. SV-9708 picked #EEF2F6 for the S12-R4
+       preview match; SV-9823 - same reporter, next day - rejected the result,
+       because the floor exists for a physical reason the preview match does not
+       outweigh: weak printers drop ink lighter than #CDD5DF, and a divider that
+       does not print at all is worse than one that does not match the screen.
+       credit-invoice already read it this way (its S11-R4 `.pay-table` carries
+       the same #EEF2F6 design divider and darkens it here), so the exemption was
+       this document's anomaly rather than the house rule.
+
+       The STRUCTURAL half of SV-9708 is untouched and independent of the colour:
+       the charge table and its cells name their border colour explicitly, so
+       WeasyPrint's UA `table, td, th { border-color: gray }` can never paint the
+       off-palette #808080 that ticket actually reported. Only the print value
+       flipped. Guarded by ChargeRowDividerGuardTest. */
+    @media print {
+        .shop-meta,
+        .shop-meta div,
+        .doc-dates,
+        .job-sub,
+        .job-foot,
+        .sec-lbl,
+        .disc,
+        .adj-item,
+        .footer,
+        .text-grey-80,
+        .job.declined,
+        .work-summary-table-new tr.adjrow td {
+            color: #4B5565;
+        }
+
+        .af-k,
+        .addr-lbl,
+        .grp-lbl,
+        .sign-cap {
+            color: #364152;
+        }
+
+        .addr-row,
+        .addr,
+        .asset-band,
+        .ochip,
+        .auth,
+        .footer {
+            border-color: #CDD5DF;
+        }
+
+        /* SV-9823, three rules because the screen value is declared three times
+           and each declaration has to be answered in kind. First the table/cell
+           fallback - the print twin of the base rule that keeps an uncoloured
+           border off WeasyPrint's UA gray, repeated here because otherwise a
+           border added without a colour would paint the SCREEN #EEF2F6 into the
+           PDF. Then the two that actually draw a divider, which outrank that
+           fallback on specificity and so would keep #EEF2F6 without their own
+           override: the between-row divider (border-TOP on each following charge
+           row) and the one closing a charge group (border-BOTTOM on its last). */
+        .work-summary-table-new,
+        .work-summary-table-new td {
+            border-color: #CDD5DF;
+        }
+
+        .work-summary-table-new tr.crow td {
+            border-top-color: #CDD5DF;
+        }
+
+        .work-summary-table-new tr:last-child td {
+            border-bottom-color: #CDD5DF;
+        }
+
+        .row-strong {
+            border-bottom-color: #CDD5DF;
+        }
+    }
+    /* ===== SV-9870: print-only paper reduction =====
+
+       PRINT OUTPUT ONLY. Nothing in this block touches the on-screen document.
+       This stylesheet serves two consumers: the SPA preview, which injects it
+       into the app DOM as screen media, and the WeasyPrint PDF, which reads it
+       as print media. The preview keeps today's spacing deliberately - the
+       print and screen views diverge on purpose. Do not "restore consistency"
+       by hoisting any declaration below into the base rules, and do not answer
+       a preview complaint by editing this block.
+
+       It is the LAST block in the sheet on purpose: every selector here also
+       exists in the base rules, and several exist in the SV-9823 ink-floor
+       block above, so source order at equal specificity is what makes these
+       win. Two of them - the charge-row dividers - need their base selector
+       repeated verbatim rather than a shorter one, because the base rules
+       outrank a shorter selector on specificity. This is a second, later print
+       block; the SV-9823 one is untouched.
+
+       Measured by Chris Ward on a real document corpus, each change on its own
+       and then cumulatively: 3.16 sheets per document before, 2.21 after. That
+       recovers 97% of the paper the SV-8218 refresh added. The per-change
+       deltas are recorded on the rules that produce them.
+
+       Four constraints were measured with their alternatives and the
+       alternatives rejected. Do not re-derive them from reading the CSS:
+
+       1. `.sum` keeps `float: right`. Taking the Summary column out of the
+          float so it could fragment across a page was measured and made the
+          4-to-9-line bucket WORSE. Only its width narrows here (change 4).
+       2. `.job-top`'s `break-after: avoid` and `.job-foot`'s `break-before:
+          avoid` both stay. Change 2 lets a work LINE split, which is the single
+          largest saving in the ticket; those two rules are what stop that
+          becoming an orphaned label or a footer separated from its rows. Both
+          are asserted in PageBreakGroupingGuardTest.
+       3. The side margin never goes under 48px in total. The 18px of sheet
+          padding in change 11 plus the 30px page margin is exactly 48px. The
+          design's own 42px padding gave an IDENTICAL sheet count, so there is
+          no paper to buy below 48px and going under it breaches the
+          printer-safe floor.
+       4. `.disc`'s font size is what makes change 3 pay. Compacting the
+          signature block on its own moved the sheet count not at all - the
+          disclaimer paragraph is the tall box in that group.
+
+       No angle-bracketed tag name and no Twig delimiter appears anywhere in
+       this block or its comments. DOMPurify drops the WHOLE style element when
+       it sees markup inside one, so a tag name written here would un-style the
+       very preview this block is careful not to touch
+       (StylesheetHasNoMarkupTokensGuardTest). */
+    @media print {
+        /* Changes 1, 6 and 11 all land on the sheet, so its final state is
+           declared once. Vertical padding 38px/30px -> 24px/20px (change 1),
+           body type 14px/1.5 -> 13px/1.4 (change 6), side padding 42px -> 18px
+           (change 11, and see constraint 3 above). */
+        .invoice-pdf-new {
+            padding: 24px 18px 20px;
+            font-size: 13px;
+            line-height: 1.4;
+        }
+
+        /* Change 1 - vertical values only, nothing horizontal moves. Measured
+           3.16 -> 3.02 sheets on its own. */
+        .mh {
+            padding-bottom: 8px;
+        }
+
+        .grp-lbl {
+            margin: 12px 0 5px;
+        }
+
+        .addr {
+            padding: 8px 14px;
+        }
+
+        .asset-band {
+            padding: 8px 2px;
+            margin-top: 10px;
+        }
+
+        .order-chips {
+            margin-top: 10px;
+        }
+
+        .sec-lbl {
+            margin: 14px 0 3px;
+        }
+
+        /* Change 2 - the largest single saving in the ticket, 3.02 -> 2.75
+           sheets, and it REVERSES SV-9671's atomic work line. SV-9671 made a
+           line atomic because a break was landing between its Labor and Parts
+           charge sections and carrying the footer over alone, splitting the
+           line's header from its total. Under SV-9870 a line may split, and the
+           two rules that constrain HOW it splits are the ones named in
+           constraint 2 above: `.job-top` still forbids a break after the
+           header, so a label is never orphaned, and `.job-foot` still forbids
+           one immediately before the footer, so the total never separates from
+           the rows above it. Both are declared in the base rules and are
+           untouched. The padding here is change 1's 14px -> 9px. */
+        .job {
+            padding: 9px 0;
+            break-inside: auto;
+        }
+
+        /* Change 5 - the Why runs on from the What. The header stops being a
+           flex row and becomes a block with the number lifted out of flow into
+           the 38px indent the scope note and the charge sections already use,
+           so the title and its sub-line share a line instead of taking one
+           each. `.job-top` keeps its `break-after: avoid` from the base rules;
+           only its box model changes here. The 38px indent is the same distance
+           the base rules produce from `.job-no`'s 26px min-width plus the row's
+           12px gap, so a declined entry - which renders an empty number span so
+           its title lines up with the numbered work above (S6-R4) - keeps that
+           alignment. */
+        .job-top {
+            display: block;
+            position: relative;
+            padding-left: 38px;
+        }
+
+        .job-no {
+            position: absolute;
+            left: 0;
+            top: 0;
+        }
+
+        .job-ttl {
+            display: inline;
+            font-size: 15px;
+        }
+
+        .job-sub {
+            display: inline;
+            margin: 0 0 0 6px;
+            font-size: 11.5px;
+            line-height: 1.4;
+        }
+
+        .scope-lbl {
+            margin: 6px 0 2px 38px;
+        }
+
+        /* Change 1's margin, change 6's type, and change 10: the story text
+           runs the full column width. `max-width: none` rather than deleting
+           the base declaration, because the base rule is the screen preview's
+           and keeps its 70ch measure. Change 10 measured 2.29 -> 2.22 sheets. */
+        .scope {
+            margin: 0 0 7px 38px;
+            font-size: 11.5px;
+            line-height: 1.4;
+            max-width: none;
+        }
+
+        .chargesec {
+            margin: 6px 0 0 38px;
+        }
+
+        .chargesec + .chargesec {
+            margin-top: 9px;
+        }
+
+        .csec-head {
+            padding-bottom: 3px;
+        }
+
+        /* Change 6. */
+        .work-summary-table-new {
+            font-size: 12px;
+        }
+
+        /* Change 7 - the charge-row dividers are not drawn in print, which
+           REVERSES SV-9708 (which chose the divider's colour) and SV-9823
+           (which darkened it to the print ink floor) FOR THE ROW DIVIDERS ONLY.
+           The section rules and the Summary bar are untouched, and so are the
+           colour declarations in the SV-9823 block above - a zero-width border
+           paints nothing whatever colour it names, and those declarations are
+           still live for the other documents that share them. All three
+           selectors are repeated verbatim from the base rules: the two row
+           rules outrank a shorter selector on specificity, so zeroing only the
+           cell rule would leave both dividers drawn. Changes 5 to 8 together
+           measured 2.59 -> 2.29 sheets. The cell padding is change 1's
+           5px -> 3px. */
+        .work-summary-table-new td {
+            padding: 3px 0;
+            border-top: 0;
+            border-bottom: 0;
+        }
+
+        .work-summary-table-new tr.crow td {
+            border-top: 0;
+            border-bottom: 0;
+        }
+
+        .work-summary-table-new tr:last-child td {
+            border-top: 0;
+            border-bottom: 0;
+        }
+
+        .work-summary-table-new tr.adjrow td {
+            padding: 2px 0;
+        }
+
+        .job-foot {
+            margin-top: 5px;
+            padding-top: 5px;
+        }
+
+        .ps-body {
+            padding-top: 9px;
+        }
+
+        /* Change 8 - the gap above the Summary bar, 26px/16px on screen and
+           16px/10px after change 1, finally 6px/8px. This is the final value
+           and it supersedes change 1's; the bar keeps its `break-after: avoid`
+           and `.tail::before` keeps the boundary that makes it actionable
+           (SV-9767), both from the base rules. */
+        .b-break {
+            margin: 6px 0 8px;
+        }
+
+        /* Change 4 - the Summary column narrows from 340px to 280px. Layout
+           only, no sheet change on its own; it buys the disclaimer a wider wrap
+           region beside the float. `float: right` and `display: flex` stay in
+           the base rules and must not be answered here - constraint 1 above
+           records that unfloating this column to let it fragment was measured
+           and made the 4-to-9-line bucket worse. */
+        .sum {
+            width: 280px;
+            max-width: 280px;
+        }
+
+        /* Change 1, and it partially answers SV-9825. That ticket sized this
+           gutter at 30px because that was the sheet's own bottom padding, and
+           the gutter has to be CONTENT rather than padding for WeasyPrint to
+           read it when deciding whether the float fits. Both halves still hold;
+           only the number moves, and it moves because the sheet's own bottom
+           padding is now 20px in print. It is compacted, never removed - at
+           zero the BALANCE box prints flush against the footer band, which is
+           what SV-9825 reported. */
+        .sum::after {
+            height: 18px;
+        }
+
+        .bal {
+            padding: 10px 18px;
+        }
+
+        .totals-new {
+            padding: 3px 0;
+        }
+
+        .adj-item {
+            padding: 2px 0 2px 18px;
+        }
+
+        /* Change 3 - the disclaimer and the signature block, 2.75 -> 2.59
+           sheets. Constraint 4 above: `.disc`'s font size is what carries this
+           change; the signature compaction on its own moved nothing.
+
+           RESOLVED by S12-R5b, added 2026-09-09 - the disclaimer, and nothing
+           else, is exempt from S12-R5's sub-10px ink floor. It stays 9px in
+           #4B5565, so 🔴 do NOT "fix" this by darkening it to #364152 the way
+           every other sub-10px element is (`.af-k` 9px, `.addr-lbl` 9.5px,
+           `.grp-lbl` and `.sign-cap` 10px, all #364152 and all still bound by
+           the floor).
+
+           The exemption's three reasons, since a lone lighter value invites a
+           tidy-up: this paragraph was measured at that size AND that colour
+           across the 28 invoices every paper figure in SV-9870 rests on, so
+           darkening it now would move the measurement out from under the
+           numbers; the pre-refresh document ran the same text at about 8.6px,
+           so sub-10px disclaimer text is what is being restored rather than a
+           new departure; and the floor exists so weak printers do not drop
+           text, which #4B5565 at 9px does not risk. */
+        .disc {
+            font-size: 9px;
+            line-height: 1.35;
+        }
+
+        .sign-line {
+            height: 16px;
+        }
+
+        .sign-cap {
+            margin-top: 3px;
+        }
+
+        /* Changes 1 and 3 both land on these two, so only the final values are
+           declared: `.auth` 24px/16px -> 8px/6px, `.footer` 22px/12px ->
+           8px/6px. */
+        .auth {
+            margin-top: 8px;
+            padding-top: 6px;
+        }
+
+        .footer {
+            margin-top: 8px;
+            padding-top: 6px;
+        }
+    }
+
+    /* ===== SV-9890: print-only rule weight and headline figure =====
+
+       PRINT OUTPUT ONLY, and the THIRD print block in this sheet. It is last
+       on purpose, for the same reason the SV-9870 block above it is: every
+       selector here also exists in the base rules and several exist in the two
+       print blocks above, so source order at equal specificity is what makes
+       these win. Nothing here touches the on-screen document, and a preview
+       complaint must not be answered by editing this block.
+
+       WHY THE DESIGN'S OWN NUMBERS PRINT TOO HEAVY. The Design Document draws
+       the structural rules at 2px and 1px in the near-black ink and draws the
+       boxed headline figure at 30px, and this template reproduced every one of
+       those exactly. Those values are still right - on the sheet the design is
+       drawn on. That sheet is 960px wide with 42px of side padding, so 876px
+       of content; A4 at this template's print padding is 698px. A length
+       transplanted 1:1 therefore prints about a quarter heavier, relative to
+       the page, than the design shows, and at 0.75pt per CSS pixel (S12-R5a)
+       the 2px rules land at 1.5pt and the figure at 22.5pt while the rest of
+       the sheet sits between 8pt and 12pt. Rescaling the lengths the spec
+       leaves free is the whole of this ticket.
+
+       WHAT THE SPEC PINS, and therefore what is NOT touched here. S12-R9 pins
+       label SIZES, so the BALANCE label stays 12px. S12-R2 pins the palette
+       and S12-R5 pins the print ink floor, so no colour moves. The spec pins
+       neither the weight of any rule nor the size of the headline figure, so
+       those two are exactly what this block changes. S12-R5 is a floor for
+       weak printers and not a target, so a rule may be thinner and still meet
+       it.
+
+       🔴 THE INK FLOOR IS NOT A DEFECT AND MUST NOT BE FLIPPED A FOURTH TIME.
+       SV-9890 also reported that print raises the design's hairlines to
+       #CDD5DF instead of keeping #E3E8EF and #EEF2F6. The Design Document does
+       that itself - its own print block redefines the two tokens those
+       hairlines are drawn from, to exactly the value this template already
+       prints. So the printed hairlines match the design, the SV-9823 block
+       above stays as it is, and the charge-row dividers SV-9870 removed from
+       print stay removed. Read the SV-9823 note before reopening any of this.
+
+       Measured on a real WeasyPrint 69 render of a four-line document, before
+       and after: masthead rule 1.5pt to 0.75pt, first work-line rule 1.5pt to
+       0.75pt, between-line and strong-row rules 0.75pt to 0.56pt, and the
+       headline figure 22.5pt to 18pt. Sheet count unchanged, and 0.56pt
+       renders solidly - it was swept against 0.375pt and 0.75pt on a 300dpi
+       raster before being chosen. */
+    @media print {
+        .mh {
+            border-bottom-width: 1px;
+        }
+
+        /* `.job-first` is the same specificity as `.job`, so it has to follow
+           it here exactly as it does in the base rules. */
+        .job {
+            border-top-width: 0.75px;
+        }
+
+        .job-first {
+            border-top-width: 1px;
+        }
+
+        .ps-body {
+            border-top-width: 1px;
+        }
+
+        /* Repeated verbatim from the base rule: a shorter selector loses to it
+           on specificity and the divider would keep its 2px. */
+        .job-foot .ltot.with-divider {
+            border-left-width: 1px;
+        }
+
+        .b-break-line {
+            height: 1px;
+        }
+
+        .row-strong {
+            border-top-width: 0.75px;
+        }
+
+        .sign-line {
+            border-bottom-width: 0.75px;
+        }
+
+        /* The figure also OVERRAN its own box, which is the objective half of
+           this defect. In print `.sum` is 280px, so the box has roughly 242px
+           of interior, and BALANCE plus a five-figure amount at 30px does not
+           fit in it. Rendered, $12,345.67 touches both borders at 30px and
+           $123,456.78 runs straight through them. 24px with 14px of side
+           padding clears $123,456.78 with room to spare, and that pair of
+           measurements is what sets both numbers. SV-9870's vertical 10px is
+           untouched, so its paper figures hold. */
+        .bal {
+            padding: 10px 14px;
+            border-width: 1px;
+        }
+
+        .bal .v {
+            font-size: 24px;
+        }
+    }
+
+</style>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<div class="page">
+    <section class="invoice-pdf-new">
+        <div class="fab-center-div"></div>
+                
+                <div class="mh">
+            <div class="mh-brand">
+                <div class="shop-name">Truck Hill 1</div>
+                <div class="shop-meta">
+                                            <div>Dubai Uae</div>
+                                                                                                                            <div>Ajman, Abu Dhabi</div>
+                                                                <div>0000</div>
+                                                                <div>97154545444</div>
+                                    </div>
+            </div>
+                                        <div class="mh-logo">
+                    <img src="data:image/png;base64,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0KShF0OsNyKlocgm1a1I8T2SQtbLY40vnpsN1J6P3jn0scPtAWMFgrRFarGdKrWUqpYs7th1t00TWVxZHh/x7R87WNyYBlgcA8Zlove1pfhPnx+z9PxtW7sTtC4TesOt5w31zGT90bPsHz68K5W2lpdmy7M3Dm1c99H79hgZBis1kFCOE48eHVso+/fvyvcltVR3x6nx8Qm088N9td2pNkIalwDN+oKf/Ma16EFj7pPv0jVClgWdiMzZpeanHtjyYI+HmgFXa6Szs1SrnrgyHSLkji2OL0wMUPe2W6liS1aSFCuQRRen57/8nenDj9wvTl95/63dewcY+JGh0AZD9oZDf/KHz2/YuS1dbG0fMD+wfzSYfx3bWcb9mZZ2vcoQKP/skU0KRLYeu8GKqiPE8ovMvDi78N5DGz663SL1a5AouIHuK8qNifL6XPIX74NimubV/sWFhUKvfYZsLy8sIynVTFJP5oNGu9qY+Oa5qhc27tox0G+Go4PdWDVc17ExUrkHPb3Hr52pt8qffv+wRmXOEM3SfCaTz/Vs+LXPvhwATaisUit96JahDT3qXx2/empF0QyD+YGmGUHQPLzOOLTezpgr37gevToBHmBAFKREQkRxqFCNMx/gr7VXuslh3MtQvaWbf/F8y6we/yefuOUXPtL7+88tT7cJCCUGZBKq8DiWgCgOkQoQrBH4bxWME1PnflsHdv+u7EduWzeSYdBcFnELpdddXuCPnhy/MFtrhqASkrDs+kq7mkJnZnlRpkcSYSd1vFDEIp+tRkjpOX/F/exjp65HzNbQrSOF7UntF9+bTDIJK22wBZD8i5PZv3ht5dmS9389Yg32CqjOaloikhThdKXMalUS1664degj8T27sns3JrLRpDPtCMYSxY2Xx1tPXygZVsddo+u71LZlhoc357W51r4+FYVlgIxAWkRyp+bcMTf/M7elutSYBl7ZIetQZikrd6QUVJoDEpb98xnVODVvvT5b2HVovSkAFqhu4bQtZb1MaWcEydla/exiVNx4uK7XP3xI3D28KJAaR0xTuBDml191E6mDh/f016ZeObIhnWi5CehlrWY2JZ48U204cvOmkYMbBvny5aTiCmPIpwp29cmas9407hqiVDZE6OO00gr561Mz8zV826FDA3lbb80WqFEfGpYZt3HZ6ktCErzSwlxODrUpXaLJ2QB9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B3yQNCyi0bC8yCTvsnredO3WsYVDf/QP3/qrDySuva3wtXR31khu6IhuyjrjDx19kFMRmNDSTk/am68Qr/KWK4beeCW/abT55f29T06f/PC7utbnUt5SqatTgqQ9v0mYQXQDYFEcGJRohoGY6D3DG8TZn7rBWnrcnV48fNmArToSe6ZCUdR75Uubuha/2ZN+cTk349jMqxhOk7VaPR3J2y/Z9CNvoFrc+Wufe2r95fiRKy7pxAmE9NRsc6YJCFV0tFoQI5l5VQBLrKjcMBBBwJGkICsa+JV5t5npQCns6knfcUPv+dknqi0hqZSw//R0o1hpfPGn1123Y+3nHxd/MlHz5JB03TKSUW4OirNW5/pc6h2v8a++wn7v286vGuj9iSvZ6kGleTOw+iUzwUisJRC7lhOKGDKgNA43DFl3Xj905CuL3bWZcdiPno+zvP1Trxn6jVvye06EXxtfaGWqU5W863ToYQ2oZBDffe26D9080kun/uq+kxdaxntv2bqxtwHhzU2QR14CmB5FQQLJvqK6fnev0aifPr50fqQ0GgXTfjuMtJDZnq4JghRhWWaGqkNKqjgxmSymnGIybQgv9OtmMoQksG3DyUJS5fokjsB0ny+TBt2+Pvum1MZjzfDEzLwfyIWWNBFNLNUOt3v8xelnjpc1uzjfbMOyjbR1U1fzuksvueMqcujkic9/rfrrv7ztdYleRAe0joFDZ715JDiJmK4xKkQYrh0dWJ8nWlI9/tLJExWIZAJolVuCkv+hFNrVTBI0HSBhazVfvtwqHgt6L6ETYINx1CSkpVkKigce12hGSxdVS5ckku26nnIkZa7nr08Hf353z62fcP/+sfj9t5kfudl36169NPzgMfeBJlggdTQNjlG3tPvq5LWXmNtW+cVM+JEn4ie/9fSH79p0XV4z9ZalZdASMBoWsoiB2COEADoUIQoppmrnpnK2uHN3z5So/f4T7aNh589eX/jru5eO7933nLPhnpPkawfmocWqGmjAlcPk5s3X785NXr8zXJws/90zh3rS5GduvayHPVZrrpoOjCfP6EENIOVFbkEhzZvNV9/iPKdgtmum1O89qr3jmo39tIyOJoI8iIDkRAgojWgWN1LKSCRKi4HZY9bPvn+k0HF9198+vDQmva6dGzfbxT37n93fJjd2bmJizuc1n8/bSW7AimopPVW/7coL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" class="organization-logo-new" alt="">
+                </div>
+                        <div class="mh-doc">
+                <div class="doc-label">Estimate: <span class="doc-num">EST-S1-816</span></div>
+                <div class="doc-dates">
+                                                                    <span>Estimate date: <b id="invoiceIssueDate">Sep 12, 2026</b></span>
+                                    </div>
+            </div>
+        </div>
+
+                        <div class="grp-lbl">Addresses</div>
+        <div class="addr-row">
+            <div class="addr">
+                <div class="addr-lbl">Bill To</div>
+                                <div class="addr-co">Ahsan (IBS#: 655676)</div>
+                                    <div class="addr-ln">323233</div>
+                                                    <div class="addr-ln">32</div>
+                                                                                    <div class="addr-ln">Dubai</div>
+                            </div>
+                                        <div class="addr">
+                    <div class="addr-lbl">Remit Payment To</div>
+                                            <div class="addr-co">fghj</div>
+                                                                <div class="addr-ln">21 union united Arab Emirates</div>
+                                                                                    <div class="addr-ln">Dubai, Đồng Tháp 0000</div>
+                                                                <div class="addr-ln">(971) 456 - 789</div>
+                                    </div>
+                    </div>
+
+                            <div class="asset-band">
+                <div class="af">
+                    <div class="af-k">Asset</div>
+                    <div class="af-v">344334</div>
+                </div>
+                                                                                    <div class="af">
+                        <div class="af-k">Mileage</div>
+                        <div class="af-v">5,645,454</div>
+                    </div>
+                                                                                                        <div class="af">
+                        <div class="af-k">VIN / Serial</div>
+                        <div class="af-v tnum">44<b>44343434</b></div>
+                    </div>
+                            </div>
+        
+                                        <div class="order-chips">
+                                    <span class="ochip" data-test-id="invoice-ref-work-order">Work Order <b>S1-816</b></span>
+                                                                                    <span class="ochip" data-test-id="invoice-ref-terms">Terms <b>COD</b></span>
+        </div>
+
+                            <div class="sec-lbl">Work Summary</div>
+                            <div class="job job-first">
+                    <div class="job-top">
+                                                <span class="job-no">01</span>
+                        <span class="job-ttl">Linw </span>
+                                                    <span class="job-sub">2</span>
+                                            </div>
+                                                            <div class="chargesec">
+                        <div class="csec-head">Labor</div>
+                        <table class="work-summary-table-new">
+                            <colgroup>
+                                <col>
+                                <col class="col-qty">
+                                <col class="col-rate">
+                                <col class="col-amt">
+                            </colgroup>
+                            <tbody>
+                            <tr class="crow avoid-break-inside">
+                                <td class="description-cell">Linw </td>
+                                                                <td class="rt">1</td>
+                                <td class="rt">$135.00</td>
+                                <td class="rt">$135.00</td>
+                            </tr>
+                                                                                                                                                </tbody>
+                        </table>
+                    </div>
+                                            <div class="chargesec">
+                            <div class="csec-head">Parts</div>
+                            <table class="work-summary-table-new">
+                                <colgroup>
+                                    <col>
+                                    <col class="col-qty">
+                                    <col class="col-rate">
+                                    <col class="col-amt">
+                                </colgroup>
+                                <tbody>
+                                                                                                            <tr class="crow avoid-break-inside">
+                                            <td class="description-cell">0099 - this is a test PO</td>
+                                            <td class="rt">3</td>
+                                            <td class="rt">$450.00</td>
+                                            <td class="rt">$1,350.00</td>
+                                        </tr>
+                                                                                                                                                                                                                                                                                                                    <tr class="crow avoid-break-inside">
+                                            <td class="description-cell">0099 - this is a test PO</td>
+                                            <td class="rt">3</td>
+                                            <td class="rt">$450.00</td>
+                                            <td class="rt">$1,350.00</td>
+                                        </tr>
+                                                                                                                                                                                                                                                                        </tbody>
+                            </table>
+                        </div>
+                                                                                                                                                                                <div class="job-foot avoid-break-inside">
+                                                            <span>Labor <b>$135.00</b></span>
+                                                                                        <span>Parts <b>$2,700.00</b></span>
+                                                        <span class="ltot with-divider">Line total <b>$2,835.00</b></span>
+                        </div>
+                                    </div>
+                    
+                
+                <div class="tail">
+                        <div class="b-break">
+                <span class="b-break-line"></span>
+                <span class="b-break-label">Summary</span>
+                <span class="b-break-line"></span>
+            </div>
+
+                            <div class="sum">
+
+                                            <div class="flex-row totals-new avoid-break-inside" data-test-id="invoice-summary-labor">
+                            <span class="totals-position-new">Labor</span>
+                            <span class="custom-col-md-width-14">$135.00</span>
+                        </div>
+                                        <div class="flex-row totals-new avoid-break-inside" data-test-id="invoice-summary-parts">
+                        <span class="totals-position-new">Parts</span>
+                        <span class="custom-col-md-width-14">$2,700.00</span>
+                    </div>
+                                                                                    <div class="flex-row totals-new adj-head avoid-break-inside" data-test-id="invoice-summary-adjustments">
+                            <span class="totals-position-new">Adjustments</span>
+                            <span class="custom-col-md-width-14"></span>
+                        </div>
+                                                    <div class="flex-row totals-new adj-item avoid-break-inside" data-test-id="invoice-adjustment-named-row">
+                                <span class="totals-position-new">% of sub total</span>
+                                <span class="custom-col-md-width-14">$311.85</span>
+                            </div>
+                                                    <div class="flex-row totals-new adj-item avoid-break-inside" data-test-id="invoice-adjustment-named-row">
+                                <span class="totals-position-new">% of labor total</span>
+                                <span class="custom-col-md-width-14">$17.55</span>
+                            </div>
+                                                    <div class="flex-row totals-new adj-item avoid-break-inside" data-test-id="invoice-adjustment-named-row">
+                                <span class="totals-position-new">% of parts totall</span>
+                                <span class="custom-col-md-width-14">$513.00</span>
+                            </div>
+                                                    <div class="flex-row totals-new adj-item avoid-break-inside" data-test-id="invoice-adjustment-named-row">
+                                <span class="totals-position-new">% processing fee</span>
+                                <span class="custom-col-md-width-14">$357.21</span>
+                            </div>
+                                                    <div class="flex-row totals-new adj-item avoid-break-inside" data-test-id="invoice-adjustment-named-row">
+                                <span class="totals-position-new">Discount- % of subtotal</span>
+                                <span class="custom-col-md-width-14">($340.20)</span>
+                            </div>
+                                                                <div class="flex-row totals-new row-strong avoid-break-inside" data-test-id="invoice-summary-subtotal">
+                        <span class="totals-position-new">Subtotal</span>
+                        <span class="custom-col-md-width-14">$3,694.41</span>
+                    </div>
+                                                                                            <div id="rate-ba21af2a-c280-4f3e-91ba-233986430bf5" class="flex-row totals-new avoid-break-inside" data-test-id="invoice-summary-tax-row">
+                                <span class="totals-position-new">2% VAT (2%)</span>
+                                <span class="custom-col-md-width-14">$73.89</span>
+                            </div>
+                                                                                                <div id="rate-de7a9c33-ef89-4016-8e93-b61ec2b336ce" class="flex-row totals-new avoid-break-inside" data-test-id="invoice-summary-tax-row">
+                                <span class="totals-position-new">3% VAT (3%)</span>
+                                <span class="custom-col-md-width-14">$110.84</span>
+                            </div>
+                                                                <div class="flex-row totals-new row-strong avoid-break-inside" data-test-id="invoice-summary-total">
+                        <span class="totals-position-new">Total</span>
+                        <span class="custom-col-md-width-14">$3,879.14</span>
+                    </div>
+                                                                    <div class="bal totals-new avoid-break-inside" data-test-id="invoice-estimated-total">
+                            <span class="k totals-position-new">Estimated Total</span>
+                            <span class="v custom-col-md-width-14">$3,879.14</span>
+                        </div>
+                                    </div>
+            
+            <div class="disc">Any warranties on the parts and accessories sold hereby are made by the manufacturer. You understand and agree that we make no warranties of any kind unless expressed in writing. You hereby authorize us to perform the repair work herein set forth and to purchase the necessary material and parts to perform such repair work. You agree that we are not responsible for loss or damage to your vehicle or articles left in your vehicle in case of fire, theft, or any other cause beyond our control or for any delays caused by unavailability of parts or delays in part shipments by the supplier or transporter. In addition, you agree that we are not responsible for damages to your vehicle from freezing due to lack of antifreeze. You hereby grant our employees permission to operate your vehicle on streets, highways, or elsewhere for the purpose of testing and/or inspection. You acknowledge and agree that an express mechanic&#039;s lien on your vehicle is granted to secure payment of this invoice for the repair work detailed in this invoice.</div>
+        </div>
+
+                <div class="auth avoid-break-inside">
+            <div class="sign">
+                <div class="sign-c">
+                    <div class="sign-line"></div>
+                    <div class="sign-cap">Customer Signature</div>
+                </div>
+                <div class="sign-c">
+                    <div class="sign-line"></div>
+                    <div class="sign-cap">Printed Name</div>
+                </div>
+                <div class="sign-c">
+                    <div class="sign-line"></div>
+                    <div class="sign-cap">Date</div>
+                </div>
+            </div>
+        </div>
+
+                            <div class="footer avoid-break-inside">
+                <span>5454545454544544 · EST-S1-816</span>
+                <span>Powered by <b>ShopView</b></span>
+            </div>
+            </section>
+</div>
+</body>
+</html>

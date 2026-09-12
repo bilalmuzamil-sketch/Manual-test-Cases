@@ -3,7 +3,7 @@ h2. 1. Environment
 * *Site:* Production — [https://app.shopview.com] and the customer portal [https://portal.shopview.com]
 * *Build:* v26.36.4-3e1c643
 * *Organisation:* Bilal-Trucks · *Location:* Truck Hill 1
-* *Records used:* invoice *INV-S1-764* ([https://app.shopview.com/workorders/58bfdc33-1f89-4c4a-94c3-e02b3bc843f6/finance]) and estimates *S2-864* and *S2-833*
+* *Records used:* invoice *INV-S1-764* ([https://app.shopview.com/workorders/58bfdc33-1f89-4c4a-94c3-e02b3bc843f6/finance]); estimates *S2-864* and *S2-833* (jobs that are already paid); and estimates *S1-816*, *S1-818*, *S1-821*, *S1-822* (jobs that have never been invoiced and carry no payments at all)
 * *Observed:* 12 September 2026
 
 h2. 2. The problem
@@ -23,7 +23,7 @@ h2. 3. Steps to reproduce
 # Open the invoice for a job that has per-line fees — for example [https://app.shopview.com/workorders/58bfdc33-1f89-4c4a-94c3-e02b3bc843f6/finance] — or open it on the customer portal.
 # In *Settings → Invoice*, turn the *"Legacy invoice layout"* switch *on*, confirm, and read the per-line subtotals.
 # Turn the switch *off* (Modern), confirm, and read the same subtotals again.
-# For (b), view an estimate for a job that has payments recorded against it, under each setting.
+# For (b), view an estimate under each setting. It happens on *any* estimate — one for a job that has already been paid, such as S2-864, and equally one for a brand-new job that has never been invoiced and has taken no money, such as [S1-816|https://app.shopview.com/workorders/893072a2-09ad-45b5-a567-8a3f1c018de0/finance].
 
 h2. 4. Screenshots
 
@@ -50,11 +50,27 @@ Adjustments section carrying the same figures. Modern additionally itemises the 
 — {{$304.94}}, {{$317.39}}, {{$206.39}}, {{$111.00}}, {{$32.00}}, {{$15.00}}, {{$14.94}}, {{$29.88}},
 {{$4.98}}, {{$7.47}}. The customer is billed the same amount either way.
 
-*(b) On an estimate*, Legacy prints a Payments and Balance block that Modern omits entirely. On S2-864
-that reads {{Payments (Deposit) Sep 9, 2026 - Check $500.00 (Deposit) Sep 9, 2026 - DEBIT CARD of
-$600.00 — $348.09 will be credited $251.91 Balance $0.00}}, and on S2-833 {{Payments Balance $149.27}}.
-Word counts across the two renders of S2-864: {{Payments}} legacy 1 / modern 0, {{Balance}} legacy 1 /
-modern 0, {{Deposit}} legacy 2 / modern 0. The estimate's own figures are identical in both.
+*(b) On an estimate*, Legacy prints a Payments heading and a Balance line that Modern omits entirely.
+
+This is *not* limited to jobs that have already taken money. It was checked on four estimates for jobs
+that have never been invoiced and have no payments at all, and on all four the Legacy document prints a
+{{Payments}} heading with nothing under it, followed by a {{Balance}} equal to the whole total:
+
+|| Estimate || Legacy: Payments heading || Legacy: Balance shown || Total on the document || Modern: Payments or Balance anywhere ||
+| S1-816 | yes | {{$3,879.14}} | {{$3,879.14}} | no |
+| S1-821 | yes | {{$212.34}} | {{$212.34}} | no |
+| S1-818 | yes | {{$0.00}} | {{$0.00}} | no |
+| S1-822 | yes | {{$0.00}} | {{$0.00}} | no |
+
+On a job that *has* taken money the same Legacy block lists it. On S2-864 it reads:
+
+{quote}Payments (Deposit) Sep 9, 2026 - Check $500.00 (Deposit) Sep 9, 2026 - DEBIT CARD of $600.00 — $348.09 will be credited $251.91 Balance $0.00{quote}
+
+and on S2-833 it reads {{Payments Balance $149.27}}.
+
+*Every money figure on the estimate is identical in the two designs* in all six cases checked, so
+nothing about the amounts changes; it is only whether the Payments heading and the Balance line are
+printed.
 
 h2. 6. Expected behaviour
 
@@ -62,7 +78,8 @@ Unknown — that is the question. Either:
 
 * both are intended, because each design keeps its own way of laying a document out; or
 * a customer who receives the same invoice in the two designs should not see a different line total, and
-  an estimate should not show payments in one design and not the other.
+  an estimate — a quote for work not yet done — should not carry a Payments heading and a Balance at
+  all, in either design.
 
 h2. 7. Sources
 
