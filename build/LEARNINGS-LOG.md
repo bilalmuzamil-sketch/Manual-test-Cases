@@ -1477,3 +1477,29 @@ invoice matched the Tax ID in Settings).
 *cross-tenant*. Comparing two ids is cheaper than a security investigation, and getting it wrong in
 either direction is expensive — a false leak alarm burns a developer's week, and a real one must not
 be written off as cosmetic.
+
+## L0068 — 2026-09-12 — REPORT ON A CADENCE HE CAN PREDICT, NOT WHEN I HAPPEN TO FINISH A BATCH
+
+The QA lead, twice in one session: *"Where ar you at and what is stopping you? You are getting too
+slow You are not updating me frequenctly where you are at"* and *"You are not showing me any status of
+where you are at you should be doing this every after completing the significant % of your given task,
+I have to keep on asking you to tell me the status"*.
+
+I had been reporting after each batch of work. That is my rhythm, not his. The gaps between batches
+ran 10–20 minutes, and from his side that is silence he has to break himself.
+
+**The rule, for any task with a countable total (N test cases, N documents, N tickets):**
+
+1. **Report at every ~20% of the total, unprompted** — and always at the first completed unit, so he
+   knows the machine is running before he starts wondering.
+2. **Every status carries the same four lines, in this order:** how many are done out of the total ·
+   what was proven since the last one · what is blocking, if anything · what I am doing right now.
+3. **A long step is announced before it starts, not after it ends.** "Next I am doing X, it takes about
+   Y minutes" costs one line and removes the whole question.
+4. **Never let a batch boundary decide the timing.** If a batch will take longer than ~10 minutes, say
+   where you are part-way through it.
+5. **The status goes out even when nothing has changed** — "still on the same step, no failures yet" is
+   a status. Silence is not.
+
+**Why it matters beyond politeness:** he is accountable for this work to people above him. A status he
+has to ask for is one he cannot forward. A predictable one he can.
