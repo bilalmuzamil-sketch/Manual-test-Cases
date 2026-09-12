@@ -1,0 +1,948 @@
+<style>
+    * {
+        box-sizing: border-box;
+    }
+
+    @page {
+        size: A4 portrait;
+        font-size: 0.8rem;
+        font-family: 'Nunito Sans', sans-serif;
+        margin: 30px;
+        margin-bottom: 15mm;
+
+        @bottom-left {
+            content: "5454545454544544";
+        }
+
+        @bottom-center {
+            content: "Powered by ShopView";
+        }
+
+        @bottom-right {
+            content: "INV-S1-824 - Page " counter(page) " / " counter(pages);
+        }
+    }
+
+    @page :first {
+        margin-top: 0;
+    }
+
+    @media print {
+        .page {
+            page-break-after: always;
+        }
+    }
+
+    .invoice-pdf-new {
+        padding-inline: 40px;
+        background-color: white;
+        width: 100%;
+        font-family: 'Nunito Sans', sans-serif;
+        color: black;
+    }
+
+    .organization-logo-new {
+        width: 238px;
+        height: 120px;
+        background-size: contain;
+        background-position: center;
+        background-repeat: no-repeat;
+    }
+
+    .fab-center-div {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        z-index: 1050;
+        margin-top: 32px;
+    }
+
+    .flex-row {
+        display: flex;
+        flex-wrap: wrap;
+    }
+
+    .info-title-new {
+        color: black;
+        font-weight: 700;
+        font-size: 1.2rem;
+        margin: 0;
+        display: block;
+        max-width: 100%;
+        white-space: normal;
+        word-break: break-word;
+        overflow-wrap: break-word;
+    }
+
+    .invoice-number {
+        white-space: wrap;
+    }
+
+    .no-spacing {
+        margin: 0;
+    }
+
+    .flex-col-4 {
+        height: auto;
+        width: 33.3333%;
+    }
+
+    .spacing-bottom-sm {
+        padding-bottom: 8px;
+    }
+
+    .info-text-new {
+        color: black;
+        font-size: 0.9rem;
+        margin: 0;
+        display: block;
+        max-width: 100%;
+        white-space: normal;
+        word-break: break-word;
+        overflow-wrap: break-word;
+    }
+
+    .text-align-center {
+        text-align: center;
+    }
+
+    .text-align-right {
+        text-align: right;
+    }
+
+    .text-align-left {
+        text-align: left;
+    }
+
+    .margin-bottom-zero {
+        margin-bottom: 0;
+    }
+
+    .remit-payment-section-new {
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-end;
+        align-items: flex-end;
+        margin-left: auto;
+    }
+
+    .flex-col-6 {
+        height: auto;
+        width: 50%;
+    }
+
+    .full-width-100 {
+        width: 100%;
+    }
+
+    .custom-table {
+        width: 100%;
+        border-collapse: collapse;
+        font-size: 14px;
+        margin-bottom: 10px;
+    }
+
+    .custom-table th,
+    .custom-table td {
+        padding: 4px 6px;
+    }
+
+    .custom-table .cell-padding-top-md {
+        padding-top: 16px;
+    }
+
+    .custom-table thead {
+        font-weight: bold;
+    }
+
+    .column-width-15 {
+        width: 15%;
+    }
+
+    .column-width-20 {
+        width: 20%;
+    }
+
+    .column-with-25 {
+        width: 25%;
+    }
+
+    .column-width-30 {
+        width: 30%;
+    }
+
+    /* SV-9872 - screen only. The preview pins `.invoice-pdf-new` to the PDF's own
+       718px sheet so it breaks line for line with the file (InvoiceDisplay.vue,
+       S12-R4), which leaves this table 638px - and at that width the band's
+       percentages above stop fitting their own contents. Chromium honours them
+       to the pixel, so column 1's 15% offered 84px of text room against the 89px
+       "Service Order" needs and the 90-107px a document number needs, and
+       column 2's 25% offered 148px against the 161px a wide 17-character VIN
+       needs; heading, number and VIN each broke in two. WeasyPrint does not lay
+       the same percentages out that way - it treats them as a starting point and
+       grows each column to its contents - so none of those breaks were ever in
+       the file the customer receives.
+
+       `white-space: nowrap` is what reproduces that here, rather than wider
+       percentages. It raises the cell's min-content width, and min-content
+       outranks a percentage in Chromium's auto table layout, so each column
+       grows exactly as far as the document in front of it needs - the same
+       content-driven sizing WeasyPrint is already doing - instead of to a budget
+       guessed from sample strings, which the next long VIN would outgrow. The
+       percentages above are deliberately left alone as the starting point.
+
+       Scope, cell by cell: every `th`, because the ten headings are fixed short
+       strings; column 2, the VIN/serial; and column 1's value cell, the document
+       number. `:not(.description-cell)` is what excludes the Unit, which sits in
+       the same column and is unbounded free text - it must stay wrappable, and
+       it wraps in the PDF too. Asset is excluded for the same reason.
+
+       Measured against WeasyPrint over ten documents: the preview now reproduces
+       the PDF's line breaks cell for cell on nine, including both a long-Unit and
+       a long-Asset document. The known residual is a serial of ~35 characters,
+       which the PDF breaks and the preview instead widens past the sheet into
+       `.invoice-html`'s `overflow-x: auto`; a 25-character serial still matches.
+
+       Print is untouched - this is `@media screen`, which WeasyPrint never reads,
+       so the printed sheet stays byte-identical to v26.35.10. Verified by
+       rendering before and after and diffing `pdftotext -bbox-layout`. */
+    @media screen {
+        .custom-table th,
+        .custom-table td:nth-child(2),
+        .custom-table td:nth-child(1):not(.description-cell) {
+            white-space: nowrap;
+        }
+    }
+
+    .text-truncate {
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+    }
+
+    .table-column-border {
+        border-right: 1px solid #ccc;
+    }
+
+    /* Remove the last column's border */
+    .table-column-border:last-child {
+        border-right: none;
+    }
+
+    .table-column-spacing {
+        padding-left: 8px;
+        padding-right: 8px;
+        box-sizing: border-box;
+    }
+
+    .bg-dark-gray {
+        background-color: darkgray;
+    }
+
+    .margin-top-xs {
+        margin-top: 4px;
+    }
+
+    .flex-col-12 {
+        height: auto;
+        width: 100%;
+    }
+
+    .avoid-break-inside {
+        break-inside: avoid;
+    }
+
+    .display-formatted-html {
+        white-space: pre-line;
+    }
+
+    .flex-column {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .padding-top-md {
+        padding-top: 16px;
+    }
+
+    .table-cell-width-80 {
+        width: 80px;
+    }
+
+    .table-cell-width-40 {
+        width: 40px;
+    }
+
+    .vertical-align-bottom {
+        vertical-align: bottom;
+    }
+
+    .vertical-align-top {
+        vertical-align: top;
+    }
+
+    .font-weight-bold {
+        font-weight: 700;
+    }
+
+    .total-row-total {
+        white-space: nowrap;
+        padding-top: 2px;
+        border-top: 1px solid rgba(0, 0, 0, 0.12);
+    }
+
+    .height-0 {
+        height: 0px;
+    }
+
+    .no-padding {
+        padding: 0;
+    }
+
+    .height-1 {
+        height: 1px;
+    }
+
+    .totals-position-new {
+        flex: 0 0 85%;
+        max-width: 85%;
+    }
+
+    .totals-new {
+        color: black;
+        font-size: 0.8rem;
+    }
+
+    .hr-separator {
+        border: none;
+        height: 1px;
+        background: rgba(0, 0, 0, 0.12);
+    }
+
+    .normal-white-space {
+        white-space: normal;
+    }
+
+    .justify-content-end {
+        justify-content: flex-end;
+    }
+
+    .margin-top-sm {
+        margin-top: 8px;
+    }
+
+    .custom-col-md-width-14 {
+        flex: 0 0 14%;
+        max-width: 14%;
+    }
+
+    .margin-y-sm {
+        margin-top: 8px;
+        margin-bottom: 8px;
+    }
+
+    .margin-y-md {
+        margin-top: 16px;
+        margin-bottom: 16px;
+    }
+
+    .text-grey-80 {
+        color: #424242;
+    }
+
+    .signature-block {
+        margin-top: 24px;
+    }
+
+    .signature-row {
+        display: flex;
+        flex-wrap: nowrap;
+        align-items: flex-end;
+        gap: 10px;
+        margin-top: 12px;
+        break-inside: avoid;
+    }
+
+    .signature-label {
+        flex: 0 0 auto;
+        white-space: nowrap;
+    }
+
+    .signature-line {
+        flex: 1 1 0;
+        border-bottom: 1px solid black;
+        height: 1.1em;
+    }
+
+    /* Hug the payment row directly above (margin-top: 0) and leave a clear gap
+       before the next payment (margin-bottom) so the breakdown reads as belonging
+       to the payment it sits under. */
+    .payment-fee-breakdown {
+        margin-top: 0;
+        margin-bottom: 16px;
+    }
+
+    /* Labels/note lighter than the black payment line so the breakdown reads as
+       secondary, informational detail; the amounts stay black for legibility. */
+    .payment-fee-breakdown .totals-new {
+        color: #383838;
+        font-size: 0.65rem;
+    }
+
+    .payment-fee-breakdown .custom-col-md-width-14 {
+        color: black;
+    }
+
+    /* Cross-border shortfall note — app warning red (Quasar $negative), matching
+       the Transactions payments view. Overrides the grey breakdown text. */
+    .payment-fee-shortfall {
+        color: #c10015;
+    }
+
+    .signature-line--name {
+        flex: 2 1 0;
+    }
+
+    .signature-line--date {
+        flex: 1 1 0;
+    }
+
+    .margin-top-md {
+        margin-top: 16px;
+    }
+
+    .justify-content-between {
+        justify-content: space-between;
+    }
+
+    .disclaimer-font {
+        font-size: 0.54rem;
+        white-space: pre-line;
+    }
+
+    .margin-top-lg {
+        margin-top: 24px;
+    }
+
+    .padding-y-xl {
+        padding-top: 32px;
+        padding-bottom: 32px;
+    }
+
+    .hr-separator-dark {
+        border: none;
+        height: 1px;
+        background-color: darkgrey;
+    }
+
+    .work-summary-table-new {
+        width: 100%;
+        font-size: 0.8rem;
+    }
+
+    .description-cell {
+        overflow: hidden;
+        text-overflow: ellipsis;
+        word-break: break-word;
+    }
+
+    .padding-left-20 {
+        padding-left: 20px;
+    }
+
+    .column-width-6 {
+        width: 6%;
+    }
+
+    .column-width-50 {
+        width: 50%;
+    }
+
+    .column-width-14 {
+        width: 14%;
+    }
+</style>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<div class="page">
+    <section class="invoice-pdf-new padding-y-xl">
+        <div class="fab-center-div"></div>
+                <div class="flex-row">
+            <div class="flex-col-4 spacing-bottom-sm">
+                <p class="info-title-new no-spacing">
+                    Truck Hill 1
+                </p>
+                <p class="info-text-new no-spacing">
+                    Dubai Uae
+                </p>
+                                <p class="info-text-new no-spacing">
+                    Ajman,
+                    Abu Dhabi,
+                    0000
+                </p>
+                <p class="info-text-new no-spacing">
+                    97154545444
+                </p>
+            </div>
+            <div class="flex-col-4 text-align-center margin-top-sm">
+                <div style="background-image: url('data:image/png;base64,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ABCUIAQAAAhKEAIAAAQlCAEAAIIShAAAAEEJQgAAgKAEIQAAQFCCEAAAIChBCAAAEJQgBAAACEoQAgAABCUIAQAAghKEAAAAQQlCAACAoAQhAABAUIIQAAAgKEEIAAAQlCAEAAAIShACAAAEJQgBAACCEoQAAABBCUIAAICgBCEAAEBQghAAACAoQQgAABCUIAQAAAhKEAIAAAQlCAEAAIIShAAAAEEJQgAAgKAEIQAAQFCCEAAAIChBCAAAEJQgBAAACEoQAgAABCUIAQAAghKEAAAAQQlCAACAoAQhAABAUIIQAAAgKEEIAAAQlCAEAAAIShACAAAEJQgBAACCEoQAAABBCUIAAICgBCEAAEBQghAAACAoQQgAABCUIAQAAAhKEAIAAAQlCAEAAIIShAAAAEEJQgAAgKAEIQAAQFCCEAAAIChBCAAAEJQgBAAACEoQAgAABCUIAQAAghKEAAAAQQlCAACAoAQhAABAUIIQAAAgKEEIAAAQlCAEAAAIShACAAAEJQgBAACCEoQAAABBCUIAAICgBCEAAEBQghAAACAoQQgAABCUIAQAAAhKEAIAAAQlCAEAAIIShAAAAEEJQgAAgKAEIQAAQFCCEAAAIChBCAAAEJQgBAAACEoQAgAABCUIAQAAghKEAAAAQQlCAACAoAQhAABAUIIQAAAgKEEIAAAQlCAEAAAIShACAAAEJQgBAACCEoQAAABBCUIAAICgBCEAAEBQghAAACAoQQgAABCUIAQAAAhKEAIAAAQlCAEAAIIShAAAAEEJQgAAgKAEIQAAQFCCEAAAIChBCAAAEJQgBAAACEoQAgAABCUIAQAAghKEAAAAQQlCAACAoAQhAABAUIIQAAAgKEEIAAAQlCAEAAAIShACAAAEJQgBAACCEoQAAABBCUIAAICgBCEAAEBQghAAACAoQQgAABCUIAQAAAhKEAIAAAQlCAEAAIIShAAAAEEJQgAAgKAEIQAAQFCCEAAAIChBCAAAEJQgBAAACEoQAgAABCUIAQAAghKEAAAAQQlCAACAoAQhAABAUIIQAAAgKEEIAAAQlCAEAAAIShACAAAEJQgBAACCEoQAAABBCUIAAICgBCEAAEBQghAAACAoQQgAABCUIAQAAAhKEAIAAAQlCAEAAIIShAAAAEEJQgAAgKAEIQAAQFCCEAAAIChBCAAAEJQgBAAACEoQAgAABCUIAQAAghKEAAAAQQlCAACAoAQhAABAUIIQAAAgKEEIAAAQlCAEAAAIShACAAAEJQgBAACCEoQAAABBCUIAAICgBCEAAEBQghAAACAoQQgAABCUIAQAAAhKEAIAAAQlCAEAAIIShAAAAEEJQgAAgKAEIQAAQFCCEAAAIChBCAAAEJQgBAAACEoQAgAABCUIAQAAghKEAAAAQQlCAACAoAQhAABAUIIQAAAgKEEIAAAQlCAEAAAIShACAAAEJQgBAACCEoQAAABBCUIAAICgBCEAAEBQ/x/VIwBufoK3PAAAAABJRU5ErkJggg==')" class="organization-logo-new"></div>
+            </div>
+            <div class="flex-col-4 spacing-bottom-sm text-align-right">
+                <p class="info-title-new invoice-number margin-bottom-zero">
+                                            Invoice: INV-S1-824
+                                    </p>
+                <p class="info-text-new no-spacing">
+                    Invoice Date:
+                    <span id="invoiceIssueDate">Aug 1, 2026</span>
+                </p>
+                <p class="info-text-new no-spacing">
+                    Due date:
+                    <span id="invoiceDueDate">Aug 31, 2026</span>
+                </p>
+            </div>
+        </div>
+        <div class="flex-row">
+            <div class="flex-col-6 spacing-bottom-sm">
+                <p class="info-title-new">Bill To</p>
+                <p class="info-text-new no-spacing">
+                    aqeel transport 56
+                                    </p>
+                <p class="info-text-new">
+                    hgijklm
+                </p>
+                                <p class="info-text-new">
+                                            Ajman,
+                                                                Dubai,
+                                                                0000
+                                    </p>
+            </div>
+
+            <div class="flex-col-6 spacing-bottom-sm text-align-right">
+                <p class="info-title-new">Remit payment to</p>
+                <p class="info-text-new no-spacing">
+                    Truck Hill 1
+                </p>
+                <p class="info-text-new no-spacing">
+                    Dubai Uae
+                </p>
+                <p class="info-text-new no-spacing">
+                    Ajman,
+                    Abu Dhabi,
+                    0000
+                </p>
+                <p class="info-text-new no-spacing">
+                    97154545444
+                </p>
+            </div>
+        </div>
+        <div class="full-width-100">
+            <table class="custom-table">
+                                    <tr>
+                        <th class="text-align-center column-width-15 cell-padding-top-md">
+                            Unit
+                        </th>
+                        <th class="text-align-center column-with-25 cell-padding-top-md">
+                            VIN/Serial #
+                        </th>
+                        <th class="text-align-center column-with-25 cell-padding-top-md">
+                            Asset
+                        </th>
+                        <th class="text-align-center column-width-20 cell-padding-top-md">
+                            Mileage
+                        </th>
+                        <th class="text-align-center column-width-15 cell-padding-top-md">
+                            Eng Hrs
+                        </th>
+                    </tr>
+                    <tr>
+                        <td class="text-align-center description-cell column-width-15">
+                            
+                        </td>
+                        <td class="text-align-center description-cell column-with-25">
+                            88888888888888888
+                        </td>
+                        <td class="text-align-center description-cell column-with-25">
+                            
+                            102 Ironworks, Inc.
+                            
+                        </td>
+                        <td class="text-align-center column-width-20">
+                            0
+                        </td>
+                        <td class="text-align-center column-width-15">
+                            0
+                        </td>
+                    </tr>
+                                <tr>
+                    <th class="text-align-center column-width-15 cell-padding-top-md">
+                        Service Order
+                    </th>
+                    <th class="text-align-center column-with-25 cell-padding-top-md">
+                        Terms
+                    </th>
+                    <th class="text-align-center column-with-25 cell-padding-top-md">
+                        Due date
+                    </th>
+                    <th class="text-align-center column-width-20 cell-padding-top-md">
+                        Customer PO
+                    </th>
+                    <th class="text-align-center column-width-15 cell-padding-top-md">
+                        Authorizer
+                    </th>
+                </tr>
+                <tr>
+                    <td class="text-align-center column-width-15">
+                        S1-824
+                    </td>
+                    <td class="text-align-center text-truncate column-with-25">
+                        Net 30
+                    </td>
+                    <td class="text-align-center column-with-25">
+                        <span id="invoiceTableDueDate">Aug 31, 2026</span>
+                    </td>
+                    <td class="text-align-center text-truncate column-width-20">
+                        <div id="workOrderCustomerPo">
+                            
+                        </div>
+                    </td>
+                    <td class="text-align-center text-truncate column-width-15">
+                        <span id="ibsApprovalCodeDom"></span>
+                    </td>
+                </tr>
+            </table>
+        </div>
+
+
+        <div class="full-width-100">
+            <hr class="hr-separator-dark"/>
+        </div>
+        <div class="full-width-100">
+            <table class="work-summary-table-new">
+                <colgroup>
+                    <col class="column-width-6">
+                    <col class="column-width-50">
+                    <col class="column-width-14">
+                    <col class="column-width-15">
+                    <col class="column-width-15">
+                </colgroup>
+                <thead>
+                <tr>
+                    <th></th>
+                    <th class="text-align-left">Description</th>
+                    <th class="text-align-center">Quantity</th>
+                    <th class="text-align-right">Rate</th>
+                    <th class="text-align-right">Amount</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td colspan="5">
+                        <hr class="hr-separator"/>
+                    </td>
+                </tr>
+                                                            <tr class="full-width-100 no-spacing no-padding">
+                            <td class="vertical-align-top table-cell-width-40">
+                                <div class="font-weight-bold" aria-hidden="true">&nbsp;</div>
+                                Labor
+                            </td>
+                            <td class="description-cell">
+                                <div>
+                                    <div>
+                                        <div class="font-weight-bold">
+                                            LLELE
+                                        </div>
+                                        <p class="no-spacing">EEE</p>
+                                    </div>
+                                                                    </div>
+                            </td>
+                            <td class="table-cell-width-80 vertical-align-bottom text-align-center">
+                                                                    <div class="avoid-break-inside">
+                                        1
+                                    </div>
+                                                            </td>
+                            <td class="table-cell-width-80 vertical-align-bottom">
+                                                                    <div class="avoid-break-inside text-align-right">
+                                        $135.00
+                                    </div>
+                                                            </td>
+                            <td class="table-cell-width-80 vertical-align-bottom">
+                                                                    <div class="avoid-break-inside text-align-right">
+                                        $135.00
+                                    </div>
+                                                            </td>
+                        </tr>
+                                                                                                                        
+                                                                                            <tr class="full-width-100 avoid-break-inside">
+                                <td class="vertical-align-top table-cell-width-40">
+                                    Parts
+                                </td>
+                                <td class="description-cell">
+                                    <div>
+                                        1754840 - Item-6478
+                                    </div>
+                                </td>
+                                <td class="text-align-center vertical-align-top">
+                                                                            <div>
+                                            34
+                                        </div>
+                                                                    </td>
+                                <td class="text-align-right vertical-align-top">
+                                                                            <div>
+                                            $6,000.00
+                                        </div>
+                                                                    </td>
+                                <td class="text-align-right vertical-align-top">
+                                                                            <div>
+                                            $204,000.00
+                                        </div>
+                                                                    </td>
+                            </tr>
+                                                                                                                                                                                                                    <tr class="full-width-100 avoid-break-inside">
+                                <td class="vertical-align-top table-cell-width-40">
+                                    Parts
+                                </td>
+                                <td class="description-cell">
+                                    <div>
+                                        1754840 - Item-6478
+                                    </div>
+                                </td>
+                                <td class="text-align-center vertical-align-top">
+                                                                            <div>
+                                            5
+                                        </div>
+                                                                    </td>
+                                <td class="text-align-right vertical-align-top">
+                                                                            <div>
+                                            $690.00
+                                        </div>
+                                                                    </td>
+                                <td class="text-align-right vertical-align-top">
+                                                                            <div>
+                                            $3,450.00
+                                        </div>
+                                                                    </td>
+                            </tr>
+                                                                                                                                                                                                                    <tr class="full-width-100 avoid-break-inside">
+                                <td class="vertical-align-top table-cell-width-40">
+                                    Parts
+                                </td>
+                                <td class="description-cell">
+                                    <div>
+                                        1754840 - Core for Item-6478
+                                    </div>
+                                </td>
+                                <td class="text-align-center vertical-align-top">
+                                                                            <div>
+                                            5
+                                        </div>
+                                                                    </td>
+                                <td class="text-align-right vertical-align-top">
+                                                                            <div>
+                                            $6.00
+                                        </div>
+                                                                    </td>
+                                <td class="text-align-right vertical-align-top">
+                                                                            <div>
+                                            $30.00
+                                        </div>
+                                                                    </td>
+                            </tr>
+                                                                                                                                                                
+                                                                <tr class="avoid-break-inside">
+                            <td colspan="3"></td>
+                            <td class="total-row-total text-align-right avoid-break-inside">
+                                Parts Total
+                            </td>
+                            <td
+                                    class="total-row-total text-align-right avoid-break-inside"
+                            >
+                                $207,480.00
+                            </td>
+                        </tr>
+                                                                <tr class="avoid-break-inside">
+                            <td colspan="3"></td>
+                            <td class="total-row-total text-align-right avoid-break-inside">
+                                Labor Total
+                            </td>
+                            <td
+                                    class="total-row-total text-align-right avoid-break-inside"
+                            >
+                                $135.00
+                            </td>
+                        </tr>
+                    
+                                            <tr class="avoid-break-inside">
+                            <td colspan="3"></td>
+                            <td
+                                    class="total-row-total font-weight-bold text-align-right avoid-break-inside"
+                            >
+                                Line Total
+                            </td>
+                            <td class="total-row-total text-align-right avoid-break-inside">
+                                $207,615.00
+                            </td>
+                        </tr>
+                    
+                    <tr class="avoid-break-inside full-width-100">
+                        <td colspan="5" class="no-spacing height-0 no-padding">
+                            <hr class="hr-separator"/>
+                        </td>
+                    </tr>
+                                </tbody>
+            </table>
+        </div>
+                        <div>
+            <div class="flex-row justify-content-end avoid-break-inside">
+                                                                    <div class="full-width-100 flex-row totals-new justify-content-end margin-top-sm">
+                      <span class="totals-position-new text-align-right font-weight-bold">
+                          Labor
+                      </span>
+                        <span class="custom-col-md-width-14 text-align-right">
+                        $135.00
+                      </span>
+                    </div>
+                
+                                    <div class="full-width-100 flex-row totals-new justify-content-end">
+                      <span
+                              class="totals-position-new text-align-right font-weight-bold"
+                      >Parts</span
+                      >
+                        <span class="custom-col-md-width-14 text-align-right">
+                        $207,480.00
+                      </span>
+                    </div>
+                
+                                    <div class="full-width-100 flex-row totals-new justify-content-end">
+                        <span class="totals-position-new text-align-right font-weight-bold">
+                            Shop supplies
+                                                    </span>
+                        <span class="custom-col-md-width-14 text-align-right">
+                            $13.50
+                        </span>
+                    </div>
+                                                                    <div class="full-width-100 flex-row totals-new justify-content-end">
+                        <span class="totals-position-new text-align-right font-weight-bold">
+                            Adjustments
+                        </span>
+                        <span class="custom-col-md-width-14 text-align-right"></span>
+                    </div>
+                                            <div class="full-width-100 flex-row totals-new justify-content-end">
+                            <span class="totals-position-new text-align-right">
+                                % processing fee                            </span>
+                            <span class="custom-col-md-width-14 text-align-right">
+                                $28,652.73
+                            </span>
+                        </div>
+                                            <div class="full-width-100 flex-row totals-new justify-content-end">
+                            <span class="totals-position-new text-align-right">
+                                % of sub total                            </span>
+                            <span class="custom-col-md-width-14 text-align-right">
+                                $22,839.14
+                            </span>
+                        </div>
+                                            <div class="full-width-100 flex-row totals-new justify-content-end">
+                            <span class="totals-position-new text-align-right">
+                                % of labor total                            </span>
+                            <span class="custom-col-md-width-14 text-align-right">
+                                $17.55
+                            </span>
+                        </div>
+                                            <div class="full-width-100 flex-row totals-new justify-content-end">
+                            <span class="totals-position-new text-align-right">
+                                % of parts totall                            </span>
+                            <span class="custom-col-md-width-14 text-align-right">
+                                $39,421.20
+                            </span>
+                        </div>
+                                            <div class="full-width-100 flex-row totals-new justify-content-end">
+                            <span class="totals-position-new text-align-right">
+                                Discount- % of subtotal                            </span>
+                            <span class="custom-col-md-width-14 text-align-right">
+                                ($24,915.42)
+                            </span>
+                        </div>
+                                                    <div class="full-width-100 flex-row totals-new justify-content-end">
+                      <span class="totals-position-new text-align-right font-weight-bold">
+                        Subtotal
+                      </span>
+                    <span class="custom-col-md-width-14 text-align-right">
+                        $273,643.70
+                      </span>
+                </div>
+
+                                                            <div id="rate-6435a919-e73a-438b-9961-e5021ba00c42" class="full-width-100 flex-row totals-new justify-content-end">
+                        <span
+                                class="totals-position-new text-align-right font-weight-bold"
+                        >
+                          Rtae (15%)
+                        </span>
+                            <span class="custom-col-md-width-14 text-align-right">
+                          $41,046.56
+                        </span>
+                        </div>
+                                                    <div class="full-width-100 flex-row totals-new justify-content-end">
+                    <span class="totals-position-new text-align-right font-weight-bold">Total</span>
+                    <span class="custom-col-md-width-14 text-align-right">
+                    $314,690.26
+                  </span>
+                </div>
+                <div class="full-width-100 flex-row totals-new justify-content-end">
+                  <span class="totals-position-new text-align-right text-bold">
+                    Payments
+                  </span>
+                    <span class="custom-col-md-width-14 text-align-right"></span>
+                </div>
+                                    <div class="full-width-100">
+                                                                                                                                                                                                                                                            <div id="payment-ab6c719b-93a1-44de-b72b-908ea6545fc4"
+                                     class="flex-row totals-new justify-content-end">
+                        <span class="totals-position-new text-align-right">
+                          Aug 28, 2026 - Cash
+                                                    </span>
+                                    <span class="custom-col-md-width-14 text-align-right">
+                          $314,690.26                        </span>
+                                </div>
+                                                                                                                                                                        </div>
+                                <div class="full-width-100 flex-row totals-new justify-content-end">
+                  <span class="totals-position-new text-align-right text-bold">
+                    Balance
+                  </span>
+                    <span class="custom-col-md-width-14 text-align-right">
+                    $0.00
+                  </span>
+                </div>
+                            </div>
+            <div class="flex-col-12 avoid-break-inside text-grey-80 margin-y-md">
+                <p class="margin-y-sm avoid-break-inside disclaimer-font">
+                    Any warranties on the parts and accessories sold hereby are made by the manufacturer. You understand and agree that we make no warranties of any kind unless expressed in writing. You hereby authorize us to perform the repair work herein set forth and to purchase the necessary material and parts to perform such repair work. You agree that we are not responsible for loss or damage to your vehicle or articles left in your vehicle in case of fire, theft, or any other cause beyond our control or for any delays caused by unavailability of parts or delays in part shipments by the supplier or transporter. In addition, you agree that we are not responsible for damages to your vehicle from freezing due to lack of antifreeze. You hereby grant our employees permission to operate your vehicle on streets, highways, or elsewhere for the purpose of testing and/or inspection. You acknowledge and agree that an express mechanic&#039;s lien on your vehicle is granted to secure payment of this invoice for the repair work detailed in this invoice.
+                </p>
+                <div class="full-width-100 totals-new font-weight-bold avoid-break-inside signature-block">
+                    <div class="signature-row">
+                        <span class="signature-label">Customer signature:</span>
+                        <span class="signature-line"></span>
+                    </div>
+                    <div class="signature-row">
+                        <span class="signature-label">Printed name:</span>
+                        <span class="signature-line signature-line--name"></span>
+                        <span class="signature-label">Date:</span>
+                        <span class="signature-line signature-line--date"></span>
+                    </div>
+                </div>
+                                    <div class="margin-top-md full-width-100 flex-row justify-content-between avoid-break-inside">
+                        <p class="info-text-new no-spacing">
+                            5454545454544544
+                        </p>
+                        <p class="info-text-new no-spacing">
+                            Powered by ShopView
+                        </p>
+                    </div>
+                            </div>
+        </div>
+    </section>
+</div>
+</body>
+</html>

@@ -1,0 +1,19 @@
+{
+ "pass_meta": {
+  "suite": "Invoice Design Selection (7800)",
+  "run": 446,
+  "env": "the Production account (app.shopview.com)",
+  "build": "v26.36.4-3e1c643",
+  "date": "12 September 2026"
+ },
+ "results": {
+  "C53533": {
+   "verdict": "Passed",
+   "observed": "Checked on the live Production site. The save was made to fail in a controlled way - the request that saves the setting was refused inside my own browser only, so nothing on the site was broken and no real error was caused for anyone else. With the shop on the new look, the switch was turned on and the confirmation box answered. The result is exactly what is expected: an alert appears reading, word for word, \"Could not update the invoice design. Please try again.\" It does NOT go away by itself - it was left completely alone and was still on screen twelve seconds later, and it carries its own Close control, so a person has to dismiss it. The switch went straight back to where it started (off, the new look) and the shop's stored setting never changed. The Invoice tab was then reloaded and both the switch and the stored setting were still exactly as they began. The failed change was not kept in any form."
+  },
+  "C53522": {
+   "verdict": "Passed",
+   "observed": "Checked on the live Production site. This shop account long pre-dates the new look - its invoices go back to December 2025, well before the redesign was released on 9 September - so it is an organisation that already existed when the setting shipped. The very first reading taken on production today, at 18:10, before anything at all had been changed, showed the shop on the Modern (new) look, which is the expected starting position. One limit of this evidence, stated plainly so nobody is misled: the check asks for an organisation that has never had the setting changed, and that cannot be proven on a live shared account - the setting has since been switched many times during this testing, and it was also changed by another person twice while I was working. What can be said is that this long-standing organisation was on Modern when first observed and had not been changed by me at that point."
+  }
+ }
+}

@@ -1,0 +1,15 @@
+{
+ "pass_meta": {
+  "suite": "Invoice Design Selection (7800)",
+  "run": 446,
+  "env": "the Production account (app.shopview.com)",
+  "build": "v26.36.4-3e1c643",
+  "date": "12 September 2026"
+ },
+ "results": {
+  "C53590": {
+   "verdict": "Passed",
+   "observed": "Checked on the live Production site on job S1-824, which has a real saved moment in its history - an \"Invoice downloaded\" event recorded earlier. That exact saved copy was opened with the shop on the new look and again on the old look. It came out in whichever look was switched on at the time: the new look 114,110 characters with the newer blocks, the old look 55,313 characters with the classic layout. Both carried the same invoice number INV-S1-824 and exactly the same nineteen amounts. So a saved copy in a job's history keeps no look of its own, and when it was recorded makes no difference to how it is drawn today. The setting was read back immediately before and after each reading; nothing drifted."
+  }
+ }
+}
