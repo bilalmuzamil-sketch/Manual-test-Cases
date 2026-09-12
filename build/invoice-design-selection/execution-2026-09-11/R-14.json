@@ -1,0 +1,15 @@
+{
+ "pass_meta": {"suite":"Invoice Design Selection (7800)","run":446,
+   "env":"the Staging site and its customer portal","build":"v26.36.2-38f5dd6",
+   "date":"12 September 2026"},
+ "results": {
+  "C53566": {
+   "verdict":"Passed",
+   "observed":"Checked on the customer portal on Staging, on screen and in the saved file, under both looks. ON SCREEN: with the setting on Legacy the portal invoice showed plain sentence-case headings; with the setting on Modern the very same invoice showed capitalised section headings and a different, longer layout. Same invoice number both times, same amounts. IN THE SAVED FILE: the printer button at the top right of the portal invoice opens the printable version of that invoice in its own tab, and saving that page is how the customer gets the file. Saved under both looks: the Legacy file carried the old-style headings (Bill To, Remit payment to, Line Total) and the Modern file carried the new-style ones (ADDRESSES, BILL TO, REMIT PAYMENT TO, SUMMARY, BALANCE) with the totals block moved to the top. The same six amounts appeared on both files ($149.95, $15.74, $165.69, $8.29, $173.98, $0.00) and the invoice number was the same on both. The same comparison was repeated on a second invoice so it could not be one odd document, and it behaved the same way. The setting was read back from the system immediately before and immediately after every single reading, so that any reading taken while another tester flipped the setting would be thrown away - none had to be. The setting was found on Legacy and was put back on Legacy."
+  },
+  "C53567": {
+   "verdict":"Passed",
+   "observed":"Checked on the customer portal on Staging under both looks, with three contrasts run in the same session. WHERE THE BANNER IS: on an invoice that was paid through the portal, the printer button opens a short menu with two choices - Print Invoice, and Print with Payment Receipt. Print with Payment Receipt produces the document that carries the banner: a green PAID IN FULL badge at the top, next to a payment receipt block giving the date and time, who paid, the method (Visa ending 4242) and the amount charged. IT APPEARS UNDER BOTH LOOKS: the badge was there with the setting on Legacy and again with the setting on Modern, and the invoice beneath it was in whichever look was switched on at the time - the Legacy one in the old style, the Modern one with the new-style section blocks. The badge itself is the same green badge in both. IT APPEARS NOWHERE ELSE, and this was checked three ways in the same session: first, the same invoice printed with the plain Print Invoice choice showed no badge under either look; second, an invoice with no payment against it showed no badge under either look, even when asked for the receipt version; third, inside the shop app the same invoice on its work order Finance tab, and a separate estimate on its Finance tab, both displayed the whole document on screen and neither carried the badge. The setting was read back immediately before and after every reading; none had to be thrown away. It was found on Legacy and left on Legacy."
+  }
+ }
+}

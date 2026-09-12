@@ -547,13 +547,28 @@ any endpoint/ID not recorded here or in `CLAUDE.md`** — if only partly known, 
   screenshot is **not** retracted, and we do **not** assert staging has no panel: **nobody has looked
   while signed in.** **Do not queue this as an independently answerable question and do not spend a
   probe on it.**
-  **🔁 RE-CONFIRMED 2026-09-12 (one cheap probe, run only because a live pass had just lost its
-  session and the panel would have been the way back): from a COLD jar, both
-  `https://app.staging.shopview.com/` and `/login` redirect server-side to `accounts.google.com`
-  (`hd=shopview.com`, `redirect_uri=https://auth.staging.shopview.com/callback`) before the app
-  renders — no panel, no form. Identical to the 2026-09-03 reading. The panel IS visible once a
-  session exists (it rendered at 10:52 that morning, while the cookie still had life in it), which is
-  exactly when it is not needed. His ruling stands: DO NOT CHASE IT.**
+  **⚖️ 2026-09-12 — BOTH HALVES NOW ANSWERED, AND THEY DO NOT CONTRADICT EACH OTHER.**
+  **(i) FROM A COLD JAR, STILL NO.** `https://app.staging.shopview.com/` and `/login` redirect
+  server-side to `accounts.google.com` (`hd=shopview.com`,
+  `redirect_uri=https://auth.staging.shopview.com/callback`) before the app renders — no panel, no
+  form. Identical to the 2026-09-03 reading. **So the panel is NOT a way to GET a session, and his
+  ruling stands: do not chase it as one.**
+  **(ii) 🟢 WITH A LIVE COOKIE, YES — AND THIS IS NOW THE STAGING SPA-HYDRATION ROUTE, ONE CLICK.**
+  A borrowed `sv_sso_session` authenticates the API but leaves the SPA sitting on `/login`. On that
+  page the `DEV MODE — QUICK LOGIN` panel **renders**, and **clicking `Admin` completes the login**:
+  ~14 s later the page is at `/workorders?status=paid` with `localStorage.user` set and every in-app
+  screen reachable. Proven live 2026-09-12 (`build/invoice-design-selection/staging-2026-09-12/evidence/S27-inapp-finance.png`).
+  ```js
+  await p.goto(`${APP}/`); await p.waitForTimeout(5000);
+  await p.evaluate(()=>{const vis=e=>{const r=e.getBoundingClientRect();return r.width>0&&r.height>0;};
+    const t=e=>(e.innerText||'').replace(/\s+/g,' ').trim();
+    const el=[...document.querySelectorAll('button,.q-btn,[role=button],a')].filter(vis)
+      .find(e=>/\bAdmin\b/.test(t(e))&&!/Panel|Settings:/.test(t(e)));
+    if(el) el.click();});
+  await p.waitForTimeout(14000);   // localStorage.user is now set
+  ```
+  **⇒ Stop hand-writing `localStorage` on staging, and do NOT go looking for a user endpoint:
+  `GET /api/auth/me` is **404** there; only `/api/auth/me/fe-permissions` answers (200).**
   **(b)** whether **`sv_sso_session` ALONE suffices on staging** — **genuinely still open.** Staging
   sits behind **Cloudflare** (`cf_clearance` at the edge), unlike the CloudFront+nginx QA branches,
   **so the QA-branch finding that `cf_clearance` is inert does NOT transfer**. Answer it opportunistically
@@ -4270,13 +4285,33 @@ produced the withdrawn *"the credit note is not rendered on this branch"* conclu
   `build/assets/PreviewInvoice-*.js`; the server's `props.htmlContent` has none of the banner strings,
   so a server-side fetch makes the feature look missing. Render it and read
   `#portal-paid-invoice-summary`.
+  **🛑 AND IT NEEDS A SUCCEEDED PAYMENT, NOT JUST THE QUERY PARAM (read out of the chunk, proven live
+  2026-09-12).** `PreviewInvoice-*.js` injects the block only when the page is given `payments` AND at
+  least one of them is `status: succeeded` with the invoice `paid`/`partially_paid` (or
+  `shopview_sync_success`). `?include_receipt=1` **on its own injects nothing** — the working URL the
+  menu item builds is `/invoices/{id}/preview?include_receipt=1&payment_id=<payment id>`. Find a
+  qualifying invoice from the portal's **Payments** list: rows carry `invoice_id` + `invoice_number`,
+  so `status==='succeeded' && invoice_id && !is_batch_payment` hands you the pair directly.
+  The banner is a pill — **`PAID IN FULL`** (green) or **`PARTIALLY PAID`** (amber) — with hard-coded
+  inline styles, so **the pill looks the same in both Invoice Designs** while the invoice under it
+  follows the current setting. Proven on staging under Legacy and Modern, with three negative controls
+  (same invoice printed without the receipt · an invoice with no payment · the in-app Finance tab of
+  the same invoice and of an estimate): evidence in
+  `build/invoice-design-selection/staging-2026-09-12/evidence/` (`S24.json`, `pdf24-*.pdf`).
 - **🖨️ WHAT THE PRINTER ICON ACTUALLY IS, AND WHERE THE "PDF" COMES FROM (observed live 2026-09-12 on
   `/invoices/<id>`; BOTH READINGS STAY ON THE RECORD — the menu above was observed 2026-09-07).**
-  On the invoice **detail** page the printer control is a plain **`<a>` carrying `svg.lucide-printer`**
-  (top right, beside a mail button), `href="/invoices/<id>/preview"`, and it opens that URL **in a NEW
-  TAB**. No menu appeared on the detail page on 12 September. **The preview page has ZERO clickable
-  controls** — it is not a viewer, it *is* the printable document, and the customer's "PDF" is the
-  browser's own **Save as PDF**. So:
+  The printer control sits top right of `/invoices/<id>`, beside a mail button, and it takes **two
+  shapes depending on the INVOICE, not the build** (`Show-*.js`):
+  - **Invoice with a ShopPay payment → a DROPDOWN `<button>`** with two items:
+    **`Print Invoice`** → `/invoices/<id>/preview` and **`Print with Payment Receipt`** →
+    `/invoices/<id>/preview?include_receipt=1`.
+  - **Invoice with no payment record → a plain `<a>`** straight to `/invoices/<id>/preview`. An invoice
+    can be `status: paid` and still land here — one paid by card **in the shop app** has
+    `props.payment === null`, so it gets the single link. Seeing the plain link is NOT evidence the
+    menu does not exist (learning L0065).
+  Either way the target opens **in a NEW TAB**, and **the preview page has ZERO clickable controls** —
+  it is not a viewer, it *is* the printable document (it even calls `window.print()` 200 ms after
+  mount), and the customer's "PDF" is the browser's own **Save as PDF**. So:
   - **Capture it with the print engine, never a fetch:**
     `await page.emulateMedia({media:'print'}); await page.pdf({path, format:'Letter', printBackground:true});`
     A fetch misses every `@media print` rule — and a banner that exists only in print is exactly what a

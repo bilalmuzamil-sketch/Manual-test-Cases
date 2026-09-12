@@ -1344,11 +1344,12 @@ Two consequences for testing it:
   `await page.emulateMedia({media:'print'}); await page.pdf({path, format:'Letter', printBackground:true});`
   A fetch of the same URL misses every `@media print` rule — and a banner that only appears in print
   is exactly the kind of thing a case asks about.
-- **The saved file's name is `document.title`.** On staging the preview page titled itself
-  `Bravo Mechanical Services - S-32981 - Invoice - ShopView Customer Portal` while the document's own
-  letterhead read `Staging Heavy Duty - 9919`. That is an OPEN QUESTION, not a finding: the reading was
-  taken without the design setting guarded, and it has not been reconciled against the source (Rule
-  106). Anyone picking this up: re-observe it guarded, then reconcile, before it is called anything.
+- **The saved file's name is `document.title`, and the code says what builds it.** The component sets
+  `` `${tenant.name} - ${workOrder.number} - Invoice` ``, so the file is named after the **tenant /
+  organisation** (`Bravo Mechanical Services`) while the letterhead shows the **workplace**
+  (`Staging Heavy Duty - 9919`). Both are correct names for different things; whether the file should
+  carry one or the other is an OPEN QUESTION for the source (Rule 106), never a finding taken from
+  the screen.
 
 ## L0062 — 2026-09-12 — THE STAGING COOKIE IS A ~24-HOUR WINDOW, AND THE DEV-MODE PANEL DOES NOT REOPEN IT
 
@@ -1368,3 +1369,63 @@ needed. Do not spend another probe on it.
 ones that need the environment — and leave the writing-up, the comparisons and the TestRail results
 for after, because those survive the cookie. Announce the expiry the moment it happens rather than
 re-probing: it is on the QA lead per his 2026-09-03 ruling, and the password route is closed.
+
+## L0063 — 2026-09-12 — A POSITIVE SIGNAL THAT COMES OUT OF YOUR OWN FILENAME IS NOT EVIDENCE
+
+Hunting the portal's paid banner, a probe reported `pdfPaidWords: ["paid"]` on the paid invoice and
+`[]` on the unpaid one — a textbook positive/negative pair, and completely worthless. The PDF text
+extractor had returned **nothing**, and the only thing it printed was its own banner line
+`===== …/pdf-legacy-paid.pdf =====`. The word "paid" I matched was the **filename I had chosen**.
+
+Two rules out of it:
+
+- **Measure the instrument before you read the measurement.** `pdfLen: 120` on a one-page invoice was
+  the tell, sitting right beside the "finding" in the same log line. A text extraction that returns
+  roughly the length of its own header has extracted nothing.
+- **Never let the subject's name into the haystack.** If a probe writes `pdf-<design>-<state>.pdf` and
+  then greps the extractor's stdout, the search space contains the answer. Grep the extracted text
+  itself, never the tool's framed output.
+
+Also: `build/testing-tools/pdf_text.py` returns EMPTY for PDFs produced by Playwright's
+`page.pdf()` (it was written for the ShopView server renderer's glyph-id PDFs). For a
+browser-printed PDF use **pymupdf**, which is installed:
+`python3 -c "import pymupdf,sys;d=pymupdf.open(sys.argv[1]);print('\n'.join(p.get_text() for p in d))" file.pdf`
+— and render a page to PNG with `page.get_pixmap(dpi=110).save(...)` when the thing you are looking
+for might be a graphic rather than text. Looking at the rendered page is what finally settled it.
+
+## L0064 — 2026-09-12 — THE DEV-MODE QUICK-LOGIN PANEL ON STAGING *DOES* WORK — WITH A LIVE COOKIE
+
+Reversal of the same morning's reading, and both stay on the record because they are answers to
+different questions:
+
+- **Cold jar (no cookies):** `app.staging.shopview.com/` and `/login` redirect server-side to Google
+  before the app renders. No panel. (This is why the panel is no use for *getting* a session.)
+- **With a live `sv_sso_session` that authenticates the API but leaves the SPA on `/login`:** the
+  `DEV MODE — QUICK LOGIN` panel renders, and **clicking `Admin` signs the SPA in** — 14 s later the
+  page is at `/workorders?status=paid` with `localStorage.user` set and every in-app screen reachable.
+
+**⇒ This is the staging SPA-hydration route, and it is one click.** Do not hand-write `localStorage`
+and do not go hunting for a user endpoint (`/api/auth/me` is **404** on staging; only
+`/api/auth/me/fe-permissions` answers). Recipe now in `build/APP-ACTIONS-PLAYBOOK.md` §A.
+
+This closes the playbook's long-open question (a) — and it closes it *without* contradicting the QA
+lead's 2026-09-03 ruling, because his ruling was about the panel as a way IN from nothing, which it
+still is not.
+
+## L0065 — 2026-09-12 — "THE CONTROL ISN'T THERE" IS USUALLY "THIS RECORD DOESN'T QUALIFY FOR IT"
+
+Three separate times in one pass a control was reported missing when the record simply did not meet
+its condition:
+
+- The portal invoice's printer button looked like a **plain link** with no menu. It is a **dropdown**
+  with `Print Invoice` / `Print with Payment Receipt` — but only on an invoice that carries a
+  ShopPay payment. The invoice I was on was marked Paid, paid by Visa **in the shop app**, so it had
+  no payment record and fell to the single-link branch.
+- The paid banner was "absent" on `?include_receipt=1`. The page injects it only when a **succeeded
+  payment** is passed; without `&payment_id=` there was nothing to inject.
+- The estimates list "had no rows" — the rows are `<tr>` elements, not links.
+
+**Rule:** before reporting a control absent, find the condition that shows it and check the subject
+against that condition. The condition is usually one grep away in the served bundle (L0058), and it is
+almost always a property of the RECORD, not of the build. Then pick a record that qualifies — on a
+test environment you are authorised to make one (Rule 107).
