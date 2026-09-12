@@ -1,0 +1,51 @@
+{
+ "pass_meta": {
+  "suite": "Invoice Design Selection (7800)",
+  "run": 446,
+  "env": "the Production account (app.shopview.com)",
+  "build": "v26.36.4-3e1c643",
+  "date": "12 September 2026"
+ },
+ "results": {
+  "C53518": {
+   "verdict": "Passed",
+   "observed": "Checked on the live Production site, on the Settings page, Invoice tab. The switch rows appear in this order, top to bottom: Labor rate, Labor hours, Labor price, Part number, Part quantity, Part price, Part description, Summarize parts total, Summarize labor total, and last of all \"Legacy invoice layout\". The Disclaimer box sits below it. So the design control is the final switch row, directly under \"Summarize labor total\" and above the Disclaimer, exactly as expected, and it is built the same way as the rows above it."
+  },
+  "C53519": {
+   "verdict": "Passed",
+   "observed": "Checked on the live Production site. The control is a single on/off switch, not a list of choices. With the switch OFF the shop's stored design is the Modern (new) one; with it ON the stored design is the Legacy (old) one. Both states were set and read back during the same session, and the state was confirmed again after reloading the page, so neither reading depends on the screen alone."
+  },
+  "C53520": {
+   "verdict": "Passed",
+   "observed": "Checked on the live Production site. The explanatory text sitting directly under the switch reads, character for character: \"Every estimate, invoice and credit invoice your shop shows, prints or sends uses the legacy design while this is on, including documents created before you changed it.\" It matched the expected wording exactly, with nothing added or missing. It is ordinary text that is always on the page - not a pop-up and not a message that appears and disappears."
+  },
+  "C53521": {
+   "verdict": "Passed",
+   "observed": "Checked on the live Production site. The Invoice tab carries exactly one \"Legacy invoice layout\" row - there is no second copy and no per-location version of it. The Locations page was then opened and searched: it offers no design choice of any kind. So the design is one choice for the whole shop, applying to every location, with no way to set it per location or per document."
+  },
+  "C53524": {
+   "verdict": "Passed",
+   "observed": "Checked on the live Production site, starting with the shop on the Modern design. Clicking the switch does NOT move it - a confirmation box appears first, and the switch stays exactly where it was until the box is answered, which was confirmed by reading the switch itself while the box was open. The box is headed \"Switch to the Legacy design?\" and reads: \"Every estimate, invoice and credit invoice will use the Legacy design straight away, including documents your shop has already sent. Reprints and portal copies of older documents change too. You can switch back at any time.\" Both matched the expected wording exactly. It offers two action buttons, \"Switch to Legacy\" and \"Cancel\". Worth noting for the reader: the buttons appear on screen as \"Switch To Legacy\" with a capital T, but that is only the page's styling applied on top - the label itself is \"Switch to Legacy\" as expected. The box also has a small close cross in its corner, which is a way of dismissing it rather than a third action button."
+  },
+  "C53525": {
+   "verdict": "Passed",
+   "observed": "Checked on the live Production site, starting with the shop on the Legacy design. Clicking the switch does not move it; a confirmation box appears first, headed \"Switch to the Modern design?\" and reading: \"Every estimate, invoice and credit invoice will use the Modern design straight away, including documents your shop has already sent. Reprints and portal copies of older documents change too. You can switch back at any time.\" Both matched the expected wording exactly, and the two action buttons are \"Switch to Modern\" and \"Cancel\". As with the other direction, the buttons are displayed with a capital T by the page's styling while the labels themselves are as expected, and the box carries a small close cross for dismissing it."
+  },
+  "C53526": {
+   "verdict": "Passed",
+   "observed": "Checked on the live Production site, in both directions. After answering the confirmation box, a green success message appears reading exactly \"Invoice design updated.\" It was left completely alone and it disappeared by itself within nine seconds - nobody closed it. The change was genuinely saved: the shop's stored design had changed immediately after confirming, and after reloading the Invoice tab the switch was still in its new position. This was seen both when switching to Legacy and when switching back to Modern."
+  },
+  "C53528": {
+   "verdict": "Passed",
+   "observed": "Checked on the live Production site by switching back and forth four times in a row, without pausing between them: Legacy to Modern, Modern to Legacy, Legacy to Modern, and Modern to Legacy again. Every one of the four was accepted and took effect, and the shop's stored design was read back after each to confirm it. Nothing blocked a change, nothing asked the user to wait, and no limit was reached in either direction."
+  },
+  "C53530": {
+   "verdict": "Passed",
+   "observed": "Checked on the live Production site, with the shop on the Legacy design. The switch was clicked so that the confirmation box appeared, and \"Cancel\" was pressed. The switch stayed exactly where it started - it never moved, either while the box was open or after cancelling - and the shop's stored design was unchanged. The Invoice tab was then reloaded and both the switch and the stored design were still as they began. Nothing at all was saved."
+  },
+  "C53532": {
+   "verdict": "Passed",
+   "observed": "Checked on the live Production site. All of the other invoice settings were recorded before the design was changed, and read again immediately afterwards: labor rate, labor hours, labor price, part number, part quantity, part price, part description, summarize parts total, summarize labor total and the disclaimer. Not one of them changed. The design change altered the design and nothing else."
+  }
+ }
+}
