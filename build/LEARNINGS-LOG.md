@@ -1503,3 +1503,30 @@ ran 10–20 minutes, and from his side that is silence he has to break himself.
 
 **Why it matters beyond politeness:** he is accountable for this work to people above him. A status he
 has to ask for is one he cannot forward. A predictable one he can.
+
+## L0069 — 2026-09-12 — CHECK YOU ARE ON THE PAGE YOU THINK YOU ARE ON, BEFORE BLAMING A CONTROL
+
+I reported a work order's "Create Invoice" button as unresponsive, twice, and told the QA lead so.
+The button was fine. **The work order had been deleted mid-run**: `GET /api/work-orders/view/<id>`
+answered `400 {"errors":[{"error":"WorkOrder not found."}]}`, and navigating to
+`/workorders/<id>/finance` **silently redirected to the work orders list** — no error page, no
+message, just a different page that still looks like the app. My click found no button because there
+was no work order, and I called that "not responding".
+
+It had rendered perfectly on that same id two hours earlier, which is exactly why I trusted it.
+
+**Add to the negative-finding drill, before any claim about a control:**
+
+- **Assert the page identity, not just that something loaded.** After every navigation, read back a
+  token that only the intended record shows — its number in the header, its id in the URL — and fail
+  loudly if it is missing. `page.url()` alone is not enough on an app that redirects on a bad id.
+- **A silent redirect is the dangerous case.** An error page is obvious; being quietly returned to a
+  list is not, because the chrome, the menus and the top bar all still look right.
+- **On a shared live environment, an id is only as good as its last read.** Records are created and
+  deleted under you. Re-resolve the subject at the start of each pass rather than carrying an id
+  across passes for hours.
+- **"The control did not respond" is never the first conclusion.** The order is: is this the right
+  page · is the control present · is it enabled · did the click land · did anything change. I skipped
+  straight to the last one.
+
+Cost: two wasted passes and a wrong statement to the QA lead that I had to correct myself.
