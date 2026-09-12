@@ -1,0 +1,730 @@
+{
+ "expand": "renderedFields,names,schema,operations,editmeta,changelog,versionedRepresentations",
+ "id": "56275",
+ "self": "https://shopview.atlassian.net/rest/api/3/issue/56275",
+ "key": "SV-9974",
+ "renderedFields": {
+  "statuscategorychangedate": "Today 3:19 PM",
+  "issuetype": null,
+  "timespent": null,
+  "project": null,
+  "customfield_10153": null,
+  "customfield_10351": "",
+  "fixVersions": null,
+  "customfield_10352": null,
+  "aggregatetimespent": null,
+  "statusCategory": null,
+  "resolution": null,
+  "resolutiondate": null,
+  "workratio": null,
+  "issuerestriction": null,
+  "watches": null,
+  "lastViewed": "Today 3:29 PM",
+  "created": "Today 3:19 PM",
+  "customfield_10021": null,
+  "customfield_10385": null,
+  "priority": null,
+  "labels": null,
+  "customfield_10016": null,
+  "customfield_10019": null,
+  "timeestimate": null,
+  "aggregatetimeoriginalestimate": null,
+  "versions": null,
+  "customfield_10418": null,
+  "customfield_10419": null,
+  "issuelinks": null,
+  "assignee": null,
+  "updated": "Today 3:20 PM",
+  "status": null,
+  "components": null,
+  "timeoriginalestimate": null,
+  "description": "<p><b>Description</b><br/>\nThe invoice email sent from the customer portal attributes the invoice to \"Bravo Mechanical Services\" in four places. The organisation is Staging Heavy Duty - 9919. A customer receiving this sees a company that has nothing to do with their invoice.</p>\n\n<p><b>Environment</b><br/>\n<tt>staging.portal.shopview.com</tt> · org Staging Heavy Duty - 9919 · invoice S-32981</p>\n\n<p><b>Steps</b></p>\n\n<ol>\n\t<li>Portal → Invoices → open S-32981</li>\n\t<li>Click the email icon and send to yourself</li>\n\t<li>Open the email</li>\n</ol>\n\n\n<p><b>Actual</b></p>\n\n<ul>\n\t<li>Subject: <em>Invoice #S-32981 - Bravo Mechanical Services</em></li>\n\t<li>Body: <em>\"Bravo Mechanical Services has shared an invoice with you\"</em></li>\n\t<li><em>\"please don't hesitate to contact Bravo Mechanical Services directly\"</em></li>\n\t<li>Footer: <em>\"Sent by ShopView on behalf of Bravo Mechanical Services\"</em></li>\n</ul>\n\n\n<p>The attached PDF itself is correct — it shows Staging Heavy Duty - 9919.</p>\n\n<p><b>Expected</b><br/>\nThe email names the invoice's own organisation.</p>\n\n<p><b>Note for dev</b><br/>\nWorth confirming whether that string is hardcoded or read from another organisation's record. If the latter, it's a cross-tenant data issue.</p>\n\n\n<p><span class=\"image-wrap\" style=\"\"><img src=\"https://shopview.atlassian.net/rest/api/3/attachment/content/60628\" alt=\"image-20260912-101939.png\" width=\"865\" style=\"border: 0px solid black\" /></span></p>",
+  "customfield_10252": "",
+  "timetracking": {},
+  "customfield_10015": null,
+  "security": null,
+  "attachment": [
+   {
+    "self": "https://shopview.atlassian.net/rest/api/3/attachment/60628",
+    "id": "60628",
+    "filename": "image-20260912-101939.png",
+    "author": {
+     "self": "https://shopview.atlassian.net/rest/api/3/user?accountId=712020%3A84ecb06c-438d-4faa-b4c4-b1cba819f6a8",
+     "accountId": "712020:84ecb06c-438d-4faa-b4c4-b1cba819f6a8",
+     "avatarUrls": {
+      "48x48": "https://secure.gravatar.com/avatar/3e58a5daa7c0e75809d3411e4323e040?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FMQ-0.png",
+      "24x24": "https://secure.gravatar.com/avatar/3e58a5daa7c0e75809d3411e4323e040?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FMQ-0.png",
+      "16x16": "https://secure.gravatar.com/avatar/3e58a5daa7c0e75809d3411e4323e040?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FMQ-0.png",
+      "32x32": "https://secure.gravatar.com/avatar/3e58a5daa7c0e75809d3411e4323e040?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FMQ-0.png"
+     },
+     "displayName": "Mudassir Qamar",
+     "active": true,
+     "timeZone": "America/Bogota",
+     "accountType": "atlassian"
+    },
+    "created": "Today 3:19 PM",
+    "size": "227 kB",
+    "mimeType": "image/png",
+    "content": "https://shopview.atlassian.net/rest/api/3/attachment/content/60628",
+    "thumbnail": "https://shopview.atlassian.net/rest/api/3/attachment/thumbnail/60628"
+   }
+  ],
+  "aggregatetimeestimate": null,
+  "summary": null,
+  "creator": null,
+  "subtasks": null,
+  "customfield_10285": "",
+  "reporter": null,
+  "customfield_10044": null,
+  "aggregateprogress": null,
+  "customfield_10046": null,
+  "customfield_10047": null,
+  "environment": "",
+  "customfield_10318": null,
+  "duedate": null,
+  "customfield_10518": null,
+  "progress": null,
+  "votes": null,
+  "comment": {
+   "comments": [],
+   "self": "https://shopview.atlassian.net/rest/api/3/issue/56275/comment",
+   "maxResults": 0,
+   "total": 0,
+   "startAt": 0
+  },
+  "worklog": {
+   "startAt": 0,
+   "maxResults": 20,
+   "total": 0,
+   "worklogs": []
+  }
+ },
+ "fields": {
+  "statuscategorychangedate": "2026-09-12T05:19:16.730-0500",
+  "issuetype": {
+   "self": "https://shopview.atlassian.net/rest/api/3/issuetype/10008",
+   "id": "10008",
+   "description": "Bugs track problems or errors. (Migrated on 31 Dec 2023 09:01 UTC)",
+   "iconUrl": "https://shopview.atlassian.net/rest/api/2/universal_avatar/view/type/issuetype/avatar/10303?size=medium",
+   "name": "Bug",
+   "subtask": false,
+   "avatarId": 10303,
+   "entityId": "28af1af2-ae8b-4de4-94eb-bcecd7d4031c",
+   "hierarchyLevel": 0
+  },
+  "timespent": null,
+  "project": {
+   "self": "https://shopview.atlassian.net/rest/api/3/project/10001",
+   "id": "10001",
+   "key": "SV",
+   "name": "ShopView",
+   "projectTypeKey": "software",
+   "simplified": true,
+   "avatarUrls": {
+    "48x48": "https://shopview.atlassian.net/rest/api/3/universal_avatar/view/type/project/avatar/10551",
+    "24x24": "https://shopview.atlassian.net/rest/api/3/universal_avatar/view/type/project/avatar/10551?size=small",
+    "16x16": "https://shopview.atlassian.net/rest/api/3/universal_avatar/view/type/project/avatar/10551?size=xsmall",
+    "32x32": "https://shopview.atlassian.net/rest/api/3/universal_avatar/view/type/project/avatar/10551?size=medium"
+   }
+  },
+  "customfield_10153": {
+   "self": "https://shopview.atlassian.net/rest/api/3/customFieldOption/10120",
+   "value": "Work Orders",
+   "id": "10120",
+   "color": "RED"
+  },
+  "customfield_10351": null,
+  "fixVersions": [],
+  "customfield_10352": null,
+  "aggregatetimespent": null,
+  "statusCategory": {
+   "self": "https://shopview.atlassian.net/rest/api/3/statuscategory/2",
+   "id": 2,
+   "key": "new",
+   "colorName": "blue-gray",
+   "name": "To Do"
+  },
+  "resolution": null,
+  "resolutiondate": null,
+  "workratio": -1,
+  "issuerestriction": {
+   "issuerestrictions": {},
+   "shouldDisplay": true
+  },
+  "watches": {
+   "self": "https://shopview.atlassian.net/rest/api/3/issue/SV-9974/watchers",
+   "watchCount": 1,
+   "isWatching": false
+  },
+  "lastViewed": "2026-09-12T05:29:48.754-0500",
+  "created": "2026-09-12T05:19:16.350-0500",
+  "customfield_10021": null,
+  "customfield_10385": [
+   {
+    "self": "https://shopview.atlassian.net/rest/api/3/user?accountId=712020%3A84ecb06c-438d-4faa-b4c4-b1cba819f6a8",
+    "accountId": "712020:84ecb06c-438d-4faa-b4c4-b1cba819f6a8",
+    "avatarUrls": {
+     "48x48": "https://secure.gravatar.com/avatar/3e58a5daa7c0e75809d3411e4323e040?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FMQ-0.png",
+     "24x24": "https://secure.gravatar.com/avatar/3e58a5daa7c0e75809d3411e4323e040?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FMQ-0.png",
+     "16x16": "https://secure.gravatar.com/avatar/3e58a5daa7c0e75809d3411e4323e040?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FMQ-0.png",
+     "32x32": "https://secure.gravatar.com/avatar/3e58a5daa7c0e75809d3411e4323e040?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FMQ-0.png"
+    },
+    "displayName": "Mudassir Qamar",
+    "active": true,
+    "timeZone": "America/Bogota",
+    "accountType": "atlassian"
+   }
+  ],
+  "priority": {
+   "self": "https://shopview.atlassian.net/rest/api/3/priority/3",
+   "iconUrl": "https://shopview.atlassian.net/images/icons/priorities/medium_new.svg",
+   "name": "Medium",
+   "id": "3"
+  },
+  "labels": [],
+  "customfield_10016": null,
+  "customfield_10019": "0|i0229t:",
+  "timeestimate": null,
+  "aggregatetimeoriginalestimate": null,
+  "versions": [],
+  "customfield_10418": null,
+  "customfield_10419": null,
+  "issuelinks": [
+   {
+    "id": "32586",
+    "self": "https://shopview.atlassian.net/rest/api/3/issueLink/32586",
+    "type": {
+     "id": "10003",
+     "name": "Relates",
+     "inward": "relates to",
+     "outward": "relates to",
+     "self": "https://shopview.atlassian.net/rest/api/3/issueLinkType/10003"
+    },
+    "inwardIssue": {
+     "id": "56274",
+     "key": "SV-9973",
+     "self": "https://shopview.atlassian.net/rest/api/3/issue/56274",
+     "fields": {
+      "summary": "Customer portal invoice preview carries an unrelated company name as its page title, which becomes the downloaded filename",
+      "status": {
+       "self": "https://shopview.atlassian.net/rest/api/3/status/10349",
+       "description": "",
+       "iconUrl": "https://shopview.atlassian.net/",
+       "name": "Open",
+       "id": "10349",
+       "statusCategory": {
+        "self": "https://shopview.atlassian.net/rest/api/3/statuscategory/2",
+        "id": 2,
+        "key": "new",
+        "colorName": "blue-gray",
+        "name": "To Do"
+       }
+      },
+      "priority": {
+       "self": "https://shopview.atlassian.net/rest/api/3/priority/3",
+       "iconUrl": "https://shopview.atlassian.net/images/icons/priorities/medium_new.svg",
+       "name": "Medium",
+       "id": "3"
+      },
+      "issuetype": {
+       "self": "https://shopview.atlassian.net/rest/api/3/issuetype/10008",
+       "id": "10008",
+       "description": "Bugs track problems or errors. (Migrated on 31 Dec 2023 09:01 UTC)",
+       "iconUrl": "https://shopview.atlassian.net/rest/api/2/universal_avatar/view/type/issuetype/avatar/10303?size=medium",
+       "name": "Bug",
+       "subtask": false,
+       "avatarId": 10303,
+       "entityId": "28af1af2-ae8b-4de4-94eb-bcecd7d4031c",
+       "hierarchyLevel": 0
+      }
+     }
+    }
+   }
+  ],
+  "assignee": null,
+  "updated": "2026-09-12T05:20:45.700-0500",
+  "status": {
+   "self": "https://shopview.atlassian.net/rest/api/3/status/10349",
+   "description": "",
+   "iconUrl": "https://shopview.atlassian.net/",
+   "name": "Open",
+   "id": "10349",
+   "statusCategory": {
+    "self": "https://shopview.atlassian.net/rest/api/3/statuscategory/2",
+    "id": 2,
+    "key": "new",
+    "colorName": "blue-gray",
+    "name": "To Do"
+   }
+  },
+  "components": [],
+  "timeoriginalestimate": null,
+  "description": {
+   "type": "doc",
+   "version": 1,
+   "content": [
+    {
+     "type": "paragraph",
+     "content": [
+      {
+       "type": "text",
+       "text": "Description",
+       "marks": [
+        {
+         "type": "strong"
+        }
+       ]
+      },
+      {
+       "type": "hardBreak"
+      },
+      {
+       "type": "text",
+       "text": "The invoice email sent from the customer portal attributes the invoice to \"Bravo Mechanical Services\" in four places. The organisation is Staging Heavy Duty - 9919. A customer receiving this sees a company that has nothing to do with their invoice."
+      }
+     ],
+     "attrs": {
+      "localId": "cd6b1d4e9293"
+     }
+    },
+    {
+     "type": "paragraph",
+     "content": [
+      {
+       "type": "text",
+       "text": "Environment",
+       "marks": [
+        {
+         "type": "strong"
+        }
+       ]
+      },
+      {
+       "type": "hardBreak"
+      },
+      {
+       "type": "text",
+       "text": "staging.portal.shopview.com",
+       "marks": [
+        {
+         "type": "code"
+        }
+       ]
+      },
+      {
+       "type": "text",
+       "text": " · org Staging Heavy Duty - 9919 · invoice S-32981"
+      }
+     ],
+     "attrs": {
+      "localId": "501cedcde1ef"
+     }
+    },
+    {
+     "type": "paragraph",
+     "content": [
+      {
+       "type": "text",
+       "text": "Steps",
+       "marks": [
+        {
+         "type": "strong"
+        }
+       ]
+      }
+     ],
+     "attrs": {
+      "localId": "b6ca51120d34"
+     }
+    },
+    {
+     "type": "orderedList",
+     "attrs": {
+      "order": 1,
+      "localId": "0acbecb80f79"
+     },
+     "content": [
+      {
+       "type": "listItem",
+       "attrs": {
+        "localId": "97229b154f63"
+       },
+       "content": [
+        {
+         "type": "paragraph",
+         "content": [
+          {
+           "type": "text",
+           "text": "Portal → Invoices → open S-32981"
+          }
+         ],
+         "attrs": {
+          "localId": "863ec84f7824"
+         }
+        }
+       ]
+      },
+      {
+       "type": "listItem",
+       "attrs": {
+        "localId": "525741aa8b8f"
+       },
+       "content": [
+        {
+         "type": "paragraph",
+         "content": [
+          {
+           "type": "text",
+           "text": "Click the email icon and send to yourself"
+          }
+         ],
+         "attrs": {
+          "localId": "dcd93a36d7cf"
+         }
+        }
+       ]
+      },
+      {
+       "type": "listItem",
+       "attrs": {
+        "localId": "e6100d5ae494"
+       },
+       "content": [
+        {
+         "type": "paragraph",
+         "content": [
+          {
+           "type": "text",
+           "text": "Open the email"
+          }
+         ],
+         "attrs": {
+          "localId": "e9585c24a792"
+         }
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "type": "paragraph",
+     "content": [
+      {
+       "type": "text",
+       "text": "Actual",
+       "marks": [
+        {
+         "type": "strong"
+        }
+       ]
+      }
+     ],
+     "attrs": {
+      "localId": "94e94820490c"
+     }
+    },
+    {
+     "type": "bulletList",
+     "content": [
+      {
+       "type": "listItem",
+       "attrs": {
+        "localId": "cc0e467110d0"
+       },
+       "content": [
+        {
+         "type": "paragraph",
+         "content": [
+          {
+           "type": "text",
+           "text": "Subject: "
+          },
+          {
+           "type": "text",
+           "text": "Invoice #S-32981 - Bravo Mechanical Services",
+           "marks": [
+            {
+             "type": "em"
+            }
+           ]
+          }
+         ],
+         "attrs": {
+          "localId": "7002570ab8c8"
+         }
+        }
+       ]
+      },
+      {
+       "type": "listItem",
+       "attrs": {
+        "localId": "9a98fa310575"
+       },
+       "content": [
+        {
+         "type": "paragraph",
+         "content": [
+          {
+           "type": "text",
+           "text": "Body: "
+          },
+          {
+           "type": "text",
+           "text": "\"Bravo Mechanical Services has shared an invoice with you\"",
+           "marks": [
+            {
+             "type": "em"
+            }
+           ]
+          }
+         ],
+         "attrs": {
+          "localId": "ce7388d7eabf"
+         }
+        }
+       ]
+      },
+      {
+       "type": "listItem",
+       "attrs": {
+        "localId": "214879a6eff2"
+       },
+       "content": [
+        {
+         "type": "paragraph",
+         "content": [
+          {
+           "type": "text",
+           "text": "\"please don't hesitate to contact Bravo Mechanical Services directly\"",
+           "marks": [
+            {
+             "type": "em"
+            }
+           ]
+          }
+         ],
+         "attrs": {
+          "localId": "5a2c00023d8e"
+         }
+        }
+       ]
+      },
+      {
+       "type": "listItem",
+       "attrs": {
+        "localId": "646709b0e365"
+       },
+       "content": [
+        {
+         "type": "paragraph",
+         "content": [
+          {
+           "type": "text",
+           "text": "Footer: "
+          },
+          {
+           "type": "text",
+           "text": "\"Sent by ShopView on behalf of Bravo Mechanical Services\"",
+           "marks": [
+            {
+             "type": "em"
+            }
+           ]
+          }
+         ],
+         "attrs": {
+          "localId": "b8683640cf30"
+         }
+        }
+       ]
+      }
+     ],
+     "attrs": {
+      "localId": "658216c89b7c"
+     }
+    },
+    {
+     "type": "paragraph",
+     "content": [
+      {
+       "type": "text",
+       "text": "The attached PDF itself is correct — it shows Staging Heavy Duty - 9919."
+      }
+     ],
+     "attrs": {
+      "localId": "43c3540fa2dd"
+     }
+    },
+    {
+     "type": "paragraph",
+     "content": [
+      {
+       "type": "text",
+       "text": "Expected",
+       "marks": [
+        {
+         "type": "strong"
+        }
+       ]
+      },
+      {
+       "type": "hardBreak"
+      },
+      {
+       "type": "text",
+       "text": "The email names the invoice's own organisation."
+      }
+     ],
+     "attrs": {
+      "localId": "89a95dc4fe98"
+     }
+    },
+    {
+     "type": "paragraph",
+     "content": [
+      {
+       "type": "text",
+       "text": "Note for dev",
+       "marks": [
+        {
+         "type": "strong"
+        }
+       ]
+      },
+      {
+       "type": "hardBreak"
+      },
+      {
+       "type": "text",
+       "text": "Worth confirming whether that string is hardcoded or read from another organisation's record. If the latter, it's a cross-tenant data issue."
+      },
+      {
+       "type": "hardBreak"
+      }
+     ],
+     "attrs": {
+      "localId": "004848a3f601"
+     }
+    },
+    {
+     "type": "mediaSingle",
+     "attrs": {
+      "width": 865,
+      "widthType": "pixel",
+      "localId": "4775e7d7e70e",
+      "layout": "align-start"
+     },
+     "content": [
+      {
+       "type": "media",
+       "attrs": {
+        "type": "file",
+        "id": "149961ab-35a3-4924-9db5-81b301020844",
+        "alt": "image-20260912-101939.png",
+        "collection": "",
+        "localId": "0fd6d47849fa",
+        "height": 1280,
+        "width": 1920
+       }
+      }
+     ]
+    }
+   ]
+  },
+  "customfield_10252": null,
+  "timetracking": {},
+  "customfield_10015": null,
+  "security": null,
+  "attachment": [
+   {
+    "self": "https://shopview.atlassian.net/rest/api/3/attachment/60628",
+    "id": "60628",
+    "filename": "image-20260912-101939.png",
+    "author": {
+     "self": "https://shopview.atlassian.net/rest/api/3/user?accountId=712020%3A84ecb06c-438d-4faa-b4c4-b1cba819f6a8",
+     "accountId": "712020:84ecb06c-438d-4faa-b4c4-b1cba819f6a8",
+     "avatarUrls": {
+      "48x48": "https://secure.gravatar.com/avatar/3e58a5daa7c0e75809d3411e4323e040?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FMQ-0.png",
+      "24x24": "https://secure.gravatar.com/avatar/3e58a5daa7c0e75809d3411e4323e040?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FMQ-0.png",
+      "16x16": "https://secure.gravatar.com/avatar/3e58a5daa7c0e75809d3411e4323e040?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FMQ-0.png",
+      "32x32": "https://secure.gravatar.com/avatar/3e58a5daa7c0e75809d3411e4323e040?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FMQ-0.png"
+     },
+     "displayName": "Mudassir Qamar",
+     "active": true,
+     "timeZone": "America/Bogota",
+     "accountType": "atlassian"
+    },
+    "created": "2026-09-12T05:19:45.367-0500",
+    "size": 232507,
+    "mimeType": "image/png",
+    "content": "https://shopview.atlassian.net/rest/api/3/attachment/content/60628",
+    "thumbnail": "https://shopview.atlassian.net/rest/api/3/attachment/thumbnail/60628"
+   }
+  ],
+  "aggregatetimeestimate": null,
+  "summary": "Emailed invoice shows an unrelated company name in the subject, body and footer",
+  "creator": {
+   "self": "https://shopview.atlassian.net/rest/api/3/user?accountId=712020%3A84ecb06c-438d-4faa-b4c4-b1cba819f6a8",
+   "accountId": "712020:84ecb06c-438d-4faa-b4c4-b1cba819f6a8",
+   "avatarUrls": {
+    "48x48": "https://secure.gravatar.com/avatar/3e58a5daa7c0e75809d3411e4323e040?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FMQ-0.png",
+    "24x24": "https://secure.gravatar.com/avatar/3e58a5daa7c0e75809d3411e4323e040?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FMQ-0.png",
+    "16x16": "https://secure.gravatar.com/avatar/3e58a5daa7c0e75809d3411e4323e040?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FMQ-0.png",
+    "32x32": "https://secure.gravatar.com/avatar/3e58a5daa7c0e75809d3411e4323e040?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FMQ-0.png"
+   },
+   "displayName": "Mudassir Qamar",
+   "active": true,
+   "timeZone": "America/Bogota",
+   "accountType": "atlassian"
+  },
+  "subtasks": [],
+  "customfield_10285": null,
+  "reporter": {
+   "self": "https://shopview.atlassian.net/rest/api/3/user?accountId=712020%3A84ecb06c-438d-4faa-b4c4-b1cba819f6a8",
+   "accountId": "712020:84ecb06c-438d-4faa-b4c4-b1cba819f6a8",
+   "avatarUrls": {
+    "48x48": "https://secure.gravatar.com/avatar/3e58a5daa7c0e75809d3411e4323e040?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FMQ-0.png",
+    "24x24": "https://secure.gravatar.com/avatar/3e58a5daa7c0e75809d3411e4323e040?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FMQ-0.png",
+    "16x16": "https://secure.gravatar.com/avatar/3e58a5daa7c0e75809d3411e4323e040?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FMQ-0.png",
+    "32x32": "https://secure.gravatar.com/avatar/3e58a5daa7c0e75809d3411e4323e040?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FMQ-0.png"
+   },
+   "displayName": "Mudassir Qamar",
+   "active": true,
+   "timeZone": "America/Bogota",
+   "accountType": "atlassian"
+  },
+  "customfield_10044": null,
+  "aggregateprogress": {
+   "progress": 0,
+   "total": 0
+  },
+  "customfield_10046": null,
+  "customfield_10047": null,
+  "environment": null,
+  "customfield_10318": null,
+  "duedate": null,
+  "customfield_10518": null,
+  "progress": {
+   "progress": 0,
+   "total": 0
+  },
+  "votes": {
+   "self": "https://shopview.atlassian.net/rest/api/3/issue/SV-9974/votes",
+   "votes": 0,
+   "hasVoted": false
+  },
+  "comment": {
+   "comments": [],
+   "self": "https://shopview.atlassian.net/rest/api/3/issue/56275/comment",
+   "maxResults": 0,
+   "total": 0,
+   "startAt": 0
+  },
+  "worklog": {
+   "startAt": 0,
+   "maxResults": 20,
+   "total": 0,
+   "worklogs": []
+  }
+ }
+}

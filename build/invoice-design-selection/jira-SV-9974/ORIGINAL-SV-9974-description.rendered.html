@@ -1,0 +1,35 @@
+<p><b>Description</b><br/>
+The invoice email sent from the customer portal attributes the invoice to "Bravo Mechanical Services" in four places. The organisation is Staging Heavy Duty - 9919. A customer receiving this sees a company that has nothing to do with their invoice.</p>
+
+<p><b>Environment</b><br/>
+<tt>staging.portal.shopview.com</tt> · org Staging Heavy Duty - 9919 · invoice S-32981</p>
+
+<p><b>Steps</b></p>
+
+<ol>
+	<li>Portal → Invoices → open S-32981</li>
+	<li>Click the email icon and send to yourself</li>
+	<li>Open the email</li>
+</ol>
+
+
+<p><b>Actual</b></p>
+
+<ul>
+	<li>Subject: <em>Invoice #S-32981 - Bravo Mechanical Services</em></li>
+	<li>Body: <em>"Bravo Mechanical Services has shared an invoice with you"</em></li>
+	<li><em>"please don't hesitate to contact Bravo Mechanical Services directly"</em></li>
+	<li>Footer: <em>"Sent by ShopView on behalf of Bravo Mechanical Services"</em></li>
+</ul>
+
+
+<p>The attached PDF itself is correct — it shows Staging Heavy Duty - 9919.</p>
+
+<p><b>Expected</b><br/>
+The email names the invoice's own organisation.</p>
+
+<p><b>Note for dev</b><br/>
+Worth confirming whether that string is hardcoded or read from another organisation's record. If the latter, it's a cross-tenant data issue.</p>
+
+
+<p><span class="image-wrap" style=""><img src="https://shopview.atlassian.net/rest/api/3/attachment/content/60628" alt="image-20260912-101939.png" width="865" style="border: 0px solid black" /></span></p>
