@@ -294,5 +294,84 @@ def ex5():
     img.save(os.path.join(OUT,'EX5-part-rows-both.png'))
     print('EX5', img.size)
 
+
+# ---------------------------------------------------------------- EX6
+def ex6():
+    """Wrap audit: every fixed block, how many lines it takes on each document."""
+    rows = [
+        # block, QA lines, PROD lines, verdict, reason
+        ('Masthead - shop name',        '2 lines', '1 line',  'QA wraps', 'QA name "Staging Heavy Duty - 9919" is longer'),
+        ('Masthead - document label',   '2 lines', '1 line',  'QA wraps', 'QA number "INV-S99999-16518" is longer'),
+        ('Masthead - address',          '3 lines', '5 lines', 'ok',       'production address simply has more lines'),
+        ('Masthead - dates',            '2 lines', '2 lines', 'ok',       ''),
+        ('Bill To block',               '3 lines', '3 lines', 'ok',       ''),
+        ('Remit payment to block',      '4 lines', '4 lines', 'ok',       ''),
+        ('Asset table HEADER row',      '1 line',  '1 line',  'ok',       ''),
+        ('Asset table VALUE row',       '1 line',  '1 line',  'ok',       'but it DOES wrap on QA with a long asset - see below'),
+        ('Order table HEADER row',      '1 line',  '3 lines', 'PROD WRAPS', '"Service Order" broken by a short order number'),
+        ('Order table VALUE row',       '1 line',  '1 line',  'ok',       ''),
+        ('Line table HEADER row',       '1 line',  '1 line',  'ok',       ''),
+        ('Summary block',               '8 rows',  '9 rows',  'ok',       'production org has two taxes, not one'),
+        ('Signature block',             '2 lines', '2 lines', 'ok',       ''),
+        ('Disclaimer',                  '7 lines', '7 lines', 'ok',       'identical wrap points'),
+    ]
+    fh = font(23,True); fr = font(19); fv = font(19,True); fn = font(18)
+    c0 = max([tw(probe,r[0],fv)[0] for r in rows] + [tw(probe,'BLOCK',fh)[0]])
+    c1 = max([tw(probe,r[1],fv)[0] for r in rows] + [tw(probe,'QA',fh)[0]])
+    c2 = max([tw(probe,r[2],fv)[0] for r in rows] + [tw(probe,'PRODUCTION',fh)[0]])
+    c3 = max([tw(probe,r[3],fv)[0] for r in rows] + [tw(probe,'VERDICT',fh)[0]])
+    c4 = max([tw(probe,r[4],fn)[0] for r in rows] + [tw(probe,'WHY',fh)[0]])
+    X0, X1 = 10, 10+c0+40
+    X2, X3 = X1+c1+40, X1+c1+40+c2+40
+    X4 = X3+c3+34
+    tblW = X4+c4+20
+
+    # the one production-only wrap, in the flesh
+    qa_so = page(QA,0, pymupdf.Rect(56,265,372,309))
+    pr_so = page(PR,0, pymupdf.Rect(56,268,372,327))
+    # and the proof the QA branch wraps too, with different data
+    qe_as = page(QA_E,0, pymupdf.Rect(58,216,540,272))
+
+    W = max(tblW, qa_so.width+pr_so.width+60, qe_as.width+20) + 10
+    H = 40 + 32*len(rows) + 46 + 26 + max(qa_so.height,pr_so.height) + 50 + 26 + qe_as.height + 70
+    img = Image.new('RGB',(W,H),WHITE); d = ImageDraw.Draw(img)
+
+    d.text((X0,6), 'BLOCK', font=fh, fill=DARK)
+    d.text((X1,6), 'QA', font=fh, fill=BLUE)
+    d.text((X2,6), 'PRODUCTION', font=fh, fill=AMBER)
+    d.text((X3,6), 'VERDICT', font=fh, fill=DARK)
+    d.text((X4,6), 'WHY', font=fh, fill=GREY)
+    y = 40
+    for b,a,p_,v,why in rows:
+        bad = v == 'PROD WRAPS'
+        if bad: d.rectangle([X0-6,y-5,tblW-8,y+27], fill=(253,236,236))
+        d.text((X0,y), b,  font=fv if bad else fr, fill=RED if bad else DARK)
+        d.text((X1,y), a,  font=fv, fill=BLUE)
+        d.text((X2,y), p_, font=fv, fill=RED if bad else AMBER)
+        d.text((X3,y), v,  font=fv, fill=RED if bad else GREEN)
+        d.text((X4,y), why, font=fn, fill=GREY)
+        y += 32
+
+    y += 14
+    d.text((X0,y), 'The one cell that wraps on production and not on QA  -  INV-S2-194', font=fh, fill=RED); y += 30
+    d.text((X0,y), 'QA  INV-S99999-16518', font=font(17,True), fill=BLUE)
+    d.text((X0+qa_so.width+60,y), 'PRODUCTION  INV-S2-194', font=font(17,True), fill=AMBER); y += 22
+    d.rectangle([X0,y,X0+qa_so.width-1,y+qa_so.height-1], outline=BLUE, width=3); img.paste(qa_so,(X0,y))
+    d.rectangle([X0+qa_so.width+60,y,X0+qa_so.width+60+pr_so.width-1,y+pr_so.height-1], outline=RED, width=3)
+    img.paste(pr_so,(X0+qa_so.width+60,y))
+    y += max(qa_so.height,pr_so.height) + 26
+
+    d.text((X0,y), 'The SAME wrapping happens on the QA branch too  -  EST-S99999-17582, asset value "2011 Hyundai Santa Fe"',
+           font=font(19,True), fill=BLUE); y += 26
+    d.rectangle([X0,y,X0+qe_as.width-1,y+qe_as.height-1], outline=BLUE, width=3); img.paste(qe_as,(X0,y))
+
+    img = header(img, 'Wrapping: ONE cell wraps on production that does not wrap on QA',
+                 'It is the "Service Order" heading on INV-S2-194. The cause is the column sizing itself to its content: '
+                 'the order number S2-194 is 38.85 pt wide against a 69.21 pt heading, so the heading breaks. '
+                 'The same template does the same thing on the QA branch when the data is shaped that way - the QA empty '
+                 'invoice wraps its asset value for exactly the same reason.', AMBER)
+    img.save(os.path.join(OUT,'EX6-wrap-audit.png'))
+    print('EX6', img.size)
+
 if __name__ == '__main__':
-    ex1(); ex2(); ex3(); ex4(); ex5()
+    ex1(); ex2(); ex3(); ex4(); ex5(); ex6()

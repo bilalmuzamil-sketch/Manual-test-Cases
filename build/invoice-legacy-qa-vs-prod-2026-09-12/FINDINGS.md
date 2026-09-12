@@ -28,7 +28,10 @@ Reproduce with `python3 design_check.py` (full output saved as `DESIGN-CHECKS.tx
 ## The answer in one line
 
 **The design is identical (70 of 70 measurements, 0 differ) and every header, column name and label
-is present on production (35 of 35).** Type, sizes, weights, colours, margins, column positions,
+is present on production (35 of 35). One cell wraps on production that does not wrap on QA — the
+"Service Order" heading on `INV-S2-194` — and the QA branch does the same thing to its own asset
+value on `EST-S99999-17582`, so it is the template's auto-sizing reacting to data, not a difference
+between the two builds (section 4).** Type, sizes, weights, colours, margins, column positions,
 rules, cell boxes, logo slot, every vertical gap and every row pitch — plus every label the template
 emits, checked against the empty-invoice skeleton. The two documents *look* different because the **data** is different — a different
 shop, a different customer, different jobs, a different tax set-up and a much shorter order number.
@@ -283,7 +286,84 @@ are correct. Both QA files come from the same org, so they cannot distinguish th
 the whole comparison.**
 
 
-## 4. The honest part: these two files can never be byte-identical
+## 4. The wrap audit — run in BOTH directions
+
+The QA lead's question: *"If it is being wrapped on production and not on the QA then you must
+highlight that too with the invoice number and with the reason… our customers want everything to
+appear ditto as it is appearing in the QA."*
+
+Every fixed block on both documents, counted by how many baselines it occupies:
+
+| Block | QA `INV-S99999-16518` | PRODUCTION `INV-S2-194` | Verdict |
+|---|---|---|---|
+| Masthead — shop name | 2 lines | 1 line | QA wraps (its name is longer) |
+| Masthead — document label | 2 lines | 1 line | QA wraps (`INV-S99999-16518` is longer) |
+| Masthead — address | 3 lines | 5 lines | ok — production has more address lines |
+| Masthead — dates | 2 lines | 2 lines | ok |
+| Bill To block | 3 lines | 3 lines | ok |
+| Remit payment to block | 4 lines | 4 lines | ok |
+| Asset table **header** row | 1 line | 1 line | ok |
+| Asset table **value** row | 1 line | 1 line | ok |
+| **Order table header row** | **1 line** | **3 lines** | **🔴 PRODUCTION WRAPS** |
+| Order table value row | 1 line | 1 line | ok |
+| Line table header row | 1 line | 1 line | ok |
+| Summary block | 8 rows | 9 rows | ok — production org has two taxes |
+| Signature block | 2 lines | 2 lines | ok |
+| Disclaimer | 7 lines | 7 lines | ok — identical wrap points |
+
+### The one that matters: `INV-S2-194`, the "Service Order" heading
+
+**Invoice number: `INV-S2-194` (Trucks Hill 2, production).** The heading cell that reads
+**"Service Order"** on one line on QA breaks into **"Service" / "Order"** on two lines, pushing the
+other four headings ("Terms", "Due date", "Customer PO", "Authorizer") down to a middle baseline and
+taking the whole header row from **1 line to 3 baselines**.
+
+**The reason, measured:**
+
+| | QA | PRODUCTION |
+|---|---|---|
+| The heading "Service Order" needs | **69.21 pt** | **69.21 pt** (same text, same font, same size) |
+| The order number printed under it | `S99999-16518` | `S2-194` |
+| …which measures | **73.93 pt** | **38.85 pt** |
+| So the column is | wide enough for the heading | **35 pt too narrow** |
+| Result | one line | **wraps to two** |
+
+The Service-Order table has **no fixed column widths in the print/PDF path** — each column sizes
+itself to the widest thing in it. Production's order number is **six characters** against QA's
+**twelve**, so column 1 comes out narrower than the heading needs and the heading breaks.
+
+### This is NOT a production-only fault — the QA branch does it too
+
+The proof is in the QA lead's own reference file. **`EST-S99999-17582`, rendered on the QA branch**,
+wraps its **asset value** — *"2011 Hyundai Santa"* / *"Fe"* — across two lines, for exactly the same
+reason: the asset column auto-sized narrow because the other values in that row were short.
+
+So the honest statement is: **the same template, on either environment, wraps whenever the data
+makes a column narrow.** Production is not behaving differently; it is being fed differently shaped
+data. Two of the wraps in the table above run the *other* way — QA's own shop name and invoice
+number wrap where production's do not.
+
+### What it would take to make it never happen
+
+Two options, and **both are changes to the Legacy template, so they are Branko's call, not ours** —
+the Invoice Design Selection spec ([SV-9892](https://shopview.atlassian.net/browse/SV-9892)) defines
+Legacy as *"byte-identical to v26.35.10"*:
+
+1. **Fixed column widths in the print path.** A percentage grid on the Service-Order and asset
+   tables, so a column never shrinks below its heading. ⚠️ **Worth checking first:** during the
+   earlier sv9872 investigation I found a `@media screen` rule pinning those columns to
+   17 / 27 / 25 / 17 / 14 %, with **no equivalent in the print path**. If that also holds for the
+   Legacy template, the fix already exists for the on-screen preview and simply needs the same rule
+   applied to print. **I have not confirmed that against the Legacy print stylesheet** — it needs one
+   look at the branch.
+2. **`white-space: nowrap` on the heading cells**, so the column is forced at least as wide as its
+   own heading.
+
+Until one of those ships, **any shop whose order numbers are short will see this**, on QA and on
+production alike.
+
+
+## 5. The honest part: these two files can never be byte-identical
 
 The instruction was *"the invoice from production should and MUST match byte to byte with the invoice
 from the QA branch."* **These two files cannot** — they are different invoices. Different company,
@@ -302,7 +382,7 @@ meaningful. That plan is still blocked on three things — see below.
 
 ---
 
-## 5. What I could not check, stated plainly
+## 6. What I could not check, stated plainly
 
 - **Full continuation-page card height.** QA has four full continuation pages (776.87 pt card);
   production is only 2 pages and its page 2 is the last page, whose card height is content-driven
@@ -325,6 +405,7 @@ meaningful. That plan is still blocked on three things — see below.
 | `ev/EX3-the-two-visible-differences.png` | the masthead shift and the "Service Order" wrap, each with the measurement that causes it |
 | `ev/EX4-every-label-present.png` | the asset-table, order-table, line-table, summary and signature labels read off all three documents side by side |
 | `ev/EX5-part-rows-both.png` | part rows on both documents with their column x — and the correction to my "labour-only" error |
+| `ev/EX6-wrap-audit.png` | every block counted by baselines on both documents, the one production-only wrap in the flesh with its invoice number, and the QA branch doing the same thing |
 
 ---
 
@@ -335,11 +416,13 @@ meaningful. That plan is still blocked on three things — see below.
    shared, restore-after environment, so I will not write to it without your say-so.
 2. **The deploy time** — the seed has to happen on the *current* production build to be a valid
    baseline for an after-the-deploy comparison.
-3. **A product decision on the "Service Order" wrap** — it is template behaviour on both builds, not a
-   defect, but if the customer objects it needs a minimum column width or a fixed column grid, which
-   is a change to the Legacy template and therefore a PO call (the Legacy template is defined as
-   byte-identical to v26.35.10 under
-   [SV-9892](https://shopview.atlassian.net/browse/SV-9892), so changing it is not a QA decision).
+3. **A product decision on the wrapping** — `INV-S2-194`'s "Service Order" heading breaks because the
+   print path has no fixed column widths. It is template behaviour on **both** builds (the QA branch
+   wraps its asset value on `EST-S99999-17582` for the same reason), so it is not a production defect
+   — but if the customer wants it never to happen it needs fixed column widths or `nowrap` on the
+   heading cells, which changes the Legacy template and is therefore a PO call under
+   [SV-9892](https://shopview.atlassian.net/browse/SV-9892). **Worth checking first** whether the
+   `@media screen` column grid already found on sv9872 simply needs applying to the print path.
 4. **One look at the production branch's tax-id setting** — to settle whether the footer's missing
    `GST# ` prefix is template or data. It is the only unresolved item in the comparison.
 5. **Nothing has been filed or posted.** No Jira comment, no ticket, no TestRail write.
