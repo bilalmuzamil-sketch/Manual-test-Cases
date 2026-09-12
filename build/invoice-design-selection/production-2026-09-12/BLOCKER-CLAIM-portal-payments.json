@@ -1,0 +1,33 @@
+{
+ "claim": "the paid banner and the standalone payment receipt cannot be produced on the production customer portal: online card processing is switched off on that account, so no portal payment can exist",
+ "proofs": {
+  "positive_control": {
+   "passed": true,
+   "evidence": "The very same probe, in the same session, reached the production portal and rendered two invoices under both designs successfully (PR18.json: INV-S1-824 and INV-S1-764, screen and PDF, 0 guard discards). So portal access, rendering and capture all work; only the payment data is missing. And the identical method produced the banner on Staging this morning (staging-2026-09-12/S24.json: pill PAID IN FULL under both designs, with three negative controls)."
+  },
+  "tried_through_the_screen": {
+   "passed": true,
+   "evidence": "The portal was entered the way a person enters it -- the profile menu's Customer Portal item -- and the invoice page was opened on screen. Its buttons are: Invoices, Service Requests, Contacts, Settings, Settings: Payments, Toggle Sidebar, Deposits applied (1), Save. There is no Pay Now control on the invoice. Screenshot evidence/PRtest-invoice.png."
+  },
+  "waited_and_retried": {
+   "passed": true,
+   "evidence": "Two independent portal sessions (PR18 at 19:55 and PRtest at 20:01), each with 11-14 second settles after load, both reading the page's own embedded props. Identical result: payments list length 0."
+  },
+  "checked_for_navigation": {
+   "passed": true,
+   "evidence": "The portal Payments page was navigated to directly and its embedded props read: props.payments is an empty list. No new tab, no redirect, no error page -- the page loads and is genuinely empty."
+  },
+  "precondition_read_back": {
+   "passed": true,
+   "evidence": "The account's own configuration was read back from the page it is served to, not assumed: is_test_mode false, stripePaymentEnabled false, shopPay.accept_cards false, shopPay.accept_ach false. The shop app's Payment Methods screen lists only manual methods a shop records by hand -- Amex, Cash, Check, Debit, Mastercard, Visa, Charge Account -- with no online processing configured (evidence/PRpay-methods.png)."
+  },
+  "searched_the_repo": {
+   "passed": true,
+   "evidence": "build/APP-ACTIONS-PLAYBOOK.md CUSTOMER PORTAL section records that the paid banner is injected only when the page is given payments containing at least one with status succeeded, and that the working URL needs include_receipt=1 plus a payment_id; and that a qualifying pair is found from the portal Payments list by status==='succeeded' && invoice_id. With zero payments there is no such pair. The staging recipe for paying an invoice (Pay Now, Stripe sandbox, card 4242, ZIP 94107) is recorded there too and depends on the portal offering Pay Now, which this account does not."
+  },
+  "asked_what_would_make_this_my_fault": {
+   "passed": true,
+   "evidence": "Most likely mine: (a) wrong portal host -- ruled out, the menu click itself opened portal.shopview.com and invoices rendered there; (b) reading the wrong property -- ruled out, the same property name returned a populated list on staging and the invoices list on production is populated from the same props object; (c) not scrolling or paginating the payments list -- ruled out, the list is read from the page's own embedded data, not the visible rows; (d) wrong customer -- the portal shows the shop's whole invoice list, not one customer's. What remains is the account configuration, which the app states plainly."
+  }
+ }
+}
