@@ -52,4 +52,13 @@ Recipe recorded in `build/APP-ACTIONS-PLAYBOOK.md` **§V.0** — external media 
 
 ## Outstanding
 
-- Production is currently on the **Legacy** invoice layout (it was on Modern when this work started and was switched for the comparison). Decide whether it stays on Legacy or goes back to Modern.
+**Nothing outstanding.**
+
+Decision taken by the QA lead on 2026-09-12: **production stays on the Legacy invoice layout.** It was
+on Modern when this work started and was switched to Legacy for the comparison; it is being left there,
+so no action was taken and nothing was changed back.
+
+Note for whoever tests next: several people work on the same production account and the layout can be
+switched at any time, so **do not assume it is still on Legacy** — read
+`GET /api/organizations/invoice-settings/view` (`data.documentDesign`) or run `design_guard.py` before
+measuring anything. That guard exists for exactly this reason.
