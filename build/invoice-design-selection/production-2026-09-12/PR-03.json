@@ -1,0 +1,31 @@
+{
+ "pass_meta": {
+  "suite": "Invoice Design Selection (7800)",
+  "run": 446,
+  "env": "the Production account (app.shopview.com)",
+  "build": "v26.36.4-3e1c643",
+  "date": "12 September 2026"
+ },
+ "results": {
+  "C53544": {
+   "verdict": "Passed",
+   "observed": "Checked on the live Production site on job S2-847, which is still at the estimate stage and has never been invoiced - its page still offers Create Invoice. Its estimate was opened on the Finance tab with the shop on the old look and again on the new look. The old look prints the familiar layout with \"Bill To\", \"Remit payment to\" and \"Line Total\". The new look prints the newer layout with the ADDRESSES, WORK SUMMARY and SUMMARY blocks. Same estimate number EST-S2-847 on both, and the same amounts on both - labour $299.90, parts $0.00, shop supplies $31.49, subtotal $331.39, tax $16.57. The estimate followed the shop's current setting every time, with no need to re-issue or re-send it. The setting was read back immediately before and after each reading; nothing drifted."
+  },
+  "C53547": {
+   "verdict": "Passed",
+   "observed": "Checked on the live Production site on job S2-847 specifically because it has never been invoiced - it is still at the estimate stage, it has no invoice behind it, and its page still offers Create Invoice. Its estimate was viewed under both looks and it drew itself in whichever look was switched on at the time, exactly as an invoiced job's document does. Not being invoiced makes no difference to which look it uses. Estimate number and every amount were identical in both."
+  },
+  "C53539": {
+   "verdict": "Passed",
+   "observed": "Checked on the live Production site across three jobs at three different points in their life: S2-847 still an estimate, S2-850 invoiced, and S2-792 paid. Each one's document was opened on the Finance tab under both looks. All three followed the shop's current setting in both directions, and in each case the document number and the amounts were identical between the two looks - only the layout changed. Where a job sits in its life makes no difference to which look its document uses."
+  },
+  "C53549": {
+   "verdict": "Passed",
+   "observed": "Checked on the live Production site. An estimate was viewed, the shop's look was then changed, and the same estimate was viewed again - it came back drawn in the new look, with no need to re-open the job, re-issue the estimate or send anything again. The same was done in the other direction and it changed back. This was repeated on three separate jobs. Simply viewing the document again is enough for it to pick up the current setting."
+  },
+  "C53553": {
+   "verdict": "Passed",
+   "observed": "Checked on the live Production site using job S2-847, which was started on 17 August 2026 - before the new document look was released on 9 September - so its estimate pre-dates the change entirely. It still followed the shop's current setting: drawn in the old look while the shop was on the old look, and in the new look after switching. When the document was created has no bearing on which look it uses. Worth noting for the reader, and expected: an estimate in the old look labels its dates \"Invoice Date\" and \"Due date\", while the same estimate in the new look shows \"Estimate date\" only. That is a deliberate part of the old look, ruled on by the product owner on 11 September, not a fault."
+  }
+ }
+}
