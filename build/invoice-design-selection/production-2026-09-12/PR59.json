@@ -1,0 +1,47 @@
+{
+ "at": "2026-09-12T23:54:29.173Z",
+ "case": "C53537",
+ "net": [
+  "POST /api/invoices/reverse-invoice",
+  "POST /api/work-orders/invoices/estimate",
+  "POST /api/work-orders/invoices/estimate",
+  "POST /api/invoices/create",
+  "POST /api/invoices/reverse-invoice",
+  "POST /api/work-orders/invoices/estimate",
+  "POST /api/work-orders/invoices/estimate"
+ ],
+ "steps": {
+  "subjects": [
+   {
+    "n": "S2-866",
+    "id": "b2d9660d-cb35-4b1c-a6bc-cf8e03c725e6",
+    "inv": "732b52a3-07c4-4ab1-9335-4c8d4abe4ef3"
+   },
+   {
+    "n": "S2-850",
+    "id": "18b4d12d-19bc-48d2-a587-c8ee3ceae787",
+    "inv": "eda3677a-33e7-488e-9b90-9d080d23b029"
+   }
+  ],
+  "cycled": [
+   {
+    "wo": "S2-866",
+    "reversed": true,
+    "confirmed": "Charge Account"
+   },
+   {
+    "wo": "S2-850",
+    "reversed": true,
+    "dialogButtons": [
+     "close",
+     "Continue",
+     "Cancel"
+    ]
+   }
+  ],
+  "unpaid": []
+ },
+ "renders": {},
+ "drift": [],
+ "build": "v26.36.4-3e1c643"
+}

@@ -1,0 +1,15 @@
+{
+ "pass_meta": {
+  "suite": "Invoice Design Selection (7800)",
+  "run": 446,
+  "env": "the Production account (app.shopview.com)",
+  "build": "v26.36.4-3e1c643",
+  "date": "12 September 2026"
+ },
+ "results": {
+  "C53538": {
+   "verdict": "Passed",
+   "observed": "Checked on the live Production site, using the customer credit numbered CM2-4397 for nine thousand dollars, which stands on its own - it was not raised against any job or parts sale, and the customer's list shows no originating document beside it, unlike the credits that do have one. The same credit was downloaded twice, once with the shop set to the new look and once with it set to the old look. It follows whatever the shop is set to at that moment: under the new look it gains an ADDRESSES heading, prints its column headings in capitals and moves the totals block above the customer details; under the old look it uses ordinary capitalisation with the totals after the lines. It keeps no look of its own - the very same credit changed when the shop's setting changed, which is the point of this check. Nothing about the money moved: the subtotal, the tax, the total credit and the balance are the same figures in both, and both name the same credit. The shop's setting was read immediately before and after each download and never moved on its own."
+  }
+ }
+}

@@ -1,0 +1,67 @@
+{
+ "at": "2026-09-12T23:46:38.567Z",
+ "case": "C53537",
+ "net": [
+  "POST /api/work-orders/invoices/estimate",
+  "POST /api/work-orders/invoices/estimate",
+  "POST /api/work-orders/invoices/estimate",
+  "POST /api/work-orders/29eab926-ef5d-4ecc-a33e-470eaf47188e/simple-complete",
+  "POST /api/work-orders/invoices/estimate"
+ ],
+ "steps": {
+  "candidates": [
+   {
+    "n": "S2-849",
+    "id": "d7ba2cfd-896c-46b3-b451-ea11815b294f",
+    "st": "Approved"
+   },
+   {
+    "n": "S2-848",
+    "id": "29eab926-ef5d-4ecc-a33e-470eaf47188e",
+    "st": "Approved"
+   },
+   {
+    "n": "S2-847",
+    "id": "f3094a96-24f4-42b6-85bf-678168d23e65",
+    "st": "Estimate"
+   },
+   {
+    "n": "S2-841",
+    "id": "4d728d6f-621d-472c-abb6-9ec05aecaf72",
+    "st": "Approved"
+   },
+   {
+    "n": "S2-840",
+    "id": "a476f238-cf38-468a-84e4-d4b5c7674484",
+    "st": "Approved"
+   },
+   {
+    "n": "S2-839",
+    "id": "7ce94ec8-b955-46a5-badf-79083f0d8617",
+    "st": "Approved"
+   }
+  ],
+  "invoiced": [
+   {
+    "wo": "S2-849",
+    "failed": "Create Invoice still unavailable",
+    "screen": {
+     "present": true,
+     "disabled": true
+    }
+   },
+   {
+    "wo": "S2-848",
+    "failed": "Create Invoice still unavailable",
+    "screen": {
+     "present": false,
+     "disabled": null
+    }
+   }
+  ],
+  "unpaidAfterSeed": []
+ },
+ "renders": {},
+ "drift": [],
+ "build": "v26.36.4-3e1c643"
+}

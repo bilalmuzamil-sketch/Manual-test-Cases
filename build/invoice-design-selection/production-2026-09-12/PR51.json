@@ -1,0 +1,109 @@
+{
+ "at": "2026-09-12T23:37:02.562Z",
+ "case": "C53537",
+ "net": [
+  "POST /api/customer-account/create-customer-payment",
+  "POST /api/organizations/invoice-settings/change-design",
+  "POST /api/organizations/invoice-settings/change-design"
+ ],
+ "steps": {
+  "designStart": "modern",
+  "unpaid": [
+   {
+    "i": 1,
+    "txt": "Sep 12, 2026invoiceS2-863-$2,461.38$2,461.38Unpaid",
+    "cb": true
+   },
+   {
+    "i": 2,
+    "txt": "Sep 12, 2026invoiceS1-852-$739.85$739.85Unpaid",
+    "cb": true
+   },
+   {
+    "i": 3,
+    "txt": "Sep 12, 2026invoiceS2-866-$2,261.73$2,261.73Unpaid",
+    "cb": true
+   },
+   {
+    "i": 4,
+    "txt": "Sep 12, 2026invoiceP2-58-$283.50$283.50Unpaid",
+    "cb": true
+   },
+   {
+    "i": 7,
+    "txt": "Aug 28, 2026invoiceS-862-$170.78$170.78Unpaid",
+    "cb": true
+   },
+   {
+    "i": 8,
+    "txt": "Aug 24, 2026invoiceS2-850-$0.00$0.00Unpaid",
+    "cb": true
+   },
+   {
+    "i": 10,
+    "txt": "Aug 11, 2026invoiceS1-846-$236.82$236.82Unpaid",
+    "cb": true
+   },
+   {
+    "i": 11,
+    "txt": "Aug 11, 2026invoiceS1-844-$236.82$236.82Unpaid",
+    "cb": true
+   },
+   {
+    "i": 12,
+    "txt": "Aug 11, 2026invoiceS1-842-$236.82$236.82Unpaid",
+    "cb": true
+   },
+   {
+    "i": 13,
+    "txt": "Aug 10, 2026invoiceS2-836-$654.58$654.58Unpaid",
+    "cb": true
+   },
+   {
+    "i": 14,
+    "txt": "Aug 10, 2026invoiceS2-835-$356.04$356.04Unpaid",
+    "cb": true
+   },
+   {
+    "i": 15,
+    "txt": "Aug 10, 2026invoiceS2-754-$349.14$349.14Unpaid",
+    "cb": true
+   }
+  ],
+  "creditRow": {
+   "i": 6,
+   "cb": true
+  },
+  "newPayment": true,
+  "dialog": {
+   "text": "New Customer Payment close event Payment Date Payment Method arrow_drop_down Reference Number Memo No. Datearrow_drop_up Due Balance Payment S1-852 Today Oct 12, 2026 $739.85 $ S2-863 Today Oct 12, 2026 $2,461.38 $ Credit CM2-4397 Yesterday Not needed — invoice fully covered -$9,000.00 Deposit DEP2-5033 Sep 9, 2026 Fully consumed -$348.09 Deposit DEP2-3444 Jun 20, 2026 Applies $2,853.14 · $958.86 remaining -$3,812.00",
+   "buttons": [
+    "close",
+    "Create Credit"
+   ]
+  },
+  "writes": [
+   "POST /api/customer-account/create-customer-payment",
+   "POST /api/organizations/invoice-settings/change-design",
+   "POST /api/organizations/invoice-settings/change-design"
+  ],
+  "after": {
+   "creditRow": "Sep 11, 2026creditCM2-43974 — Bilal Muzammil-$9,000.00-$9,000.00Unappliedprintpaymentsdelete",
+   "rowCount": 55
+  }
+ },
+ "renders": {
+  "legacy": {
+   "status": 200,
+   "bytes": 77966,
+   "settingWhileRead": "legacy"
+  },
+  "modern": {
+   "status": 200,
+   "bytes": 83057,
+   "settingWhileRead": "modern"
+  }
+ },
+ "drift": [],
+ "build": "v26.36.4-3e1c643"
+}

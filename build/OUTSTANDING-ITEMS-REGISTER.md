@@ -140,7 +140,7 @@ per the gate's own instruction never to weaken a ruling for the number.
 
 ---
 
-## P1 — one TASK ticket, held until the production run is finished (opened 2026-09-12)
+## P1 — ✅ CLOSED 2026-09-12: the TASK ticket is raised as SV-9978
 
 **Authorised by the QA lead on 12 September 2026** — a per-ask permission under Rule 62, covering this
 one ticket only; the hold otherwise stands.
@@ -158,8 +158,39 @@ production result, so the run is finished first.
 whether it is expected behaviour or a bug, the QA lead relays that ruling, and only then are the
 affected cases marked Passed or Failed.
 
-**Before writing it:** re-observe on an estimate that has never been invoiced — both observations so
-far are estimate views of already-paid jobs, and the ticket must say which situation it occurs in.
+**Before writing it (DONE):** re-observed on four estimates for jobs that have never been invoiced and
+carry no payments — S1-816, S1-818, S1-821, S1-822. The Legacy document prints the Payments heading and
+a Balance equal to the whole total on all four; the Modern one prints neither; every figure is identical
+between the two. So the finding is **wider** than first thought, not narrower — it is not confined to
+already-paid jobs, and the ticket says so.
+
+**Raised as [SV-9978](https://shopview.atlassian.net/browse/SV-9978)** — Task, Medium, Product Area
+Work Orders, `relates to` SV-9895 and SV-9897 under epic SV-9892. Nine headings, two annotated images
+inline at width 760, sources quoted verbatim with page id and read date, and an explicit statement in
+the ticket that **no test case has been failed** for either observation. Rendering verified after the
+write, not assumed.
 
 Full detail, the verbatim ruling, the spec quote and the ticket's required shape:
 `build/invoice-design-selection/production-2026-09-12/PENDING-TASK-TICKET.md`
+
+---
+
+## P2 — six things the QA lead must decide before the production run can finish (opened 2026-09-13)
+
+Thirty-six of the forty-five checks in run 446 carry a production result and **none failed**. Nine do
+not, and six of those are waiting on him rather than on anything broken. Each is written out in full,
+answerable without opening anything, in
+`build/invoice-design-selection/production-2026-09-12/REPORT-FOR-QA-LEAD.md`.
+
+| Ref | Waiting on | Cost of silence |
+|---|---|---|
+| **P2-a** | Whether a real new organisation may be created on production, or this goes to staging | C53523 stays without a production result |
+| **P2-b** | A second production sign-in WITHOUT settings access (making one sends a real invitation email) | C53529 stays without one |
+| **P2-c** | A foreman/manager review approval plus a customer with no money on account — or his agreement that the behaviour is adequately proved by the two other credits already checked | C53537 stays without one |
+| **P2-d** | Confirmation that the customer address pre-ticked in the Send dialog (`dsfsdf@gmail.com`) is safe to email from production | C53545, C53551, C53565 stay without one |
+| **P2-e** | Whether card taking may be switched on for the production portal (a money-handling change) | C53567, C53569 stay without one |
+| **P2-f** | Whether any batch or imported invoice exists on this account | C53568 stays without one |
+| **P2-g** | C53570 is three-quarters observed; the last part needs a job carrying an IBS approval code, and obtaining one sends a real request through the external approval system | C53570 stays held rather than posted |
+
+**None of these blocks anything else**, and none blocks the Invoice Refresh run he wants next — that
+one is simply queued behind this suite completing, as he instructed.
