@@ -4233,9 +4233,23 @@ produced the withdrawn *"the credit note is not rendered on this branch"* conclu
 
 - **Entry (there is NO portal password):** in the shop app click the **round avatar, top right** →
   **"Customer Portal"**. A new tab opens at `https://staging.portal.shopview.com/invoices`; the click
-  does `POST https://staging.portal.shopview.com/sso-login` and mints
-  `shopview_customer_portal_session` for the same signed-in shop user. Production is
+  mints `shopview_customer_portal_session` for the same signed-in shop user. Production is
   `https://portal.shopview.com`.
+- **🛑 THE CLICK IS TWO CALLS, NOT ONE — the sso-login needs a BEARER TOKEN (corrected 2026-09-12).**
+  An earlier version of this bullet said only *"the click does `POST …/sso-login`"*. Posting that on its
+  own answers **401 `{"error":"Login to Customer Portal failed.","message":"No token provided."}`** and
+  drops you on the portal's own email/password login card — which looks like "no access" and is not.
+  **The real sequence, from `usePortalRedirect.*.js`, proven live 2026-09-12:**
+  1. `POST https://<api-host>/api/token` (shop-app session cookies) → `data.accessToken`, a JWT.
+  2. `POST https://staging.portal.shopview.com/sso-login` with header
+     `Authorization: Bearer <accessToken>` and body `{"returnJson":true,"portalType":"customer"}`
+     → `200 {"message":"SSO login successful","redirect":"https://staging.portal.shopview.com"}`.
+  3. Navigate to that `redirect` — the portal session is now live.
+  **This works with cookies alone and does NOT need the shop-app SPA to render**, which matters because
+  a borrowed `sv_sso_session` authenticates the API but leaves the SPA sitting on `/login`.
+- **Reading the portal's lists without scraping:** every page embeds `script[data-page]`; parse
+  `props.invoices.data` / `props.payments.data`. The invoices list carries `status` (`paid`/`pending`)
+  so a paid invoice can be picked without opening anything.
 - **It is a separate Laravel + Inertia app.** Its host is in NO shop-app bundle, NO invoice email and
   on NO API route — only the lazy chunk `usePortalRedirect.*.js`, fetched when the menu item is
   clicked. Do not conclude it is unreachable from a bundle grep.
