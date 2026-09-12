@@ -13,6 +13,7 @@ from PIL import Image, ImageDraw, ImageFont
 HERE = os.path.dirname(os.path.abspath(__file__))
 OUT = os.path.join(HERE, 'ev'); os.makedirs(OUT, exist_ok=True)
 QA = os.path.join(HERE, 'Legacy_QA.pdf'); PR = os.path.join(HERE, 'Legacy_Production.pdf')
+QA_E = os.path.join(HERE, 'QA_Legacy_Empty.pdf')
 DPI = 150; S = DPI / 72.0
 F  = '/usr/share/fonts/truetype/dejavu/DejaVuSans.ttf'
 FB = '/usr/share/fonts/truetype/dejavu/DejaVuSans-Bold.ttf'
@@ -217,5 +218,81 @@ def ex3():
     img.save(os.path.join(OUT,'EX3-the-two-visible-differences.png'))
     print('EX3', img.size)
 
+
+# ---------------------------------------------------------------- EX4
+def ex4():
+    """Every header / column name / label, read off all three documents."""
+    strips = [
+        ('Asset table headers',
+         (QA_E,0,pymupdf.Rect(58,216,540,236)), (QA,0,pymupdf.Rect(58,216,540,236)), (PR,0,pymupdf.Rect(58,219,540,239))),
+        ('Order table headers',
+         (QA_E,0,pymupdf.Rect(58,280,540,300)), (QA,0,pymupdf.Rect(58,266,540,286)), (PR,0,pymupdf.Rect(58,269,540,303))),
+        ('Line table column names',
+         (QA_E,0,pymupdf.Rect(58,334,540,352)), (QA,0,pymupdf.Rect(58,320,540,338)), (PR,0,pymupdf.Rect(58,337,540,355))),
+        ('Summary block labels',
+         (QA_E,0,pymupdf.Rect(330,368,545,466)), (QA,5,pymupdf.Rect(330,102,545,214)), (PR,1,pymupdf.Rect(330,498,545,624))),
+        ('Signature block',
+         (QA_E,0,pymupdf.Rect(50,560,545,604)), (QA,5,pymupdf.Rect(50,307,545,351)), (PR,1,pymupdf.Rect(50,716,545,760))),
+    ]
+    fh = font(21,True); fl = font(17,True)
+    cols = ['QA BRANCH  -  empty invoice (the full skeleton)', 'QA BRANCH  -  Legacy_QA', 'PRODUCTION  -  Legacy_Production']
+    colc = [BLUE, BLUE, AMBER]
+    panels = []
+    for title, *three in strips:
+        ims = [page(f,p,r) for f,p,r in three]
+        W = max(i.width for i in ims) + 20
+        H = 36 + sum(i.height+40 for i in ims) + 10
+        p = Image.new('RGB',(W,H),WHITE); d = ImageDraw.Draw(p)
+        d.text((8,4), title, font=fh, fill=GREEN)
+        y = 36
+        for im, lab, c in zip(ims, cols, colc):
+            d.text((8,y), lab, font=fl, fill=c); y += 22
+            d.rectangle([8,y,8+im.width-1,y+im.height-1], outline=c, width=2); p.paste(im,(8,y))
+            y += im.height + 18
+        panels.append(p)
+    img = vstack(panels, 30)
+    img = header(img, 'Every header, column name and label - identical on production',
+                 'All 35 template labels present on production: Unit, VIN/Serial #, Asset, Mileage, Eng Hrs, Service Order, '
+                 'Terms, Due date, Customer PO, Authorizer, Description, Quantity, Rate, Amount, Parts Total, Labor Total, '
+                 'Line Total, Labor, Parts, Shop supplies, Subtotal, Total, Payments, Balance, Bill To, Remit payment to, '
+                 'the signature block and the full disclaimer.', GREEN)
+    img.save(os.path.join(OUT,'EX4-every-label-present.png'))
+    print('EX4', img.size)
+
+# ---------------------------------------------------------------- EX5
+def ex5():
+    """Part rows exist on both, with the same anatomy."""
+    qa = page(QA,1, pymupdf.Rect(56,424,545,556))
+    pr = page(PR,0, pymupdf.Rect(56,368,545,442))
+    rows = [('row-type gutter label x','60.75 pt','60.75 pt'),
+            ('part text x','90.41 pt','90.41 pt'),
+            ('part text format','NUMBER - Description','NUMBER - Description'),
+            ('Quantity column x','355.76 pt','355.76 pt'),
+            ('Rate right edge','465.11 pt','465.11 pt'),
+            ('Amount right edge','537.00 pt','537.00 pt'),
+            ('part rows in this document','11','3')]
+    fh = font(21,True); fr = font(19); fv = font(19,True)
+    lw = max(tw(probe,r[0],fr)[0] for r in rows)
+    v1 = max(tw(probe,r[1],fv)[0] for r in rows); v2 = max(tw(probe,r[2],fv)[0] for r in rows)
+    W = max(qa.width, pr.width, lw+40+v1+40+v2) + 20
+    H = 30 + qa.height + 30 + pr.height + 30 + 32*len(rows) + 20
+    img = Image.new('RGB',(W,H),WHITE); d = ImageDraw.Draw(img)
+    d.text((8,4),'QA BRANCH', font=fh, fill=BLUE)
+    d.rectangle([8,30,8+qa.width-1,30+qa.height-1], outline=BLUE, width=2); img.paste(qa,(8,30))
+    y = 30+qa.height+8
+    d.text((8,y),'PRODUCTION', font=fh, fill=AMBER); y += 26
+    d.rectangle([8,y,8+pr.width-1,y+pr.height-1], outline=AMBER, width=2); img.paste(pr,(8,y))
+    y += pr.height + 22
+    for l,a,b in rows:
+        d.text((8,y), l, font=fr, fill=DARK)
+        d.text((lw+48,y), a, font=fv, fill=BLUE)
+        d.text((lw+48+v1+40,y), b, font=fv, fill=AMBER)
+        y += 32
+    img = header(img, 'Part rows: present on BOTH, same anatomy',
+                 'My earlier note that the QA invoice was labour-only was wrong - it has 11 part rows and $613.78 of parts. '
+                 'Both documents put the row-type label, the part text and the three money columns at the same x.', GREEN)
+    img.save(os.path.join(OUT,'EX5-part-rows-both.png'))
+    print('EX5', img.size)
+
 if __name__ == '__main__':
-    ex1(); ex2(); ex3()
+    ex1(); ex2(); ex3(); ex4(); ex5()

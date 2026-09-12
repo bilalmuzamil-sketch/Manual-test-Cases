@@ -10,6 +10,10 @@ production to be exactly like Legacy QA."*
 |---|---|---|---|---|---|
 | **QA** | `Legacy_QA.pdf` | **INV-S99999-16518** | Staging Heavy Duty - 9919 (Calgary) | WeasyPrint 69.0 | 6 |
 | **PROD** | `Legacy_Production.pdf` | **INV-S2-194** | Trucks Hill 2 (Ajman, UAE) | WeasyPrint 69.0 | 2 |
+| **QA-EMPTY** | `QA_Legacy_Empty.pdf` | **EST-S99999-17582** | Staging Heavy Duty - 9919 | WeasyPrint 69.0 | 1 |
+
+The empty document was supplied as the **reference skeleton** — it shows every header and label the
+template emits when there is almost no data to fill them.
 
 Every number below is read out of the PDFs with pymupdf — text spans (position, size, font, colour),
 vector drawings (rules, borders, cell boxes), embedded font tables and image placement. Nothing is
@@ -23,9 +27,10 @@ Reproduce with `python3 design_check.py` (full output saved as `DESIGN-CHECKS.tx
 
 ## The answer in one line
 
-**The design is identical. 70 of 70 design measurements match exactly, 0 differ.** Type, sizes,
-weights, colours, margins, column positions, rules, cell boxes, logo slot, every vertical gap and
-every row pitch. The two documents *look* different because the **data** is different — a different
+**The design is identical (70 of 70 measurements, 0 differ) and every header, column name and label
+is present on production (35 of 35).** Type, sizes, weights, colours, margins, column positions,
+rules, cell boxes, logo slot, every vertical gap and every row pitch — plus every label the template
+emits, checked against the empty-invoice skeleton. The two documents *look* different because the **data** is different — a different
 shop, a different customer, different jobs, a different tax set-up and a much shorter order number.
 
 ---
@@ -186,7 +191,99 @@ The QA lead already said to ignore the logo.
 
 ---
 
-## 3. The honest part: these two files can never be byte-identical
+## 3. Every header, column name and label — checked against production
+
+The QA lead supplied `QA_Legacy_Empty.pdf` as the reference skeleton and asked the question directly:
+*"If QA branch shows the header 'Unit' the production should also show 'Unit'."*
+
+**Every one of the 35 template labels the QA documents emit is present on production.**
+
+| Group | Labels | On production |
+|---|---|---|
+| Section headings | Bill To · Remit payment to | **all present** |
+| Asset table | Unit · VIN/Serial # · Asset · Mileage · Eng Hrs | **all present** |
+| Order table | Service Order · Terms · Due date · Customer PO · Authorizer | **all present** |
+| Line table | Description · Quantity · Rate · Amount | **all present** |
+| Per-line totals | Parts Total · Labor Total · Line Total | **all present** |
+| Row-type gutter | Labor · Parts | **both present** |
+| Summary block | Labor · Parts · Shop supplies · Subtotal · Total · Payments · Balance | **all present** |
+| Masthead | Invoice: · Invoice Date: · Due date: | **all present** |
+| Signature block | Customer signature: · Printed name: · Date: | **all present** |
+| Disclaimer | the full 7-line paragraph | **present, verbatim, same wrap** |
+| Footer | Powered by ShopView · page-number line | **present** |
+
+Three labels came back as "not found" on a first pass. **All three are false alarms and each is
+proven so:**
+
+1. **"Service Order"** — it *is* there, split across two spans ("Service" at x 76.14, "Order" at
+   x 79.89) because the cell wraps. That is difference 2.2 above, not a missing header.
+2. **"Shop supplies"** — it *is* there, as `Shop supplies (10% of labor)` starting at x 341.01. My
+   filter only looked right of x 400; the label is longer, so it starts further left, but it
+   **right-aligns to 472.42 pt — exactly the same column as QA.** The org names the fee differently.
+3. **"Estimate:"** — the QA-EMPTY file is an **Estimate**; QA and production are both **Invoices**,
+   and both correctly print `Invoice:`. Different document type, not a missing label.
+
+The only string genuinely absent is **`GST (5%)`**, which is the Canadian org's tax name. Production
+prints its own two: `2% VAT (2%)` and `3% VAT (3%)`. That is data.
+
+### Value slots — is production missing any data it should show?
+
+| Slot | QA-EMPTY | QA | PRODUCTION |
+|---|---|---|---|
+| Unit | *(blank)* | H9725 | **5454** |
+| VIN/Serial # | *(blank)* | CPVNUEG53WP5MMV75 | **WA1LAAF71KD987654** |
+| Asset | 2011 Hyundai Santa Fe | 1998 Ford Lt9513 | **2019 Toyota 4-runner** |
+| Mileage | *(blank)* | 407,185 | **45,656** |
+| Eng Hrs | *(blank)* | 16,408 | **656,566** |
+| Service Order | S99999-17582 | S99999-16518 | **S2-194** |
+| Terms | COD | Net 60 | **Net 15** |
+| Due date | Sep 12, 2026 | Nov 11, 2026 | **Sep 27, 2026** |
+| Customer PO | *(blank)* | *(blank)* | *(blank)* |
+| Authorizer | *(blank)* | *(blank)* | *(blank)* |
+| Bill To | 3 lines | 3 lines | **3 lines** |
+| Remit payment to | 4 lines | 4 lines | **4 lines** |
+
+**Production fills every slot QA fills.** Customer PO and Authorizer are blank on **all three**
+documents, including the QA ones — no value was entered, so the template correctly prints nothing.
+
+### Part rows — I was wrong about this, and the correction matters
+
+My earlier note said the QA invoice was "labour-only (Parts $0.00 on every line)". **That is wrong.**
+The QA summary block says **Parts $613.78**, which should have told me so immediately; I read page 1
+and generalised. The QA invoice has **11 part rows**; production has **3**. So they *can* be compared,
+and they match:
+
+| | QA | PRODUCTION |
+|---|---|---|
+| Row-type gutter label | x 60.75 | **60.75** |
+| Part text | x 90.41 | **90.41** |
+| Part text format | `NUMBER - Description` (`BRAKECLEAN - Brake & Parts Cleaner`) | **`NUMBER - Description`** (`2010 - Reteststage`) |
+| Quantity column | x 355.76 | **355.76** |
+| Rate right edge | 465.11 | **465.11** |
+| Amount right edge | 537.00 | **537.00** |
+| Sub-item row pitch | 16.09 pt | **16.09 pt** |
+
+### Lines that show only "Line Total"
+
+Production has one job line printing **Line Total** with no Parts Total / Labor Total above it — the
+one titled *"Fixed Line Test"*. **The QA document does the same thing** (page 5, a $0.00 line), so it
+is not a production difference. It matches the open item **OQ-2** already recorded on
+[SV-4314](https://shopview.atlassian.net/browse/SV-4314): a Fixed Line does not show the
+Parts/Labor breakdown. Two further QA cases that look like this are simply page breaks — the Parts
+Total and Labor Total are at the foot of the previous page.
+
+### The one thing I cannot settle from the PDFs
+
+The **footer tax-id cell**: QA prints `GST# 812694966 RT0001`, production prints a bare
+`5454545454544544` with **no prefix**. If the template emits the `GST# ` prefix, production is missing
+it. If the prefix is part of the free-text tax-id the Calgary shop typed into its own settings, both
+are correct. Both QA files come from the same org, so they cannot distinguish the two.
+
+**This needs one look at the branch's tax-id setting to settle, and it is the only open question in
+the whole comparison.**
+
+
+## 4. The honest part: these two files can never be byte-identical
 
 The instruction was *"the invoice from production should and MUST match byte to byte with the invoice
 from the QA branch."* **These two files cannot** — they are different invoices. Different company,
@@ -205,12 +302,8 @@ meaningful. That plan is still blocked on three things — see below.
 
 ---
 
-## 4. What I could not check, stated plainly
+## 5. What I could not check, stated plainly
 
-- **Part rows on the QA document.** The QA invoice is labour-only (Parts $0.00 on every line), so the
-  part-row layout could not be compared like-for-like. Production has part rows and they use the same
-  gutter x (60.75), description x (90.41) and a 16.09 pt sub-item pitch — but there is no QA
-  counterpart to diff them against.
 - **Full continuation-page card height.** QA has four full continuation pages (776.87 pt card);
   production is only 2 pages and its page 2 is the last page, whose card height is content-driven
   (772.03 pt). No full continuation page exists on production to compare.
@@ -230,6 +323,8 @@ meaningful. That plan is still blocked on three things — see below.
 | `ev/EX1-design-identical.png` | both page 1s side by side with the shared template coordinates (58.50 / 90.41 / 339.40 / 442.17 / 498.79 / 535.28) drawn straight across both — the lines land in the same place on both documents |
 | `ev/EX2-money-block-identical.png` | the summary block on both: labels right-aligned to 472.42 pt, amounts to 539.25 pt, 13.09 pt row pitch — identical |
 | `ev/EX3-the-two-visible-differences.png` | the masthead shift and the "Service Order" wrap, each with the measurement that causes it |
+| `ev/EX4-every-label-present.png` | the asset-table, order-table, line-table, summary and signature labels read off all three documents side by side |
+| `ev/EX5-part-rows-both.png` | part rows on both documents with their column x — and the correction to my "labour-only" error |
 
 ---
 
@@ -245,4 +340,6 @@ meaningful. That plan is still blocked on three things — see below.
    is a change to the Legacy template and therefore a PO call (the Legacy template is defined as
    byte-identical to v26.35.10 under
    [SV-9892](https://shopview.atlassian.net/browse/SV-9892), so changing it is not a QA decision).
-4. **Nothing has been filed or posted.** No Jira comment, no ticket, no TestRail write.
+4. **One look at the production branch's tax-id setting** — to settle whether the footer's missing
+   `GST# ` prefix is template or data. It is the only unresolved item in the comparison.
+5. **Nothing has been filed or posted.** No Jira comment, no ticket, no TestRail write.
