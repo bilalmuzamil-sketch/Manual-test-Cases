@@ -1,0 +1,15 @@
+{
+ "pass_meta": {
+  "suite": "Invoice Design Selection (7800)",
+  "run": 446,
+  "env": "the Production account (app.shopview.com)",
+  "build": "v26.36.4-3e1c643",
+  "date": "12 September 2026"
+ },
+ "results": {
+  "C53566": {
+   "verdict": "Passed",
+   "observed": "Checked on the live Production customer website, reached the way a shop reaches it - the Customer Portal item in the profile menu. Two invoices were used: INV-S1-824, which is paid, and INV-S1-764, which is not. Each was opened under both looks, on screen and saved as a file. Both changed with the setting: the old look draws the familiar layout with \"Remit payment to\" and \"Line Total\"; the new look draws the newer one with its ADDRESSES, WORK PERFORMED and SUMMARY blocks. The saved files differ accordingly - for the paid invoice, 116,776 bytes in the old look against 146,955 in the new. The invoice number was the same on both, and for the paid invoice every one of the nineteen amounts was identical on screen and in the saved file. One thing for the reader, on the unpaid invoice only: the two looks group the per-line fees differently, so the old look shows Line Total $225.00 and the new one shows Line total $249.00. The amount the customer owes is identical in both - the same ten totals appear on each - and this grouping is a deliberate part of the old look named in the specification. It has been raised separately for the product manager to confirm, and is not treated as a failure of this check. The setting was read back immediately before and after every reading; nothing drifted."
+  }
+ }
+}

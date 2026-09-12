@@ -1,0 +1,15 @@
+{
+ "pass_meta": {
+  "suite": "Invoice Design Selection (7800)",
+  "run": 446,
+  "env": "the Production account (app.shopview.com)",
+  "build": "v26.36.4-3e1c643",
+  "date": "12 September 2026"
+ },
+ "results": {
+  "C53536": {
+   "verdict": "Passed",
+   "observed": "Checked on the live Production site using credit note CM-3561, which was raised on 2 July against invoice INV-S-696 - so it was created long before the shop had any choice of look. Its document was downloaded under both looks, using the print action on the credit's own row, which produces a real PDF file. The two files are genuinely different: the old-look one is the classic layout headed \"Credit To\" with the Credit Number, Status and Invoice Number table, 27,220 bytes; the new-look one leads with the credit summary and balance and uses the newer ADDRESSES block, 31,745 bytes. Both name the same credit CM-3561 and the same original invoice INV-S-696, both show the same amounts - $100.00 and $0.00 - and both carry the warranty disclaimer. The credit follows the shop's current setting, not the look the invoice it credits was created under. The setting was read back immediately before and after each download; nothing drifted."
+  }
+ }
+}

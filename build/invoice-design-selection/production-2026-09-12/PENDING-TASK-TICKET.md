@@ -67,3 +67,52 @@ narrower and much less urgent finding, and the ticket must say so.
 
 C53592 (figures identical in both designs), and any estimate-rendering case where the block shows up —
 C53544, C53547, C53549, C53553. **None of them is to be failed for this.**
+
+---
+
+# SECOND ITEM for the same ticket — the fee/adjustment grouping changes the line subtotals
+
+Found on production on 12 September 2026, build `v26.36.4-3e1c643`, on the **customer portal**
+document for invoice **INV-S1-764**. Same invoice, same line items, same fees, both looks.
+
+The invoice has two per-line fees: a **Flat Fee $12.00** on the labour line and a **Percentage
+processing Fee $12.00** on the parts line. Both fees appear on both documents.
+
+| | Legacy | Modern |
+|---|---|---|
+| Labour subtotal | `Labor Total $135.00` | `Labor $147.00` (135 + the 12.00 flat fee) |
+| Parts subtotal | `Parts Total $90.00` | `Parts $102.00` (90 + the 12.00 processing fee) |
+| Line total | `Line Total $225.00` | `Line total $249.00` |
+| Then | `Labor $135.00 Parts $90.00 Adjustment…` | — |
+
+**The grand totals are identical in both**: `$304.94`, `$317.39`, `$206.39`, `$111.00`, `$32.00`,
+`$15.00`, `$14.94`, `$29.88`, `$4.98`, `$7.47` all appear in each. The customer is billed the same
+amount either way. What differs is whether the per-line fees are folded into the labour and parts
+subtotals (Modern) or held out and grouped separately (Legacy).
+
+## Why it is NOT being called a defect by us
+
+The spec names this behaviour by name. Confluence `845447188` v27, read 12 September 2026:
+
+> *"Three pre-refresh behaviours are kept for fidelity because they change layout rather than figures:
+> the remit-to fallback, **the Adjustments grouping**, and the VIN placeholder word (Q7)."*
+
+and S2-R7:
+
+> *"A document's figures, totals, line items and numbering are identical in both designs. Blocks that
+> belong to a design's layout may differ between the two."*
+
+So the Adjustments grouping is a deliberately kept Legacy behaviour.
+
+**The open question for the Product Manager is the same shape as the first item:** a customer who
+receives the same invoice in the two looks sees a different "Line Total" — $225.00 against $249.00 —
+even though the amount owed is identical. Is that acceptable, or should the two agree?
+
+## Evidence
+
+`evidence/PR18-legacy-unpaid.pdf` and `evidence/PR18-modern-unpaid.pdf`, plus `PR18.json`.
+
+## Cases this touches
+
+C53592 and C53566. **Neither is to be failed for this** — both were passed on their own assertions,
+which this does not contradict.
