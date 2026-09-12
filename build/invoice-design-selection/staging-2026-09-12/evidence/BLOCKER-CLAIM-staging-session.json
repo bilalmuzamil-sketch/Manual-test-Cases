@@ -1,0 +1,33 @@
+{
+ "claim": "the customer portal on staging cannot be reached: the staging session cookie has expired",
+ "proofs": {
+  "positive_control": {
+   "passed": true,
+   "evidence": "The SAME cookie jar and the SAME code reached the portal successfully 20 minutes earlier in this run: S14 (11:14) loaded https://staging.portal.shopview.com/invoices/21c5d7e5-.../preview, read the document text and titled it 'Bravo Mechanical Services - S-32981 - Invoice - ShopView Customer Portal' (evidence/S14-preview.png). So the method works; the credential is what changed."
+  },
+  "tried_through_the_screen": {
+   "passed": true,
+   "evidence": "S16/S17 navigated a real browser to https://app.staging.shopview.com/ and /login and to https://staging.portal.shopview.com/invoices. All three land on a sign-in page: the app on accounts.google.com (hd=shopview.com), the portal on its own 'Enter your email and password below to log in' card. Screenshot /tmp/claude-0/S17-a.png."
+  },
+  "waited_and_retried": {
+   "passed": true,
+   "evidence": "Four independent attempts, each with a 8-14s settle after domcontentloaded: S15_pdf (11:19), S15dbg (11:20), S16 route3+route5 (11:22), S17 cold jar (11:25). Same outcome every time."
+  },
+  "checked_for_navigation": {
+   "passed": true,
+   "evidence": "Navigation IS the observation here: the URL changes to accounts.google.com/v3/signin/identifier?...&hd=shopview.com&redirect_uri=https://auth.staging.shopview.com/callback. No new tab, no panel; the app never renders."
+  },
+  "precondition_read_back": {
+   "passed": true,
+   "evidence": "The credential was read back from the API, not inferred from the screen: POST https://api.staging.shopview.com/api/token -> 401, and GET /api/organizations/invoice-settings/view -> 401 {\"error\":\"sso_required\",\"sso_redirect_url\":\"https://auth.staging.shopview.com/login?...\"}. The same call returned 200 with documentDesign earlier in this run (evidence/S9.json, found=legacy, restored=legacy)."
+  },
+  "searched_the_repo": {
+   "passed": true,
+   "evidence": "grep of build/ENVIRONMENT-CREDENTIALS.md and build/APP-ACTIONS-PLAYBOOK.md for staging login: section 3 records the QA lead's 2026-09-03 ruling -- staging has NO password, entry is a per-need sv_sso_session he drops into /tmp, roughly a 24-hour window; the password route was tested 2026-09-03 and is CLOSED (401 sso_required, byte-identical for two accounts) with an explicit 'do not re-test it and do not ask him for a password'. The exact error string sso_required is recorded in the playbook at line 2616 with the same Google redirect."
+  },
+  "asked_what_would_make_this_my_fault": {
+   "passed": true,
+   "evidence": "Most likely my fault: (a) cookie scoping -- I could have set sv_sso_session on the wrong host or domain-scoped it (the known 409 trap). Ruled out: the identical scoping code reached the portal at 11:14 in this same file, and S17 used a COLD jar with no cookies at all and still bounced to Google, so the bounce is not a cookie-shape error. (b) the bridge proxy -- ruled out: ensure_bridge.sh reported healthy on port 40261 and the same browser loaded accounts.google.com and the portal login card over it. (c) wrong URL -- ruled out: /, /login and the portal /invoices were all tried. (d) the DEV MODE quick-login panel -- tried from a cold jar (S17); the server redirects before the app renders, so the panel is not reachable."
+  }
+ }
+}

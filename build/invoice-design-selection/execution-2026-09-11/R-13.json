@@ -1,0 +1,21 @@
+{
+ "pass_meta": {"suite":"Invoice Design Selection (7800)","run":446,
+   "env":"the Staging site and its customer portal","build":"line not read this pass",
+   "date":"12 September 2026"},
+ "results": {
+  "C53569": {
+   "verdict":"Passed",
+   "observed":"Checked on the customer portal on Staging. The standalone payment receipt was opened with the Invoice Design setting on Legacy, the setting was then switched to Modern, and the same receipt was opened again. It looked exactly the same both times - same wording, same layout, and the same amounts ($1,000.00 paid, $41.30, $958.70). The page was identical in size both times (42,657 characters). To show the switch really had taken effect during the same check, an invoice was opened alongside it under both settings and that one DID change: plain sentence-case headings under Legacy, capitalised headings under Modern. The setting was read back from the system immediately before and immediately after every single reading, so that if another tester had flipped it mid-check the reading would have been thrown away - none had to be. The setting was found on Legacy and was put back on Legacy afterwards. This matches the expected result: the standalone portal Payment Receipt is unaffected by the setting."
+  },
+  "C53566": {
+   "verdict":"Blocked",
+   "observed":"Half of this is proven and the other half needs a fresh sign-in to Staging. PROVEN, on screen: with the setting on Legacy the customer-portal invoice showed plain sentence-case headings; with the setting on Modern the very same invoice (INV-S2-32981) showed capitalised headings and a visibly different, longer layout, while every money figure on it stayed identical. So the portal's on-screen document does follow the current setting. NOT YET PROVEN, the PDF half: the printer button at the top right of the portal invoice opens the printable version of that invoice in a new tab, and the PDF is then produced by the browser's own Save as PDF. The Staging sign-in expired before that printable page could be saved under both settings, so nothing is being claimed about the PDF. The setting was read back immediately before and after every reading, and was left on Legacy, the value it was found on.",
+   "todo":"What needs to be done: with a fresh Staging sign-in, open the paid invoice on the customer portal, click the printer button at the top right, save the page that opens as a PDF, then switch the Invoice Design setting to the other option and do it again. Compare the two PDFs - the headings should be plain sentence-case under Legacy and capitalised under Modern, with the same invoice number and the same amounts on both."
+  },
+  "C53567": {
+   "verdict":"Blocked",
+   "observed":"Nothing is being claimed either way, because the one thing this case is about could not be captured. The paid banner is specified to appear only on the PDF the portal produces. On screen, neither the paid invoice nor an unpaid invoice showed a paid banner under either setting - but that is exactly what the case expects on screen, so it tells us nothing about the PDF. The printable version of the invoice, which is what Save as PDF turns into the PDF, could not be captured under both settings: the Staging sign-in expired first. The setting was read back immediately before and after every reading, and was left on Legacy, the value it was found on.",
+   "todo":"What needs to be done: with a fresh Staging sign-in, open the paid invoice on the customer portal, click the printer button at the top right, save the page that opens as a PDF, and check whether the paid banner appears on it and which of the two designs it is drawn in. Repeat with the setting switched to the other option. Then do the same on an invoice that is NOT paid as a contrast - the banner must not appear on that one. Only with those four PDFs in hand can this be passed or failed."
+  }
+ }
+}

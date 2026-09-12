@@ -547,6 +547,13 @@ any endpoint/ID not recorded here or in `CLAUDE.md`** — if only partly known, 
   screenshot is **not** retracted, and we do **not** assert staging has no panel: **nobody has looked
   while signed in.** **Do not queue this as an independently answerable question and do not spend a
   probe on it.**
+  **🔁 RE-CONFIRMED 2026-09-12 (one cheap probe, run only because a live pass had just lost its
+  session and the panel would have been the way back): from a COLD jar, both
+  `https://app.staging.shopview.com/` and `/login` redirect server-side to `accounts.google.com`
+  (`hd=shopview.com`, `redirect_uri=https://auth.staging.shopview.com/callback`) before the app
+  renders — no panel, no form. Identical to the 2026-09-03 reading. The panel IS visible once a
+  session exists (it rendered at 10:52 that morning, while the cookie still had life in it), which is
+  exactly when it is not needed. His ruling stands: DO NOT CHASE IT.**
   **(b)** whether **`sv_sso_session` ALONE suffices on staging** — **genuinely still open.** Staging
   sits behind **Cloudflare** (`cf_clearance` at the edge), unlike the CloudFront+nginx QA branches,
   **so the QA-branch finding that `cf_clearance` is inert does NOT transfer**. Answer it opportunistically
@@ -4263,6 +4270,23 @@ produced the withdrawn *"the credit note is not rendered on this branch"* conclu
   `build/assets/PreviewInvoice-*.js`; the server's `props.htmlContent` has none of the banner strings,
   so a server-side fetch makes the feature look missing. Render it and read
   `#portal-paid-invoice-summary`.
+- **🖨️ WHAT THE PRINTER ICON ACTUALLY IS, AND WHERE THE "PDF" COMES FROM (observed live 2026-09-12 on
+  `/invoices/<id>`; BOTH READINGS STAY ON THE RECORD — the menu above was observed 2026-09-07).**
+  On the invoice **detail** page the printer control is a plain **`<a>` carrying `svg.lucide-printer`**
+  (top right, beside a mail button), `href="/invoices/<id>/preview"`, and it opens that URL **in a NEW
+  TAB**. No menu appeared on the detail page on 12 September. **The preview page has ZERO clickable
+  controls** — it is not a viewer, it *is* the printable document, and the customer's "PDF" is the
+  browser's own **Save as PDF**. So:
+  - **Capture it with the print engine, never a fetch:**
+    `await page.emulateMedia({media:'print'}); await page.pdf({path, format:'Letter', printBackground:true});`
+    A fetch misses every `@media print` rule — and a banner that exists only in print is exactly what a
+    case will ask about.
+  - **The saved file's NAME is `document.title`.** Staging titled the preview
+    `Bravo Mechanical Services - S-32981 - Invoice - ShopView Customer Portal` while the document's own
+    letterhead read `Staging Heavy Duty - 9919`. **OPEN QUESTION, not a finding** — that reading was
+    taken without the design setting guarded and has not been reconciled against the source (Rule 106).
+  - **Enumerate the page with NO container exclusion.** Dropping `[class*=sidebar]` matches the layout
+    shell and returns "0 controls" on a page full of them (learning L0060).
 - **Pay an invoice:** open it → **Pay Now** → confirm payer → amount → **Continue to checkout** →
   Stripe **sandbox** (`is_test_mode: true`), card `4242 4242 4242 4242`, any future expiry, any CVC,
   **ZIP `94107`** (checkout defaults Country = United States, so a Canadian postal code is rejected).

@@ -1313,3 +1313,58 @@ raised, re-counted or quoted back at him. Re-surfacing closed items reads as not
 the one thing he was short of.
 
 Recorded rulings for run 446: `build/invoice-design-selection/PROJECT-STATE.md`.
+
+## L0060 — 2026-09-12 — A CONTAINER EXCLUDED BY CLASS *SUBSTRING* CAN SWALLOW THE WHOLE PAGE
+
+Hunting the customer portal's print control, I enumerated every clickable in the invoice page
+"excluding the sidebar" with `document.querySelector('nav,aside,[class*=sidebar]')` and then dropping
+anything that container held. It returned **0 clickables** on a page whose own text clearly showed the
+invoice, its amount and a Save button. The exclusion had matched a wrapper whose class merely
+*contains* "sidebar" — the layout shell — so "not in the sidebar" meant "nothing on the page".
+
+Re-running the identical enumeration with **no exclusion at all** returned 36 elements and the answer
+was the 24th: an `<a>` carrying `svg.lucide-printer`, at x=1536 y=23, pointing at
+`/invoices/<id>/preview`.
+
+**Rule:** when enumerating a UI, never subtract a container matched by a class *substring*. Enumerate
+everything and separate it by geometry or by its own href/label. A filter that returns zero is a claim
+about your filter until you have re-run it without the filter. This is Rule 104's "what would make
+this MY fault" in its cheapest form: delete the clever part and look again.
+
+## L0061 — 2026-09-12 — THE CUSTOMER PORTAL'S "PDF" IS THE BROWSER'S OWN PRINT OF A PREVIEW PAGE
+
+The portal has no PDF endpoint and no download menu. The printer icon at the top right of
+`/invoices/<id>` is a plain link that opens `/invoices/<id>/preview` **in a new tab**; that page has
+**zero controls** because it is not a viewer — it *is* the printable document, and the "PDF" of the
+case wording is whatever the customer gets from the browser's Save as PDF.
+
+Two consequences for testing it:
+
+- Capture it with Chromium's own print engine, not a fetch:
+  `await page.emulateMedia({media:'print'}); await page.pdf({path, format:'Letter', printBackground:true});`
+  A fetch of the same URL misses every `@media print` rule — and a banner that only appears in print
+  is exactly the kind of thing a case asks about.
+- **The saved file's name is `document.title`.** On staging the preview page titled itself
+  `Bravo Mechanical Services - S-32981 - Invoice - ShopView Customer Portal` while the document's own
+  letterhead read `Staging Heavy Duty - 9919`. That is an OPEN QUESTION, not a finding: the reading was
+  taken without the design setting guarded, and it has not been reconciled against the source (Rule
+  106). Anyone picking this up: re-observe it guarded, then reconcile, before it is called anything.
+
+## L0062 — 2026-09-12 — THE STAGING COOKIE IS A ~24-HOUR WINDOW, AND THE DEV-MODE PANEL DOES NOT REOPEN IT
+
+A staging `sv_sso_session` handed over on 11 September stopped working part-way through the 12th,
+mid-pass: the portal had answered normally at 11:14 and by 11:19 `POST /api/token` and
+`GET /api/organizations/invoice-settings/view` both returned
+`401 {"error":"sso_required","sso_redirect_url":"https://auth.staging.shopview.com/login?..."}`.
+
+`build/APP-ACTIONS-PLAYBOOK.md` §A recorded one open question: whether the `DEV MODE — QUICK LOGIN`
+panel on the staging login page can be clicked headlessly. **Settled on 2026-09-12, in the negative
+for an unauthenticated container:** from a cold jar, `https://app.staging.shopview.com/` and `/login`
+both redirect server-side to `accounts.google.com` before the app renders, so there is no panel to
+click. The panel *is* visible when a session already exists — which is precisely when it is not
+needed. Do not spend another probe on it.
+
+**Rule:** plan a staging pass to fit inside one window. Capture the irreversible readings first — the
+ones that need the environment — and leave the writing-up, the comparisons and the TestRail results
+for after, because those survive the cookie. Announce the expiry the moment it happens rather than
+re-probing: it is on the QA lead per his 2026-09-03 ruling, and the password route is closed.
