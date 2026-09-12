@@ -137,3 +137,29 @@ that carries them) · `BLOCKED-qa-branch-sv8582.md` · `BLOCKED-global-search-bu
 A housekeeping note, not a decision for him: §1 of `CLAUDE.md` measures 27,271 bytes against its own
 20,000-byte cap. It was already over before today's Rule 8 amendment; nothing has been dropped to fit,
 per the gate's own instruction never to weaken a ruling for the number.
+
+---
+
+## P1 — one TASK ticket, held until the production run is finished (opened 2026-09-12)
+
+**Authorised by the QA lead on 12 September 2026** — a per-ask permission under Rule 62, covering this
+one ticket only; the hold otherwise stands.
+
+**What:** on an estimate, the Legacy design prints a "Payments" and "Balance" block that the Modern
+design does not. Observed on production `v26.36.4-3e1c643` on jobs S2-864 and S2-833. The job's own
+figures are identical in both designs.
+
+**Why it is held, not filed now:** he wants it raised only once every one of the 45 cases has a
+production result, so the run is finished first.
+
+**Type:** **Task**, never a Story Defect or Bug. **Linked** to the related stories in epic SV-9892.
+
+**Not a failure:** no test case is to be marked Failed because of this. The Product Manager rules on
+whether it is expected behaviour or a bug, the QA lead relays that ruling, and only then are the
+affected cases marked Passed or Failed.
+
+**Before writing it:** re-observe on an estimate that has never been invoiced — both observations so
+far are estimate views of already-paid jobs, and the ticket must say which situation it occurs in.
+
+Full detail, the verbatim ruling, the spec quote and the ticket's required shape:
+`build/invoice-design-selection/production-2026-09-12/PENDING-TASK-TICKET.md`
