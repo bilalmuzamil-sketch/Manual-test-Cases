@@ -1,0 +1,19 @@
+{
+ "pass_meta": {
+  "suite": "Invoice Design Selection (7800)",
+  "run": 446,
+  "env": "the Production account (app.shopview.com)",
+  "build": "v26.36.4-3e1c643",
+  "date": "12 September 2026"
+ },
+ "results": {
+  "C53541": {
+   "verdict": "Passed",
+   "observed": "Checked on the live Production site, on job S1-852. The job was invoiced while the shop was set to the new look, and its invoice was opened and saved: it printed in the new look. That invoice was then undone using the Reverse action on the invoice menu, which warns that it will re-open and undo the invoice. The shop was switched to the old look and confirmed, and a fresh invoice was raised for the very same job. The new invoice prints in the OLD look - it takes the look the shop is set to at the moment it is raised, not the one the undone invoice had. It is a genuinely new invoice, not the old one relabelled: it carries a different internal record. The invoice number on the customer-facing document stays the same for the job. Once an invoice is undone it no longer exists as a document, so there is nothing left to open for it - the app says as much when you try. That is why the old-look and new-look comparison was made against the copy saved before the reversal, which is kept with this testing. The shop's setting was read immediately before and after every reading, and never moved on its own."
+  },
+  "C53543": {
+   "verdict": "Passed",
+   "observed": "Checked on the live Production site. All six customer documents were opened under BOTH looks and each one followed the shop's setting. Five of them - the estimate, the job invoice, the credit raised against a job invoice, the parts-sale estimate and the parts-sale invoice - were covered earlier in this testing. The sixth, a parts-sale credit, was the one still outstanding, and it has now been done using the credit numbered CM2-4398 that you created against parts sale P2-58. It sits at the Trucks Hill 2 workplace, so the workplace was changed using the control in the profile menu, the credit was found on the customer's invoices list, and its own print button was used to produce the document under each look. Under the old look the document reads Credit To, Credit Number, Description and so on in ordinary capitalisation, with the totals printed after the parts. Under the new look the same document gains an ADDRESSES heading, prints those same headings in capitals, and moves the totals block. Nothing about the money or the paperwork changes between the two: the subtotal, the tax, the total credit and the balance are the same figures in both, and both name the same credit and the same originating parts-sale invoice. Correction worth recording: earlier in this testing I reported that this credit could not be reached because the profile menu offered no other workplace. That was wrong - it offers three, and the switch worked first time once I opened the control properly."
+  }
+ }
+}
