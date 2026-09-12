@@ -4019,6 +4019,51 @@ font file subset the same way** — the strongest single signal that one templat
 **wrap points of a long fixed paragraph** (a disclaimer) are the cleanest proof two text columns are the
 same width, because the renderer must break at the same x on both.
 
+### §AC.7 — "The customer says it is not the same": proving two builds print one template (2026-09-12)
+
+The ask behind this is always the same shape — customers were given back an old layout and say it is
+**not identical**. A verdict of "looks the same to me" is worthless; so is a wall of numbers. What
+convinces is **one number per area of the document, and one picture per area.** Reusable scripts:
+`build/invoice-legacy-qa-vs-prod-2026-09-12/{design_check.py, make_area_exhibits.py, design_guard.py}`.
+
+**1. CLASSIFY THE CAPTURE BEFORE YOU MEASURE IT — always, on a shared environment.** Others switch
+settings under you (here: Legacy vs Modern invoice design, flipped by anyone on the same production
+account). `design_guard.py` identifies which design a PDF is, **two ways each** — the embedded **font
+family** (Legacy = Nunito Sans, Modern = Inter) **and** the **vocabulary** ("Service Order"/"Bill To"/
+"Remit payment to" vs "Work Order"/"ADDRESSES"/"WORK PERFORMED") — and exits `0` expected · `3` WRONG
+DESIGN, discard the capture · `4` unidentifiable. **A capture that fails the guard is thrown away, not
+measured.** Generalise it: whenever a rendering depends on a setting somebody else can flip, the
+capture must carry proof of which setting produced it, or the measurement is unfalsifiable.
+
+**2. ONE CHECK PER MEASURABLE THING, COMPARED UNROUNDED.** `design_check.py` runs ~70 checks at
+`TOL_PT = 0.05` and prints `IDENTICAL / DIFFERENT / n/a` per row. Rounding before comparing hides
+exactly the sub-point drift that tells two renderers apart, so compare the raw floats and let the
+tolerance do the work. Report the tally (`70 identical / 0 different / 1 n/a`), never a narrative.
+
+**3. ONE ANNOTATED EXHIBIT PER AREA OF THE DOCUMENT — 15 of them, not one big picture.** The pattern in
+`make_area_exhibits.py` is worth copying verbatim:
+```python
+exhibit(n, 'Area name',
+        (QA_PDF, page, x0,y0,x1,y1), (PROD_PDF, page, x0,y0,x1,y1),
+        [('what a tester checks', 'QA value', 'PROD value', 'SAME'|'DIFF'|'n/a'), ...],
+        'one plain paragraph explaining it', 'IDENTICAL'|'DIFFERENT - explained')
+```
+Crop the same region from both PDFs, stack them left/right with labels, and **print the check list
+underneath the pictures** so the reader sees the measurements against the thing they are looking at.
+A reviewer can then disagree with one row instead of with the whole report.
+
+**4. EXPLAIN A DIFFERENCE WITH A PREDICTOR, NOT A STORY** (see Standing Rule 80). Here: the heading
+wrapped because `.column-width-15 { width: 15% }` + `padding: 4px 6px` leaves **62.29 pt** and
+`"Service Order "` needs **69.21 pt**; `table-layout` is auto so 15% is only a *minimum* and the column
+widens to its widest cell — the order number below it. That yields a falsifiable rule ("one line only
+when the order number renders ≥ 69.21 pt"), **validated 3 of 3** on real documents. Until that step is
+done, an explanation is a guess dressed up in numbers.
+
+**5. THE DIFFERENCE MAY EXIST ON BOTH SIDES — check before calling it a regression.** Rendering the
+*same* layout from the QA branch with a short order number reproduced it there too, which turned
+"production broke it" into "the template has always done this". One extra render, and it is the
+difference between a true finding and a false alarm (Rule 75).
+
 ## §AD — THE BEFORE-vs-AFTER EXHIBIT: how to build the one picture an executive actually reads (Standing Rule 73, 2026-09-10)
 
 **Who the comment is for:** non-technical people **at the highest positions**. A table of PASSED rows

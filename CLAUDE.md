@@ -100,6 +100,14 @@
 >   `AUTOMATION: READY` · `AUTOMATION: READY - EXPECT FAIL (SV-xxxx)` · `AUTOMATION: HOLD - <reason>`.
 >   A tool flag NEVER justifies HOLD — only a genuinely unobtainable thing (a real physical device, an
 >   external account we do not have) does.**
+> - **AT EVERY SESSION START, AND BEFORE ANY PASS THAT WILL PRODUCE A PUBLIC DELIVERABLE: READ
+>   `build/LESSONS-INDEX.md` (Standing Rule 82).** It is the RETRIEVAL LAYER for every correction we
+>   have ever made — one row each: *what went wrong · what we do now · where the fix lives* — plus
+>   "the shape of the mistakes, in four lines" at the end, which is the fastest way to catch the
+>   verdict you are about to get wrong. **Scan it by the SHAPE of the problem, not the feature name**;
+>   the same mistakes recur wearing different nouns. **It is maintained AUTOMATICALLY, in the same turn
+>   as the correction — never on request** (a correction also produces its Standing Rule here and/or
+>   its recipe in `build/APP-ACTIONS-PLAYBOOK.md`, and is committed immediately).
 > - **OUTSTANDING-ITEMS REGISTER (Standing Rule 36) — the single cross-project list of everything we
 >   are WAITING ON: build/OUTSTANDING-ITEMS-REGISTER.md. READ IT before writing any status report or
 >   management deliverable, and UPDATE IT the moment an item is raised or cleared. EVERY project
@@ -150,7 +158,10 @@
 >   restart · the 2-minute foreground timeout); **§W = THE NAVIGATION MAP — look a route, control id
 >   or limit up here before hunting the DOM**: routes that work and the four that render but are dead,
 >   every `data-test-id` indexed by the action you want, the five reads that lie and what to read
->   instead, and the field-name/length limits; **§V = evidence + Jira comments**, including §V.9
+>   instead, and the field-name/length limits; **§V = evidence + Jira comments — read §V.0 FIRST
+>   (images go in as REAL JIRA ATTACHMENTS via wiki markup on the v2 API; external
+>   `raw.githubusercontent.com` media renders only sometimes and is no longer the method, 2026-09-12)**,
+>   including §V.9
 >   (generate the comment with a script, lift content instead of retyping, tone-gate it, read it back)
 >   and §V.10 (one complete comment, never a chain of corrections).
 >   **The mistakes half lives in `build/LESSONS-2026-08-19.md` (11 lessons) — read it before a run that
@@ -4047,8 +4058,11 @@ deliver the 7-tab management report.
     verdict against a build that no longer exists.
     **(2) SOURCES — re-read the ticket/spec/PO state LIVE** (status, priority, newest comments). A
     mid-pass comment or a status change can alter scope or make the post redundant/wrong (Rule 59).
-    **(3) EVIDENCE URLS — `curl` every embedded image/asset URL for a 200** at post time, from the exact
-    committed path; a broken image is a visible bite.
+    **(3) EVIDENCE IMAGES — CHECK THEM AS THE READER GETS THEM, NOT AS THE SOURCE SERVES THEM
+    (amended 2026-09-12 by Standing Rule 81).** Embed evidence as **real platform-owned attachments**
+    (playbook **§V.0**), then **read the posted artefact back and confirm each image is an attachment
+    with the right count, order and aspect** — `curl`ing the source URL for a 200 is **NOT** this check
+    and has already passed while the reader saw broken images; a broken image is a visible bite.
     **(4) FIGURES + CLAIMS — every number, count and "unchanged/untouched" claim traces to live evidence
     captured this pass** (Rule 50); no stale figure carried forward (the "$2,188.75" class of bite).
     **(5) NAMED TEST DATA — confirm it is still live on the branch** where a reader is told to look
@@ -4436,6 +4450,104 @@ deliver the 7-tab management report.
     quoted side by side), 50 (exhaustive **and** exact — this is the reading-side twin), 63 (be cheap —
     but cheapness is skipping redundant reads, **never skipping pages of the thing under test**), 74
     (account for every difference), 75 (a false finding costs more than a missed one) and 76/77.
+
+80. **A RENDERING OR LAYOUT FINDING CARRIES ITS VIEWING PARAMETERS, AND IS NOT EXPLAINED UNTIL A
+    PREDICTOR HAS BEEN VALIDATED (all projects).**
+    USER DIRECTIVE (2026-09-12, verbatim): *"When I change the browser zoom it gets corrected, so when
+    you have to report with all the parameter you have to tell the screen resolution+browser zoom too
+    because these are very relevant thing. It is a problem with with the same screen resolution and same
+    browser zoom it is showing two different result. For me the production and QA both show single line
+    and no wrap."*
+    **(a) STATE THE PARAMETERS, EVERY TIME.** Any finding about how something *looks* — a wrap, an
+    overlap, a truncation, a column width, a page break, a font size, an alignment — is **only true at a
+    stated viewing size**, so the report MUST name: **screen resolution · browser zoom · page size and
+    scale for a printed document · the viewport width if a browser was driven.** Without them the QA
+    lead opens the same screen, sees something different, and the finding reads as wrong — which is
+    exactly what happened here: he saw one line where the PDF showed two, and **both of us were right**.
+    **(b) RECONCILE THE SURFACES RATHER THAN PICKING ONE.** Where screen and print disagree, that
+    disagreement IS the finding and must be quantified — here, the column needs the table to reach
+    **695 CSS px** and the A4 print path gives it **634 px**, so every PDF wraps and no ordinary desktop
+    width does. **Never report "it wraps" when the honest statement is "it wraps below X".**
+    **(c) AN EXPLANATION IS NOT FINISHED UNTIL IT PREDICTS.** Measuring the cause is half the work;
+    turn it into a **falsifiable rule** ("one line only when the order number renders ≥ 69.21 pt wide")
+    and then **test that rule against real documents and report the score** (here **3 of 3**: 73.93 pt
+    one line, 45.15 pt wraps, 38.85 pt wraps). A predictor that survives is proof; a plausible story
+    with numbers in it is still a story, and Rule 75 exists because plausible stories pass review.
+    **(d) STATE WHETHER THE DATA CAN EVER AVOID IT.** Checking that **all 100 production work-order
+    numbers are 6 characters** turned "it depends on the number" into "production will always hit it",
+    which is what decides whether it is worth fixing.
+    **(e) SAY WHICH SURFACE EACH MEASUREMENT CAME FROM** — a figure read out of a rendered PDF is not a
+    screen observation, and must not be written as one (Rule 12).
+    Ties to Standing Rules 9 (build-accurate labels), 12 (observed, never inferred), 25 (cite exact
+    values), 40 (every surface), 50 (exhaustive and exact), 64/73 (annotated evidence), 74 (account for
+    every difference), 75 (configuration first — a viewing parameter is configuration too) and 79.
+    Recipe: `build/APP-ACTIONS-PLAYBOOK.md` **§AC.7**.
+
+81. **VERIFY THE DELIVERABLE AS THE READER RECEIVES IT — not as the source serves it (all projects).**
+    **THE MISTAKE, and it was mine, twice in one hour.** I embedded 17 annotated screenshots in two Jira
+    tickets as links to `raw.githubusercontent.com`, and verified them by curling every URL: **HTTP 200,
+    `content-type: image/png`, all 17.** The QA lead opened the tickets and saw **empty grey boxes in the
+    descriptions and "Something went wrong. We couldn't generate a preview for this file." on several of
+    the comment images.** My check was rigorous, exhaustive, and **measured the wrong end of the pipe**:
+    it proved the files were *servable*, never that the reader's client could *render* them.
+    **THE RULE:** a deliverable is verified only when it has been checked **in the form and the place the
+    reader will meet it** — the posted Jira comment as Jira stores and renders it, the published page as
+    the browser draws it, the exported file as the recipient's application opens it. **Confirming that
+    the source of an asset responds is necessary and never sufficient.**
+    **MECHANICALLY:** after posting, **read the artefact back from the system that now owns it** and
+    check the things the reader depends on — for Jira, re-fetch the comment in **ADF** and confirm each
+    image is a real attachment (`{"type":"file","id":"<uuid>"}`), not an external link, and that the
+    **count and order** match what was sent; for anything rendered, confirm the **shape** too (an image
+    with a wrong `height` attribute renders squashed and looks like sloppy work).
+    **PREFER THE FORM THE PLATFORM OWNS.** Where a platform can hold the asset itself, **put it there** —
+    upload real Jira attachments rather than linking out (method: playbook **§V.0**). An asset the
+    platform owns cannot fail to fetch later, cannot be rate-limited, and does not break when a branch is
+    renamed or a repository moves.
+    **THE GENERAL FORM OF THE ERROR, worth carrying to every future check:** ask **"what would have to be
+    true for the reader to be fine, and am I testing THAT?"** A green check on a proxy for the real
+    condition is the most expensive kind of false confidence, because it is indistinguishable from
+    diligence — I had curl output for all 17.
+    Ties to Standing Rules 12 (observed — and *what* was observed matters), 17, 50 (exhaustive and exact —
+    **this rule says: of the right thing**), 64/65/67 (the reader-facing standard these protect), 68
+    (bite-proof — a broken image in front of a Vice President is a bite), 72 (the pre-post gate: its
+    image check is now "read it back from Jira", not "curl the source") and 73.
+
+82. **LEARNING AND SAVING IS AUTOMATIC AND RETRIEVABLE — never something the QA lead has to ask for
+    (all projects).**
+    USER DIRECTIVE (2026-09-12, verbatim): *"Your learning and saving should be an automatic &
+    retrievable process you should not be waiting for me to ask you to do this. It should be automatic,
+    everything you correct yourself save it and make it retrievable for yourself too."*
+    **THE TRIGGER IS THE CORRECTION ITSELF, and it fires in the SAME TURN.** The moment any of these
+    happens — the QA lead corrects me · a reviewer or another author's case turns out right · a re-check
+    contradicts something I already reported · I catch my own error mid-pass · a method fails in front of
+    a reader · a new recipe is proven to work — **it is written down before the turn ends.** Not at the
+    end of the pass, not when asked, not "if it comes up again". **Waiting is how the lesson is lost**,
+    because the container is ephemeral and the other session cannot see anything I did not commit.
+    **WHERE EACH KIND OF LEARNING GOES (all three, every time they apply):**
+    **(a) `build/LESSONS-INDEX.md`** — the **retrieval layer**: one row per correction — *what went
+    wrong · what we do now · where the fix lives*. **This is the file to read at session start and
+    before any pass that will produce a public deliverable.** Its rows are scanned by the **shape** of a
+    problem, not by feature name, because the same mistake recurs wearing different nouns.
+    **(b) A STANDING RULE in this file** when the learning changes **what we must always do**, written
+    with its **rationale — the actual mistake, dated, named, unflattering**. The rationale is not
+    decoration: it is what lets a future session judge whether the rule still applies.
+    **(c) A RECIPE in `build/APP-ACTIONS-PLAYBOOK.md`** when the learning is **how to do a thing** —
+    success-proven only, a gotcha recorded as its working fix (Rule 27).
+    **RETRIEVABLE MEANS FINDABLE BY SOMEONE WHO DOES NOT KNOW IT EXISTS.** A lesson buried in a dated
+    findings folder is **not saved** — the index row, the rule, and the playbook section are what make it
+    reachable, and each new rule is **cross-referenced from the rules it touches** so it is found from any
+    direction. Every entry says **where the fix lives**, so the index is a map and never a diary.
+    **COMMIT AND PUSH IT IN THE SAME TURN** (Rule 29) — git is the only durable store and the only
+    channel to the parallel session.
+    **HONESTY CLAUSE, and it is the whole value of the file: RECORD THE MISTAKE AS A MISTAKE.** Dated,
+    named, with what it cost — never softened into "a refinement", never back-dated into a deliberate
+    choice (Rule 46). A sanitised lessons file teaches nothing and quietly grants permission to repeat
+    the error. The rows that have saved us most are the least flattering ones.
+    Ties to Standing Rules 18 (capture the full instruction history), 21 (the process-authoring
+    standard), 27 (**the books are the shared brain** — this rule is its always-on trigger), 29 (no work
+    loss — commit it immediately), 32/33 (a correction is the newest authoritative source), 46 (an
+    undocumented decision is indistinguishable from a miss) and 79/80/81 (the corrections that prompted
+    it).
 
 ## Project purpose (Custom Roles project)
 Manual test-case authoring + live staging (Verify-in-UI) verification + TestRail
