@@ -1,0 +1,2145 @@
+<style>
+    * {
+        box-sizing: border-box;
+    }
+
+    @page {
+        size: A4 portrait;
+        font-size: 0.8rem;
+        font-family: 'Inter', -apple-system, 'Segoe UI', Roboto, sans-serif;
+        margin: 30px;
+        margin-bottom: 15mm;
+
+        /* SV-9870 (change 9): no running header after page one, and the page's
+           own top margin drops from the 50pt that reserved room for it to the
+           30px the other three sides already carry.
+
+           Print-only by construction, which is why it sits at top level rather
+           than in the SV-9870 block at the foot of this sheet: an at-page rule
+           and its margin boxes never apply in screen media at all, so the SPA
+           preview cannot see this. The preview keeps today's spacing
+           deliberately - see that block for the whole reasoning.
+
+           This REVERSES S12-R10 (v45): "Every page after the first opens with a
+           single identification line: the shop location's name on the left and
+           the document number on the right. The full masthead does not repeat
+           on later pages." SV-9870 is a paper-reduction ticket, and the line
+           was measured per DOCUMENT rather than per page: it spends 50pt of top
+           margin on every continuation page plus its own height, on a document
+           whose sheet count is the thing being reduced. No page becomes
+           unidentifiable - the document number and page x-of-y still print in
+           at-bottom-right on every page, including page one.
+
+           Kept as the record of the reading this one replaced: the
+           full-masthead reading was built and measured before v45 was settled -
+           as a `position: running()` element it costs ~105pt of every page,
+           turning the five-page invoice into six and taking the worst
+           mid-document gap from 82pt to 163pt.
+
+           The 9pt type size that used to be declared on both boxes went with
+           the content it sized. It existed so a page-identification line was
+           never the largest type on the page (S12-R9, spec v49), and there is
+           no line left to size. `content: none` rather than deleting the boxes,
+           so the reversal is legible where the rule used to be - and it is
+           exactly what the at-page-first rule below already does for page one.
+
+           CONTRADICTION, recorded rather than resolved: the note this replaces
+           measured that shrinking this margin "walks a page break onto a
+           label-before-table boundary where WeasyPrint does not honour
+           `break-after: avoid`, orphaning a Parts heading - measured at every
+           margin from 110pt to 132pt". That sweep was run with the header line
+           PRESENT and with the old spacing, both of which SV-9870 changes, and
+           the sheet counts for this change set were measured whole rather than
+           for this margin alone. If a Parts heading orphans in the field, this
+           margin is the first thing to re-measure - not `.csec-head`'s
+           `break-after: avoid`, which is untouched. */
+        margin-top: 30px;
+
+        @top-left {
+            content: none;
+        }
+
+        @top-right {
+            content: none;
+        }
+
+        /* The three running-footer boxes had no size of their own, so they
+           inherited @page's 0.8rem == 9.6pt and read as the loudest thing on the
+           page. 7.5pt matches the in-flow `.footer`, which is 10px == 7.5pt.
+           (It was 6pt against the 0.75-scaled 7.5px footer; SV-9694 restored
+           absolute sizes.) The 15mm bottom margin is fixed, so this cannot move
+           a page break. */
+        @bottom-left {
+            content: "5454545454544544";
+            font-size: 7.5pt;
+            color: #121926;
+        }
+
+        @bottom-center {
+            /* Size and colour ride on #pdf-footer-brand below. */
+            content: element(shopFooter);
+        }
+
+        @bottom-right {
+            content: "INV-S2-864 - Page " counter(page) " / " counter(pages);
+            font-size: 7.5pt;
+            color: #121926;
+        }
+    }
+
+    @page :first {
+        margin-top: 0;
+
+        /* The masthead itself is in flow on page one. */
+        @top-left {
+            content: none;
+        }
+
+        @top-right {
+            content: none;
+        }
+    }
+
+    /* SV-9678 / SV-9679: a page margin box does not inherit from `body`, so the
+       three running footers were painting at the initial #000000 - a colour
+       neither S12-R2's closed set nor S12-R5's print additions contain, and
+       darker than the document's own #121926 ink. Verified against WeasyPrint
+       69: a margin box with only `font-size` emits `0 0 0 rg`, and the same box
+       with `color` emits the colour asked for.
+
+       The centre box needs more than a colour. S12-R3 puts the accent on the
+       word "ShopView", and CSS generated content cannot style a SUBSTRING of
+       `content` - the on-screen footer gets it right only because it is real
+       markup, the brand word sitting in its own bold element. (Naming that
+       element in brackets here would strip the whole stylesheet out of the
+       preview - see StylesheetHasNoMarkupTokensGuardTest.) So the centre box
+       takes a running
+       element, which carries that markup into the margin box; the probe
+       confirms the `b` paints #257CFF while the rest stays #121926. */
+    #pdf-footer-brand {
+        position: running(shopFooter);
+        font-size: 7.5pt;
+        color: #121926;
+    }
+
+    #pdf-footer-brand b {
+        color: #257CFF; /* S12-R3 */
+        font-weight: 700;
+    }
+
+    @media print {
+        .page {
+            page-break-after: always;
+        }
+    }
+
+    /*
+     * S12-R2 closed palette (light printed document): ink #121926, body
+     * #364152, muted #697586, faint #9AA4B2, hairline #E3E8EF, row divider
+     * #EEF2F6, banner surface #F8FAFC, accent #257CFF, negative #B42318,
+     * paper #FFFFFF. Every element pins its own color and background: the
+     * in-app preview is injected straight into the app DOM (no iframe), so
+     * global app CSS and dark-mode styles cascade in (D8).
+     *
+     * S12-R4 typography: Inter ships in the WeasyPrint image (Phase 3) AND is
+     * loaded by the app (app.scss), so per v45 it applies identically on screen
+     * and in PDF output - the preview and the PDF wrap line for line. Do not
+     * reintroduce a system-sans-only preview; that scoping was reversed.
+     * Font weights are multiples of 100 ONLY - WeasyPrint drops anything
+     * else at CSS parse time and the element silently renders at 400
+     * (FontWeightGuardTest enforces this).
+     */
+    /* SV-9694 keeps this: it is not a type-scale rule. The preview injects this
+       HTML into the app DOM with no iframe, and app.scss opens with a universal
+       `font-family: Nunito Sans`. A matching declaration beats an inherited one
+       however specific the ancestor, so pinning the family on the sheet alone
+       styled exactly one element and left every descendant in Nunito Sans - which
+       Google serves at 300-700, so the 800-weight masthead silently clamped to
+       700. The descendant selector outweighs the universal one; the PDF, which
+       never sees app.scss, is unaffected. S12-R4 wants the preview to wrap line
+       for line with the PDF, which this is what delivers. */
+    .invoice-pdf-new,
+    .invoice-pdf-new * {
+        font-family: 'Inter', -apple-system, 'Segoe UI', Roboto, sans-serif;
+    }
+
+    .invoice-pdf-new {
+        /* Design Document `.sheet`. */
+        padding: 38px 42px 30px;
+        background-color: #FFFFFF;
+        width: 100%;
+        font-family: 'Inter', -apple-system, 'Segoe UI', Roboto, sans-serif;
+        color: #364152;
+        font-size: 14px;
+        line-height: 1.5;
+        font-weight: 400;
+    }
+
+    .fab-center-div {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        z-index: 1050;
+        margin-top: 32px;
+    }
+
+    .avoid-break-inside {
+        break-inside: avoid;
+    }
+
+    /* ===== Page-break grouping (SV-8914) =====
+       The row-level `avoid-break-inside` above stops a single row splitting, but
+       nothing stopped a LABEL being left behind at the foot of a page while the
+       rows it introduces rendered overleaf. That is what SV-8914 reported as
+       "half a line at the bottom of the page and the other half at the top of
+       the next" - and it recurred because the old print path let the BROWSER
+       repaginate the HTML, so it varied by machine and printer. Print now serves
+       the WeasyPrint PDF, which makes pagination deterministic; these rules make
+       it correct as well.
+
+       `break-after: avoid` is honoured by WeasyPrint 69 between in-flow siblings
+       (measured), which is exactly the label-to-content relationship here. It is
+       NOT honoured across a deferred float - see `.sum`. */
+    .sec-lbl {
+        break-after: avoid;
+    }
+
+    .scope-lbl,
+    .csec-head,
+    .job-top {
+        break-after: avoid;
+    }
+
+    /* S12-R10: "A work line and its own footer stay together on the same page."
+       `break-before: avoid` IS honoured (measured 3/3: without it the last row
+       stayed on the previous page while the footer moved on alone). */
+    .job-foot {
+        break-before: avoid;
+    }
+
+    /* SV-9671: the rule above is necessary but NOT sufficient, and it fails in a
+       way that looks like it is working. It only forbids a break IMMEDIATELY
+       before the footer, so the engine breaks one box earlier instead - between
+       the Labor chargesec and the Parts chargesec - and then carries the Parts
+       section AND the footer over together. `break-before: avoid` is honoured,
+       the footer does stay glued to the rows above it, and the line is still
+       split across two pages: header + Labor on one, "PARTS" + "Line total" on
+       the next. That is exactly what was reported.
+
+       Making the whole line atomic is what S12-R10 actually asks for. Measured
+       by sweeping the work section's start offset in 30px steps across 20
+       positions with the real stylesheet: 13 of 20 offsets split a line from
+       its footer without this rule (including head p9 -> foot p10, the reported
+       shape), 0 of 20 with it.
+
+       It costs nothing. Page counts are identical at every offset measured
+       (11/11, 11/11, 12/12, 12/12), so this does not trade a split line for an
+       extra page or a bigger mid-document gap.
+
+       Safe on a line taller than a page: `break-inside: avoid` is a hint an
+       engine drops when it cannot be honoured. A 90-part line still fragments
+       and still renders complete (14 pages, nothing lost) - it is not a way to
+       lose content. */
+    .job {
+        break-inside: avoid;
+    }
+
+    .flex-row {
+        display: flex;
+        flex-wrap: wrap;
+    }
+
+    .full-width-100 {
+        width: 100%;
+    }
+
+    .justify-content-end {
+        justify-content: flex-end;
+    }
+
+    /* ===== Masthead (S1, S12-R1): letterhead left, logo center, document
+       block right, over a 2px ink rule. No monetary figure (S1-R6). ===== */
+    /* Headings level, not blocks centred. `align-items: center` - which the Design
+       Document specifies, and which additionally nudges its own `.docid` down with an
+       inline `margin-top: 8px` - centres the letterhead and the document block against
+       each other, so the shop name and the `Invoice: ...` heading land 23pt apart and
+       the offset drifts with however many address lines the shop has. `flex-start`
+       puts both headings on the same line: measured 23.0pt -> 0.0pt on the staging
+       masthead, with every x-extent, the 2px rule and the addresses band below it
+       byte-identical. Safe by construction - this is a cross-axis property, so it
+       cannot perturb the intrinsic-width measurement this masthead is fragile about
+       (see `.shop-name` and `.doc-dates` below); measured to confirm rather than
+       assumed. `align-items: baseline` measures identically in WeasyPrint 69 and was
+       passed over as the less predictable of the two now that both headings are 18px.
+       DELIBERATE DIVERGENCE from the Design Document, taken with the user. */
+    /* SV-9849: `gap: 0`, with the 20px it used to declare carried instead as
+       margins on the two columns that always exist - `.mh-brand`'s
+       `margin-right` and `.mh-doc`'s `margin-left`. The pairing is the point,
+       and neither half stands alone.
+
+       In WeasyPrint 69 `gap` is COMPRESSIBLE: when the row over-subscribes, the
+       engine pays the overflow out of the gap instead of shrinking the
+       shrinkable item, contrary to spec. Measured with `gap: 20px` kept
+       alongside this ticket's `flex: 0 1 auto`, a 21-character shop name
+       collapses the logo-to-document clearance to 3.2px on an invoice and 2.6px
+       on an estimate - the logo visually touching the document block, which is
+       the reported defect from the other side. A margin on an item is not
+       compressible, so the same 40px carried as margins holds a hard
+       20.4 / 20.5px floor at EVERY name length swept (worst case at 30
+       characters, unchanged from before this ticket).
+
+       And `gap: 0` alone would leave a shop with no logo no declared spacing at
+       all - 0.0px between shop name and document block at a 60-character name -
+       because the middle column is not rendered for them. `.mh-brand` below
+       carries that measurement.
+
+       `justify-content: space-between` above is inert under the SV-9849 design
+       ruling, and is left in place deliberately rather than relied on: both
+       side columns now grow from a ZERO basis (`.mh-brand` and `.mh-doc`
+       below), so the row has no free space left for it to distribute. The logo
+       is centred by the fixed 210px centre column sitting between two equal
+       side columns, not by any distribution rule - see `.mh-logo`. */
+    .mh {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+        gap: 0;
+        padding-bottom: 12px;
+        border-bottom: 2px solid #121926;
+    }
+
+    /* SV-9849 (design ruling): `flex: 1 1 0`, `min-width: 0` and
+       `margin-right: 20px`. The first two are the mechanism that centres the
+       logo, and they are asserted as a PAIR with `.mh-doc`'s identical values
+       in MastheadShopNameWidthGuardTest - if either side column differs, the
+       logo goes off centre.
+
+       The ruling: the logo must land in the same place on every document a shop
+       prints, not in whatever space the other two columns leave. Measured
+       before this change it swung 276.5px across four invoice-number lengths -
+       89.5px right of centre at the shortest, 187px left at the longest.
+       Target: 0.0px off centre at every content length.
+
+       Equal `flex-grow` from a ZERO basis on both side columns derives that
+       with no hardcoded pixel constant. Each side column asks for nothing
+       intrinsically, so the row's free space is the content box less the logo
+       slot and the two 20px margins, and the two columns split it evenly: on
+       A4's 633.7px content box each resolves to (633.7 - 210 - 40) / 2 =
+       191.85px, which is the ruling's cap, and a fixed centre slot between two
+       equal side columns is on the page centre by construction. Deliberately
+       not `calc()` - unreliable in WeasyPrint 69 - and deliberately not CSS
+       grid: the ruling records that WeasyPrint 69 sizes three grid columns
+       evenly but then lets the right-hand one OVERRUN, printing the document
+       number 46px past the sheet edge.
+
+       `flex-basis: 0` rather than `auto` is the load-bearing half of the flex
+       shorthand. At `auto` each column is sized from an intrinsic-width
+       measurement first and only the remainder is distributed, so the two sides
+       end up unequal whenever their contents are - which is the swing above.
+       This REVERSES the `flex: 0 1 auto` this column carried two commits ago,
+       deliberately and under the ruling; the guard test that forbade a non-zero
+       `flex-grow` here has been replaced by the paired invariant.
+
+       `min-width: 0` (SV-9814) makes the column's width its ALLOTMENT rather
+       than a measurement, and it stays. WeasyPrint 69 gets the intrinsic width
+       wrong once wrapping is involved and then paints lines LONGER than the box
+       it settled on: measured at a 54-character shop name, box 312px against a
+       336px painted line, so the name ran 3.2pt into the logo slot - 43.8pt
+       with a long document number - and a 50-character single token painted
+       157px through the logo and into the document block. Without it the
+       equal-grow allotment above is not what the column is actually sized by.
+
+       `margin-right: 20px` is half of the incompressible spacing pair - `.mh`
+       above explains why a `gap` cannot do this job. It sits here rather than on
+       `.mh-logo` because that column only renders when the shop HAS a logo
+       (SV-9814 moved the `if data.logo` guard to wrap the whole column), so
+       spacing declared there gives a logo-less shop none at all: measured at a
+       60-character name, the shop name butts against the document block at
+       0.0px. Margins on opposite sides of adjacent flex items do not collapse,
+       so the pair does not double.
+
+       A shop with NO logo gets no caps and needs no extra rule: `.mh-logo` is
+       not rendered, so the two side columns split the row in half at 296.85px
+       each. */
+    .mh-brand {
+        flex: 1 1 0;
+        min-width: 0;
+        margin-right: 20px;
+    }
+
+    /* No letter-spacing here or on `.doc-label`, though the Design Document
+       sets -0.01em on both. WeasyPrint 69 under-measures the intrinsic width of
+       a letter-spaced line, so as a flex item this block was sized narrower than
+       the text it then painted and the shop name broke onto a second line with
+       ~320px of the masthead standing empty. Isolated: -0.01em wraps, -0.18px
+       (the same distance) wraps, +0.08em wraps, `0` and `normal` do not. At
+       18px the declaration is worth 0.18px per character - invisible - so it
+       goes rather than the layout. (0.14px when this was measured, at the 13.5px
+       the size carried before SV-9694 restored it to the design's 18px.) */
+    .shop-name {
+        font-size: 18px;
+        /* SV-9900: 700, down from 800 — matched with `.doc-label`, which is the
+           weight the pre-refresh document used on both headings. */
+        font-weight: 700;
+        color: #121926;
+        /* SV-9814: a shop name has no atomicity requirement - unlike the
+           document number, which must never break - and without this a single
+           long token has no break opportunity at all and paints straight
+           through the logo slot into the document block (measured: 157px of
+           overrun on a 50-character token). This is the shop name's own
+           guarantee that it stays inside its column; `.mh-brand`'s
+           `min-width: 0` above is the column's. */
+        overflow-wrap: break-word;
+    }
+
+    .shop-meta {
+        font-size: 12.5px;
+        line-height: 1.45;
+        color: #697586;
+        margin-top: 2.25px;
+    }
+
+    .shop-meta div {
+        color: #697586;
+    }
+
+    /* `align-self: center` is load-bearing, not decoration: it re-pins the logo to the
+       vertical centre `.mh`'s `align-items` used to give it. Without it `flex-start`
+       top-aligns the logo against the shop name (measured y 32.6pt -> 6.0pt) and no
+       text assertion would catch it - the logo is a background image, invisible to
+       pdftotext. Guarded by MastheadAlignmentGuardTest. */
+    /* SV-9849 (design ruling): `flex: 0 0 210px`, where this carried
+       `flex: 0 0 auto`. A FIXED centre column is the other half of the
+       equal-grow mechanism on `.mh-brand` and `.mh-doc` below: two equal side
+       columns around a fixed centre put that centre on the sheet's centre by
+       construction, at every content length. With `auto` the slot is sized by
+       the logo instead and the centre moves with it.
+
+       The ruling is that the logo must land in the same place on every document
+       a shop prints. Measured before this change it swung 276.5px across four
+       invoice-number lengths - 89.5px right of centre at the shortest, 187px
+       left of centre at the longest. Target, and what this achieves: 0.0px off
+       centre at every content length, with nothing else in the masthead able to
+       move it - not a long shop name, not a long document number.
+
+       210px, up from the 152px this slot carried, for two reasons. It is the
+       Design Document's own drawn logo width taken as an ABSOLUTE rather than
+       as the 24% share it represents on the design's 876px sheet (24% of A4's
+       633.7px content box is where the old 152px came from), so the slot is
+       33.1% of the sheet here against the design's 24%. And 152px under-fills
+       the slot's own height for a real wordmark: the reported Foothills mark is
+       1352x298, i.e. 4.54:1, which at a 152px ceiling renders 33.5px tall in a
+       46px slot, while at 210px it renders 46.3px and fills it. This basis must
+       stay equal to `.organization-logo-new`'s `max-width` below - the slot
+       reserves 210px either way, so a lower ceiling there just leaves part of
+       it empty. Both values are asserted in MastheadShopNameWidthGuardTest.
+
+       A shop with NO logo does not render this column at all (S1-R2), so it
+       gets no fixed centre and no caps: its two side columns simply split the
+       row in half at 296.85px each. That is correct and needs no extra rule. */
+    .mh-logo {
+        flex: 0 0 210px;
+        align-self: center;
+        text-align: center;
+    }
+
+    /* The Design Document's logo is a 557x110 wordmark drawn at 210px wide on
+       an 876px sheet - 24% of its content width - and it paints 41px tall. This
+       box carried that WIDTH but a 110px height - the wordmark's viewBox, not
+       its rendered height - which made the slot 2.7x too tall and the widest
+       column in the masthead. It pushed the letterhead and the document block
+       down to ~140px of intrinsic width each and broke all four masthead values
+       onto second lines. So the height is the design's RENDERED height rather
+       than its 24%-scaled 31px: a shop's logo is any aspect ratio, not a 5:1
+       wordmark, and `contain` would shrink a square one to 31px. 46px still
+       clears the letterhead block's own ~66px, so the logo never decides the
+       masthead's height. */
+    /* SV-9814: an image element sized by its own aspect ratio, not a fixed box
+       painting a background. Under `contain` a fixed box letterboxes any logo
+       that is not the design's wordmark ratio and reserves the remainder
+       anyway: measured on the reported shop, the logo painted 35.0 x 23.4px
+       inside the slot and ~106px of the masthead was held for nothing while the
+       shop name wrapped two columns to the left.
+
+       `width: auto` against a fixed height makes the image ask for the logo's
+       real width - WeasyPrint 69 sizes a replaced element from its intrinsic
+       aspect ratio - and `max-width` is the ceiling. `object-fit: contain`
+       preserves the ratio once `max-width` clamps a very wide logo, exactly as
+       `background-size: contain` did. `display: block` keeps the
+       inline-baseline gap out of the masthead's height, and `margin: 0 auto`
+       centres a logo narrower than the slot inside it.
+
+       Verified lossless against the background it replaces: identical painted
+       ink in both variants (wordmark 115.8 x 16.0px, square 36.5 x 24.3px).
+       Only the reservation changes, never the rendering.
+
+       SV-9849 (design ruling): `max-width: 210px`, up from 152px. It must stay
+       equal to `.mh-logo`'s flex basis above, because the slot reserves 210px
+       either way and a lower ceiling here just leaves part of it empty. 210px
+       is chosen so a 4.54:1 wordmark - the reported Foothills mark, 1352x298 -
+       renders 46.3px tall and fills the 46px slot height, instead of the 33.5px
+       it manages at 152px. Both 210px values are asserted in
+       MastheadShopNameWidthGuardTest so they cannot drift apart.
+
+       SV-9862: `height` 46px -> 88px, retuned to 72px by SV-9900 below. A
+       logo narrower than the crossover ratio is HEIGHT-bound in this slot, so
+       `max-width` never reaches it - SV-9849's 152px -> 210px widening left a
+       1:3 logo painting an unreadable 15 x 46px strip, and the reporter
+       confirmed it was identical at both widths. Height is the only lever,
+       and the ceiling is the largest value that does not break S1-R2a's "the
+       logo never decides how tall the masthead is".
+
+       The ticket called that rule a conflict and asked for a product decision.
+       It is not a conflict: the masthead is already taller than the logo slot
+       because the letterhead and the document column set its height, and 46px
+       was leaving most of the slot empty. Measured on real WeasyPrint 69
+       renders of ALL THREE documents, at the WORST case for this - a
+       name-only letterhead, the shortest the left column can be - against the
+       pre-SV-9900 masthead type (label 24px/800):
+
+           logo height   46px    72px    88px    100px
+           masthead      99.3    99.3    99.3    110.2   (CSS px, all three)
+
+       88px was free there because the 24px document label was holding the
+       masthead open at 99.3px. SV-9900 equalised the masthead type (label
+       24px/800 -> 18px/700, shop name 800 -> 700), the document column got
+       shorter, and the ceiling moved with it. Re-measured, same fixtures,
+       same three documents, SV-9900 type applied:
+
+           logo height   46px    60px    72px    73px    76px    88px
+           masthead      82.6    82.6    82.6    83.0    86.2    98.0
+
+       So under the equalised type 72px is the exact ceiling - at 73px the
+       LOGO is already deciding the masthead height, which is the one thing
+       S1-R2a forbids. 72px also held under the old type (99.3px, flat), so it
+       is the "whichever number holds under both" that Chris's SV-9862 ruling
+       conditioned the merge on. With a normal 5-line letterhead the masthead
+       is 135.1px and there is slack everywhere; the guarantee is taken
+       against the shortest letterhead because that is where it can fail.
+       A 1:3 logo goes 15 x 46 -> 24 x 71.
+
+       🔴 This is NOT only a tall-logo change. The width cap binds at
+       210/72 = 2.92:1, so every logo squarer than that grows (a square logo
+       goes 46 x 46 -> 72 x 72) while wide wordmarks past 4.57:1 are untouched,
+       still width-bound at 210px. That breadth is the trade, and it is the
+       same "reserved and empty" defect SV-9814 fixed one column to the left.
+
+       `MastheadLogoSlotExtension::SLOT_HEIGHT_PX` still reads 46.0 and is NOT
+       the live value - it belongs to the retired inline-label path that
+       SV-9849's ruling stopped calling. Do not "resync" the CSS to it. */
+    .organization-logo-new {
+        display: block;
+        width: auto;
+        height: 72px;
+        max-width: 210px;
+        object-fit: contain;
+        margin: 0 auto;
+    }
+
+    /* SV-9849 (design ruling): `flex: 1 1 0` and `min-width: 0`, matching
+       `.mh-brand` above exactly - equal grow from a ZERO basis on BOTH side
+       columns is what centres the logo, and if either side differs the logo
+       goes off centre. `.mh-brand` carries the measurements and the derivation.
+       `margin-left: 20px` is the other half of the incompressible 20px pair
+       that replaced `.mh`'s `gap`.
+
+       🔴 This REVERSES SV-9762's `flex: 0 0 auto`, deliberately and under the
+       ruling. SV-9762 pinned this column so the logo slot could not squeeze it:
+       at the 24px label S12-R4 asks for, a shrinkable column was squeezed until
+       `.doc-label`'s own `word-break: break-word` split the identifier
+       mid-token - a two-line document label for any shop with a logo, broken
+       after the type prefix.
+
+       The ruling takes the other side of that trade. A column pinned to its own
+       contents cannot coexist with a logo on the page centre, because the
+       centre then moves with the contents: measured, the logo swung 276.5px
+       across four document-number lengths. So the column now gets a GUARANTEED
+       half of the row's free space - 191.85px on A4, which it can neither
+       exceed nor be squeezed below - and the number is permitted to wrap inside
+       it instead, at its own hyphens first (`.doc-num` below). SV-9762's defect
+       was an unpredictable squeeze; this is a fixed allotment. */
+    .mh-doc {
+        flex: 1 1 0;
+        min-width: 0;
+        margin-left: 20px;
+        text-align: right;
+    }
+
+    .doc-label {
+        /* SV-9900: 18px / 700, equal to `.shop-name` above — the pre-refresh
+           relationship restored (one shared class set both headings at
+           19.2px/700 there). This REVERSES the 24px/800 that S12-R4 (revised
+           2026-09-04 under SV-9694) took from the Design Document's `.docid`
+           rule, deliberately: the two headings read as a matched pair, equal
+           type gives equal line boxes, and the first baselines then align
+           under `.mh`'s `align-items: flex-start` with no extra alignment
+           property — measured, the two headings' boxes are byte-identical
+           (y 25.28..41.61pt both sides) where 24px put the label's box 6pt
+           deeper than the name's. The label was also the only masthead element
+           the refresh made BIGGER; everything else came down. S12-R4's
+           amendment is Chris's, held until this lands (SV-9862 comment
+           thread).
+
+           The stacked number (`.doc-num` below) STAYS at 18px, measured rather
+           than assumed: "Estimate: EST-S2-32267" inline still exceeds the
+           191.85px the column is guaranteed, and WeasyPrint 69 breaks the
+           number after "EST-" — the SV-9762 defect back again. The invoice
+           variant looks like it fits inline, but at 201.4px painted from a
+           191.85px box that is the paint-wider-than-its-box overflow, not a
+           fit. `white-space: normal` here is what lets the label word and the
+           number sit on separate lines. */
+        font-size: 18px;
+        font-weight: 700;
+        color: #121926;
+        white-space: normal;
+    }
+
+    /* SV-9814: the document number takes its own line, and `word-break:
+       break-word` is gone from `.doc-label` above in favour of this. At 24px on
+       one line "Estimate: EST-S2-17358" measures 288px - 45% of the page's
+       whole 633.7px content box, against 33% of the 876px the Design Document
+       draws it on - and that single line is what starved the shop name. The
+       label word above the number returns 118px of it (288px -> 170px).
+       SV-9849's ruling keeps the stacked form for every document that has a
+       logo: "Invoice:" / "Estimate:" on its own line with the number
+       underneath.
+
+       Sanctioned by S12-R12: the Design Document binds appearance but not where
+       a line breaks, and a break is a defect only when it clips a value, pushes
+       a figure out of its column, orphans a row, or splits a work line from its
+       footer.
+
+       🔴 SV-9849 (design ruling): `overflow-wrap: break-word`, and the
+       `white-space: nowrap` this carried is REMOVED. That reverses SV-9762
+       deliberately. The note that used to stand here argued that
+       `word-break: normal` does NOT keep a number whole, because a document
+       number is full of hyphens - legal break opportunities - and WeasyPrint 69
+       duly split "EST-S2-17358" after "EST-" the moment the block could shrink.
+       Under the ruling that is now the DESIRED behaviour: the number is allowed
+       to wrap, and it breaks at its own hyphens first, so "INV-S2-104882"
+       splits at the separators a reader already uses.
+
+       `overflow-wrap: break-word` is the backstop for a fragment that still
+       will not fit, and it is what guarantees the number never crosses the
+       content-box edge whatever its length - including the 26-character worst
+       case, "INV-" plus a type letter, a `shop_id` (VARCHAR(10), no
+       application-level validation) and a `raw_number` (signed INT, so 10
+       digits).
+
+       The reason is the column. `.mh-doc` above is now a guaranteed 191.85px on
+       A4, so the number must either fit that width or wrap, and wrapping beats
+       overflowing the sheet. The alternative the ruling rejected - letting the
+       column grow to the number - is exactly what swung the logo 276.5px off
+       centre. */
+    .doc-num {
+        display: block;
+        overflow-wrap: break-word;
+    }
+
+    /* SV-9814: the number rejoins the label word on ONE line, and SV-9849's
+       design ruling changed the gate on `.mh` to a plain `not data.logo`.
+
+       A shop WITH a logo always gets the stacked form now. The ruling puts
+       "Invoice:" / "Estimate:" on its own line with the number underneath, and
+       at the 191.85px the side columns resolve to beside a 210px logo slot an
+       inline label would wrap badly anyway. A shop with NO logo keeps the
+       inline label it already has: `.mh-logo` is not rendered for it, so its
+       side columns are 296.85px each. `MastheadLogoSlotExtension` already
+       answered true for a null logo, so this preserves current behaviour there
+       rather than changing it - the class is left in place but SV-9849 stopped
+       wiring it into these templates.
+
+       The measurement that used to gate this no longer applies and is recorded
+       so nobody re-derives it: a one-line label used to pin `.mh-doc` to its
+       own max-content whatever the name did - 272.4px on an invoice, 288.2px on
+       an estimate, against 172px and 170px stacked - which took 100-118px off
+       the letterhead. At `flex: 1 1 0` the column cannot exceed its allotment
+       at all, so an inline label wraps inside it instead of spending the
+       letterhead's width. */
+    .mh--label-inline .doc-num {
+        display: inline;
+    }
+
+    /* Block with inline-block dates, where the Design Document has a flex row
+       with `gap: 10.5px`. Same class of WeasyPrint 69 defect as `.shop-name`
+       above, one level out: a nested flex container contributes far too little
+       to its flex-item parent's intrinsic width, so the date row was measured at
+       the document number's width and both dates wrapped under their labels.
+       `.mh-doc` already carries `text-align: right`, so dropping the flex
+       container costs nothing visually - `margin-left` reproduces the gap. */
+    .doc-dates {
+        margin-top: 6px;
+        font-size: 11.5px;
+        color: #697586;
+    }
+
+    /* SV-9814: one date per line, where the Design Document has them side by
+       side with a 10.5px gap.
+
+       When this was measured `.mh-doc` was `flex: 0 0 auto` and therefore sized
+       to its widest child, and on an INVOICE that child was this row: two dates
+       side by side measure 287.7px of max-content, wider than the document
+       label asks for at either line count. It set the whole column and the
+       letterhead got what was left, which is why the shop name wrapped on
+       invoices and not on estimates - an estimate carries one date (S10-R2), so
+       the row was never the widest child there.
+
+       Measured on the reported shop name "Staging Heavy Duty - 9919" (25
+       chars) with a 152px logo, invoice with two dates:
+
+         document column   275.8px -> 168.2px
+         letterhead        165.9px -> 273.5px
+         shop name         2 lines -> 1 line
+         single-line budget    17  ->  29 characters
+         masthead height   128.8px -> 112.5px
+
+       SV-9849 changed the reason without changing the rule, so the measurement
+       above is history rather than justification. The column is now
+       `flex: 1 1 0` and can no longer be sized by this row at all, so stacking
+       the dates buys the letterhead nothing. It is kept because the column it
+       lives in is a guaranteed 191.85px on A4 and the row has to fit that: at
+       275.8px of max-content the two dates were already breaking across THREE
+       ragged lines, and one per line is two clean ones. The Design Document
+       draws this row on an 876px sheet where both dates fit beside each other;
+       A4 gives the sheet 633.7px, so they do not. */
+    .doc-dates span {
+        display: block;
+        margin-left: 0;
+    }
+
+    /* SV-9814: where the one-line label applies, the dates rejoin one row too -
+       the Design Document's `.docdates` layout, restored in full. SV-9849 moved
+       the gate from "the logo paid for it" to "there is no logo", so this is
+       now the logo-less masthead's row, where the side columns are 296.85px
+       each rather than 191.85px and there is room for it.
+
+       Scoped to the modifier, never global: a shop WITH a logo keeps the
+       stacked dates above, because its document column is 191.85px and two
+       dates side by side measure 287.7px of max-content. Making this rule
+       global puts that row three ragged lines deep on every document that has
+       a logo. */
+    .mh--label-inline .doc-dates span {
+        display: inline-block;
+        margin-left: 10.5px;
+    }
+
+    .doc-dates b {
+        color: #121926;
+        font-weight: 600;
+    }
+
+    /* ===== Addresses (S2): bordered row; Bill To spans full width when no
+       Remit Payment To payee is present (S2-R3, binding layout rule). ===== */
+    .grp-lbl {
+        font-size: 10px;
+        font-weight: 700;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        color: #9AA4B2;
+        margin: 18px 0 8px;
+    }
+
+    .addr-row {
+        display: flex;
+        border: 1px solid #E3E8EF;
+        border-radius: 8px;
+        background-color: #FFFFFF;
+    }
+
+    .addr {
+        flex: 1 1 0;
+        padding: 11px 14px;
+        border-left: 1px solid #E3E8EF;
+    }
+
+    .addr:first-child {
+        border-left: none;
+    }
+
+    .addr-lbl {
+        font-size: 9.5px;
+        font-weight: 700;
+        letter-spacing: 0.06em;
+        text-transform: uppercase;
+        color: #121926;
+    }
+
+    .addr-co {
+        font-size: 13px;
+        font-weight: 700;
+        color: #121926;
+        margin-top: 4px;
+    }
+
+    .addr-ln {
+        font-size: 12px;
+        line-height: 1.45;
+        color: #364152;
+        margin-top: 1px;
+    }
+
+    /* ===== Asset band (S4) and order reference chips (S3) ===== */
+    .asset-band {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 4px 26px;
+        padding: 11px 2px;
+        border-top: 1px solid #E3E8EF;
+        border-bottom: 1px solid #E3E8EF;
+        margin-top: 16px;
+    }
+
+    .af-k {
+        font-size: 9px;
+        font-weight: 700;
+        letter-spacing: 0.04em;
+        text-transform: uppercase;
+        color: #9AA4B2;
+    }
+
+    .af-v {
+        font-size: 13px;
+        color: #121926;
+    }
+
+    /* The Design Document's `.af .v b` - the last 8 of the VIN. Pinned to 700
+       rather than left to the UA's `bolder` keyword, like every other `b` in this
+       stylesheet, because WeasyPrint only honours weights it can resolve to a
+       face it has (FontWeightGuardTest). */
+    .af-v b {
+        font-weight: 700;
+    }
+
+    /* The Design Document's `.tnum`, which it puts on the VIN value: tabular
+       figures so the digits of a VIN sit on a common width. */
+    .tnum {
+        font-variant-numeric: tabular-nums;
+    }
+
+    .order-chips {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+        margin-top: 14px;
+    }
+
+    .ochip {
+        /* WeasyPrint paints the border TWICE on an inline element that a flex
+           container blockifies, giving every chip a doubled outline ~11px apart.
+           Isolated: a bordered inline span in `display: flex` renders two rings;
+           the same span as block/inline-block, or a block element, renders one.
+
+           NOTE: no angle-bracket tag names anywhere in this stylesheet. The
+           preview sanitiser (DOMPurify) treats markup-looking text inside a
+           style element as an mXSS vector and drops the WHOLE stylesheet, so a
+           single angle-bracketed tag name in a comment renders the on-screen
+           unstyled plain text while the PDF stays perfect. Guarded by
+           StylesheetHasNoMarkupTokensGuardTest. Declaring a
+           display here is the smallest fix and keeps the Design Document's flex
+           row. Do not remove without re-rendering the chips. */
+        display: inline-block;
+        font-size: 11px;
+        color: #364152;
+        border: 1px solid #E3E8EF;
+        border-radius: 6px;
+        padding: 4px 10px;
+    }
+
+    .ochip b {
+        color: #121926;
+        font-weight: 700;
+    }
+
+    /* ===== Work section (S5, S12-R8/R9): opens with a 2px ink rule, 1px ink
+       rule between numbered jobs, #EEF2F6 row dividers inside a job. The row
+       divider is drawn as border-TOP on each subsequent charge row, so it
+       always follows a line's LAST adjustment row (S12-R8). ===== */
+    .sec-lbl {
+        font-size: 11px;
+        font-weight: 700;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        color: #697586;
+        margin: 24px 0 4px;
+    }
+
+    .job {
+        padding: 14px 0;
+        border-top: 1px solid #121926;
+    }
+
+    .job-first {
+        border-top-width: 2px;
+    }
+
+    .job-top {
+        display: flex;
+        align-items: baseline;
+        gap: 12px;
+    }
+
+    .job-no {
+        font-size: 18px;
+        font-weight: 800;
+        color: #257CFF; /* S12-R3: accent only here and on the footer "ShopView" */
+        min-width: 26px;
+    }
+
+    .job-ttl {
+        font-size: 16px;
+        font-weight: 700;
+        color: #121926;
+    }
+
+    .job-sub {
+        font-size: 12px;
+        color: #697586;
+        margin-left: 4px;
+    }
+
+    .scope-lbl {
+        font-size: 10px;
+        font-weight: 700;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        color: #364152;
+        margin: 10px 0 3px 38px;
+    }
+
+    .scope {
+        font-size: 12.5px;
+        line-height: 1.5;
+        color: #364152;
+        margin: 0 0 10px 38px;
+        max-width: 70ch;
+    }
+
+    .chargesec {
+        margin: 8px 0 0 38px;
+    }
+
+    /* SV-9694 keeps this, at the restored scale. A second charge group in the
+       same line - "Parts" under "Labor" - follows a charge row rather than the
+       scope paragraph, so it inherits only that row's 5px of padding and read as
+       butted against the row above. The Design Document's uniform 8px assumes the
+       scope block's own bottom margin is there; when it is not, replace it here.
+       14px, not the 10.5px this carried under the 0.75 rescale. */
+    .chargesec + .chargesec {
+        margin-top: 14px;
+    }
+
+    .csec-head {
+        font-size: 10.5px;
+        font-weight: 700;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        color: #121926;
+        padding-bottom: 4px;
+    }
+
+    .work-summary-table-new {
+        width: 100%;
+        border-collapse: collapse;
+        font-size: 13px;
+    }
+
+    /* SV-9694 keeps this: not a type-scale rule. Top, not the table default. The
+       Design Document lays a charge row out as a grid, whose items align to the
+       start of the row, so a description that wraps to two lines keeps its
+       qty/rate/amount level with its FIRST line. As a table the same row centred
+       them against the whole cell, dropping every figure half a line below the
+       description it belongs to. */
+    .work-summary-table-new td {
+        padding: 5px 0;
+        color: #364152;
+        vertical-align: top;
+    }
+
+    .work-summary-table-new .col-qty {
+        width: 56px;
+    }
+
+    .work-summary-table-new .col-rate {
+        width: 90px;
+    }
+
+    .work-summary-table-new .col-amt {
+        width: 96px;
+    }
+
+    /* Name the divider colour on the table AND its cells, not only on the rules
+       that draw a divider. WeasyPrint's UA stylesheet carries
+       `table, td, th { border-color: gray }` (html5_ua.css:102), so any future
+       border-width or border-style written here without a colour paints #808080 -
+       the off-palette rule SV-9708 reported under the description column, and the
+       only source of that colour reachable from this document. Naming it once
+       makes the whole class of defect unrepresentable rather than merely absent. */
+    .work-summary-table-new,
+    .work-summary-table-new td {
+        border-color: #EEF2F6;
+    }
+
+    .work-summary-table-new tr.crow td {
+        border-top: 1px solid #EEF2F6;
+    }
+
+    .work-summary-table-new tr:first-child td {
+        border-top: none;
+    }
+
+    /* S12-R8: the divider that CLOSES a charge group. The dividers between rows
+       are border-TOP on each subsequent row, so that they always fall after a
+       line's last adjustment row rather than between the line and its
+       adjustments. The side effect is that the last row of a group has nothing
+       under it: the "Parts" label butts straight up against the final labor row,
+       and the line footer against the final parts row - and a group of exactly
+       one row gets no rule at all. The Design Document rules off every charge
+       row, so close the group here. Matched on `tr` rather than `tr.crow` so a
+       line with adjustments is still closed after its LAST adjustment row. */
+    .work-summary-table-new tr:last-child td {
+        border-bottom: 1px solid #EEF2F6;
+    }
+
+    .rt {
+        text-align: right;
+        font-variant-numeric: tabular-nums;
+    }
+
+    .description-cell {
+        overflow: hidden;
+        text-overflow: ellipsis;
+        word-break: break-word;
+    }
+
+    .work-summary-table-new tr.adjrow td {
+        font-size: 11.5px;
+        color: #697586;
+        padding: 3px 0;
+    }
+
+    .work-summary-table-new tr.adjrow td.description-cell {
+        padding-left: 20px;
+    }
+
+    .job-foot {
+        display: flex;
+        align-items: baseline;
+        justify-content: flex-end;
+        gap: 22px;
+        margin-top: 8px;
+        padding-top: 6px;
+        font-size: 12.5px;
+        color: #697586;
+    }
+
+    .job-foot b {
+        color: #121926;
+        font-weight: 700;
+    }
+
+    .job-foot .ltot {
+        color: #121926;
+    }
+
+    .job-foot .ltot b {
+        font-size: 15px;
+    }
+
+    /* S5-R9: the vertical divider before "Line total" only when a Labor or
+       Parts figure is visible before it. */
+    .job-foot .ltot.with-divider {
+        /* Same WeasyPrint trap as `.ochip`, found while verifying SV-9773: this
+           is a bordered INLINE element inside a `display: flex` row, and
+           WeasyPrint paints the border of a blockified inline element twice —
+           so the single 2px divider rendered as TWO bars. Measured out of the
+           vector output: 1.5pt rules at x=403.7 (h=16.86) and x=420.1
+           (h=9.36), the taller being the block box and the shorter the inline
+           box. Declaring a display collapses it to one.
+
+           `display` looks redundant on a flex item, which is why it is guarded
+           by a test — removing it silently restores the doubled divider. Do not
+           remove without re-rendering the footer and counting the rules. */
+        display: inline-block;
+        padding-left: 20px;
+        border-left: 2px solid #121926;
+    }
+
+    .job.declined {
+        color: #697586;
+    }
+
+    .job.declined .job-ttl {
+        color: #364152;
+    }
+
+    /* Parts sale (S13-R2): flat Parts body, no job blocks. */
+    .ps-body {
+        border-top: 2px solid #121926;
+        padding-top: 14px;
+        margin-top: 4px;
+    }
+
+    /* ===== "Summary" break bar (S7-R1) and two-column tail (S12-R1):
+       disclaimer left, totals right. ===== */
+    .b-break {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        margin: 26px 0 16px;
+        /* Keeps the bar with the totals it introduces. This is HALF of the rule -
+           it does nothing on its own unless .tail::before is also present. Read
+           that rule before touching either. SV-9767. */
+        break-after: avoid;
+    }
+
+    .b-break-line {
+        flex: 1 1 0;
+        height: 2px;
+        background-color: #121926;
+        /* Same trap as `.ochip`: WeasyPrint paints an inline element that a flex
+           container blockifies TWICE. On the bordered chips that showed up as a
+           doubled outline; on these EMPTY rule spans the second paint uses the
+           inline box instead of the 2px block, i.e. a zero-width, line-height-tall
+           sliver hanging off each rule's left edge - the vertical ticks either side
+           of "Summary". Declaring a display is the same one-line fix and keeps the
+           Design Document's flex row. Do not remove without re-rendering the bar. */
+        display: block;
+    }
+
+    .b-break-label {
+        font-size: 10px;
+        font-weight: 700;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        color: #121926;
+    }
+
+    /* Block, not flex. A flex container is laid out atomically by WeasyPrint, so the
+       tall disclaimer used to be welded to the totals and shoved both to the next
+       page, stranding ~244pt of white. As a block the disclaimer is normal flow and
+       wraps beside the floated totals, fragmenting freely across pages. */
+    .tail {
+        display: block;
+    }
+
+    /* SV-9767 - the other half of `.b-break { break-after: avoid }`, and the
+       reason the orphaning survived the first fix.
+
+       `break-after: avoid` asks the fragmenter to move the break to an EARLIER
+       boundary. .b-break is the first child of .tail, so the only earlier
+       boundary is the one before .tail itself, and WeasyPrint does not propagate
+       an avoid upward into the parent - it gives up and breaks after the bar
+       anyway. The bar then labels an empty strip while its totals print
+       overleaf, which is exactly what SV-9767 reports.
+
+       An empty first child gives the fragmenter a boundary it CAN use: the break
+       lands between this box and the bar, so `avoid` pushes the bar onto the
+       next page with the totals. The box has no content, no height, no
+       background and no border, so it paints nothing - it only exists to be a
+       break opportunity. Do not "tidy" it away.
+
+       Measured on WeasyPrint 69 by sweeping the tail's start offset across a
+       full page (0..1100 in 50px steps) and reading the page index of the bar
+       and of .sum off the box tree:
+
+         before  orphaned at 7 of 23 offsets (the 680..960 band)
+         after   0 of 23, on four disclaimer shapes - normal, 5x long, absent,
+                 and a single line - with the page count and every visible box
+                 position unchanged.
+
+       Rejected, all measured, do not re-try:
+         `break-inside: avoid` on .tail       fixes it, but welds the disclaimer
+                                              in and costs an extra page once the
+                                              disclaimer is long
+         `break-inside: avoid` on .b-break    no effect
+         `break-before: avoid` on .disc/.sum  no effect
+         hoisting the bar above .tail         orphans at EVERY offset - this was
+                                              the arrangement before the bar was
+                                              moved inside .tail */
+    .tail::before {
+        content: "";
+        display: block;
+    }
+
+    /* .sum is floated, i.e. out of flow: without this the tail box collapses and the
+       signature row rides up over the totals. */
+    .tail::after {
+        content: "";
+        display: block;
+        clear: both;
+    }
+
+    /* Starts level with the first totals row, not with the Summary bar: the bar now
+       lives in the right-hand column, so without this the rule cuts across the same
+       band as the disclaimer's opening line. Height of .b-break + its 10px margin. */
+    .disc {
+        font-size: 11.5px;
+        line-height: 1.5;
+        color: #697586;
+        white-space: pre-line;
+    }
+
+    /* Floated right so the disclaimer wraps beside it, and a flex container so it is
+       laid out ATOMICALLY - measured, `display: flex` is the only reliable way to stop
+       WeasyPrint fragmenting this box; `break-inside: avoid` does NOT hold on a float
+       and let the balance box strand on the next page.
+
+       The Design Document specifies `display: grid; grid-template-columns: 1fr 340px`
+       here. That is deliberately NOT used: WeasyPrint fragments a grid container, so
+       the totals split - measured, Subtotal on one page and the balance box on the
+       next. Adding `break-inside: avoid` to the grid item stops the split but then
+       re-welds the row to the disclaimer and strands ~244pt. The float is the only
+       arrangement that keeps the totals whole AND lets the disclaimer flow. */
+    .sum {
+        float: right;
+        display: flex;
+        flex-direction: column;
+        width: 340px;
+        max-width: 340px;
+        margin-left: 26px;
+    }
+
+    /* SV-9825: the totals column must not end flush against the bottom of the
+       page. Reported from staging on work order S2-10951 - the BALANCE box printed hard
+       against the footer band with no gap under it, and the signature block was
+       pushed onto a page of its own behind it.
+
+       The sheet carries its own bottom gutter (`.invoice-pdf-new` is
+       `padding: 38px 42px 30px`), but WeasyPrint applies a fragmented box's
+       bottom padding to its LAST fragment only, so a page that continues has no
+       gutter at all and content runs to the raw content-box edge.
+
+       This gutter has to be CONTENT, not padding or margin. WeasyPrint decides
+       whether a float fits with `position_y + height` (block.py
+       `_out_of_flow_layout`) - the margin-box top plus the CONTENT height - so
+       `padding-bottom` and `margin-bottom` on `.sum` are invisible to that test.
+       Both were measured: byte-identical output to no rule at all. A flex item
+       is inside the content height, so it is the only form the fragmenter reads.
+
+       30px is the sheet's own bottom padding, i.e. the gutter the design already
+       specifies; the totals column simply stops eating it.
+
+       Measured over 87 real documents (42 invoices + 42 estimates from one shop,
+       plus the reported three, rendered through /api/invoices/preview in the
+       production WeasyPrint 69 image, PDF flow):
+
+         clearance under the BALANCE box   min 0.2px -> min 39.9px
+         documents with under 30px of it   6 -> 0
+         signature alone on a closing page 16 -> 12
+         total pages                       360 -> 362
+
+       The two extra pages are the part-sale pair P-175 / P-217, one-page documents whose
+       signature block already ended within a few px of the bottom: a taller float
+       narrows the wrap region, so the disclaimer gains a line or two and pushes
+       them over. That cost is the same at 12px, 18px and 24px - it comes from the
+       reflow, not from the size - while only 30px clears every tight gutter, so
+       there is no cheaper setting to buy. Do not shrink it without re-measuring
+       the corpus. */
+    .sum::after {
+        content: "";
+        display: block;
+        flex: 0 0 auto;
+        height: 30px;
+    }
+
+    /* Legacy hook classes (totals-new / totals-position-new /
+       custom-col-md-width-14) kept on every summary row: the E2E document
+       readers (finance.page.ts, wo-document-adjustments.spec.ts) anchor on
+       this exact class pair. Restyled, never renamed. */
+    .totals-new {
+        display: flex;
+        justify-content: space-between;
+        font-size: 14px;
+        padding: 5px 0;
+        color: #364152;
+    }
+
+    .totals-position-new {
+        flex: 1 1 auto;
+        text-align: left;
+        color: inherit;
+    }
+
+    .custom-col-md-width-14 {
+        flex: 0 0 auto;
+        text-align: right;
+        font-variant-numeric: tabular-nums;
+        color: inherit;
+    }
+
+    .adj-head {
+        padding-bottom: 1px;
+    }
+
+    .adj-item {
+        font-size: 12.5px;
+        color: #697586;
+        padding: 3px 0 3px 18px;
+    }
+
+    .row-strong {
+        border-top: 1px solid #121926;
+        border-bottom: 1px solid #E3E8EF;
+        font-weight: 700;
+        color: #121926;
+    }
+
+    /* Boxed headline figure (S1-R6): end of the totals block, never in the
+       masthead. */
+    .bal {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-top: 10px;
+        padding: 14px 18px;
+        border: 2px solid #121926;
+        border-radius: 8px;
+        background-color: #FFFFFF;
+    }
+
+    .bal .k {
+        font-size: 12px;
+        font-weight: 800;
+        letter-spacing: 0.04em;
+        text-transform: uppercase;
+        color: #121926;
+    }
+
+    .bal .v {
+        font-size: 30px;
+        font-weight: 800;
+        color: #121926;
+        letter-spacing: -0.02em;
+    }
+
+    .text-grey-80 {
+        color: #697586;
+    }
+
+    /* ===== Signature area (S9-R2) and footer (S9-R4) ===== */
+    .auth {
+        margin-top: 24px;
+        padding-top: 16px;
+        border-top: 1px solid #E3E8EF;
+    }
+
+    .sign {
+        display: flex;
+        gap: 26px;
+    }
+
+    .sign-c {
+        flex: 1 1 0;
+    }
+
+    .sign-line {
+        border-bottom: 1px solid #121926;
+        height: 24px;
+    }
+
+    .sign-cap {
+        font-size: 10px;
+        letter-spacing: 0.04em;
+        text-transform: uppercase;
+        color: #9AA4B2;
+        margin-top: 5px;
+    }
+
+    .footer {
+        display: flex;
+        justify-content: space-between;
+        margin-top: 22px;
+        padding-top: 12px;
+        border-top: 1px solid #E3E8EF;
+        font-size: 10px;
+        color: #697586;
+    }
+
+    .footer b {
+        color: #257CFF; /* S12-R3: the accent's second (and last) allowed use */
+        font-weight: 700;
+    }
+
+    /* S12-R5 print ink floor - WeasyPrint renders with print media, so the
+       PDF gets these; the on-screen preview keeps the screen palette. No text
+       lighter than #4B5565; text under 10px no lighter than #364152; hairlines
+       no lighter than #CDD5DF.
+
+       The charge-row dividers are ON that hairline list. This has now been
+       decided twice in OPPOSITE directions, so read the whole note before
+       flipping it a third time.
+
+       The Design Document draws the divider as
+       `.crow { border-bottom: 1px solid var(--g100) }` and defines --g100 twice:
+       #EEF2F6 in `:root` / `[data-theme=light]`, #CDD5DF under its optional
+       `.wrap.bw` toggle. Both are "the design", so the Design Document cannot
+       settle the value and S12-R5 does. SV-9708 picked #EEF2F6 for the S12-R4
+       preview match; SV-9823 - same reporter, next day - rejected the result,
+       because the floor exists for a physical reason the preview match does not
+       outweigh: weak printers drop ink lighter than #CDD5DF, and a divider that
+       does not print at all is worse than one that does not match the screen.
+       credit-invoice already read it this way (its S11-R4 `.pay-table` carries
+       the same #EEF2F6 design divider and darkens it here), so the exemption was
+       this document's anomaly rather than the house rule.
+
+       The STRUCTURAL half of SV-9708 is untouched and independent of the colour:
+       the charge table and its cells name their border colour explicitly, so
+       WeasyPrint's UA `table, td, th { border-color: gray }` can never paint the
+       off-palette #808080 that ticket actually reported. Only the print value
+       flipped. Guarded by ChargeRowDividerGuardTest. */
+    @media print {
+        .shop-meta,
+        .shop-meta div,
+        .doc-dates,
+        .job-sub,
+        .job-foot,
+        .sec-lbl,
+        .disc,
+        .adj-item,
+        .footer,
+        .text-grey-80,
+        .job.declined,
+        .work-summary-table-new tr.adjrow td {
+            color: #4B5565;
+        }
+
+        .af-k,
+        .addr-lbl,
+        .grp-lbl,
+        .sign-cap {
+            color: #364152;
+        }
+
+        .addr-row,
+        .addr,
+        .asset-band,
+        .ochip,
+        .auth,
+        .footer {
+            border-color: #CDD5DF;
+        }
+
+        /* SV-9823, three rules because the screen value is declared three times
+           and each declaration has to be answered in kind. First the table/cell
+           fallback - the print twin of the base rule that keeps an uncoloured
+           border off WeasyPrint's UA gray, repeated here because otherwise a
+           border added without a colour would paint the SCREEN #EEF2F6 into the
+           PDF. Then the two that actually draw a divider, which outrank that
+           fallback on specificity and so would keep #EEF2F6 without their own
+           override: the between-row divider (border-TOP on each following charge
+           row) and the one closing a charge group (border-BOTTOM on its last). */
+        .work-summary-table-new,
+        .work-summary-table-new td {
+            border-color: #CDD5DF;
+        }
+
+        .work-summary-table-new tr.crow td {
+            border-top-color: #CDD5DF;
+        }
+
+        .work-summary-table-new tr:last-child td {
+            border-bottom-color: #CDD5DF;
+        }
+
+        .row-strong {
+            border-bottom-color: #CDD5DF;
+        }
+    }
+    /* ===== SV-9870: print-only paper reduction =====
+
+       PRINT OUTPUT ONLY. Nothing in this block touches the on-screen document.
+       This stylesheet serves two consumers: the SPA preview, which injects it
+       into the app DOM as screen media, and the WeasyPrint PDF, which reads it
+       as print media. The preview keeps today's spacing deliberately - the
+       print and screen views diverge on purpose. Do not "restore consistency"
+       by hoisting any declaration below into the base rules, and do not answer
+       a preview complaint by editing this block.
+
+       It is the LAST block in the sheet on purpose: every selector here also
+       exists in the base rules, and several exist in the SV-9823 ink-floor
+       block above, so source order at equal specificity is what makes these
+       win. Two of them - the charge-row dividers - need their base selector
+       repeated verbatim rather than a shorter one, because the base rules
+       outrank a shorter selector on specificity. This is a second, later print
+       block; the SV-9823 one is untouched.
+
+       Measured by Chris Ward on a real document corpus, each change on its own
+       and then cumulatively: 3.16 sheets per document before, 2.21 after. That
+       recovers 97% of the paper the SV-8218 refresh added. The per-change
+       deltas are recorded on the rules that produce them.
+
+       Four constraints were measured with their alternatives and the
+       alternatives rejected. Do not re-derive them from reading the CSS:
+
+       1. `.sum` keeps `float: right`. Taking the Summary column out of the
+          float so it could fragment across a page was measured and made the
+          4-to-9-line bucket WORSE. Only its width narrows here (change 4).
+       2. `.job-top`'s `break-after: avoid` and `.job-foot`'s `break-before:
+          avoid` both stay. Change 2 lets a work LINE split, which is the single
+          largest saving in the ticket; those two rules are what stop that
+          becoming an orphaned label or a footer separated from its rows. Both
+          are asserted in PageBreakGroupingGuardTest.
+       3. The side margin never goes under 48px in total. The 18px of sheet
+          padding in change 11 plus the 30px page margin is exactly 48px. The
+          design's own 42px padding gave an IDENTICAL sheet count, so there is
+          no paper to buy below 48px and going under it breaches the
+          printer-safe floor.
+       4. `.disc`'s font size is what makes change 3 pay. Compacting the
+          signature block on its own moved the sheet count not at all - the
+          disclaimer paragraph is the tall box in that group.
+
+       No angle-bracketed tag name and no Twig delimiter appears anywhere in
+       this block or its comments. DOMPurify drops the WHOLE style element when
+       it sees markup inside one, so a tag name written here would un-style the
+       very preview this block is careful not to touch
+       (StylesheetHasNoMarkupTokensGuardTest). */
+    @media print {
+        /* Changes 1, 6 and 11 all land on the sheet, so its final state is
+           declared once. Vertical padding 38px/30px -> 24px/20px (change 1),
+           body type 14px/1.5 -> 13px/1.4 (change 6), side padding 42px -> 18px
+           (change 11, and see constraint 3 above). */
+        .invoice-pdf-new {
+            padding: 24px 18px 20px;
+            font-size: 13px;
+            line-height: 1.4;
+        }
+
+        /* Change 1 - vertical values only, nothing horizontal moves. Measured
+           3.16 -> 3.02 sheets on its own. */
+        .mh {
+            padding-bottom: 8px;
+        }
+
+        .grp-lbl {
+            margin: 12px 0 5px;
+        }
+
+        .addr {
+            padding: 8px 14px;
+        }
+
+        .asset-band {
+            padding: 8px 2px;
+            margin-top: 10px;
+        }
+
+        .order-chips {
+            margin-top: 10px;
+        }
+
+        .sec-lbl {
+            margin: 14px 0 3px;
+        }
+
+        /* Change 2 - the largest single saving in the ticket, 3.02 -> 2.75
+           sheets, and it REVERSES SV-9671's atomic work line. SV-9671 made a
+           line atomic because a break was landing between its Labor and Parts
+           charge sections and carrying the footer over alone, splitting the
+           line's header from its total. Under SV-9870 a line may split, and the
+           two rules that constrain HOW it splits are the ones named in
+           constraint 2 above: `.job-top` still forbids a break after the
+           header, so a label is never orphaned, and `.job-foot` still forbids
+           one immediately before the footer, so the total never separates from
+           the rows above it. Both are declared in the base rules and are
+           untouched. The padding here is change 1's 14px -> 9px. */
+        .job {
+            padding: 9px 0;
+            break-inside: auto;
+        }
+
+        /* Change 5 - the Why runs on from the What. The header stops being a
+           flex row and becomes a block with the number lifted out of flow into
+           the 38px indent the scope note and the charge sections already use,
+           so the title and its sub-line share a line instead of taking one
+           each. `.job-top` keeps its `break-after: avoid` from the base rules;
+           only its box model changes here. The 38px indent is the same distance
+           the base rules produce from `.job-no`'s 26px min-width plus the row's
+           12px gap, so a declined entry - which renders an empty number span so
+           its title lines up with the numbered work above (S6-R4) - keeps that
+           alignment. */
+        .job-top {
+            display: block;
+            position: relative;
+            padding-left: 38px;
+        }
+
+        .job-no {
+            position: absolute;
+            left: 0;
+            top: 0;
+        }
+
+        .job-ttl {
+            display: inline;
+            font-size: 15px;
+        }
+
+        .job-sub {
+            display: inline;
+            margin: 0 0 0 6px;
+            font-size: 11.5px;
+            line-height: 1.4;
+        }
+
+        .scope-lbl {
+            margin: 6px 0 2px 38px;
+        }
+
+        /* Change 1's margin, change 6's type, and change 10: the story text
+           runs the full column width. `max-width: none` rather than deleting
+           the base declaration, because the base rule is the screen preview's
+           and keeps its 70ch measure. Change 10 measured 2.29 -> 2.22 sheets. */
+        .scope {
+            margin: 0 0 7px 38px;
+            font-size: 11.5px;
+            line-height: 1.4;
+            max-width: none;
+        }
+
+        .chargesec {
+            margin: 6px 0 0 38px;
+        }
+
+        .chargesec + .chargesec {
+            margin-top: 9px;
+        }
+
+        .csec-head {
+            padding-bottom: 3px;
+        }
+
+        /* Change 6. */
+        .work-summary-table-new {
+            font-size: 12px;
+        }
+
+        /* Change 7 - the charge-row dividers are not drawn in print, which
+           REVERSES SV-9708 (which chose the divider's colour) and SV-9823
+           (which darkened it to the print ink floor) FOR THE ROW DIVIDERS ONLY.
+           The section rules and the Summary bar are untouched, and so are the
+           colour declarations in the SV-9823 block above - a zero-width border
+           paints nothing whatever colour it names, and those declarations are
+           still live for the other documents that share them. All three
+           selectors are repeated verbatim from the base rules: the two row
+           rules outrank a shorter selector on specificity, so zeroing only the
+           cell rule would leave both dividers drawn. Changes 5 to 8 together
+           measured 2.59 -> 2.29 sheets. The cell padding is change 1's
+           5px -> 3px. */
+        .work-summary-table-new td {
+            padding: 3px 0;
+            border-top: 0;
+            border-bottom: 0;
+        }
+
+        .work-summary-table-new tr.crow td {
+            border-top: 0;
+            border-bottom: 0;
+        }
+
+        .work-summary-table-new tr:last-child td {
+            border-top: 0;
+            border-bottom: 0;
+        }
+
+        .work-summary-table-new tr.adjrow td {
+            padding: 2px 0;
+        }
+
+        .job-foot {
+            margin-top: 5px;
+            padding-top: 5px;
+        }
+
+        .ps-body {
+            padding-top: 9px;
+        }
+
+        /* Change 8 - the gap above the Summary bar, 26px/16px on screen and
+           16px/10px after change 1, finally 6px/8px. This is the final value
+           and it supersedes change 1's; the bar keeps its `break-after: avoid`
+           and `.tail::before` keeps the boundary that makes it actionable
+           (SV-9767), both from the base rules. */
+        .b-break {
+            margin: 6px 0 8px;
+        }
+
+        /* Change 4 - the Summary column narrows from 340px to 280px. Layout
+           only, no sheet change on its own; it buys the disclaimer a wider wrap
+           region beside the float. `float: right` and `display: flex` stay in
+           the base rules and must not be answered here - constraint 1 above
+           records that unfloating this column to let it fragment was measured
+           and made the 4-to-9-line bucket worse. */
+        .sum {
+            width: 280px;
+            max-width: 280px;
+        }
+
+        /* Change 1, and it partially answers SV-9825. That ticket sized this
+           gutter at 30px because that was the sheet's own bottom padding, and
+           the gutter has to be CONTENT rather than padding for WeasyPrint to
+           read it when deciding whether the float fits. Both halves still hold;
+           only the number moves, and it moves because the sheet's own bottom
+           padding is now 20px in print. It is compacted, never removed - at
+           zero the BALANCE box prints flush against the footer band, which is
+           what SV-9825 reported. */
+        .sum::after {
+            height: 18px;
+        }
+
+        .bal {
+            padding: 10px 18px;
+        }
+
+        .totals-new {
+            padding: 3px 0;
+        }
+
+        .adj-item {
+            padding: 2px 0 2px 18px;
+        }
+
+        /* Change 3 - the disclaimer and the signature block, 2.75 -> 2.59
+           sheets. Constraint 4 above: `.disc`'s font size is what carries this
+           change; the signature compaction on its own moved nothing.
+
+           RESOLVED by S12-R5b, added 2026-09-09 - the disclaimer, and nothing
+           else, is exempt from S12-R5's sub-10px ink floor. It stays 9px in
+           #4B5565, so 🔴 do NOT "fix" this by darkening it to #364152 the way
+           every other sub-10px element is (`.af-k` 9px, `.addr-lbl` 9.5px,
+           `.grp-lbl` and `.sign-cap` 10px, all #364152 and all still bound by
+           the floor).
+
+           The exemption's three reasons, since a lone lighter value invites a
+           tidy-up: this paragraph was measured at that size AND that colour
+           across the 28 invoices every paper figure in SV-9870 rests on, so
+           darkening it now would move the measurement out from under the
+           numbers; the pre-refresh document ran the same text at about 8.6px,
+           so sub-10px disclaimer text is what is being restored rather than a
+           new departure; and the floor exists so weak printers do not drop
+           text, which #4B5565 at 9px does not risk. */
+        .disc {
+            font-size: 9px;
+            line-height: 1.35;
+        }
+
+        .sign-line {
+            height: 16px;
+        }
+
+        .sign-cap {
+            margin-top: 3px;
+        }
+
+        /* Changes 1 and 3 both land on these two, so only the final values are
+           declared: `.auth` 24px/16px -> 8px/6px, `.footer` 22px/12px ->
+           8px/6px. */
+        .auth {
+            margin-top: 8px;
+            padding-top: 6px;
+        }
+
+        .footer {
+            margin-top: 8px;
+            padding-top: 6px;
+        }
+    }
+
+    /* ===== SV-9890: print-only rule weight and headline figure =====
+
+       PRINT OUTPUT ONLY, and the THIRD print block in this sheet. It is last
+       on purpose, for the same reason the SV-9870 block above it is: every
+       selector here also exists in the base rules and several exist in the two
+       print blocks above, so source order at equal specificity is what makes
+       these win. Nothing here touches the on-screen document, and a preview
+       complaint must not be answered by editing this block.
+
+       WHY THE DESIGN'S OWN NUMBERS PRINT TOO HEAVY. The Design Document draws
+       the structural rules at 2px and 1px in the near-black ink and draws the
+       boxed headline figure at 30px, and this template reproduced every one of
+       those exactly. Those values are still right - on the sheet the design is
+       drawn on. That sheet is 960px wide with 42px of side padding, so 876px
+       of content; A4 at this template's print padding is 698px. A length
+       transplanted 1:1 therefore prints about a quarter heavier, relative to
+       the page, than the design shows, and at 0.75pt per CSS pixel (S12-R5a)
+       the 2px rules land at 1.5pt and the figure at 22.5pt while the rest of
+       the sheet sits between 8pt and 12pt. Rescaling the lengths the spec
+       leaves free is the whole of this ticket.
+
+       WHAT THE SPEC PINS, and therefore what is NOT touched here. S12-R9 pins
+       label SIZES, so the BALANCE label stays 12px. S12-R2 pins the palette
+       and S12-R5 pins the print ink floor, so no colour moves. The spec pins
+       neither the weight of any rule nor the size of the headline figure, so
+       those two are exactly what this block changes. S12-R5 is a floor for
+       weak printers and not a target, so a rule may be thinner and still meet
+       it.
+
+       🔴 THE INK FLOOR IS NOT A DEFECT AND MUST NOT BE FLIPPED A FOURTH TIME.
+       SV-9890 also reported that print raises the design's hairlines to
+       #CDD5DF instead of keeping #E3E8EF and #EEF2F6. The Design Document does
+       that itself - its own print block redefines the two tokens those
+       hairlines are drawn from, to exactly the value this template already
+       prints. So the printed hairlines match the design, the SV-9823 block
+       above stays as it is, and the charge-row dividers SV-9870 removed from
+       print stay removed. Read the SV-9823 note before reopening any of this.
+
+       Measured on a real WeasyPrint 69 render of a four-line document, before
+       and after: masthead rule 1.5pt to 0.75pt, first work-line rule 1.5pt to
+       0.75pt, between-line and strong-row rules 0.75pt to 0.56pt, and the
+       headline figure 22.5pt to 18pt. Sheet count unchanged, and 0.56pt
+       renders solidly - it was swept against 0.375pt and 0.75pt on a 300dpi
+       raster before being chosen. */
+    @media print {
+        .mh {
+            border-bottom-width: 1px;
+        }
+
+        /* `.job-first` is the same specificity as `.job`, so it has to follow
+           it here exactly as it does in the base rules. */
+        .job {
+            border-top-width: 0.75px;
+        }
+
+        .job-first {
+            border-top-width: 1px;
+        }
+
+        .ps-body {
+            border-top-width: 1px;
+        }
+
+        /* Repeated verbatim from the base rule: a shorter selector loses to it
+           on specificity and the divider would keep its 2px. */
+        .job-foot .ltot.with-divider {
+            border-left-width: 1px;
+        }
+
+        .b-break-line {
+            height: 1px;
+        }
+
+        .row-strong {
+            border-top-width: 0.75px;
+        }
+
+        .sign-line {
+            border-bottom-width: 0.75px;
+        }
+
+        /* The figure also OVERRAN its own box, which is the objective half of
+           this defect. In print `.sum` is 280px, so the box has roughly 242px
+           of interior, and BALANCE plus a five-figure amount at 30px does not
+           fit in it. Rendered, $12,345.67 touches both borders at 30px and
+           $123,456.78 runs straight through them. 24px with 14px of side
+           padding clears $123,456.78 with room to spare, and that pair of
+           measurements is what sets both numbers. SV-9870's vertical 10px is
+           untouched, so its paper figures hold. */
+        .bal {
+            padding: 10px 14px;
+            border-width: 1px;
+        }
+
+        .bal .v {
+            font-size: 24px;
+        }
+    }
+
+</style>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<div class="page">
+    <section class="invoice-pdf-new">
+        <div class="fab-center-div"></div>
+                
+                <div class="mh">
+            <div class="mh-brand">
+                <div class="shop-name">Trucks Hill 2</div>
+                <div class="shop-meta">
+                                            <div>United Arab Emirates</div>
+                                                                <div>1st floor</div>
+                                                                                                        <div>Ajman, Federally Administered Tribal Areas</div>
+                                                                <div>0000</div>
+                                                                <div>971545454</div>
+                                    </div>
+            </div>
+                                        <div class="mh-logo">
+                    <img src="data:image/png;base64,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ABCUIAQAAAhKEAIAAAQlCAEAAIIShAAAAEEJQgAAgKAEIQAAQFCCEAAAIChBCAAAEJQgBAAACEoQAgAABCUIAQAAghKEAAAAQQlCAACAoAQhAABAUIIQAAAgKEEIAAAQlCAEAAAIShACAAAEJQgBAACCEoQAAABBCUIAAICgBCEAAEBQghAAACAoQQgAABCUIAQAAAhKEAIAAAQlCAEAAIIShAAAAEEJQgAAgKAEIQAAQFCCEAAAIChBCAAAEJQgBAAACEoQAgAABCUIAQAAghKEAAAAQQlCAACAoAQhAABAUIIQAAAgKEEIAAAQlCAEAAAIShACAAAEJQgBAACCEoQAAABBCUIAAICgBCEAAEBQghAAACAoQQgAABCUIAQAAAhKEAIAAAQlCAEAAIIShAAAAEEJQgAAgKAEIQAAQFCCEAAAIChBCAAAEJQgBAAACEoQAgAABCUIAQAAghKEAAAAQQlCAACAoAQhAABAUIIQAAAgKEEIAAAQlCAEAAAIShACAAAEJQgBAACCEoQAAABBCUIAAICgBCEAAEBQghAAACAoQQgAABCUIAQAAAhKEAIAAAQlCAEAAIIShAAAAEEJQgAAgKAEIQAAQFCCEAAAIChBCAAAEJQgBAAACEoQAgAABCUIAQAAghKEAAAAQQlCAACAoAQhAABAUIIQAAAgKEEIAAAQlCAEAAAIShACAAAEJQgBAACCEoQAAABBCUIAAICgBCEAAEBQghAAACAoQQgAABCUIAQAAAhKEAIAAAQlCAEAAIIShAAAAEEJQgAAgKAEIQAAQFCCEAAAIChBCAAAEJQgBAAACEoQAgAABCUIAQAAghKEAAAAQQlCAACAoAQhAABAUIIQAAAgKEEIAAAQlCAEAAAIShACAAAEJQgBAACCEoQAAABBCUIAAICgBCEAAEBQghAAACAoQQgAABCUIAQAAAhKEAIAAAQlCAEAAIIShAAAAEEJQgAAgKAEIQAAQFCCEAAAIChBCAAAEJQgBAAACEoQAgAABCUIAQAAghKEAAAAQQlCAACAoAQhAABAUIIQAAAgKEEIAAAQlCAEAAAIShACAAAEJQgBAACCEoQAAABBCUIAAICgBCEAAEBQghAAACAoQQgAABCUIAQAAAhKEAIAAAQlCAEAAIIShAAAAEEJQgAAgKAEIQAAQFCCEAAAIChBCAAAEJQgBAAACEoQAgAABCUIAQAAghKEAAAAQQlCAACAoAQhAABAUIIQAAAgKEEIAAAQlCAEAAAIShACAAAEJQgBAACCEoQAAABBCUIAAICgBCEAAEBQghAAACAoQQgAABCUIAQAAAhKEAIAAAQlCAEAAIIShAAAAEEJQgAAgKAEIQAAQFCCEAAAIChBCAAAEJQgBAAACEoQAgAABCUIAQAAghKEAAAAQQlCAACAoAQhAABAUIIQAAAgKEEIAAAQlCAEAAAIShACAAAEJQgBAACCEoQAAABBCUIAAICgBCEAAEBQ/x/VIwBufoK3PAAAAABJRU5ErkJggg==" class="organization-logo-new" alt="">
+                </div>
+                        <div class="mh-doc">
+                <div class="doc-label">Invoice: <span class="doc-num">INV-S2-864</span></div>
+                <div class="doc-dates">
+                                            <span>Invoice date: <b id="invoiceIssueDate">Sep 9, 2026</b></span>
+                                                                                                        <span>Paid date: <b id="invoicePaidDate">Sep 9, 2026</b></span>
+                                                            </div>
+            </div>
+        </div>
+
+                        <div class="grp-lbl">Addresses</div>
+        <div class="addr-row">
+            <div class="addr">
+                <div class="addr-lbl">Bill To</div>
+                                <div class="addr-co">aqeel transport 56</div>
+                                    <div class="addr-ln">hgijklm</div>
+                                                                                                    <div class="addr-ln">Ajman, Dubai 0000</div>
+                            </div>
+                                </div>
+
+                            <div class="asset-band">
+                <div class="af">
+                    <div class="af-k">Asset</div>
+                    <div class="af-v">2024 BMW 328I</div>
+                </div>
+                                    <div class="af">
+                        <div class="af-k">Unit</div>
+                        <div class="af-v">665</div>
+                    </div>
+                                                    <div class="af">
+                        <div class="af-k">Plate</div>
+                        <div class="af-v">789</div>
+                    </div>
+                                                                    <div class="af">
+                        <div class="af-k">Mileage</div>
+                        <div class="af-v">123</div>
+                    </div>
+                                                    <div class="af">
+                        <div class="af-k">Eng Hrs</div>
+                        <div class="af-v">456</div>
+                    </div>
+                                                                                        <div class="af">
+                        <div class="af-k">VIN / Serial</div>
+                        <div class="af-v tnum"><b>341.20</b></div>
+                    </div>
+                            </div>
+        
+                                        <div class="order-chips">
+                                    <span class="ochip" data-test-id="invoice-ref-work-order">Work Order <b>S2-864</b></span>
+                                        <span class="ochip" data-test-id="invoice-ref-customer-po">Customer PO <b id="workOrderCustomerPo">9989999997711111111155555555444444488888888887777777888888888</b></span>
+                                                                        <span class="ochip" data-test-id="invoice-ref-terms">Terms <b>Net 30</b></span>
+        </div>
+
+                            <div class="sec-lbl">Work Performed</div>
+                            <div class="job job-first">
+                    <div class="job-top">
+                                                <span class="job-no">01</span>
+                        <span class="job-ttl">LIne 1 What are you doing</span>
+                                                    <span class="job-sub">Line 1 Why are you doing</span>
+                                            </div>
+                                                            <div class="chargesec">
+                        <div class="csec-head">Labor</div>
+                        <table class="work-summary-table-new">
+                            <colgroup>
+                                <col>
+                                <col class="col-qty">
+                                <col class="col-rate">
+                                <col class="col-amt">
+                            </colgroup>
+                            <tbody>
+                            <tr class="crow avoid-break-inside">
+                                <td class="description-cell">LIne 1 What are you doing</td>
+                                                                <td class="rt">2</td>
+                                <td class="rt">$149.95</td>
+                                <td class="rt">$299.90</td>
+                            </tr>
+                                                                                                                                                </tbody>
+                        </table>
+                    </div>
+                                                                                                                                                                                <div class="job-foot avoid-break-inside">
+                                                            <span>Labor <b>$299.90</b></span>
+                                                                                    <span class="ltot with-divider">Line total <b>$299.90</b></span>
+                        </div>
+                                    </div>
+                            <div class="job">
+                    <div class="job-top">
+                                                <span class="job-no">02</span>
+                        <span class="job-ttl">Line 2 what are you doing</span>
+                                                    <span class="job-sub">Line 2 why are you doing</span>
+                                            </div>
+                                                            <div class="chargesec">
+                        <div class="csec-head">Labor</div>
+                        <table class="work-summary-table-new">
+                            <colgroup>
+                                <col>
+                                <col class="col-qty">
+                                <col class="col-rate">
+                                <col class="col-amt">
+                            </colgroup>
+                            <tbody>
+                            <tr class="crow avoid-break-inside">
+                                <td class="description-cell">Line 2 what are you doing</td>
+                                                                <td class="rt">1</td>
+                                <td class="rt">$149.95</td>
+                                <td class="rt">$149.95</td>
+                            </tr>
+                                                                                                                                                </tbody>
+                        </table>
+                    </div>
+                                            <div class="chargesec">
+                            <div class="csec-head">Parts</div>
+                            <table class="work-summary-table-new">
+                                <colgroup>
+                                    <col>
+                                    <col class="col-qty">
+                                    <col class="col-rate">
+                                    <col class="col-amt">
+                                </colgroup>
+                                <tbody>
+                                                                                                            <tr class="crow avoid-break-inside">
+                                            <td class="description-cell">9898 - 0</td>
+                                            <td class="rt">1</td>
+                                            <td class="rt">$8.31</td>
+                                            <td class="rt">$8.31</td>
+                                        </tr>
+                                                                                                                                                                                                                                                                                                                    <tr class="crow avoid-break-inside">
+                                            <td class="description-cell">9898 - Core for 0</td>
+                                            <td class="rt">1</td>
+                                            <td class="rt">$3.00</td>
+                                            <td class="rt">$3.00</td>
+                                        </tr>
+                                                                                                                                                                                                                                                                                                                    <tr class="crow avoid-break-inside">
+                                            <td class="description-cell">TESTING35 - 123</td>
+                                            <td class="rt">1</td>
+                                            <td class="rt">$40.00</td>
+                                            <td class="rt">$40.00</td>
+                                        </tr>
+                                                                                                                                                                                                                                                                                                                    <tr class="crow avoid-break-inside">
+                                            <td class="description-cell">TESTING35 - Core for 123</td>
+                                            <td class="rt">1</td>
+                                            <td class="rt">$2.00</td>
+                                            <td class="rt">$2.00</td>
+                                        </tr>
+                                                                                                                                                                                                                                                                        </tbody>
+                            </table>
+                        </div>
+                                                                                                                                                                                <div class="job-foot avoid-break-inside">
+                                                            <span>Labor <b>$149.95</b></span>
+                                                                                        <span>Parts <b>$53.31</b></span>
+                                                        <span class="ltot with-divider">Line total <b>$203.26</b></span>
+                        </div>
+                                    </div>
+                            <div class="job">
+                    <div class="job-top">
+                                                <span class="job-no">03</span>
+                        <span class="job-ttl">Line 3 what are you doing</span>
+                                                    <span class="job-sub">Line 3 what are you doing</span>
+                                            </div>
+                                                            <div class="chargesec">
+                        <div class="csec-head">Labor</div>
+                        <table class="work-summary-table-new">
+                            <colgroup>
+                                <col>
+                                <col class="col-qty">
+                                <col class="col-rate">
+                                <col class="col-amt">
+                            </colgroup>
+                            <tbody>
+                            <tr class="crow avoid-break-inside">
+                                <td class="description-cell">Line 3 what are you doing</td>
+                                                                <td class="rt">1</td>
+                                <td class="rt">$149.95</td>
+                                <td class="rt">$149.95</td>
+                            </tr>
+                                                                                                                                                </tbody>
+                        </table>
+                    </div>
+                                                                                                                                                                                <div class="job-foot avoid-break-inside">
+                                                            <span>Labor <b>$149.95</b></span>
+                                                                                    <span class="ltot with-divider">Line total <b>$149.95</b></span>
+                        </div>
+                                    </div>
+                    
+                
+                <div class="tail">
+                        <div class="b-break">
+                <span class="b-break-line"></span>
+                <span class="b-break-label">Summary</span>
+                <span class="b-break-line"></span>
+            </div>
+
+                            <div class="sum">
+
+                                            <div class="flex-row totals-new avoid-break-inside" data-test-id="invoice-summary-labor">
+                            <span class="totals-position-new">Labor</span>
+                            <span class="custom-col-md-width-14">$599.80</span>
+                        </div>
+                                        <div class="flex-row totals-new avoid-break-inside" data-test-id="invoice-summary-parts">
+                        <span class="totals-position-new">Parts</span>
+                        <span class="custom-col-md-width-14">$53.31</span>
+                    </div>
+                                            <div class="flex-row totals-new avoid-break-inside" data-test-id="invoice-summary-shop-supplies">
+                            <span class="totals-position-new">Shop supplies (10.5% of labor)</span>
+                            <span class="custom-col-md-width-14">$62.98</span>
+                        </div>
+                                                                                <div class="flex-row totals-new row-strong avoid-break-inside" data-test-id="invoice-summary-subtotal">
+                        <span class="totals-position-new">Subtotal</span>
+                        <span class="custom-col-md-width-14">$716.09</span>
+                    </div>
+                                                                                            <div id="rate-a3194d82-76f3-42e2-b724-0da96f0bbd4f" class="flex-row totals-new avoid-break-inside" data-test-id="invoice-summary-tax-row">
+                                <span class="totals-position-new">5% (5%)</span>
+                                <span class="custom-col-md-width-14">$35.82</span>
+                            </div>
+                                                                <div class="flex-row totals-new row-strong avoid-break-inside" data-test-id="invoice-summary-total">
+                        <span class="totals-position-new">Total</span>
+                        <span class="custom-col-md-width-14">$751.91</span>
+                    </div>
+                                                                    <div class="flex-row totals-new adj-head avoid-break-inside" data-test-id="invoice-payments-heading">
+                            <span class="totals-position-new">Payments</span>
+                            <span class="custom-col-md-width-14"></span>
+                        </div>
+                                                    <div class="full-width-100">
+                                                                                                                                                                                                                                                                                                                                    <div id="payment-6f480eec-6ee1-405c-b669-f3ee6a76ea38"
+                                             class="flex-row totals-new justify-content-end avoid-break-inside" data-test-id="invoice-payment-row">
+                                            <span class="totals-position-new">
+                                                (Deposit) Sep 9, 2026 - Check
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            </span>
+                                            <span class="custom-col-md-width-14">$500.00</span>
+                                        </div>
+                                                                                                                                                                                                                                                                                                                                                                        <div id="payment-036e2ea2-f9ff-46d0-8fee-e2964e1e2383"
+                                             class="flex-row totals-new justify-content-end avoid-break-inside" data-test-id="invoice-payment-row">
+                                            <span class="totals-position-new">
+                                                (Deposit) Sep 9, 2026 - DEBIT CARD
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    <br>
+                                                    <small class="text-grey-80">
+                                                                                                                    of $600.00 — $348.09 will be credited
+                                                                                                            </small>
+                                                                                            </span>
+                                            <span class="custom-col-md-width-14">$251.91</span>
+                                        </div>
+                                                                                                </div>
+                                                                        <div class="bal totals-new avoid-break-inside" data-test-id="invoice-balance">
+                            <span class="k totals-position-new">Balance</span>
+                            <span class="v custom-col-md-width-14">$0.00</span>
+                        </div>
+                                    </div>
+            
+            <div class="disc">Any warranties on the parts and accessories sold hereby are made by the manufacturer. You understand and agree that we make no warranties of any kind unless expressed in writing. You hereby authorize us to perform the repair work herein set forth and to purchase the necessary material and parts to perform such repair work. You agree that we are not responsible for loss or damage to your vehicle or articles left in your vehicle in case of fire, theft, or any other cause beyond our control or for any delays caused by unavailability of parts or delays in part shipments by the supplier or transporter. In addition, you agree that we are not responsible for damages to your vehicle from freezing due to lack of antifreeze. You hereby grant our employees permission to operate your vehicle on streets, highways, or elsewhere for the purpose of testing and/or inspection. You acknowledge and agree that an express mechanic&#039;s lien on your vehicle is granted to secure payment of this invoice for the repair work detailed in this invoice.</div>
+        </div>
+
+                <div class="auth avoid-break-inside">
+            <div class="sign">
+                <div class="sign-c">
+                    <div class="sign-line"></div>
+                    <div class="sign-cap">Customer Signature</div>
+                </div>
+                <div class="sign-c">
+                    <div class="sign-line"></div>
+                    <div class="sign-cap">Printed Name</div>
+                </div>
+                <div class="sign-c">
+                    <div class="sign-line"></div>
+                    <div class="sign-cap">Date</div>
+                </div>
+            </div>
+        </div>
+
+                            <div class="footer avoid-break-inside">
+                <span>5454545454544544 · INV-S2-864</span>
+                <span>Powered by <b>ShopView</b></span>
+            </div>
+            </section>
+</div>
+</body>
+</html>

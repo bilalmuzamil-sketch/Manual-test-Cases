@@ -1,0 +1,39 @@
+{
+ "pass_meta": {
+  "suite": "Invoice Design Selection (7800)",
+  "run": 446,
+  "env": "the Production account (app.shopview.com)",
+  "build": "v26.36.4-3e1c643",
+  "date": "12 September 2026"
+ },
+ "results": {
+  "C53534": {
+   "verdict": "Passed",
+   "observed": "Checked on the live Production site across eight real jobs - S2-792, S2-833, S2-834, S2-835, S2-836, S2-850, S2-851 and S2-864, a mix of paid and invoiced. Each one's invoice was opened with the shop on the old look and again with the shop on the new look. Every single one changed: the old look prints the familiar \"Bill To\", \"Remit payment to\" and \"Line Total\" headings, while the new look prints \"Addresses\" and \"Work Performed\" and lays the page out differently. The invoice number was the same on both, and so were the amounts. The shop's setting was read back immediately before and after every single one of the thirty-two readings, so that if another person changed it mid-check the reading would be thrown away - none had to be."
+  },
+  "C53563": {
+   "verdict": "Passed",
+   "observed": "Checked on the live Production site. This is the preview the shop sees inside the app, and it was opened for eight different jobs under both looks. It always drew the document in whichever look was switched on at that moment, with no stale copy and no need to reopen the job. The setting was read back either side of every reading; nothing drifted."
+  },
+  "C53571": {
+   "verdict": "Passed",
+   "observed": "Checked on the live Production site. Sixteen documents - eight invoices and eight estimates across eight jobs - were opened one after another with the shop on the old look, and every one of the sixteen came out in the old look. The shop was switched to the new look and the same sixteen were opened again: all sixteen came out in the new look. There was no mixture at any point - never one document in one look sitting beside another in the other."
+  },
+  "C53591": {
+   "verdict": "Passed",
+   "observed": "Checked on the live Production site. The same sixteen documents were captured with the shop on the old look, then on the new look, and the two sets were compared document by document. Everything the switch changed one way it changed back the other way: the headings, the layout and the page all returned to their previous form, and every invoice and estimate number and every amount stayed the same throughout. Nothing was left behind in the wrong look."
+  },
+  "C53531": {
+   "verdict": "Passed",
+   "observed": "Checked on the live Production site by comparing each of sixteen documents before and after the shop's look was changed. Not one document's own record changed: every invoice and estimate number was identical in both looks, and so were the line items, the labour and parts amounts, the subtotal, the tax and the total. Only the way the page is drawn changed. Nothing was rewritten, renumbered or re-priced by changing the setting."
+  },
+  "C53542": {
+   "verdict": "Passed",
+   "observed": "Checked on the live Production site. Sixteen documents across eight different jobs, of two different kinds, in two different job states, were all opened under each look. Every one of them followed the shop's single setting - not one of them kept a look of its own, and there was no option anywhere on a document to give it a different look. There is no per-document override."
+  },
+  "C53592": {
+   "verdict": "Passed",
+   "observed": "Checked on the live Production site across sixteen documents. Fourteen of them carried exactly the same set of amounts in both looks, down to the cent, and all sixteen carried the same document number, the same line items and the same totals. Two estimates carried extra amounts in the old look only. Those were looked at one by one, and they are all inside a \"Payments\" and \"Balance\" block that the old look prints on an estimate and the new look does not - a deposit paid by cheque, a card deposit and the resulting credit and balance. The job's own figures - labour, parts, shop supplies, subtotal, tax and total - are identical in both looks in every case. That is exactly what is expected: the figures, totals, line items and numbering must match, while blocks that belong to a look's own layout may differ, the remit-to block being the known example. The remit-to block behaved that way too: the old look always printed one, the new look did not always."
+  }
+ }
+}
