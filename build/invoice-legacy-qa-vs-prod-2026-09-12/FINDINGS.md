@@ -28,10 +28,11 @@ Reproduce with `python3 design_check.py` (full output saved as `DESIGN-CHECKS.tx
 ## The answer in one line
 
 **The design is identical (70 of 70 measurements, 0 differ) and every header, column name and label
-is present on production (35 of 35). One cell wraps on production that does not wrap on QA — the
-"Service Order" heading on `INV-S2-194` — and the QA branch does the same thing to its own asset
-value on `EST-S99999-17582`, so it is the template's auto-sizing reacting to data, not a difference
-between the two builds (section 4).** Type, sizes, weights, colours, margins, column positions,
+is present on production (35 of 35). One cell wraps on production that does not wrap on the supplied
+QA file — the "Service Order" heading on `INV-S2-194` — but **the QA branch wraps it identically the
+moment its own order number is short** (proven live on `INV-S2-4219`, section 5.1). It is the
+template, not production. And because **every production work-order number is six characters**, no
+amount of data seeding will stop it (5.2).** Type, sizes, weights, colours, margins, column positions,
 rules, cell boxes, logo slot, every vertical gap and every row pitch — plus every label the template
 emits, checked against the empty-invoice skeleton. The two documents *look* different because the **data** is different — a different
 shop, a different customer, different jobs, a different tax set-up and a much shorter order number.
@@ -363,7 +364,72 @@ Until one of those ships, **any shop whose order numbers are short will see this
 production alike.
 
 
-## 5. The honest part: these two files can never be byte-identical
+## 5. LIVE VERIFICATION on both environments (2026-09-12) — and it changes the answer
+
+The QA lead supplied production credentials and QA-branch cookies. Everything below was read **live**,
+not inferred.
+
+| | |
+|---|---|
+| QA branch | `sv9901.qa.shopview.com`, build **`v26.35.10-7b9a47d`**, last-modified Fri 11 Sep 2026 18:29:38 GMT — **the exact build the customers want back** |
+| Production | `app.shopview.com`, org Bilal-Trucks, workplaces Truck Hill 1 / **Trucks Hill 2** |
+| Session | one login, reused (playbook §R.0) |
+
+### 5.1 🔴 THE QA BRANCH WRAPS "Service Order" TOO — so it is the template, not production
+
+Rendered live from the QA branch: invoice **`INV-S2-4219`**
+(`GET /api/invoices/preview?invoice_id=…&type=pdf`, WeasyPrint 69.0, Legacy design).
+
+**Its "Service Order" heading breaks onto two baselines** — `Service` at y 286.53, `Order` at
+y 300.85 — exactly as production's does. Its order number `S2-4219` measures **45.15 pt** against
+the **69.21 pt** heading.
+
+| Document | Environment | Order number | Its width | Heading needs | Result |
+|---|---|---|---|---|---|
+| `INV-S99999-16518` | QA branch | `S99999-16518` (12 ch) | 73.93 pt | 69.21 pt | **one line** |
+| **`INV-S2-4219`** | **QA branch** | `S2-4219` (7 ch) | **45.15 pt** | 69.21 pt | **🔴 WRAPS** |
+| `INV-S2-194` | production | `S2-194` (6 ch) | 38.85 pt | 69.21 pt | **🔴 WRAPS** |
+
+**This closes the question.** The `Legacy_QA.pdf` supplied as the reference simply came from the shop
+whose order numbers are twelve characters long. Give the QA branch a short one and it wraps
+identically. **Production is not behaving differently from QA — it is being fed shorter order
+numbers.** Exhibit `EX7`.
+
+### 5.2 🔴 Production can NEVER avoid it with data — its numbers are all six characters
+
+`GET /api/work-orders?rowsPerPage=100` on production returns **100 work orders whose numbers are
+every one exactly 6 characters**: `S2-861`, `S2-811`, `S2-810`, `S2-808`, `S2-804`, `S2-803`,
+`S2-792`… The scheme is `S<shop_id>-<n>` and the shop ids are **1** and **2**.
+
+At roughly 6.2 pt per character, the heading's 69.21 pt needs about **eleven characters**. Production
+would have to reach `S2-999999999` to get there. **So every Legacy invoice this org prints will wrap
+that heading until the template is changed** — seeding matching data will not fix it, and I am not
+going to pretend otherwise.
+
+### 5.3 ✅ The `GST#` footer question is CLOSED — it is data, not the template
+
+The open item from section 3 is settled by the same live render. **The QA branch's own
+`INV-S2-4219` prints its footer tax id as `812694966RT0001`** — no `GST#`, no spaces — while
+`Legacy_QA.pdf` (a different workplace on the same branch) prints `GST# 812694966 RT0001`. Same
+digits, different typing.
+
+**The template emits the field verbatim.** Production's bare `5454545454544544` is therefore
+**correct** — it is what that shop typed into its own settings. Nothing to fix.
+
+### 5.4 ⚠️ Production's live invoice preview currently renders the MODERN design, not Legacy
+
+Rendering production's `INV-S2-792` through the same endpoint returns the **Modern** document:
+**Inter** (not Nunito-Sans), and the Modern vocabulary — `ADDRESSES`, `BILL TO`, `REMIT PAYMENT TO`,
+`ASSET`, `VIN / SERIAL`, `WORK PERFORMED`, **`Work Order`** (not `Service Order`), `Paid date:`.
+
+So the `Legacy_Production.pdf` supplied for this comparison was produced with the design switched to
+Legacy. **Flagging it because it means the org's current default is Modern**, which is worth knowing
+before anyone reads "production" as "what customers see today". The design is a stored setting — it
+is not a `preview` parameter (`design` / `template` / `invoice_design` / `variant` were all tried
+live and all returned the Modern document unchanged).
+
+
+## 6. The honest part: these two files can never be byte-identical
 
 The instruction was *"the invoice from production should and MUST match byte to byte with the invoice
 from the QA branch."* **These two files cannot** — they are different invoices. Different company,
@@ -382,7 +448,7 @@ meaningful. That plan is still blocked on three things — see below.
 
 ---
 
-## 6. What I could not check, stated plainly
+## 7. What I could not check, stated plainly
 
 - **Full continuation-page card height.** QA has four full continuation pages (776.87 pt card);
   production is only 2 pages and its page 2 is the last page, whose card height is content-driven
@@ -406,6 +472,7 @@ meaningful. That plan is still blocked on three things — see below.
 | `ev/EX4-every-label-present.png` | the asset-table, order-table, line-table, summary and signature labels read off all three documents side by side |
 | `ev/EX5-part-rows-both.png` | part rows on both documents with their column x — and the correction to my "labour-only" error |
 | `ev/EX6-wrap-audit.png` | every block counted by baselines on both documents, the one production-only wrap in the flesh with its invoice number, and the QA branch doing the same thing |
+| `ev/EX7-the-QA-build-wraps-too.png` | **the decisive one** — the same heading on three documents: QA with a long number (one line), QA with a short number (wraps), production (wraps) |
 
 ---
 
@@ -423,6 +490,14 @@ meaningful. That plan is still blocked on three things — see below.
    heading cells, which changes the Legacy template and is therefore a PO call under
    [SV-9892](https://shopview.atlassian.net/browse/SV-9892). **Worth checking first** whether the
    `@media screen` column grid already found on sv9872 simply needs applying to the print path.
-4. **One look at the production branch's tax-id setting** — to settle whether the footer's missing
-   `GST# ` prefix is template or data. It is the only unresolved item in the comparison.
-5. **Nothing has been filed or posted.** No Jira comment, no ticket, no TestRail write.
+4. ~~One look at the production branch's tax-id setting~~ — **CLOSED 2026-09-12, live: it is data.**
+   The QA branch's own `INV-S2-4219` prints `812694966RT0001` with no prefix, so the template emits
+   the field verbatim and production's bare number is correct (5.3).
+5. **Do you want me to raise the wrap as a ticket?** It reproduces on the reference build
+   `v26.35.10` itself, so it is not a release regression — but it will affect **every** Legacy
+   invoice this production org prints, and the customers are the ones complaining. My
+   recommendation: raise it against the Legacy template with the two options in section 4, and let
+   Branko decide.
+6. **Was the Legacy/Modern design switch deliberate on production?** Its live preview renders Modern
+   today (5.4).
+7. **Nothing has been filed or posted.** No Jira comment, no ticket, no TestRail write.

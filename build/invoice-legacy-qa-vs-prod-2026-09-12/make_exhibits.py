@@ -373,5 +373,40 @@ def ex6():
     img.save(os.path.join(OUT,'EX6-wrap-audit.png'))
     print('EX6', img.size)
 
+
+# ---------------------------------------------------------------- EX7
+QA_S2 = os.path.join(HERE, 'QA_Legacy_INV-S2-4219.pdf')
+def ex7():
+    """The QA branch wraps 'Service Order' too, whenever the order number is short."""
+    a = page(QA,    0, pymupdf.Rect(56,265,372,309))   # QA, long number  - no wrap
+    b = page(QA_S2, 0, pymupdf.Rect(56,279,372,338))   # QA, short number - WRAPS
+    c = page(PR,    0, pymupdf.Rect(56,268,372,327))   # PROD, short number - WRAPS
+    panels = [
+        (a, 'QA BRANCH   INV-S99999-16518', BLUE,  'order no. 12 chars = 73.93 pt', 'ONE LINE',  GREEN),
+        (b, 'QA BRANCH   INV-S2-4219',      BLUE,  'order no.  7 chars = 45.15 pt', 'WRAPS',     RED),
+        (c, 'PRODUCTION  INV-S2-194',       AMBER, 'order no.  6 chars = 38.85 pt', 'WRAPS',     RED),
+    ]
+    fh = font(19,True); fm = font(19); fv = font(21,True)
+    cw = max(i.width for i,_,_,_,_,_ in panels)
+    lw = max(tw(probe,m,fm)[0] for _,_,_,m,_,_ in panels)
+    vw = max(tw(probe,v,fv)[0] for _,_,_,_,v,_ in panels)
+    W = max(cw, lw+40+vw) + 20
+    H = sum(26 + i.height + 34 for i,_,_,_,_,_ in panels) + 30
+    img = Image.new('RGB',(W,H),WHITE); d = ImageDraw.Draw(img)
+    y = 4
+    for im, lab, col, meas, verdict, vcol in panels:
+        d.text((8,y), lab, font=fh, fill=col); y += 24
+        d.rectangle([8,y,8+im.width-1,y+im.height-1], outline=vcol, width=3); img.paste(im,(8,y))
+        y += im.height + 6
+        d.text((8,y), meas, font=fm, fill=GREY)
+        d.text((lw+48,y), verdict, font=fv, fill=vcol)
+        y += 34
+    img = header(img, 'The reference build wraps it too - this is the template, not production',
+                 'The heading needs 69.21 pt in every case. Live on the QA branch sv9901 (v26.35.10 - the exact build the '
+                 'customers want back), invoice INV-S2-4219 breaks "Service Order" onto two lines, because its order number '
+                 'is short. Production cannot avoid this: all 100 of its work-order numbers read live are 6 characters.', RED)
+    img.save(os.path.join(OUT,'EX7-the-QA-build-wraps-too.png'))
+    print('EX7', img.size)
+
 if __name__ == '__main__':
-    ex1(); ex2(); ex3(); ex4(); ex5(); ex6()
+    ex1(); ex2(); ex3(); ex4(); ex5(); ex6(); ex7()
