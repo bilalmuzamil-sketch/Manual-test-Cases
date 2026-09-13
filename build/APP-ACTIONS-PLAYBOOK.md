@@ -4110,7 +4110,7 @@ bigger/smaller" report on this template:
 | `.info-text-new` | 0.9rem | yes | address lines |
 | `.totals-new` / `.work-summary-table-new` | 0.8rem | yes | money summary, line cells |
 | `.disclaimer-font` | 0.54rem | yes | small print |
-| **`.custom-table`** | **14px** | **NO** | **Unit/VIN row, Service Order row, column headings** |
+| **`.custom-table`** | **14px** | **NO** | **the ONE block under Bill To: Unit / VIN-Serial / Asset / Mileage / Eng Hrs and Service Order / Terms / Due date. NOT the line-items table — that is `.work-summary-table-new` at 0.8rem.** |
 
 There is **no `html { font-size }` in the document**; the only base is `@page { font-size: 0.8rem }`,
 which the PDF renderer honours and a **browser ignores**. At a 16px root the screen matches the PDF
