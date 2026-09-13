@@ -317,3 +317,44 @@ The contact used to reach the portal (ALI AHMAD, customer Ahsan) was given an e-
 Customer Portal Access to open `portal.shopview.com`; both were **restored** afterwards —
 re-read live from the Contacts tab: e-mail `-`, Customer Portal Access `No`, as before.
 `documentDesign` still `legacy`. No Jira write of any kind in this run.
+
+---
+
+# THE LOGO, RE-DONE WITH ONE IDENTICAL LOGO FILE (2026-09-13)
+
+The earlier logo comparison used two shops, and therefore two different logo files
+(320 x 157 and 1200 x 600). That confounder is now removed: **one file, in every panel.**
+
+Logo used: production's own Trucks Hill 2 file, extracted from the live document —
+**320 x 157 px, 64,338 bytes, sha256 `76d6376053ed0c5b`**, aspect 2.0382.
+(Correction to the first addendum, which had the two files' sizes the wrong way round.)
+
+Method: production's live Legacy document saved twice — once as served, once with only the
+`.organization-logo-new` rule swapped for v26.35.10's. Each rendered in its own build's sheet
+context. Nothing else changed.
+
+| | logo box | image drawn inside | column | result |
+|---|---|---|---|---|
+| **v26.35.10** — `width:238px`, 800 px sheet, no zoom | **238.00 × 120.00** | 238.0 × 116.77 | 239.98 | fits, left-aligned |
+| **production** — `width:100%;max-width:238px;margin:0 auto`, 718 px sheet, zoom 1.1142 | **236.94 × 133.70** | 236.9 × 116.25 | 236.94 | fits, centred |
+| control: 800 px sheet + production rule | 238.00 × 120.00 | — | 239.98 | fits, centred |
+| control: 718 px sheet + old rule | **265.17** wide | — | 236.94 | **OVERFLOWS by 28.23 px** |
+
+**Answers, with the logo held constant:**
+
+- **The logo is NOT bigger on production.** The drawn picture goes 116.77 px → 116.25 px
+  (**0.4% smaller**) and 238.00 → 236.94 wide (**0.4% narrower**).
+- **What did grow is the empty box around it** — the fixed 120 px box is zoomed to 133.70 px,
+  so the masthead is taller while the picture is not.
+- **The rule change is the SV-9975 fix and it works.** Row 4 is the proof: the old `238px` rule
+  inside production's narrower 718 px sheet overflows its column by 28.23 px. The new rule cannot.
+- **In print both rules produce the same 238 × 120 box**, which is why the two real PDFs measured
+  identical (178.50 pt wide, x 217.93–396.43, vertical centre 81.0 pt).
+
+Exhibit: `ev/portal/18-logo-same-file-comparison.png`.
+
+**What is still owed:** the same file uploaded to the sv9901 shop and the comparison repeated
+across the two real environments. **The sv9901 session is dead** (`302` on
+`/api/auth/me/fe-permissions`, on `/api/organizations/invoice-settings/view`, and on
+`quick-login`) — fresh `sv_sso_session` / `PHPSESSID` / `cf_clearance` for
+`sv9901.qa.shopview.com` is the only thing missing. The logo file is saved for that run.
