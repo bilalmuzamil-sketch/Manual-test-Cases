@@ -173,3 +173,49 @@ document measured on every build.
   718 px to match the PDF is a product call, not a QA one.
 * The printed logo being ~11% smaller (SV-9975's rule, inherited) is **not** raised — on hold by the
   QA lead's decision.
+
+---
+
+# SV-9981 — the printed logo, filed with the full evidence (2026-09-13)
+
+Re-measured live immediately before filing. **All three builds carry the byte-identical embedded
+logo image** (283 × 104 px, image-stream sha256 `e6bb8ee68a27546a`), so nothing below is a data
+artefact.
+
+| Document | sv9901 v26.35.10 | sv9979 fix | production |
+|---|---|---|---|
+| Invoice INV-S2-4219 | **178.50 × 65.60 pt** | **159.43 × 58.59 pt** | **159.43 × 58.59 pt** |
+| Estimate | 178.50 × 65.60 pt | 159.43 × 58.59 pt | not measured |
+| Credit memo CM9979-4189 | none on that branch | 159.43 × 58.59 pt | not measured |
+| logo x range (invoice) | 217.93 – 396.43 pt | 217.93 – 377.35 pt | 217.93 – 377.35 pt |
+| vertical centre | 81.00 pt | 81.00 pt | 81.00 pt |
+
+**0.8932 on both axes** — scaled, not cropped, and the position does not move.
+
+**Cause**, proven by rendering the same document twice with only the one rule swapped:
+`width: 238px` → `width: 100%; max-width: 238px`. `width: 100%` resolves against the logo's own
+column, which is about **212 px** at A4 content width, so the box lands smaller than the old fixed
+238 px and `background-size: contain` scales the picture with it. The old rule draws 238 px and
+**overflows a 217.89 px column — the exact overflow SV-9975 was written to fix.** So the fix works;
+this is its side effect on the printed page, and it is **not** caused by the SV-9979 change.
+
+**Scope: print only.** On screen the logo is effectively unchanged (238.00 → 236.94 px, 0.4%).
+
+**Filed as [SV-9981]** — Bug · **Medium** · parent **SV-9892** · `Relates` → SV-9975, SV-9977, SV-9979 ·
+Product Area Work Orders · one annotated exhibit built from the **PDF pages themselves**
+(`ev/04-printed-logo-10-percent-smaller.png`), verified rendering as a real Jira file.
+Summary 69 chars. Every field read back from Jira after writing; no AI fingerprint.
+
+## Honest limits stated in the ticket
+
+* The Estimate and Credit Memo rows are measured on the builds shown; production's own estimate and
+  credit memo were not printed.
+* sv9901 has no credit memo, so that row is single-sided by necessity.
+
+## Ticket set from this work
+
+| | |
+|---|---|
+| [SV-9980] | Legacy preview 10% narrower on screen than the old build (the width the SV-9979 fix did not restore) |
+| [SV-9981] | Legacy invoice prints the shop logo about 10% smaller than it used to (the SV-9975 rule's side effect) |
+| SV-9979 comment `76429` | the QA result for the reported type-size defect — PASSED |
