@@ -125,3 +125,51 @@ because it is a real (pre-existing, now-fixed) defect on the build the ticket tr
 ## State
 
 Nothing was written on the fix branch. Nothing was written on production. No Jira write of any kind.
+
+---
+
+# Credit Invoice — the last row, now closed (2026-09-13)
+
+A credit memo did not exist on the branch, so one was created:
+**CM9979-4189**, $12.34, store credit, reason `ZZAUTOTEST credit memo for SV-9979 document check`,
+customer Abode Trucking & Repair (`POST /api/credit-memos` → **201**).
+
+Printing it calls **`GET /api/credit-memos/{id}/pdf` directly — there is no in-app HTML preview for a
+credit memo**, so `.invoice-sheet` and its zoom never apply to it and the reported problem cannot occur
+there. The PDF was measured anyway: 1 page, 595.28 × 841.89 pt, fonts Nunito-Sans / Nunito-Sans-Bold,
+type ladder **6.48 / 9.6 / 10.5 / 10.8 / 14.4 pt** — the standard ladder, identical to every other
+document measured on every build.
+
+**All five document types the ticket lists are now covered.**
+
+---
+
+# What was posted (2026-09-13)
+
+* **[SV-9980]** filed — *"Legacy invoice preview renders about 10% narrower on screen than the old build"*.
+  Bug · priority **Medium** · parent **SV-9892** · `Relates` → SV-9979 · Product Area Work Orders ·
+  first line credits SV-9979 · one annotated attachment, verified rendering as a real Jira file.
+  Every field read back from Jira after writing.
+* **SV-9979 comment `76429`** — the QA result. First line is the verdict, then the before/after exhibit,
+  a 9-row checks table, the SV-9980 exhibit, the responsiveness exhibit, the answer to the open question
+  in the previous comment, the honest limits, and the technical section last.
+  Read back: **3 media nodes, all `type: file`, in order, correct dimensions; 16 table rows; three
+  SV-9980 references all resolved to real issue links; no AI fingerprint.**
+
+## Pre-post gate (Standing Rule 72)
+
+* Build markers re-read live at pass start **and again at 10:40:53Z immediately before posting** —
+  all three identical both times.
+* The `invoice-design-legacy` marker class re-checked live at gate time: present on sv9979, absent on
+  sv9901 and production.
+* Ticket re-read at gate time: still In Progress, still 1 comment — nothing had moved under us.
+* Every figure in the comment traces to a measurement taken this pass; every named record verified live
+  on the branch.
+* Images uploaded as real Jira attachments and verified **from the posted comment**, not from the source.
+
+## Outstanding
+
+* **SV-9980** is with the developer — whether the Legacy preview should be 800 px like v26.35.10 or
+  718 px to match the PDF is a product call, not a QA one.
+* The printed logo being ~11% smaller (SV-9975's rule, inherited) is **not** raised — on hold by the
+  QA lead's decision.
