@@ -358,3 +358,88 @@ across the two real environments. **The sv9901 session is dead** (`302` on
 `/api/auth/me/fe-permissions`, on `/api/organizations/invoice-settings/view`, and on
 `quick-login`) — fresh `sv_sso_session` / `PHPSESSID` / `cf_clearance` for
 `sv9901.qa.shopview.com` is the only thing missing. The logo file is saved for that run.
+
+---
+
+# THE TWO ENVIRONMENTS, ONE IDENTICAL LOGO FILE (2026-09-13, later)
+
+Fresh QA cookies arrived, so the comparison was repeated properly: **the same logo file,
+byte for byte, on both environments**, and every figure below measured live.
+
+Logo used on both: **283 × 104 px, 18,819 bytes, sha256 `b102a952f47b2d6d`**, aspect 2.7212.
+Uploaded on QA via `POST /api/organization/organization-details/upload-logo` (201) and verified
+by pulling each environment's own Legacy document and hashing the embedded image — **equal**.
+
+Builds re-read live: QA `sv9901` **v26.35.10-7b9a47d** (last-modified Fri 11 Sep 18:29:38 GMT),
+production **v26.36.4-3e1c643**. Production's `documentDesign` still `legacy`.
+QA has no `documentDesign` field at all — it predates the design selector.
+
+## On screen — the in-app Finance-tab preview, viewport 1500 × 1100
+
+| | QA v26.35.10 | production v26.36.4 |
+|---|---|---|
+| `.invoice-sheet` wrapper | **does not exist** | exists |
+| preview zoom | none | **1.11421** |
+| document laid out at | 800 px | 718 px, zoomed to fill 800 |
+| shop-name box | 239.98 × **28.61** | 236.94 × **31.86** |
+| logo box | **238.00 × 120.00** | **236.94 × 133.70** |
+| declared type sizes | 19.2 / 14.4 / 14 / 12.8 / 8.64 | identical |
+
+- **Text is 11.4% bigger on production** — +2.19 px on the shop name. That is the report.
+- **The logo is not** — the picture drawn inside the box goes 87.46 px → 87.07 px tall (0.4% smaller).
+  The box grew 13.7 px taller because a fixed 120 px box is being zoomed; the picture did not.
+
+## In print — each environment's own PDF, same page size, same logo file
+
+| | QA v26.35.10 | production v26.36.4 |
+|---|---|---|
+| page | 595.28 × 841.89 pt | identical |
+| type sizes | 9.6 / 10.5 / 10.8 / 14.4 pt | identical (+ 6.48 disclaimer) |
+| logo drawn width | **178.50 pt** | **159.43 pt** |
+| logo drawn height | **65.60 pt** | **58.59 pt** |
+| logo x range | 217.93 – 396.43 | 217.93 – 377.35 |
+| vertical centre | 81.00 pt | 81.00 pt |
+
+**The printed logo is 10.7% SMALLER on production** (0.8932 on both axes), same file, same page.
+
+Mechanism, verified by rendering production's own document at the A4 content width with each rule:
+
+- `width: 238px` (v26.35.10) draws 238 px whatever its column is — it **overflows** a 217.89 px column.
+- `width: 100%; max-width: 238px` (production) draws the **column width**, so on A4 it lands
+  at ~212.6 px and the logo comes out about a tenth smaller than it used to print.
+
+So the SV-9975 fix does stop the overflow, and the visible cost is a slightly smaller printed logo.
+Nobody has flagged that, and it is worth a decision rather than a surprise.
+
+## The whole picture, in one line each
+
+- **On screen:** text 11.4% bigger, logo unchanged — caused by the app's new preview `zoom`.
+- **In print:** text unchanged, logo 10.7% smaller — caused by the document's new logo `width` rule.
+
+## Two corrections to our own earlier record
+
+1. The 12 Sep addendum said the printed logo was **identical** on both (178.50 pt each). With the
+   logo file held constant that is **wrong** — production prints 159.43 pt. That row is superseded.
+2. It also had the two shops' logo files the wrong way round.
+
+## ⚠️ Production's shop logo changed under us, and it was not us
+
+At **09:20** production's Legacy document embedded a **320 × 157** logo (sha `76d6376053ed0c5b`).
+At **10:15** the same call on the same invoice returned **283 × 104** (sha `b102a952f47b2d6d`).
+No write of ours touched it — our only production writes all day were two `POST /api/contacts/change`
+calls (enabling, then restoring, one contact's portal access). Several people share this production
+account, so this reads as somebody's deliberate change and **has not been reversed** (a change made
+under the shared account is somebody's action, not drift).
+
+It is recorded because it silently made the two environments match again, and because any figure
+taken from production's logo before 10:15 refers to a different file.
+
+## State left behind
+
+- **QA:** the org logo was temporarily set to production's file, then **restored to its original
+  283 × 104 / sha `b102a952f47b2d6d`** — re-read from the live document and hash-verified.
+- **Production:** nothing changed by us. The contact used earlier is back to e-mail `-` and
+  Customer Portal Access `No`.
+- No Jira write of any kind.
+
+Exhibit: `ev/portal/19-two-environments-same-logo.png`.
