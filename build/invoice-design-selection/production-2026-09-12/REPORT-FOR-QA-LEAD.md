@@ -20,6 +20,9 @@ today. Everything below was seen on screen or in the actual document a customer 
 | The old look's approval column, and the approving contact staying put and locked after invoicing | Seen working (one part still open — see section 4) |
 
 **Thirty-five of the forty-five checks now carry a Production result**, and every one of them passed.
+Of the ten that do not, **four are now ruled out of Production altogether** on your instruction of
+13 September — anything to do with a brand-new shop or the customer portal. Those four keep the
+results they already have from the test site. **That leaves six.**
 Each has its own comment on the test, clearly marked as coming from Production, with the earlier
 result left untouched below it. I checked this one test at a time against the live system rather than
 trusting my own tally — which is just as well, because my first count said thirty-six.
@@ -35,11 +38,11 @@ trusting my own tally — which is just as well, because my first count said thi
 
 | What is left | Why it is not done | What would finish it |
 |---|---|---|
-| A brand-new shop starts on the new look | Would mean creating a real new company on the live system | Your say-so, or do this one on the test site instead |
+| ~~A brand-new shop starts on the new look~~ | **Ruled out of Production, 13 September** — stays on the test site | Nothing needed |
 | Someone without settings access cannot see the setting | Needs a second sign-in that does not have settings access. Making one sends a real invitation email to a real address | Give me a second username and password that lacks settings access, or say it is fine to invite one |
 | A credit spread across several invoices at once | It needs two invoices standing unpaid at the same time, and this customer has money already sitting on account that settles each new invoice the moment it is raised, so nothing stays unpaid. Raising fresh work instead does not help either: a new job cannot be invoiced until a foreman or manager approves it, and this sign-in cannot approve its own work | Either approve a couple of jobs for review and give me a customer with no money on account, or accept that the same behaviour was already proved on two other credits — one raised against a parts sale, one standing entirely on its own — both of which followed the shop's setting and kept no look of their own |
-| Sending a document by email — three checks | The send box opens with a **real customer's email address already ticked**, and it would not untick. I stopped rather than risk emailing a real person from the live system | Confirm that address is safe to email, or point me at a job whose customer address is a test one |
-| Paying by card on the customer portal — two checks | Card taking is switched **off** on this account, and there are no card payments at all. Turning it on is a money-handling change on the live system | Tell me to switch card taking on, or leave these two to the test site |
+| Sending a document by email — **two** checks (the third was also a portal check and is ruled out) | The send box opens with a **real customer's email address already ticked**, and it would not untick. I stopped rather than risk emailing a real person from the live system | The cleanest fix is mine to make: let me change that test customer's contact address to your own, then send. The mail lands with you, you can see the document in it, and nobody else is written to. Say the word and it is done |
+| ~~Paying by card on the customer portal — two checks~~ | **Ruled out of Production, 13 September** — stay on the test site | Nothing needed |
 | Batch and imported invoices | **Batch:** the report that lists them shows none at all on this account, so there is nothing of that kind to open. **Imported:** there IS a screen for importing invoices from a spreadsheet. I used its own template, and it said "imported successfully" — but I could not then find the imported invoice anywhere: not on the customer's list, and not in the full list of every job on the account, which I went through to the end. So I could not open it under each look | Tell me where an imported invoice shows up once it has been brought in — or point me at one that already exists. Worth a glance in its own right: a spreadsheet that reports success but leaves nothing you can find is the sort of thing a real customer would notice. I have not called it a fault and have not failed anything for it |
 
 ---
@@ -99,8 +102,9 @@ three parts that were seen; or (3) leave this part to the test site.
 
 ## 5 · Ready to hand over?
 
-**Not yet — ten checks still need a Production result, and every one of them needs something from
-you.** The thirty-five that are done are finished properly and need nothing further.
+**Not yet — but the list is down to six.** Four of the ten are now ruled out of Production for good,
+and of the six left, one I can finish myself the moment you agree to the email address change. The
+thirty-five that are done are finished properly and need nothing further.
 
 The invoice refresh testing you wanted next has not been started, as agreed — that waits until this
 one is complete.
@@ -115,8 +119,16 @@ and Trucks Hill 2.
 **With a Production result — 35, all Passed, each with the production comment as the latest result**
 (verified test by test against TestRail on 13 September, not counted from local files).
 
-**Without one — 10:** C53523 · C53529 · C53537 · C53545 · C53551 · C53565 · C53567 · C53568 ·
-C53569 · C53570 (the last being the three-quarters-done one held in section 4c).
+**Ruled out of Production (4), 13 September — brand-new shop and customer portal:** C53523 (new
+organisation) · C53545 · C53567 · C53569 (portal). Their test-site results stand.
+
+**Still outstanding on Production (6):** C53529 · C53537 · C53551 · C53565 · C53568 · C53570.
+
+**Note on the portal exclusion:** C53566, the portal on-screen and PDF check, was already run on
+Production successfully before this instruction — the portal is reachable there and its documents do
+render under both designs. It is where the per-line fee observation in SV-9978 came from. Only the
+card-payment portal checks were ever actually untestable. Left as Passed; say if you want it parked
+with the other three instead.
 
 **Ticket raised:** SV-9978 (Task, Medium, Product Area Work Orders), linked `relates to` SV-9895 and
 SV-9897 under epic SV-9892 — https://shopview.atlassian.net/browse/SV-9978

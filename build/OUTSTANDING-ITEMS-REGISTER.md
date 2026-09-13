@@ -178,7 +178,8 @@ Full detail, the verbatim ruling, the spec quote and the ticket's required shape
 ## P2 — six things the QA lead must decide before the production run can finish (opened 2026-09-13)
 
 **Thirty-five** of the forty-five checks in run 446 carry a production result and **all thirty-five
-passed** — verified test by test against TestRail on 13 September, not counted from local files (the
+passed**; of the ten without one, **four were ruled out of production on 13 September** (brand-new
+shop and customer portal), leaving **six** — verified test by test against TestRail on 13 September, not counted from local files (the
 local tally said thirty-six and was wrong). Ten do not, and every one of them is waiting on him rather
 than on anything broken. Each is written out in full,
 answerable without opening anything, in
@@ -186,11 +187,11 @@ answerable without opening anything, in
 
 | Ref | Waiting on | Cost of silence |
 |---|---|---|
-| **P2-a** | Whether a real new organisation may be created on production, or this goes to staging | C53523 stays without a production result |
+| ~~**P2-a**~~ | **CLOSED 13 September — ruled out of production by the QA lead:** nothing to do with a brand-new shop is tested there. C53523 keeps its staging result | — |
 | **P2-b** | A second production sign-in WITHOUT settings access (making one sends a real invitation email) | C53529 stays without one |
 | **P2-c** | A foreman/manager review approval plus a customer with no money on account — or his agreement that the behaviour is adequately proved by the two other credits already checked | C53537 stays without one |
-| **P2-d** | Confirmation that the customer address pre-ticked in the Send dialog (`dsfsdf@gmail.com`) is safe to email from production | C53545, C53551, C53565 stay without one |
-| **P2-e** | Whether card taking may be switched on for the production portal (a money-handling change) | C53567, C53569 stay without one |
+| **P2-d** | Permission to change the test customer's contact address to the QA lead's own (`bilal.muzamil@shopview.com`) and then send — the Send dialog pre-ticks `dsfsdf@gmail.com`, a real outside address, and would not untick. Changing the contact is authorised data seeding (Rule 107); SENDING outward is the part that needs his word | C53551 and C53565 stay without a production result. C53545 is now out of scope (portal) |
+| ~~**P2-e**~~ | **CLOSED 13 September — ruled out of production by the QA lead:** nothing to do with the customer portal is tested there. C53545, C53567 and C53569 keep their staging results. ⚠️ Note for the record: C53566 (portal on screen and PDF) HAD already been run successfully on production before the instruction — the portal is reachable there and renders under both designs; only the card-payment checks were ever untestable. Left Passed, and he has been told | — |
 | **P2-f** | Where an imported invoice appears once the Invoices import has run. The import reported success and the server raised no error, but the record could not be found on the customer's Invoices tab or in the work-order list paged to exhaustion (186). Batch invoices genuinely number zero — the app's own IBS Batches report lists none | C53568 stays without one. Also worth a look in its own right, reported to him as an observation, NOT filed |
 | **P2-g** | C53570 is three-quarters observed; the last part needs a job carrying an IBS approval code, and obtaining one sends a real request through the external approval system | C53570 stays held rather than posted |
 
