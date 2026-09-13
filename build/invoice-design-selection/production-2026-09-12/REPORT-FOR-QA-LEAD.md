@@ -19,12 +19,15 @@ today. Everything below was seen on screen or in the actual document a customer 
 | A customer credit that stands on its own follows the current look and keeps no look of its own | Confirmed |
 | The old look's approval column, and the approving contact staying put and locked after invoicing | Seen working (one part still open — see section 4) |
 
-**Thirty-six of the forty-five checks now carry a Production result.** Each one has its own comment
-on the test, clearly marked as coming from Production, with the earlier result left untouched below it.
+**Thirty-five of the forty-five checks now carry a Production result**, and every one of them passed.
+Each has its own comment on the test, clearly marked as coming from Production, with the earlier
+result left untouched below it. I checked this one test at a time against the live system rather than
+trusting my own tally — which is just as well, because my first count said thirty-six.
 
 > ⚠️ **One thing to watch when you open the run:** the run's own summary says 45 passed. That is
-> counting the earlier testing too. The number that matters is **36 with a Production result**; the
-> other nine still show what was found on the test site, not here.
+> counting the earlier testing too. The number that matters is **35 with a Production result**; the
+> other ten still show what was found on the test site, not here. Those ten are listed below, and each
+> one says what it needs.
 
 ---
 
@@ -96,8 +99,8 @@ three parts that were seen; or (3) leave this part to the test site.
 
 ## 5 · Ready to hand over?
 
-**Not yet — nine checks still need a Production result, and six of those need something from you.**
-The thirty-six that are done are finished properly and need nothing further.
+**Not yet — ten checks still need a Production result, and every one of them needs something from
+you.** The thirty-five that are done are finished properly and need nothing further.
 
 The invoice refresh testing you wanted next has not been started, as agreed — that waits until this
 one is complete.
@@ -109,12 +112,11 @@ Run 446 · https://shopview.testrail.io/index.php?/runs/view/446 · build `v26.3
 account `bilal.muzamil+serviceadvisornoreports@shopview.com` · org Bilal-Trucks · workplaces Truck Hill 1
 and Trucks Hill 2.
 
-**With a Production result (36):** C53518–C53522, C53524–C53528, C53530–C53536, C53539, C53540,
-C53541, C53542, C53543, C53544, C53546–C53550, C53552–C53564, C53566, C53571, C53572, C53592
-(exact list in `PR-01.json` … `PR-12.json`).
+**With a Production result — 35, all Passed, each with the production comment as the latest result**
+(verified test by test against TestRail on 13 September, not counted from local files).
 
-**Without one (9):** C53523 · C53529 · C53537 · C53545 · C53551 · C53565 · C53567 · C53568 · C53569.
-**Three-quarters done, held:** C53570.
+**Without one — 10:** C53523 · C53529 · C53537 · C53545 · C53551 · C53565 · C53567 · C53568 ·
+C53569 · C53570 (the last being the three-quarters-done one held in section 4c).
 
 **Ticket raised:** SV-9978 (Task, Medium, Product Area Work Orders), linked `relates to` SV-9895 and
 SV-9897 under epic SV-9892 — https://shopview.atlassian.net/browse/SV-9978

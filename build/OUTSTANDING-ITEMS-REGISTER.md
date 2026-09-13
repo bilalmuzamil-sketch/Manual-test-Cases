@@ -177,8 +177,10 @@ Full detail, the verbatim ruling, the spec quote and the ticket's required shape
 
 ## P2 — six things the QA lead must decide before the production run can finish (opened 2026-09-13)
 
-Thirty-six of the forty-five checks in run 446 carry a production result and **none failed**. Nine do
-not, and six of those are waiting on him rather than on anything broken. Each is written out in full,
+**Thirty-five** of the forty-five checks in run 446 carry a production result and **all thirty-five
+passed** — verified test by test against TestRail on 13 September, not counted from local files (the
+local tally said thirty-six and was wrong). Ten do not, and every one of them is waiting on him rather
+than on anything broken. Each is written out in full,
 answerable without opening anything, in
 `build/invoice-design-selection/production-2026-09-12/REPORT-FOR-QA-LEAD.md`.
 
