@@ -189,3 +189,37 @@ The QA branch wraps on both surfaces. So SV-9976 is a **print-path** issue, and 
 The two documents come from different shops as well as different builds, so strictly this compares
 build-and-org together. Both changed rules carry developer comments describing the change, which makes
 the build the obvious explanation rather than org data — but it is worth one look at a second shop.
+
+---
+
+# SECOND SHOP — the caveat is closed (2026-09-13)
+
+Both environments have a second shop. Switched to each (`POST /api/iam/change-location`), pulled a
+Legacy document from it, and diffed. Four documents, two shops per build.
+
+| | QA shop 1 (Heavy Duty) | QA shop 2 (Lethbridge) | PROD shop 1 (Trucks Hill 2) | PROD shop 2 (Truck Hill 1) |
+|---|---|---|---|---|
+| Page base size | 16px | 16px | 16px | 16px |
+| Shop name / Bill To | 19.2px | 19.2px | 19.2px | 19.2px |
+| Address lines | 14.4px | 14.4px | 14.4px | 14.4px |
+| Service Order / Unit / headings | 14px | 14px | 14px | 14px |
+| Totals | 12.8px | 12.8px | 12.8px | 12.8px |
+| Small print | 8.64px | 8.64px | 8.64px | 8.64px |
+| Logo box | 238×120 | 238×120 | 238×120 | 238×120 |
+| Logo margin | 0px | 0px | **0 78.33px (centred)** | **0 78.33px (centred)** |
+| Service Order wrap | normal | normal | **nowrap** | **nowrap** |
+
+**CSS rule diff:**
+
+- **Within QA, shop 1 vs shop 2 — IDENTICAL** (77 rules each)
+- **Within production, shop 1 vs shop 2 — IDENTICAL** (78 rules each)
+- **Across builds — exactly 2 rules differ, and they are the SAME 2 rules on both shops**
+
+So the stylesheet **does not vary by shop**. The two differences are the **build**, definitively:
+`.organization-logo-new` (fixed 238px → `width:100%; max-width:238px; margin:0 auto`) and the new
+screen-only `white-space: nowrap` on the `.custom-table` heading/first/second cells.
+
+**Every type size is identical across all four documents, and so is the logo box.** No font size
+anywhere differs between builds or between shops.
+
+Locations were switched back afterwards (production → Trucks Hill 2, QA → Staging Heavy Duty).
