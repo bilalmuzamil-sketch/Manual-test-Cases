@@ -1,0 +1,34 @@
+{
+ "at": "2026-09-13T00:03:33.666Z",
+ "case": "C53568",
+ "net": [
+  "POST /api/imports/work-order-historical"
+ ],
+ "steps": {
+  "fileInput": true,
+  "preview": {
+   "hasTag": false,
+   "error": "required columns, otherwise all rows associated with that invoice will be skipped",
+   "rows": [],
+   "buttons": [
+    {
+     "txt": "Import Invoices",
+     "dis": false
+    }
+   ]
+  },
+  "importClick": {
+   "clicked": true
+  },
+  "afterImport": {
+   "msg": null,
+   "tag": false
+  },
+  "writes": [
+   "POST /api/imports/work-order-historical"
+  ],
+  "found": []
+ },
+ "renders": {},
+ "drift": []
+}

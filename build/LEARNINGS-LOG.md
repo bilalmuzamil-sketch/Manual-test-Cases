@@ -1566,3 +1566,24 @@ After posting two production results, run 446 read "passed 45, untested 0" — w
 45 carried a production comment; the other 11 still showed their QA-branch or Staging result. The QA
 lead has already been burned once by a run that looked complete. **Report the number of cases with a
 result from THIS environment, never the run's own totals**, and name the ones that do not have one.
+
+### L0075 — "there is no screen for that" is a claim about my walking, not about the product
+**2026-09-13, production, C53568.** I had written "batch and imported invoices do not exist here and
+there is no screen that creates one" into a report for the QA lead. Walking the app before sending it
+found **both**: an Invoices import screen under Settings with its own CSV template, and an IBS Batches
+report. The report would have been wrong in his hands. **Walk the thing before writing the sentence —
+especially the sentence that says something is not there.** The five-minute walk is cheaper than the
+correction.
+
+### L0076 — an error message can name the wrong cause
+The invoice import rejected `YYYY-MM-DD` dates with *"InvoiceDate and InvoiceNumber cannot be empty"*.
+Both fields were populated; only the date FORMAT was wrong, and the message pointed at emptiness and at
+the invoice number, neither of which was the problem. **Read a server error as a hint, not a diagnosis,
+and vary one input at a time** — two date formats, same file otherwise, is what found it.
+
+### L0077 — prove the search before trusting its zero
+`/api/work-orders?search=` returns 78 rows for a customer name and **0 for a real work-order number**.
+Had I taken the zero from my invoice-number search as evidence, I would have reported a record missing
+on the strength of a search that never matches that field. The evidence that actually counts is the
+**paged enumeration to exhaustion** (186 distinct work orders, pages until no new ids). **A search's
+zero is worth only as much as the positive control that goes with it, on the SAME field.**

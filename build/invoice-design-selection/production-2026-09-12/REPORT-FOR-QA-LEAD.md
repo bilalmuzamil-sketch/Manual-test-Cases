@@ -37,7 +37,7 @@ on the test, clearly marked as coming from Production, with the earlier result l
 | A credit spread across several invoices at once | It needs two invoices standing unpaid at the same time, and this customer has money already sitting on account that settles each new invoice the moment it is raised, so nothing stays unpaid. Raising fresh work instead does not help either: a new job cannot be invoiced until a foreman or manager approves it, and this sign-in cannot approve its own work | Either approve a couple of jobs for review and give me a customer with no money on account, or accept that the same behaviour was already proved on two other credits — one raised against a parts sale, one standing entirely on its own — both of which followed the shop's setting and kept no look of their own |
 | Sending a document by email — three checks | The send box opens with a **real customer's email address already ticked**, and it would not untick. I stopped rather than risk emailing a real person from the live system | Confirm that address is safe to email, or point me at a job whose customer address is a test one |
 | Paying by card on the customer portal — two checks | Card taking is switched **off** on this account, and there are no card payments at all. Turning it on is a money-handling change on the live system | Tell me to switch card taking on, or leave these two to the test site |
-| Batch and imported invoices | Neither exists on this account and there is no screen that creates one | Point me at one, or confirm there are none here |
+| Batch and imported invoices | **Batch:** the report that lists them shows none at all on this account, so there is nothing of that kind to open. **Imported:** there IS a screen for importing invoices from a spreadsheet. I used its own template, and it said "imported successfully" — but I could not then find the imported invoice anywhere: not on the customer's list, and not in the full list of every job on the account, which I went through to the end. So I could not open it under each look | Tell me where an imported invoice shows up once it has been brought in — or point me at one that already exists. Worth a glance in its own right: a spreadsheet that reports success but leaves nothing you can find is the sort of thing a real customer would notice. I have not called it a fault and have not failed anything for it |
 
 ---
 
@@ -73,7 +73,15 @@ differently. The question is whether they are what the product should do.
 **What I need:** his answer, and then whether the related checks are passed or failed.
 **If nothing happens:** the ticket just sits there. Nothing is blocked, and no test is affected.
 
-### (b) One check that is three-quarters done
+### (b) A small thing worth a look, separate from this feature
+
+Bringing invoices in from a spreadsheet said **"imported successfully"**, and the system raised no
+complaint about the file, but afterwards I could not find the invoice it says it created — not on the
+customer, and not among every job on the account. It may simply live somewhere I have not thought to
+look, which is why I am telling you rather than raising it. It has nothing to do with the two looks,
+and no test has been marked down for it.
+
+### (c) One check that is three-quarters done
 
 The check on the old look's approval column found three of its four parts working correctly. The
 fourth needs a job carrying an approval code from the outside approval system, and no job on this

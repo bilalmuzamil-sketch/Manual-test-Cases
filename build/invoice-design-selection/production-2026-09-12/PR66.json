@@ -1,0 +1,35 @@
+{
+ "at": "2026-09-13T00:07:46.860Z",
+ "case": "C53568",
+ "attempts": [
+  {
+   "date": "09/13/2026",
+   "tag": "ZZAUTOTEST-IMP-A",
+   "responses": [
+    {
+     "url": "/api/imports/work-order-historical",
+     "s": 200,
+     "body": "{\"duplicatedInvoices\":[]}"
+    }
+   ],
+   "screen": [
+    "skipped"
+   ]
+  },
+  {
+   "date": "2026-09-13",
+   "tag": "ZZAUTOTEST-IMP-B",
+   "responses": [
+    {
+     "url": "/api/imports/work-order-historical",
+     "s": 200,
+     "body": "{\"errors\":[{\"rowNumber\":2,\"message\":\"InvoiceDate and InvoiceNumber cannot be empty.\"},{\"rowNumber\":3,\"message\":\"InvoiceDate and InvoiceNumber cannot be empty.\"}],\"invoicesCreated\":0,\"invoicesFailed\":1,\"duplicatedInvoices\":[]}"
+    }
+   ],
+   "screen": [
+    "Failed Rows Failed Row Number Failure Reason 2 InvoiceDate and InvoiceNumber cannot be empty",
+    "Created: 0Invoices Failed: 1"
+   ]
+  }
+ ]
+}

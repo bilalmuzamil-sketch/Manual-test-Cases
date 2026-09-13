@@ -1,0 +1,64 @@
+{
+ "at": "2026-09-13T00:09:51.303Z",
+ "case": "C53568",
+ "responses": [
+  {
+   "u": "/api/imports/work-order-historical",
+   "s": 200,
+   "b": "{\"duplicatedInvoices\":[]}"
+  }
+ ],
+ "steps": {
+  "afterAttach": {
+   "fileNamed": true,
+   "buttons": [
+    {
+     "txt": "stop_circle 3621:44:29 S-2",
+     "dis": false
+    },
+    {
+     "txt": "Trucks Hill 2 0.00 Hrs Today S",
+     "dis": false
+    },
+    {
+     "txt": "cloud_download Download Templa",
+     "dis": false
+    },
+    {
+     "txt": "Import Invoices",
+     "dis": false
+    }
+   ],
+   "tail": "e Advisor, Item, Line Title - What are you doing, Line Description - Why are you doing it, Tech Story, Part #, Part Description, Qty, Rate, Total, Tax Amount. Your file's first row must contain these columns. Also, new line separator is used for new row, comma for columns. Your rows must contain valid values for all required columns, otherwise all rows associated with that invoice will be skipped."
+  },
+  "afterClick": {
+   "dialog": null,
+   "buttons": [
+    {
+     "txt": "stop_circle 3621:44:38 S-2",
+     "dis": false
+    },
+    {
+     "txt": "Trucks Hill 2 0.00 Hrs Today S",
+     "dis": false
+    },
+    {
+     "txt": "cloud_download Download Templa",
+     "dis": false
+    },
+    {
+     "txt": "Import Invoices",
+     "dis": true
+    },
+    {
+     "txt": "Close",
+     "dis": false
+    }
+   ],
+   "tail": ", Line Title - What are you doing, Line Description - Why are you doing it, Tech Story, Part #, Part Description, Qty, Rate, Total, Tax Amount. Your file's first row must contain these columns. Also, new line separator is used for new row, comma for columns. Your rows must contain valid values for all required columns, otherwise all rows associated with that invoice will be skipped. check_circle All invoices have been imported successfully. Close"
+  },
+  "final": [
+   "imported successfully"
+  ]
+ }
+}

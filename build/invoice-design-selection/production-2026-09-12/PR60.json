@@ -1,0 +1,108 @@
+{
+ "at": "2026-09-12T23:59:07.532Z",
+ "case": "C53568",
+ "screens": {
+  "customer-invoices": {
+   "url": "https://app.shopview.com/customers/01de15df-5651-4704-9450-0b94f4375f6b/invoices",
+   "len": 4089,
+   "mentionsBatch": false,
+   "mentionsImport": false,
+   "invoiceRows": 42,
+   "controls": [],
+   "head": "Skip to main content Work Orders Schedule Customers Parts Reports Search Ctrl+K stop_circle 3621:33:37 S-2 notifications Trucks Hill 2 0.00 Hrs Today S( aqeel transport 56 edit_not"
+  },
+  "workorders": {
+   "url": "https://app.shopview.com/workorders",
+   "len": 4660,
+   "mentionsBatch": false,
+   "mentionsImport": true,
+   "invoiceRows": 1,
+   "controls": [],
+   "head": "Skip to main content Work Orders Schedule Customers Parts Reports Search Ctrl+K stop_circle 3621:33:49 S-2 notifications Trucks Hill 2 0.00 Hrs Today S( All Estimates Work Orders C"
+  },
+  "reports": {
+   "url": "https://app.shopview.com/reports/punch-clock-activities",
+   "len": 1251,
+   "mentionsBatch": true,
+   "mentionsImport": false,
+   "invoiceRows": 0,
+   "controls": [
+    {
+     "tid": "report_nav_batch_transactions",
+     "txt": "paidIBS Batches"
+    }
+   ],
+   "head": "Skip to main content Work Orders Schedule Customers Parts Reports Search Ctrl+K stop_circle 3621:34:02 S-2 notifications Trucks Hill 2 0.00 Hrs Today S( LABOR schedule Timesheet Ac"
+  },
+  "settings": {
+   "url": "https://app.shopview.com/administration/settings",
+   "len": 886,
+   "mentionsBatch": false,
+   "mentionsImport": true,
+   "invoiceRows": 0,
+   "controls": [
+    {
+     "tid": "link_contacts_import_tab",
+     "txt": "callContacts"
+    },
+    {
+     "tid": "link_vehicles_import_tab",
+     "txt": "local_shippingAssets"
+    },
+    {
+     "tid": "link_vendors_import_tab",
+     "txt": "storeVendors"
+    },
+    {
+     "tid": "link_inventory_import_tab",
+     "txt": "inventory_2Inventory"
+    },
+    {
+     "tid": "link_invoices_import_tab",
+     "txt": "receipt_longInvoices"
+    }
+   ],
+   "head": "Skip to main content Work Orders Schedule Customers Parts Reports Search Ctrl+K stop_circle 3621:34:14 S-2 notifications Trucks Hill 2 0.00 Hrs Today S( SETTINGS info Settings supe"
+  },
+  "part-sales": {
+   "url": "https://app.shopview.com/parts/part-sales?status=estimate&status=approved",
+   "len": 921,
+   "mentionsBatch": false,
+   "mentionsImport": false,
+   "invoiceRows": 0,
+   "controls": [],
+   "head": "Skip to main content Work Orders Schedule Customers Parts Reports Search Ctrl+K stop_circle 3621:34:28 S-2 notifications Trucks Hill 2 0.00 Hrs Today S( SALES & SERVICE sell Part S"
+  }
+ },
+ "api": {
+  "/api/invoices?limit=50": {
+   "s": 404,
+   "n": 0,
+   "t": "{\"errors\":[{\"error\":\"\\u0027resource\\u0027 was not found.\"}]}"
+  },
+  "/api/invoices/batch": {
+   "s": 404,
+   "n": 0,
+   "t": "{\"errors\":[{\"error\":\"\\u0027resource\\u0027 was not found.\"}]}"
+  },
+  "/api/invoice-batches": {
+   "s": 404,
+   "n": 0,
+   "t": "{\"errors\":[{\"error\":\"\\u0027resource\\u0027 was not found.\"}]}"
+  },
+  "/api/invoices/imported": {
+   "s": 404,
+   "n": 0,
+   "t": "{\"errors\":[{\"error\":\"\\u0027resource\\u0027 was not found.\"}]}"
+  }
+ },
+ "build": "v26.36.4-3e1c643",
+ "nav": [
+  "Work Orders",
+  "Schedule",
+  "Customers",
+  "Parts",
+  "Reports",
+  "notifications"
+ ]
+}

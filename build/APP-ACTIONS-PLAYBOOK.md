@@ -4802,3 +4802,37 @@ anything about a missing Authorizer.
 ### Create Invoice
 Still gated on the work order being **Complete** (recorded earlier the same day). Set it through
 `button_work_order_nav_bar_menu` → Set status → Complete.
+
+### Completing a work order, and why fresh work cannot simply be invoiced
+`[data-test-id="button_complete_work_order"]` on the **Lines** tab is what completes a work order.
+It is **NOT** the status badge (`badge_wo_status` is a label, not a menu) and **NOT** a "Set status"
+menu — that is the PART SALE control (`button_part_sale_nav_bar_menu`), and assuming it applied to
+work orders cost three probes. The work-order kebab (`button_work_order_nav_bar_menu`) offers only
+Audit Log and Timesheets. Individual lines are completed first via
+`button_action_complete_line_<lineId>`.
+
+Completing does not make a job invoiceable: it opens **"Complete & Send to Review"**, and afterwards
+the screen reads *"A foreman or manager must review this work order before it can be invoiced."* A
+work order can also refuse to complete with *"1 part waiting to receive"*. So on an account whose
+sign-in cannot approve reviews, **the only reliable way to obtain a fresh unpaid invoice is to REVERSE
+an already-invoiced work order and recreate it** — and even then, a customer carrying money on account
+may have the new invoice settled the moment it is raised.
+
+### Invoices import (Settings → Invoices)
+Route `/administration/invoices-import`. Controls: `file_upload` (a real `<input type=file>`, so
+`setInputFiles` works), `button_download_template`, `button_import_invoices`. The template is a CSV
+whose required columns are starred: `*Shop Location, *Customer, *Invoice Number, *Invoice Date, *Item
+(Labor|Part), *Line Title, *Qty, *Rate, *Total, *Tax Amount`.
+🔑 **The date must be `MM/DD/YYYY`.** `YYYY-MM-DD` is rejected with *"InvoiceDate and InvoiceNumber
+cannot be empty."* — an error that names the wrong cause and will send you hunting the invoice number.
+The endpoint is `POST /api/imports/work-order-historical`; a clean file answers
+`{"duplicatedInvoices":[]}` and the screen says *"imported successfully"*.
+⚠ **Unresolved as of 2026-09-13:** after a successful import the record could not be located — not on
+the customer's Invoices tab, and not in the work-order list paged to exhaustion (186 distinct work
+orders). Reported to the QA lead as something to look at, NOT filed as a defect. Note also that
+`/api/work-orders?search=` matches the CUSTOMER name (78 rows for "aqeel") but **not** the work-order
+number (0 rows for the real "S2-863"), so a zero from that search proves nothing on its own.
+
+### IBS batch transactions
+Reports → **IBS Batches** → `/reports/batch-transactions`, backed by
+`GET /api/customers/ibs/list-batches`. On the production test account this lists **none**.

@@ -1,0 +1,448 @@
+{
+ "at": "2026-09-13T00:00:51.464Z",
+ "case": "C53568",
+ "net": [
+  "GET /api/staff/my-workplaces",
+  "GET /api/technicians",
+  "GET /api/organization/feature-flags?organization_id=72b2cc90-6964-4429-a207-76e55f946936",
+  "GET /api/technician-tasks/my-current-task",
+  "GET /api/global-search/fetch",
+  "GET /api/iam/view-profile/",
+  "GET /api/notes?mention_id=e8dfe967-4dae-4782-a9b9-625d1b5d7365&is_read=false",
+  "GET /api/notifications/subscribe-token",
+  "GET /api/reporting/individual-punch-clock/today?range=today",
+  "GET /api/organization/organization-details/view",
+  "GET /api/organization/organization-details/logo?t=1789257668433",
+  "GET /api/workplaces",
+  "GET /api/workplaces/timezones",
+  "GET /api/staff/my-workplaces",
+  "GET /api/organization/feature-flags?organization_id=72b2cc90-6964-4429-a207-76e55f946936",
+  "GET /api/technician-tasks/my-current-task",
+  "GET /api/global-search/fetch",
+  "GET /api/iam/view-profile/",
+  "GET /api/notes?mention_id=e8dfe967-4dae-4782-a9b9-625d1b5d7365&is_read=false",
+  "GET /api/notifications/subscribe-token",
+  "GET /api/reporting/individual-punch-clock/today?range=today",
+  "GET /api/users/me/preferences/report-timesheet-activities",
+  "GET /api/technicians",
+  "GET /api/staff/clocked?range=this_month",
+  "GET /api/reporting/punch-clock-activities/this_month?pagination%5Bpage%5D=1&pagination%5BrowsPerPage%5D=30&pagination%5BsortBy%5D=&pagination%5Bdescending%5D=false&search=&range=this_month",
+  "GET /api/customers/ibs/list-payments?",
+  "GET /api/customers/ibs/list-transactions?pagination%5BsortBy%5D=date&pagination%5Bdescending%5D=true&pagination%5Bpage%5D=1&pagination%5BrowsPerPage%5D=1000&search=",
+  "GET /api/customers/ibs/list-batches?pagination%5BsortBy%5D=date&pagination%5Bdescending%5D=true&pagination%5Bpage%5D=1&pagination%5BrowsPerPage%5D=1000&search="
+ ],
+ "screens": {
+  "invoices-import": {
+   "url": "https://app.shopview.com/administration/invoices-import",
+   "len": 1370,
+   "body": "Skip to main content Work Orders Schedule Customers Parts Reports Search Ctrl+K stop_circle 3621:35:31 S-2 notifications Trucks Hill 2 0.00 Hrs Today S( SETTINGS info Settings supervisor_account Staff verified_user Roles & Permissions location_on Locations apartment Departments attach_money Taxes SERVICE groups_3 Labor Rates checklist_rtl Canned Lines sell Fees & Discounts groups_3 Asset Types fact_check Inspection Templates PARTS sell Pricing inventory_2 Bin Locations category Categories INTEGRATIONS sync_alt IBS api Open API FINANCE payments Payment Methods IMPORTS call Contacts local_shipping Assets store Vendors inventory_2 Inventory receipt_long Invoices Invoices Import Preview cloud_up",
+   "rows": [],
+   "controls": [
+    {
+     "tid": "button_desktop_nav_link",
+     "txt": "Work Orders",
+     "tag": "A"
+    },
+    {
+     "tid": "button_desktop_nav_link",
+     "txt": "Schedule",
+     "tag": "A"
+    },
+    {
+     "tid": "button_desktop_nav_link",
+     "txt": "Customers",
+     "tag": "A"
+    },
+    {
+     "tid": "button_desktop_nav_link",
+     "txt": "Parts",
+     "tag": "A"
+    },
+    {
+     "tid": "button_desktop_nav_link",
+     "txt": "Reports",
+     "tag": "A"
+    },
+    {
+     "tid": "select_global_search",
+     "txt": "",
+     "tag": "INPUT"
+    },
+    {
+     "tid": "clock_in_button",
+     "txt": "stop_circle3621:35:31S-2",
+     "tag": "BUTTON"
+    },
+    {
+     "tid": "clock_in_timer",
+     "txt": "3621:35:31",
+     "tag": "SPAN"
+    },
+    {
+     "tid": "clock_in_work_order",
+     "txt": "S-2",
+     "tag": "DIV"
+    },
+    {
+     "tid": "button_notifications",
+     "txt": "notifications",
+     "tag": "A"
+    },
+    {
+     "tid": "profile_menu_button",
+     "txt": "Trucks Hill 20.00 Hrs TodayS(",
+     "tag": "BUTTON"
+    },
+    {
+     "tid": "daily_clocked_hours_dense",
+     "txt": "0.00 Hrs Today",
+     "tag": "SPAN"
+    },
+    {
+     "tid": "page_administration",
+     "txt": "Settings infoSettingssuperviso",
+     "tag": "DIV"
+    },
+    {
+     "tid": "link_settings_tab",
+     "txt": "infoSettings",
+     "tag": "A"
+    },
+    {
+     "tid": "link_staff_tab",
+     "txt": "supervisor_accountStaff",
+     "tag": "A"
+    },
+    {
+     "tid": "link_roles_permissions_tab",
+     "txt": "verified_userRoles & Permissio",
+     "tag": "A"
+    },
+    {
+     "tid": "link_locations_tab",
+     "txt": "location_onLocations",
+     "tag": "A"
+    },
+    {
+     "tid": "link_departments_tab",
+     "txt": "apartmentDepartments",
+     "tag": "A"
+    },
+    {
+     "tid": "link_taxes_tab",
+     "txt": "attach_moneyTaxes",
+     "tag": "A"
+    },
+    {
+     "tid": "link_labour_types_tab",
+     "txt": "groups_3Labor Rates",
+     "tag": "A"
+    },
+    {
+     "tid": "link_canned_lines_tab",
+     "txt": "checklist_rtlCanned Lines",
+     "tag": "A"
+    },
+    {
+     "tid": "link_adjustment_templates_tab",
+     "txt": "sellFees & Discounts",
+     "tag": "A"
+    },
+    {
+     "tid": "link_vehicle_types_tab",
+     "txt": "groups_3Asset Types",
+     "tag": "A"
+    },
+    {
+     "tid": "link_inspection_templates_tab",
+     "txt": "fact_checkInspection Templates",
+     "tag": "A"
+    },
+    {
+     "tid": "link_pricing_tab",
+     "txt": "sellPricing",
+     "tag": "A"
+    },
+    {
+     "tid": "link_bins_tab",
+     "txt": "inventory_2Bin Locations",
+     "tag": "A"
+    },
+    {
+     "tid": "link_categories_tab",
+     "txt": "categoryCategories",
+     "tag": "A"
+    },
+    {
+     "tid": "link_ibs_tab",
+     "txt": "sync_altIBS",
+     "tag": "A"
+    },
+    {
+     "tid": "link_open_api_tab",
+     "txt": "apiOpen API",
+     "tag": "A"
+    },
+    {
+     "tid": "link_payment_methods_tab",
+     "txt": "paymentsPayment Methods",
+     "tag": "A"
+    },
+    {
+     "tid": "link_contacts_import_tab",
+     "txt": "callContacts",
+     "tag": "A"
+    },
+    {
+     "tid": "link_vehicles_import_tab",
+     "txt": "local_shippingAssets",
+     "tag": "A"
+    },
+    {
+     "tid": "link_vendors_import_tab",
+     "txt": "storeVendors",
+     "tag": "A"
+    },
+    {
+     "tid": "link_inventory_import_tab",
+     "txt": "inventory_2Inventory",
+     "tag": "A"
+    },
+    {
+     "tid": "link_invoices_import_tab",
+     "txt": "receipt_longInvoices",
+     "tag": "A"
+    },
+    {
+     "tid": "file_upload",
+     "txt": "",
+     "tag": "INPUT"
+    },
+    {
+     "tid": "button_download_template",
+     "txt": "cloud_downloadDownload templat",
+     "tag": "BUTTON"
+    },
+    {
+     "tid": "button_import_invoices",
+     "txt": "Import Invoices",
+     "tag": "BUTTON"
+    }
+   ]
+  },
+  "ibs-batches": {
+   "url": "https://app.shopview.com/reports/batch-transactions",
+   "len": 1087,
+   "body": "Skip to main content Work Orders Schedule Customers Parts Reports Search Ctrl+K stop_circle 3621:35:56 S-2 notifications Trucks Hill 2 0.00 Hrs Today S( LABOR schedule Timesheet Activities PERFORMANCE description Sales percent Technician Efficiency query_stats Advisor Analysis engineering Shop Efficiency loop Work In Progress groups Technician Utilization groups_2 Sales By Customer badge Sales By Representative PARTS inventory_2 Parts Velocity sell Inventory Value FINANCE payments Sales Tax Collected ACCOUNTS RECEIVABLE article A/R Aging Summary list_alt A/R Aging Detail library_books A/R Aging Collection ACCOUNTS PAYABLE article A/P Aging Summary list_alt A/P Aging Detail library_books A/P ",
+   "rows": [
+    "more_vertDatearrow_drop_upTypearrow_drop_upNo.arrow_drop_upCustomerarrow_drop_upTotalarrow_drop_upBa"
+   ],
+   "controls": [
+    {
+     "tid": "button_desktop_nav_link",
+     "txt": "Work Orders",
+     "tag": "A"
+    },
+    {
+     "tid": "button_desktop_nav_link",
+     "txt": "Schedule",
+     "tag": "A"
+    },
+    {
+     "tid": "button_desktop_nav_link",
+     "txt": "Customers",
+     "tag": "A"
+    },
+    {
+     "tid": "button_desktop_nav_link",
+     "txt": "Parts",
+     "tag": "A"
+    },
+    {
+     "tid": "button_desktop_nav_link",
+     "txt": "Reports",
+     "tag": "A"
+    },
+    {
+     "tid": "select_global_search",
+     "txt": "",
+     "tag": "INPUT"
+    },
+    {
+     "tid": "clock_in_button",
+     "txt": "stop_circle3621:35:56S-2",
+     "tag": "BUTTON"
+    },
+    {
+     "tid": "clock_in_timer",
+     "txt": "3621:35:56",
+     "tag": "SPAN"
+    },
+    {
+     "tid": "clock_in_work_order",
+     "txt": "S-2",
+     "tag": "DIV"
+    },
+    {
+     "tid": "button_notifications",
+     "txt": "notifications",
+     "tag": "A"
+    },
+    {
+     "tid": "profile_menu_button",
+     "txt": "Trucks Hill 20.00 Hrs TodayS(",
+     "tag": "BUTTON"
+    },
+    {
+     "tid": "daily_clocked_hours_dense",
+     "txt": "0.00 Hrs Today",
+     "tag": "SPAN"
+    },
+    {
+     "tid": "report_nav_punch_clock_activities",
+     "txt": "scheduleTimesheet Activities",
+     "tag": "A"
+    },
+    {
+     "tid": "report_nav_group_performance",
+     "txt": "Performance",
+     "tag": "DIV"
+    },
+    {
+     "tid": "report_nav_sales",
+     "txt": "descriptionSales",
+     "tag": "A"
+    },
+    {
+     "tid": "report_nav_technician_efficiency",
+     "txt": "percentTechnician Efficiency",
+     "tag": "A"
+    },
+    {
+     "tid": "report_nav_service_advisor_analysis",
+     "txt": "query_statsAdvisor Analysis",
+     "tag": "A"
+    },
+    {
+     "tid": "report_nav_shop_billing_efficiency",
+     "txt": "engineeringShop Efficiency",
+     "tag": "A"
+    },
+    {
+     "tid": "report_nav_work_in_progress",
+     "txt": "loopWork In Progress",
+     "tag": "A"
+    },
+    {
+     "tid": "report_nav_technician_utilization",
+     "txt": "groupsTechnician Utilization",
+     "tag": "A"
+    },
+    {
+     "tid": "report_nav_sales_by_customer",
+     "txt": "groups_2Sales By Customer",
+     "tag": "A"
+    },
+    {
+     "tid": "report_nav_sales_by_representative",
+     "txt": "badgeSales By Representative",
+     "tag": "A"
+    },
+    {
+     "tid": "report_nav_group_parts",
+     "txt": "Parts",
+     "tag": "DIV"
+    },
+    {
+     "tid": "report_nav_parts_velocity",
+     "txt": "inventory_2Parts Velocity",
+     "tag": "A"
+    },
+    {
+     "tid": "report_nav_inventory_value",
+     "txt": "sellInventory Value",
+     "tag": "A"
+    },
+    {
+     "tid": "report_nav_sales_tax_report",
+     "txt": "paymentsSales Tax Collected",
+     "tag": "A"
+    },
+    {
+     "tid": "report_nav_aging_summary_report",
+     "txt": "articleA/R Aging Summary",
+     "tag": "A"
+    },
+    {
+     "tid": "report_nav_aging_detail_report",
+     "txt": "list_altA/R Aging Detail",
+     "tag": "A"
+    },
+    {
+     "tid": "report_nav_aging_collection_report",
+     "txt": "library_booksA/R Aging Collect",
+     "tag": "A"
+    },
+    {
+     "tid": "report_nav_ap_aging_summary_report",
+     "txt": "articleA/P Aging Summary",
+     "tag": "A"
+    },
+    {
+     "tid": "report_nav_ap_aging_detail_report",
+     "txt": "list_altA/P Aging Detail",
+     "tag": "A"
+    },
+    {
+     "tid": "report_nav_ap_unpaid_invoices_report",
+     "txt": "library_booksA/P Unpaid Invoic",
+     "tag": "A"
+    },
+    {
+     "tid": "report_nav_batch_transactions",
+     "txt": "paidIBS Batches",
+     "tag": "A"
+    },
+    {
+     "tid": "report_nav_unexported_items",
+     "txt": "warningQB Unexported",
+     "tag": "A"
+    },
+    {
+     "tid": "report_nav_export_reports",
+     "txt": "downloadExport Reports",
+     "tag": "DIV"
+    },
+    {
+     "tid": "report_nav_notes_report",
+     "txt": "chatNotes",
+     "tag": "A"
+    },
+    {
+     "tid": "report_nav_reminders_report",
+     "txt": "alarmReminders",
+     "tag": "A"
+    },
+    {
+     "tid": "table_ibs_ready_to_send",
+     "txt": "IBS Batch TransactionsReady to",
+     "tag": "DIV"
+    },
+    {
+     "tid": "tab_readyToSend",
+     "txt": "Ready to Send",
+     "tag": "DIV"
+    },
+    {
+     "tid": "tab_sent",
+     "txt": "Sent",
+     "tag": "DIV"
+    }
+   ]
+  }
+ },
+ "batchRowCount": 1,
+ "calls": [
+  "GET /api/customers/ibs/list-batches?pagination%5BsortBy%5D=date&pagination%5Bdescending%5D=true&pagination%5Bpage%5D=1&pagination%5BrowsPerPage%5D=1000&search="
+ ]
+}

@@ -189,7 +189,7 @@ answerable without opening anything, in
 | **P2-c** | A foreman/manager review approval plus a customer with no money on account — or his agreement that the behaviour is adequately proved by the two other credits already checked | C53537 stays without one |
 | **P2-d** | Confirmation that the customer address pre-ticked in the Send dialog (`dsfsdf@gmail.com`) is safe to email from production | C53545, C53551, C53565 stay without one |
 | **P2-e** | Whether card taking may be switched on for the production portal (a money-handling change) | C53567, C53569 stay without one |
-| **P2-f** | Whether any batch or imported invoice exists on this account | C53568 stays without one |
+| **P2-f** | Where an imported invoice appears once the Invoices import has run. The import reported success and the server raised no error, but the record could not be found on the customer's Invoices tab or in the work-order list paged to exhaustion (186). Batch invoices genuinely number zero — the app's own IBS Batches report lists none | C53568 stays without one. Also worth a look in its own right, reported to him as an observation, NOT filed |
 | **P2-g** | C53570 is three-quarters observed; the last part needs a job carrying an IBS approval code, and obtaining one sends a real request through the external approval system | C53570 stays held rather than posted |
 
 **None of these blocks anything else**, and none blocks the Invoice Refresh run he wants next — that
