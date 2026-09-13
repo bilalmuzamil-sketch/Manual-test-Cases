@@ -115,3 +115,77 @@ proof that nothing moved. No Jira write of any kind.
 Chris's exact path — the **customer portal / Account Access Mode** view of INV-S-7029 — measured for
 the root font size and for the "Service Order" heading, against the same two on the old build. That
 splits the two explanations in one minute and tells the developer which layer to fix.
+
+---
+
+# ADDENDUM — logo, and a full stylesheet diff (2026-09-13, production on Legacy)
+
+Production was switched to Legacy (`POST /api/organizations/invoice-settings/change-design`) and its
+real Legacy document fetched, so this compares **like with like**.
+
+## Logo — size and placement
+
+| | QA v26.35.10 | PROD v26.36.4 |
+|---|---|---|
+| Logo box, on screen | **238 × 120 px** | **238 × 120 px** |
+| Logo box, in print | 178.50 pt wide (= 238 px), x 217.93–396.43 | 178.50 pt wide (= 238 px), x 217.93–396.43 |
+| Vertical centre, in print | 81.0 pt | 81.0 pt |
+| Drawn image height, in print | 87.58 pt | 89.25 pt |
+| The shop's own logo file | 320 × 157 px (ratio 2.038) | 1200 × 600 px (ratio 2.000) |
+| Horizontal placement, on screen | left-aligned in its column | **centred** (`margin: 0 78.33px`) |
+
+The drawn-height difference is **not the template** — it is the two shops' own logo files having
+different aspect ratios inside an unchanged 238 × 120 box (`background-size: contain`).
+**Size is identical everywhere. Print placement is identical. On screen, production centres the logo
+about 78px further right.**
+
+## The stylesheet diff — and the premise in SV-9979 is wrong
+
+83 rules on QA, 84 on production. **Three differ; two of those are just per-document data** (the footer
+document number and the shop's tax registration number). **Two are real template changes:**
+
+**1. The logo rule**
+
+```
+QA   .organization-logo-new { width: 238px;                          height: 120px; … }
+PROD .organization-logo-new { width: 100%; max-width: 238px;          height: 120px; … margin: 0 auto; }
+```
+
+This looks like the **SV-9975 fix and it does what it should**: a hard `238px` can overflow a container
+narrower than itself; `width:100%` capped at `238px` cannot. It never makes the logo bigger.
+
+**2. A new screen-only rule that production has and v26.35.10 does not**
+
+```css
+@media screen {
+  .custom-table th,
+  .custom-table td:nth-child(2),
+  .custom-table td:nth-child(1):not(.description-cell) { white-space: nowrap; }
+}
+```
+
+Its own code comment says it makes the preview reproduce the PDF's line breaks cell for cell, and that
+"print is untouched — this is `@media screen`, which WeasyPrint never reads."
+
+**Measured live:** the "Service Order" cell computes `white-space: normal` on QA and **`nowrap` on
+production**.
+
+### Why this matters to SV-9979
+
+The ticket's stated expectation is *"the Legacy templates are byte-identical to v26.35.10, so the type
+should match v26.35.10 exactly, not approximately."* **The templates are not byte-identical** — there
+are two deliberate, commented changes on production. **Neither of them touches font-size**, so the
+reported 2px is still unexplained by the template; but the premise the ticket rests on should be
+corrected before anyone reasons from it.
+
+### And it refines SV-9976 (the Service Order heading wrap)
+
+Production already carries the screen-only `nowrap` fix, so that heading does **not** wrap on screen
+there — it still wraps **in the PDF**, which is the surface SV-9976 measures and the steps exercise.
+The QA branch wraps on both surfaces. So SV-9976 is a **print-path** issue, and should say so.
+
+### One honest caveat
+
+The two documents come from different shops as well as different builds, so strictly this compares
+build-and-org together. Both changed rules carry developer comments describing the change, which makes
+the build the obvious explanation rather than org data — but it is worth one look at a second shop.
