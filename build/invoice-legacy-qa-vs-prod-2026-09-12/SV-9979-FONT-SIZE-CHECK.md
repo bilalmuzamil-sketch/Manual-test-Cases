@@ -223,3 +223,97 @@ screen-only `white-space: nowrap` on the `.custom-table` heading/first/second ce
 anywhere differs between builds or between shops.
 
 Locations were switched back afterwards (production → Trucks Hill 2, QA → Staging Heavy Duty).
+
+---
+
+# THE CAUSE IS FOUND — and Chris Ward is right (2026-09-13)
+
+Build markers re-read live at the start of this run: production `v26.36.4-3e1c643`
+(last-modified Sat 12 Sep 2026 17:21:21 GMT), QA branch `sv9901` `v26.35.10-7b9a47d`.
+Production confirmed on `documentDesign: legacy`.
+
+## Where the extra size comes from
+
+It is **not** the document template, **not** the root font size, and **not** the customer portal.
+It is a **new CSS `zoom` on the in-app invoice preview container**, which exists on production and
+does not exist at all on v26.35.10.
+
+`InvoiceDisplay` component stylesheet, both builds, fetched directly:
+
+```
+QA   v26.35.10  css/InvoiceDisplay.BzSddqG2.css
+  .spinner-wrapper { height:60vh }
+  .invoice-html    { width:100%; max-width:800px }
+                                    <- no .invoice-sheet rule at all
+
+PROD v26.36.4    css/InvoiceDisplay.yV07Sr6U.css
+  .spinner-wrapper { height:60vh }
+  .invoice-html    { width:100%; max-width:800px; overflow-x:auto }
+  .invoice-sheet   { zoom: var(--sheet-zoom, 1.114) }          <- NEW
+  .invoice-sheet .invoice-pdf-new { width:718px }              <- NEW
+```
+
+The component sets the variable itself (`InvoiceDisplay.QA5POf6j.js`):
+
+```js
+const h = 718;                    // document laid out at 718 px
+const d = 800 / h;                // = 1.114206...
+let f = d;                        // --sheet-zoom
+u = () => { const t = hostEl.clientWidth ?? 0;
+            if (t > 0) f = Math.min(d, t / h); }   // only ever shrinks below 800 px panels
+```
+
+The v26.35.10 component does not contain the string `invoice-sheet` or `sheet-zoom` at all
+(0 occurrences in `InvoiceDisplay.-B8u7nVD.js`).
+
+## Measured live, same invoice, same window, one variable changed
+
+Production `/workorders/7c1fbb70…/finance`, INV-S2-792, viewport 1500 × 1100, zoom 1.
+Read with the rule as shipped, then with `--sheet-zoom` forced to `1`:
+
+| | zoom 1.1142 (production today) | zoom 1 (= v26.35.10) | ratio |
+|---|---|---|---|
+| Shop-name line box | 236.94 × 31.86 px | 212.66 × 28.61 px | **1.11417 / 1.11360** |
+| "Service Order" cell | 112.33 × 45.50 px | 100.97 × 40.86 px | 1.1125 |
+| Whole document height | 1260.75 px | 1133.75 px | **+127 px taller** |
+| Effective shop-name type | **21.39 px** | 19.20 px | **+2.19 px** |
+
+Exhibit: `ev/portal/17-preview-zoom-before-after.png`.
+
+## Why this matches the report exactly, and why every earlier check missed it
+
+- **"approximately 2px larger"** — 19.2 × 1.1142 = 21.39, i.e. **+2.19 px**. ✔
+- **"every text run is affected"**, including the Unit / VIN / Service Order row — that row is a
+  **fixed 14 px**, which a root-em change can never move. **`zoom` moves everything.** ✔
+  (§3 above named this as the discriminator and it resolves to the third option: whole-document
+  scaling via `zoom` on the preview container.)
+- **"the header block runs taller"** — measured, 127 px taller. ✔
+- **The PDF is untouched** — `zoom` is a screen-only property on an app container, outside the
+  document. That is exactly why 11 PDFs across two builds showed zero differences.
+- **The customer portal is not the cause** — measured live at `portal.shopview.com/invoices/…`:
+  root 16 px, 19.2 / 14.4 / 14 / 12.8 / 8.64, logo 238 × 120, `transform: none`. Identical to
+  everything else. Account Access Mode / the portal shell change nothing.
+
+## Where SV-9979 is right and where it is wrong
+
+| Claim in SV-9979 | Verdict |
+|---|---|
+| Text renders about 2 px larger on the Legacy document | **CORRECT** — +2.19 px on the in-app preview |
+| Every text run affected, incl. the Unit/VIN and Service Order rows | **CORRECT** |
+| "the Legacy templates are byte-identical to v26.35.10" | **WRONG** — two document rules differ (logo centring, screen-only `nowrap`), and the app adds this third change outside the template |
+| Suspected cause: base font-size / root em / global stylesheet | **WRONG** — root is 16 px on both, and a root change cannot move the fixed 14 px cells |
+| "Confirm on in-app preview, PDF and print" | The split is real: **in-app preview is affected; PDF and print are not** |
+
+## Where our own handoff was wrong
+
+`SV-9977` compared the **printed PDF** and the **raw preview HTML**. It never opened the app's own
+preview container, so the `.invoice-sheet` zoom sat outside everything that was measured. The
+statement "the Legacy invoice on production matches the QA branch" is true of the printed document
+and of the document's own stylesheet, and **not true of what a user sees on the Finance tab**.
+
+## Production left as found
+
+The contact used to reach the portal (ALI AHMAD, customer Ahsan) was given an e-mail and
+Customer Portal Access to open `portal.shopview.com`; both were **restored** afterwards —
+re-read live from the Contacts tab: e-mail `-`, Customer Portal Access `No`, as before.
+`documentDesign` still `legacy`. No Jira write of any kind in this run.

@@ -4419,3 +4419,48 @@ Discount**. **Move** opens *"Move part to line:"* — `select_work_order_select`
 The server call behind it is `POST /api/work-orders/part/move-part-to-line
 {part_id, target_line_id, work_order_id}` → 200. Full record:
 `build/move-part-to-line-2026-09-10/FINDINGS.md`.
+
+### §AC.10 — Comparing how a document LOOKS across builds: measure the surface the user looks at
+
+Earned 2026-09-13 (SV-9979). A full PDF + document-HTML comparison of two builds reported "identical",
+and a PO then reported the on-screen type was ~2px bigger. **He was right.** The size came from the
+**app's preview wrapper**, which is outside both surfaces that were compared.
+
+**There are FOUR distinct surfaces for a ShopView document. Name the one you measured.**
+
+| Surface | How to reach it | Gotcha |
+|---|---|---|
+| In-app preview | `/workorders/{id}/finance` | wrapped in `.invoice-sheet`, which carries a **`zoom`** |
+| Customer portal | profile menu -> **Customer Portal** -> `portal.shopview.com/invoices/{id}` | separate host; measured 2026-09-13 as **unzoomed** |
+| Raw document HTML | `GET /api/invoices/preview?invoice_id=…&type=html` | no app shell at all — the template only |
+| PDF / print | `…&type=pdf`, or Print | WeasyPrint; ignores `@media screen`, ignores `zoom` |
+
+**The rule: before concluding anything about rendered size, walk the ancestor chain from the text to
+`<html>` and record every `transform` and `zoom`.**
+
+```js
+let n=document.querySelector('.info-title-new'), chain=[];
+while(n && n!==document.documentElement){ const cs=getComputedStyle(n);
+  if(cs.transform!=='none' || (cs.zoom && cs.zoom!=='1' && cs.zoom!=='normal'))
+    chain.push(n.className+' t='+cs.transform+' z='+cs.zoom);
+  n=n.parentElement; }
+```
+
+**Proving a rule is NEW without logging into the old build** (the QA session was dead):
+1. In the browser on the new build, find which stylesheet owns the rule —
+   iterate `document.styleSheets`, `try{ss.cssRules}catch{}`, match `cssText`.
+2. Get the old build's equivalent file by **walking the chunk graph by NAME**:
+   entry JS -> `WorkOrder.<hash>.js` -> `Invoice.<hash>.js` -> `InvoiceDisplay.<hash>.css`.
+   Hashes differ per build, base names do not. `grep -l '<childName>' chunks/*` finds the parent.
+3. Fetch both CSS files and diff them. **Static assets need no session** (on a QA branch pass
+   `cf_clearance`; a missing file answers **403**, not 404 — prove it with a bogus name as control).
+
+**Live A/B on ONE build, the cheapest possible proof of a container effect:** measure, then
+`el.style.setProperty('--sheet-zoom','1')`, measure again. Same page, same data, one variable.
+Ratio came out 1.11417 — matching `800/718` to five digits.
+
+**Customer Portal access, if you need it:** customer -> **Contacts** tab -> edit a contact ->
+set an e-mail + tick **Customer Portal Access** (`input_checkbox_has_portal_access`, endpoint
+`POST /api/contacts/change`, **`company_id` is required** or you get
+`{"company_id":"Missing required parameter"}`). Then profile menu -> **Customer Portal**.
+Restore the contact afterwards on production — it is a shared org.
