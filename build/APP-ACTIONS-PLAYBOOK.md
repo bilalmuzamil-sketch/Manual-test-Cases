@@ -4064,6 +4064,63 @@ done, an explanation is a guess dressed up in numbers.
 "production broke it" into "the template has always done this". One extra render, and it is the
 difference between a true finding and a false alarm (Rule 75).
 
+### §AC.8 — Switching the ShopView invoice design (Legacy ⇄ Modern) — the CORRECTED recipe (2026-09-13)
+
+**This CORRECTS the 2026-09-12 note that said "the API silently ignores `documentDesign`; the only
+writer is the UI toggle."** The API *does* write it — through a **different endpoint** that the earlier
+pass never found:
+
+```
+POST /api/organizations/invoice-settings/change-design   {"documentDesign":"legacy"|"modern"}
+```
+
+`POST /api/organizations/invoice-settings/change` (the general settings save) **silently drops the
+field** — in camelCase *and* in snake_case, returning `200 {"data":[]}` either way. That false 200 is
+what made it look unwritable. **Read back `GET /api/organizations/invoice-settings/view` → `documentDesign`
+to verify; never trust the 200.**
+
+**Driving it through the UI (needed only if you want to exercise the real control):**
+- The toggle is `[data-test-id="toggle_legacy_invoice_layout"]` on **Settings → Invoice**.
+- **The sub-tab filter must be exact** — `hasText:/^Invoice$/`. A loose `/Invoice/i` matches the
+  top-level **"Invoices"** import tab instead and you end up on the wrong page.
+- **Do NOT click the Settings tab first** — its label is `"info\nSettings"`, so `/^Settings$/` never
+  matches and the click times out. Go straight to the `Invoice` sub-tab.
+- **`aria-checked` NEVER changes on click, and that is correct** — the component is bound one-way
+  (`:model-value` + `@update:modelValue`). Asserting on it makes a working click look broken.
+- **Clicking opens a CONFIRMATION DIALOG** — *"Switch to the Legacy design?"* with buttons
+  `Cancel` / `Switch To Legacy`. **Nothing is saved until you click that button.** The dialog's
+  overlay is also why a following "Save Details" click times out and why zero API calls are seen:
+  the overlay is eating them, and Save Details is not the writer anyway.
+- The toggle sits at the far right of its row (~x 1410 at a 1500px viewport); its label is an `H5`
+  and the toggle is a **sibling**, so `locator('.q-toggle').filter({hasText:...})` finds **0** — locate
+  by `data-test-id`, or walk up from the H5.
+
+**The chunk that holds this logic** is `/js/InvoiceDetails.<hash>.js` (~8 KB). Find it cheaply by
+loading Settings → Invoice with a `response` listener and filtering `.js` URLs — do **not** bulk-grep
+the bundle (Rule 63e).
+
+### §AC.9 — How the Legacy document sizes its text (measured 2026-09-13)
+
+Six sizes, **five of them `rem`** and one fixed — this split is the diagnostic for any "the text got
+bigger/smaller" report on this template:
+
+| Rule | Size | Scales? | Covers |
+|---|---|---|---|
+| `.info-title-new` | 1.2rem | yes | shop name, Bill To, Remit payment to |
+| `.info-text-new` | 0.9rem | yes | address lines |
+| `.totals-new` / `.work-summary-table-new` | 0.8rem | yes | money summary, line cells |
+| `.disclaimer-font` | 0.54rem | yes | small print |
+| **`.custom-table`** | **14px** | **NO** | **Unit/VIN row, Service Order row, column headings** |
+
+There is **no `html { font-size }` in the document**; the only base is `@page { font-size: 0.8rem }`,
+which the PDF renderer honours and a **browser ignores**. At a 16px root the screen matches the PDF
+**exactly** (1.2rem = 19.2px = 14.4pt; 0.9rem = 14.4px = 10.8pt; 0.8rem = 12.8px = 9.6pt;
+0.54rem = 8.64px = 6.48pt; `.custom-table` 14px = 10.5pt).
+
+**So: a root-size change moves everything EXCEPT the Service Order / Unit-VIN / column-heading table.
+A zoom or a `transform: scale` moves that table too.** One measurement of that heading tells you which
+you are looking at.
+
 ## §AD — THE BEFORE-vs-AFTER EXHIBIT: how to build the one picture an executive actually reads (Standing Rule 73, 2026-09-10)
 
 **Who the comment is for:** non-technical people **at the highest positions**. A table of PASSED rows
