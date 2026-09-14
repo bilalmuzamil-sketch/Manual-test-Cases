@@ -127,6 +127,28 @@ scenery.
 Folding checks 1, 2 and 5 into `seed.py --check` would make the next hand-off complete, and would have
 saved this pass several hours and three defects that were never real.
 
+## One more gap, found while repairing the others
+
+**The vendor has no second address line declared at all.** C53604 checks that a second address line is
+searchable for a customer *and* for a supplier. The manifest gives the customer an `address_2` (in the
+`patch` block) and the vendor none — so the supplier half of that case had nothing to search for. Not
+"declared and missing"; simply never specified. Worth a sweep of the suite for any other field a case
+types that no record is declared to carry.
+
+## Write routes, since repairing the data cost time finding them
+
+Recorded so nobody repeats the search. Every refusal named its own fix, which is the fastest route to
+the right call:
+
+| To change | Route | Note |
+|---|---|---|
+| A customer's fields | `POST /api/customers/change` | Send the **whole record** with the fields replaced, not a sparse patch. Confirmed landing: state, second address line, telephone |
+| A vehicle's fields | `POST /api/vehicles/change` | Refuses `id`. The 400 names what it wants: **`vehicle_id` and `company_id`** |
+| Reading a record back | the manifest's own `find.list` endpoints | `/api/<type>/view/<id>` answers **404** for vehicles and vendors — a wrong route, not a missing record |
+
+**Always read the record back after writing.** Two of the writes above returned a success status while
+changing nothing, and the read-back is the only thing that catches it.
+
 ## Still genuinely blocked, and not the seeder's doing
 
 **A part sale cannot be created on this branch** (SV-10031, filed by the QA lead). C55665 cannot run,
