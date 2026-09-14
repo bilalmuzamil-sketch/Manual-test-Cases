@@ -199,6 +199,15 @@
    "verdict": "Blocked",
    "observed": "With the box empty, twenty recently-viewed items were listed - so the list is there and working. After typing a reference that matches nothing, the panel showed only the message 'No results for ZZNOSUCHRECORD9999' and the recently-viewed items did not come back. A fruitless search leaves you at a dead end with nothing to click.",
    "todo": "The case says to record this and hold it for the Product Owner, not to treat it as a fault and not to pass it just because the new specification allows the new behaviour. He needs to decide whether the recently-viewed list should come back when a search finds nothing, as it did before."
+  },
+  "C53589": {
+   "verdict": "Passed",
+   "observed": "Typed a word quickly and, without waiting for the results to arrive, kept typing more onto the end. Every character stayed in the box - the final text was exactly what was typed, nothing swallowed. While the results were being fetched the panel showed its normal prompt rather than an error or a frozen list, and the results that finally appeared matched the whole phrase, not the half-typed version."
+  },
+  "C45150": {
+   "verdict": "Passed",
+   "observed": "Searched a word that matches records across the board and checked every customer that came back against this organisation's own customer list. All four matched; nothing appeared that does not belong to this organisation.",
+   "not_observed": "One signed-in person belongs to one organisation, so this shows that nothing from outside leaks in. It cannot show what somebody in a different organisation would see - that would need a second sign-in on a second organisation, which this branch does not offer."
   }
  }
 }
