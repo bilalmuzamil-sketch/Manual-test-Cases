@@ -45,9 +45,15 @@ const routes=['/api/roles','/api/role-templates','/api/iam/roles','/api/organiza
 out.routes={};
 for(const r of routes){ const res=await api(r);
   const d=res.json&&(res.json.data!==undefined?res.json.data:res.json);
-  const list=Array.isArray(d)?d:((d&&(d.collection||d.roles))||null);
+  // Accept the key the response ACTUALLY uses. /api/role-templates answers 200 with
+  // data.role_templates[] and an earlier version of this parser, looking only for `collection` or
+  // `roles`, scored it as "no list" -- the same did-not-run-reported-as-a-result mistake this pass
+  // keeps making (L0098). Take the first array-valued key rather than a guessed name.
+  const list=Array.isArray(d)?d
+    :((d&&(d.collection||d.roles||d.role_templates||d.roleTemplates))
+      ||(d&&typeof d==='object'?(Object.values(d).find(v=>Array.isArray(v))||null):null));
   out.routes[r]={status:res.status, n:Array.isArray(list)?list.length:null,
-    roles:Array.isArray(list)?list.map(x=>({id:x.id,name:x.name,users:x.usersCount,
+    roles:Array.isArray(list)?list.map(x=>({id:x.id,name:x.name,slug:x.slug,users:x.usersCount,
       editable:x.editable, default:x.default})):null,
     head:Array.isArray(list)?undefined:(res.head||'').slice(0,120)};
   if(Array.isArray(list)&&list.length){ out.workingRoute=r; out.roles=out.routes[r].roles; break; } }
