@@ -82,7 +82,10 @@ def main():
     absences = cfg.get('absence_markers', [])
     api = make_api(json.load(open(a.creds)))
 
-    cases = paged(api, f"get_cases/1&suite_id={cfg['suite_id']}&section_id={cfg['section_id']}", 'cases')
+    sections = cfg.get('section_ids') or [cfg['section_id']]
+    cases = []
+    for sec in sections:
+        cases += paged(api, f"get_cases/1&suite_id={cfg['suite_id']}&section_id={sec}", 'cases')
     bad, rows = [], []
     for c in sorted(cases, key=lambda x: x['id']):
         expected = plain(c.get('custom_expected'))

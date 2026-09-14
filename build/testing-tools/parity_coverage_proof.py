@@ -74,9 +74,15 @@ def main():
 
     cfg = json.load(open(a.config))
     api = make_api(json.load(open(a.creds)))
-    suite, section, run = cfg['suite_id'], cfg['section_id'], cfg['run_id']
+    suite, run = cfg['suite_id'], cfg['run_id']
 
-    cases = {c['id']: c for c in paged(api, f"get_cases/1&suite_id={suite}&section_id={section}", 'cases')}
+    # A suite may span SEVERAL sections - e.g. the main parity section plus a separate one
+    # for cases derived from V1's own automated tests. Accept either key.
+    sections = cfg.get('section_ids') or [cfg['section_id']]
+    cases = {}
+    for sec in sections:
+        for c in paged(api, f"get_cases/1&suite_id={suite}&section_id={sec}", 'cases'):
+            cases[c['id']] = c
     in_run = {t['case_id'] for t in paged(api, f"get_tests/{run}", 'tests')}
 
     caps = cfg['capabilities']
@@ -95,7 +101,7 @@ def main():
 
     print(f"baseline                : {cfg.get('baseline', '(not stated - STATE IT)')}")
     print(f"capabilities enumerated : {len(caps)}")
-    print(f"cases live in section   : {len(cases)}")
+    print(f"cases live in section(s): {len(cases)}  (sections {sections})")
     print(f"tests in run {run:<11}: {len(in_run)}")
     print()
     print(f"FORWARD  capability -> a case that does not exist : {len(missing)}")
