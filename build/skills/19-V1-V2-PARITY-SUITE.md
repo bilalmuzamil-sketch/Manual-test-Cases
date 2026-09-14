@@ -141,6 +141,27 @@ trust you.** That is the point.
 
 ---
 
+## 8a · VERIFYING THE ENVIRONMENT — the half that is easy to get wrong
+
+**Coverage can be perfect and the run still fail on day one.** Seeded data is not a fact you record
+once; it is a fact you re-prove before every handover.
+
+**The order that works:**
+1. **Mint your own session** — `POST /api/quick-login {"key":"admin"}`. Never ask anyone for cookies
+   (Rule 107). Capture the **rotated `PHPSESSID`** from `Set-Cookie` or everything after it 409s.
+2. **Set the location** — `GET /api/staff/my-workplaces`, then `POST /api/iam/change-location`.
+   Skip this and workplace-scoped data is invisible, which reads as *"the seed is gone."*
+3. **Prove every probe on a record you KNOW exists, before believing any negative** (Rule 104).
+   `?search=` on list endpoints can answer 200 and match nothing at all.
+4. **Re-derive the ids from live lookups.** Do not trust a committed seed-state file — ids change when
+   an environment is refreshed, and a stale id makes every downstream call fail in a way that looks
+   like a product defect.
+5. **Classify every case by what it NEEDS**, not by whether you seeded something: ready · self-seeding
+   during the run · needs a setup step · blocked. Anything not "ready" gets the recipe beside it.
+6. **Search the repo for setup recipes BEFORE declaring a gap.** Roles, locations, impersonation and
+   org switching are solved problems with recipes in the playbook. Declaring them "not ready" wastes
+   everyone's time and is a failure of the blocker-search rule.
+
 ## 9 · THE TRAPS — EVERY ONE OF THESE WAS HIT FOR REAL
 
 | Trap | What it looks like | The guard |
@@ -153,6 +174,11 @@ trust you.** That is the point.
 | **Negative without a control** | Reporting *"X returns nothing"* for a record that **was never created**. Proves nothing | Rule 104. Prove the record exists, is indexed, and is reachable another way, **first** |
 | **A wrong inference from a control** | A control failing the *same* way read as "my payload is wrong" when it actually means **the operation is broken for both cases** | State what the control would prove **before** running it |
 | **Protecting a V1 bug** | A code-derived behaviour that is really a defect becomes an invariant you defend | Rule 96. Looks like a bug → **PO decision item**, never a silent invariant |
+
+| **A broken probe read as missing data** | `?search=` on a list endpoint answers 200 and matches nothing — even for a record that exists. Three "the seed is gone" reports were nearly filed from it | Prove the probe on a known record first (Rule 104); page and filter client-side |
+| **A rotated session read as an expired one** | Every call 409s after a login, and you conclude "this environment expires sessions in minutes" | The `PHPSESSID` **rotated** and you did not capture `Set-Cookie`. Read it on every response |
+| **Scoped data read as absent** | Inventory and parts come back empty after a fresh login | You did not `POST /api/iam/change-location`. `default_workplace` is `"None"` |
+| **Duplicate data read as a dedup defect** | The same record appears twice in results | Compare the **ids**. Different ids = two real records from a double-run seeder, not a product bug |
 
 **Tooling traps:** TestRail `refs` is comma-separated and **strips the space after a comma** — avoid
 internal commas. Its API takes **`&` separators only** — a second `?` returns HTTP 400. Text fields are

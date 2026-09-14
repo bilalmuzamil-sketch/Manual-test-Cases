@@ -4375,3 +4375,49 @@ and new tabs as well as panels, so a navigation can never read as a no-op (Rule 
 picked there (*"This action can only be performed on the authorized lines."*); `pick` is the only
 action `perform-request-status-action` accepts. Order is create → **authorize** → add part → pick (or
 order+receive for a special order) → complete.
+
+---
+
+## §Q · QA-SESSION TRAPS THAT COST A WHOLE PASS (added 2026-09-14, Global Search V1 parity)
+
+Four traps, each of which produced a WRONG CONCLUSION before it was caught. All four are cheap to
+avoid and expensive to miss.
+
+### Q1 · A 409 is usually a ROTATED PHPSESSID YOU FAILED TO CAPTURE — not an expired session
+`POST /api/quick-login` and several other calls **rotate `PHPSESSID` and return it in `Set-Cookie`**.
+If your client does not read `Set-Cookie` and swap the new value in, **every subsequent call answers
+409 `"Session has expired."`** — which reads exactly like a dead session.
+
+**This produced the false diagnosis *"QA sessions on sv9160 expire within minutes"*.** They do not.
+The client was throwing the new session away on every rotation.
+
+**The fix — read `Set-Cookie` on EVERY response and persist a changed `PHPSESSID`:**
+```python
+for sc in resp.headers.get_all('Set-Cookie') or []:
+    m = re.search(r'PHPSESSID=([^;]+)', sc)
+    if m and m.group(1) != current: current = m.group(1); save(current)
+```
+
+### Q2 · NEVER ask for cookies — mint your own (Rule 107)
+`POST /api/quick-login {"key":"admin"}` → **200 + a fresh session**. Capture the rotated `PHPSESSID`
+(Q1) and you are in. **Use `{"key":"admin"}` first** — a failed `{"key":"tech"}` burns the session.
+⚠️ **Quick-login EVICTS any other worker on that branch (Rule 83)** — say so when you use it.
+
+### Q3 · After ANY fresh login, `POST /api/iam/change-location` BEFORE you judge missing data
+Without it `default_workplace` is `"None"` and **workplace-scoped data is invisible** — inventory and
+parts read as empty. **That looks exactly like "the seed data is gone."** List the locations first with
+`GET /api/staff/my-workplaces`, then
+`POST /api/iam/change-location {workplace_id, workplace_timezone}` → 200.
+
+### Q4 · 🔴 `?search=` ON LIST ENDPOINTS SILENTLY RETURNS NOTHING — prove the probe first
+`GET /api/work-orders?search=S2-4219` returns **an empty list for a work order that demonstrably
+exists**. Same for `/api/inventory/parts?search=…`. The parameter is accepted, answers 200, and
+matches nothing.
+
+**Anything you conclude from it is worthless.** Page the list (`?page=N&rowsPerPage=100`) and filter
+client-side — and **always run a positive control on a record you KNOW exists before believing a
+negative** (Rule 104). This alone nearly produced three false "the seed data is missing" reports.
+
+### Q5 · A duplicate row in results may be duplicate DATA, not a de-duplication defect
+Global search returned the same vendor name twice. **The two rows carried DIFFERENT ids** — two real
+records from a double-run seeder, not a dedup bug. **Compare the ids before writing the ticket.**
