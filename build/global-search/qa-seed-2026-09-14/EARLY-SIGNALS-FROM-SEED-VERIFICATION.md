@@ -103,3 +103,41 @@ number)** at risk of failing.
 **Not concluded:** work-order number search (`S9160-17583`) was not probed in isolation; the separate
 execution session should test it early, because if the identifier path is broken generally it will
 fail too — and that is the single most-used search in the product.
+
+---
+
+# PART 3 — seeding COMPLETE, and a controlled experiment that settles two questions
+
+The stocked part now exists: **ZZAUTOTEST Brake Chamber Kestrel / `ZZT-88-4412`, quantity 25**,
+inventory part `a123b4e5-39ed-40a6-bc64-ced030673daa`, bin `General Storage`, grid location
+`BIN-ZZT-77`. State: **inventory = 1, catalogue = 2**, so `ZZT-77-3300` is the catalogue-only control.
+
+This makes the two parts a controlled pair — created minutes apart, same org, same vendor, same tags.
+The only difference is stock.
+
+| Query | What it is | V2 result |
+|---|---|---|
+| `Kestrel` | stocked part, description word | ✅ **returned** |
+| `Brake Chamber` | stocked part, description | ✅ **returned** |
+| `ZZT-88-4412` | **the same stocked part's own part number** | 🔴 **NOT returned** |
+| `ZZT884412` | same, dashes stripped | 🔴 **NOT returned** |
+| `Vernway` | catalogue-only part, name | ⚪ not returned |
+| `ZZT-77-3300` | catalogue-only part number | ⚪ not returned |
+| `BIN-ZZT-77` | bin / grid location | 🔴 **NOT returned** |
+
+## What this settles
+
+**1. The part-number failure is now airtight, not circumstantial.** The part is demonstrably **in the
+index** — its description returns it. Its own part number does not. That removes every alternative
+explanation (not indexed, indexing lag, wrong org, permissions). PRD v1.5 §4 indexes part number and
+§7 requires identifier fields to match exactly after normalization. **This is a defect.** It is the
+same failure shape already seen on asset unit number, full VIN and vendor email — and it puts
+existing case **C44846** at risk.
+
+**2. C53601 is confirmed.** With the stocked twin returning on its name, the catalogue-only part
+returning nothing is now clean evidence that **a part a V1 user could find is unfindable in V2** once
+it has never been stocked. Whether that is acceptable is the PO's call — the case says record-and-
+Blocked, which is right.
+
+**3. Bin location is indexed per §4 but does not match.** `BIN-ZZT-77` returns nothing. Worth a look
+during execution; it is outside my 19 cases (it is V2-new functionality, not a V1 regression).

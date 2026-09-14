@@ -28,26 +28,25 @@ Folder : build/global-search/qa-seed-2026-09-14/      (seed state + early signal
 | The other 21 in 6769 | pre-existing (permissions, tenant/location scoping, navigation, recents) |
 | Environment | `sv9160.qa.shopview.com` — dummy QA account, seed/modify freely, no cleanup needed |
 
-## 🔴 DO THESE TWO THINGS BEFORE YOU START
+## ✅ NOTHING TO DO BEFORE YOU START — BOTH PRE-STEPS ARE DONE
 
-**1. A 10-minute UI build-verification. I could NOT do it and I am not going to pretend otherwise.**
-I verified the API layer end to end (`GET /api/search`, seeding, indexing) but **never opened the
-UI** — Chromium in my sandbox cannot reach the QA host (5 retries, `ERR_CONNECTION_RESET`, while API
-calls to the same host succeed; proxy status shows `ws_closed_mid_exchange`). Every one of these
-cases is written as UI steps, so somebody must confirm, once:
-  - you can sign in to `sv9160.qa.shopview.com`
-  - `⌘K` / `Ctrl+K` opens the search modal, and clicking the header field does too
-  - typing ≥2 characters returns grouped results with counts
-  - Esc closes it
-If those four hold, the whole suite is executable and you can run straight through. If the modal
-does not open, **stop and report** — every case is blocked at step 1 and marking 40 cases Failed
-would be noise.
+**1. UI build-verification: DONE (14 Sep).** I drove the V2 search in a real browser on this branch
+(headless Chromium via the documented MITM bridge + boot2 SPA hydration). Confirmed working:
+sign-in · the header **Search button** (`data-test-id="global_search_trigger"` — it is a BUTTON, not
+V1's typeable field) opens a **centred modal** · **`Ctrl+k` opens it too** · a **scope tab strip**
+(All · Work orders · Customers · Assets · Parts · Vendors · Part sales · Purchase orders · Vendor
+invoices) each with a count · results grouped with counts · the announcement *"12 results found across
+3 categories"* · **Esc closes**. Seeded data is visible in the UI. Evidence:
+`UI-VERIFICATION-2026-09-14.md`. **You do not need a separate build-verification pass — start executing.**
 
-**2. One seeding step remains (5 minutes, UI).**
-Put **`ZZAUTOTEST Brake Chamber Kestrel` (`ZZT-88-4412`)** into inventory with **quantity > 0**, and
-**leave `ZZAUTOTEST Airline Coupler Vernway` (`ZZT-77-3300`) untouched in the catalogue.** There is no
-API route to stock a part (stock arrives via receive-order), which is why I could not do it. **The
-contrast between those two parts IS the C53601 test** — without it C53601 and C53607 prove nothing.
+⚠️ **One trap I hit so you don't:** an automated `Control+K` (capital K) sends Ctrl+**Shift**+K, which
+the app correctly ignores (it listens for `e.key === 'k'`). **The shortcut works** — I nearly filed a
+false defect on it, which would have wrongly failed C45156 and C44804.
+
+**2. Seeding: DONE, including the part stock.** `ZZAUTOTEST Brake Chamber Kestrel` (`ZZT-88-4412`) is
+in inventory with **quantity 25**; `ZZAUTOTEST Airline Coupler Vernway` (`ZZT-77-3300`) is deliberately
+**catalogue-only**. Inventory = 1, catalogue = 2. **That contrast IS the C53601 test — do not stock the
+second part.**
 
 ## SEEDED DATA (already created by me on the QA branch)
 | Entity | Identity |
@@ -91,6 +90,14 @@ and they also threaten existing cases **C44844 (VIN)** and **C44846 (part number
 
 **Run the work-order number search (`S9160-17580`) first.** I never probed it in isolation; if the
 identifier path is broken generally it will fail, and it is the most-used search in the product.
+
+🔴 **The identifier finding is now airtight, via a controlled pair.** The stocked part is provably in
+the index — searching its description (`Kestrel`, `Brake Chamber`) returns it — yet searching **its own
+part number `ZZT-88-4412` returns nothing**. That rules out indexing lag, wrong org and permissions.
+Same shape as asset unit number, full VIN and vendor email. PRD §4 indexes part number and §7 requires
+identifiers to match exactly after normalization, so **these are defect candidates, and C44846 and
+C44844 are at risk too**. Also `BIN-ZZT-77` (bin location, indexed per §4) returns nothing — outside my
+19 cases, but worth a look.
 
 ## THINGS I DELIBERATELY DID NOT DO
 - No test results recorded, no run marked, no tickets raised — yours.
