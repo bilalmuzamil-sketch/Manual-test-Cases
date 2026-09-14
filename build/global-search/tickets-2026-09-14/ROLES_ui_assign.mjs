@@ -93,9 +93,11 @@ const setRole=async(name)=>{
   const opened=await page.evaluate(()=>{
     const vis=e=>{const r=e.getBoundingClientRect();return r.width>2&&r.height>2;};
     const dlg=[...document.querySelectorAll('.q-dialog,[role=dialog]')].filter(vis).pop()||document.body;
-    const known=/(Admin|Technician|Foreman|Office User|Parts|Sales Representative|Service Advisor|Service Manager|Time Clock)/;
+    // The role field's label is exactly "Role"; the box above it is "Job Title" and holds
+    // "Automotive Technician", which a looser match grabs instead -- it is a text box, so clicking it
+    // opens nothing and the run reports no options.
     const sel=[...dlg.querySelectorAll('.q-select,label.q-field')].filter(vis)
-      .find(e=>known.test((e.querySelector('input')||{}).value||'')||/role/i.test(e.innerText||''));
+      .find(e=>/^Role\b/.test((e.innerText||'').replace(/\s+/g,' ').trim()));
     if(!sel) return false; sel.click(); return true;});
   if(!opened) return {opened:false};
   await page.waitForTimeout(2500);
@@ -110,7 +112,7 @@ const setRole=async(name)=>{
   const saved=await page.evaluate(()=>{const vis=e=>{const r=e.getBoundingClientRect();return r.width>2&&r.height>2;};
     const dlg=[...document.querySelectorAll('.q-dialog,[role=dialog]')].filter(vis).pop()||document.body;
     const b=[...dlg.querySelectorAll('button')].filter(vis)
-      .find(e=>/^(save|update|apply|confirm)$/i.test((e.innerText||'').trim()));
+      .find(e=>/^(save|update|apply|confirm)\b/i.test((e.innerText||'').replace(/\s+/g,' ').trim()));
     if(!b) return false; b.click(); return true;});
   await page.waitForTimeout(7000);
   return {opened:true, options, picked, saved};
@@ -191,9 +193,8 @@ const restore=async()=>{
   await page2.waitForTimeout(5000);
   const opened=await page2.evaluate(()=>{const vis=e=>{const r=e.getBoundingClientRect();return r.width>2&&r.height>2;};
     const dlg=[...document.querySelectorAll('.q-dialog,[role=dialog]')].filter(vis).pop()||document.body;
-    const known=/(Admin|Technician|Foreman|Office User|Parts|Sales Representative|Service Advisor|Service Manager|Time Clock)/;
     const sel=[...dlg.querySelectorAll('.q-select,label.q-field')].filter(vis)
-      .find(e=>known.test((e.querySelector('input')||{}).value||'')||/role/i.test(e.innerText||''));
+      .find(e=>/^Role\b/.test((e.innerText||'').replace(/\s+/g,' ').trim()));
     if(!sel) return false; sel.click(); return true;});
   await page2.waitForTimeout(2500);
   const picked=await page2.evaluate((n)=>{const vis=e=>{const r=e.getBoundingClientRect();return r.width>2&&r.height>2;};
@@ -204,7 +205,7 @@ const restore=async()=>{
   const saved=await page2.evaluate(()=>{const vis=e=>{const r=e.getBoundingClientRect();return r.width>2&&r.height>2;};
     const dlg=[...document.querySelectorAll('.q-dialog,[role=dialog]')].filter(vis).pop()||document.body;
     const b=[...dlg.querySelectorAll('button')].filter(vis)
-      .find(e=>/^(save|update|apply|confirm)$/i.test((e.innerText||'').trim()));
+      .find(e=>/^(save|update|apply|confirm)\b/i.test((e.innerText||'').replace(/\s+/g,' ').trim()));
     if(!b) return false; b.click(); return true;});
   await page2.waitForTimeout(7000);
   return {opened, picked, saved};
