@@ -1,0 +1,111 @@
+{
+ "pass_meta": {
+  "run": 415,
+  "suite": "Global Search V2 - V1 regression set (section 6769)",
+  "environment": "QA branch sv9160",
+  "date": "14 September 2026",
+  "scope": "the 62 regression-flagged cases in run 415",
+  "how_judged": "Every verdict is read from the RENDERED ROWS, using the app's own result-row test ids, with the tab strip's counts, the modal's own result-count line and the /api/search response the page was rendered from all required to agree. Zeros are checked against the seed manifest so a missing record is never reported as a product fault.",
+  "_note": "DRAFT - cases still being observed carry no entry yet. make_results.py refuses to emit while any executed case is unjudged."
+ },
+ "verdicts": {
+  "C45155": {
+   "verdict": "Passed",
+   "observed": "The group of vehicles is labelled 'Assets' on the tab strip and on the group heading. The internal word 'Vehicles' is not shown to the user anywhere in the search results."
+  },
+  "C45157": {
+   "verdict": "Passed",
+   "observed": "Searching 'Kestrel' returned three results and each was a different record - the customer, the part and the supplier. No record was listed twice, even though the word appears in more than one of its fields."
+  },
+  "C45161": {
+   "verdict": "Passed",
+   "observed": "Typing a single letter ran no search: the panel showed the recently-viewed list instead. Typing two letters ran the search and returned results across five types. Matching begins at two characters, as expected."
+  },
+  "C53578": {
+   "verdict": "Passed",
+   "observed": "Typing the customer's name returned that customer's four jobs under the Work orders heading. No job number had to be known."
+  },
+  "C53579": {
+   "verdict": "Passed",
+   "observed": "All four ways of writing the job number found the same job: with a dash, run together, with the shop number in front, and the shop number without the letter. None returned 'no results'."
+  },
+  "C53580": {
+   "verdict": "Passed",
+   "observed": "Typing the vehicle's unit number returned that vehicle under the Assets heading, and its four jobs alongside."
+  },
+  "C53581": {
+   "verdict": "Passed",
+   "observed": "Typing the customer's name returned that customer's vehicle under the Assets heading."
+  },
+  "C53584": {
+   "verdict": "Passed",
+   "observed": "Typing the supplier's email address returned that supplier under the Vendors heading, shown as a contact match."
+  },
+  "C53602": {
+   "verdict": "Passed",
+   "observed": "Typing the customer's name with all the spaces removed returned that customer under the Customers heading, together with its jobs and its vehicle."
+  },
+  "C53607": {
+   "verdict": "Passed",
+   "observed": "Typing a word from the part's description returned that part under the Parts heading, and typing two words of the description returned it among the matching parts. A part can be found by its description, not only by its number."
+  },
+  "C55659": {
+   "verdict": "Passed",
+   "observed": "Typing only part of a number found the record every time: part of the job number found the job, part of the part number found the part, and part of the unit number found the vehicle."
+  },
+  "C55661": {
+   "verdict": "Passed",
+   "observed": "Searching a word that matches five different kinds of record showed all five on the combined view - the jobs, the customer, the vehicle, the part and the supplier. Nothing that matched was squeezed out."
+  },
+  "C55667": {
+   "verdict": "Passed",
+   "observed": "Typing part of the company name returned the customer, and typing the full company name returned it again. This is the control the other customer checks depend on, and it holds."
+  },
+  "C45156": {
+   "verdict": "Passed",
+   "observed": "With the search panel closed, pressing the keyboard shortcut opened it and put the cursor straight in the search box, ready to type."
+  },
+  "C45158": {
+   "verdict": "Passed",
+   "observed": "Search was present and working on a normal screen with no setting switched on and nothing enabled beforehand - it returned results immediately."
+  },
+  "C55683": {
+   "verdict": "Passed",
+   "observed": "On a full-size screen the search box shows the shortcut written in it, and hovering explains what it does. On the narrower tablet and phone widths the shortcut is not shown, which is right - there is no keyboard to press it on."
+  },
+  "C53583": {
+   "verdict": "Blocked",
+   "observed": "Typing the customer's website address returned nothing at all, although the customer's record does hold that website.",
+   "todo": "The case says to hold this rather than treat it as a fault: the new specification leaves the website out of what a customer can be found by, so this may be a deliberate decision. It needs the Product Owner to say whether searching by website should still work."
+  },
+  "C53603": {
+   "verdict": "Blocked",
+   "observed": "Typing the contact's job title returned nothing. The contact does exist on the customer and does carry that exact job title, so the record is there and the search does not reach it.",
+   "todo": "The case says to hold this for the Product Owner: the new specification lists a contact's name, phone and email as searchable but not their job title, so this may be a deliberate decision."
+  },
+  "C53601": {
+   "verdict": "Blocked",
+   "observed": "Neither the part's own number nor a word from its name returned the catalogue part. It is a part that has never been stocked, and it cannot be found at all.",
+   "todo": "The case says to hold this for the Product Owner rather than treat it as a fault. It is the change a customer is most likely to notice, because in the previous version every catalogue part could be searched whether or not it had ever been in stock."
+  },
+  "C55658": {
+   "verdict": "Blocked",
+   "observed": "Typing a job status did not return the jobs in that status. Typing 'Estimate' returned one job that is marked Paid, matched on other words on the record, and typing a two-word status run together returned nothing.",
+   "todo": "The case says to mark this held and flag it: being able to type a status was how a dispatcher pulled up all the estimates, so the Product Owner needs to decide whether that should come back."
+  },
+  "C55660": {
+   "verdict": "Blocked",
+   "observed": "A fragment from the middle of the city name returned nothing, while fragments from the middle of the company name and of the address both found the customer. So mid-word matching works in some places and not others.",
+   "todo": "The case says to mark this held and flag it. The Product Owner needs to decide whether typing a fragment from the middle of any word should find the record, as it did in the previous version."
+  },
+  "C55665": {
+   "verdict": "Blocked",
+   "observed": "No part sale exists to search for. Part sales cannot be created on this branch at present, so the check could not be carried out.",
+   "todo": "A part sale needs to be creatable on this branch before this can be run. Once one exists, search the customer's name and look under the Part sales heading."
+  },
+  "C55666": {
+   "verdict": "Passed",
+   "observed": "Both the part number written with dashes and the same number run together returned the part under the Parts heading. IMPORTANT: this case was written expecting to fail on this build, and it now passes - the part number works both ways."
+  }
+ }
+}
