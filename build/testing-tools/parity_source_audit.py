@@ -11,7 +11,9 @@ FOUR CHECKS per case:
   refs-has-commit    the case's refs field carries the baseline commit
   prov-has-commit    the provenance block carries it too
   prov-has-v1-file   the provenance cites a real V1 source file (or a DOCUMENTED ABSENCE)
-  v1-leads           V1 is named BEFORE the V2 document in the provenance
+  v1-leads           V1 is named BEFORE ANY V2 artefact - the PRD, the EPIC, a story, a spec
+                     version. An epic leading the sentence reads V2-first even when V1 follows.
+  has-v1-banner      the case opens with "SOURCE - THIS CASE IS TESTED AGAINST V1"
 
 USAGE
   python3 parity_source_audit.py --config parity.json [--json out.json]
@@ -80,6 +82,8 @@ def main():
     v1_files = cfg['v1_files']
     v2_marker = cfg.get('v2_doc_marker', 'Product Requirements specification')
     absences = cfg.get('absence_markers', [])
+    # the one unmissable opening every parity case must carry
+    banner = cfg.get('v1_banner', 'SOURCE - THIS CASE IS TESTED AGAINST V1')
     api = make_api(json.load(open(a.creds)))
 
     sections = cfg.get('section_ids') or [cfg['section_id']]
@@ -92,12 +96,21 @@ def main():
         refs = c.get('refs') or ''
         # the provenance block is what follows the '---' separator
         prov = expected.split('---', 1)[1] if '---' in expected else expected
-        i_v1, i_v2 = prov.find(commit), prov.find(v2_marker)
+        # A V2 ARTEFACT IS NOT ONLY THE PRD. An epic id, a story id or a spec version leading the
+        # sentence reads V2-first to a human even when V1 is mentioned later. 32 cases opened
+        # "as per epic SV-9160 and the V1 behaviour recorded in ..." and this audit passed them,
+        # because it only looked for the PRD wording. The QA lead caught it. Every V2 artefact
+        # now counts.
+        v2_markers = [v2_marker] + cfg.get('v2_artefacts', ['epic ', 'SV-9160', 'story ', 'PRD'])
+        i_v1 = prov.find(commit)
+        v2_hits = [prov.find(m) for m in v2_markers if prov.find(m) != -1]
+        i_v2 = min(v2_hits) if v2_hits else -1
         checks = {
             'refs-has-commit':  commit in refs,
             'prov-has-commit':  commit in prov,
             'prov-has-v1-file': any(f in prov for f in v1_files) or any(m in prov for m in absences),
             'v1-leads':         i_v1 != -1 and (i_v2 == -1 or i_v1 < i_v2),
+            'has-v1-banner':    banner in prov,
         }
         ok = all(checks.values())
         rows.append({'case_id': c['id'], 'title': c['title'], 'ok': ok,
