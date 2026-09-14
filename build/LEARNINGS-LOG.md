@@ -1684,3 +1684,24 @@ inside a scrollable body (`search-modal__body`, scrollHeight 842 vs clientHeight
 the fold are real, mounted, and correctly reported by the DOM. Filtering by geometry is right for
 "is this control clickable" and **wrong for "does this record appear"** — the user scrolls. Count rows
 from the DOM unfiltered, and keep the geometry only as an attribute on each row.
+
+### L0085 — a declarative seed manifest is the positive control you already have
+`build/global-search/seeding/seed-manifest.json` states, per record, every field value the suite
+needs — `licence_plate: OHZZT471`, `website: bridgeporthauling-zzt.com`, `vin: 1FUJGLDR9KLZZ4471`.
+That turns Rule 104's positive control from an extra probe into a lookup: **for any query that
+returned nothing, ask the manifest whether a record carries that value on that field.** A zero whose
+value nothing seeded carries is not a product finding at all — it is a data gap, and reading a defect
+into it is how a run manufactures news.
+
+Indexed by `build/global-search/tickets-2026-09-14/seed_index.py`; the review sheet annotates every
+zero with the record and field that should have matched, or says plainly that nothing carries it.
+
+Generalises past search: **whenever a suite has declarative fixtures, index them and check every
+negative against them before it is written down.**
+
+### L0086 — reconcile the execution plan against the run's own membership before judging anything
+Run 415 holds 162 tests, of which **62 carry the regression flag** — exactly the 62 in the execution
+plan, with nothing missing in either direction. Checking that costs one call and settles in advance
+the two questions that otherwise surface at write time: *am I about to write a result for a test that
+is not in this run* (which grows the run, Rule 34) and *am I quietly leaving part of the ordered scope
+unrun* (Rule 101 — there is no delta; what is not covered is reported NOT VERIFIED, never omitted).
