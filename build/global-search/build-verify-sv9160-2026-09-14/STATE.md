@@ -18,3 +18,5 @@
   branch: no customer-portal cases; mobile = narrow viewport, error state = simulated, permissions = seeded role).
 - Kept the legitimate spec-history Notes (Rule 56). Set custom_automation_type = Functional on the 89 that were None.
 - Stored render 90/90 clean. Arithmetic: READY 90 + EXPECT-FAIL 0 = 90 total - HOLD 0.
+
+## Served-page scan (2026-09-14): 90/90 render fr-view, escaped=true=0 (C53476 re-scanned clean after a transient). QUALITY CONFIRMED.
