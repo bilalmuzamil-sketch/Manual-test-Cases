@@ -73,6 +73,7 @@ memorise.** Here is the whole list in one place, in the words a shop user would 
 | **C2** | Typing only PART of a number no longer finds the record | Predicted |
 | **C3** | Typing a fragment from the middle of a word no longer finds the record | Predicted |
 | **C4** | A type of record can vanish from the results entirely when a search matches a lot | Predicted |
+| **D1** | Typing somebody's name brings back a pile of other, differently spelled names, streets and parts | 🔴 **Real — measured on the build** |
 
 **"Real"** = seen with our own eyes on the build. **"Predicted"** = the specification removes it by
 design, the test exists, and the run will confirm it.
@@ -239,6 +240,81 @@ ahead of the evidence.
 **C2 deserves the PO's attention most.** "Type the last few digits of the work order" is how the shop
 floor actually searches. V1 supported it as a side-effect of substring matching; V2's exact-only
 identifier rule removes it by design, and nobody appears to have weighed that trade-off explicitly.
+
+---
+
+## 4a · TICKET CANDIDATE — GROUP D: PRECISION — V2 RETURNS THINGS NOBODY ASKED FOR
+
+*(V1 returned only what you typed · **observed live on the build 2026-09-14** · raised by the QA lead
+from his own use of the search.)*
+
+**This group is a different animal from A, B and C, and it must not be filed as one of them.** Those
+are **losses** — something a user could do in V1 and cannot do in V2. This one is the opposite: the
+thing you searched for **is** found, and is ranked top. What has changed is that it now arrives buried
+in records that have nothing to do with it. Nothing is lost; the result list has simply become much
+noisier. That is why it is a **PO decision about a setting**, not a defect ticket.
+
+### D1 · Typing a name brings back other, differently spelled names
+
+**What the QA lead saw.** Typing **Marlene** returned 16 rows. One was the person he wanted. The other
+fifteen were five words nobody typed: *Darlene* (contact names), *Charlene* (street addresses),
+*Martens* (company names), *Marine* (battery-terminal parts) and *Alene* (from the vendor *Coeur
+d'Alene*).
+
+**Why V1 did not do this.** V1 compared letters. A record came back only if its text actually contained
+what you typed — `useGlobalSearch.ts:76-92`, baseline `55767168`: the first pass asks whether the name
+*starts with* the typed text, the second asks whether the record's combined text *contains* it. Neither
+has any allowance for a near spelling. And this is **not** because V1 searched fewer fields — it
+searched street address, city, postal code, phone, website and contact names too
+(`FetchDataQueryHandler.php:224-245`). The only thing that changed is how close a word has to be.
+
+**Why V2 does it.** V2 accepts a word when it is *nearly* spelled the same. It counts the single-letter
+edits needed to turn one word into the other and scores
+`1 − (edits ÷ length of the longer word)`, accepting anything **0.70 or above**
+(`api/config/packages/search.yaml:230` on branch `SV-9160-global-search-v2`). "Marlene" is seven
+letters, so **0.70 lets through anything within two letters of it.**
+
+**The arithmetic, computed with the product's own formula and confirmed against the live build.** The
+score the build reports for a near-spelling is the similarity multiplied by 0.40, so it can be read
+back:
+
+| Word V2 returned | Where it was found | Letters different | Similarity | Bar is 0.70 |
+|---|---|---|---|---|
+| **Marlene** (the genuine hit) | contact email | 0 | 1.000 | matched exactly — ranked **first** |
+| **Darlene** | contact names | 1 | 0.857 | accepted |
+| **Charlene** | street addresses | 2 | 0.750 | accepted |
+| **Martens** | company names | 2 | **0.714** | accepted by 0.014 |
+| **Marine** | part descriptions | 2 | **0.714** | accepted by 0.014 |
+| **Alene** | vendor name *Coeur d'Alene* | 2 | **0.714** | accepted by 0.014 |
+
+**Three of the five scrape over the line by fourteen thousandths.** They are not exotic failures — they
+are what a 0.70 bar on a seven-letter word is arithmetically guaranteed to produce.
+
+**There is a lot of room to fix it.** The two typo examples the V2 design is built around score far
+higher than this noise: `petersn` → *Peterson* is **0.88** and `frieghtliner` → *Freightliner* is
+**0.92** (both stated in the product's own source, `StringSimilarity.php`). So the typo-tolerance V2
+intends sits at 0.88–0.92 while the noise sits at 0.714–0.75, with **a wide empty gap between them.**
+Raising the bar to about **0.80** removes *Martens*, *Marine*, *Coeur d'Alene* and *Charlene* and leaves
+every intended typo case untouched. It is an environment setting
+(`SEARCH_FUZZY_SIMILARITY_MIN`), so it needs **no code change and no deploy** — which is exactly why
+this is a decision to put to the PO rather than a bug to fix behind their back.
+
+**One honest limit, stated up front.** *Darlene* will survive any workable setting. It is genuinely one
+letter from *Marlene*, exactly as `petersn` is one letter from *Peterson*; no threshold can tell a real
+neighbouring name from a real typo. Removing that one needs a different idea — for example, not
+offering near-spellings at all when an exact match already exists.
+
+**What is NOT wrong.** The genuine hit was found and was ranked **top** (score 0.9 against 0.44 for the
+near-spellings). Ranking is working. This is about what else comes with it.
+
+**Cases:** [C55685](https://shopview.testrail.io/index.php?/cases/view/55685) records the noise ·
+[C55686](https://shopview.testrail.io/index.php?/cases/view/55686) guards the ranking so the real hit
+can never be buried while the PO decides. Both are seeded with a controlled pair —
+`ZZAUTOTEST Marlene Freight Lines` and `ZZAUTOTEST Darlene Cartage`, one letter apart — so the test is
+deterministic on any environment (Rule 111).
+
+**Ticket shape:** same as Groups B and C in §5 below — a `Task`, not a `Story Defect`, because we are
+asking for a ruling, not reporting a break.
 
 ---
 

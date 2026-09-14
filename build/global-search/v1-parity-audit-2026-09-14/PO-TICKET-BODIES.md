@@ -498,3 +498,67 @@ h2. Test case
 
 C55661 - https://shopview.testrail.io/index.php?/cases/view/55661
 ```
+
+
+## D1 — Global Search V2 - PO decision: how close a spelling should count as a match
+
+```
+h2. What a user could do in V1
+
+Typing somebody's name gave you that person. V1 compared the letters you typed against the letters in the record, so a record came back only if it actually contained what you typed. A name spelled differently was never returned.
+
+h2. What happens in V2
+
+V2 also returns records whose wording is merely CLOSE to what you typed - close enough that two letters may differ. Typing "Marlene" returned 16 rows. One was the person wanted. The other fifteen were five words nobody typed: Darlene (contact names), Charlene (street addresses), Martens (company names), Marine (battery terminal parts) and Alene (from the vendor Coeur d'Alene).
+
+h2. Evidence
+
+OBSERVED LIVE on the V2 QA branch on 14 September 2026 by the QA lead, and reproduced from the API the same day with a control query that correctly returned nothing.
+
+V2 accepts a word when the number of single letter edits needed to turn it into the typed word, divided by the length of the longer word, leaves a score of 0.70 or higher. "Marlene" is seven letters, so 0.70 lets through anything within TWO letters of it.
+
+Scores computed with the product's own formula and confirmed against the live build:
+
+* Marlene - the genuine hit - 0 letters different - 1.000 - ranked first
+* Darlene - 1 letter - 0.857 - accepted
+* Charlene - 2 letters - 0.750 - accepted
+* Martens - 2 letters - 0.714 - accepted by 0.014
+* Marine - 2 letters - 0.714 - accepted by 0.014
+* Alene - 2 letters - 0.714 - accepted by 0.014
+
+Three of the five clear the bar by fourteen thousandths.
+
+h2. Where the V1 behaviour is established
+
+useGlobalSearch.ts:76-92 at baseline 55767168. The first pass asks whether the record name STARTS WITH the typed text; the second asks whether the record's combined text CONTAINS it. Both are literal letter for letter comparisons.
+
+This is not because V1 searched fewer fields. V1 searched street address, city, postal code, phone, website and contact names too - FetchDataQueryHandler.php:224-245. The only thing that changed is how close a word has to be.
+
+This ticket is raised under Standing Rule 109: for the V1 regression suite the shipped V1 product IS the specification. The V2 document is recorded below for context only - it is not the reason this ticket exists.
+
+h2. What the V2 specification says
+
+PRD v1.5 section 7 introduces tolerant matching so a typed mistake still finds the record. It does not say how far from the typed word a record may be and still be shown. The 0.70 setting is an implementation choice, not a stated requirement.
+
+h2. **THE DECISION WE NEED FROM YOU.** How close should a spelling have to be before search shows it? Today two letters out of seven is close enough, which is why one search for a person returned five unrelated words.
+
+**Your options:**
+1. **Tighten it to about 0.80.** This removes Martens, Marine, Coeur d'Alene and Charlene from the example above and leaves every intended typo case untouched - the two typo examples the design is built around score 0.88 and 0.92, so there is a wide gap to work in. It is an environment setting, so no code change and no deploy.
+2. **Leave it as it is.** Confirm that a noisier result list is an acceptable price for catching more typing mistakes, and we close this and keep the test case as a record of the decision.
+3. **Change the idea rather than the number.** Stop offering near spellings at all when an exact match already exists. This is the only option that also removes Darlene, which is genuinely one letter from Marlene and will survive any workable setting.
+
+We are not asking you to choose on technical grounds. We are asking what a service advisor should see when they type a customer's name.
+
+h2. What is NOT wrong
+
+The record actually wanted was found and was ranked top - 0.9 against 0.44 for the near spellings. Ranking is working. Nothing has been lost. This is about what else arrives with it.
+
+h2. Why it matters
+
+Medium. Nobody is blocked. But search is used dozens of times a day by every service advisor, and a result list where most rows are irrelevant trains people to stop trusting it.
+
+h2. Test cases
+
+C55685 - https://shopview.testrail.io/index.php?/cases/view/55685 - records the noise
+C55686 - https://shopview.testrail.io/index.php?/cases/view/55686 - guards the ranking so the real hit cannot be buried while this is decided
+```

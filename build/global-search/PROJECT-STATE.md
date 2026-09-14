@@ -374,3 +374,37 @@ placeholder but is OUT OF SCOPE for V1 per the Figma.
 - Apply: re-import GS (109) -> re-backfill C-IDs -> union-sync run R415 -> re-assign R415 to Bilal. Nothing pushed by us.
 
 - **APPLIED to TestRail 2026-08-25:** 110 cases live (97 updated in place, 13 added, 8 moved to Out-of-V1); id-map 110/110; run R415 = 110, all assigned to Bilal. Lossless, nothing deleted.
+
+---
+
+## 2026-09-14 — 🔴 CORRECTION: V2 GLOBAL SEARCH RUNS ON OPENSEARCH, NOT ON THE DATABASE
+
+**Our records were wrong.** We had the PRD's "PostgreSQL with a trigram extension", corrected to
+"the stack is MySQL on Aurora so it will be MySQL text matching." **Neither describes the build.**
+V2 matching runs on a **separate search engine (OpenSearch)**; records are copied into it and all
+matching, scoring and ranking happen there. Established from the product source at branch
+`SV-9160-global-search-v2` commit `7869ff2a`, and reproduced live the same day.
+
+**The three things that follow, in plain words:**
+1. **A new record takes a moment to become findable** — it is saved to the database first and copied
+   to the search engine after. Our "findable within 30 seconds" cases test a real, deliberate lag.
+2. **Search can be unavailable while everything else works.** A tester who sees "Search unavailable,
+   retry" is looking at a separate service being down, not at the feature being broken.
+3. **Relevance is a set of environment switches, not code** (`api/config/packages/search.yaml`), so
+   two environments can legitimately return different results from the same data.
+
+**How a word is decided to match:** count the single-letter edits between it and what you typed, then
+score `1 − (edits ÷ length of the longer word)`; accept at **0.70** (0.80 for queries of three
+characters or fewer). Because the bar is a fraction, **how many letters may differ depends on word
+length** — at seven letters, 0.70 permits **two**.
+
+**Full evidence, the measured scores and the settings table:**
+`build/global-search/V2-SEARCH-ENGINE-CORRECTION-2026-09-14.md`.
+
+**The finding it produced:** item **D1** in
+`build/global-search/v1-parity-audit-2026-09-14/PO-TASK-TICKET-CANDIDATES.md` §4a — typing a name
+returns a pile of differently spelled names, streets and parts. Cases **C55685** and **C55686**,
+both seeded, both in run **415**.
+
+🔴 **None of this becomes an expectation.** Rule 109 stands: for this suite the **V1** product is the
+specification. V2's code is context for *why* the build behaves as it does, never the standard.

@@ -1,0 +1,39 @@
+{
+ "when_utc": "2026-09-14T19:22:03.801148Z",
+ "operation": "add_case",
+ "section_id": 6769,
+ "run_synced": 415,
+ "note": "Rule 50 - per-case audit with READ-BACK verification, not a bare HTTP status. TestRail wraps text fields in <p> on write, so equality is checked on stripped text.",
+ "cases": [
+  {
+   "c_id": 55685,
+   "link": "https://shopview.testrail.io/index.php?/cases/view/55685",
+   "title": "Typing a name does not bring back other differently spelled names",
+   "section_id": 6769,
+   "refs": "SV-9160 (V1 baseline 55767168 useGlobalSearch.ts:76-92; V2 near-spelling bar 0.70 - PO DECISION)",
+   "readback": {
+    "source_leads_with_v1": true,
+    "v1_commit_cited": true,
+    "automation_marker": true,
+    "seeded_pair_named": true,
+    "query_in_steps": true
+   },
+   "verdict": "PASS"
+  },
+  {
+   "c_id": 55686,
+   "link": "https://shopview.testrail.io/index.php?/cases/view/55686",
+   "title": "The record that actually matches what you typed is listed first",
+   "section_id": 6769,
+   "refs": "SV-9160 (V1 baseline 55767168 useGlobalSearch.ts:156-180 two-pass order)",
+   "readback": {
+    "source_leads_with_v1": true,
+    "v1_commit_cited": true,
+    "automation_marker": true,
+    "seeded_pair_named": true,
+    "query_in_steps": true
+   },
+   "verdict": "PASS"
+  }
+ ]
+}
