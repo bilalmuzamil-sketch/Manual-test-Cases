@@ -2025,3 +2025,26 @@ different reason and each time looking like the same wall:
 Worth noting what kept this honest: the control refused to report permission results while the
 identity was unproven. It was wrong three times about *why* — and right every time about *not
 reporting*. A control that blocks a conclusion you want is doing its job.
+
+### L0103 — the fourth wall in front of the same twelve cases, and it was mine too
+Having proved impersonation works (the server reported the **technician** template with **6**
+permissions against the administrator's **43**), the probe cleared the browser's stored copy of the
+signed-in user so the app would render as the new person. The app treated that as *signed out*,
+bounced to the sign-in screen, and the probe recorded **"search is not reachable"** — which, for a
+case about what a limited user can see, reads exactly like a permission finding.
+
+Four walls, four sessions' worth of apparent blockers, in front of the same twelve cases. Every one
+of them mine:
+
+1. quick sign-in offers only two users — true, irrelevant (L0093)
+2. impersonation refused — the people picked were inactive (L0097)
+3. identity unchanged — I asked the browser instead of the server (L0102)
+4. search unreachable — I logged the app out myself (this one)
+
+> **When the same work keeps looking blocked for a new reason each time, the common factor is the
+> instrument.** Four different error messages that all stop the same twelve tests are not four
+> product facts.
+
+The fix is narrow: drop the cached **permission set**, keep the **session**. And the control earned
+its keep four times over — at no point did it let an empty screen be written down as "this role sees
+nothing".
