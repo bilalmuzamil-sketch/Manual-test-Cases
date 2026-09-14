@@ -1,0 +1,114 @@
+{
+ "at": "2026-09-14T20:06:08.600Z",
+ "roles": {
+  "Technician": {
+   "adminBaseline": {
+    "templateSlug": "administrator",
+    "nFePerms": 43
+   },
+   "attempts": [
+    {
+     "name": "Stephen Grimes",
+     "email": "stephen.grimes@staging.shopview.local",
+     "status": 403,
+     "head": "{\"errors\":[{\"error\":\"Access denied.\"}]}"
+    },
+    {
+     "name": "Craig Mckee",
+     "email": "craig.mckee@staging.shopview.local",
+     "status": 403,
+     "head": "{\"errors\":[{\"error\":\"Access denied.\"}]}"
+    },
+    {
+     "name": "Brandi Smith",
+     "email": "brandi.smith@staging.shopview.local",
+     "status": 200,
+     "head": "{\"data\":{\"role\":{\"id\":\"af8d02b5-ecd1-4205-a82f-32a4d5bb1015\",\"fePermissions\":[{\"id\":\"3a50f7f9-1085-479c-b332-dd4fff79030a\",\"name\":\"woPickParts\"},{\"id\":\"55f5cb14-34bd-4999-95a1-0168497466e1\",\"name\":\"customersView\"},{\"id\":\"61435d03-a81c-499f-b814-79085"
+    }
+   ],
+   "staff": {
+    "id": "27869a91-6d0d-4dcf-bf50-585d862d06b2",
+    "name": "Brandi Smith",
+    "email": "brandi.smith@staging.shopview.local",
+    "role": "Technician"
+   },
+   "switch": {
+    "status": 200,
+    "head": "{\"data\":{\"role\":{\"id\":\"af8d02b5-ecd1-4205-a82f-32a4d5bb1015\",\"fePermissions\":[{\"id\":\"3a50f7f9-1085-479c-b332-dd4fff79030a\",\"name\":\"woPickParts\"},{\"id\":\"55f5cb14-34bd-4999-95a1-0168497466e1\",\"name\":\"customersView\"},{\"id\":\"61435d03-a81c-499f-b814-79085"
+   },
+   "serverIdentity": {
+    "status": 200,
+    "templateSlug": "technician",
+    "nPerms": 6
+   },
+   "bouncedToSignIn": true,
+   "now": {
+    "templateSlug": null,
+    "nPerms": null,
+    "email": null,
+    "roleName": null
+   },
+   "identityChanged": true,
+   "permissions": null,
+   "url": "https://sv9160.qa.shopview.com/login?redirect=/workorders",
+   "searchReachable": false,
+   "instrument": "the app went back to the sign-in screen, so nothing here is a permission result"
+  },
+  "Senior Service Advisor": {
+   "adminBaseline": {
+    "templateSlug": "administrator",
+    "nFePerms": 43
+   },
+   "attempts": [
+    {
+     "name": "Jessica Stanton",
+     "email": "jessica.stanton@staging.shopview.local",
+     "status": 403,
+     "head": "{\"errors\":[{\"error\":\"Access denied.\"}]}"
+    }
+   ],
+   "instrument": "no active holder of this role could be impersonated -- see attempts"
+  },
+  "Foreman": {
+   "adminBaseline": {
+    "templateSlug": "administrator",
+    "nFePerms": 43
+   },
+   "attempts": [
+    {
+     "name": "Dylan Rush",
+     "email": "dylan.rush@staging.shopview.local",
+     "status": 200,
+     "head": "{\"data\":{\"role\":{\"id\":\"e9838ada-b4eb-4401-9489-ae9f9870457e\",\"fePermissions\":[{\"id\":\"06e09b15-29bc-4c05-981e-478f51511596\",\"name\":\"customersCreateAndEdit\"},{\"id\":\"077478dd-e55d-4b13-a45b-77caf1ebc55c\",\"name\":\"timesheetsView\"},{\"id\":\"1190ca56-40e3-463"
+    }
+   ],
+   "staff": {
+    "id": "35799682-5357-4e0b-acb4-26ef9ccf67a1",
+    "name": "Dylan Rush",
+    "email": "dylan.rush@staging.shopview.local",
+    "role": "Foreman"
+   },
+   "switch": {
+    "status": 200,
+    "head": "{\"data\":{\"role\":{\"id\":\"e9838ada-b4eb-4401-9489-ae9f9870457e\",\"fePermissions\":[{\"id\":\"06e09b15-29bc-4c05-981e-478f51511596\",\"name\":\"customersCreateAndEdit\"},{\"id\":\"077478dd-e55d-4b13-a45b-77caf1ebc55c\",\"name\":\"timesheetsView\"},{\"id\":\"1190ca56-40e3-463"
+   },
+   "serverIdentity": {
+    "status": 200,
+    "templateSlug": "foreman",
+    "nPerms": 23
+   },
+   "bouncedToSignIn": true,
+   "now": {
+    "templateSlug": null,
+    "nPerms": null,
+    "email": null,
+    "roleName": null
+   },
+   "identityChanged": true,
+   "permissions": null,
+   "url": "https://sv9160.qa.shopview.com/login?redirect=/workorders",
+   "searchReachable": false,
+   "instrument": "the app went back to the sign-in screen, so nothing here is a permission result"
+  }
+ }
+}

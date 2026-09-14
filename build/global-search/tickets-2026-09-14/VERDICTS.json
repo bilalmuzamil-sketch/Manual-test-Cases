@@ -231,6 +231,12 @@
    "verdict": "Failed",
    "observed": "Typing the year and the make together - '2019 Freightliner', the most natural way anyone would look for a vehicle - returned no vehicles at all. Taken apart, each piece works: the year on its own returns twenty vehicles, the make on its own returns twenty, and the make with the model returns twenty including ours. It is only when the YEAR is combined with another word that everything disappears: '2019 Freightliner', 'Cascadia 2019' and '2019 Cascadia' all return nothing, in either order. The vehicle's record carries the right year, make and model - that was checked and corrected first - and searching its model does find it, so the search is up to date.",
    "todo": "Searching a vehicle by its year together with the make or model needs to work. Both the old product and the written requirements say the year is one of the things a vehicle can be found by, so this is not a decision anyone needs to make - it is simply not working. The useful detail for whoever fixes it: the year on its own is fine, so the year is being recorded; it is combining the year with any second word that empties the results."
+  },
+  "C53587": {
+   "verdict": "Failed",
+   "observed": "A new job was created and then searched for by its number, over and over, without reloading or signing out. It did not come back until about 85 seconds had passed. The requirement allows 30. The method is not in doubt: a new CUSTOMER, created and timed exactly the same way in the same session, came back after 17 seconds - so the clock and the search can both see a record inside the allowed window when there is one to see.",
+   "not_observed": "Two of the three flows in this case were not run. A part sale cannot be created on this branch at all, and receiving a part through an order was not exercised. Only the new-job flow was timed.",
+   "todo": "A newly created job needs to be findable within 30 seconds, as the requirement says and as a new customer already manages. Useful detail for whoever looks: customers appear quickly and jobs do not, so the two are not being refreshed the same way. The other two flows in this case still need running once part sales can be created here."
   }
  }
 }

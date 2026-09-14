@@ -1085,11 +1085,15 @@
   "C53587": {
    "title": "A new work order or part sale is findable within 30 seconds",
    "created": true,
-   "status": 201,
-   "numberFound": false,
-   "newId": null,
-   "responseBody": "{\"data\":{\"work_order_id\":\"ea3c8f84-4c3c-4e2c-8c1c-15451adeec70\"}}",
-   "note": "the job was created but its number could not be read, so the window was not timed"
+   "number": "S-17604",
+   "searched": "17604",
+   "foundAfterSeconds": 85,
+   "withinThirty": false,
+   "rowsAtEnd": [
+    "[pinned] S9160-17604 ZZAUTOTEST Bridgeport Hauling Estimate ZZT-4471 ",
+    "[work_orders] S9160-17604 ZZAUTOTEST Bridgeport Hauling Estimate ZZT-4471 "
+   ],
+   "partSaleHalf": "not run - part sales cannot be created on this branch (SV-10031)"
   },
   "C45152": {
    "title": "Switching location refreshes results to the new location",
