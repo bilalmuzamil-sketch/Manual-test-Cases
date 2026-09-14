@@ -1802,3 +1802,29 @@ tap is the last resort in case a scripted `.click()` is being swallowed.
 > **Any check of the form "did X happen after I did Y" needs a WAIT, not an immediate read** — and
 > the negative case is the one that needs it most, because a false positive gets caught by the next
 > step while a false negative gets written up as a finding.
+
+### L0093 — "we can only sign in as Admin or Tech" is a fact about quick-login, not about the branch
+Twelve role-gated cases were carried as blocked because the DEV MODE panel offers exactly two users.
+That is true and it is not the question. The branch carries **66 staff across five real roles** —
+Admin, Technician, Foreman, Sales Representative, Senior Service Advisor — and `POST /api/switch-user
+{user_id}` reaches any of them. Four non-admin permission sets, no user created, no role edited,
+nothing to restore.
+
+The playbook had this written down the whole time (§G: impersonate → else swap the Tech user's role →
+else create staff, least invasive first). Rule 97 exists for exactly this, and it paid: the answer was
+in the repo before the first probe was written.
+
+> **One route being closed is a fact about that route.** Before recording anything as blocked, ask
+> what the blocker actually blocks — here, quick-login's two buttons block *quick-login*, not
+> *being a different user*.
+
+**And the positive control IS the test for any permission case.** "This role sees no work orders" and
+"my session is broken" render the identical empty screen. So every impersonation records the
+permission set the server reports *before* searching; a role whose identity did not demonstrably
+change is reported as an instrument failure and never as a permission finding.
+
+Recipe, proven on sv9160: staff and their role labels from `GET /api/staff?limit=200`; impersonate
+with `POST /api/switch-user {user_id}`; confirm the change by the email and permission count in
+`localStorage.fe_permissions_wrapper`, never by the call returning 200; end it with a fresh admin
+boot. One browser per role — changing who you are mid-session bounces the app to `/no-location`,
+which looks like a permission result and is not.

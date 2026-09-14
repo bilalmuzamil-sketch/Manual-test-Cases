@@ -4918,3 +4918,22 @@ renders rows**, which is the failure the QA lead caught by hand.
 
 Working executors: `build/global-search/tickets-2026-09-14/RUN_exec2.mjs` (query cases) and
 `RUN_special.mjs` (shortcut, header hint, three widths, row navigation, analytics).
+
+### §GS.1 — RUNNING A PERMISSION CASE WITHOUT CREATING A USER (proven on sv9160, 2026-09-14)
+
+Quick-login offering only **Admin** and **Tech** blocks quick-login, not being a different user.
+`GET /api/staff?limit=200` lists every staff member **with their role label**; sv9160 carries 66
+across five roles (Admin 32 · Technician 22 · Sales Representative 6 · Foreman 5 · Senior Service
+Advisor 1). `POST /api/switch-user {user_id}` becomes any of them — nothing created, nothing edited,
+nothing to restore. Prefer it to the Tech role-swap (§G) whenever a holder already exists.
+
+**The positive control is the test.** "This role cannot see work orders" and "my session broke" are
+the same empty screen. Before observing anything, read back `localStorage.fe_permissions_wrapper`
+(`template_slug` + permission count) and the user's email and confirm they CHANGED. A 200 from
+switch-user is not that proof. A role whose identity did not change is an instrument failure and must
+never be written up as a permission finding.
+
+**One browser per role.** Changing who you are mid-session bounces the SPA to `/no-location`, which
+reads as a permission result and is a technique artifact (§G).
+
+Working script: `build/global-search/tickets-2026-09-14/RUN_roles2.mjs`.
