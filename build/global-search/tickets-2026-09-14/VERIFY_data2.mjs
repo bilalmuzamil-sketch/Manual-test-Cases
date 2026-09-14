@@ -35,16 +35,22 @@ for(const rec of man.records){
 }
 fs.writeFileSync(`${DIR}/DATA-VERIFY2.json`, JSON.stringify(out,null,1));
 // Say plainly which values the cases search for are actually ABSENT from the record.
-const gaps=[];
+const gaps=[], unchecked=[];
 for(const [k,v] of Object.entries(out.records)){
-  if(!v.fields) continue;
+  if(!v.fields){ unchecked.push(`${k}: the record could not be read at all`); continue; }
   for(const [field,want] of Object.entries(v.wanted||{})){
     if(typeof want!=='string') continue;
     const got=v.fields[field];
-    if(got===undefined) continue;
+    // A field the record does not expose under the name the payload WRITES is the silent branch --
+    // and it is where the asset's model hid ('model_name' written, 'vehicle_model' read back), which
+    // left three cases unrunnable for a reason this check could not see. Never skip silently.
+    if(got===undefined){ unchecked.push(`${k}.${field}: written as '${field}', but the record exposes no such key -- cannot compare`); continue; }
     if(String(got||'').toLowerCase()!==want.toLowerCase())
       gaps.push(`${k}.${field}: wanted ${JSON.stringify(want)} but the record holds ${JSON.stringify(got)}`);
   }
 }
-console.log(gaps.length?('DATA GAPS:\n  '+gaps.join('\n  ')):'no data gaps -- every wanted value is on its record');
+out.gaps=gaps; out.unchecked=unchecked;
+fs.writeFileSync(`${DIR}/DATA-VERIFY2.json`, JSON.stringify(out,null,1));
+console.log(gaps.length?('DATA GAPS:\n  '+gaps.join('\n  ')):'no data gaps among the fields that COULD be compared');
+if(unchecked.length) console.log('NOT COMPARED (do not read these as clean):\n  '+unchecked.join('\n  '));
 await browser.close();
