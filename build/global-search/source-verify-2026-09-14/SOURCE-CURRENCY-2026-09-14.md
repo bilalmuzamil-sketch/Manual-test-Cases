@@ -5,6 +5,8 @@ sources are up to date. Scope note from the QA lead: **do NOT touch** the four f
 screenshot — "Out of V1 Scope" (sec 6767), "V1 Regression Suite" (sec 6769), "Quick Actions on Hover
 (v1)" (sec 6774), "V1 Regression (derived from V1 automated tests)" (sec 8056).
 
+**EXCLUSION LIST UPDATED 2026-09-14 (QA lead, second screenshot): now FIVE folders — added "Search Telemetry" (sec 6768, 0 cases).** Full exclude set: 6767 Out of V1 Scope, 6768 Search Telemetry, 6769 V1 Regression Suite, 6774 Quick Actions on Hover (v1), 8056 V1 Regression derived. Verifiable count is still 90 (6768 holds no cases).
+
 **Last full source-verify:** 2026-09-09, against spec **v1.5** (five-dimension gate, all clean).
 
 ## 1. Sources pulled LIVE today (Rule 100/108)
