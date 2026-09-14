@@ -1587,3 +1587,11 @@ Had I taken the zero from my invoice-number search as evidence, I would have rep
 on the strength of a search that never matches that field. The evidence that actually counts is the
 **paged enumeration to exhaustion** (186 distinct work orders, pages until no new ids). **A search's
 zero is worth only as much as the positive control that goes with it, on the SAME field.**
+
+### L0078 — reuse the committed harness before hand-rolling a browser
+**2026-09-14, sv9160.** I hand-rolled a `chromium.launch()` to test QA access and got
+`ERR_CONNECTION_RESET`, which looks exactly like a dead host or a bad cookie. The host was fine: my
+browser simply was not going through the MITM bridge, which every committed harness configures. Rule 97
+already says a committed harness is reused, never rebuilt — this is the cost of not doing that: three
+failed attempts and a near-miss "the QA branch is unreachable" claim. **Before writing a probe, check
+whether `build/testing-tools/` already boots the thing you are booting.**

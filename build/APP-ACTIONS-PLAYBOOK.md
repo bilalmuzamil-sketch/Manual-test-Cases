@@ -4836,3 +4836,18 @@ number (0 rows for the real "S2-863"), so a zero from that search proves nothing
 ### IBS batch transactions
 Reports → **IBS Batches** → `/reports/batch-transactions`, backed by
 `GET /api/customers/ibs/list-batches`. On the production test account this lists **none**.
+
+### QA branch sv9160 (Global Search V2) — boot, 2026-09-14
+`node build/testing-tools/qa-branch-boot.mjs sv9160 / admin` — works, 200s across the board.
+Two traps cost four attempts and are worth writing down:
+- **The SSO file must contain the COOKIE ASSIGNMENT, not the bare token.** `qa-branch-boot.mjs` greps
+  `/sv_sso_session=([^;\s]+)/` out of `/tmp/qa-cookies/<branch>-sso.txt`. A file holding only the
+  64-hex value fails with *"no sv_sso_session in …"*, which reads like a bad token and is not.
+  Write `printf 'sv_sso_session=%s' "<token>" > /tmp/qa-cookies/sv9160-sso.txt`, `chmod 600`.
+- **A hand-rolled `chromium.launch()` does NOT reach these hosts** — `ERR_CONNECTION_RESET`. The
+  committed harness launches with `proxy: {server: 'http://127.0.0.1:<bridge port>'}`, the port read
+  from `/tmp/atlassian/bridge-port.txt` (it ROTATES — never hard-code it). Reuse the harness (Rule 97);
+  rebuilding it is what produced the reset.
+- **Node's playwright is NOT resolvable by bare specifier** — `import 'playwright'` gives
+  ERR_MODULE_NOT_FOUND, and the `playwright` on the PATH is the PYTHON package. Node probes must import
+  `/opt/node22/lib/node_modules/playwright/index.mjs` by absolute path, as the committed harnesses do.
