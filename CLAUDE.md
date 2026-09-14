@@ -454,6 +454,7 @@ rule. Generated from the split files' own headers.
 | **108** | A SOURCE VERIFICATION READS THE WHOLE DOCUMENT AND EVERY LINK IT NAMES — requirement body + full Q&A/decision log (Q1..QN, grows) + User Feedback Summary + Change Log + header + every ticket/page/design the doc links; reading only the requirement section is non-compliant |
 | **109** | FOR A V1-vs-V2 COMPARISON SUITE, **V1 IS THE SPECIFICATION** — and V1 means the V1 PRODUCT REPOSITORY at a named commit, not any document; the V2 spec is NEVER consulted to decide whether a case exists, a deliberate V2 removal never subtracts one, the expected result and SOURCE line state the V1 behaviour, and a comparison case is NEVER edited towards the V2 spec |
 | **110** | NEVER USE A LABEL, CODE OR ABBREVIATION WITHOUT ITS PLAIN-WORDS MEANING BESIDE IT — a code is filing shorthand only; it appears alongside the thing it stands for, in shop-floor words. Three tests: the cold-read test · the shop-floor test · a plain-words key at the TOP of any document that uses codes |
+| **111** | A TEST CASE IS NOT FINISHED UNTIL ITS DATA IS SEEDED OR EXPLICITLY ACCOUNTED FOR, in the same pass that wrote it — every case ends SEEDED · NEEDS NO DATA · SELF-SEEDING, written into the project's seed manifest. A case whose data is missing fails misleadingly and produces false defects |
 
 **Operator forms** (the rule bodies are all in `build/rules/RULES-61-ONWARD.md`): **95** →
 `build/skills/TOKEN-DISCIPLINE-CHARTER.md` · **96** → `build/skills/17-REGRESSION-IMPACT-V1-TO-V2.md`

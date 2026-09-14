@@ -196,6 +196,7 @@ Playwright's `Control+K` (capital) sends Ctrl+**Shift**+K; use `Control+k`.
 - [ ] **Source audit clean** — every case leads with V1
 - [ ] Every difference verdicted **REROUTED** or **LOST**; every LOST has a case **and** a ticket candidate
 - [ ] Environment seeded, keywords unique, control records present, state file committed
+- [ ] **Every case ends SEEDED, NEEDS-NO-DATA or SELF-SEEDING, written into the manifest (Rule 111)** — a case with unaccounted data is not done, because it fails misleadingly and produces false defects
 - [ ] Preconditions build-verified against the real screen
 - [ ] Run synced **union-only**, before/after counts recorded, **zero lost**
 - [ ] Handoff carries both halves — **run the suite** and **file the tickets** — plus the charter (Rule 95)

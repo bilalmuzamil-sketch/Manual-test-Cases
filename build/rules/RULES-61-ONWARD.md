@@ -3898,3 +3898,34 @@ Index: CLAUDE.md (rule index table). Other rule files: build/rules/RULES-01-20.m
     too. Worked example of the failure and the fix:
     `build/global-search/v1-parity-audit-2026-09-14/PO-TASK-TICKET-CANDIDATES.md` — the key now sits at
     the top of the file.
+
+111. **A TEST CASE IS NOT FINISHED UNTIL ITS DATA IS SEEDED, OR EXPLICITLY ACCOUNTED FOR — IN THE SAME
+    PASS THAT WROTE THE CASE (all projects, permanent; QA lead, 2026-09-14).**
+    **THE ORDER (QA lead, 2026-09-14):** *"Make sure to also seed the data for it if needed, ALWAYS seed
+    the data for the test cases you create"* · *"And if for those test cases (make it your process of
+    every new test case) seed the data if needed."*
+    **THE RULE.** Writing the case is half the job. **In the same pass**, every new case ends in exactly
+    one of three states, and the state is **written down**, not held in someone's head:
+    **(a) SEEDED** — the records it needs exist, verified live, and the record is in the project's seed
+    manifest with this case id in its `serves` list.
+    **(b) NEEDS NO DATA** — recorded in the manifest's no-data list with the reason (a keyboard
+    shortcut; a search that must match NOTHING, which needs an ABSENCE not a presence).
+    **(c) SELF-SEEDING** — the tester creates the data as part of the test, because it cannot be
+    pre-made for them (a "newly created record is findable" case; a personal recent-items list). The
+    case's own preconditions must SAY SO, in the tester's words.
+    **A case in none of those three states is NOT DONE**, however well written it is.
+    **WHY.** A case whose data is missing does not fail honestly — it fails *misleadingly*. The tester
+    searches, finds nothing, and files a defect against a product that is working. On Global Search,
+    six cases were minutes away from exactly that when a redeploy silently wiped the seeded parts.
+    **HOW, SO IT STAYS CHEAP.** The project keeps a **declarative seed manifest** and an **idempotent
+    find-or-create seeder** (Skill 19 §8a). Adding data for a new case is then **one manifest entry**,
+    never a code change, and re-seeding after a redeploy is one command. **The second time costs
+    minutes because the first time wrote down the endpoints, the payloads and the find strategy.**
+    **THE VERIFICATION IS LIVE, NOT ASSUMED.** "I seeded it earlier" is not a state — ids change when an
+    environment is refreshed, and a stale id fails in a way that looks like a product defect. Re-derive
+    from live lookups and prove every probe with a control first (Rule 104).
+    **RELATION TO OTHER RULES:** this makes Rule 14 (never mark anything NOT-VERIFIED for a missing
+    data-state — seed it) a **completion condition on authoring**, not only on execution, and it feeds
+    Rule 84's tester-readiness gate: a suite handed over with unaccounted data has not passed it.
+    Operator form: `build/skills/19-V1-V2-PARITY-SUITE.md` §8a and the worked example at
+    `build/global-search/seeding/` (manifest · idempotent seeder · playbook).
