@@ -2048,3 +2048,29 @@ of them mine:
 The fix is narrow: drop the cached **permission set**, keep the **session**. And the control earned
 its keep four times over — at no point did it let an empty screen be written down as "this role sees
 nothing".
+
+### L0104 — take the query apart before reporting that a search is broken
+"2019 Freightliner" returned no vehicles. With the fixture repaired and the index demonstrably
+current, that was ready to write up as *a vehicle cannot be found by its year*. Six queries, four
+minutes, and the finding got far sharper:
+
+| Typed | Vehicles returned |
+|---|---|
+| `2019` | 20 |
+| `Freightliner` | 20 |
+| `Freightliner Cascadia` | 20, ours among them |
+| `2019 Freightliner` | **0** |
+| `2019 Cascadia` | **0** |
+| `Cascadia 2019` | **0** |
+
+The year is indexed. The make is indexed. Two words together are fine. **Combining the year with any
+second word empties the result, in either order.** That is a different defect from "the year is not
+searchable", it points at something quite specific, and it would have been missed entirely by
+reporting the first observation.
+
+> **A failing query is a starting point, not a finding.** Take it apart — each term alone, pairs,
+> reordered — before writing it up. The cost is minutes; the difference is between handing engineering
+> a symptom and handing them a diagnosis.
+
+Note also which way this cut: the sharper finding is *narrower* than the first reading, not broader.
+Decomposing protects against overstating as often as it reveals something new.
