@@ -4937,3 +4937,35 @@ never be written up as a permission finding.
 reads as a permission result and is a technique artifact (§G).
 
 Working script: `build/global-search/tickets-2026-09-14/RUN_roles2.mjs`.
+
+### §GS.2 — TECHNIQUES THIS PASS PAID FOR (sv9160, 2026-09-14)
+
+Small things, each of which cost a wrong reading before it was got right.
+
+**Identity after impersonation.** `localStorage.user` and `fe_permissions_wrapper` are written at
+sign-in and are **not** refreshed by `POST /api/switch-user`. Read `GET /api/auth/me/fe-permissions`
+for the truth, then clear both keys and reload so the app renders as that user. (`GET /api/auth/me`
+itself answers **404** here.)
+
+**Switching location.** `POST /api/iam/change-location` returns 200 and the header goes on showing
+the previous location — the browser session does not move. For anything a user would see, **switch
+through the location control on screen** and confirm the header changed before comparing anything.
+
+**Is an icon different per type?** Every row's icon carries the same generic class, so the class
+answers nothing. Take the **SVG's own shapes** (`path` `d`, `points`, circle attributes) as the icon's
+identity. Measured: five types, five distinct shapes.
+
+**What is highlighted?** Do not match `/active|selected|highlight/` against class names — it picks
+rows four down the list. Read the input's **`aria-activedescendant`**, which is the app's own answer,
+and keep `aria-selected` as the secondary check.
+
+**Before testing a keyboard behaviour, click nothing.** A freshly-opened panel is already on All;
+clicking a scope tab first can move the highlight and turn a probe artefact into a finding.
+
+**Reading a work order back.** The create answers 201 with the **id but not the number**. Search on
+the work-order list is broken (the manifest says so). Read it back with
+`/api/work-orders/view/<id>`, which is the only reliable route.
+
+**Analytics.** GA4 posts carry the event name as `en=` in the BODY, and `sendBeacon` bodies are not
+always exposed to a request listener — intercept the route and read `postDataBuffer()`, and count the
+posts whose body you could not read rather than reporting "no such event".
