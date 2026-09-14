@@ -185,8 +185,14 @@ await run(45153,'Selecting each result type opens the right record',async()=>{
 // ---------------------------------------------------------------- C45160 analytics event
 await run(45160,'Selecting a result records a usage analytics event',async()=>{
   const seen=[];
-  const h=r=>{const u=r.url(); if(/analytic|telemetry|event|track|mixpanel|segment|amplitude|usage/i.test(u))
-    seen.push(`${r.method()} ${u.slice(0,160)}`);};
+  // Capture the BODY too. Selecting a result also navigates, so a page-view event fires either way;
+  // the URL alone cannot tell a search-usage event from the navigation that follows it. GA4 puts the
+  // event name in `en=`, so read it rather than infer the verdict from the fact that something fired.
+  const h=r=>{const u=r.url(); if(/analytic|telemetry|event|track|mixpanel|segment|amplitude|usage/i.test(u)){
+    let body=''; try{ body=r.postData()||''; }catch(e){}
+    const names=[...String(body).matchAll(/(?:^|&|\n)en=([^&\n]+)/g)].map(m=>decodeURIComponent(m[1]));
+    seen.push({call:`${r.method()} ${u.slice(0,110)}`, events:names,
+      body:String(body).slice(0,300)});}};
   page.on('request',h);
   await page.goto(`${APP}/workorders`,{waitUntil:'domcontentloaded'}); await page.waitForTimeout(3500);
   const baseline=seen.length;
@@ -198,7 +204,9 @@ await run(45160,'Selecting a result records a usage analytics event',async()=>{
   await page.waitForTimeout(7000);
   page.off('request',h); page.off('request',h2);
   await shot('C45160-after-selecting-a-result');
+  const eventNames=[...new Set(seen.flatMap(x=>x.events||[]))];
   return {rowClicked:!!row, analyticsBefore:baseline, analyticsAfter:seen.length,
+    eventNames, searchEventSeen:eventNames.some(n=>/search/i.test(n)),
     analyticsRequests:seen.slice(0,10), requestsCapturedAtAll:anyRequest.length,
     note:anyRequest.length?'the listener demonstrably captured traffic during the click':
       'NO traffic captured during the click -- the listener, not the app, is what this proves'};});
