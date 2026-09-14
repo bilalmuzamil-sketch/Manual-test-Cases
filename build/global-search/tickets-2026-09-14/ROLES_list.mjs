@@ -56,7 +56,13 @@ for(const r of routes){ const res=await api(r);
     roles:Array.isArray(list)?list.map(x=>({id:x.id,name:x.name,slug:x.slug,users:x.usersCount,
       editable:x.editable, default:x.default})):null,
     head:Array.isArray(list)?undefined:(res.head||'').slice(0,120)};
-  if(Array.isArray(list)&&list.length){ out.workingRoute=r; out.roles=out.routes[r].roles; break; } }
+  // Only a 200 counts, and the entries must look like roles. The "first array-valued key" shortcut
+  // happily took the `errors` array out of a 405 and reported one nameless role -- a refusal dressed
+  // up as data, which is the same did-not-run-reported-as-a-result trap in yet another costume.
+  const roleShaped=Array.isArray(list)&&list.length>0&&list.every(x=>x&&typeof x==='object'&&
+    (x.id!==undefined)&&(x.name!==undefined||x.slug!==undefined));
+  out.routes[r].looksLikeRoles=roleShaped;
+  if(res.status===200&&roleShaped){ out.workingRoute=r; out.roles=out.routes[r].roles; break; } }
 
 fs.writeFileSync(`${DIR}/ROLES-LIST.json`, JSON.stringify(out,null,1));
 console.log(JSON.stringify({workingRoute:out.workingRoute||'none answered',
