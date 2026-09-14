@@ -567,3 +567,35 @@ placeholder but is OUT OF SCOPE for V1 per the Figma.
 - Apply: re-import GS (109) -> re-backfill C-IDs -> union-sync run R415 -> re-assign R415 to Bilal. Nothing pushed by us.
 
 - **APPLIED to TestRail 2026-08-25:** 110 cases live (97 updated in place, 13 added, 8 moved to Out-of-V1); id-map 110/110; run R415 = 110, all assigned to Bilal. Lossless, nothing deleted.
+
+---
+
+## 2026-09-14 — 🔴 CORRECTION: THE V2 SEARCH ENGINE, AND THE PRECISION FINDING IT EXPLAINS
+
+**V2 global search runs on OpenSearch, not on the application database.** Our notes said PostgreSQL
+(from the PRD), corrected to MySQL on Aurora; **both were wrong.** Records are copied into a separate
+search engine and all matching, scoring and ranking happen there — `api/src/Search/Infrastructure/
+OpenSearch/`, branch `SV-9160-global-search-v2` commit `7869ff2a`.
+
+**Three things a tester needs from this:** a new record takes a moment to become findable (it is saved
+to the database first and copied after); **search can be unavailable while the rest of the product is
+fine**, and shows its own retry banner; and relevance is a set of environment switches
+(`api/config/packages/search.yaml`), so two environments can legitimately differ on the same data.
+
+**How a word is decided to match:** count the single-letter edits between it and what you typed, then
+score `1 − (edits ÷ length of the longer word)`; accept at **0.70** (0.80 for queries of three
+characters or fewer). The bar is a fraction, so **how many letters may differ depends on word length**
+— at seven letters, 0.70 permits **two**. That is the whole explanation of the noise the QA lead
+found: one search for *Marlene* returned *Darlene* (0.857), *Charlene* (0.750), *Martens*, *Marine*
+and *Alene* (0.714 each, clearing the bar by fourteen thousandths).
+
+**Full evidence, the measured table and the settings list live on the parity branch** —
+`build/global-search/V2-SEARCH-ENGINE-CORRECTION-2026-09-14.md` on
+`origin/claude/global-search-v1-baseline-6ax9ul`, with the finding written up as item **D1** in
+`build/global-search/v1-parity-audit-2026-09-14/PO-TASK-TICKET-CANDIDATES.md` §4a and cases
+**C55685** / **C55686**. *(That branch is superseded on SHARED files and must never be merged here —
+read the folder, do not merge the branch.)*
+
+🔴 **None of this becomes an expectation.** Rule 109 stands: for a V1-versus-V2 comparison suite the
+**V1** product is the specification, and V2's source — like V2's PRD — is context for *why* the build
+behaves as it does, never the standard it is judged against.
