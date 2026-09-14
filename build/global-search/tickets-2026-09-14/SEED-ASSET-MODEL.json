@@ -1,0 +1,38 @@
+{
+ "at": "2026-09-14T19:49:03.875Z",
+ "tried": [
+  {
+   "path": "/api/vehicles/models?vehicle_maker_id=258d9d6c-4cea-4352-9826-1e0f636dc0cd&limit=500",
+   "status": 404,
+   "n": 1
+  },
+  {
+   "path": "/api/vehicle-models?vehicle_maker_id=258d9d6c-4cea-4352-9826-1e0f636dc0cd&limit=500",
+   "status": 404,
+   "n": 1
+  },
+  {
+   "path": "/api/vehicles/makers/258d9d6c-4cea-4352-9826-1e0f636dc0cd/models?limit=500",
+   "status": 404,
+   "n": 1
+  },
+  {
+   "path": "/api/vehicles/models?limit=500&search=Cascadia",
+   "status": 404,
+   "n": 1
+  },
+  {
+   "path": "/api/vehicle-models?search=Cascadia&limit=500",
+   "status": 404,
+   "n": 1
+  }
+ ],
+ "before": {
+  "unit": "ZZT-4471",
+  "model": "1000HS",
+  "makerId": "258d9d6c-4cea-4352-9826-1e0f636dc0cd",
+  "modelId": "5c5aa6ef-9ac7-40dd-8680-fac8bd2b813a"
+ },
+ "cascadiaModelId": null,
+ "note": "no model list endpoint answered with a Cascadia entry -- the vehicle keeps its current model"
+}

@@ -1,34 +1,35 @@
 {
- "at": "2026-09-14T19:31:45.544Z",
+ "at": "2026-09-14T19:45:05.115Z",
  "steps": [
+  {
+   "what": "vendor telephone via /api/parts-catalogue/vendors/change",
+   "status": 404,
+   "head": "{\"errors\":[{\"error\":\"\\u0027resource\\u0027 was not found.\"}]}"
+  },
+  {
+   "what": "vendor telephone via /api/parts-catalogue/change-vendor",
+   "status": 200,
+   "head": "{\"data\":[]}"
+  },
   {
    "what": "vendor telephone",
    "wanted": "(614) 555-0188",
-   "writeStatus": 404,
-   "before": null,
-   "after": null,
-   "landed": false,
-   "head": "{\"errors\":[{\"error\":\"\\u0027resource\\u0027 was not found.\"}]}"
+   "writeStatus": 200,
+   "via": "/api/parts-catalogue/change-vendor",
+   "before": "(614) 555-0188",
+   "after": "(614) 555-0188",
+   "landed": true,
+   "head": "{\"data\":[]}"
   },
   {
    "what": "asset model via /api/vehicles/change",
-   "status": 400,
-   "head": "{\"errors\":[{\"vehicle_id\":\"Missing required parameter\"},{\"company_id\":\"Missing required parameter\"}]}"
-  },
-  {
-   "what": "asset model via /api/vehicles/edit",
-   "status": 404,
-   "head": "{\"errors\":[{\"error\":\"\\u0027resource\\u0027 was not found.\"}]}"
-  },
-  {
-   "what": "asset model via /api/customers/vehicle/change",
-   "status": 404,
-   "head": "{\"errors\":[{\"error\":\"\\u0027resource\\u0027 was not found.\"}]}"
+   "status": 201,
+   "head": "{\"data\":{\"vehicle\":{\"id\":\"81c09d26-9c5b-494b-ae3d-e4aa2ba56f77\",\"vehicle_maker_id\":\"258d9d6c-4cea-4352-9826-1e0f636dc0cd\",\"vehicle_model_id\":\"5c5aa6ef-9ac7-40dd-8680-fac8bd2b813a\",\"vehicle_type_id\":null,\"year\":\"2019\",\"color\":null,\"vin\":\"1FUJGLDR9KLZZ4471\",\"engine_hours\":null,\"mileage\":null,\"company_id\":\"a1d08451-0214-41a4-983f-7f878ff7bcf0\",\"organization_id\":\"d55bc308-e61a-438d-b5f1-c7a73c89d49f\","
   },
   {
    "what": "asset model",
    "wanted": "Cascadia",
-   "via": null,
+   "via": "/api/vehicles/change",
    "before": "1000HS",
    "after": "1000HS",
    "landed": false

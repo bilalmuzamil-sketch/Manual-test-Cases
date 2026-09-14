@@ -805,7 +805,97 @@
    "title": "Pressing Enter opens the top result without arrowing to it",
    "topRow": "S9160-17597 ZZAUTOTEST Bridgeport Hauling Estimate ZZT-4471 · 2019 Freightliner 1000HS",
    "topRowType": "work_orders",
-   "highlightedBeforeEnter": "search_result_row_customers_3",
+   "highlightedBeforeEnter": "search_row_customers_3281d198-6e8c-419f-bb39-16482f7412ac",
+   "highlightEvidence": {
+    "activeDescendant": "search_row_customers_3281d198-6e8c-419f-bb39-16482f7412ac",
+    "firstRow": {
+     "tid": "search_result_row_work_orders_0",
+     "id": "search_row_work_orders_ae6797c7-d9ee-4142-9017-e2ba32a1b3a4",
+     "cls": "search-row",
+     "ariaSelected": "false",
+     "text": "S9160-17597 ZZAUTOTEST Bridgeport Hauling Est"
+    },
+    "rowsWithAriaSelected": [
+     "search_result_row_customers_2"
+    ],
+    "distinctClassSets": [
+     "search-row",
+     "search-row search-row--selected"
+    ],
+    "rows": [
+     {
+      "tid": "search_result_row_work_orders_0",
+      "id": "search_row_work_orders_ae6797c7-d9ee-4142-9017-e2ba32a1b3a4",
+      "cls": "search-row",
+      "ariaSelected": "false",
+      "text": "S9160-17597 ZZAUTOTEST Bridgeport Hauling Est"
+     },
+     {
+      "tid": "search_result_row_work_orders_1",
+      "id": "search_row_work_orders_bc72f68c-ae32-4bb2-91d8-560ce34781ff",
+      "cls": "search-row",
+      "ariaSelected": "false",
+      "text": "S9160-17602 ZZAUTOTEST Bridgeport Hauling Est"
+     },
+     {
+      "tid": "search_result_row_work_orders_2",
+      "id": "search_row_work_orders_6742aca7-31e6-45f7-a30a-f6708d98777e",
+      "cls": "search-row",
+      "ariaSelected": "false",
+      "text": "S9160-17601 ZZAUTOTEST Bridgeport Hauling Est"
+     },
+     {
+      "tid": "search_result_row_work_orders_3",
+      "id": "search_row_work_orders_3f149d79-f650-492e-bace-840bb65a100c",
+      "cls": "search-row",
+      "ariaSelected": "false",
+      "text": "S9160-17600 ZZAUTOTEST Bridgeport Hauling Est"
+     },
+     {
+      "tid": "search_result_row_work_orders_4",
+      "id": "search_row_work_orders_8f02b314-d826-4035-a77c-9f2997b4b158",
+      "cls": "search-row",
+      "ariaSelected": "false",
+      "text": "S9160-17599 ZZAUTOTEST Bridgeport Hauling Est"
+     },
+     {
+      "tid": "search_result_row_customers_0",
+      "id": "search_row_customers_a1d08451-0214-41a4-983f-7f878ff7bcf0",
+      "cls": "search-row",
+      "ariaSelected": "false",
+      "text": "ZZAUTOTEST Bridgeport Hauling 1450 Kestrelway"
+     },
+     {
+      "tid": "search_result_row_customers_1",
+      "id": "search_row_customers_29b3cfee-3cb8-48f2-80d8-52c0e89e915c",
+      "cls": "search-row",
+      "ariaSelected": "false",
+      "text": "Dorr Truck Center 1 open Contact match · 4734"
+     },
+     {
+      "tid": "search_result_row_customers_2",
+      "id": "search_row_customers_3281d198-6e8c-419f-bb39-16482f7412ac",
+      "cls": "search-row search-row--selected",
+      "ariaSelected": "true",
+      "text": "Palmetto Bay Truck Service & Repair Contact m"
+     },
+     {
+      "tid": "search_result_row_customers_3",
+      "id": "search_row_customers_18b7a7dc-87d9-44bb-a714-fe9183307d25",
+      "cls": "search-row",
+      "ariaSelected": "false",
+      "text": "Forest's Truck Repair 3058 Dakota Locks Suite"
+     },
+     {
+      "tid": "search_result_row_customers_4",
+      "id": "search_row_customers_9fe70d7f-c910-40f2-8371-629a17a5fe4a",
+      "cls": "search-row",
+      "ariaSelected": "false",
+      "text": "Keller Trucking & Repair Contact match · 615 "
+     }
+    ]
+   },
+   "openedTheTopRow": true,
    "urlBefore": "/workorders?tab=complete",
    "urlAfter": "/customers/3281d198-6e8c-419f-bb39-16482f7412ac/work-orders",
    "navigated": true,
@@ -1003,18 +1093,23 @@
   },
   "C53587": {
    "title": "A new work order or part sale is findable within 30 seconds",
-   "created": false,
+   "created": true,
    "status": 201,
-   "note": "the job could not be created, so the 30-second window was never tested"
+   "numberFound": false,
+   "note": "the job was created but its number could not be read from the response, so the window was not timed"
   },
   "C45152": {
    "title": "Switching location refreshes results to the new location",
    "location1": {
     "name": "Staging Heavy Duty - 9919",
+    "appThinksItIsOn": {
+     "fromStorage": null,
+     "onScreen": "Staging Heavy Duty - 9919"
+    },
     "tabs": {
-     "strip": 13,
-     "all": 13,
-     "work_orders": 5,
+     "strip": 14,
+     "all": 14,
+     "work_orders": 6,
      "customers": 7,
      "assets": 1,
      "parts": 0,
@@ -1025,20 +1120,24 @@
     },
     "jobs": [
      "S9160-17597 ZZAUTOTEST Bridgeport Hauling Estimate ZZT-4471 ",
+     "S9160-17602 ZZAUTOTEST Bridgeport Hauling Estimate ZZT-4471 ",
      "S9160-17601 ZZAUTOTEST Bridgeport Hauling Estimate ZZT-4471 ",
      "S9160-17600 ZZAUTOTEST Bridgeport Hauling Estimate ZZT-4471 ",
-     "S9160-17599 ZZAUTOTEST Bridgeport Hauling Estimate ZZT-4471 ",
-     "S9160-17598 ZZAUTOTEST Bridgeport Hauling Estimate ZZT-4471 "
+     "S9160-17599 ZZAUTOTEST Bridgeport Hauling Estimate ZZT-4471 "
     ],
     "partSales": []
    },
    "location2": {
     "name": "Staging Lethbridge - 4310",
     "switchStatus": 200,
+    "appThinksItIsOn": {
+     "fromStorage": null,
+     "onScreen": "Staging Heavy Duty - 9919"
+    },
     "tabs": {
-     "strip": 13,
-     "all": 13,
-     "work_orders": 5,
+     "strip": 14,
+     "all": 14,
+     "work_orders": 6,
      "customers": 7,
      "assets": 1,
      "parts": 0,
@@ -1049,16 +1148,55 @@
     },
     "jobs": [
      "S9160-17597 ZZAUTOTEST Bridgeport Hauling Estimate ZZT-4471 ",
+     "S9160-17602 ZZAUTOTEST Bridgeport Hauling Estimate ZZT-4471 ",
      "S9160-17601 ZZAUTOTEST Bridgeport Hauling Estimate ZZT-4471 ",
      "S9160-17600 ZZAUTOTEST Bridgeport Hauling Estimate ZZT-4471 ",
-     "S9160-17599 ZZAUTOTEST Bridgeport Hauling Estimate ZZT-4471 ",
-     "S9160-17598 ZZAUTOTEST Bridgeport Hauling Estimate ZZT-4471 "
+     "S9160-17599 ZZAUTOTEST Bridgeport Hauling Estimate ZZT-4471 "
     ],
     "partSales": []
    },
    "firstLocationHadJobs": true,
+   "locationReallyChanged": false,
    "jobsChanged": false,
+   "conclusive": false,
    "restoredTo": "Staging Heavy Duty - 9919"
+  },
+  "C53589": {
+   "title": "Typing is never lost while search results are loading",
+   "wanted": "Bridgeport Hauling",
+   "boxAfterFirstBurst": "Bridgeport",
+   "boxAfterSecondBurst": "Bridgeport Hauling",
+   "boxAtEnd": "Bridgeport Hauling",
+   "everyCharacterKept": true,
+   "midFlight": {
+    "text": "close Search for something Arrow down and arrow up navigate, Enter selects, Escape closes Navigate Select Close esc",
+    "spinner": false,
+    "looksBroken": false
+   },
+   "rowsAtEnd": [
+    "[work_orders] S9160-17597 ZZAUTOTEST Bridgeport Hauling Estimate ZZT-4471 ",
+    "[work_orders] S9160-17601 ZZAUTOTEST Bridgeport Hauling Estimate ZZT-4471 ",
+    "[work_orders] S9160-17600 ZZAUTOTEST Bridgeport Hauling Estimate ZZT-4471 ",
+    "[work_orders] S9160-17599 ZZAUTOTEST Bridgeport Hauling Estimate ZZT-4471 ",
+    "[work_orders] S9160-17598 ZZAUTOTEST Bridgeport Hauling Estimate ZZT-4471 ",
+    "[customers] ZZAUTOTEST Bridgeport Hauling 1450 Kestrelway Industrial, Fe",
+    "[assets] ZZT-44712019 Freightliner 1000HS ZZAUTOTEST Bridgeport Hauli"
+   ],
+   "resultsMatchFullText": true,
+   "settledAtAll": true
+  },
+  "C45150": {
+   "title": "Results never include another organization's records",
+   "rowsShown": 12,
+   "customersShown": [
+    "ZZAUTOTEST Darlene Cartage Fernvale, Ohio",
+    "ZZAUTOTEST Halloway Freight 345994 Fernvale, Ohio",
+    "ZZAUTOTEST Marlene Freight Lines Fernvale, Ohio",
+    "ZZAUTOTEST Bridgeport Hauling 1450 Kestrelway Industrial, Fernvale, Ohio"
+   ],
+   "ownCustomerListSize": 4,
+   "customersNotInThisOrganisationsOwnList": [],
+   "note": "a single signed-in user belongs to one organisation, so this shows whether anything outside its own records appears; it cannot prove what a second organisation would see"
   }
  },
  "workplaces": [
@@ -1076,5 +1214,5 @@
   "name": "Staging Heavy Duty - 9919",
   "status": 200
  },
- "complete": true
+ "complete": false
 }
