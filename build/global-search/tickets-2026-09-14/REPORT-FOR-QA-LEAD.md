@@ -16,8 +16,16 @@ capitalise it or whether you type the whole thing.
 screen. The record is there; search simply no longer looks at that piece of information. Each one is
 a decision for you rather than a fault to fix, and the tests themselves say so.
 
-**Nothing failed.** That is not me being generous — these tests are written so that a capability lost
-between versions is put to you for a ruling, not raised as a bug.
+**One genuine fault, and it is a good one to know about.** Typing a vehicle's **year together with its
+make** — "2019 Freightliner", the most natural way anyone would look for a vehicle — returns **no
+vehicles at all**. Taken apart, every piece works: the year on its own returns twenty vehicles, the
+make on its own returns twenty, the make with the model returns twenty. It is only the year combined
+with a second word that empties the results, and it does so whichever order you type them. This one
+needs no decision from you: both the old product and the written requirements say the year is
+searchable, so it is simply not working.
+
+**Nothing else failed.** That is not me being generous — the rest of these tests are written so that a
+capability lost between versions is put to you for a ruling, not raised as a bug.
 
 ---
 
@@ -35,6 +43,7 @@ between versions is put to you for a ruling, not raised as a bug.
 | A brand-new customer | Found seventeen seconds after being created |
 | A search matching nothing | Says so plainly |
 | A word matching sixty-six records across all eight kinds | Every kind still shown; nothing squeezed out |
+| Finding a vehicle by its model, and a supplier by its phone | Both work — they had looked broken only because the test records were missing those details |
 | Records from anywhere else | None ever appeared |
 
 ## 2 · What is left
