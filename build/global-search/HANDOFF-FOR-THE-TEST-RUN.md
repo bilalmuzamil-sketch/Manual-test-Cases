@@ -23,7 +23,7 @@ remember it.
 | | |
 |---|---|
 | **Test run** | **415** |
-| Total tests in it | **162** |
+| Total tests in it | **164** |
 | Of those, the V1 parity suite | **63** — section **6769** (62) plus section **8056** (1) |
 | The rest | 99 tests covering V2's own new features — not this handoff's subject |
 
@@ -103,7 +103,7 @@ python3 seed.py --confirm    # creates only what is missing
 It logs itself in, sets the location, checks what exists, creates only the gaps, and writes the live
 record ids to `seed-state-live.json`. **Run `--check` before the run starts and after any redeploy.**
 
-**Seeded and verified right now — 6 of 7:**
+**Seeded and verified right now — 8 of 9:**
 
 | | |
 |---|---|
@@ -114,6 +114,8 @@ record ids to `seed-state-live.json`. **Run `--check` before the run starts and 
 | Stocked part `ZZT-88-4412` — 25 at Heavy Duty, 7 at Lethbridge | ✅ |
 | Four work orders, `S9160-17597` to `S9160-17600` | ✅ |
 | A part sale | 🔴 **blocked by SV-10031** — three cases wait on it |
+| Customer `ZZAUTOTEST Marlene Freight Lines` — contains the word the tester types | ✅ |
+| Customer `ZZAUTOTEST Darlene Cartage` — ONE letter away, and deliberately so | ✅ |
 
 **If a new case needs data:** add one entry to `seed-manifest.json` and re-run. Never edit the seeder.
 
@@ -148,9 +150,17 @@ the Rule 94 admissibility gate. And **never file an API-related ticket without a
 ## 8 · THINGS THAT WILL SAVE YOU AN ARGUMENT
 
 - **Do not edit the cases in sections 6769 or 8056.** If one looks wrong, say so and I will fix it —
-  touching a case means re-verifying the whole case, and all 63 were verified on 14 September.
+  touching a case means re-verifying the whole case, and all 65 were verified on 14 September.
 - **Union-only when syncing the run.** A partial case list on an update **deletes tests and their
-  results**. The run went 139 → 162 across several syncs with nothing lost; keep it that way.
+  results**. The run went 139 → 164 across several syncs with nothing lost; keep it that way.
+- **Two cases added 14 September evening, both about PRECISION rather than loss.**
+  [C55685](https://shopview.testrail.io/index.php?/cases/view/55685) records that typing a name also
+  returns other, differently spelled names — the QA lead saw *Darlene*, *Charlene*, *Martens*,
+  *Marine* and *Alene* come back from one search for *Marlene*. **It is expected to differ on this
+  build: record what you see and flag it, do NOT raise a defect** — the Product Owner has a decision
+  open on it (item **D1** in `v1-parity-audit-2026-09-14/PO-TASK-TICKET-CANDIDATES.md` §4a).
+  [C55686](https://shopview.testrail.io/index.php?/cases/view/55686) is its safety net and should
+  PASS: the record you actually typed must be listed first. Both use the seeded one-letter-apart pair.
 - **A part is only findable if it is STOCKED**, not merely catalogued. That is the single most
   important thing to know before judging any parts result.
 - **Parts follow the location in V2.** A part stocked only at the other branch will not be found from
