@@ -1,806 +1,323 @@
 {
  "C53578": {
   "title": "Finding a work order by its customer's name still works",
-  "expected": "The seeded customer's work orders are listed under the Work Orders group. You did not need to know any work order number to find them.",
-  "steps": "1. Open global search. 2. Type the customer name: Bridgeport 3. Read the Work Orders group.",
-  "observed": [
-   {
-    "query": "Bridgeport",
-    "tabs": [
-     "All (12)",
-     "Work orders (4)",
-     "Customers (7)",
-     "Assets (1)",
-     "Parts (0)",
-     "Vendors (0)",
-     "Part sales (0)",
-     "Purchase orders (0)",
-     "Vendor invoices (0)"
-    ],
-    "allRows": 8,
-    "topRows": [
-     "S9160-17600 ZZAUTOTEST Bridgeport Hauling Estimate ZZT-4471 \u00b7 2019 Freightliner ????",
-     "S9160-17599 ZZAUTOTEST Bridgeport Hauling Estimate ZZT-4471 \u00b7 2019 Freightliner ????",
-     "S9160-17598 ZZAUTOTEST Bridgeport Hauling Estimate ZZT-4471 \u00b7 2019 Freightliner ????"
-    ],
-    "group": "Customers",
-    "groupClicked": true,
-    "groupRows": 7,
-    "groupText": "close All (12) Work orders (4) Customers (7) Assets (1) Parts (0) Vendors (0) Part sales (0) Purchase orders (0) Vendor invoices (0) 12 resu"
-   }
-  ]
+  "group": "Work Orders",
+  "queries": [
+   "Bridgeport"
+  ],
+  "expected": "The seeded customer's work orders are listed under the Work Orders group. You did not need to know any work order number to find them. ---",
+  "po_hold": false
  },
  "C53580": {
   "title": "Finding an asset by its unit number still works",
-  "expected": "The seeded asset is listed under the Assets group. This is about SEARCHING by unit number. It is not enough for the unit number to appear on a result row - the search itself must match it.",
-  "steps": "1. Open global search. 2. Type the unit number: ZZT-4471 3. Read the Assets group.",
-  "observed": [
-   {
-    "query": "ZZT-4471",
-    "tabs": [
-     "All (5)",
-     "Work orders (4)",
-     "Customers (0)",
-     "Assets (1)",
-     "Parts (0)",
-     "Vendors (0)",
-     "Part sales (0)",
-     "Purchase orders (0)",
-     "Vendor invoices (0)"
-    ],
-    "allRows": 0,
-    "topRows": [],
-    "group": "Assets",
-    "groupClicked": true,
-    "groupRows": 1,
-    "groupText": "close All (5) Work orders (4) Customers (0) Assets (1) Parts (0) Vendors (0) Part sales (0) Purchase orders (0) Vendor invoices (0) 5 result"
-   }
-  ]
+  "group": "Assets",
+  "queries": [
+   "ZZT-4471"
+  ],
+  "expected": "The seeded asset is listed under the Assets group. This is about SEARCHING by unit number. It is not enough for the unit number to appear on a result row - the search itself must match it. ---",
+  "po_hold": false
  },
  "C53581": {
   "title": "Finding an asset by the customer who owns it still works",
-  "expected": "The seeded asset appears under the Assets group, found by its owner's name.",
-  "steps": "1. Open global search. 2. Type the owning customer name: Bridgeport 3. Read the Assets group.",
-  "observed": [
-   {
-    "query": "Bridgeport",
-    "tabs": [
-     "All (12)",
-     "Work orders (4)",
-     "Customers (7)",
-     "Assets (1)",
-     "Parts (0)",
-     "Vendors (0)",
-     "Part sales (0)",
-     "Purchase orders (0)",
-     "Vendor invoices (0)"
-    ],
-    "allRows": 8,
-    "topRows": [
-     "S9160-17600 ZZAUTOTEST Bridgeport Hauling Estimate ZZT-4471 \u00b7 2019 Freightliner ????",
-     "S9160-17599 ZZAUTOTEST Bridgeport Hauling Estimate ZZT-4471 \u00b7 2019 Freightliner ????",
-     "S9160-17598 ZZAUTOTEST Bridgeport Hauling Estimate ZZT-4471 \u00b7 2019 Freightliner ????"
-    ],
-    "group": "Customers",
-    "groupClicked": true,
-    "groupRows": 7,
-    "groupText": "close All (12) Work orders (4) Customers (7) Assets (1) Parts (0) Vendors (0) Part sales (0) Purchase orders (0) Vendor invoices (0) 12 resu"
-   }
-  ]
+  "group": "Assets",
+  "queries": [
+   "Bridgeport"
+  ],
+  "expected": "The seeded asset appears under the Assets group, found by its owner's name. ---",
+  "po_hold": false
+ },
+ "C53583": {
+  "title": "Finding a customer by their website still works",
+  "group": "Customers",
+  "queries": [
+   "bridgeporthauling-zzt.com"
+  ],
+  "expected": "The seeded customer is returned. If not, record and flag it - the V2 specification omits website entirely from the Customer indexed fields, so this may be a deliberate scope cut. Do not raise a defect until the Product Owner has ruled. ---",
+  "po_hold": true
+ },
+ "C53584": {
+  "title": "Finding a vendor by email address still works",
+  "group": "Vendors",
+  "queries": [
+   "parts@kestrelsupply-zzt.com"
+  ],
+  "expected": "The seeded vendor is returned under the Vendors group. ---",
+  "po_hold": false
  },
  "C53586": {
   "title": "A newly created customer is findable within 30 seconds",
-  "expected": "The customer you just created is returned. Allow up to 30 seconds for it to appear - that is the specified index refresh window, not a bug. No sign-out and no re-login is needed. The record also appears under Recent searches, because creating a record counts as viewing it.",
-  "steps": "1. Create a new customer named 'ZZAUTOTEST Halloway Freight' plus today's date and time, so the name is unique to this run. 2. Do not reload the page and do not sign out. 3. Open global search and type: Halloway",
-  "observed": [
-   {
-    "query": "Halloway",
-    "tabs": [
-     "All (66)",
-     "Work orders (12)",
-     "Customers (3)",
-     "Assets (20)",
-     "Parts (4)",
-     "Vendors (1)",
-     "Part sales (5)",
-     "Purchase orders (6)",
-     "Vendor invoices (15)"
-    ],
-    "allRows": 8,
-    "topRows": [
-     "2016 Ford F-450 Holley Diesel Services Inc",
-     "2018 Volkswagen Atlas Oak Hill Mobile Truck Repair",
-     "2019 Stc Stc Morgan Hill Onsite Truck & Trailer Repair"
-    ],
-    "group": "Customers",
-    "groupClicked": true,
-    "groupRows": 3,
-    "groupText": "close All (66) Work orders (12) Customers (3) Assets (20) Parts (4) Vendors (1) Part sales (5) Purchase orders (6) Vendor invoices (15) 66 r"
-   }
-  ]
+  "group": null,
+  "queries": [
+   "Halloway"
+  ],
+  "expected": "The customer you just created is returned. Allow up to 30 seconds for it to appear - that is the specified index refresh window, not a bug. No sign-out and no re-login is needed. The record also appears under Recent searches, because creating a record counts as viewing it. ---",
+  "po_hold": false
  },
  "C53588": {
   "title": "More recent work orders rank above older ones of equal relevance",
-  "expected": "Among work orders that match equally well and share the same status, the more recently updated one is listed above the older one. A closed or invoiced work order older than 90 days is pushed down the list. Do NOT expect a strict newest-first date order. Other signals legitimately outrank recency - an open or active status, being assigned to you, and having viewed it in the last 7 days.",
-  "steps": "1. Open global search. 2. Type: Bridgeport 3. Read the order of the rows in the Work Orders group.",
-  "observed": [
-   {
-    "query": "Bridgeport",
-    "tabs": [
-     "All (12)",
-     "Work orders (4)",
-     "Customers (7)",
-     "Assets (1)",
-     "Parts (0)",
-     "Vendors (0)",
-     "Part sales (0)",
-     "Purchase orders (0)",
-     "Vendor invoices (0)"
-    ],
-    "allRows": 7,
-    "topRows": [
-     "ZZAUTOTEST Bridgeport Hauling 1450 Kestrelway Industrial, Fernvale",
-     "Dorr Truck Center 1 open Contact match \u00b7 4734 Wang Harbors Suite 526, Shepardtown, Alberta",
-     "Forest's Truck Repair 3058 Dakota Locks Suite 883, South Brianaport, New Brunswick"
-    ],
-    "group": "Work orders",
-    "groupClicked": true,
-    "groupRows": 4,
-    "groupText": "close All (12) Work orders (4) Customers (7) Assets (1) Parts (0) Vendors (0) Part sales (0) Purchase orders (0) Vendor invoices (0) 12 resu"
-   }
-  ]
+  "group": null,
+  "queries": [
+   "Bridgeport"
+  ],
+  "expected": "Among work orders that match equally well and share the same status, the more recently updated one is listed above the older one. A closed or invoiced work order older than 90 days is pushed down the list. Do NOT expect a strict newest-first date order. Other signals legitimately outrank recency - an open or active status, being assigned to you, and having viewed it in the last 7 days. ---",
+  "po_hold": false
  },
  "C53601": {
   "title": "A catalogue part that is not in inventory can still be found",
-  "expected": "Both searches return the catalogue part 'ZZAUTOTEST Airline Coupler Vernway'. THIS IS THE HIGHEST-RISK DIFFERENCE BETWEEN V1 AND V2. In V1 every catalogue part was searchable whether or not it had ever been stocked. V2 searches Parts (Inventory). If the part is NOT returned, this is the change a customer is most likely to report as 'I could search this part in V1 and cannot in V2'. Record and flag it - do not raise a",
-  "steps": "1. Open global search. 2. Type: Vernway 3. Read the Parts group. 4. Clear the input and type the part number: ZZT-77-3300 5. Read the Parts group again.",
-  "observed": [
-   {
-    "query": "Vernway",
-    "tabs": [
-     "All (30)",
-     "Work orders (3)",
-     "Customers (7)",
-     "Assets (19)",
-     "Parts (0)",
-     "Vendors (1)",
-     "Part sales (0)",
-     "Purchase orders (0)",
-     "Vendor invoices (0)"
-    ],
-    "allRows": 3,
-    "topRows": [
-     "S2-17318 La Vergne Truck Repair Paid 2017 John Deere 331",
-     "S2-17142 La Vergne Truck Repair Paid 2017 John Deere 331",
-     "S2-13813 La Vergne Truck Repair Paid 2017 John Deere 331"
-    ],
-    "group": "Parts",
-    "groupClicked": true,
-    "groupRows": 0,
-    "groupText": "close All (30) Work orders (3) Customers (7) Assets (19) Parts (0) Vendors (1) Part sales (0) Purchase orders (0) Vendor invoices (0) 30 res"
-   },
-   {
-    "query": "ZZT-77-3300",
-    "tabs": [
-     "All (0)",
-     "Work orders (0)",
-     "Customers (0)",
-     "Assets (0)",
-     "Parts (0)",
-     "Vendors (0)",
-     "Part sales (0)",
-     "Purchase orders (0)",
-     "Vendor invoices (0)"
-    ],
-    "allRows": 0,
-    "topRows": [],
-    "group": "Parts",
-    "groupClicked": true,
-    "groupRows": 0,
-    "groupText": "close All (0) Work orders (0) Customers (0) Assets (0) Parts (0) Vendors (0) Part sales (0) Purchase orders (0) Vendor invoices (0) No resul"
-   }
-  ]
+  "group": "Parts",
+  "queries": [
+   "Vernway",
+   "ZZT-77-3300"
+  ],
+  "expected": "Both searches return the catalogue part 'ZZAUTOTEST Airline Coupler Vernway'. THIS IS THE HIGHEST-RISK DIFFERENCE BETWEEN V1 AND V2. In V1 every catalogue part was searchable whether or not it had ever been stocked. V2 searches Parts (Inventory). If the part is NOT returned, this is the change a customer is most likely to report as 'I could search this part in V1 and cannot in V2'. Record and flag it - do not raise a defect until the Product Owner has ruled on whether catalogue-only parts are in",
+  "po_hold": true
  },
  "C53602": {
   "title": "Finding a customer by their name with the spaces removed",
-  "expected": "Step 2 returns the customer 'ZZAUTOTEST Bridgeport Hauling'. Step 4 also returns the customer, confirming the record itself is searchable. In V1 the customer name was indexed twice, once as typed and once with every space removed, so a run-together name matched. If step 2 fails while step 4 passes, RUN THIS TEST - do not skip it. If it fails, mark the case BLOCKED and write the reason (\"V1 behaviour, not listed in PR",
-  "steps": "1. Open global search. 2. Type the name with no spaces: ZZAUTOTESTBridgeportHauling 3. Read the Customers group. 4. Clear the input and type it normally with spaces to confirm the customer is findable at all.",
-  "observed": [
-   {
-    "query": "ZZAUTOTESTBridgeportHauling",
-    "tabs": [
-     "All (7)",
-     "Work orders (4)",
-     "Customers (1)",
-     "Assets (1)",
-     "Parts (0)",
-     "Vendors (1)",
-     "Part sales (0)",
-     "Purchase orders (0)",
-     "Vendor invoices (0)"
-    ],
-    "allRows": 0,
-    "topRows": [],
-    "group": "Customers",
-    "groupClicked": true,
-    "groupRows": 1,
-    "groupText": "close All (7) Work orders (4) Customers (1) Assets (1) Parts (0) Vendors (1) Part sales (0) Purchase orders (0) Vendor invoices (0) 7 result"
-   }
-  ]
+  "group": "Customers",
+  "queries": [
+   "ZZAUTOTESTBridgeportHauling"
+  ],
+  "expected": "Step 2 returns the customer 'ZZAUTOTEST Bridgeport Hauling'. Step 4 also returns the customer, confirming the record itself is searchable. In V1 the customer name was indexed twice, once as typed and once with every space removed, so a run-together name matched. If step 2 fails while step 4 passes, RUN THIS TEST - do not skip it. If it fails, mark the case BLOCKED and write the reason (\"V1 behaviour, not listed in PRD v1.5 section 4 - awaiting Product Owner ruling\"). Do NOT mark it Failed and do",
+  "po_hold": true
  },
  "C53603": {
   "title": "Finding a customer or vendor by a contact's job title",
-  "expected": "The customer 'ZZAUTOTEST Bridgeport Hauling' is returned, carrying the 'Contact match' label. In V1 the contact's job title was part of the customer's searchable text. If it fails, record and flag it - the V2 specification lists contact names, telephone numbers and email addresses but not job title, so this may be a deliberate scope cut. Do not raise a defect until the Product Owner has ruled.",
-  "steps": "1. Open global search. 2. Type the contact's job title: Dispatch Supervisor 3. Read the Customers group.",
-  "observed": [
-   {
-    "query": "Dispatch Supervisor",
-    "tabs": [
-     "All (0)",
-     "Work orders (0)",
-     "Customers (0)",
-     "Assets (0)",
-     "Parts (0)",
-     "Vendors (0)",
-     "Part sales (0)",
-     "Purchase orders (0)",
-     "Vendor invoices (0)"
-    ],
-    "allRows": 0,
-    "topRows": [],
-    "group": "Vendors",
-    "groupClicked": true,
-    "groupRows": 0,
-    "groupText": "close All (0) Work orders (0) Customers (0) Assets (0) Parts (0) Vendors (0) Part sales (0) Purchase orders (0) Vendor invoices (0) No resul"
-   }
-  ]
+  "group": "Customers",
+  "queries": [
+   "Dispatch Supervisor"
+  ],
+  "expected": "The customer 'ZZAUTOTEST Bridgeport Hauling' is returned, carrying the 'Contact match' label. In V1 the contact's job title was part of the customer's searchable text. If it fails, record and flag it - the V2 specification lists contact names, telephone numbers and email addresses but not job title, so this may be a deliberate scope cut. Do not raise a defect until the Product Owner has ruled. ---",
+  "po_hold": true
  },
  "C53604": {
   "title": "Finding a customer or vendor by address line 2",
-  "expected": "Step 2 returns the customer 'ZZAUTOTEST Bridgeport Hauling'. Step 4 returns the vendor 'ZZAUTOTEST Kestrel Parts Supply'. Address line 2 is searchable in its own right, not only address line 1.",
-  "steps": "1. Open global search. 2. Type the customer's address line 2: Dock 7B 3. Read the Customers group. 4. Clear the input and search for the vendor's address line 2. 5. Read the Vendors group.",
-  "observed": [
-   {
-    "query": "Dock 7B",
-    "tabs": [
-     "All (1)",
-     "Work orders (0)",
-     "Customers (0)",
-     "Assets (0)",
-     "Parts (0)",
-     "Vendors (0)",
-     "Part sales (0)",
-     "Purchase orders (1)",
-     "Vendor invoices (0)"
-    ],
-    "allRows": 0,
-    "topRows": [],
-    "group": "Vendors",
-    "groupClicked": true,
-    "groupRows": 0,
-    "groupText": "close All (1) Work orders (0) Customers (0) Assets (0) Parts (0) Vendors (0) Part sales (0) Purchase orders (1) Vendor invoices (0) 1 result"
-   }
-  ]
+  "group": "Customers",
+  "queries": [
+   "Dock 7B"
+  ],
+  "expected": "Step 2 returns the customer 'ZZAUTOTEST Bridgeport Hauling'. Step 4 returns the vendor 'ZZAUTOTEST Kestrel Parts Supply'. Address line 2 is searchable in its own right, not only address line 1. ---",
+  "po_hold": false
  },
  "C53605": {
   "title": "Finding an asset by its year",
-  "expected": "The 2019 Freightliner Cascadia is returned under the Assets group. The year is part of what an asset can be found by, alongside make and model.",
-  "steps": "1. Open global search. 2. Type: 2019 Freightliner 3. Read the Assets group.",
-  "observed": [
-   {
-    "query": "2019 Freightliner",
-    "tabs": [
-     "All (37)",
-     "Work orders (0)",
-     "Customers (0)",
-     "Assets (0)",
-     "Parts (16)",
-     "Vendors (0)",
-     "Part sales (1)",
-     "Purchase orders (20)",
-     "Vendor invoices (0)"
-    ],
-    "allRows": 0,
-    "topRows": [],
-    "group": "Assets",
-    "groupClicked": true,
-    "groupRows": 0,
-    "groupText": "close All (37) Work orders (0) Customers (0) Assets (0) Parts (16) Vendors (0) Part sales (1) Purchase orders (20) Vendor invoices (0) 37 re"
-   }
-  ]
+  "group": "Assets",
+  "queries": [
+   "2019 Freightliner"
+  ],
+  "expected": "The 2019 Freightliner Cascadia is returned under the Assets group. The year is part of what an asset can be found by, alongside make and model. ---",
+  "po_hold": false
  },
  "C53606": {
   "title": "Finding a vendor by state or province",
-  "expected": "The vendor 'ZZAUTOTEST Kestrel Parts Supply' is returned under the Vendors group. If it fails, record and flag it - the V2 specification lists vendor name, telephone, email, address and city but not state or province. Do not raise a defect until the Product Owner has ruled.",
-  "steps": "1. Open global search. 2. Type: Ohio 3. Read the Vendors group.",
-  "observed": [
-   {
-    "query": "Ohio",
-    "tabs": [
-     "All (1)",
-     "Work orders (0)",
-     "Customers (0)",
-     "Assets (0)",
-     "Parts (0)",
-     "Vendors (1)",
-     "Part sales (0)",
-     "Purchase orders (0)",
-     "Vendor invoices (0)"
-    ],
-    "allRows": 0,
-    "topRows": [],
-    "group": "Vendors",
-    "groupClicked": true,
-    "groupRows": 1,
-    "groupText": "close All (1) Work orders (0) Customers (0) Assets (0) Parts (0) Vendors (1) Part sales (0) Purchase orders (0) Vendor invoices (0) 1 result"
-   }
-  ]
+  "group": "Vendors",
+  "queries": [
+   "Ohio"
+  ],
+  "expected": "The vendor 'ZZAUTOTEST Kestrel Parts Supply' is returned under the Vendors group. If it fails, record and flag it - the V2 specification lists vendor name, telephone, email, address and city but not state or province. Do not raise a defect until the Product Owner has ruled. ---",
+  "po_hold": true
+ },
+ "C53607": {
+  "title": "Finding a part by its description",
+  "group": "Parts",
+  "queries": [
+   "Kestrel",
+   "Brake Chamber"
+  ],
+  "expected": "Both searches return the part 'ZZAUTOTEST Brake Chamber Kestrel'. A part is findable by the words in its description, not only by its part number. This is the most common way a parts person searches, so a failure here is high impact. ---",
+  "po_hold": false
+ },
+ "C55658": {
+  "title": "Finding a work order by typing its status still works",
+  "group": "Work Orders",
+  "queries": [
+   "qualitycheck"
+  ],
+  "expected": "Work orders in that status are returned by both forms. In V1 the status word was part of what a work order could be found by - the underscore was removed (so 'in_progress' matched 'inprogress') and 'quality_check' also matched 'qualitycheckqc'. A dispatcher typing 'Estimate' into search got the estimates back. IF THIS FAILS: it is a real V1-to-V2 capability loss. Mark the test Blocked with the exact query you typed and what came back, and flag it - a task ticket goes to the Product Owner to conf",
+  "po_hold": true
+ },
+ "C55659": {
+  "title": "Finding a record by typing only part of its number still works",
+  "group": "Work Orders",
+  "queries": [
+   "17580",
+   "4412",
+   "4471"
+  ],
+  "expected": "Each search returns its record: 17580 returns work order S9160-17580, 4412 returns the brake chamber part, and 4471 returns the asset. In V1 the second matching pass looked for the typed text ANYWHERE inside the record's search text, so a fragment of any number found the record. This is how people actually search - they type the last few digits of a work order rather than the whole shop-prefixed number. IF THIS FAILS: it is a real V1-to-V2 capability loss. Mark the test Blocked with the exact qu",
+  "po_hold": true
+ },
+ "C55660": {
+  "title": "Finding a record by a fragment from the middle of a word still works",
+  "group": "Customers",
+  "queries": [
+   "ernva",
+   "idgepor",
+   "estrelw"
+  ],
+  "expected": "All three searches return the customer 'ZZAUTOTEST Bridgeport Hauling'. In V1 the typed text was matched anywhere inside the record's search text, so a fragment from the middle of any word found the record. V2 scores similarity instead, and a short fragment can score below the cut-off and return nothing. IF THIS FAILS: it is a real V1-to-V2 capability loss. Mark the test Blocked with the exact query you typed and what came back, and flag it - a task ticket goes to the Product Owner to confirm wh",
+  "po_hold": true
  },
  "C55661": {
   "title": "Every matching type still appears when a search matches many records",
-  "expected": "Every type that has a match is represented on the All tab. No matching type is missing from the All view. In V1 each type was given its own slots (up to three) and there was no overall limit, so if six types matched, all six were shown. V2 caps the whole result list at 20, so a type with real matches can be squeezed out entirely by a type that matches more often - the user sees nothing for it and believes the record ",
-  "steps": "1. Open global search. 2. Type: ZZAUTOTEST 3. Stay on the All tab and write down every group heading you can see, and its count. 4. Click each scope tab in turn - Work orders, Customers, Assets, Parts, Vendors - and write down the count on ",
-  "observed": [
-   {
-    "query": "ZZAUTOTEST",
-    "tabs": [
-     "All (8)",
-     "Work orders (4)",
-     "Customers (1)",
-     "Assets (1)",
-     "Parts (1)",
-     "Vendors (1)",
-     "Part sales (0)",
-     "Purchase orders (0)",
-     "Vendor invoices (0)"
-    ],
-    "allRows": 1,
-    "topRows": [
-     "ZZT-44712019 Freightliner ???? ZZAUTOTEST Bridgeport Hauling"
-    ],
-    "group": null,
-    "groupClicked": false,
-    "groupRows": null,
-    "groupText": null
-   }
-  ]
+  "group": null,
+  "queries": [
+   "ZZAUTOTEST"
+  ],
+  "expected": "Every type that has a match is represented on the All tab. No matching type is missing from the All view. In V1 each type was given its own slots (up to three) and there was no overall limit, so if six types matched, all six were shown. V2 caps the whole result list at 20, so a type with real matches can be squeezed out entirely by a type that matches more often - the user sees nothing for it and believes the record does not exist. IF THIS FAILS: it is a real V1-to-V2 capability loss. Mark the t",
+  "po_hold": true
  },
  "C55662": {
   "title": "Finding a customer by the company's own main phone number",
-  "expected": "Both forms return the customer 'ZZAUTOTEST Bridgeport Hauling'. The result is matched on the COMPANY record, so it should not be labelled as a contact match. In V1 the company's own telephone was searchable in its own right, separately from its contacts' numbers. An existing case covers a CONTACT's phone number; this one covers the company's. IF THIS FAILS: it is a real V1-to-V2 capability loss. Mark the test Blocked",
-  "steps": "1. Open global search. 2. Type the company phone number with its formatting: (419) 555-0143 3. Read the Customers group. 4. Clear the input and type the same number as plain digits: 4195550143 5. Read the Customers group again.",
-  "observed": [
-   {
-    "query": "4195550143",
-    "tabs": [
-     "All (0)",
-     "Work orders (0)",
-     "Customers (0)",
-     "Assets (0)",
-     "Parts (0)",
-     "Vendors (0)",
-     "Part sales (0)",
-     "Purchase orders (0)",
-     "Vendor invoices (0)"
-    ],
-    "allRows": 0,
-    "topRows": [],
-    "group": "Customers",
-    "groupClicked": true,
-    "groupRows": 0,
-    "groupText": "close All (0) Work orders (0) Customers (0) Assets (0) Parts (0) Vendors (0) Part sales (0) Purchase orders (0) Vendor invoices (0) No resul"
-   }
-  ]
+  "group": "Customers",
+  "queries": [
+   "(419) 555-0143",
+   "4195550143"
+  ],
+  "expected": "Both forms return the customer 'ZZAUTOTEST Bridgeport Hauling'. The result is matched on the COMPANY record, so it should not be labelled as a contact match. In V1 the company's own telephone was searchable in its own right, separately from its contacts' numbers. An existing case covers a CONTACT's phone number; this one covers the company's. IF THIS FAILS: it is a real V1-to-V2 capability loss. Mark the test Blocked with the exact query you typed and what came back, and flag it - a task ticket ",
+  "po_hold": true
  },
  "C55663": {
   "title": "Finding a vendor by phone number",
-  "expected": "Both forms return the vendor 'ZZAUTOTEST Kestrel Parts Supply'. In V1 a vendor could be found by its phone number just as a customer could. The existing phone-number case in the suite uses a CUSTOMER, so the vendor side was never covered. IF THIS FAILS: it is a real V1-to-V2 capability loss. Mark the test Blocked with the exact query you typed and what came back, and flag it - a task ticket goes to the Product Owner ",
-  "steps": "1. Open global search. 2. Type the vendor phone number with its formatting: (614) 555-0188 3. Read the Vendors group. 4. Clear the input and type the same number as plain digits: 6145550188 5. Read the Vendors group again.",
-  "observed": [
-   {
-    "query": "6145550188",
-    "tabs": [
-     "All (0)",
-     "Work orders (0)",
-     "Customers (0)",
-     "Assets (0)",
-     "Parts (0)",
-     "Vendors (0)",
-     "Part sales (0)",
-     "Purchase orders (0)",
-     "Vendor invoices (0)"
-    ],
-    "allRows": 0,
-    "topRows": [],
-    "group": "Vendors",
-    "groupClicked": true,
-    "groupRows": 0,
-    "groupText": "close All (0) Work orders (0) Customers (0) Assets (0) Parts (0) Vendors (0) Part sales (0) Purchase orders (0) Vendor invoices (0) No resul"
-   }
-  ]
+  "group": "Vendors",
+  "queries": [
+   "(614) 555-0188",
+   "6145550188"
+  ],
+  "expected": "Both forms return the vendor 'ZZAUTOTEST Kestrel Parts Supply'. In V1 a vendor could be found by its phone number just as a customer could. The existing phone-number case in the suite uses a CUSTOMER, so the vendor side was never covered. IF THIS FAILS: it is a real V1-to-V2 capability loss. Mark the test Blocked with the exact query you typed and what came back, and flag it - a task ticket goes to the Product Owner to confirm whether the loss is acceptable. Do not raise it as a defect until the",
+  "po_hold": true
  },
  "C55664": {
   "title": "Finding an asset by its model",
-  "expected": "The asset '2019 Freightliner Cascadia' is returned. In V1 both the make and the model were searchable. The suite has a case that searches a misspelled MAKE (Freightliner), which proves the make is searchable, but nothing searched the MODEL on its own. IF THIS FAILS: it is a real V1-to-V2 capability loss. Mark the test Blocked with the exact query you typed and what came back, and flag it - a task ticket goes to the P",
-  "steps": "1. Open global search. 2. Type the model name: Cascadia 3. Read the Assets group.",
-  "observed": [
-   {
-    "query": "Cascadia",
-    "tabs": [
-     "All (46)",
-     "Work orders (20)",
-     "Customers (0)",
-     "Assets (20)",
-     "Parts (5)",
-     "Vendors (1)",
-     "Part sales (0)",
-     "Purchase orders (0)",
-     "Vendor invoices (0)"
-    ],
-    "allRows": 1,
-    "topRows": [
-     "Cascade Truck & Trailer Repair 797-841-8294 \u00b7 728 Joseph Viaduct, East Jacqueline"
-    ],
-    "group": "Assets",
-    "groupClicked": true,
-    "groupRows": 8,
-    "groupText": "close All (46) Work orders (20) Customers (0) Assets (20) Parts (5) Vendors (1) Part sales (0) Purchase orders (0) Vendor invoices (0) 46 re"
-   }
-  ]
+  "group": "Assets",
+  "queries": [
+   "Cascadia"
+  ],
+  "expected": "The asset '2019 Freightliner Cascadia' is returned. In V1 both the make and the model were searchable. The suite has a case that searches a misspelled MAKE (Freightliner), which proves the make is searchable, but nothing searched the MODEL on its own. IF THIS FAILS: it is a real V1-to-V2 capability loss. Mark the test Blocked with the exact query you typed and what came back, and flag it - a task ticket goes to the Product Owner to confirm whether the loss is acceptable. Do not raise it as a def",
+  "po_hold": true
  },
  "C55665": {
   "title": "Finding a part sale by its customer's name",
-  "expected": "The part sale for 'ZZAUTOTEST Bridgeport Hauling' is returned under Part sales. In V1 work orders and part sales were produced by the same query and both carried the customer name in their search text, so typing the customer found both. The suite has a case for finding a WORK ORDER by customer name; the part sale side was never covered, and in V2 Part Sales is a separate entity with its own indexing. IF THIS FAILS: i",
-  "steps": "1. Open global search. 2. Type the customer name: Bridgeport 3. Read the Part sales group (click the Part sales scope tab if the group is not visible on the All tab).",
-  "observed": [
-   {
-    "query": "Bridgeport",
-    "tabs": [
-     "All (12)",
-     "Work orders (4)",
-     "Customers (7)",
-     "Assets (1)",
-     "Parts (0)",
-     "Vendors (0)",
-     "Part sales (0)",
-     "Purchase orders (0)",
-     "Vendor invoices (0)"
-    ],
-    "allRows": 1,
-    "topRows": [
-     "ZZT-44712019 Freightliner ???? ZZAUTOTEST Bridgeport Hauling"
-    ],
-    "group": "Part sales",
-    "groupClicked": true,
-    "groupRows": 0,
-    "groupText": "close All (12) Work orders (4) Customers (7) Assets (1) Parts (0) Vendors (0) Part sales (0) Purchase orders (0) Vendor invoices (0) 12 resu"
-   }
-  ]
+  "group": "Part sales",
+  "queries": [
+   "Bridgeport"
+  ],
+  "expected": "The part sale for 'ZZAUTOTEST Bridgeport Hauling' is returned under Part sales. In V1 work orders and part sales were produced by the same query and both carried the customer name in their search text, so typing the customer found both. The suite has a case for finding a WORK ORDER by customer name; the part sale side was never covered, and in V2 Part Sales is a separate entity with its own indexing. IF THIS FAILS: it is a real V1-to-V2 capability loss. Mark the test Blocked with the exact query",
+  "po_hold": true
+ },
+ "C55666": {
+  "title": "Finding a part by its part number still works",
+  "group": "Parts",
+  "queries": [
+   "ZZT-88-4412",
+   "ZZT884412"
+  ],
+  "expected": "Both forms return the part 'ZZAUTOTEST Brake Chamber Kestrel'. In V1 a part was searchable by its part number with the dashes and without them - the number was stored twice in the search text for exactly that reason. Typing a part number is the normal way a parts clerk finds a part. THIS CASE IS EXPECTED TO FAIL ON THE CURRENT BUILD. A controlled experiment on 14 September 2026 found this part IS returned by its description (Kestrel, Brake Chamber) but NOT by its own part number, while a second ",
+  "po_hold": true
  },
  "C55667": {
   "title": "Finding a customer by company name",
-  "expected": "Both searches return the customer 'ZZAUTOTEST Bridgeport Hauling'. This is the most basic thing global search does and the control for every other customer case on this suite - if this fails, nothing else about customers can be trusted. IF THIS FAILS: it is a real V1-to-V2 capability loss. Mark the test Blocked with the exact query you typed and what came back, and flag it - a task ticket goes to the Product Owner to",
-  "steps": "1. Open global search. 2. Type a distinctive word from the company name: Bridgeport 3. Read the Customers group. 4. Clear the input and type the full name: ZZAUTOTEST Bridgeport Hauling 5. Read the Customers group again.",
-  "observed": [
-   {
-    "query": "ZZAUTOTEST Bridgeport Hauling",
-    "tabs": [
-     "All (6)",
-     "Work orders (4)",
-     "Customers (1)",
-     "Assets (1)",
-     "Parts (0)",
-     "Vendors (0)",
-     "Part sales (0)",
-     "Purchase orders (0)",
-     "Vendor invoices (0)"
-    ],
-    "allRows": 0,
-    "topRows": [],
-    "group": "Customers",
-    "groupClicked": true,
-    "groupRows": 1,
-    "groupText": "close All (6) Work orders (4) Customers (1) Assets (1) Parts (0) Vendors (0) Part sales (0) Purchase orders (0) Vendor invoices (0) 6 result"
-   }
-  ]
+  "group": "Customers",
+  "queries": [
+   "Bridgeport",
+   "ZZAUTOTEST Bridgeport Hauling"
+  ],
+  "expected": "Both searches return the customer 'ZZAUTOTEST Bridgeport Hauling'. This is the most basic thing global search does and the control for every other customer case on this suite - if this fails, nothing else about customers can be trusted. IF THIS FAILS: it is a real V1-to-V2 capability loss. Mark the test Blocked with the exact query you typed and what came back, and flag it - a task ticket goes to the Product Owner to confirm whether the loss is acceptable. Do not raise it as a defect until the P",
+  "po_hold": true
  },
  "C55668": {
   "title": "Finding a vendor by name",
-  "expected": "Both searches return the vendor 'ZZAUTOTEST Kestrel Parts Supply' under Vendors. Note the word Kestrel also appears on a part and on the customer address - the vendor must still be returned in its own group, not swallowed by the others. IF THIS FAILS: it is a real V1-to-V2 capability loss. Mark the test Blocked with the exact query you typed and what came back, and flag it - a task ticket goes to the Product Owner to",
-  "steps": "1. Open global search. 2. Type a distinctive word from the vendor name: Kestrel 3. Read the Vendors group. 4. Clear the input and type the full name: ZZAUTOTEST Kestrel Parts Supply 5. Read the Vendors group again.",
-  "observed": [
-   {
-    "query": "ZZAUTOTEST Kestrel Parts Supply",
-    "tabs": [
-     "All (1)",
-     "Work orders (0)",
-     "Customers (0)",
-     "Assets (0)",
-     "Parts (0)",
-     "Vendors (1)",
-     "Part sales (0)",
-     "Purchase orders (0)",
-     "Vendor invoices (0)"
-    ],
-    "allRows": 1,
-    "topRows": [
-     "ZZAUTOTEST Kestrel Parts Supply 88 Halbrook Trace, Marnston"
-    ],
-    "group": "Vendors",
-    "groupClicked": true,
-    "groupRows": 1,
-    "groupText": "close All (1) Work orders (0) Customers (0) Assets (0) Parts (0) Vendors (1) Part sales (0) Purchase orders (0) Vendor invoices (0) 1 result"
-   }
-  ]
+  "group": "Vendors",
+  "queries": [
+   "Kestrel",
+   "ZZAUTOTEST Kestrel Parts Supply"
+  ],
+  "expected": "Both searches return the vendor 'ZZAUTOTEST Kestrel Parts Supply' under Vendors. Note the word Kestrel also appears on a part and on the customer address - the vendor must still be returned in its own group, not swallowed by the others. IF THIS FAILS: it is a real V1-to-V2 capability loss. Mark the test Blocked with the exact query you typed and what came back, and flag it - a task ticket goes to the Product Owner to confirm whether the loss is acceptable. Do not raise it as a defect until the P",
+  "po_hold": true
  },
  "C55669": {
   "title": "Finding an asset by its VIN, in full and in part",
-  "expected": "Both searches return the asset. In V1 the VIN was matched anywhere inside the record's search text, so the whole VIN and any piece of it both worked - a technician reading the last six characters off a windscreen plate could find the vehicle. THIS CASE IS EXPECTED TO FAIL ON THE CURRENT BUILD, AND IN A STRANGE WAY. On 14 September 2026 the complete VIN returned NOTHING while the first eleven characters '1FUJGLDR9KL' ",
-  "steps": "1. Open global search. 2. Type the COMPLETE VIN: 1FUJGLDR9KLZZ4471 3. Read the Assets group. 4. Clear the input and type the last part of the VIN only: ZZ4471 5. Read the Assets group again.",
-  "observed": [
-   {
-    "query": "1FUJGLDR9KLZZ4471",
-    "tabs": [
-     "All (5)",
-     "Work orders (4)",
-     "Customers (0)",
-     "Assets (1)",
-     "Parts (0)",
-     "Vendors (0)",
-     "Part sales (0)",
-     "Purchase orders (0)",
-     "Vendor invoices (0)"
-    ],
-    "allRows": 0,
-    "topRows": [],
-    "group": "Assets",
-    "groupClicked": true,
-    "groupRows": 1,
-    "groupText": "close All (5) Work orders (4) Customers (0) Assets (1) Parts (0) Vendors (0) Part sales (0) Purchase orders (0) Vendor invoices (0) 5 result"
-   },
-   {
-    "query": "ZZ4471",
-    "tabs": [
-     "All (0)",
-     "Work orders (0)",
-     "Customers (0)",
-     "Assets (0)",
-     "Parts (0)",
-     "Vendors (0)",
-     "Part sales (0)",
-     "Purchase orders (0)",
-     "Vendor invoices (0)"
-    ],
-    "allRows": 0,
-    "topRows": [],
-    "group": "Assets",
-    "groupClicked": true,
-    "groupRows": 0,
-    "groupText": "close All (0) Work orders (0) Customers (0) Assets (0) Parts (0) Vendors (0) Part sales (0) Purchase orders (0) Vendor invoices (0) No resul"
-   }
-  ]
+  "group": "Assets",
+  "queries": [
+   "1FUJGLDR9KLZZ4471",
+   "ZZ4471"
+  ],
+  "expected": "Both searches return the asset. In V1 the VIN was matched anywhere inside the record's search text, so the whole VIN and any piece of it both worked - a technician reading the last six characters off a windscreen plate could find the vehicle. THIS CASE IS EXPECTED TO FAIL ON THE CURRENT BUILD, AND IN A STRANGE WAY. On 14 September 2026 the complete VIN returned NOTHING while the first eleven characters '1FUJGLDR9KL' DID return the asset. If you see exactly that, mark FAILED and raise nothing new",
+  "po_hold": true
  },
  "C55670": {
   "title": "Finding a customer or vendor by a contact's first or last name",
-  "expected": "Both searches return the customer 'ZZAUTOTEST Bridgeport Hauling'. In V1 a contact match produced its own row; in V2 the company row is returned instead, marked as a contact match. Either presentation passes - what must not happen is finding nothing, because the person's name is how staff look up a company they only know by who they speak to. IF THIS FAILS: it is a real V1-to-V2 capability loss. Mark the test Blocked",
-  "steps": "1. Open global search. 2. Type the contact first name: Marlene 3. Read the results. 4. Clear the input and type the contact last name: Okonkwo 5. Read the results again.",
-  "observed": [
-   {
-    "query": "Marlene",
-    "tabs": [
-     "All (16)",
-     "Work orders (0)",
-     "Customers (9)",
-     "Assets (1)",
-     "Parts (4)",
-     "Vendors (1)",
-     "Part sales (0)",
-     "Purchase orders (1)",
-     "Vendor invoices (0)"
-    ],
-    "allRows": 1,
-    "topRows": [
-     "2005 Ford F-350 Martens' Diesel Repair"
-    ],
-    "group": "Vendors",
-    "groupClicked": true,
-    "groupRows": 1,
-    "groupText": "close All (16) Work orders (0) Customers (9) Assets (1) Parts (4) Vendors (1) Part sales (0) Purchase orders (1) Vendor invoices (0) 16 resu"
-   },
-   {
-    "query": "Okonkwo",
-    "tabs": [
-     "All (1)",
-     "Work orders (0)",
-     "Customers (1)",
-     "Assets (0)",
-     "Parts (0)",
-     "Vendors (0)",
-     "Part sales (0)",
-     "Purchase orders (0)",
-     "Vendor invoices (0)"
-    ],
-    "allRows": 0,
-    "topRows": [],
-    "group": "Vendors",
-    "groupClicked": true,
-    "groupRows": 0,
-    "groupText": "close All (1) Work orders (0) Customers (1) Assets (0) Parts (0) Vendors (0) Part sales (0) Purchase orders (0) Vendor invoices (0) 1 result"
-   }
-  ]
+  "group": null,
+  "queries": [
+   "Marlene",
+   "Okonkwo"
+  ],
+  "expected": "Both searches return the customer 'ZZAUTOTEST Bridgeport Hauling'. In V1 a contact match produced its own row; in V2 the company row is returned instead, marked as a contact match. Either presentation passes - what must not happen is finding nothing, because the person's name is how staff look up a company they only know by who they speak to. IF THIS FAILS: it is a real V1-to-V2 capability loss. Mark the test Blocked with the exact query you typed and what came back, and flag it - a task ticket ",
+  "po_hold": true
+ },
+ "C55671": {
+  "title": "Search finds records whatever mix of capitals is typed",
+  "group": "Customers",
+  "queries": [
+   "bridgeport",
+   "BRIDGEPORT",
+   "BrIdGePoRt"
+  ],
+  "expected": "All three return the same customer. In V1 both the typed text and the record text were put into lower case before matching, so capitals never mattered. Nobody types a company name with the right capitals. IF THIS FAILS: it is a real V1-to-V2 capability loss. Mark the test Blocked with the exact query you typed and what came back, and flag it - a task ticket goes to the Product Owner to confirm whether the loss is acceptable. Do not raise it as a defect until the PO has ruled, and do not pass the",
+  "po_hold": true
  },
  "C55672": {
   "title": "Finding a work order by its plain number with no prefix",
-  "expected": "The work order S9160-17580 is returned. In V1 the plain number was stored as a searchable value in its own right, separately from the formatted number - it was not merely a fragment that happened to match. So typing the bare number was a supported way to find a work order, not a side-effect. IF THIS FAILS: it is a real V1-to-V2 capability loss. Mark the test Blocked with the exact query you typed and what came back, ",
-  "steps": "1. Open global search. 2. Type the plain number on its own: 17580 3. Read the Work orders group.",
-  "observed": [
-   {
-    "query": "17580",
-    "tabs": [
-     "All (0)",
-     "Work orders (0)",
-     "Customers (0)",
-     "Assets (0)",
-     "Parts (0)",
-     "Vendors (0)",
-     "Part sales (0)",
-     "Purchase orders (0)",
-     "Vendor invoices (0)"
-    ],
-    "allRows": 0,
-    "topRows": [],
-    "group": "Work orders",
-    "groupClicked": true,
-    "groupRows": 0,
-    "groupText": "close All (0) Work orders (0) Customers (0) Assets (0) Parts (0) Vendors (0) Part sales (0) Purchase orders (0) Vendor invoices (0) No resul"
-   }
-  ]
+  "group": "Work Orders",
+  "queries": [
+   "17580"
+  ],
+  "expected": "The work order S9160-17580 is returned. In V1 the plain number was stored as a searchable value in its own right, separately from the formatted number - it was not merely a fragment that happened to match. So typing the bare number was a supported way to find a work order, not a side-effect. IF THIS FAILS: it is a real V1-to-V2 capability loss. Mark the test Blocked with the exact query you typed and what came back, and flag it - a task ticket goes to the Product Owner to confirm whether the los",
+  "po_hold": true
  },
  "C55673": {
   "title": "Pressing Enter opens the top result without arrowing to it",
-  "expected": "The top result opens. In V1 the first selectable result was highlighted automatically as soon as results appeared, so type-then-Enter went straight to the record. If Enter does nothing until you press a Down arrow first, that is a step added to the single most common way people use search. IF THIS FAILS: it is a real V1-to-V2 capability loss. Mark the test Blocked with the exact query you typed and what came back, an",
-  "steps": "1. Open global search. 2. Type: Bridgeport 3. Wait for the results to appear. 4. WITHOUT pressing any arrow key, press Enter.",
-  "observed": [
-   {
-    "query": "Bridgeport",
-    "tabs": [
-     "All (12)",
-     "Work orders (4)",
-     "Customers (7)",
-     "Assets (1)",
-     "Parts (0)",
-     "Vendors (0)",
-     "Part sales (0)",
-     "Purchase orders (0)",
-     "Vendor invoices (0)"
-    ],
-    "allRows": 4,
-    "topRows": [
-     "S9160-17600 ZZAUTOTEST Bridgeport Hauling Estimate ZZT-4471 \u00b7 2019 Freightliner ????",
-     "S9160-17599 ZZAUTOTEST Bridgeport Hauling Estimate ZZT-4471 \u00b7 2019 Freightliner ????",
-     "S9160-17598 ZZAUTOTEST Bridgeport Hauling Estimate ZZT-4471 \u00b7 2019 Freightliner ????"
-    ],
-    "group": null,
-    "groupClicked": false,
-    "groupRows": null,
-    "groupText": null
-   }
-  ]
+  "group": null,
+  "queries": [
+   "Bridgeport"
+  ],
+  "expected": "The top result opens. In V1 the first selectable result was highlighted automatically as soon as results appeared, so type-then-Enter went straight to the record. If Enter does nothing until you press a Down arrow first, that is a step added to the single most common way people use search. IF THIS FAILS: it is a real V1-to-V2 capability loss. Mark the test Blocked with the exact query you typed and what came back, and flag it - a task ticket goes to the Product Owner to confirm whether the loss ",
+  "po_hold": true
  },
  "C55675": {
   "title": "A search that matches nothing says so plainly",
-  "expected": "A clear no-results message is shown. The list does not simply sit empty, and it does not keep showing a spinner or the previous results. In V1 the no-results message appeared only after at least two characters had been typed and nothing matched - so an empty box never claimed there were no results. IF THIS FAILS: it is a real V1-to-V2 capability loss. Mark the test Blocked with the exact query you typed and what came",
-  "steps": "1. Open global search. 2. Type: ZZNOSUCHRECORD9999 3. Wait for the search to run and read what the screen says.",
-  "observed": [
-   {
-    "query": "ZZNOSUCHRECORD9999",
-    "tabs": [
-     "All (0)",
-     "Work orders (0)",
-     "Customers (0)",
-     "Assets (0)",
-     "Parts (0)",
-     "Vendors (0)",
-     "Part sales (0)",
-     "Purchase orders (0)",
-     "Vendor invoices (0)"
-    ],
-    "allRows": 0,
-    "topRows": [],
-    "group": null,
-    "groupClicked": false,
-    "groupRows": null,
-    "groupText": null
-   }
-  ]
+  "group": null,
+  "queries": [
+   "ZZNOSUCHRECORD9999"
+  ],
+  "expected": "A clear no-results message is shown. The list does not simply sit empty, and it does not keep showing a spinner or the previous results. In V1 the no-results message appeared only after at least two characters had been typed and nothing matched - so an empty box never claimed there were no results. IF THIS FAILS: it is a real V1-to-V2 capability loss. Mark the test Blocked with the exact query you typed and what came back, and flag it - a task ticket goes to the Product Owner to confirm whether ",
+  "po_hold": true
  },
  "C55679": {
   "title": "Your recent items come back when a search finds nothing",
-  "expected": "Your recent items are shown again once the search finds nothing, so you can click straight back to something you were working on. In V1 the recent list reappeared automatically whenever a search returned no matches - a fruitless search never left you at a dead end. THIS IS EXPECTED TO DIFFER ON THE CURRENT BUILD. Another case in the wider suite states that a no-match search shows ONLY a 'No results for [query]' messa",
-  "steps": "1. Open global search and confirm your recent items are listed before you type anything. 2. Type: ZZNOSUCHRECORD9999 3. Wait for the search to finish and read the whole panel. 4. Look for your recent items underneath or beside the no-result",
-  "observed": [
-   {
-    "query": "ZZNOSUCHRECORD9999",
-    "tabs": [
-     "All (0)",
-     "Work orders (0)",
-     "Customers (0)",
-     "Assets (0)",
-     "Parts (0)",
-     "Vendors (0)",
-     "Part sales (0)",
-     "Purchase orders (0)",
-     "Vendor invoices (0)"
-    ],
-    "allRows": 0,
-    "topRows": [],
-    "group": null,
-    "groupClicked": false,
-    "groupRows": null,
-    "groupText": null
-   }
-  ]
+  "group": null,
+  "queries": [
+   "ZZNOSUCHRECORD9999"
+  ],
+  "expected": "Your recent items are shown again once the search finds nothing, so you can click straight back to something you were working on. In V1 the recent list reappeared automatically whenever a search returned no matches - a fruitless search never left you at a dead end. THIS IS EXPECTED TO DIFFER ON THE CURRENT BUILD. Another case in the wider suite states that a no-match search shows ONLY a 'No results for [query]' message. If that is what you see - the message alone, with no recent items - record i",
+  "po_hold": true
  },
  "C55680": {
   "title": "Arrow keys move between results and skip the group headings",
-  "expected": "Only RESULT ROWS are ever highlighted. The group headings - 'Customers', 'Assets', 'Vendors' - are stepped over and never become the highlighted item, going down or coming back up. In V1 the headings were not selectable, so arrowing through results never landed you on a heading and never made Enter do nothing. If a heading can be highlighted, or Enter on one does nothing while looking selected, that is the V1 behavio",
-  "steps": "1. Open global search. 2. Type: ZZAUTOTEST 3. Press the Down arrow repeatedly and watch what becomes highlighted each time. 4. Keep going until you have crossed from one group into the next. 5. Press the Up arrow back the same way.",
-  "observed": [
-   {
-    "query": "ZZAUTOTEST",
-    "tabs": [
-     "All (8)",
-     "Work orders (4)",
-     "Customers (1)",
-     "Assets (1)",
-     "Parts (1)",
-     "Vendors (1)",
-     "Part sales (0)",
-     "Purchase orders (0)",
-     "Vendor invoices (0)"
-    ],
-    "allRows": 4,
-    "topRows": [
-     "S9160-17600 ZZAUTOTEST Bridgeport Hauling Estimate ZZT-4471 \u00b7 2019 Freightliner ????",
-     "S9160-17599 ZZAUTOTEST Bridgeport Hauling Estimate ZZT-4471 \u00b7 2019 Freightliner ????",
-     "S9160-17598 ZZAUTOTEST Bridgeport Hauling Estimate ZZT-4471 \u00b7 2019 Freightliner ????"
-    ],
-    "group": null,
-    "groupClicked": false,
-    "groupRows": null,
-    "groupText": null
-   }
-  ]
+  "group": null,
+  "queries": [
+   "ZZAUTOTEST"
+  ],
+  "expected": "Only RESULT ROWS are ever highlighted. The group headings - 'Customers', 'Assets', 'Vendors' - are stepped over and never become the highlighted item, going down or coming back up. In V1 the headings were not selectable, so arrowing through results never landed you on a heading and never made Enter do nothing. If a heading can be highlighted, or Enter on one does nothing while looking selected, that is the V1 behaviour gone. IF THIS FAILS: it is a real V1-to-V2 capability loss. Mark the test Blo",
+  "po_hold": true
  },
  "C55682": {
   "title": "Each result row shows an icon telling you what kind of record it is",
-  "expected": "Every result row shows a small icon on its left, and the icon differs by record type so you can tell at a glance what each row is. In V1 each type had its own icon: a building for a customer, a contact card for a contact match, a truck for an asset, a shopfront for a vendor, and a tools icon for work orders, part sales and parts. The exact pictures may differ in V2 - what must not happen is rows losing their icon, or",
-  "steps": "1. Open global search. 2. Type: ZZAUTOTEST 3. Look at the left-hand side of every result row. 4. Check that a customer row, an asset row, a vendor row, a part row and a work order row each carry an icon, and that rows of the SAME kind carry",
-  "observed": [
-   {
-    "query": "ZZAUTOTEST",
-    "tabs": [
-     "All (8)",
-     "Work orders (4)",
-     "Customers (1)",
-     "Assets (1)",
-     "Parts (1)",
-     "Vendors (1)",
-     "Part sales (0)",
-     "Purchase orders (0)",
-     "Vendor invoices (0)"
-    ],
-    "allRows": 4,
-    "topRows": [
-     "S9160-17600 ZZAUTOTEST Bridgeport Hauling Estimate ZZT-4471 \u00b7 2019 Freightliner ????",
-     "S9160-17599 ZZAUTOTEST Bridgeport Hauling Estimate ZZT-4471 \u00b7 2019 Freightliner ????",
-     "S9160-17598 ZZAUTOTEST Bridgeport Hauling Estimate ZZT-4471 \u00b7 2019 Freightliner ????"
-    ],
-    "group": null,
-    "groupClicked": false,
-    "groupRows": null,
-    "groupText": null
-   }
-  ]
+  "group": null,
+  "queries": [
+   "ZZAUTOTEST"
+  ],
+  "expected": "Every result row shows a small icon on its left, and the icon differs by record type so you can tell at a glance what each row is. In V1 each type had its own icon: a building for a customer, a contact card for a contact match, a truck for an asset, a shopfront for a vendor, and a tools icon for work orders, part sales and parts. The exact pictures may differ in V2 - what must not happen is rows losing their icon, or every type showing the same one, because then you can no longer tell the kinds ",
+  "po_hold": true
  }
 }

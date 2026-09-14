@@ -34,7 +34,10 @@ const search=async(q)=>{
     const now=await page.evaluate(()=>{const vis=e=>{const r=e.getBoundingClientRect();return r.width>2&&r.height>2;};
       const m=[...document.querySelectorAll('.q-dialog,[role=dialog]')].filter(vis).pop();
       return m?[...m.querySelectorAll('[role=tab],.q-tab')].filter(vis).map(e=>(e.innerText||'').trim()).join('|'):null;});
-    if(now && now===last){ if(++stable>=2) return; } else stable=0;
+    // A tab strip that has rendered WITHOUT its counts is stable-looking but not settled: it yields
+    // "All (0)" beside a group that actually holds rows. Require the counts to be present.
+    const hasCounts = now && /\(\d+\)/.test(now);
+    if(hasCounts && now===last){ if(++stable>=2) return; } else stable=0;
     last=now;
   }
 };

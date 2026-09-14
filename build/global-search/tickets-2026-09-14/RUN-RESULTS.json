@@ -1,5 +1,5 @@
 {
- "at": "2026-09-14T17:54:39.019Z",
+ "at": "2026-09-14T18:01:41.856Z",
  "cases": {
   "C53578": {
    "title": "Finding a work order by its customer's name still works",
@@ -67,6 +67,343 @@
      "groupClicked": true,
      "groupRows": 1,
      "groupText": "close All (5) Work orders (4) Customers (0) Assets (1) Parts (0) Vendors (0) Part sales (0) Purchase orders (0) Vendor invoices (0) 5 result"
+    }
+   ],
+   "instrumentTrouble": false
+  },
+  "C53581": {
+   "title": "Finding an asset by the customer who owns it still works",
+   "queries": [
+    "Bridgeport"
+   ],
+   "group": "Assets",
+   "po_decision": false,
+   "obs": [
+    {
+     "query": "Bridgeport",
+     "tabs": [
+      "All (12)",
+      "Work orders (4)",
+      "Customers (7)",
+      "Assets (1)",
+      "Parts (0)",
+      "Vendors (0)",
+      "Part sales (0)",
+      "Purchase orders (0)",
+      "Vendor invoices (0)"
+     ],
+     "allRows": 1,
+     "topRows": [
+      "ZZT-44712019 Freightliner ???? ZZAUTOTEST Bridgeport Hauling"
+     ],
+     "group": "Assets",
+     "groupClicked": true,
+     "groupRows": 1,
+     "groupText": "close All (12) Work orders (4) Customers (7) Assets (1) Parts (0) Vendors (0) Part sales (0) Purchase orders (0) Vendor invoices (0) 12 resu"
+    }
+   ],
+   "instrumentTrouble": false
+  },
+  "C53583": {
+   "title": "Finding a customer by their website still works",
+   "queries": [
+    "bridgeporthauling-zzt.com"
+   ],
+   "group": "Customers",
+   "po_decision": false,
+   "obs": [
+    {
+     "query": "bridgeporthauling-zzt.com",
+     "tabs": [
+      "All (0)",
+      "Work orders",
+      "Customers",
+      "Assets",
+      "Parts",
+      "Vendors",
+      "Part sales",
+      "Purchase orders",
+      "Vendor invoices"
+     ],
+     "allRows": 0,
+     "topRows": [],
+     "group": "Customers",
+     "groupClicked": true,
+     "groupRows": 0,
+     "groupText": "close All (0) Work orders (0) Customers (0) Assets (0) Parts (0) Vendors (0) Part sales (0) Purchase orders (0) Vendor invoices (0) No resul"
+    }
+   ],
+   "instrumentTrouble": false
+  },
+  "C53584": {
+   "title": "Finding a vendor by email address still works",
+   "queries": [
+    "parts@kestrelsupply-zzt.com"
+   ],
+   "group": "Vendors",
+   "po_decision": false,
+   "obs": [
+    {
+     "query": "parts@kestrelsupply-zzt.com",
+     "tabs": [
+      "All (1)",
+      "Work orders (0)",
+      "Customers (0)",
+      "Assets (0)",
+      "Parts (0)",
+      "Vendors (1)",
+      "Part sales (0)",
+      "Purchase orders (0)",
+      "Vendor invoices (0)"
+     ],
+     "allRows": 0,
+     "topRows": [],
+     "group": "Vendors",
+     "groupClicked": true,
+     "groupRows": 1,
+     "groupText": "close All (1) Work orders (0) Customers (0) Assets (0) Parts (0) Vendors (1) Part sales (0) Purchase orders (0) Vendor invoices (0) 1 result"
+    }
+   ],
+   "instrumentTrouble": false
+  },
+  "C53586": {
+   "title": "A newly created customer is findable within 30 seconds",
+   "queries": [
+    "Halloway"
+   ],
+   "group": null,
+   "po_decision": false,
+   "obs": [
+    {
+     "query": "Halloway",
+     "tabs": [
+      "All (66)",
+      "Work orders (12)",
+      "Customers (3)",
+      "Assets (20)",
+      "Parts (4)",
+      "Vendors (1)",
+      "Part sales (5)",
+      "Purchase orders (6)",
+      "Vendor invoices (15)"
+     ],
+     "allRows": 1,
+     "topRows": [
+      "Robarts' Fleet Service 419-321-3490 · 73400 Holloway Ranch Suite 202, Jamesview"
+     ],
+     "group": null,
+     "groupClicked": false,
+     "groupRows": null,
+     "groupText": null
+    }
+   ],
+   "instrumentTrouble": false
+  },
+  "C53588": {
+   "title": "More recent work orders rank above older ones of equal relevance",
+   "queries": [
+    "Bridgeport"
+   ],
+   "group": null,
+   "po_decision": false,
+   "obs": [
+    {
+     "query": "Bridgeport",
+     "tabs": [
+      "All (12)",
+      "Work orders (4)",
+      "Customers (7)",
+      "Assets (1)",
+      "Parts (0)",
+      "Vendors (0)",
+      "Part sales (0)",
+      "Purchase orders (0)",
+      "Vendor invoices (0)"
+     ],
+     "allRows": 0,
+     "topRows": [],
+     "group": null,
+     "groupClicked": false,
+     "groupRows": null,
+     "groupText": null
+    }
+   ],
+   "instrumentTrouble": false
+  },
+  "C53601": {
+   "title": "A catalogue part that is not in inventory can still be found",
+   "queries": [
+    "Vernway",
+    "ZZT-77-3300"
+   ],
+   "group": "Parts",
+   "po_decision": false,
+   "obs": [
+    {
+     "query": "Vernway",
+     "tabs": [
+      "All (30)",
+      "Work orders (3)",
+      "Customers (7)",
+      "Assets (19)",
+      "Parts (0)",
+      "Vendors (1)",
+      "Part sales (0)",
+      "Purchase orders (0)",
+      "Vendor invoices (0)"
+     ],
+     "allRows": 1,
+     "topRows": [
+      "Vernal Diesel & Fleet Repair 206-588-6222 · 3367 Johnson Loop Apt. 061, Nicoleview"
+     ],
+     "group": "Parts",
+     "groupClicked": true,
+     "groupRows": 0,
+     "groupText": "close All (30) Work orders (3) Customers (7) Assets (19) Parts (0) Vendors (1) Part sales (0) Purchase orders (0) Vendor invoices (0) 30 res"
+    },
+    {
+     "query": "ZZT-77-3300",
+     "tabs": [
+      "All (0)",
+      "Work orders (0)",
+      "Customers (0)",
+      "Assets (0)",
+      "Parts (0)",
+      "Vendors (0)",
+      "Part sales (0)",
+      "Purchase orders (0)",
+      "Vendor invoices (0)"
+     ],
+     "allRows": 0,
+     "topRows": [],
+     "group": "Parts",
+     "groupClicked": true,
+     "groupRows": 0,
+     "groupText": "close All (0) Work orders (0) Customers (0) Assets (0) Parts (0) Vendors (0) Part sales (0) Purchase orders (0) Vendor invoices (0) No resul"
+    }
+   ],
+   "instrumentTrouble": false
+  },
+  "C53602": {
+   "title": "Finding a customer by their name with the spaces removed",
+   "queries": [
+    "ZZAUTOTESTBridgeportHauling"
+   ],
+   "group": "Customers",
+   "po_decision": false,
+   "obs": [
+    {
+     "query": "ZZAUTOTESTBridgeportHauling",
+     "tabs": [
+      "All (7)",
+      "Work orders (4)",
+      "Customers (1)",
+      "Assets (1)",
+      "Parts (0)",
+      "Vendors (1)",
+      "Part sales (0)",
+      "Purchase orders (0)",
+      "Vendor invoices (0)"
+     ],
+     "allRows": 0,
+     "topRows": [],
+     "group": "Customers",
+     "groupClicked": true,
+     "groupRows": 1,
+     "groupText": "close All (7) Work orders (4) Customers (1) Assets (1) Parts (0) Vendors (1) Part sales (0) Purchase orders (0) Vendor invoices (0) 7 result"
+    }
+   ],
+   "instrumentTrouble": false
+  },
+  "C53603": {
+   "title": "Finding a customer or vendor by a contact's job title",
+   "queries": [
+    "Dispatch Supervisor"
+   ],
+   "group": "Customers",
+   "po_decision": false,
+   "obs": [
+    {
+     "query": "Dispatch Supervisor",
+     "tabs": [
+      "All (0)",
+      "Work orders (0)",
+      "Customers (0)",
+      "Assets (0)",
+      "Parts (0)",
+      "Vendors (0)",
+      "Part sales (0)",
+      "Purchase orders (0)",
+      "Vendor invoices (0)"
+     ],
+     "allRows": 0,
+     "topRows": [],
+     "group": "Customers",
+     "groupClicked": true,
+     "groupRows": 0,
+     "groupText": "close All (0) Work orders (0) Customers (0) Assets (0) Parts (0) Vendors (0) Part sales (0) Purchase orders (0) Vendor invoices (0) No resul"
+    }
+   ],
+   "instrumentTrouble": false
+  },
+  "C53604": {
+   "title": "Finding a customer or vendor by address line 2",
+   "queries": [
+    "Dock 7B"
+   ],
+   "group": "Customers",
+   "po_decision": false,
+   "obs": [
+    {
+     "query": "Dock 7B",
+     "tabs": [
+      "All (1)",
+      "Work orders (0)",
+      "Customers (0)",
+      "Assets (0)",
+      "Parts (0)",
+      "Vendors (0)",
+      "Part sales (0)",
+      "Purchase orders (1)",
+      "Vendor invoices (0)"
+     ],
+     "allRows": 0,
+     "topRows": [],
+     "group": "Customers",
+     "groupClicked": true,
+     "groupRows": 0,
+     "groupText": "close All (1) Work orders (0) Customers (0) Assets (0) Parts (0) Vendors (0) Part sales (0) Purchase orders (1) Vendor invoices (0) 1 result"
+    }
+   ],
+   "instrumentTrouble": false
+  },
+  "C53605": {
+   "title": "Finding an asset by its year",
+   "queries": [
+    "2019 Freightliner"
+   ],
+   "group": "Assets",
+   "po_decision": false,
+   "obs": [
+    {
+     "query": "2019 Freightliner",
+     "tabs": [
+      "All (37)",
+      "Work orders (0)",
+      "Customers (0)",
+      "Assets (0)",
+      "Parts (16)",
+      "Vendors (0)",
+      "Part sales (1)",
+      "Purchase orders (20)",
+      "Vendor invoices (0)"
+     ],
+     "allRows": 0,
+     "topRows": [],
+     "group": "Assets",
+     "groupClicked": true,
+     "groupRows": 0,
+     "groupText": "close All (37) Work orders (0) Customers (0) Assets (0) Parts (16) Vendors (0) Part sales (1) Purchase orders (20) Vendor invoices (0) 37 re"
     }
    ],
    "instrumentTrouble": false
