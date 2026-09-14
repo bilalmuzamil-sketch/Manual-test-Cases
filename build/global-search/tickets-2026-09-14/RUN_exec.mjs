@@ -12,7 +12,7 @@ const L=(...a)=>console.log(new Date().toISOString().slice(11,19),a.map(x=>typeo
 const R=fs.existsSync(STATE)?JSON.parse(fs.readFileSync(STATE,'utf8')):{at:new Date().toISOString(),cases:{}};
 const save=()=>fs.writeFileSync(STATE, JSON.stringify(R,null,1));
 const CASES=JSON.parse(fs.readFileSync(`${DIR}/CASES-6769.json`,'utf8'))
-  .filter(c=>c.queries.length && !c.needs_roles);
+  .filter(c=>c.pairs && c.pairs.length && !c.needs_roles);
 const { browser, page } = await boot('sv9160','/','admin');
 const broken=async()=>page.evaluate(()=>{const vis=e=>{const r=e.getBoundingClientRect();return r.width>2&&r.height>2;};
   const m=[...document.querySelectorAll('.q-dialog,[role=dialog]')].filter(vis).pop();
@@ -63,25 +63,25 @@ let done=0;
 for(const c of CASES){
   const key='C'+c.id;
   if(R.cases[key] && fs.existsSync(`${EV}/${key}-q1-all.png`)){ L('skip', key); continue; }
-  const rec={title:c.title, queries:c.queries, group:c.group, po_decision:!!c.po_decision, obs:[]};
+  const rec={title:c.title, override:!!c.override, obs:[]};
   let bad=false;
-  for(let i=0;i<c.queries.length;i++){
-    const q=c.queries[i];
-    try{ await search(q); }catch(e){ rec.obs.push({query:q, instrument:String(e.message).slice(0,120)}); bad=true; continue; }
-    if(await broken()){ rec.obs.push({query:q, instrument:'search unavailable'}); bad=true; continue; }
+  for(let i=0;i<c.pairs.length;i++){
+    const {q, group} = c.pairs[i];
+    try{ await search(q); }catch(e){ rec.obs.push({query:q, group, instrument:String(e.message).slice(0,120)}); bad=true; continue; }
+    if(await broken()){ rec.obs.push({query:q, group, instrument:'search unavailable'}); bad=true; continue; }
     const all=await readAll();
     await page.screenshot({path:`${EV}/${key}-q${i+1}-all.png`});
     let scoped=null, clicked=false;
-    if(rec.group){ clicked=await openTab(rec.group); if(clicked){ scoped=await readAll();
-      await page.screenshot({path:`${EV}/${key}-q${i+1}-${rec.group.replace(/\s+/g,'')}.png`}); } }
-    rec.obs.push({query:q, tabs:all&&all.tabs, allRows:all&&all.rowCount, topRows:(all&&all.rows||[]).slice(0,3),
-                  group:rec.group, groupClicked:clicked, groupRows:scoped&&scoped.rowCount,
-                  groupText:scoped&&scoped.text.slice(0,140)});
+    if(group){ clicked=await openTab(group); if(clicked){ scoped=await readAll();
+      await page.screenshot({path:`${EV}/${key}-q${i+1}-${group.replace(/\s+/g,'')}.png`}); } }
+    rec.obs.push({query:q, group, tabs:all&&all.tabs, allRows:all&&all.rowCount,
+      topRows:(all&&all.rows||[]).slice(0,3), groupClicked:clicked, groupRows:scoped&&scoped.rowCount,
+      groupText:scoped&&scoped.text.slice(0,140)});
   }
   rec.instrumentTrouble=bad;
   R.cases[key]=rec; save(); done++;
   const o=rec.obs[0]||{};
-  L(`${key} ${rec.group||'All'} | q="${c.queries[0]}" tabs=${JSON.stringify((o.tabs||[]).slice(0,4))} allRows=${o.allRows} groupRows=${o.groupRows}`);
+  L(`${key} ${c.pairs.length}q first="${o.query}" grp=${o.group||'-'} allRows=${o.allRows} groupRows=${o.groupRows}`);
 }
 L('executed %d cases this pass; %d recorded in total', done, Object.keys(R.cases).length);
 await browser.close();
