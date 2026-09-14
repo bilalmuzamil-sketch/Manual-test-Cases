@@ -2074,3 +2074,45 @@ reporting the first observation.
 
 Note also which way this cut: the sharper finding is *narrower* than the first reading, not broader.
 Decomposing protects against overstating as often as it reveals something new.
+
+### L0105 — THE SYNTHESIS OF 2026-09-14: almost every false finding came from a check that could not run and did not say so
+
+Twenty-three learnings came out of one pass on Global Search. Stripped down, **thirteen of them are the
+same mistake wearing different clothes**, and it is worth naming once rather than re-learning it a
+fourteenth time.
+
+| What was reported | What was actually true |
+|---|---|
+| "the screen and the server agree" | the request came back as the app's own HTML and nothing was compared |
+| "no difference found" (queries with spaces) | the lookup key never matched, so nothing was looked up |
+| "no gaps in the fixtures" | five fields are read under different names than they are written |
+| "impersonation is unavailable" | the people picked happened to be inactive accounts |
+| "this role's identity did not change" | I asked the browser, which caches the answer from sign-in |
+| "search is not reachable for this role" | I had signed the app out myself |
+| "the branch has no roles" | the id was read from the wrong place, so no call was made |
+| "roles: one, unnamed" | a refusal's `errors` array was parsed as the list of roles |
+| "this section is empty" | it was read 2.5s in, while it was still loading |
+| "search cannot be reached on a phone" | the check ran before the panel had a chance to open |
+| "the customer cannot be found on a phone" | the reading waited for counts that do not render at that width |
+| "the job could not be created" | it was created; its number is under a key I did not look for |
+| "mark this Failed" | the case's own text says Blocked — I had only read the first 420 characters of it |
+
+**The single rule that would have prevented all thirteen:**
+
+> **Every check has THREE outcomes — yes, no, and *I could not look*. If the third one renders as the
+> second, the instrument is lying with a straight face.** Make "could not look" loud, count it, and
+> never let it reach a verdict.
+
+Three supporting habits, each of which paid repeatedly today:
+
+1. **Read the refusal.** Every failed call named its own fix — *cannot impersonate an inactive user*,
+   *vehicle_id: missing required parameter*, *'resource' was not found*. Not one needed guessing.
+2. **A record that contradicts itself is about the instrument.** "Reached by the search box" *and*
+   "never opened". "16 results across 5 categories" *and* one row. Whenever two fields in the same
+   observation cannot both be true, stop and fix the probe.
+3. **Seed the value, then look again.** Half the apparent findings evaporated on contact with data —
+   and the ones that survived got a control no amount of re-running could have produced.
+
+And the thing that kept the pass honest throughout: **the controls that refused to let an empty screen
+become a finding.** They were wrong about *why* four separate times, and right about *not reporting*
+every single time. A control that blocks the conclusion you were hoping for is doing its job.
