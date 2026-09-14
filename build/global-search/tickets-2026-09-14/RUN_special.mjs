@@ -414,6 +414,65 @@ await run(55679,'Your recent items come back when a search finds nothing',async(
     rowsAfterNoMatch:noMatch&&noMatch.rows.length, messageAfterNoMatch:noMatch&&noMatch.text,
     recentsCameBack:!!(noMatch&&noMatch.rows.length>0)};});
 
+// ---------------------------------------------------------------- C53587 new job findable in 30s
+await run(53587,'A new work order or part sale is findable within 30 seconds',async()=>{
+  // Create a real job for the seeded customer and time how long until search returns it. The part
+  // sale half cannot be run: part sales cannot be created on this branch (SV-10031).
+  const live=JSON.parse(fs.readFileSync('/home/user/Manual-test-Cases/build/global-search/seeding/seed-state-live.json','utf8')).live_ids;
+  const c=await api('/api/work-orders/create','POST',
+    {is_vehicle_here:false, company_id:live.customer, vehicle_id:live.asset});
+  const d=c.json&&(c.json.data||c.json); const wo=(d&&(d.work_order||d))||{};
+  if(!(c.status>=200&&c.status<300)||!wo.number)
+    return {created:false, status:c.status, head:c.head,
+      note:'the job could not be created, so the 30-second window was never tested'};
+  const number=String(wo.number);
+  const bare=(number.match(/(\d+)\s*$/)||[])[1]||number;   // people type the bare number
+  const t0=Date.now(); let foundAfter=null, lastRows=null;
+  for(let i=0;i<8;i++){
+    await openModal(); const m=await type2(bare);
+    lastRows=m&&m.rows.map(r=>`[${r.type}] ${r.text.slice(0,60)}`);
+    if(m&&m.rows.some(r=>r.type==='work_orders'&&r.text.includes(bare))){
+      foundAfter=Math.round((Date.now()-t0)/1000); break; }
+    await closeModal(); await page.waitForTimeout(5000);
+  }
+  await shot('C53587-new-work-order');
+  return {created:true, number, searched:bare, id:wo.id,
+    foundAfterSeconds:foundAfter, withinThirty:foundAfter!==null&&foundAfter<=30,
+    rowsAtEnd:lastRows,
+    partSaleHalf:'not run - part sales cannot be created on this branch (SV-10031)'};});
+
+// ---------------------------------------------------------------- C45152 switching location
+await run(45152,'Switching location refreshes results to the new location',async()=>{
+  // Jobs and part sales belong to a location. Search at one, switch, search again, and compare.
+  // The control is that the FIRST location returns jobs at all -- otherwise "the second shows
+  // different jobs" is just two empty lists.
+  const wps=await api('/api/staff/my-workplaces');
+  const dd=(wps.json&&(wps.json.data!==undefined?wps.json.data:wps.json))||[];
+  const list=Array.isArray(dd)?dd:(dd.workplaces||dd.collection||[]);
+  if(list.length<2) return {note:`only ${list.length} location available to this user - the case needs two`,
+    locations:list.map(x=>x.name)};
+  const A=list.find(x=>/heavy duty/i.test(x.name||''))||list[0];
+  const B=list.find(x=>x.id!==A.id);
+  const searchJobs=async(label)=>{
+    await page.goto(`${APP}/workorders`,{waitUntil:'domcontentloaded'}); await page.waitForTimeout(4000);
+    await openModal(); const m=await type2('Bridgeport');
+    await shot(`C45152-${label}`);
+    return {tabs:m&&m.tabs,
+      jobs:(m?m.rows:[]).filter(r=>r.type==='work_orders').map(r=>r.text.slice(0,60)),
+      partSales:(m?m.rows:[]).filter(r=>r.type==='part_sales').map(r=>r.text.slice(0,60))};};
+  await api('/api/iam/change-location','POST',{workplace_id:A.id, workplace_timezone:A.timezone||'America/Edmonton'});
+  const at1=await searchJobs('location1');
+  await closeModal();
+  const sw=await api('/api/iam/change-location','POST',{workplace_id:B.id, workplace_timezone:B.timezone||'America/Edmonton'});
+  const at2=await searchJobs('location2');
+  await closeModal();
+  // put it back where the rest of the pass expects it
+  await api('/api/iam/change-location','POST',{workplace_id:A.id, workplace_timezone:A.timezone||'America/Edmonton'});
+  return {location1:{name:A.name, ...at1}, location2:{name:B.name, switchStatus:sw.status, ...at2},
+    firstLocationHadJobs:at1.jobs.length>0,
+    jobsChanged:JSON.stringify(at1.jobs)!==JSON.stringify(at2.jobs),
+    restoredTo:A.name};});
+
 console.log('SPECIAL PASS DONE');
 await browser.close();
 
