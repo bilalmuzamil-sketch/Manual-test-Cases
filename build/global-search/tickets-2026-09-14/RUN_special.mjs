@@ -356,16 +356,34 @@ await run(55673,'Pressing Enter opens the top result without arrowing to it',asy
   await openModal(); const m=await type2('Bridgeport');
   const top=(m&&m.rows[0])||null;
   const before=page.url();
-  const highlighted=await page.evaluate(()=>{const vis=e=>{const r=e.getBoundingClientRect();return r.width>2&&r.height>2;};
+  // What counts as "highlighted" must be read from the app, not guessed from a class-name substring.
+  // The loose match found a row four down the list, which would have made Enter look like it opens
+  // the wrong record. Capture the input's aria-activedescendant (the authoritative answer where the
+  // app sets it) alongside every row's classes, so the verdict rests on evidence.
+  const highlightInfo=await page.evaluate(()=>{const vis=e=>{const r=e.getBoundingClientRect();return r.width>2&&r.height>2;};
     const d=[...document.querySelectorAll('.q-dialog,[role=dialog]')].filter(vis).pop(); if(!d) return null;
-    const h=[...d.querySelectorAll('[data-test-id^="search_result_row_"]')]
-      .find(e=>/active|selected|highlight/i.test(e.className)||e.getAttribute('aria-selected')==='true');
-    return h?h.getAttribute('data-test-id'):null;});
+    const input=d.querySelector('[data-test-id="search_modal_input"]');
+    const rows=[...d.querySelectorAll('[data-test-id^="search_result_row_"]')].map(e=>({
+      tid:e.getAttribute('data-test-id'), id:e.id||null,
+      cls:(''+(e.className||'')).slice(0,90),
+      ariaSelected:e.getAttribute('aria-selected'),
+      text:(e.innerText||'').replace(/\s+/g,' ').trim().slice(0,45)}));
+    return {activeDescendant: input?input.getAttribute('aria-activedescendant'):null,
+      firstRow: rows[0]||null,
+      rowsWithAriaSelected: rows.filter(r=>r.ariaSelected==='true').map(r=>r.tid),
+      // which class token actually varies between rows -- that is the real highlight marker
+      distinctClassSets:[...new Set(rows.map(r=>r.cls))].slice(0,4),
+      rows: rows.slice(0,10)};});
+  const highlighted=highlightInfo&&(highlightInfo.activeDescendant||
+    (highlightInfo.rowsWithAriaSelected||[])[0]||null);
   await page.keyboard.press('Enter');
   await page.waitForTimeout(6000);
   const after=page.url();
   await shot('C55673-after-enter');
   return {topRow:top&&top.text, topRowType:top&&top.type, highlightedBeforeEnter:highlighted,
+    highlightEvidence:highlightInfo,
+    openedTheTopRow: !!(top && after!==before && highlightInfo && highlightInfo.firstRow
+      && highlightInfo.firstRow.text && top.text.startsWith(highlightInfo.firstRow.text.slice(0,20))),
     urlBefore:before.replace(APP,''), urlAfter:after.replace(APP,''), navigated:before!==after,
     modalStillOpen:await modalOpen()};});
 
