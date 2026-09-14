@@ -1902,3 +1902,26 @@ And the reason this was recoverable at all: the probe's positive control **refus
 about permissions while the identity had not demonstrably changed. Without it, four roles would have
 returned "sees no results" — a catastrophic-looking finding, produced entirely by a session that was
 still signed in as an administrator the whole time.
+
+### L0098 — "none found" from a lookup that never ran is the same sentence as "none exist"
+The roles probe read the organisation id from one spot in local storage, got `null`, and therefore
+**never called the roles endpoint at all**. It then reported `roles: 0`. That line is indistinguishable
+from "this branch has no roles", and it is what made the role cases look unrunnable for a second time
+in the same pass.
+
+The same shape has now appeared five times today, in five different disguises:
+
+| Where | What it looked like | What it was |
+|---|---|---|
+| The cross-check | "screen and server agree" | the request returned the app's own HTML |
+| Queries with spaces | "no difference found" | the lookup key never matched |
+| The fixture check | "no gaps" | the field is read under a different name |
+| Impersonation | "switch-user is unavailable" | the users picked were inactive |
+| The roles list | "0 roles" | the id was read from the wrong place, so no call was made |
+
+> **A check that did not run must never render as a result.** Give every lookup three outcomes —
+> found, not found, and *could not look* — and make the third one loud. Whenever a count comes back
+> zero, the first question is "did this actually execute?", not "what does the zero mean?"
+
+This is the single most expensive recurring mistake of the pass, and every instance of it was cheap
+to prevent.
