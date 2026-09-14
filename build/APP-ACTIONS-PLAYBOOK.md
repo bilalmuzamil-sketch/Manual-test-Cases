@@ -4851,3 +4851,70 @@ Two traps cost four attempts and are worth writing down:
 - **Node's playwright is NOT resolvable by bare specifier** — `import 'playwright'` gives
   ERR_MODULE_NOT_FOUND, and the `playwright` on the PATH is the PYTHON package. Node probes must import
   `/opt/node22/lib/node_modules/playwright/index.mjs` by absolute path, as the committed harnesses do.
+
+## §GS — GLOBAL SEARCH V2: READING THE MODAL HONESTLY (proven live on sv9160, 2026-09-14)
+
+Everything here was paid for twice. Read it before writing any probe against global search — the
+selectors below are the app's own, so nothing in this section needs discovering again.
+
+### The app labels its own results — never guess a row selector
+
+| What you want | Selector |
+|---|---|
+| The search box in the header (opens the modal) | `[data-test-id="global_search_trigger"]` |
+| The input inside the modal | `[data-test-id="search_modal_input"]` |
+| The tab strip | `[data-test-id="search_modal_tab_strip"]` |
+| One scope tab | `[data-test-id="search_modal_tab_<slug>"]` |
+| The "N results found across M categories" line | `[data-test-id="search_modal_result_count"]` |
+| A group heading | `[data-test-id="search_group_header_<type>"]` |
+| **A result row** | `[data-test-id="search_result_row_<type>_<n>"]` |
+
+Tab slugs: `all` · `work_orders` · `customers` · `assets` · `parts` · `vendors` · `part_sales` ·
+`purchase_orders` · `vendor_invoices`. The row's `data-test-id` carries the TYPE, so a row's group is
+read off the row itself and never inferred from the query, the title or the Expected prose (two
+earlier attempts at inference both produced confident, wrong findings — "pro**vin**ce" matched `/vin/`).
+
+### 🛑 The four traps, each of which produced a finding that was not real
+
+1. **THE MODAL REMEMBERS ITS SCOPE TAB ACROSS CLOSE/REOPEN.** Escape and reopen lands on whatever tab
+   the previous search selected. Every probe that clicks a scope tab therefore poisons the *next*
+   observation's "All" view. **Click `search_modal_tab_all` explicitly before reading the All view**,
+   and record which tab it opened on. Symptom: the strip counts 16 across 5 categories and one row
+   renders.
+2. **THE API IS ON A DIFFERENT ORIGIN.** It is `https://<branch>api.qa.shopview.com/api/search?q=…`
+   — **no dot before `api`**. An in-page `fetch('/api/search?q=…')` resolves against the front-end
+   host and returns the SPA's `index.html`; a parser then records `{error}` and any comparison built
+   on it **fails open and reports agreement without comparing anything**. Prefer
+   `page.on('response')` and read the answer the app already received.
+3. **THE RESULTS BODY SCROLLS** (`search-modal__body`, e.g. scrollHeight 842 vs clientHeight 668).
+   Filtering rows by `getBoundingClientRect()` size turns "further down the list" into "missing".
+   Count rows from the DOM **unfiltered**; keep geometry as an attribute, not a filter.
+4. **COUNTS SETTLE LATE.** A long query still reads `All (0)` at 2s and settles at ~4s. Require
+   **three consecutive identical reads AND ≥5s**, and require the counts to be *present* — a tab strip
+   rendered without its counts looks stable and is not settled.
+
+### The location trap applies to the RUN, not only to seeding
+
+Work orders and part sales are scoped to the current workplace. The seeder pins itself to the
+`Heavy Duty` workplace before creating anything; a browser session signs in separately and uses the
+admin user's default, so **an unpinned probe can read seeded jobs as missing**. Pin it first:
+
+```
+GET  /api/staff/my-workplaces                 → pick the one matching the manifest's name hint
+POST /api/iam/change-location  {workplace_id, workplace_timezone}
+```
+
+### Three signals, and they must agree before anything is believed
+
+The tab-strip counts · the modal's own "N results found across M categories" line · the
+`/api/search` response the page received. **A disagreement is not a finding — it is a reason to look
+again** (longer settle, then re-read). Only a disagreement that survives that is worth a human's time.
+And the count agreeing is *not* the test: check that a type the server says has rows **actually
+renders rows**, which is the failure the QA lead caught by hand.
+
+### Keyboard
+
+`Control+k` — **lowercase `k`**. `Control+K` sends Ctrl+Shift+K and does nothing.
+
+Working executors: `build/global-search/tickets-2026-09-14/RUN_exec2.mjs` (query cases) and
+`RUN_special.mjs` (shortcut, header hint, three widths, row navigation, analytics).
