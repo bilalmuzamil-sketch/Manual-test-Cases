@@ -1,6 +1,25 @@
 {
  "at": "2026-09-14T20:14:56.560Z",
- "runs": {},
+ "runs": {
+  "time_clock_user": {
+   "template": {
+    "id": "02035ed5-a75c-4e5e-94d0-4ade7c663422",
+    "slug": "time_clock_user",
+    "name": "Time Clock User"
+   },
+   "assign": {
+    "status": 404,
+    "body": "{\"errors\":[{\"error\":\"\\u0027Staff\\u0027 was not found.\"}]}"
+   },
+   "roleAfterAssign": "Technician",
+   "assignLanded": false,
+   "restore": {
+    "status": 404,
+    "roleNow": "Technician",
+    "proved": true
+   }
+  }
+ },
  "templates": [
   {
    "id": "f2b32f17-753d-46db-882b-690ec1ace39d",
@@ -72,11 +91,36 @@
    "errors"
   ]
  },
- "abort": "could not read this person's current role, so it could not be put back afterwards -- nothing was changed",
+ "abort": "the change endpoint does not accept the id this person is listed under, so their role could not be set and could not have been put back -- NOTHING WAS CHANGED. The ids found on their record are recorded above for whoever picks this up.",
  "mappingProof": {
   "writeStatus": 404,
+  "writeBody": "{\"errors\":[{\"error\":\"\\u0027Staff\\u0027 was not found.\"}]}",
   "roleBefore": "Technician",
   "roleAfter": "Technician",
-  "holds": true
- }
+  "writeSucceeded": false,
+  "roleUnchanged": true,
+  "holds": false
+ },
+ "idHunt": [
+  {
+   "path": "/api/staff/0687da3b-0f7b-41a4-b24c-616c5a9dc056",
+   "status": 405,
+   "idsFound": []
+  },
+  {
+   "path": "/api/staff/0687da3b-0f7b-41a4-b24c-616c5a9dc056/edit",
+   "status": 404,
+   "idsFound": []
+  },
+  {
+   "path": "/api/iam/users/0687da3b-0f7b-41a4-b24c-616c5a9dc056",
+   "status": 404,
+   "idsFound": []
+  },
+  {
+   "path": "/api/staff/view/0687da3b-0f7b-41a4-b24c-616c5a9dc056",
+   "status": 404,
+   "idsFound": []
+  }
+ ]
 }
