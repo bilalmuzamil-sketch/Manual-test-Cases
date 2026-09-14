@@ -5011,7 +5011,15 @@ label starts exactly `Role`) · **Location** · Billable. The save button reads 
 
 The Role dropdown opens and lists all eleven roles, and the pick registers — the field shows the new
 role. **Saving is then refused: *"Location is a required field"***, and the Location dropdown opens
-with **no options to choose**. So the role cannot be changed either way.
+showing the app's own **"No results"**. So the role cannot be changed either way.
+
+**That location list is empty only HERE.** The branch has two workplaces (`Staging Heavy Duty - 9919`,
+`Staging Lethbridge - 4310`, from `GET /api/staff/my-workplaces`), and the **profile-menu** location
+chooser lists both and switches between them correctly (proven: C45152). So the staff editor's
+location box fails to load a list that loads two menus away — a pinned, single-control problem, not an
+empty branch. Proof that this is the product and not a selector: `PROBE-STAFF-LOCATION.json` counts
+zero menus on the page before the click and a `q-menu.limit-select-options` after it, containing the
+single item "No results", driven by a real pointer press at the field's own coordinates.
 
 **Two traps in that editor**, both of which silently do nothing: match the role field by a label
 starting `Role`, not by its value (the Job Title box above it holds a role-shaped string); and match
