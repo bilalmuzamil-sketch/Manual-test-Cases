@@ -194,6 +194,11 @@
   "C55663": {
    "verdict": "Passed",
    "observed": "Searching the supplier's phone number returned that supplier, both written out with brackets and dashes and typed as plain digits. It had returned nothing before the number was actually put on the supplier's record - the record had been left without one."
+  },
+  "C55679": {
+   "verdict": "Blocked",
+   "observed": "With the box empty, twenty recently-viewed items were listed - so the list is there and working. After typing a reference that matches nothing, the panel showed only the message 'No results for ZZNOSUCHRECORD9999' and the recently-viewed items did not come back. A fruitless search leaves you at a dead end with nothing to click.",
+   "todo": "The case says to record this and hold it for the Product Owner, not to treat it as a fault and not to pass it just because the new specification allows the new behaviour. He needs to decide whether the recently-viewed list should come back when a search finds nothing, as it did before."
   }
  }
 }
