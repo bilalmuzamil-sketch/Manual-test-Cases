@@ -213,8 +213,18 @@ await run(45160,'Selecting a result records a usage analytics event',async()=>{
     seen.push({call:`${r.method()} ${u.slice(0,110)}`, events:names, bodyUnreadable:unreadable,
       body:String(body).slice(0,400)});}};
   page.on('request',h);
+  // Two analytics posts came back with bodies the request listener could not read (sendBeacon).
+  // Intercepting the route gives the body reliably, so the verdict rests on what was actually sent
+  // rather than on "some traffic happened". Every request is continued untouched.
+  const routed=[];
+  await page.route(/google-analytics|analytics|telemetry|collect/i, async (route,req)=>{
+    let body=''; try{ body=req.postData()||''; }catch(e){}
+    if(!body){ try{ const b=req.postDataBuffer&&req.postDataBuffer(); if(b) body=b.toString('utf8'); }catch(e){} }
+    routed.push({url:req.url().slice(0,120), method:req.method(), body:String(body).slice(0,900)});
+    await route.continue();
+  }).catch(()=>{});
   await page.goto(`${APP}/workorders`,{waitUntil:'domcontentloaded'}); await page.waitForTimeout(3500);
-  const baseline=seen.length;
+  const baseline=seen.length; const routedBaseline=routed.length;
   await openModal(); const m=await type2('Bridgeport');
   const row=m&&m.rows.find(r=>r.type==='customers');
   const anyRequest=[];                         // control: prove SOME request is captured at all
@@ -223,13 +233,19 @@ await run(45160,'Selecting a result records a usage analytics event',async()=>{
   await page.waitForTimeout(7000);
   page.off('request',h); page.off('request',h2);
   await shot('C45160-after-selecting-a-result');
-  const eventNames=[...new Set(seen.flatMap(x=>x.events||[]))];
-  const unreadable=seen.filter(x=>x.bodyUnreadable).length;
+  await page.unroute(/google-analytics|analytics|telemetry|collect/i).catch(()=>{});
+  const routedAfterClick=routed.slice(routedBaseline);
+  const routedEvents=[...new Set(routedAfterClick.flatMap(r=>
+    [...String(r.body).matchAll(/(?:^|&|\n)en=([^&\n]+)/g)].map(m=>decodeURIComponent(m[1]))))];
+  const eventNames=[...new Set([...seen.flatMap(x=>x.events||[]), ...routedEvents])];
+  const unreadable=routedAfterClick.filter(r=>!r.body&&r.method==='POST').length;
   return {rowClicked:!!row, analyticsBefore:baseline, analyticsAfter:seen.length,
     eventNames, searchEventSeen:eventNames.some(n=>/search/i.test(n)),
     // An unreadable body is a THIRD outcome -- not "no search event". Say so rather than conclude.
     postsWithUnreadableBody:unreadable,
     conclusive: unreadable===0,
+    interceptedAfterClick:routedAfterClick.length,
+    interceptedBodies:routedAfterClick.map(r=>r.body.slice(0,300)),
     analyticsRequests:seen.slice(0,10), requestsCapturedAtAll:anyRequest.length,
     note:anyRequest.length?'the listener demonstrably captured traffic during the click':
       'NO traffic captured during the click -- the listener, not the app, is what this proves'};});
