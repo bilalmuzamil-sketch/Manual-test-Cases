@@ -500,7 +500,13 @@ C55661 - https://shopview.testrail.io/index.php?/cases/view/55661
 ```
 
 
-## D1 — Global Search V2 - PO decision: how close a spelling should count as a match
+## D1 — ⚠️ **SUPERSEDED — DO NOT FILE.** The ticket already exists as [SV-10025](https://shopview.atlassian.net/browse/SV-10025)
+
+The QA lead filed it himself on 2026-09-14 at 09:05, as a `Story Defect` rather than the `Task` drafted below.
+**His framing stands.** This draft is kept only as the record of what was prepared and what was added to his
+ticket as a comment instead. Filing it would create a duplicate.
+
+### The draft as prepared (NOT to be filed)
 
 ```
 h2. What a user could do in V1

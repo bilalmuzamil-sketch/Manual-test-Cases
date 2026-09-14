@@ -157,8 +157,12 @@ the Rule 94 admissibility gate. And **never file an API-related ticket without a
   [C55685](https://shopview.testrail.io/index.php?/cases/view/55685) records that typing a name also
   returns other, differently spelled names — the QA lead saw *Darlene*, *Charlene*, *Martens*,
   *Marine* and *Alene* come back from one search for *Marlene*. **It is expected to differ on this
-  build: record what you see and flag it, do NOT raise a defect** — the Product Owner has a decision
-  open on it (item **D1** in `v1-parity-audit-2026-09-14/PO-TASK-TICKET-CANDIDATES.md` §4a).
+  build, and the ticket is already open — [SV-10025](https://shopview.atlassian.net/browse/SV-10025),
+  filed by the QA lead.** So: mark it **FAILED**, write down the rows that did not contain what you
+  typed, and **raise nothing new**. If it fails *differently* — the record you typed is missing
+  altogether, or a different kind of unrelated record appears — that is a NEW problem, report it. If
+  it *passes*, the fix has shipped; say so. Background: item **D1** in
+  `v1-parity-audit-2026-09-14/PO-TASK-TICKET-CANDIDATES.md` §4a.
   [C55686](https://shopview.testrail.io/index.php?/cases/view/55686) is its safety net and should
   PASS: the record you actually typed must be listed first. Both use the seeded one-letter-apart pair.
 - **A part is only findable if it is STOCKED**, not merely catalogued. That is the single most

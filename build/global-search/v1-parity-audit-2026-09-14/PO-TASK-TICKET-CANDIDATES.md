@@ -73,7 +73,7 @@ memorise.** Here is the whole list in one place, in the words a shop user would 
 | **C2** | Typing only PART of a number no longer finds the record | Predicted |
 | **C3** | Typing a fragment from the middle of a word no longer finds the record | Predicted |
 | **C4** | A type of record can vanish from the results entirely when a search matches a lot | Predicted |
-| **D1** | Typing somebody's name brings back a pile of other, differently spelled names, streets and parts | 🔴 **Real — measured on the build** |
+| **D1** | Typing somebody's name brings back a pile of other, differently spelled names, streets and parts | 🔴 **Real — and ALREADY FILED by the QA lead as [SV-10025](https://shopview.atlassian.net/browse/SV-10025)** |
 
 **"Real"** = seen with our own eyes on the build. **"Predicted"** = the specification removes it by
 design, the test exists, and the run will confirm it.
@@ -243,7 +243,7 @@ identifier rule removes it by design, and nobody appears to have weighed that tr
 
 ---
 
-## 4a · TICKET CANDIDATE — GROUP D: PRECISION — V2 RETURNS THINGS NOBODY ASKED FOR
+## 4a · GROUP D: PRECISION — V2 RETURNS THINGS NOBODY ASKED FOR — **ALREADY FILED, DO NOT FILE AGAIN**
 
 *(V1 returned only what you typed · **observed live on the build 2026-09-14** · raised by the QA lead
 from his own use of the search.)*
@@ -313,8 +313,22 @@ can never be buried while the PO decides. Both are seeded with a controlled pair
 `ZZAUTOTEST Marlene Freight Lines` and `ZZAUTOTEST Darlene Cartage`, one letter apart — so the test is
 deterministic on any environment (Rule 111).
 
-**Ticket shape:** same as Groups B and C in §5 below — a `Task`, not a `Story Defect`, because we are
-asking for a ruling, not reporting a break.
+### 🔴 THIS ONE IS ALREADY FILED — DO NOT RAISE ANOTHER
+
+**[SV-10025](https://shopview.atlassian.net/browse/SV-10025) — *"Global Search: typo-tolerance too aggressive…"*** — filed by the **QA lead himself** on
+**2026-09-14 at 09:05**, `Story Defect`, priority Medium, parented to **SV-9164** (BE — Matching pipeline) and
+linked `relates to` the same story. A duplicate was very nearly created; the admissibility gate caught it.
+
+**Note the framing, and follow his, not mine.** I had written this up as a `Task` — a decision to put to the
+Product Owner — because nothing is *lost*. The QA lead filed it as a **`Story Defect`**, i.e. a break to be fixed.
+**His call stands.** The cases and this document follow the defect framing from here on.
+
+**What this session added to the ticket** (comment, 2026-09-14): the arithmetic above — that the bar is a fraction
+so the letters allowed scale with word length, the per-word similarities, the 0.88/0.92 gap showing 0.80 is safe,
+the fact that it is an environment variable needing no deploy, the honest limit that *Darlene* survives any
+threshold, and one caution: **his suggestion to stop fuzzy-matching names against street addresses and part
+descriptions should be weighed carefully, because V1 searched those fields too** — removing them would trade this
+problem for a genuine capability loss. The regression is the tolerance, not the field coverage.
 
 ---
 
