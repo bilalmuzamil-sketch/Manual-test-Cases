@@ -47,22 +47,55 @@ const staff=arr(await api('/api/staff?limit=200'))
 const subject=staff[0];
 if(!subject){ L('no spare active non-admin staff member to work with'); await browser.close(); process.exit(2); }
 
-// what is this person's role RIGHT NOW -- captured before anything changes
+// WHAT IS THIS PERSON'S ROLE RIGHT NOW, and can it be put back?
+//
+// The staff record does not expose a role ID anywhere -- only the role's NAME. So the restore value
+// has to come from the role TEMPLATES, whose names match the names staff carry exactly (Admin,
+// Technician, Foreman, Sales Representative, Senior Service Advisor). Before relying on that, PROVE
+// it: assign the person the template matching the role they ALREADY have. If the mapping is right
+// that is a no-op and their role name is unchanged; if it is wrong, nothing worse has happened than
+// a role they already had, and the run stops.
 const detail=await api(`/api/staff/${subject.id}`);
 const dd=detail.json&&(detail.json.data||detail.json);
 const person=(dd&&(dd.staff||dd.user||dd))||{};
-const originalRoleId=(person.role&&person.role.id)||person.role_id||null;
+const roleLabel=subject.role_label||(person.role&&person.role.name)||null;
+const homeTemplate=templates.find(t=>(t.name||'').toLowerCase()===String(roleLabel||'').toLowerCase());
 R.subject={id:subject.id, name:[subject.first_name,subject.last_name].filter(Boolean).join(' '),
-  email:subject.email, roleLabel:subject.role_label, originalRoleId,
+  email:subject.email, roleLabel, homeTemplate:homeTemplate&&{id:homeTemplate.id,name:homeTemplate.name},
   detailStatus:detail.status, detailKeys:Object.keys(person).slice(0,25)};
 save();
-L('subject:', R.subject.name, '| current role:', R.subject.roleLabel, '| role id:', originalRoleId);
-if(!originalRoleId){
-  R.abort='could not read this person\'s current role, so it could not be put back afterwards -- nothing was changed';
+L('subject:', R.subject.name, '| role:', roleLabel, '| matching template:', homeTemplate&&homeTemplate.name);
+if(!homeTemplate){
+  R.abort=`no role template matches this person's role (${roleLabel}), so it could not be put back -- nothing was changed`;
   save(); L(R.abort); await browser.close(); process.exit(2);
+}
+const originalRoleId=homeTemplate.id;
+
+const labelNow=async()=>{ const r=await api('/api/staff?limit=200');
+  const row=arr(r).find(x=>x.id===subject.id);
+  return row?(row.role_label||(row.role&&row.role.name)||null):null; };
+
+// the no-op proof, before anything that needs undoing
+{
+  const probe=await api(`/api/staff/${subject.id}/change`,'POST',
+    {first_name:subject.first_name, last_name:subject.last_name, email:subject.email,
+     workplace_id:person.workplace_id||person.default_workplace||subject.workplace_id||null,
+     role_id:homeTemplate.id});
+  await page.waitForTimeout(3000);
+  const after=await labelNow();
+  R.mappingProof={writeStatus:probe.status, roleBefore:roleLabel, roleAfter:after,
+    holds:String(after||'').toLowerCase()===String(roleLabel||'').toLowerCase()};
+  save();
+  L('mapping proof:', JSON.stringify(R.mappingProof));
+  if(!R.mappingProof.holds){
+    R.abort='assigning the template that matches this person\'s own role did not leave them on it, '+
+            'so the restore value cannot be trusted -- stopping before changing anything further';
+    save(); L(R.abort); await browser.close(); process.exit(2);
+  }
 }
 
 const workplace=person.workplace_id||person.default_workplace||subject.workplace_id||null;
+const currentRoleLabel=roleLabel;
 const setRole=async(roleId)=>api(`/api/staff/${subject.id}/change`,'POST',
   {first_name:subject.first_name, last_name:subject.last_name, email:subject.email,
    workplace_id:workplace, role_id:roleId});
@@ -77,8 +110,8 @@ for(const slug of WANT){
   const w=await setRole(tpl.id);
   rec.assign={status:w.status, body:w.body};
   await page.waitForTimeout(3000);
-  rec.roleAfterAssign=await currentRole();
-  rec.assignLanded = rec.roleAfterAssign===tpl.id;
+  rec.roleAfterAssign=await labelNow();
+  rec.assignLanded = String(rec.roleAfterAssign||'').toLowerCase()===String(tpl.name||'').toLowerCase();
   if(rec.assignLanded){
     const sw=await api('/api/switch-user','POST',{user_id:subject.id});
     rec.switch={status:sw.status, body:sw.body};
@@ -131,10 +164,13 @@ for(const slug of WANT){
     {first_name:subject.first_name, last_name:subject.last_name, email:subject.email,
      workplace_id:workplace, role_id:originalRoleId});
   await again.page.waitForTimeout(3000);
-  const back=await api2(`/api/staff/${subject.id}`);
-  const bd=back.json&&(back.json.data||back.json); const bp=(bd&&(bd.staff||bd.user||bd))||{};
-  rec.restore={status:rest.status, roleNow:(bp.role&&bp.role.id)||bp.role_id||null,
-    proved:((bp.role&&bp.role.id)||bp.role_id||null)===originalRoleId};
+  const back=await api2('/api/staff?limit=200');
+  const bdr=back.json&&(back.json.data!==undefined?back.json.data:back.json);
+  const blist=Array.isArray(bdr)?bdr:((bdr&&(bdr.collection||bdr.staff))||[]);
+  const brow=blist.find(x=>x.id===subject.id);
+  const roleNow=brow?(brow.role_label||(brow.role&&brow.role.name)||null):null;
+  rec.restore={status:rest.status, roleNow,
+    proved:String(roleNow||'').toLowerCase()===String(roleLabel||'').toLowerCase()};
   if(!rec.restore.proved) L('🛑 RESTORE NOT PROVED for', subject.email, '-- role left as', rec.restore.roleNow);
   R.runs[slug]=rec; save();
   L(`${slug}: assigned=${rec.assignLanded} identity=${rec.serverIdentity&&rec.serverIdentity.templateSlug} types=${JSON.stringify(rec.typesShown)} restored=${rec.restore.proved}`);
