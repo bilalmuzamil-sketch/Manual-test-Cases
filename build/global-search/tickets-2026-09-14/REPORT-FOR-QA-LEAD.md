@@ -54,10 +54,30 @@ capability lost between versions is put to you for a ruling, not raised as a bug
 
 ## 2 · What is left
 
+**Fifty-six of the sixty-two checks are done.** Six remain, and they all need one thing.
+
 | Still to do | What it needs |
 |---|---|
-| Checks that need someone with limited access | Signing in as a person who is not an administrator — in hand |
-| Anything involving a part sale | Part sales cannot be created on this branch at the moment |
+| Six checks about what people with *narrower* access can see | A person on this branch holding one of those narrower jobs. Nobody currently does |
+
+I got further than expected here. By signing in as real people already on the branch, two of these
+were answered properly: a **technician** and a **foreman** searched the same word minutes apart, and
+the foreman saw the part and the supplier while the technician saw neither — which is exactly right.
+Checks about location and about what is hidden by default were answered the same way.
+
+The last six ask about jobs nobody on this branch is currently doing — a **time-clock user**, someone
+**without job access**, someone **without customer access**, a **part-sales-only** user. Those job
+types all exist in the system; they are simply not given to anyone here. I tried to lend one to a
+spare staff member for the length of a single check and put it straight back, and **deliberately
+stopped**: the system would not let me set it back reliably, and I will not leave a real person's
+access wrong on a shared branch. Nothing was changed.
+
+**What would clear them:** anyone who can edit staff in the settings screen gives one spare test
+person the time-clock job for ten minutes. Or tell me to go ahead through the screen rather than
+behind it and I will do it and put it back.
+
+Also still waiting: **anything involving a part sale** — they cannot be created on this branch, which
+is the problem you already raised.
 
 ## 3 · Held for you — ten questions
 
