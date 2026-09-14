@@ -23,13 +23,30 @@ const R=fs.existsSync(STATE)?JSON.parse(fs.readFileSync(STATE,'utf8')):{at:new D
 const save=()=>fs.writeFileSync(STATE,JSON.stringify(R,null,1));
 const QUERY='ZZAUTOTEST';   // one word that matches a record of five different types
 
-const staff=JSON.parse(fs.readFileSync(`${DIR}/ROLES-RESULTS.json`,'utf8')).staff;
-const targets=[]; const seen=new Set();
-for(const s of staff){ if(!s.role||s.role==='Admin'||seen.has(s.role)) continue;
-  seen.add(s.role); targets.push(s); }
+// Read the staff list LIVE and keep the active flag. The first attempt took the first holder of each
+// role and both refusals named the reason: "Cannot impersonate an inactive user" and "Access denied".
+// So: only active users, and several candidates per role rather than one -- a single 403 is a fact
+// about that user, not about the role (Rule 68).
+const boot0=await boot('sv9160','/','admin');
+const staffRaw=await boot0.page.evaluate(async(u)=>{
+  const r=await fetch(u,{headers:{Accept:'application/json'},credentials:'include'});
+  const t=await r.text(); try{return JSON.parse(t)}catch(e){return null}},
+  `https://${boot0.APIH}/api/staff?limit=200`);
+await boot0.browser.close();
+const sd=staffRaw&&(staffRaw.data!==undefined?staffRaw.data:staffRaw);
+const slist=(Array.isArray(sd)?sd:((sd&&(sd.collection||sd.staff))||[])).map(x=>({
+  id:x.id, email:x.email, name:[x.first_name,x.last_name].filter(Boolean).join(' '),
+  role:x.role_label||(x.role&&x.role.name)||null,
+  active: !(x.is_inactive||x.inactive||x.deleted_at) && (x.is_active!==false) && (x.status!=='inactive')}));
+fs.writeFileSync(`${DIR}/STAFF-LIVE.json`, JSON.stringify(slist,null,1));
+const byRole={};
+for(const s of slist){ if(!s.role||s.role==='Admin'||!s.active) continue;
+  (byRole[s.role]=byRole[s.role]||[]).push(s); }
+const targets=Object.entries(byRole).map(([role,people])=>({role, people:people.slice(0,4)}));
+console.log('active non-admin roles:', targets.map(t=>`${t.role} (${t.people.length} candidates)`).join(' · '));
 
-for(const t of targets){
-  const key=t.role;
+for(const tgt of targets){
+  const key=tgt.role;
   if(R.roles[key]){ L('skip',key); continue; }
   const { browser, page, APIH, APP, templateSlug, nFePerms } = await boot('sv9160','/','admin');
   const api=async(p,method='GET',body=null)=>page.evaluate(async([u,m,b])=>{
@@ -39,9 +56,16 @@ for(const t of targets){
       return {status:r.status,json:j,head:tx.slice(0,250)};
     }catch(e){ return {error:String(e).slice(0,140)}; }},[`https://${APIH}${p}`,method,body]);
 
-  const rec={staff:{id:t.id,name:t.name,email:t.email,role:t.role},
-             adminBaseline:{templateSlug,nFePerms}};
-  const sw=await api('/api/switch-user','POST',{user_id:t.id});
+  const rec={adminBaseline:{templateSlug,nFePerms}, attempts:[]};
+  let t=null, sw=null;
+  for(const cand of tgt.people){
+    const r=await api('/api/switch-user','POST',{user_id:cand.id});
+    rec.attempts.push({name:cand.name, email:cand.email, status:r.status, head:r.head});
+    if(r.status>=200&&r.status<300){ t=cand; sw=r; break; }
+  }
+  if(!t){ rec.instrument='no active holder of this role could be impersonated -- see attempts';
+    R.roles[key]=rec; save(); L(`${key}: no candidate impersonated`); await browser.close(); continue; }
+  rec.staff={id:t.id,name:t.name,email:t.email,role:t.role};
   rec.switch={status:sw.status, head:sw.head};
 
   await page.goto(`${APP}/workorders`,{waitUntil:'domcontentloaded'});
