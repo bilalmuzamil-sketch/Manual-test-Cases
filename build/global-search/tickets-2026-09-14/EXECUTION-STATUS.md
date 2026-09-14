@@ -11,11 +11,29 @@ testrail, RUN all the test cases and unblock yourself everywhere."*
 
 ## What is done
 
+**45 of 62 judged** — 31 pass, 14 held for the Product Owner, **none failed**. That last figure is not
+optimism: these are V1-regression cases and almost every one of them says, in its own text, that a
+capability lost between versions is recorded **Blocked for a Product Owner ruling** and explicitly
+*not* Failed and *not* a defect.
+
 | | Cases | State |
 |---|---|---|
-| Query-driven | 41 | Executed with the corrected instrument. 23 judged; the rest re-running after the fixture repairs below |
-| Not query-driven | 9 | Executed. Four re-running with stronger probes |
-| Role-gated | 12 | **Unblocked** — impersonating existing holders of four non-admin roles |
+| Query-driven | 41 | Executed with the corrected instrument; judged against the full case text |
+| Not query-driven | 9 | Executed with purpose-built probes, each carrying its own control |
+| Role-gated | 12 | Route open (impersonating existing holders); the sweep is running |
+
+## A seventh instrument fault, and the worst of them
+
+The script that built the execution plan kept only the **first 420 characters** of each case's Expected
+— enough to find the queries it was written to find. I then judged verdicts from that same file.
+**Every one of the 62 cases is longer than that**, the longest eightfold, and the tail is exactly where
+these cases keep their grading instruction:
+
+> *"If it fails, mark the case BLOCKED … Do NOT mark it Failed and do NOT raise a defect until the
+> Product Owner has ruled."*
+
+Two verdicts were already wrong because of it. Both are corrected, the full text is now read live from
+the source, and a check flags any verdict that contradicts its own case before results are written.
 
 ## Nothing was blocked. Two things were, and both are open now
 
