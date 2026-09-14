@@ -41,24 +41,15 @@ const openTab=async(name)=>{ const ok=await page.evaluate((n)=>{
       .find(e=>(e.innerText||'').trim().toLowerCase().startsWith(n.toLowerCase()));
     if(!t) return false; t.click(); return true;}, name);
   await page.waitForTimeout(3200); return ok; };
-// which group does each case care about? inferred from its title, else All
-const groupFor=(title)=>{
-  // WORD BOUNDARIES MATTER. An earlier version matched /vin/ as a substring, so
-  // "Finding a vendor by state or province" -> "proVINce" -> the ASSETS tab, and the case would have
-  // been judged on a tab it never cared about. A wrong group produces a confident, wrong zero.
-  const t=' '+title.toLowerCase()+' ';
-  if(/\bpart sales?\b/.test(t)) return 'Part sales';
-  if(/\bvendors?\b|\bsupplier/.test(t)) return 'Vendors';
-  if(/\bcustomers?\b|\bcontact/.test(t)) return 'Customers';
-  if(/\bassets?\b|\bvehicles?\b|\bvin\b|\bunit number\b|\blicence\b|\bplate\b/.test(t)) return 'Assets';
-  if(/\bparts?\b|\bcatalogue\b|\binventory\b/.test(t)) return 'Parts';
-  if(/\bwork orders?\b|\bjobs?\b/.test(t)) return 'Work orders';
-  return null;};
+// The group comes from the case's own steps ("Read the Assets group"), parsed into CASES-6769.json.
+// Two earlier attempts to infer it -- from the title, then from the Expected prose -- were both
+// wrong in ways that would have produced confident, wrong zeros ("proVINce" matched /vin/; "vendor
+// by phone number" resolved to Parts). Inference is retired; the case says which group it means.
 let done=0;
 for(const c of CASES){
   const key='C'+c.id;
   if(R.cases[key] && fs.existsSync(`${EV}/${key}-q1-all.png`)){ L('skip', key); continue; }
-  const rec={title:c.title, queries:c.queries, group:groupFor(c.title), po_decision:c.po_decision, obs:[]};
+  const rec={title:c.title, queries:c.queries, group:c.group, po_decision:!!c.po_decision, obs:[]};
   let bad=false;
   for(let i=0;i<c.queries.length;i++){
     const q=c.queries[i];

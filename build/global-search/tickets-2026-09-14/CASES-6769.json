@@ -3,190 +3,190 @@
   "id": 45142,
   "title": "Work Orders results appear only for users with Work Orders access",
   "queries": [],
+  "group": null,
   "needs_roles": true,
-  "po_decision": false,
   "steps": "1. In the search box, sign in as User A and open global search. 2. Type a word that matches an existing Work Order. 3. Note whether Work Order results appear. 4. Sign out, sign in as User B, and repeat the same search.",
-  "expected": "User A sees Work Order results. User B sees NO Work Order results (the Work Orders group does not appear for them). No other change to what each user can otherwise see. --- SOURCE - THIS CASE IS TESTED AGAINST V1, NOT AGAINST THE V2 SPECIFICATION. This is the "
+  "expected": "User A sees Work Order results. User B sees NO Work Order results (the Work Orders group does not appear for them). No other change to what each user can otherwise see. --- "
  },
  {
   "id": 45143,
   "title": "A Part-Sales-only role sees Part Sales but not Parts or Vendors",
   "queries": [],
+  "group": null,
   "needs_roles": true,
-  "po_decision": false,
-  "steps": "1. Sign in as this Part-Sales-only user. In the app header, click the search field (or press \u2318K / Ctrl+K) to open the global search, which searches across work orders, customers, parts and more; results appear as rows grouped by type under a tab strip. 2. Sear",
-  "expected": "1. Part Sale results appear. 2. NO Part results appear. 3. NO Vendor results appear. --- SOURCE - THIS CASE IS TESTED AGAINST V1, NOT AGAINST THE V2 SPECIFICATION. This is the expected behaviour as per the V1 product itself : the ShopView product repository at"
+  "steps": "1. Sign in as this Part-Sales-only user. In the app header, click the search field (or press \u2318K / Ctrl+K) to open the global search, which searches across work orders, customers, parts and more; results appear as rows grouped by type under a tab strip. 2. Search a word that matches a Part Sale, a Pa",
+  "expected": "1. Part Sale results appear. 2. NO Part results appear. 3. NO Vendor results appear. --- "
  },
  {
   "id": 45144,
   "title": "Part results appear only with Catalog & Inventory access",
   "queries": [],
+  "group": null,
   "needs_roles": true,
-  "po_decision": false,
-  "steps": "1. Sign in as User A and open global search. 2. Search the word matching the part and confirm Part results appear. 3. Open the Part result and confirm it opens the INVENTORY part (on-hand quantity and stock status), not the catalogue entry. 4. Sign out, sign i",
-  "expected": "1. User A sees Part results. 2. User B sees NO Part results. 3. A Part result, when opened, shows the inventory part (on-hand quantity and stock status), not the catalogue entry. --- SOURCE - THIS CASE IS TESTED AGAINST V1, NOT AGAINST THE V2 SPECIFICATION. Th"
+  "steps": "1. Sign in as User A and open global search. 2. Search the word matching the part and confirm Part results appear. 3. Open the Part result and confirm it opens the INVENTORY part (on-hand quantity and stock status), not the catalogue entry. 4. Sign out, sign in as User B, and run the same search. 5.",
+  "expected": "1. User A sees Part results. 2. User B sees NO Part results. 3. A Part result, when opened, shows the inventory part (on-hand quantity and stock status), not the catalogue entry. --- "
  },
  {
   "id": 45145,
   "title": "Vendor results appear only with Vendor & Order Management access",
   "queries": [],
+  "group": null,
   "needs_roles": true,
-  "po_decision": false,
   "steps": "1. In the search box, as User A, search a word matching a vendor; note if Vendor results appear. 2. As User B, repeat the same search.",
-  "expected": "User A sees Vendor results. User B sees NO Vendor results. --- SOURCE - THIS CASE IS TESTED AGAINST V1, NOT AGAINST THE V2 SPECIFICATION. This is the expected behaviour as per the V1 product itself : the ShopView product repository at commit 55767168 , FetchDa"
+  "expected": "User A sees Vendor results. User B sees NO Vendor results. --- "
  },
  {
   "id": 45146,
   "title": "Customer and Asset results both require Customers access",
   "queries": [],
+  "group": null,
   "needs_roles": true,
-  "po_decision": false,
   "steps": "1. In the search box, as User A, search a word matching a customer and its asset; note if Customer and Asset results appear. 2. As User B, repeat the same search.",
-  "expected": "User A sees Customer results and Asset results. User B sees NEITHER Customer nor Asset results. --- SOURCE - THIS CASE IS TESTED AGAINST V1, NOT AGAINST THE V2 SPECIFICATION. This is the expected behaviour as per the V1 product itself : the ShopView product re"
+  "expected": "User A sees Customer results and Asset results. User B sees NEITHER Customer nor Asset results. --- "
  },
  {
   "id": 45147,
   "title": "A Time Clock role gets no global search results at all",
   "queries": [],
+  "group": null,
   "needs_roles": true,
-  "po_decision": false,
   "steps": "1. In the search box, sign in as the Time Clock user and open global search. 2. Search any word that returns results for a normal user.",
-  "expected": "No results of any type are shown to the Time Clock user - the result set is entirely empty. --- SOURCE - THIS CASE IS TESTED AGAINST V1, NOT AGAINST THE V2 SPECIFICATION. This is the expected behaviour as per the V1 product itself : the ShopView product reposi"
+  "expected": "No results of any type are shown to the Time Clock user - the result set is entirely empty. --- "
  },
  {
   "id": 45148,
   "title": "An unrecognised result type is hidden unless explicitly permitted",
   "queries": [],
-  "needs_roles": false,
-  "po_decision": false,
+  "group": null,
+  "needs_roles": true,
   "steps": "1. In the search box, open global search and run a search that could surface an unrecognised/new result type.",
-  "expected": "Any result type that is not explicitly permitted is NOT shown (the default is hide, not show). --- SOURCE - THIS CASE IS TESTED AGAINST V1, NOT AGAINST THE V2 SPECIFICATION. This is the expected behaviour as per the V1 product itself : the ShopView product rep"
+  "expected": "Any result type that is not explicitly permitted is NOT shown (the default is hide, not show). --- "
  },
  {
   "id": 45149,
   "title": "Recent items the user can no longer access are hidden",
   "queries": [],
+  "group": null,
   "needs_roles": true,
-  "po_decision": false,
   "steps": "1. In the search box, sign in as this user and open global search so recent activity shows. 2. Look for the record the user can no longer access.",
-  "expected": "The no-longer-permitted record does NOT appear in recent activity. --- SOURCE - THIS CASE IS TESTED AGAINST V1, NOT AGAINST THE V2 SPECIFICATION. This is the expected behaviour as per the V1 product itself : the ShopView product repository at commit 55767168 ,"
+  "expected": "The no-longer-permitted record does NOT appear in recent activity. --- "
  },
  {
   "id": 45150,
   "title": "Results never include another organization's records",
   "queries": [],
+  "group": null,
   "needs_roles": true,
-  "po_decision": false,
   "steps": "1. In the search box, sign in as the Org X user and open global search. 2. Search a word that matches records in both Org X and Org Y.",
-  "expected": "Only Org X records appear. No Org Y record is ever shown. --- SOURCE - THIS CASE IS TESTED AGAINST V1, NOT AGAINST THE V2 SPECIFICATION. This is the expected behaviour as per the V1 product itself : the ShopView product repository at commit 55767168 , FetchDat"
+  "expected": "Only Org X records appear. No Org Y record is ever shown. --- "
  },
  {
   "id": 45151,
   "title": "Work Orders and Part Sales are limited to the current location",
   "queries": [],
+  "group": null,
   "needs_roles": true,
-  "po_decision": false,
-  "steps": "1. While on Location 1, search the word that matches all those records. 2. Look at the Work Order and Part Sale results. 3. Confirm the other-location Work Order and Part Sale do NOT appear (results limited to the current location). 4. Confirm the Customer, As",
-  "expected": "Work Order and Part Sale results are limited to the CURRENT location (Location 1). Customer, Asset, Vendor and Part results are org-wide (not limited to the current location). --- SOURCE - THIS CASE IS TESTED AGAINST V1, NOT AGAINST THE V2 SPECIFICATION. This "
+  "steps": "1. While on Location 1, search the word that matches all those records. 2. Look at the Work Order and Part Sale results. 3. Confirm the other-location Work Order and Part Sale do NOT appear (results limited to the current location). 4. Confirm the Customer, Asset, Vendor and Part results DO appear e",
+  "expected": "Work Order and Part Sale results are limited to the CURRENT location (Location 1). Customer, Asset, Vendor and Part results are org-wide (not limited to the current location). --- "
  },
  {
   "id": 45152,
   "title": "Switching location refreshes results to the new location",
   "queries": [],
+  "group": null,
   "needs_roles": false,
-  "po_decision": false,
   "steps": "1. Search the word while on Location 1 and note the Work Order and Part Sale results. 2. Switch to Location 2. 3. Run the same search again and note the Work Order and Part Sale results.",
-  "expected": "After switching, the Work Order / Part Sale results reflect Location 2, not Location 1. --- SOURCE - THIS CASE IS TESTED AGAINST V1, NOT AGAINST THE V2 SPECIFICATION. This is the expected behaviour as per the V1 product itself : the ShopView product repository"
+  "expected": "After switching, the Work Order / Part Sale results reflect Location 2, not Location 1. --- "
  },
  {
   "id": 45153,
   "title": "Selecting each result type opens the right record",
   "queries": [],
+  "group": null,
   "needs_roles": false,
-  "po_decision": false,
-  "steps": "1. Open global search. 2. For each type in turn, type a term that matches a record of that type and click the row. 3. Write down which page opened each time. 4. Do this for the STOCKED part 'ZZT-88-4412'. 5. Do this for the CATALOGUE-ONLY part 'ZZT-77-3300' - ",
-  "expected": "1. Work Order opens the work order page. Part Sale opens the part sale page. Customer opens that customer's work-orders page. Asset opens that asset's work-orders page, for the correct owning customer. Vendor opens the vendor page. 2. A Part opens a part recor"
+  "steps": "1. Open global search. 2. For each type in turn, type a term that matches a record of that type and click the row. 3. Write down which page opened each time. 4. Do this for the STOCKED part 'ZZT-88-4412'. 5. Do this for the CATALOGUE-ONLY part 'ZZT-77-3300' - search 'Vernway' if the part number retu",
+  "expected": "1. Work Order opens the work order page. Part Sale opens the part sale page. Customer opens that customer's work-orders page. Asset opens that asset's work-orders page, for the correct owning customer. Vendor opens the vendor page. 2. A Part opens a part record you can actually use. 3. THE CATALOGUE-ONLY PART IS THE POINT OF THIS CASE. In V1 a Part result opened the CATALOGUE part page, so every p"
  },
  {
   "id": 45154,
   "title": "Selecting the record you are already on does not re-navigate",
   "queries": [],
+  "group": null,
   "needs_roles": false,
-  "po_decision": false,
-  "steps": "1. With that record open, open global search and note the current recent activity list. 2. Search for and select the SAME record you already have open. 3. Confirm the page does not navigate or reload to that record again. 4. Reopen global search with an empty ",
-  "expected": "The page does not navigate/reload to the same record again (and it is not re-added to recent activity). --- SOURCE - THIS CASE IS TESTED AGAINST V1, NOT AGAINST THE V2 SPECIFICATION. This is the expected behaviour as per the V1 product itself : the ShopView pr"
+  "steps": "1. With that record open, open global search and note the current recent activity list. 2. Search for and select the SAME record you already have open. 3. Confirm the page does not navigate or reload to that record again. 4. Reopen global search with an empty input. 5. Confirm that record was NOT re",
+  "expected": "The page does not navigate/reload to the same record again (and it is not re-added to recent activity). --- "
  },
  {
   "id": 45155,
   "title": "The vehicles group is shown to users as 'Assets'",
   "queries": [],
+  "group": null,
   "needs_roles": false,
-  "po_decision": false,
   "steps": "1. Search a word matching a vehicle and look at the group heading it appears under.",
-  "expected": "The group is labelled 'Assets' to the user (never the internal name 'Vehicles'). --- SOURCE - THIS CASE IS TESTED AGAINST V1, NOT AGAINST THE V2 SPECIFICATION. This is the expected behaviour as per the V1 product itself : the ShopView product repository at com"
+  "expected": "The group is labelled 'Assets' to the user (never the internal name 'Vehicles'). --- "
  },
  {
   "id": 45156,
   "title": "The keyboard shortcut opens global search",
   "queries": [],
+  "group": null,
   "needs_roles": false,
-  "po_decision": false,
   "steps": "1. In the search box, press Ctrl+K on Windows (or Command+K on Mac).",
-  "expected": "Global search opens / the search field is focused, ready to type. --- SOURCE - THIS CASE IS TESTED AGAINST V1, NOT AGAINST THE V2 SPECIFICATION. This is the expected behaviour as per the V1 product itself : the ShopView product repository at commit 55767168 , "
+  "expected": "Global search opens / the search field is focused, ready to type. --- "
  },
  {
   "id": 45157,
   "title": "A record that matches more than once appears only once",
   "queries": [],
+  "group": null,
   "needs_roles": false,
-  "po_decision": false,
   "steps": "1. In the search box, search a word that matches that record in more than one way. 2. Count how many times the record appears.",
-  "expected": "The record appears only once in the results (it is not listed twice). --- SOURCE - THIS CASE IS TESTED AGAINST V1, NOT AGAINST THE V2 SPECIFICATION. This is the expected behaviour as per the V1 product itself : the ShopView product repository at commit 5576716"
+  "expected": "The record appears only once in the results (it is not listed twice). --- "
  },
  {
   "id": 45158,
   "title": "Global search is available with no feature-flag toggle",
   "queries": [],
+  "group": null,
   "needs_roles": false,
-  "po_decision": false,
   "steps": "1. In the search box, open global search normally, without enabling any setting or flag.",
-  "expected": "Global search is available to every permitted user - there is no feature flag or toggle gating it. --- SOURCE - THIS CASE IS TESTED AGAINST V1, NOT AGAINST THE V2 SPECIFICATION. This is the expected behaviour as per the V1 product itself : the ShopView product"
+  "expected": "Global search is available to every permitted user - there is no feature flag or toggle gating it. --- "
  },
  {
   "id": 45159,
   "title": "A user with no default workplace does not break search",
   "queries": [],
+  "group": null,
   "needs_roles": true,
-  "po_decision": false,
   "steps": "1. In the search box, sign in as this user and open global search.",
-  "expected": "Global search does not error; it simply does not load a result collection for this user (it degrades gracefully). --- SOURCE - THIS CASE IS TESTED AGAINST V1, NOT AGAINST THE V2 SPECIFICATION. This is the expected behaviour as per the V1 product itself : the S"
+  "expected": "Global search does not error; it simply does not load a result collection for this user (it degrades gracefully). --- "
  },
  {
   "id": 45160,
   "title": "Selecting a result records a usage analytics event",
   "queries": [],
+  "group": null,
   "needs_roles": false,
-  "po_decision": false,
   "steps": "1. In the search box, open global search, run a search, and select a result. 2. Check that a global-search-usage analytics event was recorded.",
-  "expected": "A usage analytics event is recorded when a result is selected. --- SOURCE - THIS CASE IS TESTED AGAINST V1, NOT AGAINST THE V2 SPECIFICATION. This is the expected behaviour as per the V1 product itself : the ShopView product repository at commit 55767168 , Glo"
+  "expected": "A usage analytics event is recorded when a result is selected. --- "
  },
  {
   "id": 45161,
   "title": "Search needs at least two characters before it matches",
   "queries": [],
+  "group": null,
   "needs_roles": false,
-  "po_decision": false,
   "steps": "1. In the search box, open global search and type a single character. 2. Then type a second character.",
-  "expected": "With one character, no matching search runs (recent activity may show instead). Matching begins at two characters. --- SOURCE - THIS CASE IS TESTED AGAINST V1, NOT AGAINST THE V2 SPECIFICATION. This is the expected behaviour as per the V1 product itself : the "
+  "expected": "With one character, no matching search runs (recent activity may show instead). Matching begins at two characters. --- "
  },
  {
   "id": 53516,
   "title": "Searching an asset's licence plate finds that asset",
   "queries": [],
+  "group": null,
   "needs_roles": false,
-  "po_decision": true,
   "steps": "Open global search from the top navigation bar. Type the asset's FULL licence plate, exactly as it is saved on the asset record. Look at the results list.",
-  "expected": "The asset appears in the results. It appears under the group heading 'Assets'. The result row identifies the asset (its year, make and model), with the owning customer shown alongside it. This is the expected behaviour based on the EXISTING behaviour BEFORE th"
+  "expected": "The asset appears in the results. It appears under the group heading 'Assets'. The result row identifies the asset (its year, make and model), with the owning customer shown alongside it. This is the expected behaviour based on the EXISTING behaviour BEFORE the V2 deployment (the V1 regression baseline), not on assumption. Traceable source: INV-92 - ShopView/shopview@5576716 - FetchDataQueryHandle"
  },
  {
   "id": 53578,
@@ -194,19 +194,19 @@
   "queries": [
    "Bridgeport"
   ],
+  "group": "Work Orders",
   "needs_roles": false,
-  "po_decision": false,
   "steps": "1. Open global search. 2. Type the customer name: Bridgeport 3. Read the Work Orders group.",
-  "expected": "The seeded customer's work orders are listed under the Work Orders group. You did not need to know any work order number to find them. --- SOURCE - THIS CASE IS TESTED AGAINST V1, NOT AGAINST THE V2 SPECIFICATION. This is the expected behaviour as per the V1 p"
+  "expected": "The seeded customer's work orders are listed under the Work Orders group. You did not need to know any work order number to find them. --- "
  },
  {
   "id": 53579,
   "title": "A work order number with the shop number in front still finds it",
   "queries": [],
+  "group": null,
   "needs_roles": false,
-  "po_decision": true,
   "steps": "1. Open global search. 2. Search the number as shown, for example S-1234. 3. Search it with no dash, for example S1234. 4. Search it with the shop number after the letter, for example S12-1234. 5. Search it with the shop number only, for example 12-1234.",
-  "expected": "Every form finds the same seeded work order and none returns 'No results'. If only some forms match, record and flag it - V2 rewrote matching and may accept fewer forms deliberately. Do not raise a defect until the Product Owner has ruled. --- SOURCE - THIS CA"
+  "expected": "Every form finds the same seeded work order and none returns 'No results'. If only some forms match, record and flag it - V2 rewrote matching and may accept fewer forms deliberately. Do not raise a defect until the Product Owner has ruled. --- "
  },
  {
   "id": 53580,
@@ -214,10 +214,10 @@
   "queries": [
    "ZZT-4471"
   ],
+  "group": "Assets",
   "needs_roles": false,
-  "po_decision": false,
   "steps": "1. Open global search. 2. Type the unit number: ZZT-4471 3. Read the Assets group.",
-  "expected": "The seeded asset is listed under the Assets group. This is about SEARCHING by unit number. It is not enough for the unit number to appear on a result row - the search itself must match it. --- SOURCE - THIS CASE IS TESTED AGAINST V1, NOT AGAINST THE V2 SPECIFI"
+  "expected": "The seeded asset is listed under the Assets group. This is about SEARCHING by unit number. It is not enough for the unit number to appear on a result row - the search itself must match it. --- "
  },
  {
   "id": 53581,
@@ -225,46 +225,50 @@
   "queries": [
    "Bridgeport"
   ],
+  "group": "Assets",
   "needs_roles": false,
-  "po_decision": false,
   "steps": "1. Open global search. 2. Type the owning customer name: Bridgeport 3. Read the Assets group.",
-  "expected": "The seeded asset appears under the Assets group, found by its owner's name. --- SOURCE - THIS CASE IS TESTED AGAINST V1, NOT AGAINST THE V2 SPECIFICATION. This is the expected behaviour as per the V1 product itself : the ShopView product repository at commit 5"
+  "expected": "The seeded asset appears under the Assets group, found by its owner's name. --- "
  },
  {
   "id": 53582,
   "title": "Finding a customer by address, city or postal code still works",
   "queries": [],
+  "group": null,
   "needs_roles": false,
-  "po_decision": true,
   "steps": "1. Open global search. 2. Search the street address: Kestrelway 3. Search the city: Fernvale 4. Search the state: Ohio 5. Search the postal code: 44872-9931",
-  "expected": "Steps 2, 3 and 4 each return the seeded customer. These three fields are indexed by the V2 specification, so a miss there is a defect. Step 5, postal code, returned the customer in V1. If it does not in V2, RUN THIS TEST - do not skip it. If it fails, mark the"
+  "expected": "Steps 2, 3 and 4 each return the seeded customer. These three fields are indexed by the V2 specification, so a miss there is a defect. Step 5, postal code, returned the customer in V1. If it does not in V2, RUN THIS TEST - do not skip it. If it fails, mark the case BLOCKED and write the reason (\"V1 behaviour, not listed in PRD v1.5 section 4 - awaiting Product Owner ruling\"). Do NOT mark it Failed"
  },
  {
   "id": 53583,
   "title": "Finding a customer by their website still works",
-  "queries": [],
+  "queries": [
+   "bridgeporthauling-zzt.com"
+  ],
+  "group": "Customers",
   "needs_roles": false,
-  "po_decision": true,
   "steps": "1. Open global search. 2. Type the website: bridgeporthauling-zzt.com 3. Read the Customers group.",
-  "expected": "The seeded customer is returned. If not, record and flag it - the V2 specification omits website entirely from the Customer indexed fields, so this may be a deliberate scope cut. Do not raise a defect until the Product Owner has ruled. --- SOURCE - THIS CASE I"
+  "expected": "The seeded customer is returned. If not, record and flag it - the V2 specification omits website entirely from the Customer indexed fields, so this may be a deliberate scope cut. Do not raise a defect until the Product Owner has ruled. --- "
  },
  {
   "id": 53584,
   "title": "Finding a vendor by email address still works",
-  "queries": [],
+  "queries": [
+   "parts@kestrelsupply-zzt.com"
+  ],
+  "group": "Vendors",
   "needs_roles": false,
-  "po_decision": false,
   "steps": "1. Open global search. 2. Type the vendor email: parts@kestrelsupply-zzt.com 3. Read the Vendors group.",
-  "expected": "The seeded vendor is returned under the Vendors group. --- SOURCE - THIS CASE IS TESTED AGAINST V1, NOT AGAINST THE V2 SPECIFICATION. This is the expected behaviour as per the V1 product itself : the ShopView product repository at commit 55767168 , FetchDataQu"
+  "expected": "The seeded vendor is returned under the Vendors group. --- "
  },
  {
   "id": 53585,
   "title": "Finding a vendor by address, city or postal code still works",
   "queries": [],
+  "group": null,
   "needs_roles": false,
-  "po_decision": true,
   "steps": "1. Open global search. 2. Search the street address: Halbrook 3. Search the city: Marnston 4. Search the postal code: 43055-2210",
-  "expected": "Steps 2 and 3 each return the seeded vendor. Vendor address and city are indexed by the V2 specification, so a miss there is a defect. Step 4, postal code, returned the vendor in V1. If it does not in V2, RUN THIS TEST - do not skip it. If it fails, mark the c"
+  "expected": "Steps 2 and 3 each return the seeded vendor. Vendor address and city are indexed by the V2 specification, so a miss there is a defect. Step 4, postal code, returned the vendor in V1. If it does not in V2, RUN THIS TEST - do not skip it. If it fails, mark the case BLOCKED and write the reason (\"V1 behaviour, not listed in PRD v1.5 section 4 - awaiting Product Owner ruling\"). Do NOT mark it Failed a"
  },
  {
   "id": 53586,
@@ -272,19 +276,19 @@
   "queries": [
    "Halloway"
   ],
+  "group": null,
   "needs_roles": false,
-  "po_decision": false,
   "steps": "1. Create a new customer named 'ZZAUTOTEST Halloway Freight' plus today's date and time, so the name is unique to this run. 2. Do not reload the page and do not sign out. 3. Open global search and type: Halloway",
-  "expected": "The customer you just created is returned. Allow up to 30 seconds for it to appear - that is the specified index refresh window, not a bug. No sign-out and no re-login is needed. The record also appears under Recent searches, because creating a record counts a"
+  "expected": "The customer you just created is returned. Allow up to 30 seconds for it to appear - that is the specified index refresh window, not a bug. No sign-out and no re-login is needed. The record also appears under Recent searches, because creating a record counts as viewing it. --- "
  },
  {
   "id": 53587,
   "title": "A new work order or part sale is findable within 30 seconds",
   "queries": [],
+  "group": null,
   "needs_roles": false,
-  "po_decision": false,
-  "steps": "1. Create a new work order for 'ZZAUTOTEST Bridgeport Hauling' and note its number. 2. Without reloading, open global search and type that number. 3. Create a new part sale for the same customer and note its number, then search for it. 4. Receive a part throug",
-  "expected": "Each newly created record is returned by search. Allow up to 30 seconds for each to appear - that is the specified index refresh window, not a bug. No page refresh or sign-out is needed in any of the three flows. --- SOURCE - THIS CASE IS TESTED AGAINST V1, NO"
+  "steps": "1. Create a new work order for 'ZZAUTOTEST Bridgeport Hauling' and note its number. 2. Without reloading, open global search and type that number. 3. Create a new part sale for the same customer and note its number, then search for it. 4. Receive a part through Receive Order, then search for it.",
+  "expected": "Each newly created record is returned by search. Allow up to 30 seconds for each to appear - that is the specified index refresh window, not a bug. No page refresh or sign-out is needed in any of the three flows. --- "
  },
  {
   "id": 53588,
@@ -292,19 +296,19 @@
   "queries": [
    "Bridgeport"
   ],
+  "group": null,
   "needs_roles": false,
-  "po_decision": false,
   "steps": "1. Open global search. 2. Type: Bridgeport 3. Read the order of the rows in the Work Orders group.",
-  "expected": "Among work orders that match equally well and share the same status, the more recently updated one is listed above the older one. A closed or invoiced work order older than 90 days is pushed down the list. Do NOT expect a strict newest-first date order. Other "
+  "expected": "Among work orders that match equally well and share the same status, the more recently updated one is listed above the older one. A closed or invoiced work order older than 90 days is pushed down the list. Do NOT expect a strict newest-first date order. Other signals legitimately outrank recency - an open or active status, being assigned to you, and having viewed it in the last 7 days. --- "
  },
  {
   "id": 53589,
   "title": "Typing is never lost while search results are loading",
   "queries": [],
-  "needs_roles": true,
-  "po_decision": false,
-  "steps": "1. Open global search from the header. 2. Type a term that returns a lot of results, quickly and without pausing: Bridgeport 3. Watch the input and the result area while the results arrive. 4. Without waiting, immediately continue typing more characters onto t",
-  "expected": "Every character you typed is still in the input box - nothing is swallowed while a search is in flight. The results shown at the end match the FULL text in the input, not an earlier half-typed version of it. While results are being fetched the modal does not l"
+  "group": null,
+  "needs_roles": false,
+  "steps": "1. Open global search from the header. 2. Type a term that returns a lot of results, quickly and without pausing: Bridgeport 3. Watch the input and the result area while the results arrive. 4. Without waiting, immediately continue typing more characters onto the end of the term. 5. Compare what is f",
+  "expected": "Every character you typed is still in the input box - nothing is swallowed while a search is in flight. The results shown at the end match the FULL text in the input, not an earlier half-typed version of it. While results are being fetched the modal does not look broken or frozen: it either shows the previous results, or a loading indication, and then settles. You are never left looking at results"
  },
  {
   "id": 53601,
@@ -313,10 +317,10 @@
    "Vernway",
    "ZZT-77-3300"
   ],
+  "group": "Parts",
   "needs_roles": false,
-  "po_decision": true,
   "steps": "1. Open global search. 2. Type: Vernway 3. Read the Parts group. 4. Clear the input and type the part number: ZZT-77-3300 5. Read the Parts group again.",
-  "expected": "Both searches return the catalogue part 'ZZAUTOTEST Airline Coupler Vernway'. THIS IS THE HIGHEST-RISK DIFFERENCE BETWEEN V1 AND V2. In V1 every catalogue part was searchable whether or not it had ever been stocked. V2 searches Parts (Inventory). If the part i"
+  "expected": "Both searches return the catalogue part 'ZZAUTOTEST Airline Coupler Vernway'. THIS IS THE HIGHEST-RISK DIFFERENCE BETWEEN V1 AND V2. In V1 every catalogue part was searchable whether or not it had ever been stocked. V2 searches Parts (Inventory). If the part is NOT returned, this is the change a customer is most likely to report as 'I could search this part in V1 and cannot in V2'. Record and flag"
  },
  {
   "id": 53602,
@@ -324,10 +328,10 @@
   "queries": [
    "ZZAUTOTESTBridgeportHauling"
   ],
+  "group": "Customers",
   "needs_roles": false,
-  "po_decision": true,
   "steps": "1. Open global search. 2. Type the name with no spaces: ZZAUTOTESTBridgeportHauling 3. Read the Customers group. 4. Clear the input and type it normally with spaces to confirm the customer is findable at all.",
-  "expected": "Step 2 returns the customer 'ZZAUTOTEST Bridgeport Hauling'. Step 4 also returns the customer, confirming the record itself is searchable. In V1 the customer name was indexed twice, once as typed and once with every space removed, so a run-together name matche"
+  "expected": "Step 2 returns the customer 'ZZAUTOTEST Bridgeport Hauling'. Step 4 also returns the customer, confirming the record itself is searchable. In V1 the customer name was indexed twice, once as typed and once with every space removed, so a run-together name matched. If step 2 fails while step 4 passes, RUN THIS TEST - do not skip it. If it fails, mark the case BLOCKED and write the reason (\"V1 behavio"
  },
  {
   "id": 53603,
@@ -335,10 +339,10 @@
   "queries": [
    "Dispatch Supervisor"
   ],
+  "group": "Customers",
   "needs_roles": false,
-  "po_decision": true,
   "steps": "1. Open global search. 2. Type the contact's job title: Dispatch Supervisor 3. Read the Customers group.",
-  "expected": "The customer 'ZZAUTOTEST Bridgeport Hauling' is returned, carrying the 'Contact match' label. In V1 the contact's job title was part of the customer's searchable text. If it fails, record and flag it - the V2 specification lists contact names, telephone number"
+  "expected": "The customer 'ZZAUTOTEST Bridgeport Hauling' is returned, carrying the 'Contact match' label. In V1 the contact's job title was part of the customer's searchable text. If it fails, record and flag it - the V2 specification lists contact names, telephone numbers and email addresses but not job title, so this may be a deliberate scope cut. Do not raise a defect until the Product Owner has ruled. ---"
  },
  {
   "id": 53604,
@@ -346,10 +350,10 @@
   "queries": [
    "Dock 7B"
   ],
+  "group": "Customers",
   "needs_roles": false,
-  "po_decision": false,
   "steps": "1. Open global search. 2. Type the customer's address line 2: Dock 7B 3. Read the Customers group. 4. Clear the input and search for the vendor's address line 2. 5. Read the Vendors group.",
-  "expected": "Step 2 returns the customer 'ZZAUTOTEST Bridgeport Hauling'. Step 4 returns the vendor 'ZZAUTOTEST Kestrel Parts Supply'. Address line 2 is searchable in its own right, not only address line 1. --- SOURCE - THIS CASE IS TESTED AGAINST V1, NOT AGAINST THE V2 SP"
+  "expected": "Step 2 returns the customer 'ZZAUTOTEST Bridgeport Hauling'. Step 4 returns the vendor 'ZZAUTOTEST Kestrel Parts Supply'. Address line 2 is searchable in its own right, not only address line 1. --- "
  },
  {
   "id": 53605,
@@ -357,10 +361,10 @@
   "queries": [
    "2019 Freightliner"
   ],
+  "group": "Assets",
   "needs_roles": false,
-  "po_decision": false,
   "steps": "1. Open global search. 2. Type: 2019 Freightliner 3. Read the Assets group.",
-  "expected": "The 2019 Freightliner Cascadia is returned under the Assets group. The year is part of what an asset can be found by, alongside make and model. --- SOURCE - THIS CASE IS TESTED AGAINST V1, NOT AGAINST THE V2 SPECIFICATION. This is the expected behaviour as per"
+  "expected": "The 2019 Freightliner Cascadia is returned under the Assets group. The year is part of what an asset can be found by, alongside make and model. --- "
  },
  {
   "id": 53606,
@@ -368,46 +372,59 @@
   "queries": [
    "Ohio"
   ],
+  "group": "Vendors",
   "needs_roles": false,
-  "po_decision": true,
   "steps": "1. Open global search. 2. Type: Ohio 3. Read the Vendors group.",
-  "expected": "The vendor 'ZZAUTOTEST Kestrel Parts Supply' is returned under the Vendors group. If it fails, record and flag it - the V2 specification lists vendor name, telephone, email, address and city but not state or province. Do not raise a defect until the Product Ow"
+  "expected": "The vendor 'ZZAUTOTEST Kestrel Parts Supply' is returned under the Vendors group. If it fails, record and flag it - the V2 specification lists vendor name, telephone, email, address and city but not state or province. Do not raise a defect until the Product Owner has ruled. --- "
  },
  {
   "id": 53607,
   "title": "Finding a part by its description",
-  "queries": [],
+  "queries": [
+   "Kestrel",
+   "Brake Chamber"
+  ],
+  "group": "Parts",
   "needs_roles": false,
-  "po_decision": false,
   "steps": "1. Open global search. 2. Type a distinctive word from the part's description: Kestrel 3. Read the Parts group. 4. Clear the input and type two words from the description: Brake Chamber 5. Read the Parts group again.",
-  "expected": "Both searches return the part 'ZZAUTOTEST Brake Chamber Kestrel'. A part is findable by the words in its description, not only by its part number. This is the most common way a parts person searches, so a failure here is high impact. --- SOURCE - THIS CASE IS "
+  "expected": "Both searches return the part 'ZZAUTOTEST Brake Chamber Kestrel'. A part is findable by the words in its description, not only by its part number. This is the most common way a parts person searches, so a failure here is high impact. --- "
  },
  {
   "id": 55658,
   "title": "Finding a work order by typing its status still works",
-  "queries": [],
+  "queries": [
+   "qualitycheck"
+  ],
+  "group": "Work Orders",
   "needs_roles": false,
-  "po_decision": false,
-  "steps": "1. Open global search. 2. Type the status word exactly as it appears on the work order, for example: Estimate 3. Read the Work orders group. 4. Clear the input and repeat with a two-word status typed as one word, for example: qualitycheck 5. Read the Work orde",
-  "expected": "Work orders in that status are returned by both forms. In V1 the status word was part of what a work order could be found by - the underscore was removed (so 'in_progress' matched 'inprogress') and 'quality_check' also matched 'qualitycheckqc'. A dispatcher ty"
+  "steps": "1. Open global search. 2. Type the status word exactly as it appears on the work order, for example: Estimate 3. Read the Work orders group. 4. Clear the input and repeat with a two-word status typed as one word, for example: qualitycheck 5. Read the Work orders group again.",
+  "expected": "Work orders in that status are returned by both forms. In V1 the status word was part of what a work order could be found by - the underscore was removed (so 'in_progress' matched 'inprogress') and 'quality_check' also matched 'qualitycheckqc'. A dispatcher typing 'Estimate' into search got the estimates back. IF THIS FAILS: it is a real V1-to-V2 capability loss. Mark the test Blocked with the exa"
  },
  {
   "id": 55659,
   "title": "Finding a record by typing only part of its number still works",
-  "queries": [],
+  "queries": [
+   "17580",
+   "4412",
+   "4471"
+  ],
+  "group": "Work Orders",
   "needs_roles": false,
-  "po_decision": false,
-  "steps": "1. Open global search. 2. Type only the tail of the work order number: 17580 3. Read the Work orders group. 4. Clear the input and type only the tail of the part number: 4412 5. Read the Parts group. 6. Clear the input and type only the tail of the unit number",
-  "expected": "Each search returns its record: 17580 returns work order S9160-17580, 4412 returns the brake chamber part, and 4471 returns the asset. In V1 the second matching pass looked for the typed text ANYWHERE inside the record's search text, so a fragment of any numbe"
+  "steps": "1. Open global search. 2. Type only the tail of the work order number: 17580 3. Read the Work orders group. 4. Clear the input and type only the tail of the part number: 4412 5. Read the Parts group. 6. Clear the input and type only the tail of the unit number: 4471 7. Read the Assets group.",
+  "expected": "Each search returns its record: 17580 returns work order S9160-17580, 4412 returns the brake chamber part, and 4471 returns the asset. In V1 the second matching pass looked for the typed text ANYWHERE inside the record's search text, so a fragment of any number found the record. This is how people actually search - they type the last few digits of a work order rather than the whole shop-prefixed n"
  },
  {
   "id": 55660,
   "title": "Finding a record by a fragment from the middle of a word still works",
-  "queries": [],
+  "queries": [
+   "ernva",
+   "idgepor",
+   "estrelw"
+  ],
+  "group": "Customers",
   "needs_roles": false,
-  "po_decision": false,
-  "steps": "1. Open global search. 2. Type a fragment from the middle of the city name: ernva 3. Read the Customers group. 4. Clear the input and type a fragment from the middle of the company name: idgepor 5. Read the Customers group again. 6. Clear the input and type a ",
-  "expected": "All three searches return the customer 'ZZAUTOTEST Bridgeport Hauling'. In V1 the typed text was matched anywhere inside the record's search text, so a fragment from the middle of any word found the record. V2 scores similarity instead, and a short fragment ca"
+  "steps": "1. Open global search. 2. Type a fragment from the middle of the city name: ernva 3. Read the Customers group. 4. Clear the input and type a fragment from the middle of the company name: idgepor 5. Read the Customers group again. 6. Clear the input and type a fragment from the middle of the address:",
+  "expected": "All three searches return the customer 'ZZAUTOTEST Bridgeport Hauling'. In V1 the typed text was matched anywhere inside the record's search text, so a fragment from the middle of any word found the record. V2 scores similarity instead, and a short fragment can score below the cut-off and return nothing. IF THIS FAILS: it is a real V1-to-V2 capability loss. Mark the test Blocked with the exact que"
  },
  {
   "id": 55661,
@@ -415,32 +432,34 @@
   "queries": [
    "ZZAUTOTEST"
   ],
+  "group": null,
   "needs_roles": false,
-  "po_decision": false,
-  "steps": "1. Open global search. 2. Type: ZZAUTOTEST 3. Stay on the All tab and write down every group heading you can see, and its count. 4. Click each scope tab in turn - Work orders, Customers, Assets, Parts, Vendors - and write down the count on each. 5. Compare: is",
-  "expected": "Every type that has a match is represented on the All tab. No matching type is missing from the All view. In V1 each type was given its own slots (up to three) and there was no overall limit, so if six types matched, all six were shown. V2 caps the whole resul"
+  "steps": "1. Open global search. 2. Type: ZZAUTOTEST 3. Stay on the All tab and write down every group heading you can see, and its count. 4. Click each scope tab in turn - Work orders, Customers, Assets, Parts, Vendors - and write down the count on each. 5. Compare: is there any type that has matches on its ",
+  "expected": "Every type that has a match is represented on the All tab. No matching type is missing from the All view. In V1 each type was given its own slots (up to three) and there was no overall limit, so if six types matched, all six were shown. V2 caps the whole result list at 20, so a type with real matches can be squeezed out entirely by a type that matches more often - the user sees nothing for it and "
  },
  {
   "id": 55662,
   "title": "Finding a customer by the company's own main phone number",
   "queries": [
+   "(419) 555-0143",
    "4195550143"
   ],
+  "group": "Customers",
   "needs_roles": false,
-  "po_decision": false,
   "steps": "1. Open global search. 2. Type the company phone number with its formatting: (419) 555-0143 3. Read the Customers group. 4. Clear the input and type the same number as plain digits: 4195550143 5. Read the Customers group again.",
-  "expected": "Both forms return the customer 'ZZAUTOTEST Bridgeport Hauling'. The result is matched on the COMPANY record, so it should not be labelled as a contact match. In V1 the company's own telephone was searchable in its own right, separately from its contacts' numbe"
+  "expected": "Both forms return the customer 'ZZAUTOTEST Bridgeport Hauling'. The result is matched on the COMPANY record, so it should not be labelled as a contact match. In V1 the company's own telephone was searchable in its own right, separately from its contacts' numbers. An existing case covers a CONTACT's phone number; this one covers the company's. IF THIS FAILS: it is a real V1-to-V2 capability loss. M"
  },
  {
   "id": 55663,
   "title": "Finding a vendor by phone number",
   "queries": [
+   "(614) 555-0188",
    "6145550188"
   ],
+  "group": "Vendors",
   "needs_roles": false,
-  "po_decision": false,
   "steps": "1. Open global search. 2. Type the vendor phone number with its formatting: (614) 555-0188 3. Read the Vendors group. 4. Clear the input and type the same number as plain digits: 6145550188 5. Read the Vendors group again.",
-  "expected": "Both forms return the vendor 'ZZAUTOTEST Kestrel Parts Supply'. In V1 a vendor could be found by its phone number just as a customer could. The existing phone-number case in the suite uses a CUSTOMER, so the vendor side was never covered. IF THIS FAILS: it is "
+  "expected": "Both forms return the vendor 'ZZAUTOTEST Kestrel Parts Supply'. In V1 a vendor could be found by its phone number just as a customer could. The existing phone-number case in the suite uses a CUSTOMER, so the vendor side was never covered. IF THIS FAILS: it is a real V1-to-V2 capability loss. Mark the test Blocked with the exact query you typed and what came back, and flag it - a task ticket goes t"
  },
  {
   "id": 55664,
@@ -448,10 +467,10 @@
   "queries": [
    "Cascadia"
   ],
+  "group": "Assets",
   "needs_roles": false,
-  "po_decision": false,
   "steps": "1. Open global search. 2. Type the model name: Cascadia 3. Read the Assets group.",
-  "expected": "The asset '2019 Freightliner Cascadia' is returned. In V1 both the make and the model were searchable. The suite has a case that searches a misspelled MAKE (Freightliner), which proves the make is searchable, but nothing searched the MODEL on its own. IF THIS "
+  "expected": "The asset '2019 Freightliner Cascadia' is returned. In V1 both the make and the model were searchable. The suite has a case that searches a misspelled MAKE (Freightliner), which proves the make is searchable, but nothing searched the MODEL on its own. IF THIS FAILS: it is a real V1-to-V2 capability loss. Mark the test Blocked with the exact query you typed and what came back, and flag it - a task "
  },
  {
   "id": 55665,
@@ -459,41 +478,46 @@
   "queries": [
    "Bridgeport"
   ],
+  "group": "Part sales",
   "needs_roles": false,
-  "po_decision": false,
   "steps": "1. Open global search. 2. Type the customer name: Bridgeport 3. Read the Part sales group (click the Part sales scope tab if the group is not visible on the All tab).",
-  "expected": "The part sale for 'ZZAUTOTEST Bridgeport Hauling' is returned under Part sales. In V1 work orders and part sales were produced by the same query and both carried the customer name in their search text, so typing the customer found both. The suite has a case fo"
+  "expected": "The part sale for 'ZZAUTOTEST Bridgeport Hauling' is returned under Part sales. In V1 work orders and part sales were produced by the same query and both carried the customer name in their search text, so typing the customer found both. The suite has a case for finding a WORK ORDER by customer name; the part sale side was never covered, and in V2 Part Sales is a separate entity with its own indexi"
  },
  {
   "id": 55666,
   "title": "Finding a part by its part number still works",
-  "queries": [],
+  "queries": [
+   "ZZT-88-4412",
+   "ZZT884412"
+  ],
+  "group": "Parts",
   "needs_roles": false,
-  "po_decision": false,
   "steps": "1. Open global search. 2. Type the part number exactly as printed, with its dashes: ZZT-88-4412 3. Read the Parts group. 4. Clear the input and type the same part number with the dashes removed: ZZT884412 5. Read the Parts group again.",
-  "expected": "Both forms return the part 'ZZAUTOTEST Brake Chamber Kestrel'. In V1 a part was searchable by its part number with the dashes and without them - the number was stored twice in the search text for exactly that reason. Typing a part number is the normal way a pa"
+  "expected": "Both forms return the part 'ZZAUTOTEST Brake Chamber Kestrel'. In V1 a part was searchable by its part number with the dashes and without them - the number was stored twice in the search text for exactly that reason. Typing a part number is the normal way a parts clerk finds a part. THIS CASE IS EXPECTED TO FAIL ON THE CURRENT BUILD. A controlled experiment on 14 September 2026 found this part IS "
  },
  {
   "id": 55667,
   "title": "Finding a customer by company name",
   "queries": [
+   "Bridgeport",
    "ZZAUTOTEST Bridgeport Hauling"
   ],
+  "group": "Customers",
   "needs_roles": false,
-  "po_decision": false,
   "steps": "1. Open global search. 2. Type a distinctive word from the company name: Bridgeport 3. Read the Customers group. 4. Clear the input and type the full name: ZZAUTOTEST Bridgeport Hauling 5. Read the Customers group again.",
-  "expected": "Both searches return the customer 'ZZAUTOTEST Bridgeport Hauling'. This is the most basic thing global search does and the control for every other customer case on this suite - if this fails, nothing else about customers can be trusted. IF THIS FAILS: it is a "
+  "expected": "Both searches return the customer 'ZZAUTOTEST Bridgeport Hauling'. This is the most basic thing global search does and the control for every other customer case on this suite - if this fails, nothing else about customers can be trusted. IF THIS FAILS: it is a real V1-to-V2 capability loss. Mark the test Blocked with the exact query you typed and what came back, and flag it - a task ticket goes to "
  },
  {
   "id": 55668,
   "title": "Finding a vendor by name",
   "queries": [
+   "Kestrel",
    "ZZAUTOTEST Kestrel Parts Supply"
   ],
+  "group": "Vendors",
   "needs_roles": false,
-  "po_decision": false,
   "steps": "1. Open global search. 2. Type a distinctive word from the vendor name: Kestrel 3. Read the Vendors group. 4. Clear the input and type the full name: ZZAUTOTEST Kestrel Parts Supply 5. Read the Vendors group again.",
-  "expected": "Both searches return the vendor 'ZZAUTOTEST Kestrel Parts Supply' under Vendors. Note the word Kestrel also appears on a part and on the customer address - the vendor must still be returned in its own group, not swallowed by the others. IF THIS FAILS: it is a "
+  "expected": "Both searches return the vendor 'ZZAUTOTEST Kestrel Parts Supply' under Vendors. Note the word Kestrel also appears on a part and on the customer address - the vendor must still be returned in its own group, not swallowed by the others. IF THIS FAILS: it is a real V1-to-V2 capability loss. Mark the test Blocked with the exact query you typed and what came back, and flag it - a task ticket goes to "
  },
  {
   "id": 55669,
@@ -502,10 +526,10 @@
    "1FUJGLDR9KLZZ4471",
    "ZZ4471"
   ],
+  "group": "Assets",
   "needs_roles": false,
-  "po_decision": false,
   "steps": "1. Open global search. 2. Type the COMPLETE VIN: 1FUJGLDR9KLZZ4471 3. Read the Assets group. 4. Clear the input and type the last part of the VIN only: ZZ4471 5. Read the Assets group again.",
-  "expected": "Both searches return the asset. In V1 the VIN was matched anywhere inside the record's search text, so the whole VIN and any piece of it both worked - a technician reading the last six characters off a windscreen plate could find the vehicle. THIS CASE IS EXPE"
+  "expected": "Both searches return the asset. In V1 the VIN was matched anywhere inside the record's search text, so the whole VIN and any piece of it both worked - a technician reading the last six characters off a windscreen plate could find the vehicle. THIS CASE IS EXPECTED TO FAIL ON THE CURRENT BUILD, AND IN A STRANGE WAY. On 14 September 2026 the complete VIN returned NOTHING while the first eleven chara"
  },
  {
   "id": 55670,
@@ -514,19 +538,23 @@
    "Marlene",
    "Okonkwo"
   ],
+  "group": null,
   "needs_roles": false,
-  "po_decision": false,
   "steps": "1. Open global search. 2. Type the contact first name: Marlene 3. Read the results. 4. Clear the input and type the contact last name: Okonkwo 5. Read the results again.",
-  "expected": "Both searches return the customer 'ZZAUTOTEST Bridgeport Hauling'. In V1 a contact match produced its own row; in V2 the company row is returned instead, marked as a contact match. Either presentation passes - what must not happen is finding nothing, because t"
+  "expected": "Both searches return the customer 'ZZAUTOTEST Bridgeport Hauling'. In V1 a contact match produced its own row; in V2 the company row is returned instead, marked as a contact match. Either presentation passes - what must not happen is finding nothing, because the person's name is how staff look up a company they only know by who they speak to. IF THIS FAILS: it is a real V1-to-V2 capability loss. M"
  },
  {
   "id": 55671,
   "title": "Search finds records whatever mix of capitals is typed",
-  "queries": [],
+  "queries": [
+   "bridgeport",
+   "BRIDGEPORT",
+   "BrIdGePoRt"
+  ],
+  "group": "Customers",
   "needs_roles": false,
-  "po_decision": false,
   "steps": "1. Open global search. 2. Type all lower case: bridgeport 3. Read the Customers group. 4. Clear the input and type all capitals: BRIDGEPORT 5. Read it again. 6. Clear the input and type a mixture: BrIdGePoRt 7. Read it again.",
-  "expected": "All three return the same customer. In V1 both the typed text and the record text were put into lower case before matching, so capitals never mattered. Nobody types a company name with the right capitals. IF THIS FAILS: it is a real V1-to-V2 capability loss. M"
+  "expected": "All three return the same customer. In V1 both the typed text and the record text were put into lower case before matching, so capitals never mattered. Nobody types a company name with the right capitals. IF THIS FAILS: it is a real V1-to-V2 capability loss. Mark the test Blocked with the exact query you typed and what came back, and flag it - a task ticket goes to the Product Owner to confirm whe"
  },
  {
   "id": 55672,
@@ -534,10 +562,10 @@
   "queries": [
    "17580"
   ],
+  "group": "Work Orders",
   "needs_roles": false,
-  "po_decision": false,
   "steps": "1. Open global search. 2. Type the plain number on its own: 17580 3. Read the Work orders group.",
-  "expected": "The work order S9160-17580 is returned. In V1 the plain number was stored as a searchable value in its own right, separately from the formatted number - it was not merely a fragment that happened to match. So typing the bare number was a supported way to find "
+  "expected": "The work order S9160-17580 is returned. In V1 the plain number was stored as a searchable value in its own right, separately from the formatted number - it was not merely a fragment that happened to match. So typing the bare number was a supported way to find a work order, not a side-effect. IF THIS FAILS: it is a real V1-to-V2 capability loss. Mark the test Blocked with the exact query you typed "
  },
  {
   "id": 55673,
@@ -545,19 +573,19 @@
   "queries": [
    "Bridgeport"
   ],
+  "group": null,
   "needs_roles": false,
-  "po_decision": false,
   "steps": "1. Open global search. 2. Type: Bridgeport 3. Wait for the results to appear. 4. WITHOUT pressing any arrow key, press Enter.",
-  "expected": "The top result opens. In V1 the first selectable result was highlighted automatically as soon as results appeared, so type-then-Enter went straight to the record. If Enter does nothing until you press a Down arrow first, that is a step added to the single most"
+  "expected": "The top result opens. In V1 the first selectable result was highlighted automatically as soon as results appeared, so type-then-Enter went straight to the record. If Enter does nothing until you press a Down arrow first, that is a step added to the single most common way people use search. IF THIS FAILS: it is a real V1-to-V2 capability loss. Mark the test Blocked with the exact query you typed an"
  },
  {
   "id": 55674,
   "title": "Search can be reached on a phone and a tablet as well as a desktop",
   "queries": [],
+  "group": null,
   "needs_roles": false,
-  "po_decision": false,
-  "steps": "1. On a normal desktop window, confirm you can reach global search and find the customer by typing Bridgeport. 2. Narrow the window to tablet width (about 900 pixels) and repeat. 3. Narrow it to phone width (about 400 pixels) and repeat - on a narrow screen se",
-  "expected": "At all three sizes search can be reached and returns the customer. In V1 search was always visible on desktop and tablet, and on a phone it appeared when you tapped a search icon. Technicians work from phones in the yard, so losing search at phone width remove"
+  "steps": "1. On a normal desktop window, confirm you can reach global search and find the customer by typing Bridgeport. 2. Narrow the window to tablet width (about 900 pixels) and repeat. 3. Narrow it to phone width (about 400 pixels) and repeat - on a narrow screen search may be behind an icon you tap first",
+  "expected": "At all three sizes search can be reached and returns the customer. In V1 search was always visible on desktop and tablet, and on a phone it appeared when you tapped a search icon. Technicians work from phones in the yard, so losing search at phone width removes the feature for the people who lean on it most. IF THIS FAILS: it is a real V1-to-V2 capability loss. Mark the test Blocked with the exact"
  },
  {
   "id": 55675,
@@ -565,10 +593,10 @@
   "queries": [
    "ZZNOSUCHRECORD9999"
   ],
+  "group": null,
   "needs_roles": false,
-  "po_decision": false,
   "steps": "1. Open global search. 2. Type: ZZNOSUCHRECORD9999 3. Wait for the search to run and read what the screen says.",
-  "expected": "A clear no-results message is shown. The list does not simply sit empty, and it does not keep showing a spinner or the previous results. In V1 the no-results message appeared only after at least two characters had been typed and nothing matched - so an empty b"
+  "expected": "A clear no-results message is shown. The list does not simply sit empty, and it does not keep showing a spinner or the previous results. In V1 the no-results message appeared only after at least two characters had been typed and nothing matched - so an empty box never claimed there were no results. IF THIS FAILS: it is a real V1-to-V2 capability loss. Mark the test Blocked with the exact query you"
  },
  {
   "id": 55679,
@@ -576,10 +604,10 @@
   "queries": [
    "ZZNOSUCHRECORD9999"
   ],
+  "group": null,
   "needs_roles": false,
-  "po_decision": true,
   "steps": "1. Open global search and confirm your recent items are listed before you type anything. 2. Type: ZZNOSUCHRECORD9999 3. Wait for the search to finish and read the whole panel. 4. Look for your recent items underneath or beside the no-results message.",
-  "expected": "Your recent items are shown again once the search finds nothing, so you can click straight back to something you were working on. In V1 the recent list reappeared automatically whenever a search returned no matches - a fruitless search never left you at a dead"
+  "expected": "Your recent items are shown again once the search finds nothing, so you can click straight back to something you were working on. In V1 the recent list reappeared automatically whenever a search returned no matches - a fruitless search never left you at a dead end. THIS IS EXPECTED TO DIFFER ON THE CURRENT BUILD. Another case in the wider suite states that a no-match search shows ONLY a 'No result"
  },
  {
   "id": 55680,
@@ -587,10 +615,10 @@
   "queries": [
    "ZZAUTOTEST"
   ],
+  "group": null,
   "needs_roles": false,
-  "po_decision": false,
   "steps": "1. Open global search. 2. Type: ZZAUTOTEST 3. Press the Down arrow repeatedly and watch what becomes highlighted each time. 4. Keep going until you have crossed from one group into the next. 5. Press the Up arrow back the same way.",
-  "expected": "Only RESULT ROWS are ever highlighted. The group headings - 'Customers', 'Assets', 'Vendors' - are stepped over and never become the highlighted item, going down or coming back up. In V1 the headings were not selectable, so arrowing through results never lande"
+  "expected": "Only RESULT ROWS are ever highlighted. The group headings - 'Customers', 'Assets', 'Vendors' - are stepped over and never become the highlighted item, going down or coming back up. In V1 the headings were not selectable, so arrowing through results never landed you on a heading and never made Enter do nothing. If a heading can be highlighted, or Enter on one does nothing while looking selected, th"
  },
  {
   "id": 55682,
@@ -598,18 +626,18 @@
   "queries": [
    "ZZAUTOTEST"
   ],
+  "group": null,
   "needs_roles": false,
-  "po_decision": false,
   "steps": "1. Open global search. 2. Type: ZZAUTOTEST 3. Look at the left-hand side of every result row. 4. Check that a customer row, an asset row, a vendor row, a part row and a work order row each carry an icon, and that rows of the SAME kind carry the SAME icon.",
-  "expected": "Every result row shows a small icon on its left, and the icon differs by record type so you can tell at a glance what each row is. In V1 each type had its own icon: a building for a customer, a contact card for a contact match, a truck for an asset, a shopfron"
+  "expected": "Every result row shows a small icon on its left, and the icon differs by record type so you can tell at a glance what each row is. In V1 each type had its own icon: a building for a customer, a contact card for a contact match, a truck for an asset, a shopfront for a vendor, and a tools icon for work orders, part sales and parts. The exact pictures may differ in V2 - what must not happen is rows l"
  },
  {
   "id": 55683,
   "title": "The keyboard shortcut is shown in the search box so people can find it",
   "queries": [],
+  "group": null,
   "needs_roles": false,
-  "po_decision": false,
-  "steps": "1. Look at the search box in the header WITHOUT clicking it. 2. Check whether the keyboard shortcut is written in or beside the box. 3. Hover over it and read any tooltip. 4. On a Mac the hint should read the Command symbol and K; on Windows it should read Ctr",
-  "expected": "The keyboard shortcut is visible on the search box on a desktop-width screen, and it shows the RIGHT one for the machine you are on - the Command symbol with K on a Mac, Ctrl+K on Windows. Hovering explains what it does. In V1 this hint was deliberately shown "
+  "steps": "1. Look at the search box in the header WITHOUT clicking it. 2. Check whether the keyboard shortcut is written in or beside the box. 3. Hover over it and read any tooltip. 4. On a Mac the hint should read the Command symbol and K; on Windows it should read Ctrl+K. 5. Narrow the window to tablet widt",
+  "expected": "The keyboard shortcut is visible on the search box on a desktop-width screen, and it shows the RIGHT one for the machine you are on - the Command symbol with K on a Mac, Ctrl+K on Windows. Hovering explains what it does. In V1 this hint was deliberately shown so people would discover the shortcut instead of reaching for the mouse every time. It was hidden on narrower screens, which is correct - th"
  }
 ]
