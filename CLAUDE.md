@@ -240,6 +240,18 @@ at intake — **(i) NEW · (ii) V2/UPGRADE · (iii) REVIVAL** — in `build/skil
 delta from is built with the companion `build/skills/V1-BASELINE-FROM-SOURCE.md`** (added 2026-08-26;
 worked example `build/global-search/GLOBAL-SEARCH-V1-BASELINE-INVARIANTS.md`).
 
+**Rule 109 (V1 IS the specification for a V1-vs-V2 comparison suite)** was added 2026-09-14 at the end of
+`build/rules/RULES-61-96.md`. **For a comparison suite the specification is the V1 PRODUCT REPOSITORY at a
+named commit — not the V1 PRD, not the V2 PRD, not the epic, not the design.** The V2 specification is
+**never consulted to decide whether a case should exist**; the only question is *"could a user do this in
+V1?"*, and a V2 document that deliberately removes a capability **never subtracts a case**. The expected
+result states the V1 behaviour and the **SOURCE line leads with the V1 repo, commit, file and lines**.
+**Never edit an existing comparison case towards the V2 spec** — a case rewritten to match the thing it
+tests cannot fail. Operator form: `build/skills/17-REGRESSION-IMPACT-V1-TO-V2.md` §6.0. Worked example
+(and the mistake that produced the rule): `build/global-search/v1-parity-audit-2026-09-14/`.
+🔴 **Numbered 109 to continue CANONICAL's sequence (canonical is at 108, in the renamed
+`build/rules/RULES-61-ONWARD.md`) — it must be carried across, or the next session will not have it.**
+
 **Rules 89 (access resilience + MCP hygiene) and 90 (shared-quota budget allocation)** were added
 2026-08-21 and live in `build/rules/RULES-61-96.md` with 61–88. Rule 89's operator form is
 `build/skills/14-ACCESS-RESILIENCE.md`.

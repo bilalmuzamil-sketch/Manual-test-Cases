@@ -141,3 +141,64 @@ Blocked, which is right.
 
 **3. Bin location is indexed per §4 but does not match.** `BIN-ZZT-77` returns nothing. Worth a look
 during execution; it is outside my 19 cases (it is V2-new functionality, not a V1 regression).
+
+---
+
+## 🔴 CORRECTION AND RE-TEST — BIN LOCATION, 2026-09-14 (second pass, with the instrument proved)
+
+**The earlier `BIN-ZZT-77` line in this file was WITHDRAWN and is now REPLACED by a proved result.**
+
+**Why the first attempt was invalid.** I reported `BIN-ZZT-77` returning nothing as a signal. The bin
+location did not exist — I had only written that string into the free-text `grid_location` column on one
+inventory part. Searching for a record that was never created and finding nothing proves nothing
+(Standing Rule 104: a negative finding must first prove the instrument worked).
+
+**The QA lead then (a) created the bin location and (b) settled the ambiguity:** *"Bin Locations are
+Grid locations"*, managed at `https://app.shopview.com/administration/bins`. So there is **one** concept,
+not two, and the open PO question about which one PRD v1.5 §4 means is **CLOSED**.
+
+### The instrument, proved before any conclusion
+
+| Check | Result |
+|---|---|
+| Does the bin exist? | **YES** — `GET /api/inventory/bin-locations` returns `BIN-ZZT-77`, id `972733fe-4731-40aa-8b86-923e9f5caf73`, 555 units, 1 part |
+| Is a part actually in it? | **YES** — part **P550848**, *"FUEL/WATER SEPARATOR, (FS19732, 33732, BF1385-SPS)"*, quantity 555 in that bin |
+| Is that part in the search index at all? | **YES** — it is returned by other queries |
+| Does bin-location search work *at all* in V2? | **YES** — `H3B` returns 13 parts, `General Storage` returns 19 |
+
+### The finding — a controlled comparison inside a single record
+
+**P550848 sits in two bins at once:** `H3B` (999 units, default) and `BIN-ZZT-77` (555 units).
+
+| Query | Rows | Contains P550848 |
+|---|---|---|
+| `H3B` | 13 parts | **YES** |
+| `BIN-ZZT-77` | **0** | no |
+
+**Same record. Same field. Two values. One is indexed, the other is not.** That eliminates permissions,
+organization scoping, the part being absent from the index, and bin search being unimplemented. What is
+left is that **the search index holds a stale copy of this part's bin list** — the newly added bin was
+never indexed. Four query forms were tried (`BIN-ZZT-77`, `BIN ZZT 77`, `BINZZT77`, `ZZT-77`); all zero.
+
+### 🔴 WHAT THIS IS, AND WHAT IT IS NOT
+
+**It is NOT a V1 regression, and it gets no case in section 6769.** V1 never indexed bin or grid
+location at all — V1's part search text was `cp.name` and `cp.part_number` and nothing else
+(`FetchDataQueryHandler.php:324-328` at baseline `55767168`). Nobody could search a bin location in V1,
+so nothing was lost.
+
+**It IS a V2 defect against V2's own specification** — PRD v1.5 §4 indexes bin location for Parts and §9
+requires the index to refresh within 30 seconds. It belongs to the **V2 functional suite**, not to this
+V1 regression suite, and is recorded here so the finding is not lost.
+
+**Related, and noticed on the way:** searching the part number `P550848` returns a *different* part
+(*"Fuel/Water Separator, Cummins QSB | FS19732"*) rather than the P550848 record itself — another
+instance of the identifier-matching problem already reported.
+
+### One thing that produced NO finding, deliberately
+
+Creating a part sale through `POST /api/work-orders/create` returned **HTTP 500** (request ids
+`d630fc5e…`, `d50aeb87…`, `8adc4b7b…`). **A control with `type: service` returned 500 as well**, so the
+failure is not part-sale-specific and is most likely my payload missing a required field rather than a
+build defect. **No defect is claimed from it** — the instrument was not proved, so there is no finding.
+The part sale that C55665 needs must be created through the UI; the case's preconditions already say so.

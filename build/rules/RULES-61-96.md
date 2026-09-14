@@ -2145,3 +2145,70 @@ Index: CLAUDE.md (rule index table). Other rule files: build/rules/RULES-01-20.m
     source is never resolved by looking at the build — hold and ask), 64 (every case must have a source;
     check before concluding it has none), 66 (the PO sheet is the last thing sent) and 94 (the defect
     admissibility gate — why an obsolete regression case is a liability).
+
+---
+
+> **⚠️ NUMBERING NOTE (2026-09-14).** The canonical shared-brain branch
+> `origin/claude/slack-session-0sxnd9` has renamed this file to **`build/rules/RULES-61-ONWARD.md`** and
+> carries rules up to **108**. Rule 109 below is numbered to continue that sequence, so it can be moved
+> onto canonical without a collision. **This branch's copy is behind canonical on rules 97–108 — read
+> them there, not here.**
+
+109. **FOR A V1-versus-V2 COMPARISON SUITE, V1 *IS* THE SPECIFICATION — AND V1 MEANS THE V1 PRODUCT
+    REPOSITORY, NOT ANY DOCUMENT (all projects, permanent; QA lead, 2026-09-14).**
+    **THE ORDER, VERBATIM (QA lead, 2026-09-14):** *"whenever there is a comparison task for you to
+    ensure that we have the test cases to compare V1 of any feature with V2 to ensure that V2 is doing
+    what V1 could do. Consider V1 the specs for that task and do not consider the V2 the specs for the
+    comparison task test cases. Make sure the expected behavior is mentioned as per the V1 behavior as
+    so should me mentioned in the SOURCE section of the test cases too."* · *"V1 specs is what you learnt
+    from the V1 Repository."* · *"if it is n[o]t working on V2 and works on V1 we need a task ticket for
+    that too … no matter the specs of V2 are disallowing this to happen we have to ensure that V1 things
+    are doable in V2."* · *"You made a mistake looking at V2 specs to see if that is intentionally not
+    there due to the specs in V2. You were not supposed to do that."* · *"Save this as your
+    rule/learning - for now and for future."*
+    **WHAT THIS REQUIRES — four things, all of them, on every comparison suite.**
+    **(a) THE SPECIFICATION IS THE V1 PRODUCT REPOSITORY.** The expectation comes from the shipped V1
+    product's own source code at a named commit SHA — not the V1 PRD, not the V2 PRD, not the epic, not
+    the design, not a ticket. Code is what actually decided what V1 could do; a V1 document may describe
+    an intent that was never built, and a V2 document describes a product that does not yet have to be
+    believed. Build the capability list **mechanically** from the code (enumerate every searchable
+    column, every branch, every gate) — never from memory and never from a prior summary.
+    **(b) THE V2 SPECIFICATION IS NOT CONSULTED TO DECIDE WHETHER A CASE EXISTS.** The only question is
+    *"could a user do this in V1?"* — if yes, there is a case. Whether the V2 document mentions the
+    behaviour, omits it, or **deliberately removes it** changes nothing about whether it is tested. The
+    V2 document is read later and for one purpose only: to know which findings the PO already has a
+    stated position on. **It never subtracts a case.**
+    **(c) THE EXPECTED RESULT STATES THE V1 BEHAVIOUR, AND THE SOURCE / PROVENANCE LINE SAYS SO.** The
+    provenance line (Rule 54) must **lead with the V1 repository** — repo, commit SHA, file and line
+    range — and name the V2 document only afterwards, as the thing that differs. A case whose SOURCE
+    section cites the V2 specification as the authority for its expectation is non-compliant and must be
+    corrected.
+    **(d) NEVER EDIT AN EXISTING COMPARISON CASE TOWARDS THE V2 SPECIFICATION.** A regression case
+    rewritten to match the thing it is testing **cannot fail**, and a case that cannot fail is worse than
+    no case at all, because it reports safety. Where V2 differs, the difference is raised as a finding
+    and a PO task ticket — the case is never quietly moved to the new behaviour.
+    **WHY IT IS A RULE.** On Global Search V2 (2026-09-10 to 2026-09-14) the suite was built by checking
+    each V1 capability against PRD v1.5 and writing off as *"correctly excluded — not a gap"* every one
+    the V2 spec deliberately changed. Eleven behaviours were excluded that way; **four were capability
+    losses with no test anywhere** — a work order could no longer be found by its status, a record could
+    no longer be found by part of its number or by a mid-word fragment, and a matching entity type could
+    be squeezed out of the results entirely by the new 20-result cap. A further **fourteen** capabilities
+    had no case because a nearby case was *assumed* to cover them, including **finding a customer by
+    company name**, the most basic search in the product. Worst of all, **C45153 had been edited away
+    from V1**: it originally required a Part row to open the catalogue part (`routingService.ts:75`) and
+    was rewritten on 2026-09-09 to require the inventory part because spec v1.3 said so — with a note on
+    the case explaining the change. The hole was found only when the QA lead challenged the exclusion
+    list directly. **Do not make the reviewer the last line of defence.**
+    **THE LINE.** A comparison suite is complete only when **every** capability enumerated from the V1
+    repository maps to a case, the mapping is checked **live** against the test-management tool (case
+    exists · case is in the run · no case serves no capability), and **every** case's expected result and
+    SOURCE line cite V1. A row with no recorded verdict is an unfinished row.
+    **RELATION TO OTHER RULES:** this is the comparison-suite form of Rule 57 (expectation comes from the
+    source, never from the build) with the roles swapped — here the V2 document must not be allowed to
+    excuse V1's shipped behaviour. It **overrides Rule 96's retire-the-superseded-case step wherever the
+    capability is LOST rather than REROUTED** (Skill 17 §6.0 draws that distinction), it feeds Rule 94's
+    admissibility gate (each loss becomes an approved ticket candidate, not a filed ticket), it inherits
+    Rule 62's per-ask permission for the filing, and it is bound by Rule 104 (a negative finding must
+    first prove the instrument worked). Operator forms: `build/skills/17-REGRESSION-IMPACT-V1-TO-V2.md`
+    §6.0 and `build/skills/V1-BASELINE-FROM-SOURCE.md`. Worked example:
+    `build/global-search/v1-parity-audit-2026-09-14/`.

@@ -194,7 +194,7 @@ session is not going to assume it.
 
 ---
 
-## 7 · ONE FINDING RETRACTED
+## 7 · ONE FINDING RETRACTED — AND NOW RE-TESTED AND SETTLED
 
 `qa-seed-2026-09-14/EARLY-SIGNALS-FROM-SEED-VERIFICATION.md` listed `BIN-ZZT-77` returning nothing as
 a signal. **That was not a valid negative and it is withdrawn.** The bin location `BIN-ZZT-77` did not
@@ -207,9 +207,19 @@ the Edit Inventory Part dialog shows that "bin location" is **two different thin
 indexed on "bin location" without saying which — a Rule 58 ambiguity, so it is a PO question and not
 something to settle by guessing at the build.
 
-**Blocked on:** the QA session cookies for `sv9160.qa.shopview.com` have expired from `/tmp` (Rule 82 —
-secrets are never committed, so they do not survive the container). Fresh cookies and the check takes
-two minutes.
+**RE-TESTED 2026-09-14 with fresh cookies, and the QA lead settled the ambiguity:** *"Bin Locations are
+Grid locations"* — one concept, not two, managed at `/administration/bins`. **The PO question is CLOSED.**
+
+**The proved result:** bin location search **works** in V2 (`H3B` → 13 parts, `General Storage` → 19),
+but `BIN-ZZT-77` returns **0** even though the bin exists and part **P550848** sits in it with 555 units.
+That same part **is** returned by `H3B`, its other bin. Same record, same field, two values, one indexed
+and one not — the index holds a stale copy of the part's bin list.
+
+🔴 **This is NOT a V1 regression and gets no case in section 6769.** V1 never indexed bin or grid
+location — V1's part search text was `cp.name` and `cp.part_number` only
+(`FetchDataQueryHandler.php:324-328`). Nothing was lost. It **is** a V2 defect against PRD v1.5 §4 and
+§9, so it belongs to the V2 functional suite. Full evidence:
+`qa-seed-2026-09-14/EARLY-SIGNALS-FROM-SEED-VERIFICATION.md`.
 
 ---
 
