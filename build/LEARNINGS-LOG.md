@@ -1985,3 +1985,22 @@ fresh start.
 
 Same family as L0095 (judging a file mid-write). Anything that saves continuously needs the reader to
 ask **when, and by what**, not just **what**.
+
+### L0101 — a 201 over a silent no-op, and the field you send is not always the field it reads
+`POST /api/vehicles/change` with `model_name: "Cascadia"` answered **201**. The vehicle's model was
+unchanged. No error, no warning, no ignored-fields list — the endpoint simply does not accept the
+model by name. Its response echoes `vehicle_maker_id` and `vehicle_model_id`, which is the tell: it
+works in ids, and a name-shaped field is quietly dropped.
+
+Note the shape of the trap, because it is the same one that produced the original fixture gap: the
+seeder's create payload also used `model_name`, got a success, and left a vehicle whose model came
+from somewhere else entirely. **The bad data and the failed repair have the identical cause** — a
+write-side field name the read side does not use.
+
+> **Never accept a status code as evidence that a write took.** Read the record back and compare the
+> field you meant to set. And when a write "succeeds" but nothing changes, look at what the response
+> echoes: it usually names the shape the endpoint actually wanted.
+
+Confirmed working on this API: the customer endpoint takes whole-record writes by name and they
+land; the vendor endpoint is `change-vendor`, not `edit-vendor` or `vendors/change`, and those land
+too; the vehicle endpoint needs `vehicle_id`, `company_id`, and the model as an **id**.
