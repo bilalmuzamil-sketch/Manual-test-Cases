@@ -445,6 +445,7 @@ rule. Generated from the split files' own headers.
 | **106** | BEFORE PROPOSING A DEFECT, RECONCILE THE CASE'S EXPECTED AGAINST THE **LIVE** SOURCE — if they disagree the CASE is wrong, ask to fix the case, not to file a ticket |
 | **107** | STANDING AUTHORISATION TO UNBLOCK — seed/change/delete any test data, edit roles, use either surface; seven routes tried and NAMED before anything is called blocked; the standing holds (62 · 6 · 38 · 71 · 82) are untouched |
 | **108** | A SOURCE VERIFICATION READS THE WHOLE DOCUMENT AND EVERY LINK IT NAMES — requirement body + full Q&A/decision log (Q1..QN, grows) + User Feedback Summary + Change Log + header + every ticket/page/design the doc links; reading only the requirement section is non-compliant |
+| **109** | FOR A V1-vs-V2 COMPARISON SUITE, **V1 IS THE SPECIFICATION** — and V1 means the V1 PRODUCT REPOSITORY at a named commit, not any document; the V2 spec is NEVER consulted to decide whether a case exists, a deliberate V2 removal never subtracts one, the expected result and SOURCE line state the V1 behaviour, and a comparison case is NEVER edited towards the V2 spec |
 
 **Operator forms** (the rule bodies are all in `build/rules/RULES-61-ONWARD.md`): **95** →
 `build/skills/TOKEN-DISCIPLINE-CHARTER.md` · **96** → `build/skills/17-REGRESSION-IMPACT-V1-TO-V2.md`

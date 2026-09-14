@@ -272,6 +272,81 @@ sent LAST (Rule 66), naming project and feature on every row.
 
 ## 6 · RETIRE THE SUPERSEDED V1 CASES
 
+### 6.0 🔴 FIRST — SEPARATE A *REROUTED* CAPABILITY FROM A *LOST* ONE. THEY ARE NOT THE SAME.
+
+**Added 2026-09-14 after this skill's own guidance produced a hole in a live suite. Read this before
+retiring anything.**
+
+QA lead ruling, verbatim:
+
+> *"if it is n[o]t working on V2 and works on V1 we need a task ticket for that too … no matter the
+> specs of V2 are disallowing this to happen we have to ensure that V1 things are doable in V2."*
+
+**Sharpened the same day, verbatim:**
+
+> *"You made a mistake looking at V2 specs to see if that is intentionally not there due to the specs
+> in V2. You were not supposed to do that. For your this task your V1 was supposed to be considered
+> the specs"*
+
+🔴 **THEREFORE: WHEN BUILDING A V1 REGRESSION SUITE, DO NOT CONSULT THE V2 SPECIFICATION AT ALL TO
+DECIDE WHETHER A CASE SHOULD EXIST.** V1 **is** the specification for that suite. The V2 document is
+read later, for one purpose only — to know which findings the PO already has a stated position on. It
+never subtracts a case. Using it to decide coverage is the same error Rule 57 names (*expected
+behaviour comes from the documents, never from the build*) with the roles swapped: there the build was
+allowed to excuse the document; here the V2 document is allowed to excuse V1's shipped behaviour.
+
+**AND IT CUTS BOTH WAYS — NEVER EDIT AN EXISTING REGRESSION CASE TOWARDS THE V2 SPEC.** In the worked
+example below, one case had already been rewritten from *"a Part opens the catalogue part"* to *"a Part
+opens the inventory part"* because spec v1.3 said so, with a note on the case explaining the change.
+A regression case edited to match the thing it is testing cannot fail, and a case that cannot fail is
+worse than no case, because it reports safety.
+
+Apply **one question** to every CHANGED / REMOVED / REPLACED row, and the answer decides everything:
+
+> **Can a user still reach the same outcome in V2 — by any route at all?**
+
+| Answer | Name it | What happens to the V1 case |
+|---|---|---|
+| **YES — the capability moved, was renamed, or is served another way** | **REROUTED** | **Rewrite or retire.** §6 below applies as written. A case asserting the old *mechanism* would be a defect factory |
+| **NO — the user can no longer get to that record / result at all** | **LOST** | 🔴 **The case STAYS and asserts the V1 capability**, with a visible instruction to record-and-flag on failure. It also becomes a **task ticket for the PO to confirm the loss is acceptable** |
+
+**A V2 specification that deliberately removes a capability does NOT discharge the regression suite.**
+The specification decides whether the loss is **acceptable**. It never decides whether the loss is
+**tested**. The customer never read the specification, and *"the spec allows it"* is no answer to
+*"this worked in V1 and does not work now."*
+
+**THE TRAP, STATED PLAINLY.** The temptation is to read a deliberate V2 change and write the row off as
+*"correctly excluded — not a gap."* That reasoning is seductive because it is half true: the V2 build
+will indeed behave as V2 intended. But it silently converts *"we chose this"* into *"nobody needs to
+check it"*, and the suite ends up proving only that V2 does what V2 says — which is not what a
+regression suite is for. **A regression suite exists to catch what the new specification forgot to
+value.**
+
+**Worked example of the mistake — Global Search V2, 2026-09-10.** Eleven V1 behaviours were tabled as
+"correctly excluded because V2 deliberately changes them". Four were **LOST**, not **REROUTED**, and
+had no case anywhere:
+
+| V1 capability | The excuse used | Why it was wrong |
+|---|---|---|
+| Find a work order by typing its **status** | *"status was dropped at spec v12"* | A dispatcher typing `Estimate` now gets nothing. No replacement route in global search |
+| Find a record by **part of its number** | *"§7 makes identifiers exact-only"* | Typing the last digits of a work order is how the shop floor searches. Removed by design, never weighed |
+| Find a record by a **mid-word fragment** | *"substring matching was replaced by fuzzy scoring"* | Fuzzy is **not** a superset of substring — a short fragment can score below the threshold |
+| **Every matching type still appears** | *"the 20-result cap is a deliberate change"* | V1 gave each type its own slots with no overall cap, so a type with real matches could never be squeezed to zero. V2 can starve one silently |
+
+They were recovered only when the QA lead challenged the exclusion list directly. **Do not make the
+reviewer be the last line of defence.** Run the one question above on every row, in writing, and record
+the answer per row — a row with no recorded answer is an unfinished row.
+
+**AND WATCH FOR THE SECOND HOLE THE SAME PASS PRODUCED:** four *more* capabilities were missing not
+because they were excluded but because a **nearby case was assumed to cover them** (a customer-phone
+case was read as covering vendor phone; a fuzzy make case as covering model; a work-order case as
+covering part sales; a part-description case as covering part number). **Tick fields off against the
+V1 field list one at a time, from the code, never by "that looks covered."**
+
+---
+
+### 6.1 RETIRING A *REROUTED* BEHAVIOUR
+
 **Where V2 deliberately CHANGES or REMOVES a V1 behaviour, the V1 cases asserting the old behaviour
 must be REWRITTEN or RETIRED — not preserved.** A regression suite that protects behaviour V2 was
 commissioned to remove is not caution; it is a defect factory.
@@ -297,6 +372,10 @@ behaviour deviation; *"irrelevant / obsolete"* is precisely the refusal that gat
 5. Touching a case means **re-verifying the whole case** (Rule 41) — there are no surgical edits.
 
 ---
+
+> **DEFINITION-OF-DONE ADDITION (2026-09-14):** the matrix is not done until **every** CHANGED /
+> REMOVED / REPLACED row carries an explicit **REROUTED** or **LOST** verdict (§6.0), and every **LOST**
+> row carries both a test case and a PO task-ticket candidate.
 
 ## 7 · OUTPUTS + DEFINITION OF DONE
 
