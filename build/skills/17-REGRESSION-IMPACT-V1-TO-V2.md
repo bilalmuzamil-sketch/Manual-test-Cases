@@ -285,6 +285,25 @@ QA lead ruling, verbatim:
 > *"if it is n[o]t working on V2 and works on V1 we need a task ticket for that too … no matter the
 > specs of V2 are disallowing this to happen we have to ensure that V1 things are doable in V2."*
 
+**Sharpened the same day, verbatim:**
+
+> *"You made a mistake looking at V2 specs to see if that is intentionally not there due to the specs
+> in V2. You were not supposed to do that. For your this task your V1 was supposed to be considered
+> the specs"*
+
+🔴 **THEREFORE: WHEN BUILDING A V1 REGRESSION SUITE, DO NOT CONSULT THE V2 SPECIFICATION AT ALL TO
+DECIDE WHETHER A CASE SHOULD EXIST.** V1 **is** the specification for that suite. The V2 document is
+read later, for one purpose only — to know which findings the PO already has a stated position on. It
+never subtracts a case. Using it to decide coverage is the same error Rule 57 names (*expected
+behaviour comes from the documents, never from the build*) with the roles swapped: there the build was
+allowed to excuse the document; here the V2 document is allowed to excuse V1's shipped behaviour.
+
+**AND IT CUTS BOTH WAYS — NEVER EDIT AN EXISTING REGRESSION CASE TOWARDS THE V2 SPEC.** In the worked
+example below, one case had already been rewritten from *"a Part opens the catalogue part"* to *"a Part
+opens the inventory part"* because spec v1.3 said so, with a note on the case explaining the change.
+A regression case edited to match the thing it is testing cannot fail, and a case that cannot fail is
+worse than no case, because it reports safety.
+
 Apply **one question** to every CHANGED / REMOVED / REPLACED row, and the answer decides everything:
 
 > **Can a user still reach the same outcome in V2 — by any route at all?**

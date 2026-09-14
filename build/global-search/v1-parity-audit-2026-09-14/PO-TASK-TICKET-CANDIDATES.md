@@ -10,6 +10,36 @@ QA lead, 2026-09-14, verbatim:
 > *"if it is n[o]t working on V2 and works on V1 we need a task ticket for that too … no matter the
 > specs of V2 are disallowing this to happen we have to ensure that V1 things are doable in V2"*
 
+Sharpened by the QA lead the same day, verbatim:
+
+> *"You made a mistake looking at V2 specs to see if that is intentionally not there due to the specs
+> in V2. You were not supposed to do that. For your this task your V1 was supposed to be considered
+> the specs"*
+
+## 🔴 THE OPERATING PRINCIPLE FOR THIS SUITE — READ IT BEFORE ANYTHING ELSE
+
+**FOR THE V1 REGRESSION SUITE, V1 *IS* THE SPECIFICATION.** Not PRD v1.5. Not the epic. Not the
+designs. The behaviour of the shipped V1 product, as established from its source code, is the
+requirement this suite tests against, and **it is the only one.**
+
+Therefore, when deciding whether a case must exist, **the V2 specification is not consulted at all.**
+The only question is:
+
+> **Could a user do this in V1?**
+
+If yes, there is a case. Whether V2's specification mentions it, omits it, or explicitly forbids it
+changes **nothing** about whether the case exists — that is a question about the *outcome* of the test,
+to be settled by the Product Owner after the test has run, and never a reason not to run it.
+
+**What I got wrong, plainly.** I read each V1 behaviour, checked whether PRD v1.5 had deliberately
+changed it, and where it had, I wrote the behaviour off as "correctly excluded — not a gap." That is
+using the thing under test as the standard it is tested against. It is the same error Standing Rule 57
+names (*expected behaviour comes from the documents, never from the build*) wearing a different coat:
+here the V2 document was allowed to excuse a V1 capability out of existence. The catalogue-only part is
+the clean illustration — it is searchable in V1, it is not searchable in V2, and **that alone** makes
+it a test case and a ticket. Whether PRD v1.5 §4 says "Parts (Inventory)" is irrelevant to whether we
+test it.
+
 **This overturns §2 of `v1-coverage-audit-2026-09-10/V1-COVERAGE-GAP-AUDIT.md`** ("CORRECTLY EXCLUDED —
 V1 behaviour V2 deliberately changes (do NOT add regression cases)"). That table was wrong. A V2
 specification that deliberately removes a V1 capability does **not** discharge the regression suite —
@@ -22,9 +52,9 @@ specification decides whether the loss is *acceptable*; it does not decide wheth
 
 ## 1 · WHAT CHANGED IN THE SUITE TODAY
 
-Nine cases were added to section 6769 and synced union-only into run 415 (139 → **148** tests,
-**0 lost**). Four of the nine were previously excluded on the reasoning the QA lead has now overturned;
-the other five were simply missed.
+Eighteen cases were added to section 6769 and synced union-only into run 415 (139 → **157** tests,
+**0 lost**). Four of the eighteen were previously excluded on the reasoning the QA lead has now overturned;
+the other fourteen were simply missed — a nearby case had been assumed to cover them.
 
 | Case | Title | Why it did not exist before |
 |---|---|---|
@@ -38,13 +68,41 @@ the other five were simply missed.
 | [C55665](https://shopview.testrail.io/index.php?/cases/view/55665) | Finding a part sale by its customer's name | **Missed** — only the work-order side was covered |
 | [C55666](https://shopview.testrail.io/index.php?/cases/view/55666) | Finding a part by its part number still works | **Missed** — section 6769 only covered the part *description*; the part *number* had no regression case anywhere |
 
-Section 6769 is now **49 cases**. Run 415 is **148 tests**.
+Section 6769 is now **58 cases**. Run 415 is **157 tests**.
+
+**Second batch — nine more, all "simply missed":**
+
+| Case | Title | What it protects |
+|---|---|---|
+| [C55667](https://shopview.testrail.io/index.php?/cases/view/55667) | Finding a customer by company name | The most basic search in the product had no regression case |
+| [C55668](https://shopview.testrail.io/index.php?/cases/view/55668) | Finding a vendor by name | Same, for vendors |
+| [C55669](https://shopview.testrail.io/index.php?/cases/view/55669) | Finding an asset by its VIN, in full and in part | The only VIN case asserted V2's exact-only rule, so V1 parity was never tested |
+| [C55670](https://shopview.testrail.io/index.php?/cases/view/55670) | Finding a customer or vendor by a contact's first or last name | Looking a company up by the person you speak to |
+| [C55671](https://shopview.testrail.io/index.php?/cases/view/55671) | Search finds records whatever mix of capitals is typed | V1 lower-cased both sides; nothing tested it |
+| [C55672](https://shopview.testrail.io/index.php?/cases/view/55672) | Finding a work order by its plain number with no prefix | V1 stored the bare number as a value in its own right |
+| [C55673](https://shopview.testrail.io/index.php?/cases/view/55673) | Pressing Enter opens the top result without arrowing to it | V1 auto-highlighted the first row; type-then-Enter was the common path |
+| [C55674](https://shopview.testrail.io/index.php?/cases/view/55674) | Search can be reached on a phone and a tablet as well as a desktop | Technicians work from phones |
+| [C55675](https://shopview.testrail.io/index.php?/cases/view/55675) | A search that matches nothing says so plainly | V1 showed a no-results message rather than an empty list |
+
+**Twenty existing cases were also corrected.** C45142–C45161 had been authored citing PRD v1.5 as the
+source of their expectation. Each was re-derived against its V1 invariant and re-stamped. One,
+**C45153**, had actually been *edited away from* the V1 behaviour to follow spec v1.3 — it has been put
+back. Full detail in `V1-CAPABILITY-COVERAGE-PROOF.md` §4–§5.
+
+**Coverage is now proved, not asserted:** `V1-CAPABILITY-COVERAGE-PROOF.md` maps all **65** V1
+capabilities (37 searchable fields extracted mechanically from the V1 SQL, plus 28 behaviours) to cases,
+and checks live against TestRail that every mapped case exists and sits in run 415. Zero gaps, zero
+cases serving no V1 capability.
 
 ---
 
-## 2 · TICKET CANDIDATES — GROUP A: CONFIRMED DEFECTS
-*(V1 could · V2 cannot · **and the V2 specification says it SHOULD work** — so this is a build defect,
-not a product decision. Observed live on `sv9160.qa.shopview.com`, 2026-09-14.)*
+## 2 · TICKET CANDIDATES — GROUP A: OBSERVED LOSSES, AND V2's OWN SPEC ALSO EXPECTS THEM TO WORK
+
+*(V1 could · V2 cannot · **observed live** on `sv9160.qa.shopview.com`, 2026-09-14.)*
+
+**Every row here is a ticket because V1 could do it and V2 cannot. Full stop.** The extra fact that
+PRD v1.5 also says these should work is recorded only because it makes the ticket unarguable — it is
+**not** the reason the ticket exists, and its absence would not have removed one.
 
 | # | Summary | Evidence (reproduce exactly) | Spec says | Case |
 |---|---|---|---|---|
@@ -61,9 +119,13 @@ the page.
 
 ---
 
-## 3 · TICKET CANDIDATES — GROUP B: PO DECISIONS, OBSERVED
-*(V1 could · V2 cannot · **the V2 specification is silent or excludes the field** — so the PO must rule
-whether the loss is acceptable. Observed live, 2026-09-14.)*
+## 3 · TICKET CANDIDATES — GROUP B: OBSERVED LOSSES WHERE V2's SPEC HAPPENS TO BE SILENT
+
+*(V1 could · V2 cannot · **observed live**, 2026-09-14.)*
+
+**These are tickets on exactly the same footing as Group A.** The only difference is that PRD v1.5 does
+not mention the field, so the PO has a genuine decision to make about whether to restore it — but the
+*ticket* is owed either way, and the spec's silence is never a reason to close one without a ruling.
 
 | # | Summary — "V1 could find it this way, V2 cannot" | Query that returned 0 | Case |
 |---|---|---|---|
@@ -81,10 +143,15 @@ never stocked and get nothing.
 
 ---
 
-## 4 · TICKET CANDIDATES — GROUP C: PO DECISIONS, PREDICTED BUT NOT YET OBSERVED
-*(V1 could · the V2 specification deliberately changes the behaviour · **not yet tested on the build**.
-These are the four the earlier audit wrongly closed. The test cases now exist; the tickets should be
-raised once the run produces the result, unless the PO wants to rule ahead of the evidence.)*
+## 4 · TICKET CANDIDATES — GROUP C: LOSSES V2's SPEC DELIBERATELY INTENDS, NOT YET OBSERVED
+
+*(V1 could · **not yet tested on the build** — these are the four the earlier audit wrongly closed.)*
+
+🔴 **These are the rows the mistake was made on, so read the principle above before judging them.**
+That PRD v1.5 *deliberately* removes each of these is **not** a reason to skip the case — it is the
+reason the case matters most, because a deliberate removal is the kind nobody re-examines. The cases
+exist now; raise the tickets when the run produces the result, or earlier if the PO wants to rule
+ahead of the evidence.
 
 | # | Summary | V1 evidence (code, baseline `55767168`) | What V2 does instead | Case |
 |---|---|---|---|---|
@@ -153,4 +220,4 @@ two minutes.
 | 1 | **One word to file the 15 tickets** (4 defects + 11 PO decisions) | Rule 62 makes permission per-ask; they are written and ready |
 | 2 | **Fresh QA cookies for `sv9160.qa.shopview.com`** | To re-run the bin-location check and to seed the missing Part Sale that C55665 needs |
 | 3 | **A PO ruling on what "bin location" means** in PRD v1.5 §4 — the Bin Location record, or the part's free-text grid location? | Rule 58 — I will not resolve an ambiguous spec by guessing from the build |
-| 4 | **Tell the execution session** that run 415 is now 148 tests, not 139 | It is mid-handoff and will otherwise work from a stale count |
+| 4 | **Tell the execution session** that run 415 is now 157 tests, not 139 | It is mid-handoff and will otherwise work from a stale count |
