@@ -18,5 +18,7 @@
   "S9160-17580"
  ],
  "inventory_part_id": "a123b4e5-39ed-40a6-bc64-ced030673daa",
- "_note": "inventory_part_id is the STOCKED part (ZZT-88-4412, qty 25). part_catalogue_only_id (ZZT-77-3300) must stay OUT of inventory - that contrast is the C53601 test."
+ "_note": "inventory_part_id is the STOCKED part (ZZT-88-4412, qty 25). part_catalogue_only_id (ZZT-77-3300) must stay OUT of inventory - that contrast is the C53601 test.",
+ "_WARNING_2026-09-14": "THESE IDS ARE UNRELIABLE. customer_id c01eab9e-e400-474c-aaa9-a8a93a346add returns 404 on GET /api/customers/{id}. The customer EXISTS under id a1d08451-0214-41a4-983f-7f878ff7bcf0 (ZZAUTOTEST Bridgeport Hauling, Fernvale, 44872-9931). Every other id in this file is therefore suspect and must be rebuilt from live lookups before the run. See readiness-2026-09-14/A5-AND-SEED-IDS-CORRECTION-2026-09-14.md",
+ "customer_id_OBSERVED_LIVE_2026-09-14": "a1d08451-0214-41a4-983f-7f878ff7bcf0"
 }
