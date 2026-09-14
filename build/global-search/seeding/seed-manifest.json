@@ -338,5 +338,11 @@
    "status": "DEFERRED by the QA lead - raise only when everything else is done"
   }
  },
- "_find_note": "Each record declares HOW to find it, because ?search= works on some list endpoints and silently matches nothing on others. Where a 'control' is given the seeder searches for it FIRST: if a record that is known to exist comes back empty, the probe is broken and any 'missing' verdict is discarded (Rule 104). Measured 2026-09-14: search WORKS on customers, vendors, vehicles, inventory parts; it is BROKEN on work-orders."
+ "_find_note": "Each record declares HOW to find it, because ?search= works on some list endpoints and silently matches nothing on others. Where a 'control' is given the seeder searches for it FIRST: if a record that is known to exist comes back empty, the probe is broken and any 'missing' verdict is discarded (Rule 104). Measured 2026-09-14: search WORKS on customers, vendors, vehicles, inventory parts; it is BROKEN on work-orders.",
+ "_facts_learned_2026-09-14": {
+  "duplicate_part_number": "BLOCKED BY THE PRODUCT. POST add-catalogue-part with an existing part_number returns 400 'Part number name duplicate' with a link to the existing part - with the same name AND with a different name. You cannot have two catalogue parts sharing a part number.",
+  "same_part_at_two_locations": "ALLOWED, and now seeded. The SAME catalogue part can hold an inventory record at each location: ZZT-88-4412 is stocked at Heavy Duty (qty 25, part_id 63a300f0) and at Lethbridge (qty 7, part_id b3a415f1). Global search shows it as ONE row at each location, not two.",
+  "index_delay_is_real": "A newly stocked part is NOT searchable immediately - it appeared after ~35 seconds. ALWAYS wait and re-query before calling a part missing (Rule 104). The specification allows up to 30 seconds.",
+  "parts_are_LOCATION_scoped_in_V2": "MEASURED: part P550848 is stocked only at Heavy Duty. Searching it at Heavy Duty returns 2 parts; at Lethbridge it returns NO parts. Customers and assets are returned at BOTH locations, and work orders only at Heavy Duty. So in V2 PARTS follow the location. IN V1 PARTS WERE ORG-WIDE (invariant INV-81 - only work orders and part sales were location-scoped). C45151 tests exactly this and is expected to FAIL on its Parts half."
+ }
 }
