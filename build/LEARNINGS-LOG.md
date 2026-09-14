@@ -1969,3 +1969,19 @@ it complete when it got here?* The extract was built for one job and silently re
 Now: `dump_full_cases.py` reads every case in full from the live source, and `grading_rules.py`
 extracts each case's own verdict instruction and **flags any verdict that contradicts it**. That check
 runs before results are written, every time.
+
+### L0100 — deleting a state file mid-run just hands the old code a clean slate
+I patched the roles probe, deleted its results file so the fixed version would re-run everything, and
+queued it. The next run skipped every role and finished in seventeen seconds.
+
+The delete landed **while the previous run was still going**. That process, running the *old* code,
+simply wrote the file again on its next save — so the file that survived was the stale one, my queued
+re-run saw it as complete, and skipped. Net effect of the delete: nothing, except the appearance of a
+fresh start.
+
+> **Check nothing is writing before you clear its state.** `pgrep` the writer first, or stamp the file
+> with the version of the code that produced it and let the reader decide. A resumable pass is
+> resumable from whatever happens to be on disk, including work by a version you have replaced.
+
+Same family as L0095 (judging a file mid-write). Anything that saves continuously needs the reader to
+ask **when, and by what**, not just **what**.
