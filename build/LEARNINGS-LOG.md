@@ -1595,3 +1595,52 @@ browser simply was not going through the MITM bridge, which every committed harn
 already says a committed harness is reused, never rebuilt — this is the cost of not doing that: three
 failed attempts and a near-miss "the QA branch is unreachable" claim. **Before writing a probe, check
 whether `build/testing-tools/` already boots the thing you are booting.**
+
+---
+
+### L0079 — 🛑 A COUNT IS NOT A RESULT. CLICK THE THING THE USER CLICKS.
+**2026-09-14, Global Search V2 on sv9160. Caught by the QA lead, not by me. This is the most
+expensive mistake in this log and it nearly reversed six findings the wrong way.**
+
+**What I did.** I re-verified sixteen ticket candidates by searching each term and reading the
+**scope-tab count badges** — `All (1) | Work orders (0) | Assets (1) | Parts (0)`. Seeing `Assets (1)`
+I concluded the asset was found, and reported to the QA lead that **six candidates no longer
+reproduce**, including four that another session had confirmed as build defects.
+
+**What was actually true.** The badge said `Assets (1)` while the **Assets tab itself said
+"No results for … in Assets"**. The record appears under **All** and is absent from its own type tab.
+That IS the defect — sharper than the original wording — and I had just told the QA lead it was gone.
+He sent three screenshots proving it. Had he been less careful, four real defects would have been
+closed on my say-so.
+
+**The mechanism of the error.** I read an *aggregate indicator* and treated it as the *user-visible
+result*. I never clicked a single scope tab. The handoff even warned me in the other direction — *"if a
+group shows nothing, click that entity's scope tab to confirm it really is 0"* — and I failed to apply
+the same doubt to a non-zero.
+
+**The rule, generalised, for every future pass:**
+> **Verify at the surface the user acts on, not at a summary that describes it.** A count, a badge, a
+> total, a tab label, a status chip and a toast are all *claims about* content. The content is what
+> renders where the user looks. If a case says "the record is findable", the proof is the record
+> visible in the place the user would look for it — not a number next to that place.
+
+**Concretely, before any claim about search results:** open the modal · type the term · **click the
+scope tab for the type the record should be in** · screenshot THAT pane · read its rows. A non-zero
+badge with an empty pane is a finding, not a pass.
+
+### L0080 — "everything is zero" can mean the service is down, not that nothing matched
+Immediately after the above, my corrected probe returned zero for all six queries — which would have
+"confirmed" a catastrophic regression. The screen actually read **"Search unavailable — Retry"** with
+an error toast. The search service on the branch was erroring; every tab reads zero during an outage
+and looks exactly like a clean negative. **Encode the outage as an instrument failure**: the probe now
+detects that banner, retries three times, and records *nothing* rather than a zero. A result you cannot
+distinguish from a broken instrument is not a result.
+
+### L0081 — a Story Defect cannot be converted from a Task over the API
+Jira's `Story Defect` is a **sub-task type**. `PUT /issue/{key}` with `issuetype: Story Defect` fails
+with *"Issue type is a sub-task but parent issue key or id not specified"*, and supplying the parent
+in the same call fails with a project-mismatch error that is misleading — the parent is in the same
+project. Conversion is UI-only (already recorded for Product Area). **Re-create with
+`parent: <owning story>` at creation time and retire the original**; `DELETE /issue/{key}` answered
+**403**, so retire by transition (`OBSOLETE`, id 8 in this project) plus a comment naming the
+replacement, never by deletion.

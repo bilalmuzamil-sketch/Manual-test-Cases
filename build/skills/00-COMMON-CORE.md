@@ -2470,3 +2470,21 @@ encoding of the rule — read the rule in its file, amendments included · (3) o
 And a gate must **never fail on a case by an author on the never-write list** — a gate that can never
 go green is a gate people stop running, and then it protects nothing. `verify_suite.py` reports those
 as NOTES on all five checks that can hit them.
+
+### 🛑 A COUNT IS NOT A RESULT — READ AT THE SURFACE THE USER ACTS ON (2026-09-14)
+
+**Recorded after the QA lead caught it; learning L0079.** A session re-verified sixteen findings by
+reading **scope-tab count badges** and reported six as no-longer-reproducing. The badges read
+`Assets (1)` while the Assets tab itself read *"No results in Assets"* — the record was in **All** and
+absent from its own tab, which was the defect. Four confirmed defects were nearly closed on that basis.
+
+**The standard, on every project:**
+- A **count, badge, total, tab label, status chip or toast is a CLAIM ABOUT content**, never the
+  content. Verify at the surface the user actually acts on.
+- For grouped or tabbed results: **click the tab** for the type the record belongs to, screenshot that
+  pane, and read its rows. **A non-zero badge over an empty pane is a finding.**
+- Apply the doubt in BOTH directions. A zero that you have not clicked into is unproven; so is a
+  non-zero.
+- **An outage looks exactly like a clean negative.** Detect the app's own failure banner
+  (e.g. *"Search unavailable"*, an error toast) and treat it as an INSTRUMENT FAILURE under Rule 104 —
+  record nothing, retry, and say the service was down. Never let an outage become a reported result.

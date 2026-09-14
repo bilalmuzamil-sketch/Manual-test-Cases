@@ -1,3 +1,26 @@
+# 🛑 CORRECTED 14 September 2026 — THE SECTION BELOW MARKED "DOES NOT REPRODUCE" WAS WRONG
+
+**The QA lead caught this, not me.** I re-verified by reading the search modal's **scope-tab count
+badges** and treated `Assets (1)` as "the record was found". The badge says 1 while the **Assets tab
+itself says "No results in Assets"** — the record shows under **All** and is missing from its own type
+tab. That is the defect, stated more precisely than before, and I reported it as gone.
+
+**Affected: A1, A2, A3, A4 and C2 — they DO reproduce.** They are being re-filed as Story Defects with
+his evidence and my own once the search service on the branch is back up (it is currently answering
+*"Search unavailable"*, so nothing can be measured right now).
+
+**C3 (mid-word fragment) is not yet re-checked** under the corrected method and is neither confirmed
+nor cleared.
+
+**What was NOT affected:** the eight filed tickets. Those all showed **All (0)** — zero everywhere,
+with nothing to click into — so no badge was mistaken for a result. They stand.
+
+**The lesson is recorded** as L0079 in `build/LEARNINGS-LOG.md` and as a standard in
+`build/skills/00-COMMON-CORE.md`: *a count is a claim about content, never the content; verify at the
+surface the user acts on.*
+
+---
+
 # Re-verification of the 16 ticket candidates against the build as it stands — 14 September 2026
 
 **Why this exists.** The QA lead authorised filing the 16 Global Search V1→V2 candidates handed over by
