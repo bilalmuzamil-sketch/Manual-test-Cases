@@ -4,7 +4,7 @@
 **Delivered via the repository**, because `SendMessage` reports no reachable agent — your own session
 card says that is the fallback: *"If `SendMessage` is not available to you, the repository is the channel."*
 
-**Your task:** file 16 Jira tickets for Global Search V1→V2 under epic **SV-9160**. The QA lead ruled on
+**Your task, both halves:** **(1) execute run 415** — 157 tests, of which 58 are the V1 regression suite — and **(2) file 16 Jira tickets** for Global Search V1→V2 under epic **SV-9160**. Run first, file second. The QA lead ruled on
 2026-09-14 that **you** file them, because you hold the defect-filing skill and the Jira access. I
 authored them and I do not file.
 
@@ -45,8 +45,11 @@ On my branch, `build/global-search/v1-parity-audit-2026-09-14/`:
 ## 3 · NEW STANDING RULE 109 — READ IT BEFORE YOU FRAME ANY TICKET
 
 Recorded at `build/rules/RULES-61-96.md` on my branch, numbered **109** to continue canonical's sequence
-(canonical is at 108, in the renamed `RULES-61-ONWARD.md`). **It must be carried onto canonical** — that
-is outstanding with the QA lead, not your job unless he asks.
+(canonical is at 108, in the renamed `RULES-61-ONWARD.md`). **It is now on a branch off canonical ready to merge:**
+`claude/rule-109-v1-is-the-spec`, cut from `origin/claude/slack-session-0sxnd9` at `0fa4bd70`. One
+commit, **purely additive — 139 insertions, zero deletions** across `RULES-61-ONWARD.md` (the rule),
+`CLAUDE.md` (one index row) and `17-REGRESSION-IMPACT-V1-TO-V2.md` (§6.0, the operator form). It cannot
+revert anything. Merging it is the QA lead's call, not yours.
 
 > **For a V1-vs-V2 comparison suite, V1 *is* the specification — and V1 means the V1 PRODUCT REPOSITORY,
 > not any document.**
@@ -128,6 +131,93 @@ in **that listener** rather than in creation. A much narrower place to look.
 the control failing the same way means **creation is broken for both types**, which strengthens the
 finding. I read it the wrong way round; the QA lead's report is what made me recheck.
 
+## 5a · THE SECOND HALF OF YOUR TASK — RUN THE SUITE
+
+**You are not only filing tickets. You also execute run 415.** The QA lead confirmed this on 2026-09-14.
+Filing comes out of what the run finds, so **run first, file second** — except where a candidate is
+already observed and does not depend on the run.
+
+### What is in the run
+
+| | |
+|---|---|
+| **Run 415** | **157 tests** |
+| of which **section 6769** "Global Search V2 - V1 Regression Suite" | **58** — the V1 parity suite, the subject of this handoff |
+| the rest | **99** across the V2 functional sections (Scope Tabs, Fuzzy Matching, Palette, Ranking, Mobile, …) |
+
+**Lane router:** `build/skills/16-TEST-EXECUTION-AND-DEFECTS.md` → `00-COMMON-CORE.md` → `09-TEST-EXECUTION.md`.
+
+### 🔴 THE THREE RULES THAT DECIDE HOW YOU MARK A RESULT
+
+**1 · Eleven cases are PO DECISIONS — RUN THEM, THEN MARK THEM `Blocked`. NEVER `Failed`.**
+
+The QA lead was explicit: *"For the PO decision related test I still want to run those tests we can move
+them to blocked but the test needs to be run."* These test a V1 capability the V2 specification removed
+deliberately, so a failure is **not** a bug — it is the evidence the PO needs in order to rule. Run the
+steps, write the exact query and the exact result into the comment, then mark **Blocked** naming the PO
+ticket it feeds.
+
+| Candidate | Case | Candidate | Case |
+|---|---|---|---|
+| B1 catalogue-only part | [C53601](https://shopview.testrail.io/index.php?/cases/view/53601) | B7 licence plate | [C53516](https://shopview.testrail.io/index.php?/cases/view/53516) |
+| B2 customer postal code | [C53582](https://shopview.testrail.io/index.php?/cases/view/53582) | C1 work order status | [C55658](https://shopview.testrail.io/index.php?/cases/view/55658) |
+| B3 customer website | [C53583](https://shopview.testrail.io/index.php?/cases/view/53583) | C2 partial number | [C55659](https://shopview.testrail.io/index.php?/cases/view/55659) |
+| B4 contact job title | [C53603](https://shopview.testrail.io/index.php?/cases/view/53603) | C3 mid-word fragment | [C55660](https://shopview.testrail.io/index.php?/cases/view/55660) |
+| B5 vendor postal code | [C53585](https://shopview.testrail.io/index.php?/cases/view/53585) | C4 type starvation | [C55661](https://shopview.testrail.io/index.php?/cases/view/55661) |
+| B6 vendor state/province | [C53606](https://shopview.testrail.io/index.php?/cases/view/53606) | | |
+
+**C1–C4 have never been run against the build.** Their tickets are written as *predictions*. **Your run
+converts them to measurements** — so run those four early and tell me what they actually do, because a
+prediction that turns out wrong must be corrected before its ticket is filed.
+
+**2 · Two cases are EXPECT-FAIL. Follow the three-outcome rule on the case, do not improvise.**
+
+[C55666](https://shopview.testrail.io/index.php?/cases/view/55666) (part number) and
+[C55669](https://shopview.testrail.io/index.php?/cases/view/55669) (VIN). Each names the symptom you
+should see today. **(1)** exactly that ⇒ mark **Failed**, raise nothing new, it is already reported.
+**(2)** fails **differently** ⇒ a NEW problem, report it. **(3)** **passes** ⇒ the fix shipped, tell the
+QA lead. Ticket status is never evidence about the build.
+
+**3 · Four cases carry a confirmed defect already. Mark `Failed`, do not re-derive the evidence.**
+
+A1 [C53580](https://shopview.testrail.io/index.php?/cases/view/53580) unit number ·
+A2 [C55669](https://shopview.testrail.io/index.php?/cases/view/55669) full VIN ·
+A3 [C53584](https://shopview.testrail.io/index.php?/cases/view/53584) vendor email ·
+A4 [C55666](https://shopview.testrail.io/index.php?/cases/view/55666) part number.
+Each already has its positive control recorded (Rule 104). **Cite it; do not spend the run re-proving it.**
+
+### One case is blocked outright
+
+[C55665](https://shopview.testrail.io/index.php?/cases/view/55665) "Finding a part sale by its customer's
+name" **cannot run** — no part sale exists for the seeded customer, and creating one is A5. **Create the
+part sale through the UI first**; if that fails too, that IS A5 and the case is Blocked on it.
+
+### Execution discipline
+
+- **Rule 12 — verified means OBSERVED.** Pass / Fail only for what you saw, with evidence captured that
+  run. Anything else is **Blocked with a reason**, never a guess to make the run look complete.
+- **Rule 34 — union-only when syncing the run.** A partial `case_ids` list on `update_run` **DELETES
+  tests and their results.** I synced this run three times today union-only, 139 → 157, zero lost.
+- **Rule 6 — results are a TestRail write.** Get the QA lead's go-ahead before posting them.
+- **Rules 71 / 65 — an Automated-flagged case is read-assessed and held**; if a pass changes one, tell Vlad.
+- **Rule 38 — foreign cases are hands-off.** All 58 in section 6769 are ours (`created_by = 3`); I
+  checked. The 99 V2 functional tests are a different matter — check before you touch any of them.
+- **Do not edit section 6769 cases.** If one is wrong, tell me and I will fix it. Rule 41 means touching
+  a case re-verifies the whole case, and these were all verified today.
+
+### What the environment gives you
+
+QA `sv9160.qa.shopview.com`, API `sv9160api.qa.shopview.com`. **V1's `/api/global-search/fetch` is 404
+there — gone, as planned.** V2 is `GET /api/search?q=`, minimum 2 characters. The UI is a **centred
+modal** opened from a button (`data-test-id: global_search_trigger`) or ⌘K/Ctrl+K, with a scope tab strip
+carrying per-type counts and **sentence-case** group headings ("Work orders", "Part sales"). Esc closes.
+**If a group shows nothing, click that entity's scope tab to confirm it really is 0** rather than
+scrolling. All 58 preconditions were rewritten against this real surface on 14 Sep 2026.
+
+⚠️ **Do not report a keyboard-shortcut failure without reading this.** Playwright's `Control+K` (capital
+K) sends Ctrl+**Shift**+K, which the app correctly ignores — it listens for `e.key === 'k'`. Use
+`Control+k`. This nearly produced a false defect against C45156 and C44804.
+
 ## 6 · CONSTRAINTS ON YOU
 
 - **Rule 62 is PER ASK.** These files are **approved candidates, not permission to file.** Ask the QA
@@ -178,6 +268,7 @@ lead asks.
 | # | What I need | Why |
 |---|---|---|
 | 1 | Confirm you can read my branch and both ticket files | Nothing else proceeds without it |
+| 1b | **Run C55658–C55661 (the four predictions) early** and tell me what they actually do | Their tickets are written as predictions; your run turns them into measurements, and a wrong prediction must be corrected before filing |
 | 2 | **Reproduce A5 in the browser** — tell me the request id and the HTTP status you actually see | It settles whether the UI failure and the API 500 are one bug, and whether a 403 is surfacing as a 500 |
 | 3 | Tell me if any candidate **fails your Rule 94 gate**, and why | I would rather fix it than have it filed weakly |
 
