@@ -309,6 +309,89 @@ await run(53588,'More recent work orders rank above older ones of equal relevanc
   return {displayedOrder:numbers, displayedRows:shown, workOrders:details,
     note:'judge the displayed order against these timestamps and statuses, not against a date sort'};});
 
+// ---------------------------------------------------------------- C55673 Enter opens the top result
+await run(55673,'Pressing Enter opens the top result without arrowing to it',async()=>{
+  // Typing and reading the rows says nothing about what Enter does. Type, press Enter once, and see
+  // whether the record opened -- with a control that the top row is the one it opened.
+  await page.goto(`${APP}/workorders`,{waitUntil:'domcontentloaded'}); await page.waitForTimeout(3500);
+  await openModal(); const m=await type2('Bridgeport');
+  const top=(m&&m.rows[0])||null;
+  const before=page.url();
+  const highlighted=await page.evaluate(()=>{const vis=e=>{const r=e.getBoundingClientRect();return r.width>2&&r.height>2;};
+    const d=[...document.querySelectorAll('.q-dialog,[role=dialog]')].filter(vis).pop(); if(!d) return null;
+    const h=[...d.querySelectorAll('[data-test-id^="search_result_row_"]')]
+      .find(e=>/active|selected|highlight/i.test(e.className)||e.getAttribute('aria-selected')==='true');
+    return h?h.getAttribute('data-test-id'):null;});
+  await page.keyboard.press('Enter');
+  await page.waitForTimeout(6000);
+  const after=page.url();
+  await shot('C55673-after-enter');
+  return {topRow:top&&top.text, topRowType:top&&top.type, highlightedBeforeEnter:highlighted,
+    urlBefore:before.replace(APP,''), urlAfter:after.replace(APP,''), navigated:before!==after,
+    modalStillOpen:await modalOpen()};});
+
+// ---------------------------------------------------------------- C55680 arrows skip the headings
+await run(55680,'Arrow keys move between results and skip the group headings',async()=>{
+  await page.goto(`${APP}/workorders`,{waitUntil:'domcontentloaded'}); await page.waitForTimeout(3500);
+  await openModal(); const m=await type2('ZZAUTOTEST');
+  const readHighlight=async()=>page.evaluate(()=>{const vis=e=>{const r=e.getBoundingClientRect();return r.width>2&&r.height>2;};
+    const d=[...document.querySelectorAll('.q-dialog,[role=dialog]')].filter(vis).pop(); if(!d) return null;
+    const cand=[...d.querySelectorAll('[data-test-id^="search_result_row_"],[data-test-id^="search_group_header_"]')];
+    const h=cand.find(e=>/active|selected|highlight/i.test(e.className)||e.getAttribute('aria-selected')==='true');
+    return h?{tid:h.getAttribute('data-test-id'), text:(h.innerText||'').replace(/\s+/g,' ').trim().slice(0,50)}:null;});
+  const down=[]; for(let i=0;i<12;i++){ await page.keyboard.press('ArrowDown'); await page.waitForTimeout(400);
+    down.push(await readHighlight()); }
+  const up=[]; for(let i=0;i<6;i++){ await page.keyboard.press('ArrowUp'); await page.waitForTimeout(400);
+    up.push(await readHighlight()); }
+  await shot('C55680-arrowing');
+  const headers=[...down,...up].filter(x=>x&&/^search_group_header_/.test(x.tid));
+  return {rowsPresent:m?m.rows.length:0, goingDown:down, comingBack:up,
+    // the control: if NOTHING was ever highlighted, this says nothing about headings
+    anyHighlightSeen:[...down,...up].some(Boolean),
+    headingsEverHighlighted:headers.map(h=>h.tid)};});
+
+// ---------------------------------------------------------------- C55682 a type icon on every row
+await run(55682,'Each result row shows an icon telling you what kind of record it is',async()=>{
+  await page.goto(`${APP}/workorders`,{waitUntil:'domcontentloaded'}); await page.waitForTimeout(3500);
+  await openModal(); await type2('ZZAUTOTEST');
+  const rows=await page.evaluate(()=>{const vis=e=>{const r=e.getBoundingClientRect();return r.width>2&&r.height>2;};
+    const d=[...document.querySelectorAll('.q-dialog,[role=dialog]')].filter(vis).pop(); if(!d) return null;
+    return [...d.querySelectorAll('[data-test-id^="search_result_row_"]')].map(e=>{
+      const ic=e.querySelector('svg,i,img,[class*=icon]');
+      const cls=ic?((ic.className&&ic.className.baseVal!==undefined?ic.className.baseVal:''+ic.className)||''):'';
+      // the icon's own identity, so "different per type" can be checked rather than assumed
+      const use=ic?ic.querySelector&&ic.querySelector('use'):null;
+      return {type:e.getAttribute('data-test-id').replace('search_result_row_','').replace(/_\d+$/,''),
+        hasIcon:!!ic, iconClass:cls.slice(0,80),
+        iconRef:use?(use.getAttribute('href')||use.getAttribute('xlink:href')||''):null,
+        iconName:ic?(ic.getAttribute('data-icon')||ic.getAttribute('aria-label')||ic.getAttribute('name')||null):null};});});
+  await shot('C55682-row-icons');
+  const byType={}; (rows||[]).forEach(r=>{ byType[r.type]=byType[r.type]||new Set();
+    byType[r.type].add(r.iconRef||r.iconName||r.iconClass); });
+  return {rows, everyRowHasAnIcon:(rows||[]).length>0&&(rows||[]).every(r=>r.hasIcon),
+    iconPerType:Object.fromEntries(Object.entries(byType).map(([k,v])=>[k,[...v]])),
+    distinctIcons:[...new Set((rows||[]).map(r=>r.iconRef||r.iconName||r.iconClass))].length};});
+
+// ---------------------------------------------------------------- C55679 recents after a no-match
+await run(55679,'Your recent items come back when a search finds nothing',async()=>{
+  await page.goto(`${APP}/workorders`,{waitUntil:'domcontentloaded'}); await page.waitForTimeout(3500);
+  await openModal();
+  // control: with an EMPTY box the recent list must be there, or "it did not come back" means nothing
+  await page.fill('[data-test-id="search_modal_input"]',''); await page.waitForTimeout(3500);
+  const readRows=async()=>page.evaluate(()=>{const vis=e=>{const r=e.getBoundingClientRect();return r.width>2&&r.height>2;};
+    const d=[...document.querySelectorAll('.q-dialog,[role=dialog]')].filter(vis).pop(); if(!d) return null;
+    return {rows:[...d.querySelectorAll('[data-test-id^="search_result_row_"]')].map(e=>
+        (e.innerText||'').replace(/\s+/g,' ').trim().slice(0,60)),
+      text:(d.innerText||'').replace(/\s+/g,' ').slice(0,300)};});
+  const emptyBox=await readRows();
+  await page.type('[data-test-id="search_modal_input"]','ZZNOSUCHRECORD9999',{delay:35});
+  await page.waitForTimeout(8000);
+  const noMatch=await readRows();
+  await shot('C55679-no-match');
+  return {recentShownWithEmptyBox:emptyBox&&emptyBox.rows.length,
+    rowsAfterNoMatch:noMatch&&noMatch.rows.length, messageAfterNoMatch:noMatch&&noMatch.text,
+    recentsCameBack:!!(noMatch&&noMatch.rows.length>0)};});
+
 console.log('SPECIAL PASS DONE');
 await browser.close();
 
