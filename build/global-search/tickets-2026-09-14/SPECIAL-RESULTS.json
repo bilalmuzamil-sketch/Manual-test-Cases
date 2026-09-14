@@ -218,33 +218,31 @@
   "C45160": {
    "title": "Selecting a result records a usage analytics event",
    "rowClicked": true,
-   "analyticsBefore": 4,
-   "analyticsAfter": 6,
+   "analyticsBefore": 3,
+   "analyticsAfter": 5,
    "eventNames": [
     "page_view",
     "user_engagement"
    ],
    "searchEventSeen": false,
-   "postsWithUnreadableBody": 2,
+   "postsWithUnreadableBody": 1,
    "conclusive": false,
+   "interceptedAfterClick": 2,
+   "interceptedBodies": [
+    "en=page_view&_ee=1&ep.debug_mode=true&dt=ShopView\r\nen=page_view&_ee=1&ep.debug_mode=true&_et=522&up.user_role=admin&dp=%2Fworkorders&uid=6d71382d-4ddb-4707-a0f3-33b4bb78b0b8\r\nen=page_view&_ee=1&ep.debug_mode=true&_et=1278&dp=%2Fworkorders&uid=6d71382d-4ddb-4707-a0f3-33b4bb78b0b8",
+    ""
+   ],
    "analyticsRequests": [
     {
-     "call": "POST https://www.google-analytics.com/g/collect?v=2&tid=G-CMYCXL13C9&gtm=45je69a0v9250300735za200zd9250300735&_p=17",
+     "call": "POST https://www.google-analytics.com/g/collect?v=2&tid=G-CMYCXL13C9&gtm=45je69b1h2v9250300735za200zd9250300735&_p=",
      "events": [
       "page_view",
       "page_view",
-      "page_view"
-     ],
-     "bodyUnreadable": false,
-     "body": "en=page_view&_ee=1&ep.debug_mode=true&dt=Work%20Orders%20%7C%20ShopView\r\nen=page_view&_ee=1&ep.debug_mode=true&_et=1&up.user_role=admin&dp=%2Fworkorders&uid=6d71382d-4ddb-4707-a0f3-33b4bb78b0b8\r\nen=page_view&_ee=1&ep.debug_mode=true&_et=525&dp=%2Fworkorders&uid=6d71382d-4ddb-4707-a0f3-33b4bb78b0b8"
-    },
-    {
-     "call": "POST https://www.google-analytics.com/g/collect?v=2&tid=G-CMYCXL13C9&gtm=45je69a0v9250300735za200zd9250300735&_p=17",
-     "events": [
+      "page_view",
       "user_engagement"
      ],
-     "bodyUnreadable": true,
-     "body": ""
+     "bodyUnreadable": false,
+     "body": "en=page_view&_ee=1&ep.debug_mode=true\r\nen=page_view&_ee=1&ep.debug_mode=true&_et=1&up.user_role=admin&dp=%2Fworkorders&dt=WorkOrders&uid=6d71382d-4ddb-4707-a0f3-33b4bb78b0b8\r\nen=page_view&_ee=1&ep.debug_mode=true&_et=832&dp=%2Fworkorders&dt=WorkOrders&uid=6d71382d-4ddb-4707-a0f3-33b4bb78b0b8\r\nen=user_engagement&ep.debug_mode=true&_et=4065&dl=https%3A%2F%2Fsv9160.qa.shopview.com%2Fworkorders%3Ftab%"
     },
     {
      "call": "GET https://sv9160.qa.shopview.com/js/filterAnalytics.CnYymG1k.js",
@@ -259,17 +257,17 @@
      "body": ""
     },
     {
-     "call": "POST https://www.google-analytics.com/g/collect?v=2&tid=G-CMYCXL13C9&gtm=45je69a0v9250300735za200zd9250300735&_p=17",
+     "call": "POST https://www.google-analytics.com/g/collect?v=2&tid=G-CMYCXL13C9&gtm=45je69b1h2v9250300735za200zd9250300735&_p=",
      "events": [
       "page_view",
       "page_view",
       "page_view"
      ],
      "bodyUnreadable": false,
-     "body": "en=page_view&_ee=1&ep.debug_mode=true&dt=Work%20Orders%20%7C%20ShopView\r\nen=page_view&_ee=1&ep.debug_mode=true&_et=1&up.user_role=admin&dp=%2Fworkorders&uid=6d71382d-4ddb-4707-a0f3-33b4bb78b0b8\r\nen=page_view&_ee=1&ep.debug_mode=true&_et=458&dp=%2Fworkorders&uid=6d71382d-4ddb-4707-a0f3-33b4bb78b0b8"
+     "body": "en=page_view&_ee=1&ep.debug_mode=true&dt=ShopView\r\nen=page_view&_ee=1&ep.debug_mode=true&_et=522&up.user_role=admin&dp=%2Fworkorders&uid=6d71382d-4ddb-4707-a0f3-33b4bb78b0b8\r\nen=page_view&_ee=1&ep.debug_mode=true&_et=1278&dp=%2Fworkorders&uid=6d71382d-4ddb-4707-a0f3-33b4bb78b0b8"
     },
     {
-     "call": "POST https://www.google-analytics.com/g/collect?v=2&tid=G-CMYCXL13C9&gtm=45je69a0v9250300735za200zd9250300735&_p=17",
+     "call": "POST https://www.google-analytics.com/g/collect?v=2&tid=G-CMYCXL13C9&gtm=45je69b1h2v9250300735za200zd9250300735&_p=",
      "events": [
       "page_view"
      ],
@@ -277,7 +275,7 @@
      "body": ""
     }
    ],
-   "requestsCapturedAtAll": 38,
+   "requestsCapturedAtAll": 37,
    "note": "the listener demonstrably captured traffic during the click"
   },
   "C45154": {
@@ -989,100 +987,92 @@
     {
      "type": "work_orders",
      "hasIcon": true,
-     "iconClass": "lucide-icon",
-     "iconRef": null,
-     "iconName": null
+     "icon": "path:M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V"
     },
     {
      "type": "work_orders",
      "hasIcon": true,
-     "iconClass": "lucide-icon",
-     "iconRef": null,
-     "iconName": null
+     "icon": "path:M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V"
     },
     {
      "type": "work_orders",
      "hasIcon": true,
-     "iconClass": "lucide-icon",
-     "iconRef": null,
-     "iconName": null
+     "icon": "path:M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V"
     },
     {
      "type": "work_orders",
      "hasIcon": true,
-     "iconClass": "lucide-icon",
-     "iconRef": null,
-     "iconName": null
+     "icon": "path:M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V"
+    },
+    {
+     "type": "work_orders",
+     "hasIcon": true,
+     "icon": "path:M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V"
     },
     {
      "type": "customers",
      "hasIcon": true,
-     "iconClass": "lucide-icon",
-     "iconRef": null,
-     "iconName": null
+     "icon": "path:M6 22V4a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v18Z|path:M6 12H4a"
     },
     {
      "type": "customers",
      "hasIcon": true,
-     "iconClass": "lucide-icon",
-     "iconRef": null,
-     "iconName": null
+     "icon": "path:M6 22V4a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v18Z|path:M6 12H4a"
     },
     {
      "type": "customers",
      "hasIcon": true,
-     "iconClass": "lucide-icon",
-     "iconRef": null,
-     "iconName": null
+     "icon": "path:M6 22V4a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v18Z|path:M6 12H4a"
     },
     {
      "type": "customers",
      "hasIcon": true,
-     "iconClass": "lucide-icon",
-     "iconRef": null,
-     "iconName": null
+     "icon": "path:M6 22V4a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v18Z|path:M6 12H4a"
     },
     {
      "type": "assets",
      "hasIcon": true,
-     "iconClass": "lucide-icon",
-     "iconRef": null,
-     "iconName": null
+     "icon": "path:M14 18V6a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2v11a1 1 0 0 0 1 1"
     },
     {
      "type": "parts",
      "hasIcon": true,
-     "iconClass": "lucide-icon",
-     "iconRef": null,
-     "iconName": null
+     "icon": "path:M12 20a8 8 0 1 0 0-16 8 8 0 0 0 0 16Z|path:M12 14a2 2 0"
     },
     {
      "type": "vendors",
      "hasIcon": true,
-     "iconClass": "lucide-icon",
-     "iconRef": null,
-     "iconName": null
+     "icon": "path:m2 7 4.41-4.41A2 2 0 0 1 7.83 2h8.34a2 2 0 0 1 1.42.59L"
     }
    ],
    "everyRowHasAnIcon": true,
+   "typesSeen": [
+    "work_orders",
+    "customers",
+    "assets",
+    "parts",
+    "vendors"
+   ],
+   "eachTypeUsesOneIcon": true,
+   "distinctIconsAcrossTypes": 5,
+   "iconsDifferByType": true,
    "iconPerType": {
     "work_orders": [
-     "lucide-icon"
+     "path:M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2|path:M15 2H9a1 1 0 0 0-1 1v2a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V3a1 1 |path:M12 11h4|path:M12 16h4|path:M8 11h.01|path:M8 16h.01"
     ],
     "customers": [
-     "lucide-icon"
+     "path:M6 22V4a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v18Z|path:M6 12H4a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2h2|path:M18 9h2a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2h-2|path:M10 6h4|path:M10 10h4|path:M10 14h4|path:M10 18h4"
     ],
     "assets": [
-     "lucide-icon"
+     "path:M14 18V6a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2v11a1 1 0 0 0 1 1h2|path:M15 18H9|path:M19 18h2a1 1 0 0 0 1-1v-3.65a1 1 0 0 0-.22-.624l-3.48-4.35A1|path:M17 20a2 2 0 1 0 0-4 2 2 0 0 0 0 4Z|path:M7 20a2 2 0 1 0 0-4 2 2 0 0 0 0 4Z"
     ],
     "parts": [
-     "lucide-icon"
+     "path:M12 20a8 8 0 1 0 0-16 8 8 0 0 0 0 16Z|path:M12 14a2 2 0 1 0 0-4 2 2 0 0 0 0 4Z|path:M12 2v2|path:M12 22v-2|path:m17 20.66-1-1.73|path:M11 10.27 7 3.34|path:m20.66 17-1.73-1|path:m3.34 7 1.73 1|path:M14 12h8|path:M2 12h2|path:m20.66 7-1"
     ],
     "vendors": [
-     "lucide-icon"
+     "path:m2 7 4.41-4.41A2 2 0 0 1 7.83 2h8.34a2 2 0 0 1 1.42.59L22 7|path:M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8|path:M15 22v-4a2 2 0 0 0-2-2h-2a2 2 0 0 0-2 2v4|path:M2 7h20|path:M22 7v3a2 2 0 0 1-2 2 2.5 2.5 0 0 1-1.4-.4 2.5 2.5 0 0 0-1.2"
     ]
-   },
-   "distinctIcons": 1
+   }
   },
   "C55679": {
    "title": "Your recent items come back when a search finds nothing",
@@ -1214,5 +1204,5 @@
   "name": "Staging Heavy Duty - 9919",
   "status": 200
  },
- "complete": false
+ "complete": true
 }

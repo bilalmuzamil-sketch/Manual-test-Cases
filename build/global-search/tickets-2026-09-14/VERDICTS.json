@@ -217,6 +217,10 @@
    "verdict": "Blocked",
    "observed": "Selecting a result does send usage messages - two went out at the moment of the click, where none was going out while the panel sat idle, and the listener demonstrably caught the traffic. But the messages that could be read are the general ones any screen sends when you move to it. No message specific to using the search was seen, and one of the two could not be read at all.",
    "todo": "This cannot be settled from the browser: one of the two messages is sent in a form the browser will not show us. Someone with access to the usage-reporting account needs to look at whether a search-usage entry arrives when a result is picked. Until then the honest position is that we know something is recorded and not what."
+  },
+  "C55664": {
+   "verdict": "Passed",
+   "observed": "Searching the vehicle's model returned it under the Assets heading, among the other vehicles of that model. It had not been returned before, because the vehicle was recorded with the wrong model - once its record actually said what it was meant to say, the search found it."
   }
  }
 }
