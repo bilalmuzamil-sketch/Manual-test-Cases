@@ -3811,6 +3811,28 @@ Index: CLAUDE.md (rule index table). Other rule files: build/rules/RULES-01-20.m
     repository maps to a case, the mapping is checked **live** against the test-management tool (case
     exists · case is in the run · no case serves no capability), and **every** case's expected result and
     SOURCE line cite V1. A row with no recorded verdict is an unfinished row.
+    **🔴 WHICH STANDARD APPLIES — THE FIVE-ROW TABLE. RUN IT BEFORE YOU WRITE OR JUDGE ANY CASE.**
+    This rule is **SCOPED**. It governs the V1-parity cases and **nothing else**. A V2 project normally
+    runs **TWO suites side by side under different standards** — on Global Search, TestRail section 6769
+    (58 V1-parity cases, governed by this rule) and 99 V2 functional cases in the same run 415, governed
+    by the PRD. Same run, two standards. Decide per case, never per project:
+
+    | What the case asks | The standard | Rule |
+    |---|---|---|
+    | **Does V2 do what the V2 documents require?** | the **V2 documents** — PRD, epic, stories, PO answers, design | **57** |
+    | **Did V2 keep what V1 could do?** | the **V1 product code at a named commit** | **109** |
+    | **A V2 feature V1 NEVER HAD** (a new entity, a new screen, fuzzy matching) | the **V2 documents. THIS RULE IS SILENT AND MUST NOT BE STRETCHED** — V1 has nothing to say, and "V1 did not do it" is NEVER a reason to skip testing a new feature | **57** |
+    | **Is V2's behaviour right because V2's code does it?** | **NEVER A VALID STANDARD, IN ANY SUITE** | **57** |
+    | **A V1 behaviour that looks like a BUG rather than a capability** | a **PO DECISION ITEM** — never a silent invariant, never asserted without saying so on the case | **96 + 109** |
+
+    **THE TWO WAYS TO GET THIS WRONG, NAMED SO THEY ARE RECOGNISABLE.**
+    **(1) UNDER-APPLYING (the failure that produced this rule):** using the V2 document to decide a V1
+    capability need not be tested. That is row 2 answered with row 1's standard.
+    **(2) OVER-APPLYING (the failure this table prevents):** stretching "V1 is the specification" across a
+    whole V2 project, so a genuinely NEW V2 feature ends up with no standard, is refused a test, or is
+    judged against a V1 that never had it. That is row 3 answered with row 2's standard. **A V2 project
+    is not a V1 project — most of its surface is still governed by Rule 57.**
+
     **🔴 RECONCILIATION WITH RULE 57 AND RULE 96 — READ THIS BEFORE YOU THINK THIS RULE CONTRADICTS THEM.**
     Rule 96 states, verbatim: *"CODE IS NEVER A SOURCE OF EXPECTATION (Rule 57)."* This rule does not
     overturn that, and **must never be read as licence to derive the NEW system's expectations from the

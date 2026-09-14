@@ -113,6 +113,13 @@ safe. The **evidence** for each one lives in the rule or skill the bullet points
   Context, system prompt and memory go stale by commits, silently. Before reporting a file's size, its
   contents, whether a pointer resolves or whether a rule exists: `git fetch origin`, then `wc -c` ·
   `grep -n` · `git show origin/<branch>:<path>`. Never hand a worker a recollection as a premise.
+- **WHICH STANDARD APPLIES — DECIDE PER CASE, NEVER PER PROJECT (109 + 57).** A V2 project runs **two
+  suites under two standards at once.** *Does V2 do what the V2 documents require?* → **the V2
+  documents (57)**. *Did V2 keep what V1 could do?* → **the V1 product code at a named commit (109)**.
+  *A V2 feature V1 never had?* → **the V2 documents; Rule 109 is SILENT and must not be stretched —
+  "V1 did not do it" is never a reason to skip testing a new feature.** *Is V2 right because V2's code
+  does it?* → **never a valid standard, in any suite.** *A V1 behaviour that looks like a bug?* → **a PO
+  decision item, never a silent invariant (96).** Full table in Rule 109.
 - **A V2 / UPGRADE PROJECT MUST DERIVE AND TEST THE INVARIANT SET (96).** What the V2 spec does NOT
   mention is still a requirement: **silence defaults to "must not change"**, and high-collateral-risk
   silence is escalated as a PO question rather than assumed. **Documents establish intent; code
