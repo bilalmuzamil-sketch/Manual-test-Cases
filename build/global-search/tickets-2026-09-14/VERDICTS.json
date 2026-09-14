@@ -172,6 +172,10 @@
    "verdict": "Blocked",
    "observed": "Searching the state returned one supplier, but not the seeded one - it matched on a name that happens to contain the word. The seeded supplier's record does hold that state and it was not returned.",
    "todo": "The case says to hold this for the Product Owner: the new specification lists a supplier's name, phone, email, street and town as searchable, but not the state."
+  },
+  "C55671": {
+   "verdict": "Passed",
+   "observed": "All three ways of typing the name - all lower case, all capitals, and a jumble of both - returned exactly the same seven customers, the seeded one among them. Capitals make no difference."
   }
  }
 }
