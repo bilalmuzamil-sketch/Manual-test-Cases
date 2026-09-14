@@ -2154,3 +2154,20 @@ the tail of a word — and the runner dutifully tried to execute it.
 
 Harmless this time: the spliced step was a nonsense command that failed instantly. It would not have
 been harmless if the fragment had happened to parse.
+
+### L0108 — `pgrep -f "X"` from a script whose own command line contains X waits for itself, for ever
+Twice this pass a "wait until the run finishes, then start the next one" chain never fired. Both times
+the waiter was `until ! pgrep -f "SCRIPT_NAME"; do sleep 8; done` — and the shell wrapper running that
+loop has `SCRIPT_NAME` **in its own command line**, so `pgrep -f` matches the waiter itself. The
+condition can never become false. Nothing crashes; the chain simply stops, silently, looking exactly
+like a long-running step.
+
+Three fixes, in order of preference:
+
+1. **Wait on a marker, not a process** — the queue runner writes `QUEUE-DONE`; wait for that.
+2. Match the process precisely: `pgrep -f "node.*SCRIPT"` still matched my own `bash -c … pgrep …`
+   line. `pgrep -x node` plus a check of the argv, or a PID file written by the script, is honest.
+3. Exclude self explicitly: `pgrep -f "$PAT" | grep -v "^$$\$"`.
+
+> **Any "wait for X to finish" built on a name match can match the waiter.** Prefer a marker the work
+> itself writes when it is done — it cannot be confused with the act of looking for it.
