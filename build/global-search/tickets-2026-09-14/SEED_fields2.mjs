@@ -33,9 +33,20 @@ const out={at:new Date().toISOString(), steps:[]};
 { const v=await findOne('vendor');
   if(v && String(v.name||'').includes(TAG)){
     const want='(614) 555-0188';
-    const w=await api('/api/parts-catalogue/edit-vendor','POST',{...v, telephone:want, id:v.id});
+    // /api/parts-catalogue/edit-vendor answered 404 "'resource' was not found" -- wrong route, not a
+    // missing vendor. Try the shapes this API actually uses and report which one took.
+    let w={status:0,head:'none tried'};
+    for(const [path,body] of [
+      ['/api/parts-catalogue/vendors/change', {...v, id:v.id, vendor_id:v.id, telephone:want}],
+      ['/api/parts-catalogue/change-vendor',  {...v, id:v.id, vendor_id:v.id, telephone:want}],
+      ['/api/parts-catalogue/update-vendor',  {...v, id:v.id, vendor_id:v.id, telephone:want}],
+      [`/api/parts-catalogue/vendors/${v.id}/change`, {...v, telephone:want}],
+      [`/api/parts-catalogue/edit-vendor/${v.id}`,    {...v, telephone:want}],
+    ]){ const r=await api(path,'POST',body);
+      out.steps.push({what:`vendor telephone via ${path}`, status:r.status, head:(r.head||'').slice(0,120)});
+      if(r.status>=200&&r.status<300){ w=r; w.via=path; break; } w=r; }
     let after=null; await page.waitForTimeout(2500); after=await findOne('vendor');
-    out.steps.push({what:'vendor telephone', wanted:want, writeStatus:w.status,
+    out.steps.push({what:'vendor telephone', wanted:want, writeStatus:w.status, via:w.via||null,
       before:v.telephone, after:after&&after.telephone,
       landed:String((after&&after.telephone)||'')===want, head:w.head});
   } else out.steps.push({what:'vendor telephone', skipped:'vendor not found or not tagged'}); }
@@ -45,10 +56,14 @@ const out={at:new Date().toISOString(), steps:[]};
 { const a=await findOne('asset');
   if(a){
     const want='Cascadia';
+    // The 400 from /api/vehicles/change named exactly what it wanted: vehicle_id and company_id,
+    // not `id`. Read the refusal, then give it what it asked for.
+    const company=a.company_id||a.customer_id||
+      JSON.parse(fs.readFileSync(`${SEED}/seed-state-live.json`,'utf8')).live_ids.customer;
+    const base={...a, vehicle_id:a.id, company_id:company, maker_name:'Freightliner', model_name:want};
     const tries=[
-      ['/api/vehicles/change','POST',{...a, id:a.id, maker_name:'Freightliner', model_name:want}],
-      ['/api/vehicles/edit','POST',{...a, id:a.id, maker_name:'Freightliner', model_name:want}],
-      ['/api/customers/vehicle/change','POST',{...a, id:a.id, maker_name:'Freightliner', model_name:want}],
+      ['/api/vehicles/change','POST',base],
+      ['/api/vehicles/change','POST',{...base, model:want, maker:'Freightliner'}],
     ];
     let done=null;
     for(const [p,m,b] of tries){ const r=await api(p,m,b);
