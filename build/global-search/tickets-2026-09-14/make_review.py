@@ -8,6 +8,8 @@ disagreed (screen vs the server the screen was rendered from) is marked DIVERGEN
 given a verdict at all until it is re-observed."""
 import json, sys, os
 D = os.path.dirname(os.path.abspath(__file__))
+sys.path.insert(0, D)
+from seed_index import lookup          # the positive control for every zero (Rule 104)
 cases = {c['id']: c for c in json.load(open(f'{D}/CASES-6769.json'))}
 res = json.load(open(f'{D}/RUN-RESULTS2.json'))['cases']
 
@@ -31,6 +33,18 @@ for key in sorted(res, key=lambda k: int(k[1:])):
         out.append(f"      types with a count: {nz}")
         api = o.get('api') or {}
         out.append(f"      server said      : { {k:v for k,v in (api.get('groups') or {}).items() if v} or api }")
+        # A zero is only a finding if the thing searched for EXISTS. Say which seeded record
+        # carries the value, on which field -- or say that nothing seeded carries it, in which case
+        # the zero says nothing about the product and the case needs its data checked first.
+        total = sum(v for k, v in (o.get('tabs') or {}).items() if v and k not in ('strip', 'all'))
+        if not total:
+            car = lookup(o['query'])
+            if car['carriers']:
+                who = ', '.join(f"{c['record']}.{c['field']}" for c in car['carriers'][:4])
+                out.append(f"      ZERO -- and a seeded record carries this ({car['match']}): {who}")
+            else:
+                out.append("      ZERO -- but NOTHING SEEDED carries this value; check the data "
+                           "before reading anything into the zero")
         rows = o.get('allRows') or []
         out.append(f"      rows rendered on All ({len(rows)}):")
         for x in rows[:12]:
