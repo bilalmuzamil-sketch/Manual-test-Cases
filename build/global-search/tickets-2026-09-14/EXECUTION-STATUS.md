@@ -11,10 +11,18 @@ testrail, RUN all the test cases and unblock yourself everywhere."*
 
 ## What is done
 
-**45 of 62 judged** — 31 pass, 14 held for the Product Owner, **none failed**. That last figure is not
-optimism: these are V1-regression cases and almost every one of them says, in its own text, that a
-capability lost between versions is recorded **Blocked for a Product Owner ruling** and explicitly
-*not* Failed and *not* a defect.
+**50 of 62 judged** — 33 pass, 16 held for the Product Owner, **1 failed**. The shape of that is not
+optimism: these are V1-regression cases and almost every one says, in its own text, that a capability
+lost between versions is recorded **Blocked for a Product Owner ruling**, explicitly *not* Failed and
+*not* a defect. Only where the new specification ALSO requires the behaviour is a miss a defect — and
+exactly one case is in that position.
+
+**The one real defect, and it is precise.** Searching a vehicle by its year together with anything
+else returns nothing: `2019 Freightliner`, `2019 Cascadia` and `Cascadia 2019` all come back empty,
+while `2019` alone returns twenty vehicles, `Freightliner` alone returns twenty, and
+`Freightliner Cascadia` returns twenty including the seeded one. The year is indexed; combining it
+with a second word empties the result, in either order. Six queries turned "a vehicle cannot be found
+by its year" into something an engineer can act on.
 
 | | Cases | State |
 |---|---|---|
