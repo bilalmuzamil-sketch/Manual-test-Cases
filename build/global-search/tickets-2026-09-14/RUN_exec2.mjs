@@ -74,7 +74,10 @@ page.on('response', async r=>{ const u=r.url();
   if(!/\/api\/search\?/.test(u)) return;
   try{ const j=await r.json(); const g={};
     ((j&&j.data&&j.data.groups)||[]).forEach(x=>{ g[x.type]=x.total; });
-    const q=decodeURIComponent((u.match(/[?&]q=([^&]*)/)||[])[1]||'');
+    // '+' is a legal encoding of a space in a query string and decodeURIComponent does NOT undo
+    // it, so 'Dispatch Supervisor' keyed as 'Dispatch+Supervisor' and never matched the lookup --
+    // which silently dropped the server cross-check for exactly the queries most worth checking.
+    const q=decodeURIComponent(((u.match(/[?&]q=([^&]*)/)||[])[1]||'').replace(/\+/g,'%20'));
     LASTAPI[q]={groups:g, pinned:!!(j&&j.data&&j.data.pinned), status:r.status()};
   }catch(e){}});
 const apiFor=async(q)=> LASTAPI[q] || {error:'no /api/search response seen for this query'};

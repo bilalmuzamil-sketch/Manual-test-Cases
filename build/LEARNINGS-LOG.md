@@ -1720,3 +1720,26 @@ confirm it.
 Every scoped read now goes through the same settle-detection as the All view (three stable reads with
 counts present). Any case already observed with an empty section under the flat wait is re-run rather
 than judged.
+
+### L0088 — `+` is a space in a query string, and `decodeURIComponent` will not tell you
+My cross-check keyed the captured `/api/search` response by the decoded `q` parameter. The app encodes
+spaces as `+`, which `decodeURIComponent` leaves as a literal plus, so `Dispatch Supervisor` was stored
+under `Dispatch+Supervisor` and never matched. The lookup then returned "no response seen" and the
+check **silently dropped** — for precisely the queries most worth checking, the ones with spaces and
+punctuation.
+
+Decode with `.replace(/\+/g,'%20')` first. And the deeper point, which is the same one as L0083:
+**a cross-check that cannot run must say so loudly.** Mine recorded an error and the comparator then
+treated "could not compare" as "nothing to report". Every degraded check should be counted and
+surfaced at the end of a pass, not left as a quiet field in a record nobody re-reads.
+
+### L0089 — check whether the flaw actually bit before rewriting the conclusions
+On finding the scoped-view timing flaw (L0087) the instinct was to re-run all 15 affected
+observations. Cheaper first step: ask whether any of them show the signature the flaw would produce —
+a type the strip COUNTS while its section renders nothing. **Zero of the 15 did**; every empty section
+sat beside a zero count from both the strip and the server. The flaw was real and worth fixing, but it
+had not bitten this run, and 15 re-runs were not needed to establish that.
+
+> **A fault in the instrument does not automatically invalidate the readings.** Work out what the
+> fault would LOOK like in the data, then go and see whether it is there. That is the difference
+> between correcting a result and re-doing a pass.
