@@ -545,16 +545,42 @@ await run(45152,'Switching location refreshes results to the new location',async
     return {appThinksItIsOn:where, tabs:m&&m.tabs,
       jobs:(m?m.rows:[]).filter(r=>r.type==='work_orders').map(r=>r.text.slice(0,60)),
       partSales:(m?m.rows:[]).filter(r=>r.type==='part_sales').map(r=>r.text.slice(0,60))};};
+  // Switch through the SCREEN. Changing it behind the app returned success and the header went on
+  // showing the first location, so the page never moved and the comparison was meaningless. The
+  // location the user switches is the one the case is about.
+  const switchInUI=async(name)=>{
+    await closeModal();
+    const opened=await page.evaluate((n)=>{const vis=e=>{const r=e.getBoundingClientRect();return r.width>2&&r.height>2;};
+      // the control is whatever smallest visible element carries the current location's text
+      const all=[...document.querySelectorAll('button,[role=button],a,div,span')].filter(vis)
+        .filter(e=>/Staging [A-Za-z ]+- ?\d+/.test(e.innerText||'') && (e.innerText||'').length<80);
+      const el=all[all.length-1]; if(!el) return false;
+      (el.closest('button,[role=button],a')||el).click(); return true;}, name);
+    if(!opened) return {clicked:false};
+    await page.waitForTimeout(2500);
+    const picked=await page.evaluate((n)=>{const vis=e=>{const r=e.getBoundingClientRect();return r.width>2&&r.height>2;};
+      const opt=[...document.querySelectorAll('[role=option],.q-item,li,button,div')].filter(vis)
+        .filter(e=>(e.innerText||'').trim().startsWith(n) && (e.innerText||'').length<90);
+      const el=opt[opt.length-1]; if(!el) return false; el.click(); return true;}, name);
+    await page.waitForTimeout(6000);
+    return {clicked:true, picked};
+  };
   await api('/api/iam/change-location','POST',{workplace_id:A.id, workplace_timezone:A.timezone||'America/Edmonton'});
   const at1=await searchJobs('location1');
   await closeModal();
-  const sw=await api('/api/iam/change-location','POST',{workplace_id:B.id, workplace_timezone:B.timezone||'America/Edmonton'});
+  const uiSwitch=await switchInUI(B.name);
+  let sw={status:'switched through the screen'};
+  if(!(uiSwitch.clicked&&uiSwitch.picked)){        // fall back, and SAY that is what happened
+    sw=await api('/api/iam/change-location','POST',{workplace_id:B.id, workplace_timezone:B.timezone||'America/Edmonton'});
+    sw.note='the screen control could not be driven, so the location was changed behind the app';
+  }
   const at2=await searchJobs('location2');
   await closeModal();
   // put it back where the rest of the pass expects it
   await api('/api/iam/change-location','POST',{workplace_id:A.id, workplace_timezone:A.timezone||'America/Edmonton'});
   const locationReallyChanged = JSON.stringify(at1.appThinksItIsOn)!==JSON.stringify(at2.appThinksItIsOn);
-  return {location1:{name:A.name, ...at1}, location2:{name:B.name, switchStatus:sw.status, ...at2},
+  return {location1:{name:A.name, ...at1},
+    location2:{name:B.name, switchStatus:sw.status, switchedVia:uiSwitch, ...at2},
     firstLocationHadJobs:at1.jobs.length>0,
     locationReallyChanged,
     jobsChanged:JSON.stringify(at1.jobs)!==JSON.stringify(at2.jobs),
