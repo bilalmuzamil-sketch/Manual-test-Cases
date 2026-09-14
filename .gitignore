@@ -19,3 +19,8 @@ push.err
 # belt-and-braces guard: a SHA-256 of a short or weak secret is brute-forceable, so
 # even the HASHES must never enter this PUBLIC repository.
 secret-fingerprints.json
+
+# Live log of the detached Global Search capture waiter -- it is appended to while the
+# waiter runs, so tracking it makes the tree dirty every few minutes. A final snapshot is
+# committed as GS3-wait-final.log when the waiter exits.
+build/global-search/tickets-2026-09-14/GS3-wait.log
