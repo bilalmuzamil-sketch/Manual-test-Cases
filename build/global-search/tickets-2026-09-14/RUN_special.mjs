@@ -416,18 +416,34 @@ await run(55682,'Each result row shows an icon telling you what kind of record i
     return [...d.querySelectorAll('[data-test-id^="search_result_row_"]')].map(e=>{
       const ic=e.querySelector('svg,i,img,[class*=icon]');
       const cls=ic?((ic.className&&ic.className.baseVal!==undefined?ic.className.baseVal:''+ic.className)||''):'';
-      // the icon's own identity, so "different per type" can be checked rather than assumed
       const use=ic?ic.querySelector&&ic.querySelector('use'):null;
+      // Every row's icon carries the SAME generic class, so the class cannot answer "does the icon
+      // differ by type". The picture itself is in the SVG's shapes -- take those as the identity.
+      let shape=null;
+      if(ic&&ic.tagName&&ic.tagName.toLowerCase()==='svg'){
+        shape=[...ic.querySelectorAll('path,circle,rect,line,polyline,polygon')]
+          .map(n=>n.tagName.toLowerCase()+':'+((n.getAttribute('d')||n.getAttribute('points')||
+            [n.getAttribute('cx'),n.getAttribute('cy'),n.getAttribute('r'),
+             n.getAttribute('x'),n.getAttribute('y')].filter(Boolean).join(',')||'')).slice(0,60))
+          .join('|').slice(0,240);
+      } else if(ic){ shape=(ic.getAttribute('src')||ic.textContent||'').slice(0,120); }
       return {type:e.getAttribute('data-test-id').replace('search_result_row_','').replace(/_\d+$/,''),
         hasIcon:!!ic, iconClass:cls.slice(0,80),
+        iconShape:shape,
         iconRef:use?(use.getAttribute('href')||use.getAttribute('xlink:href')||''):null,
         iconName:ic?(ic.getAttribute('data-icon')||ic.getAttribute('aria-label')||ic.getAttribute('name')||null):null};});});
   await shot('C55682-row-icons');
-  const byType={}; (rows||[]).forEach(r=>{ byType[r.type]=byType[r.type]||new Set();
-    byType[r.type].add(r.iconRef||r.iconName||r.iconClass); });
-  return {rows, everyRowHasAnIcon:(rows||[]).length>0&&(rows||[]).every(r=>r.hasIcon),
-    iconPerType:Object.fromEntries(Object.entries(byType).map(([k,v])=>[k,[...v]])),
-    distinctIcons:[...new Set((rows||[]).map(r=>r.iconRef||r.iconName||r.iconClass))].length};});
+  const ident=r=>r.iconShape||r.iconRef||r.iconName||r.iconClass;
+  const byType={}; (rows||[]).forEach(r=>{ (byType[r.type]=byType[r.type]||new Set()).add(ident(r)); });
+  const perType=Object.fromEntries(Object.entries(byType).map(([k,v])=>[k,[...v]]));
+  const oneEach=Object.entries(perType).filter(([k,v])=>v.length===1).map(([k,v])=>[k,v[0]]);
+  return {rows:(rows||[]).map(r=>({type:r.type,hasIcon:r.hasIcon,icon:(ident(r)||'').slice(0,60)})),
+    everyRowHasAnIcon:(rows||[]).length>0&&(rows||[]).every(r=>r.hasIcon),
+    typesSeen:Object.keys(perType),
+    eachTypeUsesOneIcon: oneEach.length===Object.keys(perType).length,
+    distinctIconsAcrossTypes:[...new Set(oneEach.map(([k,v])=>v))].length,
+    iconsDifferByType: [...new Set(oneEach.map(([k,v])=>v))].length===oneEach.length,
+    iconPerType:perType};});
 
 // ---------------------------------------------------------------- C55679 recents after a no-match
 await run(55679,'Your recent items come back when a search finds nothing',async()=>{
