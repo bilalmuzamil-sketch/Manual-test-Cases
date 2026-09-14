@@ -2116,3 +2116,24 @@ Three supporting habits, each of which paid repeatedly today:
 And the thing that kept the pass honest throughout: **the controls that refused to let an empty screen
 become a finding.** They were wrong about *why* four separate times, and right about *not reporting*
 every single time. A control that blocks the conclusion you were hoping for is doing its job.
+
+### L0106 — build the undo before the do, and let it refuse
+To reach the permission sets nobody on this branch holds, the plan was to give one spare staff member
+a narrower role, observe, and put it back. The script captured the person's current role first, found
+**no role id anywhere on the staff record**, and **stopped without changing anything**.
+
+That refusal was the whole point. The alternative — change the role, then work out how to restore it —
+leaves a real person's access wrong on a shared branch if the second half turns out to be impossible.
+
+What unlocked it was building the undo properly rather than lowering the bar: the staff record carries
+only the role's **name**, and the eleven role templates carry names that match exactly. So the restore
+value comes from the templates — and before trusting that mapping, the script **assigns the person the
+template matching the role they already have**. If the mapping is right, nothing changes. If it is
+wrong, the worst case is a role they already had, and the run stops. Only after that proof does it
+touch anything.
+
+> **A reversible action is only reversible if you have tested the reverse.** Capture the undo value
+> first, prove the undo path on a no-op, and let the guard stop the run when it cannot. "I'll work out
+> how to put it back afterwards" is how a shared environment gets left broken.
+
+Rule 107 authorises doing whatever the test environment needs. It does not authorise leaving it worse.
