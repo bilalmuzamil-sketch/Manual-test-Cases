@@ -297,8 +297,14 @@ await run(53588,'More recent work orders rank above older ones of equal relevanc
   for(const id of (live.live_ids.work_orders||[])){
     const r=await api(`/api/work-orders/view/${id}`);
     const d=r.json&&(r.json.data||r.json); const w=(d&&(d.work_order||d))||{};
+    // Dump every scalar field rather than guessing the timestamp key: updated_at/updatedAt both came
+    // back null, which means the field is named something else here -- and a null I guessed my way
+    // into looks exactly like a record with no history. Keep the whole set and pick in judging.
+    const scal=Object.fromEntries(Object.entries(w).filter(([k,v])=>
+      v===null||['string','number','boolean'].includes(typeof v)));
+    const timeKeys=Object.fromEntries(Object.entries(scal).filter(([k])=>/updat|modif|creat|date|time/i.test(k)));
     details.push({id, number:w.number, status:w.status&&(w.status.name||w.status),
-      updated:w.updated_at||w.updatedAt||null, created:w.created_at||w.createdAt||null}); }
+      timeFields:timeKeys, allFieldNames:Object.keys(w)}); }
   await shot('C53588-ranking');
   return {displayedOrder:numbers, displayedRows:shown, workOrders:details,
     note:'judge the displayed order against these timestamps and statuses, not against a date sort'};});
